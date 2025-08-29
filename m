@@ -1,40 +1,48 @@
-Return-Path: <devicetree+bounces-210519-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210520-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C912B3BC97
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:41:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 579BBB3BCAB
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28E44A43DF7
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:41:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FF611C87A24
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A98B431CA53;
-	Fri, 29 Aug 2025 13:41:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E843314B96;
+	Fri, 29 Aug 2025 13:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFf3eDiC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0950931B13E;
-	Fri, 29 Aug 2025 13:41:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 346332F3C20;
+	Fri, 29 Aug 2025 13:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756474869; cv=none; b=AtDEQNJ99Ye/x1yM9AQ6uOOMiGKpAEX2OyULLrJc2d8dGWTaeThw09+RHky+5+zNN+morvwSjvvvVmTXlDEe0De2GTegVVix3kKtOe6jvxVJAN0iulrVkfUkHoegEgR5fslXyNbpiTLomLWFgBbJZh5vI3xUglk5r6sMYAyqyiM=
+	t=1756474977; cv=none; b=eket6NxNw5ygzIA3mLgZrt3KxnqnlqmPU1iNTvh4sYKO6RUduTQw1plSy6423MDAq0CNeCN0Obj3G30nzHH22etvNLlLJY8egaZXFI/xpyT0+qMV+GJP6mk6RJmNnmbkTFr4+FtAKaue+lW2GW7+ZVLgRQDBOUgbkMgpMMsAwoQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756474869; c=relaxed/simple;
-	bh=6z+a0US228Wq8ivIsflY1skprsZ/lJoQAY6UPkHaBs0=;
+	s=arc-20240116; t=1756474977; c=relaxed/simple;
+	bh=xMPj48r8As4aXH1GYEa9qTq/D6Gp2Yzn7QpcjXwmmPY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=Rw38iQMICeXyjjj8uq9nuqICG8nuGUfEcj61OPNcwFjym+n/XwV26MlwT/yiFJrq4zTwVL1DzZ+UkJEzAOrnxZrDqlVs2URpe6DFdqn9DAqRP57Qh4o0z2YJp9LNu3N/WzNKjNem+DeR3utLDrnT37ypxgtHye0vbSMpFT8JKmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 108B915A1;
-	Fri, 29 Aug 2025 06:40:59 -0700 (PDT)
-Received: from [10.1.29.20] (unknown [10.1.29.20])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BAC6A3F738;
-	Fri, 29 Aug 2025 06:41:04 -0700 (PDT)
-Message-ID: <35034ce0-46de-4417-9bd6-6ea90c5e9095@arm.com>
-Date: Fri, 29 Aug 2025 14:41:02 +0100
+	 In-Reply-To:Content-Type; b=qKVvynMAd3hPHt89+JwS3ze/buk0u57345qwVVwgNkMWu4fHt7wo9agUDYUjO10Wkzkm1ghjvnFhsTsW0ZDKfA4gbTKpAhmmveytnCadjN6ogVYJawqzdvIEfdw6iSGBTppsccPF6QRWcTZjM/QcikxTRNL9j116DE7DCwmgnj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFf3eDiC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6FCCC4CEF0;
+	Fri, 29 Aug 2025 13:42:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756474976;
+	bh=xMPj48r8As4aXH1GYEa9qTq/D6Gp2Yzn7QpcjXwmmPY=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=EFf3eDiCTrzZyhiso/rAv/314HTXrPh/EaY/nXDI4k4AW7Ozaabx1Mc2RPKUIvzJh
+	 ZfssLpuQ6IRqAyhcW+BAlPuZ3XVGQXerlzVsXEOQMcevtUvawijIeLxy1U1A8Z1zpu
+	 DUy96f+brnogAJh7/hGnbnektj/2mBEU7vCy0+9He6V8C1PeKLo6dsWl1MCJsZKNYC
+	 u/H3J5m9ooOhe40/GK7/qfjuPVnKC/7xkkc2X6yrxV1602DfM8zG/sRl8Wnn9Rtbfl
+	 XWyR8FTCmmYre6A3scFq+sz6zx1eHuRkuomD/r/cH+mpl0ZwJCB7+MQY0bevXjyoc/
+	 gA4mNj4cyTCaw==
+Message-ID: <eb436a88-4ef2-4634-83a2-690eae1fced9@kernel.org>
+Date: Fri, 29 Aug 2025 15:42:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -42,10 +50,10 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] drm/panthor: add asn-hash support
+Subject: Re: [PATCH 1/2] dt-bindings: gpu: mali-valhall-csf: add asn-hash
 To: Chia-I Wu <olvaffe@gmail.com>,
  Boris Brezillon <boris.brezillon@collabora.com>,
- Liviu Dudau <liviu.dudau@arm.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -53,164 +61,84 @@ To: Chia-I Wu <olvaffe@gmail.com>,
  Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20250828201806.3541261-1-olvaffe@gmail.com>
- <20250828201806.3541261-3-olvaffe@gmail.com>
-From: Steven Price <steven.price@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250828201806.3541261-3-olvaffe@gmail.com>
+ <20250828201806.3541261-2-olvaffe@gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250828201806.3541261-2-olvaffe@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 28/08/2025 21:18, Chia-I Wu wrote:
-> Parse asn-hash and enable custom ASN hash when the property exists.
-> This is required on some socs such as mt8196.
+On 28/08/2025 22:18, Chia-I Wu wrote:
+> The values are written to ASN_HASH[0..2] registers. The property is
+> called "l2-hash-values" in the downstream driver.
+
+We don't add properties based on downstream drivers. Please provide some
+sort of rationale, including explanation why this is not SoC/compatible
+specific.
+
 > 
 > Signed-off-by: Chia-I Wu <olvaffe@gmail.com>
-
-This mostly looks fine, although there is a question of naming. This was
-renamed in a later version of the architecture to be L2C_SLICE_HASH
-(rather than ASN_HASH).
-
-I'm honestly not sure whether to stick with asn-hash (as it's out in the
-wild already) or try to align with the newer spec and whether that will
-create or avoid confusion!
-
 > ---
->  drivers/gpu/drm/panthor/panthor_device.c | 28 ++++++++++++++++++++++++
->  drivers/gpu/drm/panthor/panthor_device.h |  6 +++++
->  drivers/gpu/drm/panthor/panthor_gpu.c    | 17 ++++++++++++++
->  drivers/gpu/drm/panthor/panthor_regs.h   |  4 ++++
->  4 files changed, 55 insertions(+)
+>  .../devicetree/bindings/gpu/arm,mali-valhall-csf.yaml     | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/panthor/panthor_device.c b/drivers/gpu/drm/panthor/panthor_device.c
-> index 81df49880bd87..19423c495d8d7 100644
-> --- a/drivers/gpu/drm/panthor/panthor_device.c
-> +++ b/drivers/gpu/drm/panthor/panthor_device.c
-> @@ -41,6 +41,30 @@ static int panthor_gpu_coherency_init(struct panthor_device *ptdev)
->  	return -ENOTSUPP;
->  }
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> index a5b4e00217587..258bcba66d1d1 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> @@ -85,6 +85,14 @@ properties:
 >  
-> +static int panthor_gpu_asn_hash_init(struct panthor_device *ptdev)
-> +{
-> +	int ret;
-> +
-> +	ret = of_property_read_u32_array(ptdev->base.dev->of_node, "asn-hash",
-> +					 ptdev->asn_hash,
-> +					 ARRAY_SIZE(ptdev->asn_hash));
-> +	if (ret) {
-> +		if (ret == -EINVAL)
-> +			ret = 0;
-> +		return ret;
-> +	}
+>    dma-coherent: true
+>  
+> +  asn-hash:
 
-NIT: I think this would be neater written as:
+Missing vendor prefix or please explain which common schema has it
+already defined.
 
-	if (ret == -EINVAL)
-		return 0;
-	else if (ret)
-		return ret
 
-Thanks,
-Steve
-
-> +
-> +	if (GPU_ARCH_MAJOR(ptdev->gpu_info.gpu_id) < 11) {
-> +		drm_err(&ptdev->base,
-> +			"Custom ASN hash not supported by the device");
-> +		return -EOPNOTSUPP;
-> +	}
-> +
-> +	ptdev->has_asn_hash = true;
-> +
-> +	return 0;
-> +}
-> +
->  static int panthor_clk_init(struct panthor_device *ptdev)
->  {
->  	ptdev->clks.core = devm_clk_get(ptdev->base.dev, NULL);
-> @@ -257,6 +281,10 @@ int panthor_device_init(struct panthor_device *ptdev)
->  	if (ret)
->  		goto err_unplug_gpu;
->  
-> +	ret = panthor_gpu_asn_hash_init(ptdev);
-> +	if (ret)
-> +		goto err_unplug_gpu;
-> +
->  	ret = panthor_mmu_init(ptdev);
->  	if (ret)
->  		goto err_unplug_gpu;
-> diff --git a/drivers/gpu/drm/panthor/panthor_device.h b/drivers/gpu/drm/panthor/panthor_device.h
-> index 4fc7cf2aeed57..6f8e2b3b037e5 100644
-> --- a/drivers/gpu/drm/panthor/panthor_device.h
-> +++ b/drivers/gpu/drm/panthor/panthor_device.h
-> @@ -114,6 +114,12 @@ struct panthor_device {
->  	/** @coherent: True if the CPU/GPU are memory coherent. */
->  	bool coherent;
->  
-> +	/** @has_asn_hash: True if custom ASN hash is enabled. */
-> +	bool has_asn_hash;
-> +
-> +	/** @asn_hash: ASN_HASH values for custom ASN hash */
-> +	u32 asn_hash[3];
-> +
->  	/** @gpu_info: GPU information. */
->  	struct drm_panthor_gpu_info gpu_info;
->  
-> diff --git a/drivers/gpu/drm/panthor/panthor_gpu.c b/drivers/gpu/drm/panthor/panthor_gpu.c
-> index db69449a5be09..f9222b67f314d 100644
-> --- a/drivers/gpu/drm/panthor/panthor_gpu.c
-> +++ b/drivers/gpu/drm/panthor/panthor_gpu.c
-> @@ -52,6 +52,22 @@ static void panthor_gpu_coherency_set(struct panthor_device *ptdev)
->  		ptdev->coherent ? GPU_COHERENCY_PROT_BIT(ACE_LITE) : GPU_COHERENCY_NONE);
->  }
->  
-> +static void panthor_gpu_asn_hash_set(struct panthor_device *ptdev)
-> +{
-> +	u32 l2_config;
-> +	u32 i;
-> +
-> +	if (!ptdev->has_asn_hash)
-> +		return;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(ptdev->asn_hash); i++)
-> +		gpu_write(ptdev, ASN_HASH(i), ptdev->asn_hash[i]);
-> +
-> +	l2_config = gpu_read(ptdev, L2_CONFIG);
-> +	l2_config |= L2_CONFIG_ASN_HASH_ENABLE;
-> +	gpu_write(ptdev, L2_CONFIG, l2_config);
-> +}
-> +
->  static void panthor_gpu_irq_handler(struct panthor_device *ptdev, u32 status)
->  {
->  	gpu_write(ptdev, GPU_INT_CLEAR, status);
-> @@ -243,6 +259,7 @@ int panthor_gpu_l2_power_on(struct panthor_device *ptdev)
->  
->  	/* Set the desired coherency mode before the power up of L2 */
->  	panthor_gpu_coherency_set(ptdev);
-> +	panthor_gpu_asn_hash_set(ptdev);
->  
->  	return panthor_gpu_power_on(ptdev, L2, 1, 20000);
->  }
-> diff --git a/drivers/gpu/drm/panthor/panthor_regs.h b/drivers/gpu/drm/panthor/panthor_regs.h
-> index 8bee76d01bf83..c9f795624e79b 100644
-> --- a/drivers/gpu/drm/panthor/panthor_regs.h
-> +++ b/drivers/gpu/drm/panthor/panthor_regs.h
-> @@ -64,6 +64,8 @@
->  
->  #define GPU_FAULT_STATUS				0x3C
->  #define GPU_FAULT_ADDR					0x40
-> +#define L2_CONFIG					0x48
-> +#define   L2_CONFIG_ASN_HASH_ENABLE			BIT(24)
->  
->  #define GPU_PWR_KEY					0x50
->  #define  GPU_PWR_KEY_UNLOCK				0x2968A819
-> @@ -110,6 +112,8 @@
->  
->  #define GPU_REVID					0x280
->  
-> +#define ASN_HASH(n)					(0x2C0 + ((n) * 4))
-> +
->  #define GPU_COHERENCY_FEATURES				0x300
->  #define GPU_COHERENCY_PROT_BIT(name)			BIT(GPU_COHERENCY_  ## name)
->  
-
+Best regards,
+Krzysztof
 
