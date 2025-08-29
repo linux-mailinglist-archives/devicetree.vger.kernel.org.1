@@ -1,152 +1,145 @@
-Return-Path: <devicetree+bounces-210289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AF54B3B30C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:13:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A0ACB3B33C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 08:19:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB40E7C166C
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:13:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB7033B76F2
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 06:19:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5734D1F09BF;
-	Fri, 29 Aug 2025 06:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79394239E8B;
+	Fri, 29 Aug 2025 06:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="emcXEQNb"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VlAr7cp1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1A98BEC;
-	Fri, 29 Aug 2025 06:13:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D699207A20;
+	Fri, 29 Aug 2025 06:19:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756447985; cv=none; b=GT2lnwzzC5D+ArPKglQQ9d7oLkdeNwBlfRl0JySQ8VGF7mfaxX9Pc8o/pSzdrTKqya50FIz61Vt7jsKwvkG6QeLCRjL4MkFF8aLOhsvi/ymGub/MW6fQNQCFb9IAgKtagytrNtd6mjtpXhv6ldcrmbXoG1KRhbuejV0gEJAs8ik=
+	t=1756448342; cv=none; b=bllLAzzvLZygy6YSNG8mzD/5a5pYu1EkHhb1BCY8Wc0gl72wCLXHSqcMaDjvzV/YLU5KEIt4qyox9t94eixCaFbNLEKA6KTycIjY5yrG7VKi6KmkLXAi1+Fp0iC61RJ2YaKmFFhN10C89w7fH2hTfVfGxYF9wM7qPFBFLKLcigc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756447985; c=relaxed/simple;
-	bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Mvw9DV/lF6jSB8UVZe9rcKclBId7mOVYZFK7BxXupzCG360v8nG3zO5d7OTdqySxrAKk1dx7s+ha1bfmq5Qt9MfVwULafY0v/46cye7B7efPrBSA8NgcvYFzgglM1r70uOVGuFwppBfV3MRZ2/pEfbnPn938Gr5NQa74XGGqkuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=emcXEQNb; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-e96ff518c08so1395538276.1;
-        Thu, 28 Aug 2025 23:13:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756447982; x=1757052782; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
-        b=emcXEQNb/JtYGK2kcrITfMRPnm/o2/qJiDvJBtadV4lmOBWLbS6LF+29cLBHOtlPqU
-         xLui0GAdHIpWpqupCMdmp3PHRH0H5StO0SK3BBZGM6dvfQDn0NE+xh4rrURL+u9Ladw7
-         iJMHVnG4mW8akxWLTgNL9KhcDUQoj6qN4gjtN2ws9TEkduQA6h/hbH2ICt2C2q4j+pLi
-         kGYbA2v8+RU7flY67p+QXrTZ/nai1fAi4DqT7gFq0EQP51sWE86pyRn0tB0jQ+sZBAx6
-         bxyHB9+tpYY6UdBb7ABd7kV2QUbPcIXxmdI2IVOkiYGQ8uGS9zeZKHEEwPHixJyCu/dT
-         GV3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756447982; x=1757052782;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=l91ux3+Pvhq5FZeurV7FijYDFgWSVXtEaVgdjXVEbi8=;
-        b=fTyKOJJRzif+DxRQ5KQEU4u+oEVaqi7CvOX8dfOY1JxnQNYosXiPn/IoFXZeNpFdG/
-         FtDn0LxwlDHNIJe12Vou7RjINr6pM7NMSeVWDrUNdmeJZfKgabDlkU/bLzuIygGcXZiy
-         ttWC7tz/p8UO9MkMXm4eVosNHgaeMctzZI+2GA/KmhNjOPHGCIzdBxqFFpBc7YZphLsj
-         4/hgxAzd0Vvf5cafRHFAEeLmimAnop3xpismZ73Xsvy0X49JaXkLMWl/Bi5ru8Wv4Wqb
-         kVLplYGU7t6R92RLOpg6bUn0TzcGwYd8Yb8GxgurXKvZEvZPEGtOlSWikFBCKXOHaQQH
-         lTKg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9iAVcBRbI9bER2r62JRunuk21/RXwCSUGVsuLYoY4rjA5QD+YRtokLjy0a3CI7SVWIApeSOKZgnWjRA==@vger.kernel.org, AJvYcCVGzizzLIdCpscDRyAgU3UycoCY97BiPjMq+ciBgNAy1XEIRGFWSFW35WcS7/QOlQgDfe6IY8zlVWH5OKkXUHI=@vger.kernel.org, AJvYcCVZUXf9TL22SUf8ImqcfMpXT7YxEXJnuJmQ/x1HqOdM/zJ6SOSBdEx5iDgnT7xCeWcbUJcvEpobvrx99Uqi@vger.kernel.org, AJvYcCWNnwsaCsUbg5G9vN9JMn6f6wnjzl3faKEtGLc/FRy9HBJsKKky77KFJ0fllhSPA5P8hitcb4RS/5n3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzXnUIcWk3E8CdFZfyZlHZ2lYZbdhtstFcFIecVaVVQZexzCB6b
-	6ZcMb1YzgSHmwtI+ZEGYp7m5EMvZcqTh0/yyXUJxtyz3hPzi2UhJB9rNPjbsVfubqhq32D5uCTL
-	s0FqTavP5tE0SrivVH1KTD/KGMSb0B2A=
-X-Gm-Gg: ASbGncs96v8u32NBadLTvMjNVuhbfzgJ/dpQ0Joi2fqlzXzGGlxFri7K8JKFMLo2EoI
-	kKu9UJiT4iK8QAbXg5nsfCfq2blPKO5AX5jrI8GOnY9IVlZK6xD6PlYoLcPqMKZufCDorMutjlX
-	EIwEZHpoD+6Mu/8UX4uJihzhQZVYPi0OEhFQU6NaDbsDMb99L51f5IwCPWu7PAUetDdTGib05Tg
-	m+j3q9ybC+mMYPv8Bcr7hBiuhkjlOVB5AWZvGfFurYPSQIvjIyaQEpzW3iNyomsuzo7og==
-X-Google-Smtp-Source: AGHT+IHSy/2BbuT5BBnMMeA82aFWaW+gHIBMJGQ0IfV06xy4CtgRumYMAtG4iaoPpvDBRT6Pc0nC8zl6L8hnzFloH+0=
-X-Received: by 2002:a05:690c:892:b0:71f:b871:da32 with SMTP id
- 00721157ae682-71fdc2d938amr354421277b3.12.1756447982321; Thu, 28 Aug 2025
- 23:13:02 -0700 (PDT)
+	s=arc-20240116; t=1756448342; c=relaxed/simple;
+	bh=P9Q0SmdKT4+QR+pS62JZey3140CaFSXQyb5AfpmgPrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=kMIBOUhLauIr5WA84CaULcEJx971avEC7WuEqDP13mdyiOIU2Zp28t1BQjo6kfX907pElhFByZJ5HAvEYkT65u39amIee8kfeFAhEyDXvbCF5mLZEeoToAq/W6tzw37f7I2Z6Hw+jsK0rp537tYU3qjlApnjGfaaexIAeP1Bl84=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VlAr7cp1; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57T6IrnH2151732;
+	Fri, 29 Aug 2025 01:18:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756448333;
+	bh=3IPwZazoSn4ZeSr5DFrwiRXhN0snIHoAAJIH9eLfr9U=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VlAr7cp1b4CRn3SlUE3hf7hIh7IZy/hHvtEir/A8wQug1degH7AhhyKmubIkPa5vl
+	 9lfYiNyPXKy4wnhWicf7HGtm5Nhzt5rkxHrpwHVirZBN72EcpOaIC1QZfRBNW0/Szi
+	 pYdaqIVn8+Ff7bc2ksiE7BHEllszOJ4pIEEFRTKc=
+Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57T6IqF43805307
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 29 Aug 2025 01:18:53 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 29
+ Aug 2025 01:18:52 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 29 Aug 2025 01:18:52 -0500
+Received: from [172.24.20.139] (lt5cd2489kgj.dhcp.ti.com [172.24.20.139])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57T6ImNR1891002;
+	Fri, 29 Aug 2025 01:18:48 -0500
+Message-ID: <c542ad3f-8e6d-405a-92d3-4e45cbcfc2a3@ti.com>
+Date: Fri, 29 Aug 2025 11:48:47 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250827005658.3464-1-rosenp@gmail.com> <20250827005658.3464-2-rosenp@gmail.com>
- <175638709817.1370637.10754263567298002001.robh@kernel.org>
- <CAKxU2N-Zfme=84rqxQ=uJro1YMeFGorveT-uRhx6_HpJmB-fxA@mail.gmail.com> <9208c440-f9e3-4289-9c33-81bb35383d53@kernel.org>
-In-Reply-To: <9208c440-f9e3-4289-9c33-81bb35383d53@kernel.org>
-From: Rosen Penev <rosenp@gmail.com>
-Date: Thu, 28 Aug 2025 23:12:51 -0700
-X-Gm-Features: Ac12FXwKbnby6LF69ay3A5pTgzG023i-hm7L-4gqEAYIyg35KbPDvm5j_vKU5Rs
-Message-ID: <CAKxU2N9o_jJd7mfVQE2yab5xX+-gKa8qB8hLkKJPqZq+YmzE4Q@mail.gmail.com>
-Subject: Re: [PATCHv4 1/3] dt-bindings: net: wireless: ath9k: add led bindings
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, Johannes Berg <johannes@sipsolutions.net>, 
-	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-kernel@vger.kernel.org, 
-	Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org, 
-	linux-wireless@vger.kernel.org, =?UTF-8?B?VG9rZSBIw7hpbGFuZC1Kw7hyZ2Vuc2Vu?= <toke@toke.dk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j742s2-mcu-wakeup: Override
+ firmware-name for MCU R5F cores
+To: Beleswar Padhi <b-padhi@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>
+CC: <afd@ti.com>, <hnagalla@ti.com>, <jm@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <u-kumar1@ti.com>
+References: <20250823163111.2237199-1-b-padhi@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250823163111.2237199-1-b-padhi@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Thu, Aug 28, 2025 at 11:02=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.o=
-rg> wrote:
->
-> On 29/08/2025 03:47, Rosen Penev wrote:
-> >> dtschema/dtc warnings/errors:
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
-2.15-25: Warning (reg_format): /example-2/ahb/wifi@180c0000/led:reg: proper=
-ty has invalid length (4 bytes) (#address-cells =3D=3D 2, #size-cells =3D=
-=3D 1)
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
-1.17-94.15: Warning (unit_address_vs_reg): /example-2/ahb/wifi@180c0000/led=
-: node has a reg or ranges property, but no unit name
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (pci_device_reg): Failed prerequisite 'reg_format'
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (simple_bus_reg): Failed prerequisite 'reg_format'
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
-1.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000=
-/led: Relying on default #address-cells value
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dts:9=
-1.17-94.15: Warning (avoid_default_addr_size): /example-2/ahb/wifi@180c0000=
-/led: Relying on default #size-cells value
-> >> Documentation/devicetree/bindings/net/wireless/qca,ath9k.example.dtb: =
-Warning (unique_unit_address_if_enabled): Failed prerequisite 'avoid_defaul=
-t_addr_size'
-> >>
-> >> doc reference errors (make refcheckdocs):
-> >>
-> >> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/202=
-50827005658.3464-2-rosenp@gmail.com
-> > FFS. These reviews were garbage. The next series will effectively be
->
-> What? My and Conor reviews were garbage?
-I was specifically referring to replacing led-sources with reg. The
-latter needs address and size-cells specified which is verbose for no
-good reason.
 
-Meaning the initial patchset was almost ideal. Just
-of_device_is_available needed to be fixed.
+On 8/23/2025 10:01 PM, Beleswar Padhi wrote:
+> The J742S2 SoC reuses the common k3-j784s4-j742s2-mcu-wakeup-common.dtsi
+> for its MCU domain, but it does not override the firmware-name property
+> for its R5F cores. This causes the wrong firmware binaries to be
+> referenced.
+>
+> Introduce a new k3-j742s2-mcu-wakeup.dtsi file to override the
+> firmware-name property with correct names for J742s2.
+>
+> Fixes: 38fd90a3e1ac ("arm64: dts: ti: Introduce J742S2 SoC family")
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> ---
+> v2: Changelog:
+> 1. Posted this patch as a fix as decided in v1, so added Fixes tag.
+>
+> Link to v1:
+> https://lore.kernel.org/all/20250522073426.329344-2-b-padhi@ti.com/
+>
+>   .../arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi | 17 +++++++++++++++++
+>   arch/arm64/boot/dts/ti/k3-j742s2.dtsi           |  1 +
+>   2 files changed, 18 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
+> new file mode 100644
+> index 000000000000..61db2348d6a4
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/ti/k3-j742s2-mcu-wakeup.dtsi
+> @@ -0,0 +1,17 @@
+> +// SPDX-License-Identifier: GPL-2.0-only OR MIT
+> +/*
+> + * Device Tree Source for J742S2 SoC Family
+> + *
+> + * TRM: https://www.ti.com/lit/pdf/spruje3
+> + *
+> + * Copyright (C) 2025 Texas Instruments Incorporated - https://www.ti.com/
+> + *
+> + */
+> +
+> +&mcu_r5fss0_core0 {
+> +	firmware-name = "j742s2-mcu-r5f0_0-fw";
+> +};
+> +
+> +&mcu_r5fss0_core1 {
+> +	firmware-name = "j742s2-mcu-r5f0_1-fw";
+> +};
 
-I'm irritated as this will be up to v5 when it should have been up to v2.
 
->
-> It is your patches which never got tested, code was completely messed up
-> (see v2 mixing two different things).
->
-> I am not going to review your patches.
->
-> Best regards,
-> Krzysztof
+Reviewed-by: Udit Kumar <u-kumar1@ti.com>
+
+
+> diff --git a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
+> index 7a72f82f56d6..d265df1abade 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j742s2.dtsi
+> @@ -96,3 +96,4 @@ cpu3: cpu@3 {
+>   };
+>   
+>   #include "k3-j742s2-main.dtsi"
+> +#include "k3-j742s2-mcu-wakeup.dtsi"
 
