@@ -1,186 +1,100 @@
-Return-Path: <devicetree+bounces-210488-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7B77B3BA6B
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:58:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BABD7B3BA7E
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:00:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C93141CC174A
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:58:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 894B458000D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:00:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC44930BF63;
-	Fri, 29 Aug 2025 11:58:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6442D59E8;
+	Fri, 29 Aug 2025 12:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="CysoOR9P"
+	dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b="Cv9hQKSQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from rmx-a.mailgw.jp (smx-a.mailgw.jp [210.171.6.215])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C662D249A
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 11:58:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB9002D0C8E;
+	Fri, 29 Aug 2025 12:00:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.171.6.215
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756468711; cv=none; b=K7JbOhPxYO31rDe+mHT1oK4XXEbCU1BzrFvHM9K6bUcefnLH4CLx7MLfJtFaKQ4ly6JFBZJhJ/Mm5adp4jGfJbsui1+1CEFcriHjrHHoilJFBpCW8Pi+2uBaEcl8PffB/CCv9KDppPOodM5Zmora79SwyO7UGnGArQOCYRQwvpM=
+	t=1756468836; cv=none; b=pfZwCqZVAsTSbiWP/yzrQwuMGtXjDtpGxWNWanVJn/Llk1XlH84Bol+Bzhb2ZmFWzMV2mPUSkuIsnNrMV5RoexoAaJQTHgqLTfAXchgKkQSNi1mdThkkbzwDPM+uax6kkL8iu/fXH17aUy1Oln4RHLva7fiaZrw5xUiAA4O/KKU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756468711; c=relaxed/simple;
-	bh=Rw5SIZaECKmBfdJ5CiNQHvr4hnQuJd5QmrWW0G/k3ys=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=fvRjMDtjT+P948TjZvvNrlrBhZtDOzmzvI+jlL3tBi7JK5P3XkNlaqpcL9+9Kph9yOWCYNoquuBdB87dAS1xygSRv3oX2FbL6PPFdVZJMYsVWaQnOxu0TbzWf+6Xm5JQHCV2od80GfC62WHKup3SoUAnR/0ACmtdpwai3K5dKfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=CysoOR9P; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250829115827epoutp04d994c8c80e79f531cf294d165535746c~gOvvCX2hC1084510845epoutp04z
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 11:58:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250829115827epoutp04d994c8c80e79f531cf294d165535746c~gOvvCX2hC1084510845epoutp04z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756468707;
-	bh=uwY5hixuwzaZTDT5buByhfxmW867fLKpSCP8rlpiI14=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=CysoOR9PC9hnqe3pml403GQnA2oc/kH9yTcRYWraVwncS6r0Ua7oKrZX8fYTY8UiF
-	 wkmMBTtTPFS8p8p/SBihey+pSFosShUCntvBWl+YoSz6EKKZoIOEa6n7z321Lfvwa1
-	 +ys3ZAmEG4PVEJOSTVSBzmqJSKzG06tJCI9Fb7tQ=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250829115827epcas5p1f685d8dfedaaf5048eb61a23746eb119~gOvueZGSr1701717017epcas5p1U;
-	Fri, 29 Aug 2025 11:58:27 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.95]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4cCxcL15L7z3hhT4; Fri, 29 Aug
-	2025 11:58:26 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250829115825epcas5p308b9c24446175f4cd3107cd25d87d005~gOvtI56rB0210702107epcas5p3A;
-	Fri, 29 Aug 2025 11:58:25 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250829115822epsmtip19020d35d0d51e22cc1325735aeef32e0~gOvqKeOfY1508415084epsmtip1L;
-	Fri, 29 Aug 2025 11:58:22 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Pritam Manohar Sutar'"
-	<pritam.sutar@samsung.com>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andre.draszik@linaro.org>,
-	<peter.griffin@linaro.org>, <kauschluss@disroot.org>,
-	<ivo.ivanov.ivanov1@gmail.com>, <igor.belwon@mentallysanemainliners.org>,
-	<johan@kernel.org>, <m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: <6b5f20ed-4e88-441e-8f61-20866e2b39c7@kernel.org>
-Subject: RE: [PATCH v7 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 combo ssphy
-Date: Fri, 29 Aug 2025 17:28:21 +0530
-Message-ID: <264501dc18dc$39afb340$ad0f19c0$@samsung.com>
+	s=arc-20240116; t=1756468836; c=relaxed/simple;
+	bh=JKCmRsH4/jUUBuCHPbYIajZSeQ1SmRMLWrveK+Ykvn8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=t2lNWJgqi0CYzXA9BOjWu1YFQlHHcIwZjXxUgFKo4scAYw/x9j+FRv8DE4bLfWXPwAPfBq3ZbAr6x6AnBeRhsbxHcnYov+sBI3MoF0XM+dDnbxseUMo9Mn+h75Gn/T0aGfUZMry05zhX8QyJdMCbw7pUIYuAiefjicYb7lPlsXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp; spf=pass smtp.mailfrom=bcc.bai.ne.jp; dkim=pass (2048-bit key) header.d=bcc.bai.ne.jp header.i=@bcc.bai.ne.jp header.b=Cv9hQKSQ; arc=none smtp.client-ip=210.171.6.215
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bcc.bai.ne.jp
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bcc.bai.ne.jp
+Received: from bccml.bai.ne.jp (bccml-a.bai.ne.jp [210.171.3.161])
+	by rmx-a.mailgw.jp  with ESMTP id 57TBxvln023337-57TBxvlo023337;
+	Fri, 29 Aug 2025 20:59:57 +0900
+Received: from [192.168.11.5] (bai859bcd79.bai.ne.jp [133.155.205.121])
+	by bccml.bai.ne.jp (Postfix) with ESMTPA id 4964881773;
+	Fri, 29 Aug 2025 20:59:57 +0900 (JST)
+Message-ID: <0b061e42-0a01-4839-871c-a5d760dbddeb@bcc.bai.ne.jp>
+Date: Fri, 29 Aug 2025 20:59:57 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGSd8blfqR9gZc/NH28iGAFaSn12QHbdVSHAGa/K48CXY/t+wLwFCB2ArX7ZGwBn6FItwLUPA9DAP+/dGQCDX8RFrR+i4pg
-Content-Language: en-us
-X-CMS-MailID: 20250829115825epcas5p308b9c24446175f4cd3107cd25d87d005
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f
-References: <20250822093845.1179395-1-pritam.sutar@samsung.com>
-	<CGME20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f@epcas5p4.samsung.com>
-	<20250822093845.1179395-6-pritam.sutar@samsung.com>
-	<20250824-rough-fresh-orangutan-eecb2f@kuoka>
-	<007501dc1653$e36c3b50$aa44b1f0$@samsung.com>
-	<83dc9435-5850-425d-b345-52e84ef9262c@kernel.org>
-	<000401dc18cd$ec02a1b0$c407e510$@samsung.com>
-	<e8e99c16-ad40-4d79-be92-1aa55c13f9ea@kernel.org>
-	<263801dc18d3$d1e20950$75a61bf0$@samsung.com>
-	<6b5f20ed-4e88-441e-8f61-20866e2b39c7@kernel.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: rockchip: Enables sound output from the
+ audio jack on OrangePI5 Plus
+To: Maud Spierings <maud_spierings@hotmail.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
+ krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-sound@vger.kernel.org, robh@kernel.org
+References: <20250826134456.9636-2-opi5plus@bcc.bai.ne.jp>
+ <AM7P189MB1009A67370CA029038DF2A69E33BA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From: Hide Hako <opi5plus@bcc.bai.ne.jp>
+In-Reply-To: <AM7P189MB1009A67370CA029038DF2A69E33BA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-FE-Last-Public-Client-IP: 210.171.3.161
+X-FE-Policy-ID: 3:1:2:SYSTEM
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; d=bcc.bai.ne.jp; s=20240516; c=relaxed/relaxed;
+ h=message-id:date:mime-version:subject:to:cc:references:from:content-type;
+ bh=qkU1RGbl9BVgABIuUMMvRh0yoQdtBqyMhXOop0bDDvs=;
+ b=Cv9hQKSQCoZXlO1FE5xL0R85p8woA96QjvXwvKYl5Yc+czjzgJS0+oTG1I1nUUDd0m2JRdQhBLI9
+	g1BbClQhUZnjXIVsZ2kCQX99UrNk8AREPpCRCGtQ35C3zb3LxYwh9gk8smjmwRzEn1WASS68EkPO
+	H+1ldF5wz4Yi/xklxpPCmUo6AY/avLbM0Ms0qLPJQ4Gc1o1rhzU2CiR6jnMA+hJajJFC7ZS2UsiR
+	iLTqohar4uvZOcbW7uHBzghECQY+LHvzq1Fy0thTV3SplTbShWT0OMdWs7QPKn4j4bLAkOl1DeMs
+	PPiga5mOWTA1GaWIlA6x5oWHuUcHSm2w+AyMEg==
 
-Hi Krzysztof
+Hello Maud,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> Sent: Friday, August 29, 2025 4:56 PM
-> To: Alim Akhtar <alim.akhtar=40samsung.com>; 'Pritam Manohar Sutar'
-> <pritam.sutar=40samsung.com>
-> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> krzk+dt=40kernel.org; conor+dt=40kernel.org; andre.draszik=40linaro.org;
->=20
-=5BSnip=5D
-> >>>>>> On Fri, Aug 22, 2025 at 03:08:44PM +0530, Pritam Manohar Sutar
-> wrote:
-> >>>>>>> This phy supports USB3.1 SSP+(10Gbps) protocol and is backwards
-> >>>>>>> compatible to the USB3.0 SS(5Gbps). It requires two clocks,
-> >>>>>>> named =22phy=22 and =22ref=22. The required supplies for USB3.1 a=
-re
-> >>>>>>> named as vdd075_usb30(0.75v), vdd18_usb30(1.8v).
-> >>>>>>
-> >>>>>> Please do not describe the schema, but hardware. This sentence
-> >>>>>> does not help me in my question further.
-> >>>>>
-> >>>>> This is a combo phy having Synopsys usb20 and usb30 phys (these 2
-> >>>>> phys are
-> >>>> totally different).
-> >>>>> One PHY only supports usb2.0 and data rates whereas another one
-> >>>>> does
-> >>>>> usb3.1 ssp+ and usb3.1 ssp
-> >>>>>
-> >>>>> This patch only explains about usb30 (since these are two
-> >>>>> different
-> >>>>> phys) phy
-> >>>> and omitted inclusion of usb20 reference (added separate patch for
-> >>>> this patch no 3).
-> >>>>>
-> >>>>> Hope this is clear.
-> >>>>
-> >>>> No. That sentence still explains what schema is doing.
-> >>>>
-> >>>
-> >>> Ok, let me simplify the commit message further something like below.
-> >>> Anyways, the coverletter contains more details about it.
-> >>>
-> >>> =22dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo
-> >>> ssphy
-> >>>
-> >>>   Add schema for combo ssphy found on this SoC.
-> >>> =22
-> >>>
-> >>> Please confirm if this looks fine?
-> >>> If so, will reflect the similar commit messages in patch 1 and 3.
-> >>
-> >> Please read my first comment again. I do not see how does this
-> >> satisfy hardware explanation.
-> >>
-> > Just went through the conversation above, until what extent hardware
-> > description need to be explain in the commit?
-> > Do we have any guideline for the same?
-> > Could you please help with an example from previous any commit or some
-> other patches?
-> > I understand that mentioning, =E2=80=9Ctwo=20clocks,=20two=20supplies=
-=20etc=22=20are=20part=0D=0A>=20>=20of=20schema,=20one=20may=20or=20may=20n=
-ot=20capture=20that=20in=20the=20commit.=0D=0A>=20>=20However=20mentioning,=
-=20=E2=80=9Cthis=20hardware=20(SoC)=20contain=20a=20combo=20PHY=20which=0D=
-=0A>=20supports=20usb3.1=20and=20usb3.0=22=20is=20not=20ok?=0D=0A>=20=0D=0A=
->=20=0D=0A>=20Maybe=20that's=20just=20language,=20but=20to=20me=20the=20com=
-mit=20msg=20did=20not=20describe=0D=0A>=20hardware=20after=20first=20senten=
-ce,=20but=20said=20what=20schema=20requires=20(some=0D=0A>=20clocks=20and=
-=20supplies).=20Other=20examples:=0D=0A>=2000399bbe02d2bb6fd8d6eb90573ec305=
-616449f4=0D=0A>=20e4c9a7b475e5d0d9b2440ee48f91d1364eabd6cb=0D=0A>=20=0D=0AT=
-hanks=20for=20suggestion=20as=20always,=20I=20hope=20the=20author=20can=20f=
-ollow=20this.=20=0D=0A=0D=0A>=20and=20here=20another=20anti-pattern:=0D=0A>=
-=2023f793850e9ee7390584c0809f085d6c88de7d3f=0D=0A>=20=0D=0A>=20(and=20befor=
-e=20you=20ask=20why=20above=20carries=20my=20Rb=20tag,=20then=20note=20that=
-=0D=0AI=20will=20not=20ask=20:-)=0D=0A>=20Samsung's=20revenue=20is=20around=
-=20220=20billion=20USD,=20so=20for=20sure=20it=20has=20a=20lot,=0D=0A>=20re=
-ally=20a=20lot=20of=20resources=20to=20review=20patches=20internally=20and=
-=20improve=20their=0D=0A>=20quality=20before=20posting).=0D=0A>=20=0D=0AHmm=
-...,=20however=20let=20me=20check=20internally.=0D=0A=0D=0A>=20Best=20regar=
-ds,=0D=0A>=20Krzysztof=0D=0A=0D=0A
+On 2025/08/28 17:47, Maud Spierings wrote:
+> I recommend rebasing on the latest next since my fix [1] was applied.
+> I also recommend testing it with that patch, for me that fixed the 
+> headphone detection and enabled audio playback. The microphone is not 
+> working yet though.
+>
+> Link: 
+> https://lore.kernel.org/all/20250823-orangepi5-v1-1-ae77dd0e06d7@hotmail.com/ 
+> [1]
+>
+Today, i build linux-next.
+But sound not come out from headphone.
+
+If you test the 6.17 kernel after using the 6.16 kernel, sound will be 
+output. Try building and testing in an environment with only the 6.17 
+kernel.
+
+Or is it okay to use the JMB582 "M.2" nvme-sata 3.0 expansion card to 
+connect a 2.5-inch SSD?
+This makes disk swapping easy and convenient.
+
+Hide
+
+
 
