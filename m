@@ -1,124 +1,131 @@
-Return-Path: <devicetree+bounces-210503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210517-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD8DB3BB78
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:35:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72921B3BC92
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:40:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D208CA20862
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:35:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5053C7ADDF4
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:38:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919C3315776;
-	Fri, 29 Aug 2025 12:35:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABD6F31B118;
+	Fri, 29 Aug 2025 13:40:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Tk57L5po"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="upQ5FnUz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9237B3164B0;
-	Fri, 29 Aug 2025 12:35:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DCCE318144;
+	Fri, 29 Aug 2025 13:39:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756470950; cv=none; b=DpxZlY4ETDGA4xpElH0R0PLK0wh6IXtgaDXwUV80g9AcxnpjXAUjRvauSZtuQ4PN/AMAue02R5OeSrVATh1rFWeOI81+p5htYi7XXED9ERFXxBRYZe+TxtSMwTXmQ6HDuU0sA0hk0z9V+gnjn3vDR7g35rjaMb+1v0j/3wIM8Q0=
+	t=1756474801; cv=none; b=EQLXKtML/T73IVW90QKnIPaVgzWdhZUasgfP7WJFeXwkBnUDaJar3jIcPdFDHFjWPdShtfHYhGpXfOuNsy5S6dXKjkMESjBKa4RCq3tk7Devh5dzPgLm/ktiBJJcrwfWOyV/JAb9uBaztY1f59QHV7Hosr5YziACQrd29XUhGkg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756470950; c=relaxed/simple;
-	bh=gUgQmgM69ezNRy0MhybUfrydozkV44PPK+5UXHb8G9s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GOfClYoswKrtWEtTMRZkyJHRiX6wXjmWvPpfkitXGdz5BqbI7qLZQWR9wuodQxXgJ2MoYEEhb/51E24SIMQaFDq2A8MCRgA/7I59lHE+0nSfs03cd9SR33o+36omDCeDFnoMNqsTeRTQf8AsCnaMUItW2qbHWK6E8DrVryQmEB8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Tk57L5po; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 57TCZfPc2214201;
-	Fri, 29 Aug 2025 07:35:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756470941;
-	bh=YMeXDFVGR/9Ki+05emD4cN7qoUvEGzwRqloEtgQvvfA=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=Tk57L5po0BFIwaihbCd69YgO9O3FHszFUGt8fgCLzBvtXKXzBU1SqdUDz0hUvgmr4
-	 yBKhFWIT+CAm/7D1vil0UFQyZRE2JuXKUdgfx8cfviDd4pNyfpLal3pw2LuOsypbnp
-	 Go3rdyCDyjA/OLnyGbAL+BHAhMhLBsIDGmbQQMo8=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 57TCZfGN020241
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 29 Aug 2025 07:35:41 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 29
- Aug 2025 07:35:41 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 29 Aug 2025 07:35:41 -0500
-Received: from localhost (bb.dhcp.ti.com [128.247.81.12])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 57TCZfx52065041;
-	Fri, 29 Aug 2025 07:35:41 -0500
-Date: Fri, 29 Aug 2025 07:35:41 -0500
-From: Bryan Brattlof <bb@ti.com>
-To: Anshul Dalal <anshuld@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 0/4] Add support for TI AM6254atl SiP
-Message-ID: <20250829123541.332xfrmzgar2dn4y@bryanbrattlof.com>
-X-PGP-Fingerprint: D3D1 77E4 0A38 DF4D 1853 FEEF 41B9 0D5D 71D5 6CE0
-References: <20250814134531.2743874-1-anshuld@ti.com>
+	s=arc-20240116; t=1756474801; c=relaxed/simple;
+	bh=7BNpBu9b2sUH6ir7bUA43BaeIXlNBITrGb35OkTTR18=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Ix0lXNpMqupCpPAk41PaDgXlFHe3cijcWDUZZPpuMOBCIzJoflYPkcm1mF8pPJCQGTyDrzH2FxrXfScBN3bcWl61uIwnPHANPhEvrgGz9O0FSedzm9+QpujsV3Bsnd24BghYf9tCZnl+5IsZnKwT54Mnk/RVX8RmD5aDdsk7F4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=upQ5FnUz; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=QGCsL5CWNo2quuzA92eMX1ttrRuPJrcLfsoBh4qqiCg=;
+	b=upQ5FnUzZmw3kbFeCSlXVSGV0QqYtH4Oi9HmeGDqi+/OLbdy2wKc45WsJ+ZkxzDBnJaPssA1uBXJAnHNapmlcwJncyjj2LeXABZWT283p+AhRDapfP/7v2edTCHl0VKkHVN57ESKH/CnZs29Oa7QZFCj21GcMe+kSnmHdWc+0ew=
+Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Fri, 29 Aug 2025 14:38:24 +0200
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v6 0/5] Add support for NetCube Systems Nagami SoM and its carrier boards
+Date: Fri, 29 Aug 2025 14:37:53 +0200
+Message-Id: <20250829123800.1232645-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <20250814134531.2743874-1-anshuld@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
 
-On August 14, 2025 thus sayeth Anshul Dalal:
-> Hi all,
-> 
-> This patch series adds support for AM6254atl SiP (or AM62x SiP for short)
-> to the linux device-tree.
-> 
-> The OPN (Orderable Part Number) 'AM6254atl' expands as follows[1]:
-> 
-> AM6254atl
->      ||||
->      |||+-- Feature Lookup (L indicates 512MiB of integrated LPDDR4)
->      ||+--- Device Speed Grade (T indicates 1.25GHz/1.4GHz on the A53 cores)
->      |+---- Silicon PG Revision (A indicates SR 1.0)
->      +----- Core configuration (4 indicates A53's in Quad core config)
+This series adds support for the NetCube Systems Nagami SoM and its
+associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
+Carrier.
 
-It stinks we put the integrated DRAM density so far down in the part 
-code. But I guess there isn't much we can do about it now. :/
+Changes in v6:
+  - Add 'usb0-enable-hog' to the som to enable the USB-OTG port by default
+  - Update the keypad carrier dts to match actual board revision
 
-> 
-> AM62x SiP provides the existing AM62x SoC with 512MiB of DDR integrated in a
-> single packages.
-> 
-> This patch set adds the new 'k3-am6254atl' SoC level dtsi alongside the
-> 'k3-am6254atl-sk' dts for the EVM (Evaluation Module board). The newly added
-> 'k3-am625-sk-common' dtsi includes the common hardware between the existing
-> AM62x EVM and the new EVM for AM62x SiP.
-> 
-> Regards,
-> Anshul
-> ---
-> [1]: https://www.ti.com/lit/ds/symlink/am625sip.pdf Page#21
-> Product Page:
->     https://www.ti.com/product/AM625SIP/part-details/AM6254ATLHJAMKR
-> ---
-> Anshul Dalal (4):
->   arm64: dts: ti: k3-am62*: remove SoC dtsi from common dtsi
->   dt-bindings: arm: ti: Add binding for AM625 SiP
->   arm64: dts: ti: Introduce base support for AM6254atl SiP
->   arm64: dts: ti: Add support for AM6254atl SiP SK
+Changes in v5:
+  - Re-add the non-removable property to the ESP32 interface
+  - Add the mmc-pwrseq node for the ESP32 to initialize the ESP32 correctly
+  - Remove the unused ehci0 and ohci0 nodes from the Keypad Carrier since
+    USB port is peripheral only
 
-Reviewed-by: Bryan Brattlof <bb@ti.com>
+Changes in v4:
+  - Disable the default interfaces on the card-edge but keep the pinctrl
+    definitions for them
+  - Split the pinctrl definitions for the SPI interface into the basic spi 
+    pins and the hold/wp pins
+  - Move some mmc0 properties to the Basic Carrier dts
+  - Remove non-removable property from the ESP32 interface
+  - Fix typo in the keypad matrix definition
 
-~Bryan
+Changes in v3:
+  - Add missing dcxo node to the SoM dtsi
+  - Rename the multi-led node
+  - Change dr_mode to "peripheral" for the Keypad Carrier
+
+Changes in v2:
+ - Squash the binding patches into one patch
+ - Fix formatting of the phy node in the SoM dtsi
+ - Add description on where the phy is located in the SoM dtsi
+ - Fix the phy address in the SoM dtsi
+ - Move the carrier bindings into the same description as enums
+
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+---
+Lukas Schmid (5):
+  dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
+    board bindings
+  riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
+    Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   8 +
+ arch/arm/boot/dts/allwinner/Makefile          |   3 +
+ ...n8i-t113s-netcube-nagami-basic-carrier.dts |  67 +++++
+ ...8i-t113s-netcube-nagami-keypad-carrier.dts | 156 +++++++++++
+ .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 249 ++++++++++++++++++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  48 ++++
+ 6 files changed, 531 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
+
+-- 
+2.39.5
+
+
 
