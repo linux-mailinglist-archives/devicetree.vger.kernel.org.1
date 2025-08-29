@@ -1,64 +1,40 @@
-Return-Path: <devicetree+bounces-210515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210518-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58B95B3BC84
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:29:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27CF5B3BC94
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 15:41:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 76C5A1888F02
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:29:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4BE1585F2C
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:41:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE44314B82;
-	Fri, 29 Aug 2025 13:29:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="eezsPCdw"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A0731B10B;
+	Fri, 29 Aug 2025 13:41:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E2642E8B9E
-	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 13:29:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3082D2ED865;
+	Fri, 29 Aug 2025 13:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756474170; cv=none; b=OActZho7aJ3Yy/mufGTcnNVwvrKGEWsrSxhRE8o6SCnvqhBcNdV5HK80686Tll/gUJbSERxYf1xcEGRld2wx4FPJUSPaHP3DEwR/9Q/EVYKIaLcbZR6ZqSs2H0X7AnLpR2We6vg2G59gcEpe3s/ViR8frEPzwiZGOHK0snAgLME=
+	t=1756474866; cv=none; b=U751J6CyqylN+RUszUsJavLttJHziF1SsRgx+E8JBOkjq69csPIn9YbLk+8nRbrZER4DQHFUW2g8v5OCAB3DemU5hV/XFOlTtLO0oIl3tlnnnv9YToeaKsXshnNsMmaYHuVq2A/10/FTiRpSS4fw0DBAJkuXD+GIzO44x5BZWDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756474170; c=relaxed/simple;
-	bh=knOkve9KJ6aDZa9cI8V8ayiO/Btg8paML35UfEGiBTs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=apVDHVUMCXCJj+r48kEEnHuF2adzELWEHban0bneayMmHcECw16v1acK4kzCy46jHJPwTRaydp//7DEnPOHSds4rwAcYIHJOgrjmlJpNOtLbcYBrMbHVGRgO2ijW7LVdtljSuCGpGh87sF99e90Ask9ktwQvfpwVdx73+CZZoJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=eezsPCdw; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1756474167;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y5xCVHj/t6FV37rBGnYXOrcnRWfi0Bqvu58jEXvy/kk=;
-	b=eezsPCdwIcozH/T7PkKtEOO3K5g7x92mq5szjoGQnvaUHS8P5K2QQpufiy1aE7BopQiiGI
-	inAamIADARrB6QKOuHZOV989WlQ80ogxO6gY7L5k0KwwJMDqdGP2Un0MvbPMityI+yFZju
-	mrtzBrsCJdvtCl4bH/6uS/FFMlF4lgY=
-Received: from mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-604-bwUiLHz3NvykS1iWwDEgDg-1; Fri,
- 29 Aug 2025 09:29:23 -0400
-X-MC-Unique: bwUiLHz3NvykS1iWwDEgDg-1
-X-Mimecast-MFC-AGG-ID: bwUiLHz3NvykS1iWwDEgDg_1756474161
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-02.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 1CCA11956089;
-	Fri, 29 Aug 2025 13:29:21 +0000 (UTC)
-Received: from [10.45.224.190] (unknown [10.45.224.190])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 02E7C19560B4;
-	Fri, 29 Aug 2025 13:29:16 +0000 (UTC)
-Message-ID: <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
-Date: Fri, 29 Aug 2025 15:29:15 +0200
+	s=arc-20240116; t=1756474866; c=relaxed/simple;
+	bh=PTvgbvYm46h9Row2oa+6kFtRNdfQHYUqbqqiQaJEoD8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=KzfL9FLtvBHXxhyEKvPRCxV++N85mUHF9yiMGVmISU6Bj9BddjawfjRTq8TqzBiXkzqW94wr+UejzT84C59JLzqYjn3deVp0HYkjo1V1ysmXXKvPbKfvQ81JZ5W2TBDpww5K+an/rNtIhwhU4Cjsp7ukjtcPnyZFQyi/hK5c6/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 130B415A1;
+	Fri, 29 Aug 2025 06:40:56 -0700 (PDT)
+Received: from [10.1.29.20] (unknown [10.1.29.20])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 10A813F738;
+	Fri, 29 Aug 2025 06:41:00 -0700 (PDT)
+Message-ID: <ac4838eb-7613-4642-a007-577a9f665984@arm.com>
+Date: Fri, 29 Aug 2025 14:40:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,187 +42,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com,
- Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250815144736.1438060-1-ivecera@redhat.com>
- <20250820211350.GA1072343-robh@kernel.org>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <20250820211350.GA1072343-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 0/2] drm/panthor: add custom ASN hash support
+To: Chia-I Wu <olvaffe@gmail.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250828201806.3541261-1-olvaffe@gmail.com>
+From: Steven Price <steven.price@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20250828201806.3541261-1-olvaffe@gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
 
-Hi Rob,
+On 28/08/2025 21:18, Chia-I Wu wrote:
+> Some socs such as mt8196 require custom ASN hash.
 
-On 20. 08. 25 11:13 odp., Rob Herring wrote:
-> On Fri, Aug 15, 2025 at 04:47:35PM +0200, Ivan Vecera wrote:
->> In case of SyncE scenario a DPLL channels generates a clean frequency
->> synchronous Ethernet clock (SyncE) and feeds it into the NIC transmit
->> path. The DPLL channel can be locked either to the recovered clock
->> from the NIC's PHY (Loop timing scenario) or to some external signal
->> source (e.g. GNSS) (Externally timed scenario).
->>
->> The example shows both situations. NIC1 recovers the input SyncE signal
->> that is used as an input reference for DPLL channel 1. The channel locks
->> to this signal, filters jitter/wander and provides holdover. On output
->> the channel feeds a stable, phase-aligned clock back into the NIC1.
->> In the 2nd case the DPLL channel 2 locks to a master clock from GNSS and
->> feeds a clean SyncE signal into the NIC2.
->>
->> 		   +-----------+
->> 		+--|   NIC 1   |<-+
->> 		|  +-----------+  |
->> 		|                 |
->> 		| RxCLK     TxCLK |
->> 		|                 |
->> 		|  +-----------+  |
->> 		+->| channel 1 |--+
->> +------+	   |-- DPLL ---|
->> | GNSS |---------->| channel 2 |--+
->> +------+  RefCLK   +-----------+  |
->> 				  |
->> 			    TxCLK |
->> 				  |
->> 		   +-----------+  |
->> 		   |   NIC 2   |<-+
->> 		   +-----------+
->>
->> In the situations above the DPLL channels should be registered into
->> the DPLL sub-system with the same Clock Identity as PHCs present
->> in the NICs (for the example above DPLL channel 1 uses the same
->> Clock ID as NIC1's PHC and the channel 2 as NIC2's PHC).
->>
->> Because a NIC PHC's Clock ID is derived from the NIC's MAC address,
->> add a per-channel property 'ethernet-handle' that specifies a reference
->> to a node representing an Ethernet device that uses this channel
->> to synchronize its hardware clock. Additionally convert existing
->> 'dpll-types' list property to 'dpll-type' per-channel property.
->>
->> Suggested-by: Andrew Lunn <andrew@lunn.ch>
->> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
->> ---
->>   .../devicetree/bindings/dpll/dpll-device.yaml | 40 ++++++++++++++++---
->>   .../bindings/dpll/microchip,zl30731.yaml      | 29 +++++++++++++-
->>   2 files changed, 62 insertions(+), 7 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> index fb8d7a9a3693f..798c5484657cf 100644
->> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> @@ -27,11 +27,41 @@ properties:
->>     "#size-cells":
->>       const: 0
->>   
->> -  dpll-types:
->> -    description: List of DPLL channel types, one per DPLL instance.
->> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
->> -    items:
->> -      enum: [pps, eec]
+I don't know the full details of this, but I'm puzzled by the "require"
+here.
+
+AIUI the "custom ASN hash support" (or L2C_SLICE_HASH as it was renamed)
+affects the efficiency of the L2 caches in the GPU. It basically
+determines how addresses are striped over the individual caches.
+
+So (unless there is a specific errata) not setting a custom hash will
+work just fine, but the performance might be slightly reduced.
+
+kbase provides both a DT option and a module parameter which can be used
+to override the defaults (although the parameter descriptions say "for
+testing" which I think is somewhat telling).
+
+How we should describe this somewhat depends on whether this is a
+specific workaround for a SoC - in which case Boris's suggestion of
+using a different compatible string and panthor_soc_data seems like a
+good choice. Or if this is exposed as a general "tuning" parameter, in
+which case this might be appropriate.
+
+I believe the tuning is related to more than just a SoC (the external
+memory system has an impact). So I guess a DT level knob makes most
+sense here.
+
+Steve
+
+> Chia-I Wu (2):
+>   dt-bindings: gpu: mali-valhall-csf: add asn-hash
+>   drm/panthor: add asn-hash support
 > 
-> Dropping this is an ABI change. You can't do that unless you are
-> confident there are no users both in existing DTs and OSs.
-
-Get it, will keep.
-
->> +  channels:
->> +    type: object
->> +    description: DPLL channels
->> +    unevaluatedProperties: false
->> +
->> +    properties:
->> +      "#address-cells":
->> +        const: 1
->> +      "#size-cells":
->> +        const: 0
->> +
->> +    patternProperties:
->> +      "^channel@[0-9a-f]+$":
->> +        type: object
->> +        description: DPLL channel
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          reg:
->> +            description: Hardware index of the DPLL channel
->> +            maxItems: 1
->> +
->> +          dpll-type:
->> +            description: DPLL channel type
->> +            $ref: /schemas/types.yaml#/definitions/string
->> +            enum: [pps, eec]
->> +
->> +          ethernet-handle:
->> +            description:
->> +              Specifies a reference to a node representing an Ethernet device
->> +              that uses this channel to synchronize its hardware clock.
->> +            $ref: /schemas/types.yaml#/definitions/phandle
+>  .../bindings/gpu/arm,mali-valhall-csf.yaml    |  8 ++++++
+>  drivers/gpu/drm/panthor/panthor_device.c      | 28 +++++++++++++++++++
+>  drivers/gpu/drm/panthor/panthor_device.h      |  6 ++++
+>  drivers/gpu/drm/panthor/panthor_gpu.c         | 17 +++++++++++
+>  drivers/gpu/drm/panthor/panthor_regs.h        |  4 +++
+>  5 files changed, 63 insertions(+)
 > 
-> Seems a bit odd to me that the ethernet controller doesn't have a link
-> to this node instead.
-
-Do you mean to add a property (e.g. dpll-channel or dpll-device) into
-net/network-class.yaml ? If so, yes, it would be possible, and the way
-I look at it now, it would probably be better. The DPLL driver can
-enumerate all devices across the system that has this specific property
-and check its value.
-
-See the proposal below...
-
-Thanks,
-Ivan
-
----
-  Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
-  Documentation/devicetree/bindings/net/network-class.yaml | 7 +++++++
-  2 files changed, 13 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml 
-b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-index fb8d7a9a3693f..560351df1bec3 100644
---- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-+++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-@@ -27,6 +27,12 @@ properties:
-    "#size-cells":
-      const: 0
-
-+  "#dpll-cells":
-+    description: |
-+      Number of cells in a dpll specifier. The cell specifies the index
-+      of the channel within the DPLL device.
-+    const: 1
-+
-    dpll-types:
-      description: List of DPLL channel types, one per DPLL instance.
-      $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-diff --git a/Documentation/devicetree/bindings/net/network-class.yaml 
-b/Documentation/devicetree/bindings/net/network-class.yaml
-index 06461fb92eb84..144badb3b7ff1 100644
---- a/Documentation/devicetree/bindings/net/network-class.yaml
-+++ b/Documentation/devicetree/bindings/net/network-class.yaml
-@@ -17,6 +17,13 @@ properties:
-      default: 48
-      const: 48
-
-+  dpll:
-+    description:
-+      Specifies DPLL device phandle and index of the DPLL channel within
-+      this device used by this network device to synchronize its hardware
-+      clock.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-    local-mac-address:
-      description:
-        Specifies MAC address that was assigned to the network device 
-described by
 
 
