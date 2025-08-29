@@ -1,277 +1,470 @@
-Return-Path: <devicetree+bounces-210598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E452BB3C186
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:09:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 629DDB3C18A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 19:11:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A0A275883E6
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:09:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7CB7A18938A6
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 17:12:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439AA3375B1;
-	Fri, 29 Aug 2025 17:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VSEXp+Ig"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC83033A02D;
+	Fri, 29 Aug 2025 17:11:42 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10BC22222C4;
-	Fri, 29 Aug 2025 17:09:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A1BB3376BA;
+	Fri, 29 Aug 2025 17:11:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756487350; cv=none; b=H9VAQUa2e4pmR7OaOEONFLAyFTBelW2+/b3upnubEcgPQU3znZi2qRiSGmxvOUnc3Z6dRD0zwHfaZB7oeSOu/F4qH4xEFtP2R9cXDLUZ5zokdQrNEF6fsbUuyMBko8H7LZnD+ZkqYI0HJr1pbqfntdJ2WtNq3tVCGDOwSP2Nrtk=
+	t=1756487502; cv=none; b=UrglLBiWN55NaF8lUBfAdSEIgw3jlhjJabzWfnmPhj0lAigas4yNjgp9rQ+Q/LGQlHn2CcjjFBAnR9JwSIR+nYP3znXHCf6mHQQvsoV+EHskAsgx9/RPWmxRMDf14rTjpzSRwucYqGMOdiOKcdiaGOaZIhW1Ysb30P2Xik3Kzdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756487350; c=relaxed/simple;
-	bh=56oYVkzQdOaaG1U6yxaGN8Lu3r/EOnahdeDW9fIzYwE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n+cu8WQL1olxLkTERKN4BE+LFjbSQIfl/3oI/FUXxWQ2df2lL+3MWGDAGysg1+Dl/nj/lHF3+7xP0wgrUIX3Qh2UZR/V/0joqs3HQa/aFKyTtuUuTEAjF3uAphDQ4Y8aEMe+Ye6uGplhvNyLEs7nZvh03Yx9isxRsDxyO0uTQ5U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VSEXp+Ig; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6458CC4CEF0;
-	Fri, 29 Aug 2025 17:09:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756487349;
-	bh=56oYVkzQdOaaG1U6yxaGN8Lu3r/EOnahdeDW9fIzYwE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=VSEXp+IgddYsCVhWMe8z9Asc/AskDQHErNQqXfmokOxaefEPlJpNsEC/gYQhCU7hz
-	 tU28W7drZ6KyGM/eFkND/AeCBvfunQFhwuptoKa2V/nMG/Ngqj/xaAjbzO1Vg54J1a
-	 gbzwJXebk6kgmW+mgMe+XoUM2HPmqtEfR2OeTBtlYUQELLW+3bQ+vPn12nexmRC388
-	 1Vu86Xej/tdoqLuaN5FDjKDl0RfHMhgcibUfUU9Q2XwiL9tp17pzQmt89gbV/AtYfv
-	 Id73atSgBoE3oJBN7RVxXLTdcOKjaU/4mhf6W1Enfq8MdklfQZxzRTbrG37zv/NtaC
-	 Qvh3pjLLl2d1Q==
-Date: Fri, 29 Aug 2025 12:09:08 -0500
-From: Rob Herring <robh@kernel.org>
-To: Chen Wang <unicornxw@gmail.com>
-Cc: kwilczynski@kernel.org, u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, arnd@arndb.de,
-	bwawrzyn@cisco.com, bhelgaas@google.com, unicorn_wang@outlook.com,
-	conor+dt@kernel.org, 18255117159@163.com, inochiama@gmail.com,
-	kishon@kernel.org, krzk+dt@kernel.org, lpieralisi@kernel.org,
-	mani@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-	s-vadapalli@ti.com, tglx@linutronix.de, thomas.richard@bootlin.com,
-	sycamoremoon376@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	linux-riscv@lists.infradead.org, sophgo@lists.linux.dev,
-	rabenda.cn@gmail.com, chao.wei@sophgo.com,
-	xiaoguang.xing@sophgo.com, fengchun.li@sophgo.com
-Subject: Re: [PATCH 3/5] PCI: sg2042: Add Sophgo SG2042 PCIe driver
-Message-ID: <20250829170908.GA1016165-robh@kernel.org>
-References: <cover.1756344464.git.unicorn_wang@outlook.com>
- <1df25b33f0ea90a81c34c18cadedd38526a30f01.1756344464.git.unicorn_wang@outlook.com>
+	s=arc-20240116; t=1756487502; c=relaxed/simple;
+	bh=zyNQZ1IgidMZltd0cYpijjDck/USqsb2pcBAvuctArw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=icZMPIngz744eVQQoK+cFgp1s5aJX0s//dwtjS9bPlxEgoS9nPhiOiAFIX1ztwDTjtPlCC063DgOPCyhJbBSCDv/GJmUrDby2Szip9OYdjgWS7uuVOnROFxiKUPoyMVIuey3XuFmDK51aKwdqdCTMauzWgU9U20kEJzuYFRIR30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 36AE219F0;
+	Fri, 29 Aug 2025 10:11:31 -0700 (PDT)
+Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4B0823F738;
+	Fri, 29 Aug 2025 10:11:34 -0700 (PDT)
+Message-ID: <ceb64a9b-0ffe-4193-942e-5ddf71478e5d@arm.com>
+Date: Fri, 29 Aug 2025 18:11:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1df25b33f0ea90a81c34c18cadedd38526a30f01.1756344464.git.unicorn_wang@outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 33/33] arm_mpam: Add kunit tests for props_mismatch()
+To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: shameerali.kolothum.thodi@huawei.com,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
+ Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+ baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
+ Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-34-james.morse@arm.com>
+From: Ben Horgan <ben.horgan@arm.com>
+Content-Language: en-US
+In-Reply-To: <20250822153048.2287-34-james.morse@arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Aug 28, 2025 at 10:17:40AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
+Hi James,
+
+The tests seem reasonable. Just some comments on the comments.
+
+On 8/22/25 16:30, James Morse wrote:
+> When features are mismatched between MSC the way features are combined
+> to the class determines whether resctrl can support this SoC.
 > 
-> Add support for PCIe controller in SG2042 SoC. The controller
-> uses the Cadence PCIe core programmed by pcie-cadence*.c. The
-> PCIe controller will work in host mode only.
+> Add some tests to illustrate the sort of thing that is expected to
+> work, and those that must be removed.
 > 
-> Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+> Signed-off-by: James Morse <james.morse@arm.com>
 > ---
->  drivers/pci/controller/cadence/Kconfig       |  12 ++
->  drivers/pci/controller/cadence/Makefile      |   1 +
->  drivers/pci/controller/cadence/pcie-sg2042.c | 134 +++++++++++++++++++
->  3 files changed, 147 insertions(+)
->  create mode 100644 drivers/pci/controller/cadence/pcie-sg2042.c
+>  drivers/resctrl/mpam_internal.h     |   8 +-
+>  drivers/resctrl/test_mpam_devices.c | 322 ++++++++++++++++++++++++++++
+>  2 files changed, 329 insertions(+), 1 deletion(-)
 > 
-> diff --git a/drivers/pci/controller/cadence/Kconfig b/drivers/pci/controller/cadence/Kconfig
-> index 666e16b6367f..b1f1941d5208 100644
-> --- a/drivers/pci/controller/cadence/Kconfig
-> +++ b/drivers/pci/controller/cadence/Kconfig
-> @@ -42,6 +42,17 @@ config PCIE_CADENCE_PLAT_EP
->  	  endpoint mode. This PCIe controller may be embedded into many
->  	  different vendors SoCs.
+> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+> index bbf0306abc82..6e973be095f8 100644
+> --- a/drivers/resctrl/mpam_internal.h
+> +++ b/drivers/resctrl/mpam_internal.h
+> @@ -18,6 +18,12 @@
 >  
-> +config PCIE_SG2042
-> +	bool "Sophgo SG2042 PCIe controller (host mode)"
-> +	depends on ARCH_SOPHGO || COMPILE_TEST
-> +	depends on OF
-> +	depends on PCI_MSI
-> +	select PCIE_CADENCE_HOST
-> +	help
-> +	  Say Y here if you want to support the Sophgo SG2042 PCIe platform
-> +	  controller in host mode. Sophgo SG2042 PCIe controller uses Cadence
-> +	  PCIe core.
+>  DECLARE_STATIC_KEY_FALSE(mpam_enabled);
+>  
+> +#ifdef CONFIG_MPAM_KUNIT_TEST
+> +#define PACKED_FOR_KUNIT __packed
+> +#else
+> +#define PACKED_FOR_KUNIT
+> +#endif
 > +
->  config PCI_J721E
->  	tristate
->  	select PCIE_CADENCE_HOST if PCI_J721E_HOST != n
-> @@ -67,4 +78,5 @@ config PCI_J721E_EP
->  	  Say Y here if you want to support the TI J721E PCIe platform
->  	  controller in endpoint mode. TI J721E PCIe controller uses Cadence PCIe
->  	  core.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
-> index 9bac5fb2f13d..4df4456d9539 100644
-> --- a/drivers/pci/controller/cadence/Makefile
-> +++ b/drivers/pci/controller/cadence/Makefile
-> @@ -4,3 +4,4 @@ obj-$(CONFIG_PCIE_CADENCE_HOST) += pcie-cadence-host.o
->  obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep.o
->  obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
->  obj-$(CONFIG_PCI_J721E) += pci-j721e.o
-> +obj-$(CONFIG_PCIE_SG2042) += pcie-sg2042.o
-> diff --git a/drivers/pci/controller/cadence/pcie-sg2042.c b/drivers/pci/controller/cadence/pcie-sg2042.c
-> new file mode 100644
-> index 000000000000..fe434dc2967e
-> --- /dev/null
-> +++ b/drivers/pci/controller/cadence/pcie-sg2042.c
-> @@ -0,0 +1,134 @@
-> +// SPDX-License-Identifier: GPL-2.0
+>  static inline bool mpam_is_enabled(void)
+>  {
+>  	return static_branch_likely(&mpam_enabled);
+> @@ -209,7 +215,7 @@ struct mpam_props {
+>  	u16			dspri_wd;
+>  	u16			num_csu_mon;
+>  	u16			num_mbwu_mon;
+> -};
+> +} PACKED_FOR_KUNIT;
+>  
+>  #define mpam_has_feature(_feat, x)	((1 << (_feat)) & (x)->features)
+>  
+> diff --git a/drivers/resctrl/test_mpam_devices.c b/drivers/resctrl/test_mpam_devices.c
+> index 8e9d6c88171c..ef39696e7ff8 100644
+> --- a/drivers/resctrl/test_mpam_devices.c
+> +++ b/drivers/resctrl/test_mpam_devices.c
+> @@ -4,6 +4,326 @@
+>  
+>  #include <kunit/test.h>
+>  
 > +/*
-> + * pcie-sg2042 - PCIe controller driver for Sophgo SG2042 SoC
-> + *
-> + * Copyright (C) 2025 Sophgo Technology Inc.
-> + * Copyright (C) 2025 Chen Wang <unicorn_wang@outlook.com>
+> + * This test catches fields that aren't being sanitised - but can't tell you
+> + * which one...
 > + */
-> +
-> +#include <linux/kernel.h>
-> +#include <linux/of.h>
-
-Looks like you just need mod_devicetable.h instead.
-
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include "pcie-cadence.h"
-> +
-> +/*
-> + * SG2042 only support 4-byte aligned access, so for the rootbus (i.e. to read
-> + * the Root Port itself, read32 is required. For non-rootbus (i.e. to read
-> + * the PCIe peripheral registers, supports 1/2/4 byte aligned access, so
-> + * directly using read should be fine.
-> + *
-> + * The same is true for write.
-> + */
-> +static int sg2042_pcie_config_read(struct pci_bus *bus, unsigned int devfn,
-> +				   int where, int size, u32 *value)
+> +static void test__props_mismatch(struct kunit *test)
 > +{
-> +	if (pci_is_root_bus(bus))
-
-You can have separate pci_ops for the root bus and child buses. Do that 
-and then sg2042_pcie_config_read() goes away. IIRC, there's examples in 
-the tree of your exact issue (root bus being 32-bit only).
-
-> +		return pci_generic_config_read32(bus, devfn, where, size,
-> +						 value);
+> +	struct mpam_props parent = { 0 };
+> +	struct mpam_props child;
 > +
-> +	return pci_generic_config_read(bus, devfn, where, size, value);
+> +	memset(&child, 0xff, sizeof(child));
+> +	__props_mismatch(&parent, &child, false);
+> +
+> +	memset(&child, 0, sizeof(child));
+> +	KUNIT_EXPECT_EQ(test, memcmp(&parent, &child, sizeof(child)), 0);
+> +
+> +	memset(&child, 0xff, sizeof(child));
+> +	__props_mismatch(&parent, &child, true);
+> +
+> +	KUNIT_EXPECT_EQ(test, memcmp(&parent, &child, sizeof(child)), 0);
 > +}
 > +
-> +static int sg2042_pcie_config_write(struct pci_bus *bus, unsigned int devfn,
-> +				    int where, int size, u32 value)
+> +static void test_mpam_enable_merge_features(struct kunit *test)
 > +{
-> +	if (pci_is_root_bus(bus))
-> +		return pci_generic_config_write32(bus, devfn, where, size,
-> +						  value);
+> +	/* o/` How deep is your stack? o/` */
+> +	struct list_head fake_classes_list;
+> +	struct mpam_class fake_class = { 0 };
+> +	struct mpam_component fake_comp1 = { 0 };
+> +	struct mpam_component fake_comp2 = { 0 };
+> +	struct mpam_vmsc fake_vmsc1 = { 0 };
+> +	struct mpam_vmsc fake_vmsc2 = { 0 };
+> +	struct mpam_msc fake_msc1 = { 0 };
+> +	struct mpam_msc fake_msc2 = { 0 };
+> +	struct mpam_msc_ris fake_ris1 = { 0 };
+> +	struct mpam_msc_ris fake_ris2 = { 0 };
+> +	struct platform_device fake_pdev = { 0 };
 > +
-> +	return pci_generic_config_write(bus, devfn, where, size, value);
-> +}
+> +#define RESET_FAKE_HIEARCHY()	do {				\
+> +	INIT_LIST_HEAD(&fake_classes_list);			\
+> +								\
+> +	memset(&fake_class, 0, sizeof(fake_class));		\
+> +	fake_class.level = 3;					\
+> +	fake_class.type = MPAM_CLASS_CACHE;			\
+> +	INIT_LIST_HEAD_RCU(&fake_class.components);		\
+> +	INIT_LIST_HEAD(&fake_class.classes_list);		\
+> +								\
+> +	memset(&fake_comp1, 0, sizeof(fake_comp1));		\
+> +	memset(&fake_comp2, 0, sizeof(fake_comp2));		\
+> +	fake_comp1.comp_id = 1;					\
+> +	fake_comp2.comp_id = 2;					\
+> +	INIT_LIST_HEAD(&fake_comp1.vmsc);			\
+> +	INIT_LIST_HEAD(&fake_comp1.class_list);			\
+> +	INIT_LIST_HEAD(&fake_comp2.vmsc);			\
+> +	INIT_LIST_HEAD(&fake_comp2.class_list);			\
+> +								\
+> +	memset(&fake_vmsc1, 0, sizeof(fake_vmsc1));		\
+> +	memset(&fake_vmsc2, 0, sizeof(fake_vmsc2));		\
+> +	INIT_LIST_HEAD(&fake_vmsc1.ris);			\
+> +	INIT_LIST_HEAD(&fake_vmsc1.comp_list);			\
+> +	fake_vmsc1.msc = &fake_msc1;				\
+> +	INIT_LIST_HEAD(&fake_vmsc2.ris);			\
+> +	INIT_LIST_HEAD(&fake_vmsc2.comp_list);			\
+> +	fake_vmsc2.msc = &fake_msc2;				\
+> +								\
+> +	memset(&fake_ris1, 0, sizeof(fake_ris1));		\
+> +	memset(&fake_ris2, 0, sizeof(fake_ris2));		\
+> +	fake_ris1.ris_idx = 1;					\
+> +	INIT_LIST_HEAD(&fake_ris1.msc_list);			\
+> +	fake_ris2.ris_idx = 2;					\
+> +	INIT_LIST_HEAD(&fake_ris2.msc_list);			\
+> +								\
+> +	fake_msc1.pdev = &fake_pdev;				\
+> +	fake_msc2.pdev = &fake_pdev;				\
+> +								\
+> +	list_add(&fake_class.classes_list, &fake_classes_list);	\
+> +} while (0)
 > +
-> +static struct pci_ops sg2042_pcie_host_ops = {
-> +	.map_bus	= cdns_pci_map_bus,
-> +	.read		= sg2042_pcie_config_read,
-> +	.write		= sg2042_pcie_config_write,
-> +};
+> +	RESET_FAKE_HIEARCHY();
 > +
-> +static int sg2042_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct pci_host_bridge *bridge;
-> +	struct cdns_pcie *pcie;
-> +	struct cdns_pcie_rc *rc;
-> +	int ret;
+> +	mutex_lock(&mpam_list_lock);
 > +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
+> +	/* One Class+Comp, two RIS in one vMSC with common features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = NULL;
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc1.ris);
 > +
-> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*rc));
-> +	if (!bridge) {
-> +		dev_err(dev, "Failed to alloc host bridge!\n");
-> +		return -ENOMEM;
-> +	}
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cpbm_wd = 4;
 > +
-> +	bridge->ops = &sg2042_pcie_host_ops;
+> +	mpam_enable_merge_features(&fake_classes_list);
 > +
-> +	rc = pci_host_bridge_priv(bridge);
-> +	pcie = &rc->pcie;
-> +	pcie->dev = dev;
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 4);
 > +
-> +	platform_set_drvdata(pdev, pcie);
+> +	RESET_FAKE_HIEARCHY();
 > +
-> +	pm_runtime_enable(dev);
+> +	/* One Class+Comp, two RIS in one vMSC with non-overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = NULL;
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc1.ris);
 > +
-> +	ret = pm_runtime_get_sync(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm_runtime_get_sync failed\n");
-> +		goto err_get_sync;
-> +	}
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cmax_cmin, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cmax_wd = 4;
 > +
-> +	ret = cdns_pcie_init_phy(dev, pcie);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to init phy!\n");
-> +		goto err_get_sync;
-> +	}
+> +	mpam_enable_merge_features(&fake_classes_list);
 > +
-> +	ret = cdns_pcie_host_setup(rc);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to setup host!\n");
-> +		goto err_host_setup;
-> +	}
+> +	/* Multiple RIS within one MSC controlling the same resource can be mismatched */
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cmax_cmin, &fake_class.props));
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cmax_cmin, &fake_vmsc1.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 4);
+> +	KUNIT_EXPECT_EQ(test, fake_vmsc1.props.cmax_wd, 4);
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cmax_wd, 4);
 > +
-> +	return 0;
+> +	RESET_FAKE_HIEARCHY();
 > +
-> +err_host_setup:
-> +	cdns_pcie_disable_phy(pcie);
+> +	/* One Class+Comp, two MSC with overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp1;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp1.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
 > +
-> +err_get_sync:
-> +	pm_runtime_put(dev);
-> +	pm_runtime_disable(dev);
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cpbm_wd = 4;
 > +
-> +	return ret;
-> +}
+> +	mpam_enable_merge_features(&fake_classes_list);
 > +
-> +static void sg2042_pcie_shutdown(struct platform_device *pdev)
-> +{
-> +	struct cdns_pcie *pcie = platform_get_drvdata(pdev);
-> +	struct device *dev = &pdev->dev;
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 4);
 > +
-> +	cdns_pcie_disable_phy(pcie);
+> +	RESET_FAKE_HIEARCHY();
 > +
-> +	pm_runtime_put(dev);
-> +	pm_runtime_disable(dev);
-> +}
+> +	/* One Class+Comp, two MSC with non-overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp1;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp1.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
 > +
-> +static const struct of_device_id sg2042_pcie_of_match[] = {
-> +	{ .compatible = "sophgo,sg2042-pcie-host" },
-> +	{},
-> +};
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cmax_cmin, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cmax_wd = 4;
 > +
-> +static struct platform_driver sg2042_pcie_driver = {
-> +	.driver = {
-> +		.name		= "sg2042-pcie",
-> +		.of_match_table	= sg2042_pcie_of_match,
-> +		.pm		= &cdns_pcie_pm_ops,
-> +	},
-> +	.probe		= sg2042_pcie_probe,
-> +	.shutdown	= sg2042_pcie_shutdown,
-> +};
-> +builtin_platform_driver(sg2042_pcie_driver);
+> +	mpam_enable_merge_features(&fake_classes_list);
+> +
+> +	/*
+> +	 * Multiple RIS in different MSC can't the same resource, mismatched
+s/can't the same/can't control the same/
 
-What prevents this from being a module?
+> +	 * features can not be supported.
+> +	 */
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_cmax_cmin, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 0);
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cmax_wd, 0);
+> +
+> +	RESET_FAKE_HIEARCHY();
+> +
+> +	/* One Class+Comp, two MSC with incompatible overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp1;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp1.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
+> +
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris2.props);
+> +	mpam_set_feature(mpam_feat_mbw_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_mbw_part, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 5;
+> +	fake_ris2.props.cpbm_wd = 3;
+> +	fake_ris1.props.mbw_pbm_bits = 5;
+> +	fake_ris2.props.mbw_pbm_bits = 3;
+> +
+> +	mpam_enable_merge_features(&fake_classes_list);
+> +
+> +	/*
+> +	 * Multiple RIS in different MSC can't the same resource, mismatched
+> +	 * features can not be supported.
+> +	 */
+Missing the word "control" again.
 
-Rob
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_mbw_part, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 0);
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.mbw_pbm_bits, 0);
+> +
+> +	RESET_FAKE_HIEARCHY();
+> +
+> +	/* One Class+Comp, two MSC with overlapping features that need tweaking */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = NULL;
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp1;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp1.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
+> +
+> +	mpam_set_feature(mpam_feat_mbw_min, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_mbw_min, &fake_ris2.props);
+> +	mpam_set_feature(mpam_feat_cmax_cmax, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cmax_cmax, &fake_ris2.props);
+> +	fake_ris1.props.bwa_wd = 5;
+> +	fake_ris2.props.bwa_wd = 3;
+> +	fake_ris1.props.cmax_wd = 5;
+> +	fake_ris2.props.cmax_wd = 3;
+> +
+> +	mpam_enable_merge_features(&fake_classes_list);
+> +
+> +	/*
+> +	 * Multiple RIS in different MSC can't the same resource, mismatched
+> +	 * features can not be supported.
+> +	 */
+Comment is for a different case.
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_mbw_min, &fake_class.props));
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cmax_cmax, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.bwa_wd, 3);
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cmax_wd, 3);
+> +
+> +	RESET_FAKE_HIEARCHY();
+> +
+> +	/* One Class Two Comp with overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = &fake_class;
+> +	list_add(&fake_comp2.class_list, &fake_class.components);
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp2;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp2.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
+> +
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cpbm_wd = 4;
+> +
+> +	mpam_enable_merge_features(&fake_classes_list);
+> +
+> +	KUNIT_EXPECT_TRUE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 4);
+> +
+> +	RESET_FAKE_HIEARCHY();
+> +
+> +	/* One Class Two Comp with non-overlapping features */
+> +	fake_comp1.class = &fake_class;
+> +	list_add(&fake_comp1.class_list, &fake_class.components);
+> +	fake_comp2.class = &fake_class;
+> +	list_add(&fake_comp2.class_list, &fake_class.components);
+> +	fake_vmsc1.comp = &fake_comp1;
+> +	list_add(&fake_vmsc1.comp_list, &fake_comp1.vmsc);
+> +	fake_vmsc2.comp = &fake_comp2;
+> +	list_add(&fake_vmsc2.comp_list, &fake_comp2.vmsc);
+> +	fake_ris1.vmsc = &fake_vmsc1;
+> +	list_add(&fake_ris1.vmsc_list, &fake_vmsc1.ris);
+> +	fake_ris2.vmsc = &fake_vmsc2;
+> +	list_add(&fake_ris2.vmsc_list, &fake_vmsc2.ris);
+> +
+> +	mpam_set_feature(mpam_feat_cpor_part, &fake_ris1.props);
+> +	mpam_set_feature(mpam_feat_cmax_cmin, &fake_ris2.props);
+> +	fake_ris1.props.cpbm_wd = 4;
+> +	fake_ris2.props.cmax_wd = 4;
+> +
+> +	mpam_enable_merge_features(&fake_classes_list);
+> +
+> +	/*
+> +	 * Multiple components can't control the same resource, mismatched features can
+> +	 * not be supported.
+> +	 */
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_cpor_part, &fake_class.props));
+> +	KUNIT_EXPECT_FALSE(test, mpam_has_feature(mpam_feat_cmax_cmin, &fake_class.props));
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cpbm_wd, 0);
+> +	KUNIT_EXPECT_EQ(test, fake_class.props.cmax_wd, 0);
+> +
+> +	mutex_unlock(&mpam_list_lock);
+> +
+> +#undef RESET_FAKE_HIEARCHY
+> +}
+> +
+>  static void test_mpam_reset_msc_bitmap(struct kunit *test)
+>  {
+>  	char *buf = kunit_kzalloc(test, SZ_16K, GFP_KERNEL);
+> @@ -57,6 +377,8 @@ static void test_mpam_reset_msc_bitmap(struct kunit *test)
+>  
+>  static struct kunit_case mpam_devices_test_cases[] = {
+>  	KUNIT_CASE(test_mpam_reset_msc_bitmap),
+> +	KUNIT_CASE(test_mpam_enable_merge_features),
+> +	KUNIT_CASE(test__props_mismatch),
+>  	{}
+>  };
+>  
+
+Thanks,
+
+Ben
+
 
