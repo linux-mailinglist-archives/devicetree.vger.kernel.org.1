@@ -1,134 +1,87 @@
-Return-Path: <devicetree+bounces-210483-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDE61B3BA3F
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:53:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 50930B3BA37
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 13:51:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 842D1A20B15
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:53:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E02C4164C64
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 11:51:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C483148DB;
-	Fri, 29 Aug 2025 11:53:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5311C2D6E59;
+	Fri, 29 Aug 2025 11:51:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="Nq/bywy+"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="FbW1SI+O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B12B72D0C8E;
-	Fri, 29 Aug 2025 11:53:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3436229B1F
+	for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 11:51:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756468384; cv=none; b=EJaLWRWZcvOkMh9AXOJBg1RaNWVURGk5Bo2e3FTRmzqjeUnFDMYwdYR5TbnwiTgnQcLlgy/qsobFxrBrxgfvVVKZtTD1kjypToLvEZEh85DM6cqg4hdOfxrVlUwR994n+c1kM2HjEPU/PxsDwKeCgTNpT0EvTKQoPBXM1WHJqKk=
+	t=1756468270; cv=none; b=UryCtJD8OUBBXpBQxye3sKthoo6ho+Eo3przL5ViOPiZf8BvQOOUUq9VJRAo16NHekqP6RO9YA1PboMm+U6r3ghHLF1ifOdPDyGLlIYgW+SqpCaV9rH+4tJsjaFOxztcU3uYDzwRuQVfA8lIU0jVePylYw+hLyjWXp/HTlT/BoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756468384; c=relaxed/simple;
-	bh=J5GiYU0yvL3LPpaCVHMw2znaR61FT6kq/g1DIBrfj3k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OzhgGV2Ba4QW09d70bGzIZV0YIb7HiStKzP8KUPuTIt6YCjjLqzvRdL/ksWwUG6pNua/c0RY+2yXll7MO7H7rIrTfil3OD/IUPZ8u58Nhx6FvewzfLmiAwcm23+F2A+QuNeqqj7P7ZvcRdHTW9OKThInlxgWQ7zIe66v/FmV5VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=Nq/bywy+; arc=none smtp.client-ip=148.163.135.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
-Received: from pps.filterd (m0375855.ppops.net [127.0.0.1])
-	by mx0b-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57T8xbAu016244;
-	Fri, 29 Aug 2025 07:52:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
-	:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=DKIM; bh=pFdLi
-	IoiIMfvbUeKgXfvNtubzXpDL+pf8/XF9Mqa31U=; b=Nq/bywy+4JsE6bmCG0gVq
-	5T9Z35wbm8/SiXGZZ7XKSgg2XoD5hwncziTe1s3156cznfRxgMZCDe3OVyI1111K
-	ddHxowpRWarV4ca5r9S5LH+8kQ0GF8bIZxh96gsJwGEsX4uZXcQh5w9WIbR7I/Wn
-	R/8GW6Mvm+yh9JzaJqi3Awyhb2xpUZf1gtgNBgtHyfRoKh/0ONHbuKoJvK2Z+4AM
-	9onP4+ozcESLo28H08b2AkvzzYD5OLd5R8ejtkIO1pTGpFlVfmU6wC6Cv5DBJqPv
-	gWF3PbYMRVH4jMUbTXUGuho/XhQtPuiuguwqlwpRo4oX+CgpD1rAKYCOgsPEv1sV
-	g==
-Received: from nwd2mta4.analog.com ([137.71.173.58])
-	by mx0b-00128a01.pphosted.com (PPS) with ESMTPS id 48u966rq2d-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 29 Aug 2025 07:52:54 -0400 (EDT)
-Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
-	by nwd2mta4.analog.com (8.14.7/8.14.7) with ESMTP id 57TBqrvO036278
-	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 29 Aug 2025 07:52:53 -0400
-Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 29 Aug 2025 07:52:53 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.10; Fri, 29 Aug 2025 07:52:53 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Fri, 29 Aug 2025 07:52:53 -0400
-Received: from Ubuntu.ad.analog.com (AMICLAUS-L01.ad.analog.com [10.48.65.226])
-	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57TBqdAX017911;
-	Fri, 29 Aug 2025 07:52:50 -0400
-From: Antoniu Miclaus <antoniu.miclaus@analog.com>
-To: <jic23@kernel.org>, <robh@kernel.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-CC: Antoniu Miclaus <antoniu.miclaus@analog.com>
-Subject: [PATCH v6 6/6] Documentation: ABI: iio: add sinc4+lp
-Date: Fri, 29 Aug 2025 11:41:40 +0000
-Message-ID: <20250829115227.47712-7-antoniu.miclaus@analog.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250829115227.47712-1-antoniu.miclaus@analog.com>
-References: <20250829115227.47712-1-antoniu.miclaus@analog.com>
+	s=arc-20240116; t=1756468270; c=relaxed/simple;
+	bh=lM0TV6yWIxE28nX20JUd7XOJHQP1vSBHIkCdkDGxhOc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VYVg/RzPIw89snXxdgI4d6lrvcnuU8ewuQZZ5pE/y/pl1qzh9sIVbq1Bo07b6dtKYD2FdaWmCZ1ONW1WViWicsC1TG/VFpy8zXh2uhPHxWXuFfE07ZlOUCxPalemJO3QD+OnGb+3zERVb/eA412tj3+SPS9vxmPguIzeEez41Kk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=FbW1SI+O; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=JIXe
+	PVtJ1yEilNa7lXXAyCenfguPQ1RpEBwJ2aRyeSc=; b=FbW1SI+OuFQD0Yxh41AL
+	WrHpMqYquPfWtaG2t+4So+hI831DlQfGhaCwEBZrDBAsAlhnfmKnYod7upMaWCZS
+	o8ld1dNCJpeyCpvrPbqqPzTzPCOPr5+o3ilfxlgTrAPHWa/G9N7b90ENREYrnhew
+	cI8re+s56olhwok8QDBgpnLF4DAIOxRgj1oUvckzjGLfDbrSAoaisccuomZxbjKG
+	kYQ7VOwlT0MAZuRLhdjT40tkFn6H9fvKt3+2r5jlzyLOj/gHfeqzFxWuSEOZYCX7
+	VTQdHU2rbvNnnSYGaj6/63x/cTZOn1SJoG0miLxV/4cMgkniGuNwhm5683RBuggr
+	8A==
+Received: (qmail 1440564 invoked from network); 29 Aug 2025 13:51:02 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 29 Aug 2025 13:51:02 +0200
+X-UD-Smtp-Session: l3s3148p1@P7PRon89LqwgAwDPXwOZADQgI+b4m0Li
+Date: Fri, 29 Aug 2025 13:51:01 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: claudiu beznea <claudiu.beznea@tuxon.dev>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de,
+	geert+renesas@glider.be, magnus.damm@gmail.com,
+	yoshihiro.shimoda.uh@renesas.com, biju.das.jz@bp.renesas.com,
+	linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5 0/7] Add initial USB support for the Renesas RZ/G3S SoC
+Message-ID: <aLGUJbA0szYQ_gN4@shikoro>
+References: <20250819054212.486426-1-claudiu.beznea.uj@bp.renesas.com>
+ <aLAZprjeKtk4pusw@shikoro>
+ <ae53d367-2ee5-49aa-82ba-86f9e84d4d25@tuxon.dev>
+ <aLGGmI8bpKNVaSAa@shikoro>
+ <be706ee5-057c-4b0a-b0d3-54ca24087f3f@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRuleOP-NewSCL: Rule Triggered
-X-Proofpoint-GUID: BsuVtOTVzqNAapqFQUhpVslzq8zm52gr
-X-Proofpoint-ORIG-GUID: BsuVtOTVzqNAapqFQUhpVslzq8zm52gr
-X-Authority-Analysis: v=2.4 cv=J6Wq7BnS c=1 sm=1 tr=0 ts=68b19496 cx=c_pps
- a=3WNzaoukacrqR9RwcOSAdA==:117 a=3WNzaoukacrqR9RwcOSAdA==:17
- a=2OwXVqhp2XgA:10 a=gAnH3GRIAAAA:8 a=mZV6OjMThpI3IlpCzlYA:9
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI5MDA3NCBTYWx0ZWRfXzeXuFWSKybUU
- 2P3uPDCnR74tygsnUH9FmFEumb9woKCtXmWZUxYMSEbQM4QZgSrXa8mKJzewkOQ3nPy6r22xsVB
- 6A+szKdp42MuqzvQIJmc8v8VYmbgWN3a8Vf1SIy5JD7CWXaIY3hBP0uVkTJh6fOjKMNIGuvR1Xg
- P2VXpGpNB8XKJWuUo8j2qjll03Mih70s8oB333LEsTLj0uQ6EaseCI3truL+Umf2SXn2OUba72Q
- kIztu16s0wacvr7htWgFIAyrUVVAyCg3BPgDQMeecJ6fHqr3vJQH/tSN6ohy2b7hwFPcBccjSbZ
- GorOWXha73E7jDDD4JSHYXYfKhqtmQMb3LT6t+zxLlF0lytd+zzI7PQe8uBumk4G4wko+0NLXQ6
- ZIIDPm2r
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-08-29_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 spamscore=0 clxscore=1015 suspectscore=0
- bulkscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508290074
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <be706ee5-057c-4b0a-b0d3-54ca24087f3f@tuxon.dev>
 
-Add new filter type to the sysfs-bus-iio ABI documentation:
-- "sinc4+lp" for Sinc4 + Low Pass Filter
 
-Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
----
-no changes in v6.
- Documentation/ABI/testing/sysfs-bus-iio | 1 +
- 1 file changed, 1 insertion(+)
+> > Yes, I added it and it made the error go away, but still no USB. I
+> 
+> The drivers are not probed or you see no activity when connecting USB devices?
 
-diff --git a/Documentation/ABI/testing/sysfs-bus-iio b/Documentation/ABI/testing/sysfs-bus-iio
-index 78da68826307..cb300135b4c4 100644
---- a/Documentation/ABI/testing/sysfs-bus-iio
-+++ b/Documentation/ABI/testing/sysfs-bus-iio
-@@ -2319,6 +2319,7 @@ Description:
- 		  time.
- 		* "sinc4" - Sinc 4. Excellent noise performance. Long
- 		  1st conversion time.
-+		* "sinc4+lp" - Sinc4 + Low Pass Filter.
- 		* "sinc4+sinc1" - Sinc4 + averaging by 8. Low 1st conversion
- 		  time.
- 		* "sinc5" - The digital sinc5 filter. Excellent noise
--- 
-2.43.0
+Sigh, I was so sure to have checked OHCI/EHCI but only EHCI was enabled :(
+
+Checking with the schematics, I get it that only the rightmost USB-A
+connectors on the carrier board are routed. Those two work fine now.
+
+If that is to be expected, then for the whole series:
+
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
 
