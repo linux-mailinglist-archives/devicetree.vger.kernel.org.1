@@ -1,702 +1,188 @@
-Return-Path: <devicetree+bounces-210530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210531-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C8FAB3BD6D
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:24:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDEECB3BD95
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 16:27:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A1FD170CA9
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:24:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F258C1CC1B8A
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:27:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C967320398;
-	Fri, 29 Aug 2025 14:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6865313E26;
+	Fri, 29 Aug 2025 14:27:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aeLxV0NO"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="KYlmnr3S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from DB3PR0202CU003.outbound.protection.outlook.com (mail-northeuropeazon11010038.outbound.protection.outlook.com [52.101.84.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1B132038D;
-	Fri, 29 Aug 2025 14:24:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756477445; cv=none; b=sc8wjpT+Yk271DmFhU2z/ekX5j8DiU8NKOm0dXVOuIgiPTNdxb4e/vil41Al+KGFB6rMpWMzlnFakdYbSz2kRIBbTc+kiidg3ntfN9kVGW45NH6omt9YlYkeLokw9U+clLorAIVGpnMd95rs0Uq8PhQMpXRaGipFoyO+sPv4ZWE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756477445; c=relaxed/simple;
-	bh=gOKw0W5oVOEmVuxyK8bmvoBLFrTievczhzQ6Rvn5Fv0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oUFBOgd6d9jKduo96mplTIGWG9F4KcSJYPI+kx9Mgul5OjidRkoh5dZM2PplHCvDRpuMagZgOj0PD051zefzF8eXuVXl/uYQZFQQCafkMH9sd8AFbpKh0QGfwbR0gT2aALgouQ8HOBvHQCtW9hmXxdMBqjquDPxoZkALm+aKsGg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aeLxV0NO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A36DC4CEF0;
-	Fri, 29 Aug 2025 14:24:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756477445;
-	bh=gOKw0W5oVOEmVuxyK8bmvoBLFrTievczhzQ6Rvn5Fv0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aeLxV0NO8jzpg8NNUvMp61oW9jjB95tvO+6ad46kGE9CQZSZ6vOm5SNLviKNLNHMP
-	 xJaWGH1VVoSMNbFI8ZiEAsFd3RRIOI5oqxA1UuDSEaL4/VqsdDsgCf2EiEytkPweDY
-	 Xi9zd12NIMkQ54cHIloOnN0MmMdDH0U52QCHkTONLvYKLELQwbYcifFH6NmIVjA0Kl
-	 eWGl+y0KLIVH07gAo8T5sx6bZxcmWWGTtQvo6Pa1x0Ekf7aRjJMkKL7SpwOUjL1R+q
-	 iVt+pyguH+DOhwiRjoJQ9ISIlk6eDQ2/OrsndYvuBAR/vGemQTEtlNwg5WLg1Te90l
-	 h94xxgHWiuFYQ==
-Date: Fri, 29 Aug 2025 09:24:03 -0500
-From: Rob Herring <robh@kernel.org>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: lee@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, linus.walleij@linaro.org,
-	brgl@bgdev.pl, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, BMC-SW@aspeedtech.com
-Subject: Re: [PATCH v1 2/4] dt-bindings: pinctrl: aspeed: Add support for
- AST27xx
-Message-ID: <20250829142403.GA619692-robh@kernel.org>
-References: <20250829073030.2749482-1-billy_tsai@aspeedtech.com>
- <20250829073030.2749482-3-billy_tsai@aspeedtech.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A55E829E110;
+	Fri, 29 Aug 2025 14:27:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.84.38
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756477645; cv=fail; b=HQHopk+ixRGLps2aavgOZqOxS7Egwl+iRD6UIrrvCQ6MfMu06GAi0gUaF9OKl69X/Wa4JJbxnpUMN19Qhcpyjjkqg0iKbW5mBSUZN7+yOYyxfy4zbizgxZknigQ/MneOA4IVN0MQ/KHhCXPMQd+0wTlscBUNy3VdOInLb+R8IOs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756477645; c=relaxed/simple;
+	bh=7PzrHolFb8P3zBI5e9SU/f+tyxaXvUcWhendIsYIIRA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=ZtL6/v6f6qCqxb5orRkHvW/CTevx60MJKy0TgNpT8gPTXpUAimo8FkL7nsYYYXUqQUSuxfRNJYfGzW26Dh1NKzr/LKt1gG8JRTHFi0E8WpvpAxz+aidJLB1g/it4SkHVuEzd7Dhl8+g302olYAnIxJaJnQzTRdmkXLNFxGhMeSk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=KYlmnr3S; arc=fail smtp.client-ip=52.101.84.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bgu1Ksfxux4RTLFrqrptdfR7+8BO8bGdTx24xlb8oJrfY7xoTTxgweN4/WqhI2hH9gOtdqB/BS3wvKoQ9lnIKbotpHGmeVP+T+iSyB2QvPMGILl9Xx+L/a36rUq8DQfsqJxP5dkqkgrXReJr0+zfOKB01LbMpGStgMCPxLOTCwPyrnR8XkBKf29TLMB8hlF+CrsRkQKxLxD4qndb/Z9rvZeP4UEJ42Hnn46p1wmiwH84X+H2uBVfbv+ICprb4tWyQMyelt0FHhbzASOmr3YMuDSkrRcOIGTHQtz+2ed7lZz2WbISS+b0/Tpk+7GyN4C3yoyjbEx3/OYQPWR5sMOMjw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7PzrHolFb8P3zBI5e9SU/f+tyxaXvUcWhendIsYIIRA=;
+ b=yDZDsJXpu+dQKGaw6bKhmaekJ9GF9/LU86xxug7BkRhp1+0XznguGUJpxrxuvMSlLUrnOtVYi+R8QGbbOGvjxrcFKINP2IpuArfDaIqj9e2ynetjj3fFG4tRAG0Yq76r9xJZeQ/Qeejenof7V7debM9zMeouKYUInr2Bbyg1q/W634bk+jjonynei0ZpH67jbcUnk4izOE6SDfOdy8xWSV0UtlZ5UltcR12GIePr9Oj9QMiZr5K3MCB3kJdLBnTUePyvYHEEUV2MZ+tdZKKf1LE5kNHMRVe7crB7eUQb14oaYpO8VBFKSWoxYSc+5glUQ/cmr1kpFbQ69Ycs7j9ZAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7PzrHolFb8P3zBI5e9SU/f+tyxaXvUcWhendIsYIIRA=;
+ b=KYlmnr3SYKyvnqhvUYKGxutKU3AY5btdQN0RNEHtZZyTa/BUIhJv4QaQ6UHRp5fQNkyZmkwAKFHm4EYFAqmtAyKBVIiSyUeyFT0f7q5AH8BGAsMGoxHFTV+u14zobUSh02bmHeNun0ZeFF5HKO650baKipm9Ia+q2KzF5shFgwfQl8RH0ZRBvTBUB7iL7NPiU1JNLNaPJCfzpV4o31iUGaDEY1Ve80TM/oVOicT1GEHw7d4BOKnRaCwNQXPTNzpnjg6EZwZ5UP0OWi0VBJ52QMruEzok7Z7xyC3nWdR0xfa1etKoGP0ArmGUQSQBAXx1xxjKBe4EqMIuMkmNqbxAiQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com (2603:10a6:20b:4ff::22)
+ by AS8PR04MB9093.eurprd04.prod.outlook.com (2603:10a6:20b:444::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9052.11; Fri, 29 Aug
+ 2025 14:27:20 +0000
+Received: from AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e]) by AS4PR04MB9621.eurprd04.prod.outlook.com
+ ([fe80::a84d:82bf:a9ff:171e%5]) with mapi id 15.20.9052.014; Fri, 29 Aug 2025
+ 14:27:20 +0000
+Date: Fri, 29 Aug 2025 10:27:09 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: James Clark <james.clark@linaro.org>,
+	Clark Wang <xiaoning.wang@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Larisa Grigore <larisa.grigore@oss.nxp.com>,
+	Larisa Grigore <larisa.grigore@nxp.com>,
+	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>,
+	Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com,
+	linux-spi@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/9] spi: spi-fsl-lpspi: Fix transmissions when using
+ CONT
+Message-ID: <aLG4vXsolXkpUUEs@lizhi-Precision-Tower-5810>
+References: <20250828-james-nxp-lpspi-v2-0-6262b9aa9be4@linaro.org>
+ <20250828-james-nxp-lpspi-v2-1-6262b9aa9be4@linaro.org>
+ <aLGRJxK5Lr44P5hG@finisterre.sirena.org.uk>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aLGRJxK5Lr44P5hG@finisterre.sirena.org.uk>
+X-ClientProxiedBy: PH5P220CA0002.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:510:34a::17) To AS4PR04MB9621.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4ff::22)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829073030.2749482-3-billy_tsai@aspeedtech.com>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS4PR04MB9621:EE_|AS8PR04MB9093:EE_
+X-MS-Office365-Filtering-Correlation-Id: d92fa87b-4020-4c40-b572-08dde70828ff
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|52116014|7416014|19092799006|376014|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?sHlmR7ZVRIml+SZ7Q5b2SeSXhvjq6Dygmj8YnZ5i2VIqlzyk7Cw9SZT8TYbv?=
+ =?us-ascii?Q?Hrhp7cnM+aIqZhTeGKYB3ohcKWsbZKrCpGAOYXtPA0fZGHYoHv61eiqU/aDx?=
+ =?us-ascii?Q?TzFsN/EIy/Z52qCTt8Yi5CbhPY8Joogkk5sohkpC39VyNfWoLK1m84Zl5ngA?=
+ =?us-ascii?Q?3sx3RqaZIbarHL/Y5q+r1hQwTarlz3xWgYbZAD3vkEgYmwllSA2dppixsEKq?=
+ =?us-ascii?Q?Ji7hZhV/YmORw+GgJfOjhFDAp4m8hMxz0Y+3lix0sC1srfWndmBdUUKm3rng?=
+ =?us-ascii?Q?Hhu2lHP23ew+hsr7bJ2I3XFCGMqPm6/+aZXihIj/QTm+Wf/cePFMD+qUXj8q?=
+ =?us-ascii?Q?SIA0W5LDsRSg9CgNqg2ULzkAXjMYXU3gUBc5HBbC//mgzVdZCOWvZJjLNL7G?=
+ =?us-ascii?Q?tMC4xRDw98MCxBoK+erJisIBDu8DHayZGq7CkeNgYxupgJ7Ul7P4yqcii41E?=
+ =?us-ascii?Q?A4C1k7BDDjvvbfIH41z2Kw4PRoOh5iLRT28e/BzofbkCAh31vlEbrWTX+rBI?=
+ =?us-ascii?Q?hI+y/+NBiem0sSvZrgMnG80KQCH8nkLvjyldWkKHnqONiHZ5DsQd0pxH8ra+?=
+ =?us-ascii?Q?G9JDLm3yZKMNoRcrM9Z/6y9kVz1noxcxGJa0xMn6/EQRf3NUx9nInaqz0MYN?=
+ =?us-ascii?Q?0C4O53bwuTecD5ESS2prJxV5zslEyU+fK+lCAWdV3/GARqVivBH3iMrifxWP?=
+ =?us-ascii?Q?GYJ1b7fIRE6iZM4i56ZB4KWxkxC7xeuy59BhswUzSAYC+qPDaACHkHCHaVQr?=
+ =?us-ascii?Q?bdWF8REURh/oql6Bz/rAoUZsnEHu5CE5NSQgZScAIocWS9G9XNC8hkNdy6jp?=
+ =?us-ascii?Q?oYjh9XU/KTMMcfhI8YO5OVFHjaevJ6fLzhhcCzUuFdhRwQSkjA8FKE+2/08W?=
+ =?us-ascii?Q?cuWkmGuCnEKFDIq82ONPtKD5XgAmEIvOCNTaVWcn/icIyHjy4CEUJ3NKLmua?=
+ =?us-ascii?Q?63zXbwJf6vpEHnsCpkhd1sHsuddl+SZ04QpBzvfvFNSjxjN+RvLEc/Bnqv3g?=
+ =?us-ascii?Q?JMZXj12Ng5fhgT5x4viDirU2DVxSV0vAi+P7vyMQ1+S0WovuKd5nE5VviXuj?=
+ =?us-ascii?Q?rtbtUr/WW8/2LvukyohDkyp7oOuYO0X12sCbdMp1vJ3t5PrDvbfAhw/+5ODl?=
+ =?us-ascii?Q?q6De/Hj0PzrmcqyuHwNl/zYiwBn1QiUTe00dtCiTJLnJJ5zuo9RJD0h+EW9O?=
+ =?us-ascii?Q?+hjxhnc3UDhWKr+f5bbEUYjqXg2DD0YWogTs7swvbx9jAoe1HsAb5IrHcj/M?=
+ =?us-ascii?Q?/RsR750B7P1EQJncCXxQ9N/zGfIg42ztWEIa/DK5zzGUFAhMOw5r2dBKdIcH?=
+ =?us-ascii?Q?KtlpOogsYgEEIikgOwzUMhgVg/nTJYPfRCrpUer1KKvxF6EFfKX8Xl2zClwW?=
+ =?us-ascii?Q?EkGZ0E4XKPDmTy5dGIFl+/3wXBPDEzbWTVXgfbuI22WTJK5ti+13ktQ46X8h?=
+ =?us-ascii?Q?5hmEapTN3CqthcPb4hMwKvmPD9FBc+dCejfMBKubi1X9o59uL5h+zw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS4PR04MB9621.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(7416014)(19092799006)(376014)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ClgfytwJ7FORjaHlxo6xW4xh94k34WNadY4UUdNkuUIj82eazWQ71uUcJKXx?=
+ =?us-ascii?Q?EMutdIUAejsgNCyL9xY5kBrAdSagNRLuqdRmDTsjnK/8+1uK8cEnrLc48OON?=
+ =?us-ascii?Q?b9zqDCQu4TSIvFnTytt1eknZCXfETpGYiy4xHY6j/nycvbOOmtuImkqCm5sa?=
+ =?us-ascii?Q?ASUTXoYBYaFrzBfwNQaY3ikVNQ5H64Ku5Vbh9ZS5bo0707h94bNh5pktEv3v?=
+ =?us-ascii?Q?dWJcnRv61Vf3N2oll3CeHJcMTYG04ezIYGapXJKA0qSfCFHC+ovjqPF6xDNi?=
+ =?us-ascii?Q?auoW+Nglz9vpMGAXVVZ+TZ7dktw0LdPuGJtiOs3Veh+BLGR9aprECaRnH1PB?=
+ =?us-ascii?Q?/RPYgearEu0kgZ6sy2DlxRBNkFu0ZyNpjx4uGb5E6zAJ1XV1OK4CpnOUMQID?=
+ =?us-ascii?Q?Hg2xiess6e0PMD7kE1BUJie1RRbWOSEUM58B/eQwSht8h9iaO7wAkRUvtUll?=
+ =?us-ascii?Q?PTgniqw0ybAEpI1gUiIbAFthYcJWGB73QT7eXnjIw/TJt/LVwXfzCcsuXvOE?=
+ =?us-ascii?Q?BJPeJNtwf45ySQAY2pqUEb+P931AMZlB6Kuel9K8L+nRHQwTH7LrTvmq54rz?=
+ =?us-ascii?Q?5qorZWS8t7mC4MWyM48ORY8t9yGCP0YHVJTj3FF+n16JpidrqGV6MRS3FrvH?=
+ =?us-ascii?Q?2vW/totZMWu+niaEyTQj/mPtxFY6IP2t1cSwSujpqYvnwV01iiKiZywUKj6Q?=
+ =?us-ascii?Q?2EbVb1IyKVnd6nRJEIEVZVxcJy53w+clBe5yPqGy0gboJ0WC1wVqSDGVcUEy?=
+ =?us-ascii?Q?aT7x1z9ARxov5wpRDaD9zS1E1OI/IcH77nBNNLkXG1i7vt/cmgQvZwSD3Exi?=
+ =?us-ascii?Q?tzKuqo7F6j5MR0Pz/BkXocmh+hR7HQ/Ytcylt794aGm686O2YuzgT95PdalN?=
+ =?us-ascii?Q?Swh+dozjjSz731ASEEIyf2764bwQWgzCyD3Q8updIUtNmmjzI2WgL/Ak5Ad8?=
+ =?us-ascii?Q?RKYYIbZHWGgHx5iMpy9MKtMhab01oF9vobicSonOKCG6Uks7oZKdGfWsLZ+x?=
+ =?us-ascii?Q?8Kc5XDS/msNCtexToUXDmImJebh0jOQdnbXolFK6EzttVDGnnD/9HLwPDV29?=
+ =?us-ascii?Q?uXOkMdYM+1SdWMUuA6YiJ0yA0noNpboawNq1jg/cXiOWlekIA1GSn9kLiTpj?=
+ =?us-ascii?Q?HKCNjx23Y4GyerChMT9Bcb/DSWxkSdKI3CgahpKOchFipjJNiaaeebDal6JQ?=
+ =?us-ascii?Q?awJqRqfJSIr0VfUkEUHfwJHqp8O36hblzsUfhPbtuSKq/JJUxPVRHGGF7kgw?=
+ =?us-ascii?Q?OexEY4JLj6OY9k5wINTzygxCesB+92icSl3A6srj/xwNmXUvMzV+vlvekA6m?=
+ =?us-ascii?Q?CQ9Jvn1aNtmqnC+rB9Dsk9eb5DawiVI3PO5B9bf/5OBuGxi0c0T4FNAAEKox?=
+ =?us-ascii?Q?MZVZtvOqLFb+Lkq4zbeNZTiUVmo9sJ/EscJgMRoeVSzanFNZhER4WE1WvScQ?=
+ =?us-ascii?Q?6zcwUIPSlUjGrba0i2Q5vKoyKDGGc4Xth3ylMdM5mpGYVNrf1YGLZKmHsXUA?=
+ =?us-ascii?Q?OWHuKmnTOdSIDTOEy2In9pfNe92iyXIyZvFNTqIHZ4fjeN4q/lJswChoS4Ig?=
+ =?us-ascii?Q?YcA731FnCnbc1kECoeTQ53gZyHtFrv5j0H65lYh9?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d92fa87b-4020-4c40-b572-08dde70828ff
+X-MS-Exchange-CrossTenant-AuthSource: AS4PR04MB9621.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Aug 2025 14:27:19.9019
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n2g4aL6KevM35/dwPPH8/mgw05n/f1cLl+3hGv5Jf/YT3XvmWEEEdBJ1pu9b49De1DUpN+svRiY42BofkB4ZsA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9093
 
-On Fri, Aug 29, 2025 at 03:30:28PM +0800, Billy Tsai wrote:
-> Add bindings for the pin controller found in the ASPEED AST27xx SoC.
+On Fri, Aug 29, 2025 at 01:38:15PM +0200, Mark Brown wrote:
+> On Thu, Aug 28, 2025 at 11:14:40AM +0100, James Clark wrote:
+> > From: Larisa Grigore <larisa.grigore@nxp.com>
+> >
+> > Commit 6a130448498c ("spi: lpspi: Fix wrong transmission when don't use
+> > CONT") breaks transmissions when CONT is used. The TDIE interrupt should
+> > not be disabled in all cases. If CONT is used and the TX transfer is not
+> > yet completed yet, but the interrupt handler is called because there are
+> > characters to be received, TDIE is replaced with FCIE. When the transfer
+> > is finally completed, SR_TDF is set but the interrupt handler isn't
+> > called again.
+>
+> Frank, you've reviewed the whole series except for this patch - is there
+> some issue with it?
 
-Please explain why you have defined 2 pin controllers and why they 
-aren't compatible with each other.
+I need read spec and code to understand code logic. It should be correct.
 
-> 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  .../pinctrl/aspeed,ast2700-soc0-pinctrl.yaml  | 135 ++++++
->  .../pinctrl/aspeed,ast2700-soc1-pinctrl.yaml  | 452 ++++++++++++++++++
->  2 files changed, 587 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc0-pinctrl.yaml
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc1-pinctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc0-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc0-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..8abdc2fe1d8b
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc0-pinctrl.yaml
-> @@ -0,0 +1,135 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/aspeed,ast2700-soc0-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED AST2700 SoC0 Pin Controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |+
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-What's the '+' for?
 
-> +  The pin controller node should be the child of a syscon node with the
-> +  required property:
-> +
-> +  - compatible: Should be one of the following:
-> +                "aspeed,ast2700-scu0", "syscon", "simple-mfd"
-
-This should be a schema in the aspeed,ast2700-scu0 binding, not a 
-free-form text description.
-
-> +
-> +  Refer to the bindings described in
-> +  Documentation/devicetree/bindings/mfd/syscon.yaml
-
-That does not cover 'simple-mfd' cases.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: aspeed,ast2700-soc0-pinctrl
-> +
-> +additionalProperties:
-> +  $ref: pinmux-node.yaml#
-> +  additionalProperties: false
-> +
-> +  properties:
-> +    function:
-> +      enum:
-> +        - EMMC
-> +        - VGADDC
-> +        - USB3A
-> +        - USB2A
-> +        - USB3B
-> +        - USB2B
-> +        - JTAG0
-> +        - PCIERC
-> +
-> +    groups:
-> +      enum:
-> +        - EMMCG1
-> +        - EMMCG4
-> +        - EMMCG8
-> +        - EMMCWPN
-> +        - EMMCCDN
-> +        - VGADDC
-> +        - USB3AXHD
-> +        - USB3AXHPD
-> +        - USB3AXH
-> +        - USB3AXHP
-> +        - USB3AXH2B
-> +        - USB3AXHP2B
-> +        - USB2AXHD1
-> +        - USB2AXHPD1
-> +        - USB2AD1
-> +        - USB2AXH
-> +        - USB2AXHP
-> +        - USB2AXH2B
-> +        - USB2AXHP2B
-> +        - USB2AHPD0
-> +        - USB2AD0
-> +        - USB2AH
-> +        - USB2AHP
-> +        - USB3BXHD
-> +        - USB3BXHPD
-> +        - USB3BXH
-> +        - USB3BXHP
-> +        - USB3BXH2A
-> +        - USB3BXHP2A
-> +        - USB2BXHD1
-> +        - USB2BXHPD1
-> +        - USB2BD1
-> +        - USB2BXH
-> +        - USB2BXHP
-> +        - USB2BXH2A
-> +        - USB2BXHP2A
-> +        - USB2BHPD0
-> +        - USB2BD0
-> +        - USB2BH
-> +        - USB2BHP
-> +        - JTAGM0
-> +        - PSP
-> +        - SSP
-> +        - TSP
-> +        - DDR
-> +        - USB3A
-> +        - USB3B
-> +        - PCIEA
-> +        - PCIEB
-> +        - PCIERC0PERST
-> +        - PCIERC1PERST
-> +
-> +    pins: true
-
-You need to define the type as string or uint32 is possible.
-
-> +    drive-strength:
-> +      minimum: 0
-> +      maximum: 15
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +     / {
-> +          #address-cells = <2>;
-> +          #size-cells = <2>;
-> +          syscon0: syscon@12c02000 {
-> +              compatible = "aspeed,ast2700-scu0", "syscon", "simple-mfd";
-
-Drop the example here and put a complete example in the schema for the 
-syscon.
-
-> +              reg = <0x0 0x12c02000 0x0 0x1000>;
-> +              ranges = <0x0 0x0 0 0x12c02000 0 0x1000>;
-> +              #address-cells = <2>;
-> +              #size-cells = <2>;
-> +              #clock-cells = <1>;
-> +              #reset-cells = <1>;
-> +
-> +              pinctrl0: pinctrl{
-> +                  compatible = "aspeed,ast2700-soc0-pinctrl";
-> +
-> +                  pinctrl_emmc_default: emmc-default {
-> +                      function = "EMMC";
-> +                      groups = "EMMCG1";
-> +                  };
-> +
-> +                  pinctrl_emmcclk_driving: emmcclk-driving {
-> +                      pins = "AC14";
-> +                      drive-strength = <2>;
-> +                  };
-> +              };
-> +          };
-> +        };
-> diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc1-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc1-pinctrl.yaml
-> new file mode 100644
-> index 000000000000..1ee71c6290a6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2700-soc1-pinctrl.yaml
-> @@ -0,0 +1,452 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pinctrl/aspeed,ast2700-soc1-pinctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED AST2700 SoC1 Pin Controller
-> +
-> +maintainers:
-> +  - Billy Tsai <billy_tsai@aspeedtech.com>
-> +
-> +description: |+
-> +  The pin controller node should be the child of a syscon node with the
-> +  required property:
-> +
-> +  - compatible: Should be one of the following:
-> +                "aspeed,ast2700-scu1", "syscon", "simple-mfd"
-> +
-> +  Refer to the bindings described in
-> +  Documentation/devicetree/bindings/mfd/syscon.yaml
-> +
-> +properties:
-> +  compatible:
-> +    const: aspeed,ast2700-soc1-pinctrl
-> +
-> +additionalProperties:
-> +  $ref: pinmux-node.yaml#
-> +  additionalProperties: false
-> +
-> +  properties:
-> +    function:
-> +      enum:
-> +        - ADC0
-> +        - ADC1
-> +        - ADC2
-> +        - ADC3
-> +        - ADC4
-> +        - ADC5
-> +        - ADC6
-> +        - ADC7
-> +        - ADC8
-> +        - ADC9
-> +        - ADC10
-> +        - ADC11
-> +        - ADC12
-> +        - ADC13
-> +        - ADC14
-> +        - ADC15
-> +        - CANBUS
-> +        - DDR
-> +        - ESPI0
-> +        - ESPI1
-> +        - FSI0
-> +        - FSI1
-> +        - FSI2
-> +        - FSI3
-> +        - FWQSPI
-> +        - I2C0
-> +        - I2C1
-> +        - I2C2
-> +        - I2C3
-> +        - I2C4
-> +        - I2C5
-> +        - I2C6
-> +        - I2C7
-> +        - I2C8
-> +        - I2C9
-> +        - I2C10
-> +        - I2C11
-> +        - I2C12
-> +        - I2C13
-> +        - I2C14
-> +        - I2C15
-> +        - I3C0
-> +        - I3C1
-> +        - I3C2
-> +        - I3C3
-> +        - I3C4
-> +        - I3C5
-> +        - I3C6
-> +        - I3C7
-> +        - I3C8
-> +        - I3C9
-> +        - I3C10
-> +        - I3C11
-> +        - I3C12
-> +        - I3C13
-> +        - I3C14
-> +        - I3C15
-> +        - JTAGM0
-> +        - JTAGM1
-> +        - LPC0
-> +        - LPC1
-> +        - LTPI_PS_I2C0
-> +        - LTPI_PS_I2C1
-> +        - LTPI_PS_I2C2
-> +        - LTPI_PS_I2C3
-> +        - MDIO0
-> +        - MDIO1
-> +        - MDIO2
-> +        - NCTS5
-> +        - NDCD5
-> +        - NDSR5
-> +        - NRI5
-> +        - PCIERC
-> +        - PWM0
-> +        - PWM1
-> +        - PWM2
-> +        - PWM3
-> +        - PWM4
-> +        - PWM5
-> +        - PWM6
-> +        - PWM7
-> +        - PWM8
-> +        - PWM9
-> +        - PWM10
-> +        - PWM11
-> +        - PWM12
-> +        - PWM13
-> +        - PWM14
-> +        - PWM15
-> +        - QSPI0
-> +        - QSPI1
-> +        - QSPI2
-> +        - RGMII0
-> +        - RGMII1
-> +        - RMII0
-> +        - RMII0RCLKO
-> +        - RMII1
-> +        - RMII1RCLKO
-> +        - SALT0
-> +        - SALT1
-> +        - SALT2
-> +        - SALT3
-> +        - SALT4
-> +        - SALT5
-> +        - SALT6
-> +        - SALT7
-> +        - SALT8
-> +        - SALT9
-> +        - SALT10
-> +        - SALT11
-> +        - SALT12
-> +        - SALT13
-> +        - SALT14
-> +        - SALT15
-> +        - SD
-> +        - SGMII
-> +        - SGPM0
-> +        - SGPM1
-> +        - SGPS
-> +        - SPI0
-> +        - SPI0CS1
-> +        - SPI1
-> +        - SPI1CS1
-> +        - SPI2
-> +        - SPI2CS1
-> +        - SSP
-> +        - TACH0
-> +        - TACH1
-> +        - TACH2
-> +        - TACH3
-> +        - TACH4
-> +        - TACH5
-> +        - TACH6
-> +        - TACH7
-> +        - TACH8
-> +        - TACH9
-> +        - TACH10
-> +        - TACH11
-> +        - TACH12
-> +        - TACH13
-> +        - TACH14
-> +        - TACH15
-> +        - THRU0
-> +        - THRU1
-> +        - THRU2
-> +        - THRU3
-> +        - TSP
-> +        - UART0
-> +        - UART1
-> +        - UART2
-> +        - UART3
-> +        - UART5
-> +        - UART6
-> +        - UART7
-> +        - UART8
-> +        - UART9
-> +        - UART10
-> +        - UART11
-> +        - USB2C
-> +        - USB2D
-> +        - VPI
-> +
-> +    groups:
-> +      enum:
-> +        - ADC0
-> +        - ADC1
-> +        - ADC2
-> +        - ADC3
-> +        - ADC4
-> +        - ADC5
-> +        - ADC6
-> +        - ADC7
-> +        - ADC8
-> +        - ADC9
-> +        - ADC10
-> +        - ADC11
-> +        - ADC12
-> +        - ADC13
-> +        - ADC14
-> +        - ADC15
-> +        - CANBUS
-> +        - DI2C0
-> +        - DI2C1
-> +        - DI2C2
-> +        - DI2C3
-> +        - DI2C8
-> +        - DI2C9
-> +        - DI2C10
-> +        - DI2C11
-> +        - DI2C12
-> +        - DI2C13
-> +        - DI2C14
-> +        - DI2C15
-> +        - DSGPM0
-> +        - ESPI0
-> +        - ESPI1
-> +        - FSI0
-> +        - FSI1
-> +        - FSI2
-> +        - FSI3
-> +        - FWQSPI
-> +        - HVI3C0
-> +        - HVI3C1
-> +        - HVI3C2
-> +        - HVI3C3
-> +        - HVI3C12
-> +        - HVI3C13
-> +        - HVI3C14
-> +        - HVI3C15
-> +        - I2C0
-> +        - I2C1
-> +        - I2C2
-> +        - I2C3
-> +        - I2C4
-> +        - I2C5
-> +        - I2C6
-> +        - I2C7
-> +        - I2C8
-> +        - I2C9
-> +        - I2C10
-> +        - I2C11
-> +        - I2C12
-> +        - I2C13
-> +        - I2C14
-> +        - I2C15
-> +        - I3C4
-> +        - I3C5
-> +        - I3C6
-> +        - I3C7
-> +        - I3C8
-> +        - I3C9
-> +        - I3C10
-> +        - I3C11
-> +        - JTAGM1
-> +        - LPC0
-> +        - LPC1
-> +        - LTPI_PS_I2C0
-> +        - LTPI_PS_I2C1
-> +        - LTPI_PS_I2C2
-> +        - LTPI_PS_I2C3
-> +        - MDIO0
-> +        - MDIO1
-> +        - MDIO2
-> +        - NCTS0
-> +        - NCTS1
-> +        - NCTS5
-> +        - NCTS6
-> +        - NDCD0
-> +        - NDCD1
-> +        - NDCD5
-> +        - NDCD6
-> +        - NDSR0
-> +        - NDSR1
-> +        - NDSR5
-> +        - NDSR6
-> +        - NDTR0
-> +        - NDTR1
-> +        - NDTR5
-> +        - NDTR6
-> +        - NRI0
-> +        - NRI1
-> +        - NRI5
-> +        - NRI6
-> +        - NRTS0
-> +        - NRTS1
-> +        - NRTS5
-> +        - NRTS6
-> +        - PE2SGRSTN
-> +        - PWM0
-> +        - PWM1
-> +        - PWM2
-> +        - PWM3
-> +        - PWM4
-> +        - PWM5
-> +        - PWM6
-> +        - PWM7
-> +        - PWM8
-> +        - PWM9
-> +        - PWM10
-> +        - PWM11
-> +        - PWM12
-> +        - PWM13
-> +        - PWM14
-> +        - PWM15
-> +        - QSPI0
-> +        - QSPI1
-> +        - QSPI2
-> +        - RGMII0
-> +        - RGMII1
-> +        - RMII0
-> +        - RMII0RCLKO
-> +        - RMII1
-> +        - RMII1RCLKO
-> +        - RXD0
-> +        - RXD1
-> +        - RXD2
-> +        - RXD3
-> +        - RXD5
-> +        - RXD6
-> +        - RXD7
-> +        - RXD8
-> +        - RXD9
-> +        - RXD10
-> +        - RXD11
-> +        - SALT0
-> +        - SALT1
-> +        - SALT2
-> +        - SALT3
-> +        - SALT4
-> +        - SALT5
-> +        - SALT6
-> +        - SALT7
-> +        - SALT8
-> +        - SALT9
-> +        - SALT10
-> +        - SALT11
-> +        - SALT12
-> +        - SALT13
-> +        - SALT14
-> +        - SALT15
-> +        - SD
-> +        - SGMII
-> +        - SGPM0
-> +        - SGPM1
-> +        - SGPS
-> +        - SPI0
-> +        - SPI0CS1
-> +        - SPI1
-> +        - SPI1CS1
-> +        - SPI2
-> +        - SPI2CS1
-> +        - TACH0
-> +        - TACH1
-> +        - TACH2
-> +        - TACH3
-> +        - TACH4
-> +        - TACH5
-> +        - TACH6
-> +        - TACH7
-> +        - TACH8
-> +        - TACH9
-> +        - TACH10
-> +        - TACH11
-> +        - TACH12
-> +        - TACH13
-> +        - TACH14
-> +        - TACH15
-> +        - THRU0
-> +        - THRU1
-> +        - THRU2
-> +        - THRU3
-> +        - TXD0
-> +        - TXD1
-> +        - TXD2
-> +        - TXD3
-> +        - TXD5
-> +        - TXD6
-> +        - TXD7
-> +        - TXD8
-> +        - TXD9
-> +        - TXD10
-> +        - TXD11
-> +        - USB2CD
-> +        - USB2CH
-> +        - USB2CU
-> +        - USB2CUD
-> +        - USB2DD
-> +        - USB2DH
-> +        - VPI
-> +
-> +    pins: true
-> +    bias-disable: true
-> +    bias-pull-up: true
-> +    bias-pull-down: true
-> +    drive-strength:
-> +      minimum: 0
-> +      maximum: 3
-> +    power-source:
-> +      enum: [1800, 3300]
-> +
-> +allOf:
-> +  - $ref: pinctrl.yaml#
-> +
-> +required:
-> +  - compatible
-> +
-> +examples:
-> +  - |
-> +     / {
-> +          #address-cells = <2>;
-> +          #size-cells = <2>;
-> +          syscon1: syscon@14c02000 {
-> +              compatible = "aspeed,ast2700-scu1", "syscon", "simple-mfd";
-> +              reg = <0x0 0x14c02000 0x0 0x1000>;
-> +              ranges = <0x0 0x0 0x0 0x14c02000 0x0 0x1000>;
-> +              #address-cells = <2>;
-> +              #size-cells = <2>;
-> +              #clock-cells = <1>;
-> +              #reset-cells = <1>;
-> +
-> +              pinctrl1: pinctrl {
-> +                  compatible = "aspeed,ast2700-soc1-pinctrl";
-> +
-> +                  pinctrl_hvi3c0_default: hvi3c0-default {
-> +                      function = "I3C0";
-> +                      groups = "HVI3C0";
-> +                  };
-> +
-> +                  pinctrl_i3c0_3_hv_voltage: i3chv-voltage {
-> +                      pins = "U25";
-> +                      power-source = <1800>;
-> +                  };
-> +
-> +                  pinctrl_i3c0_driving: i3c0-driving {
-> +                      pins = "U25", "U26";
-> +                      drive-strength = <2>;
-> +                  };
-> +              };
-> +          };
-> +      };
-> -- 
-> 2.25.1
-> 
 
