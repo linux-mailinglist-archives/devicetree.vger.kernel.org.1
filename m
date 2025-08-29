@@ -1,172 +1,144 @@
-Return-Path: <devicetree+bounces-210497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 33804B3BB04
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:18:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8A5EB3BB2D
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 14:23:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C0471C82476
-	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:19:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 027DF1B25B34
+	for <lists+devicetree@lfdr.de>; Fri, 29 Aug 2025 12:23:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6867314A8D;
-	Fri, 29 Aug 2025 12:18:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB81B314B7B;
+	Fri, 29 Aug 2025 12:23:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JQ0/AxIO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HxH3uX5H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA4E13128BA;
-	Fri, 29 Aug 2025 12:18:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 244131FCFEF;
+	Fri, 29 Aug 2025 12:22:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756469934; cv=none; b=j+avQN4WhEr7qXpDuA/3nhceLiCx2nMLiANtB4U3xGPsCcmFsdKQ73zdCesgJvKUYW3Gkjk5YeEWLfpsdkuT7kThPTFWA5UeDUkP1Qy8FCufqzoQS1OSATLB+fOkIIqiq2ErXMnOoiY2ormYdotsQ6vTGLhuxRLtU1dCLDRSIgc=
+	t=1756470180; cv=none; b=R31O0nkl5f9rpWMMrAfSumVduSbpVj7FfqZ9YN0v4lqdhkEU3O1NAZF+jSMKglfgSg0GrPFRV8kGi5quXUksx2XndeBah9xFQst9/2Y1vADDuI6OuYskhMWXIECpi3j00a4R7Z9KFJfS+FTvGgvrm0Z/iMiGxHmQFptoPL0YoQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756469934; c=relaxed/simple;
-	bh=lmOaDJrWsALHNdIkFkPEn+1/tHhvy8ASz+0CpcTOxMQ=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=aixO4Udse8s1/Be5EQ+hm5B9V1oK4EoGuqdUm4w7WZN6OgfQjs9oDhXgFjHHuKBX6oB6pN/VihjWOlSnlzAU7WZg5OrRBnvWeTs7xPkgdvtSa+K9u01GU0NVVPZOrZ1nq17ue8hc+/U1WWO2OoUou5xWsMxaTmWf/Yo/c/qSaoU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JQ0/AxIO; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756469933; x=1788005933;
-  h=from:to:cc:subject:in-reply-to:references:date:
-   message-id:mime-version;
-  bh=lmOaDJrWsALHNdIkFkPEn+1/tHhvy8ASz+0CpcTOxMQ=;
-  b=JQ0/AxIOhGOdNMLF+qwZWK/qJiXTSwfEjc9AjX87xrVNj81JYdTRUYja
-   V7Zb2LTkZJLsheaBDsqGMptJ5WLRby9tzbmbVTPMLbVDGXjofwZLzfW44
-   uOWocqbtuuJjlRsXxevgLMALWmEsvl5IiIVUgq/yRnlEAAkyhKziMiGiq
-   8LQ0HYP1ZzdKGkkj3GmzQUSZySM6I71X9QFAhieJDOOWEHkEahigArV0G
-   EZKhduHmce0JLMY2Jfh70zm2ysBhf+FZp5eGkImBMlzoWCDD2/UUeD67o
-   gUoOPBKJW64YrJe4R/5lKaE/2DIWL5soyk1zj202MgephKE5eRnOICCye
-   A==;
-X-CSE-ConnectionGUID: HteoTLb2Tjy5YxO8qrXg+A==
-X-CSE-MsgGUID: J3mI7IycSxOWSYmo7wvxqg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11536"; a="58603807"
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; 
-   d="scan'208";a="58603807"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 05:18:51 -0700
-X-CSE-ConnectionGUID: FceyOGKfTMK8J/ArNXLz6w==
-X-CSE-MsgGUID: nahg4MG6QSGDgmwgF/j0Ug==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,221,1751266800"; 
-   d="scan'208";a="170753940"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost) ([10.245.246.58])
-  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Aug 2025 05:18:22 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Bagas Sanjaya <bagasdotme@gmail.com>, Linux Kernel Mailing List
- <linux-kernel@vger.kernel.org>, Linux Documentation
- <linux-doc@vger.kernel.org>, Linux DAMON <damon@lists.linux.dev>, Linux
- Memory Management List <linux-mm@kvack.org>, Linux Power Management
- <linux-pm@vger.kernel.org>, Linux Block Devices
- <linux-block@vger.kernel.org>, Linux BPF <bpf@vger.kernel.org>, Linux
- Kernel Workflows <workflows@vger.kernel.org>, Linux KASAN
- <kasan-dev@googlegroups.com>, Linux Devicetree
- <devicetree@vger.kernel.org>, Linux fsverity <fsverity@lists.linux.dev>,
- Linux MTD <linux-mtd@lists.infradead.org>, Linux DRI Development
- <dri-devel@lists.freedesktop.org>, Linux Kernel Build System
- <linux-lbuild@vger.kernel.org>, Linux Networking <netdev@vger.kernel.org>,
- Linux Sound <linux-sound@vger.kernel.org>
-Cc: Thomas Gleixner <tglx@linutronix.de>, Borislav Petkov <bp@alien8.de>,
- Peter Zijlstra <peterz@infradead.org>, Josh Poimboeuf
- <jpoimboe@kernel.org>, Pawan Gupta <pawan.kumar.gupta@linux.intel.com>,
- Jonathan Corbet <corbet@lwn.net>, SeongJae Park <sj@kernel.org>, Andrew
- Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>, "Liam R. Howlett"
- <Liam.Howlett@oracle.com>, Vlastimil Babka <vbabka@suse.cz>, Mike Rapoport
- <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>, Michal Hocko
- <mhocko@suse.com>, Huang Rui <ray.huang@amd.com>, "Gautham R. Shenoy"
- <gautham.shenoy@amd.com>, Mario Limonciello <mario.limonciello@amd.com>,
- Perry Yuan <perry.yuan@amd.com>, Jens Axboe <axboe@kernel.dk>, Alexei
- Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Andrii Nakryiko <andrii@kernel.org>, Martin KaFai Lau
- <martin.lau@linux.dev>, Eduard Zingerman <eddyz87@gmail.com>, Song Liu
- <song@kernel.org>, Yonghong Song <yonghong.song@linux.dev>, John Fastabend
- <john.fastabend@gmail.com>, KP Singh <kpsingh@kernel.org>, Stanislav
- Fomichev <sdf@fomichev.me>, Hao Luo <haoluo@google.com>, Jiri Olsa
- <jolsa@kernel.org>, Dwaipayan Ray <dwaipayanray1@gmail.com>, Lukas Bulwahn
- <lukas.bulwahn@gmail.com>, Joe Perches <joe@perches.com>, Andrey Ryabinin
- <ryabinin.a.a@gmail.com>, Alexander Potapenko <glider@google.com>, Andrey
- Konovalov <andreyknvl@gmail.com>, Dmitry Vyukov <dvyukov@google.com>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Eric Biggers <ebiggers@kernel.org>, tytso@mit.edu,
- Richard Weinberger <richard@nod.at>, Zhihao Cheng
- <chengzhihao1@huawei.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Nathan Chancellor <nathan@kernel.org>, Nicolas
- Schier <nicolas.schier@linux.dev>, Ingo Molnar <mingo@redhat.com>, Will
- Deacon <will@kernel.org>, Boqun Feng <boqun.feng@gmail.com>, Waiman Long
- <longman@redhat.com>, "David S. Miller" <davem@davemloft.net>, Eric
- Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>, Simon Horman <horms@kernel.org>, Shay Agroskin
- <shayagr@amazon.com>, Arthur Kiyanovski <akiyano@amazon.com>, David
- Arinzon <darinzon@amazon.com>, Saeed Bishara <saeedb@amazon.com>, Andrew
- Lunn <andrew@lunn.ch>, Liam Girdwood <lgirdwood@gmail.com>, Mark Brown
- <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Alexandru Ciobotaru <alcioa@amazon.com>, The AWS Nitro
- Enclaves Team <aws-nitro-enclaves-devel@amazon.com>, Jesper Dangaard
- Brouer <hawk@kernel.org>, Bagas Sanjaya <bagasdotme@gmail.com>, Laurent
- Pinchart <laurent.pinchart@ideasonboard.com>, Steve French
- <stfrench@microsoft.com>, Meetakshi Setiya <msetiya@microsoft.com>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Martin K. Petersen"
- <martin.petersen@oracle.com>, Bart Van Assche <bvanassche@acm.org>, Thomas
- =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, Masahiro Yamada
- <masahiroy@kernel.org>
-Subject: Re: [PATCH 00/14] Internalize www.kernel.org/doc cross-reference
-In-Reply-To: <20250829075524.45635-1-bagasdotme@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-References: <20250829075524.45635-1-bagasdotme@gmail.com>
-Date: Fri, 29 Aug 2025 15:18:20 +0300
-Message-ID: <437912a24e94673c2355a2b7b50c3c4b6f68fcc6@intel.com>
+	s=arc-20240116; t=1756470180; c=relaxed/simple;
+	bh=ay1mkIvcJE/e4r+EJO+M8d+Jm7aZ9adWMkwfNZ58b8w=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=bafO1daZG8j58cVECg94PECeOZmk/L9GyAAIaWrN8rot8mUiThN1dq2naA269G6CGPiBVPyGcePqcKlABUdB7bqqrjhpVFfaIXB2YqBa+sQKmuFguXoxFF52OV4HRDdSqv+G8PHeghv2hbXMSsU3m8KVwFObyFAhH+BpHaLqd8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HxH3uX5H; arc=none smtp.client-ip=209.85.218.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-afcb78fb04cso340250366b.1;
+        Fri, 29 Aug 2025 05:22:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756470177; x=1757074977; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yjCf5U90YZZ0G4CHynnYnJa+eoUbXgmAFBJXFe1CPV0=;
+        b=HxH3uX5Hqk+7S2jLyYb0o1dePQYbmhV53qWI9HpO+uI+qOc4iMP+K6Rng3evFLYv+T
+         A4AKAooSpgL+8ufg0psIBjyqcCme6jT8QkTJ4Yzi3uuHqOdqm/w0BhOjbXkMJQrXexRY
+         QkARRcdThX5THCjDVb9yylsaw3iIuV7Z6D89P6EjyorD1nBUhL6Ow4uApwZHtR5rd3GV
+         iGMLVcvLi/iIQ+Ex3IXRlAS78hdD+SXNdl7drc2u51p4usHL3YOOUMh1ub8+SCPowqV8
+         g32TJRVNXMNClz4r7Kb/DNm6Mx8yaFTxbknC8+/TpNlPM86N0b3SvoVcSRxb4JweaAKX
+         6IyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756470177; x=1757074977;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yjCf5U90YZZ0G4CHynnYnJa+eoUbXgmAFBJXFe1CPV0=;
+        b=nM71Y0B3b7j7xJ/WCMJjHHCHd5v55fDgOrtd1tAB8QU+Kr7BlLh08CSVSNNtR5jUtu
+         mXznRasW9hot4G6lIDM7i2TKqFyVrVUY5NPUFJMOfAt9cRWV0LrIvh7zE/EQ9Ljw0B4D
+         qOUEhUPcSeeE+qpmR8W7Bj8Ap25W2YJVw3KoQgLgmMCUinxjKlzzm3KdeGw59Mo921N4
+         jcjCV5nHN7puC5sNo/+aFkB+etsdIcs0gE6vk17/wLm7a0BsDgGeP5I7n3XFQO2BKKij
+         eclkiXe4aNGwm2MPad+zrUJ2lmO6AXsu7bmTKMez8UIEIGtW4aHkJYV5sRxcLfSzD72m
+         xhIg==
+X-Forwarded-Encrypted: i=1; AJvYcCW3lZkpYdX5XqLpuv4LhuGHpCSgZtUBBsAHQ9NYUCs/kmgbDZsmwiZHWP3NU3b+e7B/97kjPttKn2fYwbIJ@vger.kernel.org, AJvYcCWypGFmXO2K0d+iB+Y0sdYXi1ahbYUlqcVbAHObm3ooGQ19ktIxqzA34YSH/wt6W0UFXIdlnjIwHHw=@vger.kernel.org, AJvYcCX3/AbXtEuXu9uuD4v5qOSyYRUCeWMCkp651/M0hHrwNdTqi7f0g8WKysXZl0vvxWVg0s9ZU2b6YpyRsNg=@vger.kernel.org
+X-Gm-Message-State: AOJu0YwagMEdlcRNxRh4XN1TjaODG4nvIdAi/9vzjTyATE0LiG/Xnu8Z
+	ZMTp2RbNVi0EBmj45oOuxmcL1ISEfph3jEBLlm2FhvUm6ByTFFDQe/mL
+X-Gm-Gg: ASbGncsBc7qVVqPOKIuTMztJnlqwHgjP0NZ8Vg2Ps6840Zir2Nb+ZDW9nWylUwdKewn
+	e3xN3hjIhT7wK630xMB/ekHkjbK9pFXlhF4B8Go4wZJ+gr8FcVDL1qNTUlXRdhK1Sz1a5lcBMqh
+	45EKkgbvrDR7siIIiKXSH5bmSip5iP9c7mQ3Aound7KIullMC83uAArdl9xDGzISbdAUxL6lZTS
+	/iYSNbV7hN8b57J6CEuP/uub05ywbmZaTNt6GMXNm6XUynSvYds1vpJRH340dxOx9mvGVnh9CZ0
+	bjOjsZimqg9cnjOPC3dVBj5PvH947GiclNUSTNUybGEI6A2ODJ/i+QV1dAzs+oIO35Ayd7BdYYd
+	EVdzF0ydHs9oRSiuDRdkqbKqk
+X-Google-Smtp-Source: AGHT+IGqYYxMXNlImQJTgUD4sXHYvG+ESLaCPCwhHiKJEer55gLJWbBlAmZD2vuXTZ0CgJz6USoxgg==
+X-Received: by 2002:a17:907:6095:b0:afe:b311:a255 with SMTP id a640c23a62f3a-afeb311ae54mr1399145766b.48.1756470177143;
+        Fri, 29 Aug 2025 05:22:57 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afefcbd7047sm188662166b.51.2025.08.29.05.22.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Aug 2025 05:22:56 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org
+Subject: [PATCH v5 0/4] clk: tegra: add DFLL support for Tegra114
+Date: Fri, 29 Aug 2025 15:22:30 +0300
+Message-ID: <20250829122235.119745-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-On Fri, 29 Aug 2025, Bagas Sanjaya <bagasdotme@gmail.com> wrote:
-> Cross-references to other docs (so-called internal links) are typically
-> done following Documentation/doc-guide/sphinx.rst: either simply
-> write the target docs (preferred) or use :doc: or :ref: reST directives
-> (for use-cases like having anchor text or cross-referencing sections).
-> In some places, however, links to https://www.kernel.org/doc
-> are used instead (outgoing, external links), owing inconsistency as
-> these requires Internet connection only to see docs that otherwise
-> can be accessed locally (after building with ``make htmldocs``).
->
-> Convert such external links to internal links. Note that this does not
-> cover docs.kernel.org links nor touching Documentation/tools (as
-> docs containing external links are in manpages).
+DFLL is a dedicated clock source for the Fast CPU. The DFLL is based on
+a ring oscillator and translates voltage changes into frequency
+compensation changes needed to prevent the CPU from failing and is
+essential for correct CPU frequency scaling.
 
-FWIW, I'd much prefer using :ref: on rst anchors (that automatically
-pick the link text from the target heading) instead of manually adding
-link texts and file references.
+---
+Changes in v2:
+- dropped 'drivers:' from commit title
+- aligned naming to Tegra114
 
-i.e.
+Changes in v3:
+- add DFLL support for Tegra 114 was split into dt header addition,
+  DFLL reset configuration and CVB tables implementation.
+- added cleaner commit message to dt header commit
+- added T210_ prefixes to Tegra210 CVB table macros
 
-.. _some_target:
+Changes in v4:
+- expanded commit message of car header adding commit
 
-Heading After Some Target
-=========================
+Changes in v5:
+- renamed tegra114-car.h to nvidia,tegra114-car.h
+---
 
-See :ref:`some_target`.
+Svyatoslav Ryhel (4):
+  dt-bindings: reset: add Tegra114 car header
+  clk: tegra: add DFLL DVCO reset control for Tegra114
+  clk: tegra: dfll: add CVB tables for Tegra114
+  ARM: tegra: Add DFLL clock support for Tegra114
 
-Will generate "See Heading After Some Target".
-
-
-BR,
-Jani.
-
+ arch/arm/boot/dts/nvidia/tegra114.dtsi        |  33 ++++
+ drivers/clk/tegra/Kconfig                     |   2 +-
+ drivers/clk/tegra/clk-tegra114.c              |  30 +++-
+ drivers/clk/tegra/clk-tegra124-dfll-fcpu.c    | 158 +++++++++++++++---
+ drivers/clk/tegra/clk.h                       |   2 -
+ .../dt-bindings/reset/nvidia,tegra114-car.h   |  13 ++
+ 6 files changed, 204 insertions(+), 34 deletions(-)
+ create mode 100644 include/dt-bindings/reset/nvidia,tegra114-car.h
 
 -- 
-Jani Nikula, Intel
+2.48.1
+
 
