@@ -1,103 +1,103 @@
-Return-Path: <devicetree+bounces-210781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7F3DB3CC59
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85ED1B3CC79
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:58:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 838887C80B1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:54:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4126A3AD4A4
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:58:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A2F7248F6F;
-	Sat, 30 Aug 2025 15:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB88C2848A7;
+	Sat, 30 Aug 2025 15:58:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="tsFdWAuT"
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="LcBJ+zK+";
+	dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b="LcBJ+zK+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from honk.sigxcpu.org (honk.sigxcpu.org [24.134.29.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06AF11F0991;
-	Sat, 30 Aug 2025 15:53:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D677B26980B;
+	Sat, 30 Aug 2025 15:58:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=24.134.29.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756569239; cv=none; b=igylYjRpp2EXv6t+DlCvKWejhlqUDev5HX1VmMvnAasc1Ev6I28kgZpdjzjpbBVkWjzaLlLIuoaJ2XMU9Q8qXFb6az8QUJ6D3b+uH7GnXpX0Ou8H/2OFiNOP57kdflv1gEjWz1i8xdisrrkcEHWwAFAdDw7MYS55OfOb51V/Urg=
+	t=1756569493; cv=none; b=pjmQJxLo+DQbIxdTg6audwyRJPdjS0rH6t7f7wcGWrhGOysNqObXsBppKwxA7jzyLsk0r78VrM3b3bSaleBmUmtPgg3hCIEoDuDpWD3V2GBCa0TF9CEHBG3lr2E8+te/eUeD2qqTtGjCcwT3MmcRLhDc8Gq0WEn61wDWq5r8VKY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756569239; c=relaxed/simple;
-	bh=4MDhPuf1ZsI1vue3P2tc13voRuTqerWAsAKdRtpdq+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bRIaY30UapbskSF4BHAru8aF+rf/hglkMa77YzjI8W4MNBOebb4C7KPUez1Dtf76nPciwKP7gB/KZ/uQU54FnaB/AHqxDp44dpu0AruSmuaMcuQc6ozO52mqEUUUGOAHtA/30A5t9pVVENUdemT4rm0P6TjcnFqrQw6CUgoiyCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=tsFdWAuT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47C9BC4CEEB;
-	Sat, 30 Aug 2025 15:53:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-	s=korg; t=1756569238;
-	bh=4MDhPuf1ZsI1vue3P2tc13voRuTqerWAsAKdRtpdq+U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tsFdWAuTjA7JfA/80vnTwuFhOy1Egc46U7ExIqvMwFto4RLabhwlxev/C2ghLsfw2
-	 pXT6I9qYnikftQbEj3DzRDY/Uwta0p0X6vJwTQvvRrlwOOrz+/m1zW4E2PMXoQYj1e
-	 Cx+1qRWkygijpQeq8w0u05Iwmhfjj4/gNPCAa+u8=
-Date: Sat, 30 Aug 2025 11:53:57 -0400
-From: Konstantin Ryabitsev <konstantin@linuxfoundation.org>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, conor+dt@kernel.org, hverkuil@xs4all.nl, 
-	jacopo.mondi@ideasonboard.com, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org, 
-	devicetree@vger.kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: Pinefeat cef168 lens control board
-Message-ID: <20250830-radiant-pigeon-of-foundation-fed0ae@lemur>
-References: <20250830111500.53169-1-asmirnou@pinefeat.co.uk>
- <20250830111500.53169-2-asmirnou@pinefeat.co.uk>
- <4eee57c0-a2fb-4fa7-bafe-e3a41c8954bd@kernel.org>
- <175656387714.501865.14707361524569628815@ping.linuxembedded.co.uk>
+	s=arc-20240116; t=1756569493; c=relaxed/simple;
+	bh=2NYra8bevS3woikAQuBf3T0J2BxLCqPEXnPzpCmkJ84=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uBIzis+sP8lU0qbEkySjHnwmIdRWwjSeIRZmVmm6q6sAVo4H9Ve/wVGxyBgH3Fmh+guPOOUoQooNl5s7eayflJ3QHnou8naRQdlyXuEmUR8dps+Ax6fwvc3V9eJPz8Fw6jNvvXt/Q3pSYS78+t+whCRF+ka+6sHirOalAU3P+Vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org; spf=pass smtp.mailfrom=sigxcpu.org; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=LcBJ+zK+; dkim=pass (2048-bit key) header.d=sigxcpu.org header.i=@sigxcpu.org header.b=LcBJ+zK+; arc=none smtp.client-ip=24.134.29.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sigxcpu.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sigxcpu.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1756569488; bh=2NYra8bevS3woikAQuBf3T0J2BxLCqPEXnPzpCmkJ84=;
+	h=From:To:Subject:Date:From;
+	b=LcBJ+zK+1Xgkae7qRTSxGsugwr61QxR9A0cBw39itcEC+wx/crrKUjV4ASMUjSo/C
+	 iXZpD5RzbMMFpufVQ5cbnBDgZKMSLxVeIE0SLC6jbvwkQrvqKdHX3LvI5NqLdtj7qs
+	 yqeRJaGGoLBhDCl4Vqf1Gqg+hSTNcyyWpyXfZfvh9B1c27/cgRv/YWyo+4/v7Nd+rk
+	 gyqLwuDaY9mFdElTxlZCAFfwhwVWJKlaNE9/HXrca8HAq0jJB8E8FJb59MMisck8IA
+	 zuGwSjgAl4mEiOBtgWQ/yexo7NBgrwQwoaf53GsiolD8RM9AhdwaES1vvkBYsl7kQu
+	 dE2LdSOdSQxlA==
+Received: from localhost (localhost [127.0.0.1])
+	by honk.sigxcpu.org (Postfix) with ESMTP id B9175FB05;
+	Sat, 30 Aug 2025 17:58:08 +0200 (CEST)
+Received: from honk.sigxcpu.org ([127.0.0.1])
+	by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id cvm6FoYYZI8z; Sat, 30 Aug 2025 17:58:08 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=sigxcpu.org; s=2024;
+	t=1756569488; bh=2NYra8bevS3woikAQuBf3T0J2BxLCqPEXnPzpCmkJ84=;
+	h=From:To:Subject:Date:From;
+	b=LcBJ+zK+1Xgkae7qRTSxGsugwr61QxR9A0cBw39itcEC+wx/crrKUjV4ASMUjSo/C
+	 iXZpD5RzbMMFpufVQ5cbnBDgZKMSLxVeIE0SLC6jbvwkQrvqKdHX3LvI5NqLdtj7qs
+	 yqeRJaGGoLBhDCl4Vqf1Gqg+hSTNcyyWpyXfZfvh9B1c27/cgRv/YWyo+4/v7Nd+rk
+	 gyqLwuDaY9mFdElTxlZCAFfwhwVWJKlaNE9/HXrca8HAq0jJB8E8FJb59MMisck8IA
+	 zuGwSjgAl4mEiOBtgWQ/yexo7NBgrwQwoaf53GsiolD8RM9AhdwaES1vvkBYsl7kQu
+	 dE2LdSOdSQxlA==
+From: =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	phone-devel@vger.kernel.org
+Subject: [PATCH] arch: arm64: dts: qcom: sdm845-shift-axolotl: set chassis type
+Date: Sat, 30 Aug 2025 17:57:29 +0200
+Message-ID: <3e04efc06a795a32b0080b2f23a138e139057b02.1756569434.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <175656387714.501865.14707361524569628815@ping.linuxembedded.co.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Sat, Aug 30, 2025 at 03:24:37PM +0100, Kieran Bingham wrote:
-> > b4 diff '<20250830111500.53169-2-asmirnou@pinefeat.co.uk>'
-> > Grabbing thread from
-> > lore.kernel.org/all/20250830111500.53169-2-asmirnou@pinefeat.co.uk/t.mbox.gz
-> > Checking for older revisions
-> > Grabbing search results from lore.kernel.org
-> > ---
-> > Analyzing 9 messages in the thread
-> > Could not find lower series to compare against.
-> > 
-> > You are not making it easier for us.
-> 
-> Could you explain what's required to tell b4 to know about earlier
-> versions please? (Or point to the documentation?)
+It's a handset.
 
-Oh, it's an interesting case, glad I looked into it. For one, there was a bug
-in b4 that limited the lookups by wrong author (mea culpa!). However, there is
-a complication here. This identical series was sent several times, with a
-different From address:
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-    https://lore.kernel.org/all/20250830111500.53169-1-asmirnou@pinefeat.co.uk/
-    https://lore.kernel.org/all/20250822171041.7340-1-support@pinefeat.co.uk/
+diff --git a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+index 2cf7b5e1243ca..2b04adcb53ee0 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
++++ b/arch/arm64/boot/dts/qcom/sdm845-shift-axolotl.dts
+@@ -17,6 +17,7 @@
+ / {
+ 	model = "SHIFT SHIFT6mq";
+ 	compatible = "shift,axolotl", "qcom,sdm845";
++	chassis-type = "handset";
+ 	qcom,msm-id = <321 0x20001>;
+ 	qcom,board-id = <11 0>;
+ 
+-- 
+2.51.0
 
-Since this series wasn't prepared with b4, it doesn't have a change-id, and
-therefore when looking for previous revisions we limit by subject and same
-author. Depending on which v4 you pick from the two above, you will either
-find v3 or not find a v3. :)
-
-This command succeeds with the latest master and stable-0.14.y:
-
-    b4 diff 20250822171041.7340-1-support@pinefeat.co.uk
-
-> I don't know ... so I don't think a first time contributor would
-> implicitly know either.
-
-I know it's an easy thing to mess up, but in general sending the same series
-twice with a different From address will result in confusion.
-
--K
 
