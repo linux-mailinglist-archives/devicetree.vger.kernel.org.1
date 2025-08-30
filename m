@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-210791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23E5EB3CD1A
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 18:30:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64CE7B3CD49
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 18:41:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD965207B45
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:30:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 212003B16D0
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC872D3750;
-	Sat, 30 Aug 2025 16:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACE2F2773F8;
+	Sat, 30 Aug 2025 16:41:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PevNt1hv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rApEJ9er"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 128B32D323E
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 16:29:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F7593D81
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 16:41:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756571400; cv=none; b=sICZZXPZmW1WqjX33c8POO6/8R7NJAjT9xi4B8HT12p8KQk/h8Xqu0MJivsDdghdbWf7RKCB8tjmSVEZw47c0wMYpfEVspw1NFeYZ/NgwZWpuaBCf+JhNV0KYMqyapOYJJ1uHgcRvFTd3uk06LScJsjZXdHtJVWErN+pfMxd2Lo=
+	t=1756572092; cv=none; b=lZ1XX1tXHnHi45zyQpuB3/13l3Hgh8RTK9g+APOM8lRVvCyZ5QR9S2f0wap5Wg6RIXHeg+78DfbUW0C8MAY5LpugmndH6Qn8H+6/oKYddKRClrT7ok95Z1yoz0bbc7vU5YOHkUUrRSGwGIGJwkzfka749BwaT88XtLp+WrbR57w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756571400; c=relaxed/simple;
-	bh=zpj0k7sYQI2nycOBsAPtFBnwj7bXoYfvpQ17GfPguas=;
+	s=arc-20240116; t=1756572092; c=relaxed/simple;
+	bh=9pLVtHagF9RfuVvLL5VmokTfRtBhGQ67ZkM9NHr6/xM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pIgis7mHMDuhK0xNA2+xcA5SsPmrJsH41AHW4i26CXldbujD0e1V0KD1An4nRonOwSy7CS+cAI5t8wJHEluo9wiG9HGh453YWhBGPdG2P6C22jCSEC+07hkG8XXMqLTHkNPW0x+qRNTQyMeMnxMsIdeS9Nc0GwPR7+nbp7CICFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PevNt1hv; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-afe7f50b605so65300066b.0
-        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 09:29:56 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=p9wyIt8NDe6fX7pHuYQWBFo88eOtv+bFLgwGg2knI0wWC9ojdzpXyuzGD3PEmmiPcYDQhuvvNsjtD0H5GY8ecFP7TBpn2DnC93CIt/iwc6LVErpHuGTm3qKBbj+9T+E7M7pZ2LDLcHW6WPl8pCsN7mBF6fTpCAWoYhxSZJwHnd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rApEJ9er; arc=none smtp.client-ip=209.85.210.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-7455e68736eso1189196a34.0
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 09:41:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756571395; x=1757176195; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aDZ1phRAEk3zIW1PFqiad/v15RHmZHAjGk3sbt/9HL4=;
-        b=PevNt1hv8zZj/mBBOOhbKgROYMzhWWK9vCPFKATXm2CJxPse2Xc7C2B5TvGSiL3qUm
-         gOViJd2BFvSQ9aZJvUw1b+CTchHZUYCmHxIgbwl2QkmrVoxtVxgUYBclmOqF2US44q2s
-         2errzsjgif75Iuiy71EPAfHqiMggXiF8d0RbAPifzdjSXSlsNldG/j7YhVeu0JNna9nQ
-         PfLY+vTOSGBiBwTQT1ba7sBISQNUFgYeMJJbgDyitqHakFvT9WwwLA8tve5vIFmpHnYp
-         Yy2VnKxi1KAplkW7vyrmlGTAE5VQM6umoOSUD6JQHpRg6/x1JRmhK4eKduhiEkTXzS6y
-         +UTg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756572088; x=1757176888; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sbfBohOE3aUAe+8ggIJdFs3Ub7xyIyjcAlkbS5chGaw=;
+        b=rApEJ9erCEAhloV58ULbDH5EvvpeMmIdIkDlBfA9xitGgEExwtWbmQkz1RUdCcMAa+
+         MtiyC3tIRRdc6vXoHUu2B2b3v1Uel8VaZhy9UZX/Uah6P0EyiCU15AmxTH4j9D02KAR3
+         uCbIyFS0BGua5quv3PSXGEZmnnhJq4+rV4xkGO4lwLZV1x+4Nttni7NvjpCSyqUeoUMW
+         ZtCG+WSiQzT4Az4QFJAA+stUYBZvp9m+roqig8mLZZgHi8WGydgHAq8NCj/DE3EEmy14
+         dlMiiSme7XxvU31PHkPQcRjmmOtH3Od5NAjxz4q5/Fiw3Sg7ezmKN2AuxWgiEFwOPbGs
+         nJmA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756571395; x=1757176195;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aDZ1phRAEk3zIW1PFqiad/v15RHmZHAjGk3sbt/9HL4=;
-        b=serwrOKxrdImDtKJsyDGivg0JLiSOOIyuZk8VD4cVHfIcQBMZTOflNbZMZKYTndVS7
-         riuPnfTjt4+/22tQa+KExxukLy68gnGYTALzApLFu5kb0l8p9myZ6Lx4WHDt+Pt46Uvd
-         Uzcpf/hvjc0C3lg773B2a0GyP32mG14SbVgGl6f32uKNaWuEodGK4Q6k8DUKjaN5Rfup
-         Lwqr1pz2s42OjkdB7FUlfDnZ4jmM7BTK3VQuRpnwS17F7IVNpg/9zDjZJn4A2Bnjon09
-         AktfKywHYStfRYnAdPsYR+tju4poxvR3QRI/e5dJ1QayGit1mhJZ2dVpemWYjtehLZb3
-         BxaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWPSbdYQ0UHeYwXvidrNVYml1DKL06FcMhBHQcmSYZfmNvHk7t+8WCspg1ChaWkRY5ttMX3moK6m4SO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyB6R3/mj0z2jVSlNoefJcdbYahxFuQUsSU02ZyO71kj6afUcQ9
-	Wwr6JQU2XUA4jTID8GuJWfsMJZeueYNpI7G2aqYxSe3HKl1Y+95OJIjrIkD7coujK/g=
-X-Gm-Gg: ASbGnctke0gdAD4AwyousVq1EkP54kx659HoTG2nX785D5cFfHzVN1SyBLMUigq7qey
-	NB2PLCeCBXYWAZKWP4eqkN+zQfDJKSiTk1GiDpOrwxTaI2qVeumVpygvrT1vxmZiO/DE8eK21lX
-	2ZZQdz3KncIjDGbDKauhyVQJ4nGRx8rmbMjRaOnnmRfmMJ7e5MAtJkImny/m+6SDcxHDggYrIfO
-	ePr0Yps/TCaeeHK21ptrmYutOJgnY/CMMu6/S71huhT8774rV0HX0G67yocn9HHn2M72T+CO/ah
-	NswFzRw9oth3CwfDcmFrp5qS/ljF0zMCYimI7gr6AGRIQx69Uq9K1dTlgseT0wMQutahZojzzZK
-	oAoYAaDqs+jl7MXSbAi5ukkIT5Z32nYcjA8Fv6ToUJtM=
-X-Google-Smtp-Source: AGHT+IHl8ruWEBHE6w89eG7vWUcWSOoBbbR5fr+SYB9KV3qmIErp5onySpmrDg8O9rfNho2DchGeeg==
-X-Received: by 2002:a17:907:808:b0:af9:3397:ee9d with SMTP id a640c23a62f3a-aff0ee1731bmr196795366b.3.1756571395394;
-        Sat, 30 Aug 2025 09:29:55 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-afefc7ee972sm460428366b.1.2025.08.30.09.29.53
+        d=1e100.net; s=20230601; t=1756572088; x=1757176888;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sbfBohOE3aUAe+8ggIJdFs3Ub7xyIyjcAlkbS5chGaw=;
+        b=qu229He0gDQnzYeFdNyhw1C5o/BDqnuEdyD44vB2FOQK1PY/1UJZStdJk/4wFQuxTv
+         lxOD9tmLnegYs+dGZ2FXv6nDDWkQO7UoayIzF8VSeo8ANq8P5KD64VEnOOnqT4TvUvRt
+         DgPAcZF/OPhz2IqG/anB60edE7RpMO9Kp5a1twjhX2PNKAeqYO8Pb2yybdPbmtu0Mf2o
+         2xQqnKQm47dIn4upjnJ4eyqDUnZiM79UuY28EXVwgdhPjJMxd/lAMEA11pUzqbtLXYyh
+         rSJ2LhIPGyrSRmwMOgT8UnPNt4HZVyqn4IDHNHCFC5d+DgEwUdmjwIWIub5o19cnzQKX
+         LPRA==
+X-Forwarded-Encrypted: i=1; AJvYcCXVhypIC2fsniXXu08MnIgD0THZz6kw4akt/RkgP6+Lxn9/It3iAEVgsLIVlr9zE5QkAOMlTflncvlm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyjn+12K7Yi+j9gsZD9OlnKbzHFMLqH9o4UBWQL8O4jIF0zoZI/
+	6y0oN+5k7uagkacFhDQTfXgh0DY3oAeMuD+xEyXZKk7JjORCv91vT0+Cq6EgZgCO/RI=
+X-Gm-Gg: ASbGncu9YDmUD+H3SxgoERHoc/cZQYAE46U0LUgMr2CHBTtza6k5dEZ7u0s4Denhofp
+	wq1gPicJni8aOzco4olRRgN0thP9ZkwIbiBgHRj/u6DaG4kMDgxX7HPv62tQHY2P37o53QOpFhz
+	rC8Dvy8ierJ4DkaTtOkB1keiUEIBXsIXu7Sgc1iZXalBnf158OlGROUKNh4st4MAPAxIQNqyK3a
+	YrKRXWMpHhIvq0euS+zy+0D6ep7wRKaPxGoit795C/4M7jfgG95T1Tvrw4GTsHQ8HUzmZj14FIT
+	FwEatUDRvvuVTEzSIJrVFOjUrxu+hXHDgI4UYrb0UbbvbyPfLsxCcFRPMfQImmD3ot7ssSIkyzK
+	t0pX2QDa7i+Fq8/X3/17rfW3cdbYbyrvlLx3VZNIqaLpDAxrj55VU5Yqe/neZT9kWNMPaKaNoRO
+	U=
+X-Google-Smtp-Source: AGHT+IEr7AQnCq5wkF/dg8M61n6r+AfW5NR3ZpEgSAUCmyBrqg6y3i+f1Si6RhVd/teU1v3mrKvqvQ==
+X-Received: by 2002:a05:6830:398b:b0:744:f08e:4d30 with SMTP id 46e09a7af769-74569f18c36mr1644826a34.35.1756572088242;
+        Sat, 30 Aug 2025 09:41:28 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:f7b4:dfbd:5110:c59d? ([2600:8803:e7e4:1d00:f7b4:dfbd:5110:c59d])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3196d46d8a6sm345913fac.18.2025.08.30.09.41.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Aug 2025 09:29:54 -0700 (PDT)
-Message-ID: <95f73965-5ba4-4c02-8dc2-09771952ab1b@linaro.org>
-Date: Sat, 30 Aug 2025 18:29:52 +0200
+        Sat, 30 Aug 2025 09:41:26 -0700 (PDT)
+Message-ID: <a94fe92c-ec2e-42d9-9a88-f40f243560ca@baylibre.com>
+Date: Sat, 30 Aug 2025 11:41:25 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,84 +83,86 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] usb: ohci: s3c2410: Drop support for S3C2410
-To: Alan Stern <stern@rowland.harvard.edu>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org
-References: <20250830130101.142934-3-krzysztof.kozlowski@linaro.org>
- <fc4ec548-9a1a-44c3-9958-b6778e37d910@rowland.harvard.edu>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 06/15] spi: spi-offload-trigger-pwm: Use duty offset
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+ =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@baylibre.com>
+Cc: Axel Haslam <ahaslam@baylibre.com>, jic23@kernel.org,
+ Michael.Hennerich@analog.com, nuno.sa@analog.com, eblanc@baylibre.com,
+ andy@kernel.org, corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, broonie@kernel.org, Jonathan.Cameron@huawei.com,
+ andriy.shevchenko@linux.intel.com, marcelo.schmitt1@gmail.com
+References: <cover.1756511030.git.marcelo.schmitt@analog.com>
+ <2410525339f56466fa566dda367678ec92f9fb98.1756511030.git.marcelo.schmitt@analog.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <fc4ec548-9a1a-44c3-9958-b6778e37d910@rowland.harvard.edu>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <2410525339f56466fa566dda367678ec92f9fb98.1756511030.git.marcelo.schmitt@analog.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 30/08/2025 17:25, Alan Stern wrote:
-> On Sat, Aug 30, 2025 at 03:01:02PM +0200, Krzysztof Kozlowski wrote:
->> Samsung S3C24xx family of SoCs was removed the Linux kernel in the
->> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
->> 2023.  There are no in-kernel users of remaining S3C24xx compatibles.
->>
->> The driver is still being used via platform code for S3C64xx platforms.
+On 8/29/25 7:42 PM, Marcelo Schmitt wrote:
+> From: Axel Haslam <ahaslam@baylibre.com>
 > 
-> This title and description are a bit confusing.  I gather that while the 
-> S3C24xx chipsets are not longer supported, the S3C24xx OHCI controller 
-> is still being used in S3C64xx systems.
+> Pass the duty offset to the waveform pwm.
 > 
-> So what the patch does is drop support for S3C2410 _systems_ while 
-> retaining support for S3C2410 _controllers_.  Is that right?  If so, can 
-> we change $SUBJECT to say "usb: ohci: Drop DT support for S3C2410 
-> systems"?
-Yes, true. I'll adjust the subject.
+> Signed-off-by: Axel Haslam <ahaslam@baylibre.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  drivers/spi/spi-offload-trigger-pwm.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/spi/spi-offload-trigger-pwm.c b/drivers/spi/spi-offload-trigger-pwm.c
+> index 805ed41560df..8413aeb3689d 100644
+> --- a/drivers/spi/spi-offload-trigger-pwm.c
+> +++ b/drivers/spi/spi-offload-trigger-pwm.c
+> @@ -51,13 +51,13 @@ static int spi_offload_trigger_pwm_validate(struct spi_offload_trigger *trigger,
+>  	wf.period_length_ns = DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic->frequency_hz);
+>  	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
+>  	wf.duty_length_ns = wf.period_length_ns / 2;
+> -
+> +	wf.duty_offset_ns = periodic->offset_ns;
 
-Best regards,
-Krzysztof
+I would be tempted to put the loop check here:
+
+	offload_offset_ns = periodic->offset_ns;
+
+	do {
+		wf.offset_ns = offload_offset_ns;
+		ret = pwm_round_waveform_might_sleep(st->pwm, &wf);
+		if (ret)
+			return ret;
+		offload_offset_ns += 10;
+
+	} while (wf.offset_ns < periodic->offset_ns);
+
+	wf.duty_offset_ns = periodic->offset_ns;
+
+instead of in the ADC driver so that all future callers don't have to
+repeat this.
+
+Also cc: Uwe in case he has any better suggestions on how to avoid
+repeating such verbose validations by all uses of the PWM waveform
+APIs.
+
+
+>  	ret = pwm_round_waveform_might_sleep(st->pwm, &wf);
+>  	if (ret < 0)
+>  		return ret;
+>  
+>  	periodic->frequency_hz = DIV_ROUND_UP_ULL(NSEC_PER_SEC, wf.period_length_ns);
+> -
+> +	periodic->offset_ns = wf.duty_offset_ns;
+>  	return 0;
+>  }
+>  
+> @@ -77,6 +77,7 @@ static int spi_offload_trigger_pwm_enable(struct spi_offload_trigger *trigger,
+>  	wf.period_length_ns = DIV_ROUND_UP_ULL(NSEC_PER_SEC, periodic->frequency_hz);
+>  	/* REVISIT: 50% duty-cycle for now - may add config parameter later */
+>  	wf.duty_length_ns = wf.period_length_ns / 2;
+> +	wf.duty_offset_ns = periodic->offset_ns;
+>  
+>  	return pwm_set_waveform_might_sleep(st->pwm, &wf, false);
+>  }
+
 
