@@ -1,777 +1,141 @@
-Return-Path: <devicetree+bounces-210741-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210742-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6921BB3CA88
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 13:23:12 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 217D2B3CA96
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 13:32:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 652614E1AEB
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 11:22:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 962617B63C7
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 11:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41F24265CA7;
-	Sat, 30 Aug 2025 11:22:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6A322676DE;
+	Sat, 30 Aug 2025 11:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="C26iWGLB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CBCWDiwp"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C543A207A0B
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 11:22:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1128023D2B2
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 11:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756552974; cv=none; b=vEQ1+NQutD56z9b8+xDuK+aqwgB5P5ogOKhbCKGigf71JpxKHspIXdSDFMjhbeBZCDxVEULVZ9RCc5YLsJA5oyKcJAk0IfW77EXltvigsFlqgvF10Rglzi3fATtH2LQvM1WMDk1w6CiNnjMwMJCtB7xS/JomSYzx8ObRnPoNtLg=
+	t=1756553567; cv=none; b=P3Rt4KrPGdW6jw4erFSlH2aeu3/49Z/g2rD+rBXSmup6SFwPibGTbSGxtl9ACodKmuo62W9qD1RcMPJXfNZId9Hbtw3R6yxTfIPrzwPAao0xc3X0pU7tP0Rx2+hMMiOaFFIZdMfRZL5g70ZZx8fSRs3JtZ1JlOdeinpthj9ykQY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756552974; c=relaxed/simple;
-	bh=EhTo+AkxghtGQeoauvHl7muD4tuRwCvwI5SjHZj9hbc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=mYUMk/YM28HC8nE2doq3JCictURPLBOmVghjvIMRgigG0nQnhaA7lP2y64urb8zhbxDSzEOPiHqMMbcK9eR7jHS2K9tqY8pyuMm7y18pvRTFx1T4AkGiRMnOIpieLemMstdjMkckSePwH+kUkckZkFYGeBp1yG01KggGGTC7jJY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=C26iWGLB; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3cdfb1ff7aeso1426226f8f.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 04:22:50 -0700 (PDT)
+	s=arc-20240116; t=1756553567; c=relaxed/simple;
+	bh=Oc2a4NpwxzUJtyJbjfj0lVP/6AEXYLaYIj96LTX3/ZM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ltv5GEF9qtifRI1y05HiZORDot4/BB2B1T9NPKX1Va9Cv/v2neQpgQkznFWGW/9wiUDAyusE6YBVfMG9FRPNCltzUge/CnDWSZQQyVuqdCDJRHOkoCBiMmnHCB0QdeYgvAE1CeGGr+5jIegu3a1/Ky1CRbc3dVPmNcV7zQKUBnA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CBCWDiwp; arc=none smtp.client-ip=209.85.221.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3d323be1617so18167f8f.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 04:32:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1756552969; x=1757157769; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=6CVU5GfSW4Woi3wwFw2mUWG9xUFL6KXEOJ4qolNKKJ4=;
-        b=C26iWGLB5vTmdPjAwCnIrIwuRnVCRBdfy0VXmi6fD5iEnhKTvtGxIhzRxZzq3XRni8
-         OglinoRgAfs6rPH7zhHZBuDmE3hqHyemXWW91MmZ20jrJQudZfZlQQmv9vQKb8ueQwyu
-         qnb8piLYQfo9WZ0hI1I7va1Pkg4vX9cKwQrcSg9LQ0Pa7yEYexqqGnjJ8fE5W0bdfyAU
-         n2ORJ8BzDsbk/EW7WqWuXUFMLVuz/jJou7WcBC4WDx3YgrEnSA6gHd8nNhVMBM4XyGIr
-         tOqpz0guD1KfU6mv9AjKtg1MW6Pvic304RApegYoUaUJknlCS/n0UFLc2l4gZZpPfRab
-         lzjw==
+        d=linaro.org; s=google; t=1756553564; x=1757158364; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=42CgFZpoDZA1WcUF+OxPFlrBffkIpHm2VCK1V3rCRQM=;
+        b=CBCWDiwpa1YkDYUVqJ5KwCWAPVFHiqZlfzh6B+jCoTkiEi70HfmdoGYGa2EOIhi0Gh
+         tHJLwvdCvzBXbl4Eyn+SfVCHXrmpNdSuW21tyyBt7OqnoMfaGHqOltD9KGBHmw0xNTBF
+         tuC+w2COpsKIDAA9EpARBD5dsp01gCbfoxlo/Cf4ph008apj+Mu/4+9oZRdh7kpA8f1P
+         m2Oi2sW8DpL80kuBmvOlrBxhc9HbUJH7Engg7+vTeLHAbUdfkZXjpgt5qwNQ2ecTpxAj
+         QEm2KOnjVeFZ3oK87d1ZsGzkTQ5xZGlNTMhrnTjrgBZmUkYndunJDSmsL5PQAWTXTZly
+         K3WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756552969; x=1757157769;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=6CVU5GfSW4Woi3wwFw2mUWG9xUFL6KXEOJ4qolNKKJ4=;
-        b=kiNXIoXlQbPEDSYqqnbTpsth2bCDwPEeUtrrs77USG0zh8+OjB7T0SuCHg03dn/qvR
-         qEIpEULaHa+MCaJOWC+jwiLnEOI7sausmDxNG7iOx5zzAXhPd8ZeNaw7fil837HBefeN
-         +dvS6rXMsL7I/c9l4/PVNXg33P9ByY6tN/H8Lqf59QYvqhuUBMfrhdM2s1NScHANEW5I
-         B3w8cb/qGEN+Qx1RcS5oArsUIm1yWeyB5jxy8m5XTIXrmIsoqe/MDK44KLRfa269c3gH
-         0kA+VzA8Gs0OvforrM9GLAHDV4wXN4gSxdjTQB7JpJRvwlx7YZxAmOPCpb7QihN+2es+
-         Xzsw==
-X-Forwarded-Encrypted: i=1; AJvYcCUYM3oWtsnBpc6sBmnFDXKcBp46LDQ5Y5JcKaesmCqCLYzbJ7cT2zzfsVJXgDRan7QIcdnaIYeGSOPj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwHVRj6Wqxg4ImDzwWLRysC8aEx4prBMJpZPIP0cFHcw/+LVfD1
-	6ZuZTkckcKfTEyN+9raxGqce6qfdnFELwbfO4p0ATduyFlOzyEirh6qnvrubDmOy5Pg=
-X-Gm-Gg: ASbGncsrer152NbTPlR7z0cGu7CV08ApE0Zhd/bkvEQJdm92lc2i0j6QJHholSUUOrR
-	af/5jRb0+Bf51nxBVG/rknL993qKavRes76oH6BfXZAYdYDmU0LF/0gowuxNHZ6YXLAa5XMmqgM
-	xyjRp8yFgTNwamSwbyrBROWiMn1ULZQ8ydI6Px3JTY7PpiHX9WkgBZv2bDppC9hkl1R9hGrZq6F
-	chVlYKpB7/JolHeAL9LXHnGhL31Y+A78WxDQFetzMog0FTzDlTpmuD0Q8A4XlW4GUwSRIcu5RpD
-	6HjuH7+JZm1HmODeRjSK3AkDpr3apA5k/DZhuePDUERrC163WZrvfsg5OLRv3a/xycN+rp3oKQJ
-	Z1xmobfE3nkZkiw2ciJZ9P5UWiVn/Vb4x1pJMWKciJw==
-X-Google-Smtp-Source: AGHT+IFs70HJFIeJ38MFLK17bjW/kAlj/k66sRyiTG1idrWyAzqFZb3JfRHFCjTPYnkYClUlxJLPDw==
-X-Received: by 2002:a5d:5f4c:0:b0:3c4:2a56:14db with SMTP id ffacd0b85a97d-3d1dfb11144mr1071593f8f.41.1756552968338;
-        Sat, 30 Aug 2025 04:22:48 -0700 (PDT)
-Received: from [192.168.50.4] ([82.78.167.139])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7a938e75sm57559435e9.4.2025.08.30.04.22.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Aug 2025 04:22:47 -0700 (PDT)
-Message-ID: <8ef466aa-b470-4dcb-9024-0a9c36eb9a6a@tuxon.dev>
-Date: Sat, 30 Aug 2025 14:22:45 +0300
+        d=1e100.net; s=20230601; t=1756553564; x=1757158364;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=42CgFZpoDZA1WcUF+OxPFlrBffkIpHm2VCK1V3rCRQM=;
+        b=EWhnxJn9VTSVudExBQ6rYctlkqAIrfDA4UjAv+BJpAhiMzt1ct2IY0cpPucTTIcX48
+         C1WPRBGV/CM9KNRqobVRqAnEYX04BVFTYRzZWjZSp01UIFJZzNC0PrM+KRJA5RWqNRPD
+         c+PVZnBVRijGRgaGF1RqUtNRyN33vh7JUFyQzVNAfY36hg0r8RSwdl3kejgocgBW0OMb
+         BI0yW551PzIVDDG9e9+InuxoKmbd8/rBwwHeKETAMY58RyShjoX5wfjsq6Heb7Jb+42w
+         ikuUG4XSoBoipHj8FiVGjjxEPEx2psiA6rohLGllD2nJt+Wht31JgDf5cQMcHdVi/CBs
+         rjKw==
+X-Forwarded-Encrypted: i=1; AJvYcCX4/iv4IUu489/4nrDB7JwAyYULCd6245wdVN7NBs015gX/xMINaQ3449DyvqE9Y9UYPCrnd9ZEDd1S@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLpHhY2EJSj7HIaJleSfVFstbdhJAzXIEoCzQbi8seWHHKhni2
+	6gb5pl2Bcb522Mx2BgyukhASyGmROaDkxhRNx8ow2LxUP9NAN00y9lFlwOqUiLzF0k8IPP///Kd
+	KGZkg
+X-Gm-Gg: ASbGncuNvSaY11hw10pr4xBrl8UDt0XmGMGuiqvePX7LQcGc9pKy5ZuLOT+O1yeNPC9
+	vGZ3af2mEmom+X5Rxl/c4Vn8HwmOmv8ZyJalZcurD/94TM+METrrygPathC5OSgfgYlcGH/Af7g
+	37EVbjHZ9jRBYWFPDn1OmzDDbXkMnnh7JYKVFYKjzepKWI5iBY6hbegZwLXsjkwuuQ9n4DaN3nR
+	49S1X592e4nbAAeQOkjMMoX/anZxtIPZjVgi3B48W7EIIXg/EDniY1NRuClCaQmR5r5HhsniqBR
+	UFEWdOpEZnx0gxLafSo5FwuDLW8XEO6QogG664kAn99PpcMBnVKuIR1ZsiQXRD2+URm0eQtXHFp
+	SdszGqzksu2QGXa+oHLrr3qGUADfmH4EvTcYYeb1PrdCg
+X-Google-Smtp-Source: AGHT+IGWlub2tHYqZLn4Y+mI9xFcceW1rbNdyeQHTnc2M39YWAxzrQnRH8Sc7BJCl5PkCIgpr8GXqw==
+X-Received: by 2002:a05:600c:1c9d:b0:45b:75d9:2363 with SMTP id 5b1f17b1804b1-45b8016df84mr22260915e9.1.1756553564311;
+        Sat, 30 Aug 2025 04:32:44 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf33fb9dbfsm6810544f8f.43.2025.08.30.04.32.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Aug 2025 04:32:43 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Inki Dae <inki.dae@samsung.com>,
+	Seung-Woo Kim <sw0312.kim@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: display: samsung: Drop S3C2410
+Date: Sat, 30 Aug 2025 13:32:39 +0200
+Message-ID: <20250830113238.131006-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/9] PCI: rzg3s-host: Add Initial PCIe Host Driver for
- Renesas RZ/G3S SoC
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
- will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
- p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, Claudiu Beznea
- <claudiu.beznea.uj@bp.renesas.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <20250704161410.3931884-6-claudiu.beznea.uj@bp.renesas.com>
- <ddxayjj5wcuuish4kvyluzrujkes5seo7zlusmomyjfjcgzcyj@xe3zzzmy2zaj>
-From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Content-Language: en-US
-In-Reply-To: <ddxayjj5wcuuish4kvyluzrujkes5seo7zlusmomyjfjcgzcyj@xe3zzzmy2zaj>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-Developer-Signature: v=1; a=openpgp-sha256; l=954; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=Oc2a4NpwxzUJtyJbjfj0lVP/6AEXYLaYIj96LTX3/ZM=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBosuFWMrOH9wMnIOUGeuz6fivJocB17MxIWX72q
+ cv84YMrJ9GJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLLhVgAKCRDBN2bmhouD
+ 1xMjD/9yAHNChQiyhDuhCbIe0MWQK1qq9Jmh1fcZ9pRPq7eR79rxzW5FVpZOqYwEDhv9XC077d4
+ nyWP0++jir3pNYebpsKp0huLFx9UQNiibETumy8WYb1jmax6S6nUqF5vgbowBKRK/k9YWKVzHSG
+ IMhMdaVBFCbmFwMaGxKgoYx4iYVBG/D9oyf9pbm2igwHNK/zipAQb2smGD1A2DKstuP4ifgbDFG
+ wSMiyl41rzWOeVldvTCZZNDTvV25zeF0h7oyz0zb6xEQCGGYkSrDbC70zIdUPo5De9L3vZtnvEZ
+ mVc/nPUMBizPV/UG36lE6mt6kRx4JovQ/P8r+9kPfnRqWqs3+t4L968SMa0knB/7j1+6tzY/QL4
+ i3dLQD6zxiQi/Mdraw4eo6b6HDS9mA/a1STsKkEfU+LxVgOTZf333HRRbvyekp16BwLm4Db3mxF
+ 97J1kznBRjsdEg5mhwjDai7lAyGkcLJedM3RQ3z62i3GY5XX0tOu2OBK64MUQP7psD5/2MkUh4k
+ DoAK56/27e210XLhZWR3GUMSpm3O5iTNQkcydpUC2eMCDzupGusx9/QBoo+24by4huyWSoyk3B2
+ cRd5ttVPsjaQR2Odol6ufCDNsoMUKW1jBK/RyvxMRbO425Hy0xpIpedLbjU64PFWzEUm+ysXm3J sB01Kv8ldlM1Qqg==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
+Samsung S3C24xx family of SoCs was removed from Linux kernel in the
+commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
+2023.  There are no in-kernel users of remaining S3C24xx compatibles.
 
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/display/samsung/samsung,fimd.yaml        | 1 -
+ 1 file changed, 1 deletion(-)
 
-On 30.08.2025 09:59, Manivannan Sadhasivam wrote:
-> On Fri, Jul 04, 2025 at 07:14:05PM GMT, Claudiu wrote:
->> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->>
->> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
->> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
->> only as a root complex, with a single-lane (x1) configuration. The
->> controller includes Type 1 configuration registers, as well as IP
->> specific registers (called AXI registers) required for various adjustments.
->>
->> Hardware manual can be downloaded from the address in the "Link" section.
->> The following steps should be followed to access the manual:
->> 1/ Click the "User Manual" button
->> 2/ Click "Confirm"; this will start downloading an archive
->> 3/ Open the downloaded archive
->> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
->> 5/ Open the file r01uh1014ej*-rzg3s.pdf
->>
->> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
->> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
->> ---
->>
-> 
-> [...]
-> 
->> +static bool rzg3s_pcie_child_issue_request(struct rzg3s_pcie_host *host)
->> +{
->> +	u32 val;
->> +	int ret;
->> +
->> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_REQISS,
->> +			       RZG3S_PCI_REQISS_REQ_ISSUE,
->> +			       RZG3S_PCI_REQISS_REQ_ISSUE);
->> +	ret = readl_poll_timeout_atomic(host->axi + RZG3S_PCI_REQISS, val,
->> +					!(val & RZG3S_PCI_REQISS_REQ_ISSUE),
->> +					5, RZG3S_REQ_ISSUE_TIMEOUT_US);
->> +
->> +	return !!ret || (val & RZG3S_PCI_REQISS_MOR_STATUS);
-> 
-> You don't need to do !!ret as the C11 standard guarantees that any scalar type
-> stored as bool will have the value of 0 or 1.
-
-OK, will drop it anyway as suggested in another thread.
-
-> 
->> +}
->> +
-> 
-> [...]
-> 
->> +static void __iomem *rzg3s_pcie_root_map_bus(struct pci_bus *bus,
->> +					     unsigned int devfn,
->> +					     int where)
->> +{
->> +	struct rzg3s_pcie_host *host = bus->sysdata;
->> +
->> +	if (devfn)
->> +		return NULL;
-> 
-> Is it really possible to have devfn as non-zero for a root bus?
-
-I will drop it.
-
-> 
->> +
->> +	return host->pcie + where;
->> +}
->> +
-> 
-> [...]
-> 
->> +static int rzg3s_pcie_msi_setup(struct rzg3s_pcie_host *host)
->> +{
->> +	size_t size = RZG3S_PCI_MSI_INT_NR * sizeof(u32);
->> +	struct rzg3s_pcie_msi *msi = &host->msi;
->> +	struct device *dev = host->dev;
->> +	int id, ret;
->> +
->> +	msi->pages = __get_free_pages(GFP_KERNEL | GFP_DMA, 0);
->> +	if (!msi->pages)
->> +		return -ENOMEM;
->> +
->> +	msi->dma_addr = dma_map_single(dev, (void *)msi->pages, size * 2,
->> +				       DMA_BIDIRECTIONAL);
->> +	if (dma_mapping_error(dev, msi->dma_addr)) {
->> +		ret = -ENOMEM;
->> +		goto free_pages;
->> +	}
->> +
->> +	/*
->> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.4.5.2 Setting
->> +	 * the MSI Window) the MSI window need to be within any AXI window. Find
->> +	 * an AXI window to setup the MSI window.
-> 
-> Are you really finding the AXI window or just making sure that the MSI window
-> falls into one of the AXI window?
-
-I'm making sure the MSI windows falls into one of the enabled AXI windows.
-
-> 
-> And I believe it is OK to have more than one MSI window within an AXI window.
-
-This IP supports a single MSI window that need to fit into one of the
-enabled AXI windows.
-
-> 
->> +	 */
->> +	for (id = 0; id < RZG3S_MAX_WINDOWS; id++) {
->> +		u64 base, basel, baseu;
->> +		u64 mask, maskl, masku;
->> +
->> +		basel = readl(host->axi + RZG3S_PCI_AWBASEL(id));
->> +		/* Skip checking this AXI window if it's not enabled */
->> +		if (!(basel & RZG3S_PCI_AWBASEL_WIN_ENA))
->> +			continue;
->> +
->> +		baseu = readl(host->axi + RZG3S_PCI_AWBASEU(id));
->> +		base = baseu << 32 | basel;
->> +
->> +		maskl = readl(host->axi + RZG3S_PCI_AWMASKL(id));
->> +		masku = readl(host->axi + RZG3S_PCI_AWMASKU(id));
->> +		mask = masku << 32 | maskl;
->> +
->> +		if (msi->dma_addr < base || msi->dma_addr > base + mask)
->> +			continue;
->> +
->> +		break;
->> +	}
->> +
->> +	if (id == RZG3S_MAX_WINDOWS) {
->> +		ret = -EINVAL;
->> +		goto dma_unmap;
->> +	}
->> +
->> +	/* The MSI base address need to be aligned to the MSI size */
->> +	msi->window_base = ALIGN(msi->dma_addr, size);
->> +	if (msi->window_base < msi->dma_addr) {
->> +		ret = -EINVAL;
->> +		goto dma_unmap;
->> +	}
->> +
->> +	rzg3s_pcie_msi_hw_setup(host);
->> +
->> +	return 0;
->> +
->> +dma_unmap:
->> +	dma_unmap_single(dev, msi->dma_addr, size * 2, DMA_BIDIRECTIONAL);
->> +free_pages:
->> +	free_pages(msi->pages, 0);
->> +	return ret;
->> +}
->> +
-> 
-> [...]
-> 
->> +static int rzg3s_pcie_set_max_link_speed(struct rzg3s_pcie_host *host)
->> +{
->> +	u32 cs2, link_speed, remote_supported_link_speeds, tmp;
->> +	u32 pcie_cap = RZG3S_PCI_CFG_PCIEC;
->> +	u8 ltssm_state_l0 = 0xc;
->> +	u16 lcs;
->> +	int ret;
->> +
->> +	/*
->> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.6.3 Caution
->> +	 * when Changing the Speed Spontaneously) link speed change can be done
->> +	 * only when the link training and status state machine in the PCIe Core
->> +	 * Link is L0.
-> 
-> "...only when the LTSSM is in L0."
-
-Ok
-
-> 
->> +	 */
->> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, tmp,
->> +				 FIELD_GET(RZG3S_PCI_PCSTAT1_LTSSM_STATE, tmp) == ltssm_state_l0,
->> +				 PCIE_LINK_WAIT_SLEEP_MS,
->> +				 PCIE_LINK_WAIT_SLEEP_MS *
->> +				 PCIE_LINK_WAIT_MAX_RETRIES * MILLI);
->> +	if (ret) {
->> +		dev_dbg(host->dev,
->> +			"Could not set max link speed! LTSSM not in L0, state=%lx\n",
-> 
-> You should drop 'Could not set max link speed' since the caller is printing a
-> similar error.
-
-Ok, I'll drop.
-
-> 
->> +			FIELD_GET(RZG3S_PCI_PCSTAT1_LTSSM_STATE, tmp));
->> +		return ret;
->> +	}
->> +
->> +	lcs = readw(host->pcie + pcie_cap + PCI_EXP_LNKSTA);
->> +	cs2 = readl(host->axi + RZG3S_PCI_PCSTAT2);
->> +
->> +	link_speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, lcs);
->> +	remote_supported_link_speeds = FIELD_GET(RZG3S_PCI_PCSTAT2_SDRIRE, cs2);
->> +
->> +	/*
->> +	 * Return if link is @ 5.0 GT/s or the connected device doesn't support
->> +	 * it.
->> +	 */
->> +	if (link_speed == PCI_EXP_LNKSTA_CLS_5_0GB ||
->> +	    !(remote_supported_link_speeds != GENMASK(PCI_EXP_LNKSTA_CLS_5_0GB - 1, 0)))
->> +		return 0;
->> +
->> +	/* Set target Link speed to 5.0 GT/s */
-> 
-> Instead of setting the link speed to 5 GT/s always, you should honor the link
-> speed set in DTS by making use of of_pci_get_max_link_speed() API.
-
-Will check it.
-
-> 
->> +	rzg3s_pcie_update_bits(host->pcie, pcie_cap + PCI_EXP_LNKCTL2,
->> +			       PCI_EXP_LNKCTL2_TLS,
->> +			       FIELD_PREP(PCI_EXP_LNKCTL2_TLS,
->> +					  PCI_EXP_LNKCTL2_TLS_5_0GT));
->> +
->> +	/* Request link speed change */
->> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_PCCTRL2,
->> +			       RZG3S_PCI_PCCTRL2_LS_CHG_REQ |
->> +			       RZG3S_PCI_PCCTRL2_LS_CHG,
->> +			       RZG3S_PCI_PCCTRL2_LS_CHG_REQ |
->> +			       FIELD_PREP(RZG3S_PCI_PCCTRL2_LS_CHG,
->> +					  PCI_EXP_LNKCTL2_TLS_5_0GT - 1));
->> +
->> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT2, cs2,
->> +				 (cs2 & RZG3S_PCI_PCSTAT2_LS_CHG_DONE),
->> +				 PCIE_LINK_WAIT_SLEEP_MS,
->> +				 PCIE_LINK_WAIT_SLEEP_MS *
->> +				 PCIE_LINK_WAIT_MAX_RETRIES * MILLI);
->> +
->> +	/*
->> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.6.3 Caution
->> +	 * when Changing the Speed Spontaneously) the PCI_PCCTRL2_LS_CHG_REQ
->> +	 * should be de-asserted after checking for PCI_PCSTAT2_LS_CHG_DONE.
->> +	 */
->> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_PCCTRL2,
->> +			       RZG3S_PCI_PCCTRL2_LS_CHG_REQ, 0);
->> +
->> +	return ret;
->> +}
->> +
->> +static int rzg3s_pcie_config_init(struct rzg3s_pcie_host *host)
->> +{
->> +	struct pci_host_bridge *bridge = pci_host_bridge_from_priv(host);
->> +	struct resource_entry *ft;
->> +	struct resource *bus;
->> +	u8 subordinate_bus;
->> +	u8 secondary_bus;
->> +	u8 primary_bus;
->> +
->> +	ft = resource_list_first_type(&bridge->windows, IORESOURCE_BUS);
->> +	if (!ft)
->> +		return -ENODEV;
->> +
->> +	bus = ft->res;
->> +	primary_bus = bus->start;
->> +	secondary_bus = bus->start + 1;
->> +	subordinate_bus = bus->end;
->> +
->> +	/* Enable access control to the CFGU */
->> +	writel(RZG3S_PCI_PERM_CFG_HWINIT_EN, host->axi + RZG3S_PCI_PERM);
->> +
->> +	/* Update vendor ID and device ID */
-> 
-> Are you really updating it or setting it? If you are updating it, are the
-> default IDs invalid?
-
-Default IDs are valid (at least on RZ/G3S) but Renesas specific. Renesas
-wants to let individual users to set their own IDs.
-
-> 
->> +	writew(host->vendor_id, host->pcie + PCI_VENDOR_ID);
->> +	writew(host->device_id, host->pcie + PCI_DEVICE_ID);
->> +
->> +	/* HW manual recommends to write 0xffffffff on initialization */
->> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00L);
->> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00U);
->> +
->> +	/* Update bus info. */
->> +	writeb(primary_bus, host->pcie + PCI_PRIMARY_BUS);
->> +	writeb(secondary_bus, host->pcie + PCI_SECONDARY_BUS);
->> +	writeb(subordinate_bus, host->pcie + PCI_SUBORDINATE_BUS);
->> +
->> +	/* Disable access control to the CFGU */
->> +	writel(0, host->axi + RZG3S_PCI_PERM);
->> +
->> +	return 0;
->> +}
->> +
-> 
-> [...]
-> 
->> +static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host, bool probe)
->> +{
->> +	u32 val;
->> +	int ret;
->> +
->> +	/* Initialize the PCIe related registers */
->> +	ret = rzg3s_pcie_config_init(host);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Initialize the interrupts */
->> +	rzg3s_pcie_irq_init(host);
->> +
->> +	ret = reset_control_bulk_deassert(host->data->num_cfg_resets,
->> +					  host->cfg_resets);
->> +	if (ret)
->> +		return ret;
->> +
->> +	/* Wait for link up */
->> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, val,
->> +				 !(val & RZG3S_PCI_PCSTAT1_DL_DOWN_STS),
->> +				 PCIE_LINK_WAIT_SLEEP_MS,
->> +				 PCIE_LINK_WAIT_SLEEP_MS *
->> +				 PCIE_LINK_WAIT_MAX_RETRIES * MILLI);
->> +	if (ret) {
->> +		reset_control_bulk_assert(host->data->num_cfg_resets,
->> +					  host->cfg_resets);
->> +		return ret;
->> +	}
->> +
->> +	val = readl(host->axi + RZG3S_PCI_PCSTAT2);
->> +	dev_info(host->dev, "PCIe link status [0x%x]\n", val);
->> +
->> +	val = FIELD_GET(RZG3S_PCI_PCSTAT2_STATE_RX_DETECT, val);
->> +	dev_info(host->dev, "PCIe x%d: link up\n", hweight32(val));
->> +
->> +	if (probe) {
->> +		ret = devm_add_action_or_reset(host->dev,
->> +					       rzg3s_pcie_cfg_resets_action,
->> +					       host);
-> 
-> Oh well, this gets ugly. Now the devm_add_action_or_reset() is sprinkled
-> throughout the driver :/
-> 
-> As I said earlier, there are concerns in unloading the driver if it implements
-> an irqchip. So if you change the module_platform_driver() to
-> builtin_platform_driver() for this driver, these devm_add_action_or_reset()
-> calls become unused.
-
-They can still be useful in case the probe fails. As the initialization
-path is complicated, having actions or resets looks to me that makes the
-code cleaner as the rest of devm_* helpers.
-
-I can drop it and replace with gotos and dedicated functions but this will
-complicate the code, AFAICT.
-
-Please let me know how would you like me to proceed.
-
-> 
->> +	}
->> +
->> +	return ret;
->> +}
->> +
->> +static void rzg3s_pcie_set_inbound_window(struct rzg3s_pcie_host *host,
->> +					  u64 cpu_addr, u64 pci_addr, u64 size,
->> +					  int id)
->> +{
->> +	/* Set CPU window base address */
->> +	writel(upper_32_bits(cpu_addr), host->axi + RZG3S_PCI_ADESTU(id));
->> +	writel(lower_32_bits(cpu_addr), host->axi + RZG3S_PCI_ADESTL(id));
->> +
->> +	/* Set window size */
->> +	writel(upper_32_bits(size), host->axi + RZG3S_PCI_AWMASKU(id));
->> +	writel(lower_32_bits(size), host->axi + RZG3S_PCI_AWMASKL(id));
->> +
->> +	/* Set PCIe window base address and enable the window */
->> +	writel(upper_32_bits(pci_addr), host->axi + RZG3S_PCI_AWBASEU(id));
->> +	writel(lower_32_bits(pci_addr) | RZG3S_PCI_AWBASEL_WIN_ENA,
->> +	       host->axi + RZG3S_PCI_AWBASEL(id));
->> +}
->> +
->> +static int rzg3s_pcie_set_inbound_windows(struct rzg3s_pcie_host *host,
->> +					  struct resource_entry *entry,
->> +					  int *index)
->> +{
->> +	u64 pci_addr = entry->res->start - entry->offset;
->> +	u64 cpu_addr = entry->res->start;
->> +	u64 cpu_end = entry->res->end;
->> +	u64 size_id = 0;
->> +	int id = *index;
->> +	u64 size;
->> +
->> +	while (cpu_addr < cpu_end) {
->> +		if (id >= RZG3S_MAX_WINDOWS)
->> +			return dev_err_probe(host->dev, -EINVAL,
-> 
-> -ENOSPC
-> 
->> +					     "Failed to set inbound windows!\n");
-> 
-> "Failed to map inbound window for resource (%s), entry->res->name"
-
-Ok
-
-> 
->> +
->> +		size = resource_size(entry->res) - size_id;
->> +
->> +		/*
->> +		 * According to the RZ/G3S HW manual (Rev.1.10,
->> +		 * section 34.3.1.71 AXI Window Mask (Lower) Registers) the min
->> +		 * size is 4K.
->> +		 */
->> +		size = max(size, SZ_4K);
->> +
->> +		/*
->> +		 * According the RZ/G3S HW manual (Rev.1.10, sections:
->> +		 * - 34.3.1.69 AXI Window Base (Lower) Registers
->> +		 * - 34.3.1.71 AXI Window Mask (Lower) Registers
->> +		 * - 34.3.1.73 AXI Destination (Lower) Registers)
->> +		 * the CPU addr, PCIe addr, size should be 4K aligned and be a
->> +		 * power of 2.
->> +		 */
->> +		size = ALIGN(size, SZ_4K);
->> +
->> +		/*
->> +		 * According to the RZ/G3S HW manual (Rev.1.10, section
->> +		 * 34.3.1.71 AXI Window Mask (Lower) Registers) HW expects first
->> +		 * 12 LSB bits to be 0xfff. Subtract 1 from size for this.
->> +		 */
->> +		size = roundup_pow_of_two(size) - 1;
->> +
->> +		cpu_addr = ALIGN(cpu_addr, SZ_4K);
->> +		pci_addr = ALIGN(pci_addr, SZ_4K);
->> +
->> +		rzg3s_pcie_set_inbound_window(host, cpu_addr, pci_addr, size,
->> +					      id);
->> +
->> +		pci_addr += size;
->> +		cpu_addr += size;
->> +		size_id = size;
->> +		id++;
->> +	}
->> +	*index = id;
->> +
->> +	return 0;
->> +}
-> 
-> [...]
-> 
->> +static int rzg3s_pcie_parse_map_ranges(struct rzg3s_pcie_host *host)
->> +{
->> +	struct pci_host_bridge *bridge = pci_host_bridge_from_priv(host);
->> +	struct resource_entry *win;
->> +	int i = 0;
->> +
->> +	resource_list_for_each_entry(win, &bridge->windows) {
->> +		struct resource *res = win->res;
->> +
->> +		if (i >= RZG3S_MAX_WINDOWS)
->> +			return dev_err_probe(host->dev, -EINVAL,
-> 
-> -ENOSPC
-
-Ok
-
-> 
->> +					     "Failed to set outbound windows!\n");
-> 
-> "Failed to map outbound window for resource (%s), res->name"
-
-Ok
-
-> 
->> +
->> +		if (!res->flags)
->> +			continue;
->> +
->> +		switch (resource_type(res)) {
->> +		case IORESOURCE_IO:
->> +		case IORESOURCE_MEM:
->> +			rzg3s_pcie_set_outbound_window(host, win, i);
->> +			i++;
->> +			break;
->> +		}
->> +	}
->> +
->> +	return 0;
->> +}
->> +
-> 
-> [...]
-> 
->> +static int rzg3s_pcie_probe(struct platform_device *pdev)
->> +{
->> +	struct pci_host_bridge *bridge;
->> +	struct device *dev = &pdev->dev;
->> +	struct device_node *np = dev->of_node;
->> +	struct device_node *sysc_np __free(device_node) =
->> +		of_parse_phandle(np, "renesas,sysc", 0);
->> +	struct rzg3s_pcie_host *host;
->> +	int ret;
->> +
->> +	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*host));
->> +	if (!bridge)
->> +		return -ENOMEM;
->> +
->> +	host = pci_host_bridge_priv(bridge);
->> +	host->dev = dev;
->> +	host->data = device_get_match_data(dev);
->> +	platform_set_drvdata(pdev, host);
->> +
->> +	host->axi = devm_platform_ioremap_resource(pdev, 0);
->> +	if (IS_ERR(host->axi))
->> +		return PTR_ERR(host->axi);
->> +	host->pcie = host->axi + RZG3S_PCI_CFG_BASE;
->> +
->> +	ret = of_property_read_u32(np, "vendor-id", &host->vendor_id);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = of_property_read_u32(np, "device-id", &host->device_id);
->> +	if (ret)
->> +		return ret;
->> +
->> +	host->sysc = syscon_node_to_regmap(sysc_np);
->> +	if (IS_ERR(host->sysc))
->> +		return PTR_ERR(host->sysc);
->> +
->> +	ret = regmap_update_bits(host->sysc, RZG3S_SYS_PCIE_RST_RSM_B,
->> +				 RZG3S_SYS_PCIE_RST_RSM_B_MASK,
->> +				 FIELD_PREP(RZG3S_SYS_PCIE_RST_RSM_B_MASK, 1));
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = devm_add_action_or_reset(dev, rzg3s_pcie_sysc_signal_action,
->> +				       host->sysc);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = rzg3s_pcie_resets_prepare(host);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = devm_pm_runtime_enable(dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	ret = pm_runtime_resume_and_get(dev);
->> +	if (ret)
->> +		return ret;
->> +
-> 
-> Do you really need to do resume_and_get()? If not, you should do:
-
-It it's needed to enable the clock PM domain the device is part of.
-
-> 
-> 	pm_runtime_set_active()
-> 	pm_runtime_no_callbacks()
-> 	devm_pm_runtime_enable()
-> 
->> +	ret = devm_add_action_or_reset(dev, rzg3s_pcie_pm_runtime_put, dev);
->> +	if (ret)
->> +		return ret;
->> +
->> +	raw_spin_lock_init(&host->hw_lock);
->> +
->> +	ret = rzg3s_pcie_host_setup(host, rzg3s_pcie_intx_setup,
->> +				    rzg3s_pcie_msi_enable, true);
->> +	if (ret)
->> +		return ret;
->> +
->> +	msleep(PCIE_RESET_CONFIG_WAIT_MS);
->> +
->> +	bridge->sysdata = host;
->> +	bridge->ops = &rzg3s_pcie_root_ops;
->> +	bridge->child_ops = &rzg3s_pcie_child_ops;
->> +	ret = pci_host_probe(bridge);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return devm_add_action_or_reset(dev, rzg3s_pcie_host_remove_action,
->> +					host);
->> +}
->> +
->> +static int rzg3s_pcie_suspend_noirq(struct device *dev)
->> +{
->> +	struct rzg3s_pcie_host *host = dev_get_drvdata(dev);
->> +	const struct rzg3s_pcie_soc_data *data = host->data;
->> +	struct regmap *sysc = host->sysc;
->> +	int ret;
->> +
->> +	ret = pm_runtime_put_sync(dev);
->> +	if (ret)
->> +		return ret;
-> 
-> Since there are no runtime callbacks present, managing runtime PM in the driver
-> makes no sense.
-
-The PCIe device is part of a clock power domain. Dropping
-pm_runtime_enable()/pm_runtime_put_sync() in this driver will lead to this
-IP failing to work as its clocks will not be enabled/disabled. If you don't
-like the pm_runtime_* approach that could be replaced with:
-
-devm_clk_get_enabled() in probe and clk_disable()/clk_enable() on
-suspend/resume. W/o clocks the IP can't work.
-
-Please let me know what approach is prefered here.
-
-
-> 
->> +
->> +	ret = reset_control_bulk_assert(data->num_power_resets,
->> +					host->power_resets);
->> +	if (ret)
->> +		goto rpm_restore;
->> +
->> +	ret = reset_control_bulk_assert(data->num_cfg_resets,
->> +					host->cfg_resets);
->> +	if (ret)
->> +		goto power_resets_restore;
->> +
->> +	ret = regmap_update_bits(sysc, RZG3S_SYS_PCIE_RST_RSM_B,
->> +				 RZG3S_SYS_PCIE_RST_RSM_B_MASK,
->> +				 FIELD_PREP(RZG3S_SYS_PCIE_RST_RSM_B_MASK, 0));
->> +	if (ret)
->> +		goto cfg_resets_restore;
->> +
->> +	return 0;
->> +
->> +	/* Restore the previous state if any error happens */
->> +cfg_resets_restore:
->> +	reset_control_bulk_deassert(data->num_cfg_resets,
->> +				    host->cfg_resets);
->> +power_resets_restore:
->> +	reset_control_bulk_deassert(data->num_power_resets,
->> +				    host->power_resets);
->> +rpm_restore:
->> +	pm_runtime_resume_and_get(dev);
->> +	return ret;
->> +}
->> +
-> 
-> [...]
-> 
->> +static struct platform_driver rzg3s_pcie_driver = {
->> +	.driver = {
->> +		.name = "rzg3s-pcie-host",
->> +		.of_match_table = rzg3s_pcie_of_match,
->> +		.pm = pm_ptr(&rzg3s_pcie_pm_ops),
->> +		.suppress_bind_attrs = true,
->> +	},
->> +	.probe = rzg3s_pcie_probe,
->> +};
->> +module_platform_driver(rzg3s_pcie_driver);
-> 
-> Use builtin_platform_driver() as this driver is not supposed to be removed due
-> to concersn with irqchip.
-
-Ok
-
-Thank you,
-Claudiu
-
-> 
-> - Mani
-> 
+diff --git a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
+index 075231716b2f..ff685031bb2c 100644
+--- a/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
++++ b/Documentation/devicetree/bindings/display/samsung/samsung,fimd.yaml
+@@ -15,7 +15,6 @@ maintainers:
+ properties:
+   compatible:
+     enum:
+-      - samsung,s3c2443-fimd
+       - samsung,s3c6400-fimd
+       - samsung,s5pv210-fimd
+       - samsung,exynos3250-fimd
+-- 
+2.48.1
 
 
