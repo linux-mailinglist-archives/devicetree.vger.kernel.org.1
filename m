@@ -1,205 +1,364 @@
-Return-Path: <devicetree+bounces-210840-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210841-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A36C7B3CF15
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 21:33:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14EBCB3CF16
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 21:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5ECCB3BF325
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 19:32:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BED8C16D737
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 19:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 111C92DCF57;
-	Sat, 30 Aug 2025 19:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 492CB2DE700;
+	Sat, 30 Aug 2025 19:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GQhhHdS0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I9kR3ht/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5481A49620;
-	Sat, 30 Aug 2025 19:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E44942A8C;
+	Sat, 30 Aug 2025 19:34:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756582375; cv=none; b=aMvP0OtUaMUdk2X+RpiJDflNeGfmDUnA84LbKwI1K4/8V/xWPGq4XEi0c8aGmt5h6LGji++3GgeJwEyEBxxX4Ykc1lgJx6LCMxdcdDaYiaNtQkQJTVdGrp6yLeilI//qA06Yr+zgFnCN/Pd+ZjnhjtmV4Rlar9yfXXnsp6lIwk0=
+	t=1756582496; cv=none; b=Un6enJmPTo/iCOnzdgp5hR3r/QQ6BnlAYdMYibCBJCi6IEiRWgdM4xagrYzD3rAZMeyKdEdLMraBYuEpTWsAbM1ctC+KxMD6tm+wehkYXrwjRevZSivacyb7u6A0NGxIioMpS5/VWvljaOspJdRmPghuMsnNnLp5vAXjbGN3z0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756582375; c=relaxed/simple;
-	bh=MEmPf9JBt95ENutQWTEOP4yncyxyPSoWjYQQocrVTC8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=IF1258+gU2JObMTJWGjEAFnBMKtKboybC8lPLUN2zuNnLeZrvIdLGnUWZYYJT4vm2amHz95cAn28cwrbzILtSXs/wnrucGc/2ptbtjyVkdWEu68kLhWTnXtqCOCd01C/668laFG6Y0FnwwTy4ULQjyMjK+V/HpBdMlED98ltCM4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GQhhHdS0; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-afcb7ace3baso547667866b.3;
-        Sat, 30 Aug 2025 12:32:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756582371; x=1757187171; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=VHENl3vhXJdefcBx8Eb74+JpAMuYZm+3iaoopdaiCnc=;
-        b=GQhhHdS06Ew5GBi4L5kbsYAE6mc55V8xUYyohLfbfh3tUf8L6jK6VsY6yN8UEh4CR2
-         SuclPh3Y4kDo6YvYN4JpHx6tfYFvYLlYC4NAEadQmtq5Wdo9gYvbhYE4sOlSIIbR2G1g
-         LSehjdfe6b2zd9K1ipH6mKMDuAmUyuDzJraX0fX1J+9AxMnECAg75g/AmkBA5bazC/lJ
-         UbFd2Jv0Lr+ijk470/pWYslvAHFpGF2s8k9hPrAHZs1XdC4C0V7r5RYNg6qBLR7IXrcQ
-         Fk8YKSycjo3gOsYmr9wP4YG739TXzwBlZj2o7J1XbCVM+2c4TGCYBTI4EgzldpJnAqfo
-         GtMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756582371; x=1757187171;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:from:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VHENl3vhXJdefcBx8Eb74+JpAMuYZm+3iaoopdaiCnc=;
-        b=D55CMfryXZN+V+36ZaeZXAkyWelR8qLEUfvT9cZUn63Kx3DvzHE4YdvwyqP/mqWu7l
-         2u0KpqKnn1v/tGwbmrXI1+WrG0G1uzCpPgQsfkuhqgcPui6mUtaUua9S2CTEHFH3RkGg
-         AwbApIErt/4tyvLN/P6xBnhbsM4F1ggTmlE5i4pU1ZvfkfXMpvsPUUCyVO7VjBTP2gvs
-         RRzP4h9zt2+Psc6Hvm4Mqu/sQZsvdFl9mYMNuf6gf2lt6JVAAi4iqyidb2F+/f9L89PV
-         9MLFMQXFA25jjm8iab3FgSzSRyR/RHOUhmqBTEF0CloGJh7OQFQH0LZxvNzGEJ7Dzp17
-         X7pg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvcgQgNYhIebBtwHfrbb7G2+2C7CWi6KefaxeBhwthb5prApRk+bactQeN9W5tDMtiHtXaAEGN@vger.kernel.org, AJvYcCVYcX7lt2zficKjxxizei2q//Y61/LKkA9q3/8pQplQQmj7mtyuTqP40vyE7kKMtl/jaJ9JsaihJjQJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxtRW8ypd73i0IOW17MaLVoNSFRwXHj63fjVBbTA4Hn4usk8ljY
-	4FkmVVjtRN/pTvOJlCkZPhJ8P9QDV+qjNtQOF0so2/Bw1YLOra45tWXQ
-X-Gm-Gg: ASbGncu/fB5aWQGGrvRRKcDublV2cHMsCl7tDcJVh5aVO34aDgXQOq8l2GItj1lHhXi
-	yPKYjvok1Zb8o6QblW/r7rOb3F8frLuRXAdBtQ/0v9cjLmDNkUo3R8VNkIwOnInw7rJjfnx/tHW
-	+QdcMaKTi/cvpL4le0NEV0Fmrh2/p3r5tu0M4GSBt6AOUnSN6sy/n7GxzfM9mPDY3VJe+9+nxVw
-	sN3YgVrytVU2ImnsuCqkOH15qjH7lLjpTz0+OHXZDS8htZMavkWRN5G/exBLN/bpdSOj89pGOyW
-	8GtGEfTXWYceoTwPym/CGbYRO0wwq7TfnT/ZIMIYTeitiUOT/6sOEDTMrogbqDrRXnC24LK++a5
-	3AHSFtApkA1ZSILIBHTw49vR4IOhhtOfM3r3wGzTqu1M6sHC/jeGpTPTxRcxupBQT2fJpcHt3zT
-	Zb3Yr8R+CnapWl3GXgWmbdNYLWTgmrscCPphtn3pYlM67wgObZquz+FOwnVZftdWi2/oM=
-X-Google-Smtp-Source: AGHT+IHA3zUgybJZTrlaQmm42vW573BT8RwTkL58yLGsMMmkwBFUBqcelRcIgsQR4ekQ2oc8fLvDlQ==
-X-Received: by 2002:a17:906:c111:b0:aff:2ed7:5f11 with SMTP id a640c23a62f3a-b01d8a8b548mr237323466b.24.1756582371450;
-        Sat, 30 Aug 2025 12:32:51 -0700 (PDT)
-Received: from ?IPV6:2003:ea:8f2f:9b00:d113:449:b8c4:341? (p200300ea8f2f9b00d1130449b8c40341.dip0.t-ipconnect.de. [2003:ea:8f2f:9b00:d113:449:b8c4:341])
-        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-aff0ed6ff82sm356709566b.111.2025.08.30.12.32.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Aug 2025 12:32:51 -0700 (PDT)
-Message-ID: <4f7a6509-1753-497a-a116-d6e135816c14@gmail.com>
-Date: Sat, 30 Aug 2025 21:32:50 +0200
+	s=arc-20240116; t=1756582496; c=relaxed/simple;
+	bh=k2lX4RtwlSIenNxC+6rKn/33k8gMOJEl99vjUv10qjk=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZOiv/Dox0BgP6MSH0O8s+ANo4Ywn6lTfu7zZq15R1NyUxduqGe3g+wP02ixE72L4e3zfc0GYnhCocbi3AupqPghtBzUHjgL8afpED0yAR2CFs+d/cVPhwNvrGqDiCGE/afaY30Xxjp5JN/vFdivrJgyAYE4jgsqXjJ9ZjrNM820=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I9kR3ht/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8789CC4CEEB;
+	Sat, 30 Aug 2025 19:34:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756582495;
+	bh=k2lX4RtwlSIenNxC+6rKn/33k8gMOJEl99vjUv10qjk=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=I9kR3ht/Ul4bgtNu2lQju7flghcjGVm1B4xEknRLvqq/eH2OrvHAhgtA6xI87+n4c
+	 jO8AZ0dqgm7HawuSYydR4ORPPvtCFUQ+bkgsm1pjFFwKz1rFxwT9j9uC2H+MWYNcZ/
+	 feDD7LdLFD/k/sINrbeTEWNYpzpdBkYYH+y1XWUa7SAfOHJTdAfD4n/9Ze5z6R0ToQ
+	 Kbeg2VCbULg/kNhZK1PceuZcZGNbdNilzJZqreJ2D81EYb4C7PxyfdiAfCfZEr+Qkz
+	 lVpSWZot7tNgaoYnV5EKlXzB15hyoZId9cNylJoxhF97qElx9OW6FgiLhKCA5+BxLt
+	 IKJK5CL1jTSFA==
+Date: Sat, 30 Aug 2025 20:34:46 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: <victor.duicu@microchip.com>
+Cc: <dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+ <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+ <marius.cristea@microchip.com>, <linux-iio@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 2/2] iio: temperature: add support for MCP998X
+Message-ID: <20250830203446.5c164f74@jic23-huawei>
+In-Reply-To: <20250829143447.18893-3-victor.duicu@microchip.com>
+References: <20250829143447.18893-1-victor.duicu@microchip.com>
+	<20250829143447.18893-3-victor.duicu@microchip.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: [PATCH v2 net-next 5/5] net: phy: phylink: remove support for
- deprecated fixed-link binding
-From: Heiner Kallweit <hkallweit1@gmail.com>
-To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>,
- Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Russell King - ARM Linux <linux@armlinux.org.uk>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Eric Dumazet <edumazet@google.com>, David Miller <davem@davemloft.net>
-Cc: "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-References: <cd55d7fb-6600-49e5-a772-18b39811b0d2@gmail.com>
-Content-Language: en-US
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- xsFNBF/0ZFUBEAC0eZyktSE7ZNO1SFXL6cQ4i4g6Ah3mOUIXSB4pCY5kQ6OLKHh0FlOD5/5/
- sY7IoIouzOjyFdFPnz4Bl3927ClT567hUJJ+SNaFEiJ9vadI6vZm2gcY4ExdIevYHWe1msJF
- MVE4yNwdS+UsPeCF/6CQQTzHc+n7DomE7fjJD5J1hOJjqz2XWe71fTvYXzxCFLwXXbBiqDC9
- dNqOe5odPsa4TsWZ09T33g5n2nzTJs4Zw8fCy8rLqix/raVsqr8fw5qM66MVtdmEljFaJ9N8
- /W56qGCp+H8Igk/F7CjlbWXiOlKHA25mPTmbVp7VlFsvsmMokr/imQr+0nXtmvYVaKEUwY2g
- 86IU6RAOuA8E0J5bD/BeyZdMyVEtX1kT404UJZekFytJZrDZetwxM/cAH+1fMx4z751WJmxQ
- J7mIXSPuDfeJhRDt9sGM6aRVfXbZt+wBogxyXepmnlv9K4A13z9DVLdKLrYUiu9/5QEl6fgI
- kPaXlAZmJsQfoKbmPqCHVRYj1lpQtDM/2/BO6gHASflWUHzwmBVZbS/XRs64uJO8CB3+V3fa
- cIivllReueGCMsHh6/8wgPAyopXOWOxbLsZ291fmZqIR0L5Y6b2HvdFN1Xhc+YrQ8TKK+Z4R
- mJRDh0wNQ8Gm89g92/YkHji4jIWlp2fwzCcx5+lZCQ1XdqAiHQARAQABzSZIZWluZXIgS2Fs
- bHdlaXQgPGhrYWxsd2VpdDFAZ21haWwuY29tPsLBjgQTAQgAOBYhBGxfqY/yOyXjyjJehXLe
- ig9U8DoMBQJf9GRVAhsDBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEHLeig9U8DoMSycQ
- AJbfg8HZEK0ljV4M8nvdaiNixWAufrcZ+SD8zhbxl8GispK4F3Yo+20Y3UoZ7FcIidJWUUJL
- axAOkpI/70YNhlqAPMsuudlAieeYZKjIv1WV5ucNZ3VJ7dC+dlVqQdAr1iD869FZXvy91KhJ
- wYulyCf+s4T9YgmLC6jLMBZghKIf1uhSd0NzjyCqYWbk2ZxByZHgunEShOhHPHswu3Am0ftt
- ePaYIHgZs+Vzwfjs8I7EuW/5/f5G9w1vibXxtGY/GXwgGGHRDjFM7RSprGOv4F5eMGh+NFUJ
- TU9N96PQYMwXVxnQfRXl8O6ffSVmFx4H9rovxWPKobLmqQL0WKLLVvA/aOHCcMKgfyKRcLah
- 57vGC50Ga8oT2K1g0AhKGkyJo7lGXkMu5yEs0m9O+btqAB261/E3DRxfI1P/tvDZpLJKtq35
- dXsj6sjvhgX7VxXhY1wE54uqLLHY3UZQlmH3QF5t80MS7/KhxB1pO1Cpcmkt9hgyzH8+5org
- +9wWxGUtJWNP7CppY+qvv3SZtKJMKsxqk5coBGwNkMms56z4qfJm2PUtJQGjA65XWdzQACib
- 2iaDQoBqGZfXRdPT0tC1H5kUJuOX4ll1hI/HBMEFCcO8++Bl2wcrUsAxLzGvhINVJX2DAQaF
- aNetToazkCnzubKfBOyiTqFJ0b63c5dqziAgzsFNBF/0ZFUBEADF8UEZmKDl1w/UxvjeyAeX
- kghYkY3bkK6gcIYXdLRfJw12GbvMioSguvVzASVHG8h7NbNjk1yur6AONfbUpXKSNZ0skV8V
- fG+ppbaY+zQofsSMoj5gP0amwbwvPzVqZCYJai81VobefTX2MZM2Mg/ThBVtGyzV3NeCpnBa
- 8AX3s9rrX2XUoCibYotbbxx9afZYUFyflOc7kEpc9uJXIdaxS2Z6MnYLHsyVjiU6tzKCiVOU
- KJevqvzPXJmy0xaOVf7mhFSNQyJTrZpLa+tvB1DQRS08CqYtIMxRrVtC0t0LFeQGly6bOngr
- ircurWJiJKbSXVstLHgWYiq3/GmCSx/82ObeLO3PftklpRj8d+kFbrvrqBgjWtMH4WtK5uN5
- 1WJ71hWJfNchKRlaJ3GWy8KolCAoGsQMovn/ZEXxrGs1ndafu47yXOpuDAozoHTBGvuSXSZo
- ythk/0EAuz5IkwkhYBT1MGIAvNSn9ivE5aRnBazugy0rTRkVggHvt3/7flFHlGVGpBHxFUwb
- /a4UjJBPtIwa4tWR8B1Ma36S8Jk456k2n1id7M0LQ+eqstmp6Y+UB+pt9NX6t0Slw1NCdYTW
- gJezWTVKF7pmTdXszXGxlc9kTrVUz04PqPjnYbv5UWuDd2eyzGjrrFOsJEi8OK2d2j4FfF++
- AzOMdW09JVqejQARAQABwsF2BBgBCAAgFiEEbF+pj/I7JePKMl6Fct6KD1TwOgwFAl/0ZFUC
- GwwACgkQct6KD1TwOgxUfg//eAoYc0Vm4NrxymfcY30UjHVD0LgSvU8kUmXxil3qhFPS7KA+
- y7tgcKLHOkZkXMX5MLFcS9+SmrAjSBBV8omKoHNo+kfFx/dUAtz0lot8wNGmWb+NcHeKM1eb
- nwUMOEa1uDdfZeKef/U/2uHBceY7Gc6zPZPWgXghEyQMTH2UhLgeam8yglyO+A6RXCh+s6ak
- Wje7Vo1wGK4eYxp6pwMPJXLMsI0ii/2k3YPEJPv+yJf90MbYyQSbkTwZhrsokjQEaIfjrIk3
- rQRjTve/J62WIO28IbY/mENuGgWehRlTAbhC4BLTZ5uYS0YMQCR7v9UGMWdNWXFyrOB6PjSu
- Trn9MsPoUc8qI72mVpxEXQDLlrd2ijEWm7Nrf52YMD7hL6rXXuis7R6zY8WnnBhW0uCfhajx
- q+KuARXC0sDLztcjaS3ayXonpoCPZep2Bd5xqE4Ln8/COCslP7E92W1uf1EcdXXIrx1acg21
- H/0Z53okMykVs3a8tECPHIxnre2UxKdTbCEkjkR4V6JyplTS47oWMw3zyI7zkaadfzVFBxk2
- lo/Tny+FX1Azea3Ce7oOnRUEZtWSsUidtIjmL8YUQFZYm+JUIgfRmSpMFq8JP4VH43GXpB/S
- OCrl+/xujzvoUBFV/cHKjEQYBxo+MaiQa1U54ykM2W4DnHb1UiEf5xDkFd4=
-In-Reply-To: <cd55d7fb-6600-49e5-a772-18b39811b0d2@gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-The old array-type fixed-link binding has been deprecated
-for more than 10 yrs. So remove support for it.
+On Fri, 29 Aug 2025 17:34:47 +0300
+<victor.duicu@microchip.com> wrote:
 
-Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
----
- drivers/net/phy/phylink.c | 25 +------------------------
- 1 file changed, 1 insertion(+), 24 deletions(-)
+> From: Victor Duicu <victor.duicu@microchip.com>
+> 
+> This is the driver for Microchip MCP998X/33 and MCP998XD/33D
+> Multichannel Automotive Temperature Monitor Family.
+> 
+> Signed-off-by: Victor Duicu <victor.duicu@microchip.com>
+Tried to avoid duplication with other reviewers but probably failed!
 
-diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
-index c7f867b36..e3e22e013 100644
---- a/drivers/net/phy/phylink.c
-+++ b/drivers/net/phy/phylink.c
-@@ -690,29 +690,6 @@ static int phylink_parse_fixedlink(struct phylink *pl,
- 
- 		if (ret)
- 			return ret;
--	} else {
--		u32 prop[5];
--
--		ret = fwnode_property_read_u32_array(fwnode, "fixed-link",
--						     NULL, 0);
--		if (ret != ARRAY_SIZE(prop)) {
--			phylink_err(pl, "broken fixed-link?\n");
--			return -EINVAL;
--		}
--
--		ret = fwnode_property_read_u32_array(fwnode, "fixed-link",
--						     prop, ARRAY_SIZE(prop));
--		if (!ret) {
--			pl->link_config.duplex = prop[1] ?
--						DUPLEX_FULL : DUPLEX_HALF;
--			pl->link_config.speed = prop[2];
--			if (prop[3])
--				__set_bit(ETHTOOL_LINK_MODE_Pause_BIT,
--					  pl->link_config.lp_advertising);
--			if (prop[4])
--				__set_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT,
--					  pl->link_config.lp_advertising);
--		}
- 	}
- 
- 	if (pl->link_config.speed > SPEED_1000 &&
-@@ -768,7 +745,7 @@ static int phylink_parse_mode(struct phylink *pl,
- 		pl->cfg_link_an_mode = MLO_AN_INBAND;
- 
- 	dn = fwnode_get_named_child_node(fwnode, "fixed-link");
--	if (dn || fwnode_property_present(fwnode, "fixed-link"))
-+	if (dn)
- 		pl->cfg_link_an_mode = MLO_AN_FIXED;
- 	fwnode_handle_put(dn);
- 
--- 
-2.51.0
+Jonathan
+
+> diff --git a/drivers/iio/temperature/mcp9982.c b/drivers/iio/temperature/mcp9982.c
+> new file mode 100644
+> index 000000000000..2f0b9c4674fb
+> --- /dev/null
+> +++ b/drivers/iio/temperature/mcp9982.c
+
+> +
+> +static const struct regmap_config mcp9982_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.rd_table = &mcp9982_regmap_rd_table,
+> +	.wr_table = &mcp9982_regmap_wr_table,
+> +	.volatile_reg = mcp9982_is_volatile_reg,
+> +};
+> +
+> +/**
+> + * struct mcp9992_priv - information about chip parameters
+> + * @regmap:			device register map
+> + * @chip			pointer to structure holding chip features
+> + * @lock			synchronize access to driver's state members
+> + * @iio_chan			specifications of channels
+> + * @labels			labels of the channels
+> + * @ideality_value		ideality factor value for each external channel
+> + * @sampl_idx			index representing the current sampling frequency
+> + * @time_limit			time when it is safe to read
+> + * @recd34_enable		state of REC on channels 3 and 4
+
+Spell out REC fully. It's not a well enough known term anyone reading that comment
+might be expected to know what it means.
+
+> + * @recd12_enable		state of REC on channels 1 and 2
+> + * @apdd_enable			state of anti-parallel diode mode
+> + * @run_state			chip is in run state, otherwise is in standby state
+> + * @wait_before_read		whether we need to wait a delay before reading a new value
+> + * @num_channels		number of active physical channels
+> + */
+> +struct mcp9982_priv {
+> +	struct regmap *regmap;
+> +	const struct mcp9982_features *chip;
+> +	/*
+> +	 * Synchronize access to private members, and ensure atomicity of
+> +	 * consecutive regmap operations.
+> +	 */
+> +	struct mutex lock;
+> +	struct iio_chan_spec *iio_chan;
+> +	const char *labels[MCP9982_MAX_NUM_CHANNELS];
+> +	unsigned int ideality_value[4];
+> +	unsigned int sampl_idx;
+> +	unsigned long  time_limit;
+> +	bool recd34_enable;
+> +	bool recd12_enable;
+> +	bool apdd_enable;
+> +	bool run_state;
+> +	bool wait_before_read;
+> +	u8 num_channels;
+> +};
 
 
+> +static int mcp9982_write_raw(struct iio_dev *indio_dev,
+> +			     struct iio_chan_spec const *chan, int val,
+> +			     int val2, long mask)
+> +{
+> +	unsigned int i, start, previous_sampl_idx;
+> +	struct mcp9982_priv *priv = iio_priv(indio_dev);
+> +	int ret;
+> +	unsigned long new_time_limit;
+> +
+> +	start = 0;
+> +	guard(mutex)(&priv->lock);
+> +	switch (mask) {
+> +	case IIO_CHAN_INFO_SAMP_FREQ:
+> +		previous_sampl_idx = priv->sampl_idx;
+> +		/*
+> +		 * For MCP998XD and MCP9933D sampling frequency can't
+> +		 * be set lower than 1.
+
+wrap at 80 chars, not 70ish.
+
+> +		 */
+> +		if (priv->chip->hw_thermal_shutdown)
+> +			start = 4;
+> +		for (i = start; i < ARRAY_SIZE(mcp9982_conv_rate); i++)
+> +			if (val == mcp9982_conv_rate[i][0] &&
+> +			    val2 == mcp9982_conv_rate[i][1])
+> +				break;
+> +
+> +		if (i == ARRAY_SIZE(mcp9982_conv_rate))
+> +			return -EINVAL;
+> +
+> +		ret = regmap_write(priv->regmap, MCP9982_CONV_ADDR, i);
+> +		if (ret)
+> +			return ret;
+> +
+> +		priv->sampl_idx = i;
+> +
+> +		/*
+> +		 * in Run mode, when changing the frequency, wait a delay based
+In Run mode,
+> +		 * on the previous value to ensure the new value becomes active
+> +		 */
+> +		if (priv->run_state) {
+> +			new_time_limit = jiffies +
+> +					   msecs_to_jiffies(mcp9982_delay_ms[previous_sampl_idx]);
+> +			if (time_after(new_time_limit, priv->time_limit)) {
+> +				priv->time_limit = new_time_limit;
+> +				priv->wait_before_read = true;
+> +			}
+> +			return 0;
+> +		}
+> +
+> +		break;
+>
+
+> +static int mcp9982_init(struct mcp9982_priv *priv)
+> +{
+> +	int ret;
+> +	unsigned int i;
+> +	u8 val;
+> +
+> +	/* Chips 82/83 and 82D/83D do not support anti-parallel diode mode */
+> +	if (!priv->chip->allow_apdd)
+> +		priv->apdd_enable = 0;
+> +
+> +	/*
+> +	 * Chips with "D" work in Run state and those without work
+> +	 * in Standby state
+> +	 */
+> +	if (priv->chip->hw_thermal_shutdown)
+> +		priv->run_state = 1;
+> +	else
+> +		priv->run_state = 0;
+
+
+	runstate = priv->chip->hw_thermal_shutdown;
+
+> +
+> +	/*
+> +	 * For chips with "D" in the name set the below parameters to default to
+> +	 * ensure that hardware shutdown feature can't be overridden.
+> +	 */
+> +	if (priv->chip->hw_thermal_shutdown) {
+> +		priv->recd12_enable = true;
+> +		priv->recd34_enable = true;
+> +	}
+> +
+> +	/*
+> +	 * Set default values in registers. APDD, RECD12 and RECD34 are active
+> +	 * on 0.
+
+Probably add a line break between those sentences. I think the first one
+is applying to all these writes, whereas second sentence is just about this one.
+
+> +	 */
+> +	val = FIELD_PREP(MCP9982_CFG_MSKAL, 1) |
+> +	      FIELD_PREP(MCP9982_CFG_RS, !priv->run_state) |
+> +	      FIELD_PREP(MCP9982_CFG_ATTHM, 1) |
+> +	      FIELD_PREP(MCP9982_CFG_RECD12, !priv->recd12_enable) |
+> +	      FIELD_PREP(MCP9982_CFG_RECD34, !priv->recd34_enable) |
+> +	      FIELD_PREP(MCP9982_CFG_RANGE, 1) | FIELD_PREP(MCP9982_CFG_DA_ENA, 0) |
+> +	      FIELD_PREP(MCP9982_CFG_APDD, !priv->apdd_enable);
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_CFG_ADDR, val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_CONV_ADDR, 6);
+> +	if (ret)
+> +		return ret;
+> +	priv->sampl_idx = 6;
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_HYS_ADDR, 10);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_CONSEC_ALRT_ADDR, 112);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_RUNNING_AVG_ADDR, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_write(priv->regmap, MCP9982_HOTTEST_CFG_ADDR, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Set auto-detection beta compensation for channels 1 and 2 */
+> +	for (i = 0; i < 2; i++) {
+> +		ret = regmap_write(priv->regmap, MCP9982_EXT_BETA_CFG_ADDR(i),
+> +				   MCP9982_BETA_AUTODETECT);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +	/* Set ideality factor for all external channels */
+> +	for (i = 0; i < ARRAY_SIZE(priv->ideality_value); i++) {
+> +		ret = regmap_write(priv->regmap, MCP9982_EXT_IDEAL_ADDR(i),
+> +				   priv->ideality_value[i]);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	priv->wait_before_read = false;
+> +	priv->time_limit = jiffies;
+> +
+> +	return 0;
+> +}
+> +
+> +static int mcp9982_parse_of_config(struct iio_dev *indio_dev, struct device *dev,
+> +				   int device_nr_channels)
+> +{
+> +	unsigned int reg_nr, iio_idx;
+> +	struct mcp9982_priv *priv = iio_priv(indio_dev);
+> +
+> +	priv->apdd_enable = device_property_read_bool(dev,
+> +						      "microchip,enable-anti-parallel");
+I'd suggestion these are more readable as.
+
+	priv->apdd_enable =
+		device_property_read_bool(dev, "microchip,enable-anti-parallel");
+
+> +
+> +	priv->recd12_enable = device_property_read_bool(dev,
+> +							"microchip,parasitic-res-on-channel1-2");
+> +
+> +	priv->recd34_enable = device_property_read_bool(dev,
+> +							"microchip,parasitic-res-on-channel3-4");
+> +
+> +	priv->num_channels = device_get_child_node_count(dev) + 1;
+> +
+> +	if (priv->num_channels > device_nr_channels)
+> +		return dev_err_probe(dev, -E2BIG,
+> +				     "More channels than the chip supports\n");
+> +
+> +	priv->iio_chan = devm_kcalloc(dev, priv->num_channels,
+> +				      sizeof(*priv->iio_chan), GFP_KERNEL);
+
+Seems channels can't be more than 6(?)  I'd just directly embed a large enough array
+in priv so no allocation here necessary.
+
+> +	if (!priv->iio_chan)
+> +		return -ENOMEM;
+> +
+> +	priv->iio_chan[0] = MCP9982_CHAN(0, 0, MCP9982_INT_VALUE_ADDR(0));
+> +
+> +	priv->labels[0] = "internal diode";
+> +	iio_idx++;
+> +	device_for_each_child_node_scoped(dev, child) {
+> +		fwnode_property_read_u32(child, "reg", &reg_nr);
+> +		if (!reg_nr || reg_nr >= device_nr_channels)
+> +			return dev_err_probe(dev, -EINVAL,
+> +				     "The index of the channels does not match the chip\n");
+> +
+> +		priv->ideality_value[reg_nr - 1] = 18;
+> +		if (fwnode_property_present(child, "microchip,ideality-factor")) {
+> +			fwnode_property_read_u32(child, "microchip,ideality-factor",
+> +						 &priv->ideality_value[reg_nr - 1]);
+> +			if (priv->ideality_value[reg_nr - 1] > 63)
+> +				return dev_err_probe(dev, -EOVERFLOW,
+> +				     "The ideality value is higher than maximum\n");
+> +		}
+> +
+> +		fwnode_property_read_string(child, "label",
+> +					    &priv->labels[reg_nr]);
+> +
+> +		priv->iio_chan[iio_idx++] = MCP9982_CHAN(reg_nr, reg_nr,
+> +							 MCP9982_INT_VALUE_ADDR(reg_nr));
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int mcp9982_probe(struct i2c_client *client)
+> +{
+> +	struct device *dev = &client->dev;
+...
+
+
+> +	ret = mcp9982_parse_of_config(indio_dev, &client->dev, chip->phys_channels);
+
+parse_fw_config as its not DT specific (which is excellent!)
+Also use dev.
+
+
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Parameter parsing error\n");
 
