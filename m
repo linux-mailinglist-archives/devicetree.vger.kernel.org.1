@@ -1,394 +1,514 @@
-Return-Path: <devicetree+bounces-210652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B6D3B3C5FF
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 02:01:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 076ABB3C608
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 02:14:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88374A2284C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 00:00:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDBAD203661
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 00:14:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04C8B273F9;
-	Sat, 30 Aug 2025 00:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39E793D81;
+	Sat, 30 Aug 2025 00:14:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="KBGF/BRS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E865C2FB;
-	Sat, 30 Aug 2025 00:00:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 411B54A01;
+	Sat, 30 Aug 2025 00:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756512055; cv=none; b=R2qwQYOao6GiRgM1nJTRqzcB3WY9UKahctaO9ALrhq+5T6wzcde0CL1A+rkoh1tzzHESaG9DRG64Z2VtZmAM8Lg2R8+4OChAuQ8vl6p1tDXMGTkpE/t+IyQPrI6xX/NqXDIhmXBXz6dEzg67EO73U/QlFuaM2ex1JzgEt+r/pE8=
+	t=1756512877; cv=none; b=nlAGgk+Pz6zBZKiQb6W9gBrZVKndF7RcXTv1bsMbSK1S5MmkHHDzIMyxM8Ffj3ZYVr7sR0z+dA2KafulAV5eLiCxCjFOzRdoqf/y/2HI+ko9OMtjvKX11FwKHL8uTt/KUN3Cm6KZDRazik8K7AtiHDXetztuzWfz9DRHNDnXj2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756512055; c=relaxed/simple;
-	bh=chm6L8bmk4QtDqokX86WVSAw9Lg6p+LjNmSSGBpyBhI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RAbzcNDM4WbCkPzSXYWDo7DO7E3kOiQNODtgnmqPQHMSka8BgSIRdJzCyriKOrNGRu81l+8BYgDf7hC5fOLnT311icJaf2BpQkVehLrIphY4FvrDxVdbEsvkVAziZFIPr2N65v6ZuW5812lxcKa28vLmgvZNz0JwjAqKm6m+DaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 002631756;
-	Fri, 29 Aug 2025 17:00:44 -0700 (PDT)
-Received: from [10.57.3.75] (unknown [10.57.3.75])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 218C93F63F;
-	Fri, 29 Aug 2025 17:00:49 -0700 (PDT)
-Message-ID: <5e39026e-bec9-408f-b24a-bb60b3f1f411@arm.com>
-Date: Sat, 30 Aug 2025 01:00:47 +0100
+	s=arc-20240116; t=1756512877; c=relaxed/simple;
+	bh=QE73XP1t3Hpl0q3HXVv6V0I5PU/txnz2um+0xl9RtUM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=owP4uxpRSnLinbcQCvt/RiYMHC3+IltJ6SYpyRfbT1jkC3RBxULbXyvs1V9aNbw8NJBby4okzo/4BVVPnu1NSBIl7wbB4wlyyrRnTaRjcpBiGehmbGJ17uL2kkRUqbRD4s7IdCkL+VE1SnYTEWVFqT9vs8uxVPStxcnzfMq8+Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=KBGF/BRS; arc=none smtp.client-ip=209.85.222.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f174.google.com with SMTP id af79cd13be357-7f8ea864d63so257706785a.0;
+        Fri, 29 Aug 2025 17:14:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756512874; x=1757117674; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=iaEiWgDoXcLcKVUYIJtLhSA1br1c7VK/2DaQrhZa+X4=;
+        b=KBGF/BRSw8hs69YWY35fCVQVZNnCBd7Epyt9hPXfS2mm6FFZbDUcdhKIeaZlIG0BOt
+         BV/t6cpv5gv6cPoSqW+HSHEbjv5018+cMa0pZRIwjrVjCpuOmOWoduSaxrLDebV17xD2
+         WsDhVESDQlh0Lz9YNofqRhZTutGJhyRioo5BigT2VIMhCLxKbVs4CZMWLiOYg9oeivgX
+         /i3r26rQ093bdMhUjRzrKocVfhNbQXqMPPKbKrjRB7U56zddy2tc+FXu77QLWcr1q+Ie
+         DrFNiYjy2DB7Op65LQLBkQkt/i99Q7/ueXiVj1P+qNNIbwPSVyDQv8eVPwissA62b87l
+         0TEQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756512874; x=1757117674;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=iaEiWgDoXcLcKVUYIJtLhSA1br1c7VK/2DaQrhZa+X4=;
+        b=LfBR5AqNr5hXcumXSWjHbkHRl6NqgRSC+6r7HnnAhRnIhnu9JZ7vU+A7NR3KVm+eda
+         0qy6aYeJrcUDcgfHdOTFtD0+41lMLMm2KiniEVLojf31s3IPTfvqw+xPJr+1yGdRB9d7
+         C5IdBZCg7KQ72hAQZuCVfQGq8pPzIqa9Qar04e2ePRPAHyS9x0aMUZCe8xHo111MiLaE
+         75zcCZIUHNb4jJMCrXa9ue8whyWkik9XO1nnq3qmfzhqwJJ8Lga7gW0THJILC8b6lOCT
+         RB3Lu77WV3oJvWOkxZ0RHmjsSagCdFaQlTkvk/rIifQLJfl2LZ2Y64ZWW0h6B2+OVpWP
+         7LIg==
+X-Forwarded-Encrypted: i=1; AJvYcCXQmfxHK+VIa6/EdY4Y1+RbiYtNsy4FmRs8Ndit07tdCVzGCUk/pdboa4RZRLKJHCdsiCIZ+v/1VCNCv0Fb@vger.kernel.org, AJvYcCXmhAOrI9k5tzI4Yl046bbkQyZCtICOWI4T01VH0CyONiAUO+/EqgTdYqYlLIlgHm3EBJXfKnLZCyYi@vger.kernel.org, AJvYcCXw2XhCH//OgqbUrdcMyLurxQCzOZEdO3D+R7wwbZLKd9BMI70OPVucSXhUbZAt7zWOLE0DJR/NP94L@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0UOFzem0PE7DMysY0XYoLD95TxtfR2IQ2NPZLupcX8ls9MQxH
+	rjS+Dl2PBYGjP/rHqcTp9JCdOccRf1VBRyEA/VH7dBXNhlnaTM6LDws=
+X-Gm-Gg: ASbGncuS4RyTzYBG8+O/Uh0gb8xyErfzZ/v0liW39UffW4jNx8G4dBTT7z5xUI7r8w/
+	3aoThQEM6Xla00nPtptxIdoIBZ2l8jeIj54X1gHh6V6ohYolYOpkmSyGg5xhnUHZzDGZQyOq3yE
+	xz/MdZnF5IFhXDku/ign0pDTT/rht9yOmvSc45UgRu5fWWJRjw4kdzmRAdr79EKmW81xUSejEW0
+	B9hlZSgWqyayB431UCt+uAIvYS1v/zau2uEfuq4Js+e7i9/UtG9bDTMBXvIvVX2Hc5gcnEQa9Ug
+	D/N5TUDfck/B3wQYqX5hTrxnos3+67+pzZqvdx4MgN6TLuZsOHpShgD64v88ciDjM9lzFYRg6I5
+	9jk0xWvKuDXBso5t1PyYWuLYGUfTOlDv6BwPDn3utuNJWYk93njTcUvHzKe0YdhQ/DGQA
+X-Google-Smtp-Source: AGHT+IGfwEZIn9QX//x8HKT04T1l95pTBpXYwBOE2Qs2FAf+dyofGyL+tBj8/ViosIPosCRV9eLsdA==
+X-Received: by 2002:a05:620a:1aa2:b0:7e7:40f1:8d35 with SMTP id af79cd13be357-7ff281d3301mr61236985a.30.1756512873838;
+        Fri, 29 Aug 2025 17:14:33 -0700 (PDT)
+Received: from localhost.localdomain ([2a0d:e487:145e:e2bf:35d7:e26d:ca60:c76f])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7fc14849559sm268704185a.41.2025.08.29.17.14.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 29 Aug 2025 17:14:33 -0700 (PDT)
+From: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+To: lee@kernel.org,
+	andreas@kemnade.info
+Cc: krzk+dt@kernel.org,
+	robh@kernel.org,
+	conor+dt@kernel.org,
+	ukleinek@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org,
+	shuah@kernel.org,
+	jihed.chaibi.dev@gmail.com
+Subject: [PATCH v4] dt-bindings: mfd: twl: Add missing sub-nodes for TWL4030 & TWL603x
+Date: Sat, 30 Aug 2025 02:14:21 +0200
+Message-Id: <20250830001421.126707-1-jihed.chaibi.dev@gmail.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/14] dmaengine: dma350: Support device_prep_slave_sg
-To: Jisheng Zhang <jszhang@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20250823154009.25992-1-jszhang@kernel.org>
- <20250823154009.25992-12-jszhang@kernel.org>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20250823154009.25992-12-jszhang@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2025-08-23 4:40 pm, Jisheng Zhang wrote:
-> Add device_prep_slave_sg() callback function so that DMA_MEM_TO_DEV
-> and DMA_DEV_TO_MEM operations in single mode can be supported.
-> 
-> Signed-off-by: Jisheng Zhang <jszhang@kernel.org>
-> ---
->   drivers/dma/arm-dma350.c | 180 +++++++++++++++++++++++++++++++++++++--
->   1 file changed, 174 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/dma/arm-dma350.c b/drivers/dma/arm-dma350.c
-> index 3d26a1f020df..a285778264b9 100644
-> --- a/drivers/dma/arm-dma350.c
-> +++ b/drivers/dma/arm-dma350.c
-> @@ -1,5 +1,6 @@
->   // SPDX-License-Identifier: GPL-2.0
->   // Copyright (C) 2024-2025 Arm Limited
-> +// Copyright (C) 2025 Synaptics Incorporated
->   // Arm DMA-350 driver
->   
->   #include <linux/bitfield.h>
-> @@ -98,7 +99,23 @@
->   
->   #define CH_FILLVAL		0x38
->   #define CH_SRCTRIGINCFG		0x4c
-> +#define CH_SRCTRIGINMODE	GENMASK(11, 10)
-> +#define CH_SRCTRIG_CMD		0
-> +#define CH_SRCTRIG_DMA_FC	2
-> +#define CH_SRCTRIG_PERIF_FC	3
-> +#define CH_SRCTRIGINTYPE	GENMASK(9, 8)
-> +#define CH_SRCTRIG_SW_REQ	0
-> +#define CH_SRCTRIG_HW_REQ	2
-> +#define CH_SRCTRIG_INTERN_REQ	3
->   #define CH_DESTRIGINCFG		0x50
-> +#define CH_DESTRIGINMODE	GENMASK(11, 10)
-> +#define CH_DESTRIG_CMD		0
-> +#define CH_DESTRIG_DMA_FC	2
-> +#define CH_DESTRIG_PERIF_FC	3
-> +#define CH_DESTRIGINTYPE	GENMASK(9, 8)
-> +#define CH_DESTRIG_SW_REQ	0
-> +#define CH_DESTRIG_HW_REQ	2
-> +#define CH_DESTRIG_INTERN_REQ	3
+Update the main TI TWL-family binding to be self-contained and to fix
+pre-existing validation errors.
 
-Like the CH_CFG_* definitions, let's just have common CH_TRIG* fields 
-that work for both SRC and DES to simplify matters. FWIW, my attempt to 
-balance clarity with conciseness would be:
+Following maintainer feedback, the simple power and PWM bindings are
+now defined directly within this file, and their legacy .txt files
+are removed.
 
-#define CH_TRIGINCFG_BLKSIZE	GENMASK(23, 16)
-#define CH_TRIGINCFG_MODE	GENMASK(11, 10)
-#define CH_TRIG_MODE_CMD	0
-#define CH_TRIG_MODE_DMA	2
-#define CH_TRIG_MODE_PERIPH	3
-#define CH_TRIGINCFG_TYPE	GENMASK(9, 8)
-#define CH_TRIG_TYPE_SW		0
-#define CH_TRIG_TYPE_HW		2
-#define CH_TRIG_TYPE_INTERN	3
-#define CH_TRIGINCFG_SEL	GENMASK(7, 0)
+To ensure future patches are bisectable, child nodes whose bindings
+are in other patches (audio, keypad, usb, etc.) are now defined using
+a flexible 'additionalProperties: true' pattern. This removes hard
+dependencies between the MFD and subsystem bindings.
 
->   #define CH_LINKATTR		0x70
->   #define CH_LINK_SHAREATTR	GENMASK(9, 8)
->   #define CH_LINK_MEMATTR		GENMASK(7, 0)
-> @@ -190,11 +207,13 @@ struct d350_chan {
->   	struct d350_desc *desc;
->   	void __iomem *base;
->   	struct dma_pool *cmd_pool;
-> +	struct dma_slave_config config;
->   	int irq;
->   	enum dma_status status;
->   	dma_cookie_t cookie;
->   	u32 residue;
->   	u8 tsz;
-> +	u8 ch;
+The complete dtbs_check for this binding is clean except for two
+warnings originating from pre-existing bugs in the OMAP DTS files,
+for which fixes have already been submitted separately [1][2].
 
-What's this for? It doesn't seem to be anything meaningful.
+Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
 
->   	bool has_trig;
->   	bool has_wrap;
->   	bool coherent;
-> @@ -327,6 +346,144 @@ static struct dma_async_tx_descriptor *d350_prep_memset(struct dma_chan *chan,
->   	return vchan_tx_prep(&dch->vc, &desc->vd, flags);
->   }
->   
-> +static struct dma_async_tx_descriptor *
-> +d350_prep_slave_sg(struct dma_chan *chan, struct scatterlist *sgl,
-> +		   unsigned int sg_len, enum dma_transfer_direction dir,
-> +		   unsigned long flags, void *context)
-> +{
-> +	struct d350_chan *dch = to_d350_chan(chan);
-> +	dma_addr_t src, dst, phys;
-> +	struct d350_desc *desc;
-> +	struct scatterlist *sg;
-> +	u32 len, trig, *cmd, *la_cmd, tsz;
-> +	struct d350_sg *dsg;
-> +	int i, j;
-> +
-> +	if (unlikely(!is_slave_direction(dir) || !sg_len))
-> +		return NULL;
-> +
-> +	desc = kzalloc(struct_size(desc, sg, sg_len), GFP_NOWAIT);
-> +	if (!desc)
-> +		return NULL;
-> +
-> +	desc->sglen = sg_len;
-> +
-> +	if (dir == DMA_MEM_TO_DEV)
-> +		tsz = __ffs(dch->config.dst_addr_width | (1 << dch->tsz));
-> +	else
-> +		tsz = __ffs(dch->config.src_addr_width | (1 << dch->tsz));
+---
+Changes in v4:
+  - Reworked binding to be independent and bisectable per maintainer
+    feedback by using 'additionalProperties: true' for child nodes.
+  - Added board-specific compatibles to the 'power' node enum.
+  - Added definitions for 'clocks' and 'clock-names' properties.
+  - Renamed 'twl6030-usb' child node to 'usb-comparator' to match
+    existing Device Tree usage (twl6030.dtsi).
+  - Fixed some spelling/grammar erros in the description.
 
-Surely we should just use the exact addr_width requested?
+Changes in v3:
+  - New patch to consolidate simple bindings (power, pwm) and add
+    definitions for all child nodes to fix dtbs_check validation
+    errors found in v2.
 
-> +	for_each_sg(sgl, sg, sg_len, i) {
-> +		desc->sg[i].command = dma_pool_zalloc(dch->cmd_pool, GFP_NOWAIT, &phys);
-> +		if (unlikely(!desc->sg[i].command))
-> +			goto err_cmd_alloc;
-> +
-> +		desc->sg[i].phys = phys;
-> +		dsg = &desc->sg[i];
-> +		len = sg_dma_len(sg);
-> +
-> +		if (dir == DMA_MEM_TO_DEV) {
-> +			src = sg_dma_address(sg);
-> +			dst = dch->config.dst_addr;
-> +			trig = CH_CTRL_USEDESTRIGIN;
-> +		} else {
-> +			src = dch->config.src_addr;
-> +			dst = sg_dma_address(sg);
-> +			trig = CH_CTRL_USESRCTRIGIN;
-> +		}
-> +		dsg->tsz = tsz;
-> +		dsg->xsize = lower_16_bits(len >> dsg->tsz);
-> +		dsg->xsizehi = upper_16_bits(len >> dsg->tsz);
-> +
-> +		cmd = dsg->command;
-> +		if (!i) {
-> +			cmd[0] = LINK_CTRL | LINK_SRCADDR | LINK_SRCADDRHI | LINK_DESADDR |
-> +				 LINK_DESADDRHI | LINK_XSIZE | LINK_XSIZEHI | LINK_SRCTRANSCFG |
-> +				 LINK_DESTRANSCFG | LINK_XADDRINC | LINK_LINKADDR;
-> +
-> +			cmd[1] = FIELD_PREP(CH_CTRL_TRANSIZE, dsg->tsz) | trig |
-> +				 FIELD_PREP(CH_CTRL_XTYPE, CH_CTRL_XTYPE_CONTINUE);
-> +
-> +			cmd[2] = lower_32_bits(src);
-> +			cmd[3] = upper_32_bits(src);
-> +			cmd[4] = lower_32_bits(dst);
-> +			cmd[5] = upper_32_bits(dst);
-> +			cmd[6] = FIELD_PREP(CH_XY_SRC, dsg->xsize) |
-> +				 FIELD_PREP(CH_XY_DES, dsg->xsize);
-> +			cmd[7] = FIELD_PREP(CH_XY_SRC, dsg->xsizehi) |
-> +				 FIELD_PREP(CH_XY_DES, dsg->xsizehi);
-> +			if (dir == DMA_MEM_TO_DEV) {
-> +				cmd[0] |= LINK_DESTRIGINCFG;
-> +				cmd[8] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
-> +				cmd[9] = TRANSCFG_DEVICE;
-> +				cmd[10] = FIELD_PREP(CH_XY_SRC, 1);
-> +				cmd[11] = FIELD_PREP(CH_DESTRIGINMODE, CH_DESTRIG_DMA_FC) |
-> +					  FIELD_PREP(CH_DESTRIGINTYPE, CH_DESTRIG_HW_REQ);
-> +			} else {
-> +				cmd[0] |= LINK_SRCTRIGINCFG;
-> +				cmd[8] = TRANSCFG_DEVICE;
-> +				cmd[9] = dch->coherent ? TRANSCFG_WB : TRANSCFG_NC;
-> +				cmd[10] = FIELD_PREP(CH_XY_DES, 1);
-> +				cmd[11] = FIELD_PREP(CH_SRCTRIGINMODE, CH_SRCTRIG_DMA_FC) |
-> +					  FIELD_PREP(CH_SRCTRIGINTYPE, CH_SRCTRIG_HW_REQ);
-> +			}
-> +			la_cmd = &cmd[12];
-> +		} else {
-> +			*la_cmd = phys | CH_LINKADDR_EN;
-> +			if (i == sg_len - 1) {
-> +				cmd[0] = LINK_CTRL | LINK_SRCADDR | LINK_SRCADDRHI | LINK_DESADDR |
-> +					 LINK_DESADDRHI | LINK_XSIZE | LINK_XSIZEHI | LINK_LINKADDR;
-> +				cmd[1] = FIELD_PREP(CH_CTRL_TRANSIZE, dsg->tsz) | trig |
-> +					 FIELD_PREP(CH_CTRL_XTYPE, CH_CTRL_XTYPE_CONTINUE);
-> +				cmd[2] = lower_32_bits(src);
-> +				cmd[3] = upper_32_bits(src);
-> +				cmd[4] = lower_32_bits(dst);
-> +				cmd[5] = upper_32_bits(dst);
-> +				cmd[6] = FIELD_PREP(CH_XY_SRC, dsg->xsize) |
-> +					 FIELD_PREP(CH_XY_DES, dsg->xsize);
-> +				cmd[7] = FIELD_PREP(CH_XY_SRC, dsg->xsizehi) |
-> +					 FIELD_PREP(CH_XY_DES, dsg->xsizehi);
-> +				la_cmd = &cmd[8];
-> +			} else {
-> +				cmd[0] = LINK_SRCADDR | LINK_SRCADDRHI | LINK_DESADDR |
-> +					 LINK_DESADDRHI | LINK_XSIZE | LINK_XSIZEHI | LINK_LINKADDR;
-> +				cmd[1] = lower_32_bits(src);
-> +				cmd[2] = upper_32_bits(src);
-> +				cmd[3] = lower_32_bits(dst);
-> +				cmd[4] = upper_32_bits(dst);
-> +				cmd[5] = FIELD_PREP(CH_XY_SRC, dsg->xsize) |
-> +					 FIELD_PREP(CH_XY_DES, dsg->xsize);
-> +				cmd[6] = FIELD_PREP(CH_XY_SRC, dsg->xsizehi) |
-> +					 FIELD_PREP(CH_XY_DES, dsg->xsizehi);
-> +				la_cmd = &cmd[7];
-> +			}
-> +		}
-> +	}
-Again, the structure and duplication here is unbearable. I fail to 
-comprehend why the "if (i == sg_len - 1)" case even exists...
+Changes in v2:
+  - This patch is split from larger series [3] per maintainer feedback.
+  - Added missing sub-node definitions, resolving dtbs_check errors.
 
-More crucially, it clearly can't even work for DMA-350 since it would 
-always be selecting trigger 0. How much of this has been tested?
+[1] https://lore.kernel.org/all/20250822222530.113520-1-jihed.chaibi.dev@gmail.com/
+[2] https://lore.kernel.org/all/20250822225052.136919-1-jihed.chaibi.dev@gmail.com/
+[3] https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
 
-> +	/* the last command */
-> +	*la_cmd = 0;
-> +	desc->sg[sg_len - 1].command[1] |= FIELD_PREP(CH_CTRL_DONETYPE, CH_CTRL_DONETYPE_CMD);
-> +
-> +	mb();
-> +
-> +	return vchan_tx_prep(&dch->vc, &desc->vd, flags);
-> +
-> +err_cmd_alloc:
-> +	for (j = 0; j < i; j++)
-> +		dma_pool_free(dch->cmd_pool, desc->sg[j].command, desc->sg[j].phys);
-> +	kfree(desc);
-> +	return NULL;
-> +}
-> +
-> +static int d350_slave_config(struct dma_chan *chan, struct dma_slave_config *config)
-> +{
-> +	struct d350_chan *dch = to_d350_chan(chan);
-Shouldn't we validate that the given channel has any chance of 
-supporting the given config?
+---
+ .../devicetree/bindings/mfd/ti,twl.yaml       | 208 +++++++++++++++++-
+ .../devicetree/bindings/mfd/twl4030-power.txt |  48 ----
+ .../devicetree/bindings/pwm/ti,twl-pwm.txt    |  17 --
+ .../devicetree/bindings/pwm/ti,twl-pwmled.txt |  17 --
+ 4 files changed, 206 insertions(+), 84 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
+ delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+ delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
 
-> +	memcpy(&dch->config, config, sizeof(*config));
-> +
-> +	return 0;
-> +}
-> +
->   static int d350_pause(struct dma_chan *chan)
->   {
->   	struct d350_chan *dch = to_d350_chan(chan);
-> @@ -558,8 +715,9 @@ static irqreturn_t d350_irq(int irq, void *data)
->   	writel_relaxed(ch_status, dch->base + CH_STATUS);
->   
->   	spin_lock(&dch->vc.lock);
-> -	vchan_cookie_complete(vd);
->   	if (ch_status & CH_STAT_INTR_DONE) {
-> +		vchan_cookie_complete(vd);
-> +		dch->desc = NULL;
+diff --git a/Documentation/devicetree/bindings/mfd/ti,twl.yaml b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+index f162ab60c..444e2b2b5 100644
+--- a/Documentation/devicetree/bindings/mfd/ti,twl.yaml
++++ b/Documentation/devicetree/bindings/mfd/ti,twl.yaml
+@@ -11,9 +11,9 @@ maintainers:
+ 
+ description: |
+   The TWLs are Integrated Power Management Chips.
+-  Some version might contain much more analog function like
++  Some versions might contain much more analog functionality like
+   USB transceiver or Audio amplifier.
+-  These chips are connected to an i2c bus.
++  These chips are connected to an I2C bus.
+ 
+ allOf:
+   - if:
+@@ -76,6 +76,107 @@ allOf:
+           properties:
+             compatible:
+               const: ti,twl4030-wdt
++
++        audio:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
++        keypad:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
++        pwm:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: PWM1 and PWM2
++          properties:
++            compatible:
++              enum:
++                - ti,twl4030-pwm
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        pwmled:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: PWMA and PWMB (connected to LEDA & LEDB terminals)
++          properties:
++            compatible:
++              enum:
++                - ti,twl4030-pwmled
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        twl4030-usb:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
++        gpio:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
++        power:
++          type: object
++          additionalProperties: false
++          description:
++            The power management module inside the TWL4030 provides several facilities
++            to control the power resources, including power scripts. For now, the
++            binding only supports the complete shutdown of the system after poweroff.
++          properties:
++            compatible:
++              description: |
++                The compatible string determines the specific power configuration.
++                Multiple compatible strings may be used to specify fallback configurations.
++                "ti,twl4030-power": Standard power control.
++                "ti,twl4030-power-reset": Recommended for OMAP3530 and similar SoCs
++                  that require a special configuration for warm reset to work correctly.
++                "ti,twl4030-power-idle": Loads the TI-recommended configuration for
++                  idle modes into the PMIC.
++                "ti,twl4030-power-idle-osc-off": Uses the recommended idle configuration
++                  but also shuts down the external oscillator. This may not work on all
++                  boards depending on the oscillator wiring.
++                Board-specific compatible strings may also be used.
++              maxItems: 2
++              items:
++                enum:
++                  - ti,twl4030-power
++                  - ti,twl4030-power-reset
++                  - ti,twl4030-power-idle
++                  - ti,twl4030-power-idle-osc-off
++                  - ti,twl4030-power-beagleboard-xm
++                  - ti,twl4030-power-omap3-evm
++                  - ti,twl4030-power-n900
++
++            ti,system-power-controller:
++              type: boolean
++              deprecated: true
++              description: |
++                DEPRECATED. The standard 'system-power-controller' property
++                on the parent node should be used instead.
++
++            ti,use_poweroff:
++              type: boolean
++              deprecated: true
++
++          required:
++            - compatible
++
+   - if:
+       properties:
+         compatible:
+@@ -115,6 +216,43 @@ allOf:
+           properties:
+             compatible:
+               const: ti,twl6030-gpadc
++
++        pwm:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: PWM0 and PWM1
++          properties:
++            compatible:
++              enum:
++                - ti,twl6030-pwm
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        pwmled:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: LED PWM (mainly used as charging indicator LED)
++          properties:
++            compatible:
++              enum:
++                - ti,twl6030-pwmled
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        usb-comparator:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
+   - if:
+       properties:
+         compatible:
+@@ -154,6 +292,42 @@ allOf:
+             compatible:
+               const: ti,twl6032-gpadc
+ 
++        pwm:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: PWM0 and PWM1
++          properties:
++            compatible:
++              enum:
++                - ti,twl6030-pwm
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        pwmled:
++          type: object
++          $ref: /schemas/pwm/pwm.yaml#
++          description: LED PWM (mainly used as charging indicator LED)
++          properties:
++            compatible:
++              enum:
++                - ti,twl6030-pwmled
++            '#pwm-cells':
++              const: 2
++          required:
++            - compatible
++            - '#pwm-cells'
++          additionalProperties: true
++
++        usb-comparator:
++          type: object
++          properties:
++            compatible: true
++          additionalProperties: true
++
+ properties:
+   compatible:
+     description:
+@@ -181,6 +355,12 @@ properties:
+   "#clock-cells":
+     const: 1
+ 
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: fck
++
+   charger:
+     type: object
+     additionalProperties: true
+@@ -271,6 +451,16 @@ examples:
+           compatible = "ti,twl6030-vmmc";
+           ti,retain-on-reset;
+         };
++
++        pwm {
++          compatible = "ti,twl6030-pwm";
++          #pwm-cells = <2>;
++        };
++
++        pwmled {
++          compatible = "ti,twl6030-pwmled";
++          #pwm-cells = <2>;
++        };
+       };
+     };
+ 
+@@ -325,6 +515,20 @@ examples:
+         watchdog {
+           compatible = "ti,twl4030-wdt";
+         };
++
++        power {
++          compatible = "ti,twl4030-power";
++        };
++
++        pwm {
++          compatible = "ti,twl4030-pwm";
++          #pwm-cells = <2>;
++        };
++
++        pwmled {
++          compatible = "ti,twl4030-pwmled";
++          #pwm-cells = <2>;
++        };
+       };
+     };
+ ...
+diff --git a/Documentation/devicetree/bindings/mfd/twl4030-power.txt b/Documentation/devicetree/bindings/mfd/twl4030-power.txt
+deleted file mode 100644
+index 3d1996331..000000000
+--- a/Documentation/devicetree/bindings/mfd/twl4030-power.txt
++++ /dev/null
+@@ -1,48 +0,0 @@
+-Texas Instruments TWL family (twl4030) reset and power management module
+-
+-The power management module inside the TWL family provides several facilities
+-to control the power resources, including power scripts. For now, the
+-binding only supports the complete shutdown of the system after poweroff.
+-
+-Required properties:
+-- compatible : must be one of the following
+-	"ti,twl4030-power"
+-	"ti,twl4030-power-reset"
+-	"ti,twl4030-power-idle"
+-	"ti,twl4030-power-idle-osc-off"
+-
+-The use of ti,twl4030-power-reset is recommended at least on
+-3530 that needs a special configuration for warm reset to work.
+-
+-When using ti,twl4030-power-idle, the TI recommended configuration
+-for idle modes is loaded to the tlw4030 PMIC.
+-
+-When using ti,twl4030-power-idle-osc-off, the TI recommended
+-configuration is used with the external oscillator being shut
+-down during off-idle. Note that this does not work on all boards
+-depending on how the external oscillator is wired.
+-
+-Optional properties:
+-
+-- ti,system-power-controller: This indicates that TWL4030 is the
+-  power supply master of the system. With this flag, the chip will
+-  initiate an ACTIVE-to-OFF or SLEEP-to-OFF transition when the
+-  system poweroffs.
+-
+-- ti,use_poweroff: Deprecated name for ti,system-power-controller
+-
+-Example:
+-&i2c1 {
+-	clock-frequency = <2600000>;
+-
+-	twl: twl@48 {
+-		reg = <0x48>;
+-		interrupts = <7>; /* SYS_NIRQ cascaded to intc */
+-		interrupt-parent = <&intc>;
+-
+-		twl_power: power {
+-			compatible = "ti,twl4030-power";
+-			ti,use_poweroff;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt b/Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+deleted file mode 100644
+index d97ca1964..000000000
+--- a/Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Texas Instruments TWL series PWM drivers
+-
+-Supported PWMs:
+-On TWL4030 series: PWM1 and PWM2
+-On TWL6030 series: PWM0 and PWM1
+-
+-Required properties:
+-- compatible: "ti,twl4030-pwm" or "ti,twl6030-pwm"
+-- #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
+-  the cells format.
+-
+-Example:
+-
+-twl_pwm: pwm {
+-	compatible = "ti,twl6030-pwm";
+-	#pwm-cells = <2>;
+-};
+diff --git a/Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt b/Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
+deleted file mode 100644
+index 31ca1b032..000000000
+--- a/Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
++++ /dev/null
+@@ -1,17 +0,0 @@
+-Texas Instruments TWL series PWM drivers connected to LED terminals
+-
+-Supported PWMs:
+-On TWL4030 series: PWMA and PWMB (connected to LEDA and LEDB terminals)
+-On TWL6030 series: LED PWM (mainly used as charging indicator LED)
+-
+-Required properties:
+-- compatible: "ti,twl4030-pwmled" or "ti,twl6030-pwmled"
+-- #pwm-cells: should be 2. See pwm.yaml in this directory for a description of
+-  the cells format.
+-
+-Example:
+-
+-twl_pwmled: pwmled {
+-	compatible = "ti,twl6030-pwmled";
+-	#pwm-cells = <2>;
+-};
+-- 
+2.39.5
 
-What's this about? As I mentioned on the earlier patches it was very 
-fiddly to get consistently appropriate handling of errors for 
-MEM_TO_MEM, so please explain if this change is somehow necessary for 
-MEM_TO_DEV/DEV_TO_MEM. Otherwise, if anything it just looks like an 
-undocumented bodge around what those previous patches subtly broke.
-
->   		dch->status = DMA_COMPLETE;
->   		dch->residue = 0;
->   		d350_start_next(dch);
-> @@ -617,7 +775,7 @@ static int d350_probe(struct platform_device *pdev)
->   	struct device *dev = &pdev->dev;
->   	struct d350 *dmac;
->   	void __iomem *base;
-> -	u32 reg, dma_chan_mask;
-> +	u32 reg, dma_chan_mask, trig_bits = 0;
->   	int ret, nchan, dw, aw, r, p;
->   	bool coherent, memset;
->   
-> @@ -637,13 +795,11 @@ static int d350_probe(struct platform_device *pdev)
->   	dw = 1 << FIELD_GET(DMA_CFG_DATA_WIDTH, reg);
->   	aw = FIELD_GET(DMA_CFG_ADDR_WIDTH, reg) + 1;
->   
-> -	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(aw));
-> -	coherent = device_get_dma_attr(dev) == DEV_DMA_COHERENT;
-> -
->   	dmac = devm_kzalloc(dev, struct_size(dmac, channels, nchan), GFP_KERNEL);
->   	if (!dmac)
->   		return -ENOMEM;
->   
-> +	dmac->dma.dev = dev;
-
-Similarly, why are these two hunks just moving lines around apparently 
-at random?
-
->   	dmac->nchan = nchan;
->   
->   	/* Enable all channels by default */
-> @@ -655,12 +811,14 @@ static int d350_probe(struct platform_device *pdev)
->   		return ret;
->   	}
->   
-> +	dma_set_mask_and_coherent(dev, DMA_BIT_MASK(aw));
-> +	coherent = device_get_dma_attr(dev) == DEV_DMA_COHERENT;
-> +
->   	reg = readl_relaxed(base + DMAINFO + DMA_BUILDCFG1);
->   	dmac->nreq = FIELD_GET(DMA_CFG_NUM_TRIGGER_IN, reg);
->   
->   	dev_dbg(dev, "DMA-350 r%dp%d with %d channels, %d requests\n", r, p, dmac->nchan, dmac->nreq);
->   
-> -	dmac->dma.dev = dev;
->   	for (int i = min(dw, 16); i > 0; i /= 2) {
->   		dmac->dma.src_addr_widths |= BIT(i);
->   		dmac->dma.dst_addr_widths |= BIT(i);
-> @@ -692,6 +850,7 @@ static int d350_probe(struct platform_device *pdev)
->   
->   		dch->coherent = coherent;
->   		dch->base = base + DMACH(i);
-> +		dch->ch = i;
->   		writel_relaxed(CH_CMD_CLEAR, dch->base + CH_CMD);
->   
->   		reg = readl_relaxed(dch->base + CH_BUILDCFG1);
-> @@ -711,6 +870,7 @@ static int d350_probe(struct platform_device *pdev)
->   
->   		/* Fill is a special case of Wrap */
->   		memset &= dch->has_wrap;
-> +		trig_bits |= dch->has_trig << dch->ch;
-
-This is a bool merely dressed up as a bitmap, the shift is doing nothing.
-
-Thanks,
-Robin.
-
->   		reg = readl_relaxed(dch->base + CH_BUILDCFG0);
->   		dch->tsz = FIELD_GET(CH_CFG_DATA_WIDTH, reg);
-> @@ -723,6 +883,13 @@ static int d350_probe(struct platform_device *pdev)
->   		vchan_init(&dch->vc, &dmac->dma);
->   	}
->   
-> +	if (trig_bits) {
-> +		dmac->dma.directions |= (BIT(DMA_DEV_TO_MEM) | BIT(DMA_MEM_TO_DEV));
-> +		dma_cap_set(DMA_SLAVE, dmac->dma.cap_mask);
-> +		dmac->dma.device_config = d350_slave_config;
-> +		dmac->dma.device_prep_slave_sg = d350_prep_slave_sg;
-> +	}
-> +
->   	if (memset) {
->   		dma_cap_set(DMA_MEMSET, dmac->dma.cap_mask);
->   		dmac->dma.device_prep_dma_memset = d350_prep_memset;
-> @@ -759,5 +926,6 @@ static struct platform_driver d350_driver = {
->   module_platform_driver(d350_driver);
->   
->   MODULE_AUTHOR("Robin Murphy <robin.murphy@arm.com>");
-> +MODULE_AUTHOR("Jisheng Zhang <jszhang@kernel.org>");
->   MODULE_DESCRIPTION("Arm DMA-350 driver");
->   MODULE_LICENSE("GPL v2");
 
