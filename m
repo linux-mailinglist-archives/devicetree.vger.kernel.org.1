@@ -1,180 +1,146 @@
-Return-Path: <devicetree+bounces-210678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5121B3C7C7
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 06:10:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A99EB3C7FC
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 06:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 93B575E84A1
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 04:10:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 407EB1BA7444
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 04:55:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 753A82773FF;
-	Sat, 30 Aug 2025 04:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C2227B4FA;
+	Sat, 30 Aug 2025 04:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d822i5PQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I4buTszi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B298128395;
-	Sat, 30 Aug 2025 04:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3CB1C21B199;
+	Sat, 30 Aug 2025 04:55:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756527033; cv=none; b=odrubKTgMbtwBhZo7HuTzzGSxvRpjfXUh39/Ns8BxYvw0dFRTjKf8SQWB1AijLhN64hDO4irAguoeYAm7OAbuYl12jiv650xKw8vDuv3SV8YXwxUwuxJUy7emIM4kbo3U0lhhkcJDD8EUN+1S6cs4UJuz6qfMgOQ1/VcPVZx8KQ=
+	t=1756529702; cv=none; b=PuXCoigRkiPTaV5GsaGnJp3KEG0CSYqJMVOWDccG4xSruzO2hRAPUOsh+VWkTk3njUtrx5KmFHzn48asTI0lBpkLQiFZeBAhsQ3OSrCCg4NqZj6XY2wtzm1roHbhcEay3T9UDcbBcUFNXfotyjklDi1hPZOUsfxRVAQaw78/2k8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756527033; c=relaxed/simple;
-	bh=+Bg+RVavGYMPykEG5hhqXkc3Av6gb9iZ45IEltTHUHk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jKkYpJvKMqQ85xzG6noP8bqdi1jG8LR7uqi9ELqldYJfQTSm+u/RwH+HvWYRh8hf65TnuHi9SrR/FU8SuMyd3UOBRqiwpLYrEorXN75W1LX5pM8yJ9H5i2nnbXXcwbJQGajHg6CqthdImJQ6kVOAd3r3apd+zGKb7ljj258boog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d822i5PQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EF0FC4CEEB;
-	Sat, 30 Aug 2025 04:10:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756527032;
-	bh=+Bg+RVavGYMPykEG5hhqXkc3Av6gb9iZ45IEltTHUHk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=d822i5PQL/Uvn3lE2lP6EXOe+aAdp86itNdmpV/DjBhUXFigUGStBOlEmkIVXZaiu
-	 4jqo7FEpZb4107b55pmYgddnw9xP9EkPeKvFcThgDO+ZS3xK6Oyr+Vr/c4zaXG6HZy
-	 fpT9SOIapIKkhqhJ9oKJ/fptZNB2qmSLXRFOjUBfcHy8h0xFQ++D97B3bufKCGXPDi
-	 JWEhUdvAY6ADvJ1aTRU1LyBJvRNqBGkY5eHVYcczZ/okP/PqjZ3q6ceafB7ia7fXA0
-	 V3WLJKjK7tYfpzBz7h/pL5X2rOYheO6Yp91+Ya7h1ygJ/0jUZAO/LfRI99l9qjImGY
-	 DhQRBlJyhQaBg==
-Date: Sat, 30 Aug 2025 09:40:22 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
-	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
-	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com, 
-	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
-	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-Subject: Re: [PATCH v3 3/9] PCI: of_property: Restore the arguments of the
- next level parent
-Message-ID: <zvyro2dl7hqproym4shawsckorhlcfkyucponfvw2qrbc44zb2@3kg2eaab42rj>
-References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
- <20250704161410.3931884-4-claudiu.beznea.uj@bp.renesas.com>
- <7wmpgldjvznbllotblv6ufybd2qqzb2ole2nhvbx4xiavyqa2b@ezaqwghxmbve>
- <d004d9c4-f71b-49e6-9ced-031761f5e338@tuxon.dev>
+	s=arc-20240116; t=1756529702; c=relaxed/simple;
+	bh=PblzP8bpvQ+dLTi4ROYQbeGB9S4128ks9eaC/YIJxJc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Wa8325teicEabi0LMpcaKDM4LCuVUATAEJ+8pxCn7PUb1vu8zPSTXiGeCmTrtGjanV3MiwMu3ugkpLefdWWIBV1O2a1RnE2vslWa88UzbRbPpj4FMfQcq7P+BP13ZIbz/dux9WfzjO5K8768tiZEhap/f66lWI54udtfwX2glc8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I4buTszi; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-afcb72d51dcso405695666b.0;
+        Fri, 29 Aug 2025 21:55:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756529699; x=1757134499; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=L+yI5stLOIjwsXcdEiYs3bjB2p7CosaRO1p+h70Op2g=;
+        b=I4buTszimWuv8rveKFArOLd/pcB5kqhuC2grgX0w/rvqNeKjapR6kW4qp2WIMCqSCc
+         oBHuaEbrN/YEZylCs/tgtCcRWffwv+iLVdoZ2i7EH2MVr5ZXFPhRF2WITho8QuB4lVhW
+         eytcMjAYNwFBJBGQSrq0VaO6KTWP0xxvfeDww/9WWb+jhkzhzRMk+qLJmFgZKEolp0+y
+         GUIMOO0kADWFvimISnfqKtWmDipA/Eam04675XCZ398Lv0GAL/mbHJn1HWVuGnZh4dHF
+         NOwuB8h723Gvho1ifQgPSE9sFusvv6PnZTkPmx5nto4WhZN2aiGG1uH6Y42txGG3LzkM
+         R8dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756529699; x=1757134499;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L+yI5stLOIjwsXcdEiYs3bjB2p7CosaRO1p+h70Op2g=;
+        b=X9+3KxpZgnhZPUKp51rMBNVzlPkBbcugYup1aPrF16RAFtHRWVG7UovDUonOS0PvnL
+         9LFJHhUleRSTBW12YI+Uuzdexv9OhrilJ7s/AaA12atuNwx2BupN1MXClDtmkj8VVi4H
+         wXabOYHcGbgYayRxrfyYftyEAFtA7iOjXS9ByvrtCy+rxObd3Ba+oYxScwkk8FwPE7MZ
+         K0kKvTaW3+KGft93x/rbPO7F7y7n5OCMXrxXY60+FD5B+H6YjC31/uwRrc2Ed+8GcLIX
+         e4jPx+Am+NnXH9rO9POArMh21uSCCeW6RJ5ZRqzZFCqWGz1MCkEkFZnZIO8RIM0P131M
+         ADcw==
+X-Forwarded-Encrypted: i=1; AJvYcCW1TzOVSGQFIEzTssjJBq/xb/N4EIOO92OqkDICHj7qYcqxzjiiL/3F+Lgp1dEsnYtSEOyzYQXRLKl7@vger.kernel.org, AJvYcCWfIGS9qykbuCfBEHxAUdFrY4wcXtD/jnvlAswcdgATSuu/GI+lg5ZKk9yAK87rfd5C2MmTNVwAgfLRPEpO@vger.kernel.org, AJvYcCXFfMm1HvsMICX8brhs6YBDNkj9redkRf1hHR/Oq4xmklNXUsVnH6/wGn0CQoFmwk9PxtEl8yX6wfPu@vger.kernel.org
+X-Gm-Message-State: AOJu0YwNO9n4AZx22YFqq6rVwhNybIyVBp1VY8rWb8bBcsrwjWYTNfRC
+	JZDfeaPi+IGEo9JaGP1OIOQ7SPdGGX3wt0Krkb63ZcnMztE96N69D17L44WNNkznB/Xz6J5pNTI
+	2lB8hz2W0knaz3vlvAaG0NBgEQmz2xQESvdl+HCwYUA==
+X-Gm-Gg: ASbGncsY0q/UMSjcTwMfhlP+EJh3GtjUyvY5T3V9o3738XYeTtsL5rwDc7MfWgv9oSK
+	F2KkYQjGnTZAu/qg6bQfpW9QzfrP4RLPLGIVg9BX/k6Ej/U3Tfwha5sUKY9dbfZXSMOB5T0e1pu
+	sHl512E2Gk6JpS/AYfi0q2kCTXG/ymjA/6rNfewlCDJ+HJ8EoeBMHt+z9Qv6ntJ7DAV+safcLPb
+	ef4S1Nd8aExk/+wuQ==
+X-Google-Smtp-Source: AGHT+IFj0e6R7gW2dq3SzRGVuI1tLR8avZykV/RaQ/6DCp+U4IEsYzRITqaeMNPY0l+hpisRYcj9AGWI2otRn873in0=
+X-Received: by 2002:a17:907:940a:b0:afe:f8cb:f8bc with SMTP id
+ a640c23a62f3a-b01d9732721mr80627866b.35.1756529699312; Fri, 29 Aug 2025
+ 21:54:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d004d9c4-f71b-49e6-9ced-031761f5e338@tuxon.dev>
+References: <20250824041013.9872-1-Jonathan.Santos@analog.com>
+ <CAHp75VcGG_h+wpo7hHL=ERYqbrvvAaufwPAYBsEbRn3dB8-dfA@mail.gmail.com> <aLH7XNuaZ2CkQVWo@JSANTO12-L01.ad.analog.com>
+In-Reply-To: <aLH7XNuaZ2CkQVWo@JSANTO12-L01.ad.analog.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Sat, 30 Aug 2025 07:54:22 +0300
+X-Gm-Features: Ac12FXw4AD2S_KJ5yR8SUzJlz6H_1uxrxXZpHKycQS1wQzd31-mvrNC149lZJY0
+Message-ID: <CAHp75VeP=G1Pa6=Q1gok5+mA7grDWrgAEM_m8FqjAwme==jt-A@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] iio: adc: ad7768-1: add support for ADAQ776x-1 ADC Family
+To: CAHp75VcGG_h+wpo7hHL=ERYqbrvvAaufwPAYBsEbRn3dB8-dfA@mail.gmail.com
+Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-kernel@vger.kernel.org, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	Michael.Hennerich@analog.com, lars@metafoo.de, jic23@kernel.org, 
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 21, 2025 at 10:40:40AM GMT, Claudiu Beznea wrote:
-> Hi, Manivannan,
-> 
-> On 20.08.2025 20:47, Manivannan Sadhasivam wrote:
-> > On Fri, Jul 04, 2025 at 07:14:03PM GMT, Claudiu wrote:
-> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
-> >>
-> >> of_pci_make_dev_node() creates a device tree node for the PCIe bridge it
-> >> detects. The node name follows the format: pci_type@pci_slot,pci_func. If
-> >> such a node already exists in the current device tree, a new one is not
-> >> created.
-> >>
-> >> When the node is created, its contents are populated with information from
-> >> the parent node. In the case of root complex nodes described in the device
-> >> tree, the created node duplicates the interrupt-map property. However, the
-> >> duplicated interrupt-map property does not correctly point to the next
-> >> interrupt controller.
-> >>
-> >> For example, in the case of the Renesas RZ/G3S SoC, the resulting device
-> >> tree node is as follows (only relevant DT properties are shown):
-> >>
-> >> pcie@11e40000 {
-> >>
-> >>     // ...
-> >>
-> >>     interrupt-map = <0x00 0x00 0x00 0x01 0x1f 0x00 0x00 0x00 0x00
-> >>                      0x00 0x00 0x00 0x02 0x1f 0x00 0x00 0x00 0x01
-> >>                      0x00 0x00 0x00 0x03 0x1f 0x00 0x00 0x00 0x02
-> >>                      0x00 0x00 0x00 0x04 0x1f 0x00 0x00 0x00 0x03>;
-> >>     interrupt-map-mask = <0x00 0x00 0x00 0x07>;
-> >>     interrupt-controller;
-> >>     #interrupt-cells = <0x01>;
-> >>
-> >>     #address-cells = <0x03>;
-> >>     #size-cells = <0x02>;
-> >>
-> >>     phandle = <0x1f>;
-> >>
-> >>     // ...
-> >>
-> >>     pci@0,0 {
-> >>         reg = <0x00 0x00 0x00 0x00 0x00>;
-> >>         interrupt-map = <0x10000 0x00 0x00 0x01 0x1f 0x00 0x11e40000 0x00 0x00
-> >>                          0x10000 0x00 0x00 0x02 0x1f 0x00 0x11e40000 0x00 0x01
-> >>                          0x10000 0x00 0x00 0x03 0x1f 0x00 0x11e40000 0x00 0x02
-> >>                          0x10000 0x00 0x00 0x04 0x1f 0x00 0x11e40000 0x00 0x03>;
-> >>         interrupt-map-mask = <0xffff00 0x00 0x00 0x07>;
-> >>         #interrupt-cells = <0x01>;
-> >>
-> >>         #address-cells = <0x03>;
-> >>         #size-cells = <0x02>;
-> >>
-> >>         // ...
-> >>     };
-> >> };
-> >>
-> >> With this pci@0,0 node, the interrupt-map parsing code behaves as follows:
-> >>
-> >> When a PCIe endpoint is enumerated and it requests to map a legacy
-> >> interrupt, of_irq_parse_raw() is called requesting the interrupt from
-> >> pci@0,0. If INTA is requested, of_irq_parse_raw() first matches:
-> >>
-> >> interrupt-map = <0x10000 0x00 0x00 0x01 0x1f 0x00 0x11e40000 0x00 0x00>
-> >>
-> >> from the pci@0,0 node. It then follows the phandle 0x1f to the interrupt
-> >> parent, looking for a mapping for interrupt ID 0x00
-> >> (0x00 0x11e40000 0x00 0x00). However, the root complex node does not
-> >> provide this mapping in its interrupt-map property, causing the interrupt
-> >> request to fail.
-> >>
-> > 
-> > Are you trying to say that the generated bridge node incorrectly uses Root
-> > Complex node as the interrupt parent?
-> 
-> I'm trying to say that the generated bridge node is wrong because it copies
-> the interrupt-map from the root complex mapping int 0x1 to 0x0 in the
-> bridge node, while it should have map the int 0x1 to something valid for
-> root complex mapping.
-> 
-> E.g. when some device requests INT with id 0x1 from bridge the bridge
-> mapping returns 0x0 then the returned 0x0 is used to find a new mapping on
-> the root complex based on what is provided for in with interrupt-map DT
-> property.
-> 
+On Fri, Aug 29, 2025 at 10:11=E2=80=AFPM Jonathan Santos <jonath4nns@gmail.=
+com> wrote:
+> On 08/24, Andy Shevchenko wrote:
+> > On Sun, Aug 24, 2025 at 7:10=E2=80=AFAM Jonathan Santos
 
-TBH, I don't know why it generates the 'interrupt-map' property for the bridge
-node first place. It just creates two level lookup and in the absence, the IRQ
-code will traverse up the node to find the interrupt parent anyway.
+...
 
-Maybe the intention was to avoid doing the traversal.
+> > > +       unsigned long denominator, numerator;
+> >
+> > struct u32_fract fract;
+>
+> Problem is that rational_best_approximation requires a unsigned long. I
+> could do:
+>
+> rational_best_approximation(fract.numerator, fract.denominator,
+>                                             INT_MAX, INT_MAX,
+>                                             (unsigned long *)&fract.numer=
+ator,
+>                                             (unsigned long *)&fract.denom=
+inator);
 
-> 
-> > 
-> > I'm getting confused since your example above shows '0x1f' as the interrupt
-> > parent phandle for both Root Complex and bridge nodes. But I don't know to which
-> > node this phandle corresponds to.
-> 
-> Root complex node from this patch description has:
-> 
-> phandle = <0x1f>;
-> 
+No, this is not good. And it will overflow. See below for a better alternat=
+ive.
 
-Oops. I failed to spot it.
+> But I don't know if this is the best practice.
 
-- Mani
+The best practice is to add a patch to extend that to cover unsigned
+long and long
+https://elixir.bootlin.com/linux/v6.17-rc3/source/include/linux/math.h#L122
+It's just a couple of lines which I review and acknowledge
+immediately. (Just make them a precursor patch)
 
--- 
-மணிவண்ணன் சதாசிவம்
+BUT, looking at the code, I don't see that people use the same
+variables for input and output (otherwise it's also considered not the
+best practice, for example, in the cases when input can be made a
+const).
+
+That said, the patching math.h is optional, either way, make sure your
+input and output are different variables.
+
+> One way around this would be to represent the gains in fractions instead =
+of 1000x, example:
+> then we could drop the rational approximation.
+
+I like the use of rational best approximation. I think it gives a
+really nice algo for simplifying fractions.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
