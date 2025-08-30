@@ -1,302 +1,160 @@
-Return-Path: <devicetree+bounces-210820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4375B3CE73
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 19:58:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF57DB3CE7E
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 20:02:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A409164937
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:58:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 98269207FFF
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 18:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C828A2D7DF9;
-	Sat, 30 Aug 2025 17:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E287F2D8372;
+	Sat, 30 Aug 2025 18:02:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YpOHG9Z0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d4kFHbRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90255214A9B;
-	Sat, 30 Aug 2025 17:58:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8D4E25BEE5
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 18:02:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756576706; cv=none; b=ODJVnPn2hzbJA0/S9CaEneRCgBXI2NBkBxbkfGrU9xdnupCIIhcRwbJ/s36fXSIGxcnL7CNHM1a9ufIU3Od4+9cooseQxiaNc3dhIQfnk/xJjEGfwqmYeqN1ZGdTxHqpUqMmiV/9Ao2rUnzC/ej+yCyUYuVfXG9qmYKYS86W6xE=
+	t=1756576953; cv=none; b=dHB6l2x/IdTTAJIA6AtgT8j2MxMdg+vFQMR1RJ8QU/ZCkJZ+l1sFzsfLYmaKehrB4dSgLihSKmCW4vMx0nQUQOY4GSVDK1a00Q307CTbHWle2n4f6RjqNQXoL+dMymRCbY5u8B+ucj5/CKSoP5/wqYz70/BNj1xaVP/VwUHbqpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756576706; c=relaxed/simple;
-	bh=gLEo2uJLmeD2rR9NOYEoCgLlxswyya3IZn7gOnZtxFA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hRw/oqjmKFRpn+NpvyiNQtgVa9z36J0c5ZeLHKTRpbIZeK+UXdBPpQgBQ4qt7wfqld9cJGoI8V04sUz8CeXaP9Dt/pOYqdS183orDePfsz/Sv3BYpPKKsWhkr21T75IyuEbEd0q0nmmXdyel8xeWaJLC7mBa41ukmqomuH+TFHg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YpOHG9Z0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98409C4CEEB;
-	Sat, 30 Aug 2025 17:58:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756576706;
-	bh=gLEo2uJLmeD2rR9NOYEoCgLlxswyya3IZn7gOnZtxFA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=YpOHG9Z0DYuWh8xIkWjRHdBtNFjJj/psL6PFm0jZXSPaYqOcl/AXbIBmDcX2hD9YY
-	 8hqmvUXWIV/Dlu3PwzLO32cecNlaiqLGkI01yDFerWB/YxVgQvW4SU5/5Ln0iTuUrH
-	 Wf4sqaFG9npL4Jk5DlAN/UIj2lgCuc2ICc3uHsE9UIDYkc2C9V46embsFkYdO0Nymp
-	 HbRHSjKj7SVMR1/VHT4R1kQ87fuH8PHNjxongb+aFjm2eiucDO6KCmUqVzSM4mF2Sh
-	 wMmiSTN0M+SXl/yqkOiFN694gPvF3RFsg7hc+FN2vATTpXyP1qnh+h4otBQ2k2Llha
-	 OuX3pFTa8QG4A==
-Date: Sat, 30 Aug 2025 18:58:09 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Cc: robh@kernel.org, krzysztof.kozlowski@linaro.org, krzk+dt@kernel.org,
- conor+dt@kernel.org, agross@kernel.org, andersson@kernel.org,
- lumag@kernel.org, dmitry.baryshkov@oss.qualcomm.com,
- konradybcio@kernel.org, daniel.lezcano@linaro.org, sboyd@kernel.org,
- amitk@kernel.org, thara.gopinath@gmail.com, lee@kernel.org,
- rafael@kernel.org, subbaraman.narayanamurthy@oss.qualcomm.com,
- david.collins@oss.qualcomm.com, anjelique.melendez@oss.qualcomm.com,
- kamal.wadhwa@oss.qualcomm.com, rui.zhang@intel.com, lukasz.luba@arm.com,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org, cros-qcom-dts-watchers@chromium.org,
- quic_kotarake@quicinc.com, neil.armstrong@linaro.org,
- stephan.gerhold@linaro.org
-Subject: Re: [PATCH V7 5/5] thermal: qcom: add support for PMIC5 Gen3 ADC
- thermal monitoring
-Message-ID: <20250830185809.5bc010cb@jic23-huawei>
-In-Reply-To: <20250826083657.4005727-6-jishnu.prakash@oss.qualcomm.com>
-References: <20250826083657.4005727-1-jishnu.prakash@oss.qualcomm.com>
-	<20250826083657.4005727-6-jishnu.prakash@oss.qualcomm.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1756576953; c=relaxed/simple;
+	bh=LL1hd9q8LJpTq1VIPJ6jPwhtJlsQGlDix5UjkykB4Z0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i6ymWSbd6m+7Bbs/7kaWCDa+krlNVXx1srhZz3OHdM+tOrCfb6sWhAPjGuCElOo5fiTF8EXmLmNQ+YU4clRGHXFVOSJQdRGgZFXYrJ8egoBw71rWokYGnRXw1vYTzfgLeE5p/ZubjfOjVHSQloGQMADB0gVR/Ll+kz/hzuO5lDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d4kFHbRn; arc=none smtp.client-ip=209.85.160.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-30cceb07f45so3219154fac.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 11:02:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756576950; x=1757181750; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PD2EKFpAobF4U0TIuLMjpEcO1H/Nnyn+f8Dfu+DnkNI=;
+        b=d4kFHbRnKQoKXBWL1zWyAwAs9XrZhybRacslpYsfOE/8svlNjSAa8Db/NCLXxiJRfA
+         J2QD4/foHnDmHwjuCSsOjuJdbemw7PsoCS5Uu6HXPTYCRCgcgnVvheVSKQyQpip6/XBP
+         MXz5Fm4B1McmU3Wff8PnTJzziO8LqKydzV6W7lgjTSLztkWWi8KoF8jJh5zTod8q8sIa
+         wdfUEv0LJL8woK7iGwOs86dgFktN/7oUDsaxpR4w8skkPSaKoxIEI7ZTIEdD0ImcJ/2B
+         NNHGtdWgXgCxV140u8AZQooK2BGzWxAuHzVH5fzMh7d38ELATTJP4PjnOCL/xLmLDsBH
+         4Piw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756576950; x=1757181750;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PD2EKFpAobF4U0TIuLMjpEcO1H/Nnyn+f8Dfu+DnkNI=;
+        b=H5S2jZFkiThGP8nNFZPHjz0VITPVoEfczL0VtFT4vxiBOR4/PpaQCun4GDkotlZYyL
+         p3rlhO097AP12cNGJIXTB4VUWh2jifPOckJosnkfL6sMiihRHASHNSqmMzChktnOlzva
+         YHiGdQ8RzrQOhw1EdzX4W5tdSAK5kri3fKSx8DINE0FyuSD0p+Utfo023lY8vqHhDgwr
+         W7UqI5RO1E0ML4+lhbKj0727WanNvxsZ0SAnzkpGaMcO3mdzrPgsdoig6ozuudaE3MBc
+         yr2a5jJNekfmt20YblUECNBYnowsa0bvtygSlwbUubUl3lqY/GodFql0N6tkZOaQYans
+         vI2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWYTOmzyyqw5zDnAldXix4zuDBaxP2JLTZt2D5mpYLONHTqb6a6T+amW1timvvu9VAG3RZoib8wMcnJ@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywu0CX2bVN+hZOBcPMmrCD2as5FhkF51bBa8YbFt655CUG9op1E
+	20Z0tkr9L7zz4Aj4jJrUFSe30TBHROwGLE1JIC4naIGgmv1vgqbdWn9XTXr5JNq+LJU=
+X-Gm-Gg: ASbGncs0DR2f2UxJZxJFrMGi3C22gDp7t4w294Bjd6h9LqJ8Y9s1ipy5cxyTefO5bbH
+	2hQ8anREBxGabzsNEyTJ7TSbqIsETRCBjU7bc5mo9d2rpQ+BV9jYuyAOtCQepldtfdcBHPTszVN
+	bVjetaDHRWED2WpTtBXHpuMexySr2hFuS/EyEykVciWc9/EVtr9annxJLLHh3GX+QPIG43AvDnK
+	6XKj0frj0hr2EKiKtWG/tVMEOByfzzyfOEavM2QYEL2gCFNI2l6N9eXzsrKN/qsXcScSkc9LQR+
+	rWP7LLMlmr038d3V8EKwYvkeykvmclz4MzGdsWxPjUbwe+SilNA8/SFlHHHB/E/AIo+9KUn8rqh
+	odpVnKduMQEtMxno0VeqErfSS05wfbos2y/a0u/zZn5qrljb7HjVoI3HyfJqvaR3GZTpIX1HJQI
+	5IOZTDNViQOA==
+X-Google-Smtp-Source: AGHT+IGSJvFvC9dcmKaGf9glwESPFKs7sboRW3GSWHC52Tz6jlzKsP6xrkD7Hc7UHEkT8qvw/3aY5Q==
+X-Received: by 2002:a05:6870:c0d:b0:315:b768:bd23 with SMTP id 586e51a60fabf-319633c79a1mr1298016fac.34.1756576949951;
+        Sat, 30 Aug 2025 11:02:29 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:f7b4:dfbd:5110:c59d? ([2600:8803:e7e4:1d00:f7b4:dfbd:5110:c59d])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3196d2a7f3csm392769fac.8.2025.08.30.11.02.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Aug 2025 11:02:29 -0700 (PDT)
+Message-ID: <033e8639-67db-4397-b8c1-d1b7774eb9fe@baylibre.com>
+Date: Sat, 30 Aug 2025 13:02:28 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 10/15] dt-bindings: iio: adc: adi,ad4030: Add
+ adi,clock-mode
+To: Marcelo Schmitt <marcelo.schmitt@analog.com>, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Cc: jic23@kernel.org, Michael.Hennerich@analog.com, nuno.sa@analog.com,
+ eblanc@baylibre.com, andy@kernel.org, corbet@lwn.net, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, broonie@kernel.org,
+ Jonathan.Cameron@huawei.com, andriy.shevchenko@linux.intel.com,
+ ahaslam@baylibre.com, sergiu.cuciurean@analog.com, marcelo.schmitt1@gmail.com
+References: <cover.1756511030.git.marcelo.schmitt@analog.com>
+ <1acb071f7140c9d44ed616a9eaea00b0ee423164.1756511030.git.marcelo.schmitt@analog.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <1acb071f7140c9d44ed616a9eaea00b0ee423164.1756511030.git.marcelo.schmitt@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Tue, 26 Aug 2025 14:06:57 +0530
-Jishnu Prakash <jishnu.prakash@oss.qualcomm.com> wrote:
-
-> Add support for ADC_TM part of PMIC5 Gen3.
+On 8/29/25 7:43 PM, Marcelo Schmitt wrote:
+> AD4030 and similar designs support three different options for the clock
+> that frames ADC output data. Each option implies a different hardware
+> configuration for reading ADC data. Document AD4030 clock mode options.
 > 
-> This is an auxiliary driver under the Gen3 ADC driver, which implements the
-> threshold setting and interrupt generating functionalities of QCOM ADC_TM
-> drivers, used to support thermal trip points.
+> Co-developed-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Signed-off-by: Sergiu Cuciurean <sergiu.cuciurean@analog.com>
+> Signed-off-by: Marcelo Schmitt <marcelo.schmitt@analog.com>
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad4030.yaml      | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
 > 
-> Signed-off-by: Jishnu Prakash <jishnu.prakash@oss.qualcomm.com>
-Hi Jishnu,
-
-A few comment inline from a fresh read
-
-Jonathan
-
-
-> diff --git a/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
-> new file mode 100644
-> index 000000000000..9ec0d4e058b8
-> --- /dev/null
-> +++ b/drivers/thermal/qcom/qcom-spmi-adc-tm5-gen3.c
-> @@ -0,0 +1,535 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
-> + */
-
-
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> index bee85087a7b2..1e4e025b835f 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad4030.yaml
+> @@ -78,6 +78,18 @@ properties:
+>    interrupt-names:
+>      const: busy
+>  
+> +  adi,clock-mode:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: [ spi, echo, host ]
+> +    default: spi
+> +    description:
+> +      Describes how the clock that frames ADC data output is setup.
+> +      spi  - Spi-compatible. Normal SPI operation clocking.
+> +      echo - Echo-clock. Synchronous clock echoing to ease timing requirements
+> +             when using isolation on the digital interface.
+> +      host - Host. The Host clock mode uses an internal oscillator to clock out
+> +             the data bits. In this mode, the spi controller is not driving SCLK.
 > +
-> +static void tm_handler_work(struct work_struct *work)
-> +{
-> +	struct adc_tm5_gen3_chip *adc_tm5 = container_of(work, struct adc_tm5_gen3_chip,
-> +							 tm_handler_work);
-> +	struct adc_tm5_gen3_channel_props *chan_prop;
-> +	u8 tm_status[2] = {0};
-> +	u8 buf[16] = {0};
+>  required:
+>    - compatible
+>    - reg
 
-Small preference for { };
-which is effectively the same but for structures (so not relevant here) that is
-also defined by newer c specs to initialize holes which the {0}; version is not
-(but actually does in compilers with the settings the kernel uses).
+I think this would make sense as a common property in spi-peripheral-props.yaml
+as this is something that is not specific to just this ADC and also requires
+a supporting SPI controller with the matching wiring.
 
-> +	int i, ret = 0, sdam_index = -1;
-> +
-> +	for (i = 0; i < adc_tm5->nchannels; i++) {
-> +		bool upper_set = false, lower_set = false;
-> +		int temp, offset;
-> +		u16 code = 0;
-> +
-> +		chan_prop = &adc_tm5->chan_props[i];
-> +		offset = chan_prop->tm_chan_index;
-> +
-> +		adc5_gen3_mutex_lock(adc_tm5->dev);
-> +		if (chan_prop->sdam_index != sdam_index) {
-> +			sdam_index = chan_prop->sdam_index;
-> +			ret = adc5_gen3_tm_status_check(adc_tm5, sdam_index,
-> +							tm_status, buf);
-> +			if (ret) {
-> +				adc5_gen3_mutex_unlock(adc_tm5->dev);
-> +				break;
-> +			}
-> +		}
-> +
-> +		if ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en)
-> +			upper_set = true;
-		upper_set = ((tm_status[0] & BIT(offset)) && chan_prop->high_thr_en;
+I would also tweak the names and descriptions a bit to describe how it is wired
+rather than how it is used.
 
-seems as clear to me and avoid need to initialize above.
-
-The
-	for (i...) {
-		if (x)
-			b = true;
-	}
-
-pattern made me thing this was a check that built up over iterations, but it's
-not so avoiding that is probably a good thing as well!
-
-> +
-> +		if ((tm_status[1] & BIT(offset)) && chan_prop->low_thr_en)
-> +			lower_set = true;
-> +		adc5_gen3_mutex_unlock(adc_tm5->dev);
-> +
-> +		if (!(upper_set || lower_set))
-> +			continue;
-> +
-> +		code = get_unaligned_le16(&buf[2 * offset]);
-> +		pr_debug("ADC_TM threshold code:%#x\n", code);
-> +
-> +		ret = adc5_gen3_therm_code_to_temp(adc_tm5->dev,
-> +						   &chan_prop->common_props,
-> +						   code, &temp);
-> +		if (ret) {
-> +			dev_err(adc_tm5->dev,
-> +				"Invalid temperature reading, ret = %d, code=%#x\n",
-> +				ret, code);
-> +			continue;
-> +		}
-> +
-> +		chan_prop->last_temp = temp;
-> +		chan_prop->last_temp_set = true;
-> +		thermal_zone_device_update(chan_prop->tzd, THERMAL_TRIP_VIOLATED);
-> +	}
-> +}
+  spi-sclk-source:
+    enum: [ controller, echo, peripheral ]
+    default: controller
+    description: |
+      Indicates how the SCLK is wired.
+      controller: The SCLK line is driven by the controller (typical SPI bus).
+      echo: The SCLK line is driven by the controller and the peripheral echos
+        the clock back to an input on the controller on a second line.
+      peripheral: The SCLK line from the controller is not connected to the
+        peripheral and an independent clock output driven by the peripheral is
+        connected to an input on the controller.
 
 
-> +
-> +static int adc_tm5_gen3_configure(struct adc_tm5_gen3_channel_props *prop,
-> +				  int low_temp, int high_temp)
-> +{
-> +	struct adc_tm5_gen3_chip *adc_tm5 = prop->chip;
-> +	u8 conv_req = 0, buf[ADC_TM5_GEN3_CONFIG_REGS];
-Spit these sort of complex mix of types of declaration up.
-	u8 buf[*];
-	u8 conv_reg = 0;
-
-etc as it helps readability.  Generally I wouldn't mix assignment and
-non assignment and also not arrays or pointers and non pointers etc.
-
-> +	u16 adc_code;
-> +	int ret;
-
-> +
-> +	/* Select HW settle delay for channel */
-> +	buf[6] = FIELD_PREP(ADC5_GEN3_HW_SETTLE_DELAY_MASK,
-> +			    prop->common_props.hw_settle_time_us);
-> +
-> +	/* High temperature corresponds to low voltage threshold */
-> +	if (high_temp != INT_MAX) {
-> +		prop->low_thr_en = true;
-Perhaps neater as a assignment then use of the bool
-
-	prop->low_thr_en = (hightemp != INT_MAX);
-	if (prp->low_thr_en) {
-		adc_code = qcom_adc_tm5_gen2_temp_res_scale(high_temp);
-		put_unaligned_le16(adc_code, &buf[8]);
-	}
-
-Applies to below similar case as well.
-
-	
-> +		adc_code = qcom_adc_tm5_gen2_temp_res_scale(high_temp);
-> +		put_unaligned_le16(adc_code, &buf[8]);
-> +	} else {
-> +		prop->low_thr_en = false;
-> +	}
-> +
-> +	/* Low temperature corresponds to high voltage threshold */
-> +	if (low_temp != -INT_MAX) {
-> +		prop->high_thr_en = true;
-> +		adc_code = qcom_adc_tm5_gen2_temp_res_scale(low_temp);
-> +		put_unaligned_le16(adc_code, &buf[10]);
-> +	} else {
-> +		prop->high_thr_en = false;
-> +	}
-> +
-> +	buf[7] = 0;
-> +	if (prop->high_thr_en)
-> +		buf[7] |= ADC5_GEN3_HIGH_THR_INT_EN;
-> +	if (prop->low_thr_en)
-> +		buf[7] |= ADC5_GEN3_LOW_THR_INT_EN;
-> +
-> +	ret = adc5_gen3_write(adc_tm5->dev_data, prop->sdam_index, ADC5_GEN3_SID,
-> +			      buf, sizeof(buf));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	conv_req = ADC5_GEN3_CONV_REQ_REQ;
-> +	return adc5_gen3_write(adc_tm5->dev_data, prop->sdam_index,
-> +			       ADC5_GEN3_CONV_REQ, &conv_req, sizeof(conv_req));
-> +}
-
-> +
-> +static int adc_tm5_probe(struct auxiliary_device *aux_dev,
-> +			 const struct auxiliary_device_id *id)
-> +{
-> +	struct adc_tm5_gen3_chip *adc_tm5;
-> +	struct tm5_aux_dev_wrapper *aux_dev_wrapper;
-> +	struct device *dev = &aux_dev->dev;
-> +	int i, ret;
-> +
-> +	adc_tm5 = devm_kzalloc(dev, sizeof(*adc_tm5), GFP_KERNEL);
-> +	if (!adc_tm5)
-> +		return -ENOMEM;
-> +
-> +	aux_dev_wrapper = container_of(aux_dev, struct tm5_aux_dev_wrapper,
-> +				       aux_dev);
-> +
-> +	adc_tm5->dev = dev;
-> +	adc_tm5->dev_data = aux_dev_wrapper->dev_data;
-> +	adc_tm5->nchannels = aux_dev_wrapper->n_tm_channels;
-> +	adc_tm5->chan_props = devm_kcalloc(dev, aux_dev_wrapper->n_tm_channels,
-> +					   sizeof(*adc_tm5->chan_props), GFP_KERNEL);
-> +	if (!adc_tm5->chan_props)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < adc_tm5->nchannels; i++) {
-> +		adc_tm5->chan_props[i].common_props = aux_dev_wrapper->tm_props[i];
-> +		adc_tm5->chan_props[i].timer = MEAS_INT_1S;
-> +		adc_tm5->chan_props[i].sdam_index = (i + 1) / 8;
-> +		adc_tm5->chan_props[i].tm_chan_index = (i + 1) % 8;
-> +		adc_tm5->chan_props[i].chip = adc_tm5;
-> +	}
-> +
-> +	ret = devm_add_action_or_reset(dev, adc5_gen3_disable, adc_tm5);
-
-I'd normally expect a pairing of a devm action with whatever it is undoing.
-If not add a comment for why that isn't the case here.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	INIT_WORK(&adc_tm5->tm_handler_work, tm_handler_work);
-
-> +}
-> +
-> +static const struct auxiliary_device_id adctm5_auxiliary_id_table[] = {
-> +	{ .name = "qcom_spmi_adc5_gen3.adc5_tm_gen3", },
-> +	{}
-
-For IIO drivers I'm trying to slowly standardize some formatting choices.
-For these I picked (for no particular reason)
-	{ }
-
-> +};
 
