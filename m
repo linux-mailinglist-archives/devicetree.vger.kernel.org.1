@@ -1,242 +1,171 @@
-Return-Path: <devicetree+bounces-210719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82AEEB3CA1C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 12:20:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7E3AB3CA23
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 12:26:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A15E1B25194
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 10:20:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 10BE11B22191
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 10:26:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595112773EA;
-	Sat, 30 Aug 2025 10:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4955E274B55;
+	Sat, 30 Aug 2025 10:26:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vro7Wlxd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eOpg/OGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BCA2765D2
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 10:19:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78FCE2749E2;
+	Sat, 30 Aug 2025 10:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756549155; cv=none; b=WdXKbFSC7AYYW9auw0B7DqLV8GZ+wCUWhd9PLxfY1cc1th+ylCZp+d35V1vcnZkdMcv9B2tslG7smqBrN/DcN8dRIFZoo5AAIEpRWXUqAItU22o840ZXuIFYwLioyEiSnQ848vs528gSkWOLa03g4fnHUntkVtvzgmIv/fUCCIw=
+	t=1756549579; cv=none; b=WfS93Ucq5Wbwmy5yNDRbQFe08OFZNGRg2wAIIZeJUeftlkynZd/FkrVH8TkQ09Kv/gKlCBHPP8/MsxpARE/kLMjjnGlpljqEE6NwTJnzk6G95wu7MQfCx9oYnVNRhOLyPlEWD2OHI6JfViz2iVZZrBVPuj+i9SB8+0mYuJiACpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756549155; c=relaxed/simple;
-	bh=X4WEqjDsxEfbxQW5piC8N1hdhc/VRxO6TIqCp9uqtgU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dGjT5rCWWQb3jKjr/KyfWbIcnPuryzAtyH6P8qEjSllibiu0TPshgRGZpcf/yyW3JhSicv6foGoJIBwAsOUCWoteTpA7tXlONDBP23dJ4ZhmvS107G6ab3goLCaNMdn3l0nSPnq91EEC8yJ5dtO18qhDnptONj+CHhOD4a1UCCE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vro7Wlxd; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45a1b0ce15fso3213215e9.3
-        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 03:19:13 -0700 (PDT)
+	s=arc-20240116; t=1756549579; c=relaxed/simple;
+	bh=jLuGCcE4TiC7yL+c1hFI1DN93NdtSUJpTnLR8tAgg5k=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:Content-Type; b=RnHnJMhsS7TQSHUXQq7hcYy/DkbmIqh/5AsvgXrcRhJU+NhgMUuGI/A1gFmweN0FsklgrTOsCdZbLsnKN3RSgcdVb1o/xj0qj15JJObm4f+Y7Fc/ZWN2R+fQMBnZvXuydMDtlvQFQ1W2eQyuJwSi24hf1XQPrzSrv43mBxer3fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eOpg/OGb; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3d1bf79d7acso259045f8f.0;
+        Sat, 30 Aug 2025 03:26:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756549152; x=1757153952; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xXv42D6IasHB/AaS0CVhCn6HxB1qNyKePPGDfeN311k=;
-        b=Vro7WlxdmfgHmRtEZMFT0Aq9xSCGQVJsdi+MOV03urHytjOgioR9nB9rvUb31lqv43
-         e1ZdgmS61SSbdi8NJfb7BUkAxWBmTX4G7rHQAQgpQBt0uaAqxlj8v8cum50Q/4Lwo3yD
-         m4Hyq8SgXuHS9jiEwJtcA1HkDZLxUJDXsXRGweStgnBXYxahd3M1DsvaQ4yIVT+9qRI3
-         929rXs86HaUGToD8JzZeTotNsbRBgegXHTy2VZMh/5N7LCFx04SaoPs47KEpiEYZKs1D
-         6QrH7XbebwEp54UwRUNtqNPU2Ms4LCSSAWhalwA69iU/uF7nuGYNrcmnn+OgJo3nk5Lv
-         JhGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756549152; x=1757153952;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=gmail.com; s=20230601; t=1756549576; x=1757154376; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:autocrypt:subject:from
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xXv42D6IasHB/AaS0CVhCn6HxB1qNyKePPGDfeN311k=;
-        b=aUfi3wOiHhK9t7+mOoZ8hIDJQkBb2olSM2MhpMxHH18VsqPt97knEXbtnqpUUiYkGD
-         6eL4K1uMhNRYO13Ty8EcSDVQWLibucT1xeBPulWVIRGXGqXTFejfJDJRe17Q5ulMt6Mb
-         f5jpSCqZoXqfEVHdsHzYwCtr7CCEGvxLsVB4N+827NJ593DiE4NCEdZC+1rnW4KD/qMV
-         EwY/AYd49DV9AQesnmhGklg5OWiI1hwmG+GXz/5riAwE1uD0CN8iHA3x7IE2BpXmJ1jJ
-         0RAkWWXhpJzOvIX7ysB4QCq/A8Xkujea1OQXCAgPB70d19U/9pfAGq3RbSbGXGZnMZWd
-         DPVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUl6i3PMWwFzV3dcvwyz1Y8Rcz8e5g3pQ6iiUarXE5zINZcsjbF2Qf+Ryb9IJH6v3O/UuLja7KJ4dc6@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDHnca8tAqlgXa7KAal3U5aN/ThvmdquXVk+hi5lxNhJa6Df1I
-	PXVnUQHztG92IPzAzTV/xXTOIEZYFgnMbe2GUTh9l5jp17o40bOscDLnO9B7f5WEONY=
-X-Gm-Gg: ASbGncuwQALtQlvzwRSryOwk9GBJj/EWxcduQtp/l8U0LHjXLtJ6i7OjPVszlse4x2t
-	5IWPJ0V3rZlAzMVphy5Xow0hgcnJJup8l9GifxYyVRUiBSR3uT4zMtqfP21rPB/CUjczg7mx4jE
-	1n0t+rC7jh9ZjBlyRR7iu7yLXYr7f8K5A0uMk39Mky+IymZS9oAFsyc8LO2DX7Xss3Ko/GE6L2f
-	k5K5Kdru+DNi0L43u//XIoNqKOttrjGl1P8CDS2Xv+TwQIfS54FSvcXFfdGmwkBbVf/Z/QJsyDJ
-	JTQUXUvGGNQCiKDCpQj8MVg9m1HxNFCQ7DMuy+q4ChyckeozDSgkP1hNoFwXenfy3IYaSuiiwI5
-	2m6ifjHw9MrJ4iU3elblTiDyQbpjB7KOQ9QhuDgc8spKhN0gGRQ==
-X-Google-Smtp-Source: AGHT+IFLBqkvSILcmyvRV7c8Yxt6Oeamg/J6CxZ30pz6zRS3XCq3IAwZdXSdCt7ZFipQzams4ailVQ==
-X-Received: by 2002:a05:600c:3ba6:b0:439:88bb:d00b with SMTP id 5b1f17b1804b1-45b81f23df6mr19954015e9.5.1756549151588;
-        Sat, 30 Aug 2025 03:19:11 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf276c8eccsm6547492f8f.20.2025.08.30.03.19.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Aug 2025 03:19:11 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sat, 30 Aug 2025 12:19:00 +0200
-Subject: [PATCH 4/4] dt-bindings: watchdog: samsung-wdt: Split if:then: and
- constrain more
+        bh=2bEwm3goWEKjvfNy6RAUrtv/iztXuHjnaHOxeoayWGo=;
+        b=eOpg/OGb01aT0ga/F0kJ+WTptX2H6fuhxNOFJW36XQYJQi/dDaYEO8HPBfxUnpDiUK
+         Ut4cEDQc+rX11300xIEf1vqX5OSHlyMT0hpQ/FjgskCSFfvyy38m2mtxAp19bNhX1Uqp
+         rUW2GQxl2co/i/OWpbh6szqMElvyli41/au99iOquOG32+L6pEKwDUC+qbJRbM0Yoo1R
+         VNrNGA3UWczHL0SIiB7IlJD7wRFYJhQxTvOlaSGwC2zwgq+X7wGzO/nz5r5zYm1ceXNe
+         ZYO2n0m/lYOgrPnM3o5aCPe+ji/8ksXWkCYtXWWZtCp/M8H9mGPG3AXbuTF0Wv00SRns
+         XGhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756549576; x=1757154376;
+        h=content-transfer-encoding:cc:to:autocrypt:subject:from
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2bEwm3goWEKjvfNy6RAUrtv/iztXuHjnaHOxeoayWGo=;
+        b=RdFSGuWBNuyaxXJxpvSkIln5CB0+61YJjCfpfR577Ajepoa9n2gQ0nWe+6Fe5P8Ow4
+         rs13meZbBKFdDFHQuei9MpKT6lIbBvXRW+z5ZH0rAbhtzaz0f3RloBwG+wWQ3uXbjLof
+         eAs0zQvXfkL0SnLPGOon199j8gk4fkYR72PMIlPXNA26XY6xa1W6L5NIzlgERMnXhVGB
+         te2x90yfc0yHQb6Es0ff60wmJP3GoxibLTHVICW7RGBBAtytS+Dd3LvGEKEYCZrmJSQZ
+         trPDd+6pX2OsodVtdD3DxTgYY5C52Eh7YkPwW+yZlt199Q6w2ubmKGX1mKfa4CVVnISy
+         1yoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV8JLkHjOp7QCzDpqCj+CW4z+hFLGMxirklJv0lRvmZp3ArTWMVN4hYDdx6le+dAXtnAN5YNpGl@vger.kernel.org, AJvYcCXVP31RVJ3MuLv6OakccgBmQqiM81h4kYQdnNJXNrvf9DGJijLZ8k7CyAZOx0bCSyjan6z9F/hwTvZm@vger.kernel.org
+X-Gm-Message-State: AOJu0YxH/eADDX6Jv+MURd2eBuydBTtUF7O7fWs06HNyXTlkwV09SU6i
+	Rf6c/pQo0MuCab7Iw0eGWi/5sU7C4FJ8aG5Vsv3DIrtI6xnnEPL24sRn
+X-Gm-Gg: ASbGncs4AT4vc2CKPS288f7+zLZYl1BD8c6HDtJB2tf0GcCjVDXaVaEcmifCuWTxc/f
+	0gY9IKVEFaWRYlucQZAKkxbrNAi/uC9eFM4a3CgJ71s3SV4L61uqk/AlxjiPwvWZC675SyB02Qv
+	lgYD2SWB/R40OqoCHzFxewparOG4MriSWV71vK1fRJiOgb8Z+wloyMqwU+8JjF/uw5zjiuAA4v9
+	sEA2Zz6rPcmsq/TxWcMIEnsAbPm+Aq+y4JRAiKQ0H1w9hAIBBxhbVb/slDYq4GkLhjxatFEIDs8
+	JdJvo2MzWV0DAkkRH/zA5p2YY1arriw4aZ40oNoTDWDgH3x1LGPGZMQTI7Old6pfZBc35PF7x9k
+	45nJlPsMD2inxU4tn4emwl+n76WFssHVZ2e4vKD4dqR8l2eY2+kMDuPUpVJfkTT66TCv8+fQzQs
+	7/P1PtdbcP7sDZXOIDGKVv/fn9jEOlykmRD7X6VC2urAW9wgEuBrJGBWVWJWT4V+FjE+w=
+X-Google-Smtp-Source: AGHT+IESiXAPYaondigOOaobHYodOgUU55bDiY3IYU0ShHDYf19GplKbo7wficGsorW+hMbiIFY+kQ==
+X-Received: by 2002:a05:6000:4605:b0:3d2:3408:3b70 with SMTP id ffacd0b85a97d-3d234083c72mr932252f8f.13.1756549575580;
+        Sat, 30 Aug 2025 03:26:15 -0700 (PDT)
+Received: from ?IPV6:2003:ea:8f2f:9b00:80c:a2fc:7bcf:3a2? (p200300ea8f2f9b00080ca2fc7bcf03a2.dip0.t-ipconnect.de. [2003:ea:8f2f:9b00:80c:a2fc:7bcf:3a2])
+        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3cf270fc34esm6767166f8f.10.2025.08.30.03.26.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Aug 2025 03:26:15 -0700 (PDT)
+Message-ID: <a3c2f8d3-36e6-4411-9526-78abbc60e1da@gmail.com>
+Date: Sat, 30 Aug 2025 12:26:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+From: Heiner Kallweit <hkallweit1@gmail.com>
+Subject: [PATCH net-next 0/5] net: phy: remove support for deprecated
+ array-style fixed-link binding
+Autocrypt: addr=hkallweit1@gmail.com; keydata=
+ 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
+To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Patrice Chotard <patrice.chotard@foss.st.com>,
+ Andrew Lunn <andrew@lunn.ch>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Russell King - ARM Linux <linux@armlinux.org.uk>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Eric Dumazet <edumazet@google.com>, David Miller <davem@davemloft.net>
+Cc: "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250830-watchdog-s3c-cleanup-v1-4-837ae94a21b5@linaro.org>
-References: <20250830-watchdog-s3c-cleanup-v1-0-837ae94a21b5@linaro.org>
-In-Reply-To: <20250830-watchdog-s3c-cleanup-v1-0-837ae94a21b5@linaro.org>
-To: Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-watchdog@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3834;
- i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=X4WEqjDsxEfbxQW5piC8N1hdhc/VRxO6TIqCp9uqtgU=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBostAW/yJv5XJd7fLze1+/dmluWrrNtXl9d1W6K
- Jo9u6soSDeJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLLQFgAKCRDBN2bmhouD
- 1/LxD/wLNsNpbl5CvNPmAKy0p6N2E3ZHvQjlbWti4Bu+yHut5d2rMIMj9iGBSrXxgY9UE1876Lr
- ci6HXpPWV6XIG+OJfat4fqZghFLEkxUFuI95WgCe3rUmYy33aSu8h4S8+qN83lfcJJXLMZHKbNI
- dUs2vV/UIMfVeRmtfkbWRK4SVazimfKQ++VXW8LYAGiE1/XY8fcSdmal0PJheh64hxZe4OLMJQ3
- TBTpTA65Dyx+/xbQ/Lyi855tgaRyyWOfsXCwavGOCqkKFJ7kXPEuY0/sI85Q19jclnaTlnig60v
- gz3CI0H0+BO5ErKSiGh3xBiY1BY0YLZ5laPwUZs3puPoDRP+ENANFa3DTMiaHnEN6P4uEIDsvDg
- o2+xStp/Nic+nSNM9fQ2Cpp4sJpxQbDL8iS9hSO4vmTRrO39xwNK9guyH1g0WfVducgPT1VhNad
- SiyGvEeUXA6/9X5PSxW0AFuMLPVNEYGsskrpeUZNELfQUokKtVQOmgg5EHDVUfp4OIxExrNcR2g
- 5WQqTyPc3WFEQfYbkiOI7cGPW/yqdRXmp4CbsPGiqO16xhZtq64e1qBbQmTVY1MWfwZQoBc9WuV
- OSZmIVWjdTqRYROZxNKLxjeFVT7xT0e1s1dFzt5TeAQvbcqdQ70S/JDjL+K/GEqGrMsxReLOJSE
- noQXO3qWK6Re3jg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
- fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-Binding defined two if:then: blocks covering different conditions but
-not fully constraining the properties per each variant:
-1. "if:" to require samsung,syscon-phandle,
-2. "if:" with "else:" to narrow number of clocks and require or disallow
-   samsung,cluster-index.
+The array-style fixed-link binding has been marked deprecated for more
+than 10 yrs. See e.g. 91c1d980d601 ("Documentation: devicetree: add old
+and deprecated 'fixed-link'") from 2014.
 
-This still did not cover following cases:
-1. Disallow samsung,syscon-phandle when not applicable,
-2. Narrow samsung,cluster-index to [0, 1], for SoCs with only two
-   clusters.
+So migrate the remaining few in-kernel users of the old binding,
+and remove for it.
 
-Solving this in current format would lead to spaghetti code, so re-write
-entire "if:then:" approach into mutually exclusive cases so each SoC
-appears only in one "if:" block.  This allows to forbid
-samsung,syscon-phandle for S3C6410, and narrow samsung,cluster-index
-to [0, 1].
+Heiner Kallweit (5):
+  arm64: dts: ls1043a-qds: switch to new fixed-link binding
+  ARM: dts: ls1021a: switch to new fixed-link binding
+  ARM: dts: st: switch to new fixed-link binding
+  net: mdio: remove support for old fixed-link binding
+  net: phy: phylink: remove support for deprecated fixed-link-binding
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- .../devicetree/bindings/watchdog/samsung-wdt.yaml  | 70 ++++++++++++++++------
- 1 file changed, 52 insertions(+), 18 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-index 51e597ba7db2615da41f5d3b6dc4e70f6bb72bb6..41aee1655b0c22a6dce212a63fa4849089253f09 100644
---- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-+++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-@@ -74,24 +74,7 @@ allOf:
-           contains:
-             enum:
-               - google,gs101-wdt
--              - samsung,exynos5250-wdt
--              - samsung,exynos5420-wdt
--              - samsung,exynos7-wdt
-               - samsung,exynos850-wdt
--              - samsung,exynos990-wdt
--              - samsung,exynosautov9-wdt
--              - samsung,exynosautov920-wdt
--    then:
--      required:
--        - samsung,syscon-phandle
--  - if:
--      properties:
--        compatible:
--          contains:
--            enum:
--              - google,gs101-wdt
--              - samsung,exynos850-wdt
--              - samsung,exynos990-wdt
-               - samsung,exynosautov9-wdt
-               - samsung,exynosautov920-wdt
-     then:
-@@ -104,9 +87,41 @@ allOf:
-           items:
-             - const: watchdog
-             - const: watchdog_src
-+        samsung,cluster-index:
-+          enum: [0, 1]
-       required:
-         - samsung,cluster-index
--    else:
-+        - samsung,syscon-phandle
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos990-wdt
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus clock, used for register interface
-+            - description: Source clock (driving watchdog counter)
-+        clock-names:
-+          items:
-+            - const: watchdog
-+            - const: watchdog_src
-+      required:
-+        - samsung,cluster-index
-+        - samsung,syscon-phandle
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,exynos5250-wdt
-+              - samsung,exynos5420-wdt
-+              - samsung,exynos7-wdt
-+    then:
-       properties:
-         clocks:
-           items:
-@@ -115,6 +130,25 @@ allOf:
-           items:
-             - const: watchdog
-         samsung,cluster-index: false
-+      required:
-+        - samsung,syscon-phandle
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - samsung,s3c6410-wdt
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus clock, which is also a source clock
-+        clock-names:
-+          items:
-+            - const: watchdog
-+        samsung,cluster-index: false
-+        samsung,syscon-phandle: false
- 
- unevaluatedProperties: false
- 
+ arch/arm/boot/dts/nxp/ls/ls1021a-iot.dts      |  5 +++-
+ arch/arm/boot/dts/st/stih418-b2199.dts        |  5 +++-
+ arch/arm/boot/dts/st/stihxxx-b2120.dtsi       |  5 +++-
+ .../boot/dts/freescale/fsl-ls1043a-qds.dts    |  5 +++-
+ drivers/net/mdio/of_mdio.c                    | 26 -------------------
+ drivers/net/phy/phylink.c                     | 25 +-----------------
+ 6 files changed, 17 insertions(+), 54 deletions(-)
 
 -- 
-2.48.1
+2.51.0
 
 
