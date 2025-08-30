@@ -1,50 +1,50 @@
-Return-Path: <devicetree+bounces-210752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 993E3B3CAEA
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:58:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FE1DB3CAF2
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:58:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2D6C1B247E5
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6373C582DD7
 	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 12:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E932A27BF84;
-	Sat, 30 Aug 2025 12:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1696E27F4D4;
+	Sat, 30 Aug 2025 12:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="IgkJzNwo"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="MCO/SKuH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555A8275B04;
-	Sat, 30 Aug 2025 12:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E72827A916;
+	Sat, 30 Aug 2025 12:58:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756558696; cv=none; b=J4MV/27BzEh5mZVSUfwhG6Qj3ErO1kCT6gruD/8xATVOlLUFuZ4uldjzlmdUMOKY0ccBpLlnVpgqe7X0ifFwvkvfx+CqnSq9xoiZJADlvK4Yaw5etR79OVuj5oK6GRBSG4voXCoYYrON5WS1ft97p3JA43OetzlOp4t1qdNYj50=
+	t=1756558698; cv=none; b=dzNtxn+tlbAPWl7gl3TRAgbQihnfSeBH4w7tjsL2b50pb+ZC9/cOHTxiYtl3OgvrL3DqU/sRL+GnsTfsXtelOP/8e0R2lkG1Y8BejL0C3Yai5+kJC1AkTEJOX51JJfexVir/xhbSNhlCrp6G3xR6XV00Pl35lLv/cYDJ+3L8Uo4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756558696; c=relaxed/simple;
-	bh=q5//S9MNQg8Ci4fbQAwksA280wS2Re9LSdVWpDA+tE8=;
+	s=arc-20240116; t=1756558698; c=relaxed/simple;
+	bh=RRRafiFeC/Jbm5ClmtmOoYBl76CdozwQHN3fSI2UNmM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=LhIqbfkVLZAZsQiNdcCYZu81Rvigu1qkP3VEyrbIDbUGka8cMUEhbffn+mpFWYixrXoKdxyB1F2L8vGrrD9VlI71rmXfiNr+qEhH7+djMVx3PlpgNKOWBX1uF22lvac7sQmhae7n8m5kkTaBrdSmsSWiYPmISCVpE4zHScZVuiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=IgkJzNwo; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=BC0vDGaCMop0QxGHJfoBvuj0V9yUBzDtkKmmSrH8XoRqM4heqPRdd31i06gJB19vCpDeyYKvHhAi+F98Xs642O9nV2NWXyKp1tj1n1IUO7SAOEy4YLlSWzxlTcjBwWoJWmfqiqSyDVlCU/J36suJA0EXoPdt1FuJKHKhQvDNRA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=MCO/SKuH; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=cyeksMM363Muy7eoR4PZwic5CrAi696wMNmLIRYM+CY=; b=IgkJzNwoqvOdFKPjReSFGp06ik
-	++yGvp7odhI7g+JD6FIgkhG0CIac09VbfKOD+gAcfAr2wi/Ok11FScytffpOhFkInA/VZ81D1QOMg
-	XV6jCz84xbBIKdfi/cLMvMHQEFaDCiaQ/u8Tevs5DRMb49iw/x4ZsddCILbyR6JnIg1ka/QMtowzO
-	4Vb4pN0UaUfQXfLHnEklWQThM8NP6THuyt29M8Y37aRtQVScqodjvyGO+VdIfX5315+t5G9XU/187
-	rkbSdtJxnxQE91fiPfQVToAtNFRmFCi9ee7fNSlC2oZXdfTUNmLBmA8NUjtfQQk2ZeEh41YDMVix6
-	tkubLmCA==;
+	bh=6Yab2QYSQioLjW07dBEfvQXsxs75hrGlncclPnBVlOE=; b=MCO/SKuHraOTO9oshIGbh7VLKj
+	ekirWjqz5oFNJcK6b1yN+mquhjWrrqyMYLok9rZec7kkj++iLct6oWY72lFBjCmW1gxDoMxdA3Skd
+	PA1U17u7sg6ywKizboTT+8AggXwitfB7OvU9p7HW7eiTxaHHy3dsI6/rXf76TEoMC3AKhjTCXMFgL
+	+bYJbIyxg6HL3DBfAQGXwNs017mW5MMS1BYuj8drwP0/L3ABWTyT2ue9Ll9TNi4/EVdTyJaioVgPf
+	l90RoY+yDf+eWZH9xGxNLXpH05DFxczwf+6VTfc01Se0kBv5GHAENkbGhETsFTLrQIGLFQMziLE0s
+	/lI45k+A==;
 Received: from [77.241.232.9] (helo=phil..)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1usL9f-0007bC-IA; Sat, 30 Aug 2025 14:58:03 +0200
+	id 1usL9f-0007bC-Ok; Sat, 30 Aug 2025 14:58:03 +0200
 From: Heiko Stuebner <heiko@sntech.de>
 To: Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
@@ -56,12 +56,12 @@ To: Rob Herring <robh+dt@kernel.org>,
 	Christian Hewitt <christianshewitt@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
 	Alex Bee <knaerzche@gmail.com>
-Subject: Re: [PATCH] ARM: dts: rockchip: add CEC pinctrl to rk3288-miqi
-Date: Sat, 30 Aug 2025 14:57:54 +0200
-Message-ID: <175655867259.3578496.5154920723858883845.b4-ty@sntech.de>
+Subject: Re: [PATCH] ARM: dts: rockchip: add HDMI audio to rk3288-miqi
+Date: Sat, 30 Aug 2025 14:57:55 +0200
+Message-ID: <175655867260.3578496.11571731070517001514.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250828165421.3829740-1-christianshewitt@gmail.com>
-References: <20250828165421.3829740-1-christianshewitt@gmail.com>
+In-Reply-To: <20250828163501.3829226-1-christianshewitt@gmail.com>
+References: <20250828163501.3829226-1-christianshewitt@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,15 +72,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Thu, 28 Aug 2025 16:54:21 +0000, Christian Hewitt wrote:
-> Enable CEC control on the HDMI port for MiQi.
+On Thu, 28 Aug 2025 16:35:01 +0000, Christian Hewitt wrote:
+> Add the sound and i2s nodes to enable HDMI audio output on
+> the MiQi board.
 > 
 > 
 
 Applied, thanks!
 
-[1/1] ARM: dts: rockchip: add CEC pinctrl to rk3288-miqi
-      commit: 2850f6f1ecf2a42c6ae7a6d55874c9eb17eeb622
+[1/1] ARM: dts: rockchip: add HDMI audio to rk3288-miqi
+      commit: 2a91dcd5be9dde3239c87e4309f5878d3e4fb9d2
 
 Best regards,
 -- 
