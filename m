@@ -1,103 +1,101 @@
-Return-Path: <devicetree+bounces-210776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20569B3CB6B
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:24:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B5FFB3CB85
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:53:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73A711B2167C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:25:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4D5E1BA5B9C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:53:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6F8243958;
-	Sat, 30 Aug 2025 14:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC4B26561D;
+	Sat, 30 Aug 2025 14:53:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jiJiuOLL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzFYkpx9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8DA1632DD;
-	Sat, 30 Aug 2025 14:24:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FDB538FA3;
+	Sat, 30 Aug 2025 14:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756563891; cv=none; b=tm6LqcJKyuHbvEnosaf/ylux6IA8GObW9FLgDNYETU7BZaJVTPv/ZV17Bqvhw6LL0BX/fREfD1cRVGWvGI8AoVNUnw4F4lDP2UEtncSyDw/uxlgDly/mqIpSu+5VbSQdr4UnXA20sop2GXjZBFYBtd6zSopRfwLruPlnMNGXfHg=
+	t=1756565605; cv=none; b=PCZhG6FVvIN2C4DFrj8OD50l0mNcvychUNARC14ruiGeEfeP0PVOz8VBX01YvwcLgAY9IX92PFqZ9sQnb40i1V7+1dp4LazaSoKmPctM95t9Y2NxddRe7EL4iLgqWIrcRdQ1JmJ6+tPHuiYZoNDCBgB3Ta4/OYWqiBd98//FF8c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756563891; c=relaxed/simple;
-	bh=4pONJUdWbx713zoQVd2/1m/uySraLAp1yiDEBCOzeu8=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=EkIxTFc+u59Sa/AM0uh9JKsY7dTQ+JqeV9r+Fbhl5zpWEG10DH42EBCZ7WteTk758KgXzyu+gwSIjr7gAou5rqvproZT8kfmH3dxQeYqt1+UZ6MfvfOUIpQ58zKGefFMpAFFJEqh11mOR/gin+g94Yr8Z4LDUrELVsRKdTF2ivc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jiJiuOLL; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 636C4EAE;
-	Sat, 30 Aug 2025 16:23:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1756563814;
-	bh=4pONJUdWbx713zoQVd2/1m/uySraLAp1yiDEBCOzeu8=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=jiJiuOLL8EV9vi6nJDCyhBlq2rUrh4nY93eRHDDllLCxOfZlnrHeUok+k2Ccn6+wG
-	 +R4NPYMCSaTALEKqYSamcm4XTMYV/IvVsFPQMmrEYf6uRAzuvIncMQPwsom6kAssiC
-	 fPBhgae0q+Qx349jUej9+y2VVwcPG6gF/2eTmFyA=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1756565605; c=relaxed/simple;
+	bh=ZGI3ES/mGeo2ukyUPRZDAld2k1FUL/oNk3MSAPoPwNw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YbhmZETiV8p7SIADQHDFS52DR4xUh60NOrI0aY2CqXz9LLCazrNLlu6TtcymGxYhH5QjtfYR8TSTUSmIy/xkDJvfuMM4WRPKrxd/AXjfKtY3bCwAwr0BRnkCPciGdvapwr7cC/sJO2lwhsE19uM+0FdGhZ/V/ND2hhfHzBa0Z/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzFYkpx9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1BE9C4CEEB;
+	Sat, 30 Aug 2025 14:53:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756565604;
+	bh=ZGI3ES/mGeo2ukyUPRZDAld2k1FUL/oNk3MSAPoPwNw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=HzFYkpx9zaD0wi9ITT8yDPS4hXugYhi4suRYRHot2KSEWITtPm4KWvuyvtER1GEl6
+	 lCBhy/I31c5tSEtXvEYgfrGlQhrCXUA559vB1VjRSevbawtuxmBQMFRC0Tg9koP1JN
+	 lV2sDHWZlLPl3/I+b/EkmDQrD5B9fWeZsf90y2HsUB9FspoHDigsnJ7eBb1NeBcrCD
+	 emITPX0DczdJCwXzat6TL9cd1ZlX2mS5yIaT4itHUcyX042pypZ4SKdrfai043nwfY
+	 q+t9Dl6bJWeJzcrqnMRUwja2sQslwcwjsMTajoQA+NY41QAEDKz5TTrfCJOKww38Mv
+	 KpIM3U8NeuidA==
+Date: Sat, 30 Aug 2025 15:53:14 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, David Lechner <dlechner@baylibre.com>, Nuno
+ =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
+ TLV493D 3D Magentic sensor
+Message-ID: <20250830155314.70ea7d1b@jic23-huawei>
+In-Reply-To: <CAFmh=S1KtqOa=4FRojE1ndttv_pFu2aLJwzGFbam1CJxoYtdgw@mail.gmail.com>
+References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
+	<20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
+	<aKXW5pGiN18DyIZ7@smile.fi.intel.com>
+	<aKaMPMnGRyvKqTny@dixit>
+	<CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
+	<aKfYlP-yWdQi34db@dixit>
+	<CAFmh=S0gAB93Gqnrt9NdtLA=cjOcYwy6+ECnwH-j9sN_sZYjZw@mail.gmail.com>
+	<20250825105032.45f33b12@jic23-huawei>
+	<CAFmh=S1hdCMnWYzHsvTDb4C1vvinMCeG_=1m-N+psw5tp4nm7A@mail.gmail.com>
+	<CAFmh=S1KtqOa=4FRojE1ndttv_pFu2aLJwzGFbam1CJxoYtdgw@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <4eee57c0-a2fb-4fa7-bafe-e3a41c8954bd@kernel.org>
-References: <20250830111500.53169-1-asmirnou@pinefeat.co.uk> <20250830111500.53169-2-asmirnou@pinefeat.co.uk> <4eee57c0-a2fb-4fa7-bafe-e3a41c8954bd@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: Pinefeat cef168 lens control board
-From: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
-To: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>, Krzysztof Kozlowski <krzk@kernel.org>, conor+dt@kernel.org, hverkuil@xs4all.nl, jacopo.mondi@ideasonboard.com, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org
-Date: Sat, 30 Aug 2025 15:24:37 +0100
-Message-ID: <175656387714.501865.14707361524569628815@ping.linuxembedded.co.uk>
-User-Agent: alot/0.9.1
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Quoting Krzysztof Kozlowski (2025-08-30 14:21:46)
-> On 30/08/2025 13:14, Aliaksandr Smirnou wrote:
-> > Add the Device Tree schema and examples for the Pinefeat cef168 lens
-> > control board. This board interfaces Canon EF & EF-S lenses with
-> > non-Canon camera bodies, enabling electronic control of focus and
-> > aperture via V4L2.
-> >=20
-> > Power supply is derived from fixed supplies via connector or GPIO
-> > header. Therefore, the driver does not manage any regulator, so
-> > representing any supply in the binding is redundant.
-> >=20
-> > Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
->=20
->=20
-> b4 diff '<20250830111500.53169-2-asmirnou@pinefeat.co.uk>'
-> Grabbing thread from
-> lore.kernel.org/all/20250830111500.53169-2-asmirnou@pinefeat.co.uk/t.mbox=
-.gz
-> Checking for older revisions
-> Grabbing search results from lore.kernel.org
-> ---
-> Analyzing 9 messages in the thread
-> Could not find lower series to compare against.
->=20
-> You are not making it easier for us.
+On Tue, 26 Aug 2025 08:32:18 +0530
+Dixit Parmar <dixitparmar19@gmail.com> wrote:
 
-Could you explain what's required to tell b4 to know about earlier
-versions please? (Or point to the documentation?)
+> Jonathan, Andy,
+> One more query, Do I need to update the MAINTAINERS file with this new
+> entry as we are adding this new driver in this same patch series?
+> 
 
-I don't know ... so I don't think a first time contributor would
-implicitly know either.
+That would be ideal.  Do it in steps to include only the files in each patch.
 
---
-Kieran
+I never specifically push people to commit to maintain drivers unless
+they are particularly complex (and hence I'd feel out of my depth reviewing
+changes), but the ideal is indeed for people to agree to look after their
+code and in particular test changes proposed by others.
+
+Mostly people shouldn't be relying on MAINTAINERS for who to +CC anyway
+as it will often miss the people most interested in a given driver so
+this is more of a statement of intent than something I consider a practical
+part of the upstream process!
+
+Jonathan
 
 
->=20
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Best regards,
-> Krzysztof
+
 
