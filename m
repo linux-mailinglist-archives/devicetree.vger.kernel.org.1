@@ -1,101 +1,151 @@
-Return-Path: <devicetree+bounces-210777-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210778-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B5FFB3CB85
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:53:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 60021B3CBE9
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4D5E1BA5B9C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 038D8A0446C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:25:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC4B26561D;
-	Sat, 30 Aug 2025 14:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC00263F32;
+	Sat, 30 Aug 2025 15:25:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HzFYkpx9"
+	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="nlmx3XNV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FDB538FA3;
-	Sat, 30 Aug 2025 14:53:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA05C25D1F5
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 15:25:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756565605; cv=none; b=PCZhG6FVvIN2C4DFrj8OD50l0mNcvychUNARC14ruiGeEfeP0PVOz8VBX01YvwcLgAY9IX92PFqZ9sQnb40i1V7+1dp4LazaSoKmPctM95t9Y2NxddRe7EL4iLgqWIrcRdQ1JmJ6+tPHuiYZoNDCBgB3Ta4/OYWqiBd98//FF8c=
+	t=1756567520; cv=none; b=eS6GiXB+2kBtN8UxL7n+c4Wn/jdlT1DmLvX8Y3lZz59/H/wr5Jdb9TXp63l5ridWhln+4rY/ridVV0CPeCCVatPCMpjCM6vD1pOARzb1BOKyIKdCjLAKIQ8QapYCkvAKZ1YfqorxqyhLTF8NTFZOQ+KNxZDrBgF1aX1g0z3G0H4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756565605; c=relaxed/simple;
-	bh=ZGI3ES/mGeo2ukyUPRZDAld2k1FUL/oNk3MSAPoPwNw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YbhmZETiV8p7SIADQHDFS52DR4xUh60NOrI0aY2CqXz9LLCazrNLlu6TtcymGxYhH5QjtfYR8TSTUSmIy/xkDJvfuMM4WRPKrxd/AXjfKtY3bCwAwr0BRnkCPciGdvapwr7cC/sJO2lwhsE19uM+0FdGhZ/V/ND2hhfHzBa0Z/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HzFYkpx9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1BE9C4CEEB;
-	Sat, 30 Aug 2025 14:53:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756565604;
-	bh=ZGI3ES/mGeo2ukyUPRZDAld2k1FUL/oNk3MSAPoPwNw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=HzFYkpx9zaD0wi9ITT8yDPS4hXugYhi4suRYRHot2KSEWITtPm4KWvuyvtER1GEl6
-	 lCBhy/I31c5tSEtXvEYgfrGlQhrCXUA559vB1VjRSevbawtuxmBQMFRC0Tg9koP1JN
-	 lV2sDHWZlLPl3/I+b/EkmDQrD5B9fWeZsf90y2HsUB9FspoHDigsnJ7eBb1NeBcrCD
-	 emITPX0DczdJCwXzat6TL9cd1ZlX2mS5yIaT4itHUcyX042pypZ4SKdrfai043nwfY
-	 q+t9Dl6bJWeJzcrqnMRUwja2sQslwcwjsMTajoQA+NY41QAEDKz5TTrfCJOKww38Mv
-	 KpIM3U8NeuidA==
-Date: Sat, 30 Aug 2025 15:53:14 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Dixit Parmar <dixitparmar19@gmail.com>
-Cc: Andy Shevchenko <andriy.shevchenko@intel.com>, Andy Shevchenko
- <andy.shevchenko@gmail.com>, David Lechner <dlechner@baylibre.com>, Nuno
- =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] iio: magnetometer: add support for Infineon
- TLV493D 3D Magentic sensor
-Message-ID: <20250830155314.70ea7d1b@jic23-huawei>
-In-Reply-To: <CAFmh=S1KtqOa=4FRojE1ndttv_pFu2aLJwzGFbam1CJxoYtdgw@mail.gmail.com>
-References: <20250814-tlv493d-sensor-v6_16-rc5-v4-0-81b82805aae0@gmail.com>
-	<20250814-tlv493d-sensor-v6_16-rc5-v4-1-81b82805aae0@gmail.com>
-	<aKXW5pGiN18DyIZ7@smile.fi.intel.com>
-	<aKaMPMnGRyvKqTny@dixit>
-	<CAHp75Vdw5X1Y057fpGjdvVGwKq0x0UBdm8py+m+55RbzXi1PJw@mail.gmail.com>
-	<aKfYlP-yWdQi34db@dixit>
-	<CAFmh=S0gAB93Gqnrt9NdtLA=cjOcYwy6+ECnwH-j9sN_sZYjZw@mail.gmail.com>
-	<20250825105032.45f33b12@jic23-huawei>
-	<CAFmh=S1hdCMnWYzHsvTDb4C1vvinMCeG_=1m-N+psw5tp4nm7A@mail.gmail.com>
-	<CAFmh=S1KtqOa=4FRojE1ndttv_pFu2aLJwzGFbam1CJxoYtdgw@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1756567520; c=relaxed/simple;
+	bh=4Pre2iPR3cFdQiZxON1rzrA8qHFbR9ocqwJAPI1d5E0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QANdZ72eejlxFDFf9rpboFyCtmTYN5Kf9k3CyY681s3/2OTDlDj307pEibyRvB6xv8p6arf8s5Tq8MC7CmBkmWBQbiPoUZ2csmvEyvQwCGv9cHqcVPI+s9qYUUOe8HbjEzwf7h+JAy7vaprl6KaPl2XNc+LHHpWN5VBXmUflzgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=nlmx3XNV; arc=none smtp.client-ip=209.85.160.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4b326b6c189so2143011cf.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 08:25:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rowland.harvard.edu; s=google; t=1756567515; x=1757172315; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+vQXLaG2kcpMi6zISzeFWytxG/6ZsxQ37Uw+pok3HOE=;
+        b=nlmx3XNV8gcjLk7cgcyvWlI7yq3yuEgE+b7QciP/KTn5hq8S6pJxz6IP1n69Y50YZr
+         GXbM9UHv1SZCDpUtSFQjwYAqMKE2ugBeAVcutmtFOLK1ziZnJwBVRUcVFWG1padFUqZ9
+         XzKZy7Zn6xiLnZbGAzeqasn0S2bpM/ZALaKqgb2fevC31afEdm3fwdvpLPrEuwxZ9jDQ
+         aG41oGq6Q/XOI4X5VeA9/qysMVK7KoE34DtcN0RL5o7YsCo0AHvaA5JtJYcq8ckmyUe4
+         5jBFpLPk5qpwa/hG7Q8GktkFxLmhgSg8snZWrWw9MB2hlTxv5O+z4ZEBTJhB+XPBT05x
+         4vVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756567515; x=1757172315;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+vQXLaG2kcpMi6zISzeFWytxG/6ZsxQ37Uw+pok3HOE=;
+        b=xMAz/3CWfFX9GBQKVYpVo5WpubyYDL2TUrOzQUfZ5JThmB+nbhqszHCR0DzPwlgfLB
+         UOdqxxwOF8+4jcRIP/+T4IhlhfRYKkuHI58TxtidKW188V456+a7D5DmQFMkWmQt8pCZ
+         tRXyMjmokt6+M/Ci3ZKnwM5lbCP//jQH5DW9rH4tGXqCXfiqzsO9Q/7iC8uaWVPOtidk
+         7EZezolaichClW/5fkXSdXckOwn+Lo/QFixSHGeAt6ReQFlA6lKVFxCZdRTxkpgG73vU
+         E2ovfA5uIK/KdL1Oq0A6HxtLBtDMWFdXg1dRzDYkK6bB94sBhskQijzUa1N7yxT0rioU
+         uKOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXPAZIXMo4D41ujM8FH8RWYsDosYnpYEibXBiIoyxOrulmkpqxZm8jpiTz1ohLGVV/a3T883jqPZJWO@vger.kernel.org
+X-Gm-Message-State: AOJu0YyzP5n+KXZGaNYzp1AlEoOGDtRc3ZOVfX0nyl/0MGRY2gAQRYh2
+	yRJRz1Kk9a/kQsiNeXiDbwhy96Y39aTE4hAytrKyYt1ezluqgqgFms0lJKY3YSpz6w==
+X-Gm-Gg: ASbGncv/Bq+InGRQgpKdnxnQPCacYa3r/E9mEuzjlH1emLYMZzK5/LPRbU1A/KBuLT0
+	8CCMUKE6Lg2uVYbhdSA2sppxiq6Yaco/pUjj8qKaPfyIwhErSh3U4ckfkTdAXJ3l5boOdRmZZQm
+	wfObWSSPvqYKNorxJK/4G2AwFAbI733F3UQRsf0btUSZzCZQ+iLC1FHrDmtPQoXpj+N6nBgJ8Gl
+	87By4uivIvzFOcHMezGw7c6H223X65c3ifw0DMLdUh1QWeturtv/PatvCIv1FcXgGydLYMvBErt
+	vcarCXwRySPE9K3qlgvcT/BrRJIWob8DPmxtwN7qXO4oJj+sO17UNxBJfK/njuSa4ZKdhog/ZkT
+	mCX2VauOPrbFG/3w3XCae1JPinyLIbZKFVJawzc+p
+X-Google-Smtp-Source: AGHT+IFqTzpp+i1c8d9FlbmpErvbAswo/o1qSIXruitHS83JpeUiodcPTxO3zJSo4ZrC4TsBR6h8EA==
+X-Received: by 2002:a05:622a:448:b0:4ae:f8bb:7c6a with SMTP id d75a77b69052e-4b31dcceb72mr20637521cf.54.1756567514656;
+        Sat, 30 Aug 2025 08:25:14 -0700 (PDT)
+Received: from rowland.harvard.edu ([2601:19b:681:fd10::fd35])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-7fc1605fb27sm363814885a.62.2025.08.30.08.25.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 30 Aug 2025 08:25:14 -0700 (PDT)
+Date: Sat, 30 Aug 2025 11:25:10 -0400
+From: Alan Stern <stern@rowland.harvard.edu>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>, linux-usb@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/2] usb: ohci: s3c2410: Drop support for S3C2410
+Message-ID: <fc4ec548-9a1a-44c3-9958-b6778e37d910@rowland.harvard.edu>
+References: <20250830130101.142934-3-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250830130101.142934-3-krzysztof.kozlowski@linaro.org>
 
-On Tue, 26 Aug 2025 08:32:18 +0530
-Dixit Parmar <dixitparmar19@gmail.com> wrote:
-
-> Jonathan, Andy,
-> One more query, Do I need to update the MAINTAINERS file with this new
-> entry as we are adding this new driver in this same patch series?
+On Sat, Aug 30, 2025 at 03:01:02PM +0200, Krzysztof Kozlowski wrote:
+> Samsung S3C24xx family of SoCs was removed the Linux kernel in the
+> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
+> 2023.  There are no in-kernel users of remaining S3C24xx compatibles.
 > 
+> The driver is still being used via platform code for S3C64xx platforms.
 
-That would be ideal.  Do it in steps to include only the files in each patch.
+This title and description are a bit confusing.  I gather that while the 
+S3C24xx chipsets are not longer supported, the S3C24xx OHCI controller 
+is still being used in S3C64xx systems.
 
-I never specifically push people to commit to maintain drivers unless
-they are particularly complex (and hence I'd feel out of my depth reviewing
-changes), but the ideal is indeed for people to agree to look after their
-code and in particular test changes proposed by others.
+So what the patch does is drop support for S3C2410 _systems_ while 
+retaining support for S3C2410 _controllers_.  Is that right?  If so, can 
+we change $SUBJECT to say "usb: ohci: Drop DT support for S3C2410 
+systems"?
 
-Mostly people shouldn't be relying on MAINTAINERS for who to +CC anyway
-as it will often miss the people most interested in a given driver so
-this is more of a statement of intent than something I consider a practical
-part of the upstream process!
+Alan Stern
 
-Jonathan
-
-
-
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  drivers/usb/host/ohci-s3c2410.c | 8 --------
+>  1 file changed, 8 deletions(-)
+> 
+> diff --git a/drivers/usb/host/ohci-s3c2410.c b/drivers/usb/host/ohci-s3c2410.c
+> index 66d970854357..e623e24d3f8e 100644
+> --- a/drivers/usb/host/ohci-s3c2410.c
+> +++ b/drivers/usb/host/ohci-s3c2410.c
+> @@ -448,13 +448,6 @@ static const struct dev_pm_ops ohci_hcd_s3c2410_pm_ops = {
+>  	.resume		= ohci_hcd_s3c2410_drv_resume,
+>  };
+>  
+> -static const struct of_device_id ohci_hcd_s3c2410_dt_ids[] = {
+> -	{ .compatible = "samsung,s3c2410-ohci" },
+> -	{ /* sentinel */ }
+> -};
+> -
+> -MODULE_DEVICE_TABLE(of, ohci_hcd_s3c2410_dt_ids);
+> -
+>  static struct platform_driver ohci_hcd_s3c2410_driver = {
+>  	.probe		= ohci_hcd_s3c2410_probe,
+>  	.remove		= ohci_hcd_s3c2410_remove,
+> @@ -462,7 +455,6 @@ static struct platform_driver ohci_hcd_s3c2410_driver = {
+>  	.driver		= {
+>  		.name	= "s3c2410-ohci",
+>  		.pm	= &ohci_hcd_s3c2410_pm_ops,
+> -		.of_match_table	= ohci_hcd_s3c2410_dt_ids,
+>  	},
+>  };
+>  
+> -- 
+> 2.48.1
+> 
 
