@@ -1,220 +1,172 @@
-Return-Path: <devicetree+bounces-210655-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8470B3C612
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 02:17:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFB3B3C656
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 02:40:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A58285A4018
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 00:17:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C20165E7412
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 00:40:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73E82208A7;
-	Sat, 30 Aug 2025 00:17:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98CC219E83C;
+	Sat, 30 Aug 2025 00:40:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DDF6OqD6"
+	dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b="hN0o17U2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF24772634
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 00:17:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E66AF16DC28;
+	Sat, 30 Aug 2025 00:40:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.135.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756513065; cv=none; b=KD74b4BGbD60FNxMUgp6vaLD5LI+pc3PkIrVx5ETDHE8+TJf/T2gqw4yYrLSNe+es8vVrSbMafnTfiHL+LQrJNChWUWvj+HXJyjP7Y623N6HK8VmIwH8ej93VXZuiJRyXNyMu8AUjU4Am7XoFycwwXiqaFSsyTb78kfZvKK4NLo=
+	t=1756514403; cv=none; b=uV4bMoUuTi6NL/5mIt0uABV2UVX5m4lE/4jOYYE81dg9D7b/7GAUDsj9R27wFHV33c30MH4dQkiO2kfoTx6FDkVCisJMO8/4NSAsVDu2ZQCh/xhOMapV+5KyOA9IYlkmEKIs7YFMxVzNDcMtpgqsOFuM2Gy9nQJqWuvv9wB1GCU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756513065; c=relaxed/simple;
-	bh=z680PBSmglhmsZvf5jSNQdE0L4q1DSTf2d5oaXXykY8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gVrrogq/xZDU7WJVWg+NMWg0g1SXFZnluGPJzqKWO5uRIrqXPUD1FtIgN/2CoXYwhbvm1F08mgVqWTvJIkn0DZ9JyfXWNm5ivVyHLO3Hh4sYzatvXDkKzau1nwVFsidB7Q2WxiHheCHm77VObFFQVg3Qijo3m6c8w9tp7Z+HByY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DDF6OqD6; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57TNwF3d020849
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 00:17:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ueFZ451Bf6LufCZEO1QlwV0P
-	A8vLmIWNBrWd/BzxeMM=; b=DDF6OqD6ySuw2qxMojAr++DtA9RqJUIJ9OpOWm/r
-	/8+0qKiUU1wqAKHv576BHhFYcP8pDDAL752B4RwmzFbQTR4Ks+F4eALGz/81htHd
-	hJuprOKEDjj3MS6UlrFRxJaavdhmOk1EuG/4FJaW8100fpPKt8Ucm9gu2Eqb2A2D
-	eAMwCvZRx7k9nWfwlNpmCu8Rkj7URcJ2CPzgym28MtQ3cgMxQ7neSXxz+X/E4Bsc
-	nEOFWlr+zGBfCtgm9AfGrv2WOcAfUY4yzGmLReUPYDAmhnYmhLIJ6ugWVLf7QqeK
-	RYGUo4rWmxzpcxddgXZnbG+SogsJW34DQ55QJIC3xaFy5A==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48q5up4y22-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 00:17:42 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b10ab0062aso58353171cf.1
-        for <devicetree@vger.kernel.org>; Fri, 29 Aug 2025 17:17:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756513062; x=1757117862;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ueFZ451Bf6LufCZEO1QlwV0PA8vLmIWNBrWd/BzxeMM=;
-        b=rq1EGPt82MwPd3TyRR92htSUF1o9mPg/0AoiQ6G//8b6AW7+T2QU3YQmvLkfmIPyKE
-         mPat8jcdqbBkDvJIDjxhC6Rfr66UUJXdEi2RxJuieLJWjovBQx3abUlr8j8zuRRyokNM
-         wVmjyHGxrHy8t5Y6iqCfG7Cs3N6hPL8FEjeyQSYTs13hNRSYkdqlAOcicpcod8rCkv/U
-         wKmmsfXYR18xs74+IhIO6aWWrPGXcaUpGLsEqEoR5EU4M2oiHj2AI3FONVq5elBPAE9r
-         FjOhJwvbcfQorVEqLuKXz/VX+2wYESw17ZPKWJnKWASOARSFzvCDqNcqzZ143diP+3MN
-         +BpQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVFDZJVLf4hRTEAnfXCKgPZEC9xfy+F9QngJSuwhleFK2AcDfdVUMdbqmtGWL2IWBMbV/RdOODkdrry@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw746N1NlEmE2M1m5p7TbTIOYCwD8Thc9wRgkBgCUE35aVNKQIP
-	+OKTuFCUyS7XOJAWvC91Zy2L9P+OL76ju+9KfE1oYHuQP65mY8HEoYZpKvPlDtEc7E9w22QkUHA
-	1veOtjISsxAdIyL0umtmmdJaapn8gMKSkzN6yJFVoAf8cFyjJtRMXIYFyh3lpy8E3
-X-Gm-Gg: ASbGncvGPtrg/m/g/1z8EU0kODzOooZfFBfDXBdWncl6UlRiuRrtVJInGLg/KCcWL7k
-	q9rWYeTH1LV7A+Ko6B9w6Z5dOnqTk0m0gY6UxP8sVT4RpTgc0Gbnm/l2X+PIAwaS/0wkj8UlpYX
-	ykZ/unQmhv5L5uUscN784giiwL72czNZgaQ7rKESsyIO+p/LO628/bW9wxpNhmz1zI2uywWPdE1
-	or66Rqzlua5gsnCmtIt8XxN7wyLrPpc+0iIN9th3bGv1ZQrhl0uxR31ffrHX0fl+GmxzeAYWyvn
-	5/mBzqxAAXlDqIY8Eha30MdcLHy0N1xKOqzJYyqqIejFzCOmK0aDb1FI+dPcrXRXsOi4iq/R6xX
-	9fxV9+4fCD9PK2lYuWGRbMRH4UdsM+/S+R3x65kxTB9EI8VE5DIyT
-X-Received: by 2002:ac8:5745:0:b0:4b3:1a10:5559 with SMTP id d75a77b69052e-4b31d80c48fmr6085051cf.7.1756513061618;
-        Fri, 29 Aug 2025 17:17:41 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGJl/Af5VmCiY5OsG78su9IRmyWK/uConNdwyypxlbySz2t7lQqsItTw5Ci2wZDJjq+Xi6WYQ==
-X-Received: by 2002:ac8:5745:0:b0:4b3:1a10:5559 with SMTP id d75a77b69052e-4b31d80c48fmr6084771cf.7.1756513061108;
-        Fri, 29 Aug 2025 17:17:41 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-336c2c5f1c7sm3531131fa.45.2025.08.29.17.17.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Aug 2025 17:17:39 -0700 (PDT)
-Date: Sat, 30 Aug 2025 03:17:37 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] clk: qcom: branch: Extend invert logic for
- branch2 mem clocks
-Message-ID: <ecnfaig4uqlgvvhcadh6pofe7vmlx274gtaabmop6w4gggtjkw@ry3pudcp3hx4>
-References: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
- <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
+	s=arc-20240116; t=1756514403; c=relaxed/simple;
+	bh=Xu4md5W2KAitNczbTbZNIQ5xByjHoGQUNmfu+IxPf/c=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=mWfF8gTZIYVQ8qwqGZpasLI7G2ajxMp9o+3nT2uc7hjWJyKzYCK3ic1gIxX733d8qFA0LlqAY97lHJGjlsXYpv5sB7/PGZNpayJY1Vcgs+l03gMAB69TTCJCBa3qF+czhqpTS7OgS+aLvz5faOws3QVZrbkRs4QqLrKk39f9yPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com; spf=pass smtp.mailfrom=analog.com; dkim=pass (2048-bit key) header.d=analog.com header.i=@analog.com header.b=hN0o17U2; arc=none smtp.client-ip=148.163.135.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=analog.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=analog.com
+Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57U0UIKo021614;
+	Fri, 29 Aug 2025 20:39:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=analog.com; h=cc
+	:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=DKIM; bh=/+THuAkQ461LskLsz1dD9sUbRFB
+	8JwICV5e2YPYn1bc=; b=hN0o17U2yk1N/B2l9Vle+eGET9nOZ0LAUUDTAcNe7it
+	C8ZnRrhn0gVIWrI/Nga12cIX0ZjsQh34RZ3r6tqrW8B7LooYgGh133lkX1Wo4tGL
+	IXLg74LO99gR7h+NtbGei3QgoDPkY4R7r/4SoEQE+Bt+yvfpwdyJJJqno3YmXYC3
+	H41iKuPzKyqK72ODjnodDA+e2vdz5WZrElKd3PsZN3aEGF8AoATaOheEbVDVPyN2
+	tvuisz5tbLBQw4UIPN4nMTHo7Zwjy+Fu3TaS8ENiUaxjMI+ZOEyPVzn3fUMUV3Sl
+	CbEkOpsjS1hnzV76ej2LYbVbi0dd6CD9D4qjCMXwx5Q==
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48rmagcgk8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Aug 2025 20:39:54 -0400 (EDT)
+Received: from m0167089.ppops.net (m0167089.ppops.net [127.0.0.1])
+	by pps.reinject (8.18.1.12/8.18.0.8) with ESMTP id 57U0drEb031345;
+	Fri, 29 Aug 2025 20:39:53 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+	by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 48rmagcgk5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 29 Aug 2025 20:39:53 -0400 (EDT)
+Received: from ASHBMBX9.ad.analog.com (ASHBMBX9.ad.analog.com [10.64.17.10])
+	by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 57U0dqTY040824
+	(version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Fri, 29 Aug 2025 20:39:52 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by ASHBMBX9.ad.analog.com
+ (10.64.17.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Fri, 29 Aug
+ 2025 20:39:52 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Fri, 29 Aug 2025 20:39:52 -0400
+Received: from work.ad.analog.com (HYB-hERzalRezfV.ad.analog.com [10.65.205.9])
+	by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 57U0dTGl004731;
+	Fri, 29 Aug 2025 20:39:31 -0400
+From: Marcelo Schmitt <marcelo.schmitt@analog.com>
+To: <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>
+CC: <jic23@kernel.org>, <Michael.Hennerich@analog.com>, <nuno.sa@analog.com>,
+        <eblanc@baylibre.com>, <dlechner@baylibre.com>, <andy@kernel.org>,
+        <corbet@lwn.net>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <broonie@kernel.org>,
+        <Jonathan.Cameron@huawei.com>, <andriy.shevchenko@linux.intel.com>,
+        <ahaslam@baylibre.com>, <marcelo.schmitt1@gmail.com>
+Subject: [PATCH 00/15] Add SPI offload support to AD4030
+Date: Fri, 29 Aug 2025 21:39:27 -0300
+Message-ID: <cover.1756511030.git.marcelo.schmitt@analog.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
-X-Proofpoint-GUID: nsMo-jq7IN7VzyHOzrt_XTOXo7gw4wZY
-X-Proofpoint-ORIG-GUID: nsMo-jq7IN7VzyHOzrt_XTOXo7gw4wZY
-X-Authority-Analysis: v=2.4 cv=JJo7s9Kb c=1 sm=1 tr=0 ts=68b24326 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=2OwXVqhp2XgA:10 a=EUspDBNiAAAA:8 a=IOa5V0MNBbNQbul7L28A:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODIzMDAzMSBTYWx0ZWRfX3vXmOtHMeM+N
- Bp7T47XauSkC+B+nBSXhrq9cNoX1y301iYUEB2w2UxygTy7uR5v8ryVMbqFZgYW9if4YXGeTXyE
- V0RVFxHVNFHQiutbHbguYXdVOJXh7YSwCpEYfHH1vnpxHx3BUffjHY6wIVY37h5uTSVAWEhMvT+
- 4n+mH4nlql5nbqDa33YbFZZdjq2TRtnJc2oCXAubIx72ZT1PRJ6sj8mIwNe5oiMWyEixT4/8HFK
- bIHGWnT0+zBzZvNHfNhbo29eexu4a2n12GFCosUJcSqXvSW3u9SPyxs5TY8AarnDoJPuy8BZSwj
- GLlNe1CgNgrJ3LaNGeJkfP78zPhGL+LxWmDUagK+TkF3rwTMBw3N9wSvWNGssIx0CjAPr2ufdUX
- Ixcpo9GX
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODI1MDA3NSBTYWx0ZWRfX9GCNyaT/kwpr
+ jswSV5HZNyg9B3vOOhwxn5kC0hUTt151BVP8QGAXlqf5308DBB7/indfWRfmXj2sL0W8a7eEN/f
+ ++5boUMAcnQXYZqZT/I8yTsAi/wMjb7+wXVJyCqaXICL2dy+0FJ0v5h+u6g4XJpy6GVUpfWhbvW
+ blu2DtsGJ0j0fQrjCf4rcxbFrzomEqdtp6lHea8N1BzYv6LIK2HOMPX5jT8WQGZvQwFgT9HlpXY
+ 3W7G5dfciRACr+1dIB7n9KD1uQBiDaHJ9Rl3zLNxGT2PYHG61s9PJmtNALnr5cxURJU1UoNrNnt
+ ERfHXy+/DzGr44WOzrHgYaUp/SQjvnEgiBH3YAJW8p6go26WsOCIbuHXVBqTNgw1P6PrF0KZ8r3
+ pM6BPXr+
+X-Proofpoint-ORIG-GUID: vnhgSk-0bhPY8_9PERRUhgXyUuHi1bA_
+X-Proofpoint-GUID: agHDen-nj-zmZc1wNguW8NxUIoEVFZoS
+X-Authority-Analysis: v=2.4 cv=AoXu3P9P c=1 sm=1 tr=0 ts=68b2485a cx=c_pps
+ a=PpDZqlmH/M8setHirZLBMw==:117 a=PpDZqlmH/M8setHirZLBMw==:17
+ a=2OwXVqhp2XgA:10 a=5tJJNpAVUjWtunKr7TIA:9
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-08-29_07,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 adultscore=0 bulkscore=0 spamscore=0 impostorscore=0
- malwarescore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508230031
+ suspectscore=0 spamscore=0 priorityscore=1501 malwarescore=0 clxscore=1011
+ adultscore=0 bulkscore=0 phishscore=0 impostorscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508250075
 
-On Fri, Aug 29, 2025 at 03:45:17PM +0530, Taniya Das wrote:
-> Some clock branches require inverted logic for memory gating, where
-> disabling the memory involves setting a bit and enabling it involves
-> clearing the same bit. This behavior differs from the standard approach
-> memory branch clocks ops where enabling typically sets the bit.
-> 
-> Introducing the mem_enable_invert to allow conditional handling of
-> these sequences of the inverted control logic for memory operations
-> required on those memory clock branches.
-> 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  drivers/clk/qcom/clk-branch.c | 14 +++++++++++---
->  drivers/clk/qcom/clk-branch.h |  4 ++++
->  2 files changed, 15 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
-> index 0f10090d4ae681babbdbbb1b6c68ffe77af7a784..90da1c94b4736f65c87aec92303d511c4aa9a173 100644
-> --- a/drivers/clk/qcom/clk-branch.c
-> +++ b/drivers/clk/qcom/clk-branch.c
-> @@ -142,8 +142,12 @@ static int clk_branch2_mem_enable(struct clk_hw *hw)
->  	u32 val;
->  	int ret;
->  
-> -	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> -			   mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
-> +	if (mem_br->mem_enable_invert)
-> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> +				  mem_br->mem_enable_mask, 0);
-> +	else
-> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> +				  mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+Hello,
 
-Please check that your lines are properly indented.
+This patch series add support for high sample rate data acquisition with AD4030
+and similar devices. The last couple patches in the series add support for
+ADAQ4216 and ADAQ4224 which are similar to AD4030, but have a PGA in front of
+the ADC input.
 
->  
->  	ret = regmap_read_poll_timeout(branch.clkr.regmap, mem_br->mem_ack_reg,
->  				       val, val & mem_br->mem_enable_ack_mask, 0, 200);
-> @@ -159,7 +163,11 @@ static void clk_branch2_mem_disable(struct clk_hw *hw)
->  {
->  	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
->  
-> -	regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
-> +	if (mem_br->mem_enable_invert)
-> +		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
-> +			   mem_br->mem_enable_mask, mem_br->mem_enable_mask);
+Most of the code is for SPI offload support is based on work from Sergiu
+Cuciurean, Nuno Sa, Axel Haslam, and Trevor Gamblin. Thus, the SPI offload and
+related patches come with many co-developed-by tags. I also draw inspiration
+from other drivers supporting SPI offload, many of them written by David Lechner.
 
-This creates assymmetry. The drivers uses mem_enable_mask in one case
-and mem_enable_ack_mask in another.
+The patches to the SPI subsystem are from Axel Haslam and I only signed them to
+indicate I'm moving them forward.
 
-> +	else
-> +		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
->  			   mem_br->mem_enable_ack_mask, 0);
+The patches with updates to device tree are introduced before the patches that
+use each specific change.
 
-And here.
+ADAQ PGA device tree doc and driver handling was inspired on AD7191 dt-binding
+and driver.
 
->  
->  	return clk_branch2_disable(hw);
-> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
-> index 292756435f53648640717734af198442a315272e..6bc2ba2b5350554005b7f0c84f933580b7582fc7 100644
-> --- a/drivers/clk/qcom/clk-branch.h
-> +++ b/drivers/clk/qcom/clk-branch.h
-> @@ -44,6 +44,8 @@ struct clk_branch {
->   * @mem_enable_reg: branch clock memory gating register
->   * @mem_ack_reg: branch clock memory ack register
->   * @mem_enable_ack_mask: branch clock memory enable and ack field in @mem_ack_reg
-> + * @mem_enable_mask: branch clock memory enable mask
-> + * @mem_enable_invert: branch clock memory enable and disable has invert logic
->   * @branch: branch clock gating handle
->   *
->   * Clock which can gate its memories.
-> @@ -52,6 +54,8 @@ struct clk_mem_branch {
->  	u32	mem_enable_reg;
->  	u32	mem_ack_reg;
->  	u32	mem_enable_ack_mask;
-> +	u32	mem_enable_mask;
-> +	bool	mem_enable_invert;
->  	struct clk_branch branch;
->  };
->  
-> 
-> -- 
-> 2.34.1
-> 
+The code was tested on a remote setup with ADAQ4216 connected to a ZedBoard
+running Linux kernel 6.17.0-rc1 built from IIO tree testing branch.
 
+
+Axel Haslam (2):
+  spi: offload: types: add offset parameter
+  spi: spi-offload-trigger-pwm: Use duty offset
+
+Marcelo Schmitt (13):
+  iio: adc: ad4030: Fix _scale for when oversampling is enabled
+  dt-bindings: iio: adc: adi,ad4030: Reference spi-peripheral-props
+  Documentation: iio: ad4030: Add double PWM SPI offload doc
+  dt-bindings: iio: adc: adi,ad4030: Add PWM
+  iio: adc: ad4030: Add SPI offload support
+  dt-bindings: iio: adc: adi,ad4030: Add 4-lane per channel bus width
+    option
+  iio: adc: ad4030: Support multiple data lanes per channel
+  dt-bindings: iio: adc: adi,ad4030: Add adi,clock-mode
+  iio: adc: ad4030: Add clock mode option parse and setup
+  dt-bindings: iio: adc: adi,ad4030: Add adi,dual-data-rate
+  iio: adc: ad4030: Enable dual data rate
+  dt-bindings: iio: adc: adi,ad4030: Add ADAQ4216 and ADAQ4224
+  iio: adc: ad4030: Add support for ADAQ4216 and ADAQ4224
+
+ .../bindings/iio/adc/adi,ad4030.yaml          |  86 ++-
+ Documentation/iio/ad4030.rst                  |  29 +
+ drivers/iio/adc/Kconfig                       |   2 +
+ drivers/iio/adc/ad4030.c                      | 704 +++++++++++++++++-
+ drivers/spi/spi-offload-trigger-pwm.c         |   5 +-
+ include/linux/spi/offload/types.h             |   1 +
+ 6 files changed, 792 insertions(+), 35 deletions(-)
+
+
+base-commit: 91812d3843409c235f336f32f1c37ddc790f1e03
 -- 
-With best wishes
-Dmitry
+2.39.2
+
 
