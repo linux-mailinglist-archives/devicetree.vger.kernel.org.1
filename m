@@ -1,230 +1,146 @@
-Return-Path: <devicetree+bounces-210691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC6B3B3C8F8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 09:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8EF6DB3C959
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 10:43:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4AE8F7B73A8
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 07:56:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B3D47B2FB9
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 08:41:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FE9B284696;
-	Sat, 30 Aug 2025 07:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1CA24503F;
+	Sat, 30 Aug 2025 08:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X0gJBgbE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QgMAdgTZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54AF31E5710;
-	Sat, 30 Aug 2025 07:57:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6C61C2FB;
+	Sat, 30 Aug 2025 08:43:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756540666; cv=none; b=NJIVWuRl+2wGiVm8uCNlKvnyH/A7pKRFwW9DR6twGFazwmQA3Q91TatnnBqPtpmtvrZMcK1X+KyxQWv+ndtsScP5yj2FEwzv/y9QUt73T3g1/sk4BuytPXWsoVtWpEocHpQCINZ8/z2aSTuAxiv4fdnWm72ed1Y/57rwXUILmI4=
+	t=1756543396; cv=none; b=gzKcpQzCM6A/AmENuctVk+NfQ9lQ5QMGb5Df0PUK9Qx2z0bWvn8qZSI+k1qMox7sK/sk72gRAE8E4jT8S81YaxhWFJHFBrQEhH8nSCC/b6o83xEY3DczqHxSjZPeJpk41VkzTuze3PF9c4yoG9y6kEPuT2d7kyQkLaZNG5Dz8HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756540666; c=relaxed/simple;
-	bh=+2+Gj1nNHKpL+N9u8qZn9hF2ACrmy8ud9G7KUHU3RQw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QiU3jh6L91BDn5VLIbfofygmEJpA3b3XXON6y8BvZUK+TFOwiiXTvf82mhGLQjLkMEGPtWrsLP5PMM0eHRsJ3DL5JluoYmytYt82jrEbxgHhYMWjn1eO4NiFOjYFFxdX6oXuIcntMcorq9shT+jmnUtaxbHyUM7Th/sCQ034I/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X0gJBgbE; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-aff0775410eso180564466b.0;
-        Sat, 30 Aug 2025 00:57:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756540663; x=1757145463; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+xzYpIPBYEfD30svdRD/8XJR3PeRfEwoaHDcvFNvN3Q=;
-        b=X0gJBgbEOMwlVvKqNelyu6lL+R2SjWnRhl/doU3FjZzwAKiFEg0uZw4nqUvV4zT2r2
-         L1wdLZdTF9ooD236N3qmPi+Kvv4JwyYUD1fVWjO2zrEyKKrvnyl1iIEVje8qtNTh0CRt
-         NwBKwrXhFY2R9LH8fdigNlqVJSb18S7Y5rOvYWi8M8GCiBVhSPsmjJ9D5YLrhsdu4zZY
-         m0cXw9NGrNMEsxLDLftDG+2u2HVaIJaT3g94NLqGN8qUnwzpOe6U6CFxnnPz6u5oLp5B
-         yRk55CgIEZlTXOgt9CY3rTqLB3Jbamv3O9pS4px5jhgUyfmxoO/qCtMKQut2uSUtmJnQ
-         YCUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756540663; x=1757145463;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+xzYpIPBYEfD30svdRD/8XJR3PeRfEwoaHDcvFNvN3Q=;
-        b=GZwC+E7xNIeb2xKLh43SvohY7MwWXFMJyUlVgsFTYWV0tPNwo1y4OIF9sHiK+E7IcJ
-         UvhhADJ3jrcERseogTtKqLo14GDrAQY/77IWZWmTdNMGRrR0iHaM69oseuuhG0gTtMhe
-         kKrKS5cWjZsNYlFW3DnlMiaT1TEuVzR02el/hh6KC9lE0y+kJyctTYt2nOqY84C6gDPB
-         O7fxhP+moCDoISAjXMdvcJAdAbua17ACh8n75M5v0oIDF1zW8UQ9NXOCSZyi7lBBqGX9
-         M8pXyWMkBP+ufXOoYzOvSB5nsL8rZ4ul040q12VjQcHDNQnbYl00UQZS4OoJFv05gRVo
-         ovbg==
-X-Forwarded-Encrypted: i=1; AJvYcCURnHWjaXsaEkHs/hHfTDXfv1pgdfQWNluj5j88rwL0BeFo6k+pDVM93kMXW9n/XJ+l7UPuGLHAruw8XIKP@vger.kernel.org, AJvYcCUfkAzfavoqIjIo3IGzlV9p+KjdAhteYkba5iX5AM++aCwX9Q9elXiWyEGIyrfy8ORiafaP0dMNdEU1@vger.kernel.org, AJvYcCWtBcUbVPJffoPe/WL8fAElWEth2fvqRy+iB2ylp9+rdB/5xnInJsuKS2Pwxh8ri46Jj8I199znAFsP@vger.kernel.org, AJvYcCXZx3J0Nbw3aIulmPADvMmBXsiLcp1FIkHZe6EyQp7jty7wZ5NEPZlkoxbsxjPgzg70IOeJ8tQEi07H@vger.kernel.org
-X-Gm-Message-State: AOJu0YwP2PuxoOIlLh8OD1oltmo2nq8qU2rZvzHSrQu3MSIUfbCAD3x6
-	DZ+3uSZRYoJidMwFmHTadGfHmatcXBxuPnavH4vt0LHor8yjtF9kfu3Z8uFtfk3pDMICXUgVW6r
-	lD8Xv2cofmPU+sLoTjrbcUI82ijw/qzfQutF+g/0=
-X-Gm-Gg: ASbGncu1bCbHwr5Qoo/AZzlVSf5ppn3PuY3Vm+dsB44UfrdHGwasQdtg+DHmetVYjwV
-	AJApRCjRaaQxO8vluSPvx9Uud4Y6JxAkAWuXTEVQVpsb3Y4MhNjWy1Ml8GUka+MIm23t+W53Auo
-	SRKUVV56q/+XhFkJpih8F1dTBrx9werQ0YrErwvcQhCtB5jc8i0XborqG+cov29lFoPIzncq42o
-	UpB/d0=
-X-Google-Smtp-Source: AGHT+IFLFaJZMNtcY4bSeieEVUiOrD9u71emls8SkXMWkt+Cd9A3UVgZvQN5+DgDo/fD1simHs+bT5eet1sbhBXtbNA=
-X-Received: by 2002:a17:907:8694:b0:aff:1586:14c2 with SMTP id
- a640c23a62f3a-b01d8a58373mr129215966b.4.1756540662463; Sat, 30 Aug 2025
- 00:57:42 -0700 (PDT)
+	s=arc-20240116; t=1756543396; c=relaxed/simple;
+	bh=GozjILnmm+/EkIR1cSDHnM9w+CI6W7hegev/r7+xa8k=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QwirMi75bXa8X2qLH6BWJXNo3AxAcdLF/wQ9h6VKzXm9Q1JVStbsxGjnX41Nogx5S54DSwwYC/zEh2Dv9A4X/1iiAph8XZTWrYDDxk2jXvDU5237R63kNfL7IIqYgMyaDg+VmKJkQPgJjnnFPIb4sxixaD8ykkUk6jhGQ8EZnsU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QgMAdgTZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0358CC4CEEB;
+	Sat, 30 Aug 2025 08:43:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756543395;
+	bh=GozjILnmm+/EkIR1cSDHnM9w+CI6W7hegev/r7+xa8k=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QgMAdgTZtPwKWXjhNAyCJMFllYfkBmtwVkF77L4J77rvNPxCM4tHFI9wy1vpTPzJq
+	 KDPAX7ap+/D+zZ5YwdWE3Frd91pug6c9RrPHaU20YB7rxIbFz392xAyprGI581yvVY
+	 D7/X+8WUq1jeJPugrduTgVZ5Z6/dJxy9DMlU6UYM+/MiCnszmjMStUG3N/hLijGFmB
+	 /9qBmvVgsUdXm1RMNILvbUFq3bLBr181//pPZAHCgab7aShY916b+Ws9YNrEtd4jYT
+	 mSGUrIE2RaIOcZfepK4gXi1lrCGGxY77GXWGK52QhrX6B19XA0qbPgkzXiDiRnZKaF
+	 no85w8JDIipJQ==
+Message-ID: <ba227580-add8-4ea8-a973-c39083301e67@kernel.org>
+Date: Sat, 30 Aug 2025 10:43:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1756511030.git.marcelo.schmitt@analog.com> <006ac88a667ce0d2c751946b562af83d0f27a44f.1756511030.git.marcelo.schmitt@analog.com>
-In-Reply-To: <006ac88a667ce0d2c751946b562af83d0f27a44f.1756511030.git.marcelo.schmitt@analog.com>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sat, 30 Aug 2025 10:57:06 +0300
-X-Gm-Features: Ac12FXyTcea0WOAjGBKoJRyBZ-wQfLv5c18Ob1a_Rdr7ObF9Kvv_OchzjH_ruYw
-Message-ID: <CAHp75VdeSqwVecJHx+jXn9++zgN+CBH56OGUYX5kBbdc0AFKSA@mail.gmail.com>
-Subject: Re: [PATCH 15/15] iio: adc: ad4030: Add support for ADAQ4216 and ADAQ4224
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-spi@vger.kernel.org, jic23@kernel.org, Michael.Hennerich@analog.com, 
-	nuno.sa@analog.com, eblanc@baylibre.com, dlechner@baylibre.com, 
-	andy@kernel.org, corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, broonie@kernel.org, Jonathan.Cameron@huawei.com, 
-	andriy.shevchenko@linux.intel.com, ahaslam@baylibre.com, 
-	marcelo.schmitt1@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 4/5] arm64: dts: qcom: sm8650: Enable MCQ support for
+ UFS controller
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, andersson@kernel.org,
+ konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, James.Bottomley@hansenpartnership.com,
+ martin.petersen@oracle.com, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-scsi@vger.kernel.org
+References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
+ <20250821112403.12078-5-quic_rdwivedi@quicinc.com>
+ <eeecc7a3-8ce3-4cfd-8d40-988736fc0c59@kernel.org>
+ <34aqaxgkykyhenrjfj3vrarin2c3uebgfaya7rxi7d5p5skhom@ie4gitcw36mr>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <34aqaxgkykyhenrjfj3vrarin2c3uebgfaya7rxi7d5p5skhom@ie4gitcw36mr>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Aug 30, 2025 at 3:46=E2=80=AFAM Marcelo Schmitt
-<marcelo.schmitt@analog.com> wrote:
->
-> ADAQ4216 and ADAQ4224 are similar to AD4030, but feature a PGA circuitry
-> that scales the analog input signal prior to it reaching the ADC. The PGA
-> is controlled through a pair of pins (A0 and A1) whose state define the
-> gain that is applied to the input signal.
->
-> Add support for ADAQ4216 and ADAQ4224. Provide a list of PGA options
-> through the IIO device channel scale available interface and enable contr=
-ol
-> of the PGA through the channel scale interface.
+On 29/08/2025 18:18, Manivannan Sadhasivam wrote:
+> On Thu, Aug 21, 2025 at 01:49:36PM GMT, Krzysztof Kozlowski wrote:
+>> On 21/08/2025 13:24, Ram Kumar Dwivedi wrote:
+>>> Enable Multi-Circular Queue (MCQ) support for the UFS host controller
+>>> on the Qualcomm SM8650 platform by updating the device tree node. This
+>>> includes adding new register region for MCQ and specifying the MSI parent
+>>> required for MCQ operation.
+>>>
+>>> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 ++++++-
+>>
+>> I don't understand why you combine DTS patch into UFS patchset. This
+>> creates impression of dependent work, which would be a trouble for merging.
+>>
+> 
+> What trouble? Even if the DTS depends on the driver/bindings change, can't it
+> still go through a different tree for the same cycle? It happened previously as
 
-...
+It all depends on sort of dependency.
 
->  /* Datasheet says 9.8ns, so use the closest integer value */
->  #define AD4030_TQUIET_CNV_DELAY_NS     10
+> well, unless the rule changed now.
 
-You already used that in one of the previous patches, can you move
-there this one and use instead of magic +=3D 10?
+No, the point is that there is absolutely nothing relevant between the
+DTS and drivers here. Combining unrelated patches, completely different
+ones, targeting different subsystems into one patchset was always a
+mistake. This makes only life of maintainers more difficult, for no gain.
 
 
-> +/* HARDWARE_GAIN */
-> +#define ADAQ4616_PGA_PINS              2
-> +#define ADAQ4616_GAIN_MAX_NANO         6666666667
-
-Can we use calculus instead (people can't count properly after 3 :-)?
-Something like this
-
-(NANO * 2 / 3) // whoever in the above it's 20 and this puzzles me how
-something with _NANO can be so big :-)
-
-...
-
-> +/*
-> + * Gains computed as fractions of 1000 so they can be expressed by integ=
-ers.
-> + */
-> +static const int ad4030_hw_gains[] =3D {
-> +       333, 556, 2222, 6667,
-
-Again, instead of comment (or in addition to) this can be written as
-
-1000 / 3, 5000 / 9, 20000 / 9, 20000 / 3,
-
-Let the compiler do its job.
-
-> +};
-> +
-> +static const int ad4030_hw_gains_frac[4][2] =3D {
-
-Drop 4
-
-> +       { 1, 3 },  /* 1/3 gain */
-> +       { 5, 9 },  /* 5/9 gain */
-> +       { 20, 9 }, /* 20/9 gain */
-> +       { 20, 3 }, /* 20/3 gain */
-> +};
-
-...
-
-> +static int ad4030_write_raw_get_fmt(struct iio_dev *indio_dev,
-> +                                   struct iio_chan_spec const *chan, lon=
-g mask)
-> +{
-> +       switch (mask) {
-> +       case IIO_CHAN_INFO_SCALE:
-> +               return IIO_VAL_INT_PLUS_NANO;
-> +       default:
-> +               return IIO_VAL_INT_PLUS_MICRO;
-> +       }
-
-> +       return -EINVAL;
-
-What's the point of this return?
-
-> +}
-
-...
-
-> +static int ad4030_setup_pga(struct device *dev, struct iio_dev *indio_de=
-v,
-> +                           struct ad4030_state *st)
-> +{
-> +       unsigned int i;
-> +       int pga_value;
-> +       int ret;
-> +
-> +       ret =3D device_property_read_u32(dev, "adi,pga-value", &pga_value=
-);
-> +       if (ret && ret !=3D -EINVAL)
-> +               return dev_err_probe(dev, ret, "Failed to get PGA value.\=
-n"
-> +
-> +       if (ret =3D=3D -EINVAL) {
-
-This can be done differently, i.e. check for EINVAL first and in
-'else' branch check for other ret !=3D 0. This will deduplicate the
-EINVAL check.
-
-> +               /* Setup GPIOs for PGA control */
-> +               st->pga_gpios =3D devm_gpiod_get_array(dev, "pga", GPIOD_=
-OUT_LOW);
-> +               if (IS_ERR(st->pga_gpios))
-> +                       return dev_err_probe(dev, PTR_ERR(st->pga_gpios),
-> +                                            "Failed to get PGA gpios.\n"=
-);
-> +
-> +               if (st->pga_gpios->ndescs !=3D 2)
-> +                       return dev_err_probe(dev, -EINVAL,
-> +                                            "Expected 2 GPIOs for PGA co=
-ntrol.\n");
-> +
-> +               st->scale_avail_size =3D ARRAY_SIZE(ad4030_hw_gains);
-> +               st->pga_index =3D 0;
-> +               return ad4030_set_pga_gain(st);
-> +       }
-
-...
-
-> +       .max_sample_rate_hz =3D 2 * MEGA,
-
-HZ_PER_MHZ
-
-...
-
-> +       .max_sample_rate_hz =3D 2 * MEGA,
-
-Ditto.
-
---=20
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Krzysztof
 
