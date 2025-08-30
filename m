@@ -1,91 +1,87 @@
-Return-Path: <devicetree+bounces-210778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210779-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60021B3CBE9
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:25:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6842BB3CC1D
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 17:41:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 038D8A0446C
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:25:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 32B3E5654D3
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:41:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7FC00263F32;
-	Sat, 30 Aug 2025 15:25:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7D3425A352;
+	Sat, 30 Aug 2025 15:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b="nlmx3XNV"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YdaxGnq2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA05C25D1F5
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 15:25:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D63B022A817;
+	Sat, 30 Aug 2025 15:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756567520; cv=none; b=eS6GiXB+2kBtN8UxL7n+c4Wn/jdlT1DmLvX8Y3lZz59/H/wr5Jdb9TXp63l5ridWhln+4rY/ridVV0CPeCCVatPCMpjCM6vD1pOARzb1BOKyIKdCjLAKIQ8QapYCkvAKZ1YfqorxqyhLTF8NTFZOQ+KNxZDrBgF1aX1g0z3G0H4=
+	t=1756568502; cv=none; b=gGzfNa1s754emDh1mMsKe2m7/MCM6uWJZuwaCeHSh/c6UwhCwnRhcYJ7BxqCdNZ5th+bpOoVhMI9N6/SNS1/r3jZgceuDocEkXhWIqEjBrwb39fXajsMnu1Bk7TgX8QP1mK4gI2Fw0cn+Db7J1QMSw1TSxSw9uJqus/9Kc1HO30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756567520; c=relaxed/simple;
-	bh=4Pre2iPR3cFdQiZxON1rzrA8qHFbR9ocqwJAPI1d5E0=;
+	s=arc-20240116; t=1756568502; c=relaxed/simple;
+	bh=+iRaXVzECcvXTDXDtnzHEgBKOBeHUhWKVoYey/7sHQA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QANdZ72eejlxFDFf9rpboFyCtmTYN5Kf9k3CyY681s3/2OTDlDj307pEibyRvB6xv8p6arf8s5Tq8MC7CmBkmWBQbiPoUZ2csmvEyvQwCGv9cHqcVPI+s9qYUUOe8HbjEzwf7h+JAy7vaprl6KaPl2XNc+LHHpWN5VBXmUflzgo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu; spf=fail smtp.mailfrom=g.harvard.edu; dkim=pass (2048-bit key) header.d=rowland.harvard.edu header.i=@rowland.harvard.edu header.b=nlmx3XNV; arc=none smtp.client-ip=209.85.160.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=rowland.harvard.edu
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=g.harvard.edu
-Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-4b326b6c189so2143011cf.2
-        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 08:25:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rowland.harvard.edu; s=google; t=1756567515; x=1757172315; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+vQXLaG2kcpMi6zISzeFWytxG/6ZsxQ37Uw+pok3HOE=;
-        b=nlmx3XNV8gcjLk7cgcyvWlI7yq3yuEgE+b7QciP/KTn5hq8S6pJxz6IP1n69Y50YZr
-         GXbM9UHv1SZCDpUtSFQjwYAqMKE2ugBeAVcutmtFOLK1ziZnJwBVRUcVFWG1padFUqZ9
-         XzKZy7Zn6xiLnZbGAzeqasn0S2bpM/ZALaKqgb2fevC31afEdm3fwdvpLPrEuwxZ9jDQ
-         aG41oGq6Q/XOI4X5VeA9/qysMVK7KoE34DtcN0RL5o7YsCo0AHvaA5JtJYcq8ckmyUe4
-         5jBFpLPk5qpwa/hG7Q8GktkFxLmhgSg8snZWrWw9MB2hlTxv5O+z4ZEBTJhB+XPBT05x
-         4vVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756567515; x=1757172315;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+vQXLaG2kcpMi6zISzeFWytxG/6ZsxQ37Uw+pok3HOE=;
-        b=xMAz/3CWfFX9GBQKVYpVo5WpubyYDL2TUrOzQUfZ5JThmB+nbhqszHCR0DzPwlgfLB
-         UOdqxxwOF8+4jcRIP/+T4IhlhfRYKkuHI58TxtidKW188V456+a7D5DmQFMkWmQt8pCZ
-         tRXyMjmokt6+M/Ci3ZKnwM5lbCP//jQH5DW9rH4tGXqCXfiqzsO9Q/7iC8uaWVPOtidk
-         7EZezolaichClW/5fkXSdXckOwn+Lo/QFixSHGeAt6ReQFlA6lKVFxCZdRTxkpgG73vU
-         E2ovfA5uIK/KdL1Oq0A6HxtLBtDMWFdXg1dRzDYkK6bB94sBhskQijzUa1N7yxT0rioU
-         uKOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXPAZIXMo4D41ujM8FH8RWYsDosYnpYEibXBiIoyxOrulmkpqxZm8jpiTz1ohLGVV/a3T883jqPZJWO@vger.kernel.org
-X-Gm-Message-State: AOJu0YyzP5n+KXZGaNYzp1AlEoOGDtRc3ZOVfX0nyl/0MGRY2gAQRYh2
-	yRJRz1Kk9a/kQsiNeXiDbwhy96Y39aTE4hAytrKyYt1ezluqgqgFms0lJKY3YSpz6w==
-X-Gm-Gg: ASbGncv/Bq+InGRQgpKdnxnQPCacYa3r/E9mEuzjlH1emLYMZzK5/LPRbU1A/KBuLT0
-	8CCMUKE6Lg2uVYbhdSA2sppxiq6Yaco/pUjj8qKaPfyIwhErSh3U4ckfkTdAXJ3l5boOdRmZZQm
-	wfObWSSPvqYKNorxJK/4G2AwFAbI733F3UQRsf0btUSZzCZQ+iLC1FHrDmtPQoXpj+N6nBgJ8Gl
-	87By4uivIvzFOcHMezGw7c6H223X65c3ifw0DMLdUh1QWeturtv/PatvCIv1FcXgGydLYMvBErt
-	vcarCXwRySPE9K3qlgvcT/BrRJIWob8DPmxtwN7qXO4oJj+sO17UNxBJfK/njuSa4ZKdhog/ZkT
-	mCX2VauOPrbFG/3w3XCae1JPinyLIbZKFVJawzc+p
-X-Google-Smtp-Source: AGHT+IFqTzpp+i1c8d9FlbmpErvbAswo/o1qSIXruitHS83JpeUiodcPTxO3zJSo4ZrC4TsBR6h8EA==
-X-Received: by 2002:a05:622a:448:b0:4ae:f8bb:7c6a with SMTP id d75a77b69052e-4b31dcceb72mr20637521cf.54.1756567514656;
-        Sat, 30 Aug 2025 08:25:14 -0700 (PDT)
-Received: from rowland.harvard.edu ([2601:19b:681:fd10::fd35])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-7fc1605fb27sm363814885a.62.2025.08.30.08.25.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Aug 2025 08:25:14 -0700 (PDT)
-Date: Sat, 30 Aug 2025 11:25:10 -0400
-From: Alan Stern <stern@rowland.harvard.edu>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=NyBOdYvdl4eoSZrx4WHZqFu1R5Rglb98zUVvEVIS/WcvxmKzl2hbffgzMnS4Kqvy+YHlFn9Y3ZoTrWon8apbg7/nFyR+HkovEVZ8tpAMhx0lrygCSl5rqX4jjEL8baCKwoOv7snkEmFNrPLaUMTkc0mgV9HIVIFIC2/KyfO4BQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YdaxGnq2; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756568501; x=1788104501;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=+iRaXVzECcvXTDXDtnzHEgBKOBeHUhWKVoYey/7sHQA=;
+  b=YdaxGnq2ce3gkLM6+OdRWKTIcfk9AqhMsLTFCuikvJuwvq+G41xm52fh
+   hXVdTeZGqgVASDlBLPf9PUvlGx1SCOIGUZDshVv7MZJaR7h3aY42FkrQy
+   ukv10GsxtKC6vM7MVK7ODEg2BNg4NtfOgn15srUq12vGMHSgQ31pPM1Mx
+   jiXvF3aCwSKHnhGMxVUNMK8tuq2nHa2RMBAdWs/3LE2VDwq0L1pYJgLMC
+   Xoj+o9V9Vcv72bjbz1/2Nohh2GGCtOvhMPqz9BE21XJSUuWceVx6Y2WjG
+   jmSGqlki/ocGzlmEVlXM/Wis95irAdtfm/23aP/mJmdDLaEe9w2Y3b2ga
+   w==;
+X-CSE-ConnectionGUID: 4fkOMggfTECT00BKJNlyGQ==
+X-CSE-MsgGUID: vPmtQ51pTnqdeRYJ8oClzQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11537"; a="58933705"
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="58933705"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Aug 2025 08:41:40 -0700
+X-CSE-ConnectionGUID: 2BBGvx6DQ/eEQNu3xubSNg==
+X-CSE-MsgGUID: fPRSJ2fiRj+oowIs6XSrxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="169912325"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 30 Aug 2025 08:41:36 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1usNhi-000VT3-2q;
+	Sat, 30 Aug 2025 15:41:26 +0000
+Date: Sat, 30 Aug 2025 23:40:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Heiner Kallweit <hkallweit1@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] usb: ohci: s3c2410: Drop support for S3C2410
-Message-ID: <fc4ec548-9a1a-44c3-9958-b6778e37d910@rowland.harvard.edu>
-References: <20250830130101.142934-3-krzysztof.kozlowski@linaro.org>
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Russell King - ARM Linux <linux@armlinux.org.uk>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Eric Dumazet <edumazet@google.com>,
+	David Miller <davem@davemloft.net>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	netdev@vger.kernel.org,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next 1/5] arm64: dts: ls1043a-qds: switch to new
+ fixed-link binding
+Message-ID: <202508302350.uP3JO7bq-lkp@intel.com>
+References: <fe4c021d-c188-4fc2-8b2f-9c3c269056eb@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -94,58 +90,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250830130101.142934-3-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <fe4c021d-c188-4fc2-8b2f-9c3c269056eb@gmail.com>
 
-On Sat, Aug 30, 2025 at 03:01:02PM +0200, Krzysztof Kozlowski wrote:
-> Samsung S3C24xx family of SoCs was removed the Linux kernel in the
-> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
-> 2023.  There are no in-kernel users of remaining S3C24xx compatibles.
-> 
-> The driver is still being used via platform code for S3C64xx platforms.
+Hi Heiner,
 
-This title and description are a bit confusing.  I gather that while the 
-S3C24xx chipsets are not longer supported, the S3C24xx OHCI controller 
-is still being used in S3C64xx systems.
+kernel test robot noticed the following build errors:
 
-So what the patch does is drop support for S3C2410 _systems_ while 
-retaining support for S3C2410 _controllers_.  Is that right?  If so, can 
-we change $SUBJECT to say "usb: ohci: Drop DT support for S3C2410 
-systems"?
+[auto build test ERROR on net-next/main]
 
-Alan Stern
+url:    https://github.com/intel-lab-lkp/linux/commits/Heiner-Kallweit/arm64-dts-ls1043a-qds-switch-to-new-fixed-link-binding/20250830-183341
+base:   net-next/main
+patch link:    https://lore.kernel.org/r/fe4c021d-c188-4fc2-8b2f-9c3c269056eb%40gmail.com
+patch subject: [PATCH net-next 1/5] arm64: dts: ls1043a-qds: switch to new fixed-link binding
+config: arm64-randconfig-002-20250830 (https://download.01.org/0day-ci/archive/20250830/202508302350.uP3JO7bq-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project ac23f7465eedd0dd565ffb201f573e7a69695fa3)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250830/202508302350.uP3JO7bq-lkp@intel.com/reproduce)
 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/usb/host/ohci-s3c2410.c | 8 --------
->  1 file changed, 8 deletions(-)
-> 
-> diff --git a/drivers/usb/host/ohci-s3c2410.c b/drivers/usb/host/ohci-s3c2410.c
-> index 66d970854357..e623e24d3f8e 100644
-> --- a/drivers/usb/host/ohci-s3c2410.c
-> +++ b/drivers/usb/host/ohci-s3c2410.c
-> @@ -448,13 +448,6 @@ static const struct dev_pm_ops ohci_hcd_s3c2410_pm_ops = {
->  	.resume		= ohci_hcd_s3c2410_drv_resume,
->  };
->  
-> -static const struct of_device_id ohci_hcd_s3c2410_dt_ids[] = {
-> -	{ .compatible = "samsung,s3c2410-ohci" },
-> -	{ /* sentinel */ }
-> -};
-> -
-> -MODULE_DEVICE_TABLE(of, ohci_hcd_s3c2410_dt_ids);
-> -
->  static struct platform_driver ohci_hcd_s3c2410_driver = {
->  	.probe		= ohci_hcd_s3c2410_probe,
->  	.remove		= ohci_hcd_s3c2410_remove,
-> @@ -462,7 +455,6 @@ static struct platform_driver ohci_hcd_s3c2410_driver = {
->  	.driver		= {
->  		.name	= "s3c2410-ohci",
->  		.pm	= &ohci_hcd_s3c2410_pm_ops,
-> -		.of_match_table	= ohci_hcd_s3c2410_dt_ids,
->  	},
->  };
->  
-> -- 
-> 2.48.1
-> 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202508302350.uP3JO7bq-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> Error: arch/arm64/boot/dts/freescale/fsl-ls1043a-qds.dts:212.3-33 Properties must precede subnodes
+   FATAL ERROR: Unable to parse input tree
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
