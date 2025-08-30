@@ -1,286 +1,103 @@
-Return-Path: <devicetree+bounces-210775-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296C6B3CB52
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 15:38:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20569B3CB6B
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 16:24:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7201E7A5446
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 13:37:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73A711B2167C
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 14:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8C89225A24;
-	Sat, 30 Aug 2025 13:38:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6F8243958;
+	Sat, 30 Aug 2025 14:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sMFz3lHZ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="jiJiuOLL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA2F61A9FBC;
-	Sat, 30 Aug 2025 13:38:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E8DA1632DD;
+	Sat, 30 Aug 2025 14:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756561116; cv=none; b=F42zsBzmAs3ftnR0/XjR55Qpop5h41UKbYgOlUs03laUY5NZM93gHrUdchWusNeaEI/pptONMcnZFnfYlOSTclQvx93luP2drHEXeplCHeJJIZtWOufHAlFBr3i76bbyhsBpC4YxTEeuAkeqz6talHOkbdSChHyNvMSvYtJYFBo=
+	t=1756563891; cv=none; b=tm6LqcJKyuHbvEnosaf/ylux6IA8GObW9FLgDNYETU7BZaJVTPv/ZV17Bqvhw6LL0BX/fREfD1cRVGWvGI8AoVNUnw4F4lDP2UEtncSyDw/uxlgDly/mqIpSu+5VbSQdr4UnXA20sop2GXjZBFYBtd6zSopRfwLruPlnMNGXfHg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756561116; c=relaxed/simple;
-	bh=e6huc+3grspR/uOx+2CxjoiJbJxmK3UfucZQBCt/WSU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WMtlptYcwNvKn5IWouFoLyO7IpbVJPfWinsRScggVssUQeKQrzmoK/tUbLBdIf8lWE567BVb0RweWqm4CruxBHU5TnLZWv04o8NfKfJPEwPMlOhBs2FZLzhuMD77bDNyGKM+Z4uF4kcnsG0cIdvNi6Ycp8qnARDx2OQwDHSjJOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sMFz3lHZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C0036C4CEEB;
-	Sat, 30 Aug 2025 13:38:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756561116;
-	bh=e6huc+3grspR/uOx+2CxjoiJbJxmK3UfucZQBCt/WSU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sMFz3lHZgfC8OCrPzZ+KJ9CvPN7+Bot7NWie7S9GFzwfdYcM+HCnwt7lD3l2RQouP
-	 89eMgUkFBP0VPdIPBTuZzs67KFNFEBPYnPx6RbkPfG98Lebz1bT7EhCJIs5+dnNblx
-	 ZwY9d73Lnc9kpm32ycAkYfOMbzHgro0Okn0JMtflD1h3+ia+Vc5k4hucmHX1YuCfV/
-	 +rOM0XUIxhHDOJLaKlEWvVYXoqU/NRQsz38ZOxOtihzjyBICe/FurFbKjMPxD4r3rq
-	 EIjhBsIMeOqX+wjUJVRlopG9IFTamUxXcivXo5AtrBdOdW67ANJU5zysKFMZYVDiz+
-	 xRKg3UKdTZIxw==
-Date: Sat, 30 Aug 2025 19:08:28 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: hans.zhang@cixtech.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
-	robh@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com, 
-	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 00/15] Enhance the PCIe controller driver for next
- generation controllers
-Message-ID: <epz5rpofsw7yxxz6pga2ja37zl2xwauqxk2j45q4slj35ja27x@nmbaeo2jbdrb>
-References: <20250819115239.4170604-1-hans.zhang@cixtech.com>
+	s=arc-20240116; t=1756563891; c=relaxed/simple;
+	bh=4pONJUdWbx713zoQVd2/1m/uySraLAp1yiDEBCOzeu8=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=EkIxTFc+u59Sa/AM0uh9JKsY7dTQ+JqeV9r+Fbhl5zpWEG10DH42EBCZ7WteTk758KgXzyu+gwSIjr7gAou5rqvproZT8kfmH3dxQeYqt1+UZ6MfvfOUIpQ58zKGefFMpAFFJEqh11mOR/gin+g94Yr8Z4LDUrELVsRKdTF2ivc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=jiJiuOLL; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (cpc89244-aztw30-2-0-cust6594.18-1.cable.virginm.net [86.31.185.195])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 636C4EAE;
+	Sat, 30 Aug 2025 16:23:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1756563814;
+	bh=4pONJUdWbx713zoQVd2/1m/uySraLAp1yiDEBCOzeu8=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=jiJiuOLL8EV9vi6nJDCyhBlq2rUrh4nY93eRHDDllLCxOfZlnrHeUok+k2Ccn6+wG
+	 +R4NPYMCSaTALEKqYSamcm4XTMYV/IvVsFPQMmrEYf6uRAzuvIncMQPwsom6kAssiC
+	 fPBhgae0q+Qx349jUej9+y2VVwcPG6gF/2eTmFyA=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250819115239.4170604-1-hans.zhang@cixtech.com>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <4eee57c0-a2fb-4fa7-bafe-e3a41c8954bd@kernel.org>
+References: <20250830111500.53169-1-asmirnou@pinefeat.co.uk> <20250830111500.53169-2-asmirnou@pinefeat.co.uk> <4eee57c0-a2fb-4fa7-bafe-e3a41c8954bd@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: Pinefeat cef168 lens control board
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: devicetree@vger.kernel.org, linux-media@vger.kernel.org, linux-kernel@vger.kernel.org
+To: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>, Krzysztof Kozlowski <krzk@kernel.org>, conor+dt@kernel.org, hverkuil@xs4all.nl, jacopo.mondi@ideasonboard.com, krzk+dt@kernel.org, mchehab@kernel.org, robh@kernel.org
+Date: Sat, 30 Aug 2025 15:24:37 +0100
+Message-ID: <175656387714.501865.14707361524569628815@ping.linuxembedded.co.uk>
+User-Agent: alot/0.9.1
 
-On Tue, Aug 19, 2025 at 07:52:24PM GMT, hans.zhang@cixtech.com wrote:
-> From: Hans Zhang <hans.zhang@cixtech.com>
-> 
+Quoting Krzysztof Kozlowski (2025-08-30 14:21:46)
+> On 30/08/2025 13:14, Aliaksandr Smirnou wrote:
+> > Add the Device Tree schema and examples for the Pinefeat cef168 lens
+> > control board. This board interfaces Canon EF & EF-S lenses with
+> > non-Canon camera bodies, enabling electronic control of focus and
+> > aperture via V4L2.
+> >=20
+> > Power supply is derived from fixed supplies via connector or GPIO
+> > header. Therefore, the driver does not manage any regulator, so
+> > representing any supply in the binding is redundant.
+> >=20
+> > Signed-off-by: Aliaksandr Smirnou <asmirnou@pinefeat.co.uk>
+>=20
+>=20
+> b4 diff '<20250830111500.53169-2-asmirnou@pinefeat.co.uk>'
+> Grabbing thread from
+> lore.kernel.org/all/20250830111500.53169-2-asmirnou@pinefeat.co.uk/t.mbox=
+.gz
+> Checking for older revisions
+> Grabbing search results from lore.kernel.org
 > ---
-> Dear Maintainers,
-> 
-> This series is Cadence's HPA PCIe IP and the Root Port driver of our
-> CIX sky1. Please help review. Thank you very much.
+> Analyzing 9 messages in the thread
+> Could not find lower series to compare against.
+>=20
+> You are not making it easier for us.
 
-IIUC, sky1 only supports RC mode of the Cadence HPA architecture and not EP. But
-you have added the library functions for EP mode also and it is currently
-unused. So you should drop those EP related code from this series and add
-whenever the corresponding platform driver is added. It also makes patch 8
-smaller.
+Could you explain what's required to tell b4 to know about earlier
+versions please? (Or point to the documentation?)
 
-- Mani
+I don't know ... so I don't think a first time contributor would
+implicitly know either.
 
-> ---
-> 
-> Enhances the exiting Cadence PCIe controller drivers to support
-> HPA (High Performance Architecture) Cadence PCIe controllers.
-> 
-> The patch set enhances the Cadence PCIe driver for HPA support.
-> The header files are separated out for legacy and high performance
-> register maps, register address and bit definitions. The driver
-> read register and write register functions for HPA take the
-> updated offset stored from the platform driver to access the registers.
-> As part of refactoring of the code, few new files are added to the
-> driver by splitting the existing files.
-> This helps SoC vendor who change the address map within PCIe controller
-> in their designs. Setting the menuconfig appropriately will allow
-> selection between RP and/or EP PCIe controller support. The support
-> will include Legacy and HPA for the selected configuration.
-> 
-> The TI SoC continues to be supported with the changes incorporated.
-> 
-> The changes address the review comments in the previous patches where
-> the need to move away from "ops" pointers used in current implementation
-> and separate out the Legacy and HPA driver implementation was stressed.
-> 
-> The scripts/checkpatch.pl has been run on the patches with and without
-> --strict. With the --strict option, 4 checks are generated on 3 patch,
-> which can be ignored. There are no code fixes required for these checks.
-> All other checks generated by ./scripts/checkpatch.pl --strict can be 
-> ignored.
-> 
-> ---
-> Changes for v8
->         - Fixed the error issue of DT binding. (Rob and Krzysztof)
->         - Optimization of CIX SKY1 Root Port driver. (Bjorn and Krzysztof)
->         - Review comments fixed. (Bjorn and Krzysztof)
-> 	      - All comments related fixes like single line comments, spaces
->               between HPA or LGA, periods in single line, changes proposed
->               in the description, etc are fixed. (Bjorn and Krzysztof)
->         - Patches have been split to separate out code moves from
->           update and fixes.
->         - "cdns_...send_irq.." renamed to "cdns_..raise_irq.."
-> 
->         The test log on the Orion O6 board is as follows:
->         root@cix-localhost:~# lspci
->         0000:c0:00.0 PCI bridge: Device 1f6c:0001
->         0000:c1:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
->         0001:90:00.0 PCI bridge: Device 1f6c:0001
->         0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
->         0002:60:00.0 PCI bridge: Device 1f6c:0001
->         0002:61:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
->         0003:00:00.0 PCI bridge: Device 1f6c:0001
->         0003:01:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
->         0004:30:00.0 PCI bridge: Device 1f6c:0001
->         0004:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. RTL8125 2.5GbE Controller (rev 05)
->         root@cix-localhost:~#
->         root@cix-localhost:~# uname -a
->         Linux cix-localhost 6.17.0-rc2-00043-gb2782ead460c #185 SMP PREEMPT Tue Aug 19 19:35:34 CST 2025 aarch64 GNU/Linux
->         root@cix-localhost:~# cat /etc/issue
->         Debian GNU/Linux 12 \n \l
-> 
-> Changes for v7
-> https://patchwork.kernel.org/project/linux-pci/cover/20250813042331.1258272-1-hans.zhang@cixtech.com/
-> 
->         - Rebase to v6.17-rc1.
->         - Fixed the error issue of cix,sky1-pcie-host.yaml make dt_binding_check.
->         - CIX SKY1 Root Port driver compilation error issue: Add header
->           file, Kconfig select PCI_ECAM.
-> 
-> Changes for v6
-> https://patchwork.kernel.org/project/linux-pci/cover/20250808072929.4090694-1-hans.zhang@cixtech.com/
-> 
->         - The IP level DTS changes for HPA have been removed as the SoC
->           level DTS is added
->         - Virtual FPGA platform is also removed as the CiX SoC support is
->           added
->         - Fix the issue of dt bindings
->         - Modify the order of PCIe node attributes in sky1-orion-o6.dts
->           and delete unnecessary attributes.
->         - Continue to simplify the RC driver.
->         - The patch of the Cix Sky1 platform has been accepted and merged into the linux master branch.
->         https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250721144500.302202-1-peter.chen@cixtech.com/
-> 
-> Changes for v5
-> https://patchwork.kernel.org/project/linux-pci/cover/20250630041601.399921-1-hans.zhang@cixtech.com/
-> 
->         - Header and code files separated for library functions(common
->           functions used by both architectures) and Legacy and HPA.
->         - Few new files added as part of refactoring
->         - No checks for "is_hpa" as the functions have been separated
->           out
->         - Review comments from previous patches have been addressed
->         - Add region 0 for ECAM and region 1 for message.
->         - Add CIX sky1 PCIe drivers. Submissions based on the following v9 patches:
->         https://patchwork.kernel.org/project/linux-arm-kernel/cover/20250609031627.1605851-1-peter.chen@cixtech.com/
-> 
->         Cix Sky1 base dts review link to show its review status:
->         https://lore.kernel.org/all/20250609031627.1605851-9-peter.chen@cixtech.com/
-> 
->         The test log on the Orion O6 board is as follows:
->         root@cix-localhost:~# lspci
->         0000:c0:00.0 PCI bridge: Device 1f6c:0001
->         0000:c1:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
->         0001:90:00.0 PCI bridge: Device 1f6c:0001
->         0001:91:00.0 Non-Volatile memory controller: Samsung Electronics Co Ltd NVMe SSD Controller PM9A1/PM9A3/980PRO
->         0002:60:00.0 PCI bridge: Device 1f6c:0001
->         0002:61:00.0 Network controller: Realtek Semiconductor Co., Ltd. RTL8852BE PCIe 802.11ax Wireless Network Controller
->         0003:00:00.0 PCI bridge: Device 1f6c:0001
->         0003:01:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
->         0004:30:00.0 PCI bridge: Device 1f6c:0001
->         0004:31:00.0 Ethernet controller: Realtek Semiconductor Co., Ltd. Device 8126 (rev 01)
->         root@cix-localhost:~# uname -a
->         Linux cix-localhost 6.16.0-rc1-00023-gbaa962a95a28 #138 SMP PREEMPT Fri Jun 27 16:43:41 CST 2025 aarch64 GNU/Linux
->         root@cix-localhost:~# cat /etc/issue
->         Debian GNU/Linux 12 \n \l
->  
-> Changes for v4
-> https://patchwork.kernel.org/project/linux-pci/cover/20250424010445.2260090-1-hans.zhang@cixtech.com/
-> 
->         - Add header file bitfield.h to pcie-cadence.h
->         - Addressed the following review comments
->                 Merged the TI patch as it
->                 Removed initialization of struct variables to '0'
-> 
-> Changes for v3
-> https://patchwork.kernel.org/project/linux-pci/patch/20250411103656.2740517-1-hans.zhang@cixtech.com/
-> 
->         - Patch version v3 added to the subject
->         - Use HPA tag for architecture descriptions
->         - Remove bug related changes to be submitted later as a separate
->           patch
->         - Two patches merged from the last series to ensure readability to
->           address the review comments
->         - Fix several description related issues, coding style issues and
->           some misleading comments
->         - Remove cpu_addr_fixup() functions
-> ---
-> 
-> Hans Zhang (6):
->   dt-bindings: PCI: Add CIX Sky1 PCIe Root Complex bindings
->   PCI: Add Cix Technology Vendor and Device ID
->   PCI: sky1: Add PCIe host support for CIX Sky1
->   MAINTAINERS: add entry for CIX Sky1 PCIe driver
->   arm64: dts: cix: Add PCIe Root Complex on sky1
->   arm64: dts: cix: Enable PCIe on the Orion O6 board
-> 
-> Manikandan K Pillai (9):
->   PCI: cadence: Add module support for platform controller driver
->   PCI: cadence: Split PCIe controller header file
->   PCI: cadence: Add register definitions for High Perf Architecture
->     (HPA)
->   PCI: cadence: Add helper functions for supporting High Perf
->     Architecture (HPA)
->   PCI: cadence: Move PCIe EP common functions to a separate file
->   PCI: cadence: Move PCIe RP common functions to a separate file
->   PCI: cadence: Move PCIe controller common functions as a separate file
->   PCI: cadence: Add support for High Perf Architecture (HPA) controller
->   PCI: cadence: Update PCIe platform to use register offsets passed
-> 
->  .../bindings/pci/cix,sky1-pcie-host.yaml      |  83 +++
->  MAINTAINERS                                   |   7 +
->  arch/arm64/boot/dts/cix/sky1-orion-o6.dts     |  20 +
->  arch/arm64/boot/dts/cix/sky1.dtsi             | 126 ++++
->  drivers/pci/controller/cadence/Kconfig        |  21 +-
->  drivers/pci/controller/cadence/Makefile       |  11 +-
->  drivers/pci/controller/cadence/pci-sky1.c     | 232 +++++++
->  .../controller/cadence/pcie-cadence-common.c  | 141 +++++
->  .../cadence/pcie-cadence-ep-common.c          | 251 ++++++++
->  .../cadence/pcie-cadence-ep-common.h          |  36 ++
->  .../controller/cadence/pcie-cadence-ep-hpa.c  | 528 ++++++++++++++++
->  .../pci/controller/cadence/pcie-cadence-ep.c  | 233 +------
->  .../cadence/pcie-cadence-host-common.c        | 179 ++++++
->  .../cadence/pcie-cadence-host-common.h        |  24 +
->  .../cadence/pcie-cadence-host-hpa.c           | 585 ++++++++++++++++++
->  .../controller/cadence/pcie-cadence-host.c    | 156 +----
->  .../cadence/pcie-cadence-hpa-regs.h           | 182 ++++++
->  .../pci/controller/cadence/pcie-cadence-hpa.c | 204 ++++++
->  .../cadence/pcie-cadence-lga-regs.h           | 228 +++++++
->  .../controller/cadence/pcie-cadence-plat.c    |  20 +-
->  drivers/pci/controller/cadence/pcie-cadence.c | 139 +----
->  drivers/pci/controller/cadence/pcie-cadence.h | 412 ++++++------
->  include/linux/pci_ids.h                       |   3 +
->  23 files changed, 3056 insertions(+), 765 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/pci/cix,sky1-pcie-host.yaml
->  create mode 100644 drivers/pci/controller/cadence/pci-sky1.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-common.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.h
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-hpa.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-common.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-common.h
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-host-hpa.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-hpa.c
->  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-lga-regs.h
-> 
-> 
-> base-commit: be48bcf004f9d0c9207ff21d0edb3b42f253829e
-> -- 
-> 2.49.0
-> 
+--
+Kieran
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+>=20
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> Best regards,
+> Krzysztof
 
