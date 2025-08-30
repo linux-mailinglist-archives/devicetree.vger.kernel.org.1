@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-210724-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210725-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A30A9B3CA30
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 12:29:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86863B3CA34
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 12:31:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590267C6033
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 10:29:51 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA9201894F70
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 10:31:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8809E275854;
-	Sat, 30 Aug 2025 10:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CDA12773DA;
+	Sat, 30 Aug 2025 10:31:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="knQOXy7J"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Uy0vTwSe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1696214210;
-	Sat, 30 Aug 2025 10:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 702A3207A0B;
+	Sat, 30 Aug 2025 10:31:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756549788; cv=none; b=PnbJBLOyDv3DzQxbwiOeBRbe6kqqSbvj6jWPTZkF+083b/IOqYpka8tNTw03gKGAnt5JEN7aV4WSzx3xaMMBBQZl0hqbxKf7Cqpley7KnUlvc/tUhoVAzuwKSr9+IjqNZVXEvwq3De0JsKNja4lVf7haAFsKfGclfU47FRU+U0o=
+	t=1756549877; cv=none; b=OA7yfiBvlTxNNd09ZInZqiWmHWjBC1srYSsxeiRja4Geno01ERGPEbbq598wVt3dwOgaKjrKDB/XYnGRbCINAae2tL5r3YSoLJbQs6YM9AvsDbzwhEz4FzJAwt0sjQrE2VeB2UtGSEe4z7C4LWCQ5uwgKMsZZiCYXLJ2i7iDuho=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756549788; c=relaxed/simple;
-	bh=DPI+3qXhLHPrHXps9sBC/idDylCwXQMMcO8R1JUhvpA=;
+	s=arc-20240116; t=1756549877; c=relaxed/simple;
+	bh=MEmPf9JBt95ENutQWTEOP4yncyxyPSoWjYQQocrVTC8=;
 	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=jyTmeti1Jz/BH0rXovJR3ba772D50eMAqjgvCVigWsMlnDPVqhLEFefU6yD5URk6tCBlsdTT/AXIEWXUFnFnLK6JKDieo/OZf6kbImHJ0UEE17qGJnLAg595aazHs49TUXbuUbTo2a4tqieNP6Pem6iPFihpOybPULNslLR9GmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=knQOXy7J; arc=none smtp.client-ip=209.85.208.53
+	 In-Reply-To:Content-Type; b=RJc0ns1DHankVPYVmBCtiuWyBDu7xgBWsiFX59zkxuCKXR+C5mXLKzn0qj1TQ0CesYnjU/SVrxAiQ7DneUZJIE17cVvqLDrDc+s4zKzzo3ktwF4HShnt1MJpkfS5Zngvozyb5IA4qLTm6M0CjY5Sm4MUAiFrTSrls2Le4TtS/9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Uy0vTwSe; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-61cbfa1d820so5588347a12.3;
-        Sat, 30 Aug 2025 03:29:46 -0700 (PDT)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-b03fa5c5a89so34358366b.2;
+        Sat, 30 Aug 2025 03:31:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756549785; x=1757154585; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1756549874; x=1757154674; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :references:cc:to:from:subject:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zW9iMTsNFJqzaVU+9Umz/LvOS9lH5xEq/8s2G/XEJxE=;
-        b=knQOXy7JIHCV5fQ/kmq35Mgg65iUy/6gqEIivb99f2ww8NEIuhxNXxoK6ZtKDDafsv
-         xNNwLUlCYvZD3x0LBnndJAlGeRTsytEFkVKCo21IU5YmiRPKWQ4akSoul4hR8Duy2ShY
-         B2B9xWLQh03bj9w1X1XriMTuKcSl3PSPYTMd40kL2oIBhD9HLZQ6W4psB92RdCQNHRcy
-         l+o2VkJ90gxWwg6jwmoxEyG5K2WB5c9vYeNQhk61BNPPh5y1x/WHyUr+SFr/3yjstlqG
-         +WggN1VVPH2ih8KT0DTEmX6iU3rq6qu86SVvmcPX9ksZXd/eW2rUAUM6sGkuJxUYrfmJ
-         A3qg==
+        bh=VHENl3vhXJdefcBx8Eb74+JpAMuYZm+3iaoopdaiCnc=;
+        b=Uy0vTwSelOgA8R/2nE6+E+xYJAeqNGuYTvSJ28ACojxe6633sB+W9LTjMcM2bcJRJY
+         AdrhtNrWHHB2o0TkiUBGA7Khzv7PNuDwgZnvUYc9CHN8z1z/2KDIezk4twGDK48NHdZ+
+         4kuen3pr84FnmyiCHzCkBADyVRCJEua03Xfk1QsjGZlC9/Qvju4vrYW/K8BvpbrDXJaU
+         CN2A+bdZAH1Fi+wnea1oTeAHpoueGxhuREa3uJ0ajQ37Bq+O5JuO8YZq7LvzO1TaV9MY
+         kBzW+StPVyQMBkrko1+zBQVr9mHiho9Q9WAnF7exaSM8iDdmJF2ds4qYhWLKwVn/Ca88
+         4ZzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756549785; x=1757154585;
+        d=1e100.net; s=20230601; t=1756549874; x=1757154674;
         h=content-transfer-encoding:in-reply-to:autocrypt:content-language
          :references:cc:to:from:subject:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=zW9iMTsNFJqzaVU+9Umz/LvOS9lH5xEq/8s2G/XEJxE=;
-        b=XwI/Ye1RoGFPUx2kZU5PXAakSXv6GFYDs7teio69r3+Q/LmUH6BMbfJKOHqCYmM0Da
-         DfpKzCxvNv8W3UJ4kL1qeaN6nzqvPPFStKlmKqOJLrz2rhVo37/iTMnjkm2uYH1OSrtQ
-         buuA/R5tOckiXrUVA6xebU/6iEaUW+fz7AMoHiHxc461bpgLOpXRK0/IU4fhjSu4OYeR
-         svF/BNONWE/F62OGi19UsjHHJumdZd5FLN++xK7qecaH+FG6TtY4DkyXHgsAT64cAozn
-         rb/l2QJEs6kHlbOH8rgDqPIXJyv8BSce3Ye+OiGi0zUiON/Ra8EA5mboUIWubtBbxhdT
-         b8BQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTgoZR8wKCP5W6xgnWcJenEkQT8iyuJ+/IdIrkhrt3LLjaih58xT1hSs6yFMw8P1s72nALANZwro0b@vger.kernel.org, AJvYcCWxlC5zvoSBs0w+KEXRK6/0rPCV0415A/6ekyx7qSJ6k8mShPvBRnF3FhLcUkdg9dCxt+amRIaZ@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2N8j2jPbtZCpXYN0yXGC96Wo7zNwM8aCNNdCyaMl2Zic6hFHU
-	dpOWH014vg69fxJ2qA2G0LmpjP4DSzWjm6v/fiV0+IQKduBkM4LOq3q7
-X-Gm-Gg: ASbGncu62m6tY3MJur6nX2HB1rpIMKHoUTjTaSHxs6HCji0ZwBIIp8EZSBv6TeYX84x
-	G9/NgZaKVpxIsOarkl1zJ0jtWfRFsZm8WwqJlT+RiKzdTqPSw7aAuucOaVVTh9BK83J/n9OFocC
-	HPxT9oeqE6vj2NMFSBBTgbftE5jEc0ZJuiahMrf2UmL21bNdhvIcUQSRzKtKLzWTVzOP/RUU2HS
-	ih03Ep9ngfMWya0HwnYPDykaSpUaW1O4og4rfrKgurR11XkP/6O4RXG9Pk9XwSF9CjRCAxnM2HG
-	+UafhhL7Pk6sbUziAHaunSTCisgGykbM6QTWdotikbp/0+pRlyupe1fNyfZaDz3iCFmVpRpZgZ3
-	cjxSyw4iC1G0ZhS4YYb+1f0XxMW5eGu/z51jiEWwr6grE5RfRw/4NhcorPcyJ4evm4FOqeYDZcs
-	fw7bDvt/HuhUyh5ETu7w5B2XvQkfUf/QztNdQa8QjNEacjBi9X18dG6B5w
-X-Google-Smtp-Source: AGHT+IGdeSzlz//5vitphrudTeLP3+ohGqqg8AR+C2VuNQVE861iGJnmaLhDcyecyp7lhX1sBovH7A==
-X-Received: by 2002:a05:6402:2714:b0:61b:cadd:d95 with SMTP id 4fb4d7f45d1cf-61d269974c9mr1189801a12.8.1756549785008;
-        Sat, 30 Aug 2025 03:29:45 -0700 (PDT)
+        bh=VHENl3vhXJdefcBx8Eb74+JpAMuYZm+3iaoopdaiCnc=;
+        b=ehVw6gK0UWmvrWhtSQxOHOn/FYgzak0mYglYZSYHBL5kSGlr6wRG3K+bQefGBEYj+i
+         Ps8Q9umjHKJLzYq5Z/nqLNeuzOB6rjomlh7ccNzZL0lN2fTTmu3O/3irhv3A4EXMUJim
+         gUVu/4DTlX9kxXdXybNFkksi+NGUa2mlWpS98KL4orU+Sw1OfrDZAwKXU5s+s/AnMcs9
+         5YhZmkxdE8W2XduNxzZU/TpnlP4lMDRw9YJgPoBQKK0ZOdM2KIXEgkMisC6ijrubCo2F
+         wM0XfQkoP7a9Og5OYi4EOn+QeAQV9H7+mLW9nlnX5P2k96baMLJhfM90BHnXZXfCNsXp
+         cS5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCV320QkY017x+cnSm8m1xX7rFuT1XR6mV45nkXy2ndA1BTK1du1SRuw81QVEJcznfMx1S+5yrVxToEx@vger.kernel.org, AJvYcCV4Qz/6ToQcT17OqNqjOwaaYF/RVFRVFRw4VSK9termWggcCdxe1CKEPAStckc79oC95It/YnvY@vger.kernel.org
+X-Gm-Message-State: AOJu0Yync+M79AKacrGuafuligL2xfphAyQKAo+cd0W0dEADZfKRuCwR
+	3PzhLGy0CPLN/gC/qPmdioJwW1X0MruMuV40ueTBGuf2tb/N6o6Tn9Jx
+X-Gm-Gg: ASbGnct1cCG6lub0pThqrrN1FGecphWCzflm32mPhKpW0jhAOZ2lnN37ovjDXP1hLyl
+	l1tBPlnz+T7s6lCQCbLT6f0fKUPrCBdHfi6A1HBPtSck9PKLWTG/sg91Ln2YUXmg6cFbANu8bUe
+	NRYQmlb16WJ/M+AJhMzqwaKxW/3UOGVzNIQrElk0o64mQnuMURTHHW7gLxv8FnY2GihgHJ9ZC9Q
+	WuHaEJREZTn1nCcZqH4YnCJCfdaS6/8z6jWhR+FFcnc3qPSwEGAUbYWIy0FxxIcCLiFCwEJYMpl
+	aApuVic85+sD5SsKQQ7H3qxm0kJZDOpawrEe4tUESatT6KCWX0ENKVr8aQ015mvgaG5JR32ftlJ
+	RBdNphbm1uqFLybBdSGE940+tuzL9VtcVLPhLU3Zjtq0OhCkSPGbHL1cqzZAndpWq/zNEG5obkh
+	UbRrhGDk6XZgJU54ZrXqzQlBCNKI1f7AnUqvMsYli25I+XTDNU9ERzC25h
+X-Google-Smtp-Source: AGHT+IG8ZDCC2V3+EonpNeqqDHEWdVKRo5hKxw3mm3OIcIvvZGu3whG8VR1DHL+/mPpMHOJAVfIpog==
+X-Received: by 2002:a17:907:7ba1:b0:afc:bcfc:b3b7 with SMTP id a640c23a62f3a-b01d973e909mr149125566b.38.1756549873319;
+        Sat, 30 Aug 2025 03:31:13 -0700 (PDT)
 Received: from ?IPV6:2003:ea:8f2f:9b00:80c:a2fc:7bcf:3a2? (p200300ea8f2f9b00080ca2fc7bcf03a2.dip0.t-ipconnect.de. [2003:ea:8f2f:9b00:80c:a2fc:7bcf:3a2])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc21542asm3234360a12.18.2025.08.30.03.29.44
+        by smtp.googlemail.com with ESMTPSA id a640c23a62f3a-b0307435422sm94050066b.78.2025.08.30.03.31.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 30 Aug 2025 03:29:44 -0700 (PDT)
-Message-ID: <1d6eeae6-96c9-4c25-a250-01fb7580c9be@gmail.com>
-Date: Sat, 30 Aug 2025 12:29:54 +0200
+        Sat, 30 Aug 2025 03:31:12 -0700 (PDT)
+Message-ID: <c8820f9f-796d-4d1a-9ce0-be3788e814b1@gmail.com>
+Date: Sat, 30 Aug 2025 12:31:22 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,8 +84,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: [PATCH net-next 4/5] net: mdio: remove support for old fixed-link
- binding
+Subject: [PATCH net-next 5/5] net: phy: phylink: remove support for deprecated
+ fixed-link binding
 From: Heiner Kallweit <hkallweit1@gmail.com>
 To: Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -152,80 +152,52 @@ for more than 10 yrs. So remove support for it.
 
 Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
 ---
- drivers/net/mdio/of_mdio.c | 26 --------------------------
- 1 file changed, 26 deletions(-)
+ drivers/net/phy/phylink.c | 25 +------------------------
+ 1 file changed, 1 insertion(+), 24 deletions(-)
 
-diff --git a/drivers/net/mdio/of_mdio.c b/drivers/net/mdio/of_mdio.c
-index d8ca63ed8..5df01717a 100644
---- a/drivers/net/mdio/of_mdio.c
-+++ b/drivers/net/mdio/of_mdio.c
-@@ -379,21 +379,12 @@ struct phy_device *of_phy_get_and_connect(struct net_device *dev,
- }
- EXPORT_SYMBOL(of_phy_get_and_connect);
+diff --git a/drivers/net/phy/phylink.c b/drivers/net/phy/phylink.c
+index c7f867b36..e3e22e013 100644
+--- a/drivers/net/phy/phylink.c
++++ b/drivers/net/phy/phylink.c
+@@ -690,29 +690,6 @@ static int phylink_parse_fixedlink(struct phylink *pl,
  
--/*
-- * of_phy_is_fixed_link() and of_phy_register_fixed_link() must
-- * support two DT bindings:
-- * - the old DT binding, where 'fixed-link' was a property with 5
-- *   cells encoding various information about the fixed PHY
-- * - the new DT binding, where 'fixed-link' is a sub-node of the
-- *   Ethernet device.
-- */
- bool of_phy_is_fixed_link(struct device_node *np)
- {
- 	struct device_node *dn;
- 	int err;
- 	const char *managed;
- 
--	/* New binding */
- 	dn = of_get_child_by_name(np, "fixed-link");
- 	if (dn) {
- 		of_node_put(dn);
-@@ -404,10 +395,6 @@ bool of_phy_is_fixed_link(struct device_node *np)
- 	if (err == 0 && strcmp(managed, "auto") != 0)
- 		return true;
- 
--	/* Old binding */
--	if (of_property_count_u32_elems(np, "fixed-link") == 5)
--		return true;
+ 		if (ret)
+ 			return ret;
+-	} else {
+-		u32 prop[5];
 -
- 	return false;
- }
- EXPORT_SYMBOL(of_phy_is_fixed_link);
-@@ -416,7 +403,6 @@ int of_phy_register_fixed_link(struct device_node *np)
- {
- 	struct fixed_phy_status status = {};
- 	struct device_node *fixed_link_node;
--	u32 fixed_link_prop[5];
- 	const char *managed;
- 
- 	if (of_property_read_string(np, "managed", &managed) == 0 &&
-@@ -425,7 +411,6 @@ int of_phy_register_fixed_link(struct device_node *np)
- 		goto register_phy;
+-		ret = fwnode_property_read_u32_array(fwnode, "fixed-link",
+-						     NULL, 0);
+-		if (ret != ARRAY_SIZE(prop)) {
+-			phylink_err(pl, "broken fixed-link?\n");
+-			return -EINVAL;
+-		}
+-
+-		ret = fwnode_property_read_u32_array(fwnode, "fixed-link",
+-						     prop, ARRAY_SIZE(prop));
+-		if (!ret) {
+-			pl->link_config.duplex = prop[1] ?
+-						DUPLEX_FULL : DUPLEX_HALF;
+-			pl->link_config.speed = prop[2];
+-			if (prop[3])
+-				__set_bit(ETHTOOL_LINK_MODE_Pause_BIT,
+-					  pl->link_config.lp_advertising);
+-			if (prop[4])
+-				__set_bit(ETHTOOL_LINK_MODE_Asym_Pause_BIT,
+-					  pl->link_config.lp_advertising);
+-		}
  	}
  
--	/* New binding */
- 	fixed_link_node = of_get_child_by_name(np, "fixed-link");
- 	if (fixed_link_node) {
- 		status.link = 1;
-@@ -444,17 +429,6 @@ int of_phy_register_fixed_link(struct device_node *np)
- 		goto register_phy;
- 	}
+ 	if (pl->link_config.speed > SPEED_1000 &&
+@@ -768,7 +745,7 @@ static int phylink_parse_mode(struct phylink *pl,
+ 		pl->cfg_link_an_mode = MLO_AN_INBAND;
  
--	/* Old binding */
--	if (of_property_read_u32_array(np, "fixed-link", fixed_link_prop,
--				       ARRAY_SIZE(fixed_link_prop)) == 0) {
--		status.link = 1;
--		status.duplex = fixed_link_prop[1];
--		status.speed  = fixed_link_prop[2];
--		status.pause  = fixed_link_prop[3];
--		status.asym_pause = fixed_link_prop[4];
--		goto register_phy;
--	}
--
- 	return -ENODEV;
+ 	dn = fwnode_get_named_child_node(fwnode, "fixed-link");
+-	if (dn || fwnode_property_present(fwnode, "fixed-link"))
++	if (dn)
+ 		pl->cfg_link_an_mode = MLO_AN_FIXED;
+ 	fwnode_handle_put(dn);
  
- register_phy:
 -- 
 2.51.0
 
