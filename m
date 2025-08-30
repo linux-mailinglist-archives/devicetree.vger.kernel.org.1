@@ -1,130 +1,150 @@
-Return-Path: <devicetree+bounces-210673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EB99B3C782
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 04:47:44 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4A92B3C795
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 05:22:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BA2A1C8129F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 02:48:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 541D27B3660
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 03:20:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 823AD26B2DA;
-	Sat, 30 Aug 2025 02:47:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64BB72737F6;
+	Sat, 30 Aug 2025 03:22:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G3UPOYER"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bvEbtI1y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15C7D224D6;
-	Sat, 30 Aug 2025 02:47:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35FDA6F06B;
+	Sat, 30 Aug 2025 03:22:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756522059; cv=none; b=VjwmdF40GDVaSQr2rRUc0Jlq3W2c5/B5xVmp6aXZ5h3jDwxi4B0/cthHYbQPuBjshXdszAM/EWPVUuF6POIoBaVuYzExyADXk8E9clw63Mqce8KAlFu27uECc3IZkaaxhFheABcQi+n/nz7iUrLOY7Fl91mYXr90i92+LZfjwR0=
+	t=1756524121; cv=none; b=QZLArUEivmJTxhAdE0JB3J2Kv1IZ6tG6d6PuXQ4h7FVGf9550Zyl9DU0T/rNJN7+E4kh6ok1PX/Jd+Fc15W8AV4PXx4LL6KWxk9Cc3dX2gFQAAszV1ZP4hM44jU3onPCkFkYpRaYQiKyQrtrFSNsVswgHHTGQ2KDLZJDIsCC7uM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756522059; c=relaxed/simple;
-	bh=s0Wzuy5FKe7WprUs0n9XM0ue5dvcfmuCGmfE1nLywiA=;
+	s=arc-20240116; t=1756524121; c=relaxed/simple;
+	bh=uJCWLg8Xr/0C+/8ZRu6677VYEHkkf5iwokGEhBnGEiE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X6OpviLFECprWenTOyikZ7QzLRUkHvrwYvDar4U0gnOaW3mWa+f8403J7TzDZlAWZtQPsuDsfCcOIlSHb8fCfX7+XBmjT88Bp21XEJduZ+J43WyA9hKylqdP+fBqn2lMXIJtmxPTleoOQGR5qZNRb7lSQkYfQaueAaXVkAtPNDI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G3UPOYER; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-771ed4a8124so2775503b3a.2;
-        Fri, 29 Aug 2025 19:47:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756522057; x=1757126857; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yOKB86akayhJUe68ZwqhBuo1eGGE51BvMN33IB4BODg=;
-        b=G3UPOYERwjdeE+GSTGLDWZUTfQ5gMtbZ3KogJD3Dakk09MkYtqJ/qlhtT3hneTatgu
-         N3uICuEjTrnXno3+71swmqDK3wGd5WiJnLzEYy2G/IoviMWp/NGAAgaqcExDFd4u0QOd
-         FlRoLj48NI6zeqjhXsYANScQorpmkxUm9LpGMiVr9Z3F6zf1HYdD7CHD55AmGFESBb4j
-         dUCrXx29xknqo7b0WTgYRr/QJZ5ZjYhwOU8mVWlh9ERYdy4eoFN4fEVrv6lO0hscCRuX
-         xVVBITTOCvyXeFAwQqdA4fKVS5gDIRnlWbbSPOPH/F40/IAY7meA3t/4/ovbv0uq6tDO
-         zFmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756522057; x=1757126857;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yOKB86akayhJUe68ZwqhBuo1eGGE51BvMN33IB4BODg=;
-        b=GVYTb+Ma5y6b0j27JrY+mDE6b4pd1hCHr0YZDxcywKWi+VdK7zn8uRVh46zgm+HWhA
-         5m/yBdzgMKfWNc53fkAp2LHdUwltEz7DFDBXk6u/wwH6ElBz651QH6WyLWihj+dge6IB
-         4BJJFEeEKHUxUVtUrHBjRWKRz9sjudbf2GwS0ZY7IXB2KgstR2T8l791x44KMK7FuzLu
-         7Jz4iC7Ltu9UGvTJCb8DfdnMgcwAEgqr7OpDuHyZJSsLw+x+XSzm2/xGaGDTqEdPYdoT
-         gekZMEC+cR5UjGrQPj6sOShj22wr6/FI2GCwjxdC4qCYP4tYdZvWvy0Z3UBB77a/8vBH
-         yiaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUad+ZkBE27sv4VPhybvuhJ+vCjo3NSI0mDCA/lKRxwyZD1LlX0pC1F5TwLAOxsYA+9w7GIeLkHNwqG@vger.kernel.org, AJvYcCVw2v4F0W0gQHOegDpGl8o92k4+0kHPuQI9EZaq2RZBIBWyDzXYPTIKygTAZrnjxReNQ/cIdEbduMAO@vger.kernel.org, AJvYcCW2sBRoLwXkrbkyF4rP3V1FiaeE0C9fgVL/5mgDozKqViFcSXnXMOAiW5aQPljZaFvCz10UkUfAnhIk@vger.kernel.org, AJvYcCXjo4s/CI+LXijINWE1aWrAdR8op1F+k41EEG5Nx66NLqdlJ/uiGIC8OlW9PddiNrWQDvnfjkvuD90SMa2U@vger.kernel.org
-X-Gm-Message-State: AOJu0YxsJjX5vB3gUH6s9eSsxgfi5aiPDe1NJBhW4v9FDXZJkbZOLgjA
-	y7pc5xz1mPZ1ijLpZj7QlwP7mCCLZLDKIOph8lI2EA5yFVJ+BQ3PO4Ym
-X-Gm-Gg: ASbGncuJPOT/IU2SW+EpP6f9Qz5+Xw5PDM3k+hA8tWtmXefWo/UXd7cSfj8tkipgyt6
-	oKcS6oIdSAL7+upAtw/Uuhlyn1s9JpM7EL+5g0A2towlNMtjkbdV6zxN0VA0XQQCXHVpNqEbIkD
-	Ab7w3HtG4bz4sY4NGuxXaox/qm5puOTSeRB1EhAzwToGofCeARP93EzSiX4/ipmnj8axP+Qz1Id
-	MPR9r3MTHrvxHVp5d+GguTUW4yd636SJVLd7fqYwA4Jwwe7efiiLFn+uIU3RTPLfTQfCNqCVZyd
-	ePBpZ3kCn94XDB1yhFrXf6R1sLbNSaSnqWNryX8AQbFOoJOfGJc2/dpQiMBJXG+aWlKcNw33SY4
-	4ibxHh+/HDhXFC+6dvTCuiCuk1Xfbvb0dN0sH4prd
-X-Google-Smtp-Source: AGHT+IHbd379rktpp8cSwfbgbcZ5ZxvEeTjg2B8sY9DMs5CBqf4tCV6sqeWS+PtL9GZaOmJuFpuQUA==
-X-Received: by 2002:a05:6a00:1952:b0:772:25f6:caee with SMTP id d2e1a72fcca58-7723e40347amr875575b3a.30.1756522057204;
-        Fri, 29 Aug 2025 19:47:37 -0700 (PDT)
-Received: from localhost ([2804:30c:1f77:e900:8ef5:b053:b8a:9345])
-        by smtp.gmail.com with UTF8SMTPSA id d2e1a72fcca58-772306a1870sm2935087b3a.75.2025.08.29.19.47.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 29 Aug 2025 19:47:36 -0700 (PDT)
-Date: Fri, 29 Aug 2025 23:48:01 -0300
-From: Marcelo Schmitt <marcelo.schmitt1@gmail.com>
-To: Marcelo Schmitt <marcelo.schmitt@analog.com>
-Cc: linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-spi@vger.kernel.org, jic23@kernel.org,
-	Michael.Hennerich@analog.com, nuno.sa@analog.com,
-	eblanc@baylibre.com, dlechner@baylibre.com, andy@kernel.org,
-	corbet@lwn.net, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, broonie@kernel.org,
-	Jonathan.Cameron@huawei.com, andriy.shevchenko@linux.intel.com,
-	ahaslam@baylibre.com
-Subject: Re: [PATCH 00/15] Add SPI offload support to AD4030
-Message-ID: <aLJmYXlfCf5fy9po@debian-BULLSEYE-live-builder-AMD64>
-References: <cover.1756511030.git.marcelo.schmitt@analog.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=smHQng6mmcFfIxZ5qaUfM6+vco3yO9Yv0co0VOs58tz1kmgHusV7cQ9nGHswQQmoAu7lmqQO21nPuMEto0H/P786fc2xM8Lx49EDtqQ3PKQ7asFmKLgCCIUfMRMuFUrAqgecrz6larrheLaDi7IjoegP1DkRmnY4Oarnwno7ljY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bvEbtI1y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DAA81C4CEF0;
+	Sat, 30 Aug 2025 03:21:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756524120;
+	bh=uJCWLg8Xr/0C+/8ZRu6677VYEHkkf5iwokGEhBnGEiE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=bvEbtI1ytCwUwam3rCM76cmTxjzFL004GOrQNw0nOxG3e7xUMl0Y2Xb3LISngBCrs
+	 quhz/Siq8fyNOa/n5vOlMC3BsLo51jbgRMXLqI0YqhKBgre2UOyFzcPdhbS/qcovLu
+	 ULPkFdUuWHYFvAJIaN6F9kSnNRSlb/E5rTnwOFLO6av/oInj11Jdu3KrdRK8pUeE+S
+	 nYN2IvDhE6/pkaf4KBQWwLTMkFerx+2QWl9GeGBy5ltBDg0k+zps5rAIy01sNB+eSM
+	 QuL2KyC9IMQc5gj/0iUdovvDdJ6or4DypUQ9GwZvEkJg7FLl4I+CtMDzx5A7Q6lQF9
+	 hD8I6wodAF2yg==
+Date: Sat, 30 Aug 2025 08:51:51 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Shradha Todi <shradha.t@samsung.com>
+Cc: 'Krzysztof Kozlowski' <krzk@kernel.org>, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, bhelgaas@google.com, 
+	jingoohan1@gmail.com, krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
+	vkoul@kernel.org, kishon@kernel.org, arnd@arndb.de, m.szyprowski@samsung.com, 
+	jh80.chung@samsung.com, pankaj.dubey@samsung.com
+Subject: Re: [PATCH v3 07/12] dt-bindings: PCI: Add support for Tesla FSD SoC
+Message-ID: <3eykohfvqgkbvwirzx63bx65d5uv774gib65bcyjlpphrssfjp@74bqakxvnkmh>
+References: <20250811154638.95732-1-shradha.t@samsung.com>
+ <CGME20250811154725epcas5p428fa3370a32bc2b664a4fd8260078097@epcas5p4.samsung.com>
+ <20250811154638.95732-8-shradha.t@samsung.com>
+ <9e065582-9349-4f39-88b5-048d333ab8d7@kernel.org>
+ <000901dc101c$917bf160$b473d420$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <cover.1756511030.git.marcelo.schmitt@analog.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <000901dc101c$917bf160$b473d420$@samsung.com>
 
-...
+On Mon, Aug 18, 2025 at 02:16:16PM GMT, Shradha Todi wrote:
+> > > +
+> > > +  phys:
+> > > +    maxItems: 1
+> > > +
+> > > +  samsung,syscon-pcie:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    description: phandle for system control registers, used to
+> > > +                 control signals at system level
+> > 
+> > What is "system level"? and what are these "signals" being controlled?
+> > 
 > 
-> The patches to the SPI subsystem are from Axel Haslam and I only signed them to
-> indicate I'm moving them forward.
+> I will add a more detailed description for why the syscon is being used
 > 
-Realized I should have based the SPI patches on top of SPI for-next or SPI
-for-6.17 and probably sent them on a separate patch set.
-I'll do so in v2, but will first leave time for v1 review.
-The changes to the SPI subsystem are not extensive and the patches apply cleanly
-on to of SPI for-next, nevertheless.
+> > 
+> > > +title: Tesla FSD SoC series PCIe Host Controller
+> > > +
+> > > +maintainers:
+> > > +  - Shradha Todi <shradha.t@samsung.com>
+> > > +
+> > > +description:
+> > > +  Tesla FSD SoCs PCIe host controller inherits all the common
+> > > +  properties defined in samsung,exynos-pcie.yaml
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/pci/samsung,exynos-pcie.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: tesla,fsd-pcie
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: aux
+> > > +      - const: dbi
+> > > +      - const: mstr
+> > > +      - const: slv
+> > > +
+> > > +  num-lanes:
+> > > +    maximum: 4
+> > > +
+> > > +  samsung,syscon-pcie:
+> > > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > +    description: phandle for system control registers, used to
+> > > +                 control signals at system level
+> > > +
+> > > +required:
+> > > +  - samsung,syscon-pcie
+> > 
+> > clocks are required, compatible as well.
+> > 
+> 
+> Since this was inheriting the common exynos yaml file and that had these properties
+> under required, I did not mention again. Will take care in next version.
+> 
 
+dma-coherent needs to be a required property as well since this binding is
+supporting only one controller, that seem to have cache coherent DMA.
+
+> > Missing supplies, both as properties and required. PCI devices do not
+> > work without power.
+> > 
 > 
-> Axel Haslam (2):
->   spi: offload: types: add offset parameter
->   spi: spi-offload-trigger-pwm: Use duty offset
-> 
-...
->  .../bindings/iio/adc/adi,ad4030.yaml          |  86 ++-
->  Documentation/iio/ad4030.rst                  |  29 +
->  drivers/iio/adc/Kconfig                       |   2 +
->  drivers/iio/adc/ad4030.c                      | 704 +++++++++++++++++-
->  drivers/spi/spi-offload-trigger-pwm.c         |   5 +-
->  include/linux/spi/offload/types.h             |   1 +
->  6 files changed, 792 insertions(+), 35 deletions(-)
-> 
-> 
-> base-commit: 91812d3843409c235f336f32f1c37ddc790f1e03
-> -- 
-> 2.39.2
-> 
+> According to the HW design of FSD SoC, the control to manage PCIe power is given to
+> a separate CPU where custom firmware runs. Therefore, the Linux side does not control
+> the PCIe power supplies directly and are hence not included in the device tree.
+
+What do you mean by 'PCIe power'? Supply to the PCIe controller/bus or the
+devices connected to the bus?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
