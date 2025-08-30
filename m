@@ -1,116 +1,122 @@
-Return-Path: <devicetree+bounces-210842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07BF5B3CF1F
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 21:48:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B16D2B3CF24
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 21:50:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7D2205494
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 19:48:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17FB43A9130
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 19:50:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD6942DECC5;
-	Sat, 30 Aug 2025 19:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F22B32DFA25;
+	Sat, 30 Aug 2025 19:50:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h7Z+BbC+"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="k+xd4gYP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC7442DECB1;
-	Sat, 30 Aug 2025 19:48:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A06E2DF710
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 19:49:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756583314; cv=none; b=tomA75Cqf4qWaJdiS0Q1bzzdiDw55nNEdXOKDlgXt7zTI4VfWs0EKsiRdpm35Ok18yIgCSpXk3YoekDvHzMM5xfIFkP8Vsd+yoj2q+ODgCAD03BSE+79ldqbGWveyb1Ps1wLNkKeLZ/4ugDImZkUoxrSkecvbG7D0N1nTUBXyE4=
+	t=1756583400; cv=none; b=l+tOYjrLO2GHk/Sl9s3G+L8EHhHUgWAANQyntAmZYmxacvZtc9BsTIXDrliZTNBAS+zsOKurgOdHT9kvepsW8dQbnv7LKzeZ7gXnqaEg5or7VGAYMNuZx1z9czFoEHnP8/QB2YdocLQLRlJB7X2xNlDjePoW6SQtCXQQYgbj40k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756583314; c=relaxed/simple;
-	bh=nxhkrwDWENSNGtc5OQq3ZamPiocNMcAhP7SnWuBKeMs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=lNCMmEWY44TxfWxEMDBrNqjFL7B9vrdEcpQqpvrRGVNYC60c7pB2+2nIZzOvbPgsqCWFpDvLckxwOkOjvbw1SgXPJiI1ELp8wd1Dnw9KM2bxK9u1Mb2FyyCn0eQEIkknJ20G2oclwQahtJzA9mDLRxjBU1H/DwIWutrF1wV6xWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h7Z+BbC+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8C67C4CEEB;
-	Sat, 30 Aug 2025 19:48:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756583314;
-	bh=nxhkrwDWENSNGtc5OQq3ZamPiocNMcAhP7SnWuBKeMs=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=h7Z+BbC+OVLkECjKMPowRJAJ1i99aJNefncaPk+TMrRFcFCYD8pB6uqDzlFAOs1L9
-	 +CpXRKZ0+NpYOehvGjICig0N/9FBN+YcqqYQfFH8KgVfRzPE+ruUBzs1dgBm45f5So
-	 GXPPpHlfxtadQMBPnU0aNbnYRRPsKPOmvMmXZOJs4qt1nwIpfUu5IdJ+0KSzdmdJMi
-	 I4sphF+DdMwfyUN1BCfPWf4Ic4w2tjwYFxLZcM/OSCg3qjimLsqEt62PNbRj6IKBTg
-	 9qx+HGW+cD14Xej85hjcbL4DRezMME9mPyzjQqSuq8acTeuf5AsiPVKjwZ9IffD6xq
-	 MVWQM0CR+YIlA==
-Date: Sat, 30 Aug 2025 20:48:24 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: David Lechner <dlechner@baylibre.com>, Michael Hennerich
- <Michael.Hennerich@analog.com>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/4] iio: adc: ad7124: add external clock support
-Message-ID: <20250830204824.2f9d7a48@jic23-huawei>
-In-Reply-To: <CAHp75Vf8fAFin1tJ-yjr22RPuDgBEBnj6JO3GkjDcZsmYoOfYA@mail.gmail.com>
-References: <20250828-iio-adc-ad7124-proper-clock-support-v3-0-0b317b4605e5@baylibre.com>
-	<20250828-iio-adc-ad7124-proper-clock-support-v3-3-0b317b4605e5@baylibre.com>
-	<CAHp75VdtQ8vKULomgqPxwX=WZWUde7PC129BEznYqefd-U4DEQ@mail.gmail.com>
-	<a20356ca-05ca-4c99-819b-4b278e799f2a@baylibre.com>
-	<CAHp75Vf8fAFin1tJ-yjr22RPuDgBEBnj6JO3GkjDcZsmYoOfYA@mail.gmail.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1756583400; c=relaxed/simple;
+	bh=RESvPL6lZSU1LVrX5w1VrBJByLVlXWsRl2ULoQXIrYw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XmEcdL7edInu0HC30SvS/e3X9xyjXT4zghzFdi08WbxbgFwFuScAEOO79EbkKDp1n7cU3oGn0q/lndBCMZM4mLbXYehAiqpLJVcvorXMj5dL3mq/iaK5uneccen4s351o57HN4tEddyd2BZ1XW3SOJDGv6jZl80EbELKj8Qs5n8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=k+xd4gYP; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-55f6bb0a364so1864139e87.1
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 12:49:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756583397; x=1757188197; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=RESvPL6lZSU1LVrX5w1VrBJByLVlXWsRl2ULoQXIrYw=;
+        b=k+xd4gYPPID2fGD2mriQ/uWrl5Rij0kxv7aV+7AothtEwbuKIR5bBrefwe5my0dN0W
+         dC0Hkv+TONrXPf/rhC0/LTwZTwyTex+MZ0OvVQDpGfTCkpg98DtppVN9N82cN1GwyyBr
+         CO8dKAeYRXykeGNW/7N3ST2CFG8/KaYvTn82dX6grVGet5dVM3pdHzl9pJyMfJ6C1648
+         iTEEw9t3Q0M9LMZEYis/KK4GTTrTnqia+fpXV1/wernfdD/fS71PwYGP2N95WmdkozYr
+         TNB5i/RVoSW7R2dhUHb61ejRVeJIRqATDF0Na/enuuary5EGq/f353g9qSz0hk4FTTw0
+         0nEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756583397; x=1757188197;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RESvPL6lZSU1LVrX5w1VrBJByLVlXWsRl2ULoQXIrYw=;
+        b=Fz6xwEEb4wY2dsawqwoI/FqEBItKyLDA9Lq9lmpJF3+kgo7T4ngtbyBxZA6ELot+Zd
+         7/Y6kOhlgQ/kWmN64xG5I5Wne/2h37rTLmo/nkKMiFMcX4pXHiFBCewE5MVewKEyVJOn
+         PMa4CgU6qE1ufP70bLBj1TR34xTYP8/2ZcPgw2q+ju8VctCXXoyLFSu73Thp84SwZqpA
+         cdLvGFeasBWGFoRisxywVpLq/7vqITVATVdgQsmKLWqZphzFGroR45mr4pU91rjpO6Ce
+         y+d1LI3UBSMxUYfwERcr/Ny9z2BRVTbwCzbiJmVzKmQ0D3n2G2fWjA/iN6Za+4qj5fzT
+         e7cw==
+X-Forwarded-Encrypted: i=1; AJvYcCXrnSSThUtdCqXcvyjGxdnCrETA+i9iAC2tYsweC47/tN0r15AtaTFb5pGeooBNMEpwJfXqr+g2EAOK@vger.kernel.org
+X-Gm-Message-State: AOJu0YzYlY2deia+/oc1mnp1zXpcLPpNAKazkmUbRaJ3mtJPBRESGeNa
+	z3I4wWNzo2MNXe7c7yL4inhKI44ZnD3kvLuLLm9lcXCCiP8fo2SPxY3+gPvUT3O3D7wgY/wKZwi
+	uuHjbMo35ekQqNyk5JZtHSeIU0ftcerCy+vKyxLmtcMtqwgEiX6hw
+X-Gm-Gg: ASbGncuCcsutMN1sFuAoHypV3O+BA/R1kBIRVXOK/QA/5dVGIFOJbaFouuSs2xZ/Plr
+	yJstwyTXHkgTOtrR5F5XFQhYFYe2l7Yd34umc3CeSXtpvzAsIh3panerqV0udWpgQR5UrfCiWw1
+	nOVu9rYpird5depwLSOL69QDXNwkDzXOgGgGlA6g4zNldPNmDht249EVG9tTskZqnac2ksEiD60
+	j59WyMWBXeonNZetluKq/TbnljrT4PmmXwjKgB6OqB7KzmUTw==
+X-Google-Smtp-Source: AGHT+IE50mGD6Wsp5fjlHRmoMQ5rebLnfakE86Vnr2ujarxjBgcFlbm1KFCExKkXTA2m/S8rPEWfnwfaAxEiJLlgF8g=
+X-Received: by 2002:a05:6512:3b9e:b0:55f:486b:7e44 with SMTP id
+ 2adb3069b0e04-55f708ecf52mr685020e87.37.1756583397500; Sat, 30 Aug 2025
+ 12:49:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+References: <20250816035027.11727-2-ziyao@disroot.org>
+In-Reply-To: <20250816035027.11727-2-ziyao@disroot.org>
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+Date: Sat, 30 Aug 2025 21:49:46 +0200
+X-Gm-Features: Ac12FXyuG3vAb6oO4Z4zArYVmCFaF-tcxGvuqQuACijURT9dTtrTa_sARjkZMYw
+Message-ID: <CAMRc=Meed_x_OODv1fw1m7rpLY4uGic=0pacjV+Mj147_WMZPg@mail.gmail.com>
+Subject: Re: [PATCH 0/3] Support GPIO controller of Loongson 2K0300 SoC
+To: Yao Zi <ziyao@disroot.org>
+Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
+	Kexy Biscuit <kexybiscuit@aosc.io>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, 29 Aug 2025 22:11:12 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On Sat, Aug 16, 2025 at 5:50=E2=80=AFAM Yao Zi <ziyao@disroot.org> wrote:
+>
+> This series adds support for Loongson 2K0300's GPIO controller. While
+> being mostly identical to previous implementation, its interrupt
+> functionality hasn't been implemented in gpio-loongson-64bit.c. PATCH 2
+> implements its interrupt support with an IRQCHIP, and the code could be
+> reused for other Loongson SoCs with similar interrupt functionality like
+> 2K1500 and 2K2000.
+>
+> Tested on CTCISZ Forever Pi, reading/writing GPIOs works correctly, and
+> both level and edge interrupts could be triggered.
+>
+> The devicetree patch depends on series "Support reset controller of
+> Loongson 2K0300 SoC"[1] for a clean apply. Thanks for your time and revie=
+w.
+>
+> [1]: https://lore.kernel.org/all/20250816033327.11359-2-ziyao@disroot.org=
+/
+>
 
-> On Fri, Aug 29, 2025 at 8:19=E2=80=AFPM David Lechner <dlechner@baylibre.=
-com> wrote:
-> > On 8/29/25 10:53 AM, Andy Shevchenko wrote: =20
-> > > On Fri, Aug 29, 2025 at 12:55=E2=80=AFAM David Lechner <dlechner@bayl=
-ibre.com> wrote: =20
->=20
-> ...
->=20
-> > >> +                       if (clk_hz > MEGA) { =20
-> > >
-> > > I read your answer, but maybe I missed something?  Can we use (1 *
-> > > HZ_PER_MHZ) here? =20
-> >
-> > I suppose we can. But it doesn't add any additional information.
-> > We already know we are dealing with Hz because of clk_hz and 1
-> > is implicit. So it is just a matter of style preference. Since I
-> > read a lot of code, I tend to prefer the minimal approach - it is
-> > less to read and still has the same meaning. =20
->=20
-> Physicist in me prefers pedantism in comparison of the units. We don't
-> compare kilometers with kilograms (maybe not the best example, though,
-> if you understand what I mean :-).
->=20
-As I don't think either of you have particularly strong opinions on this
-(or at least you'll both be flexible) and I want to merge it.
-I tweaked to 1 * HZ_PER_MHZ and applied the series.
+Hi!
 
-Thanks,
+This doesn't apply on top of current gpio/for-next. Can you please
+rebase and resend?
 
-Jonathan
-
-> > >> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_S=
-EL_EXT_DIV4;
-> > >> +                               st->clk_hz =3D clk_hz / 4;
-> > >> +                       } else {
-> > >> +                               clk_sel =3D AD7124_ADC_CONTROL_CLK_S=
-EL_EXT;
-> > >> +                               st->clk_hz =3D clk_hz;
-> > >> +                       } =20
->=20
->=20
-
+Bart
 
