@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-210731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8518AB3CA5E
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 13:10:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B886EB3CA63
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 13:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4765F206B15
-	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 11:10:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D262A06520
+	for <lists+devicetree@lfdr.de>; Sat, 30 Aug 2025 11:10:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DDA027B4F9;
-	Sat, 30 Aug 2025 11:09:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 455B027C866;
+	Sat, 30 Aug 2025 11:09:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ophibfWr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IFi8f7TC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A2027A91D
-	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 11:09:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 535E427B355
+	for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 11:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756552195; cv=none; b=jK5xlYrb3Al+2fmqXi4D7dc34dWR/9nPX9myqxxb2ZiumEvR6A3SxFUB6w8bXAnVreZM6E07DUI70Ws/TsDmUHhxWL4yuIjFsZgxio4+Om80e+UpBwmDg2aM6H4bDZ/4UWWz5BgcL+XrxMbbD2qqf+TxTMQb25e7bn3zcS4uEdY=
+	t=1756552196; cv=none; b=UZvq6QWcOjT+G5VPCK9xZxOVlQQgjji24NxwF4eTWxMNs+dYJPBzHn9KwaFmdXgd6q3OHfWtC3LVKPzSxznfooi2Lg4yFMQzcn0gn7CmLYZTQ1IEIeEhy8Xlg9Inrgwyapl7Ma/+O93hmmBTXytR+mNjkIh82rwbcwHdF6Ju9cM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756552195; c=relaxed/simple;
-	bh=zHCa9J6rlUOO7tYPrfj8IXJe6YbyYyv4K6ql9TPqD00=;
+	s=arc-20240116; t=1756552196; c=relaxed/simple;
+	bh=KjoP2OpIwgvcEU8lQlbyugpaZUrY36rc56GQiCq2XW0=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=CDbUEcsHu5cuwWb6emlA+uLhCmzCn+x13gLWeOzzukY++3qi5FNPWmuKywFeikoekt8RqkhqgPVlN8MczU9HMoA1czL9wlRg1U0dO/rNIUmd4VbUrNKz2QE9ghTf6577o37AAx88pa4rOymLSG5qddWidLvS7plxxy+PnguHyck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ophibfWr; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:To:Cc; b=amZsoBH8uRZGZGvQ+OMe2rnTOXR9ZURoabexTJ5Di7YFkmZzWkZfKz0wTBVL2K/eNu+kXnueyPnpexejc60bbKr1tO5paIaZfLEyROawVPf+5jHv+4mKJlP4bN5aT6g4ARVVmkpXw8a8X76j4++7SVNKfrw0Ki6yL5KinlkDk40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IFi8f7TC; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-afe6a3ba50aso36310866b.1
-        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 04:09:52 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-afe7f9fdb96so37273666b.2
+        for <devicetree@vger.kernel.org>; Sat, 30 Aug 2025 04:09:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756552191; x=1757156991; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756552192; x=1757156992; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8nB6GsrC3suUPGYnBxDulbpNmOH6mvKZMR5+BvK4sW4=;
-        b=ophibfWrlkqzIkynyFnRvXBcrZJhobIAs04kHa6AVtynq/f1vpSJrUGDkW5JndvTCj
-         Sur0EOuJqqNzfkDXKNormw4ICtFQwkejxNXsMtY4FkHgwoPnKnw3wa6MQzAaa5R2In6k
-         r8O/A/YT6G6lXkUs7wUghn3t9+Xl0OOQYm+TmKTYyjFg2HpnZP9M0vrxzTiIQdEya+BE
-         txsCmZTGP50IJs1pLmncVtLPd9mGYSsQ8Tk8XXZ7r+conYKdJ4/HR1BZdku1OKjiOPhd
-         Z8jIh6ZEM71NwM2DOy6QkAC3p4uVU+ta9QYvCnYGdcXT7OyBkn4QDF/uQMz4PKiZAsx0
-         VQgQ==
+        bh=jbqsXZ0a+2gRMmLHMi/t44FvhwPty9xFovSO5BTpK8k=;
+        b=IFi8f7TCxN+nVFQuDVoK8TIJzUUDh12mv1OLrds3nptTbnaoVcikWPjB9L/um1NBPH
+         HMWS5F24ez7u0k1mWUAHSSusIBq+Xlf29b0sIQ0WpPUyd7Iuzscj4UMwR6jqzGu13idI
+         8HQxqbQ82Omv9rLXfQh7tgwosc8abC1xLdPUTBnh/fMh00zUg+/VfWXPq9GwuQlLxLJo
+         4OCJab1EFItjJhXBaw4aNdO31ppnBCxreUKYIDVAtvprErnk8DqSBzIzsiJiPGtxKlLv
+         ugDayC4pjjjegsrZf5/U4d9uQ+dLqYF+zxKUyncSfAq+zcWNek10CQHxxMxNJcXrWTT7
+         StZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756552191; x=1757156991;
+        d=1e100.net; s=20230601; t=1756552192; x=1757156992;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=8nB6GsrC3suUPGYnBxDulbpNmOH6mvKZMR5+BvK4sW4=;
-        b=T6r55HvKAYhunCYd1+FSVddcq7eUc4nCVGrnArj/CRiuMlh9/zlBa1Cc4KMDZVoLQn
-         OqhrCVluaiLYMbiEKYUNhp1j3el7j5zNlsy//y1tT24+MXWOUTcR0cvNG1JplzGVeKET
-         ylMfaP0XMMr97vxQj8z/L+YO3QCQD+HZH9yVnuPfXR6ecHyzdxK0eJZJhZbqbinUoHe/
-         evoYNnuUd7tX0X18B+HH65EORmdycaEMOHDA6hzedRymgtx0obUZLH8SzXCTJhP/X0yj
-         +gdN2KuTaSNFXjrVzQH8zXZ+ELCuNiY3s+QpNfZ2AOJC0GiXXZ3S3Chm22xmH/9FKshm
-         5VbA==
-X-Forwarded-Encrypted: i=1; AJvYcCW0ys5ziTldY2iSoL25a5o0OUQV1LAELl88rWPw/vKLCIf4V60T5Eqmwva5qyYlM6MPkwb5KAN+aZ7x@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDk1fnuZMgXp2haaaqsDM2bYXmMIJg0abhwSumfvRmlgrU/nc+
-	k1jNVxVcEf/4aqU2z8fOTYwW5+JxSXeJwffS0mDq4P9/9oNGgeq67uDljDf329s+oxQ=
-X-Gm-Gg: ASbGncvbhMMB1fRKqm+QCyompK/8tWj2mgmHeepNNbb00lbAKRID+9PdO3BHHTWf5cN
-	Xpt488YTkWEn2gQAqXzk6bGvNjIZhcBLMtDUQ3PXuUbBMFctSEI2QimXM5Gr2Voq2GfParLwn6V
-	NbGBZBiGV37IiHwKGBGbsmKJ/TKwRlKJBUUI/bGyZzr7J+Ok1S6jak24Oy2FSW2RU21ShFSonHL
-	G3uKQfI3m2CnGFMuMz6QXoUNXDMs5ZuDHUZmn8widwj7N8BKHMo6i7UPJDWjR5vw8azUBVcCs1V
-	SCDJPBxbo0/R9Ok7q23+KAXramLvix72xwj+PER/RAioUQDxcKuFKU9hb9OcJIzrTckxcCEbDEH
-	Nf+vL+YnUUCCfjuEgAUc1ZCchAVTZrkaLHwSTWq041bGJ98L+ow==
-X-Google-Smtp-Source: AGHT+IEwQjzrWdjkIQWH/5UdCAnPAwyzuWU85HpS7f8tCUYr19Z6zEYlEC4pDnHs7fe5Ih6Mw5O/gw==
-X-Received: by 2002:a05:6402:13d0:b0:61c:cfb2:b2ce with SMTP id 4fb4d7f45d1cf-61d0d5f339cmr2022257a12.7.1756552191100;
-        Sat, 30 Aug 2025 04:09:51 -0700 (PDT)
+        bh=jbqsXZ0a+2gRMmLHMi/t44FvhwPty9xFovSO5BTpK8k=;
+        b=FmNw3lyOOfZeoa9vnKGwob4fio8Ph4nPbLcUOwTDWXx2CGQ2MVrGlGcPJSy7cxNK+h
+         WRzujrlJpglEGyYNxc4T+kzKEEuBCYCsjejnp4oXjdqHM6GCaMr/S+0+WmenrMiRw/8O
+         8bkO2XdSWCLim7e82LGUSvmR2cRPiXheGWtX49Vz0HArc9QSm2UsxzDKc3jR3aMH7/FK
+         BNF77X7Vq3FE/Eg8Dv2ATqM9oshl6wKULhYCZvPdmregJ2iI6eZTWfoWtFcEpcp2Ba58
+         1Btc9RXVhiNZ4+GerjOG8HuUc9P5Er/7oz1wyKdrhmh7EVDSTDww57ypwoVx6QD6bcmq
+         6iTA==
+X-Forwarded-Encrypted: i=1; AJvYcCX0/93VxgeyjoloYp01jMJcwH9la0IU2lS8WBkcFQ7IIBkPCcH3+a348r1MlReIUf74KXZpuN98GWFy@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8/5FHJ03o2MGRYA5kIlawfqTlTBp3ceG7HGEqiIQc9JxSLx6H
+	D8YZKRn6/0fbkZnkj94EBD5JEOIDWXL95U/SBqtNPPYmOyR+s43jIefdGQFADJ3Ffbo=
+X-Gm-Gg: ASbGncuvDb/S16wES/YU7yIDBPIj1fPhAaFVIVdcfYb/WYNJedk+Qh+x1uahecKUShw
+	BoQS/fe76lC7pSWWhgb6ntsaEWCBu+aqz6dACJtSlb1kT/a4OwhqvurzD5R5elcKjA0qAy6Daxn
+	hZTew1rB7RruwaDrz5Vi8jlXM7l1gsCarrNWilSFgmKq3iGDmVVFnDdm7xGiIvpiizMR81AUmds
+	AkF3h2xK3e9tJl3b4wEutYfOD6eEvlCpX7OQwrmnk3M2/B3U2lFiNAdVjJt3EoiK6mgCp2x2/Ro
+	bjrPcCYzt9Nn/sTC9KFA2zpwz/5FGsO8k25/m5qOY2RjFVQdomCoxct7ICQFLufaUZ8Sasb5ORv
+	ybHsfuOSYdqSM2K8U+Dkn6PEa8aY7RzWd30uBLuA=
+X-Google-Smtp-Source: AGHT+IHYI3tcuSfMfYLyvgkgErLnZ1GzeCpm9S3JwFpVHykTzgSrhsFx7MfV7tYp5tXNWutnC3a91w==
+X-Received: by 2002:a05:6402:354c:b0:61c:d7e5:47a3 with SMTP id 4fb4d7f45d1cf-61d0d365421mr1981474a12.3.1756552192554;
+        Sat, 30 Aug 2025 04:09:52 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc21542asm3285666a12.18.2025.08.30.04.09.49
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc21542asm3285666a12.18.2025.08.30.04.09.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Aug 2025 04:09:50 -0700 (PDT)
+        Sat, 30 Aug 2025 04:09:52 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date: Sat, 30 Aug 2025 13:09:39 +0200
-Subject: [PATCH 2/5] iio: adc: exynos_adc: Drop touchscreen support
+Date: Sat, 30 Aug 2025 13:09:40 +0200
+Subject: [PATCH 3/5] iio: adc: exynos_adc: Drop platform data support
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,7 +84,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250830-s3c-cleanup-adc-v1-2-de54dfb1d9ea@linaro.org>
+Message-Id: <20250830-s3c-cleanup-adc-v1-3-de54dfb1d9ea@linaro.org>
 References: <20250830-s3c-cleanup-adc-v1-0-de54dfb1d9ea@linaro.org>
 In-Reply-To: <20250830-s3c-cleanup-adc-v1-0-de54dfb1d9ea@linaro.org>
 To: Jonathan Cameron <jic23@kernel.org>, 
@@ -99,359 +99,73 @@ Cc: linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  devicetree@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9603;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1736;
  i=krzysztof.kozlowski@linaro.org; h=from:subject:message-id;
- bh=zHCa9J6rlUOO7tYPrfj8IXJe6YbyYyv4K6ql9TPqD00=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBostv1Mf6SzYbmRYQ4l+395X7N5CPcC5zur7+7B
- o/VR8OOdPyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLLb9QAKCRDBN2bmhouD
- 10cMD/0VprNv1zGvyBDDUhs3p15+vnw3XyDMIDTTn/LzRmGTZfuZ7ZPnvmruBq3ekIZwSLKbUO3
- CHYak8y9aG0inxirN26ysoNlRTNhAq4M1Hn8yWQNWUKWFoY3zCBNlD17uXaXiovJdvI0soVQnr6
- 5TZVkOn/f8WyDa1lNNheZFWm25R1CqCxo6vocJcdytINkj1+xRWrZEr1SS28t8GAbyIp2XD/MK5
- 3KXmGkDGp0k3Tfkw6W8PWSGosEA59bWPJxI6q8WBAafUt66b6r8xLkUhMKA1IuWHlWjEHSe7j6x
- 9y6yC5gtCROG+hATEXkYv1eYNl/Lv2kDII44RTcRnSpkoekLq5qFb1y90GvOumyOH6Kfx++uZ7+
- HLvNPsFWieBmWpTk6qNGEvPHiq4JpQoflHGAgkhUGIdC09fW22+Vbf6ZWFEHAwmdOaQ6nrboMLn
- y/7aFkjhmuMd1kBCn7OGMWY/TOOwojBwbtTA5BxArA8f0gU/wvqsbU8em00waArBGZTsSbyo7Bw
- WvQjHTFAJQAsRdg7IkUtf9Celey3Z2eDn4AJEU/+cd8XNi8QDF/gVg7neL+zVPebQEMAGmAXj3v
- j7MfIYPMMH5+PiezHfOB8wuYIBCCpLowAJx1RuBTPP40Lc9vbQqJ6k8NGvCGoNBQHESi3/YXKt2
- sDtjtNSKJpT+XJQ==
+ bh=KjoP2OpIwgvcEU8lQlbyugpaZUrY36rc56GQiCq2XW0=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBostv13VGu7FUVwm7lV7kKSuqLAH95o21fWUsyk
+ kZGd4D32xyJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLLb9QAKCRDBN2bmhouD
+ 1xCpD/9RsBrZtrfnGAO6kOBtpZf3RsuYS4WozEoGAPOZ/+LUFG7GyY6PHdLh04yO0tyeru9lmnl
+ NWiyylXT161JodBZBtmPzVGF03rHBTAOUplPZd5paYxfpJwt8PJb/xHmt+0xSbnapKtKq200hOX
+ EUPwCpJQ9D8g6nPMbYUQ6Ens7xPCUMXbhA29e7wK9UBBL0oTOeUZRaBbz4p0phSh1Jm1shYTVXp
+ QngUaBT09dvDLQfrg9tGI+JBpDndf89JRLDDK3yQ/Vj813uwCaXSU3NmD0OKS/vtuUyzo/J0OIt
+ 8vVneJFmFtj4xhz1JdbVUnA8vMsGRMZLf/f0M9GRJHxy7pHzmzW6OUolCzk+CHo3KCQgbOY1coA
+ 6v46Kib9uoMtvr7Y+3aQb0c+2zWCV24+9ia905h/shhAk8pEhuZun2FPDPiUxSr490p1irdBmt0
+ 6OCDoUzRL5lkSOt6avOdIL9235r4vBEvl2HvUzT9elT+Z6862INH90abu3DWL6oAm+rk4O2k401
+ /PuIEEZckhNUQTxHX/j6Hsvdc+1QQgbLp5dQXn/VfZp8fCYyNy6NE+jvz2674Gdvk0LFg9KbCrn
+ v26uvKiam2qS5ejw+6+GF74I/T7rOXWawPDPYNvrAjuXZOsC2O1WHTbgNsWyDAC4U4RJ3YDi9gQ
+ EEPu7EfKv7b8Umg==
 X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp;
  fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
 
-With last user of touchscreen via ADC (S3C24xx SoC) gone, drop the
-remaining code from Samsung SoC ADC driver.
+There are no Samsung Exynos SoC ADC driver users which bind via platform
+ID, thus platform data is never set and can be dropped.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/iio/adc/exynos_adc.c | 196 +------------------------------------------
- 1 file changed, 1 insertion(+), 195 deletions(-)
+ drivers/iio/adc/exynos_adc.c | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
 
 diff --git a/drivers/iio/adc/exynos_adc.c b/drivers/iio/adc/exynos_adc.c
-index 17fd33c6bd6d0dcf41771331ecb328e58d820ed0..30f6d8436e775a8d2177951b436cd45152307ea2 100644
+index 30f6d8436e775a8d2177951b436cd45152307ea2..dd1494ee365a7b34d6b485ee4c9e753f50b5ff26 100644
 --- a/drivers/iio/adc/exynos_adc.c
 +++ b/drivers/iio/adc/exynos_adc.c
-@@ -19,11 +19,9 @@
- #include <linux/clk.h>
- #include <linux/completion.h>
- #include <linux/of.h>
--#include <linux/of_irq.h>
- #include <linux/regulator/consumer.h>
- #include <linux/of_platform.h>
- #include <linux/err.h>
--#include <linux/input.h>
- 
- #include <linux/iio/iio.h>
- #include <linux/iio/machine.h>
-@@ -35,14 +33,12 @@
- 
- /* S3C/EXYNOS4412/5250 ADC_V1 registers definitions */
- #define ADC_V1_CON(x)		((x) + 0x00)
--#define ADC_V1_TSC(x)		((x) + 0x04)
- #define ADC_V1_DLY(x)		((x) + 0x08)
- #define ADC_V1_DATX(x)		((x) + 0x0C)
- #define ADC_V1_DATY(x)		((x) + 0x10)
- #define ADC_V1_UPDN(x)		((x) + 0x14)
- #define ADC_V1_INTCLR(x)	((x) + 0x18)
- #define ADC_V1_MUX(x)		((x) + 0x1c)
--#define ADC_V1_CLRINTPNDNUP(x)	((x) + 0x20)
- 
- /* Future ADC_V2 registers definitions */
- #define ADC_V2_CON1(x)		((x) + 0x00)
-@@ -61,17 +57,12 @@
- /* Bit definitions for S3C2410 / S3C6410 ADC */
- #define ADC_S3C2410_CON_SELMUX(x) (((x) & 7) << 3)
- 
--/* touch screen always uses channel 0 */
--#define ADC_S3C2410_MUX_TS	0
--
- /* ADCTSC Register Bits */
- #define ADC_S3C2443_TSC_UD_SEN		(1u << 8)
- #define ADC_S3C2410_TSC_YM_SEN		(1u << 7)
- #define ADC_S3C2410_TSC_YP_SEN		(1u << 6)
- #define ADC_S3C2410_TSC_XM_SEN		(1u << 5)
- #define ADC_S3C2410_TSC_XP_SEN		(1u << 4)
--#define ADC_S3C2410_TSC_PULL_UP_DISABLE	(1u << 3)
--#define ADC_S3C2410_TSC_AUTO_PST	(1u << 2)
- #define ADC_S3C2410_TSC_XY_PST(x)	(((x) & 0x3) << 0)
- 
- #define ADC_TSC_WAIT4INT (ADC_S3C2410_TSC_YM_SEN | \
-@@ -79,12 +70,6 @@
- 			 ADC_S3C2410_TSC_XP_SEN | \
- 			 ADC_S3C2410_TSC_XY_PST(3))
- 
--#define ADC_TSC_AUTOPST	(ADC_S3C2410_TSC_YM_SEN | \
--			 ADC_S3C2410_TSC_YP_SEN | \
--			 ADC_S3C2410_TSC_XP_SEN | \
--			 ADC_S3C2410_TSC_AUTO_PST | \
--			 ADC_S3C2410_TSC_XY_PST(0))
--
- /* Bit definitions for ADC_V2 */
- #define ADC_V2_CON1_SOFT_RESET	(1u << 2)
- 
-@@ -116,13 +101,11 @@
- struct exynos_adc {
- 	struct exynos_adc_data	*data;
- 	struct device		*dev;
--	struct input_dev	*input;
- 	void __iomem		*regs;
- 	struct regmap		*pmu_map;
+@@ -106,7 +106,6 @@ struct exynos_adc {
  	struct clk		*clk;
  	struct clk		*sclk;
  	unsigned int		irq;
--	unsigned int		tsirq;
- 	unsigned int		delay;
+-	unsigned int		delay;
  	struct regulator	*vdd;
  
-@@ -131,12 +114,6 @@ struct exynos_adc {
- 	u32			value;
- 	unsigned int            version;
+ 	struct completion	completion;
+@@ -213,7 +212,7 @@ static void exynos_adc_v1_init_hw(struct exynos_adc *info)
+ 	writel(con1, ADC_V1_CON(info->regs));
  
--	bool			ts_enabled;
--
--	bool			read_ts;
--	u32			ts_x;
--	u32			ts_y;
--
- 	/*
- 	 * Lock to protect from potential concurrent access to the
- 	 * completion callback during a manual conversion. For this driver
-@@ -507,55 +484,13 @@ static int exynos_read_raw(struct iio_dev *indio_dev,
- 	return ret;
+ 	/* set touchscreen delay */
+-	writel(info->delay, ADC_V1_DLY(info->regs));
++	writel(10000, ADC_V1_DLY(info->regs));
  }
  
--static int exynos_read_s3c64xx_ts(struct iio_dev *indio_dev, int *x, int *y)
--{
--	struct exynos_adc *info = iio_priv(indio_dev);
--	unsigned long time_left;
--	int ret;
--
--	mutex_lock(&info->lock);
--	info->read_ts = true;
--
--	reinit_completion(&info->completion);
--
--	writel(ADC_S3C2410_TSC_PULL_UP_DISABLE | ADC_TSC_AUTOPST,
--	       ADC_V1_TSC(info->regs));
--
--	/* Select the ts channel to be used and Trigger conversion */
--	info->data->start_conv(info, ADC_S3C2410_MUX_TS);
--
--	time_left = wait_for_completion_timeout(&info->completion,
--						EXYNOS_ADC_TIMEOUT);
--	if (time_left == 0) {
--		dev_warn(&indio_dev->dev, "Conversion timed out! Resetting\n");
--		if (info->data->init_hw)
--			info->data->init_hw(info);
--		ret = -ETIMEDOUT;
--	} else {
--		*x = info->ts_x;
--		*y = info->ts_y;
--		ret = 0;
--	}
--
--	info->read_ts = false;
--	mutex_unlock(&info->lock);
--
--	return ret;
--}
--
- static irqreturn_t exynos_adc_isr(int irq, void *dev_id)
- {
- 	struct exynos_adc *info = dev_id;
- 	u32 mask = info->data->mask;
- 
- 	/* Read value */
--	if (info->read_ts) {
--		info->ts_x = readl(ADC_V1_DATX(info->regs));
--		info->ts_y = readl(ADC_V1_DATY(info->regs));
--		writel(ADC_TSC_WAIT4INT | ADC_S3C2443_TSC_UD_SEN, ADC_V1_TSC(info->regs));
--	} else {
--		info->value = readl(ADC_V1_DATX(info->regs)) & mask;
--	}
-+	info->value = readl(ADC_V1_DATX(info->regs)) & mask;
- 
- 	/* clear irq */
- 	if (info->data->clear_irq)
-@@ -566,46 +501,6 @@ static irqreturn_t exynos_adc_isr(int irq, void *dev_id)
- 	return IRQ_HANDLED;
- }
- 
--/*
-- * Here we (ab)use a threaded interrupt handler to stay running
-- * for as long as the touchscreen remains pressed, we report
-- * a new event with the latest data and then sleep until the
-- * next timer tick. This mirrors the behavior of the old
-- * driver, with much less code.
-- */
--static irqreturn_t exynos_ts_isr(int irq, void *dev_id)
--{
--	struct exynos_adc *info = dev_id;
--	struct iio_dev *dev = dev_get_drvdata(info->dev);
--	u32 x, y;
--	bool pressed;
--	int ret;
--
--	while (READ_ONCE(info->ts_enabled)) {
--		ret = exynos_read_s3c64xx_ts(dev, &x, &y);
--		if (ret == -ETIMEDOUT)
--			break;
--
--		pressed = x & y & ADC_DATX_PRESSED;
--		if (!pressed) {
--			input_report_key(info->input, BTN_TOUCH, 0);
--			input_sync(info->input);
--			break;
--		}
--
--		input_report_abs(info->input, ABS_X, x & ADC_DATX_MASK);
--		input_report_abs(info->input, ABS_Y, y & ADC_DATY_MASK);
--		input_report_key(info->input, BTN_TOUCH, 1);
--		input_sync(info->input);
--
--		usleep_range(1000, 1100);
--	}
--
--	writel(0, ADC_V1_CLRINTPNDNUP(info->regs));
--
--	return IRQ_HANDLED;
--}
--
- static int exynos_adc_reg_access(struct iio_dev *indio_dev,
- 			      unsigned reg, unsigned writeval,
- 			      unsigned *readval)
-@@ -657,70 +552,12 @@ static int exynos_adc_remove_devices(struct device *dev, void *c)
- 	return 0;
- }
- 
--static int exynos_adc_ts_open(struct input_dev *dev)
--{
--	struct exynos_adc *info = input_get_drvdata(dev);
--
--	WRITE_ONCE(info->ts_enabled, true);
--	enable_irq(info->tsirq);
--
--	return 0;
--}
--
--static void exynos_adc_ts_close(struct input_dev *dev)
--{
--	struct exynos_adc *info = input_get_drvdata(dev);
--
--	WRITE_ONCE(info->ts_enabled, false);
--	disable_irq(info->tsirq);
--}
--
--static int exynos_adc_ts_init(struct exynos_adc *info)
--{
--	int ret;
--
--	if (info->tsirq <= 0)
--		return -ENODEV;
--
--	info->input = input_allocate_device();
--	if (!info->input)
--		return -ENOMEM;
--
--	info->input->evbit[0] = BIT_MASK(EV_KEY) | BIT_MASK(EV_ABS);
--	info->input->keybit[BIT_WORD(BTN_TOUCH)] = BIT_MASK(BTN_TOUCH);
--
--	input_set_abs_params(info->input, ABS_X, 0, 0x3FF, 0, 0);
--	input_set_abs_params(info->input, ABS_Y, 0, 0x3FF, 0, 0);
--
--	info->input->name = "S3C24xx TouchScreen";
--	info->input->id.bustype = BUS_HOST;
--	info->input->open = exynos_adc_ts_open;
--	info->input->close = exynos_adc_ts_close;
--
--	input_set_drvdata(info->input, info);
--
--	ret = input_register_device(info->input);
--	if (ret) {
--		input_free_device(info->input);
--		return ret;
--	}
--
--	ret = request_threaded_irq(info->tsirq, NULL, exynos_ts_isr,
--				   IRQF_ONESHOT | IRQF_NO_AUTOEN,
--				   "touchscreen", info);
--	if (ret)
--		input_unregister_device(info->input);
--
--	return ret;
--}
--
- static int exynos_adc_probe(struct platform_device *pdev)
+ static void exynos_adc_v1_exit_hw(struct exynos_adc *info)
+@@ -556,7 +555,6 @@ static int exynos_adc_probe(struct platform_device *pdev)
  {
  	struct exynos_adc *info = NULL;
  	struct device_node *np = pdev->dev.of_node;
- 	struct s3c2410_ts_mach_info *pdata = dev_get_platdata(&pdev->dev);
+-	struct s3c2410_ts_mach_info *pdata = dev_get_platdata(&pdev->dev);
  	struct iio_dev *indio_dev = NULL;
--	bool has_ts = false;
  	int ret;
  	int irq;
+@@ -657,11 +655,6 @@ static int exynos_adc_probe(struct platform_device *pdev)
+ 	if (info->data->init_hw)
+ 		info->data->init_hw(info);
  
-@@ -753,27 +590,10 @@ static int exynos_adc_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	/* leave out any TS related code if unreachable */
--	if (IS_REACHABLE(CONFIG_INPUT)) {
--		has_ts = of_property_read_bool(pdev->dev.of_node,
--					       "has-touchscreen") || pdata;
--	}
--
- 	irq = platform_get_irq(pdev, 0);
- 	if (irq < 0)
- 		return irq;
- 	info->irq = irq;
--
--	if (has_ts) {
--		irq = platform_get_irq(pdev, 1);
--		if (irq == -EPROBE_DEFER)
--			return irq;
--
--		info->tsirq = irq;
--	} else {
--		info->tsirq = -1;
--	}
--
- 	info->dev = &pdev->dev;
- 
- 	init_completion(&info->completion);
-@@ -842,11 +662,6 @@ static int exynos_adc_probe(struct platform_device *pdev)
- 	else
- 		info->delay = 10000;
- 
--	if (has_ts)
--		ret = exynos_adc_ts_init(info);
--	if (ret)
--		goto err_iio;
+-	if (pdata)
+-		info->delay = pdata->delay;
+-	else
+-		info->delay = 10000;
 -
  	ret = of_platform_populate(np, exynos_adc_match, NULL, &indio_dev->dev);
  	if (ret < 0) {
  		dev_err(&pdev->dev, "failed adding child nodes\n");
-@@ -858,11 +673,6 @@ static int exynos_adc_probe(struct platform_device *pdev)
- err_of_populate:
- 	device_for_each_child(&indio_dev->dev, NULL,
- 				exynos_adc_remove_devices);
--	if (has_ts) {
--		input_unregister_device(info->input);
--		free_irq(info->tsirq, info);
--	}
--err_iio:
- 	iio_device_unregister(indio_dev);
- err_irq:
- 	free_irq(info->irq, info);
-@@ -882,10 +692,6 @@ static void exynos_adc_remove(struct platform_device *pdev)
- 	struct iio_dev *indio_dev = platform_get_drvdata(pdev);
- 	struct exynos_adc *info = iio_priv(indio_dev);
- 
--	if (IS_REACHABLE(CONFIG_INPUT) && info->input) {
--		free_irq(info->tsirq, info);
--		input_unregister_device(info->input);
--	}
- 	device_for_each_child(&indio_dev->dev, NULL,
- 				exynos_adc_remove_devices);
- 	iio_device_unregister(indio_dev);
 
 -- 
 2.48.1
