@@ -1,36 +1,36 @@
-Return-Path: <devicetree+bounces-210876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92B21B3D08C
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 03:30:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1443FB3D094
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 03:41:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F40641A81AF1
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 01:30:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95D4A1893948
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 01:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A7BC143C69;
-	Sun, 31 Aug 2025 01:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56CB51AA1D2;
+	Sun, 31 Aug 2025 01:40:48 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78EFC433A6;
-	Sun, 31 Aug 2025 01:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AAE4502A;
+	Sun, 31 Aug 2025 01:40:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756603824; cv=none; b=aURAHVWR2J4PmIiR5T6fk35UxnBYGQDdocKsMc7RaxdINgmC6cSPAXEzIyHBPpg4xTh08nOHu9R159+QYvFFvuDVvJO+HCPUgLUsE0CLHC4+dor1WIG35FC/xzBjIP3rQMenqtDC8Pw76nRGkzixSWJOr7cK+eY+lrQR4KweOkY=
+	t=1756604448; cv=none; b=MAHCGRfI7kCafgAj7NIakBBZgm3HJ6E669CG1OxtqZoQa/lZnSfgIVT9b4aEWhMQAC69P6wgDgY2BQ+adtZQKQ4DSJhgQ6JXKlznpPB+mC7eMX0TwBcxjTaUuPRKpCjpWd1IZjfdqj3QVuvuvWG3m5WarkkhGrj25f0nR3lJGYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756603824; c=relaxed/simple;
-	bh=8S/O4oVfjEdL65OQNYJJz8P7HcQuEj0ndZSyix0+LT4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e4V/ZYOALyrCw3tMrjelYONt0c2d/xCSq1bV7YYA2xgwcN9kzQtkvGRCtTMfaSX7lc9juSejkJkrtmKjqEZMJ23lMeyNETvzJVXNaIVCrvU2qXN6/pDIGfRxOS6tgucmBgM5lZkVxDC0DrcD51UVeJUzpMJpwwcjeTqiZOMIgHg=
+	s=arc-20240116; t=1756604448; c=relaxed/simple;
+	bh=878wiNWTsy/MqUwMdILYoZjCi3hb/V76DP4rIsFWyc4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=iNIw/WF4BmYac8JDEvCoSHtGQZAQLAyD5l57cMmi2XKierXxjDAYmYrI39HQZGgKVOCjURZ59W7S9tv1F0gD0MHRjZv5YwfdDpgiA7Abo5fDggir1wqAE+FB252QKBGiRy/9GwkeIyuo+nw3CFS4MXFJ1oUZZr9VINA3aAkmJC4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B13E7C4CEEB;
-	Sun, 31 Aug 2025 01:30:22 +0000 (UTC)
-Message-ID: <abac67ba-7aff-4ed2-937e-b483cffc635f@kernel.og>
-Date: Sat, 30 Aug 2025 20:30:21 -0500
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38036C4CEEB;
+	Sun, 31 Aug 2025 01:40:47 +0000 (UTC)
+Message-ID: <9e56d3e2-b9c4-41ee-aab2-220733fbd658@kernel.og>
+Date: Sat, 30 Aug 2025 20:40:45 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -38,80 +38,43 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/4] arm64: dts: Agilex5 Add gmac nodes to DTSI for
- Agilex5
-To: Matthew Gerlach <matthew.gerlach@altera.com>, andrew+netdev@lunn.ch,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
- pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- mcoquelin.stm32@gmail.com, alexandre.torgue@foss.st.com,
- dinguyen@kernel.org, maxime.chevallier@bootlin.com,
- richardcochran@gmail.com, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc: Mun Yew Tham <mun.yew.tham@altera.com>
-References: <20250724154052.205706-1-matthew.gerlach@altera.com>
- <20250724154052.205706-3-matthew.gerlach@altera.com>
- <13467efc-7c79-4d06-af1c-301b852a530c@altera.com>
- <a70d060d-f1c8-4147-8f1b-1c7ce6360252@altera.com>
+Subject: Re: [PATCH 1/4] arm64: dts: socfpga: n5x: Add 4-bit SPI bus width
+To: yankei.fong@altera.com, Dinh Nguyen <dinguyen@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
+ Matthew Gerlach <matthew.gerlach@altera.com>
+References: <cover.1750747163.git.yan.kei.fong@altera.com>
+ <c55786bc081c29e9819dec3090d96230bd6a369c.1750747163.git.yan.kei.fong@altera.com>
 Content-Language: en-US
 From: Dinh Nguyen <dinguyen@kernel.og>
-In-Reply-To: <a70d060d-f1c8-4147-8f1b-1c7ce6360252@altera.com>
+In-Reply-To: <c55786bc081c29e9819dec3090d96230bd6a369c.1750747163.git.yan.kei.fong@altera.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
 
-On 8/11/25 10:40, Matthew Gerlach wrote:
->
->
-> On 8/4/25 7:57 AM, Matthew Gerlach wrote:
->>
->> On 7/24/25 8:40 AM, Matthew Gerlach wrote:
->> > From: Mun Yew Tham <mun.yew.tham@altera.com>
->> >
->> > Add the base device tree nodes for gmac0, gmac1, and gmac2 to the DTSI
->> > for the Agilex5 SOCFPGA.  Agilex5 has three Ethernet controllers 
->> based on
->> > Synopsys DWC XGMAC IP version 2.10.
->> >
->> > Signed-off-by: Mun Yew Tham <mun.yew.tham@altera.com>
->> > Signed-off-by: Matthew Gerlach <matthew.gerlach@altera.com>
->> > ---
->> > v2:
->> >   - Remove generic compatible string for Agilex5.
->> > ---
->> >   .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 336 
->> ++++++++++++++++++
->> >   1 file changed, 336 insertions(+)
->> >
->> > diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi 
->> b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> > index 7d9394a04302..04e99cd7e74b 100644
->> > --- a/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> > +++ b/arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
->> > @@ -486,5 +486,341 @@ qspi: spi@108d2000 {
->> >               clocks = <&qspi_clk>;
->> >               status = "disabled";
->> >           };
->>
->> Is there any feedback for this patch and the next one in the series,
->> "[PATCH v2 3/4] arm64: dts: socfpga: agilex5: enable gmac2 on the
->> Agilex5 dev kit"?
->>
->> Thanks,
->> Matthew Gerlach
->
-> Just checking in again. Is there any feedback on this patch (v2 2/4) 
-> or the next patch (v2 3/4)?
-> https://lore.kernel.org/lkml/20250724154052.205706-1-matthew.gerlach@altera.com/T/#m2a5f9a3d22dfef094986fd8a421051f55667b427 
->
-> https://lore.kernel.org/lkml/20250724154052.205706-1-matthew.gerlach@altera.com/T/#m3e3d9774dbdb34d646b53c04c46ec49d32254544 
->
->
 
-Applied!
+On 6/24/25 01:52, yankei.fong@altera.com wrote:
+> From: "Fong, Yan Kei" <yan.kei.fong@altera.com>
+> 
+> Add spi-tx-bus-width and spi-rx-bus-width properties with
+> value 4 to the n5x device tree.
+> This update configures the SPI controller to use a 4-bit
+> bus width for both transmission and reception,
+> potentially improving SPI throughput and
+> matching the hardware capabilities more closely.
 
-Thanks,
+Please use 80 columns for your commit message! Like this:
+
+Add spi-tx-bus-width and spi-rx-bus-width properties with value 4 to the
+n5x device tree. This update configures the SPI controller to use a
+4-bit bus width for both transmission and reception, potentially 
+improving SPI throughput and matching the hardware capabilities more 
+closely.
+
+Doesn't the above make it much easier to read? Please do this fall your 
+patches from now on!
 
 Dinh
-
 
