@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210956-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210957-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BEC7B3D38F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:15:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28C5BB3D392
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:15:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01C6D3AB3A3
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:15:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8740B7A6974
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:14:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C72264A86;
-	Sun, 31 Aug 2025 13:15:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2900D1A9F84;
+	Sun, 31 Aug 2025 13:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Orj7FjhZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6YZuiU6"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC90263C91
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 13:15:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04870F9C1
+	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 13:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756646116; cv=none; b=nRded4fJ8TMKi2gAufr3gWO+gifeDHOWPMCKYb6FsevC1B9Def6Oc8dFvtJeoZJ7mfwB86v5Prm9+WIu/re0U8dxrztgk0j8YvKXHH+3j0S1TjunXclYueT6+48keCCYMhL4eeA9DHa88JrI6MGpmbiH7na7KZZmFp89XFT+JwA=
+	t=1756646152; cv=none; b=lOV53OU1E8CqfZH+wL0Iw7OEuE87SEtF43kyajj7wmWUXQZei0s+/8TQVX6H2uZQHiIhixPsVOlaWx0mm3eEP7lGsM4PxCL0myzk4/zC5bU2o7ag/MpAaGaX/ARkB7tIe+T9zhNOoudHvXO56QA1tO1NI89HaJ3q2z5DY53X7Oo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756646116; c=relaxed/simple;
-	bh=KNZqnAJDSvZhrOWXY6gn9grSX2GUlE3BTdQEaD9TzL8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=BZkrr9AQm+D5EVxuswwik9kxCjHYuhrgTaJrvHhviganiT09XWF9wgsQVVKdRvpeLqIrbGNR47WlHPE8T3+zMV+1J8oR6z/fRgCRH2r1eF69xnWt4aYAw2hiklDVKabNCOcShWJfgDq9wuFq7vqkR0wlxPToc5XE2Zy/lg4sZ4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Orj7FjhZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C249DC4CEED;
-	Sun, 31 Aug 2025 13:15:12 +0000 (UTC)
+	s=arc-20240116; t=1756646152; c=relaxed/simple;
+	bh=ANktB1XVH0lriAb3buAebKIFQ0RHCB1yQb5INnEG+ak=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
+	 In-Reply-To:Content-Type; b=HMKnh21tT/SyoYsSEzJbUoqZXjZkNSWDfpOHI8npFFQup2Z8aWNPqyDdl+ZhAzdkYF+Ib6SGf5lXBLm27ARS2N2TDPSCVt3aUQcHiWCDC8tfBfpp88Z3MOVCGWYNe/6ZVrYEGA4hUyRDfjEAUcrY0YMPHwXDKwTZ2flbE5e+Uaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6YZuiU6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8395AC4CEED;
+	Sun, 31 Aug 2025 13:15:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756646115;
-	bh=KNZqnAJDSvZhrOWXY6gn9grSX2GUlE3BTdQEaD9TzL8=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=Orj7FjhZ3tev8SWtBCiTBzhc4prpIrPoQFhnQwrgftnfKxzmND6qL4dahlWXXngeO
-	 X33DN4hfAp8CIhowda3pviEjdohBYeucaHOS3T08SaVkQw/bDiD3qml4EyTJoOlbfi
-	 7kuFdqqsDSJlzOLjmMnbqYnl0JM+oBuXcEpk4kJPd5nXX+RiSjOLYEpObtk5METZY3
-	 ilJhzlUfp2CinLjglpPTK3oj5WmybhpwZqHAfD7frTubKrW6y/0EG98Ti0xw6u/F/X
-	 D3jjFk5LRfD9XeteEsQLBwzPlw7FQu/8D5oG+nRcn7DcAq1wPe2xwKnE45AlLJWPso
-	 ThuLbcol24HmA==
-Message-ID: <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
-Date: Sun, 31 Aug 2025 15:15:10 +0200
+	s=k20201202; t=1756646151;
+	bh=ANktB1XVH0lriAb3buAebKIFQ0RHCB1yQb5INnEG+ak=;
+	h=Date:Subject:From:To:References:In-Reply-To:From;
+	b=k6YZuiU66CuceQsq95EmaSHk6icFpMy/3YAqdGJOAw0FGzLOagcoJYoFku1+pCaij
+	 GmTkfVa8zbZ69yvQCaYjHLiugbVXspgAXGAzd1f3p1zCTtVkcs2vfg0yu0PMEr3a/H
+	 oW2X/JCyLfxCiVyb+DWTJ51sF1oXYO5k7mBU5xmYGitsPfqLZvDSVdt2yjArDi6r/O
+	 EJK8tAtpaEUmBGEI56apnoYHBQ6QEHZZ8bWkDVeMagLgehrg4kVd9YnoKYcILWBrbM
+	 GT5VkAs171LOcQIDysr8CWTfWzI87n++Dlhs8pQWl1xQjr6xDNmkZnlVrwtnaOZMHP
+	 xXXNDgklqaNPA==
+Message-ID: <f1b78854-56db-4523-8efc-580792fbf1e8@kernel.org>
+Date: Sun, 31 Aug 2025 15:15:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -52,13 +52,14 @@ MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2] dt-bindings: display: dsi-controller: add bridge to
  patternProperties
+From: Krzysztof Kozlowski <krzk@kernel.org>
 To: Harikrishna Shenoy <h-shenoy@ti.com>, maarten.lankhorst@linux.intel.com,
  mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
  robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
  linus.walleij@linaro.org, dri-devel@lists.freedesktop.org,
  devicetree@vger.kernel.org
 References: <20250827112539.4001513-1-h-shenoy@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+ <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -103,42 +104,28 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250827112539.4001513-1-h-shenoy@ti.com>
+In-Reply-To: <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/08/2025 13:25, Harikrishna Shenoy wrote:
-> Extend the DSI controller schema to allow bridge child nodes.
-> This makes it possible to describe external bridge devices directly
-> connected as DSI peripherals.
-
-Where is any user of this?
-
+On 31/08/2025 15:15, Krzysztof Kozlowski wrote:
+>> diff --git a/Documentation/devicetree/bindings/display/dsi-controller.yaml b/Documentation/devicetree/bindings/display/dsi-controller.yaml
+>> index 67ce10307ee0..bb4d6e9e7d0c 100644
+>> --- a/Documentation/devicetree/bindings/display/dsi-controller.yaml
+>> +++ b/Documentation/devicetree/bindings/display/dsi-controller.yaml
+>> @@ -46,7 +46,7 @@ properties:
+>>      const: 0
+>>  
+>>  patternProperties:
+>> -  "^panel@[0-3]$":
+>> +  "^(panel|bridge)@[0-3]$":
+>>      description: Panels connected to the DSI link
 > 
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
-> ---
-> Changelog v1 --> v2:
-> - Updated patternProperties regex.
-> - Improved commit message.
+> Description needs update.
 > 
->  Documentation/devicetree/bindings/display/dsi-controller.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/dsi-controller.yaml b/Documentation/devicetree/bindings/display/dsi-controller.yaml
-> index 67ce10307ee0..bb4d6e9e7d0c 100644
-> --- a/Documentation/devicetree/bindings/display/dsi-controller.yaml
-> +++ b/Documentation/devicetree/bindings/display/dsi-controller.yaml
-> @@ -46,7 +46,7 @@ properties:
->      const: 0
->  
->  patternProperties:
-> -  "^panel@[0-3]$":
-> +  "^(panel|bridge)@[0-3]$":
->      description: Panels connected to the DSI link
+> Are bridges having exactly the same properties as panels?
 
-Description needs update.
-
-Are bridges having exactly the same properties as panels?
+Ah, does not really matter now, it was applied.
 
 Best regards,
 Krzysztof
