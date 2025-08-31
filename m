@@ -1,96 +1,91 @@
-Return-Path: <devicetree+bounces-210915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7F97B3D24E
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:55:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF385B3D267
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:59:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A77803A19B2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 10:55:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA9BA442557
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 10:58:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 976AB24679E;
-	Sun, 31 Aug 2025 10:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7D2257453;
+	Sun, 31 Aug 2025 10:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d7ZEfBg8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gstl4kKN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA1B63594E
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 10:55:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698E6155C82
+	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 10:58:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756637750; cv=none; b=uDqMaZD+S3X4l+ZP7IrbjDFUUg/glWFTBDICrY1cMWEsZSk6DLF1f0jecIWDw78AIT+Z5nYc12lc/071j800EejtHHawBi1cX1J5fqe1zgByd3Y16T3UrP6arbMFCmmOdYYPxCUJr2c85AVreTZvZ9ju9D8GPguIvUWFzbC5jUM=
+	t=1756637934; cv=none; b=AwBl8ZOFeUj2V8lReu1e22PCIDnsm5Gj+j8L4879D5BHyp+hdkWlnxNo8dBnD+C+p4kSqkoys5TjUV7Hz2xic+bCNsuh/uFC0D0CWog0/vTqSsKIk17hEnHVrS/OFi9ky5nmffM2LMQpTFbpXiYsOJYekxszkLcaFQUf269HEPA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756637750; c=relaxed/simple;
-	bh=xi1fLpfGfUX4eRrB19iaWWJsrywWFFqGcHHL0PuDem4=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=BNCplU4xef2IC6tzhdg1Iuo3rgv1whTYq+uv3CNOOLoLTCIZLMNeub0yP8xyRc9VtsDerKMArZIxnUeogyCLRDEAfr9TxE9dizg2DWMQxDzGrpigxismAD8nj3EbmnX704grHuN0SOTUmOAEdDiWWROxALfWzhZdVV10Y2WGzZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d7ZEfBg8; arc=none smtp.client-ip=209.85.218.44
+	s=arc-20240116; t=1756637934; c=relaxed/simple;
+	bh=WVIesh8/RBO7fqb/F+aCLBcMtMA9LcfeCRq+222xUIc=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Tc+LqB7YK3H4yW8zXw8u37K0LTFvfL3dN1CrXK40dW4RedR/MiUZA4+Z9/dGUpujL24jWspOZsJqjOsTjF2ntR54NRNXE7unWxL76wdDM3UOpPUXnLkj9WjB0kSZrjw+os0HCXxc15McZa85OA5T8+NWpD87Xntwvs5nG6Ci0tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gstl4kKN; arc=none smtp.client-ip=209.85.218.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-aff08beb8b8so32372066b.2
-        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 03:55:48 -0700 (PDT)
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b04260d72aaso348066b.1
+        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 03:58:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756637747; x=1757242547; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756637931; x=1757242731; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y9Ikcisp0DawIJEHv4fsbvQNKoZVQCvvL3i/2eqE6R0=;
-        b=d7ZEfBg8w+/45HKi1OdAwAejyFJwpmygh5Y7puMvIEh43PxrcgBIKbtrbWQ/SKKdzB
-         1GvqM4nEBa5w0JE+WgOuQraSM7mp5pNdvf6rRioYh0VttSvrTtRHNVN72sHy+W4yrXqj
-         dO4Z6kHDMTrb9VzGRRlK9JDpy9Tr4WQcNWOa7llccqBLeJvMQ3yyJl7JYjCII36d4yid
-         0C3/V0lI5i7+cJJwjpsOjQVsMZhi+9d1EnCwaVLjsATtkfWgCgValWscRcpUtywgqbaL
-         kZFCwPc6P0i3XL3JGo5Lf5LTdecRWjCUEy3IjcSFytRmU/9xfz/bYEL0WJY70wKoJLin
-         /LjA==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w3zy+4FxM6e/ZYJU6tdKRgGniGSW0dORiZkBYaBYdq4=;
+        b=Gstl4kKNr1k2/CoNvVwMBDUgJaKJI7OdDt5JO+aBfCazoJEHMvMwgH6eh0DuAWW73n
+         WirdSYdOIcCmUyzuxB2h0ZQ8ljC70jiyUZo5fG5Y1cDoTfrytPhmP7BUQ3EoeYw25XsQ
+         xWSBw6RxxMbCGwsYMraFUnQIWxrGLcMBTUXl5j/2+JBDYkkftD2QJAURIsHa6NYtmFZs
+         qlkAsbZrC/HvrnGPscZYCsa7/r1pD396RTKhoulstVuUobdQQMAQ0YM6a4z7M24bcU71
+         85LA+8kNv3xADoDUSf37bc2dqzqLkMxqa0fDT8yixNXm9mde5YuzyocbpS67bnxpUhME
+         gOjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756637747; x=1757242547;
+        d=1e100.net; s=20230601; t=1756637931; x=1757242731;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=y9Ikcisp0DawIJEHv4fsbvQNKoZVQCvvL3i/2eqE6R0=;
-        b=PJt8xf7tOULmHZPPp3xNVeg6P5BlBzU9SvxePl0Z4HkpJjEDV3hkOOsn0/lz7z31Aa
-         6vDFD03qQrWcWEzGo/jvTm2MwoOW4FIfWxB7F7K5WlozS/xyqc6HhxTwuNTmgoJ065GW
-         JCtV1/2NyDXGybPA6XbTCCHb9EcHhXh6B6RqoXbWnMQn7PalesS/uHnVJyJ/2bjXuxlg
-         eLrzAJz6fEW3UI+7yUjvxDVjh/Ec2W0EbzzsiVMQxGWkHlqqcGqVxhLUyGAGMVNF9TlH
-         UFkhXdBv4iaj8PapgPH79WMhaZBoPpC66RVNZAX/5DGD7CkgmJj4YZBJATOz14xYTLd8
-         51FA==
-X-Forwarded-Encrypted: i=1; AJvYcCWjsXA98rztjSmrWOLtBsQmtxZFlpzBBHL2vlfu5/zy321O1k8e0hZxp64NdSQ4QY0XZkTxNKfk61+K@vger.kernel.org
-X-Gm-Message-State: AOJu0YxA7hAARkmD6yXc5Y1n0nt9LKsbYT8WmZpGC0koDHGJWuUESWmG
-	Xri+BBtFRoIvb91naIyDvivLZ97Yi4kvKyd+dqY0vlU+ipyiXpKb0DTTrTJi9lfBF3N4v98z7/A
-	KnX6Q
-X-Gm-Gg: ASbGncvcf7Ooww7MQ9WGLVpB/IkiIkd2dljWBf99786TA5ex0E5b3IwH0Jd9svdgM1x
-	txDDkB0u//rQMwecMHU/SuaoHk3DxM/bXuuGVro19kilAS4wGEBFSxz/UrIWszlA5wfjLwoIPIE
-	i4dvgAhcwWc6gofasy+1whhwncnwa0hqJrja0lomgWRlLyXyOaIwugz3Ov4H4b0qJ5jFdkXIpYf
-	gXyBoGs9V6GXCt6xhOgmy/SRt43H+KEJH9vf7+g13YQ2OAhqnjZQgBIPCD2LMMhj0m5ON3SRXVr
-	bKFXv/3uLLhjyXTa7Zt75kwficXdb2u40DThBuA8qv3tiFWbzV3CJUWiZc3ZvM0AkzYY99IWK+D
-	BehMbVmGAEj8F4J87CHgCpu4wKv2oqfNHyJ/olTmUPuNLuL0xTQ==
-X-Google-Smtp-Source: AGHT+IGQnHEGxYKHduO0rCDVlsbQla5BpUnmcBYqLI8jWWy/4+T75FA5udztvTzcc7SvlOo9rfc4BA==
-X-Received: by 2002:a17:907:e8d:b0:afe:d218:3d21 with SMTP id a640c23a62f3a-aff040b2788mr405254066b.4.1756637747009;
-        Sun, 31 Aug 2025 03:55:47 -0700 (PDT)
+        bh=w3zy+4FxM6e/ZYJU6tdKRgGniGSW0dORiZkBYaBYdq4=;
+        b=J2F7/7dwpcFao+xJKROgzICLYSDWZeJfIeiQFijosdh52+h/bqPJkunRkzvd16aWxf
+         oTD+O7jzoU2Y178LqN37oyymCse1mDR4Q5Oof9kAJIIBA7unkqlZX/U6msx2oqrSrVA7
+         vnjE7hbaqTGQyqr2ZGiQpVKgQcfxCwn2lqCCEP/3ltHvrMErmMh3T1Ks12kVVymo1cXj
+         H/SwYJdMBiFrYbVrCG5oBd+TzHg3oU3YDUd71tlsIrInPEYK2MFYAEJdmHB5DXGisf3w
+         l3P6rGMQpMQsb0XopiifJPsE5NfJS3bfMSmUCX++2bNT+/pp0+k5vNo2DfFBuc/XlN19
+         9YAA==
+X-Forwarded-Encrypted: i=1; AJvYcCUo3+9sxdq+awvQxq+YjxnubW6JrhFkP+VaWA+D5wnrcu5ssAJlI5NGfuF1LWUhXxiak1F4lH+YnxnT@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKzdD+DHrKrhI476Zf1tfF7MIAgjj/fIaYKs1X8Q49xNHS0a+d
+	eAp/aWYQ6lELRROiIt2kfcIvHKu53lrUUU3oqBAz7icCv4o5poZDs96UwVTQZcI6s8A=
+X-Gm-Gg: ASbGncs6Kjij9z3R64cCZbrtjXCa6qhDC0jrLM6IYU4ewjD1C8CQLeFL8pPxoM8KbiN
+	1LVuEHCJzEtMy8lFBdzoU12IG57Vx2CHIsHZGskIfo9TK5PCyjyLgNHo/3Nm749ekBL+swLW+WX
+	jymZhwGkP2/z9X7V+L/QimJfmAZ5LSlhfjz7bWkPaMzE8bRgC7ymmW9bqvXgqv+qll9l2ZqkWyV
+	uNJyVtX97HJRU9wWhGemEaWoXgtgVZ6A6D2I2rTZLENNzcbVCONVD5vihsCOI5wkrqjI7sQYhdV
+	PheYVexbwHdPExaISI7Hdq7BomAIgFGM9sBYl7Kttcc5brkEM0nYDLPfEgsbT8wjvmKBIjCFwAq
+	7xD2BYYcpplO6HZdlFtNl3Kn0KS0me/1rxdhJkfK5PwnR72kbLA==
+X-Google-Smtp-Source: AGHT+IHTBJiyshvnvgCsLBk30RyM3YNR2Y8KXQJ7s2S5taB2fYhC2gtwsyGjCqiwFtwHqMDToZZ4hw==
+X-Received: by 2002:a17:906:c152:b0:afe:c2e7:3707 with SMTP id a640c23a62f3a-aff0ee1afcemr349633566b.4.1756637930739;
+        Sun, 31 Aug 2025 03:58:50 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aff12a6b404sm468318066b.88.2025.08.31.03.55.44
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b017e4b9ed7sm349176466b.90.2025.08.31.03.58.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Aug 2025 03:55:45 -0700 (PDT)
+        Sun, 31 Aug 2025 03:58:50 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org
-In-Reply-To: <20250830-fix-cmu-top-v5-0-7c62f608309e@gmail.com>
-References: <20250830-fix-cmu-top-v5-0-7c62f608309e@gmail.com>
-Subject: Re: [PATCH v5 0/5] clk: samsung: exynos990: CMU_TOP fixes (mux
- regs, widths, factors)
-Message-Id: <175663774498.35421.6694005756444857104.b4-ty@linaro.org>
-Date: Sun, 31 Aug 2025 12:55:44 +0200
+To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250830093918.24619-2-krzysztof.kozlowski@linaro.org>
+References: <20250830093918.24619-2-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v2] arm64: dts: exynos2200: Add default GIC address
+ cells
+Message-Id: <175663792937.36292.10292837875011385286.b4-ty@linaro.org>
+Date: Sun, 31 Aug 2025 12:58:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,28 +97,16 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Sat, 30 Aug 2025 16:28:37 +0000, Denzeel Oliva wrote:
-> Two small fixes for Exynos990 CMU_TOP:
+On Sat, 30 Aug 2025 11:39:19 +0200, Krzysztof Kozlowski wrote:
+> Add missing address-cells 0 to GIC interrupt node.  Value '0' is correct
+> because GIC interrupt controller does not have children.
 > 
-> Correct PLL mux register selection (use PLL_CON0), add DPU_BUS and
-> CMUREF mux/div, and update clock IDs.
-> Fix mux/div bit widths and replace a few bogus divs with fixed-factor
-> clocks (HSI1/2 PCIe, USBDP debug); also fix OTP rate.
 > 
-> [...]
 
 Applied, thanks!
 
-[1/5] clk: samsung: exynos990: Use PLL_CON0 for PLL parent muxes
-      https://git.kernel.org/krzk/linux/c/19b50ab02eddbbd87ec2f0ad4a5bc93ac1c9b82d
-[2/5] clk: samsung: exynos990: Fix CMU_TOP mux/div bit widths
-      https://git.kernel.org/krzk/linux/c/ce2eb09b430ddf9d7c9d685bdd81de011bccd4ad
-[3/5] clk: samsung: exynos990: Replace bogus divs with fixed-factor clocks
-      https://git.kernel.org/krzk/linux/c/a66dabcd2cb8389fd73cab8896fd727fa2ea8d8b
-[4/5] dt-bindings: clock: exynos990: Extend clocks IDs
-      https://git.kernel.org/krzk/linux/c/76f1e2ee545b3165e1e24293b59414699118266a
-[5/5] clk: samsung: exynos990: Add DPU_BUS and CMUREF mux/div and update CLKS_NR_TOP
-      https://git.kernel.org/krzk/linux/c/8c82bb53669b1e82435b5a00a170b7c079940b82
+[1/1] arm64: dts: exynos2200: Add default GIC address cells
+      https://git.kernel.org/krzk/linux/c/59abe5c87267f1f3bd627af20355b490b59f9901
 
 Best regards,
 -- 
