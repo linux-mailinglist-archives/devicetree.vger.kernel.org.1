@@ -1,200 +1,370 @@
-Return-Path: <devicetree+bounces-210883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DD7CB3D0D7
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 05:43:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81B5EB3D0DD
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 06:07:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE2DE441F6D
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 03:43:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 208353BB860
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 04:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FA931FF7BC;
-	Sun, 31 Aug 2025 03:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BA94212575;
+	Sun, 31 Aug 2025 04:07:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hYSNMuMi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LbFk+MFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FB243BBF0;
-	Sun, 31 Aug 2025 03:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61965433B3;
+	Sun, 31 Aug 2025 04:07:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756611817; cv=none; b=OLYkixRn3Nva9BquqQdYDXPzCsZ69jZVkikVjOCrsXR5fcr5mupGyRVtC07DiDuSTAjubQpOLE6PNIp7VfALipeaqld95zhFA3QNDN4qpe++veG8ZyXYWoDgYp8bO0BXCISqfMgs4hAu4WelT/z/t5g0JqMES0P8fjtOyIR618Y=
+	t=1756613248; cv=none; b=PiJT/8RqrGv8gHo+FouVUMIJKJw/bPP9GBB34v64TyX+5vsGSdh3QmxAnzkbM+w+Ci6NF6ihsgQoplwXvVRHlJnAE2HOqi9w/S5P6bqfokiadl7/jFYlmRirvAWlm52uE1Da781RzeJb2FWfsUjc+c1vLGgDHXvj7nkhi66ubds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756611817; c=relaxed/simple;
-	bh=CCgAIXlr6vNsPLTZ0WDt5QpS03SDJgg31v/BcBUXsPw=;
+	s=arc-20240116; t=1756613248; c=relaxed/simple;
+	bh=LptXLD1zwFlWZSHFVxFcX1U/UXwMN65+JMNh3/oeSoI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n87k5mDOIV4yl69BTvfanRCwEur7f0NM6CjiIMH36HIAj7Or36r1MAvaDIo55BLT4+7Vaf/Y+sPYfloaQkBAaDrWLRUL63jVGHzu2uvZCyfOy7tEv3mW1vcReIO0ETb5b6u3FfcNLfL1Gi+54QWsJjyn4LmoMRyc+p2cIwnQ3PA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hYSNMuMi; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-77247e25a69so14641b3a.2;
-        Sat, 30 Aug 2025 20:43:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756611815; x=1757216615; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=o28MJXIxWOQ5k5vgBDUjnzOPn+n4LfMbzijeAHLWGj0=;
-        b=hYSNMuMiNfwrtbeAcXFqBZl4FZhmDOcoJjzM4Cw8wP6mxY3Vbw1mO8AQnDM3BFIKmM
-         iWC8PE/53Zm7HNM35Vh5SXOBwGmqUxNi9N5VcXB+gm3EtNTBz+EMRX+jrYFHqOoB52Qv
-         +eK+8U0iOXAtccJwe5UOnhCKhR3LvH84QJ4Zo4IzYa81Jrn/VfUm9e2gb7WVISu/A/nD
-         nDVwl+EQkJu6GQzaeMeLL15hSoL1ujCrmQOQCe3QqoQQwdCNKzO7wy/iVWv28d1wSQ5b
-         tmmSmcNgZfSVfkZJpjuu+qxAOH1dY7dnUxX4uer7PBqXCWO90OosrsLq3gvGmrNZGNL7
-         KNCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756611815; x=1757216615;
-        h=in-reply-to:content-disposition:mime-version:references:reply-to
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o28MJXIxWOQ5k5vgBDUjnzOPn+n4LfMbzijeAHLWGj0=;
-        b=c9acorXC+bTbVNMf3sBeq4rUPNv9BK5SWrhEPZGPnYPSLUcCFsn3i+0ux1glBiAOV0
-         GeYO+Oy/y/cBCkDAtBpdWpZK6R7MWitXKdP3UgKIdWoTlZNQQnIuVObAkMriEZ0ISyya
-         FQbYYxEdm5XmHv38lSj7hqcIcmSVH3jX9otmpWfwj1lO87gvb6/tRHeihh0AlmuW8/mi
-         YeHLf4pKanGURh0cfPDZ29uzzkqYt75TnwzERHiWksIStBk26DhpuZjr0BKSTbJDqyyo
-         tbqru+z/Ptm3XHSgzys9TDHVzNuXEWIl0ex2btppT3a1xSH7KPOLM6XrRcy13IwjwZ4v
-         /oSg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9IZl3F90hxNeDyayzE3o5JeOWm571BKUQZB2rHYeRyfNsC67ElijohLjxOA5nJ51kkkjgLU+I+qfd@vger.kernel.org, AJvYcCWYTdoj/4XGqhgwn/q6JSDJ5SMQyMhP/VeHXuKGpOVEueUTo6lHntxKNI8HiWdbg39Q6GAq899l6P2B@vger.kernel.org, AJvYcCXWL9IDve6HqgxK15m15z9q0dIFFw3r292Bkgsw9u/FhdJGNO3aH7RJKIpxGJ+gLWPIgRbOH/WuYrEEwQwK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3QJ0Uxw0pPGJuNljT1nus5AAXsIzGecAbULXTJSmRFWIdAGLR
-	B1vN8pt6EMtZniB436iwqsictG2McozHfYfXmllu2BoHAOlp09XuN0oKW+mooIHreZI=
-X-Gm-Gg: ASbGncsjpqTishfe97ovIyhSkf1bYi+1Ml1x0FnlJCaAG0QS9TDStsRK05fra3uX3qF
-	d5ay/6/thOXVQf1kD2xVxa939lPXg+N72WZk9PzwxcAZDLwrSH7sOOWqmixdlX+HU5AXr93JSRs
-	33VweqCR1lqsuFrqehY/ujFyXNDyhqaGgXoK1qbBRdT4UtQysp8KKfvlfe3Gy0l3ifi38o+vN1B
-	kqyro/d72IfwT3iwfsBgSX7bBlqydqeRDrrkXf2DWZP4tuAEE3NK+kwtbVDAbWPOWceWVQOkv25
-	vUNQwK/S/VywjdIokGerIsvCjX8SFnjxwEZT+i1YMdwz5p2dzH6WhM2IMekn5pjTCn9/czRwWJh
-	BoMdG9ShhT6t+qIYJK6Tu191MVRWgaR24xvDotA79stsw0O61eY/wz14mC+Dqai3/a7j2fRVGkt
-	YocruAcA==
-X-Google-Smtp-Source: AGHT+IEGnL7/6l4UZJDjwdfZyfX1leGyM7yvxQ95h54ZDu29KNmGjx9+VWdU4UoG7F3VLufYG2NlTQ==
-X-Received: by 2002:a05:6a00:807:b0:737:6589:81e5 with SMTP id d2e1a72fcca58-77232745936mr4672613b3a.2.1756611814646;
-        Sat, 30 Aug 2025 20:43:34 -0700 (PDT)
-Received: from JSANTO12-L01.ad.analog.com (201-43-64-35.dsl.telesp.net.br. [201.43.64.35])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a4e3fa1sm6380907b3a.83.2025.08.30.20.43.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 30 Aug 2025 20:43:34 -0700 (PDT)
-Date: Sun, 31 Aug 2025 00:43:27 -0300
-From: Jonathan Santos <jonath4nns@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>,
-	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, Michael.Hennerich@analog.com,
-	lars@metafoo.de, jic23@kernel.org, dlechner@baylibre.com,
-	nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, marcelo.schmitt1@gmail.com
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7768-1: add new
- supported parts
-Message-ID: <aLPE3yiSTReS7B2J@JSANTO12-L01.ad.analog.com>
-Reply-To: 510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org
-References: <20250824040943.9385-1-Jonathan.Santos@analog.com>
- <510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ju2AaBttehZSOk1AbzSfGVJMK1Lt88bx1SpRACNhjtkqbg6X6gRBzM3YbC4d5FMpKYOc5BVAktRakKX7OlHQqX+iXij5qEEd6Lga5BuWEIr+r444X8kzR2JCizk6TP4m+8jNVY5jnxSRIRSaoAiyVEUvc5V0v1sWnD57UojqBRc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LbFk+MFW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BFE8C4CEED;
+	Sun, 31 Aug 2025 04:07:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756613247;
+	bh=LptXLD1zwFlWZSHFVxFcX1U/UXwMN65+JMNh3/oeSoI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=LbFk+MFWyECQgwWN/R2B7l0hcZN7hA2vUQVDt1Z3vI+4xJ3whKk9FXHuOSLrhh68P
+	 HgDKzytxI9JEgGTqLShXuxO5gzSXveAhj/0L+tAk3KhXz+RWTt4YyXJeDE3WTswKVQ
+	 AqyW+cv2P79nBkjorkKxY8lhHwuLTsXTNYrIOvJWNTT8hLKaVaG/JT0Buj1ZluwEGZ
+	 0T9Z0g99KxMdPVAJcY7C+z1Oy0MCGyqXkXjNLTAsLMbeJ2bxsyknjvLi81LciN82+c
+	 uFx/JoVnTWTTtlvAqGEvpG+08cvISOMgCy7Y7MTumCDyV7Fg+QKPdRJyqiN3KXtr1Q
+	 QzC86xUv46DfQ==
+Date: Sun, 31 Aug 2025 09:37:17 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, geert+renesas@glider.be, 
+	magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com, 
+	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v3 5/9] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+Message-ID: <zsgncwvhykw4ja3bbqaxwupppjsqq4pcrdgrsduahokmt72xsm@twekpse6uzzh>
+References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250704161410.3931884-6-claudiu.beznea.uj@bp.renesas.com>
+ <ddxayjj5wcuuish4kvyluzrujkes5seo7zlusmomyjfjcgzcyj@xe3zzzmy2zaj>
+ <8ef466aa-b470-4dcb-9024-0a9c36eb9a6a@tuxon.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8ef466aa-b470-4dcb-9024-0a9c36eb9a6a@tuxon.dev>
 
-On 08/24, Krzysztof Kozlowski wrote:
-> On 24/08/2025 06:09, Jonathan Santos wrote:
-> > Add compatibles for supported parts in the ad7768-1 family:
-> > 	ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1
+On Sat, Aug 30, 2025 at 02:22:45PM GMT, Claudiu Beznea wrote:
+> 
+> 
+> On 30.08.2025 09:59, Manivannan Sadhasivam wrote:
+> > On Fri, Jul 04, 2025 at 07:14:05PM GMT, Claudiu wrote:
+> >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >>
+> >> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+> >> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+> >> only as a root complex, with a single-lane (x1) configuration. The
+> >> controller includes Type 1 configuration registers, as well as IP
+> >> specific registers (called AXI registers) required for various adjustments.
+> >>
+> >> Hardware manual can be downloaded from the address in the "Link" section.
+> >> The following steps should be followed to access the manual:
+> >> 1/ Click the "User Manual" button
+> >> 2/ Click "Confirm"; this will start downloading an archive
+> >> 3/ Open the downloaded archive
+> >> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
+> >> 5/ Open the file r01uh1014ej*-rzg3s.pdf
+> >>
+> >> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
+> >> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> >> ---
+> >>
 > > 
-> > Add property and checks for AAF gain, supported by ADAQ7767-1
-> > and ADAQ7769-1 parts:
-> > 	adi,gain-milli
+> > [...]
 > > 
-> > Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
-> 
-> git send-email v2*
-> 
-> Not patch by patch. You made it very difficult for us to review and to
-> apply.
-> 
-
-Sorry, i will pay more attention
-
-> > ---
-> > v2 Changes:
-> > * adi,aaf-gain property renamed to adi,gain-milli. Description was 
-> >   simplified.
-> > * default value add to adi,gain-milli.
-> > ---
-> >  .../bindings/iio/adc/adi,ad7768-1.yaml        | 43 +++++++++++++++++--
-> >  1 file changed, 39 insertions(+), 4 deletions(-)
+> >> +static bool rzg3s_pcie_child_issue_request(struct rzg3s_pcie_host *host)
+> >> +{
+> >> +	u32 val;
+> >> +	int ret;
+> >> +
+> >> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_REQISS,
+> >> +			       RZG3S_PCI_REQISS_REQ_ISSUE,
+> >> +			       RZG3S_PCI_REQISS_REQ_ISSUE);
+> >> +	ret = readl_poll_timeout_atomic(host->axi + RZG3S_PCI_REQISS, val,
+> >> +					!(val & RZG3S_PCI_REQISS_REQ_ISSUE),
+> >> +					5, RZG3S_REQ_ISSUE_TIMEOUT_US);
+> >> +
+> >> +	return !!ret || (val & RZG3S_PCI_REQISS_MOR_STATUS);
 > > 
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > index c06d0fc791d3..0c39491f6179 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
-> > @@ -4,18 +4,26 @@
-> >  $id: http://devicetree.org/schemas/iio/adc/adi,ad7768-1.yaml#
-> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
-> >  
-> > -title: Analog Devices AD7768-1 ADC device driver
-> > +title: Analog Devices AD7768-1 ADC family
-> >  
-> >  maintainers:
-> >    - Michael Hennerich <michael.hennerich@analog.com>
-> >  
-> >  description: |
-> > -  Datasheet at:
-> > -    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
-> > +  Analog Devices AD7768-1 24-Bit Single Channel Low Power sigma-delta ADC family
-> > +
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7767-1.pdf
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7768-1.pdf
-> > +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7769-1.pdf
-> >  
-> >  properties:
-> >    compatible:
-> > -    const: adi,ad7768-1
-> > +    enum:
-> > +      - adi,ad7768-1
-> > +      - adi,adaq7767-1
-> > +      - adi,adaq7768-1
-> > +      - adi,adaq7769-1
-> >  
-> >    reg:
-> >      maxItems: 1
-> > @@ -58,6 +66,18 @@ properties:
-> >      description:
-> >        ADC reference voltage supply
-> >  
-> > +  adi,gain-milli:
-> > +    description: |
-> > +       Specifies the gain applied by the Analog Anti-Aliasing Filter (AAF) to the
-> > +       ADC input (in milli units). The hardware gain is determined by which input
+> > You don't need to do !!ret as the C11 standard guarantees that any scalar type
+> > stored as bool will have the value of 0 or 1.
 > 
+> OK, will drop it anyway as suggested in another thread.
 > 
-> I don't think there is no such thing as "milli units". milli is SI
-> prefix, not unit. So "units" is the unit? Or how exactly?
+> > 
+> >> +}
+> >> +
+> > 
+> > [...]
+> > 
+> >> +static void __iomem *rzg3s_pcie_root_map_bus(struct pci_bus *bus,
+> >> +					     unsigned int devfn,
+> >> +					     int where)
+> >> +{
+> >> +	struct rzg3s_pcie_host *host = bus->sysdata;
+> >> +
+> >> +	if (devfn)
+> >> +		return NULL;
+> > 
+> > Is it really possible to have devfn as non-zero for a root bus?
 > 
-> Basis points were before since 2022 so I don't get why these other
-> bindings introduced in 2024 could not use it?
+> I will drop it.
 > 
-> Anyway, if you ever do not apply reviewers comment, then your commit msg
-> should explain this. Otherwise you get the same discussion here.
+> > 
+> >> +
+> >> +	return host->pcie + where;
+> >> +}
+> >> +
+> > 
+> > [...]
+> > 
+> >> +static int rzg3s_pcie_msi_setup(struct rzg3s_pcie_host *host)
+> >> +{
+> >> +	size_t size = RZG3S_PCI_MSI_INT_NR * sizeof(u32);
+> >> +	struct rzg3s_pcie_msi *msi = &host->msi;
+> >> +	struct device *dev = host->dev;
+> >> +	int id, ret;
+> >> +
+> >> +	msi->pages = __get_free_pages(GFP_KERNEL | GFP_DMA, 0);
+> >> +	if (!msi->pages)
+> >> +		return -ENOMEM;
+> >> +
+> >> +	msi->dma_addr = dma_map_single(dev, (void *)msi->pages, size * 2,
+> >> +				       DMA_BIDIRECTIONAL);
+> >> +	if (dma_mapping_error(dev, msi->dma_addr)) {
+> >> +		ret = -ENOMEM;
+> >> +		goto free_pages;
+> >> +	}
+> >> +
+> >> +	/*
+> >> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.4.5.2 Setting
+> >> +	 * the MSI Window) the MSI window need to be within any AXI window. Find
+> >> +	 * an AXI window to setup the MSI window.
+> > 
+> > Are you really finding the AXI window or just making sure that the MSI window
+> > falls into one of the AXI window?
+> 
+> I'm making sure the MSI windows falls into one of the enabled AXI windows.
 > 
 
-Yes, you are right. We shouldn't use milli as suffix. However, may I
-suggest another option?
+Then you need to reword the comment as such. Currently, it is not clear.
 
-I believe -permille is more appropriate because it represents a 1/1000
-proportion, which gives the precision we need to cover all values.
+> > 
+> > And I believe it is OK to have more than one MSI window within an AXI window.
+> 
+> This IP supports a single MSI window that need to fit into one of the
+> enabled AXI windows.
+> 
 
-so it would be something like: adi,aaf-gain-permille
+[...]
 
-Is that ok for you?
+> >> +
+> >> +	/* Update vendor ID and device ID */
+> > 
+> > Are you really updating it or setting it? If you are updating it, are the
+> > default IDs invalid?
+> 
+> Default IDs are valid (at least on RZ/G3S) but Renesas specific. Renesas
+> wants to let individual users to set their own IDs.
+> 
 
-Thanks for the feedback,
-Jonathan S.
+So they are optional then? But the binding treats them as required, which should
+be changed if the default IDs are valid.
 
-> Best regards,
-> Krzysztof
+> > 
+> >> +	writew(host->vendor_id, host->pcie + PCI_VENDOR_ID);
+> >> +	writew(host->device_id, host->pcie + PCI_DEVICE_ID);
+> >> +
+> >> +	/* HW manual recommends to write 0xffffffff on initialization */
+> >> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00L);
+> >> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00U);
+> >> +
+> >> +	/* Update bus info. */
+> >> +	writeb(primary_bus, host->pcie + PCI_PRIMARY_BUS);
+> >> +	writeb(secondary_bus, host->pcie + PCI_SECONDARY_BUS);
+> >> +	writeb(subordinate_bus, host->pcie + PCI_SUBORDINATE_BUS);
+> >> +
+> >> +	/* Disable access control to the CFGU */
+> >> +	writel(0, host->axi + RZG3S_PCI_PERM);
+> >> +
+> >> +	return 0;
+> >> +}
+> >> +
+> > 
+> > [...]
+> > 
+> >> +static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host, bool probe)
+> >> +{
+> >> +	u32 val;
+> >> +	int ret;
+> >> +
+> >> +	/* Initialize the PCIe related registers */
+> >> +	ret = rzg3s_pcie_config_init(host);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* Initialize the interrupts */
+> >> +	rzg3s_pcie_irq_init(host);
+> >> +
+> >> +	ret = reset_control_bulk_deassert(host->data->num_cfg_resets,
+> >> +					  host->cfg_resets);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	/* Wait for link up */
+> >> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, val,
+> >> +				 !(val & RZG3S_PCI_PCSTAT1_DL_DOWN_STS),
+> >> +				 PCIE_LINK_WAIT_SLEEP_MS,
+> >> +				 PCIE_LINK_WAIT_SLEEP_MS *
+> >> +				 PCIE_LINK_WAIT_MAX_RETRIES * MILLI);
+> >> +	if (ret) {
+> >> +		reset_control_bulk_assert(host->data->num_cfg_resets,
+> >> +					  host->cfg_resets);
+> >> +		return ret;
+> >> +	}
+> >> +
+> >> +	val = readl(host->axi + RZG3S_PCI_PCSTAT2);
+> >> +	dev_info(host->dev, "PCIe link status [0x%x]\n", val);
+> >> +
+> >> +	val = FIELD_GET(RZG3S_PCI_PCSTAT2_STATE_RX_DETECT, val);
+> >> +	dev_info(host->dev, "PCIe x%d: link up\n", hweight32(val));
+> >> +
+> >> +	if (probe) {
+> >> +		ret = devm_add_action_or_reset(host->dev,
+> >> +					       rzg3s_pcie_cfg_resets_action,
+> >> +					       host);
+> > 
+> > Oh well, this gets ugly. Now the devm_add_action_or_reset() is sprinkled
+> > throughout the driver :/
+> > 
+> > As I said earlier, there are concerns in unloading the driver if it implements
+> > an irqchip. So if you change the module_platform_driver() to
+> > builtin_platform_driver() for this driver, these devm_add_action_or_reset()
+> > calls become unused.
+> 
+> They can still be useful in case the probe fails. As the initialization
+> path is complicated, having actions or resets looks to me that makes the
+> code cleaner as the rest of devm_* helpers.
+> 
+> I can drop it and replace with gotos and dedicated functions but this will
+> complicate the code, AFAICT.
+> 
+> Please let me know how would you like me to proceed.
+> 
+
+It is generally preferred to cleanup the resources in err path using goto
+labels.
+
+> > 
+> >> +	}
+> >> +
+> >> +	return ret;
+> >> +}
+> >> +
+
+[...]
+
+> >> +	ret = pm_runtime_resume_and_get(dev);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> > 
+> > Do you really need to do resume_and_get()? If not, you should do:
+> 
+> It it's needed to enable the clock PM domain the device is part of.
+> 
+
+I've replied below.
+
+> > 
+> > 	pm_runtime_set_active()
+> > 	pm_runtime_no_callbacks()
+> > 	devm_pm_runtime_enable()
+> > 
+> >> +	ret = devm_add_action_or_reset(dev, rzg3s_pcie_pm_runtime_put, dev);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	raw_spin_lock_init(&host->hw_lock);
+> >> +
+> >> +	ret = rzg3s_pcie_host_setup(host, rzg3s_pcie_intx_setup,
+> >> +				    rzg3s_pcie_msi_enable, true);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	msleep(PCIE_RESET_CONFIG_WAIT_MS);
+> >> +
+> >> +	bridge->sysdata = host;
+> >> +	bridge->ops = &rzg3s_pcie_root_ops;
+> >> +	bridge->child_ops = &rzg3s_pcie_child_ops;
+> >> +	ret = pci_host_probe(bridge);
+> >> +	if (ret)
+> >> +		return ret;
+> >> +
+> >> +	return devm_add_action_or_reset(dev, rzg3s_pcie_host_remove_action,
+> >> +					host);
+> >> +}
+> >> +
+> >> +static int rzg3s_pcie_suspend_noirq(struct device *dev)
+> >> +{
+> >> +	struct rzg3s_pcie_host *host = dev_get_drvdata(dev);
+> >> +	const struct rzg3s_pcie_soc_data *data = host->data;
+> >> +	struct regmap *sysc = host->sysc;
+> >> +	int ret;
+> >> +
+> >> +	ret = pm_runtime_put_sync(dev);
+> >> +	if (ret)
+> >> +		return ret;
+> > 
+> > Since there are no runtime callbacks present, managing runtime PM in the driver
+> > makes no sense.
+> 
+> The PCIe device is part of a clock power domain. Dropping
+> pm_runtime_enable()/pm_runtime_put_sync() in this driver will lead to this
+> IP failing to work as its clocks will not be enabled/disabled. If you don't
+> like the pm_runtime_* approach that could be replaced with:
+> 
+> devm_clk_get_enabled() in probe and clk_disable()/clk_enable() on
+> suspend/resume. W/o clocks the IP can't work.
+> 
+
+Yes, you should explicitly handle clocks in the driver. Runtime PM makes sense
+if you have a power domain attached to the IP, which you also do as I see now.
+So to conclude, you should enable/disable the clocks explicitly for managing
+clocks and use runtime PM APIs for managing the power domain associated with
+clock controller.
+
+But please add a comment above pm_runtime_resume_and_get() to make it clear as
+most of the controller drivers are calling it for no reason.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
