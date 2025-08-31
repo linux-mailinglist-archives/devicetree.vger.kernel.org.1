@@ -1,130 +1,137 @@
-Return-Path: <devicetree+bounces-211012-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211013-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF8AB3D5B5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 01:02:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 038E5B3D5B9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 01:10:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9731B1784A2
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 23:02:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56F451896710
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 23:10:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52602459DD;
-	Sun, 31 Aug 2025 23:02:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71B6C253359;
+	Sun, 31 Aug 2025 23:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hMY/R9O9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E61B24290D;
-	Sun, 31 Aug 2025 23:02:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB0A814AA9;
+	Sun, 31 Aug 2025 23:10:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756681358; cv=none; b=C965mzZBi/MjOfmOmy0NYaOZPxXuxQmeMUNDj/22ieuOiDCr7C80QakKKIgUm+BSDO8K3g5qaDdfu0cA85MnvVe/VNehnGTO5eWZfS9KvCAAy+7g19WIJmjv1y0kWoVozToWGNi+htRCyUoFwxxWqejCfIs6Zc7IKcUDluAhoFI=
+	t=1756681820; cv=none; b=FRJyEBp7at/ALLM1DObMr3bfISLdlI9sI4fVH1Z71QCExPxD6ZNtoueXY4BDASKl4B8mwDsY72j/Hh8yXMeo6l2V4OOdzCtL+c/O6e6kiH/xON7TG8td3LWWT5O6f0E1b6qcSlhHwi6bUUd6IxFGys0u7d8G9PQGkkio/KWPA/g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756681358; c=relaxed/simple;
-	bh=iuRLKwj7sFVlu3C7D7aB3zxNlXrFtCUmp9KoG/GKdyM=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Y62uibJ7xHrZjIANmhyhbnafp5+aSTaL7s9/yppDeN5kpdac+A8DH81WTIvbgYAMzkyHoMO6IRVtNz/aaJVIkouxS775oihkdjMbnEmT+upYtyIESwd616sVfXt2sVpQdUDtWm+mNSpF7ERUHzvpPlMGYWPWqj5Wv51pkbYlwpM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 2C306B2200E7;
-	Mon,  1 Sep 2025 01:02:32 +0200 (CEST)
-From: E Shattow <e@freeshell.de>
-To: Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	E Shattow <e@freeshell.de>
-Subject: [PATCH v2 5/5] riscv: dts: starfive: add Milk-V Mars CM Lite system-on-module
-Date: Sun, 31 Aug 2025 15:59:30 -0700
-Message-ID: <20250831225959.531393-6-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250831225959.531393-1-e@freeshell.de>
-References: <20250831225959.531393-1-e@freeshell.de>
+	s=arc-20240116; t=1756681820; c=relaxed/simple;
+	bh=JHxfvkrM73Us6LupwzXgxuKeYqfKxIOsGkL5/+zL4bk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Dst89IwoGJHASqcy+7wgwUMw+lRTpF2gpA9Bkn3/XBY1ZsWMRBz7ImCzBD2pLpWf4hQbE5vdMt0q3/5Y9W1fegSUUU0jD8EVH/BmMFdmoa74MP8QrTd7PBGFFKpELRKyZMXjibM5I3s8sOl39+TASB6u90EXHD/W6uP+oBR/uBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hMY/R9O9; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756681819; x=1788217819;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=JHxfvkrM73Us6LupwzXgxuKeYqfKxIOsGkL5/+zL4bk=;
+  b=hMY/R9O91ExABuptuNS2KZ5DBte4BqdhJpCEH5Sl+flk/WZPtfBT8wJT
+   j/G1wmXOKn5jw4VOlp75yAeNeM82w2Hxj73f/0zNnBQpsBUpYzJqWZFOA
+   H7qaDShnWEZ1A2juF6FvNq9RMjS/ISbbwxs8u+/Bp0f4CwcsrolftF6bq
+   rdAPzpOcGkt4zXdRELwx7UegdARduGxbWtfAP/2VDVlugokNd3rhsc5U+
+   nisJ+G4B/XsRlxS853inUsGIK02F6HrkU3PlWC28ZJcjSbWBJ7kGuEK6t
+   tpb2eE7wz/35joeWsorP76Dpr+uicq8n0x8HgLQOD8DsnkgjbdB/Mb7CY
+   w==;
+X-CSE-ConnectionGUID: qPJMToe4T4yuVY9EcTmdyw==
+X-CSE-MsgGUID: 7ZnYMk8bT6G7BaIT3t49yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11539"; a="59030221"
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="59030221"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Aug 2025 16:10:18 -0700
+X-CSE-ConnectionGUID: h4h1AFO5StiB55Nb2vzFQA==
+X-CSE-MsgGUID: 5mTPMZo7RNay6oWvGeIHcw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="170129257"
+Received: from lkp-server02.sh.intel.com (HELO 4ea60e6ab079) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 31 Aug 2025 16:10:15 -0700
+Received: from kbuild by 4ea60e6ab079 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1usrBT-000WP9-0k;
+	Sun, 31 Aug 2025 23:10:09 +0000
+Date: Mon, 1 Sep 2025 07:09:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Bharadwaj Raju <bharadwaj.raju777@gmail.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	shuah@kernel.org, linux-kernel-mentees@lists.linux.dev,
+	Bharadwaj Raju <bharadwaj.raju777@gmail.com>
+Subject: Re: [PATCH 3/5] iio: imu: icm20948: add support for gyroscope
+Message-ID: <202509010654.5oiN6YTZ-lkp@intel.com>
+References: <20250831-icm20948-v1-3-1fe560a38de4@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250831-icm20948-v1-3-1fe560a38de4@gmail.com>
 
-Milk-V Mars CM Lite is a System-on-Module based on the Milk-V Mars CM
-without the onboard eMMC storage component populated and configured
-instead for SD3.0 Card Slot on that interface via 100-pin connector.
+Hi Bharadwaj,
 
-Link to Milk-V Mars CM Lite schematics: https://github.com/milkv-mars/mars-files/tree/main/Mars-CM_Hardware_Schematices
-Link to StarFive JH7110 Technical Reference Manual: https://doc-en.rvspace.org/JH7110/TRM/index.html
-Link to Raspberry Pi CM4IO datasheet: https://datasheets.raspberrypi.com/cm4io/cm4io-datasheet.pdf
+kernel test robot noticed the following build warnings:
 
-Add the devicetree file to make use of StarFive JH7110 common supported
-features PMIC, EEPROM, UART, I2C, GPIO, PCIe, QSPI Flash, PWM, and
-Ethernet. Also configure the eMMC interface mmc0 for SD Card use and
-configure the common SD Card interface mmc1 for onboard SDIO BT+WiFi.
+[auto build test WARNING on 8742b2d8935f476449ef37e263bc4da3295c7b58]
 
-Signed-off-by: E Shattow <e@freeshell.de>
----
- arch/riscv/boot/dts/starfive/Makefile         |  1 +
- .../dts/starfive/jh7110-milkv-marscm-lite.dts | 26 +++++++++++++++++++
- 2 files changed, 27 insertions(+)
- create mode 100644 arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
+url:    https://github.com/intel-lab-lkp/linux/commits/Bharadwaj-Raju/dt-bindings-iio-imu-Add-ICM-20948/20250831-024726
+base:   8742b2d8935f476449ef37e263bc4da3295c7b58
+patch link:    https://lore.kernel.org/r/20250831-icm20948-v1-3-1fe560a38de4%40gmail.com
+patch subject: [PATCH 3/5] iio: imu: icm20948: add support for gyroscope
+config: arm-randconfig-r123-20250901 (https://download.01.org/0day-ci/archive/20250901/202509010654.5oiN6YTZ-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project ac23f7465eedd0dd565ffb201f573e7a69695fa3)
+reproduce: (https://download.01.org/0day-ci/archive/20250901/202509010654.5oiN6YTZ-lkp@intel.com/reproduce)
 
-diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-index 79742617ddab..62b659f89ba7 100644
---- a/arch/riscv/boot/dts/starfive/Makefile
-+++ b/arch/riscv/boot/dts/starfive/Makefile
-@@ -11,6 +11,7 @@ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-deepcomputing-fml13v01.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-mars.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-emmc.dtb
-+dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-milkv-marscm-lite.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-pine64-star64.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.2a.dtb
- dtb-$(CONFIG_ARCH_STARFIVE) += jh7110-starfive-visionfive-2-v1.3b.dtb
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-new file mode 100644
-index 000000000000..9052e8d515e1
---- /dev/null
-+++ b/arch/riscv/boot/dts/starfive/jh7110-milkv-marscm-lite.dts
-@@ -0,0 +1,26 @@
-+// SPDX-License-Identifier: GPL-2.0 OR MIT
-+/*
-+ * Copyright (C) 2025 E Shattow <e@freeshell.de>
-+ */
-+
-+/dts-v1/;
-+#include "jh7110-milkv-marscm.dtsi"
-+
-+/ {
-+	model = "Milk-V Mars CM Lite";
-+	compatible = "milkv,marscm-lite", "starfive,jh7110";
-+};
-+
-+&mmc0 {
-+	bus-width = <4>;
-+	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
-+};
-+
-+&mmc0_pins {
-+	pwren-pins {
-+		pinmux = <GPIOMUX(22, GPOUT_HIGH,
-+				      GPOEN_ENABLE,
-+				      GPI_NONE)>;
-+	};
-+};
-+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509010654.5oiN6YTZ-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c:21:12: sparse: sparse: Initializer entry defined twice
+   drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c:24:12: sparse:   also defined here
+
+vim +21 drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c
+
+    11	
+    12	/* IIO int + nano format */
+    13	static const int inv_icm20948_gyro_scale[] = {
+    14		/* 250 dps == 0.000133158 rad/s per LSB */
+    15		[2 * INV_ICM20948_GYRO_FS_250] = 0,
+    16		[2 * INV_ICM20948_GYRO_FS_250 + 1] = 133158,
+    17		/* 500 dps == 0.000266316 rad/s per LSB */
+    18		[2 * INV_ICM20948_GYRO_FS_500] = 0,
+    19		[2 * INV_ICM20948_GYRO_FS_500 + 1] = 266316,
+    20		/* 1000 dps == 0.000532632 rad/s per LSB */
+  > 21		[2 * INV_ICM20948_GYRO_FS_1000] = 0,
+    22		[2 * INV_ICM20948_GYRO_FS_1000 + 1] = 532632,
+    23		/* 2000 dps == 0.001065264 rad/s per LSB */
+    24		[2 * INV_ICM20948_GYRO_FS_1000] = 0,
+    25		[2 * INV_ICM20948_GYRO_FS_1000 + 1] = 1065264,
+    26	};
+    27	
+
 -- 
-2.50.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
