@@ -1,80 +1,96 @@
-Return-Path: <devicetree+bounces-210877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1443FB3D094
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 03:41:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA35B3D0B4
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 04:14:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 95D4A1893948
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 01:41:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BCC3C7A8DCA
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 02:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56CB51AA1D2;
-	Sun, 31 Aug 2025 01:40:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F4B51D514E;
+	Sun, 31 Aug 2025 02:14:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AAE4502A;
-	Sun, 31 Aug 2025 01:40:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9C4E54723;
+	Sun, 31 Aug 2025 02:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756604448; cv=none; b=MAHCGRfI7kCafgAj7NIakBBZgm3HJ6E669CG1OxtqZoQa/lZnSfgIVT9b4aEWhMQAC69P6wgDgY2BQ+adtZQKQ4DSJhgQ6JXKlznpPB+mC7eMX0TwBcxjTaUuPRKpCjpWd1IZjfdqj3QVuvuvWG3m5WarkkhGrj25f0nR3lJGYg=
+	t=1756606489; cv=none; b=kDW0LAIZ9bwvjVm7jfS5mUaioIn5gxt5Wtn8ZwBkQV9z1SrD85LTsKlp4vpbmOqlHccFMqLs4OO536J0GuQSHG4lwwutFRCtSJJ52fjdHjwg2RCQ+BisjkPo2aiWFFFba9RvDUYe3Pexjyn27ZiJfRxYI+Oa/Rg3fgI32ySNdp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756604448; c=relaxed/simple;
-	bh=878wiNWTsy/MqUwMdILYoZjCi3hb/V76DP4rIsFWyc4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=iNIw/WF4BmYac8JDEvCoSHtGQZAQLAyD5l57cMmi2XKierXxjDAYmYrI39HQZGgKVOCjURZ59W7S9tv1F0gD0MHRjZv5YwfdDpgiA7Abo5fDggir1wqAE+FB252QKBGiRy/9GwkeIyuo+nw3CFS4MXFJ1oUZZr9VINA3aAkmJC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38036C4CEEB;
-	Sun, 31 Aug 2025 01:40:47 +0000 (UTC)
-Message-ID: <9e56d3e2-b9c4-41ee-aab2-220733fbd658@kernel.og>
-Date: Sat, 30 Aug 2025 20:40:45 -0500
+	s=arc-20240116; t=1756606489; c=relaxed/simple;
+	bh=SNg+FmqZ16vCa13YLfAMHKe9V2Ku+glFAjh0Z6qAP/E=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Kx9g7eQtKPvWK7yKTIq/UMnILz7QLdzOq9GyNOnA732pIpwZfI3kMsYRVSZpSlSdkmL33BZlh48n8BV90IgieDXkGePpZFtJso79+5vT8ImxMhpruR+auvED2PFkcNvvhzxRslUOEsQ8JohmluqVhZXFCmw8YFV+qpNFQXoP2yo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sun, 31 Aug
+ 2025 10:14:38 +0800
+Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
+ (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
+ Transport; Sun, 31 Aug 2025 10:14:38 +0800
+From: Ryan Chen <ryan_chen@aspeedtech.com>
+To: ryan_chen <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>,
+	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
+	Lee Jones <lee@kernel.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: [PATCH v2 0/4] irqchip: Add support for Aspeed AST2700 SCU interrupt controller
+Date: Sun, 31 Aug 2025 10:14:34 +0800
+Message-ID: <20250831021438.976893-1-ryan_chen@aspeedtech.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] arm64: dts: socfpga: n5x: Add 4-bit SPI bus width
-To: yankei.fong@altera.com, Dinh Nguyen <dinguyen@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>,
- Matthew Gerlach <matthew.gerlach@altera.com>
-References: <cover.1750747163.git.yan.kei.fong@altera.com>
- <c55786bc081c29e9819dec3090d96230bd6a369c.1750747163.git.yan.kei.fong@altera.com>
-Content-Language: en-US
-From: Dinh Nguyen <dinguyen@kernel.og>
-In-Reply-To: <c55786bc081c29e9819dec3090d96230bd6a369c.1750747163.git.yan.kei.fong@altera.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
+This series adds support for the SCU (System Control Unit) interrupt
+controllers on the Aspeed AST2700 SoC.
 
+AST2700 follows the same multi-instance SCU interrupt controller design
+as AST2600, with four independent interrupt domains (scu-ic0 to 3).
+However, unlike previous SoCs that use a single register for both enable
+and status bits, AST2700 splits them into separate IER (Interrupt Enable)
+and ISR (Interrupt Status) registers.
 
-On 6/24/25 01:52, yankei.fong@altera.com wrote:
-> From: "Fong, Yan Kei" <yan.kei.fong@altera.com>
-> 
-> Add spi-tx-bus-width and spi-rx-bus-width properties with
-> value 4 to the n5x device tree.
-> This update configures the SPI controller to use a 4-bit
-> bus width for both transmission and reception,
-> potentially improving SPI throughput and
-> matching the hardware capabilities more closely.
+To support this, the driver is refactored to use a variant-based init
+structure, selected by compatible string. Register access is also
+converted from regmap to MMIO (via `of_iomap()`), and a per-variant
+IRQ handler is used depending on register layout.
 
-Please use 80 columns for your commit message! Like this:
+v2:
+- Refactor SCU IC driver to support variant-based initialization
+- Add AST2700 compatible strings to YAML and header files
+- Extend DT bindings in mfd and irqchip for AST2700
+- Add IRQ handler logic for separate IER/ISR layout
 
-Add spi-tx-bus-width and spi-rx-bus-width properties with value 4 to the
-n5x device tree. This update configures the SPI controller to use a
-4-bit bus width for both transmission and reception, potentially 
-improving SPI throughput and matching the hardware capabilities more 
-closely.
+Ryan Chen (4):
+  irqchip/aspeed-scu-ic: Refactor driver to support variant-based
+    initialization
+  dt-bindings: mfd: aspeed: Add AST2700 SCU compatibles
+  dt-bindings: interrupt-controller: aspeed: Add AST2700 SCU IC
+    compatibles
+  irqchip/aspeed-scu-ic: Add support AST2700 SCU interrupt controllers
 
-Doesn't the above make it much easier to read? Please do this fall your 
-patches from now on!
+ .../aspeed,ast2500-scu-ic.yaml                |   6 +-
+ .../bindings/mfd/aspeed,ast2x00-scu.yaml      |   4 +
+ drivers/irqchip/irq-aspeed-scu-ic.c           | 238 ++++++++++--------
+ .../interrupt-controller/aspeed-scu-ic.h      |  14 ++
+ 4 files changed, 163 insertions(+), 99 deletions(-)
 
-Dinh
+-- 
+2.34.1
+
 
