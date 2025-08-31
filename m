@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14296B3D477
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 18:50:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E29B3D499
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 19:26:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82BD3188D46F
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 16:50:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 45663167168
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 17:26:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5A4427056F;
-	Sun, 31 Aug 2025 16:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6921927146A;
+	Sun, 31 Aug 2025 17:26:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uw5m7J7P"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ty1p/t1y"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1C417AE11;
-	Sun, 31 Aug 2025 16:50:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2866818E25;
+	Sun, 31 Aug 2025 17:26:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756659025; cv=none; b=uotO+ssMAyIabFiu6t6b8NdNsz+m5KIYE9prlKYMAwdlCbz9BtpDxpuIiLIJx4H/D+AHX6t0Z88TqbzNZIGXaSDkwzN2ZRFUzb1z/wy5HHDsoyB1zPefEoZsLXVGLx+QUJS5GGCZkyQBAnk4Fop3htacMIkaaze25vWYZDFIox0=
+	t=1756661201; cv=none; b=sYXou4D/A0EUVwHSJoGAQEn1pV6/HSPlG74zkcaQcEiZ7r+dkGobUtY34AtWfRjDj+S/EwPXuUcBE3L9FMGQd+Xu9xFHKylV3TCyIx0O6rJXOQgjX2rMWH8AOedI+JHvPYDo1sbPBAaeVuQVfWJEP73kyhGcGXObD0UaGuFMXmU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756659025; c=relaxed/simple;
-	bh=1JBGJTY8Gln5i2NeB3nnRcPuLFfMQZX1Tr837AkEHME=;
+	s=arc-20240116; t=1756661201; c=relaxed/simple;
+	bh=RRtiXiS/TOWMt2m/o+Byy9dAyID/y4LX9MHvorsPaJk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bAW1dqhLBfnlxuAKsF7OkYTLwSkf+K6QMWcTdafvKyyNFryH2xxpkBiX89y6eInwSRlXyp1UGFzho4IilKld3sBYIJTjxkQ0zkyiWn3hNWoFzqkr84NwQNJXWN1aYD2GzOOgcgBoEloaCJoHAA9j+VgGNY/WqGHmnBtAVTTl1D0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uw5m7J7P; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F813C4CEED;
-	Sun, 31 Aug 2025 16:50:22 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=safV+/s2ayHuSE8es2nln67HH65qXLxlF2o1Zgg1j7DxEL0aybc7OGBe+Ctj5cFc8W9Gbr+Qive6ksIOaPbjKwY458lSQ7A8cRWQ+gMiHi82DhU2oQPM9lS5VIjA6VonBy6W2Re2bKuNurqo8/pNVVLpTujG48auwI1VRM5Hxqg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ty1p/t1y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 460ADC4CEED;
+	Sun, 31 Aug 2025 17:26:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756659025;
-	bh=1JBGJTY8Gln5i2NeB3nnRcPuLFfMQZX1Tr837AkEHME=;
+	s=k20201202; t=1756661200;
+	bh=RRtiXiS/TOWMt2m/o+Byy9dAyID/y4LX9MHvorsPaJk=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=uw5m7J7PCXmqZJ7P269nZaGfBCyUmMQ4nUOPgg4SNI8k0kus0MALKAKYeXk1NiWNA
-	 mi2miH0OziiegPcz/PxYC3flWKt/Xiw0o+GCSAFtR1bSe5oQetwzwfq+QsQB6M8vqH
-	 HqMroWiE/MnYNcPq54s9gfaD5s0Zkq62gWAj5xNOP21h/2zJN3g+hPMNtCF8AhLG/j
-	 JhNfuHqptiJ12RjJvzzNuU4EQPBAh/2yb9u2LmgLnbBh4foVhiiQKiqhfN1h+LsTC/
-	 eYqw/RbqcrecviOnlFFmcc4EBFuibPjnblp5zQLfChfNixImecnoBuFkhPtl1KkBj4
-	 ifCeN2egRA60Q==
-Message-ID: <b27d71c3-80fc-48a4-9cf3-0aa08e2c4410@kernel.org>
-Date: Sun, 31 Aug 2025 18:50:20 +0200
+	b=ty1p/t1ymjGws9pPzqegwv9izBVk+ZO349PTvsl05400ObmEAdxlLB4GLTXF5wwmC
+	 5h+TW60rnnRXvrF2E0zq0Kr3Bcukeg/1WwlLtgY6R+a+qE1h4wsttzKuKiZsu0iZ1M
+	 eBw1mZebhOzOmKTAO5rSiKuwT16JI94QSMcmJsWhKTVEGQji1F5MhgKkiJ+N8IYdHK
+	 xu2QJ/V/eMMZuWTZZkaIk/EMQtoKJqJWDMqdy9HUpqfMdQfn6+c3xrXvasl/Sidmiq
+	 t4uxqkZzek7PxVR7ouQ7D4t8IJUFaNPPvGvUmpCD5vPLgzAiLS2JgXRe49zlU/PeaK
+	 edLEBEPkCrT7g==
+Message-ID: <f6b6a19a-1671-437c-8e49-9fc832c84931@kernel.org>
+Date: Sun, 31 Aug 2025 19:26:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,14 +50,34 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: kirkwood: Fix sound DAI cells for OpenRD
- clients
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, andrew@lunn.ch,
- gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, robh@kernel.org
-Cc: krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, shuah@kernel.org
-References: <20250830203750.239890-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: [PATCH v8 3/7] dt-bindings: firmware: qcom,scm: Add MSM8937
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ =?UTF-8?Q?Otto_Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
+ Linus Walleij <linus.walleij@linaro.org>, Lee Jones <lee@kernel.org>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Konrad Dybcio <konradybcio@kernel.org>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <lumag@kernel.org>, Rob Clark
+ <robin.clark@oss.qualcomm.com>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+ Robert Marko <robimarko@gmail.com>, Das Srinagesh <quic_gurus@quicinc.com>,
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, iommu@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ phone-devel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ linux@mainlining.org
+References: <20250831-msm8937-v8-0-b7dcd63caaac@mainlining.org>
+ <20250831-msm8937-v8-3-b7dcd63caaac@mainlining.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -103,26 +123,20 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250830203750.239890-1-jihed.chaibi.dev@gmail.com>
+In-Reply-To: <20250831-msm8937-v8-3-b7dcd63caaac@mainlining.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 30/08/2025 22:37, Jihed Chaibi wrote:
-> A previous commit changed the '#sound-dai-cells' property for the
-> kirkwood audio controller from 1 to 0 in the kirkwood.dtsi file,
-> but did not update the corresponding 'sound-dai' property in the
-> kirkwood-openrd-client.dts file.
+On 31/08/2025 14:29, Barnabás Czémán wrote:
+> Add compatible for MSM8937.
 > 
-> This created a mismatch, causing a dtbs_check validation error where
-> the dts provides one cell (<&audio0 0>) while the .dtsi expects zero.
-> 
-> Remove the extraneous cell from the 'sound-dai' property to fix the
-> schema validation warning and align with the updated binding.
-> 
-> Fixes: e662e70fa419 ("arm: dts: kirkwood: fix error in #sound-dai-cells size")
-> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
+> ---
+>  Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
