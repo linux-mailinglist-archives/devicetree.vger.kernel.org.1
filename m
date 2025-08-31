@@ -1,125 +1,121 @@
-Return-Path: <devicetree+bounces-210972-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210973-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90F34B3D40A
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 17:10:09 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED06B3D42C
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 17:37:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 466843AEE72
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:10:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3967E7AAEBA
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:35:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16AA258EDB;
-	Sun, 31 Aug 2025 15:10:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80A5126D4C1;
+	Sun, 31 Aug 2025 15:37:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="otdUEdVX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NQJrXKhl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C25F1A294;
-	Sun, 31 Aug 2025 15:10:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56D152080C0;
+	Sun, 31 Aug 2025 15:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756653004; cv=none; b=s+CyWiTTUrjrJsq/w9wkhUE4H7d2JlCmJmHgmJ/4ZN/6+DnJrbqayHmv2vTflqA0OWZMm/6kXMaldHdQGh1wWBb5FaJrSVKZs6ilcVCSm0Pen/WU+tdS2LepWLur7AHfaZScdGtN+ET6rNgyI46XMfSYz7P6R0SZzLRxZ+qKSyo=
+	t=1756654620; cv=none; b=DgwSV9DtVOza1uj+uv1JqB5iPA0C8ZCzcZeb64ydUMMm298ShsKArYxOFBMpkNHOEG6OLiGnCh5YwdVYMNz6O6DsbDeutW9TEPml06zosZd1/uzTksyFByL/g64D1FLPv8NTPabI6h2Q1H79wfq0pM7PoHVMDrgKuP/NSMKjyCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756653004; c=relaxed/simple;
-	bh=dydiB1QadEQsX9Esijue2U2rTK83/ss0kWTnNBBbiSo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MCMaRZEUEevn9U9C4rLBZVDTOyNfba49xz4KWrzZ9rp15u841L5evbw/Ohc6FpDW8x4ugu+cRujQHxl7yfdg4T1ZoOVSMKIovyELIoEajOk5WjtK44qnOIrihGdH00+mPvXIBGv4wztLJL/Bzxh1VFC3wJr8No+aL2j5RB/R14Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=otdUEdVX; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=m2D31ldRCNyyz8A8vsgNbC3FnyuJad7s6giy8XoOyqU=; b=otdUEdVXVjmS2dJIdEkiGfJrSh
-	DhqOUY5/k7q+TlolUG+CZKhggYQI+oniHZhoHXGdIVHffkOQwEGLBdL0T81ZNJykOHCOTgrAZJqDO
-	9GfkMhJbie4xTpjbrEhi50d59yqqnJig5P/E6HKR7hvMGdwiHQ16Ia7wYaW9L0w9ctkseGD5VuvKk
-	PL3/NPl75XlvYLwdD7K5/D1bHU0ZSLg1ToJwOPXgTsp7FiyYOTsYbt6GuNYg0iChF2Gu1y6XGBExL
-	Pp9rvxKLkrDLIJK6R0GPeHKL4aXvyuMdecTRnrBo6Mu/rzCKX3Dub015T1zit4r+n5mSgfL5PKyBi
-	96MtlX+Q==;
-Received: from i53875b56.versanet.de ([83.135.91.86] helo=diego.localnet)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1usjgq-0007PW-SX; Sun, 31 Aug 2025 17:09:56 +0200
-From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
-To: robh@kernel.org, WeiHao Li <cn.liweihao@gmail.com>
-Cc: hjc@rock-chips.com, andy.yan@rock-chips.com, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-clk@vger.kernel.org, WeiHao Li <cn.liweihao@gmail.com>
-Subject: Re: [PATCH v1 0/7] drm/rockchip: Add MIPI DSI support for RK3368
-Date: Sun, 31 Aug 2025 17:09:55 +0200
-Message-ID: <22816630.EfDdHjke4D@diego>
-In-Reply-To: <20250831104855.45883-1-cn.liweihao@gmail.com>
-References: <20250831104855.45883-1-cn.liweihao@gmail.com>
+	s=arc-20240116; t=1756654620; c=relaxed/simple;
+	bh=ifYaRs57UYOQrGLzjXP5Nk2vToZ0HAhHWjEve55W3hM=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YctQwQjutfvlmdvh7Nty3FTbB+BYrUnJdVvc1npyW/Sz29sMREvER1dFkY67B75PFpG0zsCjta4ZlPFMvk35c05XdpNJsyO6L8d+fCDC7pGVB+NqEf+e2KULC7wurwo5fW9GYXyLGfiBwRV3cXhfXYkwaxb1Yy0wRjdoYVA6zDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NQJrXKhl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C498BC4CEED;
+	Sun, 31 Aug 2025 15:36:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756654619;
+	bh=ifYaRs57UYOQrGLzjXP5Nk2vToZ0HAhHWjEve55W3hM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=NQJrXKhlR0USur85N5lln0dpcIf/2LrAk3Mvw1k7GTw9a4LUAGz8LahRxFURt1e1N
+	 t6gkLY6wAxVWQu02Sna775q9dWw5s2ccPiDD68G27RiPDg+SD/wZ/UTkHgEGAZtQVh
+	 Sj4U8q3RAfgkJHFmPixaKTlqkXQA7nexzbv9yC3WDkHMpEWUsbju3KTqNESMFIxyxb
+	 pwRrWk7LnFLn9QKsFwjk+wBZa1tJAlW51U01TiE7IYqLpurcByOflzV6Y9dHUgymBg
+	 xsDTbj0UbrqhVyR7qntZ2ugEOtMmFMyIWYFtP02yHL6O/2zJjk6tFmQdtbho2wQNY7
+	 mQXAnS4NviIWg==
+Date: Sun, 31 Aug 2025 16:36:51 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Sidharth Seela <sidharthseela@gmail.com>
+Cc: Gyeyoung Baek <gye976@gmail.com>, dlechner@baylibre.com,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] Added mhz19c to compatible list in mhz19b
+ driver.
+Message-ID: <20250831163651.41d79348@jic23-huawei>
+In-Reply-To: <CAJE-K+CiQdZ9mpqom0HdGoCqrt3v7Dkj2DM5WtumoGhhtduumQ@mail.gmail.com>
+References: <CAJE-K+CiQdZ9mpqom0HdGoCqrt3v7Dkj2DM5WtumoGhhtduumQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Hi,
+On Sun, 31 Aug 2025 13:54:20 +0545
+Sidharth Seela <sidharthseela@gmail.com> wrote:
 
-Am Sonntag, 31. August 2025, 12:48:48 Mitteleurop=C3=A4ische Sommerzeit sch=
-rieb WeiHao Li:
-> This series adds MIPI DSI support for the Rockchip RK3368 SoC, enabling
-> native display connectivity through the MIPI DSI host controller and
-> PHY. The changes span multiple subsystems, including clock control,
-> DRM/VOP integration, DSI controller binding, and PHY driver updates.
->=20
-> Key changes:
->   - Update the Rockchip MIPI DSI PHY driver to preperly handle RK3368
->     phy initialization.
+> The pin-compatiblity and UART configuration are same. Although
+> documentation on mhz19c's UART commands is sparse. It can be reasonably
+> thought of that the commands from mhz19b will be supported in mhz19c.
+> The mhz19b document mentions all the different commands. Still the
+> uncertainity is noted.
+> 
+> Signed-off-by: Sidharth Seela <sidharthseela@gmail.com>
+> ---
+>  drivers/iio/chemical/mhz19b.c | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+> 
+> diff --git a/drivers/iio/chemical/mhz19b.c b/drivers/iio/chemical/mhz19b.c
+> index 3c64154918b1..4899aad895d5 100644
+> --- a/drivers/iio/chemical/mhz19b.c
+> +++ b/drivers/iio/chemical/mhz19b.c
+> @@ -297,7 +297,17 @@ static int mhz19b_probe(struct serdev_device *serdev)
+>  }
+> 
+>  static const struct of_device_id mhz19b_of_match[] = {
+> +       /* It should be noted that mhz19b is discontinued*/
+>         { .compatible = "winsen,mhz19b", },
+> +       /* Beware that mhz19c has same pinout, UART characteristics.But there
+> +        * are gaps in the official user-manual[1], specifically
+> +        * regarding.
+> +        *              Calibrate Zero Point.
+> +        *              Calibrate Span Point.
+> +        *              Detection range setting.
 
-which patch is doing this, because I don't see any phy-related change
+If those are not documented, unless we can definitely confirm they are
+present, we should not enable those features for this device.
 
->   - Add missing lut_size of vop_data for RK3368.
->   - Add missing clock ID SCLK_MIPIDSI_24M to the RK3368 CRU driver,
->     which is required for enabling the 24MHz reference clock.
->   - Add MIPI DSI node to rk3368.dtsi with correct clocks, resets,
->     and register mappings.
->=20
-> These changes were tested on a RK3368-based board with a MIPI DSI
-> panel [1]. The display boots successfully with console output.
->=20
-> [1] https://ieiao.github.io/wiki/embedded-dev/rockchip/rk3368
+That means you'll need more substantial driver changes and a chip_info type
+structure via the data fields in these firmware match tables.
 
-Do you plan on submitting this board to mainline?
-Because having an actual user of the code you're adding would
-be really really nice.
+That structure would have a bunch of boolean flags for features so
+we can work out what to turn on for a given part.  We shouldn't expose
+any interface that doesn't make sense for a given part.
 
-Thanks
-Heiko
-
->=20
-> Tested-by: WeiHao Li <cn.liweihao@gmail.com>
-> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
->=20
-> WeiHao Li (7):
->   drm/rockchip: dsi: Add support for RK3368
->   drm/rockchip: vop: add lut_size for RK3368 vop_data
->   dt-bindings: clock: rk3368: Add SCLK_MIPIDSI_24M
->   clk: rockchip: use clock ids for SCLK_MIPIDSI_24M on rk3368
->   ARM: dts: rockchip: Add display subsystem for RK3368
->   ARM: dts: rockchip: Add D-PHY for RK3368
->   ARM: dts: rockchip: Add DSI for RK3368
->=20
->  arch/arm64/boot/dts/rockchip/rk3368.dtsi      | 79 +++++++++++++++++++
->  drivers/clk/rockchip/clk-rk3368.c             |  2 +-
->  .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 20 +++++
->  drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |  1 +
->  include/dt-bindings/clock/rk3368-cru.h        |  1 +
->  5 files changed, 102 insertions(+), 1 deletion(-)
->=20
->=20
+Jonathan
 
 
 
+
+> +        * Ref [1]:
+> https://www.winsen-sensor.com/d/files/infrared-gas-sensor/mh-z19c-pins-type-co2-manual-ver1_0.pdf
+> +        */
+> +       { .compatible = "winsen,mhz19c", },
+>         { }
+>  };
+>  MODULE_DEVICE_TABLE(of, mhz19b_of_match);
+> --
+> 2.39.5 (Apple Git-154)
 
 
