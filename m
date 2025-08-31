@@ -1,129 +1,140 @@
-Return-Path: <devicetree+bounces-210996-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06267B3D533
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 23:12:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B808B3D554
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 23:29:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97A73BA545
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 21:12:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CBEE175994
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 21:29:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B81023D7C5;
-	Sun, 31 Aug 2025 21:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3583525EFBB;
+	Sun, 31 Aug 2025 21:29:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="w5NPsSo7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k8LlZQdi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713FE23645D
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 21:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0637D2580D1;
+	Sun, 31 Aug 2025 21:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756674746; cv=none; b=mfzbcZc6xbxb1wCEABN0B4cg/OMr9q/2p4plSiplLItstG0VC8KbV0ZZUOLpNKfGLpWJAD9tVKiLKOP3sHoPN0RLCi09CVhgXhZsZckU1lckZ7e4cueZBPZINLpld/u3tH5X0sH+knzxt9GdXSBSVVfl+FEZvQDZKsdZGamU3HM=
+	t=1756675758; cv=none; b=NVoW6b7kPxJX6VS4KSxs9Bv4Q/6fdtVU7UUtNwCyDHJaKNe9ZUwytnRrU2LrmMGd+BV04qdzzFD9X3BP3rTBTV2gL7nmuVw4Mvr8e+IUHsX6G1YWXILLsBK1CCTJJqttWyAgVNWP1rH5QGrNhgTVpH6dfNUuSu+Js4tIzKeLXJk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756674746; c=relaxed/simple;
-	bh=hsjeccQzs3yXInmCve4deeW50r08v75A9gdB2Qb6xOE=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=td+1AsuPUkAcMtuvgL9v0cddudxFLo1cMvR3CPbqGQN1air2xT9jYyFRWW1XoK9P3kwvvcImYflhx6zHesLaKSoXDG/GUabEa1jpRA9I9Tq7dqW5s5yWnTap/SPmNzgpGayQRzaTkmtau/0ubm60xCAiz4PGpfOIrUSBfiBtG+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=w5NPsSo7; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id A55002C02CC;
-	Mon,  1 Sep 2025 09:12:14 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1756674734;
-	bh=hsjeccQzs3yXInmCve4deeW50r08v75A9gdB2Qb6xOE=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=w5NPsSo7/fakftt3QV1Oh2roKBzoclSZrxOprLMYyOZ7LVM38p16rg9Gljn9Jqs6t
-	 Lcj5JShDu6SnHdQQQMPA9bt0/tGN4xDShQV9pwlNb3jXTelu2etVRij2HcEz+ABtPQ
-	 RxoNqI4BbJUnUn/ZUHLCLrToZf7W0EsUzdgzDe3Ct9uRhDICJUsX7Qea9Y00so5Cov
-	 I+131Y8bM8RxrJDW/1hkeioo9oVbttnCvrS80dhOTWbgdKLtgeSkKQ23Pcv0AeODNr
-	 KstreeUa2otmam1PnyN3uWt4C89Fuow/+jChS9nroV7W1/EENTobvpF1jr7RHtdeop
-	 0drNoZmMbIh/g==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B68b4baae0001>; Mon, 01 Sep 2025 09:12:14 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1544.14; Mon, 1 Sep 2025 09:12:14 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1544.014; Mon, 1 Sep 2025 09:12:14 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Guenter Roeck <linux@roeck-us.net>, "jdelvare@suse.com"
-	<jdelvare@suse.com>, "robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "corbet@lwn.net" <corbet@lwn.net>,
-	"wenliang202407@163.com" <wenliang202407@163.com>, "jre@pengutronix.de"
-	<jre@pengutronix.de>
-CC: "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>
-Subject: Re: [PATCH v3 2/4] hwmon: (ina238) Correctly clamp temperature
-Thread-Topic: [PATCH v3 2/4] hwmon: (ina238) Correctly clamp temperature
-Thread-Index: AQHcGJG+9pO9Tm0jk0iEWd5utSH5PrR4m64AgAPhzgA=
-Date: Sun, 31 Aug 2025 21:12:14 +0000
-Message-ID: <d5bace8a-003f-4fb5-b9b6-93f0aa7cda41@alliedtelesis.co.nz>
-References: <20250829030512.1179998-1-chris.packham@alliedtelesis.co.nz>
- <20250829030512.1179998-3-chris.packham@alliedtelesis.co.nz>
- <ba2f563e-4eb3-42be-af05-c01bcef1d5e3@roeck-us.net>
-In-Reply-To: <ba2f563e-4eb3-42be-af05-c01bcef1d5e3@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <8ADE375A9AC79641ACB05CC78F261258@alliedtelesis.co.nz>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1756675758; c=relaxed/simple;
+	bh=HjxjDXbNtCQOwloSI6X9nCdoCGhNWNgzFGup/yOEOxo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=mNZuIX7/lC+xIXmqsv9xdraPKdxcE2tDavIFYaYkslcXRJXVhzf2Nv7QJRwqmCiuPdCSJCFP3OiSKpJUFc9yCorcHqiGohhsju7GPhxxXzz5igXwvRRTfCZmtjHRDo4HMUuL+Y6vbGAyq/DazKVqXocooO4RkMbJZuGBKJTkkeo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k8LlZQdi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 727DAC19422;
+	Sun, 31 Aug 2025 21:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756675757;
+	bh=HjxjDXbNtCQOwloSI6X9nCdoCGhNWNgzFGup/yOEOxo=;
+	h=From:Subject:Date:To:Cc:From;
+	b=k8LlZQdiSuECiq8reC9r2m6YgIXjYTUo014J7YjxvG2BI7fIdBuVjVfLnj0Crvpy9
+	 oJNDsOaXERxhgN0ijjZTVtQkXuHMS6FNV85P3y8GlHMcmJiJqHj2wMG2ERpCXC2nE/
+	 IQwuzq0yZ2x7D2Elr6UM+SqqZLkvAirum/UdnLdNsYtZM8qHxmXq67i8Flk1RPsvqy
+	 71lFIhgiAlOycDS3uh/NJRC7Ph8mSZNGsio9t7s33bkWp6S73TVt2yU/l/WCsxjxcG
+	 ZQwAChSebff6blVqSw4Z5ugfUtxfrYpc5SejwKbXxhCiBhj51ldKNXDiswFHU9bx4x
+	 HwvJe2fVs5A0A==
+Received: by venus (Postfix, from userid 1000)
+	id AA459180FA9; Sun, 31 Aug 2025 23:29:14 +0200 (CEST)
+From: Sebastian Reichel <sre@kernel.org>
+Subject: [PATCH 0/3] platform: arm64: thinkpad-t14s-ec: new driver
+Date: Sun, 31 Aug 2025 23:28:30 +0200
+Message-Id: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Yo+sRJYX c=1 sm=1 tr=0 ts=68b4baae a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=oKJsc7D3gJEA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=zPeDNGAr0pQFPY5Fct8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAH++tGgC/x3MQQqAIBBA0avErBtQK4iuEi3UmXIITDQiiO6et
+ HyL/x8onIULTM0DmS8pcsQK3Tbgg40bo1A1GGUGNXYazyBxT5bw1H1B9kjEznTkyK4OapYyr3L
+ /y3l53w+Iv7BMYgAAAA==
+X-Change-ID: 20250831-thinkpad-t14s-ec-ddeb23dbdafb
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Mark Pearson <mpearson-lenovo@squebb.ca>
+Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2319;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=HjxjDXbNtCQOwloSI6X9nCdoCGhNWNgzFGup/yOEOxo=;
+ b=owEBbQKS/ZANAwAKAdju1/PIO/qaAcsmYgBotL6kS908FD6dq6aodhRrf1QqQCY0apxy4/jKo
+ MhxLHN3jiuJAjMEAAEKAB0WIQTvZg0HRj+Lcmp5VBPY7tfzyDv6mgUCaLS+pAAKCRDY7tfzyDv6
+ mgQ0EACIPLqw2p0ytn13LICAsUIUlatISjuhde94+jEpt/RgwumC1GNPa8akvExtI/q3Qw5TfBr
+ MeSOXD+h0FwuBFMl+m6BuGCrOM5VkMt2aSMHeO3I1iu4/c+dC9qzKffTB3UMd4n1XJw8dzsT8ng
+ 9Ox2UZq1R4fRmjEFsQBgDdHbBwkgE5zoBdlX4iEceE7zpxSVOXP4Nqk6UR7KhxswDHfdVojwyhh
+ BQsSzb9NAAVgz4PyJyp6vLvycO1yy7fzWkvWFqP0P3FUnS/zd90qsDcpcMt01Ek9lOHH1P/SOW0
+ EJ+1PSqQ029hJLzNlcmkP27IWY9Wm5j/eKFFYbWvXayzGYWs7WTnrdPeGgJKr61uHYUBl8GczFz
+ et7HkvmL14u8cf4+maZUQECX41f9/zFsLCCPtwU+24THx0eErUlH+Zx6oZ5ogM1XeZckH3+6fF5
+ Rv6CVySWWg+FRB9qt5zua6kmDjBXQhDBCNbkYh2Pjk4h37AQOeJdv0yU76CR9Par2eu3T0I5x4F
+ WiG2CYPMRMgdAbcMmFjRfuhzEShtSXvOFp9QrR9m4wNaR0kowHIfomd3ujPkEY8zBz7DBBWmLXn
+ YHjCOGEZbfZWZplFSSkphuLI6Tdr5RinOkp4tyXU5LoqBO0jfUIptJMMz+elsX8IRKWBLo0zOH5
+ lrArceJ9ZZCTctw==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 
-DQpPbiAyOS8wOC8yNSAyMTo1NSwgR3VlbnRlciBSb2VjayB3cm90ZToNCj4gT24gOC8yOC8yNSAy
-MDowNSwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4+IGluYTIzOF93cml0ZV90ZW1wKCkgd2FzIGF0
-dGVtcHRpbmcgdG8gY2xhbXAgdGhlIHVzZXIgaW5wdXQgYnV0IHdhcw0KPj4gdGhyb3dpbmcgYXdh
-eSB0aGUgcmVzdWx0LiBFbnN1cmUgdGhhdCB3ZSBjbGFtcCB0aGUgdmFsdWUgdG8gdGhlDQo+PiBh
-cHByb3ByaWF0ZSByYW5nZSBiZWZvcmUgaXQgaXMgY29udmVydGVkIGludG8gYSByZWdpc3RlciB2
-YWx1ZS4NCj4+DQo+PiBGaXhlczogMGQ5ZjU5NmIxZmUzICgiaHdtb246IChpbmEyMzgpIE1vZGlm
-eSB0aGUgY2FsY3VsYXRpb24gZm9ybXVsYSANCj4+IHRvIGFkYXB0IHRvIGRpZmZlcmVudCBjaGlw
-cyIpDQo+PiBTaWduZWQtb2ZmLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGll
-ZHRlbGVzaXMuY28ubno+DQo+PiAtLS0NCj4+DQo+PiBOb3RlczoNCj4+IMKgwqDCoMKgIENoYW5n
-ZXMgaW4gdjM6DQo+PiDCoMKgwqDCoCAtIE5ldy4gU3BsaXQgb2ZmIGJ1Z2ZpeCBmcm9tIG1haW4g
-cGF0Y2gNCj4+DQo+PiDCoCBkcml2ZXJzL2h3bW9uL2luYTIzOC5jIHwgMiArLQ0KPj4gwqAgMSBm
-aWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+Pg0KPj4gZGlmZiAt
-LWdpdCBhL2RyaXZlcnMvaHdtb24vaW5hMjM4LmMgYi9kcml2ZXJzL2h3bW9uL2luYTIzOC5jDQo+
-PiBpbmRleCA1YTM5NGVlZmY2NzYuLjRkM2RjMDE4ZWFkOSAxMDA2NDQNCj4+IC0tLSBhL2RyaXZl
-cnMvaHdtb24vaW5hMjM4LmMNCj4+ICsrKyBiL2RyaXZlcnMvaHdtb24vaW5hMjM4LmMNCj4+IEBA
-IC01NzIsNyArNTcyLDcgQEAgc3RhdGljIGludCBpbmEyMzhfd3JpdGVfdGVtcChzdHJ1Y3QgZGV2
-aWNlICpkZXYsIA0KPj4gdTMyIGF0dHIsIGxvbmcgdmFsKQ0KPj4gwqDCoMKgwqDCoMKgwqDCoMKg
-IHJldHVybiAtRU9QTk9UU1VQUDsNCj4+IMKgIMKgwqDCoMKgwqAgLyogU2lnbmVkICovDQo+PiAt
-wqDCoMKgIHJlZ3ZhbCA9IGNsYW1wX3ZhbCh2YWwsIC00MDAwMCwgMTI1MDAwKTsNCj4+ICvCoMKg
-wqAgdmFsID0gY2xhbXBfdmFsKHZhbCwgLTQwMDAwLCAxMjUwMDApOw0KPg0KPiBUaGF0IG5lZWRz
-IGFub3RoZXIgY29ycmVjdGlvbjogQXMgaXQgdHVybnMgb3V0LCB0aGUgZGVmYXVsdCByZWdpc3Rl
-ciANCj4gdmFsdWUNCj4gaXMgMHg3ZmYwLCBvciAyNTU4NzUuIFRoYXQgbWVhbnMgd2UgbmVlZCB0
-byBhY2NlcHQgdGhhdCByYW5nZS4gVGhlIA0KPiBzYW1lIGlzDQo+IHByb2JhYmx5IHRydWUgZm9y
-IG5lZ2F0aXZlIHRlbXBlcmF0dXJlcywgYnV0IEknbGwgbmVlZCB0byBzZWUgdGhlIHJlYWwgDQo+
-IGNoaXANCj4gdG8gYmUgc3VyZS4NCj4NCj4gWWVzLCB0aGUgY2hpcHMgb25seSBzdXBwb3J0IGEg
-bGltaXRlZCB0ZW1wZXJhdHVyZSByYW5nZSwgYnV0IHRoYXQgaXMgdGhlDQo+IGxpbWl0IHJlZ2lz
-dGVyLCBub3QgdGhlIHN1cHBvcnRlZCByYW5nZS4gT3RoZXIgY2hpcHMgaGF2ZSBhIHNpbWlsYXIg
-DQo+IHByb2JsZW0uDQo+IEl0IGlzIG9rIHRvIGxpbWl0IHRoZSBpbnB1dCByYW5nZSBpZiB0aGUg
-Y2hpcCBoYXMgYSByZWFzb25hYmxlIGRlZmF1bHQgDQo+IHNldCwNCj4gYnV0IGlmIHRoZSBhY3R1
-YWwgY2hpcCBkZWZhdWx0IGlzIDB4N2ZmMCBvciAyNTUuODc1IGRlZ3JlZXMgQyB3ZSBuZWVkIHRv
-DQo+IHN1cHBvcnQgd3JpdGluZyB0aGF0IHZhbHVlLg0KSSdtIGd1ZXNzaW5nIHRoYXQgbWlnaHQg
-Y2hhbmdlIG15IGludHJvZHVjdGlvbiBvZiB0ZW1wX21heCBpbiB0aGUgbmV4dCANCnBhdGNoLiBJ
-J2xsIHJlLW9yZGVyIG15IHNlcmllcyB0byBwdXQgdGhlIGJ1Z2ZpeCBmaXJzdCB3aXRoIHRoZSBj
-aGFuZ2VzIA0KbWVudGlvbmVkLg0KPg0KPiBHdWVudGVyDQo+
+Introduce driver for the ThinkPad T14s Gen6 Snapdragon EC. In theory
+it seems to be compatible with the ThinkPad ACPI driver, but these
+devices are booted with device tree. As the name implies, the existing
+ThinkPad ACPI driver only supports the ACPI interface. Looking at
+the implementation, the ACPI DSDT contains many mapping functions
+to translate the low level I2C messages into the interface used by
+the ThinkPad ACPI driver. Adding DT support to the ThinkPad ACPI driver
+would require adding all those translation functions, which would add
+more or less the same amount of code as writing a separate driver using
+the low level interface directly. I don't think it's sensible to make
+the existing ACPI driver even more complicated, so I went for a separate
+driver.
+
+I managed to get system LEDs, audio LEDs, extra keys and the keyboard
+backlight control working. The EC also seems to be used for some thermal
+bits, which I haven't looked into deeply. As far as I understand most
+thermal and fan control is handled by a different controller
+(0x36@i2c5) anyways.
+
+Apart from that the EC is involved in proper system suspend, which
+is something I do not yet understand (I don't have any documentation
+apart from the dis-assembled DSDT and existing ACPI driver). Right
+now I disabled wake capabilities for the IRQ, since it would wake
+up the system when closing the LID. Hopefully a way to mask specific
+events will be found in the future.
+
+Signed-off-by: Sebastian Reichel <sre@kernel.org>
+---
+Sebastian Reichel (3):
+      dt-bindings: platform: Add Lenovo Thinkpad T14s EC
+      platform: arm64: thinkpad-t14s-ec: new driver
+      arm64: dts: qcom: x1e80100-t14s: add EC
+
+ .../bindings/platform/lenovo,thinkpad-t14s-ec.yaml |  49 ++
+ MAINTAINERS                                        |   6 +
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  23 +
+ drivers/platform/arm64/Kconfig                     |  20 +
+ drivers/platform/arm64/Makefile                    |   1 +
+ drivers/platform/arm64/lenovo-thinkpad-t14s.c      | 597 +++++++++++++++++++++
+ 6 files changed, 696 insertions(+)
+---
+base-commit: c8bc81a52d5a2ac2e4b257ae123677cf94112755
+change-id: 20250831-thinkpad-t14s-ec-ddeb23dbdafb
+
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
+
 
