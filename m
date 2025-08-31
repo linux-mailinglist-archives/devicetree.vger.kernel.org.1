@@ -1,137 +1,97 @@
-Return-Path: <devicetree+bounces-210994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C040EB3D513
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 22:07:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED75B3D522
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 22:20:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00FA77A28B7
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 20:05:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14AD43AA9D5
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 20:20:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E05323816D;
-	Sun, 31 Aug 2025 20:06:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE21222FE18;
+	Sun, 31 Aug 2025 20:20:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="YVCcbFoV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B266F22F76F;
-	Sun, 31 Aug 2025 20:06:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45051800;
+	Sun, 31 Aug 2025 20:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756670819; cv=none; b=A3ckPbOmX5UqYsYAPNeQ4gLWUBM7N9KJjVink8QBQ0pNgWOrrYgGSTZlI8aEdWSRYt8EV5kRyyM8FDpiUdJ+tbvCqzVeuLK8MboLiZBXvHHzfgWjCsQBkWmFbMsUsFDeap1BmtLYBtp/izxYf2QNiST22/fe2EwRqOoBXWe07Io=
+	t=1756671609; cv=none; b=r0g638Ku87wa5f/Sd1hrJ1n0/BvaGzMdyBkn6+rNNsc9eZkA8bzCRIAhloBQLJsmOvFsW5XNOdAqlqr9UG06lduG5NGRpARMVkNAOPDpOT/EAjmGDpDVo/r9eR9dOccwpBGRZopZWTb29OaneOl49yC3fpbfc6yy1EI9xQUdXvs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756670819; c=relaxed/simple;
-	bh=t5sABCz5RP+pwbVroWzgftkP8mogyDgoEiWiI8kqnxA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=i+EuOiyTG6gqM9M/4LuKlP7M6PbqSymB2V+43lfHpFRj726NgoEvUEspYsWuy1Cfc+8DWS6iKhx3HqvYp588FadY1MCka2pl10aatCqovzYKSvCrRpYR0u1HCFj/XF4lf+7+MTWGN5RVKYInDDvACX/YI7ydyOTWrF2uP4og6Bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 7E21CB220079;
-	Sun, 31 Aug 2025 22:06:44 +0200 (CEST)
-From: E Shattow <e@freeshell.de>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Peng Fan <peng.fan@nxp.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>
-Cc: E Shattow <e@freeshell.de>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-clk@vger.kernel.org
-Subject: [PATCH v1] dts: arm64: freescale: move imx9*-clock.h imx9*-power.h into dt-bindings
-Date: Sun, 31 Aug 2025 13:04:45 -0700
-Message-ID: <20250831200516.522179-1-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
+	s=arc-20240116; t=1756671609; c=relaxed/simple;
+	bh=Eztkgqasrr3tp+2Po7FkxiGL8NvaiTzrdahHrqIENvs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=PZEezMH2aS7Pp+rfXPnamOSyHUzTo+8bNpqxZA9CofAHDHVMF4akUjwquaEdQGfDZI8PAu0MIXRBUCJjrYpIp5eelYN+dF4ZeQdo3/iRuGC+PKf3cE5FIraqYxS1hsd4t6zSbIXPz8rEAhkByCdrmgJdYjzghcmlBMSzZwmPgfE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=YVCcbFoV; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
+DKIM-Signature: a=rsa-sha256; bh=5E/qq69WaMm1+sPFsk2MUenEpIc7gZe6asPlEmhr1uE=;
+ c=relaxed/relaxed; d=dujemihanovic.xyz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1756671580; v=1; x=1757103580;
+ b=YVCcbFoVLrmyErxA+QT3H3iINJC/pgCeCF6FTe+MHwFRPxTjQxeGKMgzToLUCATKsUwvDdf1
+ iCrN0K5IZqX0zYQng763w9qYm5vEPE09RVUbLo12pii895gmebmJ4yFcb7SHpM2C8Wfw17U1Ui0
+ fJDx+9mdT6HyMh0JulMSZ8vmFnxMCva9+B1uv7WfWsYQlgbELC+ju8FTDwdrheUTIV/o8ntLWr6
+ oSVarzbgGWIvo4QVWZ9TOHqODq7bGwPRYHCyDRAaCZYSVsOlVJoJ91uhdEm/j5VKVjheThDR0/f
+ UCjFE1tajshcP5dZYgOcWhmvV53AmzqDOATzMx0vIa+bw==
+Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
+ ESMTPS id bb4c9503; Sun, 31 Aug 2025 22:19:40 +0200
+From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
+To: Jonathan Cameron <jic23@kernel.org>,
+ David Lechner <dlechner@baylibre.com>,
+ Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Lee Jones <lee@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Karel Balej <balejk@matfyz.cz>
+Cc: David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: adc: Add driver for Marvell 88PM886 PMIC ADC
+Date: Sun, 31 Aug 2025 22:19:38 +0200
+Message-ID: <5048048.31r3eYUQgx@radijator>
+In-Reply-To: <DCGUXTSZ8B9G.2S2Q2JXYMBSRY@matfyz.cz>
+References:
+ <20250831-88pm886-gpadc-v2-0-759c1e14d95f@dujemihanovic.xyz>
+ <20250831-88pm886-gpadc-v2-2-759c1e14d95f@dujemihanovic.xyz>
+ <DCGUXTSZ8B9G.2S2Q2JXYMBSRY@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-Move imx9*-{clock,power}.h headers into
-include/dt-bindings/{clock,power}/ and fix up the DTs
+On Sunday, 31 August 2025 21:24:54 Central European Summer Time Karel Balej=
+ wrote:
+> Duje Mihanovi=C4=87, 2025-08-31T12:33:05+02:00:
+> > +	if (IS_ERR(page))
+> > +		return dev_err_probe(dev, PTR_ERR(page), "Failed to initialize GPADC
+> > page\n"); +
+> > +	gpadc->map =3D devm_regmap_init_i2c(page, &pm886_gpadc_regmap_config);
+> > +	if (IS_ERR(gpadc->map))
+> > +		return dev_err_probe(dev, PTR_ERR(gpadc->map),
+> > +				     "Failed to initialize GPADC regmap\n");
+> > +
+> > +	iio->name =3D "88pm886-gpadc";
+> > +	iio->dev.of_node =3D dev->parent->of_node;
+>=20
+> Didn't you mean to drop this since Jonathan pointed out that it's done
+> by the core?
 
-Reported-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Signed-off-by: E Shattow <e@freeshell.de>
----
- arch/arm64/boot/dts/freescale/imx94.dtsi                      | 4 ++--
- arch/arm64/boot/dts/freescale/imx95.dtsi                      | 4 ++--
- .../dts/freescale => include/dt-bindings/clock}/imx94-clock.h | 0
- .../dts/freescale => include/dt-bindings/clock}/imx95-clock.h | 0
- .../dts/freescale => include/dt-bindings/power}/imx94-power.h | 0
- .../dts/freescale => include/dt-bindings/power}/imx95-power.h | 0
- 6 files changed, 4 insertions(+), 4 deletions(-)
- rename {arch/arm64/boot/dts/freescale => include/dt-bindings/clock}/imx94-clock.h (100%)
- rename {arch/arm64/boot/dts/freescale => include/dt-bindings/clock}/imx95-clock.h (100%)
- rename {arch/arm64/boot/dts/freescale => include/dt-bindings/power}/imx94-power.h (100%)
- rename {arch/arm64/boot/dts/freescale => include/dt-bindings/power}/imx95-power.h (100%)
+Actually I have found that device tree consumers fail to get their IO
+channels without this line, so I left it.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx94.dtsi b/arch/arm64/boot/dts/freescale/imx94.dtsi
-index 44dee2cbd42d..1fe6ef4518a8 100644
---- a/arch/arm64/boot/dts/freescale/imx94.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx94.dtsi
-@@ -8,9 +8,9 @@
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- 
--#include "imx94-clock.h"
-+#include <dt-bindings/clock/imx94-clock.h>
- #include "imx94-pinfunc.h"
--#include "imx94-power.h"
-+#include <dt-bindings/power/imx94-power.h>
- 
- / {
- 	#address-cells = <2>;
-diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
-index 4ca6a7ea586e..787d3f829816 100644
---- a/arch/arm64/boot/dts/freescale/imx95.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
-@@ -10,9 +10,9 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/thermal/thermal.h>
- 
--#include "imx95-clock.h"
-+#include <dt-bindings/clock/imx95-clock.h>
- #include "imx95-pinfunc.h"
--#include "imx95-power.h"
-+#include <dt-bindings/power/imx95-power.h>
- 
- / {
- 	interrupt-parent = <&gic>;
-diff --git a/arch/arm64/boot/dts/freescale/imx94-clock.h b/include/dt-bindings/clock/imx94-clock.h
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx94-clock.h
-rename to include/dt-bindings/clock/imx94-clock.h
-diff --git a/arch/arm64/boot/dts/freescale/imx95-clock.h b/include/dt-bindings/clock/imx95-clock.h
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx95-clock.h
-rename to include/dt-bindings/clock/imx95-clock.h
-diff --git a/arch/arm64/boot/dts/freescale/imx94-power.h b/include/dt-bindings/power/imx94-power.h
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx94-power.h
-rename to include/dt-bindings/power/imx94-power.h
-diff --git a/arch/arm64/boot/dts/freescale/imx95-power.h b/include/dt-bindings/power/imx95-power.h
-similarity index 100%
-rename from arch/arm64/boot/dts/freescale/imx95-power.h
-rename to include/dt-bindings/power/imx95-power.h
+Regards,
+=2D-
+Duje
 
-base-commit: 5c3b3264e5858813632031ba58bcd6e1eeb3b214
--- 
-2.50.0
 
 
