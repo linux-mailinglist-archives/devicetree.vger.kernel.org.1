@@ -1,163 +1,240 @@
-Return-Path: <devicetree+bounces-210939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60B02B3D2C9
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 14:22:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 646ACB3D2D1
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 14:27:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0206F1797B1
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:22:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A486218988AF
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:28:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC90F258EFF;
-	Sun, 31 Aug 2025 12:22:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D128D25A34D;
+	Sun, 31 Aug 2025 12:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BwKxziMl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KrFqNhLz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2767B257828
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 12:22:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F988259C80;
+	Sun, 31 Aug 2025 12:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756642951; cv=none; b=O16aEpBnUZnMdo1HZbIkomHZtiTorf2CpxzHyLrBGeaVLFJQWzWVQ/7xByg36p/ojaxGPa7mbcKVvpx5qn3c+7ebR5lJQyBLelGeZwOQfZRrFmw4MnjJlpx8f5c67AhpVxNhPLdslJajVkOnWEHe7j+9QRkptaSyJLX4RX6yA/w=
+	t=1756643264; cv=none; b=oDr31pLx4DDZlqz7w7y+CG9P5TBzGMBtjkaevrq7wMJ3/bOC6Rn0/0FHSo+8UV1OiuM/sgfxcRh7+xzCccRur7/TlYbp32V+scu4BhSwNGzopNfKXEtnL7Ww0kN9c+4QYK2zHhl1Oniwrd4U5t3iYdB07sa4tyD+DuVZcv00sw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756642951; c=relaxed/simple;
-	bh=zYRCQi+0wejFXM/43WXjQP9aWgNnIJKlUNtum34adHA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=JDlWhj9VGTuS4tIupYzb7GTYQFlTAq9g64Rc+6m2cDPNKKOnUU/6OjaO1qlb5Fy10ymiUrkP93zK+gadkTDyp1MpwBd5fX+mc6H9KQf2OzMzNC31PsI45i3HlIn7WR9Pj8dMU5NWlg7GFRCLw8waUBoprtFZjoT3OWWAdoR+ePw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BwKxziMl; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3cd299b1833so436477f8f.3
-        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 05:22:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756642948; x=1757247748; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XlZf3qovc7XadcWpXTOZUbLWBNy6tyoy94Ss5nrbIig=;
-        b=BwKxziMl6kNtOdHny7q6UIBmJgLV+0zu51UYrmLTJ3Y2Yf9SSjnnmci9DGpK0t7/UD
-         MISwNmYY3r+UTPqUz4yCl74vCvdIElqyWcjAc9Yutok++8gxaenmFpSLoqCGHlc6LfY6
-         VJQ9VxJeCSeDYyGbDhhQo6Z77cRSeLkESDhB77cyWpvQ3EZsthvcagnADqq5XcFUlUBW
-         mudbRFaxTCulMlqRGHoEI6L2BYH7WlKXtv1gixlZQczUtX0b2DNicVQWHxKIbpGm8R89
-         cP92i6CH7elLR9zhxehL0LaOgTq6B8mbBKwqeLJYAQFV5go5uu5SqCaFIcEv+XOh4WQ3
-         /OQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756642948; x=1757247748;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XlZf3qovc7XadcWpXTOZUbLWBNy6tyoy94Ss5nrbIig=;
-        b=rDxHy4rtjHmcNP9EzfbD5fDcr0hR0I2OpQgBy14e9nhVczyrsrlD3lJiIjaBhINq89
-         MT+kYDlM/sjP8nVpMJZKtMOemw80dgawZDqiDuHq1PFI4MR3RJtfqAYG0U7mZTDl0wA5
-         r+7EgOdekcPGpsF/KaS7+floqpCZu/ZKHF/i7GrN0as1vFg1I3HCneaj/bZovOA/Neup
-         bK7eiFnGQ/stfKK2PVDT0gxZOryPtbOZB5MgKVcylcnDX/layUjnsiW2etbmMzSgPuGz
-         Ru8wevDzGlSrFQpb3FC2JNkmRTp9K2rkCXAh1dpEB3y0W4itQjMOpWVk6eJihwka5fAK
-         jKEg==
-X-Forwarded-Encrypted: i=1; AJvYcCW2IoZHLtLFoTbKivEmypWFhGsv2QThvvRYVXFTaRx4s8mPQx5cpmvgaEIIFrWlxX4FvW0sSMz1OCZl@vger.kernel.org
-X-Gm-Message-State: AOJu0YwTi6bUN2/9AuWF7aVsif1994cNI6gIiKZOXnQyTvCN9euut5XW
-	2kcxJO86224GpW3rRkoiGMiWuvL/9ay7HnAefdoOvZQtaaKAGbN3F9TPqTelK5ovbsk=
-X-Gm-Gg: ASbGncsIacJjrkGQICkqqlJZC71H6EbA155lbDjCyNxOTnysinXVLtJ6P/WLnw58qMk
-	7qi8K7iB8ykDPLQptkQbEEMvZ4CCc/TK4Bl3f0jahAfRHmbmAnnMhwwScGfRyzin4goVHINombr
-	jULhkIPrSSHmNC/f8yqYWApY2RIiHheKtNKDjeZ7HM8lTXoiyHmOe6zUoOJwLhM/K0L5d7c+L6A
-	Fb8OERIhHc4Qr3oXsFpvNnQSta4hY+HHP9c8NaDe9Gg8gGchl4r4JYHk4WZl8kOK4oYae2xoeri
-	Px5KGbb2ocTjtV8grLGHsAq5uMtYmAmUbnwnr2PZHmlGv/TiJ6E/5mqjoH+q+PfsPvXbgWqLvrs
-	Y5AkHJA23EPIf69jgijbILERunsWKsHR96EdT/GD+pMEd
-X-Google-Smtp-Source: AGHT+IFnFYjlAZftIcXFAXoUbNXxsZRoP0QGkBeFfD6J1UbS/LZNxNdYQv7RKd53VW6gkvcHWeZOPA==
-X-Received: by 2002:a05:600c:4e0f:b0:458:b6b9:6df5 with SMTP id 5b1f17b1804b1-45b81eb0a80mr29694345e9.1.1756642948423;
-        Sun, 31 Aug 2025 05:22:28 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0c6b99sm194866225e9.4.2025.08.31.05.22.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Aug 2025 05:22:27 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Alan Stern <stern@rowland.harvard.edu>,
-	linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v2 2/2] dt-bindings: usb: s3c2410-usb: Drop entirely S3C2410
-Date: Sun, 31 Aug 2025 14:22:24 +0200
-Message-ID: <20250831122222.50332-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250831122222.50332-3-krzysztof.kozlowski@linaro.org>
-References: <20250831122222.50332-3-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1756643264; c=relaxed/simple;
+	bh=bPKhfTBzMY9I92soo2FdT1/MUwIki7DO1HtC3OssbrY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=YJ2u1aWeNxCCl+AqVGy9bLktNDlHfFGEhIPHQvBQ+W3xllGOj3lWqBG4JF3PVRzUlKtBH9VuUCrZJLPnykPK0qw3gwceiMdKm1kmz8xSHrTVS3MGoApyZ5en/+ThQerfTCyGmbUlBGT/tuceRIg0Ugu2ruTVP504a8+GFhsscuQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KrFqNhLz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F958C4CEED;
+	Sun, 31 Aug 2025 12:27:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756643264;
+	bh=bPKhfTBzMY9I92soo2FdT1/MUwIki7DO1HtC3OssbrY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=KrFqNhLzXXvM/UuFyfKFctDtC/tH+kl2th7u23gvZqoW/QajK9dQ9fBCNUuEQyc14
+	 2eK/eJjiSyGrGYVGPnpkdcc13gcVIn2LauZEZTJ5XnKAzBLIfZfdsFtdQ8SNLSh8cF
+	 4Iw/jk5mSUIKFVKKxRS3QQD/oI8827QEwT7dxjSwutQM6dEy8xFWjhu5723ltXozTz
+	 SvHtwfT/s4hB1bzzpwC8L8lWAT/NbiWdBZoozmDG8axEBG1nUVjNaxEEKu/0KzQQDl
+	 NVBqD391fX+SwSHuKUD8q+1d6yZpICtto2AtxWgf/jrokbqiElQFzSMummdxujmlx/
+	 EMw/uubsmvLFA==
+Date: Sun, 31 Aug 2025 13:27:33 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Abhinav Jain <jain.abhinav177@gmail.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, lars@metafoo.de,
+ Michael.Hennerich@analog.com, alexandru.ardelean@analog.com,
+ jic23@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, Marcelo.Schmitt@analog.com, dumitru.ceclan@analog.com,
+ Jonathan.Santos@analog.com, dragos.bogdan@analog.com
+Subject: Re: [PATCH v1 2/2] iio: adc: Add initial support for MAX22531 ADC
+Message-ID: <20250831132643.647f7c4d@jic23-huawei>
+In-Reply-To: <edc52c93e0d4e08619ba8a98674aeb7d49e6dd1b.1756115378.git.jain.abhinav177@gmail.com>
+References: <cover.1756115378.git.jain.abhinav177@gmail.com>
+	<edc52c93e0d4e08619ba8a98674aeb7d49e6dd1b.1756115378.git.jain.abhinav177@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1505; i=krzysztof.kozlowski@linaro.org;
- h=from:subject; bh=zYRCQi+0wejFXM/43WXjQP9aWgNnIJKlUNtum34adHA=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBotD5/mW0FdtzwHuJEB4jcnGQja4NpqHdMXn3m9
- yr02e1dX5iJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLQ+fwAKCRDBN2bmhouD
- 11FXD/9XsBkrYV+LeU8wPHs+IkpJtomIWP8qNp9O5Fuo8nvKiNG+p1IZgJXhKnfr7WVNTGb8825
- DkoR99gRgG97/ze6tYvEnIMOF+GuMk35ywxX0maLWdsoVbNK4QAM0hVLsI0FUDZSPHabkrVupA4
- Nb4VFWumhNpbq196L6xerhRrSR+VRgM7H6dH6Q86Le1VE6YQxtd8yrfBh5glKK0sgI7XT7m92x+
- elu7YdlGWs08O/sKb5hB05fmWdEwOu1Ll8oIcbCVmhHZARL46oHXXtuIhJftYHBtXnyXQXQxcgF
- FQDmQCPqeAA9O6ET1I1T/nOySfqXOOFG10cZ6LnaKpFvDkiRNYmvv4GP8cfdeFoeyWPnl0quT4R
- wuvG1uyUviTUHQMIZJJiwGKvXr4h7tIVj5IndB69owM9m9skryq9szWpz9G9gba2FUYkNCCZk+b
- 443uSbn5LIYHIyAAC8GGPK/NUu8S6D02qL1+Y2MW5ZMtdBGYMGIguGZ7zC9zJdiqsqtOQwL6vla
- 2O0Rh5PROZLIGmoFKl1M5br3SFOYN5M+o1z1ys6HbGlXx3kaJX/MI4eRXDadtJVXhDZhwQNOSgS
- 6TOb32kG2bVZ8U4OVxlNBxBY8n4dNLfKDvkvB1iXXdP2l4lUEVmg42TSvg98KRVZFbh/swPe6Ap Hawqd3N/hMNEfkg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-Samsung S3C24xx family of SoCs was removed the Linux kernel in the
-commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
-2023.  There are no in-kernel users of remaining S3C24xx compatibles.
+On Tue, 26 Aug 2025 02:55:49 +0530
+Abhinav Jain <jain.abhinav177@gmail.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Add device support for MAX22530-MAX22531.
+> Implement scale and read functionality for raw/filtered ADC readings.
+> 
+> Signed-off-by: Abhinav Jain <jain.abhinav177@gmail.com>
+Hi Abhinav,
 
----
+A few minor style related things and one question on FADC registers address.
 
-Changes in v2:
-1. None
----
- .../devicetree/bindings/usb/s3c2410-usb.txt   | 22 -------------------
- 1 file changed, 22 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/usb/s3c2410-usb.txt
+Thanks,
 
-diff --git a/Documentation/devicetree/bindings/usb/s3c2410-usb.txt b/Documentation/devicetree/bindings/usb/s3c2410-usb.txt
-deleted file mode 100644
-index 26c85afd0b53..000000000000
---- a/Documentation/devicetree/bindings/usb/s3c2410-usb.txt
-+++ /dev/null
-@@ -1,22 +0,0 @@
--Samsung S3C2410 and compatible SoC USB controller
--
--OHCI
--
--Required properties:
-- - compatible: should be "samsung,s3c2410-ohci" for USB host controller
-- - reg: address and length of the controller memory mapped region
-- - interrupts: interrupt number for the USB OHCI controller
-- - clocks: Should reference the bus and host clocks
-- - clock-names: Should contain two strings
--		"usb-bus-host" for the USB bus clock
--		"usb-host" for the USB host clock
--
--Example:
--
--usb0: ohci@49000000 {
--	compatible = "samsung,s3c2410-ohci";
--	reg = <0x49000000 0x100>;
--	interrupts = <0 0 26 3>;
--	clocks = <&clocks UCLK>, <&clocks HCLK_USBH>;
--	clock-names = "usb-bus-host", "usb-host";
--};
--- 
-2.48.1
+Jonathan
+
+>  M:	Antoniu Miclaus <antoniu.miclaus@analog.com>
+> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
+> index ea3ba1397392..a35c3c945e27 100644
+> --- a/drivers/iio/adc/Kconfig
+> +++ b/drivers/iio/adc/Kconfig
+> @@ -933,6 +933,16 @@ config MAX1363
+>  	  To compile this driver as a module, choose M here: the module will be
+>  	  called max1363.
+>  
+> +config MAX22531
+> +        tristate "Analog Devices MAX22531 ADC Driver"
+> +        depends on SPI
+> +        help
+> +          Say yes here to build support for field-side self-powered 12-bit
+> +	   isolated Maxim ADCs. (max22530, max22531, max22532).
+Use a list
+	  - max22530
+	  - max22531
+etc
+because it means new parts being added create less fuzz.  We've gotten this wrong
+in far too many drivers and ended up with messier follow up series as a result!
+
+> +
+> +	   To compile this driver as a module, choose M here: the module will be
+> +	   called max22531.
+Should be tab index + 2 spaces for whole help block. 
+> +
+
+> diff --git a/drivers/iio/adc/max22531.c b/drivers/iio/adc/max22531.c
+> new file mode 100644
+> index 000000000000..fb035225e426
+> --- /dev/null
+> +++ b/drivers/iio/adc/max22531.c
+> @@ -0,0 +1,191 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * MAX22531 SPI ADC Driver
+> + *
+> + * Copyright (C) 2025 Abhinav Jain
+> + *
+> + * Datasheet: https://www.analog.com/media/en/technical-documentation/data-sheets/max22530-max22532.pdf
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/unaligned.h>
+> +#include <linux/spi/spi.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/regulator/consumer.h>
+
+As per the build bot report, there are some headers that want to be here and
+aren't. In general aim for following Include What You Use IWYU principles
+for kernel code, subject to some fuzz around headers that are always used via
+an other one.
+
+> +
+> +#define MAX22531_REG_PROD_ID		0x00
+> +#define MAX22531_REG_ADC_CHAN(x)	((x) + 1)
+> +#define MAX22531_REG_FADC_CHAN(x)	((x) + 1)
+
+I'm confused. Why the same registers for both of these?  If they really
+are the same, perhaps one macro is enough.
+
+> +
+> +#define MAX22531_VREF_MV		1800
+> +#define MAX22531_DEVICE_REV_MSK		GENMASK(6, 0)
+> +#define MAX22531_DEVICE_REV		0x01
+> +
+> +#define MAX22531_REG_ADDR_MASK		GENMASK(7, 2)
+> +#define MAX22531_REG_WRITE_MASK		BIT(1)
+> +
+> +enum max22531_id {
+> +	max22530,
+> +	max22531,
+> +	max22532,
+> +};
+> +
+> +struct max22531_chip_info {
+> +	const char *name;
+> +};
+> +
+> +static struct max22531_chip_info max22531_chip_info_tbl[] = {
+> +	[max22530] = {
+> +		.name = "max22530",
+> +	},
+> +	[max22531] = {
+> +		.name = "max22531",
+> +	},
+> +	[max22532] = {
+> +		.name = "max22532",
+> +	},
+> +};
+
+See below for reasoning. Split these into separate structures rather
+than an array.
+
+> +static int max22531_reg_read(struct max22531 *adc, unsigned int reg,
+> +			     unsigned int *readval)
+> +{
+> +	u8 cmd;
+> +
+> +	cmd = FIELD_PREP(MAX22531_REG_ADDR_MASK, reg);
+> +	*readval = spi_w8r16be(adc->spi_dev, cmd);
+
+Rather than having side effect of leaving a negative in *readval, use
+a local variable and only assign readval if all is good.
+
+> +	if (*readval < 0)
+> +		return *readval;
+> +
+> +	return 0;
+> +}
+
+> +static int max22531_probe(struct spi_device *spi)
+> +{
+
+> +	ret = max22531_reg_read(adc, MAX22531_REG_PROD_ID, &prod_id);
+> +	if (ret ||
+A failure to read is a bug that we should fail on, whereas the value
+read not matching is indeed something were a warn or info makes sense.
+So split this check 
+	if (ret)
+		return ret;
+
+	if (FIELD_GET()...
+		dev_warn
+
+> +	    FIELD_GET(MAX22531_DEVICE_REV_MSK, prod_id) != MAX22531_DEVICE_REV)
+> +		dev_warn(&spi->dev, "PROD_ID verification failed\n");
+> +
+> +	return devm_iio_device_register(&spi->dev, indio_dev);
+> +}
+> +
+> +static const struct spi_device_id max22531_id[] = {
+> +	{ "max22530", (kernel_ulong_t)&max22531_chip_info_tbl[max22530] },
+> +	{ "max22531", (kernel_ulong_t)&max22531_chip_info_tbl[max22531] },
+> +	{ "max22532", (kernel_ulong_t)&max22531_chip_info_tbl[max22532] },
+
+Whilst this style used to be common, over time we've come to the conclusion
+that an indexed array for these doesn't bring value. Instead
+just have separate structures with names that indicate which chip they
+are for.  max22532_chip_info etc  That allows the enum to be dropped which
+has the advantage of removing the temptation to use it for anything else
+(which is usually a bad idea)
+
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(spi, max22531_id);
+> +
+> +static const struct of_device_id max22531_spi_of_id[] = {
+> +	{ .compatible = "adi,max22530",
+> +		.data = &max22531_chip_info_tbl[max22530], },
+> +	{ .compatible = "adi,max22531",
+> +		.data = &max22531_chip_info_tbl[max22531], },
+> +	{ .compatible = "adi,max22532",
+> +		.data = &max22531_chip_info_tbl[max22532], },
+> +	{ }
 
 
