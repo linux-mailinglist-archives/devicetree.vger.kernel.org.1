@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28C5BB3D392
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:15:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1A7CB3D395
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:25:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8740B7A6974
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:14:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6828418941C1
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:25:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2900D1A9F84;
-	Sun, 31 Aug 2025 13:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79D926158C;
+	Sun, 31 Aug 2025 13:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k6YZuiU6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="epRPYIo1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04870F9C1
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 13:15:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB4E20FAB4;
+	Sun, 31 Aug 2025 13:25:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756646152; cv=none; b=lOV53OU1E8CqfZH+wL0Iw7OEuE87SEtF43kyajj7wmWUXQZei0s+/8TQVX6H2uZQHiIhixPsVOlaWx0mm3eEP7lGsM4PxCL0myzk4/zC5bU2o7ag/MpAaGaX/ARkB7tIe+T9zhNOoudHvXO56QA1tO1NI89HaJ3q2z5DY53X7Oo=
+	t=1756646728; cv=none; b=PKCR5ZUJ1AcY7eCLFnxqN6YR/Z9IvOAWGOwkeziQrB7czoyxWo8dgj3pKirvvmrn8kPvqonkmeqk/rGt58di3+1UVm7LvBW6tkn1OSC/roaiTeTkfBuZgHIthzfMpNUXW3/vvpvjHg2VmcsWGMiNmIikjDYRcg/qlMf7IrwKCjM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756646152; c=relaxed/simple;
-	bh=ANktB1XVH0lriAb3buAebKIFQ0RHCB1yQb5INnEG+ak=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=HMKnh21tT/SyoYsSEzJbUoqZXjZkNSWDfpOHI8npFFQup2Z8aWNPqyDdl+ZhAzdkYF+Ib6SGf5lXBLm27ARS2N2TDPSCVt3aUQcHiWCDC8tfBfpp88Z3MOVCGWYNe/6ZVrYEGA4hUyRDfjEAUcrY0YMPHwXDKwTZ2flbE5e+Uaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k6YZuiU6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8395AC4CEED;
-	Sun, 31 Aug 2025 13:15:48 +0000 (UTC)
+	s=arc-20240116; t=1756646728; c=relaxed/simple;
+	bh=elVMf+284ZRxCOWIwbNMVAG/IsEPy/rN1u5TN27FxI8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LlyvhH6MFum1enebT1Cv/OL29o4l3drJabUtiRfS0KdNn1EZnErM20K0ebZfFUOnsnbJ73EeS2LAdZn42WWklmsSB0wyIuMc125BTEb2J/3onmsXV0GQLDqJKPYX+mFF1TDYpMjiUvcl/8t0Y0uEEM+fDwbWS3mQ0oCNt8mOP4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=epRPYIo1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 58A2FC4CEED;
+	Sun, 31 Aug 2025 13:25:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756646151;
-	bh=ANktB1XVH0lriAb3buAebKIFQ0RHCB1yQb5INnEG+ak=;
-	h=Date:Subject:From:To:References:In-Reply-To:From;
-	b=k6YZuiU66CuceQsq95EmaSHk6icFpMy/3YAqdGJOAw0FGzLOagcoJYoFku1+pCaij
-	 GmTkfVa8zbZ69yvQCaYjHLiugbVXspgAXGAzd1f3p1zCTtVkcs2vfg0yu0PMEr3a/H
-	 oW2X/JCyLfxCiVyb+DWTJ51sF1oXYO5k7mBU5xmYGitsPfqLZvDSVdt2yjArDi6r/O
-	 EJK8tAtpaEUmBGEI56apnoYHBQ6QEHZZ8bWkDVeMagLgehrg4kVd9YnoKYcILWBrbM
-	 GT5VkAs171LOcQIDysr8CWTfWzI87n++Dlhs8pQWl1xQjr6xDNmkZnlVrwtnaOZMHP
-	 xXXNDgklqaNPA==
-Message-ID: <f1b78854-56db-4523-8efc-580792fbf1e8@kernel.org>
-Date: Sun, 31 Aug 2025 15:15:46 +0200
+	s=k20201202; t=1756646727;
+	bh=elVMf+284ZRxCOWIwbNMVAG/IsEPy/rN1u5TN27FxI8=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=epRPYIo1pltWP3Qesp47bCZs1ty5J4ypYuL9JxJ++VKP+A0Hd2d74OOVlGGIC6fOB
+	 FVLKEGVzNsqhbpvVMcdcZ1J2bzBvOer/Rgi4uM+GiZlqfbwgfao63ymtk+0/BBe9L4
+	 lJ2lM00AfmjYHA4FwGSLw1eHF2XGhHaOsWCOegUsfBEdbxFtY3RcukT2ASwgIwMIAv
+	 bhYBQhOeUhzfK6XqfUEYgdRy5alVVZH4fXZzCz7LhdwAAMJ3j57EN82c6sxkZrccew
+	 pVejKf0llZdBgk7J/SEAcCsZU7wWiKGrktUpL6hHnk0jCdXkEZqiKMqEWStRYxnLWq
+	 Sb3faCPcoRRRA==
+Message-ID: <b8085dd8-e1a0-48b1-a49f-f3edaa0381da@kernel.org>
+Date: Sun, 31 Aug 2025 15:25:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,16 +50,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] dt-bindings: display: dsi-controller: add bridge to
- patternProperties
+Subject: Re: [PATCH v3 04/10] dt-bindings: pinctrl: samsung: Add compatible
+ for ARTPEC-8 SoC
+To: Ravi Patel <ravi.patel@samsung.com>, jesper.nilsson@axis.com,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com, alim.akhtar@samsung.com, linus.walleij@linaro.org,
+ tomasz.figa@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+ arnd@arndb.de
+Cc: ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com,
+ gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
+ smn1196@coasia.com, pankaj.dubey@samsung.com, shradha.t@samsung.com,
+ inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com,
+ dj76.yang@samsung.com, hypmean.kim@samsung.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, soc@lists.linux.dev
+References: <20250825114436.46882-1-ravi.patel@samsung.com>
+ <CGME20250825120715epcas5p3a0c8b6eaff7bdd69cbed6ce463079c64@epcas5p3.samsung.com>
+ <20250825114436.46882-5-ravi.patel@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Harikrishna Shenoy <h-shenoy@ti.com>, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linus.walleij@linaro.org, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org
-References: <20250827112539.4001513-1-h-shenoy@ti.com>
- <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -104,28 +115,26 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
+In-Reply-To: <20250825114436.46882-5-ravi.patel@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/08/2025 15:15, Krzysztof Kozlowski wrote:
->> diff --git a/Documentation/devicetree/bindings/display/dsi-controller.yaml b/Documentation/devicetree/bindings/display/dsi-controller.yaml
->> index 67ce10307ee0..bb4d6e9e7d0c 100644
->> --- a/Documentation/devicetree/bindings/display/dsi-controller.yaml
->> +++ b/Documentation/devicetree/bindings/display/dsi-controller.yaml
->> @@ -46,7 +46,7 @@ properties:
->>      const: 0
->>  
->>  patternProperties:
->> -  "^panel@[0-3]$":
->> +  "^(panel|bridge)@[0-3]$":
->>      description: Panels connected to the DSI link
+On 25/08/2025 13:44, Ravi Patel wrote:
+> From: SeonGu Kang <ksk4725@coasia.com>
 > 
-> Description needs update.
+> Document the compatible string for ARTPEC-8 SoC pinctrl block,
+> which is similar to other Samsung SoC pinctrl blocks.
 > 
-> Are bridges having exactly the same properties as panels?
+> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 
-Ah, does not really matter now, it was applied.
+
+No wakeup-eint interrupts here? samsung,pinctrl-wakeup-interrupt.yaml?
+
 
 Best regards,
 Krzysztof
