@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-210955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3C62B3D385
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BEC7B3D38F
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 15:15:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83CE9440D42
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:12:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01C6D3AB3A3
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:15:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE2425A2CD;
-	Sun, 31 Aug 2025 13:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50C72264A86;
+	Sun, 31 Aug 2025 13:15:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fp/gfpZv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Orj7FjhZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C74A81AA8;
-	Sun, 31 Aug 2025 13:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC90263C91
+	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 13:15:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756645955; cv=none; b=F9Tq+fXxZRtJucrBOPmxcDHBRsbe0hTIKeZGK+B3Ji/taoG/iOyZD4ei3YQIU6aPV0MTJJUWBQdN2jGiCL+O8hug/Z27dOLpbSv/7l9kKp5fXGHeDg1OVf5lQdxqdTGvF5AhMi6wtJV+9KVZW8H7eoHslXOXK5aO3QWB86aXOj4=
+	t=1756646116; cv=none; b=nRded4fJ8TMKi2gAufr3gWO+gifeDHOWPMCKYb6FsevC1B9Def6Oc8dFvtJeoZJ7mfwB86v5Prm9+WIu/re0U8dxrztgk0j8YvKXHH+3j0S1TjunXclYueT6+48keCCYMhL4eeA9DHa88JrI6MGpmbiH7na7KZZmFp89XFT+JwA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756645955; c=relaxed/simple;
-	bh=s0aG3Pz4rxOaLzqq5OJGfcesnNayyMdkZnhc6vu4xNM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OlclqZJbwSA09cCLc336B7lmWnOgIZxGWa+tm+weY4WjeQ9Iua5etHVRiXDEB4kgUpJQcbMYFgQ6ejt8tdAWDoty/r2OrNa0564LxOFRrXupkpBl34Z5Ro+IqT4IXhkEB13saM9m01zrUxStHYIPR7qw6XNXGmd8QbTjzyrKbYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fp/gfpZv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30F4AC4CEED;
-	Sun, 31 Aug 2025 13:12:30 +0000 (UTC)
+	s=arc-20240116; t=1756646116; c=relaxed/simple;
+	bh=KNZqnAJDSvZhrOWXY6gn9grSX2GUlE3BTdQEaD9TzL8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=BZkrr9AQm+D5EVxuswwik9kxCjHYuhrgTaJrvHhviganiT09XWF9wgsQVVKdRvpeLqIrbGNR47WlHPE8T3+zMV+1J8oR6z/fRgCRH2r1eF69xnWt4aYAw2hiklDVKabNCOcShWJfgDq9wuFq7vqkR0wlxPToc5XE2Zy/lg4sZ4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Orj7FjhZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C249DC4CEED;
+	Sun, 31 Aug 2025 13:15:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756645955;
-	bh=s0aG3Pz4rxOaLzqq5OJGfcesnNayyMdkZnhc6vu4xNM=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fp/gfpZvqPdYs42Itq73X1rP9NQLDxhthmFjdJ62b1JTTNuXvoqTTvxNVIUHKXNDP
-	 5DIn9Mrv4Tr/+BjNwS91rXhZP321pMIGn9mQOrYXpwgFURG4GHmUlcF5xW+O0/1wBt
-	 FqPmk+LUfm2RN3S6x+Y/mCuHPYu65UFUcdqqFiih+8C9GrPl05QZ/dGfHKinNcsokl
-	 p4bCSVOl8YEa4KaP2bnpEYHHC5/lufuTFNK60iIavsJisoReETWTUzzG+767AkjDEY
-	 TucNUTvWD6t0jXMIkCZrNI8SuaxNCHtbrXZ3olhsXu4m0/Zdhiu4Hy4tyyowjCLYnk
-	 v/MEeO7HvoFAA==
-Message-ID: <e98ed14b-ed97-4e1c-a758-97b9bfc8ded4@kernel.org>
-Date: Sun, 31 Aug 2025 15:12:29 +0200
+	s=k20201202; t=1756646115;
+	bh=KNZqnAJDSvZhrOWXY6gn9grSX2GUlE3BTdQEaD9TzL8=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=Orj7FjhZ3tev8SWtBCiTBzhc4prpIrPoQFhnQwrgftnfKxzmND6qL4dahlWXXngeO
+	 X33DN4hfAp8CIhowda3pviEjdohBYeucaHOS3T08SaVkQw/bDiD3qml4EyTJoOlbfi
+	 7kuFdqqsDSJlzOLjmMnbqYnl0JM+oBuXcEpk4kJPd5nXX+RiSjOLYEpObtk5METZY3
+	 ilJhzlUfp2CinLjglpPTK3oj5WmybhpwZqHAfD7frTubKrW6y/0EG98Ti0xw6u/F/X
+	 D3jjFk5LRfD9XeteEsQLBwzPlw7FQu/8D5oG+nRcn7DcAq1wPe2xwKnE45AlLJWPso
+	 ThuLbcol24HmA==
+Message-ID: <c1d910ad-c319-421a-b603-0bc4e7f4b128@kernel.org>
+Date: Sun, 31 Aug 2025 15:15:10 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,17 +50,14 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] dt-bindings: iio: adc: ad7768-1: add new supported
- parts
-To: linux-kernel@vger.kernel.org
-Cc: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Michael.Hennerich@analog.com, lars@metafoo.de,
- jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- marcelo.schmitt1@gmail.com
-References: <20250824040943.9385-1-Jonathan.Santos@analog.com>
- <510f6efb-ada3-4848-ac8e-16fa5d1b5284@kernel.org>
- <aLPE3yiSTReS7B2J@JSANTO12-L01.ad.analog.com>
+Subject: Re: [PATCH v2] dt-bindings: display: dsi-controller: add bridge to
+ patternProperties
+To: Harikrishna Shenoy <h-shenoy@ti.com>, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linus.walleij@linaro.org, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org
+References: <20250827112539.4001513-1-h-shenoy@ti.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -106,51 +103,42 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <aLPE3yiSTReS7B2J@JSANTO12-L01.ad.analog.com>
+In-Reply-To: <20250827112539.4001513-1-h-shenoy@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/08/2025 05:43, Jonathan Santos wrote:
->>>      maxItems: 1
->>> @@ -58,6 +66,18 @@ properties:
->>>      description:
->>>        ADC reference voltage supply
->>>  
->>> +  adi,gain-milli:
->>> +    description: |
->>> +       Specifies the gain applied by the Analog Anti-Aliasing Filter (AAF) to the
->>> +       ADC input (in milli units). The hardware gain is determined by which input
->>
->>
->> I don't think there is no such thing as "milli units". milli is SI
->> prefix, not unit. So "units" is the unit? Or how exactly?
->>
->> Basis points were before since 2022 so I don't get why these other
->> bindings introduced in 2024 could not use it?
->>
->> Anyway, if you ever do not apply reviewers comment, then your commit msg
->> should explain this. Otherwise you get the same discussion here.
->>
-> 
-> Yes, you are right. We shouldn't use milli as suffix. However, may I
-> suggest another option?
-> 
-> I believe -permille is more appropriate because it represents a 1/1000
-> proportion, which gives the precision we need to cover all values.
-> 
-> so it would be something like: adi,aaf-gain-permille
-> 
-> Is that ok for you?
-> 
-> Thanks for the feedback,
-> Jonathan S.
+On 27/08/2025 13:25, Harikrishna Shenoy wrote:
+> Extend the DSI controller schema to allow bridge child nodes.
+> This makes it possible to describe external bridge devices directly
+> connected as DSI peripherals.
 
+Where is any user of this?
 
-What's wrong with existing unit I pointed out before?
+> 
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> ---
+> Changelog v1 --> v2:
+> - Updated patternProperties regex.
+> - Improved commit message.
+> 
+>  Documentation/devicetree/bindings/display/dsi-controller.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/dsi-controller.yaml b/Documentation/devicetree/bindings/display/dsi-controller.yaml
+> index 67ce10307ee0..bb4d6e9e7d0c 100644
+> --- a/Documentation/devicetree/bindings/display/dsi-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/dsi-controller.yaml
+> @@ -46,7 +46,7 @@ properties:
+>      const: 0
+>  
+>  patternProperties:
+> -  "^panel@[0-3]$":
+> +  "^(panel|bridge)@[0-3]$":
+>      description: Panels connected to the DSI link
 
-BTW, any idea why your reply-to header is completely corrupted (copies
-in-reply-to...)?
+Description needs update.
 
+Are bridges having exactly the same properties as panels?
 
 Best regards,
 Krzysztof
