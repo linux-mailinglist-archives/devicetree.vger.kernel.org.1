@@ -1,136 +1,102 @@
-Return-Path: <devicetree+bounces-210931-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A2B76B3D299
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:47:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6359BB3D29E
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:48:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F29C97AE973
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 11:45:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E78517A6AD
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 11:48:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68012251791;
-	Sun, 31 Aug 2025 11:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA562517AA;
+	Sun, 31 Aug 2025 11:48:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PoR61D6t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bp+g97dC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FBBA28F5;
-	Sun, 31 Aug 2025 11:47:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5F928F5;
+	Sun, 31 Aug 2025 11:48:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756640840; cv=none; b=tC79K87xIcEoryvWXA2dyqfSC/gSTHFf3rQZbXQ4JQ4vrKwlSAZl85DMrDjgtXACqSKfF9/6nXV5C04Q6p5ohpv4C/V8Oq2pVQi06z3Cp3yljSfcz/KIAyHWe8ZrWNdYKDlAviFRkj6q4/CeVRtKkSdwp4J3bzch4Mw+peqa4xo=
+	t=1756640914; cv=none; b=f3VQi66K2vSOOM3t6Oc3QAgVRFFNu++YcO2FTB6wZhz+FUuvAA2ubdFd6cBhlj+AqZERVbUQZRp5JzN4b4pWHa3Itg5PqQBv/orvbq5qzZkejnQCR6bwq5rKqK7EIQC9M0LMp36ncFQJ/853yOMFqYp+bfX4YWn0AMtl4yfAcPM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756640840; c=relaxed/simple;
-	bh=sydcbx6eXw+bJ0LHhJFOtpoHmSVDqG0WI6nSt89fNH8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nMpTv2HM4QOtlzmNQ7xs6zzpGAeflZ64ZTcmpi0aK/tBpFuiCwLqf+Aq5HebzbtEl/qRLS0czQ253w3Aki0yBj4UttzFeYdxhroj7YNJryvkQcWAIOAi8H9zRZa4sUMtVnKtUREtUsB311oeDlcLX2dDADwqQ1l1LNEatIUMK5A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PoR61D6t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56202C4CEED;
-	Sun, 31 Aug 2025 11:47:16 +0000 (UTC)
+	s=arc-20240116; t=1756640914; c=relaxed/simple;
+	bh=15ytesglya7+FRpo/qHWnOIxqe9nWdvalbomNJMS2R0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SuOsBurDU3kW1lWU9VIDRbh6jCk74ghokf6EygRRIUuK4eVIDjlYL5edulZcNFXa6cCavNk+bgKChmIkL6e38jzZ9++hk8W/2Uty/lLMmGSyygdTKyVCtgXvhf2/73xf45M/IcDEpQLYaWC1gvtZdYGEsuspD9/c+LVCm4yckqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bp+g97dC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846D2C4CEED;
+	Sun, 31 Aug 2025 11:48:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756640839;
-	bh=sydcbx6eXw+bJ0LHhJFOtpoHmSVDqG0WI6nSt89fNH8=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=PoR61D6tZU+60J55AMGwUFoMlHIJff+XJPc2M0YySARzieX/KPj9OJrG0MMT1EQxm
-	 kzDb0rj94KKxH04dGuiIXKV2MWMmHVYicLebukKj4LLUuOFOFG9JAhkmUTDpCBgK+9
-	 93CkmE9pmMHXF14m1cwK5we1M1YR5ruoFe8boGA5c9Rh+sQw9DDFtK8jTiNK9ul9xS
-	 RM+QB7fAtGw8eHDmlnvs5sqUuivxZgNtWJQ2QVtrDwLRMpff5OQVUYfLUHFm92bWet
-	 9HqWLO7opLSZNK4adH+CRwLATQoRxaDrqxcigenhF6HdEiglDHNem/DtssAM8G4yjG
-	 agr0P6fdQ4x3g==
-Message-ID: <f2edc075-4bad-40a6-8cb2-14d3e6f3cdaa@kernel.org>
-Date: Sun, 31 Aug 2025 13:47:14 +0200
+	s=k20201202; t=1756640913;
+	bh=15ytesglya7+FRpo/qHWnOIxqe9nWdvalbomNJMS2R0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Bp+g97dCeKP2Qwqno8SkhNnLB6t1FUU7YXhIgCGeMznzNqlgR2HBFlK/3ke6B8Q6R
+	 b6S05hPv5hkC7aJrwoU7a0zmkpQ80lcXI5gEG1iwE7MCfQFmTGAxAkXQOqhEPt5qTQ
+	 rT4Q8mewxrCUGeV6jY9lm/crVysijHtS9wypK4kXpONqqkV1qe7Pxi0IlYGxF4E/JX
+	 VDqkSoJN1VoXLL3/C028qMhlCFKh1XhIjLV94w5IQrZjFVtg+Kh690DDYao7UWkoPh
+	 27begywPYwzoQLmE8pIw7UwoDZnPlffQYakm+YTJrUBO2CpV2RyNTdut5Q85HMiHCx
+	 HW8OuQOvvjICg==
+Date: Sun, 31 Aug 2025 17:18:23 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com
+Subject: Re: [PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping
+Message-ID: <ymsoyadz2gkura5evnex3m6jeeyzlcmcssdyuvddl25o5ci4bo@6ie4z5tgnpvz>
+References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
+ <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: clock: exynos990: Add LHS_ACEL clock ID
- for HSI0 block
-To: Denzeel Oliva <wachiturroxd150@gmail.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-References: <20250831-usb-v1-0-02ec5ea50627@gmail.com>
- <20250831-usb-v1-1-02ec5ea50627@gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <20250831-usb-v1-1-02ec5ea50627@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
 
-On 31/08/2025 13:36, Denzeel Oliva wrote:
-> Add the missing LHS_ACEL clock ID for the HSI0 block. This clock is
-> required for proper USB operation, as without it, USB connections fail
-> with errors like device descriptor read timeouts and address response
-> issues.
-
-Incomplete feature due to missing clock is not really a fix, considering
-that we add clocks piece-by-piece. Otherwise every new clock would be a fix.
-
-Unless something else changed and the USB was working fine before?
-
-If not, drop fixes and cc-stable from this and following commits.
-
+On Thu, Aug 28, 2025 at 01:04:23PM GMT, Krishna Chaitanya Chundru wrote:
+> External Local Bus Interface(ELBI) registers are optional registers in
+> DWC IPs having vendor specific registers.
 > 
-> Fixes: 5feae3e79dbe ("dt-bindings: clock: samsung: Add Exynos990 SoC CMU bindings")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+> Since ELBI register space is applicable for all DWC based controllers,
+> move the resource get code to DWC core and make it optional.
+> 
+> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
 > ---
->  include/dt-bindings/clock/samsung,exynos990.h | 1 +
-Best regards,
-Krzysztof
+>  drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++++
+>  drivers/pci/controller/dwc/pcie-designware.h | 1 +
+>  2 files changed, 10 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> index 89aad5a08928cc29870ab258d33bee9ff8f83143..4684c671a81bee468f686a83cc992433b38af59d 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> @@ -167,6 +167,15 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
+>  		}
+>  	}
+>  
+> +	if (!pci->elbi_base) {
+
+Why this check is needed? Are we expecting any DWC glue drivers to supply
+'dw_pcie::elbi_base' on their own?
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
