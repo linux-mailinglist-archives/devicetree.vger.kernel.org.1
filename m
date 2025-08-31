@@ -1,91 +1,91 @@
-Return-Path: <devicetree+bounces-210924-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210925-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF385B3D267
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 668ACB3D26B
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:59:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA9BA442557
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 10:58:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21C91442575
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 10:59:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD7D2257453;
-	Sun, 31 Aug 2025 10:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97BD62571C7;
+	Sun, 31 Aug 2025 10:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Gstl4kKN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eNaJ18bA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 698E6155C82
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 10:58:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0C0A2571B3
+	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 10:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756637934; cv=none; b=AwBl8ZOFeUj2V8lReu1e22PCIDnsm5Gj+j8L4879D5BHyp+hdkWlnxNo8dBnD+C+p4kSqkoys5TjUV7Hz2xic+bCNsuh/uFC0D0CWog0/vTqSsKIk17hEnHVrS/OFi9ky5nmffM2LMQpTFbpXiYsOJYekxszkLcaFQUf269HEPA=
+	t=1756637986; cv=none; b=SQ40iKTV8NQIQ9Yi7wrBXuqaC2kJsVZ73Rg3PfWnG6Q3Z/GX/7tlwL0IR30he4Px0mJV96pzVS8u9EWVXc/sQqA8mUeS43Z/sAbHum5xDxI/E3nbyaH5PMK+qOtxegYt7QGj2Kju091FwOrgiL50MQkvK7laqTvkvxUdN067mZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756637934; c=relaxed/simple;
-	bh=WVIesh8/RBO7fqb/F+aCLBcMtMA9LcfeCRq+222xUIc=;
+	s=arc-20240116; t=1756637986; c=relaxed/simple;
+	bh=Btw22oIAGmU6sanSX9eSbU/bEcAdOnorrPnzQTd/6lI=;
 	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=Tc+LqB7YK3H4yW8zXw8u37K0LTFvfL3dN1CrXK40dW4RedR/MiUZA4+Z9/dGUpujL24jWspOZsJqjOsTjF2ntR54NRNXE7unWxL76wdDM3UOpPUXnLkj9WjB0kSZrjw+os0HCXxc15McZa85OA5T8+NWpD87Xntwvs5nG6Ci0tQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Gstl4kKN; arc=none smtp.client-ip=209.85.218.53
+	 MIME-Version:Content-Type; b=H3rii+pqyUM55HmuRg3GSwyazCD9ZQo2+Qhld+9XAuiV3pAqNO1BorttsQlbBJPHwXq7o5yw3AwpoDrzaFC7bU/f/97FzQVjrfhyLankpPyfOMC0b8OY/I8rUeNqDNY+iJzT3ix1xbxODZyMFuGniwUSSMMWS/WLTMPEECvdFwU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eNaJ18bA; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-b04260d72aaso348066b.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 03:58:52 -0700 (PDT)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-61cbfa32ebdso399103a12.1
+        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 03:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756637931; x=1757242731; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756637983; x=1757242783; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=w3zy+4FxM6e/ZYJU6tdKRgGniGSW0dORiZkBYaBYdq4=;
-        b=Gstl4kKNr1k2/CoNvVwMBDUgJaKJI7OdDt5JO+aBfCazoJEHMvMwgH6eh0DuAWW73n
-         WirdSYdOIcCmUyzuxB2h0ZQ8ljC70jiyUZo5fG5Y1cDoTfrytPhmP7BUQ3EoeYw25XsQ
-         xWSBw6RxxMbCGwsYMraFUnQIWxrGLcMBTUXl5j/2+JBDYkkftD2QJAURIsHa6NYtmFZs
-         qlkAsbZrC/HvrnGPscZYCsa7/r1pD396RTKhoulstVuUobdQQMAQ0YM6a4z7M24bcU71
-         85LA+8kNv3xADoDUSf37bc2dqzqLkMxqa0fDT8yixNXm9mde5YuzyocbpS67bnxpUhME
-         gOjQ==
+        bh=gUKJ0++TPvbkMoFrI+Y8BLlk2t3/W/jKbuvYaAm42bE=;
+        b=eNaJ18bA/RVLPavPhBWRsCB1MH7PBajSwduYAL6wMw/QWVgGT/qJvYIbNpjkPxjQ+0
+         aSV/rqYJRbpfwXh8Pumx6g7qbNZYp/YW5XulxLUqd5B0Pt6VxBoN7MPJJVUsrKsaorC/
+         pYyh7QOhNILNey65IBqKGFAGhzPnwvwANoVnv/bNlrbbA+L/cuWpFcOmM5aeOC90SqsP
+         iZBVnnXPZLjxDBw6Lsfajy4p76WT+JOkOueul6jN23nb29a1ba88j9UlXSJ4mfCxKvCg
+         YTVBN1ssmW5vH/6XYw8/mKAzHVShDyQyu1Fsx4fQRCbs3Lm93/58GF2CqD1raSPz+/+p
+         GiBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756637931; x=1757242731;
+        d=1e100.net; s=20230601; t=1756637983; x=1757242783;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=w3zy+4FxM6e/ZYJU6tdKRgGniGSW0dORiZkBYaBYdq4=;
-        b=J2F7/7dwpcFao+xJKROgzICLYSDWZeJfIeiQFijosdh52+h/bqPJkunRkzvd16aWxf
-         oTD+O7jzoU2Y178LqN37oyymCse1mDR4Q5Oof9kAJIIBA7unkqlZX/U6msx2oqrSrVA7
-         vnjE7hbaqTGQyqr2ZGiQpVKgQcfxCwn2lqCCEP/3ltHvrMErmMh3T1Ks12kVVymo1cXj
-         H/SwYJdMBiFrYbVrCG5oBd+TzHg3oU3YDUd71tlsIrInPEYK2MFYAEJdmHB5DXGisf3w
-         l3P6rGMQpMQsb0XopiifJPsE5NfJS3bfMSmUCX++2bNT+/pp0+k5vNo2DfFBuc/XlN19
-         9YAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUo3+9sxdq+awvQxq+YjxnubW6JrhFkP+VaWA+D5wnrcu5ssAJlI5NGfuF1LWUhXxiak1F4lH+YnxnT@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKzdD+DHrKrhI476Zf1tfF7MIAgjj/fIaYKs1X8Q49xNHS0a+d
-	eAp/aWYQ6lELRROiIt2kfcIvHKu53lrUUU3oqBAz7icCv4o5poZDs96UwVTQZcI6s8A=
-X-Gm-Gg: ASbGncs6Kjij9z3R64cCZbrtjXCa6qhDC0jrLM6IYU4ewjD1C8CQLeFL8pPxoM8KbiN
-	1LVuEHCJzEtMy8lFBdzoU12IG57Vx2CHIsHZGskIfo9TK5PCyjyLgNHo/3Nm749ekBL+swLW+WX
-	jymZhwGkP2/z9X7V+L/QimJfmAZ5LSlhfjz7bWkPaMzE8bRgC7ymmW9bqvXgqv+qll9l2ZqkWyV
-	uNJyVtX97HJRU9wWhGemEaWoXgtgVZ6A6D2I2rTZLENNzcbVCONVD5vihsCOI5wkrqjI7sQYhdV
-	PheYVexbwHdPExaISI7Hdq7BomAIgFGM9sBYl7Kttcc5brkEM0nYDLPfEgsbT8wjvmKBIjCFwAq
-	7xD2BYYcpplO6HZdlFtNl3Kn0KS0me/1rxdhJkfK5PwnR72kbLA==
-X-Google-Smtp-Source: AGHT+IHTBJiyshvnvgCsLBk30RyM3YNR2Y8KXQJ7s2S5taB2fYhC2gtwsyGjCqiwFtwHqMDToZZ4hw==
-X-Received: by 2002:a17:906:c152:b0:afe:c2e7:3707 with SMTP id a640c23a62f3a-aff0ee1afcemr349633566b.4.1756637930739;
-        Sun, 31 Aug 2025 03:58:50 -0700 (PDT)
+        bh=gUKJ0++TPvbkMoFrI+Y8BLlk2t3/W/jKbuvYaAm42bE=;
+        b=L8OcRpLiIJaTq0O+venKMgRH6CA2sWbPWJUsM7X5uExi3Dm+5xecuuA4uE7C7epUXi
+         doj+tZjcpLEEflu4mXJo++6ed/eZTEbUk+kEQGbS0Yz6CR5U0Xmr13u7c4YnLPdAbGNR
+         cJ5stHFy6aqmWPeg8quw7ggOjDb7ygT/Z8ExowJx1grRXDICBB9aqvaM+85n23955uch
+         xnM4Jbojf/Lb8fhpBUbh9uYisTZ6RjvqYQ5jj/+0lHfwVQM+pHqxGAolGhDW2AAuPfkf
+         1r9h5KoFz8fqlgBphQVpa0xJcddKklmkvC5UaivEjreX8O9y1pVnIsdD3Dou/E1GV/By
+         muPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXXqfG//R9eEMx3ZXRz0N8Z7vAGwacgBjoToNsO4THA+7CXbGa7sTQGzIv9fP1gCzJkpvkLPZozjhr/@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8iX1Q/EzvCSl5rFnOAfhb811H1ceV0nREYjlS6KCPwxa6HVsR
+	+WvbZJZEZtGp4Sx7W8dNrZBoODeErZb+hQ54opYS5tbGXuTj9LJt+V097qknOwO7gps=
+X-Gm-Gg: ASbGnctjOIJhooDyOBZyvGI7txMsTMgU60IejAfPGu3WPQA87adYeuJQ3RKM1a9YCA+
+	FBnwFUguFNmEo+vGiWqmloPuW6dDoBi+OT4JD7QWxqfwP8MI7qF6Xn4WIiuw455Vy21jiSYsGdN
+	BXt3tUU0Ff67QxxoSsH1v51hJtgzKeoDIWITBdOBPGHvMspxKHl0+pOOMsH5d4Xu8Q0Gt991ozs
+	T/eHNYVP+lidnK3KDFCSG3NyntYFWf8CAW7KmJpFdXnfIymhTeNArScYQK7E3e5IxO7WjoSGGcf
+	AB/6kcQ/Nf5wOG8aeK0VG5anT/6wxWXB4i0A08zGgzmMQrWFXtlzbcGwMTkgLpe1nct8alqpYIk
+	oJfi/rl0zPn4BU1VyhbO6QsdXpztpDHuyT1ewhfo=
+X-Google-Smtp-Source: AGHT+IH/wnggLYJVXW/m3e9qKO69aqMTz3cVxphx9pE2l9/txvZNELvi65ntEkYfK+vEIC3B6xnNDw==
+X-Received: by 2002:a17:906:c152:b0:afe:c2e7:3707 with SMTP id a640c23a62f3a-aff0ee1afcemr349705566b.4.1756637983020;
+        Sun, 31 Aug 2025 03:59:43 -0700 (PDT)
 Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b017e4b9ed7sm349176466b.90.2025.08.31.03.58.49
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b041f00d4c2sm105452666b.97.2025.08.31.03.59.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Aug 2025 03:58:50 -0700 (PDT)
+        Sun, 31 Aug 2025 03:59:42 -0700 (PDT)
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Ivaylo Ivanov <ivo.ivanov.ivanov1@gmail.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Kunihiko Hayashi <hayashi.kunihiko@socionext.com>, 
+ Masami Hiramatsu <mhiramat@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250830093918.24619-2-krzysztof.kozlowski@linaro.org>
-References: <20250830093918.24619-2-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2] arm64: dts: exynos2200: Add default GIC address
- cells
-Message-Id: <175663792937.36292.10292837875011385286.b4-ty@linaro.org>
-Date: Sun, 31 Aug 2025 12:58:49 +0200
+In-Reply-To: <20250822133318.312232-3-krzysztof.kozlowski@linaro.org>
+References: <20250822133318.312232-3-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] arm64: dts: socionext: uniphier-ld20: Add default
+ PCI interrup controller address cells
+Message-Id: <175663798171.36860.2362489342658881162.b4-ty@linaro.org>
+Date: Sun, 31 Aug 2025 12:59:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -97,16 +97,28 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.2
 
 
-On Sat, 30 Aug 2025 11:39:19 +0200, Krzysztof Kozlowski wrote:
-> Add missing address-cells 0 to GIC interrupt node.  Value '0' is correct
-> because GIC interrupt controller does not have children.
+On Fri, 22 Aug 2025 15:33:19 +0200, Krzysztof Kozlowski wrote:
+> Add missing address-cells 0 to the PCI interrupt node to silence W=1
+> warning:
 > 
+>   uniphier-ld20.dtsi:941.4-944.29: Warning (interrupt_map): /soc@0/pcie@66000000:interrupt-map:
+>     Missing property '#address-cells' in node /soc@0/pcie@66000000/legacy-interrupt-controller, using 0 as fallback
 > 
+> Value '0' is correct because:
+> 1. GIC interrupt controller does not have children,
+> 2. interrupt-map property (in PCI node) consists of five components and
+>    the fourth component "parent unit address", which size is defined by
+>    '#address-cells' of the node pointed to by the interrupt-parent
+>    component, is not used (=0)
+> 
+> [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: exynos2200: Add default GIC address cells
-      https://git.kernel.org/krzk/linux/c/59abe5c87267f1f3bd627af20355b490b59f9901
+[1/2] arm64: dts: socionext: uniphier-ld20: Add default PCI interrup controller address cells
+      https://git.kernel.org/krzk/linux-dt/c/613fb0c8bd49df4fb28bca89aa5363856487096f
+[2/2] arm64: dts: socionext: uniphier-pxs3: Add default PCI interrup controller address cells
+      https://git.kernel.org/krzk/linux-dt/c/a29bf0b10a1a7f51afb91c1ff9edd73b0ca1fd18
 
 Best regards,
 -- 
