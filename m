@@ -1,102 +1,103 @@
-Return-Path: <devicetree+bounces-210932-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6359BB3D29E
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 13:48:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C6919B3D2C1
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 14:14:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2E78517A6AD
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 11:48:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97F5A17C706
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 12:14:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FA562517AA;
-	Sun, 31 Aug 2025 11:48:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6A96258EF3;
+	Sun, 31 Aug 2025 12:13:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bp+g97dC"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=163.com header.i=@163.com header.b="Qu292NPN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5F928F5;
-	Sun, 31 Aug 2025 11:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from m16.mail.163.com (m16.mail.163.com [220.197.31.4])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C0CF25785F;
+	Sun, 31 Aug 2025 12:13:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756640914; cv=none; b=f3VQi66K2vSOOM3t6Oc3QAgVRFFNu++YcO2FTB6wZhz+FUuvAA2ubdFd6cBhlj+AqZERVbUQZRp5JzN4b4pWHa3Itg5PqQBv/orvbq5qzZkejnQCR6bwq5rKqK7EIQC9M0LMp36ncFQJ/853yOMFqYp+bfX4YWn0AMtl4yfAcPM=
+	t=1756642439; cv=none; b=WsTsny7lV0WuJ3CN5A5EJi1c9+EW+N/0tDGeDupyDhAB3UXqivipsVn+v1QYCtP5XHc+/JhmCCqzbYIOeJ2cug1c4flVSlLqFxiWmSPJLzltMYTx7Tt32xGytHsm1YoPxybqYZrRfQJU84ALpLCflphJ7p4vk3IfDfiKhMoZIXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756640914; c=relaxed/simple;
-	bh=15ytesglya7+FRpo/qHWnOIxqe9nWdvalbomNJMS2R0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SuOsBurDU3kW1lWU9VIDRbh6jCk74ghokf6EygRRIUuK4eVIDjlYL5edulZcNFXa6cCavNk+bgKChmIkL6e38jzZ9++hk8W/2Uty/lLMmGSyygdTKyVCtgXvhf2/73xf45M/IcDEpQLYaWC1gvtZdYGEsuspD9/c+LVCm4yckqs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bp+g97dC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 846D2C4CEED;
-	Sun, 31 Aug 2025 11:48:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756640913;
-	bh=15ytesglya7+FRpo/qHWnOIxqe9nWdvalbomNJMS2R0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bp+g97dCeKP2Qwqno8SkhNnLB6t1FUU7YXhIgCGeMznzNqlgR2HBFlK/3ke6B8Q6R
-	 b6S05hPv5hkC7aJrwoU7a0zmkpQ80lcXI5gEG1iwE7MCfQFmTGAxAkXQOqhEPt5qTQ
-	 rT4Q8mewxrCUGeV6jY9lm/crVysijHtS9wypK4kXpONqqkV1qe7Pxi0IlYGxF4E/JX
-	 VDqkSoJN1VoXLL3/C028qMhlCFKh1XhIjLV94w5IQrZjFVtg+Kh690DDYao7UWkoPh
-	 27begywPYwzoQLmE8pIw7UwoDZnPlffQYakm+YTJrUBO2CpV2RyNTdut5Q85HMiHCx
-	 HW8OuQOvvjICg==
-Date: Sun, 31 Aug 2025 17:18:23 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
-	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com
-Subject: Re: [PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping
-Message-ID: <ymsoyadz2gkura5evnex3m6jeeyzlcmcssdyuvddl25o5ci4bo@6ie4z5tgnpvz>
-References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
- <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
+	s=arc-20240116; t=1756642439; c=relaxed/simple;
+	bh=bFmo+YqQX3IWlU7ZByAshzBG1wWap10aNouJYF+7B/I=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=hJAVHfECJA4mQTI+r1IMSwDN+UkUwYQ+pChJjhgKy61wuUP1URlXoQS/qdhJ2Onefj+DEUTvBKke+Q6H9ZZ5iOtfQaksrmWWqm8+V3JFyIAheXIyt7sIzj1sWvg+kK81VSxPHcTtLETYVFoVjdN0hRli9KfpHKPFS6/hmMZNRUM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=fail (1024-bit key) header.d=163.com header.i=@163.com header.b=Qu292NPN reason="signature verification failed"; arc=none smtp.client-ip=220.197.31.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=F7GUQd1kZpglV52vKxF3lBrT7DCXnSp1/ypCqZo5gQ8=; b=Q
+	u292NPNlFPfN6v1LxIbA2gwTGGgaZaP4jauzeh6HOuhjnk9Whh4LOvnXb6iLQzh2
+	e60d4ati97F1a7kHzHBCbMMyVCQNKXqq1MEe6jGhigj4A0SoMh/b2HbGyNGnPfGL
+	456ChX2S+uJVQvUvuVAJE0ly9Wy+k6mt+OlC5c7Scw=
+Received: from andyshrk$163.com ( [103.29.142.67] ) by
+ ajax-webmail-wmsvr-40-127 (Coremail) ; Sun, 31 Aug 2025 20:12:36 +0800
+ (CST)
+Date: Sun, 31 Aug 2025 20:12:36 +0800 (CST)
+From: "Andy Yan" <andyshrk@163.com>
+To: "Maud Spierings" <maud_spierings@hotmail.com>
+Cc: Laurent.pinchart@ideasonboard.com, andy.yan@rock-chips.com,
+	cristian.ciocaltea@collabora.com, devicetree@vger.kernel.org,
+	dmitry.baryshkov@oss.qualcomm.com, dri-devel@lists.freedesktop.org,
+	heiko@sntech.de, hjc@rock-chips.com, krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org, mripard@kernel.org,
+	naoki@radxa.com, neil.armstrong@linaro.org, robh@kernel.org,
+	sebastian.reichel@collabora.com, stephen@radxa.com,
+	yubing.zhang@rock-chips.com
+Subject: Re:Re: [PATCH v7 00/10] Add support for RK3588 DisplayPort
+ Controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version XT5.0.14 build 20250519(9504565a)
+ Copyright (c) 2002-2025 www.mailtech.cn 163com
+In-Reply-To: <AM7P189MB1009B9BCECE97040CFD3DBA0E33AA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+References: <20250822063959.692098-1-andyshrk@163.com>
+ <AM7P189MB1009B9BCECE97040CFD3DBA0E33AA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+X-NTES-SC: AL_Qu2eBPqfvUsu4CSZZukfmUgWjuw/WsG1v/Ul1YBSP556jA/pwQIqT3RSBmf2ye60Fj2tmgmGcjZp09VaeKdkXp4Q15ojZ1N9shTuO1xVkiOUJg==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
+Message-ID: <3e2e87f3.21ca.199000b2cc1.Coremail.andyshrk@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:fygvCgCnl740PLRoEGAlAA--.1025W
+X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEhy6Xmi0NLeDDAABs7
+X-Coremail-Antispam: 1U5529EdanIXcx71UUUUU7vcSsGvfC2KfnxnUU==
 
-On Thu, Aug 28, 2025 at 01:04:23PM GMT, Krishna Chaitanya Chundru wrote:
-> External Local Bus Interface(ELBI) registers are optional registers in
-> DWC IPs having vendor specific registers.
-> 
-> Since ELBI register space is applicable for all DWC based controllers,
-> move the resource get code to DWC core and make it optional.
-> 
-> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++++
->  drivers/pci/controller/dwc/pcie-designware.h | 1 +
->  2 files changed, 10 insertions(+)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-> index 89aad5a08928cc29870ab258d33bee9ff8f83143..4684c671a81bee468f686a83cc992433b38af59d 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware.c
-> @@ -167,6 +167,15 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
->  		}
->  	}
->  
-> +	if (!pci->elbi_base) {
-
-Why this check is needed? Are we expecting any DWC glue drivers to supply
-'dw_pcie::elbi_base' on their own?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+CkhlbGxvIE1hdWTvvIwKCkF0IDIwMjUtMDgtMzAgMDg6NDY6MTQsICJNYXVkIFNwaWVyaW5ncyIg
+PG1hdWRfc3BpZXJpbmdzQGhvdG1haWwuY29tPiB3cm90ZToKPkhlbGxvIEFuZHksCj4KPj4gVGhl
+cmUgYXJlIHR3byBEVyBEUFRYIGJhc2VkIERpc3BsYXlQb3J0IENvbnRyb2xsZXIgb24gcmszNTg4
+IHdoaWNoCj4+IGFyZSBjb21wbGlhbnQgd2l0aCB0aGUgRGlzcGxheVBvcnQgU3BlY2lmaWNhdGlv
+biBWZXJzaW9uIDEuNCB3aXRoCj4+IHRoZSBmb2xsb3dpbmcgZmVhdHVyZXM6Cj4+IAo+PiAqIERp
+c3BsYXlQb3J0IDEuNGEKPj4gKiBNYWluIExpbms6IDEvMi80IGxhbmVzCj4+ICogTWFpbiBMaW5r
+IFN1cHBvcnQgMS42MkdicHMsIDIuN0dicHMsIDUuNEdicHMgYW5kIDguMUdicHMKPj4gKiBBVVgg
+Y2hhbm5lbCAxTWJwcwo+PiAqIFNpbmdsZSBTdHJlYW0gVHJhbnNwb3J0KFNTVCkKPj4gKiBNdWx0
+aXN0cmVhbSBUcmFuc3BvcnQgKE1TVCkKPj4gKiBUeXBlLUMgc3VwcG9ydCAoYWx0ZXJuYXRlIG1v
+ZGUpCj4+ICogSERDUCAyLjIsIEhEQ1AgMS4zCj4+ICogU3VwcG9ydHMgdXAgdG8gOC8xMCBiaXRz
+IHBlciBjb2xvciBjb21wb25lbnQKPj4gKiBTdXBwb3J0cyBSQkcsIFlDYkNyNDo0OjQsIFlDYkNy
+NDoyOjIsIFlDYkNyNDoyOjAKPj4gKiBQaXhlbCBjbG9jayB1cCB0byA1OTRNSHoKPj4gKiBJMlMs
+IFNQRElGIGF1ZGlvIGludGVyZmFjZQo+PiAKPj4gVGhlIGN1cnJlbnQgdmVyc2lvbiBvZiB0aGlz
+IHBhdGNoIHNlcmllcyBvbmx5IHN1cHBvcnRzIGJhc2ljIGRpc3BsYXkgb3V0cHV0cy4KPj4gSSBj
+b25kdWN0ZWQgdGVzdHMgd2l0aCBEUDAgaW4gMTA4MHAgYW5kIDRLQDYwIFlDYkNyNDoyOjAgbW9k
+ZXM7IHRoZSBBTFQvVHlwZS1DCj4+IG1vZGUgd2FzIHRlc3RlZCBvbiBSb2NrIDVCCj4KPklzIHRo
+ZXJlIGFuIGV4YW1wbGUgb2YgdGhpcz8gSSB3YW50IHRvIGltcGxlbWVudCBpdCBmb3IgdGhlIHVz
+Yi1jIHBvcnQgCj5vbiB0aGUgb3JhbmdlcGkgNSBwbHVzLCBidXQgSSBjYW4ndCBxdWl0ZSBmaWd1
+cmUgb3V0IHdoZXJlIEkgd291bGQgaGF2ZSAKPnRvIGxpbmsgdGhlIERQIG91dHB1dCBlbmRwb2lu
+dCB0bz8KPgo+VGhlIHVzYi1jIGVuZHBvaW50cyBhcmUgYWxsIGRvbmUuIElzIGl0IHRvIGFub3Ro
+ZXIgZW5kcG9pbnQgaW4gdGhlIAo+dXNiZHBfcGh5PyBUaGUgb25seSBlbmRwb2ludHMgdGhlcmUg
+c2VlbSB0byBiZSBvdXRwdXRzLiBPciBpcyBpdCAKPnN1cHBvc2VkIHRvIGJlIGxlZnQgdW5jb25u
+ZWN0ZWQgZm9yIHRoZSBBTFQvdHlwZS1DIG1vZGU/Cj4KPkkndmUgdHJpZWQgcmVhZGluZyB0aHJv
+dWdoIGFsbCB0aGUgcmVsZXZhbnQgZHQtYmluZGluZ3MgYnV0IGNhbid0IGZpbmQgaXQuCgoKSSBo
+YXZlIGEgIHRlc3QgYnJhbmNoIGZvciBBTFQvVHlwZS1DIG1vZGUgb24gUm9jayA1QiBoZXJlWzFd
+CgpbMV1odHRwczovL2dpdGh1Yi5jb20vYW5keXNocmsvbGludXgvY29tbWl0cy9yazM1ODgtZHAt
+dXBzdHJlYW0tdjYvCgo+Cj5LaW5kIHJlZ2FyZHMsCj5NYXVkCg==
 
