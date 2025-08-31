@@ -1,199 +1,139 @@
-Return-Path: <devicetree+bounces-210975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-210978-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DBCBB3D443
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 18:01:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 493CDB3D456
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 18:27:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A643179FDA
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 16:01:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B8F73189AC48
+	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 16:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4028A1E0DD8;
-	Sun, 31 Aug 2025 16:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 273FB25A2CD;
+	Sun, 31 Aug 2025 16:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O7sc1cCI"
+	dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b="cZi0dDX1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.netcube.li (mail.netcube.li [173.249.15.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1056A5464E;
-	Sun, 31 Aug 2025 16:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E802222127B;
+	Sun, 31 Aug 2025 16:27:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=173.249.15.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756656102; cv=none; b=H8C5ZiF7MG6KpauYx4rA7PLft9NTaMJg7qKkbRJc9x/gZ8UGrfVDsgS1iIdv8ofRz57IJW6NFJkhyu5kdmUkOOXuYmd4n5XlxjZD9MAFGXd8N6ok/LZpYrPd7bnA3iHJp8NCIWDlRpXmNF6cdymRR+IbKsTmYuuYPIRAA7MrKvo=
+	t=1756657623; cv=none; b=jzT0hGsIV4Jj9sAhmzrlGdxjko9tXkUM8BaVosi3P8ruHsi+Ev44wezNrlL+NptpMrxGUiWy1q6R3BOrxAfwNhEKa5cOlCBijsZV+lL2tb1rUuO1zuiVo/idnN8FDrX4dLcAcyaWwaoZ5zb9+iws7KKMZyiPMy7fGnqb34FE4B0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756656102; c=relaxed/simple;
-	bh=2gNH/RzO1V0JsfglSgx1jzUzgMbIO9CB7CQt5QHDaiE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=I5OpkdSkc8tjkQXdmtkmPa9F/o2KLxczePOdJR9LWLWFLp0pul04gv4H9EN2TliCFIuZIZagP7bIwd3UGeWWdcbYQt4oFbn8AYWd57JfqY7k1TDP3H0OYNs9ayuAoOQI4o0pO4n6xiNiZVUACISbw1z9GDbSEaJybbqJhvcO8Oo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O7sc1cCI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65E01C4CEED;
-	Sun, 31 Aug 2025 16:01:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756656101;
-	bh=2gNH/RzO1V0JsfglSgx1jzUzgMbIO9CB7CQt5QHDaiE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=O7sc1cCIAJLHudpybzjPxTmNCgUawvKCj4pT2k14Rd3/tSuebiso0jIAudclYzGQY
-	 fYJo+EgIK4F8eCHTtPEHTXKukpLJY4soO5jecySRSrh7Bx6UpdvGx8bR5FRjH0q+Tc
-	 vfHJ93dSxmTtMK6bmRKvc2UPGFUIbyf8eheiSnuxEcUqJVbfrdB/qom5qoVaigXzgh
-	 mJNRirQPnkdMv5HrHrlbDJZxDfi4fbxtOX1R1ORhsNebBrNnSmd75Nkw/96spGsxdo
-	 +KE7VA9ofuhbAtuYEWBFhd98HSWkfplfzXGoq6YSIJ1pEvO7SNsr+FUDGq/9sX94RC
-	 XrAcPrPhHJDaQ==
-Date: Sun, 31 Aug 2025 17:01:27 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Lakshay Piplani <lakshay.piplani@nxp.com>
-Cc: linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
- marcelo.schmitt1@gmail.com, gregkh@linuxfoundation.org,
- viro@zeniv.linux.org.uk, peterz@infradead.org, jstephan@baylibre.com,
- robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, ilpo.jarvinen@linux.intel.com,
- jonathan.cameron@huawei.com, akpm@linux-foundation.org, chao@kernel.org,
- jaegeuk@kernel.org, vikash.bansal@nxp.com, priyanka.jain@nxp.com,
- shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: iio: temperature: Add NXP P3T175x
- support
-Message-ID: <20250831170127.3c7d9bf7@jic23-huawei>
-In-Reply-To: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
-References: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1756657623; c=relaxed/simple;
+	bh=4phlBbgBNFAzq2caa1c6gtsQQiS3M/vxr+sbRZ2zcf0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=IAeoS6XytM++wCR5+WedEI2XCO8bjJb5oYrAMBJZVvfFPTu0smMYjXwR7ZHw5GhlGeamBkQzjBhGqh9rPuEHohsXCB/NcrZdj/vUWQ7e4AKxerAefEguLn7dItZO5K83LciklzZb1RZhS0UT/j3zz5ikRUKPPAxuavW3ewbUnpI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li; spf=pass smtp.mailfrom=netcube.li; dkim=pass (1024-bit key) header.d=netcube.li header.i=@netcube.li header.b=cZi0dDX1; arc=none smtp.client-ip=173.249.15.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=netcube.li
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=netcube.li
+dkim-signature: v=1; a=rsa-sha256; d=netcube.li; s=s1;
+	c=relaxed/relaxed; q=dns/txt; h=From:Subject:Date:Message-ID:To:CC:MIME-Version:Content-Transfer-Encoding;
+	bh=sdiZNlFdFrCeOjv+QMPaCswLDzXBuVlIMvUDGjhN5kc=;
+	b=cZi0dDX1ZQsL3iKPObkmfAs7jhUUeLjhaddFrv+tnqizB1AMInVpsuBNApWsu3X29xpBA3oldlCbT/PoX/0OOX0WcRwrwvs0LUvm5zxCRdpLon/4n1f78gF7LlNQvV3OugfL5SXh1VoGstqlnf+KTEuByjbeebQJlyQuvICvFSg=
+Received: from lukas-hpz440workstation.lan.sk100508.local (cm70-231.liwest.at [212.241.70.231])
+	by mail.netcube.li with ESMTPA
+	; Sun, 31 Aug 2025 18:26:34 +0200
+From: Lukas Schmid <lukas.schmid@netcube.li>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Alexandre Ghiti <alex@ghiti.fr>,
+	Maxime Ripard <mripard@kernel.org>
+Cc: Lukas Schmid <lukas.schmid@netcube.li>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-sunxi@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v8 0/5] Add support for NetCube Systems Nagami SoM and its carrier boards
+Date: Sun, 31 Aug 2025 18:25:29 +0200
+Message-Id: <20250831162536.2380589-1-lukas.schmid@netcube.li>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, 27 Aug 2025 16:01:04 +0530
-Lakshay Piplani <lakshay.piplani@nxp.com> wrote:
+This series adds support for the NetCube Systems Nagami SoM and its
+associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
+Carrier.
 
-> Add bindings for the NXP P3T175x (P3T1750/P3T1755) temperature
-> sensor, supporting both I2C & I3C interfaces.
->=20
-> Signed-off-by: Lakshay Piplani <lakshay.piplani@nxp.com>
-> ---
-> Changes in v2 (addressed review comments from Krzysztof Kozlowski):
->  - Dropped nxp,alert-active-high: unnecessary as polarity handling is imp=
-licit in driver.
->  - Retained nxp,interrupt-mode: required to program TM(thermostat mode) b=
-it; enables interrupt
->    (latched) mode. If not present in DT entry comparator mode is set as d=
-efault.
->  - Retained nxp,fault-queue: This needs to be configured during device in=
-itialization.
->    This property configures the hardware fault queue length. Defines how =
-many consecutive faults
->    are required before ALERT/IBI is asserted, preventing false triggers i=
-n noisy environments.
->  - The `reg` property remains required to satisfy `dt_binding_check`.
->  - Fixed YAML formatting, line wrapping, and examples.
->  - Changed compatibles from nxp,p3t1755 to nxp,p3t1755-iio and nxp,p3t175=
-0 to nxp,p3t1750-iio
->    as reported by kernel test robot.
->=20
->  .../bindings/iio/temperature/nxp,p3t1755.yaml | 97 +++++++++++++++++++
->  1 file changed, 97 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/temperature/nxp=
-,p3t1755.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/iio/temperature/nxp,p3t175=
-5.yaml b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
-> new file mode 100644
-> index 000000000000..4eb6fc5cb247
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/temperature/nxp,p3t1755.yaml
-> @@ -0,0 +1,97 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/temperature/nxp,p3t1755.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NXP P3T175x Temperature Sensor
-> +
-> +maintainers:
-> +  - Lakshay Piplani <lakshay.piplani@nxp.com>
-> +
-> +description: |
-> +  Datasheet: https://www.nxp.com/docs/en/data-sheet/P3T1755.pdf
-> +
-> +  P3T175x (P3T1750/P3T1755) is a digital temperature sensor with a range=
- of -40=C2=B0C to
-> +  +125=C2=B0C and a 12-bit resolution. It supports communication over
+Changes in v8:
+  - Use a gpio-mux instead of the gpio-hog for the USB0_SEC_EN signal
+  - Fix the dt-schema issues
 
-Wrap consistently to 80 chars
+Changes in v7:
+  - Fix the gpio numbering for the USB_SEC_EN gpio hog
+  - Fix the gpio-line-names for the keypad carrier
 
-> +  both I2C and I3C interfaces.
-> +
-> +  The I2C interface supports up to 32 static addresses and provides
-> +  an ALERT output to signal when temperature thresholds are crossed.
-> +
-> +  The I3C interface supports In-Band interrupts (IBI) in interrupt mode,
-> +  allowing the device to notify the controller of threshold events witho=
-ut
-> +  dedicated alert pin.
-> +
-> +  The device supports configurable thermostat modes (interrupt or compar=
-ator),
-> +  fault queue length etc.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,p3t1750-iio
-> +      - nxp,p3t1755-iio
+Changes in v6:
+  - Add 'usb0-enable-hog' to the som to enable the USB-OTG port by default
+  - Update the keypad carrier dts to match actual board revision
 
-Wouldn't expect an 'iio' bit in a compatible. It's not about what driver
-is binding, it's about what the device is.
+Changes in v5:
+  - Re-add the non-removable property to the ESP32 interface
+  - Add the mmc-pwrseq node for the ESP32 to initialize the ESP32 correctly
+  - Remove the unused ehci0 and ohci0 nodes from the Keypad Carrier since
+    USB port is peripheral only
 
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: |
-> +      In I2C mode, the device supports up to 32 static addresses.
-> +      In I3C mode, the 'reg' property encodes a triplet of
-> +      <static-address BCR PID> used for device matching.
-> +      Static address is optional if matching is done via PID.
-> +
-> +  nxp,interrupt-mode:
-> +    type: boolean
-> +    description: |
-> +      Enables interrupt mode (TM =3D 1), where alerts are latched until
-> +      cleared by a register read.
-> +      Required for IBI support over I3C. On I2C, both interrupt and
-> +      comparator mode support events.
+Changes in v4:
+  - Disable the default interfaces on the card-edge but keep the pinctrl
+    definitions for them
+  - Split the pinctrl definitions for the SPI interface into the basic spi 
+    pins and the hold/wp pins
+  - Move some mmc0 properties to the Basic Carrier dts
+  - Remove non-removable property from the ESP32 interface
+  - Fix typo in the keypad matrix definition
 
-What David said wrt to this. If it is discoverable from the bus type
-doesn't need a property.
+Changes in v3:
+  - Add missing dcxo node to the SoM dtsi
+  - Rename the multi-led node
+  - Change dr_mode to "peripheral" for the Keypad Carrier
 
-> +
-> +  nxp,fault-queue:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [1, 2, 4, 6]
-> +    description: |
-> +      Number of consecutive temperature limit
-> +      violations required before an alert is triggered.
-> +      valid values:- 1, 2, 4 or 6.
-> +      If unspecified, hardware default (2) is used.
+Changes in v2:
+ - Squash the binding patches into one patch
+ - Fix formatting of the phy node in the SoM dtsi
+ - Add description on where the phy is located in the SoM dtsi
+ - Fix the phy address in the SoM dtsi
+ - Move the carrier bindings into the same description as enums
 
-This is the userspace period control. Don't have it in DT
-as nothing much to do with wiring.
+Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+---
+Lukas Schmid (5):
+  dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
+    board bindings
+  riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
+    Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
+  ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
 
-> +
-> +  assigned-address:
-> +    true
+ .../devicetree/bindings/arm/sunxi.yaml        |   8 +
+ arch/arm/boot/dts/allwinner/Makefile          |   3 +
+ ...n8i-t113s-netcube-nagami-basic-carrier.dts |  67 +++++
+ ...8i-t113s-netcube-nagami-keypad-carrier.dts | 129 +++++++++
+ .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 250 ++++++++++++++++++
+ .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  48 ++++
+ 6 files changed, 505 insertions(+)
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+ create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
 
-Is there not a top level i3c file that we can $ref like tend to do for spi-=
-peripheral-props.yaml?
-Seems not unfortunately but we do need some sort of reference for this.
-
+-- 
+2.39.5
 
 
 
