@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-211137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF371B3DA5C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:56:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6983DB3DA65
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:57:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 757513A6568
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:56:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E1AA3A90BA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:57:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6F34258EDE;
-	Mon,  1 Sep 2025 06:56:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4DA625A631;
+	Mon,  1 Sep 2025 06:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="THgSErlX"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W95QRV/R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E5B321FF44
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 06:56:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7919621FF44
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 06:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756709773; cv=none; b=VTDPT4PAb8D1X35YEKM6QpfWH7MaVjeU18lpQNuYvnBVG8RzG0D2pMt+rouVCLOjANdEfxmB1cIfGTg/EIgkwQB8eesWnnzzV0/f8ehpdlDYIcgJMrsdlBIeaIEb5PIE4ktUB9yb6r2Q6uWMGv3P/kuuoECaM3eD1f4Vi6JBfBQ=
+	t=1756709817; cv=none; b=DMVe2ql6QCC9yYZRAQqllWLK0ahX2iR7tAFoL/+9IGnrA4PfqwCkWzYWV4Yr4zS6LX3V8+xDh0oJGyqHrUlfofESX0H64B9e6uudCgeuSSUXAtxf6ZVtyD1ulL6L+IIMNQN1Iw99/dtHW+FrM6T5dapYHOHOknmcyNxsRl4Qy2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756709773; c=relaxed/simple;
-	bh=Kr7bzmorPtSCUASbDkgAHM3jzfUg4k7jSAJIfdMlUUM=;
+	s=arc-20240116; t=1756709817; c=relaxed/simple;
+	bh=RQx8BbMxP6+7qLnaDn+zVCrc4iYJd8swpHvRNV/hEpg=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fRDEHj2or6P8CAjSUBIWOGKC5iTR6jCWQ2TPtEu5Tx9LzfVzEWASt7ml3NmZWEDfVO16ALJYpMK/eACcUvKr8Tt0poefE6ttK5GfOr0XdmGwWGVfjkiT7mWBZa4h9YEqjXhy5JjGQe6p4wikv8g6v5XkRFC+WEvtLs4ElBEtX1o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=THgSErlX; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 57VND3qM017301
-	for <devicetree@vger.kernel.org>; Mon, 1 Sep 2025 06:56:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EUTMpiJXGYapQKmYjxRPfwmA/QRa+grJXv3ZH9iFjRA=; b=THgSErlXkxFPhrDP
-	QdsXzrF1SbsD/3nYOoVqP/InZd+C12uq6dgO3yUcHhVMuniE+IsH5bkq51bT1YYC
-	+4tS+P15GoMQti7suWRACpJYSXbJRdPbKntmzXZmRCJc7tgEO/Ar7DISVEwPy5x8
-	XKblqNqSKrFOwqyyRC238PKH13UkmLJG+BBGpjMHqVASyfKnS8KRwBm0zSQwm+8S
-	iO4/eyP3wM/E/xL3CRI4NvzQFcm91Mcz8peksXHQECckOvYpZmHSGDEe3uKqI2Tf
-	wDLoXNxRhaLJZNEOLbm+vNAPmwhG+bHFHwGwiEbz9hwEdDI6Jj7MwRC0RsmTUND+
-	Jot0bQ==
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjbmc8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 06:56:11 +0000 (GMT)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77241858ec1so1578419b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 23:56:10 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=u0XqBFrxtvZfUf6NUj6qlqdVZVH2th0VowF/KhtG8ofQx0xnlXFpKiibhJ9KLv74nNM8zA0mhPXihYQvfsHOdXVhiecFElZZ1scwPDdVU2s6ikAGyppJzm1d6EEOCzjcE/4lSPTNrzcv/YGpQFyQcfiid/wM9IUdGnCw4nAr6bM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W95QRV/R; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45b88bff3ebso5655755e9.3
+        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 23:56:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756709813; x=1757314613; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n5gwX0oUoQ1OWBmNFYCauKpaErmMd3o/oWX1X0hG9WI=;
+        b=W95QRV/RbOBJfBGEQbjHkNnMekyMcTCQStmS1SVIu5PBhdpWIDlBizDpcpJUrbgFvH
+         auEQev19wXCW/6lgcMenHMXKzfYrrNcjHbvPfuLKJL2LHwm88QpnbbynZDx+3Wvpl3/6
+         8v8QhwriwITf4ah1jBd6WtyiHAuJlqxBX7yu7+oXyN0qW5EqJqIjarFGdTDP1ujTov5z
+         IOlZ/7Aw6rUBTk23e1UGxjLKTu6qyjedVQQROAj3dTQTajzumSdGbYTUfKFI7JOOqA7O
+         FJct651te5sv+6bza4lmiYmHXQMyE1Soa9bXA++JwSG045fHSHAtjWqaiUdzpxBYgslf
+         7cRA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756709770; x=1757314570;
+        d=1e100.net; s=20230601; t=1756709813; x=1757314613;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EUTMpiJXGYapQKmYjxRPfwmA/QRa+grJXv3ZH9iFjRA=;
-        b=rCCMhRPXwZ8JbbFcAyvk3WZBv5qa4YbHwiw44fQSrhR3lGd/gU9GTJO1UzXBNMRsHU
-         vYjSsxZCQC9nM3YSgiHOut1MsAvICkexHLWSZ0GUTAmrQKgLW3BMx0u/4SCNJEuzM0IG
-         TBS7hvOFcbDKGh99iV0SEeGo/BF1d5186Gydnp1hKqffTV2DQecRGrArvnObb8GdIjnJ
-         ifwUWlBHofGAS3Q13LBdfAP4j4bv78G0EBaLUVUDY9tHTuIqe0d2qyvlr5OufhNSqPyn
-         s4WDTiC8dI1M674bRaNO/wR+OL0RpD7Marbla+/N5cTcj+wVbrC2a+ZpBC76wXY7zJw2
-         ubog==
-X-Forwarded-Encrypted: i=1; AJvYcCV+amGl3PMlTlTAG73C8Bd6c+oUAD/OtVSYtIZ7cU8meMD0g/3heDtJGPfM6+sYOwjm/aWK3HCThv9T@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwS2z8ySzGc4cb26uL7S2FBhAMtOxbPyguEYK9RG+UxW+i+euB
-	ZlHyrDVUZKO6xjjoWQOwZNfxm3aoJOWj8jXdCXrwjcUuwpaIg5+/puZ6Tx/9+k5RvMwaBAzwKRb
-	1bnVxHFDYHWY4q/tA2VDWYvNIgo4IYg/RNFwsPP9qKUIdYKEiNqov6hzxEXsdSw4/
-X-Gm-Gg: ASbGncvMW1DLT40n8wJaPmi9h0le5M3DfBh3jtuim9DofCs9xsUVANf/oBGogE4Ajw9
-	hz5AbwSaHCYpnTIaa0Nth0U/0LRPhc9jNDoaXatmRLER4adIudyQ9f8YN7C6806gzhNNDL8edGl
-	8vmOWYWVbmmYpsKPP98YXzpcKm1PLcMpKwJm1aKrxoSkkYTAP+pQx4xYaQ2qLRiUYn4kGh8XUE2
-	TJCjqtk34Qu4AZf2xCJXdolW5hR1752SqsFf7Z9/M7zkmTdBEWNhEUS4U13WR/Qcl+owGsl2S+3
-	T/uLs2auZCR7eEmCP7rXfiOEVC2cdQsuw34FW4tFxIU5sEd5SXghS2jR9hItHnl3+o7CYQONdhS
-	BEH0ZcGz/Byi0cYORONA5zVA9o9lpw3NNmg==
-X-Received: by 2002:a05:6a20:7fa8:b0:243:a91c:6564 with SMTP id adf61e73a8af0-243d6f431a3mr8852512637.50.1756709769859;
-        Sun, 31 Aug 2025 23:56:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHSaKYhdRZRLVbaVGgPFjyPsISXyEB6DA5LnZU9TaTrGjeZVotxSEaTfa85XU0yVwRM0haE6w==
-X-Received: by 2002:a05:6a20:7fa8:b0:243:a91c:6564 with SMTP id adf61e73a8af0-243d6f431a3mr8852476637.50.1756709769320;
-        Sun, 31 Aug 2025 23:56:09 -0700 (PDT)
-Received: from ?IPV6:2405:201:c40a:785d:2c0b:e596:ead5:2f45? ([2405:201:c40a:785d:2c0b:e596:ead5:2f45])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7724284fa02sm5689324b3a.102.2025.08.31.23.55.59
+        bh=n5gwX0oUoQ1OWBmNFYCauKpaErmMd3o/oWX1X0hG9WI=;
+        b=QdtVH3J6+2ykvUBNR2Sam/q0IdPMyd57ZymmkooxOcrkm79sji/3XHucq7gwQJP0WC
+         5N8wHMi5zj2Jxce7BXj0ZZKV81/AS1BX8He3AIyUCTV3MmAorK9kLeKSfn0/gDFLdNUH
+         7Sb9Glk7O4Cqfl5lhICHqBODY0O8rv0FIqCX7knyZCVfu4jzTZP6CaUOZdeZDwtvmjXQ
+         kl4AUCKJxh+pS6McW3q3ksX5THRUbc67mLP7zup61SCbM+B8Q8NDOo/lUi48m6MGbQ5J
+         9wszvMZsR9cwa4sY5Itkx6IKeYzMK/z++2k2BYrhBb/mOZ6L5w++KkmIH6Cddd3/EFVC
+         TQMA==
+X-Forwarded-Encrypted: i=1; AJvYcCXIISp7QU1dKUSPY1tQE4mSxoWugSDWWlaBm/4+K42TA24cqCoT9VyYfrCpd2VUYw8BCSfDQ4DmTLog@vger.kernel.org
+X-Gm-Message-State: AOJu0YyElOOt7JjzzKPJz+RipJqfFvOB9Vpehg0q5QCizmqf2gqRUsYs
+	7huo2JGsd5l3Yml7KxSmNJ6UY48gO0rQL5vloB8AfgBKNY9GmwEHonqrye9QXw0NTKI=
+X-Gm-Gg: ASbGncvcTh1GL/juTtfLfBhkBq+rLG0yjltipN3d/KoP4NEDdQbEWTqxjsSo4FhBa3W
+	gh0XSJxdYZgnJz/Q2rnc5QQ8tt614FLGvqgSAMUtRMWlDplzRCNqgYwXu0sy0PMnEZpzMm5LRCz
+	ySJt68hb+YrVwfFx+3JXtR949fxdQLpzM8DtQ2TTcdF4h2tB1W9ryBYi61sQvQG4NHsq99jteWb
+	sp4YAUAPZhGlO41gRhaRZKNw2jMQ44rJiNO7kgNSdR7MTB0U4lVa6bsdtzz9Kx5kN4+G/E5iKgm
+	XINi8mB0owLDhkrwcPuMrRyPrgmT614A5jPg7VGvR5wTnZ8puFNXoDOj8k71Aiuj1XdvodSq8r0
+	LTbbL3Eq9DiBFKT9BSh67cD/BVwY0EtLSuVnCYYrM
+X-Google-Smtp-Source: AGHT+IFTyDtYclqmVOzGIS9ZJjlqs10NwWpon1hN8bxRSUY5lhRzsuWs0h2u4qUYWfT36TppjXjdDQ==
+X-Received: by 2002:a05:6000:40ce:b0:3d5:f5ef:3bb with SMTP id ffacd0b85a97d-3d5f5ef0766mr2382494f8f.11.1756709812699;
+        Sun, 31 Aug 2025 23:56:52 -0700 (PDT)
+Received: from [192.168.0.251] ([79.115.63.1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d12c90a01bsm11387089f8f.31.2025.08.31.23.56.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Aug 2025 23:56:08 -0700 (PDT)
-Message-ID: <3cbe6692-2ada-4034-8cb2-bc246bca5611@oss.qualcomm.com>
-Date: Mon, 1 Sep 2025 12:25:58 +0530
+        Sun, 31 Aug 2025 23:56:52 -0700 (PDT)
+Message-ID: <761936e8-1626-47f8-b3f5-ebc62f4a409b@linaro.org>
+Date: Mon, 1 Sep 2025 07:56:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,87 +82,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping
-To: Manivannan Sadhasivam <mani@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
-        quic_vpernami@quicinc.com, mmareddy@quicinc.com
-References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
- <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
- <ymsoyadz2gkura5evnex3m6jeeyzlcmcssdyuvddl25o5ci4bo@6ie4z5tgnpvz>
+Subject: Re: [PATCH v2 4/5] firmware: exynos-acpm: register ACPM clocks dev
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org>
+ <20250827-acpm-clk-v2-4-de5c86b49b64@linaro.org>
+ <e8346a38-fef7-482f-81ab-20621988b047@kernel.org>
 Content-Language: en-US
-From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-In-Reply-To: <ymsoyadz2gkura5evnex3m6jeeyzlcmcssdyuvddl25o5ci4bo@6ie4z5tgnpvz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <e8346a38-fef7-482f-81ab-20621988b047@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b5438b cx=c_pps
- a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=8Rd1e7yjQrnBmPj41GQA:9
- a=QEXdDO2ut3YA:10 a=OpyuDcXvxspvyRM73sMx:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: Qedtgw5LjF6JzGpKQ5oGxhJehWfgMYKl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX9vyw5j5eVXo5
- Ujth1aBHjIVcCV6M5uLmHL2VKmPO/hAL8mhvD29YB8BkmCD1tl7xbFQszq/WGG+upETmmO1xo7Q
- qOm0XMUfX+RdolvPl68zYp4zSQ0XolM4bL1W1/B2F6p3NmfU3T13/QGY10s9kW4mcaYORXf4dpi
- E82/LsK7wxIo4XqoJyF/Xfn0FhvaM4l9Z3t2L5zL4AbTDCp7FTcxxtbwiFFagWEPNj29MR/Enet
- OiV1VcfPGFvB9Dll1uyLpTnX8A65V7WfE1mMXbzPJ2VpHAp/cFE6ZTpOUUDlPU6td5sQ8PsKeXp
- hTFRiquAH5Pdy/5efJ0T896Tuvx4r5jfBXW2x03pXXUoVjVrF0Sti7TIBB3I10EvR3gJ1lMdtsK
- j+edkCm/
-X-Proofpoint-ORIG-GUID: Qedtgw5LjF6JzGpKQ5oGxhJehWfgMYKl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-01_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
 
 
-On 8/31/2025 5:18 PM, Manivannan Sadhasivam wrote:
-> On Thu, Aug 28, 2025 at 01:04:23PM GMT, Krishna Chaitanya Chundru wrote:
->> External Local Bus Interface(ELBI) registers are optional registers in
->> DWC IPs having vendor specific registers.
->>
->> Since ELBI register space is applicable for all DWC based controllers,
->> move the resource get code to DWC core and make it optional.
->>
->> Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
->> ---
->>   drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++++
->>   drivers/pci/controller/dwc/pcie-designware.h | 1 +
->>   2 files changed, 10 insertions(+)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
->> index 89aad5a08928cc29870ab258d33bee9ff8f83143..4684c671a81bee468f686a83cc992433b38af59d 100644
->> --- a/drivers/pci/controller/dwc/pcie-designware.c
->> +++ b/drivers/pci/controller/dwc/pcie-designware.c
->> @@ -167,6 +167,15 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
->>   		}
->>   	}
->>   
->> +	if (!pci->elbi_base) {
+On 8/31/25 11:50 AM, Krzysztof Kozlowski wrote:
+> On 27/08/2025 14:42, Tudor Ambarus wrote:
+>> +
+>> +static const struct acpm_clk_variant gs101_acpm_clks[] = {
+>> +	ACPM_CLK(CLK_ACPM_DVFS_MIF, "mif"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_INT, "int"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL0, "cpucl0"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL1, "cpucl1"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL2, "cpucl2"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_G3D, "g3d"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_G3DL2, "g3dl2"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_TPU, "tpu"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_INTCAM, "intcam"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_TNR, "tnr"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_CAM, "cam"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_MFC, "mfc"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_DISP, "disp"),
+>> +	ACPM_CLK(CLK_ACPM_DVFS_BO, "b0"),
+>> +};
 > 
-> Why this check is needed? Are we expecting any DWC glue drivers to supply
-> 'dw_pcie::elbi_base' on their own?
-> 
-I was following the same way that existed for for dbi_base, where we are
-allowing DWC glue drivers to supply if they had any different approach
-like ./pci-dra7xx.c driver.
+> I don't understand why clocks are defined in the firmware driver, not in
+> the clock driver.
 
-- Krishna Chaitanya.
-> - Mani
+I chose to define the clocks in the firmware driver and pass them as 
+platform data to the clock platform device for extensibility. In case
+other SoCs have different clock IDs, they'll be able to pass the
+clock data without needing to modify the clock driver. GS201 defines
+the same ACPM clocks as GS101, but I don't have access to other newer
+SoCs to tell if the ACPM clocks differ or not.
+
+The alternative is to define the clocks in the clock driver and
+use platform_device_register_simple() to register the clock platform
+device. The clock driver will be rigid in what clocks it supports.
+
+I'm fine either way for now. What do you prefer?
+
 > 
+> This creates dependency of this patch on the clock patch, so basically
+> there is no way I will take it in one cycle.
+
+Would it work to have an immutable tag for the clock and samsung-soc
+subsytems to use?
+
+> 
+>> +
+>>  /**
+>>   * acpm_get_saved_rx() - get the response if it was already saved.
+>>   * @achan:	ACPM channel info.
+>> @@ -606,6 +636,7 @@ static void acpm_setup_ops(struct acpm_info *acpm)
+>>  
+>>  static int acpm_probe(struct platform_device *pdev)
+>>  {
+>> +	const struct acpm_clk_platform_data *acpm_clk_pdata;
+>>  	const struct acpm_match_data *match_data;
+>>  	struct device *dev = &pdev->dev;
+>>  	struct device_node *shmem;
+>> @@ -647,7 +678,30 @@ static int acpm_probe(struct platform_device *pdev)
+>>  
+>>  	platform_set_drvdata(pdev, acpm);
+>>  
+>> -	return devm_of_platform_populate(dev);
+>> +	acpm_clk_pdata = match_data->acpm_clk_pdata;
+>> +	acpm->clk_pdev = platform_device_register_data(dev, "acpm-clocks",
+>> +						       PLATFORM_DEVID_NONE,
+>> +						       acpm_clk_pdata,
+>> +						       sizeof(*acpm_clk_pdata));
+>> +	if (IS_ERR(acpm->clk_pdev))
+>> +		return dev_err_probe(dev, PTR_ERR(acpm->clk_pdev),
+>> +				     "Failed to register ACPM clocks device.\n");
+>> +
+>> +	ret = devm_of_platform_populate(dev);
+>> +	if (ret) {
+>> +		platform_device_unregister(acpm->clk_pdev);
+> 
+> I think this should stick to devm-interfaces everywhere, not mix them,
+> to have exactly expected cleanup sequence. Now your remove() first
+> unregisters and then de-populates, which is different order than it was
+> done in probe(). Use devm-action handler for device unregistering.
+> 
+
+Right, I will take a look. Thanks!
+ta
 
