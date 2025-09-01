@@ -1,170 +1,372 @@
-Return-Path: <devicetree+bounces-211383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83C6DB3EE7C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:39:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C5CAB3EE82
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:41:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4764018858FE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 19:40:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2D03200FF4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 19:41:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38988320A27;
-	Mon,  1 Sep 2025 19:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 664F032A83E;
+	Mon,  1 Sep 2025 19:41:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fL4axDNT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f0iYBfwv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DDB530649B;
-	Mon,  1 Sep 2025 19:39:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377D619C560;
+	Mon,  1 Sep 2025 19:41:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756755585; cv=none; b=ME2v0HUG8VA/ebanFuTk33mKKVcN3x1i9pECFv82aRAqaCYKpx6bX+Pp9IcAOs226bysDtzvVduOzaW8N9DwdyCJMrH4cTf+FMknHZemdl+8G7YKbNSHyblkSEWtGpKhxdctvieCUDSZ/Sddht6cc3jWrINhi084ccI3lDT8LBI=
+	t=1756755665; cv=none; b=AG840toZpie8YnK3Gf/d9h2O9+D3KfjBgvW03GrSGW2zfLisicz4aBO5eWUTuZJkHO0ckHzNK4w8eN7saNKpDp+XcGV+H1TaXC9bRKX09feW4WEdu+jmMbjHGZ7a4ShtMtNIsPaBqRZGIAABNyDOyjPOJnJaffbyWkNkMuBjngM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756755585; c=relaxed/simple;
-	bh=FTzCzjBGAU2zAILYt8Knw8sq1x901Xv+8Ef4qzFjAA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J5caGSO2L7WZ1hu2YYLEzja0RAGG2/ImiOqtKIz9zp1TaYc/4MhQ1eS4DD1UTnqcnq19tUHHhZdrTJ/dntaLGuFLaDuPfPBNwgn0c8I11/RiqlCssEvR7HvDi07039m6+xD/B1CtbFyxZL7/YCDh/KNayLgYO5sCkGs9Qz8AHGk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fL4axDNT; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45b8b1a104cso14539325e9.2;
-        Mon, 01 Sep 2025 12:39:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756755582; x=1757360382; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6X9nbNsT+7iMStoNetBnrQA9tNd6eAxAU3Fq1XXKe/8=;
-        b=fL4axDNT580KMA7L6VmPoGAYYuSGStvc7Yf00SCD8SF94kGyaXdzEzYne0RU3xTB8C
-         kmCp244ucmlo1/e2meCceN6q47fO2DMteqD888B5sL3YgANOm2fEg5zNJvAi90mbaLzF
-         KFLvkOPDaUgoOrKa6Zpuwbk9HYCOjRKohsLtDFQH8c1mIiV5UAfQRsLLUfCr1QaxVsZG
-         C5KP7xJVsl/N7ZjbCbW7ASCv416UaiWP196UJpfWuW69U8gOXPejX4k+j8IP6QxveQ6S
-         g7aVMiEmD9B51vyeL22zQyWiqbRZiIKDf+spd/LACN8d/IPojhsWNuqIaa1cPWmqD5nI
-         xIjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756755582; x=1757360382;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6X9nbNsT+7iMStoNetBnrQA9tNd6eAxAU3Fq1XXKe/8=;
-        b=IBqpCh5qmEqMSQR0IaXZbUccRAkE154FzU3S/ZGEAIpjl0fhoJUOnT04c6MLI5Lpm6
-         JrBHxmJOUXST9UhILpnjfNQ0B2YCrVlwxva3U2iletZnjjai+WmXaB8hYChRNit4sTGb
-         dcPfuMbEEyGo7HN9zuNGvbCkzHdgJqffp4p/+GiwHCpEIAJNJlKpO9GU4Vbt0FZ1d0t/
-         cMGlQZqig7qpOC7ynpShfHvfOhmxJeEZePY4Ht3j+I/i1rIzgjkNd3+5P3r3S0vfYV6j
-         YysB/EPNhNdEkbGvN9IAPOExZOHyhvyoaJRPDDdptq96nkV4oRQbjxwwon4mHwsrqjgz
-         TVLg==
-X-Forwarded-Encrypted: i=1; AJvYcCX2FEVYrVS9SslAdtg6MBPasnSrKaoKjDPns57Mm8OtYZfsaZqdqn/qLoy/WAYoeWKkDnIQ3fe3@vger.kernel.org, AJvYcCXSQqEgbLZfaSToQ0lH3OU2Es+NbupwJvzT0gFy9i7B7ZWC6JgPre/7LKhsCm5Jkh45KisqZMLJug7i@vger.kernel.org
-X-Gm-Message-State: AOJu0YxOu9Q36NUvhiUV31vnrrlqCzIXXMboHhQpR0njPGS9GUzq5EXu
-	uUXj8MrZ/DMOZ+w5uh25hKb5cdFddoFJvUb1PwFUcKiZ+S5ai/HRrc4l
-X-Gm-Gg: ASbGncuBpp155imTTCHMDL3I1f7PeGEthTNbXPPXU5yvufKmC6E3QjU2/26oq/MNyq4
-	XI1eabpvzW6ZoJ/SARdYxtvVwAjFHCWVs90tXkuC6SeiT0ioAItebjfrXSrRo1fVHXkYJ+z8L3V
-	9P69V8nQFlR9NmR+pz1BTnWSw+8W1pZ3/z4fz9shuPhMAZveBMv02U1C8BkQ6csnQwzg82awRdD
-	vPR8rbeU4ZoKCGNmALW+0VjssDo/0OzUtW9m4W0q4EWjlN5S94jp1O1UFbogYmGMthssvnjA0G4
-	FTaGwc0sYjWJhPalHgu52EBtnNvVcRuG9DaOwrmMUO1zQx1NWsp5JrB2g2XAexCMK7sPr21FpNF
-	5iWllEJ6/Rk1XvNZsI1FAkvIY92xH44pS/Nzr3L85LSHq6aafiNiOdxW/r/cw3N6nVKHbA7Wkoo
-	ZPmjb6pZTCLJBiMdubrSXVIXSaccqxBFLC13bRyycPoXftK+wh5fHOePuYbqfLfRHeRt5f6kL4S
-	9al8YYo
-X-Google-Smtp-Source: AGHT+IEWv4ofu5GOeP6vg+xN0NWGIpi5fyqMqNzrzpvalEPnH1srOBCGFXpz/ezELB/XIzilfqMKiQ==
-X-Received: by 2002:a05:600c:3b16:b0:459:d709:e5d4 with SMTP id 5b1f17b1804b1-45b8549c493mr71879185e9.0.1756755581598;
-        Mon, 01 Sep 2025 12:39:41 -0700 (PDT)
-Received: from ?IPV6:2003:ea:8f36:d00:7965:aa82:4012:7ac0? (p200300ea8f360d007965aa8240127ac0.dip0.t-ipconnect.de. [2003:ea:8f36:d00:7965:aa82:4012:7ac0])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3d6376546c6sm6863169f8f.60.2025.09.01.12.39.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Sep 2025 12:39:40 -0700 (PDT)
-Message-ID: <a5411ede-5312-4510-a559-e3b09e7e763b@gmail.com>
-Date: Mon, 1 Sep 2025 21:39:44 +0200
+	s=arc-20240116; t=1756755665; c=relaxed/simple;
+	bh=wOOOkXIryu8rOSbBi5Cjd3s24L10n/BjeLfojfJtkuw=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ims8Es1H3kzF5tYCc/K0LmW6zho5dT2yPNvpRmuvyj2e67hePjFmzD0RLBeTY7tiaHwJmbFPWIm55G7vPWgnwFsEM7hP7zwnWviEj1fRiNbSoNLyS0OVskWLXHCLHrAl8D+MSlbwMapjG4gBoLmpHRtmMdG/2+vmHHDgfMDX0wU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f0iYBfwv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 978E8C4CEF5;
+	Mon,  1 Sep 2025 19:41:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756755664;
+	bh=wOOOkXIryu8rOSbBi5Cjd3s24L10n/BjeLfojfJtkuw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=f0iYBfwvkiq5BPWCcodZSg0DRF130UuefySDD90q7vbit8anK7a0jXVz2IgTM4Of8
+	 PcaUO8zjyW27vwe5oNL5tYqUYGBMxq9fB8WMqxzt97eHnm4Rm5smuuowufGtZ+AdYW
+	 ZdOvFvBWgCS+E2a2ruoi2hI67rFkEzzOFiTadEJOPbVAdjd8SZ3ifICkJDLjgWLoIR
+	 j4G+bR5qgUZKCYbeEpSW5LBWmWBTjc2QPwxFLzQVMLyLt977LI7Ivk6wQ5eND8qa82
+	 uUJayNPZCnMc0DUoEP72og8MtczWD/j91T6hGZ4JMmGHGQf7R3boGVjTihHGzrc8GB
+	 EA/Do2w5WpQzA==
+Date: Mon, 1 Sep 2025 20:40:55 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Bharadwaj Raju <bharadwaj.raju777@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, shuah@kernel.org,
+ linux-kernel-mentees@lists.linux.dev
+Subject: Re: [PATCH 5/5] iio: imu: icm20948: add runtime power management
+ support
+Message-ID: <20250901204055.106e6f42@jic23-huawei>
+In-Reply-To: <20250831-icm20948-v1-5-1fe560a38de4@gmail.com>
+References: <20250831-icm20948-v1-0-1fe560a38de4@gmail.com>
+	<20250831-icm20948-v1-5-1fe560a38de4@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/5] arm64: dts: ls1043a-qds: switch to new
- fixed-link binding
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>, Andrew Lunn <andrew@lunn.ch>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>,
- David Miller <davem@davemloft.net>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "netdev@vger.kernel.org" <netdev@vger.kernel.org>
-References: <a3c2f8d3-36e6-4411-9526-78abbc60e1da@gmail.com>
- <fe4c021d-c188-4fc2-8b2f-9c3c269056eb@gmail.com>
- <aLNst1V_OSlvpC3t@shell.armlinux.org.uk>
-Content-Language: en-US
-From: Heiner Kallweit <hkallweit1@gmail.com>
-Autocrypt: addr=hkallweit1@gmail.com; keydata=
- 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
-In-Reply-To: <aLNst1V_OSlvpC3t@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On 8/30/2025 11:27 PM, Russell King (Oracle) wrote:
-> On Sat, Aug 30, 2025 at 12:27:23PM +0200, Heiner Kallweit wrote:
->> The old array-type fixed-link binding has been deprecated
->> for more than 10 yrs. Switch to the new binding.
+On Sun, 31 Aug 2025 00:12:49 +0530
+Bharadwaj Raju <bharadwaj.raju777@gmail.com> wrote:
+
+> Implement runtime power management support for the ICM20948
+> sensor. The device autosuspends after 2 seconds of idle time.
+
+This is an unusual feature to bring in at this point in developing
+a driver, but fair enough if you want to it doesn't hurt!
+
+Anyhow, various comments inline and requests for more information.
+
+Jonathan
+
+
 > 
-> ... and the fact we have device trees that use it today means that we
-> can't remove support for it from the kernel.
+> Signed-off-by: Bharadwaj Raju <bharadwaj.raju777@gmail.com>
+> ---
+>  drivers/iio/imu/inv_icm20948/Makefile             |  1 +
+>  drivers/iio/imu/inv_icm20948/inv_icm20948.h       |  7 +++
+>  drivers/iio/imu/inv_icm20948/inv_icm20948_core.c  |  3 +-
+>  drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c  | 28 ++++++---
+>  drivers/iio/imu/inv_icm20948/inv_icm20948_power.c | 73 +++++++++++++++++++++++
+>  drivers/iio/imu/inv_icm20948/inv_icm20948_temp.c  | 15 +++--
+>  6 files changed, 114 insertions(+), 13 deletions(-)
 > 
-> I think it would make sense to update the dts files, and add a noisy
-> warning when we detect that it's being used to prevent future usage.
+> diff --git a/drivers/iio/imu/inv_icm20948/Makefile b/drivers/iio/imu/inv_icm20948/Makefile
+> index 88a37be159e1d6f575da1c070c84ac94cd963020..0a17ad1c003e6a93f3431f7a998e56cdf975d245 100644
+> --- a/drivers/iio/imu/inv_icm20948/Makefile
+> +++ b/drivers/iio/imu/inv_icm20948/Makefile
+> @@ -4,6 +4,7 @@ obj-$(CONFIG_INV_ICM20948) += inv-icm20948.o
+>  inv-icm20948-y += inv_icm20948_core.o
+>  inv-icm20948-y += inv_icm20948_temp.o
+>  inv-icm20948-y += inv_icm20948_gyro.o
+> +inv-icm20948-y += inv_icm20948_power.o
+>  
+>  obj-$(CONFIG_INV_ICM20948_I2C) += inv-icm20948-i2c.o
+>  inv-icm20948-i2c-y += inv_icm20948_i2c.o
+> diff --git a/drivers/iio/imu/inv_icm20948/inv_icm20948.h b/drivers/iio/imu/inv_icm20948/inv_icm20948.h
+> index ca2513114378cdcba5bc315fc94cd61f930b4dfa..194dcccabc2162334779b285320187c7ff1f5236 100644
+> --- a/drivers/iio/imu/inv_icm20948/inv_icm20948.h
+> +++ b/drivers/iio/imu/inv_icm20948/inv_icm20948.h
+> @@ -13,10 +13,13 @@
+>   #include <linux/i2c.h>
+>   #include <linux/iio/iio.h>
+>   #include <linux/err.h>
+> + #include <linux/pm_runtime.h>
+>  
+>  /* accel takes 20ms, gyro takes 35ms to wake from full-chip sleep */
+>   #define INV_ICM20948_SLEEP_WAKEUP_MS 35
+>  
+> + #define INV_ICM20948_SUSPEND_DELAY_MS 2000
+I'd just use the value inline.  It should only be in one place
+and the meaning of the value there is well understood by reviewers.
+
+> +
+>   #define INV_ICM20948_REG_BANK_SEL 0x7F
+>   #define INV_ICM20948_BANK_SEL_MASK GENMASK(5, 4)
+>  
+> @@ -46,6 +49,8 @@
+>  
+>  extern const struct regmap_config inv_icm20948_regmap_config;
+>  
+> +extern const struct dev_pm_ops inv_icm20948_pm_ops;
+> +
+>  enum inv_icm20948_gyro_fs {
+>  	INV_ICM20948_GYRO_FS_250 = 0,
+>  	INV_ICM20948_GYRO_FS_500 = 1,
+> @@ -82,4 +87,6 @@ extern int inv_icm20948_core_probe(struct regmap *regmap);
+>  struct iio_dev *inv_icm20948_temp_init(struct inv_icm20948_state *state);
+>  struct iio_dev *inv_icm20948_gyro_init(struct inv_icm20948_state *state);
+>  
+> +int inv_icm20948_pm_setup(struct inv_icm20948_state *state);
+> +
+>   #endif
+> diff --git a/drivers/iio/imu/inv_icm20948/inv_icm20948_core.c b/drivers/iio/imu/inv_icm20948/inv_icm20948_core.c
+> index eb4f940de7013bf4ddeb69b6380a60fbde49964a..e6e670d96e40c3663e55d1545b52f609603a02ed 100644
+> --- a/drivers/iio/imu/inv_icm20948/inv_icm20948_core.c
+> +++ b/drivers/iio/imu/inv_icm20948/inv_icm20948_core.c
+> @@ -101,7 +101,7 @@ static int inv_icm20948_setup(struct inv_icm20948_state *state)
+>  	if (IS_ERR(state->gyro_dev))
+>  		return PTR_ERR(state->gyro_dev);
+>  
+> -	return 0;
+> +	return inv_icm20948_pm_setup(state);
+>  }
+>  
+>  int inv_icm20948_core_probe(struct regmap *regmap)
+> @@ -113,6 +113,7 @@ int inv_icm20948_core_probe(struct regmap *regmap)
+>  	state = devm_kzalloc(dev, sizeof(*state), GFP_KERNEL);
+>  	if (!state)
+>  		return -ENOMEM;
+> +	dev_set_drvdata(dev, state);
+>  
+>  	state->regmap = regmap;
+>  	state->dev = dev;
+> diff --git a/drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c b/drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c
+> index 2d4d598eb21c8ce98d4ee3c72504554ab49ea596..9cefb47a46b1a323202aa84f0de647d7b7b89728 100644
+> --- a/drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c
+> +++ b/drivers/iio/imu/inv_icm20948/inv_icm20948_gyro.c
+
+>  
+>  static int inv_icm20948_gyro_read_sensor(struct inv_icm20948_state *state,
+> @@ -99,23 +103,25 @@ static int inv_icm20948_gyro_read_sensor(struct inv_icm20948_state *state,
+>  		return -EINVAL;
+>  	}
+>  
+> +	pm_runtime_get_sync(state->dev);
+> +
+>  	__be16 raw;
+>  	int ret = regmap_bulk_read(state->regmap, reg, &raw, sizeof(raw));
+>  
+>  	if (ret)
+> -		return ret;
+> +		goto out;
+>  
+>  	*val = (s16)be16_to_cpu(raw);
+>  
+> -	return 0;
+> +out:
+> +	pm_runtime_put_autosuspend(state->dev);
+
+A common thing to do when runtime pm is involved is to have a wrapper function
+around the main code.  That wrapper then deals with runtime pm, but lets you
+use direct returns in the inner function, which tends to improve readability.
+
+> +	return ret;
+>  }
+>  
+>  static int inv_icm20948_gyro_read_calibbias(struct inv_icm20948_state *state,
+>  					    struct iio_chan_spec const *chan,
+>  					    int *val, int *val2)
+>  {
+> -	guard(mutex)(&state->lock);
+> -
+>  	unsigned int reg;
+>  
+>  	switch (chan->channel2) {
+> @@ -133,8 +139,11 @@ static int inv_icm20948_gyro_read_calibbias(struct inv_icm20948_state *state,
+>  	}
+>  
+>  	__be16 offset_raw;
+> +
+> +	pm_runtime_get_sync(state->dev);
+>  	int ret = regmap_bulk_read(state->regmap, reg, &offset_raw,
+>  				   sizeof(offset_raw));
+> +	pm_runtime_put_autosuspend(state->dev);
+>  
+>  	if (ret)
+>  		return ret;
+> @@ -216,8 +225,6 @@ static int inv_icm20948_write_calibbias(struct inv_icm20948_state *state,
+>  					struct iio_chan_spec const *chan,
+>  					int val, int val2)
+>  {
+> -	guard(mutex)(&state->lock);
+> -
+>  	unsigned int reg;
+>  
+>  	switch (chan->channel2) {
+> @@ -246,8 +253,13 @@ static int inv_icm20948_write_calibbias(struct inv_icm20948_state *state,
+>  	s16 offset = clamp(offset64, (s64)S16_MIN, (s64)S16_MAX);
+>  	__be16 offset_write = cpu_to_be16(offset);
+>  
+> -	return regmap_bulk_write(state->regmap, reg, &offset_write,
+> +	pm_runtime_get_sync(state->dev);
+> +	mutex_lock(&state->lock);
+> +	int ret = regmap_bulk_write(state->regmap, reg, &offset_write,
+>  				 sizeof(offset_write));
+> +	mutex_unlock(&state->lock);
+> +	pm_runtime_put_autosuspend(state->dev);
+> +	return ret;
+>  }
+>  
+>  static int inv_icm20948_gyro_write_raw(struct iio_dev *gyro_dev,
+> diff --git a/drivers/iio/imu/inv_icm20948/inv_icm20948_power.c b/drivers/iio/imu/inv_icm20948/inv_icm20948_power.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..1281a5e5acb539cd3f91ca8ed8d52371f330b60a
+> --- /dev/null
+> +++ b/drivers/iio/imu/inv_icm20948/inv_icm20948_power.c
+
+Don't have a separate file for this. It is not that much code so much more
+obvious to just have it in the core file.
+
+> @@ -0,0 +1,73 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) 2025 Bharadwaj Raju <bharadwaj.raju777@gmail.com>
+> + */
+> +
+> +#include "inv_icm20948.h"
+> +
+> +static int inv_icm20948_suspend(struct device *dev)
+> +{
+> +	if (pm_runtime_suspended(dev))
+> +		return 0;
+> +
+> +	struct inv_icm20948_state *state = dev_get_drvdata(dev);
+> +
+> +	guard(mutex)(&state->lock);
+
+What data is this mutex protecting here?  Regmap has it's own locks
+internally and I'm not immediately sure what else needs to be protected
+against races.
+
+> +
+> +	return regmap_write_bits(state->regmap, INV_ICM20948_REG_PWR_MGMT_1,
+> +				 INV_ICM20948_PWR_MGMT_1_SLEEP,
+> +				 INV_ICM20948_PWR_MGMT_1_SLEEP);
+> +}
+> +
+> +static int inv_icm20948_resume(struct device *dev)
+> +{
+> +	struct inv_icm20948_state *state = dev_get_drvdata(dev);
+> +
+> +	guard(mutex)(&state->lock);
+> +
+> +	pm_runtime_disable(state->dev);
+> +	pm_runtime_set_active(state->dev);
+> +	pm_runtime_enable(state->dev);
+
+Which device is this on?  I'd not expect to typically see runtime pm state
+manipulated in runtime pm ops for another device. The parent /child relationships
+etc (more complex options exist) should deal with that.
+> +
+> +	int ret = regmap_write_bits(state->regmap, INV_ICM20948_REG_PWR_MGMT_1,
+> +				    INV_ICM20948_PWR_MGMT_1_SLEEP, 0);
+> +	if (ret)
+> +		return ret;
+> +
+> +	msleep(INV_ICM20948_SLEEP_WAKEUP_MS);
+> +
+> +	return 0;
+> +}
+> +
+> +static void inv_icm20948_pm_disable(void *data)
+> +{
+> +	struct device *dev = data;
+> +
+> +	pm_runtime_put_sync(dev);
+> +	pm_runtime_disable(dev);
+> +}
+> +
+> +int inv_icm20948_pm_setup(struct inv_icm20948_state *state)
+> +{
+> +	struct device *dev = state->dev;
+> +
+> +	guard(mutex)(&state->lock);
+> +
+> +	int ret;
+> +
+> +	ret = pm_runtime_set_active(dev);
+> +	if (ret)
+> +		return ret;
+> +	pm_runtime_get_noresume(dev);
+> +	pm_runtime_enable(dev);
+> +	pm_runtime_set_autosuspend_delay(dev, INV_ICM20948_SUSPEND_DELAY_MS);
+> +	pm_runtime_use_autosuspend(dev);
+> +	pm_runtime_put(dev);
+> +
+> +	return devm_add_action_or_reset(dev, inv_icm20948_pm_disable, dev);
+> +}
+> +
+> +EXPORT_NS_GPL_DEV_PM_OPS(inv_icm20948_pm_ops, IIO_ICM20948) = {
+> +	SYSTEM_SLEEP_PM_OPS(inv_icm20948_suspend, inv_icm20948_resume)
+> +	RUNTIME_PM_OPS(inv_icm20948_suspend, inv_icm20948_resume, NULL)
+If you want to use runtime pm ops for both this is not how it is done.
+See DEFINE_RUNTIME_DEV_PM_OPS()
+
+> +};
+> diff --git a/drivers/iio/imu/inv_icm20948/inv_icm20948_temp.c b/drivers/iio/imu/inv_icm20948/inv_icm20948_temp.c
+> index 916053740cc5acda0316c76504d4086eff5ec7f0..6e17b3719301d6d7f005d545587f558fcadd2f40 100644
+> --- a/drivers/iio/imu/inv_icm20948/inv_icm20948_temp.c
+> +++ b/drivers/iio/imu/inv_icm20948/inv_icm20948_temp.c
+> @@ -24,17 +24,24 @@ static const struct iio_chan_spec
+>  static int inv_icm20948_temp_read_sensor(struct inv_icm20948_state *state,
+>  					 s16 *temp)
+>  {
+> -	guard(mutex)(&state->lock);
+> +	int ret;
+> +
+> +	pm_runtime_get_sync(state->dev);
+> +	mutex_lock(&state->lock);
+>  
+>  	__be16 raw;
+> -	int ret = regmap_bulk_read(state->regmap, INV_ICM20948_REG_TEMP_DATA,
+> +	ret = regmap_bulk_read(state->regmap, INV_ICM20948_REG_TEMP_DATA,
+>  				   &raw, sizeof(raw));
+>  	if (ret)
+> -		return ret;
+> +		goto out;
+>  
+>  	*temp = __be16_to_cpu(raw);
+> +	ret = 0;
+>  
+> -	return 0;
+> +out:
+> +	mutex_unlock(&state->lock);
+> +	pm_runtime_put_autosuspend(state->dev);
+> +	return ret;
+>  }
+>  
+>  static int inv_icm20948_temp_read_raw(struct iio_dev *temp_dev,
 > 
-Usage of the deprecated binding was added to this dt file with ab9d8032dbd0
-("arm64: dts: ls1043a-qds: add mmio based mdio-mux support") in 2022.
-At that time the binding had been marked deprecated for years already.
-I think it would be good if dtc would warn already if a deprecated
-binding is detected, so that CI can complain.
 
 
