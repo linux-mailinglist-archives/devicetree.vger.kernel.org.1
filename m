@@ -1,224 +1,142 @@
-Return-Path: <devicetree+bounces-211308-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211310-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA278B3E622
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:52:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14238B3E694
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:04:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 354101A835CF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:53:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C35773B0F57
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:04:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51123338F45;
-	Mon,  1 Sep 2025 13:52:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M/oc0JM0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26E2D33EAEA;
+	Mon,  1 Sep 2025 14:04:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CE171C27;
-	Mon,  1 Sep 2025 13:52:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 727F11D61B7;
+	Mon,  1 Sep 2025 14:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756734771; cv=none; b=mnD51KusPD3isbpwKvWpjtOnmB3BXhFyjeXbwnHViauvZA3IOWJssjlgO5KzyB5gDqURKAIipLOf5MwVoLCNkZCtoXOi1tYDLXHgt3zEYhWFo8bvjZomtbs2XLj8oljCqkK722ntnS360jzd74VbbAXfCMLbhkM1rOrjo+ADV6Y=
+	t=1756735445; cv=none; b=lxXr4q7xaif4gC0EAonX83ndoa5fTrQE3bVczJ2Ysm4q8N/phvkkX4x8urFoCBUMvSUYMzlFvyGNpR39FGw9SDgF4Pt7cximXRgcmDqRGTCAIKaJeut2zwjuZoCOcYOrWaajpQkt7WxWLcaM6nUy60JdiSR3rwCyzekrg76S0Xg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756734771; c=relaxed/simple;
-	bh=1Sg3rEDoWH1KaBimTkP2BT3g0Ey6+WD6VuLXedDw65k=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C5UgiMoCL37U8fvpQjTVKRAw19UGkaQIqVeCZpcd2HruW5dKniuPSIxoZE6NR82Lyy4z8VXjwysYgfhnLpvQ+tTujjsKUOCPiuRyMr7wUPGGdenb0FELPY6d1cj4oITdxRMOxVVJ1UddGxGMV7/dVtiJAKSFSZ+IYrptBaBUDL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M/oc0JM0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8BAC1C4CEF0;
-	Mon,  1 Sep 2025 13:52:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756734770;
-	bh=1Sg3rEDoWH1KaBimTkP2BT3g0Ey6+WD6VuLXedDw65k=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=M/oc0JM0tTl36NdYr+audgnhtIlSV9TinPArKRXNuXe+nTDoaoPDXyX1fa0yle0Hb
-	 Nrdy0UpyFr65t2jpQrS/EEnyQ51+hdjwruZgDSVgLdhEju20IEAlJWbTIjdjwTNPQr
-	 6urywwJlXvO/DAUDt+kTeS/ZChAxe+qddCYrH8WhXnYNvjacdMVu15JBVb875ceWdm
-	 HwNxKLDwC5OZDwxVf/uW7qk1vtkPxVTaoY7Fw29bHuL71KljseqHG4rPEfEsJzIcpP
-	 X8EiL26zXxkx62ZYSVfvcr/7HyoviK6tJLul5vpqYOfrqDPXC5ZhQdGjND5ct8PK0v
-	 EUxjtuldSxGiw==
-Date: Mon, 1 Sep 2025 19:22:40 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
-	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com
-Subject: Re: [PATCH v8 4/5] PCI: dwc: Add ECAM support with iATU configuration
-Message-ID: <camqcq72cy774st365jtodvckqvohzlu2fsklsgpfrgaxzz6re@yk6rvt6vq5y5>
-References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
- <20250828-ecam_v4-v8-4-92a30e0fa02d@oss.qualcomm.com>
+	s=arc-20240116; t=1756735445; c=relaxed/simple;
+	bh=yPOX6WomI9n5O+/vHyOaMmHiGhds1c8OH2bM1SDeIZM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=p086RDy/mCca0XtXM9UP9vSpHljzcLLumjdZTo3dnQYyWWflVg/qlWk6dBJWyJd7XuZ4dVMCmQxhfTM0drQGfgglN2oCfcukfILjQ+51TmwkxtKqhfZ1CrwriEoY/1dGtMqzCCPAexxZCgVXdGc7yMNFzDU5JJ3aNNfo5FNpF/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-e96e892081eso3391223276.3;
+        Mon, 01 Sep 2025 07:04:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756735442; x=1757340242;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=VhestZsri02gDfPQk+gUxtvkYAG5NOW4q/0J5/W4Qbk=;
+        b=ZNVLUgmXranHp1FrsdWsnnjOHatZx8i6FO02QhftPf/xOuyF0JTs8hpa/fuk52iMxM
+         4CKBAKOiZfF3p1Dezkr3hsNgOegAOXBJ2jJ7jSuJjP11ZBGevOmvl/eolPYWjM2o32Ca
+         bbz6hgpTqyQXfPj+1taigTCqjcpwzhOQLVSYuMoldjSqY65GiFbw6BKPxcExQxyO8GC5
+         Gxav1A+zTOfqiBLAhYDqWF6dV2nB5LLIbrDtoEQQSmPdlXASmqRM4yBO0s1Y646ykZU9
+         wErqnwX4akcT14n9HPpSWCX8bsp7fYAFqvDlj8Iob4H0JnNHwIhtRcOa7WkllLyqmaW7
+         ji7g==
+X-Forwarded-Encrypted: i=1; AJvYcCVZUgc+eSRw3YT6yHybGl8xZE3hJdEQPcDXqQpBXH5ntAmv7biXN83aACgfj+b+zIyaWSpTpIblHUfRBQnVl+gGG10=@vger.kernel.org, AJvYcCX3nI+KMA2aSGLCigB20ePKLMzvhCxGbcR6CY5iNluy6WSGNEYtn3Pdv17b2Hfj3ppqhgK9OfWnxjIm@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz0DKWtY/ZgDinUTcwabwr97ez2Dv5B6pHkxaJrXOvcQlDXIizU
+	g4IsD+OUQWVjJvDKLQ8y6e39KEPm3BfIOnx6Znbaac9OMp9/gk4wg26SM21MHEk4e30=
+X-Gm-Gg: ASbGncsVSyKu5roH2wB3ksfwcHXGT6fHko15W8PGCqtaGC6nY9pH+Ws1NOm8YBmQ8fq
+	N8KvauXYxkeoIE3bY6Pq2HXkBrvgoh90L8K3gWA2uR/1S/9zv5VGAUJx810SGEhkcgrRKJqUmeZ
+	ouoqHPvG+xplINNnfHiSnsCblyIIdRtjjrHMlfhhYbNbp+gqGD1w4ndABHJ9z5kSqcI0e9G45zb
+	ot9MLukxArPG/OMMKMH2bAMlKM+ihtHKMhwAEHn7TSUTZzw32iPQDjFVA1omLNjx471mkZHh6Mi
+	FR5T4sVZgqUXd3Rpgew0qKvgNgA5uG5Nzui48f2BgY7S1JDWvgqDcw67lMldVwBEKScO9IB0SD/
+	OS2QCiVwC9hggYzSm/e0/oLhLh7hEzBPk/bQK+A0JK9BLI6NGn48jQHQaANtj/cZ6
+X-Google-Smtp-Source: AGHT+IEKThX6qCxLXb9bS0z5WfS8UMTivSW59e97bDfl02OxTrsId93l86rqAjoKYfZIaAzRXfWWGg==
+X-Received: by 2002:a05:6902:728:b0:e97:7f7:434c with SMTP id 3f1490d57ef6-e98a5839e5dmr7638464276.44.1756735441301;
+        Mon, 01 Sep 2025 07:04:01 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 3f1490d57ef6-e98ac42026esm2028461276.2.2025.09.01.07.04.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Sep 2025 07:04:00 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-71d6059643eso33788927b3.3;
+        Mon, 01 Sep 2025 07:04:00 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUEu2/ys0ttRuUrrIMQH4BaIqsTJ6zy7krYw571xMvFj66QMrsucoReQzwe1Xt0mEJF5uR7IIhBF0u9@vger.kernel.org, AJvYcCWQHgyGqHfTuIhJNTqalC11shYzAm5wcRdp7q4UXdILBQb9mMZ7HMDNWuV7Vci7KU1KuxRjTGkd3MaK3mL+pXESdr4=@vger.kernel.org
+X-Received: by 2002:a05:690c:6f0f:b0:71f:bde8:8dbc with SMTP id
+ 00721157ae682-7227652c5fcmr86810567b3.38.1756735440633; Mon, 01 Sep 2025
+ 07:04:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250828-ecam_v4-v8-4-92a30e0fa02d@oss.qualcomm.com>
+References: <20250827221424.640770-1-niklas.soderlund+renesas@ragnatech.se> <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 1 Sep 2025 16:03:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUOKJXjk78Bgmazd4prGX21SDk_h=37ewEOwgdf9iAfcA@mail.gmail.com>
+X-Gm-Features: Ac12FXyO2LJ8Itf_knNTcJsCa9Ro_Ryh9nnlc3sn-fhxGrnK2xQSo6QBQHEBjs4
+Message-ID: <CAMuHMdUOKJXjk78Bgmazd4prGX21SDk_h=37ewEOwgdf9iAfcA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/4] arm64: dts: renesas: sparrow-hawk: Add overlay for
+ IMX219 on J1
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>, 
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>, linux-renesas-soc@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 28, 2025 at 01:04:25PM GMT, Krishna Chaitanya Chundru wrote:
-> The current implementation requires iATU for every configuration
-> space access which increases latency & cpu utilization.
-> 
-> Designware databook 5.20a, section 3.10.10.3 says about CFG Shift Feature,
-> which shifts/maps the BDF (bits [31:16] of the third header DWORD, which
-> would be matched against the Base and Limit addresses) of the incoming
-> CfgRd0/CfgWr0 down to bits[27:12]of the translated address.
-> 
-> Configuring iATU in config shift feature enables ECAM feature to access the
-> config space, which avoids iATU configuration for every config access.
-> 
-> Add "ctrl2" into struct dw_pcie_ob_atu_cfg  to enable config shift feature.
-> 
-> As DBI comes under config space, this avoids remapping of DBI space
-> separately. Instead, it uses the mapped config space address returned from
-> ECAM initialization. Change the order of dw_pcie_get_resources() execution
-> to achieve this.
-> 
-> Enable the ECAM feature if the config space size is equal to size required
-> to represent number of buses in the bus range property.
-> 
-> As per PCIe spec 6, sec 7.2.2 the memory should be aligned to 256MB for
-> ECAM. The synopsys iATU also uses bits [27:12] to form BDF, so the base
-> address must be 256MB aligned. Add a check to ensure the configuration
-> space base address is 256MB aligned before enabling ECAM.
-> 
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Hi Niklas,
+
+On Thu, 28 Aug 2025 at 00:15, Niklas S=C3=B6derlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Add an overlay to connect an IMX219 camera sensor to the J1 connector.
+> The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video capture
+> pipeline behind the CSI40 Rx to be enabled to process images from the
+> sensor.
+>
+> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
+se>
 > ---
->  drivers/pci/controller/dwc/Kconfig                |   1 +
->  drivers/pci/controller/dwc/pcie-designware-host.c | 145 +++++++++++++++++++---
->  drivers/pci/controller/dwc/pcie-designware.c      |   2 +-
->  drivers/pci/controller/dwc/pcie-designware.h      |   5 +
->  4 files changed, 138 insertions(+), 15 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index ff6b6d9e18ecfa44273e87931551f9e63fbe3cba..a0e7ad3fb5afec63b0f919732a50147229623186 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -20,6 +20,7 @@ config PCIE_DW_HOST
->  	bool
->  	select PCIE_DW
->  	select IRQ_MSI_LIB
-> +	select PCI_HOST_COMMON
->  
->  config PCIE_DW_EP
->  	bool
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index 952f8594b501254d2b2de5d5e056e16d2aa8d4b7..eda7affcdcb2075d07ba6eeab70e41b6548a4b18 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -8,6 +8,7 @@
->   * Author: Jingoo Han <jg1.han@samsung.com>
->   */
->  
-> +#include <linux/align.h>
->  #include <linux/iopoll.h>
->  #include <linux/irqchip/chained_irq.h>
->  #include <linux/irqchip/irq-msi-lib.h>
-> @@ -32,6 +33,8 @@ static struct pci_ops dw_child_pcie_ops;
->  				     MSI_FLAG_PCI_MSIX			| \
->  				     MSI_GENERIC_FLAGS_MASK)
->  
-> +#define IS_256MB_ALIGNED(x) IS_ALIGNED(x, SZ_256M)
-> +
->  static const struct msi_parent_ops dw_pcie_msi_parent_ops = {
->  	.required_flags		= DW_PCIE_MSI_FLAGS_REQUIRED,
->  	.supported_flags	= DW_PCIE_MSI_FLAGS_SUPPORTED,
-> @@ -413,6 +416,92 @@ static void dw_pcie_host_request_msg_tlp_res(struct dw_pcie_rp *pp)
->  	}
->  }
->  
-> +static int dw_pcie_config_ecam_iatu(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct dw_pcie_ob_atu_cfg atu = {0};
-> +	resource_size_t bus_range_max;
-> +	struct resource_entry *bus;
-> +	int ret;
-> +
-> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
-> +
-> +	/*
-> +	 * Root bus under the host bridge doesn't require any iATU configuration
-> +	 * as DBI region will be used to access root bus config space.
-> +	 * Immediate bus under Root Bus, needs type 0 iATU configuration and
-> +	 * remaining buses need type 1 iATU configuration.
-> +	 */
-> +	atu.index = 0;
-> +	atu.type = PCIE_ATU_TYPE_CFG0;
-> +	atu.parent_bus_addr = pp->cfg0_base + SZ_1M;
-> +	/* 1MiB is to cover 1 (bus) * 32 (devices) * 8 (functions) */
-> +	atu.size = SZ_1M;
-> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
-> +	ret = dw_pcie_prog_outbound_atu(pci, &atu);
-> +	if (ret)
-> +		return ret;
-> +
-> +	bus_range_max = resource_size(bus->res);
-> +
-> +	if (bus_range_max < 2)
-> +		return 0;
-> +
-> +	/* Configure remaining buses in type 1 iATU configuration */
-> +	atu.index = 1;
-> +	atu.type = PCIE_ATU_TYPE_CFG1;
-> +	atu.parent_bus_addr = pp->cfg0_base + SZ_2M;
-> +	atu.size = (SZ_1M * bus_range_max) - SZ_2M;
-> +	atu.ctrl2 = PCIE_ATU_CFG_SHIFT_MODE_ENABLE;
-> +
-> +	return dw_pcie_prog_outbound_atu(pci, &atu);
-> +}
-> +
-> +static int dw_pcie_create_ecam_window(struct dw_pcie_rp *pp, struct resource *res)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct device *dev = pci->dev;
-> +	struct resource_entry *bus;
-> +
-> +	bus = resource_list_first_type(&pp->bridge->windows, IORESOURCE_BUS);
-> +	if (!bus)
-> +		return -ENODEV;
-> +
-> +	pp->cfg = pci_ecam_create(dev, res, bus->res, &pci_generic_ecam_ops);
-> +	if (IS_ERR(pp->cfg))
-> +		return PTR_ERR(pp->cfg);
-> +
-> +	pci->dbi_base = pp->cfg->win;
-> +	pci->dbi_phys_addr = res->start;
-> +
-> +	return 0;
-> +}
-> +
-> +static bool dw_pcie_ecam_enabled(struct dw_pcie_rp *pp, struct resource *config_res)
-> +{
-> +	struct resource *bus_range;
-> +	u64 nr_buses;
-> +
-> +	/*
-> +	 * 256MB alignment is required for Enhanced Configuration Address Mapping (ECAM),
-> +	 * as per PCIe Spec 6, Sec 7.2.2. It ensures proper mapping of memory addresses
-> +	 * to Bus-Device-Function (BDF) fields in config TLPs.
-> +	 *
-> +	 * The synopsys iATU also uses bits [27:12] to form BDF, so the base address must
-> +	 * be 256MB aligned.
+> * Changes since v3
+> - Use correct port@0 instead of port.
 
-I've reworded the comment and description to clarify that the alignment
-requirement comes from the PCIe spec, but the 256 MiB requirement comes from DWC
-implementation since DWC always uses 8 bits for representing PCIe buses.
+Thanks for the update!
 
-- Mani
+> --- a/arch/arm64/boot/dts/renesas/Makefile
+> +++ b/arch/arm64/boot/dts/renesas/Makefile
+> @@ -96,7 +96,10 @@ dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g2-white-hawk-s=
+ingle-ard-audio-da7212.dtb
+>
+>  DTC_FLAGS_r8a779g3-sparrow-hawk +=3D -Wno-spi_bus_bridge
+>  dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g3-sparrow-hawk.dtb
+> +dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g3-sparrow-hawk-camera-j1-imx219.=
+dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> +r8a779g3-sparrow-hawk-camera-j1-imx219-dtbs :=3D r8a779g3-sparrow-hawk.d=
+tb r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+> +dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g3-sparrow-hawk-camera-j1-imx219.=
+dtb
+>  r8a779g3-sparrow-hawk-fan-pwm-dtbs :=3D r8a779g3-sparrow-hawk.dtb r8a779=
+g3-sparrow-hawk-fan-pwm.dtbo
+>  dtb-$(CONFIG_ARCH_R8A779G0) +=3D r8a779g3-sparrow-hawk-fan-pwm.dtb
 
--- 
-மணிவண்ணன் சதாசிவம்
+Usually we keep the related parts together, but we indeed already have
+one case of interleaving.  I am not sure which style is best...
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
