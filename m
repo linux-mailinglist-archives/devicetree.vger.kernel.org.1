@@ -1,156 +1,126 @@
-Return-Path: <devicetree+bounces-211432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682FCB3F03E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:02:02 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AE11B3F01D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:54:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE1851B204DD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:02:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D45178B86
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:54:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50A1325FA3B;
-	Mon,  1 Sep 2025 21:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4C82749D7;
+	Mon,  1 Sep 2025 20:53:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m2EyEBgL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cax/6wFl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A59623816D;
-	Mon,  1 Sep 2025 21:01:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD48426F47D;
+	Mon,  1 Sep 2025 20:53:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756760513; cv=none; b=KiDpKYw/cjV+qmt8dWYnO5mmvVZZRexmXvbveuBLaW3jddZN/5unpBhC2q8e/1lhTN4jAcbrnx88IXV9oHVpSkNHtEqAdEFlNzZi9oFSvoPRLeeaeQAVQeaTZqMwYqDyMC/4sBHrwNz8FEKGtKckO9GYflAcQ518925a7/0ouwU=
+	t=1756760021; cv=none; b=cqgelM2R5hZA3eRHmT6uGsL93bOC5dGZMNoNb5GoEYe1RZFnzFbWHcxorVl3zNyqoajD/eo0VjhMz10PDIReDLya+gG4ZEQtmbl2+j7tAOcvg9yv5zOItkwTYFmpT1wn29y/nN7ld0e9ys/Ui+DQ5Jpgjnqq4Cjk46Aq/FpEbA8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756760513; c=relaxed/simple;
-	bh=6N/4T5zMknKadHJccmk9Zy/KfZIVY8DWPUQJ3bADBcg=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=nIkWzWV4rJy7FFugNIWZI5KVeMeAmKufNj8j83CffmncTFly4aGBWfRqFrHV3bX5bLT4ZMBtoYU+jTDHCIvtgxtpuhlPwmd9K2yWxjkAwdOt5UsT0wxsZigOWhRq9I5qtEWKVw5HA5K0FTsoioxOmkMlatWSdaHqfX8ruiuBK78=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m2EyEBgL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 07DB7C19421;
-	Mon,  1 Sep 2025 21:01:53 +0000 (UTC)
+	s=arc-20240116; t=1756760021; c=relaxed/simple;
+	bh=EmEPDFeBBJxotEJAdRweNgxFgd00ZCenQukoIPB92JE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T30Qjh5dV/jB7nwXhIEIf8nULZTv0jY5wiUj55ZYjSQmCXLGObZliImYoIhnrLlqDv4VPNuPmmEEfdH40x1ULO5uApTAgcNzZdcFjZLHnluvwFyVjSeN1PGfrQELLhsmpT/arbYMvj0VM0qZXJUL25M1zyyY3qs9U8A9a08+Fso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cax/6wFl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8BD1C4CEF0;
+	Mon,  1 Sep 2025 20:53:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756760513;
-	bh=6N/4T5zMknKadHJccmk9Zy/KfZIVY8DWPUQJ3bADBcg=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=m2EyEBgLqDaOQSjqMdVk3yeQHpt6WciSigaPDPFkTIHdqob6QITKsie3P1nGguGdO
-	 OfsN5YYMaVLmUXWaSUZ3eIIsamZxy5KA79OdaxWWO++YHsBfzFF9+TPOpPPAw2CIl1
-	 DeWPNs8UYCZ0BlC6Vu6g78bjZ+yEI7zOp2jxEne4WgebRJ/j1fqsYj+CmSaBY/D/2C
-	 7jXtA2SfgoHQRgxvpwjn0f7AkDN5IQpK2uwylONqgIGVZRVRurX75o5A3uUW5DK9n3
-	 y6NKZQujyl6l5joQOjzgZVWzTKm+a64ee9mGz6j8w13iPd945ynZmNbtBKxza7hRYd
-	 y1nuNAnOYrfgQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EEC77CA1007;
-	Mon,  1 Sep 2025 21:01:52 +0000 (UTC)
-From: Michael Riesch via B4 Relay <devnull+michael.riesch.collabora.com@kernel.org>
-Date: Mon, 01 Sep 2025 22:47:48 +0200
-Subject: [PATCH v3 7/7] arm64: dts: rockchip: add mipi csi-2 dphy nodes to
- rk3588
+	s=k20201202; t=1756760021;
+	bh=EmEPDFeBBJxotEJAdRweNgxFgd00ZCenQukoIPB92JE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cax/6wFl529KhgAtAeHnm/zGOt1M5B4Q5BqFpnj3fSmO5hLNcDbTPz8cBvcYAn1Je
+	 2uWy3w6ZLKjjkxqi4U6cM/tSmmOPw6V40BxCcB126yzz4m1KNY0uSPtvFU53FKcaXm
+	 O6vgKrRWpqExHgEefovwHz7RX/tfE/YiDzXPlANfSj95b/zr8fumVQ9l7JK4BpPzvo
+	 0tIA8oBykMQnbDP3flII/mK0bBNFg8voQT1sI0QqNXe9r6Sv0dBCOst9sbbbsDXfUX
+	 2RXwWZWt5Gi/6ucV+OuSONPU1oX/ZUzZh41bx31FaMqc4YIP+xGk7VP09AwYjSrbvC
+	 OzqhBe2kcR9NQ==
+Date: Mon, 1 Sep 2025 13:53:27 -0700
+From: Drew Fustini <fustini@kernel.org>
+To: Matt Coster <Matt.Coster@imgtec.com>
+Cc: Michal Wilczynski <m.wilczynski@samsung.com>,
+	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Frank Binns <Frank.Binns@imgtec.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Marek Szyprowski <m.szyprowski@samsung.com>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
+ node
+Message-ID: <aLYHx6NgfLovbBAG@gen8>
+References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
+ <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
+ <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
+ <aKjWiU4fQw3k77GR@x1>
+ <aK-BwY8c-OR_WqNk@thelio>
+ <aLDQjq9U_mDvMTJo@gen8>
+ <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250616-rk3588-csi-dphy-v3-7-a5ccd5f1f438@collabora.com>
-References: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
-In-Reply-To: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
- Philipp Zabel <p.zabel@pengutronix.de>, 
- Kever Yang <kever.yang@rock-chips.com>, 
- Jagan Teki <jagan@amarulasolutions.com>, 
- Sebastian Reichel <sebastian.reichel@collabora.com>, 
- Diederik de Haas <didi.debian@cknow.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Heiko Stuebner <heiko@sntech.de>, 
- Collabora Kernel Team <kernel@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-phy@lists.infradead.org, 
- Michael Riesch <michael.riesch@collabora.com>
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756759662; l=1931;
- i=michael.riesch@collabora.com; s=20250410; h=from:subject:message-id;
- bh=6HJuYpXttybyTSrCNqhc1jbMr3cQPoLfqzHZNqsOuiw=;
- b=McvJKQT7Br08M3TRS8UuRnrp3U7iZxUgI1O6Ym5fvVFYb8DPOOC7ruTNqjDKBlXnXRXmYEO7U
- x6hhasYYQPLA/WfT5QixZLRluPyl/iZyhzekZ4+vHruZ7iXZWWUvIqB
-X-Developer-Key: i=michael.riesch@collabora.com; a=ed25519;
- pk=+MWX1fffLFZtTPG/I6XdYm/+OSvpRE8D9evQaWbiN04=
-X-Endpoint-Received: by B4 Relay for michael.riesch@collabora.com/20250410
- with auth_id=371
-X-Original-From: Michael Riesch <michael.riesch@collabora.com>
-Reply-To: michael.riesch@collabora.com
-
-From: Michael Riesch <michael.riesch@collabora.com>
-
-The Rockchip RK3588 features two MIPI CSI-2 DPHYs. Add the device
-tree nodes for them.
-
-Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
----
- arch/arm64/boot/dts/rockchip/rk3588-base.dtsi | 33 +++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-index 70f03e68ba55..eedf93247e9c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-base.dtsi
-@@ -621,6 +621,16 @@ php_grf: syscon@fd5b0000 {
- 		reg = <0x0 0xfd5b0000 0x0 0x1000>;
- 	};
- 
-+	csidphy0_grf: syscon@fd5b4000 {
-+		compatible = "rockchip,rk3588-csidphy-grf", "syscon";
-+		reg = <0x0 0xfd5b4000 0x0 0x1000>;
-+	};
-+
-+	csidphy1_grf: syscon@fd5b5000 {
-+		compatible = "rockchip,rk3588-csidphy-grf", "syscon";
-+		reg = <0x0 0xfd5b5000 0x0 0x1000>;
-+	};
-+
- 	pipe_phy0_grf: syscon@fd5bc000 {
- 		compatible = "rockchip,rk3588-pipe-phy-grf", "syscon";
- 		reg = <0x0 0xfd5bc000 0x0 0x100>;
-@@ -3052,6 +3062,29 @@ mipidcphy1: phy@fedb0000 {
- 			 <&cru SRST_S_MIPI_DCPHY1>;
- 		reset-names = "m_phy", "apb", "grf", "s_phy";
- 		#phy-cells = <1>;
-+	};
-+
-+	csi_dphy0: phy@fedc0000 {
-+		compatible = "rockchip,rk3588-csi-dphy";
-+		reg = <0x0 0xfedc0000 0x0 0x8000>;
-+		clocks = <&cru PCLK_CSIPHY0>;
-+		clock-names = "pclk";
-+		#phy-cells = <0>;
-+		resets = <&cru SRST_P_CSIPHY0>, <&cru SRST_CSIPHY0>;
-+		reset-names = "apb", "phy";
-+		rockchip,grf = <&csidphy0_grf>;
-+		status = "disabled";
-+	};
-+
-+	csi_dphy1: phy@fedc8000 {
-+		compatible = "rockchip,rk3588-csi-dphy";
-+		reg = <0x0 0xfedc8000 0x0 0x8000>;
-+		clocks = <&cru PCLK_CSIPHY1>;
-+		clock-names = "pclk";
-+		#phy-cells = <0>;
-+		resets = <&cru SRST_P_CSIPHY1>, <&cru SRST_CSIPHY1>;
-+		reset-names = "apb", "phy";
-+		rockchip,grf = <&csidphy1_grf>;
- 		status = "disabled";
- 	};
- 
-
--- 
-2.39.5
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="gSZ+C/ozphYAjkpf"
+Content-Disposition: inline
+In-Reply-To: <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
 
 
+--gSZ+C/ozphYAjkpf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Sep 01, 2025 at 11:16:18AM +0000, Matt Coster wrote:
+> Hi Drew,
+>=20
+> Apologies for the delay, I was on holiday last week.
+>=20
+> I've just applied the non-dts patches to drm-misc-next [1], would you
+> mind re-adding the dts patch to thead-dt-for-next?
+
+Thanks for the update.
+
+I've now pushed the dts patch back to thead-dt-for-next:
+
+[3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
+      commit: 5052d5cf1359e9057ec311788c12997406fdb2fc
+
+-Drew
+
+--gSZ+C/ozphYAjkpf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQSy8G7QpEpV9aCf6Lbb7CzD2SixDAUCaLYHnQAKCRDb7CzD2Six
+DFx1AQDhO4oxK/8VUlhe2hYNiss5b+vRMU1sBAHKoo06bhapNQEAj2PyvDIqT8IF
+nKIS+EVxulnWrJ7yeHXsijpV3oST8wM=
+=NHPw
+-----END PGP SIGNATURE-----
+
+--gSZ+C/ozphYAjkpf--
 
