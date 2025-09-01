@@ -1,54 +1,86 @@
-Return-Path: <devicetree+bounces-211215-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54A13B3DF66
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:01:49 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13F37B3DFA5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:06:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 790621A80344
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:01:48 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 065EA4E22E4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:06:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11A330FC20;
-	Mon,  1 Sep 2025 10:00:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A092D3101D5;
+	Mon,  1 Sep 2025 10:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="BIGBMML3";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="MtZJxsr0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 018A930E0E6;
-	Mon,  1 Sep 2025 10:00:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27BEB20DD48;
+	Mon,  1 Sep 2025 10:04:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756720849; cv=none; b=WTYti18zqprz+m5KU3aWtYdODgbbbWQrHBLsf88wVbj8k5cusAF7jelacncSJ4F/MOi5jBYDyUw3ZIMll+pFDzcMMOTec1/39v8iRzpzOsyJ3llVW/glluTn7I5ZylHoJOsRvz9p7q3QosOv9tBJxKm8a7A133KR1YxM/gaape4=
+	t=1756721102; cv=none; b=Qd/orqeUZjPejwH9PTo1SIUt7KDLnUF1YlkHPB1gUmsPEJxJljapl7kSmF6c53m5gWtufWgV7+mj2jRku4e4TYB+YiqMsdcd4lYTpXIkrPFf/BaC576GnQSD4a+ZMjebzoqvjhNvnMrLBsnWQ9DtkD6BMVTTWs8Ih0y6Gmu4Ch8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756720849; c=relaxed/simple;
-	bh=4dQUBOKZIBBSZfLj6pRbUgdaT9e4PlLlqSBRVoezHWU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VOx7cpxZe8mW7nBBFooAk/FX4v1yyH5QjZ9lspB9lJoQsqGgy7tUvMIdXGCJi978VwQRF1YJWxkH8PAuVy1nLYQoUxsER6IePiqgvf7MduACR8Fof+CsUvolkACw7S90UCmsVlnKgcoktcQOILk2vyqOR8SWaCuhWUVxTEP6XWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.212.9])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2148c25b2;
-	Mon, 1 Sep 2025 18:00:38 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Chukun Pan <amadeus@jmu.edu.cn>,
-	FUKAUMI Naoki <naoki@radxa.com>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1756721102; c=relaxed/simple;
+	bh=PqWPxJEJHF2R93uknLKaIhwfKm4lnP2A14FQDEXKsQs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Nyb0mzLeULahvBreajqklOLcI0H3sMMkLZyr4O2LtxMRNBR+5ODLx02f7y9dQTqyyCjAhIstLXqmglFYMFVXQk1AaaFeusclWgqQEqBXA8HD+NwjGT9fNCoWHXWxWK4F4Appa1k7HqL+exeVfdwZL2Zu6Borubv9/MyhlF5Z1zQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=BIGBMML3; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=MtZJxsr0 reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1756721098; x=1788257098;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=LglhPlwMqIEb5lp6QQRc6h7tbZs7go6i8tgRSxiq4X8=;
+  b=BIGBMML3VjnFvvKr+NAG1LKziu70VQMJJ22LxL3d/lnRXXdKdtJK+M/5
+   dyraTNa6j3s/hTxWl0LjzeheSVtW+vZbyASAo5+6n2fPjYpduUW4TN0iY
+   HUbV8uibbRdNKADdcbxj7VBEN/POtKq7HTHZPz2sCFayhJwCQZvvhIQID
+   R7CvpT7jFkIy2HM2SkZp+zu242FpmH45aav3uBu1MFjuGt336BP+3anUV
+   UteUNtXRIPqr8b4kPzOCYAcXsUYEnh6fNsKXkb36YKRP8oFO+qaW1Lj60
+   8NWQVLAqcQHUk/kqCcgjMzWc7dyedxCg9jiD1mg/PfDPfZOmbFUA+wIja
+   g==;
+X-CSE-ConnectionGUID: y/fatGMXSAqiuNPuVA67sg==
+X-CSE-MsgGUID: ZRt67WOPR++GxyGeS8zMrg==
+X-IronPort-AV: E=Sophos;i="6.18,225,1751234400"; 
+   d="scan'208";a="46004680"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 01 Sep 2025 12:04:49 +0200
+X-CheckPoint: {68B56FC1-1B-20CAA7DA-EC9DC758}
+X-MAIL-CPID: BD1DAF44F32A66FB5B73D9DFF9139FF1_0
+X-Control-Analysis: str=0001.0A00210D.68B56F5F.0090,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 683611697BF;
+	Mon,  1 Sep 2025 12:04:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1756721085; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=LglhPlwMqIEb5lp6QQRc6h7tbZs7go6i8tgRSxiq4X8=;
+	b=MtZJxsr05piR25btcguKeO1U9Tx+XOs3scH1EgiBapVT4FRoy/HuRE8CcvDkY/rrx4lQRa
+	LSo5jxNWt5Qgfo7sUIgiWzYFTAQdC9T49Uxay+Y7kdNdYtRPQ0lJQuH5MmLEJNN7F54CPB
+	P8XAjoGxm+YcTOp9UIv72vdbMcCHUoPif6K8lh6Ws1FG20ggGJE1Ct6iskkwmS0dTlmTaA
+	M6iaTr9avPZeDEb7+ft2Du9BPpxtuGQm7GDYyO0dKNMKdFVIkc6hvxaovhse82/jC3HY2q
+	ePQYr7qb2iLK5N1MeSvhlO48s2QntA1cO1gJpR0yQvJJh3bOvwrJ5J6fW7F9Dg==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: update pinctrl names for Radxa E52C
-Date: Mon,  1 Sep 2025 18:00:27 +0800
-Message-Id: <20250901100027.164594-4-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250901100027.164594-1-amadeus@jmu.edu.cn>
-References: <20250901100027.164594-1-amadeus@jmu.edu.cn>
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	linux@ew.tq-group.com
+Subject: [PATCH v2 0/2] TQMa91xx support
+Date: Mon,  1 Sep 2025 12:04:28 +0200
+Message-ID: <20250901100432.139163-1-alexander.stein@ew.tq-group.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -56,83 +88,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9904b8b73803a2kunmfa64e5773746df
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaGUpKVkNLHkhLHxgaGUoeTFYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
+X-Last-TLS-Session-Version: TLSv1.3
 
-Updated the pinctrl names of the user key and power LED according
-to the schematic. Also updated the nodenames of other pinctrls.
+Hi,
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+this series supports i.MX91 based module series TQMa91xx. It is available
+in a socketable variant (CA [1]) and as an LGA variant (LA [2]). Both
+are covered by the same device tree file.
+The hardware is identical to their TQMa93xx counterparts, just a different SoC.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-index 302a30e423ad..5d000b9e49a8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-@@ -42,7 +42,7 @@ button-0 {
- 	keys-1 {
- 		compatible = "gpio-keys";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&btn_0>;
-+		pinctrl-0 = <&pwm15_ir_m1>;
- 
- 		button-1 {
- 			label = "User";
-@@ -55,7 +55,7 @@ button-1 {
- 	leds-0 {
- 		compatible = "gpio-leds";
- 		pinctrl-names = "default";
--		pinctrl-0 = <&led_0>;
-+		pinctrl-0 = <&power_led>;
- 
- 		led-0 {
- 			color = <LED_COLOR_ID_GREEN>;
-@@ -306,13 +306,13 @@ &pcie2x1l2 {
- 
- &pinctrl {
- 	keys {
--		btn_0: button-0 {
-+		pwm15_ir_m1: pwm15-ir-m1 {
- 			rockchip,pins = <4 RK_PB3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- 
- 	leds {
--		led_0: led-0 {
-+		power_led: power-led {
- 			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
-@@ -328,19 +328,19 @@ pcie20x1_2_perstn_m0: pcie-2 {
- 	};
- 
- 	regulators {
--		vcc_5v0_pwren_h: regulator-5v0-1 {
-+		vcc_5v0_pwren_h: vcc-5v0-pwren-h {
- 			rockchip,pins = <4 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- 
- 	rtc {
--		rtc_int_l: rtc-0 {
-+		rtc_int_l: rtc-int-l {
- 			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
- 
- 	usb {
--		usb_otg_pwren_h: regulator-5v0-0 {
-+		usb_otg_pwren_h: usb-otg-pwren-h {
- 			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
- 		};
- 	};
+This series depends on the i.MX91 SoC support [3].
+
+Best regards
+Alexander Stein
+
+[1] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma91xxca/
+[2] https://www.tq-group.com/en/products/tq-embedded/arm-architecture/tqma91xxla/
+[3] https://lore.kernel.org/all/20250825091223.1378137-1-joy.zou@nxp.com/
+
+v1:
+* https://lore.kernel.org/all/20250828094745.3733533-1-alexander.stein@ew.tq-group.com/
+
+Alexander Stein (2):
+  dt-bindings: arm: fsl: add TQMa91xx SOM series
+  arm64: dts: freescale: add initial device tree for TQMa91xx/MBa91xxCA
+
+ .../devicetree/bindings/arm/fsl.yaml          |  18 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../freescale/imx91-tqma9131-mba91xxca.dts    | 739 ++++++++++++++++++
+ .../boot/dts/freescale/imx91-tqma9131.dtsi    | 295 +++++++
+ 4 files changed, 1053 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-tqma9131-mba91xxca.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx91-tqma9131.dtsi
+
 -- 
-2.25.1
+2.43.0
 
 
