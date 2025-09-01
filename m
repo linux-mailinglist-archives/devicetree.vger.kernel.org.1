@@ -1,123 +1,288 @@
-Return-Path: <devicetree+bounces-211160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6C02B3DC34
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:21:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8386B3DC5D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:31:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE3CB3BF9A6
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:21:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17C09188D3E7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:31:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926962D73BE;
-	Mon,  1 Sep 2025 08:21:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D52F212556;
+	Mon,  1 Sep 2025 08:30:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jCxIderr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VrBsvSuG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F6023ED5E
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 08:21:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747F52CCDB
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 08:30:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756714875; cv=none; b=ICoUX2PLb5oQ/OalgiYGfJm5M/4TXpWMMBCX+BT1DkpwEB0Xr+zr4EcC4aKVHssuDx5XdHhOQFYm7/cswdndIiy2TF865kn7V5FvLq/1Mw1Sji/EmsU/Psvjw4V601oPwZa2298XuPrucEZ4TPAPVRAl+bxvWHxkykw7rYmFs7s=
+	t=1756715457; cv=none; b=r0X3d/n6vPoSOzeVvMbOghEuhr41GauDBJFXb90AOHslspwXdgu+UfkuxkqxGowcueLOpFoLEqdYdKdHiI83KPNYpAxYpr7SmO5YW4o1JLYw34ZjnqYS05trM5gkSwi8vqOm/SDQJRitHOaCFEpg0eflIeg+xEyLZw00kiQntEA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756714875; c=relaxed/simple;
-	bh=doa7boRfZzmeMyQLHEC3XX913QTwfh8FzsRBnVndqFM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cGWjvhSRZD9+cdRx7wBPA8HqtrW7u8YrezUFuqtN/NzxmlJyVpADV6SY8JVwbkAZeAikaA804WXB/WFJrg/4HceTN+BaqQHmejcQtFtOmuamR19C0HHjvHUq/qxE4Scw7Xr6xVlJ3ALpGfFDnLc5DLlgc5AHeYCs2ZLoFFXKtek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jCxIderr; arc=none smtp.client-ip=209.85.167.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55f6017004dso3675662e87.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 01:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756714872; x=1757319672; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NtzxvUr8vZxd8BREn+bPHHNBP8tJDJJwcdr3v5pD4CU=;
-        b=jCxIderr8GYyJTxNUKUaBQess0VM8IOl53ks3tiRAe5VYM50jBSc/aR0j+tXfY/OTo
-         Nq12ng7ecuxw77Rf8QynOnQ4xdC7WNpxvSOks19E8fZPaDG6VQnECRghmo193jzvsXSl
-         4FEbbt0LWCH4u16R9ympRnIF26ASHfdsEGgxZeCzl35zPRyx4A1FQS8LSz93zTFnfZ+E
-         tOOLz49vZ4AiRX8837W81ZTi6Bgr5xL5PvV7L7vlSd1Xid4yeuxpLuOhLIK0Z3UlCgKt
-         tLWFEO5T50n6fnKiZVKKXUhNeFAMhsmIKXQ+lkwPadiO9CIuNuznmpEXBLJgz57Eye+w
-         bjnw==
+	s=arc-20240116; t=1756715457; c=relaxed/simple;
+	bh=75HRYRuu0ytPjpHHK4y4NaBYsbl3ct2Mtmj6P6gyI7c=;
+	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To; b=Y/tVKyVe3p3ClmERZ2l8uVh7eHGbHsRvrn1K+QQRwcYe9WozG1GcLPUmCJ6d9q5HZATKbvbyecYiG42I1qnpeZoagSu10zRYlipXtw5ZZhlvkHwtshdepGoP7xPibuO8SHNPkoKi0N7WA3Fg6v416iA8RGMQ1N6NdIqlkd9Tgbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VrBsvSuG; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5817iJiw003705
+	for <devicetree@vger.kernel.org>; Mon, 1 Sep 2025 08:30:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=PAlnvbMmNT7cy5qH7wwaB4n/
+	geslp9PTYb6i4MqxfhM=; b=VrBsvSuGp6hTuyiIvvci/n39wJlnQdFV8TWfsgRi
+	KzqlDuhayFXbALYDzBkYwapUATBzgQs2DzFdB9im+gk/RyzeBPrhtlZ/N/dKVkEK
+	5r5ez0Z4HgumEWbAJHU2pocxZj557+x1yFDtLQMmGKDisMUxSKLFKTgS8JOr1xq2
+	h+G0IC7Or2h+LlfOIQoz34rpxS4s819dUqTBKVo34HahfsOGV/kAi1DyDethwxmu
+	MQC3kzJH9AEjzyx2ZXu8uVFk3Cn9UjsesRygI5qBUp4EmNBNe89xUYWouSy9w4zB
+	Er0RngvAy3pSprCskz1DRKgAhK2Dls5g1LutrZ5jpsUiqg==
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com [209.85.216.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8rv2rs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 08:30:54 +0000 (GMT)
+Received: by mail-pj1-f69.google.com with SMTP id 98e67ed59e1d1-32801263789so2795671a91.1
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 01:30:54 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756714872; x=1757319672;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NtzxvUr8vZxd8BREn+bPHHNBP8tJDJJwcdr3v5pD4CU=;
-        b=j79eJAHqs2eHEwUCCwur8jHPlcBHJoB6QnQr/B+AjUCkeGC0FeHI2TauvB0mlVlLmL
-         /dRDO7hU64YXKFkU9CRJi2qDQC5NbPPTCzsRc14FIObKPDh87ggltCO+RD6P9Ee+B3Ga
-         AenZjLpg6/0zohzddIaIMKaMg9xMtiKxnL8hQl1iUnfNathLW/5igLUrb3pZs8qh5dNh
-         CTLLLWhY9I8GXuA5eo83J4O0I2Ji7PYckma34FpROl1C6YHgRA4WHprrzUHV9IFMzfyL
-         cNr5T8HQmlHKQn1bg/n4fHaqcBTKSwbWjGdFtY8a81RB6uKPPt3VSYIqry+6NFRorOkz
-         VfXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKO88NrKEEL37fuFvbIyz3eyYwEo3TkMqS0RrAIb6VQ2w7mclrwh/xcHUsn6akS079WXP/tXAlzMTQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YzY/nKuLBXcaqoT44CLLLjIRtfidHceUWnY8AWMHZpOQ/eCo6cF
-	VaIcWHgGXlRci30axiSats+0K2OLLHAVbP9HcKOmmbUIGsUabEzm0NhGs2QSiVtSYOUbKHRC1GN
-	QokXZQz7d/GXkMwFECZlPlmZ7x92PyLo+QI08k6j03A==
-X-Gm-Gg: ASbGncvxZEATW2j1cZe/GhMVciIDIR6rtT5ACe6Tk0nk0OyFUzbL/CVKMErnim36OyO
-	2/M+1f4VLMSNa9ylWT4arxC3JPiT4vqJPZ0mICB7UGkSTOtHeboi75umoEneiGLtvtzWMU89diB
-	p6U0DhMC5VxjzvhyNm524WOnzh49PLExkWAm29yPoHxvXyCOURSHHw0oiY7nKvi99nYd6h90OS0
-	1775aZ4HWigiQCWEw==
-X-Google-Smtp-Source: AGHT+IEaD5coQULhIexfF1mqVXsJQC24MaqrNpPKJTVWeCuhL3ZZFklbo3Bq+zdNZ4cv+ZlQPPiJygTUgUeUbhR6Jvg=
-X-Received: by 2002:a05:6512:ba7:b0:55f:68a2:769a with SMTP id
- 2adb3069b0e04-55f7094fc5fmr2092828e87.41.1756714871924; Mon, 01 Sep 2025
- 01:21:11 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756715453; x=1757320253;
+        h=in-reply-to:from:content-language:references:cc:to:subject
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PAlnvbMmNT7cy5qH7wwaB4n/geslp9PTYb6i4MqxfhM=;
+        b=wrWZFDfdZJ3DeXuRPRaOEXcoSMyQ3E+terOHvJjr11a4pyYKYgJvpRckjUoKYZLw4E
+         vPFdRS7wBkHNXR+D5FjjvSB7cDs5jaSmklJ9nOHoZtxKn7Yn7d+ANmd1c089rK5v+STJ
+         DnKhjIZG3QdXZBySwKD+chb9/PNsnHYfMaXX86R2wNQs4ckJ4e6VTWZhVUlO4d1K5dQ/
+         eZWk4c0fjxF8vDbmV2JMvEiJWR/O2NQYROnahFuNMCzX9X0/84rsvXFeds17Prc22MYu
+         7fNBSvaFFs4duKasgQ1tETZzHH2L7XHsO7hYfTbxR/bSYXQf3ZKn88GwiWP8/SM0M77P
+         tfUg==
+X-Forwarded-Encrypted: i=1; AJvYcCUIsWjMUfZ/L2948kiyf47aQcFzzcIyPfnbndcYLLvBXMC2y/tmPRhrUyNugJcy21jMeTWLE77chemi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx7GYw14sdW5q+8hxfkZqtE3jnj+P4yR/Sr0as/yMXaGFHrzDvl
+	V0RD29PMiPrea28xRAnfX6sNQ15kAxBqxieYHFS4mHiFLc+OW0bNcxRvxwpNGZ06xJRxtEBUqgZ
+	p4kDCiQ8/2oQXxUnkrlUQ/nHNgCy8s9h3SNU+VJ8riRZjpt0oIEQoDmZ77u/ki6EQ
+X-Gm-Gg: ASbGnctz9SiZy1gq4ZeQIMEqDpBXEc3yj3CuvxIJ3taofDhQtnz4XbtUA2mzGNgWHMm
+	sjVnAhl+/Z4Kw1UFjpgrsqku2LcCHuM0rN8zcT38av0t/dtqd93kwH4iFDwOYIABT5t5ANasXho
+	aXQNrGONalgL1e7v1qRT0pUVwUrVQ7sXpt5QDjiwPZVMYCKzeZqRnbnZp4Nqj1NCEZ+U9+nIEvT
+	RONCf3/8pLfadwjjxb1ZYVCbAvhxG14DKVHUppYHEvQCTK8NjDtp3eMe/FYfo3HrIJQCZjJPgho
+	oED7k3gHb3wb745BUc0uxZ0i3Ph5TgkU7aA2ulknhM37xO2gaDJDQL/YFNCpelicmHLxFf5U/Pd
+	hW6yI3x8VIqA76PyEpzTZVaZCaBSC/J6V5A==
+X-Received: by 2002:a17:90b:3b46:b0:31f:2bbb:e6a8 with SMTP id 98e67ed59e1d1-3280d34bedfmr9411698a91.12.1756715453468;
+        Mon, 01 Sep 2025 01:30:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFEFLIh6cXUMrhl0nWYZjIF+ftbFIXMfmYoczlM+ivv4wmziz6mmeKwe5E6V4o0QqOwRn+XyQ==
+X-Received: by 2002:a17:90b:3b46:b0:31f:2bbb:e6a8 with SMTP id 98e67ed59e1d1-3280d34bedfmr9411659a91.12.1756715452874;
+        Mon, 01 Sep 2025 01:30:52 -0700 (PDT)
+Received: from [10.133.33.247] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3296f871acbsm5626087a91.5.2025.09.01.01.30.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Sep 2025 01:30:52 -0700 (PDT)
+Content-Type: multipart/mixed; boundary="------------Y1gY7oQI0ggObi7uDTnXfL60"
+Message-ID: <b608b4b2-f850-4b49-be65-b2f4e3784dd5@oss.qualcomm.com>
+Date: Mon, 1 Sep 2025 16:30:47 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1756372805.git.andrea.porta@suse.com> <bee7c98a96c7000db32495b94ebae2ea06fe0e77.1756372805.git.andrea.porta@suse.com>
-In-Reply-To: <bee7c98a96c7000db32495b94ebae2ea06fe0e77.1756372805.git.andrea.porta@suse.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 1 Sep 2025 10:21:00 +0200
-X-Gm-Features: Ac12FXxXum4wFPneUej-Q8PgTeyjRANYxjsjqL1ILL7wHJ70KeajDhKxosakvEs
-Message-ID: <CACRpkdac9K7mc5DAUnb82bR-eyzdsurRX_qFu8qoCFARDmTe4Q@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] pinctrl: bcm: Add STB family pin controller driver
-To: Andrea della Porta <andrea.porta@suse.com>, Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, iivanov@suse.de, 
-	svarbanov@suse.de, mbrugger@suse.com, 
-	Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] coresight-tnoc: Add runtime PM support for
+ Interconnect TNOC
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>
+Cc: kernel@oss.qualcomm.com, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250831-itnoc-v4-0-f0fb0ef822a5@oss.qualcomm.com>
+ <20250831-itnoc-v4-3-f0fb0ef822a5@oss.qualcomm.com>
+Content-Language: en-US
+From: yuanfang zhang <yuanfang.zhang@oss.qualcomm.com>
+In-Reply-To: <20250831-itnoc-v4-3-f0fb0ef822a5@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX2DfJ4lUy7o3o
+ 37TaWzP442sou1yGERsYf8Br8vK5+/ugFzNnq/xyk3nsnIJ64u08z/GsN50X9XupmntwsBa+aM2
+ KGybqGE25zfx04M81IFZx9YlcWH0S3ifWklIJh+mms3Q5++hwTZ2lLrJf3yuXH511rmuqh8KQDl
+ kvvGQvS7v9aGCG2CiHp78wK6a3wFMdC+pbuqHMWKgC7FPxLZVCTxXSbWdLMLM5dA8xT2i4l2cvv
+ DEGQ2w6jlu8LrlN08LYNnruH2kf+QjMBKDcwrXJQseSqBBJw2WeATXsaKdiMVIdgg53nHGS/DI3
+ AP/Le4Dry8sGhuUvaODO4yjrKtbyhVGdWBBJhR2rDkv5tveEIcN8aXnKNqVUH0Wt3vxGHZsrRt+
+ LUfHWdQ3
+X-Proofpoint-GUID: wey4XTfMl452NiJjnuQTfdwQ_jSgANn5
+X-Proofpoint-ORIG-GUID: wey4XTfMl452NiJjnuQTfdwQ_jSgANn5
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b559be cx=c_pps
+ a=vVfyC5vLCtgYJKYeQD43oA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=yJojWOMRYYMA:10 a=r77TgQKjGQsHNAKrUKIA:9 a=EUspDBNiAAAA:8 a=7CQSdrXTAAAA:8
+ a=2_w7q_4OogOuaEAj4c4A:9 a=QEXdDO2ut3YA:10 a=pD-t-wKbIgpBmJTf4s8A:9
+ a=Gcllsu8IzuiZ4xof:21 a=_W_S_7VecoQA:10 a=L03L2QfmqWoA:10 a=1WNtSb5ECZgA:10
+ a=82JZpTc5bpwA:10 a=rl5im9kqc5Lf4LNbBjHf:22 a=a-qgeE7W1pNrGK8U0ZQC:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-01_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Thu, Aug 28, 2025 at 2:45=E2=80=AFPM Andrea della Porta
-<andrea.porta@suse.com> wrote:
+This is a multi-part message in MIME format.
+--------------Y1gY7oQI0ggObi7uDTnXfL60
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-> From: "Ivan T. Ivanov" <iivanov@suse.de>
->
-> This driver provide pin muxing and configuration functionality
-> for BCM2712 SoC used by RPi5. According to [1] this chip is an
-> instance of the one used in Broadcom STB  product line.
->
-> [1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@bro=
-adcom.com/
->
-> Cc: Jonathan Bell <jonathan@raspberrypi.com>
-> Cc: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
-> Reviewed-by: Phil Elwell <phil@raspberrypi.com>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+On 9/1/2025 2:58 PM, Yuanfang Zhang wrote:
+> This patch adds runtime power management support for platform-based
+> CoreSight Interconnect TNOC (ITNOC) devices. It introduces suspend and
+> resume callbacks to manage the APB clock (`pclk`) during device runtime
+> transitions.
+> 
+> Signed-off-by: Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>
+> ---
+>  drivers/hwtracing/coresight/coresight-tnoc.c | 23 +++++++++++++++++++++++
+>  1 file changed, 23 insertions(+)
+> 
+> diff --git a/drivers/hwtracing/coresight/coresight-tnoc.c b/drivers/hwtracing/coresight/coresight-tnoc.c
+> index 5be882300d79bc0173aa6a19d7da1d48c4aaca9c..2c5370497076536bfa868f0d80db775ef242968b 100644
+> --- a/drivers/hwtracing/coresight/coresight-tnoc.c
+> +++ b/drivers/hwtracing/coresight/coresight-tnoc.c
+> @@ -301,6 +301,28 @@ static void itnoc_remove(struct platform_device *pdev)
+>  	pm_runtime_disable(&pdev->dev);
+>  }
+>  
+> +#ifdef CONFIG_PM
+> +static int itnoc_runtime_suspend(struct device *dev)
+> +{
+> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(dev);
+> +
+> +	clk_disable_unprepare(drvdata->pclk);
+> +
+> +	return 0;
+> +}
+> +
+> +static int itnoc_runtime_resume(struct device *dev)
+> +{
+> +	struct trace_noc_drvdata *drvdata = dev_get_drvdata(dev);
+> +
+> +	return clk_prepare_enable(drvdata->pclk);
+> +}
+> +#endif
+> +
+> +static const struct dev_pm_ops itnoc_dev_pm_ops = {
+> +	SET_RUNTIME_PM_OPS(itnoc_runtime_suspend, itnoc_runtime_resume, NULL)
+> +};
+> +
+>  static const struct of_device_id itnoc_of_match[] = {
+>  	{ .compatible = "qcom,coresight-itnoc" },
+>  	{}
+> @@ -314,6 +336,7 @@ static struct platform_driver itnoc_driver = {
+>  		.name = "coresight-itnoc",
+>  		.of_match_table = itnoc_of_match,
+>  		.suppress_bind_attrs = true,
+> +		.pm = &itnoc_dev_pm_ops,
+>  	},
+>  };
+>  
+> 
 
-Overall this feels merge class, I am looking over the requirement
-series from Bartosz to see if we can merge it all today.
+missed Reviewed-by: Leo Yan <leo.yan@arm.com> tag.
 
-I also looked in a vendor tree for the (by now 6 years old...)
-BCMBCA driver, but it appears to be a completely different
-beast, requiring some magic 0x21 to be written into a register
-to "commit" a pin control change.
+thanks,
+yuanfang.
+--------------Y1gY7oQI0ggObi7uDTnXfL60
+Content-Type: text/html; charset=UTF-8;
+ name="https://lore.kernel.org/linux-arm-kernel/20250829084118.GG745921@e132581.arm.com/"
+Content-Disposition: attachment;
+ filename*0="https://lore.kernel.org/linux-arm-kernel/20250829084118.GG74";
+ filename*1="5921@e132581.arm.com/"
+Content-Location: https://lore.kernel.org/linux-arm-kernel/20250829084118.GG745921@e132581.arm.com/
+Content-Transfer-Encoding: base64
 
-Yours,
-Linus Walleij
+PCFkb2N0eXBlIGh0bWw+PGh0bWwgbGFuZz0iZW4iPjxoZWFkPjx0aXRsZT5NYWtpbmcgc3Vy
+ZSB5b3UmIzM5O3JlIG5vdCBhIGJvdCE8L3RpdGxlPjxsaW5rIHJlbD0ic3R5bGVzaGVldCIg
+aHJlZj0iLy53aXRoaW4ud2Vic2l0ZS94L3hlc3MveGVzcy5taW4uY3NzP2NhY2hlYnVzdGVy
+PTEuMjEuMyI+PG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13
+aWR0aCwgaW5pdGlhbC1zY2FsZT0xLjAiPjxtZXRhIG5hbWU9InJvYm90cyIgY29udGVudD0i
+bm9pbmRleCxub2ZvbGxvdyI+PHN0eWxlPgogICAgICAgIGJvZHksCiAgICAgICAgaHRtbCB7
+CiAgICAgICAgICAgIGhlaWdodDogMTAwJTsKICAgICAgICAgICAgZGlzcGxheTogZmxleDsK
+ICAgICAgICAgICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7CiAgICAgICAgICAgIGFsaWdu
+LWl0ZW1zOiBjZW50ZXI7CiAgICAgICAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvOwogICAgICAg
+ICAgICBtYXJnaW4tcmlnaHQ6IGF1dG87CiAgICAgICAgfQoKICAgICAgICAuY2VudGVyZWQt
+ZGl2IHsKICAgICAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyOwogICAgICAgIH0KCiAgICAg
+ICAgI3N0YXR1cyB7CiAgICAgICAgICAgIGZvbnQtdmFyaWFudC1udW1lcmljOiB0YWJ1bGFy
+LW51bXM7CiAgICAgICAgfQoKICAgICAgICAjcHJvZ3Jlc3MgewogICAgICAgICAgZGlzcGxh
+eTogbm9uZTsKICAgICAgICAgIHdpZHRoOiA5MCU7CiAgICAgICAgICB3aWR0aDogbWluKDIw
+cmVtLCA5MCUpOwogICAgICAgICAgaGVpZ2h0OiAycmVtOwogICAgICAgICAgYm9yZGVyLXJh
+ZGl1czogMXJlbTsKICAgICAgICAgIG92ZXJmbG93OiBoaWRkZW47CiAgICAgICAgICBtYXJn
+aW46IDFyZW0gMCAycmVtOwoJCQkJCW91dGxpbmUtb2Zmc2V0OiAycHg7CgkJCQkJb3V0bGlu
+ZTogI2IxNjI4NiBzb2xpZCA0cHg7CgkJCQl9CgogICAgICAgIC5iYXItaW5uZXIgewogICAg
+ICAgICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjYjE2Mjg2OwogICAgICAgICAgICBoZWlnaHQ6
+IDEwMCU7CiAgICAgICAgICAgIHdpZHRoOiAwOwogICAgICAgICAgICB0cmFuc2l0aW9uOiB3
+aWR0aCAwLjI1cyBlYXNlLWluOwogICAgICAgIH0KICAgIAk8L3N0eWxlPjxzY3JpcHQgaWQ9
+ImFudWJpc192ZXJzaW9uIiB0eXBlPSJhcHBsaWNhdGlvbi9qc29uIj4iMS4yMS4zIgo8L3Nj
+cmlwdD48c2NyaXB0IGlkPSJhbnViaXNfY2hhbGxlbmdlIiB0eXBlPSJhcHBsaWNhdGlvbi9q
+c29uIj57InJ1bGVzIjp7ImFsZ29yaXRobSI6ImZhc3QiLCJkaWZmaWN1bHR5Ijo0LCJyZXBv
+cnRfYXMiOjR9LCJjaGFsbGVuZ2UiOiJjY2VhN2Y3YzA0MmVkZjYzMmZjYzc1ZjFlNTMyYWNm
+MGU3OGMxNTA5ODExYzM0YTA0ZjA3YzgwMTc4YmVjMjE4YmI4YWY4ZmI4NDk5OTU5MWE0ZWFh
+MmEzOWI2YWIzZmE4NzQxMzEzNTRhZTIxNjNkZDBkY2ExMDA2ZmEzYTBlZWMxMjNkYWIzMWE3
+NWY0YTc3ZTJlMzFjNmVjOTk5Yzg0MGE5NjMwZTcwYzM4OGJmMjM5NGQ2MjFmZjdlNmQ0ODZk
+NTRmZjlkY2I2MjEzNmU1Y2U3ZmIxYzBjZGY2Mjk2OWVmM2E5Njg2MDAwZWEyZGUyY2YxNTI1
+YTQ1ZGY1Mzg3OTVmOWQ5Y2E3YzU0NGM0NWViMGYxNzgzZDk5ZDk2Y2FiNzg0MGJlOTM4NmYx
+YjM4Nzc5YmJjMWU2YzhhOGJjMzA1OTE1MzUxYWQxOTQ0MDdlNzBkOTZiYTExMzAyZTI2ZWVi
+ZWQ0NmJiYzY4ZjEwOGI5NmY0YzFkNTg1MzI2ZWZmODYyMTc1N2U1NzJkMjhkZDBlOTczNmYz
+NjkyZTA5M2NjNWNiZTk1ZDhiMGYzOWZlYmM1MjdmZTY1MTNhMmFjZGYzMGNhZGY2NWIzNjk0
+ODE3MmVkMDAzZjJhNmQ1ZDVhNGQ4ZGQwYzFkNWRkYmExNTRmOTdhYmE2ODU1N2NmNCJ9Cjwv
+c2NyaXB0PjxzY3JpcHQgaWQ9ImFudWJpc19iYXNlX3ByZWZpeCIgdHlwZT0iYXBwbGljYXRp
+b24vanNvbiI+IiIKPC9zY3JpcHQ+PC9oZWFkPjxib2R5IGlkPSJ0b3AiPjxtYWluPjxoMSBp
+ZD0idGl0bGUiIGNsYXNzPSJjZW50ZXJlZC1kaXYiPk1ha2luZyBzdXJlIHlvdSYjMzk7cmUg
+bm90IGEgYm90ITwvaDE+PGRpdiBjbGFzcz0iY2VudGVyZWQtZGl2Ij48aW1nIGlkPSJpbWFn
+ZSIgc3R5bGU9IndpZHRoOjEwMCU7bWF4LXdpZHRoOjI1NnB4OyIgc3JjPSIvLndpdGhpbi53
+ZWJzaXRlL3gvY21kL2FudWJpcy9zdGF0aWMvaW1nL3BlbnNpdmUud2VicD9jYWNoZUJ1c3Rl
+cj0xLjIxLjMiPiA8aW1nIHN0eWxlPSJkaXNwbGF5Om5vbmU7IiBzdHlsZT0id2lkdGg6MTAw
+JTttYXgtd2lkdGg6MjU2cHg7IiBzcmM9Ii8ud2l0aGluLndlYnNpdGUveC9jbWQvYW51Ymlz
+L3N0YXRpYy9pbWcvaGFwcHkud2VicD9jYWNoZUJ1c3Rlcj0xLjIxLjMiPjxwIGlkPSJzdGF0
+dXMiPkxvYWRpbmcuLi48L3A+PHNjcmlwdCBhc3luYyB0eXBlPSJtb2R1bGUiIHNyYz0iLy53
+aXRoaW4ud2Vic2l0ZS94L2NtZC9hbnViaXMvc3RhdGljL2pzL21haW4ubWpzP2NhY2hlQnVz
+dGVyPTEuMjEuMyI+PC9zY3JpcHQ+PGRpdiBpZD0icHJvZ3Jlc3MiIHJvbGU9InByb2dyZXNz
+YmFyIiBhcmlhLWxhYmVsbGVkYnk9InN0YXR1cyI+PGRpdiBjbGFzcz0iYmFyLWlubmVyIj48
+L2Rpdj48L2Rpdj48ZGV0YWlscz48c3VtbWFyeT5XaHkgYW0gSSBzZWVpbmcgdGhpcz88L3N1
+bW1hcnk+PHA+WW91IGFyZSBzZWVpbmcgdGhpcyBiZWNhdXNlIHRoZSBhZG1pbmlzdHJhdG9y
+IG9mIHRoaXMgd2Vic2l0ZSBoYXMgc2V0IHVwIEFudWJpcyB0byBwcm90ZWN0IHRoZSBzZXJ2
+ZXIgYWdhaW5zdCB0aGUgc2NvdXJnZSBvZiBBSSBjb21wYW5pZXMgYWdncmVzc2l2ZWx5IHNj
+cmFwaW5nIHdlYnNpdGVzLiBUaGlzIGNhbiBhbmQgZG9lcyBjYXVzZSBkb3dudGltZSBmb3Ig
+dGhlIHdlYnNpdGVzLCB3aGljaCBtYWtlcyB0aGVpciByZXNvdXJjZXMgaW5hY2Nlc3NpYmxl
+IGZvciBldmVyeW9uZS48L3A+PHA+QW51YmlzIGlzIGEgY29tcHJvbWlzZS4gQW51YmlzIHVz
+ZXMgYSBQcm9vZi1vZi1Xb3JrIHNjaGVtZSBpbiB0aGUgdmVpbiBvZiBIYXNoY2FzaCwgYSBw
+cm9wb3NlZCBwcm9vZi1vZi13b3JrIHNjaGVtZSBmb3IgcmVkdWNpbmcgZW1haWwgc3BhbS4g
+VGhlIGlkZWEgaXMgdGhhdCBhdCBpbmRpdmlkdWFsIHNjYWxlcyB0aGUgYWRkaXRpb25hbCBs
+b2FkIGlzIGlnbm9yYWJsZSwgYnV0IGF0IG1hc3Mgc2NyYXBlciBsZXZlbHMgaXQgYWRkcyB1
+cCBhbmQgbWFrZXMgc2NyYXBpbmcgbXVjaCBtb3JlIGV4cGVuc2l2ZS48L3A+PHA+VWx0aW1h
+dGVseSwgdGhpcyBpcyBhIGhhY2sgd2hvc2UgcmVhbCBwdXJwb3NlIGlzIHRvIGdpdmUgYSAm
+IzM0O2dvb2QgZW5vdWdoJiMzNDsgcGxhY2Vob2xkZXIgc29sdXRpb24gc28gdGhhdCBtb3Jl
+IHRpbWUgY2FuIGJlIHNwZW50IG9uIGZpbmdlcnByaW50aW5nIGFuZCBpZGVudGlmeWluZyBo
+ZWFkbGVzcyBicm93c2VycyAoRUc6IHZpYSBob3cgdGhleSBkbyBmb250IHJlbmRlcmluZykg
+c28gdGhhdCB0aGUgY2hhbGxlbmdlIHByb29mIG9mIHdvcmsgcGFnZSBkb2VzbiYjMzk7dCBu
+ZWVkIHRvIGJlIHByZXNlbnRlZCB0byB1c2VycyB0aGF0IGFyZSBtdWNoIG1vcmUgbGlrZWx5
+IHRvIGJlIGxlZ2l0aW1hdGUuPC9wPjxwPlBsZWFzZSBub3RlIHRoYXQgQW51YmlzIHJlcXVp
+cmVzIHRoZSB1c2Ugb2YgbW9kZXJuIEphdmFTY3JpcHQgZmVhdHVyZXMgdGhhdCBwbHVnaW5z
+IGxpa2UgSlNoZWx0ZXIgd2lsbCBkaXNhYmxlLiBQbGVhc2UgZGlzYWJsZSBKU2hlbHRlciBv
+ciBvdGhlciBzdWNoIHBsdWdpbnMgZm9yIHRoaXMgZG9tYWluLjwvcD48cD5UaGlzIHdlYnNp
+dGUgaXMgcnVubmluZyBBbnViaXMgdmVyc2lvbiA8Y29kZT4xLjIxLjM8L2NvZGU+LjwvcD48
+L2RldGFpbHM+PG5vc2NyaXB0PjxwPlNhZGx5LCB5b3UgbXVzdCBlbmFibGUgSmF2YVNjcmlw
+dCB0byBnZXQgcGFzdCB0aGlzIGNoYWxsZW5nZS4gVGhpcyBpcyByZXF1aXJlZCBiZWNhdXNl
+IEFJIGNvbXBhbmllcyBoYXZlIGNoYW5nZWQgdGhlIHNvY2lhbCBjb250cmFjdCBhcm91bmQg
+aG93IHdlYnNpdGUgaG9zdGluZyB3b3Jrcy4gQSBuby1KUyBzb2x1dGlvbiBpcyBhIHdvcmst
+aW4tcHJvZ3Jlc3MuPC9wPjwvbm9zY3JpcHQ+PGRpdiBpZD0idGVzdGFyZWEiPjwvZGl2Pjwv
+ZGl2Pjxmb290ZXI+PGRpdiBjbGFzcz0iY2VudGVyZWQtZGl2Ij48cD5Qcm90ZWN0ZWQgYnkg
+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL1RlY2hhcm9IUS9hbnViaXMiPkFudWJpczwv
+YT4gRnJvbSA8YSBocmVmPSJodHRwczovL3RlY2hhcm8ubG9sIj5UZWNoYXJvPC9hPi4gTWFk
+ZSB3aXRoIOKdpO+4jyBpbiDwn4eo8J+Hpi48L3A+PHA+TWFzY290IGRlc2lnbiBieSA8YSBo
+cmVmPSJodHRwczovL2Jza3kuYXBwL3Byb2ZpbGUvY2VscGhhc2UuYnNreS5zb2NpYWwiPkNF
+TFBIQVNFPC9hPi48L3A+PC9kaXY+PC9mb290ZXI+PC9tYWluPjwvYm9keT48L2h0bWw+
+
+--------------Y1gY7oQI0ggObi7uDTnXfL60--
 
