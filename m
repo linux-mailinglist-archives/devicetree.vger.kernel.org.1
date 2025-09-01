@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-211324-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79169B3EA64
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:30:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6E8CB3EAE2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:37:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 6BF6C4E2F64
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:30:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CABCF1883E24
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:31:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E22C63451C6;
-	Mon,  1 Sep 2025 15:17:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D89E341ACB;
+	Mon,  1 Sep 2025 15:20:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="HC7VTl55"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GXFrVX3g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC38535691C;
-	Mon,  1 Sep 2025 15:17:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C48334372;
+	Mon,  1 Sep 2025 15:20:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756739844; cv=none; b=dGcoXZyxEwPOXttp/biYSSQi9eBDrwgGS7pV2bdkomYphWSQiIbhQpwI71NTlzAkJrdT7v6KWx58tydWXSvAWY0DBzURo6NpqvANcSXFyED9uc1OUHpBweCap4FLdimuznDZ0XS3lORMY2YpEL1mU3XiND+mu19rkt1sZ+uX1Zw=
+	t=1756740049; cv=none; b=gB9e5r9QFibND6V1YzaPjllndm/o5hHQ5Tc7TPQvnGBGKuQ47U+tLGBguV8pE8UZ/nWdWLoI/YNpODPKYyT2tfdZkatTrNfuBWUzQQygai8pIf3+bogsfse6flXpPtIRHgxGbquvUe8DWMgECttG84mXehXQc0XsxsRrQU82jXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756739844; c=relaxed/simple;
-	bh=psh/GqKE0N6XjPAZ1VB7WNWkBHTv5Vf+6OZtUUhfAxQ=;
+	s=arc-20240116; t=1756740049; c=relaxed/simple;
+	bh=fYYU8NMNLyVlLnO0IlrsfJJzJO/BBopDiQds5sD+5IE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qaVz9NNcjrI2qzVBs3f8iXa4iJTP5jDSYnmXBobdSP/gynR96aPyJIKJnSohA3uhLl0V4J1Iok/dqnHxdIRBskd41zXZxSqgsW6sjTWD76cW4WiHSipWXXqVnhLwP7VmQqrIJNanVahuUvVOTXf/DIk32cSXkbrcJGxYXeYhG7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=HC7VTl55; arc=none smtp.client-ip=65.109.113.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
-Received: from localhost (localhost.localdomain [127.0.0.1])
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 9476D40E01A3;
-	Mon,  1 Sep 2025 15:17:20 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
-Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
-	header.d=alien8.de
-Received: from mail.alien8.de ([127.0.0.1])
-	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id j3KPCpgOQIVH; Mon,  1 Sep 2025 15:17:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
-	t=1756739836; bh=wSGzID+6LWylLYcdbGGGVwZ9BdwqN9FQf6znuIrCiN0=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=d286CR2tFb81j0b+iu4buvV22V8MXkw5ueBe4NseVqWjLkjaj8Yzaf6S+2S37aSAgEBZB1foaFs3s+E88VmSA/AZ1FoJdSiG0UpCSIsVrL1DZozVFf7jAoH+3xzqkxxUlN8RSSLd6I4dgMNW4c72MXY0nYWvqVvQZSC1xrhPiJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GXFrVX3g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87825C4CEF0;
+	Mon,  1 Sep 2025 15:20:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756740047;
+	bh=fYYU8NMNLyVlLnO0IlrsfJJzJO/BBopDiQds5sD+5IE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HC7VTl55YcNa//Hxr84/xHArlziRMwy8euPzWuuZfDSbRR6y7MtfFTxTFoS+4dDfz
-	 xUNwM2dRLFevzLQXzGfdKCGpM82SmXrwAo4odO7oNasO8LCuYGeJLxI3p6w0CdftJj
-	 d8ryamzbOdq2RNJH5IYMIC1dZvxDHV0+wjI4Q98qskrt4CDpJBJ9QFlhwn4PbmcAmu
-	 O3u0WsR3f7cxM5OGqgBNaGrpvoEyGCVtsTVATmKX4dDpqVwKmraHeBc/zJVmQ8rN0K
-	 ZGT/fkWcJPVEUG440nv0ecbX4zN/Q/eQFr+QLWqUs6hX+pUrdZwgken1s1dHvn+BqK
-	 AGG3fag1ry5KmOW3p0Hdg2fKv9wW3Klk++7sfbT/7nwh1NhpA6SsP0MRNsAVcXX6+s
-	 I7FmBPh2S3iht0z7mPZyBSsFIap8DW+Ea46bBpE/BPLELg6y85kapiSd1tSSE60LSc
-	 6LSgFjS6im56T/YGy9Tp5ZQ50YaLctZrQK1ZjFjgfJl/GFkr1ukEVkjNV0xa3l2+ZX
-	 nK+GSTs0ELKfpUiaKPugx6oY6El4bnodY3Tt3AeE8HzHVVl6+RMtzKa/Qo09XWx7JP
-	 XYDEaUh5J/7Vt7P5H9jN1k0a16/iSINS+r1icsJbHPXbA0pLvNSOvr/Nctzg4Cx2Au
-	 YX6uDl8o95tEUbM7ZO8Sm7/U=
-Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
-	(No client certificate requested)
-	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 469FB40E019F;
-	Mon,  1 Sep 2025 15:16:59 +0000 (UTC)
-Date: Mon, 1 Sep 2025 17:16:58 +0200
-From: Borislav Petkov <bp@alien8.de>
-To: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-edac@vger.kernel.org, git@amd.com, ptsm@linux.microsoft.com,
-	srivatsa@csail.mit.edu, shubhrajyoti.datta@gmail.com,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Robert Richter <rric@kernel.org>, Nipun Gupta <nipun.gupta@amd.com>,
-	Nikhil Agarwal <nikhil.agarwal@amd.com>
-Subject: Re: [PATCH v8 3/5] ras: Export log_non_standard_event for External
- Usage
-Message-ID: <20250901151658.GBaLW46ibJuf4kGgnl@fat_crate.local>
-References: <20250826052914.2066884-1-shubhrajyoti.datta@amd.com>
- <20250826052914.2066884-4-shubhrajyoti.datta@amd.com>
+	b=GXFrVX3gf/tcrem+lyBbwfdS6AHuCHPQF2/lq5E7UmoBLTnaPBMOwiLE5YhZPSyEq
+	 uswqR/b+n/8ZhYJ8bkJ6beLW/OMGHNouJc4fIWvPPJkRo3/CqZgdqgqYvJ03FZWxsM
+	 ceFhBIzOPJs8pR5VM4/eXOP772I+SNl8+B3F36xbiRjaVNV9/nNrQKRE7spJ6nMMCw
+	 nr0UJmyC2WonGC/h8bIngoF88Vlv1IU3XoEmFCYKIi1FmTs7/qD+H52yYZqABxiHri
+	 Zd+AbMrsQYN74WRR/haDxIMbZVs/Mwzy3ucow5Cxjv1pUS7gqW1zSAgtCtVwQOXmwk
+	 ZiAihGO1gGPVA==
+Received: by venus (Postfix, from userid 1000)
+	id 545A41801BA; Mon, 01 Sep 2025 17:20:45 +0200 (CEST)
+Date: Mon, 1 Sep 2025 17:20:45 +0200
+From: Sebastian Reichel <sre@kernel.org>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+	Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	platform-driver-x86@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH 2/3] platform: arm64: thinkpad-t14s-ec: new driver
+Message-ID: <wyv3ounark6jccvhj4vp5qxgmn4bleq6hsqinr4s6r32kld4xp@lhbmetuhydns>
+References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
+ <20250831-thinkpad-t14s-ec-v1-2-6e06a07afe0f@collabora.com>
+ <899b2e79-572d-44f3-8dff-0d301f254b1a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250826052914.2066884-4-shubhrajyoti.datta@amd.com>
+In-Reply-To: <899b2e79-572d-44f3-8dff-0d301f254b1a@linaro.org>
 
-On Tue, Aug 26, 2025 at 10:59:12AM +0530, Shubhrajyoti Datta wrote:
-> The function log_non_standard_event is responsible for logging
-> platform-specific or vendor-defined RAS (Reliability, Availability,
-> and Serviceability) events. Currently, this function is only available
-> within the RAS subsystem, preventing external modules from
-> leveraging its capabilities.
+Hello Bryan,
+
+On Mon, Sep 01, 2025 at 09:43:11AM +0100, Bryan O'Donoghue wrote:
+> On 31/08/2025 22:28, Sebastian Reichel wrote:
+> > Introduce EC driver for the ThinkPad T14s Gen6 Snapdragon, which
+> > is in theory compatible with ThinkPad ACPI. On Linux the system
+> > is booted with device tree, which is not supported by the ThinkPad
+> > ACPI driver. Also most of the hardware compatibility is handled
+> > via ACPI tables, which are obviously not used when booting via
+> > device tree. Thus adding DT compatibility to the existing driver
+> > is not worth it (almost no code sharing).
 > 
-> log_non_standard_event is exported so that external drivers like VersalNet
+> What is the name of that driver, you should name it in your commit
+> log. Lenovo WMI ?
 
-"Describe your changes in imperative mood, e.g. "make xyzzy do frotz"
-instead of "[This patch] makes xyzzy do frotz" or "[I] changed xyzzy
-to do frotz", as if you are giving orders to the codebase to change
-its behaviour."
+The existing driver is known as "ThinkPad ACPI" and thus already
+referenced in the commit message. You can find it here:
 
+drivers/platform/x86/lenovo/thinkpad_acpi.c
 
-> EDAC can log non-standard RAS events.
+Feel free to suggest a specific wording that I can take over, which
+would have helped you to figure that out :)
+
+> [...]
+> > +	ret = __i2c_transfer(client->adapter, &request, 1);
+> > +	if (ret < 0)
+> > +		goto out;
 > 
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
-> ---
-> 
-> (no changes since v6)
-> 
-> Changes in v6:
-> - Update the commit message.
-> 
-> Changes in v2:
-> - New patch addition
-> 
->  drivers/ras/ras.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/ras/ras.c b/drivers/ras/ras.c
-> index a6e4792a1b2e..ac0e132ccc3e 100644
-> --- a/drivers/ras/ras.c
-> +++ b/drivers/ras/ras.c
-> @@ -51,6 +51,7 @@ void log_non_standard_event(const guid_t *sec_type, const guid_t *fru_id,
->  {
->  	trace_non_standard_event(sec_type, fru_id, fru_text, sev, err, len);
->  }
-> +EXPORT_SYMBOL_GPL(log_non_standard_event);
+> I realise this is your coding style but suggest newline after these gotos.
 
-In a pre-patch, pls delete this silly wrapper log_non_standard_event() and use
-the tracepoint trace_non_standard_event() at the callsites instead.
+I will look into using that style in v2 throughout the file.
 
-Then you can use the same in your driver.
+> [...]
+> > +static int thinkpad_t14s_led_blink_set(struct led_classdev *led_cdev,
+> > +				       unsigned long *delay_on,
+> > +				       unsigned long *delay_off)
+> > +{
+> > +	struct thinkpad_t14s_ec_led_classdev *led = container_of(led_cdev,
+> > +			struct thinkpad_t14s_ec_led_classdev, led_classdev);
+> > +
+> > +	/* Can we choose the flash rate? */
+> > +	if (*delay_on == 0 && *delay_off == 0) {
+> > +		/* yes. set them to the hardware blink rate (1 Hz) */
+> > +		*delay_on = 500; /* ms */
+> > +		*delay_off = 500; /* ms */
+> > +	} else if ((*delay_on != 500) || (*delay_off != 500))
+> > +		return -EINVAL;
+> 
+> Those 500s should probably be defines
 
-Thx.
+Ack.
 
--- 
-Regards/Gruss,
-    Boris.
+> Aside from those few nits, great to see someone take this on, glorious in
+> fact.
+> 
+> I don't have this particular hardware myself so I can't test but:
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-https://people.kernel.org/tglx/notes-about-netiquette
+Thanks for the review.
+
+Greetings,
+
+-- Sebastian
 
