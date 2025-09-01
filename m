@@ -1,108 +1,174 @@
-Return-Path: <devicetree+bounces-211286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0DC9B3E44A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:13:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A901B3E45F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:15:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129581A846A2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:13:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3401B200558
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:14:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140991DACA1;
-	Mon,  1 Sep 2025 13:11:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09E831C5F27;
+	Mon,  1 Sep 2025 13:13:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GqYf8255"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nhg7D97e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369DD19F11E;
-	Mon,  1 Sep 2025 13:11:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC8917B418;
+	Mon,  1 Sep 2025 13:13:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756732277; cv=none; b=H16vlC13o80/r7msYkpEHBAUVIzddurrRjRxk4AWjiJzbj0yJ9LqNRF2u4WCKfk/Epj+TENW2ccvDpOZv6qqbK2k0HCr8ELmCT6N5GNAtaEJdAGgAsqhkmieEtj6YxZ8qc7PjcJAWhvkppFhqmfc271QsewKq3QG3OFuBeG4Fss=
+	t=1756732418; cv=none; b=imcVfLPmXovtIqJA8ZCbl3tnjoogw3zvZKC9pOP3mQmFXlbPdw5mq7kY2nIRSuzChvrFMSTySIrX3g8tkdkVudQoMXA9OBZDnbXRwdRhhPjnNDf0FOTT08ZgCKL8PwqBrxogIKKbkQNVxGJ7LL5aMTF+ZsiMCbvfrln5qSJp/I4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756732277; c=relaxed/simple;
-	bh=4n93srW3Uf6HaSLH4EuetJft7bKYSG3S1uTAxo7hgIg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hlT8mz38N25i9VKq8WuSeSBmOZ9p2d2mtZi8zkW/NwITvWh4vCilMR9pXZT2U7quxBV6GZrRjrP/UFeTLUroFEcBEKAwIeCBtbyL57q+OK9E+27a/OXmv/KKD35mAnVm9iM8VPOcb/+H35TmTmuRl1fi1xasV3PVBldc8MAhvqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GqYf8255; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=BH4e93OAzG4ly146yOK0V5DZKaGTbR3A6urXJYn+Ico=; b=GqYf8255+GqVO+8+YfbqIsdvZl
-	xDv4EwhKN0TrHE2iwb0o1Uuh5ri8PbG76MUuOcu1evyf9kAEfyc7D1VswoPgXaRNTXFz5Z0Xv5G/x
-	zAXYRkhsgL5WEuHfz7h6cwzXLiOP5c3TfLe5PupMziMdpOLT8XimV6iF5HbVwu2HRJ2M=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1ut4JQ-006m2M-7V; Mon, 01 Sep 2025 15:11:08 +0200
-Date: Mon, 1 Sep 2025 15:11:08 +0200
-From: Andrew Lunn <andrew@lunn.ch>
-To: Jack Ping Chng <jchng@maxlinear.com>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>,
-	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
-	"edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>,
-	"pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	Yi xin Zhu <yzhu@maxlinear.com>,
-	Suresh Nagaraj <sureshnagaraj@maxlinear.com>
-Subject: Re: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Message-ID: <398ad4b1-1bd3-4adc-8bda-5cc8f1b99716@lunn.ch>
-References: <20250829124843.881786-1-jchng@maxlinear.com>
- <20250829124843.881786-3-jchng@maxlinear.com>
- <65771930-d023-49e1-87a7-e8c231e20014@lunn.ch>
- <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
+	s=arc-20240116; t=1756732418; c=relaxed/simple;
+	bh=frSJ8z6OF+54546tm2d66zBCkU+yhVDJAZf07QWsMGQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=QsZ1NtppQr62Bj8XQ1n+hONdOhChfd2dMNA1qExj1ek4MhxJyY0d6dR/tf96OJJwS4r/XTQd6ylOehx6Ajjf8vED8endGVeZC7Ttad63x31h2A/kpiPdoCycoGSbeXml8ZAXMwi1Oz92AdHdaPxRTvHnAh4PEdUdUzdO1k1wTDc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nhg7D97e; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 70F35C4CEF4;
+	Mon,  1 Sep 2025 13:13:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756732418;
+	bh=frSJ8z6OF+54546tm2d66zBCkU+yhVDJAZf07QWsMGQ=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=nhg7D97ebYSG5lhCCIPNZ/bBMAzT3wW5WXHi38U9i6ShI+NtYp6KtG72vYSQ6YZ2K
+	 DCusdys8TrQfvOVoOJSb1AQf87iF4Kv6qOGkHUpbfIfTozSboCAUs41R3VphP0Xb9h
+	 fy9XGunanbTvcLb773WU4/vKACo2D0lQAbUk4gdsuw0zBScRUUqmv9NDRQpXA9Nox3
+	 ODYSyJV21CrRxrhPkMNB5oXNg6BUoGawJuuLZvttflLzg2Ra7PRYlJnlUbak2krRAO
+	 wUlZvw8EeNQCZL1QWgL9S5F9whMhB/nzxOIQsIXVQK1Rj+I2WaoKhu/Is32ermSXNB
+	 iDSa30jgApbDw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5E403CA1005;
+	Mon,  1 Sep 2025 13:13:38 +0000 (UTC)
+From: Mahesh Rao via B4 Relay <devnull+mahesh.rao.altera.com@kernel.org>
+Subject: [PATCH v6 0/4] stratix10: Add framework for asynchronous
+ communication with SDM
+Date: Mon, 01 Sep 2025 21:13:22 +0800
+Message-Id: <20250901-sip_svc_upstream-v6-0-b4db7f07cbb2@altera.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPObtWgC/3XR227DIAwG4FeJuC6VMYdAr/Ye01QRICvS2qSQR
+ puqvPtYOqmZkl3+yP5sizvJIcWQyaG6kxTGmGN3KUHtKuJO9vIeaPQlEwSUwDijOfbHPLrjrc9
+ DCvZMQ629dqYRnEtS2voU2vg5k69vj5zC9Vbk4fFIGpsDdd35HIdDNao9q2lygvwUn2IeuvQ1r
+ zOyuXqeLBDXk0dGgYLWIA0z0HL2Yj+GkOy+2LM24lOQbEvAIrQ2SCekK4xfCXwhoNoQeBGUBW2
+ FBPSBrwTxFBSDDUEUoXHeeAXaQL2+Qi4E3BJkEWqOXlhXFuG4FHa/f1eD/qfTOIHaoFReij+zp
+ 2n6BuDNVssgAgAA
+X-Change-ID: 20250131-sip_svc_upstream-e78d8c9b4335
+To: Dinh Nguyen <dinguyen@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Mahesh Rao <mahesh.rao@altera.com>, 
+ Richard Gong <richard.gong@intel.com>, Alan Tull <atull@kernel.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: Matthew Gerlach <matthew.gerlach@altera.com>, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756732415; l=3555;
+ i=mahesh.rao@altera.com; s=20250107; h=from:subject:message-id;
+ bh=frSJ8z6OF+54546tm2d66zBCkU+yhVDJAZf07QWsMGQ=;
+ b=oSv2fw+9JX0dRpMK7yM4DvEenPAZyqOQB495Ldz11o7rI0Dz0mB4wz4wRCnnmBfmirrzS4TFD
+ +eNjUmSz3LFBGA+FRjGXrUMwvm8bEcKPZoT362giugbf1ZetIYujwVm
+X-Developer-Key: i=mahesh.rao@altera.com; a=ed25519;
+ pk=tQiFUzoKxHrQLDtWeEeaeTeJTl/UfclUHWZy1fjSiyg=
+X-Endpoint-Received: by B4 Relay for mahesh.rao@altera.com/20250107 with
+ auth_id=337
+X-Original-From: Mahesh Rao <mahesh.rao@altera.com>
+Reply-To: mahesh.rao@altera.com
 
-On Mon, Sep 01, 2025 at 09:38:44AM +0000, Jack Ping Chng wrote:
-> Hi Andrew,
-> 
-> On Fri, 29 Aug 2025 22:24:06 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
-> 
-> > > +This document describes the Linux driver for the MaxLinear Network Processor
-> > > +(NP), a high-performance controller supporting multiple MACs and
-> > > +advanced packet processing capabilities.
-> > > +
-> > > +The MaxLinear Network processor integrates programmable hardware accelerators
-> > > +for tasks such as Layer 2, 3, 4 forwarding, flow steering, and traffic shaping.
-> > 
-> > By L2 and L3, do you mean this device can bridge and route frames
-> > between ports? So it is actually a switch?
-> 
-> Yes, the SoC does support packet acceleration. 
-> However, this patch series primarily focuses on the host interface to deliver packets to the CPU, 
-> where bridging and routing are handled within the network stack.
+The patch set includes the following changes:
 
-Linux has two ways to support a switch. Pure switchdev, or switchdev +
-DSA. Which to use depends on the architecture of the device. I would
-like to check now, before you get too far, what the hardware
-architecture is.
+- Add protection for querying memory objects in multi-threaded flow.
+- Add support to generate and maintain message id and client id for
+  asynchronous communication with SDM.
+- Add framework to communicate with Secure Device Manager (SDM)
+  asynchronously by sending a request and polling for response.
+- Add commands for performing Remote System Update (RSU) operations
+  asynchronously.
+- Migrate RSU driver to use the asynchronous communication framework.
 
-Are there any public available block diagrams of this device?
+---
+Changes in v6:
+- Use guard() helper function for svc_mem_lock.
+- Fixed comment message style according to kernel coding style.
+- Added fixes tag to commit message.
+- Removed id generation patch and use in house ida allocator.
+- Changed lock of hashmap db lock from rcu to spinlock for better latency.
 
-How does the host direct a frame out a specific port of the switch?
-How does the host know which port a frame came in on?
+- Link to v5: https://lore.kernel.org/r/20250708-sip_svc_upstream-v5-0-9c4289256d54@altera.com
 
-	Andrew
+- Link to v5: https://lore.kernel.org/r/20250620-sip_svc_upstream-v5-0-732d4ac08a32@altera.com
+
+Changes in v5:
+- Use FIELD_PREP, FIELD_GET() and GENMASK() for bit
+  manipulation for ids.
+- Bring down probing when stratix10_svc_async_init()
+  fails.
+- Other minor fixes.
+
+- Link to v4: https://lore.kernel.org/r/20250610-sip_svc_upstream-v4-0-bcd9d6089071@altera.com
+
+Changes in v4:
+- Added description for svc_mem_lock mutex.
+- Wrapped commit message and comments in source
+  code to kernel coding style as per coding style.
+- Added minor code fixes.
+- Moved variables to the top of the function
+- Removed HWMON support from in the patch-set, this
+  will be sent in a separate patch-set.
+- Added support for RSU commands to asynchronously
+  communicate with SDM.
+- Migrated RSU driver to use the supported 
+  asynchronous commands.
+
+- Link to v3: https://lore.kernel.org/r/20250526-sip_svc_upstream-v3-0-6a08a4502de3@altera.com
+
+Changes in v3:
+- Changed "Stratix 10" to "Stratix10" in the commit
+  message and in source code.
+- Simplified stratix10_svc_add_async_client() by removing
+  redundant code for async common channel initialization.
+- Fixed resource cleanup on negative path in
+  stratix10_svc_remove_async_client() and stratix10_svc_async_init().
+- Removed optional interrupt handler support, will send the patches
+  in a separate patch-set.
+
+- Link to v2: https://lore.kernel.org/r/20250512-sip_svc_upstream-v2-0-fae5c45c059d@altera.com
+
+Changes in v2:
+- Added Reviewed by tag from Rob Herring for dt-binding
+  patch.
+- Resending the patch-set as there is no response from
+  the maintainers for the previous patch submission.
+
+- Link to v1: https://lore.kernel.org/r/20250422-sip_svc_upstream-v1-0-088059190f31@altera.com
+
+---
+Mahesh Rao (4):
+      firmware: stratix10-svc: Add mutex in stratix10 memory management
+      firmware: stratix10-svc: Add support for async communication
+      firmware: stratix10-svc: Add support for RSU commands in asynchronous framework
+      firmware: stratix10-rsu: Migrate RSU driver to use stratix10 asynchronous framework.
+
+ drivers/firmware/stratix10-rsu.c                   | 272 ++++----
+ drivers/firmware/stratix10-svc.c                   | 739 ++++++++++++++++++++-
+ include/linux/firmware/intel/stratix10-smc.h       |  76 +++
+ .../linux/firmware/intel/stratix10-svc-client.h    |  92 +++
+ 4 files changed, 1045 insertions(+), 134 deletions(-)
+---
+base-commit: 5cc61f86dff464a63b6a6e4758f26557fda4d494
+change-id: 20250131-sip_svc_upstream-e78d8c9b4335
+
+Best regards,
+-- 
+Mahesh Rao <mahesh.rao@altera.com>
+
+
 
