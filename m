@@ -1,117 +1,107 @@
-Return-Path: <devicetree+bounces-211284-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211285-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id C19A4B3E3C5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:56:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D79B3E3E0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB88C4E2990
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:56:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDA317C811
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:04:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0713314DE;
-	Mon,  1 Sep 2025 12:56:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E299412CD8B;
+	Mon,  1 Sep 2025 13:04:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N/gO95zb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k1oKLpPB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296BB31DDA9
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 12:55:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A814A23
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 13:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756731360; cv=none; b=bxDQNlT63z1AdBI2DXtQUsgNdGm94461SVokhHJ9WUD33my5xw7V7nMWGTsbqV3wzgCR3/VY1RikQNSau+SNwQknPQOoDC+3Gpm4kGtpEH045dFsZoYjg0bSQQGhqPI1KO6KeH/f1vyjD/x6ui2MHk7uCGFnwP3BUDAyv8WlKr8=
+	t=1756731845; cv=none; b=r+CkRASVKCwWNGloWkdzEJtrWK7ONX3RYoUJ4GidBM5ia8Ct8P60pedNnkptXIgRu9tOJT9c7o+pnMraY7/pMKYbieXj/K8MRbnpHjo6pMLysEzS08+UIsyiKWMiHlTDkvmvjSieRG/JAHojoMdqV019yjJyYFhWEjT0fbD+UJ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756731360; c=relaxed/simple;
-	bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=UWsibbiXYF4mtbuJPXGiOqtvtuzSE8LeQSrHZUYGnQqiiFMEsMSFFnlDt+H7TOS3RTbvCV8R5sxVeUq/ctcALjbmLwmkmqxKzO66nSZ8asB1IL1UYxxVSQNkIYpZNZ63lqrzXedqnwVST/fbvFbq+fm+WAQnfbT7lliR6HKhOSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N/gO95zb; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f6e0eed29so1840878e87.3
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 05:55:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756731357; x=1757336157; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
-        b=N/gO95zbSPubz8+fzkr6d8SHjON0h46SBRktPorCqmn6D+B82hgZTNEFmMIrupTg7R
-         zYuz1kGzhik1SEt9feAOvaWAXpXgiefY3MFfD2BaCPBi53k0cOcbRagmFsqnlVUyk6tR
-         eZYJI0SZfFdsYy+rdXQmOxj4VU6vhVyGvoyqT1K8H/1nNTs5jLSGr1UKEeInicwgDZEv
-         C1Pp22q6QByns6Lbc0MUOvKDRxV623kJr8bbYlcRqUtYHiHX4LwzlB0gLO25abdxq+Ai
-         IVXh14nTxPWDT4FxghiQTce7Jmi1kVm1ujQCljSHUP+Gf2M4pI05A+8ZBZkArkgeKrxj
-         ZeZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756731357; x=1757336157;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
-        b=JUGJ9q3DMcLw3KOVV5SVFACZyqC1Oe9EfBZMAj1E7MTAjDVJVoZVCp+zGamH0NGyxP
-         0B0tzzxocLJwNLj6qCIc9/l34jhoFZqTQfgloRv8VVyaoxGzRs89xm6b6W6YZiUg1thw
-         iOKBML5SFikA6AuZ+XOsCWu/6Njaw2ur7drBEj9p6PEAESbnr2yK85Wg4g2ZTAGbCOJB
-         oK0yDn706uyvcHqeYYX2gajkEMnabDz10Fyfx6zzz+AvWNgOZ8u1iZfvpr9jBa2pRO4k
-         tehmSyeqRYY0J2JAbrRWW3i7L61Hi7TyNNK3TiOGh8qq9PBPiPK3iUf+5GIT/BMyzOiC
-         UUxw==
-X-Forwarded-Encrypted: i=1; AJvYcCWIQtSHBg57SYLGNvapvBnPny1/RuyR/qffqLIKBGtwPPJwhr0cmKkTzQFstcnZmOWfa7GNYuUc36jE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz70L6DxqumP/MbSOLH5HwKzk1bsLGYwwA1e1baTaC8ArCeqrCL
-	KGp3sqMHqArOuIUdq5/MTVx1kyo5G/Dk8eZEMEQP5hatAZV6UjVzynG+yHmtvkU/ab08ji1xy9S
-	GgVhiI09UV7r6G1yZ/hfhOR7YAbF+PYYnNhIQVxfaxQ==
-X-Gm-Gg: ASbGnctwKVZXSoPx+eJpcDz4OfdlbYZc2nUL9l3xnJVifraTSSqEGOeBBAwBFnl9Kwv
-	LVw2pRBtD50OFMAP0t1+0uld/V4Ku556W6QxVH3q7NfJp+qiDnas/O+m8WDYT8VL46/Oe6d3wI5
-	dDEuZUEpKryiCxb99hfjKVmUlgZrfjpE8O+VAii1X1fFcyH5QoN+s6pzWuCjxmoVh7qyhiqNha1
-	7Ga770=
-X-Google-Smtp-Source: AGHT+IHDj8cz7cQZ3X0v3+zhy0ZHW1Bc0Ee2H0FX5pElqXb7vIdjHb7N5zlkeIrybjYoRm4vWr0BKtNdjorjqsqto2I=
-X-Received: by 2002:a05:6512:4608:b0:55f:48ab:a2c2 with SMTP id
- 2adb3069b0e04-55f70995397mr1725798e87.35.1756731357115; Mon, 01 Sep 2025
- 05:55:57 -0700 (PDT)
+	s=arc-20240116; t=1756731845; c=relaxed/simple;
+	bh=TOiIhiyCyJG5AxUoW1hpwxuptZ/Xs/OCeoRXC0Hc2uI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=kvW8DTicHa+QpyWZJivG3aBzBZrMwBumePcFB8Cnv4HZALxMj6dtnTRJXmGmQwn2hYLlejiyYyKsb1XRN1Z6jqmJYV33RiirfonsCJfeBMcphiMLt5UEGY9XcEpcIcl6LXLv6IbV4MzkvLJrQvPAFxJqIG+8+f3TTj6FxuQuA8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k1oKLpPB; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id EFA171A0D65;
+	Mon,  1 Sep 2025 13:04:01 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id C797960699;
+	Mon,  1 Sep 2025 13:04:01 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E05C1C22D9A3;
+	Mon,  1 Sep 2025 15:03:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1756731840; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=IgnLlO7jOt0FD4jUzFN4p+RS1ZzKoUQ5W4E4v5dt5GY=;
+	b=k1oKLpPB/xN0+LSXuE9pFlMVOUwjjpm7z8hAbcHZtb0psY9101Tjrjs28FX958mzmZUq8x
+	j+gzj3qdRTLpgo4ok9b2M4wGzhsOcTn3dLwI/XfvMuy9C8UUoiaPqYKHReFkhFb4jX4mKw
+	xIa5XkhNemDk0/EnwoEeFeRxF9WyDFFiEoKVHa85brb9FxSZD2vm+MmmIIyl+hE1l0I5DM
+	dE4XNUduk70udDE+jSkvWrVjQnrV/cjMC+9xGGijQJflgcj7gtEEsIge2U0eVTdp/fhl7c
+	IotwMfSHozv8JMWEu0XdK65xQ8LPdUeLPtg0IRykP9WJACUU1sSIRKgkVRVf3g==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Richard Weinberger <richard@nod.at>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	linux-mtd@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 0/4] mtd: rawnand: s3c2410: Drop S3C2410 driver
+Date: Mon,  1 Sep 2025 15:03:48 +0200
+Message-ID: <175673179165.52555.3449710772627669678.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.51.0
+In-Reply-To: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
+References: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250827024222.588082-1-gary.yang@cixtech.com>
- <20250827024222.588082-3-gary.yang@cixtech.com> <0fa7e2cb-fa0b-4f9e-84d6-a4b2b3d8a4cf@kernel.org>
- <PUZPR06MB5887D9A879D16DC6A8C8ED58EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
- <25283b66-4cbb-4db9-9b1e-7a4e6e3db2a1@kernel.org> <PUZPR06MB5887887C93BFF42BC8417D96EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
- <CACRpkdYC-3qybKW7VH5MVfBc3oqSrOa2RTt1Q=p=HHsi5drGOQ@mail.gmail.com> <PUZPR06MB58871C2E108BF1AC057EF461EF05A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-In-Reply-To: <PUZPR06MB58871C2E108BF1AC057EF461EF05A@PUZPR06MB5887.apcprd06.prod.outlook.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 1 Sep 2025 14:55:45 +0200
-X-Gm-Features: Ac12FXzfjnaic5AU3gd0OQUgGODH28pTgWB36lmJD5eBDGGK5IJq6vSA5jGXlos
-Message-ID: <CACRpkdYRTKHy0ace2o3NAeuSR3oai9fZMPrN6qQr3Lyqif4OSg@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
-To: Gary Yang <gary.yang@cixtech.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Sat, Aug 30, 2025 at 3:20=E2=80=AFPM Gary Yang <gary.yang@cixtech.com> w=
-rote:
+On Sat, 30 Aug 2025 19:01:08 +0200, Krzysztof Kozlowski wrote:
+> Drop S3C2410 NAND driver because its only two users were:
+> 1. S3C2410 SoC: removed from kernel,
+> 2. S3C64xx SoC: does not reference this driver.
+> 
+> Best regards,
+> Krzysztof
+> 
+> [...]
 
-> I understand your thinking and try to support the standard referred to ab=
-ove.
->
-> I only need to spend some time to research this scheme and debug it on Ra=
-dax O6 board.
+Applied to nand/next, thanks!
 
-Thanks Gary, I have this board too so I hope to be able to test it
-directly.
+[1/4] mtd: rawnand: s3c2410: Drop S3C2410 support
+      commit: 773b9202de0127444fc8802a611a19637b7fa12f
+[2/4] dt-bindings: mtd samsung-s3c2410: Drop S3C2410 support
+      commit: 451f1184f8f6a90c701b9d8c8c055f6a1d9308bb
+[3/4] mtd: rawnand: s3c2410: Drop driver (no actual S3C64xx user)
+      commit: d40934bea54ca5509138d40ab530c6700c830802
 
-I haven't figured out how to boot it using device tree, everything
-I have going is using ACPI right now, but once I know how to
-boot it with device tree, I will be happy to test!
+Patche(s) should be available on mtd/linux.git and will be
+part of the next PR (provided that no robot complains by then).
 
-Yours,
-Linus Walleij
+Kind regards,
+Miquèl
 
