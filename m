@@ -1,577 +1,255 @@
-Return-Path: <devicetree+bounces-211135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC1AEB3DA1A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:40:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC1DB3DA22
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:44:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD3DB7A4FED
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:39:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4429116A3E9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:44:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE4F1258ED9;
-	Mon,  1 Sep 2025 06:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fOwyaaSM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA78D258EDE;
+	Mon,  1 Sep 2025 06:44:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020079.outbound.protection.outlook.com [52.101.225.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9030118EB0;
-	Mon,  1 Sep 2025 06:40:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756708851; cv=none; b=u2RevPf+JyGBX3j0fg1TGg70Juo1gHYgJIwDfC0XTBnRsK80pl/i+7fs2tBZkTrxVFAbK2/r1UXcVCYuEVbD44V82zzglUbrDgmjjJJ37WXzdXmLREBgO4mOTXzl55Vj2U6QwsgeAa8wUZ7KRF7U1AToFStpcsVWqCx2KkWAmJ0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756708851; c=relaxed/simple;
-	bh=HLIJ/88I9oikGh1FbjwJdvkrDB8odi9uvvX3GgGjNo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mZhd8lWTabDrcubwGSOH8L7ReRZJZUh0E1FlQi3LXHMeFgLMtv3R1+2OkYSCNoNGtqBoUW+JqJCMYmfUD7wHp4gmMAWtJNhbFenUOOmr/emvyvvWhHaxh2UO/GB7OLMXMu3U9GYMdFP5rD/4hphnw1ksvZ7j0eFI3TKN3jk6ec4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fOwyaaSM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98226C4CEF0;
-	Mon,  1 Sep 2025 06:40:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756708851;
-	bh=HLIJ/88I9oikGh1FbjwJdvkrDB8odi9uvvX3GgGjNo0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fOwyaaSMlmfXR1L4T/1YVaGcgMcTtHeTcXst7BofxQGKDyNy+YsUx/P8uNddQML/+
-	 TCYD8ouRMGHvN3B0tO9d/jKMkm8RZTz91zxvwN2WSoL6KH9LW8Atxxo1rCrVDOc5xF
-	 z/RDi00Zv+SQADyIQ7fc+u0zhvjPJ69pZm1Y1/n1kBY3YRpMZQk3BLa/RMYQDaHxiP
-	 hqSuhaFCzG5l7cVPg3JyHPyK1aiWs7RUqpierP8CMsEv90uBCm1jB6t8ykdDUrTuz0
-	 LiFKnarRun3XL1UZaNU3uvCHDMKoAJFrpXPkIYtwJjC5GoVcbijAX4Nk3bG+BizPfn
-	 XTSeLuAafz8uw==
-Date: Mon, 1 Sep 2025 12:10:41 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, 
-	shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, 
-	mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v2 2/2] PCI: eic7700: Add Eswin eic7700 PCIe host
- controller driver
-Message-ID: <jghozurjqyhmtunivotitgs67h6xo4sb46qcycnbbwyvjcm4ek@vgq75olazmoi>
-References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
- <20250829082405.1203-1-zhangsenchuan@eswincomputing.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2EC618EB0;
+	Mon,  1 Sep 2025 06:44:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756709093; cv=fail; b=czmoJRNgtGYl5IC/Aa8ZchaeS6I8vuc8nyLCGtHSnFIml7r0vq10BkWa5T+Vhp+WPVq8JicNmi7huei89lbUf3ux7sZIb884bagdgwcjIEX1VJNFeZIFNXp3HVDPCSGdviAUKeU+7MaNSxcMYBf+yakFyMrcllICUnQ5xyhNtxQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756709093; c=relaxed/simple;
+	bh=pafIvLBB7XQ+MxQfOV7Cam2UbKVW+T0jFBJYbQsNppg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Oidf+W9svkq7hmXGlUhMwNrTUf4OwTzK1w+XLJwxJ157pflTMFcztRJIrS/IbnUEwKT90EqfxizFVOmIq2iwF2SrsNggqigIYgpelWVPoNXr+vdsy00u02MBWWyEw2KWiiGdAE97sGbfDK9uYUlLnH5uLD84tv0TF4xL8eq7muQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.225.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Cc3tmltMBJLTb7PSu21dweROuh7UOfMG35YIDJohw/WCf2n/f/r5CR559IasN/s5YB6FpWb3bpEFvyvgbwd9ICX9CuAOlnqg4RVCTDf+kbDNUJ83W6jP+7cffPPzJkqUOh3aLk/4E1t0msNjf31E+PWT295RfmRjWbz12BBmjN5JxkEnOCCdE1TSslX8bL8ZsTwZQdsdiek+b0KppQTdVzJvYMrtgAlCGkp8+vZ2VVBc1tQLC9/8fK4YwptHANr8nF8+e1JtCJ9goPjowLvVJVwD0IKQwc+1ienmM0vHp9jrElZIgzG+E54DrDSqg+2yOcstAK8nJkhsoXI4UoQG/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=pafIvLBB7XQ+MxQfOV7Cam2UbKVW+T0jFBJYbQsNppg=;
+ b=cdrTsvsRqF1pFfCaysm3DD22/SkmarT0IKZG+Ba6cdx03JU2rwDO6BWSXJE5+xvUrmaK1gOlSwk2VuwUhd75sl8+TkedsVzRZq0m2tiVscaO9IxKtr152Zj2+D9XX0MtC0QOMWShAGhEEhoisDymQ+2UMlzECe+q2Ur6fJipzzZ/nA/QKazjeM5yyIx0RXsJ0jSiqX8+TCsqEYbE2a4pRWP1M+NFqRMGsHAtgIxpkDQgDT9uMXn9/Ok8D881lQ9WdTRgzjSYJxBuKgB0uw/ipmsmMhxgRdZOEPXzx2c8hJrY0Wvns6QGzhBWrJfDJGxLQaFplBD3StmRDOT7jXWsAQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
+ header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
+Received: from PN3P287MB1829.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:199::7)
+ by PN2PPF63CA987B2.INDP287.PROD.OUTLOOK.COM (2603:1096:c04:1::121) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.25; Mon, 1 Sep
+ 2025 06:44:46 +0000
+Received: from PN3P287MB1829.INDP287.PROD.OUTLOOK.COM
+ ([fe80::58ec:81a0:9454:689f]) by PN3P287MB1829.INDP287.PROD.OUTLOOK.COM
+ ([fe80::58ec:81a0:9454:689f%5]) with mapi id 15.20.9052.019; Mon, 1 Sep 2025
+ 06:44:46 +0000
+From: Tarang Raval <tarang.raval@siliconsignals.io>
+To: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>,
+	"sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+CC: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, Mauro Carvalho
+ Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
+ Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hans
+ Verkuil <hverkuil@xs4all.nl>, Ricardo Ribalda <ribalda@chromium.org>, Bryan
+ O'Donoghue <bryan.odonoghue@linaro.org>, =?iso-8859-1?Q?Andr=E9_Apitzsch?=
+	<git@apitzsch.eu>, Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
+	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Matthias Fend
+	<matthias.fend@emfend.at>, Dongcheng Yan <dongcheng.yan@intel.com>, Sylvain
+ Petinot <sylvain.petinot@foss.st.com>, Arnd Bergmann <arnd@arndb.de>, Andy
+ Shevchenko <andriy.shevchenko@linux.intel.com>, Hans de Goede
+	<hansg@kernel.org>, Jingjing Xiong <jingjing.xiong@intel.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v9 2/2] media: i2c: add ov2735 image sensor driver
+Thread-Topic: [PATCH v9 2/2] media: i2c: add ov2735 image sensor driver
+Thread-Index: AQHcGMTj/Rv/OrGdGEGuAw4X2ccUPLR95bMD
+Date: Mon, 1 Sep 2025 06:44:46 +0000
+Message-ID:
+ <PN3P287MB18298FB93EDC498572742B2A8B07A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
+References: <20250829090959.82966-1-hardevsinh.palaniya@siliconsignals.io>
+ <20250829090959.82966-3-hardevsinh.palaniya@siliconsignals.io>
+In-Reply-To: <20250829090959.82966-3-hardevsinh.palaniya@siliconsignals.io>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=siliconsignals.io;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PN3P287MB1829:EE_|PN2PPF63CA987B2:EE_
+x-ms-office365-filtering-correlation-id: 20672fb3-029b-4a6e-c3f3-08dde9230a90
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?od1GN0bVkSrux7RVBa67/OOwkL3IYeRS7bkIwMW/19K9msM7fbb5n/Wlyt?=
+ =?iso-8859-1?Q?DO5z5osQogoDlCI+LFahwPMEdK4gmAVTY5Vzcqg/WYpn8VRSstLGfVNdA1?=
+ =?iso-8859-1?Q?6hZOWVALZKhaTdwvQA/mSRi4sJDtUfWZUMC7x35RIQXu+QmhLJ8r8uFKfx?=
+ =?iso-8859-1?Q?Sy1WmoU8t/v9nYesMFRruFbJ7lIA009WQ3zQYHzcf+6ddp8OaN4ypcu+Qj?=
+ =?iso-8859-1?Q?UiIoKoAqvFguZ251N/FFBMSiKm2LO0h9qFS/5OZBuZDFwAdEP4UTLrJV/A?=
+ =?iso-8859-1?Q?H81Mj2BGXNc9tNPndCxa82OZ3W1wfYiHefurXLDy3kcvb6WxI+xPU8myAH?=
+ =?iso-8859-1?Q?kMnEWsnAzVJf+nRW/Gx2hVmLmJd0t6trJeoJCvS5Vr9XhPjDrosZX86kea?=
+ =?iso-8859-1?Q?0vEtJ+7E+KskCxA4FwvlmbKc2zJRTdbxFI2KUEQaH289A6zo4S2B+QF7yx?=
+ =?iso-8859-1?Q?+nAZwbEHkFwCQDMdpZx3T9pkXTJZSo/isaf0bZrFYClesUNPNJ/LEiuxxN?=
+ =?iso-8859-1?Q?Yw06GI6fybNrDw4AcYuPOHmSJAFcvWRRvF2pqCvKYHQN5dwYicAT2JbmPr?=
+ =?iso-8859-1?Q?k+DcWi2+yW8NKR2ae7zVHi3otmkl35SzJUVJRlX7RImxgc4DEFdhMDq5l9?=
+ =?iso-8859-1?Q?dStdLt49Q99fcwkIteZVO+dW+2FG9CfRwRI+qhpTP3gE/zGP/nTWKpqlHr?=
+ =?iso-8859-1?Q?0jDNC28iJW1nsnxaKZCXz7hAc2Bn5MVbwtZ8YgoGH8ByV4OBUKzUQtJvvH?=
+ =?iso-8859-1?Q?RvVa1uzOResxVucikviJw4T/giwviRH7tuPwobwrdJ4o0UEd/hfpqrvOEW?=
+ =?iso-8859-1?Q?gUuJcDToCW/jdxmx92BYTQ2GFs0PTJA1k2HwpCGOjYUh5q0XzcUov27JHf?=
+ =?iso-8859-1?Q?RPbo+KdGZjgrIm/NZrKz9MVoGofcWqMKzkbNSSKQJlFJCUWg+0kqC6A0Cu?=
+ =?iso-8859-1?Q?bbdcsxnh36lNlGJahdKF7TbzdBZlD7ykC8WCB0OcDe7WCcIlR1FfQx6mY0?=
+ =?iso-8859-1?Q?gtsbGF+nu/79ucmaoBpbjKvYXJlARWhaofpot4pLO41aBjewg03E5Ro4O7?=
+ =?iso-8859-1?Q?/43mLV3B9nNIap4fGg1LfZ/4dCRmShUzfezJJze1g97VXDiIgTWMnExzJ6?=
+ =?iso-8859-1?Q?t2CkET0Jv1GjoE4VTLruJyEPKgqwoztoDohKoD1y/9hwfn1e/6JyaRTT17?=
+ =?iso-8859-1?Q?tAmGx/FvH3luT5yZ66zfdaxMYqGeKqPJ4eCEAROzW6nSoplfgF3VJ5Wv/x?=
+ =?iso-8859-1?Q?Q2CSZJs5z+UBXydwj4bJzbcu8R2UU+JQQtIqZovpZ2XNw0QnhPy9MesMAf?=
+ =?iso-8859-1?Q?GraIPpe6gyFGKEXPJeFm9jC3BecUI/FVEdycM7R+WxyFzwmKkiMBtBwJ/z?=
+ =?iso-8859-1?Q?Ut3Nw8Zr4Koip4fZXHU7u0600T4YkpqUQp15XMBdhb3NnFwfw/9lPhPQhn?=
+ =?iso-8859-1?Q?DaHCVdm0YFC01tPEiHpjcfWABb/emvaxsZMayaKeLN0ZVRWu5mc9kHJOwU?=
+ =?iso-8859-1?Q?68Q2fVLuNFm84pRSdkG+nQWlwRnQ2G/rkhCsq2hrA9FA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB1829.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?rPKSHPY5g1R0DEVJshc4hJs2H406jGtvIrdZ2S6Ej+ejRjDqH0osULFBqs?=
+ =?iso-8859-1?Q?jq91e59Yq28rDFZ+pDALZzJZNFIjEP82aTQ1lN+HGRGNflmkOdZLR9g4IS?=
+ =?iso-8859-1?Q?KKz6xNeIriwxi6fEHe4uMYq138HxEyDW0ikoaS5XpPBtk4ha0FjAKjT7d7?=
+ =?iso-8859-1?Q?tizP6cDNpeIG9aoglknClSP1aeKwgcoqiLcyAWx/eSDWtDsCu3d8wk7dbE?=
+ =?iso-8859-1?Q?qUz1cC6gV22K4Y1BDoyvJVd+uuzfn7QxcNd5Im2EdndYinmAKpAH25QVDw?=
+ =?iso-8859-1?Q?zdvEktNy/pcw30gsitfVDZ5QAkTOWVHmkcVXlo3n0aG1FQiIOPCoh9GbhP?=
+ =?iso-8859-1?Q?Io50nzgNWjVIfnSYr+dRGA6ROXM15U9xYz2rZlvvwwcrWSs32vpZASdkzg?=
+ =?iso-8859-1?Q?sbZzeSrreYkdiYhmkVu8IEGNFaiH84EBDjRnPYVrxPMC7l5dpUVtDUTlqG?=
+ =?iso-8859-1?Q?7mzG0BLjOjFxpPODt5lzblPL7nN510zRqbYkyUDgX7R3824AvXcm4/AkFT?=
+ =?iso-8859-1?Q?caSBEf9PsJqvdvkII7kSEBvPeV24bYuF9yuiTE04xe9LJC9QPY2hL6ZRrv?=
+ =?iso-8859-1?Q?FboOuStF1lmgu6JFdko4Q8FXkPPmD8/CdjfhoMRVIK1IesEt+CKYMFoCpS?=
+ =?iso-8859-1?Q?mZqh+CCD7ouhVDdSQ5YJR/iTC4WVLJ8sMTCGQM/B3rLRZm8tce8Vkz8Z5H?=
+ =?iso-8859-1?Q?k/dPF524E67udXSMIz69wOiqg87AnMX5EJSV1JxfKDeUrZpR04dY1TVMjn?=
+ =?iso-8859-1?Q?nxUaFOS2K9Z4U2JxzzgCcEoLLkPMOPPaHrrqlcO/PWsVP8nkHbJwzNjR1k?=
+ =?iso-8859-1?Q?K+3rr7gYasDBTbsEm/NcQH9LWFFNtL7QR7kSwFl9rjMZgbrGbDkjxVvpFZ?=
+ =?iso-8859-1?Q?ecnRpa40gO5RmzmghTqhQWVUXLFZI4Vf3l4fA7K7jXljNste6b6HPELQ75?=
+ =?iso-8859-1?Q?zAXh6xxLfhxOKzRsLRssXy0UAXJZvWTGcU6//LZRrZAyIJGq3kHtHWL8IB?=
+ =?iso-8859-1?Q?1kOn8xNmD6ZwsUBKrzvg6uK/OXnfod2rkKsh0UY+ZZuHf5vNRZqacVGk9F?=
+ =?iso-8859-1?Q?6SECdJebJKadApFgglIXtCRMFmzDWHmqQRc8BtKAt6npEB2CckMG5gK2FU?=
+ =?iso-8859-1?Q?5iOeKl0GRIpL1tUF/C6R/vAMJssDMyArhoWXXQGZIIyH7FnfFNX8v72HqJ?=
+ =?iso-8859-1?Q?GsdJBASpJoz8ae+yx81ygpDz8MBi49/bo+AmEMMKgtf9Xum5/q3KrF7Zy3?=
+ =?iso-8859-1?Q?FBjnHvCloddJIird4+0VGpQ7DfBkKO0CQVuBwNKv2qIUvvmmXoxiqRYR/z?=
+ =?iso-8859-1?Q?eNlxvL+hNEhOeV8MSI8BsmrJXpl/SfwcLndRA6m3UTovoblTS/+bzH45g6?=
+ =?iso-8859-1?Q?lFEDvfrsAreH+tRKh934bVZneXKHoYO7bbt0ZBqiM4d5XGESNaK66DDHe3?=
+ =?iso-8859-1?Q?A7v3W/OkYjbn/fzrSU7JnWTUzTOg1+QuD/+pOiRrALOBhFjpitOknUr5AY?=
+ =?iso-8859-1?Q?TBnu1nRuQ4e27WH5izYWe8JZSwW7i0Cqh/sGWc/xTQVm9NEXgJXKbHb38B?=
+ =?iso-8859-1?Q?fbXofSvoCOGJwataN/IawMF5N+NxiY1lwUpYIyTjjyuSN8xtxFCxM8ZPyf?=
+ =?iso-8859-1?Q?kQ5lqM8D8LpiQ02H2n4PDw7HVpqbdtQ1CCxuhMtIvMBQWoog2BxWzoHw?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250829082405.1203-1-zhangsenchuan@eswincomputing.com>
+X-OriginatorOrg: siliconsignals.io
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB1829.INDP287.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20672fb3-029b-4a6e-c3f3-08dde9230a90
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2025 06:44:46.6577
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OicGYOx79qszpX9P144f7RfLr5Uvzc6Kx6JiY/4yR8wPaZomIgzd0at2DqyAm13+noO9X4BjgpO+78OWgYIa7YfIMKpys3Pe8lJUKL9uNko=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2PPF63CA987B2
 
-On Fri, Aug 29, 2025 at 04:24:05PM GMT, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add driver for the Eswin EIC7700 PCIe host controller.
-> The controller is based on the DesignWare PCIe core.
-> 
-
-Add more info about the controller: DWC IP revision, data rate, lanes etc...
-
-> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> Signed-off-by: Senchuan Zhang<zhangsenchuan@eswincomputing.com>
-> ---
->  drivers/pci/controller/dwc/Kconfig        |  12 +
->  drivers/pci/controller/dwc/Makefile       |   1 +
->  drivers/pci/controller/dwc/pcie-eic7700.c | 350 ++++++++++++++++++++++
->  3 files changed, 363 insertions(+)
->  create mode 100644 drivers/pci/controller/dwc/pcie-eic7700.c
-> 
-> diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-> index ff6b6d9e18ec..1c4063107a8a 100644
-> --- a/drivers/pci/controller/dwc/Kconfig
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -492,4 +492,16 @@ config PCIE_VISCONTI_HOST
->  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
->  	  This driver supports TMPV7708 SoC.
-> 
-> +config PCIE_EIC7700
-> +	tristate "ESWIN PCIe host controller"
-> +	depends on PCI_MSI
-> +	depends on ARCH_ESWIN || COMPILE_TEST
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Enables support for the PCIe controller in the Eswin SoC
-> +	  The PCI controller on Eswin is based on DesignWare hardware
-> +	  It is a high-speed hardware bus standard used to connect
-> +	  processors with external devices.
-
-No need to explain what PCIe bus is.
-
-> Say Y here if you want
-> +	  PCIe controller support for the ESWIN.
-> +
->  endmenu
-> diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-> index 6919d27798d1..0717fe73a2a9 100644
-> --- a/drivers/pci/controller/dwc/Makefile
-> +++ b/drivers/pci/controller/dwc/Makefile
-> @@ -31,6 +31,7 @@ obj-$(CONFIG_PCIE_UNIPHIER) += pcie-uniphier.o
->  obj-$(CONFIG_PCIE_UNIPHIER_EP) += pcie-uniphier-ep.o
->  obj-$(CONFIG_PCIE_VISCONTI_HOST) += pcie-visconti.o
->  obj-$(CONFIG_PCIE_RCAR_GEN4) += pcie-rcar-gen4.o
-> +obj-$(CONFIG_PCIE_EIC7700) += pcie-eic7700.o
-> 
->  # The following drivers are for devices that use the generic ACPI
->  # pci_root.c driver but don't support standard ECAM config access.
-> diff --git a/drivers/pci/controller/dwc/pcie-eic7700.c b/drivers/pci/controller/dwc/pcie-eic7700.c
-> new file mode 100644
-> index 000000000000..bf942154d971
-> --- /dev/null
-> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
-> @@ -0,0 +1,350 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * ESWIN PCIe root complex driver
-> + *
-> + * Copyright 2025, Beijing ESWIN Computing Technology Co., Ltd.
-> + *
-> + * Authors: Yu Ning <ningyu@eswincomputing.com>
-> + *          Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> + */
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/types.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/reset.h>
-> +#include <linux/pm_runtime.h>
-> +
-> +#include "pcie-designware.h"
-> +
-> +struct eswin_pcie {
-> +	struct dw_pcie pci;
-> +	void __iomem *mgmt_base;
-> +	struct clk_bulk_data *clks;
-> +	struct reset_control *powerup_rst;
-> +	struct reset_control *cfg_rst;
-> +	struct reset_control *perst;
-> +
-> +	int num_clks;
-> +};
-> +
-> +#define PCIE_PM_SEL_AUX_CLK BIT(16)
-> +#define PCIEMGMT_APP_LTSSM_ENABLE BIT(5)
-> +
-> +#define PCIEMGMT_CTRL0_OFFSET 0x0
-> +#define PCIEMGMT_STATUS0_OFFSET 0x100
-> +
-> +#define PCIE_TYPE_DEV_VEND_ID 0x0
-> +#define PCIE_DSP_PF0_MSI_CAP 0x50
-> +#define PCIE_NEXT_CAP_PTR 0x70
-> +#define DEVICE_CONTROL_DEVICE_STATUS 0x78
-> +
-> +#define PCIE_MSI_MULTIPLE_MSG_32 (0x5 << 17)
-> +#define PCIE_MSI_MULTIPLE_MSG_MASK (0x7 << 17)
-> +
-> +#define PCIEMGMT_LINKUP_STATE_VALIDATE ((0x11 << 2) | 0x3)
-> +#define PCIEMGMT_LINKUP_STATE_MASK 0xff
-> +
-> +static int eswin_pcie_start_link(struct dw_pcie *pci)
-> +{
-> +	struct device *dev = pci->dev;
-> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
-> +	u32 val;
-> +
-> +	/* Enable LTSSM */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val |= PCIEMGMT_APP_LTSSM_ENABLE;
-> +	writel_relaxed(val, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +
-> +	return 0;
-> +}
-> +
-> +static bool eswin_pcie_link_up(struct dw_pcie *pci)
-> +{
-> +	struct device *dev = pci->dev;
-> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
-> +	u32 val;
-> +
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_STATUS0_OFFSET);
-> +
-> +	return ((val & PCIEMGMT_LINKUP_STATE_MASK) ==
-> +		     PCIEMGMT_LINKUP_STATE_VALIDATE);
-> +}
-> +
-> +static int eswin_pcie_power_on(struct eswin_pcie *pcie)
-> +{
-> +	int ret = 0;
-
-Don't initialize ret.
-
-> +
-> +	/* pciet_cfg_rstn */
-> +	ret = reset_control_deassert(pcie->cfg_rst);
-> +	if (ret) {
-> +		dev_err(pcie->pci.dev, "cfg signal is invalid");
-> +		return ret;
-> +	}
-> +
-> +	/* pciet_powerup_rstn */
-> +	ret = reset_control_deassert(pcie->powerup_rst);
-> +	if (ret) {
-> +		dev_err(pcie->pci.dev, "powerup signal is invalid");
-> +		goto err_deassert_powerup;
-> +	}
-> +
-> +	return ret;
-
-	return 0;
-
-> +
-> +err_deassert_powerup:
-> +	reset_control_assert(pcie->cfg_rst);
-> +
-> +	return ret;
-> +}
-> +
-> +static void eswin_pcie_power_off(struct eswin_pcie *eswin_pcie)
-> +{
-> +	reset_control_assert(eswin_pcie->powerup_rst);
-> +	reset_control_assert(eswin_pcie->cfg_rst);
-> +}
-> +
-> +static int eswin_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct eswin_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	int ret;
-> +	u32 val;
-> +	u32 retries;
-> +
-> +	/* Fetch clocks */
-
-Drop the comment.
-
-> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
-> +	if (pcie->num_clks < 0)
-> +		return dev_err_probe(pci->dev, pcie->num_clks,
-> +				     "failed to get pcie clocks\n");
-> +
-> +	ret = eswin_pcie_power_on(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* set device type : rc */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val &= 0xfffffff0;
-
-Can you add bitfield definition for the mask?
-
-> +	writel_relaxed(val | 0x4, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-
-Also for 0x4.
-
-> +
-> +	ret = reset_control_assert(pcie->perst);
-> +	if (ret) {
-> +		dev_err(pci->dev, "perst assert signal is invalid");
-
-'Failed to assert PERST#'
-
-> +		goto err_perst;
-> +	}
-> +	msleep(100);
-> +	ret = reset_control_deassert(pcie->perst);
-> +	if (ret) {
-> +		dev_err(pci->dev, "perst deassert signal is invalid");
-
-'Failed to deassert PERST#'
-
-> +		goto err_perst;
-> +	}
-> +
-> +	/* app_hold_phy_rst */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val &= ~(0x40);
-
-Add definition here and everywhere.
-
-> +	writel_relaxed(val, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +
-> +	/*
-> +	 * It takes at least 20ms to wait for the pcie
-> +	 * status register to be 0.
-
-Make use of 80 columns for comments.
-
-> +	 */
-> +	retries = 30;
-> +	do {
-> +		val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_STATUS0_OFFSET);
-> +		if (!(val & PCIE_PM_SEL_AUX_CLK))
-> +			break;
-> +		usleep_range(1000, 1100);
-> +		retries--;
-> +	} while (retries);
-> +
-> +	if (!retries) {
-> +		dev_err(pci->dev, "No clock exist.\n");
-
-What does this error mean exactly? "No clock exist" is not a valid error. Error
-has something to do with PCIE_PM_SEL_AUX_CLK, no?
-
-> +		ret = -ENODEV;
-
--ETIMEDOUT?
-
-> +		goto err_clock;
-> +	}
-> +
-> +	/* config eswin vendor id and eic7700 device id */
-> +	dw_pcie_writel_dbi(pci, PCIE_TYPE_DEV_VEND_ID, 0x20301fe1);
-
-Does it need to be configured all the time?
-
-> +
-> +	/* lane fix config, real driver NOT need, default x4 */
-
-What do you mean by 'readl driver NOT need'?
-
-> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL);
-> +	val &= 0xffffff80;
-> +	val |= 0x44;
-> +	dw_pcie_writel_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL, val);
-> +
-> +	val = dw_pcie_readl_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS);
-> +	val &= ~(0x7 << 5);
-> +	val |= (0x2 << 5);
-> +	dw_pcie_writel_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS, val);
-> +
-> +	/*  config support 32 msi vectors */
-> +	val = dw_pcie_readl_dbi(pci, PCIE_DSP_PF0_MSI_CAP);
-> +	val &= ~PCIE_MSI_MULTIPLE_MSG_MASK;
-> +	val |= PCIE_MSI_MULTIPLE_MSG_32;
-> +	dw_pcie_writel_dbi(pci, PCIE_DSP_PF0_MSI_CAP, val);
-> +
-> +	/* disable msix cap */
-
-Why? Hw doesn't support MSI-X but it advertises MSI-X capability?
-
-> +	val = dw_pcie_readl_dbi(pci, PCIE_NEXT_CAP_PTR);
-> +	val &= 0xffff00ff;
-> +	dw_pcie_writel_dbi(pci, PCIE_NEXT_CAP_PTR, val);
-> +
-> +	return 0;
-> +
-> +err_clock:
-> +	reset_control_assert(pcie->perst);
-> +err_perst:
-> +	eswin_pcie_power_off(pcie);
-> +	return ret;
-> +}
-> +
-> +static const struct dw_pcie_host_ops eswin_pcie_host_ops = {
-> +	.init = eswin_pcie_host_init,
-> +};
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.start_link = eswin_pcie_start_link,
-> +	.link_up = eswin_pcie_link_up,
-> +};
-> +
-> +static int eswin_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct dw_pcie *pci;
-> +	struct eswin_pcie *pcie;
-
-Use reverse Xmas order for all local variables in this driver.
-
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	pci = &pcie->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &dw_pcie_ops;
-> +	pci->pp.ops = &eswin_pcie_host_ops;
-> +
-> +	/* SiFive specific region: mgmt */
-
-So the DWC glue wrapper belongs to SiFive?
-
-> +	pcie->mgmt_base = devm_platform_ioremap_resource_byname(pdev, "mgmt");
-> +	if (IS_ERR(pcie->mgmt_base))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->mgmt_base),
-> +				     "failed to map mgmt memory\n");
-> +
-> +	/* Fetch reset */
-
-Drop the comment.
-
-> +	pcie->powerup_rst = devm_reset_control_get_optional(&pdev->dev,
-> +							    "powerup");
-> +	if (IS_ERR_OR_NULL(pcie->powerup_rst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->powerup_rst),
-> +				     "unable to get powerup reset\n");
-> +
-> +	pcie->cfg_rst = devm_reset_control_get_optional(&pdev->dev, "cfg");
-> +	if (IS_ERR_OR_NULL(pcie->cfg_rst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg_rst),
-> +				     "unable to get cfg reset\n");
-> +
-> +	pcie->perst = devm_reset_control_get_optional(&pdev->dev, "pwren");
-> +	if (IS_ERR_OR_NULL(pcie->perst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->perst),
-> +				     "unable to get perst reset\n");
-
-All 3 resets are optional? Even the ones you were using to power on the
-controller?
-
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-
-So by this time controller is powered on? I don't think so, as
-eswin_pcie_power_on() is called from host_init() callback. If I'm right, then
-these should be moved below dw_pcie_host_init().
-
-> +	ret = pm_runtime_get_sync(dev);
-
-Why do you need get_sync? Are you depending on any parent to power on any
-resource?
-
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm_runtime_get_sync failed: %d\n", ret);
-> +		goto err_get_sync;
-> +	}
-> +
-> +	ret = dw_pcie_host_init(&pci->pp);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize host: %d\n", ret);
-> +		goto err_host_init;
-> +	}
-> +
-> +	return ret;
-
-	return 0;
-
-> +
-> +err_host_init:
-> +	pm_runtime_put_sync(dev);
-> +err_get_sync:
-> +	pm_runtime_disable(dev);
-> +	return ret;
-> +}
-> +
-> +static void eswin_pcie_remove(struct platform_device *pdev)
-> +{
-> +	struct eswin_pcie *pcie = platform_get_drvdata(pdev);
-> +
-> +	dw_pcie_host_deinit(&pcie->pci.pp);
-> +	pm_runtime_put_sync(&pdev->dev);
-> +	pm_runtime_disable(&pdev->dev);
-> +
-> +	reset_control_assert(pcie->perst);
-> +	eswin_pcie_power_off(pcie);
-> +}
-> +
-> +static void eswin_pcie_shutdown(struct platform_device *pdev)
-> +{
-> +	struct eswin_pcie *pcie = platform_get_drvdata(pdev);
-> +
-> +	/* Bring down link, so bootloader gets clean state in case of reboot */
-
-Asserting PERST# won't bring down the device. It just provides indication that
-the device might get powered off and it needs to be prepared for that.
-
-Also, I don't get what you mean by 'bootloder'. Is it the host system bootloader
-or device? Usually, shutdown callback is needed to power off the device when the
-host powers down/reboots so that the device will be reset to a clean state.
-
-> +	reset_control_assert(pcie->perst);
-> +}
-> +
-> +static int eswin_pcie_suspend(struct device *dev)
-> +{
-> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
-> +
-> +	reset_control_assert(pcie->perst);
-> +	eswin_pcie_power_off(pcie);
-
-So you want to power off the device even if it intends to be in D0? Like NVMe.
-
-> +	clk_bulk_disable_unprepare(pcie->num_clks, pcie->clks);
-> +
-> +	return 0;
-> +}
-> +
-> +static int eswin_pcie_resume(struct device *dev)
-> +{
-> +	int ret;
-> +	struct eswin_pcie *pcie = dev_get_drvdata(dev);
-> +
-> +	ret = eswin_pcie_host_init(&pcie->pci.pp);
-> +	if (ret < 0) {
-
-if (ret)
-
-> +		dev_err(dev, "Failed to init host: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	dw_pcie_setup_rc(&pcie->pci.pp);
-> +	eswin_pcie_start_link(&pcie->pci);
-> +	dw_pcie_wait_for_link(&pcie->pci);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct dev_pm_ops eswin_pcie_pm_ops = {
-> +	NOIRQ_SYSTEM_SLEEP_PM_OPS(eswin_pcie_suspend, eswin_pcie_resume)
-> +};
-> +
-> +static const struct of_device_id eswin_pcie_of_match[] = {
-> +	{ .compatible = "eswin,eic7700-pcie" },
-> +	{},
-> +};
-> +
-> +static struct platform_driver eswin_pcie_driver = {
-> +	.driver = {
-> +		.name = "eic7700-pcie",
-> +		.of_match_table = eswin_pcie_of_match,
-> +		.suppress_bind_attrs = true,
-> +		.pm = &eswin_pcie_pm_ops,
-> +	},
-> +	.probe = eswin_pcie_probe,
-> +	.remove = eswin_pcie_remove,
-
-Since this controller implements irqchip using the DWC core driver, it is not
-safe to remove it during runtime.
-
-> +	.shutdown = eswin_pcie_shutdown,
-> +};
-> +
-> +module_platform_driver(eswin_pcie_driver);
-
-builtin_platform_driver()
-
-> +
-> +MODULE_DEVICE_TABLE(of, eswin_pcie_of_match);
-
-Move it below eswin_pcie_of_match[].
-
-> +MODULE_DESCRIPTION("PCIe host controller driver for eic7700 SoCs");
-
-EIC7700?
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Hi Hardev, Sakari=0A=
+=0A=
+> Add a v4l2 subdevice driver for the Omnivision OV2735 sensor.=0A=
+> =0A=
+> The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an=0A=
+> active array size of 1920 x 1080.=0A=
+> =0A=
+> The following features are supported:=0A=
+> - Manual exposure an gain control support=0A=
+> - vblank/hblank control support=0A=
+> - Test pattern support control=0A=
+> - Supported resolution: 1920 x 1080 @ 30fps (SGRBG10)=0A=
+> =0A=
+> Co-developed-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+> Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=0A=
+> Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io=
+>=0A=
+> ---=0A=
+> =A0MAINTAINERS=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0=A0 1 =
++=0A=
+> =A0drivers/media/i2c/Kconfig=A0 |=A0=A0 10 +=0A=
+> =A0drivers/media/i2c/Makefile |=A0=A0=A0 1 +=0A=
+> =A0drivers/media/i2c/ov2735.c | 1109 ++++++++++++++++++++++++++++++++++++=
+=0A=
+> =A04 files changed, 1121 insertions(+)=0A=
+> =A0create mode 100644 drivers/media/i2c/ov2735.c=0A=
+=0A=
+...=0A=
+ =0A=
+> +static int ov2735_enum_mbus_code(struct v4l2_subdev *sd,=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_state *sd_state,=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
+=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_mbus_code_enum *code)=0A=
+> +{=0A=
+> +=A0=A0=A0=A0=A0=A0 if (code->index >=3D 0)=0A=
+=0A=
+Hardev, I believe this condition is always true.=0A=
+=0A=
+You should write:=0A=
+if (code->index > 0)=0A=
+=0A=
+Sakari, Could you please remove the equals sign when you apply the patch? =
+=0A=
+=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
+> +=0A=
+> +=A0=A0=A0=A0=A0=A0 code->code =3D MEDIA_BUS_FMT_SGRBG10_1X10;=0A=
+> +=0A=
+> +=A0=A0=A0=A0=A0=A0 return 0;=0A=
+> +}=0A=
+ =0A=
+...=0A=
+ =0A=
+> +static const struct of_device_id ov2735_id[] =3D {=0A=
+> +=A0=A0=A0=A0=A0=A0 { .compatible =3D "ovti,ov2735" },=0A=
+> +=A0=A0=A0=A0=A0=A0 { /* sentinel */ }=0A=
+> +};=0A=
+> +MODULE_DEVICE_TABLE(of, ov2735_id);=0A=
+> +=0A=
+> +static struct i2c_driver ov2735_driver =3D {=0A=
+> +=A0=A0=A0=A0=A0=A0 .driver =3D {=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .name =3D "ov2735",=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .pm =3D pm_ptr(&ov2735_pm_ops=
+),=0A=
+> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 .of_match_table =3D ov2735_id=
+,=0A=
+> +=A0=A0=A0=A0=A0=A0 },=0A=
+> +=A0=A0=A0=A0=A0=A0 .probe =3D ov2735_probe,=0A=
+> +=A0=A0=A0=A0=A0=A0 .remove =3D ov2735_remove,=0A=
+> +};=0A=
+> +module_i2c_driver(ov2735_driver);=0A=
+> +=0A=
+> +MODULE_DESCRIPTION("OV2735 Camera Sensor Driver");=0A=
+> +MODULE_AUTHOR("Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.i=
+o>");=0A=
+> +MODULE_AUTHOR("Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>");=
+=0A=
+> +MODULE_LICENSE("GPL");=0A=
+> --=0A=
+> 2.34.1=0A=
+=0A=
+Best Regards,=0A=
+Tarang=
 
