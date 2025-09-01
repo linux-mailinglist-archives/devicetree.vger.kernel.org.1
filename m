@@ -1,128 +1,167 @@
-Return-Path: <devicetree+bounces-211089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67884B3D878
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:01:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39FF4B3D881
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE2E81882266
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:01:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE7A03B8150
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E7207262F;
-	Mon,  1 Sep 2025 05:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ED85227BB9;
+	Mon,  1 Sep 2025 05:11:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="etCe02rY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iXxFGAxC"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 049FB3C26;
-	Mon,  1 Sep 2025 05:01:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EBD928DC4;
+	Mon,  1 Sep 2025 05:11:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756702869; cv=none; b=W7gzU3bkIZhGOvhvQlKwErhcX3Q+xAGHMxmHFC2SZEm/Zb9ocht9oQmAnkxZAZbI2TwYPG+kQhFhGkRqrGs4UEDssfUnIRSfHm4M8P2H0hDrvpPSqZVoe7d/u78heNQlPQflCs1I5c7U1ERaD0fPAOavUzXhqFWkya/QUjXt0Ac=
+	t=1756703517; cv=none; b=DN0TKKXiiO/Lh4ILJTnWHKmAYtPuyyYpVi/PDHJaXr18gZ3cH6GrH8u+XLQeYwJLJr/DH2ZzQBUZ9d1V4u+CQn23i+RMFivwHolnuVBSwryNldvpO0DdvsoL8H8TCK3OxBPlV7jVWVDpZenkKN7e833nPYJBgJUbYP7pOPoV+yE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756702869; c=relaxed/simple;
-	bh=96get+K56x61sWeSDAevSGSJ68Y7h16TlQZJb0tVu0Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=udKk38ztCEeV3dtJRfz42nVFE0LVYY30ryNvk2I9+eCOgbudfDBMwKgYGmfnJcLTHvH58OEgWqguO8Ac4c7BOQLPIswDudRO5wjHzqPWegq7f31TXQb7Qjq3XeDy4Ui+ZPS8u8bzb9lWe57fTHFhyMY5caWg6knYIy89ixNlTDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=etCe02rY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA0FEC4CEF0;
-	Mon,  1 Sep 2025 05:01:07 +0000 (UTC)
+	s=arc-20240116; t=1756703517; c=relaxed/simple;
+	bh=0zcGP1JHy/F4YX2Ldd+o0wMIBnWn3+zAZi/ObO2lfWI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Lxcr1Np2VWQqY91XAbsVVuILiKci5/sl777FnRUeWEcGt2uBj9tOFL9wI1sfOkEBhaQDY6L2NR7qm2v/O0nwB29bwZZasVdmm+aeUjZK/Bwm+YbPwZ8HdNf+7ZT3Q/B2I05WY+zvb98ww64mRQoZgKKc8kxZt/yIcspBNtatcRI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iXxFGAxC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 77E36C4CEF0;
+	Mon,  1 Sep 2025 05:11:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756702868;
-	bh=96get+K56x61sWeSDAevSGSJ68Y7h16TlQZJb0tVu0Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=etCe02rYwRpgE+SiDs/5tUecT57aWUJvxNz7KcQOk81BTbrmIjKChzlB/khzOuS2G
-	 azRgI9uGql2u2IPCJstOxPv1ki4V4PO+5btvwQkUHPEWr37fwTUxBTysKAasBRruLJ
-	 lVGq+RbTbKy5drEaVueqtXBtlN1eCLsdrORQQV5xGTu0aqcOmclarukFjDvox/L0ow
-	 3IniolVa7Z+K2yjki4ESpBMTH2HzCp2K9jj88hRL942tII56qwWYZ/VtskHdluy7XQ
-	 NPsMo8HwgecY8RJl1dD3+ShC2jvJvX6DMbe+9T4dl2N6uTN7pEV7I5EJGArEZQMZNo
-	 Agav5NhZJO5eQ==
-Date: Mon, 1 Sep 2025 07:01:05 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Jack Ping CHNG <jchng@maxlinear.com>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	davem@davemloft.net, andrew+netdev@lunn.ch, edumazet@google.com, kuba@kernel.org, 
-	pabeni@redhat.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	yzhu@maxlinear.com, sureshnagaraj@maxlinear.com
-Subject: Re: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Message-ID: <20250901-lumpy-lilac-ara-add2e2@kuoka>
-References: <20250829124843.881786-1-jchng@maxlinear.com>
- <20250829124843.881786-3-jchng@maxlinear.com>
+	s=k20201202; t=1756703516;
+	bh=0zcGP1JHy/F4YX2Ldd+o0wMIBnWn3+zAZi/ObO2lfWI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iXxFGAxCyAX2Z/ywg/XTCdRGqX79L6oBBeyP61F+WMwJg6iYcL060e1uvnqvJrSVl
+	 eSWFl94eCQPDLdUPxOObV2KH038zR9dClh6XwqdfYpu5Kn6Jkl6fohDg9HlGov+n+M
+	 cX3/YBqSK4WlGVn8u9X/KHKukZAVwT3bndFB94AjkJtef3E6buyP805gRqd0WhaYDK
+	 CxyhnZ82kTr/EesV5DzOmo8iNApgiYBYgbg2VuTIQkovtYJfCpOllYBmYKEwSM/xca
+	 IPSSqumL1ENJEKQPZhvJE6soZ82L0zkISRnoKUleKab0h5OFcAHcInGZLYgbugOeDf
+	 55ua6+AvgjyKA==
+Message-ID: <e3f6d000-bbb7-45c2-93f2-69be9815ca99@kernel.org>
+Date: Mon, 1 Sep 2025 07:11:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250829124843.881786-3-jchng@maxlinear.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 04/10] dt-bindings: pinctrl: samsung: Add compatible
+ for ARTPEC-8 SoC
+To: Ravi Patel <ravi.patel@samsung.com>, jesper.nilsson@axis.com,
+ mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org, s.nawrocki@samsung.com,
+ cw00.choi@samsung.com, alim.akhtar@samsung.com, linus.walleij@linaro.org,
+ tomasz.figa@gmail.com, catalin.marinas@arm.com, will@kernel.org,
+ arnd@arndb.de
+Cc: ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com,
+ gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
+ smn1196@coasia.com, pankaj.dubey@samsung.com, shradha.t@samsung.com,
+ inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com,
+ dj76.yang@samsung.com, hypmean.kim@samsung.com,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-gpio@vger.kernel.org, soc@lists.linux.dev
+References: <20250825114436.46882-1-ravi.patel@samsung.com>
+ <CGME20250825120715epcas5p3a0c8b6eaff7bdd69cbed6ce463079c64@epcas5p3.samsung.com>
+ <20250825114436.46882-5-ravi.patel@samsung.com>
+ <b8085dd8-e1a0-48b1-a49f-f3edaa0381da@kernel.org>
+ <000201dc1af2$537b4e70$fa71eb50$@samsung.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <000201dc1af2$537b4e70$fa71eb50$@samsung.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri, Aug 29, 2025 at 08:48:43PM +0800, Jack Ping CHNG wrote:
-> +
-> +static int mxl_eth_probe(struct platform_device *pdev)
-> +{
-> +	struct mxl_eth_drvdata *drvdata;
-> +	struct device_node *eth_np, *np;
-> +	struct reset_control *rst;
-> +	int ret, i = 0;
-> +
-> +	drvdata = devm_kzalloc(&pdev->dev, sizeof(*drvdata), GFP_KERNEL);
-> +	if (!drvdata)
-> +		return -ENOMEM;
-> +
-> +	drvdata->port_base =
-> +		devm_platform_ioremap_resource_byname(pdev, "port");
+On 01/09/2025 05:41, Ravi Patel wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzk@kernel.org>
+>> Sent: 31 August 2025 18:55
+>> To: Ravi Patel <ravi.patel@samsung.com>; jesper.nilsson@axis.com; mturquette@baylibre.com; sboyd@kernel.org; robh@kernel.org;
+>> krzk+dt@kernel.org; conor+dt@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com; alim.akhtar@samsung.com;
+>> linus.walleij@linaro.org; tomasz.figa@gmail.com; catalin.marinas@arm.com; will@kernel.org; arnd@arndb.de
+>> Cc: ksk4725@coasia.com; kenkim@coasia.com; pjsin865@coasia.com; gwk1013@coasia.com; hgkim05@coasia.com;
+>> mingyoungbo@coasia.com; smn1196@coasia.com; pankaj.dubey@samsung.com; shradha.t@samsung.com; inbaraj.e@samsung.com;
+>> swathi.ks@samsung.com; hrishikesh.d@samsung.com; dj76.yang@samsung.com; hypmean.kim@samsung.com; linux-
+>> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-arm-kernel@axis.com; linux-
+>> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-gpio@vger.kernel.org; soc@lists.linux.dev
+>> Subject: Re: [PATCH v3 04/10] dt-bindings: pinctrl: samsung: Add compatible for ARTPEC-8 SoC
+>>
+>> On 25/08/2025 13:44, Ravi Patel wrote:
+>>> From: SeonGu Kang <ksk4725@coasia.com>
+>>>
+>>> Document the compatible string for ARTPEC-8 SoC pinctrl block,
+>>> which is similar to other Samsung SoC pinctrl blocks.
+>>>
+>>> Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
+>>> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+>>> Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
+>>> ---
+>>>  Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
+>>>  1 file changed, 1 insertion(+)
+>>
+>>
+>> No wakeup-eint interrupts here? samsung,pinctrl-wakeup-interrupt.yaml?
+> 
+> I don't see any use case for external wake-up interrupt here (as of now).
 
-Very odd wrapping. That's one line or wrap according to Linux coding
-style.
+It is more about hardware, not use case. Does this hardware has EINT
+wakeup pin banks?
 
-> +	if (IS_ERR(drvdata->port_base))
-> +		return PTR_ERR(drvdata->port_base);
-> +
-> +	drvdata->ctrl_base =
-> +		devm_platform_ioremap_resource_byname(pdev, "ctrl");
+> So wakeup-eint entry is not present in dts and yaml both.
 
-Fix wrapping
 
-> +	if (IS_ERR(drvdata->ctrl_base))
-> +		return PTR_ERR(drvdata->ctrl_base);
-> +
-> +	drvdata->clks = devm_clk_get_enabled(&pdev->dev, "ethif");
-> +	if (IS_ERR(drvdata->clks))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(drvdata->clks),
-> +				     "failed to get/enable clock\n");
-> +
-> +	rst = devm_reset_control_get(&pdev->dev, NULL);
-> +	if (IS_ERR(rst))
-> +		return dev_err_probe(&pdev->dev, PTR_ERR(rst),
-> +				     "failed to get reset control\n");
-> +
-> +	reset_control_assert(rst);
-> +	udelay(1);
-> +	reset_control_deassert(rst);
-> +
-> +	platform_set_drvdata(pdev, drvdata);
-> +
-> +	eth_np = of_get_child_by_name(pdev->dev.of_node, "ethernet-ports");
-> +	if (!eth_np)
-> +		return dev_err_probe(&pdev->dev, -ENODEV,
-> +				     "no ethernet-ports node found!\n");
-> +
-> +	for_each_available_child_of_node(eth_np, np) {
-
-No, I asked you to use scoped loop.
-
-> +		ret = mxl_eth_create_ndev(pdev, np, &drvdata->ndevs[i++]);
-> +		if (ret) {
-> +			of_node_put(np);
 
 Best regards,
 Krzysztof
-
 
