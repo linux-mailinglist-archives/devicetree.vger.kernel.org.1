@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-211231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982F8B3E086
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:44:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18688B3E0AE
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:54:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4DFB23AE527
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:44:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7ABF3189192D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:55:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABDDC30DD0D;
-	Mon,  1 Sep 2025 10:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C54A2580DE;
+	Mon,  1 Sep 2025 10:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EGZsDMDU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AK4V5VqG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 806982AD14;
-	Mon,  1 Sep 2025 10:44:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C1871C549F;
+	Mon,  1 Sep 2025 10:54:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756723457; cv=none; b=YvVR92M/DUOEeeMxFqTZD+eHcFKz4LfuuUbaoAiklFMYpyq6fDPtZL85XxTYrYwN4DgrRn4Yusuh7Ot/eov1obskt9Vpub3BO7nB4T3YFTErp1F0vwiVzkCRVJwI8BCojC5dPQ/sDueiaSHZ5UuI8/zvfmomkFGcaOUY/5iQNgk=
+	t=1756724088; cv=none; b=JA/0ZbUix5JVwruiHm3wLkl2TYmDdc2yKoaWHBWf+tb0oRu8Gi9BGj6lV6Solf87Ev7umvpkLScyz/EYStzHqeH8SyRKkSWqqXyLUsA466XcPCTLc+vl3lXuk8g4/MQfp1VdffyiNWKf2X9gjFvVUDINnGRNMNwfiuRiVJiw9+0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756723457; c=relaxed/simple;
-	bh=lgl8ZHT0PirfqoDunzKl0otl6G/LgiSXAX7yR1LoQ5w=;
+	s=arc-20240116; t=1756724088; c=relaxed/simple;
+	bh=Uk7iN6sKk32/cDS26yYPoTUpYiWFWsU1qIbb3E/7pFE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Czc4B2ajb7ZN6ZV5v1of8OAICbBl8wtbC+VD0P6cn41j1lOT66Ixc8f6H/lz+XEkKgyvl4Oahgf1laSGsTLV6QFKxTwqWuV/dqO6JlS8WxeQP9vnSX0beCC25rybm4o1PJBfwbadqNNUd3kivdBFl81eYHXIs4E6JVSi3UShMv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EGZsDMDU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A7A5C4CEF0;
-	Mon,  1 Sep 2025 10:44:12 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=oZ8Cp36TDF2SKkxgtvIgSia2WcT4UJS9qVOuDJDeEipBXXjGypvWXQUA93c2WuNAZAQ1uosVNdzT73aLG/2yAIjnGydeMNjYSBaJ+0H8nNq4j+7sEH4wyjZTyCefH/QuvUj2EhD7UGS7/eiFZOCvoiIjKj52M74JVswZxd3yMS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AK4V5VqG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 483DBC4CEF0;
+	Mon,  1 Sep 2025 10:54:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756723457;
-	bh=lgl8ZHT0PirfqoDunzKl0otl6G/LgiSXAX7yR1LoQ5w=;
+	s=k20201202; t=1756724087;
+	bh=Uk7iN6sKk32/cDS26yYPoTUpYiWFWsU1qIbb3E/7pFE=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=EGZsDMDUSFPwJdjkTpfaq6bXNM1itNzUvupm+un69UD4c5zry6eU+pJxpiXyx9s5O
-	 SFok3MPkrHL3qP/NksVWms2WdPovPcEXdaWRNPTBoiaF+jHJroLIpabUX44prgH2px
-	 +p8bEKIvtLKLFHhZ5/TEZ5Js4f+vcXvY1yTjNrVxiWbL2e07y7zPoe+2QjrayuQyts
-	 xIhVm3KorxKUO4YFQ5GRu5DDrk+fQQ3Mwu1+z7ofA/RuAsBzOPCyqk7M7PT9LULmBV
-	 1HlgyLLRYAjqhuqiLV220RyQNfcOdLjGxw0q+TJ1VFcoReSR5ZqXTgb8UmfjS1NSPu
-	 G1AtRhx/d1Xmw==
-Message-ID: <4c8041ae-3b20-4c17-b9c2-0816f087717e@kernel.org>
-Date: Mon, 1 Sep 2025 12:44:11 +0200
+	b=AK4V5VqGc3rFGw/d/GA/ysgfSH8uJGsT0eCgSW9v7LqOPOIqk0BxKMWmXHlQzDoaP
+	 mlV3CMhaR/dHgmab101hnzPwELOdzV+PabiLVn0vsKIYH5iCNmWgyJ6jJfaTTWvVRz
+	 FkJW8OwRf4jV5LiMbrT4iiWrh8YRt984vUuSfOT85p45rOPQwUAxeIoJQmkkZOoKN9
+	 udfeP0HKlSmrHI3nowOBL3RUXRSilHCo1jpIFkJqudlChAPbmGdhtrJWORzIBxcFx8
+	 q9O2AagdtxAV+DQgFAlTCz/nZuKvw1W5vZf/v5h1p1wv6taVuu7RFKx/YFSMwQe4ZZ
+	 pWUlIBm4oFzMA==
+Message-ID: <8920d24b-e796-4b02-b43b-8a5deed3e8fb@kernel.org>
+Date: Mon, 1 Sep 2025 12:54:41 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,27 +50,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/9] media: chips-media: wave6: Add Wave6 control
- driver
-To: Nas Chung <nas.chung@chipsnmedia.com>,
- "mchehab@kernel.org" <mchehab@kernel.org>,
- "hverkuil@xs4all.nl" <hverkuil@xs4all.nl>, "robh@kernel.org"
- <robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-imx@nxp.com" <linux-imx@nxp.com>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "jackson.lee" <jackson.lee@chipsnmedia.com>,
- "lafley.kim" <lafley.kim@chipsnmedia.com>, Ming Qian <ming.qian@oss.nxp.com>
-References: <20250829084649.359-1-nas.chung@chipsnmedia.com>
- <20250829084649.359-9-nas.chung@chipsnmedia.com>
- <5502f52d-d302-4479-93b8-1da47731cf1d@kernel.org>
- <SL2P216MB1246A048955A09A5A4D15CA3FB07A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+Subject: Re: [PATCH v1] dts: arm64: freescale: move imx9*-clock.h
+ imx9*-power.h into dt-bindings
+To: Marek Vasut <marek.vasut@mailbox.org>, Peng Fan <peng.fan@oss.nxp.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
+ Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ E Shattow <e@freeshell.de>
+References: <20250831200516.522179-1-e@freeshell.de>
+ <20250901032203.GA393@nxa18884-linux.ap.freescale.net>
+ <3a165d77-3e36-4c0d-a193-aa9b27e0d523@mailbox.org>
+ <05f7d69a-9c05-4b47-ab04-594c37e975eb@kernel.org>
+ <51daddc4-1b86-4688-98cb-ef0f041d4126@mailbox.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -116,44 +113,62 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <SL2P216MB1246A048955A09A5A4D15CA3FB07A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To: <51daddc4-1b86-4688-98cb-ef0f041d4126@mailbox.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/09/2025 10:13, Nas Chung wrote:
-> Hi, Krzysztof.
-> 
-> Thanks for the feedback.
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzk@kernel.org>
->> Sent: Friday, August 29, 2025 11:06 PM
->> To: Nas Chung <nas.chung@chipsnmedia.com>; mchehab@kernel.org;
->> hverkuil@xs4all.nl; robh@kernel.org; krzk+dt@kernel.org;
->> conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de
->> Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-imx@nxp.com; linux-arm-
->> kernel@lists.infradead.org; jackson.lee <jackson.lee@chipsnmedia.com>;
->> lafley.kim <lafley.kim@chipsnmedia.com>; Ming Qian <ming.qian@oss.nxp.com>
->> Subject: Re: [PATCH v3 8/9] media: chips-media: wave6: Add Wave6 control
->> driver
+On 01/09/2025 12:30, Marek Vasut wrote:
+> On 9/1/25 5:33 AM, Krzysztof Kozlowski wrote:
+>> On 01/09/2025 04:22, Marek Vasut wrote:
+>>> On 9/1/25 5:22 AM, Peng Fan wrote:
+>>>> On Sun, Aug 31, 2025 at 01:04:45PM -0700, E Shattow wrote:
+>>>>> Move imx9*-{clock,power}.h headers into
+>>>>> include/dt-bindings/{clock,power}/ and fix up the DTs
+>>>>
+>>>> No. The files should be under arch/arm64/boot/dts/freescale/
+>>> Why ? Linux already has include/dt-bindings/clock/ and
+>>> include/dt-bindings/power directories for exactly those headers , why
+>>> did iMX9 suddenly start conflating them into arch/arm64/boot/dts/freescale ?
 >>
->> On 29/08/2025 10:46, Nas Chung wrote:
->>> +
->>> +static void wave6_vpu_load_firmware(const struct firmware *fw, void
->> *context)
->>> +{
->>> +	struct wave6_vpu_device *vpu = context;
->>> +
->>> +	guard(mutex)(&vpu->lock);
 >>
->> Why? How could this be called in parallel, before the probe?
+>> Because maybe these are not bindings?
 > 
-> This callback is called asynchronously via firmware_request_nowait_nowarn().
-> In practice, I observed a case where the callback was executing
-> while the device's release() function was being called.
+> Please compare arch/arm64/boot/dts/freescale/imx95-clock.h and 
+> include/dt-bindings/clock/imx8mp-clock.h and clarify to me, why the 
+> imx95-clock.h is not bindings and the imx8mp-clock.h is bindings.
 
-Indeed. Now I wonder how does it protect from concurrent remove()?
+That's uno reverse card. I do not have to prove why these are different.
+You need to prove why imx95 are bindings.
+
+> 
+> Both files list clock IDs for the clock nodes, one clock one is SCMI 
+> clock (iMX95), the other clock node is CCM clock (iMX8MP), and they are 
+
+Yeah, entirely different things. Like comparing apples and oranges.
+
+> both (SCMI and CCM) clock nodes in DT. Both header files may have to be 
+> included in drivers, the iMX8MP headers already are, the iMX95 headers 
+
+No, the SCMI cannot be used in the drivers, because these are not
+abstract IDs mapping between driver and DTS.
+
+> currently are included only in U-Boot drivers.
+> 
+> I really don't see the difference here, sorry.
+
+You just pointed out difference - no usage in drivers, no ABI!
+
+Instead of playing this "I found this code somewhere, so I can do
+whatever the same" answer the first implied question - why these are
+bindings? Provide arguments what do they bind.
+
+> 
+>> Regardless whether you agree or
+>> not, the commit should clearly explain the reason behind.
+> Which commit ?
+
+This patch.
+
 
 Best regards,
 Krzysztof
