@@ -1,67 +1,59 @@
-Return-Path: <devicetree+bounces-211348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211349-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29CB7B3EC28
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 18:25:30 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 599D4B3EC41
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 18:34:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF6341A86246
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:25:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0576318842FD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:35:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C892D2EC0B6;
-	Mon,  1 Sep 2025 16:25:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 611CF306487;
+	Mon,  1 Sep 2025 16:34:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b="ogtN0J2i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IrFpFRuf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from chumsalmon.baetis.net (chumsalmon.baetis.net [209.222.21.150])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7472224B1F;
-	Mon,  1 Sep 2025 16:25:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.222.21.150
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B64E2D593F;
+	Mon,  1 Sep 2025 16:34:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756743922; cv=none; b=fKMkM727E3S77pzciOIIYv0UV0pxkkV6JlQnMbOoSSR5eTrJ6LXmjgfeOEDgPoj5SZSNrdaisqPqdVNZmUt663mK1RAaXIDY8LPECAprpHreHr8bnGx7VgC9wl2gJhgfhreHHP9OV2fcuUu3MMVdEf/V4oAU2OIP+cTuaESUvZs=
+	t=1756744480; cv=none; b=S9czSK9tziuXZZbf9PF0iODd1ZyEgZxYkOx4gdq0X4BO/5VU7aeNXMhCCEAX5H/O7ZYN8ZcLWQJN6xNKvjPFXse+07Wi4f6RXtSK8xCsJpQnMwRMgiAXlGZ0i15Sq3GyiLqJif2M2qXdEMZJ93oYSOOBmpDBBUrYr4QBdaNXlgk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756743922; c=relaxed/simple;
-	bh=oqLCMPmrU2maHdetgpMqd9TGV9xAUoi5L40b0QiYVxA=;
+	s=arc-20240116; t=1756744480; c=relaxed/simple;
+	bh=HLK5ity3Uglbp3imUuMuBIINdlUiyPESL7xc8wYgcUY=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TEszOvZC1Dkc1w5DLCsFSu/r4exI2VtcK0dG5JzrjGbmsQXH2R9GMOZUKAyDv6/fczAL/KUbPos4Q6/1paOhn53cebW+qHvGPCUcW/l5z5+0piNq4Xi8aqUW+imuAdpGcwRNuTEF+d1Tz9jjp3WNKdZQqwafS0Imaz28zvb3Ycg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com; spf=pass smtp.mailfrom=tahomasoft.com; dkim=pass (2048-bit key) header.d=tahomasoft.com header.i=@tahomasoft.com header.b=ogtN0J2i; arc=none smtp.client-ip=209.222.21.150
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=tahomasoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tahomasoft.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=tahomasoft.com;
-	s=default; t=1756743917;
-	bh=oqLCMPmrU2maHdetgpMqd9TGV9xAUoi5L40b0QiYVxA=;
+	 MIME-Version:Content-Type; b=SMFqRY/sNE8Kufi4imNuzQrWbPQKSZT/2kKZmeL3XDAbUnXPjxwTbLs7nFl13bIEoSX5XP0SoUYaGymMYLkoM18tSv1fwrT2xtLiaHCCridqDwFtefd0VV4nZTSrsjsc0syHfKUG+UNweps0uf0I9EbtWGfxAaVW/4MQKNrS11Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IrFpFRuf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC33CC4CEF0;
+	Mon,  1 Sep 2025 16:34:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756744479;
+	bh=HLK5ity3Uglbp3imUuMuBIINdlUiyPESL7xc8wYgcUY=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=ogtN0J2iBrpFvd9fpGuxFCpXqzimN4Jzc7Oc9ChsgDSPWWHfNYU2+v/hTf7/Wd7mE
-	 1DKhBgSbwsYPbzlch9TIO+hYyGOfkpQ7f4T7QVkScYgpDl7N952kZfdvkPWmcD7yjo
-	 Rjc6cw2UFjgE+sqPTAslomrLimjKm/Cu4Ix0BnrZ50e744FcTnWCd5er4yAHXLwVp7
-	 oy4tzC7XIqjhJupDPk+rRhfqUsSzMgqEPlsX3vZCxSKkNNwZX5MPYZ1ogWr9ofZj/I
-	 YhZZfXSb0SgQLeNUm6FAfYbVHdClyRLXQSQRmd3Zk3okp1ZR6xVos2S+X+chZ9NIHn
-	 OMX3ebi8PaiuA==
-Received: from WahpenayoPeak.tahoma.link (unknown [IPv6:2600:4040:50be:5a04:892f:ee51:308e:70d0])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature ECDSA (prime256v1) server-digest SHA256)
-	(No client certificate requested)
-	by chumsalmon.baetis.net (Postfix) with ESMTPSA id 7334C27E494;
-	Mon,  1 Sep 2025 16:25:17 +0000 (UTC)
-Date: Mon, 1 Sep 2025 12:25:16 -0400
-From: Erik Beck <xunil@tahomasoft.com>
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org, heiko@sntech.de,
- krzk+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, Andrew
- Lunn <andrew@lunn.ch>
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add HINLINK H68K
-Message-ID: <20250901122516.775b6e3e.xunil@tahomasoft.com>
-In-Reply-To: <20250901062437.780cc71a.xunil@tahomasoft.com>
-References: <20250830171409.592c1f63.xunil@tahomasoft.com>
- <20250901070008.68662-1-amadeus@jmu.edu.cn>
- <20250901062437.780cc71a.xunil@tahomasoft.com>
-Organization: Tahoma Soft
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+	b=IrFpFRufDAK8SGfOJZXtTEq1+ub17xFjQ9VPf2H1+SiTX94dIZ9ARJ0+Cgn/Lo24X
+	 GdNT4/LrXCFk46n6AW+EoiRzBCiC+hZnHSQ+/kJIWebAUfzw8wAo5Y8H4bYjsGYMKH
+	 1JWK/DummBYdDBFJhlyM9MUa8T59LPqSuHkKmVVapFiLsDGgoepD35Fmlppqn/o48G
+	 Ep2GZTSEJP+yQ3zu4vV6WmSxVfJjSIPutegYXRZiZnylziaghf4uKpjgwvGNbZ34wK
+	 2ArkACTFlUgraxIGBynZrbIak2DruFlC51bsYO6RMRVEKyKlo1qXf31CSqQV4oSnyH
+	 6mt8xQlW2P5nQ==
+Date: Mon, 1 Sep 2025 17:34:31 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Antoniu Miclaus <antoniu.miclaus@analog.com>, robh@kernel.org,
+ conor+dt@kernel.org, linux-iio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 4/6] iio: adc: add ade9000 support
+Message-ID: <20250901173431.08e52c78@jic23-huawei>
+In-Reply-To: <7b10341d-b5a3-4a37-a2b1-fa7826ea116b@baylibre.com>
+References: <20250829115227.47712-1-antoniu.miclaus@analog.com>
+	<20250829115227.47712-5-antoniu.miclaus@analog.com>
+	<7b10341d-b5a3-4a37-a2b1-fa7826ea116b@baylibre.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,430 +63,550 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Fri, 29 Aug 2025 17:02:04 -0500
+David Lechner <dlechner@baylibre.com> wrote:
 
-Resending due to mailer error.
-
->>>> On Mon, 1 Sep 2025 06:24:37 -0400
->>>> Erik Beck <xunil@tahomasoft.com> wrote:
-
-> On Mon,  1 Sep 2025 15:00:08 +0800
-> Chukun Pan <amadeus@jmu.edu.cn> wrote:
-> 
-> > Hi,
+> On 8/29/25 6:41 AM, Antoniu Miclaus wrote:
+> > Add driver support for the ade9000. highly accurate,
+> > fully integrated, multiphase energy and power quality
+> > monitoring device.
 > > 
-> > > Please change phy-mode here to "rgmii". This change will yield an
-> > > ethernet speed throughput change of a factor of 100+.   
-> > 
-> > > Same as above: Please change phy-mode here to "rgmii". This change
-> > > will yield an ethernet speed throughput change of a factor of 100+.   
-> > 
-> > This doesn't make sense. When I first submitted it to coolsnowwolf/lede
-> > in 2022, I used "rgmii-id" as the phy-mode, and it worked:
-> > https://github.com/coolsnowwolf/lede/blob/master/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h68k.dts#L24
-> > 
-> > Are you experiencing issues with both eth0 and eth1 or just one of them?
-> > Are you using the generic-rk3568 target for U-Boot?
-> > 
+> > Signed-off-by: Antoniu Miclaus <antoniu.miclaus@analog.com>
+I took advantage of David not having cropped his review and
+added some comments on top. Not I did crop away a bunch of stuff
+David wrote that you also need to deal with though!
+
+Jonathan
+
+> > diff --git a/drivers/iio/adc/ade9000.c b/drivers/iio/adc/ade9000.c
+> > new file mode 100644
+> > index 000000000000..b39023be390c
+> > --- /dev/null
+> > +++ b/drivers/iio/adc/ade9000.c
+> > @@ -0,0 +1,1845 @@
+> > +// SPDX-License-Identifier: GPL-2.0-only
+> > +/**
+> > + * ADE9000 driver
+> > + *
+> > + * Copyright 2025 Analog Devices Inc.
+> > + */
+> > +
+> > +#include <linux/bitfield.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/clk-provider.h>
+> > +#include <linux/completion.h>
+> > +#include <linux/delay.h>
+> > +#include <linux/gpio/consumer.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/iio/iio.h>
+> > +#include <linux/iio/buffer.h>
+> > +#include <linux/iio/kfifo_buf.h>
+> > +#include <linux/iio/events.h>
+> > +#include <linux/iio/sysfs.h>
+This header is kind of an ancient bit of legacy we only need
+if doing custom attrs (not the nice enum ones)  So assuming
+I remember this right you shouldn't need it here.
+
+
+
+> > +static irqreturn_t ade9000_irq1_thread(int irq, void *data)
+> > +{
+> > +	struct iio_dev *indio_dev = data;
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	unsigned int bit = ADE9000_ST1_CROSSING_FIRST;
+> > +	s64 timestamp = iio_get_time_ns(indio_dev);
+> > +	u32 handled_irq = 0;
+> > +	u32 interrupts, result, status, tmp;
+> > +	unsigned long interrupt_bits;
+> > +	const struct ade9000_irq1_event *event;
+> > +	int ret, i;
+> > +
+> > +	if (!completion_done(&st->reset_completion)) {
+> > +		ret = regmap_read(st->regmap, ADE9000_REG_STATUS1, &result);
+> > +		if (ret) {
+> > +			dev_err(&st->spi->dev, "IRQ1 read status fail\n");
+> > +			return IRQ_HANDLED;
+> > +		}
+> > +
+> > +		if (result & ADE9000_ST1_RSTDONE_BIT)
+> > +			complete(&st->reset_completion);
+> > +		else
+> > +			dev_err(&st->spi->dev, "Error testing reset done\n");
+> > +  
 > 
-> Hi Chukun, thanks for your response. 
+> We don't need to clear the status here?
 > 
-> At Andrew Lunn's suggestion, I'm doing
-> more granular and rigorous testing, now using iperf3. I'll post more details
-> of results here after I retest a couple of scenarios. 
+> > +		return IRQ_HANDLED;
+> > +	}
+> > +
+> > +	ret = regmap_read(st->regmap, ADE9000_REG_STATUS1, &status);
+> > +	if (ret) {
+> > +		dev_err(&st->spi->dev, "IRQ1 read status fail\n");
+> > +		return IRQ_HANDLED;
+> > +	}
+> > +
+> > +	ret = regmap_read(st->regmap, ADE9000_REG_MASK1, &interrupts);
+> > +	if (ret) {
+> > +		dev_err(&st->spi->dev, "IRQ1 read mask fail\n");
+> > +		return IRQ_HANDLED;
+> > +	}
+> > +
+> > +	interrupt_bits = interrupts;  
 > 
-> However, I will report now that so far, I'm getting better (faster) and more
-> consistent results using iperf3.
+> bitmap_from_arr32() would make a bit more sense. Otherwise looks a bit
+> like unnecessary copying.
 > 
-> ~Erik
+> > +	for_each_set_bit_from(bit, &interrupt_bits,
+> > +			      ADE9000_ST1_CROSSING_DEPTH) {
+> > +		tmp = status & BIT(bit);
+> > +		if (tmp) {
 
-Below are my results.
+Perhaps here
+		if (!tmp)
+			continue;
 
-In summary, the speeds in certain scenarios are closer than in others.
-Pooling everything together, at the eyeball level, things look pretty similar
-across using RGMII-ID and RGMII (no internal delay). If I were to run these
-tests repeatedly, pool the results, and do a statistical comparison (probably
-with a Kolmogorov-Smirnov (KS) test or similar), I doubt I could reject the
-null hypothesis of no significant difference between the two sample
-distributions. 
+		event = NULL;
+etc is worth while to reduce the indent a little.
 
-So what I said earlier regarding rgmii vs rgmii-id DOES NOT hold up under
-more rigorous and careful testing.
+> > +			event = NULL;
+> > +
+> > +			/* Find corresponding event in lookup table */
+> > +			for (i = 0; i < ARRAY_SIZE(ade9000_irq1_events); i++) {
+> > +				if (ade9000_irq1_events[i].bit_mask == tmp) {
+> > +					event = &ade9000_irq1_events[i];
+> > +					break;
+> > +				}
+> > +			}
+> > +
+> > +			if (event) {
+> > +				iio_push_event(indio_dev,
+> > +					       IIO_UNMOD_EVENT_CODE(event->chan_type,
+> > +								    event->channel,
+> > +								    event->event_type,
+> > +								    event->event_dir),
+> > +								    timestamp);
+> > +			}
+> > +			handled_irq |= tmp;
+> > +		}
+> > +	}
+> > +
+> > +	ret = regmap_write(st->regmap, ADE9000_REG_STATUS1, handled_irq);
+> > +	if (ret)
+> > +		dev_err(&st->spi->dev, "IRQ1 write status fail\n");
+> > +  
+> 
+> Probably should use rate limited version of dev_err() everywhere in this
+> function in case there is an "interrupt storm". Applies to all functions
+> called by the irq handlers as well.
+> 
+> > +	return IRQ_HANDLED;
+> > +}
 
-Thanks,
+> > +
+> > +static int ade9000_write_raw(struct iio_dev *indio_dev,
+> > +			     struct iio_chan_spec const *chan,
+> > +			     int val,
+> > +			     int val2,
+> > +			     long mask)
+> > +{
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	u32 addr, tmp;
+> > +
+> > +	switch (mask) {
+> > +	case IIO_CHAN_INFO_FREQUENCY:
+> > +		switch (val) {
+> > +		case 50:
+> > +			return regmap_write(st->regmap, ADE9000_REG_ACCMODE,
+> > +					    ADE9000_ACCMODE);
+> > +		case 60:
+> > +			return regmap_write(st->regmap, ADE9000_REG_ACCMODE,
+> > +					    ADE9000_ACCMODE_60HZ);
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_CALIBBIAS:
+> > +		switch (chan->type) {
+> > +		case IIO_CURRENT:
+> > +			return regmap_write(st->regmap,
+> > +					    ADE9000_ADDR_ADJUST(ADE9000_REG_AIRMSOS,
+> > +								chan->channel), val);
+> > +		case IIO_VOLTAGE:
+> > +		case IIO_ALTVOLTAGE:
+> > +			return regmap_write(st->regmap,
+> > +					    ADE9000_ADDR_ADJUST(ADE9000_REG_AVRMSOS,
+> > +								chan->channel), val);
+> > +		case IIO_POWER:
+> > +			tmp = chan->address;
+> > +			tmp &= ~ADE9000_PHASE_B_POS_BIT;
+> > +			tmp &= ~ADE9000_PHASE_C_POS_BIT;
+> > +
+> > +			switch (tmp) {
+> > +			case ADE9000_REG_AWATTOS:
+> > +				return regmap_write(st->regmap,
+> > +						    ADE9000_ADDR_ADJUST(ADE9000_REG_AWATTOS,
+> > +									chan->channel), val);
+> > +			case ADE9000_REG_AVAR:
+> > +				return regmap_write(st->regmap,
+> > +						    ADE9000_ADDR_ADJUST(ADE9000_REG_AVAROS,
+> > +									chan->channel), val);
+> > +			case ADE9000_REG_AFVAR:
+> > +				return regmap_write(st->regmap,
+> > +						    ADE9000_ADDR_ADJUST(ADE9000_REG_AFVAROS,
+> > +									chan->channel), val);
+> > +			default:
+> > +				return -EINVAL;
+> > +			}
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_CALIBSCALE:
+> > +		/*
+> > +		 * Calibration gain registers for fine-tuning measurements.
+> > +		 * These are separate from PGA gain and applied in the digital domain.
+> > +		 */
+> > +		switch (chan->type) {
+> > +		case IIO_CURRENT:
+> > +			return regmap_write(st->regmap,
+> > +					    ADE9000_ADDR_ADJUST(ADE9000_REG_AIGAIN,
+> > +								chan->channel), val);
+> > +		case IIO_VOLTAGE:
+> > +			return regmap_write(st->regmap,
+> > +					    ADE9000_ADDR_ADJUST(ADE9000_REG_AVGAIN,
+> > +								chan->channel), val);
+> > +		case IIO_POWER:
+> > +			return regmap_write(st->regmap,
+> > +					    ADE9000_ADDR_ADJUST(ADE9000_REG_APGAIN,
+> > +								chan->channel), val);
+> > +		default:
+> > +			return -EINVAL;
+> > +		}
+> > +	case IIO_CHAN_INFO_SCALE:
+> > +		/* Only shared PGA scale is writable, per-channel scales are read-only */
+> > +		if (!(chan->info_mask_shared_by_all))
+> > +			return -EINVAL;
+> > +
+> > +		/*
+> > +		 * PGA (Programmable Gain Amplifier) settings affect the analog
+> > +		 * input stage scaling, shared by all channels. This is different
+> > +		 * from the per-channel calibration gains above.
+> > +		 */
+> > +		if (val > 4 || val < 1 || val == 3)
+This is matching just 1, 2 and 4 I think.  Just check those explicitly as that
+will be easier to read.
+		if (val != 1 && val != 2 && val != 4)
 
-Erik
+> > +			return -EINVAL;
+> > +		addr = ADE9000_REG_PGA_GAIN;
+> > +		/*
+> > +		 * PGA gain settings: 1x, 2x, 4x (3x not supported)
+> > +		 * Each channel uses 2 bits in PGA_GAIN register:
+> > +		 * - Channel 0: bits [9:8]
+> > +		 * - Channel 1: bits [11:10]
+> > +		 * - Channel 2: bits [13:12]
+> > +		 * Convert gain (1,2,4) to register value (0,1,2) using ilog2()
+> > +		 */
+> > +		val = ilog2(val) << (chan->channel * 2 + 8);
+> > +		tmp = GENMASK(1, 0) << (chan->channel * 2 + 8);
+> > +		return regmap_update_bits(st->regmap, addr, tmp, val);
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +}
 
-___________________________
-Results with (gmac0 & gmac1) phy-mode = "rgmii-id", tx_rx_delay unspecified
-(kernel on boot sets tx_delay = 0x30 and rx_delay = 0x10 itself, both gmacs) 
+> > +
+> > +static int ade9000_read_event_config(struct iio_dev *indio_dev,
+> > +				     const struct iio_chan_spec *chan,
+> > +				     enum iio_event_type type,
+> > +				     enum iio_event_direction dir)
+> > +{
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	u32 interrupts1;
+> > +	int ret;
+> > +
+> > +	/* All events use MASK1 register */
+> > +	ret = regmap_read(st->regmap, ADE9000_REG_MASK1, &interrupts1);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	switch (chan->channel) {
+> > +	case ADE9000_PHASE_A_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXVA_BIT);
+> > +		else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXIA_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING)
+> > +			return !!(interrupts1 & ADE9000_ST1_SWELLA_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+> > +			return !!(interrupts1 & ADE9000_ST1_DIPA_BIT);
+> > +		break;  
+> 
+> Just return 0; here. Same applies elsewhere.
 
-eth0/wan
-iperf3 -s -F VidTest-1.4Gb.mp4
-
-{openwrt device is 192.168.2.241}
-{desktop on openwrt WAN is 192.168.2.90}
-
------------------------------------------------------------
-Server listening on 5201 (test #1)
------------------------------------------------------------
-Accepted connection from 192.168.2.241, port 44414
-[  5] local 192.168.2.90 port 5201 connected to 192.168.2.241 port 44422
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec   112 MBytes   935 Mbits/sec                  
-[  5]   1.00-2.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   2.00-3.00   sec   112 MBytes   940 Mbits/sec                  
-[  5]   3.00-4.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   4.00-5.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   5.00-6.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   6.00-7.00   sec   112 MBytes   938 Mbits/sec                  
-[  5]   7.00-8.00   sec   112 MBytes   940 Mbits/sec                  
-[  5]   8.00-9.00   sec   112 MBytes   938 Mbits/sec                  
-[  5]   9.00-10.00  sec   112 MBytes   940 Mbits/sec                  
-[  5]  10.00-10.00  sec   384 KBytes   815 Mbits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate
-        Sent 1.09 GByte / 1.09 GByte (100%) of VidTest-1.4Gb.mp4
-[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec                  receiver
------------------------------------------------------------
-
-< Reverse >
-
-iperf3 -s 
------------------------------------------------------------
-Server listening on 5201 (test #1)
------------------------------------------------------------
-Accepted connection from 192.168.2.241, port 45870
-[  5] local 192.168.2.90 port 5201 connected to 192.168.2.241 port 45886
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   114 MBytes   953 Mbits/sec  120    158 KBytes       
-[  5]   1.00-2.00   sec   112 MBytes   935 Mbits/sec  143    141 KBytes       
-[  5]   2.00-3.00   sec   110 MBytes   923 Mbits/sec  131    195 KBytes       
-[  5]   3.00-4.00   sec   112 MBytes   939 Mbits/sec  142    167 KBytes       
-[  5]   4.00-5.00   sec   112 MBytes   942 Mbits/sec  136    133 KBytes       
-[  5]   5.00-6.00   sec   111 MBytes   929 Mbits/sec  119    175 KBytes       
-[  5]   6.00-7.00   sec   111 MBytes   932 Mbits/sec  126    115 KBytes       
-[  5]   7.00-8.00   sec   112 MBytes   943 Mbits/sec  150    113 KBytes       
-[  5]   8.00-9.00   sec   105 MBytes   884 Mbits/sec   28    110 KBytes       
-[  5]   9.00-10.00  sec   112 MBytes   938 Mbits/sec  140    160 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.08 GBytes   932 Mbits/sec  1235            sender
-
-
-eth1/lan
-
-iperf3 -s -F VidTest-1.4Gb.mp4 
------------------------------------------------------------
-{openwrt device is 192.168.1.1}
-{Laptop attached to openwrt is 192.168.1.134}
-
-Server listening on 5201 (test #1)
------------------------------------------------------------
-Accepted connection from 192.168.1.1, port 53876
-[  5] local 192.168.1.134 port 5201 connected to 192.168.1.1 port 53890
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec  31.9 MBytes   267 Mbits/sec                  
-[  5]   1.00-2.00   sec  32.5 MBytes   273 Mbits/sec                  
-[  5]   2.00-3.00   sec  33.6 MBytes   282 Mbits/sec                  
-[  5]   3.00-4.00   sec  29.2 MBytes   245 Mbits/sec                  
-[  5]   4.00-5.00   sec  33.8 MBytes   283 Mbits/sec                  
-[  5]   5.00-6.00   sec  32.6 MBytes   274 Mbits/sec                  
-[  5]   6.00-7.00   sec  34.1 MBytes   286 Mbits/sec                  
-[  5]   7.00-8.00   sec  35.0 MBytes   294 Mbits/sec                  
-[  5]   8.00-9.00   sec  33.6 MBytes   282 Mbits/sec                  
-[  5]   9.00-10.00  sec  32.8 MBytes   275 Mbits/sec                  
-[  5]  10.00-10.00  sec   128 KBytes   872 Mbits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate
-        Sent  329 MByte /  329 MByte (100%) of VidTest-1.4Gb.mp4
-[  5]   0.00-10.00  sec   329 MBytes   276 Mbits/sec                  receiver
------------------------------------------------------------
-
-< reverse >
-
-iperf3 -c 192.168.1.1
-Connecting to host 192.168.1.1, port 5201
-[  5] local 192.168.1.134 port 60508 connected to 192.168.1.1 port 5201
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   113 MBytes   948 Mbits/sec    0    393 KBytes       
-[  5]   1.00-2.00   sec   111 MBytes   931 Mbits/sec    0    411 KBytes       
-[  5]   2.00-3.00   sec   112 MBytes   935 Mbits/sec    0    433 KBytes       
-[  5]   3.00-4.00   sec   111 MBytes   933 Mbits/sec    0    433 KBytes       
-[  5]   4.00-5.00   sec   111 MBytes   934 Mbits/sec    0    433 KBytes       
-[  5]   5.00-6.00   sec   111 MBytes   932 Mbits/sec    0    433 KBytes       
-[  5]   6.00-7.00   sec   111 MBytes   930 Mbits/sec    0    433 KBytes       
-[  5]   7.00-8.00   sec   111 MBytes   934 Mbits/sec    0    433 KBytes       
-[  5]   8.00-9.00   sec   111 MBytes   932 Mbits/sec    0    433 KBytes       
-[  5]   9.00-10.00  sec   113 MBytes   944 Mbits/sec    0    573 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.09 GBytes   936 Mbits/sec    0            sender
-[  5]   0.00-10.00  sec  1.09 GBytes   933 Mbits/sec                  receiver
-
-
-
-Throughput (wan (eth0) -> lan (eth1) -> laptop)
-
-Desktop <------> Laptop via Openwrt
-192.168.2.90     192.168.1.134
-
-iperf3 -c 192.168.2.90
-Connecting to host 192.168.2.90, port 5201
-[  5] local 192.168.1.134 port 54694 connected to 192.168.2.90 port 5201
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   106 MBytes   889 Mbits/sec    0    461 KBytes       
-[  5]   1.00-2.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   2.00-3.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec    0    461 KBytes       
-[  5]   4.00-5.00   sec   111 MBytes   932 Mbits/sec    0    461 KBytes       
-[  5]   5.00-6.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   6.00-7.00   sec   111 MBytes   931 Mbits/sec    0    503 KBytes       
-[  5]   7.00-8.00   sec   112 MBytes   938 Mbits/sec    0    503 KBytes       
-[  5]   8.00-9.00   sec   111 MBytes   931 Mbits/sec    0    503 KBytes       
-[  5]   9.00-10.00  sec   111 MBytes   933 Mbits/sec    0    503 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.08 GBytes   929 Mbits/sec    0            sender
-[  5]   0.00-10.00  sec  1.08 GBytes   927 Mbits/sec                  receive
-
-
-
-
-
-< Reverse >
-
-iperf3 -c 192.168.2.90
-Connecting to host 192.168.2.90, port 5201
-[  5] local 192.168.1.134 port 54694 connected to 192.168.2.90 port 5201
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   106 MBytes   889 Mbits/sec    0    461 KBytes       
-[  5]   1.00-2.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   2.00-3.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   3.00-4.00   sec   111 MBytes   934 Mbits/sec    0    461 KBytes       
-[  5]   4.00-5.00   sec   111 MBytes   932 Mbits/sec    0    461 KBytes       
-[  5]   5.00-6.00   sec   111 MBytes   933 Mbits/sec    0    461 KBytes       
-[  5]   6.00-7.00   sec   111 MBytes   931 Mbits/sec    0    503 KBytes       
-[  5]   7.00-8.00   sec   112 MBytes   938 Mbits/sec    0    503 KBytes       
-[  5]   8.00-9.00   sec   111 MBytes   931 Mbits/sec    0    503 KBytes       
-[  5]   9.00-10.00  sec   111 MBytes   933 Mbits/sec    0    503 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.08 GBytes   929 Mbits/sec    0            sender
-[  5]   0.00-10.00  sec  1.08 GBytes   927 Mbits/sec                  receive
-
-
----------
-
-
-Results with (gmac0 & gmac1) phy-mode = "rgmii", tx_rx_delay unspecified
-(kernel on boot sets tx_delay = 0x30 and rx_delay = 0x10 itself, both gmacs)
-
-
-eth0/wan
-iperf3 -s -F VidTest-1.4Gb.mp4
-
-{openwrt device is 192.168.2.241}
-{desktop on openwrt WAN is 192.168.2.90}
-
-iperf3 -s -F VidTest-1.4Gb.mp4 
------------------------------------------------------------
-Server listening on 5201 (test #1)
------------------------------------------------------------
-Accepted connection from 192.168.2.241, port 35070
-[  5] local 192.168.2.90 port 5201 connected to 192.168.2.241 port 35084
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec   112 MBytes   936 Mbits/sec                  
-[  5]   1.00-2.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   2.00-3.00   sec   112 MBytes   938 Mbits/sec                  
-[  5]   3.00-4.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   4.00-5.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   5.00-6.00   sec   112 MBytes   940 Mbits/sec                  
-[  5]   6.00-7.00   sec   112 MBytes   938 Mbits/sec                  
-[  5]   7.00-8.00   sec   112 MBytes   940 Mbits/sec                  
-[  5]   8.00-9.00   sec   112 MBytes   939 Mbits/sec                  
-[  5]   9.00-10.00  sec   112 MBytes   939 Mbits/sec                  
-[  5]  10.00-10.00  sec   384 KBytes   869 Mbits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate
-        Sent 1.09 GByte / 1.09 GByte (100%) of VidTest-1.4Gb.mp4
-[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec                  receiver
------------------------------------------------------------
-
-
-<reverse>
-Accepted connection from 192.168.2.241, port 51650
-[  5] local 192.168.2.90 port 5201 connected to 192.168.2.241 port 51660
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec   114 MBytes   953 Mbits/sec  168    209 KBytes       
-[  5]   1.00-2.00   sec   112 MBytes   938 Mbits/sec  224    148 KBytes       
-[  5]   2.00-3.00   sec   112 MBytes   940 Mbits/sec  196    158 KBytes       
-[  5]   3.00-4.00   sec   112 MBytes   943 Mbits/sec  196    180 KBytes       
-[  5]   4.00-5.00   sec   112 MBytes   937 Mbits/sec  196    187 KBytes       
-[  5]   5.00-6.00   sec   112 MBytes   940 Mbits/sec  196    195 KBytes       
-[  5]   6.00-7.00   sec   112 MBytes   937 Mbits/sec  196    204 KBytes       
-[  5]   7.00-8.00   sec   112 MBytes   940 Mbits/sec  224    136 KBytes       
-[  5]   8.00-9.00   sec   112 MBytes   940 Mbits/sec  196    158 KBytes       
-[  5]   9.00-10.00  sec   110 MBytes   922 Mbits/sec  196    188 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.09 GBytes   939 Mbits/sec  1988            sender
-        Sent 1.09 GByte / 1.09 GByte (100%) of VidTest-1.4Gb.mp4
------------------------------------------------------------
-
-
-
-eth1/lan
-
-{192.168.1.1 is Openwrt device}
-{192.168.1.134 is laptop directly attached to Openwrt}
-
-
-iperf3 -s -F VidTest-1.4Gb.mp4 
------------------------------------------------------------
-Server listening on 5201 (test #1)
------------------------------------------------------------
-Accepted connection from 192.168.1.1, port 40866
-[  5] local 192.168.1.134 port 5201 connected to 192.168.1.1 port 40868
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec  67.4 MBytes   565 Mbits/sec                  
-[  5]   1.00-2.00   sec  69.4 MBytes   582 Mbits/sec                  
-[  5]   2.00-3.00   sec  65.9 MBytes   553 Mbits/sec                  
-[  5]   3.00-4.00   sec  66.5 MBytes   558 Mbits/sec                  
-[  5]   4.00-5.00   sec  70.2 MBytes   589 Mbits/sec                  
-[  5]   5.00-6.00   sec  52.5 MBytes   440 Mbits/sec                  
-[  5]   6.00-7.00   sec  67.2 MBytes   564 Mbits/sec                  
-[  5]   7.00-8.00   sec  70.2 MBytes   589 Mbits/sec                  
-[  5]   8.00-9.00   sec  57.9 MBytes   486 Mbits/sec                  
-[  5]   9.00-10.00  sec  66.9 MBytes   561 Mbits/sec                  
-[  5]  10.00-10.00  sec   128 KBytes   909 Mbits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate
-        Sent  654 MByte /  654 MByte (100%) of VidTest-1.4Gb.mp4
-[  5]   0.00-10.00  sec   654 MBytes   549 Mbits/sec                  receiver
-
-
-
-
-< reverse >
-
-iperf3 -c 192.168.1.134 --reverse
-Connecting to host 192.168.1.134, port 5201
-Reverse mode, remote host 192.168.1.134 is sending
-[  5] local 192.168.1.1 port 58380 connected to 192.168.1.134 port 5201
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec   104 MBytes   870 Mbits/sec                  
-[  5]   1.00-2.00   sec  98.5 MBytes   826 Mbits/sec                  
-[  5]   2.00-3.00   sec  89.9 MBytes   754 Mbits/sec                  
-[  5]   3.00-4.00   sec  87.4 MBytes   733 Mbits/sec                  
-[  5]   4.00-5.00   sec  97.0 MBytes   814 Mbits/sec                  
-[  5]   5.00-6.00   sec  95.5 MBytes   801 Mbits/sec                  
-[  5]   6.00-7.00   sec  82.1 MBytes   689 Mbits/sec                  
-[  5]   7.00-8.00   sec  0.00 Bytes  0.00 bits/sec                  
-[  5]   8.00-9.00   sec  0.00 Bytes  0.00 bits/sec                  
-[  5]   9.00-10.00  sec  0.00 Bytes  0.00 bits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec   654 MBytes   549 Mbits/sec  235            sender
-[  5]   0.00-10.00  sec   654 MBytes   549 Mbits/sec                  receiver
-
-
-
-
-
-Throughput (wan (eth0) -> lan (eth1) -> laptop)
-
-Desktop <------> Laptop via Openwrt
-192.168.2.90     192.168.1.134
-
-iperf3 -c 192.168.2.90
-Connecting to host 192.168.2.90, port 5201
-[  5] local 192.168.1.134 port 44380 connected to 192.168.2.90 port 5201
-[ ID] Interval           Transfer     Bitrate         Retr  Cwnd
-[  5]   0.00-1.00   sec  91.8 MBytes   769 Mbits/sec   15   76.4 KBytes       
-[  5]   1.00-2.00   sec  99.5 MBytes   835 Mbits/sec   11    102 KBytes       
-[  5]   2.00-3.00   sec  98.8 MBytes   828 Mbits/sec   12    167 KBytes       
-[  5]   3.00-4.00   sec  95.4 MBytes   800 Mbits/sec   17    126 KBytes       
-[  5]   4.00-5.00   sec   106 MBytes   890 Mbits/sec    9    117 KBytes       
-[  5]   5.00-6.00   sec  96.5 MBytes   810 Mbits/sec   15    123 KBytes       
-[  5]   6.00-7.00   sec  99.6 MBytes   835 Mbits/sec   13    144 KBytes       
-[  5]   7.00-8.00   sec   100 MBytes   842 Mbits/sec   15   58.0 KBytes       
-[  5]   8.00-9.00   sec  96.1 MBytes   806 Mbits/sec   15    115 KBytes       
-[  5]   9.00-10.00  sec  95.4 MBytes   800 Mbits/sec   14    126 KBytes       
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec   980 MBytes   822 Mbits/sec  136            sender
-[  5]   0.00-10.00  sec   979 MBytes   821 Mbits/sec                  receiver
-
-
-< reverse >
-
-perf3 -c 192.168.2.90 --reverse
-Connecting to host 192.168.2.90, port 5201
-Reverse mode, remote host 192.168.2.90 is sending
-[  5] local 192.168.1.134 port 51148 connected to 192.168.2.90 port 5201
-[ ID] Interval           Transfer     Bitrate
-[  5]   0.00-1.00   sec  40.6 MBytes   340 Mbits/sec                  
-[  5]   1.00-2.00   sec  54.9 MBytes   460 Mbits/sec                  
-[  5]   2.00-3.00   sec  49.6 MBytes   416 Mbits/sec                  
-[  5]   3.00-4.00   sec  47.4 MBytes   397 Mbits/sec                  
-[  5]   4.00-5.00   sec  45.9 MBytes   385 Mbits/sec                  
-[  5]   5.00-6.00   sec  52.8 MBytes   443 Mbits/sec                  
-[  5]   6.00-7.00   sec  45.1 MBytes   379 Mbits/sec                  
-[  5]   7.00-8.00   sec  46.1 MBytes   387 Mbits/sec                  
-[  5]   8.00-9.00   sec  42.8 MBytes   359 Mbits/sec                  
-[  5]   9.00-10.00  sec  40.6 MBytes   341 Mbits/sec                  
-- - - - - - - - - - - - - - - - - - - - - - - - -
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec   467 MBytes   392 Mbits/sec  403            sender
-[  5]   0.00-10.00  sec   466 MBytes   391 Mbits/sec                  receiver
-
-____________________________________
-
+Getting here is a bug I think. Should call that out with an error print
+if so.
 
 > 
-> > I can't reproduce your problem in my test.
-> > 
-> > eth0/gmac1 (as lan):
-> > root@OpenWrt:~# iperf3 -c 192.168.1.100
-> > Connecting to host 192.168.1.100, port 5201
-> > [ ID] Interval           Transfer     Bitrate         Retr
-> > [  5]   0.00-10.00  sec  1.10 GBytes   942 Mbits/sec   29
-> > sender [  5]   0.00-10.04  sec  1.10 GBytes   936 Mbits/sec
-> > receiver
-> > 
-> > root@OpenWrt:~# iperf3 -c 192.168.1.100 -R
-> > Connecting to host 192.168.1.100, port 5201
-> > Reverse mode, remote host 192.168.1.100 is sending
-> > [ ID] Interval           Transfer     Bitrate         Retr
-> > [  5]   0.00-10.04  sec  1.10 GBytes   939 Mbits/sec    1
-> > sender [  5]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec
-> > receiver
-> > 
-> > eth1/gmac0 (as wan):
-> > root@OpenWrt:~# iperf3 -c 192.168.0.2 -P 4
-> > Connecting to host 192.168.0.2, port 5201
-> > [ ID] Interval           Transfer     Bitrate         Retr
-> > [SUM]   0.00-10.00  sec  1.10 GBytes   945 Mbits/sec  1191
-> > sender [SUM]   0.00-10.05  sec  1.09 GBytes   935 Mbits/sec
-> >  receiver
-> > 
-> > root@OpenWrt:~# iperf3 -c 192.168.0.2 -R
-> > Connecting to host 192.168.0.2, port 5201
-> > Reverse mode, remote host 192.168.0.2 is sending
-> > [ ID] Interval           Transfer     Bitrate         Retr
-> > [  5]   0.00-10.06  sec  1.10 GBytes   939 Mbits/sec    6
-> > sender [  5]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec
-> > receiver
-> > 
-> > --
-> > 2.25.1
-> > 
-> > 
-> > 
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
+> > +	case ADE9000_PHASE_B_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXVB_BIT);
+> > +		else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXIB_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING)
+> > +			return !!(interrupts1 & ADE9000_ST1_SWELLB_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+> > +			return !!(interrupts1 & ADE9000_ST1_DIPB_BIT);
 
+likewise
+
+> > +		break;
+> > +	case ADE9000_PHASE_C_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXVC_BIT);
+> > +		else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER)
+> > +			return !!(interrupts1 & ADE9000_ST1_ZXIC_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING)
+> > +			return !!(interrupts1 & ADE9000_ST1_SWELLC_BIT);
+> > +		else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING)
+> > +			return !!(interrupts1 & ADE9000_ST1_DIPC_BIT);
+
+and here as well.
+
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int ade9000_write_event_config(struct iio_dev *indio_dev,
+> > +				      const struct iio_chan_spec *chan,
+> > +				      enum iio_event_type type,
+> > +				      enum iio_event_direction dir,
+> > +				      bool state)
+> > +{
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	u32 bit_mask = 0;
+
+With the suggested elses below this should always be written before use.
+
+> > +	int ret;
+> > +
+> > +	/* Clear all pending events in STATUS1 register (write 1 to clear) */
+> > +	ret = regmap_write(st->regmap, ADE9000_REG_STATUS1, GENMASK(31, 0));
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	/* Determine which interrupt bit to enable/disable */
+> > +	switch (chan->channel) {
+> > +	case ADE9000_PHASE_A_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXVA_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXVA_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXVA_BIT;
+> > +		} else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXIA_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXIA_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXIA_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING) {
+> > +			bit_mask = ADE9000_ST1_SWELLA_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_SWELL_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_SWELL_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING) {
+> > +			bit_mask = ADE9000_ST1_DIPA_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_DIP_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+> > +		}
+
+I'm guessing we should get here?  If so perhaps
+		return dev_err(...) is appropriate here?
+
+> > +		break;
+> > +	case ADE9000_PHASE_B_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXVB_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXVB_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXVB_BIT;
+> > +		} else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXIB_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXIB_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXIB_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING) {
+> > +			bit_mask = ADE9000_ST1_SWELLB_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_SWELL_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_SWELL_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING) {
+> > +			bit_mask = ADE9000_ST1_DIPB_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_DIP_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+> > +		}
+
+similar here, I'd add what happens if none of the above match.
+
+> > +		break;
+> > +	case ADE9000_PHASE_C_NR:
+> > +		if (chan->type == IIO_VOLTAGE && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXVC_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXVC_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXVC_BIT;
+> > +		} else if (chan->type == IIO_CURRENT && dir == IIO_EV_DIR_EITHER) {
+> > +			bit_mask = ADE9000_ST1_ZXIC_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_ZXIC_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_ZXIC_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_RISING) {
+> > +			bit_mask = ADE9000_ST1_SWELLC_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_SWELL_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_SWELL_BIT;
+> > +		} else if (chan->type == IIO_ALTVOLTAGE && dir == IIO_EV_DIR_FALLING) {
+> > +			bit_mask = ADE9000_ST1_DIPC_BIT;
+> > +			if (state)
+> > +				st->wfb_trg |= ADE9000_WFB_TRG_DIP_BIT;
+> > +			else
+> > +				st->wfb_trg &= ~ADE9000_WFB_TRG_DIP_BIT;
+> > +		}
+
+Same here. If it's all going wrong just exit with an error.
+
+> > +		break;
+> > +	default:
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (!bit_mask)
+> > +		return -EINVAL;
+
+With above I think this test is not needed.
+
+> > +
+> > +	return regmap_assign_bits(st->regmap, ADE9000_REG_MASK1, bit_mask, state ? bit_mask : 0);
+
+That last parameter looks fishy fir a boolean. Perhaps a comment or state && bit_mask
+which think does the same thing. 
+
+> > +}
+
+> > +
+> > +static int ade9000_waveform_buffer_config(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	u32 wfb_cfg_val = 0;
+
+Set in all paths where it's used, so don't initialise it here.
+
+> > +	u32 active_scans;
+> > +
+> > +	bitmap_to_arr32(&active_scans, indio_dev->active_scan_mask,
+> > +			indio_dev->masklength);
+> > +
+> > +	switch (active_scans) {
+> > +	case ADE9000_SCAN_POS_IA | ADE9000_SCAN_POS_VA:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IA_VA;
+> > +		st->wfb_nr_activ_chan = 2;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_IB | ADE9000_SCAN_POS_VB:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IB_VB;
+> > +		st->wfb_nr_activ_chan = 2;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_IC | ADE9000_SCAN_POS_VC:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IC_VC;
+> > +		st->wfb_nr_activ_chan = 2;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_IA:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IA;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_VA:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_VA;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_IB:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IB;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_VB:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_VB;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_IC:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_IC;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case ADE9000_SCAN_POS_VC:
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_VC;
+> > +		st->wfb_nr_activ_chan = 1;
+> > +		break;
+> > +	case (ADE9000_SCAN_POS_IA | ADE9000_SCAN_POS_VA | ADE9000_SCAN_POS_IB |
+> > +	      ADE9000_SCAN_POS_VB | ADE9000_SCAN_POS_IC | ADE9000_SCAN_POS_VC):
+> > +		wfb_cfg_val = ADE9000_WFB_CFG_ALL_CHAN;
+> > +		st->wfb_nr_activ_chan = 6;
+> > +		break;
+> > +	default:
+> > +		dev_err(&st->spi->dev, "Unsupported combination of scans\n");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	wfb_cfg_val |= FIELD_PREP(ADE9000_WF_SRC_MASK, st->wf_src);
+> > +
+> > +	return regmap_write(st->regmap, ADE9000_REG_WFB_CFG, wfb_cfg_val);
+> > +}
+
+> > +static int ade9000_buffer_preenable(struct iio_dev *indio_dev)
+> > +{
+> > +	struct ade9000_state *st = iio_priv(indio_dev);
+> > +	int ret;
+> > +
+> > +	ret = ade9000_waveform_buffer_config(indio_dev);  
+> 
+> Should this be .validate_scan_mask callback instead of calling it here?
+
+That wouldn't normally do any actual register writes so I'm not seeing
+how it is a good fit for this call.  It might make sense to provide
+an available_scan_masks array to rule out configs that aren't supported
+(and let the core demux deal with it).
+
+
+> 
+> 
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	st->wfb_nr_samples = ADE9000_WFB_MAX_SAMPLES_CHAN * st->wfb_nr_activ_chan;
+> > +
+> > +	ade9000_configure_scan(indio_dev, ADE9000_REG_WF_BUFF);
+> > +
+> > +	ret = ade9000_waveform_buffer_interrupt_setup(st);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	ret = regmap_set_bits(st->regmap, ADE9000_REG_WFB_CFG,
+> > +			      ADE9000_WF_CAP_EN_MASK);
+> > +	if (ret) {
+> > +		dev_err(&st->spi->dev, "Post-enable waveform buffer enable fail\n");
+> > +		return ret;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
 
