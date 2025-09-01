@@ -1,132 +1,123 @@
-Return-Path: <devicetree+bounces-211159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E0D2B3DC30
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:21:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6C02B3DC34
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:21:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C2B0A1897661
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:21:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CE3CB3BF9A6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:21:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC3182D73BE;
-	Mon,  1 Sep 2025 08:21:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 926962D73BE;
+	Mon,  1 Sep 2025 08:21:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="f/CcCz6N"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jCxIderr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B138233149
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 08:21:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4F6023ED5E
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 08:21:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756714864; cv=none; b=HVxFQDN7M9qCa1JbSzMpNETSuibYkASEKXSIqC6iU5xyQ7xXqo0AgvlKx6XwQqZFLlKWdgXxLnzS3S3iRNu6Qp4rarGQ850krnt1QoqWE4AU35ZaRipFhDWnEMAQXLlH7cS5WKJylMvnkT1iIzG5ZD1IhtDCE5DJx2aCkWRZW5k=
+	t=1756714875; cv=none; b=ICoUX2PLb5oQ/OalgiYGfJm5M/4TXpWMMBCX+BT1DkpwEB0Xr+zr4EcC4aKVHssuDx5XdHhOQFYm7/cswdndIiy2TF865kn7V5FvLq/1Mw1Sji/EmsU/Psvjw4V601oPwZa2298XuPrucEZ4TPAPVRAl+bxvWHxkykw7rYmFs7s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756714864; c=relaxed/simple;
-	bh=Ey5r5LzZ5mqJQFa5/hwzZOTkBASnqgBYv8P5zjbafME=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=P6Tjkf+KDbeQUz9ED6iemeofiXmZBkzuhgZOTIko+Qf2BemDC5Tj5n+ny8go99reKTp8roa/6Ujsd3A4o7NShFbBTINXNsF14bunEtsFtR3nxkBcEICNW+35L4HTTkSWTdcv26f9xKq+6eEDYgBVbfKY+q5UYWEPHxU8jz5Q+Tc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=f/CcCz6N; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b86157e18so8213675e9.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 01:21:01 -0700 (PDT)
+	s=arc-20240116; t=1756714875; c=relaxed/simple;
+	bh=doa7boRfZzmeMyQLHEC3XX913QTwfh8FzsRBnVndqFM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cGWjvhSRZD9+cdRx7wBPA8HqtrW7u8YrezUFuqtN/NzxmlJyVpADV6SY8JVwbkAZeAikaA804WXB/WFJrg/4HceTN+BaqQHmejcQtFtOmuamR19C0HHjvHUq/qxE4Scw7Xr6xVlJ3ALpGfFDnLc5DLlgc5AHeYCs2ZLoFFXKtek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jCxIderr; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-55f6017004dso3675662e87.0
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 01:21:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1756714860; x=1757319660; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1756714872; x=1757319672; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=RDXy5RfngT3BXReqDhGp/CaxOwU22Ty4Zht0U5yrbxs=;
-        b=f/CcCz6NIx8iSV6esOMPK1nz8CnQddf2Wi1Q0gtBUAVp/QJ9ZAiS5hi0IwQWeDS9iK
-         VP6rtGEs033pEnlCozwntYiiCzRaq8lQrD4hm67MEg+Lk35Bm9EWi00QB5hLPYCMKwJb
-         cuuHGUWsy2pNcj+/4MFKuhkqG8Y/JNcyz6JQF3vW8J3HOjMX6PN+V9CWIarquHLdn8bD
-         Dcs6hVDV+jBeT0qgWaAsfDL9c6oeFTx9PW0px3feQ6H2EcAcS+8ZcU94KMIAVrNMecXe
-         1YVBsomdGnB2LJKo0iZRcC7zZy+I8VSP395+xDLIU0BQ6Kx9bIiRvyk74EPKVf8YV8+W
-         kjVQ==
+        bh=NtzxvUr8vZxd8BREn+bPHHNBP8tJDJJwcdr3v5pD4CU=;
+        b=jCxIderr8GYyJTxNUKUaBQess0VM8IOl53ks3tiRAe5VYM50jBSc/aR0j+tXfY/OTo
+         Nq12ng7ecuxw77Rf8QynOnQ4xdC7WNpxvSOks19E8fZPaDG6VQnECRghmo193jzvsXSl
+         4FEbbt0LWCH4u16R9ympRnIF26ASHfdsEGgxZeCzl35zPRyx4A1FQS8LSz93zTFnfZ+E
+         tOOLz49vZ4AiRX8837W81ZTi6Bgr5xL5PvV7L7vlSd1Xid4yeuxpLuOhLIK0Z3UlCgKt
+         tLWFEO5T50n6fnKiZVKKXUhNeFAMhsmIKXQ+lkwPadiO9CIuNuznmpEXBLJgz57Eye+w
+         bjnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756714860; x=1757319660;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1756714872; x=1757319672;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RDXy5RfngT3BXReqDhGp/CaxOwU22Ty4Zht0U5yrbxs=;
-        b=c9tA6IHrS+p0hI/rsmQdizhTssW22rAUZXGr+/xe9seaKl7f0sKAkKBbXAzkWypuos
-         /xhV4ZF7Hm6avRkZL78pzP3RIT76/pL33ArgzhUyHv/9h3tPbyP38RP2IHFyknriffuy
-         Nz66bo/iLhAE/wHdTKy12jqK5syAYflt4k5T45lCUhordmI9cRjyzaW8GSRXOYUiYT5a
-         g/3ecf/AoQnGZgw6eqagAQXZp4oOnSpuM5fj2vM5CbwlxI8TisevGiB0zB3Ea1Vpr5rB
-         RkavNJgZK8uszZdumYrb3aLKqreI4CTUvCi4IrDFeuDuocoZzWYy5OB5sEeo6rYu0A9g
-         5yGw==
-X-Forwarded-Encrypted: i=1; AJvYcCXXihaM4Xtvbe7Vx901WFlAZUBH9Xcyn3LvKNxveal6gaSvx/kwXUj4jR6ivL3heG02w3iPg65O78V6@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx3zwiS+qe3gUj205RVoh5XaKMRpqM7ML7DyerX4gXXIWsThBrV
-	9RXCe8ah/XVbOyTiGNLYrjntzscDss8+dx07/bn1LtsuPhHHjSMhNVP3M7dHF5ZE9Q0=
-X-Gm-Gg: ASbGncski6pzyltmvzApG4eiEaqnGcw6VXV+mTr7zCCfBEtI4WgemQuRNZII3lRVjuW
-	DnxdPR9BnzlW8aRL/OTi/qoBfN0wJJabsDHoFlL6tXOV2GDf4u0zqLo9wFpNkVjEBWRWW+Z8ra/
-	N0YRh5Hbd9Kubll+Bb71c1tmflP0mxuxAlPazWqu073YPcjFfDfj6egPcbc/2aEUGyyJsE3Bu6Q
-	zGIf+4cf/XKsadJ31vFITRgQV6K8pwB+oIjr1nnZE+yx8kYuxtb/5ibA800HoptKMtgBT0oMRaj
-	VMRvst7gciMkqRTxzhnpaVuCYaA+xI4YnZuwn4/qPyfHj3+JOlVjtnDr0kSN/hgAY7ukwrxVsXW
-	eSTl72P5XmEQ+2hEWWI1zdt44joSN9wBiaBS5qrGeVV1J
-X-Google-Smtp-Source: AGHT+IGofJVjCphxVAkG9bd6t3NPeX+I5lacWK7xENnvALEAJUtz7D2qJ/sUSwpC4SDSpnSpZ8DDsw==
-X-Received: by 2002:a05:600c:35ca:b0:45b:87a6:cdb with SMTP id 5b1f17b1804b1-45b87a60f9amr44731385e9.14.1756714860306;
-        Mon, 01 Sep 2025 01:21:00 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:dc:7e00:fab9:fd92:e2cb:ddcb])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm145166475e9.12.2025.09.01.01.20.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 01:20:59 -0700 (PDT)
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-To: linus.walleij@linaro.org,
-	brgl@bgdev.pl,
-	thierry.reding@gmail.com,
-	jonathanh@nvidia.com,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	linux-tegra@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prathamesh Shete <pshete@nvidia.com>
-Cc: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: gpio: Add Tegra256 support
-Date: Mon,  1 Sep 2025 10:20:58 +0200
-Message-ID: <175671485425.37050.14912737741264685322.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250823055420.24664-1-pshete@nvidia.com>
-References: <20250823055420.24664-1-pshete@nvidia.com>
+        bh=NtzxvUr8vZxd8BREn+bPHHNBP8tJDJJwcdr3v5pD4CU=;
+        b=j79eJAHqs2eHEwUCCwur8jHPlcBHJoB6QnQr/B+AjUCkeGC0FeHI2TauvB0mlVlLmL
+         /dRDO7hU64YXKFkU9CRJi2qDQC5NbPPTCzsRc14FIObKPDh87ggltCO+RD6P9Ee+B3Ga
+         AenZjLpg6/0zohzddIaIMKaMg9xMtiKxnL8hQl1iUnfNathLW/5igLUrb3pZs8qh5dNh
+         CTLLLWhY9I8GXuA5eo83J4O0I2Ji7PYckma34FpROl1C6YHgRA4WHprrzUHV9IFMzfyL
+         cNr5T8HQmlHKQn1bg/n4fHaqcBTKSwbWjGdFtY8a81RB6uKPPt3VSYIqry+6NFRorOkz
+         VfXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUKO88NrKEEL37fuFvbIyz3eyYwEo3TkMqS0RrAIb6VQ2w7mclrwh/xcHUsn6akS079WXP/tXAlzMTQ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzY/nKuLBXcaqoT44CLLLjIRtfidHceUWnY8AWMHZpOQ/eCo6cF
+	VaIcWHgGXlRci30axiSats+0K2OLLHAVbP9HcKOmmbUIGsUabEzm0NhGs2QSiVtSYOUbKHRC1GN
+	QokXZQz7d/GXkMwFECZlPlmZ7x92PyLo+QI08k6j03A==
+X-Gm-Gg: ASbGncvxZEATW2j1cZe/GhMVciIDIR6rtT5ACe6Tk0nk0OyFUzbL/CVKMErnim36OyO
+	2/M+1f4VLMSNa9ylWT4arxC3JPiT4vqJPZ0mICB7UGkSTOtHeboi75umoEneiGLtvtzWMU89diB
+	p6U0DhMC5VxjzvhyNm524WOnzh49PLExkWAm29yPoHxvXyCOURSHHw0oiY7nKvi99nYd6h90OS0
+	1775aZ4HWigiQCWEw==
+X-Google-Smtp-Source: AGHT+IEaD5coQULhIexfF1mqVXsJQC24MaqrNpPKJTVWeCuhL3ZZFklbo3Bq+zdNZ4cv+ZlQPPiJygTUgUeUbhR6Jvg=
+X-Received: by 2002:a05:6512:ba7:b0:55f:68a2:769a with SMTP id
+ 2adb3069b0e04-55f7094fc5fmr2092828e87.41.1756714871924; Mon, 01 Sep 2025
+ 01:21:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <cover.1756372805.git.andrea.porta@suse.com> <bee7c98a96c7000db32495b94ebae2ea06fe0e77.1756372805.git.andrea.porta@suse.com>
+In-Reply-To: <bee7c98a96c7000db32495b94ebae2ea06fe0e77.1756372805.git.andrea.porta@suse.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 1 Sep 2025 10:21:00 +0200
+X-Gm-Features: Ac12FXxXum4wFPneUej-Q8PgTeyjRANYxjsjqL1ILL7wHJ70KeajDhKxosakvEs
+Message-ID: <CACRpkdac9K7mc5DAUnb82bR-eyzdsurRX_qFu8qoCFARDmTe4Q@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] pinctrl: bcm: Add STB family pin controller driver
+To: Andrea della Porta <andrea.porta@suse.com>, Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, iivanov@suse.de, 
+	svarbanov@suse.de, mbrugger@suse.com, 
+	Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, Aug 28, 2025 at 2:45=E2=80=AFPM Andrea della Porta
+<andrea.porta@suse.com> wrote:
 
+> From: "Ivan T. Ivanov" <iivanov@suse.de>
+>
+> This driver provide pin muxing and configuration functionality
+> for BCM2712 SoC used by RPi5. According to [1] this chip is an
+> instance of the one used in Broadcom STB  product line.
+>
+> [1] https://lore.kernel.org/lkml/f6601f73-cb22-4ba3-88c5-241be8421fc3@bro=
+adcom.com/
+>
+> Cc: Jonathan Bell <jonathan@raspberrypi.com>
+> Cc: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> Reviewed-by: Phil Elwell <phil@raspberrypi.com>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
-On Sat, 23 Aug 2025 11:24:19 +0530, Prathamesh Shete wrote:
-> Extend the existing Tegra186 GPIO controller device tree bindings with
-> support for the GPIO controller found on Tegra256. The number of pins is
-> slightly different, but the programming model remains the same
-> 
-> Add a new header, include/dt-bindings/gpio/tegra256-gpio.h,
-> that defines port IDs as well as the TEGRA256_MAIN_GPIO() helper,
-> both of which are used in conjunction to create a unique specifier
-> for each pin. The OS can reconstruct the port ID and pin from
-> these values to determine the register region for the corresponding
-> GPIO. However, the OS does not use the macro definitions in this file.
-> 
-> [...]
+Overall this feels merge class, I am looking over the requirement
+series from Bartosz to see if we can merge it all today.
 
-Applied, thanks!
+I also looked in a vendor tree for the (by now 6 years old...)
+BCMBCA driver, but it appears to be a completely different
+beast, requiring some magic 0x21 to be written into a register
+to "commit" a pin control change.
 
-[1/2] dt-bindings: gpio: Add Tegra256 support
-      https://git.kernel.org/brgl/linux/c/eef6dcbc52fa83c392a2f4a52845f347b233a584
-[2/2] gpio: tegra186: Add support for Tegra256
-      https://git.kernel.org/brgl/linux/c/db12ee08726e55c8a1a70c2308f98d121d96edc6
-
-Best regards,
--- 
-Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Yours,
+Linus Walleij
 
