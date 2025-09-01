@@ -1,110 +1,119 @@
-Return-Path: <devicetree+bounces-211026-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211027-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DB70B3D6A3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 04:23:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 26B08B3D6BA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 04:41:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3A9B54E172B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 02:23:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 969C41896171
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 02:41:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 587321A9FB5;
-	Mon,  1 Sep 2025 02:23:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="k4AXxQjd";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="rTYHesc/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 249131E5206;
+	Mon,  1 Sep 2025 02:40:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8838317A2F0;
-	Mon,  1 Sep 2025 02:23:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8348C1B4F0A;
+	Mon,  1 Sep 2025 02:40:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756693422; cv=none; b=cTWMfUd6SQdApJ0V+TMXGyI+Le8nCrQqjKewFUKk4k7PzwcG2c5qzDV9eKRBCO0ySgEDd9/u3cPQSWZHDJrqqYSweNfnstl4I0CECiIOCYynYyh9YEOL2FZmTdj9sCMY61pGF9wJmcXkmJs1hrXU5/7vS+L+RiV4XkJ4qbDAjEs=
+	t=1756694456; cv=none; b=NCBCAHGVh3mpjcJR6+nYJVq3LW99ujZelQ4rBGXsGwhDsct09WL0npL72LNHmiX9EF1zTVW/MEldj6pWh55FUlHPT5lM5XXMIhAwj62bJcEEiDpZdlsr2RFceSIWrzpv2Xwbge4/RotCXc8NiDITOeaCm6PF4guaWtdoCGoyVpk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756693422; c=relaxed/simple;
-	bh=cTlm40qAW1ER//EYBPrjKsDBqFJg70C/SweWZMMApj0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YMrNo+16ZI8QvdjCgaY8b9WQvQd+T0HWJ5O6yObomkbP11lDSv9I3hrt4kKtI0gAnMUjqMkfZ2wM9I4CQDK4lQ4178lGNRNpSY/2p5W6M6fGsOiw7TIxm9nwnZsJguv21QkehmjAdMQbjnzgAXzE1o0g1OM0Z+a1gqdVDrl9Ppc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=k4AXxQjd; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=rTYHesc/; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cFXjc46qRz9txD;
-	Mon,  1 Sep 2025 04:23:32 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1756693412;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KcWCEGr6qgfUpHyZ2bb6dMdRWns/kJMvA5VGMIiIy+k=;
-	b=k4AXxQjd1HlPeiobIXEyCI/jPC7mEgm5egg8qPp/VjK6R86RjF6t8LNlyfh9ql1PpYLGtW
-	mEkBFKEBM2iVUPUMTi/RdeLkxKky2dGzaccFTRAp0YV9d96tDyleefubHqiKPQKezIg+Wg
-	yDiTo/hjW8RMC4wjqjLgCndkAl8nolvlLaDHatyjii6VN4HTaLbKs1ixShzJDI3Gwf1KKN
-	numz88zOiVLTBt7KifaXQBkNdq5VjrLk1CcwXrcSDjtsnr05s2LDIDCFsbhYSOP7bKNclB
-	EnzWVawgB99hDcjt5Zxsnyn9Ud+rrEAk177S+kaYXIH2mfjUORHeagQJdkm48w==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b="rTYHesc/";
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::2 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-Message-ID: <3a165d77-3e36-4c0d-a193-aa9b27e0d523@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1756693410;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=KcWCEGr6qgfUpHyZ2bb6dMdRWns/kJMvA5VGMIiIy+k=;
-	b=rTYHesc/kk5s8Qp5Pvw6sOAA8w/F4tmZAJR0CL+95Pek9MllTDu+g7oK1I4knmFJBA3wiZ
-	RiS9S8Y3iUjfPlbm7Rt8KpHRXEgX7zWTW01iae98tu+vYzRScscMKHShrW/H3kG1LtH9Y+
-	ZsRZIIZ2BQdqPWxOHYgHTr/iLvwxqrT/yZcLzz5pCfifQj9KoddK2wcz9OXVzWFGO7yNeu
-	2eg+NK/qB41UlrZuDIW5zW9IH1sNJdr857AE5YwM9n8rnoM+acR+Sm0E/7zL1nH6CS/4QZ
-	mCUoi3k11IUgHZLNCVMGmcv54KacCTXPVhLajiCOnbvnRZfajDuxrGDU0ZBZOw==
-Date: Mon, 1 Sep 2025 04:22:58 +0200
+	s=arc-20240116; t=1756694456; c=relaxed/simple;
+	bh=I+Cv8PiQcSXtM2CwDE8uenb/2ypOEo/Pu8cMOSxDztM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=BHsNvWZT1oyjEjNLJG548WHKguiR1JyTVAUM+LPNXlFOtIQZeJ7Pz4sWxRSLvWta3CCOfdvSqx89OYWXz1s1gKhff0w1DRxR5PfIYxfSLR6NHyd9Qul0FvgJcwiDSETSGMi66bBV/xOEH94bnBbrTJ2LuekTcQMJo7cfpCybgH8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn; spf=none smtp.mailfrom=chainsx.cn; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chainsx.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=chainsx.cn
+X-QQ-mid: zesmtpip2t1756694307td2e1bf31
+X-QQ-Originating-IP: NrLB7mJd79dihQ9nNVJSWFisUrfti/iWIEdFtxameEs=
+Received: from chainsx-ubuntu-server.lan ( [localhost])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Mon, 01 Sep 2025 10:38:25 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 4630617426018902388
+EX-QQ-RecipientCnt: 11
+From: Hsun Lai <i@chainsx.cn>
+To: Fred Bloggs <f.blogs@napier.co.nz>
+Cc: Hsun Lai <i@chainsx.cn>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH v3 0/2] Add support for 100ASK DShanPi A1
+Date: Mon,  1 Sep 2025 10:38:21 +0800
+Message-Id: <20250901023823.75199-1-i@chainsx.cn>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v1] dts: arm64: freescale: move imx9*-clock.h
- imx9*-power.h into dt-bindings
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
- Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>, devicetree@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- E Shattow <e@freeshell.de>
-References: <20250831200516.522179-1-e@freeshell.de>
- <20250901032203.GA393@nxa18884-linux.ap.freescale.net>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250901032203.GA393@nxa18884-linux.ap.freescale.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 348a3e4ca199d13e5ef
-X-MBO-RS-META: drwo57x9gf3fnmbxbskh9qyqt8zpddsz
-X-Rspamd-Queue-Id: 4cFXjc46qRz9txD
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: zesmtpip:chainsx.cn:qybglogicsvrsz:qybglogicsvrsz3a-0
+X-QQ-XMAILINFO: MwxbfVbCPSF14T74UfoytvhzlkAFctPj+EqcQTm3BKYHwwu/0Mnm2O8A
+	ir67ndki4jvnLIPWjzwZqRz8hNzK/4aZkucqUlSLGZ9LNuLtzz0t5yCCdHkO6mrLsM/WDaI
+	pWC+Db+TljemlRZKADf7i7i6p2lhQ5/SIAWh4XyABzko0CcVwQlFRuIXe7GSBJAVkKc6ZV/
+	LouN6qvRUL29EGDt53VcHH+smKqD/gJkxO2935inQ+/b7OPr1mSRiw/jwU2tM0NJkMM+GGn
+	+HKN+ClX2ZBz0pRLnCqgzA5BtmEl0Lw3Yh+qngweIWtefVWSfcFKnfKb9PjCTgEYBadmSWO
+	y6nnkuKC8VWAbrTY73tuW4Y64D2LrYTeko2xCGw+ou+/4Ey006SUQf7T+A6ahsPvHA7VUpu
+	pabqkkb4l4Cc/shELFIZRlVDYq2qhb8M81m0srWsldbceq3eJ9J8I0bydd/8sDMfmYjEExX
+	hno9kKRoqBKbD2T9HcTTfOR5Xsu4+GBBAmNpKRehQuJnckaENauGsPsG3RC1jYUT6ql+Tfd
+	rmYOEzfcervZkLi/DGiRueEI5ld42dwhu8tvGslRFCfgeXg/sdokG7h4E8ystsRvRoTcGrY
+	vZ0i2WITEUxGZsPQRC3omZuOZse7Z+TTqsbzyVmwCs2yOfDEp8N1Gb3j0nKkcDcOQxDS50d
+	4obYGmNvknhdP04SpXiVAW9+66h6OE8vJajFO89iZs787Bd7p39nUEMPXtMxVfIXwldmX0A
+	P8Do8zXyWS7Uc1PPNWOjwit5Fm/GQ66O0STAfNzbUgjbXWB+uQC0+SB5s+JOUloHHExS554
+	AZhlHSFFMWZEcc5TGVUhjb5JtA83grUEzUOw+amdHZ1CIaPIdaxmNmm/KFqLGBtdheqBAwT
+	LbmGncYeIExsWh1E6HZD1u7/kVDKa5mgJPGPIpvNjCEuWX9NhGVntEfQtsohi/NiUuEcewp
+	Hd0En3Oa4OXf7ykjd33Yj5qKbrsrtSpxhqoXmIMmE7JS3JWq2RCEwvLFL8HFFCqWlNzZKKX
+	7lQiUlZbyjhob/rs0MGj6fNP+jiP8V3aTGLdYkh9LWmUUCAvwT
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 
-On 9/1/25 5:22 AM, Peng Fan wrote:
-> On Sun, Aug 31, 2025 at 01:04:45PM -0700, E Shattow wrote:
->> Move imx9*-{clock,power}.h headers into
->> include/dt-bindings/{clock,power}/ and fix up the DTs
-> 
-> No. The files should be under arch/arm64/boot/dts/freescale/
-Why ? Linux already has include/dt-bindings/clock/ and 
-include/dt-bindings/power directories for exactly those headers , why 
-did iMX9 suddenly start conflating them into arch/arm64/boot/dts/freescale ?
+This series add support for 100ASK DShanPi A1.
+
+Info of device can be found at:
+https://wiki.dshanpi.org/en/docs/DshanPi-A1/intro/
+
+(no changes since v2)
+
+Changes in v2:
+- Delete the pwm include file (Chukun Pan, v1)
+- Fix vcc3v3_pcie gpios (Chukun Pan, v1)
+- Adjust the order of some nodes (Chukun Pan, v1)
+- Fix sdmmc (Chukun Pan, v1)
+- Add phy-supply for u2phy0_otg (Chukun Pan, v1)
+- Update the name of vcc_in regulator (Chukun Pan, v2)
+- Fix PCIE (Chukun Pan, v2)
+- Update the name of typec5v_pwren_h pinctrl (Chukun Pan, v2)
+- Fix USB3 (Chukun Pan, v2)
+- Remove i2c2 node, unsupported RTC model rs4c1338 (Chukun Pan, v2)
+
+Changes in v1:
+- Add support for 100ASK DShanPi A1
+
+Hsun Lai (2):
+  dt-bindings: arm: rockchip: Add 100ASK DShanPi A1
+  arm64: dts: rockchip: add DTs for 100ASK DShanPi A1
+
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../dts/rockchip/rk3576-100ask-dshanpi-a1.dts | 795 ++++++++++++++++++
+ 3 files changed, 801 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3576-100ask-dshanpi-a1.dts
+
+-- 
+2.34.1
+
 
