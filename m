@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-211200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5609B3DE8D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:31:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5FDAB3DEA0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:34:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0756188875D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:30:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC54D162765
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:34:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7025230BF60;
-	Mon,  1 Sep 2025 09:28:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FDDF2FB63C;
+	Mon,  1 Sep 2025 09:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DrQ86so5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="up5IY0Lz"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238712FB628;
-	Mon,  1 Sep 2025 09:28:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFC71248F66;
+	Mon,  1 Sep 2025 09:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756718911; cv=none; b=EIEwQpykWvRBf7ChkH8SZ1uv3T5+4KdGtqY+3QRUsoIV1stMBoAa9exjTiwt5lk0W+zAGur44C4SNMDW7JM9td6KrQlPysPj6MSzAqBo4McCzvFN7c93otFkjzLnoeIBCjufzj2DoZMtTnHt/soU4kkORKCXVaJoLLSudkI1gNo=
+	t=1756719247; cv=none; b=uLazeuC8Vp2boVvntf0WuLsp0Ka8SgYAtI7nLoRfXLqw0JW+meNrRxRgrntLiFVB4oUxkQsZgtgybJAQLYu2coe7G7yjh1x+QyeRTSZpAzmr5KBh2ExTTdbBCTb/bVlXOIYfxbN6NlzuEJ8B2v7Rc8hGD84Y1eHltG6+aLDONR0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756718911; c=relaxed/simple;
-	bh=shaElPSOObJfmkZY5LcTmt3dvO0ZWW/U6309J45jo38=;
+	s=arc-20240116; t=1756719247; c=relaxed/simple;
+	bh=3pD43VmzuMnbKqEZBMBvRD8QOeColEDDiPA98Xg+SaI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bY05yh+d0jq3lkJc+FjC/9mubtO0sEpNIQpfj9eTrDCQDmz+ZGU5jPH2os2fkF+qcLW8wx3hxkBPcaM3/PpVToAhqtIjXUSOzmq1Ilhvc15l46Ia8j5EibhtAIkSqjGrAHWoUmS0B1+DPOCoIE+M9gKfFxB6XCZ6Mji1QGm/AwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DrQ86so5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A83F2C4CEF0;
-	Mon,  1 Sep 2025 09:28:26 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=E/A6m5gN/d17iWrueL+2Qz1GI8ye9l9ORJdj2K1au+SOSVJ7LP1Q6Q2pmBUWvuWs4hyNlike/iVRhOa3vDub4VYgnGMoOUWVm9yTMXZOpPK4FEeOLJlnl8Bx7JMslpqRgxnx2Wqp72N9Yqpnn76lrlMbN/ufGADj6EDNdkmtFcY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=up5IY0Lz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF865C4CEF0;
+	Mon,  1 Sep 2025 09:34:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756718910;
-	bh=shaElPSOObJfmkZY5LcTmt3dvO0ZWW/U6309J45jo38=;
+	s=k20201202; t=1756719246;
+	bh=3pD43VmzuMnbKqEZBMBvRD8QOeColEDDiPA98Xg+SaI=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=DrQ86so5j2ATBrGJSrkZA1SwnOTQVXVGj0BfVcU29yQ7YLX6a/D/utPuco4g1UCbr
-	 qQdlP1U40hLWhipNtw9Vi1ncwBPsLcFqDCj9jOFw/orQTZBcDfSV06hbaci1d87WB+
-	 pG2N0ZlrXuNdqYjpC6B8eLSgbZD2SwMPLRdbNxAFalRawBRXpTIlH+abGRiRCm7Bn9
-	 cPQz7tx4829tpuYp0tz0YEW+ht80uFYUFYB7pHUbbbtBIP5Q0VBmGwFR4KR5gWUbCI
-	 /tg0gMy60kTEbc7fVgCKjBD8ick3A6xKmmAFGbqLqhstrsm/9rjlIBd1554mIoU3QU
-	 BK3zkVDcvrXvg==
-Message-ID: <aec3629c-27a0-49d9-9fcf-5922b0f9035f@kernel.org>
-Date: Mon, 1 Sep 2025 11:28:24 +0200
+	b=up5IY0Lz+TWMrst6sxwJCXHZlvksy+Kyvgdb5EAAQyC+UHTG6/VphlFt01RyHvzdY
+	 SpU7YnF5+Jqv0wV6aIuRTNVyJMCpVHjQyME6P1+siibcpvKIrd1QOnpg8aTaePOXU/
+	 QvT67wDPOMoeNkN9KpE1mREID6KnHbBNmAqEobXL092QepnV9neHZRxgpw6FGBEUUh
+	 NPw6CEx8P9CGBIzoTcXJo+Y3n4/aN7N5E/YDXz95PBTWB2RVvsl7Mfp9smS62ZJXhp
+	 izWNuW6h6BRCHrXysOq6sHn5ZHhZngDG/WcJAe3ynXx+8m1AjDe6cCP1rhiJl+yTmO
+	 67GBt22Hy8KSw==
+Message-ID: <44d8a998-efe7-4c2f-8580-5248b1a98c44@kernel.org>
+Date: Mon, 1 Sep 2025 11:34:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,21 +50,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: platform: Add Lenovo Thinkpad T14s EC
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v2 4/5] firmware: exynos-acpm: register ACPM clocks dev
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mark Pearson <mpearson-lenovo@squebb.ca>
-Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
- <20250831-thinkpad-t14s-ec-v1-1-6e06a07afe0f@collabora.com>
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org>
+ <20250827-acpm-clk-v2-4-de5c86b49b64@linaro.org>
+ <e8346a38-fef7-482f-81ab-20621988b047@kernel.org>
+ <761936e8-1626-47f8-b3f5-ebc62f4a409b@linaro.org>
+ <2567a939-4938-4c92-8893-83d03ff8767f@kernel.org>
+ <c1321c46-e7a4-4489-a63b-a3ed72e5e98a@linaro.org>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -110,95 +114,96 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250831-thinkpad-t14s-ec-v1-1-6e06a07afe0f@collabora.com>
+In-Reply-To: <c1321c46-e7a4-4489-a63b-a3ed72e5e98a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 31/08/2025 23:28, Sebastian Reichel wrote:
-> Add binding for the EC found in the Thinkpad T14s Gen6 Snapdragon,
-> which is based on the Qualcomm X1 Elite. Some of the system LEDs
-> and extra keys are only accessible via the EC.
+On 01/09/2025 10:43, Tudor Ambarus wrote:
 > 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->  .../bindings/platform/lenovo,thinkpad-t14s-ec.yaml | 49 ++++++++++++++++++++++
-
-Please place it in embedded-controller. I moved there all ECs.
-
->  1 file changed, 49 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml b/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..bab20df2d9ede9a3cb0359944b26b3d18ff7d9b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/platform/lenovo,thinkpad-t14s-ec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lenovo Thinkpad T14s Embedded Controller.
-
-Drop full stop, titles never have them.
-
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +description:
-> +  The Qualcomm Snapdragon-based Lenovo Thinkpad T14s has an Embedded Controller
-> +  (EC) which handles things such as keyboard backlight, LEDs or non-standard keys.
-
-Please wrap at 80.
-
-> +  This binding describes the interface, on an I2C bus, to this EC.
-
-Drop, or just describe the hardware, not binding.
-
-> +
-> +properties:
-> +  compatible:
-> +    const: lenovo,thinkpad-t14s-ec
-> +
-> +  reg:
-> +    const: 0x28
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |+
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c1 {
-
-i2c
-
-> +        clock-frequency = <400000>;
-
-Drop
-
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        embedded-controller@28 {
-> +            compatible = "lenovo,thinkpad-t14s-ec";
-> +            reg = <0x28>;
-> +            interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +...
+> On 9/1/25 8:48 AM, Krzysztof Kozlowski wrote:
+>> On 01/09/2025 08:56, Tudor Ambarus wrote:
+>>>
+>>>
+>>> On 8/31/25 11:50 AM, Krzysztof Kozlowski wrote:
+>>>> On 27/08/2025 14:42, Tudor Ambarus wrote:
+>>>>> +
+>>>>> +static const struct acpm_clk_variant gs101_acpm_clks[] = {
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_MIF, "mif"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_INT, "int"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL0, "cpucl0"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL1, "cpucl1"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_CPUCL2, "cpucl2"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_G3D, "g3d"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_G3DL2, "g3dl2"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_TPU, "tpu"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_INTCAM, "intcam"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_TNR, "tnr"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_CAM, "cam"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_MFC, "mfc"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_DISP, "disp"),
+>>>>> +	ACPM_CLK(CLK_ACPM_DVFS_BO, "b0"),
+>>>>> +};
+>>>>
+>>>> I don't understand why clocks are defined in the firmware driver, not in
+>>>> the clock driver.
+>>>
+>>> I chose to define the clocks in the firmware driver and pass them as 
+>>> platform data to the clock platform device for extensibility. In case
+>>> other SoCs have different clock IDs, they'll be able to pass the
+>>
+>> You will have to modify firmware driver, so still at least one driver
+>> has to be changed. Having clocks defined in non-clock driver is really
+>> unusual.
+>>
+>> This solution here creates also dependency on clock bindings and makes
+>> merging everything unnecessary difficult.
+>>
+>>> clock data without needing to modify the clock driver. GS201 defines
+>>> the same ACPM clocks as GS101, but I don't have access to other newer
+>>> SoCs to tell if the ACPM clocks differ or not.
+>>>
+>>> The alternative is to define the clocks in the clock driver and
+>>> use platform_device_register_simple() to register the clock platform
+>>> device. The clock driver will be rigid in what clocks it supports.
+>>>
+>>> I'm fine either way for now. What do you prefer?
+>>
+>> Please move them to the driver.
 > 
+> Okay, will move the clock definitions to the clock driver.
+> 
+>>
+>>>
+>>>>
+>>>> This creates dependency of this patch on the clock patch, so basically
+>>>> there is no way I will take it in one cycle.
+>>>
+>>> Would it work to have an immutable tag for the clock and samsung-soc
+>>> subsytems to use?
+>>
+>> No, just try yourself. Patch #3 depends on patch #2, so that's the cross
+>> tree merge. It's fine, but now patch #4 depends on patch #3, so you need
+>> two merges.
+>>
+>> Or how do you actually see it being merged with immutable tag? What goes
+>> where?
+>>
+> 
+> Unnecessary difficult indeed. Hypothetically, if we kept the current
 
+No, it is impossible.
+
+> structure, we could have have a single tag on #4. Since the dependency was
+
+What does it mean tag on #4? There are no further users, so tagging this
+patch has zero effect.
+
+> on a new clock driver, the clock subsystem could have lived without merging
+> the tag, as the chances of conflicts with the clk core are small. But not
+
+Quick look tells me nothing would compile. Really, try yourself. Neither
+patch #3 nor patch #4 builds!
 
 Best regards,
 Krzysztof
