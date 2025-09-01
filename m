@@ -1,146 +1,107 @@
-Return-Path: <devicetree+bounces-211070-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211071-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE366B3D7CC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:46:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BDCBB3D7E0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:47:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 034CA189BCA8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 03:46:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D62D816B9D2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 03:47:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E01B2223336;
-	Mon,  1 Sep 2025 03:41:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lRghJs6W"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F0241E260D;
+	Mon,  1 Sep 2025 03:45:52 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A283221F17
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 03:41:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6A6153BE9;
+	Mon,  1 Sep 2025 03:45:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756698106; cv=none; b=bw5TeqwKZ4RF7G2l9V9KrS1tZA7cj4NsNsqCHvkBLmoSdr4uqzbJuFCj7iK9GINfKkuk7qDRclKgCVOy+Jbtip7rrepQx3eH9wvwFqcs5cwQcMm5I3I7O9siRuZmFggjtMDqPkrh4pcDNzm6V2LTRTP98xX7VNbRme1SAiZ42mk=
+	t=1756698352; cv=none; b=Px7QQ5cJhZMvuXKn7qaAHC1Md5Jc61Clpt8C/2e6JBUIojm3IYUg89oZtInfkRbIel2VCx2lD9stFW5/lVjRBJUDkh6M9T+SXQjrdm8WtJ74Og1CrJ8SKND8J2XEhCAFXipbtPnXmsN9UN5zHVvs7bhDyMPyl1GkGu65TUpqEOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756698106; c=relaxed/simple;
-	bh=d9Zuq+VOrL8MIyXST5jKsQIg+vODZlLmLXbPj9ULA5A=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=LEwgcbmmPUKASLIVy5ghmgaNLwB0xQzORoCpEj3PKPoJNhcGB0Br9Hhz6KS0YNIF1wbxCnyU0oqJWZOFBxk9LQ+uQ3k8fljYIrrtkeSJuH2jmyGuG7h3GKqCa27pp9Ql4PCZHkt/Xajcx+8EQvZyH2yvgGx+4UKU7+wTPgnJNnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lRghJs6W; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250901034142epoutp034dcfc539efe78358d384d6b406483436~hC53qFOjQ3058530585epoutp03q
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 03:41:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250901034142epoutp034dcfc539efe78358d384d6b406483436~hC53qFOjQ3058530585epoutp03q
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756698102;
-	bh=2EZz/ZSexN7h2df50VcWK12q3iXM1vJoQrK6dhmIGE8=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=lRghJs6WiItv3rLjqm+pzd30UDC510OACcd4G9b54EPLEvJjBtDVl1wjZP1FgxHFZ
-	 5sfwIdjmx5M4o2AZD5opByFkST+fjM9o1DUAFANbXSyFuAFqtLQad2xrcu+gvxrEmI
-	 uEMZRud998UV8PjWn94gKKRUNaZDRTi6Imaajgvg=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250901034141epcas5p1a451644c752ee167db2534393cd4b54a~hC52zjwJa2089620896epcas5p1q;
-	Mon,  1 Sep 2025 03:41:41 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.91]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cFZRm46C0z2SSKX; Mon,  1 Sep
-	2025 03:41:40 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250901034139epcas5p41f782871e58b5f6399fb3742f8b2e662~hC51ORnB22310123101epcas5p4j;
-	Mon,  1 Sep 2025 03:41:39 +0000 (GMT)
-Received: from FDSFTE411 (unknown [107.122.81.184]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250901034135epsmtip2835c6e93404b742e12a1de642383dbc3~hC5w2B8yt3100231002epsmtip2n;
-	Mon,  1 Sep 2025 03:41:35 +0000 (GMT)
-From: "Ravi Patel" <ravi.patel@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <jesper.nilsson@axis.com>,
-	<mturquette@baylibre.com>, <sboyd@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <s.nawrocki@samsung.com>,
-	<cw00.choi@samsung.com>, <alim.akhtar@samsung.com>,
-	<linus.walleij@linaro.org>, <tomasz.figa@gmail.com>,
-	<catalin.marinas@arm.com>, <will@kernel.org>, <arnd@arndb.de>
-Cc: <ksk4725@coasia.com>, <kenkim@coasia.com>, <pjsin865@coasia.com>,
-	<gwk1013@coasia.com>, <hgkim05@coasia.com>, <mingyoungbo@coasia.com>,
-	<smn1196@coasia.com>, <pankaj.dubey@samsung.com>, <shradha.t@samsung.com>,
-	<inbaraj.e@samsung.com>, <swathi.ks@samsung.com>,
-	<hrishikesh.d@samsung.com>, <dj76.yang@samsung.com>,
-	<hypmean.kim@samsung.com>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-arm-kernel@axis.com>, <linux-clk@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-	<soc@lists.linux.dev>
-In-Reply-To: <b8085dd8-e1a0-48b1-a49f-f3edaa0381da@kernel.org>
-Subject: RE: [PATCH v3 04/10] dt-bindings: pinctrl: samsung: Add compatible
- for ARTPEC-8 SoC
-Date: Mon, 1 Sep 2025 09:11:34 +0530
-Message-ID: <000201dc1af2$537b4e70$fa71eb50$@samsung.com>
+	s=arc-20240116; t=1756698352; c=relaxed/simple;
+	bh=sKgZOVb18ukU6gfr09NK//ApDL9iFlVCo9W1MECGjQM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LYahpyauH31GjqGE3NAgTro0AxZer32PkRquke1vT92C16TcErO9vRAqs/05U5HXFky8B8Dtd69yxjXtrFxlNIp44nNtBigG17YK3srTRTxW7e09NnJ7SiASJCsqAvk3ms7XpLqFmgukR5NyB4wzeAP/Ez4G3V5Juj0DUuWpCUw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FAEBC4CEF0;
+	Mon,  1 Sep 2025 03:45:51 +0000 (UTC)
+Date: Mon, 1 Sep 2025 05:45:49 +0200
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>, 
+	Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>, Sean Paul <sean@poorly.run>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kuogee Hsieh <quic_khsieh@quicinc.com>, 
+	Abel Vesa <abel.vesa@linaro.org>, Mahadevan <quic_mahap@quicinc.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v7 2/9] dt-bindings: display/msm: dp-controller: fix
+ fallback for SM6350
+Message-ID: <20250901-arboreal-gay-wolf-bcaaec@kuoka>
+References: <20250829-dp_mst_bindings-v7-0-2b268a43917b@oss.qualcomm.com>
+ <20250829-dp_mst_bindings-v7-2-2b268a43917b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQHHo9j0Rv1rvZf0N1R8AXn4x9PYUAMDo+/eAkhMLtUCILeh+rRrNiow
-Content-Language: en-in
-X-CMS-MailID: 20250901034139epcas5p41f782871e58b5f6399fb3742f8b2e662
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250825120715epcas5p3a0c8b6eaff7bdd69cbed6ce463079c64
-References: <20250825114436.46882-1-ravi.patel@samsung.com>
-	<CGME20250825120715epcas5p3a0c8b6eaff7bdd69cbed6ce463079c64@epcas5p3.samsung.com>
-	<20250825114436.46882-5-ravi.patel@samsung.com>
-	<b8085dd8-e1a0-48b1-a49f-f3edaa0381da@kernel.org>
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250829-dp_mst_bindings-v7-2-2b268a43917b@oss.qualcomm.com>
 
-
-
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Sent: 31 August 2025 18:55
-> To: Ravi Patel <ravi.patel@samsung.com>; jesper.nilsson@axis.com; mturquette@baylibre.com; sboyd@kernel.org; robh@kernel.org;
-> krzk+dt@kernel.org; conor+dt@kernel.org; s.nawrocki@samsung.com; cw00.choi@samsung.com; alim.akhtar@samsung.com;
-> linus.walleij@linaro.org; tomasz.figa@gmail.com; catalin.marinas@arm.com; will@kernel.org; arnd@arndb.de
-> Cc: ksk4725@coasia.com; kenkim@coasia.com; pjsin865@coasia.com; gwk1013@coasia.com; hgkim05@coasia.com;
-> mingyoungbo@coasia.com; smn1196@coasia.com; pankaj.dubey@samsung.com; shradha.t@samsung.com; inbaraj.e@samsung.com;
-> swathi.ks@samsung.com; hrishikesh.d@samsung.com; dj76.yang@samsung.com; hypmean.kim@samsung.com; linux-
-> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-arm-kernel@axis.com; linux-
-> clk@vger.kernel.org; devicetree@vger.kernel.org; linux-gpio@vger.kernel.org; soc@lists.linux.dev
-> Subject: Re: [PATCH v3 04/10] dt-bindings: pinctrl: samsung: Add compatible for ARTPEC-8 SoC
+On Fri, Aug 29, 2025 at 01:48:15AM +0300, Dmitry Baryshkov wrote:
+> The SM6350 doesn't have MST support, as such it is not compatible with
+> the SM8350 platform. Add new entry for SM6350 with fallback to SC7180
+> (which belongs to the same generation and also doesn't have MST
+> support).
 > 
-> On 25/08/2025 13:44, Ravi Patel wrote:
-> > From: SeonGu Kang <ksk4725@coasia.com>
-> >
-> > Document the compatible string for ARTPEC-8 SoC pinctrl block,
-> > which is similar to other Samsung SoC pinctrl blocks.
-> >
-> > Signed-off-by: SeonGu Kang <ksk4725@coasia.com>
-> > Acked-by: Rob Herring (Arm) <robh@kernel.org>
-> > Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
-> > ---
-> >  Documentation/devicetree/bindings/pinctrl/samsung,pinctrl.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
+> Fixes: 39086151593a ("dt-bindings: display: msm: dp-controller: document SM6350 compatible")
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> ---
+>  .../devicetree/bindings/display/msm/dp-controller.yaml     | 14 +++++++++++++-
+>  1 file changed, 13 insertions(+), 1 deletion(-)
 > 
-> 
-> No wakeup-eint interrupts here? samsung,pinctrl-wakeup-interrupt.yaml?
+> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> index aed3bafa67e3c24d2a876acd29660378b367603a..0f814aa6f51406fdbdd7386027f88dfbacb24392 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
+> @@ -31,13 +31,25 @@ properties:
+>            - qcom,sm8650-dp
+>        - items:
+>            - enum:
+> -              - qcom,sar2130p-dp
+>                - qcom,sm6350-dp
+> +          - const: qcom,sc7180-dp
+> +
+> +      # deprecated entry for compatibility with old DT
+> +      - items:
+> +          - enum:
+> +              - qcom,sm6350-dp
+> +          - const: qcom,sm8350-dp
+> +        deprecated: true
 
-I don't see any use case for external wake-up interrupt here (as of now).
-So wakeup-eint entry is not present in dts and yaml both.
+If it is only about bindings then there is little benefit in keeping
+this, just drop this case.  However you cannot drop it from DTS, so this
+is a bit pointless.
 
-Thanks,
-Ravi
+Lack of MST support is not informative enough to claim it is not
+compatible with 8350. For example if it was working fine via fallback,
+then that statement is simply not correct.
 
-> 
-> 
-> Best regards,
-> Krzysztof
+And it HAD to work fine, because there is nothing binding to
+qcom,sm6350-dp.
+
+Best regards,
+Krzysztof
 
 
