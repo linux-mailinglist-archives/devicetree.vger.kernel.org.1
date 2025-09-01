@@ -1,119 +1,153 @@
-Return-Path: <devicetree+bounces-211105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211094-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF1AB3D8FE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:44:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0439B3D896
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 18B533BB5BD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:44:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BD8A17916F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28D09257AC1;
-	Mon,  1 Sep 2025 05:43:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59C1121D3F5;
+	Mon,  1 Sep 2025 05:21:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="II5Cequg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KJM61YiT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440F3257821
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 05:43:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CC50218EBA;
+	Mon,  1 Sep 2025 05:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756705389; cv=none; b=R42t9nR7HRY6P0hQhCZK8tp6yEXk1abDIXtoTqHY7j8rP47Wm+zw1+3y6czRvBEZurNd4jhnIVT34qhodWVcEz8C5oWcqBbkmqhsr4bNLt6z1dcSW/Zhv5CGYztwovZX4MI6gxh6COJ1ZMkenYcKdP7TyBypEX4R3CP9LOh2Xzg=
+	t=1756704067; cv=none; b=Je/yoQSKpWX1hXx2vO8qPH0FVpkBvvrtaERkVPpo8P1lgL9tW3wKHwvrTUdYY7noWjcQz/fFCG904+xqGRs3EjjXg1I0DokZ6kimAE0kF4tV79mb4ekRSN/FHsuL5JeIAPaINMcHSuGXbz5LnBfWhaB1zJMItqLRrlj9vkSbU5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756705389; c=relaxed/simple;
-	bh=m9oTjZ7C8dnATQroPNEjk8bOwR1sXKUbfmI6z8BGwFs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:Content-Type:
-	 References; b=hiXpWJh3S3kGQ/OLwZyUZeEapb8YRtwq4XiLyyM/Y3CLCPp3Uz2H/hN1jWKAWTpO5oqTBR268kVgOjfuYdGfCEoW8FgV0D1T5yRPM5gMSzXCiTZBELV8uDDO0tdXr2YL2RdpgX+5pkr3M7f9KutDl+nUQVpHrLbZPsLwvH379ws=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=II5Cequg; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250901054306epoutp01e4c018802d44d76bec1e98b15641ba32~hEj3hFhzn1921119211epoutp01i
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 05:43:06 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250901054306epoutp01e4c018802d44d76bec1e98b15641ba32~hEj3hFhzn1921119211epoutp01i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756705386;
-	bh=AnmAPrcDCYbR1J1LfBH1PHR8aqxWFYZaUH5QmVjWvUc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=II5Cequgt6q9CtOhYCIb3N+bn9QdzOGomIY/0+Cb9GThx2JqCaKIri702R0rLA0nz
-	 Hy1f2ZMTxeu2y74p0/j6RBwq3wSs4v61oHYvgyuca4K306G30wSgtfz9FL710NsrfD
-	 H+QDmCj+AwTMIb2fU8dyKX6XVq/VxzyWeXZm7OQo=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250901054305epcas5p3486a5537dd8999135776b1141f184bd5~hEj2klCpO1883718837epcas5p3u;
-	Mon,  1 Sep 2025 05:43:05 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.92]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4cFd7r44bQz6B9m9; Mon,  1 Sep
-	2025 05:43:04 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250901054303epcas5p3d8079b7806d995bfaf3004cbb4f95e41~hEj08CsBi1883718837epcas5p3o;
-	Mon,  1 Sep 2025 05:43:03 +0000 (GMT)
-Received: from Jaguar.samsungds.net (unknown [107.109.115.6]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250901054259epsmtip210578938dcab54c7343fe60c0383dde6~hEjww4qJX0605106051epsmtip2W;
-	Mon,  1 Sep 2025 05:42:59 +0000 (GMT)
-From: Ravi Patel <ravi.patel@samsung.com>
-To: jesper.nilsson@axis.com, mturquette@baylibre.com, sboyd@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, krzk@kernel.org,
-	s.nawrocki@samsung.com, cw00.choi@samsung.com, alim.akhtar@samsung.com,
-	linus.walleij@linaro.org, tomasz.figa@gmail.com, catalin.marinas@arm.com,
-	will@kernel.org, arnd@arndb.de
-Cc: ksk4725@coasia.com, kenkim@coasia.com, pjsin865@coasia.com,
-	gwk1013@coasia.com, hgkim05@coasia.com, mingyoungbo@coasia.com,
-	smn1196@coasia.com, shradha.t@samsung.com, ravi.patel@samsung.com,
-	inbaraj.e@samsung.com, swathi.ks@samsung.com, hrishikesh.d@samsung.com,
-	dj76.yang@samsung.com, hypmean.kim@samsung.com,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-arm-kernel@axis.com,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [PATCH v4 6/6] arm64: defconfig: Enable Axis ARTPEC SoC
-Date: Mon,  1 Sep 2025 10:49:26 +0530
-Message-Id: <20250901051926.59970-7-ravi.patel@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20250901051926.59970-1-ravi.patel@samsung.com>
-X-CMS-MailID: 20250901054303epcas5p3d8079b7806d995bfaf3004cbb4f95e41
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-541,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250901054303epcas5p3d8079b7806d995bfaf3004cbb4f95e41
-References: <20250901051926.59970-1-ravi.patel@samsung.com>
-	<CGME20250901054303epcas5p3d8079b7806d995bfaf3004cbb4f95e41@epcas5p3.samsung.com>
+	s=arc-20240116; t=1756704067; c=relaxed/simple;
+	bh=p73wikkWjgPiEXtKBYuxdsbxYw/1Fn1rox3FNuHjuNY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TvjluZJC+DFY1kqmO1I0ThrxZe3BcFLNlb0AGoEh/YQhenCA9yWnIEZnU9zsWHOgIUksPOA+1S7BeEQBM/Lj0zhT5+DGo0GOo2kdylbihkRmi0zaZZ9M5k0hfv8fmII7Xnhj2p98ZYuWLCxraa1cI+gVYIO+UPUMyQbHtbv/JjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KJM61YiT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BC43C4CEF0;
+	Mon,  1 Sep 2025 05:21:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756704066;
+	bh=p73wikkWjgPiEXtKBYuxdsbxYw/1Fn1rox3FNuHjuNY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=KJM61YiTet+yQE0KLUtqO/JBa3O54UgDiKgSc7JnNCikYZGRdGKkQzPVhVyXz9TBz
+	 gCOgADD3DEnLu2NYiTpaUWA8uMnmKYtJP8N/KD/LFKawXWrk2O9iyhAe7g8dTD06qL
+	 BlVw6kBmqeCg1FheP7czoC7LRDEsqa1YqZhFcuXVuB+Acce0j/VoIooRtXJjBsXEdV
+	 QzEOmfROJJoA9UzMTvDmFrpML0c/YW25rDxkCrXcespvcamK9NBGSWGcrD+G5HEu7b
+	 Kk1GAiLCMj0KMgJfu39kGSHjM7m8bjZIORvvr06cY05h6sD8lEZbwZFtFmEfRos08x
+	 HA3FI3O/opGSg==
+Date: Mon, 1 Sep 2025 07:21:04 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Cc: git@amd.com, michal.simek@amd.com, alexandre.belloni@bootlin.com, 
+	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	kees@kernel.org, gustavoars@kernel.org, jarkko.nikula@linux.intel.com, 
+	linux-i3c@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com, srinivas.goud@amd.com, 
+	shubhrajyoti.datta@amd.com, manion05gk@gmail.com
+Subject: Re: [PATCH V2 1/2] dt-bindings: i3c: Add AMD I3C master controller
+ support
+Message-ID: <20250901-hospitable-tentacled-chicken-05b2ac@kuoka>
+References: <20250829171327.2590730-1-manikanta.guntupalli@amd.com>
+ <20250829171327.2590730-2-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250829171327.2590730-2-manikanta.guntupalli@amd.com>
 
-From: SungMin Park <smn1196@coasia.com>
+On Fri, Aug 29, 2025 at 10:43:26PM +0530, Manikanta Guntupalli wrote:
+> Add device tree binding documentation for the AMD I3C master controller.
+> 
+> The controller is represented by the compatible string "xlnx,axi-i3c-1.0".
+> The binding specifies required properties including register space, clock,
+> resets, interrupts, and provides an example usage.
+> 
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> ---
+> Changes for V2:
+> Updated commit subject and description.
+> Moved allOf to after required.
+> Removed xlnx,num-targets property.
+> ---
+>  .../devicetree/bindings/i3c/xlnx,axi-i3c.yaml | 53 +++++++++++++++++++
+>  1 file changed, 53 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+> new file mode 100644
+> index 000000000000..48be3c53c1be
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i3c/xlnx,axi-i3c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: AMD I3C master
+> +
+> +maintainers:
+> +  - Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> +
+> +description:
+> +  The AXI-I3C IP is an I3C Controller with an AXI4-Lite interface, compatible
+> +  with the MIPI I3C Specification v1.1.1. The design includes bidirectional I/O
+> +  buffers that implement open collector drivers for the SDA and SCL signals.
+> +  External pull-up resistors are required to properly hold the bus at a Logic-1
+> +  level when the drivers are released.
+> +
+> +properties:
+> +  compatible:
+> +    const: xlnx,axi-i3c-1.0
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reg:
+> +    maxItems: 1
 
-Enable the Axis ARTPEC-8 SoC in arm64 defconfig.
+Reg is the second property. Rest should go alphabetically.
 
-Signed-off-by: SungMin Park <smn1196@coasia.com>
-Signed-off-by: Ravi Patel <ravi.patel@samsung.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +required:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 58f87d09366c..6660d3ee6f99 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -38,6 +38,7 @@ CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
-+CONFIG_ARCH_ARTPEC=y
- CONFIG_ARCH_AXIADO=y
- CONFIG_ARCH_BCM=y
- CONFIG_ARCH_BCM2835=y
--- 
-2.49.0
+By convention, also compatible.
+
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - $ref: i3c.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    i3c@80000000 {
+> +        compatible = "xlnx,axi-i3c-1.0";
+> +        reg = <0x80000000 0x10000>;
+> +        clocks = <&zynqmp_clk 71>;
+
+Make the example complete - missing resets and interrupts.
+
+Best regards,
+Krzysztof
 
 
