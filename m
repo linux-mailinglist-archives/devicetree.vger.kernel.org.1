@@ -1,59 +1,70 @@
-Return-Path: <devicetree+bounces-211412-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211413-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C033B3EF16
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:00:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C83AFB3EF25
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:05:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A32A11B220D2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:01:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 83DC7485890
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:05:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0852E20E6E2;
-	Mon,  1 Sep 2025 20:00:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0164B2264DB;
+	Mon,  1 Sep 2025 20:05:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dF5QL4Ih"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Md6hGjPb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDF3E1A7264;
-	Mon,  1 Sep 2025 20:00:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B65E24409;
+	Mon,  1 Sep 2025 20:05:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756756845; cv=none; b=kkga0S6rbbK3XMsWFmugA7QljBndF2TIazMsjJurJ0V60VsVfXUbxx0CqKWxe1Wr0Goqgodo9BEG/Hmn6UqJ/SoeAF2PKCfJZPLbXOMUn74Id7gmLcCgWCsavERZvDUjV8o3eTavRlP0yjqGcAZcwj0SGpzXDSFWa6Pg98jl3GI=
+	t=1756757130; cv=none; b=czpyIfUHxNDbOIrHPvsbSXf6jxvsEZwzqn7t17j0hxrRfPVE4BkHavNJ0PTdA02RfPJsRz/0rnTsiZSWiAn/0FOh8INR63/09NjmJPm1h5oaZoVk57sRxrv8HmlB3lru9nBAyP+zDr1XXY3Nq1SRk511zyMA5tq21E5K+DmHZF0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756756845; c=relaxed/simple;
-	bh=CFkBOeYNe06+1/UF6vKOmObFAnoKtYOc56dz9hmioNQ=;
+	s=arc-20240116; t=1756757130; c=relaxed/simple;
+	bh=RAim03favvAaUeqPJwCMd2IVGw1/U66PABzxHIdIwiY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rnpV5U9Vdy8RVIzaOuALTm7Zzi5LkJfBP5716ufc6FsKneI0P7G1kfuu6IztKokGxArHh/o5/qlFvhWI8dymB9Bz3qCkPv0FD+4Wr7YrV9X9OVhMkTfpj2nEEP+bCB2offFRvjgULmhX2y/HGwH16p21x1hbF2hr0AaWSKGKlDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dF5QL4Ih; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F0D9C4CEF5;
-	Mon,  1 Sep 2025 20:00:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=DnlQXFqO2dXSferFd/rPRiFIXgEUwjQk+TiqYA8gM+ZCE7Pq2wMonfEQNUyogskuW77NmM6l4DDmsNlFW17xIsoTSny5eHPPl1cIDA+cciCuZF6SaJagJ3DlDIdWocvsL1M3fRpp1ksqwJiUj9Li0kR2tIBIjWY2i4bUV0nCR6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Md6hGjPb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 034F1C4CEF0;
+	Mon,  1 Sep 2025 20:05:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756756845;
-	bh=CFkBOeYNe06+1/UF6vKOmObFAnoKtYOc56dz9hmioNQ=;
+	s=k20201202; t=1756757130;
+	bh=RAim03favvAaUeqPJwCMd2IVGw1/U66PABzxHIdIwiY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dF5QL4IhHX5peWtKPcWO33+Y/3jYSVPCYwQVLn4vWsTG5pUjvAx8X3+EkpQyK4cwd
-	 RXXaTi9MTftGORj9chATZHBlTnlf3oEMH5w4nzSzNKMSrD17q6MQXtgrvf+s40vRuK
-	 qSCqWOPpc8hKBThcZ0VyZgHvRX94245kcVzuTrfDfQguT+UbeygsqlfuJGkWadMHPT
-	 Bvqqts9V1e85LulqF6aV3Ou4aDCgnj67lMhQmqLTRu+SIr721QbXgyWEB4QkdqQxyN
-	 fIVb1WDAmeg4q+IXL8sl3o+HGZi6vGR9hPufJ5LJ3i47jTDVZcHSLMg9ua6AZqH2uY
-	 FRQmP7aqHPijA==
-Date: Mon, 1 Sep 2025 15:00:44 -0500
+	b=Md6hGjPbHG5zimFZFjh3NJDnJu5+ynifyjubmfmOqKPWU5EQqbRPY8mgS9SR34b20
+	 KXLKVrBS7jtKhzUNk0gc2JapL24eK3LJ8EY9xm2CoEbj+uQ2kPLhm/VSM3OIdckKs+
+	 kUJtDbZRjOQwHaGmzSdcarReJQ0ZTU2qkTkttUJs4D/RSMDxneGQZ/va5Xf/J18Hqi
+	 T6n4EW+W1xlQO9CwlNybVXOzIOXhlW89lTdd26jN9l+FeiPZ+/4fPj6qS5uMgpvVFv
+	 AHWauX3trQXxKiuxkYRagYWIMWxBJqvp/nITLKSJ3brlbuhEndLe6ObwXpikyO3jJL
+	 iivAHPeazk8Dw==
+Date: Mon, 1 Sep 2025 15:05:29 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	Will Deacon <will@kernel.org>, linux-arm-kernel@lists.infradead.org,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	linux-perf-users@vger.kernel.org,
-	Mark Rutland <mark.rutland@arm.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: arm: Add Cortex-A320/A520AE/A720AE cores
- and PMU
-Message-ID: <175675683724.229121.8672693936627716247.robh@kernel.org>
-References: <20250821190722.417639-1-robh@kernel.org>
+To: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
+Cc: Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+	Sebastian Reichel <sre@kernel.org>, linux-usb@vger.kernel.org,
+	kernel@oss.qualcomm.com, linux-pm@vger.kernel.org,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	David Collins <david.collins@oss.qualcomm.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
+	=?iso-8859-1?Q?Gy=F6rgy?= Kurucz <me@kuruczgy.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 6/8] dt-bindings: soc: qcom,pmic-glink: Add charge
+ limit nvmem properties
+Message-ID: <175675712869.236292.8855356859371359871.robh@kernel.org>
+References: <20250826-qcom_battmgr_update-v3-0-74ea410ef146@oss.qualcomm.com>
+ <20250826-qcom_battmgr_update-v3-6-74ea410ef146@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,20 +73,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250821190722.417639-1-robh@kernel.org>
+In-Reply-To: <20250826-qcom_battmgr_update-v3-6-74ea410ef146@oss.qualcomm.com>
 
 
-On Thu, 21 Aug 2025 14:07:21 -0500, Rob Herring (Arm) wrote:
-> Add the recently introduced Cortex-A320/A520AE/A720AE core and PMU
-> compatible strings.
+On Tue, 26 Aug 2025 15:18:33 +0800, Fenglin Wu wrote:
+> Add nvmem properties to retrieve charge control configurations
+> from the PMIC SDAM registers.
 > 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/arm/cpus.yaml | 3 +++
->  Documentation/devicetree/bindings/arm/pmu.yaml  | 3 +++
->  2 files changed, 6 insertions(+)
+>  .../devicetree/bindings/soc/qcom/qcom,pmic-glink.yaml      | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
