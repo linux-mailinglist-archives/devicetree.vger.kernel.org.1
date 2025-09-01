@@ -1,177 +1,134 @@
-Return-Path: <devicetree+bounces-211269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31BDDB3E292
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:22:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 60B11B3E25C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:12:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1AF33B49A5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:22:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 227FB3BB8A1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:12:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31621334390;
-	Mon,  1 Sep 2025 12:21:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23472277026;
+	Mon,  1 Sep 2025 12:11:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IgM4H5Hr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB1C30BF7B;
-	Mon,  1 Sep 2025 12:21:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5B092765DB;
+	Mon,  1 Sep 2025 12:11:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756729265; cv=none; b=W8bhode5xTqFmLIYARkvEJXpw0H8AL35DhgwW0+wIPyrbE9LaP7csNN9x810bl82Gcr8XSQPg3rLO1qeRuwUra4kGPDzw5RbIJTh0GphqdJMTTEvwqF1UnVaFyl6Lgeia80/gS8QDgFdqVo/cgeCaBT3Jw/bEv1OCAcF0iXtlpI=
+	t=1756728716; cv=none; b=V9sM7oRSTCyAA02xy8ejdmpk3xKLxv+/m/26dzaMC1RG++TbtD3qZ0v9Me/YZweKt4d0/Vav54BnpnFNzCbc8oiTJZUhCxQ1lCOHB8wUBOHYS9nqPypcH0yjsDbU4eHJrm3vJtQraAXnPPNTlQRvj3oINkGBPI339sVA66TwLsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756729265; c=relaxed/simple;
-	bh=59wZHIxllxZcwCrUxSll7FEcA0fEA5AxS+AodcoXc0o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WYjyuFAp6VLMOh1NvbvR5S0FEDgpy5RV3UH/50l50xIzznOlpkDYEB6/8Nf98pXuEe5VwpN9FcHyONbgZVHJ/QJT+Zmg2ApgbzUnpoQIAexuqOO5VElQLHXf3czz0mP9yJg3V+V4py83u3YqSzRU0/YWOmIHyr9J8/I0ipAkF1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
-Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
-	by localhost (Postfix) with ESMTP id 4cFndL0hyTz9sT8;
-	Mon,  1 Sep 2025 14:05:42 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from pegase2.c-s.fr ([172.26.127.65])
-	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
-	with ESMTP id 8chmUpmbiw-6; Mon,  1 Sep 2025 14:05:42 +0200 (CEST)
-Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
-	by pegase2.c-s.fr (Postfix) with ESMTP id 4cFndD0SFrz9sSs;
-	Mon,  1 Sep 2025 14:05:36 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id ECB808B77B;
-	Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at c-s.fr
-Received: from messagerie.si.c-s.fr ([127.0.0.1])
-	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
-	with ESMTP id vyRL5fj0VNV1; Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
-Received: from PO20335.idsi0.si.c-s.fr (unknown [10.25.207.160])
-	by messagerie.si.c-s.fr (Postfix) with ESMTP id BB70F8B78C;
-	Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
-From: Christophe Leroy <christophe.leroy@csgroup.eu>
-To: Qiang Zhao <qiang.zhao@nxp.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
-	linux-kernel@vger.kernel.org,
-	linuxppc-dev@lists.ozlabs.org,
+	s=arc-20240116; t=1756728716; c=relaxed/simple;
+	bh=qBCtOBJT2cV+mYRDVrXbHxe214BFli2AJqzlHAFeHmE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SkLo0XcLO7BLwMlxPvK/CeSlwuSGqBj2qaIStTWHFyxYdN4bkNU+FSpInAtIEdBn2utzGKwgs6bwpuGlddQUOywBB8EOe/AqoZHzHCAHRrgxBjAgIEbhWeSQIaJVfBgb0fwhH2ilAFutzZ3K8aqvRLFczOtiHGsSBPDOEjoL2Yk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IgM4H5Hr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C32FC4CEF0;
+	Mon,  1 Sep 2025 12:11:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756728715;
+	bh=qBCtOBJT2cV+mYRDVrXbHxe214BFli2AJqzlHAFeHmE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IgM4H5HrKPqzEWKaSZZ7G5TFgQ07XB5abKuclMAVTDyb72U8Mej25CusONsJTcqUA
+	 D8HD6YysFa4BLj7g866Hk/j8mfg7NLIcRq0I57I4DBx+xCOH4xiVd3hwq4Ken3omiY
+	 7P4hMwDYQ2lOEB7aFsWcQ+d7Sb82DMMfmmNCaffJJOTEepv71yzjo3FsRsD6TmfaQV
+	 cT0/PVLi/7Iqh5DsfIOmEYvalaeUnHIjpNQVefdV6+GUxOV/0QZkbt0TC2+34r0eMt
+	 u1fxeyrUs6OGR/HoSCu4I9xWptMRoncdQ2+GqxTpRL9Kx02riRJi1DhTi0bT0DQetk
+	 hxABn07H4QR+w==
+Date: Mon, 1 Sep 2025 17:41:50 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Shradha Todi <shradha.t@samsung.com>
+Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v5 7/7] dt-bindings: soc: fsl: qe: Add support of IRQ in QE GPIO
-Date: Mon,  1 Sep 2025 14:05:14 +0200
-Message-ID: <4d7560f77dbd60f6297958acbc0cf412d8921856.1756727747.git.christophe.leroy@csgroup.eu>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <cover.1756727747.git.christophe.leroy@csgroup.eu>
-References: <cover.1756727747.git.christophe.leroy@csgroup.eu>
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-phy@lists.infradead.org, mani@kernel.org,
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org,
+	bhelgaas@google.com, jingoohan1@gmail.com, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com, kishon@kernel.org,
+	arnd@arndb.de, m.szyprowski@samsung.com, jh80.chung@samsung.com,
+	pankaj.dubey@samsung.com
+Subject: Re: [PATCH v3 10/12] phy: exynos: Add PCIe PHY support for FSD SoC
+Message-ID: <aLWNhv0eLj7LRrvM@vaman>
+References: <20250811154638.95732-1-shradha.t@samsung.com>
+ <CGME20250811154738epcas5p1d1202f799c4d950c5d5e7f45e39a51e7@epcas5p1.samsung.com>
+ <20250811154638.95732-11-shradha.t@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756728308; l=3640; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=59wZHIxllxZcwCrUxSll7FEcA0fEA5AxS+AodcoXc0o=; b=cy9tS21IUHMGiZz2LkFhr/4YksRHLYEUvFGDBOX1axyjBo+bzEtfYV3xtcm8RSYCvbvRHjfst 3wmxkdbNoD3BJ0zgTn8FewQGYmGd3efkqIdatLK/NyqRDmBjpdLHkdM
-X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250811154638.95732-11-shradha.t@samsung.com>
 
-In the QE, a few GPIOs have an associated IRQ to notify changes.
-Add IRQ support to QE GPIO.
+On 11-08-25, 21:16, Shradha Todi wrote:
+> Add PCIe PHY support for Tesla FSD SoC.
 
-As not all GPIOs have an associated IRQ, the driver needs to know
-to which GPIO corresponds each provided IRQ. This is provided via
-multiple compatible properties:
+Can you pls add a bit more description of what you are adding, helps to
+understand the change
 
-	compatible = "fsl,mpc8323-qe-pario-bank-a"
-	compatible = "fsl,mpc8323-qe-pario-bank-b"
-	compatible = "fsl,mpc8323-qe-pario-bank-c"
+> +/* FSD: PCIe PCS registers */
+> +#define FSD_PCIE_PCS_BRF_0		0x0004
+> +#define FSD_PCIE_PCS_BRF_1		0x0804
+> +#define FSD_PCIE_PCS_CLK		0x0180
+> +
+> +/* FSD: PCIe SYSREG registers */
+> +#define FSD_PCIE_SYSREG_PHY_0_CON			0x042c
+> +#define FSD_PCIE_SYSREG_PHY_0_CON_MASK			0x03ff
+> +#define FSD_PCIE_SYSREG_PHY_0_REF_SEL			(0x2 << 0)
 
-	compatible = "fsl,mpc8360-qe-pario-bank-a"
-	compatible = "fsl,mpc8360-qe-pario-bank-b"
-	compatible = "fsl,mpc8360-qe-pario-bank-c"
-	compatible = "fsl,mpc8360-qe-pario-bank-d"
-	compatible = "fsl,mpc8360-qe-pario-bank-e"
-	compatible = "fsl,mpc8360-qe-pario-bank-f"
-	compatible = "fsl,mpc8360-qe-pario-bank-g"
+Use GENMASK() please here and elsewhere
 
-	compatible = "fsl,mpc8568-qe-pario-bank-a"
-	compatible = "fsl,mpc8568-qe-pario-bank-b"
-	compatible = "fsl,mpc8568-qe-pario-bank-c"
-	compatible = "fsl,mpc8568-qe-pario-bank-d"
-	compatible = "fsl,mpc8568-qe-pario-bank-e"
-	compatible = "fsl,mpc8568-qe-pario-bank-f"
+> +static int fsd_pcie_phy0_reset(struct phy *phy)
+> +{
+> +	struct exynos_pcie_phy *phy_ctrl = phy_get_drvdata(phy);
+> +
+> +	writel(0x1, phy_ctrl->pcs_base + FSD_PCIE_PCS_CLK);
+> +
+> +	regmap_update_bits(phy_ctrl->fsysreg, FSD_PCIE_SYSREG_PHY_0_CON,
+> +			FSD_PCIE_SYSREG_PHY_0_CON_MASK, 0x0);
+> +	regmap_update_bits(phy_ctrl->fsysreg, FSD_PCIE_SYSREG_PHY_0_CON,
+> +		FSD_PCIE_SYSREG_PHY_0_AUX_EN, FSD_PCIE_SYSREG_PHY_0_AUX_EN);
+> +	regmap_update_bits(phy_ctrl->fsysreg, FSD_PCIE_SYSREG_PHY_0_CON,
+> +		FSD_PCIE_SYSREG_PHY_0_REF_SEL_MASK, FSD_PCIE_SYSREG_PHY_0_REF_SEL);
+> +	regmap_update_bits(phy_ctrl->fsysreg, FSD_PCIE_SYSREG_PHY_0_CON,
+> +		FSD_PCIE_SYSREG_PHY_0_INIT_RSTN, FSD_PCIE_SYSREG_PHY_0_INIT_RSTN);
 
-When not using IRQ and for banks having no IRQ (like bank D on mpc8323)
-the origin compatible = "fsl,mpc8323-qe-pario-bank" is still valid.
+pls conform to coding style for these
 
-Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
----
-v5: Changed to DT schema
----
- .../fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml | 27 +++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
+> +
+> +	return 0;
 
-diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
-index e6ba319a75c1..80f93914c779 100644
---- a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
-+++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
-@@ -17,6 +17,22 @@ properties:
-     items:
-       - enum:
-           - fsl,chip-qe-pario-bank
-+          - fsl,mpc8323-qe-pario-bank-a
-+          - fsl,mpc8323-qe-pario-bank-b
-+          - fsl,mpc8323-qe-pario-bank-c
-+          - fsl,mpc8360-qe-pario-bank-a
-+          - fsl,mpc8360-qe-pario-bank-b
-+          - fsl,mpc8360-qe-pario-bank-c
-+          - fsl,mpc8360-qe-pario-bank-d
-+          - fsl,mpc8360-qe-pario-bank-e
-+          - fsl,mpc8360-qe-pario-bank-f
-+          - fsl,mpc8360-qe-pario-bank-g
-+          - fsl,mpc8568-qe-pario-bank-a
-+          - fsl,mpc8568-qe-pario-bank-b
-+          - fsl,mpc8568-qe-pario-bank-c
-+          - fsl,mpc8568-qe-pario-bank-d
-+          - fsl,mpc8568-qe-pario-bank-e
-+          - fsl,mpc8568-qe-pario-bank-f
-       - const: fsl,mpc8323-qe-pario-bank
- 
-   reg:
-@@ -28,6 +44,9 @@ properties:
-   '#gpio-cells':
-     const: 2
- 
-+  interrupts:
-+    description: List of interrupts for lines of the port that trigger interrupts on change.
-+
- required:
-   - compatible
-   - reg
-@@ -39,15 +58,19 @@ additionalProperties: false
- examples:
-   - |
-     qe_pio_a: gpio-controller@1400 {
--        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
-+        compatible = "fsl,mpc8360-qe-pario-bank-a", "fsl,mpc8323-qe-pario-bank";
-         reg = <0x1400 0x18>;
-         gpio-controller;
-         #gpio-cells = <2>;
-+        interrupts = <0 1 2 3>;
-+        interrupt-parent = <&qepic>;
-     };
- 
-     qe_pio_e: gpio-controller@1460 {
--        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
-+        compatible = "fsl,mpc8360-qe-pario-bank-e", "fsl,mpc8323-qe-pario-bank";
-         reg = <0x1460 0x18>;
-         gpio-controller;
-         #gpio-cells = <2>;
-+        interrupts = <19 20 21 22 23 24 25>;
-+        interrupt-parent = <&qepic>;
-     };
+why return a value when this wont ever return anything else than 0?
+
+> +
+> +	writel(0x2, pbase + FSD_PCIE_PHY_CMN_RESET);
+> +
+> +	writel(0x00, phy_ctrl->pcs_base + FSD_PCIE_PCS_BRF_0);
+> +	writel(0x00, phy_ctrl->pcs_base + FSD_PCIE_PCS_BRF_1);
+> +	writel(0x00, pbase + FSD_PCIE_PHY_AGG_BIF_RESET);
+> +	writel(0x00, pbase + FSD_PCIE_PHY_AGG_BIF_CLOCK);
+> +
+> +	fsd_pcie_phy_writel(phy_ctrl, FSD_PCIE_PHY_TRSV_REG07B_LN_N, 0x20);
+> +	fsd_pcie_phy_writel(phy_ctrl, FSD_PCIE_PHY_TRSV_REG052_LN_N, 0x00);
+> +	writel(0xaa, pbase + FSD_PCIE_PHY_TRSV_CMN_REG01E);
+> +	writel(0x28, pbase + FSD_PCIE_PHY_TRSV_CMN_REG02D);
+> +	writel(0x28, pbase + FSD_PCIE_PHY_TRSV_CMN_REG031);
+> +	writel(0x21, pbase + FSD_PCIE_PHY_TRSV_CMN_REG036);
+> +	writel(0x12, pbase + FSD_PCIE_PHY_TRSV_CMN_REG05F);
+> +	writel(0x23, pbase + FSD_PCIE_PHY_TRSV_CMN_REG060);
+> +	writel(0x0, pbase + FSD_PCIE_PHY_TRSV_CMN_REG061);
+> +	writel(0x0, pbase + FSD_PCIE_PHY_TRSV_CMN_REG062);
+> +	writel(0x15, pbase + FSD_PCIE_PHY_TRSV_CMN_REG03);
+
+Magic numbers?
 -- 
-2.49.0
-
+~Vinod
 
