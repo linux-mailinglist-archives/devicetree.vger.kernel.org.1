@@ -1,125 +1,117 @@
-Return-Path: <devicetree+bounces-211283-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211284-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B91DB3E3B9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:53:18 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id C19A4B3E3C5
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:56:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B2D917133C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:53:18 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id AB88C4E2990
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:56:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6D0D3314B2;
-	Mon,  1 Sep 2025 12:53:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D0713314DE;
+	Mon,  1 Sep 2025 12:56:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lpDNO4k7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="N/gO95zb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B09BC32C336;
-	Mon,  1 Sep 2025 12:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 296BB31DDA9
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 12:55:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756731195; cv=none; b=alpDWpk/0CH8Ctj5Ky9We2/Ygg3/VYNekaEhQQE0oM98bs3CHH9+2cLWQViCcwSA7Ta0snYfJahRA3kaMpR7H8sV3h2Y1hojdTs+GDq2HXT9VUlMcML7DIOCynSFBNzyQFEzLYRj83iqcP2ckxVG6Mpdl43R/WoxJFxIuw7yTsA=
+	t=1756731360; cv=none; b=bxDQNlT63z1AdBI2DXtQUsgNdGm94461SVokhHJ9WUD33my5xw7V7nMWGTsbqV3wzgCR3/VY1RikQNSau+SNwQknPQOoDC+3Gpm4kGtpEH045dFsZoYjg0bSQQGhqPI1KO6KeH/f1vyjD/x6ui2MHk7uCGFnwP3BUDAyv8WlKr8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756731195; c=relaxed/simple;
-	bh=Y0Tx+amHtPH2WjZWA3oqwdIBstwnb99fhTPjWGHbmMw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Qs35B/12/ibI+Vv0b8aId47l8pn5ZlixkJpbTcqptRgvfuR+6tRcePGKT8aTDbllmuS9u26dSDe+k7yNmaC4GPaTcrwqcl/eos0PNgYy1WKvxo2FKrhiG7eWWXRxmZeUoguUo/opWTN7/opZiSG1W2w9zH0E4mZhJoKDykUijvI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lpDNO4k7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20466C4CEF4;
-	Mon,  1 Sep 2025 12:53:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756731195;
-	bh=Y0Tx+amHtPH2WjZWA3oqwdIBstwnb99fhTPjWGHbmMw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=lpDNO4k7wfGNL6CBrLLd6AK1u4rCmrLqFZc1GNLw4qqNz3RfytWmrVqYdTXZlfPD3
-	 A7ziTjYC80V6/9FR9GxPX8ilunB5gmnJi7kvnY/Eirep0RE/LDYWdR2GH9C01tItmu
-	 g1zdk87Upw1UfADbhyaQgyK3KrJynSpN0W98ZV5bixjYTGAzM2D3GAXE9sL3WJAQb4
-	 a6j7dSsuqHig2XqTppW82zSO+GgQwQHRfaiSIK7TY7B/rzhs9rEPKrY8q4YXUxzjeV
-	 5VMn55iYOrd9maPnAEelkMrAbhaxjis+9kmgN/CZtL201/wu5JERBSaVOv4d8rqi91
-	 o1vo0rk5SR+FA==
-Date: Mon, 1 Sep 2025 14:53:13 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Iker Pedrosa <ikerpedrosam@gmail.com>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Javier Martinez Canillas <javierm@redhat.com>, linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
-Message-ID: <20250901-industrious-rooster-from-mars-85e3cc@houat>
-References: <20250806-st7920-v1-0-64ab5a34f9a0@gmail.com>
- <20250806-st7920-v1-3-64ab5a34f9a0@gmail.com>
- <24a5ac33-945b-4861-ac0b-94eaa647e893@kernel.org>
- <CABdCQ=Mysc3a5JNe7te0nRAOzB2n9vQcEz+hZmE3B3vmDYNt2A@mail.gmail.com>
- <083588db-10a5-48ff-80da-55c5b79e843b@kernel.org>
+	s=arc-20240116; t=1756731360; c=relaxed/simple;
+	bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=UWsibbiXYF4mtbuJPXGiOqtvtuzSE8LeQSrHZUYGnQqiiFMEsMSFFnlDt+H7TOS3RTbvCV8R5sxVeUq/ctcALjbmLwmkmqxKzO66nSZ8asB1IL1UYxxVSQNkIYpZNZ63lqrzXedqnwVST/fbvFbq+fm+WAQnfbT7lliR6HKhOSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=N/gO95zb; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f6e0eed29so1840878e87.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 05:55:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756731357; x=1757336157; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
+        b=N/gO95zbSPubz8+fzkr6d8SHjON0h46SBRktPorCqmn6D+B82hgZTNEFmMIrupTg7R
+         zYuz1kGzhik1SEt9feAOvaWAXpXgiefY3MFfD2BaCPBi53k0cOcbRagmFsqnlVUyk6tR
+         eZYJI0SZfFdsYy+rdXQmOxj4VU6vhVyGvoyqT1K8H/1nNTs5jLSGr1UKEeInicwgDZEv
+         C1Pp22q6QByns6Lbc0MUOvKDRxV623kJr8bbYlcRqUtYHiHX4LwzlB0gLO25abdxq+Ai
+         IVXh14nTxPWDT4FxghiQTce7Jmi1kVm1ujQCljSHUP+Gf2M4pI05A+8ZBZkArkgeKrxj
+         ZeZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756731357; x=1757336157;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=pHzvO7FnuG3Y8cfVPYEujz8Pd5Zq+LpomOEmuXlPsmw=;
+        b=JUGJ9q3DMcLw3KOVV5SVFACZyqC1Oe9EfBZMAj1E7MTAjDVJVoZVCp+zGamH0NGyxP
+         0B0tzzxocLJwNLj6qCIc9/l34jhoFZqTQfgloRv8VVyaoxGzRs89xm6b6W6YZiUg1thw
+         iOKBML5SFikA6AuZ+XOsCWu/6Njaw2ur7drBEj9p6PEAESbnr2yK85Wg4g2ZTAGbCOJB
+         oK0yDn706uyvcHqeYYX2gajkEMnabDz10Fyfx6zzz+AvWNgOZ8u1iZfvpr9jBa2pRO4k
+         tehmSyeqRYY0J2JAbrRWW3i7L61Hi7TyNNK3TiOGh8qq9PBPiPK3iUf+5GIT/BMyzOiC
+         UUxw==
+X-Forwarded-Encrypted: i=1; AJvYcCWIQtSHBg57SYLGNvapvBnPny1/RuyR/qffqLIKBGtwPPJwhr0cmKkTzQFstcnZmOWfa7GNYuUc36jE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz70L6DxqumP/MbSOLH5HwKzk1bsLGYwwA1e1baTaC8ArCeqrCL
+	KGp3sqMHqArOuIUdq5/MTVx1kyo5G/Dk8eZEMEQP5hatAZV6UjVzynG+yHmtvkU/ab08ji1xy9S
+	GgVhiI09UV7r6G1yZ/hfhOR7YAbF+PYYnNhIQVxfaxQ==
+X-Gm-Gg: ASbGnctwKVZXSoPx+eJpcDz4OfdlbYZc2nUL9l3xnJVifraTSSqEGOeBBAwBFnl9Kwv
+	LVw2pRBtD50OFMAP0t1+0uld/V4Ku556W6QxVH3q7NfJp+qiDnas/O+m8WDYT8VL46/Oe6d3wI5
+	dDEuZUEpKryiCxb99hfjKVmUlgZrfjpE8O+VAii1X1fFcyH5QoN+s6pzWuCjxmoVh7qyhiqNha1
+	7Ga770=
+X-Google-Smtp-Source: AGHT+IHDj8cz7cQZ3X0v3+zhy0ZHW1Bc0Ee2H0FX5pElqXb7vIdjHb7N5zlkeIrybjYoRm4vWr0BKtNdjorjqsqto2I=
+X-Received: by 2002:a05:6512:4608:b0:55f:48ab:a2c2 with SMTP id
+ 2adb3069b0e04-55f70995397mr1725798e87.35.1756731357115; Mon, 01 Sep 2025
+ 05:55:57 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="4gs3gotqim3qagfw"
-Content-Disposition: inline
-In-Reply-To: <083588db-10a5-48ff-80da-55c5b79e843b@kernel.org>
-
-
---4gs3gotqim3qagfw
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
+References: <20250827024222.588082-1-gary.yang@cixtech.com>
+ <20250827024222.588082-3-gary.yang@cixtech.com> <0fa7e2cb-fa0b-4f9e-84d6-a4b2b3d8a4cf@kernel.org>
+ <PUZPR06MB5887D9A879D16DC6A8C8ED58EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <25283b66-4cbb-4db9-9b1e-7a4e6e3db2a1@kernel.org> <PUZPR06MB5887887C93BFF42BC8417D96EF3BA@PUZPR06MB5887.apcprd06.prod.outlook.com>
+ <CACRpkdYC-3qybKW7VH5MVfBc3oqSrOa2RTt1Q=p=HHsi5drGOQ@mail.gmail.com> <PUZPR06MB58871C2E108BF1AC057EF461EF05A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+In-Reply-To: <PUZPR06MB58871C2E108BF1AC057EF461EF05A@PUZPR06MB5887.apcprd06.prod.outlook.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Mon, 1 Sep 2025 14:55:45 +0200
+X-Gm-Features: Ac12FXzfjnaic5AU3gd0OQUgGODH28pTgWB36lmJD5eBDGGK5IJq6vSA5jGXlos
+Message-ID: <CACRpkdYRTKHy0ace2o3NAeuSR3oai9fZMPrN6qQr3Lyqif4OSg@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: pinctrl: Add cix,sky1-pinctrl
+To: Gary Yang <gary.yang@cixtech.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	cix-kernel-upstream <cix-kernel-upstream@cixtech.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
-MIME-Version: 1.0
 
-On Wed, Aug 20, 2025 at 03:10:16PM +0200, Krzysztof Kozlowski wrote:
-> On 20/08/2025 14:23, Iker Pedrosa wrote:
-> >>>
-> >>> +DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-> >>> +M:   Iker Pedrosa <ikerpedrosam@gmail.com>
-> >>> +S:   Maintained
-> >>> +T:   git https://gitlab.freedesktop.org/drm/misc/kernel.git
-> >>
-> >>
-> >> Drop, unless you have commit rights there. Parent entry already covers
-> >> this, doesn't it?
-> >>
-> >=20
-> > I don't have them, but I'm working with Javier and I think he does have
-> > permissions. Let me ask him when he gets back.
->=20
-> Javier is not mentioned here. You are adding redundant and useless
-> information. T: is for subsystem maintainers, not for individual drivers.
+On Sat, Aug 30, 2025 at 3:20=E2=80=AFPM Gary Yang <gary.yang@cixtech.com> w=
+rote:
 
-Kinda. I mean, you're absolutely right for pretty that it's implicit in
-most places in the kernel.
+> I understand your thinking and try to support the standard referred to ab=
+ove.
+>
+> I only need to spend some time to research this scheme and debug it on Ra=
+dax O6 board.
 
-However, it's not here. The drm-misc tree is meant to collect the
-patches for all those small drivers, and we don't have a folder to put
-these drivers under.
+Thanks Gary, I have this board too so I hope to be able to test it
+directly.
 
-It was pretty confusing to differentiate a driver maintained through its
-own tree, and one maintained through drm-misc, so at least explicitly
-having the git tree set to drm-misc is how we show that's where the
-patches are going to land.
+I haven't figured out how to boot it using device tree, everything
+I have going is using ACPI right now, but once I know how to
+boot it with device tree, I will be happy to test!
 
-Maxime
-
---4gs3gotqim3qagfw
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaLWXOAAKCRAnX84Zoj2+
-dqXXAYDnY4grqHpYddnisKY0oTfOh4lsJVxKw0d9i5lR+t42rLc8G+t3FPuDwTnu
-m1krkWIBf3igFXowkxErMW6p1PT59x/YwatAScUQ3Zv6r8Ylb7edi4nYUnpZsu5+
-ZTAAt/ddpQ==
-=cCRY
------END PGP SIGNATURE-----
-
---4gs3gotqim3qagfw--
+Yours,
+Linus Walleij
 
