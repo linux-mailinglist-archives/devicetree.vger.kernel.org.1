@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-211121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51D96B3D970
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:05:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AD69B3D97F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:08:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A7BBE1899060
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:05:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2134C1899D9B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:08:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9C21E9B3F;
-	Mon,  1 Sep 2025 06:05:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E866242938;
+	Mon,  1 Sep 2025 06:08:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sK7Mybxc"
+	dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="LhwBYEG7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E322137C52;
-	Mon,  1 Sep 2025 06:04:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC9DA23E25B;
+	Mon,  1 Sep 2025 06:08:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756706700; cv=none; b=q8TjReq+aV9tABnNIJmuU+Ukp+yYxEeyybKpIWlyh8tnP1v3iah8N7vACs2/nBhzvArqHHlr/w3HmEL3TwOthJhDPK3wQLn9NKrQyZ3VQFXnXm7Bqmd9yCMUmlq+JVxkJLpkR8QDPBblFV4n0TVx3sd1sp/+9Qxa/Sz0S1x+Pz8=
+	t=1756706887; cv=none; b=UDW1a4YUCSS+0g/ZK3C8d2kepsngCB+bRmNPNfgyL2GRdHQTpsddEpwZfikB+B440DEgO5MeEfNTZfxidsJ5r9D3KWtJYwKTSCAfexxD9uSkz2cZili2GYAvzdHBvOwZWEtRQJogCcdGlEYFPmCxaTwxKQt/7XNbXOpiXYZJAHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756706700; c=relaxed/simple;
-	bh=HW2ZHkXsm0uoCUvmO3U/VArkU7tURowgeKdNZaNGDgI=;
+	s=arc-20240116; t=1756706887; c=relaxed/simple;
+	bh=dzIS5KQ4sPo2lK7s10+eDwEJp7PENpB3PEARRrzqWiA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RnGfY+Yb0qKzHXhmQu0cf0Y7O41t/WAh4FAOm286xIHTXMrOYn/8BRCTZru4cDHcl0W3oZQKkkzvaNUqg8+YUqvU+dmX1XkNvRnB2IL5Qi1xAb8Q3iWMarurvXxlbUHzyCN5M+5w97qlFCSP74k2JXs3NNyyo0y7dY53byq+pP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sK7Mybxc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B451C4CEF5;
-	Mon,  1 Sep 2025 06:04:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756706699;
-	bh=HW2ZHkXsm0uoCUvmO3U/VArkU7tURowgeKdNZaNGDgI=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=uRtp8IagTRmEr1IVIo2aTe+y06h6hl+03vhpVOyeS68YSMcuIbTDWphAlapx/GNOLPcL+LgR1Ock1gmiKem+YYZSPSp/z2///+m6ucZHU+QHYkT/gG3E/VPHWzbWU2TLlYZz8HZlmp8qdxb2JmVd8qg4w+FeIGF0JCF/fqwqNOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (1024-bit key) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b=LhwBYEG7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE123C4CEF5;
+	Mon,  1 Sep 2025 06:08:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+	s=korg; t=1756706886;
+	bh=dzIS5KQ4sPo2lK7s10+eDwEJp7PENpB3PEARRrzqWiA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sK7MybxcgY4jaX7lI1IR2dx9yLu5S1Ac4nw/uV6EDDaJbRqhoqjMLs/mousFsRNo4
-	 bUzOdTBmuVeS2oM7HDyst6MrUlvJizoh7N/zwrFy8adrO26PC7GnhQBPM5gGntMgbB
-	 iQn4KdLCMNzJ9cSZvciqjB+sTKY9lXMfgwHAyXAlnmcQQiAuvbZSgYD4oVvNBB77RZ
-	 u5l+vQoQijnWx1ZkpgmMgqQAWGXswzPwwRbOH+uUHQ0hXSBwY4/6frb7tirFFGqiDL
-	 Rh2v2YsA0jPuPlicD8vLJ7xJGM33sJoZMayPRGNFbW7+9icqeMR0yn7R3yGDbc8xal
-	 Cv6cGJsmzmRGQ==
-Date: Mon, 1 Sep 2025 11:34:50 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, 
-	shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, 
-	mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
- host controller
-Message-ID: <nq3xoih7kbjdaxnwoduz3o2nxt2ikahbogqdraibznrlqwqw5r@ovjarka5eagm>
-References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
- <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+	b=LhwBYEG7qkvhhdtMVHJCIbfscHl22xUCQ5lUih/UYYZ+7HQs7eXIGHEMz6/rK3qHC
+	 +dnDiBl94G3Ot/ie5X1YnWyuEWa/kPsbMrK36AtyTC0Goq3An5etzWfxgUdxZsrD3L
+	 D3NBzoIAXKryQi8J6ssZBfkB3CVc99TFt2zcbuUI=
+Date: Mon, 1 Sep 2025 08:08:00 +0200
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Markus Elfring <Markus.Elfring@web.de>
+Cc: Bharadwaj Raju <bharadwaj.raju777@gmail.com>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel-mentees@lists.linux.dev,
+	LKML <linux-kernel@vger.kernel.org>,
+	Andy Shevchenko <andy@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Rob Herring <robh@kernel.org>, Shuah Khan <shuah@kernel.org>
+Subject: Re: [PATCH 5/5] iio: imu: icm20948: add runtime power management
+ support
+Message-ID: <2025090154-whiny-output-3f73@gregkh>
+References: <20250831-icm20948-v1-5-1fe560a38de4@gmail.com>
+ <33ca2805-aa52-4b27-9fa9-ec582b7129f2@web.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,190 +65,64 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+In-Reply-To: <33ca2805-aa52-4b27-9fa9-ec582b7129f2@web.de>
 
-On Fri, Aug 29, 2025 at 04:22:37PM GMT, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+On Sun, Aug 31, 2025 at 09:23:08PM +0200, Markus Elfring wrote:
+> …
+> > @@ -24,17 +24,24 @@ static const struct iio_chan_spec
+> >  static int inv_icm20948_temp_read_sensor(struct inv_icm20948_state *state,
+> >  					 s16 *temp)
+> >  {
+> > -	guard(mutex)(&state->lock);
+> > +	int ret;
+> > +
+> > +	pm_runtime_get_sync(state->dev);
+> > +	mutex_lock(&state->lock);
+> >  
+> >  	__be16 raw;
+> > -	int ret = regmap_bulk_read(state->regmap, INV_ICM20948_REG_TEMP_DATA,
+> > +	ret = regmap_bulk_read(state->regmap, INV_ICM20948_REG_TEMP_DATA,
+> >  				   &raw, sizeof(raw));
+> >  	if (ret)
+> > -		return ret;
+> > +		goto out;
+> >  
+> >  	*temp = __be16_to_cpu(raw);
+> > +	ret = 0;
+> >  
+> > -	return 0;
+> > +out:
+> > +	mutex_unlock(&state->lock);
+> > +	pm_runtime_put_autosuspend(state->dev);
+> > +	return ret;
+> >  }
+> …
 > 
-> Add Device Tree binding documentation for the ESWIN EIC7700
-> PCIe controller module,the PCIe controller enables the core
-> to correctly initialize and manage the PCIe bus and connected
-> devices.
+> Does anything hinder you with the continued application of scope-based resource management
+> for such a function implementation?
 > 
-> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> ---
->  .../bindings/pci/eswin,eic7700-pcie.yaml      | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+> Regards,
+> Markus
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> new file mode 100644
-> index 000000000000..65f640902b11
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Eswin EIC7700 PCIe host controller
-> +
-> +maintainers:
-> +  - Yu Ning <ningyu@eswincomputing.com>
-> +  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> +
-> +description:
-> +  The PCIe controller on EIC7700 SoC.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: eswin,eic7700-pcie
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +      - const: mgmt
-> +
-> +  ranges:
-> +    maxItems: 3
-> +
-> +  num-lanes:
-> +    const: 4
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 9
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: inta
-> +      - const: intb
-> +      - const: intc
-> +      - const: intd
-> +      - const: inte
-> +      - const: intf
-> +      - const: intg
-> +      - const: inth
 
-What? Are these standard INTx or something elese? PCI(e) spec defines only
-INT{A-D}.
 
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mstr
-> +      - const: dbi
-> +      - const: pclk
-> +      - const: aux
-> +
-> +  resets:
-> +    maxItems: 3
-> +
-> +  reset-names:
-> +    items:
-> +      - const: cfg
-> +      - const: powerup
-> +      - const: pwren
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - num-lanes
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - '#interrupt-cells'
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie@54000000 {
-> +            compatible = "eswin,eic7700-pcie";
-> +            reg = <0x0 0x54000000 0x0 0x4000000>,
-> +                  <0x0 0x40000000 0x0 0x800000>,
-> +                  <0x0 0x50000000 0x0 0x100000>;
-> +            reg-names = "dbi", "config", "mgmt";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            #interrupt-cells = <1>;
-> +            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
 
-I/O CPU range starts from 0x0
+Hi,
 
-Also, I don't think you need to set the relocatable flag (bit 31) for any
-regions.
+This is the friendly semi-automated patch-bot of Greg Kroah-Hartman.
+You have sent him a patch that has triggered this response.
 
-> +                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
-> +                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
-> +            bus-range = <0x0 0xff>;
-> +            clocks = <&clock 562>,
-> +                     <&clock 563>,
-> +                     <&clock 564>,
-> +                     <&clock 565>;
+Right now, the development tree you have sent a patch for is "closed"
+due to the timing of the merge window.  Don't worry, the patch(es) you
+have sent are not lost, and will be looked at after the merge window is
+over (after the -rc1 kernel is released by Linus).
 
-Don't you have clock definitions for these values?
+So thank you for your patience and your patches will be reviewed at this
+later time, you do not have to do anything further, this is just a short
+note to let you know the patch status and so you don't worry they didn't
+make it through.
 
-> +            clock-names = "mstr", "dbi", "pclk", "aux";
-> +            resets = <&reset 8 (1 << 0)>,
-> +                     <&reset 8 (1 << 1)>,
-> +                     <&reset 8 (1 << 2)>;
+thanks,
 
-Same here.
-
-> +            reset-names = "cfg", "powerup", "pwren";
-> +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
-> +            interrupt-names = "msi", "inta", "intb", "intc", "intd",
-> +                              "inte", "intf", "intg", "inth";
-> +            interrupt-parent = <&plic>;
-> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
-> +                            <0x0 0x0 0x0 0x2 &plic 180>,
-> +                            <0x0 0x0 0x0 0x3 &plic 181>,
-> +                            <0x0 0x0 0x0 0x4 &plic 182>;
-> +            device_type = "pci";
-> +            num-lanes = <0x4>;
-
-nit: Most of the bindings define num-lanes as decimal.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+greg k-h's patch email bot
 
