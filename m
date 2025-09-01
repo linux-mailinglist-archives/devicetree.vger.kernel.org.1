@@ -1,119 +1,113 @@
-Return-Path: <devicetree+bounces-211297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6597BB3E4F9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:29:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14221B3E555
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:38:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77BBE7B18D8
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:26:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A5383BDAFA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:38:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E434B338F4D;
-	Mon,  1 Sep 2025 13:26:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED35533472C;
+	Mon,  1 Sep 2025 13:38:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DUQmjJWW"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="lY6P4iG4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED9F33439C
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 13:26:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483F9327794;
+	Mon,  1 Sep 2025 13:38:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756733205; cv=none; b=KapkIzvXi2Hu1DJyRY3nbt2J8Hr3BVBzEXqLm/RoowX8xoK3ESJFHUwP9XYizgDCUekgpkG0nTZc8aot68LHhQBN0rfwUc7m3IOS13kg0jzoJfmRQqoC9a2WhOM3ClFSCI7zrTITsCf5l31OwIxBNZWSvIDvm3pvasmNdATMLlY=
+	t=1756733913; cv=none; b=Edo0ZBPYmYogz06b6NoFdiBlOwjXhXm5cvSjS1ItBXU9O9IgyFHuTxU/8ST3YocIAGcuCx3p/e3qZx8XSiy9po64TeMn5H8MAjjnF+Ir2tm7DZlqWXMf/d6P3A9pci1kk33HiXND2eGKEm7jBBYWch5fQDlQ7qjRt0jU37+Qm+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756733205; c=relaxed/simple;
-	bh=9zJLdqtOKjBpkNMI06ViEGQW2gjiowt6JmR/C4Vpi6s=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=tLp/O+seKGskbz+nDNcE7KB/2f7JCwIulRGe6mMsXt1ADC6597ow9uYuwBP+srBAKYhObAWAZbPdQauLqrJ6G9z0+QhKo6ixavIiHP4ekuPpwwcd6SOgaZIVq8eZVZdPGwowwmff4kcd03y/drzsdJWWuPkjCbirDVWa3hbZ5Us=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DUQmjJWW; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aff08beb8b8so50014566b.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 06:26:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756733201; x=1757338001; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ICiwcLIU71Izuhu8fP8tVO8odVf8d1Nj7kJu4RHQNHg=;
-        b=DUQmjJWWhlAgiKNReCDRFHM3BetprA9OPQvbYuNF9TtKpOMoCF7DFpJQhOo+RR2aNj
-         ErIvAoB5sPzHHJvjMdYdCWMgfrPAKY4ccw5f/y/uiwnuJruxfIOzy3XsAS8/fRzxX0Mq
-         2my0fE0uvKgsWMAyr2UIozPa0x5xzvOB/3ZkDd5COAspgM1VvBpKnUlK++0WHRuRsPK0
-         z7u/UiBIhBeNhSOVT2Ok2EcpxpFRN9qnNXioEO6rGmOHvGdMP3DG0WtPPXYyD7L93C3C
-         IyPeKkxA40Xsf+yJcA2lU4VoWxsree4YBoUJq9U+EatiAvDzW5Tir4KUysgpuAKbMuvN
-         RmlQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756733201; x=1757338001;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ICiwcLIU71Izuhu8fP8tVO8odVf8d1Nj7kJu4RHQNHg=;
-        b=QEMjhqrgasvuarSflVJb6jTVwm05R2zNRUCmp7HNEoHUJjU5Ej/D4WWsS9nPwG905g
-         lzjiltZO3/7cYpv3/9dCLZ+ZR1u3BvU+if1gzNoLM0tw8ya7wenRtMMFHJpVIKsgphMa
-         bkZj+mXVpOtxc59lACXUgEjg9jLuDL16RmDhp20W6MHMrN7WwkN2tazmQ27RjMFraSXR
-         FGKMFZ/tvTRMgNeTeezYfphlNOSfP84ZWkgFy2xbQr6NB2RSra5EH17Ey/hYPe3oxrjC
-         xIzh0RLIp/gLv3MejHjTNN1NC9GUpUT/M94gtR5TGph3ZDzF2DGwu0aoYVNYPmVkZie4
-         Jccw==
-X-Forwarded-Encrypted: i=1; AJvYcCVQ45iiHlRfN+ldKSjnhgnv84TjLFkFg7HkQSk9T1PPNysNDxDjzmnU+6RmRgyqtZHazO5I7erZS8OE@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0NZBoy+Yt/sW/QSfLTHaFI9E2SUEi/DtgZCzniajtTLve3sOQ
-	1QC05qtPw4xX+EsCYa+PSY5XHei0Iz75nCW7hbzA55wPQJ7+LZbRykRab8rCAWpdzXk=
-X-Gm-Gg: ASbGncv1IbeBTXSUYw5MkCt7eT9AsNesXIZyP9nFPBt07U8ABhVBP+gcQcQySvn0vq5
-	MgCr1VQtEZAGDpiRYJT2cksPuVXzaPYSc7NdaUDyu453UyCdGg139aal3+elCtKm3NFyJ1yp27U
-	GHp3CGV7ezBMvg7G7n5GilV6GTnNDSRF35IGWqauyUZwu9R3aL+Xe/2Paw9oDMAzy/bEPkBMHuD
-	UVJBY4GRS1HXT3XmvwjX7yrrkhpg0QGzBhh+JzwjQd3TOL84CZt/VbmLHFaouhKpyoyd0tlGUKs
-	EklEA2HsQYerikWeXQivigivrsaURIwqnz/9e/w86PYQJzf4dCX+pDY4h87TZwA4CV3j2B1sX9M
-	yNTo38FhetJtKwiWUqAqk6IBa7jFtOkIhcqgdaFU=
-X-Google-Smtp-Source: AGHT+IHQTmAvbsKv0D4j4Hvyh4K0kyRVksjF4qrxn2f9tAR+H9KrYnWzvnDmgth3oDHi6jyc4O8txA==
-X-Received: by 2002:a17:906:16da:b0:b04:1fc6:1347 with SMTP id a640c23a62f3a-b041fc67c80mr223542566b.0.1756733201076;
-        Mon, 01 Sep 2025 06:26:41 -0700 (PDT)
-Received: from [127.0.1.1] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b04241b2e7esm305997566b.43.2025.09.01.06.26.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 06:26:39 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Miquel Raynal <miquel.raynal@bootlin.com>, 
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
- Alim Akhtar <alim.akhtar@samsung.com>, Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org
-In-Reply-To: <20250830-s3c-cleanup-nand-v1-4-05b99ef990fe@linaro.org>
-References: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
- <20250830-s3c-cleanup-nand-v1-4-05b99ef990fe@linaro.org>
-Subject: Re: (subset) [PATCH 4/4] ARM: s3c6400_defconfig: Drop
- MTD_NAND_S3C2410
-Message-Id: <175673319874.45844.111501190462962489.b4-ty@linaro.org>
-Date: Mon, 01 Sep 2025 15:26:38 +0200
+	s=arc-20240116; t=1756733913; c=relaxed/simple;
+	bh=ieYcdsd86jg1PezFn6//gKhottikcQbDyhjzNt8NsYY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t2ol8/C0ALLHYLtLADUE/HMeIgcoOHPi1BgKsKOFHNs/SGCX6e8tAINuntjASIlxDzOOhuoWQFKuHEGgRsRJ8My2YOrXpTDck7wsOX1blOxYDYFeVhnTrY22JQnCBSnjVncKHVivMBEyR4pjo0sxVWlYSG7/pEyDkdeF37Q57YI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=lY6P4iG4; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id 3FAFD2052A;
+	Mon,  1 Sep 2025 15:38:23 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 8jP4eUBOX-ip; Mon,  1 Sep 2025 15:38:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1756733902; bh=ieYcdsd86jg1PezFn6//gKhottikcQbDyhjzNt8NsYY=;
+	h=From:To:Cc:Subject:Date;
+	b=lY6P4iG4uCL/rKZIXFJgB99CwAuwYcU+zQBA6Z1k6Wj3qoiLv8dnF5hmz24GKhlaN
+	 yp5BboZkmO6EzoNlKc8FK3hDvti8wzdGClNSp5zzspsI5gAVMqkr+/AX7Q+OdDjoq2
+	 OMh4gu4vMgDfE3YL/kTIvmfnokWAhHVQ/2ynZPN8sAPhKyHZjqPQNg8ElKdwsX+ov+
+	 sFLSiSklMODM1AFX4fwTj9oXxatH/eCG5dkjJmTwYEHid082dQVKzR4ZOR2mWbqOh6
+	 k9WM+ufKMdvEstVQvEln2Xq+TiH3+YHxvhAYlgq0f1R/SmVZD8IIg8FQdQD/e6ZLzz
+	 DzOHzBlB7S6WQ==
+From: Yao Zi <ziyao@disroot.org>
+To: Yinbo Zhu <zhuyinbo@loongson.cn>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Huacai Chen <chenhuacai@kernel.org>,
+	WANG Xuerui <kernel@xen0n.name>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	loongarch@lists.linux.dev,
+	Mingcong Bai <jeffbai@aosc.io>,
+	Kexy Biscuit <kexybiscuit@aosc.io>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH v2 0/3] Support GPIO controller of Loongson 2K0300 SoC
+Date: Mon,  1 Sep 2025 13:38:01 +0000
+Message-ID: <20250901133804.38433-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
+This series adds support for Loongson 2K0300's GPIO controller. While
+being mostly identical to previous implementation, its interrupt
+functionality hasn't been implemented in gpio-loongson-64bit.c. PATCH 2
+implements its interrupt support with an IRQCHIP, and the code could be
+reused for other Loongson SoCs with similar interrupt functionality like
+2K1500 and 2K2000.
 
-On Sat, 30 Aug 2025 19:01:12 +0200, Krzysztof Kozlowski wrote:
-> MTD_NAND_S3C2410 driver was removed from the kernel, so cleanup
-> defconfig as well.
-> 
-> 
+Tested on CTCISZ Forever Pi, reading/writing GPIOs works correctly, and
+both level and edge interrupts could be triggered.
 
-Applied, thanks!
+The devicetree patch depends on series "Support reset controller of
+Loongson 2K0300 SoC"[1] for a clean apply. Thanks for your time and
+review.
 
-[4/4] ARM: s3c6400_defconfig: Drop MTD_NAND_S3C2410
-      https://git.kernel.org/krzk/linux/c/ae6f637a456c1de75a582afa9cb6169813e89b83
+Changed from v1:
+- Rebase on top of gpio/for-next, adapt changes that convert
+  gpio-loongson-64bit.c to use generic gpiochip.
+- Collect review tags
+- Link to v1: https://lore.kernel.org/all/20250816035027.11727-2-ziyao@disroot.org/
 
-Best regards,
+[1]: https://lore.kernel.org/all/20250816033327.11359-2-ziyao@disroot.org/
+
+Yao Zi (3):
+  dt-bindings: gpio: loongson: Document GPIO controller of 2K0300 SoC
+  gpio: loongson-64bit: Add support for Loongson 2K0300 SoC
+  LoongArch: dts: Add GPIO controller for Loongson 2K0300
+
+ .../bindings/gpio/loongson,ls-gpio.yaml       |  28 ++-
+ arch/loongarch/boot/dts/loongson-2k0300.dtsi  |  20 ++
+ drivers/gpio/Kconfig                          |   1 +
+ drivers/gpio/gpio-loongson-64bit.c            | 191 +++++++++++++++++-
+ 4 files changed, 232 insertions(+), 8 deletions(-)
+
 -- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+2.50.1
 
 
