@@ -1,165 +1,168 @@
-Return-Path: <devicetree+bounces-211319-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FD8B3E7DE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA8A9B3E801
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:57:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F3E921A84DB9
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:51:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 19DF01A84BBA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:58:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4104E341AA2;
-	Mon,  1 Sep 2025 14:51:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3230335BAB;
+	Mon,  1 Sep 2025 14:57:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="U6I6+Ffd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RRmTwtB2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EF3B34167B;
-	Mon,  1 Sep 2025 14:51:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AFB19D88F;
+	Mon,  1 Sep 2025 14:57:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756738271; cv=none; b=HDregFQB0keeXvhGfGKOFVMuda96wqaVHJrmjj31/uRxun6Mq+Igt0nR00PK2vb9CrMURiLp2SJocrFD8pFrdO4w3/QjxH+cjV84Ask4BQh9r1a+WJKZpPSIItz53sZ6IIIJuHkOL7tdZl8bIULdv8uk6YYv+0ohgfI8MC9g7QA=
+	t=1756738664; cv=none; b=kIo6i7MMORvnrupxiOYiX3XG+PdDi9jz1yvCg2NBJUQjJjFvI1SxMlzBjDHWz8SkevIduPYI7qQe4fK021LAcDWX8+UOSCY4ACMNqEecdi6duhqPgJv3SqpPGrDLR3bhz9kZYRCR0C1uDMYd44v8C3dbMfMs9xyTTPNBDVHFZi8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756738271; c=relaxed/simple;
-	bh=HMfcWtZH4GfvP8ZQjqKKGaNEwZCreXFhbBtPKK8hH3I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=hxDoqNUtfUJ1hIbSNnoJhB2s+NcAFV5XsLYMnzFn7koIYmJhwSLU4r8hxdKXRaDotOLL6pHUgqd7Q7/XNVDGK6MBmEZ+hPZcByFqZ49gN20saModee2S4JDuNv/NxGgxHdsm1n0xJHhf1OnV0fWiWaijT5tGjHylT+orHy523QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=U6I6+Ffd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 581B4I7B013737;
-	Mon, 1 Sep 2025 14:50:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	WylkCM7GEVrZp/hwxRtLeGV36zbXgc2z6PnvbtJ5bTc=; b=U6I6+Ffd9KhhFhgg
-	aX76Nih1gnjMMXNYR8+C5ZtuND0JQaKvRrFC8nD3LOhWhy3rKgpglfZjbSERqmvD
-	KcXyVJB1xFYCaVD0eANfRHpkAk9GTBI60MfiKnJlbW0/Yq4Frd8+sNenqHtM/jZH
-	4MxXPefptHLKNdPnThRaHGbchXg9aaJtUWuExdCdhjr2XNm1VSXPbjHZkFca1yHh
-	8kH+PVJvaMOj1+ZGqnRfUv4f+EaP0e7GIBVO41Q1udRu0HrK4zy0jWRA4+jZk2Ml
-	WVg5ZyAYHhwZkyMefBgxlqDuwyVGUMbMaOMRAlIkBLQKTkYRKVKgb3kbqnGyAwlV
-	tpqWlA==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8n2ys-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 01 Sep 2025 14:50:37 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 581Eoawx020499
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 1 Sep 2025 14:50:36 GMT
-Received: from [10.216.44.84] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Mon, 1 Sep
- 2025 07:50:31 -0700
-Message-ID: <0fb24c50-1f4f-4dd8-a3c7-4c84fd0bb7c1@quicinc.com>
-Date: Mon, 1 Sep 2025 20:20:29 +0530
+	s=arc-20240116; t=1756738664; c=relaxed/simple;
+	bh=KhrAj3svwPmMiNuyFAaTwNKFm+CBl8pX8pjNBKRqhJ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=msKxTdcMwQehcUrUYGv1irq+x0PBniqoG5/8O+7ZHymw1rHHdC/luUnZiYAlfJfE7ibFNn/yTMBE+aEw418XCF5ZoXMJVQDxAtu2NA4QggAzq0CnUSEqmVhVmOvSsz9SJejtclbmG3JqNsuF5rWJg04h7ZN7zS9SJVeIMymbL+k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RRmTwtB2; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45b84367affso20631265e9.3;
+        Mon, 01 Sep 2025 07:57:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756738661; x=1757343461; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=oGbqfiTvrLcDF8H1hydxp4U/XcoYOTOG9IjwOSDF2oI=;
+        b=RRmTwtB20vdGOCCkaO4hmnEL4ggDXjIjBPQ8TxfZb2mAqThEmYaEZ+9huOo2qOjg9i
+         UNJwjzEshj1gYPraSR9NDSc+qRZXbnPBKcHg+4n9kNateuspzRyIQ4pPmpJt4x818b4M
+         /yEHKLetYEuN7WV0s0Osct/lbGGx9aGTnke60uOtOthSoMMaWtNnbhPhTzsHDT3P96HR
+         Sd2NgUVti2CKCAKa11TBOrtMkGFtu4gTcJnPusU/xmjKCTScd3Mpfjx2WONvcIQ0F7/z
+         Cxg/U4/whYwSIRzzW1P+CsLCWqVaPJlwdx8xsSU8VAJpYOGEW1ob9li2R8AVjGXMs2uP
+         65EQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756738661; x=1757343461;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=oGbqfiTvrLcDF8H1hydxp4U/XcoYOTOG9IjwOSDF2oI=;
+        b=JegxAnuI47VuiZ8D3e/WgWLKuqUYooWJWlNxoGmxX5kR46Ah0nw7AlrXd0d79OtJV9
+         aumODBkH3jXt54s9P+eX01WmIgnIc6LNmlpag3u51faTWwlpvnOmLX4xVghJ0ajhRu2M
+         5WtEgf3ezuTQyVkkG483rVnCE3W3WWTJsh3P915xm5Ybkv99kLZT9ZsMNwPVbE5yrjjM
+         apXVvOfiWolMKs0CQkRF+0MJMlshF9nZaYpM0ORGly92PVftoXL8soXDX8II0xoy0FcI
+         yUr1SSd4b0wQI67C6yATSCCEQmOyo7/trbODn5k6fZFlXq+YvT2NJvqiCZA6sAxjD45R
+         dz8Q==
+X-Forwarded-Encrypted: i=1; AJvYcCU/OHVLK3KVxuB+s5tHyUiOiDA9NBP0MLvvp8obkkKroDT06Rx0wdkF5+xbx2bCtSN2+9mrGF0NXHcMC7gO@vger.kernel.org, AJvYcCVw+3cy03ZwtyClR6nPKDD8jfvj0z3YFfPV7csYdjhnL3H1QaaWCOjjEecV893yqJnqg+zSj1CrgWFL@vger.kernel.org, AJvYcCWGi+YOQ/9XbMulFnSCsJ34Q1C6B0swQ7lxX3q7+RGApptrS9Jo9gbrzXk8sJz4XV3F7Ux4PWy3J7GS@vger.kernel.org, AJvYcCXY6ffARmyQt+9xYyB1sxgN3JLooj933MDBfpvspEUDkeYQy7AKA1Nkr+z0Xnmy7V6bJeMgmz+/mibK42Q=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3hQfbIDCuAM0A2ESt+fqAVR6s8D5mlHHqSYWuHbZjeXG7GMy0
+	ksq8gs0P6atcQv7xUJRupHm+pTtdpOwIMVeSBJWwomiyWQc4UGj2ARYC
+X-Gm-Gg: ASbGncu8/vqywxpERMIyXfunOUglQ1lF5z+j8+yHxqA2UOnD5hCtvizLlFxlQLKO3wF
+	4Yby6qgycdixFXPamzpOzD9OnkOGyDea1Nb0/O82s+q83kspMcLzR1KG94pQtE6xleHdlBCxyXn
+	MUJqm6F0yDst+dWj1dog3/LiVEHS9JdS7DZ9YjXmY4Q1mG6bTF0EyNDqLxR6P9zqGjUfeNjbiBU
+	WDsJvotrPy7CfTuP3ChxBQnbe1rI/iZAJXHVBxUXQH6Rv8epIMSjLF4eMmJqo+QxVn7V1rdXlZY
+	5NShOZ2fcBJgaWyYK3FwRsJK2+Btj3tvXEFKVEZL3a45WIs/tq6YfvuHGthks8bIceBJc5YVT4H
+	pRHN+9TFNQHecMiYFmMuo6ilm8+rZIAk6hi9reqOUrYKz4LZL2bgxxHp5yVsdfO45veGUNaubV5
+	lL21UvdGKIlrxGw3U+Lyk=
+X-Google-Smtp-Source: AGHT+IE8oJAQTsRIreD3B3G8iVhHG5yD2Ojfb6uoThjNjE6os7CLdXOhZ5jtB7Lc8aVcNrY1HYylhw==
+X-Received: by 2002:a05:6000:22c2:b0:3c9:b8b7:ea40 with SMTP id ffacd0b85a97d-3d1de5b08ccmr6018724f8f.38.1756738661236;
+        Mon, 01 Sep 2025 07:57:41 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d520eada16sm6918744f8f.41.2025.09.01.07.57.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Sep 2025 07:57:39 -0700 (PDT)
+Date: Mon, 1 Sep 2025 16:57:37 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>
+Cc: Thierry Reding <treding@nvidia.com>, 
+	Svyatoslav Ryhel <clamor95@gmail.com>, Mikko Perttunen <mperttunen@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 0/4] clk: tegra: add DFLL support for Tegra114
+Message-ID: <wmbbnybxsnbhnkifqfwp7g7bklurxgx3qe4djxcwdcs6aketcy@kqiwizt46gee>
+References: <20250829122235.119745-1-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 4/5] arm64: dts: qcom: sm8650: Enable MCQ support for
- UFS controller
-To: Krzysztof Kozlowski <krzk@kernel.org>,
-        Manivannan Sadhasivam
-	<mani@kernel.org>
-CC: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <James.Bottomley@hansenpartnership.com>,
-        <martin.petersen@oracle.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>
-References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
- <20250821112403.12078-5-quic_rdwivedi@quicinc.com>
- <eeecc7a3-8ce3-4cfd-8d40-988736fc0c59@kernel.org>
- <34aqaxgkykyhenrjfj3vrarin2c3uebgfaya7rxi7d5p5skhom@ie4gitcw36mr>
- <ba227580-add8-4ea8-a973-c39083301e67@kernel.org>
- <aonf4hobz6b3a75lwiblu44gxvae4hnp2mcnh5sqlyzo6k7hwe@a5toymspbkdy>
- <b049c4be-f3c1-49e4-8737-c29c52185e60@kernel.org>
-Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <b049c4be-f3c1-49e4-8737-c29c52185e60@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 1Az8Emd4kY7JrAF6MIzkayett6GvseOy
-X-Proofpoint-GUID: 1Az8Emd4kY7JrAF6MIzkayett6GvseOy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfXzTCkh25E7X7T
- VQcMM6bincj015S4W+/aheJUuVxgHnBwRv8M4N+1EY7U/ML7AwQGQUlXhOmFJzxOqqsiUTFC28G
- sXRQ+cvXdvKFmV7unLCeXOZpMScuOYLpYuCF8K7VQ53WCmGEn+fnH2W4RjQbGFMb2uEiIUuBuIE
- KRUWiyhFlDM7NhLNFAw0rqefJgStjpgF7KHKerVkaA850mihnr4mrIMbd0xDimuTkfIRYKQ3VCi
- P/WnCcj1NQDd+lzLZu9F5pjOIpxvLpaYdybogeX0qdfNt2aZ2kIfLL9Bx1OOZAZMDGDFyd94m4F
- 4tXSQfdflrtazmJCUzbWpcJrh2qkv28DRwkiEpXRZJiSaDaU4pDhaM6DB5NqcSJHClXqoRH0atX
- J1xeTLJ+
-X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b5b2bd cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
- a=WDwdR3GTf5Sq1hJQ3NcA:9 a=QEXdDO2ut3YA:10
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-01_06,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="tycn7npmaoa7dfae"
+Content-Disposition: inline
+In-Reply-To: <20250829122235.119745-1-clamor95@gmail.com>
 
 
+--tycn7npmaoa7dfae
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v5 0/4] clk: tegra: add DFLL support for Tegra114
+MIME-Version: 1.0
 
-On 9/1/2025 1:35 PM, Krzysztof Kozlowski wrote:
-> On 01/09/2025 06:15, Manivannan Sadhasivam wrote:
->>>>>
->>>>> I don't understand why you combine DTS patch into UFS patchset. This
->>>>> creates impression of dependent work, which would be a trouble for merging.
->>>>>
->>>>
->>>> What trouble? Even if the DTS depends on the driver/bindings change, can't it
->>>> still go through a different tree for the same cycle? It happened previously as
->>>
->>> It all depends on sort of dependency.
->>>
->>>> well, unless the rule changed now.
->>>
->>> No, the point is that there is absolutely nothing relevant between the
->>> DTS and drivers here. Combining unrelated patches, completely different
->>> ones, targeting different subsystems into one patchset was always a
->>> mistake. This makes only life of maintainers more difficult, for no gain.
->>>
->>
->> Ok. Since patch 2 is just a refactoring, it should not be required for enabling
->> MCQ. But it is not clear if that is the case.
->>
->> @Ram/Nitin: Please confirm if MCQ can be enabled without patch 2. If yes, then
->> post the DTS separately, otherwise, you need to rewrite the commit message of
->> patch 2 to state it explicitly.
-> 
-> Dependency of DTS on driver would be another issue and in any case must
-> be clearly documented, not implicit via patch order.
+On Fri, Aug 29, 2025 at 03:22:30PM +0300, Svyatoslav Ryhel wrote:
+> DFLL is a dedicated clock source for the Fast CPU. The DFLL is based on
+> a ring oscillator and translates voltage changes into frequency
+> compensation changes needed to prevent the CPU from failing and is
+> essential for correct CPU frequency scaling.
+>=20
+> ---
+> Changes in v2:
+> - dropped 'drivers:' from commit title
+> - aligned naming to Tegra114
+>=20
+> Changes in v3:
+> - add DFLL support for Tegra 114 was split into dt header addition,
+>   DFLL reset configuration and CVB tables implementation.
+> - added cleaner commit message to dt header commit
+> - added T210_ prefixes to Tegra210 CVB table macros
+>=20
+> Changes in v4:
+> - expanded commit message of car header adding commit
+>=20
+> Changes in v5:
+> - renamed tegra114-car.h to nvidia,tegra114-car.h
+> ---
+>=20
+> Svyatoslav Ryhel (4):
+>   dt-bindings: reset: add Tegra114 car header
+>   clk: tegra: add DFLL DVCO reset control for Tegra114
+>   clk: tegra: dfll: add CVB tables for Tegra114
+>   ARM: tegra: Add DFLL clock support for Tegra114
 
-Hi Krzysztof/Mani,
+Hi Michael, Stephen,
 
-We've verified that the driver and DTS function correctly when tested 
-independently. We Will submit separate patches for the driver and DTS.
+Given the cross-dependency between the dt-bindings header, the driver
+and the DT, do you want me to pick this up into the Tegra tree and
+resolve the dependency there?
 
-Regards,
-Nitin
+Thanks,
+Thierry
 
+--tycn7npmaoa7dfae
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi1tF4ACgkQ3SOs138+
+s6GCjw/9FaBlmOFR66ZgQ4g/k7rwkx5Hgs+m6KaCb08u3lPgkjX0F1Gs9nY3OykP
+jbZkiF/ySaikqLVlRx1tubkMqxUs95IvC7olR0RMdS6LnYhNfYTya9sLsMlRcVFI
+G3vBmESQmnjeNhsRTu09rVJKdm9e+Lf9U+g1OIkc0Am4seATEboMsjmlkAKD0ShG
+lNFBogwug4mR5inB3t0UGoi32e+jAzf1OaayhVCg4B+dQvsu3Z83ezjpGhbvOnwQ
+wZim9UI0P9V/LeaoUsc1zzGjzxhvxRQ2gd7UpcGZAC4jiIrOqm+Tk4KP9uAkPNEC
+Hzmekdf1DUVh90b33DftkXqEYnacfndauCTokb7tbV3pwsgcm+2rgFkxYpnet+pS
+11cmXg9P1Dk8HbzIkoEjv7jypbzVIlbAwWOfkmyoQH2kV0kM7Zr3THv/YdbkOiY9
+vzFfzkDIl73c0XgjEjWDnbpUdCzyMruJwxs+vq4MF4+HxaPWXMKBquScQT10M1S+
+ciVtQkVNEm2VI1KOQIpgqMmOuS41+rOVTzlYZMRYF9hKHJZTl5zm3RpnYcInIi0W
+z8sP+tC6+mgo3y4PDJ/NDdZh6ubHUn2iprz4U4mVJZcKwR1KA+Pm/FKeYEFUm89+
+kbom4wlZgRZA3yh547LyK1yDh5zi+3eg6lcQV3I6Ki1D07k95W0=
+=AP1F
+-----END PGP SIGNATURE-----
 
-> 
-> Best regards,
-> Krzysztof
-> 
-
+--tycn7npmaoa7dfae--
 
