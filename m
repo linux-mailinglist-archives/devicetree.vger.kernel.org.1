@@ -1,114 +1,122 @@
-Return-Path: <devicetree+bounces-211374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9168B3EDEE
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:34:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E0FB3EE0A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:45:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5BAC51A88486
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 18:34:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40F187A3178
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 18:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60944320A0A;
-	Mon,  1 Sep 2025 18:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2107B32ED53;
+	Mon,  1 Sep 2025 18:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tBukxT1i"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oL/2IfJj"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30B14202997;
-	Mon,  1 Sep 2025 18:34:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDB12261B9D;
+	Mon,  1 Sep 2025 18:45:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756751666; cv=none; b=tSm0P6mB2H3jr+GMMjAbGWljqtz/Ad9CkFntp/2PEDWkRV7BCh+40dtKcD34EITRVce1pTH7J9xJM+UaEC4bo8thpnLYVQX5+sQXVk/s/hd+R2+oMr6UKLaoXFXZrepv5tHqndFy6/0BEAYU0JOUxikKPK8Dx/CvUbwqksamMn0=
+	t=1756752306; cv=none; b=hbUqy1P+GdZJVFQtzgvb6MRsCYMipq6WFu1DEN8/wC1DcdXwLcqo4rhuCZnRdg13pkQqNRONOdEtP93+E2R3uftURRShtj7JzydUMauxumMyuGNYs2PtQs+PKvYDsbeNANeZbppfF0GR9NMOXC7FMh9G0jU1KgeSv+gp88uvXOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756751666; c=relaxed/simple;
-	bh=D46GHdoN/n1k1YzmS3UciOt8fqGu8n9y7YtX+yxd3l4=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=rKEWBx+PgY2YG6KCReYdCdttkkJrD6BZ8aR5W1nm60YGcAODaNYhLCkHqfgb3Z2a7yOsbwqtlfH7TTY++v6V5NREU0Fsd3n/cYFYX3mBaUZCDLuIUt8b562DwtXVUQJw0jVIT0FD/+XOHWfpvIKI2UvytaYDXVPXRe7iW00TiZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tBukxT1i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C22BC4CEF0;
-	Mon,  1 Sep 2025 18:34:24 +0000 (UTC)
+	s=arc-20240116; t=1756752306; c=relaxed/simple;
+	bh=1YzNMjZhCaQIrNSILETW5/3BwbAqQWDiIS97qg9unZo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CTQNO6T1v1K5EE5mr+myFyYbEU5Zl0tBjuNVr5LEZJCrVU6O8fnW8RA9DLT8u83cwF437YLfQSGY5B+y64cFHFtpgQyzyOZmWBELPGEejbSxMVMSzf7jOMuSfI+ZoXR66BTf9SNdHCHNbyAGDMAF43nWdwZ6tZW34VoWeS5pcGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oL/2IfJj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ACAB8C4CEF1;
+	Mon,  1 Sep 2025 18:45:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756751664;
-	bh=D46GHdoN/n1k1YzmS3UciOt8fqGu8n9y7YtX+yxd3l4=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=tBukxT1iDHx1MtlqYb8fa5G/EVEJe6WC3XgUqfEcxiQ2ZJhI/SzJww12udDUSbQy3
-	 4fOregpneiqU7aVHY5ywvuIYjQlPpZk6SKfnwNfx1x4t2TndKWpxCir7rsnZbZo3MP
-	 cGB8XYZLNeU//1qHdGRX9LaZhcmubUO5uk0MJL0tVf4+5ldPr/sSHE7rPMjVlZG/+G
-	 D4pcdCbtxj/vQhIJ0CwFaCD3vP9/vjQgzfB4F8kCHT7w91i42+DM8ecAjUf+k3fuXX
-	 f7MRpKZiOB8mxdQQ7t8szTsQpQFijWcjikananK+HYPFZuCfysR1rfRQac5yNsAWGp
-	 8ft45he34eFhg==
-Date: Mon, 01 Sep 2025 13:34:23 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1756752304;
+	bh=1YzNMjZhCaQIrNSILETW5/3BwbAqQWDiIS97qg9unZo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oL/2IfJjMvOf9hTAxls37Ft8Y2ur6mM+BzZoaakI2vPs3ciMLlU3/jRe//wfy07C9
+	 6s3TO1SxB6u6Gi63CHjkFbRoVd+Evo/VxFqPRAIj3XF8aMhww+cbyn+GHJVsZt0DsA
+	 ToPS1G147E+4WKaURLiy2th8hnZtAF7zMm/8/43Fw88P5npLandSfw3+xLiuiJQ3Xs
+	 ZJBRp5Pjy9/4yJKkCFm1iJJ+FaMkAB2Q0Xe86moJ/0DvuIsSBJxflBK1EHSahw+dM+
+	 acRVjW17njVaRjM6i402t0bMIbbY95A8ecV4vBHpStnAS65n4NdxOTqssMoYokVjXV
+	 tnHHGTWt88peg==
+Date: Mon, 1 Sep 2025 19:44:59 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Xu Lu <luxu.kernel@bytedance.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	alex@ghiti.fr, ajones@ventanamicro.com, brs@rivosinc.com,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com
+Subject: Re: [PATCH 2/4] dt-bindings: riscv: Add Zalasr ISA extension
+ description
+Message-ID: <20250901-caravan-traps-9fb18046b458@spud>
+References: <20250901113022.3812-1-luxu.kernel@bytedance.com>
+ <20250901113022.3812-3-luxu.kernel@bytedance.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Iyappan Subramanian <iyappan@os.amperecomputing.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Quan Nguyen <quan@os.amperecomputing.com>, 
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
- Keyur Chudgar <keyur@os.amperecomputing.com>, 
- "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org, 
- Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>
-To: "Rob Herring (Arm)" <robh@kernel.org>
-In-Reply-To: <20250829202817.1271907-1-robh@kernel.org>
-References: <20250829202817.1271907-1-robh@kernel.org>
-Message-Id: <175675161498.5921.10650849049249219942.robh@kernel.org>
-Subject: Re: [PATCH net-next 1/2] dt-bindings: net: Convert apm,xgene-enet
- to DT schema
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="AL80nCar+VMsEAi6"
+Content-Disposition: inline
+In-Reply-To: <20250901113022.3812-3-luxu.kernel@bytedance.com>
 
 
-On Fri, 29 Aug 2025 15:28:14 -0500, Rob Herring (Arm) wrote:
-> Convert the APM XGene Ethernet binding to DT schema format.
-> 
-> Add the missing apm,xgene2-sgenet and apm,xgene2-xgenet compatibles.
-> Drop "reg-names" as required. Add support for up to 16 interrupts.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+--AL80nCar+VMsEAi6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Sep 01, 2025 at 07:30:20PM +0800, Xu Lu wrote:
+> Add description for the Zalasr ISA extension
+>=20
+> Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
 > ---
->  .../bindings/net/apm,xgene-enet.yaml          | 114 ++++++++++++++++++
->  .../bindings/net/apm-xgene-enet.txt           |  91 --------------
->  MAINTAINERS                                   |   2 +-
->  3 files changed, 115 insertions(+), 92 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/net/apm,xgene-enet.yaml
->  delete mode 100644 Documentation/devicetree/bindings/net/apm-xgene-enet.txt
-> 
+>  Documentation/devicetree/bindings/riscv/extensions.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Do=
+cumentation/devicetree/bindings/riscv/extensions.yaml
+> index ede6a58ccf534..6b8c21807a2da 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -248,6 +248,11 @@ properties:
+>              ratified at commit e87412e621f1 ("integrate Zaamo and Zalrsc=
+ text
+>              (#1304)") of the unprivileged ISA specification.
+> =20
+> +        - const: zalasr
 
-My bot found errors running 'make dt_binding_check' on your patch:
+This is out of order, no? zalrsc would come after zalasr.
 
-yamllint warnings/errors:
+> +          description: |
+> +            The standard Zalasr extension for load-acquire/store-release=
+ as frozen
+> +            at commit 194f0094 ("Version 0.9 for freeze") of riscv-zalas=
+r.
+> +
+>          - const: zawrs
+>            description: |
+>              The Zawrs extension for entering a low-power state or for tr=
+apping
+> --=20
+> 2.20.1
+>=20
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/apm,xgene-enet.example.dtb: ethernet-phy-id001c.c915@3 (ethernet-phy-id001c.c915): $nodename:0: 'ethernet-phy-id001c.c915@3' does not match '^ethernet-phy(@[a-f0-9]+)?$'
-	from schema $id: http://devicetree.org/schemas/net/realtek,rtl82xx.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/apm,xgene-enet.example.dtb: ethernet-phy-id001c.c915@3 (ethernet-phy-id001c.c915): Unevaluated properties are not allowed ('reg' was unexpected)
-	from schema $id: http://devicetree.org/schemas/net/realtek,rtl82xx.yaml#
+--AL80nCar+VMsEAi6
+Content-Type: application/pgp-signature; name="signature.asc"
 
-doc reference errors (make refcheckdocs):
+-----BEGIN PGP SIGNATURE-----
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250829202817.1271907-1-robh@kernel.org
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLXpqwAKCRB4tDGHoIJi
+0q1rAQDS6x9A+kKZpKJrIw66WhCpCrIK6vSliB+s3BMy2XB/bQEA+HyP69er2SfV
+sZscX5NUIunelfCqwxnNr3TQUCvIFwc=
+=w3HQ
+-----END PGP SIGNATURE-----
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--AL80nCar+VMsEAi6--
 
