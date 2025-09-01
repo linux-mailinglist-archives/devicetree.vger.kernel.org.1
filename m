@@ -1,126 +1,145 @@
-Return-Path: <devicetree+bounces-211428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211437-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9AE11B3F01D
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:54:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD09B3F04E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E6D45178B86
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 20:54:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F0B32C00C7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:07:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4C82749D7;
-	Mon,  1 Sep 2025 20:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8542423E355;
+	Mon,  1 Sep 2025 21:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cax/6wFl"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NTP8AcTY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD48426F47D;
-	Mon,  1 Sep 2025 20:53:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FAC232F75A;
+	Mon,  1 Sep 2025 21:07:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756760021; cv=none; b=cqgelM2R5hZA3eRHmT6uGsL93bOC5dGZMNoNb5GoEYe1RZFnzFbWHcxorVl3zNyqoajD/eo0VjhMz10PDIReDLya+gG4ZEQtmbl2+j7tAOcvg9yv5zOItkwTYFmpT1wn29y/nN7ld0e9ys/Ui+DQ5Jpgjnqq4Cjk46Aq/FpEbA8=
+	t=1756760869; cv=none; b=X22owJYL4XQW2GE8g792ThbJZMsOVhudI22chY1A2uilGLRJVf/ukn3rhVCWJ+BOKirnv/4Lnbu+0kASJPFniy4arS+183BTo1QlZSY/W6cRR+vPxNuj8h3TSlhzBNKHUz4xXg+HSJUy8WP3HKpO3Xd6obD5gKegun/RLtWkfOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756760021; c=relaxed/simple;
-	bh=EmEPDFeBBJxotEJAdRweNgxFgd00ZCenQukoIPB92JE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T30Qjh5dV/jB7nwXhIEIf8nULZTv0jY5wiUj55ZYjSQmCXLGObZliImYoIhnrLlqDv4VPNuPmmEEfdH40x1ULO5uApTAgcNzZdcFjZLHnluvwFyVjSeN1PGfrQELLhsmpT/arbYMvj0VM0qZXJUL25M1zyyY3qs9U8A9a08+Fso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cax/6wFl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C8BD1C4CEF0;
-	Mon,  1 Sep 2025 20:53:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756760021;
-	bh=EmEPDFeBBJxotEJAdRweNgxFgd00ZCenQukoIPB92JE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cax/6wFl529KhgAtAeHnm/zGOt1M5B4Q5BqFpnj3fSmO5hLNcDbTPz8cBvcYAn1Je
-	 2uWy3w6ZLKjjkxqi4U6cM/tSmmOPw6V40BxCcB126yzz4m1KNY0uSPtvFU53FKcaXm
-	 O6vgKrRWpqExHgEefovwHz7RX/tfE/YiDzXPlANfSj95b/zr8fumVQ9l7JK4BpPzvo
-	 0tIA8oBykMQnbDP3flII/mK0bBNFg8voQT1sI0QqNXe9r6Sv0dBCOst9sbbbsDXfUX
-	 2RXwWZWt5Gi/6ucV+OuSONPU1oX/ZUzZh41bx31FaMqc4YIP+xGk7VP09AwYjSrbvC
-	 OzqhBe2kcR9NQ==
-Date: Mon, 1 Sep 2025 13:53:27 -0700
-From: Drew Fustini <fustini@kernel.org>
-To: Matt Coster <Matt.Coster@imgtec.com>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>,
-	Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Frank Binns <Frank.Binns@imgtec.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-	"linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-	"dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Message-ID: <aLYHx6NgfLovbBAG@gen8>
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
- <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
- <aKjWiU4fQw3k77GR@x1>
- <aK-BwY8c-OR_WqNk@thelio>
- <aLDQjq9U_mDvMTJo@gen8>
- <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
+	s=arc-20240116; t=1756760869; c=relaxed/simple;
+	bh=qPRtxQcOv7SHEQCFT+3OtO4MS+BAFz/O7B1+yNl/PBY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=bLgR6X5NYnyGm1WSXHnbe7HS8urd6CWwPVXn5avaRuFVEI1DrqBQBkcJJ4lVQa/f2IG96wc794CPcyD6Wlnow8gE/tZPQ8HurrbYGmRwBGhRCIzkCYoN3eYENNQpT+eM6DYt5SJJ204eeMkIRsljy5L1Jlfxa3r32M83bFW7URc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NTP8AcTY; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756760865;
+	bh=qPRtxQcOv7SHEQCFT+3OtO4MS+BAFz/O7B1+yNl/PBY=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=NTP8AcTYCe4f720CUB9THkJ3CHAoqNADaCIFvZV0cN5fz4XyViYe2PWquQeeGMW2R
+	 cW6PnJZRbbOiYL29NlULlXS/t9/1SHDmrpKWnFJ3SDcYn6mOX48sr0Rx9g2/ivyUuQ
+	 Y0Zm1szOCQ5yruo8DJ5temI/TLLORwXWHvwtUit0A2qa6ZxeotXSd4bDT4AviNAXMr
+	 NgPQBU9DkwijHL4W6dCdCPcOck8wzEV8kgbvk4F+3tlk9t6wUle11QknE8v9Z/MP4M
+	 pbkzMsdiJOKwzVRwbwvz4srmcGuTY+ot2X2C73QYd7C/E+0hTotUFqRTv7g7Bny/uo
+	 FDW7zWQ0xq52A==
+Received: from [10.40.0.100] (185-251-200-65.lampert.tv [185.251.200.65])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id A3F2717E1062;
+	Mon,  1 Sep 2025 23:07:44 +0200 (CEST)
+Message-ID: <f7ab5662-b813-4d60-80f0-d5bfc91b107f@collabora.com>
+Date: Mon, 1 Sep 2025 23:07:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="gSZ+C/ozphYAjkpf"
-Content-Disposition: inline
-In-Reply-To: <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make
+ power-domains non-required
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Collabora Kernel Team <kernel@collabora.com>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-phy@lists.infradead.org, stable@kernel.org
+References: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
+ <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
+Content-Language: en-US
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi all,
+
+On 9/1/25 22:47, Michael Riesch via B4 Relay wrote:
+> From: Michael Riesch <michael.riesch@collabora.com>
+> 
+> There are variants of the Rockchip Innosilicon CSI DPHY (e.g., the RK3568
+> variant) that are powered on by default as they are part of the ALIVE power
+> domain.
+> Remove 'power-domains' from the required properties in order to avoid false
+> negatives.
+
+Grmbl, forgot to fix that for the second time. Should be "false
+positives", of course *facepalm*.
+
+Just a note to myself for any v4.
+
+Best regards,
+Michael
 
 
---gSZ+C/ozphYAjkpf
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> 
+> Fixes: 22c8e0a69b7f ("dt-bindings: phy: add compatible for rk356x to rockchip-inno-csi-dphy")
+> Cc: stable@kernel.org
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>  .../devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml   | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> index 5ac994b3c0aa..9ad72518e6da 100644
+> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+> @@ -51,13 +51,26 @@ properties:
+>      description:
+>        Some additional phy settings are access through GRF regs.
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - rockchip,px30-csi-dphy
+> +              - rockchip,rk1808-csi-dphy
+> +              - rockchip,rk3326-csi-dphy
+> +              - rockchip,rk3368-csi-dphy
+> +    then:
+> +      required:
+> +        - power-domains
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - clocks
+>    - clock-names
+>    - '#phy-cells'
+> -  - power-domains
+>    - resets
+>    - reset-names
+>    - rockchip,grf
+> 
 
-On Mon, Sep 01, 2025 at 11:16:18AM +0000, Matt Coster wrote:
-> Hi Drew,
->=20
-> Apologies for the delay, I was on holiday last week.
->=20
-> I've just applied the non-dts patches to drm-misc-next [1], would you
-> mind re-adding the dts patch to thead-dt-for-next?
-
-Thanks for the update.
-
-I've now pushed the dts patch back to thead-dt-for-next:
-
-[3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node
-      commit: 5052d5cf1359e9057ec311788c12997406fdb2fc
-
--Drew
-
---gSZ+C/ozphYAjkpf
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQSy8G7QpEpV9aCf6Lbb7CzD2SixDAUCaLYHnQAKCRDb7CzD2Six
-DFx1AQDhO4oxK/8VUlhe2hYNiss5b+vRMU1sBAHKoo06bhapNQEAj2PyvDIqT8IF
-nKIS+EVxulnWrJ7yeHXsijpV3oST8wM=
-=NHPw
------END PGP SIGNATURE-----
-
---gSZ+C/ozphYAjkpf--
 
