@@ -1,86 +1,134 @@
-Return-Path: <devicetree+bounces-211259-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211263-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD9AEB3E220
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:01:20 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B2AB3E284
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:21:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BD24161213
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:01:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 162571A8297D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:21:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4071B226D17;
-	Mon,  1 Sep 2025 12:01:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03D2831579D;
+	Mon,  1 Sep 2025 12:20:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382D76A8D2;
-	Mon,  1 Sep 2025 12:01:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
+Received: from pegase2.c-s.fr (pegase2.c-s.fr [93.17.235.10])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FCDD17A2E6;
+	Mon,  1 Sep 2025 12:20:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.17.235.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756728075; cv=none; b=UPASDOcPhXB7Gniq3DAOfv6WYtX4W2QrgaEIBUEM1S8Tfu5C4KsIhZIERvsyhWeEGdr6r+rW3fJLg+hgEnfjAxUp5bHcQDzuLMiRYrH38sriOtSCfU078nDYzxK/ERUVuhGeB6L9YfTAXEgcdPyUJDlyNEoedJNYDqGigsSzHeA=
+	t=1756729236; cv=none; b=PSWAb/2bjweEHvragHdJP8AtWR4WUqTiuo6Se14sXwQEyQ3FdFzz7tAQkWYpaME5QKyH5m8Gy8eJxaZBF4dk6Vmj2eSP7pB/zptZWVBOwhMo1c7WIPg24K5srEPhThHjOoIA5HJmBSKmNTWRQCusk8FpEPj/vKwjYt0ad+6ifIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756728075; c=relaxed/simple;
-	bh=Sd/4Fn/fDhIJR8eH4u+iA98zALhcB4J6HidnQDDkU3c=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=l0Xg7We8zbgTgf4TPBHfre0wqb334EYPDfntCSYMqnVyPqODxBeszqv0CD3OVDye2HuOaLfreyBoX8gIPvbVZclue3jwLxb1AUvJG8O60y4ccD2MwncRf/EWAZLq3W13BWFavzkbvZhUmWxIEiHLLj0cOdjxrAkWv9FMerZSoFk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from localhost.localdomain (unknown [119.122.212.9])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 214c55591;
-	Mon, 1 Sep 2025 20:01:07 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1756729236; c=relaxed/simple;
+	bh=OQso3M18Z5ORcR/fPWxtfj+ukdTn1jxV4K9Dtp+9ezM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=N+2/VxqoFIOA0rrp5m51IFnwnstEHrwTChvYT39WUdoNuL+D2iQJO06xCZLscN46Hh5U0xyuM0Md+IWHL1ePO0IyuW82nEpOZVJPJYGPAPRphVowfhAgy7+lKuGy93BdvLdD2Kewurag5chdNj+0C1OeH2syEQFTxnYNlSyFBvY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu; spf=pass smtp.mailfrom=csgroup.eu; arc=none smtp.client-ip=93.17.235.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=csgroup.eu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=csgroup.eu
+Received: from localhost (mailhub4.si.c-s.fr [172.26.127.67])
+	by localhost (Postfix) with ESMTP id 4cFndC21Vkz9sSh;
+	Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from pegase2.c-s.fr ([172.26.127.65])
+	by localhost (pegase2.c-s.fr [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id eGxryqrUX_hV; Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
+Received: from messagerie.si.c-s.fr (messagerie.si.c-s.fr [192.168.25.192])
+	by pegase2.c-s.fr (Postfix) with ESMTP id 4cFndC0tmwz9sSb;
+	Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id 0A7888B790;
+	Mon,  1 Sep 2025 14:05:35 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at c-s.fr
+Received: from messagerie.si.c-s.fr ([127.0.0.1])
+	by localhost (messagerie.si.c-s.fr [127.0.0.1]) (amavisd-new, port 10023)
+	with ESMTP id MoqCpBZoSEHQ; Mon,  1 Sep 2025 14:05:34 +0200 (CEST)
+Received: from PO20335.idsi0.si.c-s.fr (unknown [10.25.207.160])
+	by messagerie.si.c-s.fr (Postfix) with ESMTP id D60908B77B;
+	Mon,  1 Sep 2025 14:05:34 +0200 (CEST)
+From: Christophe Leroy <christophe.leroy@csgroup.eu>
+To: Qiang Zhao <qiang.zhao@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Christophe Leroy <christophe.leroy@csgroup.eu>,
 	linux-kernel@vger.kernel.org,
-	linux-sunxi@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	Chukun Pan <amadeus@jmu.edu.cn>
-Subject: [PATCH 1/1] arm64: dts: allwinner: a523: drop redundant status=okay
-Date: Mon,  1 Sep 2025 20:00:20 +0800
-Message-Id: <20250901120020.181414-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
+	linuxppc-dev@lists.ozlabs.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v5 0/7] Add support of IRQs to QUICC ENGINE GPIOs
+Date: Mon,  1 Sep 2025 14:05:07 +0200
+Message-ID: <cover.1756727747.git.christophe.leroy@csgroup.eu>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756728307; l=2473; i=christophe.leroy@csgroup.eu; s=20211009; h=from:subject:message-id; bh=OQso3M18Z5ORcR/fPWxtfj+ukdTn1jxV4K9Dtp+9ezM=; b=Sa0OBzCBpoGN4HMRxzJnWdq9fZNM5lvmxW/10//o9X7BqvBcy9RkfTft0Q6Nj/WX5r6Z8iMS8 woenspJQt4yAzoKwVux1Pqldu+JN1n3addpi4kD64aZS57VTiqX3XlF
+X-Developer-Key: i=christophe.leroy@csgroup.eu; a=ed25519; pk=HIzTzUj91asvincQGOFx6+ZF5AoUuP9GdOtQChs7Mm0=
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a990527058503a2kunm4ecba7364004
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSU5DVkNNHkhPQxoYQxpCHlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
-	tLWQY+
 
-Device nodes are enabled by default, so no need for
-status="okay" property.
+The QUICC Engine provides interrupts for a few I/O ports. This is
+handled via a separate interrupt ID and managed via a triplet of
+dedicated registers hosted by the SoC.
 
-Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
----
- arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+Implement an interrupt driver for those IRQs then add change
+notification capability to the QUICC ENGINE GPIOs.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-index 6b6f2296bdff..cdf844eb8e05 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-a523.dtsi
-@@ -218,7 +218,6 @@ wdt: watchdog@2050000 {
- 			interrupts = <GIC_SPI 63 IRQ_TYPE_LEVEL_HIGH>;
- 			clocks = <&osc24M>, <&rtc CLK_OSC32K>;
- 			clock-names = "hosc", "losc";
--			status = "okay";
- 		};
- 
- 		uart0: serial@2500000 {
+The number of GPIOs for which interrupts are supported depends on
+the microcontroller:
+- mpc8323 has 10 GPIOS supporting interrupts
+- mpc8360 has 28 GPIOS supporting interrupts
+- mpc8568 has 18 GPIOS supporting interrupts
+
+Changes in v5:
+- Replaced new DT property "fsl,qe-gpio-irq-mask" by a mask encoded
+in the of_device_id table
+- Converted QE QPIO DT bindings to DT schema
+
+Changes in v4:
+- Removed unused headers
+- Using device_property_read_u32() instead of of_property_read_u32()
+
+Changes in v3:
+- Splited dt-bindings update out of patch "soc: fsl: qe: Add support of IRQ in QE GPIO"
+- Reordered DTS node exemples iaw dts-coding-style.rst
+
+Changes in v2:
+- Fixed warning on PPC64 build (Patch 1)
+- Using devm_kzalloc() instead of kzalloc (Patch 2)
+- Stop using of-mm-gpiochip (New patch 3)
+- Added fsl,qe-gpio-irq-mask propertie in DT binding doc (Patch 4)
+- Fixed problems reported by 'make dt_binding_check' (Patch 5)
+
+Christophe Leroy (7):
+  soc: fsl: qe: Add an interrupt controller for QUICC Engine Ports
+  soc: fsl: qe: Change GPIO driver to a proper platform driver
+  soc: fsl: qe: Drop legacy-of-mm-gpiochip.h header from GPIO driver
+  soc: fsl: qe: Add support of IRQ in QE GPIO
+  dt-bindings: soc: fsl: qe: Add an interrupt controller for QUICC
+    Engine Ports
+  dt-bindings: soc: fsl: qe: Convert QE GPIO to DT schema
+  dt-bindings: soc: fsl: qe: Add support of IRQ in QE GPIO
+
+ .../fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml |  76 +++++++
+ .../soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml       |  58 +++++
+ .../bindings/soc/fsl/cpm_qe/qe/par_io.txt     |  26 +--
+ arch/powerpc/platforms/Kconfig                |   1 -
+ drivers/soc/fsl/qe/Makefile                   |   2 +-
+ drivers/soc/fsl/qe/gpio.c                     | 209 ++++++++++++------
+ drivers/soc/fsl/qe/qe_ports_ic.c              | 156 +++++++++++++
+ 7 files changed, 438 insertions(+), 90 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,qe-ports-ic.yaml
+ create mode 100644 drivers/soc/fsl/qe/qe_ports_ic.c
+
 -- 
-2.25.1
+2.49.0
 
 
