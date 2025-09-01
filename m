@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-211402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CE14B3EEDC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:51:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 628FAB3EEE4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:52:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 735127B1170
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 19:50:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1BA418847B4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 19:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BC3C26E6E3;
-	Mon,  1 Sep 2025 19:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33C24345723;
+	Mon,  1 Sep 2025 19:49:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ApM1DTnJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fcGHIgpD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F61D25A321;
-	Mon,  1 Sep 2025 19:49:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07CA63451DA;
+	Mon,  1 Sep 2025 19:49:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756756158; cv=none; b=nNyPCeR5Mj0O0/qLseS1qmAkGBRxjZXCNd6aFRhGpG2b15fPZmtJ8Wj35gXz5OyqpVYgVUmmPAtd6kn8XV1HX+0H5K2Sr53l9rWvrUyvE6Xxa4ES0GD7ZhvYNie4yWBstXGIk8EP6teqNC15FL95am93wJH2COTjviJw7SaGnnY=
+	t=1756756160; cv=none; b=DDRUBKWJRpoPawk9xXWFOLof+GV56fgaQOh8eoWy673FjEVw9GHgAwGjnOAgro4taF4Fpxlmyq0pvxk4m4S9ygys4apg0Yz+IQkiV65JUQNYZg2ypRP0IbpLVkSej5c+YNcc19Eunq3LxjT8CY0KTLoepAdFcjJj38J6MA/Rt40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756756158; c=relaxed/simple;
-	bh=LQ2rLiIYSLPT5dxFbT7Mv57G07M7+SK4XQY6fCmF/48=;
+	s=arc-20240116; t=1756756160; c=relaxed/simple;
+	bh=hWweElT7djCbTed3PF214V8Goh3Wcz0qNLBhwdlVtk8=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Oe5D42BJZ9Q4Q8oYFiUq8ihaHufMdzM7fDHzv+xQU1/mGJCkjwEW1L2VcvEb/JRjXAyf3WAtrfER+cX/UysKA89WY7Iss+ilxpTeGj1sivYc0eG+9vn1LI2PseCNl9lCGslESF4szJadzAAwyHhMrj9fWfiaViYo1ZVPBlhgLf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ApM1DTnJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44091C4CEF5;
-	Mon,  1 Sep 2025 19:49:17 +0000 (UTC)
+	 MIME-Version:Content-Type; b=pJYi0sUkp49AHInLGN3JP0/LUOLg/vXRsCm7lSFCe+WmCWWMM/Yo7VmNZyOQtwSX+b339BhZMwbgH4bYAMJXMXiFCTBiVUq5hu4i52P3GEvJaWT7ig+3cInyZ3vQz5juBQdBOVy/9cENldASnUWPrjavhsTAoKGgrMycCPJ2F3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fcGHIgpD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DADD7C4CEFD;
+	Mon,  1 Sep 2025 19:49:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756756157;
-	bh=LQ2rLiIYSLPT5dxFbT7Mv57G07M7+SK4XQY6fCmF/48=;
+	s=k20201202; t=1756756159;
+	bh=hWweElT7djCbTed3PF214V8Goh3Wcz0qNLBhwdlVtk8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ApM1DTnJCqS5Chv875Nxi2fKPWnG3UqcdGHpGVV1COO64jJ7mIAp7CVoYwIXzcySO
-	 ajGXw9qYWc3GeUI+SrrAIqcl57JzJuVI33TzMYcyAFbDJ4GgbKs1VB0h+cePGXrkhn
-	 CyRnUY5Tj79mU653Up1uVBtozvOq9VQui8tJflTzGr241/DBVtvEcdVC1XD0RaJWYD
-	 etnuSERMu+PTkrLV/FU8jxhVYoRHdZy77QglpHRcLt/LCWddUFKN1+k0SAD0iZ+UMT
-	 p7UfyQRMgJyDlyzqKKvCKwWovwHebnEjaNvNr1ycZ48sNiXr7hjHpL/+mVlEU6AeqI
-	 +csYJ24/En8xA==
+	b=fcGHIgpD8FTBPmeuaDgp+Jga7Qn7N3xmuqOJMTIutgiJs9+8Z+TZR5xAAh7WWEvWb
+	 a2ikQ1wXfaMVzabqbY7NXJsCxzEdZSRIEaOglnWAg2vyj0OcZ/EAyHSoRXpYjlE2wE
+	 wfQW6IyEbYFHn7kgxcCttToXvqBJhTCrcyzJNMxQvhC4gmn6OdW+MUyMwv0KMMwoDN
+	 mSTnUBqDSVzcm1HntvxwP0suzEid8kcN7s0SM84zWO0p2y2Lc6sgoBYlaYMR2swFMH
+	 bOCfRCzGVu/UUD09eaN5gNavnz2lS6568QeNU8gUkHRAAPmgVX2nX/mgUfbswMV/jk
+	 JdEot2hjZQu/A==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
+To: Val Packett <val@packett.cool>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	cros-qcom-dts-watchers@chromium.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH 00/15] arm64: dts: qcom: Fix interrupt-map dtc W=1 warning and cleanup
-Date: Mon,  1 Sep 2025 14:49:13 -0500
-Message-ID: <175675615150.1797303.12852911074797656177.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH v4 0/4] Add Dell Inspiron 7441 / Latitude 7455 (X1E-80-100)
+Date: Mon,  1 Sep 2025 14:49:15 -0500
+Message-ID: <175675615152.1797303.10228710316796433483.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250822-dts-interrupt-address-cells-v1-0-d54d44b74460@linaro.org>
-References: <20250822-dts-interrupt-address-cells-v1-0-d54d44b74460@linaro.org>
+In-Reply-To: <20250716003139.18543-1-val@packett.cool>
+References: <20250716003139.18543-1-val@packett.cool>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,25 +68,21 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 22 Aug 2025 14:04:00 +0200, Krzysztof Kozlowski wrote:
-> Get rid of one dtc W=1 warning and cleanup (verified with dtx_diff).
+On Tue, 15 Jul 2025 21:26:56 -0300, Val Packett wrote:
+> Since v3[1]:
 > 
-> Best regards,
-> Krzysztof
+> - Applied R-b tags
+> - Skipping the eDP panel ID patch now since it's been applied
+> - Fixed the last remaining '-names before -0' order issue
+> - Changed usb_mp: keep the unused PHYs enabled in the DT
+>   (to let them go to sleep), like how it is done for the XPS
 > 
+> [...]
 
 Applied, thanks!
 
-[11/15] ARM: dts: qcom: ipq4019: Add default GIC address cells
-        commit: 7d75eda45690ce17a2935174a7ed370dfeeb48ef
-[12/15] ARM: dts: qcom: apq8064: Add default GIC address cells
-        commit: 1e54cf1f383adde02e49ccc9bb0cb9d3b0662a1e
-[13/15] ARM: dts: qcom: ipq8064: Add default GIC address cells
-        commit: 014a53ed24e33cc2cab112ad17df60d15ec97997
-[14/15] ARM: dts: qcom: sdx55: Add default GIC address cells
-        commit: 27cc4d100495faa0fa7272ef8fb9fc3e3abc4349
-[15/15] ARM: dts: qcom: Use GIC_SPI for interrupt-map for readability
-        commit: ba1045c76be299896528ac48021501fc9de78512
+[4/4] firmware: qcom: scm: Allow QSEECOM on Dell Inspiron 7441 / Latitude 7455
+      commit: 30ee285f1e3cdc88ec7010abeaba0cbed800bdcd
 
 Best regards,
 -- 
