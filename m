@@ -1,174 +1,195 @@
-Return-Path: <devicetree+bounces-211014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC515B3D611
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 01:53:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAC8B3D613
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 02:06:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 17B031898CB5
-	for <lists+devicetree@lfdr.de>; Sun, 31 Aug 2025 23:54:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AFD21895DDA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 00:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5952773E9;
-	Sun, 31 Aug 2025 23:53:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB6AA10FD;
+	Mon,  1 Sep 2025 00:06:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WyYY5Txf"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="AQH5bMuj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from OS0P286CU010.outbound.protection.outlook.com (mail-japanwestazon11011054.outbound.protection.outlook.com [40.107.74.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF96C2765D1
-	for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 23:53:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756684427; cv=none; b=Kstpf/ocpI725FqrNlGzk44VK73S6xqtgfInCh69YY+oU5qC8NpBevJ/ovJNETEzN4t3y5mpYwH/tj2qJdUxpIv9rE+491or7XdiRPU4witKW0dMBAJxX7cRltfCQsQ8IPMO6Tu4+8rW9TBZCfFyN5WxWHrjqRl5gog6Mo1OMmo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756684427; c=relaxed/simple;
-	bh=XRMa5Nyj+EgloZQpXXnlKBtZMQtSW8HakSaIrjYylq0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EJwCzPUfoGOgGWCwGwc2c1+nHJxsSMxyx/7r64Ud8RvFUkqYuvbMupq5DRjX/OSh3VtA1L5mtZH4OEJ03G+YJjsBQeS30FjcVcG1IWYcJYti8WJdyNUfbp9RsjqBUHNuuuHDJ5DbE9ViEeyLgNvYvsjADM2unCO8UE81S4QfWT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WyYY5Txf; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-afead3cf280so480932666b.1
-        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 16:53:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756684423; x=1757289223; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SZzD5VUgp4Ev3IaBux7GJ+EciqXgORSO/NRjzJxU14E=;
-        b=WyYY5TxfZD16+oQWcLRNZOp3lIFjfq+YJ8lojszzWE8stWRL8uXucw/MsdhtudYDko
-         H5mH3OSLOfaPVRzBUotRXAxbhtrvzBIe68W90cRV3MDZ053vDnGTs9PGi+bLgwyATU5i
-         9QW2H2ZUsZNaYoiSXR2uYw1gltQ1QRDwfeq8wgJ5tQJtiJpbYpKdRB8aXNPms9JHvwtC
-         heQ0/hUumb0DDvuO1RW99Lk6xf+MLuMsr5/jRA8dYRWjur9Nh9gZI1pkLqZv25wHjo7i
-         /Q3eT3ZfE9e1nFWJ5Smk94GNF+a4mzau+2fK48SDuYeHnCQw1cnPeAz+LhWrLjgHC0JP
-         5swg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756684423; x=1757289223;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SZzD5VUgp4Ev3IaBux7GJ+EciqXgORSO/NRjzJxU14E=;
-        b=eqUJa1NsW7OhHYQ6WbyAa0HTGfOPzvVfzHDsKnFxG1w0+Tznt+fqQ09vfCnQ6ufkbm
-         NzjfLmkigwZQtL9JQV27jVPOcnWXLPZt++JxU1/3ESURf2wGYUsWF+MvGH5L+ogGphJg
-         Pnc1mNWIFURN4ViaKILFCXd8UlSPy03ZBGj+uAba0vV3SdAG8Ihb7CWaJ9Of/3pHI4Yn
-         465cBSVY2LLhywCCuHgAa+MTfID7ld6V4P3NV5e9DlPhJ0w9SzD4+1sozwdPNV6ngCGQ
-         09XQnKAxyUJyN+j15n4cvNT9xPHKbEfoIGOlLKii7TAcka8pPp+Imxr87ULY+gkEQcdo
-         yBhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXfJe/nNyEf+y+Nel7fSVYHmU5lfehELTBwpmyJovPGnDfV4cYBH5MQ9haZrQqY351jTC3bLOEZaR1j@vger.kernel.org
-X-Gm-Message-State: AOJu0YyuOt3V9ve33nEinHSuyLbBGvzg7+3MN04E/bVyraFWHNBCUdVn
-	yxGfcRpcVh9mq4TrQRtLOHjwl7INUbj7s/AOzRyMouKJCIhhQwIKBUKvXYudb58Ud+R5vlKk63n
-	qelIZedQ=
-X-Gm-Gg: ASbGncvZeib6POzXaDoBJAlTNKtMYtFsT4/itiypZh/7WwULfVwA+wLx4CG5507JCid
-	Ax+AaQF14CJYdEjY7ai2jOo4Tuk2yyEB1z1xusoRWkyrIlX3R7Tm0kYTNqzKyzlu3mG0AlZzDQP
-	hW0sTP218IJREVkjTXGANUQVlxneWaB5jcNfa6CZS3B9DswKxI6fcYgyYZwo8iTY36x541rlGQ2
-	/xMWtOT5F5BwKQaOBFCHp0k0rYv/YpnW0GmAhpDovepxK3L+ixo99gYFWRnF6q1s08GRz+Khi18
-	0oP+c3lo9UqKatcGcDJdkFlttVS0dFECaFQ3TCWLAYxY1++6HWrY8nGmjwqHx2SKDQHu750E0P9
-	BFFeyKz+0l2Sbiw+Ng97Q4b/8qJDS/eBQy7IswSDNEe7Db+aj11vmZ8PBg9uzLnmMd1NYgyt7H/
-	nAmAt7DVqmFrjYNXjVfqLRviRWrMkBrQ==
-X-Google-Smtp-Source: AGHT+IFVA35Nb2ITQ5xm+F2H5nsoLi18hCULy2IxfZciFpoZhuuHzO03Eo2afLQfaNulmRaf+6lTnw==
-X-Received: by 2002:a17:907:72d5:b0:afe:a6d3:b4a2 with SMTP id a640c23a62f3a-b01d8a39b3fmr584547966b.11.1756684423063;
-        Sun, 31 Aug 2025 16:53:43 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0432937e0esm59177966b.3.2025.08.31.16.53.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 31 Aug 2025 16:53:42 -0700 (PDT)
-Message-ID: <d3161da3-1337-4a39-a16d-ad586f838c0f@linaro.org>
-Date: Mon, 1 Sep 2025 00:53:39 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A492A31;
+	Mon,  1 Sep 2025 00:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.74.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756685169; cv=fail; b=oWh6A9M+mo5/VBrvOqaNRB+l1bxIwKeuag5NtVU4+Vdql6sCFSVbxbUbM/5HR4UBJ7hyRcfhkDv4F5KfZUR9j3y+JIu8jrF14eX0gg9iTwqSE8ZPP3UF+X3kkW8NyVItbk03lMy36AOLD3RDobjKNKtD25j+jkL0+5CbOX12Ees=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756685169; c=relaxed/simple;
+	bh=G4PIIUGDAWfAANycMvI5llsZH9UGm8erusij9ZYH38w=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=AT7elT4EjXYmDtnvJQvZmhKOqVAWA5VpK+SD4piZsE+mBWYGzXItN34AvEWeiycT2vlI1M2aOgLxufMkhNtiz1ZaSb0bJYEyjHtT7EZ5x/mL4Dihxa4wc/pfDuw8E9l3GJbnnWPyjOxkcLicfxZECjPy/Mtt6iwgqbFX0sV8V6o=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=AQH5bMuj; arc=fail smtp.client-ip=40.107.74.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=PfBURRf5ip5UiorF3dFw596aslRLP33oY3AMePT5Mr9QJFtNoOEAkz0q8hFMgwcV7bRxC5tFDpWod4fbPojDecyTOvyAa3eemIAKvQUciCwqYA6X0SuEKQH6mdlnLtLxmL1s1H3smX+GWppv8t9u+PloDGxwn5C33dAFdHHiyQnuUnaGdFlpA7HuWPz+cwVU1CnU5RPXuOfScAwx2tfIg1TQS+Gs+sYwv3IO6EewnGXKJkLrLa2FNEOzu/LgpPorIpZ1zls+xab1qaBMGIXh0bhTzYe1uFcxjBlxRDUpI9zuljAhCSW0ANBfy8BImP3pyqZu+C27KndIRFWVne96RA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7EpEFbz/ZH+dL+oeZEUkdcP1HeDHj5eHH+nIrXwTYGE=;
+ b=JaFx8WfVjWvDUqqn8It47EIN7oEznPrcBcrX1oohWuOFHqQgcTbJ8bW5tbYxvSikxnZCjNhKuTcs3P7hhIzoagNcxN4ncHZegowKIzEKkus5f/POseqBOnwBKWCXtUnPBBKff9G0WYRpaUa4RV/MTeH9Z2+VfDaL71oU40R85sXHBIZFw3RrBDc+Jmudal8RW0bUCcnU9L5e85IgKfgJl73IZDF5fDpEioTH6JhKzf+bT8QLVw8z21hSpCxdQO0susJz6mhcj5Dn13gNGIzqbK4qjkx5Zrac6oFAhf+ewrsNa7i4RN6n110GbXJlOEd/moPXmGOh83plJtlo3QKM9g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7EpEFbz/ZH+dL+oeZEUkdcP1HeDHj5eHH+nIrXwTYGE=;
+ b=AQH5bMujdcNimBOsJVGolCSI+wrxC5RnaQdsuiuMBQJgcN1ASNHORaNiNBpBQI9DMuV9A1pNl3DroZtsARr3YtV5dQqhi5LCqZwWv3IOXgkkz1WI8hgK0GjAc3RphE+Vx4ePwgMchrirnkulilXtXr1ZBuRokExFREkhdyOtAk4=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TY4PR01MB12976.jpnprd01.prod.outlook.com
+ (2603:1096:405:1da::7) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.26; Mon, 1 Sep
+ 2025 00:06:02 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::c568:1028:2fd1:6e11%4]) with mapi id 15.20.9073.026; Mon, 1 Sep 2025
+ 00:06:02 +0000
+Message-ID: <875xe382ae.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: soc: renesas: Document R-Car X5H
+In-Reply-To: <20250828-platform-counting-6578d06e3526@spud>
+References: <87ldn4uyof.wl-kuninori.morimoto.gx@renesas.com>
+	<20250828-esoteric-vivid-raccoon-a86c9a@kuoka>
+	<20250828-platform-counting-6578d06e3526@spud>
+User-Agent: Wanderlust/2.15.9 Emacs/29.3 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Mon, 1 Sep 2025 00:06:02 +0000
+X-ClientProxiedBy: TYCP286CA0172.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:3c6::10) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/3] dt-bindings: platform: Add Lenovo Thinkpad T14s EC
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mark Pearson <mpearson-lenovo@squebb.ca>
-Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
- <20250831-thinkpad-t14s-ec-v1-1-6e06a07afe0f@collabora.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250831-thinkpad-t14s-ec-v1-1-6e06a07afe0f@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TY4PR01MB12976:EE_
+X-MS-Office365-Filtering-Correlation-Id: abd32a25-fbf2-4f32-ab7d-08dde8eb567d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|52116014|376014|1800799024|366016|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?YTfiVbnQcsOE1thv0n9g9LgRRMfCJKjFtUznuUKIRD4Bks1J8WJ0rnMtcO6z?=
+ =?us-ascii?Q?ZrRM+ZvX43TIT0F830l8hp6DhJEdM0pgJCX1iLWkDRt/2o61ODvnTbX/yr/y?=
+ =?us-ascii?Q?pqkpFHPEs9IdeJc8UnpC+pZLhzpL3h12mPNt0OEudfVLQI6w7SmKDzkSduIf?=
+ =?us-ascii?Q?PgMpuS+vniPBvQgihVSyoBRAlN50UCUsvLtcGtzSZGBV1l6rI2vrKhdOqVCY?=
+ =?us-ascii?Q?706/s/ARj23BYSt22qUBl2BAXbkwWSkoGREWDW1XVzDwrjg1tWecuZnP/kz6?=
+ =?us-ascii?Q?/V38LGVnOgbIJVtIttWvhaIYGVjncgSffRCpNALhDxtEpuaxEvhgKEPbOfJc?=
+ =?us-ascii?Q?bP0AkLGmQiHae3OfrLu4BBNeluR07i327UOfZH0tivpacxsU3WukAB5kIuJO?=
+ =?us-ascii?Q?ZCfmDJqvqpcHni+/hntn1Ihkt5yu19USQFlUqkodqq0CjHwBI1qSdBxwd70q?=
+ =?us-ascii?Q?nTRdLoiETPj2v9xcO1t0wiUA9yd/9nKQw1rkqBrKuGit/0TfHFjdj+9fqz22?=
+ =?us-ascii?Q?L75hMQwRkbvdVei6MtAZzqMryT5uGvJEof44f8qumwtPDaEDncQgSyb3NXS1?=
+ =?us-ascii?Q?7d3Vm7DOcnDFAArCpAqh85tgZq28fsvAfhS9gTY0h06nFYAVlOAbu/h6ADim?=
+ =?us-ascii?Q?XEWCU6wCcid22rkqp62D8OzBhat6s++X9YHd6q4LlUcr0gyO3a8YSbaZ+qd0?=
+ =?us-ascii?Q?X3l7RnA/iR1Ht9a4qFDlvlxXpCwpn/IlQOWVudrK3yQ/vy+hmcHEbWcMdLj2?=
+ =?us-ascii?Q?KetUuovCBYKtZCRU9WfKJtxOKuRVDzg5n9hqAoFbrIlFoC32zkaApPqzmUe0?=
+ =?us-ascii?Q?yyCAo00MZFsDzXSLgbVVOyi7nzL4GSvA3//3QDUY2QePa23bbnkbjLBOnO6l?=
+ =?us-ascii?Q?79V2VgFjk2YNoAbZK1BcQVvvDeYRgzbB5K/AqwWVAZxzh4lNKeds+21kSNgi?=
+ =?us-ascii?Q?/+HpBvplUPuzSKD5u4J+KhSgemFI4peSULdBmnlshYzgSGPQa4Mi2snfboTB?=
+ =?us-ascii?Q?4XbBJA0SI1U5or4ygV6x5pS6BA7Y11RYXLZoKfpUnl6kYLRf8eqz1GuzNyKn?=
+ =?us-ascii?Q?jTcCzh7dSyRHXCfn5MVQS/aWO4x0sht0oI2+SuVwqqNQg4LR/GwK2JNmUZu1?=
+ =?us-ascii?Q?6Msm5GV8JXGOktq4xwpCbiylTfdHnerAEHc/wm80KL51ZraZRaArkyujO3wM?=
+ =?us-ascii?Q?UuwwVDjJXAmI8f16xxAaMizPA614l0hHc26iWSNSjxsEVpyOvfCVqV+kHS4/?=
+ =?us-ascii?Q?dRET1zdVnkAnMPHG5Oc1NZbNdiTASzlcKEE0BQGM+80kljuK7kRA6XrEB54p?=
+ =?us-ascii?Q?2mrUyBJly5F/8YObURCKh28jAkKGWM/cmnpVTeh0M/HQN6tWeNwCEb1hwDqd?=
+ =?us-ascii?Q?4iC/M2g0C1hZL017AdT/LtLuXFHzne6AW+KxzpkGx2ExY/A/z84bGvezL68h?=
+ =?us-ascii?Q?ZmwmYnMaTp25UVYWsynIqZamSZ8Ta+ckE6/jcGbdmoKPemXJ61KGGg=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(52116014)(376014)(1800799024)(366016)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?tzu/Rp7aWMqEpI+YteTIsvcUIs7EYfEcGmkEBoqKVsHqCIPL+PtegcMUPWrj?=
+ =?us-ascii?Q?k0OB+EwpGMnyGS8jPVIEng71qBdhf/zboSWkhFtJYliy3EILgLLy47yn+Eu9?=
+ =?us-ascii?Q?VonuZpeEIHBkl6pT71kv2mG2kgEF5pMcljonVX/k0kptYnCGZagQ+q3eCLaa?=
+ =?us-ascii?Q?2d+/874uyGjFLNrCHutMppO+vgLrv5AcwSil9zg4kAF+Gq+5D77+tTZIF4DI?=
+ =?us-ascii?Q?rSnPUW/D6Eu47xoRZC4wMvNTIrR+UUB9dJU1OLL+CqD8A0sUySfW4bzU3yhC?=
+ =?us-ascii?Q?3lbuY+4JSsFwNW9zrzHSL1ep3HFvnqltD4Y9N+LUD96kfKw9pBHbu76A+LNG?=
+ =?us-ascii?Q?SJUua5iMmc8PZj8/G4RKFIV4QO7AM0a/JO/wUads3hkFUKyQCVxWw+RPXFpE?=
+ =?us-ascii?Q?/cCArtVQ3Ra6H/SA8iH9ITVgK6138xomO/1zEy7QjJbLPhtklI+Ol/XiXkNv?=
+ =?us-ascii?Q?E2/dXyRokRw9McJA8XOjnAxGgW/xzXgJfFTKZBzdjprmgp7VSbx56MruqKV3?=
+ =?us-ascii?Q?BPAOaXl0cWJwGeLuUnFJgHQigB+/+3E97lGZ/pWuNaUx631fK/WpYk3h72RB?=
+ =?us-ascii?Q?pzKlbH4VIkKg8T0F2KSg86GlDR98Vd9koXfVeZ0YeFq4Ef7kcDJyoXw4XHDP?=
+ =?us-ascii?Q?p2wer9U0WKonXPH3ocoaqnPIKvJnuN5N1hIK6UOV+DVMMdFrROhW8l3YDbCN?=
+ =?us-ascii?Q?zauGPlEDS53P5rnpn3PgM1tlSx+Q2jTu8vWqAE//be2iK1SAOGT4VAQMsY1t?=
+ =?us-ascii?Q?PPWA35HcS040jrHtbU/Bllwzs1okxb6JEtOyLzq8i0B+BFRtoyjQGuqykj9J?=
+ =?us-ascii?Q?dY1qgsursAG3yiMmIIS3fySPQnsUJeDiRdtLVK5+RGe6k/KPJ86TeuyqZtmz?=
+ =?us-ascii?Q?KZigyQ+lJJAZqoavB1Yf4UXzq6SQyoJ5zyC0C2Ink/Nxd1gNu43oQ64CHjky?=
+ =?us-ascii?Q?Dg2M2bDnu7gJ1s2P0vvdCqBosZGphBix4697P6ag4XMBswLlCo3mRenPXuN0?=
+ =?us-ascii?Q?Wqx7/Diz3Y2OQ+8ikoNYK5WBvN2bHVVr/LqGf2SEU/t6kD+nd42WVvTrbY5/?=
+ =?us-ascii?Q?gAnP1IAs2+FNly5WQTFhioT1CSF5QlkwMlJsyRV+ofbxllL3mXfQgc2y7OdG?=
+ =?us-ascii?Q?rhxjlGJ6F+RW3yFb4ufRevBE1Q8ae3REOcq5iMthGH3Mg+hnlC8SI3f9sRqZ?=
+ =?us-ascii?Q?WWSD6XZAiUv9OwE6CCd3weCq717alkpsegxecIswG/WT3btGKfoVLD+qTUpK?=
+ =?us-ascii?Q?HU5L6UGzqlRA8MrtZ68EfC6Ffxvfj2Uu22RR7tza69YnkR4iRAoqjGOSgPd/?=
+ =?us-ascii?Q?QxtN0meEoF9KlcoJiaEQrwFndutk3LAV9V256koSXVNh8a9UJkdSJJnTmXX7?=
+ =?us-ascii?Q?xaDgmG0cKrZpVQQtL6QKEKf+Tk0tovKGsBCNDlQBNG9SM864NwbqWpmo+ngB?=
+ =?us-ascii?Q?TuXV8SnxefW6ZumLtYIcmNIRUIJFmAfKzQAgFaUMUpGoYSSvl5pcoczyiLSe?=
+ =?us-ascii?Q?IzfQGjdJRfEv1IBrRkaQVdk+48fOe37L2cpW9qigtBbLjyZ+u5gbcERvyUsV?=
+ =?us-ascii?Q?U3vv34QYkofW2z0G5xxhiOGw6HpT+1dMf2MdtTmEzPJg8Cs/BrwjLx0YSyM6?=
+ =?us-ascii?Q?W7G8KpXPFGZozuTi7xgmBv8=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: abd32a25-fbf2-4f32-ab7d-08dde8eb567d
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2025 00:06:02.5324
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: T7oOrnk79aQPlIinXGTiQc12uvbMc0OM0ieTc6T1sN1YJeEqkVsPV4Np7vWqZV8rr+16aSoH2x1GwNOOj8rHbZcLLW8hefppAe4NP1GMY7272RtmGELHhiT6wfr9MHQI
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY4PR01MB12976
 
-On 31/08/2025 22:28, Sebastian Reichel wrote:
-> Add binding for the EC found in the Thinkpad T14s Gen6 Snapdragon,
-> which is based on the Qualcomm X1 Elite. Some of the system LEDs
-> and extra keys are only accessible via the EC.
+
+Hi Krzysztof, Conor, Geert
+
+> > > v1 -> v2
+> > > 	- add empty enum to avoid allowing invalid use.
+> > 
+> > I don't understand why do you need this. Where is any user of it? There
+> > is no such in this patchset, so this must be explicitly explained in the
+> > commit msg.
+(snip)
+> > We don't allow such cases because it is pointless.
+> > 
+> > Otherwise explain in the commit msg why this is needed, why exception is
+> > justified.
+> > 
+> > You have entire commit msg to explain anything unusual and if you look
+> > at source code you will not notice such syntax for boards, so clearly
+> > this is unusual.
 > 
-> Signed-off-by: Sebastian Reichel <sre@kernel.org>
-> ---
->   .../bindings/platform/lenovo,thinkpad-t14s-ec.yaml | 49 ++++++++++++++++++++++
->   1 file changed, 49 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml b/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..bab20df2d9ede9a3cb0359944b26b3d18ff7d9b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/platform/lenovo,thinkpad-t14s-ec.yaml
-> @@ -0,0 +1,49 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/platform/lenovo,thinkpad-t14s-ec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lenovo Thinkpad T14s Embedded Controller.
-> +
-> +maintainers:
-> +  - Sebastian Reichel <sre@kernel.org>
-> +
-> +description:
-> +  The Qualcomm Snapdragon-based Lenovo Thinkpad T14s has an Embedded Controller
-> +  (EC) which handles things such as keyboard backlight, LEDs or non-standard keys.
-> +  This binding describes the interface, on an I2C bus, to this EC.
-> +
-> +properties:
-> +  compatible:
-> +    const: lenovo,thinkpad-t14s-ec
-> +
-> +  reg:
-> +    const: 0x28
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |+
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c1 {
-> +        clock-frequency = <400000>;
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        embedded-controller@28 {
-> +            compatible = "lenovo,thinkpad-t14s-ec";
-> +            reg = <0x28>;
-> +            interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_LOW>;
-> +        };
-> +    };
-> +...
-> 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> They have a soc driver that binds to the compatible, which is why I
+> suggested this rather than refusing the patch. I do agree it should be
+> mentioned though.
+
+OK, let's skip this patch and post it with both SoC and Board name.
+Which was my original plan.
+
+
+Thank you for your help !!
+
+Best regards
+---
+Kuninori Morimoto
 
