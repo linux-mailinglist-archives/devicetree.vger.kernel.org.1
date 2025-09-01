@@ -1,304 +1,406 @@
-Return-Path: <devicetree+bounces-211327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68326B3EAED
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:38:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E55C9B3EB4C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:47:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 17533204737
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:34:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2A741B60832
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:40:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85662EC0B0;
-	Mon,  1 Sep 2025 15:28:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1328B306496;
+	Mon,  1 Sep 2025 15:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="OQVBkv8q"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="ErM8g35d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2042.outbound.protection.outlook.com [40.107.93.42])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2AF2EC0A7;
-	Mon,  1 Sep 2025 15:28:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.42
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756740508; cv=fail; b=UWEzwyfnRenfNrUlIVrBe3sGQLugGchMs+8utS9Hk8VDCoqRD4JHB4aBapTP1xz1e+Ag92bT1u7ZxElNjRVhR4p8RJ1E/7g/nx43ht1zphPXnLbUBD+y5XWxvUc/YwMURRwBcgXaluRjfCEUkRLWc3nLgFyFjuh1K48ZtRuQaBA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756740508; c=relaxed/simple;
-	bh=WtoAS/zksehuwGPxmCEira71C3k5M7idrNq5u716AZw=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=UpyAVO6ZLs1ARB9Kr10W0h5tcYlv74jZhlY8E3ti1OxHOOZwezq9XDV476xuFGsk58pEL7/6ixWKm2yM3WpKTWxM6dG09lQUW37uot/WHnliznSl878J/418gIkmtBXWacKlw4C2BdUnTJWJTGmrW+MOk1Y/fg+oHWtnPBLQOcM=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=OQVBkv8q; arc=fail smtp.client-ip=40.107.93.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=v51dFgkkq980vg5Ee3ePniz/orN9kmGwkbmwH63heIoFZgPK8u9r6sEdjq3++Brzj1eMwR2IpGRRXL1wuhTZhFlzyOiB0qfi+Ev2pmVsMuysq5gNHxYyb8C9G+uhjzKWoMKrScqZZLtZzOCM2GwQezel93ijm8hWy7AaoZOeSwtezD5rIM//L5+/QZJYhVBz+Si77quH1QEiVq6Vn/DQ6lbiA5msQrluUlfqtZnXNTqR2oKtszmL61Qwwm5IRuSpHyAbNuwV0dU/rdUoAiMGeH78rCDJCYkdjbeX8hhndPYb1FlUWTMF3x7M0Z6hWhK4MABfPGqJF0+HcUuG1BrnwA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WtoAS/zksehuwGPxmCEira71C3k5M7idrNq5u716AZw=;
- b=Z1navI6jd3TU6gYQoaLy35IeXsQwieCIrAF4MCPQ7AviVq/123x+fN8mJ0LOXMmTfThv38X1Ul1aM2xxDD18KbFfL9qjRzSaomRF4VMyw2Pw0zaW53xLqdJGK2wkGS3M94NK78+8wjJX1C086m8BR8f6diOKR1DZkKKJKkRYszufVMHQ8bze1GJI81HRfAbaawb0/X4SFRuRtNwL6ZaaA7DnUynY455O52UAqAwtDOCWdDnYY0nHFUOT1Ra7MnvTQx+3fVBqzO/pluPXKq3rZ03ABbR2BrRKfM1A4BAFoCXllJSWZIZX4pH944R+DbBrF43p5WQ7zoWaMkTRoXYWkA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WtoAS/zksehuwGPxmCEira71C3k5M7idrNq5u716AZw=;
- b=OQVBkv8qYvh/Wa8ujWPKaIhzeCY0iKaLah0kD1rBL+k1C1y19A/0ZBauaRI6O6QHkDVt999Mo8OM2UrdrnRpoX1d+TeQSX4OfaIUOKikTqnzOzWyOBUEf7k5jjPtk5QlZtpM8Nkl5+pU44JcWQE84MpUoecXexkI2rZ3XXkarEse/hkvIGbkEcWBENr8XkDECRf5K6CMdL9h2LmRN6p9wk9RzjE3dhEU9xsKFu4EfHTYdTwsKs82QExLFzwYTri19UoNmWddXBJyTKEBIzOVd3jKgoQRlsb7DqUz2D32lyBFMheMJKd35YhxGa1FX/kh0aAUmHg7x8Vw1hLai4CELQ==
-Received: from DS0PR11MB8739.namprd11.prod.outlook.com (2603:10b6:8:1bb::19)
- by CO1PR11MB5041.namprd11.prod.outlook.com (2603:10b6:303:90::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Mon, 1 Sep
- 2025 15:28:23 +0000
-Received: from DS0PR11MB8739.namprd11.prod.outlook.com
- ([fe80::f0f:4a3f:e3a3:d3ad]) by DS0PR11MB8739.namprd11.prod.outlook.com
- ([fe80::f0f:4a3f:e3a3:d3ad%5]) with mapi id 15.20.9073.026; Mon, 1 Sep 2025
- 15:28:23 +0000
-From: <Valentina.FernandezAlanis@microchip.com>
-To: <krzk@kernel.org>, <Conor.Dooley@microchip.com>,
-	<Daire.McNamara@microchip.com>, <paul.walmsley@sifive.com>,
-	<palmer@dabbelt.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-	<aou@eecs.berkeley.edu>, <alex@ghiti.fr>,
-	<Valentina.FernandezAlanis@microchip.com>
-CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>
-Subject: Re: [PATCH v1 5/5] riscv: dts: microchip: add a device tree for
- Discovery Kit
-Thread-Topic: [PATCH v1 5/5] riscv: dts: microchip: add a device tree for
- Discovery Kit
-Thread-Index: AQHcFdxZ+gegSJP6cUq8DodaBl6a1LR4W8SAgAYinQA=
-Date: Mon, 1 Sep 2025 15:28:22 +0000
-Message-ID: <bb5b0d71-41b1-48a0-82fc-bdb362cc3db1@microchip.com>
-References: <20250825161952.3902672-1-valentina.fernandezalanis@microchip.com>
- <20250825161952.3902672-6-valentina.fernandezalanis@microchip.com>
- <2b1eb8fd-2a64-4745-ad93-abc53d240b69@kernel.org>
-In-Reply-To: <2b1eb8fd-2a64-4745-ad93-abc53d240b69@kernel.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-user-agent: Mozilla Thunderbird
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=microchip.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DS0PR11MB8739:EE_|CO1PR11MB5041:EE_
-x-ms-office365-filtering-correlation-id: 36e235e2-cd79-4d95-3d54-08dde96c3021
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018|921020;
-x-microsoft-antispam-message-info:
- =?utf-8?B?NXdYdU1MTzI4dHUzb2ZUVTZZNzBrYWZoTHVnZzdQNTd6VmhTalhGK1dmT3Yy?=
- =?utf-8?B?a1ppRittVDRvL0V6VGVHcGwwSENtUWdIM0tMN3czNXpiY0UxcjFuclQyenhh?=
- =?utf-8?B?NFFESXhoMSt3ZmFYS3htYWxTelRQSE03WmdTRWFFcXpIcWwxR2lXKzVjNWE4?=
- =?utf-8?B?ZGRPb21IT0JLN1FyTG41b2VqZ0syVngwY1dIeW16WGthQlNEZnpKK3JQbWMx?=
- =?utf-8?B?QS9SL3ZaNHZUbC9BdTR4NlVFck1uaFhRRHlTdkR3L2lRZUNyUXhjSjNCYlFn?=
- =?utf-8?B?amowYmRZZk1nR1FUcU4zTGtCWWVZTnAxOElYNkhDU0Q0UkczazhKQkhNaVZV?=
- =?utf-8?B?U21ac0RvMHJJYUJySVUwYWRJTGJaZXJrS1luQTVaVng2b0RHcTBINVl5SWJ6?=
- =?utf-8?B?cCtJSkRrQzFuVzJhOExDaGtKRWRJVlNicU50UjFQSk5SLy9aZlFraWNtWmNx?=
- =?utf-8?B?L3AwUGNVeXEwRlVUUG1rV2x2K3hIaVMxMGhtVktYR1ArL0E2RUlrNys1Wnpy?=
- =?utf-8?B?eUVmUlpLWkVwMlJSUGpGTUVCVWhnd0ZVa0tTcThKeGhockd0NHVzWFBtMm96?=
- =?utf-8?B?SHRKN3RvdTlxZk92UVZ6MnBpRGRMZDVMTlhZNHNMSWhaRG5mTU85cDNvTXZx?=
- =?utf-8?B?eHdyY1QxbmFkell6M0UrZE1RYTh3eSt1V3cweE9rSzA5OHRXTDVXcXhYS3hz?=
- =?utf-8?B?aVpxTjNLVUQrVmM0OWdlQzNNTVdycUY4K2RrV1N1WSs5Y1dKa1ZpWkZ0NmQw?=
- =?utf-8?B?empjdklYT2c2VXYySG1mTXd4WitRaFZ4MFp0amhuSjFpamFFeWhhWUVuT2JJ?=
- =?utf-8?B?eXdLTDBZaWhoVnpDSUxnNlVDOXB5ZzFBR003OE0yTEVVZDJ6Kzk4T3FhcTMz?=
- =?utf-8?B?VFdqUkt0UkVYSEdPcUNKTjhTWVFUVDdqY1dGcjRkaW14TkFTZnpDR0VxaDVY?=
- =?utf-8?B?UG43dTV5WHJMeHJ3aVd3M0lablJQQmJwY2N5WG1Vdyt3TDNKZG9hak5hcXo5?=
- =?utf-8?B?aE9KUkdLZ2Q0Vy9pOUxIMEgyZ1F6SWs4ZmIyMmJpMDF5VXdXb0pLektFWWla?=
- =?utf-8?B?OWVWb3RRQWxsWXZpdlFQdFlBUXVNYy9EZ1ltVHYxWFZkWm01VFFhYnZEYUpV?=
- =?utf-8?B?bWtiOE5DQnNZUURrVEZ6eVZNam5oeGFhMUR2dEdNamdCUlczVkc1UldzM1Nt?=
- =?utf-8?B?Tnp6OTZtaTRyb0NSNm9XOFFqVEJSSWZIQ3AzQUhQVlc2U20rUk9DQXdzQXVJ?=
- =?utf-8?B?cG9IUnQ5RWdtUk1EZHhqaTVqYlhiazZVOEFKZTFwQjk1em9nWnZaSGNyTnJE?=
- =?utf-8?B?UUpRdjRNU1diNUJBeXk4UitKTXZrcnhPYzRJTDB3Y2pBTHJrUFc3UVhlZ053?=
- =?utf-8?B?Uk5LZHBEcjAwUWc5UXE1NWcveUMxdWNVeE5JMnJLa0JOREJ1dW03TktjdjI2?=
- =?utf-8?B?SzBVZFc4aXpQdTgvSG1KSDlXRDBucHVuNzFNNUxQTFQ2bEQzcm5JUVJlbGE2?=
- =?utf-8?B?R3JpbExtTnJ2VktRUCthUDJWb0xxZXM5SkJLL2ZKVXlrOXY4VjZvayt1VWZs?=
- =?utf-8?B?ZWphU2RwdXFFUktpbWlsZUNVYkFuWmcyT2pTVE5XbWc0NDh5emxXeVlPdkto?=
- =?utf-8?B?R1BWVC84YnJsei9CY01XYnpWR1lFNDBYdk1JVE80WkhiNFJ5TEFJSFNnU2pw?=
- =?utf-8?B?STZNU1NnK1M4bnFFcEFOQS9nRXBONlhacms3NHJvWEdjVVFXakNrZDdiRmYy?=
- =?utf-8?B?S0llVEpMeTNYdXN6TW5DQTkwTTlJMWNZQTNBOGd6cXZybFlINUV2U0FoLzE3?=
- =?utf-8?B?ZGMza0NGZTV3UER4eHVzWXJISkpvSU9XZ01OUlUrK01GR3B0azBoMjlLejdZ?=
- =?utf-8?B?bVZrYlJwb3NLRGhjZ3ZaZ05YVjYvbHMyS0V6enlMUzcwUzcremdLV0E3NTdh?=
- =?utf-8?Q?iDTHR2dLLQo=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR11MB8739.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018)(921020);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?amRJanprK0o3M1N0QUU0NHA5SGNuVUVHOEZuU2tHaTN2VG1mL2wrWDdSY0hJ?=
- =?utf-8?B?ejR3aTRFdlZqSnM2cVFjK3JzdStyM2MrZkpnMjZTbEJJNGlnbnpXMkd3RzQw?=
- =?utf-8?B?TGNvWGhUd2g2ejdHYXdSejZvUHdWOU0rQnNoK21sQk1sYVdwd254UGdOZnFJ?=
- =?utf-8?B?bHVsYURXTWtaRVRWZGpZOUVvdVp3RFp6Zm1qVUYwRWN1UGVXUSs5YVZWa05t?=
- =?utf-8?B?MTlnaW9tU1NRL2NhVGRRR28zdWIyZXBCR3M3cnc1cTR3R24wUDkrNnZheXk0?=
- =?utf-8?B?djlWSHI5ajVEb0l4MnhaN0JMWTc3eTdPWDR1MzJqMjNGZDcxSkxzcCtabEhV?=
- =?utf-8?B?VmNPYnRZSTlCalZObWZEbmxZS2tHWlZRMDJuZ29VZ2R5bjVZdUNBWWxxWG9M?=
- =?utf-8?B?ZG1NT3NhMmpDYkEzeWxtaTF5Z0VVb2FJR0o3Q281RnpSaFpYSUtXOE1PUVBP?=
- =?utf-8?B?TmJUanphaWVEUFJ4NkxjcGNQSEhhNDFhNDNUazBnUjFMaFNjL3BqOVBPV3U1?=
- =?utf-8?B?aWF5V3dLbjJpUGNtcXVUeGVnL3F6MllwUmlVTGJYV2lFYlV2emdJbm9iSHFz?=
- =?utf-8?B?NllaZ2d2MDlCUGI1MmU1L2NCQjBsSGtBNVNEd0ZwQ3hiUlo0MUQ5NVpZak1H?=
- =?utf-8?B?TnhISzRQQ0o4MDJtSEJIY1JnNU95dmZrWGhwaTFuZlIyUFg2NVRFcFp3MS9n?=
- =?utf-8?B?dE9NRU9raFM2aWdwWWM2UUg2ZDl4QU52bzF2blJIcC9meHpjT2VUNE9LSGlR?=
- =?utf-8?B?Q04wZzNxbXB5Ynl5UHJlcTc0aFJtdVFObndiaTAxVTArc0RMbW5xNk1sVUxV?=
- =?utf-8?B?QWtTMENLdzU3U2hxRnFvYlJrS1VORGVoVjVOaFkwMXhjRVFZVTNWRzZUK3cx?=
- =?utf-8?B?SmZVUDhLd0QrSjFMVzNCZHlIa3NRSzg2VlRaUThiczUxK2hmR2s5S1M1aFEr?=
- =?utf-8?B?TW5kdGtOYkNlTlpDRzdxVlFvTzNqL3BTVE04ZnJuay9qL3VHOVpJYlNnRENU?=
- =?utf-8?B?NHJqSWNRYWxsMyttRHlpMS9zNW15OVlRMGx2bnlCMlpITGhxaUdnVUJnTUU1?=
- =?utf-8?B?d08wOGw4R2lqR3FPT1VSWWE5UkF0bk1Xd0xhRE83dlptOFdQbU51Q2lnWFVE?=
- =?utf-8?B?TVhmdll5OU1LcFlRVlZJVVJRUDEySllSNVNsQVBHZXlGekJISUNPZkFwdkhM?=
- =?utf-8?B?aVRrQzlNUFpwdUZsTEJtNTRHbFQybzRJdkE2QzRpckhjZWdzdk55SUVmNG1M?=
- =?utf-8?B?SXpBeHhqRzNwZ0t3eVBENzhWSm40THJQSUVldTM4Rk5GT0tkbnZzcmxFc0ZY?=
- =?utf-8?B?cFR0MHc0Umt6NlVsZm5YWHVaVytESWhJTjNLY1kydkN1cFBWM3VtV29lWG1Y?=
- =?utf-8?B?cEk3Rjc5aVFCUlJ4LzcwSWp6N3g5TUNFd2dSa1g5bStRdjM0Q0pKUnF0V3B6?=
- =?utf-8?B?ZWRHRzdWamQ5UGMzZ0lNK3JUUy96WllIVU1mN0lWNmZCc1ZqVnpNMHQySkZU?=
- =?utf-8?B?bU1lbWU2L3BEWEpENXp6YzlGa0NLeFN1OHg3UWsvYm5QOG9UVS9YUlhzaENo?=
- =?utf-8?B?UjM2aWIyeWlFcnAwSWxhNDNtNkhLQUJ6alErcm5LUmd4dDFrN1R0M2hPUDBk?=
- =?utf-8?B?V3FrWGwwL2JlWDdRZnlFVFRiSkR6MHZ3MytoUzdoc2RVbDNTRHNSeDRLMnAv?=
- =?utf-8?B?RXVmZVMzcnpnYlc3cXRIOU1lNnBqVzlyQ1dmOHRHa21ZbGFMOTlIZzNtY3k2?=
- =?utf-8?B?OEhQUTM2VzZ2TE1TR3hrYU52cE1wMFA2cXJwTThraG1lM25IdTVRRXhEWCtU?=
- =?utf-8?B?bm5KNDI1VEo0bUJBQ1hRS1lYVWhTMnhrNDFqeVdvUDdhRG1TallwZXJKQ0sx?=
- =?utf-8?B?L3ptREQxd09JTlRPQUEwRlBFM3ZjSHFEeGhnYlVYNUJHcnNmY2VMczJWUkpv?=
- =?utf-8?B?bVorN3RhTytuV2VEbC9wV2NjR25tdUp0WUViVUJuaXlnTEVDUVBvWlc5OGFo?=
- =?utf-8?B?bXVhWCt3NGtOai9kZkhQSWRWYjM4V1BuSXJPQVJ6bk5ueUJaa1V6Q2l5cFdR?=
- =?utf-8?B?a3B0MVVpWWprc2QyVlFuWDNnL245TFIrWFhkV1RyNkY2NGJlWlF6QWZMVWJa?=
- =?utf-8?B?K2YxeXBwbnE2TzJOdWdyWGIxb3ZuYmlkajVOSldXUnZOcVFTYmNMZk9BNjFF?=
- =?utf-8?Q?bljKwIyhh2wTo6lxQrvOS5c=3D?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6EDC2666C8BE1541A4635CF379B587FA@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9792F1FFE;
+	Mon,  1 Sep 2025 15:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756740934; cv=none; b=Xym71lldwKX9rtF8+KUs/llvW3VIygddPt+fUOSHhnzvl+RA/FReroVmBOWlQcGqOXaGbQrf/TIxRWFd7oXq4IwSu4vqfkhPNJiGHiJ5G/LZ7J56cnl3aDy75r0Hdyjdm23Lr524FRcP36NKb3nFGvb7KYLG5hDmFZGg2ZJzxBs=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756740934; c=relaxed/simple;
+	bh=R0K0uO78kkNj9O0JCBudz8MUoczEiC4rdOw3y+eElXg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FmONakTBOV6R6Q1j7BZ9HuLIYybAK6zZ8iTCKP8dmhLPk6lDDQsOo4m/SvDnswruqcJVPRDeOnNKeQvUqDJGoMmSXrnRDGT1Xcr0fVwyn8qep7lkrlEee/4YJDGW/GcHebSo8ld2x5WO/3EmWFswMu03zn2VgiSLK/k54htrqYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=ErM8g35d; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756740932; x=1788276932;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=R0K0uO78kkNj9O0JCBudz8MUoczEiC4rdOw3y+eElXg=;
+  b=ErM8g35dHGvbCPRy+NzTP+5nodOWMBvR/RaA97KdL60mmW5+dFyhK4w8
+   p+jUQKPoUpcZSUu1g6LZI9pY4eo7F28YuNcL5/ZdP3PX4Phpdb61LhWuS
+   lwrlJNqUKQH3DNcOFjaDAat3TIOinvlziMtPAi3JyeuOAkct95zoflIMF
+   7b/tQyhd4y6zZmUs3nIrgMfO+euVvRKIaHiq8EEbHYxKdTdPVgexVWRZp
+   huqJxhcQSiaCRUUlRzStBdNOd6IEns+00ee7l8GQSH+tC5eKTYewsaAi2
+   m7EJU32tEzhgqk6zxe8ohBjQ4qIaaUAVQPzq/BR573Wh+e31jqW0jTjss
+   A==;
+X-CSE-ConnectionGUID: GE8PYFcGQRi9XsEPSoXI9A==
+X-CSE-MsgGUID: 2gch+IlgQGCU/BMgvQ2nRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="76600594"
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="76600594"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 08:35:31 -0700
+X-CSE-ConnectionGUID: OpyYnceHSnu1cIHprjYhlw==
+X-CSE-MsgGUID: erdoT8FRTcGzNI6NcgYriQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="170327749"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 08:35:27 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1ut6Z1-0000000ASUk-1fIP;
+	Mon, 01 Sep 2025 18:35:23 +0300
+Date: Mon, 1 Sep 2025 18:35:23 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Karel Balej <balejk@matfyz.cz>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: adc: Add driver for Marvell 88PM886 PMIC ADC
+Message-ID: <aLW9O1rnhUqqh02r@smile.fi.intel.com>
+References: <20250831-88pm886-gpadc-v2-0-759c1e14d95f@dujemihanovic.xyz>
+ <20250831-88pm886-gpadc-v2-2-759c1e14d95f@dujemihanovic.xyz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: microchip.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8739.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 36e235e2-cd79-4d95-3d54-08dde96c3021
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2025 15:28:22.9353
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XgT7sE4vL3XHSIHhyi4Tvs/PfJoYUVoWZVgL2y5R5hgAHdM6+W3aaC34hgylHB8pS3KRCETqAuT07/Ynoy77QnHEM4HiDovob1aAClSVeiy4DjxY+e1xsBMo6kTmglab
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR11MB5041
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250831-88pm886-gpadc-v2-2-759c1e14d95f@dujemihanovic.xyz>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-T24gMjgvMDgvMjAyNSAxODo0NiwgS3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gRVhURVJO
-QUwgRU1BSUw6IERvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRzIHVubGVzcyB5
-b3Uga25vdyB0aGUgY29udGVudCBpcyBzYWZlDQo+IA0KPiBPbiAyNS8wOC8yMDI1IDE4OjE5LCBW
-YWxlbnRpbmEgRmVybmFuZGV6IHdyb3RlOg0KPj4gKysrIGIvYXJjaC9yaXNjdi9ib290L2R0cy9t
-aWNyb2NoaXAvbXBmcy1kaXNjby1raXQtZmFicmljLmR0c2kNCj4+IEBAIC0wLDAgKzEsNTggQEAN
-Cj4+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogKEdQTC0yLjAgT1IgTUlUKQ0KPj4gKy8q
-IENvcHlyaWdodCAoYykgMjAyMC0yMDI1IE1pY3JvY2hpcCBUZWNobm9sb2d5IEluYyAqLw0KPj4g
-Kw0KPj4gKy8gew0KPj4gKyAgICAgY29yZV9wd20wOiBwd21ANDAwMDAwMDAgew0KPj4gKyAgICAg
-ICAgICAgICBjb21wYXRpYmxlID0gIm1pY3JvY2hpcCxjb3JlcHdtLXJ0bC12NCI7DQo+PiArICAg
-ICAgICAgICAgIHJlZyA9IDwweDAgMHg0MDAwMDAwMCAweDAgMHhGMD47DQo+PiArICAgICAgICAg
-ICAgIG1pY3JvY2hpcCxzeW5jLXVwZGF0ZS1tYXNrID0gL2JpdHMvIDMyIDwwPjsNCj4+ICsgICAg
-ICAgICAgICAgI3B3bS1jZWxscyA9IDwzPjsNCj4+ICsgICAgICAgICAgICAgY2xvY2tzID0gPCZj
-Y2Nfc3cgQ0xLX0NDQ19QTEwwX09VVDM+Ow0KPj4gKyAgICAgICAgICAgICBzdGF0dXMgPSAiZGlz
-YWJsZWQiOw0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAgIGkyYzI6IGkyY0A0MDAwMDIwMCB7
-DQo+PiArICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibWljcm9jaGlwLGNvcmVpMmMtcnRsLXY3
-IjsNCj4+ICsgICAgICAgICAgICAgcmVnID0gPDB4MCAweDQwMDAwMjAwIDB4MCAweDEwMD47DQo+
-PiArICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KPj4gKyAgICAgICAgICAgICAj
-c2l6ZS1jZWxscyA9IDwwPjsNCj4+ICsgICAgICAgICAgICAgY2xvY2tzID0gPCZjY2Nfc3cgQ0xL
-X0NDQ19QTEwwX09VVDM+Ow0KPj4gKyAgICAgICAgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZw
-bGljPjsNCj4+ICsgICAgICAgICAgICAgaW50ZXJydXB0cyA9IDwxMjI+Ow0KPj4gKyAgICAgICAg
-ICAgICBjbG9jay1mcmVxdWVuY3kgPSA8MTAwMDAwPjsNCj4+ICsgICAgICAgICAgICAgc3RhdHVz
-ID0gImRpc2FibGVkIjsNCj4+ICsgICAgIH07DQo+PiArDQo+PiArICAgICBpaGM6IG1haWxib3gg
-ew0KPj4gKyAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1pY3JvY2hpcCxzYmktaXBjIjsNCj4+
-ICsgICAgICAgICAgICAgaW50ZXJydXB0LXBhcmVudCA9IDwmcGxpYz47DQo+PiArICAgICAgICAg
-ICAgIGludGVycnVwdHMgPSA8MTgwPiwgPDE3OT4sIDwxNzg+LCA8MTc3PjsNCj4+ICsgICAgICAg
-ICAgICAgaW50ZXJydXB0LW5hbWVzID0gImhhcnQtMSIsICJoYXJ0LTIiLCAiaGFydC0zIiwgImhh
-cnQtNCI7DQo+PiArICAgICAgICAgICAgICNtYm94LWNlbGxzID0gPDE+Ow0KPj4gKyAgICAgICAg
-ICAgICBzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAgIG1h
-aWxib3hANTAwMDAwMDAgew0KPj4gKyAgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1pY3JvY2hp
-cCxtaXYtaWhjLXJ0bC12MiI7DQo+PiArICAgICAgICAgICAgIG1pY3JvY2hpcCxpaGMtY2hhbi1k
-aXNhYmxlZC1tYXNrID0gL2JpdHMvIDE2IDwwPjsNCj4gDQo+IERvZXMgbm90IGxvb2sgbGlrZSBm
-b2xsb3dpbmcgRFRTIGNvZGluZyBzdHlsZSAtIG9yZGVyIG9mIHByb3BlcnRpZXMuDQo+IA0KPj4g
-KyAgICAgICAgICAgICByZWcgPSA8MHgwIDB4NTAwMDAwMDAgMHgwIDB4MWMwMDA+Ow0KPj4gKyAg
-ICAgICAgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZwbGljPjsNCj4+ICsgICAgICAgICAgICAg
-aW50ZXJydXB0cyA9IDwxODA+LCA8MTc5PiwgPDE3OD4sIDwxNzc+Ow0KPj4gKyAgICAgICAgICAg
-ICBpbnRlcnJ1cHQtbmFtZXMgPSAiaGFydC0xIiwgImhhcnQtMiIsICJoYXJ0LTMiLCAiaGFydC00
-IjsNCj4+ICsgICAgICAgICAgICAgI21ib3gtY2VsbHMgPSA8MT47DQo+PiArICAgICAgICAgICAg
-IHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+PiArICAgICB9Ow0KPj4gKw0KPj4gKyAgICAgcmVmY2xr
-X2NjYzogY2NjcmVmY2xrIHsNCj4gDQo+IFBsZWFzZSB1c2UgbmFtZSBmb3IgYWxsIGZpeGVkIGNs
-b2NrcyB3aGljaCBtYXRjaGVzIGN1cnJlbnQgZm9ybWF0DQo+IHJlY29tbWVuZGF0aW9uOiAnY2xv
-Y2stPGZyZXE+JyAoc2VlIGFsc28gdGhlIHBhdHRlcm4gaW4gdGhlIGJpbmRpbmcgZm9yDQo+IGFu
-eSBvdGhlciBvcHRpb25zKS4NCj4gDQo+IGh0dHBzOi8vd2ViLmdpdC5rZXJuZWwub3JnL3B1Yi9z
-Y20vbGludXgva2VybmVsL2dpdC90b3J2YWxkcy9saW51eC5naXQvdHJlZS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvY2xvY2svZml4ZWQtY2xvY2sueWFtbA0KVGhlIGZhYnJpYyBk
-dHNpIGRlc2NyaWJlcyBlbGVtZW50cyBjb25maWd1cmVkIGJ5IHRoZSBGUEdBIGJpdHN0cmVhbS4g
-DQpUaGlzIG5vZGUgaXMgbmFtZWQgYXMgc3VjaCBiZWNhdXNlIHRoZSBDbG9jayBDb25kaXRpb25l
-ciBDaXJjdWl0IENDQydzIA0KcmVmZXJlbmNlIGNsb2NrIHNvdXJjZSBpcyBzZXQgYnkgdGhlIEZQ
-R0EgYml0c3RyZWFtLCB3aGlsZSBpdHMgZnJlcXVlbmN5IA0KaXMgZGV0ZXJtaW5lZCBieSBhbiBv
-bi1ib2FyZCBvc2NpbGxhdG9yLg0KDQpIb3BlIHRoaXMgY2xhcmlmaWVzIHRoZSByYXRpb25hbGUg
-YmVoaW5kIHRoZSBub2RlIG5hbWUuDQoNClRoYW5rcywNClZhbGVudGluYQ0KDQo+IA0KPiBPciBh
-bnl0aGluZyBtb3JlIHJlYXNvbmFibGUgdGhhbiBqdXN0IGJ1bmNoIG9mIGxldHRlcnMuDQo+IA0K
-Pj4gKyAgICAgICAgICAgICBjb21wYXRpYmxlID0gImZpeGVkLWNsb2NrIjsNCj4+ICsgICAgICAg
-ICAgICAgI2Nsb2NrLWNlbGxzID0gPDA+Ow0KPiANCj4gDQo+PiArICAgICB9Ow0KPj4gK307DQo+
-PiArDQo+PiArJmNjY19zdyB7DQo+PiArICAgICBjbG9ja3MgPSA8JnJlZmNsa19jY2M+LCA8JnJl
-ZmNsa19jY2M+LCA8JnJlZmNsa19jY2M+LCA8JnJlZmNsa19jY2M+LA0KPj4gKyAgICAgICAgICAg
-ICAgPCZyZWZjbGtfY2NjPiwgPCZyZWZjbGtfY2NjPjsNCj4+ICsgICAgIGNsb2NrLW5hbWVzID0g
-InBsbDBfcmVmMCIsICJwbGwwX3JlZjEiLCAicGxsMV9yZWYwIiwgInBsbDFfcmVmMSIsDQo+PiAr
-ICAgICAgICAgICAgICAgICAgICJkbGwwX3JlZiIsICJkbGwxX3JlZiI7DQo+PiArICAgICBzdGF0
-dXMgPSAib2theSI7DQo+PiArfTsNCj4+IGRpZmYgLS1naXQgYS9hcmNoL3Jpc2N2L2Jvb3QvZHRz
-L21pY3JvY2hpcC9tcGZzLWRpc2NvLWtpdC5kdHMgYi9hcmNoL3Jpc2N2L2Jvb3QvZHRzL21pY3Jv
-Y2hpcC9tcGZzLWRpc2NvLWtpdC5kdHMNCj4+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+PiBpbmRl
-eCAwMDAwMDAwMDAwMDAuLjc0MjM2OTQ3MGFiMA0KPj4gLS0tIC9kZXYvbnVsbA0KPj4gKysrIGIv
-YXJjaC9yaXNjdi9ib290L2R0cy9taWNyb2NoaXAvbXBmcy1kaXNjby1raXQuZHRzDQo+PiBAQCAt
-MCwwICsxLDE5MSBAQA0KPj4gKy8vIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMCBP
-UiBNSVQpDQo+PiArLyogQ29weXJpZ2h0IChjKSAyMDIwLTIwMjUgTWljcm9jaGlwIFRlY2hub2xv
-Z3kgSW5jICovDQo+PiArDQo+PiArL2R0cy12MS87DQo+PiArDQo+PiArI2luY2x1ZGUgIm1wZnMu
-ZHRzaSINCj4+ICsjaW5jbHVkZSAibXBmcy1kaXNjby1raXQtZmFicmljLmR0c2kiDQo+PiArI2lu
-Y2x1ZGUgPGR0LWJpbmRpbmdzL2dwaW8vZ3Bpby5oPg0KPj4gKyNpbmNsdWRlIDxkdC1iaW5kaW5n
-cy9sZWRzL2NvbW1vbi5oPg0KPj4gKw0KPj4gKy8gew0KPj4gKyAgICAgbW9kZWwgPSAiTWljcm9j
-aGlwIFBvbGFyRmlyZS1Tb0MgRGlzY292ZXJ5IEtpdCI7DQo+PiArICAgICBjb21wYXRpYmxlID0g
-Im1pY3JvY2hpcCxtcGZzLWRpc2NvLWtpdC1yZWZlcmVuY2UtcnRsLXYyNTA3IiwNCj4+ICsgICAg
-ICAgICAgICAgICAgICAibWljcm9jaGlwLG1wZnMtZGlzY28ta2l0IiwNCj4+ICsgICAgICAgICAg
-ICAgICAgICAibWljcm9jaGlwLG1wZnMiOw0KPj4gKw0KPj4gKyAgICAgYWxpYXNlcyB7DQo+PiAr
-ICAgICAgICAgICAgIGV0aGVybmV0MCA9ICZtYWMwOw0KPj4gKyAgICAgICAgICAgICBzZXJpYWw0
-ID0gJm1tdWFydDQ7DQo+PiArICAgICB9Ow0KPj4gKw0KPj4gKyAgICAgY2hvc2VuIHsNCj4+ICsg
-ICAgICAgICAgICAgc3Rkb3V0LXBhdGggPSAic2VyaWFsNDoxMTUyMDBuOCI7DQo+PiArICAgICB9
-Ow0KPj4gKw0KPj4gKyAgICAgbGVkcyB7DQo+PiArICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAi
-Z3Bpby1sZWRzIjsNCj4+ICsNCj4+ICsgICAgICAgICAgICAgbGVkLTEgew0KPj4gKyAgICAgICAg
-ICAgICAgICAgICAgIGdwaW9zID0gPCZncGlvMiAxNyBHUElPX0FDVElWRV9ISUdIPjsNCj4+ICsg
-ICAgICAgICAgICAgICAgICAgICBjb2xvciA9IDxMRURfQ09MT1JfSURfQU1CRVI+Ow0KPj4gKyAg
-ICAgICAgICAgICAgICAgICAgIGxhYmVsID0gImxlZDEiOw0KPj4gKyAgICAgICAgICAgICB9Ow0K
-Pj4gKw0KPj4gKyAgICAgICAgICAgICBsZWQtMiB7DQo+PiArICAgICAgICAgICAgICAgICAgICAg
-Z3Bpb3MgPSA8JmdwaW8yIDE4IEdQSU9fQUNUSVZFX0hJR0g+Ow0KPj4gKyAgICAgICAgICAgICAg
-ICAgICAgIGNvbG9yID0gPExFRF9DT0xPUl9JRF9SRUQ+Ow0KPj4gKyAgICAgICAgICAgICAgICAg
-ICAgIGxhYmVsID0gImxlZDIiOw0KPj4gKyAgICAgICAgICAgICB9Ow0KPj4gKw0KPj4gKyAgICAg
-ICAgICAgICBsZWQtMyB7DQo+PiArICAgICAgICAgICAgICAgICAgICAgZ3Bpb3MgPSA8JmdwaW8y
-IDE5IEdQSU9fQUNUSVZFX0hJR0g+Ow0KPj4gKyAgICAgICAgICAgICAgICAgICAgIGNvbG9yID0g
-PExFRF9DT0xPUl9JRF9BTUJFUj47DQo+PiArICAgICAgICAgICAgICAgICAgICAgbGFiZWwgPSAi
-bGVkMyI7DQo+PiArICAgICAgICAgICAgIH07DQo+PiArDQo+PiArICAgICAgICAgICAgIGxlZC00
-IHsNCj4+ICsgICAgICAgICAgICAgICAgICAgICBncGlvcyA9IDwmZ3BpbzIgMjAgR1BJT19BQ1RJ
-VkVfSElHSD47DQo+PiArICAgICAgICAgICAgICAgICAgICAgY29sb3IgPSA8TEVEX0NPTE9SX0lE
-X1JFRD47DQo+PiArICAgICAgICAgICAgICAgICAgICAgbGFiZWwgPSAibGVkNCI7DQo+PiArICAg
-ICAgICAgICAgIH07DQo+PiArDQo+PiArICAgICAgICAgICAgIGxlZC01IHsNCj4+ICsgICAgICAg
-ICAgICAgICAgICAgICBncGlvcyA9IDwmZ3BpbzIgMjEgR1BJT19BQ1RJVkVfSElHSD47DQo+PiAr
-ICAgICAgICAgICAgICAgICAgICAgY29sb3IgPSA8TEVEX0NPTE9SX0lEX0FNQkVSPjsNCj4+ICsg
-ICAgICAgICAgICAgICAgICAgICBsYWJlbCA9ICJsZWQ1IjsNCj4+ICsgICAgICAgICAgICAgfTsN
-Cj4+ICsNCj4+ICsgICAgICAgICAgICAgbGVkLTYgew0KPj4gKyAgICAgICAgICAgICAgICAgICAg
-IGdwaW9zID0gPCZncGlvMiAyMiBHUElPX0FDVElWRV9ISUdIPjsNCj4+ICsgICAgICAgICAgICAg
-ICAgICAgICBjb2xvciA9IDxMRURfQ09MT1JfSURfUkVEPjsNCj4+ICsgICAgICAgICAgICAgICAg
-ICAgICBsYWJlbCA9ICJsZWQ2IjsNCj4+ICsgICAgICAgICAgICAgfTsNCj4+ICsNCj4+ICsgICAg
-ICAgICAgICAgbGVkLTcgew0KPj4gKyAgICAgICAgICAgICAgICAgICAgIGdwaW9zID0gPCZncGlv
-MiAyMyBHUElPX0FDVElWRV9ISUdIPjsNCj4+ICsgICAgICAgICAgICAgICAgICAgICBjb2xvciA9
-IDxMRURfQ09MT1JfSURfQU1CRVI+Ow0KPj4gKyAgICAgICAgICAgICAgICAgICAgIGxhYmVsID0g
-ImxlZDciOw0KPj4gKyAgICAgICAgICAgICB9Ow0KPj4gKw0KPj4gKyAgICAgICAgICAgICBsZWQt
-OCB7DQo+PiArICAgICAgICAgICAgICAgICAgICAgZ3Bpb3MgPSA8JmdwaW8xIDkgR1BJT19BQ1RJ
-VkVfSElHSD47DQo+PiArICAgICAgICAgICAgICAgICAgICAgY29sb3IgPSA8TEVEX0NPTE9SX0lE
-X1JFRD47DQo+PiArICAgICAgICAgICAgICAgICAgICAgbGFiZWwgPSAibGVkOCI7DQo+PiArICAg
-ICAgICAgICAgIH07DQo+PiArICAgICB9Ow0KPj4gKw0KPj4gKyAgICAgZGRyY19jYWNoZV9sbzog
-bWVtb3J5QDgwMDAwMDAwIHsNCj4+ICsgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAibWVtb3J5
-IjsNCj4+ICsgICAgICAgICAgICAgcmVnID0gPDB4MCAweDgwMDAwMDAwIDB4MCAweDQwMDAwMDAw
-PjsNCj4+ICsgICAgICAgICAgICAgc3RhdHVzID0gIm9rYXkiOw0KPiANCj4gV2h5PyBEaWQgeW91
-IGRpc2FibGUgaXQgYW55d2hlcmU/DQo+IA0KPj4gKyAgICAgfTsNCj4+ICsNCj4+ICsgICAgIHJl
-c2VydmVkLW1lbW9yeSB7DQo+PiArICAgICAgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Ow0K
-Pj4gKyAgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwyPjsNCj4+ICsgICAgICAgICAgICAgcmFu
-Z2VzOw0KPj4gKw0KPj4gKyAgICAgICAgICAgICBoc3NfcGF5bG9hZDogcmVnaW9uQEJGQzAwMDAw
-IHsNCj4gDQo+IERvbid0IG1peCBjYXNlcy4gU2hvdWxkIGJlIGxvd2VyY2FzZSBoZXggZXZlcnl3
-aGVyZS4NCj4gDQo+IEJlc3QgcmVnYXJkcywNCj4gS3J6eXN6dG9mDQoNCg==
+On Sun, Aug 31, 2025 at 12:33:05PM +0200, Duje Mihanović wrote:
+> Marvell's 88PM886 PMIC has a so-called General Purpose ADC used for
+> monitoring various system voltages and temperatures. Add the relevant
+> register definitions to the MFD header and a driver for the ADC.
+
+...
+
+> +#define ADC_CHANNEL_RESISTANCE(index, lsb, name) { \
+
+Please, make those { on the separate lines
+
+{
+
+> +	.type = IIO_RESISTANCE, \
+> +	.indexed = 1, \
+> +	.channel = index, \
+> +	.address = lsb, \
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED), \
+> +	.datasheet_name = name, \
+> +}
+
+Also it's easier to read when \:s are TABbed to the same column.
+
+...
+
+> +static const struct regmap_config pm886_gpadc_regmap_config = {
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.max_register = PM886_REG_GPADC_VBAT_SLP + 1,
+
+What is this + 1 register? Why is it not defined / documented?
+
+> +};
+
+...
+
+> +static int gpadc_get_raw(struct iio_dev *iio, enum pm886_gpadc_channel chan)
+> +{
+> +	struct pm886_gpadc *gpadc = iio_priv(iio);
+> +	__be16 buf;
+> +	int ret;
+> +
+> +	ret = regmap_bulk_read(gpadc->map, pm886_gpadc_regs[chan], &buf, sizeof(buf));
+> +	return !ret ? be16_to_cpu(buf) >> 4 : ret;
+
+This is hard to read. Note, the more LoCs is fine as long as it helps (and
+actually a lot in this case) readability.
+
+> +}
+
+...
+
+> +static int
+> +gpadc_find_bias_current(struct iio_dev *iio, struct iio_chan_spec const *chan,
+> +			unsigned int *raw_uv, unsigned int *raw_ua)
+> +{
+> +	struct pm886_gpadc *gpadc = iio_priv(iio);
+> +	unsigned int gpadc_num = chan->channel - GPADC0_CHAN;
+> +	unsigned int reg = PM886_REG_GPADC_CONFIG(0xb + gpadc_num);
+> +	unsigned long lsb = chan->address;
+> +	int ret;
+> +
+> +	for (unsigned int i = 0; i < PM886_GPADC_BIAS_LEVELS; i++) {
+> +		ret = regmap_update_bits(gpadc->map, reg, GENMASK(3, 0), i);
+> +		if (ret)
+> +			return ret;
+
+Sleep needs to be explained.
+
+> +		fsleep(5000);
+
+5 * USEC_PER_MSEC
+
+> +		*raw_ua = PM886_GPADC_INDEX_TO_BIAS_UA(i);
+> +		*raw_uv = gpadc_get_raw(iio, chan->channel) * lsb;
+
+Can we use uA and uV suffixes?
+
+> +		/*
+> +		 * Vendor kernel errors out above 1.25V, but testing shows that
+> +		 * the resistance of the battery detection channel (GPADC2 on
+> +		 * coreprimevelte) reaches about 1.4Mohm when the battery is
+> +		 * removed, which can't be measured with such a low upper
+> +		 * limit. Therefore, to be able to detect the battery without
+> +		 * ugly externs as used in the vendor fuelgauge driver,
+> +		 * increase this limit a bit.
+> +		 */
+> +		if (WARN_ON(*raw_uv > 1500 * (MICRO / MILLI)))
+> +			return -EIO;
+> +
+> +		/*
+> +		 * Vendor kernel errors out under 300mV, but for the same
+> +		 * reason as above (except the channel hovers around 3.5kohm
+> +		 * with battery present) reduce this limit.
+> +		 */
+> +		if (*raw_uv < 200 * (MICRO / MILLI)) {
+> +			dev_dbg(&iio->dev, "bad bias for chan %d: %duA @ %duV\n", chan->channel,
+> +				*raw_ua, *raw_uv);
+> +			continue;
+> +		}
+> +
+> +		dev_dbg(&iio->dev, "good bias for chan %d: %duA @ %duV\n", chan->channel,
+> +			*raw_ua, *raw_uv);
+> +		return 0;
+> +	}
+> +
+> +	dev_err(&iio->dev, "failed to find good bias for chan %d\n", chan->channel);
+> +	return -EINVAL;
+> +}
+
+...
+
+> +static int
+> +gpadc_get_resistance_ohm(struct iio_dev *iio, struct iio_chan_spec const *chan)
+> +{
+> +	struct pm886_gpadc *gpadc = iio_priv(iio);
+> +	unsigned int raw_uv, raw_ua;
+> +	int ret;
+> +
+> +	ret = gpadc_set_bias(gpadc, chan->channel, true);
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = gpadc_find_bias_current(iio, chan, &raw_uv, &raw_ua);
+> +	if (ret)
+> +		goto err;
+> +
+> +	ret = gpadc_set_bias(gpadc, chan->channel, false);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return DIV_ROUND_CLOSEST(raw_uv, raw_ua);
+> +err:
+> +	gpadc_set_bias(gpadc, chan->channel, false);
+
+You do the same in the other branch and checking there for an error. Why this
+one is so special?
+
+> +	return ret;
+> +}
+
+...
+
+> +		dev_dbg(&iio->dev, "chan: %d, raw: %d\n", chan->channel, *val);
+
+How is this useful? The userspace gets the same value. Do you expect problems
+on its way to the user space?
+
+...
+
+> +	case IIO_CHAN_INFO_SCALE:
+> +		*val = lsb;
+> +		*val2 = (MICRO / MILLI);
+> +		return chan->type == IIO_VOLTAGE
+> +		       ? IIO_VAL_FRACTIONAL
+> +		       : IIO_VAL_INT;
+
+Make it one line, it is much easier to follow or even split to a regular 'if'.
+
+> +	case IIO_CHAN_INFO_OFFSET:
+> +		/* Raw value is 104 millikelvin/LSB, convert it to 104 millicelsius/LSB */
+> +		*val = ABSOLUTE_ZERO_MILLICELSIUS;
+> +		*val2 = lsb;
+> +		return IIO_VAL_FRACTIONAL;
+
+...
+
+> +static int pm886_gpadc_setup(struct regmap *map, bool enable)
+> +{
+> +	const u8 config[] = {
+> +		PM886_GPADC_CONFIG1_EN_ALL,
+> +		PM886_GPADC_CONFIG2_EN_ALL,
+> +		PM886_GPADC_GND_DET2_EN
+
+Leave trailing comma. This doesn't look like a terminator entry.
+
+> +	};
+> +	int ret;
+> +
+> +	/* Enable/disable the ADC block */
+> +	ret = regmap_assign_bits(map, PM886_REG_GPADC_CONFIG(0x6), BIT(0), enable);
+> +	if (ret)
+> +		return ret;
+
+> +	if (!enable)
+> +		return 0;
+> +
+> +	/* If enabling, enable all channels */
+> +	return regmap_bulk_write(map, PM886_REG_GPADC_CONFIG(0x1), config, ARRAY_SIZE(config));
+> +}
+
+...
+
+> +static int pm886_gpadc_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct pm886_chip *chip = dev_get_drvdata(dev->parent);
+> +	struct i2c_client *client = chip->client;
+> +	struct pm886_gpadc *gpadc;
+> +	struct i2c_client *page;
+> +	struct iio_dev *iio;
+> +	int ret;
+> +
+> +	iio = devm_iio_device_alloc(dev, sizeof(*gpadc));
+> +	if (!iio)
+> +		return -ENOMEM;
+> +
+> +	gpadc = iio_priv(iio);
+> +	dev_set_drvdata(dev, iio);
+> +
+> +	page = devm_i2c_new_dummy_device(dev, client->adapter,
+> +					 client->addr + PM886_PAGE_OFFSET_GPADC);
+> +	if (IS_ERR(page))
+> +		return dev_err_probe(dev, PTR_ERR(page), "Failed to initialize GPADC page\n");
+> +
+> +	gpadc->map = devm_regmap_init_i2c(page, &pm886_gpadc_regmap_config);
+> +	if (IS_ERR(gpadc->map))
+> +		return dev_err_probe(dev, PTR_ERR(gpadc->map),
+> +				     "Failed to initialize GPADC regmap\n");
+> +
+> +	iio->name = "88pm886-gpadc";
+
+> +	iio->dev.of_node = dev->parent->of_node;
+
+No, use device_set_node() with the respective parameters.
+
+But rather debug why firmware node (or OF in your case) is not propagated from
+the parent device.
+
+> +	iio->modes = INDIO_DIRECT_MODE;
+> +	iio->info = &pm886_gpadc_iio_info;
+> +	iio->channels = pm886_gpadc_channels;
+> +	iio->num_channels = ARRAY_SIZE(pm886_gpadc_channels);
+> +
+> +	pm_runtime_set_autosuspend_delay(dev, 50);
+> +	pm_runtime_use_autosuspend(dev);
+
+Hmm... Shouldn't this be better after enabling PM?
+
+> +	ret = devm_pm_runtime_enable(dev);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable runtime PM\n");
+> +
+> +	ret = devm_iio_device_register(dev, iio);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to register ADC\n");
+> +
+> +	return 0;
+> +}
+
+> +static int pm886_gpadc_runtime_resume(struct device *dev)
+> +{
+> +	struct iio_dev *iio = dev_get_drvdata(dev);
+> +	struct pm886_gpadc *gpadc = iio_priv(iio);
+> +
+> +	return pm886_gpadc_setup(gpadc->map, true);
+> +}
+> +
+> +static int pm886_gpadc_runtime_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *iio = dev_get_drvdata(dev);
+> +	struct pm886_gpadc *gpadc = iio_priv(iio);
+> +
+> +	return pm886_gpadc_setup(gpadc->map, false);
+> +}
+
+Okay, Now I see that the _setup() is better to be split to two functions with
+the proper naming, like _gpadc_hw_enable() and disable.
+
+...
+
+> +#define PM886_GPADC_CONFIG1_EN_ALL (PM886_GPADC_VSC_EN | \
+> +				    PM886_GPADC_VBAT_EN | \
+> +				    PM886_GPADC_GNDDET1_EN | \
+> +				    PM886_GPADC_VBUS_EN | \
+> +				    PM886_GPADC_VCHG_PWR_EN | \
+> +				    PM886_GPADC_VCF_OUT_EN)
+
+Better formatting is
+
+#define PM886_GPADC_CONFIG1_EN_ALL	\
+	(PM886_GPADC_VSC_EN |		\
+	 PM886_GPADC_VBAT_EN |		\
+	 PM886_GPADC_GNDDET1_EN |	\
+	 PM886_GPADC_VBUS_EN |		\
+	 PM886_GPADC_VCHG_PWR_EN |	\
+	 PM886_GPADC_VCF_OUT_EN)
+
+...
+
+> +#define PM886_GPADC_CONFIG2_EN_ALL (PM886_GPADC_TINT_EN | \
+> +				    PM886_GPADC_GPADC0_EN | \
+> +				    PM886_GPADC_GPADC1_EN | \
+> +				    PM886_GPADC_GPADC2_EN | \
+> +				    PM886_GPADC_GPADC3_EN | \
+> +				    PM886_GPADC_MIC_DET_EN)
+
+Ditto.
+
+...
+
+> +#define PM886_GPADC_INDEX_TO_BIAS_UA(i)	(1 + (i) * 5)
+
+_uA (yes, it's okay to use small 'u' for clarity).
+
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
 
