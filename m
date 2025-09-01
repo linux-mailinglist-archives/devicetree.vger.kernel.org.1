@@ -1,445 +1,282 @@
-Return-Path: <devicetree+bounces-211315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211317-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9628B3E6FB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:25:26 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63387B3E73A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:32:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4F067A6C0F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:23:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 371911A86798
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:31:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1FC33CE9E;
-	Mon,  1 Sep 2025 14:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C1CE343D67;
+	Mon,  1 Sep 2025 14:30:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CDUOWBYA"
+	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="J/CmX9W9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11021095.outbound.protection.outlook.com [40.107.130.95])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A57492F49EE;
-	Mon,  1 Sep 2025 14:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756736697; cv=none; b=DBmLxhRYnnIMPTwOj2WaGf4COwtYvLq5OerNk1KSStm9oMzhNfG71BN0OiC+/Mo8iLwIe7E0ssFJhev5mz6+xE9sk9nbnQFTYj64AlcByYNO5K5WvZjh23PLbIR5GtJHXRyD2YJA0vchx2lA0xNxL0CwZJeTrz+qoIuw9+1eWCg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756736697; c=relaxed/simple;
-	bh=M8fJZB18elUtJ0aWEJBsI1OZ1YzJQLmO5PeUR+HzsIE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=u7Pl8gFBPuP0hCbiIQbsEA+1sNZ8Sbm8D1uKdtAZGJ5YKjJTozz6yV7qIoTDdm/NB1qaNGerfbKxEkDV/yf95knGGWznx7tI0DDKxkH9c9ECbnUw5Z5QTMCR5S43mT1v/HrXSxB4OD552ve42g2lVToXDxhHL426bn8ZzoD0kk0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CDUOWBYA; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37196C4CEF9;
-	Mon,  1 Sep 2025 14:24:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756736697;
-	bh=M8fJZB18elUtJ0aWEJBsI1OZ1YzJQLmO5PeUR+HzsIE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=CDUOWBYAe6Rns1+UAHOF5uvQft0nWh5vStgnA3YAN1yV3fwZZt4uxOQz/oq2A9DxP
-	 wi16jeYjpwMyqbPvYB3tAzwHKAhlRSmXk9mgWu+BWKvt+89wdo4baSEmWVwEdOBAgY
-	 CgCO4fWx5Wexb79uFIwV+tpEE0gTAqULJ94yc9cg30e8S2SDrjvNNUSnKgFTqN/zJB
-	 ZsfLdkN4erBWnQkCqanZYK2msRp//ImiSaN6OJ2DOW8HcomFLQP5R1IeBEaPHTN0Tu
-	 lLXcL+PaI9XwTudfA5s0eOMOQHFGjbz0YMnFU6Q8+XnhBYnV+EF0Tm7iyW4CcIHi/w
-	 eg8AhTuu/koVg==
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-b0428b537e5so179054066b.3;
-        Mon, 01 Sep 2025 07:24:57 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUx0wQ1lksWg7VUmCa4DsWqWRXe1EwXiFOcGCRtGRvOzXa2hct4safLC8S8QNVGSS26wYjXMX5B37W7JOLO@vger.kernel.org, AJvYcCVAKXnuVm3uAVapqdlbMchpVG11SOjhrU37V82wJEb83ZVTua/CzuOlaGQi9Q5cUyWgbqTKGHhC2/m3kw==@vger.kernel.org, AJvYcCXpNivneiATjvNQD4abU2SjMmp9cEUArUX2wNts8AOLaIuEuh1ERJvNz/0K8wvV7Uvz/mLpvTbAsqq0@vger.kernel.org
-X-Gm-Message-State: AOJu0YwiFKKq9HjZp0jFpMRDevzf5DFQyLyR9bC8U0XiVWpPdW4gwQ+p
-	NviMP2MNQLF0YdcGOmkzpmRRPCu2jmHrVrzG2T+eGqSVgNF7zet/lzYoz2bDU77KSgrt+7u5/pw
-	ubPiTqExVTsB5u0dauG2iZ+vOVCqUmOs=
-X-Google-Smtp-Source: AGHT+IHVpqU4+ujyGOutKEp4h9mv3/b4cS5iOmG7yJHLu/13swFAoYpCjbFyooohRiAKA12+JGJbuVS7Sm3PZtgF8yQ=
-X-Received: by 2002:a17:906:aad6:b0:b04:2160:f61f with SMTP id
- a640c23a62f3a-b04216100ecmr371386266b.37.1756736695635; Mon, 01 Sep 2025
- 07:24:55 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5819320468D;
+	Mon,  1 Sep 2025 14:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.95
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756737016; cv=fail; b=YmsTcFJsNsbYWW9IR0SjWWBigN+W6v5K+OwzkIaiL+CLWNpxQwzCvCbO66HEn2zGOQCUHOSjmngY08gVLr/QTjg9rwHP7pjiiBuCgi3MwqcxMDYWnYdDgcwRoltpgzORKGY/7I7zvYBFomVpiijV8QeoSCWUWF3HHKSM5z9/a6I=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756737016; c=relaxed/simple;
+	bh=DfMT6nxC9RiwpyPZqCduv/9+lpjAtSXBmHzUcBg26SY=;
+	h=From:To:CC:Subject:Date:Message-ID:Content-Type:MIME-Version:
+	 References; b=nAHFC67tsxSiwsuPC+uOKJxoO/KFrENnOHatTNbgfB7JN/n3KEOuEzRpnpOsH7svUbHp730G44Pmfae1Uu3I/BJLwMNJYLqtu1Xe4EE65y/VEB5iSEnnQopt9W2AvceZBD+xXYLz1q1TwwLzLAlJ7lKvBelDKzJ26C1EevssJbE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=J/CmX9W9; arc=fail smtp.client-ip=40.107.130.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QHreXeWvXfRKZfUA3rTNEMtXQQMejLmFYuzO7+tvd+dTdNJbGXuM8nXSK931NOuYb+/r2/8gPK+ZUxbe/inKK58Dtz/cgT3pwYnGVpA3ZlNWlE4aXTDZLP/5Dtlzb1/JNY8jZG5kINZ/U/P3BiW0gBOkYKV1Q6rqS+ltniSyyJK/+H3I7NK6emMqnyfw3rUzrddBZigAO1o2d9lCidUpZ+09x6DD3CqVspLc/FU7c4EpOW9Hqt3bSMktQ6Hn4cLLBMY9YY2KuUtAkkh4r3Y+jpq3pDpm24j1dtpoF6cIvUxVgp3nQUpCnaJ5K7Xr2aLcTdfR/fXK4KaJPfX1EDuv0g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5BBnHM2BdxqnQPTrxrymFATPU7tr1ZKtwBHTZXRXJrw=;
+ b=bEcgBrvYi9RaBM90H4ywFRZ0g9ppfVTzB3mooiWSrsQknO3XhRmYrUYQVCFxN0RryWjFCfWNrRkc4nrptTRD9rNo1nLiO769idU5mRAZXsqXtKgO0YSIYKD1TUXD+BUGwfcVX88KCbdRQalf0MMMp/YvRhQhOLheZOV83BWdXr4WMvCg9I9E89B+jHavoW9dSK0Oyf/niCiL4jCqa4GA2f1VvExO0w6XH16rTbU3ZrSQKlLpwlGBasm0wB7th0ZsmCeHpWQF7ryCG3vVOFK6WFU5yV3xAGCIk0eg+VVgrByo8xukcqbdZ2WjKc6lLSz4RS9bH42/2lDCy/X/zdpfNw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=lists.freedesktop.org
+ smtp.mailfrom=topic.nl; dmarc=pass (p=quarantine sp=quarantine pct=100)
+ action=none header.from=topic.nl; dkim=none (message not signed); arc=none
+ (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5BBnHM2BdxqnQPTrxrymFATPU7tr1ZKtwBHTZXRXJrw=;
+ b=J/CmX9W9cBZqYwbCM1gIKlmd5rz2MU4rmLt/q3RsTV1KvK8cfYsPW4GjseExsbf+n08rLAovSZ2ixVWhw3PUfJOChIJ3EGXmNbRpehrVeqkwq54UGAvV85g2cDwyR/wZB5ittCZ5xv94Ya2QvSsEwKoKBQHjLF/JYRqFaWX+zbT6WsFTM1JolTO1dFjJClmY6l6seXFfDyrS3zd726vDRSoRnrUojCabIjOrR4sRG6YG5aghH6frg3a4UfiIho9MmgxhV+8Ba5rkf/QB5iSx2qXp/lZRX6jiHoC32Wfj3zd8q2WIWd+7M4j7qTS666QolYCb/TWu7lY/h6kHju5oyQ==
+Received: from DUZPR01CA0086.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:46a::13) by PAXPR04MB8302.eurprd04.prod.outlook.com
+ (2603:10a6:102:1ca::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.15; Mon, 1 Sep
+ 2025 14:30:09 +0000
+Received: from DB1PEPF000509ED.eurprd03.prod.outlook.com
+ (2603:10a6:10:46a:cafe::c0) by DUZPR01CA0086.outlook.office365.com
+ (2603:10a6:10:46a::13) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.26 via Frontend Transport; Mon,
+ 1 Sep 2025 14:30:11 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topic.nl; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
+ 20.93.157.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.93.157.195; helo=westeu11-emailsignatures-cloud.codetwo.com;
+ pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ DB1PEPF000509ED.mail.protection.outlook.com (10.167.242.71) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9073.11 via Frontend Transport; Mon, 1 Sep 2025 14:30:08 +0000
+Received: from OSPPR02CU001.outbound.protection.outlook.com (40.93.81.78) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Mon, 01 Sep 2025 14:30:07 +0000
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by PA4PR04MB7806.eurprd04.prod.outlook.com (2603:10a6:102:c9::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.15; Mon, 1 Sep
+ 2025 14:30:04 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%7]) with mapi id 15.20.9094.011; Mon, 1 Sep 2025
+ 14:30:04 +0000
+From: Mike Looijmans <mike.looijmans@topic.nl>
+To: dri-devel@lists.freedesktop.org
+CC: Mike Looijmans <mike.looijmans@topic.nl>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Airlie <airlied@gmail.com>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Rob Herring <robh@kernel.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Simona Vetter <simona@ffwll.ch>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v4 0/2] drm: bridge: Add TI tmds181 and sn65dp159 driver
+Date: Mon, 1 Sep 2025 16:29:00 +0200
+Message-ID: <20250901142958.843678-1-mike.looijmans@topic.nl>
+X-Mailer: git-send-email 2.43.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: AM8P251CA0009.EURP251.PROD.OUTLOOK.COM
+ (2603:10a6:20b:21b::14) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250901133804.38433-1-ziyao@disroot.org> <20250901133804.38433-3-ziyao@disroot.org>
-In-Reply-To: <20250901133804.38433-3-ziyao@disroot.org>
-From: Huacai Chen <chenhuacai@kernel.org>
-Date: Mon, 1 Sep 2025 22:24:49 +0800
-X-Gmail-Original-Message-ID: <CAAhV-H5GixGbrAaJS+hch-LAFt+noCJXHhQD0f7_7BjNfiOncQ@mail.gmail.com>
-X-Gm-Features: Ac12FXz8OpLsu9pH_SGFdYvgBRYpYx6xSKmtG_dB8TOlN4Rt3h8nAHUJHowWJKU
-Message-ID: <CAAhV-H5GixGbrAaJS+hch-LAFt+noCJXHhQD0f7_7BjNfiOncQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] gpio: loongson-64bit: Add support for Loongson
- 2K0300 SoC
-To: Yao Zi <ziyao@disroot.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>, Linus Walleij <linus.walleij@linaro.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	WANG Xuerui <kernel@xen0n.name>, Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>, 
-	Kexy Biscuit <kexybiscuit@aosc.io>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-TrafficTypeDiagnostic:
+	AM8PR04MB7779:EE_|PA4PR04MB7806:EE_|DB1PEPF000509ED:EE_|PAXPR04MB8302:EE_
+X-MS-Office365-Filtering-Correlation-Id: de6c9093-10c1-4b01-39e7-08dde9640d25
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|1800799024|366016|52116014|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?us-ascii?Q?09T+9B8y+ojBPywdA58bkGP48TwqgQHEOdh5gI1IwwysU5LHXO921PuCRbS+?=
+ =?us-ascii?Q?lc9J4CPWiil5oxlQLwmFaLoXl2+UxENBIt6ErFFYwjPq33QWMjjfm/G0d+c+?=
+ =?us-ascii?Q?TReyXNxtUkykMBT/Kf9VxfDgDK3/4tKxe24gm8hoz5L7JZLfhIjHnhzDYGB9?=
+ =?us-ascii?Q?Pe12qa25m5LMWr0LraQJCfqdhO3Fq+LFzV0SG/PPjkwOShxsAkRk4qlWTSsD?=
+ =?us-ascii?Q?kReloZBlFKWNLCzdczWKXskJPkzmIlYoXJ4DRaqGElh0/PU1jaEyo4MyJxth?=
+ =?us-ascii?Q?UOLfLvcz3R8a0a7qrwPG547EdMiOO0PDfsWNU7jHl2VNW+ARhW4zZQUh0RNO?=
+ =?us-ascii?Q?OAEltpMnrgB3G1E3duyVfWqCVlJitbpwoV+ZRtrvFEwKCEfeCCY4H2sOu6s5?=
+ =?us-ascii?Q?Z4vn2ehOyjh0V0Nz6mLObcaRoCKM/vWont0QKS5IDX8MRXQcOUGC9AftQpyc?=
+ =?us-ascii?Q?N9iEbLiH+Q64yREe+XipxP6PBdcM68NQjJutIwAXMp+2GkaS8wx7aC0fSV+0?=
+ =?us-ascii?Q?PyfdjsUlpRTfVCquuCUyv+ydpeoXwfJyF1qqb22m2ZrSZ4ckLd0ANXmE8fqG?=
+ =?us-ascii?Q?f5nCSfBAMc90PfxJvLntKZT5AdCESf1mJJbUsMOk+Rd4HnKnQ5xUp2qJdX4/?=
+ =?us-ascii?Q?4jL63GzyWYIA0gTyXcTghVpQ/U2OviXcvQupIWNHSUYvfHGNNVkYpWBtF9lZ?=
+ =?us-ascii?Q?Dy9adoU1vPmcPIevxlaQU2SHrsSmDf90ADWRPCrc04i5PKYF2yY7ChrtrNVg?=
+ =?us-ascii?Q?xzCyF0F6HMv7VoBNe+zVu/PHJLtfYEoNaM5VIOb3KqJdhOeapYIC3SfGS6QI?=
+ =?us-ascii?Q?Q2uYUewHnvWTsQ1P6HAHfUkLZKHhoUlxomB5C09MRWReANiGYWAFap3H1f7r?=
+ =?us-ascii?Q?/2v7Ynd2Acz6j4rcJDeWdBiTYp9HHz9vJdluINm+T7PHlQSgEw58AVqUy5xr?=
+ =?us-ascii?Q?KsSbHVmVu5+iopmkN4e+9YO3VLVlQXgG09G3qUxTOzIsZSC59C3Kyln8QAyM?=
+ =?us-ascii?Q?QDcokn23ayli+v0cVAvNSNXYiJFQ7IlWryVv+uQ3EYa8q5wyGn/Xm2TGD01E?=
+ =?us-ascii?Q?JuKQUgp3nlO5x9Ck7N6L63bsD1tAJRFOzt94R0o2T4OT7cBRT7nUOh+5Tc4t?=
+ =?us-ascii?Q?J7NZVEVjvNe3ufX6blWGknVOERUidFYRVIYhKWIOvZCdjXpyk5QKSjpuHlrM?=
+ =?us-ascii?Q?ekcQWXLiia7zSdCACJCfLW2ydTpPDjL71bBqar7mNulIcIWw7QdeD96pVdLq?=
+ =?us-ascii?Q?d5CMd/UxPGO9X8SIYk07knAxRTRa4XBV/g45Yu780cnijnQVqDHig2imK8VQ?=
+ =?us-ascii?Q?zLk5tAK2NjYHPlcd4gbeGoKfSePNNTDvCVEcZQgV7I8dkdTYuANgQIRdnptp?=
+ =?us-ascii?Q?OACHe6ct5vdCB4DKTQ3LKy5Zq+8zIZ7fnmqoIQywseiaxe3uJk3QXaK0aUOu?=
+ =?us-ascii?Q?jEY7vcqPgCrP6GUxGrDroBVew/RrUvcoFlQKiHa30PkRCGdJYZwkVg=3D=3D?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(52116014)(7416014)(376014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7806
+X-CodeTwo-MessageID: 3df33c9c-ef57-4404-a30a-f6360855418b.20250901143007@westeu11-emailsignatures-cloud.codetwo.com
+References:
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.d6331613-729b-4f92-9c2d-d2abe6df38d5@emailsignatures365.codetwo.com>
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ DB1PEPF000509ED.eurprd03.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	97fbac1e-6c81-4175-a11c-08dde9640ab2
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|14060799003|1800799024|82310400026|35042699022|376014|7416014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?t4nWL0ITFsmo3Z4ABFq67kNL/ktxGVJJfB/L9AQ8ri8d1kpzOusM7ab0jtj8?=
+ =?us-ascii?Q?coyOtTUoPeKXpBD5LVviW9WsuNtwondmqUH439gy71wwVg8CAP4mS8gqTFKi?=
+ =?us-ascii?Q?FwEpyEjGgTXsnd/72sDzhvV+a0g0UkbgrDulbZ77cJEsy7IwnllzQ70xJ4Ej?=
+ =?us-ascii?Q?97u7B+AlYWsam5+ODf4OcvzFzNwNmd6My3C0ta1OhY33oOGJSedjc5lf3v2N?=
+ =?us-ascii?Q?Rt2ZtqsGRQbXNwR8kShNTWlzrMNifJGObZocNVJZ2pWGbTHDMcUPmORD2Zbd?=
+ =?us-ascii?Q?CxnxrLAPDg+ROfvAcMwlMSLVY5+dQxkrPdnk0CL/62yaXTtoGsO7BcwEtFgR?=
+ =?us-ascii?Q?480cf/OQyc3uJNR6TeFupz3gEJu6c3aKBABVvjt79jeYeVKf27uqUSaT1Gu0?=
+ =?us-ascii?Q?s5dn6A9mW/SwfGLBZZpP/5g5PSyDKjn55yBA0UeXosNNfYrZ17C6jbrmGimw?=
+ =?us-ascii?Q?zuTf1yD8wYvcSOLG1PzKEqFi93mzFEnYnKWunC/FEsIqwI4q1MP6ug+UlO6E?=
+ =?us-ascii?Q?1ommUS1QbKIJ200GWIpm1CsSRD7fA4bMNmQT51eYdGninO6Pehv08uPccagJ?=
+ =?us-ascii?Q?K3gX6JyotwkZlOIEbCStFaujYS2DmFOpedcymSvQQXLzdN7QVpGWE0TkMSln?=
+ =?us-ascii?Q?I4+LVuZM7fuU8pPKrG1YiT+pWlqj8n2J3CKqZB91Qe+dwuhuTqTdlXNQ1BeE?=
+ =?us-ascii?Q?6xr/5aapJqcLll22huDsLvf3UQ5Rk8hoIvk4WwTOa48CNFXJaOzg+YwbgQOE?=
+ =?us-ascii?Q?NhOrK53IJaogSZ5yLihiERIEOi4rNsAbmL9IAIZuWZdFcAoC6dJs2Z8GtlJi?=
+ =?us-ascii?Q?yJ/ku8ttG6Z0EC8zmI7/psbnVHQSwny3qOjIDGIIINpNZLkQgdfEx/Zg4T7S?=
+ =?us-ascii?Q?47ip/tSIVk1L41LD9IDGRnmryCE4Onlh6VpY8EIcT4miejudXtKZSwqEAoLy?=
+ =?us-ascii?Q?vYcHOrnf5sdkUgm1ihlDkAqch+MQrwk/h1MjV/rt3+ROTKFM0MY/z3wXOP65?=
+ =?us-ascii?Q?D6KcJcoyQXRkvHAOd0jX9W7JOjUWfphDpsgg+cyiyW+cEiH8b8oudx1LN2Zn?=
+ =?us-ascii?Q?HsD+Tbi8dkH2UOMuwv47QIjCknipRQ2LXEza8tD2CbbZCnjqhC4Xlhf//D34?=
+ =?us-ascii?Q?DdL5lTP+CYB6s6UznpUojJWGrpX5AYCQtfrIrJCfztS3PA9tTtAWJVeYg+9k?=
+ =?us-ascii?Q?AdultWYrlAZFi/lvFRhWSCnodheP8g0a8uH6ebSc5+kMPn2FeYmvbAUOzn34?=
+ =?us-ascii?Q?hw4jWxHplaCTNEb01plWZONkPQXMfcwU/T/l9ajV6HpOIcaqBoAMQjdVPgc/?=
+ =?us-ascii?Q?niyrHfmZtImcGTRr8exVkshIRGiI45+DuIb8hl6x87pT5Yocd3km1IieFsUM?=
+ =?us-ascii?Q?8MHu6k0Rm6DMVZGzDEAdTVMhsiM+cKzlegPRe8n3vb06frJCweqT46jcaaUy?=
+ =?us-ascii?Q?kZkwrCKDpog9aIrf4FWNrwD5ZVKilta0?=
+X-Forefront-Antispam-Report:
+	CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(36860700013)(14060799003)(1800799024)(82310400026)(35042699022)(376014)(7416014);DIR:OUT;SFP:1102;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Sep 2025 14:30:08.0306
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: de6c9093-10c1-4b01-39e7-08dde9640d25
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	DB1PEPF000509ED.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8302
 
-Hi, Yao,
 
-On Mon, Sep 1, 2025 at 9:38=E2=80=AFPM Yao Zi <ziyao@disroot.org> wrote:
->
-> This controller's input and output logic is similar to previous
-> generations of SoCs. Additionally, it's capable of interrupt masking,
-> and could be configured to detect levels and edges, and is supplied with
-> a distinct reset signal.
->
-> The interrupt functionality is implemented through an irqchip, whose
-> operations are written with previous generation SoCs in mind and could
-> be reused. Since all Loongson SoCs with similar interrupt capability
-> (2K1500, 2K2000) support byte-control mode, these operations are for
-> byte-control mode only for simplicity.
-Modify the name style the same as in Patch-1.
+In the past I've seen (and contributed to) hacks that model the chips as
+phy or even (really!) clock drivers. Since the chip usually sits between
+a signal that is (almost) HDMI and a HDMI connector, I decided to stop
+lying and write it as a DRM bridge driver.
 
->
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  drivers/gpio/Kconfig               |   1 +
->  drivers/gpio/gpio-loongson-64bit.c | 191 +++++++++++++++++++++++++++--
->  2 files changed, 185 insertions(+), 7 deletions(-)
->
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index a437fe652dbc..c55173643eb4 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -437,6 +437,7 @@ config GPIO_LOONGSON_64BIT
->         depends on LOONGARCH || COMPILE_TEST
->         depends on OF_GPIO
->         select GPIO_GENERIC
-> +       select GPIOLIB_IRQCHIP
->         help
->           Say yes here to support the GPIO functionality of a number of
->           Loongson series of chips. The Loongson GPIO controller supports
-> diff --git a/drivers/gpio/gpio-loongson-64bit.c b/drivers/gpio/gpio-loong=
-son-64bit.c
-> index 482e64ba9b42..7fb712e101ce 100644
-> --- a/drivers/gpio/gpio-loongson-64bit.c
-> +++ b/drivers/gpio/gpio-loongson-64bit.c
-> @@ -7,6 +7,8 @@
->
->  #include <linux/kernel.h>
->  #include <linux/init.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdesc.h>
->  #include <linux/module.h>
->  #include <linux/spinlock.h>
->  #include <linux/err.h>
-> @@ -14,6 +16,7 @@
->  #include <linux/gpio/generic.h>
->  #include <linux/platform_device.h>
->  #include <linux/bitops.h>
-> +#include <linux/reset.h>
->  #include <asm/types.h>
->
->  enum loongson_gpio_mode {
-> @@ -28,6 +31,14 @@ struct loongson_gpio_chip_data {
->         unsigned int            out_offset;
->         unsigned int            in_offset;
->         unsigned int            inten_offset;
-> +       unsigned int            intpol_offset;
-> +       unsigned int            intedge_offset;
-> +       unsigned int            intclr_offset;
-> +       unsigned int            intsts_offset;
-> +       unsigned int            intdual_offset;
-> +       unsigned int            intr_num;
-> +       irq_flow_handler_t      irq_handler;
-> +       const struct irq_chip   *girqchip;
->  };
->
->  struct loongson_gpio_chip {
-> @@ -137,7 +148,140 @@ static int loongson_gpio_to_irq(struct gpio_chip *c=
-hip, unsigned int offset)
->         return platform_get_irq(pdev, offset);
->  }
->
-> -static int loongson_gpio_init(struct device *dev, struct loongson_gpio_c=
-hip *lgpio,
-> +static void loongson_gpio_irq_ack(struct irq_data *data)
-> +{
-> +       struct gpio_chip *chip =3D irq_data_get_irq_chip_data(data);
-> +       struct loongson_gpio_chip *lgpio =3D to_loongson_gpio_chip(chip);
-> +       irq_hw_number_t hwirq =3D irqd_to_hwirq(data);
-> +
-> +       writeb(0x1, lgpio->reg_base + lgpio->chip_data->intclr_offset + h=
-wirq);
-> +}
-> +
-> +static void loongson_gpio_irq_mask(struct irq_data *data)
-> +{
-> +       struct gpio_chip *chip =3D irq_data_get_irq_chip_data(data);
-> +       struct loongson_gpio_chip *lgpio =3D to_loongson_gpio_chip(chip);
-> +       irq_hw_number_t hwirq =3D irqd_to_hwirq(data);
-> +
-> +       writeb(0x0, lgpio->reg_base + lgpio->chip_data->inten_offset + hw=
-irq);
-> +}
-> +
-> +static void loongson_gpio_irq_unmask(struct irq_data *data)
-> +{
-> +       struct gpio_chip *chip =3D irq_data_get_irq_chip_data(data);
-> +       struct loongson_gpio_chip *lgpio =3D to_loongson_gpio_chip(chip);
-> +       irq_hw_number_t hwirq =3D irqd_to_hwirq(data);
-> +
-> +       writeb(0x1, lgpio->reg_base + lgpio->chip_data->inten_offset + hw=
-irq);
-> +}
-> +
-> +static int loongson_gpio_irq_set_type(struct irq_data *data, unsigned in=
-t type)
-> +{
-> +       struct gpio_chip *chip =3D irq_data_get_irq_chip_data(data);
-> +       struct loongson_gpio_chip *lgpio =3D to_loongson_gpio_chip(chip);
-> +       irq_hw_number_t hwirq =3D irqd_to_hwirq(data);
-> +       u8 pol =3D 0, edge =3D 0, dual =3D 0;
-> +
-> +       if ((type & IRQ_TYPE_SENSE_MASK) =3D=3D IRQ_TYPE_EDGE_BOTH) {
-> +               edge =3D 1;
-> +               dual =3D 1;
-> +               irq_set_handler_locked(data, handle_edge_irq);
-> +       } else {
-> +               switch (type) {
-> +               case IRQ_TYPE_LEVEL_HIGH:
-> +                       pol =3D 1;
-> +                       fallthrough;
-> +               case IRQ_TYPE_LEVEL_LOW:
-> +                       irq_set_handler_locked(data, handle_level_irq);
-> +                       break;
-> +
-> +               case IRQ_TYPE_EDGE_RISING:
-> +                       pol =3D 1;
-> +                       fallthrough;
-> +               case IRQ_TYPE_EDGE_FALLING:
-> +                       edge =3D 1;
-> +                       irq_set_handler_locked(data, handle_edge_irq);
-> +                       break;
-> +
-> +               default:
-> +                       return -EINVAL;
-> +               };
-> +       }
-> +
-> +       writeb(pol, lgpio->reg_base + lgpio->chip_data->intpol_offset + h=
-wirq);
-> +       writeb(edge, lgpio->reg_base + lgpio->chip_data->intedge_offset +=
- hwirq);
-> +       writeb(dual, lgpio->reg_base + lgpio->chip_data->intdual_offset +=
- hwirq);
-> +
-> +       return 0;
-> +}
-> +
-> +static void loongson_gpio_ls2k0300_irq_handler(struct irq_desc *desc)
-> +{
-> +       struct loongson_gpio_chip *lgpio =3D irq_desc_get_handler_data(de=
-sc);
-> +       struct irq_chip *girqchip =3D irq_desc_get_chip(desc);
-> +       int i;
-> +
-> +       chained_irq_enter(girqchip, desc);
-> +
-> +       for (i =3D 0; i < lgpio->chip.gc.ngpio; i++) {
-> +               /*
-> +                * For the GPIO controller of 2K0300, interrupts status b=
-its
-s/2K0300/LS2K0300/g.
+Our experience with these chips is that they work best under manual control
+enabling them only once the signal is active. At low resolutions (under 4k)=
+,
+the optimal setting is usually to only use redriver mode. Setting the
+termination to 150-300 Ohms improves EMC performance at lower resolutions,
+hence the driver enables 75-150 Ohms for HDMI2 modes and defaults to
+150-300 Ohm termination for other modes.
 
-> +                * may be wrongly set even if the corresponding interrupt=
- is
-> +                * disabled. Thus interrupt enable bits are checked along=
- with
-> +                * status bits to detect interrupts reliably.
-> +                */
-> +               if (readb(lgpio->reg_base + lgpio->chip_data->intsts_offs=
-et + i) &&
-> +                   readb(lgpio->reg_base + lgpio->chip_data->inten_offse=
-t + i))
-> +                       generic_handle_domain_irq(lgpio->chip.gc.irq.doma=
-in, i);
-> +       }
-> +
-> +       chained_irq_exit(girqchip, desc);
-> +}
-> +
-> +static const struct irq_chip loongson_gpio_ls2k0300_irqchip =3D {
-> +       .irq_ack        =3D loongson_gpio_irq_ack,
-> +       .irq_mask       =3D loongson_gpio_irq_mask,
-> +       .irq_unmask     =3D loongson_gpio_irq_unmask,
-> +       .irq_set_type   =3D loongson_gpio_irq_set_type,
-> +       .flags          =3D IRQCHIP_IMMUTABLE | IRQCHIP_SKIP_SET_WAKE,
-> +       GPIOCHIP_IRQ_RESOURCE_HELPERS,
-> +};
-> +
-> +static int loongson_gpio_init_irqchip(struct platform_device *pdev,
-> +                                     struct loongson_gpio_chip *lgpio)
-> +{
-> +       const struct loongson_gpio_chip_data *data =3D lgpio->chip_data;
-> +       struct gpio_chip *chip =3D &lgpio->chip.gc;
-> +       int i;
-> +
-> +       chip->irq.default_type =3D IRQ_TYPE_NONE;
-> +       chip->irq.handler =3D handle_bad_irq;
-> +       chip->irq.parent_handler =3D data->irq_handler;
-> +       chip->irq.parent_handler_data =3D lgpio;
-> +       gpio_irq_chip_set_chip(&chip->irq, data->girqchip);
-> +
-> +       chip->irq.num_parents =3D data->intr_num;
-> +       chip->irq.parents =3D devm_kcalloc(&pdev->dev, data->intr_num,
-> +                                        sizeof(*chip->irq.parents), GFP_=
-KERNEL);
-> +       if (!chip->parent)
-> +               return -ENOMEM;
-> +
-> +       for (i =3D 0; i < data->intr_num; i++) {
-> +               chip->irq.parents[i] =3D platform_get_irq(pdev, i);
-> +               if (chip->irq.parents[i] < 0)
-> +                       return dev_err_probe(&pdev->dev, chip->irq.parent=
-s[i],
-> +                                            "failed to get IRQ %d\n", i)=
-;
-> +       }
-> +
-> +       for (i =3D 0; i < data->intr_num; i++) {
-> +               writeb(0x0, lgpio->reg_base + data->inten_offset + i);
-> +               writeb(0x1, lgpio->reg_base + data->intclr_offset + i);
-> +       }
-> +
-> +       return 0;
-> +}
-> +
-> +static int loongson_gpio_init(struct platform_device *pdev, struct loong=
-son_gpio_chip *lgpio,
->                               void __iomem *reg_base)
->  {
->         struct gpio_generic_chip_config config;
-> @@ -146,7 +290,7 @@ static int loongson_gpio_init(struct device *dev, str=
-uct loongson_gpio_chip *lgp
->         lgpio->reg_base =3D reg_base;
->         if (lgpio->chip_data->mode =3D=3D BIT_CTRL_MODE) {
->                 config =3D (typeof(config)){
-> -                       .dev =3D dev,
-> +                       .dev =3D &pdev->dev,
->                         .sz =3D 8,
->                         .dat =3D lgpio->reg_base + lgpio->chip_data->in_o=
-ffset,
->                         .set =3D lgpio->reg_base + lgpio->chip_data->out_=
-offset,
-> @@ -155,7 +299,7 @@ static int loongson_gpio_init(struct device *dev, str=
-uct loongson_gpio_chip *lgp
->
->                 ret =3D gpio_generic_chip_init(&lgpio->chip, &config);
->                 if (ret) {
-> -                       dev_err(dev, "unable to init generic GPIO\n");
-> +                       dev_err(&pdev->dev, "unable to init generic GPIO\=
-n");
->                         return ret;
->                 }
->         } else {
-> @@ -164,16 +308,22 @@ static int loongson_gpio_init(struct device *dev, s=
-truct loongson_gpio_chip *lgp
->                 lgpio->chip.gc.get_direction =3D loongson_gpio_get_direct=
-ion;
->                 lgpio->chip.gc.direction_output =3D loongson_gpio_directi=
-on_output;
->                 lgpio->chip.gc.set =3D loongson_gpio_set;
-> -               lgpio->chip.gc.parent =3D dev;
-> +               lgpio->chip.gc.parent =3D &pdev->dev;
->                 spin_lock_init(&lgpio->lock);
->         }
->
->         lgpio->chip.gc.label =3D lgpio->chip_data->label;
->         lgpio->chip.gc.can_sleep =3D false;
-> -       if (lgpio->chip_data->inten_offset)
-> +       if (lgpio->chip_data->girqchip) {
-> +               ret =3D loongson_gpio_init_irqchip(pdev, lgpio);
-> +               if (ret)
-> +                       return dev_err_probe(&pdev->dev, ret,
-> +                                            "failed to initialize irqchi=
-p\n");
-One line is enough.
 
-> +       } else if (lgpio->chip_data->inten_offset) {
->                 lgpio->chip.gc.to_irq =3D loongson_gpio_to_irq;
-> +       }
->
-> -       return devm_gpiochip_add_data(dev, &lgpio->chip.gc, lgpio);
-> +       return devm_gpiochip_add_data(&pdev->dev, &lgpio->chip.gc, lgpio)=
-;
->  }
->
->  static int loongson_gpio_probe(struct platform_device *pdev)
-> @@ -181,6 +331,7 @@ static int loongson_gpio_probe(struct platform_device=
- *pdev)
->         void __iomem *reg_base;
->         struct loongson_gpio_chip *lgpio;
->         struct device *dev =3D &pdev->dev;
-> +       struct reset_control *rst;
->
->         lgpio =3D devm_kzalloc(dev, sizeof(*lgpio), GFP_KERNEL);
->         if (!lgpio)
-> @@ -192,7 +343,12 @@ static int loongson_gpio_probe(struct platform_devic=
-e *pdev)
->         if (IS_ERR(reg_base))
->                 return PTR_ERR(reg_base);
->
-> -       return loongson_gpio_init(dev, lgpio, reg_base);
-> +       rst =3D devm_reset_control_get_optional_exclusive_deasserted(&pde=
-v->dev, NULL);
-> +       if (IS_ERR(rst))
-> +               return dev_err_probe(&pdev->dev, PTR_ERR(rst),
-> +                                    "failed to get reset control\n");
-One line is enough.
+Changes in v4:
+Use fallback compatible
+dev_err_probe, this_module, of_match_ptr
+Use fallback compatible in driver
+Add vcc-supply and vdd-supply in driver
 
-With above changes,
-Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+Changes in v3:
+Fix duplicate links
+Add vcc-supply and vdd-supply
+Fix missing type for ti,slew-rate
+Lower-case hex values and use defines for EYESCAN registers
+Remove equalizer code (unlikely to be used)
+Remove attributes (no longer useful, undocumented)
+Fix build for 6.17 kernel
+Use devm_drm_bridge_alloc
+Sort includes and add linux/bitfield.h
+Check chip type and complain on mismatch
 
-> +
-> +       return loongson_gpio_init(pdev, lgpio, reg_base);
->  }
->
->  static const struct loongson_gpio_chip_data loongson_gpio_ls2k_data =3D =
-{
-> @@ -204,6 +360,23 @@ static const struct loongson_gpio_chip_data loongson=
-_gpio_ls2k_data =3D {
->         .inten_offset =3D 0x30,
->  };
->
-> +static const struct loongson_gpio_chip_data loongson_gpio_ls2k0300_data =
-=3D {
-> +       .label =3D "ls2k0300_gpio",
-> +       .mode =3D BYTE_CTRL_MODE,
-> +       .conf_offset =3D 0x800,
-> +       .in_offset =3D 0xa00,
-> +       .out_offset =3D 0x900,
-> +       .inten_offset =3D 0xb00,
-> +       .intpol_offset =3D 0xc00,
-> +       .intedge_offset =3D 0xd00,
-> +       .intclr_offset =3D 0xe00,
-> +       .intsts_offset =3D 0xf00,
-> +       .intdual_offset =3D 0xf80,
-> +       .intr_num =3D 7,
-> +       .irq_handler =3D loongson_gpio_ls2k0300_irq_handler,
-> +       .girqchip =3D &loongson_gpio_ls2k0300_irqchip,
-> +};
-> +
->  static const struct loongson_gpio_chip_data loongson_gpio_ls2k0500_data0=
- =3D {
->         .label =3D "ls2k0500_gpio",
->         .mode =3D BIT_CTRL_MODE,
-> @@ -300,6 +473,10 @@ static const struct of_device_id loongson_gpio_of_ma=
-tch[] =3D {
->                 .compatible =3D "loongson,ls2k-gpio",
->                 .data =3D &loongson_gpio_ls2k_data,
->         },
-> +       {
-> +               .compatible =3D "loongson,ls2k0300-gpio",
-> +               .data =3D &loongson_gpio_ls2k0300_data,
-> +       },
->         {
->                 .compatible =3D "loongson,ls2k0500-gpio0",
->                 .data =3D &loongson_gpio_ls2k0500_data0,
-> --
-> 2.50.1
->
+Changes in v2:
+Document driver specific bindings like slew-rate and threshold
+Use atomic_enable/disable
+Use #defines for bit fields in registers
+Allow HDMI 2 compliance
+Filter modes on clock range
+Use cross-over pixel frequency instead of manual overides
+Devicetree bindings according to standards
+
+Mike Looijmans (2):
+  dt-bindings: drm/bridge: ti-tmds181: Add TI TMDS181 and SN65DP159
+    bindings
+  drm: bridge: Add TI tmds181 and sn65dp159 driver
+
+ .../bindings/display/bridge/ti,tmds181.yaml   | 152 +++++++
+ drivers/gpu/drm/bridge/Kconfig                |  11 +
+ drivers/gpu/drm/bridge/Makefile               |   1 +
+ drivers/gpu/drm/bridge/ti-tmds181.c           | 401 ++++++++++++++++++
+ 4 files changed, 565 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,tmd=
+s181.yaml
+ create mode 100644 drivers/gpu/drm/bridge/ti-tmds181.c
+
+--=20
+2.43.0
+
+base-commit: 53e760d8949895390e256e723e7ee46618310361
+branch: drm-ti-tmds181
+
+Met vriendelijke groet / kind regards,=0A=
+=0A=
+Mike Looijmans=0A=
+System Expert=0A=
+=0A=
+=0A=
+TOPIC Embedded Products B.V.=0A=
+Materiaalweg 4, 5681 RJ Best=0A=
+The Netherlands=0A=
+=0A=
+T: +31 (0) 499 33 69 69=0A=
+E: mike.looijmans@topic.nl=0A=
+W: www.topic.nl=0A=
+=0A=
+Please consider the environment before printing this e-mail=0A=
 
