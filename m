@@ -1,186 +1,119 @@
-Return-Path: <devicetree+bounces-211296-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211297-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7FA2B3E4C3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:24:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6597BB3E4F9
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:29:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADD25171100
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:24:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77BBE7B18D8
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:26:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7168033438A;
-	Mon,  1 Sep 2025 13:24:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E434B338F4D;
+	Mon,  1 Sep 2025 13:26:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ajG0RMJp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DUQmjJWW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A8C2322A18;
-	Mon,  1 Sep 2025 13:24:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BED9F33439C
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 13:26:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756733078; cv=none; b=klISIuLgAp7AiK/Y9ORXzXGPDtQfn+RKckiFYkMDandDhWqQKcHeY4FHtlLdPloGJKGap15bSLAcGOqrCvkbSiuASrNQVvMreAUzfmc+ofxs34mqUNOLTjV0Kd33yM+qT0rqHlPnrSmKCAbxKMQ5lp0rgrbNeSMlgdUOnMBSo9o=
+	t=1756733205; cv=none; b=KapkIzvXi2Hu1DJyRY3nbt2J8Hr3BVBzEXqLm/RoowX8xoK3ESJFHUwP9XYizgDCUekgpkG0nTZc8aot68LHhQBN0rfwUc7m3IOS13kg0jzoJfmRQqoC9a2WhOM3ClFSCI7zrTITsCf5l31OwIxBNZWSvIDvm3pvasmNdATMLlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756733078; c=relaxed/simple;
-	bh=sJWYGnT1WWEG+kqtUxqmZBzwgmvbVmwP8qD+SOYqeyA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BdIYUpgZ1tyrBN/fLL2MWGsEtGP6UqymcZwIVdPKUPgyq92HGQKF0Ubxr3R/21S7rq7etHqNUcNH1drtJIy7hCEIgJbMS8EMF9mpFTcGoT4KB2yedhf3qxsDAXx8xVm/kk1VwpBubHCYWGHHuudBavI7ofWhQiX4ileY6mHquhk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ajG0RMJp; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3b9edf4cf6cso3620675f8f.3;
-        Mon, 01 Sep 2025 06:24:36 -0700 (PDT)
+	s=arc-20240116; t=1756733205; c=relaxed/simple;
+	bh=9zJLdqtOKjBpkNMI06ViEGQW2gjiowt6JmR/C4Vpi6s=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=tLp/O+seKGskbz+nDNcE7KB/2f7JCwIulRGe6mMsXt1ADC6597ow9uYuwBP+srBAKYhObAWAZbPdQauLqrJ6G9z0+QhKo6ixavIiHP4ekuPpwwcd6SOgaZIVq8eZVZdPGwowwmff4kcd03y/drzsdJWWuPkjCbirDVWa3hbZ5Us=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DUQmjJWW; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-aff08beb8b8so50014566b.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 06:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756733075; x=1757337875; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=linaro.org; s=google; t=1756733201; x=1757338001; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=iWlw5Ms5yTVtOwXxGv7Ts8LYQp05G0qkRwNzIO4qfS4=;
-        b=ajG0RMJpoLaWD0+pxxu1qCeXlQ4qcWk/e+NRA8a+LNDJtbJj9y8WmMonrcEv2S4gDv
-         kxpAcMXwMk6QW2ewwXoX6cvMG04zkxTaAtRKhtDxgMJ2aCDzMhbhd9aRO8DPGgUDohoH
-         2OHwetco51lIqQsz30fJ9jYMKHBnpGRMnniYngqzt5q5fkfKtHukYYnyR7oyqiPUjhlp
-         FHKF2ZfyPLU7kQUjZP1Qg3JtPOSu0RPxz4WitpgZoxwmZjhTet3fJd5Uxt4LiH1JRzVv
-         IGadJ5AAsVX/zlw6GMoIs6kJZu2vdO4ztSMUD+dFj3fwPYFjn+fsAYMWgVhxpqDE3Syi
-         rxUw==
+        bh=ICiwcLIU71Izuhu8fP8tVO8odVf8d1Nj7kJu4RHQNHg=;
+        b=DUQmjJWWhlAgiKNReCDRFHM3BetprA9OPQvbYuNF9TtKpOMoCF7DFpJQhOo+RR2aNj
+         ErIvAoB5sPzHHJvjMdYdCWMgfrPAKY4ccw5f/y/uiwnuJruxfIOzy3XsAS8/fRzxX0Mq
+         2my0fE0uvKgsWMAyr2UIozPa0x5xzvOB/3ZkDd5COAspgM1VvBpKnUlK++0WHRuRsPK0
+         z7u/UiBIhBeNhSOVT2Ok2EcpxpFRN9qnNXioEO6rGmOHvGdMP3DG0WtPPXYyD7L93C3C
+         IyPeKkxA40Xsf+yJcA2lU4VoWxsree4YBoUJq9U+EatiAvDzW5Tir4KUysgpuAKbMuvN
+         RmlQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756733075; x=1757337875;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1756733201; x=1757338001;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=iWlw5Ms5yTVtOwXxGv7Ts8LYQp05G0qkRwNzIO4qfS4=;
-        b=WsTbWnra7a9dJtU80ucnuNMXLk20aNtVbB64MK/TTXNr8/mkMvpHmErjGsM7iywu4Q
-         6UfpvPpi1AujVv8jdhbIqc2+oxCkev+oBfkNMihkNpdsEZJOJXfwaoJP142mb7Q6dtv6
-         kJq+tZdj2fe2OU4TJa7KTO6cGOcnGXCkLKkL0AqAelpFzAu/992+uNxZUj4HZn/JZaON
-         gPS4PwSb0CFPeSL6ss9d5P92UrRAJ59B2KkuMhJCpbsSY2k5OxzJsSHGyFnY7yOPD6+z
-         e577SweK5BlUkBS8daXv2HkuQFH+1nw+LZG7UgL4VaVrwW1FPscX0/WkHB4MrmgSbEuH
-         cK4Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWEhf8euSRb0xXygS6ggUHWYZ/KQAa5ynKBLV1Pre1nd5ewL55HG0xXxRzEB+2Nx05yMUzPOSgUyVlHfcFp@vger.kernel.org, AJvYcCWPuulY3B+GCIRzGyPySLoypsVPbPDJzLnhRhdcX6dBBm16dMUjA2N8chie225aIOaGGIyB0qLPfdXy@vger.kernel.org
-X-Gm-Message-State: AOJu0YytRslsqLDd0jv8OzRvA/n2f1yvVmBh0NZWlQyLTIe5OCL8JEhl
-	hChnLyLC/0aGt8fPIZWGQ1k1nF92sIepajSGoH0jjhYgFyfToN11JNhH
-X-Gm-Gg: ASbGncvND60MBmgDMwqspWU4Ui69XXSnT+yKStytXU/J79YDDjAe9zIbJUj3VFsjLQn
-	X612SbQlyzrLRbKSS2nVjVXaGr8BukHbWhAVojr4x8KYBYOnB6gwsl9ANwY/Fc6xHicFHeQnq+G
-	7W+pW4vC+Es2U/EDxPPIgjA4ZnXTN/MHYC37y3VVIuYxqq1A0zAL0OAzCpd5lwkQwX8KqIq5J0Y
-	0k3HodzjDa+I6X2/Syj03YBTYX+jugXHxnubGS1q9b5pEovgdsBGb3nh2frySc4wxKmu60tsVxj
-	T3lLOhaEaGlNN16z+jS0IgveZFwK7UdrC31IviE2vCJrYkmKTQz3B9a2ktziYRWWFPb3m067wZ0
-	SkmXoMmzDo3dfVzW7VjtOLFxXrh48lZJMVJPT5bHBAL49
-X-Google-Smtp-Source: AGHT+IGFXZ6qbwJ3kEV+0fxALLiC8wRzseV8lfDHfGg7Uz+h42PgAbXCYv+xNFrUtwJWgrqbFGpWjg==
-X-Received: by 2002:a05:6000:400d:b0:3d7:94bb:cb9d with SMTP id ffacd0b85a97d-3d794bbceb5mr1508219f8f.3.1756733074684;
-        Mon, 01 Sep 2025 06:24:34 -0700 (PDT)
-Received: from taln60.nuvoton.co.il ([212.199.177.18])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b8f2d3c88sm24359635e9.19.2025.09.01.06.24.33
+        bh=ICiwcLIU71Izuhu8fP8tVO8odVf8d1Nj7kJu4RHQNHg=;
+        b=QEMjhqrgasvuarSflVJb6jTVwm05R2zNRUCmp7HNEoHUJjU5Ej/D4WWsS9nPwG905g
+         lzjiltZO3/7cYpv3/9dCLZ+ZR1u3BvU+if1gzNoLM0tw8ya7wenRtMMFHJpVIKsgphMa
+         bkZj+mXVpOtxc59lACXUgEjg9jLuDL16RmDhp20W6MHMrN7WwkN2tazmQ27RjMFraSXR
+         FGKMFZ/tvTRMgNeTeezYfphlNOSfP84ZWkgFy2xbQr6NB2RSra5EH17Ey/hYPe3oxrjC
+         xIzh0RLIp/gLv3MejHjTNN1NC9GUpUT/M94gtR5TGph3ZDzF2DGwu0aoYVNYPmVkZie4
+         Jccw==
+X-Forwarded-Encrypted: i=1; AJvYcCVQ45iiHlRfN+ldKSjnhgnv84TjLFkFg7HkQSk9T1PPNysNDxDjzmnU+6RmRgyqtZHazO5I7erZS8OE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx0NZBoy+Yt/sW/QSfLTHaFI9E2SUEi/DtgZCzniajtTLve3sOQ
+	1QC05qtPw4xX+EsCYa+PSY5XHei0Iz75nCW7hbzA55wPQJ7+LZbRykRab8rCAWpdzXk=
+X-Gm-Gg: ASbGncv1IbeBTXSUYw5MkCt7eT9AsNesXIZyP9nFPBt07U8ABhVBP+gcQcQySvn0vq5
+	MgCr1VQtEZAGDpiRYJT2cksPuVXzaPYSc7NdaUDyu453UyCdGg139aal3+elCtKm3NFyJ1yp27U
+	GHp3CGV7ezBMvg7G7n5GilV6GTnNDSRF35IGWqauyUZwu9R3aL+Xe/2Paw9oDMAzy/bEPkBMHuD
+	UVJBY4GRS1HXT3XmvwjX7yrrkhpg0QGzBhh+JzwjQd3TOL84CZt/VbmLHFaouhKpyoyd0tlGUKs
+	EklEA2HsQYerikWeXQivigivrsaURIwqnz/9e/w86PYQJzf4dCX+pDY4h87TZwA4CV3j2B1sX9M
+	yNTo38FhetJtKwiWUqAqk6IBa7jFtOkIhcqgdaFU=
+X-Google-Smtp-Source: AGHT+IHQTmAvbsKv0D4j4Hvyh4K0kyRVksjF4qrxn2f9tAR+H9KrYnWzvnDmgth3oDHi6jyc4O8txA==
+X-Received: by 2002:a17:906:16da:b0:b04:1fc6:1347 with SMTP id a640c23a62f3a-b041fc67c80mr223542566b.0.1756733201076;
+        Mon, 01 Sep 2025 06:26:41 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b04241b2e7esm305997566b.43.2025.09.01.06.26.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 06:24:34 -0700 (PDT)
-From: Tomer Maimon <tmaimon77@gmail.com>
-To: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	avifishman70@gmail.com,
-	tali.perry1@gmail.com,
-	joel@jms.id.au,
-	venture@google.com,
-	yuenn@google.com,
-	benjaminfair@google.com
-Cc: openbmc@lists.ozlabs.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tomer Maimon <tmaimon77@gmail.com>
-Subject: [PATCH RESEND v2 2/2] arm64: dts: nuvoton: add refclk and update peripheral clocks for NPCM845
-Date: Mon,  1 Sep 2025 16:24:26 +0300
-Message-Id: <20250901132426.3081648-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250901132426.3081648-1-tmaimon77@gmail.com>
-References: <20250901132426.3081648-1-tmaimon77@gmail.com>
+        Mon, 01 Sep 2025 06:26:39 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Miquel Raynal <miquel.raynal@bootlin.com>, 
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, Russell King <linux@armlinux.org.uk>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-mtd@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org
+In-Reply-To: <20250830-s3c-cleanup-nand-v1-4-05b99ef990fe@linaro.org>
+References: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
+ <20250830-s3c-cleanup-nand-v1-4-05b99ef990fe@linaro.org>
+Subject: Re: (subset) [PATCH 4/4] ARM: s3c6400_defconfig: Drop
+ MTD_NAND_S3C2410
+Message-Id: <175673319874.45844.111501190462962489.b4-ty@linaro.org>
+Date: Mon, 01 Sep 2025 15:26:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-Add a 25 MHz fixed-clock node (refclk) in the NPCM845-EVB board device
-tree to represent the external reference clock used by the NPCM845 reset
-and clock controller.
 
-Update peripherals (timer0, watchdog0-2) in the NPCM845 device tree to
-reference this refclk directly instead of the previous clock controller
-output (NPCM8XX_CLK_REFCLK).
+On Sat, 30 Aug 2025 19:01:12 +0200, Krzysztof Kozlowski wrote:
+> MTD_NAND_S3C2410 driver was removed from the kernel, so cleanup
+> defconfig as well.
+> 
+> 
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi | 9 +++++----
- arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts     | 6 ++++++
- 2 files changed, 11 insertions(+), 4 deletions(-)
+Applied, thanks!
 
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-index e4053ffefe90..ee7da5e8f95b 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-common-npcm8xx.dtsi
-@@ -47,6 +47,7 @@ clk: rstc: reset-controller@f0801000 {
- 			reg = <0x0 0xf0801000 0x0 0xC4>;
- 			nuvoton,sysgcr = <&gcr>;
- 			#reset-cells = <2>;
-+			clocks = <&refclk>;
- 			#clock-cells = <1>;
- 		};
- 
-@@ -71,7 +72,7 @@ timer0: timer@8000 {
- 				compatible = "nuvoton,npcm845-timer";
- 				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x8000 0x1C>;
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				clock-names = "refclk";
- 			};
- 
-@@ -143,7 +144,7 @@ watchdog0: watchdog@801c {
- 				interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x801c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -152,7 +153,7 @@ watchdog1: watchdog@901c {
- 				interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0x901c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 
-@@ -161,7 +162,7 @@ watchdog2: watchdog@a01c {
- 				interrupts = <GIC_SPI 49 IRQ_TYPE_LEVEL_HIGH>;
- 				reg = <0xa01c 0x4>;
- 				status = "disabled";
--				clocks = <&clk NPCM8XX_CLK_REFCLK>;
-+				clocks = <&refclk>;
- 				syscon = <&gcr>;
- 			};
- 		};
-diff --git a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-index eeceb5b292a8..2638ee1c3846 100644
---- a/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-+++ b/arch/arm64/boot/dts/nuvoton/nuvoton-npcm845-evb.dts
-@@ -19,6 +19,12 @@ chosen {
- 	memory@0 {
- 		reg = <0x0 0x0 0x0 0x40000000>;
- 	};
-+
-+	refclk: refclk-25mhz {
-+		compatible = "fixed-clock";
-+		clock-frequency = <25000000>;
-+		#clock-cells = <0>;
-+	};
- };
- 
- &serial0 {
+[4/4] ARM: s3c6400_defconfig: Drop MTD_NAND_S3C2410
+      https://git.kernel.org/krzk/linux/c/ae6f637a456c1de75a582afa9cb6169813e89b83
+
+Best regards,
 -- 
-2.34.1
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
