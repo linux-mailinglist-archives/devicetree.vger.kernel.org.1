@@ -1,194 +1,290 @@
-Return-Path: <devicetree+bounces-211322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4E8EB3E80A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:59:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC59B3EAD0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:36:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52E2C4434D5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:59:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45D341B23D6C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E04A133EB01;
-	Mon,  1 Sep 2025 14:59:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="fm+Y8Lvq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69BE3469E4;
+	Mon,  1 Sep 2025 15:16:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB18F2F1FFE;
-	Mon,  1 Sep 2025 14:59:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B63843451C2;
+	Mon,  1 Sep 2025 15:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756738760; cv=none; b=TBr4x9+AEgWtFOTGB8VH131VcEosh8Bw3/7i4GjAkwRmFgvrODJuPr9y3/HenpfxfOCTarZldb6JX0ZUYkRyaSXgpRkI9Liza7hSD3BQ5G5T9207Hhwse2rElsL19hlWhVI/rfduSfN+cmj7xrARQFAaf1ZhrQhqNBgOvYQGiuQ=
+	t=1756739815; cv=none; b=ZRwbK5q2lSGy9xdF5nfO2RDLbH4AXXhsYOofq6j5ouDriblRB/F/9DQZ2IIavqKjch6twyfVvHQQyQkfZaT6UbOZOXj0FiLCMusStcbILAi/cTNV3XxifFDxYae7VxQGaSLPr1Tpf+IwhwlBSd2hrMFtsdHAXUbBodLAHJrjslk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756738760; c=relaxed/simple;
-	bh=/ycGbSkHOxuM3sRpgIzjfmP2guQFUiYSHp1rOlm+S1g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I8l7d0jYmglAtfQSw2J13uZME/L9vnABIcq8quVcBE+NwW/pRRPxuAg+b2dWmwbtiHE3BMDMchdxh1HzUo0JLBEYg9N+dC2SStwemkgZ9VFHqd4kX84PRkQS4/HR8fGdJde635N4fFALIE64c4hv4KYzJ/lPXq3MssVypuDIvsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=fm+Y8Lvq; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 101BD20075;
-	Mon,  1 Sep 2025 16:59:16 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 8pSPqeFkcKwx; Mon,  1 Sep 2025 16:59:13 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1756738753; bh=/ycGbSkHOxuM3sRpgIzjfmP2guQFUiYSHp1rOlm+S1g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=fm+Y8Lvqwnsy2ZfpOBdDIqmHULGETv1XwNudZrjHhxIfFKPL6HqEvsqa6zaD7hKGV
-	 +paBqu6mmz/3GqB5nG5uHRZFKpOkhEFUTGdr2emzHgPinga9yhdW0NvTVM/3NgyBCq
-	 SuazwKJnitM3II1GO5jCJcrReWiZn+hMK+aBKHCJlqsyFAps44/AzjTs5B9eZ0NOdE
-	 5F6dvpXk6fCVkkIqc2qfBE9SW9LEK6YkoqLtjWt83xDoqWaXviejWPEy0o5ao9DsAP
-	 mnpW+AD9ji/ivwhCYocWk4HTLEnY+o/FDiucqFsBsJKub0ko2eQvZA/4rJ371vJPXu
-	 nH2qzkGDIs4zg==
-Date: Mon, 1 Sep 2025 14:58:54 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Huacai Chen <chenhuacai@kernel.org>
-Cc: Yinbo Zhu <zhuyinbo@loongson.cn>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-gpio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	loongarch@lists.linux.dev, Mingcong Bai <jeffbai@aosc.io>,
-	Kexy Biscuit <kexybiscuit@aosc.io>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: gpio: loongson: Document GPIO
- controller of 2K0300 SoC
-Message-ID: <aLW0rgvKno3zpXDi@pie>
-References: <20250901133804.38433-1-ziyao@disroot.org>
- <20250901133804.38433-2-ziyao@disroot.org>
- <CAAhV-H5odi479mTr0zmDnX1WF2AmJRXTL34_ts2VCM-g6N7bjA@mail.gmail.com>
+	s=arc-20240116; t=1756739815; c=relaxed/simple;
+	bh=ZLlhjXHOTYnh/nnuPza6AsOwPUCxWi16rvFSR7LMqs8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tx7c6hjC/f42xEqpEDv9ltBA8Y3LhJdh8ElbjDBsdCiSo3cBAx9dfQX1vussJ92TFs+vejPlG+c5gUAkX5+1WBTl3yAX8kt71X2yuVF5OhzBBVLjfdQWnoyZP4YPTb/jkSGDCn+cnNWl6kiTboWl3T6HhodJT6yGbdghKf1MiKs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71481C4CEF0;
+	Mon,  1 Sep 2025 15:16:54 +0000 (UTC)
+Message-ID: <f2411365-9443-43cf-8420-3afd2c5bf6e2@kernel.og>
+Date: Mon, 1 Sep 2025 10:16:48 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAAhV-H5odi479mTr0zmDnX1WF2AmJRXTL34_ts2VCM-g6N7bjA@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 4/4] firmware: stratix10-svc: Add for SDM
+ mailbox doorbell interrupt
+To: mahesh.rao@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Matthew Gerlach <matthew.gerlach@altera.com>
+References: <20250812-sip_svc_irq-v2-0-53098e11705a@altera.com>
+ <20250812-sip_svc_irq-v2-4-53098e11705a@altera.com>
+Content-Language: en-US
+From: Dinh Nguyen <dinguyen@kernel.og>
+In-Reply-To: <20250812-sip_svc_irq-v2-4-53098e11705a@altera.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 01, 2025 at 10:22:04PM +0800, Huacai Chen wrote:
-> Hi, Yao,
+
+
+On 8/12/25 07:59, Mahesh Rao via B4 Relay wrote:
+> From: Mahesh Rao <mahesh.rao@altera.com>
 > 
-> On Mon, Sep 1, 2025 at 9:38 PM Yao Zi <ziyao@disroot.org> wrote:
-> >
-> > Loongson 2K0300 ships a GPIO controller whose input/output control logic
-> > is similar to previous generation of SoCs. Additionally, it acts as an
-> > interrupt-controller supporting both level and edge interrupts and has a
-> > distinct reset signal.
-> >
-> > Describe its compatible in devicetree. We enlarge the maximum value of
-> > ngpios to 128, since the controller technically supports at most 128
-> > pins, although only 106 are routed out of the package. Properties for
-> > interrupt-controllers and resets are introduced and limited as 2K0300
-> > only.
-> Replace the full name with "Loongson-2K0300" and short name with
-> "LS2K0300", others look good to me.
-> Reviewed-by: Huacai Chen <chenhuacai@loongson.cn>
+> Add support for SDM (Secure Device Manager) mailbox
+> doorbell interrupt for async transactions. On interrupt,
+> a workqueue is triggered which polls the ATF for
+> pending responses and retrieves the bitmap of all
+> retrieved and unprocessed transaction ids of mailbox
+> responses from SDM. It then triggers the corresponding
+> registered callbacks.
 
-I don't understand what is improved with this. For the fullname, I don't
-see any difference between "Loongson 2K0300" and "Loongson-2K0300". And
-for the short one, omitting the "LS" prefix doesn't introduce any
-ambiguity, either.
+You should configure your editor to use a full 80-char width. Why stop
+at ~50? When you're unsure, look at that other commit logs from other
+developers. If yours doesn't look similar, its probably a problem. For
+example:
 
-I did a quick search through git log, and found many commits for Loongson
-2K SoCs do include a hyphen for the fullname and "LS" prefix for
-abbreviation in messages, while some merge commits don't do so.
+"Add support for SDM (Secure Device Manager) mailbox doorbell interrupt
+for async transactions. On interrupt, a workqueue is triggered which
+polls the ATF for pending responses and retrieves the bitmap of all
+retrieved and unprocessed transaction ids of mailbox responses from SDM.
+It then triggers the corresponding registered callbacks."
 
-Even the official production page for Loongson 2K0300 refers to it
-without a hyphen[1]. Thus I cannot find out of the point of rewording...
-
-> Loongson 2K0300 is a multi-function SoC build upon the LA264 processor
-> core, ...
-
-I'll appreciate and adapt it if you could explain why the change is
-necessary. Thanks for your patience.
-
-Best regards,
-Yao Zi
-
-[1]: https://loongson.cn/EN/product/show?id=35
-
-> >
-> > Signed-off-by: Yao Zi <ziyao@disroot.org>
-> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> > ---
-> >  .../bindings/gpio/loongson,ls-gpio.yaml       | 28 ++++++++++++++++++-
-> >  1 file changed, 27 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> > index b68159600e2b..69852444df23 100644
-> > --- a/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> > +++ b/Documentation/devicetree/bindings/gpio/loongson,ls-gpio.yaml
-> > @@ -14,6 +14,7 @@ properties:
-> >      oneOf:
-> >        - enum:
-> >            - loongson,ls2k-gpio
-> > +          - loongson,ls2k0300-gpio
-> >            - loongson,ls2k0500-gpio0
-> >            - loongson,ls2k0500-gpio1
-> >            - loongson,ls2k2000-gpio0
-> > @@ -36,7 +37,7 @@ properties:
-> >
-> >    ngpios:
-> >      minimum: 1
-> > -    maximum: 64
-> > +    maximum: 128
-> >
-> >    "#gpio-cells":
-> >      const: 2
-> > @@ -49,6 +50,14 @@ properties:
-> >      minItems: 1
-> >      maxItems: 64
-> >
-> > +  "#interrupt-cells":
-> > +    const: 2
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  resets:
-> > +    maxItems: 1
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -58,6 +67,23 @@ required:
-> >    - gpio-ranges
-> >    - interrupts
-> >
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: loongson,ls2k0300-gpio
-> > +    then:
-> > +      required:
-> > +        - "#interrupt-cells"
-> > +        - interrupt-controller
-> > +        - resets
-> > +    else:
-> > +      properties:
-> > +        "#interrupts-cells": false
-> > +        interrupt-controller: false
-> > +        resets: false
-> > +
-> >  additionalProperties: false
-> >
-> >  examples:
-> > --
-> > 2.50.1
-> >
-> >
 > 
+> Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
+> Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
+> ---
+>   drivers/firmware/stratix10-svc.c             | 117 ++++++++++++++++++++++++---
+>   include/linux/firmware/intel/stratix10-smc.h |  23 ++++++
+>   2 files changed, 130 insertions(+), 10 deletions(-)
+> 
+> diff --git a/drivers/firmware/stratix10-svc.c b/drivers/firmware/stratix10-svc.c
+> index 491a8149033f975d515444f025723658c51aa1fe..a65c64c1be61d9f1fd27114d7f30d7a759e8201e 100644
+> --- a/drivers/firmware/stratix10-svc.c
+> +++ b/drivers/firmware/stratix10-svc.c
+> @@ -9,12 +9,14 @@
+>   #include <linux/delay.h>
+>   #include <linux/genalloc.h>
+>   #include <linux/hashtable.h>
+> +#include <linux/interrupt.h>
+>   #include <linux/io.h>
+>   #include <linux/kfifo.h>
+>   #include <linux/kthread.h>
+>   #include <linux/module.h>
+>   #include <linux/mutex.h>
+>   #include <linux/of.h>
+> +#include <linux/of_irq.h>
+>   #include <linux/of_platform.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/slab.h>
+> @@ -22,6 +24,7 @@
+>   #include <linux/firmware/intel/stratix10-smc.h>
+>   #include <linux/firmware/intel/stratix10-svc-client.h>
+>   #include <linux/types.h>
+> +#include <linux/workqueue.h>
+>   
+>   /**
+>    * SVC_NUM_DATA_IN_FIFO - number of struct stratix10_svc_data in the FIFO
+> @@ -213,6 +216,7 @@ struct stratix10_async_chan {
+>    *                               asynchronous operations
+>    * @initialized: Flag indicating whether the control structure has
+>    *               been initialized
+> + * @irq: Interrupt request number associated with the asynchronous control
+>    * @invoke_fn: Function pointer for invoking Stratix10 service calls
+>    *             to EL3 secure firmware
+>    * @async_id_pool: Pointer to the ID pool used for asynchronous
+> @@ -223,11 +227,13 @@ struct stratix10_async_chan {
+>    *                     structure
+>    * @trx_list_wr_lock: Spinlock for protecting the transaction list
+>    *                    write operations
+> + * @async_work: Work structure for scheduling asynchronous work
+>    * @trx_list: Hash table for managing asynchronous transactions
+>    */
+>   
+>   struct stratix10_async_ctrl {
+>   	bool initialized;
+> +	int irq;
+>   	void (*invoke_fn)(struct stratix10_async_ctrl *actrl,
+>   			  const struct arm_smccc_1_2_regs *args,
+>   			  struct arm_smccc_1_2_regs *res);
+> @@ -236,6 +242,7 @@ struct stratix10_async_ctrl {
+>   	struct stratix10_async_chan *common_async_chan;
+>   	/* spinlock to protect the writes to trx_list hash table */
+>   	spinlock_t trx_list_wr_lock;
+> +	struct work_struct async_work;
+>   	DECLARE_HASHTABLE(trx_list, ASYNC_TRX_HASH_BITS);
+>   };
+>   
+> @@ -1709,14 +1716,81 @@ static inline void stratix10_smc_1_2(struct stratix10_async_ctrl *actrl,
+>   	arm_smccc_1_2_smc(args, res);
+>   }
+>   
+> +static irqreturn_t stratix10_svc_async_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct stratix10_svc_controller *ctrl = dev_id;
+> +	struct stratix10_async_ctrl *actrl = &ctrl->actrl;
+> +
+> +	queue_work(system_bh_wq, &actrl->async_work);
+> +	disable_irq_nosync(actrl->irq);
+> +	return IRQ_HANDLED;
+> +}
+
+Add a newline here.
+
+> +/**
+> + * stratix10_async_workqueue_handler - Handler for the asynchronous
+> + * workqueue in Stratix10 service controller.
+> + * @work: Pointer to the work structure that contains the asynchronous
+> + *        workqueue handler.
+> + * This function is the handler for the asynchronous workqueue. It performs
+> + * the following tasks:
+> + * - Invokes the asynchronous polling on interrupt supervisory call.
+> + * - On success,it retrieves the bitmap of pending transactions from mailbox
+> + *   fifo in ATF.
+> + * - It processes each pending transaction by calling the corresponding
+> + *   callback function.
+> + *
+> + * The function ensures that the IRQ is enabled after processing the transactions
+> + * and logs the total time taken to handle the transactions along with the number
+> + * of transactions handled and the CPU on which the handler ran.
+> + */
+> +static void stratix10_async_workqueue_handler(struct work_struct *work)
+> +{
+> +	struct stratix10_async_ctrl *actrl =
+> +		container_of(work, struct stratix10_async_ctrl, async_work);
+> +	struct arm_smccc_1_2_regs
+> +		args = { .a0 = INTEL_SIP_SMC_ASYNC_POLL_ON_IRQ }, res;
+> +	DECLARE_BITMAP(pend_on_irq, TOTAL_TRANSACTION_IDS);
+> +	struct stratix10_svc_async_handler *handler;
+> +	unsigned long transaction_id = 0;
+> +	u64 bitmap_array[4];
+> +
+> +	actrl->invoke_fn(actrl, &args, &res);
+> +	if (res.a0 == INTEL_SIP_SMC_STATUS_OK) {
+> +		bitmap_array[0] = res.a1;
+> +		bitmap_array[1] = res.a2;
+> +		bitmap_array[2] = res.a3;
+> +		bitmap_array[3] = res.a4;
+> +		bitmap_from_arr64(pend_on_irq, bitmap_array, TOTAL_TRANSACTION_IDS);
+> +		rcu_read_lock();
+> +		do {
+> +			transaction_id = find_next_bit(pend_on_irq,
+> +						       TOTAL_TRANSACTION_IDS,
+> +						       transaction_id);
+> +			if (transaction_id >= TOTAL_TRANSACTION_IDS)
+> +				break;
+> +			hash_for_each_possible_rcu_notrace(actrl->trx_list,
+> +							   handler, next,
+> +							   transaction_id) {
+> +				if (handler->transaction_id == transaction_id) {
+> +					handler->cb(handler->cb_arg);
+> +					break;
+> +				}
+> +			}
+> +			transaction_id++;
+> +		} while (transaction_id < TOTAL_TRANSACTION_IDS);
+> +		rcu_read_unlock();
+> +	}
+> +	enable_irq(actrl->irq);
+> +}
+> +
+>   /**
+>    * stratix10_svc_async_init - Initialize the Stratix10 service
+>    *                            controller for asynchronous operations.
+>    * @controller: Pointer to the Stratix10 service controller structure.
+>    *
+>    * This function initializes the asynchronous service controller by
+> - * setting up the necessary data structures and initializing the
+> - * transaction list.
+> + * setting up the necessary data structures ,initializing the
+> + * transaction list and registering the IRQ handler for asynchronous
+> + * transactions.
+>    *
+>    * Return: 0 on success, -EINVAL if the controller is NULL or already
+>    *         initialized, -ENOMEM if memory allocation fails,
+> @@ -1728,7 +1802,7 @@ static int stratix10_svc_async_init(struct stratix10_svc_controller *controller)
+>   	struct stratix10_async_ctrl *actrl;
+>   	struct arm_smccc_res res;
+>   	struct device *dev;
+> -	int ret;
+> +	int ret, irq;
+>   
+>   	if (!controller)
+>   		return -EINVAL;
+> @@ -1775,6 +1849,22 @@ static int stratix10_svc_async_init(struct stratix10_svc_controller *controller)
+>   	hash_init(actrl->trx_list);
+>   	atomic_set(&actrl->common_achan_refcount, 0);
+>   
+> +	irq = of_irq_get(dev_of_node(dev), 0);
+> +	if (irq < 0) {
+
+0 is a failing value as well.
+
+> +		dev_warn(dev, "Failed to get IRQ, falling back to polling mode\n");
+> +	} else {
+> +		ret = devm_request_any_context_irq(dev, irq, stratix10_svc_async_irq_handler,
+> +						   IRQF_NO_AUTOEN, "stratix10_svc", controller);
+> +		if (ret == 0) {
+> +			dev_alert(dev,
+> +				  "Registered IRQ %d for sip async operations\n",
+> +				irq);
+> +			actrl->irq = irq;
+> +			INIT_WORK(&actrl->async_work, stratix10_async_workqueue_handler);
+> +			enable_irq(actrl->irq);
+> +		}
+> +	}
+> +
+>   	actrl->initialized = true;
+>   	return 0;
+>   }
+> @@ -1784,13 +1874,14 @@ static int stratix10_svc_async_init(struct stratix10_svc_controller *controller)
+>    *                            service controller
+>    * @ctrl: Pointer to the stratix10_svc_controller structure
+>    *
+> - * This function performs the necessary cleanup for the asynchronous
+> - * service controller. It checks if the controller is valid and if it
+> - * has been initialized. It then locks the transaction list and safely
+> - * removes and deallocates each handler in the list. The function also
+> - * removes any asynchronous clients associated with the controller's
+> - * channels and destroys the asynchronous ID pool. Finally, it resets
+> - * the asynchronous ID pool and invoke function pointers to NULL.
+> + * This function performs the necessary cleanup for the asynchronous service
+> + * controller. It checks if the controller is valid and if it has been
+> + * initialized. Also If the controller has an IRQ assigned, it frees the IRQ
+> + * and flushes any pending asynchronous work. It then locks the transaction
+> + * list and safely removes and deallocates each handler in the list.
+> + * The function also removes any asynchronous clients associated with the
+> + * controller's channels and destroys the asynchronous ID pool. Finally, it
+> + * resets the asynchronous ID pool and invoke function pointers to NULL.
+
+Did you mean to repeat the same paragraph twice?
+
+Dinh
 
