@@ -1,90 +1,144 @@
-Return-Path: <devicetree+bounces-211442-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211443-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714EFB3F097
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:36:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 776BEB3F0B6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6F6CB7A55F7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:35:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4E5821798DA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:57:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCAA727B4F2;
-	Mon,  1 Sep 2025 21:36:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25E3B27E074;
+	Mon,  1 Sep 2025 21:56:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WR9x4nD5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J6DP2eJW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FB81C5D6A;
-	Mon,  1 Sep 2025 21:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D8F9202997;
+	Mon,  1 Sep 2025 21:56:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756762612; cv=none; b=N4uOxIUv5iZ3aGC8XdISy07G33uGAhV/XEazb93eTdin0JKWh4ziQjg+CrLVHPrR1ohWS+EuSlqAyhu2RxI5Lj90l8be5pydtoxZ8phdkrpY2kiHzyj51m9jpAgusiRYTZTMp3ByNBQH8N6NnIAXOsMW5GdHTl/wbYbHTzHe6GU=
+	t=1756763817; cv=none; b=etdTVb5cK+Yq6M/GQO9HCBJvIUSB7DyLFfMsKsh4KJFBXbe/N6f0mIJeIVML/CeGPvfoEP7ZGsUrEKaQG2zrwDxz1GQEAgypDCzviO7aKXEy/FYhzyB+OChfX2e1RVKF6ZOXut+pKwZiV0QAKb7f6lmPwUrpcJPz1fHx0nXdxGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756762612; c=relaxed/simple;
-	bh=/VwsRtkf+UQjoJQCltm2n7rC7ZNkfCMHAtZoj9SYAoM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dhbKohXUS1Mlp2mqHBZFDky2nBDu4/FT+YafQi6Jp0HLkz0cZQ5Y2vAlfPIkUxskc7Gze7xRL1+1zfu0VumhntJPQMmMV3XCAVKFw8IxpcsNGzyR8UU0aLyIluAntuZA139O6ukfcVOKrdphKwwH+NUO7H/bp4OfU/v3zMj+YzM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WR9x4nD5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBD0FC4CEF0;
-	Mon,  1 Sep 2025 21:36:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756762612;
-	bh=/VwsRtkf+UQjoJQCltm2n7rC7ZNkfCMHAtZoj9SYAoM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WR9x4nD5mYppOBzRfQSkxm81iBYsxGRWcszsJt8sbAAxey5vAaNGJHkH1XIPXisn0
-	 fsNfW0+R1HySPCR6as9SgO6O1yK46w8W3KJJ9sWezje+VopTCLWEOdFaGtSNSUY0xf
-	 i4V/Rbw5V8Qu7bLnmm1H/GHe/ku6UhwPGRyl0LjSDlFN2S/KqbyKJKnf3xJ6KLeuAG
-	 3xjaMCRzzCQGnLskabc8nAYbTTXZwAinY4Kpmgg/xmudOvnqGwYkXv+Xhyk4TV8Txt
-	 GzQJvsDXEIEGK0Y8wgtWMN4WhXXehSPp+0kaiEjryN6AJVG8W0HLkpEyH1RXJ0Frxa
-	 2WVij89GLHJ6w==
-Date: Mon, 1 Sep 2025 16:36:50 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Alan Stern <stern@rowland.harvard.edu>,
+	s=arc-20240116; t=1756763817; c=relaxed/simple;
+	bh=UdbThDd35XS5kTlBPSANg7bURHeZjITCBnVgTWkAmY0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RetZh2v2529L3FHQ6MoMAatXnxxCdGmWODLwxwBjbdY78mZytX9ZMpgiY1OFxtylMku/nk4TTLZ3uHZ889jNJGuEXX/W/pwMjXUq2jplwFZIuI4EBqBv7o0NXXjpcAVRNW7hp/zKs4c41yG20+7dtGCW4wFm8EzwsGRMiJ/SRJM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J6DP2eJW; arc=none smtp.client-ip=209.85.216.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-32326e20aadso5186553a91.2;
+        Mon, 01 Sep 2025 14:56:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756763814; x=1757368614; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=rr7ttRRfISL7LXawvmUUwtcVSdkKIkQAp3QFqYkgQGk=;
+        b=J6DP2eJWk0wnnS1oJuSxXRAHqvjGU/2lKpyKkLJ5gu/qlvEup/u7yVqtGP1XidmI8U
+         8ZQDBJoif6rNwPCDmUBiQlj9NaV56CUW7Sp1EijAoQKmFPoTAlonIj9QcoDxlyq6fbzx
+         w3AJQ8SCWUcSu1HH83cN+zT/+ZP7wM411Gj9x+tqeiOhVp8IbAs/BFpyAu02uR5n2uNs
+         SvR+EcBtTz1e7yqtIqmHUI3IhxTdB1AOc4UNS4gksqOllg1tweczPKsjJYEA/aK+dZgH
+         C4r2slxnCtYjUJLLVCkcvFkLdiq4kFtRNrZ/MTZ2LHOxYP6ohAK4n/zX3M5vHJrhie/Q
+         Sxtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756763814; x=1757368614;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rr7ttRRfISL7LXawvmUUwtcVSdkKIkQAp3QFqYkgQGk=;
+        b=S3AdmCUIl3zsox8rcqmOZUaYGzozqvaeaH2R/7XkKgQhYmgcvgqOBhe0sQAbssC7PA
+         O7WENiCaOGyLIUJFdDdQ5SvxRQveJ0vlxDBqlHwnRqnP4PKHTU9llZNu+MAOJhmgXjPk
+         Vbi4GVzGwwRf67eKJ/xVSmBNfLhoYr6Lzt8uNTrp+mXggI9QaeZyolI9keQ2yGKI3gi8
+         OWSxf1oALjpUHTdzWShHarHWXvY4ZsKP4fcHveyE1TwTHF9dvN0FZNl2B6p+nV7oM4ty
+         dHUip3DnBdjmkME8J093vC6FMCpVKHY3rTPrexEut/fdVKHA7LNGicyQwkR0wtp5oPGt
+         Z1ZQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXIGx7Cs8qeXxJKEWT+mFsXm1nA3Kgm2vwfuPqOHWqfUnWE7jzo4cPanRFD0M1DpVQDeyGKR5tUbFLdvw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxvBudxJgAZwiwtRwibABm3cQ2bmwTHbYUk4KIYdKxxVI9LgFc4
+	L/bZSPw6DmkqCumcggrWpB/Nt8SgJ0pK2xYcayihqU2tzlg65wP+ODkZB1LiWA==
+X-Gm-Gg: ASbGnct4pHtay5qeSoZWcmpUp2uwlV8gKKemKEBRTgIDugegAsX+zkU1JS01Aclotvg
+	m+4EYrBmQBe5bJO24wCbYiFg1ozyWqHu5vE0zusy/tt1gchzuPkX1ou314rFEH2BUM7xJhtMDJ/
+	QqGW+ghv5lCjf604AG+wTLG2gdPsHcZxqgRCPSGw29MlsI2MANkicdwR4cUm0Inw7B/7DsLay7g
+	PU/bPOZWBuUa0nXHGppW81v107o/oSM3GV7OmjWcSTR5/lHSrYozGqbBIiy3LGS1zjF+DGj9qKI
+	wGeHof32eaQ/0jiOeB0vQpMIvxIJWmELOXHbJ2lC+4/VPPqXP0CTMItsZWRv0IrK23xiWAk1wiP
+	33fObJcQmAUY48DimN19tX/zInkerhNm/jYSBCyxtk4JBXA==
+X-Google-Smtp-Source: AGHT+IEDxOOqY0dhCtISjArqy+nLDGC/4CdQ8M0o23H8a0H2FAof25d+gFI8pVtBBd6VEoHUH/8uoA==
+X-Received: by 2002:a17:90b:4d81:b0:327:96dd:6294 with SMTP id 98e67ed59e1d1-328156f9a23mr13697686a91.37.1756763814248;
+        Mon, 01 Sep 2025 14:56:54 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3274188757bsm8912793a91.1.2025.09.01.14.56.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Sep 2025 14:56:53 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+From: Guenter Roeck <linux@roeck-us.net>
+To: devicetree@vger.kernel.org
+Cc: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-usb@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: s3c2410-usb: Drop entirely
- S3C2410
-Message-ID: <175676261030.385621.4936391711475637356.robh@kernel.org>
-References: <20250831122222.50332-3-krzysztof.kozlowski@linaro.org>
- <20250831122222.50332-4-krzysztof.kozlowski@linaro.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-hwmon@vger.kernel.org,
+	Guenter Roeck <linux@roeck-us.net>,
+	Christian Kahr <christian.kahr@sie.at>
+Subject: [PATCH] dt-bindings: hwmon: ti,ina2xx: Add INA700
+Date: Mon,  1 Sep 2025 14:56:48 -0700
+Message-ID: <20250901215648.2696843-1-linux@roeck-us.net>
+X-Mailer: git-send-email 2.45.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250831122222.50332-4-krzysztof.kozlowski@linaro.org>
+Content-Transfer-Encoding: 8bit
 
+Add a compatible string for INA700. The chip is register compatible with
+INA780 but implements different ADC ranges and thus needs a separate
+compatible entry.
 
-On Sun, 31 Aug 2025 14:22:24 +0200, Krzysztof Kozlowski wrote:
-> Samsung S3C24xx family of SoCs was removed the Linux kernel in the
-> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
-> 2023.  There are no in-kernel users of remaining S3C24xx compatibles.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Changes in v2:
-> 1. None
-> ---
->  .../devicetree/bindings/usb/s3c2410-usb.txt   | 22 -------------------
->  1 file changed, 22 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/usb/s3c2410-usb.txt
-> 
+Cc: Christian Kahr <christian.kahr@sie.at>
+Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+---
+ Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+index 8b491be9c49d..d3cde8936686 100644
+--- a/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
++++ b/Documentation/devicetree/bindings/hwmon/ti,ina2xx.yaml
+@@ -32,6 +32,7 @@ properties:
+       - ti,ina237
+       - ti,ina238
+       - ti,ina260
++      - ti,ina700
+       - ti,ina780
+ 
+   reg:
+@@ -115,6 +116,7 @@ allOf:
+               - ti,ina237
+               - ti,ina238
+               - ti,ina260
++              - ti,ina700
+               - ti,ina780
+     then:
+       properties:
+@@ -133,6 +135,7 @@ allOf:
+               - ti,ina230
+               - ti,ina231
+               - ti,ina260
++              - ti,ina700
+               - ti,ina780
+     then:
+       properties:
+@@ -143,6 +146,7 @@ allOf:
+         compatible:
+           contains:
+             enum:
++              - ti,ina700
+               - ti,ina780
+     then:
+       properties:
+-- 
+2.45.2
 
 
