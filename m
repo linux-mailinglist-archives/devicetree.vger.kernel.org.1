@@ -1,586 +1,157 @@
-Return-Path: <devicetree+bounces-211219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ED07B3DFBB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:08:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C375B3E00C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:24:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A4D0E200CE4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:07:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5370E7A786D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34EEC312826;
-	Mon,  1 Sep 2025 10:05:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D9A730DEAF;
+	Mon,  1 Sep 2025 10:24:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C05131064A;
-	Mon,  1 Sep 2025 10:05:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com [209.85.222.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 780D330DD25;
+	Mon,  1 Sep 2025 10:24:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756721134; cv=none; b=dFZBAjgTB3GvUnUaJct3j5QbaLsjyq7HjqgT0wlRv4ipRhTd/h5+K5dJHMocYOGcwHs62/O3rcDU+31eoKgAFxt8611JT0s5SFZBKNacfzQZTFaic6iwwt6Zwb2j1H5miKsKbgOLZ1DPduJusJno8ehk0FeXG/t7jE1uv7x5IlQ=
+	t=1756722263; cv=none; b=ZdKHRWNKcVX435sz3saXqcbKxym5UHrC12d3KxuEKtBDRF3qJRkkWiZJtkkRUreIrL/TOjU6LuEW2dKrA7xtGWMhOaDOOg9c6bgZ5vWcpxHBiefeaGCJZeZrcW3dku7zwcZNmyPu0jiPieQLyOAQnopok1/lAD3h7+Ie2aZTKiI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756721134; c=relaxed/simple;
-	bh=oQSsQTwHNwgfyYL9/HLYEefiG4+0prMSQ0JERwW0k6c=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jt8sLNk1M0uj6Y0qPhsKOCpk7hCAuIt5RUDuxLVah4UYoFUcMER0H6B+LGMsBn21qQApKgmo8WYQPuNSIFOCtxuHNY2sAw805EP+Hi89AEr6HdVVLRqGfiuawfqybv1HJDoTJddVLrEBnRsyb6z3z99HWGW/nJQ3LvFLDYX3DKI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A1C01A25;
-	Mon,  1 Sep 2025 03:05:22 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 98A843F6A8;
-	Mon,  1 Sep 2025 03:05:25 -0700 (PDT)
-Message-ID: <91824224-6d70-43d9-98b9-930971cc53e7@arm.com>
-Date: Mon, 1 Sep 2025 11:05:24 +0100
+	s=arc-20240116; t=1756722263; c=relaxed/simple;
+	bh=6N+Y7Cksp0D/Eiu0Qce4aqd4koAZl1uGH9suRCNzyCY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HWxq/88kYXY9lAMTlFIC829OY14+KzCgCwBPa7PEziQSCt5CG7mOIUBCANgIpUQb2enuZs+5zTF6loFTTICv8kx1k53PoyvzQGqlRRXLIu3faUYsu/fQa5YPtsakoEXsl9XQcQG8CPNvSj9RdEU7EjQWgW5YWlRhVu+PGHsyEjA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-89018ec3597so2888626241.0;
+        Mon, 01 Sep 2025 03:24:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756722260; x=1757327060;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Xbig3sYpsCW5jX98QE66Dn4cyGatDq9arGsShyCh+3Y=;
+        b=gqyAjnzUZLqbaK4TdRTgj2m3AU/f1DkZEtvWQX+JuLARTiINYCabgduE0Zg+oM6BYK
+         QbhP+O0oWojL5VI7/3+aqnIDSj+PZiuwkfX5PSpF+qyAw0WOXvstGDvS1uF+srupLMFC
+         kPot0/+CPtAVWDKO33PZa0vyDDOyNDDGgQMcQRlMU0lE0bJtrtZ+s/ey2cu3H7WT6EzI
+         YxWaq2Et/pEGYAEUwdY7xfWlfhvux885dzjQTvQVxGrrovuFIJRX5couojZiNqOicO3s
+         GnMr1ob+ZLBf/2NTzPdNlPmCjt5t0skFbrc3ToHeLVQAS6LDt4uLV5U9xmWVwTSuTnj/
+         ciYw==
+X-Forwarded-Encrypted: i=1; AJvYcCVo6Qf84psuXG+Y4NhKxjatoX28oXPSMVRl/+DpZCSYXb9RAJLuyFN327UIMTJc2InWAOWn7EFdllfB@vger.kernel.org, AJvYcCXK6J8J0JhEki55B2S8YkM1aZkE2Dbvj8wI3tN5eGauZRgmiq1r/zdzuVq959mQ/8MLNCxA1w4jzbwwRKDmgjptbRM=@vger.kernel.org, AJvYcCXv6Y2ywuHTFcnmw+r/+nI2J4zuZ5ll2FyYOdsCGw3E3YPVUKBp2kYQTw01tUIIgC47jIJGnxsOYBa3iDXN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9FlJjoVJITkz80mab7R+aAWtQkkg9V9BoOu/nnUS0eSLePbLw
+	hK38icZ3gbjjIbcEPQAw4jyIGP9UP34Ax4FD3vEPlJ4z5Z0rKl10vLecmvILHPwD
+X-Gm-Gg: ASbGnctt/JXItvXrKSv/XgGWX6jfAgxWDmDdQjcw9Q8f0tqVkebgbVdb1ervqSTLlZG
+	xb84AH5XcMju5sTkACBARrJdVO0f0C6qVoWRvy0bDOJVh2FCKiSmwtEgq+vkWhN7KSAH6/6SEAI
+	I9qz+5WW48JdgLVszPQ3/ADUOyCdpUNk/xemykdyD/uoXBOHizZ6upPgWhO2sVmSmKxaFxgChtL
+	aazgGMBuabQnc7ytTtMTnThcnanz42IeTuuBq3JRtjyO6aq+LbKk+CzAX58+kzB7LpMcECvc7W7
+	GmdWVXtZt4+qUSudn+/igP8PYEiH9fF5yp3yf3e/lYLa41XiZRIqqCqdbOBMT6LQCav7WoSJy1b
+	j7zr3a588KvUaCO/+u7zq8P1ruv8PL/CBfDmGrsUuwR1d8bkL4GF3aKu6+WXdkfLu2v5zcOw=
+X-Google-Smtp-Source: AGHT+IHzPTdplrTtjU9TSbhGlpRy+2YEoDevpL0myuyhGeQm3+sRjigNrrSXCV5Y1DkCQwJ1RDbgWQ==
+X-Received: by 2002:a05:6102:dcb:b0:4fc:b033:cdc5 with SMTP id ada2fe7eead31-52b1b1f17a5mr1940791137.22.1756722260049;
+        Mon, 01 Sep 2025 03:24:20 -0700 (PDT)
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com. [209.85.217.43])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-894e1d08c79sm3376765241.6.2025.09.01.03.24.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Sep 2025 03:24:19 -0700 (PDT)
+Received: by mail-vs1-f43.google.com with SMTP id ada2fe7eead31-529f4770585so1973801137.1;
+        Mon, 01 Sep 2025 03:24:19 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVOdS+ao0Xr6LuaYTjfxZRG+jYzF/5Zvo6lQdZlRcpcnobCWjZhcKrQJMMEDljLd1diRbPHOO7gm9TIm/ZAqcyPQ78=@vger.kernel.org, AJvYcCW64RZiNK9PeOcUnDZzDq/CzSpI66yscPpVVSZ4Hslw9tgj+x3DIM3JIG/kloe8Ek14yaCcjU1BEE9I@vger.kernel.org, AJvYcCWho54Fmi2tZJYnJV/ra3kNPGnTjEh4a0ZR4aswa4WwnFRuDOmbvvTBIsOeOUUyReqiUF6Hwtd5Kie2KKRN@vger.kernel.org
+X-Received: by 2002:a05:6102:3581:b0:521:412d:94ea with SMTP id
+ ada2fe7eead31-52b1c144e1cmr2248444137.34.1756722259515; Mon, 01 Sep 2025
+ 03:24:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/33] arm_mpam: Register and enable IRQs
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-57-james.morse@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <20250822153048.2287-57-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <OS7PR01MB137037775991BBBDB29E54105A77BA@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+ <87zfdw2wlt.wl-kuninori.morimoto.gx@renesas.com> <OS7PR01MB13703B662D2AE6ECB77F59584A77BA@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+ <877c0z2vz3.wl-kuninori.morimoto.gx@renesas.com> <OS7PR01MB13703654640293E4F1F95B694A730A@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+ <877byyzjcm.wl-kuninori.morimoto.gx@renesas.com> <OS7PR01MB137031EFD84919AA36666E1FAA732A@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+ <87bjo971ns.wl-kuninori.morimoto.gx@renesas.com> <OS7PR01MB13703647C4AABD03C6345F221A732A@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+ <87cy8k2uf1.wl-kuninori.morimoto.gx@renesas.com> <OS7PR01MB1370309A85A300195896C0619A73EA@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS7PR01MB1370309A85A300195896C0619A73EA@OS7PR01MB13703.jpnprd01.prod.outlook.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Mon, 1 Sep 2025 12:24:07 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXDW5=UCVRSq2DBks++YpyoJ9rtsdaKheYLv7foEZmg-A@mail.gmail.com>
+X-Gm-Features: Ac12FXyv_fl_h6rLLtyWK7i32zlKJJX4i_uPJiy0GMGKWe6N6K6w3SWddDwtfg4
+Message-ID: <CAMuHMdXDW5=UCVRSq2DBks++YpyoJ9rtsdaKheYLv7foEZmg-A@mail.gmail.com>
+Subject: Re: [PATCH v1] arm64: dts: renesas: r8a779g0: Add new gsx node for V4H
+To: Anh Nguyen <anh.nguyen.pv@renesas.com>
+Cc: "magnus.damm" <magnus.damm@gmail.com>, "robh@kernel.org" <robh@kernel.org>, 
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Duy Dang <duy.dang.yw@renesas.com>, 
+	Duy Nguyen <duy.nguyen.rh@renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi James,
+Hi Anh,
 
-On 8/22/25 16:30, James Morse wrote:
-> Register and enable error IRQs. All the MPAM error interrupts indicate a
-> software bug, e.g. out of range partid. If the error interrupt is ever
-> signalled, attempt to disable MPAM.
-> 
-> Only the irq handler accesses the ESR register, so no locking is needed.
-> The work to disable MPAM after an error needs to happen at process
-> context, use a threaded interrupt.
-> 
-> There is no support for percpu threaded interrupts, for now schedule
-> the work to be done from the irq handler.
-> 
-> Enabling the IRQs in the MSC may involve cross calling to a CPU that
-> can access the MSC.
-> 
-> Once the IRQ is requested, the mpam_disable() path can be called
-> asynchronously, which will walk structures sized by max_partid. Ensure
-> this size is fixed before the interrupt is requested.
-> 
-> CC: Rohit Mathew <rohit.mathew@arm.com>
-> Tested-by: Rohit Mathew <rohit.mathew@arm.com>
-> Signed-off-by: James Morse <james.morse@arm.com>
-> ---
-> Changes since RFC:
->  * Use guard marco when walking srcu list.
->  * Use INTEN macro for enabling interrupts.
->  * Move partid_max_published up earlier in mpam_enable_once().
-> ---
->  drivers/resctrl/mpam_devices.c  | 311 +++++++++++++++++++++++++++++++-
->  drivers/resctrl/mpam_internal.h |   9 +-
->  2 files changed, 312 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 3516cbe8623e..210d64fad0b1 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -14,6 +14,9 @@
->  #include <linux/device.h>
->  #include <linux/errno.h>
->  #include <linux/gfp.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/irq.h>
-> +#include <linux/irqdesc.h>
->  #include <linux/list.h>
->  #include <linux/lockdep.h>
->  #include <linux/mutex.h>
-> @@ -62,6 +65,12 @@ static DEFINE_SPINLOCK(partid_max_lock);
->   */
->  static DECLARE_WORK(mpam_enable_work, &mpam_enable);
->  
-> +/*
-> + * All mpam error interrupts indicate a software bug. On receipt, disable the
-> + * driver.
-> + */
-> +static DECLARE_WORK(mpam_broken_work, &mpam_disable);
-> +
->  /*
->   * An MSC is a physical container for controls and monitors, each identified by
->   * their RIS index. These share a base-address, interrupts and some MMIO
-> @@ -159,6 +168,24 @@ static u64 mpam_msc_read_idr(struct mpam_msc *msc)
->  	return (idr_high << 32) | idr_low;
->  }
->  
-> +static void mpam_msc_zero_esr(struct mpam_msc *msc)
-> +{
-> +	__mpam_write_reg(msc, MPAMF_ESR, 0);
-> +	if (msc->has_extd_esr)
-> +		__mpam_write_reg(msc, MPAMF_ESR + 4, 0);
-> +}
-> +
-> +static u64 mpam_msc_read_esr(struct mpam_msc *msc)
-> +{
-> +	u64 esr_high = 0, esr_low;
-> +
-> +	esr_low = __mpam_read_reg(msc, MPAMF_ESR);
-> +	if (msc->has_extd_esr)
-> +		esr_high = __mpam_read_reg(msc, MPAMF_ESR + 4);
-> +
-> +	return (esr_high << 32) | esr_low;
-> +}
-> +
->  static void __mpam_part_sel_raw(u32 partsel, struct mpam_msc *msc)
->  {
->  	lockdep_assert_held(&msc->part_sel_lock);
-> @@ -405,12 +432,12 @@ static void mpam_msc_destroy(struct mpam_msc *msc)
->  
->  	lockdep_assert_held(&mpam_list_lock);
->  
-> -	list_del_rcu(&msc->glbl_list);
-> -	platform_set_drvdata(pdev, NULL);
-> -
->  	list_for_each_entry_safe(ris, tmp, &msc->ris, msc_list)
->  		mpam_ris_destroy(ris);
->  
-> +	list_del_rcu(&msc->glbl_list);
-> +	platform_set_drvdata(pdev, NULL);
-> +
+On Mon, 25 Aug 2025 at 06:37, Anh Nguyen <anh.nguyen.pv@renesas.com> wrote:
+> From 8a8391bc4ceaac5248267851b71c9cce6b5c434a Mon Sep 17 00:00:00 2001
+> From: Anh Nguyen <anh.nguyen.pv@renesas.com>
+> Date: Thu, 21 Aug 2025 10:01:30 +0700
+> Subject: [PATCH 2/2] arm64: dts: renesas: r8a779g0: Add new gsx node for V4H SoC
+>
+> Add new gsx node to enable GPU for V4H SoC
+>
+> Signed-off-by: Anh Nguyen <anh.nguyen.pv@renesas.com>
+> Reviewed-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
-Reordering can be done when introduced.
+Thanks for your patch!
 
->  	add_to_garbage(msc);
->  	msc->garbage.pdev = pdev;
->  }
-> @@ -828,6 +855,7 @@ static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  		pmg_max = FIELD_GET(MPAMF_IDR_PMG_MAX, idr);
->  		msc->partid_max = min(msc->partid_max, partid_max);
->  		msc->pmg_max = min(msc->pmg_max, pmg_max);
-> +		msc->has_extd_esr = FIELD_GET(MPAMF_IDR_HAS_EXTD_ESR, idr);
->  
->  		ris = mpam_get_or_create_ris(msc, ris_idx);
->  		if (IS_ERR(ris))
-> @@ -840,6 +868,9 @@ static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  		mutex_unlock(&msc->part_sel_lock);
->  	}
->  
-> +	/* Clear any stale errors */
-> +	mpam_msc_zero_esr(msc);
-> +
->  	spin_lock(&partid_max_lock);
->  	mpam_partid_max = min(mpam_partid_max, msc->partid_max);
->  	mpam_pmg_max = min(mpam_pmg_max, msc->pmg_max);
-> @@ -973,6 +1004,13 @@ static void mpam_reset_msc(struct mpam_msc *msc, bool online)
->  	mpam_mon_sel_outer_unlock(msc);
->  }
->  
-> +static void _enable_percpu_irq(void *_irq)
-> +{
-> +	int *irq = _irq;
-> +
-> +	enable_percpu_irq(*irq, IRQ_TYPE_NONE);
-> +}
-> +
->  static int mpam_cpu_online(unsigned int cpu)
->  {
->  	int idx;
-> @@ -983,6 +1021,9 @@ static int mpam_cpu_online(unsigned int cpu)
->  		if (!cpumask_test_cpu(cpu, &msc->accessibility))
->  			continue;
->  
-> +		if (msc->reenable_error_ppi)
-> +			_enable_percpu_irq(&msc->reenable_error_ppi);
-> +
->  		if (atomic_fetch_inc(&msc->online_refs) == 0)
->  			mpam_reset_msc(msc, true);
->  	}
-> @@ -1031,6 +1072,9 @@ static int mpam_cpu_offline(unsigned int cpu)
->  		if (!cpumask_test_cpu(cpu, &msc->accessibility))
->  			continue;
->  
-> +		if (msc->reenable_error_ppi)
-> +			disable_percpu_irq(msc->reenable_error_ppi);
-> +
->  		if (atomic_dec_and_test(&msc->online_refs))
->  			mpam_reset_msc(msc, false);
->  	}
-> @@ -1057,6 +1101,51 @@ static void mpam_register_cpuhp_callbacks(int (*online)(unsigned int online),
->  	mutex_unlock(&mpam_cpuhp_state_lock);
->  }
->  
-> +static int __setup_ppi(struct mpam_msc *msc)
-> +{
-> +	int cpu;
-> +
-> +	msc->error_dev_id = alloc_percpu_gfp(struct mpam_msc *, GFP_KERNEL);
+> --- a/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a779g0.dtsi
+> @@ -2121,6 +2121,15 @@ gic: interrupt-controller@f1000000 {
+>                         interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>                 };
+>
+> +               gsx: gsx@fd000000 {
+> +                       compatible = "renesas,gsx";
 
-Simpler to use alloc_percpu().
+This compatible value is not documented.  However, I don't think this
+can be used as-is.  I think the property should look like:
 
-> +	if (!msc->error_dev_id)
-> +		return -ENOMEM;
-> +
-> +	for_each_cpu(cpu, &msc->accessibility) {
-> +		struct mpam_msc *empty = *per_cpu_ptr(msc->error_dev_id, cpu);
-> +
-> +		if (empty) {
-> +			pr_err_once("%s shares PPI with %s!\n",
-> +				    dev_name(&msc->pdev->dev),
-> +				    dev_name(&empty->pdev->dev));
-> +			return -EBUSY;
-> +		}
-> +		*per_cpu_ptr(msc->error_dev_id, cpu) = msc;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mpam_msc_setup_error_irq(struct mpam_msc *msc)
-> +{
-> +	int irq;
-> +
-> +	irq = platform_get_irq_byname_optional(msc->pdev, "error");
-> +	if (irq <= 0)
-> +		return 0;
-> +
-> +	/* Allocate and initialise the percpu device pointer for PPI */
-> +	if (irq_is_percpu(irq))
-> +		return __setup_ppi(msc);
-> +
-> +	/* sanity check: shared interrupts can be routed anywhere? */
-> +	if (!cpumask_equal(&msc->accessibility, cpu_possible_mask)) {
-> +		pr_err_once("msc:%u is a private resource with a shared error interrupt",
-> +			    msc->id);
-> +		return -EINVAL;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int mpam_dt_count_msc(void)
->  {
->  	int count = 0;
-> @@ -1265,6 +1354,10 @@ static int mpam_msc_drv_probe(struct platform_device *pdev)
->  			break;
->  		}
->  
-> +		err = mpam_msc_setup_error_irq(msc);
-> +		if (err)
-> +			break;
-> +
->  		if (device_property_read_u32(&pdev->dev, "pcc-channel",
->  					     &msc->pcc_subspace_id))
->  			msc->iface = MPAM_IFACE_MMIO;
-> @@ -1547,11 +1640,171 @@ static void mpam_enable_merge_features(struct list_head *all_classes_list)
->  	}
->  }
->  
-> +static char *mpam_errcode_names[16] = {
-> +	[0] = "No error",
-> +	[1] = "PARTID_SEL_Range",
-> +	[2] = "Req_PARTID_Range",
-> +	[3] = "MSMONCFG_ID_RANGE",
-> +	[4] = "Req_PMG_Range",
-> +	[5] = "Monitor_Range",
-> +	[6] = "intPARTID_Range",
-> +	[7] = "Unexpected_INTERNAL",
-> +	[8] = "Undefined_RIS_PART_SEL",
-> +	[9] = "RIS_No_Control",
-> +	[10] = "Undefined_RIS_MON_SEL",
-> +	[11] = "RIS_No_Monitor",
-> +	[12 ... 15] = "Reserved"
-> +};
+    compatible = "renesas,r8a779g0-gpu", "img,img-axm-8-256".
 
-These names match the spec.
+The first step would be to add it to the DT bindings in
+Documentation/devicetree/bindings/gpu/img,powervr-rogue.yaml.
+Furthermore, support for this variant should be added to the driver
+under drivers/gpu/drm/imagination/.
+And where to get the firmware required to operate the GPU?
 
-> +
-> +static int mpam_enable_msc_ecr(void *_msc)
-> +{
-> +	struct mpam_msc *msc = _msc;
-> +
-> +	__mpam_write_reg(msc, MPAMF_ECR, MPAMF_ECR_INTEN);
-> +
-> +	return 0;
-> +}
-> +
-> +static int mpam_disable_msc_ecr(void *_msc)
-> +{
-> +	struct mpam_msc *msc = _msc;
-> +
-> +	__mpam_write_reg(msc, MPAMF_ECR, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t __mpam_irq_handler(int irq, struct mpam_msc *msc)
-> +{
-> +	u64 reg;
-> +	u16 partid;
-> +	u8 errcode, pmg, ris;
-> +
-> +	if (WARN_ON_ONCE(!msc) ||
-> +	    WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(),
-> +					   &msc->accessibility)))
-> +		return IRQ_NONE;
-> +
-> +	reg = mpam_msc_read_esr(msc);
-> +
-> +	errcode = FIELD_GET(MPAMF_ESR_ERRCODE, reg);
-> +	if (!errcode)
-> +		return IRQ_NONE;
-> +
-> +	/* Clear level triggered irq */
-> +	mpam_msc_zero_esr(msc);
-> +
-> +	partid = FIELD_GET(MPAMF_ESR_PARTID_MON, reg);
-> +	pmg = FIELD_GET(MPAMF_ESR_PMG, reg);
-> +	ris = FIELD_GET(MPAMF_ESR_RIS, reg);
-> +
-> +	pr_err("error irq from msc:%u '%s', partid:%u, pmg: %u, ris: %u\n",
-> +	       msc->id, mpam_errcode_names[errcode], partid, pmg, ris);
-> +
-> +	if (irq_is_percpu(irq)) {
-> +		mpam_disable_msc_ecr(msc);
-> +		schedule_work(&mpam_broken_work);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	return IRQ_WAKE_THREAD;
-> +}
-> +
-> +static irqreturn_t mpam_ppi_handler(int irq, void *dev_id)
-> +{
-> +	struct mpam_msc *msc = *(struct mpam_msc **)dev_id;
-> +
-> +	return __mpam_irq_handler(irq, msc);
-> +}
-> +
-> +static irqreturn_t mpam_spi_handler(int irq, void *dev_id)
-> +{
-> +	struct mpam_msc *msc = dev_id;
-> +
-> +	return __mpam_irq_handler(irq, msc);
-> +}
-> +
-> +static irqreturn_t mpam_disable_thread(int irq, void *dev_id);
-> +
-> +static int mpam_register_irqs(void)
-> +{
-> +	int err, irq;
-> +	struct mpam_msc *msc;
-> +
-> +	lockdep_assert_cpus_held();
-> +
-> +	guard(srcu)(&mpam_srcu);
-> +	list_for_each_entry_srcu(msc, &mpam_all_msc, glbl_list, srcu_read_lock_held(&mpam_srcu)) {
-> +		irq = platform_get_irq_byname_optional(msc->pdev, "error");
-> +		if (irq <= 0)
-> +			continue;
-> +
-> +		/* The MPAM spec says the interrupt can be SPI, PPI or LPI */
-> +		/* We anticipate sharing the interrupt with other MSCs */
-> +		if (irq_is_percpu(irq)) {
-> +			err = request_percpu_irq(irq, &mpam_ppi_handler,
-> +						 "mpam:msc:error",
-> +						 msc->error_dev_id);
-> +			if (err)
-> +				return err;
-> +
-> +			msc->reenable_error_ppi = irq;
-> +			smp_call_function_many(&msc->accessibility,
-> +					       &_enable_percpu_irq, &irq,
-> +					       true);
-> +		} else {
-> +			err = devm_request_threaded_irq(&msc->pdev->dev, irq,
-> +							&mpam_spi_handler,
-> +							&mpam_disable_thread,
-> +							IRQF_SHARED,
-> +							"mpam:msc:error", msc);
-> +			if (err)
-> +				return err;
-> +		}
-> +
-> +		msc->error_irq_requested = true;
-> +		mpam_touch_msc(msc, mpam_enable_msc_ecr, msc);
-> +		msc->error_irq_hw_enabled = true;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static void mpam_unregister_irqs(void)
-> +{
-> +	int irq, idx;
-> +	struct mpam_msc *msc;
-> +
-> +	cpus_read_lock();
-> +	/* take the lock as free_irq() can sleep */
-> +	idx = srcu_read_lock(&mpam_srcu);
-> +	list_for_each_entry_srcu(msc, &mpam_all_msc, glbl_list, srcu_read_lock_held(&mpam_srcu)) {
-> +		irq = platform_get_irq_byname_optional(msc->pdev, "error");
-> +		if (irq <= 0)
-> +			continue;
-> +
-> +		if (msc->error_irq_hw_enabled) {
-> +			mpam_touch_msc(msc, mpam_disable_msc_ecr, msc);
-> +			msc->error_irq_hw_enabled = false;
-> +		}
-> +
-> +		if (msc->error_irq_requested) {
-> +			if (irq_is_percpu(irq)) {
-> +				msc->reenable_error_ppi = 0;
-> +				free_percpu_irq(irq, msc->error_dev_id);
-> +			} else {
-> +				devm_free_irq(&msc->pdev->dev, irq, msc);
-> +			}
-> +			msc->error_irq_requested = false;
-> +		}
-> +	}
-> +	srcu_read_unlock(&mpam_srcu, idx);
-> +	cpus_read_unlock();
-> +}
-> +
->  static void mpam_enable_once(void)
->  {
-> -	mutex_lock(&mpam_list_lock);
-> -	mpam_enable_merge_features(&mpam_classes);
-> -	mutex_unlock(&mpam_list_lock);
-> +	int err;
->  
->  	/*
->  	 * Once the cpuhp callbacks have been changed, mpam_partid_max can no
-> @@ -1561,6 +1814,27 @@ static void mpam_enable_once(void)
->  	partid_max_published = true;
->  	spin_unlock(&partid_max_lock);
->  
-> +	/*
-> +	 * If all the MSC have been probed, enabling the IRQs happens next.
-> +	 * That involves cross-calling to a CPU that can reach the MSC, and
-> +	 * the locks must be taken in this order:
-> +	 */
-> +	cpus_read_lock();
-> +	mutex_lock(&mpam_list_lock);
-> +	mpam_enable_merge_features(&mpam_classes);
-> +
-> +	err = mpam_register_irqs();
-> +	if (err)
-> +		pr_warn("Failed to register irqs: %d\n", err);
-> +
-> +	mutex_unlock(&mpam_list_lock);
-> +	cpus_read_unlock();
-> +
-> +	if (err) {
-> +		schedule_work(&mpam_broken_work);
-> +		return;
-> +	}
-> +
->  	mpam_register_cpuhp_callbacks(mpam_cpu_online, mpam_cpu_offline);
->  
->  	printk(KERN_INFO "MPAM enabled with %u partid and %u pmg\n",
-> @@ -1615,16 +1889,39 @@ static void mpam_reset_class(struct mpam_class *class)
->   * All of MPAMs errors indicate a software bug, restore any modified
->   * controls to their reset values.
->   */
-> -void mpam_disable(void)
-> +static irqreturn_t mpam_disable_thread(int irq, void *dev_id)
->  {
->  	int idx;
->  	struct mpam_class *class;
-> +	struct mpam_msc *msc, *tmp;
-> +
-> +	mutex_lock(&mpam_cpuhp_state_lock);
-> +	if (mpam_cpuhp_state) {
-> +		cpuhp_remove_state(mpam_cpuhp_state);
-> +		mpam_cpuhp_state = 0;
-> +	}
-> +	mutex_unlock(&mpam_cpuhp_state_lock);
-> +
-> +	mpam_unregister_irqs();
->  
->  	idx = srcu_read_lock(&mpam_srcu);
->  	list_for_each_entry_srcu(class, &mpam_classes, classes_list,
->  				 srcu_read_lock_held(&mpam_srcu))
->  		mpam_reset_class(class);
->  	srcu_read_unlock(&mpam_srcu, idx);
-> +
-> +	mutex_lock(&mpam_list_lock);
-> +	list_for_each_entry_safe(msc, tmp, &mpam_all_msc, glbl_list)
-> +		mpam_msc_destroy(msc);
-> +	mutex_unlock(&mpam_list_lock);
-> +	mpam_free_garbage();
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +void mpam_disable(struct work_struct *ignored)
-> +{
-> +	mpam_disable_thread(0, NULL);
->  }
->  
->  /*
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index b30fee2b7674..c9418c9cf9f2 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -44,6 +44,11 @@ struct mpam_msc {
->  	struct pcc_mbox_chan	*pcc_chan;
->  	u32			nrdy_usec;
->  	cpumask_t		accessibility;
-> +	bool			has_extd_esr;
-> +
-> +	int				reenable_error_ppi;
-> +	struct mpam_msc * __percpu	*error_dev_id;
-> +
->  	atomic_t		online_refs;
->  
->  	/*
-> @@ -52,6 +57,8 @@ struct mpam_msc {
->  	 */
->  	struct mutex		probe_lock;
->  	bool			probed;
-> +	bool			error_irq_requested;
-> +	bool			error_irq_hw_enabled;
->  	u16			partid_max;
->  	u8			pmg_max;
->  	unsigned long		ris_idxs[128 / BITS_PER_LONG];
-> @@ -281,7 +288,7 @@ extern u8 mpam_pmg_max;
->  
->  /* Scheduled work callback to enable mpam once all MSC have been probed */
->  void mpam_enable(struct work_struct *work);
-> -void mpam_disable(void);
-> +void mpam_disable(struct work_struct *work);
->  
->  int mpam_get_cpumask_from_cache_id(unsigned long cache_id, u32 cache_level,
->  				   cpumask_t *affinity);
+> +                       reg = <0 0xfd000000 0 0x800000>;
+> +                       interrupts = <GIC_SPI 464 IRQ_TYPE_LEVEL_HIGH>;
 
-Thanks,
+According to the documentation, there are 8 interrupts?
 
-Ben
+> +                       clocks = <&cpg CPG_MOD 0>;
+> +                       power-domains = <&sysc R8A779G0_PD_A23DGB>;
+> +                       resets = <&cpg 0>;
+> +               };
+> +
+>                 csi40: csi2@fe500000 {
+>                         compatible = "renesas,r8a779g0-csi2";
+>                         reg = <0 0xfe500000 0 0x40000>;
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
