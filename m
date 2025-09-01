@@ -1,133 +1,118 @@
-Return-Path: <devicetree+bounces-211177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93ACCB3DD92
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:04:51 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F263B3DD9B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:08:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3DF697A2CE7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:03:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D1CA174138
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:08:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60ABF3009F8;
-	Mon,  1 Sep 2025 09:04:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E2043043B3;
+	Mon,  1 Sep 2025 09:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LMG/FE5B"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="d3/8nzZp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF1CF2FF150
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 09:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7D183043AF;
+	Mon,  1 Sep 2025 09:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756717483; cv=none; b=ui0Qk8ZC0JKa+5MsLrATMhO+CgL16xnp105yAgzZGlTMqIUz9mx20pOznBZK1b1g53iXAy4P2noBNi1y3uegUZ2rcQzmtlNEHP7LuzQtWjQR1TzWo1wamZJQf20NIaya2bDEhNKFiTTIVABFJYr5q20JtOJhpJCNt++VdDdxq78=
+	t=1756717677; cv=none; b=hj2fyGORaAZ3uuJTMgfHWv56e7MSpVayGJAcJRldYKGzd93w943JTaZ/lzY006RDdKQeN7tpUsZ4WHV01VO72qYY7uCliWMGpzjQWr3tNY3qPiR7rPnwi+eHpPwjaK7JLt13nb85veX8Mz9BGiWQZxMkFeBOI9yB9JKCUPAMNso=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756717483; c=relaxed/simple;
-	bh=ylfMvwdHcWV67FG167GMSdGd2pzSjGgujwNJPJyPlGo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=J2VH9k4qRnj6i4IA1atuXwZIpm+jyEWSrdwdWUyEfwFAWxQovb9VCuzR9TyzjpcJ13InIZ6aO4DIHlKNzq+5KReFulRMkUZqJms3l5RjxMdxwiMFbfs/pJaWhRY4zMpowiKZEQsxN4BO4GxtpD5hF4LJEqX/FmKtXTtva8Q1yL4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LMG/FE5B; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3cf991e8bb8so1665485f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 02:04:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756717479; x=1757322279; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cwVv68lybtG/3lTbSeRMLSCB2s0eqf0axoIfKgt8qqM=;
-        b=LMG/FE5BJKm93DBOnVGlJFPT1lQt94MTpajgNUoh04UkSfYEfuJjgap1E4uZgrPAOc
-         7QF3InzlGGE5uxWvcMClzots8u0hG5ahU1Mu8JepZB8mkT+yDZryKY+HuynHDWZAbyJJ
-         p459GGXBmi7zkM7E8p5LMn31ma2tgGe8sBxBIIbikGGanhufGqYL4YZR/6DshimcLXez
-         XHRWESp+VMi+5NZpywAHuUiLajvuzaVmHWmO1KSTmeafwmA5iW5bNG9snqXk/GESJjjP
-         ATgnqOi/TpS68GIdS64kQWcKuFzjCYtw5Ip1KP9hwkwRXHxEl6JnGfi5zikwYfvHz+yv
-         dg8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756717479; x=1757322279;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cwVv68lybtG/3lTbSeRMLSCB2s0eqf0axoIfKgt8qqM=;
-        b=FUEtYFXf2zQLEX5HfFleM35uRhTU8kFohD31430Av7F5iskDYDInQHm1HXPz07nniu
-         LQf2XoqCWMwlYWRbuCW8X762b+wg4U9dU3Ao8Xgg7CBye7x5o6U81BAZEfhL024ff/rr
-         ZqgnXzhXBo/hMpeEGL1UfAm7+VRowj4cVgGVkIp8oNtEgexzX8MXxVPjTgrxVb6Isqao
-         PWj0cYZPpXwVpo3Cv0JgnRmIz0MATUQhKBYwL0lW/91YrqC4HJkOSCdkO38i3+ruhdHV
-         aCtkJYzeRytQgTLAHFZ0t+hZozTPMSB43gBJSFJj5lIeyQnKrRvVicRSrsL+6s/D9Xh3
-         fJOA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxbo+Gns3zX3iWAoMWO1lq+cKHF0m7QSmRLICpRIgJQNT0nIIDu8NoT6aAo2/uvrxbOjihGjy76JA2@vger.kernel.org
-X-Gm-Message-State: AOJu0YzxsUNu7m5TzIcy3eBqQPTJjAtHLlqjXk0w9bl4WpqAjbOWvaDf
-	oVaN3D2qURKPFhdRYVmydUxoXIPXEa3tq2dDHSQm1mGaq4tEJFYi9F0LXFVPTolJ3+Q=
-X-Gm-Gg: ASbGncttK87tjD4EY0GT+XZbNZ95epkP+vK1D2SuMIeALdtygMR5pnKLlLTkpk5Uh7p
-	QJSOF9txjvdMjkka0jekTdge3YMWaN8ll0hDnWr/CDrIoH9dYyDzX71oZWri+JlE0gyvl/HjvVH
-	BCYmjs9OhmNPIs0QZZYfc4aR/v7c5XIQ0IYFRzsOM4BvywkliudLRJ/8y0LUZvQFtfi2KAS4cix
-	1Qs6CtfTTgxJYOMu9BOpKi8nfc9wbNPxdSXHuXaj0nbTeJyo/nmeTtSd2kyp9ZkVPWbnJQUgeLX
-	GvNeZeLpa0dNcosuVpamtmzOTfMVF+kgtKunvYtpWnDHcheSD1npzALo5lmQvJS5J1Z3ltxVwJq
-	g6pDoJzywfgTJXD7m48iGDDyd9YWg+sfe6IFkoO+F97DP1zM8OVQq6kPjQqBo8qbjnM+o377UA1
-	ioy61N9lYZrrEyKYeh05aIfzWxFgnmQA==
-X-Google-Smtp-Source: AGHT+IF5ozFXuC12DhRU7wnhvEb/Eaxn298/3hrvqF72A12C7sUxgS1LCCpfGamLqO+HTku4EuOKTg==
-X-Received: by 2002:a05:6000:1ac8:b0:3d1:9202:9e with SMTP id ffacd0b85a97d-3d1de4bb305mr6081112f8f.36.1756717479121;
-        Mon, 01 Sep 2025 02:04:39 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e9c41cfsm147188325e9.21.2025.09.01.02.04.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Sep 2025 02:04:38 -0700 (PDT)
-Message-ID: <498db18b-f6bc-4678-9d70-7741e3025185@linaro.org>
-Date: Mon, 1 Sep 2025 10:04:37 +0100
+	s=arc-20240116; t=1756717677; c=relaxed/simple;
+	bh=IAfk7MiM6ZureLT/NRsislxKUb4CkmaAnViuxYmCF9M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eDsLkr2gyeNQcDBwfNsTy33aIlpS2lYHp8yfRF7SXOXYCQ20iZ+HzW7m17sS0ocGflxkggXKtM2MdbDZ7woF394fjAVkvwpZzWaB/Pjf1J+5KmJKbc9ZRocT+UqBB7EZ06YAGPNnxjdmBFF1A4xx4TgoyhTQGNTw7J6J20gLXq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=d3/8nzZp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 742A0C4CEF0;
+	Mon,  1 Sep 2025 09:07:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756717677;
+	bh=IAfk7MiM6ZureLT/NRsislxKUb4CkmaAnViuxYmCF9M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=d3/8nzZppnFxXy7WAvIbrWgBBAoUyIfB8Nov/H6pfpZBZ6X/KQQfkcrqe5+mIIxUw
+	 YSNPODa63IFj/khA3ISpKV6DTKM7f5EVqebtvUihbLK25vzBdlSPLzZL5mAGSABMAq
+	 QErlFZooKeNkl8vGWbSZlIdivttz9jX+FDCJ2Ngab1iik1QbEWdcfdAdo64g8Oqao8
+	 lG7Lugvaa5K1QKyQuWz0XjVkalgv5NhXKo/7GJVEd6zCYyb+rdNJarJezReRxvlsHg
+	 MweH7Gi4TCNC2C9IvFwZa+zUpOEcNk2EB9jmQYQJIusV3nI1qkGRDJDo6m5UqvuOcs
+	 T7i0QG+qvP5NQ==
+Date: Mon, 1 Sep 2025 14:37:41 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+Cc: cros-qcom-dts-watchers@chromium.org, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com, 
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com, mmareddy@quicinc.com
+Subject: Re: [PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping
+Message-ID: <3ta7bnde5xiltawvyhaimllmio4nrknhyfcfjsq4mh4ztbr637@dcjmfhi7se6m>
+References: <20250828-ecam_v4-v8-0-92a30e0fa02d@oss.qualcomm.com>
+ <20250828-ecam_v4-v8-2-92a30e0fa02d@oss.qualcomm.com>
+ <ymsoyadz2gkura5evnex3m6jeeyzlcmcssdyuvddl25o5ci4bo@6ie4z5tgnpvz>
+ <3cbe6692-2ada-4034-8cb2-bc246bca5611@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 8/9] media: qcom: camss: Add support for VFE 690
-To: Vikram Sharma <quic_vikramsa@quicinc.com>, rfoss@kernel.org,
- todor.too@gmail.com, mchehab@kernel.org, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
- konradybcio@kernel.org, hverkuil-cisco@xs4all.nl,
- cros-qcom-dts-watchers@chromium.org, catalin.marinas@arm.com, will@kernel.org
-Cc: linux-arm-kernel@lists.infradead.org, quic_svankada@quicinc.com,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250703171938.3606998-1-quic_vikramsa@quicinc.com>
- <20250703171938.3606998-9-quic_vikramsa@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250703171938.3606998-9-quic_vikramsa@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <3cbe6692-2ada-4034-8cb2-bc246bca5611@oss.qualcomm.com>
 
-On 03/07/2025 18:19, Vikram Sharma wrote:
-> +		!strcmp(clock->name, "camnoc_axi"));
+On Mon, Sep 01, 2025 at 12:25:58PM GMT, Krishna Chaitanya Chundru wrote:
+> 
+> 
+> On 8/31/2025 5:18 PM, Manivannan Sadhasivam wrote:
+> > On Thu, Aug 28, 2025 at 01:04:23PM GMT, Krishna Chaitanya Chundru wrote:
+> > > External Local Bus Interface(ELBI) registers are optional registers in
+> > > DWC IPs having vendor specific registers.
+> > > 
+> > > Since ELBI register space is applicable for all DWC based controllers,
+> > > move the resource get code to DWC core and make it optional.
+> > > 
+> > > Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > > ---
+> > >   drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++++
+> > >   drivers/pci/controller/dwc/pcie-designware.h | 1 +
+> > >   2 files changed, 10 insertions(+)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > > index 89aad5a08928cc29870ab258d33bee9ff8f83143..4684c671a81bee468f686a83cc992433b38af59d 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > > @@ -167,6 +167,15 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
+> > >   		}
+> > >   	}
+> > > +	if (!pci->elbi_base) {
+> > 
+> > Why this check is needed? Are we expecting any DWC glue drivers to supply
+> > 'dw_pcie::elbi_base' on their own?
+> > 
+> I was following the same way that existed for for dbi_base, where we are
+> allowing DWC glue drivers to supply if they had any different approach
+> like ./pci-dra7xx.c driver.
+> 
 
-This is causing a regression on other platforms because they define 
-camnnoc_axi but not @ the rate of the pixel clock.
+That's because the glue drivers were using different dbi resource name in DT.
+But for ELBI, we have so far seen only 'elbi'. So there is no need to allow
+override.
 
-In fact its not very obvious why the CAMNOC AXI would want to have a 
-pixel clock applied to the interconnect fabric.
+I will remove this check while applying.
 
-The following resolves the regression for me. I can either merge with 
-this change or I'll have to drop the VFE690 changes until you come back 
-with something else.
+- Mani
 
-➜ deckard@sagittarius-a  ~/Development/qualcomm/qlt-kernel 
-git:(aaa8b5ab704f3) ✗ git diff
-diff --git a/drivers/media/platform/qcom/camss/camss-vfe.c 
-b/drivers/media/platform/qcom/camss/camss-vfe.c
-index e969de74818f1..1aa0ba5ad8d60 100644
---- a/drivers/media/platform/qcom/camss/camss-vfe.c
-+++ b/drivers/media/platform/qcom/camss/camss-vfe.c
-@@ -913,8 +913,7 @@ static int vfe_match_clock_names(struct vfe_device *vfe,
-
-         return (!strcmp(clock->name, vfe_name) ||
-                 !strcmp(clock->name, vfe_lite_name) ||
--               !strcmp(clock->name, "vfe_lite") ||
--               !strcmp(clock->name, "camnoc_axi"));
-+               !strcmp(clock->name, "vfe_lite"));
-
----
-bod
+-- 
+மணிவண்ணன் சதாசிவம்
 
