@@ -1,114 +1,349 @@
-Return-Path: <devicetree+bounces-211144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF8CBB3DABC
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:05:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5DC2B3DAB3
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:04:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0BB2E7A8BC7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:03:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8B5303A91A0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:04:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C65C3259CA3;
-	Mon,  1 Sep 2025 07:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA03C231A23;
+	Mon,  1 Sep 2025 07:04:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iJmMVV23"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m155101.qiye.163.com (mail-m155101.qiye.163.com [101.71.155.101])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5551246783;
-	Mon,  1 Sep 2025 07:05:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=101.71.155.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DA8F4A2D
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 07:04:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756710327; cv=none; b=thtgFILr175Rj7ylOxkiG76vAxDwHwmXQjYSRQU/vrQMwe9GccpF/3Ja5kFJYrUoJvq3+Osh+DhUjQCutwaoK4lLVVUXGMT1+L/T2V/CuTvgmqZVNylZx2Y4VH4Bi3sIxTB+bFVh74YI3E5GPAyIujx4Hc5uMUveASulUljg43w=
+	t=1756710263; cv=none; b=WemwwFy3mlqwuZO/MUMLibPLuFp7+UGtnSvfufgLe1kIuHY6tCvz73+8ApB3YRhmqcjgQASAzBCNs5PoaqyqPUz50FSlPwQULcodXDtJnLH15uQ1+WHRZizJjGOKd0KFX4NZEIOH+bg+CgNviKPpw0yZkZWJiVdr6oDl/pR5UFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756710327; c=relaxed/simple;
-	bh=+nRWEshOPh2UgYmngjilYThs/IAhz8GLUuV4xT5X2cE=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=cCnW8hLwd85987kT11cIMafyaIMEYorPWZzvMEH+Ke6biNosdMzagkxge4/uERjl2w6a4WAAEOaAnlTA2kLdFX0LA+dxfy1PyW+yXbkOCqlL+anNpVTqF3XbQn4IbDB5+UZaIj45vMIExvl+tFTsKcXqs2s4mGXLnRc0G4x+Wyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=101.71.155.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
-Received: from amadeus-Vostro-3710.lan (unknown [119.122.212.9])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 21418c670;
-	Mon, 1 Sep 2025 15:00:11 +0800 (GMT+08:00)
-From: Chukun Pan <amadeus@jmu.edu.cn>
-To: xunil@tahomasoft.com
-Cc: amadeus@jmu.edu.cn,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	heiko@sntech.de,
-	krzk+dt@kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 3/4] arm64: dts: rockchip: Add HINLINK H68K
-Date: Mon,  1 Sep 2025 15:00:08 +0800
-Message-Id: <20250901070008.68662-1-amadeus@jmu.edu.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250830171409.592c1f63.xunil@tahomasoft.com>
-References: <20250830171409.592c1f63.xunil@tahomasoft.com>
+	s=arc-20240116; t=1756710263; c=relaxed/simple;
+	bh=YQQja4iUtJHXPXqCeYJ+scYMPKaUF31XRBIpLGv+MVo=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sgv5MJreVZ9twQx8ghwq5wXxSnsUF3MEePkBqlz0nbje/qhI6IQiMXKFj7nfbgBdwQdnXXWIJPMyAoDJgOn4bNq0UqXApdtSbe/hJ8V7HWxa4+zdws+jpu3VayvA2cq6ujRH8W1o8px2G/0Jy4iW/YecLYW5b+7dNG0Iy3i+B4E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iJmMVV23; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 581003Hl007072
+	for <devicetree@vger.kernel.org>; Mon, 1 Sep 2025 07:04:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=uE/VNkcgGxZg4bxQlLZeMWOe
+	wUFLCRZiFuXlOiXNv1U=; b=iJmMVV235PJ2DI5K/4eQ6JgpV3SSRnZyjitjk7cU
+	2AZffpc036zKPFrgeAp5AL6If7/ui0xW9uER4orHBNFBV/PwMjEn8M+Vywct8Uk/
+	1jdn/nQC44yFg7bj74WdpkBp1YL1/64fV7Jk3fmvvMinn3UVls8Ts+fTPlLCWp1h
+	+35WSsZ/mpns9bHdJKXosfeHZn86qiUgpHs2nHjYCu/lJA6j8GEygHVcqmdsCWtz
+	auZ70UOnHvghC1Vf1HJhVuTx/DtP5PHbQqHlSurqMBJ3xWMCzg26TMyywYjnrPAE
+	tOYgHHU8v702HXmu6mATziJaA+E0vmiplNtGNzEMgQJEzw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnp3t90-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 07:04:21 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b311db2c76so335431cf.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 00:04:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756710260; x=1757315060;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uE/VNkcgGxZg4bxQlLZeMWOewUFLCRZiFuXlOiXNv1U=;
+        b=O0bn5wpPGzcW8wtK3uBloNnIlzCgNGfJxrBhkhKTVXeTg1Cg8IdFticy4B5/JxfE9G
+         9V69/U9ayF7CChmzoOqV8vNXi2rZctJrCDKeQ3l0/Jj6wFEjQF1iCMZ2u6CIVupsR7ZC
+         tWtrgmMyikcUX3qs4i0LN056peNu3/twNrOFRwkY0wjB9VYpLv/YxYiPFGe+zrWiYGUB
+         3x5RG51icTNMlLNBP507bQhyOHlmzX5VC6S0BZz3LJeD9+oi+QfsGENIRWAd7WxJwpVy
+         HYSZUQgI6U6HMuWoHXnoS/cGbpG2iZAqt2fABzAWTZaWaxdVSdGT3J2JkL1fIF1VE3NJ
+         njrg==
+X-Forwarded-Encrypted: i=1; AJvYcCWKgkwqfuAhTHsG2mm6OnW/L9buPHdCrxsZ0GQeHPopCy5PNy6WhktMiKq3J+a/QxJm2UIS7/cX4Me4@vger.kernel.org
+X-Gm-Message-State: AOJu0YyLqdqQ/PNOi+MFBjRbLTlcp90rqcN1W2tbb48Cmb48dqUKrXyY
+	RIyIsMIv5W+dI1Pz02yAJ/6fNJQhdhjiWA7iXhnnyiACFWX9jX53WHbBFKyaMQlYkFC71iMl/8A
+	DutSjYIJhDW7RgqCJnsDe6T0TY5uEH4dZ3YQeJcZ7mSlJijkdY3e+0TRXaajD7Eqf
+X-Gm-Gg: ASbGncuamf8z4bpHuKfOJMn20P3GtTYsxj+mpzOYtUub41dgiNuxHZUTaqRqt/T3uaL
+	UnNjsxGxJeVX47tgDoHwzzlj25+HdYGiTk5qlpPmowy8Fd1DxRjOlq0bdCEbVBaiuLg3yu2N3Fw
+	NBLw2HorxBxWlIJS2UOg9G1KtY6ejAgJFjmjnMucMrFd9rItU41tFBUXRY802iRSyZWJyhjVOf9
+	qjWUO0hS82K4X4/bQhZNoZQGY7iKxT2q/CgbYfx6nm6g94VAc34xEJojP0YQWHzz3l34+28CL0D
+	QsZJmkaSESE0eC7fvjXRz2eTXVvvgVj5Q53Ejdq1KfcXzEKBi99a1DzJ4ifeQSS8VCWnxFVd
+X-Received: by 2002:ac8:59d4:0:b0:4b3:105:dd0e with SMTP id d75a77b69052e-4b31dcdedb0mr80691171cf.84.1756710259951;
+        Mon, 01 Sep 2025 00:04:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGqvOZBx3Up1SuKrEC/9nId/pjz1oZkJwt75SFpF3nCz39S6DR/EG0bjfp1bmFvrrEdfYgIiw==
+X-Received: by 2002:ac8:59d4:0:b0:4b3:105:dd0e with SMTP id d75a77b69052e-4b31dcdedb0mr80690791cf.84.1756710259236;
+        Mon, 01 Sep 2025 00:04:19 -0700 (PDT)
+Received: from trex (104.red-81-38-137.dynamicip.rima-tde.net. [81.38.137.104])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d7330e4bc9sm2100837f8f.10.2025.09.01.00.04.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 01 Sep 2025 00:04:18 -0700 (PDT)
+From: Jorge Ramirez <jorge.ramirez@oss.qualcomm.com>
+X-Google-Original-From: Jorge Ramirez <JorgeRamirez-Ortiz>
+Date: Mon, 1 Sep 2025 09:04:13 +0200
+To: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+Cc: quic_vgarodia@quicinc.com, quic_dikshita@quicinc.com,
+        bryan.odonoghue@linaro.org, mchehab@kernel.org, robh@kernel.org,
+        krzk+dt@kernel.org, conor+dt@kernel.org, andersson@kernel.org,
+        konradybcio@kernel.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v10 2/8] media: venus: Define minimum valid firmware
+ version
+Message-ID: <aLVFbbcqPBFJRrFO@trex>
+References: <20250814085248.2371130-1-jorge.ramirez@oss.qualcomm.com>
+ <20250814085248.2371130-3-jorge.ramirez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a99041382c703a2kunm1c90e51f35d11a
-X-HM-MType: 10
-X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkZSR9DVh1CSB9KHRlNSRhNTlYeHw5VEwETFhoSFy
-	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0lIQkhCVUpLS1VKQk
-	tLWQY+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250814085248.2371130-3-jorge.ramirez@oss.qualcomm.com>
+X-Proofpoint-GUID: kCAFrScJAI2OXiyEaLaop0dEOiYG-0tB
+X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b54575 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=b7LKs1oZe9YjeUNSp5ep0A==:17
+ a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=bUZi_dX1JFjbleUUZmwA:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: kCAFrScJAI2OXiyEaLaop0dEOiYG-0tB
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX+mh0Q9pBQJrX
+ WJVA5pnz+5UqRXOpiUzoBty34f3uWgAH3fR7SQTt1uzstHfbkfLM7eNCtV9LaDMzej+tEF99joX
+ zCJy/Y3wXy7Ig/ZOl56ABglwTjtX/qP5Tuo2Lp7UsH3EXZ124gNOCzy7sM6ejzRfJaG45AwQVpp
+ tG/xYD5urrGlrdAEUjfOaQroUXUQsJBEPpyCZd0TFeNGFcKPLms/bDiIrMLmyoJxrDmxQwjaait
+ S4SZM+c7LLAItZ10NZiTM2D6kS/GbzAQRAguSoiLk3qxwwOVqm1iFBZSVZYLaRlTypKdkVOokLh
+ 6SKmjx9jymbpxXEcG5xrDrwwKK4Uh0rNHQPjSOfXJoqaevL7peX/PzTWZX/+0oDkF7KVWjw9loD
+ h4K/jbtI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-01_03,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300001
 
-Hi,
-
-> Please change phy-mode here to "rgmii". This change will yield an
-> ethernet speed throughput change of a factor of 100+. 
-
-> Same as above: Please change phy-mode here to "rgmii". This change
-> will yield an ethernet speed throughput change of a factor of 100+. 
-
-This doesn't make sense. When I first submitted it to coolsnowwolf/lede
-in 2022, I used "rgmii-id" as the phy-mode, and it worked:
-https://github.com/coolsnowwolf/lede/blob/master/target/linux/rockchip/files/arch/arm64/boot/dts/rockchip/rk3568-opc-h68k.dts#L24
-
-Are you experiencing issues with both eth0 and eth1 or just one of them?
-Are you using the generic-rk3568 target for U-Boot?
-
-I can't reproduce your problem in my test.
-
-eth0/gmac1 (as lan):
-root@OpenWrt:~# iperf3 -c 192.168.1.100
-Connecting to host 192.168.1.100, port 5201
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.00  sec  1.10 GBytes   942 Mbits/sec   29            sender
-[  5]   0.00-10.04  sec  1.10 GBytes   936 Mbits/sec                  receiver
-
-root@OpenWrt:~# iperf3 -c 192.168.1.100 -R
-Connecting to host 192.168.1.100, port 5201
-Reverse mode, remote host 192.168.1.100 is sending
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.04  sec  1.10 GBytes   939 Mbits/sec    1            sender
-[  5]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec                  receiver
-
-eth1/gmac0 (as wan):
-root@OpenWrt:~# iperf3 -c 192.168.0.2 -P 4
-Connecting to host 192.168.0.2, port 5201
-[ ID] Interval           Transfer     Bitrate         Retr
-[SUM]   0.00-10.00  sec  1.10 GBytes   945 Mbits/sec  1191             sender
-[SUM]   0.00-10.05  sec  1.09 GBytes   935 Mbits/sec                  receiver
-
-root@OpenWrt:~# iperf3 -c 192.168.0.2 -R
-Connecting to host 192.168.0.2, port 5201
-Reverse mode, remote host 192.168.0.2 is sending
-[ ID] Interval           Transfer     Bitrate         Retr
-[  5]   0.00-10.06  sec  1.10 GBytes   939 Mbits/sec    6            sender
-[  5]   0.00-10.00  sec  1.10 GBytes   941 Mbits/sec                  receiver
-
---
-2.25.1
+On 14/08/25 10:52:42, Jorge Ramirez-Ortiz wrote:
+> Add support for specifying the minimum firmware version required for
+> correct operation.
+> 
+> When set, the driver compares this value against the version reported by
+> the firmware: if the firmware is older than required, driver
+> initialization will fail.
+> 
+> The version check is performed before creating dynamic device tree
+> nodes, to avoid the need for reverting nodes on failure.
+> 
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+> ---
+>  drivers/media/platform/qcom/venus/core.c     | 40 +++++++++++---------
+>  drivers/media/platform/qcom/venus/core.h     | 13 ++++---
+>  drivers/media/platform/qcom/venus/firmware.c | 20 ++++++++++
+>  drivers/media/platform/qcom/venus/firmware.h |  1 +
+>  drivers/media/platform/qcom/venus/hfi_msgs.c | 11 +++++-
+>  5 files changed, 61 insertions(+), 24 deletions(-)
+>
 
 
+could I get some feedback on this patch please ?
+
+TIA
+
+
+> diff --git a/drivers/media/platform/qcom/venus/core.c b/drivers/media/platform/qcom/venus/core.c
+> index 90de29f166ad..5d76e50234f6 100644
+> --- a/drivers/media/platform/qcom/venus/core.c
+> +++ b/drivers/media/platform/qcom/venus/core.c
+> @@ -448,19 +448,9 @@ static int venus_probe(struct platform_device *pdev)
+>  	if (ret < 0)
+>  		goto err_runtime_disable;
+>  
+> -	if (core->res->dec_nodename || core->res->enc_nodename) {
+> -		ret = venus_add_dynamic_nodes(core);
+> -		if (ret)
+> -			goto err_runtime_disable;
+> -	}
+> -
+> -	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+> -	if (ret)
+> -		goto err_remove_dynamic_nodes;
+> -
+>  	ret = venus_firmware_init(core);
+>  	if (ret)
+> -		goto err_of_depopulate;
+> +		goto err_runtime_disable;
+>  
+>  	ret = venus_boot(core);
+>  	if (ret)
+> @@ -474,34 +464,48 @@ static int venus_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		goto err_venus_shutdown;
+>  
+> -	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_DEC);
+> +	ret = venus_firmware_check(core);
+>  	if (ret)
+>  		goto err_core_deinit;
+>  
+> +	if (core->res->dec_nodename || core->res->enc_nodename) {
+> +		ret = venus_add_dynamic_nodes(core);
+> +		if (ret)
+> +			goto err_core_deinit;
+> +	}
+> +
+> +	ret = of_platform_populate(dev->of_node, NULL, NULL, dev);
+> +	if (ret)
+> +		goto err_remove_dynamic_nodes;
+> +
+> +	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_DEC);
+> +	if (ret)
+> +		goto err_of_depopulate;
+> +
+>  	ret = venus_enumerate_codecs(core, VIDC_SESSION_TYPE_ENC);
+>  	if (ret)
+> -		goto err_core_deinit;
+> +		goto err_of_depopulate;
+>  
+>  	ret = pm_runtime_put_sync(dev);
+>  	if (ret) {
+>  		pm_runtime_get_noresume(dev);
+> -		goto err_core_deinit;
+> +		goto err_of_depopulate;
+>  	}
+>  
+>  	venus_dbgfs_init(core);
+>  
+>  	return 0;
+>  
+> +err_of_depopulate:
+> +	of_platform_depopulate(dev);
+> +err_remove_dynamic_nodes:
+> +	venus_remove_dynamic_nodes(core);
+>  err_core_deinit:
+>  	hfi_core_deinit(core, false);
+>  err_venus_shutdown:
+>  	venus_shutdown(core);
+>  err_firmware_deinit:
+>  	venus_firmware_deinit(core);
+> -err_of_depopulate:
+> -	of_platform_depopulate(dev);
+> -err_remove_dynamic_nodes:
+> -	venus_remove_dynamic_nodes(core);
+>  err_runtime_disable:
+>  	pm_runtime_put_noidle(dev);
+>  	pm_runtime_disable(dev);
+> diff --git a/drivers/media/platform/qcom/venus/core.h b/drivers/media/platform/qcom/venus/core.h
+> index db7b69b91db5..58da4752569a 100644
+> --- a/drivers/media/platform/qcom/venus/core.h
+> +++ b/drivers/media/platform/qcom/venus/core.h
+> @@ -58,6 +58,12 @@ enum vpu_version {
+>  	VPU_VERSION_IRIS2_1,
+>  };
+>  
+> +struct firmware_version {
+> +	u32 major;
+> +	u32 minor;
+> +	u32 rev;
+> +};
+> +
+>  struct venus_resources {
+>  	u64 dma_mask;
+>  	const struct freq_tbl *freq_tbl;
+> @@ -94,6 +100,7 @@ struct venus_resources {
+>  	const char *fwname;
+>  	const char *enc_nodename;
+>  	const char *dec_nodename;
+> +	const struct firmware_version *min_fw;
+>  };
+>  
+>  enum venus_fmt {
+> @@ -231,11 +238,7 @@ struct venus_core {
+>  	unsigned int core0_usage_count;
+>  	unsigned int core1_usage_count;
+>  	struct dentry *root;
+> -	struct venus_img_version {
+> -		u32 major;
+> -		u32 minor;
+> -		u32 rev;
+> -	} venus_ver;
+> +	struct firmware_version venus_ver;
+>  	unsigned long dump_core;
+>  	struct of_changeset *ocs;
+>  	bool hwmode_dev;
+> diff --git a/drivers/media/platform/qcom/venus/firmware.c b/drivers/media/platform/qcom/venus/firmware.c
+> index 66a18830e66d..3666675ae298 100644
+> --- a/drivers/media/platform/qcom/venus/firmware.c
+> +++ b/drivers/media/platform/qcom/venus/firmware.c
+> @@ -280,6 +280,26 @@ int venus_shutdown(struct venus_core *core)
+>  	return ret;
+>  }
+>  
+> +int venus_firmware_check(struct venus_core *core)
+> +{
+> +	const struct firmware_version *req = core->res->min_fw;
+> +	const struct firmware_version *run = &core->venus_ver;
+> +
+> +	if (!req)
+> +		return 0;
+> +
+> +	if (!is_fw_rev_or_newer(core, req->major, req->minor, req->rev))
+> +		goto error;
+> +
+> +	return 0;
+> +error:
+> +	dev_err(core->dev, "Firmware v%d.%d.%d < v%d.%d.%d\n",
+> +		run->major, run->minor, run->rev,
+> +		req->major, req->minor, req->rev);
+> +
+> +	return -EINVAL;
+> +}
+> +
+>  int venus_firmware_init(struct venus_core *core)
+>  {
+>  	struct platform_device_info info;
+> diff --git a/drivers/media/platform/qcom/venus/firmware.h b/drivers/media/platform/qcom/venus/firmware.h
+> index aaccd847fa30..ead39e3797f0 100644
+> --- a/drivers/media/platform/qcom/venus/firmware.h
+> +++ b/drivers/media/platform/qcom/venus/firmware.h
+> @@ -9,6 +9,7 @@ struct device;
+>  
+>  int venus_firmware_init(struct venus_core *core);
+>  void venus_firmware_deinit(struct venus_core *core);
+> +int venus_firmware_check(struct venus_core *core);
+>  int venus_boot(struct venus_core *core);
+>  int venus_shutdown(struct venus_core *core);
+>  int venus_set_hw_state(struct venus_core *core, bool suspend);
+> diff --git a/drivers/media/platform/qcom/venus/hfi_msgs.c b/drivers/media/platform/qcom/venus/hfi_msgs.c
+> index cf0d97cbc463..47b99d5b5af7 100644
+> --- a/drivers/media/platform/qcom/venus/hfi_msgs.c
+> +++ b/drivers/media/platform/qcom/venus/hfi_msgs.c
+> @@ -277,7 +277,12 @@ static void hfi_sys_init_done(struct venus_core *core, struct venus_inst *inst,
+>  
+>  done:
+>  	core->error = error;
+> -	complete(&core->done);
+> +	/*
+> +	 * Since core_init could ask for the firmware version to be validated,
+> +	 * completion might have to wait until the version is retrieved.
+> +	 */
+> +	if (!core->res->min_fw)
+> +		complete(&core->done);
+>  }
+>  
+>  static void
+> @@ -328,6 +333,10 @@ sys_get_prop_image_version(struct venus_core *core,
+>  	if (!IS_ERR(smem_tbl_ptr) && smem_blk_sz >= SMEM_IMG_OFFSET_VENUS + VER_STR_SZ)
+>  		memcpy(smem_tbl_ptr + SMEM_IMG_OFFSET_VENUS,
+>  		       img_ver, VER_STR_SZ);
+> +
+> +	/* core_init could have had to wait for a version check */
+> +	if (core->res->min_fw)
+> +		complete(&core->done);
+>  }
+>  
+>  static void hfi_sys_property_info(struct venus_core *core,
+> -- 
+> 2.34.1
+> 
 
