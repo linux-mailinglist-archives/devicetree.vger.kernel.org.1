@@ -1,37 +1,37 @@
-Return-Path: <devicetree+bounces-211213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 163AFB3DF5F
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:01:22 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38467B3DF67
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:02:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8E4CD1A8026A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:01:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14E5944094E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:01:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45ACC30EF90;
-	Mon,  1 Sep 2025 10:00:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34CE930F921;
+	Mon,  1 Sep 2025 10:00:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-m49198.qiye.163.com (mail-m49198.qiye.163.com [45.254.49.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCF5C30E0E1;
-	Mon,  1 Sep 2025 10:00:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E9D30BBBB;
+	Mon,  1 Sep 2025 10:00:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.254.49.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756720847; cv=none; b=fxvceOqIC5qc7/p8Ht+jahoZ5U7Df4wYTMZ6xX4L3JIgHqgUBbzEKeIqxtynjn8z7izgQCyV+w5CQWRTs/bioOsw5kcLYFT269p1+C7W7iGbzMekZgNmFourNvTfkEpNVq354vKYs2HPRgu+FIGjQLrJ4B5svLaTDsOd2wrvvtw=
+	t=1756720849; cv=none; b=hNRQjuTJLrBypL6jOS0XJ5qDDhWW2FOSJlQ9kev9aobpIqD0xo0zqKuF61YJL6/izpnnPBwP7rvZZ7ko2Yg5tD9Sw2W9/8429itOnfe1uTc4CLw2QqQ6e4qUexJjPv8Z0WnDK/H1akKjBMAbDlHZBjWWK/d9B3ZFzMMA6wc5o1E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756720847; c=relaxed/simple;
-	bh=qdH3EAMuFvS/LLFaEtw8RYt4f5BeQcZIsTS1XDCXYjQ=;
+	s=arc-20240116; t=1756720849; c=relaxed/simple;
+	bh=5Qe7f5J63QcwqQwHAbUe3ZEVFRLNutzhqOSqZ4JRpSE=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=ApmIY7r+ZF2MFq3FSA6XdhPwssJkliPDKIHZdDitgDlAyD2ycFUhGtQwqH1a1aUs2K/R2bQdWvOGq/4zzklh5N3uDB1zPLRD9tWAMoYTHcRSnPwjwXfLgm3NRb209TpIcQNyojXJ5PbnoLIpknJnZPAFJac+pLBCWKjkCa6/RiU=
+	 MIME-Version; b=Ez0hZdoi9CZTy6Lr5Fem+qWxlm1OoOwuz6kr7mpnsWT1vf/56jZcY+3oMLFCOoGccFErnt7l3EChknyEO1ALnNVpj/egVSn3WE+tGCo5Ye/gFHIEc8OCXU1qYvkUhvfKKyW6y7kHj9XAaJb+zPD28JZeGQPUJ4+QHueAPg+hfe4=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=45.254.49.198
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
 Received: from localhost.localdomain (unknown [119.122.212.9])
-	by smtp.qiye.163.com (Hmail) with ESMTP id 2148c25aa;
-	Mon, 1 Sep 2025 18:00:35 +0800 (GMT+08:00)
+	by smtp.qiye.163.com (Hmail) with ESMTP id 2148c25ad;
+	Mon, 1 Sep 2025 18:00:36 +0800 (GMT+08:00)
 From: Chukun Pan <amadeus@jmu.edu.cn>
 To: Heiko Stuebner <heiko@sntech.de>
 Cc: Chukun Pan <amadeus@jmu.edu.cn>,
@@ -43,9 +43,9 @@ Cc: Chukun Pan <amadeus@jmu.edu.cn>,
 	linux-rockchip@lists.infradead.org,
 	linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH v3 1/3] arm64: dts: rockchip: disable display subsystem for Radxa E52C
-Date: Mon,  1 Sep 2025 18:00:25 +0800
-Message-Id: <20250901100027.164594-2-amadeus@jmu.edu.cn>
+Subject: [PATCH v3 2/3] arm64: dts: rockchip: remove vcc_3v3_pmu regulator for Radxa E52C
+Date: Mon,  1 Sep 2025 18:00:26 +0800
+Message-Id: <20250901100027.164594-3-amadeus@jmu.edu.cn>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20250901100027.164594-1-amadeus@jmu.edu.cn>
 References: <20250901100027.164594-1-amadeus@jmu.edu.cn>
@@ -56,39 +56,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-HM-Tid: 0a9904b8aa7a03a2kunmfa64e5773746b5
+X-HM-Tid: 0a9904b8b0b103a2kunmfa64e5773746c8
 X-HM-MType: 10
 X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
-	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVkaTRkaVkIfTUpOTh4dQx0aSlYeHw5VEwETFhoSFy
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGBlOVk1NTxhNQ0xNS0NKQ1YeHw5VEwETFhoSFy
 	QUDg9ZV1kYEgtZQVlKSkJVSklJVUlKSVVCWVdZFhoPEhUdFFlBWU9LSFVKS0hKTkxOVUpLS1VKQk
 	tLWQY+
 
-The Radxa E52C SBC do not have HDMI output, so disable
-the display subsystem to avoid the following error log:
+According to Radxa E52C Schematic V1.2 [1] page 5, vcc_3v3_pmu
+is directly connected to vcc_3v3_s3 via a 0 ohm resistor.
+The vcc_3v3_pmu is not a new regulator, so remove it.
 
-*ERROR* No available vop found for display-subsystem.
+[1] https://dl.radxa.com/e/e52c/hw/radxa_e52c_v1.2_schematic.pdf
 
-Fixes: 9be4171219b6 ("arm64: dts: rockchip: Add Radxa E52C")
 Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
 ---
- arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts | 12 +-----------
+ 1 file changed, 1 insertion(+), 11 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-index 48ddc43e2ab5..1883bd183396 100644
+index 1883bd183396..302a30e423ad 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3582-radxa-e52c.dts
-@@ -207,6 +207,10 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
+@@ -98,16 +98,6 @@ vcc_1v1_nldo_s3: regulator-1v1 {
+ 		vin-supply = <&vcc_sysin>;
+ 	};
  
-+&display_subsystem {
-+	status = "disabled";
-+};
-+
- &i2c0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&i2c0m2_xfer>;
+-	vcc_3v3_pmu: regulator-3v3-0 {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vcc_3v3_pmu";
+-		regulator-always-on;
+-		regulator-boot-on;
+-		regulator-min-microvolt = <3300000>;
+-		regulator-max-microvolt = <3300000>;
+-		vin-supply = <&vcc_3v3_s3>;
+-	};
+-
+ 	vcc_3v3_s0: regulator-3v3-1 {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "vcc_3v3_s0";
+@@ -542,7 +532,7 @@ regulator-state-mem {
+ 				};
+ 			};
+ 
+-			vcc_3v3_s3: dcdc-reg8 {
++			vcc_3v3_s3: vcc_3v3_pmu: dcdc-reg8 {
+ 				regulator-name = "vcc_3v3_s3";
+ 				regulator-always-on;
+ 				regulator-boot-on;
 -- 
 2.25.1
 
