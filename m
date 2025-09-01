@@ -1,141 +1,147 @@
-Return-Path: <devicetree+bounces-211444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 231D8B3F0EC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 00:16:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8216B3F112
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 00:43:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84B181A8677C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:16:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A236C2C060B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 22:43:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343B727F005;
-	Mon,  1 Sep 2025 22:16:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC24E2848A7;
+	Mon,  1 Sep 2025 22:43:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="CyzV55mW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UP9Y8CBg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0A8D223DF0;
-	Mon,  1 Sep 2025 22:16:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26B012673B7;
+	Mon,  1 Sep 2025 22:43:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756764985; cv=none; b=RTcELKWmUbF3maRCG+GESsWaXpvuF+SiRzMC7bcr/B//jrkcBZxlLPb6j738kKBokOzVdl8X4OQLS3Sis5uPa8uI2rbs5o8Z1tnpbILX6e2IH786GeFtkkGtPLVpzMjGeRUrQOB7T2SRvRXbkNTpd/XHIwlrKMfhcmVMCurJxZg=
+	t=1756766624; cv=none; b=hEIthX9U8S0yfQzv71X81CaxylRAGDjY0JrvG8TpkbF7NWYa/CMbcS7P/KY76Ox4O/5JNCQFObchiVDjDYipj2fwY6MjKTLp2TzNe7uSWBzBKRL/BpGD01zKqJwEBbyMPhmHRygAna7H4PXPfweXW5o761Q/29gu2dzQjaemdbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756764985; c=relaxed/simple;
-	bh=oLskMqaHBZDQ4M+92Ea6fkMbA16LtpzZszxWHw36BKk=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FjHMINJ+8IX9dQSBVnZvLH+GfccdbdGug2C2syvd6y41EIpDH27B11yXvM9rNP5UvhvJp3suoI0FYnPXtRwQ/JSq4JvQOT8mlCc5KLRP8LjsVAOJvV1xmmg9emMpV2s3sAhHuHRkVkMmjVqQ2mMR9l3VAjJdp8KonVkayi32voc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=CyzV55mW; arc=none smtp.client-ip=209.85.210.175
+	s=arc-20240116; t=1756766624; c=relaxed/simple;
+	bh=Vq2UxiNlmamtFa5vD+FFU5U+qndVWS4rG3PWFy2I7Mc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=upbEmTH1HRMrBEwiIdyep1XGLJ752EdeI7Gd5v3zR/LJJalxLSxQdYGjwPMHTBuA3fwjcMbGbEICLen9CcUTENEjJrrlBkyZSRl4n1LvES3J+edBazzd97sjtf41Jl3G+24PlOj1tqbm7UM+HOiwe+sTD3D0yNreOtmT+MCr9OM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UP9Y8CBg; arc=none smtp.client-ip=209.85.221.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-76e1fc69f86so4321187b3a.0;
-        Mon, 01 Sep 2025 15:16:23 -0700 (PDT)
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3d0b6008a8bso1689651f8f.0;
+        Mon, 01 Sep 2025 15:43:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756764983; x=1757369783; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=erf0LGr1RXc9Ic0frfV15S6ddZ5bAby40+1+C+q1TDE=;
-        b=CyzV55mWi3B8ofzM/la7yAuLlAwfJxghhN1wXayorkXjTMafejKRw9QgI72Mzl1K+4
-         1p5SyXL3HebV10s0CwtB7jOwqMY4m+/shwbV8G7uHdm+Cu/hv82pJgy0VFPVKsIO+bFM
-         GOzqwgKWsinj8dixXbQLCUR4w5EdilGWO42XPe61/smzviIQhEcmIIWZ67cwCT2z2FPn
-         5aD4pMo+MjylisX/bH+IAPfk+POEIYzNpcf4lDB6favbZqU3/ssuD6qxd1nm5EWdlVPR
-         V30Kki/HZT6HgOY1Eow/Y40HBVzkhfHxvk/xD5tDOJswDkAzSkmR/7zM9lvgrwdWV5ny
-         JIZA==
+        d=gmail.com; s=20230601; t=1756766621; x=1757371421; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vQwlvdM3yntIS2m0mx9hBvGY1P/gMbdEn5SRgRXvS0c=;
+        b=UP9Y8CBg9Yu9IwW/EQWg8e5mV8y6PDF/zX80Lp/1VndctyJtsc3tg+iFLFvLutubnb
+         tjcohBCHx0AwP7hVyJzEMFtlscac3SkXjX9Jw8JsMaMSZXSD+eTQglPEtuI+v6gP1bbn
+         VV3TxeGwBLy0gUC9cqE6kKNNMa57uxf+lHvbWV1YkXHcsJU2XzEc/B3Z/f1l9jE6bUz2
+         S0mM9tsgXRNQAPQ1xPlPEEzbfw5BjgniKGlS0EehbVfrDX2tMOU1j2NOYFMd3ZgNwzrv
+         9iR3I1hb1XM9VslbuNFNcPrnWddLJV7Licf0MIuVH6RdjhVQiale5sjqcdRxHTQ3++Bu
+         jTzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756764983; x=1757369783;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=erf0LGr1RXc9Ic0frfV15S6ddZ5bAby40+1+C+q1TDE=;
-        b=MRAXTl9ZfjntYvv8ZhgyEh5x4x2Lw5IzbilUNC4Plcriav3ZJ5JKtPlvKnQNwcg1mS
-         QmDSB+IWcsTnQVXn/O4Kjh+YoTHbCzbWPteTyEvH3w0SvNanhUcNrlnG+HnDZ8l2u4LO
-         0fM8/CtSNcnoTIWNbjK4hGzBp8Ujr6Nk+Wn3bp+YcR2cLdw4Y0tNQa04piMpR0M5H2Gf
-         4tRWREWe1Oz1oVaGYmbijJd5hCLYAyig2TXrnXNMq9sKoHrveLYx3M4TDCpn+F93Jo+7
-         U6Ecu3UtfDHE1nn/ulwu/ckQwx5/GPy8luj3a1D9H5lhyp9MGq5xAh+lK1SpKItV51Br
-         qFRQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/wsXTP6xsaxUhV0KZUMfeVSY8ol3SZIYBqeSHwtf0lwZNggTUs4mYBcZYRgJhH76wYJiWVRkGR6L5@vger.kernel.org, AJvYcCXD4Gyn1wxR/PSoWK3skuAGowqEjGZ+YDiRu9K4Jc7NpZhM0PWYGCcppeVUpUDLZub7nFAVZ+a/V4PYduel@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw0jVABwQMij8V5K2eil/DfBLePuEg58Z0WH+a+9obQWFrGhWOx
-	ibDZwaV/ZQVsEwYvyYm/zWXKQf/YlFRqF7QmKnhaqgGbD8no8/jssaoz
-X-Gm-Gg: ASbGncuHKwdD7NROQl/U5AyRPtAMOPHqv+YfYUh+PZebeN0G2tHFy0Ipntz0eronP+z
-	zXAgnpCZvnhTM/MPBjFRo1B0hfHKrwXd/MRPBlXk937czcmmZQGkjP7ebas07G9aJtp98/YOa93
-	PDTBsNLtDF3buSuJBDVBdwweyCYVV+rQqBKoHx+9ZLRPPkdrm/bI6lVAxBQ/qgVVrUxqQ5o93pE
-	STe4uU5OvVdVyTX3snXOeXuH2rnqe92T8hpRAee98FYriVWED+PNQX0Sybo6I15l6fRKsFrIAR2
-	n+6DUq7eRJzwzRrdwnGqyrSfB+S4IDgB0s3pqze7PGdO4WqEBali8dk6mY3JQjdDcYpMOA9yT2V
-	8UIzanW+Lq6bpKv5ppi4FAQ==
-X-Google-Smtp-Source: AGHT+IFWF0I/dXBzxrh9+lgnjxp+4hm9yfWG/1QG0n322Ke/LdJEyJO54HHlRnJIo9PFXfBtS2k73w==
-X-Received: by 2002:a05:6a20:7490:b0:243:7379:53a9 with SMTP id adf61e73a8af0-243d50948b2mr13602559637.9.1756764982262;
-        Mon, 01 Sep 2025 15:16:22 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id 41be03b00d2f7-b4e7989b53dsm7071350a12.29.2025.09.01.15.16.21
+        d=1e100.net; s=20230601; t=1756766621; x=1757371421;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vQwlvdM3yntIS2m0mx9hBvGY1P/gMbdEn5SRgRXvS0c=;
+        b=t1OzdzDZYZ4zJ3G9nrVEmL2UdZBuglRqBmz7wmm7DXyutEKwPGYfuXkn4snreSrVvE
+         I0QE5JMxIwzDZER2GqrdVpGN5vlKFcTL/cCrxkohmgG1yO7vBGIFGukRnS7+IrmLOqlZ
+         8RsqsXyv7YjIKgjLYRQmNqBq08hQ5ltkVvtu0oE9lCqBlIUPM6dzWtg16rYezkMj6+OC
+         JsQz80sf46l9wKRfVKGgUk4VcGSZUpySgk2Z2Q4GfreJKASKOMVuykuGSy3Tg3TBL/Zs
+         S8cr/aAGTqFcjfIXAavghydziUKJE1RJuYLUSwqjyDcKoJLGslWI0mjcsfIML/O1n9Ud
+         mDWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWdiEwVKKim4v0TgbVgxlLX4WP5ZT0i8t2c/bIg5CI3LwsFJrLcdDRbhoiNMVQ43OGUiUBKstnlHYDSxu/H@vger.kernel.org, AJvYcCWzZmngA9VNikdFA1KkKSfzAkg3Fy9Z3cVkB45IenpybF7YiWtds9Fleeme2uNnU9A4WnieMOsidf+C@vger.kernel.org, AJvYcCXqFqjGHQ4/xKvAsSRvVHtY9uRBmcTG0tQQUnGon6/rECPeF5XoTelcH+SoOhEx78agy8LodDZ+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxbx9vhtKdgbwNS4PGxdrnzNU86DJ4+d64R3enrJ4m7t+hzK9Zp
+	TQH37Y9u/uDGwvsBaqm/u/Dj43ot/LGrbTezcgnGoS3izo27TVj/McPA
+X-Gm-Gg: ASbGncsTag+EKUec1jFlobF2QqLNnqYHwWSmYsl89+Us5LrCPvGmyDGD47TtCpEORVx
+	mA4Bl+Rqi3mLIeSrQ3IPOuAPg/qs1nfbsHb7creFPM3LJ7lM5rj1kg0aIQE1rxddRLSXfcKzGCF
+	WGqlGrcD0+r+xnJxiB3AiAZ4So/IYmLLKXLXTe3kLH91pzmJ2fZm7jXdpjJDxHvjolStPqTY4hs
+	/OZdQhPr+vRFRWhys0VHYS/uEShepI/4CfpEbN/CGBmKg/b0K/rHJj6KdR03MDVDDPhrAOp/W5+
+	7G8M/JDjvcDs9mF2G6xUjYoiuQA9d790omDjgqmPuAQNfU/pyujOS3GQt2r5MglTYdaOrVGINCw
+	ax2F7FnzjGE1cDlQmDBDzJPEjPVB/ek8wK+bv7XmVEkiPr5WUISgB1BdA
+X-Google-Smtp-Source: AGHT+IFsoxOFpRjG0b3CHG2D85MSOexSs1C9xuuGb7XwFnXObdmZhe4eg/D+R7tnGX10034LvaFcgA==
+X-Received: by 2002:a05:6000:2586:b0:3c2:95e7:c77a with SMTP id ffacd0b85a97d-3d1dfa183b5mr6432751f8f.32.1756766621216;
+        Mon, 01 Sep 2025 15:43:41 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:ca6c:86b2:c8f:84d6])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d2250115fdsm11532607f8f.40.2025.09.01.15.43.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 15:16:21 -0700 (PDT)
-Date: Tue, 2 Sep 2025 06:16:15 +0800
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Chen Wang <unicornxw@gmail.com>, u.kleine-koenig@baylibre.com, 
-	aou@eecs.berkeley.edu, unicorn_wang@outlook.com, conor+dt@kernel.org, 
-	inochiama@gmail.com, krzk+dt@kernel.org, looong.bin@gmail.com, palmer@dabbelt.com, 
-	paul.walmsley@sifive.com, robh@kernel.org, tglx@linutronix.de, sycamoremoon376@gmail.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	sophgo@lists.linux.dev
-Subject: Re: [PATCH v2 0/3] irqchip/sg2042-msi: Set irq type according to DT
- configuration
-Message-ID: <k3blxflvwicykiqv4eo6hx2notcp76rdf72oe37wkkkcq4ookr@fyydrsjv3r6z>
-References: <cover.1756169460.git.unicorn_wang@outlook.com>
+        Mon, 01 Sep 2025 15:43:40 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: =?UTF-8?q?Cl=C3=A9ment=20L=C3=A9ger?= <clement.leger@bootlin.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next 00/10] Add PCS support for Renesas RZ/{T2H,N2H} SoCs
+Date: Mon,  1 Sep 2025 23:43:13 +0100
+Message-ID: <20250901224327.3429099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1756169460.git.unicorn_wang@outlook.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Aug 26, 2025 at 09:09:13AM +0800, Chen Wang wrote:
-> From: Chen Wang <unicorn_wang@outlook.com>
-> 
-> The original MSI interrupt type was hard-coded, which was not a good idea.
-> Now it is changed to read the device tree configuration and then set the
-> interrupt type.
-> 
-> This patchset is based on irq/drivers branch of tip.
-> 
-> ---
-> 
-> Changes in v2:
->   The patch series is based on irq/drivers branch of tip.
-> 
->   Reverted the change to obtain params of "msi-ranges"; it's better not to
->   assume the value of "#interrupt-cells" is 2, even though it's known to be
->   the case. Thanks to Inochi for the comments.
-> 
-> Changes in v1:
->   The patch series is based on irq/drivers branch of tip. You can simply review
->   or test the patches at the link [1].
-> 
-> Link: https://lore.kernel.org/linux-riscv/cover.1756103516.git.unicorn_wang@outlook.com/ [1]
-> ---
-> 
-> Chen Wang (3):
->   irqchip/sg2042-msi: Set irq type according to DT configuration
->   riscv: sophgo: dts: sg2042: change msi irq type to
->     IRQ_TYPE_EDGE_RISING
->   riscv: sophgo: dts: sg2044: change msi irq type to
->     IRQ_TYPE_EDGE_RISING
-> 
->  arch/riscv/boot/dts/sophgo/sg2042.dtsi | 2 +-
->  arch/riscv/boot/dts/sophgo/sg2044.dtsi | 2 +-
->  drivers/irqchip/irq-sg2042-msi.c       | 7 +++++--
->  3 files changed, 7 insertions(+), 4 deletions(-)
-> 
-> 
-> base-commit: 8ff1c16c753e293c3ba20583cb64f81ea7b9a451
-> -- 
-> 2.34.1
-> 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Tested-by: Inochi Amaoto <inochiama@gmail.com> # Sophgo SRD3-10
+Hi All,
+
+This series aims to add PCS support for the Renesas RZ/T2H and RZ/N2H SoCs
+These SoCs include a MII converter (MIIC) that converts MII to RMII/RGMII
+or can be set in pass-through mode for MII similar to the RZ/N1 SoC. The
+MIIC is used in conjunction with the Ethernet switch (ETHSW) available on
+these SoCs.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (10):
+  dt-bindings: net: pcs: renesas,rzn1-miic: Document RZ/T2H and RZ/N2H
+    SoCs
+  net: pcs: rzn1-miic: Drop trailing comma from of_device_id table
+  net: pcs: rzn1-miic: Add missing include files
+  net: pcs: rzn1-miic: Move configuration data to SoC-specific struct
+  net: pcs: rzn1-miic: move port range handling into SoC data
+  net: pcs: rzn1-miic: Make switch mode mask SoC-specific
+  net: pcs: rzn1-miic: Add support to handle resets
+  net: pcs: rzn1-miic: add per-SoC control for MIIC register unlock/lock
+  net: pcs: rzn1-miic: Add RZ/T2H MIIC support
+  net: pcs: rzn1-miic: Add PCS validate callback for RZ/T2H MIIC
+
+ .../bindings/net/pcs/renesas,rzn1-miic.yaml   | 171 +++++++---
+ drivers/net/pcs/Kconfig                       |  11 +-
+ drivers/net/pcs/pcs-rzn1-miic.c               | 320 +++++++++++++++---
+ include/dt-bindings/net/pcs-rzt2h-miic.h      |  23 ++
+ 4 files changed, 425 insertions(+), 100 deletions(-)
+ create mode 100644 include/dt-bindings/net/pcs-rzt2h-miic.h
+
+-- 
+2.51.0
+
 
