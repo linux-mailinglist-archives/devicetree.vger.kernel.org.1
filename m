@@ -1,107 +1,108 @@
-Return-Path: <devicetree+bounces-211285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3D79B3E3E0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:04:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0DC9B3E44A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:13:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DCDA317C811
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:04:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 129581A846A2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:13:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E299412CD8B;
-	Mon,  1 Sep 2025 13:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 140991DACA1;
+	Mon,  1 Sep 2025 13:11:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="k1oKLpPB"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GqYf8255"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82A814A23
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 13:04:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 369DD19F11E;
+	Mon,  1 Sep 2025 13:11:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756731845; cv=none; b=r+CkRASVKCwWNGloWkdzEJtrWK7ONX3RYoUJ4GidBM5ia8Ct8P60pedNnkptXIgRu9tOJT9c7o+pnMraY7/pMKYbieXj/K8MRbnpHjo6pMLysEzS08+UIsyiKWMiHlTDkvmvjSieRG/JAHojoMdqV019yjJyYFhWEjT0fbD+UJ8=
+	t=1756732277; cv=none; b=H16vlC13o80/r7msYkpEHBAUVIzddurrRjRxk4AWjiJzbj0yJ9LqNRF2u4WCKfk/Epj+TENW2ccvDpOZv6qqbK2k0HCr8ELmCT6N5GNAtaEJdAGgAsqhkmieEtj6YxZ8qc7PjcJAWhvkppFhqmfc271QsewKq3QG3OFuBeG4Fss=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756731845; c=relaxed/simple;
-	bh=TOiIhiyCyJG5AxUoW1hpwxuptZ/Xs/OCeoRXC0Hc2uI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kvW8DTicHa+QpyWZJivG3aBzBZrMwBumePcFB8Cnv4HZALxMj6dtnTRJXmGmQwn2hYLlejiyYyKsb1XRN1Z6jqmJYV33RiirfonsCJfeBMcphiMLt5UEGY9XcEpcIcl6LXLv6IbV4MzkvLJrQvPAFxJqIG+8+f3TTj6FxuQuA8A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=k1oKLpPB; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id EFA171A0D65;
-	Mon,  1 Sep 2025 13:04:01 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C797960699;
-	Mon,  1 Sep 2025 13:04:01 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9E05C1C22D9A3;
-	Mon,  1 Sep 2025 15:03:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756731840; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=IgnLlO7jOt0FD4jUzFN4p+RS1ZzKoUQ5W4E4v5dt5GY=;
-	b=k1oKLpPB/xN0+LSXuE9pFlMVOUwjjpm7z8hAbcHZtb0psY9101Tjrjs28FX958mzmZUq8x
-	j+gzj3qdRTLpgo4ok9b2M4wGzhsOcTn3dLwI/XfvMuy9C8UUoiaPqYKHReFkhFb4jX4mKw
-	xIa5XkhNemDk0/EnwoEeFeRxF9WyDFFiEoKVHa85brb9FxSZD2vm+MmmIIyl+hE1l0I5DM
-	dE4XNUduk70udDE+jSkvWrVjQnrV/cjMC+9xGGijQJflgcj7gtEEsIge2U0eVTdp/fhl7c
-	IotwMfSHozv8JMWEu0XdK65xQ8LPdUeLPtg0IRykP9WJACUU1sSIRKgkVRVf3g==
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-mtd@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 0/4] mtd: rawnand: s3c2410: Drop S3C2410 driver
-Date: Mon,  1 Sep 2025 15:03:48 +0200
-Message-ID: <175673179165.52555.3449710772627669678.b4-ty@bootlin.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
-References: <20250830-s3c-cleanup-nand-v1-0-05b99ef990fe@linaro.org>
+	s=arc-20240116; t=1756732277; c=relaxed/simple;
+	bh=4n93srW3Uf6HaSLH4EuetJft7bKYSG3S1uTAxo7hgIg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hlT8mz38N25i9VKq8WuSeSBmOZ9p2d2mtZi8zkW/NwITvWh4vCilMR9pXZT2U7quxBV6GZrRjrP/UFeTLUroFEcBEKAwIeCBtbyL57q+OK9E+27a/OXmv/KKD35mAnVm9iM8VPOcb/+H35TmTmuRl1fi1xasV3PVBldc8MAhvqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GqYf8255; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=BH4e93OAzG4ly146yOK0V5DZKaGTbR3A6urXJYn+Ico=; b=GqYf8255+GqVO+8+YfbqIsdvZl
+	xDv4EwhKN0TrHE2iwb0o1Uuh5ri8PbG76MUuOcu1evyf9kAEfyc7D1VswoPgXaRNTXFz5Z0Xv5G/x
+	zAXYRkhsgL5WEuHfz7h6cwzXLiOP5c3TfLe5PupMziMdpOLT8XimV6iF5HbVwu2HRJ2M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1ut4JQ-006m2M-7V; Mon, 01 Sep 2025 15:11:08 +0200
+Date: Mon, 1 Sep 2025 15:11:08 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jack Ping Chng <jchng@maxlinear.com>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Yi xin Zhu <yzhu@maxlinear.com>,
+	Suresh Nagaraj <sureshnagaraj@maxlinear.com>
+Subject: Re: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
+ SoC
+Message-ID: <398ad4b1-1bd3-4adc-8bda-5cc8f1b99716@lunn.ch>
+References: <20250829124843.881786-1-jchng@maxlinear.com>
+ <20250829124843.881786-3-jchng@maxlinear.com>
+ <65771930-d023-49e1-87a7-e8c231e20014@lunn.ch>
+ <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
 
-On Sat, 30 Aug 2025 19:01:08 +0200, Krzysztof Kozlowski wrote:
-> Drop S3C2410 NAND driver because its only two users were:
-> 1. S3C2410 SoC: removed from kernel,
-> 2. S3C64xx SoC: does not reference this driver.
+On Mon, Sep 01, 2025 at 09:38:44AM +0000, Jack Ping Chng wrote:
+> Hi Andrew,
 > 
-> Best regards,
-> Krzysztof
+> On Fri, 29 Aug 2025 22:24:06 +0200
+> Andrew Lunn <andrew@lunn.ch> wrote:
 > 
-> [...]
+> > > +This document describes the Linux driver for the MaxLinear Network Processor
+> > > +(NP), a high-performance controller supporting multiple MACs and
+> > > +advanced packet processing capabilities.
+> > > +
+> > > +The MaxLinear Network processor integrates programmable hardware accelerators
+> > > +for tasks such as Layer 2, 3, 4 forwarding, flow steering, and traffic shaping.
+> > 
+> > By L2 and L3, do you mean this device can bridge and route frames
+> > between ports? So it is actually a switch?
+> 
+> Yes, the SoC does support packet acceleration. 
+> However, this patch series primarily focuses on the host interface to deliver packets to the CPU, 
+> where bridging and routing are handled within the network stack.
 
-Applied to nand/next, thanks!
+Linux has two ways to support a switch. Pure switchdev, or switchdev +
+DSA. Which to use depends on the architecture of the device. I would
+like to check now, before you get too far, what the hardware
+architecture is.
 
-[1/4] mtd: rawnand: s3c2410: Drop S3C2410 support
-      commit: 773b9202de0127444fc8802a611a19637b7fa12f
-[2/4] dt-bindings: mtd samsung-s3c2410: Drop S3C2410 support
-      commit: 451f1184f8f6a90c701b9d8c8c055f6a1d9308bb
-[3/4] mtd: rawnand: s3c2410: Drop driver (no actual S3C64xx user)
-      commit: d40934bea54ca5509138d40ab530c6700c830802
+Are there any public available block diagrams of this device?
 
-Patche(s) should be available on mtd/linux.git and will be
-part of the next PR (provided that no robot complains by then).
+How does the host direct a frame out a specific port of the switch?
+How does the host know which port a frame came in on?
 
-Kind regards,
-Miquèl
+	Andrew
 
