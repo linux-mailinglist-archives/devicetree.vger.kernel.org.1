@@ -1,129 +1,125 @@
-Return-Path: <devicetree+bounces-211125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36677B3D9C5
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:21:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 81963B3D9D4
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:25:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E62CF3B4C31
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:21:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A9DA16363A
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 06:25:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DEC3824A058;
-	Mon,  1 Sep 2025 06:21:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6EE253932;
+	Mon,  1 Sep 2025 06:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T0xuSYst"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JDKvjeYO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7903426281;
-	Mon,  1 Sep 2025 06:21:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9D327450
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 06:25:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756707670; cv=none; b=WAt+dv3B3lyKHyAbDPjVUW+3pcCbNOowECYni8dwIz/twrS7h79HdBBtbfGmts5bQMCkUvELH4bPAhQWzy4go1/UY4Di6h9+dMqgZIw20BFB2ofs4MvhzabTcRDGjecYgWN4/1XKAEJj3xGMU8wrZZYa7zmARzxljjqgUaYnL0E=
+	t=1756707909; cv=none; b=MSA99zH1ulYgVdh7QozAVFpC/L+tERlpA5QuBq48qwYmE7cujevZhGD1+F/3OFfbzM1qjS5S39RhTkVZ6A4IZy4zLKjaN+tO4zwq6WdqG/5tHqFBd9ClLmZ3kya8qJudxJ9eslaWYy7z8qXIR37sRHq6HFvECHgfsH+BKJN+x5E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756707670; c=relaxed/simple;
-	bh=jEIt+3X+NGZuxr9lCHefPQ1whPLGQgrV83ljVA6Wt6A=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=CWpKQ/67dTtCmkjui4uTCWAT37JE9QjLm3N1o9Xrj6oV/nGzlT06awyKkOjaeAUgT+XZv9U9BwhunNb2ia53AwO5q1RXijj/GghQWjQCFDaXiyMBAWAtBbu0ZmlYFiv45BA8GJ4hDOsT7E/yZPISu2XZLBVaWdq2j8T5MrDgv88=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T0xuSYst; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-248cb0b37dfso36514105ad.3;
-        Sun, 31 Aug 2025 23:21:09 -0700 (PDT)
+	s=arc-20240116; t=1756707909; c=relaxed/simple;
+	bh=5tEFRvyGeKDN+x2Ei9Cj+rHE7MmPIKyHBlDmb1SmtGI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CIxn1qIU5ILK33xS7G14/zXvu0ieB50xiK9f4oSgbNb1pNYqOxl8caju3mMBQeUp21h3eiJbzTkSvZlVjzuftNaElQQu946N9qvlbmGy+WNokRPIrNIeAbKwjNIvM9NmYZdIuKs30OiR8NDrjh5+GISNXstHDCQRcpNzXSpk5TA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JDKvjeYO; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b7d497abaso24673785e9.0
+        for <devicetree@vger.kernel.org>; Sun, 31 Aug 2025 23:25:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756707669; x=1757312469; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QM0VzPvZOoadSqld8QAB06APoe2QVLiP88e6xJF3DNg=;
-        b=T0xuSYstdI80rU0YnJ9hOfd95hSAenLjDIdVF2GbYAQAcfhoJwGfEymk6n5mSrRVej
-         lNZhRVtXLvrVLMZ3fDqaXWraqq5v6UFHp0IARqUwE4m7kNxOPVVE6GSMoWGFNlfTO2gA
-         mc/GN09EUgnGh4Tq/qmiwkJOyoPoIRhd0qiFjR/R6RHAdmkdzJKeTGB4ZmPAQG1BgH+2
-         zNJsCoj6KvJ/dfVzZTqEORbmiVHqlJ/a9UW0tvGCwBndYc1IWgYzcSRpew0UD86C1BfC
-         Wah/JGH59Vd4FB++7WEsJMLjCrzuFkRDE/9QhNHpawdhv//Sml+LrlTCLElWBN/ctWq1
-         K0Jg==
+        d=linaro.org; s=google; t=1756707906; x=1757312706; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2YeKuNtpPLqtxqq8gC2tE+cTRtA0VGDqCWttaxdOw1c=;
+        b=JDKvjeYOO/6HDrP0X+HHkWGd75rKWnbeZl/5VBOLYpQoPKXtFqX5dbwIKAm8QysPGT
+         5NpMTn9JKuXTSluQyPoG/yGxLVvODNUlVtXus+Kfd7ZVGScS+WPnURCutJ0IaVALK1wK
+         Vf9DzIZI+Eol67nnigq6GhdsFYfI/frYX2huZmoMPN0P8PM2mvtKGUI2O1bkSerWURug
+         0F9+k3ANaVx++ezFQm9KylhlTxs3gXztLa/oFi0ABlD1u7o4fJ3BJMUSA/LTywiTo7+D
+         zrqwfcMSevmVKE0qRzeZrV61g12N3gPKC+/eznUYvIcWbohVkQGzFByDt3BWq95YfMjo
+         4nbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756707669; x=1757312469;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QM0VzPvZOoadSqld8QAB06APoe2QVLiP88e6xJF3DNg=;
-        b=omDEuZOJYOtz9d4iZu0/uokRWU514a+9N33KipodqPrLiAfmH0gSj9VOxnxDH6aVYf
-         1JicnvtjK/yfNAm3vhNZvGPT/tQUlV2pxLJgajU9zxGFXxEVs2kGia7rn63U9pTmTtZ2
-         uDeH90EqKEZHrwz2/YvQwQIEQ5DHDjVO/4hogx19AncYkkk27+CVexgg82hp9ji0lp6e
-         rEZfz/hW9AdWX50mhJ9VcoB6btQGe9u+lfuXNfswo+EJWQwvrORSJImoODjx1JonexaE
-         mrzsyMrr0cW8KGjAnOcMfLLakq/T18Igv7GBo9IFZIqkEJLWdxNHFXZ6R+TRy39pKomz
-         ycGA==
-X-Forwarded-Encrypted: i=1; AJvYcCVBkTLcePa9Jc0IteyN0E/DcqevCzdhtPpCgh7EbesPcxEnfRYjQUkyMX622bThaCcUGLrzNyk2RZYGg77b@vger.kernel.org, AJvYcCXJXa6xGXFZ19WwtKn04cTp11swMjq5L5xq8x5ElyTmzMMp9DXsWT0pM91w6mIH+gaSdqhmmRkhUj+/@vger.kernel.org
-X-Gm-Message-State: AOJu0YxPW4IEzuvq91o1VSOusx4ip98I4rmVJMkAjq0a5gv3iYKTf7cj
-	3qqIaHZBofs5WERuqUnwrVosfYWDDhOrndjkDvxBhzg0LRUe7Lgmiifs
-X-Gm-Gg: ASbGnctAfOr2eDd/Zce1wKfjWw5UBUTmZ4bGlukItbGwv+JgYl/msdQt7tgy1llfq9q
-	Ycl0BOAzfEq3J5OnZzF/uvcV6c+r1BlUwlY0C2yOZygurxp8efZAnVAx99zI0fj0qgDjpk+OOsX
-	Fy3LavErtYem5OTiPw33avDCea7/wtlrc6+I3rdmcvX5my3bP62EghUhDe9hgAvYYITk22m/FSh
-	N3HGAsT+uGKFal30KqEKP5mJhybIpwBl7D4W2pr84oL9acRco6IThdBp6ckqHJfYbfGd4pnKRQT
-	sCjhZUTcGcj9Ytmu6iwpX8aX0rVO4KTAaWQ4NNSUgO/Sx5V812FGQgwfs/oKBQlsPjOVtDEd4Aj
-	YrETxls5J3S+GKfOr9fLOMHpSiMaCuvXs
-X-Google-Smtp-Source: AGHT+IE9RouoLA3mI1WTQ5bC8+3a6e/YddQasaUm/tDoSV5izF+qFjCdAOy/vlAmLw+ht6FR6TIR+g==
-X-Received: by 2002:a17:903:2347:b0:24a:8d5e:932 with SMTP id d9443c01a7336-24a8d5e0c28mr78375115ad.23.1756707668708;
-        Sun, 31 Aug 2025 23:21:08 -0700 (PDT)
-Received: from localhost ([2001:19f0:ac00:4eb8:5400:5ff:fe30:7df3])
-        by smtp.gmail.com with UTF8SMTPSA id d9443c01a7336-24903727488sm93506135ad.43.2025.08.31.23.21.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 31 Aug 2025 23:21:08 -0700 (PDT)
-From: Inochi Amaoto <inochiama@gmail.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen Wang <unicorn_wang@outlook.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Zixian Zeng <sycamoremoon376@gmail.com>
-Cc: Inochi Amaoto <inochiama@gmail.com>,
-	devicetree@vger.kernel.org,
-	sophgo@lists.linux.dev,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Han Gao <rabenda.cn@gmail.com>
-Subject: Re: [PATCH 0/4] Add SPI NOR DTS node for SG2042 SoC and boards using it
-Date: Mon,  1 Sep 2025 14:20:57 +0800
-Message-ID: <175670760972.211032.6732897578408758943.b4-ty@gmail.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250813-sfg-spidts-v1-0-99b7e2be89d9@gmail.com>
-References: <20250813-sfg-spidts-v1-0-99b7e2be89d9@gmail.com>
+        d=1e100.net; s=20230601; t=1756707906; x=1757312706;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2YeKuNtpPLqtxqq8gC2tE+cTRtA0VGDqCWttaxdOw1c=;
+        b=c/3VBnYM6d3AKBEPjOAcjNVPF4wzhFN4zoShL46L0Z/YywOUUD9zDnbyx42MSALspi
+         vPJgn/1302JKHSC8T42yy3AVGH4b3mmlow/NAAMF+VAReCFlAGz+aW5weE4v9mkNK08J
+         NNgz8GUGXFyH0uM3v/hF9Jj1DFJAw3CqrURK0VW2s6Z54Q43qmj/3gKCZ9qF9Hv0oLxe
+         v/bR8EG6SnVOff8U0tVt4oK4gc4Kmr8SCjzAIuY67D50OlnQ7HZP6A3jDQ0jy5Qfd7Fz
+         krt1NxqDWClqlmKztI5PuQHgKSne7eNPMxbyCKRqCE6ZOKxrMwKpPg1KK2GXEl2cmutY
+         FZVw==
+X-Forwarded-Encrypted: i=1; AJvYcCUw3q9SLFE7/Qjs81MUoP65PGYAvcYPhBdmHO9xv/5QnE00HQMhNd6tAxndfoSvT0TRLKaBe47M4vs0@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5gZMpg6PBkZb5KmM2WB22+H6LxFtEZeSMJ2qLUeqijfCShKye
+	qTfnqiYwl6433ar70I08QJvGjLcg5QYboPhAywi3kHvY6q1glO7Mu3ZKcj8OtBSq/o0=
+X-Gm-Gg: ASbGnctAvvv+e0bMw3dYfD5T8Nsj7mP2D/s683PYI0eQE33Nx355w0ilIKWhpJak5/P
+	K0PWs7iMTLXgmo0J3W/cdhZnXyKZHBHKP34N5EGty+ksrIP4q7u/M3X1D9UioszRwlsYnrECMaN
+	KZbjhQL9EYAV3NQdeF9B5ADUrVNcknBGi2pZWdZ8J3ZOQVbvWBv9v8wmeubOCsc7DuQb5DWX2ye
+	569qkD12QAcOySXYImYKBU1aIIzJZYNI7Npixi1m5PRy8KNh+IHC84j5rCuZKhMoLwJDwFioUfS
+	F/GPypJzX8JwPSQY0HwlyMD3kfRYYIhO5klXVtg/VKgTdsrVodKjKwJaiK6Cbbl2nQS1eIFB3lB
+	7yN6qOPGVaqyLyBbzv1ruZZdv4Z3zZy9fYAn3dL0x
+X-Google-Smtp-Source: AGHT+IHnke2GT0NOJivpigEQtNHBZdI155ZzMIvdBsIqtx3ducDptv4HE++iJXeOAgJzi8Q9MoWEvg==
+X-Received: by 2002:a05:600c:3b9a:b0:45b:8866:50fd with SMTP id 5b1f17b1804b1-45b88665357mr41091535e9.32.1756707905579;
+        Sun, 31 Aug 2025 23:25:05 -0700 (PDT)
+Received: from [192.168.0.251] ([79.115.63.1])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d3a7492001sm7507997f8f.42.2025.08.31.23.25.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 31 Aug 2025 23:25:05 -0700 (PDT)
+Message-ID: <788c3aba-568d-4297-bc8e-f47921859d57@linaro.org>
+Date: Mon, 1 Sep 2025 07:25:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/5] dt-bindings: firmware: google,gs101-acpm-ipc: add
+ #clock-cells
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org>
+ <20250827-acpm-clk-v2-1-de5c86b49b64@linaro.org>
+ <b5d0e355-2681-4eaa-8a67-82a364312ec5@kernel.org>
+Content-Language: en-US
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <b5d0e355-2681-4eaa-8a67-82a364312ec5@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, 13 Aug 2025 16:33:16 +0800, Zixian Zeng wrote:
-> [PATCH 1/4] and [PATCH 2/4] are copied from patch set [1]
-> [PATCH v4 4/4] without content changes.
+
+
+On 8/31/25 11:40 AM, Krzysztof Kozlowski wrote:
+> On 27/08/2025 14:42, Tudor Ambarus wrote:
+>> diff --git a/include/dt-bindings/clock/google,gs101.h b/include/dt-bindings/clock/google,gs101.h
+>> index 442f9e9037dc33198a1cee20af62fc70bbd96605..f1d0df412fdd49b300db4ba88bc0b1674cf0cdf8 100644
+>> --- a/include/dt-bindings/clock/google,gs101.h
+>> +++ b/include/dt-bindings/clock/google,gs101.h
+>> @@ -634,4 +634,19 @@
+>>  #define CLK_GOUT_PERIC1_CLK_PERIC1_USI9_USI_CLK		45
+>>  #define CLK_GOUT_PERIC1_SYSREG_PERIC1_PCLK		46
 > 
-> Link: https://lore.kernel.org/linux-riscv/20250720-sfg-spifmc-v4-0-033188ad801e@gmail.com/ [1]
-> 
-> 
+> I missed it last time - this is a header for SoC clock controller
+> bindings. ACPM firmware is completely different device, so should go to
+> its own binding header.
 
-Applied to dt/riscv, thanks!
-
-[1/4] riscv: dts: sophgo: Add SPI NOR node for SG2042
-      https://github.com/sophgo/linux/commit/268b9620d86ef002b5e94355e80c44bbbdc736f0
-[2/4] riscv: dts: sophgo: Enable SPI NOR node for PioneerBox
-      https://github.com/sophgo/linux/commit/6baf562e0474b2885405cc8e383a59269807338d
-[3/4] riscv: dts: sophgo: Enable SPI NOR node for SG2042_EVB_V1
-      https://github.com/sophgo/linux/commit/2ea345ad682e2ab89c4360bdf90fd170612b3be9
-[4/4] riscv: dts: sophgo: Enable SPI NOR node for SG2042_EVB_V2
-      https://github.com/sophgo/linux/commit/0bf26eecdd2a6d243a3a19d3ea0df10437ed33c7
-
-Thanks,
-Inochi
-
+right. Will do, thanks!
 
