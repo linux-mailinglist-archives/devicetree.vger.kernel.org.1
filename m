@@ -1,225 +1,188 @@
-Return-Path: <devicetree+bounces-211175-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211176-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41922B3DCF2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 10:48:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B470BB3DD8C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:04:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E8EE23B7476
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 08:48:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E2006189F1FB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 09:04:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECBE2FE56D;
-	Mon,  1 Sep 2025 08:48:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED8813009E8;
+	Mon,  1 Sep 2025 09:04:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="gOXNZahq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uLsPWZpO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f68.google.com (mail-ed1-f68.google.com [209.85.208.68])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9D372FE04C
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 08:48:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.68
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EF132FF14F
+	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 09:03:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756716493; cv=none; b=AqSre7TJ/dS910yoATJN6h1bQB3L3Hnr+Mpd70uoYx9D/vl936OlqqZoT3J03trBoLS4esoPlckhHLwj+4lipHE4j+5xYU/puJ/u+Bc1TB+1DPP2DW5h8iQvDZAM8j4hdLsII/r5a4bMSFguqI9XNmc9PAau3UExG/J2mwcN2Xk=
+	t=1756717440; cv=none; b=PestNgvHWVGwLvj+uEkRfPodx1MzFrW31+MO/aehTpUpIQningwvtZB/IbOAyMTEBq3Se82zUQLyfm04sVlC21XSyq6+h5684u9jteAFfqilYHof0JLk+dy53r4LYaHd3Y27EQIPd8LpsUOp0KCa6SdOPRTjiJJ6D8nMvKPG18s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756716493; c=relaxed/simple;
-	bh=neeT00/mxDswioH9iJwGYH9YEmmlx3hZdCS21iYzw3g=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dEkSL3r+M1BOt1vuaqejg+zIzSAfi2hPk5oGDmf/pWJAESiCav5X2xyDQvo1F5PFYriyXpy68IlA+e45+7xGcAdtenp9r5Od+di09VFoUU7hmC9/zguDFYITUYiFBG3ML+gUQ3/npUbxHsbTlkdkEkjgNiaABgd0spriY4OfvXQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=gOXNZahq; arc=none smtp.client-ip=209.85.208.68
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-ed1-f68.google.com with SMTP id 4fb4d7f45d1cf-61cc281171cso7004901a12.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 01:48:11 -0700 (PDT)
+	s=arc-20240116; t=1756717440; c=relaxed/simple;
+	bh=BRVffIraDrTcVxvFJdlUUUnJJYHLdGtchn0lCofCxlk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=S5Top5NSISb0oYt/DbbiK+O0xRNZMUTl4fI/UqHG6OwuuQanxctJzQi/SdAV2fwuitITfIzL6cC4B8IXjzQmPuXlEobX47BST4UdZJwUIoRamX4CA02DDDQutXmyPUyabB25o+hIEWgs7zIOA33Ui+679GV/tugNa61SyHaAHk0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uLsPWZpO; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-45b82a21eeeso22951105e9.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 02:03:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1756716490; x=1757321290; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cPLbjAvQn0E2rMIx0xgjNyYjUFJLwi35g9A0s0bGBYk=;
-        b=gOXNZahqc4/88gy+ti8ZsBT/gDP8IScW79A02vQySTEvTkgkWhboJ0UZhgwtGhkHCS
-         +WXyPOxgv629OG/nV4FVSm2s1exIb85VgKs8eVp2mFOyLlVKjSJAu0LAv/7fzRP6IP8b
-         GNN0CGGM1n+gwaBUfsVoCXszehz8TgkwXUnBe0AtjCwq+yflBoI1Y6LryduMoyv3Tw6U
-         lGa1JusV4S+vJOdNl43twFNhlysjC91np9qSQiMgNYBE+L2D0rM1W7okfwjpnZvDFdiK
-         1BuImbzS1qJY5A3TIpRGmXtYMnebz0ZGrDzDeBOMFyO/U8S9zCol584WWBEMvVNtEhMt
-         TqCw==
+        d=linaro.org; s=google; t=1756717437; x=1757322237; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MLxQeBkb7pg30Hm1b4BwH3XF1UA4XXnA9/e/abfa5DU=;
+        b=uLsPWZpO019pbS6/8j8oIeTYmgvvc0Ex3Jaa+l0/de6ZS0cox4UQD8OmLDE9g4lidC
+         VdVG/JIYaHK8wonXs2kyiOId1/FJRwxzbS9SPmNKlWxdx28wcFexYlFalBwiCGVSa1Fv
+         qv4ggfNjlB7jWQNTz2rBnAmEvuAE86tioWV1tnb3yqAmmWDxvrZDlu9em/6bEZSJBoEZ
+         a2weE2PMsHZyhb1/uX9ngo/SqovPnAJobqXXsEJMUIs+wS5a0N6WuAf5rq2EOiGqyjPw
+         AUZOUc0rWcO1msp0xKiZoC84VHXPWRSddvx1GZHSHY6nWeuG+dO6pZQFv1KiTARIsBtu
+         khQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756716490; x=1757321290;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cPLbjAvQn0E2rMIx0xgjNyYjUFJLwi35g9A0s0bGBYk=;
-        b=iHdY3eU4RTx0pIB1lYv4GHO3B0dUQ5+zQ3tGk/hH+lM5f+DxDzSE3uDl+UCuVJSHYY
-         9lOcHCy72x8nMnhDh4CScaxmj59ak6IVhgCkCyPOXYahtjkiYZ6T4gcWKD5edcAAv7IO
-         P83NgbDLcY8pADOeFFamWqGydKu8Q4VnJZQ9q1By608anfNNXyX0r84HFIMs4Z0b8dT5
-         IUwOmo8hqekUiw7JUA8//Iu/Dh/7Azjsa7R/7gcjuQK9vvDdIuW27f7ORi0GSLyT55Fj
-         An5AEehLBwfrMnVVA8bnlgg/UX3sbdiROs8d3wpTFdCf9xvv2hJ3z/6gQkp/25Qa58oo
-         /zjg==
-X-Forwarded-Encrypted: i=1; AJvYcCXmdUccD0dmLZT2livmFhpXZ/+yDX34yRWoZkblQ9wGI8jutXPTU8oUj/npgN/KBodvx5g76BKJOQDu@vger.kernel.org
-X-Gm-Message-State: AOJu0YwNpGSrjMw6uNp9duakBBFwn7a0yicJcV6fU0xSsBxsOI3+RCyH
-	Bt3YWkcdRRp4MecMLhyMaZap7LvuLhf1hM/ibOinAeRTbvBIztPLNdvaiarvnSZBZPQ=
-X-Gm-Gg: ASbGnctIrPNoBVSjk7cPYs2GmGIHjgQglPkvIgztNaP/Mi5kKRq694IDYrY7p9jWpoe
-	/y973cZ3j/v4eYFXxXK3S6ZjWq3za+KJNbc1ifXZ5epNZek9zmptE6Cv4Yo+8oKawhCjCW2IPaN
-	NZaH8JBICYPxiLj4PTqgfVnfWZlkbi+ZiMiVou2OGzWS3zKmRWrQYxFoen67OEJw4BQO4u7RicQ
-	qcoFzNnJYXghuLVbQzsxNaqOelcMAPMYdx/7mfZzrgM2F2MUrhBTNCdqC9MVuM7RC/34GKq2Tg8
-	ooiWjpIELXhFxrohEztwdZSp1omPE1x9AvMvaDRv74O2GZs9blbsVo2rT5Fde3kW2nVofqM2m0A
-	IUfGNCkKqgszJIpEhaCcwcsam/mI3Row0fCSZwbwaY2qvLjPq2nD3FH8KyP4pf1fnQZH2XrbdDu
-	kjVJnx0EfrSdpunN+A6xIj4boQ63o=
-X-Google-Smtp-Source: AGHT+IEQBUXzLByR1LDYkZW1JXKHq8+bGwyDWqHROpCdMH+jh7ytpsNxmNwRf7WbZfZJa0YLFDJJBA==
-X-Received: by 2002:a17:906:7d9:b0:b04:1b84:923c with SMTP id a640c23a62f3a-b041b85025emr362763666b.51.1756716490047;
-        Mon, 01 Sep 2025 01:48:10 -0700 (PDT)
-Received: from localhost (host-79-36-0-44.retail.telecomitalia.it. [79.36.0.44])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b04189de5b5sm345647166b.10.2025.09.01.01.48.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 01:48:09 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Mon, 1 Sep 2025 10:50:05 +0200
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Jim Quinlan <jim2101024@gmail.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, kwilczynski@kernel.org,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rpi-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, iivanov@suse.de, svarbanov@suse.de,
-	mbrugger@suse.com, Jonathan Bell <jonathan@raspberrypi.com>,
-	Phil Elwell <phil@raspberrypi.com>,
-	kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH] dt-bindings: pci: brcmstb: Add rp1-nexus node to fix DTC
- warning
-Message-ID: <aLVePQRfU4IB1zK8@apocalypse>
-References: <20250812085037.13517-1-andrea.porta@suse.com>
- <4fee3870-f9d5-48e3-a5be-6df581d3e296@kernel.org>
- <aKc5nMT1xXpY03ip@apocalypse>
- <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
+        d=1e100.net; s=20230601; t=1756717437; x=1757322237;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:from:references:cc:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=MLxQeBkb7pg30Hm1b4BwH3XF1UA4XXnA9/e/abfa5DU=;
+        b=kPi/qCyqBNPZxjYKEjapZEvQY+8G/YQhSVrgGk37OEzx1TY6B6vMaoDBohMOefWkMn
+         cW1A0+zqEarnrtmPdy0nenzfFGhWO+XDPf5/Pdtx94nZAstKcyB/DHpG59AJ30L31co+
+         ZgkGxPDpKf7GGRVHL87V6TYKO5dd9QPAtYwt/FppML3es3OA4TjoHOrIB6sZ4Fgkoq6H
+         Fg5VpxDaVkPlIiq2Si5SeKRvERqHjhpDn/Al7vyMDDR2aSbY0Ms8gmff28WVnRRxi3yd
+         oDj8RG3iyZZBSSWh3SmT7Tu1iR3mCMdYKPWNyzFkTI/h24UiLICXz8fjTqK5Xr2mLISV
+         YxPA==
+X-Forwarded-Encrypted: i=1; AJvYcCVWwIjB8J+SV+ywTNKY8qLdXMI04zyxVLuDFBTFhzsGrCswKRLh/6dHPy2V6pX0YpueqXz3Ji+TFTr7@vger.kernel.org
+X-Gm-Message-State: AOJu0YxO+U4GKIXA0jUm+kJoycTcZLgnGS27kWazBXeKrFzpayBmHFix
+	4s1dKCQ8qdlGF34K4R3fB2CGVkhmaR9zuMphN6sCTidDQbsyGIqzolaSLYI7G46SCT4=
+X-Gm-Gg: ASbGncsUgQg2SuB93rXWZ/jkssxzLXSj8LwK0+dqMc5wCK0ZTyClr5she2FPsUVFoAK
+	L7Z1FL+ADvCDiEfWCHOADPIR1NYfdgc0ecCUWUiRtAJ8OvvPhtgOco/4FcxunOImMUOKDoVyJjQ
+	DqD2Dx1tkvwz0Z2XfCP4ZtysuHj6K894B45bkc2z/mLuLgZjl6X0jfG/iWxUV9TOgmIaqiQPNT4
+	arKIrow7b1EdGUi1meYz7LqOJsVNTD/WdaknGaZV0mHlXF598A4erv0WBBe6nshColQm1VZrjJK
+	qKP8Tnu5H66Ig1u28M7zfOKgvSPENgYgLqmig1Y2cj4nCwr+dZ7qdpRnlsJTvbtoKMrihIESB14
+	Wy4u9KcMNr9X+iuV2QF+7a3L9cGx/NlQR+jRGf/QArg6EhOA3PYLuRd5dc5MW8RGUgRNPmO35JD
+	X6LGN5qKo=
+X-Google-Smtp-Source: AGHT+IFRon1/4eAXp3QDGK+LmMCItN7KW9fmyhhUSOX/aEte7rl35eC/lBri5/0sH+daAyHsLqfoNA==
+X-Received: by 2002:a05:600c:4692:b0:43c:eeee:b713 with SMTP id 5b1f17b1804b1-45b855983f8mr46646315e9.20.1756717437302;
+        Mon, 01 Sep 2025 02:03:57 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:881c:7d0e:ad0a:d9a? ([2a01:e0a:3d9:2080:881c:7d0e:ad0a:d9a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7d9548edsm93591505e9.5.2025.09.01.02.03.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 01 Sep 2025 02:03:56 -0700 (PDT)
+Message-ID: <d39a0299-bbda-4284-b7ab-81648a787305@linaro.org>
+Date: Mon, 1 Sep 2025 11:03:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e7875f70-2b79-48e0-a63b-caf6f1fd287b@kernel.org>
+User-Agent: Mozilla Thunderbird
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH 0/3] platform: arm64: thinkpad-t14s-ec: new driver
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
+ =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Mark Pearson <mpearson-lenovo@squebb.ca>
+Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>,
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
-
-On 08:50 Fri 22 Aug     , Krzysztof Kozlowski wrote:
-> On 21/08/2025 17:22, Andrea della Porta wrote:
-> > Hi Krzysztof,
-> > 
-> > On 10:55 Tue 12 Aug     , Krzysztof Kozlowski wrote:
-> >> On 12/08/2025 10:50, Andrea della Porta wrote:
-> >>> The devicetree compiler is complaining as follows:
-> >>>
-> >>> arch/arm64/boot/dts/broadcom/rp1-nexus.dtsi:3.11-14.3: Warning (unit_address_vs_reg): /axi/pcie@1000120000/rp1_nexus: node has a reg or ranges property, but no unit name
-> >>> /home/andrea/linux-torvalds/arch/arm64/boot/dts/broadcom/bcm2712-rpi-5-b.dtb: pcie@1000120000: Unevaluated properties are not allowed ('rp1_nexus' was unexpected)
-> >>
-> >> Please trim the paths.
-> > 
-> > Ack.
-> > 
-> >>
-> >>>
-> >>> Add the optional node that fix this to the DT binding.
-> >>>
-> >>> Reported-by: kernel test robot <lkp@intel.com>
-> >>> Closes: https://lore.kernel.org/oe-kbuild-all/202506041952.baJDYBT4-lkp@intel.com/
-> >>> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
-> >>> ---
-> >>>  Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
-> >>>  1 file changed, 9 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> index 812ef5957cfc..7d8ba920b652 100644
-> >>> --- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> +++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-> >>> @@ -126,6 +126,15 @@ required:
-> >>>  allOf:
-> >>>    - $ref: /schemas/pci/pci-host-bridge.yaml#
-> >>>    - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> >>> +  - if:
-> >>> +      properties:
-> >>> +        compatible:
-> >>> +          contains:
-> >>> +            const: brcm,bcm2712-pcie
-> >>> +    then:
-> >>> +      properties:
-> >>> +        rp1_nexus:
-> >>
-> >> No, you cannot document post-factum... This does not follow DTS coding
-> >> style.
-> > 
-> > I think I didn't catch what you mean here: would that mean that
-> > we cannot resolve that warning since we cannot add anything to the
-> > binding?
+On 31/08/2025 23:28, Sebastian Reichel wrote:
+> Introduce driver for the ThinkPad T14s Gen6 Snapdragon EC. In theory
+> it seems to be compatible with the ThinkPad ACPI driver, but these
+> devices are booted with device tree. As the name implies, the existing
+> ThinkPad ACPI driver only supports the ACPI interface. Looking at
+> the implementation, the ACPI DSDT contains many mapping functions
+> to translate the low level I2C messages into the interface used by
+> the ThinkPad ACPI driver. Adding DT support to the ThinkPad ACPI driver
+> would require adding all those translation functions, which would add
+> more or less the same amount of code as writing a separate driver using
+> the low level interface directly. I don't think it's sensible to make
+> the existing ACPI driver even more complicated, so I went for a separate
+> driver.
 > 
-> I meant, you cannot use a warning from the code you recently introduced
-> as a reason to use incorrect style.
+> I managed to get system LEDs, audio LEDs, extra keys and the keyboard
+> backlight control working. The EC also seems to be used for some thermal
+> bits, which I haven't looked into deeply. As far as I understand most
+> thermal and fan control is handled by a different controller
+> (0x36@i2c5) anyways.
 > 
-> Fixing warning is of course fine and correct, but for the code recently
-> introduced and which bypassed ABI review it is basically like new review
-> of new ABI.
+> Apart from that the EC is involved in proper system suspend, which
+> is something I do not yet understand (I don't have any documentation
+> apart from the dis-assembled DSDT and existing ACPI driver). Right
+> now I disabled wake capabilities for the IRQ, since it would wake
+> up the system when closing the LID. Hopefully a way to mask specific
+> events will be found in the future.
 > 
-> This needs standard review practice, so you need to document WHY you
-> need such node. Warning is not the reason here why you are doing. If
-> this was part of original patchset, like it should have been, you would
-> not use some imaginary warning as reason, right?
+> Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> ---
+> Sebastian Reichel (3):
+>        dt-bindings: platform: Add Lenovo Thinkpad T14s EC
+>        platform: arm64: thinkpad-t14s-ec: new driver
+>        arm64: dts: qcom: x1e80100-t14s: add EC
 > 
-> So provide reason why you need here this dedicated child, what is that
-> child representing.
-
-Ack.
-
-> 
-> Otherwise I can suggest: drop the child and DTSO, this also solves the
-> warning...
-
-This would not fix the issue: it's the non overlay that needs the specific
-node. But I got the point, and we have a solution for that (see below).
-
-> 
-> > 
-> > Regarding rp1_nexus, you're right I guess it should be
-> > rp1-nexus as per DTS coding style.
-> > 
-> >>
-> >> Also:
-> >>
-> >> Node names should be generic. See also an explanation and list of
-> >> examples (not exhaustive) in DT specification:
-> >> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> > 
-> > In this case it could be difficult: we need to search for a DT node
-> 
-> Search like in driver? That's wrong, you should be searching by compatible.
-
-Thanks for the hint. Searching by compatble is the solution.
-
-> 
-> > starting from the DT root and using generic names like pci@0,0 or
-> > dev@0,0 could possibly led to conflicts with other peripherals.
-> > That's why I chose a specific name.
-> 
-> Dunno, depends what can be there, but you do not get a specific
-> (non-generic) device node name for a generic PCI device or endpoint.
-
-I would use 'port' instead of rp1-nexus. Would it work for you?
-
-Many thanks,
-Andrea
-
-> 
-> 
+>   .../bindings/platform/lenovo,thinkpad-t14s-ec.yaml |  49 ++
+>   MAINTAINERS                                        |   6 +
+>   .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  23 +
+>   drivers/platform/arm64/Kconfig                     |  20 +
+>   drivers/platform/arm64/Makefile                    |   1 +
+>   drivers/platform/arm64/lenovo-thinkpad-t14s.c      | 597 +++++++++++++++++++++
+>   6 files changed, 696 insertions(+)
+> ---
+> base-commit: c8bc81a52d5a2ac2e4b257ae123677cf94112755
+> change-id: 20250831-thinkpad-t14s-ec-ddeb23dbdafb
 > 
 > Best regards,
-> Krzysztof
+
+Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
+
+All worked :-)
+
+Thanks !
+
+Neil
 
