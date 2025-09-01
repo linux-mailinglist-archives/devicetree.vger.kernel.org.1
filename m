@@ -1,145 +1,86 @@
-Return-Path: <devicetree+bounces-211437-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211438-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AD09B3F04E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:07:54 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED1D3B3F079
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 23:29:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F0B32C00C7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:07:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72D801B2210E
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 21:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8542423E355;
-	Mon,  1 Sep 2025 21:07:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842C7279DA9;
+	Mon,  1 Sep 2025 21:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NTP8AcTY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FnX6XK/k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FAC232F75A;
-	Mon,  1 Sep 2025 21:07:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55431277CB4;
+	Mon,  1 Sep 2025 21:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756760869; cv=none; b=X22owJYL4XQW2GE8g792ThbJZMsOVhudI22chY1A2uilGLRJVf/ukn3rhVCWJ+BOKirnv/4Lnbu+0kASJPFniy4arS+183BTo1QlZSY/W6cRR+vPxNuj8h3TSlhzBNKHUz4xXg+HSJUy8WP3HKpO3Xd6obD5gKegun/RLtWkfOg=
+	t=1756762176; cv=none; b=aTYA7CBgVY4kmDDfjbJBb+1TC9vTLHjBYxPc1uA02tJJVFK0ZCWOyZpXdha6CGYkvlsWGNvo5sygNwJHA19Zhlw+eoW3S3baieeEqkoMpiNxk9HQrZMJWT/N/ZAJnLn3MpZTkopgN7Os4jyor9aDF0/kHQDS6BtNXxH+I1V9MsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756760869; c=relaxed/simple;
-	bh=qPRtxQcOv7SHEQCFT+3OtO4MS+BAFz/O7B1+yNl/PBY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bLgR6X5NYnyGm1WSXHnbe7HS8urd6CWwPVXn5avaRuFVEI1DrqBQBkcJJ4lVQa/f2IG96wc794CPcyD6Wlnow8gE/tZPQ8HurrbYGmRwBGhRCIzkCYoN3eYENNQpT+eM6DYt5SJJ204eeMkIRsljy5L1Jlfxa3r32M83bFW7URc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NTP8AcTY; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1756760865;
-	bh=qPRtxQcOv7SHEQCFT+3OtO4MS+BAFz/O7B1+yNl/PBY=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=NTP8AcTYCe4f720CUB9THkJ3CHAoqNADaCIFvZV0cN5fz4XyViYe2PWquQeeGMW2R
-	 cW6PnJZRbbOiYL29NlULlXS/t9/1SHDmrpKWnFJ3SDcYn6mOX48sr0Rx9g2/ivyUuQ
-	 Y0Zm1szOCQ5yruo8DJ5temI/TLLORwXWHvwtUit0A2qa6ZxeotXSd4bDT4AviNAXMr
-	 NgPQBU9DkwijHL4W6dCdCPcOck8wzEV8kgbvk4F+3tlk9t6wUle11QknE8v9Z/MP4M
-	 pbkzMsdiJOKwzVRwbwvz4srmcGuTY+ot2X2C73QYd7C/E+0hTotUFqRTv7g7Bny/uo
-	 FDW7zWQ0xq52A==
-Received: from [10.40.0.100] (185-251-200-65.lampert.tv [185.251.200.65])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: mriesch)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A3F2717E1062;
-	Mon,  1 Sep 2025 23:07:44 +0200 (CEST)
-Message-ID: <f7ab5662-b813-4d60-80f0-d5bfc91b107f@collabora.com>
-Date: Mon, 1 Sep 2025 23:07:44 +0200
+	s=arc-20240116; t=1756762176; c=relaxed/simple;
+	bh=ZGsW6Cp4Ck4odWBXZ5+9TBl7XqmtalvaRxUlMKXaYDw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AfsJV4LKT1NbX5dFbsYPXYWawggN7M+iN69YmxD5kdzBlXFnz3fBPbiEfs2zGf08o2OQL/XQ1DVEAyh5pFcQPvGchkVKXck/MBJT6oU2ZRZoZITBeDFm3sW9cVehA0HyJChKMu4/Ouapfh0xsbmybxdNFXMuDhqxZKZUSLv/erQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FnX6XK/k; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 774FDC4CEF0;
+	Mon,  1 Sep 2025 21:29:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756762175;
+	bh=ZGsW6Cp4Ck4odWBXZ5+9TBl7XqmtalvaRxUlMKXaYDw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FnX6XK/kJwr4KXTTulE927esfbGKIfTFa9LMyQOAnCxQe4R3CLqISXTaig0QMwmNh
+	 OvnPUQUHKKNzkm3VHCsAlS4Q7Etp5UjxS3MKpqyif8YWPfWBfXeFoJylWxKCnC49uE
+	 nKm1qCf4FWpoDJkRSdIxB1zkWBlgQZA7tWjPUg+bW1+ecvwVfKZAYqMh/ltU1QeXzB
+	 FaqfaLtnMa/peObR9YdewZYGWengxAvZrAfB7WOTFUtivGSLikE5OHv4gEPDwsnoUB
+	 /aP2qYLucTSbEbhKomRcfmhYau/FN27iU39gRqiMXGkDa3r0FVdKAWsNWKoIpboTzY
+	 8xD7XBi1yP5Dw==
+Date: Mon, 1 Sep 2025 16:29:34 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: linux-clk@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Jernej Skrabec <jernej@kernel.org>, devicetree@vger.kernel.org,
+	Samuel Holland <samuel@sholland.org>, Chen-Yu Tsai <wens@csie.org>,
+	linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andre Przywara <andre.przywara@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 1/8] dt-bindings: clock: sun55i-a523-ccu: Add missing NPU
+ module clock
+Message-ID: <175676217387.375469.10664750906350656739.robh@kernel.org>
+References: <20250830170901.1996227-1-wens@kernel.org>
+ <20250830170901.1996227-2-wens@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make
- power-domains non-required
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Kever Yang <kever.yang@rock-chips.com>,
- Jagan Teki <jagan@amarulasolutions.com>,
- Sebastian Reichel <sebastian.reichel@collabora.com>,
- Diederik de Haas <didi.debian@cknow.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Collabora Kernel Team <kernel@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-phy@lists.infradead.org, stable@kernel.org
-References: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
- <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
-Content-Language: en-US
-From: Michael Riesch <michael.riesch@collabora.com>
-In-Reply-To: <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250830170901.1996227-2-wens@kernel.org>
 
-Hi all,
 
-On 9/1/25 22:47, Michael Riesch via B4 Relay wrote:
-> From: Michael Riesch <michael.riesch@collabora.com>
+On Sun, 31 Aug 2025 01:08:54 +0800, Chen-Yu Tsai wrote:
+> From: Chen-Yu Tsai <wens@csie.org>
 > 
-> There are variants of the Rockchip Innosilicon CSI DPHY (e.g., the RK3568
-> variant) that are powered on by default as they are part of the ALIVE power
-> domain.
-> Remove 'power-domains' from the required properties in order to avoid false
-> negatives.
-
-Grmbl, forgot to fix that for the second time. Should be "false
-positives", of course *facepalm*.
-
-Just a note to myself for any v4.
-
-Best regards,
-Michael
-
-
+> The main clock controller on the A523/T527 has the NPU's module clock.
+> It was missing from the original submission, likely because that was
+> based on the A523 user manual; the A523 is marketed without the NPU.
 > 
-> Fixes: 22c8e0a69b7f ("dt-bindings: phy: add compatible for rk356x to rockchip-inno-csi-dphy")
-> Cc: stable@kernel.org
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
 > ---
->  .../devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml   | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
+>  include/dt-bindings/clock/sun55i-a523-ccu.h | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> index 5ac994b3c0aa..9ad72518e6da 100644
-> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> @@ -51,13 +51,26 @@ properties:
->      description:
->        Some additional phy settings are access through GRF regs.
->  
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - rockchip,px30-csi-dphy
-> +              - rockchip,rk1808-csi-dphy
-> +              - rockchip,rk3326-csi-dphy
-> +              - rockchip,rk3368-csi-dphy
-> +    then:
-> +      required:
-> +        - power-domains
-> +
->  required:
->    - compatible
->    - reg
->    - clocks
->    - clock-names
->    - '#phy-cells'
-> -  - power-domains
->    - resets
->    - reset-names
->    - rockchip,grf
-> 
+
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
