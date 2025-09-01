@@ -1,131 +1,149 @@
-Return-Path: <devicetree+bounces-211017-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211018-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65E5FB3D619
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 02:16:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 626DAB3D61D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 02:17:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 189AB176452
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 00:16:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 229C13A7F2F
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 00:17:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 439502B9B7;
-	Mon,  1 Sep 2025 00:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D21013BB48;
+	Mon,  1 Sep 2025 00:17:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mUs0df+b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5573615C0;
-	Mon,  1 Sep 2025 00:16:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D1C11C695;
+	Mon,  1 Sep 2025 00:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756685805; cv=none; b=j9Z228rhsKC/gS+Y7uViPbt7n2JQuSX7glj0LsFntmBq4jPxuAA6diDKNGjv89AFNDdRTK1DtVzEzj0ZZ3OftPEGDmEfBoXFPK3+Rbq83hdNDkXw1cTjbNFK0EOW3QgfOJD4Vc6SMnfqhMyQu9JHw3dM7k0kNwDmD2hKaeCSNOM=
+	t=1756685832; cv=none; b=ngTLh1xDEBrxlRBubTfefDMaTfZshE0hrM3+FSp4tYR+0gKMJbUXOaTlvD4sagL6NGoYbDMgKpedbRhSoCrtvWbyJdthSGzpOM89AWmfzb54YpwqjDBwqJLque4xHdCMuujy9YjGn1w46BqL+L+0gToEEcAHflGR8SSB9kqAKqo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756685805; c=relaxed/simple;
-	bh=A8CJH8d6GSvOgPhvYUIcGgITw4AVgLYOx6HdbUNV1IY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3/A6dl4pmUcTOVOsZZjOMSKeYqWRnmH4JHJbA4wDvqBQwQCehkAoJKJnvBXEjCJCidolNL7RjnyRBSj9/p/GqrCdrlhw+oYSoQ6nWWzWh4Je4o+vN59b+rrXo4UJq0URkPxMST1IAvIe5xnxt7LqI9KXfQqVTKKjjtvQLCYKEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.102] (unknown [114.241.87.235])
-	by APP-05 (Coremail) with SMTP id zQCowAAnulqt5bRozJxqEA--.28114S2;
-	Mon, 01 Sep 2025 08:15:42 +0800 (CST)
-Message-ID: <ce7508df-f154-4fd7-a621-abe371c1cb4a@iscas.ac.cn>
-Date: Mon, 1 Sep 2025 08:15:41 +0800
+	s=arc-20240116; t=1756685832; c=relaxed/simple;
+	bh=gGThJYxLSsj2Y3uJd7egWJeIaoc8wMHRv9pymEmf1Dw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IVdL1LdWU44OBlGwgxQYqAhcwfYY9JS2Lxb4MHhU7a46S/ct2dTRi5WsdS6sQ3yOIRZ6e3FNrDp+raW4TfdalUnsPgM6nnbuBTRprtcMCztY70sTNilGkwXDFnH1zqgKxB3vrNunEb1OAlHVZmO4gz4eh73RNTib/1WBbr0Ehlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mUs0df+b; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-b042cc3953cso41768866b.2;
+        Sun, 31 Aug 2025 17:17:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756685829; x=1757290629; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ktkbla4NPIaC9jC6psct3vSFUUII2FVq3tu2TmWqa/E=;
+        b=mUs0df+bSjcwU0ItUaFM7RYE00yV/vrl7hW6QeJ6MGy7krbHu0ca3j+tT2YzRmSfys
+         TBq1XxFEUWQraRs0MBQs7/tIncjTY+UC/UGQ6wfS7yOulhghuijBIbAvxOe52+MLkZK0
+         kh7hQ2ML2+F1MmsHoQKsXGF/Xopd3RlzgTvrJ0pVkNrRC0ZpLQcUCXxPpZsgC2xzBf1q
+         UtIfCX3PWyIbmWLl2uJwuQlJ4QTOjmAOarXGqKLuk1LUYthuYXCNTecj8XRtWs1Yjh+i
+         nmvoLJpGKIz6xgBvSpTa39DeIdiELmdMCGDSla0jd7T0PfekjQBpFyc/NP/IHIinqjk7
+         9Vbg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756685829; x=1757290629;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ktkbla4NPIaC9jC6psct3vSFUUII2FVq3tu2TmWqa/E=;
+        b=OcxGt2tJ05NEjiydY/gXJt3SNyKgGizaKkTsGJB3B4ZmoPOE5h5s3y04JH0moINRjF
+         crxEb4ISqke6zwluLVYjIxq9bTfrUdXs5InZFCYw8Wbu+6LCNCIjedxMTU1OOphX6QcG
+         GssgoQCRwOMkVIyzQO6Xz8lVOQL3B0Qakop1WfID36qvudS7kzn9thpSTnjQf736shAS
+         X/PHDCFMvMhieLcSrteRs4qeVudfqt1nL0DUV+LOk9JWxwf6UiBQczbXYaSZt0P64xHd
+         gQ2w+1YlwRYkpmst/9QczOM3mXFAKY7AUzvvUdO2AKwm/PF/xlv99s5d9xtAEJxyOxMJ
+         soZg==
+X-Forwarded-Encrypted: i=1; AJvYcCUYF/bAARvXJn4zIflNCldyAi+cGSR1kHt+sixnpzSnv5Mfbr1er5Qqhlit96jmacPMIVxkHQuJ5hfD@vger.kernel.org, AJvYcCVP1XoUBAMIsWkri2LxBILEvqX7aPz4UknDKfWDhT26q0TvLdLLEGOaP4slbzCExs27O8VtRYJhgtD8@vger.kernel.org
+X-Gm-Message-State: AOJu0YycF3k76dZj7u9d5wuAqpLTEGE/wFkDdIDG3eGsB+/TaQ6WfgzU
+	+7NKxG7AlSQm3eRJ1bWxhijHKBRPmpcyMBkk/4I+cKWJx18EZ3vLrv1sGxoSnmitKM4pIimuR+b
+	LpL0cCbsu7eNF9r7w3q1UmnT7RkSsyxg=
+X-Gm-Gg: ASbGncs/K5DKGJPcrlnJC+HIg2+GePlPIJrwxQFJ0l3dH8Hq6ZYvoytDEqdq9BXAAxs
+	6KcIcQtven0Pl4o/ZVnEFqEFXsecoOOBwU0aa7EcDq7iaF89DY1HURF4a70T69eFEpP5H5QdukB
+	pz4Fvma9gMXdqxi/0BIXSLevhXNn46mXMMGuTaB5xX2EXs1gUkTHdhIehhm9S48guPyjwRsGfUl
+	Ezcv/m09IFMsw==
+X-Google-Smtp-Source: AGHT+IGHE8aXMx7ALK07ZZk4ApSRlHpCLRxAscpFITkZtZyfxE5oqk93LXZDU0pPe6ZM5AlFYhwbpT0EWRO3nMFED/w=
+X-Received: by 2002:a05:6402:13d0:b0:61c:cf8d:e51d with SMTP id
+ 4fb4d7f45d1cf-61d26d78f71mr5111270a12.22.1756685829050; Sun, 31 Aug 2025
+ 17:17:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v8 2/5] net: spacemit: Add K1 Ethernet MAC
-To: Troy Mitchell <troy.mitchell@linux.spacemit.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-References: <20250828-net-k1-emac-v8-0-e9075dd2ca90@iscas.ac.cn>
- <20250828-net-k1-emac-v8-2-e9075dd2ca90@iscas.ac.cn>
- <58E42B0649434EDA+aLEHlp1jfLVxVZWR@LT-Guozexi>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <58E42B0649434EDA+aLEHlp1jfLVxVZWR@LT-Guozexi>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:zQCowAAnulqt5bRozJxqEA--.28114S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kw48tw48tF15KFW3ur48Zwb_yoW8ArW7pa
-	13Ga4q9rZ2yr47Gr9xZ3WDAa9Yvw4jkFyjyFW5tr1rWF1qy34aqrnrtw45u348ur48G3yY
-	vr4jva4Iqas8A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvGb7Iv0xC_KF4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8Jr0_Cr1UM28EF7xvwV
-	C2z280aVCY1x0267AKxVW8Jr0_Cr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVAC
-	Y4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJV
-	W8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkI
-	wI1lc7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr
-	0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY
-	17CE14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcV
-	C0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY
-	6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa
-	73UjIFyTuYvjxU3wIDUUUUU
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+References: <20250831104855.45883-1-cn.liweihao@gmail.com> <20250831104855.45883-4-cn.liweihao@gmail.com>
+ <2235041.irdbgypaU6@diego>
+In-Reply-To: <2235041.irdbgypaU6@diego>
+From: =?UTF-8?B?5p2O57u06LGq?= <cn.liweihao@gmail.com>
+Date: Mon, 1 Sep 2025 08:17:00 +0800
+X-Gm-Features: Ac12FXwV9Ji8b_vqPwpDGDVUUVyRfoYaArbF6DLUc5xbBllmI6nYQLBSmIsHBpA
+Message-ID: <CAPEOAkQYA+XSx9QJSmNFLypH0ifE1jvui=MHiEHZ+5a3SR7=uA@mail.gmail.com>
+Subject: Re: [PATCH v1 3/7] dt-bindings: clock: rk3368: Add SCLK_MIPIDSI_24M
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: robh@kernel.org, hjc@rock-chips.com, andy.yan@rock-chips.com, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Heiko,
 
-On 8/29/25 09:51, Troy Mitchell wrote:
-> On Thu, Aug 28, 2025 at 04:47:50PM +0800, Vivian Wang wrote:
->> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
->> that only superficially resembles some other embedded MACs. SpacemiT
->> refers to them as "EMAC", so let's just call the driver "k1_emac".
->>
->> Supports RGMII and RMII interfaces. Includes support for MAC hardware
->> statistics counters. PTP support is not implemented.
->>
->> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
->> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
->> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
->> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
->> Tested-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
->> ---
-> [...]
->> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/ethernet/spacemit/k1_emac.c
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..49afe9312a742c27dd35a015d75a1de7ec5c7d15
->> --- /dev/null
-> [...]
->> +
->> +static int emac_phy_interface_config(struct emac_priv *priv)
->> +{
->> +	u32 val = 0, mask = PHY_INTF_RGMII;
->> +
->> +	switch (priv->phy_interface) {
->> +	case PHY_INTERFACE_MODE_RMII:
->> +		mask |= REF_CLK_SEL;
-> How about we move `val = 0` to here? 
-> This makes it clearer that val should be 0 when PHY_INTERFACE_MODE_RMII,
-> instead of being hidden in the initialization.
+Thanks for your review.
 
-I'll probably just use phy_interface_mode_is_rgmii or something for val.
+I actually used script to get the maintainer list, but I was not sure
+whether I should send-to or cc every maintainer, so I consulted the
+AI, and the AI said to try not to do so because it might be considered
+noise email, and only send it to the main maintainers.
 
-I will clean this up, but I'll wait for a few more changes to batch up
-before sending the next version.
+Should I cc all the devicetree maintainers with the next patches?
 
-> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+Best regards,
+WeiHao
 
-Thank you!
-
-Vivian "dramforever" Wang
-
+Heiko St=C3=BCbner <heiko@sntech.de> =E4=BA=8E2025=E5=B9=B48=E6=9C=8831=E6=
+=97=A5=E5=91=A8=E6=97=A5 23:00=E5=86=99=E9=81=93=EF=BC=9A
+>
+> Hi,
+> Am Sonntag, 31. August 2025, 12:48:51 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb WeiHao Li:
+> > Add a clock id for mipi dsi reference clock, mipi dsi node used it.
+> >
+> > Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
+>
+> you missed a number of devicetree maintainers, Rob thankfully does
+> not need to do this on his own anymore.
+>
+> so please get the appropriate list of maintainers via scripts/get_maintai=
+ner.pl
+>
+> Change itself looks fine though.
+>
+> Heiko
+>
+> > ---
+> >  include/dt-bindings/clock/rk3368-cru.h | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/include/dt-bindings/clock/rk3368-cru.h b/include/dt-bindin=
+gs/clock/rk3368-cru.h
+> > index ebae3cbf8..b951e2906 100644
+> > --- a/include/dt-bindings/clock/rk3368-cru.h
+> > +++ b/include/dt-bindings/clock/rk3368-cru.h
+> > @@ -72,6 +72,7 @@
+> >  #define SCLK_SFC             126
+> >  #define SCLK_MAC             127
+> >  #define SCLK_MACREF_OUT              128
+> > +#define SCLK_MIPIDSI_24M     129
+> >  #define SCLK_TIMER10         133
+> >  #define SCLK_TIMER11         134
+> >  #define SCLK_TIMER12         135
+> >
+>
+>
+>
+>
 
