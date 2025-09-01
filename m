@@ -1,158 +1,121 @@
-Return-Path: <devicetree+bounces-211279-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211280-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A4E9B3E36E
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:41:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0227CB3E394
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:45:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 07AD0189ECCD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:41:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DCDE53A24D2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 12:44:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6551D30DEC3;
-	Mon,  1 Sep 2025 12:40:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45ACD3126B7;
+	Mon,  1 Sep 2025 12:43:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ErltRGBl"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="jXdQuO4T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 973112727E0;
-	Mon,  1 Sep 2025 12:40:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A291257849;
+	Mon,  1 Sep 2025 12:43:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756730452; cv=none; b=B0L2Lao8Ms6mjY7D5BH8txzVsa0TKJE/5eVTkvTYETuE39JPTRRFc7RvFojiqtya8LkmfrneQoIlA0vqy6Tyl+kCka/slmXxeOo59tZKNsw5GNHUY3n8Gku6LHezC5Q9L8fGwgFTMoBa8RlnW5mTwno1HIreYiv19i5KNobg/jc=
+	t=1756730598; cv=none; b=nlm48f9BXh6XWxDStx3zmSP3Dj+Qaj2ErHptKBvm/xFcxZVmjiR3g8HMe0eQZWVoVLdEF4v2Ft8sEUXAH4qE5Qmu0x5El/l8wss3GPsYZqigehFx3KdkH0qYw2aNRXUic5W4+UORvKvWbpJiWYPadT0BES+jw0e2l2h5g6VNkQc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756730452; c=relaxed/simple;
-	bh=2FDnfrFiLbTm49VKnjy9DfM2HwLowa/ASGrSzPO+Yw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=NaGOS5Md2BV72/AxaThaymBsFR7YNOhvm6K/Q7FXaZt2tw5CGW/fO5jpxTa2K6m4EtjPxVWqc4bODNyw+G10999+pEadAAQbxJi4OECB44Dshg6YlmZrGmPw6+naFYAoHe+vhxNKG3BJweLk+TDMswDgK5YGKtNcGDnos8TncwE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ErltRGBl; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 581Ceiq22313308;
-	Mon, 1 Sep 2025 07:40:45 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756730445;
-	bh=2f0pF4cOVRp5vftRAMP0k7Ja9Wy98twL5qtX3adsjD8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=ErltRGBlZn4R/Qp0YST6wzboF1YcJNhSSsKAcidGkJ4SyhIyykt+CEmrnoiHWGprA
-	 Ak3AoMjMdXaNnv5b0JagdddV7Qf/dQC98obYDIa/6zxh1BwNNyoAsNGVSW0nW5uMvi
-	 JHIBTDbmdlGWlUAv5RGFEvaEnQmR+bRo3pzHTnFc=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 581Cei8K2728081
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 1 Sep 2025 07:40:44 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 1
- Sep 2025 07:40:44 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 1 Sep 2025 07:40:44 -0500
-Received: from [10.24.68.177] (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 581CeeOl2237214;
-	Mon, 1 Sep 2025 07:40:40 -0500
-Message-ID: <9b3cd9d9-c163-47ba-b979-e1ba8ad5ccbc@ti.com>
-Date: Mon, 1 Sep 2025 18:10:39 +0530
+	s=arc-20240116; t=1756730598; c=relaxed/simple;
+	bh=JV3RmCj1JMN6vIPs9w1LUVvRoHj1GcIh6KrLOIR/RlU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TC48KyguTpVE9nVVNZFHXwIoNDH8lkvgTB9j2sB/qT1hMbwOxalBY4kISceQgHT3nx/0t5ExKxfmRVjZ7kpWDdKmYUEQnTxnz/4dJG0mXihB//AdyA0pFPJpOP1mPOdEINWYB4xBaAEsxC+Nlhm7qTlMZfKgpmn2kTICK2yLLI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=jXdQuO4T; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756730596; x=1788266596;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=JV3RmCj1JMN6vIPs9w1LUVvRoHj1GcIh6KrLOIR/RlU=;
+  b=jXdQuO4T89qdaspNpy0KKe3sSbeg28/wTlP8sjFuSCYbjrIvsBCpKKXE
+   NZJ+DWtsMYQAmAjdvyJan2SrKRzf+u8dSQWXt+BEqwMW8SKHMgQtCiyuG
+   j4PTbE/FL3P5PIIxFWCThtrXl0b27/vBU4GSoKRhPm4LhjnH+vkQfoaVJ
+   lrPAxG7Su0MDM/v8D/Qa6PoQSpB4PnrIU3hZkAxP84vXPXJirm2Bm7DPR
+   xCb797AxUoBVrBJUsI0yv8XAZEzAB5KJOJh2f63Kuvy9wupYpCVmBHC31
+   kF0sxtWBr4DSonnTZtRq8KjCa5VI+ZYD8ozMqIk16CU6TofbZxwms4EYZ
+   Q==;
+X-CSE-ConnectionGUID: 3Vn31p95R1mtzhQ05BJgww==
+X-CSE-MsgGUID: kPMLKY2ETaimIhBb9JmNZw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="62821495"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="62821495"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 05:43:16 -0700
+X-CSE-ConnectionGUID: BuhrxOKbQ9+4gTuoB5MZsg==
+X-CSE-MsgGUID: 6uN3xkOnSVOA2l5NeF2Alg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,225,1751266800"; 
+   d="scan'208";a="170868578"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 05:43:12 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1ut3sL-0000000APj6-1CGF;
+	Mon, 01 Sep 2025 15:43:09 +0300
+Date: Mon, 1 Sep 2025 15:43:08 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Karel Balej <balejk@matfyz.cz>,
+	David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org,
+	~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] iio: adc: Add driver for Marvell 88PM886 PMIC ADC
+Message-ID: <aLWU3AwC37jpV9W_@smile.fi.intel.com>
+References: <20250831-88pm886-gpadc-v2-0-759c1e14d95f@dujemihanovic.xyz>
+ <20250831-88pm886-gpadc-v2-2-759c1e14d95f@dujemihanovic.xyz>
+ <DCGUXTSZ8B9G.2S2Q2JXYMBSRY@matfyz.cz>
+ <5048048.31r3eYUQgx@radijator>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: ti: k3-am62x-sk-common: Remove the unused
- config from USB1_DRVVBUS
-To: Dhruva Gole <d-gole@ti.com>
-CC: <vigneshr@ti.com>, <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vishalm@ti.com>, <sebin.francis@ti.com>
-References: <20250731115631.3263798-1-a-kaur@ti.com>
- <20250731115631.3263798-3-a-kaur@ti.com>
- <20250813131530.apibc4p6t2uo5bkr@lcpd911>
-Content-Language: en-US
-From: Akashdeep Kaur <a-kaur@ti.com>
-In-Reply-To: <20250813131530.apibc4p6t2uo5bkr@lcpd911>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <5048048.31r3eYUQgx@radijator>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Hi Dhruva,
+On Sun, Aug 31, 2025 at 10:19:38PM +0200, Duje Mihanović wrote:
+> On Sunday, 31 August 2025 21:24:54 Central European Summer Time Karel Balej wrote:
+> > Duje Mihanović, 2025-08-31T12:33:05+02:00:
 
-On 13/08/25 18:45, Dhruva Gole wrote:
-> On Jul 31, 2025 at 17:26:30 +0530, Akashdeep Kaur wrote:
->> After the SoC has entered the Deep Sleep mode, USB1 can be used to wakeup
-> 
-> Just leaving my comments on the commit message here since 1st patch
-> seems to be pretty much the same commit message.
-> 
-> Let's reword this as --> Deep Sleep low power mode.
-> Makes it a bit more clear.
+...
 
+> > > +	iio->dev.of_node = dev->parent->of_node;
+> > 
+> > Didn't you mean to drop this since Jonathan pointed out that it's done
+> > by the core?
 > 
->> the SoC based on USB events triggered by USB devices. This requires that
->> the pin corresponding to the Type-A connector remains pulled up even after
->> the SoC has entered the Deep Sleep mode.
->> For that, either deep Sleep pullup can be selected or the pin can have the
-> 
-> Nit: Be consistent with either deep sleep, or Deep Sleep, don't mix case.
-> Also, please can we talk here in terms of exactly which macros we're
-> talking about? For eg. if deep sleep pullup == PIN_DS_PULLUD_ENABLE, then
-> please mention that in a bracket or something for people who may not
-> necessarily be aware of all these terms.
-Reworded at all instances to TRM mentioned DeepSleep>
->> same configuration that it had when SoC was in active mode.
->> In order for deep sleep configuration to take effect, the deep sleep
->> control bit has to be enabled.
-> 
-> Please talk with some references, because not everyone will be able to
-> follow what we mean by deep sleep control bit/ deep sleep configuration.
-> 
->> Remove the deep sleep state configuration from USB1_DRVBUS pin as it is
->> anyways not taking effect (deep sleep control bit is not set).
->>
->> This reverts commit 527f884d2d94981016e181dcbd4c4b5bf597c0ad.
-> 
-> And so are you in conclusion saying that this patch is just unnecessary/
-> useless? The bracket message feels to me that you are saying that if we set
-> the deep sleep control bit this patch will start working as expected?
-> Please can you clarify a bit on that end?
-The intent was that there is no need to set the DeepSleep control bit. 
-Also, if that bit is not set, then the current setting is ignored by 
-hardware.
-> 
->>
->> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> index 13e1d36123d5..d3bed23134ca 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
->> @@ -249,7 +249,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
->>   
->>   	main_usb1_pins_default: main-usb1-default-pins {
->>   		pinctrl-single,pins = <
->> -			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
->> +			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
->>   		>;
->>   	};
->>   
-> 
-> Sorry for the long review on the commit message, but context feels like
-> everything when it comes to small patches. Hence trying to make sure
-> everyone understands what's being done here... :)
-> 
+> Actually I have found that device tree consumers fail to get their IO
+> channels without this line, so I left it.
 
-Regards,
-Akashdeep Kaur
+because the passed device is not parent?
+
+In any case this line is problematic. Use device_set_node() instead with the
+proper dev_fwnode() parameter.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
 
 
