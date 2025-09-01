@@ -1,56 +1,61 @@
-Return-Path: <devicetree+bounces-211091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D64CB3D885
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA91B3D88D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 07:19:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 152293B8184
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:14:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 646623B50D7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 05:19:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4851233704;
-	Mon,  1 Sep 2025 05:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4964126C17;
+	Mon,  1 Sep 2025 05:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FkfQsN2L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N+mVcWWK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A03A028DC4
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 05:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95E8133D8;
+	Mon,  1 Sep 2025 05:19:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756703657; cv=none; b=HHC1Lwx0xhcXreeanrIyuGPHZTiP3/MSGdG5EUohm/giq8k6IO4QKk8v2UJnw6D1hGnUP1ITOJllDTmcujxdRXGhcwgwiCgRbigUWWFOMJuzGHuHyd+HBGeyTyOPTzLfkcNJwimvsI6zckZZiaIutEytHemdqwfyX6F78Jbf+8c=
+	t=1756703947; cv=none; b=eYPH86b623z+PH8QYomsA8YHKs7Usc7QT90BfW7VAS/XndGbKxMROoBrQcZncAPZ5QZv1Xk9E5zG3k0rYB74HTqLFWj0claqz0bf14mLn5ZIS/H80LZgkdTdDKIz4oYCjxruWyMd9i2GS3vlXWcJ+ng9btV378QFiOZjnplIEDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756703657; c=relaxed/simple;
-	bh=YBqGrC4KQDmdh1k6F/p7nJAbGIJ6Ho2IPZIUotlJCag=;
+	s=arc-20240116; t=1756703947; c=relaxed/simple;
+	bh=cwAMu5onj7dzRFFgnuDrLv7U2DyCY/Mo9N485T7Z6bQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lEH1Tbh48yBWr5XCvsr4pSjk4BAWDw2wo/s0Xxa2IH2m/2mgF/0+eM3kS9fzylkhujByzK4cHJQr/LBh0HC/QOABdMuemHij2UKdVNkXmMibZJJPGiR72sJJSdVTWqh3aCd7cGGOy/Owzo93lfYI1HeRb3sI3yq/M+hXP4ergPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FkfQsN2L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 74792C4CEF0;
-	Mon,  1 Sep 2025 05:14:16 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WCNAEoPCYBxStwUA8DVYceAoDpV94JUCNIFoh2GFKx4p+02d0eTt3Hr1XZ9uVJECA9JCtxLHhpfJRAOkBygxwjaIbCLyIXbYy9fFcZ5AFRASNw0P2gYqbQTu/X67bmE1NNVBl6dpMJkdo97FzDhT3M4yi+T2Mjbq+MaxaTFthNo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N+mVcWWK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 797DCC4CEF0;
+	Mon,  1 Sep 2025 05:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756703657;
-	bh=YBqGrC4KQDmdh1k6F/p7nJAbGIJ6Ho2IPZIUotlJCag=;
+	s=k20201202; t=1756703947;
+	bh=cwAMu5onj7dzRFFgnuDrLv7U2DyCY/Mo9N485T7Z6bQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FkfQsN2LjsEBlZcVV8uu5i5D6Gqwa2u90xzhZ2zwKIFPVl3BBEc//gQx1Yb+ZZ4bg
-	 oLLdD4ygHAcQCi6zMoQ90vANF6cAy5m5SXfZ0Bm7ysuaqRy4wgdTR/stSPlyDurzwu
-	 9zyufXPbXhRkAS5eiLEgIp9BfdF0hR3wS6CrGgDUkFsqOzYPs31815/9B2Ce9V4Msw
-	 bIMWZqAlLqFf9BzjBJOo6H+Vy5Q2pB18ZWIYpY3ClZsTjYwFULS7j+2QAi8as4Tlpf
-	 rwwjqG17jsJ/+o2DGEpUQgPaT5bE1Y/96a+EHew4gqyC0nIbuibyO+ohUDLAoetbcD
-	 XUNjlmyTYDY1Q==
-Date: Mon, 1 Sep 2025 07:14:14 +0200
+	b=N+mVcWWKKMaqSFpvJpMQGGNtT0C5jGJPDpENupzxYPJMm9CyRZQQoFIUi/v5zficI
+	 qTaVnAbuKus9KLI4Et9m4p/s5rGs56FXFmiy3vnjU67jWcvyMXtxCO2EE5WmL6sjk6
+	 83Q0Y/DZX64b2cDu4PDnOojjhI1FBXqSJNcVXCPp8fTa83ZiyugAL2eSI/4lxzJG7d
+	 ZVxe7/YJu5eOol0vsdvbgFjV5W/P4zjS4Rb8XzHx+7DBhHqEU4KLpgsf0bMx9yR7R1
+	 0sb9OW8zsrsgaPcpUam1yimCvmjzfQO1F6pIQ9NUqlwyyr3KAJwgKtBGCNMBLkun0O
+	 dWb45ye6Q41+g==
+Date: Mon, 1 Sep 2025 07:19:04 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Markus Stockhausen <markus.stockhausen@gmx.de>
-Cc: miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: Add realtek,rtl9301-ecc
-Message-ID: <20250901-spiritual-lime-dolphin-1dfc0f@kuoka>
-References: <20250828143408.2511086-1-markus.stockhausen@gmx.de>
- <20250828143408.2511086-2-markus.stockhausen@gmx.de>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, 
+	shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, 
+	mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
+ host controller
+Message-ID: <20250901-congenial-weightless-parakeet-42d2de@kuoka>
+References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
+ <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,16 +64,143 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250828143408.2511086-2-markus.stockhausen@gmx.de>
+In-Reply-To: <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
 
-On Thu, Aug 28, 2025 at 10:34:07AM -0400, Markus Stockhausen wrote:
-> Add a dtschema for the ECC engine on the Realtek RTL93xx SoCs.
-> The engine supports BCH6 and BCH12 parity for 512 byte blocks.
-> 
-> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-> ---
-> Changes in v2:
-> - change cells from 2 to 1 (only 32 bit hardware)
+On Fri, Aug 29, 2025 at 04:22:37PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> +allOf:
+> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: eswin,eic7700-pcie
+> +
+> +  reg:
+> +    maxItems: 3
+> +
+> +  reg-names:
+> +    items:
+> +      - const: dbi
+> +      - const: config
+> +      - const: mgmt
+> +
+> +  ranges:
+> +    maxItems: 3
+> +
+> +  num-lanes:
+> +    const: 4
+
+If that's const, you do not need it. It's implied by the compatible.
+I see some other bindings do similarly and I think that's not the
+correct choice.
+
+Well, maybe @Rob knows if PCI is different here anyhow?
+
+> +
+> +  '#interrupt-cells':
+> +    const: 1
+> +
+> +  interrupts:
+> +    maxItems: 9
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: msi
+> +      - const: inta
+> +      - const: intb
+> +      - const: intc
+> +      - const: intd
+> +      - const: inte
+> +      - const: intf
+> +      - const: intg
+> +      - const: inth
+> +
+> +  interrupt-map:
+> +    maxItems: 4
+> +
+> +  interrupt-map-mask:
+> +    items:
+> +      - const: 0
+> +      - const: 0
+> +      - const: 0
+> +      - const: 7
+> +
+> +  clocks:
+> +    maxItems: 4
+> +
+> +  clock-names:
+> +    items:
+> +      - const: mstr
+> +      - const: dbi
+> +      - const: pclk
+> +      - const: aux
+> +
+> +  resets:
+> +    maxItems: 3
+> +
+> +  reset-names:
+> +    items:
+> +      - const: cfg
+> +      - const: powerup
+> +      - const: pwren
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ranges
+> +  - num-lanes
+> +  - interrupts
+> +  - interrupt-names
+> +  - interrupt-map-mask
+> +  - interrupt-map
+> +  - '#interrupt-cells'
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +  - reset-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        pcie@54000000 {
+> +            compatible = "eswin,eic7700-pcie";
+> +            reg = <0x0 0x54000000 0x0 0x4000000>,
+> +                  <0x0 0x40000000 0x0 0x800000>,
+> +                  <0x0 0x50000000 0x0 0x100000>;
+> +            reg-names = "dbi", "config", "mgmt";
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +            #interrupt-cells = <1>;
+> +            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
+> +                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
+> +                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
+> +            bus-range = <0x0 0xff>;
+> +            clocks = <&clock 562>,
+> +                     <&clock 563>,
+> +                     <&clock 564>,
+> +                     <&clock 565>;
+> +            clock-names = "mstr", "dbi", "pclk", "aux";
+> +            resets = <&reset 8 (1 << 0)>,
+> +                     <&reset 8 (1 << 1)>,
+> +                     <&reset 8 (1 << 2)>;
+> +            reset-names = "cfg", "powerup", "pwren";
+> +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
+> +            interrupt-names = "msi", "inta", "intb", "intc", "intd",
+> +                              "inte", "intf", "intg", "inth";
+> +            interrupt-parent = <&plic>;
+> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
+> +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
+> +                            <0x0 0x0 0x0 0x2 &plic 180>,
+> +                            <0x0 0x0 0x0 0x3 &plic 181>,
+> +                            <0x0 0x0 0x0 0x4 &plic 182>;
+> +            device_type = "pci";
+> +            num-lanes = <0x4>;
+
+That's not a hex number, but decimal.
 
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
