@@ -1,375 +1,599 @@
-Return-Path: <devicetree+bounces-211256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211248-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08AE3B3E1BF
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D89B6B3E161
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63AFE1A80514
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:37:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3CC921A80E32
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 11:21:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4A6F3148D2;
-	Mon,  1 Sep 2025 11:36:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="dWvjX8zO";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="iRCl1gVA"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F49E3115A6;
+	Mon,  1 Sep 2025 11:21:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00376f01.pphosted.com (mx07-00376f01.pphosted.com [185.132.180.163])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D100826C3A5;
-	Mon,  1 Sep 2025 11:36:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.180.163
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756726598; cv=fail; b=j4Q6wkxFP0jSrv31wxrRWueCeslkDNNFicuiff0wDhJlSGeUbsUbZEO6702DwMXfUl8kgaGzu7RNeJ9B4lUJLDIDx5KZSDOB1F2w1irO4uTUU/QGFmM8ef8RZmO2dFvvHWXEKBWskZy/pL8b6Wts9mJBdsAdY9DYhtvLSHVz840=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756726598; c=relaxed/simple;
-	bh=gaz6zf1isvLTk6CgGScgz4jPFotP7NvXD7pGYUVM+L8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Vcfa5+RP9RxtyZOCdGhynylsU0ZHEvHHZdIxCIqUdh/Pr4Qlwot+84mCvpSl1Mf+tkOxhomNmMbCAJ7KhHHwHokEpdSo5T5lz6VyfJv/PyFJJ5Ts6X7a2Du9yBSo4Ru7wp7laxAibXEWhM8OWlgUz3UuIb4iYtSEAXncM9Np0h0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=dWvjX8zO; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=iRCl1gVA; arc=fail smtp.client-ip=185.132.180.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168889.ppops.net [127.0.0.1])
-	by mx07-00376f01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id 5816f2aX1725151;
-	Mon, 1 Sep 2025 12:16:23 +0100
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=cc
-	:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=dk201812; bh=fUp5C5i+XGNOUoWdkWVF72vO2
-	Gx5P1YaVLv2lGY7iHY=; b=dWvjX8zOn3INy780abc+mlMjtv0vITTywWALnkQG3
-	cN9fQO/y7GxmLf+rGsde4WO5vPH9TKHvKUtsw7ZE6SYt8W3lIbjf85cOptGRIAla
-	YG6qY6LeHHn2tcB/8MoCk0xOF/mb4IH/P09ur0E972FNLC5zVR9OwbHJTWdjN8MC
-	i+maA3A3ZGhBRYz9zi0PNP1z52he77BJf7D5ZlIUqstY7ajh8TwTY0tcgQhNP5bg
-	yhRbppGhi53JJFJarqJmLk+GEQwYgY1lVF2hOHObibxVTyIO42Z3N/tnkxGxvHEH
-	yLu+C3G40wOUpo85vsytpNfEiqul7Euj7KMTSdFMAJexQ==
-Received: from lo0p265cu003.outbound.protection.outlook.com (mail-uksouthazon11022107.outbound.protection.outlook.com [52.101.96.107])
-	by mx07-00376f01.pphosted.com (PPS) with ESMTPS id 48uscshts5-1
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=NOT);
-	Mon, 01 Sep 2025 12:16:21 +0100 (BST)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oP+tdOu58f1kwOeqyhq53OqNiUqTilTDcihC+yl4AvGKzIdlJJf9+kC9wgey6l0294uS3aMsRKO3ESSpFkYr24xyNWJs0/E2ab7R4oljlgxV2AN21vG5dy3ApeTJfw45EpkKL+f4UPeu4bikaq0l9lrPVAxQQPx6Bq54s+0+IMglgOECsAuI2I6vwHDQ4tQx8oGDIT4tiBKSKBwD2aX4ULqac84y9KhW9HdhZrf0xEQJEy16WKChV5vUUR7e9r+VqizOX3y76Cr1c4XFdiZ7rVdAEWCr7AIK9nnm6BCWI7FzR9SmnheYymHeK382FL3ox9eJpkCEkoMwvs+g9x6VSA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fUp5C5i+XGNOUoWdkWVF72vO2Gx5P1YaVLv2lGY7iHY=;
- b=KTfdGjVV+Xn93c8LGVQoJ0fR6BUfefpU29yL/SWt4qPGSmKKMSkfgcAaXvcOHlJynGpCipL0WkbOx4M+zyddjJ1WzbprF2IJ9JdF8FZDvLRb6oST8VmJ88JuHiQEwi/Z409FjbTR98YJ9ZsRzrBgbgSY8Fti1+3OCHqkhzw3E+HJcdPs3Wx+W7mSpbCjHxzYe+pCTPbw3CT4r0YlWpbWPYyxYnxNVR7yQ6s7iozl/taWP30q1Y1ZN3TR+IIfAe75cuvcINh7repP6xbUyWRjzAWvjwU3Tpy1TmCUlfnb0zO/fZ6iABGXjdDJsqpNKlxOZAVpu5bzeExgOSCN9eA6HQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=fUp5C5i+XGNOUoWdkWVF72vO2Gx5P1YaVLv2lGY7iHY=;
- b=iRCl1gVATuom0I5UkQeEKafaoX1d6Hx/dqz7WLfsEoQ/Dndpo7JXbzuLKprwrICnnUJyufkcg5j6EOTRot2jnESExCRt6wp/xunpLoCJ0C2YZxzzID5E6ixRk1d6H8i+oF/ki4IQ8JkWHNIe+6oL+YMfnJapda9lRQ1mH5G7D/8=
-Received: from LO0P265MB3404.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:16c::5)
- by LO4P265MB6779.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2f1::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.25; Mon, 1 Sep
- 2025 11:16:18 +0000
-Received: from LO0P265MB3404.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6016:e25d:b539:1ed1]) by LO0P265MB3404.GBRP265.PROD.OUTLOOK.COM
- ([fe80::6016:e25d:b539:1ed1%5]) with mapi id 15.20.9073.026; Mon, 1 Sep 2025
- 11:16:18 +0000
-From: Matt Coster <Matt.Coster@imgtec.com>
-To: Drew Fustini <fustini@kernel.org>
-CC: Michal Wilczynski <m.wilczynski@samsung.com>, Guo Ren <guoren@kernel.org>,
-        Fu Wei <wefu@redhat.com>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bartosz Golaszewski
-	<brgl@bgdev.pl>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Frank Binns
-	<Frank.Binns@imgtec.com>,
-        Maarten Lankhorst
-	<maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
-        Marek
- Szyprowski <m.szyprowski@samsung.com>,
-        Bartosz Golaszewski
-	<bartosz.golaszewski@linaro.org>,
-        "linux-riscv@lists.infradead.org"
-	<linux-riscv@lists.infradead.org>,
-        "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org"
-	<linux-pm@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>
-Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Thread-Topic: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-Thread-Index: AQHcE6V+m0GwzHkHd06R4lk48JBqc7R3FtCAgAGPHQCABZZzgA==
-Date: Mon, 1 Sep 2025 11:16:18 +0000
-Message-ID: <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
- <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
- <aKjWiU4fQw3k77GR@x1> <aK-BwY8c-OR_WqNk@thelio> <aLDQjq9U_mDvMTJo@gen8>
-In-Reply-To: <aLDQjq9U_mDvMTJo@gen8>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: yes
-X-MS-TNEF-Correlator:
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LO0P265MB3404:EE_|LO4P265MB6779:EE_
-x-ms-office365-filtering-correlation-id: 416c6a54-7d01-4ed2-7373-08dde948f91c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|4053099003|38070700018;
-x-microsoft-antispam-message-info:
- =?utf-8?B?K01GL1NLOXNaMDlxSC9MMmt3blUvbnZ6RzlhcFlVdjlzUEV1QlZUa3NhYkFS?=
- =?utf-8?B?VklkU2tTeWNKcE5ObUF6QnhuSVFTWVBxSHl0ZW14U21oTTF1TEtXNTJNaU5x?=
- =?utf-8?B?VnZRd3htTTVBMUNFUTk1d0ROTTZ5L3pnVFZyLzhBOFdvOG90ZWtXbzY5U2VX?=
- =?utf-8?B?ZzQzWlZUVmVlSXFSOFArbTBGTFpRTE1waThhSjBWRkZjaUkxUzczaDcxeFFa?=
- =?utf-8?B?OTFYVkpURmxvK2MxV09Hb2lRYitEN3cwaWljTnNTVFBhVFNhTnoyYjc2WlU2?=
- =?utf-8?B?a3pYaHpibFR4S2VXMkNWR3pUbjVpdVhvOG5Mb1NsblhBQVlGTHdXajhMQU50?=
- =?utf-8?B?SGRZN01iWlczQVF1UXFDTmxmcUZlcUNVVHcyM3ZTdVpTRk9NR0ppN1hGRmVa?=
- =?utf-8?B?S3dVaEwyUGdwbGZZK05sRmRpQ3RJY2w2Nk5EZlFIOFZKdHBGTU8xRUo1Rmgz?=
- =?utf-8?B?QUhVRnlaSDRlOSt1cXV5OW9HKzk4aDJPeW5rZ0pWVnFQZ1VyMnFRYncxY2JY?=
- =?utf-8?B?Z1lxVm5waDJUQlRtK3dEQ0JCaHdtb1BlaTRzd1hjL2dZTTRTZllmZjhidk9a?=
- =?utf-8?B?dkZScjdVUTBUZzlCSHMzYzBKNG9WaFU4bHl3Mks1ZnVROFNYT01pTmgwM2Yz?=
- =?utf-8?B?VGV6SWRKZlE4bUFQMDhpcTRlWk4yMWNqSTB4MDQ4VWNlVk5EZGJyTFFFcUNC?=
- =?utf-8?B?MFY0NWc4QTVzUXRzYnBUWTc0bCtrWEVEbWJneDlMYkpTZTFPVVlYTkJmR3lm?=
- =?utf-8?B?Q0NXcFI0ZDBXRk5rSWhHeTBpclRRRWZ6YS8xV1ZKT0JNQkJrQTAydHMvdVBu?=
- =?utf-8?B?ZE4rQ3EraVp1L1J0NWZ5ak1GbWpDaDRyNUdrTkU4WVBxbHE5OWYwZGpla3V4?=
- =?utf-8?B?WmM3dHpsdTJ6dHZhdmJxOHVDb1pTaElRU1NmenF6aXpsZ3ZhazRJUzFTQ1pW?=
- =?utf-8?B?MGZJT0hkZ1VIejRzN3hzVUxHR3ZxTC9wNFo2d1FTTWMvTDFpRGRJNnF4TGJ0?=
- =?utf-8?B?RnhCNzhOWW94VWwvdEVmdGpRNm9rZHVtTFpuSWdMQVhLY1UxNGMrbVdvbkZQ?=
- =?utf-8?B?eFhxaVNEeUhnQzdNSm1ocUYvSkc4VGZBaHU0bWFtaFdSNEF4MVNtb1Bjd29a?=
- =?utf-8?B?WjJhT2s1Z1NkWWFHSXpMTUJsNmd5NTNzSHl4aGJSUE1aRm1uM1M2MHpuV1lx?=
- =?utf-8?B?TlA0QUtFelhVSGM1Nmk3dkFkSEtETjdKczErZlV1UU1vYndCVm5abTNsVkpq?=
- =?utf-8?B?Znp6Z1oxRXUxaWs2NXRjNm0zTUY1c0twSjROeEFPRU9mTE5ndlZsUnJiZU1o?=
- =?utf-8?B?NXJTVzNLaDF5TU1kekZHR0FoQncza25tcVNOVWhxcTFaa3NZVTErNmdJVUp0?=
- =?utf-8?B?V3RIanJLcE9MMkh0bUYrb1hhNUMzNHJsbzc5aGM4SGh2aDBDYVBlL0V4UVBY?=
- =?utf-8?B?UlNxQ1NvSDFsdGRRTWdJWVdOaWx1OHJXZ1ViRjA1NGF1RmlBd2lGQVpJM3Fm?=
- =?utf-8?B?YkhEdi80b0NBY3UrVDJWa3ZFZmhlK3RqR3hWckhaNzI4Qjh1b0dBYkQ3czZY?=
- =?utf-8?B?RXhkaHpnNUx0WVlMakpid0xhZnF5Y3pPSWZCRXlSU1o1azRpNDRQQWwwYSsx?=
- =?utf-8?B?aFZydElDY0svbmErNlVOd2htYUVFaG5UaDcycjdHMVFvazNycXJuc2dDSk5p?=
- =?utf-8?B?a3ZsM3lSV1Vhc0xRMnFhTnQwNUpYY3RuUGdWNStFZGZlekI1Kzh4bjMvWUZT?=
- =?utf-8?B?SjZiTEVhZ2JDL213eXl5QzVzMitzRTFDMVozZ3BxRFE0Ry9iUWdSdGRBWTVG?=
- =?utf-8?B?dGVJOEVVY2FTcENJUnB2QmNJM0ZkT3hodlFSM0JrNWFXRVh5NEJ1ZHFkaGgx?=
- =?utf-8?B?OVo0bHdWVzlDa0tDTlo0ekpiUTFNSkY4NGxmd1hYdnYxNzF6dmJWVnh5aERV?=
- =?utf-8?B?MEkzam1pcGpIVnB3R1hwalZHSG1SUFgvTmtmRmY0YjQxZG1qNWMvYWdmVmh0?=
- =?utf-8?Q?DPuEjg0yKS96l9sTvApldAX+LQvWHQ=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO0P265MB3404.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(4053099003)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?utf-8?B?VUVxT3V0ZlZzR1NKYzhJOFBUZE1lU2ZEbUN6YlRHdGQzakVDRGN2MXNlU0NB?=
- =?utf-8?B?UFo3VzQ5UnNHL2dHVmNnS1E1dmF2K1pZVkRXdWc4Smk5Rjk5ZlJCdkJxeHhZ?=
- =?utf-8?B?THM5MWxQYXFZNEMvTUFjZEFpQ0s0OFlWN2NIb3ZRUmlXVUQ0aGhORkFlaU82?=
- =?utf-8?B?aGN5T0dMQ3hNK1R3aVVaKzhGNEw5Z3FFVm9PTU1mTEhCY0hPWDBySGJwRU9O?=
- =?utf-8?B?MEd6NzF6a3B2VUQ3bzdpdXlJZVJYNUllbkd2ZWtGK3hvTm11UmgzMFdIYjBy?=
- =?utf-8?B?OW9YTDVsT2poRVdCUVpsQVZxUnVyRU9tZFg1OHMxZmJHeDNQLzd3WUNVYklZ?=
- =?utf-8?B?anpndmRpNm45NmdjOXBmc3NXZzR6eHdPZXhLY1pEb3hBWDBZT1BPYXE5a3A3?=
- =?utf-8?B?eGJ2MktDVEF5MTZIOEdIVFo0c09lTDVLVm9oVTZ1NjlTWlB2QWNYSmVKdk1q?=
- =?utf-8?B?NXNTWFlHb0oyaDl5R2ZBamV0MUdKMGVuMmVUaUErYUduRFhCOGxqa0dTOEhO?=
- =?utf-8?B?eW5RWG1iWEo3eTJkRDBXdnI2YWpHRnhzWEI3WDlJb24yeDJSc3NhZHNRb2F2?=
- =?utf-8?B?bldIbVJPMVQvQjE5NUNoYWphVWpZUWxNQ1kxMlFUeEpFdGhuaFkvV2VZb0da?=
- =?utf-8?B?eXllMjdmOXk1aGpkRTJjTEdWNHMxZVZwTEd6R0VhbVkxVnQwVHA4UXh5aHp0?=
- =?utf-8?B?aTFoOER1YjNyYUdiRk5Kcmk2VkdxL0pBNDFzV1dpYWE4THpLb2hTa2pDWTht?=
- =?utf-8?B?aWtsMlp1WFpDUXpRaldDamJOWFh1c2xHendzTXJuRUZaUzFsSWtGV3ZYNmVk?=
- =?utf-8?B?bFJMT0IxaW51ejdUZGFJWDBYRWllMkFCOUZjRkM1VFd3ZkhqUHkxZloybVdG?=
- =?utf-8?B?cEIxZEhUM3FSeEx6cUJTdU1UMyt0elM4aFk3OVVRNzhhSWR2QWRjOEdLOGgr?=
- =?utf-8?B?SGJFWHU0Wm85VDc4TGljMWxBaUFVanVYaVRKc1JUWjhqTG9QVUR2TllWSzZP?=
- =?utf-8?B?dFhDT216ZDBuNlQ3VG5kUDA1UW1lbXpUMENLazF5RzBWd3ZzRzE3YitnRW5Z?=
- =?utf-8?B?N2VBTnpsUGE5aWZVQUEwUHhuL2VBUGlRRFpiSVVNdG52M2RnVk8wNndyRFU4?=
- =?utf-8?B?eWVqVlQ2bUp2VWpMUEN2ZTFXQXV3RDY1ZjlIRFhzYlozdDZpaFY5Nm4xYUtt?=
- =?utf-8?B?OWxteWo5UnBMWk5rdVhIbkJFK0dEaTVEQ0c3M3BxK1ZjOUt4QTgvdHY3Wnlp?=
- =?utf-8?B?ZnloUGQrV25VeXVzN1MvQ2pYeFdWZzRrNjgrU2RubDY2dEhRTHdjNXN0MXhn?=
- =?utf-8?B?VUp6di9jYm1SOFRxdVRCU2lvZ21GaDZwa1R3UHdvNUtoUVRSZnFlVi9EWWdG?=
- =?utf-8?B?aDJncjdPWGN6U1hYK3F0K2M1Q0o4WTE3YmNRS3VsR3FXb095WU83RjYwdGdD?=
- =?utf-8?B?REhld2ZOWXdKMldhNkVoWmtQcmRjaVZ2YnNWZkZrNWozcHo4Zlp4VEFuZGh0?=
- =?utf-8?B?OXROS1Jqd3hGK3g0UGNCTGlkRTNjNlN3SUcvZzFYNk1uWWZhSVQrczRCZHBV?=
- =?utf-8?B?NXh5eGsyU2NpTkQyd2tyWVR1OWJ3SG5QemF0K0dRb1l0SnoyOXY3V09yRHlo?=
- =?utf-8?B?TkQyZDRkTXpsZUpReXFwSGxENmJnOWZlQzdub1kvWDRIb3dUUzUyTytMZzhp?=
- =?utf-8?B?MWpGcDdsUGw5TllPbkRHTTM4dnpxKyt6UFVIcjQxZXNGa3pRUE8yNHlEZGJp?=
- =?utf-8?B?TFhQYTlJRW5kYWNxWDlWaENGTndJUll0bUw3cUhxOENsb3E3NThud2E5V3Uv?=
- =?utf-8?B?WStxdVlJM0pIUEsweDRRNEtTVzdjRnF4cHdoNUlnMXc3eklFN1N2dDl2cExI?=
- =?utf-8?B?OUhadU1kZlc5NXZYU3R4T1ByN0N4eU55aWNjOW5nOU00dmwxTXJydStnWnEr?=
- =?utf-8?B?d01wb3VCakVyZFdtOFN3aUNSWm9LTGpUV0RZc2wvNDBTT083UzVnNU1YWWZT?=
- =?utf-8?B?UlFYNWRmeHVCM3ZmV1RIdVNmTTBzV2paZG5maWsvcmRVOWtKbDBnSjlya1ha?=
- =?utf-8?B?c091WCtGNlBiZHdrb09mdldjeFhkTURmQUJ6a09oSG9DVVdFcDhTYi8yZitw?=
- =?utf-8?B?T01iTDArVXNqdTAzY05rNXV0M0VCTzFoamdXNnBKR2c1VTdiMEdZVU1aNFR2?=
- =?utf-8?B?NFE9PQ==?=
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature";
-	boundary="------------rHW15qCDbrN0JgGXO6KhR1Ml"
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A99EA3595D;
+	Mon,  1 Sep 2025 11:21:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756725683; cv=none; b=ctbXQ5aTGDjixj3moSodWBUHnCQ7U8y7CXT073MincdMq0K2Yxl1NCINs4ocbIUf8vOoJ8MNRkqzgacKSv2dVTdFAY7D++tcUn2eLK+NBhPXT8A0m0FyFH0YkyCd2z2KJcULLubHAsqC/UVljYvK/xNNzKXtn8Ro72GeOabBt+M=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756725683; c=relaxed/simple;
+	bh=jGdAz412GkPYDNDBzOot9YLlz5jht+cdFHwZ45LUr14=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lsBcoQh0b0bZCtEnykBsf0ogFjZkXKbvqym+J3CoWUAU7/wTjjdlIjmNCE5YJ5d+HE4XQftb55eVsGMqNPIAXPWkhc/1HJI2DTppLmeK9PenPmQnbW0AaxxHMwEb3OXry9nn+q/9UIZNy51lVS4wS+AX0ugmnstWuG0cW63CSyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5D8F01A00;
+	Mon,  1 Sep 2025 04:21:12 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2198E3F6A8;
+	Mon,  1 Sep 2025 04:21:14 -0700 (PDT)
+Date: Mon, 1 Sep 2025 12:21:12 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 10/33] arm_mpam: Add probe/remove for mpam msc driver and
+ kbuild boiler plate
+Message-ID: <aLWBqNMKoTl9VDIS@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-11-james.morse@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: imgtec.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LO0P265MB3404.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: 416c6a54-7d01-4ed2-7373-08dde948f91c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Sep 2025 11:16:18.2585
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dcFpaYedbm0lklhAe0sxd9/bTHVBpvGA4oHf+1MND8MQgrfm3OViTLUeBR0klzQFjlEFLymRPjlJEcMzg29UXQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO4P265MB6779
-X-Proofpoint-ORIG-GUID: OkPAhazwsNd0L6RMv2EwQDcDWJ1R_3v6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAxMDEyMCBTYWx0ZWRfX4z+tI3eoVt01
- tG+1nYYZ2tctIscByu5IGxHhjfI2vVccfmKEb/s1vzOJJVRegb2ula+WhCqeuH32mwMQ3WCH8Mo
- ymVRrHUc99FVMSuaX1LeIwbdNkRUQ2aE79t9xXQvlixoSqPj1Wm9y4nlahCoCsICjGN5VorCQpo
- fYhEDWbTtu97Q0do08HSw5RBFekSBEz/mcjLe67SoPxuzD9ccQquOfmWwG1vR/MWxd/yNHn/LIn
- /b2FUrLoH5Uus9cdgY2dgJi5PfwbaTUkgznofqQiTmTLnQcj1nKBQtH1lU98V1q2ivM4/JXF3A9
- 34qVSiosAF5oChgbA3gLcOEhb6UYjP1etHMqvdmVCud9SjXJd2X+J192cmlI1M=
-X-Authority-Analysis: v=2.4 cv=GtdC+l1C c=1 sm=1 tr=0 ts=68b58087 cx=c_pps
- a=BVlPTUHEdyGWsQesGsPzag==:117 a=z/mQ4Ysz8XfWz/Q5cLBRGdckG28=:19
- a=lCpzRmAYbLLaTzLvsPZ7Mbvzbb8=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
- a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=xqWC_Br6kY4A:10 a=yJojWOMRYYMA:10
- a=NgoYpvdbvlAA:10 a=VwQbUJbxAAAA:8 a=r_1tXGB3AAAA:8 a=KKAkSRfTAAAA:8
- a=8TDWt9qEAAAA:8 a=hD80L64hAAAA:8 a=jfUe7C8prb4qZSu0H7oA:9 a=QEXdDO2ut3YA:10
- a=A9360hjEzD9n6dWme0IA:9 a=FfaGCDsud1wA:10 a=t8nPyN_e6usw4ciXM-Pk:22
- a=cvBusfyB2V15izCimMoJ:22 a=ERxVmvoQgHyZXf33qDKr:22
-X-Proofpoint-GUID: OkPAhazwsNd0L6RMv2EwQDcDWJ1R_3v6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822153048.2287-11-james.morse@arm.com>
 
---------------rHW15qCDbrN0JgGXO6KhR1Ml
-Content-Type: multipart/mixed; boundary="------------AVD6o0YOr3S6wgAVMLkw14vq";
- protected-headers="v1"
-From: Matt Coster <matt.coster@imgtec.com>
-To: Drew Fustini <fustini@kernel.org>
-Cc: Michal Wilczynski <m.wilczynski@samsung.com>, Guo Ren
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Philipp Zabel <p.zabel@pengutronix.de>, Frank Binns
- <frank.binns@imgtec.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Ulf Hansson <ulf.hansson@linaro.org>,
- Marek Szyprowski <m.szyprowski@samsung.com>,
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
- linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
- dri-devel@lists.freedesktop.org
-Message-ID: <a329ff82-ca79-41ac-b61e-e843103f55a6@imgtec.com>
-Subject: Re: [PATCH v13 3/4] riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU
- node
-References: <20250822-apr_14_for_sending-v13-0-af656f7cc6c3@samsung.com>
- <CGME20250821222023eucas1p1805feda41e485de76c2981beb8b9102d@eucas1p1.samsung.com>
- <20250822-apr_14_for_sending-v13-3-af656f7cc6c3@samsung.com>
- <aKjWiU4fQw3k77GR@x1> <aK-BwY8c-OR_WqNk@thelio> <aLDQjq9U_mDvMTJo@gen8>
-In-Reply-To: <aLDQjq9U_mDvMTJo@gen8>
+Hi James,
 
---------------AVD6o0YOr3S6wgAVMLkw14vq
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+On Fri, Aug 22, 2025 at 03:29:51PM +0000, James Morse wrote:
+> Probing MPAM is convoluted. MSCs that are integrated with a CPU may
+> only be accessible from those CPUs, and they may not be online.
+> Touching the hardware early is pointless as MPAM can't be used until
+> the system-wide common values for num_partid and num_pmg have been
+> discovered.
+> 
+> Start with driver probe/remove and mapping the MSC.
+> 
+> CC: Carl Worth <carl@os.amperecomputing.com>
+> Signed-off-by: James Morse <james.morse@arm.com>
+> ---
+> Changes since RFC:
+>  * Check for status=broken DT devices.
+>  * Moved all the files around.
+>  * Made Kconfig symbols depend on EXPERT
+> ---
 
-On 28/08/2025 22:56, Drew Fustini wrote:
-> On Wed, Aug 27, 2025 at 03:08:01PM -0700, Drew Fustini wrote:
->> On Fri, Aug 22, 2025 at 01:43:53PM -0700, Drew Fustini wrote:
->>> On Fri, Aug 22, 2025 at 12:20:17AM +0200, Michal Wilczynski wrote:
->>>> Add a device tree node for the IMG BXM-4-64 GPU present in the T-HEA=
-D
->>>> TH1520 SoC used by the Lichee Pi 4A board. This node enables support=
- for
->>>> the GPU using the drm/imagination driver.
->>>>
->>>> By adding this node, the kernel can recognize and initialize the GPU=
-,
->>>> providing graphics acceleration capabilities on the Lichee Pi 4A and=
+[...]
 
->>>> other boards based on the TH1520 SoC.
->>>>
->>>> Add fixed clock gpu_mem_clk, as the MEM clock on the T-HEAD SoC can'=
-t be
->>>> controlled programatically.
->>>>
->>>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
->>>> Reviewed-by: Drew Fustini <drew@pdp7.com>
->>>> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->>>> Acked-by: Matt Coster <matt.coster@imgtec.com>
->>>> Signed-off-by: Michal Wilczynski <m.wilczynski@samsung.com>
->>>> ---
->>>>  arch/riscv/boot/dts/thead/th1520.dtsi | 21 +++++++++++++++++++++
->>>>  1 file changed, 21 insertions(+)
->>>
->>> I've applied this to thead-dt-for-next [1]:
->>>
->>> 0f78e44fb857 ("riscv: dts: thead: th1520: Add IMG BXM-4-64 GPU node")=
+> diff --git a/drivers/resctrl/Kconfig b/drivers/resctrl/Kconfig
+> new file mode 100644
+> index 000000000000..dff7b87280ab
+> --- /dev/null
+> +++ b/drivers/resctrl/Kconfig
+> @@ -0,0 +1,11 @@
+> +# Confusingly, this is everything but the CPU bits of MPAM. CPU here means
+> +# CPU resources, not containers or cgroups etc.
 
->>>
->>> Thanks,
->>> Drew
->>>
->>> [1] https://git.kernel.org/pub/scm/linux/kernel/git/fustini/linux.git=
-/log/?h=3Dthead-dt-for-next
->>
->> Hi Matt,
->>
->> Do you know when the dt binding patch will be applied to
->> the drm-misc/for-linux-next tree?
->>
->> I applied the dts patch but it is creating a warning in next right now=
-=2E
->> If the binding won't show up soon in drm-misc, then I'll remove this d=
-ts
->> patch from next as dtbs_check is now failing in next. I can add it bac=
-k
->> once the binding makes it to next.
->=20
-> I've now removed this patch from thead-dt-for-next and will add it back=
+Drop confusing comment?
 
-> once the bindings show up in next.
+CPUs are not mentioned other than in the comment -- I think the
+descriptions are sufficiently self-explanatory that they don't read
+onto CPUs.
 
-Hi Drew,
+> +config ARM64_MPAM_DRIVER
+> +	bool "MPAM driver for System IP, e,g. caches and memory controllers"
+> +	depends on ARM64_MPAM && EXPERT
+> +
+> +config ARM64_MPAM_DRIVER_DEBUG
+> +	bool "Enable debug messages from the MPAM driver."
 
-Apologies for the delay, I was on holiday last week.
+Nit: spurious full stop.
 
-I've just applied the non-dts patches to drm-misc-next [1], would you
-mind re-adding the dts patch to thead-dt-for-next?
+(i.e., people don't add one in these one-line descriptions.
+They are title-like and self-delimiting, even when the text is a valid
+sentence.)
 
-Cheers,
-Matt
+> +	depends on ARM64_MPAM_DRIVER
+> +	help
+> +	  Say yes here to enable debug messages from the MPAM driver.
+> diff --git a/drivers/resctrl/Makefile b/drivers/resctrl/Makefile
+> new file mode 100644
+> index 000000000000..92b48fa20108
+> --- /dev/null
+> +++ b/drivers/resctrl/Makefile
+> @@ -0,0 +1,4 @@
+> +obj-$(CONFIG_ARM64_MPAM_DRIVER)			+= mpam.o
+> +mpam-y						+= mpam_devices.o
+> +
+> +cflags-$(CONFIG_ARM64_MPAM_DRIVER_DEBUG)	+= -DDEBUG
+> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+> new file mode 100644
+> index 000000000000..a0d9a699a6e7
+> --- /dev/null
+> +++ b/drivers/resctrl/mpam_devices.c
+> @@ -0,0 +1,336 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +// Copyright (C) 2025 Arm Ltd.
+> +
+> +#define pr_fmt(fmt) "%s:%s: " fmt, KBUILD_MODNAME, __func__
+> +
+> +#include <linux/acpi.h>
+> +#include <linux/arm_mpam.h>
+> +#include <linux/cacheinfo.h>
+> +#include <linux/cpu.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/device.h>
+> +#include <linux/errno.h>
+> +#include <linux/gfp.h>
+> +#include <linux/list.h>
+> +#include <linux/lockdep.h>
+> +#include <linux/mutex.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/printk.h>
+> +#include <linux/slab.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/srcu.h>
+> +#include <linux/types.h>
+> +
+> +#include <acpi/pcc.h>
+> +
+> +#include "mpam_internal.h"
+> +
+> +/*
+> + * mpam_list_lock protects the SRCU lists when writing. Once the
+> + * mpam_enabled key is enabled these lists are read-only,
+> + * unless the error interrupt disables the driver.
+> + */
+> +static DEFINE_MUTEX(mpam_list_lock);
+> +static LIST_HEAD(mpam_all_msc);
+> +
+> +static struct srcu_struct mpam_srcu;
+> +
+> +/* MPAM isn't available until all the MSC have been probed. */
 
-[1]: https://lore.kernel.org/r/175672521205.30950.2944854121832397083.b4-=
-ty@imgtec.com
+Comment doesn't really explain the variable.
 
->=20
-> Thanks,
-> Drew
+Maybe something like "Number of MSCs that need to be probed for MPAM
+to be usable" ?
+
+> +static u32 mpam_num_msc;
+
+Any particular reason this is u32 and not unsigned int?
+
+How are accesses to this protected against data races?
+
+If there are supposed to be locks to protect globals in the MPAM driver,
+is it worth wrapping them in access functions with a lockdep assert?
+Otherwise, it feels rather easy to get this wrong -- I think I've found
+at least one bug (see mpam_msc_drv_probe().)
+
+> +
+> +static void mpam_discovery_complete(void)
+> +{
+> +	pr_err("Discovered all MSC\n");
+> +}
+
+As others have commented, if this is non-functional code that gets
+removed later on, it's probably best to drop this up-front?
 
 
---=20
-Matt Coster
-E: matt.coster@imgtec.com
+[...]
 
---------------AVD6o0YOr3S6wgAVMLkw14vq--
+> +static int mpam_dt_parse_resource(struct mpam_msc *msc, struct device_node *np,
+> +				  u32 ris_idx)
+> +{
+> +	int err = 0;
+> +	u32 level = 0;
+> +	unsigned long cache_id;
+> +	struct device_node *cache;
+> +
+> +	do {
+> +		if (of_device_is_compatible(np, "arm,mpam-cache")) {
+> +			cache = of_parse_phandle(np, "arm,mpam-device", 0);
+> +			if (!cache) {
+> +				pr_err("Failed to read phandle\n");
+> +				break;
+> +			}
+> +		} else if (of_device_is_compatible(np->parent, "cache")) {
+> +			cache = of_node_get(np->parent);
+> +		} else {
+> +			/* For now, only caches are supported */
+> +			cache = NULL;
+> +			break;
+> +		}
+> +
+> +		err = of_property_read_u32(cache, "cache-level", &level);
+> +		if (err) {
+> +			pr_err("Failed to read cache-level\n");
+> +			break;
+> +		}
+> +
+> +		cache_id = cache_of_calculate_id(cache);
+> +		if (cache_id == ~0UL) {
 
---------------rHW15qCDbrN0JgGXO6KhR1Ml
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature.asc"
+The type of cache_id may change if the return type of
+cache_of_calculate_id() changes (see comments on patch 1).
 
------BEGIN PGP SIGNATURE-----
+Possible #define for the exceptional value.
 
-wnsEABYIACMWIQS4qDmoJvwmKhjY+nN5vBnz2d5qsAUCaLWAgQUDAAAAAAAKCRB5vBnz2d5qsD30
-AP0bWTxsE/Z3/zziHqrl5bNC0sZ02ck/iu3wR/sjqsaa+QEAkNkKiVQhDI7hGWQGcBwhESlgG6EJ
-4q0PHkG2igst6Q8=
-=mK/y
------END PGP SIGNATURE-----
+> +			err = -ENOENT;
+> +			break;
 
---------------rHW15qCDbrN0JgGXO6KhR1Ml--
+The lack of a diagnostic here is inconsistent with the level of
+diagnostics in the rest of the loop.
+
+> +		}
+> +
+> +		err = mpam_ris_create(msc, ris_idx, MPAM_CLASS_CACHE, level,
+> +				      cache_id);
+> +	} while (0);
+
+Abuse of do ... while () here?
+
+There is no loop.  The breaks are stealth "goto"s to this statement:
+
+> +	of_node_put(cache);
+
+(It works either way, but maybe gotos to an explicit label would be
+more readable, as well as avoiding an unnecessary level of indentation.)
+
+> +
+> +	return err;
+> +}
+
+[...]
+
+> +/*
+> + * An MSC can control traffic from a set of CPUs, but may only be accessible
+> + * from a (hopefully wider) set of CPUs. The common reason for this is power
+> + * management. If all the CPUs in a cluster are in PSCI:CPU_SUSPEND, the
+> + * the corresponding cache may also be powered off. By making accesses from
+
+Nit: the the
+
+> + * one of those CPUs, we ensure this isn't the case.
+> + */
+> +static int update_msc_accessibility(struct mpam_msc *msc)
+> +{
+> +	struct device_node *parent;
+> +	u32 affinity_id;
+> +	int err;
+> +
+> +	if (!acpi_disabled) {
+> +		err = device_property_read_u32(&msc->pdev->dev, "cpu_affinity",
+> +					       &affinity_id);
+> +		if (err)
+> +			cpumask_copy(&msc->accessibility, cpu_possible_mask);
+> +		else
+> +			acpi_pptt_get_cpus_from_container(affinity_id,
+> +							  &msc->accessibility);
+> +
+> +		return 0;
+> +	}
+> +
+> +	/* This depends on the path to of_node */
+> +	parent = of_get_parent(msc->pdev->dev.of_node);
+> +	if (parent == of_root) {
+> +		cpumask_copy(&msc->accessibility, cpu_possible_mask);
+> +		err = 0;
+> +	} else {
+> +		err = -EINVAL;
+> +		pr_err("Cannot determine accessibility of MSC: %s\n",
+> +		       dev_name(&msc->pdev->dev));
+> +	}
+> +	of_node_put(parent);
+> +
+> +	return err;
+> +}
+> +
+> +static int fw_num_msc;
+
+Does this need to be protected against data races?
+
+If individual mpam_msc_drv_probe() calls may execute on different CPUs
+from mpam_msc_driver_init(), then seem to be potential races here.
+
+> +
+> +static void mpam_pcc_rx_callback(struct mbox_client *cl, void *msg)
+> +{
+> +	/* TODO: wake up tasks blocked on this MSC's PCC channel */
+
+So, is this broken in this commit?
+
+(If the series does not get broken up or applied piecemail, that's not
+such a concern, though.)
+
+> +}
+> +
+> +static void mpam_msc_drv_remove(struct platform_device *pdev)
+> +{
+
+The MPAM driver cannot currently be built as a module.
+
+Is it possible to exercise the driver remove paths, today?
+
+> +	struct mpam_msc *msc = platform_get_drvdata(pdev);
+> +
+> +	if (!msc)
+> +		return;
+> +
+> +	mutex_lock(&mpam_list_lock);
+> +	mpam_num_msc--;
+> +	platform_set_drvdata(pdev, NULL);
+> +	list_del_rcu(&msc->glbl_list);
+> +	synchronize_srcu(&mpam_srcu);
+> +	devm_kfree(&pdev->dev, msc);
+> +	mutex_unlock(&mpam_list_lock);
+> +}
+> +
+> +static int mpam_msc_drv_probe(struct platform_device *pdev)
+> +{
+> +	int err;
+> +	struct mpam_msc *msc;
+> +	struct resource *msc_res;
+> +	void *plat_data = pdev->dev.platform_data;
+> +
+> +	mutex_lock(&mpam_list_lock);
+> +	do {
+> +		msc = devm_kzalloc(&pdev->dev, sizeof(*msc), GFP_KERNEL);
+> +		if (!msc) {
+> +			err = -ENOMEM;
+> +			break;
+> +		}
+> +
+> +		mutex_init(&msc->probe_lock);
+> +		mutex_init(&msc->part_sel_lock);
+> +		mutex_init(&msc->outer_mon_sel_lock);
+> +		raw_spin_lock_init(&msc->inner_mon_sel_lock);
+> +		msc->id = mpam_num_msc++;
+> +		msc->pdev = pdev;
+> +		INIT_LIST_HEAD_RCU(&msc->glbl_list);
+> +		INIT_LIST_HEAD_RCU(&msc->ris);
+> +
+> +		err = update_msc_accessibility(msc);
+> +		if (err)
+> +			break;
+> +		if (cpumask_empty(&msc->accessibility)) {
+> +			pr_err_once("msc:%u is not accessible from any CPU!",
+> +				    msc->id);
+> +			err = -EINVAL;
+> +			break;
+> +		}
+> +
+> +		if (device_property_read_u32(&pdev->dev, "pcc-channel",
+> +					     &msc->pcc_subspace_id))
+> +			msc->iface = MPAM_IFACE_MMIO;
+> +		else
+> +			msc->iface = MPAM_IFACE_PCC;
+> +
+> +		if (msc->iface == MPAM_IFACE_MMIO) {
+> +			void __iomem *io;
+> +
+> +			io = devm_platform_get_and_ioremap_resource(pdev, 0,
+> +								    &msc_res);
+> +			if (IS_ERR(io)) {
+> +				pr_err("Failed to map MSC base address\n");
+> +				err = PTR_ERR(io);
+> +				break;
+> +			}
+> +			msc->mapped_hwpage_sz = msc_res->end - msc_res->start;
+> +			msc->mapped_hwpage = io;
+> +		} else if (msc->iface == MPAM_IFACE_PCC) {
+> +			msc->pcc_cl.dev = &pdev->dev;
+> +			msc->pcc_cl.rx_callback = mpam_pcc_rx_callback;
+> +			msc->pcc_cl.tx_block = false;
+> +			msc->pcc_cl.tx_tout = 1000; /* 1s */
+> +			msc->pcc_cl.knows_txdone = false;
+> +
+> +			msc->pcc_chan = pcc_mbox_request_channel(&msc->pcc_cl,
+> +								 msc->pcc_subspace_id);
+> +			if (IS_ERR(msc->pcc_chan)) {
+> +				pr_err("Failed to request MSC PCC channel\n");
+> +				err = PTR_ERR(msc->pcc_chan);
+> +				break;
+> +			}
+> +		}
+
+Should the lock be held across initialisation of the msc fields?
+
+list_add_rcu() might imply sufficient barriers to ensure that the
+initialisations are visible to other threads that obtain the msc
+pointer by iterating over mpam_all_msc.
+
+It's probably cleaner to hold the lock explicitly, though.
+
+What other ways of obtaining the msc pointer exist?
+
+
+> +
+> +		list_add_rcu(&msc->glbl_list, &mpam_all_msc);
+> +		platform_set_drvdata(pdev, msc);
+> +	} while (0);
+> +	mutex_unlock(&mpam_list_lock);
+> +
+> +	if (!err) {
+> +		/* Create RIS entries described by firmware */
+> +		if (!acpi_disabled)
+> +			err = acpi_mpam_parse_resources(msc, plat_data);
+> +		else
+> +			err = mpam_dt_parse_resources(msc, plat_data);
+> +	}
+> +
+> +	if (!err && fw_num_msc == mpam_num_msc)
+
+Unlocked read of mpam_num_msc?
+
+> +		mpam_discovery_complete();
+> +
+> +	if (err && msc)
+> +		mpam_msc_drv_remove(pdev);
+> +
+> +	return err;
+> +}
+> +
+> +static const struct of_device_id mpam_of_match[] = {
+> +	{ .compatible = "arm,mpam-msc", },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, mpam_of_match);
+> +
+> +static struct platform_driver mpam_msc_driver = {
+> +	.driver = {
+> +		.name = "mpam_msc",
+> +		.of_match_table = of_match_ptr(mpam_of_match),
+> +	},
+> +	.probe = mpam_msc_drv_probe,
+> +	.remove = mpam_msc_drv_remove,
+> +};
+> +
+> +/*
+> + * MSC that are hidden under caches are not created as platform devices
+> + * as there is no cache driver. Caches are also special-cased in
+> + * update_msc_accessibility().
+> + */
+
+Can you elaborate?  I don't understand quite what this is doing.
+
+> +static void mpam_dt_create_foundling_msc(void)
+> +{
+> +	int err;
+> +	struct device_node *cache;
+> +
+> +	for_each_compatible_node(cache, NULL, "cache") {
+> +		err = of_platform_populate(cache, mpam_of_match, NULL, NULL);
+> +		if (err)
+> +			pr_err("Failed to create MSC devices under caches\n");
+> +	}
+> +}
+
+[...]
+
+> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+> new file mode 100644
+> index 000000000000..07e0f240eaca
+> --- /dev/null
+> +++ b/drivers/resctrl/mpam_internal.h
+> @@ -0,0 +1,62 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +// Copyright (C) 2024 Arm Ltd.
+> +
+> +#ifndef MPAM_INTERNAL_H
+> +#define MPAM_INTERNAL_H
+> +
+> +#include <linux/arm_mpam.h>
+> +#include <linux/cpumask.h>
+> +#include <linux/io.h>
+> +#include <linux/mailbox_client.h>
+> +#include <linux/mutex.h>
+> +#include <linux/resctrl.h>
+> +#include <linux/sizes.h>
+> +
+> +struct mpam_msc {
+> +	/* member of mpam_all_msc */
+> +	struct list_head        glbl_list;
+
+It is worth making these names less mismatched?
+
+> +
+> +	int			id;
+> +	struct platform_device *pdev;
+> +
+> +	/* Not modified after mpam_is_enabled() becomes true */
+> +	enum mpam_msc_iface	iface;
+> +	u32			pcc_subspace_id;
+> +	struct mbox_client	pcc_cl;
+> +	struct pcc_mbox_chan	*pcc_chan;
+> +	u32			nrdy_usec;
+> +	cpumask_t		accessibility;
+> +
+> +	/*
+> +	 * probe_lock is only take during discovery. After discovery these
+> +	 * properties become read-only and the lists are protected by SRCU.
+> +	 */
+> +	struct mutex		probe_lock;
+
+Can we have more clarify about the locking strategy, including details
+of which things each lock is supposed to apply to and when, and how (if
+at all) the locks are intended to nest?
+
+(Similarly for the global locks.)
+
+> +	unsigned long		ris_idxs[128 / BITS_PER_LONG];
+> +	u32			ris_max;
+
+nrdy_usec, ris_idxs and ris_max appear unused in this patch (though I
+suppose they get initialised by virtue of kzalloc()).  Is this
+intentional?
+
+> +
+> +	/* mpam_msc_ris of this component */
+> +	struct list_head	ris;
+> +
+> +	/*
+> +	 * part_sel_lock protects access to the MSC hardware registers that are
+> +	 * affected by MPAMCFG_PART_SEL. (including the ID registers that vary
+> +	 * by RIS).
+> +	 * If needed, take msc->lock first.
+> +	 */
+
+What's msc->lock ?
+
+> +	struct mutex		part_sel_lock;
+> +
+> +	/*
+> +	 * mon_sel_lock protects access to the MSC hardware registers that are
+> +	 * affeted by MPAMCFG_MON_SEL.
+> +	 * If needed, take msc->lock first.
+> +	 */
+
+Same here.
+
+> +	struct mutex		outer_mon_sel_lock;
+> +	raw_spinlock_t		inner_mon_sel_lock;
+> +	unsigned long		inner_mon_sel_flags;
+> +
+> +	void __iomem		*mapped_hwpage;
+> +	size_t			mapped_hwpage_sz;
+> +};
+> +
+> +#endif /* MPAM_INTERNAL_H */
+
+[...]
+
+Cheers
+---Dave
 
