@@ -1,117 +1,202 @@
-Return-Path: <devicetree+bounces-211334-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCA0EB3EB8C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:54:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 298D7B3EB98
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:56:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0F8D16B2F2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:52:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 526AE3A1C37
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:54:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 927BA1E9B22;
-	Mon,  1 Sep 2025 15:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F32222D5933;
+	Mon,  1 Sep 2025 15:54:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ON+bbF07"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VDsaAdUj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48EA2AD20
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 15:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE32E2D5924;
+	Mon,  1 Sep 2025 15:54:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756741930; cv=none; b=a4js+6YRgvlwCPjxdjs3WFwzBGP24BCyg8uBpTF619L1nYymMlZ3Rc6fBu7b7fmFZZhUZPzOpt+SdGHIbCMZEtZTEYE1JeV6wUhyMeLRNHRfgXunPdMPhV1XSced8mbFaDNq40KUVLKpes289ZVChU9BiiuImheL2zWgrHRNg08=
+	t=1756742076; cv=none; b=lZ7n0dYDkf53JNbKCrHZKcTWBTt9pUenoeH8PyG7l9JuzZnl+vFA0eYutqPDinOjYuDvTvRGAsPlwGhYYRgM4K4zvJbABLYe5Sb9BH/7odoNUKlpb6Xm4D6GhnY0QateAOYgj1B49JdhmN+zmRAPPmADrAfoaKWNo/AlBp4jk+Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756741930; c=relaxed/simple;
-	bh=nepHmhe2my1/TS0/miMgoTId2J0/ckMsAUxgocThFS0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=K3lsh+OC7xzp5/fJxzcAgcAM2+9wDrGh+xKBqJI8+22wrp4nDWqZdz8dw5NwngH6A8U4miydETL9isryq39YUr9VaU6EkgsN1O8z8I9irizGWgGTRXApxkdY96N0VeFozWdcq6khPLP+DBcs6jYhHfN5LP1aHUDO+24xspN3OPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ON+bbF07; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b86157e18so11531125e9.0
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 08:52:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756741927; x=1757346727; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zvgVg4wMFIPRhYvz1pnYCKruwi4dt6JJzYxl+/aO7gk=;
-        b=ON+bbF07pWk/p6YrAnZNPoBxJszxyGIh2IEYXkEfABbBTdDXcDL/vRyQFQuxkBkIGk
-         viOJNhVaHQPH+mSFCsD7R3Je1X/O/Va18+IEMHxxCIvFxNBYvWkP0/CFRWnlobBS1+VV
-         shV/4Vp/WCcuVxUktMGMd5Pbs55mACESbl76qVycLC5ZRuVXa8fBmVSNWxq/YfUX/OMS
-         AIAJ8Fzob+NvKH+jI+TP8DEvJLpzBvfS7GgsOrnvbqcIrIGk+9OLwHxJjmYfkWAyGmDC
-         83vHHcOiWKYBBcfWx/HfPPJjxZyDyrePqOpTAl65w7bR1Wj/HgK4XxpMEPvpWpt3x48P
-         11Bw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756741927; x=1757346727;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zvgVg4wMFIPRhYvz1pnYCKruwi4dt6JJzYxl+/aO7gk=;
-        b=G+dE9R5jQgnMYwucRc6ZN07YPUze3x5Qb3+HP39Ys3WEgwHhmaT/zjmQDBLaCHogxe
-         ejpnuvOmfJOmJ+pqX7JO/kxn5xS1fsT7cCyvyrsAeiKegH4kVJ0B4Bc9Ck3E2JpnwoLg
-         McepCJJywzcOrNhiZCMwpYXc2NFpdpXijSW7nvB67x/172e9A9NiQL5WSq2/IPc+ZAer
-         hM8q0cGyAT5iOi84aoaCbImoYGYwL2ZT2NeHoxXqrtE2XVbDAHkcc0PxECDbUgpB62Ik
-         +o7v0Y/ZySv2cewn3BhLttsZqSm922sT6UZa/kfKHtAnKV/r7wiHfBqYxJXUe/kOWHOs
-         g+hQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXWFWgJHqecQWhXCIGRJyHzJnXVQjOxT+PipiZcieVbfiVxYHPsB6A5FVMre8nB+knyou22LU5ov54@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuBBSHt2Vv5AwUoCCjsZ8yTdxBNBkSUk9jsyz/YYRLMOoPlT9N
-	hBt5qaYjezY67UzmpzQVa1iFkTABsbvmmqzMWgbWrBgWx+/Zb9dTSuwvIYvW/Sj+HEY=
-X-Gm-Gg: ASbGnctoWyikeJ9yQ3q5ZIm0Decaa8XP+vosChoLssohq23UFTAdV/3xoThfCZbURjT
-	0+r7VnJ0YHUDHgSMIqQXmCEICmo70OxGgW6FEQjh1uq5b+kqpevq3TmB6oXBvndPVZ87fxaOAZ7
-	uIxjKa/SDcE9qbA8jGwRZkzQlvY22WIn1Cww1mfdWTnLrz1LFltXbEE/3d+YDq8Gc41gfIKYqVN
-	FRrDnRiVPcbwzH831vgYo4Rt3Z1P64TP4ZewVgJYP/sdwlefjgThtLigVPCyMucvKD3DzEiQQoi
-	yY1UrzyOtH5yTmJjgekOVK/iCOCtHxnCe1dsWbvnBpCF5PphdjakQdr/8iCJ8rdnbXBU63YKBdc
-	YE5U2UAW/rCv+A2biGPHywjyFCdbj4PF3LgS0TSR70sXDxGl2eoLk/ryNc2kNqguc3xGbp7xk+u
-	WZ+L89gFDpEGoPTvFjwzs=
-X-Google-Smtp-Source: AGHT+IHcKqULDsn+c4qoRR0F28BE0OPsYdJT4mw5UiGUiMMns+V2I9JG1CinXmS84aORcGRwIQn16w==
-X-Received: by 2002:a05:600c:4fd6:b0:458:bd31:2c27 with SMTP id 5b1f17b1804b1-45b85588134mr65644725e9.23.1756741927286;
-        Mon, 01 Sep 2025 08:52:07 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d60cf93cb2sm6373216f8f.12.2025.09.01.08.52.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 01 Sep 2025 08:52:06 -0700 (PDT)
-Message-ID: <33e20d27-eb63-4a9c-b459-77021fb384db@linaro.org>
-Date: Mon, 1 Sep 2025 16:52:05 +0100
+	s=arc-20240116; t=1756742076; c=relaxed/simple;
+	bh=zbaUuwR137ygPnpQ0YzRAfrhZCcuUrJu1SPf+nLYCsI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g07qFA6FIso2Agu+WDoo950XJeGX6GyxHzymnpd2A/+pAKgYFrg2qCMrxW5TMud+vn8AcYNMuf4eVb7fEFWe0FOFk6IOH3L5hJqEFqT/0XPFCdJaiBSTndu22scOR74Z9HYt9dfKH6H2+ZiTXVoJhuO9wV7R+UvcJTJTypSbo1A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VDsaAdUj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B14BC4CEF0;
+	Mon,  1 Sep 2025 15:54:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756742076;
+	bh=zbaUuwR137ygPnpQ0YzRAfrhZCcuUrJu1SPf+nLYCsI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=VDsaAdUjDt21AAz1YuepphxiXMwMEqxbceRWO1eDFCn3hMyTS0P1AIdUaMqjd9LaY
+	 w4UYGZg7mlCI1TfIxr73JZ4GUGJmOZAv8B0LamR11GLZSQZ99JmN3kwYnbn79q668f
+	 +xy2lfiIDihfknyZ0KSJCXvKeOoWoloviYzJkK3zlAg3++z2h4I4LDqCL113xr9ORu
+	 TrNNLs3a5QVAYlsSPLGOs/oLWL7G2++Qr6o0Zf+LSESwfXV92gYCO8t2zWyoVEy8sp
+	 Wt7ejild3mAw1jXg8Pa8V9BNc2/j0KJcP+ldmmtYXzIGj/EMgFnwE4RMTSwqRNxnoX
+	 5N7daNBwPszmw==
+Date: Mon, 1 Sep 2025 21:24:25 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Claudiu Beznea <claudiu.beznea@tuxon.dev>, bhelgaas@google.com, 
+	lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, magnus.damm@gmail.com, catalin.marinas@arm.com, will@kernel.org, 
+	mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, lizhi.hou@amd.com, 
+	linux-pci@vger.kernel.org, linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org, 
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>
+Subject: Re: [PATCH v3 5/9] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+Message-ID: <vdn4lomtgr6htab7uodgm75iphju6yyimhlnfonysxxdpudib7@qm4yettsvsrs>
+References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250704161410.3931884-6-claudiu.beznea.uj@bp.renesas.com>
+ <ddxayjj5wcuuish4kvyluzrujkes5seo7zlusmomyjfjcgzcyj@xe3zzzmy2zaj>
+ <8ef466aa-b470-4dcb-9024-0a9c36eb9a6a@tuxon.dev>
+ <zsgncwvhykw4ja3bbqaxwupppjsqq4pcrdgrsduahokmt72xsm@twekpse6uzzh>
+ <CAMuHMdUu0uXBJndcwWoZp8NNyBJox5dZw4aoB8Ex50vBDDtP7g@mail.gmail.com>
+ <6f2hpdkonomgrfzqoupcex2rpqtlhql4lmsqm7hqk25qakp7ax@bfrzflghmnev>
+ <CAMuHMdUEqKc+qtRXiPzgjhWaer5KLroZ+hCSVLCQ497h3BtOAw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] platform: arm64: thinkpad-t14s-ec: new driver
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Mark Pearson <mpearson-lenovo@squebb.ca>,
- "Derek J. Clark" <derekjohn.clark@gmail.com>,
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
- <20250831-thinkpad-t14s-ec-v1-2-6e06a07afe0f@collabora.com>
- <899b2e79-572d-44f3-8dff-0d301f254b1a@linaro.org>
- <wyv3ounark6jccvhj4vp5qxgmn4bleq6hsqinr4s6r32kld4xp@lhbmetuhydns>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <wyv3ounark6jccvhj4vp5qxgmn4bleq6hsqinr4s6r32kld4xp@lhbmetuhydns>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdUEqKc+qtRXiPzgjhWaer5KLroZ+hCSVLCQ497h3BtOAw@mail.gmail.com>
 
-On 01/09/2025 16:20, Sebastian Reichel wrote:
-> You can find it here:
+On Mon, Sep 01, 2025 at 04:22:16PM GMT, Geert Uytterhoeven wrote:
+> Hi Mani,
 > 
-> drivers/platform/x86/lenovo/thinkpad_acpi.c
+> On Mon, 1 Sept 2025 at 16:04, Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > On Mon, Sep 01, 2025 at 11:25:30AM GMT, Geert Uytterhoeven wrote:
+> > > On Sun, 31 Aug 2025 at 06:07, Manivannan Sadhasivam <mani@kernel.org> wrote:
+> > > > On Sat, Aug 30, 2025 at 02:22:45PM GMT, Claudiu Beznea wrote:
+> > > > > On 30.08.2025 09:59, Manivannan Sadhasivam wrote:
+> > > > > > On Fri, Jul 04, 2025 at 07:14:05PM GMT, Claudiu wrote:
+> > > > > >> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > > > > >>
+> > > > > >> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+> > > > > >> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+> > > > > >> only as a root complex, with a single-lane (x1) configuration. The
+> > > > > >> controller includes Type 1 configuration registers, as well as IP
+> > > > > >> specific registers (called AXI registers) required for various adjustments.
+> > > > > >>
+> > > > > >> Hardware manual can be downloaded from the address in the "Link" section.
+> > > > > >> The following steps should be followed to access the manual:
+> > > > > >> 1/ Click the "User Manual" button
+> > > > > >> 2/ Click "Confirm"; this will start downloading an archive
+> > > > > >> 3/ Open the downloaded archive
+> > > > > >> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
+> > > > > >> 5/ Open the file r01uh1014ej*-rzg3s.pdf
+> > > > > >>
+> > > > > >> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
+> > > > > >> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> > > > > >> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+> > >
+> > > > > >> +  ret = pm_runtime_resume_and_get(dev);
+> > > > > >> +  if (ret)
+> > > > > >> +          return ret;
+> > > > > >> +
+> > > > > >
+> > > > > > Do you really need to do resume_and_get()? If not, you should do:
+> > > > >
+> > > > > It it's needed to enable the clock PM domain the device is part of.
+> > > > >
+> > > >
+> > > > I've replied below.
+> > > >
+> > > > > >
+> > > > > >     pm_runtime_set_active()
+> > > > > >     pm_runtime_no_callbacks()
+> > > > > >     devm_pm_runtime_enable()
+> > >
+> > > > > >> +static int rzg3s_pcie_suspend_noirq(struct device *dev)
+> > > > > >> +{
+> > > > > >> +  struct rzg3s_pcie_host *host = dev_get_drvdata(dev);
+> > > > > >> +  const struct rzg3s_pcie_soc_data *data = host->data;
+> > > > > >> +  struct regmap *sysc = host->sysc;
+> > > > > >> +  int ret;
+> > > > > >> +
+> > > > > >> +  ret = pm_runtime_put_sync(dev);
+> > > > > >> +  if (ret)
+> > > > > >> +          return ret;
+> > > > > >
+> > > > > > Since there are no runtime callbacks present, managing runtime PM in the driver
+> > > > > > makes no sense.
+> > > > >
+> > > > > The PCIe device is part of a clock power domain. Dropping
+> > > > > pm_runtime_enable()/pm_runtime_put_sync() in this driver will lead to this
+> > > > > IP failing to work as its clocks will not be enabled/disabled. If you don't
+> > > > > like the pm_runtime_* approach that could be replaced with:
+> > > > >
+> > > > > devm_clk_get_enabled() in probe and clk_disable()/clk_enable() on
+> > > > > suspend/resume. W/o clocks the IP can't work.
+> > > >
+> > > > Yes, you should explicitly handle clocks in the driver. Runtime PM makes sense
+> > > > if you have a power domain attached to the IP, which you also do as I see now.
+> > > > So to conclude, you should enable/disable the clocks explicitly for managing
+> > > > clocks and use runtime PM APIs for managing the power domain associated with
+> > > > clock controller.
+> > >
+> > > Why? For the past decade, we've been trying to get rid of explicit
+> > > module clock handling for all devices that are always part of a
+> > > clock domain.
+> > >
+> > > The Linux PM Domain abstraction is meant for both power and clock
+> > > domains.  This is especially useful when a device is present on multiple
+> > > SoCs, on some also part of a power domain,  and the number of module
+> > > clocks that needs to be enabled for it to function is not the same on
+> > > all SoCs.  In such cases, the PM Domain abstraction takes care of many
+> > > of the integration-specific differences.
+> >
+> > Hmm, my understanding was that we need to explicitly handle clocks from the
+> > consumer drivers. But that maybe because, the client drivers I've dealt with
+> > requires configuring the clocks (like setting the rate, re-parenting etc...) on
+> > their own. But if there is no such requirement, then I guess it is OK to rely on
+> > the PM core and clock controller drivers.
+> 
+> When you need to know the actual clock rate, or change it, you
+> indeed have to handle the clock explicitly.  But it still may be enabled
+> automatically through the clock domain.
+> 
 
-That'd do ;)
+Yeah!
 
----
-bod
+> > > > But please add a comment above pm_runtime_resume_and_get() to make it clear as
+> > > > most of the controller drivers are calling it for no reason.
+> > >
+> > > Note that any child device that uses Runtime PM depends on all
+> > > its parents in the hierarchy to call pm_runtime_enable() and
+> > > pm_runtime_resume_and_get().
+> >
+> > Two things to note from your statement:
+> >
+> > 1. 'child device that uses runtime PM' - Not all child drivers are doing
+> > runtime PM on their own. So there is no need to do pm_runtime_resume_and_get()
+> > unless they depend on the parent for resource enablement as below.
+> 
+> It indeed depends on the child device, and on the bus.  For e.g. an
+> Ethernet controller connected to a simple SoC expansion bus, the bus must
+> be powered and clock, which is what "simple-pm-bus" takes care of
+> ("simple-bus" does not).
+> 
+
+Right. But most of the PCI controller drivers call pm_runtime_resume_and_get()
+for no good reasons. They might have just copied the code from a driver that did
+it on purpose. So I tend to scrutinize these calls whenever they get added for a
+driver.
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
