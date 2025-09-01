@@ -1,141 +1,122 @@
-Return-Path: <devicetree+bounces-211293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E75D9B3E4B3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:23:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 813A0B3E4BC
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:24:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0018C16B405
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:23:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54FF4174706
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 13:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A4432773FB;
-	Mon,  1 Sep 2025 13:23:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D1FC275B16;
+	Mon,  1 Sep 2025 13:24:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="JF18vQ3W"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T2o0kfkE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A683C142E83
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 13:23:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCADA2749E9;
+	Mon,  1 Sep 2025 13:24:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756732997; cv=none; b=MYTXdKjCxWvDRxFf4RS4DHHgX097q2bVdJttFNy4yi1ZmNQqrfxUlbxT5SpMhBs544LszgsyqSn8ES+xgOnDcbBDa575HALfWhx5u233wHg+lJH7vk5X0qeteh6IYynAWqsx0iV66XIP/zbYKnD9eqj+RISzcs0c5NCbbG98XrQ=
+	t=1756733074; cv=none; b=eZ0mwSlznr9lu64GxsHM/k3zc3sHhCRSSoOb9YO7kuBrwZGX2p6jIVlNr+r0roVAQf9s1I01LQLc5lSE7jfMlSB+wZTuEaOlZuw5AAyf9ahzmb63Qr7wXvNzwftZRBK+nTycZtIgYiferKWWGjFZecJmm4P9g4qAU3Oxww0Qsx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756732997; c=relaxed/simple;
-	bh=pPRviCeIe/MNw3hM3xOHiKjB0T4T7gISDfSenvPnK6A=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=DOVzbTO7yMVnrQmm/psz46hG3MBvE5eYeJ7hDexvBd8v74LZGxWXoiJF+XclYVnRWKNFoH2u93mr6Eu+HHu0m3xfF1u3aCeO/iYVJcSL1dc7o7HgMFnib7MVQOHoRR3H1HDDlFum+xvfhqRapg4Pe3tKGoMwE/e4QCARQS38ktQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=JF18vQ3W; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1756732994;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Cxq7T2V7lpPnrYC2+PR+qicjY5gpUXVxT7pGCrLEVTk=;
-	b=JF18vQ3W7uOpL1tFH3uwHV5tDJv5BJwtWfdhbi3rFOhlzW9tMnSKqXEASGKtWSUcmrAH8Q
-	PR1jit980vz7WhYx4JnYM6SPelllEwLwinW3KlOXPWAvcDkWV08pRIaFGaenkGGW1sigte
-	gJqb1WyofHaBV1nPdnvg9gA7G+Ln40w=
-Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
- [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-651-GT9xJsunOmWPb1vQlKqKAA-1; Mon, 01 Sep 2025 09:23:11 -0400
-X-MC-Unique: GT9xJsunOmWPb1vQlKqKAA-1
-X-Mimecast-MFC-AGG-ID: GT9xJsunOmWPb1vQlKqKAA_1756732990
-Received: by mail-wm1-f72.google.com with SMTP id 5b1f17b1804b1-45b8a307c12so6325335e9.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 06:23:11 -0700 (PDT)
+	s=arc-20240116; t=1756733074; c=relaxed/simple;
+	bh=6cfI3DwLE9E9SAfgkTqlf+6mrBEBP+O6XCNBkhssvfU=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=jKEfmqHQXlA0ZcN6l4G0+5JP6gaNpG52gMUfHcBO1uGY97HoPJjV3tdXDtnV9x+ajGGjMXsRtYfr7aVYvoCkCsbPvboZPYgZWV2eEqSfxjEITpY7+zH5xmtyPTFZf59plI3CyOPkAhllhP6sf/bOOjR0um1l88lgPU6cQFljVk4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T2o0kfkE; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45b8b1a104cso11167275e9.2;
+        Mon, 01 Sep 2025 06:24:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756733070; x=1757337870; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=3MIDNnIwbSHuzGfQVuyM2agKWSWdZtsoAJRl1Qc3beg=;
+        b=T2o0kfkElRopjXlXrfoG689BaizO1MyYB+1kVq/urHwi+Nz0j/p/7w7fnN2TvX+gcW
+         Z4qJsGivgxUdM4lEts54RZs3X3uatbgdO3oUxoEoAFgBX1l+IusHNB8G7qf7DxrcBVi8
+         BBtZk/AFUASv8m1OT2ZfIuRBaTWUhxhFsi73kzKSnPCEXRWCll68FZRpaz6NFdXptFZa
+         GGOWt637cYPvqaKQZYcFPPNK6IgWhZTDukVRiMap5rChPIgtBL8H00AeEkhp2Jh9R4WP
+         73kAohz4+L7D5L7NoWeTaQlpjg0TyfqkK+E/qu7oXcaFVnBeNfhKrqA7v+Duvgb+1VOZ
+         tmCg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756732990; x=1757337790;
-        h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Cxq7T2V7lpPnrYC2+PR+qicjY5gpUXVxT7pGCrLEVTk=;
-        b=o1EwtcZmIYHDJNmFLwrvMR2mPd5wpDrfXumdF8+gZo3bWFi5T69i7PTb6HeRmdClEN
-         rq0XHmbRAzl0HnLBGWXjUrvz504JhozCB170y/LjxdoTl/63beATxV3SlirdyyCGfMk7
-         YqKpWNtcIZ7y+RsBgCMG5Cwm1sERqGHaGaYP8eshWgPLl6duW81HreW43315ZXnIjaS8
-         JSbIYTDxjt03Y+zuMHPCrJPAt3slg8bYlAMrWcOJ6T8Akgypd+D6UZplyruLZOZJ7M23
-         zo9NMmRhgMhwTebbPjHU3cKNWSSaAdegRjX9Nm+adMg4E61ihDdSA9F4xsyic+gTi6AQ
-         5MYQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXh1jUdEv6V7uef8G4YJSaohePPTJRwuFhwQVtmoUrxsAS266+i+AQ7RDVXlgAOankOWo8Qo2S/uaRH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPTBdEGoIpQX3CZ7QtiEQLSzhbeFZwO67lDq+S/FNzjrUUGLTP
-	sXYPdGuSkLNQvXHanK8iDQi1beCqZi+9uWrPmqidkSTWEKxuGnzr1oU4eRAjW+goaEhkyt6RQTW
-	HgBqpp5gSDME5ioLn++p/WtUYjvK2Rv9+2NNMg4+B7qBl0iEiPSdii7OQ9gz58Zg=
-X-Gm-Gg: ASbGncsruboScd3QGx6ntuDuarPwqt/QyZZU/bQ9xVvBZ8ZhdHqGbHL+e4wfYKehNaz
-	HWrkwOSnLFf9Q9lh1l8pvQSdrFV+SPdRp3wMRbcnJXLORRbDW5P7a6JjYT9qT1yUNuYXkIwn89t
-	vBPTxJA4N5Ig7W7NVBq686+DIgXkCBJPyOgGRdd5ocGcZJabfvrl2v5iEU/wwZJ7Y0rIAv7ZRjX
-	gYHRg96rgkqnT5vTyQOp2udi2vcwDiEJXLsr3MXTsFZqGjAzFYDzMvtwgPLkCxhZDhT5/Bmz6YI
-	tFia+cwx3a1Hl/UuOi/pCtfE2/Wt8DFIbTwIk2FmEL8sHAreQXIHE4foABHEvL+Vsw==
-X-Received: by 2002:a05:600c:8b42:b0:45b:7e86:7378 with SMTP id 5b1f17b1804b1-45b8558be6emr57927745e9.34.1756732990187;
-        Mon, 01 Sep 2025 06:23:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFn+xR292CYaY9FGMba3rZUFGRMyeIqFOQQHajodDM19zB/eMHw015CBudwcpdCSUn47hWdZg==
-X-Received: by 2002:a05:600c:8b42:b0:45b:7e86:7378 with SMTP id 5b1f17b1804b1-45b8558be6emr57927525e9.34.1756732989773;
-        Mon, 01 Sep 2025 06:23:09 -0700 (PDT)
-Received: from localhost ([89.128.88.54])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b74950639sm209197995e9.17.2025.09.01.06.23.08
+        d=1e100.net; s=20230601; t=1756733070; x=1757337870;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3MIDNnIwbSHuzGfQVuyM2agKWSWdZtsoAJRl1Qc3beg=;
+        b=dCd0E7wU8SKgw3VrUt9hyUA3GeqQ4wPZMDXwL8Wy0z3Z920moNtNNqcO9R18HLTk/0
+         f0XGTtr81cK/i+cJRDmOgVdZqa0hJrtVcAH2CvRwaYFF1Vw1siGZjegsbvQb/NkmZmhk
+         GXQshWeSl8ZhGNa3zT1IOwcf6MD0eiWrwkVxy4mueLJl1gBMJs0e6NMbzA+958n2h87U
+         rMfHgwDXVBWg0r0+kxOzN61OJBU5cc0J6SL1q1zuoVqz9Gue1AtKA81hvpzHALpuuKBs
+         zyhQt49C/e1K6Pfoeo1k0lWY+iolWqGQ/jcrth0pfWmLTF6xjcPsJpv/HZNN6weApFpW
+         OYMA==
+X-Forwarded-Encrypted: i=1; AJvYcCVmLxzfBJ9pJXOQzePLkqHf3xPwX+temkzW3A0da2IzcZD0zq9oYCh8L7oDuOv5KIEHRhK/80pPsHET3Miq@vger.kernel.org, AJvYcCXQecCCmRHul+MuqyedDgAdWfbhoMlfiFssK5ofwka4PXao/FjznIVnd51AzjdzH2MEAshPArdN+SNC@vger.kernel.org
+X-Gm-Message-State: AOJu0YyPQZwVZkTxC5mMyhCS7ZUmwvL8IY1uyAXNP6+oN50321bdbov6
+	T7EQt43fbP6UcMelN79V0quI4O1OyXJbi7oAXcAvV+sj0TmgiOpEejEWRC+kxg==
+X-Gm-Gg: ASbGncttb82ZpTfLgXyL+a/SDoSztx/7nnUlcodoYDvPtye7X83+JLp4q2Wlw5nsxaJ
+	tJTABHfkchgVx6RGpSwZnVTAXNNC3b9jBaD+vSnXI0O6klU6XlSNcL7nni8za+U4981I/+mFG/j
+	P7046rSvkQryyXTlBc62twZTDZ222+5qVEu23IlGB+S+JYaq0sXsNlHfD//rFQT8xi3JUJGEeA6
+	eFOgAlrwuAS9aCEU2eANZ035k64zxiX8qu0dNK5L9hyruxSIGx60KrrAO5kQcceUpFWHSxqBOZJ
+	XQOHz+N1I0oavyLmwE3SiLNU+vPd8ywnzzoXRzgNvnLXJxvCPgeYIMUxn078p7xHgeSHzP0Sz9n
+	T/4zdtNDi2C6UI9a/vSQD57obtbbo3hXJnsmYtyE++omU
+X-Google-Smtp-Source: AGHT+IGEbizOeslpGdzsgB8Vl8U5tpt8scwfYKa2tgc8UWG4ljvw3Aex7d2kx3CT8e1CwTEmLfUkrQ==
+X-Received: by 2002:a05:600c:1553:b0:45b:7608:3ca1 with SMTP id 5b1f17b1804b1-45b8c90299fmr30802995e9.23.1756733069861;
+        Mon, 01 Sep 2025 06:24:29 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b8f2d3c88sm24359635e9.19.2025.09.01.06.24.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 01 Sep 2025 06:23:09 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Marcus Folkesson
- <marcus.folkesson@gmail.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] drm/format-helper: introduce
- drm_fb_xrgb8888_to_gray2()
-In-Reply-To: <2b0eee63-2b7d-4ca5-b673-4f3761d2e386@suse.de>
-References: <20250721-st7571-format-v2-0-159f4134098c@gmail.com>
- <20250721-st7571-format-v2-5-159f4134098c@gmail.com>
- <87y0sh947w.fsf@minerva.mail-host-address-is-not-set>
- <aJnc36ojqSb3-Ti2@gmail.com>
- <2b0eee63-2b7d-4ca5-b673-4f3761d2e386@suse.de>
-Date: Mon, 01 Sep 2025 15:23:07 +0200
-Message-ID: <87v7m2fgsk.fsf@minerva.mail-host-address-is-not-set>
+        Mon, 01 Sep 2025 06:24:29 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	joel@jms.id.au,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH RESEND v2 0/2] NPCM845 reset and clock device tree updates
+Date: Mon,  1 Sep 2025 16:24:24 +0300
+Message-Id: <20250901132426.3081648-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+This series updates the NPCM845 device tree for the integrated reset and
+clock controller using the auxiliary device framework.
+Patch 1 combines the reset and clock nodes into nuvoton,npcm845-reset.
+Patch 2 adds a 25 MHz refclk and updates peripherals to use it.
 
-Hello Thomas,
+Tested on NPCM845 evaluation board.
 
-> Hi
->
-> Am 11.08.25 um 14:06 schrieb Marcus Folkesson:
->> On Mon, Jul 21, 2025 at 01:24:19PM +0200, Javier Martinez Canillas wrote:
->>> Marcus Folkesson <marcus.folkesson@gmail.com> writes:
->>>
->>>> Convert XRGB8888 to 2bit grayscale.
->>>>
->>>> It uses drm_fb_xrgb8888_to_gray8() to convert the pixels to gray8 as an
->>>> intermediate step before converting to gray2.
->>>>
->>>> Signed-off-by: Marcus Folkesson <marcus.folkesson@gmail.com>
->>>> ---
->>> I would like Thomas to review it too, but for me the change looks good.
->> A friendly ping to Thomas.
->
-> Apologies for the late review.
->
-> Acked-by: Thomas Zimmermann <tzimmermann@suse.de>
->
+Changes since version 1:
+	- Tested in version 6.17.rc1.
 
-No worries and thanks a lot for your review.
+Tomer Maimon (2):
+  arm64: dts: nuvoton: combine NPCM845 reset and clk nodes
+  arm64: dts: nuvoton: add refclk and update peripheral clocks for
+    NPCM845
+
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 20 ++++++++-----------
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  |  6 ++++++
+ 2 files changed, 14 insertions(+), 12 deletions(-)
 
 -- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
+2.34.1
 
 
