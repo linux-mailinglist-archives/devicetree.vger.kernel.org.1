@@ -1,135 +1,121 @@
-Return-Path: <devicetree+bounces-211325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6E8CB3EAE2
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:37:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2D9B3EAF7
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 17:39:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CABCF1883E24
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:31:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 183F3188155B
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 15:32:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D89E341ACB;
-	Mon,  1 Sep 2025 15:20:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GXFrVX3g"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCC9F35A2AE;
+	Mon,  1 Sep 2025 15:21:39 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30C48334372;
-	Mon,  1 Sep 2025 15:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A110735A2AB;
+	Mon,  1 Sep 2025 15:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756740049; cv=none; b=gB9e5r9QFibND6V1YzaPjllndm/o5hHQ5Tc7TPQvnGBGKuQ47U+tLGBguV8pE8UZ/nWdWLoI/YNpODPKYyT2tfdZkatTrNfuBWUzQQygai8pIf3+bogsfse6flXpPtIRHgxGbquvUe8DWMgECttG84mXehXQc0XsxsRrQU82jXg=
+	t=1756740099; cv=none; b=YuYh7GCZlMQiZH15TeZtapBWNmVU6u/odEUhP98FbNvq9Bn9bXez/zX4T4yGp6x9jKZPJCJzFDEUa1SYJUyaPOpK3rIfjkPOx5wlwzRKZA1wV8Spp8mjQJGrAquyNq19XODRty8SVvJFAzcjV4rFaeAymw+tWnn9+enouw7cXOM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756740049; c=relaxed/simple;
-	bh=fYYU8NMNLyVlLnO0IlrsfJJzJO/BBopDiQds5sD+5IE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=d286CR2tFb81j0b+iu4buvV22V8MXkw5ueBe4NseVqWjLkjaj8Yzaf6S+2S37aSAgEBZB1foaFs3s+E88VmSA/AZ1FoJdSiG0UpCSIsVrL1DZozVFf7jAoH+3xzqkxxUlN8RSSLd6I4dgMNW4c72MXY0nYWvqVvQZSC1xrhPiJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GXFrVX3g; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87825C4CEF0;
-	Mon,  1 Sep 2025 15:20:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756740047;
-	bh=fYYU8NMNLyVlLnO0IlrsfJJzJO/BBopDiQds5sD+5IE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GXFrVX3gf/tcrem+lyBbwfdS6AHuCHPQF2/lq5E7UmoBLTnaPBMOwiLE5YhZPSyEq
-	 uswqR/b+n/8ZhYJ8bkJ6beLW/OMGHNouJc4fIWvPPJkRo3/CqZgdqgqYvJ03FZWxsM
-	 ceFhBIzOPJs8pR5VM4/eXOP772I+SNl8+B3F36xbiRjaVNV9/nNrQKRE7spJ6nMMCw
-	 nr0UJmyC2WonGC/h8bIngoF88Vlv1IU3XoEmFCYKIi1FmTs7/qD+H52yYZqABxiHri
-	 Zd+AbMrsQYN74WRR/haDxIMbZVs/Mwzy3ucow5Cxjv1pUS7gqW1zSAgtCtVwQOXmwk
-	 ZiAihGO1gGPVA==
-Received: by venus (Postfix, from userid 1000)
-	id 545A41801BA; Mon, 01 Sep 2025 17:20:45 +0200 (CEST)
-Date: Mon, 1 Sep 2025 17:20:45 +0200
-From: Sebastian Reichel <sre@kernel.org>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Hans de Goede <hansg@kernel.org>, Ilpo =?utf-8?B?SsOkcnZpbmVu?= <ilpo.jarvinen@linux.intel.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
-	Mark Pearson <mpearson-lenovo@squebb.ca>, "Derek J. Clark" <derekjohn.clark@gmail.com>, 
-	Henrique de Moraes Holschuh <hmh@hmh.eng.br>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	platform-driver-x86@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH 2/3] platform: arm64: thinkpad-t14s-ec: new driver
-Message-ID: <wyv3ounark6jccvhj4vp5qxgmn4bleq6hsqinr4s6r32kld4xp@lhbmetuhydns>
-References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
- <20250831-thinkpad-t14s-ec-v1-2-6e06a07afe0f@collabora.com>
- <899b2e79-572d-44f3-8dff-0d301f254b1a@linaro.org>
+	s=arc-20240116; t=1756740099; c=relaxed/simple;
+	bh=1zFDSt4FU/dgpJY/24qF59h/idw2S/LOG6SW1eTsmqI=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=AJgIRW8ICcra+6GrlA/RDKXvFQB3NXcEtunddtVY3DnebD8O67eIG+1nqzShQByZXdl2FeywF9RVB6FU5WVerbhOqCvMzoALT8gDlZKEz6aZX75BOsj4m2z9h3DanQBz4fdVm5ftm0lPQyIuPkKGfiA04j02tvo9jv9g1UZ84Z0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A75E8C4CEF0;
+	Mon,  1 Sep 2025 15:21:38 +0000 (UTC)
+Message-ID: <5c616645-cbfe-4c7d-b4bd-72497a90f497@kernel.og>
+Date: Mon, 1 Sep 2025 10:21:37 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <899b2e79-572d-44f3-8dff-0d301f254b1a@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RESEND v2 4/4] firmware: stratix10-svc: Add for SDM
+ mailbox doorbell interrupt
+From: Dinh Nguyen <dinguyen@kernel.og>
+To: mahesh.rao@altera.com, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Dinh Nguyen <dinguyen@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Matthew Gerlach <matthew.gerlach@altera.com>
+References: <20250812-sip_svc_irq-v2-0-53098e11705a@altera.com>
+ <20250812-sip_svc_irq-v2-4-53098e11705a@altera.com>
+ <f2411365-9443-43cf-8420-3afd2c5bf6e2@kernel.og>
+Content-Language: en-US
+In-Reply-To: <f2411365-9443-43cf-8420-3afd2c5bf6e2@kernel.og>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hello Bryan,
 
-On Mon, Sep 01, 2025 at 09:43:11AM +0100, Bryan O'Donoghue wrote:
-> On 31/08/2025 22:28, Sebastian Reichel wrote:
-> > Introduce EC driver for the ThinkPad T14s Gen6 Snapdragon, which
-> > is in theory compatible with ThinkPad ACPI. On Linux the system
-> > is booted with device tree, which is not supported by the ThinkPad
-> > ACPI driver. Also most of the hardware compatibility is handled
-> > via ACPI tables, which are obviously not used when booting via
-> > device tree. Thus adding DT compatibility to the existing driver
-> > is not worth it (almost no code sharing).
+
+On 9/1/25 10:16, Dinh Nguyen wrote:
 > 
-> What is the name of that driver, you should name it in your commit
-> log. Lenovo WMI ?
-
-The existing driver is known as "ThinkPad ACPI" and thus already
-referenced in the commit message. You can find it here:
-
-drivers/platform/x86/lenovo/thinkpad_acpi.c
-
-Feel free to suggest a specific wording that I can take over, which
-would have helped you to figure that out :)
-
-> [...]
-> > +	ret = __i2c_transfer(client->adapter, &request, 1);
-> > +	if (ret < 0)
-> > +		goto out;
 > 
-> I realise this is your coding style but suggest newline after these gotos.
-
-I will look into using that style in v2 throughout the file.
-
-> [...]
-> > +static int thinkpad_t14s_led_blink_set(struct led_classdev *led_cdev,
-> > +				       unsigned long *delay_on,
-> > +				       unsigned long *delay_off)
-> > +{
-> > +	struct thinkpad_t14s_ec_led_classdev *led = container_of(led_cdev,
-> > +			struct thinkpad_t14s_ec_led_classdev, led_classdev);
-> > +
-> > +	/* Can we choose the flash rate? */
-> > +	if (*delay_on == 0 && *delay_off == 0) {
-> > +		/* yes. set them to the hardware blink rate (1 Hz) */
-> > +		*delay_on = 500; /* ms */
-> > +		*delay_off = 500; /* ms */
-> > +	} else if ((*delay_on != 500) || (*delay_off != 500))
-> > +		return -EINVAL;
+> On 8/12/25 07:59, Mahesh Rao via B4 Relay wrote:
+>> From: Mahesh Rao <mahesh.rao@altera.com>
+>>
+>> Add support for SDM (Secure Device Manager) mailbox
+>> doorbell interrupt for async transactions. On interrupt,
+>> a workqueue is triggered which polls the ATF for
+>> pending responses and retrieves the bitmap of all
+>> retrieved and unprocessed transaction ids of mailbox
+>> responses from SDM. It then triggers the corresponding
+>> registered callbacks.
 > 
-> Those 500s should probably be defines
-
-Ack.
-
-> Aside from those few nits, great to see someone take this on, glorious in
-> fact.
+> You should configure your editor to use a full 80-char width. Why stop
+> at ~50? When you're unsure, look at that other commit logs from other
+> developers. If yours doesn't look similar, its probably a problem. For
+> example:
 > 
-> I don't have this particular hardware myself so I can't test but:
+> "Add support for SDM (Secure Device Manager) mailbox doorbell interrupt
+> for async transactions. On interrupt, a workqueue is triggered which
+> polls the ATF for pending responses and retrieves the bitmap of all
+> retrieved and unprocessed transaction ids of mailbox responses from SDM.
+> It then triggers the corresponding registered callbacks."
 > 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>>
+>> Signed-off-by: Mahesh Rao <mahesh.rao@altera.com>
+>> Reviewed-by: Matthew Gerlach <matthew.gerlach@altera.com>
+>> ---
 
-Thanks for the review.
+<snip>
 
-Greetings,
+>> @@ -1784,13 +1874,14 @@ static int stratix10_svc_async_init(struct 
+>> stratix10_svc_controller *controller)
+>>    *                            service controller
+>>    * @ctrl: Pointer to the stratix10_svc_controller structure
+>>    *
+>> - * This function performs the necessary cleanup for the asynchronous
+>> - * service controller. It checks if the controller is valid and if it
+>> - * has been initialized. It then locks the transaction list and safely
+>> - * removes and deallocates each handler in the list. The function also
+>> - * removes any asynchronous clients associated with the controller's
+>> - * channels and destroys the asynchronous ID pool. Finally, it resets
+>> - * the asynchronous ID pool and invoke function pointers to NULL.
+>> + * This function performs the necessary cleanup for the asynchronous 
+>> service
+>> + * controller. It checks if the controller is valid and if it has been
+>> + * initialized. Also If the controller has an IRQ assigned, it frees 
+>> the IRQ
+>> + * and flushes any pending asynchronous work. It then locks the 
+>> transaction
+>> + * list and safely removes and deallocates each handler in the list.
+>> + * The function also removes any asynchronous clients associated with 
+>> the
+>> + * controller's channels and destroys the asynchronous ID pool. 
+>> Finally, it
+>> + * resets the asynchronous ID pool and invoke function pointers to NULL.
+> 
+> Did you mean to repeat the same paragraph twice?
+> 
 
--- Sebastian
+Ignore this comment...
 
