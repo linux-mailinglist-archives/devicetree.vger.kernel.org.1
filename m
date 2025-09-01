@@ -1,259 +1,171 @@
-Return-Path: <devicetree+bounces-211316-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F6AB3E732
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:31:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E63A9B3E7F2
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 16:54:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06AA1188E4E0
-	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EAB84475FA
+	for <lists+devicetree@lfdr.de>; Mon,  1 Sep 2025 14:54:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD4C1341664;
-	Mon,  1 Sep 2025 14:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD06F341ACB;
+	Mon,  1 Sep 2025 14:53:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="lEZ+kvdO"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QTDqVkHu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B5F834165E
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 14:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCC712F1FFE;
+	Mon,  1 Sep 2025 14:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756737000; cv=none; b=S0btAo+EDv4Dy9K7/EwPPeXa9K7boVADPFqyBINF/fNYrVgBZW3+wGHVxGN4Hc8jDQol9YZldj49Ezethk1w3m2d7mQfemxhkaBAZtx12SfOnvJfjqt92P60X462XhuoWrYwv6IZ0Aay8uC89Elfpjxy8GL625AwtFsqy/f8h3k=
+	t=1756738387; cv=none; b=ThSrH2I0khLkAZwXu5Swu7uX4ruHIdSGYqhgMTPlYMjqkGZQVEOGCCaTdOXwC3tApB3GE4qbA9RVi+6a7deo+W2LFgoTH2363pXYOcMvlNguQKF4yzbazhJrsn6fqYJ6bPMiqnpKcOykwGCMJVKwddP/amZupjaC3BfRPnrKCHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756737000; c=relaxed/simple;
-	bh=8k/cTAP1uGo7YkU154SU3zLypsg/dO9vH8JEnPRukQw=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=PO8S0159hkfLhl2MmCSyu6xy48HLYqLnUe+IcVMKIGvBVcfzvNGSX90KMso8dyxuTv9vREcMerAZJjCfaSn5AAxw+dt3EGxK3eG2DUDuQj/Py6nAyJ4cj/hnHkX1ChtRchzyrxUzEUyGoS//tvcL6SHRz6Rg/kO3ApRxBJD8V/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=lEZ+kvdO; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250901142951epoutp0405c9689d01fb81e2dad887e9b6484339~hLvxknpyZ2979229792epoutp04f
-	for <devicetree@vger.kernel.org>; Mon,  1 Sep 2025 14:29:51 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250901142951epoutp0405c9689d01fb81e2dad887e9b6484339~hLvxknpyZ2979229792epoutp04f
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756736991;
-	bh=2IVilufhTk8OxJwrv6/zlVYsrGN5/kHDHMnuC7CDzWc=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=lEZ+kvdOgAgJi4Jw3RYYcX1BYw64Dh00cK7YI8yvONrG/6TnTVqR9fyPzn6WX5k7Q
-	 7TcB+flqvRXLj0KvWO+tm2WAqvxbOU7bD804SwRZoHV+ffVW1VFhp44wu5ouBy6OQ4
-	 +1LIIQ74X+ltEcB3moz9SMmZRmnic2NC1PNK8Xnk=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250901142950epcas5p13ea9f7cdf7c686e688e71ae08aa36acc~hLvwyJHrt2550625506epcas5p1T;
-	Mon,  1 Sep 2025 14:29:50 +0000 (GMT)
-Received: from epcas5p1.samsung.com (unknown [182.195.38.87]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4cFrqd2hpgz6B9m5; Mon,  1 Sep
-	2025 14:29:49 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250901142948epcas5p3b6580da89ca826378481451bdafce798~hLvvQIxzi3166431664epcas5p3P;
-	Mon,  1 Sep 2025 14:29:48 +0000 (GMT)
-Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250901142947epsmtip2a81a5af8319bbbf7d82d50d5339d3232~hLvtvrwLf0150201502epsmtip23;
-	Mon,  1 Sep 2025 14:29:46 +0000 (GMT)
-From: "Alim Akhtar" <alim.akhtar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzysztof.kozlowski@linaro.org>, "'Wim Van
- Sebroeck'" <wim@linux-watchdog.org>, "'Guenter Roeck'" <linux@roeck-us.net>,
-	"'Rob Herring'" <robh@kernel.org>, "'Krzysztof Kozlowski'"
-	<krzk+dt@kernel.org>, "'Conor Dooley'" <conor+dt@kernel.org>
-Cc: "'Krzysztof Kozlowski'" <krzk@kernel.org>,
-	<linux-watchdog@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>
-In-Reply-To: <20250830-watchdog-s3c-cleanup-v1-4-837ae94a21b5@linaro.org>
-Subject: RE: [PATCH 4/4] dt-bindings: watchdog: samsung-wdt: Split if:then:
- and constrain more
-Date: Mon, 1 Sep 2025 19:59:45 +0530
-Message-ID: <31f501dc1b4c$dedf8fd0$9c9eaf70$@samsung.com>
+	s=arc-20240116; t=1756738387; c=relaxed/simple;
+	bh=GN1H6Rljr8Ht7JhqGRwNKCZVozANl7ITPcDEg2A2qhQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=LmPdXhEn2lSlgL4UUqhGEJSAKYjHK58pAbT2t0Ro+QjgvvneGnGSZcvhVU82pDcCVzdZxsS55zl/HeJwk3uWZ1MzUvOoKFdptCZg4HFEa7ShhQzDGd6c+DtLqi01qeYvFIAQHwXY7f7e2cs20qSmFY+xt2xc9inf62iNtl9W++M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QTDqVkHu; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 581En5Ht2389135;
+	Mon, 1 Sep 2025 09:49:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756738145;
+	bh=BM2bi8XRe0Tu2TIMsONhhCSzDVLZSgA3tXyyfFdHX3Y=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=QTDqVkHuLE5jwYg6dSJ09edO1hNNNA9dWYcbctfJzbJU+MrSLbcIUsBB+c5t3DxY+
+	 m0M6dPQuOBLcSSxTOM0vqMpQpEpWjyfqWGQd8vf/mULIDWLCyhtHAyA7KXOCsgZdKw
+	 X/cSnefthPRuFHZx/h3Aj7sH4M6mA7L70XgG0ZA8=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 581En5ik2171508
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 1 Sep 2025 09:49:05 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 1
+ Sep 2025 09:49:04 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 1 Sep 2025 09:49:04 -0500
+Received: from [10.249.130.61] ([10.249.130.61])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 581EmpLK2668338;
+	Mon, 1 Sep 2025 09:48:52 -0500
+Message-ID: <1b892cde-bcdc-4a4e-83b7-35cc13eef8f4@ti.com>
+Date: Mon, 1 Sep 2025 20:18:50 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQMq6vyl63rBWSdRs1NKiWzUsYqwtwJkufMiArpZRa2xt8VwUA==
-Content-Language: en-us
-X-CMS-MailID: 20250901142948epcas5p3b6580da89ca826378481451bdafce798
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250830101916epcas5p13a007b24285862d6ed0db1e2d8b738d6
-References: <20250830-watchdog-s3c-cleanup-v1-0-837ae94a21b5@linaro.org>
-	<CGME20250830101916epcas5p13a007b24285862d6ed0db1e2d8b738d6@epcas5p1.samsung.com>
-	<20250830-watchdog-s3c-cleanup-v1-4-837ae94a21b5@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v14 2/5] net: ti: icssm-prueth: Adds ICSSM
+ Ethernet driver
+To: Parvathi Pudi <parvathi@couthit.com>, <danishanwar@ti.com>,
+        <rogerq@kernel.org>, <andrew+netdev@lunn.ch>, <davem@davemloft.net>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <ssantosh@kernel.org>, <richardcochran@gmail.com>, <m-malladi@ti.com>,
+        <s.hauer@pengutronix.de>, <afd@ti.com>, <jacob.e.keller@intel.com>,
+        <horms@kernel.org>, <johan@kernel.org>, <m-karicheri2@ti.com>,
+        <s-anna@ti.com>, <glaroque@baylibre.com>, <saikrishnag@marvell.com>,
+        <kory.maincent@bootlin.com>, <diogo.ivo@siemens.com>,
+        <javier.carrasco.cruz@gmail.com>, <basharath@couthit.com>
+CC: <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <vadim.fedorenko@linux.dev>, <alok.a.tiwari@oracle.com>,
+        <bastien.curutchet@bootlin.com>, <pratheesh@ti.com>, <prajith@ti.com>,
+        <vigneshr@ti.com>, <praneeth@ti.com>, <srk@ti.com>, <rogerq@ti.com>,
+        <krishna@couthit.com>, <pmohan@couthit.com>, <mohan@couthit.com>
+References: <20250822132758.2771308-1-parvathi@couthit.com>
+ <20250822132758.2771308-3-parvathi@couthit.com>
+Content-Language: en-US
+From: "Anwar, Md Danish" <a0501179@ti.com>
+In-Reply-To: <20250822132758.2771308-3-parvathi@couthit.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Parvathi,
 
+On 8/22/2025 6:55 PM, Parvathi Pudi wrote:
+> From: Roger Quadros <rogerq@ti.com>
+> 
+> Updates Kernel configuration to enable PRUETH driver and its dependencies
+> along with makefile changes to add the new PRUETH driver.
+> 
+> Changes includes init and deinit of ICSSM PRU Ethernet driver including
+> net dev registration and firmware loading for DUAL-MAC mode running on
+> PRU-ICSS2 instance.
+> 
+> Changes also includes link handling, PRU booting, default firmware loading
+> and PRU stopping using existing remoteproc driver APIs.
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
+> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> Sent: Saturday, August 30, 2025 3:49 PM
-> To: Wim Van Sebroeck <wim=40linux-watchdog.org>; Guenter Roeck
-> <linux=40roeck-us.net>; Rob Herring <robh=40kernel.org>; Krzysztof Kozlow=
-ski
-> <krzk+dt=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>; Alim Akhtar
-> <alim.akhtar=40samsung.com>
-> Cc: Krzysztof Kozlowski <krzk=40kernel.org>; linux-
-> watchdog=40vger.kernel.org; devicetree=40vger.kernel.org; linux-
-> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-
-> samsung-soc=40vger.kernel.org; Krzysztof Kozlowski
-> <krzysztof.kozlowski=40linaro.org>
-> Subject: =5BPATCH 4/4=5D dt-bindings: watchdog: samsung-wdt: Split if:the=
-n: and
-> constrain more
->=20
-> Binding defined two if:then: blocks covering different conditions but not=
- fully
-> constraining the properties per each variant:
-> 1. =22if:=22 to require samsung,syscon-phandle, 2. =22if:=22 with =22else=
-:=22 to narrow
-> number of clocks and require or disallow
->    samsung,cluster-index.
->=20
-> This still did not cover following cases:
-> 1. Disallow samsung,syscon-phandle when not applicable, 2. Narrow
-> samsung,cluster-index to =5B0, 1=5D, for SoCs with only two
->    clusters.
->=20
-> Solving this in current format would lead to spaghetti code, so re-write =
-entire
-> =22if:then:=22 approach into mutually exclusive cases so each SoC appears=
- only in
-> one =22if:=22 block.  This allows to forbid samsung,syscon-phandle for S3=
-C6410,
-> and narrow samsung,cluster-index to =5B0, 1=5D.
->=20
-This looks much cleaner.=20
-On a side note, may be you can add an example of latest SoC binding=20
-for the documentation purpose as current example in this file is pretty old=
- and simple one.=20
-(I know one can always look into dtsi/dts for the example, but updating her=
-e won't harm)
+[ ... ]
 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski=40linaro.org>
-> ---
-In anycase,
-
-Reviewed-by: Alim Akhtar <alim.akhtar=40samsung.com>
-
->  .../devicetree/bindings/watchdog/samsung-wdt.yaml  =7C 70
-> ++++++++++++++++------
->  1 file changed, 52 insertions(+), 18 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/watchdog/samsung-
-> wdt.yaml b/Documentation/devicetree/bindings/watchdog/samsung-
-> wdt.yaml
-> index
-> 51e597ba7db2615da41f5d3b6dc4e70f6bb72bb6..41aee1655b0c22a6dce212a6
-> 3fa4849089253f09 100644
-> --- a/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-> +++ b/Documentation/devicetree/bindings/watchdog/samsung-wdt.yaml
-> =40=40 -74,24 +74,7 =40=40 allOf:
->            contains:
->              enum:
->                - google,gs101-wdt
-> -              - samsung,exynos5250-wdt
-> -              - samsung,exynos5420-wdt
-> -              - samsung,exynos7-wdt
->                - samsung,exynos850-wdt
-> -              - samsung,exynos990-wdt
-> -              - samsung,exynosautov9-wdt
-> -              - samsung,exynosautov920-wdt
-> -    then:
-> -      required:
-> -        - samsung,syscon-phandle
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - google,gs101-wdt
-> -              - samsung,exynos850-wdt
-> -              - samsung,exynos990-wdt
->                - samsung,exynosautov9-wdt
->                - samsung,exynosautov920-wdt
->      then:
-> =40=40 -104,9 +87,41 =40=40 allOf:
->            items:
->              - const: watchdog
->              - const: watchdog_src
-> +        samsung,cluster-index:
-> +          enum: =5B0, 1=5D
->        required:
->          - samsung,cluster-index
-> -    else:
-> +        - samsung,syscon-phandle
+> +	/* get mac address from DT and set private and netdev addr */
+> +	ret = of_get_ethdev_address(eth_node, ndev);
+> +	if (!is_valid_ether_addr(ndev->dev_addr)) {
+> +		eth_hw_addr_random(ndev);
+> +		dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
+> +			 port, ndev->dev_addr);
+> +	}
+> +	ether_addr_copy(emac->mac_addr, ndev->dev_addr);
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,exynos990-wdt
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: Bus clock, used for register interface
-> +            - description: Source clock (driving watchdog counter)
-> +        clock-names:
-> +          items:
-> +            - const: watchdog
-> +            - const: watchdog_src
-> +      required:
-> +        - samsung,cluster-index
-> +        - samsung,syscon-phandle
+> +	/* connect PHY */
+> +	emac->phydev = of_phy_get_and_connect(ndev, eth_node,
+> +					      icssm_emac_adjust_link);
+> +	if (!emac->phydev) {
+> +		dev_dbg(prueth->dev, "PHY connection failed\n");
+> +		ret = -EPROBE_DEFER;
+> +		goto free;
+> +	}
 > +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,exynos5250-wdt
-> +              - samsung,exynos5420-wdt
-> +              - samsung,exynos7-wdt
-> +    then:
->        properties:
->          clocks:
->            items:
-> =40=40 -115,6 +130,25 =40=40 allOf:
->            items:
->              - const: watchdog
->          samsung,cluster-index: false
-> +      required:
-> +        - samsung,syscon-phandle
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - samsung,s3c6410-wdt
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: Bus clock, which is also a source clock
-> +        clock-names:
-> +          items:
-> +            - const: watchdog
-> +        samsung,cluster-index: false
-> +        samsung,syscon-phandle: false
->=20
->  unevaluatedProperties: false
->=20
->=20
-> --
-> 2.48.1
 
+Why are you returning EPROBE_DEFER here? If phy connection fails, you
+should just return and fail the probe. That's what ICSSG driver does.
+
+In drivers/net/ethernet/ti/icssg/icssg_prueth.c
+
+ 404   │     ndev->phydev = of_phy_connect(emac->ndev, emac->phy_node,
+ 405   │                       &emac_adjust_link, 0,
+ 406   │                       emac->phy_if);
+ 407   │     if (!ndev->phydev) {
+ 408   │         dev_err(prueth->dev, "couldn't connect to phy %s\n",
+ 409   │             emac->phy_node->full_name);
+ 410   │         return -ENODEV;
+ 411   │     }
+
+
+Before phy connect you do `dev_warn(prueth->dev, "port %d: using random
+MAC addr: %pM\n"`
+
+If device is using random mac address, this will be printed, your phy
+connect fails, you try probe again, print comes again, phy fails again
+and so on ...
+
+This results in system getting spammed with continuos prints of "using
+random MAC addr"
+
+I suggest if phy fails, let the probe fail don't do EPROBE_DEFER.
+
+Saw this issue on few boards which has issue with ICSSG phy.
+
+> +	/* remove unsupported modes */
+> +	phy_remove_link_mode(emac->phydev, ETHTOOL_LINK_MODE_10baseT_Full_BIT);
+-- 
+Thanks and Regards,
+Md Danish Anwar
 
 
