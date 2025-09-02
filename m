@@ -1,87 +1,80 @@
-Return-Path: <devicetree+bounces-211560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F62B3F836
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:23:18 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAB50B3F83E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:24:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C344D174E5C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:23:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 721977A52E0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:22:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771A52E612D;
-	Tue,  2 Sep 2025 08:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA2D2E6CDD;
+	Tue,  2 Sep 2025 08:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfcUforq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="quANh/F8"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC9617555;
-	Tue,  2 Sep 2025 08:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E4B2E612D;
+	Tue,  2 Sep 2025 08:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756801394; cv=none; b=fgCQi8CJC1R/FHrv7D83YRrkayyXylMhshjnDvIiV40yZKbhEnBkwZ0TXdOQLhTviCQe3zHR2SDacuhTbUUcRwHq0F1Q1ph9Hav6CIItTw2mDDp45EYASDKbVTchkfs1XEpzyIn3ZDj35HQe91RLZhTB0mN6/PWjrYkD/dohxnE=
+	t=1756801439; cv=none; b=jj44UrVS8QJeFs1LrWpsO0T6GhwO6JEhORoFYHU9x7dmmvRwqpiCp98o80mJnptlkp3/mtItIbgIjs/Yrd9f/ZbPnqUdbdC1H1qENIaGS7o61CwyYfhYOvjBxUjTOZ5lJULCxB5NJ9m2tzoO+gMdkVkX+9etq8pfRpPC3P9/Y4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756801394; c=relaxed/simple;
-	bh=D7Jr1RfmWxHJmGMuNJwXaBj/4RwRt61Lsyk0u4oikIQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=qMFkfWv92P553ptVYWpmsPX+0ZRpPFgSJbEV462Rs8OFb06I9FtClcnlre2r9zejngu5V+PljBFaf8W3EG6+cf9Wl3dzg3Z3ylH/j7SMa/zgJXAoqTZEFYyq+WjzGsEqJAad3H3dNK1Wy1d0vqNkt8SgBk6qU0QpCqlvWED/d20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfcUforq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE11C4CEED;
-	Tue,  2 Sep 2025 08:23:11 +0000 (UTC)
+	s=arc-20240116; t=1756801439; c=relaxed/simple;
+	bh=1ATwK9QeTQPiTLRp7e1b8aQrtqeEFUfLhDTxDp84PSc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BEf0teLpfjEerTW+BzantJPIZh8N2dHsu5Ud82FHedJ3IsaIjTuoWBrOgcaWVhg5Q2OkthvaBSN/hdsqfKIx1TpjqBElQoKrbL2oYq7XUwdn5DfOxRvRysubmlcUi/BSIhKg2eVvdofcDG2ujoi3hZ2/+/6DRdabQ5YfJrPTYUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=quANh/F8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76D06C4CEED;
+	Tue,  2 Sep 2025 08:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756801393;
-	bh=D7Jr1RfmWxHJmGMuNJwXaBj/4RwRt61Lsyk0u4oikIQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=EfcUforqFb0XtVu5hkdRIErH3maPCUeqfp75GNm55indpRWaxQKK9sSxxQ9YaI1zR
-	 +xcg2WF9VN4BNM/54fFh+Q8s8n2+9LN/tCLyo3Dz40fM4fZOZ84aefheFD/0MKKuXg
-	 RCeEcAeq2LDhWCb1XjZH1Jsl6cbx84W07I5Mor5OcRd4yXgszd/hRnRj7r7lphgIAH
-	 FkUuPnV8iYJWfDCTgTSmLi1OqMxu8OHFrP7FeQaI4JjgwSmKjMWy3uhhGco3R7BB7d
-	 FA1GtbWuSnHNeps8YSWp73Flnho6ks1GMcXPDCFQm9DNRDlzhlSurABC2WplAhqyau
-	 grprVA1WjTusA==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
- Andrew Jeffery <andrew@codeconstruct.com.au>, 
- Chia-Wei Wang <chiawei_wang@aspeedtech.com>, 
- "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250807132909.3291770-1-robh@kernel.org>
-References: <20250807132909.3291770-1-robh@kernel.org>
-Subject: Re: (subset) [PATCH] dt-bindings: mfd: aspeed-lpc: Add missing
- "clocks" property on lpc-snoop node
-Message-Id: <175680139153.2190944.6070606106067900940.b4-ty@kernel.org>
-Date: Tue, 02 Sep 2025 09:23:11 +0100
+	s=k20201202; t=1756801438;
+	bh=1ATwK9QeTQPiTLRp7e1b8aQrtqeEFUfLhDTxDp84PSc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=quANh/F8Q8ySKbjfQo9wpn+67nUYriaEUG9upUzUsFxoPSaI8gHBbtavupzn7TaTG
+	 YjGCsrm1yPeRAC9kERMQLFeY0OrCtCumwf+nHwcOT+yejC7zNJoR28fgn+kfMinRe7
+	 xF8pdUfgpKrM+avje5qS68of1z2MiTfQQlOGqRcEyrU7r/LTyrgPl8kPcH6MEQWKDr
+	 ROUxTqpGSu6kL2wKwdJnyI7IWERufXJ45R1t1Yv4cRKepliy5ptM2TAJ/NC9HuDD4G
+	 fKb33mlqJyhB2lQVkVI8191p1BFI7na5ibMYr79NeXBAaYG+G2IKU7UHU3Syhz2ZGp
+	 YzPZWSBmob8cg==
+Date: Tue, 2 Sep 2025 10:23:56 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH 0/8] Support dynamic EMC frequency scaling on
+ Tegra186/Tegra194
+Message-ID: <20250902-glittering-toucan-of-feminism-95fd9f@kuoka>
+References: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c81fc
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com>
 
-On Thu, 07 Aug 2025 08:29:08 -0500, Rob Herring (Arm) wrote:
-> The ASpeed lpc-snoop nodes have a "clocks" property which isn't
-> documented. It looks like all the LPC child devices have the same clock
-> source. Perhaps it is the parent device that should have the clock, but
-> it's too late for that. The driver for lpc-snoop requires a clock to be
-> present.
+On Sun, Aug 31, 2025 at 10:33:48PM -0500, Aaron Kling wrote:
+> This series borrows the concept used on Tegra234 to scale EMC based on
+> CPU frequency and applies it to Tegra186 and Tegra194. Except that the
+> bpmp on those archs does not support bandwidth manager, so the scaling
+> iteself is handled similar to how Tegra124 currently works.
 > 
-> 
-> [...]
 
-Applied, thanks!
+Three different subsystems and no single explanation of dependencies and
+how this can be merged.
 
-[1/1] dt-bindings: mfd: aspeed-lpc: Add missing "clocks" property on lpc-snoop node
-      commit: 737b9ec4514ea0423eb049a3c27d8a22d61d03b5
 
---
-Lee Jones [李琼斯]
+Best regards,
+Krzysztof
 
 
