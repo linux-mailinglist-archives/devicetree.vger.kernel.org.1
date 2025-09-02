@@ -1,209 +1,195 @@
-Return-Path: <devicetree+bounces-211708-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211709-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B96B4026B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:17:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 100B7B40276
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:17:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4ACC73B2897
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:13:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E174C1781A6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:15:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A6582D5C91;
-	Tue,  2 Sep 2025 13:13:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63F692F8BDC;
+	Tue,  2 Sep 2025 13:15:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kqAiSJDw"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Lm1X+raz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5B502DC341
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 13:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA6673002D7;
+	Tue,  2 Sep 2025 13:15:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756818837; cv=none; b=izbXRv3aYwg+iT4Map1Ij81yav5ng4if9JMXXy0zwWomNpH1xEDWx6Yl5UQI2PspezVbrWycLyCHmS8YjynYlPpSMCdtNK7iIOlhNAWbrGehtG83WOIH6eQRw3BMvJRWAHna5h9kPFxEopKvU3rjauyrE8a7ZYF3D1VZHDtF9sU=
+	t=1756818944; cv=none; b=AzoUwfrP2WUnEKTaakutNTdeSA2iqj9Ynk8ZPIe5XFLMvjJL3sjs6CeisilApvdtEpbuTz+smVtlu65SRlO07958LK6i6tmq1m1u5laOYWg4mwXO8YBJAUwohU8S6T5gwnh2IQ3LVUgT1/JrP9sc2VzPTPIYev8HYdwCEmbq02E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756818837; c=relaxed/simple;
-	bh=NEqt1IGUvbJ/KdkgQh5Nd50b7JMGbhzzzDTUt+XhdZs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ULDQde9im5OxbBko+L1uU9y1UHW9EG46dmy67ve3zbCxqW5U+DJHcKLgG09fk1U1lTAbT2XEevd+7NOlr+p8ITkoBbNjv31Q1qkO3N/wnjFVneP0SxhaoPwrCd1TJHgexEHiPdd/L8h8O6wJi7SBImTbWq564Y7uuWh5L3fLVGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kqAiSJDw; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582BD5UU031109
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 13:13:55 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	jpFrherE2XmJVprlyXeBMsk55/r6EzRcDfzRbz2ysrI=; b=kqAiSJDwvp/y6hbO
-	gnWehDFQie2NW4ILklkB500ZvrfwIGFUtJ3Xtxns7TloSYnT2xYYcfLlUqUoXvLb
-	5ZLo9whsvBpg2a9Ic0b8krcGEtDAw+Oa/McCJVE5CSTlDr3qzQBiq0suR7yfuPHD
-	o/bPxzYa/tBhoc78DRlcA/GKWFQCYmVL52tpi2JBSze2gB+X/G5/xVSqnAVj3eJg
-	t9zNXqVO6QYwFibx54f9spb2oPaiF/FGsht9xwVbq1V5CKo3uBzzrwgOj4bnEl7B
-	ccNI9JAZstC8xZ4hwu4SUALoRZq3nmCYKgxPRBzD9h12ydgHPy97QGxOENl5qrpY
-	LqrvjQ==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ush2yrtj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 13:13:54 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-544c4d72ee2so790452e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 06:13:54 -0700 (PDT)
+	s=arc-20240116; t=1756818944; c=relaxed/simple;
+	bh=ztgLBSMDBFH/NfDqoN8XI5dCzKqff6wHVIL7v1u+0jI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=q4dt5AQhbk13E5uyKIikFyh33GDkiOlMEtk2ww7IEia+fpmfHp/vxQ88QJcei4y4A/KWBa7S8Rj7YvUU9FwvtMe5mWb8FlOUIOGcCXRJafb2LXgA2aOu8XVOqi9KE8y3bHS1cd4X+CeMEfJA+p5cuoUvghWCsdXdfIXvV4fpWzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Lm1X+raz; arc=none smtp.client-ip=209.85.214.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-24457f581aeso49438425ad.0;
+        Tue, 02 Sep 2025 06:15:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756818941; x=1757423741; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=dNZsl58PvCfPstuNsgLSDaFhV+BtUsYO95KUUiejAeQ=;
+        b=Lm1X+razSn/gnLhkakKeMVPpdn0iIbvhuuLpRj9tjfNXSSbD8mvw7rfWJ/Q0323+5y
+         rkopSpjy+wBiuz5V8NUymfVyAbTx/SNphYchhQT27rws7EMWUVcPKsx7qf+5M62mgW63
+         25QRphUcJGPa1Wdv2bL4U8PQVWlC6k+SBq1xpvZ7+Yk0Nsi/JBpwcxhBFH8OY71NRNNv
+         gVeS8WwrbTRPJEM0gt36J8ASGt2jfzh5+SugrFuENDetzZqYAFmxJC1ai/erUrqaX0qV
+         kr5p+RmjZG8nxxHpXGLu5hW0VJ0iTZErtGYLQ0gHHSJi31j0GANzAF+Rb6enZTD1xJxl
+         Rl8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756818833; x=1757423633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jpFrherE2XmJVprlyXeBMsk55/r6EzRcDfzRbz2ysrI=;
-        b=TSwaz4y+51ZdPHP0bIN57J/kn8aMl4hPE9mS/zuSkdU6LxMwiP5keiC2Vn5LiEpMBi
-         64BSyg8q1unvwVzW5spwyozLP22ICMt4a5gH1WZO7pl56fxXH1Xy/1smqjPMB3TIMQde
-         6iqhsJJUmH+p8ryUjUS4G/JPxlgz1962bLlol8HVtHnPLsqV/6cMCHIr+hJY3ayu6ZCI
-         F/sRw7O3TE8Mr7R1y1jLHv/Mu/b4umXz1C2vH9FS5hEpSrvi94gChUawJ4Qme8zVWSTo
-         8tQPazf+yqLzdTMufocmV/xZCW+1tv9zLV3mBFpvGcLdWSr4dsc2WlXvdGizEVhyRvut
-         qmjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWXbr76uoOZ8RN1yLWSBRnK7b4nyd4YmRqxe75VLXWQ36EnnuSmD+n90kCYCwrRjBKQBn96N5U4CVsV@vger.kernel.org
-X-Gm-Message-State: AOJu0YzuE9g82OHn00cuBI74UR/YnbsqzzioYaTA2uKdRd4i92Qo2hkI
-	/OTmaakASDbDTyVjPxVxBieukJ+3AnA4OVp222l+KDxrD4lb1lopDMANJzgKdgjf3lSDXlA1wSW
-	KxyKu9lUQ8R/hUAGEkRH60DjXD9uyKdqHxlFHhpgxqduSo/Y0nUEC654QMm23EGma
-X-Gm-Gg: ASbGncun4DhBX5o94qz69GSKoNSNRe8zE0ba2MbvxGNDgaJB/ByConYz55U1Xa8rxNk
-	/lxxiVsiLEyNXniB0edh1i0p2SRbYv95GsL1a/LiN2S6qjSnZR5sTRVl3biw7uU7I0kOnPOKduM
-	dpdrKk8o6TB1Z5fAy/0B/68ADczrcbo2JJDoxZY88PHsBY34u/j1g/LgoIG/uGKheKfMNkDZwYo
-	OgqbRHlXnlSW42EVv1HC2cKuoSL7imQj0KLotSuVDPuRoZwveGARNHDep5IJrhJB8lmBDfZWohK
-	ZD47uw7Dcz17UOPnd1LobgdDdTmjCtqRwnabqSSZuIYVIfXYvMYqEy0LZknIEzWo8UU=
-X-Received: by 2002:a05:6122:ca0:b0:542:9c0b:c5be with SMTP id 71dfb90a1353d-544a0196adamr3255253e0c.7.1756818833425;
-        Tue, 02 Sep 2025 06:13:53 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IESujcJ1JHETmQv6wfVpXW7wRsuOg0a2I6B4VmJrIPDtHrdqiMJA95vllCOMRuuCKPS/ZBorA==
-X-Received: by 2002:a05:6122:ca0:b0:542:9c0b:c5be with SMTP id 71dfb90a1353d-544a0196adamr3255230e0c.7.1756818832930;
-        Tue, 02 Sep 2025 06:13:52 -0700 (PDT)
-Received: from [192.168.68.118] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3d701622b92sm8368449f8f.58.2025.09.02.06.13.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 06:13:51 -0700 (PDT)
-Message-ID: <3c41bc8e-796b-4efe-97cd-03b737f09689@oss.qualcomm.com>
-Date: Tue, 2 Sep 2025 14:13:50 +0100
+        d=1e100.net; s=20230601; t=1756818941; x=1757423741;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=dNZsl58PvCfPstuNsgLSDaFhV+BtUsYO95KUUiejAeQ=;
+        b=h8maSRbYuvYTzZkIbHBnGf2WDF8fYDIhatu0n7KeVi4dX4mOzQ5quf5N5w5GQ1nQZ/
+         g9125EMdloQBjAXucQmT9iip1SZnntWHpQMjcGvhVufPPL3i2+GWhkBGUNEJNQgHfWaX
+         0jURLy101cVbBBBGv9PAec9thOuW7/oadh/SJI+YDpA8Rdqbw8tRldvknOd3jG1b3neh
+         vwo17p82pFnnAikpOED6iUaYxW5GebNEIJkfZPXqMCUkWs9QRT/aMqd2n8D+5QPlbxru
+         Kt0gz7gj2JTRvBfwHttMgAYRvTimqETBIwW4Zy9kO803CNHdPj9Rp4lL6bsghtd/pBGk
+         PBhw==
+X-Forwarded-Encrypted: i=1; AJvYcCUA7XOHRV7zDmHTFnh2zNczqpanFgleq7uDqCTBJ8ufyfUaZuXiRpv7S0hRshXER0NZRK5RZkm3veAg2Agp@vger.kernel.org, AJvYcCXrcw/u7APis1v/Red8i7IYym8f9qjUUiG68b4fGslgbsig0SB1WypGU3Nu5Jz9FuIWbMv2fGm+O0zH@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywzjikyp7IVzA05j0emKbTFexQ8jV5avgw/4TexEBrEwRGfwBCj
+	53VbFym7ch4kPMnHIS7z2IyP/NhBSgkymAe3Cc8cc1THHMUyqixjEI09mYZolewspuU8Yg==
+X-Gm-Gg: ASbGncuvZb3d4B/pXTaBmzckgmervjpf5KuGztSd4vfKolk7/3KrwF94TrYUDIUjNKX
+	BdElXKS1zj4T6TybIT2NAVeInFzr996jE6Yg74mzMMZLfNk8O6aBcqbBiVHqBLiyNnlBnsFU6Jq
+	iCYoEaM/6t5yAT8tTRfZ+Yznruxi+LbK1jo/YjyTxFQtwckNdjiV9uDfzpoUiBSbMCz6g/1Vk3N
+	Vo2sdaRYssUNWmBoxoGKUooY09X3YC1bzAtHzMaqueKRL9VPLj/DVApj5+Pbx3CaG9EyemyLTNq
+	TYdKc8fhdxPTiSrsHRd/ShJ4NIzBTdkgl1dFCQ3JWxgud9jEa7A6ZqcqzvyYuFUBw+QarjLIE3l
+	BdDe3FohutyXb5+TRS+7eJCGP9Po5qhF7LuQ7SLYMEO69
+X-Google-Smtp-Source: AGHT+IHVnGMjOLn8pJNcVq7jmxqNTU4XuXIpfk1DNWBYLWSKmRPo4B3uQKgLKkdyi4hI9q2Hksu6QQ==
+X-Received: by 2002:a17:903:28c:b0:248:fbec:7c99 with SMTP id d9443c01a7336-24944a7728bmr150182145ad.26.1756818941234;
+        Tue, 02 Sep 2025 06:15:41 -0700 (PDT)
+Received: from localhost.localdomain ([2804:7f5:b08b:bc66:1b1c:d88:2aac:2997])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24905da4d44sm133710355ad.83.2025.09.02.06.15.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 06:15:40 -0700 (PDT)
+From: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+To: linux-iio@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	=?UTF-8?q?Nuno=20S=C3=A1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: [PATCH v10 0/2] Add MAX14001/MAX14002 support
+Date: Tue,  2 Sep 2025 10:14:39 -0300
+Message-Id: <cover.1756816682.git.marilene.agarcia@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/7] soundwire: qcom: deprecate qcom,din/out-ports
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org, conor+dt@kernel.org,
-        srini@kernel.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20250901195037.47156-1-srinivas.kandagatla@oss.qualcomm.com>
- <20250901195037.47156-5-srinivas.kandagatla@oss.qualcomm.com>
- <20250902-light-vegan-snake-efe03c@kuoka>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20250902-light-vegan-snake-efe03c@kuoka>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMiBTYWx0ZWRfX/YpPtHsEPQDt
- E9Kzrr91KYWveuMQ8uAYGSDgS53CSSczg/9atzYAtI+oTE6Cd6NmE5VvDbKPSv1jfoSUF6NwJ9S
- jvHjGk83yZyM8tlmC1/4K0REREId0BYPf3dav5oSilZ6sDg3JpZkoZWDcEhxTBpUKPjrz/xh70r
- cGE34q5a0rihJEsk1daJuZBOq1YXwmq5KOH15TaUdMofcrQ4Lm5idxkjkauy0cdXAMuTqihAk2v
- kZP4ECf6imd+LAYxWswXF7bWGThb7C9oaflaBjS0QI+hf2+3e8JWi1J0mIQhPNSpuSwjKWUPwz8
- 9lxaxn5ihF61Tq8a3DORtSXCti4RseL0Ulo9XLbtVFAt1l1QviZyhhqDXPGobnHE1KGqYTUwGTd
- wVi4lCdi
-X-Proofpoint-ORIG-GUID: RnudrKD8w-1aFJKxxvIGi1XZzOE6D7yQ
-X-Proofpoint-GUID: RnudrKD8w-1aFJKxxvIGi1XZzOE6D7yQ
-X-Authority-Analysis: v=2.4 cv=M9NNKzws c=1 sm=1 tr=0 ts=68b6ed93 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=SiZq7lb_pfuETCquD7sA:9
- a=QEXdDO2ut3YA:10 a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0
- clxscore=1015 suspectscore=0 phishscore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300032
+Content-Transfer-Encoding: 8bit
 
-On 9/2/25 9:38 AM, Krzysztof Kozlowski wrote:
-> On Mon, Sep 01, 2025 at 08:50:34PM +0100, Srinivas Kandagatla wrote:
->> Number of input and output ports can be dynamically read from the
->> controller registers, getting this value from Device Tree is redundant
->> and potentially lead to bugs.
->>
->> Remove the code parsing this property along with marking this as
->> deprecated in device tree bindings.
->>
->> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
->> ---
->>  drivers/soundwire/qcom.c | 134 ++++++++++++++-------------------------
->>  1 file changed, 49 insertions(+), 85 deletions(-)
->>
->> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
->> index 7f19ebba6137..4fa3e1c080ef 100644
->> --- a/drivers/soundwire/qcom.c
->> +++ b/drivers/soundwire/qcom.c
->> @@ -128,7 +128,6 @@
->>  #define MAX_FREQ_NUM						1
->>  #define TIMEOUT_MS						100
->>  #define QCOM_SWRM_MAX_RD_LEN					0x1
->> -#define QCOM_SDW_MAX_PORTS					14
->>  #define DEFAULT_CLK_FREQ					9600000
->>  #define SWRM_MAX_DAIS						0xF
->>  #define SWR_INVALID_PARAM					0xFF
->> @@ -195,6 +194,7 @@ struct qcom_swrm_ctrl {
->>  	int wake_irq;
->>  	int num_din_ports;
->>  	int num_dout_ports;
->> +	int nports;
->>  	int cols_index;
->>  	int rows_index;
->>  	unsigned long port_mask;
->> @@ -202,7 +202,7 @@ struct qcom_swrm_ctrl {
->>  	u8 rcmd_id;
->>  	u8 wcmd_id;
->>  	/* Port numbers are 1 - 14 */
->> -	struct qcom_swrm_port_config pconfig[QCOM_SDW_MAX_PORTS + 1];
->> +	struct qcom_swrm_port_config *pconfig;
->>  	struct sdw_stream_runtime *sruntime[SWRM_MAX_DAIS];
->>  	enum sdw_slave_status status[SDW_MAX_DEVICES + 1];
->>  	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
->> @@ -1157,7 +1157,7 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
->>  				       struct snd_pcm_hw_params *params,
->>  				       int direction)
->>  {
->> -	struct sdw_port_config pconfig[QCOM_SDW_MAX_PORTS];
->> +	struct sdw_port_config *pconfig __free(kfree) = NULL;
-> 
-> That's incorrect usage of __free(), missing constructor.
-> 
->>  	struct sdw_stream_config sconfig;
->>  	struct sdw_master_runtime *m_rt;
->>  	struct sdw_slave_runtime *s_rt;
->> @@ -1167,6 +1167,10 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
->>  	int maxport, pn, nports = 0, ret = 0;
->>  	unsigned int m_port;
->>  
->> +	pconfig = kcalloc(ctrl->nports, sizeof(*pconfig), GFP_KERNEL);
-> 
-> This almost always goes to definition and I do not see anything
-> preventing it.
-Yes, It can go to the definition.
+Hello everyone,
 
-But does this matter for a single instance of __free? I thought this was
-an issue if we have multiple __free() or guard() and __free() the order
-of definitions matter.
+Thank you for your input on how to handle the situation with the driver code. 
+Kim, I also apologize for the unexpected situation involving your previous 
+code.
 
-Will follow the recommendation in v2.
+Based on the suggestions, I applied my v1 code changes to v9 of Kim’s code, 
+resulting in this v10 version that combines both. 
+Compared to v9, the updates are:
 
-thanks,
---srini
-> 
->> +	if (!pconfig)
->> +		return -ENOMEM;
-> 
-> Best regards,
-> Krzysztof
-> 
+- Added support for max14002.
+- Added a function to write a single register, since the write enable 
+register must be updated before writing to any others and updated again 
+afterward.
+- Renamed the init function to better reflect its purpose, which is to 
+disable the memory verification fault. I also replaced the one-by-one 
+handling of registers verification values with a loop, since they are in 
+sequential ascending order.
+- Replaced the old regulator APIs with the new ones.
+- Updated the device tree documentation to align with the datasheet 
+nomenclature for voltage suppliers.
+- Used IIO_CHAN_INFO_AVERAGE_RAW to return the filtered average of ADC 
+readings.
+
+One of the reviews I received about my v1 version suggested using a custom 
+regmap. I attempted to implement that, but I feel that most of the default 
+regmap functions (e.g., regmap_update_bits) would need to be overridden 
+because of the unique way this device handles communication, such as 
+inverting bits before sending a message, updating the write enable register 
+before writing any other register, and updating it again afterward. However, 
+as I am still new to the IIO kernel code, I may be missing something. If you 
+could provide further explanation or an example, I would be grateful.
+
+Regarding locking, Kim’s original code implemented it, and it remains in 
+the driver.
+
+I still have a question about using _mean_raw (IIO_CHAN_INFO_AVERAGE_RAW) 
+to read the register containing the latest filtered average ADC readings. 
+Should I create a v11 version with a patch to include in_voltageY_mean_raw 
+in the file /linux/Documentation/ABI/testing/sysfs-bus-iio? 
+The idea is to use in_voltageY_mean_raw to return the filtered average and 
+also to set how many ADC readings (0, 2, 4, or 8) are included in the mean 
+calculation. Any feedback on using IIO_CHAN_INFO_AVERAGE_RAW this way would 
+be appreciated.
+
+The v10 changes were tested on a Raspberry Pi 5 using a modified kernel 
+(rpi-6.12). The MAX14001PMB evaluation board, which contains two MAX14001 
+devices, was used for testing. One device measures current, and the other 
+measures voltage. The evaluation board introduces an offset to allow 
+measuring negative values. These board-specific characteristics were not 
+included in the driver code (neither the offset nor the current channel 
+capability), but they were considered in the calculation of the values read 
+by the devices. Should the code that applies these board configuration 
+parameters be added as an additional driver file inside the IIO subsystem, 
+or should it remain only in a user application?
+
+I plan to continue sending patches to cover all the features of the device. 
+This includes adding interrupt handling for faults and for when the signal 
+exceeds the upper or lower threshold, implementing the inrush current 
+feature, and completing the filtered average reading functionality by 
+adding the ability to set the number of readings used in the mean 
+calculation.
+
+And I would like to thank again my GSoC mentors Marcelo Schmitt, Ceclan 
+Dumitru, Jonathan Santos and Dragos Bogdan for their help with the code.
+
+Thank you for your time,
+Best regards,
+Marilene Andrade Garcia.
+
+Marilene Andrade Garcia (2):
+  dt-bindings: iio: adc: add max14001
+  iio: adc: max14001: New driver
+
+ .../bindings/iio/adc/adi,max14001.yaml        |  79 ++++
+ MAINTAINERS                                   |   9 +
+ drivers/iio/adc/Kconfig                       |  10 +
+ drivers/iio/adc/Makefile                      |   1 +
+ drivers/iio/adc/max14001.c                    | 355 ++++++++++++++++++
+ 5 files changed, 454 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+ create mode 100644 drivers/iio/adc/max14001.c
+
+
+base-commit: d1487b0b78720b86ec2a2ac7acc683ec90627e5b
+-- 
+2.34.1
 
 
