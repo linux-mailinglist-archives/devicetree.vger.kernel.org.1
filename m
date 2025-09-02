@@ -1,165 +1,123 @@
-Return-Path: <devicetree+bounces-211634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211636-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F3EEB3FC4F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:26:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6869B3FC5A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:27:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A9C081B24BE3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:26:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ED804E2EB7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:27:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D273E28368A;
-	Tue,  2 Sep 2025 10:24:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64FA8283FF4;
+	Tue,  2 Sep 2025 10:26:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kB9mGtfc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mRxuQLGb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A831280CCE;
-	Tue,  2 Sep 2025 10:24:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A47283CAA;
+	Tue,  2 Sep 2025 10:26:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756808654; cv=none; b=S2igG0DtqgN39RXhj1KKTPLmSr+LamOIEzVFGyPZx5SS+Ws6JLw7SFATuoaFWC1nwqeSXS0FSDvkPRyNLJugyiJVAReQ9v1Hx8LodQu5Sr8mz+h2kSs6KXiNNetZVwR0UBsHf672iIqw98OSsOZ8Kh2kOfktDzL+2CvkN/BOozQ=
+	t=1756808816; cv=none; b=AbqXcS3uXDccBsKlSzQ4vleTFJY9bJ7x+oELln3Mq61KdzeZDEoiqWk9dl65x/+unf+OG8A8EB8m9pHT8yUe5lSTHa2BUhQPCJHnbu0Vi1ZRsnWbwfI++BwBh6EuhVpEbK5TNlJCfQF2+eG/eNwMw/IdBzePYJEHlZzS47Od4Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756808654; c=relaxed/simple;
-	bh=v5NDjFO8lUrsXYBoNk20x/0jTMsSJewfLyzSWN2NvCQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Kvv88kFlhyubbDwm4bw5uzwXb5xQpufioAoBaMqU9x4x+c3hO4HyAPcbfvJSD8QNoghj7YDyQgcy2nsSd39AkoC/Ig5h5MhI/m05qiNInHjimOtUxARwWihq+ctVpTMv3cWcOm+rN5jnHHzGIgipKpmFAETyliNPsVuQtF3PE48=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kB9mGtfc; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756808653; x=1788344653;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=v5NDjFO8lUrsXYBoNk20x/0jTMsSJewfLyzSWN2NvCQ=;
-  b=kB9mGtfcuA0QRGswH0l8MKRJysn3eD5noDeyI/wAzG86Y4zWE3tYwKvm
-   725NxrVwV7mLuKTNwcDh7kap5+IMVyRet/MAIL429UCLFP30H1d3BV0xI
-   r6h1D/XxqOY5EjWawVd0iFhN/dX7qZa8x6i0xic8Gh+dodxWXegOplvBK
-   BsYWaNOIJnzEby7NQQvIDEOId21CaGiU8sQ2YjHh2ty9khkf27NvKGrOF
-   0p/JcOvgt3E5JVIZmZZYTQILslfHp4zYnjCJ1qhqKd3e7Jshl9A+qj3V0
-   1WDkdk1vbOFGO3lBdlTz0Zxoeu+0h2GQJESmD0ixsrJ+umZG2IUcBj4vt
-   w==;
-X-CSE-ConnectionGUID: mhFdhiLGQx2Tgqo/8RcBqw==
-X-CSE-MsgGUID: dLNMD7Y/RnKqDfNwY72UjQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="62719596"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="62719596"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 03:24:12 -0700
-X-CSE-ConnectionGUID: I6HlhqjdSHGTNm9QxC555Q==
-X-CSE-MsgGUID: qaZkQZ/4QvmaUvY93+nUTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="176556266"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by orviesa005.jf.intel.com with ESMTP; 02 Sep 2025 03:24:06 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1utOBI-0001pP-0p;
-	Tue, 02 Sep 2025 10:24:04 +0000
-Date: Tue, 2 Sep 2025 18:23:07 +0800
-From: kernel test robot <lkp@intel.com>
-To: Jacky Chou <jacky_chou@aspeedtech.com>, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
-	vkoul@kernel.org, kishon@kernel.org, linus.walleij@linaro.org,
-	p.zabel@pengutronix.de, linux-aspeed@lists.ozlabs.org,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	openbmc@lists.ozlabs.org, linux-gpio@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, jacky_chou@aspeedtech.com
-Subject: Re: [PATCH v3 07/10] PHY: aspeed: Add ASPEED PCIe PHY driver
-Message-ID: <202509021806.1NtrcLpF-lkp@intel.com>
-References: <20250901055922.1553550-8-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1756808816; c=relaxed/simple;
+	bh=WIG36ojakbZR0f34sUPRJRpG8M9NeFHs5wGAsA2m4Ow=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mV3BXXA8bT84NzHwAdl5j05r5cQieWthc8c0/iVTKw9qWGIt5DF5Nzm98vJjbgI/oJ9qwz/jmUqsZkCE618D+LpLGnYYIn6v7gy2fAgN69Z3gMJi4Ie9qEN4LGbJkvrLci1J1NwvZpSYH4SZzSqcQLnGYG27yQCFEnDpm6vU/qY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mRxuQLGb; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3d1bf79d7acso1749461f8f.0;
+        Tue, 02 Sep 2025 03:26:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756808812; x=1757413612; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WIG36ojakbZR0f34sUPRJRpG8M9NeFHs5wGAsA2m4Ow=;
+        b=mRxuQLGbqQ2awRIqKl2lLYZy6/Lb5HNZ3FXFg9HlaK8dJbnS1nSf0oFZMj3mlo8EMv
+         GoVQpHpfP6RlhZT7iyxlKCi5Yf65If0hxRJaMJY8GaDP98gjOJ8U39sGWZvLfS5KtTA6
+         GWv9PUT5ay3hKR+rjlgj3gU7UwdXgHs43TP0GKCI8jwJwMiNdjiliNHWISvvJeVLkCUl
+         8vaEtSkM54UFSD7723v0rWpqrkzdOZln+GH005Q6/QoEkx6rVm9ZGcg6YZ13wLOO3B3H
+         1iZJQtLEgveYg2U7pnuAWovUAZxmVIWGBspavHNxy6O8pc7JqaNuPOdTn03wMqKnADcu
+         b47w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756808812; x=1757413612;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=WIG36ojakbZR0f34sUPRJRpG8M9NeFHs5wGAsA2m4Ow=;
+        b=pY0RpVHv+SeB5mFvCtj1XlFKKwiBaNlNEEEDX8NCZSMVfS4JuaVUYhFeeAVB4dX7/X
+         PLmSQXY2Ntt+y2X29FC/89qRG9c+LObA+oWazcsQV08r1cOeMkaDNAoLeUJhMPwvFpNE
+         +Rx8ld2JJsnVsvhzZ2iHfQpO1yUSnkpFk9ATixFUjJvEAjve2bvgLrCa5OiXEU+hGudy
+         p5Jrrqk1vRLVpz5J1G/atGkmRMeh31uN2nXIVv32gglr5v6LWv8LVbFByI/KAmoTWn1G
+         w91rEUfrQFgU0IV6p4KgqPUBiPTHiEzt6Z6lSr27XHk0dWs9C5te46HZ7b/dL7HaJjjf
+         /acg==
+X-Forwarded-Encrypted: i=1; AJvYcCVh42+Xm4HWUwQQJPaca7/ogUrVKPEcVwlcQ96jCqRcXO75sNyqwEXAd8yOZ7UvAUdHFGyvPjo8@vger.kernel.org, AJvYcCWOCMTubgYi4jvpb6W/Xfd0Wt99FkdbVa5MxQRldBdu/Tx1rLBa2HorFZt7RLEyHyvYkLQ6vq5JhkmxgDKP@vger.kernel.org, AJvYcCXdGecBgNvdOitGnYmy7Sv6sKlVr9Ac7WSLiETGNTCtALezEt28E3e/rxORAA4HgXuvgym0ut7MpPdE@vger.kernel.org, AJvYcCXwXIzMKEmNG0LARPx3ey1I8XBwpO5/GgzwPz6ZANaxRKsGRhmHl2XlO12suMTIWgnBg93CxkWn2iOsDGGFvenDZcs=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxAJuc3BjpG+1ArjbnvWrtVFHjSUcUPlDepiMGPoXJKM1O2usxv
+	HP7Viw7NV6v7QpsjEwyIEfYNn9CvCauo/8KP4e3ce7alh5+/4R/21jOAL2joTDZCb2Zvtp86YVF
+	epUHjGX+KvhlF0BUQpKN8IWchlED0yW4=
+X-Gm-Gg: ASbGncv3OaJCQor1HEhKActDR/g7iRgR2zRr2ouiNKVTja8l8ercforTTk+rrq21FNb
+	5JiNqR4CRFPdqSUPh4Ts3m1g1ueSZZ+UVn9CHVE7qFVx6s+GtcTcrkaYJvP5EFiwxSFjQhGGFzt
+	U963hCQ4cOdkDYtn3ybqypNeMPKhgSIRxF35Vyrs4kkQ9quGXyQd7D5syGG4ZFGf9sPyLF/sp52
+	I8fpWsCzRxnZVHpb4DXs/x0GuihCfXVH0PQVB/s
+X-Google-Smtp-Source: AGHT+IFxhn+/xz90fXaIgO0np82rcnaVjNZibsx1cSAdBhTTY/NoNyJlaD7235ymxV7QX9ujQupk4dM1I5QudfWWTsQ=
+X-Received: by 2002:a5d:5887:0:b0:3d9:70cc:6dd0 with SMTP id
+ ffacd0b85a97d-3d970cc701emr1764550f8f.33.1756808811583; Tue, 02 Sep 2025
+ 03:26:51 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250901055922.1553550-8-jacky_chou@aspeedtech.com>
+References: <20250901224327.3429099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250901224327.3429099-11-prabhakar.mahadev-lad.rj@bp.renesas.com> <aLa6IeZsGeESpMKQ@shell.armlinux.org.uk>
+In-Reply-To: <aLa6IeZsGeESpMKQ@shell.armlinux.org.uk>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 2 Sep 2025 11:26:25 +0100
+X-Gm-Features: Ac12FXypw6Y_C9Hl8fhtrMS82dtxXYWsVLfOscBiU78OSTy4UH9_O9UiXM-7IC8
+Message-ID: <CA+V-a8vPJ45ZB8RvLaw7Vhm35f28VrHj3zZkCdN-MZzhcd5CiQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 10/10] net: pcs: rzn1-miic: Add PCS validate
+ callback for RZ/T2H MIIC
+To: "Russell King (Oracle)" <linux@armlinux.org.uk>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jacky,
+Hi Russell,
 
-kernel test robot noticed the following build errors:
+On Tue, Sep 2, 2025 at 10:34=E2=80=AFAM Russell King (Oracle)
+<linux@armlinux.org.uk> wrote:
+>
+> On Mon, Sep 01, 2025 at 11:43:23PM +0100, Prabhakar wrote:
+> > Add a SoC-specific `pcs_ops` pointer in `miic_of_data` to allow
+> > custom phylink PCS callbacks. For RZ/T2H MIIC, implement
+> > `rzt2h_miic_validate` to restrict valid interfaces to RGMII, RMII,
+> > and MII. Assign `rzt2h_miic_phylink_ops` with the new validate
+> > callback to the RZ/T2H MIIC SoC data structure, keeping existing
+> > PCS support intact for other SoCs.
+>
+> This seems completely pointless. Please review commit 508df2de7b3e
+> ("net: pcs: rzn1-miic: fill in PCS supported_interfaces") to find
+> out why.
+>
+Thank you for pointing this out. I'll drop this patch while sending a v2.
 
-[auto build test ERROR on pci/for-linus]
-[also build test ERROR on robh/for-next linusw-pinctrl/devel linusw-pinctrl/for-next linus/master v6.17-rc4 next-20250902]
-[cannot apply to pci/next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jacky-Chou/dt-bindings-soc-aspeed-Add-ASPEED-PCIe-Config/20250901-140231
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git for-linus
-patch link:    https://lore.kernel.org/r/20250901055922.1553550-8-jacky_chou%40aspeedtech.com
-patch subject: [PATCH v3 07/10] PHY: aspeed: Add ASPEED PCIe PHY driver
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20250902/202509021806.1NtrcLpF-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250902/202509021806.1NtrcLpF-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509021806.1NtrcLpF-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from drivers/phy/aspeed/phy-aspeed-pcie.c:14:
->> drivers/phy/aspeed/phy-aspeed-pcie.c:195:25: error: 'aspeed_pcie_of_match_table' undeclared here (not in a function); did you mean 'aspeed_pcie_phy_of_match_table'?
-     195 | MODULE_DEVICE_TABLE(of, aspeed_pcie_of_match_table);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/module.h:250:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
-     250 | static typeof(name) __mod_device_table__##type##__##name                \
-         |               ^~~~
->> include/linux/module.h:250:21: error: '__mod_device_table__of__aspeed_pcie_of_match_table' aliased to undefined symbol 'aspeed_pcie_of_match_table'
-     250 | static typeof(name) __mod_device_table__##type##__##name                \
-         |                     ^~~~~~~~~~~~~~~~~~~~
-   drivers/phy/aspeed/phy-aspeed-pcie.c:195:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
-     195 | MODULE_DEVICE_TABLE(of, aspeed_pcie_of_match_table);
-         | ^~~~~~~~~~~~~~~~~~~
---
-   In file included from phy-aspeed-pcie.c:14:
-   phy-aspeed-pcie.c:195:25: error: 'aspeed_pcie_of_match_table' undeclared here (not in a function); did you mean 'aspeed_pcie_phy_of_match_table'?
-     195 | MODULE_DEVICE_TABLE(of, aspeed_pcie_of_match_table);
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/module.h:250:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
-     250 | static typeof(name) __mod_device_table__##type##__##name                \
-         |               ^~~~
->> include/linux/module.h:250:21: error: '__mod_device_table__of__aspeed_pcie_of_match_table' aliased to undefined symbol 'aspeed_pcie_of_match_table'
-     250 | static typeof(name) __mod_device_table__##type##__##name                \
-         |                     ^~~~~~~~~~~~~~~~~~~~
-   phy-aspeed-pcie.c:195:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
-     195 | MODULE_DEVICE_TABLE(of, aspeed_pcie_of_match_table);
-         | ^~~~~~~~~~~~~~~~~~~
-
-
-vim +195 drivers/phy/aspeed/phy-aspeed-pcie.c
-
-   183	
-   184	static const struct of_device_id aspeed_pcie_phy_of_match_table[] = {
-   185		{
-   186			.compatible = "aspeed,ast2600-pcie-phy",
-   187			.data = &pcie_phy_ast2600,
-   188		},
-   189		{
-   190			.compatible = "aspeed,ast2700-pcie-phy",
-   191			.data = &pcie_phy_ast2700,
-   192		},
-   193		{ },
-   194	};
- > 195	MODULE_DEVICE_TABLE(of, aspeed_pcie_of_match_table);
-   196	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers,
+Prabhakar
 
