@@ -1,289 +1,424 @@
-Return-Path: <devicetree+bounces-211669-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211670-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B084B40014
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:21:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE891B40057
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C597C7B3A38
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:15:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 218082C7B28
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:19:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAF552877CB;
-	Tue,  2 Sep 2025 12:12:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 120CD2FD1A4;
+	Tue,  2 Sep 2025 12:17:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="BnBYEEuo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kSVWNYDv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90C0128505D
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 12:12:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E71892C11C9;
+	Tue,  2 Sep 2025 12:17:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756815132; cv=none; b=FA1iA+RoKA1kylk3m2Z0MWQ+mYHOrmQOE53wg8W0tSzShe2h0XykFk3L4+IKlSont60wtytiP7dZGCq5SqRz0nSPgET7T4YJwOFrJWtwG5i8A2MKSYaOTTS4WWJ5pyV+BLXi4WOX9MFyKoRw8oVCYPIrPONmHgBMF9Y+tbkKVe4=
+	t=1756815456; cv=none; b=aPz1/97cZd/ZvvbxLJCEOmdWwu4+wg7Ekv9dlR1w/HUZffZmcPH/x/qox6Zw1GiuiPXe0O/JareCtBlxaNwJ6frcMKR41gjTC/nLrUHqEJjevDtBrRoGF0dV6y58YL/OIRjrUsbOAWts8StjMK3QsKWxd8Reiqm5RB+1y0UhKPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756815132; c=relaxed/simple;
-	bh=g/+XzZgiIedu9WpateeEDNr5axwqmK9SAika/Tbyim0=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=H6Jo6YGMM1VnF0Ym1buqF9cp2a7z8O9KqeC14YrtFp+74uVcxJFaHQ9+XcNSFT0IqIJ1b+hD8t5smlzjkVVXuKEs4Wwm+0ukOZ58PkgR/nPMWpHoeb1d1JgNp6wDQSdPQFHZVS+wV16SqodiZErCiQgFGx+f1nllDIdDMuqbHY4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BnBYEEuo; arc=none smtp.client-ip=203.254.224.24
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250902121208epoutp016de9e29d500f39cf1a03dc3e5e14c3d8~hdg0v0VSQ2236922369epoutp01b
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 12:12:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250902121208epoutp016de9e29d500f39cf1a03dc3e5e14c3d8~hdg0v0VSQ2236922369epoutp01b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756815128;
-	bh=vaJV/AYbl/mon1qabDaukZJ7qz3bjN/L9fdsiOaq8ts=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=BnBYEEuoDc/f1i8coBZpjSDdZmLJ/bxS0G7FgAJlchWxp4TzQ3vcxAzYobg68pHid
-	 8pXZJCYwi72bm1bEcRyJ+W1FzGVMP7lUzQNujnBCEk95Yi1k4kRtlQXCP4XmFuFmY5
-	 ASxX6Q58T7MMcXApQeT8Q8IpoA0dCmwhZwQFvxPE=
-Received: from epsnrtp04.localdomain (unknown [182.195.42.156]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250902121207epcas5p2d9c0ed34e884b15ee3784c0dee8cc161~hdg0ITcbx1190711907epcas5p2I;
-	Tue,  2 Sep 2025 12:12:07 +0000 (GMT)
-Received: from epdlp11prp5 (unknown [182.195.38.90]) by
-	epsnrtp04.localdomain (Postfix) with ESMTP id 4cGPkG6y72z6B9m6; Tue,  2 Sep
-	2025 12:12:06 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250902121206epcas5p130402f52b030caf571bfd7de06e81958~hdgync_Gb2445224452epcas5p1w;
-	Tue,  2 Sep 2025 12:12:06 +0000 (GMT)
-Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250902121202epsmtip21e7e1f2f4beedb479066f12deb8570f3~hdgvc4E3O0979409794epsmtip2f;
-	Tue,  2 Sep 2025 12:12:02 +0000 (GMT)
-From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
-	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andre.draszik@linaro.org>,
-	<peter.griffin@linaro.org>, <kauschluss@disroot.org>,
-	<ivo.ivanov.ivanov1@gmail.com>, <igor.belwon@mentallysanemainliners.org>,
-	<johan@kernel.org>, <m.szyprowski@samsung.com>, <s.nawrocki@samsung.com>,
-	<linux-phy@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <rosa.pila@samsung.com>,
-	<dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
-	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
-In-Reply-To: 
-Subject: RE: [PATCH v7 5/6] dt-bindings: phy: samsung,usb3-drd-phy: add
- ExynosAutov920 combo ssphy
-Date: Tue, 2 Sep 2025 17:42:01 +0530
-Message-ID: <000001dc1c02$cc89fda0$659df8e0$@samsung.com>
+	s=arc-20240116; t=1756815456; c=relaxed/simple;
+	bh=3/mypePnJRDUzhOvndfzVAOYSe0h2vW0Tvh9JFz0G0g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WSLvHDJBHHyozkHQobpCVk1z0piPrnQsk6uO+p/shuvrRb9SeYxb6N3p0aaiS4DGegTZzGfMK+uih/dfMMLZkpvZVyMk4Ri7ERBpIQKGfRoZelRNqNlKpizGfW8v0WfoA5q78QJ19Z6ND0gX3DTHJ24LnCJf7DLlzM8vHqAVLAY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kSVWNYDv; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-6188b5ae1e8so5559399a12.0;
+        Tue, 02 Sep 2025 05:17:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756815453; x=1757420253; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=42U15/348cdGUsar34UpC/0xXX4VsKca7Fk0wm1luRs=;
+        b=kSVWNYDvOVub/DhWgVqsu0F6bRSJuc8n2aniyhXAAhi3iVdiYMkfvftOFFhreN2taP
+         yjOmt0IAQWOi5GLH3G6oyCy39c+QEuLMH7puAfJ1MnD6EaWqcl0843c+zinsBaRiYmiz
+         zmSWG0t39q6GYBxK1vPE0+P8i7pSgBMe5jpqNw5Q+MElVPeW0sVVob4ZuI4DZFy9qLc6
+         4EQGO5w01ZAKXJBuTlGs59MZODkTMnrmkHQjmdht7tHoTEus5n5+Wj26daBOsYBp/oGh
+         b6ChZK0sj5RSpr/ZmpZXJFRWquhLW1CLhiMLZhBBEohu0m4bbS3Kaosn2n4Du6gG1FS6
+         axKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756815453; x=1757420253;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=42U15/348cdGUsar34UpC/0xXX4VsKca7Fk0wm1luRs=;
+        b=gKyZzPV4dC2KLRAIAPx/MbnpTHTPThScxlNDoQIZmcm3yK9oxLlKPtpLoJmNCHZOYP
+         PXDj0yFHJmdrwGXipoOt/JU/HsljanCSeqVFEhmulgnrar7kzycoQtL/Ma/Kz0r3Wt/A
+         R/lqIWD5BSMOXv4kMnuGSspN6uhQhohS+udDCFP9s4z/8ibhCh7e1qM/35ZYLqrNPxtM
+         I24d4aSpXKmQ/LXRtDKMjv4lVHtNBUse2rnr4NiezXI50WvCM2NN4JMjzBKuZcVf/V6G
+         AxL2Z2H88kVcvLf0l6cd+07kyMp8L/oixPlvCkkIpdVuSbEFZbfxZA7nD+1uxYLObMoO
+         eHAg==
+X-Forwarded-Encrypted: i=1; AJvYcCU+nP+t46J5fnam6X3RRbeZepRaBCmgcU6aIJk7rdS4M6AGt3S9X/+8zTduaFQUrv5py04Q/eeUUauwl51e@vger.kernel.org, AJvYcCVKZyiX3ll6n2l41v5+RGWnMA2mkC1oyGE7agcpek2js5LQkFhpqKJBUl7KOEZlwcNI0jzbUgb2/2Wm@vger.kernel.org, AJvYcCVivb2Ibq3AudN7iwVoORswlZ2Ouo7eCUJY6GYLIfr9rx9hKDcnHA2Mv0cyVJ0Dbv+zpA2d5DMHkVOP9+G6bRbWDMQ=@vger.kernel.org, AJvYcCXVW7GskPgP2T4fSBXkbj8JUG++fYENA7Z6ESDUjMWsrDP6X4tVP5zty0B4oD+X9CZLEPBC2YJr@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywmj4bYo5Bkk0XViWXy0ZPrMHBCP1UALkANARsF1qncrdrDglPr
+	VyEE3hv1wlAlQl4C9AX+oglFn9A6OTqFqvkS6pv4GsDvOoJyS0tW4yqgJceIAyGpFGV2PbZ2EkI
+	+j1jIVJXGeOBN4wIR4RJBQWD9C8bTxW8=
+X-Gm-Gg: ASbGncv9K96IA7s12D9qFfcS0BpvBWoJo07iEwJKNuCNz0BKqybLMnWlE+0/cXLPKa9
+	zHkNk2GnZa6QvGQr6cv74cfjLCoQ6HrCRgPv5O22seCEqIJHPSs7Z+B5r3VlK1TssI4BeiGajEp
+	BdKgEpiCw7iMJDTooQbPsirEGwq7oOxhDXCgzuvnNfGSWUXatJ2hvKGFKWBo226F0M6+RJcZvvW
+	cQ3Z3lejUUBUVj17iC5elvJJs0poqqGMIjG45mpqByybVV8jCs=
+X-Google-Smtp-Source: AGHT+IEY6ifRLT0JiWdPcioO0Hkm95EYxod8iArKpPf75fvBrdryW7qlJWrp5KlqLLS4W+5vCXQxFZlsc8+QUu2qk1s=
+X-Received: by 2002:a17:906:2692:b0:b04:1896:1236 with SMTP id
+ a640c23a62f3a-b0418961257mr708211166b.22.1756815452790; Tue, 02 Sep 2025
+ 05:17:32 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250901224327.3429099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250901224327.3429099-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250902-enlightened-hidden-copperhead-4eefdf@kuoka>
+In-Reply-To: <20250902-enlightened-hidden-copperhead-4eefdf@kuoka>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 2 Sep 2025 13:17:06 +0100
+X-Gm-Features: Ac12FXy9DVpjObuZ3-ixuDeS5Kbpg__4JszfuiG4LvJTm1hlGpANpZzv3qTq1To
+Message-ID: <CA+V-a8sSiNQ6W-ggmL8PP_G1sFq170DS1LJLFJs_WW0RC+XVEw@mail.gmail.com>
+Subject: Re: [PATCH net-next 01/10] dt-bindings: net: pcs: renesas,rzn1-miic:
+ Document RZ/T2H and RZ/N2H SoCs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQGSd8blfqR9gZc/NH28iGAFaSn12QHbdVSHAGa/K48CXY/t+wLwFCB2ArX7ZGwBn6FItwLUPA9DAP+/dGQCDX8RFrR+kenQgAZH6FA=
-Content-Language: en-in
-X-CMS-MailID: 20250902121206epcas5p130402f52b030caf571bfd7de06e81958
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f
-References: <20250822093845.1179395-1-pritam.sutar@samsung.com>
-	<CGME20250822093022epcas5p42d8c16c851769dab0e1da9d45743ab1f@epcas5p4.samsung.com>
-	<20250822093845.1179395-6-pritam.sutar@samsung.com>
-	<20250824-rough-fresh-orangutan-eecb2f@kuoka>
-	<007501dc1653$e36c3b50$aa44b1f0$@samsung.com>
-	<83dc9435-5850-425d-b345-52e84ef9262c@kernel.org>
-	<000401dc18cd$ec02a1b0$c407e510$@samsung.com>
-	<e8e99c16-ad40-4d79-be92-1aa55c13f9ea@kernel.org>
-	<263801dc18d3$d1e20950$75a61bf0$@samsung.com>
-	<6b5f20ed-4e88-441e-8f61-20866e2b39c7@kernel.org> 
 
 Hi Krzysztof,
 
-> -----Original Message-----
-> From: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> Sent: 29 August 2025 05:33 PM
-> To: 'Krzysztof Kozlowski' <krzk=40kernel.org>; 'Alim Akhtar'
-> <alim.akhtar=40samsung.com>
-> Cc: 'vkoul=40kernel.org' <vkoul=40kernel.org>; 'kishon=40kernel.org'
-> <kishon=40kernel.org>; 'robh=40kernel.org' <robh=40kernel.org>;
-> 'krzk+dt=40kernel.org' <krzk+dt=40kernel.org>; 'conor+dt=40kernel.org'
-> <conor+dt=40kernel.org>; 'andre.draszik=40linaro.org'
-> <andre.draszik=40linaro.org>; 'peter.griffin=40linaro.org'
-> <peter.griffin=40linaro.org>; 'kauschluss=40disroot.org' <kauschluss=40di=
-sroot.org>;
-> 'ivo.ivanov.ivanov1=40gmail.com' <ivo.ivanov.ivanov1=40gmail.com>;
-> 'igor.belwon=40mentallysanemainliners.org'
-> <igor.belwon=40mentallysanemainliners.org>; 'johan=40kernel.org'
-> <johan=40kernel.org>; 'm.szyprowski=40samsung.com'
-> <m.szyprowski=40samsung.com>; 's.nawrocki=40samsung.com'
-> <s.nawrocki=40samsung.com>; 'linux-phy=40lists.infradead.org' <linux-
-> phy=40lists.infradead.org>; 'devicetree=40vger.kernel.org'
-> <devicetree=40vger.kernel.org>; 'linux-kernel=40vger.kernel.org' <linux-
-> kernel=40vger.kernel.org>; 'linux-arm-kernel=40lists.infradead.org' <linu=
-x-arm-
-> kernel=40lists.infradead.org>; 'linux-samsung-soc=40vger.kernel.org' <lin=
-ux-
-> samsung-soc=40vger.kernel.org>; 'rosa.pila=40samsung.com'
-> <rosa.pila=40samsung.com>; 'dev.tailor=40samsung.com'
-> <dev.tailor=40samsung.com>; 'faraz.ata=40samsung.com'
-> <faraz.ata=40samsung.com>; 'muhammed.ali=40samsung.com'
-> <muhammed.ali=40samsung.com>; 'selvarasu.g=40samsung.com'
-> <selvarasu.g=40samsung.com>
-> Subject: RE: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
-dd
-> ExynosAutov920 combo ssphy
->=20
-> Hi Krzysztof,
->=20
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk=40kernel.org>
-> > Sent: 29 August 2025 04:56 PM
-> > To: Alim Akhtar <alim.akhtar=40samsung.com>; 'Pritam Manohar Sutar'
-> > <pritam.sutar=40samsung.com>
-> > Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> > krzk+dt=40kernel.org; conor+dt=40kernel.org; andre.draszik=40linaro.org=
-;
-> > peter.griffin=40linaro.org; kauschluss=40disroot.org;
-> > ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.or=
-g;
-> > johan=40kernel.org; m.szyprowski=40samsung.com; s.nawrocki=40samsung.co=
-m;
-> > linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
-> > kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
-> > linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
-> > dev.tailor=40samsung.com; faraz.ata=40samsung.com;
-> > muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
-> > Subject: Re: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-drd-phy:
-> > add
-> > ExynosAutov920 combo ssphy
-> >
-> > On 29/08/2025 12:58, Alim Akhtar wrote:
-> > > Hi Krzysztof
-> > >
-> > >> -----Original Message-----
-> > >> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> > >> Sent: Friday, August 29, 2025 4:07 PM
-> > >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> > >> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> > >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.c=
-om;
-> > >> andre.draszik=40linaro.org; peter.griffin=40linaro.org;
-> > >> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
-> > >> igor.belwon=40mentallysanemainliners.org;
-> > >> johan=40kernel.org; m.szyprowski=40samsung.com;
-> s.nawrocki=40samsung.com;
-> > >> linux-phy=40lists.infradead.org; devicetree=40vger.kernel.org;
-> > >> linux-kernel=40vger.kernel.org; linux-arm-
-> > >> kernel=40lists.infradead.org; linux-samsung-soc=40vger.kernel.org;
-> > >> rosa.pila=40samsung.com; dev.tailor=40samsung.com;
-> > faraz.ata=40samsung.com;
-> > >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
-> > >> Subject: Re: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-drd-p=
-hy:
-> > >> add
-> > >> ExynosAutov920 combo ssphy
-> > >>
-> > >> On 29/08/2025 12:15, Pritam Manohar Sutar wrote:
-> > >>> Hi Krzysztof
-> > >>>
-> > >>>> -----Original Message-----
-> > >>>> From: Krzysztof Kozlowski <krzk=40kernel.org>
-> > >>>> Sent: 26 August 2025 02:05 PM
-> > >>>> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
-> > >>>> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
-> > >>> .
-> > >>> .
-> > >>> =5Bsnip=5D
-> > >>> .
-> > >>> .
-> > >>>>>> Subject: Re: =5BPATCH v7 5/6=5D dt-bindings: phy: samsung,usb3-d=
-rd-phy:
-> > >>>>>> add
-> > >>>>>> ExynosAutov920 combo ssphy
-> > >>>>>>
-> > >>>>>> On Fri, Aug 22, 2025 at 03:08:44PM +0530, Pritam Manohar Sutar
+Thank you for the review.
+
+On Tue, Sep 2, 2025 at 9:45=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
 > wrote:
-> > >>>>>>> This phy supports USB3.1 SSP+(10Gbps) protocol and is
-> > >>>>>>> backwards compatible to the USB3.0 SS(5Gbps). It requires two
-> > >>>>>>> clocks, named =22phy=22 and =22ref=22. The required supplies fo=
+>
+> On Mon, Sep 01, 2025 at 11:43:14PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Extend the RZN1 MIIC device-tree binding schema to cover the RZ/T2H
+> > and RZ/N2H SoCs. These SoCs have a MIIC converter similar to RZ/N1, but
+> > with some differences:
+> >
+> > - RZ/T2H has two reset lines; RZ/N1 has none.
+> > - RZ/N1 supports 5 MIIC ports, whereas RZ/T2H supports 4 ports.
+> > - On RZ/N1, MIIC ports can be mapped to various endpoints such as RTOS
+> >   MAC ports, switch ports, EtherCAT ports, SERCOS ports, HSR ports, or
+> >   fixed PHY ports (covering PHY input indices 0-13). On RZ/T2H, ports
+> >   can connect to EtherCAT slave ports, Ethernet switch ports, or GMAC
+> >   ports (mapped to PHY input indices 0-8).
+> > - There are register bit differences between the SoCs, and RZ/N1 has
+> >   additional registers currently unused by the driver.
+> > - On RZ/T2H, the switch is connected to GMAC0 whereas on RZ/N1 the
+> >   switch can be connected to GMAC2/HW-RTOS GMAC.
+> >
+> > To accommodate these differences, a new generic compatible string
+> > `renesas,rzt2h-miic` is introduced for both RZ/T2H and RZ/N2H variants.
+> >
+> > The DT schema is updated to validate these differences and ensure prope=
 r
-> > >>>>>>> USB3.1 are named as vdd075_usb30(0.75v), vdd18_usb30(1.8v).
-> > >>>>>>
-> > >>>>>> Please do not describe the schema, but hardware. This sentence
-> > >>>>>> does not help me in my question further.
-> > >>>>>
-> > >>>>> This is a combo phy having Synopsys usb20 and usb30 phys (these
-> > >>>>> 2 phys are
-> > >>>> totally different).
-> > >>>>> One PHY only supports usb2.0 and data rates whereas another one
-> > >>>>> does
-> > >>>>> usb3.1 ssp+ and usb3.1 ssp
-> > >>>>>
-> > >>>>> This patch only explains about usb30 (since these are two
-> > >>>>> different
-> > >>>>> phys) phy
-> > >>>> and omitted inclusion of usb20 reference (added separate patch
-> > >>>> for this patch no 3).
-> > >>>>>
-> > >>>>> Hope this is clear.
-> > >>>>
-> > >>>> No. That sentence still explains what schema is doing.
-> > >>>>
-> > >>>
-> > >>> Ok, let me simplify the commit message further something like below=
+> > port and reset configurations per SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../bindings/net/pcs/renesas,rzn1-miic.yaml   | 171 +++++++++++++-----
+> >  include/dt-bindings/net/pcs-rzt2h-miic.h      |  23 +++
+> >  2 files changed, 148 insertions(+), 46 deletions(-)
+> >  create mode 100644 include/dt-bindings/net/pcs-rzt2h-miic.h
+> >
+> > diff --git a/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-mii=
+c.yaml b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+> > index 2d33bbab7163..832a49877a29 100644
+> > --- a/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+> > +++ b/Documentation/devicetree/bindings/net/pcs/renesas,rzn1-miic.yaml
+> > @@ -4,13 +4,14 @@
+> >  $id: http://devicetree.org/schemas/net/pcs/renesas,rzn1-miic.yaml#
+> >  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> >
+> > -title: Renesas RZ/N1 MII converter
+> > +title: Renesas RZ/{N1, N2H, T2H} MII converter
+>
+> Don't use regex here. RZ/N1, RZ/N2H and TZ/T2H....
+>
+Ok, I will use it as above (s/TZ/T2H/RZ/T2H).
+
+> >
+> >  maintainers:
+> >    - Cl=C3=A9ment L=C3=A9ger <clement.leger@bootlin.com>
+> > +  - Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> >  description: |
+> > -  This MII converter is present on the Renesas RZ/N1 SoC family. It is
+> > +  This MII converter is present on the Renesas RZ/{N1, N2H, T2H} SoC f=
+amilies. It is
+>
+> Just list the soc families, so people can grep for it.
+>
+Ok.
+
+> >    responsible to do MII passthrough or convert it to RMII/RGMII.
+> >
+> >  properties:
+> > @@ -21,10 +22,17 @@ properties:
+> >      const: 0
+> >
+> >    compatible:
+> > -    items:
+> > -      - enum:
+> > -          - renesas,r9a06g032-miic
+> > -      - const: renesas,rzn1-miic
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,r9a06g032-miic
+> > +          - const: renesas,rzn1-miic
+> > +
+> > +      - items:
+> > +          - enum:
+> > +              - renesas,r9a09g077-miic # RZ/T2H
+> > +              - renesas,r9a09g087-miic # RZ/N2H
+> > +          - const: renesas,rzt2h-miic
+> >
+> >    reg:
+> >      maxItems: 1
+> > @@ -43,11 +51,20 @@ properties:
+> >        - const: rmii_ref
+> >        - const: hclk
+> >
+> > +  resets:
+> > +    items:
+> > +      - description: Converter register reset
+> > +      - description: Converter reset
+> > +
+> > +  reset-names:
+> > +    items:
+> > +      - const: rst
+> > +      - const: crst
+> > +
+> >    renesas,miic-switch-portin:
+> >      description: MII Switch PORTIN configuration. This value should us=
+e one of
+> >        the values defined in dt-bindings/net/pcs-rzn1-miic.h.
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> > -    enum: [1, 2]
+>
+> Why? Widest constraints should be here.
+>
+Ok, I will keep this as is and just adjust for RZ/T2H SoC.
+
+> >
+> >    power-domains:
+> >      maxItems: 1
+> > @@ -60,11 +77,11 @@ patternProperties:
+> >      properties:
+> >        reg:
+> >          description: MII Converter port number.
+> > -        enum: [1, 2, 3, 4, 5]
+>
+> Why?
+>
+If I keep this here and just adjust the below for RZ/T2H case I do get erro=
+rs:
+
+reg:
+  enum: [0, 1, 2, 3]
+
+
+arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: ethss@80110000
+(renesas,r9a09g077-miic): mii-conv@0:reg:0:0: 0 is not one of [1, 2,
+3, 4, 5]
+    from schema $id:
+http://devicetree.org/schemas/net/pcs/renesas,rzn1-miic.yaml#
+
+Any pointers on how to handle this case?
+
+> >
+> >        renesas,miic-input:
+> >          description: Converter input port configuration. This value sh=
+ould use
+> > -          one of the values defined in dt-bindings/net/pcs-rzn1-miic.h=
 .
-> > >>> Anyways, the coverletter contains more details about it.
-> > >>>
-> > >>> =22dt-bindings: phy: samsung,usb3-drd-phy: add ExynosAutov920 combo
-> > >>> ssphy
-> > >>>
-> > >>>   Add schema for combo ssphy found on this SoC.
-> > >>> =22
-> > >>>
-> > >>> Please confirm if this looks fine?
-> > >>> If so, will reflect the similar commit messages in patch 1 and 3.
-> > >>
-> > >> Please read my first comment again. I do not see how does this
-> > >> satisfy hardware explanation.
-> > >>
-> > > Just went through the conversation above, until what extent hardware
-> > > description need to be explain in the commit?
-> > > Do we have any guideline for the same?
-> > > Could you please help with an example from previous any commit or
-> > > some
-> > other patches?
-> > > I understand that mentioning, =E2=80=9Ctwo=20clocks,=20two=20supplies=
-=20etc=22=20are=0D=0A>=20>=20>=20part=20of=20schema,=20one=20may=20or=20may=
-=20not=20capture=20that=20in=20the=20commit.=0D=0A>=20>=20>=20However=20men=
-tioning,=20=E2=80=9Cthis=20hardware=20(SoC)=20contain=20a=20combo=20PHY=20w=
-hich=0D=0A>=20>=20supports=20usb3.1=20and=20usb3.0=22=20is=20not=20ok?=0D=
-=0A>=20>=0D=0A>=20>=0D=0A>=20>=20Maybe=20that's=20just=20language,=20but=20=
-to=20me=20the=20commit=20msg=20did=20not=20describe=0D=0A>=20>=20hardware=
-=20after=20first=20sentence,=20but=20said=20what=20schema=20requires=20(som=
-e=0D=0A>=20>=20clocks=20and=20supplies).=20Other=20examples:=0D=0A>=20>=200=
-0399bbe02d2bb6fd8d6eb90573ec305616449f4=0D=0A>=20>=20e4c9a7b475e5d0d9b2440e=
-e48f91d1364eabd6cb=0D=0A>=20>=0D=0A>=20=0D=0A>=20Thank=20you=20for=20the=20=
-pointers,=20will=20refer=20the=20examples=20and=20update=20the=20commit=0D=
-=0A>=20messages=20accordingly.=0D=0A=0D=0ACan=20you=20please=20confirm,=20i=
-f=20below=20message=20looks=20fine?=0D=0A=0D=0A=22=20=0D=0Adt-bindings:=20p=
-hy:=20samsung,usb3-drd-phy:=20add=20ExynosAutov920=20combo=20ssphy=0D=0A=0D=
-=0AThe=20USBDRD31=205nm=20controller=20consists=20of=20Synopsys=20USB20=20p=
-hy=20and=20=0D=0AUSB31=20SSP+=20combophy.=20Document=20support=20for=20the=
-=20USB31=20SSP+=20phy=20found=0D=0Aon=20combophy=20of=20the=20ExynosAutov92=
-0=20SoC.=0D=0A=22=0D=0A=0D=0A>=20=0D=0A>=20>=20and=20here=20another=20anti-=
-pattern:=0D=0A>=20>=2023f793850e9ee7390584c0809f085d6c88de7d3f=0D=0A>=20>=
-=0D=0A>=20>=20(and=20before=20you=20ask=20why=20above=20carries=20my=20Rb=
-=20tag,=20then=20note=20that=0D=0A>=20>=20Samsung's=20revenue=20is=20around=
-=20220=20billion=20USD,=20so=20for=20sure=20it=20has=20a=20lot,=0D=0A>=20>=
-=20really=20a=20lot=20of=20resources=20to=20review=20patches=20internally=
-=20and=20improve=0D=0A>=20>=20their=20quality=20before=20posting).=0D=0A>=
-=20>=0D=0A>=20>=20Best=20regards,=0D=0A>=20>=20Krzysztof=0D=0A>=20=0D=0A>=
-=20Thank=20you.=0D=0A>=20=0D=0A>=20Regards,=0D=0A>=20Pritam=0D=0A=0D=0AThan=
-k=20you.=20=0D=0A=0D=0ARegards,=0D=0APritam=0D=0A=0D=0A
+> > +          one of the values defined in dt-bindings/net/pcs-rzn1-miic.h=
+ for RZ/N1 SoC
+> > +          and include/dt-bindings/net/pcs-rzt2h-miic.h for RZ/{T2H, N2=
+H} SoCs.
+> >          $ref: /schemas/types.yaml#/definitions/uint32
+> >
+> >      required:
+> > @@ -73,47 +90,109 @@ patternProperties:
+> >
+> >      additionalProperties: false
+> >
+> > -    allOf:
+> > -      - if:
+> > -          properties:
+> > -            reg:
+> > -              const: 1
+> > -        then:
+> > -          properties:
+> > -            renesas,miic-input:
+> > -              const: 0
+> > -      - if:
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          contains:
+> > +            const: renesas,rzn1-miic
+> > +    then:
+> > +      properties:
+> > +        renesas,miic-switch-portin:
+> > +          enum: [1, 2]
+> > +      patternProperties:
+> > +        "^mii-conv@[0-5]$":
+> >            properties:
+> >              reg:
+> > -              const: 2
+> > -        then:
+> > -          properties:
+> > -            renesas,miic-input:
+> > -              enum: [1, 11]
+> > -      - if:
+> > -          properties:
+> > -            reg:
+> > -              const: 3
+> > -        then:
+> > -          properties:
+> > -            renesas,miic-input:
+> > -              enum: [7, 10]
+> > -      - if:
+> > +              enum: [1, 2, 3, 4, 5]
+> > +            resets: false
+> > +            reset-names: false
+> > +          allOf:
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 1
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    const: 0
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 2
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [1, 11]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 3
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [7, 10]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 4
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [4, 6, 9, 13]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 5
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [3, 5, 8, 12]
+> > +    else:
+> > +      properties:
+> > +        renesas,miic-switch-portin:
+> > +          const: 0
+> > +      required:
+> > +        - resets
+> > +        - reset-names
+> > +      patternProperties:
+> > +        "^mii-conv@[0-5]$":
+> >            properties:
+> >              reg:
+> > -              const: 4
+> > -        then:
+> > -          properties:
+> > -            renesas,miic-input:
+> > -              enum: [4, 6, 9, 13]
+> > -      - if:
+> > -          properties:
+> > -            reg:
+> > -              const: 5
+> > -        then:
+> > -          properties:
+> > -            renesas,miic-input:
+> > -              enum: [3, 5, 8, 12]
+> > +              enum: [0, 1, 2, 3]
+> > +          allOf:
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 0
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [0, 3, 6]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 1
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [1, 4, 7]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 2
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    enum: [2, 5, 8]
+> > +            - if:
+> > +                properties:
+> > +                  reg:
+> > +                    const: 3
+> > +              then:
+> > +                properties:
+> > +                  renesas,miic-input:
+> > +                    const: 1
+> >
+> >  required:
+> >    - '#address-cells'
+> > diff --git a/include/dt-bindings/net/pcs-rzt2h-miic.h b/include/dt-bind=
+ings/net/pcs-rzt2h-miic.h
+> > new file mode 100644
+> > index 000000000000..c1f35fc0f1cd
+> > --- /dev/null
+> > +++ b/include/dt-bindings/net/pcs-rzt2h-miic.h
+>
+> Missing vendor prefix. Filename based on compatible, unless this is not
+> for Renesas?
+>
+Agreed, I missed that I will add the vendor prefix and name it to
+`renesas,r9a09g077-pcs-miic.h`.
+
+Cheers,
+Prabhakar
 
