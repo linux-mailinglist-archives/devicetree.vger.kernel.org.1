@@ -1,121 +1,114 @@
-Return-Path: <devicetree+bounces-211697-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211696-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F899B401A0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:59:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF9B4B401BC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:01:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B7BED7A707B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:57:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B1B75E22E2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 736CB2DCF53;
-	Tue,  2 Sep 2025 12:56:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1FE252DC34E;
+	Tue,  2 Sep 2025 12:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="Jl3Ir6pn";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="cSY2/Zxw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E69632DC341;
-	Tue,  2 Sep 2025 12:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F2952DC341;
+	Tue,  2 Sep 2025 12:56:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756817787; cv=none; b=dkxVy2BoDa8SVq0RAOkmW3M79y1DD2IkP3qMsQhI88V/MVmnsBvAk2ioSdMCI+iCzdBCpBA1CYIZE/w8F2RoasoXiopUCJy+nfPA+L+by20s+mzzC27ydn8DuCkhx+Sx/G+8MtNlrF/PUBsFwJHId+dMfqdxCq32xicJhdCUOWk=
+	t=1756817779; cv=none; b=Ri4zvouNwaA0bH7HLjXpgyD+qu3o03F0BNs7G8AojqWtV4GacGSUeZkHvzOOspVqZReyTkItwxKXauOWfNaI0M/8Nb/TPGg441/fcQ66hCFAAJ4270jfM6FvvcieeLbD+aBBMyo3PnIfyOvSxn4+7/8Vjc40J2g11vhKfn8uUMs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756817787; c=relaxed/simple;
-	bh=zGRm1e38+MeEY4LTBUqYwnefUDpCHsdS90DbkrgN4W8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aJZu3HTtkC+MWVmUEg9M6CgICVTyWA5iKS6B9nfP9BXl+0ggqVyFYrTUXDUKKp+AW6OqsK0YwFpfVC/oAJG20a7snpUgCX/uWOaZMoaCu3VP/nj0eSLX3BmKhc7C0QZtlUCv1qacAI8XrHiqdJFSuAkHRZC429rh51YpGgFazpg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.104] (unknown [114.241.87.235])
-	by APP-05 (Coremail) with SMTP id zQCowAAnf19E6bZoJf+7EA--.3611S2;
-	Tue, 02 Sep 2025 20:55:32 +0800 (CST)
-Message-ID: <680534b4-27e7-4506-885a-1c3dc9d12b8b@iscas.ac.cn>
-Date: Tue, 2 Sep 2025 20:55:32 +0800
+	s=arc-20240116; t=1756817779; c=relaxed/simple;
+	bh=Z6vo3zFV1WLx2GO09f0w8l1Sx+D0tzXBaDo5dcw0fhY=;
+	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=BefTZ2sk+KLEUL1Fg/hHyNIf5hQglG/oNUN2iayVepncTWXAYcXos0mMHV3r36sxWFZVSN+hzAGp9hbnn2/lgoryGFMr8ZUnpSGrOg/J6UyAYTwFUYzly0OpdpRz5+sBAmv/Hu+gcNWyoBB7wyriQO8QBLXHToKRQARmWzsf3WQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=Jl3Ir6pn; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=cSY2/Zxw; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1756817773;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fqaO+SeV+juuMOmuDP+CCM9/ezm8a+cuzkEOZBsIzaY=;
+	b=Jl3Ir6pnSxJZNrlzEafpDbybEzAsScYMj2qFx4iAZKmr8ZcHniinwHLqQDkswxZdZVwrkH
+	5TJRXTmcz57EvPHj07PBTrvCJaCEGuftAp+3rgQ14QaoTSXSxu2pyf09OnP9PC7+LX4MbZ
+	pQwN9gposebgqqLa4aLFRNqXgYFOdRtp+CKIn30FTYyvvsgQq6NUwVdqkgqYE+m4/8Rmu1
+	iihZDcz5qzDmpdQgKJMCMh9pVlcg9XvBKwujlRU3ep7YCsASiKAChlRfP3sWpCnFoGkof0
+	ZtDCtMl5DH4mL9cvIsD3CD7GndYOqN9OBv0vEvmDqSizBOTr4ViVXZ3rzoqu4A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1756817773;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=fqaO+SeV+juuMOmuDP+CCM9/ezm8a+cuzkEOZBsIzaY=;
+	b=cSY2/ZxwSkTcM3n6h5dg0DWREVEm4aceh5FyNagu4bT+lojglO0U9ENF3AeFej8rv30yCv
+	HhNHiyDBYRxVUcBg==
+To: Ryan Chen <ryan_chen@aspeedtech.com>, ryan_chen
+ <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
+ Jeffery <andrew@codeconstruct.com.au>, Lee Jones <lee@kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/4] irqchip/aspeed-scu-ic: Refactor driver to
+ support variant-based initialization
+In-Reply-To: <20250831021438.976893-2-ryan_chen@aspeedtech.com>
+References: <20250831021438.976893-1-ryan_chen@aspeedtech.com>
+ <20250831021438.976893-2-ryan_chen@aspeedtech.com>
+Date: Tue, 02 Sep 2025 14:56:12 +0200
+Message-ID: <871pop2etv.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] riscv: dts: spacemit: uart: remove sec_uart1 device
- node
-To: Yixun Lan <dlan@gentoo.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alex Elder <elder@riscstar.com>, devicetree@vger.kernel.org,
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
- linux-kernel@vger.kernel.org
-References: <20250902-02-k1-uart-clock-v2-1-f146918d44f6@gentoo.org>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250902-02-k1-uart-clock-v2-1-f146918d44f6@gentoo.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-CM-TRANSID:zQCowAAnf19E6bZoJf+7EA--.3611S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw1rKFWUGFyfGw1DGry8Zrb_yoW8GF18pa
-	y7urZ3ArWfAF109FsrXw12krWrtrZYgFyS9F1UCr15GanIqayxKrZ3tr18ZF18Zwn5Aw1j
-	gws5Xwn7WF4Yy3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvqb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r4j6ryUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4
-	A2jsIEc7CjxVAFwI0_GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IE
-	w4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMc
-	vjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrwACI402YVCY1x02628vn2kIc2xKxwCY
-	1x0262kKe7AKxVWUtVW8ZwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
-	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
-	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCI42IY6xIIjx
-	v20xvEc7CjxVAFwI0_Gr0_Cr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2
-	jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07betCcUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+Content-Type: text/plain
 
+On Sun, Aug 31 2025 at 10:14, Ryan Chen wrote:
+>  	scu_ic->irq_domain = irq_domain_create_linear(of_fwnode_handle(node), scu_ic->num_irqs,
+> -						   &aspeed_scu_ic_domain_ops,
+> -						   scu_ic);
+> +						      &aspeed_scu_ic_domain_ops,
+> +						      scu_ic);
 
-On 9/2/25 20:26, Yixun Lan wrote:
-> [...]
->
-> diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> index abde8bb07c95c5a745736a2dd6f0c0e0d7c696e4..3094f75ed13badfc3db333be2b3195c61f57fddf 100644
-> --- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-> +++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-> @@ -777,16 +777,7 @@ uart9: serial@d4017800 {
->  				status = "disabled";
->  			};
->  
-> -			sec_uart1: serial@f0612000 {
-> -				compatible = "spacemit,k1-uart",
-> -					     "intel,xscale-uart";
-> -				reg = <0x0 0xf0612000 0x0 0x100>;
-> -				interrupts = <43>;
-> -				clock-frequency = <14857000>;
-> -				reg-shift = <2>;
-> -				reg-io-width = <4>;
-> -				status = "reserved"; /* for TEE usage */
-> -			};
-> +			/* sec_uart1: 0xf0612000, not available from Linux */
+Please move scu_ic to the previous line.
 
-I know this is going back and forth a lot but I don't think that's a
-good description of what's going on.
+> +aspeed_scu_ic_find_variant(struct device_node *np)
+>  {
+> -	struct aspeed_scu_ic *scu_ic = kzalloc(sizeof(*scu_ic), GFP_KERNEL);
+> -
+> -	if (!scu_ic)
+> -		return -ENOMEM;
+> +	for (int i = 0; i < ARRAY_SIZE(scu_ic_variants); i++)
+> +		if (of_device_is_compatible(np, scu_ic_variants[i].compatible))
+> +			return &scu_ic_variants[i];
 
-My preference is that we just drop this node altogether, just forgetting
-that this thing even exists. But if you do think we want to keep the
-information we can drop the clock-frequency property too and change its
-status to something like:
+the for loop wants curly brackets.
 
-  status = "disabled"; /* No clock defined */
+https://www.kernel.org/doc/html/latest/process/maintainer-tip.html#bracket-rules
 
-Which also silences the warning - disabled nodes are allowed to be
-incomplete.
+> +	scu_ic->irq_enable    = variant->irq_enable;
+> +	scu_ic->irq_shift     = variant->irq_shift;
+> +	scu_ic->num_irqs      = variant->num_irqs;
 
-My personal opinion is that I think sec_uart1 and TEE support feels too
-theoretical to be worth caring about.
+Please use a TAB not spaces when you want to align things.
 
-Vivian "dramforever" Wang
+> +IRQCHIP_DECLARE(ast2600_scu_ic0, "aspeed,ast2600-scu-ic0", aspeed_scu_ic_of_init);
+> +IRQCHIP_DECLARE(ast2600_scu_ic1, "aspeed,ast2600-scu-ic1",     aspeed_scu_ic_of_init);
 
+Stray TAB in the last line.
+
+Thanks,
+
+        tglx
 
