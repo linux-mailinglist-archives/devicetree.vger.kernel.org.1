@@ -1,88 +1,55 @@
-Return-Path: <devicetree+bounces-211631-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211632-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3780DB3FBDF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:09:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 490F8B3FBFC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:15:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A42441B238BC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:09:59 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0609E3B4D7B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1542EE285;
-	Tue,  2 Sep 2025 10:09:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDE422ED870;
+	Tue,  2 Sep 2025 10:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QW0YY59M"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="HsTeJJPy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C16BE2EDD5E
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 10:09:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF0C72F068A;
+	Tue,  2 Sep 2025 10:15:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756807774; cv=none; b=mZId+uWTEBKFEi5wi+IlUn3r8fAc1rfsLsQYZ2WfC5KTp3gR/3rMhGmp9t/YH7YZNTvBOqIrc/fJ8riXJvwHXzep2XYnJL9p4F3arla/HFRgtlgGrIyOFLgp6GZty385ebDWcqg6pMboZ/zfWGzb5ZxQoqYjXEaM6SQKwfqjzW4=
+	t=1756808106; cv=none; b=pyQjl7bBBWiFmUgyJNQrMhS0sdvEOJ2lgHuv4R75pRdLIby6vJHe8dSUOu52IIZQojCUUsRA3AA/UySspCoFSy6+Ggi7qxk5KgJ8TQ9+kg0DeeP/GtFOowqN7TL2euAoFSvSO0DQpZeRMou2KCifOp57w7RcrGXpxwSdbmWFCKo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756807774; c=relaxed/simple;
-	bh=b+TPO5OmJGoIMPSdqhX4QRi4q/5WRHyAuGDpETkivbo=;
+	s=arc-20240116; t=1756808106; c=relaxed/simple;
+	bh=7r0uYfWtBElvzR2QYMpdph3AQUnSm2BAWZWbcWhwkgI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N9wEHw5EL7ThpzBNma7fimqq/yqDUwmkfJLkUJ7rcHpND81HhwaOnZ0Kx0O/xdbzCr3n2tTP0X+KW4v3kenoAKsPh9NtMx9rjxM+QsPQrbU183I0xw53huu2r1P22j6hzSBQonrRdBgb6b6TqpC6mFTriYwx0QWtC9506RTmCiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QW0YY59M; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5822S54Q013610
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 10:09:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	41pmmilN2PV7+r6cQZTS/Msx4vD68teokH8zgt8wVw4=; b=QW0YY59MVJbruiui
-	3P9FMwfBtNsmtyt3wEpCdhMXSvS14RiBvg5HU8Ri1fqpHdV3hL1BKmokHZZLdwop
-	VWhI0FNW4loJ5bILZe5WJAS+bqa3J8tpKwOSVbUXIAT3RXwkdF3GRDliQTL5B4di
-	Xky3d7ZhA4XtRAqON/oPQ3UTd2mJantZJIpchYvBLKWaqsgA96lzGiRBukMBeobD
-	UoDttxSN3QZ6WV/uluYfcU0G7yyBjakAPBhKTWMQMZATNToj5McA3PC2zlOP4DBr
-	lhtiTKA7DaUg6YFLBdX6utpx+E48Sy30o4wMPhWIzdlpAYz0KpeNDQRuJfIgPbv2
-	67/h0Q==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uq0efj4p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 10:09:31 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b32dfb5c6fso10682751cf.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 03:09:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756807770; x=1757412570;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=41pmmilN2PV7+r6cQZTS/Msx4vD68teokH8zgt8wVw4=;
-        b=LB0z0jwcVim6Yzn58NYPe17acPnPKUvZYmi8hseweCbg7/iZS0qrOi5mu+4uoAxYRT
-         FVwKdr9F2A3xdizPn+K1HXB3Zn72zctcXAk1pStLtloLcWhzZAIDuDCelT9ISCXWJHXg
-         FpEOG30CES5fZz0Q611IWeCuCpWPwUuN2MN2bXmcqlL2XRwHknHYjWIsv52iyfD9h4x1
-         5F0YszUkdUuIo+Dx/kYWb6SQhh2U0Qa3R2LpojXjzgBanzCgF3dhrjss8kKGvs75diRr
-         SIUNzHdAInslkbHwm6Jgah/Cc3A6Z9y5/nh3krwedLCBGRWeZAtiKXFJgAyqrmMYyYnU
-         V7Bw==
-X-Forwarded-Encrypted: i=1; AJvYcCUQA9PB7mWu+rkF3p1dOSeSGw86hC8btMUMzjjaOLdf2kjV4H0u5Jj4V9jby9x6tMnZhVuhTnLGqbQ+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxeH7IDljjKciVgiTH4T7ZJeRcdGRsMjM1GxkKE9stsutMmG4Nk
-	IBQ3xwC6wBaO5TZeSgxT4fNx0ZzgQWZSAiuxyaPze5ffXffx0O7fhRHiuaPW5MTXXswv/erXo4y
-	EIQdct7W2URwdJQ2fNqpOw32AhwUID7CwNCSfwtOTdljjeQuKN6nb1Dw96fVCKDfj
-X-Gm-Gg: ASbGncuR6EqioKCmrbCVMWxbwid3g4gBF8BGA6LZ9+wjOkrkPy77HxWNBQm9rXQ0MC0
-	9Qllo5GgTaKtdnxQhY05X/D7/PI+oUOQn2BJbqS43e+ax5KJaeeZyUv5AM9XTBtW3063zt11iIb
-	FCLeHc5UJtfhNJP5oxsp/AZfmeTO3QJiZf28dVLNl/2g5+ZQzz1w0b68gPp9F10cA1evFEmWApG
-	TlkxgPxguPItYftEf11MZ5GUuZNq2hcTCSCfTGGtKcj4U2k/k7MYxk/raOWXyGy1NOwBYUgsNba
-	pAtM69w6lSlxTq9/xa/HTTF8ML/2RnoJoNszpk8A9YLhx7KGTi057B2cG6b93jfL/bOmvO7Aoo8
-	XEUhOVksobEGUhpd+Vvmcsg==
-X-Received: by 2002:a05:622a:f:b0:4b3:d28:c94 with SMTP id d75a77b69052e-4b313f91b70mr104592141cf.12.1756807770411;
-        Tue, 02 Sep 2025 03:09:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG62naAHegsU8yObAUYcVswhyEJm1MXgvdqmgJY8Nsg/BHuM4ig7uhBtizCPYrmE6bZFkxhCQ==
-X-Received: by 2002:a05:622a:f:b0:4b3:d28:c94 with SMTP id d75a77b69052e-4b313f91b70mr104592021cf.12.1756807769913;
-        Tue, 02 Sep 2025 03:09:29 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0416e878a2sm623402966b.95.2025.09.02.03.09.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 03:09:29 -0700 (PDT)
-Message-ID: <d13d416d-507c-4f74-91f5-38447ac39599@oss.qualcomm.com>
-Date: Tue, 2 Sep 2025 12:09:26 +0200
+	 In-Reply-To:Content-Type; b=hneB2WyV9K3DsbvF7bExXVdvgm/FJ1BJXWZqA+kLApJA1/lII10/MNPj4ttuGPWjw6lecjH3YX24an5DISLuelJcldA8H2ttnMkEl64ULGgRx9HsBrE9c2AnPXbLGGewRDT3tjYsgnc/78yodMdKyY9Xdb1LDV31XhEhuy1xvI0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=HsTeJJPy; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756808101;
+	bh=7r0uYfWtBElvzR2QYMpdph3AQUnSm2BAWZWbcWhwkgI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=HsTeJJPy8nskxOEnWjhWT23hBDAhRZZC8BBmLa9+pYVZHN/1ephldEEputMinatHc
+	 8rhjPY/35EFw8KdZww8/CmeWOnDrqoELM4vGKhw0n2+fOwRZnteOQS9b86OEYVSKPh
+	 M78G/SargYwFcz8nzA9RJ8OY9FN4DF2bRez1O5t4QsM9/lCXuiyQNUXgu5gGJA8PC0
+	 7REujSKJS1o6pu7ugGg32yi3a6MqTYaNf8CnhVgAJYOwjeTA1hJjm9g1QcFYbw8c4Y
+	 Hi4xdn2xFl1kfA2MWOPOacriYYoMb/TPJyDY2rOU3zFnGRvXVQFP0fgfGUibMhk5nD
+	 gNO1gS409ySuA==
+Received: from [IPV6:2a05:1141:1fb:db00:ba27:6983:e3a5:2a47] (unknown [IPv6:2a05:1141:1fb:db00:ba27:6983:e3a5:2a47])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: mriesch)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 251BD17E0456;
+	Tue,  2 Sep 2025 12:15:00 +0200 (CEST)
+Message-ID: <b0cad1e8-8b02-4039-b1d2-b9056fd51318@collabora.com>
+Date: Tue, 2 Sep 2025 12:14:57 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,99 +57,109 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 3/3] arm64: dts: qcom: Add base HAMOA-IOT-EVK board
-To: Yingying Tang <quic_yintang@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Yijie Yang <yijie.yang@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Yingying Tang <yintang@qti.qualcomm.com>,
-        miaoqing.pan@oss.qualcomm.com,
-        "stone Zhang (Stone)" <stonez@qti.qualcomm.com>,
-        zhichen@qti.qualcomm.com
-References: <20250828-hamoa_initial-v8-0-c9d173072a5c@oss.qualcomm.com>
- <20250828-hamoa_initial-v8-3-c9d173072a5c@oss.qualcomm.com>
- <qgirqibqvsld7n2ac4cvuvtqknhqkq535jkxnxjjqvss5wpm36@i3mbp7qgqxju>
- <1600b292-df57-4328-baa6-db6467e00096@quicinc.com>
- <wxnyux7a5raz5ltz7hpd5dp5euuwwjts2qvhvr4ksdgoye6pm5@2jxthgfwgpuf>
- <23d10901-6b8a-41fb-8cb2-e8e361093561@quicinc.com>
+Subject: Re: [PATCH v3 3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add
+ rk3588 variant
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Kever Yang <kever.yang@rock-chips.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Sebastian Reichel <sebastian.reichel@collabora.com>,
+ Diederik de Haas <didi.debian@cknow.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Collabora Kernel Team <kernel@collabora.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
+ <20250616-rk3588-csi-dphy-v3-3-a5ccd5f1f438@collabora.com>
+ <20250902-piquant-secret-moose-06c4b6@kuoka>
 Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <23d10901-6b8a-41fb-8cb2-e8e361093561@quicinc.com>
+From: Michael Riesch <michael.riesch@collabora.com>
+In-Reply-To: <20250902-piquant-secret-moose-06c4b6@kuoka>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: 2wueMYpeVSSbCp4OlsnHorPv1kyRhTpK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwNCBTYWx0ZWRfX5fUcgcu8jN7f
- rVJbo8JMAftfS5U79kYnjXHtpg591Z2deNpzSWTlZzUbTTW+nz1kpoWU5cOroo4zh7r55SnojVp
- 1eDELAeqVhfYeI9zAXZ64Egphk/TolszSgBPzdUtlw2r3wsO74KqWF2GI02vGRrnDgIeL64DuWk
- F13QOUBLxc9B1iUTlQMl8R14c37CfGjP0mIFNhYLaWQMr/uhGgOtPXNqsGli58bwPBp79rKy6qq
- wd31PUpCnFlXzbqbr1dF9BP4Jz/H+B9QmDWdRnREvEfCcQR6X8dfHdOh1Hg1IfDOrDvoVX4dgMa
- HiSpOkUy1+NyuhmwZknArcJPC8NSCSLibe8HdrXtFpVM5ehML+B9E+U2gRSxG4ULw3EXHN+it6K
- Yl3KVEA8
-X-Proofpoint-ORIG-GUID: 2wueMYpeVSSbCp4OlsnHorPv1kyRhTpK
-X-Authority-Analysis: v=2.4 cv=ea09f6EH c=1 sm=1 tr=0 ts=68b6c25b cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=RSXL5CDgIuVycp1vnC8A:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 clxscore=1015 malwarescore=0 phishscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300004
 
-On 9/2/25 8:56 AM, Yingying Tang wrote:
-> 
-> 
-> On 9/2/2025 10:37 AM, Dmitry Baryshkov wrote:
->> On Mon, Sep 01, 2025 at 11:02:24AM +0800, Yingying Tang wrote:
->>>
->>>
->>> On 8/28/2025 7:18 PM, Dmitry Baryshkov wrote:
->>>> On Thu, Aug 28, 2025 at 12:48:47PM +0800, Yijie Yang wrote:
->>>>> The HAMOA-IOT-EVK is an evaluation platform for IoT products, composed of
->>>>> the Hamoa IoT SoM and a carrier board. Together, they form a complete
->>>>> embedded system capable of booting to UART.
+Hi Krzysztof,
 
-[...]
+Thanks for your comments.
 
->>>>> +	wcn7850-pmu {
->>>>> +		compatible = "qcom,wcn7850-pmu";
->>>>> +
->>>>> +		vdd-supply = <&vreg_wcn_0p95>;
->>>>> +		vddio-supply = <&vreg_l15b_1p8>;
->>>>> +		vddaon-supply = <&vreg_wcn_0p95>;
->>>>> +		vdddig-supply = <&vreg_wcn_0p95>;
->>>>> +		vddrfa1p2-supply = <&vreg_wcn_1p9>;
->>>>> +		vddrfa1p8-supply = <&vreg_wcn_1p9>;
->>>>> +
->>>>> +		bt-enable-gpios = <&tlmm 116 GPIO_ACTIVE_HIGH>;
->>>>
->>>> Okay, so how is WiFi controlled? Is there a GPIO? The DT should be
->>>> describing the hardware, not the UEFI behaviour.
->>>>
->>> Hi Dmitry, as I described in previous mail, On hamoa platfrom whole wifi module's power supply and enable gpio are voted in UEFI.
->>> Hamoa is PC platform, so BIOS/UEFI behavior is compatible with Windows/ACPI architecture. UEFI is responsible for enabling power supply 
->>> for all devices which may be used in boot phase (such as WLAN may be used to boot from network).
+On 9/2/25 09:55, Krzysztof Kozlowski wrote:
+> On Mon, Sep 01, 2025 at 10:47:44PM +0200, Michael Riesch wrote:
+>> The Rockchip RK3588 variant of the CSI-2 DPHY features two reset lines.
+>> Add the variant and allow for the additional reset.
 >>
->> This is not completely relevant. You are describing driver / Linux /
->> bootloader behaviour. I asked if there is a GPIO in the hardware. If
->> there is one, please add it here.
+>> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+>> ---
+>>  .../bindings/phy/rockchip-inno-csi-dphy.yaml       | 50 +++++++++++++++++++++-
+>>  1 file changed, 49 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> index 9ad72518e6da..e37c9fd74788 100644
+>> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
+>> @@ -21,6 +21,7 @@ properties:
+>>        - rockchip,rk3326-csi-dphy
+>>        - rockchip,rk3368-csi-dphy
+>>        - rockchip,rk3568-csi-dphy
+>> +      - rockchip,rk3588-csi-dphy
+>>  
+>>    reg:
+>>      maxItems: 1
+>> @@ -40,11 +41,15 @@ properties:
+>>  
+>>    resets:
+>>      items:
+>> -      - description: exclusive PHY reset line
+>> +      - description: APB reset line
+>> +      - description: PHY reset line
 > 
-> Hi Dimitry,
+> That's changing the order, before first was the phy....
+
+See reset-names below...
+
 > 
-> During the UEFI boot phase, the WLAN enable GPIO has already been asserted, and the WLAN chip is functioning normally. 
-> If we include this GPIO in the kernel device tree, when the kernel configures this GPIO, its voltage level may experience a brief glitch, which could cause the WLAN chip to reset and result in a PCIe link down.
+>> +    minItems: 1
+>>  
+>>    reset-names:
+>>      items:
+>>        - const: apb
+>> +      - const: phy
+> 
+> Although here first was apb? Quite confusing.
 
-The WCN pwrseq code handles this already, please simply describe the
-hardware like the platform firmware description which you're creating
-is supposed to
+Confusing indeed. IMHO the description "exclusive PHY reset line" is
+misleading. In the existing device trees there are hints that this is an
+APB related reset. These are only hints, of course, but they are the
+best info we have.
 
-Konrad
+I can add a remark that we are fixing the misleading description while
+at it.
+
+> 
+> Anyway "phy" reset for "phy" is pretty non-informative, please give some
+> useful name.
+
+As far as the additional reset is concerned, I do not have any info at
+all what it is related to. Therefore, it is hard to give a useful name.
+Also, to be frank, I have no intention to haggle around with Rockchip
+support to find out a more meaningful name (I tried to do that in the
+past, only to find that the time spent on that is almost definitely wasted).
+
+Similar PHY blocks are using "phy" or "pipe" or simply "reset" as names,
+so I went for that.
+
+Any suggestions are warmly welcome. "aux"? "reset2"? ...?
+
+Best regards,
+Michael
+
+> 
+>> +    minItems: 1
+> 
+> Best regards,
+> Krzysztof
+> 
+
 
