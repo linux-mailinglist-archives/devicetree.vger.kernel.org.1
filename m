@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-211713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53D0AB40281
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61A7AB40283
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:18:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C0EDC1B24447
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:18:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 60A811B24547
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:18:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E97093054C1;
-	Tue,  2 Sep 2025 13:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B4D2F9C3D;
+	Tue,  2 Sep 2025 13:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eu4/Nfok"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ov/uQ46s"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C35BB304BCE;
-	Tue,  2 Sep 2025 13:17:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751972E1F1C;
+	Tue,  2 Sep 2025 13:17:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756819069; cv=none; b=UKvjeEYNWvZUFaYHWSRyrjXB3jnZgfR6js94GUoB/Dx25bPiGnOnqZdxAKtccyZ5yzyyi0Ohz8weAruSO6l8EsbOC8bURGCC/LGEG2PUv+pfGmRgKWHD4Phx8F63yLcYKV1j1HIrQYb9vcrJo90lMhT+YODFnJw8R/JVZDN8HYw=
+	t=1756819072; cv=none; b=sm4/ml5rb8dCnP+GSSAx8NRDc/I006N7rR3+O8u+k2jJD0699kGlyL1hiA9eohucFauJP7jhcrHDxC9qmJLms0BzKCdg5+7XByQ2KUbe+J6XcCHKvoKc9J4+qTACGAQqJA1mU3kVLFem6+dZqbIqRpQMSryDMw0iAPPGhKyw8s4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756819069; c=relaxed/simple;
-	bh=0sg61u0uyVCS9xwuRcskyxRu04POcVBwSj8TjqSmI18=;
+	s=arc-20240116; t=1756819072; c=relaxed/simple;
+	bh=0xocXOa6y0rnRdA2Z5T9f2V5CZOoroCxOVuasw3Mk80=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=TrrxWWs1Vfrd/qzSOwmLO4ftL8DRG0rf5/+7dssOApmNZ/io/S75QuLFQyS+0uk6k/7iaC0muXn5ZcH3btvh4i87EniQVqdUeMQ9AD2yo7OlOoiQcXhASEzPBA2bXRU8pgWaZk0iYK1QPaRztkXFFrFTd4zYt8AnnHeULe/rk/U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eu4/Nfok; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67A10C4CEED;
-	Tue,  2 Sep 2025 13:17:47 +0000 (UTC)
+	 Message-Id:Subject; b=DJcTsq6YJDC3yuw8yFhFGy4NDATSg4nWsmX4ZRbHXfQDu2rgPdaobbUot+bWkAoul5wi40nobGUV32m1EIDJNhbGQIOSlqp2peG1vJT71ousOVefk+B7v++gq7RUM4A+eWnNochkCbCwjeePEjy38JYgeBVdP/zHIRK4a70Fbcs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ov/uQ46s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D28A0C4CEED;
+	Tue,  2 Sep 2025 13:17:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756819069;
-	bh=0sg61u0uyVCS9xwuRcskyxRu04POcVBwSj8TjqSmI18=;
+	s=k20201202; t=1756819072;
+	bh=0xocXOa6y0rnRdA2Z5T9f2V5CZOoroCxOVuasw3Mk80=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=eu4/NfokIPmUj2uB7t4VprquBt3vjrI0wae9I2ZQI00SsPUHBHNz23cJsd0bymBFg
-	 hHyCjj3Iva60E7AS7VjfjTK/8D9TU3vppQW57Q+G7m7jV0Wr+ulPFSIIxBq6fP0MbI
-	 +lq80DgsjmX/dAunD8spzyeeQo7QrNwbmR3AveXNoGGu9zUcXNDWGlolblVSRLB7sm
-	 utNLlEkOw0iUvc6iSmjT5QIua4HmgZ/U0jDhZrA2SzqzLYMpTd43xHfqMllDbtPO7Z
-	 jNTpQZY8hNwsAg1Do4c/ek+IL4eH1ekBhIJk5QK2moeb8MuIY0kuugqw3oH4ESKNCp
-	 qXKjsVA+1ch1w==
-Date: Tue, 02 Sep 2025 08:17:45 -0500
+	b=ov/uQ46s6uLHRT28cJtvqU4C1PYT6pAHKmdPbhEkLxQlRXtMtWdx3n/NT86WxYUNQ
+	 /QemBJckw/cd0Kl7IM9F6QuvSHXE1xkDjxkNDX1RU6bzAnw8GvZJBFagAMj7t9RJ9M
+	 5irkdLBSAGWfn56K8XDFA+9HD217jMMXhBD2QmxEd7NxHslC4kVXBuMX3tbaYS1okJ
+	 c5IpMkelGqNn2SlB3WCRqMLWKbBNSHiG+m//O67IJcgJWMMILEBtsIIEfO04POm8Ps
+	 fsbG2OdRJEAMGPNcPbHwfNMVJuRY6k0ECarHwiOlaL1DmrRVkHAeqE5HfoW+7mKXhC
+	 YZCNwUpN9YqYw==
+Date: Tue, 02 Sep 2025 08:17:49 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,58 +51,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: heiko@sntech.de, linux-clk@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- andy.yan@rock-chips.com, linux-rockchip@lists.infradead.org, 
- hjc@rock-chips.com
-To: WeiHao Li <cn.liweihao@gmail.com>
-In-Reply-To: <20250831104855.45883-1-cn.liweihao@gmail.com>
-References: <20250831104855.45883-1-cn.liweihao@gmail.com>
-Message-Id: <175678730903.877861.3501490977293619593.robh@kernel.org>
-Subject: Re: [PATCH v1 0/7] drm/rockchip: Add MIPI DSI support for RK3368
+Cc: Albert Ou <aou@eecs.berkeley.edu>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, linux-riscv@lists.infradead.org, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, devicetree@vger.kernel.org, 
+ Chen-Yu Tsai <wens@csie.org>, linux-sunxi@lists.linux.dev, 
+ Maxime Ripard <mripard@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, Alexandre Ghiti <alex@ghiti.fr>, 
+ Samuel Holland <samuel@sholland.org>
+To: Lukas Schmid <lukas.schmid@netcube.li>
+In-Reply-To: <20250831162536.2380589-1-lukas.schmid@netcube.li>
+References: <20250831162536.2380589-1-lukas.schmid@netcube.li>
+Message-Id: <175678730955.877897.3145791714848835564.robh@kernel.org>
+Subject: Re: [PATCH v8 0/5] Add support for NetCube Systems Nagami SoM and
+ its carrier boards
 
 
-On Sun, 31 Aug 2025 18:48:48 +0800, WeiHao Li wrote:
-> This series adds MIPI DSI support for the Rockchip RK3368 SoC, enabling
-> native display connectivity through the MIPI DSI host controller and
-> PHY. The changes span multiple subsystems, including clock control,
-> DRM/VOP integration, DSI controller binding, and PHY driver updates.
+On Sun, 31 Aug 2025 18:25:29 +0200, Lukas Schmid wrote:
+> This series adds support for the NetCube Systems Nagami SoM and its
+> associated carrier boards, the Nagami Basic Carrier and the Nagami Keypad
+> Carrier.
 > 
-> Key changes:
->   - Update the Rockchip MIPI DSI PHY driver to preperly handle RK3368
->     phy initialization.
->   - Add missing lut_size of vop_data for RK3368.
->   - Add missing clock ID SCLK_MIPIDSI_24M to the RK3368 CRU driver,
->     which is required for enabling the 24MHz reference clock.
->   - Add MIPI DSI node to rk3368.dtsi with correct clocks, resets,
->     and register mappings.
+> Changes in v8:
+>   - Use a gpio-mux instead of the gpio-hog for the USB0_SEC_EN signal
+>   - Fix the dt-schema issues
 > 
-> These changes were tested on a RK3368-based board with a MIPI DSI
-> panel [1]. The display boots successfully with console output.
+> Changes in v7:
+>   - Fix the gpio numbering for the USB_SEC_EN gpio hog
+>   - Fix the gpio-line-names for the keypad carrier
 > 
-> [1] https://ieiao.github.io/wiki/embedded-dev/rockchip/rk3368
+> Changes in v6:
+>   - Add 'usb0-enable-hog' to the som to enable the USB-OTG port by default
+>   - Update the keypad carrier dts to match actual board revision
 > 
-> Tested-by: WeiHao Li <cn.liweihao@gmail.com>
-> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
+> Changes in v5:
+>   - Re-add the non-removable property to the ESP32 interface
+>   - Add the mmc-pwrseq node for the ESP32 to initialize the ESP32 correctly
+>   - Remove the unused ehci0 and ohci0 nodes from the Keypad Carrier since
+>     USB port is peripheral only
 > 
-> WeiHao Li (7):
->   drm/rockchip: dsi: Add support for RK3368
->   drm/rockchip: vop: add lut_size for RK3368 vop_data
->   dt-bindings: clock: rk3368: Add SCLK_MIPIDSI_24M
->   clk: rockchip: use clock ids for SCLK_MIPIDSI_24M on rk3368
->   ARM: dts: rockchip: Add display subsystem for RK3368
->   ARM: dts: rockchip: Add D-PHY for RK3368
->   ARM: dts: rockchip: Add DSI for RK3368
+> Changes in v4:
+>   - Disable the default interfaces on the card-edge but keep the pinctrl
+>     definitions for them
+>   - Split the pinctrl definitions for the SPI interface into the basic spi
+>     pins and the hold/wp pins
+>   - Move some mmc0 properties to the Basic Carrier dts
+>   - Remove non-removable property from the ESP32 interface
+>   - Fix typo in the keypad matrix definition
 > 
->  arch/arm64/boot/dts/rockchip/rk3368.dtsi      | 79 +++++++++++++++++++
->  drivers/clk/rockchip/clk-rk3368.c             |  2 +-
->  .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   | 20 +++++
->  drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |  1 +
->  include/dt-bindings/clock/rk3368-cru.h        |  1 +
->  5 files changed, 102 insertions(+), 1 deletion(-)
+> Changes in v3:
+>   - Add missing dcxo node to the SoM dtsi
+>   - Rename the multi-led node
+>   - Change dr_mode to "peripheral" for the Keypad Carrier
+> 
+> Changes in v2:
+>  - Squash the binding patches into one patch
+>  - Fix formatting of the phy node in the SoM dtsi
+>  - Add description on where the phy is located in the SoM dtsi
+>  - Fix the phy address in the SoM dtsi
+>  - Move the carrier bindings into the same description as enums
+> 
+> Signed-off-by: Lukas Schmid <lukas.schmid@netcube.li>
+> ---
+> Lukas Schmid (5):
+>   dt-bindings: arm: sunxi: Add NetCube Systems Nagami SoM and carrier
+>     board bindings
+>   riscv: dts: allwinner: d1s-t113: Add pinctrl's required by NetCube
+>     Systems Nagami SoM
+>   ARM: dts: sunxi: add support for NetCube Systems Nagami SoM
+>   ARM: dts: sunxi: add support for NetCube Systems Nagami Basic Carrier
+>   ARM: dts: sunxi: add support for NetCube Systems Nagami Keypad Carrier
+> 
+>  .../devicetree/bindings/arm/sunxi.yaml        |   8 +
+>  arch/arm/boot/dts/allwinner/Makefile          |   3 +
+>  ...n8i-t113s-netcube-nagami-basic-carrier.dts |  67 +++++
+>  ...8i-t113s-netcube-nagami-keypad-carrier.dts | 129 +++++++++
+>  .../allwinner/sun8i-t113s-netcube-nagami.dtsi | 250 ++++++++++++++++++
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  48 ++++
+>  6 files changed, 505 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-basic-carrier.dts
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dts
+>  create mode 100644 arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami.dtsi
 > 
 > --
-> 2.47.2
+> 2.39.5
+> 
 > 
 > 
 > 
@@ -124,118 +159,14 @@ make sure dt-schema is up to date:
 
 This patch series was applied (using b4) to base:
  Base: attempting to guess base-commit...
- Base: tags/next-20250829 (exact match)
+ Base: tags/next-20250829 (best guess, 2/3 blobs matched)
 
 If this is not the correct base, please add 'base-commit' tag
 (or use b4 which does this automatically)
 
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/rockchip/' for 20250831104855.45883-1-cn.liweihao@gmail.com:
+New warnings running 'make CHECK_DTBS=y for arch/arm/boot/dts/allwinner/' for 20250831162536.2380589-1-lukas.schmid@netcube.li:
 
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[10, 129], [10, 371], [10, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-r88.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[10, 129], [10, 371], [10, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-geekbox.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[10, 129], [10, 371], [10, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-px5-evb.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[11, 129], [11, 371], [11, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lion-haikou.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[10, 129], [10, 371], [10, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-evb-act8846.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[10, 129], [10, 371], [10, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-orion-r68-meta.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: vop@ff930000 (rockchip,rk3368-vop): 'reg-names' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip-vop.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): $nodename:0: 'mipi-dsi@ff960000' does not match '^dsi(@.*)?$'
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: mipi-dsi@ff960000 (rockchip,rk3368-mipi-dsi): compatible:0: 'rockchip,rk3368-mipi-dsi' is not one of ['rockchip,px30-mipi-dsi', 'rockchip,rk3128-mipi-dsi', 'rockchip,rk3288-mipi-dsi', 'rockchip,rk3399-mipi-dsi', 'rockchip,rk3568-mipi-dsi', 'rockchip,rv1126-mipi-dsi']
-	from schema $id: http://devicetree.org/schemas/display/rockchip/rockchip,dw-mipi-dsi.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: /mipi-dsi@ff960000: failed to match any schema with compatible: ['rockchip,rk3368-mipi-dsi', 'snps,dw-mipi-dsi']
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): '#clock-cells' does not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clock-names: ['ref', 'pclk', 'pclk_host'] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): clocks: [[11, 129], [11, 371], [11, 356]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
-arch/arm64/boot/dts/rockchip/rk3368-lba3368.dtb: video-phy@ff968000 (rockchip,rk3368-dsi-dphy): reg: [[0, 4288053248, 0, 16384], [0, 4288020480, 0, 16384]] is too long
-	from schema $id: http://devicetree.org/schemas/phy/rockchip,px30-dsi-dphy.yaml#
+arch/arm/boot/dts/allwinner/sun8i-t113s-netcube-nagami-keypad-carrier.dtb: /soc/i2c@2502800/keypad@34: failed to match any schema with compatible: ['ti,tca8418']
 
 
 
