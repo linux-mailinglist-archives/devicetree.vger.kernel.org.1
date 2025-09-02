@@ -1,209 +1,175 @@
-Return-Path: <devicetree+bounces-211491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211492-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CBC1B3F3B6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 06:25:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FFD3B3F3D5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 06:49:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EAE5205311
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 04:25:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41C951881180
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 04:50:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 998462E1F01;
-	Tue,  2 Sep 2025 04:25:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A84225394A;
+	Tue,  2 Sep 2025 04:49:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="UKQFevt1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KhEEdg5+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E53D12DF137
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 04:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E0A35962;
+	Tue,  2 Sep 2025 04:49:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756787107; cv=none; b=oz+nqT7nNVEZw55NqwxyvDz/R6FKsh+43JwT8xHxix5Ttmna4b79ssZAZuYouDol7QL9XK/eqFbKtlRwmpKivYjAWL/PFOL0i6HT9Suv7LfZ/Os4CZAFvDKs6PaSlyvRBUnv7oI0Rk/6z1qkAVpDzbIbGHVnnPwvvanMGVK5cA0=
+	t=1756788580; cv=none; b=r11w0r6Id7Z258ipt5YQh0hxtxGmVScRuyishjX/spRo2RweDQjQeG/eOm2JNSCtJWMGYU1QL4Zfi81wHLs/N2INTATnufr+TZNbbaZfYPEZJQzq6hO6ZvOM55dLrLQJzD8Bg3tOSHFsfsGUn0LHYsMZmXgitASoVhsSHpp8pyY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756787107; c=relaxed/simple;
-	bh=d3KdXT/c2Yk9m0PpM0HCDs6YwY7JVVIjaErZMTVmByc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=MHza96QCpcyPprn+TQD0zqpKUyC3PNc0hu6Am65PiGU8FEbtHpLMMFPwTh57ec7AsqmWHss+6Hp3LlQK4maSKm3Rsm3sTY0YnFRaDftmXlJDfUV+UmW0Cq1iITW4pGL8GhuDAahILIMptZkijyyICNEHruNWau/PIbYdoBS4Dtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=UKQFevt1; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-32326e20aadso5413842a91.2
-        for <devicetree@vger.kernel.org>; Mon, 01 Sep 2025 21:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1756787105; x=1757391905; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KsWJ8LfQ5pRsnjiKNBF8VnH1ORJpnctEr1VaNmcMPZo=;
-        b=UKQFevt1/gJ6QMDPw4+zG4ssrtHgIPPkvTaJcBthtF6bGLwhiiBTlb/6qwO606K9oc
-         udGtNPDWj12rzKfX+J2fOIHDlxuKI7cUoPJ4DiXFVY5BdNTOl5QfIEU0IAIKxKv+1sGU
-         A8fDa4b4B0NNcUTJwqeWfVc3nqXH79ABvsDpCpGKSoDVqfOg6ZyjBsEQgHpfVdrYcZQf
-         GeR25xyF8Zry73q83EyjatuX98XEZ2n07+bXH0RPAKINIkAqFoxUyGCt8o0vAWQS9XOs
-         FOmIYhTHqHrqvf0oz4REOtSIJmFcIbAzkQ/kPmS3CYi9dGrDAORZJbNXr1Ik8a0x0T4L
-         ToqA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756787105; x=1757391905;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KsWJ8LfQ5pRsnjiKNBF8VnH1ORJpnctEr1VaNmcMPZo=;
-        b=Jdy1h9ih9Q69d+VTLACvX53L9o9ja/82WlmkgWdy+oIvuNI392A71UFPF5TlAY2cAl
-         mL9DiqcXMh12oUQwlbXvrG/lKbWptsz0vo3guwSHvCkgeqpjFenPcoMyIAnYrX7CZGBo
-         iJ/rBIeYd9FPhNgc+xecGPhOqJLMffRPxH403rxYx1hqwxFzMTIG6iI3ydEQLrTbymUL
-         jLs89dgvRTNVWsTjocB9raQHp2sXI+ZU29i+5PmaL7RD43XqSIrwot67TK3FVN1UAdyX
-         7hi+z/S0pmDNa5GPo1tA3rz0j2NtWewFOnh9Efl2o2ixq91RK4tx5BpmnS8JEuQgEqDT
-         C0CA==
-X-Gm-Message-State: AOJu0Yx4G1P8KZZGC4ZQt/Ip6LVwe2P0uKmfw4eKP6jjn/CD9xmogfa8
-	duQmUQuKfeS0wsjL6vTKiGe4pqsNNjw6r8Zcv5AlVH1xlDXAQXmTPnxru4kS6J4eBFk=
-X-Gm-Gg: ASbGnct5pgxtA0zmOhdeLqeLwcQn8hIjpY7+WdQIkFUrMaLVxiZcNmorHwK5KsxQDos
-	H0K0YKQXuMFJW6aRr1aod44a3bZl0oLNugobxZhheQAlWOZvnfgbEPk4XxJqcn+9r2Nj6gMj0VW
-	1E4BsoKsEcT4X3bzgnrm4mF5S9DLiaK5bftdFdKFB/mcEvzZ4uvopAzJL1JRyqUr/pxAwW+kLjR
-	iK2WsTtMMqDBchxDUlIgy3JsnNgGV604Der1JgBxFQ7R182XmaVa5Bn9YBzK5hhZu56YCVKvrxy
-	vSGwi7mdsMI/VDe6DgNBbabzsKmMkTT4vtT+Eqpt7AFQx/3QsMKmxqUwBaggUIKN8t4vGO05BCK
-	WzahT8ZXziYtUUM4/z76D2Yi1jp7nl/85WEPJXRgS2C18Rrc9iL6TBgPxTWOI+Y6XbzOPzciDx4
-	HU05QDJ6SFSVhoovG0QwvTbyFHEwS8/QlzYKSNoBU60j0=
-X-Google-Smtp-Source: AGHT+IE5ILaPlbdaJvy0lHhCLMkEi7dV07tKF7N1W6t5v1Wvwl43pItJx8N4YHBrAE+BIEHm1Y1uhQ==
-X-Received: by 2002:a17:90a:d40b:b0:327:a04b:aac with SMTP id 98e67ed59e1d1-328156be03emr14100705a91.24.1756787105177;
-        Mon, 01 Sep 2025 21:25:05 -0700 (PDT)
-Received: from J9GPGXL7NT.bytedance.net ([61.213.176.56])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327e21d14a8sm12216706a91.2.2025.09.01.21.24.59
-        (version=TLS1_3 cipher=TLS_CHACHA20_POLY1305_SHA256 bits=256/256);
-        Mon, 01 Sep 2025 21:25:04 -0700 (PDT)
-From: Xu Lu <luxu.kernel@bytedance.com>
-To: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr,
-	ajones@ventanamicro.com,
-	brs@rivosinc.com
-Cc: devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	apw@canonical.com,
-	joe@perches.com,
-	Xu Lu <luxu.kernel@bytedance.com>
-Subject: [PATCH v2 4/4] riscv: Use Zalasr for smp_load_acquire/smp_store_release
-Date: Tue,  2 Sep 2025 12:24:32 +0800
-Message-Id: <20250902042432.78960-5-luxu.kernel@bytedance.com>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250902042432.78960-1-luxu.kernel@bytedance.com>
-References: <20250902042432.78960-1-luxu.kernel@bytedance.com>
+	s=arc-20240116; t=1756788580; c=relaxed/simple;
+	bh=co5/+M2x17Vp4JI0Nnsgv8KfR8isXh2gWlTdZsU5Wmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OGodFr4gjMSu5iimaWPN5SnMs+fzbhRo30Xugfql3Kzig7aL89Rb0eUESTKWNXH1dt7SVZHj55SlZu+Mulp9R5sZ4U5EHDiFAWOoVaD5RzJvYdZ2aCjPFKfc004vxpxszuFWAeleT/aR+lqZBjRwzNciQxfRiDhDG4BOQJOv9Ew=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KhEEdg5+; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756788579; x=1788324579;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=co5/+M2x17Vp4JI0Nnsgv8KfR8isXh2gWlTdZsU5Wmk=;
+  b=KhEEdg5+z7dB+XToWhCcvn1x7lEiGb7Ycn9Uqpvgt+oqhgBbRjblI8ah
+   VCXruBuDiVqPD5WANpGhXBV7Af9Ct/6OXDHJIQIpmXZ2v96pbMRWIIFhU
+   vE8fDMrNeeS7lL27aHpwqTZQnP0dRcFN9tFWyGitihqO4ZbNdf+45Y2Wy
+   Y3+SXxRtdNGFISjfgnM/SMBcpYoLfiwdLtk+shtHWxoAJ194xpppy7jvt
+   oD377MPg2cGzJcjTz4y8ClbxEe7k1uriAhhNo2aMWv/s8G1WzGtxs+W2s
+   DlzqHbMoCPYhDXSetnFq+fwpS1pEnACdmRQT1sShwskbYMhFLnVsWV/Sa
+   g==;
+X-CSE-ConnectionGUID: /J1RX24/Rn2bosr/fx7+Vg==
+X-CSE-MsgGUID: fTUtqvbzT6WZQv6B03WWmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70474622"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="70474622"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 21:49:38 -0700
+X-CSE-ConnectionGUID: J0pPkm4aSAyao86W6u2e1w==
+X-CSE-MsgGUID: F7mg/D50T5Oas6FREGmd8A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="202094696"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by orviesa002.jf.intel.com with ESMTP; 01 Sep 2025 21:49:34 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1utIxX-0001RL-1G;
+	Tue, 02 Sep 2025 04:49:31 +0000
+Date: Tue, 2 Sep 2025 12:49:26 +0800
+From: kernel test robot <lkp@intel.com>
+To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com,
+	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
+	krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
+	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com
+Cc: oe-kbuild-all@lists.linux.dev, linux-scsi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
+	Nitin Rawat <quic_nitirawa@quicinc.com>
+Subject: Re: [PATCH V4 3/4] ufs: pltfrm: Allow limiting HS gear and rate via
+ DT
+Message-ID: <202509021257.jIDXzoS6-lkp@intel.com>
+References: <20250901155801.26988-4-quic_rdwivedi@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250901155801.26988-4-quic_rdwivedi@quicinc.com>
 
-Replace fence instructions with Zalasr instructions during acquire or
-release operations.
+Hi Ram,
 
-Signed-off-by: Xu Lu <luxu.kernel@bytedance.com>
----
- arch/riscv/include/asm/barrier.h | 79 +++++++++++++++++++++++++++-----
- 1 file changed, 68 insertions(+), 11 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/riscv/include/asm/barrier.h b/arch/riscv/include/asm/barrier.h
-index b8c5726d86acb..b1d2a9a85256d 100644
---- a/arch/riscv/include/asm/barrier.h
-+++ b/arch/riscv/include/asm/barrier.h
-@@ -51,19 +51,76 @@
-  */
- #define smp_mb__after_spinlock()	RISCV_FENCE(iorw, iorw)
- 
--#define __smp_store_release(p, v)					\
--do {									\
--	compiletime_assert_atomic_type(*p);				\
--	RISCV_FENCE(rw, w);						\
--	WRITE_ONCE(*p, v);						\
-+extern void __bad_size_call_parameter(void);
-+
-+#define __smp_store_release(p, v)						\
-+do {										\
-+	compiletime_assert_atomic_type(*p);					\
-+	switch (sizeof(*p)) {							\
-+	case 1:									\
-+		asm volatile(ALTERNATIVE("fence rw, w;\t\nsb %0, 0(%1)\t\n",	\
-+					 SB_RL(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : : "r" (v), "r" (p) : "memory");	\
-+		break;								\
-+	case 2:									\
-+		asm volatile(ALTERNATIVE("fence rw, w;\t\nsh %0, 0(%1)\t\n",	\
-+					 SH_RL(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : : "r" (v), "r" (p) : "memory");	\
-+		break;								\
-+	case 4:									\
-+		asm volatile(ALTERNATIVE("fence rw, w;\t\nsw %0, 0(%1)\t\n",	\
-+					 SW_RL(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : : "r" (v), "r" (p) : "memory");	\
-+		break;								\
-+	case 8:									\
-+		asm volatile(ALTERNATIVE("fence rw, w;\t\nsd %0, 0(%1)\t\n",	\
-+					 SD_RL(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : : "r" (v), "r" (p) : "memory");	\
-+		break;								\
-+	default:								\
-+		__bad_size_call_parameter();					\
-+		break;								\
-+	}									\
- } while (0)
- 
--#define __smp_load_acquire(p)						\
--({									\
--	typeof(*p) ___p1 = READ_ONCE(*p);				\
--	compiletime_assert_atomic_type(*p);				\
--	RISCV_FENCE(r, rw);						\
--	___p1;								\
-+#define __smp_load_acquire(p)							\
-+({										\
-+	TYPEOF_UNQUAL(*p) val;							\
-+	compiletime_assert_atomic_type(*p);					\
-+	switch (sizeof(*p)) {							\
-+	case 1:									\
-+		asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n",	\
-+					 LB_AQ(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : "=r" (val) : "r" (p) : "memory");	\
-+		break;								\
-+	case 2:									\
-+		asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n",	\
-+					 LH_AQ(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : "=r" (val) : "r" (p) : "memory");	\
-+		break;								\
-+	case 4:									\
-+		asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n",	\
-+					 LW_AQ(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : "=r" (val) : "r" (p) : "memory");	\
-+		break;								\
-+	case 8:									\
-+		asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n",	\
-+					 LD_AQ(%0, %1) "\t\nnop\t\n",		\
-+					 0, RISCV_ISA_EXT_ZALASR, 1)		\
-+					 : "=r" (val) : "r" (p) : "memory");	\
-+		break;								\
-+	default:								\
-+		__bad_size_call_parameter();					\
-+		break;								\
-+	}									\
-+	val;									\
- })
- 
- #ifdef CONFIG_RISCV_ISA_ZAWRS
+[auto build test WARNING on mkp-scsi/for-next]
+[also build test WARNING on jejb-scsi/for-next robh/for-next linus/master v6.17-rc4 next-20250901]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Ram-Kumar-Dwivedi/ufs-dt-bindings-Document-gear-and-rate-limit-properties/20250902-000038
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
+patch link:    https://lore.kernel.org/r/20250901155801.26988-4-quic_rdwivedi%40quicinc.com
+patch subject: [PATCH V4 3/4] ufs: pltfrm: Allow limiting HS gear and rate via DT
+config: arc-randconfig-002-20250902 (https://download.01.org/0day-ci/archive/20250902/202509021257.jIDXzoS6-lkp@intel.com/config)
+compiler: arc-linux-gcc (GCC) 9.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250902/202509021257.jIDXzoS6-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509021257.jIDXzoS6-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/platform_device.h:13,
+                    from drivers/ufs/host/ufshcd-pltfrm.c:13:
+   drivers/ufs/host/ufshcd-pltfrm.c: In function 'ufshcd_parse_limits':
+>> drivers/ufs/host/ufshcd-pltfrm.c:464:23: warning: too many arguments for format [-Wformat-extra-args]
+     464 |    dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
+         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:16: note: in definition of macro 'dev_printk_index_wrap'
+     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
+         |                ^~~
+   include/linux/dev_printk.h:156:54: note: in expansion of macro 'dev_fmt'
+     156 |  dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                      ^~~~~~~
+   drivers/ufs/host/ufshcd-pltfrm.c:464:4: note: in expansion of macro 'dev_warn'
+     464 |    dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
+         |    ^~~~~~~~
+
+
+vim +464 drivers/ufs/host/ufshcd-pltfrm.c
+
+   432	
+   433	/**
+   434	 * ufshcd_parse_limits - Parse DT-based gear and rate limits for UFS
+   435	 * @hba: Pointer to UFS host bus adapter instance
+   436	 * @host_params: Pointer to UFS host parameters structure to be updated
+   437	 *
+   438	 * This function reads optional device tree properties to apply
+   439	 * platform-specific constraints.
+   440	 *
+   441	 * "limit-hs-gear": Specifies the max HS gear.
+   442	 * "limit-rate": Specifies the max High-Speed rate.
+   443	 */
+   444	void ufshcd_parse_limits(struct ufs_hba *hba, struct ufs_host_params *host_params)
+   445	{
+   446		struct device_node *np = hba->dev->of_node;
+   447		u32 hs_gear;
+   448		const char *hs_rate;
+   449	
+   450		if (!np)
+   451			return;
+   452	
+   453		if (!of_property_read_u32(np, "limit-hs-gear", &hs_gear)) {
+   454			host_params->hs_tx_gear = hs_gear;
+   455			host_params->hs_rx_gear = hs_gear;
+   456		}
+   457	
+   458		if (!of_property_read_string(np, "limit-rate", &hs_rate)) {
+   459			if (!strcmp(hs_rate, "Rate-A"))
+   460				host_params->hs_rate = PA_HS_MODE_A;
+   461			else if (!strcmp(hs_rate, "Rate-B"))
+   462				host_params->hs_rate = PA_HS_MODE_B;
+   463			else
+ > 464				dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
+   465		}
+   466	}
+   467	EXPORT_SYMBOL_GPL(ufshcd_parse_limits);
+   468	
+
 -- 
-2.20.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
