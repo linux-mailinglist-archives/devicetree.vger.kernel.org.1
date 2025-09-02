@@ -1,531 +1,153 @@
-Return-Path: <devicetree+bounces-211750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A965B40670
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:18:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79391B4068C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:21:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A8E51886D38
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:16:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BEBD316AA7F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:19:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5531F2F5319;
-	Tue,  2 Sep 2025 14:16:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E4A93054E4;
+	Tue,  2 Sep 2025 14:19:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nHC3uYQF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W16qivub"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A2D01853;
-	Tue,  2 Sep 2025 14:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87574305E04;
+	Tue,  2 Sep 2025 14:19:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756822572; cv=none; b=HGT0nYiE6Ae0MpsgYCKCu7xnYWwhKg4UWCnm/kOxpjvigVdVP4auCxLpfSjN6u/E+jQpfbftkzcam1VutbUvWM0ZJkqKO9iZHGn2go1Ke4X8nEGmsydj3fK6I02+oGHxIg6OeQJ/K+eveEcrS/yP2KkLZg2rQ2eQSYP8xL/MqFY=
+	t=1756822785; cv=none; b=CFH0uMvFJSf5jHgMHR4Tgxn7M5Os6a39elHtutYBIkxqusUayHv1FAg2y4Gk6IIg3LFSFJ1EAIvn7JRpRDHvKuoHeJ3kk0Yhdz6KruehSl08jL8/nqkor8JtQXN/h7khn0tn4uDCj1GKfr1Dzb0IK79AZtXf4J8IX4VFc7HvsoI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756822572; c=relaxed/simple;
-	bh=7TU9tNR9LvDFvKfLsU5yop3VKPtA4Y+x1+EDMFNEkVs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z12s/4M3PPDAaxrALCupvR0g1ESk80LJrgDKP9XybTTGcqfXPdZPzBG52MgFolST4gV6kRf5bdHbKwmGYWeoREVDk9FkEA7tlDTqFWlMn7uWza/AAiANkmltDoDU3fMBr/6Fl5obLpNA36ubsFANE9lOWMPuPp15aZ3eaMfa+go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nHC3uYQF; arc=none smtp.client-ip=192.198.163.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756822569; x=1788358569;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=7TU9tNR9LvDFvKfLsU5yop3VKPtA4Y+x1+EDMFNEkVs=;
-  b=nHC3uYQFcUnhfawshryCw3F5pz/VKOYoKRx0DuRmauCUTHmI+3sZQmNW
-   7sJlhhmjwCajkBOwCVPZrhJcmfAj/nVdaO0dwuZsstEiSlmjdkrPr3Cqd
-   NiH8I8lb1/ONgOQgVUMAQZKeTkIjAC7hbrsOBNTYc8MzUFcUJC77T3t+7
-   cGpUO0XBKidsEX+almSsjIGAkb91D6FCAKgfQ1Tzi4B9hQPyj685iUKmr
-   KUfMfPCuh/pDtIJ6gz9n4mZFz83aMjdpdWagS/GDsknnq4yWZ8tWCurfI
-   dKK4GSLzDdMlNUWdqoW3cieOgHFEt0AuxP1HiaMx7pWzujCmu/Mvr5+fb
-   w==;
-X-CSE-ConnectionGUID: 4yG2sSgrT8uwthnfiRzkZg==
-X-CSE-MsgGUID: XH3JxOuSSOqeHz/IwfQmsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="59036877"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="59036877"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 07:16:09 -0700
-X-CSE-ConnectionGUID: Pzgb8ScpQHGbgKBZ+i8E/w==
-X-CSE-MsgGUID: h5FKIsMJReCuwAdVcW2L5Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="202212356"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 07:16:03 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1utRnj-0000000AiHJ-0jWu;
-	Tue, 02 Sep 2025 17:15:59 +0300
-Date: Tue, 2 Sep 2025 17:15:58 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Esteban Blanc <eblanc@baylibre.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-Message-ID: <aLb8HuIG0XXLu653@smile.fi.intel.com>
-References: <cover.1756813980.git.mazziesaccount@gmail.com>
- <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1756822785; c=relaxed/simple;
+	bh=cKittXnQFm9HgXD3AmyGM99Tj/ZL60OZ7IaIGVEIRys=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=R5icpr7ZNpUi8RmQ0B0O0TOvQP+x+fSabKDF8JtlLdPjmEx3zSkn2EOBfVaHwHhYLvEyYzr0NvLw/2XRyn90/Ydt9hm9tcfCWIps27W/QurxeiAkn1csPMPa8++2ebLg5VgD3zhY8o1qITUNORBscvkj70crfL7dhGO2WfdQZ6E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W16qivub; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-b0411b83aafso412500766b.1;
+        Tue, 02 Sep 2025 07:19:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756822782; x=1757427582; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l7PwLZpdNDUC1VnlOAO9Pz/59D4P6tjjZBVB+LA8u3s=;
+        b=W16qivubj2uGrczY+SSnKq5wGDyidSG+M/ivfzvGYxP+AokEWrHkYD579u0E+p3RMl
+         QAI8hqPGCCHR4vXfhTtwl399IM3wquPipBEHg8RSPFMXPV1aCN4ku/rrfPm9MFmXVrso
+         KVznmuVasqwqLXtbG4zema/MjUeTYA2CvPPSFTNXMfF8Te3QHeRMEIgjo7FGepcneYqE
+         TvBhUxqApjbQGHIQ62D/+YANP95VdjlzMtN4JteA/6VYjtQTEriKb9AJQEcWMyt/k7GL
+         PMOYB0YEp31Bvqi4G7vqI97yjNrbyeCWbpvY9HIm+/A7BhEwE7We+q/B97GpxGNgGdFs
+         es+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756822782; x=1757427582;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l7PwLZpdNDUC1VnlOAO9Pz/59D4P6tjjZBVB+LA8u3s=;
+        b=bfnQ2Oqu786E0HogxJcB/PwCEEAv8u9ZDYEBBiWUiEOGeCs/SIHJpg4KTiXi46JJl7
+         /wmw1q2/W1ZBswbd5h+u1RTrVqFGZnf+CoFmIyKBzkbMx2sBvDZGAcm25rWhA/YJRB/z
+         SN6qqPcoOFa/Q2nBrD1qYiGVqPuqFFxUsHhvdu1htH1+0eSPShyqWDM1OzlNUfebtl2w
+         aUjgEeYx0yFT5AkHI4EQa/L6ep3McIcsvNdUkgPBMjWoPWBR3HbVrbLFb6CrrvuQh6xA
+         PGxDDGIgbIIS4YodG4/UMN3M+f7xYKr0JdCx+Y6eMKg96gD5+gRcj7qyY0wFEfNJZLmq
+         xSZg==
+X-Forwarded-Encrypted: i=1; AJvYcCU96/eKU+fGF6wuorCqbzZ8n8/e9AQLrlnEPSuAVAV0BefYsBA7romm9HNwhZCqM7iA5kAgKl3C@vger.kernel.org, AJvYcCUNiScQGX5rMsnvrClbZ5ndg/fCvEFsLMAtaOhQ4VeA8ZKbEkw2P2ervSuynN6Q0ezRRLdjkZ+Bbwe8cik7@vger.kernel.org, AJvYcCVbVC1J59wdrAxfdxH0tugnHLDMpnfgGcfCUPpnwOg97NaoV0rmns13NsFT5fg4NhK3lfJ8fxDzGLN9TUZCtwvsb4s=@vger.kernel.org, AJvYcCW3orhn8k9knIN6UubNhBmhDrPCEHP1cBTFv5pxBIfJQYvPEQv3lb4tTZJMoDXMw9+3ecCCprGzY5ZF@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy7ZxSs1Q/mgrTnL7Mvvyva1/cgF2LT1ZOL86AqywpuST+EfIq6
+	Z8nd8HvNOPps+KY9LMiPUuhyaDTgCPTrbHaOUXPDWVni3n5L3FPcSQ7NeEGMAXcphQ5x49cl5uI
+	ATeVbnaLhT8rN0++G/FqDhJCKFLHRWqU=
+X-Gm-Gg: ASbGncsDdW76lA22f5Gg1m5rCtnRUJu+3gxs8qG3X2FPayCndOReONLq+gPVfNfaoDI
+	8eZlruEV5wu1oP0JeAfCw/IOOK2O/q6Em/DiRbb7BuUjjpzjaLQILLhjcDmFH4qQLKI7RAI8ThR
+	ZdCXZHvQW4kNjQU6s9/zFLxu5dJQdnC68iUuWrXFd/0CeHL5+aN/FfyOyFaG0h0A1dqHRIACTOd
+	kvSPci5xsdKWlo4KjbwWrsgcp6Zt04VPIs3xuMMleCYd3nP/cQ=
+X-Google-Smtp-Source: AGHT+IGrboGfKgTi+NH84TUA1B3uD5e0lPBqZ3DmRhCqCMFGcoWKrI1dg8Km/+cUzqCDrl6XWcKCCLy0LJj/iOhSDwU=
+X-Received: by 2002:a17:907:3d0c:b0:afe:c099:aea8 with SMTP id
+ a640c23a62f3a-b01d8a266abmr1111765066b.9.1756822781645; Tue, 02 Sep 2025
+ 07:19:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Tue, Sep 02, 2025 at 03:24:31PM +0300, Matti Vaittinen wrote:
-> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
-> 
-> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> daisy-chain configuration) and maximum sampling rate is 1MSPS.
-> 
-> The IC does also support CRC but it is not implemented in the driver.
-
-...
-
-> +#include <linux/array_size.h>
-> +#include <linux/bitfield.h>
-> +#include <linux/err.h>
-> +#include <linux/gpio/driver.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
-> +#include <linux/spi/spi.h>
-
-Incomplete list. See below (it doesn't mean I caught up all of the missing
-inclusions).
-
-...
-
-> +struct bd79112_data {
-> +	struct spi_device *spi;
-> +	struct regmap *map;
-
-> +	struct device *dev;
-
-
-> +	struct gpio_chip gc;
-> +	unsigned long gpio_valid_mask;
-> +	unsigned int vref_mv;
-
-Perhaps _mV to follow the actual unit spelling?
-(and yes, I know that both variants are present in the kernel)
-
-> +	struct spi_transfer read_xfer[2];
-> +	struct spi_transfer write_xfer;
-> +	struct spi_message read_msg;
-> +	struct spi_message write_msg;
-> +	/* 16-bit TX, valid data in high byte */
-> +	u8 read_tx[2] __aligned(IIO_DMA_MINALIGN);
-
-+ types.h for u8 and indirectly for __aligned.
-
-> +	/* 8-bit address followed by 8-bit data */
-> +	u8 reg_write_tx[2] __aligned(IIO_DMA_MINALIGN);
-> +	/* 12-bit of ADC data or 8 bit of reg data */
-> +	__be16 read_rx __aligned(IIO_DMA_MINALIGN);
-> +};
-
-...
-
-> +#define BD79112_REG_AGIO0A		0x0
-
-Keep it fixed-width. i.e. 0x00
-
-> +#define BD79112_REG_AGIO15B		0x1f
-
-...
-
-> +#define BD79112_BIT_IO			BIT(5)
-
-+ bits.h (but see about bitops.h below)
-
-...
-
-> +/*
-> + * The data-sheet explains register I/O communication as follows:
-> + *
-> + * Read, two 16-bit sequences separated by CSB:
-> + * MOSI:
-> + * SCK:	| 1 | 2 | 3   | 4      | 5 .. 8 | 9 .. 16 |
-> + * data:| 0 | 0 |IOSET| RW (1) | ADDR   | 8'b0    |
-> + *
-> + * MISO:
-> + * SCK:	| 1 .. 8 | 9 .. 16 |
-> + * data:| 8'b0   | data    |
-> + *
-> + * Note, CSB is shown to be released between writing the address (MOSI) and
-> + * reading the register data (MISO).
-> + *
-> + * Write, single 16-bit sequence:
-> + * MOSI:
-> + * SCK:	| 1 | 2 | 3   | 4     | 5 .. 8 |
-> + * data:| 0 | 0 |IOSET| RW(0) | ADDR   |
-> + *
-> + * MISO:
-> + * SCK:	| 1 .. 8 |
-> + * data:| data   |
-
-> + *
-
-Stray empty line.
-
-> + */
-
-...
-
-> +static int _get_gpio_reg(int offset, unsigned int base)
-> +{
-
-Why offset is signed?
-
-> +	int regoffset = offset / 8;
-> +
-> +	if (offset > 31 || offset < 0)
-> +		return -EINVAL;
-
-+ errno.h (but since you use IS_ERR(), the err.h should be)
-
-> +	return base - regoffset;
-> +}
-
-...
-
-> +static int bd79112_reg_read(void *context, unsigned int reg, unsigned int *val)
-> +{
-> +	struct bd79112_data *data = context;
-> +	int ret;
-> +
-> +	if (reg & BD79112_BIT_IO)
-> +		reg |= BD79112_BIT_RW;
-> +
-> +	data->read_tx[0] = reg;
-> +
-> +	ret = spi_sync(data->spi, &data->read_msg);
-> +	if (!ret)
-> +		*val = be16_to_cpu(data->read_rx);
-
-asm/byteorder.h
-
-> +
-> +	if (reg & BD79112_BIT_IO)
-> +		if (*val & BD79112_ADC_STATUS_FLAG)
-> +			dev_err(data->dev, "ADC pin configured as GPIO\n");
-
-Missing {}, I think one needs to refresh a memory of kernel coding style.
-
-> +	return ret;
-> +}
-
-...
-
-> +static int bd79112_read_raw(struct iio_dev *indio_dev,
-> +			    struct iio_chan_spec const *chan, int *val,
-> +			    int *val2, long m)
-> +{
-> +	struct bd79112_data *data = iio_priv(indio_dev);
-> +	int ret;
-> +
-> +	switch (m) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		ret = regmap_read(data->map, chan->channel, val);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		return IIO_VAL_INT;
-> +
-> +	case IIO_CHAN_INFO_SCALE:
-> +		 *val = data->vref_mv;
-> +		 *val2 = 12;
-> +
-> +		return IIO_VAL_FRACTIONAL_LOG2;
-> +	}
-
-> +	return -EINVAL;
-
-Why not making it default case? This is how most of the IIO drivers do.
-
-> +}
-
-...
-
-> +static int bd79112_gpio_set_multiple(struct gpio_chip *gc, unsigned long *mask,
-> +				     unsigned long *bits)
-> +{
-> +	struct bd79112_data *data = gpiochip_get_data(gc);
-> +	unsigned int i;
-> +
-> +	for (i = 0; i < 4; i++) {
-> +		unsigned int bank_mask, reg, regval, regmask;
-> +		int ret;
-> +
-> +		bank_mask = 0xff << 8 * i;
-> +		regmask = (*mask & bank_mask) << 8 * i;
-
-Why all this?
-
-We have for_each_set_clump8().
-
-> +		if (!regmask)
-> +			continue;
-> +
-> +		reg = BD79112_REG_GPO_VALUE_A0_A7 - i;
-> +		regval = (*bits & bank_mask) >> 8 * i;
-> +		ret = regmap_update_bits(data->map, reg, regmask, regval);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static int bd79112_gpio_dir_set(struct bd79112_data *data, unsigned int offset,
-> +				int dir)
-
-Why dir is int? And why in negative case or other than _IN we switch pin to
-output mode. It's dangerous default.
-
-> +{
-> +	unsigned int set_reg, clear_reg, bit;
-> +	int ret;
-> +
-> +	bit = GET_GPIO_BIT(offset);
-> +
-> +	if (dir == GPIO_LINE_DIRECTION_IN) {
-> +		set_reg = GET_GPI_EN_REG(offset);
-> +		clear_reg = GET_GPO_EN_REG(offset);
-> +	} else {
-> +		set_reg = GET_GPO_EN_REG(offset);
-> +		clear_reg = GET_GPI_EN_REG(offset);
-> +	}
-
-> +	ret = regmap_set_bits(data->map, set_reg, bit);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return regmap_clear_bits(data->map, clear_reg, bit);
-
-I believe the order depends on the out-in or in-out switch.
-Otherwise it might be potential glitches on input (hw) buffer.
-Right now when it's not an interrupt it may be okay to don't
-bother, but in general I see a potential issues with that.
-
-> +}
-
-...
-
-> +static int bd79112_gpio_output(struct gpio_chip *gc, unsigned int offset,
-> +			       int value)
-
-Why value is signed?
-
-...
-
-> +static int bd79112_get_gpio_pins(const struct iio_chan_spec *cs, int num_channels)
-> +{
-> +	int i, gpio_channels;
-
-Why signed?
-
-...
-
-> +static int bd79112_probe(struct spi_device *spi)
-> +{
-> +	/* ADC channels as named in the data-sheet */
-> +	static const char * const chan_names[] = {
-> +		"AGIO0A", "AGIO1A", "AGIO2A", "AGIO3A", "AGIO4A", "AGIO5A",
-> +		"AGIO6A", "AGIO7A", "AGIO8A", "AGIO9A", "AGIO10A", "AGIO11A",
-> +		"AGIO11A", "AGIO12A", "AGIO13A", "AGIO14A", "AGIO15A",
-> +		"AGIO0B", "AGIO1B", "AGIO2B", "AGIO3B", "AGIO4B", "AGIO5B",
-> +		"AGIO6B", "AGIO7B", "AGIO8B", "AGIO9B", "AGIO10B", "AGIO11B",
-> +		"AGIO11B", "AGIO12B", "AGIO13B", "AGIO14B", "AGIO15B",
-
-Can you make all of the lines to be the same in terms of amount of entries?
-
-> +	};
-
-This seems to be hidden in the function while it's used for the whole life time
-f the device. Why not move it outside of the function?
-
-> +	struct bd79112_data *data;
-> +	struct iio_dev *iio_dev;
-> +	struct iio_chan_spec *cs;
-> +	struct device *dev = &spi->dev;
-> +	unsigned long gpio_pins, pin;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	iio_dev = devm_iio_device_alloc(dev, sizeof(*data));
-> +	if (!iio_dev)
-> +		return -ENOMEM;
-> +
-> +	data = iio_priv(iio_dev);
-> +	data->spi = spi;
-> +	data->dev = dev;
-> +	data->map = devm_regmap_init(&spi->dev, NULL, data, &bd79112_regmap);
-
-You have dev, use it.
-
-> +	if (IS_ERR(data->map))
-> +		return dev_err_probe(dev, PTR_ERR(data->map),
-> +				     "Failed to initialize Regmap\n");
-
-+ dev_printk.h
-
-> +	ret = devm_regulator_get_enable_read_voltage(dev, "vdd");
-> +	if (ret < 0)
-> +		return dev_err_probe(dev, ret, "Failed to get the Vdd\n");
-
-> +	data->vref_mv = ret / 1000;
-
-(MICRO / MILLI)
-
-> +	ret = devm_regulator_get_enable(dev, "iovdd");
-> +	if (ret < 0)
-
-Does it return positive or zero on success?
-
-> +		return dev_err_probe(dev, ret, "Failed to enable I/O voltage\n");
-> +
-> +	data->read_xfer[0].tx_buf = &data->read_tx[0];
-> +	data->read_xfer[0].len = sizeof(data->read_tx);
-> +	data->read_xfer[0].cs_change = 1;
-> +	data->read_xfer[1].rx_buf = &data->read_rx;
-> +	data->read_xfer[1].len = sizeof(data->read_rx);
-> +	spi_message_init_with_transfers(&data->read_msg, data->read_xfer, 2);
-> +
-> +	data->write_xfer.tx_buf = &data->reg_write_tx[0];
-> +	data->write_xfer.len = sizeof(data->reg_write_tx);
-> +	spi_message_init_with_transfers(&data->write_msg, &data->write_xfer, 1);
-> +
-> +	ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
-> +		BD79112_MAX_NUM_CHANNELS - 1, &cs);
-
-Hmm... Indentation can be amended.
-
-> +	if (ret < 0) {
-
-Why ' < 0' ?
-
-> +		/* Register all pins as GPIOs if there are no ADC channels */
-> +		if (ret == -ENOENT)
-> +			goto register_gpios;
-> +
-> +		return ret;
-> +	}
-
-Assuming ret can't be positive this can be refactored as:
-
-	/* Register all pins as GPIOs if there are no ADC channels */
-	if (ret == -ENOENT)
-		goto register_gpios;
-	else if (ret)
-		return ret;
-
-I find it easier to follow.
-
-> +	/* Let's assign data-sheet names to channels */
-> +	for (i = 0; i < iio_dev->num_channels; i++) {
-> +		unsigned int ch = cs[i].channel;
-> +
-> +		cs[i].datasheet_name = chan_names[ch];
-> +	}
-> +
-> +	iio_dev->channels = cs;
-> +	iio_dev->num_channels = ret;
-> +	iio_dev->info = &bd79112_info;
-> +	iio_dev->name = "bd79112";
-> +	iio_dev->modes = INDIO_DIRECT_MODE;
-> +
-> +	/*
-> +	 * Ensure all channels are ADCs. This allows us to register the IIO
-> +	 * device early (before checking which pins are to be used for GPIO)
-> +	 * without having to worry about some pins being initially used for
-> +	 * GPIO.
-> +	 */
-> +	for (i = 0; i < BD79112_NUM_GPIO_EN_REGS; i++) {
-> +		ret = regmap_write(data->map, BD79112_FIRST_GPIO_EN_REG + i, 0);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to initialize channels\n");
-> +	}
-> +
-> +	ret = devm_iio_device_register(data->dev, iio_dev);
-> +	if (ret)
-> +		return dev_err_probe(data->dev, ret, "Failed to register ADC\n");
-> +
-> +register_gpios:
-> +	gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
-> +					  iio_dev->num_channels);
-
-> +
-
-Instead of leaving this rather unneeded blank line I would move above...
-
-> +	/* We're done if all channels are reserved for ADC. */
-
-...to be here
-
-	gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
-					  iio_dev->num_channels);
-
-> +	if (!gpio_pins)
-> +		return 0;
-> +
-> +	/* Default all the GPIO pins to GPI */
-> +	for_each_set_bit(pin, &gpio_pins, BD79112_MAX_NUM_CHANNELS) {
-
-+ bitops.h
-
-> +		ret = bd79112_gpio_dir_set(data, pin, GPIO_LINE_DIRECTION_IN);
-> +		if (ret)
-> +			return dev_err_probe(dev, ret,
-> +					     "Failed to mark pin as GPI\n");
-> +	}
-> +
-> +	data->gpio_valid_mask = gpio_pins;
-> +	data->gc = bd79112_gpio_chip;
-> +	data->gc.parent = dev;
-> +
-> +	return devm_gpiochip_add_data(dev, &data->gc, data);
-> +}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+References: <20250901224327.3429099-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250901224327.3429099-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250902-enlightened-hidden-copperhead-4eefdf@kuoka> <CA+V-a8sSiNQ6W-ggmL8PP_G1sFq170DS1LJLFJs_WW0RC+XVEw@mail.gmail.com>
+ <5ec3efce-653c-46c5-977f-5a46391e675f@kernel.org>
+In-Reply-To: <5ec3efce-653c-46c5-977f-5a46391e675f@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Tue, 2 Sep 2025 15:19:14 +0100
+X-Gm-Features: Ac12FXyk3vuxA97T31qPqwWJO_EeAZlrRjZHxzovyZOhR_qt_-3LfD3odd8Qv_g
+Message-ID: <CA+V-a8uQ44AXYoGuPtioKC7wObdz7vQHYniJyD=MRdW8vomqQQ@mail.gmail.com>
+Subject: Re: [PATCH net-next 01/10] dt-bindings: net: pcs: renesas,rzn1-miic:
+ Document RZ/T2H and RZ/N2H SoCs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Krzysztof,
+
+On Tue, Sep 2, 2025 at 1:21=E2=80=AFPM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On 02/09/2025 14:17, Lad, Prabhakar wrote:
+> >>>    power-domains:
+> >>>      maxItems: 1
+> >>> @@ -60,11 +77,11 @@ patternProperties:
+> >>>      properties:
+> >>>        reg:
+> >>>          description: MII Converter port number.
+> >>> -        enum: [1, 2, 3, 4, 5]
+> >>
+> >> Why?
+> >>
+> > If I keep this here and just adjust the below for RZ/T2H case I do get =
+errors:
+> >
+> > reg:
+> >   enum: [0, 1, 2, 3]
+> >
+> >
+> > arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dtb: ethss@80110000
+> > (renesas,r9a09g077-miic): mii-conv@0:reg:0:0: 0 is not one of [1, 2,
+> > 3, 4, 5]
+> >     from schema $id:
+> > http://devicetree.org/schemas/net/pcs/renesas,rzn1-miic.yaml#
+> >
+> > Any pointers on how to handle this case?
+>
+> So please grow this with '0' to cover the widest choices, which you then
+> narrow in individual if:then:.
+>
+Got you, thank you for the clarification.
+
+> The trouble with your if:then: is that they are huge and they also nest
+> patterns and if:then:.
+>
+> This often is less maintainable, so maybe you should consider having two
+> separate binding files? You can have also common-shared properties.
+> Anyway, I am fine with current approach of one binding as well, so up to
+> you folks.
+>
+Ok, I will stay with the current approach.
+
+Cheers,
+Prabhakar
 
