@@ -1,92 +1,120 @@
-Return-Path: <devicetree+bounces-211579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E512B3F91A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:49:32 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6A0A2B3F927
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:52:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2AA616A05E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:49:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C27916AED9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:52:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C9E926E714;
-	Tue,  2 Sep 2025 08:49:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640762E8B82;
+	Tue,  2 Sep 2025 08:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B4dK+02d"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gHGszV8H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E338432F742;
-	Tue,  2 Sep 2025 08:49:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846C7270572;
+	Tue,  2 Sep 2025 08:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756802967; cv=none; b=IGE/zXnnMRfy4KdkdRyReLk49wri1BmfvTtpLJFjCWoCBK72i7NqHmeEm3gIGS8Z+S33Wv4OiB/MxBQmGyFxUmqzc8s3OrcpbZz1DswafG+6DCjPxus+Xx4wzOIqXV6RSvYQkP/idJnPMMKJFm0f2LB2Wph/3g7jnMwhNMLtBRg=
+	t=1756803131; cv=none; b=hepbISO05LFaOWCKQD1uGHFrQz6kWZX4ldZOeRsDx6mLBONFkyvnnPSkZZ4I4bntfi7ytTC0tEE/iyJ5IZyQqzXg2JJ4XAkFiDbpRlojUKA0SieANTeAdjxVKVwBbB5FUxNwGMR2V/QHMPjfLLz3nAx7FshshtOnUhp6grcBu8M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756802967; c=relaxed/simple;
-	bh=rEEUhyesr1JfcnPJBOaeHTZak+JujvzT4iPgYVAefgY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DI4f1aUiMWOZahTRoZo3dRSfea4NMbxx43snWcftJwMdkWNfy7EQkcMC3IVUokGofrLLJbq86I8cNibzZDSjPCN0mE+9J5uiY4RegMIHuNDgcXMfyG7iG6hCK9Tv9/oTnKVhBWu2iLBqxc3HrUG40DpE4/dKV05JUQfYUi0BTLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B4dK+02d; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C6DE7C4CEED;
-	Tue,  2 Sep 2025 08:49:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756802966;
-	bh=rEEUhyesr1JfcnPJBOaeHTZak+JujvzT4iPgYVAefgY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=B4dK+02dMlR8emlHiLWqZYbLOQhyLVddyOOin8epDnyty080NGW2VX2tWBmYFo1zC
-	 1fzMnTtYbdLKl4lyGu3PkXcLMCXqrRJEkzD7o6NfFYDqwJz7xvOU0vtDRfxKfELku8
-	 IqAlKWY1CZaVZCkpF81r/Sx1HKQYpgm7/MnbFMgCLcds8WCOWjZi12/fSsjMWrR8g4
-	 edT7akdZ4A4pNTJJ1OwT9xzJzf5BQCG50jJ3RTJo6KITr44epGr4jzAz9tUDNalccz
-	 c+6SZEwjc4yqdWSNBJhWX+2F1juf2LY9raq7U8W0xe6NlyK+Nbzp8JEGAm4YUvO2C3
-	 b5upV9De/LlVg==
-Date: Tue, 2 Sep 2025 10:49:23 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, 
-	Russell King <linux@armlinux.org.uk>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
-	Jose Abreu <joabreu@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com, 
-	linux-arm-kernel@lists.infradead.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dwmac: Increase
- 'maxItems' for 'interrupts' and 'interrupt-names'
-Message-ID: <20250902-spirited-congenial-stingray-f8aff7@kuoka>
-References: <20250902001302.3823418-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250902001302.3823418-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1756803131; c=relaxed/simple;
+	bh=cADqc0G/7sL0/oarbsXhlWO50gtKRaEdW31AEj39NuI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XCHXSdnNAPodZ/tfhnByjC7+P4s8vEQUuvKcYKkibljJXbAemrSL6olbov0uE6fcjlYMJzzSXN7AujygGiyEaxhhvt0zZ4lSRP8pm8wmya0RsKFSQUFewDDBFHifWF2TOi8AwqrIdGuksIYYMrsHy8Of6bGzpEYURPSmmanHzzA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gHGszV8H; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5828q45k2549616;
+	Tue, 2 Sep 2025 03:52:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756803124;
+	bh=BEaYaFcRNCB3rYEaAmMXhkNIWrWDCrbSUKBE4BRwTNg=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=gHGszV8Ho7ppNXMFp7tAIWgS+beKufNbPzy/rCIdm6n3JkdmidpmQsqINz4FUolqS
+	 WQ4o+rsRA98cTiTyp9wqORyZrJfdrWLJqys8P7VKCayeimjYA7WKiRongwl85s6Gxb
+	 ZvHj/iDw1OBFTgjVfOP11bytEwWgxHx5TxxWObDg=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5828q4Od2158781
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 2 Sep 2025 03:52:04 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 2
+ Sep 2025 03:52:03 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 2 Sep 2025 03:52:03 -0500
+Received: from localhost (uda0492258.dhcp.ti.com [172.24.231.84])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5828q2iQ3526474;
+	Tue, 2 Sep 2025 03:52:03 -0500
+Date: Tue, 2 Sep 2025 14:22:02 +0530
+From: s-vadapalli <s-vadapalli@ti.com>
+To: Paresh Bhagat <p-bhagat@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
+        <afd@ti.com>, <bb@ti.com>, <s-vadapalli@ti.com>
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62a-main: Fix pinctrl
+ properties
+Message-ID: <77edd9c0-9bfe-4963-8149-51c819cce022@ti.com>
+References: <20250823032304.1085775-1-p-bhagat@ti.com>
+ <20250823032304.1085775-2-p-bhagat@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250902001302.3823418-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250823032304.1085775-2-p-bhagat@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Tue, Sep 02, 2025 at 01:12:59AM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Sat, Aug 23, 2025 at 08:53:03AM +0530, Paresh Bhagat wrote:
+> From: Vibhore Vardhan <vibhore@ti.com>
 > 
-> Increase the `maxItems` value for the `interrupts` and `interrupt-names`
-> properties to 19 to support additional per-channel Tx/Rx completion
-> interrupts on the Renesas RZ/T2H SoC, which features the
-> `snps,dwmac-5.20` IP with 8 Rx queues and 8 Tx queues.
+> Correct reg length to match end address - start address for main
 
-This alone makes no sense. Why would we need more interrupts here if
-there is no user of it at all? Squash patches.
+nitpick: s/reg/register
 
-You also need to constrain other devices, because now one Renesas
-binding gets 19 interrupts without any explanation. Please rethink how
-you split your patches...
+I assume that you are implying "end address - start address" as
+subtracting the "start address" from the "end address" to get the
+length. This description might not be required given that you are
+stating the 'last physical address for the main pad configuration
+registers' below. You might rephrase it to indicate that the main pad
+configuration register region starts with the
+MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG0 register having the address of
+0x000f4000 and the region ends with the
+MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG150 register having the address of
+0x000f4258, as a result of which, the length of the region is 0x25c
+instead of 0x2ac.
 
-Best regards,
-Krzysztof
+> PADCFG registers. The last physical address for the main pad
+> configuration registers (MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG150) is
+> 0x000f4258. Adding 4 bytes gives 0x000f425c, so the size in device
+> tree should be defined as 0x25c instead of 0x2ac.
+> 
+> Reference Docs
+> TRM (AM62A) - https://www.ti.com/lit/ug/spruj16b/spruj16b.pdf
+> TRM (AM62D) - https://www.ti.com/lit/ug/sprujd4/sprujd4.pdf
+> 
+> Fixes: 5fc6b1b62639c ("arm64: dts: ti: Introduce AM62A7 family of SoCs")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
+> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
 
+[...]
+
+Regards,
+Siddharth.
 
