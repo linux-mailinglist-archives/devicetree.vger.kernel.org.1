@@ -1,193 +1,333 @@
-Return-Path: <devicetree+bounces-211581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A1AB3F933
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:55:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF825B3F942
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:57:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2BCA172B99
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:55:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9B0D17E977
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921222E8B9A;
-	Tue,  2 Sep 2025 08:55:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40512E719B;
+	Tue,  2 Sep 2025 08:57:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="t+0hnkZe"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E5W0Jcge"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89342E719B
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:55:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB67032F77A
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:57:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756803305; cv=none; b=diPJKjxEdKaxU58ohLqaBFx/KtLMvVh669NxTDSWCQOX/+9AtA2gi5OVYuY1RAhxtQiT50rx33RAOS/ixVaN4i26CO0jblRujemMRfT16tgSBDJajze8JAGtzdi1cn6Ij2S3xSdqflbvYZxbUXiJarIF5kex9bJ5HNsYJPPJwqs=
+	t=1756803457; cv=none; b=NI9OS57Q11uMkV18h84Shz/QdKZOpQ9Vp+XTfFIgG5t/flBeeZuaCMoOjhgmA+/qiyP5lE3vCqHyH0Qt1AFiUhfqLsFdKQvQa3Kd9bpGRDsL7LvvX/R1nKNteA8o43RK90I6TFS01AZyV3uPGyUhMOg12q9Sh3OBp6rfze+9RJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756803305; c=relaxed/simple;
-	bh=kWombz4HNlpFcrMgQMXBBue7C+pUbLQVl5IC6T0/t6o=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=YbaJYz/AL0jm9Dy7Fza4OqDuEM6gGF1XsPZk+/iKnONuAJPqN+GKA1t4wp6iOKu9OATewOpX8KSNjXwILk4QuopaN25L15zBBCNjrHtEyj0i3xq92vjPhyAKcXwtzvji+0N0rWGBnh/2IQAwtNfi8oWDFNlQlvx3h/Bw9ScBWrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=t+0hnkZe; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250902085459epoutp04c7e5576343a2c64e404caa25daa00a4b~ha0sRv0qA2761727617epoutp04i
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:54:59 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250902085459epoutp04c7e5576343a2c64e404caa25daa00a4b~ha0sRv0qA2761727617epoutp04i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756803299;
-	bh=FWxR7EjLH+QBGQHkkz3O4Nq986bJi5SnUxrGo2YiUnU=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=t+0hnkZejLMXJaQHvU/Eq8NUZgvjWhd3NPDCKEr91JamL8i8erMVKWK9yd3B3zWt+
-	 lKm4dNit/DoNqCxIM2p3EyJJMggi5cm7mjZBqWnT8J0aeFP6oPX2YZuKlWgWWRCajk
-	 QiYcnAM+9T5CLTxNQzHfKxa2dz90Vh0fxsyvjOCY=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250902085459epcas2p109f24ef53f3456860134eec6ea128c26~ha0r7H-tJ1839518395epcas2p1u;
-	Tue,  2 Sep 2025 08:54:59 +0000 (GMT)
-Received: from epcas2p2.samsung.com (unknown [182.195.36.92]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4cGKLp5xgDz3hhT3; Tue,  2 Sep
-	2025 08:54:58 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
-	20250902085457epcas2p11aa355e58a9547378b8cec16241df3b3~ha0qWwE1i1839518395epcas2p1p;
-	Tue,  2 Sep 2025 08:54:57 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250902085457epsmtip2c11dabe67f690f51f48da7afcdba40a7~ha0qR7B5v1783317833epsmtip2K;
-	Tue,  2 Sep 2025 08:54:57 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Bartlomiej Zolnierkiewicz'"
-	<bzolnier@gmail.com>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
- Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <f6acdd01-8847-4282-b375-f8e564be81d2@kernel.org>
-Subject: RE: [PATCH 1/3] dt-bindings: thermal: samsung: Add tmu-name and
- sensor-index-ranges properties
-Date: Tue, 2 Sep 2025 17:54:57 +0900
-Message-ID: <000401dc1be7$423272b0$c6975810$@samsung.com>
+	s=arc-20240116; t=1756803457; c=relaxed/simple;
+	bh=/oGnBMreWPACxHfLBlaOCJWYITRtOg2q7GuC6elIIbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=HC9TX/j88ikN15RJTemxW3+SE3itgQIYcwU1lNBVPr2WXh0naTX1WSU8x4T2rNymXMx0fZ+ip4AXFV20OyVBpz3vYHv8fa1BbACjmrNIsIO1V5wxHlPdsMzNL59mJQL2yA/jfyRk3+EsT2zyCRWWA4D6OnxtYRdT4VQSGXekn+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E5W0Jcge; arc=none smtp.client-ip=185.171.202.116
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-04.galae.net (Postfix) with ESMTPS id 3FAFAC8EC73;
+	Tue,  2 Sep 2025 08:57:17 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 24C7A60695;
+	Tue,  2 Sep 2025 08:57:32 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 053891C22D8A3;
+	Tue,  2 Sep 2025 10:57:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1756803451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=AyHIaf6WQe2QQWwuimh8OdfA1ncGmt0f0bFGO/cNShc=;
+	b=E5W0Jcge/hsJprrkZR/JgqZzfWib5ksl3q8F3J4QBRVA/7uI5vTkpl0OjPTnZBrrnB80Ck
+	nFyjnmY2d1dV6R5YlkdWKrlS+GDQ7xB8Sc5QjX2GZh6KMy6w/TSTq849TX2tNtifGweHCk
+	hWVjN+t+bRDbGm2ZzDn4PjlDkc5MTknmZjpoSYqOxALhL5RUker7mq/vqNKcgGFE8hQmX0
+	h8P0AuzZJJxM4GgKvDZWXW3/5Y6OT5UOxqgiWYYfu1VxBKhQbovI6SJSO9bfSOs9bn/eVl
+	i1AsMG8wgxdELgknP3l1BGjsQ5KPuNMZoUb+kEq0AFFLX2oRzNmJgdZFdJCygQ==
+Date: Tue, 2 Sep 2025 10:57:10 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob
+ Herring <robh@kernel.org>
+Cc: Ayush Singh <ayush@beagleboard.org>, David Gibson
+ <david@gibson.dropbear.id.au>, Jason Kridner <jkridner@gmail.com>, Geert
+ Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Luca
+ Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
+ Andrew Davis <afd@ti.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Device tree representation of (hotplug) connectors: discussion at
+ ELCE
+Message-ID: <20250902105710.00512c6d@booty>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJ8jFumlJsm8aby6NwUOPwCr1UY/AHbmk9KAflqt+ACX/B717MNBDAw
-Content-Language: ko
-X-CMS-MailID: 20250902085457epcas2p11aa355e58a9547378b8cec16241df3b3
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250825064933epcas2p33e2b4566b5911fef8d7127900fc10002
-References: <20250825064929.188101-1-shin.son@samsung.com>
-	<CGME20250825064933epcas2p33e2b4566b5911fef8d7127900fc10002@epcas2p3.samsung.com>
-	<20250825064929.188101-2-shin.son@samsung.com>
-	<f6acdd01-8847-4282-b375-f8e564be81d2@kernel.org>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hello Krzysztof Kozlowski,
+Hello,
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
-> Sent: Saturday, August 30, 2025 6:07 PM
-> To: Shin Son <shin.son=40samsung.com>; Bartlomiej Zolnierkiewicz
-> <bzolnier=40gmail.com>; Rafael J . Wysocki <rafael=40kernel.org>; Daniel
-> Lezcano <daniel.lezcano=40linaro.org>; Zhang Rui <rui.zhang=40intel.com>;
-> Lukasz Luba <lukasz.luba=40arm.com>; Rob Herring <robh=40kernel.org>; Con=
-or
-> Dooley <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>
-> Cc: linux-pm=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH 1/3=5D dt-bindings: thermal: samsung: Add tmu-name =
-and
-> sensor-index-ranges properties
->=20
-> On 25/08/2025 08:49, Shin Son wrote:
-> > The exynosautov920 TMU requires per-sensor interrupt enablement for
-> > its critical trip points.
-> > Add two new DT properties to the Samsung thermal bindings to support
-> > this requirement:
-> >
-> > - **tmu-name**: an explicit identifier for each TMU,
-> > 		used to skip specific sensors
-> > (e.g., sensor 5 is temporarily disabled on the TMU_SUB1 block).
-> >
-> > - **sensor-index-ranges**: defines valid sensor index ranges
-> > 			   for the driver=E2=80=99s=20bitmap=20in=20private=20data,=0D=0A>=
-=20>=20=09=09=09=20=20=20enabling=20per-sensor=20interrupt=20setup=20and=20=
-data=20access.=0D=0A>=20>=0D=0A>=20>=20Signed-off-by:=20Shin=20Son=20<shin.=
-son=40samsung.com>=0D=0A>=20>=20---=0D=0A>=20>=20=20.../thermal/samsung,exy=
-nos-thermal.yaml=20=20=20=20=20=20=20=7C=2023=20++++++++++++++++++-=0D=0A>=
-=20>=20=201=20file=20changed,=2022=20insertions(+),=201=20deletion(-)=0D=0A=
->=20>=0D=0A>=20>=20diff=20--git=0D=0A>=20>=20a/Documentation/devicetree/bin=
-dings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=20l=0D=0A>=20>=20b/Docu=
-mentation/devicetree/bindings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=
-=20l=20index=2029a08b0729ee..420fb7a944e3=20100644=0D=0A>=20>=20---=0D=0A>=
-=20>=20a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.y=
-am=0D=0A>=20>=20l=0D=0A>=20>=20+++=20b/Documentation/devicetree/bindings/th=
-ermal/samsung,exynos-thermal=0D=0A>=20>=20+++=20.yaml=0D=0A>=20>=20=40=40=
-=20-8,6=20+8,7=20=40=40=20title:=20Samsung=20Exynos=20SoC=20Thermal=20Manag=
-ement=20Unit=0D=0A>=20>=20(TMU)=0D=0A>=20>=0D=0A>=20>=20=20maintainers:=0D=
-=0A>=20>=20=20=20=20-=20Krzysztof=20Kozlowski=20<krzk=40kernel.org>=0D=0A>=
-=20>=20+=20=20-=20Shin=20Son=20<shin.son=40samsung.com>=0D=0A>=20=0D=0A>=20=
-This=20needs=20also=20explanation=20in=20commit=20msg.=0D=0A=0D=0AOk,=20I'l=
-l=20add=20an=20explanation=20for=20this=0D=0A=0D=0A>=20=0D=0A>=20>=0D=0A>=
-=20>=20=20description:=20=7C=0D=0A>=20>=20=20=20=20For=20multi-instance=20t=
-mu=20each=20instance=20should=20have=20an=20alias=20correctly=0D=0A>=20>=20=
-numbered=20=40=40=20-27,6=20+28,7=20=40=40=20properties:=0D=0A>=20>=20=20=
-=20=20=20=20=20=20-=20samsung,exynos5420-tmu-ext-triminfo=0D=0A>=20>=20=20=
-=20=20=20=20=20=20-=20samsung,exynos5433-tmu=0D=0A>=20>=20=20=20=20=20=20=
-=20=20-=20samsung,exynos7-tmu=0D=0A>=20>=20+=20=20=20=20=20=20-=20samsung,e=
-xynosautov920-tmu=0D=0A>=20>=0D=0A>=20>=20=20=20=20clocks:=0D=0A>=20>=20=20=
-=20=20=20=20minItems:=201=0D=0A>=20>=20=40=40=20-62,11=20+64,29=20=40=40=20=
-properties:=0D=0A>=20>=20=20=20=20=20=20minItems:=201=0D=0A>=20>=0D=0A>=20>=
-=20=20=20=20'=23thermal-sensor-cells':=0D=0A>=20>=20-=20=20=20=20const:=200=
-=0D=0A>=20>=20+=20=20=20=20enum:=0D=0A>=20>=20+=20=20=20=20=20=20-=200=0D=
-=0A>=20>=20+=20=20=20=20=20=20-=201=0D=0A>=20>=0D=0A>=20>=20=20=20=20vtmu-s=
-upply:=0D=0A>=20>=20=20=20=20=20=20description:=20The=20regulator=20node=20=
-supplying=20voltage=20to=20TMU.=0D=0A>=20>=0D=0A>=20>=20+=20=20tmu-name:=0D=
-=0A>=20=0D=0A>=20Generic=20property?=20Where=20is=20it=20defined.=0D=0A=0D=
-=0AOk,=20I'll=20remove=20this.=0D=0A=0D=0A>=20=0D=0A>=20>=20+=20=20=20=20de=
-scription:=20The=20TMU=20hardware=20name.=0D=0A>=20=0D=0A>=20Anyway,=20you=
-=20do=20not=20get=20instance=20IDs.=20I=20talked=20about=20this=20at=20OSSE=
-25.=0D=0A=0D=0AI've=20read=20your=20feedback=20and=20also=20reviewed=20your=
-=20presentation=20at=20OSSE25.=20=0D=0A(https://osseu2025.sched.com/event/2=
-5Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-koz=
-lowski-linaro)=0D=0AI=20will=20remove=20this=20and=20I=20utilized=20another=
-=20way.=0D=0A=0D=0A>=20=0D=0A>=20=0D=0A>=20>=20+=20=20=20=20=24ref:=20/sche=
-mas/types.yaml=23/definitions/string-array=0D=0A>=20>=20+=20=20=20=20minIte=
-ms:=201=0D=0A>=20>=20+=20=20=20=20maxItems:=201=0D=0A>=20>=20+=0D=0A>=20>=
-=20+=20=20sensor-index-ranges:=0D=0A>=20=0D=0A>=20Where=20is=20the=20proper=
-ty=20defined?=20You=20keep=20adding=20generic=20properties.=0D=0A=0D=0AI'll=
-=20remove=20the=20generic=20property=20and=20change=20it=20to=20=22samsung,=
-hw-sensor-indexes=22.=0D=0A=0D=0A>=20>=20+=20=20=20=20description:=20=7C=0D=
-=0A>=20>=20+=20=20=20=20=20=20Valid=20Sensor=20index=20ranges=20for=20the=
-=20TMU=20hardware.=0D=0A>=20=0D=0A>=20I=20don't=20understand=20what=20is=20=
-this=20for.=0D=0A=0D=0AI'll=20add=20more=20explanation=20for=20this.=0D=0A=
-=0D=0A>=20=0D=0A>=20>=20+=0D=0A>=20>=20+=20=20=20=20=20=20Note::=20On=20the=
-=20ExynosautoV920=20variant,=20the=20fifth=20sensor=20in=20the=20TMU=0D=0A>=
-=20SUB1=20is=20disabled,=0D=0A>=20>=20+=20=20=20=20=20=20so=20the=20driver=
-=20skips=20it=20when=20matching=20by=20tmu-name.=0D=0A>=20=0D=0A>=20That's=
-=20not=20name,=20so=20why=20are=20you=20referring=20to=20tmu-name?=20And=20=
-driver=20has=0D=0A>=20nothing=20to=20do=20here.=20Describe=20hardware.=0D=
-=0A>=20=0D=0A>=20None=20of=20this=20is=20really=20correct.=20:/=0D=0A>=20=
-=0D=0A>=20=0D=0A>=20Best=20regards,=0D=0A>=20Krzysztof=0D=0A=0D=0AI'll=20re=
-work=20the=20binding=20as=20you=20suggested.=0D=0AInstead=20of=20using=20ra=
-nges,=20I'll=20list=20the=20sensor=20indices=20explicitly,=0D=0AWhich=20sho=
-uld=20address=20the=20issues=20you=20pointed=20out.=0D=0A=0D=0AI'll=20inclu=
-de=20this=20change=20in=20the=20next=20revision,=0D=0Aso=20I=20would=20appr=
-eciate=20your=20review=20again.=0D=0AThank=20you.=0D=0A=0D=0ABest=20regards=
-,=0D=0AShin=20Son=0D=0A=0D=0A
+[this main was co-written by Herv=C3=A9 and Luca]
+
+Herv=C3=A9 and I are working since 1+y to allow describing hot-pluggable
+add-ons and their connectors with device tree overlays. Our work is not
+very much progressing because discussions about device tree bindings
+has raised some issue that are not obvious to solve.
+
+This e-mail is a report of the efforts we did last week during the
+Embedded Linux Conference Europe to try to address the currently
+blocking issues.
+
+First, I gave a talk about the overall hotplug work, to provide a
+status update but also to clarify the goals and use cases. Slides are
+available at [2]. Goals include:
+
+- decoupling base board and add-on, so an addon can have a single dtbo
+  valid for any base board, and vice versa
+- supporting main boards with multiple connectors where multiple
+  instances of the same addon model can be connected independently
+- allowing overlay insertion and removal at runtime (hotplug)
+
+The first goal implies that addon overlays do not refer to anything
+(phandles) beyond the connector node.
+
+The talk has attracted a lot of people. All seats in the 200+ room were
+taken, and when I asked who has a connector use case about 40-50
+attendeed raised their hands. I also had several questions asked after
+the talk and in the hallway.
+
+After the talk we had planned a discussion about the topic. Krzysztof
+Kozlowski was present in person (thanks!), while Ayush Singh and
+Wolfram Sang connected remotely. Jason Kridner (beagleboard.org) and
+Geert Uytterhoeven were present and actively constributing to the
+discussion. Unfortunately Rob Herring was not connected, but still we
+tried to make the best out of the discussion. So we focused on
+discussing the current proposals to go past the issues with our
+export-symbols proposal raised mainly by Rob.
+
+Here is a summary of the ideas we have discussed, in order from
+simplest discussion (looking like not doable) to most complex (which
+look like doable).
+
+---------------------------------------------------------------------
+
+Idea #1: Label on __overlay__
+Proposed by Rob in [0]
+
+> Couldn't we make something like this work:
+>
+> connector: __overlay__ {
+>    node {
+>       foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
+>    };
+> };
+
+This would be OK for simple cases but it only allows exporting one
+label, for the connector (i.e. the overlay target node). More than one
+label need to be referenced from the overlay for cases such as:
+
+- pinmux, where each pinmux configuration is a node, and is defined
+  in the pinmux node outside of the connector
+- HDMI ddc-i2c property, for HDMI chips in the overlay which needs to
+  point at an I2C adapter in the base tree
+
+---------------------------------------------------------------------
+
+Idea #2: add /export/ keyword to mark labels to be exported
+Proposed by Rob in [1]
+
+The idea is to mark modes in the base tree that can be referenced by
+overlays:
+
+> /export/ label: node {
+> };
+>
+> And then __symbols__ can be only those exported labels (unless -@ is used=
+).
+
+This is an opt-in version of the "global" __symbols__ to limit the
+issues __symbols__ introduces. However it is not sufficient for
+connectors because it tells what can be exported but not on which
+connector. Also, overlays would need to refer to the nodes in the main
+tree, thus not decoupling mainboard and addon.
+
+---------------------------------------------------------------------
+
+Idea #3: label on empty (*) node
+(*) until overlay applied
+Proposed by Herv=C3=A9 at LPC2024 in a discussion with Krzysztof, later
+abandoned
+
+This is based on Idea #1 but tries to make HDMI ddc-i2c work:
+
+connector1: connector1 {
+    #gpio-cells =3D <2>;
+    gpio-map =3D <0 0 &soc_gpio 12 0>;
+    gpio-map-mask =3D <0xf 0x0>;
+    gpio-map-pass-thru =3D <0x0 0xf>;
+
+    i2c8: i2c-hdmi {                [**]
+      i2c-parent =3D <&soc_i2c8>;
+    }
+};
+
+connector: __overlay__ {
+   node {
+      foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
+   };
+   i2c_hdmi: i2c-hdmi {
+     //empty
+   };
+   hdmictrl@99876 {
+      ddc-i2c =3D <&i2c_hdmi>;
+   };
+};
+
+This would leverage the i2c-bus-extension work (also under discussion
+[3]). Since for HDMI an I2C device is not added it would have a node
+(i2c-hdmi) that is empty in the overlay (but not in the base tree and
+thus not in the live tree after the overlay is applied). This empty
+node is needed to ensure we can have a label (i2c_hdmi) that can be
+referenced from elsewhere in the overlay (ddc-i2c).
+
+However there are various issues with this approach:
+
+ - mainlin, it does not handle pinumxes nicely
+ - if the node that is overlayed by the empty node (i2c-hdmi) has a
+   label in the base tree (line [**]), then the overlay-provided
+   phandle ID would screw up the base-tree phandle ID
+ - in dtbo, the empty node (i2c-hdmi) has a property in the overlay
+   (phandle) but the node exists in the base tree, thus the property
+   would leak on removal
+
+---------------------------------------------------------------------
+
+Idea #4: resolving phandle errors by the connector driver
+Proposed by Rob in [1]
+
+> I'll throw out another idea. What if we make resolving phandle errors
+> something that can be handled by the connector driver? The driver
+> knows 'connector' resolves to the connector node it is applying the
+> overlay to.
+
+This idea looked promising, so we tried simulating the process with a
+dts/dtso example:
+
+Base tree:
+
+connector1 {
+    compatible =3D "myvendor,myconn";
+
+    #gpio-cells =3D <2>;
+    gpio-map =3D <0 0 &soc_gpio1 12 0>, <1 0 &soc_gpio3 42 0>;
+    gpio-map-mask =3D <0xf 0x0>;
+    gpio-map-pass-thru =3D <0x0 0xf>;
+
+    i2c-sensors {
+       compatible =3D "i2c-bus-extension";
+       i2c-parent =3D <&i2c@abcd0000>;
+    };
+
+    hdmi-ddc-adapter =3D <&soc_i2c8>;
+
+    // All pinctrls that addons may need
+    pin12-pinctrl-i2c =3D <&pin12_mode_i2c>;
+    pin1-pinctrl-gpio =3D <&pin1_mode_gpio>;
+    pin2-pinctrl-gpio =3D <&pin2_mode_gpio>;
+};
+
+Overlay:
+
+/ {
+ fragment@0 {
+  __overlay__ {
+   node {
+      foo-gpios =3D <&connector 0 GPIO_ACTIVE_HIGH>,  <&connector 1 GPIO_AC=
+TIVE_HIGH>;
+   };
+   i2c-sensors {
+      thm: thermal@15 {reg =3D <15>;...};
+   };
+   hdmictrl@12345678 {
+      ddc-i2c =3D <&ddc_adapter>;   [*]
+   };
+   some_other_node {
+      pinctrl-0 =3D <&pin12_pinctrl_i2c>;
+      thermal =3D <&thm>;
+   };
+};
+
+This is what would happen for the HDMI ddc-i2c at line [*]:
+
+1. of_overlay_fdt_apply_new(..., resolve_dt_error_cb) is called;
+   it is a variant of of_overlay_fdt_apply() (name to be defined!) that:
+     a. takes a function pointer to invoke the connector for resolving
+        unknown labels
+     b. does not even try to resolve phandles beyond the connector
+     c. if target node has no phandle, creates one with next unused
+        number
+2. resolver does not find 'ddc_adapter' label
+3. before calling it a fatal error, resolver calls connector driver
+   callback
+4. connector driver callback knows the "ddc_adapter" string must be
+   resolved using the "hdmi-ddc-adapter" property, returns soc_i2c8
+   phandle ID
+
+connector driver callback in pseudocode:
+
+  resolve_dt_error_cb(conn, label)
+  {
+    switch (label) {
+      case "connector":
+        return conn->of_node;
+      case "ddc_adapter":
+        return resolve(conn->of_node, "hdmi-ddc-adapter");
+      case "pin12_pinctrl_i2c":
+        return resolve(conn->of_node, "pin12-pinctrl-i2c");
+      }
+  }
+
+We discussed some possible issues, such as: what if a label is actually
+found in the base tree and thus resolved? This is handled by point 1.b.
+above: the OF core does not even try to resolve phandles beyond the
+connector, it would not make sense for connector anyway. In other words
+it only resolves local fixups, which are internal to the overlay, such
+as "thm" in the example above.
+
+This looked like the most promising approach because it handles nicely
+HDMI DDC and pinmux and minimize pollution in the phandle ID space.
+
+---------------------------------------------------------------------
+
+So that was what we discussed in the meeting last Tuesday. We hope this
+will help in setting the current point and let the discussion move
+forward.
+
+Anyone having taken part to the discussion is welcome to correct or add
+any info we may have missed.
+
+Best regards,
+Herv=C3=A9 and Luca
+
+[0] https://lore.kernel.org/all/CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLG=
+yiNkCrTg@mail.gmail.com/
+[1] https://lore.kernel.org/all/CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2=
+YtaVxRQQ@mail.gmail.com/
+[2] https://sched.co/25Vrw
+[3] https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootli=
+n.com/
+
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
