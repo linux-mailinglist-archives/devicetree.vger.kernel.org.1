@@ -1,155 +1,155 @@
-Return-Path: <devicetree+bounces-211853-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7702FB40F3A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:18:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BEF2B40F5A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 80241701EA8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:18:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B86C47ADA62
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 19C5D2E8DFA;
-	Tue,  2 Sep 2025 21:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B43E334390;
+	Tue,  2 Sep 2025 21:25:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s+keo995"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9277026FA4B
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 21:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1769B1DB958;
+	Tue,  2 Sep 2025 21:24:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756847855; cv=none; b=QIQgcYsKzo04ouIDEmZSjagv3+yyV95L6qfpQ54bk0Svl2FOOUU8GispyIWFhFhpFsyJRkfhyBrn6KCB5IZbS934f/ZiYVgR4cnKdNKHuDC7Aa0jzuhoHXGyK9XBSzWkQ6IZr5EBeAMMID3NhenR+ZDD9p3uiretwhyRCe+pqSE=
+	t=1756848300; cv=none; b=WyrhbGCJZKz5wak/ZWr+dY9GmFlz/HsK0yKtTDTl2i8LLt26A2YIu71JMhdARQwXuvQtWg3OlwqbrchlhggJmGZAYXZ3EuRp+/3b2wfcfDcYy9eUFJgi8tx1V6HUXXiuaddi5Wx2ubA/ZhIY9Chj2vxyG/pSzGj7CrO8gIi4H/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756847855; c=relaxed/simple;
-	bh=QkpX7uVIbWa6j4+MWKabhFBDGgegkyRnxHHZgDvUxJA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GOFomIXQUzg/0x4d6sprdyKWYKuUkLwxYKf/IdQp+kd0ci3LsjAO7eQR23CuprWUA33PmfNS73L+mJg+UulNiqHjUfLtdiq4fSjQBJ2yvUKtIL7HFS5RdSK26tDjzCaEGRRdxzlInEFsqf8yWvaV+D4QY8QfVRRDkVD26nsQYvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com; spf=pass smtp.mailfrom=douglass.dev; arc=none smtp.client-ip=34.202.193.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=douglass.dev
-Feedback-ID: 3578:1022:null:purelymail
-X-Pm-Original-To: devicetree@vger.kernel.org
-Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1141507836;
-          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
-          Tue, 02 Sep 2025 21:17:16 +0000 (UTC)
-From: Woodrow Douglass <wdouglass@carnegierobotics.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Woodrow Douglass <wdouglass@carnegierobotics.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1756848300; c=relaxed/simple;
+	bh=pIkxlL/RsKrNHjL9bzr/Ff/bVEvw0mwr+CfKjwjIOWw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=TCqLggV+jYPyeWUXXz/fGWKJrefgiEPyyBY8NFDuVKBlwL4HpP6Rn6s0JYwriMRvQxbr7QY5JcVOHic1DdK3gT7Bk5KKa2u/frmhVrsa4NdwK1nySAsl/fU5EnkjBbg+OJWyWSZbHBfpsOeLJi23hoI5jLFsrioHe2uzKANP1jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s+keo995; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 772A0C4CEED;
+	Tue,  2 Sep 2025 21:24:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756848299;
+	bh=pIkxlL/RsKrNHjL9bzr/Ff/bVEvw0mwr+CfKjwjIOWw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s+keo995h383ZM6+v2G9KoeMPR42keu0j33nhQxYc6hfkUa2nW0X1VT4IikS1jlju
+	 7BpXG4Tr+rbHR9sLEMO6qebGvsnUgQALfJ6iuUQLYwdm/TsGaL6hhJphBF5jk3cPFs
+	 pmH9ySG+xHDliQ0PVjLWLx3URJVjO8AuyvndLsSqL40j750mGjHLoRYacugUjGiPSe
+	 KrQQXllhd8pbTgz09P95VO70njQKboE5y8wbztLV+yerxWcae9AtTJYPPM0v0CnnYY
+	 xTTqopJeLy+spwriyMqSMLmU67yEsqcWHy517VjzNj5OlTBErvr8WGdQmucpEQApWr
+	 gGia+LdgY2fuA==
+Date: Tue, 2 Sep 2025 16:24:58 -0500
+From: Rob Herring <robh@kernel.org>
+To: Christophe Leroy <christophe.leroy@csgroup.eu>
+Cc: Qiang Zhao <qiang.zhao@nxp.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH v2 2/2] regulator: pf530x: dt-bindings: nxp,pf530x-regulator
-Date: Tue,  2 Sep 2025 17:17:02 -0400
-Message-Id: <20250902-pf530x-v2-2-f105eb073cb1@carnegierobotics.com>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
-References: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 6/7] dt-bindings: soc: fsl: qe: Convert QE GPIO to DT
+ schema
+Message-ID: <20250902212458.GA1184537-robh@kernel.org>
+References: <cover.1756727747.git.christophe.leroy@csgroup.eu>
+ <48b4e7b25878b94dcb738f8239c815be484cf9c9.1756727747.git.christophe.leroy@csgroup.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2454; i=wdouglass@carnegierobotics.com; h=from:subject:message-id; bh=QkpX7uVIbWa6j4+MWKabhFBDGgegkyRnxHHZgDvUxJA=; b=owEBbQGS/pANAwAKAewLuLlPNh4UAcsmYgBot16YA/Ywxbtgt64dokDNkwLZYF4uiofKcQySB 0XwL4ASpyaJATMEAAEKAB0WIQSIUqjrbDLQw0mgxHLsC7i5TzYeFAUCaLdemAAKCRDsC7i5TzYe FPUpB/9bcF9v+6+1kx3XuYVwZadYDa1CZ5rjem4e8K8VVKXVE+T9pKjOZv4S8czSPAZ/dlkwooD V78WG81mUBkwZXUdRIZw+iA8i23uvQ7lemqeiHArndu31USYnjtdvITYp3/Y/b1DUHbEhT84nW3 VL2Hm/+wYmTA/HiIHl1XLyWzpqr4sgLckYb2mnXFGyHe6IMrpP59bcdwaIsxq0cFfCiOIkSvIYU BlVFjTIt6rhC9em30TLivU6xlWGI7mdNJbe2uOGT4bIu6fuVFTwqe9Ct0I+5q7WNp0Z8ZqDV9x1 Rhym3fDBVXZXlY/0pWWmgeO3wo2FeWkqr3D4SzZW/lyNwtoa
-X-Developer-Key: i=wdouglass@carnegierobotics.com; a=openpgp; fpr=8852A8EB6C32D0C349A0C472EC0BB8B94F361E14
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <48b4e7b25878b94dcb738f8239c815be484cf9c9.1756727747.git.christophe.leroy@csgroup.eu>
 
-Bindings for the pf530x series of voltage regulators
+On Mon, Sep 01, 2025 at 02:05:13PM +0200, Christophe Leroy wrote:
+> Convert QE QPIO devicetree binding to DT schema.
+> 
+> Signed-off-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> ---
+> v5: New
+> ---
+>  .../fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml | 53 +++++++++++++++++++
 
-Signed-off-by: Woodrow Douglass <wdouglass@carnegierobotics.com>
----
- .../bindings/regulator/nxp,pf530x-regulator.yaml   | 74 ++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+This should move to bindings/gpio/
 
-diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
-new file mode 100644
-index 000000000000..f1065b167491
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
-@@ -0,0 +1,74 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/nxp,pf530x-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PF5300/PF5301/PF5302 PMIC regulators
-+
-+maintainers:
-+  - Woodrow Douglass <wdouglass@carnegierobotics.com>
-+
-+description: |
-+  The PF5300, PF5301, and PF5302 integrate high-performance buck converters, 12 A, 8 A,
-+  and 15 A, respectively, to power high-end automotive and industrial processors. With adaptive
-+  voltage positioning and a high-bandwidth loop, they offer transient regulation to minimize capacitor
-+  requirements.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - nxp,pf5300
-+      - nxp,pf5301
-+      - nxp,pf5302
-+
-+  reg:
-+    maxItems: 1
-+
-+  regulators:
-+    type: object
-+    description: |
-+      list of regulators provided by this controller
-+
-+    properties:
-+      SW1:
-+        type: object
-+        $ref: regulator.yaml#
-+        description:
-+          Properties for the regulator.
-+
-+        properties:
-+          regulator-name:
-+            pattern: "^SW1$"
-+            description:
-+              Name of the single regulator
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - regulators
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        vddi_0_75@28 {
-+            compatible = "nxp,pf5302";
-+            reg = <0x28>;
-+
-+            regulators {
-+                SW1: SW1 {
-+                    regulator-always-on;
-+                    regulator-boot-on;
-+                    regulator-max-microvolt = <1200000>;
-+                    regulator-min-microvolt = <500000>;
-+                };
-+            };
-+        };
-+    };
+>  .../bindings/soc/fsl/cpm_qe/qe/par_io.txt     | 26 +--------
+>  2 files changed, 54 insertions(+), 25 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
+> new file mode 100644
+> index 000000000000..e6ba319a75c1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/fsl/cpm_qe/fsl,mpc8323-qe-pario-bank.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale QUICC Engine Parallel I/O (QE PARIO) GPIO Bank
+> +
+> +maintainers:
+> +  - Christophe Leroy <christophe.leroy@csgroup.eu>
+> +
+> +description:
+> +  Bindings for the Freescale QUICC Engine Parallel I/O (PARIO) GPIO controller.
 
--- 
-2.39.5
+Just drop if nothing more to say than 'title'.
 
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,chip-qe-pario-bank
+> +      - const: fsl,mpc8323-qe-pario-bank
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Offset to the register set and its length.
+
+Drop the description. That's every reg.
+
+> +
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    const: 2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - gpio-controller
+> +  - '#gpio-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    qe_pio_a: gpio-controller@1400 {
+
+Drop unused labels.
+
+> +        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
+
+Doesn't match the schema. 
+
+> +        reg = <0x1400 0x18>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +    };
+> +
+> +    qe_pio_e: gpio-controller@1460 {
+> +        compatible = "fsl,mpc8360-qe-pario-bank", "fsl,mpc8323-qe-pario-bank";
+> +        reg = <0x1460 0x18>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +    };
 
