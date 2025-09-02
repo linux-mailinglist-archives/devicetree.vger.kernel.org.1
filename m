@@ -1,168 +1,123 @@
-Return-Path: <devicetree+bounces-211817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A73BDB40B1D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:52:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27462B40B51
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7896E548217
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:52:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D576F3A6BD6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:57:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75D82F6594;
-	Tue,  2 Sep 2025 16:52:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21D6833CEB7;
+	Tue,  2 Sep 2025 16:57:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="WePLZTkW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="G4uUGFLw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A8ED4414;
-	Tue,  2 Sep 2025 16:52:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B9AA30F94D;
+	Tue,  2 Sep 2025 16:57:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756831957; cv=none; b=LbuTezHw3IrQvwpmG/Q7LAUEXyExmX8BUx0oyGYhlgFoohI8NzcQI64aVmBbT/ZKFChbOagXTMVi1vQWAIVq62er1xReZzxX+dpsa1C2JXoX9+PkCvVdRrtet8mAYBT50V2SjUhgIj5SbHC9oRQGvoPGEobcD9mIrcdNVxEThuI=
+	t=1756832273; cv=none; b=NjnXJcmaaM6HkmfBFp0hnxiILuXTh0x2RwOAZO956sVtnD5exJeiShyN87QaDu85JQ5fTNwK+mj0KqKUIB3gYxT2vVjknkcY/QufkDI3PPvjm/W++MYiSHCAjimH11+Gvso3CG/K5Z1G+68L3yGu3I6S07JTkDsD+cxGlzUouSc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756831957; c=relaxed/simple;
-	bh=vUXypJ18lQCM+xP/e8NI3zmL2F363vWlFGuHjpHKdRE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=T+dJAituzdf5g0+9nRfeUinTHefbbB3L0ZkaAIUKt37orEOMIRzGmt3/bMrShvPoIQUlb0X7qy/llyX79oLz9QK1qpYM9byDO8upYuOxS4wOPB/C8D2uFtW9jBeyXJVHZuMOEMIwk9c1FYS3pn+g+1hxaXUPjpzDpQLbktIjcNc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=WePLZTkW; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqAXX023418;
-	Tue, 2 Sep 2025 16:52:22 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	EfhDgAtwv6P38F7QKMGTLu24j05KdSW6kvsh3bBpKnk=; b=WePLZTkWJYnZlMxZ
-	QJkjPjlsrySr+yl+jDp1uRUhBqWx6XhIV5IJ3dmqoXXYKtvDeB9mSb3ehaLePfjd
-	GokNgqIb8Ead/bj9U580qlkFveSZJKmCbE4Ib68BKC2DRe2ZkeGTh0YBp3Qch7CI
-	2xiMvhFLsKXMALwgvWVXPqzdBO+543l9w9eoRbcaO4+uA0gWnrwBx5M3YvDUo2Q4
-	kUzhSyPnUL3CjGijshOcvvktLpmPh/DoB6HhofDIcf7MbULUoR7dh+WIakE7WEGl
-	tYiZts29TY4bTjv7hx/pzopztycwls6SJBnDyykiqFia2+0IN7QBTuVC9jNH0DiA
-	KEXySA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnp8s5c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 02 Sep 2025 16:52:22 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 582GqLlf003891
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 2 Sep 2025 16:52:21 GMT
-Received: from [10.218.4.141] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Tue, 2 Sep
- 2025 09:52:16 -0700
-Message-ID: <0107dcce-45cb-419f-814b-3eccbbbe628d@quicinc.com>
-Date: Tue, 2 Sep 2025 22:22:13 +0530
+	s=arc-20240116; t=1756832273; c=relaxed/simple;
+	bh=xjZdrMmxgQtX66TPP8v+Vqq+oEDA+LsGXidCV2cNP9g=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dZ3CXrXneq+rxGxiO6yUreFkpiMFLOy6KuOPUaPm7r55ABIg0yBy5YzUYuODS2apgbczs+cZgWVeocLyK7U1HCuC6TmX+GWuQx6C3zl9D79v6fUuJUqz7cIWtbTKGECydcn57euDEH6RvZACDO6/WtzPatXVq6I2p7IjgcHGRKk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=G4uUGFLw; arc=none smtp.client-ip=209.85.167.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-55f69cf4b77so3968280e87.2;
+        Tue, 02 Sep 2025 09:57:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756832269; x=1757437069; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=USMABpzeN1jg9NNbpP8+DcIerB0Re2d1/c7KuEPDElE=;
+        b=G4uUGFLwy2ZH7Dv7lCRGy00i/Sm/IocCayBz9ttTMOixOFOzupMcjKCOjMfClYSR21
+         ngzhXES9dxWKJZIlCzjk5yZWPld647iVI70ij+lkWpxyxirVBtl8cItTPz2Ng+KOKg+B
+         YxrafEbkYNpcQUGGh77aWXoGt+jkZlv+CxX/EhRDpNOseCi/IGRFyfQ/nCTdX2hMWtwJ
+         7EOhG/nt6Ry+r0Da6VtL/RE//E7MWGsf8dR7ru5za5/n4t3AQ/bxEkQvic5i9LWVoTzj
+         58HxwTrAtxhAkjJbJdjSCcdiK1baFLPdUsq1SPl0iHQeNMvtgMPO6rcQSJaZVlrgkOYE
+         N8Dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756832269; x=1757437069;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=USMABpzeN1jg9NNbpP8+DcIerB0Re2d1/c7KuEPDElE=;
+        b=tsLpEpyN1A2Wh3IWzjPLUH6FlKs2+MyW75IkDIuYmlzefK7mftv1IN5GQm4Wf4OouO
+         lTv9RveazBvprDhokYbN0Hckkr7JFaNIW6BvbHCDyemSZwnFtJQPQ0Eg+c4uC3metn9T
+         UfmCJStjPC+BiqylK/nhVijAfmzORGw3K5KZhi+duKZGC3RkEvZSE4b+FM6ni0bvNy74
+         Kh93gCllqtSMGskXvAO8OEIvAG7UJgxCqeOUzS1klFHR/1HW6zNcdpz0un+KSgA6Gnvp
+         F1McYJ4NSaFGr+8rvS6cuciOAF6VzXoJ5xW18tqWscQ0wUcBy7/oomNOXpgnR97E3IES
+         7Z1w==
+X-Forwarded-Encrypted: i=1; AJvYcCU9mBPXcskPihfJ2GlJWCln2G8T8DTNBfM2rmWGPNLEbM7ytaMYwyvavDcB/CEnYIzxoSQMIIeEpjD+Cd4M@vger.kernel.org, AJvYcCWi2OluK/g+wG4dHzcxYbVM0pMMU7flFH28HfxwYaIDsZgWST5tM4UhUixGzU89mluOBQDZtoLNEIA=@vger.kernel.org, AJvYcCWyAOj0JighmIp32Mcp0M5dhhSzOQ1qkGr2IoMXcpBVWNNVfXkGSdFisCD1fEEb9dROspi4eDOBymkL@vger.kernel.org, AJvYcCXm7JrEUx4goNAF/A/bPblVPfrIQfCxSToFc0LjThTRjIVayGMH+kf4kHsrK5AV+64T9gPZhuI9ZPd16eQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YylWTD3kAbei5kYL1NMcouSgA+hhgr84DK/K49Ok/XhGTFGzvZN
+	rIhbTbFDiw76oNcKGEeSNzcvMbDwb/9UO5aTCgyTsD+CHOu+iqMFIvZIF1bMyPz2qfe0+66+wTc
+	pDScAMNVZqbkYgQIl5MDLyiyI9N3/1a4kOyfgBFexKg==
+X-Gm-Gg: ASbGnct3pZYYhQJN5kSEA9XBTd28Dz+sw1aM5xOjMNYgKEsFCZO1jb1Ky6boJbDlqaR
+	i/WvixH5OyPmDlHyEdcxsYmzQk3m3b5k6SR/57G9ahh7YZH9OVfjwbVaPxNuEWfz33LSAGcPknn
+	JpGJlSlWOSNJrvWf/q8ujMhJjq+tC5XdMgpH1StW1wl3t0kWTasrpILHCpW9LYaWkgZ0B5k4l+m
+	WWW7q0Tmpr35Ec4WQ==
+X-Google-Smtp-Source: AGHT+IHhfyehhL9dzCmmW7RKEpzEoQp3xfJMMII4o8LTS1/yYrgYDUDOmVLVqNX1VUdzQSoTOGBSF65LedRhnwtIiBI=
+X-Received: by 2002:a05:6512:3b9e:b0:55c:e95e:cd63 with SMTP id
+ 2adb3069b0e04-55f708ecf1dmr3560056e87.30.1756832268893; Tue, 02 Sep 2025
+ 09:57:48 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/4] ufs: dt-bindings: Document gear and rate limit
- properties
-To: Krzysztof Kozlowski <krzk@kernel.org>, <alim.akhtar@samsung.com>,
-        <avri.altman@wdc.com>, <bvanassche@acm.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mani@kernel.org>,
-        <James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
-CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
-References: <20250901155801.26988-1-quic_rdwivedi@quicinc.com>
- <20250901155801.26988-2-quic_rdwivedi@quicinc.com>
- <5cbfa653-03c3-41dd-a309-406eaf3b6033@kernel.org>
-Content-Language: en-US
-From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
-In-Reply-To: <5cbfa653-03c3-41dd-a309-406eaf3b6033@kernel.org>
+References: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com>
+ <20250831-tegra186-icc-v1-2-607ddc53b507@gmail.com> <20250902-curious-cooperative-agouti-1efdcd@kuoka>
+In-Reply-To: <20250902-curious-cooperative-agouti-1efdcd@kuoka>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 2 Sep 2025 11:57:37 -0500
+X-Gm-Features: Ac12FXzEK5elSQZytKBQDMCCZLo03Xy4jbKPZ68ZK5aetWahruENEzoM8bpe-ok
+Message-ID: <CALHNRZ8VBXnf0UULDP=fqGSEYvWXoGhoY10P8FyHbYGwi9uY4w@mail.gmail.com>
+Subject: Re: [PATCH 2/8] dt-bindings: tegra: Add ICC IDs for dummy memory
+ clients for Tegra194
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jmrf0Wd2ZfccECOcCgtmPPvkmmJAsBOd
-X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b720c6 cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8
- a=hsxNhXGD_D1a_R53JcAA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: jmrf0Wd2ZfccECOcCgtmPPvkmmJAsBOd
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX5YGkezkKtL+t
- 19eaxxyMb+aTPAaRP6PaCXCVx6R/KHzsVxzxG7q4hsXPnBlmIQS3jevRal3jEwGBAqp3MWk92lE
- mRwMz+lQnFuw+oLRjFThWP659IpcgDnT9GAnkIYbtrfGGmaGmeLV4KaJAS4iZpZ3CF+x6faV5uI
- /Hb0EedfjLD8ZiSv4t4ljVpiIxjkP/iHnZtDeCeLU2545t9a2w7yOxRpAL272xYC3apIc+TMEHn
- DGnVDgAOHQ24g4mRybnePHWSnyFjL2YE51KW/kVX6J0aQK0hXlz0Lbi46n6J3+09EdgSIm4nCl9
- yNzdV5O8gl3C8KBQDdjkv0xv+0HoJebCNG9Di2q0GH4GzsUQ8LabcGjeTk60RgygoJKs9F1Dg45
- 5ewyXtbL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_06,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300001
+Content-Transfer-Encoding: quoted-printable
 
+On Tue, Sep 2, 2025 at 3:25=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
+> wrote:
+>
+> On Sun, Aug 31, 2025 at 10:33:50PM -0500, Aaron Kling wrote:
+> > Add ICC IDs for dummy software clients representing CCPLEX clusters.
+> >
+> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> > ---
+> >  include/dt-bindings/memory/tegra194-mc.h | 6 ++++++
+> >  1 file changed, 6 insertions(+)
+> >
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with 'git log --oneline -- DIRECTORY_OR_FILE' on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-pat=
+ches.html#i-for-patch-submitters
+>
+> dt-bindings: memory: tegra194-mc: (or nvidia,tegra194-mc)
 
+For reference, I did base the commit subject on existing commits,
+namely b0dae3d which these patches are based on. Apparently that was a
+bad reference. I will update as requested for v2.
 
-On 02-Sep-25 11:42 AM, Krzysztof Kozlowski wrote:
-> On 01/09/2025 17:57, Ram Kumar Dwivedi wrote:
->> Add optional "limit-hs-gear" and "limit-rate" properties to the
->> UFS controller common binding. These properties allow limiting
->> the maximum HS gear and rate.
->>
->> This is useful in cases where the customer board may have signal
->> integrity, clock configuration or layout issues that prevent reliable
->> operation at higher gears. Such limitations are especially critical in
->> those platforms, where stability is prioritized over peak performance.
->>
->> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
->> ---
->>  .../devicetree/bindings/ufs/ufs-common.yaml      | 16 ++++++++++++++++
->>  1 file changed, 16 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/ufs/ufs-common.yaml b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
->> index 31fe7f30ff5b..b4c99fee552f 100644
->> --- a/Documentation/devicetree/bindings/ufs/ufs-common.yaml
->> +++ b/Documentation/devicetree/bindings/ufs/ufs-common.yaml
->> @@ -89,6 +89,22 @@ properties:
->>  
->>    msi-parent: true
->>  
->> +  limit-hs-gear:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    minimum: 1
->> +    maximum: 5
-> 
-> No improvements.
-
-Hi Krzysztof,
-
-I have updated it in the next patchset.
-
-Thanks,
-Ram.> 
->> +    default: 5
->> +    description:
->> +      Restricts the maximum HS gear used in both TX and RX directions.
->> +
->> +  limit-rate:
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +    enum: [Rate-A, Rate-B]
-> 
-> lowercase
-I have updated it in the next patchset.
-
-Thanks,
-Ram.> 
->> +    default: Rate-B
-> 
-> 
-> Best regards,
-> Krzysztof
-
+Aaron
 
