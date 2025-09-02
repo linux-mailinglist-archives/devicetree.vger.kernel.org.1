@@ -1,48 +1,80 @@
-Return-Path: <devicetree+bounces-211796-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211797-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 708D9B40A0D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:02:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9128B40A2C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:10:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1337D4E3695
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:02:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 691651BA0E18
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:10:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EAE6322775;
-	Tue,  2 Sep 2025 16:02:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D021335BC6;
+	Tue,  2 Sep 2025 16:10:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F97Q3CjC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="auDW1mT3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com [209.85.160.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29A6E3126DC;
-	Tue,  2 Sep 2025 16:02:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94B4D322743
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756828946; cv=none; b=OQ63ltmXqU5OMzlL+r5e7Ci4WnP5hGjia20pJ8s3Q7td/WYrcPo30o2cojzlVdmGik3yuVdBFVpG2kv6Dqm4KxBrN4eLDugdN1UPyz+zsaCb9hRpZT3n5zEd1E3zo9N0mOr7+fxjcnDb9/0f79OXGovVUhJ7i43UgkEXrKBNbiI=
+	t=1756829409; cv=none; b=RfvnbUEtWDNejcIV5y541iosR1r4iog1prEoaKSOn2maeyZEZgOUsvt8tAQ756hrbfCyaN0dr2pML572RU9WztLa8R03BsBCDIP7MlMGZ9IVZ/XtPNGiVkKquyaSedvOKo15OVmnLZ/ylqz8dMsp2kljxGDbm78Uzg8Ml1QaOj8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756828946; c=relaxed/simple;
-	bh=lB5D9KsRYs7OgNcYyTVZgRLKvveUEdtkvlhi3ouxmPQ=;
+	s=arc-20240116; t=1756829409; c=relaxed/simple;
+	bh=VrSQSITn9gd9lscxj+R2V/u4A3x4Is4GeujBk9+skZk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Io65Du0VVoSucUu+OOPRj5qh2hkxCLoZXhFoeBYA5G2EVvpmIbSarSagnUpwPbNc4bcn1YHqxuNg8AdIRtIJqNeaja2l3JaRZH8aI79fGOJCgI6O73DpBfOPhIEQcsHtRS260sg7qShZyY96ABsxkUoaRi5o7suiObS+Ic7L7CY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F97Q3CjC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7C8AC4CEED;
-	Tue,  2 Sep 2025 16:02:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756828945;
-	bh=lB5D9KsRYs7OgNcYyTVZgRLKvveUEdtkvlhi3ouxmPQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=F97Q3CjCNHrjLkc3GoenPkugZEIaxXX9uHGFp12FamsDGTJNfPBdu27cqKcSHxB7U
-	 cXfSZJW/NxgsyZXijUvQZ6jByb4hxmen47YCp+gg5+UAtMdkaIHfbR/spG3AiaXMvQ
-	 JVa266jJh/yU2N+ejEnVOVG++SQsmojoVwp6EteNxU32OhegVQEhzGYcmKoWhBI2Yh
-	 f8RVRersUBQSJTDHNvX/WhBl9nrrpgYvlBRLHxhEAbVBRT32rfvGHVf8DgqoiX214h
-	 yOFBc8FbBremLDrp69OfnInvpoKlWrbcwGgha5kE+rLtl4y99Zm/PJAMPVXCO2xmlS
-	 KXRSkkl8f6QsA==
-Message-ID: <4806391a-1040-4baf-b996-91f1f79fbd70@kernel.org>
-Date: Tue, 2 Sep 2025 18:02:17 +0200
+	 In-Reply-To:Content-Type; b=aopSr/gMbjGQ8YHE71LSuDhe1iXs0JNRtZOTMMrx6TEabqz38h55fl8lwbxzgqUhXqm+8qwHaKP9jXTBpPczcBVfph5KuI9gCezgAVGTI3QTCCA3Wzim8qX7sf9kw7pPxsXIozcrvZeVDu3hZkUC06Bt0fxbIv0WfkueiIZHMc4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=auDW1mT3; arc=none smtp.client-ip=209.85.160.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f48.google.com with SMTP id 586e51a60fabf-30cce5be7d0so2313731fac.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 09:10:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756829405; x=1757434205; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1b2HBJLNyTHgHAemvhv7VSSr8vGG9gIZU3t67hKMHJo=;
+        b=auDW1mT3OtaOt61wVvByNPhtnR7bdjL5+0xhF+mmGS/nf+IL+64r/Rgk/tfAlORyuZ
+         rsyWqpUC4afDdpjiIWwihkYy1RjbqW4D/2HOVBabPbt2zieAHtiX51OtfTa/i0TMwNfH
+         bWWuibWZNGyw8Wvg3aMRkBPrL4rczuOSWcCipnf0ELP5Hio3G/CHWi/CsxErJIrYXsYA
+         5oH2hqavktPFFA5Vr2TShuaYpXr0QxtifcceuN6TcyHg4tvH9sQ4b5c2sfU7ngfI2UZl
+         f1HQtc6F0Hs7rJt1pjbhT6SzWoMWp4LDB+IswiZiJoe7s76d/eQjiSLhTZlWkwCzbasl
+         xnhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756829405; x=1757434205;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1b2HBJLNyTHgHAemvhv7VSSr8vGG9gIZU3t67hKMHJo=;
+        b=Cz/vj07AAAORLMLnFBhlv5itLaDucTORQGLt2NUMfjxrKr0MzkzjVINDTHpiMQzwnY
+         eopW+jEDdUV94SL2EsjT4rUllO62wNThY+IjRj1Gp1WrBiDKHu5cTtrWj0AUpxQDrX4v
+         HrjzthJZ3h5dp5SD/stqwkkCiKLPAbPOhcebrgy6n8w6EIn2o/O71Li8NOZ837mpznq7
+         qP29nNFSH0bJnAPKcu3Ve4mpnZiTwfEp+rm6oaeDQ4SEswIBfjUhz7nuFpz3SihRNGZL
+         +jQvQ7nJDzos4UPREBHGsedY9zitQaII2im2heWhYVE5KQ59mewrqyBTa9Y/wwYoRJtv
+         so2w==
+X-Forwarded-Encrypted: i=1; AJvYcCVk2pfZfJg6HWs+C9BlYbW6d6DA/HoBsM5w7e3R8WmqZePMr5ieDOYikLTnCcq0GsHIqwJcbmDwcZtU@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywr7JlkZxiC24Yn/AfIGRxYdAjYGyUuZO7wXhPlXan0cfnzjSiW
+	ZAwZMR7v3PsbIheLl0nQN2deepcLqJ8FXySYDisIsw81qo4h+G+wGNYUgzsugvJCWlo=
+X-Gm-Gg: ASbGncun9EayOMbpLFaivhFUg1of+IOhlkMbhW5Mwuq5eCkbj3CnRit2Mg+tzW3ugMK
+	ZUPpqBlvXfmV/Yzt6QCBb4Za+skcjb5/J/aeQnOniP+HcbJKXIKAArX5rPpeW85uemZOgBpoRjr
+	ef1oFKIaBaeZ6tGGhjT08QAwSdpAex+3uzoFH17l7Fn2kJJs0tf1ozwia17DrdVILhrW77qXrQS
+	4gXuqlII2mYYVayHWOx0eadI0kCCQXZ431i4QQ1V5ZOKRWtn1rmRu34pokL/sejEx2YbOzR3aGI
+	qWJ1hvG2/rCbpaecxwMxFZ6QEmt6OeHhPRG+P1F5RYFTXOAZ0xRaSjvaQeOEV2aSG7Ja4IdZAME
+	k0jow+8pwY/T1gaLtT8S009iI2jtJCI1GDQ6Q+tHs638/bDVSI/eMN0YDOtH5R1FKgrjT4qAN
+X-Google-Smtp-Source: AGHT+IGCpDnc9d4PjivPmjMidb+t/OFLW+acaBEBwQEHGbDKfC55P2vhw0JnuNYoQRu6pKg0KePVow==
+X-Received: by 2002:a05:6870:f626:b0:30b:cd02:297c with SMTP id 586e51a60fabf-319633cc746mr5946257fac.35.1756829405500;
+        Tue, 02 Sep 2025 09:10:05 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b? ([2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-319b60c5240sm567642fac.32.2025.09.02.09.10.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 09:10:05 -0700 (PDT)
+Message-ID: <dfcdaf9a-1980-4059-9268-2e9ae96831e8@baylibre.com>
+Date: Tue, 2 Sep 2025 11:10:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,90 +82,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dwmac: Increase 'maxItems'
- for 'interrupts' and 'interrupt-names'
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+Subject: Re: [PATCH v10 0/2] Add MAX14001/MAX14002 support
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Kim Seer Paller <kimseer.paller@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Russell King <linux@armlinux.org.uk>,
- Giuseppe Cavallaro <peppe.cavallaro@st.com>,
- Jose Abreu <joabreu@synopsys.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, Biju Das <biju.das.jz@bp.renesas.com>,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20250902001302.3823418-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250902001302.3823418-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250902-spirited-congenial-stingray-f8aff7@kuoka>
- <CA+V-a8uy++vzYh5956X2Dpv2Low5uAK+FRTONaP4Nc3FMty6Bw@mail.gmail.com>
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
 Content-Language: en-US
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CA+V-a8uy++vzYh5956X2Dpv2Low5uAK+FRTONaP4Nc3FMty6Bw@mail.gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <cover.1756816682.git.marilene.agarcia@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/09/2025 17:43, Lad, Prabhakar wrote:
+On 9/2/25 8:14 AM, Marilene Andrade Garcia wrote:
+> Hello everyone,
 > 
->> You also need to constrain other devices, because now one Renesas
->> binding gets 19 interrupts without any explanation. Please rethink how
->> you split your patches...
->>
-> I see you have already taken care of this, thank you.
+> Thank you for your input on how to handle the situation with the driver code. 
+> Kim, I also apologize for the unexpected situation involving your previous 
+> code.
+> 
+> Based on the suggestions, I applied my v1 code changes to v9 of Kim’s code, 
+> resulting in this v10 version that combines both. 
+> Compared to v9, the updates are:
+> 
+> - Added support for max14002.
+> - Added a function to write a single register, since the write enable 
+> register must be updated before writing to any others and updated again 
+> afterward.
+> - Renamed the init function to better reflect its purpose, which is to 
+> disable the memory verification fault. I also replaced the one-by-one 
+> handling of registers verification values with a loop, since they are in 
+> sequential ascending order.
+> - Replaced the old regulator APIs with the new ones.
+> - Updated the device tree documentation to align with the datasheet 
+> nomenclature for voltage suppliers.
+> - Used IIO_CHAN_INFO_AVERAGE_RAW to return the filtered average of ADC 
+> readings.
+> 
+> One of the reviews I received about my v1 version suggested using a custom 
+> regmap. I attempted to implement that, but I feel that most of the default 
+> regmap functions (e.g., regmap_update_bits) would need to be overridden 
 
-No, I am not talking about that. I am talking about
-renesas,rzv2h-gbeth.yaml, which with this patch gets 19 interrupts.
+Usually, you only need to implement one read and one write function for
+a custom regmap bus and the core code regmap code will use those for
+all of it's function calls. Since you already have a read and write
+function, it shouldn't be too hard to adapt them to the regmap bus
+callback signatures.
 
-Best regards,
-Krzysztof
+> because of the unique way this device handles communication, such as 
+> inverting bits before sending a message, updating the write enable register 
+> before writing any other register, and updating it again afterward. However, 
+> as I am still new to the IIO kernel code, I may be missing something. If you 
+> could provide further explanation or an example, I would be grateful.
+> 
+> Regarding locking, Kim’s original code implemented it, and it remains in 
+> the driver.
+> 
+> I still have a question about using _mean_raw (IIO_CHAN_INFO_AVERAGE_RAW) 
+> to read the register containing the latest filtered average ADC readings. 
+> Should I create a v11 version with a patch to include in_voltageY_mean_raw 
+> in the file /linux/Documentation/ABI/testing/sysfs-bus-iio? 
+
+There is already "/sys/bus/iio/devices/iio:deviceX/in_Y_mean_raw" which
+I think is intended to cover that.
+
+> The idea is to use in_voltageY_mean_raw to return the filtered average and 
+> also to set how many ADC readings (0, 2, 4, or 8) are included in the mean 
+> calculation. Any feedback on using IIO_CHAN_INFO_AVERAGE_RAW this way would 
+> be appreciated.
+> 
+> The v10 changes were tested on a Raspberry Pi 5 using a modified kernel 
+> (rpi-6.12). The MAX14001PMB evaluation board, which contains two MAX14001 
+> devices, was used for testing. One device measures current, and the other 
+> measures voltage. The evaluation board introduces an offset to allow 
+> measuring negative values. These board-specific characteristics were not 
+> included in the driver code (neither the offset nor the current channel 
+> capability), but they were considered in the calculation of the values read 
+> by the devices. Should the code that applies these board configuration 
+> parameters be added as an additional driver file inside the IIO subsystem, 
+> or should it remain only in a user application?
+
+These features are provided by extra analog frontend (AFE) circuitry
+so the are outside of the scope of this driver.
+
+There is an iio/afe/iio-rescale.c driver that can be used to handle this
+kind of circuitry. It has "current-sense-amplifier" and "current-sense-shunt".
+I didn't look at the eval board schematic in detail to see which one is
+the right one for this case. There isn't one for the voltage offset case
+though. So if you have some extra time, you could consider adding that.
+
+You will need to add #io-cells to the DT bindings for the MAX chips
+so that we can connect it in the devcie tree to the frontend.
+
+    amplifier {
+        compatible = "current-sense-amplifier";
+        io-channels = <&eval_adc_1>;
+
+        sense-resistor-micro-ohms = <?>;
+        sense-gain-mult = <?>;
+    };
+
+> 
+> I plan to continue sending patches to cover all the features of the device. 
+> This includes adding interrupt handling for faults and for when the signal 
+> exceeds the upper or lower threshold, implementing the inrush current 
+> feature, and completing the filtered average reading functionality by 
+> adding the ability to set the number of readings used in the mean 
+> calculation.
+> 
+> And I would like to thank again my GSoC mentors Marcelo Schmitt, Ceclan 
+> Dumitru, Jonathan Santos and Dragos Bogdan for their help with the code.
+> 
+> Thank you for your time,
+> Best regards,
+> Marilene Andrade Garcia.
+> 
+> Marilene Andrade Garcia (2):
+>   dt-bindings: iio: adc: add max14001
+>   iio: adc: max14001: New driver
+> 
+>  .../bindings/iio/adc/adi,max14001.yaml        |  79 ++++
+>  MAINTAINERS                                   |   9 +
+>  drivers/iio/adc/Kconfig                       |  10 +
+>  drivers/iio/adc/Makefile                      |   1 +
+>  drivers/iio/adc/max14001.c                    | 355 ++++++++++++++++++
+>  5 files changed, 454 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+>  create mode 100644 drivers/iio/adc/max14001.c
+> 
+> 
+> base-commit: d1487b0b78720b86ec2a2ac7acc683ec90627e5b
+
 
