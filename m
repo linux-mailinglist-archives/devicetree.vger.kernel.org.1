@@ -1,249 +1,147 @@
-Return-Path: <devicetree+bounces-211682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F314B400A7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:33:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 822E5B4008F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:30:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A480163867
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:29:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2181A1886D3E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B12F744C;
-	Tue,  2 Sep 2025 12:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1EF62848AC;
+	Tue,  2 Sep 2025 12:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C/n3JY8d"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="zMjI/CMs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9032E2C0284
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 12:29:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB27B2FDC25;
+	Tue,  2 Sep 2025 12:30:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756816178; cv=none; b=jn0VDeVN8Sx9VepDSpsC+9RqD9PQRf0goDacgBQrN9xoqgnQrKqAhNtOT5NYILEL+N0xlA67x0GiFO/1rrZm/OZjdG4lgQqy2NxMLRCl/KhjyDqU7MkLqmMhZ1jYXTPKkocyvyLdLWDMv0l2MNsRsJ926JEB5KMKg6oGeIT7+ws=
+	t=1756816226; cv=none; b=fJcXTrSFQZR4JKWxo/nwhqh0Xn2/lLLWPTGlRPQyL0a+S0jRcN846BwF8br6RaRMZF10U5w+fQ19AYsgRW7suIGuHyeUy1eh/+gxxLQmg4Xr+adH45Xv9gdgg84q98SgAAo6RGWmWDBvaUygIuTus5WzxOdZt9948hd8RRRRPzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756816178; c=relaxed/simple;
-	bh=b57I0OXp26oEfOf/7p/hsldlstzVbYwY81eLcRB6a40=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=tZArEdlof6NdHQjkPOei6NOjP5aWCaVDK1owxgk8iyS/5R1h/Rf/USSyFKPFw0HO901noDzb1yvtglqXpXwnhLO/b2FizV8SJ7FYGE6vmFw17/CJ+yVvhlF80m1nXPVx+KY5RLcht2ztxMqav+a05oT+AdSisrnWzjQiuMiGY14=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C/n3JY8d; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3cef6debedcso2396170f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 05:29:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756816175; x=1757420975; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1ZrMGz19D43nUqFgTyxFJMNWsEoiEGhGU7kOoh8E0aU=;
-        b=C/n3JY8d0R2IsJuTlaNhGnHeQ3IkxJMQFpegDgyUvvjmV78+x7u/1Pb75QCn+/lvgn
-         txZF3+8Zs4hmhLMZWBeAWs/IjZTO1KgB+Y1eBmjT06Lw06DqeobCV4hsiOH0rjQxGvJD
-         LzGBokBcdysCWW1PtYexd/iQrr5pknXqjm9DCAxuzuD1La2/qLIsHxeRaNV2ZPvBHI30
-         urjscOMa7aIkUF7du7WvoPZeEdcbTYIcyumqc3wuZ290c+r+enky9hS+VVL5AyFYf1m7
-         Lr2AMfPzeFBV8TXY5kXspzKJUGXit0h8Ktebw9NuXK05zNFtnRY7ti29Cd9yIaCorv8i
-         ji2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756816175; x=1757420975;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=1ZrMGz19D43nUqFgTyxFJMNWsEoiEGhGU7kOoh8E0aU=;
-        b=vRND9L0UqCRpEYCc0Tpa6gN4XjfJNL2zIPu89iC+1ilujXQupcr/6QoiiECA3Xt462
-         m9ecndrARjIrm8jVt5rgCWdiHoDmCoLGYGX1wlbhxZnMlFVdMKAJt9McMgq9c9AnNxQ7
-         HZSSovgppAjgXRjGd82+zm633Hi7Eob/lGEb3zmbabSNIsaDExfebB3YoPIQcxIdQUdb
-         ROvBUR56SuiCW+PbNEspD8PWH4NWNd0ImhKq7x3B56GM4l+zYnODchF5OrrKP6pafxwJ
-         KGmqOc4iMb+j24ohuw0i6KBBF5j9fN+3cL4gd3Veg7G34UXPKrWbCVDCRMXzFS/lh9SP
-         7svg==
-X-Forwarded-Encrypted: i=1; AJvYcCVzGI3rDuDxck7YbJKkIMVyU2jrBSe05GNeT34+Aa4zr9cmdzmoEqdUFRUQKT6UCvAWiX8jAiMt/Hqn@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxDmPs22ex5T7jdsolsqCfxR6VW01O0MlLV22qv9YoUoHPze3K
-	HpVNfo874AsIW/rn/kzAMJeBvKdBoxDuOUhTIT7lN6cZe4aysYZIQxLBZ2+9U+sXZog=
-X-Gm-Gg: ASbGncsLhZuoRqvl0VRUA7wyh/dmm65bpfyySmF1MH3GDfwmL1Bg6PHidZNamut4gOx
-	aspojEWhTiP3CQzkcpUIdf0o/aFH6pvgr5L+BTAOYcLVaVt+6V/7UCsO8Zm5b9y17h8iGuEY/5R
-	P7dyfb+QZsYSa/MhU62KOBMmvLmMDXN5G/PG9CTyzE/2DlN13tC4Bl+SJHbcNWCgI7FsG08X9tu
-	rdZb4v2ZKogP1XpcyaeW1zt0SyoJ+f1u3O22AZZ/IOO/5dBtbGUWo/FIOdSwhthPu2SiGc9aV+W
-	3DFsmhTc9HYaosTqL2LDbT7VPgrsyOLSzVfAH6slMNncYf3WHz9jWl8a6GJW2aWHatTiqVgfOuR
-	5UsE8IF41JY1MkUBbFjCWE530iR0ETMGMLkH65x1dSsUmaDY+U03dc5vQPlIfZwx4OAz6a38rjW
-	M=
-X-Google-Smtp-Source: AGHT+IE1b3znR8mhSVfN1o59ljoC/UoU3/SWyuUcMM/rQ1Xo7sYc7jTiyhzTL42RejqME3JwAEmmLg==
-X-Received: by 2002:a5d:64c6:0:b0:3ce:f0a5:d586 with SMTP id ffacd0b85a97d-3d1dc5a2fe0mr7157423f8f.1.1756816174847;
-        Tue, 02 Sep 2025 05:29:34 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939? ([2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf33adf170sm21033678f8f.33.2025.09.02.05.29.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 05:29:34 -0700 (PDT)
-Message-ID: <81b1e0b8-6a5b-4eb9-8f9d-fe9a52f0afcd@linaro.org>
-Date: Tue, 2 Sep 2025 14:29:33 +0200
+	s=arc-20240116; t=1756816226; c=relaxed/simple;
+	bh=czukquVg7XF9DJNYEyglglLki1nDEidWaPA+xQuQ6EA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EIPsHn9+4YNDN8OOfdkBcBe3K+8KuY0d34dxeYdTO+Y+4e7uMCQptiYBbSvs7+9dZ/WeIq87BZAvqmQ2TvXYeoavJmX7zJagD47EtNiNX2Y149PSqrnZD6Mtz6Mu3Doe9wm+wuLl56SZP1PqaPEcnQ0FdqhJMhLCioCwGDQWG3s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=zMjI/CMs; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=NMP/CTl2ylNMD3ybJrgMRzD8EiCJt79eet20qgFJRWo=; b=zMjI/CMsKOG9X3LXK1NdFAd+7Q
+	wk66xQtu77dJTWA3aIlbuqshCxn2FCQ2PL4FhdfNQW6v/L2+mpPB3Q927olX1qhWnncsc+0F0z+uV
+	KGRcNp9okqD6bztwTdjtw5MK+UDET1NWa5S1UZliMtIPVOdnGpKwkZExmoh+nvdVLU9M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1utQ9T-006sqn-TD; Tue, 02 Sep 2025 14:30:19 +0200
+Date: Tue, 2 Sep 2025 14:30:19 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Jack Ping Chng <jchng@maxlinear.com>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"davem@davemloft.net" <davem@davemloft.net>,
+	"andrew+netdev@lunn.ch" <andrew+netdev@lunn.ch>,
+	"edumazet@google.com" <edumazet@google.com>,
+	"kuba@kernel.org" <kuba@kernel.org>,
+	"pabeni@redhat.com" <pabeni@redhat.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	Yi xin Zhu <yzhu@maxlinear.com>,
+	Suresh Nagaraj <sureshnagaraj@maxlinear.com>
+Subject: Re: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
+ SoC
+Message-ID: <8fa4504e-e486-41d0-9140-b24187626850@lunn.ch>
+References: <20250829124843.881786-1-jchng@maxlinear.com>
+ <20250829124843.881786-3-jchng@maxlinear.com>
+ <65771930-d023-49e1-87a7-e8c231e20014@lunn.ch>
+ <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
+ <398ad4b1-1bd3-4adc-8bda-5cc8f1b99716@lunn.ch>
+ <PH7PR19MB56366632D5609B0B51FE8939B406A@PH7PR19MB5636.namprd19.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 3/5] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
- Document static lanes mapping
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
- <20250902-topic-x1e80100-hdmi-v2-3-f4ccf0ef79ab@linaro.org>
- <slgu2d4iv6ef76f43gvwaelcl5ymymsvhokyunalq7z3l2ht3j@t7pko4rtqvgm>
- <bf772209-2420-4794-a52a-1d5932146307@linaro.org>
- <tl4fskw6yq6rniwwqkrvnulfpgym3jswlt5bmulgquogv7xkct@6bl4boesilsw>
- <14f334fc-35de-4f21-8eb1-f6b41ac24704@linaro.org>
- <oel3t35pxegxaowcfjbrzrxvuw47p7pzcinz7kf2uj2ivcderv@efbttlqpwcc7>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <oel3t35pxegxaowcfjbrzrxvuw47p7pzcinz7kf2uj2ivcderv@efbttlqpwcc7>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <PH7PR19MB56366632D5609B0B51FE8939B406A@PH7PR19MB5636.namprd19.prod.outlook.com>
 
-On 02/09/2025 14:22, Dmitry Baryshkov wrote:
-> On Tue, Sep 02, 2025 at 12:05:45PM +0200, Neil Armstrong wrote:
->> On 02/09/2025 11:46, Dmitry Baryshkov wrote:
-
-<snip>
-
->>
->> This is wrong, those are the internal connections to the controllers,
->> those are fixed. I'm speaking about the external lanes, but there's only
->> a single port.
->>
->> So, following your suggestion, we should use the Output port 0, but as it's
->> only a single port it would need to have 2 endpoints, one for USB3 and one for
->> DP.
->>
->> For example:
->>
->> \{
->> 	dp-connector {
->> 		compatible = "dp-connector";
->> 		type = "a";
->>
->> 		port {
->> 			dp_con: endpoint {
->> 				remote-endpoint = <&usb_1_ss2_qmpphy_dp_out>;
->> 			};
->> 		};
->> 	};
->>
->> 	usb-a-connector {
->> 		compatible = "usb-a-connector";
->>
->> 		ports {
->> 			#address-cells = <1>;
->> 			#size-cells = <0>;
->>
->> 			port@0 {
->> 				reg = <0>;
->>                       		usb_con_hs: endpoint {
->>                          		remote-endpoint = <&usb_1_ss2_dwc3_hs>;
->>                       		};
->>                   	};
->>
->>                   	port@1 {
->>                       		reg = <1>;
->>                      		usb_con_ss: endpoint {
->>                           		remote-endpoint = <&usb_1_ss2_qmpphy_usb3_out>;
->>                       		};
->>                   	};
->> 		};
->> 	};
->>
->> };
->>
->> &usb_1_ss2_dwc3_hs {
->> 	remote-endpoint = <&usb_1_ss2_dwc3_hs>;
->> };
->>
->> &usb_1_ss2_qmpphy {
->> 	/delete-property/ mode-switch;
->> 	/delete-property/ orientation-switch;
->>
->> 	ports {
->> 		
->> 		port@0{
->> 			#address-cells = <1>;
->> 			#size-cells = <0>;
->>
->> 			/delete-node/ endpoint;
->>
->> 			usb_1_ss2_qmpphy_usb3_out: endpoint@0 {
->> 				reg = <0>;
->> 				
->> 				remote-endpoint = <&usb_con_ss>;
->>
->> 				data-lanes = <1 2 0 0>;
->> 			};
->>
->> 			usb_1_ss2_qmpphy_dp_out: endpoint@1 {
->> 				reg = <1>;
->> 				
->> 				remote-endpoint = <&dp_con>;
->>
->> 				data-lanes = <0 0 1 2>;
->> 			};
->> 		};
->> 	};
->> };
->>
->> So the driver logic would need to look at the port0/endpoint0 and port0/endpoint1
->> data-lanes to figure out the mode.
->>
->> Is this what you were thinking ?
+> Hi Andrew,
 > 
-> No, I was really thinking about the data-lanes in the PHY parts, so I
-> was incorrect there (which is incrrect as you've pointed out).
+> Thank you for your valuable feedback.
 > 
-> The endpoints approach looks interesting though.
+> The switch core hardware block is part of the MaxLinear Lightning
+> Mountain (LGM) SoC, which integrates Ethernet XGMACs for connectivity
+> with external PHY devices via PCS. 
+> At initialization, we configure the switch core ports to enable only
+> Layer 2 frame forwarding between the CPU (Host Interface) port and the
+> Ethernet ports.
+
+So there is a dedicated port for the CPU. That is one valuable piece
+of information for this decision.
+
+> L2/FDB learning and forwarding will not be enabled for any port.
+> The CPU port facilitates packet transfers between the Ethernet ports
+> and the CPU within the SoC using DMA. All forwarding and routing
+> logic is handled in the Linux network stack. 
 > 
+> LGM SoC also has a separate HW offload engine for packet routing and
+> bridging per flow.  This is not within the scope of this patch series.
+> 
+> > Are there any public available block diagrams of this device?
+> 
+> We will  update the documentation accordingly in the upcoming version.
+> Please find the packet flow at a high level below:
+> Rx: 
+> PHY -> Switch Core XGMAC -> Host Interface Port -> DMA Rx -> CPU 
+> Tx:
+> CPU -> DMA Tx -> Host Interface Port -> Switch Core XGMAC -> PHY
+> 
+> > How does the host direct a frame out a specific port of the switch?
+> 
+> In the TX direction, there is a predefined mapping between the Ethernet
+> interface and the corresponding destination switch port. 
+> The Ethernet driver communicates this mapping to the DMA driver, 
+> which then embeds it into the DMA descriptor as sideband information.
 
-Indeed this would accurately describe the data flow and lane mapping, but
-I fear this would add a very complex logic in the driver.
+So, there are not DMA channels per port. The CPU has a collection of
+DMA channels, it can pick any, and just needs to set a field in the
+DMA descriptor to indicate the egress port.
 
-Anyway I'll try to drop something.
+> This ensures that the data is forwarded correctly through the switch fabric
+> 
+> > How does the host know which port a frame came in on?
+> 
+> On the RX side, the source switch port  is mapped to a specific DMA Rx
+> channel. The DMA Rx descriptor also carries the ingress port as
+> sideband information.
+> Either of these methods can be used to determine the source switch port.
 
-Neil
+So here you do have a fixed mapping of port to DMA channel, but you
+don't actually need it.
+
+So this sounds a bit like the Qualcomm IPQESS device.
+
+https://lists.infradead.org/pipermail/linux-arm-kernel/2022-May/743213.html
+
+This never got merged, but it was going the direction of a DSA driver.
+However, you could also do a pure switchdev driver.
+
+The advantage of a DSA driver would be a lot of infrastructure you can
+just use, where as a pure switchdev driver will require you to
+reinvent a few wheels. So a DSA driver would be smaller, simpler, less
+bugs.
+
+	Andrew
+
 
