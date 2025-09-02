@@ -1,413 +1,162 @@
-Return-Path: <devicetree+bounces-211810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162E5B40ACB
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:39:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3876B40AF9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:49:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 903C51890AF0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:39:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 601784E2F21
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:49:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C65433EB0F;
-	Tue,  2 Sep 2025 16:38:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2EB2531AF2E;
+	Tue,  2 Sep 2025 16:49:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nwaqhQ3q"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="AXysRbc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E9112E92BB
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:38:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A80C22FAFD;
+	Tue,  2 Sep 2025 16:49:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756831135; cv=none; b=sc787OqsGNdcY/++/xjrclKMpsLcKiKHYtVQQlQJDF6QsYBnlwrv73v6llxhfg4Xr7xeugTPtticA9b1KfX+Bnwr1iBAZVoR26fNohnCMzV7RPjzKoX1yzXG0DUcZywQYS4z1qYkngg9ROqKviWZdFdGzkSNpfEGxET8UUTMG/4=
+	t=1756831769; cv=none; b=onDXwQfKde5R1jtaaYbNige5cUsY8gDLq8bBRcGGT+S+MgjJmBvvYdPA6AU+Ul4f/Haasr5VofTlIQ4aHwr/TTudrqbsRaIeBvs4OzM8VtvDdb3Rjbp72DIr5lIivUf6GQ9sI3Cjs7xnUBGHXUKxvkSJQ7xZLCGRE0RvwXED8vA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756831135; c=relaxed/simple;
-	bh=2hiLXTYOUv7ZT+8Xe0OHkx15c5hqbSE6YBNNLMdNdyM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SQgEmkYf637fZ38mj6ABn4hUmeqXJSvUS1W+KBz+E8u6Iyn6Sbm5R9wSTfYR4dzZFmiy6mTIK37+07VpGr8sJ69GqV2uj6IVaqSitdWiPicrdTNLMVOu65Kao3kGfqRQnRMrlU46RT3WmFfIEhbGUYhuU9DyRmjpa00L/VZ4WkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nwaqhQ3q; arc=none smtp.client-ip=209.85.210.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76e1fc69f86so61852b3a.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 09:38:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756831133; x=1757435933; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DXBUwB6riv6anGuWowZRcLSzUYer/ZJs0DMzJRXqBAA=;
-        b=nwaqhQ3qQNtjCuYu7Cz6PCbC5E5VimZj07JI7C1V7qAfpR8RC0q5gcuilmid2OYuRJ
-         uOTGBffv/Qw5tpphfUFIkrKTP3x6DFrLZFH6ZOh/+MD8fM6A9fNxut6QkQtzEQ/oFLZ9
-         x/TO+6smqPiUhqpFsIwvi6b4UrxcjY3QsPZosxmlzTsAUrtyjnsW+9Qche5aNmVo+UM6
-         7CEzHp8nhzqPjJzPisL+xyG5rTrRjutlMxXm50eCUhnSO1L3uUhHkas9aQOYmRY98D2m
-         0lF2+KJBnbk3JMoa2PT8S6xygtdw4ulX2md7JivV3+2Bpsz4OYd26aO5bQIbI4dCvWui
-         PI6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756831133; x=1757435933;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DXBUwB6riv6anGuWowZRcLSzUYer/ZJs0DMzJRXqBAA=;
-        b=KvycNaHutFV2xtyqEWmmvhOFywT6Mpg/nZhHeNvqXpU0ZpKk53OGbUqO8mhlVZ/nQq
-         vlRqkFyUGLjwlgjsMWyET4BmOKNhqJdzkROYI+R9JazRoFr230YDD5qozMxoAl0z2xxL
-         0otwK9VJSVSITZ1wsCzP/UkW2VahM2FNYIoiWP2IrzmvZnjtcjl/j9mVgK2RJDYRZWqp
-         Dn4/Hqb/rK+/2gMk7zGBJMz1JnHFMJ1f6cuq79+VbND4IYISlxNdfdfsoeqLBmQGX+1V
-         NmoDGgCpCW64efJRJEMa38tlX73XNxayretAQK6kN6SWk1AV4JeCRq3d7k1tkB0q5UPO
-         cRFw==
-X-Forwarded-Encrypted: i=1; AJvYcCXIR/fEgATMB2n8AjSs9m+n/Vej0BG2QLTJrpYVP/WwHtQwCfYyX2Z0/Ov1FAIWS7OUhPdBgfS+dyYm@vger.kernel.org
-X-Gm-Message-State: AOJu0YyZRFmkYf+G20AkQma1LPfY0vGdxpGF3a7wPPW+4GJOA90e9uSe
-	UdklfXtFiEljg4VnUXzPb0FBD3M1qRpaBWuCpgjvX8LRDf/PIYLmlfSTJQhw9XHOIlE=
-X-Gm-Gg: ASbGncvQp1uZnfft18JKO9tYQlKj1t82pdigNJgVyK1NgnbpTkRxWZX3oDFAK7nQ1qv
-	LWgnssFichywAXhjFgeKiXFkHzu4c8k3939COpv0yhJpLiOSypDQ4TE77oV7EZQzPJTxyVqYznc
-	Nu069czgvvUIZBTYFoBVJ6z1fnaykGk+GR/VbggUaKE1ymCXixWx0TWE5F4yjTcqQP3EZ9aThME
-	CdIjjzsULzh3m8PFi6Mk+TQDYdYNapQDPSheOTpBkmMK8r8p8uHX9j0V6Swuw3Twru9ylTpFEnG
-	U55wDS2+DCjvXUi9E06XMHF7wCj/eaeS3prz7KAc/Xaip5rCiq2wvzUR/7GXR0cnHOw/7fI4C29
-	nqnv+QtKGGOo12hrX7O3A+J55BogfpaBWkDVZz2bKlF+pIq+dm/HyBISisQWVMbGDvqAfWDc+lA
-	GpX1kKI/GOOJq/6KPNiLT2u7XlQeGvdv+ZMzk=
-X-Google-Smtp-Source: AGHT+IEeDLgFOBjXxbJ/YLJ/SF9khStqJW4YrZ8PIFvkVTEmJPvZRH8PlrIDW8LLNusvSklsV66ErA==
-X-Received: by 2002:a05:6a20:244c:b0:243:6f68:a2f6 with SMTP id adf61e73a8af0-243d51b0c03mr14553396637.20.1756831132641;
-        Tue, 02 Sep 2025 09:38:52 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:9b21:5c26:1409:23e9])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4cd28aecd0sm12394758a12.30.2025.09.02.09.38.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 09:38:51 -0700 (PDT)
-Date: Tue, 2 Sep 2025 10:38:49 -0600
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>, Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
-	Daniel Baluta <daniel.baluta@nxp.com>,
-	Iuliana Prodan <iuliana.prodan@nxp.com>,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] remoteproc: imx_rproc: Add support for System
- Manager API
-Message-ID: <aLcdmY-gqd5cFOYc@p14s>
-References: <20250821-imx95-rproc-1-v5-0-e93191dfac51@nxp.com>
- <20250821-imx95-rproc-1-v5-2-e93191dfac51@nxp.com>
- <aLHOhKpAQbVCC76-@p14s>
- <20250830125208.GA22718@nxa18884-linux.ap.freescale.net>
+	s=arc-20240116; t=1756831769; c=relaxed/simple;
+	bh=oQFIN9AebsE8ST/ev5YRnLX78yfmp+RKTeCZkLug9iQ=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=PijI33DVX7HBg9AyMF3lIzE4jiMkrt+SzH4EuOAWfD5nOapQ+KRhHpuQIg8wgefbwKpyR1HS0vmMKhXup9OzRAPZiDSEHi/YwrwwLrq5fFTVd+LkAL/gd3fqzewGo6l2DjAdsaVEMTs0jqGD8GORQY+OhSS181kdTrOSV6msPSM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=AXysRbc+; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqCph021298;
+	Tue, 2 Sep 2025 16:49:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=sEg+xqBQJzXD93KUZNS98T
+	1nBchCmrmi8D9BtDbXhmY=; b=AXysRbc+34QGwhrTEedFURYENmXN5wF5qLOK2+
+	vQIKYVUShnfw0JYx+q/piUJchnTw1ZENI3D/O+i29Tiqh2RtgUVLM9H2WBKiRVHr
+	g99KwikBsxwAOIXJEIp/WpIFEizwEcXLHPIz4UNXFVubHDX7/K2Wz6WsOW8BXb+s
+	fzLg6y2XuFhhLZu7R8OvIaz/Z7bI7Tag6s1ovFb2Oseo6pN87N4TLDgoLLn58pRA
+	B6GnTQ5Bw3lkY3eHmdMC1XZusfZPF/EsYH2WnhOsT4KRKRvllgqJmlUIlKh13r8c
+	rLYajFZHnFTpisCtaihN3zWregOnP9d/tS6MhN7s1iz/DzJQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s0np1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Sep 2025 16:49:14 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 582GnEih031536
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 2 Sep 2025 16:49:14 GMT
+Received: from hu-rdwivedi-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Tue, 2 Sep 2025 09:49:10 -0700
+From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+To: <alim.akhtar@samsung.com>, <avri.altman@wdc.com>, <bvanassche@acm.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <mani@kernel.org>, <James.Bottomley@HansenPartnership.com>,
+        <martin.petersen@oracle.com>
+CC: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>
+Subject: [PATCH V5 0/4] Add DT-based gear and rate limiting support
+Date: Tue, 2 Sep 2025 22:18:56 +0530
+Message-ID: <20250902164900.21685-1-quic_rdwivedi@quicinc.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250830125208.GA22718@nxa18884-linux.ap.freescale.net>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfXz/3ITCz8kvOD
+ JWGrDJNmpPr6KChRgwS8phZxWKc4VDb9hp7hYM7NGqBHxHHPwQJkOyCGT5nBCQbsemI838FEyOK
+ J9Tdla9MECVkDD4nel/hWcxBdPfRaOLYz19xxc4y7OWX8wZOC83wOWLd9+kakFqita22P0MbzmT
+ IsT/cD84wRvz3Qq2tK4nc0JNhjspv0nNoKk6Pn2Bg/cy65f5Zn5twOqXDuxvUa358qOQdAp4iR4
+ d2UuWWu3BvLxn/PaJYpxYOqW/ehEfpYe1xLSX+FvOc5gnjeubUx5Wr8uSOO+PD6G1Lfq/If6/l2
+ PRLUizYIOt/sqSA5htZGGUBFp2Hcpm5hJRladBjMQPhDLzzt6lxS07zt2gEg3KHM21uKZNGVfPz
+ sN8SHxkK
+X-Proofpoint-GUID: -IdNNT1ZeSewDzNSOX_bg1SNAyh3D8cH
+X-Proofpoint-ORIG-GUID: -IdNNT1ZeSewDzNSOX_bg1SNAyh3D8cH
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b7200a cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=yJojWOMRYYMA:10 a=G5li5t1DEtNkI_zgAAMA:9
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_06,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Sat, Aug 30, 2025 at 08:52:09PM +0800, Peng Fan wrote:
-> On Fri, Aug 29, 2025 at 10:00:04AM -0600, Mathieu Poirier wrote:
-> >Good day,
-> >
-> >On Thu, Aug 21, 2025 at 05:05:05PM +0800, Peng Fan wrote:
-> >> i.MX95 features a Cortex-M33 core, six Cortex-A55 cores, and
-> >> one Cortex-M7 core. The System Control Management Interface(SCMI)
-> >> firmware runs on the M33 core. The i.MX95 SCMI firmware named System
-> >> Manager(SM) includes vendor extension protocols, Logical Machine
-> >> Management(LMM) protocol and CPU protocol and etc.
-> >> 
-> >> There are three cases for M7:
-> >>  (1) M7 in a separate Logical Machine(LM) that Linux can't control it.
-> >>  (2) M7 in a separate Logical Machine that Linux can control it using
-> >>      LMM protocol
-> >>  (3) M7 runs in same Logical Machine as A55, so Linux can control it
-> >>      using CPU protocol
-> >> 
-> >> So extend the driver to using LMM and CPU protocol to manage the M7 core.
-> >>  - Add IMX_RPROC_SM to indicate the remote core runs on a SoC that
-> >>    has System Manager.
-> >>  - Compare linux LM ID(got using scmi_imx_lmm_info) and M7 LM ID(the ID
-> >>    is fixed as 1 in SM firmware if M7 is in a seprate LM),
-> >>    if Linux LM ID equals M7 LM ID(linux and M7 in same LM), use CPU
-> >>    protocol to start/stop. Otherwise, use LMM protocol to start/stop.
-> >>    Whether using CPU or LMM protocol to start/stop, the M7 status
-> >>    detection could use CPU protocol to detect started or not. So
-> >>    in imx_rproc_detect_mode, use scmi_imx_cpu_started to check the
-> >>    status of M7.
-> >>  - For above case 1 and 2, Use SCMI_IMX_LMM_POWER_ON to detect whether
-> >>    the M7 LM is under control of A55 LM.
-> >> 
-> >> Current setup relies on pre-Linux software(U-Boot) to do
-> >> M7 TCM ECC initialization. In future, we could add the support in Linux
-> >> to decouple U-Boot and Linux.
-> >> 
-> >> Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
-> >> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> >> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> >> ---
-> >>  drivers/remoteproc/Kconfig     |   2 +
-> >>  drivers/remoteproc/imx_rproc.c | 123 ++++++++++++++++++++++++++++++++++++++++-
-> >>  drivers/remoteproc/imx_rproc.h |   5 ++
-> >>  3 files changed, 127 insertions(+), 3 deletions(-)
-> >> 
-> >> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> >> index 48a0d3a69ed08057716f1e7ea950899f60bbe0cf..ee54436fea5ad08a9c198ce74d44ce7a9aa206de 100644
-> >> --- a/drivers/remoteproc/Kconfig
-> >> +++ b/drivers/remoteproc/Kconfig
-> >> @@ -27,6 +27,8 @@ config IMX_REMOTEPROC
-> >>  	tristate "i.MX remoteproc support"
-> >>  	depends on ARCH_MXC
-> >>  	depends on HAVE_ARM_SMCCC
-> >> +	depends on IMX_SCMI_CPU_DRV || !IMX_SCMI_CPU_DRV
-> >> +	depends on IMX_SCMI_LMM_DRV || !IMX_SCMI_LMM_DRV
-> >>  	select MAILBOX
-> >>  	help
-> >>  	  Say y here to support iMX's remote processors via the remote
-> >> diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-> >> index a6eef0080ca9e46efe60dcb3878b9efdbdc0f08e..151b9ca34bac2dac9df0ed873f493791f2d1466e 100644
-> >> --- a/drivers/remoteproc/imx_rproc.c
-> >> +++ b/drivers/remoteproc/imx_rproc.c
-> >> @@ -8,6 +8,7 @@
-> >>  #include <linux/clk.h>
-> >>  #include <linux/err.h>
-> >>  #include <linux/firmware/imx/sci.h>
-> >> +#include <linux/firmware/imx/sm.h>
-> >>  #include <linux/interrupt.h>
-> >>  #include <linux/kernel.h>
-> >>  #include <linux/mailbox_client.h>
-> >> @@ -22,6 +23,7 @@
-> >>  #include <linux/reboot.h>
-> >>  #include <linux/regmap.h>
-> >>  #include <linux/remoteproc.h>
-> >> +#include <linux/scmi_imx_protocol.h>
-> >>  #include <linux/workqueue.h>
-> >>  
-> >>  #include "imx_rproc.h"
-> >> @@ -92,6 +94,11 @@ struct imx_rproc_mem {
-> >>  #define ATT_CORE_MASK   0xffff
-> >>  #define ATT_CORE(I)     BIT((I))
-> >>  
-> >> +/* Logical Machine Operation */
-> >> +#define IMX_RPROC_FLAGS_SM_LMM_OP	BIT(0)
-> >> +/* Linux has permission to handle the Logical Machine of remote cores */
-> >> +#define IMX_RPROC_FLAGS_SM_LMM_AVAIL	BIT(1)
-> >> +
-> >>  static int imx_rproc_xtr_mbox_init(struct rproc *rproc, bool tx_block);
-> >>  static void imx_rproc_free_mbox(struct rproc *rproc);
-> >>  
-> >> @@ -116,6 +123,8 @@ struct imx_rproc {
-> >>  	u32				entry;		/* cpu start address */
-> >>  	u32				core_index;
-> >>  	struct dev_pm_domain_list	*pd_list;
-> >> +	/* For i.MX System Manager based systems */
-> >> +	u32				flags;
-> >>  };
-> >>  
-> >>  static const struct imx_rproc_att imx_rproc_att_imx93[] = {
-> >> @@ -394,6 +403,30 @@ static int imx_rproc_start(struct rproc *rproc)
-> >>  	case IMX_RPROC_SCU_API:
-> >>  		ret = imx_sc_pm_cpu_start(priv->ipc_handle, priv->rsrc_id, true, priv->entry);
-> >>  		break;
-> >> +	case IMX_RPROC_SM:
-> >> +		if (priv->flags & IMX_RPROC_FLAGS_SM_LMM_OP) {
-> >> +			if (!(priv->flags & IMX_RPROC_FLAGS_SM_LMM_AVAIL))
-> >> +				return -EACCES;
-> >> +
-> >> +			ret = scmi_imx_lmm_reset_vector_set(dcfg->lmid, dcfg->cpuid, 0, 0);
-> >> +			if (ret) {
-> >> +				dev_err(dev, "Failed to set reset vector lmid(%u), cpuid(%u): %d\n",
-> >> +					dcfg->lmid, dcfg->cpuid, ret);
-> >> +			}
-> >> +
-> >> +			ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_BOOT, 0);
-> >> +			if (ret)
-> >> +				dev_err(dev, "Failed to boot lmm(%d): %d\n", ret, dcfg->lmid);
-> >> +		} else {
-> >> +			ret = scmi_imx_cpu_reset_vector_set(dcfg->cpuid, 0, true, false, false);
-> >> +			if (ret) {
-> >> +				dev_err(dev, "Failed to set reset vector cpuid(%u): %d\n",
-> >> +					dcfg->cpuid, ret);
-> >> +			}
-> >> +
-> >> +			ret = scmi_imx_cpu_start(dcfg->cpuid, true);
-> >> +		}
-> >> +		break;
-> >>  	default:
-> >>  		return -EOPNOTSUPP;
-> >>  	}
-> >> @@ -436,6 +469,16 @@ static int imx_rproc_stop(struct rproc *rproc)
-> >>  	case IMX_RPROC_SCU_API:
-> >>  		ret = imx_sc_pm_cpu_start(priv->ipc_handle, priv->rsrc_id, false, priv->entry);
-> >>  		break;
-> >> +	case IMX_RPROC_SM:
-> >> +		if (priv->flags & IMX_RPROC_FLAGS_SM_LMM_OP) {
-> >> +			if (priv->flags & IMX_RPROC_FLAGS_SM_LMM_AVAIL)
-> >> +				ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_SHUTDOWN, 0);
-> >> +			else
-> >> +				ret = -EACCES;
-> >> +		} else {
-> >> +			ret = scmi_imx_cpu_start(dcfg->cpuid, false);
-> >> +		}
-> >> +		break;
-> >>  	default:
-> >>  		return -EOPNOTSUPP;
-> >>  	}
-> >> @@ -546,10 +589,48 @@ static int imx_rproc_mem_release(struct rproc *rproc,
-> >>  	return 0;
-> >>  }
-> >>  
-> >> +static int imx_rproc_sm_lmm_prepare(struct rproc *rproc)
-> >> +{
-> >> +	struct imx_rproc *priv = rproc->priv;
-> >> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >> +	int ret;
-> >> +
-> >> +	if (!(priv->flags & IMX_RPROC_FLAGS_SM_LMM_OP))
-> >> +		return 0;
-> >> +
-> >> +	/*
-> >> +	 * Power on the Logical Machine to make sure TCM is available.
-> >> +	 * Also serve as permission check. If in different Logical
-> >> +	 * Machine, and linux has permission to handle the Logical
-> >> +	 * Machine, set IMX_RPROC_FLAGS_SM_LMM_AVAIL.
-> >> +	 */
-> >> +	ret = scmi_imx_lmm_operation(dcfg->lmid, SCMI_IMX_LMM_POWER_ON, 0);
-> >> +	if (ret == 0) {
-> >> +		dev_info(priv->dev, "lmm(%d) powered on\n", dcfg->lmid);
-> >> +		priv->flags |= IMX_RPROC_FLAGS_SM_LMM_AVAIL;
-> >
-> >Why is setting this flag needed?  The check that is done on it in
-> >imx_rproc_{start|stop} should be done here.  If there is an error then we don't
-> >move forward.
-> 
-> The flag is to indicate M7 LM could be controlled by Linux LM(to save SCMI
-> calls. without this flag, heavy SCMI calls will be runs into). The reason
-> on why set it here:
-> The prepare function will be invoked in two path: rproc_attach and rproc_fw_boot.
-> When M7 LM works in detached state and not under control of Linux LM, rproc_stop
-> could still be invoked, so we need to avoid Linux runs into scmi calls to
-> stop M7 LM(even if scmi firmware will return -EACCESS, but with a flag, we could
-> save a SCMI call), so there is a check in imx_rproc_stop and this is why
-> we need a flag there.
-> 
-> The flag check in start might be redundant, but to keep safe, I still keep
-> it there.
+This patch series adds support for limiting the maximum high-speed
+gear and rate used by the UFS controller via device tree properties.
 
-One of the (many) problem I see with this patch is that there is no
-IMX_RPROC_FLAGS_SM_CPU_OP to complement IMX_RPROC_FLAGS_SM_LMM_OP in
-imx_rproc_detect_mode(), leading to if/else statements that are hard to follow.
+Some platforms may have signal integrity, clock configuration, or
+layout issues that prevent reliable operation at higher gears or rates.
+This is especially critical in automotive and other platforms where
+stability is prioritized over peak performance.
 
-In imx_rproc_sm_lmm_prepare(), if scmi_imx_lmm_operation() is successful, return
-0 immediately.  If -EACCESS the LMM method is unavailable in both normal and
-detached mode, so priv->flags &= ~IMX_RPROC_FLAGS_SM_LMM_OP.
+The series follows this logical progression:
+1. Document the new DT properties in the common UFS binding
+2. Clean up existing redundant code in the qcom driver
+3. Add platform-level parsing support for the new properties
+4. Integrate the platform support in the qcom driver
 
-The main takeaway here is that the code introduced by this patch is difficult to
-understand and maintain.  I suggest you find a way to make things simpler.
+This approach makes the functionality available to other UFS host
+drivers and provides a cleaner, more maintainable implementation.
 
-> 
-> >
-> >> +	} else if (ret == -EACCES) {
-> >> +		dev_info(priv->dev, "lmm(%d) not under Linux Control\n", dcfg->lmid);
-> >> +		/*
-> >> +		 * If remote cores boots up in detached mode, continue;
-> >> +		 * else linux has no permission, return -EACCES.
-> >> +		 */
-> >> +		if (priv->rproc->state != RPROC_DETACHED)
-> >> +			return -EACCES;
-> >
-> >The comment above scmi_imx_lmm_operation() mentions that calling
-> >scmi_imx_lmm_operation() is done to make sure TCMs are available.  Is there a
-> >point in calling scmi_imx_lmm_operation() if ->state == RPROC_DETACHED?  If not,
-> >can't that check be move to the beginning of imx_rproc_sm_lmm_prepare()?  
-> 
-> scmi_imx_lmm_operation also serves as permission check.
-> 
-> If ->state is RPROC_DETACHED, we still need to know M7 LM is or is not
-> under control of Linux LM.
-> 
-> 
-> >
-> >> +
-> >> +		/* work in state RPROC_DETACHED */
-> >> +		ret = 0;
-> >> +	} else if (ret) {
-> >> +		dev_err(priv->dev, "Failed to power on lmm(%d): %d\n", ret, dcfg->lmid);
-> >> +	}
-> >> +
-> >> +	return ret;
-> >> +}
-> >> +
-> >>  static int imx_rproc_prepare(struct rproc *rproc)
-> >>  {
-> >>  	struct imx_rproc *priv = rproc->priv;
-> >>  	struct device_node *np = priv->dev->of_node;
-> >> +	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >>  	struct of_phandle_iterator it;
-> >>  	struct rproc_mem_entry *mem;
-> >>  	struct reserved_mem *rmem;
-> >> @@ -593,7 +674,10 @@ static int imx_rproc_prepare(struct rproc *rproc)
-> >>  		rproc_add_carveout(rproc, mem);
-> >>  	}
-> >>  
-> >> -	return  0;
-> >> +	if (dcfg->method == IMX_RPROC_SM)
-> >> +		return imx_rproc_sm_lmm_prepare(rproc);
-> >> +
-> >> +	return 0;
-> >>  }
-> >>  
-> >>  static int imx_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
-> >> @@ -927,13 +1011,41 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
-> >>  	struct regmap_config config = { .name = "imx-rproc" };
-> >>  	const struct imx_rproc_dcfg *dcfg = priv->dcfg;
-> >>  	struct device *dev = priv->dev;
-> >> +	struct scmi_imx_lmm_info info;
-> >>  	struct regmap *regmap;
-> >>  	struct arm_smccc_res res;
-> >> +	bool started = false;
-> >>  	int ret;
-> >>  	u32 val;
-> >>  	u8 pt;
-> >>  
-> >>  	switch (dcfg->method) {
-> >> +	case IMX_RPROC_SM:
-> >> +		/* Get current Linux Logical Machine ID */
-> >> +		ret = scmi_imx_lmm_info(LMM_ID_DISCOVER, &info);
-> >> +		if (ret) {
-> >> +			dev_err(dev, "Failed to get current LMM ID err: %d\n", ret);
-> >> +			return ret;
-> >> +		}
-> >> +
-> >> +		/*
-> >> +		 * Check whether remote processor is in same Logical Machine as Linux.
-> >> +		 * If no, need use Logical Machine API to manage remote processor, and
-> >> +		 * set IMX_RPROC_FLAGS_SM_LMM_OP.
-> >> +		 * If yes, use CPU protocol API to manage remote processor.
-> >> +		 */
-> >> +		if (dcfg->lmid != info.lmid) {
-> >> +			priv->flags |= IMX_RPROC_FLAGS_SM_LMM_OP;
-> >> +			dev_info(dev, "Using LMM Protocol OPS\n");
-> >> +		} else {
-> >> +			dev_info(dev, "Using CPU Protocol OPS\n");
-> >> +		}
-> >> +
-> >> +		ret = scmi_imx_cpu_started(dcfg->cpuid, &started);
-> >> +		if (ret || started)
-> >> +			priv->rproc->state = RPROC_DETACHED;
-> >
-> >An error should be reported and the initialization process aborted if an error
-> >occurs rather than defaulting to the default mode.  This will lead to additional
-> >error conditions that will have to be handled elsewhere.
-> 
-> ok. I could update to
-> if (ret)
-> 	return ret;
-> if (started)
-> 	priv->rproc->state = RPROC_DETACHED;
-> 
-> 
-> 
-> Thanks,
-> Peng
-> 
+Changes from V1: 
+- Restructured patch series for better logical flow and maintainability.
+- Moved DT bindings to ufs-common.yaml making it available for all UFS 
+  controllers.
+- Added platform-level support in ufshcd-pltfrm.c for code reusability.
+- Separated the cleanup patch to remove redundant hs_rate assignment in
+  qcom driver.
+- Removed SA8155 DTS changes to keep the series focused on core
+  functionality.
+- Improved commit messages with better technical rationale.
+
+Changes from V2: 
+- Documented default values of limit-rate and limit-hs-gear in DT bindings
+  as per Krzysztof's suggestion.
+
+Changes from V3: 
+- Changed limit-rate property from numeric values 1 and 2 to string values
+  Rate-A and Rate-B for better readability and clarity as suggested by
+  Bart and Krzysztof.
+- Added Co-developed-by tag for Nitin Rawat in 3rd patch. 
+
+Changes from V4:
+- Added the missing argument to the error message while parsing
+  limit-rate property.
+- Updated the maximum supported value and default for limit-gear
+  property to gear 6, as per Krzysztof's and Bart's recommendation.
+- Renamed Rate-A and Rate-B to lowercase (rate-a, rate-b) as suggested
+  by Krzysztof.
+ 
+Ram Kumar Dwivedi (4):
+  ufs: dt-bindings: Document gear and rate limit properties
+  ufs: ufs-qcom: Remove redundant re-assignment to hs_rate
+  ufs: pltfrm: Allow limiting HS gear and rate via DT
+  ufs: ufs-qcom: Add support for limiting HS gear and rate
+
+ .../devicetree/bindings/ufs/ufs-common.yaml   | 16 +++++++++
+ drivers/ufs/host/ufs-qcom.c                   | 21 +++++++----
+ drivers/ufs/host/ufshcd-pltfrm.c              | 36 +++++++++++++++++++
+ drivers/ufs/host/ufshcd-pltfrm.h              |  1 +
+ 4 files changed, 68 insertions(+), 6 deletions(-)
+
+-- 
+2.50.1
+
 
