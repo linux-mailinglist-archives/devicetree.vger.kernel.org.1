@@ -1,121 +1,222 @@
-Return-Path: <devicetree+bounces-211754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 883AAB406B2
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:28:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83A6BB406BB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:29:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7BA747A4322
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:26:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 387A95E24E8
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0535930DD12;
-	Tue,  2 Sep 2025 14:28:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E7F130DD31;
+	Tue,  2 Sep 2025 14:29:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HM7gw4ko"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="d4RwbFT8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F8312F068A;
-	Tue,  2 Sep 2025 14:27:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B10730BB8E
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 14:29:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756823279; cv=none; b=Vr1keZKve57vqr0nHfep8V2xo67abjoi1HWV9157NJEJSoc9z2FkOozK/vkvOh7Aoq5T3j86zpeb2dYt4tByw6nZzH57a+I4OQ6t1F32XkQw3c0g82eOdX9XiN5Y3oObbkHAyITkG5rH3MmyhxW2PZ77Kre4D8T1BAzyQ8RFNFA=
+	t=1756823349; cv=none; b=KGDbsa/enS15D+ajl81ha1Ya2mbWgxUVtUbkNxnNGokScCcGJGIu2n1aEN6HsOjpqj68Pj91sjPZAS5a6kCGZF/wC7lx5lbr64m1xBnur/97q2BuC5TYWaOkqpjlbJ7Qfhzn8/pzbxzZx3TvWkxO7JIfAeQnfEL5EOriBkPbBrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756823279; c=relaxed/simple;
-	bh=GH2KBlUCdxMbygi8Wxkk4u2Oeqbo5kQFRmBakx/0VNI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=pbU3/BufFc5Fw2tuTYzsJFHeE8FQs8FcCL7zveTcIkOnTBwevHixCtBbitmGjT5/Z+Z1UhvtE+aKDfy+GaE7rpTW0YgeTbWrTp5L5d2KUgWkHDM+Eeb9VmAo2xok/RjBZWpWdDV6tZxVaAFx9zEpEg85e6+E+X+CnY2gKMAFqlI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HM7gw4ko; arc=none smtp.client-ip=209.85.210.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-7725fb32e1bso2106509b3a.1;
-        Tue, 02 Sep 2025 07:27:58 -0700 (PDT)
+	s=arc-20240116; t=1756823349; c=relaxed/simple;
+	bh=Zh/esVOjxW9buYPgrg25ime4g5npaPosuL61f9Sd6lc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=T0Z+G8c709aDtd+kkP0Blbs3NUz2KXN1yRLJbRcB3rJZ3a5n+boJ3UlaxrO5zW3KN53+pKaxT9vxOHtS3lhNp5dtwcHSk4E5yK1NZ0Abr0jVDvJ+nBoE12GsZvoOnSJEBtC85rNJFbiuxc8zx/LptquUs9m0238y/LjWIpuSyCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=d4RwbFT8; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7438175d42aso3217843a34.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 07:29:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756823278; x=1757428078; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=RI8YMTsM5bdTgr8RWxuM+JDoufQWgHL5ULIyIPG/LZI=;
-        b=HM7gw4koi/t5Gg4kG6EQ1ur9AkuF2mhSHkblkCfZhSDZcmTQn4xjtsCzJr8SO7Pvwg
-         6gd+PMHIaQja6KzfDUm0VeuBnhC+MZSu6P8eWJSuEgF2ZVujd/NxZUh6jBwuj/2ExTKd
-         2ld4POJzquKCqPVwK3OiXikJYk4c2IVZ6AClyKPEHVGtZ5XdzaXgGcgSor3HKIuObDw/
-         1/ntJbJeNOzzV1PFOZs+3iIHetNWGmH3CFpoysrBs8cUzBJ+HNR1x358fBQAUNkd8psm
-         +UPofq894IJ33uIQ65OcPSTOJzdrk8q1gngheoIg6i8kknHOx813EGMNECIvSFpaYA8d
-         mTaw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756823346; x=1757428146; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pp38Yvg3RiytProyc5t2mGqns6Lb9l3HNRoLbsNuGqs=;
+        b=d4RwbFT8GryJDSSfS/vvnQ5NYIUEncQQTaY0qPKyd22otXxkGl/RXepzlCAZlhetZd
+         2WNkXNwB7npWfxum7PvK605qGN2qcfiITRUiA2WU+P276RqaltQHmVxGCNP9CA0gct8W
+         CJ9Nm6gy/2Gk/ONx07/u3Wxo1zjifXYaGm8yQjM6EFD4LqdZKzsn+n4iw2GDTPoKsLBJ
+         Xm3eFlLf+3uPjcLAY5G0Hv56XgXOIdi2yfetiKOdQI9sVkC4DlnxRbuGR4Q8A4jrNkqb
+         JBUMeq+mqXgCOqyFFrKqzg8TY9xev/pr7IWS8+jZST5sLM4/NkZX4+uYckl1ZJPLC095
+         wAfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756823278; x=1757428078;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=RI8YMTsM5bdTgr8RWxuM+JDoufQWgHL5ULIyIPG/LZI=;
-        b=queF/3yQylnWQBXHS3RXLIOQ3HZ/wTO+V7qSpL5MMR+kB+WcyfOpNBlJzWB1IxSaD8
-         Cvtip6We3hirOaG6uDBwxx568oIyTcP5OciGzgNVZ16+Q36qUCtNEDueHvxk77qxxxMt
-         EJC+S5oLUv2zKBjltOlX+yUr+CI2oJQwdX2oawRYN7c7yL9lHCWdbdnWeKth78pmfnDP
-         n7YXdFQalebT/CZgtCxkCW3x/IaVTtHprrs+L3FjBnuI7UqxS+2qXUL1zH4rQmziFs9z
-         fqrJzTiccRxs5PI9YBP8esECs2fbugHSxrFYr1D01ZNflVad+ortMcl1/UgWGPh+OFSo
-         b3Kg==
-X-Forwarded-Encrypted: i=1; AJvYcCX1/HwrRn5BXaAXQBz2WvZFJ9Rom2U679bkfgMEzy3gH2NuGY49LxcfxP+DUzMWCGSYZ4DvLnRerTID@vger.kernel.org, AJvYcCXjp4zaeT5fkPxzZ7y8jQXz8A6nFHomsc+xPN6lsR+S7uG3+0giWiYOvGidUPPDfMNFOaom2m47G1a68mre@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsiEbUDynip9QZLDc2JgZTW0Qlar0jx6bUeM81s+dzev/Db3gl
-	90+3sXUr/4sh9eD5U9jvYYydfJq+P9VjlGOdHLY3zjGPl5bOk3HAwS4vapi7m7gB
-X-Gm-Gg: ASbGncvD2TJCYA/FeySvc/ai9wiQTEVD5HuA1VZ77045t8geUfrBoUNjEQbDWOnKbry
-	n2DocPlspIaSwvK+k7uIYdR9JS/yD0Z9XrMQeyrh0mFfh7L90JrQsw0KH79U9KLmyhGTliXwvqf
-	p/XFuSiZUnlw5CCE5Vuin7xq/7yOUh8J5ElM1FdrxI1O8s1yCtWwsoKMojnpmsUS3HVrYSwXiJQ
-	hM2aAsqJaZmdaXWxzhTEijY/UqI9wIrtLAi7P15jVjv/4/2QmQ67AmbzQeSp/EXll7Kdvl5d8cH
-	e9X0DGzwKM6ZiOlPewiZWV/hLL9F4aMV3X92XGG4DTXVhQ11IVzrQEysgtA3qM/RO/wleoZTisg
-	OEpS7yRsvSOH5q3fVFOgdSxO823dGS/V9+DUcuCuG8fA8USCEvDLcapweKFr30TSDfWQe557GpK
-	1I2MNiFzw4Gw==
-X-Google-Smtp-Source: AGHT+IH2QNpk1G1oizVTAfMmh5EaVxtk0njE1AkNCw3NMyiQa5CgglA4xj1JT4wDYc1iakVEZBu9RQ==
-X-Received: by 2002:a05:6a00:4b56:b0:74e:ab93:422b with SMTP id d2e1a72fcca58-7723e21a5femr17292235b3a.4.1756823277725;
-        Tue, 02 Sep 2025 07:27:57 -0700 (PDT)
-Received: from johnson-VirtualBox.. (211-22-107-155.hinet-ip.hinet.net. [211.22.107.155])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a2b78d7sm13893756b3a.30.2025.09.02.07.27.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 07:27:57 -0700 (PDT)
-From: Johnsodn Huang <kusogame68@gmail.com>
-To: lee@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	sef1548@gmail.com,
-	Johnson Huang <kusogame68@gmail.com>
-Subject: [PATCH] dt-bindings: fix typo in documentation Correct a typo in the documentation by replacing "abd" with the correct word "and". This improves readability and avoids confusion in the description.
-Date: Tue,  2 Sep 2025 22:27:49 +0800
-Message-ID: <20250902142749.13724-1-kusogame68@gmail.com>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1756823346; x=1757428146;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pp38Yvg3RiytProyc5t2mGqns6Lb9l3HNRoLbsNuGqs=;
+        b=s8VmyGhvgk7eH8vzH84s72Khu66wRhGHJ3YQOLJ8fzfRdcCLTbpjQg1sGJ8ujD7Wly
+         +plsG2ejCbc7YrjP6UZszeCp97ZCJKDAZc2O9f0joLeVlJfIqAdweey4wJAta3SUDB7w
+         6sQI+a4HDcLkDuFAJPnATv1fSOXVhHnoJFH1JEMBM3dTogBRKRnJ0NoCyjtZxLQ8UY+d
+         C1c7+zxQKa6adhCOCLU/dNnv0vanIThOpMmSJIwPUAe0WRI9vXbQzAmhwwVfyiV9uH2k
+         ys/tATVs9YFxeQNUuzFZwRioQMmlXk/61DnlYjU6/3NorWxfsXZuU+TOFODhxg+EhVyH
+         hySA==
+X-Forwarded-Encrypted: i=1; AJvYcCWWF9HTX9hQttSCxv9+vpvJOl/5wNq5dfe5QqpXm73nAm5Qj85SO9vB8eE0IscYpWxMxYErMF5jpI0n@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuIq9I+mMXX0TxOGurO9mfqgSuuV7ij5lR4pXPGmUxFJ9x0IN2
+	sHIyhPvEjSUqnL37R8ZzUjLGzgwtFzxzv+3sCwI5NH57lL1HHztCNTuHQAagRveXbyY=
+X-Gm-Gg: ASbGncvnNlpr1m4RdSLAzztOro503j7BMXXe3jiRKNR4HGUuBej8yqS2OCyUK7khIz7
+	7u2AA+Bs2at3i31D70J1hK7F1/jActrMvDFM/iLs9kaJukqXJEn5dSox6uv/HfjxZR3dGUb8R5i
+	HdVTWo6Agj4OhkLdzM8OSnl1Rt4dFb8MH52Y9xopkFhF/c8+bmdOwLkpGMj6W3qiOP5uc8lQMJw
+	h4XAmT41Njc+OLsufi8RZDy9ITyfW+sFbZXEKIMqC+9GOdX/nhI0gk2hCB28OD70g9XfU4dwxiR
+	NQTuoMw+xoEuCBSY5aSvYM8MtFpU/E1Wb5K2A/+mZQqvOMqrk0aOsd9GUCLtRm06OFO16ELPgHl
+	u8cdWny0V0jDhXRhPY4SximCq8fszY+Pgs6zUpa4mye+gPRpSSUbQ4ovFkiAGxaCJ4b2nBslt
+X-Google-Smtp-Source: AGHT+IGLw6/8aesIjAkhpVEJeXPBKTkpcMtabs/+MAUeiJpSmdalTytyjetDUXmkZqhdD3fGgZrheA==
+X-Received: by 2002:a05:6830:7101:b0:73e:9fea:f2a5 with SMTP id 46e09a7af769-74569d9deb9mr8195564a34.4.1756823346157;
+        Tue, 02 Sep 2025 07:29:06 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b? ([2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-745743d0e97sm1581788a34.42.2025.09.02.07.29.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 07:29:05 -0700 (PDT)
+Message-ID: <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
+Date: Tue, 2 Sep 2025 09:29:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/2] dt-bindings: iio: adc: add max14001
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Kim Seer Paller <kimseer.paller@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
+ <34b7cc7226e789acdc884d35927269aa5a0d5e14.1756816682.git.marilene.agarcia@gmail.com>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <34b7cc7226e789acdc884d35927269aa5a0d5e14.1756816682.git.marilene.agarcia@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Johnson Huang <kusogame68@gmail.com>
+On 9/2/25 8:15 AM, Marilene Andrade Garcia wrote:
+> Add device-tree documentation for MAX14001/MAX14002 ADCs.
+> The MAX14001/MAX14002 are isolated, single-channel analog-to-digital
+> converters with programmable voltage comparators and inrush current
+> control optimized for configurable binary input applications.
 
-Co-developed-by: Nick Huang <sef1548@gmail.com>
-Signed-off-by: Nick Huang <sef1548@gmail.com>
-Signed-off-by: Johnson Huang <kusogame68@gmail.com>
----
- Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+When there are multiple devices, DT maintainers like to know
+what is the difference between the devices.
 
-diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-index d783cc4e4e..d16c82e398 100644
---- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-+++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
-@@ -41,7 +41,7 @@ properties:
-   clock-output-names:
-     maxItems: 1
- 
--# The BD71847 abd BD71850 support two different HW states as reset target
-+# The BD71847 and BD71850 support two different HW states as reset target
- # states. States are called as SNVS and READY. At READY state all the PMIC
- # power outputs go down and OTP is reload. At the SNVS state all other logic
- # and external devices apart from the SNVS power domain are shut off. Please
--- 
-2.43.0
+> 
+> Co-developed-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
 
+Sine the patch is From: M.A.G., according to [1], this should be:
+
+Co-developed-by: K.S.P.
+Signed-off-by: K.S.P.
+Signed-off-by: M.A.G.
+
+(hopefully obvious, but don't use the abbreviations - I just did
+that for brevity)
+
+[1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+
+> ---
+>  .../bindings/iio/adc/adi,max14001.yaml        | 79 +++++++++++++++++++
+>  MAINTAINERS                                   |  8 ++
+>  2 files changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> new file mode 100644
+> index 000000000000..ff9a41f04300
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> @@ -0,0 +1,79 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023-2025 Analog Devices Inc.
+> +# Copyright 2023 Kim Seer Paller
+> +# Copyright 2025 Marilene Andrade Garcia
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices MAX14001-MAX14002 ADC
+> +
+> +maintainers:
+> +  - Kim Seer Paller <kimseer.paller@analog.com>
+> +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> +
+> +description: |
+> +    Single channel 10 bit ADC with SPI interface.
+> +    Datasheet can be found here
+> +      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
+> +
+> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - adi,max14001
+> +      - adi,max14002
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 5000000
+> +
+> +  vdd-supply:
+> +    description:
+> +      Isolated DC-DC power supply input voltage.
+> +
+> +  vddl-supply:
+> +    description:
+> +      Logic power supply.
+> +
+> +  vrefin-supply:
+
+The actual pin name is REFIN, so refin-supply would make more sense.
+
+> +    description:
+> +      ADC voltage reference supply.
+> +
+> +  interrupts:
+
+Likely needs `minItems: 1` in case only one interrupt is wired.
+
+> +    items:
+> +      - description: |
+> +          Interrupt for signaling when conversion results exceed the configured
+> +          upper threshold for ADC readings or fall below the lower threshold for
+> +          them. Interrupt source must be attached to COUT pin.
+
+We could shorten these descriptions. The important part is which pin
+it is connected to.
+
+> +      - description: |
+> +          Alert output that asserts low during a number of different error
+> +          conditions. The interrupt source must be attached to FAULT pin.
+> +
+
+And also `interrupt-names:` makes sense so we know which one is
+is wired if only one is given.
+
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +  - vddl-supply
+> +
 
