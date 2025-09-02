@@ -1,138 +1,211 @@
-Return-Path: <devicetree+bounces-211703-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211704-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB52B4020B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:08:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01833B40221
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:11:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAF955E348D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:04:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC1AF163B0E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:07:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E15422DA743;
-	Tue,  2 Sep 2025 13:02:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6351E2DA775;
+	Tue,  2 Sep 2025 13:07:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="0MpqbOb0";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="AKhUPcae"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2497238FA6;
-	Tue,  2 Sep 2025 13:02:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEB802D9EF5;
+	Tue,  2 Sep 2025 13:07:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756818177; cv=none; b=X5IxC9NtNkf10D0c2kO5oPIbuIuIkYfpXT5YVmBUtuf4RucpA0LPJoJrmfMMzt/xWLrgAndPtCP9m/Kz8bY1BQx7S+pOU61WQSZaRdqr5jRMZ5S9O7GTptW8flPbH9HADv7cSeo7uttkZIp5fcUHMP9YQ78cjLB3QMblx94ZFH0=
+	t=1756818449; cv=none; b=BjauCARCVn9WoM2N8YLViab2j7a//fwkYTOG3Vdv1n78ztKNqr2vnq9AI3N3mB1tel28hh2+AihCOhWEGNSZ52lA6TIA05bDBaGslRDHtW/HQIUYARxc9+qwRpYji9svpPE0fJJoeA8PYkitqEYz7mZrcXPHMzeOt8yMmaKNkV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756818177; c=relaxed/simple;
-	bh=MuBxV9sKtB/8vb8uYwlVydDSgGxeEPQ1TwxOMOMQf8E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qgVvzqgBiGt+IQW3k3zCFsaXRc21qdl6iFn6wGnpAbHDHLibps8zUyXNUtoN8HgaJWlhWk33gb53Xp/X/HM62qkyLchzTLj+shj29LGkma2RrrPBSpqYkHaYmVYz2+vKLPYUsRpG2wljGQ0w5hH0cP2gt0pF670q/1LL9dOY1mQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.217.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f50.google.com with SMTP id ada2fe7eead31-5330fdb9723so36884137.0;
-        Tue, 02 Sep 2025 06:02:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756818175; x=1757422975;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6X0paR8Rp+yYuxy0aU4aiHawkab2fveX+z4P4W+un3k=;
-        b=b1Fy/uGJRpnb8qJoAjqtnAnFLrVqePK1sq9fltJ3RuDQVGXpABcziL16yl+tY658D5
-         S8H7TYm28G0SSIk0PrzmoHooFtQGfkEie02qhkH1CK14MwtflGGOSsvHJ6e+Ek63zniJ
-         j7J/CQH19ulg4o/IOhBD1xzS51+V1cp+D4f/C++kIqNSyzQwmihGSPxmlB82QamhTUzR
-         GimKU3alq29yHzTPQ45f1pgxwkW+xL9xviYVHbTTfkKCoQQUHVMRcUQnbmkCr4POI/T+
-         ARC/Lh8ehSoV05/hQXIYLp/Oi8WgT/V0Rir4pL+uML94MC5eoF2K6tJUcJ4UAuqWXeKQ
-         mQ6A==
-X-Forwarded-Encrypted: i=1; AJvYcCV4lXYZ/TqxbmTF9/XnZlJ727ogDTWJ0v1WrXLJDjAxBOeT260TKfVIJWd+aGsz3qr+8xOGaFl1YGx8kNEL@vger.kernel.org, AJvYcCWWJVy2UmeT2FvrfZP2G1/ToEUlPxu7JMHiIGl+CQvHWsxJsB0/0fs6Bc2bzSpMi+LNGFjKBom+94Uw@vger.kernel.org, AJvYcCWtX6gUimaXXA4u28fqL5A7l9T2/NRlIi1Si7ktfZHcB74/m1FRK6yDBQxctdYQH5IZ1/ABcAhie23yNUYnpL3zub0=@vger.kernel.org, AJvYcCX5MGGakK3O1mf5Oz/92WKBuJzJfqcltTZX+yk7nrd+Q1iORQNthl0ocRAShOST6Ar31czg/PtERDan@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhBdT4874zADwHRnfaD80w/fAfOqOADCDuGiwSFsADRZVv5xnd
-	/p4UpeUZ9cWHgbGCDsdP3PsU+k9oss+Jyfw8Oj4a2py96OUrlr+jyrN/A35FnrzW
-X-Gm-Gg: ASbGncuuy4oruyIS/Z34bzpsbApcxP1MC3Rd5ReRmIYBXYoXGNw93JWSVv1AaJfOG4q
-	wE925Zl+d4G+8RMugkip5WWbyO5ygddliIksoxumvy37kOOdzF3CjAtm526NPFUXL7ZwtJ4QcgI
-	ZVnbLEaGVgSyIRDkSrnsKXr33xFMDQDDL8E/HfHxKTizYeftHB5vM0BlNA24TQ6HwGpSlm/fWuv
-	sbQN8ld1237j4A8IVamntDVE53ZZmC6LuL+30IbHunk/IADxtK2E6GO6NqMIGXgrFSox/T/sDw+
-	ykCp56PGq61PHeuXnxphzTssgpEZatBr1xRmFPpoSM1kyltZRNFgjvRP60Hc6K2aKSQ5XPwhO5Q
-	oZPky3UEhTzlee1xLD7JRdJ6yFBkOx6jEs92u7/Wz6xzPe1DqhmveivurXvw8
-X-Google-Smtp-Source: AGHT+IHeFMlXSx46kgj2mGmm2s+FVZdUv75gpdRiI0G2qUg1TRfKpYHwTU1r8OpfxsBvl4z+bJ2c3A==
-X-Received: by 2002:a05:6102:6897:b0:521:b9f2:a5dc with SMTP id ada2fe7eead31-52b1bd27db7mr4067499137.25.1756818173284;
-        Tue, 02 Sep 2025 06:02:53 -0700 (PDT)
-Received: from mail-ua1-f54.google.com (mail-ua1-f54.google.com. [209.85.222.54])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-52af19156ecsm4330939137.12.2025.09.02.06.02.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 06:02:52 -0700 (PDT)
-Received: by mail-ua1-f54.google.com with SMTP id a1e0cc1a2514c-89948e581d5so370068241.3;
-        Tue, 02 Sep 2025 06:02:51 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUcOuV4O+2j6E+Ji6deJa4YdV3OD5bwJfTb9oNHCW8In2PIBsV/hbch62LzXczOhrmhQqAz67P4ghZW@vger.kernel.org, AJvYcCUyTqxSF2jHHXqt7MZlYRkYVcR9yLz9zka12T/E3uCtrh+GXjXFcPunmtGyJz6L1xqheVoI5kI4JjVG4Cf/@vger.kernel.org, AJvYcCWh7sYoC1GK3+jrVfeWgDfwl0rIqjnQ45QpWF8Bo4BFXQr3jgIQkOg9KxYkjQzRmYUKsEuWjYzdgw65XcR4AdnEIIU=@vger.kernel.org, AJvYcCWrq3NjG8EN3Jf4/2ov73ajSEffx0/5PsrQSUsJLiJ/JE4zHzHzuGA7EGenrBAYsvdNINWhCJXLlo8E@vger.kernel.org
-X-Received: by 2002:a05:6102:41a6:b0:524:4800:77a8 with SMTP id
- ada2fe7eead31-52b1974d764mr3460088137.5.1756818170746; Tue, 02 Sep 2025
- 06:02:50 -0700 (PDT)
+	s=arc-20240116; t=1756818449; c=relaxed/simple;
+	bh=Bnr83H+4c3bTpZALd1MpNvFAul+hyMgBztlopn63ooE=;
+	h=From:To:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=CmmEgELMTgRUYHh4hnnS2YQqtVmrlpXbLQ7+AXpJ4PJIsdzUBFYi2szZJVf00qkhvRQVm2gNV2DujYEuf/3P41rQO8plVTmTnuLu7huf297UWYHaAf7PFLw+UqObZJ/L6OhLfD++QWi/M9DfVTX4RKO67jzMWvQOY0WwiuB97Hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=0MpqbOb0; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=AKhUPcae; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1756818444;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+IOP6KQgl7sg4RNv1HB15N9tnpQImYkfB9yocklRZDY=;
+	b=0MpqbOb0MmctHgGLQpEoK7RvCrWqhe11k7zTcy8rW2Qfo7mEGcPn5YRQkw8nA/4UE4khMk
+	qVglqTWaaErQgvpR6lBTxWvoGi008hP0GLsPHU7H/pp+UX2aUaLx1+7feoS6miXFyPEg9Z
+	iqBXxrZmrXN+K4gbv0NKs1+w3YlIfGOPH2Uk/IWlXPSXd83ArVwnQB3A+coNOQYY0xi91a
+	EQqlpauvguqFqYMV0d3U09qWOkil3jRoUezBM+Ji7uhtq2xn8/ZdOw0STltaDV+3yXvIiL
+	w+eONQLePF81UOj2KAyLncrk+TWHd7+J8U4A22FRez4iuwC+eMkgWjBEaJfnHg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1756818444;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=+IOP6KQgl7sg4RNv1HB15N9tnpQImYkfB9yocklRZDY=;
+	b=AKhUPcaeUUqBybjPoJeHUXRY72ygfIw8wlfOfdrh1iP5zgu2ytXtU3whmTaefPi79pOvkS
+	oV/Hg036JfwXYfDg==
+To: Ryan Chen <ryan_chen@aspeedtech.com>, ryan_chen
+ <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
+ Jeffery <andrew@codeconstruct.com.au>, Lee Jones <lee@kernel.org>,
+ linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU
+ interrupt controllers
+In-Reply-To: <20250831021438.976893-5-ryan_chen@aspeedtech.com>
+References: <20250831021438.976893-1-ryan_chen@aspeedtech.com>
+ <20250831021438.976893-5-ryan_chen@aspeedtech.com>
+Date: Tue, 02 Sep 2025 15:07:21 +0200
+Message-ID: <87y0qx0zqu.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250901183000.1357758-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250901183000.1357758-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250901183000.1357758-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 2 Sep 2025 15:02:39 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdV+-WK3KQNfwrN30LFCGaWgRuRH4QOpMMC_6cko1bz3uQ@mail.gmail.com>
-X-Gm-Features: Ac12FXz5m2aZjbNWA9iFlD5vRjuo_z4r9CPeIEsqREYEwOuiZsjA8GsB3kDnOYk
-Message-ID: <CAMuHMdV+-WK3KQNfwrN30LFCGaWgRuRH4QOpMMC_6cko1bz3uQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: renesas,r9a09g077/87: Add
- Ethernet and GMAC clocks
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 
-Hi Prabhakar,
+On Sun, Aug 31 2025 at 10:14, Ryan Chen wrote:
 
-On Mon, 1 Sept 2025 at 20:30, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> The AST2700 continues the multi-instance SCU interrupt controller model
+> introduced in the AST2600, with four independent interrupt domains
+> (scu-ic0 to 3).
 >
-> Add clock definitions for Ethernet (ETCLK A-E) and GMAC (GMAC0-2)
-> peripherals to both R9A09G077 and R9A09G087 SoCs. These definitions
-> are required for describing Ethernet and GMAC devices in device trees.
+> Unlike earlier generations that combine interrupt enable and status bits
+> into a single register, the AST2700 separates these into distinct IER and
+> ISR registers. Support for this layout is implemented by using register
+> offsets and separate chained IRQ handlers.
 >
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> The variant table is extended to cover AST2700 IC instances, enabling
+> shared initialization logic while preserving support for previous SoCs.
+>
+> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
+> ---
+>  drivers/irqchip/irq-aspeed-scu-ic.c | 123 +++++++++++++++++++++-------
+>  1 file changed, 95 insertions(+), 28 deletions(-)
+>
+> diff --git a/drivers/irqchip/irq-aspeed-scu-ic.c b/drivers/irqchip/irq-aspeed-scu-ic.c
+> index cbfc35919281..ffdd9b4e44c1 100644
+> --- a/drivers/irqchip/irq-aspeed-scu-ic.c
+> +++ b/drivers/irqchip/irq-aspeed-scu-ic.c
+> @@ -17,12 +17,16 @@
+>  
+>  #define ASPEED_SCU_IC_STATUS		GENMASK(28, 16)
+>  #define ASPEED_SCU_IC_STATUS_SHIFT	16
+> +#define AST2700_SCU_IC_STATUS		GENMASK(15, 0)
+>  
+>  struct aspeed_scu_ic_variant {
+>  	const char		*compatible;
+>  	unsigned long	irq_enable;
+>  	unsigned long	irq_shift;
+>  	unsigned int	num_irqs;
+> +	bool			split_ier_isr;
 
-Thanks for your patch!
+How does that end up aligned?
 
-> --- a/include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
-> +++ b/include/dt-bindings/clock/renesas,r9a09g077-cpg-mssr.h
-> @@ -26,5 +26,14 @@
->  #define R9A09G077_CLK_PCLKL            14
->  #define R9A09G077_SDHI_CLKHS           15
->  #define R9A09G077_USB_CLK              16
-> +#define R9A09G077_ETCLKA               17
-> +#define R9A09G077_ETCLKB               18
-> +#define R9A09G077_ETCLKC               19
-> +#define R9A09G077_ETCLKD               20
-> +#define R9A09G077_ETCLKE               21
+> +	unsigned long	ier;
+> +	unsigned long	isr;
+>  };
+>  
+>  #define SCU_VARIANT(_compat, _shift, _enable, _num) { \
+> @@ -30,13 +34,20 @@ struct aspeed_scu_ic_variant {
+>  	.irq_shift		=	_shift,		\
+>  	.irq_enable		=	_enable,	\
+>  	.num_irqs		=	_num,		\
+> +	.split_ier_isr	=	_split,		\
 
-These five LGTM.
+Ditto.
 
-> +#define R9A09G077_GMAC0_PCLKH          22
-> +#define R9A09G077_GMAC1_PCLKAH         23
-> +#define R9A09G077_GMAC2_PCLKAH         24
+> +	.ier			=	_ier,		\
+> +	.isr			=	_isr,		\
 
-I doubt you really need these, cfr. my comments on [PATCH v2 2/2].
+But what's worse is that '_split, _ier and _isr' come out of thin air as
+SCU_VARIANT does not have corresponding arguments. So how is that
+supposed to work?
 
-Gr{oetje,eeting}s,
+>  }
+>  
+>  struct aspeed_scu_ic {
+> @@ -45,9 +56,12 @@ struct aspeed_scu_ic {
+>  	unsigned int		num_irqs;
+>  	void __iomem		*base;
+>  	struct irq_domain	*irq_domain;
+> +	bool				split_ier_isr;
 
-                        Geert
+Sigh...
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> +	unsigned long		ier;
+> +	unsigned long		isr;
+>  };
+>  
+> -static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
+> +static void aspeed_scu_ic_irq_handler_combined(struct irq_desc *desc)
+>  {
+>  	struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
+>  	struct irq_chip *chip = irq_desc_get_chip(desc);
+> @@ -84,33 +98,69 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
+>  	chained_irq_exit(chip, desc);
+>  }
+>  
+> +static void aspeed_scu_ic_irq_handler_split(struct irq_desc *desc)
+> +{
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+...
+
+>  static void aspeed_scu_ic_irq_mask(struct irq_data *data)
+>  {
+>  	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
+> -	unsigned int mask = BIT(data->hwirq + scu_ic->irq_shift) |
+> -		(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
+>  
+> -	/*
+> -	 * Status bits are cleared by writing 1. In order to prevent the mask
+> -	 * operation from clearing the status bits, they should be under the
+> -	 * mask and written with 0.
+> -	 */
+> -	writel(readl(scu_ic->base) & ~mask, scu_ic->base);
+> +	if (scu_ic->split_ier_isr) {
+> +		writel(readl(scu_ic->base) & ~BIT(data->hwirq + scu_ic->irq_shift),
+> +		       scu_ic->base + scu_ic->ier);
+> +	} else {
+> +		unsigned int mask = BIT(data->hwirq + scu_ic->irq_shift) |
+> +			(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
+> +
+> +		/*
+> +		 * Status bits are cleared by writing 1. In order to prevent the mask
+> +		 * operation from clearing the status bits, they should be under the
+> +		 * mask and written with 0.
+> +		 */
+> +		writel(readl(scu_ic->base) & ~mask, scu_ic->base);
+> +	}
+
+So you have two different handlers. Why can't you provide two different
+mask/unmask/ functions along with a seperate irq chip instead of
+cluttering the code with conditionals. Thes two variants share no code
+at all.
+
+> -	irq_set_chained_handler_and_data(irq, aspeed_scu_ic_irq_handler,
+> -					 scu_ic);
+> +	if (scu_ic->split_ier_isr)
+> +		irq_set_chained_handler_and_data(irq, aspeed_scu_ic_irq_handler_split,
+> +						 scu_ic);
+> +	else
+> +		irq_set_chained_handler_and_data(irq, aspeed_scu_ic_irq_handler_combined,
+> +						 scu_ic);
+>
+
+Please get rid of the line break. You have 100 characters....
+
+Thanks,
+
+        tglx
 
