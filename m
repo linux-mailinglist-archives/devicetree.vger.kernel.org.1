@@ -1,333 +1,172 @@
-Return-Path: <devicetree+bounces-211582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF825B3F942
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:57:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB812B3F959
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:00:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9B0D17E977
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:57:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A73323A7965
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:00:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C40512E719B;
-	Tue,  2 Sep 2025 08:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D371F948;
+	Tue,  2 Sep 2025 09:00:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="E5W0Jcge"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h9O44Lkc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB67032F77A
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:57:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B43D24E4A1
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 09:00:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756803457; cv=none; b=NI9OS57Q11uMkV18h84Shz/QdKZOpQ9Vp+XTfFIgG5t/flBeeZuaCMoOjhgmA+/qiyP5lE3vCqHyH0Qt1AFiUhfqLsFdKQvQa3Kd9bpGRDsL7LvvX/R1nKNteA8o43RK90I6TFS01AZyV3uPGyUhMOg12q9Sh3OBp6rfze+9RJA=
+	t=1756803637; cv=none; b=Th1eLThzDW2L5sMB7kEdHEf4Rh1mTXB66a5G63HAryQj42JhOek1PfpJsABQbgAiovSBn8dvu3j1Ja1Yl/pALVoGo+rsML92DJdGMScR8mfjQtavUbYLtRz9MP5lCam5MpCngoqq44m69j5Lnmx5/94PoYeE8tTEj3t3uYUi6Zw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756803457; c=relaxed/simple;
-	bh=/oGnBMreWPACxHfLBlaOCJWYITRtOg2q7GuC6elIIbU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type; b=HC9TX/j88ikN15RJTemxW3+SE3itgQIYcwU1lNBVPr2WXh0naTX1WSU8x4T2rNymXMx0fZ+ip4AXFV20OyVBpz3vYHv8fa1BbACjmrNIsIO1V5wxHlPdsMzNL59mJQL2yA/jfyRk3+EsT2zyCRWWA4D6OnxtYRdT4VQSGXekn+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=E5W0Jcge; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 3FAFAC8EC73;
-	Tue,  2 Sep 2025 08:57:17 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 24C7A60695;
-	Tue,  2 Sep 2025 08:57:32 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 053891C22D8A3;
-	Tue,  2 Sep 2025 10:57:15 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756803451; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding; bh=AyHIaf6WQe2QQWwuimh8OdfA1ncGmt0f0bFGO/cNShc=;
-	b=E5W0Jcge/hsJprrkZR/JgqZzfWib5ksl3q8F3J4QBRVA/7uI5vTkpl0OjPTnZBrrnB80Ck
-	nFyjnmY2d1dV6R5YlkdWKrlS+GDQ7xB8Sc5QjX2GZh6KMy6w/TSTq849TX2tNtifGweHCk
-	hWVjN+t+bRDbGm2ZzDn4PjlDkc5MTknmZjpoSYqOxALhL5RUker7mq/vqNKcgGFE8hQmX0
-	h8P0AuzZJJxM4GgKvDZWXW3/5Y6OT5UOxqgiWYYfu1VxBKhQbovI6SJSO9bfSOs9bn/eVl
-	i1AsMG8wgxdELgknP3l1BGjsQ5KPuNMZoUb+kEq0AFFLX2oRzNmJgdZFdJCygQ==
-Date: Tue, 2 Sep 2025 10:57:10 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob
- Herring <robh@kernel.org>
-Cc: Ayush Singh <ayush@beagleboard.org>, David Gibson
- <david@gibson.dropbear.id.au>, Jason Kridner <jkridner@gmail.com>, Geert
- Uytterhoeven <geert@linux-m68k.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Luca
- Ceresoli <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
- Andrew Davis <afd@ti.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Device tree representation of (hotplug) connectors: discussion at
- ELCE
-Message-ID: <20250902105710.00512c6d@booty>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1756803637; c=relaxed/simple;
+	bh=/AvEkFL8ZPL0QX5wT+kkkwMlzldfAIudlswK22svjfo=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qQrh+ZfiI3Y3vELnUWfyhhUzJ/mnhCP5PYeBaswKlP8nrecAysw8bjAq/tozR1myvXPyZOQCFxYo502/ID46l0ujHCy009UjFfMYm8b28zcO16AG/hm/btAD7A0xespCE2V5joB7+x3my+pKoM+8mHBmu7aZhA9xVqle9Sm4je8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h9O44Lkc; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3cbe70a7923so4007637f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 02:00:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756803633; x=1757408433; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wqoSTMfnInHzXncCAvecG0yOfvdXdS/1fhZi2BozDIA=;
+        b=h9O44LkcmxJyup1xooizPEZ6nx6u++LtbFfqWns+Gc3NqH4Sp2sGS20cAZx/giCfUT
+         kSAmB0GFp8qLbItOnG69JdgS/fvGxgcA+UaRe1xcOT+ueqWK53LT6sul6U+rB13iSPaY
+         AIg0Tb7Vcaq/RLXeTqny8x0lQFaiK/NbFMOhDohl1geFRHHDVTo0tgllcvR2G9s1tWw4
+         IT75QUnoEkh1aY3RB12yzYCHjbJ1nQuYHndkmsFqe2q4IkAB+2vPCcbN8BW+9wEbFg4h
+         LPcN25DBS4xkO4ewJfrUH5j8ASYWQTQUFeKoig8y6cpDYWxdQjxP6Sz+ubrmRMLP8rY2
+         3I/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756803633; x=1757408433;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wqoSTMfnInHzXncCAvecG0yOfvdXdS/1fhZi2BozDIA=;
+        b=wjbe7NLhxaNjyIzjmVNRGk2DDp2aF1tertkr2FJwUjAjwi3zdFv8NEah0bompeidj9
+         THcf/oZ/83vKJ2QQD3o6eQKKo+6L5wR1hpgwhBtpGpIqh+VBSNKFX0tPlmFAU1rPE6Fp
+         Id1VAIKSjOR4orBc8WcTioa5753z3O1T0fdzWz+AN7XztIOXNGLT9PRc8ASbrfJxue1O
+         g9Gdsb9WhumcvLIeMjQGdMOs8csbeDuJ8tnAWCg7mT2jgcHMYil1iq0CNOYayG2UWIrl
+         2QoCyi2bk7kW5/z7d4XeuZGVOfF9mup4V6vZy2VkF/UnAv2njJzPsPF9pB4LjRXH3Goz
+         7D8g==
+X-Forwarded-Encrypted: i=1; AJvYcCW9O3GYpLHOROWlwmwCaSQePDquhR31fsuCNyCPxlwiJqDR5XUskA9mq0HKHzNHHawW7xYjs/PTafFM@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHfebfzfXXhzJAUFYTdtsbqvXZA72FTGMQ8VurUFO5+yEbR+lQ
+	ibLPmRF4n64HcWvAeM9hLmdt+x9mvq9vacHzZpofIs2DLfF4EmOE7EYD9zVCW+/F834=
+X-Gm-Gg: ASbGncseD9iKUicWoXAKy1bWxcV7cEVn057wssP2R2vB1pR9VJo/07Y8+SJTUJhkpfu
+	y+NKr4aE+Fgrnp4J6FWY2IPmKqwyX9gRRFYsuvBZPzf7v6dSST8Cd+nKk67SjrwiPX9paiJAj/C
+	KGxcpazNxhq54qtyGQz2X7C95e9USOhev59GSbdSOlBQ8yjGiiN4Ck1dFLJiMEZFunSvZlT/i4n
+	uGOj42ABDztI60+llKeywX3aZpMl0Ed7PoJCUre7JA1M9fjlq1H+gcGR57EUhMC0HF9CFDLDuAa
+	J6M8lfNMKlm1KLnKLF3l7BBOFBp99vmR+Cm75MFfT08QlacH2LFXdA23FJXAzyRW+I1Qm5c3zxz
+	qA7hpZPWAsy4JMTiVHjiIeq50c3npGFctJJ8Gm+qp4XbyWSe8O3nGbw==
+X-Google-Smtp-Source: AGHT+IHchy/28th+xU0fzEQUhWURMN5gK9cGjR/X/RP803Si12JCXg77wbS/BLHAWVSPPSGpdz0iUg==
+X-Received: by 2002:a05:6000:2007:b0:3d1:abf7:e1d9 with SMTP id ffacd0b85a97d-3d1dfcfb948mr8671065f8f.35.1756803633392;
+        Tue, 02 Sep 2025 02:00:33 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7271cd01sm261112045e9.23.2025.09.02.02.00.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 02:00:33 -0700 (PDT)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/5] arm64: qcom: x1e78100-lenovo-thinkpad-t14s: add
+ support for HDMI output
+Date: Tue, 02 Sep 2025 11:00:27 +0200
+Message-Id: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACuytmgC/32NQQqDMBBFryKz7pRJ1BK76j2KC2NGHWiNJBIs4
+ t2beoAu34P//g6Rg3CEe7FD4CRR/JxBXwrop24eGcVlBk26JqMVrn6RHjfFhhQRTu4tWFpX29o
+ 67Zob5OUSeJDtrD7bzJPE1YfPeZLUz/7vJYWEg6o611QlsTGPl8xd8FcfRmiP4/gCwVV0gbcAA
+ AA=
+X-Change-ID: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
+To: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1884;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=/AvEkFL8ZPL0QX5wT+kkkwMlzldfAIudlswK22svjfo=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBotrItc0wBzFb+X3fEn+n3Klrj6iXvjRNIAzCMweDN
+ 97yr+i6JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaLayLQAKCRB33NvayMhJ0dyLEA
+ CApfG/eA7wleGCfq+kgzplNW95NCgw/c1jiZUk7LzJpgIIhaPA+iZ7lDhGD6SFQRD3/jhLVwl5BOVj
+ E1GjnmzBI2tguTepGzydl369M+EbnzI64QUq2b3KiaM8K0aKXM3+HvUVuaqWjbm0rQU0r1KvCNN9YF
+ yhdxMTLthirxY2ffP2yAjRvKPUAQco4t18XUGOaV6LttkAt7qWXayvYongE7r2kNJKxPemctif77ry
+ SAA3WK9G8HtOFtSmUg+N4sQXgkj3u1FRelH1AHkPLAPYdGurTFd8rTTToLDyAdSpQOOQbnfgCPpELO
+ 5txIHesHPB1fN2hBPRvjkj6nA0zp6J48hNIuDpH8wULfG+VfaA4vI49Vz69TTzUxKQTuiuY/2n1zm0
+ wkahQWU5Ta3ZmerGV+u+kbkTBOOlX92fuRzJ/FO5Seub53eQgn1fcHoKKgAxC0tySQd0jaP8bIDyuO
+ iI2+TNaVJv/VAA+4sYzdgDja7T9639qw4cuCDPNUmzR/wGKM2wTwHT0iL9KakxrXSnx7t8G6rjQ6r+
+ QvpBAa5lItszFDL8n39IXkUoJ0RH65ob9oSNonK/h3hjvbwQhSQ+8eLascE5fo1njFhJ+EdvMmoh86
+ CNgKvbR8K9HOBYXbnGSxucBckKWbI41HqZAaTRzMKvFT8IOo1UKSCP4mXQhQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hello,
+The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+connected to the third QMP Combo PHY 4 lanes.
 
-[this main was co-written by Herv=C3=A9 and Luca]
+The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+of a combo glue to route either lanes to the 4 shared physical lanes.
 
-Herv=C3=A9 and I are working since 1+y to allow describing hot-pluggable
-add-ons and their connectors with device tree overlays. Our work is not
-very much progressing because discussions about device tree bindings
-has raised some issue that are not obvious to solve.
+The routing of the lanes can be:
+- 2 DP + 2 USB3
+- 4 DP
+- 2 USB3
 
-This e-mail is a report of the efforts we did last week during the
-Embedded Linux Conference Europe to try to address the currently
-blocking issues.
+Add the needed property to specify the lanes mapping and
+use those in the driver to setup the right PHY mode and
+orientation.
 
-First, I gave a talk about the overall hotplug work, to provide a
-status update but also to clarify the goals and use cases. Slides are
-available at [2]. Goals include:
+Finally Add all the data routing in DT, disable mode switching and specify
+the QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
+the underlying DP phy.
 
-- decoupling base board and add-on, so an addon can have a single dtbo
-  valid for any base board, and vice versa
-- supporting main boards with multiple connectors where multiple
-  instances of the same addon model can be connected independently
-- allowing overlay insertion and removal at runtime (hotplug)
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Model the HDMI transceiver as a simple bridge
+- Switch to a static lanes mapping property
+- Link to v1: https://lore.kernel.org/r/20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org
 
-The first goal implies that addon overlays do not refer to anything
-(phandles) beyond the connector node.
+---
+Neil Armstrong (5):
+      dt-bindings: display: bridge: simple: document the Realtek RTD2171 DP-to-HDMI bridge
+      drm/bridge: simple: add Realtek RTD2171 DP-to-HDMI bridge
+      dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy: Document static lanes mapping
+      phy: qcom: qmp-combo: get the static lanes mapping from DT
+      arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s: add HDMI nodes
 
-The talk has attracted a lot of people. All seats in the 200+ room were
-taken, and when I asked who has a connector use case about 40-50
-attendeed raised their hands. I also had several questions asked after
-the talk and in the hallway.
-
-After the talk we had planned a discussion about the topic. Krzysztof
-Kozlowski was present in person (thanks!), while Ayush Singh and
-Wolfram Sang connected remotely. Jason Kridner (beagleboard.org) and
-Geert Uytterhoeven were present and actively constributing to the
-discussion. Unfortunately Rob Herring was not connected, but still we
-tried to make the best out of the discussion. So we focused on
-discussing the current proposals to go past the issues with our
-export-symbols proposal raised mainly by Rob.
-
-Here is a summary of the ideas we have discussed, in order from
-simplest discussion (looking like not doable) to most complex (which
-look like doable).
-
----------------------------------------------------------------------
-
-Idea #1: Label on __overlay__
-Proposed by Rob in [0]
-
-> Couldn't we make something like this work:
->
-> connector: __overlay__ {
->    node {
->       foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
->    };
-> };
-
-This would be OK for simple cases but it only allows exporting one
-label, for the connector (i.e. the overlay target node). More than one
-label need to be referenced from the overlay for cases such as:
-
-- pinmux, where each pinmux configuration is a node, and is defined
-  in the pinmux node outside of the connector
-- HDMI ddc-i2c property, for HDMI chips in the overlay which needs to
-  point at an I2C adapter in the base tree
-
----------------------------------------------------------------------
-
-Idea #2: add /export/ keyword to mark labels to be exported
-Proposed by Rob in [1]
-
-The idea is to mark modes in the base tree that can be referenced by
-overlays:
-
-> /export/ label: node {
-> };
->
-> And then __symbols__ can be only those exported labels (unless -@ is used=
-).
-
-This is an opt-in version of the "global" __symbols__ to limit the
-issues __symbols__ introduces. However it is not sufficient for
-connectors because it tells what can be exported but not on which
-connector. Also, overlays would need to refer to the nodes in the main
-tree, thus not decoupling mainboard and addon.
-
----------------------------------------------------------------------
-
-Idea #3: label on empty (*) node
-(*) until overlay applied
-Proposed by Herv=C3=A9 at LPC2024 in a discussion with Krzysztof, later
-abandoned
-
-This is based on Idea #1 but tries to make HDMI ddc-i2c work:
-
-connector1: connector1 {
-    #gpio-cells =3D <2>;
-    gpio-map =3D <0 0 &soc_gpio 12 0>;
-    gpio-map-mask =3D <0xf 0x0>;
-    gpio-map-pass-thru =3D <0x0 0xf>;
-
-    i2c8: i2c-hdmi {                [**]
-      i2c-parent =3D <&soc_i2c8>;
-    }
-};
-
-connector: __overlay__ {
-   node {
-      foo-gpio =3D <&connector 0 GPIO_ACTIVE_HIGH>;
-   };
-   i2c_hdmi: i2c-hdmi {
-     //empty
-   };
-   hdmictrl@99876 {
-      ddc-i2c =3D <&i2c_hdmi>;
-   };
-};
-
-This would leverage the i2c-bus-extension work (also under discussion
-[3]). Since for HDMI an I2C device is not added it would have a node
-(i2c-hdmi) that is empty in the overlay (but not in the base tree and
-thus not in the live tree after the overlay is applied). This empty
-node is needed to ensure we can have a label (i2c_hdmi) that can be
-referenced from elsewhere in the overlay (ddc-i2c).
-
-However there are various issues with this approach:
-
- - mainlin, it does not handle pinumxes nicely
- - if the node that is overlayed by the empty node (i2c-hdmi) has a
-   label in the base tree (line [**]), then the overlay-provided
-   phandle ID would screw up the base-tree phandle ID
- - in dtbo, the empty node (i2c-hdmi) has a property in the overlay
-   (phandle) but the node exists in the base tree, thus the property
-   would leak on removal
-
----------------------------------------------------------------------
-
-Idea #4: resolving phandle errors by the connector driver
-Proposed by Rob in [1]
-
-> I'll throw out another idea. What if we make resolving phandle errors
-> something that can be handled by the connector driver? The driver
-> knows 'connector' resolves to the connector node it is applying the
-> overlay to.
-
-This idea looked promising, so we tried simulating the process with a
-dts/dtso example:
-
-Base tree:
-
-connector1 {
-    compatible =3D "myvendor,myconn";
-
-    #gpio-cells =3D <2>;
-    gpio-map =3D <0 0 &soc_gpio1 12 0>, <1 0 &soc_gpio3 42 0>;
-    gpio-map-mask =3D <0xf 0x0>;
-    gpio-map-pass-thru =3D <0x0 0xf>;
-
-    i2c-sensors {
-       compatible =3D "i2c-bus-extension";
-       i2c-parent =3D <&i2c@abcd0000>;
-    };
-
-    hdmi-ddc-adapter =3D <&soc_i2c8>;
-
-    // All pinctrls that addons may need
-    pin12-pinctrl-i2c =3D <&pin12_mode_i2c>;
-    pin1-pinctrl-gpio =3D <&pin1_mode_gpio>;
-    pin2-pinctrl-gpio =3D <&pin2_mode_gpio>;
-};
-
-Overlay:
-
-/ {
- fragment@0 {
-  __overlay__ {
-   node {
-      foo-gpios =3D <&connector 0 GPIO_ACTIVE_HIGH>,  <&connector 1 GPIO_AC=
-TIVE_HIGH>;
-   };
-   i2c-sensors {
-      thm: thermal@15 {reg =3D <15>;...};
-   };
-   hdmictrl@12345678 {
-      ddc-i2c =3D <&ddc_adapter>;   [*]
-   };
-   some_other_node {
-      pinctrl-0 =3D <&pin12_pinctrl_i2c>;
-      thermal =3D <&thm>;
-   };
-};
-
-This is what would happen for the HDMI ddc-i2c at line [*]:
-
-1. of_overlay_fdt_apply_new(..., resolve_dt_error_cb) is called;
-   it is a variant of of_overlay_fdt_apply() (name to be defined!) that:
-     a. takes a function pointer to invoke the connector for resolving
-        unknown labels
-     b. does not even try to resolve phandles beyond the connector
-     c. if target node has no phandle, creates one with next unused
-        number
-2. resolver does not find 'ddc_adapter' label
-3. before calling it a fatal error, resolver calls connector driver
-   callback
-4. connector driver callback knows the "ddc_adapter" string must be
-   resolved using the "hdmi-ddc-adapter" property, returns soc_i2c8
-   phandle ID
-
-connector driver callback in pseudocode:
-
-  resolve_dt_error_cb(conn, label)
-  {
-    switch (label) {
-      case "connector":
-        return conn->of_node;
-      case "ddc_adapter":
-        return resolve(conn->of_node, "hdmi-ddc-adapter");
-      case "pin12_pinctrl_i2c":
-        return resolve(conn->of_node, "pin12-pinctrl-i2c");
-      }
-  }
-
-We discussed some possible issues, such as: what if a label is actually
-found in the base tree and thus resolved? This is handled by point 1.b.
-above: the OF core does not even try to resolve phandles beyond the
-connector, it would not make sense for connector anyway. In other words
-it only resolves local fixups, which are internal to the overlay, such
-as "thm" in the example above.
-
-This looked like the most promising approach because it handles nicely
-HDMI DDC and pinmux and minimize pollution in the phandle ID space.
-
----------------------------------------------------------------------
-
-So that was what we discussed in the meeting last Tuesday. We hope this
-will help in setting the current point and let the discussion move
-forward.
-
-Anyone having taken part to the discussion is welcome to correct or add
-any info we may have missed.
+ .../bindings/display/bridge/simple-bridge.yaml     |   1 +
+ .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |  29 +++++
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  70 ++++++++++++
+ drivers/gpu/drm/bridge/simple-bridge.c             |   5 +
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 118 +++++++++++++++++++--
+ 5 files changed, 214 insertions(+), 9 deletions(-)
+---
+base-commit: 7fa4d8dc380fbd81a9d702a855c50690c9c6442c
+change-id: 20250821-topic-x1e80100-hdmi-3bd5b5bd2d96
 
 Best regards,
-Herv=C3=A9 and Luca
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
-[0] https://lore.kernel.org/all/CAL_JsqLT3prYBcxnsUwAShULCLJScYoU29ta29RJLG=
-yiNkCrTg@mail.gmail.com/
-[1] https://lore.kernel.org/all/CAL_JsqJCbmMJWJnmr8FneKrW4pjvTcyEco94Ot32o2=
-YtaVxRQQ@mail.gmail.com/
-[2] https://sched.co/25Vrw
-[3] https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootli=
-n.com/
-
-
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
