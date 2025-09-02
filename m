@@ -1,230 +1,137 @@
-Return-Path: <devicetree+bounces-211836-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211837-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18467B40DE5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:31:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FCAB40DEE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 83CBF1B62BFE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:32:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B4AB5E10A0
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:36:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23DE262FEB;
-	Tue,  2 Sep 2025 19:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6AAF2E5B05;
+	Tue,  2 Sep 2025 19:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iFs/A14m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XJxeZ0lw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8641865FA;
-	Tue,  2 Sep 2025 19:31:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89121261B75;
+	Tue,  2 Sep 2025 19:36:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756841494; cv=none; b=EZeVEqsTZ4o2500gtb6lrIzj7Bj2LIZ6VSfXodvSwPoY/u1PG2kbnXupqFv0tOP3LHCC9Cfr/ym6DDishrXNIFqElua8BjPPsLMR5sL7OC6x0MRThNvGZ5Baip9afBb3rzh7pfLhMroF5TwwiO8bi+TGt1ZuVEqUJD5n1/SOd5M=
+	t=1756841762; cv=none; b=SZZNOi/U2ka93F8Zo9kwUpfziPjnc31vQh31fG7f837yzPu2qM9rvnpJ2ATrRcHlRWXOscHpeM3Aj/aSkp5EabPJUKmgZg0rLsCnvGEPNzPA2TvSXXQzjwcfjUJUcmyVmQnDaHBpCwhid29LoquwLvJbLWOJRJD1o1COHKvnLgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756841494; c=relaxed/simple;
-	bh=F14nPORs8JdgFQl33HfGRKc+FkO94g/5nNmkQ7R1MBg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Z3Zv4HJnURnuUe1m6jkGrGyxX3Jf5HQbnhzcJbsy/aPRNiIlQyamjDCW7K9Gg3TueUD8Y4B0/D1knqRsv8rqw4REK0Xs9iuHiVBqSXSAMbBKNGWiYolSrEP98uAO4c9CkDMcDRHETDJRoAeunnrId2ZMvi0O2HtzTh6ditOPi8c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iFs/A14m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FDCDC4CEED;
-	Tue,  2 Sep 2025 19:31:30 +0000 (UTC)
+	s=arc-20240116; t=1756841762; c=relaxed/simple;
+	bh=A+4KNQPYjl55HgBIvKtfukKEXe2oTZLM/ySeK+8RppE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K4utgtAHTZ2TON3zmVy5pvRr2KKjkIQwoIhFsSLeiBl/1hgxjmX+q3HhfkFkqoAY4phXbI+cyfTA1gX+uv0gdW2RBM9q3/y3lendk3cN4SxFRPvTdFWvADhkWESteDVeKL5EhcIuYTOACAnscTbMhZzNCIHdMve+SWK6THIHPN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XJxeZ0lw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 41391C4CEED;
+	Tue,  2 Sep 2025 19:36:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756841494;
-	bh=F14nPORs8JdgFQl33HfGRKc+FkO94g/5nNmkQ7R1MBg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iFs/A14ma2YVWf6Xfo5kNA4paBdeW7hQYYdbujdC/+mCv7+Q5Se86rzNwGS6MwaiD
-	 UVG3Q0qBHF38bpOg7jcYZRztAC2ZopUFHOVbZGmU0KSC8UUGldGv+XC0rsyc1UmsQ9
-	 p8/0tlsdKvL4rMgNass/Y3Sdo9/tIzN2+43azvH4Yl/1XqWOsrYbDRENCmAd5sl2ap
-	 1ERo9tzWZJzYwNgOpMfrlVq4zxtSNL6g6HGu7qv0L4+9/Sq/IpQ2c/tDAnBEF2hbtt
-	 9SsLq0fQZD/Yec0fwRiovHKo4WJhrIMhBVnwvLJ4ipIyndd7jV3lyFXDR2gRrCbdj2
-	 VTUYFM+98bPRA==
-Date: Tue, 2 Sep 2025 20:31:28 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Marc Kleine-Budde <mkl@pengutronix.de>,
-	Vincent Mailhol <mailhol.vincent@wanadoo.fr>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Aswath Govindraju <a-govindraju@ti.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>,
-	Bough Chen <haibo.chen@nxp.com>,
-	"linux-can@vger.kernel.org" <linux-can@vger.kernel.org>,
-	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v4 1/6] dt-bindings: phy: ti,tcan104x-can: Document NXP
- TJA105X/1048
-Message-ID: <20250902-dastardly-truth-fb2be9f68e4a@spud>
-References: <20250901-can-v4-0-e42b5fe2cf9e@nxp.com>
- <20250901-can-v4-1-e42b5fe2cf9e@nxp.com>
- <20250901-diligent-dreaded-59b9ad5c3976@spud>
- <20250901-uproar-shrill-07d51ea21a29@spud>
- <PAXPR04MB845991442136C0BEF0540D6A8806A@PAXPR04MB8459.eurprd04.prod.outlook.com>
+	s=k20201202; t=1756841762;
+	bh=A+4KNQPYjl55HgBIvKtfukKEXe2oTZLM/ySeK+8RppE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XJxeZ0lwnG72r+rkFx5Mje64OdAHqoUuDODmsOgVh6lDXZ1yyNVBrWT3TQYbB5Opj
+	 iwIzPAydOsM0mjgDxG88xI3Pck8g3rUJdpyotwxlGa/mrCk1N+lm/4iyF8FbMouoRc
+	 Rmj3p+AM/wtfVOQQjV+YDtYjhV33AruTWRs2KJLNtx7igFeotrAiVzdmsQdjG//3Hn
+	 hY3AhCFFVZSU6VsmbGnf4su5G3oWC9FH4EiGUn22QFq8xECcW2No4F8NilL4jdPrfQ
+	 IUiZSRe/jB0QznM6BPezqvXfmLXqB0a4vHO9SBddb+gbjEHZ+kbEDl3JgF6wJ5UEUT
+	 Uou8LE4HRmP8Q==
+Message-ID: <b78563b7-afd0-4a74-8bd3-b5991c0f21c3@kernel.org>
+Date: Tue, 2 Sep 2025 21:35:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="emYz2NOh8U/FtcyF"
-Content-Disposition: inline
-In-Reply-To: <PAXPR04MB845991442136C0BEF0540D6A8806A@PAXPR04MB8459.eurprd04.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: hwmon: ti,ina2xx: Add INA700
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+ Christian Kahr <christian.kahr@sie.at>
+References: <20250901215648.2696843-1-linux@roeck-us.net>
+ <20250902-purring-lively-aardwolf-dca3e4@kuoka>
+ <c37bf116-9250-46fa-9a6c-24cb9b3af661@roeck-us.net>
+ <2c649ee4-5b2a-4f8e-b61e-8847885e877b@kernel.org>
+ <e0a2ec06-241a-490e-beb3-470cdeae6fcc@roeck-us.net>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
+ FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
+ QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
+ +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
+ ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
+ 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
+ hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
+ tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
+ 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
+ naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
+ hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
+ whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
+ Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
+ MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
+ OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
+ GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
+ 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
+ YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
+ 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
+ BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
+ JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
+ 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
+ YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
+ qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
+ RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
+ Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
+ H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
+ dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
+ AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
+ jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
+ zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
+ XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
+In-Reply-To: <e0a2ec06-241a-490e-beb3-470cdeae6fcc@roeck-us.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 02/09/2025 18:11, Guenter Roeck wrote:
+>>
+>>> the devicetree documentation. That is what this patch is for. I frankly don't
+>>> know how to mention a user as requested; I don't easily find an example
+>>> in other devicetree patches. Typically the commit message is just "add <chip>
+>>> to <bindings>". Please give me an example of what you are looking for.
+>>
+>> "Document existing compatible string for INA700. ....."
+>>
+>> This is an easy way to explain that it already is used.
+>>
+> Upcoming would be more appropriate. NP, I'll resubmit with the actual driver
+> patch series once it is ready and keep that in mind for the future.
 
 
---emYz2NOh8U/FtcyF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Ah, sorry, I did not get it, it is a driver on the lists? I thought you
+are documenting something which you already merged.
 
-On Tue, Sep 02, 2025 at 02:24:49AM +0000, Peng Fan wrote:
-> Hi Conor,
->=20
-> > Subject: Re: [PATCH v4 1/6] dt-bindings: phy: ti,tcan104x-can:
-> > Document NXP TJA105X/1048
-> >=20
-> > On Mon, Sep 01, 2025 at 07:54:01PM +0100, Conor Dooley wrote:
-> > > On Mon, Sep 01, 2025 at 11:18:11AM +0800, Peng Fan wrote:
-> > > > The TJA105[1,7] is a high-speed CAN transceiver which is a
-> > > > pin-compatible alternative for TI TCAN1043 with sleep mode
-> > > > supported, and has a compatible programming model, therefore
-> > use ti,tcan1043 as fallback compatible.
-> > > >
-> > > > The TJA1048 is a dual high-speed CAN transceiver with sleep mode
-> > supported.
-> > > >
-> > > > Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> > > > Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> > > > ---
-> > > >  .../devicetree/bindings/phy/ti,tcan104x-can.yaml   | 30
-> > ++++++++++++++++++++--
-> > > >  1 file changed, 28 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git
-> > > > a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > b/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > index
-> > > >
-> > 4a8c3829d85d3c4a4963750d03567c1c345beb91..f8e0c24856a2ba83
-> > b5c988b246
-> > > > 464f47e11a032f 100644
-> > > > --- a/Documentation/devicetree/bindings/phy/ti,tcan104x-can.yaml
-> > > > +++ b/Documentation/devicetree/bindings/phy/ti,tcan104x-
-> > can.yaml
-> > > > @@ -19,18 +19,25 @@ properties:
-> > > >            - enum:
-> > > >                - microchip,ata6561
-> > > >            - const: ti,tcan1042
-> > > > +      - items:
-> > > > +          - enum:
-> > > > +              - nxp,tja1051
-> > > > +              - nxp,tja1057
-> > > > +          - const: ti,tcan1043
-> > > >        - enum:
-> > > >            - ti,tcan1042
-> > > >            - ti,tcan1043
-> > > > +          - nxp,tja1048
-> > > >            - nxp,tjr1443
-> > > >
-> > > >    '#phy-cells':
-> > > > -    const: 0
-> > > > +    enum: [0, 1]
-> > > >
-> > > >    standby-gpios:
-> > > >      description:
-> > > >        gpio node to toggle standby signal on transceiver
-> > > > -    maxItems: 1
-> > > > +    minItems: 1
-> > > > +    maxItems: 2
-> > >
-> > > You're adding a second standby gpio, which one is which?
-> > > I assume you mean that item 1 is stbn1 and item 2 is stbn 2 for
-> > tja1048.
->=20
-> Yes. There are two standby pins.
->=20
-> > > Might be kinda obvious, but I think it should be mentioned.
->=20
-> I could update description as below.
-> "
-> description:
->   gpio node to toggle standby signal on transceiver. For two Items,
->   item 1 is for stbn1, item 2 is for stbn2.
+Well, then the solution could be lore link in patch changelog. Resending
+as one patchset is also fine.
 
-Sure.
 
->=20
-> > >
-> > > tja105{1,7} don't have a standby gpio, but they do have a silent
-> > mode.
->=20
-> Right. Tja105{1,7} has a pin S for silent mode.
->=20
-> > > silent mode seems fundamentally different to standby, since the
-> > > receiver still works. Seems like that should be handled differently, =
-no?
-> >=20
-> > The docs for standby mode for the tcan1043 don't match with the
-> > tja1051, "Standby mode is a low power mode where the driver and
-> > receiver are disabled," so does the fallback compatible even make
-> > sense? Seems like a combination of enable and standby gpios are used
-> > to put the tcan device into silent mode but the tja1051 has a pin for
-> > that alone and seemingly does not support standby at all?
->=20
-> Thanks for looking into the details. I also read more into the datasheet.
->=20
-> Tcan1043:
-> EN   nSTB
-> H       H    ---> normal mode
-> L        H   ---> slient mode
-> H       L    ---> standby mode
-> L        X    --->off mode
->=20
-> TJA1051
-> EN   S
-> H     L   --> normal mode
-> H     H  --> slient mode
-> L      X  --> off mode
->=20
-> Your analysis is correct. silent is different with standby,
-> but we only wanna to use normal and off mode
-
-In addition, it looks like there are some tja1051 devices that don't
-even have the enable pin? Of the 4 SKUs, there are 2 that use pin5 as
-Vio and 1 that has it n/c. Only the T/E device has an enable there.
-
-> If we need to handle differently, I need
-> to add a new optional property
->=20
-> silent-gpios:
->   description:
->     gpio node to toggle silent signal on transceiver
->   minItems: 1
-
-Ye, I think so. And probably add some if/then to use it instead of
-standby on the relevant chips.
-
---emYz2NOh8U/FtcyF
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLdGEAAKCRB4tDGHoIJi
-0mVdAQDC4R/uDobfYX0MlIc7P3VN7g19AM8wzxvWSJ27EwGhBgEA12JCMoHxPor9
-peA9L92m9adGEyaiB2fIMSJnYILwrQM=
-=7Ezu
------END PGP SIGNATURE-----
-
---emYz2NOh8U/FtcyF--
+Best regards,
+Krzysztof
 
