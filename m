@@ -1,140 +1,169 @@
-Return-Path: <devicetree+bounces-211781-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211782-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55E03B4096B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 437C6B40972
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:46:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 659F94E435B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:45:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3DDC5E0AF5
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:46:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6031132ED28;
-	Tue,  2 Sep 2025 15:45:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6579F2DC353;
+	Tue,  2 Sep 2025 15:46:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUFCRs1I"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z+ubXb0J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13B91324B07;
-	Tue,  2 Sep 2025 15:45:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A19AB2D2493;
+	Tue,  2 Sep 2025 15:46:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756827921; cv=none; b=B879TeltCVXAEQ7mCiBINYBvBwyVSyFkiRUxBpdhF7ZGKMIKDr6V2mS7pAZgtvLkLlZmF8IMqAzqSd8pQ5ORd9lO/wdkX0Wb2tyr9ZhdvZZx9XtI1jkAcgx5yeOm29mX55E9w1cdRnEDu69ZremCVixfeYeDQNxMJtZ1Nz+UWOQ=
+	t=1756828001; cv=none; b=JaM3Mq5voqUTrZ66VJs0DRvmoG+9rqVuFPw4O3FKrtsDEff3aPCHkafWZRJAKo8RMu1jTZJlwQ9dQkVmLTlBY/qgAhAuzsqOQj6I6NwzqnnWcNF7FzdJE7OZ8gdoXowl3wbtRgih/kr35bODxlAwYaThmeZDzd5E9ZivEzhDvvU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756827921; c=relaxed/simple;
-	bh=10DC0hCTmnG7FWQoWO1UILh6tklJQtGckC4T7MpnYho=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TU5E6vaDSfRGQLn8WaluqpdtH3+yONW3ybPU64jqHYt06+0l/80Bbk5nQPeWS1f/sutZIkCGXFchtRHHC2Jg7OgZrh/o340cfN6AyvMj4d1qPZ0gKashx9pGTYA6Ov1DPUWmgmB24AfMoH5s/DPD1EYY7ZJjNdF0h5HBb8d5/3M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUFCRs1I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9CD4C4CEED;
-	Tue,  2 Sep 2025 15:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756827920;
-	bh=10DC0hCTmnG7FWQoWO1UILh6tklJQtGckC4T7MpnYho=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nUFCRs1IoKC0K1i9eKmrAfojFR3hD3LUK82TjycqA6U/yw7zJKwVq4dtCOFAJmc0J
-	 IlyTbw78fOS71TS08YnmUGr5Sk+GLkwpnuCdw3NY9KO6trzZCRxiECUacZ9sMUP8ZZ
-	 G9J65b+bPCTtQLB6H86tfw5e/TbQYqG7L2QNEiY3UaF9+9gETvpM+Oam/jnFN4zPaK
-	 Dwmcjig0YNaX7HTpDHhzWpWfMd/t8otE1FRk41zZqPyi5J7birxCDr5TSZ59HR3kpB
-	 ls81TzUi1WWvUz2/Jq+RskXUDPi9RfHDHuBZ4a0hPzhv3YBju59Z+gHuQ3eyAaZcWf
-	 MkEPUmhiDSg8Q==
-Message-ID: <2c649ee4-5b2a-4f8e-b61e-8847885e877b@kernel.org>
-Date: Tue, 2 Sep 2025 17:45:16 +0200
+	s=arc-20240116; t=1756828001; c=relaxed/simple;
+	bh=dNcGL8tOLE5VhLRhNMW/9r8UL1Qen9PxBwglRwVz/1Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=YcZM9NhCVjxKtXD/iyRMnfj1PfG9qt6zs/T7w+7HVDoNH+LMUIWUzgnNPnfoEG/VvBjtVs5wHPeM6zZcOGlErcZw0bOgiGvHpV3+R3GkbHt3tVA1x4SFJN7kWnrGmFw8t5RPrlNC5LjGCF8788dLyRAzS9Ko4evMXzEb1PDEl8M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z+ubXb0J; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45b804ed966so18802675e9.2;
+        Tue, 02 Sep 2025 08:46:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756827998; x=1757432798; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ehw/eR0F2M+6G/BFd9v/1nkHSYwDgsa32Hkiapct/js=;
+        b=Z+ubXb0J1/fqOMwWS3Ngwb49TH2pwFtSBFayS9JVgSL1T8yCYyWBox9BaJWBVw3AmY
+         Uz8gJEj79O1O6QTICgq4A5d9oGuH1y1Zheesu3E6Mi40IUlSoe07I2vOjzn4Qo6vEKUB
+         JnDi4XABFnvl3Fwj1w3dgLg5r4C8+kIdwfe0mnlZU1CG4tsRsWs6OX7L2XLfgxdVzZbG
+         eoWMpC/XuJtFvdBVOxLKsFS+SxtQK1Lxf/PfYVG5TSLOxyxiLEvzYhZwuoNXpdRochgC
+         bKQc8VpIE1ta1d1zNjWaOn3l/S30JOIRH6KTDJ6mpZ++KYAAnz6af4pZxJOWkVjuzY+5
+         QY4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756827998; x=1757432798;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ehw/eR0F2M+6G/BFd9v/1nkHSYwDgsa32Hkiapct/js=;
+        b=Sa4UHFbLzP+W6fYYuXIe0EyXIGImj6Gu7N9c3WAA2jfTIb3w4AujkQwtg4ZPMEbjVm
+         /Nzx/jizAPk3fnqlW01WfgfN4mP5v4B6NqotW7LR5/saSKKZ9zkEF74e1E2/6Vut02wP
+         a6sOko8daAA7M8OaxhVgxiNWwu1sAXs4uXbN9x9zhNUVjOSV7X5xHK8EaZlIuxIbwwWN
+         t+Cb3zwx/ZHqv2YLqwLpFuT7d1/KkSfQVLGM8Vx2Q0wZNwOJLe9IPPVf6RU93g+4UxMU
+         LhIOiWwW+23J1noqFODwc0kdHNX93OK+NhaX/czJCla3qToGmTrekrlYsomnI92vF8Cn
+         OCow==
+X-Forwarded-Encrypted: i=1; AJvYcCW9kPRTTk5k52b+SdktNaNICZxJ+9Me0x5xLqUyIsWZ4+MMeTa1Cyl3spu5qfLADU7BsDFwmTqiMAZA5JQ=@vger.kernel.org, AJvYcCXgNSFME70RCTvIAy/yQjfF+IlN0TcvmYfuR/A0+NT8I6IvD6Jf05BFivCdQjmymPVgsPR0z0hQJ2Yx@vger.kernel.org
+X-Gm-Message-State: AOJu0YxoKTwP8dGdzTQrn0H7y0xgQ0K76TUs4fCGiETcX0cLs2Ro7PpS
+	XZb4CUBtMd+P5q9xnQ4gqI3j9Sk3qdR2910Kv1Usixo38SSt1iuFNHDD
+X-Gm-Gg: ASbGnctiibHPv9nvwRoo4C2l49kdkhZoZQKopG4GdsHaePFjOf2JXysXm559v6y2zPd
+	P7XQJe4JyAJP9f4ikdzpuNyR/jui/gIs+Yj873RQNdmOR1Bp/qkp2g5CStNDV9erOhBqdGHqyB6
+	xvYFrM7meSA9UKZhzdqV3GZB8Nk3tRn0f8K56C+ff2nuHl+o3L1huH8yInp18qZDM69TedzSFqg
+	rVoWp4BLcfO/ODj/YfJQqwxnUMUstCMzLKdyCgQGeBMVHNiIGJyR52J2Ur+0RYRIsdTGRR4TWvT
+	fDQsEZI1iHm7jKLF1vy/mDlF+uyeDRq7F5REW20mNS5JRYd9jtpgUvhy7rWVWVjJymWgyD5LO4O
+	3nRFi2AbkvHrfQOBsvccS2TyjqGqTtJZUhZTJuG31INTgDiGB42AqB73pzYapo7E3Jl/1i0jGdY
+	tWj/afbcjtSrW4TQ==
+X-Google-Smtp-Source: AGHT+IFWiFaPK/3SzCCDMU0eaVs82NQJjjs4OJMxCNhx+PRy+qfGvhLoB3urjp1BVbB0eezwx8zy/w==
+X-Received: by 2002:a05:600c:8b33:b0:456:302:6dc3 with SMTP id 5b1f17b1804b1-45b877be066mr95265895e9.26.1756827997621;
+        Tue, 02 Sep 2025 08:46:37 -0700 (PDT)
+Received: from localhost (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3cf33fb9d37sm20384921f8f.49.2025.09.02.08.46.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 08:46:34 -0700 (PDT)
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@gmail.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Sumit Semwal <sumit.semwal@linaro.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Brian Starkey <Brian.Starkey@arm.com>,
+	John Stultz <jstultz@google.com>,
+	"T.J. Mercier" <tjmercier@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@redhat.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linaro-mm-sig@lists.linaro.org,
+	linux-mm@kvack.org
+Subject: [PATCH 0/9] dma-buf: heaps: Add Tegra VPR support
+Date: Tue,  2 Sep 2025 17:46:20 +0200
+Message-ID: <20250902154630.4032984-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.50.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: ti,ina2xx: Add INA700
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- Christian Kahr <christian.kahr@sie.at>
-References: <20250901215648.2696843-1-linux@roeck-us.net>
- <20250902-purring-lively-aardwolf-dca3e4@kuoka>
- <c37bf116-9250-46fa-9a6c-24cb9b3af661@roeck-us.net>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzSVLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+wsGVBBMBCgA/AhsDBgsJCAcDAgYVCAIJCgsE
- FgIDAQIeAQIXgBYhBJvQfg4MUfjVlne3VBuTQ307QWKbBQJoF1BKBQkWlnSaAAoJEBuTQ307
- QWKbHukP/3t4tRp/bvDnxJfmNdNVn0gv9ep3L39IntPalBFwRKytqeQkzAju0whYWg+R/rwp
- +r2I1Fzwt7+PTjsnMFlh1AZxGDmP5MFkzVsMnfX1lGiXhYSOMP97XL6R1QSXxaWOpGNCDaUl
- ajorB0lJDcC0q3xAdwzRConxYVhlgmTrRiD8oLlSCD5baEAt5Zw17UTNDnDGmZQKR0fqLpWy
- 786Lm5OScb7DjEgcA2PRm17st4UQ1kF0rQHokVaotxRM74PPDB8bCsunlghJl1DRK9s1aSuN
- hL1Pv9VD8b4dFNvCo7b4hfAANPU67W40AaaGZ3UAfmw+1MYyo4QuAZGKzaP2ukbdCD/DYnqi
- tJy88XqWtyb4UQWKNoQqGKzlYXdKsldYqrLHGoMvj1UN9XcRtXHST/IaLn72o7j7/h/Ac5EL
- 8lSUVIG4TYn59NyxxAXa07Wi6zjVL1U11fTnFmE29ALYQEXKBI3KUO1A3p4sQWzU7uRmbuxn
- naUmm8RbpMcOfa9JjlXCLmQ5IP7Rr5tYZUCkZz08LIfF8UMXwH7OOEX87Y++EkAB+pzKZNNd
- hwoXulTAgjSy+OiaLtuCys9VdXLZ3Zy314azaCU3BoWgaMV0eAW/+gprWMXQM1lrlzvwlD/k
- whyy9wGf0AEPpLssLVt9VVxNjo6BIkt6d1pMg6mHsUEVzsFNBFVDXDQBEADNkrQYSREUL4D3
- Gws46JEoZ9HEQOKtkrwjrzlw/tCmqVzERRPvz2Xg8n7+HRCrgqnodIYoUh5WsU84N03KlLue
- MNsWLJBvBaubYN4JuJIdRr4dS4oyF1/fQAQPHh8Thpiz0SAZFx6iWKB7Qrz3OrGCjTPcW6ei
- OMheesVS5hxietSmlin+SilmIAPZHx7n242u6kdHOh+/SyLImKn/dh9RzatVpUKbv34eP1wA
- GldWsRxbf3WP9pFNObSzI/Bo3kA89Xx2rO2roC+Gq4LeHvo7ptzcLcrqaHUAcZ3CgFG88CnA
- 6z6lBZn0WyewEcPOPdcUB2Q7D/NiUY+HDiV99rAYPJztjeTrBSTnHeSBPb+qn5ZZGQwIdUW9
- YegxWKvXXHTwB5eMzo/RB6vffwqcnHDoe0q7VgzRRZJwpi6aMIXLfeWZ5Wrwaw2zldFuO4Dt
- 91pFzBSOIpeMtfgb/Pfe/a1WJ/GgaIRIBE+NUqckM+3zJHGmVPqJP/h2Iwv6nw8U+7Yyl6gU
- BLHFTg2hYnLFJI4Xjg+AX1hHFVKmvl3VBHIsBv0oDcsQWXqY+NaFahT0lRPjYtrTa1v3tem/
- JoFzZ4B0p27K+qQCF2R96hVvuEyjzBmdq2esyE6zIqftdo4MOJho8uctOiWbwNNq2U9pPWmu
- 4vXVFBYIGmpyNPYzRm0QPwARAQABwsF8BBgBCgAmAhsMFiEEm9B+DgxR+NWWd7dUG5NDfTtB
- YpsFAmgXUF8FCRaWWyoACgkQG5NDfTtBYptO0w//dlXJs5/42hAXKsk+PDg3wyEFb4NpyA1v
- qmx7SfAzk9Hf6lWwU1O6AbqNMbh6PjEwadKUk1m04S7EjdQLsj/MBSgoQtCT3MDmWUUtHZd5
- RYIPnPq3WVB47GtuO6/u375tsxhtf7vt95QSYJwCB+ZUgo4T+FV4hquZ4AsRkbgavtIzQisg
- Dgv76tnEv3YHV8Jn9mi/Bu0FURF+5kpdMfgo1sq6RXNQ//TVf8yFgRtTUdXxW/qHjlYURrm2
- H4kutobVEIxiyu6m05q3e9eZB/TaMMNVORx+1kM3j7f0rwtEYUFzY1ygQfpcMDPl7pRYoJjB
- dSsm0ZuzDaCwaxg2t8hqQJBzJCezTOIkjHUsWAK+tEbU4Z4SnNpCyM3fBqsgYdJxjyC/tWVT
- AQ18NRLtPw7tK1rdcwCl0GFQHwSwk5pDpz1NH40e6lU+NcXSeiqkDDRkHlftKPV/dV+lQXiu
- jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
- zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
- XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <c37bf116-9250-46fa-9a6c-24cb9b3af661@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 02/09/2025 15:48, Guenter Roeck wrote:
-> On 9/2/25 01:39, Krzysztof Kozlowski wrote:
->> On Mon, Sep 01, 2025 at 02:56:48PM -0700, Guenter Roeck wrote:
->>> Add a compatible string for INA700. The chip is register compatible with
->>> INA780 but implements different ADC ranges and thus needs a separate
->>> compatible entry.
->>>
->>> Cc: Christian Kahr <christian.kahr@sie.at>
->>> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
->>
->> Please mention in commit msg where is any user of that.
->>
-> 
-> You lost me a bit on that one. Christian had submitted a driver, but missed
+From: Thierry Reding <treding@nvidia.com>
 
-And how do I know that there was such driver? commit msg should tell
-that one way or another.
+Hi,
 
-> the devicetree documentation. That is what this patch is for. I frankly don't
-> know how to mention a user as requested; I don't easily find an example
-> in other devicetree patches. Typically the commit message is just "add <chip>
-> to <bindings>". Please give me an example of what you are looking for.
+This series adds support for the video protection region (VPR) used on
+Tegra SoC devices. It's a special region of memory that is protected
+from accesses by the CPU and used to store DRM protected content (both
+decrypted stream data as well as decoded video frames).
 
-"Document existing compatible string for INA700. ....."
+Patches 1 and 2 add DT binding documentation for the VPR and add the VPR
+to the list of memory-region items for display and host1x.
 
-This is an easy way to explain that it already is used.
+Patch 3 introduces new APIs needed by the Tegra VPR implementation that
+allow CMA areas to be dynamically created at runtime rather than using
+the fixed, system-wide list. This is used in this driver specifically
+because it can use an arbitrary number of these areas (though they are
+currently limited to 4).
 
-Best regards,
-Krzysztof
+Patch 4 adds some infrastructure for DMA heap implementations to provide
+information through debugfs.
+
+The Tegra VPR implementation is added in patch 5. See its commit message
+for more details about the specifics of this implementation.
+
+Finally, patches 6-9 add the VPR placeholder node on Tegra234 and hook
+it up to the host1x and GPU nodes so that they can make use of this
+region.
+
+Thierry
+
+Thierry Reding (9):
+  dt-bindings: reserved-memory: Document Tegra VPR
+  dt-bindings: display: tegra: Document memory regions
+  mm/cma: Allow dynamically creating CMA areas
+  dma-buf: heaps: Add debugfs support
+  dma-buf: heaps: Add support for Tegra VPR
+  arm64: tegra: Add VPR placeholder node on Tegra234
+  arm64: tegra: Add GPU node on Tegra234
+  arm64: tegra: Hook up VPR to host1x
+  arm64: tegra: Hook up VPR to the GPU
+
+ .../display/tegra/nvidia,tegra186-dc.yaml     |  10 +
+ .../display/tegra/nvidia,tegra20-dc.yaml      |  10 +-
+ .../display/tegra/nvidia,tegra20-host1x.yaml  |   7 +
+ .../nvidia,tegra-video-protection-region.yaml |  55 ++
+ arch/arm64/boot/dts/nvidia/tegra234.dtsi      |  57 ++
+ drivers/dma-buf/dma-heap.c                    |  56 ++
+ drivers/dma-buf/heaps/Kconfig                 |   7 +
+ drivers/dma-buf/heaps/Makefile                |   1 +
+ drivers/dma-buf/heaps/tegra-vpr.c             | 831 ++++++++++++++++++
+ include/linux/cma.h                           |  16 +
+ include/linux/dma-heap.h                      |   2 +
+ include/trace/events/tegra_vpr.h              |  57 ++
+ mm/cma.c                                      |  89 +-
+ 13 files changed, 1175 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra-video-protection-region.yaml
+ create mode 100644 drivers/dma-buf/heaps/tegra-vpr.c
+ create mode 100644 include/trace/events/tegra_vpr.h
+
+-- 
+2.50.0
+
 
