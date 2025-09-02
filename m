@@ -1,147 +1,124 @@
-Return-Path: <devicetree+bounces-211619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BAEDB3FB3B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:52:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F950B3FB3E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:52:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E3284E2E99
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E750517FA23
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3676B2F49F4;
-	Tue,  2 Sep 2025 09:50:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A34DF2EE274;
+	Tue,  2 Sep 2025 09:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lmDZFSnK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Azn1tAwg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63A8B8F49;
-	Tue,  2 Sep 2025 09:50:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69DFD2EE26F;
+	Tue,  2 Sep 2025 09:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756806614; cv=none; b=ZzsohBLdr5kPW0SswBka7uMygQOTWaZF/NgEv4ozWn7xJWnTWkVArbSnSI8NKAbE5rg4mvHirA9iY9ATJDPuNxKpyS2HuIjuaj1xEcvHKOsMbBcMpUN75MoeRqOKYawAsA2arRLcExadpi6p69IxRGXTVIqIXCGg7RARrsqjWBg=
+	t=1756806626; cv=none; b=Kd50eoH9OK6LlmgRGCgYvvBEyGLe2cbbcriyZJVBD1DLL3PEdfjK7fyD/iXCmq+IJ6MXqvsVX2mR0aTVfs8oRAUUQWCsY/qvi9JCuQJ7uTgfsyHxNe9Emh2J2pdu2iDp3gaGPq9rmOYD6NxJYXuonTpazk+kBlSW4iiio9VgBCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756806614; c=relaxed/simple;
-	bh=A2Fv5RDR544whpRy4Vv95fjWFBquzxcBPQkrdLpUAso=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LE8PmNCMm6HdavZ2NypnpBcBBq0tLwM9BFzsBoxZtmkYXM41AMUWDeCqHmtdxEYgo8Ffe+FkVGGKZYqsC/e6eqD4TrmIy1okz22qzZymVVZscrmfk7k+HQO7XIdmsGzIwWV89u4iipn1PGB/sqHoGCixiLmyZUVLz1m0lOjFluE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lmDZFSnK; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756806612; x=1788342612;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=A2Fv5RDR544whpRy4Vv95fjWFBquzxcBPQkrdLpUAso=;
-  b=lmDZFSnKaFOVjokz+vw7SymOavSEbvI7GpaNYkeU/kMJ4xFwQr2j+7zY
-   dvC57iOu4ZUAv1BIUCrJV/4lR4P7eW5Q1/qbnuYfBN04Wl2TauV+/sQw2
-   P+3llk6++UyS0Zgc0l/fOO9yjk0z2ex6Hm8J5HL2xU85mrk2YjIHssIz5
-   9DWss6rABBxQcJD//GWtwsT08l17U+81OpUiAijIpxro/Qyu67A9PqaYN
-   wJwuXbS0eKO7bSygXH3dAGCtnc+MaWQY3Nd1nNqtDfdP9tQ+C7tpfLchu
-   RQMHqY1CgCz0/4KBlPyU4Y6ZkzyeBwkUafk9W9toHuwEV11BsW0LTQl+4
-   A==;
-X-CSE-ConnectionGUID: DFYlQKWBRi2SNlnv1SXpWg==
-X-CSE-MsgGUID: rHaECquQSX6TRc95d1ABHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70174250"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="70174250"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 02:50:12 -0700
-X-CSE-ConnectionGUID: fhCWKXC+Q0i1cOxPYiuDVA==
-X-CSE-MsgGUID: 0rsr/RUeTIOZHYHBMtqPAg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="175612542"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 02:50:08 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1utNeP-0000000Aev1-1FkK;
-	Tue, 02 Sep 2025 12:50:05 +0300
-Date: Tue, 2 Sep 2025 12:50:05 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Karel Balej <balejk@matfyz.cz>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] iio: adc: Add driver for Marvell 88PM886 PMIC ADC
-Message-ID: <aLa9zbls-Cl4PNQd@smile.fi.intel.com>
-References: <20250831-88pm886-gpadc-v2-0-759c1e14d95f@dujemihanovic.xyz>
- <20250831-88pm886-gpadc-v2-2-759c1e14d95f@dujemihanovic.xyz>
- <aLW9O1rnhUqqh02r@smile.fi.intel.com>
- <3031049.e9J7NaK4W3@radijator>
+	s=arc-20240116; t=1756806626; c=relaxed/simple;
+	bh=Rh4xSvpGX1ZdAlUm22AG1xj9isd8q4OwwRbkT/mwt5g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=N96zxqCScbz+gLrsgSwEk9EzXaIVrhC3t/x3QGxpRZfLV72KC17PadsCNsF5AyLXhfeIMAc1qeutg2QKVKfe0n4DLL2ZTJfv3sMrWluWT4dvnO92n2gh+HnEyf4tIDYV53x1jIkpwBUlgRpnaJ2wNVmGg1BLPPrFlPNX6Vy0uZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Azn1tAwg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF464C4CEED;
+	Tue,  2 Sep 2025 09:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756806626;
+	bh=Rh4xSvpGX1ZdAlUm22AG1xj9isd8q4OwwRbkT/mwt5g=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=Azn1tAwg/A30VMl/ZFVxB+KVp5niwqpQu18bc8hHV20JH7w9uSIJ6qDH1J3M9i3CZ
+	 x0fWyR8uLu8OcgUo8nAVcXSeIk/xJYOktNIl/cXmg41bE6z/n9oUF2Sla5BYyUPs3Z
+	 iyo+focwU5hcOVhpM5y9otgJhiLL0RtKaqdLs+LQM8D1sz8berRkmdCjtcf3WhBqzt
+	 mk/aI1glfZE6G5Z2qsthgMHiv0GQwIy/CRJL+/N0kKIk4uFZMFK9Xsz3OJYeqBmmpi
+	 p8QlIaCd92rPGW9Y0rMkroC+I1ABGaHTBWnaopUtA8QjNVNU0MXCkzD5Vcwx7tnMf5
+	 eoPtdpMdMaOLA==
+From: Mark Brown <broonie@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>, Clark Wang <xiaoning.wang@nxp.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+ Larisa Grigore <larisa.grigore@oss.nxp.com>, 
+ Larisa Grigore <larisa.grigore@nxp.com>, 
+ Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>, 
+ Ciprianmarian Costea <ciprianmarian.costea@nxp.com>, s32@nxp.com, 
+ James Clark <james.clark@linaro.org>
+Cc: linux-spi@vger.kernel.org, imx@lists.linux.dev, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20250828-james-nxp-lpspi-v2-0-6262b9aa9be4@linaro.org>
+References: <20250828-james-nxp-lpspi-v2-0-6262b9aa9be4@linaro.org>
+Subject: Re: [PATCH v2 0/9] spi: spi-fsl-lpspi: Generic fixes and support
+ for S32G devices
+Message-Id: <175680662264.13759.15008785215722769791.b4-ty@kernel.org>
+Date: Tue, 02 Sep 2025 10:50:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <3031049.e9J7NaK4W3@radijator>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-cff91
 
-On Mon, Sep 01, 2025 at 06:51:19PM +0200, Duje Mihanović wrote:
-> On Monday, 1 September 2025 17:35:23 Central European Summer Time Andy Shevchenko wrote:
-> > On Sun, Aug 31, 2025 at 12:33:05PM +0200, Duje Mihanović wrote:
-
-...
-
-> > > +	.max_register = PM886_REG_GPADC_VBAT_SLP + 1,
-> > 
-> > What is this + 1 register? Why is it not defined / documented?
+On Thu, 28 Aug 2025 11:14:39 +0100, James Clark wrote:
+> Various fixes for LPSI along with some refactorings. None of the fixes
+> are strictly related to S32G, however these changes all originate from
+> the work to support S32G devices. The only commits that are strictly
+> related are for the new s32g2 and s32g3 compatible strings.
 > 
-> It is the second field of the vbat_slp channel.
-
-Can you define it separately? Or define _MAX_REGISTER to be equal to that and
-put a comment that _VBAT_SLP takes two (byte) offsets.
-
-...
-
-> > > +err:
-> > > +	gpadc_set_bias(gpadc, chan->channel, false);
-> > 
-> > You do the same in the other branch and checking there for an error. Why this
-> > one is so special?
 > 
-> My rationale here was to not override the error from either the first
-> gpadc_set_bias() call or the subsequent gpadc_find_bias_current() call.
 
-Maybe this needs splitting / refactoring to call bias setting separately?
+Applied to
 
-...
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-> > > +	iio->dev.of_node = dev->parent->of_node;
-> > 
-> > No, use device_set_node() with the respective parameters.
-> > 
-> > But rather debug why firmware node (or OF in your case) is not propagated from
-> > the parent device.
-> 
-> I guess it is because the IIO device is registered as a child of the
-> GPADC platform device, which does not have a node unlike the PMIC
-> device (GPADC pdev's parent). It seems that the regulator cell
-> registers its regulators directly under the PMIC dev, so maybe I should
-> do the same here with the IIO dev?
+Thanks!
 
-Maybe. Not an expert in DT.
+[1/9] spi: spi-fsl-lpspi: Fix transmissions when using CONT
+      commit: 782a7c73078e1301c0c427f21c06377d77dfa541
+[2/9] spi: spi-fsl-lpspi: Set correct chip-select polarity bit
+      commit: cbe33705864ba2697a2939de715b81538cf32430
+[3/9] spi: spi-fsl-lpspi: Reset FIFO and disable module on transfer abort
+      commit: e811b088a3641861fc9d2b2b840efc61a0f1907d
+[4/9] spi: spi-fsl-lpspi: Clear status register after disabling the module
+      commit: dedf9c93dece441e9a0a4836458bc93677008ddd
+[5/9] dt-bindings: lpspi: Document support for S32G
+      commit: b663fd4532699cc24f5d1094f3859198ee1ed4b6
+[6/9] spi: spi-fsl-lpspi: Constify devtype datas
+      commit: fb4273faa4d0eeca8cb7265531d48eb084bcceea
+[7/9] spi: spi-fsl-lpspi: Treat prescale_max == 0 as no erratum
+      commit: 9bbfb1ec959ce95f91cfab544f705e5257be3be1
+[8/9] spi: spi-fsl-lpspi: Parameterize reading num-cs from hardware
+      commit: 41c91c2eed83cb93781078108077b7e34f867fc2
+[9/9] spi: spi-fsl-lpspi: Add compatible for S32G
+      commit: 431f6c88cb5d2d62d579d4d78f5c1a2583465ffb
 
--- 
-With Best Regards,
-Andy Shevchenko
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
