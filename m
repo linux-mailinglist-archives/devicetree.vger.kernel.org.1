@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-211771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6581B408F4
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:31:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01B16B408FB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:32:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A851F547A04
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:31:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89AC83A41F9
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:32:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B23054C1;
-	Tue,  2 Sep 2025 15:30:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5665C307489;
+	Tue,  2 Sep 2025 15:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Qo5pXRib"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ape+KGLN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD614285C82
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 15:30:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CF85285C82;
+	Tue,  2 Sep 2025 15:32:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756827054; cv=none; b=FQ34F3NfwbWHw5vB50RDY2KMkQL2lZk46X0BofCSd7I8r11JTtxLev1YN7HgJCMH55qEVjk1VVXVmrqTzJnqOMwSmyT/i+s9cOPEbTBDWn9qxHuh8PPhWjBgjI8ZmG+CKm/PU9za74Tc8/v4+FbY3P7tbYOdtTIb6uEnxFvUMww=
+	t=1756827174; cv=none; b=ZDuni/afZfvCuLZ9+lyKWyJAJxjh90sKUZ/2oDceSVdka/LA8vUP3RJ7ZpC0l6GpiIX+Yi9cop4mSUGDbMbS16lMfhzbKKDk+RS/nTqxHuX7Gyh0ldXs6ZxeITZr3wwJmqSebnQoAKGv9xPqANiDOOPlTRdD16gyGsldJyRKnTc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756827054; c=relaxed/simple;
-	bh=H5D1mB92sVGC6p9xvxd1ycfmo/pkWqLUN1RRpbx9IGk=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=kCkjTXlTklpNeI4392661Q0nFHfhHH0BMgl+ixtODS+Waazvc7s/ljIzmtb1KnhdVLiRwt726OsEEACeXJWajUOUfluS4WIiO6KK/yqRRKmpi+YplQPzj9iyB+eodN2t/Q9/0SKS8h0MSMeZ9dhOnMsZ5tnGGQYAy5TixGKhBHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Qo5pXRib; arc=none smtp.client-ip=209.85.160.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-30ccea8a199so5274827fac.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 08:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756827051; x=1757431851; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=cqQ4WPvFOC/zDvh2F7EYF1aCNsNr1wJdA0MPmR/NX3o=;
-        b=Qo5pXRibrGRLi9tNUDaGyfy5b4tRNvPTawufsk3Ukd+ISmJjI8jRB1QyNkV0T+R6ry
-         tVdg1OgGD7eCC6IdP5+ueDaPTeYRpzfDSEBRajKjKYo0LDOdp6GQWD+Z/md+rkAqYy1J
-         +39OUts3NO7mkZ18HYEtuMsVnHAbMOxCp9utsQ42ZuvDJQXgqx6aY42mePUPs6zaWMc2
-         OkryK9gvpfQwfejEiOPIYq29GO3+r3+RIuw0xJGTJnndsNXpmXl7a8VC2hPzNod2x6YN
-         KCP1dkKjMv7wrFMu2887Ut7VtEzyu6dz692WaqTZIwpNSOgLTWww9tqVC0drY8pv35mM
-         Na8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756827051; x=1757431851;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cqQ4WPvFOC/zDvh2F7EYF1aCNsNr1wJdA0MPmR/NX3o=;
-        b=V19oJJPutwDP9aqYnt2L+OgOke2K20OlS84UnnBqCmIIr32vxLtJtmykb3RSay2Dwv
-         e8y9Ao7j2DKrWsUk0OPAStI87nZn3U6e88s431dnbppmKsOlRCtDU9C3ZJm4+mQPylzP
-         /aazDcHvpvqhPZV8svDeeZS+mg0rqeOvRnx+hViHx8O74bu1AELkC8kJoEsND6xof6iT
-         oZbgqqWciFT8CgAQexJjCOqMdZNCpnFzKuu+n3vVQMLkuVolydpWZdDLlopFL2w0lDjo
-         /jVLVSQM5AX4SeEUce6eE6nHWWbO8g2EiYjvuBI4z6ACIn/UEm4O/6IwEaJ5UDgekq+r
-         uifw==
-X-Forwarded-Encrypted: i=1; AJvYcCVoG+Xti0rIJnoFRkTocOXM/xrZ2BWZiw6aJ8KqDQWSo5L6GrCB4y+to2sP+L3iRlWuIGfNEQTiMmnn@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy3O2mkFjN9HIusjrE8EN8QKFjd927Rxe2uM6cJJDcieTTVjOBT
-	fm+cu7y3VR1NKlMJ1y6B7wdAX1zrYsSIp/Y5DNWt3ns67kmiGRvMZ/Op8ITWM9LIQpg=
-X-Gm-Gg: ASbGncukEtPNg3Gljx5JbsqUlBN9y278GuANSJYNL3m0r1xmuRCj6zHuG7qggkg5VrF
-	rZ82S8hgevmiICIZRz/GdKKQWgLPqDL+b7zH8pQtcWOjzphqu4t0NnKQmOX26Sr3c3s9dnT6ZRJ
-	keHlVieZWB4ZpdsOr1rq7EqFg2faSwsrm7wPUkmQ6Tca569Azu2VrGoPL3JRUPh/KkT0Dp0HnF/
-	y7SUWdcoQvP/mT3r0CHdusjv556RNEHzIZ8c/u2Ugxm6bQ7+q0OJKbHXzqs/91wkbqonWpf4hid
-	RA36jqOGDcS1SGEeLWgQSapXZdir32VmwOVuE1+axGWCEWleovpEv+5bxc+AcD2nT0DgHpb3DZU
-	3ASLGAt82PYjordFxgqFlbIdfL9/WYIrDh0mxYj6O3iP6HEehpLuYJBekv1a55VEXRBkLKZvw
-X-Google-Smtp-Source: AGHT+IHT8XwRiHCN75IMWkHExPEmJnsitMmA0YzWNkodLNJRcwmanY0UNlPygOc7Bc7GtosZ+wqf2w==
-X-Received: by 2002:a05:6870:e0d4:b0:315:7456:1ec2 with SMTP id 586e51a60fabf-3196337628emr4327586fac.24.1756827049391;
-        Tue, 02 Sep 2025 08:30:49 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b? ([2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-745742a6716sm1644969a34.14.2025.09.02.08.30.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 08:30:48 -0700 (PDT)
-Message-ID: <7176887b-d406-46e4-b43a-7924c36ddb78@baylibre.com>
-Date: Tue, 2 Sep 2025 10:30:47 -0500
+	s=arc-20240116; t=1756827174; c=relaxed/simple;
+	bh=Aos/QCg7Lj1IAfu8pvGWWzQlXRO1YpKIi3zMC3xvobc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=XobdeHbjeKfjQVVuqLOxcNlFnLlwVPPhRaxkeEduYL+zRWYqG+N1TsqgHwqDQb8QsJlkterbP/yzcqVxwhg1LdXGFTyhlACmreOKOFR64vRTmHBrRdFBgmEHY+GTFWp87e3MVAGNbEIUy912EI6t9BMljuu1DzslP2CRfb397Vk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ape+KGLN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 396AAC4CEF5;
+	Tue,  2 Sep 2025 15:32:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756827173;
+	bh=Aos/QCg7Lj1IAfu8pvGWWzQlXRO1YpKIi3zMC3xvobc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Ape+KGLN5Y1Di9l8aSoxQGrFWAike+YlCgGqOAu6UEXU6BidO3aM+TK2k0gjVy9/m
+	 FfnLi8KdSKx9zQ3U8tYipyh3oZv4CFvlbpTTeTL+jeiNSPBKv9fVx+sedc4LWd611e
+	 vfEBppWiQjWM44FAAta2o9zxQ954Y0QJdG/NxIJcmVfJ3Q3VAwWTW5n787jsTO+R4J
+	 kbV0rfquVQjgf+Iq76BNgfIUomzKK+W3R8lHmsLmrRq+MSvw79Wcmk0yvnKTcCRR2M
+	 agzIZH7Vj6Fw6uOstqkCmsJ4DgxAlLIwCbIfoSpRd14t4IZNVF42Xd24kNxkKjP39D
+	 oWTfGSHIh9K/w==
+Message-ID: <cf33b988-690f-48f4-a349-8db302bba02f@kernel.org>
+Date: Tue, 2 Sep 2025 17:32:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,128 +50,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/2] dt-bindings: iio: adc: add max14001
-From: David Lechner <dlechner@baylibre.com>
-To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
- linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: Kim Seer Paller <kimseer.paller@analog.com>,
- Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
- Lars-Peter Clausen <lars@metafoo.de>,
- Michael Hennerich <Michael.Hennerich@analog.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
- Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>,
- Jonathan Santos <Jonathan.Santos@analog.com>,
- Dragos Bogdan <dragos.bogdan@analog.com>
-References: <cover.1756816682.git.marilene.agarcia@gmail.com>
- <34b7cc7226e789acdc884d35927269aa5a0d5e14.1756816682.git.marilene.agarcia@gmail.com>
- <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI
+ TMDS181 and SN65DP159 bindings
+To: Mike Looijmans <mike.looijmans@topic.nl>
+Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250901142958.843678-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.edc18686-244f-441e-a6ac-0b62492b96c8@emailsignatures365.codetwo.com>
+ <20250901142958.843678-2-mike.looijmans@topic.nl>
+ <20250902-hasty-spry-nautilus-c05c6a@kuoka>
+ <e007ee80-2eff-4859-b2e3-402950081b4f@topic.nl>
+ <ae28c7e0-6ea1-4a0a-b923-d3906d71141e@kernel.org>
+ <fccbba0a-cb8f-4d71-9c91-7558cfaa8ef7@topic.nl>
+ <dc073509-57d9-4b57-a53f-cd285bff8eae@topic.nl>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-In-Reply-To: <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <dc073509-57d9-4b57-a53f-cd285bff8eae@topic.nl>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/2/25 9:29 AM, David Lechner wrote:
-> On 9/2/25 8:15 AM, Marilene Andrade Garcia wrote:
->> Add device-tree documentation for MAX14001/MAX14002 ADCs.
->> The MAX14001/MAX14002 are isolated, single-channel analog-to-digital
->> converters with programmable voltage comparators and inrush current
->> control optimized for configurable binary input applications.
-> 
-> When there are multiple devices, DT maintainers like to know
-> what is the difference between the devices.
-> 
+On 02/09/2025 16:52, Mike Looijmans wrote:
+>> if:
+>>   properties:
+>>     compatible:
+>>       contains:
+>>         const: ti,sn65dp159
+>> then:
+>>   properties:
+>>     ti,sink-mode:
+>>       type: boolean
+>>       description:
+>>         Force chip to operate in "sink" mode. Allows to use
+>>         a DP159 chip (defaults to source) for incoming signals.
+>>     ti,dvi-mode:
+>>       type: boolean
+>>       description: Makes the DP159 chip operate in DVI mode.
+>>     slew-rate:
+>>       $ref: /schemas/types.yaml#/definitions/uint32
+>>       minimum: 0
+>>       maximum: 3
+>>       default: 3
+>>       description: Set slew rate, 0 is slowest, 3 is fastest.
+>> else:
+>>   properties:
+>>     ti,source-mode:
+>>       type: boolean
+>>       description:
+>>         Force chip to operate in "source" mode. Allows to use
+>>         a TMDS181 chip (which defaults to sink) as cable driver.
 >>
->> Co-developed-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
->> Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
->> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> Hmm, apparently one cannot "add" properties in the "if:" block? The 
+
+One can, but should not. Define properties in top level and disallow them.
+
+See also example-schema.
+
+
+> opposite approach, disallowing properties, works, e.g.:
 > 
-> Sine the patch is From: M.A.G., according to [1], this should be:
-> 
-> Co-developed-by: K.S.P.
-> Signed-off-by: K.S.P.
-> Signed-off-by: M.A.G.
-> 
-> (hopefully obvious, but don't use the abbreviations - I just did
-> that for brevity)
-> 
-> [1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
-> 
->> ---
->>  .../bindings/iio/adc/adi,max14001.yaml        | 79 +++++++++++++++++++
->>  MAINTAINERS                                   |  8 ++
->>  2 files changed, 87 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
->> new file mode 100644
->> index 000000000000..ff9a41f04300
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
->> @@ -0,0 +1,79 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +# Copyright 2023-2025 Analog Devices Inc.
->> +# Copyright 2023 Kim Seer Paller
->> +# Copyright 2025 Marilene Andrade Garcia
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Analog Devices MAX14001-MAX14002 ADC
->> +
->> +maintainers:
->> +  - Kim Seer Paller <kimseer.paller@analog.com>
->> +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
->> +
->> +description: |
->> +    Single channel 10 bit ADC with SPI interface.
->> +    Datasheet can be found here
->> +      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
->> +
->> +$ref: /schemas/spi/spi-peripheral-props.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    enum:
->> +      - adi,max14001
->> +      - adi,max14002
+> if:
+>    properties:
+>      compatible:
+>        contains:
+>          const: ti,sn65dp159
+> then:
+>    properties:
+>      ti,source-mode: false
+> else:
+>    properties:
+>      ti,sink-mode: false
+>      ti,dvi-mode: false
+>      slew-rate: false
 
-It looks like we could have a fallback here since it looks like
-the only difference between the chips is:
 
-	The inrush trigger threshold, current magnitude, and
-	current duration are all programmable in the MAX14001
-	but are fixed in the MAX14002.
+So any device can work in any mode? Then this should be just enum with
+different defaults.
 
-Which would look like this:
-
-    compatible:
-      oneOf:
-        - const: adi,max14002
-        - items:
-            - const: adi,max14001
-            - const: adi,max14002
-
-And
-
-	compatible = "adi,max14001", "adi,max14002";
-
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  spi-max-frequency:
->> +    maximum: 5000000
-
-After reading the driver, I see that we should also have:
-
-	spi-lsb-first: true
-
-as a required property.
-
+Best regards,
+Krzysztof
 
