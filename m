@@ -1,175 +1,205 @@
-Return-Path: <devicetree+bounces-211492-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211493-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4FFD3B3F3D5
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 06:49:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8824BB3F42A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 07:05:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 41C951881180
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 04:50:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 51B3F7A80EB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 05:03:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A84225394A;
-	Tue,  2 Sep 2025 04:49:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646722DF144;
+	Tue,  2 Sep 2025 05:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KhEEdg5+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ktakt2pj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89E0A35962;
-	Tue,  2 Sep 2025 04:49:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 815B5274B31;
+	Tue,  2 Sep 2025 05:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756788580; cv=none; b=r11w0r6Id7Z258ipt5YQh0hxtxGmVScRuyishjX/spRo2RweDQjQeG/eOm2JNSCtJWMGYU1QL4Zfi81wHLs/N2INTATnufr+TZNbbaZfYPEZJQzq6hO6ZvOM55dLrLQJzD8Bg3tOSHFsfsGUn0LHYsMZmXgitASoVhsSHpp8pyY=
+	t=1756789527; cv=none; b=j3Nf5Y7Lj5sZ0MoeD3NNucjDnoCx5rFGHSXxYs6h0CY7caisaOd6yusYm3YnNpE1JH0doeiTLPlAQY2t+iUzCmejQnsZecPvxg+pM7BkHcwdy7yhbMJDTMLJX+qqKY2P3qIA/vTMrqDipdz2fyQX1MbfKSXjhboiifCpGsNIbYg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756788580; c=relaxed/simple;
-	bh=co5/+M2x17Vp4JI0Nnsgv8KfR8isXh2gWlTdZsU5Wmk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OGodFr4gjMSu5iimaWPN5SnMs+fzbhRo30Xugfql3Kzig7aL89Rb0eUESTKWNXH1dt7SVZHj55SlZu+Mulp9R5sZ4U5EHDiFAWOoVaD5RzJvYdZ2aCjPFKfc004vxpxszuFWAeleT/aR+lqZBjRwzNciQxfRiDhDG4BOQJOv9Ew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KhEEdg5+; arc=none smtp.client-ip=198.175.65.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756788579; x=1788324579;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=co5/+M2x17Vp4JI0Nnsgv8KfR8isXh2gWlTdZsU5Wmk=;
-  b=KhEEdg5+z7dB+XToWhCcvn1x7lEiGb7Ycn9Uqpvgt+oqhgBbRjblI8ah
-   VCXruBuDiVqPD5WANpGhXBV7Af9Ct/6OXDHJIQIpmXZ2v96pbMRWIIFhU
-   vE8fDMrNeeS7lL27aHpwqTZQnP0dRcFN9tFWyGitihqO4ZbNdf+45Y2Wy
-   Y3+SXxRtdNGFISjfgnM/SMBcpYoLfiwdLtk+shtHWxoAJ194xpppy7jvt
-   oD377MPg2cGzJcjTz4y8ClbxEe7k1uriAhhNo2aMWv/s8G1WzGtxs+W2s
-   DlzqHbMoCPYhDXSetnFq+fwpS1pEnACdmRQT1sShwskbYMhFLnVsWV/Sa
-   g==;
-X-CSE-ConnectionGUID: /J1RX24/Rn2bosr/fx7+Vg==
-X-CSE-MsgGUID: fTUtqvbzT6WZQv6B03WWmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70474622"
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="70474622"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
-  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Sep 2025 21:49:38 -0700
-X-CSE-ConnectionGUID: J0pPkm4aSAyao86W6u2e1w==
-X-CSE-MsgGUID: F7mg/D50T5Oas6FREGmd8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
-   d="scan'208";a="202094696"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by orviesa002.jf.intel.com with ESMTP; 01 Sep 2025 21:49:34 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1utIxX-0001RL-1G;
-	Tue, 02 Sep 2025 04:49:31 +0000
-Date: Tue, 2 Sep 2025 12:49:26 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>, alim.akhtar@samsung.com,
-	avri.altman@wdc.com, bvanassche@acm.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, mani@kernel.org,
-	James.Bottomley@hansenpartnership.com, martin.petersen@oracle.com
-Cc: oe-kbuild-all@lists.linux.dev, linux-scsi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	Nitin Rawat <quic_nitirawa@quicinc.com>
-Subject: Re: [PATCH V4 3/4] ufs: pltfrm: Allow limiting HS gear and rate via
- DT
-Message-ID: <202509021257.jIDXzoS6-lkp@intel.com>
-References: <20250901155801.26988-4-quic_rdwivedi@quicinc.com>
+	s=arc-20240116; t=1756789527; c=relaxed/simple;
+	bh=vtfsb/s4s6Nsv/OIPvzrPK2PiISv3Kib0SJdMjxDr30=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=A39WlKtiHVeRVXpgs9FQ9rT2o38p56k3GEegjkuI0xi0RCPlzGa9065EUDN+3dywYdUbRAwzavkXesc/BwlEib/96okzZ8iC+kzJ4DUhBkNIbzb1a52spe7XwqhZpGoicNvHPdxm7m1CGW74axIamMUfDSe73VBlwx47R7wMWxU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ktakt2pj; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45b79ec2fbeso33162615e9.3;
+        Mon, 01 Sep 2025 22:05:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756789524; x=1757394324; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UsvxK8OTvjy6mRY2UF8u2ijfI8Gfv3ds+RCWrhu9dI8=;
+        b=ktakt2pjCk9dJjlZiU2STx+zn2K0ucJb6ELlYoCI6Es5E9FAe16h1H70NEl0B3+zRO
+         swd1G6v/lOjYSwUgHTRQt0y8i+0S50BAbRHqQQlJElyHX6wlcnEM4RivEc7Jv3T6MMWj
+         N9c5X8xK6lDQlFyRh3o2rZnnovhTf/ety6wB5PfYJPGMrzx15c6NZcAAQWE+DIKrmQEl
+         RqiSkJkLo3v4ps6AtQMULrjQMlzicHtWpH1WhPc8WhdYjiJRhrwEWr1Aud3C2lzV4IBT
+         FTrFU5+9Tl5fechhZfTjAvpDW8koOEaJDyD/KdyPubiff7Bs07bPQIdB8dXRJyqXlOz5
+         Mc2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756789524; x=1757394324;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UsvxK8OTvjy6mRY2UF8u2ijfI8Gfv3ds+RCWrhu9dI8=;
+        b=Jm1HJ0+CXaRAgVZ8+h8WRnO5/hl0G4Us5oF5ndNcg43y+T+scYui2ZVZqWIM6pYyXn
+         SDjPajVQqbVLw91TNJnmknsaMVtgCk5koYGFLKcwAN5svnyG9p0PRWBVhnntPSLpMFr2
+         f9i+PZn/ujxYk84bxpMxoal+aI1lEakF679efwbaJklXzYdkJg0wzJpgFZXsMif9LK2c
+         yxDK9VOg/JF+eR6l/qBZdlaR73tJHzJ4zfvPJfl6aNhQItLdavoP+3EUuCvlfuc8P2x8
+         3fft4Gq42UpLcay5Srx059Y9OANglXey+82xKE/XGaUnHcsi5O011wraM0+s/sF2YQFe
+         zrQA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkBGv+R4Nho2KTOB75WlXrTpMUUT5LYSlPvj2H8Q7OmLOKxgH8Bg3eA4naj+xuTJ19bYCrvxWynaEYvvD3@vger.kernel.org, AJvYcCUqrKw7biUm4f0xc4qZHIoITxnvMhAXOiiA/XqYUaWmKLhFJmeyYSKvVW11lR4DShEPwP6F9qKPtO4cHCY=@vger.kernel.org, AJvYcCVDE0DlZPZxLM5CPb+Jj03GlBHVtKfRAzjmtxZZSe1WPU4mu9GCNLynT7mBgH+3LJeSX4tHKm9dbv3Z@vger.kernel.org, AJvYcCVJ+1lbuyoR0DKOvkWWH+Lm67qRrc6qc7Z3GB0aFukLoqE4Bs0/pfUJ7PX+8OIno/+iNwBqYXZZPwEd@vger.kernel.org, AJvYcCWgz4knitNQRHGAJqEcafhbpfbkxAqOzNyyvPkMJj1WCF5U9DcLKogjvDCQHCQcgRfsSFxLMLxlnPxKWIA=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywg5d9NDub9wcxBtnKaIM0xDaCGVM4IqJSPSa/M4nUJ2RH2l76R
+	StCR4rzOlJsD90MeGMN7ZH/oaZX3pu/a9w4qclBA+Yb6S8PYJtSV0stY2lyqFeQGJwpOyCec46y
+	dbYYGYcLfWZRVGawo2Sg5PdDi8lHKITE=
+X-Gm-Gg: ASbGncsdqxf34lZ0rbBO+QrDCcVV+VOWspwVFE1yOkA7Vf4sY9WVoCRb8IxdeMvCndw
+	SsghmtgufxFYX9ctQCOJX957jgZvbJ1TzCIQerQomUx+aClGts4qcNQjyrHmf/nYTE8C6MRWgQD
+	GnuSrI54Mg8s+obMvZRs30Qww9aQVTh7k2sZMykDRSl5JSHwedB4PmTYl+S1XeT9d967q9nVKf1
+	I+7lFNW
+X-Google-Smtp-Source: AGHT+IFaLGWrhMd9gaUFsjIuhaYuop/TR0fhRThMUYmbG5VO5CB2x6zfi844hhIhJImP7arGJuqPWad7TwuKTeA/xGg=
+X-Received: by 2002:a5d:5f95:0:b0:3d0:b3cc:c21c with SMTP id
+ ffacd0b85a97d-3d1e06aff5bmr7629522f8f.55.1756789523601; Mon, 01 Sep 2025
+ 22:05:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250901155801.26988-4-quic_rdwivedi@quicinc.com>
+References: <20250819121631.84280-1-clamor95@gmail.com> <20250819121631.84280-8-clamor95@gmail.com>
+ <6948375.lOV4Wx5bFT@senjougahara>
+In-Reply-To: <6948375.lOV4Wx5bFT@senjougahara>
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+Date: Tue, 2 Sep 2025 08:05:12 +0300
+X-Gm-Features: Ac12FXyFWFQp9zyC-dC-muHX4hjhMNXKuUIlIfX1jsnphJFz8uYCWTVS01gjz_M
+Message-ID: <CAPVz0n2dp7kdCWFLWQjQY+tGO_ayzxGW=zxx3FwX_yeeR9J2Bg@mail.gmail.com>
+Subject: Re: [PATCH v1 07/19] staging: media: tegra-video: csi: parametrize
+ MIPI calibration device presence
+To: Mikko Perttunen <mperttunen@nvidia.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Peter De Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
+	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Dmitry Osipenko <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>, 
+	linux-media@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
+	linux-staging@lists.linux.dev
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Ram,
+=D0=B2=D1=82, 2 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 03:47 Mikko=
+ Perttunen <mperttunen@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5:
+>
+> On Tuesday, August 19, 2025 9:16=E2=80=AFPM Svyatoslav Ryhel wrote:
+> > Dedicated MIPI calibration block appears only in Tegra114, before Tegra=
+114
+> > all MIPI calibration pads were part of VI block.
+> >
+> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> > ---
+> >  drivers/staging/media/tegra-video/csi.c      | 12 +++++++-----
+> >  drivers/staging/media/tegra-video/csi.h      |  1 +
+> >  drivers/staging/media/tegra-video/tegra210.c |  1 +
+> >  3 files changed, 9 insertions(+), 5 deletions(-)
+> >
+> > diff --git a/drivers/staging/media/tegra-video/csi.c
+> > b/drivers/staging/media/tegra-video/csi.c index 74c92db1032f..2f9907a20=
+db1
+> > 100644
+> > --- a/drivers/staging/media/tegra-video/csi.c
+> > +++ b/drivers/staging/media/tegra-video/csi.c
+> > @@ -485,11 +485,13 @@ static int tegra_csi_channel_alloc(struct tegra_c=
+si
+> > *csi, if (IS_ENABLED(CONFIG_VIDEO_TEGRA_TPG))
+> >               return 0;
+> >
+> > -     chan->mipi =3D tegra_mipi_request(csi->dev, node);
+> > -     if (IS_ERR(chan->mipi)) {
+> > -             ret =3D PTR_ERR(chan->mipi);
+> > -             chan->mipi =3D NULL;
+> > -             dev_err(csi->dev, "failed to get mipi device: %d\n", ret)=
+;
+> > +     if (csi->soc->has_mipi_calibration) {
+> > +             chan->mipi =3D tegra_mipi_request(csi->dev, node);
+>
+> The way I would read 'soc->has_mipi_calibration' is that this device (CSI=
+)
+> contains the MIPI calibration hardware. I.e. the opposite of here. I woul=
+d
+> invert the logic and optionally call it e.g. 'internal_mipi_calib'.
+>
+> A cleaner way to do this might be to always call tegra_mipi_request et al=
+. --
+> on pre-Tegra114 SoCs this would just call back to the VI/CSI driver using=
+ the
+> callbacks registered in the MIPI driver as we discussed before. That way =
+the
+> CSI driver won't need separate code paths for SoCs with internal MIPI
+> calibration and SoCs with the external MIPI calibration device.
+>
 
-kernel test robot noticed the following build warnings:
+So basically MIPI calibration device for Tegra20/Tegra30 has to be
+created within CSI and when MIPI calibration is requested, CSI phandle
+is used. Question: may I use a dedicated node for MIPI calibration
+within CSI or it has to use CSI node itself? With dedicated node
+configuration should be much simpler and can help avoiding probe of
+entire.
 
-[auto build test WARNING on mkp-scsi/for-next]
-[also build test WARNING on jejb-scsi/for-next robh/for-next linus/master v6.17-rc4 next-20250901]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Ram-Kumar-Dwivedi/ufs-dt-bindings-Document-gear-and-rate-limit-properties/20250902-000038
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/mkp/scsi.git for-next
-patch link:    https://lore.kernel.org/r/20250901155801.26988-4-quic_rdwivedi%40quicinc.com
-patch subject: [PATCH V4 3/4] ufs: pltfrm: Allow limiting HS gear and rate via DT
-config: arc-randconfig-002-20250902 (https://download.01.org/0day-ci/archive/20250902/202509021257.jIDXzoS6-lkp@intel.com/config)
-compiler: arc-linux-gcc (GCC) 9.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250902/202509021257.jIDXzoS6-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509021257.jIDXzoS6-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from include/linux/device.h:15,
-                    from include/linux/platform_device.h:13,
-                    from drivers/ufs/host/ufshcd-pltfrm.c:13:
-   drivers/ufs/host/ufshcd-pltfrm.c: In function 'ufshcd_parse_limits':
->> drivers/ufs/host/ufshcd-pltfrm.c:464:23: warning: too many arguments for format [-Wformat-extra-args]
-     464 |    dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
-         |                       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/dev_printk.h:110:16: note: in definition of macro 'dev_printk_index_wrap'
-     110 |   _p_func(dev, fmt, ##__VA_ARGS__);   \
-         |                ^~~
-   include/linux/dev_printk.h:156:54: note: in expansion of macro 'dev_fmt'
-     156 |  dev_printk_index_wrap(_dev_warn, KERN_WARNING, dev, dev_fmt(fmt), ##__VA_ARGS__)
-         |                                                      ^~~~~~~
-   drivers/ufs/host/ufshcd-pltfrm.c:464:4: note: in expansion of macro 'dev_warn'
-     464 |    dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
-         |    ^~~~~~~~
-
-
-vim +464 drivers/ufs/host/ufshcd-pltfrm.c
-
-   432	
-   433	/**
-   434	 * ufshcd_parse_limits - Parse DT-based gear and rate limits for UFS
-   435	 * @hba: Pointer to UFS host bus adapter instance
-   436	 * @host_params: Pointer to UFS host parameters structure to be updated
-   437	 *
-   438	 * This function reads optional device tree properties to apply
-   439	 * platform-specific constraints.
-   440	 *
-   441	 * "limit-hs-gear": Specifies the max HS gear.
-   442	 * "limit-rate": Specifies the max High-Speed rate.
-   443	 */
-   444	void ufshcd_parse_limits(struct ufs_hba *hba, struct ufs_host_params *host_params)
-   445	{
-   446		struct device_node *np = hba->dev->of_node;
-   447		u32 hs_gear;
-   448		const char *hs_rate;
-   449	
-   450		if (!np)
-   451			return;
-   452	
-   453		if (!of_property_read_u32(np, "limit-hs-gear", &hs_gear)) {
-   454			host_params->hs_tx_gear = hs_gear;
-   455			host_params->hs_rx_gear = hs_gear;
-   456		}
-   457	
-   458		if (!of_property_read_string(np, "limit-rate", &hs_rate)) {
-   459			if (!strcmp(hs_rate, "Rate-A"))
-   460				host_params->hs_rate = PA_HS_MODE_A;
-   461			else if (!strcmp(hs_rate, "Rate-B"))
-   462				host_params->hs_rate = PA_HS_MODE_B;
-   463			else
- > 464				dev_warn(hba->dev, "Invalid limit-rate value\n", hs_rate);
-   465		}
-   466	}
-   467	EXPORT_SYMBOL_GPL(ufshcd_parse_limits);
-   468	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> Cheers,
+> Mikko
+>
+> > +             if (IS_ERR(chan->mipi)) {
+> > +                     ret =3D PTR_ERR(chan->mipi);
+> > +                     chan->mipi =3D NULL;
+> > +                     dev_err(csi->dev, "failed to get mipi device:
+> %d\n", ret);
+> > +             }
+> >       }
+> >
+> >       return ret;
+> > diff --git a/drivers/staging/media/tegra-video/csi.h
+> > b/drivers/staging/media/tegra-video/csi.h index 3ed2dbc73ce9..400b913bb=
+1cb
+> > 100644
+> > --- a/drivers/staging/media/tegra-video/csi.h
+> > +++ b/drivers/staging/media/tegra-video/csi.h
+> > @@ -128,6 +128,7 @@ struct tegra_csi_soc {
+> >       unsigned int num_clks;
+> >       const struct tpg_framerate *tpg_frmrate_table;
+> >       unsigned int tpg_frmrate_table_size;
+> > +     bool has_mipi_calibration;
+> >  };
+> >
+> >  /**
+> > diff --git a/drivers/staging/media/tegra-video/tegra210.c
+> > b/drivers/staging/media/tegra-video/tegra210.c index
+> > da99f19a39e7..305472e94af4 100644
+> > --- a/drivers/staging/media/tegra-video/tegra210.c
+> > +++ b/drivers/staging/media/tegra-video/tegra210.c
+> > @@ -1218,4 +1218,5 @@ const struct tegra_csi_soc tegra210_csi_soc =3D {
+> >       .num_clks =3D ARRAY_SIZE(tegra210_csi_cil_clks),
+> >       .tpg_frmrate_table =3D tegra210_tpg_frmrate_table,
+> >       .tpg_frmrate_table_size =3D ARRAY_SIZE(tegra210_tpg_frmrate_table=
+),
+> > +     .has_mipi_calibration =3D true,
+> >  };
+>
+>
+>
+>
 
