@@ -1,72 +1,71 @@
-Return-Path: <devicetree+bounces-211686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75DEB400C1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:36:19 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38F62B400DB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:40:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF98C18893BC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:36:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id CF48A4E1CED
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:40:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C61253B52;
-	Tue,  2 Sep 2025 12:35:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D807296BAA;
+	Tue,  2 Sep 2025 12:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Jt0/hwhJ"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="qI/pm+ny"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660DD24A069;
-	Tue,  2 Sep 2025 12:35:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 390A0288C81;
+	Tue,  2 Sep 2025 12:39:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756816547; cv=none; b=ESmyGq+bcivUSyuNlr4x2N75NAvllsp4oBXRvHvfS8hBQbrFo8sbruULJDDV2m48nTHl/DnPn47pPM4wEMeing7QHWx7hgzLlET6Q2vetqE6wYBH6mbpNRxin/T5Xrb9WVlZU3toJwlmsfRbIafLlo/8Yb5lOez+UdnoF+ebxMA=
+	t=1756816784; cv=none; b=Lg0V4IAJMQovRMc1nmBQmQcPCgNrf6x1ZGZeVqH99Pd1RZMSZxSSuOcUpGNg4fdQ7F7hOaRej/le7wPQarFWlZvFdmpgU2LFjStW8+1a0lN7V2wGz3hoSlhdek0DnYomGeL62/CuHSSP459zTuyBDBIB7Oi6hYmpBLaGf0s6vMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756816547; c=relaxed/simple;
-	bh=rgeAkaerMuo7pPYf7CTpR6admWuQ1J9uhjoEpdbvc5o=;
+	s=arc-20240116; t=1756816784; c=relaxed/simple;
+	bh=fDh1rVUT2E+ochpfHW3rbcGmXbzriJy5LeM0r503rOQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sc8uIAe+u/lDy8Sw8WObH5ma+0/OO6nqmbgu9Se8r0F59i4Q7WYq1+auPJ+882xlC4P+13UKbpLePNABgIGJahmqJx8gS+MyJWtU/XVIvsIKU1PUrV8B7zVXfQVxMbVzjqyAtnbXH8mQUHWtaXv7i5TDMCSTKdD0eFg7je7DUes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Jt0/hwhJ; arc=none smtp.client-ip=213.167.242.64
+	 Content-Type:Content-Disposition:In-Reply-To; b=im1iqss8+hRRrEt6XKpxTmcSjfDae2WgXMHq1GqoMgOx8sBnKvV06Tnza1rZK/EMQsl4N6vYC5LxGw5I7mgxco0BjIoBd9Ne+BUT+uZqqVhXqbGamZw+PMMP1ar0AZZCock0tV1M53NzifWwdvjj9PSkUhQKB2S6HqEBfWckN5o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=qI/pm+ny; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 07E00C77;
-	Tue,  2 Sep 2025 14:34:37 +0200 (CEST)
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id E2CBAC77;
+	Tue,  2 Sep 2025 14:38:32 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1756816477;
-	bh=rgeAkaerMuo7pPYf7CTpR6admWuQ1J9uhjoEpdbvc5o=;
+	s=mail; t=1756816713;
+	bh=fDh1rVUT2E+ochpfHW3rbcGmXbzriJy5LeM0r503rOQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Jt0/hwhJAsbh9xgjvpHX8ZlaNZWIqk8ZIYHl74D/RpN1aB5NiuYJ4sbekghmfQRpw
-	 +Fd9A/vmmT2nwwMUYmeRtG4iUHsePTSDC6VPwjWx/jvbSLPcmsnu1qiKBY/+y+WTvx
-	 YvS/mGTYyrZxv2mBisLcvTFnx0vJHCWg7VeZxaaQ=
-Date: Tue, 2 Sep 2025 14:35:24 +0200
+	b=qI/pm+nyTRdTSb/7Rb4s47sNeX3rkfRajqHDsIhTgVyB1RPVsK4a2HCzeVoejFtno
+	 zLQLi473VX3QOwsMYXfdQ05kxih5QZ002ZcLWIOzZM14EpP9LR031KCfQWa6xNEzCg
+	 TqLklRigOu/paxTyDaviol5p6P+0SrWdWD+dP1bQ=
+Date: Tue, 2 Sep 2025 14:39:20 +0200
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Frank Li <Frank.li@nxp.com>, Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+To: Frank Li <Frank.li@nxp.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Fabio Estevam <festevam@gmail.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <20250902123524.GK13448@pendragon.ideasonboard.com>
-References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
- <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
- <20250901154610.GB13448@pendragon.ideasonboard.com>
- <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
- <20250902083554.GD13448@pendragon.ideasonboard.com>
- <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Alice Yuan <alice.yuan@nxp.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Robert Chiras <robert.chiras@nxp.com>,
+	Zhipeng Wang <zhipeng.wang_1@nxp.com>
+Subject: Re: [PATCH v4 0/5] media: imx8qxp: add parallel camera support
+Message-ID: <20250902123920.GM13448@pendragon.ideasonboard.com>
+References: <20250729-imx8qxp_pcam-v4-0-4dfca4ed2f87@nxp.com>
+ <20250805010822.GC24627@pendragon.ideasonboard.com>
+ <aLbcpEZXm5G1Onq7@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,77 +74,91 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
+In-Reply-To: <aLbcpEZXm5G1Onq7@lizhi-Precision-Tower-5810>
 
-On Tue, Sep 02, 2025 at 02:26:53PM +0200, Krzysztof Kozlowski wrote:
-> On 02/09/2025 10:35, Laurent Pinchart wrote:
-> >>>>          compatible:
-> >>>>            contains:
-> >>>>              enum:
-> >>>> -              - fsl,imx8qxp-mipi-csi2
-> >>>> +              - fsl,imx8ulp-mipi-csi2
-> >>>> +    then:
-> >>>> +      properties:
-> >>>> +        reg:
-> >>>> +          minItems: 2
-> >>>> +        resets:
-> >>>> +          minItems: 2
-> >>>> +          maxItems: 2
-> >>>> +        clocks:
-> >>>> +          minItems: 4
-> >>>> +        clock-names:
-> >>>> +          minItems: 4
-> >>>
-> >>> But according to this, the ULP version requires more clocks than the QXP
-> >>> version.
-> >>
-> >> If only clock number difference, generally, it is still compatible and can
-> >> be fallback, especialy driver use devm_bulk_clk_get_all().
-> > 
-> > That's a driver-specific implementation decision, so I don't think it
-> > should be taken into account to decide on compatibility.
+Hi Frank,
+
+On Tue, Sep 02, 2025 at 08:01:40AM -0400, Frank Li wrote:
+> On Tue, Aug 05, 2025 at 04:08:22AM +0300, Laurent Pinchart wrote:
+> > Hi Frank,
+> >
+> > Thank you for the patches.
+> >
+> > I've quite busy these days, and I don't believe I will have time to
+> > review this series before coming back from OSS Europe at the beginning
+> > of September. Let's see if anyone on CC could volunteer.
 > 
-> The clock inputs do not restrict compatibility. If Linux can use
-> fallback to bind and operate properly, then it's a strong indication
-> devices are compatible.
+> Laurent Pincha
+> 	I hope you have good time at OSS.
 > 
-> Imagine exactly the same registers, so same programming interface, but
-> one device takes one more clock which just needs to be enabled through
-> its lifetime. Such devices are fully compatible, even though clock
-> inputs differ.
+> 	Do you have chance to review this patch?
 
-That's only the case if someone enables the clock, isn't it ? From a DT
-binding point of view, how can we know that the extra clock will be
-enabled by a component separate from the driver (in this case by the
-fact that the devm_bulk_clk_get_all() function gets all clocks) ?
+I'm going through my mail backlog, which is really big at the moment.
+I'd like someone else to volunteer to review this series. It won't scale
+if I have to review all NXP media patches in my spare time :-/
 
-> I also wanted to express exactly that case on my slides from OSSE -
-> slide 28:
-> https://osseu2025.sched.com/event/25Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-kozlowski-linaro
-
-Quoting that slide, you wrote
-
-"Two devices are compatible when the new device works with Linux drivers
-bound via fallback (old) compatible".
-
-That is clearly the case here for the existing *Linux* driver. But what
-if the driver called devm_bulkd_clk_get() with a device-specific list of
-clocks ? Or what if the same DT bindings are used on an OS that has no
-clk_get_all() equivalent ? This is my concern with declaring those two
-devices as compatible: they may be from the point of view of the current
-implementation of the corresponding Linux kernel driver, but DT bindings
-are not Linux-specific.
-
-Or do DT bindings assume that drivers have to always enable all clocks
-declared in DT, even if they don't know what those clocks are ? That
-seems error-prone, in quite a few cases drivers need to handle separate
-clocks in a device-specific way, with for instance a particular
-ordering, preventing them from using devm_bulk_clk_get_all(). If all
-drivers are required to manage all clocks declared in DT, this would get
-messy quite quickly.
-
-> (although I focused on reversed case when devices are not compatible,
-> because that is decisive case).
+> > On Tue, Jul 29, 2025 at 12:06:21PM -0400, Frank Li wrote:
+> > > Add parallel camera support for i.MX8 chips.
+> > >
+> > > The below patch to add new format support to test ov5640 sensor
+> > >    media: nxp: isi: add support for UYVY8_2X8 and YUYV8_2X8 bus codes
+> > >
+> > > The bindings and driver for parallel CSI
+> > >    dt-bindings: media: add i.MX parallel csi support
+> > >    media: nxp: add V4L2 subdev driver for parallel CSI
+> > >
+> > > DTS part need depend on previous MIPI CSI patches.
+> > >   https://lore.kernel.org/imx/20250522-8qxp_camera-v5-13-d4be869fdb7e@nxp.com/
+> > >
+> > >   arm64: dts: imx8: add parellel csi nodes
+> > >   arm64: dts: imx8qxp-mek: add parallel ov5640 camera support
+> > >
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > > Changes in v4:
+> > > - remove imx93 driver support since have not camera sensor module to do test now.
+> > >   Add it later
+> > > - Add new patch
+> > >   media: v4l2-common: Add helper function v4l_get_required_align_by_bpp()
+> > > - See each patche's change log for detail.
+> > > - Link to v3: https://lore.kernel.org/r/20250708-imx8qxp_pcam-v3-0-c8533e405df1@nxp.com
+> > >
+> > > Changes in v3:
+> > > - replace CSI with CPI.
+> > > - detail change see each patch's change logs
+> > > - Link to v2: https://lore.kernel.org/r/20250703-imx8qxp_pcam-v2-0-188be85f06f1@nxp.com
+> > >
+> > > Changes in v2:
+> > > - remove patch media: nxp: isi: add support for UYVY8_2X8 and YUYV8_2X8 bus codes
+> > >   because pcif controller convert 2x8 to 1x16 to match isi's input
+> > > - rename comaptible string to fsl,imx8qxp-pcif
+> > > - See each patches's change log for detail
+> > > - Link to v1: https://lore.kernel.org/r/20250630-imx8qxp_pcam-v1-0-eccd38d99201@nxp.com
+> > >
+> > > ---
+> > > Alice Yuan (2):
+> > >       dt-bindings: media: add i.MX parallel CPI support
+> > >       media: nxp: add V4L2 subdev driver for camera parallel interface (CPI)
+> > >
+> > > Frank Li (3):
+> > >       media: v4l2-common: Add helper function v4l_get_required_align_by_bpp()
+> > >       arm64: dts: imx8: add camera parallel interface (CPI) node
+> > >       arm64: dts: imx8qxp-mek: add parallel ov5640 camera support
+> > >
+> > >  .../devicetree/bindings/media/fsl,imx93-pcif.yaml  | 126 ++++
+> > >  MAINTAINERS                                        |   2 +
+> > >  arch/arm64/boot/dts/freescale/Makefile             |   3 +
+> > >  arch/arm64/boot/dts/freescale/imx8-ss-img.dtsi     |  13 +
+> > >  .../boot/dts/freescale/imx8qxp-mek-ov5640-cpi.dtso |  83 +++
+> > >  arch/arm64/boot/dts/freescale/imx8qxp-ss-img.dtsi  |  27 +
+> > >  drivers/media/platform/nxp/Kconfig                 |  11 +
+> > >  drivers/media/platform/nxp/Makefile                |   1 +
+> > >  drivers/media/platform/nxp/imx-parallel-cpi.c      | 728 +++++++++++++++++++++
+> > >  include/media/v4l2-common.h                        |  30 +
+> > >  10 files changed, 1024 insertions(+)
+> > > ---
+> > > base-commit: 37a294c6211bea9deb14bedd2dcce498935cbd4e
+> > > change-id: 20250626-imx8qxp_pcam-d851238343c3
 
 -- 
 Regards,
