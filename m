@@ -1,88 +1,83 @@
-Return-Path: <devicetree+bounces-211657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CB1B3FF2F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 474C7B3FF54
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:09:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 187B74E78BC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:04:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EAF04E8000
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE213009F0;
-	Tue,  2 Sep 2025 11:57:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4C6B304BC3;
+	Tue,  2 Sep 2025 11:59:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aFxpIqZY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D2cy1lX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCB712FC875
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 11:57:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 84E9028505D
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 11:59:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756814279; cv=none; b=bm4DNDwTshY1rpCImE8x027njQCnBdXBqNsUm15YuAspXAUz8PDyQ6v9Iks2sINM2e3cBk15SwmdW2Y1O2XNs+Q64zbalgAjpBpBFZXehn7HbKaZ+LvCyvlNNqOfbQbj5hMOK/C1wmqp5CW0He1btuDxDWAyTPjJ4W+coPMIK0E=
+	t=1756814352; cv=none; b=hRegGNpgSGIGZ92oyauBn4FAefQESgFeeviBIj98l9lALzetnb1cI8pYBq4OLXpBK5p4mgkRdoeOA8V5GtknFWg0e6IBES4pOkMrRNJ5LoabJUqkULmn1ZKNvWl8QTLpGS/63BXCUB7zeFWxQBrN/sK25BJmh4LqiIPQwwGUne0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756814279; c=relaxed/simple;
-	bh=TzemwMGClTnkqT7pUTCqqSTRsqocfb+tRl/whEuV/pc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d1b/kZhWRA2e23n4Ptv7t7/RwXBLxUX1yPZHhuJVeCXb8R5772ZEMVKxY3FpIecFyXGdj05vd+lN5tctjYil3Ku53nfKSw+5dF701vMJZ1TD+XmgQHoSLK77Snu/G02TBgc2S0DNoo81fm8aHvOmroDa7V4Lj12836vchYCT2xc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aFxpIqZY; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582AbsXO024987
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 11:57:57 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	MazPpVuDeJMNCKtDs4XLR9LyNM/u+un8EIv85mq9gjA=; b=aFxpIqZYns8dw0mY
-	Bg0vH/Cvn2DW9068Uye4ozH+kmt/vDQYsux3Ao7TlcanvC6hiVVkHeUma97RH1z4
-	qJSapKjmZCVUr7HHi29eVqj9olAZC7oG9CsDqkfegL5yO1XWzyobTyUnFSKNkJeg
-	gfP1TaxVTCw9E4rvdqrpWY61ug4HoI/HA6y4QKgX8euSWL3uJiNGybny3CCfz2Cq
-	2rUVAF1/POrCCoJfifnO3IKv92NMzQVUbkJIXU7g4wZ3X/K7QqtANEYALS/zfQ+w
-	tr8sHZ2dh+E/F3OsVvlV0TlQD3z9eKyz8Kyz32h4Ke0ONFyIurf5bqO8NIUYCaoT
-	fo6KOA==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uscuypyh-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 11:57:56 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b3037bd983so28914901cf.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 04:57:56 -0700 (PDT)
+	s=arc-20240116; t=1756814352; c=relaxed/simple;
+	bh=qgO3eydU+wK9TfHPkeIxyv5wj68lehy6hm1tWz3wFf0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=Yx5Gnf+VJxuerEIpNGXUOF9t35N4pJyzKuciArLlU/VL8K9zZbH3edLq/bjQcEuPcbwrbpPW//H85cO8q+hFcvgg62/OKPTSlEzsuEsKUWu4y1L1t+/vKaASl1kLULqq72z0Sl3Rhl7ulmwf8lDyvQRiKKRfz6NB1ZKOngm6d3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D2cy1lX+; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45b627ea685so45013155e9.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 04:59:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756814346; x=1757419146; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cfozmRqc5klIxa3RyN85ghWY3Zq4Ji3LuVvxL8BJlR8=;
+        b=D2cy1lX+s74YnbnrqSlIizB/75gY+3WUxoh2Vaf6z/rssY7DhNzmFQXCq/uUScX6CA
+         6U0S/wx2/qlsMsN1vwrIDIR6OKnm1uKnDWfZd/VFMg8CNYOGBVBy+VHkUOcgdFl+gx5q
+         /aYBw2HIqsR6m4LJGSjNQx2W2Rfg7Itq7yDRKPI/DTvKBQwSc+4CW1tSJUFcJvSKBJcw
+         tHw2Ac9Qbpd35eUZP4uJFd3EGAk7n8og27ydP/l5H2URhMz9ytFJmZsqwlMvUjAHCwha
+         S5cxQv74DBSKpFVxMF6RY61uutk0quI6V1mCWcupFZ7a1QWw1WUacPGpPmYGk1z1ml+m
+         bQqw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756814276; x=1757419076;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MazPpVuDeJMNCKtDs4XLR9LyNM/u+un8EIv85mq9gjA=;
-        b=WymmYr2KioosyHh2kqbTiDOF8jVt0dYWhZ0koz7f4+AeVnYmKpujQD2beeRtmdO69d
-         vSn5ykRe7lZS6Z98sEvTnAAMuywXFWxnPliXEzEtk1HY83rTFGr/faZOcYGjW0h+Fu7E
-         wNadXjNQoStHV8hUPAeyb2GLGSA242Bjj/0oRMDmGbZeVojplgWtJRnSI3F6ND/0L/HH
-         CwG/xe9AcN+yBjTs0US26U4zVpU5VIPIuAKP3IDB1Qzcv3ePEPB4UkHP+CG7ObApZyjU
-         knu4s8SRLDwi2YUjZGjoh8G1rjd1hrPCLBuId5ZsRIFZQ1AskFTa5iWGgz3y8hWZatv9
-         bATg==
-X-Forwarded-Encrypted: i=1; AJvYcCUnmQtZUCaxP2yZNiWn/nyeewCTxF9sN2qgD2vva9UKKJhfpZ2KbvAYpu2sAY1aVVAtvJZ2RP2TqUvw@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4PE6xm0ArXvgk+Th637esGwWoGKUP9GIsUkMEdbh+j+D1renp
-	JC1qY73zMf4H+5+bqEG4AotVE/x0/1ZDzMXyFBwXQYtLvH3FKMOWGgLm7OySGdlkspZKLEzzURf
-	qwopnNdl2Pbw+viFe/L/iDZIQADd3eKylVxOBzVGBwjjjMPeH2SSkZ6zw74o1CT3G
-X-Gm-Gg: ASbGncsDqa8mQn4C957mIpVk+jynNI/mPmJDGIqJtj0PiuwWATLeRCuBWQTq5GK+Jgz
-	82BT8FVNt8b4212ouKrobq8zCvd1Zs9wpemPdsjbR7Pt3KZE5j4pW4ZCFqrjdC+Nf7yc0XWixyj
-	B0KdZoaeprT5duGgt/zT2skBjcApWUy1jSDrocMK8kb2QS4/5kAk+DtK2FZfdBROSQhdCl2pK6Q
-	u/YeWBjsosBWpMWvdQfpVjP3gPTkqybLx0ehfWz77Q6MsAja5Xa/XbRUntTD7hls7gx/eN31w4X
-	LKIeyvdbBOybSUuvKEzGB/4pxTlYlnh+Ib5U7+ICrl3uDvFIj40uly2eSZkRXoz3ESJqDTWn5Da
-	0MAtVdAYfxWIzk+OlbgB9sQ==
-X-Received: by 2002:a05:622a:612:b0:4ab:80f9:f992 with SMTP id d75a77b69052e-4b313f9850bmr102404751cf.12.1756814275860;
-        Tue, 02 Sep 2025 04:57:55 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFLJ+ddzSRzqFRRND4j25pKq0rRljPojUEf5sN7VqVHHPTlbG/zvZUEWarcEaPDNy+4ghfnrQ==
-X-Received: by 2002:a05:622a:612:b0:4ab:80f9:f992 with SMTP id d75a77b69052e-4b313f9850bmr102404371cf.12.1756814275344;
-        Tue, 02 Sep 2025 04:57:55 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b02d8812161sm813251266b.73.2025.09.02.04.57.53
+        d=1e100.net; s=20230601; t=1756814346; x=1757419146;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cfozmRqc5klIxa3RyN85ghWY3Zq4Ji3LuVvxL8BJlR8=;
+        b=fty37K+Gl5QrE9cVjKoUpcG91UPeRVtSOiGK+fkGbYugJ8U3i/UXln9TuxapknabpI
+         IbCEWImLS9IphPsqjsQBxofDUfOSwUfn/R20D/03BxhZoGHyq2BdHhDhmCk0Y8GHoSwo
+         +d2e7gMTqCWV94KMLqCm9iG7AJeXNkcuUUiAOg6lK+3h1oBjky64Do5qKbESCgjLW4Al
+         cOVFcmAzY9sUL7UzvFBnY7JdvyDoXUoKJ8cidUZT3UzsvnkSknXlhUg7SosqLIacXN7U
+         mPOYvgMW9h6V94EWwixMUYhGone2F63/rPc3L7w1wwj7ZdsUZzNxmX6I1V7LrF+6T55D
+         CpxQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXciJS3A+iqyBBDhYdgfMj/x0jRUV7f1YXm7SfuuJiYyvBQfjv9hvKcUOgW6O5gZR48KXlQUFap3PmR@vger.kernel.org
+X-Gm-Message-State: AOJu0YxXrgMyEp3hC2uUVkjK6cOIUqo0vTpV1kyN3myEmvBbz7M+1Bci
+	lTITavRPCf9zUJSWW4IIVIh/gnhVwdPppQmVBtjWBYvknxOU6NMusfTDCLJi9Gj05G8=
+X-Gm-Gg: ASbGnctq7PRKCE6FdEOxQxKg8xMOrCkn1QnCz/7+O12r5rElS7Spj1DDfI7ry8iblaQ
+	foEGNNnf/KaRiLjpjZHOW2NxKkw4nocCJy5zxeDmsY8HS10BFFXZJwc9+DlxxL8ZjGcXp97SrLH
+	oTHeDJrUiz9kO2E0ZNAdfFeO+6d3oVQH3DK8PtCiQMFXaRbQu0npCh0/p3fSGT77Kp64ulrBFyc
+	h0Cfo/0Vkwp0eR8dT/0FXztZ/qhJpMqGb3fgQ03uy5K5EEos6f0IYgYVYMDVTiAncSoxWdMhdMd
+	0iet6arVWKhd0KF7nKjU87Xntrj+fNEVTvmqPpz2gPWEItW56FA6XyppUwiNAh4X3AfNLO103yY
+	tr6ej/F6VSE+lbikt2LyVeWwCu9hoTXrKaLaGiTdKr7VWIWdQqoyU3VrX2WV7kDf/Mfg1bI6200
+	Y=
+X-Google-Smtp-Source: AGHT+IHfEjTcncJJziF6tVTU1GKIoXvzo/P7QV8DF5yvdpb8f9/w5wQ4b+oMozpd1P6m48QaIn2vYA==
+X-Received: by 2002:a05:600c:1d07:b0:45b:6b57:5308 with SMTP id 5b1f17b1804b1-45b855508e0mr98283745e9.7.1756814345771;
+        Tue, 02 Sep 2025 04:59:05 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939? ([2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm194388675e9.12.2025.09.02.04.59.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 04:57:54 -0700 (PDT)
-Message-ID: <484eccde-bcab-42f8-bf6f-b370fc777626@oss.qualcomm.com>
-Date: Tue, 2 Sep 2025 13:57:52 +0200
+        Tue, 02 Sep 2025 04:59:05 -0700 (PDT)
+Message-ID: <455375d4-c558-4d0e-9284-23905c8d0bac@linaro.org>
+Date: Tue, 2 Sep 2025 13:59:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,83 +85,150 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] clk: qcom: branch: Extend invert logic for branch2
- mem clocks
-To: Taniya Das <taniya.das@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
- <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Document static lanes mapping
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-phy@lists.infradead.org
+References: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
+ <20250902-topic-x1e80100-hdmi-v2-3-f4ccf0ef79ab@linaro.org>
+ <4dff9cc2-2152-48a0-b8ab-eea57ce2ace2@oss.qualcomm.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <4dff9cc2-2152-48a0-b8ab-eea57ce2ace2@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMSBTYWx0ZWRfX4nWd838eZ0D6
- iMXuzTsXElykysApPTo+ASryCXlp4GtIBtw8tpXl1S8JPEc5qQkAsPnKc9lHIA0eapCY3HkFCGI
- 25IvYODOUtLvMwqrrxc1uudsx4tYjiy46sOgGnJoLA2UlIa2kS4+zK72jm06zITBWc1CXbzvVcL
- 6a6D5hiyAbW1QK8X3f7gyEDM9JhFrgziJBEIFummY0c8pdwnHdqv6tq/mRCbM8GWQvV4KaXgpqn
- PdqvxfcKd8Gw0MNqoSb+pffaNgK0Wi+L2hEoKjvh8+akBMiYrjxDoAhG3HE8yvEMU1yuBJLk0oK
- 4l0Op3GR1pwUMDn0Bmopd5zTZDg0JqeDUOcTdE29eSLLG3pQKCn7Zp+h+/LKPuRgpzzPmSoLWZ6
- YO1QHnME
-X-Authority-Analysis: v=2.4 cv=A8xsP7WG c=1 sm=1 tr=0 ts=68b6dbc4 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=Uv4cyzw5Fqc3vRoc6LAA:9
- a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-ORIG-GUID: PyLO3p4EBBMeHBDNCBtNRIViKUTnuyuv
-X-Proofpoint-GUID: PyLO3p4EBBMeHBDNCBtNRIViKUTnuyuv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015
- suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300031
 
-On 8/29/25 12:15 PM, Taniya Das wrote:
-> Some clock branches require inverted logic for memory gating, where
-> disabling the memory involves setting a bit and enabling it involves
-> clearing the same bit. This behavior differs from the standard approach
-> memory branch clocks ops where enabling typically sets the bit.
+On 02/09/2025 13:50, Konrad Dybcio wrote:
+> On 9/2/25 11:00 AM, Neil Armstrong wrote:
+>> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+>> of a combo glue to route either lanes to the 4 shared physical lanes.
+>>
+>> The routing of the lanes can be:
+>> - 2 DP + 2 USB3
+>> - 4 DP
+>> - 2 USB3
+>>
+>> The layout of the lanes was designed to be mapped and swapped
+>> related to the USB-C Power Delivery negociation, so it supports
+>> a finite set of mappings inherited by the USB-C Altmode layouts.
+>>
+>> Nevertheless those QMP Comby PHY can be statically used to
+>> drive a DisplayPort connector, DP->HDMI bridge, USB3 A Connector,
+>> etc... without an USB-C connector and no PD events.
+>>
+>> Add a property that documents the static lanes mapping to
+>> each underlying PHY to allow supporting boards directly
+>> connecting USB3 and DisplayPort lanes to the QMP Combo
+>> lanes.
+>>
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         | 29 ++++++++++++++++++++++
+>>   1 file changed, 29 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>> index c8bc512df08b5694c8599f475de78679a4438449..12511a462bc6245e0b82726d053d8605148c5047 100644
+>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>> @@ -76,6 +76,35 @@ properties:
+>>     mode-switch: true
+>>     orientation-switch: true
+>>   
+>> +  qcom,static-lanes-mapping:
+>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>> +    minItems: 4
+>> +    items:
+>> +      enum:
+>> +        - 0 # Unconnected (PHY_NONE)
+>> +        - 4 # USB3 (PHY_TYPE_USB3)
+>> +        - 6 # DisplayPort (PHY_TYPE_DP)
+>> +    description:
+>> +      Describes the static mapping of the Combo PHY lanes, when not used
+>> +      a in a Type-C dynamic setup using USB-C PD Events to change the mapping.
+>> +      The 4 lanes can either routed to the underlying DP PHY or the USB3 PHY.
+>> +      Only 2 of the lanes can be connected to the USB3 PHY, but the 4 lanes can
+>> +      be connected to the DP PHY.
+>> +      The numbers corresponds to the PHY Type the lanes are connected to.
+>> +      The possible combinations are
+>> +        <0 0 0 0> when none are connected
+>> +        <4 4 0 6> USB3 and DP single lane
+>> +        <4 4 6 6> USB3 and DP
+>> +        <6 6 4 4> DP and USB3
+>> +        <6 0 4 4> DP and USB3 single lane
+>> +        <4 4 0 0> USB3 Only
+>> +        <0 0 4 4> USB3 Only
+>> +        <6 0 0 0> DP single lane
+>> +        <0 0 0 6> DP single lane
+>> +        <6 6 0 0> DP 2 lanes
+>> +        <0 0 6 6> DP 2 lanes
+>> +        <6 6 6 6> DP 4 lanes
 > 
-> Introducing the mem_enable_invert to allow conditional handling of
-> these sequences of the inverted control logic for memory operations
-> required on those memory clock branches.
+> Would
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  drivers/clk/qcom/clk-branch.c | 14 +++++++++++---
->  drivers/clk/qcom/clk-branch.h |  4 ++++
->  2 files changed, 15 insertions(+), 3 deletions(-)
+> oneOf:
+>    - [0, 0, 0, 0]
+>    - ...
 > 
-> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
-> index 0f10090d4ae681babbdbbb1b6c68ffe77af7a784..90da1c94b4736f65c87aec92303d511c4aa9a173 100644
-> --- a/drivers/clk/qcom/clk-branch.c
-> +++ b/drivers/clk/qcom/clk-branch.c
-> @@ -142,8 +142,12 @@ static int clk_branch2_mem_enable(struct clk_hw *hw)
->  	u32 val;
->  	int ret;
->  
-> -	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> -			   mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
-> +	if (mem_br->mem_enable_invert)
-> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> +				  mem_br->mem_enable_mask, 0);
-> +	else
-> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
-> +				  mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+> or something similar work here?
 
-regmap_assign_bits() is your friend
+I need to check, but I may need to do that instead:
+oneOf:
+   - items:
+       - 0
+       - 0
+       - 0
+       - 0
+   - items:
+       - 4
+       - 4
+       - 6
+       - 6
+...
 
-Konrad
+But I want to be extra sure this is the right path before
+
+Neil
+
+> 
+> Konrad
+
 
