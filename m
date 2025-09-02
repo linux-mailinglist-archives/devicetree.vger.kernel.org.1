@@ -1,95 +1,91 @@
-Return-Path: <devicetree+bounces-211858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 514C2B40F91
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:42:50 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FDAFB40FD0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 00:04:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12F825E6210
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:42:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA0C87A860D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 22:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482D933A02D;
-	Tue,  2 Sep 2025 21:42:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F5A23D7C0;
+	Tue,  2 Sep 2025 22:04:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EoJlG6Jb"
+	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="n4M9BdW1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B51258EF0;
-	Tue,  2 Sep 2025 21:42:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EB5232F76E;
+	Tue,  2 Sep 2025 22:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756849365; cv=none; b=Pj1rpCaSUdySxa2z4mbeMX9CyL9X1KSdn5OVC8rsGXDAGrAzOOPkQZ97SrhisC8e75kKTPEvchHgHPkya6mxmlz06XsSeE6gDixX6Rp69tDNjmCwMDgy2XEbvYhttxYkXNOr6J28mgk5eAZzUEZ89r/Kb5qIoH8OJ6xXzVkhTzU=
+	t=1756850654; cv=none; b=RdsZ19Ls+lvr+SmzGB9jVETGpNWoLQ1h0WY1+HwY3/mwO6VYpaFRvj5fr29a6XTRVvmvk7x+O25MlOpJBVpwvLB1cQu6EAmlpu3zhA2eT+OJ2/s8OM2wy4FaB1Fg4y4I2dAzmpyj8+7vUS+eADTZHli7AYfP6devsxlgGSbaP2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756849365; c=relaxed/simple;
-	bh=RjK40O1erbbu/Aaqtcd7wtn/XHEa2oLzQ1L+Jw/nrP8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QkVjNL07X3kto/cGBzSuWDAc2ljFA4sXjYB6WLhQ7CM9DYIDPEFXLNJlzrG4N+isY0B+1/fEW/ldfzT6yo2FuJzLLE0/UUaZMv7sFbzat6+ozgmvi3jkMljhtcjVSLhmxE4yr4hVsNT32CGdnc8Ps7FQlY8H7U0PDSR8P7G05xA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EoJlG6Jb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7949DC4CEED;
-	Tue,  2 Sep 2025 21:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756849364;
-	bh=RjK40O1erbbu/Aaqtcd7wtn/XHEa2oLzQ1L+Jw/nrP8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EoJlG6JbZMLwZp+m1BZbhMawCR/5RmCUTGA8njxZFmehPeIWW7JFgU3N3x+hw4LpG
-	 OFd8vAkhr0x8OLlVta9zD5wf8H3Ubjf8Jf3f1vtYzyRuprlUcFKOyEkPVbYKb5VeQH
-	 qbEXmxnF+sqcJQC3mdXguj0PYnkR+jPTfa6NbuU+/yBmjaAHHAcPZZ7CukyR/+/PNj
-	 olac12OyMTg+qwOCnlM7HvFzIAr3zGA6X6dx/l8Y7JVYdwCIROCjFl6dtK+RjNo3el
-	 bCQmg/ubnFasfzVUqGzpA8ydpEV513sGZfHTIC8E+3Ud0Tvou/MlqMu9K7CGaWuID9
-	 XQKE8ByoWqfEA==
-Date: Tue, 2 Sep 2025 16:42:43 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Jie Gan <jie.gan@oss.qualcomm.com>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
-	Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
-	James Clark <james.clark@linaro.org>,
-	Tao Zhang <tao.zhang@oss.qualcomm.com>,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
-	devicetree@vger.kernel.org,
-	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Suzuki K Poulose <suzuki.poulose@arm.com>,
-	Mike Leach <mike.leach@linaro.org>
-Subject: Re: [PATCH v1] dt-binding: Update oss email address for Coresight
- documents
-Message-ID: <175684936304.1217220.3167248149687349464.robh@kernel.org>
-References: <20250902042143.1010-1-jie.gan@oss.qualcomm.com>
+	s=arc-20240116; t=1756850654; c=relaxed/simple;
+	bh=BD6Zne3XZGwUDgfH6AtniwohdQGaDqOKcXDVAIWcE40=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=lrBGcyVNMvuIiQqmHANI6RpgodN9BEUwP6N+okor3rT03eKcuPSF8kga3Xdyl8vlv7GyctHJYIr3Un4jnGRrpM3TxzFHhGu+vReXqEzXmeEaYX+fkNQvBhKmVzRSoroP6eP48j29cfPfWrawnbLmR6bma3BtuVa1e18T2vxVKC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=n4M9BdW1; arc=none smtp.client-ip=37.205.8.231
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
+DKIM-Signature: a=rsa-sha256; bh=BD6Zne3XZGwUDgfH6AtniwohdQGaDqOKcXDVAIWcE40=;
+ c=relaxed/relaxed; d=dujemihanovic.xyz;
+ h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
+ i=@dujemihanovic.xyz; s=default; t=1756850541; v=1; x=1757282541;
+ b=n4M9BdW1+TWwHpSDIo9huyAfD1siBMhJZAp6y1vXcZc4drhit1TKZxQlSF3J5rJOWMehtiLm
+ FjI0RZiaCIHPoZ5fYL0v1DIYETeCEpbYUI+ixE/HitY9n4t7u6dGD1D/NNJEjsZyu0WlXAbtQt5
+ qoMz+hrgTTlk8e9a+1L5XcVRqQpXStxYiEW+PXBTRjO3xysEI54R0e/AIU95ftk25RihrwAyPeB
+ FMx4eFuT64EDqOFZjJJNI3o7Yz5USA08fOytprjr/PQ1VXQZFHcJsqvWqZHCzPRMrwwdxa9XBbR
+ HkIMDqYPXQsZiC0Wu+NhtrTwvTX/fllr4rC6hKLNFOzZA==
+Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
+ ESMTPS id bd5db0db; Wed, 03 Sep 2025 00:02:21 +0200
+From: Duje =?UTF-8?B?TWloYW5vdmnEhw==?= <duje@dujemihanovic.xyz>
+To: Karel Balej <balejk@matfyz.cz>
+Cc: linux-mmc@vger.kernel.org, ulf.hansson@linaro.org,
+ Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Karel Balej <balejk@matfyz.cz>
+Subject: Re: [PATCH v2 0/3] samsung,coreprimevelte enhancements
+Date: Wed, 03 Sep 2025 00:02:19 +0200
+Message-ID: <4689450.LvFx2qVVIh@radijator>
+In-Reply-To: <20250828095028.24503-1-balejk@matfyz.cz>
+References: <20250828095028.24503-1-balejk@matfyz.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250902042143.1010-1-jie.gan@oss.qualcomm.com>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
+On Thursday, 28 August 2025 11:49:01 Central European Summer Time Karel Bal=
+ej=20
+wrote:
+> Hello,
+>=20
+> here are a few patches adding some of the stuff that have accumulated
+> since the support for the samsung,coreprimevelte smartphone was first
+> introduced and before it made it into the mainline tree.
 
-On Tue, 02 Sep 2025 12:21:43 +0800, Jie Gan wrote:
-> Update the OSS email addresses across all Coresight documents, as the
-> previous addresses have been deprecated.
-> 
-> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
-> ---
->  .../sysfs-bus-coresight-devices-dummy-source  |  4 +-
->  .../testing/sysfs-bus-coresight-devices-tpdm  | 56 +++++++++----------
->  .../arm/arm,coresight-dummy-sink.yaml         |  2 +-
->  .../arm/arm,coresight-dummy-source.yaml       |  2 +-
->  .../bindings/arm/qcom,coresight-ctcu.yaml     |  6 +-
->  .../arm/qcom,coresight-remote-etm.yaml        |  4 +-
->  .../bindings/arm/qcom,coresight-tnoc.yaml     |  2 +-
->  .../bindings/arm/qcom,coresight-tpda.yaml     |  4 +-
->  .../bindings/arm/qcom,coresight-tpdm.yaml     |  4 +-
->  9 files changed, 42 insertions(+), 42 deletions(-)
-> 
+LGTM, with the exception of 2 tiny formatting mistakes with the pin arrays =
+in=20
+sdh1-pins-0 and sdh1-fast-pins-1. I'll merge the series and fix these next=
+=20
+week if there are no other comments.
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Duje Mihanovi=C4=87 <duje@dujemihanovic.xyz>
+
+Regards,
+=2D-
+Duje
+
 
 
