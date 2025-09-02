@@ -1,160 +1,110 @@
-Return-Path: <devicetree+bounces-211844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20944B40E44
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 22:00:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 351FBB40E51
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 22:05:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E2CB3A6190
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 20:00:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11B2417D6F3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 20:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1A6350D73;
-	Tue,  2 Sep 2025 20:00:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5339A32ED21;
+	Tue,  2 Sep 2025 20:05:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="hBEgUw2u"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="fOITXO3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2DE5350D58;
-	Tue,  2 Sep 2025 19:59:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8280C30C629;
+	Tue,  2 Sep 2025 20:05:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.92.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756843201; cv=none; b=aVLO1sffH0Utk9X2uPhSHv4AvV0FZaqDw6kNDTbAgp/EhD9Peb3FVdGhWMVGpWPqcXMP5/i8b08R0iG5tXk3+rIh8a98VmWk4wLq+jpxh4dwYg5hM+lXTBUMpxey1zj6Wx7A8eO/44W0be3o6pioxgXTUIT00UO+e/AvhA6IqyI=
+	t=1756843519; cv=none; b=qJAUTzVl6q1A/2QdlHJCVEjuKe/6FA1KC+NJrxUQm7Ozu4JqGTNYxFmts+QwEWgK3MmyxHSnD0E/XJQd/YAnmEsgavOLq1awRw+wHTH43zcMoof0IBMQrKZJ9aCbCmUQySgOyVP1OM6+/3cgDvuAb+zygkIDZSAQC31HNL7btRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756843201; c=relaxed/simple;
-	bh=K8PqE6yD7VyVJpbq451PthNDx+WFiPWgsV2846fPfes=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=gthMVcL68U18VyvrUI/t0J+1VFIGePeY96KuoJuSILam3YiKtDo9NplbFm4hjQlPCJAsXOn5hkhSsY/i7xueuU1y8RBcUXXGd9kzBCV3yItlf2g062dFpm8/VThU4hJTnLFn5QS9hT+tUyBNmjh7/543SzQYzAC4fqui5JADsZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=hBEgUw2u; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 582JxhRU3060822;
-	Tue, 2 Sep 2025 14:59:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756843183;
-	bh=PeB7J67e77B/FVOBsTZYzVHCuZ3ynnlku78M2GFf46w=;
-	h=Date:From:Subject:To:CC:References:In-Reply-To;
-	b=hBEgUw2u5TY4JawQtMAWEIYOO9VdwSOgzIFRsquAhINjD1blO0ZY0ni5wQbmS+zbl
-	 2ar4L7JWm/+LQ1lK2/xRyvLboggYKPQSMEPSBvSy3omB/k35YIVsXk4c32t38j/XIB
-	 8nQ8DELuEvBC583K6SDXw3fcKJoS7885EXKfJ+tM=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 582JxhGG2507031
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 2 Sep 2025 14:59:43 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 2
- Sep 2025 14:59:42 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 2 Sep 2025 14:59:42 -0500
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 582JxgZ7136329;
-	Tue, 2 Sep 2025 14:59:42 -0500
-Message-ID: <33a285bc-2fbe-4ff6-ae09-e4c13a098647@ti.com>
-Date: Tue, 2 Sep 2025 14:59:42 -0500
+	s=arc-20240116; t=1756843519; c=relaxed/simple;
+	bh=ykWOa2jXdfF/nhMoE/XhMQMlz2GrK9+COjBO/ieUrxE=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=f4M/EoPLZQIVBvRWavLfNdtiX6WvcxKmDYpoM8apWALRihVnKO0OgP7L6qCcUFsWZ/BtMBdaJV9IIeMt1Am/V10rheIZC14NWZoUoJteUp2c94k6cL31BH3tUzzg9s8QI2pnY82TuhkxDeNJlMZkGTtO6I5XkFz/Zxm+jrZ/ldQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=fOITXO3l; arc=none smtp.client-ip=90.155.92.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=desiato.20200630; h=Content-Transfer-Encoding:Content-Type
+	:MIME-Version:Message-ID:References:In-Reply-To:Subject:CC:To:From:Date:
+	Sender:Reply-To:Content-ID:Content-Description;
+	bh=BTJf8a3c8djKy/9Sijq7tylusCxaJef2zwGQf7+eDdg=; b=fOITXO3lE5266NU05BWGMpuW8o
+	hv3scSW5HT66QL8/L4ofneKFefvsWlzNpi1smAf/275wSSLYavdI5L5XaL4fyEhsfs/RX+Umn5d8Q
+	SyXKGSPpFLfTlAvErn4Ndr4AjTfAvNJfDhwUGa+WjKJ/vyXS0dUvtKiGvXKNQ8JP+/3yAP7MClhfK
+	qGZX+u1Fa7EmpILdLO9KoHpH2DwYVt2xv124EBg73q/PIsVEd46lxBqp2alcuxHUOU2+k3vAq8Rxg
+	HLvoz75nlAmvhFRGhWCN7Tis+NrZpm27UkU9ztipjQXGkkT06bKtndo4CCPvv/4K+S6SngeV7Qi7l
+	+Ll19jHA==;
+Received: from [50.53.25.54] (helo=ehlo.thunderbird.net)
+	by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1utXFf-000000043p2-3AO9;
+	Tue, 02 Sep 2025 20:05:12 +0000
+Date: Tue, 02 Sep 2025 13:05:09 -0700
+From: Randy Dunlap <rdunlap@infradead.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Ranganath V N <vnranganath.20@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+CC: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, brauner@kernel.org,
+ djwong@kernel.org, corbet@lwn.net, pbonzini@redhat.com,
+ laurent.pinchart@ideasonboard.com, devicetree@vger.kernel.org,
+ linux-xfs@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ kvm@vger.kernel.org
+Subject: Re: [PATCH] Documentation: Fix spelling mistakes
+User-Agent: K-9 Mail for Android
+In-Reply-To: <2a1344d7-cbf4-4963-a774-6332aa440cd7@kernel.org>
+References: <20250902193822.6349-1-vnranganath.20@gmail.com> <2a1344d7-cbf4-4963-a774-6332aa440cd7@kernel.org>
+Message-ID: <A33D792E-4773-458B-ACF4-5E66B1FCB5AC@infradead.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Kendall Willis <k-willis@ti.com>
-Subject: Re: [PATCH v9 1/4] dt-bindings: can: m_can: Add wakeup properties
-To: Markus Schneider-Pargmann <msp@baylibre.com>,
-        Chandrasekar Ramakrishnan
-	<rcsekar@samsung.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>
-CC: Vishal Mahaveer <vishalm@ti.com>, Kevin Hilman <khilman@baylibre.com>,
-        Dhruva Gole <d-gole@ti.com>, Sebin Francis <sebin.francis@ti.com>,
-        Akashdeep
- Kaur <a-kaur@ti.com>, Simon Horman <horms@kernel.org>,
-        Vincent MAILHOL
-	<mailhol.vincent@wanadoo.fr>,
-        <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250820-topic-mcan-wakeup-source-v6-12-v9-0-0ac13f2ddd67@baylibre.com>
- <20250820-topic-mcan-wakeup-source-v6-12-v9-1-0ac13f2ddd67@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <20250820-topic-mcan-wakeup-source-v6-12-v9-1-0ac13f2ddd67@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-On 8/20/25 07:42, Markus Schneider-Pargmann wrote:
-> The pins associated with m_can have to have a special configuration to
-> be able to wakeup the SoC from some system states. This configuration is
-> described in the wakeup pinctrl state while the default state describes
-> the default configuration. Also add the sleep state which is already in
-> use by some devicetrees.
-> 
-> Also m_can can be a wakeup-source if capable of wakeup.
-> 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->   .../devicetree/bindings/net/can/bosch,m_can.yaml   | 25 ++++++++++++++++++++++
->   1 file changed, 25 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> index c4887522e8fe97c3947357b4dbd4ecf20ee8100a..0e00be18a8be681634f25378bb2cdef034dc4e6b 100644
-> --- a/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> +++ b/Documentation/devicetree/bindings/net/can/bosch,m_can.yaml
-> @@ -106,6 +106,26 @@ properties:
->           maximum: 32
->       minItems: 1
->   
-> +  pinctrl-0:
-> +    description: Default pinctrl state
-> +
-> +  pinctrl-1:
-> +    description: Can be Sleep or Wakeup pinctrl state
-> +
-> +  pinctrl-2:
-> +    description: Can be Sleep or Wakeup pinctrl state
+On September 2, 2025 12:59:05 PM PDT, Krzysztof Kozlowski <krzk@kernel=2Eor=
+g> wrote:
+>On 02/09/2025 21:38, Ranganath V N wrote:
+>> Corrected a few spelling mistakes to improve the readability=2E
+>>=20
+>> Signed-off-by: Ranganath V N <vnranganath=2E20@gmail=2Ecom>
+>> ---
+>>  Documentation/devicetree/bindings/submitting-patches=2Erst | 2 +-
+>>  Documentation/filesystems/iomap/operations=2Erst           | 2 +-
+>>  Documentation/virt/kvm/review-checklist=2Erst              | 2 +-
+>>  3 files changed, 3 insertions(+), 3 deletions(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/submitting-patches=2Erst=
+ b/Documentation/devicetree/bindings/submitting-patches=2Erst
+>> index 46d0b036c97e=2E=2E191085b0d5e8 100644
+>> --- a/Documentation/devicetree/bindings/submitting-patches=2Erst
+>> +++ b/Documentation/devicetree/bindings/submitting-patches=2Erst
+>> @@ -66,7 +66,7 @@ I=2E For patch submitters
+>>       any DTS patches, regardless whether using existing or new binding=
+s, should
+>>       be placed at the end of patchset to indicate no dependency of dri=
+vers on
+>>       the DTS=2E  DTS will be anyway applied through separate tree or b=
+ranch, so
+>> -     different order would indicate the serie is non-bisectable=2E
+>> +     different order would indicate the series is non-bisectable=2E
+>That's not entirely a spelling mistake
+>https://en=2Ewiktionary=2Eorg/wiki/serie#English
+>
+>Best regards,
+>Krzysztof
+>
 
-nit: change Sleep and Wakeup to be in quotes, i.e. "wakeup", "sleep"
+Obsolete=2E  Close enough for me=2E=20
 
-Other than that, LTGM
 
-Reviewed-by: Kendall Willis <k-willis@ti.com>
-
-> +
-> +  pinctrl-names:
-> +    description:
-> +      When present should contain at least "default" describing the default pin
-> +      states. Other states are "sleep" which describes the pinstate when
-> +      sleeping and "wakeup" describing the pins if wakeup is enabled.
-> +    minItems: 1
-> +    items:
-> +      - const: default
-> +      - const: sleep
-> +      - const: wakeup
-> +
->     power-domains:
->       description:
->         Power domain provider node and an args specifier containing
-> @@ -122,6 +142,11 @@ properties:
->       minItems: 1
->       maxItems: 2
->   
-> +  wakeup-source:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    description:
-> +      List of phandles to system idle states in which mcan can wakeup the system.
-> +
->   required:
->     - compatible
->     - reg
-> 
-
+~Randy
 
