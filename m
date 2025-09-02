@@ -1,138 +1,170 @@
-Return-Path: <devicetree+bounces-211820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211821-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5703AB40B5D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:59:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CC6B40BA6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:08:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F05EF562D0D
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:59:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B993C1B63A96
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:08:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97547341ABA;
-	Tue,  2 Sep 2025 16:59:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59E1341679;
+	Tue,  2 Sep 2025 17:07:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WrU7l8Ta"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QrJcHnY2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D032E341AAA;
-	Tue,  2 Sep 2025 16:59:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB8934165E;
+	Tue,  2 Sep 2025 17:07:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756832363; cv=none; b=YkaIiJG8vQp8C7ks2MaCXRX/y+PASKzZo9ZEONL/5TlfruTJ0F/iZu3bMG4njIpTO/CEjNUHBpwr7dJQmHLRBnzQaJF2UBN4ZshDjuoSdo8iiZUQt2XMED/i49OU6BUbcfb7txacZftGLrJaQnZlOJp2X+4qJQlw8Mx77OuMUMc=
+	t=1756832850; cv=none; b=NDgtOnoMSosynPyADH359u2hnJ71PKCfgSpEPAcHToK5btW4ThzzR/R3OnfpWFIiVpSNhij+VRD/bk8ax2ArROxWH86h073h4F5z/kWmBhlMiU151ap4UamMZNkAxAhxARoMZqpHxPbEwcxAjWaIm2fjR4DgE/7O+xTJMzKyTfY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756832363; c=relaxed/simple;
-	bh=HUkSGRPN4BD+fEvRlZx7d7GFizdwa+PnjQ0AQqBdqaQ=;
+	s=arc-20240116; t=1756832850; c=relaxed/simple;
+	bh=IYDkzilxbSRyvx9Io0tT0IQnawm6gQq1M15aM43RTy0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sp9bsEVPYTfidH4zSWom5QVFUltI/Q4BKHC8yOvAcIO4XyHmMzonFUxTo3O1Iw/c5BvEi41CFD9JeJ5V447uWWW4Nnq3VqaXMZiKO2h6tIJu88klbvjwg/bE63UuaEMQ2kfCNmHXII4TFK9d0qo150zZnTQaoyyUnJp77zC6+8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WrU7l8Ta; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-afcb7ace3baso398066066b.3;
-        Tue, 02 Sep 2025 09:59:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756832360; x=1757437160; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=xtcABniGBGfe4M36DJWdff4JzQBtomJlWVOqnivR4+0=;
-        b=WrU7l8TaU0meiRT0oqIoVkMKvJiWK/sSayV2J7s/ggka6N18iGC34DEWSSWjod0Rpn
-         3Eb1uWxi9erbosT4wRsNQy2vstD/mdb8aoeY7oGT9BOmfF9yCF8w0pQFjCLXEtAyujU5
-         KeJ079rR3JiRm0uCHO3pXxj4d1/pmdnDis7jIoHnVMtc5Q6KJLPJPegq4D+ZRpZE5xvD
-         w7UP2ZIuJe0DTsMcSdZ2SDEzhvolbw3ioNhYBHRviYE9ATfdalAnCTNl6g+mtQU9ZdyX
-         QyIGpvlyzm76p3nj6ublXq8VbCcBuoi4we/D3mOHOxoZXIN0g/byQANf+ON5UZ0Z9zvx
-         SWEw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756832360; x=1757437160;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xtcABniGBGfe4M36DJWdff4JzQBtomJlWVOqnivR4+0=;
-        b=vIq4k0OUlkj1Gv4UEK6ytFqjr2rJLq4gp1rTSCK090oJMZG89B7wLvMr+Bb63nPuXD
-         oNr/rx+bl1ItQKK6oVYIBa6dDLTjDPOadlqU0m4xUfkqGKes/jaqRIhGzIxDtBR5rTlx
-         PZodYSFdCPMrOkHE9TXhTEzNJSdx5x5Cl9lIBKNZmm7xEjKVhbYA5YL5IK9aT4mfazzI
-         Hb5VAlfU4ez9CYXq/b32zexUTHXaB2iXTWvRejraStulMq/utbYoG0SkzYcQObx1geX8
-         F/j7EIT12nzV5hSgTEoJldfneMGRfSyVErnHmWaM4Qj+IIcKIL/wMIVwApfk88KfAbAK
-         /gaQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWd0XRCMX2aVM1CZpVA2aUldGP9mUsQ6fasNGUeaw68g57787HdSfFWYL9wJcQH/xLjC0vTsbFyU8Ou@vger.kernel.org, AJvYcCXfLA8Uei+mhPBIJTYAjIfd8PAgdWasNrBJIlmrDr7i9okgluI7wLqLGc/1btQyqywk9easExhBMDpEgoiK@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/XTyYDDTdYnsYx/2gQOZlFOq9ty3FHShqjt5t7ApQYVFWOjrm
-	YlMIgnaH5HWoN145zpHUkX1r6cXaT0miRy4qrusTCyo4vdAhikpVqg21
-X-Gm-Gg: ASbGncu/Z8SzgD7GUFip+RKBBBkXzXoOQ2BvbeepLvdV6aps8z4A0DT3tkxMGLiXi0t
-	AAoCC2N0kGn3pa4ZF2kCbj64LTMDuJLWKm8oICUHIv/9A6AlN16nknNsmEDtORO15PDTuYIFckQ
-	6bOn5CloTK2tsm/wr0iGPWLPqh93bfNPknpchKIFMjI85RrPx+gHz5Z13HCP2maAjr06QDOoUyi
-	Tqwe1kOqBaj2ecsDPpwQZdWTpiGkUAgLpHqv5AxT9tEvEwz4mhT9PicQ09c9101Xfcy8vwlpwou
-	T7eJ4Z0R0lIgjA3VqLwp37MSXXDTgfT09wwpCRMvKtaWye3g13LFo4BcoUkgFLTwZEKhwVGZCNE
-	NADeOwIDLY1bA4ncqrA==
-X-Google-Smtp-Source: AGHT+IFmwKHYfonApFOOGip4uG3j2rTCt9Nr86ZM5L26iKq4gF5nLZmvoVLWR3ySUVIH9PxrFVWW8Q==
-X-Received: by 2002:a17:907:1b22:b0:aff:16eb:8b09 with SMTP id a640c23a62f3a-b01d8a2639dmr1080892366b.5.1756832359853;
-        Tue, 02 Sep 2025 09:59:19 -0700 (PDT)
-Received: from andrea ([151.76.45.212])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61eaf5883b6sm3236369a12.20.2025.09.02.09.59.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 09:59:19 -0700 (PDT)
-Date: Tue, 2 Sep 2025 18:59:15 +0200
-From: Andrea Parri <parri.andrea@gmail.com>
-To: Xu Lu <luxu.kernel@bytedance.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	alex@ghiti.fr, ajones@ventanamicro.com, brs@rivosinc.com,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com
-Subject: Re: [PATCH v2 0/4] riscv: Add Zalasr ISA extension support
-Message-ID: <aLciY2putG8g2P9F@andrea>
-References: <20250902042432.78960-1-luxu.kernel@bytedance.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=lmB0QjY0EdD/OQDGuwMNmBQAvO0hHEEUGyG1OlVqieepEdm+j5uTNo384nDqMeGyQrxwGHB+2gydwO1Gxp7nmY/X5dNgVTZ9P9pH08lOPTi5B+/IWmlgcWw4FGQQVZ84Qxq1AfzPEntgy+Xj2xy5NrlxV9BFiU3MvaDdKmiuNbI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QrJcHnY2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30155C4CEED;
+	Tue,  2 Sep 2025 17:07:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756832850;
+	bh=IYDkzilxbSRyvx9Io0tT0IQnawm6gQq1M15aM43RTy0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QrJcHnY2/wjwWY+uPJoel9dpLf4kO7HdRU6XfNCfelnVc14HkpJBicDAYW3ppNTJA
+	 zDtST6cdUj/fpUtCh1fdfTBW6oTh+xS3J6pr5Y4TlOuIuwTQn5likfZAlWe/x5gPZu
+	 dgIz5ucR3jdTarirjfImBycxGgX25tWjBXNetCXkbAR8RxmHDzC0q0uCAPK8WoE4+M
+	 tuEG8LKwJNUsqoR+l/XjRIzziPicjVv0D8Z3Fa/lPjyOeLABlHA8p2jd79ULtQ8tnE
+	 lPYzPJWO25WBnAn/VqyYrfzYh0xj7tumOMcunOQdGWGSO4bfNc/MW8ruyl7SAfD9eY
+	 C8oiFXpa8hRcA==
+Date: Tue, 2 Sep 2025 19:07:25 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andyshrk@163.com>, 
+	heiko@sntech.de, hjc@rock-chips.com, naoki@radxa.com, stephen@radxa.com, 
+	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, 
+	yubing.zhang@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh@kernel.org, 
+	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
+Subject: Re: [PATCH v7 00/10] Add support for RK3588 DisplayPort Controller
+Message-ID: <3ygqnj4idey7u4m7ltlv7pnfhkkvcepmpfdijdszctaeopq3ky@qteg33comjl3>
+References: <20250822063959.692098-1-andyshrk@163.com>
+ <bochli5u37mhc6eup7h2oz3yeignofbbj4k5nrvm2k7zf6f4ov@t2sje4gmveqa>
+ <d040da3e-501f-45d8-bcbb-95fa77e94a59@suse.de>
+ <20250828-tangible-wakeful-coati-ec27d1@houat>
+ <n3scvjsx2aec2ijnr5wwevkmhtegkts5nb43yti7dkjujqaezq@shbcy7ftibzo>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+	protocol="application/pgp-signature"; boundary="kkc2r2aygpzd7tty"
 Content-Disposition: inline
-In-Reply-To: <20250902042432.78960-1-luxu.kernel@bytedance.com>
+In-Reply-To: <n3scvjsx2aec2ijnr5wwevkmhtegkts5nb43yti7dkjujqaezq@shbcy7ftibzo>
 
-> Xu Lu (4):
->   riscv: add ISA extension parsing for Zalasr
->   dt-bindings: riscv: Add Zalasr ISA extension description
->   riscv: Instroduce Zalasr instructions
->   riscv: Use Zalasr for smp_load_acquire/smp_store_release
 
-Informally put, our (Linux) memory consistency model specifies that any
-sequence
+--kkc2r2aygpzd7tty
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v7 00/10] Add support for RK3588 DisplayPort Controller
+MIME-Version: 1.0
 
-  spin_unlock(s);
-  spin_lock(t);
+On Thu, Aug 28, 2025 at 03:56:21PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Aug 28, 2025 at 10:05:28AM +0200, Maxime Ripard wrote:
+> > On Thu, Aug 28, 2025 at 09:50:34AM +0200, Thomas Zimmermann wrote:
+> > > Hi
+> > >=20
+> > > Am 28.08.25 um 00:24 schrieb Dmitry Baryshkov:
+> > > > On Fri, Aug 22, 2025 at 02:39:44PM +0800, Andy Yan wrote:
+> > > > > From: Andy Yan <andy.yan@rock-chips.com>
+> > > > >=20
+> > > > >=20
+> > > > > There are two DW DPTX based DisplayPort Controller on rk3588 which
+> > > > > are compliant with the DisplayPort Specification Version 1.4 with
+> > > > > the following features:
+> > > > >=20
+> > > > > * DisplayPort 1.4a
+> > > > > * Main Link: 1/2/4 lanes
+> > > > > * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
+> > > > > * AUX channel 1Mbps
+> > > > > * Single Stream Transport(SST)
+> > > > > * Multistream Transport (MST)
+> > > > > * Type-C support (alternate mode)
+> > > > > * HDCP 2.2, HDCP 1.3
+> > > > > * Supports up to 8/10 bits per color component
+> > > > > * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
+> > > > > * Pixel clock up to 594MHz
+> > > > > * I2S, SPDIF audio interface
+> > > > >=20
+> > > > > The current version of this patch series only supports basic disp=
+lay outputs.
+> > > > > I conducted tests with DP0 in 1080p and 4K@60 YCbCr4:2:0 modes; t=
+he ALT/Type-C
+> > > > > mode was tested on Rock 5B, DP1 was tested on Rock 5 ITX by Steph=
+en and Piotr.
+> > > > > HDCP and audio features remain unimplemented.
+> > > > > For RK3588, it's only support SST, while in the upcoming RK3576, =
+it can support
+> > > > > MST output.
+> > > > >=20
+> > > > [skipped changelog]
+> > > >=20
+> > > > > Andy Yan (10):
+> > > > >    dt-bindings: display: rockchip: Add schema for RK3588 DPTX Con=
+troller
+> > > > >    drm/bridge: synopsys: Add DW DPTX Controller support library
+> > > > >    drm/rockchip: Add RK3588 DPTX output support
+> > > > >    MAINTAINERS: Add entry for DW DPTX Controller bridge
+> > > > I tried pushing patches 1-4, but got the following error:
+> > > >=20
+> > > > dim: ERROR: 5a68dcf5837a ("MAINTAINERS: Add entry for DW DPTX Contr=
+oller bridge"): Mandatory Maintainer Acked-by missing., aborting
+> > > >=20
+> > > > I'm not sure how to handle MAINTAINERS changes (or whether it's fin=
+e for
+> > > > me or not), so I will probably push patches 1-3 in a few days, if n=
+obody
+> > > > beats me (or unless somebody points out a correct process for
+> > > > MAINTAINERS changes).
+> > >=20
+> > > That warning has been added recently to make sure that patches do not=
+ get in
+> > > without sufficient review. It's overly pedantic, though.
+> >=20
+> > It's not "overly pedantic", it follows the contribution rules. I'd argue
+> > that, if anything, we've been overly tolerant with that kind of
+> > practices.
+> >=20
+> > We do have a bug with handling MAINTAINERS changes at the moment. But
+> > everything else shouldn't be ignored: either patch MAINTAINERS to
+> > reflect the actual contribution path, or get the maintainers Ack.
+>=20
+> For me that points out that MAINTAINERS changes should be integrated
+> into the corresponding driver patch rather than being a separate patch.
 
-behaves "as it provides at least FENCE.TSO ordering between operations
-which precede the UNLOCK+LOCK sequence and operations which follow the
-sequence".  Unless I missing something, the patch set in question breaks
-such ordering property (on RISC-V): for example, a "release" annotation,
-.RL (as in spin_unlock() -> smp_store_release(), after patch #4) paired
-with an "acquire" fence, FENCE R,RW (as could be found in spin_lock() ->
-atomic_try_cmpxchg_acquire()) do not provide the specified property.
+Not really. It's really just a bug in dim, there's no hidden intent :)
 
-I _think some solutions to the issue above include:
+Maxime
 
- a) make sure an .RL annotation is always paired with an .AQ annotation
-    and viceversa an .AQ annotation is paired with an .RL annotation
-    (this approach matches the current arm64 approach/implementation);
+--kkc2r2aygpzd7tty
+Content-Type: application/pgp-signature; name="signature.asc"
 
- b) on the opposite direction, always pair FENCE R,RW (or occasionally
-    FENCE R,R) with FENCE RW,W (this matches the current approach/the
-    current implementation within riscv);
+-----BEGIN PGP SIGNATURE-----
 
- c) mix the previous two solutions (resp., annotations and fences), but
-    make sure to "upgrade" any releases to provide (insert) a FENCE.TSO.
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaLckTAAKCRAnX84Zoj2+
+dvUNAYCXA+YfH43/lvB6Cay1XQoaT6hY+j/3vvS/vks7PUidYe3u20HeFQ6TDCMt
+fDk7xbsBfAg4iZlxbGaBsHx/isVkX0/hsjK1EZiqd0QFjc1leQ3iDtnQ7qFLJv9m
+BMMAuZ+5Zg==
+=yuqj
+-----END PGP SIGNATURE-----
 
-(a) would align RISC-V and ARM64 (which is a good thing IMO), though it
-is probably the most invasive approach among the three approaches above
-(requiring certain changes to arch/riscv/include/asm/{cmpxchg,atomic}.h,
-which are already relatively messy due to the various ZABHA plus ZACAS
-switches).  Overall, I'm not too exited at the idea of reviewing any of
-those changes, but if the community opts for it, I'll almost definitely
-take a closer look with due calm.  ;-)
-
-  Andrea
+--kkc2r2aygpzd7tty--
 
