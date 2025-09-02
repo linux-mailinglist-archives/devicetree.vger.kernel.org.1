@@ -1,257 +1,273 @@
-Return-Path: <devicetree+bounces-211822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9E33B40BCF
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:16:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC0F2B40BE6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:22:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7FC3A5617
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:16:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F5BC3B6489
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:22:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15440341ADA;
-	Tue,  2 Sep 2025 17:16:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355D933EB01;
+	Tue,  2 Sep 2025 17:22:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P2Ufg2iT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VNlDoo4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586464C9D
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 17:16:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AF9F4C9D;
+	Tue,  2 Sep 2025 17:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756833373; cv=none; b=j0hldjhSne1URNzwoA5bz86CZiDnNMBy0OB1ozp7G9tVWWc9QFdrecX6S9L5Au5x1YqwGbxo3XrrlI1nN0cRbyXYKYYhH8eF7bS+oCeKbf5orudljE4G9fw6yg48iplmVKyR80+yweKuUORGqMdh5gOxvSSoFB+Vk/ZdJfkki2k=
+	t=1756833725; cv=none; b=PEmGPTIzqDYxJAt6QpfJ3nY3ovE4Rz3xbk7ebFwrCWxZqCCFvBnFGKay3/pRuH5+3iF/MREsUzG9bDJcWgtlx9/+r87TIqEH0e1Vtl/BUbhqrVK9CEPUn4qFp8ZtMLi9QysW8TrXqwGFV9EH5eVc+4ANfBmsMLXE/4rxF/+9xmk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756833373; c=relaxed/simple;
-	bh=GGixmQHMnuiRSS06dnefK9PTyJsBbkjIHfLjT8VKwlA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VyTRbAuBOoFGPteozklIzeXtgWQADymo+qZwLNX1h6Zby8kVz+BkxhvW1nwR4EtQKNlfdJHSJUBIOwMEf8+a9Lau4ALkEqbPV9v/JJw0dO/k0NuLBiaQXibYfXn3rYM+AfLbiGaOQA7CbgevVf7al51IvS5v40diNEmdk1cPqek=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P2Ufg2iT; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqHRn004234
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 17:16:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=3YLUXsBb+H2fMN/x6xB9KreQ
-	sLQVf3Bz8PIfMA43Cqs=; b=P2Ufg2iTd5xoqKvZgqUNWwwNog0r3wJv3SJ2a0/3
-	rcX2pW9xuf5I8vFAOdMTE8gRP2zn1KI5KW4IXo8yg1sXJHdHPmHUoDoLtTDhs5Is
-	bsTufpY0YUItHxmYiElD+6IP+VYLjqKLIQNFK+sXghAwUP82iFKpMXIO4hadr/dY
-	FyvOAYfGplOytGn4F3Cf+yDc7Dm56udzaU0eTGLuJ4g5mCBKbqkK2l3DDWPt1OVf
-	a5L9DKpX76jrIA3L+8HgGQuFotoyxrRo+lNF6f2TglXr4bef9qhrkVkTdtQ3nDGo
-	QlsySFGVNG3O99OfRSbORBb7ouZxi0EM2hFYRxEYu4rpXw==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjgnsr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 17:16:09 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b302991816so93767021cf.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 10:16:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756833368; x=1757438168;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+	s=arc-20240116; t=1756833725; c=relaxed/simple;
+	bh=B6M7C6RAvQGIo2fAq8KjeI0slfKrcN2+BChM7Fx5Yek=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CrK0IEDCRusCHGNZzFJ5A8sH44LqTBKKXNMSBM4yVkhUSc1D3hnja/GPgLSiVq+b5+oAaTYQmwOj8IzEjDWYJc2UIP++nByYZuMifLwx5zNRMvKIvhyUz6LW3PfPCUoLYv4jx8PgDzaV2v+4Deupxem5Ux5CkX98CIJFggRtVzo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VNlDoo4a; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-55f74c6d316so3070315e87.0;
+        Tue, 02 Sep 2025 10:22:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756833721; x=1757438521; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=3YLUXsBb+H2fMN/x6xB9KreQsLQVf3Bz8PIfMA43Cqs=;
-        b=QIO1NgKlbxS20EP0rTXY0ElqGlfsDFRrOurKNZqypl50er2gfGSFoa4GBdKYMmjMPn
-         X92ClnF1AtZBSWBxkMNVsfNXu7a1QORLH6iVYJDLfpRG9ULcpupx6gQojFGs1aSziPf3
-         BQiTQmRX4LxqsqK5c6OBkO8142uVS+NM0yUfUcmZ5fSqEoPItMDx98O2lf+noxFBw8MP
-         DPQqGXg0++vCiZ1GrSJL0lUZzcRtaUK2HAZ9td/OLYBjgazBq8P/R6EKjRPmktZR13wQ
-         qMYCU6q6F53uw/10wBjwi2wHXmqOT51LNs2TopUjRfsVY0Otg3HJ559RA0FLkva9QXR0
-         3nUA==
-X-Forwarded-Encrypted: i=1; AJvYcCWGLbtCpsVDHe6jwBDhpLTiYJ/iZQIosNAB7Tb1xzxOwtx+6uGxpNWx2kmicoE4Nxuj9Y4Nt6oRgG4E@vger.kernel.org
-X-Gm-Message-State: AOJu0YxMyB+FyMtVkIzXa3tb2NesfL5zMBxta98xUWRM3U/jOXwa3w5t
-	kLY07BHfYLAf1IMdv0q6oPOgm/GUMWJhjUFqx2T/+eCsz5Tij47C/AWW2rqIwrB0+59BmuSI4MS
-	puG1NpohjvnhuVnLACdRT/7jnJ9yvBD6B8gO/liDOiFnwqytPbiiWQSzgEYHSee61
-X-Gm-Gg: ASbGnctJu9scYrGe/a516GShAeJE5cEn3wWu39qcMdnUbKZ233ni5zIt8tGxTMnR/O9
-	8IYTdq8URfR81YJtigUIIowrXg6132xyF5K3HVEbdCWdrZdv4x1IKCFIC8nqfmok+Gx7HnsiBZY
-	7rqbAwZSQ9/cAp2UrZe9cRKz0F7UlnnOP1FFHf3CwLwL0rUVkwgwoNTL3huRu2gu/CmCcl2koDp
-	Pu4riM20tCBWAoOEDqyxlBMxOmI9cqAUPaAKim14EVpySRcGDzdBksmhkVCsz74xzig0LytqYSE
-	TdMTa+ECguxPt6Y0iclB/gzYLorVFTCzz/3d0Jvaxhw0QqBZPWTpRJRN7BAtR5/d4wQdzUKhQvG
-	KJ8SljMloeKFeX+BeoMje+I/Q37B3PsufBpaqziBlpvpU+C/6sTdM
-X-Received: by 2002:a05:622a:2615:b0:4b3:19c5:68ec with SMTP id d75a77b69052e-4b31d80cb69mr138409531cf.12.1756833368135;
-        Tue, 02 Sep 2025 10:16:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG5rotFg1jBTAZEAuapDecKRJQB2mz3OMz0pGfo5EL0QAG3I96gAKcj9HSKzh0OrRoUDRSojw==
-X-Received: by 2002:a05:622a:2615:b0:4b3:19c5:68ec with SMTP id d75a77b69052e-4b31d80cb69mr138408861cf.12.1756833367575;
-        Tue, 02 Sep 2025 10:16:07 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-560827aa987sm810618e87.135.2025.09.02.10.16.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 10:16:06 -0700 (PDT)
-Date: Tue, 2 Sep 2025 20:16:04 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
-Cc: Monish Chunara <quic_mchunara@quicinc.com>,
-        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
-        Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org,
-        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
-        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
-        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
-        Dikshita Agarwal <quic_dikshita@quicinc.com>,
-        Vishal Kumar Pal <quic_vispal@quicinc.com>
-Subject: Re: [PATCH 3/5] arm64: dts: qcom: lemans-evk: Extend peripheral and
- subsystem support
-Message-ID: <ctwvrrkomc3n6gginw2dp5vip7xh5jhwbi5joyr64gocsm2esb@4zfpbvvziv5i>
-References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
- <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
- <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
- <3f94ccc8-ac8a-4c62-8ac6-93dd603dcd36@quicinc.com>
- <zys26seraohh3gv2kl3eb3rd5pdo3y5vpfw6yxv6a7y55hpaux@myzhufokyorh>
- <aLG3SbD1JNULED20@hu-mchunara-hyd.qualcomm.com>
- <ozkebjk6gfgnootoyqklu5tqj7a7lgrm34xbag7yhdwn5xfpcj@zpwr6leefs3l>
- <ed3a79e0-516e-42f4-b3c6-a78ca6c01d86@oss.qualcomm.com>
- <ly5j2eodrajifosz34nokia4zckfftakz5253d2h6kd2cxjoq3@yrquqgpnvhp6>
+        bh=UHL/9iHScP0f81WBDBOizsme4Dv5vS87EI96jZlcSN0=;
+        b=VNlDoo4aabpzvnbp+UD/sxN7uinL2Th/IL3DVcU9Gpki4+6sxp2sVDtAARO2GhoZdQ
+         3Cw5XKrTM7wub1dUyLuSEr43ZP69TrKyY68pvUguQf4CjO3RbL64NGsJfy+eZrnd46Bm
+         oSh7kHDgZFAWsIs8DHTJaTVMFnOT/4wwNiwk5aINdSVx3kznQ/bAWMiXtoSklJIGRrdf
+         p3tt3LgpBiM0H0DUWJephh0rRd68wruoHTkURT+SEsR4chhGTFguej4JWpvTWHaBTAsW
+         qRIsyox1WSGhJ9y5bMILn9e3KUEkSz4jXYdjAML1q9AFW5i8Q9D1ud37n/aaDjKPNYUx
+         7YZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756833721; x=1757438521;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UHL/9iHScP0f81WBDBOizsme4Dv5vS87EI96jZlcSN0=;
+        b=g79gPu7YLF0TsmSZWA1PSa0db4TTNbSHNK1rd4Xm8VCZPRKOwVeG6Uzogml+7MI/UF
+         tQrWho/qF7ecvK89WR7uK/su3LdE99mIPTXM/1+GmzG1bFja0dmdwc5BzwXOq7BTjfqF
+         Kj6+mjKLnNOO7o1poNSBCi/6nHZyx+PfFQ5n/uA0BzDT4nwxWNaWpd/KwphD54i7bSmD
+         /qrRegUxUtTg6bt0Cknw+Evqn2wRjZ1RTPsSwYuQAwfpk5NAdyi1ORKX/HJAhwetpaIi
+         2jvVfSodyyJCQcD/wBlVSph24ucJkDqDk0li59Pzh3GuyhDYKjBNiw+eDEXuUWt0Wzgq
+         rkMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUC+DyHkKepa4K/jpZdlgYGA+vIxWI513Im26ziCtjuyFz+lLO7DwvK7wWsyr/OFj+35/LVkhtDHXOEOAM=@vger.kernel.org, AJvYcCUFXJsNtGZs3YJbOTU0dHFlf5AAa39t7ihWgliANvOM5RdkxxkQxnCFp85EMpNx7TjviP/6PeMDzShInzAY@vger.kernel.org, AJvYcCVVr5Tm6Ttx9rneoZexUZW+or/kQsQCwiOUGtY22H8gO4cAqIO9IEKbNapV77CBpGNzyPOjyDsCSknu@vger.kernel.org, AJvYcCW0w4zVmTbvOFXLrraYAz3QV3t4HpoQUosbD9pot3Rahlh/BegTTKV0X7sL46P8YfqzEx9soDgphWo=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyJhA1bACAwP99VB6aJ/qmURmn3vVnUFAd+MZCgOXGuwy8LHN01
+	ByMpAl1S+4l+USC4500G/AU0x6ACnjXhnWFr6uzvshb5AiJPRY534Rns3cDC39ZGGzdinjTcTv9
+	rUef/h6Z1YvXyRphpxqqzLMyrzc0/Lh4=
+X-Gm-Gg: ASbGncusWsZhIbDHxiv4o1I4rcm++zwToBS4wlFXfVJx3s46XIkY4u3F9AhBzjsLRWY
+	dXXS8b37zaE7KJL81UnH1CnSxJr7to0ayunv233pvjF6rvMQMCBmDoLmOuJ667IfpGV478xMjQU
+	hOsYn8lbpd8OXPJWmVmMaU51+GkPToB3C5DqkLMIIL9a7GFBWVJiPKATnTDFkbJqgcq2RAYtB6r
+	+QB0nzfv8z1ijutAQ==
+X-Google-Smtp-Source: AGHT+IE8oTTq+xEDbODxk6NkVp632kFnXlauLi5KyQdm1eD41EnADMVC5Pj54/S9hW5DBLjU9xVeRCbpJzdGAY5g6ME=
+X-Received: by 2002:a05:6512:6812:b0:55f:44b8:1eda with SMTP id
+ 2adb3069b0e04-55f709c5066mr3203274e87.57.1756833720986; Tue, 02 Sep 2025
+ 10:22:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ly5j2eodrajifosz34nokia4zckfftakz5253d2h6kd2cxjoq3@yrquqgpnvhp6>
-X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b72659 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=-eXanXclA7daHIafeBEA:9
- a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-GUID: kRjKmYxI8ycmh40-d8q61xUbnFJeoWq6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX3na6xvjOcnLe
- RsdZ9edT0LsfmmMxeS+8S1Hq9J5x9So1HeyKzbtemdA+OPF3vdoIrjDGdXInFdxF2ajGNcEbQsh
- TTl6R360S8QqXqjL//ufNlsCJvMvVsLG5NO0G7+CkalWewBKYVCivpjA8CAR2PMZlGuk60Y6PSr
- HYRN0Bsuo0geuNhZfejLHtYXxFu5tYXdy3xX1rHrTy15oCipe0jZFTwXgijkx41dwHbrRkTnNRH
- HvIhtvd8+Pc3YEpyFY6zgz3Rv0zTY/5IIaqDAatOULtHFQVB04hAFQaeEmhXo6FFYwSoAUtLg2z
- N9DK203qv/1LqfBIq1GybCVxP+25gxwG90nFOswBPq3leOf9AqxZQk7x3woCk0p0fNuzJLX2tRR
- MmWi+kaK
-X-Proofpoint-ORIG-GUID: kRjKmYxI8ycmh40-d8q61xUbnFJeoWq6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_06,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
+References: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com>
+ <20250831-tegra186-icc-v1-3-607ddc53b507@gmail.com> <20250901055322.eorgaa3sycydjrrj@vireshk-i7>
+In-Reply-To: <20250901055322.eorgaa3sycydjrrj@vireshk-i7>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 2 Sep 2025 12:21:48 -0500
+X-Gm-Features: Ac12FXwAMFX1p_PsOnmUDjM6sbNKJYvGiQz3wZmgcPdZm7OguorJSHmUZJm_-T4
+Message-ID: <CALHNRZ_EbtHSXaDQ+1gGf3HjdyW5Q54EDN901-r8A_aXLbDJkw@mail.gmail.com>
+Subject: Re: [PATCH 3/8] cpufreq: tegra186: add OPP support and set bandwidth
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	"Rafael J. Wysocki" <rafael@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Sep 02, 2025 at 05:34:27AM +0300, Dmitry Baryshkov wrote:
-> On Mon, Sep 01, 2025 at 01:02:15PM +0530, Krishna Kurapati PSSNV wrote:
-> > 
-> > 
-> > On 8/29/2025 9:54 PM, Dmitry Baryshkov wrote:
-> > > On Fri, Aug 29, 2025 at 07:50:57PM +0530, Monish Chunara wrote:
-> > > > On Thu, Aug 28, 2025 at 04:30:00PM +0300, Dmitry Baryshkov wrote:
-> > > > > On Thu, Aug 28, 2025 at 06:38:03PM +0530, Sushrut Shree Trivedi wrote:
-> > > > > > 
-> > > > > > On 8/27/2025 7:05 AM, Dmitry Baryshkov wrote:
-> > > > > > > On Tue, Aug 26, 2025 at 11:51:02PM +0530, Wasim Nazir wrote:
-> > > > > > > > Enhance the Qualcomm Lemans EVK board file to support essential
-> > > > > > > > peripherals and improve overall hardware capabilities, as
-> > > > > > > > outlined below:
-> > > > > > > >     - Enable GPI (Generic Peripheral Interface) DMA-0/1/2 and QUPv3-0/2
-> > > > > > > >       controllers to facilitate DMA and peripheral communication.
-> > > > > > > >     - Add support for PCIe-0/1, including required regulators and PHYs,
-> > > > > > > >       to enable high-speed external device connectivity.
-> > > > > > > >     - Integrate the TCA9534 I/O expander via I2C to provide 8 additional
-> > > > > > > >       GPIO lines for extended I/O functionality.
-> > > > > > > >     - Enable the USB0 controller in device mode to support USB peripheral
-> > > > > > > >       operations.
-> > > > > > > >     - Activate remoteproc subsystems for supported DSPs such as Audio DSP,
-> > > > > > > >       Compute DSP-0/1 and Generic DSP-0/1, along with their corresponding
-> > > > > > > >       firmware.
-> > > > > > > >     - Configure nvmem-layout on the I2C EEPROM to store data for Ethernet
-> > > > > > > >       and other consumers.
-> > > > > > > >     - Enable the QCA8081 2.5G Ethernet PHY on port-0 and expose the
-> > > > > > > >       Ethernet MAC address via nvmem for network configuration.
-> > > > > > > >       It depends on CONFIG_QCA808X_PHY to use QCA8081 PHY.
-> > > > > > > >     - Add support for the Iris video decoder, including the required
-> > > > > > > >       firmware, to enable video decoding capabilities.
-> > > > > > > >     - Enable SD-card slot on SDHC.
-> > > > > > > > 
-> > > > > > > > Co-developed-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> > > > > > > > Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
-> > > > > > > > Co-developed-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
-> > > > > > > > Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
-> > > > > > > > Co-developed-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> > > > > > > > Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
-> > > > > > > > Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> > > > > > > > Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
-> > > > > > > > Co-developed-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
-> > > > > > > > Signed-off-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
-> > > > > > > > Co-developed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > > > > > > > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
-> > > > > > > > Co-developed-by: Monish Chunara <quic_mchunara@quicinc.com>
-> > > > > > > > Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
-> > > > > > > > Co-developed-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
-> > > > > > > > Signed-off-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
-> > > > > > > > Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> > > > > > > > ---
-> > > > > > > >    arch/arm64/boot/dts/qcom/lemans-evk.dts | 387 ++++++++++++++++++++++++++++++++
-> > > > > > > >    1 file changed, 387 insertions(+)
-> > > > > > > > 
-> > > > > > > 
-> > > > > > > > @@ -356,6 +720,29 @@ &ufs_mem_phy {
-> > > > > > > >    	status = "okay";
-> > > > > > > >    };
-> > > > > > > > +&usb_0 {
-> > > > > > > > +	status = "okay";
-> > > > > > > > +};
-> > > > > > > > +
-> > > > > > > > +&usb_0_dwc3 {
-> > > > > > > > +	dr_mode = "peripheral";
-> > > > > > > Is it actually peripheral-only?
-> > > > > > 
-> > > > > > Hi Dmitry,
-> > > > > > 
-> > > > > > HW supports OTG mode also, but for enabling OTG we need below mentioned
-> > > > > > driver changes in dwc3-qcom.c :
-> > > > > 
-> > > > > Is it the USB-C port? If so, then you should likely be using some form
-> > > > > of the Type-C port manager (in software or in hardware). These platforms
-> > > > > usually use pmic-glink in order to handle USB-C.
-> > > > > 
-> > > > > Or is it micro-USB-OTG port?
-> > > > > 
-> > > > 
-> > > > Yes, it is a USB Type-C port for usb0 and we are using a 3rd party Type-C port
-> > > > controller for the same. Will be enabling relevant dts node as part of OTG
-> > > > enablement once driver changes are in place.
-> > > 
-> > > Which controller are you using? In the existing designs USB-C works
-> > > without extra patches for the DWC3 controller.
-> > > 
-> > 
-> > Hi Dmitry,
-> > 
-> >  On EVK Platform, the VBUS is controlled by a GPIO from expander. Unlike in
-> > other platforms like SA8295 ADP, QCS8300 Ride, instead of keeping vbus
-> > always on for dr_mode as host mode, we wanted to implement vbus control in
-> > dwc3-qcom.c based on top of [1]. In this patch, there is set_role callback
-> > present to turn off/on the vbus. So after this patch is merged, we wanted to
-> > implement vbus control and then flatten DT node and then add vbus supply to
-> > glue node. Hence made peripheral only dr_mode now.
-> 
-> In such a case VBUS should be controlled by the USB-C controller rather
-> than DWC3. The reason is pretty simple: the power direction and data
-> direction are not 1:1 related anymore. The Type-C port manager decides
-> whether to supply power over USB-C / Vbus or not and (if supported)
-> which voltage to use. See TCPM's tcpc_dev::set_vbus().
+On Mon, Sep 1, 2025 at 12:53=E2=80=AFAM Viresh Kumar <viresh.kumar@linaro.o=
+rg> wrote:
+>
+> On 31-08-25, 22:33, Aaron Kling via B4 Relay wrote:
+> > diff --git a/drivers/cpufreq/tegra186-cpufreq.c b/drivers/cpufreq/tegra=
+186-cpufreq.c
+> > index bd94beebc4cc2fe6870e13ca55343cedb9729e99..f0abb44e2ed00a301161565=
+e4c4f62cfed4a5814 100644
+> > --- a/drivers/cpufreq/tegra186-cpufreq.c
+> > +++ b/drivers/cpufreq/tegra186-cpufreq.c
+> > @@ -18,6 +18,7 @@
+> >  #define EDVD_CORE_VOLT_FREQ_F_SHIFT  0
+> >  #define EDVD_CORE_VOLT_FREQ_F_MASK   0xffff
+> >  #define EDVD_CORE_VOLT_FREQ_V_SHIFT  16
+> > +#define KHZ                          1000
+>
+> Can reuse:
+>
+> include/linux/units.h:#define HZ_PER_KHZ                1000UL
 
-Okay, your Type-C manager is HD3SS3220. It drives ID pin low if the VBUS
-supply should be enabled. Please enhance the driver with this
-functionality. You cann't use the USB role status since it doesn't
-perform VSafe0V checks.
+Will do.
 
--- 
-With best wishes
-Dmitry
+>
+> > +static int tegra_cpufreq_set_bw(struct cpufreq_policy *policy, unsigne=
+d long freq_khz)
+> > +{
+> > +     struct tegra186_cpufreq_data *data =3D cpufreq_get_driver_data();
+> > +     struct dev_pm_opp *opp;
+> > +     struct device *dev;
+> > +     int ret;
+> > +
+> > +     dev =3D get_cpu_device(policy->cpu);
+> > +     if (!dev)
+> > +             return -ENODEV;
+> > +
+> > +     opp =3D dev_pm_opp_find_freq_exact(dev, freq_khz * KHZ, true);
+> > +     if (IS_ERR(opp))
+> > +             return PTR_ERR(opp);
+> > +
+> > +     ret =3D dev_pm_opp_set_opp(dev, opp);
+>
+> Won't it be easier to use dev_pm_opp_set_rate() instead ?
+
+I'm not very familiar with the opp system. If I read correctly,
+dev_pm_opp_set_rate() will round to the closest rate while this code
+will fail if the exact rate isn't found. This code is based on the
+existing tegra194-cpufreq driver. And I'm unsure if this was done for
+a reason. I have seen unexpected rates returned from clk_round_rate in
+the development of this topic, so that could be related.
+
+>
+> > +     if (ret)
+> > +             data->icc_dram_bw_scaling =3D false;
+> > +
+> > +     dev_pm_opp_put(opp);
+>
+> The OPP core supports scope based cleanup helpers now, maybe use them
+> to remove all these put calls.
+
+I will look into this.
+
+>
+> > +     return ret;
+> > +}
+> > +
+> > +static int tegra_cpufreq_init_cpufreq_table(struct cpufreq_policy *pol=
+icy,
+> > +                                         struct cpufreq_frequency_tabl=
+e *bpmp_lut,
+> > +                                         struct cpufreq_frequency_tabl=
+e **opp_table)
+> > +{
+> > +     struct tegra186_cpufreq_data *data =3D cpufreq_get_driver_data();
+> > +     struct cpufreq_frequency_table *freq_table =3D NULL;
+> > +     struct cpufreq_frequency_table *pos;
+> > +     struct device *cpu_dev;
+> > +     struct dev_pm_opp *opp;
+> > +     unsigned long rate;
+> > +     int ret, max_opps;
+> > +     int j =3D 0;
+> > +
+> > +     cpu_dev =3D get_cpu_device(policy->cpu);
+> > +     if (!cpu_dev) {
+> > +             pr_err("%s: failed to get cpu%d device\n", __func__, poli=
+cy->cpu);
+> > +             return -ENODEV;
+> > +     }
+> > +
+> > +     /* Initialize OPP table mentioned in operating-points-v2 property=
+ in DT */
+> > +     ret =3D dev_pm_opp_of_add_table_indexed(cpu_dev, 0);
+> > +     if (!ret) {
+>
+> If you handle the error case here, then the below can move out of the
+> if/else block.
+
+I'd prefer not to deviate too much from the tegra194-cpufreq code this
+is based on, so the drivers can be more easily kept in parity to each
+other. But I will look at making this a bit cleaner as per this and
+the next comment.
+
+>
+> > +             max_opps =3D dev_pm_opp_get_opp_count(cpu_dev);
+> > +             if (max_opps <=3D 0) {
+> > +                     dev_err(cpu_dev, "Failed to add OPPs\n");
+> > +                     return max_opps;
+> > +             }
+> > +
+> > +             /* Disable all opps and cross-validate against LUT later =
+*/
+> > +             for (rate =3D 0; ; rate++) {
+>
+> Maybe using while(1) would be more readable ?
+>
+> > +                     opp =3D dev_pm_opp_find_freq_ceil(cpu_dev, &rate)=
+;
+> > +                     if (IS_ERR(opp))
+> > +                             break;
+> > +
+> > +                     dev_pm_opp_put(opp);
+> > +                     dev_pm_opp_disable(cpu_dev, rate);
+> > +             }
+> > +     } else {
+> > +             dev_err(cpu_dev, "Invalid or empty opp table in device tr=
+ee\n");
+> > +             data->icc_dram_bw_scaling =3D false;
+> > +             return ret;
+> > +     }
+> > +
+> > +     freq_table =3D kcalloc((max_opps + 1), sizeof(*freq_table), GFP_K=
+ERNEL);
+> > +     if (!freq_table)
+> > +             return -ENOMEM;
+> > +
+> > +     /*
+> > +      * Cross check the frequencies from BPMP-FW LUT against the OPP's=
+ present in DT.
+> > +      * Enable only those DT OPP's which are present in LUT also.
+> > +      */
+> > +     cpufreq_for_each_valid_entry(pos, bpmp_lut) {
+> > +             opp =3D dev_pm_opp_find_freq_exact(cpu_dev, pos->frequenc=
+y * KHZ, false);
+> > +             if (IS_ERR(opp))
+> > +                     continue;
+> > +
+> > +             dev_pm_opp_put(opp);
+> > +
+> > +             ret =3D dev_pm_opp_enable(cpu_dev, pos->frequency * KHZ);
+> > +             if (ret < 0)
+> > +                     return ret;
+> > +
+> > +             freq_table[j].driver_data =3D pos->driver_data;
+> > +             freq_table[j].frequency =3D pos->frequency;
+> > +             j++;
+> > +     }
+> > +
+> > +     freq_table[j].driver_data =3D pos->driver_data;
+> > +     freq_table[j].frequency =3D CPUFREQ_TABLE_END;
+> > +
+> > +     *opp_table =3D &freq_table[0];
+> > +
+> > +     dev_pm_opp_set_sharing_cpus(cpu_dev, policy->cpus);
+> > +
+> > +     tegra_cpufreq_set_bw(policy, freq_table[j - 1].frequency);
+>
+> Maybe a comment on why exactly you are changing the freq here ?
+
+To my knowledge, this does not change any clocks. The intent here is
+to prime the interconnect data. In the pre-req series, there's a
+change that sets all clocks to max frequency during probe. Then my use
+case involves setting performance governor by default on some boots.
+During testing, I noticed that the interconnect data provided by this
+driver was all zeroes. Which led me to notice that set_bw is only
+called when the target frequency changes. Which wasn't happening
+because clocks were already set to max. If my understanding here is
+wrong or there's a better way to handle this, I will fix it.
+
+Aaron
 
