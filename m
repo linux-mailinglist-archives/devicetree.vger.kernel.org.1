@@ -1,103 +1,128 @@
-Return-Path: <devicetree+bounces-211542-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B3B2B3F719
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:54:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CA76B3F726
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:56:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B375485337
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 07:54:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 169F517529E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 07:56:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E011E2E7620;
-	Tue,  2 Sep 2025 07:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 552782E7F14;
+	Tue,  2 Sep 2025 07:56:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J+9aQw9u"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="q6PjMeKy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7F002DF158;
-	Tue,  2 Sep 2025 07:54:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 950C52E7BCF;
+	Tue,  2 Sep 2025 07:56:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756799657; cv=none; b=T3MFVPL27VBhDxtev4pZ0CCb3Kcg8/h76Y3cYC4ZWIR1p4n65GLkyHV9GCItjFgkAZlXpO0ZJJaNUCw+K8oyq8ZwaOtpmn1QFXKwrTsbcmPpn7LspaCwjtfRKEnll3C62OzT6W7VwUbYEgI3TU1DgUyE3cBT6VzxqUjh8OCMLiI=
+	t=1756799792; cv=none; b=DvlYR+8fJ/in304r5Q2RvYS6Bs66dGFi6HajW9LUb5OAJyb+OSaY2XvKQbKZH0rkbyYLmUgloBiiPzRlmCG5xuVEfwUWVqBHzbVI6amqbfwJVSekx3iARVJ3U6mcgeixq649LFYt1aay/OJaI2MAKY1TVeAQRTNYXs1uddDt8Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756799657; c=relaxed/simple;
-	bh=3nc/wkBY2bIc1bkSOsEmjMvNtgdGFa44cp61YSHyt68=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sn+cxgaP8vQH1pRRlNdq05JGfT2HyjXcMAyMnkyP5VlLqPxtJ9zYJnc5DwRmin5vLbUnHjLztleE5KadZvlYFVpevHvHVdwNkBk7kNdLysWXAgw5h3EwHNxbxbHzbOZQWnW9SzrCn8FBA2amPLi9FrRH/XGgbAxdlXH+/f6eVuQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J+9aQw9u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9EDD7C4CEF7;
-	Tue,  2 Sep 2025 07:54:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756799654;
-	bh=3nc/wkBY2bIc1bkSOsEmjMvNtgdGFa44cp61YSHyt68=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J+9aQw9ulXkFfxweHD0usIU9tUka6m/saOX7lfURvNS73/s+vZUjXpPiwvIF0aPs9
-	 kMLLegURfcv+TrpfzoGri1z3EELyoDPZTwLlumruzT4Fg+71EWCh3/KqtjQM+nO+5O
-	 WA39kPdE4IiGiY/L1BCXWnJ6etZuDIqW3nZ27GXvyUGBAjbKtYmDWY02Lj+OteWC/+
-	 UTmSurQWJz12coiGLFdRx21aeS1Zu61/y8B5sgauy4bW/kXhH6rf5GliYRFALACxP7
-	 gWN+LYta+UqsP667bGMEMOzWMGDIofIa1g12JVsHTsdlx2kpD/IO9C6Ps14ZUVIiSC
-	 UztVm3kqf4aCA==
-Date: Tue, 2 Sep 2025 09:54:11 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Michael Riesch <michael.riesch@collabora.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Kever Yang <kever.yang@rock-chips.com>, Jagan Teki <jagan@amarulasolutions.com>, 
-	Sebastian Reichel <sebastian.reichel@collabora.com>, Diederik de Haas <didi.debian@cknow.org>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Collabora Kernel Team <kernel@collabora.com>, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
-	stable@kernel.org
-Subject: Re: [PATCH v3 2/7] dt-bindings: phy: rockchip-inno-csi-dphy: make
- power-domains non-required
-Message-ID: <20250902-diligent-satisfied-oxpecker-10ea0e@kuoka>
-References: <20250616-rk3588-csi-dphy-v3-0-a5ccd5f1f438@collabora.com>
- <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
+	s=arc-20240116; t=1756799792; c=relaxed/simple;
+	bh=EC93Sb135F1xNZElTaZSyyXghE/horvxRlKCzCtaL/g=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=rebmYIrYPqrf4Bgvxm+zLG9l6LNVuMvkctx6NWDjbuO6T2SupWkAFk7X1DU9/1Hkcl8/4ql3rpz04aL7zpDHDesDf+sc+NY40Tq4NUDqmaCX15yLmw5ID8IzaxNkz7oOjW1rxOd7wsdt4XHuIfS5htiinE7XSy4jz1hGuPncYBQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=q6PjMeKy; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1756799790; x=1788335790;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=EC93Sb135F1xNZElTaZSyyXghE/horvxRlKCzCtaL/g=;
+  b=q6PjMeKyWfT/rgN2fWWJ0D5VikbuKM62MjRWf59FBQ7scsAyZTaI2taq
+   3k2x3L9ubzj6DtcVLE/k8AdKgBJRjmJyqmnIPh7A3Dvkp0dFuxZf6wwqN
+   vFi83I64IlWWJ+PA8uFntrkcU3FbmrunG+ZUYLuk6Roo6zuBlkB79hzSA
+   j9XrAB5HZen2soaN7zylwuwKSAX9Ny65op54FGMojM1IuiMhp7gcy5Sh2
+   dUvjXdWe79pe8aYCOI5PmMP7kK2R1/uXSK5hg8F7dc0+gf82LljJ86E/o
+   9uOzcefAZy23xAPFFhJwlhyN84PmylyrMj9i0WcoLquPrK75PnxmHfHXV
+   Q==;
+X-CSE-ConnectionGUID: Oo81X4TNRaaQSutmf5DBgg==
+X-CSE-MsgGUID: AbNInbwWREO2jvUj5x6Z8g==
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="46488625"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 02 Sep 2025 00:56:24 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.44; Tue, 2 Sep 2025 00:56:08 -0700
+Received: from valentina.microchip.com (10.10.85.11) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server id
+ 15.1.2507.44 via Frontend Transport; Tue, 2 Sep 2025 00:56:06 -0700
+From: Valentina Fernandez <valentina.fernandezalanis@microchip.com>
+To: <conor.dooley@microchip.com>, <daire.mcnamara@microchip.com>,
+	<paul.walmsley@sifive.com>, <palmer@dabbelt.com>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <aou@eecs.berkeley.edu>, <alex@ghiti.fr>,
+	<valentina.fernandezalanis@microchip.com>
+CC: <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/5] Icicle Kit with prod device and Discovery Kit support
+Date: Tue, 2 Sep 2025 08:55:43 +0100
+Message-ID: <20250902075548.1967613-1-valentina.fernandezalanis@microchip.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250616-rk3588-csi-dphy-v3-2-a5ccd5f1f438@collabora.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 
-On Mon, Sep 01, 2025 at 10:47:43PM +0200, Michael Riesch wrote:
-> There are variants of the Rockchip Innosilicon CSI DPHY (e.g., the RK3568
-> variant) that are powered on by default as they are part of the ALIVE power
-> domain.
-> Remove 'power-domains' from the required properties in order to avoid false
-> negatives.
-> 
-> Fixes: 22c8e0a69b7f ("dt-bindings: phy: add compatible for rk356x to rockchip-inno-csi-dphy")
-> Cc: stable@kernel.org
-> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
-> ---
->  .../devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml   | 15 ++++++++++++++-
->  1 file changed, 14 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> index 5ac994b3c0aa..9ad72518e6da 100644
-> --- a/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/rockchip-inno-csi-dphy.yaml
-> @@ -51,13 +51,26 @@ properties:
->      description:
->        Some additional phy settings are access through GRF regs.
->  
-> +allOf:
+Hi all,
 
-Please move it after required: block.
+With the introduction of the Icicle Kit with the production device
+(MPFS250T) to the market, it's necessary to distinguish it from the
+engineering sample (-es) variant. This is because engineering samples
+cannot write to flash from the MSS, as noted in the PolarFire SoC
+FPGA ES errata.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+This series adds a common board DTSI for the Icicle Kit, containing
+hardware shared by both the engineering sample and production
+versions, as well as a DTS for each Icicle Kit variant.
 
-Best regards,
-Krzysztof
+The last two patches add support for the PolarFire SoC Discovery Kit
+board.
+
+Changes since v1:
+ - fix order of properties in mailbox nodes
+ - drop redundant status property from ddrc_cache nodes
+ - fix lowecase hex in reserved memory regions
+
+Thanks,
+Valentina
+
+Valentina Fernandez (5):
+  riscv: dts: microchip: add common board dtsi for icicle kit variants
+  dt-bindings: riscv: microchip: document icicle kit with production
+    device
+  riscv: dts: microchip: add icicle kit with production device
+  dt-bindings: riscv: microchip: document Discovery Kit
+  riscv: dts: microchip: add a device tree for Discovery Kit
+
+ .../devicetree/bindings/riscv/microchip.yaml  |  13 +
+ arch/riscv/boot/dts/microchip/Makefile        |   2 +
+ .../dts/microchip/mpfs-disco-kit-fabric.dtsi  |  58 ++++
+ .../boot/dts/microchip/mpfs-disco-kit.dts     | 190 +++++++++++++
+ .../dts/microchip/mpfs-icicle-kit-common.dtsi | 249 ++++++++++++++++++
+ .../dts/microchip/mpfs-icicle-kit-fabric.dtsi |  23 +-
+ .../dts/microchip/mpfs-icicle-kit-prod.dts    |  23 ++
+ .../boot/dts/microchip/mpfs-icicle-kit.dts    | 244 +----------------
+ 8 files changed, 558 insertions(+), 244 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-disco-kit-fabric.dtsi
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-disco-kit.dts
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-icicle-kit-common.dtsi
+ create mode 100644 arch/riscv/boot/dts/microchip/mpfs-icicle-kit-prod.dts
+
+-- 
+2.34.1
 
 
