@@ -1,93 +1,94 @@
-Return-Path: <devicetree+bounces-211805-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211806-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2B18B40A4A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:13:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D14DBB40A44
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:12:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2718116501E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:12:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 923B13AD937
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:12:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 616D73054F4;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E378133CEA3;
 	Tue,  2 Sep 2025 16:12:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Fb0MAOPR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PjmYkNhV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 623183376BF
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:12:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B7CA338F4F
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:12:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756829561; cv=none; b=jfJByblxJ8lHhVdgWeFYl+EXbZyjfXsbVixEj65pw1dkxVtffdOME6a80LEOIX44MB3QfQyIN8RxgoEcp6DyZSxvfAlYkOgbediTN8HVRas+0yebfvrJxftw5qJcFGyxJdWs0qXThLJT81eO2+tSCBIGel4mMuX+UNnC34OmRcc=
+	t=1756829561; cv=none; b=OspAYujv2YDuf0SrMWWoLOBXsKxtW68ANuQTK3ZABT58QMm2R4k3SWNxn7k9JLk8DFUOsOcn1qWAkqdevhWQeHBNRgpa3J33ZV12I3KXWwl4YlVYeeqNb3Jhkj4rQi1/X6MrfWfPoup+It0WlThZ2vKG1wxLRV5U0Q5lw3zdoXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1756829561; c=relaxed/simple;
-	bh=MCt0AAzgk+Spj4t//WWGOSAsleWLkYbQAko9OKAJnNM=;
+	bh=fD8gmiEfvHWqA/qKuJvc+eRI/STX56LOgZaEfMt7N+Q=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=tI5ZTk7OqkgOhpbz+CT8J9aVL/6RXdosYTl84OvUvpW8uk+h795F3PZ3L1lX71llV07JIQnkB85hEwHt2AlYCHaMwcgANuLC4Gb3mzyP7Rz5g0Hs1x3IaTt5VcGgO7Iw4/K86qx34zaY5/RU5AIQi6kgrfqNb2UYeNK7N5mZuXk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Fb0MAOPR; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=OsG1Yq2ouKwx596j8fAj56ZeqS7Dp+6wayyPXMUponxAE5TTNcGFHNBE75vqRNx3BOJfmmbNnGfW7dhOjOFF7Gj8QO4zuEzNWDL/QgRlkS9208uKASU7mWmy6lcR9JLsBymcfhv9yI++YRquv4kuWmdxYdj45hOqDm0mT/7Rh2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PjmYkNhV; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqAW9001375
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 16:12:38 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqAR4023418
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 16:12:39 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=QgPrdRIlfMd
-	8DirDCyifuaxS1PjXlld6jz6oQI/b/ZY=; b=Fb0MAOPRCC5f06m0HLW0uqYOKbN
-	xC5YNqRb9ac5gs4ZDPKzQx5/yGGl8BXdSARkUwS07+vhPLU42DvJN83CMJ3pWezL
-	E+ZXVJDanefm7qcZXrSIR8EX8iC8jLvZBwaIvKTDKnv3/9uV2mtKN7lvHR6XWpOl
-	XZOqusxKZTb9csYEKcE+i/2zDyQsHSODFZWV2mgoLStDFqUfS8dlil1pfDF4Vq3L
-	SyMpDEDoAaLnItQORFg6tXa6XEhyEULfcWo1YuA8i/2WDdO0awdZ/z7a6GUmMvo8
-	rAjKoUSC6NGDhJhXUOkQo9bLMSIJ2I8BYEMV+3SxaWXskptNkj+C0VKGW1Q==
+	:mime-version:references:subject:to; s=qcppdkim1; bh=Bwb/aCh+px1
+	clBI7DNv6FaMGNCjRZCn6kYUkRggRljo=; b=PjmYkNhVcQKcnCbkJSPJUAYI0iT
+	itEYfYOmODbOesuYreELZm3Z9rR2SVSNqVyXyp31Bx98xh9GWbPCAs1tm040a7eU
+	l2C3SKycrOh5g4fk/AMTgsARcmvJBTqyRruPDIWPtGtv/QQhJXmvi7F+gDPr8bMg
+	PXj94iy3JILpxvOvwx4UkvwFwRQtBdzlWOsZUhATQgjxTv4A/Q6tPb/bw+w4cW1T
+	YLkV3ULDvgnPTQsKYuLgdxq9jd9SCEw4+yLl4d7j+CNQXPznYhG9lHB4xBLxEYOm
+	LXes7BPtE9ihtccjjs4fsjB0WEdVGih+YePNYc2PWxATX5WIB42HiPNCaeA==
 Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48w8wy4acv-1
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnp8maq-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
 	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 16:12:38 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b3476fbe7eso19953661cf.2
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b30d6ed3a4so28342331cf.3
         for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 09:12:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756829557; x=1757434357;
+        d=1e100.net; s=20230601; t=1756829558; x=1757434358;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=QgPrdRIlfMd8DirDCyifuaxS1PjXlld6jz6oQI/b/ZY=;
-        b=gyI2iI8GnqOHMlo0fQgEFEArcCCtodos9MyldhgvrroAAoj4ixN+engmg5rqRkrmnm
-         rgdrVjOtt4g2+Ci66kpL6q5ziAOHCDiXbkX9sV3DVnak9vN/uxhZxab64JCnr/JP26Bh
-         r81xAXQEfc5322kghHwROwZ/kRQoBowgTYqRuVVQUbbMl5RSvfxGVfCIsElMdZ6vBbMb
-         q484J8StY4Z/okP68Zn+hj/SjJRc9AxXYQDD+oRdVZlpa6LPIK2D+827KVWfYghc2tHq
-         oVEm+vaJ7mKZVkyS3uzEjehjR2be8lP34SeGXrPefWmuIygVEBRDaE7J1NMmRKWeEuFK
-         xrxA==
-X-Forwarded-Encrypted: i=1; AJvYcCXrTg50THYX5gkPbjfhVAiUJPU0FGdwVO6Crc9K/v+1J1V11tUBkUbFURGTLx5HmiM+Q24oOmKGsi8f@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJt/jhYnkfC/hI6yGdLPNqXYSWLdKRZYDJwhQ01NRjN4EytukK
-	oBYk4kV3HivbMStaV+v4efsmpDFyE1IkQIeaSRQ38km6iilf5J7zLICooEQ4RPjxyy6t9ujM6mc
-	Puq988PpTYWOYYCYwp3Uuof49wDwDpWs0L/0psg5brjeoHW6N/YxiM4BGeDxK3Rxb
-X-Gm-Gg: ASbGncvpiE4bd90AXAJMWrO8uu2OgfVEoC6br6pgj31mif8rmVBk9Wmt4/xNP5QtKWx
-	ImOPic9BFORMNk21u/R9HAZBSlCXr1FCl/7NOM+YgQFTrmxb0eXxSk4ysUDFb5xuPp1eYvsG4pr
-	VB9aSXKMktVy+vnsrv86ylCJn2zKai7dfn8xNL+PVm8ogSwig7ClGAqLc4xlUDT+N42/4NcjsWh
-	Z3lW7Va/9ic802VNrwXnVNq+wxEsGLq7yTzsSXHCfpCFl9Wpl1C18RBpcC+pUPDNzaG50biUGbv
-	sNS3hoi0hputIRbRk8mLPtRVqbb35cGWw9rb00dw1b1Mgw6XtwEHJw==
-X-Received: by 2002:a05:622a:4085:b0:4ab:9586:386b with SMTP id d75a77b69052e-4b31da22698mr168627241cf.53.1756829556992;
-        Tue, 02 Sep 2025 09:12:36 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGJkTJcUQ/yX5aX22luk5Vf8q0lM5NIj4aVAwx479cSoaiYueGXur4w4d6rif7Njpsb2+rIaw==
-X-Received: by 2002:a05:622a:4085:b0:4ab:9586:386b with SMTP id d75a77b69052e-4b31da22698mr168626001cf.53.1756829556102;
-        Tue, 02 Sep 2025 09:12:36 -0700 (PDT)
+        bh=Bwb/aCh+px1clBI7DNv6FaMGNCjRZCn6kYUkRggRljo=;
+        b=dBaFcvHDikeGrdmeoOTvijUUfn0tXxSxrSS8wJCLbtKJ5bJXtm0hrPlJG6MKmO7BUj
+         DVTcAP3Ov6Abk63B98Fr1BO4py+rG96KfQGgU8A/k14v5lBq6wv5SQUR7y0wA70BvF9F
+         KQDwwsDbck/oukIeHPyenbfrgmSF7VnDM2flDrdwvaYA23G6KYAvz4H4R/qctkjSi9l8
+         OcDhM8oJUL6hweabquwEbw6CocqQ5OtN7PEwrfuCGLqTB8dNdCAq2JPBerKBtWkv5J08
+         7B3D74rsf17tN1ecYotGUb4GUx0NT8bg9H69q/FTia255SWcctl/e3LdtIZlBWNRgyEn
+         klFg==
+X-Forwarded-Encrypted: i=1; AJvYcCUBa6S7k8mPdzx6fCAya7u86CmQqTDiuLye1FJk+7jDFFtnYwXfINS3mwJ5IUlZ85O8HJozd0XD6bD4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrFQNf1/ihjuqobzSpcf40lWHpmI+7UFaqzAdL3x86UZq+HPtP
+	/+BUF+hpniwAzdXiMloKefp7JlL3QjxTo2Y/W8lxJGZjxyPlbCKqCVihOGaKxzeO+jlV32nlmWP
+	G5+bgvhwqJiUgJQDfea3z53AFvOhrJbg31No7375xBjxlP57S3dYCmLn126lLKL5M
+X-Gm-Gg: ASbGnctleOlWnREQvQCkpYb/MsRC2zi52GApQCHTLwr/Drkf5kv9ePAZDYpYCvuo+FH
+	EG5Aijohau2yX2gEplkRaiWRVKHowpIZfH6svRsq9a0IQj9LavVCAlRE9cz1OINoDgQnlyNued8
+	TnklKrEK5PpJZ+b4vvbjBIdMn9vTsUY7sUpyVTJPHUpDv3AH/wC6Kk9FrpLCp5qqKueeirQZKg6
+	ztj12awWpLNtJxZS0Lm2NLCcLsq9PbPqHcq1oNik8j5LMuGcYjgB2EwmmhMTjOnnjMZT0bZTSQ3
+	6oxGGV6Z1bg8EFGNpAe69Who9xBSceA6dgN2t00EmDnVqzOLqYZtCg==
+X-Received: by 2002:a05:622a:134f:b0:4af:1c00:8996 with SMTP id d75a77b69052e-4b31d844f80mr137909321cf.6.1756829557900;
+        Tue, 02 Sep 2025 09:12:37 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFbbJL7r6hnlJk2ILZDcshA1ckcRvSYtJMZ/v6tTpM/xWKM09mldYu3JSH5x202tVN9PMus1Q==
+X-Received: by 2002:a05:622a:134f:b0:4af:1c00:8996 with SMTP id d75a77b69052e-4b31d844f80mr137908691cf.6.1756829557224;
+        Tue, 02 Sep 2025 09:12:37 -0700 (PDT)
 Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0d32a2sm309894655e9.9.2025.09.02.09.12.35
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0d32a2sm309894655e9.9.2025.09.02.09.12.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 09:12:35 -0700 (PDT)
+        Tue, 02 Sep 2025 09:12:36 -0700 (PDT)
 From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 To: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org
 Cc: conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com,
         pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v2 5/7] soundwire: qcom: prepare for v3.x
-Date: Tue,  2 Sep 2025 17:11:54 +0100
-Message-ID: <20250902161156.145521-6-srinivas.kandagatla@oss.qualcomm.com>
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 6/7] dt-bindings: soundwire: qcom: Document v3.1.0 version of IP block
+Date: Tue,  2 Sep 2025 17:11:55 +0100
+Message-ID: <20250902161156.145521-7-srinivas.kandagatla@oss.qualcomm.com>
 X-Mailer: git-send-email 2.50.0
 In-Reply-To: <20250902161156.145521-1-srinivas.kandagatla@oss.qualcomm.com>
 References: <20250902161156.145521-1-srinivas.kandagatla@oss.qualcomm.com>
@@ -98,208 +99,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Ycq95xRf c=1 sm=1 tr=0 ts=68b71776 cx=c_pps
+X-Proofpoint-GUID: 171FyHzaX5ZG0_dBk0YQjXUbKeedodXw
+X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b71777 cx=c_pps
  a=WeENfcodrlLV9YRTxbY/uA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KTr9yuUO_FWm3CjRSecA:9
- a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-GUID: vGOA3k5uxNlfnnUrAVgL5uOjHuib-rxk
-X-Proofpoint-ORIG-GUID: vGOA3k5uxNlfnnUrAVgL5uOjHuib-rxk
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAxMDEwMSBTYWx0ZWRfXxG/YOyNBkuPi
- AAmCmiDFedplfoIwkzcAAnakt3vfB+LmDvwgRebdrcVoQ6FWY/gnZVvGzvk8BTZE4OhxtYTl9+2
- BcREKQe/YupjgTJjd6dI+oiLE3TAxG7Xdyp6xHJN2S9laQ0J0Z6p3rYUB1bbdfY+F6q5akiXCsu
- P2DeZUehid0uZ2NvD7hTGv+VQHjhPMbqRMS2xW01jnCihWWXdkcSHtWt+hr2nPEChe67DN9nqpU
- qtod+Ci8pOjldDIdZGa/9ETNRIy8Vv6BJQaOIgohMk11VkDM6DSUfxswnbJ3KwrH+03s+iWshqZ
- hyW34h+qFfWE0F+mj7Uac49IT3dCYdj16rzqWWwKTkammZFcjyL1rZfR0P3FQDSJ8ztzgrzj9NA
- yzJA9Tua
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=W-ialWlWjSFIadUgVrgA:9
+ a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: 171FyHzaX5ZG0_dBk0YQjXUbKeedodXw
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfXzqSirPcIoJxM
+ RDGb+TlvOPqziv9d9Rw78nvZ9Hw03t/cKGgCuqtebDY6xTlazDLVLy24T6m8TepqoSYAj4WM1T3
+ Wkb38ViaZeC4czfwtCMDP0PN4p1SogNguz9wOL/hd6tXgS5ZEJ5XU1rUJAlw8447dP3pcr+UJzq
+ CvdcGh9W75F4a75LFL92SP7zFJFRwaAj+bxy26z9MC9YwtaefHModbKzbVQQ9vQrHBvKcah+Jty
+ mOxNtwajVpNYqxtPkw2ZFYsfblm6tvbU2itQ6o1r7fDgxzUI898ndkJTwg+auIz7eAQnf0sMQfw
+ DUbq7factRhnLaWXcZ7Akf5WJcRmhLk1sYSC4aUWK4qF0KR/figA65mA9R1aT943JkG+tYFf7dx
+ 71d93aEv
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-02_05,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
- bulkscore=0 suspectscore=0 impostorscore=0 spamscore=0 classifier=typeunknown
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509010101
+ engine=8.19.0-2507300000 definitions=main-2508300001
 
-cleanup the register layout structs to prepare for adding new 3.x
-controller support.
+Add bindings for Soundwire controllers v3.1.0, which is available on
+Qualcomm Glymur SoC.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- drivers/soundwire/qcom.c | 77 +++++++++++++++++++++++++++++-----------
- 1 file changed, 56 insertions(+), 21 deletions(-)
+ Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-index 34d4e2c2dd0a..3d4d0c443977 100644
---- a/drivers/soundwire/qcom.c
-+++ b/drivers/soundwire/qcom.c
-@@ -99,14 +99,15 @@
- #define SWRM_MCP_SLV_STATUS					0x1090
- #define SWRM_MCP_SLV_STATUS_MASK				GENMASK(1, 0)
- #define SWRM_MCP_SLV_STATUS_SZ					2
--#define SWRM_DP_PORT_CTRL_BANK(n, m)	(0x1124 + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DP_PORT_CTRL_2_BANK(n, m)	(0x1128 + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DP_BLOCK_CTRL_1(n)		(0x112C + 0x100 * (n - 1))
--#define SWRM_DP_BLOCK_CTRL2_BANK(n, m)	(0x1130 + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DP_PORT_HCTRL_BANK(n, m)	(0x1134 + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DP_BLOCK_CTRL3_BANK(n, m)	(0x1138 + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
--#define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
-+
-+#define SWRM_DPn_PORT_CTRL_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+#define SWRM_DPn_PORT_CTRL_2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+#define SWRM_DPn_BLOCK_CTRL_1(offset, n)	(offset + 0x100 * (n - 1))
-+#define SWRM_DPn_BLOCK_CTRL2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+#define SWRM_DPn_PORT_HCTRL_BANK(offset,  n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+#define SWRM_DPn_BLOCK_CTRL3_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+#define SWRM_DPn_SAMPLECTRL2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-+
- #define SWR_V1_3_MSTR_MAX_REG_ADDR				0x1740
- #define SWR_V2_0_MSTR_MAX_REG_ADDR				0x50ac
- 
-@@ -171,6 +172,13 @@ enum {
- 	SWRM_REG_CMD_FIFO_RD_CMD,
- 	SWRM_REG_CMD_FIFO_STATUS,
- 	SWRM_REG_CMD_FIFO_RD_FIFO_ADDR,
-+	SWRM_OFFSET_DP_PORT_CTRL_BANK,
-+	SWRM_OFFSET_DP_PORT_CTRL_2_BANK,
-+	SWRM_OFFSET_DP_BLOCK_CTRL_1,
-+	SWRM_OFFSET_DP_BLOCK_CTRL2_BANK,
-+	SWRM_OFFSET_DP_PORT_HCTRL_BANK,
-+	SWRM_OFFSET_DP_BLOCK_CTRL3_BANK,
-+	SWRM_OFFSET_DP_SAMPLECTRL2_BANK,
- };
- 
- struct qcom_swrm_ctrl {
-@@ -230,6 +238,13 @@ static const unsigned int swrm_v1_3_reg_layout[] = {
- 	[SWRM_REG_CMD_FIFO_RD_CMD] = SWRM_V1_3_CMD_FIFO_RD_CMD,
- 	[SWRM_REG_CMD_FIFO_STATUS] = SWRM_V1_3_CMD_FIFO_STATUS,
- 	[SWRM_REG_CMD_FIFO_RD_FIFO_ADDR] = SWRM_V1_3_CMD_FIFO_RD_FIFO_ADDR,
-+	[SWRM_OFFSET_DP_PORT_CTRL_BANK]		= 0x1124,
-+	[SWRM_OFFSET_DP_PORT_CTRL_2_BANK]	= 0x1128,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL_1]		= 0x112c,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL2_BANK]	= 0x1130,
-+	[SWRM_OFFSET_DP_PORT_HCTRL_BANK]	= 0x1134,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL3_BANK]	= 0x1138,
-+	[SWRM_OFFSET_DP_SAMPLECTRL2_BANK]	= 0x113c,
- };
- 
- static const struct qcom_swrm_data swrm_v1_3_data = {
-@@ -264,6 +279,13 @@ static const unsigned int swrm_v2_0_reg_layout[] = {
- 	[SWRM_REG_CMD_FIFO_RD_CMD] = SWRM_V2_0_CMD_FIFO_RD_CMD,
- 	[SWRM_REG_CMD_FIFO_STATUS] = SWRM_V2_0_CMD_FIFO_STATUS,
- 	[SWRM_REG_CMD_FIFO_RD_FIFO_ADDR] = SWRM_V2_0_CMD_FIFO_RD_FIFO_ADDR,
-+	[SWRM_OFFSET_DP_PORT_CTRL_BANK]		= 0x1124,
-+	[SWRM_OFFSET_DP_PORT_CTRL_2_BANK]	= 0x1128,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL_1]		= 0x112c,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL2_BANK]	= 0x1130,
-+	[SWRM_OFFSET_DP_PORT_HCTRL_BANK]	= 0x1134,
-+	[SWRM_OFFSET_DP_BLOCK_CTRL3_BANK]	= 0x1138,
-+	[SWRM_OFFSET_DP_SAMPLECTRL2_BANK]	= 0x113c,
- };
- 
- static const struct qcom_swrm_data swrm_v2_0_data = {
-@@ -964,10 +986,10 @@ static int qcom_swrm_port_params(struct sdw_bus *bus,
- 				 unsigned int bank)
- {
- 	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
-+	u32 offset = ctrl->reg_layout[SWRM_OFFSET_DP_BLOCK_CTRL_1];
- 
--	return ctrl->reg_write(ctrl, SWRM_DP_BLOCK_CTRL_1(p_params->num),
--			       p_params->bps - 1);
--
-+	return ctrl->reg_write(ctrl, SWRM_DPn_BLOCK_CTRL_1(offset, p_params->num),
-+				p_params->bps - 1);
- }
- 
- static int qcom_swrm_transport_params(struct sdw_bus *bus,
-@@ -977,9 +999,11 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
- 	struct qcom_swrm_port_config *pcfg;
- 	u32 value;
--	int reg = SWRM_DP_PORT_CTRL_BANK((params->port_num), bank);
-+	int reg, offset = ctrl->reg_layout[SWRM_OFFSET_DP_PORT_CTRL_BANK];
- 	int ret;
- 
-+	reg = SWRM_DPn_PORT_CTRL_BANK(offset, params->port_num, bank);
-+
- 	pcfg = &ctrl->pconfig[params->port_num];
- 
- 	value = pcfg->off1 << SWRM_DP_PORT_CTRL_OFFSET1_SHFT;
-@@ -991,15 +1015,19 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 		goto err;
- 
- 	if (pcfg->si > 0xff) {
-+		offset = ctrl->reg_layout[SWRM_OFFSET_DP_SAMPLECTRL2_BANK];
- 		value = (pcfg->si >> 8) & 0xff;
--		reg = SWRM_DP_SAMPLECTRL2_BANK(params->port_num, bank);
-+		reg = SWRM_DPn_SAMPLECTRL2_BANK(offset, params->port_num, bank);
-+
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 		if (ret)
- 			goto err;
- 	}
- 
- 	if (pcfg->lane_control != SWR_INVALID_PARAM) {
--		reg = SWRM_DP_PORT_CTRL_2_BANK(params->port_num, bank);
-+		offset = ctrl->reg_layout[SWRM_OFFSET_DP_PORT_CTRL_2_BANK];
-+		reg = SWRM_DPn_PORT_CTRL_2_BANK(offset, params->port_num, bank);
-+
- 		value = pcfg->lane_control;
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 		if (ret)
-@@ -1007,20 +1035,23 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 	}
- 
- 	if (pcfg->blk_group_count != SWR_INVALID_PARAM) {
--		reg = SWRM_DP_BLOCK_CTRL2_BANK(params->port_num, bank);
-+		offset = ctrl->reg_layout[SWRM_OFFSET_DP_BLOCK_CTRL2_BANK];
-+
-+		reg = SWRM_DPn_BLOCK_CTRL2_BANK(offset, params->port_num, bank);
-+
- 		value = pcfg->blk_group_count;
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 		if (ret)
- 			goto err;
- 	}
- 
--	if (pcfg->hstart != SWR_INVALID_PARAM
--			&& pcfg->hstop != SWR_INVALID_PARAM) {
--		reg = SWRM_DP_PORT_HCTRL_BANK(params->port_num, bank);
-+	offset = ctrl->reg_layout[SWRM_OFFSET_DP_PORT_HCTRL_BANK];
-+	reg = SWRM_DPn_PORT_HCTRL_BANK(offset, params->port_num, bank);
-+
-+	if (pcfg->hstart != SWR_INVALID_PARAM && pcfg->hstop != SWR_INVALID_PARAM) {
- 		value = (pcfg->hstop << 4) | pcfg->hstart;
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 	} else {
--		reg = SWRM_DP_PORT_HCTRL_BANK(params->port_num, bank);
- 		value = (SWR_HSTOP_MAX_VAL << 4) | SWR_HSTART_MIN_VAL;
- 		ret = ctrl->reg_write(ctrl, reg, value);
- 	}
-@@ -1029,7 +1060,8 @@ static int qcom_swrm_transport_params(struct sdw_bus *bus,
- 		goto err;
- 
- 	if (pcfg->bp_mode != SWR_INVALID_PARAM) {
--		reg = SWRM_DP_BLOCK_CTRL3_BANK(params->port_num, bank);
-+		offset = ctrl->reg_layout[SWRM_OFFSET_DP_BLOCK_CTRL3_BANK];
-+		reg = SWRM_DPn_BLOCK_CTRL3_BANK(offset, params->port_num, bank);
- 		ret = ctrl->reg_write(ctrl, reg, pcfg->bp_mode);
- 	}
- 
-@@ -1041,9 +1073,12 @@ static int qcom_swrm_port_enable(struct sdw_bus *bus,
- 				 struct sdw_enable_ch *enable_ch,
- 				 unsigned int bank)
- {
--	u32 reg = SWRM_DP_PORT_CTRL_BANK(enable_ch->port_num, bank);
-+	u32 reg;
- 	struct qcom_swrm_ctrl *ctrl = to_qcom_sdw(bus);
- 	u32 val;
-+	u32 offset = ctrl->reg_layout[SWRM_OFFSET_DP_PORT_CTRL_BANK];
-+
-+	reg = SWRM_DPn_PORT_CTRL_BANK(offset, enable_ch->port_num, bank);
- 
- 	ctrl->reg_read(ctrl, reg, &val);
- 
+diff --git a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+index 7ea491f7e828..003023729fb8 100644
+--- a/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
++++ b/Documentation/devicetree/bindings/soundwire/qcom,soundwire.yaml
+@@ -23,6 +23,7 @@ properties:
+           - qcom,soundwire-v1.6.0
+           - qcom,soundwire-v1.7.0
+           - qcom,soundwire-v2.0.0
++          - qcom,soundwire-v3.1.0
+       - items:
+           - enum:
+               - qcom,soundwire-v2.1.0
 -- 
 2.50.0
 
