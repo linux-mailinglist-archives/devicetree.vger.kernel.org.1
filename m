@@ -1,272 +1,319 @@
-Return-Path: <devicetree+bounces-211756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC979B406CA
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:31:06 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 485BCB40749
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:44:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F16261889096
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:31:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 147D8485059
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:42:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1082C30DEA4;
-	Tue,  2 Sep 2025 14:30:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571E730E835;
+	Tue,  2 Sep 2025 14:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b="hu1v5ldB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PNYPR01CU001.outbound.protection.outlook.com (mail-centralindiaazon11020117.outbound.protection.outlook.com [52.101.225.117])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11023099.outbound.protection.outlook.com [40.107.162.99])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 377D12D9EF0;
-	Tue,  2 Sep 2025 14:30:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.225.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8289530E0F1;
+	Tue,  2 Sep 2025 14:42:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.99
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756823445; cv=fail; b=qpAyy7wOqCSNwXGOZwZ/rkVHeAtQk47WqzbWAaIsRZRZKsK/TUMWCQCEIZc2wH6MQHJ0OdXv8C+M3zybxujAZUxgbtnO5ZrSNRzEJjuSlz7LjDAS4baFAgVg+pZucF/egrA62hZlKrQDYKEa1kSeQZ+pb5LWg+8p5x7MAZf+dyc=
+	t=1756824132; cv=fail; b=N5TSitfLEZZyH1oXFQNm383654bqQGFDvr/6DzvCNYVU48GVXWO0uEJzKimv5c1Yub1aSIdS1RXBmL7vvU0x7T096+jGcq4UJMi/O5ylZBgtMqZr5uYrMHQ4ubfpym+kwNiTd1CgYit83iDFT3JfnwW0SeV63TclGycb2jZEEwM=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756823445; c=relaxed/simple;
-	bh=mxRIvw8HsKTpXd110u8zN9wHG8N0sj9l0hjCJroqaJ8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=RtwYMQAQfjMRuyYfrfgdDecUVI0/a6x0PDBDWjIyfw6lPzs0uM+0BJXzdoidVqIdHxlpQoA11DJZvmJWwVlxLo/tBDhOzt4XzvdXrZVBoq9uMwbiXRFevTOlGjmsVKUjiAtVk87109vr+619vJB8TL7s1RVpiWRO10OQjfDhJ5U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io; spf=fail smtp.mailfrom=siliconsignals.io; arc=fail smtp.client-ip=52.101.225.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=siliconsignals.io
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=siliconsignals.io
+	s=arc-20240116; t=1756824132; c=relaxed/simple;
+	bh=xEwDKezX+jVNzwO8muce1p+/hiQysSkgs1mGDDPXaqk=;
+	h=Message-ID:Date:From:Subject:To:CC:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=L+9LxmR+P63xyiJQ88uOzq1OpxjmQUA6YU7sjl+uF0y1hWpk5v0E0Q1wFAi1hITpch4nYShoRWA7NchLUG0zQtETQ0cDba2R97TysfYZpopLRulNGs6sKepXMu7LB5RXPqW2R6EzSghfMVLtc6X/SM2drOKwgPbWo3vlZr5512g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl; spf=pass smtp.mailfrom=topic.nl; dkim=pass (2048-bit key) header.d=topic.nl header.i=@topic.nl header.b=hu1v5ldB; arc=fail smtp.client-ip=40.107.162.99
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=topic.nl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=topic.nl
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=VjtgqmCk2cyWsA9boPVBb1HOnWC+1+2yscFire45Fdp4Vvw55IsJEMrFyC2M+4QKzouJZ7gJ7M4vqC/g7wDyifZwTKrXwtvXocMCv45kGCdZARYecRYyKaoDX43nZNtElltlvT88Wf99qygZNBy9OzdEL/Mo4N/UnUNSWneTwZk7L7FF7P11kCQAEN8pMUnp4d+qGIB1kaEde2ChITJFhcwsNGlLVQVHTfUpj1SVfdomf5T6XmZlvJeGAskMQuVoO7zXIAlNWqPk2zKVuPZKYteISLy+scpcca3BILgiN2FSLow1pLrv0aGSfASxclvuIGwBbxSbgWfQw0yDTFuh1Q==
+ b=AUg5hSGjcu07J0MRC0/8RUsoz/kPa7MbJAXtE0WB6+L1JyvW2MtaOCAd8A17IS9hFbgESeT+z42V31pZ3gUaWyzsfCAP+c7Z+LRyo/+46RDU/aAGBTubzbBbKobbeSmHnkMB9agGw2VVYWUSor6UsJy9Rm9M9dv79J0JaEoggVDeGdgySYVe4B6DDOpWR+UpfRnrPEK9k/pLJZTR8dhhjDouu5NUHgj8wweq+4Wb7jsM/iCBYzfFQyIxWQkkicB32ORJsvmO/WX256+0GL1l2qHoykuHhp3wxzSX1Kbr2OqUlzgrkQn21TuFep9YE7kV7qMfYUvyOgboziHoudoWog==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mxRIvw8HsKTpXd110u8zN9wHG8N0sj9l0hjCJroqaJ8=;
- b=kv+qqmdZdrSi9v6wLO575i9CY7XqT5sg0755UBupo3o283DTiWsnE/KCORUiPRXJH0euVxN4pY7dAzs9GftTG8z9pb2CpKDgvi8LGkpO+MDj5YxLPxz4C0HTW0YKaBGflva+u7FlD1SGSB94uAF6OMhMR2DWy4yyGegQ886hZvz0KHum1XJf9JYetqkikimLMvrBhdcoCN2AwKzE1JjQID1LKyPjgZL8M+gBnHyAXIe1nUmjDIO9Mk0UnmZHV/K02fL5N3uHOG15WRWL6l2uCMfarc8as8HZ/y6ARUmPSfz5No4p8T6/yUgabfTjae+T659peBmwFs3pz1t6AiMbDw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=siliconsignals.io; dmarc=pass action=none
- header.from=siliconsignals.io; dkim=pass header.d=siliconsignals.io; arc=none
-Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:229::21)
- by PN2P287MB1165.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:154::10) with
+ bh=kDmPKiomzJulEJNI7HtYAlP7ltqv8L/2KyuvZ5uqd5E=;
+ b=i9qyDlseRDw7T1VFtQkMLKL4gmNp5DG3MVJs1RYoOmgCM+xLr+znTrvsP+yilXlig2oXrQ74M4CGEn3tuCoTuUZFdq+URZn2vhEjI6r3fpxd2Oj+TVLxCvpL8pQIs/rCBQBcU3cNcFvLkNB4Zmn58VzIElYon0u6lk6epPRxIQHk0oCnRU6NSh8v2PHLDjtU6SHvFSp8LftgEZ2c3Ox2aJJdkBiinFdDGw9YWdlbV/tWJkGiBwP4P+1P9ecBCmFeVvbhBq+8MKB8Xx3QPHKceVT3tcMNg1JcGj96Qt6MHrn2Xw2k3kvz2yiM8eivpLfMyV6JUu41UYIutQNDsYzgCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 20.93.157.195) smtp.rcpttodomain=kernel.org smtp.mailfrom=topic.nl;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=topic.nl; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kDmPKiomzJulEJNI7HtYAlP7ltqv8L/2KyuvZ5uqd5E=;
+ b=hu1v5ldB2z3IkahjAu+r992D3/4EoNQoeg6/LzQRuVYlar45N3Bh5cl0rqIGR2PIsjIoBAxqYFHokmLjwOv+e6TDtv8PXCDDKUBlnMLUUH696I5FmmFceogT4Z+Fuk70ZoqmZVNFCt8XEGkan2IK5/XlNm0zRXB+Xf+oU6GYkS4vkyL7BIZQoaPD1eQmSpg4q1DYOG1jr66fHYBajeuC37TB/nGJLb69kUbg+XD9tih8iKM1GwLYohYAjfCnYT4VtUUMWQeQ9NtnRBB3K+V8LUHusUej6RlhaXwIbOrwtkPTx2nsk3PRanTrO5Re+VZNHrn6ZKHgJsnGXL/Sq2BPCw==
+Received: from AM0PR03CA0062.eurprd03.prod.outlook.com (2603:10a6:208::39) by
+ GV4PR04MB11380.eurprd04.prod.outlook.com (2603:10a6:150:29e::16) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
- 2025 14:30:39 +0000
-Received: from PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
- ([fe80::5c9a:906e:318b:c418]) by PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
- ([fe80::5c9a:906e:318b:c418%6]) with mapi id 15.20.9094.015; Tue, 2 Sep 2025
- 14:30:39 +0000
-From: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignals.io>
-To: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-CC: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>, Mauro Carvalho
- Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Hans
- Verkuil <hverkuil@xs4all.nl>, Ricardo Ribalda <ribalda@chromium.org>, Bryan
- O'Donoghue <bryan.odonoghue@linaro.org>, =?iso-8859-1?Q?Andr=E9_Apitzsch?=
-	<git@apitzsch.eu>, Heimir Thor Sverrisson <heimir.sverrisson@gmail.com>,
-	Benjamin Mugnier <benjamin.mugnier@foss.st.com>, Matthias Fend
-	<matthias.fend@emfend.at>, Dongcheng Yan <dongcheng.yan@intel.com>, Sylvain
- Petinot <sylvain.petinot@foss.st.com>, Arnd Bergmann <arnd@arndb.de>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Hans de Goede
-	<hansg@kernel.org>, Jingjing Xiong <jingjing.xiong@intel.com>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Tarang Raval
-	<tarang.raval@siliconsignals.io>
-Subject: Re: [PATCH v9 2/2] media: i2c: add ov2735 image sensor driver
-Thread-Topic: [PATCH v9 2/2] media: i2c: add ov2735 image sensor driver
-Thread-Index: AQHcGMTYgOUZQjHc5UmWpQKIK5ImzrR95kUAgAGlZ4CAAG0SMw==
-Date: Tue, 2 Sep 2025 14:30:38 +0000
-Message-ID:
- <PN3P287MB35195F77DB9C8690ED553E1BFF06A@PN3P287MB3519.INDP287.PROD.OUTLOOK.COM>
-References: <20250829090959.82966-1-hardevsinh.palaniya@siliconsignals.io>
- <20250829090959.82966-3-hardevsinh.palaniya@siliconsignals.io>
- <PN3P287MB18298FB93EDC498572742B2A8B07A@PN3P287MB1829.INDP287.PROD.OUTLOOK.COM>
- <aLaiXTw2cieUCzn_@kekkonen.localdomain>
-In-Reply-To: <aLaiXTw2cieUCzn_@kekkonen.localdomain>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=siliconsignals.io;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PN3P287MB3519:EE_|PN2P287MB1165:EE_
-x-ms-office365-filtering-correlation-id: c589b224-05f8-4a2c-18e2-08ddea2d49d4
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|7416014|376014|1800799024|366016|38070700018;
-x-microsoft-antispam-message-info:
- =?iso-8859-1?Q?JDiWxKC2O6VMr1NQpdLvNfY26QB5kDm45n4UqqTUBJH6azk4g+dozpEOCg?=
- =?iso-8859-1?Q?aNIikMxrQTUo/Ksg9wpvut1MYxAbDpMxDaexuwo/kTdgSXzfcCIQqGr7X5?=
- =?iso-8859-1?Q?o7NcyOIZw6S009smt8Jq8tRUckDtfs6DZdOb1NKVS454XNE8pkJdlupCG8?=
- =?iso-8859-1?Q?GrNZMK08S/es1IZDimsId6APwHhh5+F/bY3lKC+PcDSu57vRHaXQEMLFBP?=
- =?iso-8859-1?Q?CuorsPvr8B5Og6GnShnOeRjysh+yYepVmk6lmQSD3VsfPa2OyrX+GHm0XG?=
- =?iso-8859-1?Q?KdAOdNYeOl8aOHtctMw1LqquwVsdKMPNZHbTBmWFAqXpKDVRLzThIK/04m?=
- =?iso-8859-1?Q?Gkfrnn0vF6tI4IZefAxMsGA0LToRTR6jhRFQTjf/hXVz2LLNvGBRqofSHf?=
- =?iso-8859-1?Q?rpW59jx29PJ198qRnj87tNlDPn3UkjbdEaNHFMUoVskDiaTPPXOZZ2JzN+?=
- =?iso-8859-1?Q?MUoWq2OjTT0Qdsc6RkX76Dv3ZrcUM8uOR8J5+17FDNhOzVRd8wtaW6DV/L?=
- =?iso-8859-1?Q?SuKEyb2aL1WBJBxXc7RFKETYTtzngEw75EyEb9GrRzLv2z0PjnGBlOLlkl?=
- =?iso-8859-1?Q?hyc2dvbcSxqnvQzRonrPbmiqyLau3kNXq6FKSqb3EdLCrbOCbfo/O0RdEl?=
- =?iso-8859-1?Q?WUHukaQRT0FqKygzhSTfHGP+lEg69cneky7sIXuFe/aCsHHWdnlH9ggFXh?=
- =?iso-8859-1?Q?zakhp86Hgaqve4zDukJ5kV9DAwWt+053xtN+X78R996FQcOo7fv/esaFtJ?=
- =?iso-8859-1?Q?nVPa3xf/aLCqpnfeeQNsiwAinCLzf0W2VFQP0rm/ClDStip5KFCAOJMq0J?=
- =?iso-8859-1?Q?IBl2jIYoqy3zeKsx9EzGBvZLv8uE3DibeGuiiq3wteTalXOS+L68xhET3O?=
- =?iso-8859-1?Q?WfMafqonr4/oe47bpnU0HqnVS3Ua3bW4OUvTJnJObJ9qT9w7hKXpvjS8+z?=
- =?iso-8859-1?Q?YWbVNXirizWKMJOvWP1ulz5qlawmVB84Gr/B7cP43bLyKKiivtAhHDN1Se?=
- =?iso-8859-1?Q?2qf+JOV6D1/ziXl6LksXBz8LGk73yjPEnailtPor2DvWqDkijy3tCKN4Vq?=
- =?iso-8859-1?Q?VnA7OirH+vYjSQyizTObnq428bWR10YkTsgYEfl9yq8ifV5aKigNtGvslj?=
- =?iso-8859-1?Q?9kZxpDoPf/VBH8SWvGfCYGnHfQZUDvE6mnWiPcBWFaMImF2I1oR39sR6Hb?=
- =?iso-8859-1?Q?0bDyWwzpDY4iT1mQwgE5hbkCj3yZsG97Wuxmoccm3rNLk0YBQ3ju/mV2mR?=
- =?iso-8859-1?Q?fEe1WyGAkbZfslj8dmQrYP4wewdHzGyEMyrdTekfZMOWqrYrWI2QKz9kJE?=
- =?iso-8859-1?Q?C2kBXuHL7pSsXio16QcKjDnG2qvWv666+WqNwcYJtB6XRg7LiZqTD5drjx?=
- =?iso-8859-1?Q?xcV6wcLe9RZfb/zoDGGC2BVIBACj/re5t+vuARTEUQ/bP4tXYpjwev2AQU?=
- =?iso-8859-1?Q?eQcoY5krTZB7/BKJEMOVEuT6Hau5KdPwu195gqq3C1J9WKwkMqSWGIV83f?=
- =?iso-8859-1?Q?tzMKNRul6dk9gOpIm0CG6GcYob9mXD8v2kSqxXAEOeYQ=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PN3P287MB3519.INDP287.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(7416014)(376014)(1800799024)(366016)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?yIGkZuQuBcbRrcHbCh45zlXoouE8KH2+YeMX06Ujdn0TcGCJJpW6g4oysQ?=
- =?iso-8859-1?Q?sY3TxGfWO9j57IfxAQW97kB84QzW+EZA/FglJsR2coaGG0ArQOicge6rYs?=
- =?iso-8859-1?Q?QMskCu4v0qFQE+Y4PoYLnymkEUVxgi7GCP1z0DBit0rbCtDywT4MfnLdzr?=
- =?iso-8859-1?Q?S5Pi55sr4QgZTXMM772vtIuMk97XC6hDV4kOqN/9cfM+GMA9pP40ud1tcX?=
- =?iso-8859-1?Q?prZcoiVcK3B8zHFFs1LcM/HWIwUEVIRXkE9W/UzRy6M07UC5yWLl1n5yFT?=
- =?iso-8859-1?Q?t6quBnls0fALhEceMvTKeEsVfuJwmhLwXvHzxDk0eICm7hJ/vEqipEWkFq?=
- =?iso-8859-1?Q?NveMIhIfeEjimq7gPKeR/Uw/dXbV9gKnODsv5hcb7HY+LlKGabvW2qCeEx?=
- =?iso-8859-1?Q?TGi1i2GZcxJR1xfNribJNplcg7hWXpoiRzygL099VGm0m77ZA6UM9i3JRF?=
- =?iso-8859-1?Q?/wclvQJjfk8yGpfCciBcV+/ILg6t2WkYuPN+bqCG0X5ey9+ZkcFouzDusI?=
- =?iso-8859-1?Q?NP2Hn+97Rpw14wgXKFxBO6XdF27fxyoYyPHrpWf0ARPpigq71jqsHm0X6M?=
- =?iso-8859-1?Q?2AESY85NlONd20gIHH15CUN/EJ5qep6j24ROWGjcc5h5p21cqxeaSjmhUz?=
- =?iso-8859-1?Q?kqy1WXBdLRW73j1GRDSagxsjbRGKw6h8CgqHfZIvoeoHqpbzPi6HVLkljB?=
- =?iso-8859-1?Q?49P/QdTALcdX7oH0DJNaRCS9ZKUAyA4wABdXmyUV4ckmyBd1jAGPXet8MI?=
- =?iso-8859-1?Q?vm8AzjogWT3PaKr0oiEQrI3B2xKbwWi+70xmPdJNU347iWCyljsFycdZ3D?=
- =?iso-8859-1?Q?4Y24WeMa/Rbk6cJRgIunuGxJfzpg6d+zP1uH2BNtGXaa5YNhSLZrPiF8Am?=
- =?iso-8859-1?Q?R9lx6VPW5RkfVrwGK9nZOmb9STJFVEx5zL84FI3ZCYagYTCNUND9+cf9Gz?=
- =?iso-8859-1?Q?rbKiAs2jR7Sx1/W0jrLRSuDAiuVl3EnLIJrMRIEwbxoz8TqCblq6GX2FaG?=
- =?iso-8859-1?Q?Gf+kBXHFLdPs9y8ZKVb0jSsgBidleEfq+TtaCPF07q6Oe4CPEql4qxY44K?=
- =?iso-8859-1?Q?vWz3RBbhic9iOmNDqgUklm6KfVZ6uF4RVP96V7EuaABMFVAPt+PxbcX2Eq?=
- =?iso-8859-1?Q?UBfF+R1/YQquG1k+ZDg3C8kb6BvyOaUFs96mpQyPebpatM3Mc7VlR9Fc/U?=
- =?iso-8859-1?Q?aPPTziQSth9iaQgZtlUgEEkyPhtouvngTqnWLY5bnpbkYY1W0IMCapj8xG?=
- =?iso-8859-1?Q?rX4b6H5OmDuxuUdtrGZSI5lzH+r9SpbDMptuHINTHaXUaMXzluxakD0AyT?=
- =?iso-8859-1?Q?6fK6Vei7jcP4xkO47CnC6ukRf2q+0RaemY3O6SvBG5DfmqdrwIDNxdiOrV?=
- =?iso-8859-1?Q?e70TT/4bexuN/kViTqrxXg3pgsTuOuCwwFak/YwEN9uhp1yMbTyZjbzRQu?=
- =?iso-8859-1?Q?hktKh6ZB5GlqNCpdXRSD6hBR9BjuMsgQyz258cFOAZIS4qPwz2e2J1V0Ml?=
- =?iso-8859-1?Q?LcV4YBrzXos5zN8+KCmckCqwrP4oTGloIhJNturEwlK8aC/0/0zEAh15JH?=
- =?iso-8859-1?Q?8nqcvEBReEoQxda8kGa02PTLQzymHwE6Aedwo4MVHN7p8sAVQhFnKDqDoa?=
- =?iso-8859-1?Q?ZefH8/PwWDImEPnRqb77pTVfmZ2ba9FfLiym7vDjRhk1By0q4mJnIZxg?=
- =?iso-8859-1?Q?=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Tue, 2 Sep
+ 2025 14:42:02 +0000
+Received: from AM1PEPF000252DB.eurprd07.prod.outlook.com
+ (2603:10a6:208:0:cafe::2f) by AM0PR03CA0062.outlook.office365.com
+ (2603:10a6:208::39) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9073.27 via Frontend Transport; Tue,
+ 2 Sep 2025 14:42:02 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
+ smtp.mailfrom=topic.nl; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=topic.nl;
+Received-SPF: Pass (protection.outlook.com: domain of topic.nl designates
+ 20.93.157.195 as permitted sender) receiver=protection.outlook.com;
+ client-ip=20.93.157.195; helo=westeu11-emailsignatures-cloud.codetwo.com;
+ pr=C
+Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
+ AM1PEPF000252DB.mail.protection.outlook.com (10.167.16.53) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9094.14 via Frontend Transport; Tue, 2 Sep 2025 14:42:02 +0000
+Received: from AM0PR02CU008.outbound.protection.outlook.com (40.93.65.1) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Tue, 02 Sep 2025 14:42:01 +0000
+Authentication-Results-Original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=topic.nl;
+Received: from PA4PR04MB7790.eurprd04.prod.outlook.com (2603:10a6:102:cc::8)
+ by AM7PR04MB7078.eurprd04.prod.outlook.com (2603:10a6:20b:121::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.13; Tue, 2 Sep
+ 2025 14:41:59 +0000
+Received: from PA4PR04MB7790.eurprd04.prod.outlook.com
+ ([fe80::6861:40f7:98b3:c2bc]) by PA4PR04MB7790.eurprd04.prod.outlook.com
+ ([fe80::6861:40f7:98b3:c2bc%4]) with mapi id 15.20.9094.015; Tue, 2 Sep 2025
+ 14:41:59 +0000
+Message-ID: <fccbba0a-cb8f-4d71-9c91-7558cfaa8ef7@topic.nl>
+Date: Tue, 2 Sep 2025 16:41:57 +0200
+User-Agent: Mozilla Thunderbird
+From: Mike Looijmans <mike.looijmans@topic.nl>
+Subject: Re: [PATCH v4 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI
+ TMDS181 and SN65DP159 bindings
+To: Krzysztof Kozlowski <krzk@kernel.org>
+CC: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250901142958.843678-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.edc18686-244f-441e-a6ac-0b62492b96c8@emailsignatures365.codetwo.com>
+ <20250901142958.843678-2-mike.looijmans@topic.nl>
+ <20250902-hasty-spry-nautilus-c05c6a@kuoka>
+ <e007ee80-2eff-4859-b2e3-402950081b4f@topic.nl>
+ <ae28c7e0-6ea1-4a0a-b923-d3906d71141e@kernel.org>
+Content-Language: en-US, nl
+Organization: Topic
+In-Reply-To: <ae28c7e0-6ea1-4a0a-b923-d3906d71141e@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: AM0PR02CA0156.eurprd02.prod.outlook.com
+ (2603:10a6:20b:28d::23) To PA4PR04MB7790.eurprd04.prod.outlook.com
+ (2603:10a6:102:cc::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: siliconsignals.io
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PN3P287MB3519.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: c589b224-05f8-4a2c-18e2-08ddea2d49d4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2025 14:30:38.9100
+X-MS-TrafficTypeDiagnostic:
+	PA4PR04MB7790:EE_|AM7PR04MB7078:EE_|AM1PEPF000252DB:EE_|GV4PR04MB11380:EE_
+X-MS-Office365-Filtering-Correlation-Id: b60307ab-74e8-46f7-fe53-08ddea2ee138
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam-Untrusted:
+ BCL:0;ARA:13230040|1800799024|52116014|366016|7416014|376014|38350700014;
+X-Microsoft-Antispam-Message-Info-Original:
+ =?utf-8?B?b09xdndmMzVqZkVaQXJ0Nk02QXp5M21kUnVucjR1Z0FYdVJiZnM3d3UvKzJj?=
+ =?utf-8?B?SlNudncxc0g2emZTY1NsMFFYRWM4OFpLMlY1eUVBazBNc1Zrc2h2OGs4RzBD?=
+ =?utf-8?B?aUZWenVrL0o2bFRUMDJTSjhLQUNITzl1Q1hkeGo4WjZFVldudEFpbDBHZHEy?=
+ =?utf-8?B?dldPeU90NDBURnBCV1F1NlVpK1dTQmZ5OHVRMllBVE9PTGxycjNpQmdheDZZ?=
+ =?utf-8?B?bTFyNFluNHV5ZThlWGxmSWV6bjM5cTRCREoyUnlTNUgxU25RMWhDYVk0dWJN?=
+ =?utf-8?B?Z0EyeFp4cUxvWnIvK09xdytvUzc5UFpEdEhkVlhEdjJqRi9BNjNJUWVMSmov?=
+ =?utf-8?B?M29VMk1BUWxrakRIUUhJNWY0NFgrTmY0SmZjUUxpa2xSay8vdGtCM2w4dUw0?=
+ =?utf-8?B?d2ZHaVd0d3dwUDM4dG5QaDdFdGdoWEQzeXVwRDhrVDB3Q0hKL09hcVduZHhH?=
+ =?utf-8?B?MTIyTWp2Ni9KZThLSGlGK0MxUnk0bkJWNmwvRTRSYTZ1L2taYjRLbWxETEVm?=
+ =?utf-8?B?U3NGWjNkbEliQk5uRVFXSjc4KzVBTVNPRnh5bStkbklzbGdvZVA2RE5KYUhw?=
+ =?utf-8?B?dW5vVUlxNzNXSGNjYTJZRVNmemRCeEM1NldOYnZrZjQwN3VZYnMrRzc0aUV5?=
+ =?utf-8?B?b0orSkVBaVlwT0JySHRlSEJRK05jcS9sV1FzZjV1S0crcW1KeVVMMHY4Z3ZX?=
+ =?utf-8?B?SG9jaWd2dWcranJGblptSG8rbzNqMFBGVE14aW9lcGpFanM4YlJXcjR5N0M2?=
+ =?utf-8?B?clF5QW5XZVJrVVlYaml4SDVScFM3OHBWVGFQWUZ1WGJNZDZKVjBHd1JBU0dp?=
+ =?utf-8?B?U21NMG5kd2ZiZVdxOVVrcnNDcGxVbmw0UDFZZ3RtaXVNdmNiNWJUb2ppTVBK?=
+ =?utf-8?B?R2NtelJob0tIQmJ0azQ3TlNXQ0gwOHpWWDBLMDFwbHNsMXQvWTV5VVZUTy80?=
+ =?utf-8?B?YTJNTzVvbkplUUVWT3BMeHh5YkVIK3AreUQrQ2tUWmgzYWtrd09rUDNSdU9r?=
+ =?utf-8?B?RTl4aEFPRHVDc2VEbnJGY3kzcHdOd0hFb3JLMllXeUV0SmswSWE1M3VJUTh4?=
+ =?utf-8?B?SVBaMnhCS0VqNy9FcVduZHNrUmt3MHVLNHlJNTRSRlNKY2hoTGJpWnNHUGlq?=
+ =?utf-8?B?TGVxNFFJa2VEcFUwSGx3VFZuTWJpYnQ5dTBPTmVDbUY0SzFMSytyUmhJaCtz?=
+ =?utf-8?B?a1Z2SE50dGdtSjVzOFM0cDhCQk9Dckd2VmhORjd0SU5VcEpkZW5paFFDUlpp?=
+ =?utf-8?B?ZmNBOHRYR1pFMWF1RmJva2VjS3BwNmppeTViUDhuekwydyswM05hOFNIUXVC?=
+ =?utf-8?B?T25lU1M2VFpsbmFzOWwyQXAxTzM3TUlSczRZek5ieGh6WjVrNXMzWXl0OU1P?=
+ =?utf-8?B?MEozN2lPcnJDdGloY0VxNTQ3OUdIcFVGVERkUU5XQjNSNXBGT0trNFJ3TE8z?=
+ =?utf-8?B?eTZRZWlQdTUrTVRXY2JEcWk0eGJQUmR1TTllalR3T1NEZHNscDRmbU0rRVNs?=
+ =?utf-8?B?R1o4RkVROTN2dmdaa2VjU2FjZVFUMHBaSlVFZ0UrcEx0ZjdBMk8rd1Q1cXIv?=
+ =?utf-8?B?VytNazhYK3p3d2JrVm5qaVVib3VzSVZrRWZZdCt3NUxYbkxzTnhuVllOanYr?=
+ =?utf-8?B?VDBsaVBYT2wzVHJybk94ZWJzcWQ2cUdyelBNdlJvL3Qvb0dkdlVnU2lCd01Y?=
+ =?utf-8?B?bmt5NTV3MlVlSmVyenl1cUZkUDdwRVJBUUtGVU9JUzB0RzQzdmlRQ1pIc2Rn?=
+ =?utf-8?B?cUpEN3hMWWJTZnl4b3VySXhSOVFidHNjV1R4ZWNuV0t2cGJnNzl3VHQ0R3ZL?=
+ =?utf-8?B?RFdsUzgxUmhqVlFjM1gwdmFUb2F5Z0FtdlkvNTZacDJxckpRVnZPTS8rVXF6?=
+ =?utf-8?B?SExnaVM1U2IxNWtoaWxNMzZvVVljeHF0bmlONFpRbkdSQTdWNHVYL0pGa0JU?=
+ =?utf-8?B?YTdiWFEzOEJNVEJJMVc2UWpZbDZuU0lLalFSOXpTRTNaSFc3QlZnWHlJTldB?=
+ =?utf-8?B?QnQyUUhPWUpnPT0=?=
+X-Forefront-Antispam-Report-Untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PA4PR04MB7790.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(52116014)(366016)(7416014)(376014)(38350700014);DIR:OUT;SFP:1102;
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB7078
+X-CodeTwo-MessageID: f1fd6fb8-4884-4fa4-b132-91f635578491.20250902144201@westeu11-emailsignatures-cloud.codetwo.com
+X-CodeTwoProcessed: true
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped:
+ AM1PEPF000252DB.eurprd07.prod.outlook.com
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id-Prvs:
+	65b7302e-3dbd-49d4-f859-08ddea2edf28
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|35042699022|82310400026|14060799003|1800799024|376014|7416014|36860700013;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?UUFMdHVKMXJnaUVwWUtVeVhQc2cvZUlvUGpYamtVTWpIZFRzb3JNbmVvRkVq?=
+ =?utf-8?B?NlBFZlZOSzlreWZOTTZuYlcwRTBDS25rT3Q1b1huVHQxU1Y4V3JEVjc5RFdT?=
+ =?utf-8?B?M2lsQUlTMGJSUzFIMUsraHBIajRDRmVWa0lVZVJ6TUhuUkh2NVZVRVl0Nm52?=
+ =?utf-8?B?ZWJSTlF3cEpUQTd4MGx4N0trRzlRRmp5dnRiNVVvOUpVRTBJZ3lQMFRWZDlP?=
+ =?utf-8?B?dU12RWhKY1RFWDRPekRUeEJwZnRxUlB0MzVuSW9vQ2dRUjQyUTBiT01Ib2tU?=
+ =?utf-8?B?RW53K1doendWSStHZmhiT256RWoyd1cyTnZNSVN4RHZPM3haZTVpOTRjUG96?=
+ =?utf-8?B?TU5MRisrbzFBWEJNdWpmWlpRK1pWVkFjcjBuVGhqOHVPNG83YjR2WDl0WUlo?=
+ =?utf-8?B?eDBXZlZ2QnBNbFoxdngyUHFkc3VEL1ZzVElUMmpQMmpWSWpQUmJoYzJNQ1pt?=
+ =?utf-8?B?UjBnUmlMaEhKaFY5eWtKMUZQazlWamVCY09LeURxOUhFRS9TWEpPNVN5bmJG?=
+ =?utf-8?B?YmZqbURNaWwwZ2J5RXBHMnlTRlh4MWFTN3ZmSVgxNnAxSWc2YWpEd1UxUnpl?=
+ =?utf-8?B?emVSUUhVQmVTMW51WjdmT0F2b2lic245SWNHNXl0VHc5bTJJVmh2SzlzYnNL?=
+ =?utf-8?B?T2hsc3pjU3p3K0xvZVk0eHR1UEJtSHNDTHJKcHBwMnRNcnBxMXlLWldOMFEz?=
+ =?utf-8?B?dDZlOTlhUFI1QmVUK0E0dEdrSjZuSHRGbkFMaHFjb1ZCVWlVNDhKTVZwbXB2?=
+ =?utf-8?B?Q3dWOXp2N0s2L0ZVUGRRMHFWY3ovZWVBdzVDcG1hL3NwNFltemVyRE1hTElK?=
+ =?utf-8?B?VGsrVVNOc21QS2szcURPS3NpOE5XYTdNQSt0dFZjOGhzeFJFRVpZNHpqVU9C?=
+ =?utf-8?B?SjA1eDlqQWppbWhBWHM4R2F3N25PZzVEeVVqalVUT3hoYmFUL2FWWi9maE40?=
+ =?utf-8?B?SlV5VWMwZXp5NnpNUml5RXgyVWhaaXArL3pVdDViQnM0SElybUNOWmg0ZW1E?=
+ =?utf-8?B?TnkzWTBDZHh0SlV4Q3pNN2xqcGFZelZ2L1MwOXl3MlZFNUZta0wrZVdJTVdr?=
+ =?utf-8?B?b29BTTlBWklra0VjTzZXVTNDSWxvZTdWZldaN3ZFTThEQTNMN1hiSkJtWDVu?=
+ =?utf-8?B?RXR1R25kclQ4dW5UMnRPQzFacnNneGR2U01Lak1rU3lPTDVmaGdDeStuTmdW?=
+ =?utf-8?B?dmpiRnp6a3RHYjUvZDlHWnVDVG0wMTgzSU5wbVBOWW9KOURBRDk2RVMwR01n?=
+ =?utf-8?B?U2lGZUcvZ0RXeHZLU0hPaU9jQm9YVERxWnFIZ1dweFdaWEw3Qmt1aHJ5SmY5?=
+ =?utf-8?B?cWFXYjUvRk9sWjkwYU9FcXVST2w4RlNIVnRQczhpWHpNbTVwL0RWN3M3Nklm?=
+ =?utf-8?B?QVFQUmd2VlhoYmViVUdOTE9CWFFhcVRGdzIwYnpnOGlaU3FvY0w5cVhwUlNJ?=
+ =?utf-8?B?cmRYVnVWMGNtRm9xWkZTN3JQbzdiZnZFTDNhMGhwT0tFV2RUQ0Y4cVNMVHcx?=
+ =?utf-8?B?N29aeEcxQ2xvTW91RW1mVkZIdks1SVk4SnVjVXkwdlQvUnFuSjc0aTRiWjha?=
+ =?utf-8?B?UGE4VnhjMEwzV1lJYUdYWUp4K01WalBiMGNnNlZSUDByVnUzRkgwRHFXZ2JV?=
+ =?utf-8?B?RGlaNUdWb05xKy9haHh2UHBYZ0Uzd2E0WVEwQklPdEx2RktrNUhSckQ2Mkpz?=
+ =?utf-8?B?YmdJV3NUbEtuWHEyclBpcGlmMGhnS3g4Z3Yrdm9MQWN5STR5V05TNjlIaFkx?=
+ =?utf-8?B?cUVGSkJ3K0krc21rNlFrYmdqU2ZXYkRVbkhGdEdaL0NIeXNnb2lIcXhGZENi?=
+ =?utf-8?B?ZTNxK0hRZVNzNnlHNjRDb2NIOExqTllBenVrWGMxWndSUU8vMlNQd2pGQmxz?=
+ =?utf-8?B?MkRLcU9tRG8rSi9pVWJzSXhMaW85byswWmhIQXJnQTJRaVp5S3VUMTBJaVdO?=
+ =?utf-8?B?aFpubFZoekhCclJIRjJBcTJ1TmY1aWw4eUc0ZWNXbU0yZXVUNzQvSkFGMXJO?=
+ =?utf-8?B?QTAzUCs1cGJKWGF4dVRHNXh4Y0E5bnNUcHd3SXhycjdEd0ZiTkZ5b09sOGRO?=
+ =?utf-8?Q?qBp979?=
+X-Forefront-Antispam-Report:
+	CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230040)(35042699022)(82310400026)(14060799003)(1800799024)(376014)(7416014)(36860700013);DIR:OUT;SFP:1102;
+X-OriginatorOrg: topic.nl
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Sep 2025 14:42:02.3399
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 7ec5089e-a433-4bd1-a638-82ee62e21d37
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 8kwOJd6+dSd2Jc5G/lP0fslidwXq+qgS/OHZFcmxp0hKPbDcfDP9NHRD8WMFLd9/wQ+mXFVIsgEG0wCmf28MZla5+YT7FUo72E6JBZ8rp9K4wY5RqyN2wYyb3N6O6gkO
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB1165
+X-MS-Exchange-CrossTenant-Network-Message-Id: b60307ab-74e8-46f7-fe53-08ddea2ee138
+X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AM1PEPF000252DB.eurprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GV4PR04MB11380
 
-Hi Sakari,=0A=
-=0A=
-> On Mon, Sep 01, 2025 at 06:44:46AM +0000, Tarang Raval wrote:=0A=
-> > Hi Hardev, Sakari=0A=
-> >=0A=
-> > > Add a v4l2 subdevice driver for the Omnivision OV2735 sensor.=0A=
-> > >=0A=
-> > > The Omnivision OV2735 is a 1/2.7-Inch CMOS image sensor with an=0A=
-> > > active array size of 1920 x 1080.=0A=
-> > >=0A=
-> > > The following features are supported:=0A=
-> > > - Manual exposure an gain control support=0A=
-> > > - vblank/hblank control support=0A=
-> > > - Test pattern support control=0A=
-> > > - Supported resolution: 1920 x 1080 @ 30fps (SGRBG10)=0A=
-> > >=0A=
-> > > Co-developed-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io=
->=0A=
-> > > Signed-off-by: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>=
-=0A=
-> > > Signed-off-by: Hardevsinh Palaniya <hardevsinh.palaniya@siliconsignal=
-s.io>=0A=
-> > > ---=0A=
-> > >=A0 MAINTAINERS=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 |=A0=A0=
-=A0 1 +=0A=
-> > >=A0 drivers/media/i2c/Kconfig=A0 |=A0=A0 10 +=0A=
-> > >=A0 drivers/media/i2c/Makefile |=A0=A0=A0 1 +=0A=
-> > >=A0 drivers/media/i2c/ov2735.c | 1109 ++++++++++++++++++++++++++++++++=
-++++=0A=
-> > >=A0 4 files changed, 1121 insertions(+)=0A=
-> > >=A0 create mode 100644 drivers/media/i2c/ov2735.c=0A=
-> >=0A=
-> > ...=0A=
-> >=0A=
-> > > +static int ov2735_enum_mbus_code(struct v4l2_subdev *sd,=0A=
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_state *sd_state,=0A=
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_mbus_code_enum *code)=0A=
-> > > +{=0A=
-> > > +=A0=A0=A0=A0=A0=A0 if (code->index >=3D 0)=0A=
-> >=0A=
-> > Hardev, I believe this condition is always true.=0A=
-> >=0A=
-> > You should write:=0A=
-> > if (code->index > 0)=0A=
-> >=0A=
-> > Sakari, Could you please remove the equals sign when you apply the patc=
-h?=0A=
-> =0A=
-> Done. I also switched it to container_of_const(); the diff is:=0A=
-> =0A=
-> diff --git a/drivers/media/i2c/ov2735.c b/drivers/media/i2c/ov2735.c=0A=
-> index da5978b96146..b96600204141 100644=0A=
-> --- a/drivers/media/i2c/ov2735.c=0A=
-> +++ b/drivers/media/i2c/ov2735.c=0A=
-> @@ -402,7 +402,7 @@ static int ov2735_multi_reg_write(struct ov2735 *ov27=
-35,=0A=
-> =0A=
-> =A0static inline struct ov2735 *to_ov2735(struct v4l2_subdev *_sd)=0A=
-> =A0{=0A=
-> -=A0=A0=A0=A0=A0=A0 return container_of(_sd, struct ov2735, sd);=0A=
-> +=A0=A0=A0=A0=A0=A0 return container_of_const(_sd, struct ov2735, sd);=0A=
-> =A0}=0A=
-> =0A=
-> =A0static int ov2735_enable_test_pattern(struct ov2735 *ov2735, u32 patte=
-rn)=0A=
-> @@ -428,8 +428,8 @@ static int ov2735_enable_test_pattern(struct ov2735 *=
-ov2735, u32 pattern)=0A=
-> =0A=
-> =A0static int ov2735_set_ctrl(struct v4l2_ctrl *ctrl)=0A=
-> =A0{=0A=
-> -=A0=A0=A0=A0=A0=A0 struct ov2735 *ov2735 =3D container_of(ctrl->handler,=
- struct ov2735,=0A=
-> -=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 handler);=0A=
-> +=A0=A0=A0=A0=A0=A0 struct ov2735 *ov2735 =3D=0A=
-> +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 container_of_const(ctrl->hand=
-ler, struct ov2735, handler);=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct v4l2_mbus_framefmt *fmt;=0A=
-> =A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_state *state;=0A=
-> =A0=A0=A0=A0=A0=A0=A0 u64 vts;=0A=
-> @@ -697,7 +697,7 @@ static int ov2735_enum_mbus_code(struct v4l2_subdev *=
-sd,=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_state *sd_state,=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=
-=A0=A0=A0=A0=A0=A0=A0=A0 struct v4l2_subdev_mbus_code_enum *code)=0A=
-> =A0{=0A=
-> -=A0=A0=A0=A0=A0=A0 if (code->index >=3D 0)=0A=
-> +=A0=A0=A0=A0=A0=A0 if (code->index)=0A=
-> =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 return -EINVAL;=0A=
-> =0A=
-> =A0=A0=A0=A0=A0=A0=A0 code->code =3D MEDIA_BUS_FMT_SGRBG10_1X10;=0A=
-=0A=
-Thanks for your help.=0A=
-=0A=
-Best Regards,=0A=
-Hardev=0A=
+On 9/2/25 15:46, Krzysztof Kozlowski wrote:
+> On 02/09/2025 10:46, Mike Looijmans wrote:
+>>>> +          endpoint:
+>>>> +            $ref: /schemas/media/video-interfaces.yaml#
+>>>> +            unevaluatedProperties: false
+>>>> +
+>>>> +      port@1:
+>>>> +        $ref: /schemas/graph.yaml#/$defs/port-base
+>>>> +        unevaluatedProperties: false
+>>>> +        description: Video port for HDMI output (panel or bridge)
+>>>> +
+>>>> +        properties:
+>>>> +          endpoint:
+>>>> +            $ref: /schemas/media/video-interfaces.yaml#
+>>>> +            unevaluatedProperties: false
+>>>> +
+>>>> +    required:
+>>>> +      - port@0
+>>>> +      - port@1
+>>>> +
+>>>> +  ti,source-mode:
+>>>> +    type: boolean
+>>>> +    description:
+>>>> +      Force chip to operate in "source" mode. Allows to use
+>>>> +      a TMDS181 chip (which defaults to sink) as cable driver.
+>>>> +
+>>>> +  ti,sink-mode:
+>>> Aren't these two mutually exclusive? Can same device operate in source
+>>> and in sink mode simultaneously?
+>> They're exclusive, yes. Will add that.
+> Then either define constraints per variant in if:then: or maybe better
+> use string enum. Not sure what applies where, so tricky to say which
+> choice is better.
+>
+> Best regards,
+> Krzysztof
+
+Since there's already going to be an "if" block, it simplifies parsing=20
+to keep the booleans. My first attempt was this, but that doesn't work=20
+as I'd expect. Adding "slew-rate" to the example dts results in an=20
+error, so apparently the "if" block doesn't do what I think it would and=20
+I haven't figured out yet what the correct syntax must be:
+
+if:
+ =C2=A0 properties:
+ =C2=A0 =C2=A0 compatible:
+ =C2=A0 =C2=A0 =C2=A0 contains:
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 const: ti,sn65dp159
+then:
+ =C2=A0 properties:
+ =C2=A0 =C2=A0 ti,sink-mode:
+ =C2=A0 =C2=A0 =C2=A0 type: boolean
+ =C2=A0 =C2=A0 =C2=A0 description:
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 Force chip to operate in "sink" mode. Allows t=
+o use
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 a DP159 chip (defaults to source) for incoming=
+ signals.
+ =C2=A0 =C2=A0 ti,dvi-mode:
+ =C2=A0 =C2=A0 =C2=A0 type: boolean
+ =C2=A0 =C2=A0 =C2=A0 description: Makes the DP159 chip operate in DVI mode=
+.
+ =C2=A0 =C2=A0 slew-rate:
+ =C2=A0 =C2=A0 =C2=A0 $ref: /schemas/types.yaml#/definitions/uint32
+ =C2=A0 =C2=A0 =C2=A0 minimum: 0
+ =C2=A0 =C2=A0 =C2=A0 maximum: 3
+ =C2=A0 =C2=A0 =C2=A0 default: 3
+ =C2=A0 =C2=A0 =C2=A0 description: Set slew rate, 0 is slowest, 3 is fastes=
+t.
+else:
+ =C2=A0 properties:
+ =C2=A0 =C2=A0 ti,source-mode:
+ =C2=A0 =C2=A0 =C2=A0 type: boolean
+ =C2=A0 =C2=A0 =C2=A0 description:
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 Force chip to operate in "source" mode. Allows=
+ to use
+ =C2=A0 =C2=A0 =C2=A0 =C2=A0 a TMDS181 chip (which defaults to sink) as cab=
+le driver.
+
+
+
+--=20
+Mike Looijmans
+System Expert
+
+TOPIC Embedded Products B.V.
+Materiaalweg 4, 5681 RJ Best
+The Netherlands
+
+T: +31 (0) 499 33 69 69
+E: mike.looijmans@topic.nl
+W: www.topic.nl
+
+
+
 
