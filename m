@@ -1,98 +1,121 @@
-Return-Path: <devicetree+bounces-211648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7394B3FD5E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:08:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF903B3FD64
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:10:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88E852C2CA8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:08:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D8CF1B23A7E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FD032F617D;
-	Tue,  2 Sep 2025 11:08:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677512E92C5;
+	Tue,  2 Sep 2025 11:10:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ifW05R+L"
+	dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="iuWeJ7IM";
+	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="XCStTNbG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from a7-18.smtp-out.eu-west-1.amazonses.com (a7-18.smtp-out.eu-west-1.amazonses.com [54.240.7.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BB6F2F532D;
-	Tue,  2 Sep 2025 11:08:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D1682765C5;
+	Tue,  2 Sep 2025 11:10:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756811331; cv=none; b=FEokAxrWLO9rUvdaR/DoUGjPdE/OYDphdkSxb2K7eQBUfYmsC1KeYRknrXWtWjlIhWNEE5Zz/jugyR8rV3OEEod6kpoRq7D/yksRssqdmtpZX2ETzygc0QyfbBjVVLHshtFXn9RkKrmSDuQidVmM16LzcqcTAFTGKxpDhKmdBRg=
+	t=1756811452; cv=none; b=SIxtDcDbFhnbdzylIz+eE7feClnuvI5wwEbDb/tdNoiaUgUs8vtizjO75L4QG/FlD76tOTuMc3oUydEaFlbLmM4Eq2mEAwic23BUphpMozcveUayBurUTxwtio3rFiEd+5/LsJvYEnf00MUoah25tKPaCrtcwPjNo2JiP8giQz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756811331; c=relaxed/simple;
-	bh=98GrAJno92DtCQZEPAy9W7Uzdr9pTw990Q22kkCJlRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZE8TIbSyFzshq0S4i34eu/WHcqQSx5W3AMT8GnOEzhMAmf7cb9r+QDoCCQPqvMrb30jjC30/3d1wGdzG5ywnZZvVDtyIy5PObuaclfvyD2u983aplrdOUkiUtjNkVc2A18czqULWQuzs1jI9AV4zMA4YK4qJISB2RrQp1wtxoAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ifW05R+L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2A47C4CEED;
-	Tue,  2 Sep 2025 11:08:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756811330;
-	bh=98GrAJno92DtCQZEPAy9W7Uzdr9pTw990Q22kkCJlRY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ifW05R+LdY8B6zwqefFGGNa0leX7MA7g+cKDdAinoLxOYupDZyZ5sfVUSeKWcL9pu
-	 gukM8j7ssOnOgcLwnq9iJnzi3WAYlRr5dMNN0QaS5+Z3tudL2qVFQoquzc0+aq/dmO
-	 /BseaJiu3B4HxSSFcdbU/nOg4d5OvcI9B+zqb6P0pHjvHG5XR85yil2QtjXMOpj5wP
-	 HY3t4yPsbH3ZFct7V/3M5agxgx7pHpU4JK5y9Hi9jwbS0TvyPqavtwVJBT5pCnrR+k
-	 FqZZdHkeHtF0mNPB0U0m4Ng3us4+AGg1bAbjIDM5bNMUs319Oag0n1co/6JCzjIt0U
-	 DPjz+vFpwuQqA==
-Date: Tue, 2 Sep 2025 12:08:45 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>, linux-spi@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	Varshini Rajendran <varshini.rajendran@microchip.com>
-Subject: Re: [PATCH 0/5] Add QSPI support for sam9x7 and sama7d65 SoCs
-Message-ID: <33770201-9c62-44ea-be9c-6d84e783a5a7@sirena.org.uk>
-References: <20250902-microchip-qspi-v1-0-37af59a0406a@microchip.com>
+	s=arc-20240116; t=1756811452; c=relaxed/simple;
+	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:Cc; b=Oniyk7auEQHEAqxUFhfMDhlDrd1GmARP6T5TBZy/wXQ0+3TgwUfdbFRFlABeL0b74YCD4bpF2Wx0/Fb3hrGGR+R7teAcaOHW/xZfrr0PC9A1nIn29b4kRTQIHrgGnsqE+5AIq+mLgiTDtCDpTTgZIoxb923bZ9ieXVYGwvmZU+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=eu-west-1.amazonses.com; dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=iuWeJ7IM; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=XCStTNbG; arc=none smtp.client-ip=54.240.7.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eu-west-1.amazonses.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=vuvznkywrn6u4jb2ozie3fqz3nbg6pps; d=vinarskis.com; t=1756811448;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc;
+	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
+	b=iuWeJ7IM/awOX6TDNMaryJmdvwXLy8orSrP7IU4HhbFfu6hTU+ljBy6TqwlX9VH0
+	WYFb0ooIXs2hcsdh7zTcZnrMbEYUwp+me71Z0bxiwb25y6lXobfdVYK9iFRC6eFInHj
+	qjsNqxJBKM8ayiQbm1dUuAG38Y3lWRSLuOO5FfCg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1756811448;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc:Feedback-ID;
+	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
+	b=XCStTNbG72BbnL66aW4tFnwWKuUcLHnEtADvC1jhwkNjNCGosrQfKeGrmmtbYXld
+	gW0QTfGcDS5gFJUbuZWOivtP0sV1ivSOHNTG0utT8XJ1O3g/GzrbszsZ/rdQs0hxHPS
+	vMttAk6EwGiCXYtMjfc1Iop8tjv4bXdFfQjH4nZ4=
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Subject: [PATCH 0/2] leds: privacy-led support for devicetree
+Date: Tue, 2 Sep 2025 11:10:48 +0000
+Message-ID: <010201990a1f5100-d47d26c3-6bbf-4119-8410-b5040e080dbf-000000@eu-west-1.amazonses.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="WoEm1YhYkZYnPu1J"
-Content-Disposition: inline
-In-Reply-To: <20250902-microchip-qspi-v1-0-37af59a0406a@microchip.com>
-X-Cookie: Vote anarchist.
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAK/QtmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSwMj3ZzUlGLdZDPDZAtz88SUFAsDJaDSgqLUtMwKsDHRsbW1AHbbYLd
+ WAAAA
+X-Change-ID: 20250902-leds-c61c877add80
+To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Aleksandrs Vinarskis <alex@vinarskis.com>, 
+	Andy Shevchenko <andy.shevchenko@gmail.com>, 
+	Linus Walleij <linus.walleij@linaro.org>, 
+	Hans de Goede <hansg@kernel.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1243; i=alex@vinarskis.com;
+ h=from:subject:message-id; bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
+ b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBnbLmzeL7J1X3rO/LBaMYbgQ/u35WTu+PnTTWPfrdy4q
+ xv3SDJt7ihlYRDjYpAVU2Tp/vM1rWvR3LUM1zW+wcxhZQIZwsDFKQATWXyA4TfrzqMF96YFcdhe
+ Xp6je9msYaHF/86T6+axbVjBoPkiqzqX4X/5ivvrWD/43GnLjVzUadXY7Xd4/bHup+nNF8yde95
+ cfsULAA==
+X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
+ fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
+Feedback-ID: ::1.eu-west-1.dmE2JeRFSagpgiG6D+fa+YE0PH7S+b7tab7/4kfDOU8=:AmazonSES
+X-SES-Outgoing: 2025.09.02-54.240.7.18
 
+Re-spin of RFC patch from ~2.5 years ago [1]. v4l2 controls for privacy
+LEDs has landed, but the DT part was left out.
 
---WoEm1YhYkZYnPu1J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+With recent inflow of arm64-power laptops (Snapdragon X1E/X1P) which
+mostly use MIPI cameras, this feature becomes more desired. Original
+rebased patch is still working as expected (with respective DT changes)
+on Dell XPS 9345.
 
-On Tue, Sep 02, 2025 at 11:22:17AM +0530, Dharma Balasubiramani wrote:
-> This patch series adds support for SAM9X7 and sama7d65 QSPI controller
-> along with the SoC-specific capabilities.
+Changelog to original series:
+- Pick RFC patch, pick R-by, drop RFC-related commit message part
+- Add new DT binding to describe generic LED consumer properties
+- Rebase and test on X1E laptop
 
-The driver bits of this all look OK to me.
+[1] https://lore.kernel.org/all/20230120114524.408368-6-hdegoede@redhat.com/
 
---WoEm1YhYkZYnPu1J
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+---
+Aleksandrs Vinarskis (1):
+      dt-bindings: leds: add generic LED consumer documentation
 
------BEGIN PGP SIGNATURE-----
+Hans de Goede (1):
+      leds: led-class: Add devicetree support to led_get()
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi20DwACgkQJNaLcl1U
-h9D5Qgf/f5J1ANHIWLWnMtWR1RwnzOz1QDrcwcMjPKsHh84tpstX1jmhmDnCv2/R
-QuXbIgk8AUZ3ykObhqQgbpb4CHoYEBN3ah0L3li/UFZykiWaMAs9GWpTrSuEsbiA
-zuINXKaiDfkcZQqElk963QLLpf+MPV51YycUFbLqtQysqDzvkcTGieXb6QkXLTnM
-riguC9rm303m3kWZ0RMREjAyVtclyy50hjF0TQHtxjrhiFftMvLPyQoSVvshRdyS
-7pxIhaPFRreFvdpTbKfoo4q6LwIWjizDHzWK0i2TZPMcJBrKk0zkChR5QX0wGMvd
-UA+StqccRScoVssTI0w9wVa2Fhw5Nw==
-=kwiz
------END PGP SIGNATURE-----
+ .../devicetree/bindings/leds/leds-consumer.yaml    | 69 ++++++++++++++++++++++
+ drivers/leds/led-class.c                           | 38 +++++++++---
+ 2 files changed, 98 insertions(+), 9 deletions(-)
+---
+base-commit: 3db46a82d467bd23d9ebc473d872a865785299d8
+change-id: 20250902-leds-c61c877add80
 
---WoEm1YhYkZYnPu1J--
+Best regards,
+-- 
+Aleksandrs Vinarskis <alex@vinarskis.com>
+
 
