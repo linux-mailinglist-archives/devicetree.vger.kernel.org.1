@@ -1,88 +1,83 @@
-Return-Path: <devicetree+bounces-211626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B770B3FBBC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:05:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2AC7B3FBCC
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:06:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B8753B6519
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:05:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E68DF7B2104
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:04:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1664B2EFDA0;
-	Tue,  2 Sep 2025 10:03:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A0B02ED85F;
+	Tue,  2 Sep 2025 10:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Sz+w930p"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="F6z+gSS0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 658DF2F3634
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 10:03:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07836275860
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 10:05:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756807433; cv=none; b=ekws1BAnP+fOgy3zmeszcfY7wP42RU3i5kNq6hTujwUxG4R0woRNp0HMEBAiGcfB7/fUd+vy0hQc0R0pn5VLF2X7FRnPvp9uwL3c6x80hRvdenUtzLQJ7E58nonBvi8eeQxc0g/mOMqsbTMom84q+2MUonHJOh3ecY51kNl2nYQ=
+	t=1756807550; cv=none; b=aIRQMlRICBs/tQty2LdNdQZwdCpxJdw6olR7G3n/T3+yKrm7AEvju00YHd/j4tH/KjTn1IyvlduPQ+TGnmek6pFcjEMQoi2TpLar6l3Kl5dXi5UEBQWOiFbFjHLID3HNAc5tdOVKybjo3Mqr1E3gI7WtBg6TlOr1DJnFYyCe1K0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756807433; c=relaxed/simple;
-	bh=OMH911saib2g4n2t2zyb4J/lG3JZViTe0mTvakxSTq4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Rv4QVF/Xh0gFdZvdZzjlPpOBZc1s9kKV3TZkNvFlkzTpRFdZembI/7NYDzjOIGYm6wY8hw7xOdBvV3aPso8Juj7Gk4NnB5bTh2SpkRh5LMA56Pq43AvFXkqUMEOyzZ2naqTSzpiPXkGHiHt+GkFAUrdwni93wcTHQJ5kN1IN9os=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Sz+w930p; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5822XGgF031614
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 10:03:50 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ONlt8yJ8zIOJ8ImlXqcGWu+roYh6In+yuDvxr9b3xSk=; b=Sz+w930phOpuCD/l
-	/kGW65qil3V/1/dSCo4OTEgTUCUFo6CbyQrcqCZ3CIYqnVn2tiXUclDbWCwjZHhS
-	8BjhPPFxjsUEr+aYsN1JioJnazBKMgzR828tLxouwiJvF4HJly8e5+N0r46ycsEi
-	5zXGDPo/2tPlwN6Dgdb21Q26ii+BQ51AhP1Y5TxxLH3jIdJxJzjWPpNQ4W50BpMy
-	iGc3NeolKVlIsm7SLYniteNYuYONT1q7IABB1SW77W9tyMbz0hGniHcA5SNmvpWT
-	PyIrWFht1ziHBSFvwgrdn5kli9YGXZd/v3HQQ6woJNMEd4WuWxGbixyOvXVFmdlh
-	eW42hQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48wqvw94gx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 10:03:50 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7148174e111so6482456d6.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 03:03:50 -0700 (PDT)
+	s=arc-20240116; t=1756807550; c=relaxed/simple;
+	bh=iHb0UjJW5ifXjc2NaBXP4kwBi57htBVpK3fHTu/oHb0=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=JHZsFHZC9YnslbZFVwp6NVSO1UquospRPCQaML0YEpklTCpguyaid0N9mA5SHawfn28Z8asYgH5wDjSRQBpJxToDV3qWAggPHm7uNy4FRCsZ/fc6mhCpW069KPi6drHy9igli77JW2X1EuJUWlETA7FdO2UbO97JB9gLK9NNOAc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=F6z+gSS0; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3d1bf79d75aso941916f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 03:05:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756807547; x=1757412347; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=DKv+WRLsFVCC8aSRaIrYXOk2Cx3u5tcB382H/Vrrt10=;
+        b=F6z+gSS0c1K4vjj3Opd/cPjKgieddS+pmNFiJxD/H9lKtqbSkedj7GIUXtlt09Bebb
+         rZkNp4oEAwK2LMPqj6ni8entC3MvSmK90KrYR9zBKghZKUlD0eJUlzQIvdfFocBBqD9b
+         xdsBfej//bJxZ5n6lqA0AxmfmO0ADFR4YyxU2CsUCDxbmaXXz+vYE6ACHxySoO+eWRau
+         Y1KMCfjK4U+BzvAoGxGyMVbDwPlLKyvVTh/K0c+2YFUBrMNIyBPXK4qTR5W8cY3HSAWV
+         7EORYYpOQoeaU3AUDSOhUzfvzs5OD3Qb+bC3Tj+pto1/7uOVU9ckm/SPEDd28P4QjVb5
+         p9xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756807429; x=1757412229;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ONlt8yJ8zIOJ8ImlXqcGWu+roYh6In+yuDvxr9b3xSk=;
-        b=LwrLFWRkHQMMzuYdsrDVwCuFe3DR+ha+94Ff5vEDy4z/OHaJWp0ejOSq5lkxEO9CTa
-         cVxv/nYDHmD/J0M9Q5gUg13UWRMWGo5HML3dePp4wSR3cL0Jw9PWYAXH+4+k+adx09m7
-         jgkmmTJjQ/RW+BwFwNTO5pEwqa4C92MQtRg9H6X3SYPBIW18xTyCetSVmDAMvj1rVZw1
-         6NS/qRBJH3D2pcRxwgO1bG3hVB1IVQ/R4gf/cLx4093WobWcDpCiVWW4d5GJRG7b59OQ
-         l6tYpYNIUNK2u+mHSGBHbJ4STc/g7Zwmmr2EYDY5sVyxtte5Hao0xoV5gpwdU2rf1dEO
-         X+cw==
-X-Forwarded-Encrypted: i=1; AJvYcCVOQBVFOEAMb69bGduyBXCpcj7RsHoEWU3YzNntHDzaM+yeCn3MilVqWX16nxfu1cR+vIIvrYJ+Ogid@vger.kernel.org
-X-Gm-Message-State: AOJu0YyPGl4DugkM+FD6LiPllqVamruqQu5KPC3s9Huxx7iQNAnplUbl
-	qFrTc11mJh+JKEGcf1+JX2orbmuUzsEsE/VHxWD6nnVEoOVWuHI+rfVceIgI5RNfng1m/u+qqsX
-	JUE2x681OydGp6GG5Aq1YVcfwaZkzNcDS3Y8LEbwYW11fkImp0Z2VIYVAp/BjFyLL
-X-Gm-Gg: ASbGncvXv2J43CFlTBrI20qd68vQBOkGumxy2EYxIqLHlzoH7Y/y5i1ESHAVX/40Vxc
-	O5mAvCXCMDHJ+TohIEzUwiAjOmK+fTOeHF/AUrmTCo+IGEQqOnPQiFy2WUZpA69UJJyzf9E4d6Z
-	VZPDpQ1dXjD7KQ9FQV/zGerxyzbJxjScDyR31D87YHlsgbBoaJT+Xy4bmgJe+OFPRbSdGYOQ5vY
-	5ALBXyMBfOrBJCI8B7m4AwiwyeYO5Pf7l2duQm0mAT1Yc1IbPAEOgxgjKMDPZI/LSZVz816shZ/
-	uCHs15cCONU0b3oTZxZRV/kY+k8TLj+2kP59CcnH6gv0Zm5S1Q9sInTxqr4yg5EO75NebLEq0q0
-	bCR61bdR3dxQBbo/shWQ7eQ==
-X-Received: by 2002:a05:620a:1708:b0:7e8:12ad:1e93 with SMTP id af79cd13be357-7fd83f260f6mr793076885a.11.1756807429248;
-        Tue, 02 Sep 2025 03:03:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHI/oDHG5/v/2FWXfHEB2t9sSEdJ8GtrjSJ3wf6sMVoZu9vN5NDGMwWVG1wNAgVIl0g9nUBXw==
-X-Received: by 2002:a05:620a:1708:b0:7e8:12ad:1e93 with SMTP id af79cd13be357-7fd83f260f6mr793073685a.11.1756807428741;
-        Tue, 02 Sep 2025 03:03:48 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b034db02d54sm761267966b.106.2025.09.02.03.03.45
+        d=1e100.net; s=20230601; t=1756807547; x=1757412347;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=DKv+WRLsFVCC8aSRaIrYXOk2Cx3u5tcB382H/Vrrt10=;
+        b=UAhJqph4IWRuahuIJ/IkJnTFKaG2VXnUIX+J6n2//U/LUmbA1lqfHfadb/434iIlh5
+         OnoVzsW31//7lh6/csmVYc8bNh0H7TRr4fHxz/Rdw9RY/OZ1hxo3xWMg4KRtF1edz1F4
+         /Qg7TXDXsLckakwI9v0r/h+JdhFoiMLySYHkn7F5pQumdjy7ju/Ua/fLjyvT+9830n6N
+         YU03qx6MyRiifvy79K0mDZurr4E4mreMsIFBCcOlhwOq5u8YHGeY6Uk0ok1YCwyQBZUX
+         J3eQ560VX9Pvkc8q5v5aSuYjsicYQYbW1zGuzzqkAjvrnpHg86Y8cLitkqjLlSANQKhl
+         LPVg==
+X-Forwarded-Encrypted: i=1; AJvYcCX6jljNRrrWx8cqX0QfjHONO3NP3afAqDSYMIIDjpdsKT/AvEXr8jrlshYF3v2lHDHgjvqvXPLkxJC2@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuC9DXEZvGJJ7fTLpoGkKJtOHFmsPB8Z/UdJDkGzXQubmd5v4B
+	gxM51DW579HKEqZhjCFq+Z/rcQjtD+b/Qocf8dalLiMV6ZbM9AvOfOlzyM0OrVCCcTM=
+X-Gm-Gg: ASbGncubP6hhwR/toGS1Q7EdlKVQuWJRxQi77Gxzfc3ejspkJWZDk2BtMEd3eZ7OevC
+	Qi9DaQhyVlbY72C+1EltixcHC94mBD0mj7h7t/Y0LcrkG0mLBmKRTFwW0zPSEca60m6EKNw/qXt
+	SUElg7eOTJpGXvNvE7JdArAmGR0wpW0emp+KBLHK9HOs8eFmYAEplsFscXtIj2uw/77CyiU23FU
+	iZCTGoK/NY2sIoy89nEEhhGEYibeSIOjxx9Ncb7j1BVX3lNs7BwtIgX4uRgCWLpUTbCXTQYmOAW
+	2E6/INwutHN3ru4PhyIGHrunBQMPOVRVkwkWE+/h3AbdGbgf36VE7XOahh18214w9o2qhOaAUF+
+	xNE8T1ssfNQOMmPfrmtOSPoFH36LvEAODvJU8bbo1l7RnOjRNgEzEBC9J6MUdgEVxqFqMdOUX0C
+	w=
+X-Google-Smtp-Source: AGHT+IEC2Uof9qvrunk0/czGAhbC3spiWV8COr7+4EjE/m9oQZvefEsHqv5eMS77ZNG8dVHRA97olQ==
+X-Received: by 2002:a05:6000:310b:b0:3c2:95c8:b71a with SMTP id ffacd0b85a97d-3d1af84bc3dmr9412376f8f.5.1756807547181;
+        Tue, 02 Sep 2025 03:05:47 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939? ([2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e68c83asm204250835e9.20.2025.09.02.03.05.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 03:03:47 -0700 (PDT)
-Message-ID: <1bbacc5f-7371-4451-b503-cdd98e9f9688@oss.qualcomm.com>
-Date: Tue, 2 Sep 2025 12:03:45 +0200
+        Tue, 02 Sep 2025 03:05:46 -0700 (PDT)
+Message-ID: <14f334fc-35de-4f21-8eb1-f6b41ac24704@linaro.org>
+Date: Tue, 2 Sep 2025 12:05:45 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,104 +85,278 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 5/7] soundwire: qcom: prepare for v3.x
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org
-Cc: conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-sound@vger.kernel.org
-References: <20250901195037.47156-1-srinivas.kandagatla@oss.qualcomm.com>
- <20250901195037.47156-6-srinivas.kandagatla@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250901195037.47156-6-srinivas.kandagatla@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Document static lanes mapping
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
+ <20250902-topic-x1e80100-hdmi-v2-3-f4ccf0ef79ab@linaro.org>
+ <slgu2d4iv6ef76f43gvwaelcl5ymymsvhokyunalq7z3l2ht3j@t7pko4rtqvgm>
+ <bf772209-2420-4794-a52a-1d5932146307@linaro.org>
+ <tl4fskw6yq6rniwwqkrvnulfpgym3jswlt5bmulgquogv7xkct@6bl4boesilsw>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <tl4fskw6yq6rniwwqkrvnulfpgym3jswlt5bmulgquogv7xkct@6bl4boesilsw>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAyMDAyNCBTYWx0ZWRfX0azBHgjiv/eP
- FqXCowbQ6rXOTpksF7cZk+7FAg/OpHTNnRh0gZaXtLX+vhoLB9fY6nwyBB/hW+p6M+krVQWfpgj
- yoJ37rdWiSMgyRzo0CRZpXdLONtQvQQhJGB//xY3orIHmMJjy4qmoA/Ih/STFX98C9/NEf7KgSo
- 5aCMTtUmTPZVX6aToDV41i3ak1pQ0Q2/Jtb/I2s16+RmUqPb8CKOVL7KDLAyiwR/7mnGrU1ejGO
- sZh6eiX4ITHnYAUmCA3+ZhlMYOMYwEn2n3YdSK8iA/xgLc6MyI9gvqWP5pTL/9eBsSs1AhjvUDR
- MNPxVidgjDQoVaUhHvdcDs3lre9eqQL3qjy8aM+Sx0pcMVPDczKv7lShUzJ5H00S8fxsHdfFObd
- dqR8lrw+
-X-Authority-Analysis: v=2.4 cv=WKh/XmsR c=1 sm=1 tr=0 ts=68b6c106 cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=2vpAE3o8IOySRsMUN-QA:9
- a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-GUID: 7CrAelHDNrCXImXoXnwdX3yl7ChcYz3a
-X-Proofpoint-ORIG-GUID: 7CrAelHDNrCXImXoXnwdX3yl7ChcYz3a
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 bulkscore=0 phishscore=0 adultscore=0
- spamscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509020024
 
-On 9/1/25 9:50 PM, Srinivas Kandagatla wrote:
-> cleanup the register layout structs to prepare for adding new 3.x
-> controller support.
+On 02/09/2025 11:46, Dmitry Baryshkov wrote:
+> On Tue, Sep 02, 2025 at 11:35:25AM +0200, Neil Armstrong wrote:
+>> On 02/09/2025 11:30, Dmitry Baryshkov wrote:
+>>> On Tue, Sep 02, 2025 at 11:00:30AM +0200, Neil Armstrong wrote:
+>>>> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
+>>>> of a combo glue to route either lanes to the 4 shared physical lanes.
+>>>>
+>>>> The routing of the lanes can be:
+>>>> - 2 DP + 2 USB3
+>>>> - 4 DP
+>>>> - 2 USB3
+>>>>
+>>>> The layout of the lanes was designed to be mapped and swapped
+>>>> related to the USB-C Power Delivery negociation, so it supports
+>>>> a finite set of mappings inherited by the USB-C Altmode layouts.
+>>>>
+>>>> Nevertheless those QMP Comby PHY can be statically used to
+>>>> drive a DisplayPort connector, DP->HDMI bridge, USB3 A Connector,
+>>>> etc... without an USB-C connector and no PD events.
+>>>>
+>>>> Add a property that documents the static lanes mapping to
+>>>> each underlying PHY to allow supporting boards directly
+>>>> connecting USB3 and DisplayPort lanes to the QMP Combo
+>>>> lanes.
+>>>>
+>>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>>> ---
+>>>>    .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         | 29 ++++++++++++++++++++++
+>>>>    1 file changed, 29 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>>>> index c8bc512df08b5694c8599f475de78679a4438449..12511a462bc6245e0b82726d053d8605148c5047 100644
+>>>> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>>>> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+>>>> @@ -76,6 +76,35 @@ properties:
+>>>>      mode-switch: true
+>>>>      orientation-switch: true
+>>>> +  qcom,static-lanes-mapping:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+>>>> +    minItems: 4
+>>>> +    items:
+>>>> +      enum:
+>>>> +        - 0 # Unconnected (PHY_NONE)
+>>>> +        - 4 # USB3 (PHY_TYPE_USB3)
+>>>> +        - 6 # DisplayPort (PHY_TYPE_DP)
+>>>> +    description:
+>>>> +      Describes the static mapping of the Combo PHY lanes, when not used
+>>>> +      a in a Type-C dynamic setup using USB-C PD Events to change the mapping.
+>>>> +      The 4 lanes can either routed to the underlying DP PHY or the USB3 PHY.
+>>>> +      Only 2 of the lanes can be connected to the USB3 PHY, but the 4 lanes can
+>>>> +      be connected to the DP PHY.
+>>>
+>>> It feels like this significantly duplicates existing data-lanes
+>>> definitions. Can we use that property to express the same semantics?
+>>
+>> Well yes it has the same semantics, but not really the same meaning. data-lanes is designed
+>> to describes the lanes layout/ordering, not the type/mapping.
+>>
+>> Here, we do not describe the ordering, i.e which source lane is connected to which endpoint splot,
+>> but which lane is supposed to connect to which internal PHY.
+>>
+>> Anyway, I'm open to suggestions.
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> ---
->  drivers/soundwire/qcom.c | 69 ++++++++++++++++++++++++++++++++--------
->  1 file changed, 56 insertions(+), 13 deletions(-)
+> phy@abcdef {
+> 	ports {
+> 		port@1 {
+> 			endpoint {
+> 				remote-endpoint = <&&usb_1_dwc3_ss>;
+> 				data-lanes = <2 3>;
+> 			};
+> 		};
 > 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 4fa3e1c080ef..e3d248432d49 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -107,6 +107,15 @@
->  #define SWRM_DP_BLOCK_CTRL3_BANK(n, m)	(0x1138 + 0x100 * (n - 1) + 0x40 * m)
->  #define SWRM_DP_SAMPLECTRL2_BANK(n, m)	(0x113C + 0x100 * (n - 1) + 0x40 * m)
->  #define SWRM_DIN_DPn_PCM_PORT_CTRL(n)	(0x1054 + 0x100 * (n - 1))
-> +
-> +#define SWRM_DPn_PORT_CTRL_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +#define SWRM_DPn_PORT_CTRL_2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +#define SWRM_DPn_BLOCK_CTRL_1(offset, n)	(offset + 0x100 * (n - 1))
-> +#define SWRM_DPn_BLOCK_CTRL2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +#define SWRM_DPn_PORT_HCTRL_BANK(offset,  n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +#define SWRM_DPn_BLOCK_CTRL3_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +#define SWRM_DPn_SAMPLECTRL2_BANK(offset, n, m)	(offset + 0x100 * (n - 1) + 0x40 * m)
-> +
->  #define SWR_V1_3_MSTR_MAX_REG_ADDR				0x1740
->  #define SWR_V2_0_MSTR_MAX_REG_ADDR				0x50ac
->  
-> @@ -171,6 +180,13 @@ enum {
->  	SWRM_REG_CMD_FIFO_RD_CMD,
->  	SWRM_REG_CMD_FIFO_STATUS,
->  	SWRM_REG_CMD_FIFO_RD_FIFO_ADDR,
-> +	SWRM_OFFSET_DP_PORT_CTRL_BANK,
-> +	SWRM_OFFSET_DP_PORT_CTRL_2_BANK,
-> +	SWRM_OFFSET_DP_BLOCK_CTRL_1,
-> +	SWRM_OFFSET_DP_BLOCK_CTRL2_BANK,
-> +	SWRM_OFFSET_DP_PORT_HCTRL_BANK,
-> +	SWRM_OFFSET_DP_BLOCK_CTRL3_BANK,
-> +	SWRM_OFFSET_DP_SAMPLECTRL2_BANK,
->  };
->  
->  struct qcom_swrm_ctrl {
-> @@ -230,6 +246,13 @@ static const unsigned int swrm_v1_3_reg_layout[] = {
->  	[SWRM_REG_CMD_FIFO_RD_CMD] = SWRM_V1_3_CMD_FIFO_RD_CMD,
->  	[SWRM_REG_CMD_FIFO_STATUS] = SWRM_V1_3_CMD_FIFO_STATUS,
->  	[SWRM_REG_CMD_FIFO_RD_FIFO_ADDR] = SWRM_V1_3_CMD_FIFO_RD_FIFO_ADDR,
-> +	[SWRM_OFFSET_DP_PORT_CTRL_BANK]		= 0x1124,
-> +	[SWRM_OFFSET_DP_PORT_CTRL_2_BANK]	= 0x1128,
-> +	[SWRM_OFFSET_DP_BLOCK_CTRL_1]		= 0x112C,
-> +	[SWRM_OFFSET_DP_BLOCK_CTRL2_BANK]	= 0x1130,
-> +	[SWRM_OFFSET_DP_PORT_HCTRL_BANK]	= 0x1134,
-> +	[SWRM_OFFSET_DP_BLOCK_CTRL3_BANK]	= 0x1138,
-> +	[SWRM_OFFSET_DP_SAMPLECTRL2_BANK]	= 0x113C,
+> 		port@2 {
+> 			endpoint {
+> 				remote-endpoint = <&mdss_dp0_out>;
+> 				data-lanes = <1>;
+> 			};
+> 		};
+> 	};
+> };
+> 
+> phy@cafecafe {
+> 	ports {
+> 		port@1 {
+> 			endpoint {
+> 				remote-endpoint = <&&usb_1_dwc3_ss>;
+> 				status = "disabled";
+> 			};
+> 		};
+> 
+> 		port@2 {
+> 			endpoint {
+> 				remote-endpoint = <&mdss_dp0_out>;
+> 				data-lanes = <2 3 0 1>;
+> 			};
+> 		};
+> 	};
+> };
 
-lowercase hex, please
+This is wrong, those are the internal connections to the controllers,
+those are fixed. I'm speaking about the external lanes, but there's only
+a single port.
 
-[...]
+So, following your suggestion, we should use the Output port 0, but as it's
+only a single port it would need to have 2 endpoints, one for USB3 and one for
+DP.
 
-> -	int reg = SWRM_DP_PORT_CTRL_BANK((params->port_num), bank);
+For example:
 
-all (?) the defines that the patch context shows as removed can also be
-dropped now
+\{
+	dp-connector {
+		compatible = "dp-connector";
+		type = "a";
 
-Konrad
+		port {
+			dp_con: endpoint {
+				remote-endpoint = <&usb_1_ss2_qmpphy_dp_out>;
+			};
+		};
+	};
+
+	usb-a-connector {
+		compatible = "usb-a-connector";
+
+		ports {
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			port@0 {
+				reg = <0>;
+                      		usb_con_hs: endpoint {
+                         		remote-endpoint = <&usb_1_ss2_dwc3_hs>;
+                      		};
+                  	};
+
+                  	port@1 {
+                      		reg = <1>;
+                     		usb_con_ss: endpoint {
+                          		remote-endpoint = <&usb_1_ss2_qmpphy_usb3_out>;
+                      		};
+                  	};
+		};
+	};
+
+};
+
+&usb_1_ss2_dwc3_hs {
+	remote-endpoint = <&usb_1_ss2_dwc3_hs>;
+};
+
+&usb_1_ss2_qmpphy {
+	/delete-property/ mode-switch;
+	/delete-property/ orientation-switch;
+
+	ports {
+		
+		port@0{
+			#address-cells = <1>;
+			#size-cells = <0>;
+
+			/delete-node/ endpoint;
+
+			usb_1_ss2_qmpphy_usb3_out: endpoint@0 {
+				reg = <0>;
+				
+				remote-endpoint = <&usb_con_ss>;
+
+				data-lanes = <1 2 0 0>;
+			};
+
+			usb_1_ss2_qmpphy_dp_out: endpoint@1 {
+				reg = <1>;
+				
+				remote-endpoint = <&dp_con>;
+
+				data-lanes = <0 0 1 2>;
+			};
+		};
+	};
+};
+
+So the driver logic would need to look at the port0/endpoint0 and port0/endpoint1
+data-lanes to figure out the mode.
+
+Is this what you were thinking ?
+
+Neil
+
+> 
+> 
+>>
+>> Neil
+>>
+>>>
+>>>
+>>>> +      The numbers corresponds to the PHY Type the lanes are connected to.
+>>>> +      The possible combinations are
+>>>> +        <0 0 0 0> when none are connected
+>>>> +        <4 4 0 6> USB3 and DP single lane
+>>>> +        <4 4 6 6> USB3 and DP
+>>>> +        <6 6 4 4> DP and USB3
+>>>> +        <6 0 4 4> DP and USB3 single lane
+>>>> +        <4 4 0 0> USB3 Only
+>>>> +        <0 0 4 4> USB3 Only
+>>>> +        <6 0 0 0> DP single lane
+>>>> +        <0 0 0 6> DP single lane
+>>>> +        <6 6 0 0> DP 2 lanes
+>>>> +        <0 0 6 6> DP 2 lanes
+>>>> +        <6 6 6 6> DP 4 lanes
+>>>> +
+>>>>      ports:
+>>>>        $ref: /schemas/graph.yaml#/properties/ports
+>>>>        properties:
+>>>>
+>>>> -- 
+>>>> 2.34.1
+>>>>
+>>>
+>>
+> 
+
 
