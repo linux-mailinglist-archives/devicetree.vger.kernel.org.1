@@ -1,180 +1,137 @@
-Return-Path: <devicetree+bounces-211651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CAB3B3FD6B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:11:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C660FB3FDDD
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:35:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77E727AFBC0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:09:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A28A07A7B06
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3DCE2F83D8;
-	Tue,  2 Sep 2025 11:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4EFA2F3C0F;
+	Tue,  2 Sep 2025 11:35:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="Alr6+FDd";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="jbcK8FXp"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hYwgdgUm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-20.smtp-out.eu-west-1.amazonses.com (a7-20.smtp-out.eu-west-1.amazonses.com [54.240.7.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D8082765C5;
-	Tue,  2 Sep 2025 11:10:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14860247298;
+	Tue,  2 Sep 2025 11:35:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756811457; cv=none; b=tEa6jZ+UU03fOpP7UDY6w4YDvUraxVNi/SSYX6VcbLloNhy7vyfw5BZh4jP8jws6muflCE1Kt9hkG/QAfij4ScX3M8ldPP5ETTb1LBLND47oF3WErlWZskfUDtLVJAxt7/ejj9O9G/v7WRmoXqqfezv2AiFlg9U/Y2iWU9pSHw0=
+	t=1756812914; cv=none; b=qJ3aJD7h+ZGJKR5fbR/6borqhG412HZppJI6n8dWdRWqgaHsYmrYzJpfbLxy98kTpAAmIisdYCmASszNYaykjgaIM/Ye3FlihtViDpKXyF5oHYTumQ74/I4ADbGbbKON2MYtHIT9CuppZAcb4Ocfe25T9NA9D7u8wB76Ee2TCmw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756811457; c=relaxed/simple;
-	bh=lArrC/hs56jwcuKi4kjb1YEQHhEtBnLClaL0na720tQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:Cc; b=ajAFu8D9VmX0M+wuKqh1jg+Gx23Aeyey6/LYK+lypn5gs+2pha2iaGrFpzeIbUg9/YK9mvg+5ByoiM18MXD/ZUc49FMQLt7hZsTgPs7Wv0jfEl9iIjfRQ5KF3eOuV4mOHAMf7OeDl8LiN3lxL52Vh8PjqiPz0VZKqtjC5q+wgMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=eu-west-1.amazonses.com; dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=Alr6+FDd; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=jbcK8FXp; arc=none smtp.client-ip=54.240.7.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eu-west-1.amazonses.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=vuvznkywrn6u4jb2ozie3fqz3nbg6pps; d=vinarskis.com; t=1756811453;
-	h=From:Date:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc;
-	bh=lArrC/hs56jwcuKi4kjb1YEQHhEtBnLClaL0na720tQ=;
-	b=Alr6+FDdboPVMCVIZNU4DWzjBGMMForXEx8OtdLI6xNWC9AAZ81QKH//wWu8W5fA
-	G4+3HSpE5lyjxfSimgFaEBpCiZflpfvKuSBqLP5nMHrFxPmOFRcp1511bN1R1mTGy57
-	so+kAfnGADw4zIuYpnhfdMLRtP9bMygRAMvWtjvQ=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1756811453;
-	h=From:Date:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:References:In-Reply-To:To:Cc:Feedback-ID;
-	bh=lArrC/hs56jwcuKi4kjb1YEQHhEtBnLClaL0na720tQ=;
-	b=jbcK8FXp0cUema687S1lAvNUZcTOGhf3r+k4HbQYq5AG4KO+T7BN2Im1zWIWAiLQ
-	pyWOY+gPJLsw9EYLrdVJtQJ5jiq2WNJPV9ifyebTCy49eeqfm6Rlqqkq7HX2zdqQYS3
-	NWkFOe+4vZwDn93/yRyl0dGnTz6H28bFNT6gGL7g=
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Date: Tue, 2 Sep 2025 11:10:53 +0000
-Subject: [PATCH 2/2] leds: led-class: Add devicetree support to led_get()
+	s=arc-20240116; t=1756812914; c=relaxed/simple;
+	bh=yt2uM6ZT460e9/CuZuT4dZBqUeve53IjK7uLuhmn4Is=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gmWXsuPt7Mcev2wvM2beo5DHDbaC43cNzv+gh2GFGLCyrDcOa/5704FdlSEL62pKTozNtghUY3GS304A4TNi7cKMZ+/DJyMZBIMG2neHUs18hadpqLSUoeDt7eLoQLCDIZonUYvYXfnhc9WkK4uO4ZbKZMnbC11lUEQIetjXlt4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hYwgdgUm; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756812913; x=1788348913;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=yt2uM6ZT460e9/CuZuT4dZBqUeve53IjK7uLuhmn4Is=;
+  b=hYwgdgUmVakfcNeQOxx6VPCeBGqDeE550RzHG57zhtTDnoj6ioUBTFCi
+   vC3sD46e9BiPQHbt63jc8sxGDEIYOMDg7LQlkNOoakYTMMUJKgsc/gegU
+   los/DzYVdjDfUMtOSxmH/xH+8e4q7UtwBj/Rk3UTHJvZN0Luna22tLX9j
+   16RgCayXii+rtqQbHcatZld8eh7upTodGvEWyIAcfYm7fuo7GTchPwuDI
+   5JzL11FKNQ5CuWPsbIIwBrhRxcpFCHZbiC0eKQ4IG2tIYNBgIIAdP+KA3
+   BSJmYCedtfWk0sjIWb7UTCO2A7nS4SJ+TIvUzjtTQas/HwtUw2xEyBNFI
+   Q==;
+X-CSE-ConnectionGUID: CpkkXTK5S46mbTBAqZTYBA==
+X-CSE-MsgGUID: 61IzbI0sT+qMKA8DJPcCRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="58116163"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="58116163"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 04:35:12 -0700
+X-CSE-ConnectionGUID: gCCduhp3Q9m1ZtBAIT8nrA==
+X-CSE-MsgGUID: OtdC/3xzSHOpgQ1cxaulAQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="175618079"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 02 Sep 2025 04:35:09 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1utPI2-0001uZ-1i;
+	Tue, 02 Sep 2025 11:35:06 +0000
+Date: Tue, 2 Sep 2025 19:34:28 +0800
+From: kernel test robot <lkp@intel.com>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
+	robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	conor+dt@kernel.org, srini@kernel.org,
+	yung-chuan.liao@linux.intel.com, pierre-louis.bossart@linux.dev,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-sound@vger.kernel.org,
+	Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 1/7] of: base: Add of_property_read_u8_index
+Message-ID: <202509021915.6WBFuf9m-lkp@intel.com>
+References: <20250901195037.47156-2-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <010201990a1f6559-9e836a40-f534-4535-bd59-5e967d80559a-000000@eu-west-1.amazonses.com>
-References: <20250902-leds-v1-0-4a31e125276b@vinarskis.com>
-In-Reply-To: <20250902-leds-v1-0-4a31e125276b@vinarskis.com>
-To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Aleksandrs Vinarskis <alex@vinarskis.com>, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Hans de Goede <hansg@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3265; i=alex@vinarskis.com;
- h=from:subject:message-id; bh=b8EKyX6+Ug2XxN1dZG3Mhkscrfw7FzBZa2E3JMSK27E=;
- b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBnbLmy57v5ucvDXDb80Q0V6W1tsihdbTIvVf7zx32tmr
- Zy9Gy9ndJSyMIhxMciKKbJ0//ma1rVo7lqG6xrfYOawMoEMYeDiFICJuG1mZLj6YseJQ8oHm8S+
- KT3zV/p5zerX7o13fcTu71z18eabfa9kGP6XvjMSe/B40vRNBkzS86QkP8rv2LXf/tRqJ4fXa0K
- 7ZheyAQA=
-X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
- fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
-Feedback-ID: ::1.eu-west-1.dmE2JeRFSagpgiG6D+fa+YE0PH7S+b7tab7/4kfDOU8=:AmazonSES
-X-SES-Outgoing: 2025.09.02-54.240.7.20
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250901195037.47156-2-srinivas.kandagatla@oss.qualcomm.com>
 
-From: Hans de Goede <hansg@kernel.org>
+Hi Srinivas,
 
-Turn of_led_get() into a more generic __of_led_get() helper function,
-which can lookup LEDs in devicetree by either name or index.
+kernel test robot noticed the following build errors:
 
-And use this new helper to add devicetree support to the generic
-(non devicetree specific) [devm_]led_get() function.
+[auto build test ERROR on robh/for-next]
+[also build test ERROR on linus/master v6.17-rc4 next-20250902]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-This uses the standard devicetree pattern of adding a -names string array
-to map names to the indexes for an array of resources.
+url:    https://github.com/intel-lab-lkp/linux/commits/Srinivas-Kandagatla/of-base-Add-of_property_read_u8_index/20250902-035407
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250901195037.47156-2-srinivas.kandagatla%40oss.qualcomm.com
+patch subject: [PATCH 1/7] of: base: Add of_property_read_u8_index
+config: s390-allnoconfig (https://download.01.org/0day-ci/archive/20250902/202509021915.6WBFuf9m-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 2e122990391b2ba062e6308a12cfedf7206270ba)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250902/202509021915.6WBFuf9m-lkp@intel.com/reproduce)
 
-Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-Reviewed-by: Lee Jones <lee@kernel.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Hans de Goede <hdegoede@redhat.com>
-Tested-by: Aleksandrs Vinarskis <alex@vinarskis.com>
----
- drivers/leds/led-class.c | 38 +++++++++++++++++++++++++++++---------
- 1 file changed, 29 insertions(+), 9 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509021915.6WBFuf9m-lkp@intel.com/
 
-diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-index 15633fbf3c166aa4f521774d245f6399a642bced..6f2ef4fa556b44ed3bf69dff556ae16fd2b7652b 100644
---- a/drivers/leds/led-class.c
-+++ b/drivers/leds/led-class.c
-@@ -248,19 +248,18 @@ static const struct class leds_class = {
- 	.pm = &leds_class_dev_pm_ops,
- };
- 
--/**
-- * of_led_get() - request a LED device via the LED framework
-- * @np: device node to get the LED device from
-- * @index: the index of the LED
-- *
-- * Returns the LED device parsed from the phandle specified in the "leds"
-- * property of a device tree node or a negative error-code on failure.
-- */
--static struct led_classdev *of_led_get(struct device_node *np, int index)
-+static struct led_classdev *__of_led_get(struct device_node *np, int index,
-+					 const char *name)
- {
- 	struct device *led_dev;
- 	struct device_node *led_node;
- 
-+	/*
-+	 * For named LEDs, first look up the name in the "led-names" property.
-+	 * If it cannot be found, then of_parse_phandle() will propagate the error.
-+	 */
-+	if (name)
-+		index = of_property_match_string(np, "led-names", name);
- 	led_node = of_parse_phandle(np, "leds", index);
- 	if (!led_node)
- 		return ERR_PTR(-ENOENT);
-@@ -271,6 +270,20 @@ static struct led_classdev *of_led_get(struct device_node *np, int index)
- 	return led_module_get(led_dev);
- }
- 
-+/**
-+ * of_led_get() - request a LED device via the LED framework
-+ * @np: device node to get the LED device from
-+ * @index: the index of the LED
-+ *
-+ * Returns the LED device parsed from the phandle specified in the "leds"
-+ * property of a device tree node or a negative error-code on failure.
-+ */
-+struct led_classdev *of_led_get(struct device_node *np, int index)
-+{
-+	return __of_led_get(np, index, NULL);
-+}
-+EXPORT_SYMBOL_GPL(of_led_get);
-+
- /**
-  * led_put() - release a LED device
-  * @led_cdev: LED device
-@@ -342,9 +355,16 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
- struct led_classdev *led_get(struct device *dev, char *con_id)
- {
- 	struct led_lookup_data *lookup;
-+	struct led_classdev *led_cdev;
- 	const char *provider = NULL;
- 	struct device *led_dev;
- 
-+	if (dev->of_node) {
-+		led_cdev = __of_led_get(dev->of_node, -1, con_id);
-+		if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
-+			return led_cdev;
-+	}
-+
- 	mutex_lock(&leds_lookup_lock);
- 	list_for_each_entry(lookup, &leds_lookup_list, list) {
- 		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
+All errors (new ones prefixed by >>):
+
+   In file included from init/main.c:56:
+   In file included from include/linux/tick.h:8:
+   In file included from include/linux/clockchips.h:14:
+   In file included from include/linux/clocksource.h:19:
+>> include/linux/of.h:645:8: error: unknown type name 'inlinen'; did you mean 'inline'?
+     645 | static inlinen int of_property_read_u8_index(const struct device_node *np,
+         |        ^~~~~~~
+         |        inline
+   1 error generated.
+
+
+vim +645 include/linux/of.h
+
+   644	
+ > 645	static inlinen int of_property_read_u8_index(const struct device_node *np,
+   646				const char *propname, u32 index, u8 *out_value)
+   647	{
+   648		return -ENOSYS;
+   649	}
+   650	
 
 -- 
-2.48.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
