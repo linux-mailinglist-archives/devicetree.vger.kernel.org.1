@@ -1,69 +1,57 @@
-Return-Path: <devicetree+bounces-211570-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211571-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64D74B3F8D0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:42:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40406B3F8E1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:43:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09234169EEC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:42:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFDF51884984
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F97D2EF676;
-	Tue,  2 Sep 2025 08:36:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61532E8DF4;
+	Tue,  2 Sep 2025 08:38:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="BGOySrfR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PFDANPdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7A182EAD13;
-	Tue,  2 Sep 2025 08:36:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64E82E88AB;
+	Tue,  2 Sep 2025 08:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756802186; cv=none; b=cNZXPy+faYsTmwm6Kltz9EeVWgJqIccDj+bHHGmfrIrGafvvXxN45qEjKGeTl7rm6qgOT5dJne4HreSxQfnqREipEx+Nel40eTLWs/YGL4beuqOYMiT1rX9RdS+B0Cw+L8Bu0Wd+Z3U0x67wHSbrcLImoyWmJrVkKZ/ABo/gByU=
+	t=1756802300; cv=none; b=KTa+KnXYbK0Irr2ln4GgDd6ODkzl3awE1W/LxxD3E4sf7uSc8keapF7LYrGzAMaeqoNEGJdp8oPkcXXvH5wb3++Vh1FCnpnqqssoXlAAhwD6c1hB+S+nRaAi3KD9tDOVTVKHjHa4PQt+iO3e6rLYHp4E4yWP+Ay0VQb0k+flssc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756802186; c=relaxed/simple;
-	bh=9b9oj9NtnjkgCqLHI/easGtUlL/TclnyNvdB1pRPJ10=;
+	s=arc-20240116; t=1756802300; c=relaxed/simple;
+	bh=cwgdem8vKiy3CQWfL+x3RfkBewMyB5GZGIa1qsHXMvA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J1juUgQcRzWFovIT/ZSe90nwrOivxrbPWVDddMj+kPmsd8IWtxSKzVdXBASAGsGo55XdpusG2oPUjJoVRPFZyBhoCMq0JhntDaQm9Ow5OJkrr4uJFqYYk31WvX/25FNMLciWr5FstlxnZoVklNa1l5yY6QWbXtNkamWHDe14qmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=BGOySrfR; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id ACD1BC75;
-	Tue,  2 Sep 2025 10:35:07 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1756802107;
-	bh=9b9oj9NtnjkgCqLHI/easGtUlL/TclnyNvdB1pRPJ10=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=OZ0lJX7I93W60VSji9liJLvVKTf1kFpiUNw1sXuTuiGJILyuj8ZvORF4M4YQnGx+9FD0VNsHxRRBIM6BHKFpS/74P2tqT6/l5MLoTM34crxSlwh6F79UhLfiQqfqWC+Zkz6kQr8/2taJn8RFPom31uAptWWoKSD4tiD1NNltqJc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PFDANPdO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E4A9C4CEED;
+	Tue,  2 Sep 2025 08:38:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756802300;
+	bh=cwgdem8vKiy3CQWfL+x3RfkBewMyB5GZGIa1qsHXMvA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BGOySrfRK7wpIrVW8pam0Ry99/B6YUY4pxhePRpqXmQ4bRXZFruERAo3LeGWgimon
-	 o/2Wg5FRxVjaaLNOYl/+zymSodr6I2YJhJRDo+jpP6ffXxCw07kDAMnlXmAGxUC1O+
-	 wIoZkgmSqEVDBzhib+eXd4wHBTQaA32pg7lKmLTk=
-Date: Tue, 2 Sep 2025 10:35:54 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Guoniu Zhou <guoniu.zhou@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <20250902083554.GD13448@pendragon.ideasonboard.com>
-References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
- <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
- <20250901154610.GB13448@pendragon.ideasonboard.com>
- <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
+	b=PFDANPdOfM/p6ekHLq6Jii3ccHU1acIXj0R6wb64i4msjWG69qbfmknwHFYDn+zyB
+	 ++YH9I+TQuN2lWV94irqkLV41WTKFBGuQkQHN5MQdpzuE+tK4n7XKLdebD5EruXb2N
+	 DnnZyVrXpKN58+coVl2Z96jFS9JFHxIrsALLv3sloFD3EU/YW12S3VMspOAyBK8IZB
+	 0tvIEqmD/YEVVS2eAmdN8aPITuVbH6BUyJ29Ic11H0V5njSxvIa/rpv2knFda1t1PD
+	 mtnWMpiGlo7i4v4Utq0k1n45ZGblI4avZEl4WjlCwlUwOup6Keqk00A88ZS7+FA2Zi
+	 8vShVMqDcwefQ==
+Date: Tue, 2 Sep 2025 10:38:17 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org, 
+	conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com, 
+	pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-sound@vger.kernel.org
+Subject: Re: [PATCH 4/7] soundwire: qcom: deprecate qcom,din/out-ports
+Message-ID: <20250902-light-vegan-snake-efe03c@kuoka>
+References: <20250901195037.47156-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20250901195037.47156-5-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,140 +60,75 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
+In-Reply-To: <20250901195037.47156-5-srinivas.kandagatla@oss.qualcomm.com>
 
-On Mon, Sep 01, 2025 at 09:45:39PM -0400, Frank Li wrote:
-> On Mon, Sep 01, 2025 at 05:46:10PM +0200, Laurent Pinchart wrote:
-> > On Mon, Sep 01, 2025 at 02:25:29PM +0800, Guoniu Zhou wrote:
-> > > The CSI-2 receiver in the i.MX8ULP is almost identical to the version
-> > > present in the i.MX8QXP/QM, but i.MX8ULP CSI-2 controller needs pclk
-> > > clock as the input clock for its APB interface of Control and Status
-> > > register(CSR). So add compatible string fsl,imx8ulp-mipi-csi2 and
-> > > increase maxItems of Clocks (clock-names) to 4 from 3.  And keep the
-> > > same restriction for existed compatible.
-> >
-> > s/existed/existing/
-> >
-> > > Signed-off-by: Guoniu Zhou <guoniu.zhou@nxp.com>
-> > > ---
-> > >  .../bindings/media/nxp,imx8mq-mipi-csi2.yaml       | 46 ++++++++++++++++++++--
-> > >  1 file changed, 43 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > index 3389bab266a9adbda313c8ad795b998641df12f3..412cedddb0efee1a49d1b90b02baa7a625c797ec 100644
-> > > --- a/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > +++ b/Documentation/devicetree/bindings/media/nxp,imx8mq-mipi-csi2.yaml
-> > > @@ -21,7 +21,9 @@ properties:
-> > >            - fsl,imx8mq-mipi-csi2
-> > >            - fsl,imx8qxp-mipi-csi2
-> > >        - items:
-> > > -          - const: fsl,imx8qm-mipi-csi2
-> > > +          - enum:
-> > > +              - fsl,imx8qm-mipi-csi2
-> > > +              - fsl,imx8ulp-mipi-csi2
-> > >            - const: fsl,imx8qxp-mipi-csi2
-> >
-> > According to this, the ULP version is compatible with the QXP version.
-> >
-> > >
-> > >    reg:
-> > > @@ -39,12 +41,16 @@ properties:
-> > >                       clock that the RX DPHY receives.
-> > >        - description: ui is the pixel clock (phy_ref up to 333Mhz).
-> > >                       See the reference manual for details.
-> > > +      - description: pclk is clock for csr APB interface.
-> > > +    minItems: 3
-> > >
-> > >    clock-names:
-> > >      items:
-> > >        - const: core
-> > >        - const: esc
-> > >        - const: ui
-> > > +      - const: pclk
-> > > +    minItems: 3
-> > >
-> > >    power-domains:
-> > >      maxItems: 1
-> > > @@ -130,19 +136,53 @@ allOf:
-> > >          compatible:
-> > >            contains:
-> > >              enum:
-> > > -              - fsl,imx8qxp-mipi-csi2
-> > > +              - fsl,imx8ulp-mipi-csi2
-> > > +    then:
-> > > +      properties:
-> > > +        reg:
-> > > +          minItems: 2
-> > > +        resets:
-> > > +          minItems: 2
-> > > +          maxItems: 2
-> > > +        clocks:
-> > > +          minItems: 4
-> > > +        clock-names:
-> > > +          minItems: 4
-> >
-> > But according to this, the ULP version requires more clocks than the QXP
-> > version.
+On Mon, Sep 01, 2025 at 08:50:34PM +0100, Srinivas Kandagatla wrote:
+> Number of input and output ports can be dynamically read from the
+> controller registers, getting this value from Device Tree is redundant
+> and potentially lead to bugs.
 > 
-> If only clock number difference, generally, it is still compatible and can
-> be fallback, especialy driver use devm_bulk_clk_get_all().
-
-That's a driver-specific implementation decision, so I don't think it
-should be taken into account to decide on compatibility.
-
-> If driver have not sperated drvdata for it, we can fallback to it. It is
-> quite common.
+> Remove the code parsing this property along with marking this as
+> deprecated in device tree bindings.
 > 
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8qm-mipi-csi2
-> >
-> > QM is compatible with the QXP, so you don't need to list it here.
-> >
-> >           contains:
-> >             const: fsl,imx8qxp-mipi-csi2
-> >
-> > is enough to cover both.
-> >
-> > > +            const: fsl,imx8qxp-mipi-csi2
-> > >      then:
-> > >        properties:
-> > >          reg:
-> > >            minItems: 2
-> > >          resets:
-> > >            maxItems: 1
-> > > -    else:
-> > > +        clocks:
-> > > +          maxItems: 3
-> > > +        clock-names:
-> > > +          maxItems: 3
-> > > +
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          contains:
-> > > +            enum:
-> > > +              - fsl,imx8mq-mipi-csi2
-> > > +    then:
-> > >        properties:
-> > >          reg:
-> > >            maxItems: 1
-> > >          resets:
-> > >            minItems: 3
-> > > +        clocks:
-> > > +          maxItems: 3
-> > > +        clock-names:
-> > > +          maxItems: 3
-> > >        required:
-> > >          - fsl,mipi-phy-gpr
-> > >
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  drivers/soundwire/qcom.c | 134 ++++++++++++++-------------------------
+>  1 file changed, 49 insertions(+), 85 deletions(-)
+> 
+> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
+> index 7f19ebba6137..4fa3e1c080ef 100644
+> --- a/drivers/soundwire/qcom.c
+> +++ b/drivers/soundwire/qcom.c
+> @@ -128,7 +128,6 @@
+>  #define MAX_FREQ_NUM						1
+>  #define TIMEOUT_MS						100
+>  #define QCOM_SWRM_MAX_RD_LEN					0x1
+> -#define QCOM_SDW_MAX_PORTS					14
+>  #define DEFAULT_CLK_FREQ					9600000
+>  #define SWRM_MAX_DAIS						0xF
+>  #define SWR_INVALID_PARAM					0xFF
+> @@ -195,6 +194,7 @@ struct qcom_swrm_ctrl {
+>  	int wake_irq;
+>  	int num_din_ports;
+>  	int num_dout_ports;
+> +	int nports;
+>  	int cols_index;
+>  	int rows_index;
+>  	unsigned long port_mask;
+> @@ -202,7 +202,7 @@ struct qcom_swrm_ctrl {
+>  	u8 rcmd_id;
+>  	u8 wcmd_id;
+>  	/* Port numbers are 1 - 14 */
+> -	struct qcom_swrm_port_config pconfig[QCOM_SDW_MAX_PORTS + 1];
+> +	struct qcom_swrm_port_config *pconfig;
+>  	struct sdw_stream_runtime *sruntime[SWRM_MAX_DAIS];
+>  	enum sdw_slave_status status[SDW_MAX_DEVICES + 1];
+>  	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
+> @@ -1157,7 +1157,7 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
+>  				       struct snd_pcm_hw_params *params,
+>  				       int direction)
+>  {
+> -	struct sdw_port_config pconfig[QCOM_SDW_MAX_PORTS];
+> +	struct sdw_port_config *pconfig __free(kfree) = NULL;
 
--- 
-Regards,
+That's incorrect usage of __free(), missing constructor.
 
-Laurent Pinchart
+>  	struct sdw_stream_config sconfig;
+>  	struct sdw_master_runtime *m_rt;
+>  	struct sdw_slave_runtime *s_rt;
+> @@ -1167,6 +1167,10 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
+>  	int maxport, pn, nports = 0, ret = 0;
+>  	unsigned int m_port;
+>  
+> +	pconfig = kcalloc(ctrl->nports, sizeof(*pconfig), GFP_KERNEL);
+
+This almost always goes to definition and I do not see anything
+preventing it.
+
+> +	if (!pconfig)
+> +		return -ENOMEM;
+
+Best regards,
+Krzysztof
+
 
