@@ -1,312 +1,195 @@
-Return-Path: <devicetree+bounces-211591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16691B3F9B0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:07:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E53B3F9B7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:08:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5FC551B23718
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:07:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1EC2E1885285
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:09:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C22C72EA17E;
-	Tue,  2 Sep 2025 09:06:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D41F72EA46C;
+	Tue,  2 Sep 2025 09:08:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="KfEszHi2"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="YFZCdqdw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C51F2E9EC1
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 09:06:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CC0D20E6E1;
+	Tue,  2 Sep 2025 09:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756804015; cv=none; b=utx5vHUu7nmBtwdEPEwQmwA/VFC16PmECB48H5ggrt8WIdTibz5exypndiIXlaMgu6Mal9w0ickKOOTtmGg/xe7oynpJa+34n1HH664vUaezIfACAeXI3tPv7pPFvt0RFh735wrLjBtH4Xd3x46FSZHLwc/pWtSM4EffmDfHqug=
+	t=1756804124; cv=none; b=GyH3jypbbxH9dl8UmVXUSqQoobRPoPdIe9xqdqITTdxYd7ooIS7x11V1qc6kwCBPNu/ZbMkw5Fkx2wMx/f20r99hnbuCLrvp/AJP4hdmyI2JKM5JDz2lngvjK9xaInLRCiFY+bjiiFVeOw3G9e4M3NM2eITEFsproj25SAJRiRg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756804015; c=relaxed/simple;
-	bh=JgvZsw052NS4w823eEltRQux47qIyG7FAKLhhN0lOwI=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=A1HEqfvma6VF5F3OHZ0bIyMFhnbdVYNr8nJHUkmKK1BtE+VSqQZL3Ppf7om8ZtdZnHJDTTzZh3/Be35Vx9otW3hkCflkWD5+GeXldqGrmnoJa6dXDSDSLB08Y0KaXtWt+OR+6wMWw+aNliXgWaQHRINg2qk9jSI3/6EGNyGE2Co=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=KfEszHi2; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250902090650epoutp03c8610e598a7fbb3aaaa60c178b487279~ha-CE-so50164501645epoutp03V
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 09:06:50 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250902090650epoutp03c8610e598a7fbb3aaaa60c178b487279~ha-CE-so50164501645epoutp03V
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756804010;
-	bh=LLyxRGwalIyNnt2QKIpysW7aXCLGTKUEGde82xrN0gg=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=KfEszHi2Ae3f5DfYxZb2BsT2K3y0XN5mIflw5VcJRpIyDEdgamdgXgxLRfNv+9XXp
-	 JNbxJAtGoxmLYEPbWlnCs51wWdY2H8aYYSIcY6+tFNxn9Xw3htITwOasYovItHMY4v
-	 0sMRc1dQOj9VT0M2KSaPC89c+CmqOaAzP5EOcJkQ=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250902090649epcas2p26e03bbc57a829825eeff3dd12573257a~ha-BfOvEf1900619006epcas2p2T;
-	Tue,  2 Sep 2025 09:06:49 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.36.89]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cGKcT1GvQz2SSKq; Tue,  2 Sep
-	2025 09:06:49 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas2p2.samsung.com (KnoxPortal) with ESMTPA id
-	20250902090648epcas2p296bd62ad9bb707f5671c50d2c21877ac~ha-ACTpGE3115731157epcas2p2Z;
-	Tue,  2 Sep 2025 09:06:48 +0000 (GMT)
-Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250902090648epsmtip164a0f755c2d4a1395a6e70587a177e15~ha_-9FnBY1848318483epsmtip1H;
-	Tue,  2 Sep 2025 09:06:48 +0000 (GMT)
-From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
-To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Bartlomiej Zolnierkiewicz'"
-	<bzolnier@gmail.com>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
- Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
-	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
-	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
-	<alim.akhtar@samsung.com>
-Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>
-In-Reply-To: <e573cfc8-be9c-482c-9b06-4eedbb92d520@kernel.org>
-Subject: RE: [PATCH 3/3] arm64: dts: exynosautov920: Add tmu hardware
- binding
-Date: Tue, 2 Sep 2025 18:06:47 +0900
-Message-ID: <000501dc1be8$e9ac0640$bd0412c0$@samsung.com>
+	s=arc-20240116; t=1756804124; c=relaxed/simple;
+	bh=THzX+EN7VTzLuUULbWMGm/unxefBSjJEmc+4sbmh/uU=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=bFrZV8s751N5qvm1m1IfgCsAskHp3/fa4ORx6f75gKjy+3o1uPDq+0HLVh/OyiNwGR2kPrhgruXiFKx0c9Rp8X2psm8nSfb+5jYaKbKjZjSAPYIDRuO3xnRW+7qGlVLv1CZBZp2k1IMDBfyAa9mjIKgXwcXhXzOE3pEb/92gxAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=YFZCdqdw; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58297oXq2552615;
+	Tue, 2 Sep 2025 04:07:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756804070;
+	bh=nqogwPdlvq7AEEvwLHEeyKv2i7NgHAJdNmEi0OQOf7s=;
+	h=From:To:CC:Subject:Date;
+	b=YFZCdqdwq8yWUw0jYqrSif1z5Sq/uO4sktL2tGSXazw135W2ZJhfv+aADvNRBKR7E
+	 FMmuA0tTpaWL21CA5pZkOKq8QHstztcFJ9fNkhhryP/vQ/TJfK0I9F4yREHlXyy6VN
+	 r37/IiL51SdDKA6cbDrdE14X3vJcxQh2dJ5lrmL8=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58297ow52171631
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 2 Sep 2025 04:07:50 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 2
+ Sep 2025 04:07:49 -0500
+Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 2 Sep 2025 04:07:49 -0500
+Received: from lelv0854.itg.ti.com (lelv0854.itg.ti.com [10.181.64.140])
+	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58297nDR1001478;
+	Tue, 2 Sep 2025 04:07:49 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [172.24.231.152])
+	by lelv0854.itg.ti.com (8.14.7/8.14.7) with ESMTP id 58297mND020814;
+	Tue, 2 Sep 2025 04:07:48 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu
+ Poirier <mathieu.poirier@linaro.org>,
+        Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Mengyuan Lou <mengyuanlou@net-swift.com>,
+        MD
+ Danish Anwar <danishanwar@ti.com>, Xin Guo <guoxin09@huawei.com>,
+        Lei Wei
+	<quic_leiwei@quicinc.com>, Lee Trager <lee@trager.us>,
+        Michael Ellerman
+	<mpe@ellerman.id.au>, Fan Gong <gongfan1@huawei.com>,
+        Lorenzo Bianconi
+	<lorenzo@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Lukas
+ Bulwahn <lukas.bulwahn@redhat.com>,
+        Parthiban Veerasooran
+	<Parthiban.Veerasooran@microchip.com>,
+        Suman Anna <s-anna@ti.com>
+CC: Tero Kristo <kristo@kernel.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        Roger Quadros
+	<rogerq@kernel.org>
+Subject: [PATCH net-next v2 0/8] Add RPMSG Ethernet Driver
+Date: Tue, 2 Sep 2025 14:37:38 +0530
+Message-ID: <20250902090746.3221225-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 15.0
-Thread-Index: AQJ8jFumlJsm8aby6NwUOPwCr1UY/AFeDEJ7AytiP1UDOWYPQrMAn3WQ
-Content-Language: ko
-X-CMS-MailID: 20250902090648epcas2p296bd62ad9bb707f5671c50d2c21877ac
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250825064933epcas2p40a7c491366097f90add675bc36822ef9
-References: <20250825064929.188101-1-shin.son@samsung.com>
-	<CGME20250825064933epcas2p40a7c491366097f90add675bc36822ef9@epcas2p4.samsung.com>
-	<20250825064929.188101-4-shin.son@samsung.com>
-	<e573cfc8-be9c-482c-9b06-4eedbb92d520@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hello Krzysztof Kozlowski,
+This patch series introduces the RPMSG Ethernet driver, which provides a
+virtual Ethernet interface for communication between a host processor and
+a remote processor using the RPMSG framework. The driver enables
+Ethernet-like packet transmission and reception over shared memory,
+facilitating inter-core communication in systems with heterogeneous
+processors.
 
-> -----Original Message-----
-> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
-> Sent: Saturday, August 30, 2025 6:08 PM
-> To: Shin Son <shin.son=40samsung.com>; Bartlomiej Zolnierkiewicz
-> <bzolnier=40gmail.com>; Rafael J . Wysocki <rafael=40kernel.org>; Daniel
-> Lezcano <daniel.lezcano=40linaro.org>; Zhang Rui <rui.zhang=40intel.com>;
-> Lukasz Luba <lukasz.luba=40arm.com>; Rob Herring <robh=40kernel.org>; Con=
-or
-> Dooley <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>
-> Cc: linux-pm=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> kernel=40vger.kernel.org
-> Subject: Re: =5BPATCH 3/3=5D arm64: dts: exynosautov920: Add tmu hardware
-> binding
->=20
-> On 25/08/2025 08:49, Shin Son wrote:
-> > Create a new exynosautov920-tmu.dtsi describing new TMU hardware and
-> > include it from exynosautov920.dtsi.
-> >
-> > The exynosautov920-tmu node uses the misc clock as its source and
-> > exposes two new DT properties:
-> >
-> > - tmu-name: identifies the TMU variant for sensor skipping
-> > - sensor-index-ranges: defines valid sensor index ranges for the
-> > bitmap
-> >
-> > This TMU binding defines six thermal zones with a critical trip point
-> > at 125 degrees:
-> >
-> > tmu_top : cpucl0-left, cpucl1
-> > tmu_sub0: cpucl0-right, cpucl2
-> > tmu_sub1: g3d, npu
-> >
-> > Signed-off-by: Shin Son <shin.son=40samsung.com>
-> > ---
-> >  .../boot/dts/exynos/exynosautov920-tmu.dtsi   =7C 92 +++++++++++++++++=
-++
-> >  .../arm64/boot/dts/exynos/exynosautov920.dtsi =7C 34 +++++++
-> >  2 files changed, 126 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-> > b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-> > new file mode 100644
-> > index 000000000000..fa88e9bcdfec
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-> > =40=40 -0,0 +1,92 =40=40
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Samsung's ExynosAuto920 TMU configurations device tree source
-> > + *
-> > + * Copyright (c) 2020 Samsung Electronics Co., Ltd.
-> > + *
-> > + * Samsung's ExynosAuto920 SoC TMU(Thermal Managemenut Unit) are
-> > +listed as
-> > + * device tree nodes in this file.
-> > + */
-> > +
-> > +/ =7B
-> > +	thermal-zones =7B
-> > +		cpucl0left-thermal =7B
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_top 0>;
-> > +
-> > +			trips =7B
-> > +				cpucl0_0_critical: cpucl0-0-critical =7B
-> > +					temperature =3D <125000>;	/*
-> millicelsius */
-> > +					hysteresis =3D <0>;	/* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
->=20
-> Missing blank line.
+Key features of this driver:
 
-I'll remove the blank line.
+1. Virtual Ethernet interface using RPMSG framework
+2. Shared memory-based packet transmission and reception
+3. Support for multicast address filtering
+4. Dynamic MAC address assignment
+5. NAPI support for efficient packet processing
+6. State machine for managing interface states
 
->=20
-> > +		cpucl0right-thermal =7B
->=20
-> It does not look like you tested the DTS against bindings. Please run
-> =60make dtbs_check W=3D1=60 (see Documentation/devicetree/bindings/writin=
-g-
-> schema.rst or https://protect2.fireeye.com/v1/url?k=3D004c918d-61c784be-
-> 004d1ac2-000babff9bb7-06e007e7dc12091d&q=3D1&e=3Dd6a22592-2d45-41f5-b737-
-> a90830cceaeb&u=3Dhttps%3A%2F%2Fwww.linaro.org%2Fblog%2Ftips-and-tricks-fo=
-r-
-> validating-devicetree-sources-with-the-devicetree-schema%2F
-> for instructions).
-> Maybe you need to update your dtschema and yamllint. Don't rely on distro
-> packages for dtschema and be sure you are using the latest released
-> dtschema.
->=20
+The series begins by adding device tree binding documentation, continues
+with  core driver implementation, and concludes with platform-specific DTS
+changes for the TI K3 AM64 SoC. The driver is designed to be generic and
+can be used by any vendor that implements compatible firmware for their
+remote processors.
 
-Actually, I also updated both dtschema and yamllint and ran =22make CHECK_D=
-TBS=3Dy W=3D1 exynos/exynosautov920-sadk.dtb=22, but no other issues were d=
-etected.
-I assume that the problem you mentioned about =22cpucl0right-thermal=22 mig=
-ht be related to the regex.
-Based on this assumption, I'll shorten the node name and include the change=
- in the next version.
-If that is not the case, I'll investigate it further from another angle.
+This driver is designed to be generic and vendor-agnostic. Vendors can
+develop firmware for the remote processor to make it compatible with this
+driver by adhering to the shared memory layout and communication protocol
+described in the documentation.
 
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_sub0 0>;
-> > +
-> > +			trips =7B
-> > +				cpucl0_1_critical: cpucl0-1-critical =7B
-> > +					temperature =3D <125000>;	/*
-> millicelsius */
-> > +					hysteresis =3D <0>;	/* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
-> > +		cpucl1-thermal =7B
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_top 1>;
-> > +
-> > +			trips =7B
-> > +				cpucl1_critical: cpucl1-critical =7B
-> > +					temperature =3D <125000>;	/*
-> millicelsius */
-> > +					hysteresis =3D <0>;	/* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
-> > +		cpucl2-thermal =7B
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_sub0 1>;
-> > +
-> > +			trips =7B
-> > +				cpucl2_critical: cpucl2-critical =7B
-> > +					temperature =3D <125000>;	/*
-> millicelsius */
-> > +					hysteresis =3D <0>;	/* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
-> > +		g3d-thermal =7B
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_sub1 0>;
-> > +
-> > +			trips =7B
-> > +				g3d_critical: g3d-critical =7B
-> > +					temperature =3D <125000>; /* millicelsius
-> */
-> > +					hysteresis =3D <0>; /* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
-> > +		npu-thermal =7B
-> > +			polling-delay-passive =3D <0>;
-> > +			polling-delay =3D <0>;
-> > +			thermal-sensors =3D <&tmuctrl_sub1 1>;
-> > +
-> > +			trips =7B
-> > +				npu_critical: npu-critical =7B
-> > +					temperature =3D <125000>; /* millicelsius
-> */
-> > +					hysteresis =3D <0>; /* millicelsius */
-> > +					type =3D =22critical=22;
-> > +				=7D;
-> > +			=7D;
-> > +		=7D;
-> > +	=7D;
-> > +=7D;
-> > diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > index 0fdf2062930a..a4ff941f8e43 100644
-> > --- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-> > =40=40 -330,6 +330,39 =40=40 watchdog_cl1: watchdog=4010070000 =7B
-> >  			samsung,cluster-index =3D <1>;
-> >  		=7D;
-> >
-> > +		tmuctrl_top: tmutop-thermal=40100a0000 =7B
->=20
-> Node names should be generic. See also an explanation and list of example=
-s
-> (not exhaustive) in DT specification:
-> https://protect2.fireeye.com/v1/url?k=3Dfbd86cff-9a5379cc-fbd9e7b0-
-> 000babff9bb7-cfe00d75a7b0cdcf&q=3D1&e=3Dd6a22592-2d45-41f5-b737-
-> a90830cceaeb&u=3Dhttps%3A%2F%2Fdevicetree-
-> specification.readthedocs.io%2Fen%2Flatest%2Fchapter2-devicetree-
-> basics.html%23generic-names-recommendation
-> If you cannot find a name matching your device, please check in kernel
-> sources for similar cases or you can grow the spec (via pull request to D=
-T
-> spec repo).
->=20
->=20
-> Best regards,
-> Krzysztof
+This patch series has been tested on a TI AM64xx platform with a
+compatible remote processor firmware. Feedback and suggestions for
+improvement are welcome.
 
-Okay, I'll change the node names(e.g., tmutop-thermal ...) to be more gener=
-ic.
-After reviewing the existing kernel source, I noticed that nodes are writte=
-n in the form of tmu=40..., so I will adopt that convention.
-These changes will be included in the next version. Thank you.
+Changes since v1:
+- Added dt binding for rpmsg-eth node similar to `qcom,glink-edge.yaml`
+  and `google,cros-ec.yaml`
+- Added phandle to rpmsg-eth node to dt binding `ti,k3-r5f-rproc.yaml`
+- In the driver, shared memory region is now obtained from the rpmsg-eth
+  node in device tree.
+- Dropped base address from rpmsg callback. Since base address is obtained
+  from device tree, no need for rpmsg callback to share this base address
+  again.
+- Dropped usage of pointers and strictly using only offsets while
+  communicating to firmware.
+- Updated documentation based on the changes in driver and bindings.
+- Added "Naming convention" section to documentation to clarify naming and
+  various terms used in the driver and documentation.
+- Kept the naming should be consistent throughout the documentation and
+  driver as suggested by Andrew Lunn <andrew@lunn.ch>
+- Added device tree patch in the series to clarify how the changes will be
+  done in device tree and how the driver will use device tree information.
+
+v1 https://lore.kernel.org/all/20250723080322.3047826-1-danishanwar@ti.com/
+
+MD Danish Anwar (8):
+  dt-bindings: net: ti,rpmsg-eth: Add DT binding for RPMSG ETH
+  dt-bindings: remoteproc: k3-r5f: Add rpmsg-eth subnode
+  net: rpmsg-eth: Add Documentation for RPMSG-ETH Driver
+  net: rpmsg-eth: Add basic rpmsg skeleton
+  net: rpmsg-eth: Register device as netdev
+  net: rpmsg-eth: Add netdev ops
+  net: rpmsg-eth: Add support for multicast filtering
+  arch: arm64: dts: k3-am64*: Add rpmsg-eth node
+
+ .../devicetree/bindings/net/ti,rpmsg-eth.yaml |  38 ++
+ .../bindings/remoteproc/ti,k3-r5f-rproc.yaml  |   6 +
+ .../device_drivers/ethernet/index.rst         |   1 +
+ .../device_drivers/ethernet/rpmsg_eth.rst     | 368 ++++++++++
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  11 +-
+ drivers/net/ethernet/Kconfig                  |  10 +
+ drivers/net/ethernet/Makefile                 |   1 +
+ drivers/net/ethernet/rpmsg_eth.c              | 639 ++++++++++++++++++
+ drivers/net/ethernet/rpmsg_eth.h              | 283 ++++++++
+ 9 files changed, 1356 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/net/ti,rpmsg-eth.yaml
+ create mode 100644 Documentation/networking/device_drivers/ethernet/rpmsg_eth.rst
+ create mode 100644 drivers/net/ethernet/rpmsg_eth.c
+ create mode 100644 drivers/net/ethernet/rpmsg_eth.h
+
+
+base-commit: 2fd4161d0d2547650d9559d57fc67b4e0a26a9e3
+-- 
+2.34.1
 
 
