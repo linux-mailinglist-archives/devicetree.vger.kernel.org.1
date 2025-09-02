@@ -1,172 +1,248 @@
-Return-Path: <devicetree+bounces-211730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A66B405C8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:58:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3AAB405FE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:04:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15CB91B65DF3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:53:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2904854736D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:58:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0407130C342;
-	Tue,  2 Sep 2025 13:48:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CC332DECBF;
+	Tue,  2 Sep 2025 13:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="QzdAOAFO"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="W8+Qiaxn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F36B30BB90;
-	Tue,  2 Sep 2025 13:48:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F1D28DB56
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 13:57:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756820906; cv=none; b=iKOMv2WYXiUC+Yw+fpykoBXOLZXeW/HiE8U7vgdPFq8a5vXXGTAnN+lcavzxoNkHTi+j5JMYB5sksVUvgg/7RNmv6L+8GaJ4+k+8ZTrQekGPq1URx2zEcxv7JGA+5FLKresHLI8NTAu4x+XmLUm3d6DEJ3WwWbzrS00KWKSOXeo=
+	t=1756821426; cv=none; b=V+sF9qObLKYxGQKyoWvoAV2eZeyBtzgJc3HZhA9GZtwTtW3TGB5xfHjkwymZSGV5Ch6M6k7Pmu/D9FYjjphaZ/hVpdbNUZ1GsPju2t2OohcWEm+EhyMOQLzuQY9bOzKmvT4o6+nEbH14mz+mF/4ufodPe5HeRBYUdBCVPXd6IAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756820906; c=relaxed/simple;
-	bh=KvKxUrG1n0cy4XbruJlSv4j7yqa/hXkmNJZl5gRrxRY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bIyt2A5DEIttGjMY1awVkob/vJANVpm4M6oDRLjwyA3HT6Lm6fuYEgDiYgjn0ilJO5bh94ltHy4wAKtKZ0sa9em8fQez2NrvwNzktJF7hKCbWQE5e7RYT/e97eHS5y68o6deLRANVt0qT2RIIK+2NvOWHnGOmTaTdKgNMQxM5Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=QzdAOAFO; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-24884d9e54bso53720255ad.0;
-        Tue, 02 Sep 2025 06:48:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756820904; x=1757425704; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=tRrKRWwTJM47Js3hXSjgx0GTFrPjM8DZLan12V8oDXU=;
-        b=QzdAOAFOMmxKhgsQxAOYGtulVzBttgIiT1sCNQHU8B5/O1Omqs/ublVZKxws1ZJZ7L
-         AWbmjHbbHN65Z3fwHmjPC8ErbMpBSZxto0370ilzSgT8DD4Fyy08i0bWqT0hsObdF/6t
-         70HBdA1/JVKAF6VWhu6vhRsAERwIFkfJQI01xCdOT6zFY/Ce4otFUbpML7HSbtGEFhH1
-         U8+aR1F+cll0z+h354Mw3NOohoXNdVcDAjna3BD4SQfu6tKWWMqYlxqQv+3Kt2Rv4sAn
-         XKAtXinweXPjYNsrsvmFuJi0Wx9wfQi5xMOOVR5sHcgKAa1YVuCxuZ/u7NjaUe+G2ct0
-         pDqQ==
+	s=arc-20240116; t=1756821426; c=relaxed/simple;
+	bh=i8gMl+5Zo8IBQQU13R4ufjXD/5DH8zsbKiwINcSlPGE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fSGf1yExLCnghJ0PSK/iMpNP4Iha+gZ+N5NZ5tXZZx4yCdaiTlR8LR10CblL36iJk9ryGkndByNNkEix+KN5sTLP9cZIa5wdt3IHgLBP//vFDZZi9FItUf4a7nOoYRGBi0PUJI9QRF3qF3UOhmAwIt8TgOV4HbHvqTvTAdewUes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=W8+Qiaxn; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582B3Lev020382
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 13:57:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=BPHD8lUIkal642+fuDhhX575
+	g4A9kkT8Ilr18hcq5sQ=; b=W8+Qiaxn+1t+yYH6+Z+XlX2PzqOv3z9jmTv5hgNb
+	LoMe8Q1U/da9TXa1e8e9DD/k13A2g2170YLLkwNc6OCwlzBd2ICyATMm7liJs75l
+	4o7+UxZnMzYMMlnZAeGV5FfxST8HjQGbpU76fNBD59wn8K55RseYcw7WMZ9zxoms
+	J6R9zsN4d2ewehMupht/sLaCDMizvlYDAI09T3SClJRjc6hBmIm2+Cr/Png932sr
+	eC1u02DO/EdxOV3hn4xl/JsCQXuLFmqiIVthu6gCECKxo3Oam0CnnPBNvwlyunoU
+	PR/k8QnCfCvnlSPoaTgXGDOQooZwIkItvdBakAF/GNFYpg==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s03es-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 13:57:03 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b320a0a542so55734841cf.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 06:57:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756820904; x=1757425704;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1756821422; x=1757426222;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=tRrKRWwTJM47Js3hXSjgx0GTFrPjM8DZLan12V8oDXU=;
-        b=tIvw+gBfVJGDhEqkemb4xFTHAgcuLvhZ/GC93h8QaUyW5nnGST199p+c1AvZ6LMgAF
-         gNUy+eVGCk0WloMv97FcpPuvFGAyY3e9UZZLvO7Lxlbc7d2Ek7OClElrlYcxkE2rLbHf
-         f7aFs0dTdR2+Sl+VchJj/XUl1fmjfRGxjGke3U4TfPwom6gfa3Y8Kw7B223tVIsGVuW2
-         /IkV1GH2gb8n90ls/eDaCwgg7YeRCeBdA0PXFNjun4avxRnNbUWxp+YbZqnC2kez5cBX
-         5REfQzg9yDx/8UqFQYEGpgZxx2sH6pFU8WlCJVpXxdTLkYmh//j7mmONtRkp0ej9V06d
-         80ug==
-X-Forwarded-Encrypted: i=1; AJvYcCVxZTnTfZtT3lA3f05ISZ4D2S4dBR1kYXQavRGRoa8tCK5hqOE3x+aXcf0QPRxyk07b3lqhinvQxqIgYA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyGdv18/FLFeyVKzBOkCLnoX7Xt+08J/gakQa3Npnsxz/WfI5s0
-	p7IHx9bOKhL2yQsiA7CSbW2dZLJCkV6vGpat3U7xRdbAKkMadmnKGpGA
-X-Gm-Gg: ASbGncvoZ1PR8vFb4oJcxzZ3qO2VCvzXJw6k/uHXJ2RpQlpxWOYur2JvQSFkjdYsuUd
-	9kPCReOAmgiZLrr9t4C9zB8E2IGVw0gsR7ctZQrwJYx9ysv8kKMVQ9h+BPU2bPbsCfLIbeULuz4
-	NrjH3YjLpritlWGzX/yllAL1W/80/d2dpDRpahjMgCnY3yvRidammbm035Iu9sedlEdzIhSHj+G
-	4DjSH+mGEaS0YN32d962EQ2EIjp60ywk20szBJhJEXcngXejOyxp/ziMfJFN+qMnX2OXg3uXe9o
-	u8BAQSkW5RssjeRHBGZ6JTmiSAMK0vFoOlDegIkbmSCn1o2RlBggqGNvRkadpOrkzFG/hVX1RGu
-	cDrZ3HuZADkw30uYsa/4czz2uxZDlp2j5Xqpvm+zu5PiZxk3bj+DhIaRrIJZHn4tLQ10gMLPENT
-	tCHP5gJRZnN7Ndeuuc
-X-Google-Smtp-Source: AGHT+IGvhdv6S5YRaFgE0VRShgw9eBPlMfW3h8Pr+Ylr9K6kMbQdmMeQLhczz+6MUn2s2fmLoNw1cQ==
-X-Received: by 2002:a17:903:230c:b0:248:ea98:3d12 with SMTP id d9443c01a7336-24944acc7d6mr159468665ad.40.1756820904282;
-        Tue, 02 Sep 2025 06:48:24 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24905da3c43sm133821285ad.80.2025.09.02.06.48.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 06:48:23 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <c37bf116-9250-46fa-9a6c-24cb9b3af661@roeck-us.net>
-Date: Tue, 2 Sep 2025 06:48:21 -0700
+        bh=BPHD8lUIkal642+fuDhhX575g4A9kkT8Ilr18hcq5sQ=;
+        b=f+vRU0wg9Y7dfjT4D2ni1Ilbk7MRYdxJINoxBNw7yo/6a7iDGcj41i3MwXAjqI2DbM
+         /MvcL5veWLaEeKKJlkQAjNiMwkMKOF8Gi4eCfUONjoFlv3UlyOJJj17Wvq6M2j8OWJgq
+         rcnvpAgAMA9JxHXEJ1fGRHqa0r3n607HrfjZmhxwR+up7eVy1Tpe5xRhIh4SsAidKNpq
+         PEyKhbth0ArK3whCC3ArTgu2xx5t4dyP6xQ/7tL7V4Iy3nH+jopyRvvUAPN/BVithF6c
+         /vipREN5LJt2GcYrVZEK13X9lhp1qiIIXYfliSXhaqwoYEAaXi0vh5DCCX5NW0c8KLoF
+         cTGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXJdRfHiAUHpkM9KAyxwbLfGCbmV6ND/2TLGvbFLWGefenTVIIRQAApXnQHBx1rBdBoIaMYfWKreEWu@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlOxFNZnoy6gzgCxLpT1SgRCafplBhulckxP8UEEqfhD/vyLIK
+	79MTMMw/DilqiFZaaM5VnZTfmqwez5N25YLt9nZ9xsM2HOW6ln3evxHtMJtDIvpNIP4sTMkz6a8
+	FejB+oyd68A0NGpillYPZ8HSxDSgHXdAG8pPwWRP6ckWgwpxbRN0qPZ2z6IAvkVLH
+X-Gm-Gg: ASbGnctYxfuRouynTHEvh9/DbzqH2R/Cc6uVV9R4NQSij3KLJxUYOPS74Vw7mX3Wq1X
+	V8heWIJmQkhtvceC+ODmehAIrL1nyU9nYnsfBMsgIMQSNynpbfOK9CaiIhHcXNISUm9siHMg1Bt
+	cUABCU4er3HuFs5A7zUgvDYrzsEZviQ0TDUvrFrEgt4kCjHj3aO/9YPVSYyazsKIDNCistaVwP5
+	apRB18VAAUh7XRsmL1t0ejh6/6YQ369UcYPa+p4o5lMdEBAkZGvqSwMUF118J+U0x8avffHTaoz
+	mPZQBpPUrscx38n4cdYBadspLhW8cYREZGiAYxHcarBY+PconN0sOLaB4AsRCppYaGbD+USG9Pt
+	IbjrWc3ItsO1M7gG6we39HZCmSpumU5iuHklTTuPqn1//+FtPSNXR
+X-Received: by 2002:a05:622a:1988:b0:4b0:da90:d7d with SMTP id d75a77b69052e-4b31d80c426mr108587051cf.3.1756821422432;
+        Tue, 02 Sep 2025 06:57:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHpi+TOsmeZPp1TyNmYwpP7dN2aNcjDoev+g6God6GUdqt7HarlIFe5mWfReJxqsxVJ5cHpMA==
+X-Received: by 2002:a05:622a:1988:b0:4b0:da90:d7d with SMTP id d75a77b69052e-4b31d80c426mr108586461cf.3.1756821421621;
+        Tue, 02 Sep 2025 06:57:01 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-560827906cbsm721574e87.95.2025.09.02.06.56.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 06:56:59 -0700 (PDT)
+Date: Tue, 2 Sep 2025 16:56:57 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Fange Zhang <fange.zhang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        xiangxu.yin@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Li Liu <li.liu@oss.qualcomm.com>
+Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: Add display support for QCS615
+ RIDE board
+Message-ID: <7sd3rvvwnte7dub6vuywi6np7rig547ugfpu626ruufx7psrds@igqdchhianju>
+References: <20250827-add-display-support-for-qcs615-platform-v7-0-917c3de8f9ca@oss.qualcomm.com>
+ <20250827-add-display-support-for-qcs615-platform-v7-2-917c3de8f9ca@oss.qualcomm.com>
+ <yutyrfb73wbxlweoq3mc6ezyqr56snzmznw3k6mcbc56fpfayg@3h5jwymlo3ol>
+ <0c2a4877-d63b-4650-b7d4-a06a2730c73c@oss.qualcomm.com>
+ <zoogyjua4l6e2bgsvxx7w26n6v2hwnp2pvkizzzsds3c6cgaag@2bvqdl2z5ds6>
+ <4913e937-3892-42ac-8145-cc9c2364242c@oss.qualcomm.com>
+ <snery6acisgvxtofsrbbqtpoirh5ffyha64lz4zekg3kvwrsyv@tfyydedc7ddm>
+ <ae4ef090-7edc-49f8-a964-090bb94ff097@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: hwmon: ti,ina2xx: Add INA700
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
- Christian Kahr <christian.kahr@sie.at>
-References: <20250901215648.2696843-1-linux@roeck-us.net>
- <20250902-purring-lively-aardwolf-dca3e4@kuoka>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250902-purring-lively-aardwolf-dca3e4@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae4ef090-7edc-49f8-a964-090bb94ff097@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX6W2CpRJrrVeo
+ TMhTra42331vFiMRPYxCcNXqt3XZcm7SucJ4CnZ1AeUIz0pmBQAPKoOwD6ibLfAYM3IzN//nLmV
+ AXvAz6jrCuNbrfL/zEF0clovum8NEyi+9xcIwaP1dyglM2t6H3HDUSt0SVoWmJy1tFoKYxPix6t
+ Rb3Atp2SdoBXWORQmrun+TRpmR/wZ3EXU0RfeUlx4FJJ6zmzjq2oL0Tec32wXDJ4Zj8L0a0Ez8h
+ SzmXvjz7fJUEOTXeQL86lTjqssEefT1zc0EhKAb0g9wFfu6bsu2QKcAJzSO5ppAummOzByJ32sB
+ k4vG/cPBGMymu7gMJcjPGDoWFSoTxqvinUHigEExAz6M0iXrAYPDT3yHU2lBGqMHV7aG/qi0/ig
+ TYLiOob1
+X-Proofpoint-GUID: BrMYuxNkabjRuzFmzZlUOw15g5uEYCTL
+X-Proofpoint-ORIG-GUID: BrMYuxNkabjRuzFmzZlUOw15g5uEYCTL
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b6f7af cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=PxzxOCqAw92IUcKJUaMA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On 9/2/25 01:39, Krzysztof Kozlowski wrote:
-> On Mon, Sep 01, 2025 at 02:56:48PM -0700, Guenter Roeck wrote:
->> Add a compatible string for INA700. The chip is register compatible with
->> INA780 but implements different ADC ranges and thus needs a separate
->> compatible entry.
->>
->> Cc: Christian Kahr <christian.kahr@sie.at>
->> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
+On Mon, Sep 01, 2025 at 11:23:28AM +0800, Fange Zhang wrote:
 > 
-> Please mention in commit msg where is any user of that.
+> 
+> On 8/28/2025 7:02 PM, Dmitry Baryshkov wrote:
+> > On Thu, Aug 28, 2025 at 01:12:14PM +0800, Fange Zhang wrote:
+> > > 
+> > > 
+> > > On 8/28/2025 12:41 PM, Dmitry Baryshkov wrote:
+> > > > On Thu, Aug 28, 2025 at 10:57:41AM +0800, Fange Zhang wrote:
+> > > > > 
+> > > > > 
+> > > > > On 8/28/2025 4:01 AM, Dmitry Baryshkov wrote:
+> > > > > > On Wed, Aug 27, 2025 at 09:08:39PM +0800, Fange Zhang wrote:
+> > > > > > > From: Li Liu <li.liu@oss.qualcomm.com>
+> > > > > > > 
+> > > > > > > Add display MDSS and DSI configuration for QCS615 RIDE board.
+> > > > > > > QCS615 has a DP port, and DP support will be added in a later patch.
+> > > > > > > 
+> > > > > > > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > > > > > > Signed-off-by: Li Liu <li.liu@oss.qualcomm.com>
+> > > > > > > Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
+> > > > > > > ---
+> > > > > > >     arch/arm64/boot/dts/qcom/qcs615-ride.dts | 150 +++++++++++++++++++++++++++++++
+> > > > > > >     1 file changed, 150 insertions(+)
+> > > > > > > 
+> > > > > > > diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > > > > > > index e663343df75d59481786192cde647017a83c4191..f6e0c82cf85459d8989332497ded8b6ea3670c76 100644
+> > > > > > > --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > > > > > > +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+> > > > > > > @@ -39,6 +39,76 @@ xo_board_clk: xo-board-clk {
+> > > > > > >     		};
+> > > > > > >     	};
+> > > > > > > +	dp-dsi0-connector {
+> > > > > > > +		compatible = "dp-connector";
+> > > > > > > +		label = "DSI0";
+> > > > > > > +		type = "mini";
+> > > > > > > +
+> > > > > > > +		port {
+> > > > > > > +			dp_dsi0_connector_in: endpoint {
+> > > > > > > +				remote-endpoint = <&dsi2dp_bridge_out>;
+> > > > > > > +			};
+> > > > > > > +		};
+> > > > > > > +	};
+> > > > > > > +
+> > > > > > > +	vreg_12p0: vreg-12p0-regulator {
+> > > > > > 
+> > > > > > I should be more carefull when doing reviews. I thought that it was
+> > > > > > pointed out already and didn't some of the obvious things...
+> > > > > > 
+> > > > > > First of all, the nodes are sorted. By the name, not by the label.
+> > > > > > Second, there are already regulators in this file. Why are the new nodes
+> > > > > > not following the existing pattern and why are they not placed at a
+> > > > > > proper place?
+> > > > > 
+> > > > > Initially, we referred to https://patchwork.kernel.org/project/linux-arm-msm/patch/20250604071851.1438612-3-quic_amakhija@quicinc.com/
+> > > > > as a reference, but its node ordering seems a bit unconventional.
+> > > > > 
+> > > > > Would this revised ordering be acceptable?
+> > > > > 
+> > > > > ...
+> > > > > + dp-dsi0-connector
+> > > > > 
+> > > > > vreg_conn_1p8: regulator-conn-1p8
+> > > > > vreg_conn_pa: regulator-conn-pa
+> > > > > regulator-usb2-vbus
+> > > > 
+> > > > So... Existing regulator nodes have the name of 'regulator-foo-bar'.
+> > > > 
+> > > > > 
+> > > > > + vreg_12p0: vreg-12p0-regulator
+> > > > > + vreg_1p0: vreg-1p0-regulator
+> > > > > + vreg_1p8: vreg-1p8-regulator
+> > > > > + vreg_3p0: vreg-3p0-regulator
+> > > > > + vreg_5p0: vreg-5p0-regulator
+> > > > 
+> > > > While yours use 'vreg-baz-regulator'. Why? Don't blindly c&p data from
+> > > > other platforms.
+> > > 
+> > > Got it, The revised format will be:
+> > > 
+> > > + vreg_12p0: regulator-vreg-12p0
+> > > + vreg_1p0: regulator-vreg-1p0
+> > > + vreg_1p8: regulator-vreg-1p8
+> > > + vreg_3p0: regulator-vreg-3p0
+> > > + vreg_5p0: regulator-vreg-5p0
+> > > 
+> > > Let me know if you have any further suggestions.
+> > 
+> > What's the name of power rail in the schematics? vreg-Np0?
+> 
+> I reviewed the Ride board schematics and found the following power rail
+> mappings:
+> 
+> VREG_1P0 -> DSI0_DVDD10 / DSI0_AVDD10 -> ANX7625 AVDD10 / DVDD10
+> VREG_1P8 -> DSI0_AVDD18 -> ANX7625 AVDD18
+> VREG_S4A_1P8 -> DSI0_DVDD18 -> ANX7625 DVDD18
+> VIDEO_OUT_VREG_3P3 -> DSI0_AVDD30 -> ANX7625 AVDD30
+
+Then it looks like regulator-vreg-NpM is okay
+
+> 
+> would the current approach also be acceptable?
+> or we need configure the power supplies strictly according to this mapping.
+> Appreciate your guidance.
+> 
+> > 
+> > 
 > 
 
-You lost me a bit on that one. Christian had submitted a driver, but missed
-the devicetree documentation. That is what this patch is for. I frankly don't
-know how to mention a user as requested; I don't easily find an example
-in other devicetree patches. Typically the commit message is just "add <chip>
-to <bindings>". Please give me an example of what you are looking for.
-
-Thanks,
-Guenter
-
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-
+-- 
+With best wishes
+Dmitry
 
