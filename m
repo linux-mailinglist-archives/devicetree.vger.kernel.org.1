@@ -1,170 +1,257 @@
-Return-Path: <devicetree+bounces-211821-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22CC6B40BA6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:08:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9E33B40BCF
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B993C1B63A96
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:08:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B7FC3A5617
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A59E1341679;
-	Tue,  2 Sep 2025 17:07:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15440341ADA;
+	Tue,  2 Sep 2025 17:16:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QrJcHnY2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="P2Ufg2iT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BB8934165E;
-	Tue,  2 Sep 2025 17:07:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 586464C9D
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 17:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756832850; cv=none; b=NDgtOnoMSosynPyADH359u2hnJ71PKCfgSpEPAcHToK5btW4ThzzR/R3OnfpWFIiVpSNhij+VRD/bk8ax2ArROxWH86h073h4F5z/kWmBhlMiU151ap4UamMZNkAxAhxARoMZqpHxPbEwcxAjWaIm2fjR4DgE/7O+xTJMzKyTfY=
+	t=1756833373; cv=none; b=j0hldjhSne1URNzwoA5bz86CZiDnNMBy0OB1ozp7G9tVWWc9QFdrecX6S9L5Au5x1YqwGbxo3XrrlI1nN0cRbyXYKYYhH8eF7bS+oCeKbf5orudljE4G9fw6yg48iplmVKyR80+yweKuUORGqMdh5gOxvSSoFB+Vk/ZdJfkki2k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756832850; c=relaxed/simple;
-	bh=IYDkzilxbSRyvx9Io0tT0IQnawm6gQq1M15aM43RTy0=;
+	s=arc-20240116; t=1756833373; c=relaxed/simple;
+	bh=GGixmQHMnuiRSS06dnefK9PTyJsBbkjIHfLjT8VKwlA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lmB0QjY0EdD/OQDGuwMNmBQAvO0hHEEUGyG1OlVqieepEdm+j5uTNo384nDqMeGyQrxwGHB+2gydwO1Gxp7nmY/X5dNgVTZ9P9pH08lOPTi5B+/IWmlgcWw4FGQQVZ84Qxq1AfzPEntgy+Xj2xy5NrlxV9BFiU3MvaDdKmiuNbI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QrJcHnY2; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30155C4CEED;
-	Tue,  2 Sep 2025 17:07:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756832850;
-	bh=IYDkzilxbSRyvx9Io0tT0IQnawm6gQq1M15aM43RTy0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QrJcHnY2/wjwWY+uPJoel9dpLf4kO7HdRU6XfNCfelnVc14HkpJBicDAYW3ppNTJA
-	 zDtST6cdUj/fpUtCh1fdfTBW6oTh+xS3J6pr5Y4TlOuIuwTQn5likfZAlWe/x5gPZu
-	 dgIz5ucR3jdTarirjfImBycxGgX25tWjBXNetCXkbAR8RxmHDzC0q0uCAPK8WoE4+M
-	 tuEG8LKwJNUsqoR+l/XjRIzziPicjVv0D8Z3Fa/lPjyOeLABlHA8p2jd79ULtQ8tnE
-	 lPYzPJWO25WBnAn/VqyYrfzYh0xj7tumOMcunOQdGWGSO4bfNc/MW8ruyl7SAfD9eY
-	 C8oiFXpa8hRcA==
-Date: Tue, 2 Sep 2025 19:07:25 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Thomas Zimmermann <tzimmermann@suse.de>, Andy Yan <andyshrk@163.com>, 
-	heiko@sntech.de, hjc@rock-chips.com, naoki@radxa.com, stephen@radxa.com, 
-	cristian.ciocaltea@collabora.com, neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com, 
-	yubing.zhang@rock-chips.com, krzk+dt@kernel.org, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org, robh@kernel.org, 
-	sebastian.reichel@collabora.com, Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v7 00/10] Add support for RK3588 DisplayPort Controller
-Message-ID: <3ygqnj4idey7u4m7ltlv7pnfhkkvcepmpfdijdszctaeopq3ky@qteg33comjl3>
-References: <20250822063959.692098-1-andyshrk@163.com>
- <bochli5u37mhc6eup7h2oz3yeignofbbj4k5nrvm2k7zf6f4ov@t2sje4gmveqa>
- <d040da3e-501f-45d8-bcbb-95fa77e94a59@suse.de>
- <20250828-tangible-wakeful-coati-ec27d1@houat>
- <n3scvjsx2aec2ijnr5wwevkmhtegkts5nb43yti7dkjujqaezq@shbcy7ftibzo>
+	 Content-Type:Content-Disposition:In-Reply-To; b=VyTRbAuBOoFGPteozklIzeXtgWQADymo+qZwLNX1h6Zby8kVz+BkxhvW1nwR4EtQKNlfdJHSJUBIOwMEf8+a9Lau4ALkEqbPV9v/JJw0dO/k0NuLBiaQXibYfXn3rYM+AfLbiGaOQA7CbgevVf7al51IvS5v40diNEmdk1cPqek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=P2Ufg2iT; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqHRn004234
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 17:16:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3YLUXsBb+H2fMN/x6xB9KreQ
+	sLQVf3Bz8PIfMA43Cqs=; b=P2Ufg2iTd5xoqKvZgqUNWwwNog0r3wJv3SJ2a0/3
+	rcX2pW9xuf5I8vFAOdMTE8gRP2zn1KI5KW4IXo8yg1sXJHdHPmHUoDoLtTDhs5Is
+	bsTufpY0YUItHxmYiElD+6IP+VYLjqKLIQNFK+sXghAwUP82iFKpMXIO4hadr/dY
+	FyvOAYfGplOytGn4F3Cf+yDc7Dm56udzaU0eTGLuJ4g5mCBKbqkK2l3DDWPt1OVf
+	a5L9DKpX76jrIA3L+8HgGQuFotoyxrRo+lNF6f2TglXr4bef9qhrkVkTdtQ3nDGo
+	QlsySFGVNG3O99OfRSbORBb7ouZxi0EM2hFYRxEYu4rpXw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjgnsr-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 17:16:09 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b302991816so93767021cf.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 10:16:09 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756833368; x=1757438168;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3YLUXsBb+H2fMN/x6xB9KreQsLQVf3Bz8PIfMA43Cqs=;
+        b=QIO1NgKlbxS20EP0rTXY0ElqGlfsDFRrOurKNZqypl50er2gfGSFoa4GBdKYMmjMPn
+         X92ClnF1AtZBSWBxkMNVsfNXu7a1QORLH6iVYJDLfpRG9ULcpupx6gQojFGs1aSziPf3
+         BQiTQmRX4LxqsqK5c6OBkO8142uVS+NM0yUfUcmZ5fSqEoPItMDx98O2lf+noxFBw8MP
+         DPQqGXg0++vCiZ1GrSJL0lUZzcRtaUK2HAZ9td/OLYBjgazBq8P/R6EKjRPmktZR13wQ
+         qMYCU6q6F53uw/10wBjwi2wHXmqOT51LNs2TopUjRfsVY0Otg3HJ559RA0FLkva9QXR0
+         3nUA==
+X-Forwarded-Encrypted: i=1; AJvYcCWGLbtCpsVDHe6jwBDhpLTiYJ/iZQIosNAB7Tb1xzxOwtx+6uGxpNWx2kmicoE4Nxuj9Y4Nt6oRgG4E@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMyB+FyMtVkIzXa3tb2NesfL5zMBxta98xUWRM3U/jOXwa3w5t
+	kLY07BHfYLAf1IMdv0q6oPOgm/GUMWJhjUFqx2T/+eCsz5Tij47C/AWW2rqIwrB0+59BmuSI4MS
+	puG1NpohjvnhuVnLACdRT/7jnJ9yvBD6B8gO/liDOiFnwqytPbiiWQSzgEYHSee61
+X-Gm-Gg: ASbGnctJu9scYrGe/a516GShAeJE5cEn3wWu39qcMdnUbKZ233ni5zIt8tGxTMnR/O9
+	8IYTdq8URfR81YJtigUIIowrXg6132xyF5K3HVEbdCWdrZdv4x1IKCFIC8nqfmok+Gx7HnsiBZY
+	7rqbAwZSQ9/cAp2UrZe9cRKz0F7UlnnOP1FFHf3CwLwL0rUVkwgwoNTL3huRu2gu/CmCcl2koDp
+	Pu4riM20tCBWAoOEDqyxlBMxOmI9cqAUPaAKim14EVpySRcGDzdBksmhkVCsz74xzig0LytqYSE
+	TdMTa+ECguxPt6Y0iclB/gzYLorVFTCzz/3d0Jvaxhw0QqBZPWTpRJRN7BAtR5/d4wQdzUKhQvG
+	KJ8SljMloeKFeX+BeoMje+I/Q37B3PsufBpaqziBlpvpU+C/6sTdM
+X-Received: by 2002:a05:622a:2615:b0:4b3:19c5:68ec with SMTP id d75a77b69052e-4b31d80cb69mr138409531cf.12.1756833368135;
+        Tue, 02 Sep 2025 10:16:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG5rotFg1jBTAZEAuapDecKRJQB2mz3OMz0pGfo5EL0QAG3I96gAKcj9HSKzh0OrRoUDRSojw==
+X-Received: by 2002:a05:622a:2615:b0:4b3:19c5:68ec with SMTP id d75a77b69052e-4b31d80cb69mr138408861cf.12.1756833367575;
+        Tue, 02 Sep 2025 10:16:07 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-560827aa987sm810618e87.135.2025.09.02.10.16.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 10:16:06 -0700 (PDT)
+Date: Tue, 2 Sep 2025 20:16:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krishna Kurapati PSSNV <krishna.kurapati@oss.qualcomm.com>
+Cc: Monish Chunara <quic_mchunara@quicinc.com>,
+        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
+        Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Vishal Kumar Pal <quic_vispal@quicinc.com>
+Subject: Re: [PATCH 3/5] arm64: dts: qcom: lemans-evk: Extend peripheral and
+ subsystem support
+Message-ID: <ctwvrrkomc3n6gginw2dp5vip7xh5jhwbi5joyr64gocsm2esb@4zfpbvvziv5i>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-3-08016e0d3ce5@oss.qualcomm.com>
+ <kycmxk3qag7uigoiitzcxcak22cewdv253fazgaidjcnzgzlkz@htrh22msxteq>
+ <3f94ccc8-ac8a-4c62-8ac6-93dd603dcd36@quicinc.com>
+ <zys26seraohh3gv2kl3eb3rd5pdo3y5vpfw6yxv6a7y55hpaux@myzhufokyorh>
+ <aLG3SbD1JNULED20@hu-mchunara-hyd.qualcomm.com>
+ <ozkebjk6gfgnootoyqklu5tqj7a7lgrm34xbag7yhdwn5xfpcj@zpwr6leefs3l>
+ <ed3a79e0-516e-42f4-b3c6-a78ca6c01d86@oss.qualcomm.com>
+ <ly5j2eodrajifosz34nokia4zckfftakz5253d2h6kd2cxjoq3@yrquqgpnvhp6>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
-	protocol="application/pgp-signature"; boundary="kkc2r2aygpzd7tty"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <n3scvjsx2aec2ijnr5wwevkmhtegkts5nb43yti7dkjujqaezq@shbcy7ftibzo>
+In-Reply-To: <ly5j2eodrajifosz34nokia4zckfftakz5253d2h6kd2cxjoq3@yrquqgpnvhp6>
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b72659 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=-eXanXclA7daHIafeBEA:9
+ a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: kRjKmYxI8ycmh40-d8q61xUbnFJeoWq6
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX3na6xvjOcnLe
+ RsdZ9edT0LsfmmMxeS+8S1Hq9J5x9So1HeyKzbtemdA+OPF3vdoIrjDGdXInFdxF2ajGNcEbQsh
+ TTl6R360S8QqXqjL//ufNlsCJvMvVsLG5NO0G7+CkalWewBKYVCivpjA8CAR2PMZlGuk60Y6PSr
+ HYRN0Bsuo0geuNhZfejLHtYXxFu5tYXdy3xX1rHrTy15oCipe0jZFTwXgijkx41dwHbrRkTnNRH
+ HvIhtvd8+Pc3YEpyFY6zgz3Rv0zTY/5IIaqDAatOULtHFQVB04hAFQaeEmhXo6FFYwSoAUtLg2z
+ N9DK203qv/1LqfBIq1GybCVxP+25gxwG90nFOswBPq3leOf9AqxZQk7x3woCk0p0fNuzJLX2tRR
+ MmWi+kaK
+X-Proofpoint-ORIG-GUID: kRjKmYxI8ycmh40-d8q61xUbnFJeoWq6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_06,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
+On Tue, Sep 02, 2025 at 05:34:27AM +0300, Dmitry Baryshkov wrote:
+> On Mon, Sep 01, 2025 at 01:02:15PM +0530, Krishna Kurapati PSSNV wrote:
+> > 
+> > 
+> > On 8/29/2025 9:54 PM, Dmitry Baryshkov wrote:
+> > > On Fri, Aug 29, 2025 at 07:50:57PM +0530, Monish Chunara wrote:
+> > > > On Thu, Aug 28, 2025 at 04:30:00PM +0300, Dmitry Baryshkov wrote:
+> > > > > On Thu, Aug 28, 2025 at 06:38:03PM +0530, Sushrut Shree Trivedi wrote:
+> > > > > > 
+> > > > > > On 8/27/2025 7:05 AM, Dmitry Baryshkov wrote:
+> > > > > > > On Tue, Aug 26, 2025 at 11:51:02PM +0530, Wasim Nazir wrote:
+> > > > > > > > Enhance the Qualcomm Lemans EVK board file to support essential
+> > > > > > > > peripherals and improve overall hardware capabilities, as
+> > > > > > > > outlined below:
+> > > > > > > >     - Enable GPI (Generic Peripheral Interface) DMA-0/1/2 and QUPv3-0/2
+> > > > > > > >       controllers to facilitate DMA and peripheral communication.
+> > > > > > > >     - Add support for PCIe-0/1, including required regulators and PHYs,
+> > > > > > > >       to enable high-speed external device connectivity.
+> > > > > > > >     - Integrate the TCA9534 I/O expander via I2C to provide 8 additional
+> > > > > > > >       GPIO lines for extended I/O functionality.
+> > > > > > > >     - Enable the USB0 controller in device mode to support USB peripheral
+> > > > > > > >       operations.
+> > > > > > > >     - Activate remoteproc subsystems for supported DSPs such as Audio DSP,
+> > > > > > > >       Compute DSP-0/1 and Generic DSP-0/1, along with their corresponding
+> > > > > > > >       firmware.
+> > > > > > > >     - Configure nvmem-layout on the I2C EEPROM to store data for Ethernet
+> > > > > > > >       and other consumers.
+> > > > > > > >     - Enable the QCA8081 2.5G Ethernet PHY on port-0 and expose the
+> > > > > > > >       Ethernet MAC address via nvmem for network configuration.
+> > > > > > > >       It depends on CONFIG_QCA808X_PHY to use QCA8081 PHY.
+> > > > > > > >     - Add support for the Iris video decoder, including the required
+> > > > > > > >       firmware, to enable video decoding capabilities.
+> > > > > > > >     - Enable SD-card slot on SDHC.
+> > > > > > > > 
+> > > > > > > > Co-developed-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> > > > > > > > Signed-off-by: Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>
+> > > > > > > > Co-developed-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> > > > > > > > Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> > > > > > > > Co-developed-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+> > > > > > > > Signed-off-by: Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>
+> > > > > > > > Co-developed-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> > > > > > > > Signed-off-by: Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>
+> > > > > > > > Co-developed-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
+> > > > > > > > Signed-off-by: Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>
+> > > > > > > > Co-developed-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> > > > > > > > Signed-off-by: Dikshita Agarwal <quic_dikshita@quicinc.com>
+> > > > > > > > Co-developed-by: Monish Chunara <quic_mchunara@quicinc.com>
+> > > > > > > > Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+> > > > > > > > Co-developed-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
+> > > > > > > > Signed-off-by: Vishal Kumar Pal <quic_vispal@quicinc.com>
+> > > > > > > > Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> > > > > > > > ---
+> > > > > > > >    arch/arm64/boot/dts/qcom/lemans-evk.dts | 387 ++++++++++++++++++++++++++++++++
+> > > > > > > >    1 file changed, 387 insertions(+)
+> > > > > > > > 
+> > > > > > > 
+> > > > > > > > @@ -356,6 +720,29 @@ &ufs_mem_phy {
+> > > > > > > >    	status = "okay";
+> > > > > > > >    };
+> > > > > > > > +&usb_0 {
+> > > > > > > > +	status = "okay";
+> > > > > > > > +};
+> > > > > > > > +
+> > > > > > > > +&usb_0_dwc3 {
+> > > > > > > > +	dr_mode = "peripheral";
+> > > > > > > Is it actually peripheral-only?
+> > > > > > 
+> > > > > > Hi Dmitry,
+> > > > > > 
+> > > > > > HW supports OTG mode also, but for enabling OTG we need below mentioned
+> > > > > > driver changes in dwc3-qcom.c :
+> > > > > 
+> > > > > Is it the USB-C port? If so, then you should likely be using some form
+> > > > > of the Type-C port manager (in software or in hardware). These platforms
+> > > > > usually use pmic-glink in order to handle USB-C.
+> > > > > 
+> > > > > Or is it micro-USB-OTG port?
+> > > > > 
+> > > > 
+> > > > Yes, it is a USB Type-C port for usb0 and we are using a 3rd party Type-C port
+> > > > controller for the same. Will be enabling relevant dts node as part of OTG
+> > > > enablement once driver changes are in place.
+> > > 
+> > > Which controller are you using? In the existing designs USB-C works
+> > > without extra patches for the DWC3 controller.
+> > > 
+> > 
+> > Hi Dmitry,
+> > 
+> >  On EVK Platform, the VBUS is controlled by a GPIO from expander. Unlike in
+> > other platforms like SA8295 ADP, QCS8300 Ride, instead of keeping vbus
+> > always on for dr_mode as host mode, we wanted to implement vbus control in
+> > dwc3-qcom.c based on top of [1]. In this patch, there is set_role callback
+> > present to turn off/on the vbus. So after this patch is merged, we wanted to
+> > implement vbus control and then flatten DT node and then add vbus supply to
+> > glue node. Hence made peripheral only dr_mode now.
+> 
+> In such a case VBUS should be controlled by the USB-C controller rather
+> than DWC3. The reason is pretty simple: the power direction and data
+> direction are not 1:1 related anymore. The Type-C port manager decides
+> whether to supply power over USB-C / Vbus or not and (if supported)
+> which voltage to use. See TCPM's tcpc_dev::set_vbus().
 
---kkc2r2aygpzd7tty
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v7 00/10] Add support for RK3588 DisplayPort Controller
-MIME-Version: 1.0
+Okay, your Type-C manager is HD3SS3220. It drives ID pin low if the VBUS
+supply should be enabled. Please enhance the driver with this
+functionality. You cann't use the USB role status since it doesn't
+perform VSafe0V checks.
 
-On Thu, Aug 28, 2025 at 03:56:21PM +0300, Dmitry Baryshkov wrote:
-> On Thu, Aug 28, 2025 at 10:05:28AM +0200, Maxime Ripard wrote:
-> > On Thu, Aug 28, 2025 at 09:50:34AM +0200, Thomas Zimmermann wrote:
-> > > Hi
-> > >=20
-> > > Am 28.08.25 um 00:24 schrieb Dmitry Baryshkov:
-> > > > On Fri, Aug 22, 2025 at 02:39:44PM +0800, Andy Yan wrote:
-> > > > > From: Andy Yan <andy.yan@rock-chips.com>
-> > > > >=20
-> > > > >=20
-> > > > > There are two DW DPTX based DisplayPort Controller on rk3588 which
-> > > > > are compliant with the DisplayPort Specification Version 1.4 with
-> > > > > the following features:
-> > > > >=20
-> > > > > * DisplayPort 1.4a
-> > > > > * Main Link: 1/2/4 lanes
-> > > > > * Main Link Support 1.62Gbps, 2.7Gbps, 5.4Gbps and 8.1Gbps
-> > > > > * AUX channel 1Mbps
-> > > > > * Single Stream Transport(SST)
-> > > > > * Multistream Transport (MST)
-> > > > > * Type-C support (alternate mode)
-> > > > > * HDCP 2.2, HDCP 1.3
-> > > > > * Supports up to 8/10 bits per color component
-> > > > > * Supports RBG, YCbCr4:4:4, YCbCr4:2:2, YCbCr4:2:0
-> > > > > * Pixel clock up to 594MHz
-> > > > > * I2S, SPDIF audio interface
-> > > > >=20
-> > > > > The current version of this patch series only supports basic disp=
-lay outputs.
-> > > > > I conducted tests with DP0 in 1080p and 4K@60 YCbCr4:2:0 modes; t=
-he ALT/Type-C
-> > > > > mode was tested on Rock 5B, DP1 was tested on Rock 5 ITX by Steph=
-en and Piotr.
-> > > > > HDCP and audio features remain unimplemented.
-> > > > > For RK3588, it's only support SST, while in the upcoming RK3576, =
-it can support
-> > > > > MST output.
-> > > > >=20
-> > > > [skipped changelog]
-> > > >=20
-> > > > > Andy Yan (10):
-> > > > >    dt-bindings: display: rockchip: Add schema for RK3588 DPTX Con=
-troller
-> > > > >    drm/bridge: synopsys: Add DW DPTX Controller support library
-> > > > >    drm/rockchip: Add RK3588 DPTX output support
-> > > > >    MAINTAINERS: Add entry for DW DPTX Controller bridge
-> > > > I tried pushing patches 1-4, but got the following error:
-> > > >=20
-> > > > dim: ERROR: 5a68dcf5837a ("MAINTAINERS: Add entry for DW DPTX Contr=
-oller bridge"): Mandatory Maintainer Acked-by missing., aborting
-> > > >=20
-> > > > I'm not sure how to handle MAINTAINERS changes (or whether it's fin=
-e for
-> > > > me or not), so I will probably push patches 1-3 in a few days, if n=
-obody
-> > > > beats me (or unless somebody points out a correct process for
-> > > > MAINTAINERS changes).
-> > >=20
-> > > That warning has been added recently to make sure that patches do not=
- get in
-> > > without sufficient review. It's overly pedantic, though.
-> >=20
-> > It's not "overly pedantic", it follows the contribution rules. I'd argue
-> > that, if anything, we've been overly tolerant with that kind of
-> > practices.
-> >=20
-> > We do have a bug with handling MAINTAINERS changes at the moment. But
-> > everything else shouldn't be ignored: either patch MAINTAINERS to
-> > reflect the actual contribution path, or get the maintainers Ack.
->=20
-> For me that points out that MAINTAINERS changes should be integrated
-> into the corresponding driver patch rather than being a separate patch.
-
-Not really. It's really just a bug in dim, there's no hidden intent :)
-
-Maxime
-
---kkc2r2aygpzd7tty
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaLckTAAKCRAnX84Zoj2+
-dvUNAYCXA+YfH43/lvB6Cay1XQoaT6hY+j/3vvS/vks7PUidYe3u20HeFQ6TDCMt
-fDk7xbsBfAg4iZlxbGaBsHx/isVkX0/hsjK1EZiqd0QFjc1leQ3iDtnQ7qFLJv9m
-BMMAuZ+5Zg==
-=yuqj
------END PGP SIGNATURE-----
-
---kkc2r2aygpzd7tty--
+-- 
+With best wishes
+Dmitry
 
