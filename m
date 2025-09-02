@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-211679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75FFFB4005B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:25:55 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F86BB4009A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:31:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B120F1880106
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:26:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B862167343
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:27:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0F72F8BF4;
-	Tue,  2 Sep 2025 12:25:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A58162EC094;
+	Tue,  2 Sep 2025 12:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aFEwkyub"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MPSYmRKr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D20832EE61D;
-	Tue,  2 Sep 2025 12:25:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 761E32C11D0;
+	Tue,  2 Sep 2025 12:27:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756815941; cv=none; b=m4oJV+GgqIZqWkDu6MRMOcmn1FC9qUXp6cUhl+Nqal/eRKXvXLyB4w9l37bw8lCnmvn17P4F3PlrOp+3eFeJkPG1KrGsmY/i8fnnqRQqjzic8xew/dhnH5JwnRaSq9M+4qpYJq8AR0AFVQFdws564WgggS6kW5RTlqIi65XZMlE=
+	t=1756816020; cv=none; b=my/OuRm70v5jgvU/4j6EgEV4HARrla6JyOhFjhzQpZiFDlHOO2j5Ym3ZxBJ0399Yj5yf6dqBOjdzpPgN1DCVpBofq6/g2Ay0LnMUHZdB77GfeCs5mUOyr8v7mQ2hn6hGqB0Seua07c4BQJQGuoIw9vl+hkNQvaKgEqVkJf/zOPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756815941; c=relaxed/simple;
-	bh=tOTGeZnjx47VyjcWDHmS3VXQ7wa/IfFBajWPok1nLyw=;
+	s=arc-20240116; t=1756816020; c=relaxed/simple;
+	bh=uy+9yT0OqxOwyvDOHi6skVuSOa8RvKqXi+oLTHQDSUM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZuNejhC5/EH2NGm9NoJB9XbNhNNrgKarkOKWH7pKWg1pMtzEz/DMR1aHyLNV3yjtNGe+KmbyKO3vsIRsQS5HuJ3RHP+Reqq9Vm8LqJzXAC84HL5FwXOFqveAdISIPaM4RiogeACQy9c2izyBSkYgsEZMzNcMdCj7IJn69WmjYeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aFEwkyub; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 360DFC4AF09;
-	Tue,  2 Sep 2025 12:25:39 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=NvtTU6dMDUvhOrLh+9lxHe0BoY3kh5n8XXJQvoGde80CGMYpZErFwI/EDCLpN0F0qwzeH5SFAxFALRspHrrrRkAlSiU0OOtn5MmqoEsVY4mYjK3alirgZ0GUxqCbcxhYiQ7G1j8FNzE3Mn9MFTml2bTdGTuAS1H9a7k45dgg2OI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MPSYmRKr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5DAE6C4CEF4;
+	Tue,  2 Sep 2025 12:26:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756815941;
-	bh=tOTGeZnjx47VyjcWDHmS3VXQ7wa/IfFBajWPok1nLyw=;
+	s=k20201202; t=1756816020;
+	bh=uy+9yT0OqxOwyvDOHi6skVuSOa8RvKqXi+oLTHQDSUM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aFEwkyubPT/9oxZGfR7M4SHfY5Ch+0PNEJKtANHaDwc9Zjf/FNNAeWzER6JrxhxhT
-	 dLEWZ/0spxUlX9WELfi7Ej7l8/mZuk28UbWJ6Ycj3xzmM8NhCWZ2Iuu5JUFuAGOkMr
-	 FimmpWpLjzBeI27/eZQ/Z71HfZdAtpi7GJRntte0nd+ql5D0SgTyXDI65G/nEYkXtC
-	 ugdc1iCZ+Kf8eprOTFpgAruyoe3E+3Hl4ICosJ/JBIkZq52Rl6VK18r9eeskKHNMzS
-	 UPNVHYZiCP6CqKKxolCJ+y26mH+igvjwXEr4EheiNJooXrLDp2r/5i/Drh04Rg/AVV
-	 5A+alTh4zUXWQ==
-Message-ID: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
-Date: Tue, 2 Sep 2025 14:25:37 +0200
+	b=MPSYmRKriAme9P6tqUdJc15hqm7gOnffta4xko1zzU6tJERGTnbLIQVIZW8ELBogZ
+	 ugpVpP6/1g6OkkECCLPLIXIhcHIeYiTPhJ8RedPevIqPShff2FKF+3oj2PUpZolzw5
+	 BaH5cFKj86U8zBAXKtNRvfigcNANmYZqpzgJ6kZh+BIuO6CA6+rWnPZk21oMa3o2lD
+	 +D7QTajSFKcoGP4t0lM/RjTRsC96D3AAi+DSZ0xJHBbJ4PvihOfRsHixzD3SB7WRrN
+	 9isexyZCe5N8dDi9dqvp2otBhVbBLrMDxmK50LR50ubTE1zu8z+HCCi2/gTZLQHk8r
+	 5fiZrtNfkXtTg==
+Message-ID: <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
+Date: Tue, 2 Sep 2025 14:26:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,149 +50,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] leds: led-class: Add devicetree support to led_get()
-To: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
+ i.MX8ULP compatible string
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Frank Li <Frank.li@nxp.com>
+Cc: Guoniu Zhou <guoniu.zhou@nxp.com>, Rui Miguel Silva <rmfrfs@gmail.com>,
+ Martin Kepplinger <martink@posteo.de>, Purism Kernel Team <kernel@puri.sm>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>,
- Linus Walleij <linus.walleij@linaro.org>
-References: <20250902-leds-v1-0-4a31e125276b@vinarskis.com>
- <010201990a1f6559-9e836a40-f534-4535-bd59-5e967d80559a-000000@eu-west-1.amazonses.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <010201990a1f6559-9e836a40-f534-4535-bd59-5e967d80559a-000000@eu-west-1.amazonses.com>
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
+ <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
+ <20250901154610.GB13448@pendragon.ideasonboard.com>
+ <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
+ <20250902083554.GD13448@pendragon.ideasonboard.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250902083554.GD13448@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi Aleksandrs,
-
-Thank you for working on this.
-
-On 2-Sep-25 1:10 PM, Aleksandrs Vinarskis wrote:
-> From: Hans de Goede <hansg@kernel.org>
+On 02/09/2025 10:35, Laurent Pinchart wrote:
+>>>>          compatible:
+>>>>            contains:
+>>>>              enum:
+>>>> -              - fsl,imx8qxp-mipi-csi2
+>>>> +              - fsl,imx8ulp-mipi-csi2
+>>>> +    then:
+>>>> +      properties:
+>>>> +        reg:
+>>>> +          minItems: 2
+>>>> +        resets:
+>>>> +          minItems: 2
+>>>> +          maxItems: 2
+>>>> +        clocks:
+>>>> +          minItems: 4
+>>>> +        clock-names:
+>>>> +          minItems: 4
+>>>
+>>> But according to this, the ULP version requires more clocks than the QXP
+>>> version.
+>>
+>> If only clock number difference, generally, it is still compatible and can
+>> be fallback, especialy driver use devm_bulk_clk_get_all().
 > 
-> Turn of_led_get() into a more generic __of_led_get() helper function,
-> which can lookup LEDs in devicetree by either name or index.
-> 
-> And use this new helper to add devicetree support to the generic
-> (non devicetree specific) [devm_]led_get() function.
-> 
-> This uses the standard devicetree pattern of adding a -names string array
-> to map names to the indexes for an array of resources.
-> 
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Reviewed-by: Lee Jones <lee@kernel.org>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
+> That's a driver-specific implementation decision, so I don't think it
+> should be taken into account to decide on compatibility.
 
-Please update this to:
+The clock inputs do not restrict compatibility. If Linux can use
+fallback to bind and operate properly, then it's a strong indication
+devices are compatible.
 
-Reviewed-by: Hans de Goede <hansg@kernel.org>
+Imagine exactly the same registers, so same programming interface, but
+one device takes one more clock which just needs to be enabled through
+its lifetime. Such devices are fully compatible, even though clock
+inputs differ.
 
-to match the update of the author which you already did.
+I also wanted to express exactly that case on my slides from OSSE -
+slide 28:
+https://osseu2025.sched.com/event/25Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-kozlowski-linaro
 
-Also note that checkpatch should complain about the mismatch,
-please ensure to run checkpatch before posting v2.
+(although I focused on reversed case when devices are not compatible,
+because that is decisive case).
 
-> Tested-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> ---
->  drivers/leds/led-class.c | 38 +++++++++++++++++++++++++++++---------
->  1 file changed, 29 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 15633fbf3c166aa4f521774d245f6399a642bced..6f2ef4fa556b44ed3bf69dff556ae16fd2b7652b 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -248,19 +248,18 @@ static const struct class leds_class = {
->  	.pm = &leds_class_dev_pm_ops,
->  };
->  
-> -/**
-> - * of_led_get() - request a LED device via the LED framework
-> - * @np: device node to get the LED device from
-> - * @index: the index of the LED
-> - *
-> - * Returns the LED device parsed from the phandle specified in the "leds"
-> - * property of a device tree node or a negative error-code on failure.
-> - */
-> -static struct led_classdev *of_led_get(struct device_node *np, int index)
-> +static struct led_classdev *__of_led_get(struct device_node *np, int index,
-> +					 const char *name)
->  {
->  	struct device *led_dev;
->  	struct device_node *led_node;
->  
-> +	/*
-> +	 * For named LEDs, first look up the name in the "led-names" property.
-> +	 * If it cannot be found, then of_parse_phandle() will propagate the error.
-> +	 */
-> +	if (name)
-> +		index = of_property_match_string(np, "led-names", name);
->  	led_node = of_parse_phandle(np, "leds", index);
->  	if (!led_node)
->  		return ERR_PTR(-ENOENT);
-> @@ -271,6 +270,20 @@ static struct led_classdev *of_led_get(struct device_node *np, int index)
->  	return led_module_get(led_dev);
->  }
->  
-> +/**
-> + * of_led_get() - request a LED device via the LED framework
-> + * @np: device node to get the LED device from
-> + * @index: the index of the LED
-> + *
-> + * Returns the LED device parsed from the phandle specified in the "leds"
-> + * property of a device tree node or a negative error-code on failure.
-> + */
-> +struct led_classdev *of_led_get(struct device_node *np, int index)
-> +{
-> +	return __of_led_get(np, index, NULL);
-> +}
-> +EXPORT_SYMBOL_GPL(of_led_get);
-
-I probably did this myself, but since of_led_get() is private now
-(I guess it was not private before?) and since we are moving away from
-"of" specific functions to using generic dev_xxxx functions in the kernel
-in general, I think this just should be a static helper.
-
-Or probably even better: just add the name argument to of_led_get()
-before without renaming it, update the existing callers to pass
-an extra NULL arg and completely drop this wrapper.
-
-Also notice that adding the EXPORT_SYMBOL_GPL() while there was
-none before should go hand in hand with adding a prototype to
-a relevant .h file. However please just keep this private and
-drop the wrapper.
-
-Regards,
-
-Hans
-
-
-
-
-> +
->  /**
->   * led_put() - release a LED device
->   * @led_cdev: LED device
-> @@ -342,9 +355,16 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
->  struct led_classdev *led_get(struct device *dev, char *con_id)
->  {
->  	struct led_lookup_data *lookup;
-> +	struct led_classdev *led_cdev;
->  	const char *provider = NULL;
->  	struct device *led_dev;
->  
-> +	if (dev->of_node) {
-> +		led_cdev = __of_led_get(dev->of_node, -1, con_id);
-> +		if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
-> +			return led_cdev;
-> +	}
-> +
->  	mutex_lock(&leds_lookup_lock);
->  	list_for_each_entry(lookup, &leds_lookup_list, list) {
->  		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
-> 
-
+Best regards,
+Krzysztof
 
