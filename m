@@ -1,96 +1,209 @@
-Return-Path: <devicetree+bounces-211770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE81B408D8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6581B408F4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 17:31:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9947E202B9B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:23:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A851F547A04
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:31:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BC6331DDB6;
-	Tue,  2 Sep 2025 15:23:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B23054C1;
+	Tue,  2 Sep 2025 15:30:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l7e+2r+t"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Qo5pXRib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f49.google.com (mail-oa1-f49.google.com [209.85.160.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA4422DA751;
-	Tue,  2 Sep 2025 15:23:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD614285C82
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 15:30:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756826594; cv=none; b=eq+i3J4g6zY9/YX2oG9IXdCEEDl3QtYarrRztrgS+Q9lXgJuqbhmS4Rz8EQMYjHOiQm0lCdTPi7vthEOLe9Tz6RLuqLdn2EkgPPj3Y4ymFrdSZWm9e3jQGqJYmxhw7MF98Dmv5hGBZkLE0DdsyYlcLJ6fXR1E7X8jrhb225tPOc=
+	t=1756827054; cv=none; b=FQ34F3NfwbWHw5vB50RDY2KMkQL2lZk46X0BofCSd7I8r11JTtxLev1YN7HgJCMH55qEVjk1VVXVmrqTzJnqOMwSmyT/i+s9cOPEbTBDWn9qxHuh8PPhWjBgjI8ZmG+CKm/PU9za74Tc8/v4+FbY3P7tbYOdtTIb6uEnxFvUMww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756826594; c=relaxed/simple;
-	bh=0k7XOc/MAWxBHAWe2nQltg0rfeGbxKlH0oH7p5vvKxE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nEyEzc8Xvg29gqL78pu+EpT1EjLKz1weTVxXIFKS2yBawvYUo1GOEYDyve/6WfZoieVV0ye4lKRVVJw+GNGaz/Onus6QxkiyNejrWLzeF8UFlIF++RDBTNplf5Xu/Gb/cG1X/OT8g8U80IZF0U6nenWhGnowoYsJub0tpq6lESc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l7e+2r+t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 27BC6C4CEED;
-	Tue,  2 Sep 2025 15:23:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756826593;
-	bh=0k7XOc/MAWxBHAWe2nQltg0rfeGbxKlH0oH7p5vvKxE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=l7e+2r+tgkWmKO2zrTo30FsU8aZv8IrCXZz60X5iMyD7MZTujB5nhhXxv3GC+LJJd
-	 s458S2UQCg3YMsgA+5NT1oFTuVwgMsjzXKmaxraBWieRLFU8outKdNAN8JkXbvH522
-	 X9vl0T+IVoQb0VxTsDq1MEYpk91XZvxhTJ6Zq5Y5SnpxDPOtHW+BN3guPA+053QlFB
-	 i+zrTN3RwHAU8qeoqMekA53Ae/tH9oXeVDmKq87v0COvVtwwOGrqs3GDckklnWUKlM
-	 BPv8PMGX9mGSVnkH5e6aNDYO0yST84eVSm4/y8qhyh/4yxhVWhPqdlGw7MifJvzfhT
-	 9tjfcIEwf0bKw==
-Date: Tue, 2 Sep 2025 16:23:06 +0100
-From: Lee Jones <lee@kernel.org>
-To: Mathieu Dubois-Briand <mathieu.dubois-briand@bootlin.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Kamel Bouhara <kamel.bouhara@bootlin.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
-	Michael Walle <mwalle@kernel.org>, Mark Brown <broonie@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Danilo Krummrich <dakr@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-input@vger.kernel.org, linux-pwm@vger.kernel.org,
-	andriy.shevchenko@intel.com,
-	=?iso-8859-1?Q?Gr=E9gory?= Clement <gregory.clement@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v14 00/10] Add support for MAX7360
-Message-ID: <20250902152306.GV2163762@google.com>
-References: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
+	s=arc-20240116; t=1756827054; c=relaxed/simple;
+	bh=H5D1mB92sVGC6p9xvxd1ycfmo/pkWqLUN1RRpbx9IGk=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=kCkjTXlTklpNeI4392661Q0nFHfhHH0BMgl+ixtODS+Waazvc7s/ljIzmtb1KnhdVLiRwt726OsEEACeXJWajUOUfluS4WIiO6KK/yqRRKmpi+YplQPzj9iyB+eodN2t/Q9/0SKS8h0MSMeZ9dhOnMsZ5tnGGQYAy5TixGKhBHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Qo5pXRib; arc=none smtp.client-ip=209.85.160.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f49.google.com with SMTP id 586e51a60fabf-30ccea8a199so5274827fac.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 08:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1756827051; x=1757431851; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=cqQ4WPvFOC/zDvh2F7EYF1aCNsNr1wJdA0MPmR/NX3o=;
+        b=Qo5pXRibrGRLi9tNUDaGyfy5b4tRNvPTawufsk3Ukd+ISmJjI8jRB1QyNkV0T+R6ry
+         tVdg1OgGD7eCC6IdP5+ueDaPTeYRpzfDSEBRajKjKYo0LDOdp6GQWD+Z/md+rkAqYy1J
+         +39OUts3NO7mkZ18HYEtuMsVnHAbMOxCp9utsQ42ZuvDJQXgqx6aY42mePUPs6zaWMc2
+         OkryK9gvpfQwfejEiOPIYq29GO3+r3+RIuw0xJGTJnndsNXpmXl7a8VC2hPzNod2x6YN
+         KCP1dkKjMv7wrFMu2887Ut7VtEzyu6dz692WaqTZIwpNSOgLTWww9tqVC0drY8pv35mM
+         Na8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756827051; x=1757431851;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:from:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cqQ4WPvFOC/zDvh2F7EYF1aCNsNr1wJdA0MPmR/NX3o=;
+        b=V19oJJPutwDP9aqYnt2L+OgOke2K20OlS84UnnBqCmIIr32vxLtJtmykb3RSay2Dwv
+         e8y9Ao7j2DKrWsUk0OPAStI87nZn3U6e88s431dnbppmKsOlRCtDU9C3ZJm4+mQPylzP
+         /aazDcHvpvqhPZV8svDeeZS+mg0rqeOvRnx+hViHx8O74bu1AELkC8kJoEsND6xof6iT
+         oZbgqqWciFT8CgAQexJjCOqMdZNCpnFzKuu+n3vVQMLkuVolydpWZdDLlopFL2w0lDjo
+         /jVLVSQM5AX4SeEUce6eE6nHWWbO8g2EiYjvuBI4z6ACIn/UEm4O/6IwEaJ5UDgekq+r
+         uifw==
+X-Forwarded-Encrypted: i=1; AJvYcCVoG+Xti0rIJnoFRkTocOXM/xrZ2BWZiw6aJ8KqDQWSo5L6GrCB4y+to2sP+L3iRlWuIGfNEQTiMmnn@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy3O2mkFjN9HIusjrE8EN8QKFjd927Rxe2uM6cJJDcieTTVjOBT
+	fm+cu7y3VR1NKlMJ1y6B7wdAX1zrYsSIp/Y5DNWt3ns67kmiGRvMZ/Op8ITWM9LIQpg=
+X-Gm-Gg: ASbGncukEtPNg3Gljx5JbsqUlBN9y278GuANSJYNL3m0r1xmuRCj6zHuG7qggkg5VrF
+	rZ82S8hgevmiICIZRz/GdKKQWgLPqDL+b7zH8pQtcWOjzphqu4t0NnKQmOX26Sr3c3s9dnT6ZRJ
+	keHlVieZWB4ZpdsOr1rq7EqFg2faSwsrm7wPUkmQ6Tca569Azu2VrGoPL3JRUPh/KkT0Dp0HnF/
+	y7SUWdcoQvP/mT3r0CHdusjv556RNEHzIZ8c/u2Ugxm6bQ7+q0OJKbHXzqs/91wkbqonWpf4hid
+	RA36jqOGDcS1SGEeLWgQSapXZdir32VmwOVuE1+axGWCEWleovpEv+5bxc+AcD2nT0DgHpb3DZU
+	3ASLGAt82PYjordFxgqFlbIdfL9/WYIrDh0mxYj6O3iP6HEehpLuYJBekv1a55VEXRBkLKZvw
+X-Google-Smtp-Source: AGHT+IHT8XwRiHCN75IMWkHExPEmJnsitMmA0YzWNkodLNJRcwmanY0UNlPygOc7Bc7GtosZ+wqf2w==
+X-Received: by 2002:a05:6870:e0d4:b0:315:7456:1ec2 with SMTP id 586e51a60fabf-3196337628emr4327586fac.24.1756827049391;
+        Tue, 02 Sep 2025 08:30:49 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b? ([2600:8803:e7e4:1d00:8d95:114e:b6f:bf5b])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-745742a6716sm1644969a34.14.2025.09.02.08.30.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 08:30:48 -0700 (PDT)
+Message-ID: <7176887b-d406-46e4-b43a-7924c36ddb78@baylibre.com>
+Date: Tue, 2 Sep 2025 10:30:47 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250824-mdb-max7360-support-v14-0-435cfda2b1ea@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 1/2] dt-bindings: iio: adc: add max14001
+From: David Lechner <dlechner@baylibre.com>
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+ linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: Kim Seer Paller <kimseer.paller@analog.com>,
+ Jonathan Cameron <jic23@kernel.org>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Lars-Peter Clausen <lars@metafoo.de>,
+ Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+ Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+ Ceclan Dumitru <dumitru.ceclan@analog.com>,
+ Jonathan Santos <Jonathan.Santos@analog.com>,
+ Dragos Bogdan <dragos.bogdan@analog.com>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
+ <34b7cc7226e789acdc884d35927269aa5a0d5e14.1756816682.git.marilene.agarcia@gmail.com>
+ <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sun, 24 Aug 2025, Mathieu Dubois-Briand wrote:
-
-> This series implements a set of drivers allowing to support the Maxim
-> Integrated MAX7360 device.
+On 9/2/25 9:29 AM, David Lechner wrote:
+> On 9/2/25 8:15 AM, Marilene Andrade Garcia wrote:
+>> Add device-tree documentation for MAX14001/MAX14002 ADCs.
+>> The MAX14001/MAX14002 are isolated, single-channel analog-to-digital
+>> converters with programmable voltage comparators and inrush current
+>> control optimized for configurable binary input applications.
 > 
-> The MAX7360 is an I2C key-switch and led controller, with following
-> functionalities:
-> - Keypad controller for a key matrix of up to 8 rows and 8 columns.
-> - Rotary encoder support, for a single rotary encoder.
-> - Up to 8 PWM outputs.
-> - Up to 8 GPIOs with support for interrupts and 6 GPOs.
+> When there are multiple devices, DT maintainers like to know
+> what is the difference between the devices.
+> 
+>>
+>> Co-developed-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+>> Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+>> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+> 
+> Sine the patch is From: M.A.G., according to [1], this should be:
+> 
+> Co-developed-by: K.S.P.
+> Signed-off-by: K.S.P.
+> Signed-off-by: M.A.G.
+> 
+> (hopefully obvious, but don't use the abbreviations - I just did
+> that for brevity)
+> 
+> [1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+> 
+>> ---
+>>  .../bindings/iio/adc/adi,max14001.yaml        | 79 +++++++++++++++++++
+>>  MAINTAINERS                                   |  8 ++
+>>  2 files changed, 87 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+>> new file mode 100644
+>> index 000000000000..ff9a41f04300
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+>> @@ -0,0 +1,79 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>> +# Copyright 2023-2025 Analog Devices Inc.
+>> +# Copyright 2023 Kim Seer Paller
+>> +# Copyright 2025 Marilene Andrade Garcia
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Analog Devices MAX14001-MAX14002 ADC
+>> +
+>> +maintainers:
+>> +  - Kim Seer Paller <kimseer.paller@analog.com>
+>> +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+>> +
+>> +description: |
+>> +    Single channel 10 bit ADC with SPI interface.
+>> +    Datasheet can be found here
+>> +      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
+>> +
+>> +$ref: /schemas/spi/spi-peripheral-props.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - adi,max14001
+>> +      - adi,max14002
 
-MFD looks okay now, let me know when you have all Acks and I'll merge the set.
+It looks like we could have a fallback here since it looks like
+the only difference between the chips is:
 
--- 
-Lee Jones [李琼斯]
+	The inrush trigger threshold, current magnitude, and
+	current duration are all programmable in the MAX14001
+	but are fixed in the MAX14002.
+
+Which would look like this:
+
+    compatible:
+      oneOf:
+        - const: adi,max14002
+        - items:
+            - const: adi,max14001
+            - const: adi,max14002
+
+And
+
+	compatible = "adi,max14001", "adi,max14002";
+
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  spi-max-frequency:
+>> +    maximum: 5000000
+
+After reading the driver, I see that we should also have:
+
+	spi-lsb-first: true
+
+as a required property.
+
 
