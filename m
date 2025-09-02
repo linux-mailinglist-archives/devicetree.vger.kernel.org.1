@@ -1,65 +1,97 @@
-Return-Path: <devicetree+bounces-211640-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211641-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04CF1B3FC74
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:29:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B26B3FC8B
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:33:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B401C4E3317
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:29:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D92B44E328E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:33:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291DE28137D;
-	Tue,  2 Sep 2025 10:29:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D5B6283FC3;
+	Tue,  2 Sep 2025 10:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hGKCytNI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fHlSbO4n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1B8927FD6E;
-	Tue,  2 Sep 2025 10:29:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94A92836A6
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 10:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756808974; cv=none; b=KocddOi9tfU3t2EzpBm8blj6CWK6mvnuXNrpfkF4fzr0sj3n4QO2ii4EtO2RgtTykI+G/awzDrzjoXmuz2UJmXCm8PV7rvt62rqeyQBiIm7ZKgnqh5GhAvAIVExVCpaVOn0H4PD7AvaeZlhVoDQpnles9QK+3ubSTRoLCySjFMs=
+	t=1756809184; cv=none; b=GzsuD/puFlinZqE5qifAhaRkGixVPE4u6dlFPFa24BD0fIr3RyUaih74im5S3gvSyfYun9e9bqgH4Nj3IsXNp61Oc6uDeDh6A1AyjDcseeGOEMvh8j4/18ENGQX0ssuqX3+yMECTxlJ38vLmcwnZqAHYlqVwWHBv1ZPWvTm8Ra0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756808974; c=relaxed/simple;
-	bh=uRsZ+C5WCQAcFKlUzOAFgpNtRdJuRvUB18EfocZmZW0=;
+	s=arc-20240116; t=1756809184; c=relaxed/simple;
+	bh=D6kMRVNdjTsHxomh8Umwb4E3q6zvSzEKkpefTTT/TzQ=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AdFLPtEVYTnTGgUtJyGidSnY2ON8v3yvfIPNX2Bm1YtA1CzfsucEMfBeZJsC2wQpmsjxT02SbEkpa6yX2XNehnkmgSsPp3Wvvp4zVShBtCtWV1x5G56FmYUFOQIvTAlDCHbngNLChNsM+a5v74AdiW317PzXKbplokJjryE8SYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hGKCytNI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2EBEC4CEED;
-	Tue,  2 Sep 2025 10:29:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756808973;
-	bh=uRsZ+C5WCQAcFKlUzOAFgpNtRdJuRvUB18EfocZmZW0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=hGKCytNIfhcxhmIeNUO4HsvI1Ws8sTNPVBiyj1780+x60m3iu7txa8L56s5KQgoyZ
-	 Etl6s0WgN0LwdNEOBGmvkEzRPFnqNg+iDz9m3zQc5GyXibcbPDiU9tk8EZpz0VKlRM
-	 abiMa5b3P0b6/fGWk8yjTzQz7CTQQ8IyFHBMpV8rokJs0e4kJGdAqh0WwPaM6vvnl2
-	 InXfJx3A29klQJJgHD663mqouyweF/xPPRATt9QsEe0vqBBfLGHFCWCq+l6jeKWjwO
-	 vyfZAT+ccE0mCcOJFz5pYc1+xikB2JubBGIKUvbPWd44pKGm/S56o2Dx9dYznuUpVE
-	 W5xk0nQB2TGxg==
-From: Lee Jones <lee@kernel.org>
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Vincent Knecht <vincent.knecht@mailoo.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Li Jun <jun.li@nxp.com>, 
+	 MIME-Version:Content-Type; b=UcYRtn7//6g7t/C5f5KFHNKqQHWawCzUxmOxWUMS+C7XcgJF+IjmrfU4SsGL8DIv4CjY8CG2ohXkIHm5J31I99KbgFWU7ox6uqd6lWHgr8huiRiW8VgzgNDXuiecVFeO1DJEii9SP0h+8kOVb2vx6DLV3rRwF586HYB/+23c6V8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fHlSbO4n; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-afcb731ca55so97287166b.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 03:33:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756809180; x=1757413980; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t+2RmtyC5BdrhVnYkf0pE1bp+20qsxwnCUP1SaL1uDE=;
+        b=fHlSbO4nvFRetVrpPRB6bgLDTOjU/qdzNl0rZ71B3InipDSZ1MMMwMdo0PGcfEL5fs
+         LFcViE5hQl7oi3c1I/H42PHnYeiW0RuhqNAB5gBMg8GmrETEHccPan1j+rJbMaGascMK
+         iKCzMW4cWTyLr91cs1atbLg6ElGZxk3WSWlILzBttnb9qbrHQ1vOBbfwNU05b1Yc7NFu
+         MybDLmgRpIhGt7xwGNl86t/MBneCuXcCAA6indKsJqmAb2qxeVk5NCbjQuzqrXzDVBQy
+         md6/0xArDSxaVZtTZgD3+dLVg3dnnldtBI2PxQur+Ids+bNhFw/evhQ349llSXscnzJV
+         Itwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756809180; x=1757413980;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=t+2RmtyC5BdrhVnYkf0pE1bp+20qsxwnCUP1SaL1uDE=;
+        b=k87hCTHSecTdUg4DU72ZTXCRZYNxRHpZ/Srz3aa8r1vIQDA5sjLFjT/aYaqin3hdrs
+         hEz2BKDJwdw5ajPi3ypRUdFRoCLkSIYboHoqeAad7CTHk7G3aJY69LjpaIqbt5ADlzki
+         lif/etFAA6j7sZVziGsD91ZRTOatezc3ZLZ+RvB3nEt/wFNWjKnqkSDEhQUKySRJeUei
+         BDeOm4xzhnop0YCC+s3VrgkANpKk3YCUFqH2AAforipX19aVgrWJA0/R+KrGPrnDf6y1
+         7nwZo4llA4SSIKW9xBMtrbFXYPp4mOCZrdLUJ8lIUtVTyaQV/2L43GAGuGsIEKz0RXNy
+         V/3A==
+X-Forwarded-Encrypted: i=1; AJvYcCWILdS3jJwkLMc+GFpNwSSkS77BoMu3V/DWot10cBe1egLeagXsgJrusjQTrxeuPuXU27Yr0ovYTd5r@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEStLQq79+sA5ETkVWlnaHLpdyZMLvXYUn1hn98D8lHAw9MJcN
+	+8w5w7pUFppYGOpfBgpOgnCnM2+esBxdnv1SotyGwAse1JLprQw64wAPhv6gXzlPYvA=
+X-Gm-Gg: ASbGncsAqwsr2jshqiEmUXVxc26WRkBIDU2704gjxqAUqfu4GbUlxk8lzZJ7Nhmcb7m
+	KC0uQV0f1X3bKCVoc+VKAa01RmkrMEt5QKD15lBGFl1R8QIoTXXSORCeWTiS5IxNjVW4R5Kx3sR
+	pDR+dsh0rw+E4tV1YPU+9vUd1YBFG/wx5LTRPuHe/CkQuRFGw5rVsDGHXloSsJgdD64TFhW5YJr
+	lCWIbW/zFluqMmveMiuOX9j8cNyVSNexO2aY7ONVlniEV+mDzaWpST1EtgvYKPoRZ9IPf0U3ldo
+	fjItf4byKNkU099YIDNaa7uz15O1647g2zJRZm4A2DrVpTJTSnRATxM4/5A0yVs/L04qT14IoG1
+	URLERAXrUAlyM9yTXmUbQzPy9sy9SQBfL3YzQqLlmFbSCr4Dybw==
+X-Google-Smtp-Source: AGHT+IHAsN/656NaYDyz43thubEPzcHhs+/jF4e7qFvC7WKngX9lMBJC+gCJOclV74lgolxYOi8bDw==
+X-Received: by 2002:a17:906:690:b0:b04:1457:93 with SMTP id a640c23a62f3a-b04145702d1mr390858166b.3.1756809180009;
+        Tue, 02 Sep 2025 03:33:00 -0700 (PDT)
+Received: from [127.0.1.1] ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0423ed35e4sm516431766b.25.2025.09.02.03.32.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 03:32:59 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Tomasz Figa <tomasz.figa@gmail.com>, 
+ Jonathan Cameron <Jonathan.Cameron@huawei.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Ulf Hansson <ulf.hansson@linaro.org>, Arnd Bergmann <arnd@arndb.de>, 
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250811-dt-bindings-db-v1-1-457301523bb5@linaro.org>
-References: <20250811-dt-bindings-db-v1-1-457301523bb5@linaro.org>
-Subject: Re: (subset) [PATCH RESEND 1/2] dt-bindings: leds:
- issi,is31fl319x: Drop 'db' suffix duplicating dtschema
-Message-Id: <175680896973.2257460.6755059243558136636.b4-ty@kernel.org>
-Date: Tue, 02 Sep 2025 11:29:29 +0100
+Cc: stable@vger.kernel.org
+In-Reply-To: <20250830111657.126190-3-krzysztof.kozlowski@linaro.org>
+References: <20250830111657.126190-3-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] pinctrl: samsung: Drop unused S3C24xx driver data
+Message-Id: <175680917816.135692.16731223900572881206.b4-ty@linaro.org>
+Date: Tue, 02 Sep 2025 12:32:58 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,21 +99,25 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c81fc
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.14.2
 
-On Mon, 11 Aug 2025 15:54:03 +0200, Krzysztof Kozlowski wrote:
-> A common property unit suffix '-db' was added to dtschema, thus
-> in-kernel bindings should not reference the type.
+
+On Sat, 30 Aug 2025 13:16:58 +0200, Krzysztof Kozlowski wrote:
+> Drop unused declarations after S3C24xx SoC family removal in the commit
+> 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support").
 > 
 > 
 
 Applied, thanks!
 
-[1/2] dt-bindings: leds: issi,is31fl319x: Drop 'db' suffix duplicating dtschema
-      commit: 19c5010e8ae23faf7b98fd738ff9970bb9066b78
+[1/2] pinctrl: samsung: Drop unused S3C24xx driver data
+      https://git.kernel.org/pinctrl/samsung/c/358253fa8179ab4217ac283b56adde0174186f87
+[2/2] dt-bindings: pinctrl: samsung: Drop S3C2410
+      https://git.kernel.org/pinctrl/samsung/c/d37db94b078197ec4be1cadebbfd7bf144e3c5e4
 
---
-Lee Jones [李琼斯]
+Best regards,
+-- 
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 
