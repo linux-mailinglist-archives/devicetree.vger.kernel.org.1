@@ -1,93 +1,96 @@
-Return-Path: <devicetree+bounces-211800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C5DAB40A3C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:12:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA73EB40A3E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 18:12:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A492E1BA2071
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:13:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E58D01BA20C1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:13:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 897153375DA;
-	Tue,  2 Sep 2025 16:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5096F3376BA;
+	Tue,  2 Sep 2025 16:12:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IyGN9vCG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ElV5BDSN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E39D30AADA
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:12:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4627334386
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 16:12:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756829555; cv=none; b=d5CXJGOyT6We3s+Gl8dIhzmbCY54Q0KC+rno8XqnxkV81Nz50kmTxpIXLNbbq3l5ygOidTrp82IELaPxXW9RYQS2fvI8iIffnontzUcunBfxGi46F4NmV8AwNIcNcVrXaZ1IC4mXSE2Fvdu4Joxah27PuYxD91mKB4dxFLsyRr8=
+	t=1756829556; cv=none; b=rTJtNa838iUjY5EoS6FdVJfag1ZBPMeATpVDju1yDgoRQcLwVyR5Pa2ReNAllfcLicovb0vI/drNy6ovQke0hlJShqokxyhV5DjiINrhjgNh4cJQGHRurJkYCpIdSigGucR87GznkzPdivDeT1Ev7A+EJzr661LRm1PJjXU0g5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756829555; c=relaxed/simple;
-	bh=w0Kq4jOT9R/r/z54ndWpSHo728vt3p4ibQdpqzGd6k4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=cNnXqbvOV+A9svsOv+6Gr/JVd+zrd4ECOCHfFl3uP04CnWEXjLLa9IOiwGVjFHJz5mMmHsGEn/9OqHxZEayecvgixEkgvS6v6+yADHzzCSNXaqsubiTPqJDtY52dTvL1Ntv8+y2ALaE09ofLjhR6EN12s5/iWTOgjMaupT/U9Sk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IyGN9vCG; arc=none smtp.client-ip=205.220.180.131
+	s=arc-20240116; t=1756829556; c=relaxed/simple;
+	bh=nVcE8cWRXOB48T5NMOjigsTbnDdQssjbYl79J7cZkxo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=ff+8J1bK/xCCib6haHG/hn/exoh6e8jGSNBz50zEHoXJZBl3C+GgSCy92Rtrzg/gFarq9iS4IZxPEtkwXWYgluBo4VyS/CR5L14vc+sZmDGGLCD2bupaOo8sYNAWNHz+s62MDYHfi4iaCEatyj+VMH7nzYvt/0oitiKAc4BWlN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ElV5BDSN; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqBte032204
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 16:12:31 GMT
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqBPq023436
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 16:12:33 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:message-id:mime-version
-	:subject:to; s=qcppdkim1; bh=/9Uanp3j0KL9tdEjt1NNukFKdRWHcJUc2LH
-	ujZNriNo=; b=IyGN9vCGtN6KjJbJQ0LwGeAHzp3TnKJRxE2Xx3k+uDFdPoayE9f
-	LTFzQ92//XUXD1hW/F5Q+LJCfL2Lv6espDRt5uwoO2i9XeRWa1VOmMZbd5cMwVIe
-	SiHXIeTJvDHWwkb8vipHsBOoK3i+gFg59frRdU1blUlLStcIrXlU8qs7jGrwouzm
-	gLxRscI2tI3OEPx/4SX8Nrk2R7IYbnkbUEyT/Mjo3onuo9L3aLfCeK0u+uE5g+dD
-	RIS5H3SnfYn7eGAwzbN2/c3gj6539JnwDuNLjgQvFw8iiKXJzAiHtW4BJT42TxN1
-	SJ5mGQ/LnW1kEH0FEifOrfOXykiCi2Brykw==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com [209.85.221.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8re5q-1
+	cc:content-transfer-encoding:date:from:in-reply-to:message-id
+	:mime-version:references:subject:to; s=qcppdkim1; bh=h2Gn3rEd3us
+	JLYmFOFpxHWy5o4BbWHYKvNrDEsewIrE=; b=ElV5BDSNr0UmK/0N7CtPtFCI0FF
+	T+KUD+RNwy568tpiTe3+eByVd9vmKPQncBxdGB1oE6iHtKfQApajizP53cIz97of
+	frdjpq7pTYf9rolcQYGlexXtiSCvA9VS4uiBX+uWcBPMQeXJxJBU4Uv9x8tMLsra
+	6O5bHEwkjn7Dhi81VS42pldwbjJ5ZHpdmuOt4jGRbM3m0nchMyCraIZGt/wA1BVX
+	6z0mUDGnBS13MVmTPol7OFCz6UcrMbfP7eHePbBZBGy73MYLPEx11U2WUF2qRLbK
+	KDQjA/lW4QguNEE99orAZXi81eSKWic8PnXGO7dzmmRSgENHJz26skA3hrg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnp8ma2-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 16:12:31 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id 71dfb90a1353d-5449f6cacd1so3492487e0c.3
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 09:12:31 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 16:12:33 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b47b4d296eso1824541cf.1
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 09:12:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756829550; x=1757434350;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=/9Uanp3j0KL9tdEjt1NNukFKdRWHcJUc2LHujZNriNo=;
-        b=RjUJbRJzE22yaIQgTRXU5fqvJH/+CL1GVpuMtYsyY2PfA0zpGlqFFoRLmnF6C0EXyP
-         aMxMJ50QimsdMRPnJ4gJl2s4plyoJNB9aMCj/Ecqc74nBHwjW94gZ8j+juWuFdGVXWKV
-         MGt4pHIuClq4TmtvM92DxE5msAzJB3wrthl5zeAQ3uuUbQSpFrPl9iJ7BNxE0Bfoah04
-         +lECmc2l82uCm87DWa4CTcAULiMVfviV8CshwCqDf+FEIhymd9kSMzj9B8OThlkoOJyz
-         o5MMAsxRapgHS/w/F9ddnj/AVhm5L3iKQ0whRnIqDqWoeVorm5FYYlEwl5TxiNabMLe2
-         Vq+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWuWiOh/MoiVvGgnvy8Qpubya+23IbX+mr6CmDEWq0fieu8eKRIB29aCtTJYBvNY5aQqIBgOOKS+3v0@vger.kernel.org
-X-Gm-Message-State: AOJu0YzANc0X68hOQ7yEj6daw4wPKQgcfwD7rS7h6p6OU3/rGzB03EX/
-	Qr+/6fG7b5TkcCwn+g/KOVKxU99rWTuEGffstpwtLrOXRvw+CIsUEspF6Fs0IjTTvdDqGtJi1/h
-	RhtLPg7YApHsf6Jqlo3YycpzBPCHPtiEbAV4EkyGyou7oN15UjL0Y6MCdd3Zv6OxK
-X-Gm-Gg: ASbGnctEZ9Cu3lBy3nzctt8479X+/RvCR8PAveGCxl73kdw5KGpCIyFE7BLwahUGTIV
-	ZPcub4VwK7jbceokUrdyeQxFu5oxm5sdvLD179e2y7uffH0Frdpjailb0CXAiwPQQDAaje/g+dm
-	PWiYCKjN5c8TfFMi/ynjT2AmfgXWTT+5eLNldzzc2uqkyvdDTpS05wECTqrqQgUzc8SZPSXCZi9
-	+zQ9DWQiH98fg6gVl69CRtBfYtfbbhz/t+PQ/iwhQbLdidMSMIJWLnU8fO8ZYixyVK4fz5QdxJZ
-	XrJMpbCZUAbu5TGnENcdpIOwn8LSkVgjl9V9wdeqPAa6U11H3NhXOw==
-X-Received: by 2002:a05:6122:1350:b0:544:6eb7:d7c5 with SMTP id 71dfb90a1353d-544a0187a95mr3685731e0c.6.1756829550439;
-        Tue, 02 Sep 2025 09:12:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHM3vRwfPIV8V0hlmG1KA1rjX80E1m1clCk6mQUXwD0mRnXeSdFwzJVJAbKxGaDISecgb5Kbw==
-X-Received: by 2002:a05:6122:1350:b0:544:6eb7:d7c5 with SMTP id 71dfb90a1353d-544a0187a95mr3685721e0c.6.1756829549919;
-        Tue, 02 Sep 2025 09:12:29 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756829552; x=1757434352;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=h2Gn3rEd3usJLYmFOFpxHWy5o4BbWHYKvNrDEsewIrE=;
+        b=cQ4gRhiMXYKACIkcUENdOJl7uDU/mR17MxAdHx8X26m9moxI2Aqn9c0mguSbcIGo9C
+         rMY1k33q+bHUpWNOaTA/Z0IwP1rf4jqs2ased/ZyfvEAhxIuWDSM5CAdt6HBZQmXaHSf
+         kUnlaPsA974ElOGn1VdBytICyJ9miKSaM/NdWJcK4ygsZ1gwLPTpFlxulZEqCIXOno3t
+         y5fxc6r03O3TwrqOQ74vgArBin93RtIHxMidwq5ggdy3blDMJlNIOb5d/2BO/rfjPgkp
+         GYg0nB8bs4NIQCyp/3Odc3IiEm9HH4z1X+cNm8BtOR9Vvvg9+fH04opfXKPoCowSHXg6
+         kh+w==
+X-Forwarded-Encrypted: i=1; AJvYcCVDwF0/4pR/mXNtLKAtSaB28vX7XHsUInHVmJoHqmSjhHDBtjFt6jk9saGBZepgYXN+/KO2JpwuAwPk@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1hSYd3wi7DBB2/emy5FALilCPg+bOEwiskrO6sQQluzM2BsLT
+	Ltu8Ejo1STHUdEyWZpXIXL148k/riVXtxxDZOZJwLjR9k1JA8v0HvNnz5cWJ75GvFFF3esycqNg
+	VmnhZDuNkbe1Z4WnmIqJbp/0WmTWOy9EJrAnD725YWphZCPH9z8WH/PoJjwSaTmA8QermxrwA
+X-Gm-Gg: ASbGncsI8yMEQNacLWME+qm5dxcHFQp3vJbVf6kYtxm8zDUOofeQPabqB5Wz6EdT2UV
+	8IVQ7piWlpvaKi/BmVAC1pfeR7PW4dIYovkjHtfOwSQgyJcIZNt34SCo62By9W1BJ/rvh8vm3t5
+	l9eR7G3rFrvplF5qFBZ3FwY27O5uy4dmAwjne0TUHp/38XxPIef4R22DI0MBPpf0I9+fLD2H8xT
+	hjJWTgH2NkrBBX7n61niakFKjckFFQQHmNWeUAu75y3errGHGzMpZPFVI19+EQz2QyGFn7fh+BN
+	eCSu1d0OB92Ap2k21OWGLqJCr9InGZgZ6y/MrXwEzTNAVsuv5Xd4Iw==
+X-Received: by 2002:a05:622a:5b09:b0:4b3:81b:c5ab with SMTP id d75a77b69052e-4b31dcd8859mr133724661cf.54.1756829552234;
+        Tue, 02 Sep 2025 09:12:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEGq2usZdYeCp2ppJqxGqoRr4BkZnJXxtOGXHJVqsgRbfjafw4ZUoIUXNQykrB6encxNvBvqg==
+X-Received: by 2002:a05:622a:5b09:b0:4b3:81b:c5ab with SMTP id d75a77b69052e-4b31dcd8859mr133723911cf.54.1756829551677;
+        Tue, 02 Sep 2025 09:12:31 -0700 (PDT)
 Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0d32a2sm309894655e9.9.2025.09.02.09.12.29
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b6f0d32a2sm309894655e9.9.2025.09.02.09.12.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 09:12:29 -0700 (PDT)
+        Tue, 02 Sep 2025 09:12:30 -0700 (PDT)
 From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 To: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org
 Cc: conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com,
         pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH v2 0/7] soundwire: qcom: add support for v3.1.0 controller
-Date: Tue,  2 Sep 2025 17:11:49 +0100
-Message-ID: <20250902161156.145521-1-srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v2 1/7] of: base: Add of_property_read_u8_index
+Date: Tue,  2 Sep 2025 17:11:50 +0100
+Message-ID: <20250902161156.145521-2-srinivas.kandagatla@oss.qualcomm.com>
 X-Mailer: git-send-email 2.50.0
+In-Reply-To: <20250902161156.145521-1-srinivas.kandagatla@oss.qualcomm.com>
+References: <20250902161156.145521-1-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,59 +98,110 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-ORIG-GUID: 7KNMWRlr3Ac9YHIsZKAb346nJb-RQYZ1
-X-Proofpoint-GUID: 7KNMWRlr3Ac9YHIsZKAb346nJb-RQYZ1
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX76ef69XfipSw
- dGi0lH58wxxZ5JsqUZQXh+tisLQXwTx6GCL0PSrR7RWkoP+tMaWxntzNgyPXRIitxWYbMIs+Wrm
- 4H3Y6Q50SGnqWIuo13jbmEQnI0+AXEcc+MCYaX7wYhhza0F1fha+S2iBzbRiv8clsCe0mqHLd58
- 4Alt0JI8roQiXwym4kksN2yixcZYvN9R06IxDQM8dwsIdolTQHafn794ozeQiCqgrvTd4ODsU2t
- Lfu9tE8Xe9PpCa4oTHbti2Q3HZUVLt3DXp0j+1RodrlBv1sGYtGUrNB8hE9fQ2na5iPWZBGeKft
- BbFJAVa37TzIbK/XvB4x3MDzmXlrRI8Mw/OUGg4ewtFYuHMd79Y/oBhas3fIkk9rni3oDtThoIU
- deEna2fy
-X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b7176f cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=yJojWOMRYYMA:10 a=plMaQY1jPcDNhxvH7e0A:9 a=tNoRWFLymzeba-QzToBc:22
+X-Proofpoint-GUID: 7rT9jM-Lyhi1NG7KZa1X9hHBNZOXfIMX
+X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b71771 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=3hxEEigdzuJGYQGY9uYA:9
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-ORIG-GUID: 7rT9jM-Lyhi1NG7KZa1X9hHBNZOXfIMX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX48sJN13sHHxZ
+ tS8WeH2orOFP5t3GcqFzaGZKig/ndMGQvDM0GKO26ncP8uIFOox9c3coSf3Gq71F25twrgbFIFJ
+ QOAGU266qR0daDaj5ZIqQAmZkQ2p1tBEHZUGqldqV5R0rZ+0gOccTOY/k5hmNSxOHg9ajxOFp1q
+ rB1o+S3E1n5hVGX9f6mBujUDJyOVOUn4TcoUzQjMl0yYaP/MFDfGrJ4VivZhlzcL9Hw0Rnwl/MP
+ fvcSZefE3vFVshq0U8egSPiaEj7wgei4/kRt2m5LqTczmfR0EUdYztdX+G1Kp+gtQOniY2f7sbT
+ k1GW1TZkmEDariB5Lt6nTbudXs4CDME72dMJvR6JB/Z4xtv+mf7Ydz3D6tHeoptgJDirkK2II1O
+ I1uS2pGa
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-02_05,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300001
 
-This patch series adds support for Qualcomm Soundwire Controller
-version v3.1.0.
-As part for adding this support, a new macro of_property_read_u8_index()
-is added so that we can remove the qcom,din-ports and qcom,dout-ports.
-As v3.1.0 supports more than 17 soundwire ports. Also due to change in
-the register offsets, new entries are added to the variant data.
+Add support for of_property_read_u8_index(), simillar to others
+u16 and u32 variants. Having this helper makes the code more tidy in
+isome cases, specially when we are parsing multiple of these into
+data structures.
 
-Tested this patchset on X14s and Glymur reference platform.
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+---
+ drivers/of/property.c | 33 +++++++++++++++++++++++++++++++++
+ include/linux/of.h    |  9 +++++++++
+ 2 files changed, 42 insertions(+)
 
-Thanks,
-Srini
-
-Changes since v1:
-	- fixed typo in non OF config of of_property_read_u8_index
-	- adjusted scoped-based cleanup initalization.
-	- remove unused macros.
-
-Srinivas Kandagatla (7):
-  of: base: Add of_property_read_u8_index
-  soundwire: qcom: remove unused rd_fifo_depth
-  dt-bindings: soundwire: qcom: deprecate qcom,din/out-ports
-  soundwire: qcom: deprecate qcom,din/out-ports
-  soundwire: qcom: prepare for v3.x
-  dt-bindings: soundwire: qcom: Document v3.1.0 version of IP block
-  soundwire: qcom: adding support for v3.1.0
-
- .../bindings/soundwire/qcom,soundwire.yaml    |   8 +-
- drivers/of/property.c                         |  33 +++
- drivers/soundwire/qcom.c                      | 249 ++++++++++--------
- include/linux/of.h                            |   9 +
- 4 files changed, 185 insertions(+), 114 deletions(-)
-
+diff --git a/drivers/of/property.c b/drivers/of/property.c
+index c1feb631e383..a644b24d5b75 100644
+--- a/drivers/of/property.c
++++ b/drivers/of/property.c
+@@ -147,6 +147,39 @@ static void *of_find_property_value_of_size(const struct device_node *np,
+ 	return prop->value;
+ }
+ 
++/**
++ * of_property_read_u8_index - Find and read a u8 from a multi-value property.
++ *
++ * @np:		device node from which the property value is to be read.
++ * @propname:	name of the property to be searched.
++ * @index:	index of the u8 in the list of values
++ * @out_value:	pointer to return value, modified only if no error.
++ *
++ * Search for a property in a device node and read nth 8-bit value from
++ * it.
++ *
++ * Return: 0 on success, -EINVAL if the property does not exist,
++ * -ENODATA if property does not have a value, and -EOVERFLOW if the
++ * property data isn't large enough.
++ *
++ * The out_value is modified only if a valid u8 value can be decoded.
++ */
++int of_property_read_u8_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u8 *out_value)
++{
++	const u8 *val = of_find_property_value_of_size(np, propname,
++					((index + 1) * sizeof(*out_value)),
++					0, NULL);
++
++	if (IS_ERR(val))
++		return PTR_ERR(val);
++
++	*out_value = *(val + index);
++	return 0;
++}
++EXPORT_SYMBOL_GPL(of_property_read_u8_index);
++
+ /**
+  * of_property_read_u16_index - Find and read a u16 from a multi-value property.
+  *
+diff --git a/include/linux/of.h b/include/linux/of.h
+index a62154aeda1b..0c95e26c7191 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -316,6 +316,9 @@ extern struct property *of_find_property(const struct device_node *np,
+ extern bool of_property_read_bool(const struct device_node *np, const char *propname);
+ extern int of_property_count_elems_of_size(const struct device_node *np,
+ 				const char *propname, int elem_size);
++extern int of_property_read_u8_index(const struct device_node *np,
++				       const char *propname,
++				       u32 index, u8 *out_value);
+ extern int of_property_read_u16_index(const struct device_node *np,
+ 				       const char *propname,
+ 				       u32 index, u16 *out_value);
+@@ -639,6 +642,12 @@ static inline int of_property_count_elems_of_size(const struct device_node *np,
+ 	return -ENOSYS;
+ }
+ 
++static inline int of_property_read_u8_index(const struct device_node *np,
++			const char *propname, u32 index, u8 *out_value)
++{
++	return -ENOSYS;
++}
++
+ static inline int of_property_read_u16_index(const struct device_node *np,
+ 			const char *propname, u32 index, u16 *out_value)
+ {
 -- 
 2.50.0
 
