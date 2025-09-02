@@ -1,156 +1,160 @@
-Return-Path: <devicetree+bounces-211743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 933EDB4063F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:11:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA8F3B40634
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:10:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D880E1886967
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:08:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 568353B35FE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:08:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2112DF6EA;
-	Tue,  2 Sep 2025 14:08:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C41732DAFA5;
+	Tue,  2 Sep 2025 14:08:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jFDzbKot"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="wDvUDvro"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0644B2D239A
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 14:08:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACA71220F5E;
+	Tue,  2 Sep 2025 14:08:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756822104; cv=none; b=N6jnDhK4Nhoz5ZCwedXhO6+p/VbKe5TE5zfQCLEgWqff7aOGmImnkd1aK/R7lANormtg+jprprE8ieeYfIlbQYGe1hw8/zLYfJUFP27xvUh+/uZZtueeexWYMJ7wwT+WrsCDtjOr1mWhi0yCPPqb5PWMx7bpwUPcybO6pr4h1aU=
+	t=1756822107; cv=none; b=lyxUTKRxwZb6OpH/w8NnIQgQXWdelnLJxX9MVfxCebeMky39pII7LP7958SsOIaX/q+TwB7GWZasBs7A/KMHQk+nU/5Hmz8JGMSOIVyJALWP2OAetX8l2aSFLzJ6Aob2MqdPZZsr+qNWQIZ1fv2hGTixeqrZmia+8NpoG8I+nYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756822104; c=relaxed/simple;
-	bh=wc/7JbfhxWZb0IvcqrXcslNekS6+I2olIuv0yDvhRhU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=MJyZTDh7ST4KdWqAvnx51TObGkK9K9wwSd/QKnCA2KW8ToWJ3uH32pMVkNI88f/x8f1FODasiB1/3bWTf8QD6Q1eSXhYomXb9o4gz1yBCXM5m739LOuTjp640/6UMQ/daTQAuCaOvQoJWl9HHfuMR6I5a6NLAkWE7b0zQq7dVjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jFDzbKot; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582AqFMO017641
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 14:08:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ofBMOU8ZIZT
-	vpxtjJjzxzmb9uOD74fydkc+Mw7BveZ4=; b=jFDzbKotkqypIshh5GCVuxtWybR
-	GSkI3mvgBp18pQfU04reVVaQGEoK2AqUDG2uQwH+qAlL3+XErhVrluCEZfqpNu+h
-	1AeBixrSKHKV5ZXwT8l5GzhXQ5IRmg9kWjgKSNQHC+JmHh42cOlYczm4fzTXJCuj
-	ZnV/uLf1XKLoOhIbRaVeptLTmqE53YIfMZ0ly3rzAEah2JFUEMIQN0YbD74p5htn
-	vYhtt06I0lSvMjuDFarm+OZqGdhsUqwIqmgg8SAdj8/UoXgIJwJiMcR2edyEIHTE
-	vOdK1n0oDk+xFWhuI0lwh5zjgXlnWjItd2hsZe3YYF+D9RM1tf1BvrnhoGw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48utk8yvgd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 14:08:20 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7e870317642so1036211885a.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 07:08:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756822099; x=1757426899;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ofBMOU8ZIZTvpxtjJjzxzmb9uOD74fydkc+Mw7BveZ4=;
-        b=sSb58aGEbZnCeqfhmHiAZNtHD/1PsYuFd06H7gogpg6Q0KYk3F/FuiIVacukgomOn0
-         FA21ilhUcMqzp7KojZqpZfb7c/1l2Jpm/OgouBkrecfe5XhH3NOPf95BcY5S/Moy+F3I
-         v3lW2BMUWTqYVLPji0/EPVtIi9lFyK7k5EwQQta2UJV6KhI0UPklbg+Ah1eGw3TSXPHg
-         YuqLELN0wqGeocw/a47SF1szgbDlGFwbgNOQDUijNbLOPJSF+UgB6BwLYMMRSCA/CSTT
-         aM6xkVkqov1xDK6OwyMSXrsK1lr52UxR9RYsaEO6yLY2ksFKVyqDQ6j6wbXLSVSYUTBd
-         Ojbw==
-X-Forwarded-Encrypted: i=1; AJvYcCWh/s6rKEigOyYa7yYgGlJH7REjY+pMGPUvRBTjAGsa40Slb/YViYppR/ZplQYFSUFPGqcAOuiecMox@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLSPeu7OP/xUchvoh00ATJAnJ2kLIbEoqHdA4B/cJevSw9kgSx
-	4Hst40Kr+E3K7HUyRdaFcNuRiqM0yHkQxkfOm2HOPXzPevYUs0YTMj+KZirpGcgxay9oJoJEIH/
-	PzkV8HkgLyQtylgWBU0Ci1QCUjoKh51RtAEWKGdpswca+X6GxO9h0R9RIVyQg/WBL
-X-Gm-Gg: ASbGncvK1YPJFz46PzsiU1ja8X1INSLAmbfbShgpNU6h0LOXHGof/FQW9polFL2eYRK
-	lB+p/lb04WsllUf8lmT0sTa9zT857w7ZN9uINER5Aqr4H/jumGKCpNXii8JcvYomMqWRlo8bn9E
-	5uacUIaJnXCpMNuqJTItViW6mKE+OGHOZ51Nq4cLV7slb5K+Ya1n/OlNiKIKvE/jxhpBiRBhYqp
-	8+Bmtp00xcH/N8/o30LeLq1FlDuM6D28armwHSTgszZEZvTQuIPA8A8voJ11fp6cociVGrWM1EJ
-	eCoinn3A7wkmxaRbSpE5kAFSKmBMyt5h/Q9g9aELqmCNfUsjv2TUzQ==
-X-Received: by 2002:a05:6102:54a4:b0:525:42d2:790d with SMTP id ada2fe7eead31-52b1b902c6fmr3471035137.25.1756821671543;
-        Tue, 02 Sep 2025 07:01:11 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE257wS09hktiVeXoKS7mdBQNq0fy2/WSA+DkddsrfqENMevrNa5o8DRsYPDgcJnlFqhk99Sw==
-X-Received: by 2002:a05:6102:54a4:b0:525:42d2:790d with SMTP id ada2fe7eead31-52b1b902c6fmr3470791137.25.1756821670137;
-        Tue, 02 Sep 2025 07:01:10 -0700 (PDT)
-Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d2250115fdsm14381196f8f.40.2025.09.02.07.01.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 07:01:09 -0700 (PDT)
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-To: srini@kernel.org, broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org
-Cc: conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
-        linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Subject: [PATCH 6/6] ASoC: codecs: lpass-wsa-macro: add Codev version 2.9
-Date: Tue,  2 Sep 2025 15:00:44 +0100
-Message-ID: <20250902140044.54508-7-srinivas.kandagatla@oss.qualcomm.com>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
-References: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
+	s=arc-20240116; t=1756822107; c=relaxed/simple;
+	bh=keU71mt+mL8ZC7oI2ryZm1aP/UrhHjOrirqvvxCZCIw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=NRjzgXAnXIQhzUM5fQudUZ/FdiS6at8yMku+NY6vUubWX2tN060RUP9ftbPCQ9sy7IExjCkGztccfpuyQD6+K41eVN0yq8egnhz1WmN0zFusaL1WkRx1dNmxDhry1A64Yyo+RHqxDWSDnRc4vfPh/QM2or0+W2jKuQyH0UUe59A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=wDvUDvro; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582DHPqh021113;
+	Tue, 2 Sep 2025 16:08:02 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	OfsW8QTgbTdLP4DbkI1LhSpqxaBZQsvlgtJGzho+GHo=; b=wDvUDvro07WcbWVI
+	GSKHtFjhToKdMWBImiAgJUCkfdPfgWtxbpKjPNuX8DWIBmAN0BqyUzLhxbb1/lhh
+	Y4POLhNDo+hf7jd2oGzi49bG4xkpqsZ2Iqy4+SSO1QlqPxSEMN6eNS318/v/GRVQ
+	5jzEQ1qwlkGhtYBft9mIA38QWR92RV7RfO2ew1QvWyPQfwG2lu8CpeR6MggbfdJ6
+	ow2HFWqpIAl+bwqv/LuFM66Xs1JW+1JNbh0vofvuGJYoDKJIt3hMNSbuOjInBGwr
+	fyyszoeqUbuSPQThgjbZkTjKG+qUR1dO8B0P3uQqxFElWtWgtZlftU0eCRQScSrT
+	kErQSw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48upqkd2tn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 02 Sep 2025 16:08:02 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 6DF0B40045;
+	Tue,  2 Sep 2025 16:06:30 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0D83C3A874D;
+	Tue,  2 Sep 2025 16:05:23 +0200 (CEST)
+Received: from [10.48.87.121] (10.48.87.121) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 2 Sep
+ 2025 16:05:22 +0200
+Message-ID: <9b669562-ee52-47b6-856e-3184b3e89d28@foss.st.com>
+Date: Tue, 2 Sep 2025 16:05:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 8/9] clk: divider, gate: create regmap-backed copies of
+ gate and divider clocks
+To: Conor Dooley <conor@kernel.org>, <sboyd@kernel.org>
+CC: Conor Dooley <conor.dooley@microchip.com>,
+        Daire McNamara
+	<daire.mcnamara@microchip.com>,
+        <pierre-henry.moussay@microchip.com>,
+        <valentina.fernandezalanis@microchip.com>,
+        Michael Turquette
+	<mturquette@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>, Lee Jones
+	<lee@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt
+	<palmer@dabbelt.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <linux-riscv@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20250901-rigid-sacrifice-0039c6e6234e@spud>
+ <20250901-yearling-reconcile-99d06fe7868e@spud>
+Content-Language: en-US
+From: Gabriel FERNANDEZ <gabriel.fernandez@foss.st.com>
+In-Reply-To: <20250901-yearling-reconcile-99d06fe7868e@spud>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-GUID: E3-zawxrHQzLq_OpCi3DpgbXJm9OqrSP
-X-Proofpoint-ORIG-GUID: E3-zawxrHQzLq_OpCi3DpgbXJm9OqrSP
-X-Authority-Analysis: v=2.4 cv=ccnSrmDM c=1 sm=1 tr=0 ts=68b6fa54 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=aFUyGFNo807uSY4iGNgA:9
- a=IoWCM6iH3mJn3m4BftBB:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDA0MiBTYWx0ZWRfX6hCBi7gwFEF5
- J1s+4H0CV9zOW/9YY7QZ+Gfug18BroZDSV3ZK055s+p0Rg4IyDUmgdAnoigne8cehPvCa9RBamP
- Z5PF0x8fOPVuvUkR4w/jbwdf2EujU5ZG3MTSEnuTa36pXz80FJZa2niz9BNbsSdGX3TsMPEjzR0
- 5Jez0jwBYul1iPKyNbKB0Ms1qZc8T8cPIhmIez7gQ3kqMedRG81KK1RBAtSp2HT/5iRN+esFj67
- 4ElJ55eJDU73ls/DCC/Uv0lSqTVErf2G5B7eH8amvevFOcSgGQ3UJ31IDiAJxL6V1Ggc0uQYQ+m
- G4FozDzNhqnNrCwFrCfoD1n95lXte+HeQqG1xHXuOLBoZsVqvlhs2pyE8cKrh4kv0oNcoMkoWpd
- OOD//LDC
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
- clxscore=1015 suspectscore=0 spamscore=0 bulkscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300042
 
-Add support for lpass wsa codec macro version 2.9, which is available in
-Qualcomm Glymur SoCs.
 
-Its compatible with 2.8 w.r.t register layouts
+On 9/1/25 13:04, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+>
+> Implement regmap-backed copies of gate and divider clocks by replacing
+> the iomem pointer to the clock registers with a regmap and offset
+> within.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> v4:
+> - increase map_offset to a u32
+> - use a single Kconfig option for both divider and gate regmap
+>    implementations
+> ---
+>   drivers/clk/Kconfig              |   4 +
+>   drivers/clk/Makefile             |   2 +
+>   drivers/clk/clk-divider-regmap.c | 271 +++++++++++++++++++++++++++++++
+>   drivers/clk/clk-gate-regmap.c    | 254 +++++++++++++++++++++++++++++
+>   include/linux/clk-provider.h     | 119 ++++++++++++++
+>   5 files changed, 650 insertions(+)
+>   create mode 100644 drivers/clk/clk-divider-regmap.c
+>   create mode 100644 drivers/clk/clk-gate-regmap.c
+>
+Hi Conor,
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
----
- sound/soc/codecs/lpass-wsa-macro.c | 2 ++
- 1 file changed, 2 insertions(+)
+i tested the clk_gate_remap part with my code, it works fine.
 
-diff --git a/sound/soc/codecs/lpass-wsa-macro.c b/sound/soc/codecs/lpass-wsa-macro.c
-index da6adb3de21d..187805b39264 100644
---- a/sound/soc/codecs/lpass-wsa-macro.c
-+++ b/sound/soc/codecs/lpass-wsa-macro.c
-@@ -2690,6 +2690,7 @@ static int wsa_macro_component_probe(struct snd_soc_component *comp)
- 	case LPASS_CODEC_VERSION_2_6:
- 	case LPASS_CODEC_VERSION_2_7:
- 	case LPASS_CODEC_VERSION_2_8:
-+	case LPASS_CODEC_VERSION_2_9:
- 		widgets = wsa_macro_dapm_widgets_v2_5;
- 		num_widgets = ARRAY_SIZE(wsa_macro_dapm_widgets_v2_5);
- 		break;
-@@ -2838,6 +2839,7 @@ static int wsa_macro_probe(struct platform_device *pdev)
- 	case LPASS_CODEC_VERSION_2_6:
- 	case LPASS_CODEC_VERSION_2_7:
- 	case LPASS_CODEC_VERSION_2_8:
-+	case LPASS_CODEC_VERSION_2_9:
- 		wsa->reg_layout = &wsa_codec_v2_5;
- 		def_count = ARRAY_SIZE(wsa_defaults) + ARRAY_SIZE(wsa_defaults_v2_5);
- 		reg_defaults = kmalloc_array(def_count, sizeof(*reg_defaults),
--- 
-2.50.0
+Just a  minor remark concerning .round_rate, you can add my
+
+Reviewed-by: Gabriel Fernandez <gabriel.fernandez@foss.st.com>
+
+> +const struct clk_ops clk_divider_regmap_ops = {
+> +	.recalc_rate = clk_divider_regmap_recalc_rate,
+> +	.round_rate = clk_divider_regmap_round_rate,
+
+.round_rate could be removed ?
+
+
+> +	.determine_rate = clk_divider_regmap_determine_rate,
+> +	.set_rate = clk_divider_regmap_set_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_divider_regmap_ops);
+> +
+> +const struct clk_ops clk_divider_regmap_ro_ops = {
+> +	.recalc_rate = clk_divider_regmap_recalc_rate,
+> +	.round_rate = clk_divider_regmap_round_rate,
+
+dito
+
+
+> +	.determine_rate = clk_divider_regmap_determine_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_divider_regmap_ro_ops);
+> +
 
 
