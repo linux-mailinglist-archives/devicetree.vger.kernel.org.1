@@ -1,153 +1,235 @@
-Return-Path: <devicetree+bounces-211838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A1FEB40DF7
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:38:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45B76B40E05
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:42:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 87AE41B64245
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:39:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 027B03A638F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 19:42:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DAF72E5B19;
-	Tue,  2 Sep 2025 19:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4E422EC088;
+	Tue,  2 Sep 2025 19:42:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FPE46Tz/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P3fn49Ju"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1961261B75;
-	Tue,  2 Sep 2025 19:38:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74A95198A11;
+	Tue,  2 Sep 2025 19:42:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756841919; cv=none; b=X6Z7JoayeQYcwlPYbiUTivYC+Z/yZ1HoVb5J1ZYUxsTYuSTlPlvY255yf42TNA8+Ihul3qxHG6tNahgm0WCEK9zbU9vK5YDUazQtIM40m+FtCA5vQ/uZfZ948/YucNO2ZV9yfL+vliSJGH80njnYTb737o3dfK4bwtWtAq3JHJQ=
+	t=1756842152; cv=none; b=HkbGmehQxDvCo/Vs2hdBS7kbFKTHyMe/jvi/jpOyfeFrIrSkUj3J4Tq16XEKg287NKZnPOzbtFfjQXRJ6hY7l/cXVJxkP6mKv9zLPB+UakRMabHW+ek5gzQKJSG4LSP6gwLvIMkj97KQQwA1+02fnrL0IMs8Sgsp2SqwxldZTBE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756841919; c=relaxed/simple;
-	bh=HaZVq77hCeEKJj48W9T/SV2y0EXDcF4xBD7RBPytWIM=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=WLOuEGPYRxODXa8gJ46vJNYSdlwoN8D7R7RyFTCSXfne2y10x7VAeWZv/MlDwG59tyRc0JRRcuSTjiUKMHbxirMNkz2I4D0/Yjg1FPgEX4QCLLpNncdwTOjNF511vReKvqk0GQL115E3IZ+c3fgLmg3svqnkZHQl2pZNr+BQcaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FPE46Tz/; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-77263a06618so231795b3a.3;
-        Tue, 02 Sep 2025 12:38:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756841916; x=1757446716; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=4kLBob4ZpoHhTQlAXB2V9hETmsGMAM+pRjiWrcqYh6c=;
-        b=FPE46Tz/SBFD1fWLR9+LX5tG0si3zsMOrGaOWS41foC4R5zkBSQ5sGmEKo28Nbx5/U
-         L8tW4/Aqwp+hZ6IcP8leAqkfV7ZimVzu8ZDvPF72RBL43ADy2QZBsOQns5HfrJE+WANo
-         DVR2AYC/jTtG2fbFxqVQ5+Aei4N2yXkKc3OE4L0dJMcwVMo7n/7J5VZjpf09Zn38EzHY
-         TlNhAAz6RW7oz2RIXg220ywHm8P3TBPMNQx8RsAKm/dIsdJscHKCL5jQfCjpgQQr7apZ
-         kouXuIdqoTPibDWt5479endQU8uKUCp4qxcSO6QkowyZxbzz6xe4rPM/aZHn+k0iO+61
-         JdCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756841916; x=1757446716;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4kLBob4ZpoHhTQlAXB2V9hETmsGMAM+pRjiWrcqYh6c=;
-        b=GMH8El2xK2PhXRHO40KLPQz4bsuLApkwJFACqgC5k1fTcLFRYTvkxti5P73QljsKvC
-         QMGUFrILvRcbJKImZTWT3sPzZ1HszXKDhET8JzMkdkQ/ie28tO5PNwbTqGngEdZNgG3r
-         SapYSbDkR3c98FL+PTN9coqzmAkjfQ1QNsupe1F2SG+KHzZ0W2o6MfkGzSpE7E35BmmI
-         P6csw6ZRaISBAaKDeh1AcRvf/gWFjvAq8EOefEZgTZV7mkJSp4lgwPaMsudxiMSpYiKp
-         VxZzeE9wuVn/DtKKGh1HbydPrvZIJNu5FppAgNYkpDrngY4C7r0TAKeZJm4fZHYL6HEa
-         CGqA==
-X-Forwarded-Encrypted: i=1; AJvYcCVFMhlUcxjFZJ7rS6xCXFT723z7rYPYvMiPaTE4jtIzvZDo9n8Q7aYplTmDdSEaanfrnfVN2FllZwD+vC7aEw==@vger.kernel.org, AJvYcCVh5r64WDIB81xKz8SgDmQUjw8Ma+TE2w7yn3HlvJs+w1PIUBUT0SPCw9In2k8MTSLrE9xlXa/0t5Z/Xb+Q@vger.kernel.org, AJvYcCW6BYiYhmknFZ5WybBp7C5JYzNAVGCg3D69UBYpHU/Z0S8kL2CNtTZEEl9s1ZBI+T5gNaRxzMz5dXff@vger.kernel.org, AJvYcCXGXOkSVDtl5b6Y+coZYOclv+yx25m/Zi0cm6nSoddv2KP6XSNFPbTtvFcHSTmE2vQaL53f@vger.kernel.org, AJvYcCXpUmK3gY+lbvOofo4gB8zBbth7Nj/wZZuxB+qMlCtxUddbSSI25OnS2oK4StxuFUigvw7Sf32UFPCE@vger.kernel.org
-X-Gm-Message-State: AOJu0YysF5HLzo514jaBpt6SW9KHC8lr6WH/5groo44GD7Kzbkh+RmQB
-	wAAu8+PPvK1Iwfz/5Vjd940/pstDgEx5ifKnEWx1SFUWbQ/0TjjraUvBYlFjbOF4
-X-Gm-Gg: ASbGncv85XEulmPstwmplujcwBPOraQV3cbjh+UwfYzZkYS4+E50QjZuR8o2suPtusq
-	1rv+K7Ehj7yHrFusNySbu2Fw4Vw0n/cZo9n9NTy9okqxrMVfgGKmqNLqr3YcLmRHc0tsCrpVkAJ
-	c5PU8lVVWQq5a4QJ84wPKrutpQVxiHRWN5HHoSecMKES34V0BV4eIrPGBG3Qi/QjI7N+D+noLAB
-	o+l9b/HsNuHJ/ITgbV3ogh4IPeUpshH9vvrSFlhU3KMunh3s6/CNpN5RyN478JPJ9kOckElNuS8
-	70BPoNDrZk3q9I4nogdea15vBUvcGK8TZ5hTC/iTSzxqG1hrPIdT/DUW9ceRMkjx3S6rTgWSD9q
-	Mj58ma4osuypK+ovb8q85BN7LpA/I
-X-Google-Smtp-Source: AGHT+IGhEhOhFp7BmdZi4Pl90JZtjsQL2QmhqyTXezZ3L1cETXjqvrmjx+3LXTI/4Qf1FAWGWRCAbA==
-X-Received: by 2002:a05:6300:218a:b0:240:d39:ffc1 with SMTP id adf61e73a8af0-243c847a252mr11620306637.5.1756841916066;
-        Tue, 02 Sep 2025 12:38:36 -0700 (PDT)
-Received: from ranganath.. ([2406:7400:98:c842:443f:2e7:2136:792b])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a26a4e5sm14567108b3a.19.2025.09.02.12.38.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 02 Sep 2025 12:38:35 -0700 (PDT)
-From: Ranganath V N <vnranganath.20@gmail.com>
-To: linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	brauner@kernel.org,
-	djwong@kernel.org,
-	corbet@lwn.net,
-	pbonzini@redhat.com,
-	laurent.pinchart@ideasonboard.com,
-	vnranganath.20@gmail.com,
+	s=arc-20240116; t=1756842152; c=relaxed/simple;
+	bh=CB9bHQ5ZSrUAaDlo+S0fnv/mmSyoQ+Sgb/i0Y6DNcTU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=hDzNgstDNChNr47Sg/EPfHgkN09lpvv/Gq44SlKKSzDgyNTchbnEVbQ94ESORmCpCqEoy6O+xyb4xhFPg4CsFF2FcRkj4rO7TAOYoB/Fmh9OLlAi23jZ9ZGlaxSOZjm0AZRCFgqo4cNCtP8EFk6VSRQ11pAC50W/3k6ZiHD60TY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P3fn49Ju; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C0ACC4CEF7;
+	Tue,  2 Sep 2025 19:42:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756842151;
+	bh=CB9bHQ5ZSrUAaDlo+S0fnv/mmSyoQ+Sgb/i0Y6DNcTU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=P3fn49Junfzx/cNxK68I+mqtvwnhKICYFe8ZN9F/CuQRC0Romsrw+XXsElu7/43J7
+	 oXEFuVMRpLBDqxX3bxi/eWmA2kdnwm8isennHxdb98hTuKaVi+Ga6YwEUpYETJ2lPk
+	 h7vuIcG0XC9vGUkb6qes7mk6V2qDkvRWkAsQ/Y0BSw5HWl9w1HhmpILZrk4WJ7eRFP
+	 xCa4MoN/3X1Nd3Xt2dHbgN7Lm3m2MqTtGdK51J7jigcT9U7ygdZ90rQhw6QHzrKKtq
+	 Wy5BHsvCFoBMPwV2wWXN/aVf9yykzmAzH4ngM06RWxPQ06DmXpkHhxYovi591NNmUB
+	 pHUKGBj0W6cZA==
+Date: Tue, 2 Sep 2025 20:42:26 +0100
+From: Conor Dooley <conor@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-xfs@vger.kernel.org,
-	linux-fsdevel@vger.kernel.org,
-	kvm@vger.kernel.org
-Subject: [PATCH] Documentation: Fix spelling mistakes
-Date: Wed,  3 Sep 2025 01:08:22 +0530
-Message-ID: <20250902193822.6349-1-vnranganath.20@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v10 1/2] dt-bindings: iio: adc: add max14001
+Message-ID: <20250902-henna-flammable-df3a9160619b@spud>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
+ <34b7cc7226e789acdc884d35927269aa5a0d5e14.1756816682.git.marilene.agarcia@gmail.com>
+ <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="p12u5IEj66XosoaZ"
+Content-Disposition: inline
+In-Reply-To: <89265de7-eeff-4eea-838b-6a810c069a20@baylibre.com>
 
-Corrected a few spelling mistakes to improve the readability.
 
-Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
----
- Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
- Documentation/filesystems/iomap/operations.rst           | 2 +-
- Documentation/virt/kvm/review-checklist.rst              | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+--p12u5IEj66XosoaZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
-index 46d0b036c97e..191085b0d5e8 100644
---- a/Documentation/devicetree/bindings/submitting-patches.rst
-+++ b/Documentation/devicetree/bindings/submitting-patches.rst
-@@ -66,7 +66,7 @@ I. For patch submitters
-      any DTS patches, regardless whether using existing or new bindings, should
-      be placed at the end of patchset to indicate no dependency of drivers on
-      the DTS.  DTS will be anyway applied through separate tree or branch, so
--     different order would indicate the serie is non-bisectable.
-+     different order would indicate the series is non-bisectable.
- 
-      If a driver subsystem maintainer prefers to apply entire set, instead of
-      their relevant portion of patchset, please split the DTS patches into
-diff --git a/Documentation/filesystems/iomap/operations.rst b/Documentation/filesystems/iomap/operations.rst
-index 067ed8e14ef3..387fd9cc72ca 100644
---- a/Documentation/filesystems/iomap/operations.rst
-+++ b/Documentation/filesystems/iomap/operations.rst
-@@ -321,7 +321,7 @@ The fields are as follows:
-   - ``writeback_submit``: Submit the previous built writeback context.
-     Block based file systems should use the iomap_ioend_writeback_submit
-     helper, other file system can implement their own.
--    File systems can optionall to hook into writeback bio submission.
-+    File systems can optionally hook into writeback bio submission.
-     This might include pre-write space accounting updates, or installing
-     a custom ``->bi_end_io`` function for internal purposes, such as
-     deferring the ioend completion to a workqueue to run metadata update
-diff --git a/Documentation/virt/kvm/review-checklist.rst b/Documentation/virt/kvm/review-checklist.rst
-index debac54e14e7..053f00c50d66 100644
---- a/Documentation/virt/kvm/review-checklist.rst
-+++ b/Documentation/virt/kvm/review-checklist.rst
-@@ -98,7 +98,7 @@ New APIs
-   It is important to demonstrate your use case.  This can be as simple as
-   explaining that the feature is already in use on bare metal, or it can be
-   a proof-of-concept implementation in userspace.  The latter need not be
--  open source, though that is of course preferrable for easier testing.
-+  open source, though that is of course preferable for easier testing.
-   Selftests should test corner cases of the APIs, and should also cover
-   basic host and guest operation if no open source VMM uses the feature.
- 
--- 
-2.43.0
+On Tue, Sep 02, 2025 at 09:29:04AM -0500, David Lechner wrote:
+> On 9/2/25 8:15 AM, Marilene Andrade Garcia wrote:
+> > Add device-tree documentation for MAX14001/MAX14002 ADCs.
+> > The MAX14001/MAX14002 are isolated, single-channel analog-to-digital
+> > converters with programmable voltage comparators and inrush current
+> > control optimized for configurable binary input applications.
+>=20
+> When there are multiple devices, DT maintainers like to know
+> what is the difference between the devices.
 
+Looking at the driver, I don't really buy that there even is a
+meaningful one, at least at first glance. What even is different between
+them other than the name?
+
+>=20
+> >=20
+> > Co-developed-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> > Signed-off-by: Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> > Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+>=20
+> Sine the patch is From: M.A.G., according to [1], this should be:
+>=20
+> Co-developed-by: K.S.P.
+> Signed-off-by: K.S.P.
+> Signed-off-by: M.A.G.
+>=20
+> (hopefully obvious, but don't use the abbreviations - I just did
+> that for brevity)
+
+Prob also worth putting a note under the --- line as to why the r-b from
+Krzysztof got dropped that was on v9.
+
+>=20
+> [1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.ht=
+ml#when-to-use-acked-by-cc-and-co-developed-by
+>=20
+> > ---
+> >  .../bindings/iio/adc/adi,max14001.yaml        | 79 +++++++++++++++++++
+> >  MAINTAINERS                                   |  8 ++
+> >  2 files changed, 87 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14=
+001.yaml
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yam=
+l b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> > new file mode 100644
+> > index 000000000000..ff9a41f04300
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+> > @@ -0,0 +1,79 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2023-2025 Analog Devices Inc.
+> > +# Copyright 2023 Kim Seer Paller
+> > +# Copyright 2025 Marilene Andrade Garcia
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Analog Devices MAX14001-MAX14002 ADC
+> > +
+> > +maintainers:
+> > +  - Kim Seer Paller <kimseer.paller@analog.com>
+> > +  - Marilene Andrade Garcia <marilene.agarcia@gmail.com>
+> > +
+> > +description: |
+> > +    Single channel 10 bit ADC with SPI interface.
+> > +    Datasheet can be found here
+> > +      https://www.analog.com/media/en/technical-documentation/data-she=
+ets/MAX14001-MAX14002.pdf
+> > +
+> > +$ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - adi,max14001
+> > +      - adi,max14002
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 5000000
+> > +
+> > +  vdd-supply:
+> > +    description:
+> > +      Isolated DC-DC power supply input voltage.
+> > +
+> > +  vddl-supply:
+> > +    description:
+> > +      Logic power supply.
+> > +
+> > +  vrefin-supply:
+>=20
+> The actual pin name is REFIN, so refin-supply would make more sense.
+>=20
+> > +    description:
+> > +      ADC voltage reference supply.
+> > +
+> > +  interrupts:
+>=20
+> Likely needs `minItems: 1` in case only one interrupt is wired.
+>=20
+> > +    items:
+> > +      - description: |
+> > +          Interrupt for signaling when conversion results exceed the c=
+onfigured
+> > +          upper threshold for ADC readings or fall below the lower thr=
+eshold for
+> > +          them. Interrupt source must be attached to COUT pin.
+>=20
+> We could shorten these descriptions. The important part is which pin
+> it is connected to.
+>=20
+> > +      - description: |
+> > +          Alert output that asserts low during a number of different e=
+rror
+> > +          conditions. The interrupt source must be attached to FAULT p=
+in.
+> > +
+>=20
+> And also `interrupt-names:` makes sense so we know which one is
+> is wired if only one is given.
+
+Additionally, v9 had no interrupts at all but only serviced once device.
+Do both devices have the interrupts or should these only be permitted on
+the 140002?
+
+>=20
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - vdd-supply
+> > +  - vddl-supply
+> > +
+
+--p12u5IEj66XosoaZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHQEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLdIogAKCRB4tDGHoIJi
+0vHVAQC5vOqUyUnEJVpTrDBp+yj1apl7lLDvgOjLnmB5QWbJxAD2Ld9s9XN5AnKc
+yQ1DLgskykjBmNOAbLppcBF5lSANBw==
+=k35l
+-----END PGP SIGNATURE-----
+
+--p12u5IEj66XosoaZ--
 
