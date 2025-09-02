@@ -1,55 +1,66 @@
-Return-Path: <devicetree+bounces-211857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211858-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CF5DB40F86
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:37:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 514C2B40F91
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:42:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0B0D543F58
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:37:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12F825E6210
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:42:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C2F35A2BB;
-	Tue,  2 Sep 2025 21:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 482D933A02D;
+	Tue,  2 Sep 2025 21:42:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pfxI5OsW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EoJlG6Jb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B767E573;
-	Tue,  2 Sep 2025 21:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18B51258EF0;
+	Tue,  2 Sep 2025 21:42:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756849041; cv=none; b=ZqAVN5u9XviMITwDXo9SrqbSiW+cG1R1+1HEvj2oD3bZZ7eYovpFHkVT693zZrcNK61CJ9BKe3Zk8t5Sx+U5MQVD+zywABW7PiuveOek+dbkZeF5xdTCRMvCgZbxpsvpr5h9gRHijggKDJix03iRu6vwREPQdYinguLtschk2Zo=
+	t=1756849365; cv=none; b=Pj1rpCaSUdySxa2z4mbeMX9CyL9X1KSdn5OVC8rsGXDAGrAzOOPkQZ97SrhisC8e75kKTPEvchHgHPkya6mxmlz06XsSeE6gDixX6Rp69tDNjmCwMDgy2XEbvYhttxYkXNOr6J28mgk5eAZzUEZ89r/Kb5qIoH8OJ6xXzVkhTzU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756849041; c=relaxed/simple;
-	bh=RVA8Zol8YLnsvT7j8Slk7mGfA8HvZ8cskcbwDsr+mU8=;
+	s=arc-20240116; t=1756849365; c=relaxed/simple;
+	bh=RjK40O1erbbu/Aaqtcd7wtn/XHEa2oLzQ1L+Jw/nrP8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Sd6TnYf4cHm9/UcbJdqJVMzFUwz7PU0eknjtHDE2ykZJIpRU/fC2WaaUeLRelrkHUtRlg53YpKmqcZSgRqlQQY6Em1TYZB3XgLRgKb33n4I6efBZWgTWFTB2WsTzx+ilnYJi+1G2vdR/4wbGXN5DUkwNRub1juPQH4wzh44854c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pfxI5OsW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68F8CC4CEED;
-	Tue,  2 Sep 2025 21:37:20 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=QkVjNL07X3kto/cGBzSuWDAc2ljFA4sXjYB6WLhQ7CM9DYIDPEFXLNJlzrG4N+isY0B+1/fEW/ldfzT6yo2FuJzLLE0/UUaZMv7sFbzat6+ozgmvi3jkMljhtcjVSLhmxE4yr4hVsNT32CGdnc8Ps7FQlY8H7U0PDSR8P7G05xA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EoJlG6Jb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7949DC4CEED;
+	Tue,  2 Sep 2025 21:42:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756849040;
-	bh=RVA8Zol8YLnsvT7j8Slk7mGfA8HvZ8cskcbwDsr+mU8=;
+	s=k20201202; t=1756849364;
+	bh=RjK40O1erbbu/Aaqtcd7wtn/XHEa2oLzQ1L+Jw/nrP8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pfxI5OsWolGgWagxuL0U7GajhlBQOcB6r+/LAkAHK0YjmDFP0ZGt/Y9LiqDp+c1K+
-	 KTUMF5BJUS3boQIuG4aGMsg9pTDMdAtErvIZhrWkuAcR4JPV3XMOATaxBSkLTkKYEk
-	 ZKjhWhzRt4Jk7FjJU7zLhK5RrsCfuS5MpHhxmgrLk6W0mj6bjAwypjxQYeZzR9qJ65
-	 qNE0wghwfYHzI9V0ZXVKl09VI6tZUWR8urtmSYuA68BozNlcrQGc8rV5QRaSuivI9l
-	 nlBLYX0VHdPyFbIr1S72cKLZ11yA4b1ICFAjmMUp86d2tGPU08EqMTLWIY/7UGXiia
-	 StkAK2B66LiLQ==
-Date: Tue, 2 Sep 2025 16:37:19 -0500
+	b=EoJlG6JbZMLwZp+m1BZbhMawCR/5RmCUTGA8njxZFmehPeIWW7JFgU3N3x+hw4LpG
+	 OFd8vAkhr0x8OLlVta9zD5wf8H3Ubjf8Jf3f1vtYzyRuprlUcFKOyEkPVbYKb5VeQH
+	 qbEXmxnF+sqcJQC3mdXguj0PYnkR+jPTfa6NbuU+/yBmjaAHHAcPZZ7CukyR/+/PNj
+	 olac12OyMTg+qwOCnlM7HvFzIAr3zGA6X6dx/l8Y7JVYdwCIROCjFl6dtK+RjNo3el
+	 bCQmg/ubnFasfzVUqGzpA8ydpEV513sGZfHTIC8E+3Ud0Tvou/MlqMu9K7CGaWuID9
+	 XQKE8ByoWqfEA==
+Date: Tue, 2 Sep 2025 16:42:43 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Masaharu Noguchi <nogunix@gmail.com>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, conor+dt@kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] Documentation: fix typo 'Andorid' -> 'Android' in
- goldfish pipe binding
-Message-ID: <175684894151.1209606.5416542002221924875.robh@kernel.org>
-References: <20250901154812.570319-1-nogunix@gmail.com>
+To: Jie Gan <jie.gan@oss.qualcomm.com>
+Cc: Conor Dooley <conor+dt@kernel.org>,
+	Mao Jinlong <jinlong.mao@oss.qualcomm.com>,
+	Yuanfang Zhang <yuanfang.zhang@oss.qualcomm.com>,
+	James Clark <james.clark@linaro.org>,
+	Tao Zhang <tao.zhang@oss.qualcomm.com>,
+	linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org, coresight@lists.linaro.org,
+	devicetree@vger.kernel.org,
+	Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	Suzuki K Poulose <suzuki.poulose@arm.com>,
+	Mike Leach <mike.leach@linaro.org>
+Subject: Re: [PATCH v1] dt-binding: Update oss email address for Coresight
+ documents
+Message-ID: <175684936304.1217220.3167248149687349464.robh@kernel.org>
+References: <20250902042143.1010-1-jie.gan@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,21 +69,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250901154812.570319-1-nogunix@gmail.com>
+In-Reply-To: <20250902042143.1010-1-jie.gan@oss.qualcomm.com>
 
 
-On Tue, 02 Sep 2025 00:48:12 +0900, Masaharu Noguchi wrote:
->  This patch fixes a small typo in the goldfish pipe binding documentation:
-> 'Andorid' -> 'Android'.
+On Tue, 02 Sep 2025 12:21:43 +0800, Jie Gan wrote:
+> Update the OSS email addresses across all Coresight documents, as the
+> previous addresses have been deprecated.
 > 
-> Signed-off-by: Masaharu Noguchi <nogunix@gmail.com>
+> Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 > ---
->  Documentation/devicetree/bindings/goldfish/pipe.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../sysfs-bus-coresight-devices-dummy-source  |  4 +-
+>  .../testing/sysfs-bus-coresight-devices-tpdm  | 56 +++++++++----------
+>  .../arm/arm,coresight-dummy-sink.yaml         |  2 +-
+>  .../arm/arm,coresight-dummy-source.yaml       |  2 +-
+>  .../bindings/arm/qcom,coresight-ctcu.yaml     |  6 +-
+>  .../arm/qcom,coresight-remote-etm.yaml        |  4 +-
+>  .../bindings/arm/qcom,coresight-tnoc.yaml     |  2 +-
+>  .../bindings/arm/qcom,coresight-tpda.yaml     |  4 +-
+>  .../bindings/arm/qcom,coresight-tpdm.yaml     |  4 +-
+>  9 files changed, 42 insertions(+), 42 deletions(-)
 > 
 
-Applied, but really we don't want any fixes for .txt bindings. Convert 
-them to schema instead. I wonder if some of these goldfish bindings are 
-obsolete...
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
