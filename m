@@ -1,132 +1,249 @@
-Return-Path: <devicetree+bounces-211681-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C02B40075
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:28:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F314B400A7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:33:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A9607B5D84
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:25:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A480163867
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:29:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2802F4A11;
-	Tue,  2 Sep 2025 12:27:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 701B12F744C;
+	Tue,  2 Sep 2025 12:29:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="C/n3JY8d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D2AB2C11CE;
-	Tue,  2 Sep 2025 12:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=140.211.166.183
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9032E2C0284
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 12:29:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756816050; cv=none; b=oJ50+JW08lSyw8QNJbs/7vRuL8Lue1sv40zHY81BZhqg7hNYc8f7R1+1GDNtnaGvWMYoV3GTEwUxQ6pzeRbXxXsX65baAZ7h+EsVZMRdPW7OjMzESaMqvVgANefIiQHtLaPa1WEc1+hfs7C3OLhfospBoSx5AkpgLVfyZOb0k2w=
+	t=1756816178; cv=none; b=jn0VDeVN8Sx9VepDSpsC+9RqD9PQRf0goDacgBQrN9xoqgnQrKqAhNtOT5NYILEL+N0xlA67x0GiFO/1rrZm/OZjdG4lgQqy2NxMLRCl/KhjyDqU7MkLqmMhZ1jYXTPKkocyvyLdLWDMv0l2MNsRsJ926JEB5KMKg6oGeIT7+ws=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756816050; c=relaxed/simple;
-	bh=moNuE2PRSa0VOYC0+NmKIqSBqUotBU26lZOsdMAaqiU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=iVW1Pe2vyhhg4fT0CYiQDk77X4NztYxE5U6Lo1Csh1VOeP1r9urEuLMxvMm1OSytwPlO3Khs0nvhJqOXuhymnSmXOHTrGroy7g7zy+Lpm3ZQzkCcJ0fDeTZQndjSPM33fZylEuKB7nArlUMCDbxDPSvTwFikbxnikgdRFZzhYcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org; spf=pass smtp.mailfrom=gentoo.org; arc=none smtp.client-ip=140.211.166.183
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gentoo.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gentoo.org
-Received: from [127.0.0.1] (unknown [116.232.18.168])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: dlan)
-	by smtp.gentoo.org (Postfix) with ESMTPSA id D8E4F3408F0;
-	Tue, 02 Sep 2025 12:27:22 +0000 (UTC)
-From: Yixun Lan <dlan@gentoo.org>
-Date: Tue, 02 Sep 2025 20:26:58 +0800
-Subject: [PATCH v2] riscv: dts: spacemit: uart: remove sec_uart1 device
- node
+	s=arc-20240116; t=1756816178; c=relaxed/simple;
+	bh=b57I0OXp26oEfOf/7p/hsldlstzVbYwY81eLcRB6a40=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=tZArEdlof6NdHQjkPOei6NOjP5aWCaVDK1owxgk8iyS/5R1h/Rf/USSyFKPFw0HO901noDzb1yvtglqXpXwnhLO/b2FizV8SJ7FYGE6vmFw17/CJ+yVvhlF80m1nXPVx+KY5RLcht2ztxMqav+a05oT+AdSisrnWzjQiuMiGY14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=C/n3JY8d; arc=none smtp.client-ip=209.85.221.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3cef6debedcso2396170f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 05:29:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756816175; x=1757420975; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1ZrMGz19D43nUqFgTyxFJMNWsEoiEGhGU7kOoh8E0aU=;
+        b=C/n3JY8d0R2IsJuTlaNhGnHeQ3IkxJMQFpegDgyUvvjmV78+x7u/1Pb75QCn+/lvgn
+         txZF3+8Zs4hmhLMZWBeAWs/IjZTO1KgB+Y1eBmjT06Lw06DqeobCV4hsiOH0rjQxGvJD
+         LzGBokBcdysCWW1PtYexd/iQrr5pknXqjm9DCAxuzuD1La2/qLIsHxeRaNV2ZPvBHI30
+         urjscOMa7aIkUF7du7WvoPZeEdcbTYIcyumqc3wuZ290c+r+enky9hS+VVL5AyFYf1m7
+         Lr2AMfPzeFBV8TXY5kXspzKJUGXit0h8Ktebw9NuXK05zNFtnRY7ti29Cd9yIaCorv8i
+         ji2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756816175; x=1757420975;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=1ZrMGz19D43nUqFgTyxFJMNWsEoiEGhGU7kOoh8E0aU=;
+        b=vRND9L0UqCRpEYCc0Tpa6gN4XjfJNL2zIPu89iC+1ilujXQupcr/6QoiiECA3Xt462
+         m9ecndrARjIrm8jVt5rgCWdiHoDmCoLGYGX1wlbhxZnMlFVdMKAJt9McMgq9c9AnNxQ7
+         HZSSovgppAjgXRjGd82+zm633Hi7Eob/lGEb3zmbabSNIsaDExfebB3YoPIQcxIdQUdb
+         ROvBUR56SuiCW+PbNEspD8PWH4NWNd0ImhKq7x3B56GM4l+zYnODchF5OrrKP6pafxwJ
+         KGmqOc4iMb+j24ohuw0i6KBBF5j9fN+3cL4gd3Veg7G34UXPKrWbCVDCRMXzFS/lh9SP
+         7svg==
+X-Forwarded-Encrypted: i=1; AJvYcCVzGI3rDuDxck7YbJKkIMVyU2jrBSe05GNeT34+Aa4zr9cmdzmoEqdUFRUQKT6UCvAWiX8jAiMt/Hqn@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxDmPs22ex5T7jdsolsqCfxR6VW01O0MlLV22qv9YoUoHPze3K
+	HpVNfo874AsIW/rn/kzAMJeBvKdBoxDuOUhTIT7lN6cZe4aysYZIQxLBZ2+9U+sXZog=
+X-Gm-Gg: ASbGncsLhZuoRqvl0VRUA7wyh/dmm65bpfyySmF1MH3GDfwmL1Bg6PHidZNamut4gOx
+	aspojEWhTiP3CQzkcpUIdf0o/aFH6pvgr5L+BTAOYcLVaVt+6V/7UCsO8Zm5b9y17h8iGuEY/5R
+	P7dyfb+QZsYSa/MhU62KOBMmvLmMDXN5G/PG9CTyzE/2DlN13tC4Bl+SJHbcNWCgI7FsG08X9tu
+	rdZb4v2ZKogP1XpcyaeW1zt0SyoJ+f1u3O22AZZ/IOO/5dBtbGUWo/FIOdSwhthPu2SiGc9aV+W
+	3DFsmhTc9HYaosTqL2LDbT7VPgrsyOLSzVfAH6slMNncYf3WHz9jWl8a6GJW2aWHatTiqVgfOuR
+	5UsE8IF41JY1MkUBbFjCWE530iR0ETMGMLkH65x1dSsUmaDY+U03dc5vQPlIfZwx4OAz6a38rjW
+	M=
+X-Google-Smtp-Source: AGHT+IE1b3znR8mhSVfN1o59ljoC/UoU3/SWyuUcMM/rQ1Xo7sYc7jTiyhzTL42RejqME3JwAEmmLg==
+X-Received: by 2002:a5d:64c6:0:b0:3ce:f0a5:d586 with SMTP id ffacd0b85a97d-3d1dc5a2fe0mr7157423f8f.1.1756816174847;
+        Tue, 02 Sep 2025 05:29:34 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939? ([2a01:e0a:3d9:2080:5c8d:8a1e:ea2b:c939])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf33adf170sm21033678f8f.33.2025.09.02.05.29.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 05:29:34 -0700 (PDT)
+Message-ID: <81b1e0b8-6a5b-4eb9-8f9d-fe9a52f0afcd@linaro.org>
+Date: Tue, 2 Sep 2025 14:29:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH v2 3/5] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
+ Document static lanes mapping
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+ Kishon Vijay Abraham I <kishon@kernel.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org
+References: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
+ <20250902-topic-x1e80100-hdmi-v2-3-f4ccf0ef79ab@linaro.org>
+ <slgu2d4iv6ef76f43gvwaelcl5ymymsvhokyunalq7z3l2ht3j@t7pko4rtqvgm>
+ <bf772209-2420-4794-a52a-1d5932146307@linaro.org>
+ <tl4fskw6yq6rniwwqkrvnulfpgym3jswlt5bmulgquogv7xkct@6bl4boesilsw>
+ <14f334fc-35de-4f21-8eb1-f6b41ac24704@linaro.org>
+ <oel3t35pxegxaowcfjbrzrxvuw47p7pzcinz7kf2uj2ivcderv@efbttlqpwcc7>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <oel3t35pxegxaowcfjbrzrxvuw47p7pzcinz7kf2uj2ivcderv@efbttlqpwcc7>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250902-02-k1-uart-clock-v2-1-f146918d44f6@gentoo.org>
-X-B4-Tracking: v=1; b=H4sIAJHitmgC/32NQQ6CMBBFr0Jm7ZhOo7a48h6GRcGhNBiGtJVoC
- He3cgCX7yX//RUSx8AJrtUKkZeQgkwF9KGCbnCTZwyPwqCVPitDFpXGkfDlYsbuKd2IquW25p5
- UzwrKbI7ch/eevDeFh5CyxM/+sNDP/okthISX2rK1J+cMmZvnKYscJXpotm37AlAzF0OxAAAA
-X-Change-ID: 20250718-02-k1-uart-clock-0beb9ef10fe0
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Alex Elder <elder@riscstar.com>, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org, Yixun Lan <dlan@gentoo.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1621; i=dlan@gentoo.org;
- h=from:subject:message-id; bh=moNuE2PRSa0VOYC0+NmKIqSBqUotBU26lZOsdMAaqiU=;
- b=owEBzQIy/ZANAwAKATGq6kdZTbvtAcsmYgBotuKnh7sGv+ULWyGalREl83uFZAXlNGwzlBtHB
- u/qrvncND+JApMEAAEKAH0WIQS1urjJwxtxFWcCI9wxqupHWU277QUCaLbip18UgAAAAAAuAChp
- c3N1ZXItZnByQG5vdGF0aW9ucy5vcGVucGdwLmZpZnRoaG9yc2VtYW4ubmV0QjVCQUI4QzlDMzF
- CNzExNTY3MDIyM0RDMzFBQUVBNDc1OTREQkJFRAAKCRAxqupHWU277SfYD/0Xisz07nPm6GOmWU
- iXPneJjpAPADkmpIhwBkBn4Ey7DtRufKtK4jnZDtAQ2C7CEnPResJ3d+FzXf3TutIfAmmYwAm6F
- msmovcYACCclKjPuHLnQP8j/e2ylroGqPnCGs5PeFo/kYgnz3AdGBTaikS+XcBEYSAReFUrn5/W
- e7yTJJuBWd/4rqqe11gUMQ7fpta5vtbERkn/rs5EXnpqEpWG12w8ERFT7qKj5Rmf8ilIUVEjRbc
- 1efbpuVyiQpilqyPBmfwHxTxJNmfnAgJrCNC5xDnxAsqNFCAjXRZqxOWzcg1VryGoW1Grc2zE6H
- Gk5XH2+AwWmfgmA5cwfPSCgmaTaNh8M72VPPq1ZocowDlYyekfoamfKWdEuEC7+z04mB1dT5zQx
- 3N4q45D8dXp2rFDikQ/2bT6P85o9Y7gJRSt6x73V3GVRcX6v6paYqxcuhj6EzemlctROdI7s/tg
- YWp4NU9C/swS7PCg+FPluEw5IB0IIEpt59yOPFwo4AcMgI9RZSDmMmkvUMTbS9oPFateEpEsg2r
- XIFDrDpzRlL5wVwA1KuLqSLNFzUp+3w0uwFf2DsZCl+2EVB8MvwJXLZ2+umwv0thXCBYBl1/zwy
- Ne3JVLS/uKHuPU2VSZgCsToiyRSq3JMGxcD2ITzG33pzpW7QAb9xbWh2iuzUoSXRpvog==
-X-Developer-Key: i=dlan@gentoo.org; a=openpgp;
- fpr=50B03A1A5CBCD33576EF8CD7920C0DBCAABEFD55
 
-sec_uart1 is not available from Linux, and no clock is implemented in
-CCF framework, thus 'make dtbs_check' will pop up this warning message:
+On 02/09/2025 14:22, Dmitry Baryshkov wrote:
+> On Tue, Sep 02, 2025 at 12:05:45PM +0200, Neil Armstrong wrote:
+>> On 02/09/2025 11:46, Dmitry Baryshkov wrote:
 
-  serial@f0612000: 'clock-names' is a required property
+<snip>
 
-Removing the node from device tree to silence the DT check warning.
+>>
+>> This is wrong, those are the internal connections to the controllers,
+>> those are fixed. I'm speaking about the external lanes, but there's only
+>> a single port.
+>>
+>> So, following your suggestion, we should use the Output port 0, but as it's
+>> only a single port it would need to have 2 endpoints, one for USB3 and one for
+>> DP.
+>>
+>> For example:
+>>
+>> \{
+>> 	dp-connector {
+>> 		compatible = "dp-connector";
+>> 		type = "a";
+>>
+>> 		port {
+>> 			dp_con: endpoint {
+>> 				remote-endpoint = <&usb_1_ss2_qmpphy_dp_out>;
+>> 			};
+>> 		};
+>> 	};
+>>
+>> 	usb-a-connector {
+>> 		compatible = "usb-a-connector";
+>>
+>> 		ports {
+>> 			#address-cells = <1>;
+>> 			#size-cells = <0>;
+>>
+>> 			port@0 {
+>> 				reg = <0>;
+>>                       		usb_con_hs: endpoint {
+>>                          		remote-endpoint = <&usb_1_ss2_dwc3_hs>;
+>>                       		};
+>>                   	};
+>>
+>>                   	port@1 {
+>>                       		reg = <1>;
+>>                      		usb_con_ss: endpoint {
+>>                           		remote-endpoint = <&usb_1_ss2_qmpphy_usb3_out>;
+>>                       		};
+>>                   	};
+>> 		};
+>> 	};
+>>
+>> };
+>>
+>> &usb_1_ss2_dwc3_hs {
+>> 	remote-endpoint = <&usb_1_ss2_dwc3_hs>;
+>> };
+>>
+>> &usb_1_ss2_qmpphy {
+>> 	/delete-property/ mode-switch;
+>> 	/delete-property/ orientation-switch;
+>>
+>> 	ports {
+>> 		
+>> 		port@0{
+>> 			#address-cells = <1>;
+>> 			#size-cells = <0>;
+>>
+>> 			/delete-node/ endpoint;
+>>
+>> 			usb_1_ss2_qmpphy_usb3_out: endpoint@0 {
+>> 				reg = <0>;
+>> 				
+>> 				remote-endpoint = <&usb_con_ss>;
+>>
+>> 				data-lanes = <1 2 0 0>;
+>> 			};
+>>
+>> 			usb_1_ss2_qmpphy_dp_out: endpoint@1 {
+>> 				reg = <1>;
+>> 				
+>> 				remote-endpoint = <&dp_con>;
+>>
+>> 				data-lanes = <0 0 1 2>;
+>> 			};
+>> 		};
+>> 	};
+>> };
+>>
+>> So the driver logic would need to look at the port0/endpoint0 and port0/endpoint1
+>> data-lanes to figure out the mode.
+>>
+>> Is this what you were thinking ?
+> 
+> No, I was really thinking about the data-lanes in the PHY parts, so I
+> was incorrect there (which is incrrect as you've pointed out).
+> 
+> The endpoints approach looks interesting though.
+> 
 
-Signed-off-by: Yixun Lan <dlan@gentoo.org>
----
-This patch try to resolve the DT check warning due to
-the clock for sec_uart1 is not implemented.
----
-Changes in v2:
-- remove sec_uart1 node instead of marking it as reserved
-- Link to v1: https://lore.kernel.org/r/20250718-02-k1-uart-clock-v1-1-698e884aa717@gentoo.org
----
- arch/riscv/boot/dts/spacemit/k1.dtsi | 11 +----------
- 1 file changed, 1 insertion(+), 10 deletions(-)
+Indeed this would accurately describe the data flow and lane mapping, but
+I fear this would add a very complex logic in the driver.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1.dtsi b/arch/riscv/boot/dts/spacemit/k1.dtsi
-index abde8bb07c95c5a745736a2dd6f0c0e0d7c696e4..3094f75ed13badfc3db333be2b3195c61f57fddf 100644
---- a/arch/riscv/boot/dts/spacemit/k1.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1.dtsi
-@@ -777,16 +777,7 @@ uart9: serial@d4017800 {
- 				status = "disabled";
- 			};
- 
--			sec_uart1: serial@f0612000 {
--				compatible = "spacemit,k1-uart",
--					     "intel,xscale-uart";
--				reg = <0x0 0xf0612000 0x0 0x100>;
--				interrupts = <43>;
--				clock-frequency = <14857000>;
--				reg-shift = <2>;
--				reg-io-width = <4>;
--				status = "reserved"; /* for TEE usage */
--			};
-+			/* sec_uart1: 0xf0612000, not available from Linux */
- 		};
- 
- 		multimedia-bus {
+Anyway I'll try to drop something.
 
----
-base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-change-id: 20250718-02-k1-uart-clock-0beb9ef10fe0
-
-Best regards,
--- 
-Yixun Lan
-
+Neil
 
