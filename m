@@ -1,120 +1,193 @@
-Return-Path: <devicetree+bounces-211580-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211581-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A0A2B3F927
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:52:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A1AB3F933
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:55:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C27916AED9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:52:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2BCA172B99
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:55:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 640762E8B82;
-	Tue,  2 Sep 2025 08:52:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921222E8B9A;
+	Tue,  2 Sep 2025 08:55:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gHGszV8H"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="t+0hnkZe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 846C7270572;
-	Tue,  2 Sep 2025 08:52:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E89342E719B
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756803131; cv=none; b=hepbISO05LFaOWCKQD1uGHFrQz6kWZX4ldZOeRsDx6mLBONFkyvnnPSkZZ4I4bntfi7ytTC0tEE/iyJ5IZyQqzXg2JJ4XAkFiDbpRlojUKA0SieANTeAdjxVKVwBbB5FUxNwGMR2V/QHMPjfLLz3nAx7FshshtOnUhp6grcBu8M=
+	t=1756803305; cv=none; b=diPJKjxEdKaxU58ohLqaBFx/KtLMvVh669NxTDSWCQOX/+9AtA2gi5OVYuY1RAhxtQiT50rx33RAOS/ixVaN4i26CO0jblRujemMRfT16tgSBDJajze8JAGtzdi1cn6Ij2S3xSdqflbvYZxbUXiJarIF5kex9bJ5HNsYJPPJwqs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756803131; c=relaxed/simple;
-	bh=cADqc0G/7sL0/oarbsXhlWO50gtKRaEdW31AEj39NuI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XCHXSdnNAPodZ/tfhnByjC7+P4s8vEQUuvKcYKkibljJXbAemrSL6olbov0uE6fcjlYMJzzSXN7AujygGiyEaxhhvt0zZ4lSRP8pm8wmya0RsKFSQUFewDDBFHifWF2TOi8AwqrIdGuksIYYMrsHy8Of6bGzpEYURPSmmanHzzA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gHGszV8H; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5828q45k2549616;
-	Tue, 2 Sep 2025 03:52:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756803124;
-	bh=BEaYaFcRNCB3rYEaAmMXhkNIWrWDCrbSUKBE4BRwTNg=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=gHGszV8Ho7ppNXMFp7tAIWgS+beKufNbPzy/rCIdm6n3JkdmidpmQsqINz4FUolqS
-	 WQ4o+rsRA98cTiTyp9wqORyZrJfdrWLJqys8P7VKCayeimjYA7WKiRongwl85s6Gxb
-	 ZvHj/iDw1OBFTgjVfOP11bytEwWgxHx5TxxWObDg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5828q4Od2158781
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 2 Sep 2025 03:52:04 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 2
- Sep 2025 03:52:03 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 2 Sep 2025 03:52:03 -0500
-Received: from localhost (uda0492258.dhcp.ti.com [172.24.231.84])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5828q2iQ3526474;
-	Tue, 2 Sep 2025 03:52:03 -0500
-Date: Tue, 2 Sep 2025 14:22:02 +0530
-From: s-vadapalli <s-vadapalli@ti.com>
-To: Paresh Bhagat <p-bhagat@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <khasim@ti.com>, <v-singh1@ti.com>,
-        <afd@ti.com>, <bb@ti.com>, <s-vadapalli@ti.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62a-main: Fix pinctrl
- properties
-Message-ID: <77edd9c0-9bfe-4963-8149-51c819cce022@ti.com>
-References: <20250823032304.1085775-1-p-bhagat@ti.com>
- <20250823032304.1085775-2-p-bhagat@ti.com>
+	s=arc-20240116; t=1756803305; c=relaxed/simple;
+	bh=kWombz4HNlpFcrMgQMXBBue7C+pUbLQVl5IC6T0/t6o=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=YbaJYz/AL0jm9Dy7Fza4OqDuEM6gGF1XsPZk+/iKnONuAJPqN+GKA1t4wp6iOKu9OATewOpX8KSNjXwILk4QuopaN25L15zBBCNjrHtEyj0i3xq92vjPhyAKcXwtzvji+0N0rWGBnh/2IQAwtNfi8oWDFNlQlvx3h/Bw9ScBWrA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=t+0hnkZe; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250902085459epoutp04c7e5576343a2c64e404caa25daa00a4b~ha0sRv0qA2761727617epoutp04i
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 08:54:59 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250902085459epoutp04c7e5576343a2c64e404caa25daa00a4b~ha0sRv0qA2761727617epoutp04i
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756803299;
+	bh=FWxR7EjLH+QBGQHkkz3O4Nq986bJi5SnUxrGo2YiUnU=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=t+0hnkZejLMXJaQHvU/Eq8NUZgvjWhd3NPDCKEr91JamL8i8erMVKWK9yd3B3zWt+
+	 lKm4dNit/DoNqCxIM2p3EyJJMggi5cm7mjZBqWnT8J0aeFP6oPX2YZuKlWgWWRCajk
+	 QiYcnAM+9T5CLTxNQzHfKxa2dz90Vh0fxsyvjOCY=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250902085459epcas2p109f24ef53f3456860134eec6ea128c26~ha0r7H-tJ1839518395epcas2p1u;
+	Tue,  2 Sep 2025 08:54:59 +0000 (GMT)
+Received: from epcas2p2.samsung.com (unknown [182.195.36.92]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4cGKLp5xgDz3hhT3; Tue,  2 Sep
+	2025 08:54:58 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250902085457epcas2p11aa355e58a9547378b8cec16241df3b3~ha0qWwE1i1839518395epcas2p1p;
+	Tue,  2 Sep 2025 08:54:57 +0000 (GMT)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250902085457epsmtip2c11dabe67f690f51f48da7afcdba40a7~ha0qR7B5v1783317833epsmtip2K;
+	Tue,  2 Sep 2025 08:54:57 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, "'Bartlomiej Zolnierkiewicz'"
+	<bzolnier@gmail.com>, "'Rafael J . Wysocki'" <rafael@kernel.org>, "'Daniel
+ Lezcano'" <daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>,
+	"'Lukasz	Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>,
+	"'Conor Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'"
+	<alim.akhtar@samsung.com>
+Cc: <linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <f6acdd01-8847-4282-b375-f8e564be81d2@kernel.org>
+Subject: RE: [PATCH 1/3] dt-bindings: thermal: samsung: Add tmu-name and
+ sensor-index-ranges properties
+Date: Tue, 2 Sep 2025 17:54:57 +0900
+Message-ID: <000401dc1be7$423272b0$c6975810$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250823032304.1085775-2-p-bhagat@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJ8jFumlJsm8aby6NwUOPwCr1UY/AHbmk9KAflqt+ACX/B717MNBDAw
+Content-Language: ko
+X-CMS-MailID: 20250902085457epcas2p11aa355e58a9547378b8cec16241df3b3
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250825064933epcas2p33e2b4566b5911fef8d7127900fc10002
+References: <20250825064929.188101-1-shin.son@samsung.com>
+	<CGME20250825064933epcas2p33e2b4566b5911fef8d7127900fc10002@epcas2p3.samsung.com>
+	<20250825064929.188101-2-shin.son@samsung.com>
+	<f6acdd01-8847-4282-b375-f8e564be81d2@kernel.org>
 
-On Sat, Aug 23, 2025 at 08:53:03AM +0530, Paresh Bhagat wrote:
-> From: Vibhore Vardhan <vibhore@ti.com>
-> 
-> Correct reg length to match end address - start address for main
+Hello Krzysztof Kozlowski,
 
-nitpick: s/reg/register
-
-I assume that you are implying "end address - start address" as
-subtracting the "start address" from the "end address" to get the
-length. This description might not be required given that you are
-stating the 'last physical address for the main pad configuration
-registers' below. You might rephrase it to indicate that the main pad
-configuration register region starts with the
-MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG0 register having the address of
-0x000f4000 and the region ends with the
-MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG150 register having the address of
-0x000f4258, as a result of which, the length of the region is 0x25c
-instead of 0x2ac.
-
-> PADCFG registers. The last physical address for the main pad
-> configuration registers (MAIN_PADCFG_CTRL_MMR_CFG0_PADCONFIG150) is
-> 0x000f4258. Adding 4 bytes gives 0x000f425c, so the size in device
-> tree should be defined as 0x25c instead of 0x2ac.
-> 
-> Reference Docs
-> TRM (AM62A) - https://www.ti.com/lit/ug/spruj16b/spruj16b.pdf
-> TRM (AM62D) - https://www.ti.com/lit/ug/sprujd4/sprujd4.pdf
-> 
-> Fixes: 5fc6b1b62639c ("arm64: dts: ti: Introduce AM62A7 family of SoCs")
-> Cc: <stable@vger.kernel.org>
-> Signed-off-by: Vibhore Vardhan <vibhore@ti.com>
-> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
-
-[...]
-
-Regards,
-Siddharth.
+> -----Original Message-----
+> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
+> Sent: Saturday, August 30, 2025 6:07 PM
+> To: Shin Son <shin.son=40samsung.com>; Bartlomiej Zolnierkiewicz
+> <bzolnier=40gmail.com>; Rafael J . Wysocki <rafael=40kernel.org>; Daniel
+> Lezcano <daniel.lezcano=40linaro.org>; Zhang Rui <rui.zhang=40intel.com>;
+> Lukasz Luba <lukasz.luba=40arm.com>; Rob Herring <robh=40kernel.org>; Con=
+or
+> Dooley <conor+dt=40kernel.org>; Alim Akhtar <alim.akhtar=40samsung.com>
+> Cc: linux-pm=40vger.kernel.org; linux-samsung-soc=40vger.kernel.org;
+> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
+ux-
+> kernel=40vger.kernel.org
+> Subject: Re: =5BPATCH 1/3=5D dt-bindings: thermal: samsung: Add tmu-name =
+and
+> sensor-index-ranges properties
+>=20
+> On 25/08/2025 08:49, Shin Son wrote:
+> > The exynosautov920 TMU requires per-sensor interrupt enablement for
+> > its critical trip points.
+> > Add two new DT properties to the Samsung thermal bindings to support
+> > this requirement:
+> >
+> > - **tmu-name**: an explicit identifier for each TMU,
+> > 		used to skip specific sensors
+> > (e.g., sensor 5 is temporarily disabled on the TMU_SUB1 block).
+> >
+> > - **sensor-index-ranges**: defines valid sensor index ranges
+> > 			   for the driver=E2=80=99s=20bitmap=20in=20private=20data,=0D=0A>=
+=20>=20=09=09=09=20=20=20enabling=20per-sensor=20interrupt=20setup=20and=20=
+data=20access.=0D=0A>=20>=0D=0A>=20>=20Signed-off-by:=20Shin=20Son=20<shin.=
+son=40samsung.com>=0D=0A>=20>=20---=0D=0A>=20>=20=20.../thermal/samsung,exy=
+nos-thermal.yaml=20=20=20=20=20=20=20=7C=2023=20++++++++++++++++++-=0D=0A>=
+=20>=20=201=20file=20changed,=2022=20insertions(+),=201=20deletion(-)=0D=0A=
+>=20>=0D=0A>=20>=20diff=20--git=0D=0A>=20>=20a/Documentation/devicetree/bin=
+dings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=20l=0D=0A>=20>=20b/Docu=
+mentation/devicetree/bindings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=
+=20l=20index=2029a08b0729ee..420fb7a944e3=20100644=0D=0A>=20>=20---=0D=0A>=
+=20>=20a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.y=
+am=0D=0A>=20>=20l=0D=0A>=20>=20+++=20b/Documentation/devicetree/bindings/th=
+ermal/samsung,exynos-thermal=0D=0A>=20>=20+++=20.yaml=0D=0A>=20>=20=40=40=
+=20-8,6=20+8,7=20=40=40=20title:=20Samsung=20Exynos=20SoC=20Thermal=20Manag=
+ement=20Unit=0D=0A>=20>=20(TMU)=0D=0A>=20>=0D=0A>=20>=20=20maintainers:=0D=
+=0A>=20>=20=20=20=20-=20Krzysztof=20Kozlowski=20<krzk=40kernel.org>=0D=0A>=
+=20>=20+=20=20-=20Shin=20Son=20<shin.son=40samsung.com>=0D=0A>=20=0D=0A>=20=
+This=20needs=20also=20explanation=20in=20commit=20msg.=0D=0A=0D=0AOk,=20I'l=
+l=20add=20an=20explanation=20for=20this=0D=0A=0D=0A>=20=0D=0A>=20>=0D=0A>=
+=20>=20=20description:=20=7C=0D=0A>=20>=20=20=20=20For=20multi-instance=20t=
+mu=20each=20instance=20should=20have=20an=20alias=20correctly=0D=0A>=20>=20=
+numbered=20=40=40=20-27,6=20+28,7=20=40=40=20properties:=0D=0A>=20>=20=20=
+=20=20=20=20=20=20-=20samsung,exynos5420-tmu-ext-triminfo=0D=0A>=20>=20=20=
+=20=20=20=20=20=20-=20samsung,exynos5433-tmu=0D=0A>=20>=20=20=20=20=20=20=
+=20=20-=20samsung,exynos7-tmu=0D=0A>=20>=20+=20=20=20=20=20=20-=20samsung,e=
+xynosautov920-tmu=0D=0A>=20>=0D=0A>=20>=20=20=20=20clocks:=0D=0A>=20>=20=20=
+=20=20=20=20minItems:=201=0D=0A>=20>=20=40=40=20-62,11=20+64,29=20=40=40=20=
+properties:=0D=0A>=20>=20=20=20=20=20=20minItems:=201=0D=0A>=20>=0D=0A>=20>=
+=20=20=20=20'=23thermal-sensor-cells':=0D=0A>=20>=20-=20=20=20=20const:=200=
+=0D=0A>=20>=20+=20=20=20=20enum:=0D=0A>=20>=20+=20=20=20=20=20=20-=200=0D=
+=0A>=20>=20+=20=20=20=20=20=20-=201=0D=0A>=20>=0D=0A>=20>=20=20=20=20vtmu-s=
+upply:=0D=0A>=20>=20=20=20=20=20=20description:=20The=20regulator=20node=20=
+supplying=20voltage=20to=20TMU.=0D=0A>=20>=0D=0A>=20>=20+=20=20tmu-name:=0D=
+=0A>=20=0D=0A>=20Generic=20property?=20Where=20is=20it=20defined.=0D=0A=0D=
+=0AOk,=20I'll=20remove=20this.=0D=0A=0D=0A>=20=0D=0A>=20>=20+=20=20=20=20de=
+scription:=20The=20TMU=20hardware=20name.=0D=0A>=20=0D=0A>=20Anyway,=20you=
+=20do=20not=20get=20instance=20IDs.=20I=20talked=20about=20this=20at=20OSSE=
+25.=0D=0A=0D=0AI've=20read=20your=20feedback=20and=20also=20reviewed=20your=
+=20presentation=20at=20OSSE25.=20=0D=0A(https://osseu2025.sched.com/event/2=
+5Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-koz=
+lowski-linaro)=0D=0AI=20will=20remove=20this=20and=20I=20utilized=20another=
+=20way.=0D=0A=0D=0A>=20=0D=0A>=20=0D=0A>=20>=20+=20=20=20=20=24ref:=20/sche=
+mas/types.yaml=23/definitions/string-array=0D=0A>=20>=20+=20=20=20=20minIte=
+ms:=201=0D=0A>=20>=20+=20=20=20=20maxItems:=201=0D=0A>=20>=20+=0D=0A>=20>=
+=20+=20=20sensor-index-ranges:=0D=0A>=20=0D=0A>=20Where=20is=20the=20proper=
+ty=20defined?=20You=20keep=20adding=20generic=20properties.=0D=0A=0D=0AI'll=
+=20remove=20the=20generic=20property=20and=20change=20it=20to=20=22samsung,=
+hw-sensor-indexes=22.=0D=0A=0D=0A>=20>=20+=20=20=20=20description:=20=7C=0D=
+=0A>=20>=20+=20=20=20=20=20=20Valid=20Sensor=20index=20ranges=20for=20the=
+=20TMU=20hardware.=0D=0A>=20=0D=0A>=20I=20don't=20understand=20what=20is=20=
+this=20for.=0D=0A=0D=0AI'll=20add=20more=20explanation=20for=20this.=0D=0A=
+=0D=0A>=20=0D=0A>=20>=20+=0D=0A>=20>=20+=20=20=20=20=20=20Note::=20On=20the=
+=20ExynosautoV920=20variant,=20the=20fifth=20sensor=20in=20the=20TMU=0D=0A>=
+=20SUB1=20is=20disabled,=0D=0A>=20>=20+=20=20=20=20=20=20so=20the=20driver=
+=20skips=20it=20when=20matching=20by=20tmu-name.=0D=0A>=20=0D=0A>=20That's=
+=20not=20name,=20so=20why=20are=20you=20referring=20to=20tmu-name?=20And=20=
+driver=20has=0D=0A>=20nothing=20to=20do=20here.=20Describe=20hardware.=0D=
+=0A>=20=0D=0A>=20None=20of=20this=20is=20really=20correct.=20:/=0D=0A>=20=
+=0D=0A>=20=0D=0A>=20Best=20regards,=0D=0A>=20Krzysztof=0D=0A=0D=0AI'll=20re=
+work=20the=20binding=20as=20you=20suggested.=0D=0AInstead=20of=20using=20ra=
+nges,=20I'll=20list=20the=20sensor=20indices=20explicitly,=0D=0AWhich=20sho=
+uld=20address=20the=20issues=20you=20pointed=20out.=0D=0A=0D=0AI'll=20inclu=
+de=20this=20change=20in=20the=20next=20revision,=0D=0Aso=20I=20would=20appr=
+eciate=20your=20review=20again.=0D=0AThank=20you.=0D=0A=0D=0ABest=20regards=
+,=0D=0AShin=20Son=0D=0A=0D=0A
 
