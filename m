@@ -1,121 +1,125 @@
-Return-Path: <devicetree+bounces-211646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4248B3FD12
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:53:58 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7189DB3FD56
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:07:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B3F91792EE
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:53:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25D057AEA6F
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 11:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B98772F5482;
-	Tue,  2 Sep 2025 10:53:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B3B22F747A;
+	Tue,  2 Sep 2025 11:06:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="nJ0D0uAx";
-	dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b="nJuHo2jM"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XC0EUBnf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from a7-12.smtp-out.eu-west-1.amazonses.com (a7-12.smtp-out.eu-west-1.amazonses.com [54.240.7.12])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BA712F532E;
-	Tue,  2 Sep 2025 10:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.240.7.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 672AB28541A;
+	Tue,  2 Sep 2025 11:06:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756810433; cv=none; b=ATVVdEaozf8EtD5JY6vN/RSCjIeOdOndWUHiIh+ikSkM02B5XegEPCX3OoJ+7kOoYz/MJUY8hsx/pqIb7K4+eFPgGvbdcGNVcY2tflmpcM0DyizZrwl9QSSloArGHEyWlMmK+I/u0hi2vdBcPFJd5UClB6hiQpbUrtCUUV1Cjp8=
+	t=1756811218; cv=none; b=GJXKROApomwepYtVkawwKzBB5sfQpALb5/NUlCSo9wOnfWyfypnag9kitzdpsflojoWU6DxfxWXqECd6x+rUOy8Va5yT9gPsGHNo5iGS7e4d9hdJKHy1YrWfYLad1fXnseV270LkGJ1wI9/E8dlkXWPmi/7WxSW1NlGN/yOpfLY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756810433; c=relaxed/simple;
-	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
-	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:Cc; b=AGBEnoOcq75D/4yJ1+YLNVVJ9dq6N1AW9B4wMDEsTbWGX05Tiot1YzI0ODzfiCNsUaEXV12rGZhxDZMCEQb42b8tEtwnOcZNsmSTddxMKvnjtxPqnP2QGkeEEgczJj4wY8xUy9TePwvrBlV09osvBfDMJ1YZh27r2vo1pVkZ/Rs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=eu-west-1.amazonses.com; dkim=pass (1024-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=nJ0D0uAx; dkim=pass (1024-bit key) header.d=amazonses.com header.i=@amazonses.com header.b=nJuHo2jM; arc=none smtp.client-ip=54.240.7.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eu-west-1.amazonses.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=vuvznkywrn6u4jb2ozie3fqz3nbg6pps; d=vinarskis.com; t=1756810429;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc;
-	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
-	b=nJ0D0uAxUw1MnHCpQjaEVZn/HHn+lc8nccE7MyOMHpOggc4rOsS3XxBkeNjeUo/y
-	DoAajtkg4X55l/DZzVedb+uMtnnPpplbyuLbFL9WuKQIgx57skjpk0fnmHCoAaRqHN0
-	+NRHusKu3wN1IgtIw3b0xHkTVpVM4VhRGof46gro=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-	s=ihchhvubuqgjsxyuhssfvqohv7z3u4hn; d=amazonses.com; t=1756810429;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:Cc:Feedback-ID;
-	bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
-	b=nJuHo2jM7pKvFYSjpHu07gcOnSUMWejM8PVNqh8VaYi4fXvz65QoqxUBthpy0p4M
-	U4KpFCxqYvVN+AHyKlPNXlOS3RmjD8uC7+cJCyVUZ8i8lm3LebmqqCGzQjCYmbIk1NI
-	/ZCc0qUQv7F/KL7RPz7KpotGzISoADznrrrdAAk4=
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Subject: [PATCH 0/2] leds: privacy-led support for devicetree
-Date: Tue, 2 Sep 2025 10:53:49 +0000
-Message-ID: <010201990a0fc52d-39c2afe8-587d-4331-8a4f-8edb7b45c124-000000@eu-west-1.amazonses.com>
+	s=arc-20240116; t=1756811218; c=relaxed/simple;
+	bh=bqhKBbFaxlfNUpOUFZdfQ3oL0LBK5S3VEHPSL8knTQI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RdZ5fyhB3J0zBVLN+zeMD2uBGOS32jZPL9xIUvGVqiJ2thF/OCubMzoZghkG/c/WXCbXU01Dw/rxdnooMuk+haXFD4lAplCnRgdasKCe93LX7Rj9jHe+LsSY1JOjS+9drs/wgo1QfID6PV+U+msesKBrIf7Rrl5R85eGwKT2qK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XC0EUBnf; arc=none smtp.client-ip=192.198.163.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756811218; x=1788347218;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bqhKBbFaxlfNUpOUFZdfQ3oL0LBK5S3VEHPSL8knTQI=;
+  b=XC0EUBnfmMNB4KdOn/MV9gdDib1Z5FFmKn0AJ3bC+EzaSjiimziUl1SZ
+   RRNBDQNuXl8RC7qYJFW7Hfc2723Mszsa5h9FIiv8LNJjM6A0PNcrjQo2W
+   OC+KnlbNEz7XglIfPjg0BGK2ucP6c5B7HCEsAlK3oG3Fj2vXz4wpmyGn7
+   QC48Io6xTobIHuUU9C6c6LjrMTQsUWOnLrdg7Er/MoWV5L20OLR46eXCx
+   kESrBnoHuSHjGy/WZ6ncDtjdc/7p3ZaEDXdaG1fE+LnFUB6QlsSblYkzM
+   XojCnv3sFt75W3rZ1DmbjQ5B6nWhPNAk9NT2ROmgGyKlzanM4Ex9/IJYD
+   Q==;
+X-CSE-ConnectionGUID: xBSqz30/S2qTu3UKFaA3nw==
+X-CSE-MsgGUID: Q60/psc+ThWaosTUxkmo4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11540"; a="70460314"
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="70460314"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 04:06:57 -0700
+X-CSE-ConnectionGUID: wGl8brGaRp2Au9fh2S0SJA==
+X-CSE-MsgGUID: khpair++SS2sFMTJC8qy8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="202193796"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 04:06:51 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1utOqe-0000000AfvR-0aC0;
+	Tue, 02 Sep 2025 14:06:48 +0300
+Date: Tue, 2 Sep 2025 14:06:47 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>,
+	Lakshay Piplani <lakshay.piplani@nxp.com>,
+	linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	marcelo.schmitt1@gmail.com, gregkh@linuxfoundation.org,
+	viro@zeniv.linux.org.uk, peterz@infradead.org,
+	jstephan@baylibre.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	ilpo.jarvinen@linux.intel.com, jonathan.cameron@huawei.com,
+	akpm@linux-foundation.org, chao@kernel.org, jaegeuk@kernel.org,
+	vikash.bansal@nxp.com, priyanka.jain@nxp.com,
+	shashank.rebbapragada@nxp.com, Frank.Li@nxp.com
+Subject: Re: [PATCH v2 2/2] iio: temperature: Add driver for NXP P3T175x
+ temperature sensor
+Message-ID: <aLbPx8yPP_EgzTmW@smile.fi.intel.com>
+References: <20250827103105.2472328-1-lakshay.piplani@nxp.com>
+ <20250827103105.2472328-2-lakshay.piplani@nxp.com>
+ <72c3ae7d-cb54-4a1b-a27a-9e673ffaddcc@kernel.org>
+ <20250901164717.6cba2d50@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAKnMtmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDI1MDSwMj3ZzUlGLdZDPDZAtz88SUFAsDJaDSgqLUtMwKsDHRsbW1AHbbYLd
- WAAAA
-X-Change-ID: 20250902-leds-c61c877add80
-To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Aleksandrs Vinarskis <alex@vinarskis.com>, 
-	Andy Shevchenko <andy.shevchenko@gmail.com>, 
-	Linus Walleij <linus.walleij@linaro.org>, 
-	Hans de Goede <hansg@kernel.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1243; i=alex@vinarskis.com;
- h=from:subject:message-id; bh=1qckQvzwlWC/fKlkJTiN3ZnCnQ5EdaufHJeY89/pEVg=;
- b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBnbzqzxT9XkXPr/pNb1PTO+x51jscyc/PWwr3d06dVgC
- xbV9/sFO0pZGMS4GGTFFFm6/3xN61o0dy3DdY1vMHNYmUCGMHBxCsBEzgcwMqxxWhI2Lzrqemij
- ge83Y7WKH8e33rteMC825aun7n4vTW5GhgvucU/smOO+hs8wb3e2FEqs+Mx63eOYzplzCy8bcoc
- 6sQEA
-X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
- fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
-Feedback-ID: ::1.eu-west-1.dmE2JeRFSagpgiG6D+fa+YE0PH7S+b7tab7/4kfDOU8=:AmazonSES
-X-SES-Outgoing: 2025.09.02-54.240.7.12
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250901164717.6cba2d50@jic23-huawei>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Re-spin of RFC patch from ~2.5 years ago [1]. v4l2 controls for privacy
-LEDs has landed, but the DT part was left out.
+On Mon, Sep 01, 2025 at 04:47:17PM +0100, Jonathan Cameron wrote:
+> On Sun, 31 Aug 2025 18:46:32 +0200
+> Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-With recent inflow of arm64-power laptops (Snapdragon X1E/X1P) which
-mostly use MIPI cameras, this feature becomes more desired. Original
-rebased patch is still working as expected (with respective DT changes)
-on Dell XPS 9345.
+...
 
-Changelog to original series:
-- Pick RFC patch, pick R-by, drop RFC-related commit message part
-- Add new DT binding to describe generic LED consumer properties
-- Rebase and test on X1E laptop
+> This device does have a novel definition of register. There
+> are 4 of them, 3 of which are 12 bits zero padded to 16 and
+> the other 8 bits.
+> 
+> So, I think only way to wrap that up fully in regmap would be
+> a pair of regmaps one of which has only a single register in it.
+> 
+> Agreed though that using bulk accesses is not a good plan.
+> I'd been assuming that was actually a pair of registers, not
+> a single larger one.
 
-[1] https://lore.kernel.org/all/20230120114524.408368-6-hdegoede@redhat.com/
+Why is it a problem? We have PMICs which have 16- and 8-bit registers and we do
+use the bulk transfers. Yes, we have also an exception when it's required to
+use byte transfers to make device work, but otherwise it works fine.
 
-Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
----
-Aleksandrs Vinarskis (1):
-      dt-bindings: leds: add generic LED consumer documentation
-
-Hans de Goede (1):
-      leds: led-class: Add devicetree support to led_get()
-
- .../devicetree/bindings/leds/leds-consumer.yaml    | 69 ++++++++++++++++++++++
- drivers/leds/led-class.c                           | 38 +++++++++---
- 2 files changed, 98 insertions(+), 9 deletions(-)
----
-base-commit: 3db46a82d467bd23d9ebc473d872a865785299d8
-change-id: 20250902-leds-c61c877add80
-
-Best regards,
 -- 
-Aleksandrs Vinarskis <alex@vinarskis.com>
+With Best Regards,
+Andy Shevchenko
+
 
 
