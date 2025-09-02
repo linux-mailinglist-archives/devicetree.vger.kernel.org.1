@@ -1,57 +1,55 @@
-Return-Path: <devicetree+bounces-211571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40406B3F8E1
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:43:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B863B3F8E4
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BFDF51884984
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:43:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 385E61B21CBE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:43:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E61532E8DF4;
-	Tue,  2 Sep 2025 08:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6CA2E92D1;
+	Tue,  2 Sep 2025 08:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PFDANPdO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tisHRrgF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B64E82E88AB;
-	Tue,  2 Sep 2025 08:38:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6AD22E92DD;
+	Tue,  2 Sep 2025 08:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756802300; cv=none; b=KTa+KnXYbK0Irr2ln4GgDd6ODkzl3awE1W/LxxD3E4sf7uSc8keapF7LYrGzAMaeqoNEGJdp8oPkcXXvH5wb3++Vh1FCnpnqqssoXlAAhwD6c1hB+S+nRaAi3KD9tDOVTVKHjHa4PQt+iO3e6rLYHp4E4yWP+Ay0VQb0k+flssc=
+	t=1756802385; cv=none; b=Pm0e/Ow8G9rUYjUjJpQpYwPPR65tUIcmB2ObKM8GzlQbE0xRmR1xRWUVYpaNcvI46ZH4+p6yAlLXsDUBMCHOu4gej1GVdZV8RImQv9UalsLHVY1gh0lqaA3aOHVIdXXqIXv0sjuXJQL4Bydmd5YqihWZsdKXmL3y0fqhtryB9/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756802300; c=relaxed/simple;
-	bh=cwgdem8vKiy3CQWfL+x3RfkBewMyB5GZGIa1qsHXMvA=;
+	s=arc-20240116; t=1756802385; c=relaxed/simple;
+	bh=pCX1etlH1LuViL2VgyPA4QXKv1ighlM6KMk0tP7dn28=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OZ0lJX7I93W60VSji9liJLvVKTf1kFpiUNw1sXuTuiGJILyuj8ZvORF4M4YQnGx+9FD0VNsHxRRBIM6BHKFpS/74P2tqT6/l5MLoTM34crxSlwh6F79UhLfiQqfqWC+Zkz6kQr8/2taJn8RFPom31uAptWWoKSD4tiD1NNltqJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PFDANPdO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E4A9C4CEED;
-	Tue,  2 Sep 2025 08:38:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=EQL5K0LBD3vsj6qEHITnybHWpbheqY+lfi4MfvGg1/+4Aq0KFiEWgoNjM30E2ZTgpXTFC/utuBsNrXHOIP3e2EPm/wTayZrX4xdLMiJMLlzQsbw1Wl8RyU7PUEHAqc0CweK/1Lz1v+5r+yQRWkLqfxDy2jI485TdEqIOGee+lMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tisHRrgF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 94308C4CEED;
+	Tue,  2 Sep 2025 08:39:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756802300;
-	bh=cwgdem8vKiy3CQWfL+x3RfkBewMyB5GZGIa1qsHXMvA=;
+	s=k20201202; t=1756802385;
+	bh=pCX1etlH1LuViL2VgyPA4QXKv1ighlM6KMk0tP7dn28=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=PFDANPdOfM/p6ekHLq6Jii3ccHU1acIXj0R6wb64i4msjWG69qbfmknwHFYDn+zyB
-	 ++YH9I+TQuN2lWV94irqkLV41WTKFBGuQkQHN5MQdpzuE+tK4n7XKLdebD5EruXb2N
-	 DnnZyVrXpKN58+coVl2Z96jFS9JFHxIrsALLv3sloFD3EU/YW12S3VMspOAyBK8IZB
-	 0tvIEqmD/YEVVS2eAmdN8aPITuVbH6BUyJ29Ic11H0V5njSxvIa/rpv2knFda1t1PD
-	 mtnWMpiGlo7i4v4Utq0k1n45ZGblI4avZEl4WjlCwlUwOup6Keqk00A88ZS7+FA2Zi
-	 8vShVMqDcwefQ==
-Date: Tue, 2 Sep 2025 10:38:17 +0200
+	b=tisHRrgFmWpcqn8WhzS9FB3hSrylwFo6fK/OP+9EHDRGfU3EMrGOjMusPhqazUMZu
+	 L03GMPbOfXg8+RgMyBpvBjV8iLyPJcQdXgJz1uRyJ2irGRcbjK9WFY048VdeTAyloi
+	 4RseR7tnudqGVsEpVT2+DfJFGlPh4OlGTwc+eqGdEm8AFgOKNAvRUMfCy8BXmEiDiW
+	 /ZSobAVZAaUDsp7kvFZvVBv4vMbrKP/7a1nJhNDp9mYzuRLJpApEI3eRdPdWrfAIDC
+	 Hyd+oEgCD4xO5fxI4fCf0cfeDAB+0ZnbnX0OFISG1ATMsJC5dO/5Zj5UEIJEMFSUlQ
+	 wsAJAVa5iSLnA==
+Date: Tue, 2 Sep 2025 10:39:42 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, vkoul@kernel.org, 
-	conor+dt@kernel.org, srini@kernel.org, yung-chuan.liao@linux.intel.com, 
-	pierre-louis.bossart@linux.dev, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-sound@vger.kernel.org
-Subject: Re: [PATCH 4/7] soundwire: qcom: deprecate qcom,din/out-ports
-Message-ID: <20250902-light-vegan-snake-efe03c@kuoka>
-References: <20250901195037.47156-1-srinivas.kandagatla@oss.qualcomm.com>
- <20250901195037.47156-5-srinivas.kandagatla@oss.qualcomm.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	Christian Kahr <christian.kahr@sie.at>
+Subject: Re: [PATCH] dt-bindings: hwmon: ti,ina2xx: Add INA700
+Message-ID: <20250902-purring-lively-aardwolf-dca3e4@kuoka>
+References: <20250901215648.2696843-1-linux@roeck-us.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,73 +58,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250901195037.47156-5-srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <20250901215648.2696843-1-linux@roeck-us.net>
 
-On Mon, Sep 01, 2025 at 08:50:34PM +0100, Srinivas Kandagatla wrote:
-> Number of input and output ports can be dynamically read from the
-> controller registers, getting this value from Device Tree is redundant
-> and potentially lead to bugs.
+On Mon, Sep 01, 2025 at 02:56:48PM -0700, Guenter Roeck wrote:
+> Add a compatible string for INA700. The chip is register compatible with
+> INA780 but implements different ADC ranges and thus needs a separate
+> compatible entry.
 > 
-> Remove the code parsing this property along with marking this as
-> deprecated in device tree bindings.
-> 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-> ---
->  drivers/soundwire/qcom.c | 134 ++++++++++++++-------------------------
->  1 file changed, 49 insertions(+), 85 deletions(-)
-> 
-> diff --git a/drivers/soundwire/qcom.c b/drivers/soundwire/qcom.c
-> index 7f19ebba6137..4fa3e1c080ef 100644
-> --- a/drivers/soundwire/qcom.c
-> +++ b/drivers/soundwire/qcom.c
-> @@ -128,7 +128,6 @@
->  #define MAX_FREQ_NUM						1
->  #define TIMEOUT_MS						100
->  #define QCOM_SWRM_MAX_RD_LEN					0x1
-> -#define QCOM_SDW_MAX_PORTS					14
->  #define DEFAULT_CLK_FREQ					9600000
->  #define SWRM_MAX_DAIS						0xF
->  #define SWR_INVALID_PARAM					0xFF
-> @@ -195,6 +194,7 @@ struct qcom_swrm_ctrl {
->  	int wake_irq;
->  	int num_din_ports;
->  	int num_dout_ports;
-> +	int nports;
->  	int cols_index;
->  	int rows_index;
->  	unsigned long port_mask;
-> @@ -202,7 +202,7 @@ struct qcom_swrm_ctrl {
->  	u8 rcmd_id;
->  	u8 wcmd_id;
->  	/* Port numbers are 1 - 14 */
-> -	struct qcom_swrm_port_config pconfig[QCOM_SDW_MAX_PORTS + 1];
-> +	struct qcom_swrm_port_config *pconfig;
->  	struct sdw_stream_runtime *sruntime[SWRM_MAX_DAIS];
->  	enum sdw_slave_status status[SDW_MAX_DEVICES + 1];
->  	int (*reg_read)(struct qcom_swrm_ctrl *ctrl, int reg, u32 *val);
-> @@ -1157,7 +1157,7 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
->  				       struct snd_pcm_hw_params *params,
->  				       int direction)
->  {
-> -	struct sdw_port_config pconfig[QCOM_SDW_MAX_PORTS];
-> +	struct sdw_port_config *pconfig __free(kfree) = NULL;
+> Cc: Christian Kahr <christian.kahr@sie.at>
+> Signed-off-by: Guenter Roeck <linux@roeck-us.net>
 
-That's incorrect usage of __free(), missing constructor.
+Please mention in commit msg where is any user of that.
 
->  	struct sdw_stream_config sconfig;
->  	struct sdw_master_runtime *m_rt;
->  	struct sdw_slave_runtime *s_rt;
-> @@ -1167,6 +1167,10 @@ static int qcom_swrm_stream_alloc_ports(struct qcom_swrm_ctrl *ctrl,
->  	int maxport, pn, nports = 0, ret = 0;
->  	unsigned int m_port;
->  
-> +	pconfig = kcalloc(ctrl->nports, sizeof(*pconfig), GFP_KERNEL);
-
-This almost always goes to definition and I do not see anything
-preventing it.
-
-> +	if (!pconfig)
-> +		return -ENOMEM;
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
