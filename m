@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-211728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F677B405B9
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:57:25 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EA97B405C2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:58:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 070CE1752A0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:52:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81CEF544BCE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:52:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B4D431E11F;
-	Tue,  2 Sep 2025 13:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9065123D7EC;
+	Tue,  2 Sep 2025 13:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b0K2JpJE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G0FKmOQA"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 636F330507B;
-	Tue,  2 Sep 2025 13:47:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E7D3594B;
+	Tue,  2 Sep 2025 13:48:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756820821; cv=none; b=N3W2rJ8HLie+KxVfgSIWcveKarM4XP6zV5aCUnxsdDoBBhjWlUVNzmqMktxW2tAPaoPjDkCDDvYMUy8rQyFjXl3Rs7Wst8DeCtTj/4c931+qIgGR6qIUGHq5QipFcdyosQgfMvnC7l7hEh/h0DhxQa7o8jPC5ICpfjU7WsHABQ4=
+	t=1756820882; cv=none; b=iwt5fw6z+HnrlRDdQUIpZihyGXXmXECNrrk/hX7IJs/qvp3i0RpeikJchS4/PsIg3o5lGBw1fJPwf2gJutt0sjH/anr5Ie+c0PFqkmqssysaAWNnBikA4Le3UKfVMzea8jdsHm4hCdO4efuOxF+RGxERyeD64uzkIvmJdyenVxE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756820821; c=relaxed/simple;
-	bh=Q4QPfzUu47P42YnLK4UGAtQJRVnRQmt3A3IZWY3kIKg=;
+	s=arc-20240116; t=1756820882; c=relaxed/simple;
+	bh=0mFNiXS1ZYRpaAsAJURJYSZgLBLj8Xl7c8WmeKefqQU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C1COrzK9M51vSWQCHgs2K4NDsIf30rVwmyiQ8art/0Q1OzltJ8uoyQwjmzA4AVEWQQSDyFbkmLHPbLrbbvjDaMj2zbLmo4aQkh5cFx3lYvJRwXZnW/5Lbo2P6sntAeuiOBhV50ATZWtvJDvcO4odAEy992LB1ZtSb9aUikAII8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b0K2JpJE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C3EC4CEED;
-	Tue,  2 Sep 2025 13:46:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=OLeJWIRHJPgcX4n6mIJUrW/SfPx5TWGqPZmOc0gaXG5n6jQ+zcyR3y0CHPjBbZM9Bob18Rma5jGyrMkW1aba9j+umZ7+6rv1zxg5rvOWcS3GdKY6g+2Lb+U94499TaBcC1DkvbcpIprG8w5Y1N+Ry1qgcgFJHnFnSUwphV+/PZc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G0FKmOQA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D599CC4CEED;
+	Tue,  2 Sep 2025 13:47:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756820821;
-	bh=Q4QPfzUu47P42YnLK4UGAtQJRVnRQmt3A3IZWY3kIKg=;
+	s=k20201202; t=1756820882;
+	bh=0mFNiXS1ZYRpaAsAJURJYSZgLBLj8Xl7c8WmeKefqQU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=b0K2JpJElFazhN6vuww9wILU4MYelAbbwmwdZb1Wx6AVoULLto89hPXxIIHwGFCxb
-	 uJhfAitlxM+Vim8s6sDA0F/lA/RtkBkHxiLViiCp01emwYcwFwWYfHXBpPHTTL32g/
-	 l55s/WwvMp4aU9w7a9YcCh5xvO4AXGHsRHx0xUBaC/xkpn+lzvq0CntvWQXwihJwOv
-	 hLgziYuRmIGPSVKrdNNHSPTBfmNgwr2skQG65KIPxAc7G5Xb1kq3jlaRB++mtwaWmV
-	 lzWCbewovyO9sDhk7HAPee8/CElsaTu4SxMDc3ksEnbMPV5fLzBX+PsE4M0aqHoWOG
-	 z5Mj2m76PTzLQ==
-Message-ID: <ae28c7e0-6ea1-4a0a-b923-d3906d71141e@kernel.org>
-Date: Tue, 2 Sep 2025 15:46:55 +0200
+	b=G0FKmOQAjY1UCkqqGObi3FX33lMx/mOyGi54mNPwKEi5uqnQbO/FelW6YsCtU517x
+	 QU4HMhBxAGlSZgcxV4fhzCI855utWhe/+PlVBMEsCWkf3r9p1gNoGVS8y5MfT0CKk3
+	 +MGNcLLV6W3BrhsPuz/nwQKLbgeB+vUqKbUsJiraL5mzHHiLnqwiJVYe3/BLq/2upc
+	 ViFFJ1HBD0sy89DJ8PIaZgmF5ogZAI3HmNeQympKt9yA85G3py4/lssULr7U+cdoBI
+	 usT/TEr5V26Fo80czFmeearHc30z+t6W10+Q8pa9o88SfigSitFSlYakDaI82hLzmQ
+	 HVgR/fwcBx7Eg==
+Message-ID: <677aad27-66b9-4c4f-8fbe-6b9aabcd375a@kernel.org>
+Date: Tue, 2 Sep 2025 15:47:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,25 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI
- TMDS181 and SN65DP159 bindings
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: dri-devel@lists.freedesktop.org, Andrzej Hajda <andrzej.hajda@intel.com>,
- Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Jonas Karlman <jonas@kwiboo.se>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250901142958.843678-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.edc18686-244f-441e-a6ac-0b62492b96c8@emailsignatures365.codetwo.com>
- <20250901142958.843678-2-mike.looijmans@topic.nl>
- <20250902-hasty-spry-nautilus-c05c6a@kuoka>
- <e007ee80-2eff-4859-b2e3-402950081b4f@topic.nl>
+Subject: Re: [PATCH v1 5/5] riscv: dts: microchip: add a device tree for
+ Discovery Kit
+To: Conor Dooley <conor@kernel.org>
+Cc: Valentina.FernandezAlanis@microchip.com, Conor.Dooley@microchip.com,
+ Daire.McNamara@microchip.com, paul.walmsley@sifive.com, palmer@dabbelt.com,
+ robh@kernel.org, krzk+dt@kernel.org, aou@eecs.berkeley.edu, alex@ghiti.fr,
+ linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250825161952.3902672-1-valentina.fernandezalanis@microchip.com>
+ <20250825161952.3902672-6-valentina.fernandezalanis@microchip.com>
+ <2b1eb8fd-2a64-4745-ad93-abc53d240b69@kernel.org>
+ <bb5b0d71-41b1-48a0-82fc-bdb362cc3db1@microchip.com>
+ <0d90eeb4-e6ac-459c-a6b1-26368f102e0e@kernel.org>
+ <20250902-affair-scrambler-2771df16372e@spud>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -114,44 +109,35 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <e007ee80-2eff-4859-b2e3-402950081b4f@topic.nl>
+In-Reply-To: <20250902-affair-scrambler-2771df16372e@spud>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 02/09/2025 10:46, Mike Looijmans wrote:
->>> +          endpoint:
->>> +            $ref: /schemas/media/video-interfaces.yaml#
->>> +            unevaluatedProperties: false
->>> +
->>> +      port@1:
->>> +        $ref: /schemas/graph.yaml#/$defs/port-base
->>> +        unevaluatedProperties: false
->>> +        description: Video port for HDMI output (panel or bridge)
->>> +
->>> +        properties:
->>> +          endpoint:
->>> +            $ref: /schemas/media/video-interfaces.yaml#
->>> +            unevaluatedProperties: false
->>> +
->>> +    required:
->>> +      - port@0
->>> +      - port@1
->>> +
->>> +  ti,source-mode:
->>> +    type: boolean
->>> +    description:
->>> +      Force chip to operate in "source" mode. Allows to use
->>> +      a TMDS181 chip (which defaults to sink) as cable driver.
->>> +
->>> +  ti,sink-mode:
->> Aren't these two mutually exclusive? Can same device operate in source
->> and in sink mode simultaneously?
+On 02/09/2025 10:31, Conor Dooley wrote:
+> On Tue, Sep 02, 2025 at 08:22:02AM +0200, Krzysztof Kozlowski wrote:
 > 
-> They're exclusive, yes. Will add that.
+>>>>> +     refclk_ccc: cccrefclk {
+>>>>
+>>>> Please use name for all fixed clocks which matches current format
+>>>> recommendation: 'clock-<freq>' (see also the pattern in the binding for
+>>>> any other options).
+>>>>
+>>>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+>>> The fabric dtsi describes elements configured by the FPGA bitstream. 
+>>> This node is named as such because the Clock Conditioner Circuit CCC's 
+>>> reference clock source is set by the FPGA bitstream, while its frequency 
+>>> is determined by an on-board oscillator.
+>>>
+>>> Hope this clarifies the rationale behind the node name.
+>> No, because there is no style naming clocks like this. Neither proper
+>> suffix, nor prefix. Use standard naming.
+> 
+> So you want all fixed frequency clocks to be named "clk-foo" when
+> "clk-<freq>" is not suitable? Fine if you do, but I didn't realise that
+> it was required and haven't been keeping an eye out for it.
 
-Then either define constraints per variant in if:then: or maybe better
-use string enum. Not sure what applies where, so tricky to say which
-choice is better.
+Recommended is to just use consistent suffixes or prefixes. Binding asks
+for "clock-" so that's what I propose to use here.
 
 Best regards,
 Krzysztof
