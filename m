@@ -1,279 +1,110 @@
-Return-Path: <devicetree+bounces-211851-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 953D9B40F24
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:13:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3662BB40F39
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 23:18:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 14E3C1A87F42
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:13:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96C2A1B22B33
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 21:18:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6AAFA34F466;
-	Tue,  2 Sep 2025 21:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="luFQ2z1C"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E66592E8DF2;
+	Tue,  2 Sep 2025 21:17:33 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 379FF3570B8;
-	Tue,  2 Sep 2025 21:12:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 605612E7BCF
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 21:17:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756847543; cv=none; b=mKSWMbFQvywt5e8U9pDs0zwY08BFX2BAwdl6G9O1hjWDGLx04KA0T5LiuKkJT0j0n4c4WwuHl160TxwH6YqfSZppkLczO7+0JUnehKUcshEiP4uJLwntJRz2gOmzFzPPo1CUVUtB7qC5S3QDSj8nPaPRp3zALmMSKu7/+4IXxoo=
+	t=1756847853; cv=none; b=JYlYB8Ek3Ufxyb95jjisxqhhed3fCgMK8rehc96Df0SHLPKDYh1NLF4xomFyX9P9FHHe7R+vnAYv2fD4/sjLe8SFkHL/FNPVoXlbbkUdtFDCI+wgCiDjHJYNhf2BoCkmuhU3nBJ88nlVAxaH4orU/ieBFmvxU2ZeErdNxM8PuT4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756847543; c=relaxed/simple;
-	bh=GapsPE0aKjOsj/qJoAYb40Z1D6PTon6aeSohfFPAuzo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kWp2XhASzWoCyk6tAOfPw4Sr0T7FmOvZfuLKHCbz7IgTeH66C7dQ23D+Rn3UgVGVqRTm6rrg36DZNCHKm+UIcX8EEPVttZeM195Wzs5gFFJrYWVfQV2BXvjXyUkww1kqAnmxuKpL7tvgAFwy0Qo4gcv7qi7iHqkqgJZm+18xHnA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=luFQ2z1C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91524C4CEED;
-	Tue,  2 Sep 2025 21:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756847542;
-	bh=GapsPE0aKjOsj/qJoAYb40Z1D6PTon6aeSohfFPAuzo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=luFQ2z1CC0aNdVLIANDxZ0V9aM1cSpxaoqrjjYWZUnCkYRFx7s9eRrkwPTqxzQrf9
-	 jxA1rMgN31Exw34cNQDZ42JO9f+PfqIjNsq80CO2/V8bKj+5mu9rYzYKR0D1D2r4C/
-	 Ukq1fbSV/XkTjU6xjopAsFiVmvvO/5a/AC/crHx07Y84sQg/myI0CzTXDSnK+8U4Ke
-	 14eE5fhbCrnOKTag4F5U5gjlNwRTfH2emvWRgLuy0ZBRrNOo1fOEH3qQbCttH0V1tJ
-	 7tPURRQ2zVBOg8pf34fosE9Vypa981lvccN0DQtCafYaaGCm3n47XxDuTXDfl9QBPw
-	 0UeAv33nHfS5Q==
-Date: Tue, 2 Sep 2025 16:12:21 -0500
-From: Rob Herring <robh@kernel.org>
-To: Jacky Chou <jacky_chou@aspeedtech.com>
-Cc: linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, bhelgaas@google.com,
-	lpieralisi@kernel.org, kwilczynski@kernel.org, mani@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, vkoul@kernel.org, kishon@kernel.org,
-	linus.walleij@linaro.org, p.zabel@pengutronix.de,
-	linux-aspeed@lists.ozlabs.org, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v3 03/10] dt-bindings: PCI: Add ASPEED PCIe RC support
-Message-ID: <20250902211221.GA1179675-robh@kernel.org>
-References: <20250901055922.1553550-1-jacky_chou@aspeedtech.com>
- <20250901055922.1553550-4-jacky_chou@aspeedtech.com>
+	s=arc-20240116; t=1756847853; c=relaxed/simple;
+	bh=96vdvXhmnNdT4MFQkMkVANOim+pB4ODICUPWdZgOrxw=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=GQo1z4droDiyRXoppYGLWipVSfFr1yvWU39qC+um0cXoOvS3Tk1VF1eQVe5RyvYpxyBRGRaCl/fAcrZ7J7ekLNnrCnvEIljsdySQdyHnzbE+yiF0LkIshIDSoUiNTan/VBckkxaLpgYLZ4Lli+tVU6EJPHAryBT93i5Iw7X5qG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com; spf=pass smtp.mailfrom=douglass.dev; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=douglass.dev
+Feedback-ID: 3578:1022:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -1141507836;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Tue, 02 Sep 2025 21:17:11 +0000 (UTC)
+From: Woodrow Douglass <wdouglass@carnegierobotics.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Woodrow Douglass <wdouglass@carnegierobotics.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v2 0/2] regulator: pf530x: NXP PF530x regulator driver
+Date: Tue,  2 Sep 2025 17:17:00 -0400
+Message-Id: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <cover.1756822704.git.wdouglass@carnegierobotics.com>
+References: <cover.1756822704.git.wdouglass@carnegierobotics.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250901055922.1553550-4-jacky_chou@aspeedtech.com>
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1761; i=wdouglass@carnegierobotics.com; h=from:subject:message-id; bh=96vdvXhmnNdT4MFQkMkVANOim+pB4ODICUPWdZgOrxw=; b=owEBbQGS/pANAwAKAewLuLlPNh4UAcsmYgBot16YT3Hlg6S+cvuYLVXbQzFtOyTPsPat/3Brw Gr9Gmq8y5WJATMEAAEKAB0WIQSIUqjrbDLQw0mgxHLsC7i5TzYeFAUCaLdemAAKCRDsC7i5TzYe FIX0B/4kQBllafOqNjhfyIjqqiqPOXWZHNmmUzDLJJpqDGz8AsaGNJ+Hek/m1V+59kV8Wua6SDd r9X9oIGfHwludSlG3NBPk7c3LoGGPQjitCcmLv3Sn7yhNZqy/SNsAEo9o541EBKAjj+/aRzVw6c 05YR6LejK2M0M/KDYVws3sddXPsQrCpirI5dGo4g5K7Wz4+2EvENuFOYC651FPctLUuU2yZxjBD E0YNzSgmx21JcUYRY+lSY5CNdXX6e+yYi9bnLFdM84oGeLpGVH6YGSW1F6oIb3kDOp3QzVsKUVJ s1qsqhZJcVI3PCeTjlfvwxCIufqHI3kZLOvaO5s2Q7P8XuqN
+X-Developer-Key: i=wdouglass@carnegierobotics.com; a=openpgp; fpr=8852A8EB6C32D0C349A0C472EC0BB8B94F361E14
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 01, 2025 at 01:59:15PM +0800, Jacky Chou wrote:
-> ASPEED AST2600 provides one PCIe RC for Gen2 and AST2700 provides three
-> PCIe RC for two Gen4 and one Gen2. All of these RCs have just one root
-> port to connect to PCIe device. And also have Mem, I/O access, legacy
-> interrupt and MSI.
-> 
-> Signed-off-by: Jacky Chou <jacky_chou@aspeedtech.com>
-> ---
->  .../bindings/pci/aspeed,ast2600-pcie.yaml     | 179 ++++++++++++++++++
->  1 file changed, 179 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml b/Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml
-> new file mode 100644
-> index 000000000000..fe75bf2961c8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/aspeed,ast2600-pcie.yaml
-> @@ -0,0 +1,179 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/aspeed,ast2600-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED PCIe Root Complex Controller
-> +
-> +maintainers:
-> +  - Jacky Chou <jacky_chou@aspeedtech.com>
-> +
-> +description:
-> +  The ASPEED PCIe Root Complex controller provides PCI Express Root Complex
-> +  functionality for ASPEED SoCs, such as the AST2600 and AST2700.
-> +  This controller enables connectivity to PCIe endpoint devices, supporting
-> +  memory and I/O windows, MSI and legacy interrupts, and integration with
-> +  the SoC's clock, reset, and pinctrl subsystems.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2600-pcie
-> +      - aspeed,ast2700-pcie
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  ranges:
-> +    minItems: 2
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: IntX and MSI interrupt
-> +
-> +  resets:
-> +    items:
-> +      - description: PCIe controller reset
-> +
-> +  reset-names:
-> +    items:
-> +      - const: h2x
-> +
-> +  msi-parent: true
-> +
-> +  aspeed,ahbc:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the ASPEED AHB Controller (AHBC) syscon node.
-> +      This reference is used by the PCIe controller to access
-> +      system-level configuration registers related to the AHB bus.
-> +      To enable AHB access for the PCIe controller.
-> +
-> +  aspeed,pciecfg:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description:
-> +      Phandle to the ASPEED PCIe configuration syscon node.
-> +      This reference allows the PCIe controller to access
-> +      SoC-specific PCIe configuration registers. There are the others
-> +      functions such PCIe RC and PCIe EP will use this common register
-> +      to configure the SoC interfaces.
-> +
-> +  interrupt-controller:
-> +    description: Interrupt controller node for handling legacy PCI interrupts.
-> +    type: object
-> +    properties:
-> +      '#address-cells':
-> +        const: 0
-> +      '#interrupt-cells':
-> +        const: 1
-> +      interrupt-controller: true
-> +
-> +    required:
-> +      - '#address-cells'
-> +      - '#interrupt-cells'
-> +      - interrupt-controller
-> +
-> +    additionalProperties: false
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +  - $ref: /schemas/interrupt-controller/msi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: aspeed,ast2600-pcie
-> +    then:
-> +      required:
-> +        - aspeed,ahbc
-> +    else:
-> +      properties:
-> +        aspeed,ahbc: false
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: aspeed,ast2700-pcie
-> +    then:
-> +      required:
-> +        - aspeed,pciecfg
-> +    else:
-> +      properties:
-> +        aspeed,pciecfg: false
-> +
-> +required:
-> +  - reg
-> +  - interrupts
-> +  - bus-range
-> +  - ranges
-> +  - resets
-> +  - reset-names
-> +  - msi-parent
-> +  - msi-controller
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - interrupt-controller
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/ast2600-clock.h>
-> +
-> +    apb {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
+I wrote this driver to read settings and state from the nxp pf530x
+regulator. Please consider it for inclusion, any criticism is welcome.
 
-No need to show this node.
+I am resubmitting this patchset with an expanded email list at the
+suggestion of Krzysztof Kozlowski. I will be incorporating suggestions
+by Krzysztof and Mark Brown in a new revision tomorrow. Thank you very
+much for your comments.
 
-> +
-> +      pcie0: pcie@1e770000 {
-> +        compatible = "aspeed,ast2600-pcie";
-> +        device_type = "pci";
-> +        reg = <0x1e770000 0x100>;
-> +        linux,pci-domain = <0>;
-> +        #address-cells = <3>;
-> +        #size-cells = <2>;
-> +        interrupts = <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
-> +        bus-range = <0x80 0xff>;
-> +
-> +        ranges = <0x01000000 0x0 0x00018000 0x00018000 0x0 0x00008000
-> +            0x02000000 0x0 0x70000000 0x70000000 0x0 0x10000000>;
-> +
-> +        status = "disabled";
+Thanks again,
+Woodrow Douglass
 
-Examples should be enabled. Drop.
+Woodrow Douglass (2):
+  regulator: pf530x: Add a driver for the NXP PF5300 Regulator
+  regulator: pf530x: dt-bindings: nxp,pf530x-regulator
 
-> +
-> +        resets = <&syscon ASPEED_RESET_H2X>;
-> +        reset-names = "h2x";
-> +
-> +        #interrupt-cells = <1>;
-> +        msi-parent = <&pcie0>;
+ .../regulator/nxp,pf530x-regulator.yaml       |  74 ++++
+ MAINTAINERS                                   |   6 +
+ drivers/regulator/Kconfig                     |  12 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/pf530x-regulator.c          | 328 ++++++++++++++++++
+ 5 files changed, 421 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
+ create mode 100644 drivers/regulator/pf530x-regulator.c
 
-There shouldn't be any need to point to yourself.
+--
+2.39.5
 
-> +        msi-controller;
-> +
-> +        aspeed,ahbc = <&ahbc>;
-> +
-> +        interrupt-map-mask = <0 0 0 7>;
-> +        interrupt-map = <0 0 0 1 &pcie_intc0 0>,
-> +                        <0 0 0 2 &pcie_intc0 1>,
-> +                        <0 0 0 3 &pcie_intc0 2>,
-> +                        <0 0 0 4 &pcie_intc0 3>;
-> +        pcie_intc0: interrupt-controller {
-> +          interrupt-controller;
-> +          #address-cells = <0>;
-> +          #interrupt-cells = <1>;
-> +        };
-> +
-> +        pcie@8,0 {
-> +          reg = <0x804000 0 0 0 0>;
-> +          #address-cells = <3>;
-> +          #size-cells = <2>;
-> +          device_type = "pci";
-> +          resets = <&syscon ASPEED_RESET_PCIE_RC_O>;
-> +          reset-names = "perst";
-> +          clocks = <&syscon ASPEED_CLK_GATE_BCLK>;
-> +          pinctrl-names = "default";
-> +          pinctrl-0 = <&pinctrl_pcierc1_default>;
-> +          phys = <&pcie_phy1>;
-> +          ranges;
-> +        };
-> +      };
-> +    };
-> -- 
-> 2.43.0
-> 
+---
+Woodrow Douglass (2):
+      regulator: pf530x: Add a driver for the NXP PF5300 Regulator
+      regulator: pf530x: dt-bindings: nxp,pf530x-regulator
+
+ .../bindings/regulator/nxp,pf530x-regulator.yaml   |  74 +++++
+ MAINTAINERS                                        |   6 +
+ drivers/regulator/Kconfig                          |  12 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pf530x-regulator.c               | 328 +++++++++++++++++++++
+ 5 files changed, 421 insertions(+)
+---
+base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
+change-id: 20250902-pf530x-6db7b921120c
+
+Best regards,
+-- 
+Woodrow Douglass <wdouglass@carnegierobotics.com>
+
 
