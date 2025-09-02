@@ -1,248 +1,189 @@
-Return-Path: <devicetree+bounces-211642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D747B3FCDC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:41:35 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBD44B3FCEB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:43:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F27D3A806A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:40:03 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C231D4E3C90
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25BB2F363A;
-	Tue,  2 Sep 2025 10:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C01B42F3625;
+	Tue,  2 Sep 2025 10:42:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=maxlinear.com header.i=@maxlinear.com header.b="t2blhYa1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="k5FGj8Bc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2044.outbound.protection.outlook.com [40.107.223.44])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A70932F39D4;
-	Tue,  2 Sep 2025 10:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756809585; cv=fail; b=RxLY/4uzo5bQrTB2DReQQUx6Nk5bpcw1CM4Wd6DX0FO3RohLrXwxbXKffPTOc+SFpdoHh4vqKtexd1wp45jb+Azp7xGy9NO75gbTx1uOuv9gf0AMANfnQKHyov7PcuMxEZsOWvnruIIFCkWddCbcyVWlSxMdQ+ELB0FrWieAwEU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756809585; c=relaxed/simple;
-	bh=3lGJc328TTFeO9/vWs6vXGifKrQ7eS8wZjvk4QvXZ2w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=oL4DtKlv3llLK3YrbndwWBbCRC9DEWHHYDMtWKLcWQS4TV+/94KJzBkXFLZiCOYASR7uTyREDv3mlGo25DPLgo4oFB/330W6HAtjuq7f0qLyWjTiAh4HfBxCJvYWyLjV+mWZZNtw2ei8WXNB8X2BGvflnjR7qy5PgLSKIxilrbk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=maxlinear.com; spf=pass smtp.mailfrom=maxlinear.com; dkim=pass (2048-bit key) header.d=maxlinear.com header.i=@maxlinear.com header.b=t2blhYa1; arc=fail smtp.client-ip=40.107.223.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=maxlinear.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maxlinear.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=rdk2PavlE/C5GPm6VyniZjKV3Yf3xZ0ZFo0s4QwTGn4VpFO7ZmpcFgF95R6WpFnJijNAB9kaE3jy9GZSWdCtONY/wlax8lk5HI6ej5JfHqGbq4o/57XK7YengmJMTzCgngG52pOwBa5mWTxDHOtReYVI0Gnan6YKUbZ3NuStO5IRozVQp+MZ23vVmcvexfYxdxrbT7EkPrST6P1p6RVEQeAh/TiGhyEV8S4gDgNhbbKlXe9qXedi/9iOVmvASxDdmR+UP9UGi5KOuT3fa3btcEQTcWpHCR330xHan+UN2jdmm+wqPtq53glDIEqlt6F3ocpaEnaD1i37cgt3stmASQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=CgHp/8tErfDXld4APtcWEQmQ1fpT/tdRRUEmDFp0A0s=;
- b=RT+YtOU3PzIojBV6PDZm9hSRNszi9PzniW8pL3KOvFA0/m0qLhQvE76ok+7C9vD1ZAq2oHLSgpDqMTijG06nYb2YpEb6H+NBv2dkmLaMsR3yU2olmHcfjgYt/C+vW4EzG1oYixdGSj+98ujROs58z4cXBjA77iWo6tkAgEmjmLLH0aV5gncUwrjfPPG+i2WKY/lvnXTDNMltYxnYmOm4B6Tw1QyMofMBW8nPATdZT1xItTT1DkWW8vUUrnHqWD2hES6zqaU5NDQrtu+t79iVP/JHvOnqsbt3vSXEOmZEFGKNSkM/P+2ecBvCbiv+HQ5h+62oUGYYAkg9Z3qMvH4u0w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=maxlinear.com; dmarc=pass action=none
- header.from=maxlinear.com; dkim=pass header.d=maxlinear.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maxlinear.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CgHp/8tErfDXld4APtcWEQmQ1fpT/tdRRUEmDFp0A0s=;
- b=t2blhYa1g+qqU/5Yugj7QL4fesHA2K/yZCqXNg1P4SaLglghkoZCbvbfuyPIvaIH5TWxkvLP1QXBCF4fVw3/nVni0clWfirXQL7g7MccvAfuoLsO/CrcqD+Ak4pT5iHKHRo3tN5G8ERit0fAgEsgNg1oHxwnAMO87qSh65t4sASqujGyLF3kpK660aL/d6C705OsxkrKmRU8trLA2loDAL5+DW9EUE9CQ9OQUIq8rbWgNWSH8pq+e3Y2JQQKRR21Ifw6FSToGXJcn1kj8olzkjvmBmLJ9Cub0NJsLqQkHkvC6G2nztso2Uoy8p39gdAUXWdhDMJK9V9mKhV9AX2Wew==
-Received: from PH7PR19MB5636.namprd19.prod.outlook.com (2603:10b6:510:13f::17)
- by CO1PR19MB4933.namprd19.prod.outlook.com (2603:10b6:303:da::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Tue, 2 Sep
- 2025 10:39:38 +0000
-Received: from PH7PR19MB5636.namprd19.prod.outlook.com
- ([fe80::1ed6:e61a:e0e1:5d02]) by PH7PR19MB5636.namprd19.prod.outlook.com
- ([fe80::1ed6:e61a:e0e1:5d02%7]) with mapi id 15.20.9073.026; Tue, 2 Sep 2025
- 10:39:38 +0000
-From: Jack Ping Chng <jchng@maxlinear.com>
-To: Andrew Lunn <andrew@lunn.ch>
-CC: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"davem@davemloft.net" <davem@davemloft.net>, "andrew+netdev@lunn.ch"
-	<andrew+netdev@lunn.ch>, "edumazet@google.com" <edumazet@google.com>,
-	"kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>, Yi xin Zhu
-	<yzhu@maxlinear.com>, Suresh Nagaraj <sureshnagaraj@maxlinear.com>
-Subject: RE: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Thread-Topic: [PATCH net-next v3 2/2] net: maxlinear: Add support for MxL LGM
- SoC
-Thread-Index: AQHcGONYZdoM3BaqikyKYzM9KF3Q4bR6E/UAgAQAW/CAAD2rAIABUPVQ
-Date: Tue, 2 Sep 2025 10:39:38 +0000
-Message-ID:
- <PH7PR19MB56366632D5609B0B51FE8939B406A@PH7PR19MB5636.namprd19.prod.outlook.com>
-References: <20250829124843.881786-1-jchng@maxlinear.com>
- <20250829124843.881786-3-jchng@maxlinear.com>
- <65771930-d023-49e1-87a7-e8c231e20014@lunn.ch>
- <PH7PR19MB56360AF7B6FCB1AAD0B27120B407A@PH7PR19MB5636.namprd19.prod.outlook.com>
- <398ad4b1-1bd3-4adc-8bda-5cc8f1b99716@lunn.ch>
-In-Reply-To: <398ad4b1-1bd3-4adc-8bda-5cc8f1b99716@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=maxlinear.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH7PR19MB5636:EE_|CO1PR19MB4933:EE_
-x-ms-office365-filtering-correlation-id: f8b9c08b-9b6b-45fe-4da1-08ddea0d047c
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|366016|1800799024|376014|7416014|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?c3AQYhDrklb5Vfx46NtbG894gc0rmFIuSQNuu5MAKG1lB2YVCf5rIk9ALOrv?=
- =?us-ascii?Q?lu9zCFH3i5rjXtJNzTf+6e/cDB/K9jVCZroGBKYENVSl9kGPJQrwAMLr6aij?=
- =?us-ascii?Q?2lBOU4DR0bsTBZuRT7wSkmSz7q/ViZe+vwDfOHyiVcIIkcVNpbSfPiv5OiRI?=
- =?us-ascii?Q?iY3WyePkZyNn8zaBBExu7eIZXphqQQpsYI4b3xRB+IqgEn4TEgFPJkr8wRg/?=
- =?us-ascii?Q?WfcgMkPMdV/mfZiMWyCJv/Ctr9hHxVGvMh16hZCDqb4+mRcZByT7GnnXRhO6?=
- =?us-ascii?Q?pUdYi/ExJ+J0IZpATbRkR8aNBx3Gcmq4n2087R+37JJh04oNrqyD5Q6+3C4U?=
- =?us-ascii?Q?G+47cavQAyrqcrIClsxPY6sqKJh/8saC6DxNhlqt3fNixWJ2uLNo7TQA1Ucs?=
- =?us-ascii?Q?IWsKBU1I1hJPhHgH51G6fETxh1IMVVsNsY8ntzGyOjekGzQEsHhKW1dj6xVM?=
- =?us-ascii?Q?GRjL8wD9hf762mesoWOSc475CUcwh5P+NWbQUZWXhXNIcuVd4yWOFgWD2yIQ?=
- =?us-ascii?Q?oxViDahbxpHzAfSLoh3El4PLQ8qTBUnkqVgeZ90slQjf1UZNjEUdb7FuDwuO?=
- =?us-ascii?Q?HKjqZCNiA55aoUuR7znzchdkTVqQFq5xMm8DDpI+NNX1ZRbo97JUH/TSmExN?=
- =?us-ascii?Q?hkrLKGDXxYpmvX/5bt9LAg2ME2F6SCJLl90U37NrHj5fg58ly8EINEDgiZTw?=
- =?us-ascii?Q?8/9q3LfgQzoVFBPg96wf+XxDieeI2QqZI2E72l+unLh9W0u8nfsF5zVbrld2?=
- =?us-ascii?Q?SZ8psbx3eW8oPYeAZEj/rdJDfuV3fMiJXh8Y8NlFUA0YOZHOgvnAyy1CRMlj?=
- =?us-ascii?Q?iAGrWazuGfwXWldT5AXsA68IIG8DQzIuXSP384nUuSeXF5xtUetQ8pBfvLX1?=
- =?us-ascii?Q?1UtfHPIMHDwMK9ffNo7OgXWwq3qXxJKEZElFnWFHoXdzInAHLN2M6m1F+xGM?=
- =?us-ascii?Q?OWEsBL86SrEYOA/yaMc0WWpXfIjr096IUWXJA773W8rFbWDlikfsaWsldygO?=
- =?us-ascii?Q?fQpQPcnRJdy9HqKAlnR+onzH9iEBCwF+uR/tOMYjLTnVe0S171sK4grdnUrB?=
- =?us-ascii?Q?Fnah8o/KL0sk4g2qfSq+68sJR3dRflSnO5j2Lm9cxTqWe0bd26MEHXEk9JBc?=
- =?us-ascii?Q?ZrsXuh0TJVtAdx4oK3BMxgy9PodyfU5soGMNSecpLNyekEP8OlPzsXj6DAya?=
- =?us-ascii?Q?oDsx/8oIsCrn8lKDiHGt/CxZ/AkLmNwIXnYKMcWxEofuxBAcRNwofG4zK35j?=
- =?us-ascii?Q?KghTdBFJa6KQ9SrMHxUwibwo0IShvpMWX6vOUlThxO/KBoKjZoD1YpIQL2/X?=
- =?us-ascii?Q?d8so8lvUHC1K9cG7gSgFEGfamMR/BOiGD4NR9xFa8pd1quG8jQ0/MD1s6rzb?=
- =?us-ascii?Q?UlQIr/5duRVGhPQbgmHMtxAeaisGnlRBB/OebdQYcCJ09FNnLtyj9A5SKvud?=
- =?us-ascii?Q?QWQ8Iya9/eR3Q348/7TKFZCXrp8ajoCUhRic4Wy8uUs/5gZCsFXbCg=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR19MB5636.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(38070700018);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?lebemE9cSBZkL292wMoTH9XDyXbU33bQ0W/4mJGzLwPzyNaMToTKIgU74Fpg?=
- =?us-ascii?Q?zyLTs0n4RhRzSOaE7Oxs64mqbRXWaj9ivgG+1LayUkUzjmQBIMMYQOihGiuE?=
- =?us-ascii?Q?uNzOid4jyZaSTa+niUNN6zX9JSjDppmOrkTAKwMrpIzOY+hXw6vWWtztETp9?=
- =?us-ascii?Q?kbzQKK7Z1M8s8Yq18EDyB3CsUk0stpXI3pLB6pXxo1tyWYG84o93shQEKgiP?=
- =?us-ascii?Q?+zg/FOqOL7squxJwbwn3DzsXZGJUweFjrV2op3NhkOWe2pBW8lU5uYL3ADlk?=
- =?us-ascii?Q?pavXDf84wU0arNF4yuKmS1tKidLWJ5Q1cTptEnnVKOmKj8Ou50THRXwIx1s9?=
- =?us-ascii?Q?nw8CHX6vKHfglvBfh/9aw9eWUhcW9xg73ZiiMKYhG/CGBKjUBefA2t65V6ua?=
- =?us-ascii?Q?2d2/RyeQatN0HZDKyw2D3phmQBKBqptAgN7pnHKm6ilOmhTgxNgcKdnSgUm4?=
- =?us-ascii?Q?+YFX2xERhgEM6JslRzIYHlm6rTjZtSIhzI+8lUVhnQ15tbBdxTjOe9pdXI5L?=
- =?us-ascii?Q?zT/9V+EFW03hOgqBs0/9iuf5Outwo3y6e+lkoJIjDqE+d3SpYEX9vc6F2b4Y?=
- =?us-ascii?Q?VWSKUVjBgpbNIRJvHltHsYPGRjxpA/OyqjNkhQQ7bS7NniMDmFCx67hpLuxr?=
- =?us-ascii?Q?kYeYsJO7GrF3NKpHTPthcD3tmi6CTYfu4RM8Mqdp9bvfOt8Eq44DIgXXMl8Q?=
- =?us-ascii?Q?rmZaDLiUCEk4vdLI2e0WhB1mTarOO4Sr9iQH9e337o/te+vvQFduverQ8N6z?=
- =?us-ascii?Q?VXL01NowXIq2QOF0yRaJHDLkzoPy69WuNO/Fh78b4mN1oRsV6BymhvMCPMaB?=
- =?us-ascii?Q?7GNnXmFRhBRgWcB/LTx6IruTBUjHAwSXqkb7FRMAXHHmTBBFF+Tu5RM450Jf?=
- =?us-ascii?Q?yMC0rk9Hv1BM+DPl1d/wU9+MKwiPerSMpBaha1GMxBB666Bbte2V+uSkIiUZ?=
- =?us-ascii?Q?FjgDjsVDmbliHuUfomcsunlX3BmMdwMFrLXexRxI+WZPMdrPajFr7YNFHID6?=
- =?us-ascii?Q?hRkvVp23mfBigubNHp7hNuD4J3kG4zXIUeRCIKHfk0kHVe1VB/dDWHZfauf4?=
- =?us-ascii?Q?vYNbGNmOlFctGIj5INR6vFV1gYYy8qplBvtV55C6v470wliDxvOr/jFpg3ur?=
- =?us-ascii?Q?DoTy+jkLCyTGI9a7/Xe2jVWKw+b2iW6dn90TyCnF7/TuXcWG9vSpSAjIR6WJ?=
- =?us-ascii?Q?dp4KC0AKH5CL4GJqhz6R39briUDzt8T48WdshzpOOpcDkCo/PRCdnFyrAshZ?=
- =?us-ascii?Q?E3HL7VZUvrGEuLKUK7aqXDN4CxHccoo87Yv5dpIfxs0vbc7gcjiBXOUmlZcj?=
- =?us-ascii?Q?CCCnER5uxq7t7fmV6bChS/2zQbYpErItOupPE/lX3R+h+GHq/R+8e8kMS7PC?=
- =?us-ascii?Q?SBlGHcbefQjd6ofHMkn5hydjQGS8BPEmq/a1oFNmUbdS/xrz72FknfiwYnEX?=
- =?us-ascii?Q?hwVarItQgEtBUGstC+n34KMAQpj0I7J8JJRMQfk918dcZZYJuCYuizK4+CLb?=
- =?us-ascii?Q?sbmc6XhRsdp0q005Hxg8J+cLAJnJ6OvYz3UK9r9tR1jaPnAfxTdhZkPkOUD5?=
- =?us-ascii?Q?Cwk9OmCeWK1ArtFVebZn5grWlEN2elI14QAJPX6n?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EC462F362B
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 10:42:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756809775; cv=none; b=uOwNCU2s2OVpL4ALgyH0XwYHILvatkGfrldhPPp4Q4cXj2Ce55r+ZFDFrPJMyvumAjjX5V0Ot9YXVgUsB5J5h6Bx3XCXCd3LWuK6F6HApKANx5fLcrfbPO4vg9xoYdYd48UVpIhmfNN5Vo+VCM6h0ZBhen4z/w5uicvlxX77Ht4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756809775; c=relaxed/simple;
+	bh=viLzRs0dgFeJqxdC5nltzyGMmAHmpEp54dKYBCEvJyc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qpnrPPo3mVq01mXo6QQ9AM2KTkP+xjxOl7EAH46tqzX5ITpj7VPn5DVI8kE0h5bpH0JIpcJ4Jz2/Kf6F0rhVYl0Df+QyHoH3m5/hzbxIdyl4FhYntakv7ZfqVPCnNf8eo6LpqoDa9DAmoyVJynW7hEbPUIcoSQwOIhOOKTCdTfU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=k5FGj8Bc; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5822XAFe031556
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 10:42:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8HGSFKsLXaVM0YQCxvDcTSEB0RtFGcIdJeQwMuf7cA0=; b=k5FGj8BcmA1eiPhp
+	bQChXRO2Bur6Fh3Abwsc5WbKS43zZtdYjhR+gVXcxZ8iE6izst9b4mEIr4tocXqH
+	gpM64rn8Tk2zuPKnVTwj2T+KwYHN2nWSJWvVBjBXxJ7v16hMdMGDa0Iag5jZFcML
+	nWKtyXfjdbGGxEcxHVW5kkIMiVnJ86XEXqEO0z0ptexxMh0JMah1q0PFDaPzfGM0
+	RQhtKehrck1xSC95qAtKUxdiPuJUr5Pr1uf7K1Y4pZyGaEkPuQlemMsoFhhtIZmw
+	XhoULg+Uj0XEpri08k9zaukT3nCuBlgHzFsTzMFezCjVacu7UbRzYUDBXp364Y5e
+	atzo+g==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48wqvw97th-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 10:42:52 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b331150323so7539521cf.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 03:42:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756809771; x=1757414571;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8HGSFKsLXaVM0YQCxvDcTSEB0RtFGcIdJeQwMuf7cA0=;
+        b=UViWVJQR3TyTADdQjzMWqYFBq1U2DAdItXRrDX7NiM0rB6RhIDw2V2SXds7cTgeJCU
+         iPePM+4nc0hve4iOVBnsez6HsrKDn1z1wA+fq9w29iotWm1uYdc0vcAepv+mL6TqYmz/
+         XunlDJyMownpGoc+S/oAYC1P1+iVIPZqltu9q8ymR9AzOPzEMTEp+JgjpM80ZZHpo5p6
+         b8gzyrcJq5KqisWmWEmWTj88LVLppy4KcRQWlbJjYabynsbV6KEC21KD4RwuRcOofTZZ
+         wboWRyarUiQoJ4oaNMfxFASIbd1iXs9Sr3+VLVoQ8+n2o25LVTnfh2kE/p8r/cuNbR3k
+         CrxA==
+X-Forwarded-Encrypted: i=1; AJvYcCXJVvPPZvPLGBBQPIyEshGo8Lh90pDhMz0FSwO/Ehx3jbv8oQU2GhQjPxlAxTtsJah0Jp/DTBQDHxmo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx9xhLnEIj5TGLb54+kTQgCXQWGCP70HZC/6ju4FGwnp4aCO+Zo
+	JYPhD3O/9NQQzTm5BC2KalVUaaVq23at7hLCxMfCyh0eX9Lqh6RXCb0mC5dSVhWRUhJeFVLPPuP
+	ZUimgo9xeeR0yGfiL9lXKwLV6Jr7j2S1QwQ/ciYlBggSRPw0a92K+AqnRv1QtX2U4
+X-Gm-Gg: ASbGncvbR4H79R6S7P0vABdHEbhgAA3Nwwdncr2ayhI9TEeOKZnPnyNHcwXH0B2DN/E
+	1DZ7Hx1fWMQ35X0ATVBOrTo2qtdAnGxWWyCo9u5F3+OpKsjHiMlMjNgofTKBrRrWlkoFomn/h6G
+	qFjRXZR1YKyhhoT1BDRXlvUJTZLVpdHomB8Kq2510n2UP0uieILGT16ZnK+hhNl5+0OS1bsPjyy
+	eW3pO6GHt/6Nf/n/3OPQYg9iIUJdV4c/4LRb/pERP/GRsDN1U/NOC+g3Zo5/X47oyd+A5dy6PaR
+	xAaz+0egksDICJUbg66ri0FoGPrPdvwzEHGZ9H1HtCn1RNPBNvmn+TnLAh3034m1x9iLDVb0XEw
+	fwMKsj1XbXrpqronbGmvXdg==
+X-Received: by 2002:ac8:58ca:0:b0:4ab:63f8:ef30 with SMTP id d75a77b69052e-4b30e90634emr127554321cf.3.1756809770616;
+        Tue, 02 Sep 2025 03:42:50 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEIa+zdu/DvCI2hhATthcW4/zvfigbUW8Sknvl3mmHIrbuZ2hMWV/w4jclDKRuy1HZUPW0xbA==
+X-Received: by 2002:ac8:58ca:0:b0:4ab:63f8:ef30 with SMTP id d75a77b69052e-4b30e90634emr127554151cf.3.1756809769909;
+        Tue, 02 Sep 2025 03:42:49 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc4bbc6bsm9385161a12.29.2025.09.02.03.42.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 03:42:49 -0700 (PDT)
+Message-ID: <f49b34be-89d3-498d-8b85-ff6b0be01acf@oss.qualcomm.com>
+Date: Tue, 2 Sep 2025 12:42:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: maxlinear.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR19MB5636.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f8b9c08b-9b6b-45fe-4da1-08ddea0d047c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2025 10:39:38.6611
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: dac28005-13e0-41b8-8280-7663835f2b1d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: cO6lyeEtuWVJQC0g/eM9SRBFswBhMOFZpVNL2fcebb1s+OlbQeWp2MkdWp3bXUj5ywvxhVMXeXQxGIwLCeakNA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CO1PR19MB4933
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 01/14] dt-bindings: display/msm: dp-controller: Add
+ sm6150
+To: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org, fange.zhang@oss.qualcomm.com,
+        yongxing.mou@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, quic_lliu6@quicinc.com
+References: <20250820-add-displayport-support-for-qcs615-platform-v3-0-a43bd25ec39c@oss.qualcomm.com>
+ <20250820-add-displayport-support-for-qcs615-platform-v3-1-a43bd25ec39c@oss.qualcomm.com>
+ <75ra2ofecqu6tid6kr4hnyuztpl6jjaq2ksyquafyajhq2sa4d@4tkggrdqky7y>
+ <8918feef-219e-4e69-8901-367189f5066d@oss.qualcomm.com>
+ <28b33851-24eb-428f-b046-b145342fd982@oss.qualcomm.com>
+ <75f8789d-9d97-49d9-97b0-908a5692c325@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <75f8789d-9d97-49d9-97b0-908a5692c325@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAyMDAyNCBTYWx0ZWRfX2lmzDYIlP2jq
+ PZNhrz2npF7o0nX9dlCSXpib4dnZxhlZ9CU94s41bCutTQk8aE+HLJu4PcyVuuWzG6SpyZtGwrt
+ pRU33Il+3VyLcF9UsBXtyUFdt1ZGlcSVn4oKL9jw24nwZpWVp96grS7/ICaVGExgzvjjlrSyIJI
+ a5FIBbI6+T1zWeTxYTVkGh4Qd4t0ZXTBF29M/VhQrxArXvElGI8Af3lMiuBYRr+vPNG+oirbV2H
+ s1ustHxslNIDBsJ0rLJ5YVh+ER/MH5KEsM1R6npGFDNg7WwqmiHO5l4UHi0o+YIxPqLFozxVBcQ
+ WawLDmYgfpDAkQt7UpZFnysh3hANZT6ZsZ6FNxm09WHJNIW/8/AhlwPAjMfRO9+zE7LHSdwIitO
+ JS4gvzYR
+X-Authority-Analysis: v=2.4 cv=WKh/XmsR c=1 sm=1 tr=0 ts=68b6ca2c cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=zKpf_v0BVtz8pCFJhw8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: thaOtQ7V6_uyBgYiXhb9V9FGKWDR1lMo
+X-Proofpoint-ORIG-GUID: thaOtQ7V6_uyBgYiXhb9V9FGKWDR1lMo
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_03,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 bulkscore=0 phishscore=0 adultscore=0
+ spamscore=0 malwarescore=0 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509020024
 
-On Mon, 1 Sep 2025 15:11:08 +0200
-Andrew Lunn <andrew@lunn.ch> wrote:
+On 9/1/25 2:32 PM, Xiangxu Yin wrote:
+> 
+> On 8/28/2025 7:05 PM, Dmitry Baryshkov wrote:
+>> On 28/08/2025 07:51, Xiangxu Yin wrote:
+>>>
+>>> On 8/20/2025 6:18 PM, Dmitry Baryshkov wrote:
+>>>> On Wed, Aug 20, 2025 at 05:34:43PM +0800, Xiangxu Yin wrote:
+>>>>> Add DisplayPort controller for Qualcomm SM6150 SoC.
+>>>>> While SM6150 currently shares the same configuration as SC7180,
+>>>>> its hardware capabilities differ. Explicitly listing it ensures clarity
+>>>>> and avoids potential issues if SC7180 support evolves in the future.
+>>>> I assume, it has no MST support. Am I right?
+>>>
+>>>
+>>>  From sm6150 ipcat, I found MST-related registers and pixel1 clk definition.
+>>
+>> Then please describe MST as the main difference between SM6150 and SC7180 (which doesn't have MST).
+>>
+>> Also this needs to be rebased on top of the MST bindings. I've picked up the latest posted revision, but basing on the on-list discussion I might need to drop it and post another iteration. 
+>>
+> 
+> Would you prefer I keep the current patch and update the description of the
+> MST capability difference with SC7180 in the commit message, or rebase on
+> your series and update the dt-binding accordingly?
+> https://lore.kernel.org/all/20250829-dp_mst_bindings-v7-0-2b268a43917b@oss.qualcomm.com
+> 
+> Since MST support is not yet mainlined in the DP driver, even if I rebase
+> now, the final implementation may require redefining msm_dp_desc for
+> SM6150 in both the dt-binding and the driver once MST lands.
 
-> On Mon, Sep 01, 2025 at 09:38:44AM +0000, Jack Ping Chng wrote:
-> > Hi Andrew,
-> >
-> > On Fri, 29 Aug 2025 22:24:06 +0200
-> > Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > > +This document describes the Linux driver for the MaxLinear Network=
- Processor
-> > > > +(NP), a high-performance controller supporting multiple MACs and
-> > > > +advanced packet processing capabilities.
-> > > > +
-> > > > +The MaxLinear Network processor integrates programmable hardware a=
-ccelerators
-> > > > +for tasks such as Layer 2, 3, 4 forwarding, flow steering, and tra=
-ffic shaping.
-> > >
-> > > By L2 and L3, do you mean this device can bridge and route frames
-> > > between ports? So it is actually a switch?
-> >
-> > Yes, the SoC does support packet acceleration.
-> > However, this patch series primarily focuses on the host interface to d=
-eliver packets to the CPU,
-> > where bridging and routing are handled within the network stack.
->=20
-> Linux has two ways to support a switch. Pure switchdev, or switchdev +
-> DSA. Which to use depends on the architecture of the device. I would
-> like to check now, before you get too far, what the hardware
-> architecture is.
+dt-bindings must describe the hardware regardless of the current driver
+functionality (which is unfortunately something we've not paid sufficient
+attention to before and we're now untangling some messy files..)
 
-Hi Andrew,
-
-Thank you for your valuable feedback.
-
-The switch core hardware block is part of the MaxLinear Lightning
-Mountain (LGM) SoC, which integrates Ethernet XGMACs for connectivity
-with external PHY devices via PCS.=20
-At initialization, we configure the switch core ports to enable only
-Layer 2 frame forwarding between the CPU (Host Interface) port and the
-Ethernet ports.
-L2/FDB learning and forwarding will not be enabled for any port.
-The CPU port facilitates packet transfers between the Ethernet ports
-and the CPU within the SoC using DMA. All forwarding and routing
-logic is handled in the Linux network stack.=20
-
-LGM SoC also has a separate HW offload engine for packet routing and
-bridging per flow.  This is not within the scope of this patch series.
-
-> Are there any public available block diagrams of this device?
-
-We will  update the documentation accordingly in the upcoming version.
-Please find the packet flow at a high level below:
-Rx:=20
-PHY -> Switch Core XGMAC -> Host Interface Port -> DMA Rx -> CPU=20
-Tx:
-CPU -> DMA Tx -> Host Interface Port -> Switch Core XGMAC -> PHY
-
-> How does the host direct a frame out a specific port of the switch?
-
-In the TX direction, there is a predefined mapping between the Ethernet
-interface and the corresponding destination switch port.=20
-The Ethernet driver communicates this mapping to the DMA driver,=20
-which then embeds it into the DMA descriptor as sideband information.=20
-This ensures that the data is forwarded correctly through the switch fabric
-
-> How does the host know which port a frame came in on?
-
-On the RX side, the source switch port  is mapped to a specific DMA Rx
-channel. The DMA Rx descriptor also carries the ingress port as
-sideband information.
-Either of these methods can be used to determine the source switch port.
-
-Best regards,
-Jack
+Konrad
 
