@@ -1,352 +1,164 @@
-Return-Path: <devicetree+bounces-211746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A40CB4064C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:13:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8028DB40657
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:15:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 3C58D4E31AD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:13:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C77C481BCB
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC04B2FF177;
-	Tue,  2 Sep 2025 14:13:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CC55303C97;
+	Tue,  2 Sep 2025 14:14:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="agyxXhK0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eE4ouxNH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8477B2F3C19;
-	Tue,  2 Sep 2025 14:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E97573009EF
+	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 14:14:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756822425; cv=none; b=t4/bB4dil6aIlsGDO44kGE0GKNw/buCE96a4BzMpkBgOa71TnvfO4RL+HTzZ4ncBqYtlPqT9jgaIM2Au7jKevlHevK+Jisw6HKJyDp+cUzNdlmdzuhdAwYTG62McUo0/2RdVi7MAiHBQ0M1MqSSjbW/Y6AHO9iiZn41buNPhui4=
+	t=1756822490; cv=none; b=Oc1yd5OzR+CQdw/Kb2U2zGk3A59suRog9eldFLtjfMbhDenlhpd5KQf/Wiw+bsOExMq3pqLCPeX21OtHeuej0HtTDmQYhLGkhL6SxLK2FmZ7/+55lnm3ZA5mMgLcZ7BzD6/QswCQTD/W0fnnrjvc94soG3pfTF9TUYceOcKOpI0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756822425; c=relaxed/simple;
-	bh=EBKiIC/TQi8pMFqdMi+Nl1qN1IVUCv8zQzOrO7F+syA=;
+	s=arc-20240116; t=1756822490; c=relaxed/simple;
+	bh=ioDj9OKZUZG9SXyaVD3LjRoWMvd0eSILJ9nbZmtaXWs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ix+v+gJ6gQyO340SIw4bk6Ziq/iHmnIl31k7tf2E24z8UCZinYLKnXJ+tymk7UmGpmMREnV3JHWvRb70k5tyrRoTFt+EWXP8UsIYSGmJG3fNCOvTUpaPreBbA4DRiL2InhI1e10/s40DEkYokkVRSof/Vl+MTcHVIaV9r2U3hSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=agyxXhK0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9AD9DC4CEED;
-	Tue,  2 Sep 2025 14:13:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756822425;
-	bh=EBKiIC/TQi8pMFqdMi+Nl1qN1IVUCv8zQzOrO7F+syA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=agyxXhK0HvbsjMPjmaJo+Ie03/Oa2dOZ7WhHK7aoEmnrPZve48dqtTpIkHmC+Kw/w
-	 QLDLXlTPErSSKgnrcaiWvTjJs+qGb3Q2BJHayEJJUuH7VSGdhSU8L9eqf4bxhi93Q/
-	 9kHsf9tW5+jNBYrJo1kqkG0q8EpvvsRtLzoaiPp3Io2lM3II8eugU9Nk0NHr8aa+Vk
-	 oabLC5h/wUcLFRDUxjphGLqy4oOh/Uwxj8sDzGM9IjyrhRr7zhQaKfh4BsqouhyRfo
-	 cZnn1gR2dzOL2qnTEZ5TDt0jN/DCM4WzzpGeB7bds67qyS0+yYRhI9ttjGJmdkVXw+
-	 3L+w26wUiy6hw==
-Date: Tue, 2 Sep 2025 15:13:39 +0100
-From: Lee Jones <lee@kernel.org>
-To: Chris Morgan <macroalpha82@gmail.com>
-Cc: linux-rockchip@lists.infradead.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, broonie@kernel.org, lgirdwood@gmail.com,
-	sre@kernel.org, heiko@sntech.de, conor+dt@kernel.org,
-	krzk+dt@kernel.org, robh@kernel.org,
-	Chris Morgan <macromorgan@hotmail.com>
-Subject: Re: [PATCH V7 2/5] mfd: bq257xx: Add support for BQ25703A core driver
-Message-ID: <20250902141339.GR2163762@google.com>
-References: <20250821162448.117621-1-macroalpha82@gmail.com>
- <20250821162448.117621-3-macroalpha82@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NwA2gQ+RO9cucJiNphUli5eOL8cZdRimHtA1CEKhmjbUQQmRdhuW8lSA1sovysRcCa6oZnb2W+UwDF8Hw6YSIllhpnjVLmPqETxtNuj4GRZa806WC2iNnL4TmRJ2DKzMIjaesrXWWqfiA46wcWv9qNEOqcAhhgdtNrOODhm0AK8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eE4ouxNH; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582B1ORm021747
+	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 14:14:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=VPDjroB3ztY86zaEZex6BUAX
+	LTZV4LHBrhebE1WbTrA=; b=eE4ouxNHvYPJFunGb3NDXZeOcBscQ8CmeQagYekp
+	yO4abQ+l26jWSNJRHpE3T1tCtAxOegJNHqzK3wRbqSFa62khRHUIriZY1tWrZ4oH
+	/YvrQ3B9YlFKnl1l0/ll654GrFsHGiP1uHs7zr2XA3YbZH/X1k1jUBDxXnxyfjSg
+	05lFm+QR0IfmgtR4uW2+3jxIN/RchI0TXTUYUPksz1Gtu5EisCpgAoOMTNS7wl0l
+	VaJrasP5EstOTIcRzAmP/8wtieg8Z+B3rW68R7kOEtlP0K6OVAMd4c/9U3RT4IZO
+	LEQb0M1dI5AsQPOkS+zFZrSWRbOTwtM/9HrERdyVmUR6+g==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s0542-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 14:14:48 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b320a0a542so56040291cf.3
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 07:14:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756822487; x=1757427287;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VPDjroB3ztY86zaEZex6BUAXLTZV4LHBrhebE1WbTrA=;
+        b=gYZ/xcWY0YXJcqHgdpBBFyINriObHU5OK/ZX5HhcLkeQOdcGnzFVzwXelXS/1lgOOI
+         hq/j/y4aNrBhVCij26+48C/1ZMIdBWWuOIaEg5RArPpHYh7xN1iEvgbvT6K+/Va7erbM
+         zBberHEqNE+NfF8C49P9nJFq+8XsX0XtFNdNJtzNb5zuMJnQflXf3NSvBvAjOZldkpfr
+         zQPL0H4Wp3qNTlW1cxDwXv8IYsiE9EYF19IuYGhFkwi/D15G0+oUfMVbwr9hD2dVplzP
+         NJCnREFoYCIkuNfJ8sQ8gti4e7yZhbPXGYQXr5YM3oj+PljfTcpX89q/Nhes3bZ6FWYy
+         b+aA==
+X-Forwarded-Encrypted: i=1; AJvYcCWtHAOX9/DlejSGir3EJHrM5/KFBr0eovuLuvOdZsk2AHgvlGlZ9hV3E48BoBqB0ImP8qJXJj6vGFN4@vger.kernel.org
+X-Gm-Message-State: AOJu0YxfTZdExrNyGxHeJz+tVY3CpJPozcC5cOS1v7PHU4YmboTxqPak
+	jidpAidyTlM9xHSN4ZPtHvhywcBYXfXMFMZCwbL6Wu9ktt9P1djzqFH218zN6qrQ6Kbtq8RikMP
+	xug0aIId3Pdh0FoW4uexuJtLIGAaGPpj+mwdw76rYWzMFLALORRpOhvYV19jk0x0I
+X-Gm-Gg: ASbGncu9MnlQrnjkQwAMpexn1S3BF9UYHQqHGgrpvVSuQ+KlhgXCd8BugA7gZ37PChK
+	C7FdT778PEQYf52y0D4kdmbHnIOaXpqnejkW2DCKSfQkKucRueGVZyAUyxyJM4PAlz7E1I6WqSI
+	ogSN60uuu9fC+Y/JOzEhCZor3M91a72QxvnA7d5qFyXocj8MGoFsFF8y5rqrRZB6dnTGqaDHT1V
+	4NeLQtx9kPGvzBOMEVAMya96TSJe5qnp2nvyx1T08HQR//T1Gr218H11gi7BbHC2NpyuxrjZacw
+	FVAXt5ApUNn1Rk87N2/y3PjTW9IwWq46zELH/vP9QcqE9tGu3ilj7C7glOzFRVCao1c7cyTaVLF
+	GzWozvM138ufuec31UuGGFYbeg00NpXHvvXW+XoAg3PrD0S5csPiI
+X-Received: by 2002:a05:622a:5e06:b0:4b3:4325:c921 with SMTP id d75a77b69052e-4b34325cbbbmr27635041cf.2.1756822486456;
+        Tue, 02 Sep 2025 07:14:46 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFbkPG/3GwoZ63uDfguv+KuDMTZdCIFwLNXUWVjBJQbsg59aUFidJtYZdyH+pYNyJfobXe9Gg==
+X-Received: by 2002:a05:622a:5e06:b0:4b3:4325:c921 with SMTP id d75a77b69052e-4b34325cbbbmr27634531cf.2.1756822485713;
+        Tue, 02 Sep 2025 07:14:45 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-560827a020dsm711923e87.118.2025.09.02.07.14.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 02 Sep 2025 07:14:44 -0700 (PDT)
+Date: Tue, 2 Sep 2025 17:14:43 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [RESEND PATCH v3] arm64: dts: qcom: sm8750-mtp: Add WiFi and
+ Bluetooth
+Message-ID: <4yt5lubdcvepqkstt44j4h6t5bxbno4eajevvkywj4y7ypl45a@wog3gteubbym>
+References: <20250902140018.247209-2-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250821162448.117621-3-macroalpha82@gmail.com>
+In-Reply-To: <20250902140018.247209-2-krzysztof.kozlowski@linaro.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX0H3fS4LhnzRF
+ OAwgbJDjY/iJysDGmukeKs3rMOEhmTR5hMnb20TibhbghOzAijSQr1qkeynkHjxvkIYilPnGMFx
+ 7XvwyR8nG5X1UlrJ2emwaweQucyqPCMWfbfGNAJDiZvit/fgQOwTwlKzReDvVbhGtgcaI9Gkjgl
+ xMyyTyFvHFmCaPU0HO4Z9VHoZT+0alSrpCK+TsIvYK5g+BNemIBakPP19bGGYDEGiwcpf+cPZ3Y
+ 87Gqx+BaNuUDiM0uck8JbUDsLaPPGmyiSPzoCBw10TGE4tCwmCUhDCUiLduZgO0R6A3L2eY1FlX
+ eXFbfafCJz7o0e58abp24ZX576CTQD730hvgOdLm1a7C++N7nD1UXowlT1gQUcbfaOfV4fLa/Qp
+ kNBw0JB4
+X-Proofpoint-GUID: b5Xtqv6QueYhjCSRgs6MNmOrqsJM760s
+X-Proofpoint-ORIG-GUID: b5Xtqv6QueYhjCSRgs6MNmOrqsJM760s
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b6fbd8 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8
+ a=IIvv0vHZhC9vjs7kOx8A:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Thu, 21 Aug 2025, Chris Morgan wrote:
-
-> From: Chris Morgan <macromorgan@hotmail.com>
+On Tue, Sep 02, 2025 at 04:00:19PM +0200, Krzysztof Kozlowski wrote:
+> MTP8750 rev 2.0 (power grid v8) boards come as two different variants
+> with different WiFi chips: WCN7850 and WCN786x.  WCN7850 is already
+> supported by the kernel, but WCN786x is not.  Both of the board variants
+> are considered newest revisions and the difference is only in MCN
+> numbers and internal codenames.
 > 
-> The Texas Instruments BQ25703A is an integrated charger manager and
-> boost converter.
+> Add WCN7850 WiFi and Bluetooth to the MTP8750, stating that this DTS
+> represents the WCN7850 variant.  The S4D and S5F regulators should
+> operate at 0.85 V, thus adjust lower constraint and regulator name.
 > 
-> The MFD driver initalizes the device for the regulator driver
-> and power supply driver.
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Signed-off-by: Chris Morgan <macromorgan@hotmail.com>
 > ---
->  drivers/mfd/Kconfig         |  11 ++++
->  drivers/mfd/Makefile        |   1 +
->  drivers/mfd/bq257xx.c       |  97 +++++++++++++++++++++++++++++++++
->  include/linux/mfd/bq257xx.h | 104 ++++++++++++++++++++++++++++++++++++
->  4 files changed, 213 insertions(+)
->  create mode 100644 drivers/mfd/bq257xx.c
->  create mode 100644 include/linux/mfd/bq257xx.h
 > 
-> diff --git a/drivers/mfd/Kconfig b/drivers/mfd/Kconfig
-> index 425c5fba6cb1..768417c97339 100644
-> --- a/drivers/mfd/Kconfig
-> +++ b/drivers/mfd/Kconfig
-> @@ -1641,6 +1641,17 @@ config MFD_TI_LMU
->  	  LM36274.  It consists of backlight, LED and regulator driver.
->  	  It provides consistent device controls for lighting functions.
->  
-> +config MFD_BQ257XX
-> +	tristate "TI BQ257XX Buck/Boost Charge Controller"
-> +	depends on I2C
-> +	select MFD_CORE
-> +	select REGMAP_I2C
-> +	help
-> +	  Support Texas Instruments BQ25703 Buck/Boost converter with
-> +	  charge controller. It consists of regulators that provide
-> +	  system voltage and OTG voltage, and a charger manager for
-> +	  batteries containing one or more cells.
-> +
->  config MFD_OMAP_USB_HOST
->  	bool "TI OMAP USBHS core and TLL driver"
->  	depends on USB_EHCI_HCD_OMAP || USB_OHCI_HCD_OMAP3
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index f7bdedd5a66d..3d700374a42d 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -13,6 +13,7 @@ obj-$(CONFIG_MFD_SM501)		+= sm501.o
->  obj-$(CONFIG_ARCH_BCM2835)	+= bcm2835-pm.o
->  obj-$(CONFIG_MFD_BCM590XX)	+= bcm590xx.o
->  obj-$(CONFIG_MFD_BD9571MWV)	+= bd9571mwv.o
-> +obj-$(CONFIG_MFD_BQ257XX)	+= bq257xx.o
->  obj-$(CONFIG_MFD_CGBC)		+= cgbc-core.o
->  obj-$(CONFIG_MFD_CROS_EC_DEV)	+= cros_ec_dev.o
->  obj-$(CONFIG_MFD_CS42L43)	+= cs42l43.o
-> diff --git a/drivers/mfd/bq257xx.c b/drivers/mfd/bq257xx.c
-> new file mode 100644
-> index 000000000000..ac4485a2cc60
-> --- /dev/null
-> +++ b/drivers/mfd/bq257xx.c
-> @@ -0,0 +1,97 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * BQ257XX Core Driver
-> + * Copyright (C) 2025 Chris Morgan <macromorgan@hotmail.com>
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/i2c.h>
-> +#include <linux/mfd/bq257xx.h>
-> +#include <linux/mfd/core.h>
-> +#include <linux/regmap.h>
-> +
-> +static const struct regmap_range bq25703_readonly_reg_ranges[] = {
-> +	regmap_reg_range(BQ25703_CHARGER_STATUS, BQ25703_MANUFACT_DEV_ID),
-> +};
-> +
-> +static const struct regmap_access_table bq25703_writeable_regs = {
-> +	.no_ranges = bq25703_readonly_reg_ranges,
-> +	.n_no_ranges = ARRAY_SIZE(bq25703_readonly_reg_ranges),
-> +};
-> +
-> +static const struct regmap_range bq25703_volatile_reg_ranges[] = {
-> +	regmap_reg_range(BQ25703_CHARGE_OPTION_0, BQ25703_IIN_HOST),
-> +	regmap_reg_range(BQ25703_CHARGER_STATUS, BQ25703_ADC_OPTION),
-> +};
-> +
-> +static const struct regmap_access_table bq25703_volatile_regs = {
-> +	.yes_ranges = bq25703_volatile_reg_ranges,
-> +	.n_yes_ranges = ARRAY_SIZE(bq25703_volatile_reg_ranges),
-> +};
-> +
-> +static const struct regmap_config bq25703_regmap_config = {
-> +	.reg_bits = 8,
-> +	.val_bits = 16,
-> +	.max_register = BQ25703_ADC_OPTION,
-> +	.cache_type = REGCACHE_RBTREE,
-
-Are you sure you want RB?  Most people have switched to MAPLE.
-
-> +	.wr_table = &bq25703_writeable_regs,
-> +	.volatile_table = &bq25703_volatile_regs,
-> +	.val_format_endian = REGMAP_ENDIAN_LITTLE,
-> +};
-> +
-> +static int bq257xx_probe(struct i2c_client *client)
-> +{
-> +	struct bq257xx_device *ddata;
-> +	static const struct mfd_cell cells[] = {
-> +		MFD_CELL_NAME("bq257xx-regulator"),
-> +		MFD_CELL_NAME("bq257xx-charger"),
-> +	};
-
-Sorry, that isn't what I meant.
-
-Please place the 'struct mfd_cell' out of the function, like everyone
-else does.
-
-> +	int ret;
-> +
-> +	ddata = devm_kzalloc(&client->dev, sizeof(*ddata), GFP_KERNEL);
-> +	if (!ddata)
-> +		return -ENOMEM;
-> +
-> +	ddata->client = client;
-
-'\n' here.
-
-> +	ddata->regmap = devm_regmap_init_i2c(client, &bq25703_regmap_config);
-> +	if (IS_ERR(ddata->regmap)) {
-> +		return dev_err_probe(&client->dev, PTR_ERR(ddata->regmap),
-> +				     "Failed to allocate register map\n");
-> +	}
-> +
-> +	i2c_set_clientdata(client, ddata);
-> +
-> +	ret = devm_mfd_add_devices(&client->dev, PLATFORM_DEVID_AUTO,
-> +				   cells, ARRAY_SIZE(cells), NULL, 0, NULL);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret,
-> +				     "Failed to register child devices\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct i2c_device_id bq257xx_i2c_ids[] = {
-> +	{ "bq25703a" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, bq257xx_i2c_ids);
-> +
-> +static const struct of_device_id bq257xx_of_match[] = {
-> +	{ .compatible = "ti,bq25703a" },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, bq257xx_of_match);
-> +
-> +static struct i2c_driver bq257xx_driver = {
-> +	.driver = {
-> +		.name = "bq257xx",
-> +		.of_match_table = bq257xx_of_match,
-> +	},
-> +	.probe = bq257xx_probe,
-> +	.id_table = bq257xx_i2c_ids,
-> +};
-> +module_i2c_driver(bq257xx_driver);
-> +
-> +MODULE_DESCRIPTION("bq257xx buck/boost/charger driver");
-> +MODULE_AUTHOR("Chris Morgan <macromorgan@hotmail.com>");
-> +MODULE_LICENSE("GPL");
-> diff --git a/include/linux/mfd/bq257xx.h b/include/linux/mfd/bq257xx.h
-> new file mode 100644
-> index 000000000000..1d6ddc7fb09f
-> --- /dev/null
-> +++ b/include/linux/mfd/bq257xx.h
-> @@ -0,0 +1,104 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Register definitions for TI BQ257XX
-> + * Copyright (C) 2020 Texas Instruments Incorporated - http://www.ti.com/
-> + */
-> +
-> +#define BQ25703_CHARGE_OPTION_0			0x00
-> +#define BQ25703_CHARGE_CURRENT			0x02
-> +#define BQ25703_MAX_CHARGE_VOLT			0x04
-> +#define BQ25703_OTG_VOLT			0x06
-> +#define BQ25703_OTG_CURRENT			0x08
-> +#define BQ25703_INPUT_VOLTAGE			0x0a
-> +#define BQ25703_MIN_VSYS			0x0c
-> +#define BQ25703_IIN_HOST			0x0e
-> +#define BQ25703_CHARGER_STATUS			0x20
-> +#define BQ25703_PROCHOT_STATUS			0x22
-> +#define BQ25703_IIN_DPM				0x24
-> +#define BQ25703_ADCIBAT_CHG			0x28
-> +#define BQ25703_ADCIINCMPIN			0x2a
-> +#define BQ25703_ADCVSYSVBAT			0x2c
-> +#define BQ25703_MANUFACT_DEV_ID			0x2e
-> +#define BQ25703_CHARGE_OPTION_1			0x30
-> +#define BQ25703_CHARGE_OPTION_2			0x32
-> +#define BQ25703_CHARGE_OPTION_3			0x34
-> +#define BQ25703_ADC_OPTION			0x3a
-> +
-> +#define BQ25703_EN_LWPWR			BIT(15)
-> +#define BQ25703_WDTMR_ADJ_MASK			GENMASK(14, 13)
-> +#define BQ25703_WDTMR_DISABLE			0
-> +#define BQ25703_WDTMR_5_SEC			1
-> +#define BQ25703_WDTMR_88_SEC			2
-> +#define BQ25703_WDTMR_175_SEC			3
-> +
-> +#define BQ25703_ICHG_MASK			GENMASK(12, 6)
-> +#define BQ25703_ICHG_STEP_UA			64000
-> +#define BQ25703_ICHG_MIN_UA			64000
-> +#define BQ25703_ICHG_MAX_UA			8128000
-> +
-> +#define BQ25703_MAX_CHARGE_VOLT_MASK		GENMASK(15, 4)
-> +#define BQ25703_VBATREG_STEP_UV			16000
-> +#define BQ25703_VBATREG_MIN_UV			1024000
-> +#define BQ25703_VBATREG_MAX_UV			19200000
-> +
-> +#define BQ25703_OTG_VOLT_MASK			GENMASK(13, 6)
-> +#define BQ25703_OTG_VOLT_STEP_UV		64000
-> +#define BQ25703_OTG_VOLT_MIN_UV			4480000
-> +#define BQ25703_OTG_VOLT_MAX_UV			20800000
-> +#define BQ25703_OTG_VOLT_NUM_VOLT		256
-> +
-> +#define BQ25703_OTG_CUR_MASK			GENMASK(14, 8)
-> +#define BQ25703_OTG_CUR_STEP_UA			50000
-> +#define BQ25703_OTG_CUR_MAX_UA			6350000
-> +
-> +#define BQ25703_MINVSYS_MASK			GENMASK(13, 8)
-> +#define BQ25703_MINVSYS_STEP_UV			256000
-> +#define BQ25703_MINVSYS_MIN_UV			1024000
-> +#define BQ25703_MINVSYS_MAX_UV			16128000
-> +
-> +#define BQ25703_STS_AC_STAT			BIT(15)
-> +#define BQ25703_STS_IN_FCHRG			BIT(10)
-> +#define BQ25703_STS_IN_PCHRG			BIT(9)
-> +#define BQ25703_STS_FAULT_ACOV			BIT(7)
-> +#define BQ25703_STS_FAULT_BATOC			BIT(6)
-> +#define BQ25703_STS_FAULT_ACOC			BIT(5)
-> +
-> +#define BQ25703_IINDPM_MASK			GENMASK(14, 8)
-> +#define BQ25703_IINDPM_STEP_UA			50000
-> +#define BQ25703_IINDPM_MIN_UA			50000
-> +#define BQ25703_IINDPM_MAX_UA			6400000
-> +#define BQ25703_IINDPM_DEFAULT_UA		3300000
-> +#define BQ25703_IINDPM_OFFSET_UA		50000
-> +
-> +#define BQ25703_ADCIBAT_DISCHG_MASK		GENMASK(6, 0)
-> +#define BQ25703_ADCIBAT_CHG_MASK		GENMASK(14, 8)
-> +#define BQ25703_ADCIBAT_CHG_STEP_UA		64000
-> +#define BQ25703_ADCIBAT_DIS_STEP_UA		256000
-> +
-> +#define BQ25703_ADCIIN				GENMASK(15, 8)
-> +#define BQ25703_ADCIINCMPIN_STEP		50000
-> +
-> +#define BQ25703_ADCVSYS_MASK			GENMASK(15, 8)
-> +#define BQ25703_ADCVBAT_MASK			GENMASK(7, 0)
-> +#define BQ25703_ADCVSYSVBAT_OFFSET_UV		2880000
-> +#define BQ25703_ADCVSYSVBAT_STEP		64000
-> +
-> +#define BQ25703_ADC_CH_MASK			GENMASK(7, 0)
-> +#define BQ25703_ADC_CONV_EN			BIT(15)
-> +#define BQ25703_ADC_START			BIT(14)
-> +#define BQ25703_ADC_FULL_SCALE			BIT(13)
-> +#define BQ25703_ADC_CMPIN_EN			BIT(7)
-> +#define BQ25703_ADC_VBUS_EN			BIT(6)
-> +#define BQ25703_ADC_PSYS_EN			BIT(5)
-> +#define BQ25703_ADC_IIN_EN			BIT(4)
-> +#define BQ25703_ADC_IDCHG_EN			BIT(3)
-> +#define BQ25703_ADC_ICHG_EN			BIT(2)
-> +#define BQ25703_ADC_VSYS_EN			BIT(1)
-> +#define BQ25703_ADC_VBAT_EN			BIT(0)
-> +
-> +#define BQ25703_EN_OTG_MASK			BIT(12)
-> +
-> +struct bq257xx_device {
-> +	struct i2c_client *client;
-> +	struct regmap *regmap;
-> +};
-> -- 
-> 2.43.0
+> Changes in v3:
+> 1. Add also PCIe nodes, because they were not planned to be sent
+>    separately.
+> 2. Drop pieces of comments as discussed with Dmitry.
+> v2: https://lore.kernel.org/all/20250811131055.154233-2-krzysztof.kozlowski@linaro.org/
 > 
+> Changes in v2:
+> 1. Add missing &qupv3_2 enable, so Bluetooth works.
+> 2. Adjust also S4D regulator constraint.
+> 
+> No dependencies, can be merged.
+> ---
+>  arch/arm64/boot/dts/qcom/sm8750-mtp.dts | 147 +++++++++++++++++++++++-
+>  1 file changed, 143 insertions(+), 4 deletions(-)
+> 
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+
 
 -- 
-Lee Jones [李琼斯]
+With best wishes
+Dmitry
 
