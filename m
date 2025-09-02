@@ -1,83 +1,87 @@
-Return-Path: <devicetree+bounces-211559-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211560-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C69B3F82F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F62B3F836
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 10:23:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF24E174485
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:21:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C344D174E5C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 08:23:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5555F2E5B13;
-	Tue,  2 Sep 2025 08:21:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 771A52E612D;
+	Tue,  2 Sep 2025 08:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J9CIxXWk"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EfcUforq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DEA43D76;
-	Tue,  2 Sep 2025 08:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4FC9617555;
+	Tue,  2 Sep 2025 08:23:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756801304; cv=none; b=sATF2Aocsa7Uk1CZ5DWgrK2fy+/rWN00+pA3pE6U1OfpXVzqA+mqSKVPOPViPz9peWyi+CcWGfRzf/4y8FtH75GsAyJKGNR3WuICpWQI+1wATSuuFOUmfaGU9kYzgbE41ctDGAcfNgt7CfS1YFXEEYZ57D99058tMIXwLBNn0zg=
+	t=1756801394; cv=none; b=fgCQi8CJC1R/FHrv7D83YRrkayyXylMhshjnDvIiV40yZKbhEnBkwZ0TXdOQLhTviCQe3zHR2SDacuhTbUUcRwHq0F1Q1ph9Hav6CIItTw2mDDp45EYASDKbVTchkfs1XEpzyIn3ZDj35HQe91RLZhTB0mN6/PWjrYkD/dohxnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756801304; c=relaxed/simple;
-	bh=HTP71WhzGipeCSBajL8ANOHMk6CxNR64g0iCm2wt0kk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DPBFEsHPYteEfEry8q6hdOptipFIOL+Y4+ESSvL17LX1TcI2d5rYDvb8Z2NKVqyNj8XIlfuWR2DLM4KP0my6KUzwpbmu1Ts8gU3rIEEHWQfMLR7d0daK/7e/tOBNTLLhKDZ0HU3EuNO39rhXHTk2eIZCyIyS2nLnMojnAg3SDmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J9CIxXWk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E7E31C4CEF7;
-	Tue,  2 Sep 2025 08:21:42 +0000 (UTC)
+	s=arc-20240116; t=1756801394; c=relaxed/simple;
+	bh=D7Jr1RfmWxHJmGMuNJwXaBj/4RwRt61Lsyk0u4oikIQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=qMFkfWv92P553ptVYWpmsPX+0ZRpPFgSJbEV462Rs8OFb06I9FtClcnlre2r9zejngu5V+PljBFaf8W3EG6+cf9Wl3dzg3Z3ylH/j7SMa/zgJXAoqTZEFYyq+WjzGsEqJAad3H3dNK1Wy1d0vqNkt8SgBk6qU0QpCqlvWED/d20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EfcUforq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFE11C4CEED;
+	Tue,  2 Sep 2025 08:23:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756801303;
-	bh=HTP71WhzGipeCSBajL8ANOHMk6CxNR64g0iCm2wt0kk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=J9CIxXWkCuROnlh1iQx3SkkD051nxRcFCvy3ABzDYcrX5XJ3Q5xYOCu7zcxDYplD1
-	 TRrLbvXVKN2JO05Krc/nJ+o+6pBYkJO+r2CfpQLA8Q17L7F/YbvWZko1YzwQ2O2fAX
-	 2eA2KKS/xk3JmPaqY0GRjM8RQQl6WXtMr1s2gDxN/g2tn+5l/nlhGmrzEIhLYrUyyj
-	 JgNTrjC91rCsxIY4KbTeguaGw3NGt+GGDsqC4rMikKQHhW1hglPjD7J6KemtDEYsX3
-	 QGcJ7aEAqyGaqdk8evBorVaQhPT3wTSm74NnmsPJOhSVCDgBim6XXd0bAsnIVkSaGU
-	 UC3YOcz1/C7Cg==
-Date: Tue, 2 Sep 2025 10:21:40 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Taniya Das <taniya.das@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ajit Pandey <quic_ajipan@quicinc.com>, Imran Shaik <quic_imrashai@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Add DISPCC and reset controller
- for GLYMUR SoC
-Message-ID: <20250902-loutish-dangerous-trout-cf4e47@kuoka>
-References: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
- <20250829-glymur-disp-clock-controllers-v1-1-0ce6fabd837c@oss.qualcomm.com>
+	s=k20201202; t=1756801393;
+	bh=D7Jr1RfmWxHJmGMuNJwXaBj/4RwRt61Lsyk0u4oikIQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=EfcUforqFb0XtVu5hkdRIErH3maPCUeqfp75GNm55indpRWaxQKK9sSxxQ9YaI1zR
+	 +xcg2WF9VN4BNM/54fFh+Q8s8n2+9LN/tCLyo3Dz40fM4fZOZ84aefheFD/0MKKuXg
+	 RCeEcAeq2LDhWCb1XjZH1Jsl6cbx84W07I5Mor5OcRd4yXgszd/hRnRj7r7lphgIAH
+	 FkUuPnV8iYJWfDCTgTSmLi1OqMxu8OHFrP7FeQaI4JjgwSmKjMWy3uhhGco3R7BB7d
+	 FA1GtbWuSnHNeps8YSWp73Flnho6ks1GMcXPDCFQm9DNRDlzhlSurABC2WplAhqyau
+	 grprVA1WjTusA==
+From: Lee Jones <lee@kernel.org>
+To: Lee Jones <lee@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, 
+ Andrew Jeffery <andrew@codeconstruct.com.au>, 
+ Chia-Wei Wang <chiawei_wang@aspeedtech.com>, 
+ "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250807132909.3291770-1-robh@kernel.org>
+References: <20250807132909.3291770-1-robh@kernel.org>
+Subject: Re: (subset) [PATCH] dt-bindings: mfd: aspeed-lpc: Add missing
+ "clocks" property on lpc-snoop node
+Message-Id: <175680139153.2190944.6070606106067900940.b4-ty@kernel.org>
+Date: Tue, 02 Sep 2025 09:23:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250829-glymur-disp-clock-controllers-v1-1-0ce6fabd837c@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-c81fc
 
-On Fri, Aug 29, 2025 at 01:28:03PM +0530, Taniya Das wrote:
-> Add the device tree bindings for the display clock controller which are
-> required on Qualcomm Glymur SoC.
+On Thu, 07 Aug 2025 08:29:08 -0500, Rob Herring (Arm) wrote:
+> The ASpeed lpc-snoop nodes have a "clocks" property which isn't
+> documented. It looks like all the LPC child devices have the same clock
+> source. Perhaps it is the parent device that should have the clock, but
+> it's too late for that. The driver for lpc-snoop requires a clock to be
+> present.
 > 
-> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
-> ---
->  .../bindings/clock/qcom,glymur-dispcc.yaml         |  99 ++++++++++++++++++
->  include/dt-bindings/clock/qcom,glymur-dispcc.h     | 114 +++++++++++++++++++++
->  2 files changed, 213 insertions(+)
+> 
+> [...]
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Applied, thanks!
 
-Best regards,
-Krzysztof
+[1/1] dt-bindings: mfd: aspeed-lpc: Add missing "clocks" property on lpc-snoop node
+      commit: 737b9ec4514ea0423eb049a3c27d8a22d61d03b5
+
+--
+Lee Jones [李琼斯]
 
 
