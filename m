@@ -1,205 +1,399 @@
-Return-Path: <devicetree+bounces-211536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB6D4B3F67F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:21:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9CDB3F6D2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 09:43:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 536A3485652
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 07:20:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03AD2483658
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 07:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B12312E7622;
-	Tue,  2 Sep 2025 07:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E582E6CDD;
+	Tue,  2 Sep 2025 07:42:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a2vQx0uV"
+	dkim=pass (1024-bit key) header.d=chipsnmedia.com header.i=@chipsnmedia.com header.b="hw6WZNX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from PUWP216CU001.outbound.protection.outlook.com (mail-koreasouthazon11020081.outbound.protection.outlook.com [52.101.156.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0FE257845;
-	Tue,  2 Sep 2025 07:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756797589; cv=none; b=kMt3Y+m5qLMdj1JkjN6r22b3pf82e/C+rb2bBOekBTEgO7ZJQhA4+jNWV0LiTtnp91eI16++rcWzt6Bb11q5+Um+OR0jUBOWptlJdzjRC5juR1ObRM00MMUworFmPcSqolsBlK7Rvh9NThyoPjWd3ZjfAvJOqJ8sH5LHZP4/fSM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756797589; c=relaxed/simple;
-	bh=SY0nQqXivc4wOy/GprU6dZd+jT6rz1VGOyEA24OCT7A=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=DdL9ydhJk3k2Dw4vZaUEC1W96ZaPlRoEwq/tpsjQcC/MRAa57hahzY9MD31o1el75Qf6VtAX7Gl8xPkjSS05SbDCuBnn0hOWZl6Fo9ULslRid4SE2bL04Y5Y/Pn8SQqDC2JuUC23tpPirMXNIWjL+EPOF7puDlFdooROS6kf5/g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a2vQx0uV; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5827Jg4J2532686;
-	Tue, 2 Sep 2025 02:19:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756797582;
-	bh=7t+V3rIC4kUf8NGXC8DKjChwyGbywQXM1PSJFpDs4Zs=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=a2vQx0uVqx1UXgu4bbYmLW+wQ/7XS5W5Tm/uxJ6kHnjHhBzzLn+GQd92QRuIMqd+b
-	 xHK4829cjcLT67sR7AR32+D10Qgbify2FdUpjUV39cbZac+xNwTSqRyni9nztARkOf
-	 jFo3IYzX8aAQUMPgE+/uKhljj/GL9aBL4SANNI2k=
-Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5827JgoF2661415
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 2 Sep 2025 02:19:42 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 2
- Sep 2025 02:19:42 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 2 Sep 2025 02:19:42 -0500
-Received: from akashdeep-HP-Z2-Tower-G5-Workstation.dhcp.ti.com (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5827JJgc3689199;
-	Tue, 2 Sep 2025 02:19:38 -0500
-From: Akashdeep Kaur <a-kaur@ti.com>
-To: <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>,
-        <d-gole@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <vishalm@ti.com>, <sebin.francis@ti.com>
-Subject: [PATCH v3 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining macros
-Date: Tue, 2 Sep 2025 12:49:17 +0530
-Message-ID: <20250902071917.1616729-4-a-kaur@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250902071917.1616729-1-a-kaur@ti.com>
-References: <20250902071917.1616729-1-a-kaur@ti.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E856827F01E;
+	Tue,  2 Sep 2025 07:42:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.156.81
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756798978; cv=fail; b=VurklnpBmPd4aag9YYj9XVgxz1ZEafnSssVvsacRQJvAtr0LOEFAEdCVep4ioc9F+9dwuPqlTTBRgsQvVt9/u2w65w3ku7DuXlZHjjxER54iiovpo4M5dSggrfTZLGF49Y22P77lVFqHQgvde+o1y4TktXM0mB2Ri5A0gPO3BIM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756798978; c=relaxed/simple;
+	bh=zc6LIMlo/fVZuy74d0L9DJ4nNaT8lpto1r7Dpt/LkOI=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Tvxo5hLLM+jNWxHy0eHeUENBS27UUq9CYSwV+kfjjARAlENjDJAbKyB/5lEg5IxQc11aONNyG3yaxLe1ZLZxeevzTFwj/m5JU2DitlFu2m+AO0kPcISgDqunt0N8asgsPwdirX4DAQK/tkaMrtH1yg/cdJoRYBt/xnUxjJ1gozk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chipsnmedia.com; spf=fail smtp.mailfrom=chipsnmedia.com; dkim=pass (1024-bit key) header.d=chipsnmedia.com header.i=@chipsnmedia.com header.b=hw6WZNX8; arc=fail smtp.client-ip=52.101.156.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=chipsnmedia.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=chipsnmedia.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=M4D6MMVr25acA6P/346bHhSV820MVsdPp8f2lNXYp/gYRNjnrZ87NJmN01gaAYZRWLB9ikS/e10TBti2G4uC7XRJb4gjj2vE0eXDHVA/xwobYhrupirzjbJQptabxwMIP/fFj+w1LwvT0dy59uEbnUGaPvsm3X5e6ODgb57tPHQw2eAK8/JtU/u2L8644SgQGoncKD1jeSYf/mQbm9quB3Hy4sFH4Z7QgJeg350StO/njZS1mGkCpwB6+CaC13wYNkzEXYpfQN9/p7Kltjw3F6EDFtEUSxl9qeJZszdXkuWtROAX+8mHU0WzdtDRHXTGhP0TQDByQCEWDxChJfdY6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gKI5gLGTj07P22khPJSte6uwbo2TpUQvafpvsUjktDU=;
+ b=xna71hb+EFr84yyVjc6/baZ3es7o1uinAQr8SsoM20mzGSZufNhfkwlYG8IL7VNK24Sue51sWMEb+51JAVC/Al8VtxJtfpiqMcViKC258SCb7h24CQWclOKIfoS+poay9J9gDTuV+v6593QXbq++TTpvO/SvTlvMNrFCFKj8RudKUP3ST26Ic569gsdto8KhaffN0SV3nYO9Mznzv1Fanyd92Gp8T2QIw1HeyfgAi78kYjjrgUCj5/EjRuHQSy+55Tc55XvvcrIJ2MMFfzlmNLPVhRZC+Ao5GMRyr845Lrt9uez7Et2+AnsgKulh3ZSVrw66WH34KOZetagi87LxqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=chipsnmedia.com; dmarc=pass action=none
+ header.from=chipsnmedia.com; dkim=pass header.d=chipsnmedia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=chipsnmedia.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gKI5gLGTj07P22khPJSte6uwbo2TpUQvafpvsUjktDU=;
+ b=hw6WZNX8jtOqFYt+dtqqniwQBS/Q2owvMOBZbgVowStpCLEaZDqo8fmoElAUKSHhJcnYM2TEptW36p9cPIhfxhDH8Uq0P8WJXHX6eY6gpw467gOLEGGZKv7dGVDqG5BiRBtkJn52Dj55be6xS1Z1F211C3WbMxdRG5a2tnccB70=
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM (2603:1096:101:a::9) by
+ SE1P216MB1333.KORP216.PROD.OUTLOOK.COM (2603:1096:101:17::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9094.14; Tue, 2 Sep 2025 07:42:51 +0000
+Received: from SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9e3d:ee20:8cc7:3c07]) by SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+ ([fe80::9e3d:ee20:8cc7:3c07%5]) with mapi id 15.20.9094.015; Tue, 2 Sep 2025
+ 07:42:51 +0000
+From: Nas Chung <nas.chung@chipsnmedia.com>
+To: Nas Chung <nas.chung@chipsnmedia.com>, Krzysztof Kozlowski
+	<krzk@kernel.org>, "mchehab@kernel.org" <mchehab@kernel.org>,
+	"hverkuil@xs4all.nl" <hverkuil@xs4all.nl>, "robh@kernel.org"
+	<robh@kernel.org>, "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
+CC: "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-imx@nxp.com" <linux-imx@nxp.com>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, jackson.lee
+	<jackson.lee@chipsnmedia.com>, lafley.kim <lafley.kim@chipsnmedia.com>
+Subject: RE: [PATCH v3 2/9] dt-bindings: media: nxp: Add Wave6 video codec
+ device
+Thread-Topic: [PATCH v3 2/9] dt-bindings: media: nxp: Add Wave6 video codec
+ device
+Thread-Index: AQHcGMGJZMRvpcS8k0m0pKjSJCiRfbR5qCyAgAWDqKCAAFVmUA==
+Date: Tue, 2 Sep 2025 07:42:50 +0000
+Message-ID:
+ <SL2P216MB1246080FA1F1DE8B707A1C5BFB06A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+References: <20250829084649.359-1-nas.chung@chipsnmedia.com>
+ <20250829084649.359-3-nas.chung@chipsnmedia.com>
+ <22379203-94f8-468d-a9b6-de67f8fba495@kernel.org>
+ <SL2P216MB12469B8A2DD5B2F6EA2F04DCFB06A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+In-Reply-To:
+ <SL2P216MB12469B8A2DD5B2F6EA2F04DCFB06A@SL2P216MB1246.KORP216.PROD.OUTLOOK.COM>
+Accept-Language: en-US, ko-KR
+Content-Language: ko-KR
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=chipsnmedia.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SL2P216MB1246:EE_|SE1P216MB1333:EE_
+x-ms-office365-filtering-correlation-id: 9527069e-e006-426f-fcc5-08dde9f451c0
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|376014|7416014|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?3N+gRwLRu+Sb7ipBL2qukk610V1+haj3JNIQ4XSD9GKemJ+hISI5M1vZ7JxX?=
+ =?us-ascii?Q?CfIxkYe7LqRbj++bj8ciqz2pWiZKGvlG6wxiEjDd8e8IhSikZ2iH5ma7teWM?=
+ =?us-ascii?Q?vyUVfwZKrZE7fL7B6q77vg/zOJkC7nKlEVnWbighVYWkXPWq5zBNewyZA2FY?=
+ =?us-ascii?Q?1EVFQfuhTCtO20byFSEH75SdbMDUWj1hedu9yHO5guaVmMdfLj++s51lIqlI?=
+ =?us-ascii?Q?TGImCHpEa/OBhazlsXaP32wXx8OwXVgrFOwXHBKbHlbrPEd52s1yPzc3gPCD?=
+ =?us-ascii?Q?lwzkK+omvGzJgbKFKUxrVBGlgTQvRStnCqafEHj6pKBR0NMYIz2plVK+NV/j?=
+ =?us-ascii?Q?u3vhZMQ8Z5KuznEiJxU601sahucpP8/neHp9I7UqjvBkBHY6TwEXlj3+4tL1?=
+ =?us-ascii?Q?a/jnKaDBIq0RJwneZToXFYYlbuwTXfyX1+v91QTlcA4O1rK+Cuwnt98rQqO8?=
+ =?us-ascii?Q?ykF9piOMvkoEDeZDTVFQZatfpY58ykX46uYZASwxSTA214eXDOOY5BCxeUIv?=
+ =?us-ascii?Q?pNS1rLVAvhouL6ZhPexOf58fMIzcn9YnkUV9NvMKlsy9WRVQTfkqjJSevZTQ?=
+ =?us-ascii?Q?N3dhuJNKpcTE5SlOHszvCe+k/zsbBFvY0SvijJm3EjL+gOcKskp4ctuIMBeP?=
+ =?us-ascii?Q?DXEEPrQKlULrBXpf9qNn/Vq5exv48zAKR0VXd7EVa15VT8bnYEp0hDN+UtjL?=
+ =?us-ascii?Q?0nnIfzT2eAMvVL9YcbhGkScFQ/HFmSdzKfG9SYsCHRJd/v51F018Qf0yg6Zm?=
+ =?us-ascii?Q?PVtU3MKK4blz9xKmiVG8YAk6X9cEBoiJ2FTrOb5epPaRw68mg3x17XGS36dV?=
+ =?us-ascii?Q?UFjWUCjL3OcD655B7o0nYdjsnHDzDW3702ckmvqPYQoNhef1fPKRm6Nk0tso?=
+ =?us-ascii?Q?9sE7bbiUicAXJj3SsppLOoy9eVQrj8oXTCXPKsPlRS/IoG26Z/deAiELGJIa?=
+ =?us-ascii?Q?NqBaivL8lSy2R+dZfxuogryOfSNxQklDtnESL3fZ8njp9SlPu61XhJSoOOwk?=
+ =?us-ascii?Q?JeoSPaLY/aVBbQBRoM9xwIjWtWJmJa4RLn0PuX+CtcSMAr+AJkkG0CIINaCX?=
+ =?us-ascii?Q?r3Ganwv/OQ6cQpeTX1+68R2dLreM3y8WvKycKDXWd230e9ziVezLYQSbNY7O?=
+ =?us-ascii?Q?nN0rIq0hABBnwLps32LIfY2Du0MCG6Accc40LNVOXBYZjdIHV8LKhC8ArkIV?=
+ =?us-ascii?Q?p3DQP3XqSzn+tqwMr9S8PxX7Gr9xcp/pOpcdikDEMA9mMDbiCSi1PznTcKGU?=
+ =?us-ascii?Q?XnUX564f8mhkM/Ad7tJ/gEFOw/ASLcifmOC7KpbqeusgNmJjiLX0EoSXmoaV?=
+ =?us-ascii?Q?hZ1Eypwbnc3u/oHMp0pkJ67JjxIEVmrmwsIHN8hCmEPl6ITOXrCZurEHlnPD?=
+ =?us-ascii?Q?VZ/wca9blwKbH1GvlicUVk7VI1rsvN/mrki/NCmpvWW0UEnDCx0UKVMoJaUr?=
+ =?us-ascii?Q?JGsftCAfp2w4/zr04SqZpVKsH7u0Gu08FbVkmjupFc4Roxr8C2Ep7g=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SL2P216MB1246.KORP216.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(376014)(7416014)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?7yRn9ykNZ/6AnY6hYutlz4jNOVIV6E2HGkR1xwIS9d5Ul2LdF/T51OLVSMcB?=
+ =?us-ascii?Q?Tw1bT5ykrAEBUccuTHi5iiEcvBCJU2UoeUPL6yG40JzgXe2orVOTykycdkRU?=
+ =?us-ascii?Q?RY8Hc7wlEip7eVeYs9AEEV/Z+Tk+IzpO/c5OzryesxJv1tVnc3hl5zUoyeF7?=
+ =?us-ascii?Q?DVADeV3TvkM+b/4+4bLCaNPaJAvpXX/UpOiixsEVlVh10nJNTQ8dK/GvvseN?=
+ =?us-ascii?Q?dVqhhI/lKCM94ysunlqzRvtfwOKsSLyiCAH8mhM/oryxt5yLxEyFozGP0v0f?=
+ =?us-ascii?Q?rjwDj7DN4d2Sti/W5+FczyT8I9xN6mlgrrKo9Sq73kGO/yaj03j35RT+iI8O?=
+ =?us-ascii?Q?3ODkRdbZrprItWoOHJsE/t+Jl0zPgzA7zREnWK116QPM+G83G8Glb7wnihvg?=
+ =?us-ascii?Q?WBhyZtWlpSKa/Ubeu10MY0pSgkJNE8qk6C5yw96nayZctAnLSTxTX+54L5Bm?=
+ =?us-ascii?Q?v1M41VvkcR0nEsB3fNJnOMYITBRBy6pb5S1RXTgE6s7wA4/8ekEZS+/vG4U1?=
+ =?us-ascii?Q?UPEfTDXk1zTAqxs/mLie+yUjwYcRPrXJyTk1MKg31MN2/AALoKlHjScVaEI4?=
+ =?us-ascii?Q?j3ZY9WdQnYd5PhOcllGmK4pDnxbtYqLLqjNnm4HAYBtXEF4R4SGH5lroNgvX?=
+ =?us-ascii?Q?lD9h74TCPX23ssLUW4s3VyAqn6NCth7apGPntR7R/hZHS5ZsPR87V7yQpjAL?=
+ =?us-ascii?Q?B9o4tlk6f4IivYR68I+jAmI9/a75AUFG2T8P7hhdpCX1u1TojsQ5/pAVxbeJ?=
+ =?us-ascii?Q?tho6Hh4LUQuWIOh9hJiT7BGrsPApXFnAamwFTH7GoJ/5ADlim0g27R/qjH/C?=
+ =?us-ascii?Q?OTle5ZHrAq8gzmOctC0JnJOyWt4rkzD2opf8nPFjf6Vt/sMSGYaMxUMb0+90?=
+ =?us-ascii?Q?1ZBP2/paYOuggLZK9pRy6Ykz6nBtbAbmHXwDeA92htEvgOJWi26u1AgTqa03?=
+ =?us-ascii?Q?PE1hCVba8i2nn2g2ZGLijxgeS0uxOts1K77q7kRYzFsIw/XDZtACQl0I70Zy?=
+ =?us-ascii?Q?W5pyl7q8iaFOJZCvkQ8M+gL67UTiU18/S8FNe8EfMhM6Wj6NCgWjhC0341Xk?=
+ =?us-ascii?Q?8mY9XzTr6RmBEY+wiCr0wNBB3nFsrpfZn4AaufugZHz89DZATMMBkspfz4yF?=
+ =?us-ascii?Q?CnuKk1EOARHZqsSBRNim2IA+OhIbPwrYx8Ehp09zMbt91vWarF6v9LTgkbRs?=
+ =?us-ascii?Q?gJo7FZd/VfbIasHNG0cZgDxVVhgVVcWyJq08A+mOaVhCl3g87KVaNolxRFai?=
+ =?us-ascii?Q?93IS4G8+gWD0pt+7nBQeuKzU86Jm6Zo09bDp1YSqKXc5qAgo9oqecmhVfiad?=
+ =?us-ascii?Q?WPsI8jccF7kTJwlmKho5ggSPxDZah30j9j27UFEHgGmTDydHeofapJ+Pyy+o?=
+ =?us-ascii?Q?7YF+tVyB0fz20sj+oHuzZJhU3wOOIAblpKFXAKhU7x2ftg3s+EmzCayomgP9?=
+ =?us-ascii?Q?SBFUdhaqrbSH+PeSWJFwWhOA0IfZ648V6BnL7X1/kG+4d6kTZ9bi40S+5jln?=
+ =?us-ascii?Q?z4r8DV/f30QoGjEqVaL4V6LbbNMmmk5l0xUteggg7Ham+g14fEFIar2+oXUw?=
+ =?us-ascii?Q?Ew2daUshIva/0YrJqL1ubne4Af4wiPG5PfxE6pGJ?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-OriginatorOrg: chipsnmedia.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SL2P216MB1246.KORP216.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9527069e-e006-426f-fcc5-08dde9f451c0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Sep 2025 07:42:50.8740
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 4d70c8e9-142b-4389-b7f2-fa8a3c68c467
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: xkVfCsLxV4pcN13WWRbJ/m4Bu1s5NkLyPgLX5anfDlEcKCUYTiGGxYuY5nW5cZRBZKH7UpQQhtxVcLX/rIy/OCQPbZcPGCvpVvlO9vT/sVI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SE1P216MB1333
 
-Add the drive stregth, schmitt trigger enable macros to pinctrl file.
-Add the missing macros for DeepSleep configuration control referenced
-from "Table 14-6172. Description Of The Pad Configuration Register Bits"
-in AM625 TRM[0].
-Add some DeepSleep macros to provide combinations that can be used
-directly in device tree files example PIN_DS_OUTPUT_LOW that
-configures pin to be output and also sets its value to 0.
+Hi, Krzysztof.
 
-[0] https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
+>-----Original Message-----
+>From: Nas Chung <nas.chung@chipsnmedia.com>
+>Sent: Tuesday, September 2, 2025 2:46 PM
+>To: Krzysztof Kozlowski <krzk@kernel.org>; mchehab@kernel.org;
+>hverkuil@xs4all.nl; robh@kernel.org; krzk+dt@kernel.org;
+>conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de
+>Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>kernel@vger.kernel.org; linux-imx@nxp.com; linux-arm-
+>kernel@lists.infradead.org; jackson.lee <jackson.lee@chipsnmedia.com>;
+>lafley.kim <lafley.kim@chipsnmedia.com>
+>Subject: RE: [PATCH v3 2/9] dt-bindings: media: nxp: Add Wave6 video codec
+>device
+>
+>Hi, Krzysztof.
+>
+>>-----Original Message-----
+>>From: Krzysztof Kozlowski <krzk@kernel.org>
+>>Sent: Friday, August 29, 2025 10:57 PM
+>>To: Nas Chung <nas.chung@chipsnmedia.com>; mchehab@kernel.org;
+>>hverkuil@xs4all.nl; robh@kernel.org; krzk+dt@kernel.org;
+>>conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de
+>>Cc: linux-media@vger.kernel.org; devicetree@vger.kernel.org; linux-
+>>kernel@vger.kernel.org; linux-imx@nxp.com; linux-arm-
+>>kernel@lists.infradead.org; jackson.lee <jackson.lee@chipsnmedia.com>;
+>>lafley.kim <lafley.kim@chipsnmedia.com>
+>>Subject: Re: [PATCH v3 2/9] dt-bindings: media: nxp: Add Wave6 video code=
+c
+>>device
+>>
+>>On 29/08/2025 10:46, Nas Chung wrote:
+>>> Add documents for the Wave6 video codec on NXP i.MX SoCs.
+>>Pretty incomplete commit msg. Nothing explaining hardware, nothing
+>>documenting resolution of previous discussions (where is all this
+>>chip&media?).
+>
+>I see,  I'll improve the commit message in v4 to include hardware details.
+>
+>>
+>>...
+>>
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - nxp,imx95-vpu
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +
+>>> +  power-domains:
+>>> +    maxItems: 1
+>>> +
+>>> +  memory-region:
+>>> +    maxItems: 1
+>>> +
+>>> +  sram:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: phandle of the SRAM memory region node.
+>>> +
+>>> +  "#cooling-cells":
+>>> +    const: 2
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 2
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 2
+>>> +
+>>> +  ranges: true
+>>> +
+>>> +patternProperties:
+>>> +  "^video-core@[0-9a-f]+$":
+>>> +    type: object
+>>
+>>Missing description.
+>
+>I'll add a description in v4.
+>
+>>
+>>> +    additionalProperties: false
+>>> +
+>>> +    properties:
+>>> +      compatible:
+>>> +        enum:
+>>> +          - nxp,imx95-vpu-core
+>>
+>>Why do you need here compatible? Can this child be anything else? Can it
+>>be re-used? Is it actually a separate block?
+>>
+>>Your example suggests that the only distinctive resource are the
+>>interrupt and address space and that's on the edge of calling it a
+>>separate device.
+>>
+>>There is some tendency to call such "pseudo-cores" a separate devices in
+>>case of video codec bindings and experience shows these are usually
+>>fake. It's not the same as DP or HDMI sub-block of display pipeline.
+>>
+>>That's why you should come here with strong argument what separate piece
+>>of hardware this is.
+>
+>Thanks for your feedback.
+>
+>As you mentioned, I wanted to represent the interrupts and address space
+>as separate "cores". This is because, from an external perspective (e.g.
+>multi-VM),
+>each of these resources is a VPU interface and can be accessed
+>independently
+>to operate the VPU.
 
-Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
----
- arch/arm64/boot/dts/ti/k3-pinctrl.h | 55 +++++++++++++++++++++++++++--
- 1 file changed, 52 insertions(+), 3 deletions(-)
+Apologies, I forgot to mention one detail in my previous reply.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-index c0f09be8d3f9..39aad59075d1 100644
---- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
-+++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-@@ -3,15 +3,20 @@
-  * This header provides constants for pinctrl bindings for TI's K3 SoC
-  * family.
-  *
-- * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ * Copyright (C) 2018-2025 Texas Instruments Incorporated - https://www.ti.com/
-  */
- #ifndef DTS_ARM64_TI_K3_PINCTRL_H
- #define DTS_ARM64_TI_K3_PINCTRL_H
- 
-+#define WKUP_LVL_EN_SHIFT       (7)
-+#define WKUP_LVL_POL_SHIFT      (8)
- #define ST_EN_SHIFT		(14)
- #define PULLUDEN_SHIFT		(16)
- #define PULLTYPESEL_SHIFT	(17)
- #define RXACTIVE_SHIFT		(18)
-+#define DRV_STR_SHIFT           (19)
-+#define DS_ISO_OVERRIDE_SHIFT   (22)
-+#define DS_ISO_BYPASS_EN_SHIFT  (23)
- #define DEBOUNCE_SHIFT		(11)
- #define FORCE_DS_EN_SHIFT	(15)
- #define DS_EN_SHIFT		(24)
-@@ -19,6 +24,7 @@
- #define DS_OUT_VAL_SHIFT	(26)
- #define DS_PULLUD_EN_SHIFT	(27)
- #define DS_PULLTYPE_SEL_SHIFT	(28)
-+#define WKUP_EN_SHIFT           (29)
- 
- /* Schmitt trigger configuration */
- #define ST_DISABLE		(0 << ST_EN_SHIFT)
-@@ -33,6 +39,26 @@
- #define INPUT_EN		(1 << RXACTIVE_SHIFT)
- #define INPUT_DISABLE		(0 << RXACTIVE_SHIFT)
- 
-+#define DS_PULL_DISABLE         (1 << DS_PULLUD_EN_SHIFT)
-+#define DS_PULL_ENABLE          (0 << DS_PULLUD_EN_SHIFT)
-+
-+#define DS_PULL_UP              (1 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-+#define DS_PULL_DOWN            (0 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-+
-+#define DS_INPUT_EN             (1 << DS_OUT_DIS_SHIFT)
-+#define DS_INPUT_DISABLE        (0 << DS_OUT_DIS_SHIFT)
-+
-+#define DS_OUT_VALUE_ZERO       (0 << DS_OUT_VAL_SHIFT)
-+#define DS_OUT_VALUE_ONE        (1 << DS_OUT_VAL_SHIFT)
-+
-+#define WKUP_ENABLE             (1 << WKUP_EN_SHIFT)
-+#define WKUP_ON_LEVEL           (1 << WKUP_LVL_EN_SHIFT)
-+#define WKUP_ON_EDGE            (0 << WKUP_LVL_EN_SHIFT)
-+#define WKUP_LEVEL_LOW          (0 << WKUP_LVL_POL_SHIFT)
-+#define WKUP_LEVEL_HIGH         (1 << WKUP_LVL_POL_SHIFT)
-+
-+#define WKUP_DISABLE            (0 << WKUP_EN_SHIFT)
-+
- /* Only these macros are expected be used directly in device tree files */
- #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
- #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
-@@ -53,18 +79,41 @@
- #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
- #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
- 
-+#define PIN_DRIVE_STRENGTH_NOMINAL      (0 << DRV_STR_SHIFT)
-+#define PIN_DRIVE_STRENGTH_SLOW         (1 << DRV_STR_SHIFT)
-+#define PIN_DRIVE_STRENGTH_FAST         (2 << DRV_STR_SHIFT)
-+
-+#define PIN_SCHMITT_TRIGGER_DISABLE	(0 << ST_EN_SHIFT)
-+#define PIN_SCHMITT_TRIGGER_ENABLE	(1 << ST_EN_SHIFT)
-+
- #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
- #define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
- #define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
- #define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
--#define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
--#define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
-+#define PIN_DS_OUT_ENABLE		DS_INPUT_DISABLE
-+#define PIN_DS_OUT_DISABLE		DS_INPUT_EN
- #define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
- #define PIN_DS_OUT_VALUE_ONE		(1 << DS_OUT_VAL_SHIFT)
- #define PIN_DS_PULLUD_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
- #define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
- #define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
- #define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
-+#define PIN_DS_ISO_BYPASS               (1 << DS_ISO_BYPASS_EN_SHIFT)
-+#define PIN_DS_ISO_BYPASS_DISABLE       (0 << DS_ISO_BYPASS_EN_SHIFT)
-+
-+#define DS_STATE_VAL                    (1 << DS_EN_SHIFT)
-+#define ACTIVE_STATE_VAL                (0 << DS_EN_SHIFT)
-+
-+#define PIN_DS_OUTPUT_LOW               (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
-+#define PIN_DS_OUTPUT_HIGH              (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
-+#define PIN_DS_INPUT                    (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DISABLE)
-+#define PIN_DS_INPUT_PULLUP             (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_UP)
-+#define PIN_DS_INPUT_PULLDOWN           (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DOWN)
-+
-+#define PIN_WKUP_EN_EDGE                (WKUP_ENABLE | WKUP_ON_EDGE)
-+#define PIN_WKUP_EN_LEVEL_LOW           (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_LOW)
-+#define PIN_WKUP_EN_LEVEL_HIGH          (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_HIGH)
-+#define PIN_WKUP_EN                     WKUP_EN_EDGE
- 
- /* Default mux configuration for gpio-ranges to use with pinctrl */
- #define PIN_GPIO_RANGE_IOPAD	(PIN_INPUT | 7)
--- 
-2.34.1
+I did not include the SMMU-related properties in the core nodes.
+On this SoC, however, each of these cores has its own SMMU ID
+as part of the SoC's isolation policy.
+This allows them to be treated as independent interfaces,
+even though there is only one actual VPU engine.
+
+Would adding the iommu property be the appropriate way to describe
+this in the device tree?
+
+Thanks,
+Nas.
+
+>
+>However, there is indeed only one actual VPU processing engine.
+>I understand your point about "pseudo-cores".
+>
+>I would appreciate any guidance on the preferred way to represent
+>these resources in the device tree.
+>
+>>
+>>> +
+>>> +      reg:
+>>> +        maxItems: 1
+>>> +
+>>> +      clocks:
+>>> +        maxItems: 1
+>>> +
+>>> +      power-domains:
+>>> +        maxItems: 1
+>>> +
+>>> +      interrupts:
+>>> +        maxItems: 1
+>>> +
+>>> +    required:
+>>> +      - compatible
+>>> +      - reg
+>>> +      - clocks
+>>> +      - power-domains
+>>> +      - interrupts
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - clocks
+>>> +  - power-domains
+>>> +  - memory-region
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
+>>> +
+>>> +    soc {
+>>> +      #address-cells =3D <2>;
+>>> +      #size-cells =3D <2>;
+>>> +
+>>> +      vpu: video-codec@4c4c0000 {
+>>
+>>Unused label, drop
+>
+>Okay. I'll drop the unused label.
+>
+>>
+>>> +        compatible =3D "nxp,imx95-vpu";
+>>> +        reg =3D <0x0 0x4c4c0000 0x0 0x10000>;
+>>> +        clocks =3D <&vpu_blk_ctrl IMX95_CLK_VPUBLK_WAVE>;
+>>> +        power-domains =3D <&scmi_perf 10>;
+>>> +        memory-region =3D <&vpu_boot>;
+>>> +        sram =3D <&sram1>;
+>>> +        #cooling-cells =3D <2>;
+>>> +        #address-cells =3D <2>;
+>>> +        #size-cells =3D <2>;
+>>> +        ranges;
+>>> +
+>>> +        vpucore0: video-core@4c480000 {
+>>
+>>None of these labels are used, drop.
+>
+>I'll drop it.
+>
+>Thanks,
+>Nas.
+>
+>>
+>>> +          compatible =3D "nxp,imx95-vpu-core";
+>>> +          reg =3D <0x0 0x4c480000 0x0 0x10000>;
+>>> +          clocks =3D <&scmi_clk 115>;
+>>> +          power-domains =3D <&scmi_devpd 21>;
+>>> +          interrupts =3D <GIC_SPI 299 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        };
+>>> +
+>>> +        vpucore1: video-core@4c490000 {
+>>> +          compatible =3D "nxp,imx95-vpu-core";
+>>> +          reg =3D <0x0 0x4c490000 0x0 0x10000>;
+>>> +          clocks =3D <&scmi_clk 115>;
+>>> +          power-domains =3D <&scmi_devpd 21>;
+>>> +          interrupts =3D <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
+>>> +        };
+>>> +
+>>
+>>
+>>
+>>Best regards,
+>>Krzysztof
 
 
