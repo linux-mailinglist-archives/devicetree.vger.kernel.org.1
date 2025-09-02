@@ -1,188 +1,146 @@
-Return-Path: <devicetree+bounces-211752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211753-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93B19B40697
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B5BB406A3
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 16:25:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 805D6164148
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:21:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C62417CC6E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:23:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57A452D9ECE;
-	Tue,  2 Sep 2025 14:21:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA6C53093CA;
+	Tue,  2 Sep 2025 14:23:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SWE+h9ba"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="IMxAr+N9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D27092DFA48
-	for <devicetree@vger.kernel.org>; Tue,  2 Sep 2025 14:21:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0D4C30C35A;
+	Tue,  2 Sep 2025 14:23:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756822873; cv=none; b=O6aBS07c87ISaNzsdc0WhqVKQDs25Z9ifn2t5VhvxBzgD5Ny2oUhsKBwjtl6+MqAxh6u+5OKd6h3pywBHthoD+pPr/dgazfdfnY5EHRp+Pwa7PZLQKOefvwVlrQfBp6ehNYWP9JiXTglDFYA4YA2rsHI3I0y+NTGwf323X4Y+ms=
+	t=1756823000; cv=none; b=r4zlKM4aXyV8jO5v83DmmVPXpqmBlVOa3aoF7uLyqEYkIPCUrc+0KziWbvEOC9I2zSM46RBQZ31lR/0tUrRsiCJjs6/W43wIqMajerFFnc/sVwyM9TpbYmvWHrqkOgfLjWGKy0qDcnc3kN2hn1YlxLasxBSv5giK1Xeb08eb7e4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756822873; c=relaxed/simple;
-	bh=Mo3fvh+zcipnakizUINPMwCYdgGPfGwVYd3T2yXE6PQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nC7AYjiJeS7up83PtSljdUKsDSDTN1Mg1QEO4id8X2F3oMwgauQKtmGLrWb+fEq2JzYOTX+S+6XwyxPgA539tUAe2uK5es8Z+gatKZAua9N2fwen3QDtAZ9KAagdl7xEzNBINtiRiRK+XL3khEdUoLSah8bC48Sy0NLs3CdJ5cM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SWE+h9ba; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582AeNeq012447
-	for <devicetree@vger.kernel.org>; Tue, 2 Sep 2025 14:21:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	cFH5cDNds5B5T/pje3FPEuPlO2hxs24Eot+U2AM5tl8=; b=SWE+h9baJZPg0zr+
-	h1VZBwnEPUP82cZ9ImIy24Jh4zgzo/2qILVaNrT21iAph2NMju2XB3jE5iQxS7uG
-	Iwl1soq01wpYlpscMNpjn3haYm3gzIyvm6XWOYT7tfCemR+a7OkbNsCEwJBsCYVj
-	gOdLUGnVpCtqtLB/Q4Z5j9NgLmA3R8J/wshkDR2wcPJ2EEMN+7WDwr6ta/UvVMJa
-	+4z1oo9rg4lSxeIwSBHqFAk5fJMlsDGwRd5BuNxcy77ZMn4TxnhUw22EDCyS3UvR
-	hTdD+MpQOgivxSlhDw6JFyTADU0xanIEsPOSM5PBMWUz02c0xzvKuM3oT7InLn3Z
-	1fs5Ng==
-Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ut2ffyy7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 14:21:10 +0000 (GMT)
-Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7724688833bso2917452b3a.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 07:21:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756822870; x=1757427670;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cFH5cDNds5B5T/pje3FPEuPlO2hxs24Eot+U2AM5tl8=;
-        b=nkl4qPx0K9SrD7aBq4BezkQgsSevR8gokBOeQJFe25oKZuqbFISPkIhpQGOsSgq/Kc
-         H4u76oNMG4VcbzpBGH+jHJ+5NnfDwPFDS+ioMtbZGx1gAx2aBZ8IKJPItmz9jVG8DfNF
-         CUTWtB7McTLBx1Hm8rD9VsfcO5f0r5otktWZDTHd94RHz0GqCG4U9dlb23hLyY/4cUcc
-         ADRX717iXkVPbZopRRWzSpKW+D/nYWpobADBJwd3xpkzSVb3UO+ZjgLn42uYcelJgo7B
-         K+uq5cKEYtQX8OlKSCjbBbGNym0EU3QaQ7i0uU4AdnKLwG/hkLVlkF6SEojB3ooinFX9
-         fBVQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV+Fk+5tls+gBhKySK9+Ig/48gHI3K+rmXB0Z1s2ghXbRjP3ucqwx1DseMt/oS/IGMhSps/FbZL2w3E@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQWdFTMXMisnbwS6OFUDv4UGV17/RIK7PAFdEjm6PVBEVnJyHk
-	lE9vXdavO7FZoXMB9UtMbOJ0tVSgUds+W/hhKBGGIYIiXWNIGzF74YX4HWFcm5DwBzDW3Tkpilz
-	Sgzo8ahmqsI31j1TtU20HrpuOv6uGPWZzfxEsMizBsZaG7IRcaGBEuDYweoahF5jxwxe+JRUS
-X-Gm-Gg: ASbGncus7IKlW7EKgLJxkNGDOYnd/juSyC70AMg2jbEGOMDLzslGV2qtsA6ut5VDGiq
-	9VDSddG4Kwg3qiHVljbYZ868aV3ZlAPaSBGoQXkLy6pjDYJv5Ht0GUPJys+0H3Kc5iszuh7nZVL
-	bVQfnm/KF9iLvzTggigBrrSoEYMb1Hs8bbkDMfVJEvKbuMs7eEU7GMrC504thOTaVM5mvJ08DEg
-	DBIbmDrkiV/GQtQ1bsffdwGYtw2SJzokz9YHjpI4hv5cSh9e15TBglJnBIT8vAc8nOmMhILPiuI
-	ZR+wb/WTY1MB6wVVoDjuSjlrqZaGRc2akvV4vZf0B5G6E7kCrYuOXcw7QzncwdG4ndoBn1Nq
-X-Received: by 2002:a05:6a20:3949:b0:243:25b0:2321 with SMTP id adf61e73a8af0-243d6f7e6d2mr17559827637.52.1756822869358;
-        Tue, 02 Sep 2025 07:21:09 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFqXouN6x5NC3Ff1ESu4awUlD3wgjdZZfk9g/KwRyDmJBn/xJVqTV3xHk+1W13vbBTuHhuaMw==
-X-Received: by 2002:a05:6a20:3949:b0:243:25b0:2321 with SMTP id adf61e73a8af0-243d6f7e6d2mr17559757637.52.1756822868877;
-        Tue, 02 Sep 2025 07:21:08 -0700 (PDT)
-Received: from [10.216.7.97] ([202.46.23.19])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-772396d2dbcsm11499176b3a.50.2025.09.02.07.20.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 07:21:08 -0700 (PDT)
-Message-ID: <f7394b06-d51a-cdbc-7990-13209b478398@oss.qualcomm.com>
-Date: Tue, 2 Sep 2025 19:50:58 +0530
+	s=arc-20240116; t=1756823000; c=relaxed/simple;
+	bh=ZDEfBItK5OVWEK7muhXSryNmSO0fwlQ1OYJ4jfJ/Hpg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iSWtdNRIIu2BzRhqq1XGiMlVm4Bekkm9VSC+cl0tW6LCU83boOKES4rfLzSNzkU3qPX/ZE4kF1ktu5RLqXhIyntzcVbGkZdQFKaFz2WjkkaUnHp8PgXNJsge3gdLD+NaCoGAOiSWWMWDCdX2o7RmoRuWg/fsSqklXvc9cyPHrTQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=IMxAr+N9; arc=none smtp.client-ip=198.175.65.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756822999; x=1788358999;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=ZDEfBItK5OVWEK7muhXSryNmSO0fwlQ1OYJ4jfJ/Hpg=;
+  b=IMxAr+N9YAcU2pCKJJhsGwdSptia5OgEIaQpDx7CQ6joT56+lGuzfC3C
+   rWid1t71Xbo+4e6Vc00vQrLIRDxpotlNCTM1KAL+c5imzSAYcplobRDEt
+   OJTIejNzHLgJfH1a30WG+G0E+ylKVzqx5nWrAzSiWjsIxE0kxrS7NSd7m
+   6ARI5teHo69zuPV5dqRPBSb17BjKd/0sdLBO2NUTOmKe3ctlOcHJ+gG9a
+   AfIL+ok/9ner/5guWjzL2a++7xKuqKiGQ+gH/re3V6wkJ0s7gFUk0odxg
+   pK+SKBoRLeb9R6ZaK/mito3/4Zjq4sAUo0qCuvIluauMEy53ww+BEGvM9
+   Q==;
+X-CSE-ConnectionGUID: J/NLH6DlRbelfFsXWjmNew==
+X-CSE-MsgGUID: cBu16YW7TheEa4cnrMPKDg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="81682080"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="81682080"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 07:23:17 -0700
+X-CSE-ConnectionGUID: 3IHK/4YAQIemMMCw44phpg==
+X-CSE-MsgGUID: CyQ1gDCORhCe2qmXX3ha6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,230,1751266800"; 
+   d="scan'208";a="170861201"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 07:23:13 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1utRug-0000000AiNo-13oB;
+	Tue, 02 Sep 2025 17:23:10 +0300
+Date: Tue, 2 Sep 2025 17:23:10 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v10 2/2] iio: adc: max14001: New driver
+Message-ID: <aLb9zgkE0TVZiOmp@smile.fi.intel.com>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
+ <f3ea9c127b7836cc978def5d906740c6da1cfb1e.1756816682.git.marilene.agarcia@gmail.com>
+ <aLb0_TKn96nGbk6l@smile.fi.intel.com>
+ <0cc072ab-dbf6-40fb-b753-13453b904974@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v14 03/10] power: reset: reboot-mode: Add support for 64
- bit magic
-Content-Language: en-US
-To: Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh@kernel.org>,
-        Casey Connolly <casey.connolly@linaro.org>,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Souvik Chakravarty <Souvik.Chakravarty@arm.com>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, Vinod Koul <vkoul@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        Mukesh Ojha <mukesh.ojha@oss.qualcomm.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Andre Draszik
- <andre.draszik@linaro.org>, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srini@kernel.org>
-References: <20250815-arm-psci-system_reset2-vendor-reboots-v14-0-37d29f59ac9a@oss.qualcomm.com>
- <20250815-arm-psci-system_reset2-vendor-reboots-v14-3-37d29f59ac9a@oss.qualcomm.com>
- <88ee0a26-8d64-4060-b703-40156cd011a7@linaro.org>
-From: Shivendra Pratap <shivendra.pratap@oss.qualcomm.com>
-In-Reply-To: <88ee0a26-8d64-4060-b703-40156cd011a7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzOCBTYWx0ZWRfXyn4tQB/n11sa
- eIspZ7y8dP+m9kp/Nb0paj9mrCLXgh6Q53ue1t7NaCLHw45LlJhlaxjttPiq17SmCQqR16KdUQe
- 0BV5hXyfwm7YvdpEEufWlm8ew8mBRbHSlEmWlbznEB3s5rJFPyX405zBVx6Vaf4ElK3awXSWA7Y
- Fw91+74j2a6/cZgU6c2cCzxbIjiCT63rWYJ3KnEtLa6HV2wD511Yac7sJIT5HxqYZ1+PFV4pAAu
- Tuq3lBFHawNk0acibMyOT1LFZn5VbTputxYOjX03tpg5iiLO2i6Fv3mmjEo1I600agoIKGckeSR
- M+8vkM+q2t2PpHFuKTjY1AjvOdXmZ/U643YBGDxHy2A5EeymyjdPO6qRp24Odr5qGrABX7VG1fw
- 7boF7R7H
-X-Proofpoint-ORIG-GUID: MI8KypOi4_XeyKT2qdudbbHbgHPghEqB
-X-Proofpoint-GUID: MI8KypOi4_XeyKT2qdudbbHbgHPghEqB
-X-Authority-Analysis: v=2.4 cv=U7iSDfru c=1 sm=1 tr=0 ts=68b6fd57 cx=c_pps
- a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=j4ogTh8yFefVWWEFDRgCtg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=FBzynz1gJkPyhc2EhIcA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=2VI0MkxyNR6bbpdq8BZq:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 clxscore=1015 impostorscore=0 suspectscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300038
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0cc072ab-dbf6-40fb-b753-13453b904974@baylibre.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
+On Tue, Sep 02, 2025 at 09:12:08AM -0500, David Lechner wrote:
+> On 9/2/25 8:45 AM, Andy Shevchenko wrote:
 
+...
 
-On 8/28/2025 6:52 PM, Casey Connolly wrote:
-> Hi Shivendra,
+> >> +	ret = devm_regulator_get_enable_read_voltage(dev, "vrefin");
+> >> +	if (ret < 0) {
+> >> +		st->vref_mv = 1250000 / 1000;
+> > 
+> > (MICRO / MILLI)
+> > 
+> >> +	} else {
+> >> +		st->vref_mv = ret / 1000;
+> > 
+> > Ditto.
+> > 
+> >> +		ext_vrefin = 1;
+> >> +	}
+> > 
+> > And with deduplication refactored code:
+> > 
+> > 	ret = devm_regulator_get_enable_read_voltage(dev, "vrefin");
 > 
-> On 15/08/2025 16:35, Shivendra Pratap wrote:
->> Current reboot-mode supports a single 32-bit argument for any
->> supported mode. Some reboot-mode based drivers may require
->> passing two independent 32-bit arguments during a reboot
->> sequence, for uses-cases, where a mode requires an additional
->> argument. Such drivers may not be able to use the reboot-mode
->> driver. For example, ARM PSCI vendor-specific resets, need two
->> arguments for its operation – reset_type and cookie, to complete
->> the reset operation. If a driver wants to implement this
->> firmware-based reset, it cannot use reboot-mode framework.
->>
->> Introduce 64-bit magic values in reboot-mode driver to
->> accommodate dual 32-bit arguments when specified via device tree.
->> In cases, where no second argument is passed from device tree,
->> keep the upper 32-bit of magic un-changed(0) to maintain backward
->> compatibility.
+> 	if (ret < 0 && ret != -ENODEV)
+> 		return dev_err_probe(dev, ret, "Failed to get REFIN voltage\n");
 > 
-> How about adding a n_magic_args property to struct reboot_mode_driver?
-> Then in struct mode_info change magic to be a u32 array of a fixed
-> length (currently two in-keeping with the DT bindings).
+> Most errors should be propagated, so we should also add this.
+> Only -ENODEV means that the supply was omitted from the devicetree
+> and we should use the internal reference voltage.
 
-Arnd/Rob,
+Good point.
 
-As per previous discussion on patch v10, magic and cookie were implemented
-as a 64 bit number (64 bit magic).
+> > 	if (ret < 0)
+> > 		ret = 1250000;
+> > 	else
+> > 		ext_vrefin = 1;
+> > 	st->vref_mv = ret / (MICRO / MILLI);
 
-Need you thoughts that if we should change the magic to 32bit array, as being
-suggested in the above comments.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-thanks,
-Shivendra
+
 
