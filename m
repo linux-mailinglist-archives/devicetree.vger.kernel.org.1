@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-211721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412D1B40480
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:43:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16451B4052C
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 15:50:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DBC5C5E2C65
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:41:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 68E4D1B237BE
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 13:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF7E632A82C;
-	Tue,  2 Sep 2025 13:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1495324B0B;
+	Tue,  2 Sep 2025 13:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GYah2HEM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZwWBlnAw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70B5732A81D;
-	Tue,  2 Sep 2025 13:36:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ADFAD2D4B4E;
+	Tue,  2 Sep 2025 13:41:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756820203; cv=none; b=k5+8eJsMlTC8jnFn/g71Y1mo97MHLFH6LoZCP5l6qlUSEv2m8rDB8r2KAV06tvtXcPLZoAUp0NCDJ5NQNkCG8dRqwkto2kDgVagdJa3qn2bahnfscFOVHymD2PYNJjKJHLPmYmR1Gzq4Rwyd9Eq93QwfgVWpdYl9U1n/VfHFLHg=
+	t=1756820485; cv=none; b=PAroHw0YlzwWQwkKiyyEu6wL2y444E6oI+cLFKQe8CW1s4pw5S30GXjFXUfp132yFKh0OpvCWn/XIKPpnHQ/JLwCoZCyJB7lvkYvZSDrHiz9ImJVkBwAyWqg2sYWWy54Pj6ZT42sMHFmUGjGajE1UMeG9FGxNryUbbdxJDxeRbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756820203; c=relaxed/simple;
-	bh=Z7VRLkLIaiLIAa6wk9u2fF+pQfwD1XWt+K4SKpchlgc=;
+	s=arc-20240116; t=1756820485; c=relaxed/simple;
+	bh=ZVVlpLZtW001ia11Gv9DKuA1Yfy1spmGwT9D/HHzZoQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KIpohNKytOGj2gIidYsq9uSiU9M8nw29i/a4Azfck40QUo+qCEPxh1i7HlDZwEvgvuh7EbeAwXuhGzd6AuM1tMQjGzDXe7vaC1cLx/QGR1R0hPLKiSpwVx0nvFSzUDUD4IMIwr+ERDeYTfGHv9vUB2zNtKGaRRdB7I/rQWJywSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GYah2HEM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C556FC4CEED;
-	Tue,  2 Sep 2025 13:36:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BZMi56pzJjlG7bkR0IYpS5DsbrI2q+VdnQ3kdtAp3axnEuuYEGN5kY+j8qe/geZl8S7xx7hQbb0BYcGyCXdP1up67ADewuEvOXFvOcMEMVbt1MnqPFkG3gsy/AH0IbUjv9JQQTeabDF3AWj2C3m2rc18/1BFq6tv6chrvyCNeCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZwWBlnAw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CD18C4CEFB;
+	Tue,  2 Sep 2025 13:41:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756820203;
-	bh=Z7VRLkLIaiLIAa6wk9u2fF+pQfwD1XWt+K4SKpchlgc=;
+	s=k20201202; t=1756820485;
+	bh=ZVVlpLZtW001ia11Gv9DKuA1Yfy1spmGwT9D/HHzZoQ=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GYah2HEMyor8pWpo2GMyFsi4vh2wZRtT6cruQJ2Gs1oevj6Hb/zM08qzMEwGlNyU4
-	 MGKhgAyFacLfWBd8AgX9O1Y/OGhErCdzrIXKk1quu18LStSuRdaAfzWj+pRSrFKjjP
-	 jaOS7SMTesZdAZklPYcxkyGRQOYNsLUCpy5WJYzsbykKSwhPFDYazJJDlQZcTHJ3CK
-	 figXHRDxIApc/uHxlvqarzaJw7+v9qreTYUrb0YsDGRKrnAZ7731ORGPoIiGt6ZdOs
-	 0XnHUbypoUL00Nlh0rm4rSHePDhwcVXnM2EwWU1lqVINTRPJGPCaGB+lAJv13eWxZQ
-	 gJD78fh6wstVA==
-Date: Tue, 2 Sep 2025 14:36:38 +0100
+	b=ZwWBlnAwxUOSjTlgMlo3w+hpjeXp789p38pxg3MIVv/SyyuAuKaCsP2HtTYFPQbsw
+	 ipI91tkwRXxx5v0GyencRIJ6MkFv5P19K+B3LE0Vm4Hg5FuK/63AVmU86O/ExS7rI2
+	 MJJeyRBvBDhbvqH+XHEbxDOo3MWE2FCu8PpuinsrqurB/LmexmeYwCKa5oqVKpR1pv
+	 sb4pvmADBKBbuEsmhW7C758YcnSXtO8cWz5qGDFyTb2cc/hH1cjcLUbRX2sONdxr8d
+	 eLgLq30LcHJb7jUHQR/7f3+HJst8lWyDKdB5cWtbDiGeupGHw3ntvh6czNTJYy6JDI
+	 14ROImnYnTqLw==
+Date: Tue, 2 Sep 2025 14:41:18 +0100
 From: Lee Jones <lee@kernel.org>
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Chen-Yu Tsai <wens@csie.org>, Liam Girdwood <lgirdwood@gmail.com>,
+To: samuel.kayode@savoirfairelinux.com
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
 	Mark Brown <broonie@kernel.org>,
-	Samuel Holland <samuel@sholland.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH 2/3] mfd: axp20x: Add support for AXP318W PMIC
-Message-ID: <20250902133638.GO2163762@google.com>
-References: <20250813235330.24263-1-andre.przywara@arm.com>
- <20250813235330.24263-3-andre.przywara@arm.com>
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Sebastian Reichel <sre@kernel.org>, Frank Li <Frank.li@nxp.com>,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-pm@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
+	Abel Vesa <abelvesa@linux.com>, Robin Gong <b38343@freescale.com>,
+	Robin Gong <yibin.gong@nxp.com>,
+	Enric Balletbo i Serra <eballetbo@gmail.com>,
+	Sean Nyekjaer <sean@geanix.com>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH v10 5/6] power: supply: pf1550: add battery charger
+ support
+Message-ID: <20250902134118.GP2163762@google.com>
+References: <20250820-pf1550-v10-0-4c0b6e4445e3@savoirfairelinux.com>
+ <20250820-pf1550-v10-5-4c0b6e4445e3@savoirfairelinux.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,33 +72,63 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250813235330.24263-3-andre.przywara@arm.com>
+In-Reply-To: <20250820-pf1550-v10-5-4c0b6e4445e3@savoirfairelinux.com>
 
-On Thu, 14 Aug 2025, Andre Przywara wrote:
+Power:
 
-> The AXP318W is a PMIC chip produced by X-Powers, it can be connected to
-> an I2C bus.
+> From: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 > 
-> It has a large number of regulators: 9(!) DCDC buck converters, and 28
-> LDOs, also some ADCs, interrupts, and a power key.
+> Add support for the battery charger for pf1550 PMIC.
 > 
-> Describe the regmap and the MFD bits, along with the registers exposed
-> via I2C only. This covers the regulator, interrupts and power key
-> devices for now.
-> Advertise the device using the new compatible string.
-> 
-> We use just "318" for the internal identifiers, for easier typing and
-> less churn, but use "318W" for anything externally visible. If something
-> else other than the "AXP318W" shows up, that's an easy change then.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Tested-by: Sean Nyekjaer <sean@geanix.com>
+> Signed-off-by: Samuel Kayode <samuel.kayode@savoirfairelinux.com>
 > ---
->  drivers/mfd/axp20x-i2c.c   |  2 +
->  drivers/mfd/axp20x.c       | 84 +++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/axp20x.h | 86 ++++++++++++++++++++++++++++++++++++++
->  3 files changed, 172 insertions(+)
+> v9:
+> - Fix thermal regulation temperature ranges
+> - Fix default thermal regulation temperature
+> - Drop unused `data` variable in reg_init
+> - Select charger operation mode based on application - suggested by Sean
+> v8:
+> - Drop PF1550_CHARGER_NAME
+> - Drop unnecessary POWER_SUPPLY_STATUS_CHARGING s
+> - Replace POWER_SUPPLY_HEALTH_DEAD with POWER_SUPPLY_HEALTH_NO_BATTERY
+> - Drop check for charger in delayed_work s
+> - Use dev_warn when battery is over-voltage
+> - Define two power supplies: charger and battery
+> - Use devm_delayed_work_autocancel to automate cleanup and fix race
+>   condition
+> v7:
+> - Use reverse christmas tree order
+> - Drop unecessary 0 in id table's driver data field
+> - Store virqs to avoid reinvoking platform_get_irq in the interrupt
+>   service routine
+> - Drop manufacturer and model global variables
+> v6:
+> - Drop lock entirely
+> - Reverse christmas tree order for variables defined in probe as
+>   suggested by Frank
+> - return pf1550_reg_init
+> v5:
+> - Drop lock for battery and charger delayed_work
+> - More conservative locking in vbus delayed_work
+> - Apply lock when setting power supply type during register initialization
+> v4:
+> - Finish handling of some interrupts in threaded irq handler
+> - Use platform_get_irq
+> v3:
+> - Use struct power_supply_get_battery_info to get constant charge
+>   voltage if specified
+> - Use virqs mapped in MFD driver
+> v2:
+> - Address feedback from Enric Balletbo Serra
+> ---
+>  drivers/power/supply/Kconfig          |  11 +
+>  drivers/power/supply/Makefile         |   1 +
+>  drivers/power/supply/pf1550-charger.c | 636 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 648 insertions(+)
 
-Looks okay.  Let me know when you're !RFC.
+Once Sebastian takes this, I'll merge the set.
 
 -- 
 Lee Jones [李琼斯]
