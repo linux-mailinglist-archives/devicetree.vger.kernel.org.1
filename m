@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-211848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 141E0B40ED0
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 22:49:13 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F277B40EE2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 22:53:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6835561D5A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 20:49:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59EA93AA9E2
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 20:53:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 696A12701BD;
-	Tue,  2 Sep 2025 20:49:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 921862E7BDF;
+	Tue,  2 Sep 2025 20:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YQGeIPGl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O8X7ewLS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D2552253EB;
-	Tue,  2 Sep 2025 20:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A6FB2E3B07;
+	Tue,  2 Sep 2025 20:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756846148; cv=none; b=aSErZ08zSX8r/+GjbAQ27CgiwfG9O59up7lVs9Uy0B4sIcPm/8sJ2MgdO7lImGjB3RskFLEgSsoFD4k1+A7hdE+iyLaKmgWwac7rYEe69HLTQDMfVKqlgvB6qdygzNjhTyGDCblD9dXwTa1m8qCzj97pBE7XtHExr96Lb8Khs2E=
+	t=1756846379; cv=none; b=JB1/nbaBOgNdzUtzTbr+QVH2GkeM6ivHf8f25xLOMlsX4YE0jUpE8W08RL77vfrUngCpp1TUtGljhK9VLq5vInnFkWAh2Eyj4NuD3v3LFdLUjhJPf+HJOmBJuddP4JyOzDGzjzAkxO0vyZyGwspUd5A5y+OapTe/HlUXFnBYr00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756846148; c=relaxed/simple;
-	bh=Pr1wu64cTiWnW5NF0Mxcc4fL7y6TV7kC88hov/faBLo=;
+	s=arc-20240116; t=1756846379; c=relaxed/simple;
+	bh=jECdS4CzQRUdpw1q8UvY0XbAJXPo1RSL3BkjoizI0Hw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fkWPA49VOdOC1CYZUIkm36+rk/Shw5Yu33gYXvtuZ+scZ1f0d1yAY/smQ21WFNPe2iS7WO9Or1LLj3lcsn/sNPWqVaDHa9bmY4+IDeZmO6TuHD9e5p5FKiDDVPVF6jNyDpK9IT7qZeBdD1ArCTdYCI2kDtjWZ1Qx+8zcTc7z44o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YQGeIPGl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F970C4CEED;
-	Tue,  2 Sep 2025 20:49:07 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=UaZoKxjylkpLFedXFrdmKh8dM1fjuEe0+4v38lh3IXHjRA37sGanAja4cIdmFPyKfzQfp3WaDgVvMzO8SzYDhLKjHYN6RxP/fO1sDAuAJ/dp9XxHHiwF+14E45dL4w2QcGFK9NwijLFTS+3WjrSNSb22U7dmhEn0iulzaVYnc70=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O8X7ewLS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD889C4CEED;
+	Tue,  2 Sep 2025 20:52:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756846147;
-	bh=Pr1wu64cTiWnW5NF0Mxcc4fL7y6TV7kC88hov/faBLo=;
+	s=k20201202; t=1756846379;
+	bh=jECdS4CzQRUdpw1q8UvY0XbAJXPo1RSL3BkjoizI0Hw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=YQGeIPGl7+3I3azKgEImCizIYM5cFNzZqYuwdaL5kP8KZ7kU19Tbjcmrx3xGTHyF9
-	 YBFMmEFkgItGB13DfW8CaTWSzI8Ti7WS5y0wbEOk8Dn9d8Nq/g1PnkVFlm0OGj062X
-	 fOIq3uxJW1M4xU0VXmREpOU/n+4K8T1HpkolwZ/LNUSDpOY2a/w71m6Fye6DjpYtlj
-	 BeBD2b7r4/bcXHDwS0suP2LJSecvzTcdf4Ft/A57qr+3qzeBNIBQ9Ar9TdNudOdHBY
-	 0HlclM0lZAk2dfZvLmullRJut1qRK30S81ezmvIEWGqc4BxIsA+3ZsKL/CKOnMDqHN
-	 znn6LdKpFpVdA==
-Date: Tue, 2 Sep 2025 15:49:06 -0500
+	b=O8X7ewLSTUxPVmrMSli6DcTVJqsbuOAtwGSFGZd1/mMohM2fuq99V5CqsrCG9oAJK
+	 ZCQZ94fVa4tZPWGiEEW9VY/JiCZnnbc+cevBe32S59461UCGzTZYXkuj8/IzQ3bEVZ
+	 ZDkLDoe0636QrDMy4RqA7DwvK3ON0gW9q9GFciYm2XsX/rff5YqS8nyts78B2hGO+f
+	 R8W90Z+nF6iV8gm1aoKS5mtxJ6RdvMkHU6EobolgQG6X2nlhoFbqNdl2Mo9WMWyUwv
+	 EqIXVqTbNfzSS3cKyH1wakZ/B/6Yj5Rdv6JpJWZb6It9NI4KPFZZTzGMim+RgUbDur
+	 tID0QvxDZsK+g==
+Date: Tue, 2 Sep 2025 15:52:58 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Alexander Kurz <akurz@blala.de>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Dzmitry Sankouski <dsankouski@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	linux-kernel@vger.kernel.org,
-	"Dr. David Alan Gilbert" <linux@treblig.org>,
-	linux-input@vger.kernel.org, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v3 6/7] dt-bindings: mfd: fsl,mc13xxx: add buttons node
-Message-ID: <175684614636.1159256.793148520977277557.robh@kernel.org>
-References: <20250829201517.15374-1-akurz@blala.de>
- <20250829201517.15374-7-akurz@blala.de>
+To: Baojun Xu <baojun.xu@ti.com>
+Cc: chinkaiting@google.com, conor+dt@kernel.org, jim.shil@goertek.com,
+	jesse-ji@ti.com, lgirdwood@gmail.com, shenghao-ding@ti.com,
+	tiwai@suse.de, broonie@kernel.org, will-wang@ti.com, k-yi@ti.com,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	robinchen@ti.com, linux-sound@vger.kernel.org, krzk+dt@kernel.org,
+	toastcheng@google.com, alsa-devel@alsa-project.org,
+	andriy.shevchenko@linux.intel.com, henry.lo@ti.com,
+	13916275206@139.com
+Subject: Re: [PATCH v4 2/2] ASoC: tas2781: Add tas2118, tas2x20, tas5825
+ support
+Message-ID: <175684637733.1163682.7826171092384451555.robh@kernel.org>
+References: <20250830061459.24371-1-baojun.xu@ti.com>
+ <20250830061459.24371-2-baojun.xu@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,17 +65,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250829201517.15374-7-akurz@blala.de>
+In-Reply-To: <20250830061459.24371-2-baojun.xu@ti.com>
 
 
-On Fri, 29 Aug 2025 20:15:16 +0000, Alexander Kurz wrote:
-> Add a buttons node and properties describing the "ONOFD" (MC13783) and
-> "PWRON" (MC13892/MC34708) buttons available in the fsl,mc13xxx PMIC ICs.
+On Sat, 30 Aug 2025 14:14:59 +0800, Baojun Xu wrote:
+> Update ti,tas2781.yaml for adding tas2118, tas2x20, tas257x and tas582x.
 > 
-> Signed-off-by: Alexander Kurz <akurz@blala.de>
+> Signed-off-by: Baojun Xu <baojun.xu@ti.com>
+> 
 > ---
->  .../devicetree/bindings/mfd/fsl,mc13xxx.yaml  | 70 +++++++++++++++++++
->  1 file changed, 70 insertions(+)
+> v4:
+>  - Change description for adding tas257x and tas5827
+>  - Added descriptions for tas2570, tas2572 and tas5827
+>  - Remove unnecessary description for I2C register
+> v3:
+>  - Remove unnecessary minItems.
+>  - Remove unnecessary description for tas5825.
+> v2:
+>  - Update the mail list for maintainers of yaml file
+> ---
+>  .../devicetree/bindings/sound/ti,tas2781.yaml | 96 ++++++++++++++++++-
+>  1 file changed, 95 insertions(+), 1 deletion(-)
 > 
 
 Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
