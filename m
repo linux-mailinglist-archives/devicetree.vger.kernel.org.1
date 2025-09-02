@@ -1,208 +1,154 @@
-Return-Path: <devicetree+bounces-211687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79803B400D3
-	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:37:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A75DEB400C1
+	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 14:36:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ED7457AB022
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF98C18893BC
 	for <lists+devicetree@lfdr.de>; Tue,  2 Sep 2025 12:36:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D041283FCE;
-	Tue,  2 Sep 2025 12:37:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3C61253B52;
+	Tue,  2 Sep 2025 12:35:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="sxUBENY9"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Jt0/hwhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BC1113635C;
-	Tue,  2 Sep 2025 12:37:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 660DD24A069;
+	Tue,  2 Sep 2025 12:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756816663; cv=none; b=KcFcNB8TXA0Z7D068ZWF1Nd6VoHrzsXp0pcE+oHk+xrDumU+EHDoM++Y6Qbm9VNrcFK6SWvaYagx2uEPiC0kH2Q9cMWLsT+d3vln3tIz6nVl6TpEolIYzMTxvIWMaIrX/98bJ8eLwH2iJ9pdTdlyZ0oCK05E0TaiwOz+u2WrCSI=
+	t=1756816547; cv=none; b=ESmyGq+bcivUSyuNlr4x2N75NAvllsp4oBXRvHvfS8hBQbrFo8sbruULJDDV2m48nTHl/DnPn47pPM4wEMeing7QHWx7hgzLlET6Q2vetqE6wYBH6mbpNRxin/T5Xrb9WVlZU3toJwlmsfRbIafLlo/8Yb5lOez+UdnoF+ebxMA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756816663; c=relaxed/simple;
-	bh=zrwsApuUuDkrPpYq2G0KGa4cIKPy0wKf5vnpWxFs5QE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=H+gPX9ek6YjtmK5H9U7627/FZVMW43h1VyE9uecyotenNbQpxTqfZ2eSfrPN4NYtktzhHotk32F3pDo2qvX3HXjZDyV6QgnrelweW+ASivdElrmWDe+qnZy5ySgAcN5m4X1PgQ8Cw6T23ffr0CSqtrm6uos4rTdUMgOaFqZhAxw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=sxUBENY9; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582CXPwC010299;
-	Tue, 2 Sep 2025 14:37:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	xWK5LjYNDXJb1VRRWLnTGxLcmQ0F3SifvZSboP4ZaLo=; b=sxUBENY9z1oeaQHw
-	M1iHcy8NoLBIUzDfpqy3OpvGE+eNMD7FZpT0IsisQBl+ReuUChLMC4vUw49jN23p
-	W9anD+Jrv5Su7COecZmfw3tfv2fDl7D4jTHsEInThvvu52PbalpdF4X49GB1uSyy
-	mEUq84xvFgp7NXQ2/9/Sum7DATQczFGChM5Z+01DvU+drc4q3a97IEfCvvP/U9fv
-	DYathoeSLQYz9VVq5qzqTePnvq5yWv+jBSVpXXXveKL4CzDe5vaZh+otaU+rF13d
-	s1utOxI3xBGCTI/GpXhlI5JAZptYIrTcFoWanY/v+k9h6Pk3dLe5rHT8Bo+DEB7/
-	AEL1rQ==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48upe7bxyy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 02 Sep 2025 14:37:21 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 37E9D40046;
-	Tue,  2 Sep 2025 14:35:53 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfcas1node2.st.com [10.75.129.73])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8BE9B39EDA7;
-	Tue,  2 Sep 2025 14:34:39 +0200 (CEST)
-Received: from SAFDAG1NODE1.st.com (10.75.90.17) by SHFCAS1NODE2.st.com
- (10.75.129.73) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 2 Sep
- 2025 14:34:39 +0200
-Received: from [10.48.87.127] (10.48.87.127) by SAFDAG1NODE1.st.com
- (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Tue, 2 Sep
- 2025 14:34:38 +0200
-Message-ID: <f335dfa3-be7e-4321-8625-d6862bb4d574@foss.st.com>
-Date: Tue, 2 Sep 2025 14:34:37 +0200
+	s=arc-20240116; t=1756816547; c=relaxed/simple;
+	bh=rgeAkaerMuo7pPYf7CTpR6admWuQ1J9uhjoEpdbvc5o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sc8uIAe+u/lDy8Sw8WObH5ma+0/OO6nqmbgu9Se8r0F59i4Q7WYq1+auPJ+882xlC4P+13UKbpLePNABgIGJahmqJx8gS+MyJWtU/XVIvsIKU1PUrV8B7zVXfQVxMbVzjqyAtnbXH8mQUHWtaXv7i5TDMCSTKdD0eFg7je7DUes=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Jt0/hwhJ; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 07E00C77;
+	Tue,  2 Sep 2025 14:34:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1756816477;
+	bh=rgeAkaerMuo7pPYf7CTpR6admWuQ1J9uhjoEpdbvc5o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Jt0/hwhJAsbh9xgjvpHX8ZlaNZWIqk8ZIYHl74D/RpN1aB5NiuYJ4sbekghmfQRpw
+	 +Fd9A/vmmT2nwwMUYmeRtG4iUHsePTSDC6VPwjWx/jvbSLPcmsnu1qiKBY/+y+WTvx
+	 YvS/mGTYyrZxv2mBisLcvTFnx0vJHCWg7VeZxaaQ=
+Date: Tue, 2 Sep 2025 14:35:24 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, Guoniu Zhou <guoniu.zhou@nxp.com>,
+	Rui Miguel Silva <rmfrfs@gmail.com>,
+	Martin Kepplinger <martink@posteo.de>,
+	Purism Kernel Team <kernel@puri.sm>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
+ i.MX8ULP compatible string
+Message-ID: <20250902123524.GK13448@pendragon.ideasonboard.com>
+References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
+ <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
+ <20250901154610.GB13448@pendragon.ideasonboard.com>
+ <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
+ <20250902083554.GD13448@pendragon.ideasonboard.com>
+ <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
-To: Shenwei Wang <shenwei.wang@nxp.com>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Mathieu
- Poirier" <mathieu.poirier@linaro.org>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        "Sascha
- Hauer" <s.hauer@pengutronix.de>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam
-	<festevam@gmail.com>, Peng Fan <peng.fan@nxp.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "imx@lists.linux.dev" <imx@lists.linux.dev>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20250818204420.794554-1-shenwei.wang@nxp.com>
- <20250818204420.794554-4-shenwei.wang@nxp.com>
- <CACRpkdZq25n4gZSesV8z8zrBs6kqU1a8=vwVkPBwM+hFb9JKwg@mail.gmail.com>
- <bb5cb154-0f7a-4e21-afe3-453ff5ee9373@foss.st.com>
- <PAXPR04MB91859E0AACFBC1FC913019848907A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Language: en-US
-From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
-In-Reply-To: <PAXPR04MB91859E0AACFBC1FC913019848907A@PAXPR04MB9185.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
- (10.75.90.17)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-02_04,2025-08-28_01,2025-03-28_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
 
+On Tue, Sep 02, 2025 at 02:26:53PM +0200, Krzysztof Kozlowski wrote:
+> On 02/09/2025 10:35, Laurent Pinchart wrote:
+> >>>>          compatible:
+> >>>>            contains:
+> >>>>              enum:
+> >>>> -              - fsl,imx8qxp-mipi-csi2
+> >>>> +              - fsl,imx8ulp-mipi-csi2
+> >>>> +    then:
+> >>>> +      properties:
+> >>>> +        reg:
+> >>>> +          minItems: 2
+> >>>> +        resets:
+> >>>> +          minItems: 2
+> >>>> +          maxItems: 2
+> >>>> +        clocks:
+> >>>> +          minItems: 4
+> >>>> +        clock-names:
+> >>>> +          minItems: 4
+> >>>
+> >>> But according to this, the ULP version requires more clocks than the QXP
+> >>> version.
+> >>
+> >> If only clock number difference, generally, it is still compatible and can
+> >> be fallback, especialy driver use devm_bulk_clk_get_all().
+> > 
+> > That's a driver-specific implementation decision, so I don't think it
+> > should be taken into account to decide on compatibility.
+> 
+> The clock inputs do not restrict compatibility. If Linux can use
+> fallback to bind and operate properly, then it's a strong indication
+> devices are compatible.
+> 
+> Imagine exactly the same registers, so same programming interface, but
+> one device takes one more clock which just needs to be enabled through
+> its lifetime. Such devices are fully compatible, even though clock
+> inputs differ.
 
+That's only the case if someone enables the clock, isn't it ? From a DT
+binding point of view, how can we know that the extra clock will be
+enabled by a component separate from the driver (in this case by the
+fact that the devm_bulk_clk_get_all() function gets all clocks) ?
 
-On 9/1/25 19:22, Shenwei Wang wrote:
->
->> -----Original Message-----
->> From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
->> Sent: Monday, September 1, 2025 2:27 AM
->> To: Linus Walleij <linus.walleij@linaro.org>; Shenwei Wang
->> <shenwei.wang@nxp.com>; Bjorn Andersson <andersson@kernel.org>; Mathieu
->> Poirier <mathieu.poirier@linaro.org>
->> Cc: Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;
->> Conor Dooley <conor+dt@kernel.org>; Shawn Guo <shawnguo@kernel.org>;
->> Sascha Hauer <s.hauer@pengutronix.de>; Bartosz Golaszewski <brgl@bgdev.pl>;
->> Pengutronix Kernel Team <kernel@pengutronix.de>; Fabio Estevam
->> <festevam@gmail.com>; Peng Fan <peng.fan@nxp.com>; linux-
->> remoteproc@vger.kernel.org; devicetree@vger.kernel.org; imx@lists.linux.dev;
->> linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; dl-linux-imx
->> <linux-imx@nxp.com>
->> Subject: [EXT] Re: [PATCH 3/4] gpio: imx-rpmsg: add imx-rpmsg GPIO driver
->>
->>
->> Hello,
->>
->> On 8/21/25 11:01, Linus Walleij wrote:
->>> Hi Shenwei,
->>>
->>> thanks for your patch!
->>>
->>> On Mon, Aug 18, 2025 at 10:45 PM Shenwei Wang <shenwei.wang@nxp.com>
->> wrote:
->>>> On i.MX SoCs, the system may include two processors:
->>>>           - An MCU running an RTOS
->>>>           - An MPU running Linux
->>>>
->>>> These processors communicate via the RPMSG protocol.
->>>> The driver implements the standard GPIO interface, allowing the Linux
->>>> side to control GPIO controllers which reside in the remote processor
->>>> via RPMSG protocol.
->>>>
->>>> Signed-off-by: Shenwei Wang <shenwei.wang@nxp.com>
->>> Since this is a first RPMSG GPIO driver, I'd like if Björn and/or
->>> Mathieu have a look at it so I'm sure it is RPMSG-proper!
->> Could this driver be generic (platform independent) ?
->> Perhaps i missed something, but it seems to me that there is no IMX specific
->> code.
->> Making it generic would allow other platforms to reuse it instead of duplicating it.
->>
-> The driver uses the RPMSG channel just as a transport layer, so the implementation is actually
-> platform-independent. However, it requires the remote side to implement the same communication
-> protocol and behavior for the GPIO controller.
->
+> I also wanted to express exactly that case on my slides from OSSE -
+> slide 28:
+> https://osseu2025.sched.com/event/25Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-kozlowski-linaro
 
-Yes, pending implementation is needed on the remote processor, as is 
-already the case for the rpmsg_char and
-rpmsg_tty Linux drivers. If a generic remote implementation is needed 
-for this series, then it could be
-implemented in  the OpenAMP project as done for the rpmsg_tty and 
-rpmsg_char [1].
+Quoting that slide, you wrote
 
-The idea here would be to have an equivalent of the virtio-gpio driver 
-but based on the RPMsg protocol instead of the
-virtio one.
+"Two devices are compatible when the new device works with Linux drivers
+bound via fallback (old) compatible".
 
-[1] 
-https://github.com/OpenAMP/openamp-system-reference/tree/main/examples/zephyr/rpmsg_multi_services
+That is clearly the case here for the existing *Linux* driver. But what
+if the driver called devm_bulkd_clk_get() with a device-specific list of
+clocks ? Or what if the same DT bindings are used on an OS that has no
+clk_get_all() equivalent ? This is my concern with declaring those two
+devices as compatible: they may be from the point of view of the current
+implementation of the corresponding Linux kernel driver, but DT bindings
+are not Linux-specific.
 
-Thanks,
-Arnaud
+Or do DT bindings assume that drivers have to always enable all clocks
+declared in DT, even if they don't know what those clocks are ? That
+seems error-prone, in quite a few cases drivers need to handle separate
+clocks in a device-specific way, with for instance a particular
+ordering, preventing them from using devm_bulk_clk_get_all(). If all
+drivers are required to manage all clocks declared in DT, this would get
+messy quite quickly.
 
->
-> Thanks,
-> Shenwei
->
->> Thanks,
->> Arnaud
->>
->>>> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig index
->>>> a437fe652dbc..2ce4e9b5225e 100644
->>>> --- a/drivers/gpio/Kconfig
->>>> +++ b/drivers/gpio/Kconfig
->>>> @@ -402,6 +402,17 @@ config GPIO_ICH
->>>>
->>>>             If unsure, say N.
->>>>
->>>> +config GPIO_IMX_RPMSG
->>>> +       tristate "NXP i.MX SoC RPMSG GPIO support"
->>>> +       depends on IMX_REMOTEPROC && RPMSG && GPIOLIB
->>>> +       default IMX_REMOTEPROC
->>>> +       help
->>>> +         Say yes here to support the RPMSG GPIO functions on i.MX SoC based
->>>> +         platform.  Currently supported devices: i.MX7ULP, i.MX8ULP, i.MX8x,
->>>> +         and i.MX9x.
->>>> +
->>>> +         If unsure, say N.
+> (although I focused on reversed case when devices are not compatible,
+> because that is decisive case).
 
+-- 
+Regards,
+
+Laurent Pinchart
 
