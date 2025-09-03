@@ -1,211 +1,160 @@
-Return-Path: <devicetree+bounces-212306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B9EB424F6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:21:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 74E16B424FE
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:21:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1802E17432A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:19:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2711A586408
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:20:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870382580F0;
-	Wed,  3 Sep 2025 15:16:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="ErY3l/KV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 186DB2222D2;
+	Wed,  3 Sep 2025 15:17:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F14E63CF;
-	Wed,  3 Sep 2025 15:16:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BAF1E9B0B
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756912611; cv=none; b=kbczkalBrbmuZ6URa6JsI17icbe1dEzR8cdxuWcvSouyO9NQMMMMJo8KkwSr2ho333H6YW7788ntw++XqcOzCM8urX8yFRHyyvw7q8mio3hE36aUBTjyevenAxoQLrzh9PtNbk2P5eUz3K6J0Tnf2jrT5NB3WxZAA5bTgisAmjI=
+	t=1756912640; cv=none; b=K9wKJmiKFGJkYn/CwSDM8pbCwxPMImjtQso6T+ZoAoAXn7BD04+krTBscguh2Cvj0fzPQ+xpgwBoSenxI9rGlcPl0gctQu9SHNUBxNR7oRm1wy7k5JUYl1HQU1jU6ojs25nyO1/gjxogmdOTRHD0atRFuJx+D8zTClsJhwF0Ujk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756912611; c=relaxed/simple;
-	bh=ttg+OChwUbkpoVDWCw3xGKa0n3d+t7aSDC55RG2VqSo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fPUO4dspRjA6SnZ1vMSE2qOdaDQWxKeLKvvUruLq6NHPfUV5V8uSpbf9KrNK4kO5LDSmmWSInjPl/AnJubrKPTAASL2vQA/Wysxrsjp2x4SGlz/ltqcCmdPZOKes5Cp//d9a5ErlVJLxq/5W1OR12ETpqMKuCaDclhSSgYzB1eA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=ErY3l/KV; arc=none smtp.client-ip=168.119.41.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
-	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=a3G9xHdW/VxHSePvTIzerhYn95SpSnVWLe7bCZKfh6U=; b=ErY3l/KVYqsCbtBZ+lyIGVK6W5
-	WIbVl4M+Tc128AqaMRvcelzBJaKWXq8+iGnxTyjvVOzsNAU7D9LLM61gxtDs5DVXK9RVlMOIQ75vW
-	duwF15DALAsLbMOX3tYlNgNiFfAsR09Jr49oSG+WNy284Vx7xELoC4QkQ5ZlYs1bUmSk=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:61793 helo=[192.168.0.207])
-	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-	(Exim 4.93)
-	(envelope-from <matthias.fend@emfend.at>)
-	id 1utpDx-005LvW-4e; Wed, 03 Sep 2025 17:16:38 +0200
-Message-ID: <8417d761-114b-4e41-8a4a-9eac2600637f@emfend.at>
-Date: Wed, 3 Sep 2025 17:16:36 +0200
+	s=arc-20240116; t=1756912640; c=relaxed/simple;
+	bh=fCwJaunZ6z4VKL23zFtkSSgKZVwna4t6if/azimFgS4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fKJ0PYJHYxvVo/3HRpCl3nqIMkvU51VzsZhmWjK0Qp11GloI1v2DPxL88xzrGTGebI+5CGB2XezVger/CrrdGTqoag8q9wzWTT+f39mg1JvZbpG27nKyginaipjT7gzHkqDrLWHC0r5cS60WwZUdE9DoGSlS8UlKEdEuY/mXMF8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1utpEB-0006Li-Pb; Wed, 03 Sep 2025 17:16:51 +0200
+Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <mkl@pengutronix.de>)
+	id 1utpE9-003a6L-2s;
+	Wed, 03 Sep 2025 17:16:49 +0200
+Received: from pengutronix.de (p54b152ce.dip0.t-ipconnect.de [84.177.82.206])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: mkl-all@blackshift.org)
+	by smtp.blackshift.org (Postfix) with ESMTPSA id 79C52465B63;
+	Wed, 03 Sep 2025 15:16:49 +0000 (UTC)
+Date: Wed, 3 Sep 2025 17:16:48 +0200
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>, Chandrasekar Ramakrishnan <rcsekar@samsung.com>, 
+	Vincent Mailhol <mailhol.vincent@wanadoo.fr>, devicetree@vger.kernel.org, 
+	linux-stm32@st-md-mailman.stormreply.com, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, kernel@pengutronix.de, linux-can@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] ARM: dts: stm32: add resets property to m_can
+ nodes in the stm32mp153
+Message-ID: <20250903-uncovered-magnetic-marmot-dd7c37-mkl@pengutronix.de>
+References: <20250807-stm32mp15-m_can-add-reset-v2-0-f69ebbfced1f@pengutronix.de>
+ <20250807-stm32mp15-m_can-add-reset-v2-2-f69ebbfced1f@pengutronix.de>
+ <59f25804-d310-4492-b95f-19c42cf3cd42@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/2] media: add Himax HM1246 image sensor
-To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend@emfend.at>
-In-Reply-To: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Spam-Report: 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="drmik7hqv5i24xa5"
+Content-Disposition: inline
+In-Reply-To: <59f25804-d310-4492-b95f-19c42cf3cd42@foss.st.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-Hi all,
 
-since I sent the first version of this patch series quite some time ago 
-and, apart from the bindings there has been no feedback, I wanted to 
-check whether there might be any fundamental concerns (such as the 
-sensor being somewhat older)?
+--drmik7hqv5i24xa5
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 2/2] ARM: dts: stm32: add resets property to m_can
+ nodes in the stm32mp153
+MIME-Version: 1.0
 
-If there are no general objections to this driver, I would be very 
-grateful for any comments or suggestions for improvement.
+On 03.09.2025 15:10:42, Alexandre TORGUE wrote:
+> Hi Marc
+>=20
+> On 8/7/25 08:09, Marc Kleine-Budde wrote:
+> > On the STM32MP153 the m_cam IP cores (a.k.a. FDCAN) have an external
+> > shared reset in the RCC. Add the reset to both m_can nodes.
+> >=20
+> > Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+> > ---
+> >   arch/arm/boot/dts/st/stm32mp153.dtsi | 2 ++
+> >   1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/arch/arm/boot/dts/st/stm32mp153.dtsi b/arch/arm/boot/dts/s=
+t/stm32mp153.dtsi
+> > index 4640dafb1598..92794b942ab2 100644
+> > --- a/arch/arm/boot/dts/st/stm32mp153.dtsi
+> > +++ b/arch/arm/boot/dts/st/stm32mp153.dtsi
+> > @@ -40,6 +40,7 @@ m_can1: can@4400e000 {
+> >   		interrupt-names =3D "int0", "int1";
+> >   		clocks =3D <&rcc CK_HSE>, <&rcc FDCAN_K>;
+> >   		clock-names =3D "hclk", "cclk";
+> > +		resets =3D <&rcc FDCAN_R>;
+> >   		bosch,mram-cfg =3D <0x0 0 0 32 0 0 2 2>;
+> >   		access-controllers =3D <&etzpc 62>;
+> >   		status =3D "disabled";
+> > @@ -54,6 +55,7 @@ m_can2: can@4400f000 {
+> >   		interrupt-names =3D "int0", "int1";
+> >   		clocks =3D <&rcc CK_HSE>, <&rcc FDCAN_K>;
+> >   		clock-names =3D "hclk", "cclk";
+> > +		resets =3D <&rcc FDCAN_R>;
+> >   		bosch,mram-cfg =3D <0x1400 0 0 32 0 0 2 2>;
+> >   		access-controllers =3D <&etzpc 62>;
+> >   		status =3D "disabled";
+> >=20
+>=20
+> How those reset are handled at driver side ?
 
-Thanks
-  ~Matthias
+I've created a patch that adds a shared reset to the m_can driver:
 
-Added Sakari and Laurent to CC.
+| https://lore.kernel.org/all/20250812-m_can-fix-state-handling-v1-7-b739e0=
+6c0a3b@pengutronix.de/
 
-Am 26.05.2025 um 08:59 schrieb Matthias Fend:
-> Hello,
-> 
-> this series adds support for the Himax HM1246 image sensor.
-> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
-> array size of 1296 x 976. The datasheet can b
-> Currently, only the native RAW mode is supported. Other modes and the
-> internal image signal processing pipeline are not currently supported.
-> The data sheet is available on the manufacturer's website [1].
-> Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
-> the sensor's parallel video output into MIPI signals for the i.MX8MP.
-> 
-> Best regards
->   ~Matthias
->   
-> [1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
-> 
-> v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
-> 
-> Compliance test for device /dev/v4l-subdev4:
-> 
-> Driver Info:
->          Driver version   : 6.12.0
->          Capabilities     : 0x00000000
->          Client Capabilities: 0x0000000000000003
-> streams interval-uses-which
-> Required ioctls:
->          test VIDIOC_SUDBEV_QUERYCAP: OK
->          test invalid ioctls: OK
-> 
-> Allow for multiple opens:
->          test second /dev/v4l-subdev4 open: OK
->          test VIDIOC_SUBDEV_QUERYCAP: OK
->          test for unlimited opens: OK
-> 
-> Debug ioctls:
->          test VIDIOC_LOG_STATUS: OK (Not Supported)
-> 
-> Input ioctls:
->          test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
->          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->          test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
->          test VIDIOC_ENUMAUDIO: OK (Not Supported)
->          test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
->          test VIDIOC_G/S_AUDIO: OK (Not Supported)
->          Inputs: 0 Audio Inputs: 0 Tuners: 0
-> 
-> Output ioctls:
->          test VIDIOC_G/S_MODULATOR: OK (Not Supported)
->          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
->          test VIDIOC_ENUMAUDOUT: OK (Not Supported)
->          test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
->          test VIDIOC_G/S_AUDOUT: OK (Not Supported)
->          Outputs: 0 Audio Outputs: 0 Modulators: 0
-> 
-> Input/Output configuration ioctls:
->          test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
->          test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
->          test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
->          test VIDIOC_G/S_EDID: OK (Not Supported)
-> 
-> Control ioctls:
->          test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
->          test VIDIOC_QUERYCTRL: OK
->          test VIDIOC_G/S_CTRL: OK
->          test VIDIOC_G/S/TRY_EXT_CTRLS: OK
->          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
->          test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
->          Standard Controls: 15 Private Controls: 0
-> 
-> Format ioctls:
->          test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
->          test VIDIOC_G/S_PARM: OK (Not Supported)
->          test VIDIOC_G_FBUF: OK (Not Supported)
->          test VIDIOC_G_FMT: OK (Not Supported)
->          test VIDIOC_TRY_FMT: OK (Not Supported)
->          test VIDIOC_S_FMT: OK (Not Supported)
->          test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
->          test Cropping: OK (Not Supported)
->          test Composing: OK (Not Supported)
->          test Scaling: OK (Not Supported)
-> 
-> Codec ioctls:
->          test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->          test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->          test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
-> 
-> Buffer ioctls:
->          test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
->          test CREATE_BUFS maximum buffers: OK
->          test VIDIOC_REMOVE_BUFS: OK
->          test VIDIOC_EXPBUF: OK (Not Supported)
->          test Requests: OK (Not Supported)
-> 
-> Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
-> 
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
-> Changes in v2:
-> - Use macros for 64-bit division
-> - Avoid compiler warnings about potentially uninitialized variables
-> - Fix two uses of dev_err_probe
-> - Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
-> 
-> ---
-> Matthias Fend (2):
->        media: dt-bindings: i2c: add Himax HM1246 image sensor
->        media: i2c: add Himax HM1246 image sensor driver
-> 
->   .../bindings/media/i2c/himax,hm1246.yaml           |  111 ++
->   MAINTAINERS                                        |    8 +
->   drivers/media/i2c/Kconfig                          |    9 +
->   drivers/media/i2c/Makefile                         |    1 +
->   drivers/media/i2c/hm1246.c                         | 1421 ++++++++++++++++++++
->   5 files changed, 1550 insertions(+)
-> ---
-> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
-> change-id: 20250403-hm1246-96b0cdab773c
-> 
-> Best regards,
+The reset is de-asserted during probe and when the interface does up,
+otherwise it asserted. This way the IP gets reset only when both
+interfaces are down.
 
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde          |
+Embedded Linux                   | https://www.pengutronix.de |
+Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
+
+--drmik7hqv5i24xa5
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEn/sM2K9nqF/8FWzzDHRl3/mQkZwFAmi4W90ACgkQDHRl3/mQ
+kZw7OQf+IAk77vePmsl5sa2RCJ64dVjof83jSrEidTOll5/fyIaPux6Y/xW/WlOl
+r7Jiw9c8rTb66LdAl7QxlV9SthVj3iaD8qIRt3jFOTHtLOVOjuOh6UPP3rdoSSQS
+rE/eve4ZibgRYje/9Uzey2lJ2Mybq/qDtexmqzygOngruvvWLe+4BdKHykjQPBXu
+TnGA+vSAVZ7Gd0vmbSeL7OWBMLD4i6i5L0SW1O2L5vLVGr7eHSqHp+TAP4Qwd2ls
+oJwojmqYInUMNjCsZyDpX+/O60KsA0wlWnp5JCoIM4JwuzDSruI6mBTeChvRdQc4
+S2srAIKWU7ZOpyhRiJ0Sq0Jw2hY9Xg==
+=u+QD
+-----END PGP SIGNATURE-----
+
+--drmik7hqv5i24xa5--
 
