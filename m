@@ -1,96 +1,103 @@
-Return-Path: <devicetree+bounces-212335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212333-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBAB3B42672
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:16:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63703B42664
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7B495E7297
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:16:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A3D0175686
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BB62C027E;
-	Wed,  3 Sep 2025 16:16:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 150B02BEFF9;
+	Wed,  3 Sep 2025 16:14:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U0ZcdiMv"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m8G4ebPH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4BE36B;
-	Wed,  3 Sep 2025 16:16:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 042442BEC21
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 16:14:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756916195; cv=none; b=pHgAAO+RqoxpJN3wbng8K1gLFKSEofW5WrQH3jPkggHBJDZzVnLSYqXPvo9YSIsKTIpN72qDaOMtqTB9spsqYtxrQ1Rblj68B6O/NPgLrlblKYnHiM29W7jEaK6XL3kU2VWQBBSfsbqF9NOvyiUN3tAuIKesiT6/nhYo2PWiRQU=
+	t=1756916089; cv=none; b=CZvQkR0knS9h4FvhCJDqC+oRAEoNBCBPVL9KWxvrEbJ8wyWTXH1IODpn8pN2FSscVJO3OOu2nIJ/USxWETqYH7AO5tDWdxANRFFgAVgWOAeu7yvfV2539EoGuTExyvbabs17RMvcMPatc+B+2+CN8OKla3qwYGCt1J/vVGK5c+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756916195; c=relaxed/simple;
-	bh=QrZ1xBXZfnmeUYwuf4tYL7a2LZz7hVimzmzBV48W7SM=;
+	s=arc-20240116; t=1756916089; c=relaxed/simple;
+	bh=15e4KV2uKHJPOVsBfG9vaA4N6uUsqxcFksJxJYT4tQo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=twE1fmRB/OY8T2Udgij3MIUM6a1sbfpw7v1AKk3yzHWhx8Axl/13uOdRc7eIcPN9s8YIvaqEArfyo8xb+mdkiwqtpq804xYJC4VqSm94AtkvROlYEj+MA74U2FZ0L3NUZ0mQBqVKV6COL1lR3r8Eh10HJDLhSQnh7iC8UaP66So=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U0ZcdiMv; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756916193; x=1788452193;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QrZ1xBXZfnmeUYwuf4tYL7a2LZz7hVimzmzBV48W7SM=;
-  b=U0ZcdiMvUSV+U0mscu9PbmxHDerTEW3igfgQ+9q2pWBuDybMyjj32hDK
-   uVuqwiXxyKZJajzMZXvaCrOzHO7RKg0VPym2KI/5inddZ/98PvPUJCS8Z
-   9500UxWMm2o26oiq9+gx+gspcnRIc18wwUjKgqqkBw8REJUXKUeJ65WZU
-   1STxwPHh2L66YRTDPI7Hiv+Q7omex/xUn0wwcRt0gvMNdBgLtHOjbNtQ8
-   b16LPQLtzO8x6Z8sahqOXTkCv3D71AvepA8d7obseaqpHy9QUGvAAXKr6
-   mZ7/erHscACTZNlbEixjXQugQ9kJf6q1ZDr4UywcLxGJfSPHAeaWCo8gH
-   w==;
-X-CSE-ConnectionGUID: vBCy4yW6RQSPPzbSUcs+Rg==
-X-CSE-MsgGUID: y3mq2aQNTjSopV0jFzOEAQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76839620"
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
-   d="scan'208";a="76839620"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2025 09:16:31 -0700
-X-CSE-ConnectionGUID: h2nnzHojS7WwighpkOdYcQ==
-X-CSE-MsgGUID: L3aVKnAYRX+fBoJTiDYFkQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
-   d="scan'208";a="195279702"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by fmviesa002.fm.intel.com with ESMTP; 03 Sep 2025 09:16:25 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1utq8g-00047n-23;
-	Wed, 03 Sep 2025 16:15:24 +0000
-Date: Thu, 4 Sep 2025 00:14:25 +0800
-From: kernel test robot <lkp@intel.com>
-To: MD Danish Anwar <danishanwar@ti.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-	Mengyuan Lou <mengyuanlou@net-swift.com>,
-	Xin Guo <guoxin09@huawei.com>, Lei Wei <quic_leiwei@quicinc.com>,
-	Lee Trager <lee@trager.us>, Michael Ellerman <mpe@ellerman.id.au>,
-	Fan Gong <gongfan1@huawei.com>,
-	Lorenzo Bianconi <lorenzo@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Lukas Bulwahn <lukas.bulwahn@redhat.com>,
-	Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	Suman Anna <s-anna@ti.com>
-Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
-	Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/8] net: rpmsg-eth: Add basic rpmsg skeleton
-Message-ID: <202509032343.1y6JMbSq-lkp@intel.com>
-References: <20250902090746.3221225-5-danishanwar@ti.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=nFXwAzEhcg827O7iQy7E9K83T+GSoqQeltXmWh9ZmRMcuWkf5p31gY5YYR3NtsODE7mTvMzd7Gn1QiPE0nqGp5UIREyzf8jxWLAiqu0XO9GvZIC5+rarF6BdotDXzFdjKfcw++wdEDqF+co1BO0R7DxDCuHB8CQGTPaTEX/bDrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m8G4ebPH; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwrgZ029008
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 16:14:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=p7A2A36WC5hNzLUFGe9+5GUr
+	6YgZGXzB2kAzl3I+Zec=; b=m8G4ebPHfdBWbfEBqrnyIXVeXIkMcLttOwjhy+p9
+	aESVUv+N3OBwniKB9YFGpLkV2PwYTywpf7MyIj71SeDf3kj8yNPBkT00pc41zXhU
+	VCxJqpHjxIe/P3S2LmI+Xm1C6x7EZlQoftYl1Q2w1FFFdoW3u6q3B9kVBcvBjrS4
+	mPTc7QQYjlIyTRZdDOa61TLUg8zSnmEQFHoBfrDMDT9NQZ4r+xxFwkIVZMKWuFT/
+	gZeukkl6iEqfIKHBriMW4REe5Xn0OFVvAU9d3lXy8Dnb7VF1VbUY42CAUYWAoPHy
+	QVbC8Idg5WMreuITfpxMbiLE/FldfFDY06dtJyktrAQrLQ==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urw04dgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 16:14:45 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77288e1ce43so70119b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 09:14:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756916085; x=1757520885;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p7A2A36WC5hNzLUFGe9+5GUr6YgZGXzB2kAzl3I+Zec=;
+        b=Gq1v1eG8pj1V/lGxfRXLV03Ld1FHVtekm2HxkRA/kaJEc8NK99PMTh86VLLUJk3qyP
+         NYHtbGFQZvk0Is7q0jchXiNAz5ZVUP8kcCsxZECr9BNsO1tsVguUC9MBFDzfa1coCnDJ
+         w4G0xl6p2uEKWht5eNBX90gYI/HQrXtxbQC+ooK1VKu9t3Tflh4su5qgAfQ8z8xKZPSS
+         e5oMmUu8umnG7bvQWt0755L96hN2niCkkYhIwgBN+oa9EK+ZtHv8ryasKSP3M5orAW87
+         6zdFbZzz5UxiPASTE8fuw/pQ10kr3DVOTWBSaWpyeYs2eJBuMwUVfP/J11bsgiyV10WR
+         xnCg==
+X-Forwarded-Encrypted: i=1; AJvYcCU9UaLpFfrDaKDaU3LsKQ68yXhMccVE//99uAI4UFqAtTvwYfnSB34zTdqTGiyxNyBLYCk2L6C1owA5@vger.kernel.org
+X-Gm-Message-State: AOJu0YxJHI/rk6cT2I1jT6i8iIxxxXjC0UtmSZhQY6g+pTmm3iIr9QJC
+	PBrx2wEdJHKY+PSeYaA48iOQCDqdt+Whoc/W9GoCxYAvgL7lSFUJszSftVj5gui3qotVBjXtcqb
+	yn/dOaiCRJbPN+R6/Rr2G5//wPpH+RD3UAm7C3LB8lMp9eQfJ6s3QfAbjNDFcSjVh
+X-Gm-Gg: ASbGncvPR0dXFfhbKhbhKEuec8MewRtFAeg2gpj6XAOcjUDc9Vw4I5M7Bd1UH0itZ0I
+	36olRMSqZqYq5xSFzXQBs2rPi2DtE8Ry7rX+qSX+glll3gkBV65NUtxq9eVRjFANW7UsCivUg8p
+	zU5qf38JzrEcqeyeD17gV/fNOuReaE9sub3m8ya1OKEfFvFWB87Q5cO9xqge4vr1OKouApl8DKq
+	niap+8UdkdVhjvzIcVDRI2IvSTgFGH64I0usD+0qYEfIBH9Qte90Xpx7gS/5V8FTAhmEK3hZO+X
+	yoUR8E9GZ3RQor7gTt+n83O3S/8K0jBRQ3dFyWQjMJZ/q0vVR/97gefmkOOVzdQpCy/F
+X-Received: by 2002:a05:6a00:80b:b0:772:50c6:47d6 with SMTP id d2e1a72fcca58-77250c660aamr16685498b3a.2.1756916084628;
+        Wed, 03 Sep 2025 09:14:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFFN8Fk9FYilCvfsVTUpXK3eaQZpWzMaZJtyrt/idToT1wN7680TzLMcXUUYYpYB/Pxpe/CGg==
+X-Received: by 2002:a05:6a00:80b:b0:772:50c6:47d6 with SMTP id d2e1a72fcca58-77250c660aamr16685461b3a.2.1756916084165;
+        Wed, 03 Sep 2025 09:14:44 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-77285bb2614sm1757820b3a.58.2025.09.03.09.14.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 09:14:43 -0700 (PDT)
+Date: Wed, 3 Sep 2025 21:44:37 +0530
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org,
+        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+Subject: Re: [PATCH v2 06/13] arm64: dts: qcom: lemans-evk: Enable PCIe
+ support
+Message-ID: <aLhpbRL/mNfIMg/P@hu-wasimn-hyd.qualcomm.com>
+References: <20250903-lemans-evk-bu-v2-0-bfa381bf8ba2@oss.qualcomm.com>
+ <20250903-lemans-evk-bu-v2-6-bfa381bf8ba2@oss.qualcomm.com>
+ <facc2270-e700-49e4-a7ab-3b473e343ccb@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -99,106 +106,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250902090746.3221225-5-danishanwar@ti.com>
+In-Reply-To: <facc2270-e700-49e4-a7ab-3b473e343ccb@oss.qualcomm.com>
+X-Proofpoint-GUID: Scah7C7xOEAklfrgX9aDt5K2fJgTH7-W
+X-Proofpoint-ORIG-GUID: Scah7C7xOEAklfrgX9aDt5K2fJgTH7-W
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNyBTYWx0ZWRfX2fil+GAagyUj
+ 7j8XyOmGPQPmP5tLhk2IJiUb0AHjeoaDCl6toEAlmXAbDnxxKI/j4QEZ8XhTPO+v21mKKeJPj8H
+ +NgzrqqTjSYsb+Rj6tFWCiLVtpjgpP2x0FRSDC1vx7+5wW5JkFhhg3Fr+7G7NfndMta/MUE0Ara
+ BVtgEAXLmrUerZB8e/egdB70UxUx+qosuW3xpGo2KC5VQR9V3IL6gp+okADwHuxqCrrnNs1RjlE
+ AdmK64I95pYJaycR2w/dghQm+STLU1i0hf2kB+04APRHqDAa8zPsLZUNU050D1Q2k5VgsuvcPoO
+ wjk0w1XrHfaIA/c7NK7cob9EehUxRdzQkD/JY7HOuIEcWqUpaEMgN4RoHzlDELDT9gLPYXu1jr5
+ CJkCuFmJ
+X-Authority-Analysis: v=2.4 cv=NrDRc9dJ c=1 sm=1 tr=0 ts=68b86975 cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=5vNF0T9NdgVroHtUm1oA:9 a=CjuIK1q_8ugA:10 a=OpyuDcXvxspvyRM73sMx:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300027
 
-Hi MD,
+On Wed, Sep 03, 2025 at 05:50:00PM +0200, Konrad Dybcio wrote:
+> On 9/3/25 1:47 PM, Wasim Nazir wrote:
+> > From: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> > 
+> > Enable PCIe0 and PCIe1 along with the respective phy-nodes.
+> > 
+> > PCIe0 is routed to an m.2 E key connector on the mainboard for wifi
+> > attaches while PCIe1 routes to a standard PCIe x4 expansion slot.
+> > 
+> > Signed-off-by: Sushrut Shree Trivedi <quic_sushruts@quicinc.com>
+> > Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/lemans-evk.dts | 82 +++++++++++++++++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/lemans-evk.dts b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > index 196c5ee0dd34..7528fa1c661a 100644
+> > --- a/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/lemans-evk.dts
+> > @@ -379,6 +379,40 @@ &mdss0_dp1_phy {
+> >  	status = "okay";
+> >  };
+> >  
+> > +&pcie0 {
+> > +	perst-gpios = <&tlmm 2 GPIO_ACTIVE_LOW>;
+> > +	wake-gpios = <&tlmm 0 GPIO_ACTIVE_HIGH>;
+> > +
+> > +	pinctrl-names = "default";
+> > +	pinctrl-0 = <&pcie0_default_state>;
+> 
+> property-n
+> property-names
+> 
+> in this order, please
 
-kernel test robot noticed the following build errors:
+Ack.
 
-[auto build test ERROR on 2fd4161d0d2547650d9559d57fc67b4e0a26a9e3]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/MD-Danish-Anwar/dt-bindings-net-ti-rpmsg-eth-Add-DT-binding-for-RPMSG-ETH/20250902-171411
-base:   2fd4161d0d2547650d9559d57fc67b4e0a26a9e3
-patch link:    https://lore.kernel.org/r/20250902090746.3221225-5-danishanwar%40ti.com
-patch subject: [PATCH net-next v2 4/8] net: rpmsg-eth: Add basic rpmsg skeleton
-config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20250903/202509032343.1y6JMbSq-lkp@intel.com/config)
-compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250903/202509032343.1y6JMbSq-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509032343.1y6JMbSq-lkp@intel.com/
-
-All error/warnings (new ones prefixed by >>):
-
-   drivers/net/ethernet/rpmsg_eth.c: In function 'rpmsg_eth_get_shm_info':
->> drivers/net/ethernet/rpmsg_eth.c:88:29: error: implicit declaration of function 'devm_ioremap' [-Werror=implicit-function-declaration]
-      88 |         common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
-         |                             ^~~~~~~~~~~~
->> drivers/net/ethernet/rpmsg_eth.c:88:27: warning: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
-      88 |         common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
-         |                           ^
-   cc1: some warnings being treated as errors
-
-
-vim +/devm_ioremap +88 drivers/net/ethernet/rpmsg_eth.c
-
-    34	
-    35	/**
-    36	 * rpmsg_eth_get_shm_info - Retrieve shared memory region for RPMsg Ethernet
-    37	 * @common: Pointer to rpmsg_eth_common structure
-    38	 *
-    39	 * This function locates and maps the reserved memory region for the RPMsg
-    40	 * Ethernet device by traversing the device tree hierarchy. It first identifies
-    41	 * the associated remote processor (rproc), then locates the "rpmsg-eth" child
-    42	 * node within the rproc's device tree node, and finally retrieves the
-    43	 * "memory-region" phandle that points to the reserved memory region.
-    44	 * Once found, the shared memory region is mapped into the
-    45	 * kernel's virtual address space using devm_ioremap()
-    46	 *
-    47	 * Return: 0 on success, negative error code on failure.
-    48	 */
-    49	static int rpmsg_eth_get_shm_info(struct rpmsg_eth_common *common)
-    50	{
-    51		struct device_node *np, *rpmsg_eth_node, *rmem_np;
-    52		struct reserved_mem *rmem;
-    53		struct rproc *rproc;
-    54	
-    55		/* Get the remote processor associated with this device */
-    56		rproc = rproc_get_by_child(&common->rpdev->dev);
-    57		if (!rproc) {
-    58			dev_err(common->dev, "rpmsg eth device not child of rproc\n");
-    59			return -EINVAL;
-    60		}
-    61	
-    62		/* Get the device node from rproc or its parent */
-    63		np = rproc->dev.of_node ?: (rproc->dev.parent ? rproc->dev.parent->of_node : NULL);
-    64		if (!np) {
-    65			dev_err(common->dev, "Cannot find rproc device node\n");
-    66			return -ENODEV;
-    67		}
-    68	
-    69		/* Get the rpmsg-eth child node */
-    70		rpmsg_eth_node = of_get_child_by_name(np, "rpmsg-eth");
-    71		if (!rpmsg_eth_node) {
-    72			dev_err(common->dev, "Couldn't get rpmsg-eth node from np\n");
-    73			return -ENODEV;
-    74		}
-    75	
-    76		/* Parse the memory-region phandle */
-    77		rmem_np = of_parse_phandle(rpmsg_eth_node, "memory-region", 0);
-    78		of_node_put(rpmsg_eth_node);
-    79		if (!rmem_np)
-    80			return -EINVAL;
-    81	
-    82		/* Lookup the reserved memory region */
-    83		rmem = of_reserved_mem_lookup(rmem_np);
-    84		of_node_put(rmem_np);
-    85		if (!rmem)
-    86			return -EINVAL;
-    87	
-  > 88		common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
-    89		if (IS_ERR(common->port->shm))
-    90			return PTR_ERR(common->port->shm);
-    91	
-    92		common->port->buf_size = rmem->size;
-    93	
-    94		return 0;
-    95	}
-    96	
+> 
+> Konrad
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Wasim
 
