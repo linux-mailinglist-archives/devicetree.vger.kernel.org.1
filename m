@@ -1,71 +1,67 @@
-Return-Path: <devicetree+bounces-212356-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57A57B42723
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 814B1B42736
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:45:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 112B43B1B56
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:43:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C823BE97F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:45:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A7A304971;
-	Wed,  3 Sep 2025 16:43:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DB0284884;
+	Wed,  3 Sep 2025 16:45:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bq91ZOLs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UkWhlLvR"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B73E2BCF6A;
-	Wed,  3 Sep 2025 16:43:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1D163CF;
+	Wed,  3 Sep 2025 16:45:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756917807; cv=none; b=E3e1n3ToWfPAE0vqSHEZvhbqmdEaTrIJC1KdJQnD/raqu1b0l9tc/EONm21gplcnU3su7g4/ITyvRnBH3VtycoHs4M5vf0O6Sqny5MevWIwrUakTh1OvsIOA9vZaHFS4+uVGtheWOe6Zo6sxsPitkiqgqC2ZWKF6ZQEb10XGvMs=
+	t=1756917928; cv=none; b=DOyWEkkk7xUtgxUFF1QUi0XpyCQXKVDGS+13YF4KVDaf4hfe8ZAcVQaJ4BykUWShH/FZ7Bb3yMSzyfG0PWjayLTFCMBmgPP+fqtk9G3QNwPUYe1nNxkYZqmdkDSCAm1OnyBWTF4ms37e/ecU53QBH/iPA0cGh+VxeTo3uE/FQjA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756917807; c=relaxed/simple;
-	bh=AkA4dzUeMeAnqy5b40dZ57UDlURr08Yuge2wOJ7h2Lo=;
+	s=arc-20240116; t=1756917928; c=relaxed/simple;
+	bh=1QCnhHk4YrbcljgZa4CIM09QqYheSpXKbkWo83aUiBA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YGg3eLayNxAC+DZqt6N2RVuiqk9kI9ics/a0yxEL89P1NLEsC/Ad3GnR5FCfiQbre8kAcJ3w+2Fh8FSW6xkgFPXhywARSqklsZd1jYhj/zNLIxttP3YbboPvQwMV67rlkNp6AO45awd7RrHl9OpWbF6FTWApQv5tbB96P3DqdTg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bq91ZOLs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8F85BC4CEE7;
-	Wed,  3 Sep 2025 16:43:26 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=M1DFl4qmxOatHOPI/VhD24duE+S9Sn2mPxns2ynNrLtryRTSzkC5/fPquGnfQr+hisJvTgu+6vYOBW1KLyYw3zIB/v6+ai5dbfwVg8VnrMiSZ4sR+krB1SzwD8x8bOKeBkpHSSG1OYco/UF0f6+19t4QKP6eJCLSL47ADfYYbas=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UkWhlLvR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F4FCC4CEE7;
+	Wed,  3 Sep 2025 16:45:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756917806;
-	bh=AkA4dzUeMeAnqy5b40dZ57UDlURr08Yuge2wOJ7h2Lo=;
+	s=k20201202; t=1756917928;
+	bh=1QCnhHk4YrbcljgZa4CIM09QqYheSpXKbkWo83aUiBA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Bq91ZOLsPXtnywSL0n01fUFf3HGbluHxTTlrKq4YOWy+oSiYHQUb8lH9kDHubCn3r
-	 y5gNxmYsAiIK3CH9q0yk0xu01AsEU/Z2pZd5Q/1aFa8aeKR+nrpXtcabeqzr+D502y
-	 rByVLKZblyDw7pQOQ7L38CDLNJ++FfwiPvddveK6RIHLPtmnm3Y1Wug2f+9WiW/ryS
-	 jhCmrok2BLBGvhmpUTx4plIHYBrLYWVV8nbwyruYul4jDYoHnYAd/QMJLYv5/anwR1
-	 EctRN/T6egnHSW3kKkCMoImAJ772lynQ1mtEHt+K++Jlv0y7ubSfJw2lX3ZS5RUdY1
-	 OFkdPx/DBKZzA==
-Date: Wed, 3 Sep 2025 11:43:25 -0500
+	b=UkWhlLvRnJr6ayb4Mng7/14tuavR02NoAo9XeCgTB/5K3v5y26XRy3pL1nHIvzpVo
+	 Dn38VyfEu5u4ggHiuf1rlqoblQScmF2gjYxPS26gnp/84X6prefSXBDc4SGcU4jVmV
+	 GgByW2YTigHjEiJ5pghcpSJ6FL20HQZZiwYDM9E6Is2l5xL/z2SlqQrmZyd62mHfef
+	 kHNH2kx4gOmI+ozktvajibFsYx6syJhF5oL43UkIn1HNWfgVDoQJx6Fyv2lTYgnXUY
+	 Y76w5eD/VP6VjR/Rgij0/nEUdUcV+LE/WBEqS2iY+YWtX/nGpN5ubrn9oP9U7/I1j0
+	 7bgomSEmNytEw==
+Date: Wed, 3 Sep 2025 11:45:27 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: linux-stm32@st-md-mailman.stormreply.com,
-	Jakub Kicinski <kuba@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	linux-arm-kernel@lists.infradead.org,
-	Eric Dumazet <edumazet@google.com>, linux-kernel@vger.kernel.org,
-	Matthew Gerlach <matthew.gerlach@altera.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	"David S. Miller" <davem@davemloft.net>,
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: "T.J. Mercier" <tjmercier@google.com>,
+	Conor Dooley <conor+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+	David Airlie <airlied@gmail.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	John Stultz <jstultz@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	David Hildenbrand <david@redhat.com>,
+	dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
+	Brian Starkey <Brian.Starkey@arm.com>, linux-mm@kvack.org,
+	Mike Rapoport <rppt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Paolo Abeni <pabeni@redhat.com>, devicetree@vger.kernel.org,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: renesas,rzn1-gmac: Constrain
- interrupts
-Message-ID: <175691780521.2465839.12589280217452124752.robh@kernel.org>
-References: <20250902154051.263156-3-krzysztof.kozlowski@linaro.org>
- <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+	devicetree@vger.kernel.org,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	linaro-mm-sig@lists.linaro.org
+Subject: Re: [PATCH 1/9] dt-bindings: reserved-memory: Document Tegra VPR
+Message-ID: <175691792593.2483010.8132765871876943036.robh@kernel.org>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-2-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -74,28 +70,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250902154630.4032984-2-thierry.reding@gmail.com>
 
 
-On Tue, 02 Sep 2025 17:40:53 +0200, Krzysztof Kozlowski wrote:
-> Renesas RZN1 GMAC uses three interrupts in in-kernel DTS and common
-> snps,dwmac.yaml binding is flexible, so define precise constraint for
-> this device.
+On Tue, 02 Sep 2025 17:46:21 +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> The Video Protection Region (VPR) found on NVIDIA Tegra chips is a
+> region of memory that is protected from CPU accesses. It is used to
+> decode and play back DRM protected content.
 > 
+> It is a standard reserved memory region that can exist in two forms:
+> static VPR where the base address and size are fixed (uses the "reg"
+> property to describe the memory) and a resizable VPR where only the
+> size is known upfront and the OS can allocate it wherever it can be
+> accomodated.
+> 
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
-> 
-> Changes in v2:
-> 1. Minor typo in commit msg.
-> 2. one->three interrupts in commit msg
-> 3. Rb tag
-> ---
->  .../devicetree/bindings/net/renesas,rzn1-gmac.yaml       | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../nvidia,tegra-video-protection-region.yaml | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra-video-protection-region.yaml
 > 
 
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
