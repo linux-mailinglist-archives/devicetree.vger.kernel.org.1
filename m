@@ -1,149 +1,160 @@
-Return-Path: <devicetree+bounces-212287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9366BB423FC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:47:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E637B4240A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 249D41BA3718
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:48:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F31716798D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:51:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 691692ECD20;
-	Wed,  3 Sep 2025 14:47:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6A132E1C64;
+	Wed,  3 Sep 2025 14:51:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="RpoJeYYf"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hlVI0jyW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1CF4D8D1;
-	Wed,  3 Sep 2025 14:47:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FEF2212569;
+	Wed,  3 Sep 2025 14:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756910863; cv=none; b=XDUsxj6biAZeACXuhFS1UmJ15SVtBMBso+6aaBpqP49VRSozAzne4A1jmwjYiEUN6T5A/lkhLOZZB/TG5TqWibggTXw+9Fb4xXUyjLrK2l/+OF/K3ABbwH1vQJgfdOGAddTZm0SzTpsusj/ozcDbRemQAdgdz7nINP/2SzmNZRg=
+	t=1756911101; cv=none; b=TiYnIDE5MX0Zo6jSwhhq40BP32P6IyFrbmOwtCxiYEK8VoOAdWnFSwAKjJ/VLM8ooiSnUvSuUQHv/fItlN+4xvD3EWFJezMvb1Yjl5QW6pcJGScvOXPUN79pOztCfeoj9gigo7psIjlwzfqhtpRFcEEZRaDf6HGacz1U1FXeqcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756910863; c=relaxed/simple;
-	bh=uIiHVfgXcBHll4tp5RO1iUvvwxGAS287ADmVmicJIzY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VHhn27Jjjl88uaYJNEeH4C9hUgcySQYWcwIsBRIQFY8OV1RcBWVVwjJKhaghbqa0Sw9GndFurS1xsSBSL8I3B9OAnXaUHJfUoLJwlPaQ2uS/jdNu2trF2PPygZzgm3P/qIeK2rBZR1f8wCtmP0mLcvKhHcsYsn38W36Fpm/3u1M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=RpoJeYYf; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 6F08FC8EC77;
-	Wed,  3 Sep 2025 14:47:21 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 80808606C3;
-	Wed,  3 Sep 2025 14:47:36 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 1BC6A1C22D933;
-	Wed,  3 Sep 2025 16:47:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756910855; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 in-reply-to:references; bh=ujR0yYZ5vFQl06mtsamsbnkJePIHaLtqM3Tp5y6BL2U=;
-	b=RpoJeYYf/ZHQRw1WFqCDTpBR6Tqg5/1v1LPVh9t0KkpFMj6ZUT+1o1EB987g4ZG6jaF5NZ
-	Dm0I6Cdw8RRBspPKZ+ihoaeGMqbkoLI26dcFg6h9Y+3IAMpgrMUPipQnHNPRy+qfKbf42O
-	wksiz8pIqvPkYuIz67rDkTvvUZMqu62Drro8GVFdbJhSo8DasJhqHsWE+DQ68I8pFNT6zT
-	HbSjAJqnVcpPP5MMY5rLxU8dm+GBQewjQ2ClnRzN8B8NxkYNdjyT3XjoONXIS2d3TyyN8z
-	cq3jekRx+zTS95mLK+Y8UY5pk4/XqCSXhRhZuhOqLiH5Yd1+/cG/tILaT4om7Q==
-Date: Wed, 3 Sep 2025 16:47:23 +0200
-From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
-	skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 5/7] rtc: m41t93: fix device connection/detection logic
- during probe
-Message-ID: <2025090314472377b79cdf@mail.local>
-References: <cover.1756908788.git.akhilesh@ee.iitb.ac.in>
- <c3deec9e679cd4e4a49a2cc1cba340c552faefdc.1756908788.git.akhilesh@ee.iitb.ac.in>
+	s=arc-20240116; t=1756911101; c=relaxed/simple;
+	bh=ViULookCR7D8mwqL/cpGeW24wX8pHVj4M5klm/jS3Jc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Zphzy1rizRjmm3DHrVrB/72/D2MFO1leSu4kpGoxpFRzWwuitsY7jG89vKWM31BagIhRdm0YHsR7sb1YPC0C4fEkWuUYsJCASuCxfAVB3uckan0LZHMDhYKuSV1fSW3rrkW4u9ocAU5PJNGMLIEnyOMevveaQQ82melVTN3e3S8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hlVI0jyW; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45b7d497ab9so392065e9.0;
+        Wed, 03 Sep 2025 07:51:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756911098; x=1757515898; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ONQCd5mtEfll1aSXZi1ZT7BJjKeR37O5uZEXbkjmGkU=;
+        b=hlVI0jyW4hknJQ8OIvPazTFDfBpxnW95f27ybAw6lwNngLwH7tqTnmvBnTGO65nqqv
+         7z2q4Jb7JHBNofqZghzeFmZndYAHsE9LQ6FsyiAKQQmsX0Fy6A5uAYxG6f3xHMqr52gL
+         Fcjpqq88Je6vzpoKOL9j+vOgmkpoTVyLaVeV/RbK4C0yjE+1ywplPoBm17Em1OBTy3x9
+         EJSHDtmfUZG9/Vs1Ox+QzhIRBr5P/hAqLHnJrYoqtL5ScAypsoPnTIZ79bTiGvUgKjMt
+         ad1fonRWn6pKOi9Z5RuaL1n6uq9T55P4GZV+hLZHlehirdIEAIjh2FAw9IgCYnLwX8hP
+         cyYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756911098; x=1757515898;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ONQCd5mtEfll1aSXZi1ZT7BJjKeR37O5uZEXbkjmGkU=;
+        b=hUQt2yvzr0TOorBGmL4sA85odD/HDzI89iYuCVoDwaGDD/LFwoP65N+I05P/f6ueZR
+         TmWsE8sr50rNxZIOJepj4FxJ/25ekQwqg7FG402Nri9atV+tjaAuFF1L5qjy2FP7pdn/
+         TcdT5apV4KEANB2BWg0snlm6RDOh1hJ7coV24YFI9TBLHor6udf37Cvr6p3OgdgdTMds
+         hFglBULlGkTPFDI1M863JoOZOrDDwzj5vdaQHjcQUjVwDbhYwy2/njeA5vxxlu714rS+
+         bUV6ft7qObspBBk0P4yzu5+zw3mg7765du7ymPFcvpoCLUWpz1Mefhlk5CYNW9WNBMRl
+         bvoA==
+X-Forwarded-Encrypted: i=1; AJvYcCVmu1f4Y+RkroND72H9BHz5mjhKiiGvp4resK4hjA3WL61Z7xxi/ojDsVFAq5PzRRWQR+bWwE5bgApG@vger.kernel.org, AJvYcCVrl4ZqS56farTcg60lxPsw/WOTxO56BLo86v3bXehoioDt9k552K0PP4s3cMUjk5ZOQKkwDjfLKN0pNRUf@vger.kernel.org, AJvYcCWvQGE3SwKN5UxQe6/YadUh6iudr9bVm277KBxs0f3dq2bGzPJKy8f9m75whKRv9/BrkFfdFP6EfHViMF7DyW2ePYI=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz3OQjB8sYliTHn8TL18kX6i28c1TD2reBfOhIhPQJ7BStrFz/P
+	CQX+icQrID5mZYNFi+7srkDR0sAYDkpXBCJgAYLYGPx/HgYrV53hbq5Qr2GlnVT9Y9NBtfWCKCM
+	Hg1LVyP3tyG1ODs64ZOom2dwkxcKKfMU=
+X-Gm-Gg: ASbGncswC/Ju6apEQILB1dSVBBf0cFQsAz71BySFiD5Wd871IroZoHT3GGfWQ83mHMf
+	8327OXcTuwn5dBGE+RRKxSqywNsn9gswxNwCwdtQY6AYLoq1xTB6d1iqpjxa7hIGWEBAcLuWhOq
+	IscD8q/eZMyOsztgM7DRNkxgqHmL5QwpG/8PBowZVNHV0OVWQOKUzBcN0SoRLMjirlNEyZB/Sdu
+	++ElRxvHlfoFKbFlKhbWMZgCZ80fkFpk8CThScyj36XbMP5PFA=
+X-Google-Smtp-Source: AGHT+IF942RsmZBPmgo3FojGihUawL7grgyK/Ea4c2cI/k4EUPA4isjdB4usMDdFUmdW6V7rpqqRgP7HQl8mgKVDfHY=
+X-Received: by 2002:a05:600c:45cb:b0:45b:8aa0:c7a with SMTP id
+ 5b1f17b1804b1-45b8aa00fa4mr135726905e9.30.1756911098143; Wed, 03 Sep 2025
+ 07:51:38 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c3deec9e679cd4e4a49a2cc1cba340c552faefdc.1756908788.git.akhilesh@ee.iitb.ac.in>
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250821161946.1096033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250821161946.1096033-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdWPst=JAbyL43SZAHTrCR=wajs15JZXCH4kmM41cdAh5w@mail.gmail.com>
+In-Reply-To: <CAMuHMdWPst=JAbyL43SZAHTrCR=wajs15JZXCH4kmM41cdAh5w@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 3 Sep 2025 15:51:11 +0100
+X-Gm-Features: Ac12FXx3aixEQx6DWLJgwyjIlNe0YkYiwZL27VPA_flFqJGI6Hnl0U1LpWsC-Vg
+Message-ID: <CA+V-a8thD8ALr+tzyBC9kjuTw4iLbSn2UBLJC+zgo+HCa6yN+A@mail.gmail.com>
+Subject: Re: [PATCH 4/6] arm64: dts: renesas: r9a09g077: Add USB2.0 support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 03/09/2025 19:57:21+0530, Akhilesh Patil wrote:
-> Fix the incorrect assumption about WDAY register (0x4) bits 3 to 7
-> being 0 after initial power-on to test response from device during probe
-> 
-> Do not expect these bits to be 0 after power on as datasheet does not
-> explicitly mention these power on defaults but recommends software to
-> clear these bits during operation. Refer section 3.15 for initial
-> power-on default bits.
-> 
-> Fix the random probe failures after power on by removing this condition
-> check. Add alternate response check logic which performs write, read,
-> compare check on device SRAM register to check device connection.
-> 
-> Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-> ---
->  drivers/rtc/rtc-m41t93.c | 17 +++++++++++++----
->  1 file changed, 13 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/rtc/rtc-m41t93.c b/drivers/rtc/rtc-m41t93.c
-> index 8cc179e08a4a..902797070246 100644
-> --- a/drivers/rtc/rtc-m41t93.c
-> +++ b/drivers/rtc/rtc-m41t93.c
-> @@ -30,6 +30,7 @@
->  #define M41T93_BIT_A1IE                 BIT(7)
->  #define M41T93_BIT_ABE			BIT(5)
->  #define M41T93_FLAG_AF1                 BIT(6)
-> +#define M41T93_SRAM_BASE		0x19
->  
->  
->  #define M41T93_REG_ALM_HOUR_HT		0xc
-> @@ -290,17 +291,25 @@ static int m41t93_probe(struct spi_device *spi)
->  		return PTR_ERR(m41t93->regmap);
->  	}
->  
-> -	ret = regmap_read(m41t93->regmap, M41T93_REG_WDAY, &res);
-> -	if (ret < 0) {
-> +	ret = regmap_write(m41t93->regmap, M41T93_SRAM_BASE, 0xA5);
+Hi Geert,
 
-Nope, probe is not called at RTC power on but when linux starts. The
-whole point of the RTC is to survive Linux. Writing to this register is
-breaking functionnality.
+Thank you for the review.
 
-> +	if (ret) {
->  		dev_err(&spi->dev, "IO error\n");
->  		return -EIO;
->  	}
->  
-> -	if (res < 0 || (res & 0xf8) != 0) {
-> -		dev_err(&spi->dev, "not found 0x%x.\n", res);
-> +	ret = regmap_read(m41t93->regmap, M41T93_SRAM_BASE, &res);
-> +	if (ret) {
-> +		dev_err(&spi->dev, "IO error\n");
-> +		return -EIO;
-> +	}
-> +
-> +	if (res != 0xA5) {
-> +		dev_err(&spi->dev, "No valid response from device 0x%x.\n", res);
->  		return -ENODEV;
->  	}
->  
-> +	dev_notice(&spi->dev, "m41t93 device response success\n");
-> +
+On Wed, Sep 3, 2025 at 3:05=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, 21 Aug 2025 at 18:19, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Add EHCI, OHCI, PHY and HSUSB nodes to RZ/T2H (R9A09G077) SoC DTSI.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g077.dtsi
+>
+> > +               hsusb: usb@92041000 {
+> > +                       compatible =3D "renesas,usbhs-r9a09g077";
+> > +                       reg =3D <0 0x92041000 0 0x10000>;
+>
+> "0x1000", as the region starting at 0x92043000 is marked reserved?
+> I can fix that while applying.
+>
+Ouch agreed, thank you for taking care of this (also for RZ/N2H patch).
 
-This is too verbose.
+Cheers,
+Prabhakar
 
->  	spi_set_drvdata(spi, m41t93);
->  
->  	m41t93->rtc = devm_rtc_device_register(&spi->dev, m41t93_driver.driver.name,
-> -- 
-> 2.34.1
-> 
-
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> > +                       interrupts =3D <GIC_SPI 587 IRQ_TYPE_LEVEL_HIGH=
+>,
+> > +                                    <GIC_SPI 588 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                    <GIC_SPI 589 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       clocks =3D <&cpg CPG_MOD 408>;
+> > +                       phys =3D <&usb2_phy 3>;
+> > +                       phy-names =3D "usb";
+> > +                       power-domains =3D <&cpg>;
+> > +                       status =3D "disabled";
+> > +               };
+> > +
+> >                 sdhi0: mmc@92080000  {
+> >                         compatible =3D "renesas,sdhi-r9a09g077",
+> >                                      "renesas,sdhi-r9a09g057";
+>
+> The rest LGTM.
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
