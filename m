@@ -1,228 +1,81 @@
-Return-Path: <devicetree+bounces-212000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E279B4177C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:59:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79262B4176D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:58:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 09392164CB7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:59:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E9CF7A13D1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C20E2E6CA5;
-	Wed,  3 Sep 2025 07:58:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A94AB2E0927;
+	Wed,  3 Sep 2025 07:58:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gm/FiO28"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ErG2Xvp1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42E8B2E2DFA;
-	Wed,  3 Sep 2025 07:58:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0C02D594A;
+	Wed,  3 Sep 2025 07:58:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756886333; cv=none; b=oSyQgxCKHGeGYzNkiHK+a5CFK5J0+l7TJ0pNuuRWfhKE1YSZzRK6BvQk8wqHGL5q+Nu8hxK0ZY5PnMmxjTWGQpOAMccX99Fr9CMklkmYzlCVxhZn4OCVUoJ/PJ21YMO2ZWnKWE4MA3IQDcHDIuQi9BU5qo12Nr6kjW/JxilReU0=
+	t=1756886309; cv=none; b=DrGwwIcf+Hdm+TjpMvdcadD7l1yBGiBOrGP/mPn/dfmAqUV7jFqrZQQZlAkULvABmcPTDa9/InJcXexBmJbHyKmBehGaukOeuIIomoXVRCnDyBxE5a693U2HA6eok4xuVs/vvGdmqWi2srK/LTv7vM+wPytO4lNi0O4WEBfGudE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756886333; c=relaxed/simple;
-	bh=74O75ijkUdsvIPQhfHdZZhdBgkHM40PrUthaHaSUhn8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XCbkBCI2zCsxqllJDpgaqbujuqD8bgNR5iWQlQL/yCw3qsUTAgeFnZlzfuF04LiXRwo3y9Q3lGmVxDYzzxRKRybfGork3LJGHXFlt19A93CKeXu12mhwmMTZLdvUOXHAfmkgFZmGZ1JrVfVQoC+2c300DAs3xw/4Sfmwk74wN4Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gm/FiO28; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5837w2q73215022;
-	Wed, 3 Sep 2025 02:58:02 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756886282;
-	bh=C1GxC5wEZ7w0hRkO573JUt7hmP/RrOOhSWDg3A2PT/o=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gm/FiO2863E9riM2wUW/YKWv+8Hap14okkUNr7krZuwkWdIUMhHcNztY9yuLsb/me
-	 HcYQNkHXf/M0DnC+lgydKkWhm8U+ai3ViN3TsI32t0zs3rNF8a1iM6VSvY3nCXGFZH
-	 AlQQf2CZdmkmuaDdcQSLogjYpUH0z4Br8PsHf/q0=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5837w2lr3363202
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 3 Sep 2025 02:58:02 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
- Sep 2025 02:58:01 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 3 Sep 2025 02:58:01 -0500
-Received: from [172.24.231.152] (danish-tpc.dhcp.ti.com [172.24.231.152])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5837vpEY1226636;
-	Wed, 3 Sep 2025 02:57:52 -0500
-Message-ID: <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
-Date: Wed, 3 Sep 2025 13:27:51 +0530
+	s=arc-20240116; t=1756886309; c=relaxed/simple;
+	bh=UnvsakRuPXXuA7dTjGQYvFF3ZCwE8/uc5uDGHX+4nRM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iXbfzhh3tKjvD6mAqytevFvb4qw6ET5G7Ji5oe7AQddIEgbav9qsAaUxiIgqZgSlgD/4Gm9W5+87z7jsb9/Rw8TOvnGfJvrAM8bFQyGWK8cc5qDc2K5+8kHIEtsK1ke3rURqlIbUwZr4yg7D1Wb96WFG3RaDpuD2MWiGsmoLdL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ErG2Xvp1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59297C4CEF0;
+	Wed,  3 Sep 2025 07:58:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756886308;
+	bh=UnvsakRuPXXuA7dTjGQYvFF3ZCwE8/uc5uDGHX+4nRM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ErG2Xvp1ui061jyYaUFSIuBFi9t6pdMVAWhuxlT0UJPgqXfHFZpnJSEw5w2DJrexu
+	 nVDTd4lSe0ieEquWQtqQ+v8NUkb3FJVQe78uJQN8DRtyYyPwifd80phmqNFkK7bp8w
+	 fspBBMCggTJxT8NayHH18PDMbWYMx/Y804El5OLFOaHjuhHRAYFmNevboanytyicyx
+	 LCuwX5UYsTk+zGzRKmTJrzrTO5YFFac0nmjXS0MGAnkBU9hAfWxojLhcrj2QVQJsIr
+	 PXOQ59ujWVH3iSVmXXXHXw+eW7QNiAyodTYRfCjOtz++gvHvc6uVr34CVi0Bd1Uw/H
+	 iObxHxeJ+HeiA==
+Date: Wed, 3 Sep 2025 09:58:26 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: srini@kernel.org, broonie@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/6] ASoC: codecs: lpass-wsa-macro: add Codev version 2.9
+Message-ID: <20250903-speedy-fine-macaque-5e4cdd@kuoka>
+References: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20250902140044.54508-7-srinivas.kandagatla@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/8] dt-bindings: remoteproc: k3-r5f: Add
- rpmsg-eth subnode
-To: Krzysztof Kozlowski <krzk@kernel.org>
-CC: Andrew Lunn <andrew+netdev@lunn.ch>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
-	<kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu
- Poirier <mathieu.poirier@linaro.org>,
-        Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
-        Nishanth Menon <nm@ti.com>, Vignesh
- Raghavendra <vigneshr@ti.com>,
-        Mengyuan Lou <mengyuanlou@net-swift.com>,
-        Xin
- Guo <guoxin09@huawei.com>, Lei Wei <quic_leiwei@quicinc.com>,
-        Lee Trager
-	<lee@trager.us>, Michael Ellerman <mpe@ellerman.id.au>,
-        Fan Gong
-	<gongfan1@huawei.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
-        Geert
- Uytterhoeven <geert+renesas@glider.be>,
-        Lukas Bulwahn
-	<lukas.bulwahn@redhat.com>,
-        Parthiban Veerasooran
-	<Parthiban.Veerasooran@microchip.com>,
-        Suman Anna <s-anna@ti.com>, Tero
- Kristo <kristo@kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
-        <linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <srk@ti.com>, Roger Quadros
-	<rogerq@kernel.org>
-References: <20250902090746.3221225-1-danishanwar@ti.com>
- <20250902090746.3221225-3-danishanwar@ti.com>
- <20250903-peculiar-hot-monkey-4e7c36@kuoka>
-Content-Language: en-US
-From: MD Danish Anwar <danishanwar@ti.com>
-In-Reply-To: <20250903-peculiar-hot-monkey-4e7c36@kuoka>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250902140044.54508-7-srinivas.kandagatla@oss.qualcomm.com>
 
-
-
-On 03/09/25 12:49 pm, Krzysztof Kozlowski wrote:
-> On Tue, Sep 02, 2025 at 02:37:40PM +0530, MD Danish Anwar wrote:
->> Extend the Texas Instruments K3 R5F remoteproc device tree bindings to
->> include a 'rpmsg-eth' subnode.
->>
->> This extension allows the RPMsg Ethernet to be defined as a subnode of
->> K3 R5F remoteproc nodes, enabling the configuration of shared memory-based
->> Ethernet communication between the host and remote processors.
->>
->> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->> ---
->>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml     | 6 ++++++
->>  1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> index a492f74a8608..4dbd708ec8ee 100644
->> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->> @@ -210,6 +210,12 @@ patternProperties:
->>            should be defined as per the generic bindings in,
->>            Documentation/devicetree/bindings/sram/sram.yaml
->>  
->> +      rpmsg-eth:
->> +        $ref: /schemas/net/ti,rpmsg-eth.yaml
+On Tue, Sep 02, 2025 at 03:00:44PM +0100, Srinivas Kandagatla wrote:
+> Add support for lpass wsa codec macro version 2.9, which is available in
+> Qualcomm Glymur SoCs.
 > 
-> No, not a separate device. Please read slides from my DT for beginners
+> Its compatible with 2.8 w.r.t register layouts
+> 
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> ---
+>  sound/soc/codecs/lpass-wsa-macro.c | 2 ++
+>  1 file changed, 2 insertions(+)
 
-I had synced with Andrew and we came to the conclusion that including
-rpmsg-eth this way will follow the DT guidelines and should be okay.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I have another approach to handle this.
-
-Instead of a new binding and node. I can just add a new phandle to the
-rproc binding. Phandle name `shared-mem-region` or `rpmsg-eth-region`
-
-Below is the device tree and dt binding diff for the same.
-
-diff --git
-a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-index a492f74a8608..c02c99a5a768 100644
---- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
-@@ -210,6 +210,16 @@ patternProperties:
-           should be defined as per the generic bindings in,
-           Documentation/devicetree/bindings/sram/sram.yaml
-
-+      rpmsg-eth-region:
-+        $ref: /schemas/types.yaml#/definitions/phandle
-+        description: |
-+          phandle to the reserved memory nodes to be associated with the
-+          remoteproc device for rpmsg eth communication. The reserved
-memory
-+          nodes should be carveout nodes, and should be defined with a
-"no-map"
-+          property as per the bindings in
-+
-Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-+        additionalItems: true
-+
-     required:
-       - compatible
-       - reg
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index e01866372293..e70dc542c6be 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -61,7 +61,13 @@ main_r5fss0_core0_dma_memory_region:
-r5f-dma-memory@a0000000 {
-
- 		main_r5fss0_core0_memory_region: r5f-memory@a0100000 {
- 			compatible = "shared-dma-pool";
--			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			reg = <0x00 0xa0100000 0x00 0x300000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region_shm: r5f-shm-memory@a0400000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0400000 0x00 0xc00000>;
- 			no-map;
- 		};
-
-@@ -768,6 +774,7 @@ &main_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
- 	memory-region = <&main_r5fss0_core0_dma_memory_region>,
- 			<&main_r5fss0_core0_memory_region>;
-+	rpmsg-eth-region = <&main_r5fss0_core0_memory_region_shm>;
- };
-
- &main_r5fss0_core1 {
-
-
-In this approach I am creating a new phandle to a memory region that
-will be used by my device.
-
-Can you please let me know if this approach looks okay to you? Or it you
-have any other suggestion on how to handle this?
-
-> talk from OSSE25. This is EXACTLY the case I covered there - what not to
-> do.
-
-Sure I will have a look at that.
-
--- 
-Thanks and Regards,
-Danish
+Best regards,
+Krzysztof
 
 
