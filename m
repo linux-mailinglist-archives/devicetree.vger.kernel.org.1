@@ -1,118 +1,159 @@
-Return-Path: <devicetree+bounces-212222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212224-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 886FEB421B6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E181B421CF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:35:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40806188D089
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:33:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 695321887AAB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:35:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 506D03081B3;
-	Wed,  3 Sep 2025 13:33:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285DD3093DE;
+	Wed,  3 Sep 2025 13:34:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nqEESknj"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oq5EYdPk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A7071F4701;
-	Wed,  3 Sep 2025 13:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D391EE7C6;
+	Wed,  3 Sep 2025 13:34:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756906408; cv=none; b=DtDC744BbIvRDlpI82zSS4r5EGDY4qsRzy93HanBXWG6Wx8xCSLuHpCxCbwQgNvaddWtFmbTmjAw18OinaUuh3A7U25/CFPfmztP29N7yN0CG5WeHk+/fKv9AEVaqY+8GPSJcTNkgkxYIKBwXKmq6+bpOlIPCJ/PGDL04xDs4M0=
+	t=1756906487; cv=none; b=gT2R5fWynBKUWC6uhKnfB5PNCdfkk9MTlqhIw4iRAG70aNIgsLShVvL1o79zIAObkRbzljOV4hk+H68sWfLYe+8CXLOeP7FZtl9pjMshJBc47fKcDegwmZ8SABCc3tlDhHsTswNInnMMKP/yNcCwRN8GP7jdN3aLot4glhsaT4A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756906408; c=relaxed/simple;
-	bh=APA+IKhQAivDdhc8vaL3FsIWLj0FCAXAMDhHWsCuKXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=d8KTlxDE06rlcFqYjfah5n86MVNiBodWTFZxPn+mDftPeX46W6QL3rAoVtmCI9J6XfGnRuFwdEh59qrIg1gdUmanWxr3kvEm/KS9W+ID6RSOu3deVvINK/WhXQQQ6Z4h2qB92pqLvtc6VFIpilpxy8NvMxDKIqHoQenXSn4d9TQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nqEESknj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5133DC4CEF0;
-	Wed,  3 Sep 2025 13:33:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756906407;
-	bh=APA+IKhQAivDdhc8vaL3FsIWLj0FCAXAMDhHWsCuKXQ=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=nqEESknjcE7bjyogwRRHk5Ac1+O6YIAgKS9ID41Agw+gj1ML6szAioiAxoEwVPU1l
-	 Rs4O3IWVEyPaLUfn3ucjNCBdEM0jZ7qVEQOqFRZgHMl73bkop1oNdOjcBypQy/KDmY
-	 +yYrKUeVnGvPHEmSDq3dlNGyxs3TiB55gqVP0Mkh3wHUhGzZrb8jzq1r/kzrzrgaSe
-	 Sx8RFcBj5RwoYNnz8acrzmuqdg8YFFUkSOr1mbHeeboFs0QxqjRfdAq0hN2uLw03U3
-	 gSabtOra4+cRiKIRuFdWa7WbmJf9NW9/jT2Hdq21Hbk8moSetyHxC9xSA2qgIufyi6
-	 n4Ha+QYUx/PNg==
-From: Lee Jones <lee@kernel.org>
-To: Sven Peter <sven@kernel.org>, Alyssa Rosenzweig <alyssa@rosenzweig.io>, 
- Neal Gompa <neal@gompa.dev>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Viresh Kumar <viresh.kumar@linaro.org>, 
- Thomas Gleixner <tglx@linutronix.de>, Joerg Roedel <joro@8bytes.org>, 
- Will Deacon <will@kernel.org>, Robin Murphy <robin.murphy@arm.com>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- Mark Kettenis <kettenis@openbsd.org>, Andi Shyti <andi.shyti@kernel.org>, 
- Jassi Brar <jassisinghbrar@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Sasha Finkelstein <fnkl.kernel@gmail.com>, 
- Marcel Holtmann <marcel@holtmann.org>, 
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>, 
- Johannes Berg <johannes@sipsolutions.net>, van Spriel <arend@broadcom.com>, 
- Lee Jones <lee@kernel.org>, 
- =?utf-8?q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@kernel.org>, 
- Stephen Boyd <sboyd@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Guenter Roeck <linux@roeck-us.net>, 
- Michael Turquette <mturquette@baylibre.com>, 
- =?utf-8?q?Martin_Povi=C5=A1er?= <povik+lin@cutebit.org>, 
- Vinod Koul <vkoul@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
- Mark Brown <broonie@kernel.org>, Marc Zyngier <maz@kernel.org>, 
- Ulf Hansson <ulf.hansson@linaro.org>, Keith Busch <kbusch@kernel.org>, 
- Jens Axboe <axboe@kernel.dk>, Christoph Hellwig <hch@lst.de>, 
- Sagi Grimberg <sagi@grimberg.me>, Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, Janne Grunau <j@jannau.net>
-Cc: asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-pm@vger.kernel.org, iommu@lists.linux.dev, linux-gpio@vger.kernel.org, 
- linux-i2c@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-bluetooth@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- linux-clk@vger.kernel.org, dmaengine@vger.kernel.org, 
- linux-sound@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-nvme@lists.infradead.org
-In-Reply-To: <20250828-dt-apple-t6020-v1-18-507ba4c4b98e@jannau.net>
-References: <20250828-dt-apple-t6020-v1-18-507ba4c4b98e@jannau.net>
-Subject: Re: (subset) [PATCH 18/37] mfd: macsmc: Add "apple,t8103-smc"
- compatible
-Message-Id: <175690639604.2768491.7365862081844880171.b4-ty@kernel.org>
-Date: Wed, 03 Sep 2025 14:33:16 +0100
+	s=arc-20240116; t=1756906487; c=relaxed/simple;
+	bh=EAV9G1NZWwYcTtYDpNYP0qYxFjeoE9satkLlJGdZv8g=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=SZzo1K/ipSSZi81TTI3ZLn3iRiNDI4YnFya4ig8Ykn2I/N6spLgqwWkgVXHwRhLqZ89xfSBC70M6NYL/3eoDaXRYhs8dVLVgJjWl8e4NZXRjUkW3YQXdhQlubMXuRWV/ITQRJ3uswo1neRMC9kPpe39BDg3o4Jg3oTevdZNef+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oq5EYdPk; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583BEuOs004906;
+	Wed, 3 Sep 2025 13:34:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	h5XQrsEBVWNvjygVqAdOwnAkCvxaBE49RrGWGcaTm+Y=; b=Oq5EYdPkCNFVocka
+	u6prd+u9gJVgqxDSt+gtYT/4Y7DXfF0oA7UAvUws8B2OueiDHqKSAaTrr+65OvLB
+	9C9jOFSw0qWJeWYfOZH3I6s6aw+9MRRItb+kkoOEqjvDX5jGKv8pxPf+33FwBixQ
+	CSbQQ3JQUl1yoXKMr/Z6XU+QcYFOb+Eg7N63o8KJaMBAKQ0p9Hpp66ezBA/wUFUO
+	k0Acgcfa8nE+alKkruHn0iPPGlYHGrPb9VXDB5qUroUctPnDI0zq59+PxhYqKsuO
+	UMYqo1HBLocyFD0ShWK1nZB3xDl/LJn6C/mbLKjddgay69bk1db5UmMV/WNQ63lz
+	BRJfbw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s3wsx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Sep 2025 13:34:39 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 583DYcoZ001709
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Sep 2025 13:34:38 GMT
+Received: from [10.216.0.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 3 Sep
+ 2025 06:34:34 -0700
+Message-ID: <89c85f63-4432-4779-b3e4-fcc7812f555e@quicinc.com>
+Date: Wed, 3 Sep 2025 19:04:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c81fc
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V3 3/5] scsi: ufs: core: Remove unused ufshcd_res_info
+ structure
+To: Manivannan Sadhasivam <mani@kernel.org>
+CC: Krzysztof Kozlowski <krzk@kernel.org>,
+        Ram Kumar Dwivedi
+	<quic_rdwivedi@quicinc.com>, <andersson@kernel.org>,
+        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <James.Bottomley@hansenpartnership.com>,
+        <martin.petersen@oracle.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-scsi@vger.kernel.org>
+References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
+ <20250821112403.12078-4-quic_rdwivedi@quicinc.com>
+ <1ccecf69-0bd8-4156-945d-e5876b6dea01@kernel.org>
+ <1efa429d-7576-49da-a769-b1eba9345958@quicinc.com>
+ <jzxvodlzamuta5cgupp7upkh2wjmi4n6gdvj5vceawhvw2kquc@hm4kz2qt5u2k>
+Content-Language: en-US
+From: Nitin Rawat <quic_nitirawa@quicinc.com>
+In-Reply-To: <jzxvodlzamuta5cgupp7upkh2wjmi4n6gdvj5vceawhvw2kquc@hm4kz2qt5u2k>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX9XNAfMHvLRfz
+ 3QLUUYdpd3y6VTPdJZTdq3xjvyI3cBr5lt9tyuIPCRAoIx5jKHTVOXcv2GkbaYtdyyfe8HeDLgv
+ ea6iCW2nyN00HkbDILmb4uBPJePHvuarF/HkwoR8JuuvOZelCBDpUasVyqf7LIr/PAmpjrPBdyg
+ VJxGadpfxqs4rJnW//yJj6WxluQ4VZTn8//1IloeOsOfIPgPhwEwr66lcnn13sDW/9wJc5uwSDm
+ UfQ0pEbtPuO6w2oSPYAhdk4T+ZZwevzuAy1/VeV7AsjK8yKHT2sBWWYcCljZbEiPhj/fHYjqL6S
+ hCXxg29L38NB7cfXdDT36GxhqPxkXZ9vKunLSfhtXhKZm1aNp4p+H4XpOqiFYCGll3VpSXKQRVg
+ BqZKS3MD
+X-Proofpoint-GUID: ZDVZf4fZr7deGWKxI1Yc1PFeo8jWD2V4
+X-Proofpoint-ORIG-GUID: ZDVZf4fZr7deGWKxI1Yc1PFeo8jWD2V4
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b843ef cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8
+ a=4E0j1FCiVcJF2q5ArJcA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Thu, 28 Aug 2025 16:01:37 +0200, Janne Grunau wrote:
-> After discussion with the devicetree maintainers we agreed to not extend
-> lists with the generic compatible "apple,smc" anymore [1]. Use
-> "apple,t8103-smc" as base compatible as it is the SoC the driver and
-> bindings were written for.
+
+
+On 9/3/2025 6:58 PM, Manivannan Sadhasivam wrote:
+> On Mon, Sep 01, 2025 at 09:38:25PM GMT, Nitin Rawat wrote:
+>>
+>>
+>> On 8/21/2025 5:18 PM, Krzysztof Kozlowski wrote:
+>>> On 21/08/2025 13:24, Ram Kumar Dwivedi wrote:
+>>>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
+>>>>
+>>>> Remove the ufshcd_res_info structure and associated enum ufshcd_res
+>>>> definitions from the UFS host controller header. These were previously
+>>>> used for MCQ resource mapping but are no longer needed following recent
+>>>> refactoring to use direct base addresses instead of multiple separate
+>>>> resource regions
+>>>>
+>>>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+>>>
+>>> Incomplete SoB chain.
+>>>
+>>> But anyway this makes no sense as independent patch. First you remove
+>>> users of it making it redundant... and then you remove it? No.
+>>
+>> Hi Krzysztof,
+>>
+>> The driver changes are in the UFS Qualcomm platform driver, which uses the
+>> definitions, while ufshcd.h is part of the UFS core driver. Hence kept in 2
+>> separate patch.
+>>
 > 
-> [1]: https://lore.kernel.org/asahi/12ab93b7-1fc2-4ce0-926e-c8141cfe81bf@kernel.org/
+> No, that is not a logical split. When the users are removed, the unused
+> definitions also have to be removed even if the definitions are in a different
+> file.
 > 
-> [...]
+> So I believe you need to remove 'ufshcd_res_info' in patch 1 and 'ufshcd_res' in
+> patch 2.
 
-Applied, thanks!
+Agree with this. Hence I have taken care of this in v4.
 
-[18/37] mfd: macsmc: Add "apple,t8103-smc" compatible
-        commit: 667ec87a2cfa50a528aaece758271794a1932141
 
---
-Lee Jones [李琼斯]
+> 
+> - Mani
+> 
 
 
