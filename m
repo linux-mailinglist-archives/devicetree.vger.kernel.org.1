@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-212014-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212015-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D021B41837
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:17:40 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B368BB41843
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:21:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 928831B21DAF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:18:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 730AE544CB3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:21:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06B212DF140;
-	Wed,  3 Sep 2025 08:17:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5A112E8887;
+	Wed,  3 Sep 2025 08:21:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MVjxMN0U"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q1bNi8pK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f182.google.com (mail-lj1-f182.google.com [209.85.208.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38D4D16FF37;
-	Wed,  3 Sep 2025 08:17:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8466D2D6E64;
+	Wed,  3 Sep 2025 08:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756887453; cv=none; b=q+H1K1U1850HmEiGb7MIcNRtjcFK6RCn9QNOIWFzGB92pTw4tN6/oEoaHXkd+F8RAkCs77pKGe9IpVRyjK0W6iCXEBkqqI1iRf9Mzw11bNw4FAZcfnoyVtu5lG43vKjGZC/PoARUrXMrFHRtaYlkB5at84HkJBk5A53efKkSBuA=
+	t=1756887698; cv=none; b=c3qu2QM8b7rZyj+UnwlfOF4GeWto1XaW/IyNAZNusJXG/9rhkGJMAmv/oRILVAAfIsupATSYh8HeZOyPF7qbtQ/X/bfZ/Syjfghds4wrbIYh+BgGrmzLlKIkUmNm2/lC+nH4GjtnTcjD3LKmxgouC1MBXmPdBGIGAvGPLKRikG4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756887453; c=relaxed/simple;
-	bh=uKpnAzLWfdtof80SJFgJD/xWRmX2bPTYKS22SYlBT1w=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=UWDASLlbURu5WKQdJDwK/NXhGUgRrb4U+iXOn7qcvj+d1XORqfC/xbXSz5uU0IAxYQu2HiDujpjWYs8oIvwrMt6ug3h47W0pZ1rS16pqzmq3taDZ8uqiuhNIOoQrXlIjkXB+InSaBSVrJnd77A2Wr9Dk419Zapje0kjT/cRtEmM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MVjxMN0U; arc=none smtp.client-ip=209.85.208.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-336cee72f40so32910141fa.2;
-        Wed, 03 Sep 2025 01:17:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756887450; x=1757492250; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=e5yMQaGuq2FEjQpYIbcJelW06QsO4qSYIb22l/g+sVs=;
-        b=MVjxMN0U+cIcybAONrjqBzNPYQCZ4f7KEwjcOLEdPg+HkzVDddyRmUX2+8FILk6tXN
-         MSg1IxkrliHufVJqJjbVZRhuLNoRLRQg29JDO1xo9EYqaijWrITBMCCjzykGB8jlCLun
-         OyFRmWC9ONyxGKNeAeB6PYiwjm0kfWEPEPej+KyBkClTKhmkFnz+Y9e52/z+hj9Q5gAj
-         H0RCcEl/qHxmicHFlKW2dUkuy2oOgIDkTekH4n46zCWs8avxPvmH2q+V3PVd2wTccDFf
-         8cuDxDLvQXrfB4BvRNRp6ZA98Y8kqgrcOkkNJzuUV14i4LLDF+NLkNVC41n/WO7QZYw3
-         G1fA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756887450; x=1757492250;
-        h=content-transfer-encoding:in-reply-to:content-language:references
-         :cc:to:from:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=e5yMQaGuq2FEjQpYIbcJelW06QsO4qSYIb22l/g+sVs=;
-        b=psZGpJFYHxy6/ZVk0V7Q3aXC1chxoz55AhGldK/vJcTg453j0H4u54+Fv3REszcHyh
-         xR0K7OdcPl/IOX0V2d8HF9O1oIF5RKF111UVwf3yaKTfgG+22PDy9xo16IcunK5wCvJk
-         8beHggB3FJHeP5N0Z1ts/v0KNW9VFsL0/HgDF/BX3xwNxcHkfk7Daqnan8b2tC9LCUml
-         16pwZVK5nnFbqkjHQMHKyU4KcZkj2Ud5cm3aKIG+81nrIyDkxSdiwHlXAHtHCFCjMX2F
-         oonencpk1RixWIg2tPQOuyeDqmWd4cZmQZLWYW0w0x/EC1IDhqpXFL/ezk2Tcdn3iod+
-         yysQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUKTdkZ2lKOkTCrQskq2/sEy9FzYiAlohJHRkLQE3C3DzYGxs1Hu7TX1rYTwD7VmwqZU2CLZP/1Nt3S@vger.kernel.org, AJvYcCUYo9WzEGzlgxoSb9IrWHxFkhBw96fLfbeddnZIKVtP1vUG13ZwU2sCTGy1Dfu0thnnqaYMX1k/a3JO7vQw@vger.kernel.org, AJvYcCW4AarsVBe3Qo/Sby1LU38nLwCDYZrU788X1Nk50fDMDmAiF5IO5LxSVGEZyKlXRfzBvnfxqai1haFd@vger.kernel.org, AJvYcCXYBdlUHNgIWRA8y8bVPPyRxMpxB5OxsnJnPi+bOy/LfRdq04jdRXYoQumHF56KODTwQSS9X9mQDzblgQ==@vger.kernel.org
-X-Gm-Message-State: AOJu0YzKFl7UJnFeyhOWweRbGPukWsFv+vXy18SGVYIKoMuMFoihfS4a
-	pA2ONU3/ZZTtULQRUTkdvu6PmPItRSr++B96MpufditWqz5Jnf6nTj4g
-X-Gm-Gg: ASbGncvKxAdidM7zO6ECcegqe732alcCREAfFV2c9qLKFnqXaPXyUXm1EqbBcR7DEK4
-	DS8FDereguT5iiS4qwUiv+GWtnTIx+zSP6ZYCebYmSq9r0J5/CpYvzsERbzHvaEKhGZ6aER1c8Z
-	UR76QGo/aqwitAls5HwKN7nOKjLbxv02Z92jXqnB9koY7VV1z6YJKszGTSyI+vwy2lNc6UhHss8
-	aAdqT7SblVh6heo7buHXHn2oHEurSwowFO14bLmiOrzhjohtINh7skQFQCGCbVvOZqln9+m9MQw
-	AfyRL9NjcQh9FmyFEk34GC3GnGE3g5VLDDHtdVqqXjt6ETXvKp7v6/L1TksbvxG3q49bDRhflhB
-	fQ3UCTlHNZTnZNFPp/VOrdNDnngRXG2rSKuW32uYt5ngBTWHKaR/wXX+3PGXAArTDuX4KT4uxCH
-	kk3GPr
-X-Google-Smtp-Source: AGHT+IG+YijVHFyUxNVvzXnWLLiyTtyGCjk3sCs0cNHeF6s+anfHpB6noxI0ggPIV9/xDPtaPgyzkA==
-X-Received: by 2002:a2e:a4d8:0:b0:32a:6e20:7cdb with SMTP id 38308e7fff4ca-336ca997e26mr28937091fa.17.1756887449970;
-        Wed, 03 Sep 2025 01:17:29 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f5032df6sm8788741fa.39.2025.09.03.01.17.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 01:17:29 -0700 (PDT)
-Message-ID: <86f7a107-cf69-40d2-9f96-e2025e28eaa7@gmail.com>
-Date: Wed, 3 Sep 2025 11:17:28 +0300
+	s=arc-20240116; t=1756887698; c=relaxed/simple;
+	bh=WBf81W1pYWoH/U7fZv0PlK7bHS2UjoD0trS4XRP+BSg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mNIqvSLulXHLcrBgu9I877uKvBNd1MpM5B8/91ouLhs1cibTBPo04WGX43DtrpoTjq0wesga2fao+eAtLVgD0t9eRQL9vUfuVjV4w7mapUGBkBhI2ngXSpFBOu8DRdJXCF1doLbwSShD8pgM12JOlFZS5EbxNoZ7n5QmR7RCGuo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q1bNi8pK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04B79C4CEF0;
+	Wed,  3 Sep 2025 08:21:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756887698;
+	bh=WBf81W1pYWoH/U7fZv0PlK7bHS2UjoD0trS4XRP+BSg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=q1bNi8pKSpcvborcUxapoGgtKyHBDr6RHnhF9bIX58cyYIOoNGqc0dz05d9fXvhf9
+	 Xw4wz2TWMhS/f9mgpQsdUOc5+FRh5DdfZN6dtRXA69vvi6yN1lM6p5kIABtVnMwamB
+	 VemU4Wc/KaAyyw5gSSzqoZP5SFmHx0mQTtl9l2Io2h7quOBeb/gWHLDqjZdQ9+3WLy
+	 CXfL3Zs2jJt4COUhORrxh/m/NKcoxyaQV7TDoVCU0gyCDGTUNKz7nDgD801c5sKQYS
+	 GrHt51Z4Z1IGPpobrxOsVJDJXay22Xd0e29mSKZW8s2cwQZTJgEOAWffvOY+1I3E5A
+	 emJCfpOSdPe7Q==
+Message-ID: <6deac56f-e21a-4447-bfa7-a414084676b8@kernel.org>
+Date: Wed, 3 Sep 2025 10:21:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,69 +50,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>,
- Michael Walle <mwalle@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH V5 4/4] arm64: dts: qcom: sm8550: Add max-sd-hs-hz
+ property
+To: Sarthak Garg <quic_sartgarg@quicinc.com>,
+ Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <cover.1756813980.git.mazziesaccount@gmail.com>
- <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
- <CACRpkdbOhm4PawYZUxU1SMi8WGr-LxhR1jhSVPDvPh3TTp8SWQ@mail.gmail.com>
- <ffef0fa6-45e4-467b-b264-1df15754d213@gmail.com>
- <CACRpkdbPzq6yKMHJXaFmXZSsttUkt5OAKRTSc_pjLwZZiZr7Gw@mail.gmail.com>
- <9f69e164-5e63-44c1-9354-90b8de2ca27c@gmail.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-In-Reply-To: <9f69e164-5e63-44c1-9354-90b8de2ca27c@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
+ quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+ quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com, kernel@oss.qualcomm.com
+References: <20250903080404.3260135-1-quic_sartgarg@quicinc.com>
+ <20250903080404.3260135-5-quic_sartgarg@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250903080404.3260135-5-quic_sartgarg@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 03/09/2025 10:17, Matti Vaittinen wrote:
-> On 03/09/2025 09:47, Linus Walleij wrote:
->> On Wed, Sep 3, 2025 at 7:23 AM Matti Vaittinen 
->> <mazziesaccount@gmail.com> wrote:
->>
->>> Anyways, fast-forward to this day, I don't see it handling valid_mask. I
->>> think it is a must for this device/driver, where pins can be either
->>> GPIOs or ADC inputs.
->>
->> Why not just add a .init_valid_mask() to
->> struct gpio_regmap_config so it can just pass that
->> down to its gpio_chip?
+On 03/09/2025 10:04, Sarthak Garg wrote:
+> Due to board-specific hardware constraints particularly related
+> to level shifter in this case the maximum frequency for SD High-Speed
+> (HS) mode must be limited to 37.5 MHz to ensure reliable operation of SD
+> card in HS mode.
 > 
-> Sigh. I suppose that would technically make sense. (So would allowing 
-> other IC-specific callbacks... ;) ).
+> This is achieved by introducing the `max-sd-hs-hz` property in the
+> device tree, allowing the controller to operate within safe frequency
+> limits for HS mode.
 > 
->> OK I don't want to load you with too much extra work for
->> the driver, but it seems such a small thing for a blocker,
->> and Michael who wrote the library is really helpful
->> with extending the code, so consider it!
-> 
-> I suppose I can see how that works out. I am not a fan of maintaining 
-> the extra code. Thanks for the suggestion.
 
-After more thorough look, I don't think the gpio-regmap is flexible 
-enough for this IC (either). The BD79112 direction setting requires 
-accessing two registers (one for input, other for output), and I don't 
-see how this could be done with the current gpio-regmap.
+Probably we will now replicate the same discussion... And it will be
+happening every time you send the same and not reflect it in commit msg.
 
-...If only I was able to override the direction setting callback with IC 
-specific one, then I could use the regular gpio-regmap for all the rest...
+Bindings say board setup, this commit msg says board config, but the
+patch says SoC. This is not correct.
 
-Yours,
-	-- Matti
+Best regards,
+Krzysztof
 
