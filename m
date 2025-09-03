@@ -1,212 +1,123 @@
-Return-Path: <devicetree+bounces-212446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212447-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03C83B42C17
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:45:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EF1B42C1A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:47:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8041C1891FC3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:45:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 955D456807C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:47:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBEEE2E7623;
-	Wed,  3 Sep 2025 21:45:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 372FC2D9ED1;
+	Wed,  3 Sep 2025 21:47:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="vkFm4xmi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Bl1bwWQZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C2AA2857F2
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 21:45:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 876B91E2307;
+	Wed,  3 Sep 2025 21:47:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756935911; cv=none; b=MthwlMLB3ECTZ3b7Mojrk+aaxR9c6fZ9qFLKN0QyzrLxgRmx92iZ29gyMqS2xmxtiRsuF0V0SruXHUwCMrRu4uK+Gn4HihtC5HaEfzlj64PHMWEYeGz7QSR3I6VbFo/vI6fYjTyfT53z+AMrDG4op/SKEkTiAXWSOpqdaVSddbY=
+	t=1756936044; cv=none; b=LEUNhz5JrQxbOQ11bDY2gd+YzEw2FTe0ZIRCpkQ/l/DUsDs+4FiHcn5a4jsGOoH/TFK09yxMNP0UoMGQ4RWkAJcfJwIxmIaG8UINTR1U/I+t0hbAwgfnO8SHJYkZH3va6olVXTgurYN7p/AnmJBhYPSTa9EuIEaLxvLAbekYtoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756935911; c=relaxed/simple;
-	bh=Rk/81HoYs1XcBUonvHKeYrsIYcl6a8/NFUPshCQPazE=;
-	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
-	 References:From:In-Reply-To; b=UuWoHi4Z3ebo+pTzEBxUbalMrWujC9XKsf6fefudhVIQJmpu+16GkqV6sW6jO+Lk/VDscW7mI2/PRGEk5qx9WAcGh8wTXyoTtssgsztnBCGZ0L9nitvqga4bVrlKQRyn9tSvYyWRHksBLb/CUfgwlWaegCdWcq8DLmof0ZsGDww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=vkFm4xmi; arc=none smtp.client-ip=80.241.56.151
+	s=arc-20240116; t=1756936044; c=relaxed/simple;
+	bh=0GgytPfcIO0Q4/krr70mcNW/yq3FCj9S7utoaJM+kzo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MfQhgUNKN15HAsz2edWJP+8Rm0jPh25RexpuKvslK0+n5PWOPR3QPAZsFcFg1svXCZytOIGOhXqMMDnkhN+kAS+RQz702gHLDi5ZOkFaP+mN6cW1iB7WMfKl8xmjte4RJSveUYgOZMgEhR90NgJyDx40IAixfBY1ljLT2YFbHSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Bl1bwWQZ; arc=none smtp.client-ip=80.241.56.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [IPv6:2001:67c:2050:b231:465::1])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHGNw69gDz9tGC;
-	Wed,  3 Sep 2025 23:45:04 +0200 (CEST)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cHGRP2Vjqz9tTZ;
+	Wed,  3 Sep 2025 23:47:13 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1756935904;
+	t=1756936033;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=ZHjmanIcUbDp1eBa3yuGWLKN46L05l3A9F8rJ1gjMeE=;
-	b=vkFm4xmiSkJrIIWfI+hF9v56JXlaziTisVgB/GlTG9jFBC7oXYCdea4poqo1uIryj3BT74
-	U79gyfG7hok/ac/eq/BRraZ8UeKuV/XMKMORJSJL+g0NLYQH8yldjSscUF9QkETfU9MJa9
-	bFSa0PiHK6+g5MXCF0Hsp9VITi2V3HQBOnGiUTvXc/rEnuG8F2WF/3Gc4MyN0QQo3PncKO
-	Ajgt9o3MwWJFKwiTUz199kCI7h4mErrlSXaF9GmzsvjQaasZ7hMrVLiZBXZ8VUhjcozNp5
-	H1zLA24J/zJewbbYpVxkRVv/n0b50Ar+yiHcSl9VEb45aX9LZWuIc35VlLIbEA==
-Content-Type: multipart/mixed; boundary="------------RUV3G7hQJYDoa7JET1paPDuU"
-Message-ID: <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
-Date: Wed, 3 Sep 2025 23:44:59 +0200
+	bh=w2/qBRLW8QwNWolmp5KZMKZxO0q6IN8ptMt6ovi4FOo=;
+	b=Bl1bwWQZc3N+nfL+h+CMEwn9kGZkUZgIovio+8CKKIi8KI8WxSeaT4pETNCkPY1wQg2Tpy
+	CkF2oNKUUKLSklNSwwbF2wa2gvx+gvUn+VfAQK2xt6eD24o4SrKx5XoESvdqbEbF3vO1YU
+	umkGvmqNf0eHjt3kstJBZmpKGHXKDBNt1I6NQcSAh6Qt3gnxiYKmx5oAU9WEEc5g1uJSs1
+	+yeaFgHsM3hOAjZ+8QXt6Oqld4U1kgWbY/DkTXOJ4w5nQ8uE6aT69l2lPqxQbi3cP37bba
+	8qgDIGNMlDTUUMsuKp5j+B9lG+XC7wYWWTyY2BI35hvObBWJwrOVFn+9dPyN/Q==
+Message-ID: <f03d0ae0-d28b-4b06-8f63-9d06f15c0522@mailbox.org>
+Date: Wed, 3 Sep 2025 23:47:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-5-marex@denx.de>
- <20250324094333.7afb17a1@collabora.com>
- <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
- <20250325084349.344a0f11@collabora.com>
- <7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
- <20250325153507.61d82e39@collabora.com>
- <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
- <20250325155231.0d1b1000@collabora.com>
+Subject: Re: [PATCH v2 0/8] Add support for Wave6 video codec driver
+To: Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org,
+ hverkuil@xs4all.nl, sebastian.fricke@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+ jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com
+References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
 Content-Language: en-US
 From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250325155231.0d1b1000@collabora.com>
-X-MBO-RS-ID: d51b669d6529346a39c
-X-MBO-RS-META: u4q78zyf4fuepdgig3d9tbpa5hm16r61
-
-This is a multi-part message in MIME format.
---------------RUV3G7hQJYDoa7JET1paPDuU
+In-Reply-To: <20250422093119.595-1-nas.chung@chipsnmedia.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 14d7dbf95193078b02e
+X-MBO-RS-META: ci7eu3bdapium5nw3s4r9au7fjchjxhb
 
-On 3/25/25 3:52 PM, Boris Brezillon wrote:
-
-Hello Boris,
-
-sorry for the late reply.
-
->>>>>>> Hm, that might be the cause of the fast reset issue (which is a fast
->>>>>>> resume more than a fast reset BTW): if you re-assert the reset line on
->>>>>>> runtime suspend, I guess this causes a full GPU reset, and the MCU ends
->>>>>>> up in a state where it needs a slow reset (all data sections reset to
->>>>>>> their initial state). Can you try to move the reset_control_[de]assert
->>>>>>> to the unplug/init functions?
->>>>>> Is it correct to assume , that if I remove all reset_control_assert()
->>>>>> calls (and keep only the _deassert() calls), the slow resume problem
->>>>>> should go away too ?
->>>>>
->>>>> Yeah, dropping the _assert()s should do the trick.
->>>> Hmmm, no, that does not help. I was hoping maybe NXP can chime in and
->>>> suggest something too ?
->>>
->>> Can you try keep all the clks/regulators/power-domains/... on after
->>> init, and see if the fast resume works with that. If it does,
->>> re-introduce one resource at a time to find out which one causes the
->>> MCU to lose its state.
->>
->> I already tried that too . I spent quite a while until I reached that L2
->> workaround in fact.
+On 4/22/25 11:31 AM, Nas Chung wrote:
+> This patch series introduces support for the Chips&Media Wave6 video
+> codec IP, a completely different hardware architecture compared to Wave5.
 > 
-> So, with your RPM suspend/resume being NOPs, it still doesn't work?
-> Unless the FW is doing something behind our back, I don't really see
-> why this would fail on your platform, but not on the rk3588. Are you
-> sure the power domains are kept on at all times. I'm asking, because if
-> you linked all the PDs, the on/off sequence is automatically handled by
-> the RPM core at suspend/resume time.
+> The wave6 driver is a M2M stateful encoder/decoder driver.
+> It supports various video formats, including H.264 and H.265,
+> for both encoding and decoding.
+> While other versions of the Wave6 IP may support VP9 decoding and
+> AV1 decoding and encoding those formats are not implemented or validated
+> in this driver at this time.
+> 
+> On NXP i.MX SoCs, the Wave6 IP functionality is split between two regions:
+> VPU Control region, Manages shared resources such as firmware memory.
+> VPU Core region, Provides encoding and decoding capabilities.
+> The VPU core cannot operate independently without the VPU control region.
+> 
+> This driver has been tested with GStreamer on:
+> - NXP i.MX95 board
+> - pre-silicon FPGA environment
+> 
+> Test results for decoder fluster:
+> - JVT-AVC_V1, Ran 77/135 tests successfully              in 35.519 secs
+> - JVT-FR-EXT, Ran 25/69 tests successfully               in 17.725 secs
+> - JCT-VC-HEVC_V1, Ran 132/147 tests successfully         in 81.549 secs
+> - All failures are due to unsupported hardware features:
+> -- 10bit, Resolutions higher than 4K, FMO, MBAFF
+> -- Extended profile, Field encoding and High422 sreams.
+> 
+> Test results for v4l2-compliance:
+> v4l2-compliance 1.29.0-5359, 64 bits, 64-bit time_t
+> v4l2-compliance SHA: 2a91a869eb8a 2025-04-12 11:35:53
+> 
+> Compliance test for wave6-dec device /dev/video0:
+>                  fail: ../utils/v4l2-compliance/v4l2-test-controls.cpp(1180): !have_source_change || !have_eos
+>          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+> Total for wave6-dec device /dev/video0: 48, Succeeded: 47, Failed: 1, Warnings: 0
+> 
+> Compliance test for wave6-enc device /dev/video1:
+>                  fail: ../utils/v4l2-compliance/v4l2-test-controls.cpp(1169): node->codec_mask & STATEFUL_ENCODER
+>          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+> Total for wave6-enc device /dev/video1: 48, Succeeded: 47, Failed: 1, Warnings: 0
+> 
+> Note: the failures are all related with the eos event.
 
-I revisited this now.
+For what its worth, the whole series:
 
-Can you please test the following patch (also attached) on one of your 
-devices, and tell me what the status is at the end . The diff sets the 
-GLB_HALT bit and then clears it again, which I suspect should first halt 
-the GPU and (this is what I am unsure about) then again un-halt/resume 
-the GPU ?
-
-"
-diff --git a/drivers/gpu/drm/panthor/panthor_fw.c 
-b/drivers/gpu/drm/panthor/panthor_fw.c
-index 9bf06e55eaeea..57c0d4fd29aa2 100644
---- a/drivers/gpu/drm/panthor/panthor_fw.c
-+++ b/drivers/gpu/drm/panthor/panthor_fw.c
-@@ -1087,8 +1087,16 @@ void panthor_fw_pre_reset(struct panthor_device 
-*ptdev, bool on_hang)
-  		struct panthor_fw_global_iface *glb_iface = 
-panthor_fw_get_glb_iface(ptdev);
-  		u32 status;
-
-+pr_err("%s[%d] pre-halt status=%x\n", __func__, __LINE__, 
-gpu_read(ptdev, MCU_STATUS));
-+
-  		panthor_fw_update_reqs(glb_iface, req, GLB_HALT, GLB_HALT);
-  		gpu_write(ptdev, CSF_DOORBELL(CSF_GLB_DOORBELL_ID), 1);
-+mdelay(100);
-+pr_err("%s[%d] likely-halted status=%x\n", __func__, __LINE__, 
-gpu_read(ptdev, MCU_STATUS));
-+		panthor_fw_update_reqs(glb_iface, req, 0, GLB_HALT);
-+mdelay(100);
-+pr_err("%s[%d] likely-running ? status=%x\n", __func__, __LINE__, 
-gpu_read(ptdev, MCU_STATUS));
-+
-  		if (!gpu_read_poll_timeout(ptdev, MCU_STATUS, status,
-  					   status == MCU_STATUS_HALT, 10,
-  					   100000)) {
-"
-
-In my case, the relevant output looks like this:
-
-"
-[    3.326805] panthor_fw_pre_reset[1090] pre-halt status=1
-[    3.432151] panthor_fw_pre_reset[1095] likely-halted status=2
-[    3.542179] panthor_fw_pre_reset[1098] likely-running ? status=2
-"
-
-That means, the GPU remains halted at the end, even if the "GLB_HALT" 
-bit is cleared before the last print. The clearing of GLB_HALT is also 
-what panthor_fw_post_reset() does.
-
-I suspect the extra soft reset I did before "un-halted" the GPU and 
-allowed it to proceed.
-
-I wonder if there is some way to un-halt the GPU using some gpu_write() 
-direct register access, is there ? Maybe the GPU remains halted because 
-setting the GLB_HALT stops command stream processing, and the GPU never 
-samples the clearing of GLB_HALT and therefore remains halted forever ?
---------------RUV3G7hQJYDoa7JET1paPDuU
-Content-Type: text/x-patch; charset=UTF-8; name="pan.diff"
-Content-Disposition: attachment; filename="pan.diff"
-Content-Transfer-Encoding: base64
-
-ZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9wYW50aG9yL3BhbnRob3JfZncuYyBiL2Ry
-aXZlcnMvZ3B1L2RybS9wYW50aG9yL3BhbnRob3JfZncuYwppbmRleCA5YmYwNmU1NWVhZWVh
-Li41N2MwZDRmZDI5YWEyIDEwMDY0NAotLS0gYS9kcml2ZXJzL2dwdS9kcm0vcGFudGhvci9w
-YW50aG9yX2Z3LmMKKysrIGIvZHJpdmVycy9ncHUvZHJtL3BhbnRob3IvcGFudGhvcl9mdy5j
-CkBAIC0xMDg3LDggKzEwODcsMTYgQEAgdm9pZCBwYW50aG9yX2Z3X3ByZV9yZXNldChzdHJ1
-Y3QgcGFudGhvcl9kZXZpY2UgKnB0ZGV2LCBib29sIG9uX2hhbmcpCiAJCXN0cnVjdCBwYW50
-aG9yX2Z3X2dsb2JhbF9pZmFjZSAqZ2xiX2lmYWNlID0gcGFudGhvcl9md19nZXRfZ2xiX2lm
-YWNlKHB0ZGV2KTsKIAkJdTMyIHN0YXR1czsKIAorcHJfZXJyKCIlc1slZF0gcHJlLWhhbHQg
-c3RhdHVzPSV4XG4iLCBfX2Z1bmNfXywgX19MSU5FX18sIGdwdV9yZWFkKHB0ZGV2LCBNQ1Vf
-U1RBVFVTKSk7CisKIAkJcGFudGhvcl9md191cGRhdGVfcmVxcyhnbGJfaWZhY2UsIHJlcSwg
-R0xCX0hBTFQsIEdMQl9IQUxUKTsKIAkJZ3B1X3dyaXRlKHB0ZGV2LCBDU0ZfRE9PUkJFTEwo
-Q1NGX0dMQl9ET09SQkVMTF9JRCksIDEpOworbWRlbGF5KDEwMCk7Citwcl9lcnIoIiVzWyVk
-XSBsaWtlbHktaGFsdGVkIHN0YXR1cz0leFxuIiwgX19mdW5jX18sIF9fTElORV9fLCBncHVf
-cmVhZChwdGRldiwgTUNVX1NUQVRVUykpOworCQlwYW50aG9yX2Z3X3VwZGF0ZV9yZXFzKGds
-Yl9pZmFjZSwgcmVxLCAwLCBHTEJfSEFMVCk7CittZGVsYXkoMTAwKTsKK3ByX2VycigiJXNb
-JWRdIGxpa2VseS1ydW5uaW5nID8gc3RhdHVzPSV4XG4iLCBfX2Z1bmNfXywgX19MSU5FX18s
-IGdwdV9yZWFkKHB0ZGV2LCBNQ1VfU1RBVFVTKSk7CisKIAkJaWYgKCFncHVfcmVhZF9wb2xs
-X3RpbWVvdXQocHRkZXYsIE1DVV9TVEFUVVMsIHN0YXR1cywKIAkJCQkJICAgc3RhdHVzID09
-IE1DVV9TVEFUVVNfSEFMVCwgMTAsCiAJCQkJCSAgIDEwMDAwMCkpIHsK
-
---------------RUV3G7hQJYDoa7JET1paPDuU--
+Tested-by: Marek Vasut <marek.vasut@mailbox.org> # NXP i.MX95 rev. A0
 
