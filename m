@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-212224-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E181B421CF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:35:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F65DB421F0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:37:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 695321887AAB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:35:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CACF168EBD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:36:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 285DD3093DE;
-	Wed,  3 Sep 2025 13:34:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E171304967;
+	Wed,  3 Sep 2025 13:36:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Oq5EYdPk"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OswDVRc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D391EE7C6;
-	Wed,  3 Sep 2025 13:34:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A274E26463A;
+	Wed,  3 Sep 2025 13:36:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756906487; cv=none; b=gT2R5fWynBKUWC6uhKnfB5PNCdfkk9MTlqhIw4iRAG70aNIgsLShVvL1o79zIAObkRbzljOV4hk+H68sWfLYe+8CXLOeP7FZtl9pjMshJBc47fKcDegwmZ8SABCc3tlDhHsTswNInnMMKP/yNcCwRN8GP7jdN3aLot4glhsaT4A=
+	t=1756906604; cv=none; b=cmwmDpFk5OT3AoUfd1ZBUUd3IJBP819c/O8hstD9kHZaUZ00NCsq6cH2S42XCbcLgidp4Zj9AaZKlCWKN2cWEaY41VT0eMrN9HCadkRsEsD1/FFUYm5+EXzsxkeC53mknB83cfldI7B4KA4NgnOousYqgIS12FQoajw5/UALBCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756906487; c=relaxed/simple;
-	bh=EAV9G1NZWwYcTtYDpNYP0qYxFjeoE9satkLlJGdZv8g=;
+	s=arc-20240116; t=1756906604; c=relaxed/simple;
+	bh=Y3gIGrF42jI+3IzuwOT5sPZFYcfgGiHCTqp57EkTB9w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=SZzo1K/ipSSZi81TTI3ZLn3iRiNDI4YnFya4ig8Ykn2I/N6spLgqwWkgVXHwRhLqZ89xfSBC70M6NYL/3eoDaXRYhs8dVLVgJjWl8e4NZXRjUkW3YQXdhQlubMXuRWV/ITQRJ3uswo1neRMC9kPpe39BDg3o4Jg3oTevdZNef+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Oq5EYdPk; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583BEuOs004906;
-	Wed, 3 Sep 2025 13:34:39 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	 In-Reply-To:Content-Type; b=cRMzTpXGO3OTR7eDca0r0JrD++amsfwWtZ+ZeToyeQDqkGU/6zTp5kScY6gQwawTW9JwSK9rkOeSX17J1ClMMFmraa3BhnUkMsv8aQ/ENySH5Qa+DXidNcrBxNy77k80brFY4RAVZuzsXz7E1OBr9TsJq8YiLsDN5CotLltx7L8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OswDVRc0; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DWqw3022718;
+	Wed, 3 Sep 2025 15:36:20 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	h5XQrsEBVWNvjygVqAdOwnAkCvxaBE49RrGWGcaTm+Y=; b=Oq5EYdPkCNFVocka
-	u6prd+u9gJVgqxDSt+gtYT/4Y7DXfF0oA7UAvUws8B2OueiDHqKSAaTrr+65OvLB
-	9C9jOFSw0qWJeWYfOZH3I6s6aw+9MRRItb+kkoOEqjvDX5jGKv8pxPf+33FwBixQ
-	CSbQQ3JQUl1yoXKMr/Z6XU+QcYFOb+Eg7N63o8KJaMBAKQ0p9Hpp66ezBA/wUFUO
-	k0Acgcfa8nE+alKkruHn0iPPGlYHGrPb9VXDB5qUroUctPnDI0zq59+PxhYqKsuO
-	UMYqo1HBLocyFD0ShWK1nZB3xDl/LJn6C/mbLKjddgay69bk1db5UmMV/WNQ63lz
-	BRJfbw==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s3wsx-1
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	bzHn34jeAFC+trUamzDM6dfK6EpwqtxxyQu4NkAXCys=; b=OswDVRc0fkrDCn+U
+	jX9Y6JwB7sKv9I9GTRnblCrimf8bCCzaFC3f1b+uFYAEXx6/574guT5BrAlfqg1T
+	PrWMo7cxoxMAkTaiYjUpKBkHTr3sfMklY/xnyHXWZyfGvPD5YTYsSuSyEZCRLqRw
+	I5zHZ507T90b1NGGwQSvuo5slo6I7Q/q9a7UgHQS24fchqokjpK66XnlEmg7UyyL
+	eG8m6eKen77x59fEljxL5h50lzGd+MZ2LXqtLAhaz5FekOi8b8KxAZZyyWPja/tD
+	reaKyH3dlFCXRvxHAQYTHdLWJ0nq3v9hOXTHThTsGo1C/QUXCp66FCoIvJ9p/fuB
+	NFd1tw==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48vav2q0p7-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Sep 2025 13:34:39 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 583DYcoZ001709
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 3 Sep 2025 13:34:38 GMT
-Received: from [10.216.0.245] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 3 Sep
- 2025 06:34:34 -0700
-Message-ID: <89c85f63-4432-4779-b3e4-fcc7812f555e@quicinc.com>
-Date: Wed, 3 Sep 2025 19:04:30 +0530
+	Wed, 03 Sep 2025 15:36:20 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EA26D40049;
+	Wed,  3 Sep 2025 15:35:27 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6162A2B4B41;
+	Wed,  3 Sep 2025 15:34:53 +0200 (CEST)
+Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 3 Sep
+ 2025 15:34:52 +0200
+Message-ID: <9cfa9cb4-bf7e-4d48-b0cc-0726784b7462@foss.st.com>
+Date: Wed, 3 Sep 2025 15:35:01 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,95 +67,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V3 3/5] scsi: ufs: core: Remove unused ufshcd_res_info
- structure
-To: Manivannan Sadhasivam <mani@kernel.org>
-CC: Krzysztof Kozlowski <krzk@kernel.org>,
-        Ram Kumar Dwivedi
-	<quic_rdwivedi@quicinc.com>, <andersson@kernel.org>,
-        <konradybcio@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <James.Bottomley@hansenpartnership.com>,
-        <martin.petersen@oracle.com>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-scsi@vger.kernel.org>
-References: <20250821112403.12078-1-quic_rdwivedi@quicinc.com>
- <20250821112403.12078-4-quic_rdwivedi@quicinc.com>
- <1ccecf69-0bd8-4156-945d-e5876b6dea01@kernel.org>
- <1efa429d-7576-49da-a769-b1eba9345958@quicinc.com>
- <jzxvodlzamuta5cgupp7upkh2wjmi4n6gdvj5vceawhvw2kquc@hm4kz2qt5u2k>
+Subject: Re: [PATCH 2/4] arm64: dts: st: enable ethernet1 controller on
+ stm32mp257f-dk
+To: Andrew Lunn <andrew@lunn.ch>
+CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20250903-mp2_ethernet-v1-0-4105b0ad2344@foss.st.com>
+ <20250903-mp2_ethernet-v1-2-4105b0ad2344@foss.st.com>
+ <5c49e94a-9267-459a-ba6c-70f3763f1a7b@lunn.ch>
 Content-Language: en-US
-From: Nitin Rawat <quic_nitirawa@quicinc.com>
-In-Reply-To: <jzxvodlzamuta5cgupp7upkh2wjmi4n6gdvj5vceawhvw2kquc@hm4kz2qt5u2k>
+From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+In-Reply-To: <5c49e94a-9267-459a-ba6c-70f3763f1a7b@lunn.ch>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX9XNAfMHvLRfz
- 3QLUUYdpd3y6VTPdJZTdq3xjvyI3cBr5lt9tyuIPCRAoIx5jKHTVOXcv2GkbaYtdyyfe8HeDLgv
- ea6iCW2nyN00HkbDILmb4uBPJePHvuarF/HkwoR8JuuvOZelCBDpUasVyqf7LIr/PAmpjrPBdyg
- VJxGadpfxqs4rJnW//yJj6WxluQ4VZTn8//1IloeOsOfIPgPhwEwr66lcnn13sDW/9wJc5uwSDm
- UfQ0pEbtPuO6w2oSPYAhdk4T+ZZwevzuAy1/VeV7AsjK8yKHT2sBWWYcCljZbEiPhj/fHYjqL6S
- hCXxg29L38NB7cfXdDT36GxhqPxkXZ9vKunLSfhtXhKZm1aNp4p+H4XpOqiFYCGll3VpSXKQRVg
- BqZKS3MD
-X-Proofpoint-GUID: ZDVZf4fZr7deGWKxI1Yc1PFeo8jWD2V4
-X-Proofpoint-ORIG-GUID: ZDVZf4fZr7deGWKxI1Yc1PFeo8jWD2V4
-X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b843ef cx=c_pps
- a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
- a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8
- a=4E0j1FCiVcJF2q5ArJcA:9 a=QEXdDO2ut3YA:10 a=TjNXssC_j7lpFel5tvFf:22
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
- suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
 
 
-On 9/3/2025 6:58 PM, Manivannan Sadhasivam wrote:
-> On Mon, Sep 01, 2025 at 09:38:25PM GMT, Nitin Rawat wrote:
->>
->>
->> On 8/21/2025 5:18 PM, Krzysztof Kozlowski wrote:
->>> On 21/08/2025 13:24, Ram Kumar Dwivedi wrote:
->>>> From: Nitin Rawat <quic_nitirawa@quicinc.com>
->>>>
->>>> Remove the ufshcd_res_info structure and associated enum ufshcd_res
->>>> definitions from the UFS host controller header. These were previously
->>>> used for MCQ resource mapping but are no longer needed following recent
->>>> refactoring to use direct base addresses instead of multiple separate
->>>> resource regions
->>>>
->>>> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
->>>
->>> Incomplete SoB chain.
->>>
->>> But anyway this makes no sense as independent patch. First you remove
->>> users of it making it redundant... and then you remove it? No.
->>
->> Hi Krzysztof,
->>
->> The driver changes are in the UFS Qualcomm platform driver, which uses the
->> definitions, while ufshcd.h is part of the UFS core driver. Hence kept in 2
->> separate patch.
->>
+On 9/3/25 14:21, Andrew Lunn wrote:
+>> +&ethernet1 {
+>> +	pinctrl-0 = <&eth1_rgmii_pins_b>;
+>> +	pinctrl-1 = <&eth1_rgmii_sleep_pins_b>;
+>> +	pinctrl-names = "default", "sleep";
+>> +	max-speed = <1000>;
 > 
-> No, that is not a logical split. When the users are removed, the unused
-> definitions also have to be removed even if the definitions are in a different
-> file.
+> RGMII naturally has a max-speed of 1G, so this line is pointless.
 > 
-> So I believe you need to remove 'ufshcd_res_info' in patch 1 and 'ufshcd_res' in
-> patch 2.
-
-Agree with this. Hence I have taken care of this in v4.
-
-
+> You only use max-speed when you need to restrict the system below what
+> it would normally use, for example if the PCB is badly designed and
+> the tracks don't support 1G, but can do 100Mbps
 > 
-> - Mani
-> 
+> 	Andrew
 
+Right, I'll simply remove these lines.
+
+Gatien
 
