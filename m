@@ -1,99 +1,82 @@
-Return-Path: <devicetree+bounces-212075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5957B41B7E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:16:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D36BCB41BA6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:19:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB4053B4AE9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:15:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A61A1169D6B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:19:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590C02DECB4;
-	Wed,  3 Sep 2025 10:15:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2272E7BAB;
+	Wed,  3 Sep 2025 10:19:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
 Received: from freeshell.de (freeshell.de [116.202.128.144])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6003D2EC554;
-	Wed,  3 Sep 2025 10:15:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D5C27056A;
+	Wed,  3 Sep 2025 10:19:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756894532; cv=none; b=ddqzeMJuKYr7dvwh+6FPkJqBAipa8izkrD9PEQSgtYdG0jvh5YIy0Tc/R8BJYqok3HpdoZzJ6JsHGDgY8TTz5poXoZN2Htq9LT7p20wG6GmheUcKeGPN9xupz8tdBl0daFaEv9vvFumw9gcKWP/AFlKXtsdgBWh6Xb0j9IlHNCc=
+	t=1756894789; cv=none; b=qr/ABzE3VPbhCwQENnGRuigVsYxWxVV+3J9LXPbW9ppSriNWX5UCsTyGyRjT2V/hsvKYVKhV4k5Yx+y7uhsZIBbacD6zLZf6DCNcaz+BbAHq3b0FeX4grSQAj7BRjPgbMYsBK6GRgMjB1lZdxvYUox1ChE1U9MMtCiPKuV/xkiU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756894532; c=relaxed/simple;
-	bh=YbsbZ5iVBfwCaU9Y03wZ09bGfbPqggyKRE4e3K58+B4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=AAfKrZnSPujvtOygAyOeIJJ3daVbtk93NiuiMpQPulLW5lpTeUksVYh11CEJOjhiNlX8UOMe+g+q0cFlbYZRIJQ/39QZ0tuKAFJPjAqXJczAtOifKXzs+z+eDzfqKOYwfG1jTxpidGPLQNIhMNg67fqx8Qsxsd/g9PoCgMw2jGI=
+	s=arc-20240116; t=1756894789; c=relaxed/simple;
+	bh=PLR5CEMrnGUffbfzrN013g8lieSo4iNkmltjgQs9v9o=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=elCqMyaF3aUj8SwXemkE82fkUuKCP3lBx3wDPzqHPVKTapwh8vRbRiElydG5dMQmRfOadS1JxGgPDKsuy8xnmDCSwGy+NRhmojnbg22J0G/nMfiyxXuWPhvX3WeSl+2jLHyiB+aEXBTtOnDxAtah0rfxJ/OB/Cv6yGgvxCdiHjA=
 ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from hay.lan (unknown [IPv6:2605:59c0:2078:cf00:6ecf:39ff:fe00:8375])
+Received: from [192.168.2.54] (unknown [216.234.200.243])
 	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id EADEFB22029D;
-	Wed,  3 Sep 2025 12:15:25 +0200 (CEST)
-From: E Shattow <e@freeshell.de>
-To: Conor Dooley <conor@kernel.org>,
-	Emil Renner Berthing <kernel@esmil.dk>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	E Shattow <e@freeshell.de>,
-	Hal Feng <hal.feng@starfivetech.com>
-Subject: [PATCH v1 2/2] riscv: dts: starfive: jh7110-common: drop mmc post-power-on-delay-ms
-Date: Wed,  3 Sep 2025 03:13:36 -0700
-Message-ID: <20250903101346.861076-3-e@freeshell.de>
-X-Mailer: git-send-email 2.50.0
-In-Reply-To: <20250903101346.861076-1-e@freeshell.de>
-References: <20250903101346.861076-1-e@freeshell.de>
+	by freeshell.de (Postfix) with ESMTPSA id 85E50B22027F;
+	Wed,  3 Sep 2025 12:19:44 +0200 (CEST)
+Message-ID: <067174f5-32ea-45df-9a48-96222850e813@freeshell.de>
+Date: Wed, 3 Sep 2025 03:19:42 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: jh7110-common: drop no-mmc
+ and power-on-delay-ms from mmc interfaces
+To: Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20250903101346.861076-1-e@freeshell.de>
+Content-Language: en-US
+From: E Shattow <e@freeshell.de>
+In-Reply-To: <20250903101346.861076-1-e@freeshell.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Drop post-power-on-delay-ms from mmc0 mmc1 interfaces. There is no
-known reason for these properties to continue, testing appears to be fine
-without them [1].
 
-1: https://lore.kernel.org/lkml/NT0PR01MB1312E0D9EE9F158A57B77700E63D2@NT0PR01MB1312.CHNPR01.prod.partner.outlook.cn/
+On 9/3/25 03:13, E Shattow wrote:
+> Drop no-mmc and power-on-delay-ms properties.
+> 
+> The committer cannot be reached for comment and per discussion [1] and
+> testing there is not any observable problem that is being solved by
+> having these properties for the VisionFive 2 or similar variant boards
+> through the jh7110-common.dtsi include.
+> 
+> E Shattow (2):
+>   riscv: dts: starfive: jh7110-common: drop no-mmc property from mmc1
+>   riscv: dts: starfive: jh7110-common: drop mmc post-power-on-delay-ms
+> 
+>  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 3 ---
+>  1 file changed, 3 deletions(-)
+> 
+> 
+> base-commit: f66eb149b87677da3171a0ed51c77c3599ad55d6
 
-Signed-off-by: E Shattow <e@freeshell.de>
-Tested-by: Hal Feng <hal.feng@starfivetech.com>
----
- arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+P.S. missed the URL for reference [1] in this cover letter. It is:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-index 4fa77ffd54e3..5dc15e48b74b 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-common.dtsi
-@@ -285,7 +285,6 @@ &mmc0 {
- 	mmc-ddr-1_8v;
- 	mmc-hs200-1_8v;
- 	cap-mmc-hw-reset;
--	post-power-on-delay-ms = <200>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc0_pins>;
- 	vmmc-supply = <&vcc_3v3>;
-@@ -302,7 +301,6 @@ &mmc1 {
- 	cd-gpios = <&sysgpio 41 GPIO_ACTIVE_LOW>;
- 	disable-wp;
- 	cap-sd-highspeed;
--	post-power-on-delay-ms = <200>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc1_pins>;
- 	status = "okay";
--- 
-2.50.0
-
+1:
+https://lore.kernel.org/lkml/NT0PR01MB1312E0D9EE9F158A57B77700E63D2@NT0PR01MB1312.CHNPR01.prod.partner.outlook.cn/
 
