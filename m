@@ -1,175 +1,131 @@
-Return-Path: <devicetree+bounces-212049-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212050-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51AAEB41A78
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:48:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E22D2B41A7B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:48:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE45A1BA4B87
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:48:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A1FD23B98B0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:48:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28C7274FDB;
-	Wed,  3 Sep 2025 09:47:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 725C026980F;
+	Wed,  3 Sep 2025 09:48:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ukCtmWii"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71AA26F295;
-	Wed,  3 Sep 2025 09:47:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F9421A425;
+	Wed,  3 Sep 2025 09:48:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756892823; cv=none; b=k6Y4KzU5dsSv/eYcCzYaF/V6x/uSh3HgBVBTD+X4ShRtnIcbH/gJfaA95XHw1Ou51/kzPVoymbCpSA36ZCnwO6IZJsbIqCT/E24VemKNbRmKlvwh9qR5n6pHpnVNWy24Ad5SxjiVli2MirFdBL2ik3IxcP2MZiXfSutcYK5Sdxw=
+	t=1756892919; cv=none; b=A0Qfm8RMOZe+54cyXUhJLdIR3nixUX9lzynM3Qyx8ExfDeLnK+dMXv8caCCqhvldakswTUiCuNzqRpjOp/yiZfvDZ/pqIzFu3qKGv7diNIIWMgiOL4W5OQ58aR37Wq0+9DFIhKxwoKi3nA/jDU0O1zETRt985IQPckotOyfD9hw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756892823; c=relaxed/simple;
-	bh=+hyGf877IWWapmR76LJP4YO434xPnBDCXZM23K5QIpY=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yev/qODrwdh4Ry0K+isqXpfY5Uiuu5ApsZwbSU4WzHHzAqV86zNp7oxQr7txQZAxUpuyMOy2TFRNjM7xAMXz2ZJKYFeV7daJcA/CTkCGr7lmZpUKgPoKkWZWUUmT7ewMwKByhCk18tAVdQjXKlJUAvrLXpUC/MAj0yr8f9vQdus=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5D7E1595;
-	Wed,  3 Sep 2025 02:46:52 -0700 (PDT)
-Received: from donnerap (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 749973F694;
-	Wed,  3 Sep 2025 02:46:59 -0700 (PDT)
-Date: Wed, 3 Sep 2025 10:46:44 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
- <samuel@sholland.org>, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Mikhail Kalashnikov <iuncuim@gmail.com>
-Subject: Re: [PATCH 1/5] dt-bindings: clock: sun55i-a523-ccu: Add A523 CPU
- CCU clock controller
-Message-ID: <20250903104644.7359a86d@donnerap>
-In-Reply-To: <20250903-meticulous-didactic-degu-621fe0@kuoka>
-References: <20250903000910.4860-1-andre.przywara@arm.com>
-	<20250903000910.4860-2-andre.przywara@arm.com>
-	<20250903-meticulous-didactic-degu-621fe0@kuoka>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1756892919; c=relaxed/simple;
+	bh=+ed/dJSYvBNttB1YXH5+Dx5Mb0K6Uf7RIbFi2PpJ8OQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Byqoj4d0ZKZXzFOT4P3Fd+E2OFPIuRWwIUOTXYWGb1JHyot0qgprufhpbIJnB/8MrqVRq4vP7pCHZg8HKfONn42z5DeTVOV5lyIqp6Pb79MWu1j6ctEnBaq0gkd+1jrv5wfn1sy8SVOQrsRg9e5t/i1aa9+fLvNhbrcZTodn7HM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ukCtmWii; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15309C4CEF1;
+	Wed,  3 Sep 2025 09:48:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756892918;
+	bh=+ed/dJSYvBNttB1YXH5+Dx5Mb0K6Uf7RIbFi2PpJ8OQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=ukCtmWiiRSoDX3lMFtM5OnASsCEsi1m8qs65hiSTW4FxsupWI76vmynHxiKgYWhYv
+	 rkZiYjYnpy8O8Jy0rUAaxPIXRzOHZ0EDRnJrrPW44NCkQcW+ifmhAli1C1KhuSXBXA
+	 NNIMNvMlU0aV85Bf0DnlGhj7obZ1DbN1Y0GmdamWxnyRFUb+//zj/Gi5Ou8iHWCBQN
+	 GyKqWU7EnKne4W5PpcNSZokWk/y/JjVVxfFoj5JonwrokrWfTTYVZwBTRBKEU7eq7k
+	 rCCf5WCo3aGjhMpdYBtZLS4FAWMFqpO2FTrJF0Da6YKkGsLLXAsw+y/re7pGfN/Jqb
+	 x+KJXi5SYQpeA==
+Message-ID: <fbf6708e-a902-451e-94a4-9f100f7b61a4@kernel.org>
+Date: Wed, 3 Sep 2025 11:48:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: hamoa-iot-evk: enable video
+To: Wangao Wang <quic_wangaow@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Vikash Garodia <quic_vgarodia@quicinc.com>,
+ Dikshita Agarwal <quic_dikshita@quicinc.com>,
+ Qiwei Liu <quic_qiweil@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250903-add_iris_for_x1e80100-v1-0-410e9e6c79f0@quicinc.com>
+ <20250903-add_iris_for_x1e80100-v1-3-410e9e6c79f0@quicinc.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250903-add_iris_for_x1e80100-v1-3-410e9e6c79f0@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Wed, 3 Sep 2025 10:08:33 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
-
-Hi,
-
-> On Wed, Sep 03, 2025 at 01:09:06AM +0100, Andre Przywara wrote:
-> > There are four clock controllers in the A523 SoC, but only three are
-> > described in the DT binding so far.
-> > 
-> > Add a description for the CPU CCU, which provides separate clocks for
-> > the two CPU clusters and the DSU interconnect.
-> > 
-> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
-> > ---
-> >  .../clock/allwinner,sun55i-a523-ccu.yaml      | 25 +++++++++++++++++++
-> >  .../dt-bindings/clock/sun55i-a523-cpu-ccu.h   | 13 ++++++++++
-> >  2 files changed, 38 insertions(+)
-> >  create mode 100644 include/dt-bindings/clock/sun55i-a523-cpu-ccu.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
-> > index 1dbd92febc471..367d26800fd0d 100644
-> > --- a/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
-> > +++ b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
-> > @@ -19,6 +19,7 @@ properties:
-> >    compatible:
-> >      enum:
-> >        - allwinner,sun55i-a523-ccu
-> > +      - allwinner,sun55i-a523-cpu-ccu
-> >        - allwinner,sun55i-a523-mcu-ccu
-> >        - allwinner,sun55i-a523-r-ccu
-> >  
-> > @@ -64,6 +65,30 @@ allOf:
-> >              - const: iosc
-> >              - const: losc-fanout
-> >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          enum:
-> > +            - allwinner,sun55i-a523-cpu-ccu
-> > +
-> > +    then:
-> > +      properties:
-> > +        clocks:
-> > +          items:
-> > +            - description: High Frequency Oscillator (usually at 24MHz)
-> > +            - description: Low Frequency Oscillator (usually at 32kHz)
-> > +            - description: Internal Oscillator
-> > +            - description: Peripherals PLL 0 (1200 MHz output)
-> > +            - description: Peripherals PLL 0 (600 MHz output)
-> > +
-> > +        clock-names:
-> > +          items:
-> > +            - const: hosc
-> > +            - const: losc
-> > +            - const: iosc
-> > +            - const: pll-periph0-2x
-> > +            - const: pll-periph0-600m
-> > +
-> >    - if:
-> >        properties:
-> >          compatible:
-> > diff --git a/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h b/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h
-> > new file mode 100644
-> > index 0000000000000..042f2310f64de
-> > --- /dev/null
-> > +++ b/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h  
+On 03/09/2025 10:27, Wangao Wang wrote:
+> Enable Iris video codec on the hamoa-iot-evk board.
 > 
-> Filename based on compatible.
-> 
-> 
-> > @@ -0,0 +1,13 @@
-> > +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
-> > +/*
-> > + * Copyright 2025 Arm Ltd.
-> > + */
-> > +
-> > +#ifndef _DT_BINDINGS_CLK_SUN55I_A523_CPU_CCU_H_
-> > +#define _DT_BINDINGS_CLK_SUN55I_A523_CPU_CCU_H_
-> > +
-> > +#define CLK_CPU_L		7
-> > +#define CLK_CPU_DSU		8
-> > +#define CLK_CPU_B		9  
-> 
-> I don't see the header being used by the driver and odd numbers (they
-> should start from 0 or 1) suggest these are not bindings.
+> Signed-off-by: Wangao Wang <quic_wangaow@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 
-This header is included by the private header (at the end of patch 4/5).
-The private header is then included by the driver.
-Happy to change that, but that's the pattern used in all the other drivers.
+There is no such file!
 
-Those numbers represent the publicly exposed clocks, the other clocks are
-internal. Having gaps in those numbers is somewhat common in sunxi-ng
-(check sun50i-h616-ccu.h). This large gap at the beginning here is mostly
-due to the somewhat extreme design of this CCU, which requires quite some
-helper clocks to get to the actual ones.
-We could sort the identifiers to have the public clocks first, but
-that would only be the case until we discover a missed clock (which seems
-to happen from times to times). And again, that's the pattern used in the
-sibling drivers, so I'd rather stay consistent here.
+Really, again you send something completely out of the blue, untestable,
+unmergeable, without ANY explanation in cover letter.
 
-Cheers,
-Andre
+We already gave feedback on this two weeks ago!
 
-> Otherwise please explain in commit msg what exactly are you binding
-> here.
-> 
-> Best regards,
-> Krzysztof
-> 
-
+Best regards,
+Krzysztof
 
