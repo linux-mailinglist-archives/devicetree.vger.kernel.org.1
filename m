@@ -1,83 +1,87 @@
-Return-Path: <devicetree+bounces-212031-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212032-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6DBBB4196F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:59:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7AF38B4197A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:00:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 05B8E6840BF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:57:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05C967A9D82
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:59:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA34B2ECE9A;
-	Wed,  3 Sep 2025 08:57:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B939D2ECE96;
+	Wed,  3 Sep 2025 09:00:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MveOr1EK"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m/QHDpo6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFE072C1591
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 08:57:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9E62DF135
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 09:00:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756889850; cv=none; b=EhDs56DNX+zPGzefjGxvVyMxF9wo+UykTgPeCzvAQNQNv0QbV8rV4Dj06sPZR6WM4xyPtiolkrKPwsCpdZ9raiRskSeGIH2fPFV9U0IpVkPOjMRW0TZ73dthgFn9O73GAKkb60Jas301rWHyRYIqCXV+6juRJUQD3x2VT8BK6vI=
+	t=1756890043; cv=none; b=sT0uzXvJli1qwl+KTw7TJdOXYHnus33bXkoyPZoFVde/VqMshI09VYnBaS/9ihY4phZeQRyWADC69bysfOh3eb8M7SuL8lLg1G0doPTDLEvY2FiHE+sbNVp1QOLssurSaPQXEtkqLn8IVkx27o+EwNH1mi2TAJ09g045YBb7vqU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756889850; c=relaxed/simple;
-	bh=GLWbVZsCvv8vncq22iwaF1jZGEskxbZI97+7rz86n7s=;
+	s=arc-20240116; t=1756890043; c=relaxed/simple;
+	bh=SbOOxV6Xe6CCn43EVipuJCMXzlrEjAWOJ8RB3sOYs40=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=bVJgHys4f+Qqg+bdMPjX/ZvosMiNlrGqUdkcq+aKOGeRpy5g7jRKQ915+yDoWC4Tn1ZCfBkMhd9Y6MWgTxKP10KkTJQgXXRentT2wx/mPauwb019qeXhRWUCAgJfT7M+cPcY0dAodIQQN3uVbE0g8JjXQGANsMxduJTewCeTjDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MveOr1EK; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45cb659e858so2120955e9.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 01:57:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756889846; x=1757494646; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NZXnBg/mkHQOpJsBzXAst/yraqBTJNw0ejzOcm9xd1g=;
-        b=MveOr1EKUPtN0656SFus7PFC/9IHUowbJrjsKdTCoMTYgXNGvholySIhl/P6gPjFJ9
-         Cs4edynHRHPkZeo4RBv3VYDY8SlhHFKAp28Bjv/ZgIF2P8Cm1PJl1fFTiqxIHbbbZ6sJ
-         dG2PfCitUXKgRJOPnyol/DWa6MR8HeNLQH+7CkftzUszzFdEdgWOc/sLGpGtq9eAPfgq
-         i5VEJ04qCMCnzy/lZNeHhcSBNHtGswKruO3E0X/IfTmNxQzIF+8ULGhQKlGrwMLKNlH9
-         NcxwEYiwf5c2qX6IwjDMu52QDWYvbRvicjbsv2d0DNwpCW8rFtXvZn+sIBzlqyeC2dA6
-         LwQg==
+	 In-Reply-To:Content-Type; b=k5jUA+r274cUEKBMqVykNbdX7gjmoh8Ap2NmNU1n3GNKmbAUH/vF7PS2G/Vul5L+BR+EH90tkIebTb7wo81gnk72iZZ3DMQkptaZdoONysar+9dpTQigpN37QH6yw+UVlP3OPnuShwnNcc0MDOWma1upluTbIJbSg7SoKUUqksc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m/QHDpo6; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5831TCaP023427
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 09:00:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	k+LEakHcMi5MUQWyBYBQ5DPF7nqZWUcEjlntDch+SZE=; b=m/QHDpo6ewiGGnsx
+	V6Ae1JGQA5xNOELboQVqUHP360hdBoyxKuB6UsUSUzYLGVLIhdAQcbhAB/7VuTAQ
+	sXKLF7bjKErAg0G/YpDnzQUMdqw0PgX4xLzHCfLoF2YnoxsQ5/hWC9ak0HloTQ77
+	ABoxg0pMmRNe7eUog8wMsleDrOsreXlzKVkHheyHcq/dYhwAktK+4B2CQ5fsMU66
+	gv92CKC4FcszhmM8dv+nHeQoKmiW2hGZ9TSE0ZS7CjCF/n2Tftct/TyIZblFF+Z3
+	Hi9ICIFEq/lyTuoLybwtWuf15zeOsuSqluEK3tzOkYRB3RREZAlMtnRGZiqoXZAR
+	CQ91/Q==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnpb3r1-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 09:00:40 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b3316dd5d0so71248931cf.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 02:00:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756889846; x=1757494646;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:from:references:cc:to:subject:reply-to:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NZXnBg/mkHQOpJsBzXAst/yraqBTJNw0ejzOcm9xd1g=;
-        b=Hz651Gew2YUKYJ3NOo8HsLyT+fokkOEoR3pudHCTfuupd77q86nblsDZLLi7N/ub2c
-         ZzUysHAE31RZvss4mJywLkAJ5zgB1uc763qF6muwQw3nTutMgEuqPZDm/7WcDYIVAsq1
-         kRpRNT8Lw4vmIKgTaKdp6gM6gs3zfYp/sNXcQheXZ2zUVNW6t2560KeQzrH9gbSHr/mO
-         illArT4zRf/DK7cIGSbWZrFW9stfPYWGAt2pB/yGgr0BN+ApCGv3yQHgs08z29+RsN1q
-         1yROoVgSib2nzvkChYSYUuBAWfLnT97l1xMpleNnYH93WG+qiaP1cKWcTRnJZc1nnsbl
-         ijMQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWQO0htDtPavjkYYOUQPpqsv6BOxyEIuQGHIfIx4Jwr5S08+UEacWIs6q5j1mQlGPh7sbtSkoARJXsa@vger.kernel.org
-X-Gm-Message-State: AOJu0YyHFWYQs3O+gIKefqRiRhJ1uoMaywpmeqaOLjca82thH2v2NuS/
-	A7wxvSgEZMQEWX0QP3I5rETw9ifI6IKnIk3cU1kir8+4k3AaWHOgjZuZ5nrzIM8FZvY=
-X-Gm-Gg: ASbGncssTfHlR6+W5pkQXLYAD1e20rka0FYa7EkfUkHZUVoyXr9eX+CcFnaJPWliQ5i
-	SLlbrZG2+cc7VAyrpJ6zpQ4Sz+iEaPm5tIkJfI+isJNRaLeBMeCEzqXvJrlq1AWH7ZBccZDsyDA
-	Wu6ZNd+hzzgt8m71e45/ElETOl2OqidoXPs+22S5QVccFvTzlre7Axerh4PG8PdlNUg7nVGyKEM
-	hdMliHRh7yXG3AuV53HadQK/k94BT7yqZfV8RV9atuJO6761paYOg7iN160tdt91rTztuT8idja
-	wyN3EZtViE7iRmfiHtFJILyjUxLtA6ljue+M1H7DKrTTXOJ7/fzfADJutDWgBFAN5EyVUdL5yVT
-	0vN5LwJZXWXPF3do3albw+8nCYTfSiVKG++3wpgUwWb8Wm9DdSEbKtUtb410fLB1npGhixCHZhi
-	VZSRNemDI=
-X-Google-Smtp-Source: AGHT+IGJsXe7hI4qIXZIQeEagPDzvSXyS8iIUXps68CwO0+m0YToGuFjxtslM86YEyC6Gj/p441gZA==
-X-Received: by 2002:a05:600c:1c10:b0:45c:a955:4578 with SMTP id 5b1f17b1804b1-45ca955460emr17517005e9.21.1756889846249;
-        Wed, 03 Sep 2025 01:57:26 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:431c:dad5:266c:f97? ([2a01:e0a:3d9:2080:431c:dad5:266c:f97])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3db72983560sm4253257f8f.1.2025.09.03.01.57.25
+        d=1e100.net; s=20230601; t=1756890040; x=1757494840;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k+LEakHcMi5MUQWyBYBQ5DPF7nqZWUcEjlntDch+SZE=;
+        b=GebyQaU4QXwfxfeLGfyNBfuRx+k6ub3f7tFGsMmtoT34IRl1hJLVVahSqAMGk39Ds8
+         EQ1Z/VcmDeappKiXh+SU2JmfjLxlSXAiqtMXT7CyK8+6/+kvS3k8ecFADvT0pSfGKYLk
+         7PtCcAy2Cv2+3xYGcZeZ5djSHURdRKo2AjiigI/Ilwbc51w9NB2hCQTQDgF/b4uMbM+3
+         HDeEd1YY8oSRkwDjVI7F+4Z9iteXQEnVkY3DEnUZ5UaF8/RJn4J2x7YT5JhGE7imKCrR
+         78BwDYzyPsZDszIYe1dPkL8q5+lkKp0HCmpJiCR+aqmbtr8/wxo+HVPTH4YSxTAuRFH0
+         oiRA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtS4vCNGMmrPifCt0tq8eb9cWtp0gbu5HOd4lyBYXCLC8qpGugFR/m97J+w47CHqUpnLBwVA8Ydx4v@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlKwQ2NUn827RWLKH//lYfQe2JRAiEmU5f2y01cJJUYeesb8j8
+	4J9JqZHT2r/MvkS6WCEF3sBHCzBKWfb1zHLZWRk5sUEgv/FsoZQAv64E2hC32seb6QIShKB3hYt
+	dizr17OVKEQns75HqY4KoDUeW7lur9zUmorBv31q3HuQNp2Nvu2PRj/wZaVfORjqB
+X-Gm-Gg: ASbGncsUwqp1+YjhYTSxYozIobTSajJElbuV3xtPLUcc9oH95XG3qaTVWRuJQ7b7Bt3
+	kzsJe2zgoXP+8TkxYywhhNAbrfj184fHhqHgke4/ytfF8X54nBculFzG1T6dCpES1rSgvTGYwQP
+	3GBW2Y8jOg06VH9jUltFuFIKIYgpcd1ysDpyr+KYkuoJXChaqQElqUq8HlMd0QMl8EjWwgfHU86
+	aZz1g9nQJnCUQ6C8Ga52uIfYuVbf3iFSxVEXxjfLh9cVanVtL/1m2OY7UUobT5EEUClE0d9EA0j
+	0zPPG71dxE/zdqGq9+rJdcx4DDW4/8/XsVuru+5XGFQUN1CZKkueqYBNleFHf7ODVcw=
+X-Received: by 2002:ac8:5789:0:b0:4b2:d1c5:ee8 with SMTP id d75a77b69052e-4b31dccd8d7mr171353861cf.74.1756890039875;
+        Wed, 03 Sep 2025 02:00:39 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEG1UDc3HGeDuXiKdWk0dURpTABwshxbMsyQ9pUNYSRcUghr0tBI4RwEEBCyMHDrmUtaG/ajQ==
+X-Received: by 2002:ac8:5789:0:b0:4b2:d1c5:ee8 with SMTP id d75a77b69052e-4b31dccd8d7mr171353561cf.74.1756890039313;
+        Wed, 03 Sep 2025 02:00:39 -0700 (PDT)
+Received: from [192.168.68.118] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45b940bbc0dsm75958965e9.2.2025.09.03.02.00.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 01:57:25 -0700 (PDT)
-Message-ID: <437b6676-0669-410b-ae77-ec22aa0f66db@linaro.org>
-Date: Wed, 3 Sep 2025 10:57:25 +0200
+        Wed, 03 Sep 2025 02:00:38 -0700 (PDT)
+Message-ID: <e6ae9e25-1a92-412f-9916-4c92676b8c5f@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 10:00:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,144 +89,75 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v3 0/8] power: supply: Add several features support in
- qcom-battmgr driver
-To: fenglin.wu@oss.qualcomm.com, Sebastian Reichel <sre@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Subbaraman Narayanamurthy <subbaraman.narayanamurthy@oss.qualcomm.com>,
- David Collins <david.collins@oss.qualcomm.com>,
- =?UTF-8?Q?Gy=C3=B6rgy_Kurucz?= <me@kuruczgy.com>, linux-pm@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- kernel@oss.qualcomm.com, devicetree@vger.kernel.org,
- linux-usb@vger.kernel.org
-References: <20250826-qcom_battmgr_update-v3-0-74ea410ef146@oss.qualcomm.com>
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250826-qcom_battmgr_update-v3-0-74ea410ef146@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH 4/6] ASoC: dt-bindings: qcom: Add Glymur LPASS wsa and va
+ macro codecs
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: srini@kernel.org, broonie@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+        conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com,
+        linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
+ <20250902140044.54508-5-srinivas.kandagatla@oss.qualcomm.com>
+ <20250903-diligent-tunneling-angelfish-bae3b3@kuoka>
+Content-Language: en-US
+From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+In-Reply-To: <20250903-diligent-tunneling-angelfish-bae3b3@kuoka>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: ALk7PYnoTBLH2h46MwxwASPcO9a9_5-h
+X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b803b8 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=cQA_P7Yw0F7ou3pLjNcA:9 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-ORIG-GUID: ALk7PYnoTBLH2h46MwxwASPcO9a9_5-h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX4+0dWaqMyjvn
+ bBPl4pp/GsX8pekC1McjI9Ywr8ws/p5dmRceJGa1leZurJHkCwIHRvPj4EtIGeJvMJF1zvnDUI6
+ 6Tw+0vEbmUrZ6wEowEbMn0GMxYltqHzExgsog5qmWRyMR4MejPGCAEwig4pLTEibJjF2xphlvl7
+ htZ1h/27z+hH0nQwGKsOSFWoTJHnaOTeBHAFvUGrRtk5OxjDdDWtT32qBLRGULlpfow9mCiD7Vn
+ nH+9iDLjaf0rzmVzbkSsxD+BeMLenjMzLj2RH13T/GPOFIbATI0W/54bIGugOe0fJnyPXq8ydx9
+ k9fZ64YJbsclKKoaf+x4HVXbYyf8Yptq738wDCLE5h4u60yrvWkg+YlIIU65rKMQ9PtnU6LqyNq
+ D0Ji/8A4
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_05,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300001
 
-Hi,
 
-On 26/08/2025 09:18, Fenglin Wu via B4 Relay wrote:
-> Add following features in qcom-battmgr drivers as the battery management
-> firmware has provided such capabilities:
->   - Add resistance power supply property in core driver and qcom-battmgr
->     driver to get battery resistance
->   - Add state_of_health power supply property in core driver and
->     qcom-battmgr driver to get battery health percentage
->   - Add charge control start/end threshold control by using
->     charge_control_start_threshold and charge_control_end_threshold power
->     supply properties
+
+On 9/3/25 8:57 AM, Krzysztof Kozlowski wrote:
+> On Tue, Sep 02, 2025 at 03:00:42PM +0100, Srinivas Kandagatla wrote:
+>> Document compatibles for Qualcomm Glymur SoC macro digital codecs
+>> (VA and WSA), compatible with previous generation (SM8550 and SM8650).
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+>> ---
+>>  Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml | 1 +
+>>  .../devicetree/bindings/sound/qcom,lpass-wsa-macro.yaml          | 1 +
+>>  2 files changed, 2 insertions(+)
+>>
 > 
-> The changes have been tested on QRD8650 and X1E80100-CRD devices based on
-> qcom/linux.git for-next commit a679f3f6931cdb0c2ef5dc0c26f895ae3f6c1ddc.
+> What about tx and rx? Not yet ready?
 
-Gnome sets the properties and they are correctly loaded back at reboot.
+Correct, I have not verified tx and rx yet on this platform which is why
+I did not set the bindings for it yet.
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
+TX and RX codecs are using SDCA so its possible that there might be some
+delta here.
 
-Thanks,
-Neil
 
+--srini
 > 
-> Signed-off-by: Fenglin Wu <fenglin.wu@oss.qualcomm.com>
-> ---
-> Changes in v3:
-> - Change power supply property "RESISTANCE" to "INTERNAL_RESISTANCE" and
->    update the ABI document accordingly.
-> - Update the ABI document for "STATE_OF_HEALTH" property to explain it
->    better.
-> - Drop following patches, as they were made due to my misunderstanding of
->    the compats fallback behavior. Thank you to Krzysztof for the correction
->    with patience.
->      [PATCH v2 6/8] dt-bindings: soc: qcom: pmic-glink: Move X1E80100 out of fallbacks
->      [PATCH v2 7/8] usb: typec: ucsi_glink: Add UCSI quirk for X1E80100 platform
->      [PATCH v2 8/8] arm64: dts: qcom: x1*: Remove qcom,sm8550-pmic-glink fallback
-> - Addressed several comments in [PATCH v2 5/8]:
->     - Separated the compat string addition change
->     - Fixed the coding style issues in several places to address this
->       checkpatch error:
->         "CHECK: Alignment should match open parenthesis"
->     - Add logic to read charge control thresholds from SDAM registers in driver
->       probe. It addresses the issue on X1E80100, where there is no interface
->       to retrieve the thresholds from the battery management firmware after
->       boot-up.
-> - Add a DT binding change for charge_limit_xx "nvmem" DT properties.
-> - Add a DT change to specifiy charge_limit_xx "nvmem" properties for X1E80100
->    devices.
-> - Link to v2: https://lore.kernel.org/r/20250530-qcom_battmgr_update-v2-0-9e377193a656@oss.qualcomm.com
 > 
-> Changes in v2:
-> - Corrected "qcom-battmgr" to "qcom_battmgr" in the commit subject of
->    patch 4/5.
-> - Added charge control support for X1E80100 platform in patch 5.
-> - X1E80100 is no longer a fallback of SM8550 in pmic-glink battmgr support,
->    hence added patch 6 in the pmic-glink binding to move X1E80100 out of the
->    fallbacks.
-> - Added patch 7 in glink-ucsi driver to include UCSI quirk for X1E80100
->    platform
-> - Added patch 8 to remove "qcom,sm8550-pmic-glink" compatible string in
->    x1* board files.
-> - Rebased the changes on qcom/linux.git for-next commit 44ef9ab4baaf496d227ab98d368016700f0b9300.
-> - Link to v1: https://lore.kernel.org/r/20250523-qcom_battmgr_update-v1-0-2bb6d4e0a56e@oss.qualcomm.com
-> 
-> ---
-> Fenglin Wu (8):
->        power: supply: core: Add resistance power supply property
->        power: supply: core: Add state_of_health power supply property
->        power: supply: qcom_battmgr: Add resistance power supply property
->        power: supply: qcom_battmgr: Add state_of_health property
->        power: supply: qcom_battmgr: update compats for SM8550 and X1E80100
->        dt-bindings: soc: qcom,pmic-glink: Add charge limit nvmem properties
->        power: supply: qcom_battmgr: Add charge control support
->        arm64: dts: qcom: x1e80100-crd: Add charge limit nvmem
-> 
->   Documentation/ABI/testing/sysfs-class-power        |  31 ++
->   .../bindings/soc/qcom/qcom,pmic-glink.yaml         |  14 +
->   arch/arm64/boot/dts/qcom/x1-crd.dtsi               |   2 +
->   arch/arm64/boot/dts/qcom/x1e80100-pmics.dtsi       |  20 ++
->   drivers/power/supply/power_supply_sysfs.c          |   2 +
->   drivers/power/supply/qcom_battmgr.c                | 316 ++++++++++++++++++++-
->   include/linux/power_supply.h                       |   2 +
->   7 files changed, 378 insertions(+), 9 deletions(-)
-> ---
-> base-commit: abbf1025002e4966bfcbf8a069234e485d49edf1
-> change-id: 20250520-qcom_battmgr_update-3561dc526c05
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
 > Best regards,
+> Krzysztof
+> 
 
 
