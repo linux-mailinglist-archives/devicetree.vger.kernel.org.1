@@ -1,172 +1,187 @@
-Return-Path: <devicetree+bounces-212315-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212320-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ECDFB425B1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:38:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06B42B4260C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:57:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B3454144C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:38:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5477B1891562
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:58:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE72A27F166;
-	Wed,  3 Sep 2025 15:38:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DofudDW5"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41BC299957;
+	Wed,  3 Sep 2025 15:57:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB53E28151C;
-	Wed,  3 Sep 2025 15:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31351288C34;
+	Wed,  3 Sep 2025 15:56:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756913893; cv=none; b=qOllBEQuuQNCHBlxsziy4tpv6InLODrUgD/X0ZFNDya5mUQHGPUdPpd33Qtpsqd+X6sBK5NgafaB/Jkuz72zd/tGnknGtJ8d8qM57XJd31OlemxMJJRizi0hrXyjH4+Jsn9MnkmWzStDS2qnIYncR6xe8p8LeioRdy12KWH6m7Q=
+	t=1756915024; cv=none; b=gVK47UgM3eYK/3xlBljLM9o9mcn2mA8jkJnhGGgCRJjgfeX69g2Nl73H7cK+5bwlPvcKGEDKlmjscfKsECX+wV8d1UiNBTvBAuapn7ez8Xosf8Yo886mUkw/rmDCd8vPJtnKAfb73V6eZlGPbRn2PnMuhVrlGXkj5swH6Rca9sQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756913893; c=relaxed/simple;
-	bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U5aflz/MMbbbMRdFmcM0DcN41IMvxcVh+4I9vIUQWAy5RyQ/cgiHEKRk1BzFaPq07Z8T8XQiDFLTlKpE2+xWY1jLok6fW/H9ymPkGYi+iNIfPT2N5+5XARPV2aGmNyxTa1NUGrRAMD7uwaAJk1T6BbeiToetbwd81ETGxYziKzk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DofudDW5; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b89147cfbso633465e9.3;
-        Wed, 03 Sep 2025 08:38:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756913890; x=1757518690; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
-        b=DofudDW52HX0q+5z13B4Q/PvnEMbULyTVLwUvsJP2PAV/yjfYlHCDRIgDX/bTtsL42
-         LQerHgLGKc8EA2OE5B6g6DXxmkHs0Cpc83VE4DNTlFlJbb4GX5gd2lg+Orcg+7wnoofE
-         2UkQcmRVAD0RBEww99covA9Npi8/e/XEa3v7o/Sv7SfA4m3iCELwuM7GrHaLNA3XV+Uc
-         Mq5S6EhMUf7hUh2ozuwSht+E383etEWguqCUdIlQdjxkjglZ8WuClx69LZqhkjUfmxjz
-         2CwzZc1IG3xhZL2ystWH/AGTt9EMLPRkNXA/gexQSLlApkUNNzMuGhvX797uL1A9x6lp
-         f1qg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756913890; x=1757518690;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
-        b=VDhYPEO/7z0J7rKLmYprhmuAww31ZKJYP3C2h/VNi1MyIFM77da2PX/zAE2nPS4ryB
-         GPkc4Ewxz/fFLnbTDPnJf2GEtBbAZE6qdjZEGISqSF0dimlBc3OTzsPIMUMDr9JwP6G3
-         cjAZee8Yq0GIf+J/IPkrZomjWZQSi54Vh8ldkMjKWyBEGTI8uqaw5g1XEUXPvIL+wCqJ
-         6nHNtF5T2rK2m9JMgnICGryWXkz+maK+7hm5Lp+F4ygvLBDh6iIA45g4LSjtJJFjH2qt
-         WrovdBkeLBo5eZrhOToY5ZDja5cYwoKCxAtCNRoWcS0WEgZee9CLZzOmVbmjboS7HwKS
-         05HA==
-X-Forwarded-Encrypted: i=1; AJvYcCWyulWrLjVigKa52Etxs9qEQUfAABEwm3+SJNEnJTrheDFlUCC2EiRV/MZIOa8D+vHNDy9JNH/mWxtX@vger.kernel.org, AJvYcCXu2ZkEtqqrSKQ4jzgHUILZLbMLsLMUw1RVRPdmuBfOYY229lA70oRn+QM8+Rq+4LJKETERa/x1ILmUw/E=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcilK4VeKXNPasdznhi/J9C4lG8opIFDGuQilzcMsJ95koVZ1X
-	vO2NEcmQqbJjSKqIu4KQHMsRnUGmCcm2aGZ9g2EtqeNKdLwbDvDnLilj
-X-Gm-Gg: ASbGncvsxy/Gsyv3i1v6xIBNRMFiz0NDXpPCsjEQOxZUHNaXPetP/DPfD7pPVQIVQtS
-	mUGND5HDlIurwGzfis/EeKoDTASM5AkxSJXklJUTlMLXrO+DGlBbVTZ10LiceB91oHAJhw04A2U
-	xPaHgKV6/KILxvDBC4dG4i17Sbbvpx8qTyFUngomNuGziS3y/0KxZuY4FRt995PZKrSidtNFEZG
-	+evBm4TMmJt/SpCwNUhRgI8rE06Od2iVTVM4nVGifckS2hIA85Y+OwYrTUL3tWEiDagso+VD44f
-	+6ugrLyPlysnKgdJwvDH1lExMOe0sBVN8Ub2Ae2hOliCGUL3eeR0V06SK9i22/fffMfYzChF3Qq
-	XdiohFRmIIbSv6/Z37BtHCsKHfvf9ggEjCcxPimD0lHXrGtvLCkvqfrcYAMG36InafBHMwSJcIi
-	7/ekJBg1gZESLwr+x/DV4=
-X-Google-Smtp-Source: AGHT+IFJMszbSGSF1PbWonv1NoW4j1E7tepFW666Fw1sEE/F4ZJzmOwpg3R8c/5zqgWpxpRXy3A2Sg==
-X-Received: by 2002:a05:600c:4ec9:b0:45b:7ffa:1bf8 with SMTP id 5b1f17b1804b1-45b934f6a56mr68840825e9.23.1756913889833;
-        Wed, 03 Sep 2025 08:38:09 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9c234b24sm59432145e9.16.2025.09.03.08.38.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 08:38:08 -0700 (PDT)
-Date: Wed, 3 Sep 2025 17:38:06 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: John Stultz <jstultz@google.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-mm@kvack.org
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
-Message-ID: <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-5-thierry.reding@gmail.com>
- <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
+	s=arc-20240116; t=1756915024; c=relaxed/simple;
+	bh=xgruJY70XCMa147iGgxAQGJXOf5yGwR93Wdz3hxbdi8=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=thWlXeZM+uc61SyzZ/yW4E4+QbsOsvihvyA7Otc3b5iW4Ck+8aYibkpBYrFgClfxCzlNRbcaPNZs5WmN/eckM3ONaMakGrIgDG5p0Sx2Y2dI9UnWWohT4Rhs2+mUZwHfQNB34jcEB0l9yAnn1rLhy4sYpp4qHwatL3vhNvNzhDk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.231])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cH6J52WPsz6HJbP;
+	Wed,  3 Sep 2025 23:40:21 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id B9D87140275;
+	Wed,  3 Sep 2025 23:41:14 +0800 (CST)
+Received: from localhost (10.202.227.251) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 3 Sep
+ 2025 17:41:13 +0200
+Date: Wed, 3 Sep 2025 16:41:11 +0100
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+CC: Daniel Lezcano <daniel.lezcano@linaro.org>, <jic23@kernel.org>,
+	<dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
+	<robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
+	<linux-iio@vger.kernel.org>, <s32@nxp.com>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <chester62515@gmail.com>, <mbrugger@suse.com>,
+	<ghennadi.procopciuc@oss.nxp.com>
+Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+Message-ID: <20250903164111.00004bc6@huawei.com>
+In-Reply-To: <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+	<20250903102756.1748596-3-daniel.lezcano@linaro.org>
+	<eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="sulytsn4e2thgtl4"
-Content-Disposition: inline
-In-Reply-To: <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
-
-
---sulytsn4e2thgtl4
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="ISO-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
-MIME-Version: 1.0
+X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
-> On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding@gma=
-il.com> wrote:
-> >
-> > From: Thierry Reding <treding@nvidia.com>
-> >
-> > Add a callback to struct dma_heap_ops that heap providers can implement
-> > to show information about the state of the heap in debugfs. A top-level
-> > directory named "dma_heap" is created in debugfs and individual files
-> > will be named after the heaps.
-> >
+On Wed, 03 Sep 2025 12:20:39 +0100
+Nuno S=E1 <noname.nuno@gmail.com> wrote:
+
+> On Wed, 2025-09-03 at 12:27 +0200, Daniel Lezcano wrote:
+> > From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> >=20
+> > The NXP S32G2 and S32G3 platforms integrate a successive approximation
+> > register (SAR) ADC. Two instances are available, each providing 8
+> > multiplexed input channels with 12-bit resolution. The conversion rate
+> > is up to 1 Msps depending on the configuration and sampling window.
+> >=20
+> > The SAR ADC supports raw, buffer, and trigger modes. It can operate
+> > in both single-shot and continuous conversion modes, with optional
+> > hardware triggering through the cross-trigger unit (CTU) or external
+> > events. An internal prescaler allows adjusting the sampling clock,
+> > while per-channel programmable sampling times provide fine-grained
+> > trade-offs between accuracy and latency. Automatic calibration is
+> > performed at probe time to minimize offset and gain errors.
+> >=20
+> > The driver is derived from the BSP implementation and has been partly
+> > rewritten to comply with upstream requirements. For this reason, all
+> > contributors are listed as co-developers, while the author refers to
+> > the initial BSP driver file creator.
+> >=20
+> > All modes have been validated on the S32G274-RDB2 platform using an
+> > externally generated square wave captured by the ADC. Tests covered
+> > buffered streaming via IIO, trigger synchronization, and accuracy
+> > verification against a precision laboratory signal source.
+> >=20
+> > Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp=
+.com>
+> > Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.c=
+om>
+> > Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> > Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+> > Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+> > Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+> > Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+> > Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > --- =20
 >=20
-> I know its debugfs, but this feels a little loosey-goosey as an uAPI.
-
-Well, the whole point of debugfs is that it's not really an ABI. Nothing
-should ever rely on the presence of these files.
-
-> Is there any expected format for the show function?
+> Hi David,
 >=20
-> What would other dmabuf heaps ideally export via this interface?
+> Just some minor review for now...
+A couple of follow ups (ignoring the DMA buf as others are better
+than I am to comment on that!)
 
-I've thought about this a bit and I'm not sure it makes sense to
-standardize on this. I think on one hand having a list of buffers
-exported by the dma-buf heap is probably the lowest common denominator,
-but then there might be a bunch of other things that are very heap-
-specific that some heap might want to export.
+> > +/*
+> > + * The documentation describes the reset values for the
+> > + * registers. However some registers do not have these values after a
+> > + * reset. It is a not desirable situation. In some other SoC family
+> > + * documentation NXP recommend to not assume the default values are
+> > + * set and to initialize the registers conforming to the documentation
+> > + * reset information to prevent this situation. Assume the same rule
+> > + * applies here as there is a discrepancy between what is read from
+> > + * the registers at reset time and the documentation.
+> > + */
+> > +static void nxp_sar_adc_set_default_values(struct nxp_sar_adc *info)
+> > +{
+> > +	const u32 mcr_default	=3D 0x00003901;
+> > +	const u32 msr_default	=3D 0x00000001;
+> > +	const u32 ctr_default	=3D 0x00000014;
+> > +	const u32 cimr_default	=3D 0x00000000;
+> > +	const u32 ncmr_default	=3D 0x00000000;
+> > + =20
+>=20
+> const does not really bring much here. I would rather have them as #defin=
+es.
 
-> Is there some consistent dma_heap-ish concept for it to justify it
-> being under a dma_heap directory, and not just an independent debugfs
-> file for the driver implementing the dmabuf heap?
+Unless they can be broken down into meaningful fields I'd
+not bother with defines. Just put the values in the writel()
+as their meaning is clear from what is being registered.
 
-Well, I think just the fact that it's a dma-heap would qualify its
-corresponding debugfs to be in a well-known location. We could of course
-pick some arbitrary location, but that's just a recipe for chaos because
-then everybody puts these whereever they want. There's really no
-standard place for driver-specific debugfs files to go, so putting it
-into some "subsystem"-specific directory seems like the better option.
+>=20
+> > +	writel(mcr_default, REG_ADC_MCR(info->regs));
+> > +	writel(msr_default, REG_ADC_MSR(info->regs));
+> > +	writel(ctr_default, REG_ADC_CTR0(info->regs));
+> > +	writel(ctr_default, REG_ADC_CTR1(info->regs));
+> > +	writel(cimr_default, REG_ADC_CIMR0(info->regs));
+> > +	writel(cimr_default, REG_ADC_CIMR1(info->regs));
+> > +	writel(ncmr_default, REG_ADC_NCMR0(info->regs));
+> > +	writel(ncmr_default, REG_ADC_NCMR1(info->regs));
+> > +}
 
-Thierry
+> > +};
+> > +MODULE_DEVICE_TABLE(of, nxp_sar_adc_match);
+> > +
+> > +static struct platform_driver nxp_sar_adc_driver =3D {
+> > +	.probe=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D nxp_sar_adc_probe,
+> > +	.remove=A0=A0=A0=A0=A0=A0=A0=A0 =3D nxp_sar_adc_remove,
+> > +	.driver=A0=A0=A0=A0=A0=A0=A0=A0 =3D {
+> > +		.name=A0=A0 =3D DRIVER_NAME,
+> > +		.of_match_table =3D nxp_sar_adc_match,
+> > +#ifdef CONFIG_PM_SLEEP =20
+>=20
+> You should not need the above. Look at pm_ptr() and friends.
 
---sulytsn4e2thgtl4
-Content-Type: application/pgp-signature; name="signature.asc"
+Further to that, DEFINE_SIMPLE_DEV_PM_OPS() and drop the guards
+around the functions.  The trick here is that it exposes
+the functions to the compiler but lets it figure out they aren't
+actually used and drop them.  All with out ifdef or __maybe_unused
+etc.
 
------BEGIN PGP SIGNATURE-----
+>=20
+> > +		.pm=A0=A0=A0=A0 =3D &nxp_sar_adc_pm_ops,
+> > +#endif
+> > +	},
+> > +};
+> > +
+> > +module_platform_driver(nxp_sar_adc_driver);
+> > +
+> > +MODULE_AUTHOR("NXP");
+> > +MODULE_DESCRIPTION("NXP SAR-ADC driver");
+> > +MODULE_LICENSE("GPL"); =20
+>=20
 
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi4YNsACgkQ3SOs138+
-s6FLbg//VYHy8TOrGMpDWro/ULEXXUAldaCb7nmtSEpNIXvKqfV5j9D/dcMLpLtY
-LC53YPVnMm9g5c6mZ0w7DfUU5q+qAwCe2mvhA+Fm3UaRF2jMKhD/5LG4rk7ELWsL
-Xb3raJAlnNFO9AHgE7oEwGYjF8q94yEiAZHNO62j1kxJ00CpZCxyG2rie7iaTAMh
-VToay43MFoIv9ulrESaonZk84vL4HzYJZIZXeIgjs+mS0BmFH5fxvCPerNuiG4gf
-Z4N4cCDGWfJ+EYFuMZ3p2pbLivKlTqI3QdihV8BO13OMaADW7vmSPMdDzYSgQ/R9
-KdwIIctBlRpiGYOJCPb83kZFsFXwU4Cvnfc3HJDTjwLwlbIrAFTlPnyhL9eWEeZD
-oD4Jdnf/tHXH9tFJUEZ+cPA8mCHjMrnL3mTItfYILkvaGuZGRRdacy5fyICO0fbv
-xB0k9rSgPfwlafKgaHj3wQD02D1qmGZqATxAVYXu/RT682hMAYX8JJS5ar64fQ35
-esRjjoSdlzaVisao/gog2ThKdoPsThxcMXcM4nHHMfkd+wURKomTszYl8lZGew3Y
-dzUR7jKgI/rPUUUpBD7D+cPzNy5p2JzoQMPoBtKMPOOq6tQ1BXYJgXZtfW8DO1T6
-QgUM6P7kdw0Dce+0PdZOD3TvkpPucxyqZlLA13ZLCYeW8xZKwsk=
-=6VMq
------END PGP SIGNATURE-----
-
---sulytsn4e2thgtl4--
 
