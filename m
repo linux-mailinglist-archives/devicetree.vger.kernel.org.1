@@ -1,73 +1,91 @@
-Return-Path: <devicetree+bounces-212455-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212456-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ED25B42CA8
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:13:36 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0127DB42CC5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:29:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EBDD23BF934
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:13:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DF1D54722E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:29:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 955DF2EC0BF;
-	Wed,  3 Sep 2025 22:13:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFCA2EDD74;
+	Wed,  3 Sep 2025 22:29:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GWOlTwZ1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="e8MsM39I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C38217F33;
-	Wed,  3 Sep 2025 22:13:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A1C2EDD64;
+	Wed,  3 Sep 2025 22:29:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756937610; cv=none; b=iNaCwPWdfhHXeHcDx67tNAGfPeWGtvY/3LlOa9y/FqMGlbEIYBn6BQZeizPqTdTuPZBrxe786DjgCmDqWQSdYkoHRAwQl2IQhchAQUHVnD6uEasFNGuPvLJpi4H34v90flKtq7beUBxXQhyymcC5PMN8k69dz7hAkuukDVfEPg8=
+	t=1756938589; cv=none; b=XIdFcia1qK9LpNH7u7BJY1q57AjVifUcPVKPc6hxV+MW5EZ+m8yZKohbOHaRLAUqX1z6I9k77MKLRe7XSuK/wtIkehi2poozbQGbT7GBfmacFj8DqgV6siUuRLL39UaAhZOMYeRWz6QKcZZ7Q7f9PcSW01b2xgGgZUJO1ER9kh4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756937610; c=relaxed/simple;
-	bh=oV2NWXl85j6kRtt65I+kwlkxl12a07d3zCpp3cY0u7U=;
+	s=arc-20240116; t=1756938589; c=relaxed/simple;
+	bh=PSEVuZUNWlueqS+Ui8pc2fm3qOdMiz+R5imI8e5EXAw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hvVUMOW4RoonsbH1em9fIcyQORrRPHOt5cYSiaWaliRwQxMIIkpfgV6M/xoPrAuo7lZb5IhaEisCCJoFcxqKXboQ4VLyjsGt+KTkVD5b9BLhTA3SfMnM1ZgaXnYmGQpO6/CfzIkwNbCA1zlYqOZBzRgmZ05uyBlzDbTsW7bDmJw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GWOlTwZ1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E1C4C4CEE7;
-	Wed,  3 Sep 2025 22:13:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756937609;
-	bh=oV2NWXl85j6kRtt65I+kwlkxl12a07d3zCpp3cY0u7U=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=GWOlTwZ1nTSfXLuD5gd526C34LTRvNISuCXTEx6tJGQsTrY+bYTIDnBwXiBaONTFz
-	 Mm6Xw3oE28KZV0wQ2qEAOF4LS8+5+vnFEqbQhgnfA4vBW83Yqf5YVeK8OtTk6w9ghD
-	 yUetGzl+tu00FFwz2oagXV0MiKAUffyLgoSStzFGrJp/eme/5quFSWJ2dX1asSgbEW
-	 o3FGYkpZJJrRjpw9rxUmHrF0e4ZIxA8+IA6C27uWpy9Ds1URWBO3TCbtwMgGMtmWBi
-	 HsLKgXhlzQazYjJuOQqqNfG9XcFFBDTsNf/B/i11ZoeI5NMTpB6TaooCId1NdGna5h
-	 yDcpNVWuPsFpg==
-Date: Wed, 3 Sep 2025 17:13:27 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, Thomas Zimmermann <tzimmermann@suse.de>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	David Airlie <airlied@gmail.com>,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Bjorn Andersson <andersson@kernel.org>, Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	freedreno@lists.freedesktop.org, Mahadevan <quic_mahap@quicinc.com>,
-	Maxime Ripard <mripard@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=ix1Vxbw5ALQbdayYfJ/RbM3iNaiuEAOsfRt+j7qKqjwEPKyeNYpNLM9b6SgtQe68v+3lTgmdvTJapaFCvViuDqoI22PouJxCwvQ6ZGoAjkdwiswtoRSR4FGiELGaq3ijFutcUAwa0otJQ6WJXu4gJ9xVRkdhjUftdhPfNtrRtIA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=e8MsM39I; arc=none smtp.client-ip=192.198.163.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756938588; x=1788474588;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=PSEVuZUNWlueqS+Ui8pc2fm3qOdMiz+R5imI8e5EXAw=;
+  b=e8MsM39ITKnyhH7t9WtSxSpg+qD7sH6h/RlV+cn406O8eHFBmqRbN/p/
+   9AS7e7rriVKgifKOE0BdplgG7Xfo/DrkCwslTLjcvr8hrKIir32WLOL6J
+   +oJuRlUcq8xKsISbcfc87SY2R5hZrbLl8hcVMqV26ZDlz059/sQWmucB7
+   ghPnd2EMKIsk+PPhME2La3WWjxZ4+g9hZrdrSasHCzBAtFRMJE9p6tDtN
+   apGxnzl8FTybkfYwMT8aEW0dRrV5de0fVJo9J9+MfRKx2YSMnv4AGXkbO
+   gokN2UAEQ3Sj0x36DzhBXA6+AB+jftVTIvivfBxeGJzqg5tBBlB1HV+m0
+   Q==;
+X-CSE-ConnectionGUID: ugixRcPGQwehC63L/m7Dlw==
+X-CSE-MsgGUID: WAlhLn7YRmaYYhqKSg/FeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="59378141"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
+   d="scan'208";a="59378141"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2025 15:29:47 -0700
+X-CSE-ConnectionGUID: 40QyShBNR7CMykOLW2VH5Q==
+X-CSE-MsgGUID: mfOXVpV6SzGI80goFY9hpg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
+   d="scan'208";a="172161049"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by fmviesa009.fm.intel.com with ESMTP; 03 Sep 2025 15:29:43 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1utvyk-0004Tz-1o;
+	Wed, 03 Sep 2025 22:29:33 +0000
+Date: Thu, 4 Sep 2025 06:28:27 +0800
+From: kernel test robot <lkp@intel.com>
+To: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev,
+	Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	Kim Seer Paller <kimseer.paller@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Kuogee Hsieh <quic_khsieh@quicinc.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Abel Vesa <abel.vesa@linaro.org>, Simona Vetter <simona@ffwll.ch>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH v8 7/9] dt-bindings: display/msm: expand to support MST
-Message-ID: <175693760715.2953637.17179173729112460922.robh@kernel.org>
-References: <20250903-dp_mst_bindings-v8-0-7526f0311eaa@oss.qualcomm.com>
- <20250903-dp_mst_bindings-v8-7-7526f0311eaa@oss.qualcomm.com>
+	Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v10 2/2] iio: adc: max14001: New driver
+Message-ID: <202509040617.gcAKQNlG-lkp@intel.com>
+References: <f3ea9c127b7836cc978def5d906740c6da1cfb1e.1756816682.git.marilene.agarcia@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,37 +94,104 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250903-dp_mst_bindings-v8-7-7526f0311eaa@oss.qualcomm.com>
+In-Reply-To: <f3ea9c127b7836cc978def5d906740c6da1cfb1e.1756816682.git.marilene.agarcia@gmail.com>
 
+Hi Marilene,
 
-On Wed, 03 Sep 2025 14:58:18 +0300, Dmitry Baryshkov wrote:
-> From: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> 
-> On a vast majority of Qualcomm chipsets DisplayPort controller can
-> support several MST streams (up to 4x). To support MST these chipsets
-> use up to 4 stream pixel clocks for the DisplayPort controller and
-> several extra register regions. Expand corresponding region and clock
-> bindings for these platforms and fix example schema files to follow
-> updated bindings.
-> 
-> Note: On chipsets that support MST, the number of streams supported
-> can vary between controllers. For example, SA8775P supports 4 MST
-> streams on mdss_dp0 but only 2 streams on mdss_dp1.
-> 
-> Signed-off-by: Abhinav Kumar <quic_abhinavk@quicinc.com>
-> Signed-off-by: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> ---
->  .../bindings/display/msm/dp-controller.yaml        | 103 ++++++++++++++++++++-
->  .../bindings/display/msm/qcom,sa8775p-mdss.yaml    |  26 +++++-
->  .../bindings/display/msm/qcom,sar2130p-mdss.yaml   |  10 +-
->  .../bindings/display/msm/qcom,sc7280-mdss.yaml     |   3 +-
->  .../bindings/display/msm/qcom,sm7150-mdss.yaml     |  10 +-
->  .../bindings/display/msm/qcom,sm8750-mdss.yaml     |  10 +-
->  .../bindings/display/msm/qcom,x1e80100-mdss.yaml   |  10 +-
->  7 files changed, 150 insertions(+), 22 deletions(-)
-> 
+kernel test robot noticed the following build warnings:
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+[auto build test WARNING on d1487b0b78720b86ec2a2ac7acc683ec90627e5b]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Marilene-Andrade-Garcia/dt-bindings-iio-adc-add-max14001/20250902-212046
+base:   d1487b0b78720b86ec2a2ac7acc683ec90627e5b
+patch link:    https://lore.kernel.org/r/f3ea9c127b7836cc978def5d906740c6da1cfb1e.1756816682.git.marilene.agarcia%40gmail.com
+patch subject: [PATCH v10 2/2] iio: adc: max14001: New driver
+config: hexagon-randconfig-r113-20250904 (https://download.01.org/0day-ci/archive/20250904/202509040617.gcAKQNlG-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 2e122990391b2ba062e6308a12cfedf7206270ba)
+reproduce: (https://download.01.org/0day-ci/archive/20250904/202509040617.gcAKQNlG-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509040617.gcAKQNlG-lkp@intel.com/
+
+sparse warnings: (new ones prefixed by >>)
+>> drivers/iio/adc/max14001.c:109:27: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] spi_tx_buffer @@     got unsigned long @@
+   drivers/iio/adc/max14001.c:109:27: sparse:     expected restricted __be16 [usertype] spi_tx_buffer
+   drivers/iio/adc/max14001.c:109:27: sparse:     got unsigned long
+>> drivers/iio/adc/max14001.c:110:29: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned short [usertype] val @@     got restricted __be16 [usertype] spi_tx_buffer @@
+   drivers/iio/adc/max14001.c:110:29: sparse:     expected unsigned short [usertype] val
+   drivers/iio/adc/max14001.c:110:29: sparse:     got restricted __be16 [usertype] spi_tx_buffer
+>> drivers/iio/adc/max14001.c:110:29: sparse: sparse: cast from restricted __be16
+>> drivers/iio/adc/max14001.c:110:29: sparse: sparse: cast from restricted __be16
+>> drivers/iio/adc/max14001.c:110:29: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned short [usertype] __x @@     got restricted __be16 [usertype] @@
+   drivers/iio/adc/max14001.c:110:29: sparse:     expected unsigned short [usertype] __x
+   drivers/iio/adc/max14001.c:110:29: sparse:     got restricted __be16 [usertype]
+>> drivers/iio/adc/max14001.c:110:27: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] spi_tx_buffer @@     got int @@
+   drivers/iio/adc/max14001.c:110:27: sparse:     expected restricted __be16 [usertype] spi_tx_buffer
+   drivers/iio/adc/max14001.c:110:27: sparse:     got int
+>> drivers/iio/adc/max14001.c:120:27: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] spi_rx_buffer @@     got int @@
+   drivers/iio/adc/max14001.c:120:27: sparse:     expected restricted __be16 [usertype] spi_rx_buffer
+   drivers/iio/adc/max14001.c:120:27: sparse:     got int
+>> drivers/iio/adc/max14001.c:121:21: sparse: sparse: cast to restricted __be16
+>> drivers/iio/adc/max14001.c:121:21: sparse: sparse: restricted __be16 degrades to integer
+>> drivers/iio/adc/max14001.c:121:21: sparse: sparse: restricted __be16 degrades to integer
+   drivers/iio/adc/max14001.c:133:27: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] spi_tx_buffer @@     got unsigned long @@
+   drivers/iio/adc/max14001.c:133:27: sparse:     expected restricted __be16 [usertype] spi_tx_buffer
+   drivers/iio/adc/max14001.c:133:27: sparse:     got unsigned long
+   drivers/iio/adc/max14001.c:136:29: sparse: sparse: incorrect type in argument 1 (different base types) @@     expected unsigned short [usertype] val @@     got restricted __be16 [usertype] spi_tx_buffer @@
+   drivers/iio/adc/max14001.c:136:29: sparse:     expected unsigned short [usertype] val
+   drivers/iio/adc/max14001.c:136:29: sparse:     got restricted __be16 [usertype] spi_tx_buffer
+   drivers/iio/adc/max14001.c:136:29: sparse: sparse: cast from restricted __be16
+   drivers/iio/adc/max14001.c:136:29: sparse: sparse: cast from restricted __be16
+   drivers/iio/adc/max14001.c:136:29: sparse: sparse: incorrect type in initializer (different base types) @@     expected unsigned short [usertype] __x @@     got restricted __be16 [usertype] @@
+   drivers/iio/adc/max14001.c:136:29: sparse:     expected unsigned short [usertype] __x
+   drivers/iio/adc/max14001.c:136:29: sparse:     got restricted __be16 [usertype]
+   drivers/iio/adc/max14001.c:136:27: sparse: sparse: incorrect type in assignment (different base types) @@     expected restricted __be16 [usertype] spi_tx_buffer @@     got int @@
+   drivers/iio/adc/max14001.c:136:27: sparse:     expected restricted __be16 [usertype] spi_tx_buffer
+   drivers/iio/adc/max14001.c:136:27: sparse:     got int
+
+vim +109 drivers/iio/adc/max14001.c
+
+    89	
+    90	static int max14001_read(struct max14001_state *st, u16 reg_addr, u16 *reg_data)
+    91	{
+    92		struct spi_transfer xfers[] = {
+    93			{
+    94				.tx_buf = &st->spi_tx_buffer,
+    95				.len = sizeof(st->spi_tx_buffer),
+    96				.cs_change = 1,
+    97			}, {
+    98				.rx_buf = &st->spi_rx_buffer,
+    99				.len = sizeof(st->spi_rx_buffer),
+   100			},
+   101		};
+   102		int ret;
+   103	
+   104		/*
+   105		 * Prepare SPI transmit buffer 16 bit-value big-endian format and
+   106		 * reverses bit order to align with the LSB-first input on SDI port
+   107		 * in order to meet the device communication requirements.
+   108		 */
+ > 109		st->spi_tx_buffer = FIELD_PREP(MAX14001_MASK_ADDR, reg_addr);
+ > 110		st->spi_tx_buffer = bitrev16(cpu_to_be16(st->spi_tx_buffer));
+   111	
+   112		ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
+   113		if (ret)
+   114			return ret;
+   115	
+   116		/*
+   117		 * Convert received 16-bit value from big-endian to cpu-endian format
+   118		 * and reverses bit order.
+   119		 */
+ > 120		st->spi_rx_buffer = bitrev16(be16_to_cpu(st->spi_rx_buffer));
+ > 121		*reg_data = FIELD_GET(MAX14001_MASK_DATA, st->spi_rx_buffer);
+   122	
+   123		return 0;
+   124	}
+   125	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
