@@ -1,151 +1,302 @@
-Return-Path: <devicetree+bounces-212380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85030B42996
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:15:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CEFCB429BB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:21:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 56E0F580062
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 19:15:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E692017716D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 19:21:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A00922D8798;
-	Wed,  3 Sep 2025 19:15:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85621369338;
+	Wed,  3 Sep 2025 19:21:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WtaOX+7a"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NPIpySx6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6BA2D29B7;
-	Wed,  3 Sep 2025 19:15:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E05D362093;
+	Wed,  3 Sep 2025 19:21:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756926901; cv=none; b=WQ6+dEjUIcX0QPLJvAQbsratejGrQd6+kqjviD1qr13XfTTfe/aQsDTvNKF6ofPx/P6w+yb1ioCI4cvdJWuSyYcQmo8hkGZXYI8KMphELfptlFd0Tw6UwTP7rS0IxrJzuEdidM5FRDlY3PKar9mqLzVdwSoZWouN/d2hVlil57M=
+	t=1756927268; cv=none; b=t8T5QJtvYUWaVprxnn3PYajGNqqzYvzLDCye9rDfKD8lf4nWPV65pnAHWfQfygbTTtAVp4u/jYTXeTZv6HTI1nhq1MXxUbonMuT0pdw8bsve6N55Oy84galRgYvSGTVJc7NLkWLBPKzJP9OHSlpnGjux/E62Px6e3Od4yf9nbaY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756926901; c=relaxed/simple;
-	bh=RmMOFcO3vka1j3M3Z7k4JA9IIe0HJNQ6x+ggt6BhLms=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=UuDQsJGyecFfP+EgY79Tb7nhu8Ls4m5ddir5Uz4mabQyHqfYqGjQqS4RwdKa90ouCljNXP7FZTqkAIULUKhp7s/JoAiUpfRANlhuwabKrM5tpZQWtTABPbSh1NeaUONdOtRGUL+0wny6rnT1kkOqFLb1yj+S6uyEYX1x3DleAQs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WtaOX+7a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AFE79C4CEF1;
-	Wed,  3 Sep 2025 19:15:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756926900;
-	bh=RmMOFcO3vka1j3M3Z7k4JA9IIe0HJNQ6x+ggt6BhLms=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=WtaOX+7aukja9244X9Q4MU96h1OKrYfoKEJGtzwTaD/vuGzLiLYzRi0gXjdhBIQA9
-	 DxBns125a0wo8EJmv6CPap2H6hxzTSHFiBXPrc4I0AXFk6ssIoQhPCYyAGQJsHdgD5
-	 3zT/lIhNPplC02wAwsOgPclpo38FzB3EOnuWJyFBn5oDvxwkUGOU3czfTcgiDkW72r
-	 enfuGrxjaFiKE1gboPOMZdJkE2xOQy+w2pdtGzawZwX2+L6CZIk10FMlqYIfk3VjU9
-	 uTkZFMpDdZoeC65ORQmlJt/0ixcRPm3yPQGHu8neZMqw90Miww4mjaCjQTN0Z9vS1k
-	 rMN1ycWrjmd2Q==
-Date: Wed, 3 Sep 2025 14:14:59 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
-	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
-	mmareddy@quicinc.com,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v8 3/5] PCI: dwc: qcom: Switch to dwc ELBI resource
- mapping
-Message-ID: <20250903191459.GA1214624@bhelgaas>
+	s=arc-20240116; t=1756927268; c=relaxed/simple;
+	bh=H0blxvgKqdF+z7wMSjRxqIZJx7TB++VHHhFX8ZACF88=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ouyCH+VYPHUFUE99RUPfC3RZ+1MsJJ8szqC85/GIb5J+FJ4DgoqIU3NzaZCs9Zh8PVcYtviYz7acq1iH1GvrPBHcpigyQ1THRRPIS11hUqzSoCWn1+NgQlnQKJWYmJH0yq2HkgFeHnRTyCBSQiSSRurPrGbqJJeRgin/Rt1t+C4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NPIpySx6; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3df2f4aecc7so40685f8f.2;
+        Wed, 03 Sep 2025 12:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756927265; x=1757532065; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=19Pr1MGdDLvchgGX6czOMvY7fgs0lYkPLWZnauWbuMk=;
+        b=NPIpySx6Sj+MJpWgXyRrhtNS5ryRnx+57Pko8QyivMYnGkq0sr/QUpCpcYvik+jf2d
+         0D3+xwO5n/Zo1DAgx97Po05bDCey1LiUn4HE9tR9pgBgzAIXJUljvFgwBWb51HB1n0fW
+         pu4dbJRt4rf+85ClexEbjIMfTYdc0NNfHqroiP1bvx+DC0d0jNnKIv4g0ZlxZoptEYUN
+         7cuQOBKnjAAks38OwnN3IV1zD64E81nZr7A+mev6wvk0ZsnbX5ivf9Ye6kCxbT++oAho
+         92cJzCnBx3XnevEX6b829/CWDianTPELp6bnXb2++HzXe+Q7CdY5jMqAWJTIks/mQlcT
+         H1KA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756927265; x=1757532065;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=19Pr1MGdDLvchgGX6czOMvY7fgs0lYkPLWZnauWbuMk=;
+        b=IXbgRanAwAhv6ltJK4NElulfqJEOSWVKwWnw85xW14Q+QmzA+fC9xBP2+xzqCfNyTj
+         YXYWfCw0b+7ZeKsnArAv7albiQQVhZjdLMKlxGXhjLsm5bHKXUESsSOz3lYjDTuBugym
+         z9h8OnAL0C5JUY86ADfHB+tamhiAoe0SQoabXNGPb7PAg2hrZEXzKOqJ6LkUMQ0thmFK
+         6cP5lUesVQcJDWNUtWfxCnlaB3x7rQO3lKtFIfVweFdGewIDnFdYvH6nny9IuxtVDVig
+         n9vpTupqZAUjsYk80BNeqRO7fg7IcxI2zMZtBhyaYid0X5IYtcGAbBU6PyJnwc90opTv
+         4MXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlEe5eiqNQWIFwzAL6FviNfF81vIaC0gxwJpNsy/uXhwtMcpPRXe3sTjvA+G90x5W0ZjvAhEOfZKdlxThk@vger.kernel.org, AJvYcCW1IOBnoDpB436WklnwZwFCwynjf5f2vdwOD5AyV98MxYCJTdOZWqGdQbP5k0DXlJH7tb93XM4hAhcL+tNJGjyXXOo=@vger.kernel.org, AJvYcCW2nu+hKu27fs25GJ0JR8qpH1h57F4nHo3dMP4ISmty52yQIyD2zgNYwv3FZSCAXFgk5TrablbQyydL@vger.kernel.org
+X-Gm-Message-State: AOJu0YwHch+NMxqO9lbWNpXCUtWpEhAnq9fyVzWYdfoYaSyFBzYS7k0r
+	I4Z+/uc3E6uM7WOdj3tBkVnQFgRhBehR8wn826qb0S3nsUYJp5if++Ao2gjrTgDLDRHNuFI72H6
+	4uVximj3Mi1/Y3+xIAKWUH4IYPNR8RZc=
+X-Gm-Gg: ASbGnctRryeplCP7AQWliPe/ctrEdaIulWYQZCSv3gNMdObgrf1XyGKr8IzjwaN+lCv
+	xRlfR3gYvrtdwonGo1AMAwZICz8b2hcMQ1KusIvJ1mJqdPxzprrLcSXBAxDIk+XD7X0/Z/jDJ1b
+	V5PHHdO7tFY6BtFJ5ZfyhDGonvHljhoesXW1zwWegDTNLEXgYPoWhklfVPg75c2noZLPRBrrXh8
+	U/IcVH+
+X-Google-Smtp-Source: AGHT+IHjtoq6mcZ3QbGqhycjoyKVBb6XINlgyo2koJpGfSEkVCsOTjVf+agUTaWlD4U319mdW+SBQGTuYkpZZ8DbU7A=
+X-Received: by 2002:a05:6000:2911:b0:3ce:f0a5:d597 with SMTP id
+ ffacd0b85a97d-3d1e04bd373mr14364132f8f.47.1756927264689; Wed, 03 Sep 2025
+ 12:21:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250828-ecam_v4-v8-3-92a30e0fa02d@oss.qualcomm.com>
+References: <20250821161946.1096033-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250821161946.1096033-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdVb_5+gVDCUYYZ2Xj55gXzZATx+5vaY6uS1TuCNYb9Qeg@mail.gmail.com>
+In-Reply-To: <CAMuHMdVb_5+gVDCUYYZ2Xj55gXzZATx+5vaY6uS1TuCNYb9Qeg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 3 Sep 2025 20:20:38 +0100
+X-Gm-Features: Ac12FXyX2A73WqrQeYc_lGRiAwMi0uxqfLbPhBENpm6-vmgysmJBrRBstooJIQ4
+Message-ID: <CA+V-a8vdktLyjojLbA10SwfL71S+ELSyuVJyozrQdGp8X398tw@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: renesas: rzt2h-n2h-evk: Enable USB2.0 support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 28, 2025 at 01:04:24PM +0530, Krishna Chaitanya Chundru wrote:
-> Instead of using qcom ELBI resources mapping let the DWC core map it
-> ELBI is DWC specific.
+Hi Geert,
 
-This seems like basically the same change you (Mani) added to the
-"[PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping"
-patch?  (The patch with Mani's additions is at
-https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-ecam&id=d39e0103e38f9889271a77a837b6179b42d6730d)
+Thank you for the review.
 
-If this qcom change is separated out, why can't the exynos and qcom-ep
-changes from patch 2/5 be separated out?  If we ever had to bisect
-and/or revert parts of this, it seems like it would be simpler to do
-them consistently like this:
+On Wed, Sep 3, 2025 at 4:04=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Thu, 21 Aug 2025 at 18:19, Prabhakar <prabhakar.csengg@gmail.com> wrot=
+e:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Enable USB2.0 support on RZ/T2H and RZ/N2H EVKs.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Thanks for your patch!
+>
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> > @@ -29,6 +29,28 @@
+> >   */
+> >  #define SD1_MICRO_SD   1
+> >
+> > +/*
+> > + * USB Pin Configuration:
+> > + *
+> > + * This board is equipped with three USB connectors: Type-A (CN80), Mi=
+ni-B (CN79),
+> > + * and Micro-AB (CN33). The RZ/T2H SoC has a single USB channel, so ei=
+ther the USB
+> > + * host interface or the USB function interface can be used, but not b=
+oth at the
+> > + * same time.
+>
+> Please reflow the text to fit in 80 columns.
+>
+Ok, I will reflow it to 80 columns
+> The last sentence applies to the CN80 and CN79 connectors only, right?
+>
+Yes,  I'll reword it to say `but not both at the same time while using
+CN79 and CN80 connectors.`
 
-  - PCI: dwc: Add ELBI resource mapping
-  - PCI: exynos: Switch to dwc ELBI resource mapping
-  - PCI: qcom: Switch to dwc ELBI resource mapping
-  - PCI: qcom-ep: Switch to dwc ELBI resource mapping
+> > + *
+> > + * By default, the Type-A (CN80) and Mini-B (CN79) connectors are enab=
+led.
+> > + * Configure the switches as follows:
+> > + *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] =
+=3D ON
+> > + *   - USB_VBUSIN (used for USB function): SW7[7] =3D OFF; SW7[8] =3D =
+ON
+> > + *   - USB_VBUSEN (used for USB_HF_VBUSEN): SW7[9] =3D OFF; SW7[10] =
+=3D ON
+> > + *
+> > + * To enable the Micro-AB (CN33) USB OTG connector, set the following =
+macro to 1
+> > + * and configure the switches as follows:
+> > + *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] =
+=3D ON
+> > + *   - USB_VBUSIN (used for USB OTG): SW7[7] =3D ON; SW7[8] =3D OFF
+> > + *   - USB_VBUSEN (used for USB_OTG_VBUSEN): SW7[9] =3D ON; SW7[10] =
+=3D OFF
+> > + */
+> > +#define USB_OTG                0
+> > +
+> >  #include "rzt2h-n2h-evk-common.dtsi"
+> >
+> >  / {
+> > @@ -145,4 +167,18 @@ i2c1_pins: i2c1-pins {
+> >                 pinmux =3D <RZT2H_PORT_PINMUX(5, 0, 0x17)>, /* SDA */
+> >                          <RZT2H_PORT_PINMUX(4, 7, 0x17)>; /* SCL */
+> >         };
+> > +
+> > +#if USB_OTG
+> > +       usb-exicen-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <RZT2H_GPIO(0, 2) GPIO_ACTIVE_HIGH>;
+> > +               output-high;
+> > +               line-name =3D "usb_exicen_a";
+> > +       };
+> > +#endif
+> > +
+> > +       usb_pins: usb-pins {
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(0, 0, 0x13)>, /* VBUS */
+>
+> s/VBUS/VBUSEN/?
+>
+OK.
 
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 16 +++++++---------
->  1 file changed, 7 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5092752de23866ef95036bb3f8fae9bb06e8ea1e 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -276,7 +276,6 @@ struct qcom_pcie_port {
->  struct qcom_pcie {
->  	struct dw_pcie *pci;
->  	void __iomem *parf;			/* DT parf */
-> -	void __iomem *elbi;			/* DT elbi */
->  	void __iomem *mhi;
->  	union qcom_pcie_resources res;
->  	struct phy *phy;
-> @@ -414,12 +413,17 @@ static void qcom_pcie_configure_dbi_atu_base(struct qcom_pcie *pcie)
->  
->  static void qcom_pcie_2_1_0_ltssm_enable(struct qcom_pcie *pcie)
->  {
-> +	struct dw_pcie *pci = pcie->pci;
->  	u32 val;
->  
-> +	if (!pci->elbi_base) {
-> +		dev_err(pci->dev, "ELBI is not present\n");
-> +		return;
-> +	}
->  	/* enable link training */
-> -	val = readl(pcie->elbi + ELBI_SYS_CTRL);
-> +	val = readl(pci->elbi_base + ELBI_SYS_CTRL);
->  	val |= ELBI_SYS_CTRL_LT_ENABLE;
-> -	writel(val, pcie->elbi + ELBI_SYS_CTRL);
-> +	writel(val, pci->elbi_base + ELBI_SYS_CTRL);
->  }
->  
->  static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
-> @@ -1861,12 +1865,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
->  		goto err_pm_runtime_put;
->  	}
->  
-> -	pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
-> -	if (IS_ERR(pcie->elbi)) {
-> -		ret = PTR_ERR(pcie->elbi);
-> -		goto err_pm_runtime_put;
-> -	}
-> -
->  	/* MHI region is optional */
->  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mhi");
->  	if (res) {
-> 
-> -- 
-> 2.34.1
-> 
+> > +                        <RZT2H_PORT_PINMUX(0, 1, 0x13)>; /* OVRCUR */
+> > +       };
+> >  };
+> > diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/a=
+rch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > index 80f358fb2d74..b98b0f7c1128 100644
+> > --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> > @@ -33,6 +33,33 @@
+> >   */
+> >  #define SD1_MICRO_SD   1
+> >
+> > +/*
+> > + * USB Pin Configuration:
+> > + *
+> > + * This board is equipped with three USB connectors: Type-A (CN7), Min=
+i-B (CN8),
+> > + * and Micro-AB (CN9). The RZ/N2H SoC has a single USB channel, so eit=
+her the USB
+> > + * host interface or the USB function interface can be used, but not b=
+oth at the
+> > + * same time.
+>
+> Please reflow the text to fit in 80 columns.
+>
+OK.
+
+> The last sentence applies to the CN7 and CN8 connectors only, right?
+>
+Yes. I'll reword it to say `but not both at the same time while using
+CN7 and CN8 connectors`
+
+> > + *
+> > + * By default, the Type-A (CN7) and Mini-B (CN8) connectors are enable=
+d.
+> > + * Configure the switches as follows:
+> > + *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] =
+=3D OFF;
+>
+> s/DSW2[6]/DSW2[5]/?
+>
+The above is correct,
+
+DSW2[5] is OFF, P00_0 to P00_2 are connected to BSC2(CN43) and GPT0(CN49).
+DSW2[5] is ON, P00_0 to P00_2 are used as control signals for the USB
+power-supply IC.
+
+But we are using P02_2 and P02_3
+DSW2[5] is OFF, P01_0, P01_2, P01_4 to P01_7, and P02_0 to P02_3 are
+connected to ENCIF0(CN44) and GPT0(CN49), and used as control signals
+for the USB power-supply IC.
+
+> > + *     - P02_2 (used for VBUSEN): DSW14[5] =3D OFF; DSW14[6] =3D ON
+> > + *     - P02_3 (used for USB_OVRCUR): DSW14[1] =3D OFF; DSW14[2] =3D O=
+N
+> > + *   - USB_VBUSIN (used for VBUS of CN8 for function): DSW16[1] =3D OF=
+F; DSW16[2] =3D ON
+> > + *   - USB_VBUSEN (used for USB_HF_VBUSEN): DSW16[3] =3D OFF; DSW16[4]=
+ =3D ON
+> > + *
+> > + * To enable the Micro-AB (CN9) USB OTG connector, set the following m=
+acro to 1
+> > + * and configure the switches as follows:
+> > + *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] =
+=3D OFF;
+>
+> s/DSW2[6]/DSW2[5]/?
+>
+ditto.
+
+> > + *     - P02_2 (used for VBUSEN): DSW14[5] =3D OFF; DSW14[6] =3D ON
+> > + *     - P02_3 (used for USB_OVRCUR): DSW14[1] =3D OFF; DSW14[2] =3D O=
+N
+> > + *   - USB_VBUSIN (used for VBUS of CN9 for OTG): DSW16[1] =3D ON; DSW=
+16[2] =3D OFF
+> > + *   - USB_VBUSEN (used for USB_OTG_VBUSEN): DSW16[3] =3D ON; DSW16[4]=
+ =3D OFF
+> > + *   - USB_EXICEN (used for USB OTG EXICEN): DSW14[3] =3D OFF; DSW14[4=
+] =3D ON
+>
+> Looks like you could use P00_0 - P00_2 instead of P02_2 - P02_3, like
+> on the RZ/T2H EVK?
+> But you don't want to do that because you want to use these pins for Ethe=
+rnet?
+>
+Yes, I plan to use them for Ethernet.
+
+> > + */
+> > +#define USB_OTG                0
+> > +
+> >  #include "rzt2h-n2h-evk-common.dtsi"
+> >
+> >  /*
+> > @@ -185,4 +212,18 @@ i2c1_pins: i2c1-pins {
+> >                 pinmux =3D <RZT2H_PORT_PINMUX(3, 3, 0x17)>,
+> >                          <RZT2H_PORT_PINMUX(3, 4, 0x17)>;
+> >         };
+> > +
+> > +#if USB_OTG
+> > +       usb-exicen-hog {
+> > +               gpio-hog;
+> > +               gpios =3D <RZT2H_GPIO(2, 4) GPIO_ACTIVE_HIGH>;
+> > +               output-high;
+> > +               line-name =3D "usb_exicen_a";
+> > +       };
+> > +#endif
+> > +
+> > +       usb_pins: usb-pins {
+> > +               pinmux =3D <RZT2H_PORT_PINMUX(2, 2, 0x13)>, /* VBUS */
+>
+> s/VBUS/VBUSEN/?
+>
+OK.
+
+Cheers,
+Prabhakar
 
