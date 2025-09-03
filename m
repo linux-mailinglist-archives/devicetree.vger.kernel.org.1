@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-212273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E670B42388
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:25:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAF26B42387
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:25:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8711F189C2FD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:25:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A573C54309F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0C9B312830;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E29A3128AA;
 	Wed,  3 Sep 2025 14:24:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o0ie7+si"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KicgsX96"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60A1B30E848
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:24:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E1CA3101D5
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:24:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756909485; cv=none; b=jbwxWUJ5XOi+4HNnFmF9NqVGCTa0llmfBCoWC8+EQ0jb7AKj3J+T4EPNHjcXtObOKPXLl1mNdjo9iQJ/dwY6j6K4ECCy55EJTfOXnmZFr4VQPJpkKioBTu5CIwjyiUzODpf/rXkbScRW081/i7AbmGjDCkwHIWPyqnA+VF25bEc=
+	t=1756909485; cv=none; b=mi6dppDP80N39ZBsaaH1t319aYD30fnYuIokf+u35+3Xbp9TF1VWI29RB5W6rWJUpbGH5nKHRUn7EgxiTy3S718KVOPP27jjy4xl7S59mVGppYDKgyF9fXh4hTwdqmSx1KJqee2+zwJZBc1p2YD8e+xLByPZDB5MbwxTnzw5iDg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1756909485; c=relaxed/simple;
-	bh=DvCybsMaaovaYrXT+kGukCydj98f0jObaOksmSKLE7g=;
+	bh=RvVu8WG3URT0piw1f9aHSn6PXTY0B6dQgb9rqghC/4w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p8I3bfJu5V6OXSDH8kJHeMlnuMPtneCgdPxjKVRiXvpWW0JMdX/JigAt8CHmfmj9wMOWFDoXWDQ8dS4xDUHRldRwezk9FkgzEpBWWql8r6wXJqsTQMnO+cDh1+1XKV2WmcdjgqD5BZyy7dOF71J/MSWhAYhr/kJ8sHb5pY+uOvE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o0ie7+si; arc=none smtp.client-ip=209.85.128.43
+	 In-Reply-To:To:Cc; b=lBGzh0B5L7IV+8GX6NL5RDqfjyIf5deJM+PXwbKzI9hUeGuZhiDu1UNKD9PD7KpHbfsx5eUQFf4Twh6h6rm6P5OZqc0vq09P/ybYG4fspef1LpORkA5sdDO8KLIhREv7aPUilurtfYhqDGhEmdMVd8ugYYtDk+pohpcwfsbqOdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KicgsX96; arc=none smtp.client-ip=209.85.221.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45b89147cfbso32371725e9.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:24:42 -0700 (PDT)
+Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3d1bf79d758so3558959f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:24:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756909481; x=1757514281; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756909482; x=1757514282; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=xEi2/PQdoB49OMbTqw0F1qOk8kSvaGQNIH9qtvm23Bk=;
-        b=o0ie7+siFogBJjNrH4W80fsw2iNjR21hc6Ssw4FoITWrTxF3agQmtM172K8MTvsrg5
-         vuxwyIRNWGTrmvs8BJe/ga8MMpPT1wpYZ0WyrxmDBM1lQyNjgl4/RP6xVwEtFFOyCuXa
-         CdFfXP7+Ff44Acw/ybPEVbkP3y2IyhFAskYB4fmAPQ0AwkpBgDm9ZPNc+XWFV9iMD8ZZ
-         IViaw5g/x1VuQ+jPUkoQ45/Op5KGIHj7jKis6Ba0ffsHCrZR7vcldMmZoDWwe0DfWLDy
-         7ZbJJQ6UOZ1oBgXTBB14ZCT0q0CD/k1Zm1RzJdm2b7uKU8RxwALP5AM+cbFashCrEAdX
-         pgrw==
+        bh=ZZbVcQ7R2zHEYwsuttT1wvqzwe94E7jrI8+7P5FABrY=;
+        b=KicgsX96ju3y8VLrIaIcv98RtueUIO4cGibpTEdPtz03citlr+CqJvXkK6OqklY85n
+         bBLmCMAqhuGTHRDFirDzotFzp9xgo238JYVPH5Q8/SdNDjRYoIAUoQdfhC7fDOo3Zg1/
+         wejJwh7j88LJnMnQ7uoZBklTXbT7Yc6YLNzfrlvtkcGNNZMpHC2+bJeRZRORtSNVJNm8
+         vay4kScrz9hFBDDyYhTxYFzrT+9YVYee/ASCxv4O6CvlF0Q/24HTkm7RFvL6InJo8xYa
+         nvzw4jhMQdnxC5bHeXuD5NoRORFS+GZnyOkVA95ffhHElqHnEd0UdK5OMT73y+fiuy7y
+         jOMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756909481; x=1757514281;
+        d=1e100.net; s=20230601; t=1756909482; x=1757514282;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=xEi2/PQdoB49OMbTqw0F1qOk8kSvaGQNIH9qtvm23Bk=;
-        b=EChQ3SBGN/X8ktSW1mCxwuqY4MkwH5WtgZynRjyQjPK02hP9A4qEOqHsB3Lc87YYlk
-         dGr13AntZEzIo2bRad5SlbM882dnXe2iBhkleJi7V4i6x/eAAEL8mGa8loP9S86qRAoD
-         SNfYfskUsO78KAR3oDQ79N+COfjPodxxLxBQADkRPD3QUtd9VxVN0y2GtjKkB4OBmrsM
-         Fug59FDJJWp5iE2cEkztSBfGpf4ciO9LIT5y0H8giSYrkgN5CuBg+TVt2/g1W1g1coVW
-         TTV9SkoBoC591BjX0mncsqQ785z1whV0noGgQqJHxeeYWVlTEBw+b5q6EqxZJRjwmVk1
-         FkZA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAVj5fvUzSuiAv2FGWGJrIYkxV0A7Ck3GWIzbKgy3GKhQOhV1RdYUfX1ylRxuZCZpyq7YO+T9G6Es9@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz9B6Cq4H0oKdo84bzpB6/VcLTGm8L9b3l/SkBPOkfhBr7MU12q
-	NTqoaDmBvuAtzMOkSloeyc1IEza+fM5tWkXjqpbsuPTITSeDhJhy4sOdRTHzKYviirk=
-X-Gm-Gg: ASbGncu/mHReXKNT8aKKLfTbRcJNBZZiCs7o0jXFEdtx1pgfIfpcnifAn04iEJOUE5x
-	uLXkPjJ+Oybd4j8uuSRSn/fVwZ2zpxV9GeeqOOkufu9nXvQmPh9agjl1CI9clRDsKp1MEWxBed9
-	vNQu+mhpE5khVA/+J1+5L3AsfqIEEr1s/JgxN5UY/AEeRRvqaHw2Zi+MJewAJcBUp+Zrd4k7Gin
-	1T201ypJUycSLJLqkTlPt/F/Q1N1MKXb2nLL4Qcszkefea0eLj6PaotagIaXUJIr2XGZTL+iDls
-	iqWCQ69VgB2//JXCXu19sbaEtYDy+qFKdyBZv1Q+e2ZCceORmXJDlwxwDLx3zs8FNPG1xAPwRD8
-	/VGzXn2+HfXbhpo7Z9k+V6yjUVXf8+LRVJWzN2XGsIrpIFGqHuwmAkLpzLM8ZGVbruTETbnSbb0
-	rk+9D+xoTobh/6
-X-Google-Smtp-Source: AGHT+IGrRziJjTMwT25c2OkVilDIuZjFn9L5MCkwO866+qwMljC5rb2HmLajCHH5hfA9aOIzCWZjeQ==
-X-Received: by 2002:a05:600c:3143:b0:456:1c4a:82b2 with SMTP id 5b1f17b1804b1-45b8555d6fbmr141415125e9.10.1756909480609;
-        Wed, 03 Sep 2025 07:24:40 -0700 (PDT)
+        bh=ZZbVcQ7R2zHEYwsuttT1wvqzwe94E7jrI8+7P5FABrY=;
+        b=MyuwoZFCRlFxWXSEaLERZ5/Ue5cpYCbYsQ+n5mfLM++DJ4oU8alg3LtCNd/H/ssf3L
+         O3AQsnWMrBCalnR9MGQKR1mdhrecc6+JakxGMmAB3iNGZbSP6eRspxY4uk5cWcyTuy9f
+         pO9gZOegcD5DuusAY0nVbaJXiJtEfvpCLUrVUxJ0Z5NFz9t+s90iRv4Ig7rMFzf7vsAJ
+         qa9rOK/2M+e74A1ttt2J6i7wCO8x/rQYdfGF1eF+1FMHJn1uHUVouDpWg3lJVM66PZC4
+         TXjnGPgbMQsu2wuXe3PTuctlMMMavTfM3FqOKv5s+9mJVgnEl1S7xmhBADgQgphyX/Sh
+         SqcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX3qWsU444lJZ2SVrHoqmhG5WuP/S0vF3GGcDZ46X0/vm49o2VgPT1zzA32Uw4dn3HsPwiihJIBb6Vr@vger.kernel.org
+X-Gm-Message-State: AOJu0YxITv/QGV+q5f0Qt7CfORBNife+umSedK0uDZwsKKcjlOUQRmqY
+	edpnIpaFdn+dDbgBeQKldoMWiotLKeSUH4Ba7iZH0Jy1aIu2wEFHZKqVNUfi6VV5tgo=
+X-Gm-Gg: ASbGncux+u25HIm+flHW1o8tDICvmTNveXaZBYNQ0fiK09jZSNl7SCRHi2sHYASnJPl
+	fCPAELzWQzj57wdIiv5mxZCxJBFc8r3562QQQC9LX7d5dq5KQgngZY54mhnmdfLvG49RfyYG7PE
+	uZ3AiNzq9uKaEECvNPDuDSSL+8vluxIUdc9zcsAvB0BJfdnnEzcSsS/oPy1zQvqSk7IXdGTIb2L
+	DjM8XUhZIrDUs2O+YxGhUF1WYhSDeU22Ykpyht9wK8OVNpLH+nDX+zvMcBfAvhx9OSPZ2tpbQ80
+	rOZwDxiGKJsz64OmJfkc1NLJQtROCOMwMvaeQFFr+NZZwCmxG1rbRs6s61lzHkVtzI746v301/q
+	HOhJ9MzublI4jPVOLvQw/P3EyvPRLaud9zU13mZY7av7va35rBVXtqgpddpATvOCBPCRooRc7qB
+	4Mdw==
+X-Google-Smtp-Source: AGHT+IEefxdNdOTsW4vdwQbHqaAngaNCgyu2rcB3OK+6fZm5BdYSAsZajLFp4AY7qaDdu3HIEjq2qw==
+X-Received: by 2002:a05:6000:4022:b0:3d6:781e:9fcc with SMTP id ffacd0b85a97d-3d6781ea586mr10621419f8f.60.1756909481589;
+        Wed, 03 Sep 2025 07:24:41 -0700 (PDT)
 Received: from ta2.c.googlers.com (219.43.233.35.bc.googleusercontent.com. [35.233.43.219])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3dc1cd4a7d2sm3996035f8f.33.2025.09.03.07.24.39
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3dc1cd4a7d2sm3996035f8f.33.2025.09.03.07.24.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 07:24:39 -0700 (PDT)
+        Wed, 03 Sep 2025 07:24:40 -0700 (PDT)
 From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Date: Wed, 03 Sep 2025 14:24:36 +0000
-Subject: [PATCH v3 2/3] arm64: dts: exynos: gs101: add CPU clocks
+Date: Wed, 03 Sep 2025 14:24:37 +0000
+Subject: [PATCH v3 3/3] arm64: dts: exynos: gs101: add OPPs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,7 +85,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250903-acpm-dvfs-dt-v3-2-f24059e5cd95@linaro.org>
+Message-Id: <20250903-acpm-dvfs-dt-v3-3-f24059e5cd95@linaro.org>
 References: <20250903-acpm-dvfs-dt-v3-0-f24059e5cd95@linaro.org>
 In-Reply-To: <20250903-acpm-dvfs-dt-v3-0-f24059e5cd95@linaro.org>
 To: Peter Griffin <peter.griffin@linaro.org>, 
@@ -98,97 +98,363 @@ Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
  willmcvicker@google.com, kernel-team@android.com, 
  Tudor Ambarus <tudor.ambarus@linaro.org>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756909477; l=3055;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756909477; l=8499;
  i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
- bh=DvCybsMaaovaYrXT+kGukCydj98f0jObaOksmSKLE7g=;
- b=pVxjq+o735XuRTrAp24zmkgSEQyM98WPeI5CRx0F32McSQr5++j2fb9E7h3fx6kzQhtnAPJ9Z
- MQlithbin71DJfR1JpELcCBTH3/EWVBxgk3BV+R9iKiPVX/zygYfDLi
+ bh=RvVu8WG3URT0piw1f9aHSn6PXTY0B6dQgb9rqghC/4w=;
+ b=zx9QGLCrHs6y/TeSxlErivRRhCI+pDqOMKBKPWbNo08SjuusXP7t1+67s6yCJm2woRrpVz8em
+ HzBsC0MKCTEAlz19WRgfqpdtOP9n0i7djOGv2l0IIjmShxk7eX3hRbl
 X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
  pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-Add the GS101 CPU clocks exposed through the ACPM protocol.
+Add operating performance points (OPPs).
 
 Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
 ---
- arch/arm64/boot/dts/exynos/google/gs101.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 275 +++++++++++++++++++++++++++
+ 1 file changed, 275 insertions(+)
 
 diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-index f00754692bbac39fd828ebd4ef7c269f746f2522..e355fafe2276fdfbcb573600474cbdd26a654e7c 100644
+index e355fafe2276fdfbcb573600474cbdd26a654e7c..e810aea40b36e4e8bdbaf77513ab1d4f058307f7 100644
 --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
 +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-@@ -7,6 +7,7 @@
-  */
+@@ -78,6 +78,7 @@ cpu0: cpu@0 {
+ 			cpu-idle-states = <&ananke_cpu_sleep>;
+ 			capacity-dmips-mhz = <250>;
+ 			dynamic-power-coefficient = <70>;
++			operating-points-v2 = <&cpucl0_opp_table>;
+ 		};
  
- #include <dt-bindings/clock/google,gs101.h>
-+#include <dt-bindings/clock/google,gs101-acpm.h>
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/soc/samsung,exynos-usi.h>
-@@ -72,6 +73,7 @@ cpu0: cpu@0 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0000>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
- 			enable-method = "psci";
+ 		cpu1: cpu@100 {
+@@ -89,6 +90,7 @@ cpu1: cpu@100 {
  			cpu-idle-states = <&ananke_cpu_sleep>;
  			capacity-dmips-mhz = <250>;
-@@ -82,6 +84,7 @@ cpu1: cpu@100 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0100>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <70>;
++			operating-points-v2 = <&cpucl0_opp_table>;
+ 		};
+ 
+ 		cpu2: cpu@200 {
+@@ -100,6 +102,7 @@ cpu2: cpu@200 {
  			cpu-idle-states = <&ananke_cpu_sleep>;
  			capacity-dmips-mhz = <250>;
-@@ -92,6 +95,7 @@ cpu2: cpu@200 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0200>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <70>;
++			operating-points-v2 = <&cpucl0_opp_table>;
+ 		};
+ 
+ 		cpu3: cpu@300 {
+@@ -111,6 +114,7 @@ cpu3: cpu@300 {
  			cpu-idle-states = <&ananke_cpu_sleep>;
  			capacity-dmips-mhz = <250>;
-@@ -102,6 +106,7 @@ cpu3: cpu@300 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0300>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL0>;
- 			enable-method = "psci";
- 			cpu-idle-states = <&ananke_cpu_sleep>;
- 			capacity-dmips-mhz = <250>;
-@@ -112,6 +117,7 @@ cpu4: cpu@400 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a76";
- 			reg = <0x0400>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL1>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <70>;
++			operating-points-v2 = <&cpucl0_opp_table>;
+ 		};
+ 
+ 		cpu4: cpu@400 {
+@@ -122,6 +126,7 @@ cpu4: cpu@400 {
  			cpu-idle-states = <&enyo_cpu_sleep>;
  			capacity-dmips-mhz = <620>;
-@@ -122,6 +128,7 @@ cpu5: cpu@500 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a76";
- 			reg = <0x0500>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL1>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <284>;
++			operating-points-v2 = <&cpucl1_opp_table>;
+ 		};
+ 
+ 		cpu5: cpu@500 {
+@@ -133,6 +138,7 @@ cpu5: cpu@500 {
  			cpu-idle-states = <&enyo_cpu_sleep>;
  			capacity-dmips-mhz = <620>;
-@@ -132,6 +139,7 @@ cpu6: cpu@600 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-x1";
- 			reg = <0x0600>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL2>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <284>;
++			operating-points-v2 = <&cpucl1_opp_table>;
+ 		};
+ 
+ 		cpu6: cpu@600 {
+@@ -144,6 +150,7 @@ cpu6: cpu@600 {
  			cpu-idle-states = <&hera_cpu_sleep>;
  			capacity-dmips-mhz = <1024>;
-@@ -142,6 +150,7 @@ cpu7: cpu@700 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-x1";
- 			reg = <0x0700>;
-+			clocks = <&acpm_ipc GS101_CLK_ACPM_DVFS_CPUCL2>;
- 			enable-method = "psci";
+ 			dynamic-power-coefficient = <650>;
++			operating-points-v2 = <&cpucl2_opp_table>;
+ 		};
+ 
+ 		cpu7: cpu@700 {
+@@ -155,6 +162,7 @@ cpu7: cpu@700 {
  			cpu-idle-states = <&hera_cpu_sleep>;
  			capacity-dmips-mhz = <1024>;
+ 			dynamic-power-coefficient = <650>;
++			operating-points-v2 = <&cpucl2_opp_table>;
+ 		};
+ 
+ 		idle-states {
+@@ -192,6 +200,273 @@ hera_cpu_sleep: cpu-hera-sleep {
+ 		};
+ 	};
+ 
++	cpucl0_opp_table: opp-table-0 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-300000000 {
++			opp-hz = /bits/ 64 <300000000>;
++			opp-microvolt = <537500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-574000000 {
++			opp-hz = /bits/ 64 <574000000>;
++			opp-microvolt = <600000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-738000000 {
++			opp-hz = /bits/ 64 <738000000>;
++			opp-microvolt = <618750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-930000000 {
++			opp-hz = /bits/ 64 <930000000>;
++			opp-microvolt = <668750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1098000000 {
++			opp-hz = /bits/ 64 <1098000000>;
++			opp-microvolt = <712500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1197000000 {
++			opp-hz = /bits/ 64 <1197000000>;
++			opp-microvolt = <731250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1328000000 {
++			opp-hz = /bits/ 64 <1328000000>;
++			opp-microvolt = <762500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1401000000 {
++			opp-hz = /bits/ 64 <1401000000>;
++			opp-microvolt = <781250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1598000000 {
++			opp-hz = /bits/ 64 <1598000000>;
++			opp-microvolt = <831250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1704000000 {
++			opp-hz = /bits/ 64 <1704000000>;
++			opp-microvolt = <862500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1803000000 {
++			opp-hz = /bits/ 64 <1803000000>;
++			opp-microvolt = <906250>;
++			clock-latency-ns = <5000000>;
++		};
++	};
++
++	cpucl1_opp_table: opp-table-1 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <506250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-553000000 {
++			opp-hz = /bits/ 64 <553000000>;
++			opp-microvolt = <537500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-696000000 {
++			opp-hz = /bits/ 64 <696000000>;
++			opp-microvolt = <562500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-799000000 {
++			opp-hz = /bits/ 64 <799000000>;
++			opp-microvolt = <581250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-910000000 {
++			opp-hz = /bits/ 64 <910000000>;
++			opp-microvolt = <606250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1024000000 {
++			opp-hz = /bits/ 64 <1024000000>;
++			opp-microvolt = <625000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1197000000 {
++			opp-hz = /bits/ 64 <1197000000>;
++			opp-microvolt = <662500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1328000000 {
++			opp-hz = /bits/ 64 <1328000000>;
++			opp-microvolt = <687500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1491000000 {
++			opp-hz = /bits/ 64 <1491000000>;
++			opp-microvolt = <731250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1663000000 {
++			opp-hz = /bits/ 64 <1663000000>;
++			opp-microvolt = <775000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1836000000 {
++			opp-hz = /bits/ 64 <1836000000>;
++			opp-microvolt = <818750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1999000000 {
++			opp-hz = /bits/ 64 <1999000000>;
++			opp-microvolt = <868750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2130000000 {
++			opp-hz = /bits/ 64 <2130000000>;
++			opp-microvolt = <918750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2253000000 {
++			opp-hz = /bits/ 64 <2253000000>;
++			opp-microvolt = <968750>;
++			clock-latency-ns = <5000000>;
++		};
++	};
++
++	cpucl2_opp_table: opp-table-2 {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-500000000 {
++			opp-hz = /bits/ 64 <500000000>;
++			opp-microvolt = <500000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-851000000 {
++			opp-hz = /bits/ 64 <851000000>;
++			opp-microvolt = <556250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-984000000 {
++			opp-hz = /bits/ 64 <984000000>;
++			opp-microvolt = <575000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1106000000 {
++			opp-hz = /bits/ 64 <1106000000>;
++			opp-microvolt = <606250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1277000000 {
++			opp-hz = /bits/ 64 <1277000000>;
++			opp-microvolt = <631250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1426000000 {
++			opp-hz = /bits/ 64 <1426000000>;
++			opp-microvolt = <662500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1582000000 {
++			opp-hz = /bits/ 64 <1582000000>;
++			opp-microvolt = <693750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1745000000 {
++			opp-hz = /bits/ 64 <1745000000>;
++			opp-microvolt = <731250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-1826000000 {
++			opp-hz = /bits/ 64 <1826000000>;
++			opp-microvolt = <750000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2048000000 {
++			opp-hz = /bits/ 64 <2048000000>;
++			opp-microvolt = <793750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2188000000 {
++			opp-hz = /bits/ 64 <2188000000>;
++			opp-microvolt = <831250>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2252000000 {
++			opp-hz = /bits/ 64 <2252000000>;
++			opp-microvolt = <850000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2401000000 {
++			opp-hz = /bits/ 64 <2401000000>;
++			opp-microvolt = <887500>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2507000000 {
++			opp-hz = /bits/ 64 <2507000000>;
++			opp-microvolt = <925000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2630000000 {
++			opp-hz = /bits/ 64 <2630000000>;
++			opp-microvolt = <968750>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2704000000 {
++			opp-hz = /bits/ 64 <2704000000>;
++			opp-microvolt = <1000000>;
++			clock-latency-ns = <5000000>;
++		};
++
++		opp-2802000000 {
++			opp-hz = /bits/ 64 <2802000000>;
++			opp-microvolt = <1056250>;
++			clock-latency-ns = <5000000>;
++		};
++	};
++
+ 	/* ect node is required to be present by bootloader */
+ 	ect {
+ 	};
 
 -- 
 2.51.0.338.gd7d06c2dae-goog
