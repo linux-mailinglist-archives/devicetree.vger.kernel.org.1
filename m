@@ -1,67 +1,58 @@
-Return-Path: <devicetree+bounces-212357-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212358-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814B1B42736
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:45:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA333B42739
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:46:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17C823BE97F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:45:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84C863A7B86
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:46:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02DB0284884;
-	Wed,  3 Sep 2025 16:45:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE50C2BFC60;
+	Wed,  3 Sep 2025 16:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UkWhlLvR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PYJFkgGM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA1D163CF;
-	Wed,  3 Sep 2025 16:45:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C63D284890;
+	Wed,  3 Sep 2025 16:46:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756917928; cv=none; b=DOyWEkkk7xUtgxUFF1QUi0XpyCQXKVDGS+13YF4KVDaf4hfe8ZAcVQaJ4BykUWShH/FZ7Bb3yMSzyfG0PWjayLTFCMBmgPP+fqtk9G3QNwPUYe1nNxkYZqmdkDSCAm1OnyBWTF4ms37e/ecU53QBH/iPA0cGh+VxeTo3uE/FQjA=
+	t=1756917994; cv=none; b=kquSnQVXF0oWhuMiUvAoO2mUVADPbRbjkfogYFnvLMyNVLZp/B/wuBxRbn9jItyE2TaoKyn9IL72nZ8pLmZ7j8MOysO30QRCdUPyMBr9/9heKbSYKGo1poCmPUwfmELi4tcg013B06S3RBEfX0jtDAnUZRGittAqcCOUzR1fd8E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756917928; c=relaxed/simple;
-	bh=1QCnhHk4YrbcljgZa4CIM09QqYheSpXKbkWo83aUiBA=;
+	s=arc-20240116; t=1756917994; c=relaxed/simple;
+	bh=EdNiLGaF0ZMauav/t6Hrkbl+RAupFeS5umBN7p00M2g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M1DFl4qmxOatHOPI/VhD24duE+S9Sn2mPxns2ynNrLtryRTSzkC5/fPquGnfQr+hisJvTgu+6vYOBW1KLyYw3zIB/v6+ai5dbfwVg8VnrMiSZ4sR+krB1SzwD8x8bOKeBkpHSSG1OYco/UF0f6+19t4QKP6eJCLSL47ADfYYbas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UkWhlLvR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F4FCC4CEE7;
-	Wed,  3 Sep 2025 16:45:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hLEXrB51KaEEtvjWczrwkQ7myF9elEds9UW8849d0fgBSTig1WlKilRNtIBOOelEo+KY9Z0dJ+HqIckxY8fduH/OJZwZ5tOz/a6Pvd9F6szxQF29txFJDc3Hbo4Ixx9od6pAVzSBLv5V2YBG4dRuh6iDrNyXGZhNvvSw/HzsNyE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PYJFkgGM; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C474BC4CEE7;
+	Wed,  3 Sep 2025 16:46:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756917928;
-	bh=1QCnhHk4YrbcljgZa4CIM09QqYheSpXKbkWo83aUiBA=;
+	s=k20201202; t=1756917994;
+	bh=EdNiLGaF0ZMauav/t6Hrkbl+RAupFeS5umBN7p00M2g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UkWhlLvRnJr6ayb4Mng7/14tuavR02NoAo9XeCgTB/5K3v5y26XRy3pL1nHIvzpVo
-	 Dn38VyfEu5u4ggHiuf1rlqoblQScmF2gjYxPS26gnp/84X6prefSXBDc4SGcU4jVmV
-	 GgByW2YTigHjEiJ5pghcpSJ6FL20HQZZiwYDM9E6Is2l5xL/z2SlqQrmZyd62mHfef
-	 kHNH2kx4gOmI+ozktvajibFsYx6syJhF5oL43UkIn1HNWfgVDoQJx6Fyv2lTYgnXUY
-	 Y76w5eD/VP6VjR/Rgij0/nEUdUcV+LE/WBEqS2iY+YWtX/nGpN5ubrn9oP9U7/I1j0
-	 7bgomSEmNytEw==
-Date: Wed, 3 Sep 2025 11:45:27 -0500
+	b=PYJFkgGMMdD/e0OL4JI0nTs9vwUj6bOLmGxIvBk+sW+wUTSPYZLYXyR/8ssHfAnVl
+	 Qp3oVaKGYlyBEwVy39E7gRFDLTjtE5Vlj8qW2UESMG9kX2tpb2o63dkKBMUL39k4qR
+	 Bg1U/aJpodahzMsuBXLcBWIrOqeU5UEmhBxb9bO2ymNtNde4MQovFHF9P36HjqiV4z
+	 kzhgw2mn832BG6KViFc+g0WVN8d2TtEg4PGij3TIHFnrqj5SJeWq5a2hSa2XTJtUTk
+	 f7VngzhnWi9b5fMcQtNpst3pdm3CWOS6H0mpgVp9lRVo4IsrvdwyxMn4TKGMC3zptX
+	 ygZ4TlNDqKDhA==
+Date: Wed, 3 Sep 2025 11:46:33 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: "T.J. Mercier" <tjmercier@google.com>,
-	Conor Dooley <conor+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>,
-	David Airlie <airlied@gmail.com>,
-	Sumit Semwal <sumit.semwal@linaro.org>,
-	John Stultz <jstultz@google.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	David Hildenbrand <david@redhat.com>,
-	dri-devel@lists.freedesktop.org, linux-tegra@vger.kernel.org,
-	Brian Starkey <Brian.Starkey@arm.com>, linux-mm@kvack.org,
-	Mike Rapoport <rppt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	linaro-mm-sig@lists.linaro.org
-Subject: Re: [PATCH 1/9] dt-bindings: reserved-memory: Document Tegra VPR
-Message-ID: <175691792593.2483010.8132765871876943036.robh@kernel.org>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-2-thierry.reding@gmail.com>
+To: Ranganath V N <vnranganath.20@gmail.com>
+Cc: linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	pbonzini@redhat.com, laurent.pinchart@ideasonboard.com,
+	brauner@kernel.org, conor+dt@kernel.org, linux-xfs@vger.kernel.org,
+	kvm@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+	linux-kernel@vger.kernel.org, krzk+dt@kernel.org, djwong@kernel.org,
+	corbet@lwn.net
+Subject: Re: [PATCH] Documentation: Fix spelling mistakes
+Message-ID: <175691799203.2492867.8315727734115798731.robh@kernel.org>
+References: <20250902193822.6349-1-vnranganath.20@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,29 +61,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250902154630.4032984-2-thierry.reding@gmail.com>
+In-Reply-To: <20250902193822.6349-1-vnranganath.20@gmail.com>
 
 
-On Tue, 02 Sep 2025 17:46:21 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
+On Wed, 03 Sep 2025 01:08:22 +0530, Ranganath V N wrote:
+> Corrected a few spelling mistakes to improve the readability.
 > 
-> The Video Protection Region (VPR) found on NVIDIA Tegra chips is a
-> region of memory that is protected from CPU accesses. It is used to
-> decode and play back DRM protected content.
-> 
-> It is a standard reserved memory region that can exist in two forms:
-> static VPR where the base address and size are fixed (uses the "reg"
-> property to describe the memory) and a resizable VPR where only the
-> size is known upfront and the OS can allocate it wherever it can be
-> accomodated.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+> Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
 > ---
->  .../nvidia,tegra-video-protection-region.yaml | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reserved-memory/nvidia,tegra-video-protection-region.yaml
+>  Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
+>  Documentation/filesystems/iomap/operations.rst           | 2 +-
+>  Documentation/virt/kvm/review-checklist.rst              | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 > 
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
