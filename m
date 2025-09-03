@@ -1,89 +1,83 @@
-Return-Path: <devicetree+bounces-212169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9FFB41EC1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:20:25 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDD16B41ECA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:21:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 580D47AF79E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:18:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DD37868365C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:21:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4CF2F3C0C;
-	Wed,  3 Sep 2025 12:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F6C2ECD20;
+	Wed,  3 Sep 2025 12:21:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTkiMoiN"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Ah0SU7Te"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C2D2EA48F;
-	Wed,  3 Sep 2025 12:20:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7AB0C257851;
+	Wed,  3 Sep 2025 12:21:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756902004; cv=none; b=kHCa1Qvtoz/ERqRf8fJegEDp7KiNQ2uavfNcNLGwe7CI2642UuEY/RgbtD2k4IVwfCFoWpLeMDid2DPRpLh/BG8zbDtKYqauI84tytZh1qeVhzyTgmKD6wdqIEErbeEqs3bendmKoBqScS9TrVWp2S+ueOR6MxBPdN5G5ZTIDrs=
+	t=1756902108; cv=none; b=qVs5lK7+kt8pM7WZ88SAeomeW8vAZEsPkjcnDl6mAPxts8MtciQ6ho33gEBxvHxFAZXAvhtaPtpw//OW0YwVhAd3u5UjHTvMPyipR3x1D664r01PKUwmvXGOsdvQEedKRcUsfPlaBQsY4vpXQGKu2KrrKvoLD3wn3j3rnrDSMHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756902004; c=relaxed/simple;
-	bh=9URczS0VB9EctpFDAS3hOzqSsUg9Ay9Qy/aJrO0mPYo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=IX5wxh9S8P5F3wlMwCC8fMQGJMQVriv+Kw0bkuFluwt+DXi3P8QLZd1IE8SthD1pyjS7ihOlSTZyywG8A3rvUR9pYKjyL9bLwbnEkW+yWC71iUbmazmiqAcN+nPstjbyem08E1H+03hqOon25fT96G8mcWkmim2NVkO29J4hxuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTkiMoiN; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B4EC4CEF0;
-	Wed,  3 Sep 2025 12:19:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756902004;
-	bh=9URczS0VB9EctpFDAS3hOzqSsUg9Ay9Qy/aJrO0mPYo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=HTkiMoiN1rQZ4wOADiWn87Zuy4gLl1coCPzfJHA+8djXjpUPYvHduqErQgjNZH2ay
-	 hJEZTTq4V9WJfS0Bfs0shTkUSV+xwrktlesKwvV2JeF/97YzyIuIFrHPKMvCmiYq7y
-	 eJvqF4KKq+TSgmH9m/E3Hf7uPG6Pfzsu12NiIg1Akqn9OKeuhVAXunRhyzL9OxZI61
-	 hjOaSy62p3yjoUadBNHgQewbvz6AwzkUkyH/5c76+AghzLQcgTcY33UprXzkijC2sY
-	 0Q8Lm63wP+d3ohyCDhHNiTVjACXY/LYUAc+/HORDXy3gRGuW7cYXNd/Jfay8uDTi4b
-	 h4sXzod/zJiFA==
-From: Lee Jones <lee@kernel.org>
-To: lee@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, 
- alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org, 
- conor+dt@kernel.org, Alex Elder <elder@riscstar.com>
-Cc: mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com, 
- palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
- linux.amoon@gmail.com, troymitchell988@gmail.com, guodong@riscstar.com, 
- linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
- linux-kernel@vger.kernel.org
-In-Reply-To: <20250825172057.163883-1-elder@riscstar.com>
-References: <20250825172057.163883-1-elder@riscstar.com>
-Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
-Message-Id: <175690199980.2656286.5459018179105557107.b4-ty@kernel.org>
-Date: Wed, 03 Sep 2025 13:19:59 +0100
+	s=arc-20240116; t=1756902108; c=relaxed/simple;
+	bh=jvqVsAXADZBtoJw5DiA/hvX9OV0sU0VPQvB3C85K9m0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LFXFdZxqREagLTfzkKqWKa0ngJ8USvcQmkl33MHU9qVoCRhopQKEGXxH0kmHJ9dDHDytImnPi4/RIxMQ/CuVVP9cow0/P7WcHDIMlbLw3oXNDYr8ULgwqcwoplgiXkZg2XCpklrHCk+PPRUlGr74LbkVPHJE8K3QHEeDfP/nKSc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Ah0SU7Te; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=YUjvm9eofoV1ResAkmWD1i4gWOlEKZtbOKhgLDy60X4=; b=Ah0SU7TeDcUCOSpr1QDkS2w9T6
+	X1BI7rrsOnffJ+UGQkLG2e6hIadpm3DWpHV8Jq3DjceYSGhp+RQIIAIlgPUujdcjUNq/pq3se2TlC
+	P5ZGujTnFTicaOaeReDJvlWWfKE01m3xQ0exgGklDzV6Ynb/WIcr2BEMNEQfTps034ic=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1utmUS-0070oZ-Tc; Wed, 03 Sep 2025 14:21:28 +0200
+Date: Wed, 3 Sep 2025 14:21:28 +0200
+From: Andrew Lunn <andrew@lunn.ch>
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	devicetree@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] arm64: dts: st: enable ethernet1 controller on
+ stm32mp257f-dk
+Message-ID: <5c49e94a-9267-459a-ba6c-70f3763f1a7b@lunn.ch>
+References: <20250903-mp2_ethernet-v1-0-4105b0ad2344@foss.st.com>
+ <20250903-mp2_ethernet-v1-2-4105b0ad2344@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.15-dev-c81fc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-mp2_ethernet-v1-2-4105b0ad2344@foss.st.com>
 
-On Mon, 25 Aug 2025 12:20:49 -0500, Alex Elder wrote:
-> The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
-> converters and 12 LDOs.  It contains a load switch, ADC channels,
-> GPIOs, a real-time clock, and a watchdog timer.
-> 
-> This series introduces a multifunction driver for the P1 PMIC as
-> well as drivers for its regulators and RTC.
-> 
-> [...]
+> +&ethernet1 {
+> +	pinctrl-0 = <&eth1_rgmii_pins_b>;
+> +	pinctrl-1 = <&eth1_rgmii_sleep_pins_b>;
+> +	pinctrl-names = "default", "sleep";
+> +	max-speed = <1000>;
 
-Applied, thanks!
+RGMII naturally has a max-speed of 1G, so this line is pointless.
 
-[1/7] dt-bindings: mfd: add support the SpacemiT P1 PMIC
-      commit: baac6755d3e8ddf47eee2be3ca72fe14ebae2143
-[2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
-      commit: 49833495c85f26d070e70148fd9607c6fbf927fd
+You only use max-speed when you need to restrict the system below what
+it would normally use, for example if the PCB is badly designed and
+the tracks don't support 1G, but can do 100Mbps
 
---
-Lee Jones [李琼斯]
-
+	Andrew
 
