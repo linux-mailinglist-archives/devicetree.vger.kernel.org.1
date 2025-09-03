@@ -1,631 +1,177 @@
-Return-Path: <devicetree+bounces-212209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212211-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id C228AB42000
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:53:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F383B42016
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:54:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A888A7B8C1D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:50:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59F32167917
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:54:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39EC265637;
-	Wed,  3 Sep 2025 12:48:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC3B2741DA;
+	Wed,  3 Sep 2025 12:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KDCHjsqz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGqYmZkR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB7A30DEB9
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 12:48:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449D178F58;
+	Wed,  3 Sep 2025 12:54:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756903698; cv=none; b=qtnc0qFpvmbCh8mV5ITads+0+runis3EKfDNvlPIuhOG/5TTqHNX7SuTNxZzkdSBiGn22kniMtFb62Yeziek9+7Dr5ga1Xy5BHn9E9XNCcarUevnLGQ9cWFEeFPRWJ1prW9GpcZ+dRM5SKOWyTSmNPKFwkvWJAuFV4DlzA/hCYY=
+	t=1756904057; cv=none; b=lawTR7uyCEYs8BdcHwFD+6QrLCYScPUMaC/CV5p0V10MxcLaG89Eg4IafUgmGaBmpQkK6b8KoV5okfqpVGaAIhpSGytaEK5JxLNOtHUueUpv4QpWlO0hWl9QfvI7SSOYG8PuXQBHAmXAeSPOY35+fuESKi75FdEDVpn2+IKdC7I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756903698; c=relaxed/simple;
-	bh=cqH0VxNb5n7kxL+3crRI7+cRuPrafE9H8Exy5gWNGZI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=q9bO97k0y1mYbP48O4H0icusEvemG0R4T2zK7zthYbQI8px9qMIZD2euiNZIge+LmvWuiqVzEDZq3qyFdH6Hfn6YpN/DL28MaMboiZscAekERvJ1zH1UeXuGfSrMD1wHdF+nRFHaGivbbh2e/qAlkkMNe1Apc7P2agK6vGvRf/E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KDCHjsqz; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id F3A24C8EC51;
-	Wed,  3 Sep 2025 12:47:58 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 10C8F606C3;
-	Wed,  3 Sep 2025 12:48:14 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E61C01C22D6E3;
-	Wed,  3 Sep 2025 14:48:10 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1756903693; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=9DyI7fqJU5vfPrO1NrCHiyZ+Zl33oMOjd4I66nyHHWA=;
-	b=KDCHjsqzqlPsp8N0CZmjWjfBpxCLf8bVRqKDtAYxdKIClcvSyoe/mcLiuAT7o/608D4KCi
-	DxW/ukwX+Rc7ULCN4dtltj67anmHkFeAh9SzXJ7f/FhfyEqQBgozrAIHJoWwsDKYHIL2ma
-	wE4e/TdR+nBOtXuIAXgPj3qzr5D6Hxdv+6hKqzMCZPW7Ch8Qs5Ke96Hz+oQ8jVNoz3LqVA
-	Esc7UOCryEXzYT8owFvIYslIRRh0pTiErPgFW73N8TnnHN0irtX+yt3XEszWel15spGZ3Y
-	NoBsZFkxI9GG6SotXNiD/P4g8Ba8ILWcgrtuYT/d7c0ikYlFmXYWK/acuSnMRg==
-From: =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-Date: Wed, 03 Sep 2025 14:47:26 +0200
-Subject: [PATCH 19/19] clk: eyeq: add eyeQ7H compatibles
+	s=arc-20240116; t=1756904057; c=relaxed/simple;
+	bh=GKyzok/z2dxUBYclYVhvEXgcpXK2CUMlhu43nRL68EI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tXjs4HA2ESz+uL6OHD3FKN/1dg/XgxJBM2DKdvaUTtc1GwSWL3yLesKV6wZwcWHC0V8siXgpaw07h+YZ3xNZnOa5WjK229zr0LQPZ4v7XGHOFu4egwuUF3a02SwVjMZek7ribbm/f09JXH7+4H0qwX6dgwEH5eC0JU1lDn5NrWk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGqYmZkR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FB4CC4CEF0;
+	Wed,  3 Sep 2025 12:54:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756904056;
+	bh=GKyzok/z2dxUBYclYVhvEXgcpXK2CUMlhu43nRL68EI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=aGqYmZkRR1fuAHbSynfrAmBfRIiWr5y46yverkTaB/Q+Z5kCkOfz41rnYUvqCi7lN
+	 wLqIGAo5qY58FY6OJCVJuQjfR4mwTh3zodjMCqSGtEkNkj9fCSFu4QaNV7ApnafUP/
+	 +mXTY6HwkjIdi2zwlSkqmq40swY0mrEqJXcsLvUN+8+RYzjev6g2w6byTBl4GahEmA
+	 a8+ITTbTu7q2SzFUw2cVH19+LZSRsU/c01C+38NRhMXPEGgTzxOdg8oHv+LLdE+cbt
+	 f82rTtlkUZ1bo6fs9rkjpr+ngaoSPjRChb+3eOzFcURViENkXR5nrtzIW82gY/QenJ
+	 By9aGQYH6AxSg==
+Message-ID: <f2550076-57b5-46f2-a90a-414e5f2cb8d7@kernel.org>
+Date: Wed, 3 Sep 2025 14:54:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250903-clk-eyeq7-v1-19-3f5024b5d6e2@bootlin.com>
-References: <20250903-clk-eyeq7-v1-0-3f5024b5d6e2@bootlin.com>
-In-Reply-To: <20250903-clk-eyeq7-v1-0-3f5024b5d6e2@bootlin.com>
-To: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- Gregory CLEMENT <gregory.clement@bootlin.com>, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- linux-mips@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
- Sari Khoury <sari.khoury@mobileye.com>, 
- =?utf-8?q?Beno=C3=AEt_Monin?= <benoit.monin@bootlin.com>
-X-Mailer: b4 0.14.2
-X-Last-TLS-Session-Version: TLSv1.3
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 2/8] dt-bindings: remoteproc: k3-r5f: Add
+ rpmsg-eth subnode
+To: MD Danish Anwar <danishanwar@ti.com>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>, Simon Horman
+ <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Mengyuan Lou <mengyuanlou@net-swift.com>, Xin Guo <guoxin09@huawei.com>,
+ Lei Wei <quic_leiwei@quicinc.com>, Lee Trager <lee@trager.us>,
+ Michael Ellerman <mpe@ellerman.id.au>, Fan Gong <gongfan1@huawei.com>,
+ Lorenzo Bianconi <lorenzo@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Lukas Bulwahn <lukas.bulwahn@redhat.com>,
+ Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+ Suman Anna <s-anna@ti.com>, Tero Kristo <kristo@kernel.org>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com,
+ Roger Quadros <rogerq@kernel.org>
+References: <20250902090746.3221225-1-danishanwar@ti.com>
+ <20250902090746.3221225-3-danishanwar@ti.com>
+ <20250903-peculiar-hot-monkey-4e7c36@kuoka>
+ <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add the entries for the 14 Other Logic Blocks found in the eyeQ7H SoC. The
-clock tree is more complex than the previous generation of SoC, as some
-OLB depend on the clock output of other OLB instead of all referring to
-the main oscillator.
+On 03/09/2025 09:57, MD Danish Anwar wrote:
+>>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
+>>> ---
+>>>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml     | 6 ++++++
+>>>  1 file changed, 6 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+>>> index a492f74a8608..4dbd708ec8ee 100644
+>>> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+>>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
+>>> @@ -210,6 +210,12 @@ patternProperties:
+>>>            should be defined as per the generic bindings in,
+>>>            Documentation/devicetree/bindings/sram/sram.yaml
+>>>  
+>>> +      rpmsg-eth:
+>>> +        $ref: /schemas/net/ti,rpmsg-eth.yaml
+>>
+>> No, not a separate device. Please read slides from my DT for beginners
+> 
+> I had synced with Andrew and we came to the conclusion that including
+> rpmsg-eth this way will follow the DT guidelines and should be okay.
 
-The OLB south, east and west generate those reference clocks used by
-other blocks. They also use the reference clock internally. To avoid
-creating a reference loop, we register those reference clocks early then
-refer to them at probe time. This is the same approach that is used for
-the clocks of the eyeQ5 OLB. The reference clock provided by OLB south
-is named "ref_100p0", "ref_106p6_e" by OLB east and "ref_106p6_w" by
-OLB west.
+... and did you check the guidelines? Instead of repeating something not
+related to my comment rather bring argument matching the comment.
 
-For the OLB with a single parent clock, We use the same logic as the
-blocks found in previous SoC and refer to it with the implied name
-"ref".
 
-The OLB with two parent clocks use the reference clock names provided
-by the OLB south, east and west and the main oscillator as "ref".
+...
 
-The reset controllers found is 11 of the OLB are declared as auxiliary
-device attached to the clock device.
+> @@ -768,6 +774,7 @@ &main_r5fss0_core0 {
+>  	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
+>  	memory-region = <&main_r5fss0_core0_dma_memory_region>,
+>  			<&main_r5fss0_core0_memory_region>;
+> +	rpmsg-eth-region = <&main_r5fss0_core0_memory_region_shm>;
 
-Signed-off-by: Benoît Monin <benoit.monin@bootlin.com>
----
- drivers/clk/clk-eyeq.c | 495 +++++++++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 495 insertions(+)
+You already have here memory-region, so use that one.
 
-diff --git a/drivers/clk/clk-eyeq.c b/drivers/clk/clk-eyeq.c
-index 8d5e194215e9d3d13b334a5ebf004499050e84b9..b9437003024fd0766fb1bd5d3e4916263f9cc854 100644
---- a/drivers/clk/clk-eyeq.c
-+++ b/drivers/clk/clk-eyeq.c
-@@ -824,6 +824,464 @@ static const struct eqc_match_data eqc_eyeq6h_acc_match_data = {
- 	.reset_auxdev_name = "reset_acc",
- };
- 
-+/* Required early as reference for other PLL in OLB south */
-+static const struct eqc_pll eqc_eyeq7h_south_early_plls[] = {
-+	{ EQ7HC_SOUTH_PLL_100P0, "pll-100p0", 0x40, EQC_PLL_JFRACR },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_south_early_fixed_factors[] = {
-+	{ EQ7HC_SOUTH_DIV_REF_100P0, "ref_100p0", 1, 48, EQ7HC_SOUTH_PLL_100P0 },
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_south_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_SOUTH_PLL_XSPI, "pll-xspi",  0x10, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_SOUTH_PLL_VDIO, "pll-vdio",  0x18, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_SOUTH_PLL_PER,  "pll-per-s", 0x20, EQC_PLL_AINTP, "ref_100p0" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_south_fixed_factors[] = {
-+	{ EQ7HC_SOUTH_DIV_VDO_DSI_SYS,    "vdo_dsi_sys",      1, 9,   EQ7HC_SOUTH_PLL_100P0,
-+	  "pll-100p0" },
-+	{ EQ7HC_SOUTH_DIV_PMA_CMN_REF,    "pma_cmn_ref",      1, 48,  EQ7HC_SOUTH_PLL_100P0,
-+	  "pll-100p0" },
-+	{ EQ7HC_SOUTH_DIV_REF_UFS,        "ref_ufs",          1, 250, EQ7HC_SOUTH_PLL_100P0,
-+	  "pll-100p0" },
-+	{ EQ7HC_SOUTH_DIV_XSPI_SYS,       "xspi_sys",         1, 8,   EQ7HC_SOUTH_PLL_XSPI },
-+	{ EQ7HC_SOUTH_DIV_XSPI_MBITS,     "xspi_mbits",       1, 8,   EQ7HC_SOUTH_PLL_XSPI },
-+	{ EQ7HC_SOUTH_DIV_NOC_S,          "noc_s",            1, 2,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_PCIE_SYS,       "pcie_sys",         1, 4,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_PCIE_SYS_MBITS, "pcie_sys_mbits",   1, 4,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_PCIE_GBE_PHY,   "pcie_gbe_phy_apb", 1, 16,  EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_UFS_CORE,       "ufs_core",         1, 8,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_UFS_SMS,        "ufs_sms",          1, 5,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_UFS_ROM_SMS,    "ufs_rom_sms",      1, 5,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_ETH_SYS,        "eth_sys",          1, 8,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_ETH_MBITS,      "eth_mbits",        1, 8,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_CFG_S,          "cfg_s",            1, 8,   EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_TSU,            "tsu",              1, 64,  EQ7HC_SOUTH_PLL_PER },
-+	{ EQ7HC_SOUTH_DIV_VDIO,           "vdio",             1, 4,   EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDIO_CORE,      "vdio_core",        1, 4,   EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDIO_CORE_MBIT, "vdio_core_mbit",   1, 4,   EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDO_CORE_MBITS, "vdo_core_mbits",   1, 4,   EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDO_P,          "vdo_p",            1, 40,  EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDIO_CFG,       "vdio_cfg",         1, 150, EQ7HC_SOUTH_PLL_VDIO },
-+	{ EQ7HC_SOUTH_DIV_VDIO_TXCLKESC,  "vdio_txclkesc",    1, 8,   EQ7HC_SOUTH_PLL_VDIO },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq7h_south_early_match_data __initconst = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq7h_south_early_plls),
-+	.early_plls		= eqc_eyeq7h_south_early_plls,
-+
-+	.early_fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_south_early_fixed_factors),
-+	.early_fixed_factors		= eqc_eyeq7h_south_early_fixed_factors,
-+
-+	.late_clk_count		= ARRAY_SIZE(eqc_eyeq7h_south_plls) +
-+				  ARRAY_SIZE(eqc_eyeq7h_south_fixed_factors),
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_south_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_south_plls),
-+	.plls		= eqc_eyeq7h_south_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_south_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_south_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_south",
-+
-+	.early_clk_count = ARRAY_SIZE(eqc_eyeq7h_south_early_plls) +
-+			   ARRAY_SIZE(eqc_eyeq7h_south_early_fixed_factors),
-+};
-+
-+/* Required early as reference for other PLL in OLB east */
-+static const struct eqc_pll eqc_eyeq7h_east_early_plls[] = {
-+	{ EQ7HC_EAST_PLL_106P6, "pll-106p6-e", 0x0, EQC_PLL_JFRACR },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_east_early_fixed_factors[] = {
-+	{ EQ7HC_EAST_DIV_REF_106P6, "ref_106p6_e", 1, 40, EQ7HC_EAST_PLL_106P6 },
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_east_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_EAST_PLL_NOC, "pll-noc-e", 0x30, EQC_PLL_AINTP, "ref_106p6_e" },
-+	{ EQ7HC_EAST_PLL_ISP, "pll-isp",   0x38, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_EAST_PLL_VEU, "pll-veu",   0x40, EQC_PLL_AINTP, "ref_100p0" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_east_fixed_factors[] = {
-+	{ EQ7HC_EAST_DIV_REF_DDR_PHY, "ref_ddr_phy_e", 1, 2,  EQ7HC_EAST_PLL_106P6, "pll-106p6-e" },
-+	{ EQ7HC_EAST_DIV_CORE,        "core_e",        1, 2,  EQ7HC_EAST_PLL_NOC },
-+	{ EQ7HC_EAST_DIV_CORE_MBITS,  "core_mbits_e",  1, 2,  EQ7HC_EAST_PLL_NOC },
-+	{ EQ7HC_EAST_DIV_ISRAM_MBITS, "isram_mbits_e", 1, 2,  EQ7HC_EAST_PLL_NOC },
-+	{ EQ7HC_EAST_DIV_CFG,         "cfg_e",         1, 4,  EQ7HC_EAST_PLL_NOC },
-+	{ EQ7HC_EAST_DIV_VEU_CORE,    "veu_core",      1, 4,  EQ7HC_EAST_PLL_VEU },
-+	{ EQ7HC_EAST_DIV_VEU_MBITS,   "veu_mbits",     1, 4,  EQ7HC_EAST_PLL_VEU },
-+	{ EQ7HC_EAST_DIV_VEU_OCP,     "veu_ocp",       1, 16, EQ7HC_EAST_PLL_VEU },
-+	{ EQ7HC_EAST_DIV_LBITS,       "lbits_e",       1, 48, EQ7HC_EAST_PLL_ISP },
-+	{ EQ7HC_EAST_DIV_ISP0_CORE,   "isp0_core",     1, 2,  EQ7HC_EAST_PLL_ISP },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq7h_east_early_match_data __initconst = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq7h_east_early_plls),
-+	.early_plls		= eqc_eyeq7h_east_early_plls,
-+
-+	.early_fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_east_early_fixed_factors),
-+	.early_fixed_factors		= eqc_eyeq7h_east_early_fixed_factors,
-+
-+	.late_clk_count		= ARRAY_SIZE(eqc_eyeq7h_east_plls) +
-+	ARRAY_SIZE(eqc_eyeq7h_east_fixed_factors),
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_east_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_east_plls),
-+	.plls		= eqc_eyeq7h_east_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_east_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_east_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_east",
-+
-+	.early_clk_count = ARRAY_SIZE(eqc_eyeq7h_east_early_plls) +
-+	ARRAY_SIZE(eqc_eyeq7h_east_early_fixed_factors),
-+};
-+
-+/* Required early as reference for other PLL in OLB west */
-+static const struct eqc_pll eqc_eyeq7h_west_early_plls[] = {
-+	{ EQ7HC_WEST_PLL_106P6, "pll-106p6-w", 0x0, EQC_PLL_JFRACR },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_west_early_fixed_factors[] = {
-+	{ EQ7HC_WEST_DIV_REF_106P6, "ref_106p6_w", 1, 40, EQ7HC_WEST_PLL_106P6 },
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_west_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_WEST_PLL_NOC, "pll-noc-w", 0x30, EQC_PLL_AINTP, "ref_106p6_w" },
-+	{ EQ7HC_WEST_PLL_GPU, "pll-gpu",   0x38, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_WEST_PLL_SSI, "pll-ssi",   0x40, EQC_PLL_AINTP, "ref_100p0" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_west_fixed_factors[] = {
-+	{ EQ7HC_WEST_DIV_GPU,            "gpu",            1, 2,  EQ7HC_WEST_PLL_GPU },
-+	{ EQ7HC_WEST_DIV_GPU_MBITS,      "gpu_mbits",      1, 2,  EQ7HC_WEST_PLL_GPU },
-+	{ EQ7HC_WEST_DIV_LBITS,          "lbits_w",        1, 40, EQ7HC_WEST_PLL_GPU },
-+	{ EQ7HC_WEST_DIV_MIPS_TIMER,     "mips_timer",     1, 24, EQ7HC_WEST_PLL_SSI },
-+	{ EQ7HC_WEST_DIV_SSI_CORE,       "ssi_core",       1, 2,  EQ7HC_WEST_PLL_SSI },
-+	{ EQ7HC_WEST_DIV_SSI_CORE_MBITS, "ssi_core_mbits", 1, 2,  EQ7HC_WEST_PLL_SSI },
-+	{ EQ7HC_WEST_DIV_SSI_ROM,        "ssi_rom",        1, 8,  EQ7HC_WEST_PLL_SSI },
-+	{ EQ7HC_WEST_DIV_SSI_ROM_MBITS,  "ssi_rom_mbits",  1, 8,  EQ7HC_WEST_PLL_SSI },
-+	{ EQ7HC_WEST_DIV_REF_DDR_PHY,    "ref_ddr_phy_w",  1, 2,  EQ7HC_WEST_PLL_106P6,
-+	  "pll-106p6-w" },
-+	{ EQ7HC_WEST_DIV_CORE,           "core_w",         1, 2,  EQ7HC_WEST_PLL_NOC },
-+	{ EQ7HC_WEST_DIV_CORE_MBIT,      "core_mbit_w",    1, 2,  EQ7HC_WEST_PLL_NOC },
-+	{ EQ7HC_WEST_DIV_CFG,            "cfg_w",          1, 4,  EQ7HC_WEST_PLL_NOC },
-+	{ EQ7HC_WEST_DIV_CAU,            "cau_w",          1, 8,  EQ7HC_WEST_PLL_NOC },
-+	{ EQ7HC_WEST_DIV_CAU_MBITS,      "cau_mbits_w",    1, 8,  EQ7HC_WEST_PLL_NOC },
-+};
-+
-+static const struct eqc_early_match_data eqc_eyeq7h_west_early_match_data __initconst = {
-+	.early_pll_count	= ARRAY_SIZE(eqc_eyeq7h_west_early_plls),
-+	.early_plls		= eqc_eyeq7h_west_early_plls,
-+
-+	.early_fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_west_early_fixed_factors),
-+	.early_fixed_factors		= eqc_eyeq7h_west_early_fixed_factors,
-+
-+	.late_clk_count		= ARRAY_SIZE(eqc_eyeq7h_west_plls) +
-+				  ARRAY_SIZE(eqc_eyeq7h_west_fixed_factors),
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_west_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_west_plls),
-+	.plls		= eqc_eyeq7h_west_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_west_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_west_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_west",
-+
-+	.early_clk_count = ARRAY_SIZE(eqc_eyeq7h_west_early_plls) +
-+			   ARRAY_SIZE(eqc_eyeq7h_west_early_fixed_factors),
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_periph_east_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_PERIPH_EAST_PLL_PER, "pll-periph_east_per", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_periph_east_fixed_factors[] = {
-+	{ EQ7HC_PERIPH_EAST_DIV_PER, "periph_e", 1, 10, EQ7HC_PERIPH_EAST_PLL_PER },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_periph_east_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_periph_east_plls),
-+	.plls		= eqc_eyeq7h_periph_east_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_periph_east_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_periph_east_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_periph_east",
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_periph_west_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_PERIPH_WEST_PLL_PER, "pll-periph_west_per", 0x0, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_PERIPH_WEST_PLL_I2S, "pll-periph_west_i2s", 0x4, EQC_PLL_AINTP, "ref_106p6_w" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_periph_west_fixed_factors[] = {
-+	{ EQ7HC_PERIPH_WEST_DIV_PER, "periph_w",         1, 10, EQ7HC_PERIPH_WEST_PLL_PER },
-+	{ EQ7HC_PERIPH_WEST_DIV_I2S, "periph_i2s_ser_w", 1, 100, EQ7HC_PERIPH_WEST_PLL_I2S },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_periph_west_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_periph_west_plls),
-+	.plls		= eqc_eyeq7h_periph_west_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_periph_west_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_periph_west_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_periph_west",
-+};
-+
-+static const struct clk_div_table eqc_eyeq7h_ddr_apb_div_table[] = {
-+	{ .val = 0, .div = 8 },
-+	{ .val = 1, .div = 128 },
-+	{ .val = 0, .div = 0 },
-+};
-+
-+static const struct clk_div_table eqc_eyeq7h_ddr_ref_div_table[] = {
-+	{ .val = 0, .div = 2 },
-+	{ .val = 1, .div = 8 },
-+	{ .val = 0, .div = 0 },
-+};
-+
-+static const struct clk_div_table eqc_eyeq7h_ddr_dfi_div_table[] = {
-+	{ .val = 0, .div = 2 },
-+	{ .val = 1, .div = 32 },
-+	{ .val = 0, .div = 0 },
-+};
-+
-+static const struct eqc_div eqc_eyeq7h_ddr0_divs[] = {
-+	{
-+		.index = EQ7HC_DDR_DIV_APB,
-+		.name = "div-ddr0_apb",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_apb_div_table,
-+	},
-+	{
-+		.index = EQ7HC_DDR_DIV_PLLREF,
-+		.name = "div-ddr0_pllref",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_ref_div_table,
-+	},
-+	{
-+		.index = EQ7HC_DDR_DIV_DFI,
-+		.name = "div-ddr0-dfi",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_dfi_div_table,
-+	},
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_ddr0_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_DDR_PLL, "pll-ddr0", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_ddr0_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_ddr0_plls),
-+	.plls		= eqc_eyeq7h_ddr0_plls,
-+
-+	.div_count	= ARRAY_SIZE(eqc_eyeq7h_ddr0_divs),
-+	.divs		= eqc_eyeq7h_ddr0_divs,
-+
-+	.reset_auxdev_name = "reset_ddr0",
-+};
-+
-+static const struct eqc_div eqc_eyeq7h_ddr1_divs[] = {
-+	{
-+		.index = EQ7HC_DDR_DIV_APB,
-+		.name = "div-ddr1_apb",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_apb_div_table,
-+	},
-+	{
-+		.index = EQ7HC_DDR_DIV_PLLREF,
-+		.name = "div-ddr1_pllref",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_ref_div_table,
-+	},
-+	{
-+		.index = EQ7HC_DDR_DIV_DFI,
-+		.name = "div-ddr1-dfi",
-+		.parent_idx = EQ7HC_DDR_PLL,
-+		.reg = 0x08,
-+		.shift = 10,
-+		.width = 1,
-+		.table = eqc_eyeq7h_ddr_dfi_div_table,
-+	},
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_ddr1_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_DDR_PLL, "pll-ddr1", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_ddr1_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_ddr1_plls),
-+	.plls		= eqc_eyeq7h_ddr1_plls,
-+
-+	.div_count	= ARRAY_SIZE(eqc_eyeq7h_ddr1_divs),
-+	.divs		= eqc_eyeq7h_ddr1_divs,
-+
-+	.reset_auxdev_name = "reset_ddr1",
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_mips0_plls[] = {
-+	{ EQ7HC_MIPS_PLL_CPU, "pll-cpu0", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_mips0_fixed_factors[] = {
-+	{ EQ7HC_MIPS_DIV_CM, "mips0_cm", 1, 2, EQ7HC_MIPS_PLL_CPU },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_mips0_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_mips0_plls),
-+	.plls		= eqc_eyeq7h_mips0_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_mips0_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_mips0_fixed_factors,
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_mips1_plls[] = {
-+	{ EQ7HC_MIPS_PLL_CPU, "pll-cpu1", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_mips1_fixed_factors[] = {
-+	{ EQ7HC_MIPS_DIV_CM, "mips1_cm", 1, 2, EQ7HC_MIPS_PLL_CPU },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_mips1_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_mips1_plls),
-+	.plls		= eqc_eyeq7h_mips1_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_mips1_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_mips1_fixed_factors,
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_mips2_plls[] = {
-+	{ EQ7HC_MIPS_PLL_CPU, "pll-cpu2", 0x0, EQC_PLL_AINTP },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_mips2_fixed_factors[] = {
-+	{ EQ7HC_MIPS_DIV_CM, "mips2_cm", 1, 2, EQ7HC_MIPS_PLL_CPU },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_mips2_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_mips2_plls),
-+	.plls		= eqc_eyeq7h_mips2_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_mips2_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_mips2_fixed_factors,
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_acc0_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_ACC_PLL_VMP, "pll-acc0-vmp",     0x400, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_MPC, "pll-acc0-mpc",     0x404, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_PMA, "pll-acc0-pma",     0x408, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_NOC, "pll-acc0-noc-acc", 0x40c, EQC_PLL_AINTP, "ref_106p6_e" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_acc0_fixed_factors[] = {
-+	{ EQ7HC_ACC_DIV_PMA,   "acc0_pma",   1, 2, EQ7HC_ACC_PLL_PMA },
-+	{ EQ7HC_ACC_DIV_NCORE, "acc0_ncore", 1, 2, EQ7HC_ACC_PLL_NOC },
-+	{ EQ7HC_ACC_DIV_CFG,   "acc0_cfg",   1, 8, EQ7HC_ACC_PLL_NOC },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_acc0_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_acc0_plls),
-+	.plls		= eqc_eyeq7h_acc0_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_acc0_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_acc0_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_acc0",
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_acc1_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_ACC_PLL_VMP, "pll-acc1-vmp",     0x400, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_MPC, "pll-acc1-mpc",     0x404, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_PMA, "pll-acc1-pma",     0x408, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_ACC_PLL_NOC, "pll-acc1-noc-acc", 0x40c, EQC_PLL_AINTP, "ref_106p6_e" },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_acc1_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_acc1_plls),
-+	.plls		= eqc_eyeq7h_acc1_plls,
-+
-+	.reset_auxdev_name = "reset_acc1",
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_xnn0_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_XNN_PLL_XNN0,  "pll-xnn0-0",     0x400, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_XNN1,  "pll-xnn0-1",     0x404, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_XNN2,  "pll-xnn0-2",     0x408, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_CLSTR, "pll-xnn0-clstr", 0x410, EQC_PLL_AINTP, "ref_106p6_e" },
-+};
-+
-+static const struct eqc_fixed_factor eqc_eyeq7h_xnn0_fixed_factors[] = {
-+	{ EQ7HC_XNN_DIV_XNN0,   "xnn0",        1, 2, EQ7HC_XNN_PLL_XNN0 },
-+	{ EQ7HC_XNN_DIV_XNN1,   "xnn1",        1, 2, EQ7HC_XNN_PLL_XNN1 },
-+	{ EQ7HC_XNN_DIV_XNN2,   "xnn2",        1, 2, EQ7HC_XNN_PLL_XNN2 },
-+	{ EQ7HC_XNN_DIV_CLSTR,  "xnn0_clstr",  1, 2, EQ7HC_XNN_PLL_CLSTR },
-+	{ EQ7HC_XNN_DIV_I2,     "xnn0_i2",     1, 4, EQ7HC_XNN_PLL_CLSTR },
-+	{ EQ7HC_XNN_DIV_I2_SMS, "xnn0_i2_sms", 1, 4, EQ7HC_XNN_PLL_CLSTR },
-+	{ EQ7HC_XNN_DIV_CFG,    "xnn0_cfg",    1, 8, EQ7HC_XNN_PLL_CLSTR },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_xnn0_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_xnn0_plls),
-+	.plls		= eqc_eyeq7h_xnn0_plls,
-+
-+	.fixed_factor_count	= ARRAY_SIZE(eqc_eyeq7h_xnn0_fixed_factors),
-+	.fixed_factors		= eqc_eyeq7h_xnn0_fixed_factors,
-+
-+	.reset_auxdev_name = "reset_xnn0",
-+};
-+
-+static const struct eqc_pll eqc_eyeq7h_xnn1_plls[] = {
-+	//{index, name, reg, type, parent}
-+	{ EQ7HC_XNN_PLL_XNN0,  "pll-xnn1-0",     0x400, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_XNN1,  "pll-xnn1-1",     0x404, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_XNN2,  "pll-xnn1-2",     0x408, EQC_PLL_AINTP, "ref_100p0" },
-+	{ EQ7HC_XNN_PLL_CLSTR, "pll-xnn1-clstr", 0x410, EQC_PLL_AINTP, "ref_106p6_e" },
-+};
-+
-+static const struct eqc_match_data eqc_eyeq7h_xnn1_match_data = {
-+	.pll_count	= ARRAY_SIZE(eqc_eyeq7h_xnn1_plls),
-+	.plls		= eqc_eyeq7h_xnn1_plls,
-+
-+	.reset_auxdev_name = "reset_xnn1",
-+};
-+
- static const struct of_device_id eqc_match_table[] = {
- 	{ .compatible = "mobileye,eyeq5-olb", .data = &eqc_eyeq5_match_data },
- 	{ .compatible = "mobileye,eyeq6l-olb", .data = &eqc_eyeq6l_match_data },
-@@ -833,6 +1291,22 @@ static const struct of_device_id eqc_match_table[] = {
- 	{ .compatible = "mobileye,eyeq6h-ddr0-olb", .data = &eqc_eyeq6h_ddr0_match_data },
- 	{ .compatible = "mobileye,eyeq6h-ddr1-olb", .data = &eqc_eyeq6h_ddr1_match_data },
- 	{ .compatible = "mobileye,eyeq6h-acc-olb", .data = &eqc_eyeq6h_acc_match_data },
-+	{ .compatible = "mobileye,eyeq7h-periph-west-olb",
-+	  .data = &eqc_eyeq7h_periph_west_match_data },
-+	{ .compatible = "mobileye,eyeq7h-periph-east-olb",
-+	  .data = &eqc_eyeq7h_periph_east_match_data },
-+	{ .compatible = "mobileye,eyeq7h-west-olb", .data = &eqc_eyeq7h_west_match_data },
-+	{ .compatible = "mobileye,eyeq7h-east-olb", .data = &eqc_eyeq7h_east_match_data },
-+	{ .compatible = "mobileye,eyeq7h-south-olb", .data = &eqc_eyeq7h_south_match_data },
-+	{ .compatible = "mobileye,eyeq7h-mips0-olb", .data = &eqc_eyeq7h_mips0_match_data },
-+	{ .compatible = "mobileye,eyeq7h-mips1-olb", .data = &eqc_eyeq7h_mips1_match_data },
-+	{ .compatible = "mobileye,eyeq7h-mips2-olb", .data = &eqc_eyeq7h_mips2_match_data },
-+	{ .compatible = "mobileye,eyeq7h-ddr0-olb", .data = &eqc_eyeq7h_ddr0_match_data },
-+	{ .compatible = "mobileye,eyeq7h-ddr1-olb", .data = &eqc_eyeq7h_ddr1_match_data },
-+	{ .compatible = "mobileye,eyeq7h-acc0-olb", .data = &eqc_eyeq7h_acc0_match_data },
-+	{ .compatible = "mobileye,eyeq7h-acc1-olb", .data = &eqc_eyeq7h_acc1_match_data },
-+	{ .compatible = "mobileye,eyeq7h-xnn0-olb", .data = &eqc_eyeq7h_xnn0_match_data },
-+	{ .compatible = "mobileye,eyeq7h-xnn1-olb", .data = &eqc_eyeq7h_xnn1_match_data },
- 	{}
- };
- 
-@@ -1004,3 +1478,24 @@ static void __init eqc_eyeq6h_west_early_init(struct device_node *np)
- }
- CLK_OF_DECLARE_DRIVER(eqc_eyeq6h_west, "mobileye,eyeq6h-west-olb",
- 		      eqc_eyeq6h_west_early_init);
-+
-+static void __init eqc_eyeq7h_south_early_init(struct device_node *np)
-+{
-+	eqc_early_init(np, &eqc_eyeq7h_south_early_match_data);
-+}
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq7h_south, "mobileye,eyeq7h-south-olb",
-+		      eqc_eyeq7h_south_early_init);
-+
-+static void __init eqc_eyeq7h_east_early_init(struct device_node *np)
-+{
-+	eqc_early_init(np, &eqc_eyeq7h_east_early_match_data);
-+}
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq7h_east, "mobileye,eyeq7h-east-olb",
-+		      eqc_eyeq7h_east_early_init);
-+
-+static void __init eqc_eyeq7h_west_early_init(struct device_node *np)
-+{
-+	eqc_early_init(np, &eqc_eyeq7h_west_early_match_data);
-+}
-+CLK_OF_DECLARE_DRIVER(eqc_eyeq7h_west, "mobileye,eyeq7h-west-olb",
-+		      eqc_eyeq7h_west_early_init);
+>  };
+> 
+>  &main_r5fss0_core1 {
+> 
+> 
+> In this approach I am creating a new phandle to a memory region that
+> will be used by my device.
 
--- 
-2.51.0
 
+
+Best regards,
+Krzysztof
 
