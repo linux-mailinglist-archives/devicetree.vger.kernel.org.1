@@ -1,152 +1,184 @@
-Return-Path: <devicetree+bounces-212113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212114-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C34CB41D38
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:42:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E600B41D44
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:45:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFD0E1BA3556
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:42:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43098207AB7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:45:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914D92FB63A;
-	Wed,  3 Sep 2025 11:42:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3BD72F83D4;
+	Wed,  3 Sep 2025 11:45:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="OtO/c1uL"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XG/cnvoE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06DCF2F998A
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:42:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1190828137D
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:45:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756899730; cv=none; b=tckGE1RPu0MgiqMrz5YKppQohcm1pJfW0FJhJKHD+/9cf4nQ8r/H//R6/ZPFGD/+4Y1AuqvtNLPhAcGq+feCqwBRsSSeomb1gmRG4Zw1vZ7xQ/4W2/sryZRFrliQIMwMdZardMoxVPr7TkoPyjYWAO2xLS3QE04wJ/UIuRCX+GY=
+	t=1756899906; cv=none; b=kg+JwL2FyPLQiVeC/YfNaWUnsx94RbfdBiUgkfJhzB/mk7ZknbCRrVHW35we3otoHbs/HiPPiTMbATYpxFdk0JWm451pPrhfkk5CENVp45RTmOW2rMOzaaV+UYaE6irzMenV3V4LVHxHI/AJO86RJ69ZDPIHPKBtKbYGkFvq/6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756899730; c=relaxed/simple;
-	bh=0rqJGPrSdA1PEzC6ErrBXnN/AHdlqO4b6tAy+IDJM30=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hdM60xQPju0pSKLmUorRq2iIuqxVVNy2wi6PYTkZght70tdtuK9VRblsUCdxDZwOhhVcHA4bWPfRXZtm86DzDcLZTHL5sq5Yo33yO8f9pHRn6xz9V7iISW0wlMheLULQriwRh9j9d8HLJ19AmoFB47M38E42mkFMRA6QQwOOJ7M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=OtO/c1uL; arc=none smtp.client-ip=209.85.216.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
-Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-327f8726b95so867661a91.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 04:42:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bytedance.com; s=google; t=1756899728; x=1757504528; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ft7a1y38TQmqSZ+GiWBdbP1PqNWAejf1LfumBwWdqBM=;
-        b=OtO/c1uL/uwzSC6eQGa75Ch1Gc2GN3XLl1F49JzfMU5n+t4EJKGQdXKjbpe+Maxn9D
-         V1b9eC1G8y6i9IgvLXdEvciQzZ1xkW5kOSit5jnE4vV1wragSMHgF/m5r9+Dh+Nz2mwy
-         SVnFE7WyU5NIByTmJaLAUgDNRITgTg95RU6Vdpq+AEDOZUvSBpvEqQdc+AU04tPv6eOY
-         TQE4/aJ1Z/nzS8zVmFNy/Vs9DGQRg4xRIixteRNRE12374A408YlQFSmbEzF8wwpdCB4
-         vfGAM2TSfpI9dChoOtYfjxZ0jkq8SO7xF43ppWfwnnh/HCe2SdOiNFGd5cGb3ptI4pf3
-         jl6Q==
+	s=arc-20240116; t=1756899906; c=relaxed/simple;
+	bh=ZFslkzkzaO3P6RbCdZ+X+S96dhqu96FyFhmeWdrTj9s=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Ltkfh/Fm8Qf7eL65lZp40r6aMD4GiKN/2sWkKQinH0H9XHWGNmHrtV291WQvqqkw4lOVkKL0onR8uFjRvf/2T+Ywvv8T2+gJwjjJ1fCRt3RBQq8bF1xznd1ycXP8ckbDPHmpMvjgQZ7uN7uRxNKEguZ9m8LKX10R7MbQaMgXeUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XG/cnvoE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583BEqZ2010811
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 11:45:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	8Jvu4Jo+Bcxn48m/sFZ4fPyHv1yzkWG77RqatHLjJQY=; b=XG/cnvoEHIXbnjYz
+	At85xcBTmQvHSJkXbLBmeazu3gEoWD29R/XJ5+ljMYfrRhnA50NVc3afFEiRyB1F
+	gjQw19lxa0+DtHiQGeVdB3J+poF+v4gRR5gfnyIg9I83ht8cP1htZHVIf2xvaqbq
+	0KY3dorzCg+5rLhsf7AVbREdpQCu7QHu5GTVjfqrqOnhl927m2jxn0CJYlbmRJfs
+	0k+YKJoM7ymZOspOE8BeRwqrHGLS9P5yW3GOpVB16BsatTvOMCga1SfQ8Sagmuzl
+	3XHmXMAKhj54DJYp1rFZpZCzfyimbKeypOKi1aEwjLoiToBS9NOD/Ea1FFYVUkmM
+	qA4bXw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjke90-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 11:45:03 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b32eddd8a6so7458401cf.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 04:45:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756899728; x=1757504528;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ft7a1y38TQmqSZ+GiWBdbP1PqNWAejf1LfumBwWdqBM=;
-        b=aosFtYJowcNRfeOfEz12gbUF7cXtktlkkc773sggCq9cAl57hjE6oC2s/3ULgMubGy
-         rgALd1E0qEK778P8qenIdnRlQe3J0F6mt/oRz757u3yp4U8fVnRT0QOcaOKzF/QGRmJm
-         CbYEpdhs2x7aScDDNJXMen186fu091/6A9l5gHvCz+cBOL3BNcvBOLAeKfx1onRZC9gz
-         tjg7X3Y3Bqun4fdzsCkOxaipS0gG/qXWstL1gW2G5vjlPAY4yDPgXTK1hQdLj6fT3FrX
-         btafY+7uYgFD4mZak0PZRPFZdjhjVjftiWmvgUJz5Wzvg8Y/ZzlDrHnpbSkoIuLrl48T
-         1QBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUIO3HZPAq8/GswbpG0OGOBpoWKvc3QQCI+pCixmFutK313zWO9bzJ/srHlTXcDbQ2lGt6BnTergRPe@vger.kernel.org
-X-Gm-Message-State: AOJu0YwKUy/CkDRK/CZ3EAQ6/g4VHpDdTcF5E9efLy0e0Y2YUBHKTU5b
-	FJ4xOnTTML+hEdPy5JHHyUOqzNepZyGc8+lt96JoHPkqhjZM8a1vxy8vRqpjNkVQQwB1b6/nAZp
-	Bg7BmIGewDnQVfGgMpW3ARM/WLCFHwvR/WBDqny4e+g==
-X-Gm-Gg: ASbGncs62Ldf++qgOzZiikXY8GiWt2sxvCRt7yYewE6J9UL6qK7xg4Igaibpvlz22+T
-	TVu0irXoCLYiKjgLqmpNkp7zEYdfDqjoE3H7Q/LAudw/aLqZineTuA5KIelUZa+WmvzyQ3JqgT4
-	859DAptmZ6ipYb039N9VyBBaYnY62esU1LYWzAeeZHe8CgeXF5pPzkx7SFfh64pGP0tRrUgLOvS
-	RD87rdAzd//z+l9kKl+Inn4+dUqGSOdzonHiQ0JuvxQ/wYTF2Y65Us/aZM=
-X-Google-Smtp-Source: AGHT+IFtJbKlmEkW5GGySvPf1/HOA+JVG5Zy6u8Y+RfeMdmIZ6i1j+zUKLBeK7ONCJdCDpwadOW6zM4NzlV/gKsIpD0=
-X-Received: by 2002:a17:90b:4e88:b0:31c:39c2:b027 with SMTP id
- 98e67ed59e1d1-32815438312mr20559057a91.7.1756899728089; Wed, 03 Sep 2025
- 04:42:08 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756899903; x=1757504703;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8Jvu4Jo+Bcxn48m/sFZ4fPyHv1yzkWG77RqatHLjJQY=;
+        b=qeRVMpYMlV9v3V9GsFjD4a36LYQPzpnNle+Zci9G0pNMJAhOkwqGiaD8QVJ2tKP7Su
+         SRHI1bDkDXDujV7yr6/8oAmZSME4QNscoZCmqBMqaHEXdYoV2r+uh42iAaTcnmgtiD6s
+         BJYVz7BnMwSGd6xpCe0OFWRIt09RB4psJT3Y/uHXaizqmXGJALdhrcQ0uBZ6EGw+yxuJ
+         ssQtoqcSxS00OZjwuJFyLDucBibpxkhqltGJBqnu0upFJCOMmBEprUFdJvfKF52xboA7
+         oMgMJQnn7Z9clmkXz6U9vPINdKoe5xBJbdzxycmqsbGyboAwdwt5pQyhWcd/7HOSbduo
+         YyBg==
+X-Forwarded-Encrypted: i=1; AJvYcCWYuuJokbWH2z5lHHY7+HO6YHRcM7qCW29eZwU39VnXhEaTkHBWuWUUPRpVMYIRwzBwzdNUyrEPK/iE@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyzr4DgtjAcbCOwKBzYYf9mH20obfVGxuBzQbdd5T1mzbC3Dccd
+	jvVS1yGW99UkYAAHYtWiHR50nS0QESrCQFSPrcqCMg0xd7Kxty+NSge6MpBXh3H+PCpsRzG+SGp
+	ksl/sOu3OIzoMNPq8jrFF0b3mn1Oa/nvY/60aJdI+8BjqmSC9ag94A7Kloi8uKMhz
+X-Gm-Gg: ASbGnctlKAVw9dvNdhoNMsBw+P+iwCn3Wcn1TOO+RAbJDzRICEiBunvfgJ5QLKk6hqc
+	vmacEbDo+G5YTx8QvTis5yzaYeWSw3L6UWBw3BF4iJGZM8wD/W7TAZmI9uph/OTBMMcL8/KojKC
+	0rR0f05jDt0dcDh/1TKee+y6l4YefWOzS5l2ZDLQAwgnhjVX6tts8Y1+R4T3jruChf/QIozrSpW
+	Wsg6pYA9OP/x3t6kqBhxn2BAP4uDsCE8gMi5EDjUZUa+NqfkvCccpENjBo+ybmu+DSlPYJgXJ3K
+	TvZZO1GkuQQ9Jwlxdsv98go1DAE+Nn+j6k7Iy42IuDap2x70LgO8nnDWJgh0j9UQ4767Fi7gVT9
+	TDLiShL8EcpABtSkzWacmdw==
+X-Received: by 2002:a05:622a:15d4:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b313dfd74dmr142095711cf.1.1756899902981;
+        Wed, 03 Sep 2025 04:45:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGIcR47zNDXHKfbpE1KNZpjx/ssXLf8dHQ7yihm/3EKuTDfb+SvfOKxZop6+eyhWbcM3uGoFw==
+X-Received: by 2002:a05:622a:15d4:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b313dfd74dmr142095421cf.1.1756899902272;
+        Wed, 03 Sep 2025 04:45:02 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0432937e0esm701176566b.3.2025.09.03.04.45.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 04:45:01 -0700 (PDT)
+Message-ID: <b3455529-1356-43f4-9d5c-ba6ddc52a250@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 13:44:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902042432.78960-1-luxu.kernel@bytedance.com> <aLciY2putG8g2P9F@andrea>
-In-Reply-To: <aLciY2putG8g2P9F@andrea>
-From: Xu Lu <luxu.kernel@bytedance.com>
-Date: Wed, 3 Sep 2025 19:41:57 +0800
-X-Gm-Features: Ac12FXyU8EgKWXBaEJy_wfubw9BJFW5J8dcyAUN_yKwbpnfcVBbrt6BJ6erPgkA
-Message-ID: <CAPYmKFvLSri1-PKSHfgG03w3zLbp9w2FaY7v5-jM__LufqPf2Q@mail.gmail.com>
-Subject: Re: [External] Re: [PATCH v2 0/4] riscv: Add Zalasr ISA extension support
-To: Andrea Parri <parri.andrea@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	alex@ghiti.fr, ajones@ventanamicro.com, brs@rivosinc.com, 
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/3] pinctrl: qcom: Add SDM660 LPASS LPI TLMM
+To: setotau@yandex.ru, Bjorn Andersson <andersson@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Richard Acayan <mailingradian@gmail.com>
+References: <20250828-sdm660-lpass-lpi-v4-0-af4afdd52965@yandex.ru>
+ <20250828-sdm660-lpass-lpi-v4-3-af4afdd52965@yandex.ru>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250828-sdm660-lpass-lpi-v4-3-af4afdd52965@yandex.ru>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b82a3f cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=qC_FGOx9AAAA:8 a=pGLkceISAAAA:8
+ a=vaJtXVxTAAAA:8 a=30MhwtsY_Fg2L1vrzq4A:9 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=fsdK_YakeE02zTmptMdW:22
+X-Proofpoint-GUID: JtUbIcCOc-NPw77HMss4ld6MHoNy-E0Q
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX2jdFfcN6teQO
+ 7g9G9IzGIaa3DVyrDurYeRs3bYFc8Q+GMGKTds0RmHG+jFwQuiOkzeY/sKIsN0YwqemLoRVZLml
+ y89uuoidOGyHx8j3PjNNxTUesAzBdewR6O++2Ezc2ZArDxsYpM34Y7/yuRHq2qvOPNGsItzQUbw
+ +V786zHi16pZxfWYGSQSrsfIMaUejbUFYIAZV6qtaBLBu5+dgzRs95EljaNgPJimDQVIbn+iJdv
+ i+jfqSfnrt3QAXfreCvctAhX1U2ppd8cS3/d3EISVgLShpZ10GmtKSiQq7ma2gdLXme3bL0EVuB
+ g/Aki3HyJgEh3sHTEcbUQURS5ojKzQicuNfMvAsh2HvEJDxo2W4o/qvvtw19BNVXNnArW1mU35U
+ 7hThRn5B
+X-Proofpoint-ORIG-GUID: JtUbIcCOc-NPw77HMss4ld6MHoNy-E0Q
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_06,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-Hi Andrea,
+On 8/28/25 9:23 PM, Nickolay Goppen via B4 Relay wrote:
+> From: Richard Acayan <mailingradian@gmail.com>
+> 
+> The Snapdragon 660 has a Low-Power Island (LPI) TLMM for configuring
+> pins related to audio. Add the driver for this.
+> Also, this driver uses predefined pin_offsets for each pin taken from
+> downstream driver, which does not follow the usual 0x1000 distance
+> between pins and uses an array with predefined offsets that do not
+> follow any regular pattern [1].
+> 
+> [1] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/drivers/pinctrl/qcom/pinctrl-lpi.c#L107
+> 
+> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
+> Co-developed-by: Nickolay Goppen <setotau@yandex.ru>
+> Signed-off-by: Nickolay Goppen <setotau@yandex.ru>
+> ---
 
-Great catch! Thanks a lot for your review.
+[...]
 
-The problem comes from the mixed use of acquire/release semantics via
-fence and via real ld.aq/sd.rl. I would prefer your method (a). The
-existing atomic acquire/release functions' implementation can be
-further modified to amocas.sq/amocas.rl/lr.aq/sc.rl. I will send the
-next version after I finish it and hope you can help with review then.
+> +	/* The function names of the PDM GPIOs are derived from SDM670 */
+> +	LPI_PINGROUP_OFFSET(18, LPI_NO_SLEW, pdm_clk, mclk0, _, _, 0x8000),
+> +	LPI_PINGROUP_OFFSET(19, LPI_NO_SLEW, pdm_sync, _, _, _, 0x8010),
+> +	LPI_PINGROUP_OFFSET(20, LPI_NO_SLEW, pdm_2_gpios, _, _, _, 0x8020),
 
-Best regards,
-Xu Lu
+pdm_tx
 
-On Wed, Sep 3, 2025 at 12:59=E2=80=AFAM Andrea Parri <parri.andrea@gmail.co=
-m> wrote:
->
-> > Xu Lu (4):
-> >   riscv: add ISA extension parsing for Zalasr
-> >   dt-bindings: riscv: Add Zalasr ISA extension description
-> >   riscv: Instroduce Zalasr instructions
-> >   riscv: Use Zalasr for smp_load_acquire/smp_store_release
->
-> Informally put, our (Linux) memory consistency model specifies that any
-> sequence
->
->   spin_unlock(s);
->   spin_lock(t);
->
-> behaves "as it provides at least FENCE.TSO ordering between operations
-> which precede the UNLOCK+LOCK sequence and operations which follow the
-> sequence".  Unless I missing something, the patch set in question breaks
-> such ordering property (on RISC-V): for example, a "release" annotation,
-> .RL (as in spin_unlock() -> smp_store_release(), after patch #4) paired
-> with an "acquire" fence, FENCE R,RW (as could be found in spin_lock() ->
-> atomic_try_cmpxchg_acquire()) do not provide the specified property.
->
-> I _think some solutions to the issue above include:
->
->  a) make sure an .RL annotation is always paired with an .AQ annotation
->     and viceversa an .AQ annotation is paired with an .RL annotation
->     (this approach matches the current arm64 approach/implementation);
->
->  b) on the opposite direction, always pair FENCE R,RW (or occasionally
->     FENCE R,R) with FENCE RW,W (this matches the current approach/the
->     current implementation within riscv);
->
->  c) mix the previous two solutions (resp., annotations and fences), but
->     make sure to "upgrade" any releases to provide (insert) a FENCE.TSO.
->
-> (a) would align RISC-V and ARM64 (which is a good thing IMO), though it
-> is probably the most invasive approach among the three approaches above
-> (requiring certain changes to arch/riscv/include/asm/{cmpxchg,atomic}.h,
-> which are already relatively messy due to the various ZABHA plus ZACAS
-> switches).  Overall, I'm not too exited at the idea of reviewing any of
-> those changes, but if the community opts for it, I'll almost definitely
-> take a closer look with due calm.  ;-)
->
->   Andrea
+> +	LPI_PINGROUP_OFFSET(21, LPI_NO_SLEW, pdm_rx, _, _, _, 0x8030),
+> +	LPI_PINGROUP_OFFSET(22, LPI_NO_SLEW, comp_rx, _, _, _, 0x8040),
+> +	LPI_PINGROUP_OFFSET(23, LPI_NO_SLEW, pdm_rx, _, _, _, 0x8050),
+> +	LPI_PINGROUP_OFFSET(24, LPI_NO_SLEW, comp_rx, _, _, _, 0x8060),
+> +	LPI_PINGROUP_OFFSET(25, LPI_NO_SLEW, pdm_rx, _, _, _, 0x8070),
+> +	LPI_PINGROUP_OFFSET(26, LPI_NO_SLEW, dmic12, _, _, _, 0x9000),
+
+dmic1_clk
+
+> +	LPI_PINGROUP_OFFSET(27, LPI_NO_SLEW, dmic34, _, _, _, 0x9010),
+
+dmic1_data
+
+> +	LPI_PINGROUP_OFFSET(28, LPI_NO_SLEW, dmic12, _, _, _, 0xa000),
+
+dmic2_clk
+
+> +	LPI_PINGROUP_OFFSET(29, LPI_NO_SLEW, dmic34, _, _, _, 0xa010),
+
+dmic2_data
+
+FWIW there are (multiple) additional functions for each of these, but
+I would expect most remained unused (or perhaps unusable even)
+
+Konrad
 
