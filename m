@@ -1,67 +1,61 @@
-Return-Path: <devicetree+bounces-211902-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211903-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2BF0B41419
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:05:21 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E16B41439
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:16:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9E4F31B2726D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:05:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 336905E6849
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:16:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490352D2382;
-	Wed,  3 Sep 2025 05:05:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2B32D5939;
+	Wed,  3 Sep 2025 05:16:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="TFWlqiIu"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="O6ZwNqm2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBDCC32F775;
-	Wed,  3 Sep 2025 05:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6DBAD221DB0;
+	Wed,  3 Sep 2025 05:16:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756875916; cv=none; b=dzn7zqKzswIDMl+ON1JfZIOvgwjh600mnAD5NI+C7ENVP7zMcPNbe4tUwJp5ZUBT+cPeW+77zyTvpXThtohNQb49QPqBV2dKgiWh9HhudHqcegId9dCM/nniVRLPy0rcsqMYSEWSGS2cuxh5T379M5hlganexX3oVDdvdanxXQI=
+	t=1756876598; cv=none; b=SvSGHW2IrogHslBF2P+t9HezFEpS3LYrQloAxcrGitVquBa1wBSeA/Qrk/ZAtbyDZ5dm8/J8ckylCefCCdy23TCyalw2uvNeKwaHvcPhVMlpuBZFNI8lCPjEcxRZnYRFEu7y1vXQjIpSjQlICkwUKRBcGxz4imtEdIB7W2BhTro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756875916; c=relaxed/simple;
-	bh=z/aNFcuI5ER/zUmHNbZkEITb8B+mXfHQs+aVMjxDIgQ=;
+	s=arc-20240116; t=1756876598; c=relaxed/simple;
+	bh=VxqW1+HVqZt8tNdYWLOekx1h+1GGvAsmtTB9R2oJ/V0=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KW40dAdHeaS8ythcgwziX5RtdSpj5E4DIvA4CxR5mTndV+4XjMujtyy0W0BuH2rNl9fxJ5NjhhwUghsZMb4so+636PC1xIpL1RjTY7uHaPDnhPywGvGgN4F3Dysqy19/m2/r+501DCgJhLF0EodFV3ag46XrL3d1ESyho/g8HsU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=TFWlqiIu; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=MMOgMhBZY5aH3frjceRX/zKkPXmdlS/Kx6hQDLfn101eRSI4PHba7kjiCOS43gs23GQdajQ6ih9b+r1GR/y2x52OexhF06H0mh1ZSN6ishhXefnk7o6WGEzTnIeHJq+Q9uOI5NHZX11to0NgRbnjbIJ5nbO9Y3jrMDnaEew4aaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=O6ZwNqm2; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1756875911;
-	bh=z/aNFcuI5ER/zUmHNbZkEITb8B+mXfHQs+aVMjxDIgQ=;
+	d=codeconstruct.com.au; s=2022a; t=1756876594;
+	bh=VxqW1+HVqZt8tNdYWLOekx1h+1GGvAsmtTB9R2oJ/V0=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=TFWlqiIuq/EgRqWg5UZI7aD6HRJWbNSWozu+PymRFHSv2k6UeOld6m0jYPcxjava0
-	 Vugz8yzOCBq02zTe/CBiKirpQyvEce/jcBYOO24thW8g/Dly1TIVEUXM2RqY6JHy0y
-	 EKKRfbTP67sSiWeSptiKYQFGu7qTMz1ve1+9LKY4lnx0K4HjcPG+c24cRag9nM9FBC
-	 g4djJ97GqjQm3aYAFwVlN42Owr329lTtiWBGHQXg9dJDoXHmfyo4+SwbxR07FLtbjf
-	 g2guGt2m4+Rg7dpn+eFMvcpn98t3W6Ki/oo39zxVt0+LCFmVZhAqecTXmacPRl31Vt
-	 k9fwlk2bwV7Ew==
+	b=O6ZwNqm2xWP5UVmWTAh/vmC9/Iv0DHsjJ9LS1ak4NXOYFWnbcjDIZ6vNXkLlC9YEg
+	 OLljPDxHBzYs1mptfy4DnBLEAnujJ8vbmmpnd3Gnd3GunjnkGx9XPJ/zp3JhlMCIKc
+	 yblsFpJb/kETW9SUoNODv8q7sxvz7djFActkyYveGNIxVIySrtM6I0KNxkU1ksGdNY
+	 B1VEHcsBShr+T3wPmm1J5oORFNBY6ehYLXRBfFl+trkrxjgMyAq2pcuB+xzHn1Qmeq
+	 tOnKep1DBIeJsDbMgEQFeSMYD5iBK1rPyzbsYiTZiSAIXOOn61gF21VU6NBelnJGWk
+	 UrOpZtsgrpQRA==
 Received: from [192.168.68.113] (unknown [180.150.112.213])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 45A266E02C;
-	Wed,  3 Sep 2025 13:05:03 +0800 (AWST)
-Message-ID: <9e3d52078b0ad9da6015229d6f39cb013a4cffbd.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v11 0/3] ARM: dts: Add support for Meta Clemente BMC
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BF2DB6E02C;
+	Wed,  3 Sep 2025 13:16:33 +0800 (AWST)
+Message-ID: <ab4c3c62e3b48dfac1bcce15e0aea402d66bc198.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v2 0/4] Revise Meta Santabarbara devicetree
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Leo Wang <leo.jt.wang@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Kees Cook
- <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,  "Guilherme G. Piccoli"
- <gpiccoli@igalia.com>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus
- Damm <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-hardening@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
-	leo.jt.wang@fii-foxconn.com, george.kw.lee@fii-foxconn.com, 
-	bruce.jy.hung@fii-foxconn.com, Conor Dooley <conor.dooley@microchip.com>
-Date: Wed, 03 Sep 2025 14:35:02 +0930
-In-Reply-To: <20250813-add-support-for-meta-clemente-bmc-v11-0-8970d41f88b0@fii-foxconn.com>
-References: 
-	<20250813-add-support-for-meta-clemente-bmc-v11-0-8970d41f88b0@fii-foxconn.com>
+To: Fred Chen <fredchen.openbmc@gmail.com>
+Cc: "Rob Herring (Arm)" <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+	Dooley <conor+dt@kernel.org>, linux-aspeed@lists.ozlabs.org, 
+	linux-arm-kernel@lists.infradead.org, Joel Stanley <joel@jms.id.au>
+Date: Wed, 03 Sep 2025 14:46:33 +0930
+In-Reply-To: <175529259974.3212367.16366822597087067588.robh@kernel.org>
+References: <20250814131706.1567067-1-fredchen.openbmc@gmail.com>
+	 <175529259974.3212367.16366822597087067588.robh@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.46.4-2 
@@ -72,27 +66,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Leo,
+Hi Fred,
 
-On Wed, 2025-08-13 at 18:04 +0800, Leo Wang wrote:
-> This series adds initial support for the Meta Clemente BMC based on
-> the
-> ASPEED AST2600 SoC.
+On Fri, 2025-08-15 at 16:19 -0500, Rob Herring (Arm) wrote:
 >=20
-> Patch 1 documents the compatible string.
-> Patch 2 Add pinctrl nodes for NCSI3 and NCSI4.
-> Patch 3 adds the device tree for the board.
+> On Thu, 14 Aug 2025 21:16:56 +0800, Fred Chen wrote:
+> > Summary:
+> > Revise linux device tree entry related to Meta (Facebook) Santabarbara.
+> >=20
+> > Change log
+> > v1 -> v2:
+> > =C2=A0 - add 'bmc_ready_noled' LED and update commit message
+> > =C2=A0 - add sgpio line name for leak detection
+> > v1:
+> > =C2=A0 - add sensor nodes for extension board
+> > =C2=A0 - add mctp node for NIC
+> > =C2=A0 - adjust LED configuration
+> >=20
+> > Fred Chen (4):
+> > =C2=A0 ARM: dts: aspeed: santabarbara: add sensor support for extension
+> > =C2=A0=C2=A0=C2=A0 boards
+> > =C2=A0 ARM: dts: aspeed: santabarbara: Enable MCTP for frontend NIC
+> > =C2=A0 ARM: dts: aspeed: santabarbara: Adjust LED configuration
+> > =C2=A0 ARM: dts: aspeed: santabarbara: add sgpio line name for leak det=
+ection
+> >=20
+> > =C2=A0.../aspeed-bmc-facebook-santabarbara.dts=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 | 857 +++++++++++++++++-
+> > =C2=A01 file changed, 853 insertions(+), 4 deletions(-)
+> >=20
+> > --
+> > 2.49.0
+> >=20
+> >=20
+> >=20
 >=20
-> Signed-off-by: Leo Wang <leo.jt.wang@gmail.com>
-> ---
-> Changes in v11:
-> - Rebased on bmc/aspeed/dt as requested.
-> - Link to v10:
-> https://lore.kernel.org/r/20250801-add-support-for-meta-clemente-bmc-v10-=
-0-c1c27082583d@fii-foxconn.com
+>=20
+> My bot found new DTB warnings on the .dts files added or changed in this
+> series.
+>=20
+> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+> are fixed by another series. Ultimately, it is up to the platform
+> maintainer whether these warnings are acceptable or not. No need to reply
+> unless the platform maintainer has comments.
+>=20
+> If you already ran DT checks and didn't see these error(s), then
+> make sure dt-schema is up to date:
+>=20
+> =C2=A0 pip3 install dtschema --upgrade
+>=20
+>=20
+> This patch series was applied (using b4) to base:
+> =C2=A0Base: attempting to guess base-commit...
+> =C2=A0Base: tags/v6.17-rc1-9-g8e4021078863 (exact match)
+>=20
+> If this is not the correct base, please add 'base-commit' tag
+> (or use b4 which does this automatically)
+>=20
+> New warnings running 'make CHECK_DTBS=3Dy for arch/arm/boot/dts/aspeed/' =
+for 20250814131706.1567067-1-fredchen.openbmc@gmail.com:
+>=20
+> arch/arm/boot/dts/aspeed/aspeed-bmc-facebook-santabarbara.dtb: mctp@10 (m=
+ctp-i2c-controller): 'label' does not match any of the regexes: '^pinctrl-[=
+0-9]+$'
+> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0from schema $id: http://d=
+evicetree.org/schemas/net/mctp-i2c-controller.yaml#
+>=20
 
-I've applied v11, after tidying up some whitespace and the subject of
-patch 2/3.
+Can you please address this warning and send v3? Check that it no-
+longer appears after you fix the dts. You can test it with the command
+suggested above. More thoughts here:
+
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sourc=
+es-with-the-devicetree-schema/
 
 Thanks,
 
