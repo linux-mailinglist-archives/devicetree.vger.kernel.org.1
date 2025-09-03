@@ -1,810 +1,257 @@
-Return-Path: <devicetree+bounces-211882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0619B411A4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 03:07:03 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBF99B41208
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 03:45:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 12F9B1B25009
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 01:07:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 728687A918A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 01:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CF2D1C8611;
-	Wed,  3 Sep 2025 01:06:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 084881A5B9E;
+	Wed,  3 Sep 2025 01:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nvgwxExl"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="BAmTMmeY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8287C1DB375;
-	Wed,  3 Sep 2025 01:06:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EF0532F77E
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 01:45:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756861611; cv=none; b=cijJC8/s+uFblBjQ1uSEfQyj6aNvfECqsg1yrIeesDMxh9K2Ydq1V0zw0Wv9v7xznpvRVYmzw2Tnt8VV4vLjztSbstSOWFiDE6WAiOlfx2bhiwu0n6cLbItVAAEo5yo4fJRBsVUIqTWzIcByVLCXK6HfY7PkLka2kBYPBPXsYxw=
+	t=1756863924; cv=none; b=aKDb/aBkCuqVKi6FfB13yFs+LoH3iWDEWO2NZ6REwTaBgH/1Vk1yyWrjxcWVASEcbKH2ngiXV7rwcF9AAlHqRWeOTtXLZ1Nn/Z9wGGKNLzjpxbCsP6mo+kN9cSeQj8WOVSoP+VbmGafEpsOzEpX/1IC1MS1cuqq/Vl0sHIyC/jc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756861611; c=relaxed/simple;
-	bh=ILyNxnX+zaviW9yPGTfGQQ78ljmYIOmhsBQzVdhrdR4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dMt6XCYAut6MOB4+DQlU7q/ojhZh/mX5kv/nxSduh3WoVkMaX+n5jYRCnRiT1w/jy9RwPWsCTWzwIRKwhSPlPNmO9fbN7zFR6cCtSs3ZTBVwZdXRSnNxddCf1KPX67LMXbN58olmFPbiZGEvlhgJjln4qp6aoOyAtL5HkK1ubdo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nvgwxExl; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756861608; x=1788397608;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ILyNxnX+zaviW9yPGTfGQQ78ljmYIOmhsBQzVdhrdR4=;
-  b=nvgwxExl2QpQ7LeXxlGkoFxhW5BIGah+3r4SbB1uJIkJAH7+Gfwyrb2T
-   DzA9bjNSBGXeRc/h4Ccea+efw0L2ASmOZ0Dt0Rr8+9lKKb836nSFqrHrs
-   apQExf3FmuKUqOa8XdhzxfcxI7IgQSbORi9Y6aMvJpNZW2pZADCu9pw0F
-   O/glCcjAGcaPkmq/sJKguaZVT0ppdM0XpzwTbdz/X2tq4lG27jxAaQtGi
-   cS+NQm0d0YnRgqoy3E9LrvRGixpl7SDdoBQYG1O+Jl6E8UluQLKz8IRLq
-   7Nyr14fNmXCQ3f+twx6unHcN33YFLqNJxDMGB0Mp2Kep39NoyBlduYljQ
-   Q==;
-X-CSE-ConnectionGUID: V+vGJZbQTdOvTXzqK8xgvw==
-X-CSE-MsgGUID: Pf718goxSWGDg+hKKZromQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11541"; a="76764087"
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; 
-   d="scan'208";a="76764087"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Sep 2025 18:06:47 -0700
-X-CSE-ConnectionGUID: xW6JH8z7Tya6Zg9i3ibbzw==
-X-CSE-MsgGUID: f/DzJgRLQ2q2c/PrXY15zQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,233,1751266800"; 
-   d="scan'208";a="176698876"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 02 Sep 2025 18:06:43 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1utbxM-0003DH-16;
-	Wed, 03 Sep 2025 01:06:38 +0000
-Date: Wed, 3 Sep 2025 09:06:18 +0800
-From: kernel test robot <lkp@intel.com>
-To: Xu Lu <luxu.kernel@bytedance.com>, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com,
-	aou@eecs.berkeley.edu, alex@ghiti.fr, ajones@ventanamicro.com,
-	brs@rivosinc.com
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-	apw@canonical.com, joe@perches.com,
-	Xu Lu <luxu.kernel@bytedance.com>
-Subject: Re: [PATCH v2 4/4] riscv: Use Zalasr for
- smp_load_acquire/smp_store_release
-Message-ID: <202509030832.0uHQ24ec-lkp@intel.com>
-References: <20250902042432.78960-5-luxu.kernel@bytedance.com>
+	s=arc-20240116; t=1756863924; c=relaxed/simple;
+	bh=FwZLZxIxYTadK2Kduz15dFpZ/khEoBz4UzAbFb6JWcA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BWD2O0+1mQ6aSbw1AqXjjygOSQngmKaPVCggjBiTA7BrbaUG94ULg5eyqlg22rrP3Cx4pRIcSqamPwmKMwLyAFoR8B0yNBAxQspK1ZqqCFBjt1kFu5K/fVt7An8aeOA07YPhcuUYpJB8HLY/umdoSFx7ELHXEVISgP0D57w9qgc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=BAmTMmeY; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 582EqWw9004463
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 01:45:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vSKVIY6OYbeZ9o9Z+5cggaWcqnF8AUnxpa/ouOb+evY=; b=BAmTMmeYz/zLdI26
+	UdP/zJesx7wVFl//F4OTnvJ4Qt30IgchreDp84XnylpgCqegWdElUozRk4dlEUHp
+	meAMA8ilw6GORIgES7lMb1L/s7h0NoHpOJ0fm1l7YUtjL9qfe9J504KUS4toI2Ro
+	H9k+KlNTE6DZB3SDHDoSjEDtolMOGourju4JshBAohG8NlHMx3Z2UIv0R2hdLcA7
+	johUpBTRzkHWq6aJ24MsQl2P6/a3O2xnZ8is4kMzLrGJLOZzdyzGfYbbIzt9galJ
+	NzyzdiGxpEG7eNQSIOqxL0UZ/MziNK/xxrbFW+amR4bQGXLCFWtbwcntg2/9iU7K
+	3VO05g==
+Received: from mail-pg1-f197.google.com (mail-pg1-f197.google.com [209.85.215.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjhrd7-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 01:45:21 +0000 (GMT)
+Received: by mail-pg1-f197.google.com with SMTP id 41be03b00d2f7-b4fa4be5063so305977a12.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 18:45:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756863921; x=1757468721;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vSKVIY6OYbeZ9o9Z+5cggaWcqnF8AUnxpa/ouOb+evY=;
+        b=fxM3YPg51MkW7z24moT7Nr44JzOAthuiVrt0rfyEmWMYkTQuOtbokSj2S4ufqslDSY
+         LLpJG8EPlFTFUmNodTQlaP9oAt+qXMy7gcanITvWXREWoLFokCH0gWOdEI1irwaM9nv4
+         L9STqPkj8LZXbX/U4vMXJfB9DLOiajEzxke2luFLxYJ5uSQBWRA5MSOGuum43q8cDAiP
+         JkyN7o9o4Ux7grosULX2+lCK5QxlRap8wDptGjBkPgd7Z905llhl7N+Dh/va9gfJoxHf
+         LQpUxsIwvezUi7gLrCIhuOwliQJsWuay/yTzFutBYAitICtL9vKqUrl9LWkO8sfhTTTz
+         tqUA==
+X-Forwarded-Encrypted: i=1; AJvYcCUjHZJcwtMb4CZIxadI+w6jMD+rkcLN+wgZyr+DMFG7FB/jyluN08nmb4LSkMRC5faVDdmXFsGOK8ko@vger.kernel.org
+X-Gm-Message-State: AOJu0YyuEY2hch9/x727PS9tvvprQQn4lp5C5HL/ki/Nvgk8wunc5wd2
+	graFOUEFTC3GhVAYhpT+weyBY0aDFDfBoNtfvZ4G3SdoYTNFyi6a0+km+68gnfw0bRqUmWPZjKt
+	2UY5A+Nfr3zfdDwCxUnNKb1XTZV+Tia3DFCHkBpu/EPqBNqXhSEAtCFbJr4XAfasz
+X-Gm-Gg: ASbGncs3emTuwFXnfSO3WYxtfqJwA6uEf+k85aapi5zjoEUAN5s8CcDdkEDXBiCpXK0
+	v/cZ1KhjPXiPHmn1TEINnuOciWsY7ZFpi+Z0/IMpvvd1hHyg8QC5a2dJZo+uLH3Li85Q8zeGjbV
+	ySroR5gFHN0C5h7JSb7aVqoU5yKzOy2Bycoa5Ls39XcfJ0rrpVWYyKv5Gh94GUakgm7+A3ZLP8Q
+	x5cvd132y+TJJW1PBZFZGfv7bWPUdVAUybgNlL6JNHg4OE2/h94jL2BXu9gCAV3kj4dfTKkTg5I
+	mrKDHmnTnG8rNmoFYOLuOOQmLwH8cktkpotfVxQlM/fUJxYUScg8TMv/AFI+D3DDudDIYh46KTu
+	nKQ+Ozt58d2lSsW6UO+Rf662SqfW+c4n4C8U=
+X-Received: by 2002:a05:6a20:2447:b0:232:9530:2300 with SMTP id adf61e73a8af0-243d6e00b1cmr18787183637.18.1756863920619;
+        Tue, 02 Sep 2025 18:45:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGPcu7WQqWP/xkbBlXV4L0CiyF0ufiS+LD89LO/RgiStFAaC6nkWqXiyzMSSMmTsSRTo8KIkA==
+X-Received: by 2002:a05:6a20:2447:b0:232:9530:2300 with SMTP id adf61e73a8af0-243d6e00b1cmr18787140637.18.1756863920013;
+        Tue, 02 Sep 2025 18:45:20 -0700 (PDT)
+Received: from [10.249.10.141] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4f992d3de9sm2574010a12.14.2025.09.02.18.45.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 18:45:19 -0700 (PDT)
+Message-ID: <52c1f77a-b3b9-4c4f-90b8-1ff2ac042724@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 09:45:14 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250902042432.78960-5-luxu.kernel@bytedance.com>
-
-Hi Xu,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.17-rc4 next-20250902]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Xu-Lu/riscv-add-ISA-extension-parsing-for-Zalasr/20250902-123357
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250902042432.78960-5-luxu.kernel%40bytedance.com
-patch subject: [PATCH v2 4/4] riscv: Use Zalasr for smp_load_acquire/smp_store_release
-config: riscv-randconfig-002-20250903 (https://download.01.org/0day-ci/archive/20250903/202509030832.0uHQ24ec-lkp@intel.com/config)
-compiler: riscv64-linux-gcc (GCC) 9.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250903/202509030832.0uHQ24ec-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509030832.0uHQ24ec-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   In file included from include/asm-generic/bitops/generic-non-atomic.h:7,
-                    from include/linux/bitops.h:28,
-                    from include/linux/thread_info.h:27,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/riscv/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/mmzone.h:8,
-                    from include/linux/gfp.h:7,
-                    from include/linux/mm.h:7,
-                    from arch/riscv/kernel/asm-offsets.c:8:
-   include/linux/list.h: In function 'list_empty_careful':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/list.h:409:27: note: in expansion of macro 'smp_load_acquire'
-     409 |  struct list_head *next = smp_load_acquire(&head->next);
-         |                           ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/list.h:409:27: note: in expansion of macro 'smp_load_acquire'
-     409 |  struct list_head *next = smp_load_acquire(&head->next);
-         |                           ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/list.h:409:27: note: in expansion of macro 'smp_load_acquire'
-     409 |  struct list_head *next = smp_load_acquire(&head->next);
-         |                           ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/list.h:409:27: note: in expansion of macro 'smp_load_acquire'
-     409 |  struct list_head *next = smp_load_acquire(&head->next);
-         |                           ^~~~~~~~~~~~~~~~
-   In file included from include/asm-generic/bitops/generic-non-atomic.h:7,
-                    from include/linux/bitops.h:28,
-                    from include/linux/thread_info.h:27,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/riscv/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/mmzone.h:8,
-                    from include/linux/gfp.h:7,
-                    from include/linux/mm.h:7,
-                    from arch/riscv/kernel/asm-offsets.c:8:
-   include/linux/atomic/atomic-arch-fallback.h: In function 'raw_atomic_read_acquire':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:479:9: note: in expansion of macro 'smp_load_acquire'
-     479 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:479:9: note: in expansion of macro 'smp_load_acquire'
-     479 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:479:9: note: in expansion of macro 'smp_load_acquire'
-     479 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:479:9: note: in expansion of macro 'smp_load_acquire'
-     479 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h: In function 'raw_atomic64_read_acquire':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:2605:9: note: in expansion of macro 'smp_load_acquire'
-    2605 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:2605:9: note: in expansion of macro 'smp_load_acquire'
-    2605 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:2605:9: note: in expansion of macro 'smp_load_acquire'
-    2605 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/atomic/atomic-arch-fallback.h:2605:9: note: in expansion of macro 'smp_load_acquire'
-    2605 |   ret = smp_load_acquire(&(v)->counter);
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h: In function '__seqprop_sequence':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:211:9: note: in expansion of macro 'smp_load_acquire'
-     211 |  return smp_load_acquire(&s->sequence);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:211:9: note: in expansion of macro 'smp_load_acquire'
-     211 |  return smp_load_acquire(&s->sequence);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:211:9: note: in expansion of macro 'smp_load_acquire'
-     211 |  return smp_load_acquire(&s->sequence);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:211:9: note: in expansion of macro 'smp_load_acquire'
-     211 |  return smp_load_acquire(&s->sequence);
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h: In function '__seqprop_raw_spinlock_sequence':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:226:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     226 | SEQCOUNT_LOCKNAME(raw_spinlock, raw_spinlock_t,  false,    raw_spin)
-         | ^~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h: In function '__seqprop_spinlock_sequence':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:227:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     227 | SEQCOUNT_LOCKNAME(spinlock,     spinlock_t,      __SEQ_RT, spin)
-         | ^~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h: In function '__seqprop_rwlock_sequence':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:228:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     228 | SEQCOUNT_LOCKNAME(rwlock,       rwlock_t,        __SEQ_RT, read)
-         | ^~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h: In function '__seqprop_mutex_sequence':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:160:17: note: in expansion of macro 'smp_load_acquire'
-     160 |  unsigned seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:173:9: note: in expansion of macro 'smp_load_acquire'
-     173 |   seq = smp_load_acquire(&s->seqcount.sequence);  \
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/seqlock.h:229:1: note: in expansion of macro 'SEQCOUNT_LOCKNAME'
-     229 | SEQCOUNT_LOCKNAME(mutex,        struct mutex,    true,     mutex)
-         | ^~~~~~~~~~~~~~~~~
-   In file included from include/asm-generic/bitops/generic-non-atomic.h:7,
-                    from include/linux/bitops.h:28,
-                    from include/linux/thread_info.h:27,
-                    from include/asm-generic/preempt.h:5,
-                    from ./arch/riscv/include/generated/asm/preempt.h:1,
-                    from include/linux/preempt.h:79,
-                    from include/linux/spinlock.h:56,
-                    from include/linux/mmzone.h:8,
-                    from include/linux/gfp.h:7,
-                    from include/linux/mm.h:7,
-                    from arch/riscv/kernel/asm-offsets.c:8:
-   include/linux/key.h: In function 'key_read_state':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/key.h:459:9: note: in expansion of macro 'smp_load_acquire'
-     459 |  return smp_load_acquire(&key->state);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/key.h:459:9: note: in expansion of macro 'smp_load_acquire'
-     459 |  return smp_load_acquire(&key->state);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/key.h:459:9: note: in expansion of macro 'smp_load_acquire'
-     459 |  return smp_load_acquire(&key->state);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/key.h:459:9: note: in expansion of macro 'smp_load_acquire'
-     459 |  return smp_load_acquire(&key->state);
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/fs.h: In function 'i_size_read':
->> arch/riscv/include/asm/barrier.h:96:3: error: read-only variable 'val' used as 'asm' output
-      96 |   asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/fs.h:988:9: note: in expansion of macro 'smp_load_acquire'
-     988 |  return smp_load_acquire(&inode->i_size);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:102:3: error: read-only variable 'val' used as 'asm' output
-     102 |   asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/fs.h:988:9: note: in expansion of macro 'smp_load_acquire'
-     988 |  return smp_load_acquire(&inode->i_size);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:108:3: error: read-only variable 'val' used as 'asm' output
-     108 |   asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/fs.h:988:9: note: in expansion of macro 'smp_load_acquire'
-     988 |  return smp_load_acquire(&inode->i_size);
-         |         ^~~~~~~~~~~~~~~~
-   arch/riscv/include/asm/barrier.h:114:3: error: read-only variable 'val' used as 'asm' output
-     114 |   asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n", \
-         |   ^~~
-   include/asm-generic/barrier.h:176:29: note: in expansion of macro '__smp_load_acquire'
-     176 | #define smp_load_acquire(p) __smp_load_acquire(p)
-         |                             ^~~~~~~~~~~~~~~~~~
-   include/linux/fs.h:988:9: note: in expansion of macro 'smp_load_acquire'
-     988 |  return smp_load_acquire(&inode->i_size);
-         |         ^~~~~~~~~~~~~~~~
-   make[3]: *** [scripts/Makefile.build:182: arch/riscv/kernel/asm-offsets.s] Error 1 shuffle=1073380763
-   make[3]: Target 'prepare' not remade because of errors.
-   make[2]: *** [Makefile:1282: prepare0] Error 2 shuffle=1073380763
-   make[2]: Target 'prepare' not remade because of errors.
-   make[1]: *** [Makefile:248: __sub-make] Error 2 shuffle=1073380763
-   make[1]: Target 'prepare' not remade because of errors.
-   make: *** [Makefile:248: __sub-make] Error 2 shuffle=1073380763
-   make: Target 'prepare' not remade because of errors.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 2/2] arm64: dts: qcom: Add display support for QCS615
+ RIDE board
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        xiangxu.yin@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
+        Li Liu <li.liu@oss.qualcomm.com>
+References: <20250827-add-display-support-for-qcs615-platform-v7-0-917c3de8f9ca@oss.qualcomm.com>
+ <20250827-add-display-support-for-qcs615-platform-v7-2-917c3de8f9ca@oss.qualcomm.com>
+ <yutyrfb73wbxlweoq3mc6ezyqr56snzmznw3k6mcbc56fpfayg@3h5jwymlo3ol>
+ <0c2a4877-d63b-4650-b7d4-a06a2730c73c@oss.qualcomm.com>
+ <zoogyjua4l6e2bgsvxx7w26n6v2hwnp2pvkizzzsds3c6cgaag@2bvqdl2z5ds6>
+ <4913e937-3892-42ac-8145-cc9c2364242c@oss.qualcomm.com>
+ <snery6acisgvxtofsrbbqtpoirh5ffyha64lz4zekg3kvwrsyv@tfyydedc7ddm>
+ <ae4ef090-7edc-49f8-a964-090bb94ff097@oss.qualcomm.com>
+ <7sd3rvvwnte7dub6vuywi6np7rig547ugfpu626ruufx7psrds@igqdchhianju>
+Content-Language: en-US
+From: Fange Zhang <fange.zhang@oss.qualcomm.com>
+In-Reply-To: <7sd3rvvwnte7dub6vuywi6np7rig547ugfpu626ruufx7psrds@igqdchhianju>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b79db2 cx=c_pps
+ a=rz3CxIlbcmazkYymdCej/Q==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=-S4KrNXkqzQhTUXETMwA:9 a=QEXdDO2ut3YA:10
+ a=bFCP_H2QrGi7Okbo017w:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: C1Z5CVNRxKaxJsv2XoLA-0UUwhQ-s6ZX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX/Zqi1um+2iGr
+ p7TWqtK1r7jwMKsOY9bVE4VjXAdDTu5PRiDrr7qKv/tpLiYWR10IpJf9Vql+tIvSxsBgnLnCsZg
+ 2pEuT4U++j40qTHMzO5O+lvkjcsgIpSQISssmGB8/4T47NHemfibYcSVMVuDtJyWsG3kjhc2G6Z
+ 5+bOeiZPlTmJYi8AdP+0ckDfC5GO2tBQan7FC+T2stzCMibGXckY3gNPyq+b+MPPuT3b0NjB+JL
+ DXOL9CA/2vdX5hjsLzN4Qhj6XD3ZtQCTfuRJopHrBdq0m8L2l1OpN1GFYX9nyUOjHxWgYGlzZYO
+ bQ1hLtxtqUOwsd+VNZYou4EKDs3DQrtrUq87Q8zaxClKJMuDC4rreDOIUmy17rFL1PEorOzUuyN
+ 9fBpZLFJ
+X-Proofpoint-ORIG-GUID: C1Z5CVNRxKaxJsv2XoLA-0UUwhQ-s6ZX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-02_09,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
 
-vim +96 arch/riscv/include/asm/barrier.h
 
-    89	
-    90	#define __smp_load_acquire(p)							\
-    91	({										\
-    92		TYPEOF_UNQUAL(*p) val;							\
-    93		compiletime_assert_atomic_type(*p);					\
-    94		switch (sizeof(*p)) {							\
-    95		case 1:									\
-  > 96			asm volatile(ALTERNATIVE("lb %0, 0(%1)\t\nfence r, rw\t\n",	\
-    97						 LB_AQ(%0, %1) "\t\nnop\t\n",		\
-    98						 0, RISCV_ISA_EXT_ZALASR, 1)		\
-    99						 : "=r" (val) : "r" (p) : "memory");	\
-   100			break;								\
-   101		case 2:									\
-   102			asm volatile(ALTERNATIVE("lh %0, 0(%1)\t\nfence r, rw\t\n",	\
-   103						 LH_AQ(%0, %1) "\t\nnop\t\n",		\
-   104						 0, RISCV_ISA_EXT_ZALASR, 1)		\
-   105						 : "=r" (val) : "r" (p) : "memory");	\
-   106			break;								\
-   107		case 4:									\
-   108			asm volatile(ALTERNATIVE("lw %0, 0(%1)\t\nfence r, rw\t\n",	\
-   109						 LW_AQ(%0, %1) "\t\nnop\t\n",		\
-   110						 0, RISCV_ISA_EXT_ZALASR, 1)		\
-   111						 : "=r" (val) : "r" (p) : "memory");	\
-   112			break;								\
-   113		case 8:									\
-   114			asm volatile(ALTERNATIVE("ld %0, 0(%1)\t\nfence r, rw\t\n",	\
-   115						 LD_AQ(%0, %1) "\t\nnop\t\n",		\
-   116						 0, RISCV_ISA_EXT_ZALASR, 1)		\
-   117						 : "=r" (val) : "r" (p) : "memory");	\
-   118			break;								\
-   119		default:								\
-   120			__bad_size_call_parameter();					\
-   121			break;								\
-   122		}									\
-   123		val;									\
-   124	})
-   125	
+On 9/2/2025 9:56 PM, Dmitry Baryshkov wrote:
+> On Mon, Sep 01, 2025 at 11:23:28AM +0800, Fange Zhang wrote:
+>>
+>>
+>> On 8/28/2025 7:02 PM, Dmitry Baryshkov wrote:
+>>> On Thu, Aug 28, 2025 at 01:12:14PM +0800, Fange Zhang wrote:
+>>>>
+>>>>
+>>>> On 8/28/2025 12:41 PM, Dmitry Baryshkov wrote:
+>>>>> On Thu, Aug 28, 2025 at 10:57:41AM +0800, Fange Zhang wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 8/28/2025 4:01 AM, Dmitry Baryshkov wrote:
+>>>>>>> On Wed, Aug 27, 2025 at 09:08:39PM +0800, Fange Zhang wrote:
+>>>>>>>> From: Li Liu <li.liu@oss.qualcomm.com>
+>>>>>>>>
+>>>>>>>> Add display MDSS and DSI configuration for QCS615 RIDE board.
+>>>>>>>> QCS615 has a DP port, and DP support will be added in a later patch.
+>>>>>>>>
+>>>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+>>>>>>>> Signed-off-by: Li Liu <li.liu@oss.qualcomm.com>
+>>>>>>>> Signed-off-by: Fange Zhang <fange.zhang@oss.qualcomm.com>
+>>>>>>>> ---
+>>>>>>>>      arch/arm64/boot/dts/qcom/qcs615-ride.dts | 150 +++++++++++++++++++++++++++++++
+>>>>>>>>      1 file changed, 150 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/arch/arm64/boot/dts/qcom/qcs615-ride.dts b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>>>>>>> index e663343df75d59481786192cde647017a83c4191..f6e0c82cf85459d8989332497ded8b6ea3670c76 100644
+>>>>>>>> --- a/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>>>>>>> +++ b/arch/arm64/boot/dts/qcom/qcs615-ride.dts
+>>>>>>>> @@ -39,6 +39,76 @@ xo_board_clk: xo-board-clk {
+>>>>>>>>      		};
+>>>>>>>>      	};
+>>>>>>>> +	dp-dsi0-connector {
+>>>>>>>> +		compatible = "dp-connector";
+>>>>>>>> +		label = "DSI0";
+>>>>>>>> +		type = "mini";
+>>>>>>>> +
+>>>>>>>> +		port {
+>>>>>>>> +			dp_dsi0_connector_in: endpoint {
+>>>>>>>> +				remote-endpoint = <&dsi2dp_bridge_out>;
+>>>>>>>> +			};
+>>>>>>>> +		};
+>>>>>>>> +	};
+>>>>>>>> +
+>>>>>>>> +	vreg_12p0: vreg-12p0-regulator {
+>>>>>>>
+>>>>>>> I should be more carefull when doing reviews. I thought that it was
+>>>>>>> pointed out already and didn't some of the obvious things...
+>>>>>>>
+>>>>>>> First of all, the nodes are sorted. By the name, not by the label.
+>>>>>>> Second, there are already regulators in this file. Why are the new nodes
+>>>>>>> not following the existing pattern and why are they not placed at a
+>>>>>>> proper place?
+>>>>>>
+>>>>>> Initially, we referred to https://patchwork.kernel.org/project/linux-arm-msm/patch/20250604071851.1438612-3-quic_amakhija@quicinc.com/
+>>>>>> as a reference, but its node ordering seems a bit unconventional.
+>>>>>>
+>>>>>> Would this revised ordering be acceptable?
+>>>>>>
+>>>>>> ...
+>>>>>> + dp-dsi0-connector
+>>>>>>
+>>>>>> vreg_conn_1p8: regulator-conn-1p8
+>>>>>> vreg_conn_pa: regulator-conn-pa
+>>>>>> regulator-usb2-vbus
+>>>>>
+>>>>> So... Existing regulator nodes have the name of 'regulator-foo-bar'.
+>>>>>
+>>>>>>
+>>>>>> + vreg_12p0: vreg-12p0-regulator
+>>>>>> + vreg_1p0: vreg-1p0-regulator
+>>>>>> + vreg_1p8: vreg-1p8-regulator
+>>>>>> + vreg_3p0: vreg-3p0-regulator
+>>>>>> + vreg_5p0: vreg-5p0-regulator
+>>>>>
+>>>>> While yours use 'vreg-baz-regulator'. Why? Don't blindly c&p data from
+>>>>> other platforms.
+>>>>
+>>>> Got it, The revised format will be:
+>>>>
+>>>> + vreg_12p0: regulator-vreg-12p0
+>>>> + vreg_1p0: regulator-vreg-1p0
+>>>> + vreg_1p8: regulator-vreg-1p8
+>>>> + vreg_3p0: regulator-vreg-3p0
+>>>> + vreg_5p0: regulator-vreg-5p0
+>>>>
+>>>> Let me know if you have any further suggestions.
+>>>
+>>> What's the name of power rail in the schematics? vreg-Np0?
+>>
+>> I reviewed the Ride board schematics and found the following power rail
+>> mappings:
+>>
+>> VREG_1P0 -> DSI0_DVDD10 / DSI0_AVDD10 -> ANX7625 AVDD10 / DVDD10
+>> VREG_1P8 -> DSI0_AVDD18 -> ANX7625 AVDD18
+>> VREG_S4A_1P8 -> DSI0_DVDD18 -> ANX7625 DVDD18
+>> VIDEO_OUT_VREG_3P3 -> DSI0_AVDD30 -> ANX7625 AVDD30
+> 
+> Then it looks like regulator-vreg-NpM is okay
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Got it, I'll update v8 today following this format. Thanks!
+
+> 
+>>
+>> would the current approach also be acceptable?
+>> or we need configure the power supplies strictly according to this mapping.
+>> Appreciate your guidance.
+>>
+>>>
+>>>
+>>
+> 
+
 
