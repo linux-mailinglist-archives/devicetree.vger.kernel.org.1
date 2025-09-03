@@ -1,492 +1,114 @@
-Return-Path: <devicetree+bounces-211977-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211985-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48445B41693
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:32:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 390C3B416F0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:39:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BEAA95E4262
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:31:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED4EC7C1A0F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0562E2EF2;
-	Wed,  3 Sep 2025 07:29:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E1E22DEA87;
+	Wed,  3 Sep 2025 07:39:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="GwLESgLe"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qoDk0nl6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A297F2E1EF4
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:29:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFD362D73B2;
+	Wed,  3 Sep 2025 07:39:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756884599; cv=none; b=gSiwGmmBJy4zAyCZdcKWOgOwZsPcqt3ScZfLVuwn8wnZXPtMjp24r5/i6UJij3OF4Wqg7K4RZimWpyRXziMDiHuszV5nOEYzxgWXeD4wFPcIW8st+KVLpDnLp9xyrHMBxVJB6BK5BA550MpueWWQiNLBReHFQrcUkUabUIIqjyY=
+	t=1756885170; cv=none; b=WfBtjbpphX0IgXY4WYkGl8JBprfRVpTz0rk3tdbMhqeAHXezWuoXt48ccBwm0VgBboaX9Q5ypA5f/6o8fSABXReiGW7GOQ6I3/1xJeIz2xCkzYY/XygLEsIezY6q2COduw9SOIcxZJoyukTzO6wwkHF/7nLQpyLaq/DPunEECic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756884599; c=relaxed/simple;
-	bh=+giTEm0adYYpa8mNqgrwEqgmh4I2X5VhDzLDTgU5/Es=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=eDARYHStQTlqcqMxoNCEahlVV9/m4J/64SYZrWxIuhnMYPuBdRxK/67dwXrFrLLf5SFaka2tpuB7NNQwF+Q48dsCw5XFrWb1uz0wW7F09AYoNTTTdbXyNxXIc6qiFh1CIIHEiPtGwTGkar1/RR6m5AiIxjB9KSL2tTEFjuKrTOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=GwLESgLe; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250903072954epoutp031affdef44b22de0c3099b1123b237915~htTsOhwJ82590825908epoutp03J
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:29:54 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250903072954epoutp031affdef44b22de0c3099b1123b237915~htTsOhwJ82590825908epoutp03J
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756884594;
-	bh=UZHovCT0y+Y1M1P5CFLdOpLT99/IG7Uzy3gUbPfjVos=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=GwLESgLe3B+J3JAD36cPWCY8qNs7uLxK3a1MFdTfyaoR9tt8uj1Y5Trhsy2Xx0zV5
-	 g8GGB/cEo+VimA5615TWBCFJ+7vGfeO+VT8uKRfNF9MmS+8NjUNxa/5/M4KfLaj0I3
-	 aXTW4iF1pijxcC+WYxFIVP55KQNTZBG9gGu8KLXA=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250903072954epcas5p1a88a7b97ab50b787f7054a8f15771beb~htTrqTQa40696306963epcas5p1E;
-	Wed,  3 Sep 2025 07:29:54 +0000 (GMT)
-Received: from epcas5p4.samsung.com (unknown [182.195.38.86]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4cGvQ92XyFz6B9mG; Wed,  3 Sep
-	2025 07:29:53 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250903072952epcas5p38eaa34521236ad10d963783137748069~htTqPGBK-2832228322epcas5p3e;
-	Wed,  3 Sep 2025 07:29:52 +0000 (GMT)
-Received: from bose.samsungds.net (unknown [107.108.83.9]) by
-	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-	20250903072949epsmtip2677b22f283712236a68984197c0e4ad2~htTnWyekp2475724757epsmtip2A;
-	Wed,  3 Sep 2025 07:29:49 +0000 (GMT)
-From: Pritam Manohar Sutar <pritam.sutar@samsung.com>
-To: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com,
-	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org,
-	ivo.ivanov.ivanov1@gmail.com, igor.belwon@mentallysanemainliners.org,
-	m.szyprowski@samsung.com, s.nawrocki@samsung.com, pritam.sutar@samsung.com
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com,
-	dev.tailor@samsung.com, faraz.ata@samsung.com, muhammed.ali@samsung.com,
-	selvarasu.g@samsung.com
-Subject: [PATCH v8 6/6] phy: exynos5-usbdrd: support SS combo phy for
- ExynosAutov920
-Date: Wed,  3 Sep 2025 13:08:27 +0530
-Message-Id: <20250903073827.3015662-7-pritam.sutar@samsung.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+	s=arc-20240116; t=1756885170; c=relaxed/simple;
+	bh=nabVaKDp95bXX1pjLpK4nzWf1nseMWBruv5tgZaJBoA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RgLSo4t9RnL2L+JF4an+eVqMdPBh1rtIXER+V/S9sbvnXb+k1NqL6WRuwPspTYV66mcMM27zLuIVDaADulwlmU+XNeZ082KD0yNliA72zJEDa0JPCqzX+D7j1m+BwbkhG+dRWUiFHhPdtE1qwVi9IFNUgxlLzyB3pJr/ahGExq4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qoDk0nl6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EA52C4CEF0;
+	Wed,  3 Sep 2025 07:39:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756885169;
+	bh=nabVaKDp95bXX1pjLpK4nzWf1nseMWBruv5tgZaJBoA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qoDk0nl6DGMhrsb9Zero2GRf3mxlO2Zkmtca2Z/KeKD/A+oBDZ96dYcBPT94dwlkU
+	 f0DLzIj/ZwhCrb5B4tPNd/VVQsfYxVSV2/QOOMs9cLSO9APl7W8P7vIBAVhCCtvHGN
+	 Wtzw48LeMkWre+8zpgwv+Li+KmKBA5Y9dXQUwTFoIo9DK79zaqWKJYA9eeL0JZADFS
+	 qD9EiS0+jbqaNpPL+mO71C0U1WpdfN7z2meHxEAo+95mgjgwwldX3TLfUrljS59Nku
+	 X8Zz7gNiYLjBFpa/8drEj34cjLfh0bA/7FZxXieklmnEs9cQou/+e+pY9sOk2PlsS3
+	 SwaRwN9OWsD2w==
+Date: Wed, 3 Sep 2025 08:39:20 +0100
+From: Lee Jones <lee@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Benson Leung <bleung@chromium.org>,
+	Guenter Roeck <groeck@chromium.org>,
+	Tim Harvey <tharvey@gateworks.com>,
+	Michael Walle <mwalle@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Jean Delvare <jdelvare@suse.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Cheng-Yi Chiang <cychiang@chromium.org>,
+	Tzung-Bi Shih <tzungbi@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Tinghan Shen <tinghan.shen@mediatek.com>,
+	devicetree@vger.kernel.org, chrome-platform@lists.linux.dev,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-hwmon@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
+	linux-watchdog@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Mathew McBride <matt@traverse.com.au>
+Subject: Re: (subset) [PATCH v2] dt-bindings: mfd: Move embedded controllers
+ to own directory
+Message-ID: <20250903073920.GA2163762@google.com>
+References: <20250822075712.27314-2-krzysztof.kozlowski@linaro.org>
+ <175682479961.2401991.17056649550187344851.b4-ty@kernel.org>
+ <63e43445-ef5f-49b2-85c1-f85d95426d5d@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250903072952epcas5p38eaa34521236ad10d963783137748069
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250903072952epcas5p38eaa34521236ad10d963783137748069
-References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
-	<CGME20250903072952epcas5p38eaa34521236ad10d963783137748069@epcas5p3.samsung.com>
+In-Reply-To: <63e43445-ef5f-49b2-85c1-f85d95426d5d@kernel.org>
 
-Add required change in phy driver to support combo SS phy for this SoC.
+On Tue, 02 Sep 2025, Krzysztof Kozlowski wrote:
 
-Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
----
- drivers/phy/samsung/phy-exynos5-usbdrd.c    | 325 +++++++++++++++++++-
- include/linux/soc/samsung/exynos-regs-pmu.h |   1 +
- 2 files changed, 322 insertions(+), 4 deletions(-)
+> On 02/09/2025 16:53, Lee Jones wrote:
+> >> [...]
+> > 
+> > Applied, thanks!
+> > 
+> > [1/1] dt-bindings: mfd: Move embedded controllers to own directory
+> >       commit: 152afab28f7659a4292c9f7d3324eaeb49a55b8b
+> 
+> 
+> There was a v3 here:
+> 
+> https://lore.kernel.org/r/20250825081201.9775-2-krzysztof.kozlowski@linaro.org/
 
-diff --git a/drivers/phy/samsung/phy-exynos5-usbdrd.c b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-index c52b0e25a423..53a5b72ff249 100644
---- a/drivers/phy/samsung/phy-exynos5-usbdrd.c
-+++ b/drivers/phy/samsung/phy-exynos5-usbdrd.c
-@@ -273,6 +273,36 @@
- #define EXYNOSAUTOV920_DRD_HSPPLLTUNE		0x110
- #define HSPPLLTUNE_FSEL				GENMASK(18, 16)
- 
-+/* ExynosAutov920 phy usb31drd port reg */
-+#define EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL	0x000
-+#define PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN	BIT(5)
-+#define PHY_RST_CTRL_PIPE_LANE0_RESET_N		BIT(4)
-+#define PHY_RST_CTRL_PHY_RESET_OVRD_EN		BIT(1)
-+#define PHY_RST_CTRL_PHY_RESET			BIT(0)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0	0x0004
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR		GENMASK(31, 16)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK		BIT(8)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK		BIT(4)
-+#define PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL		BIT(0)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1	0x0008
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2	0x000c
-+#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN		BIT(0)
-+#define PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA		GENMASK(31, 16)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0	0x100
-+#define PHY_CONFIG0_PHY0_PMA_PWR_STABLE		BIT(14)
-+#define PHY_CONFIG0_PHY0_PCS_PWR_STABLE		BIT(13)
-+#define PHY_CONFIG0_PHY0_ANA_PWR_EN		BIT(1)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7	0x11c
-+#define PHY_CONFIG7_PHY_TEST_POWERDOWN		BIT(24)
-+
-+#define EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4	0x110
-+#define PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN	BIT(2)
-+
- /* Exynos9 - GS101 */
- #define EXYNOS850_DRD_SECPMACTL			0x48
- #define SECPMACTL_PMA_ROPLL_REF_CLK_SEL		GENMASK(13, 12)
-@@ -2077,6 +2107,251 @@ static const struct exynos5_usbdrd_phy_drvdata exynos990_usbdrd_phy = {
- 	.n_regulators		= ARRAY_SIZE(exynos5_regulator_names),
- };
- 
-+static void
-+exynosautov920_usb31drd_cr_clk(struct exynos5_usbdrd_phy *phy_drd, bool high)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	if (high)
-+		reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+	else
-+		reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	fsleep(1);
-+}
-+
-+static void
-+exynosautov920_usb31drd_port_phy_ready(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	struct device *dev = phy_drd->dev;
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	static const unsigned int timeout_us = 20000;
-+	static const unsigned int sleep_us = 40;
-+	u32 reg;
-+	int err;
-+
-+	/* Clear cr_para_con */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	reg &= ~(PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-+			PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR);
-+	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	writel(0x0, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON1);
-+	writel(0x0, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+
-+	exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+	exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+
-+	/*
-+	 * The maximum time from phy reset de-assertion to de-assertion of
-+	 * tx/rx_ack can be as high as 5ms in fast simulation mode.
-+	 * Time to phy ready is < 20ms
-+	 */
-+	err = readl_poll_timeout(reg_phy +
-+				EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0,
-+			reg, !(reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK),
-+			sleep_us, timeout_us);
-+	if (err)
-+		dev_err(dev, "timed out waiting for rx/tx_ack: %#.8x\n", reg);
-+
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+}
-+
-+static void
-+exynosautov920_usb31drd_cr_write(struct exynos5_usbdrd_phy *phy_drd,
-+				 u16 addr, u16 data)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 cnt = 0;
-+	u32 reg;
-+
-+	/* Pre Clocking */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	reg |= PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/*
-+	 * tx clks must be available prior to assertion of tx req.
-+	 * tx pstate p2 to p0 transition directly is not permitted.
-+	 * tx clk ready must be asserted synchronously on tx clk prior
-+	 * to internal transmit clk alignment sequence in the phy
-+	 * when entering from p2 to p1 to p0.
-+	 */
-+	do {
-+		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+		cnt++;
-+	} while (cnt < 15);
-+
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/*
-+	 * tx data path is active when tx lane is in p0 state
-+	 * and tx data en asserted. enable cr_para_wr_en.
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+	reg &= ~PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA;
-+	reg |= FIELD_PREP(PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_DATA, data) |
-+		PHY_CR_PARA_CON2_PHY0_CR_PARA_WR_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON2);
-+
-+	/* write addr */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+	reg &= ~PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR;
-+	reg |= FIELD_PREP(PHY_CR_PARA_CON0_PHY0_CR_PARA_ADDR, addr) |
-+		PHY_CR_PARA_CON0_PHY0_CR_PARA_CLK |
-+		PHY_CR_PARA_CON0_PHY0_CR_PARA_SEL;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+
-+	/* check cr_para_ack*/
-+	cnt = 0;
-+	do {
-+		/*
-+		 * data symbols are captured by phy on rising edge of the
-+		 * tx_clk when tx data enabled.
-+		 * completion of the write cycle is acknowledged by assertion
-+		 * of the cr_para_ack.
-+		 */
-+		exynosautov920_usb31drd_cr_clk(phy_drd, true);
-+		reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CR_PARA_CON0);
-+		if ((reg & PHY_CR_PARA_CON0_PHY0_CR_PARA_ACK))
-+			break;
-+
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+
-+		/*
-+		 * wait for minimum of 10 cr_para_clk cycles after phy reset
-+		 * is negated, before accessing control regs to allow for
-+		 * internal resets.
-+		 */
-+		cnt++;
-+	} while (cnt < 10);
-+
-+	if (cnt < 10)
-+		exynosautov920_usb31drd_cr_clk(phy_drd, false);
-+}
-+
-+static void
-+exynosautov920_usb31drd_phy_reset(struct exynos5_usbdrd_phy *phy_drd, int val)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	reg &= ~PHY_RST_CTRL_PHY_RESET_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	if (val)
-+		reg |= PHY_RST_CTRL_PHY_RESET;
-+	else
-+		reg &= ~PHY_RST_CTRL_PHY_RESET;
-+
-+	reg |= PHY_RST_CTRL_PHY_RESET_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+}
-+
-+static void
-+exynosautov920_usb31drd_lane0_reset(struct exynos5_usbdrd_phy *phy_drd, int val)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	reg |= PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+	if (val)
-+		reg &= ~PHY_RST_CTRL_PIPE_LANE0_RESET_N;
-+	else
-+		reg |= PHY_RST_CTRL_PIPE_LANE0_RESET_N;
-+
-+	reg &= ~PHY_RST_CTRL_PIPE_LANE0_RESET_N_OVRD_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_RST_CTRL);
-+}
-+
-+static void
-+exynosautov920_usb31drd_pipe3_init(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	/*
-+	 * Phy and Pipe Lane reset assert.
-+	 * assert reset (phy_reset = 1).
-+	 * The lane-ack outputs are asserted during reset (tx_ack = rx_ack = 1)
-+	 */
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 1);
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 1);
-+
-+	/*
-+	 * ANA Power En, PCS & PMA PWR Stable Set
-+	 * ramp-up power suppiles
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0);
-+	reg |= PHY_CONFIG0_PHY0_ANA_PWR_EN | PHY_CONFIG0_PHY0_PCS_PWR_STABLE |
-+		PHY_CONFIG0_PHY0_PMA_PWR_STABLE;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG0);
-+
-+	fsleep(10);
-+
-+	/*
-+	 * phy is not functional in test_powerdown mode, test_powerdown to be
-+	 * de-asserted for normal operation
-+	 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+	reg &= ~PHY_CONFIG7_PHY_TEST_POWERDOWN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+
-+	/*
-+	 * phy reset signal be asserted for minimum 10us after power
-+	 * supplies are ramped-up
-+	 */
-+	fsleep(10);
-+
-+	/*
-+	 * Phy and Pipe Lane reset assert de-assert
-+	 */
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 0);
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 0);
-+
-+	/* Pipe_rx0_sris_mode_en  = 1 */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4);
-+	reg |= PHY_CONFIG4_PIPE_RX0_SRIS_MODE_EN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG4);
-+
-+	/*
-+	 * wait for lane ack outputs to de-assert (tx_ack = rx_ack = 0)
-+	 * Exit from the reset state is indicated by de-assertion of *_ack
-+	 */
-+	exynosautov920_usb31drd_port_phy_ready(phy_drd);
-+
-+	/* override values for level settings */
-+	exynosautov920_usb31drd_cr_write(phy_drd, 0x22, 0x00F5);
-+}
-+
-+static void
-+exynosautov920_usb31drd_ssphy_disable(struct exynos5_usbdrd_phy *phy_drd)
-+{
-+	void __iomem *reg_phy = phy_drd->reg_phy;
-+	u32 reg;
-+
-+	/* 1. Assert reset (phy_reset = 1) */
-+	exynosautov920_usb31drd_lane0_reset(phy_drd, 1);
-+	exynosautov920_usb31drd_phy_reset(phy_drd, 1);
-+
-+	/* phy test power down */
-+	reg = readl(reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+	reg |= PHY_CONFIG7_PHY_TEST_POWERDOWN;
-+	writel(reg, reg_phy + EXYNOSAUTOV920_USB31DRD_PHY_CONFIG7);
-+}
-+
- static void
- exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
- {
-@@ -2172,12 +2447,15 @@ exynosautov920_usbdrd_utmi_init(struct exynos5_usbdrd_phy *phy_drd)
- 	/* after POR low and delay 75us, PHYCLOCK is guaranteed. */
- 	fsleep(75);
- 
--	/* force pipe3 signal for link */
-+	/* Disable forcing pipe interface */
- 	reg = readl(reg_phy + EXYNOS850_DRD_LINKCTRL);
--	reg |= LINKCTRL_FORCE_PIPE_EN;
--	reg &= ~LINKCTRL_FORCE_PHYSTATUS;
--	reg |= LINKCTRL_FORCE_RXELECIDLE;
-+	reg &= ~LINKCTRL_FORCE_PIPE_EN;
- 	writel(reg, reg_phy + EXYNOS850_DRD_LINKCTRL);
-+
-+	/* Pclk to pipe_clk */
-+	reg = readl(reg_phy + EXYNOS2200_DRD_CLKRST);
-+	reg |= EXYNOS2200_CLKRST_LINK_PCLK_SEL;
-+	writel(reg, reg_phy + EXYNOS2200_DRD_CLKRST);
- }
- 
- static void
-@@ -2264,6 +2542,8 @@ static int exynosautov920_usbdrd_combo_phy_exit(struct phy *phy)
- 
- 	if (inst->phy_cfg->id == EXYNOS5_DRDPHY_UTMI)
- 		exynosautov920_usbdrd_hsphy_disable(phy_drd);
-+	else if (inst->phy_cfg->id == EXYNOS5_DRDPHY_PIPE3)
-+		exynosautov920_usb31drd_ssphy_disable(phy_drd);
- 
- 	/* enable PHY isol */
- 	inst->phy_cfg->phy_isol(inst, true);
-@@ -2320,10 +2600,44 @@ static int exynosautov920_usbdrd_phy_power_off(struct phy *phy)
- 	return 0;
- }
- 
-+static const char * const exynosautov920_usb30_regulators[] = {
-+	"dvdd", "vdd18",
-+};
-+
- static const char * const exynosautov920_usb20_regulators[] = {
- 	"dvdd", "vdd18", "vdd33",
- };
- 
-+static const struct
-+exynos5_usbdrd_phy_config usb31drd_phy_cfg_exynosautov920[] = {
-+	{
-+		.id		= EXYNOS5_DRDPHY_PIPE3,
-+		.phy_isol	= exynos5_usbdrd_phy_isol,
-+		.phy_init	= exynosautov920_usb31drd_pipe3_init,
-+	},
-+};
-+
-+static const struct phy_ops exynosautov920_usb31drd_combo_ssphy_ops = {
-+	.init		= exynosautov920_usbdrd_phy_init,
-+	.exit		= exynosautov920_usbdrd_combo_phy_exit,
-+	.power_on	= exynosautov920_usbdrd_phy_power_on,
-+	.power_off	= exynosautov920_usbdrd_phy_power_off,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static const
-+struct exynos5_usbdrd_phy_drvdata exynosautov920_usb31drd_combo_ssphy = {
-+	.phy_cfg		= usb31drd_phy_cfg_exynosautov920,
-+	.phy_ops		= &exynosautov920_usb31drd_combo_ssphy_ops,
-+	.pmu_offset_usbdrd0_phy	= EXYNOSAUTOV920_PHY_CTRL_USB31,
-+	.clk_names		= exynos5_clk_names,
-+	.n_clks			= ARRAY_SIZE(exynos5_clk_names),
-+	.core_clk_names		= exynos5_core_clk_names,
-+	.n_core_clks		= ARRAY_SIZE(exynos5_core_clk_names),
-+	.regulator_names	= exynosautov920_usb30_regulators,
-+	.n_regulators		= ARRAY_SIZE(exynosautov920_usb30_regulators),
-+};
-+
- static const struct phy_ops exynosautov920_usbdrd_combo_hsphy_ops = {
- 	.init		= exynosautov920_usbdrd_phy_init,
- 	.exit		= exynosautov920_usbdrd_combo_phy_exit,
-@@ -2588,6 +2902,9 @@ static const struct of_device_id exynos5_usbdrd_phy_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos990-usbdrd-phy",
- 		.data = &exynos990_usbdrd_phy
-+	}, {
-+		.compatible = "samsung,exynosautov920-usb31drd-combo-ssphy",
-+		.data = &exynosautov920_usb31drd_combo_ssphy
- 	}, {
- 		.compatible = "samsung,exynosautov920-usbdrd-combo-hsphy",
- 		.data = &exynosautov920_usbdrd_combo_hsphy
-diff --git a/include/linux/soc/samsung/exynos-regs-pmu.h b/include/linux/soc/samsung/exynos-regs-pmu.h
-index 4923f9be3d1f..f96c773b85c9 100644
---- a/include/linux/soc/samsung/exynos-regs-pmu.h
-+++ b/include/linux/soc/samsung/exynos-regs-pmu.h
-@@ -690,4 +690,5 @@
- 
- /* exynosautov920 */
- #define EXYNOSAUTOV920_PHY_CTRL_USB20				(0x0710)
-+#define EXYNOSAUTOV920_PHY_CTRL_USB31				(0x0714)
- #endif /* __LINUX_SOC_EXYNOS_REGS_PMU_H */
+Drop this, applied that!
+
 -- 
-2.34.1
-
+Lee Jones [李琼斯]
 
