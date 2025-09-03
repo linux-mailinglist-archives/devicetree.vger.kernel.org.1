@@ -1,116 +1,154 @@
-Return-Path: <devicetree+bounces-212087-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85B15B41C48
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:52:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BB9FB41C62
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:55:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3111B1A878D0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:53:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AC21318888A7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:55:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50D862F547D;
-	Wed,  3 Sep 2025 10:52:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 997D32F5467;
+	Wed,  3 Sep 2025 10:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="kLQwdTEy"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JKPCQNP3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 487A52EA14A;
-	Wed,  3 Sep 2025 10:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2CF02F5465
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 10:53:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756896722; cv=none; b=CbZicAh34IWdPkRa0JLpoTcJFQQsrvOv1ZhPkDlIUxxkU66lEPIFGshqfr+16oGx+v1EY+5LJnk6WmS/F4xtqyCHmd/7DVEzKH57gTY1vhafKojfLuPOIfZB2WDdiKKbvD74vEiz1FejWHrSH65mQcTyvqA+J69k47b6RPpTGcg=
+	t=1756896789; cv=none; b=Abkm56LCH5a7FzKBQddGxfZfxIzqvxv175EYUgrOQer+k2RSOdCnXA06DzAIxX1U98UH200NohnFfJls0zGfRbKOb4PAKVXQYVn5TqsT1FjKEOZtGImW3aJgo5i4HZt5HPnB9zb+dbM6zqmaDt1M0ifhGAO2zHFoqL/VM9R6Ihs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756896722; c=relaxed/simple;
-	bh=hWym8Ap263GZ8e4z0xKA+SGAt1iKVrfDxtT/njgoYg4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=sT874OCKp/2g24hkoCfWUJKTny8jf7ahCuyWLUyD103XlxreJ1iS9ecYoklfVN1LYvJ2r4VIwhvZaA88VA/Frrl7Kn39YgHgEh0gslkW4gd9+2KLvLRydkA43HEV5dyXWOIHjZfd5ovHDB8qaz8ZvswrXDz+fMYRFt+xush8iu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=kLQwdTEy; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=0on4xOX2K5ILgOCUPYmbuMMVUeGL2/VT+pvfoCLeTuY=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:Message-Id:Message-Id:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1756896703; v=1; x=1757328703;
- b=kLQwdTEyesW782KMERVIzGVpibhXskQDqr1DqcwdF3qPHeieHaOYlzYO6CR6n5KGO7XaVAf8
- 1DgaqvDacuZ6DTZ1H/GzbCjZBy4+CXf7agbg1LQhYJ+3LZ4gnoRBNgSre9opJ6gRHhN5pNRbPzG
- 1BJcmp+CLMEG/4vQhdr5K5ryOKCYlvAxGxlpXXGFNnfSNjs/+/NpnIH2IvJXmf8eN4sMw4dW4NR
- uuRWgx/QKy5pJ2ZuZ4JT9De8RbYb3Ccmd/ZQx9veJ+JDKi5bhkbQCApko0GdPn2ihwbksY/+2q/
- c+LczYLubpdxxNeKyd+5EMZn7xUK2beyyuff+wuuo7vhw==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 270f79bd; Wed, 03 Sep 2025 12:51:43 +0200
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Wed, 03 Sep 2025 12:51:39 +0200
-Subject: [PATCH] dt-bindings: mmc: sdhci-pxa: Add minItems to pinctrl-names
+	s=arc-20240116; t=1756896789; c=relaxed/simple;
+	bh=0JsCaLzzil1TY+KiNKyqe/k7zCPamDfM/hBakfXAQIw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=L3vF8bwS7USW+BuisoxtJ6veeMgkuCtvoOrV8Q+pek7FOxhei45cYsJ8aufzMggK2SUyWwkJlyN6gdIp5KetfjmhTtCYKbLOZVFMw8Y7VSdEgIvVmyB5v6xN83i/iPlRPWTijfoM5s1jGYa8qXBnTCVksAXksZfpX/KgLHXEWOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JKPCQNP3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583A6YsF012688
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 10:53:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Nk/aD07bI4u37nmHFKVnLrthW7H+D84XS76rtbwDMsA=; b=JKPCQNP3EKr7o6/h
+	Cpay4YV4EGCfkmKPvPOmBWcha6HOB1OQugPMveQIh71h8QmfD0I3bj3a+5cS4pO9
+	ZyvNAJZoXMBVuY7IUZNWQaV0Y0+LiaDqGessa2ZxI+ZSzm8g7yx4IYLsqFOFkLSz
+	HjBbEaNhkqffC6U3i6QEkVhDT/1xXo33Q+8bJr9gxpp+FCE3SKVZI3IPl7VyTHbM
+	L9wyAKOutkkKH2mYtTSX1aOYru7yBVcIFTelkCRkyEqplMCiMK7G2CazRrRaXC2L
+	0cM3Mk0mn2Iaf/B1U6FUNWFfota2tHyM16Kt/BjczWTayRdJhM6axyoYPWOWmyk9
+	zkSKAw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48utk93557-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 10:53:07 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b31f744865so10323071cf.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 03:53:07 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756896786; x=1757501586;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Nk/aD07bI4u37nmHFKVnLrthW7H+D84XS76rtbwDMsA=;
+        b=VK4L4wHX7MBFdWGqaww3d3J+QIKYqV3aDQJtyeD+p5tlpedcZNDwW5JpZklufiFzt9
+         2gg2sanRyvgbQdhBXpcNHiZScmqFTItmdWv4t5wGake0VAzZRS4HxCeVEvM+Lod8vBcl
+         DlUhRdZYmOxf6ZJJ9OiofWxcjVZDoC2V3XwNoZB7s/zeQ/OrxkPycYEE5b8HlOIFMT7w
+         tyFHeJYxjLHaCo7r4gG4rUzl95HiJfkw83+zJqx6FaWmix0JCZY0AIJOcGjoVQtdeXMR
+         fOkQu0l2G6urlGlOSrWtZgFijokHhmqRjEkKoVZkvVE/d1+ETPNyOI2kXf0IWtgauOzf
+         Ypgg==
+X-Forwarded-Encrypted: i=1; AJvYcCVp0CxRrTpKT+bHMOy4LZifepgNOthhY/sSqPu6auD20f6fX2avOWG16nD4mMH33BneajmNh9IdwQbr@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyj8lB0pSne9fRhdUtxiC9ZYLDVOxvwvYT8MmPXhorlHzgsaUbT
+	yxnbDztiAuFJRGrIr83Yf/J4FjoWhjACe5n9O5zW0gBmlhXHXoi7JMLMRsN9uaYVjx9RBb9qmEi
+	Bak3b2XmENVpJKOaor3wbH0MqOnH0UJfv9T3DDZQxlz0YD2Bx0fBGtD7VupPNeLx0lCv9uw/v
+X-Gm-Gg: ASbGnct8bdzWaxVnoKZ/BlRVDTZYMFSnUDKNQ5nDDj23ok9XFk9zBhijida4lx7Ok3l
+	PtdRQvpewdL7NBy0VDVj5/SGhPG8f/ASI7eqQORWWHWL7L426g73RPzkdn9ZppbG9Uz+D0fbhm7
+	dbG/2APLRJtsNj1rD1+HPEk6Cmf++256GfmdoYhZDorUMjqru+2TWt/IOUlSgJ8VGND68D5OEAs
+	9wI7PN0Vud3PHtMcjsO2uodWOrsqffDrPd96lBVhU17g1YPEIwSCZZpBFNzVNPuTYswpXVmzIVo
+	3kCWPUkRd50NyiOMKQ9dFO+BUfWMdQiFCt1Bw0t25dRKP73oi+vLQH/NZ2EdnTlh1DTDegJFRiq
+	FF7x2/dQ2ItLVILvZiP7iVA==
+X-Received: by 2002:a05:622a:3c8:b0:4ab:6e68:1186 with SMTP id d75a77b69052e-4b30e906341mr136817931cf.2.1756896785668;
+        Wed, 03 Sep 2025 03:53:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE6DHpztMpPTybl8ilZYNgYnaTyfWSXJC32t+1unhFqKny8Zv6s0B7MHj0N3nPJVj7uZZHvgA==
+X-Received: by 2002:a05:622a:3c8:b0:4ab:6e68:1186 with SMTP id d75a77b69052e-4b30e906341mr136817671cf.2.1756896785056;
+        Wed, 03 Sep 2025 03:53:05 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b040f1cf4b9sm931051066b.29.2025.09.03.03.53.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 03:53:04 -0700 (PDT)
+Message-ID: <57e90560-2eef-4c16-84cf-cfca58240885@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 12:53:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250903-pxav3-uhs-fix-v1-1-9f56b0b54749@dujemihanovic.xyz>
-X-B4-Tracking: v=1; b=H4sIALoduGgC/x2MMQqAMAwAvyKZDaQVB/2KONQaNYuWFkuh9O8Gx
- zu4q5A4CieYuwqRsyR5bgXTd+Avd5+MsiuDJTvSRAOG4vKA75XwkIKT3/yxW/a0GdAmRFb9/5a
- 1tQ9jkY0MXwAAAA==
-X-Change-ID: 20250903-pxav3-uhs-fix-9cbcfd2ec0b1
-To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel test robot <lkp@intel.com>, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1295;
- i=duje@dujemihanovic.xyz; s=20240706; h=from:subject:message-id;
- bh=hWym8Ap263GZ8e4z0xKA+SGAt1iKVrfDxtT/njgoYg4=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBk7ZPevvnu7dHJb+9IN4ROVNqUdkxBay362+iL//Znzp
- /mpXJx1pqOUhUGMi0FWTJEl97/jNd7PIlu3Zy8zgJnDygQyhIGLUwAm8vIbI8OaO0pXX85JDd/+
- cfdB07mT83Y+f/NjGmM5T4W49YGAhfvyGf6HCzTabUz8b39rx46fpst+X7VVtHKed24W1621LWt
- je7ZxAwA=
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: x1e80100: add video node
+To: Wangao Wang <quic_wangaow@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Dikshita Agarwal <quic_dikshita@quicinc.com>,
+        Qiwei Liu <quic_qiweil@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250903-add_iris_for_x1e80100-v1-0-410e9e6c79f0@quicinc.com>
+ <20250903-add_iris_for_x1e80100-v1-1-410e9e6c79f0@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250903-add_iris_for_x1e80100-v1-1-410e9e6c79f0@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: 2yE6reAmYHSgeOdwSVD74SbnAArl3hVv
+X-Proofpoint-ORIG-GUID: 2yE6reAmYHSgeOdwSVD74SbnAArl3hVv
+X-Authority-Analysis: v=2.4 cv=ccnSrmDM c=1 sm=1 tr=0 ts=68b81e13 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=k-zUgsc7-9G9n07UOVQA:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDA0MiBTYWx0ZWRfX0//Eu6gBpXz+
+ NMiqV7eBzeRd5cEeGBsQ6Xfd60RP4bIE3jxlueT9NdwPorOanF7mEBPYz0E0h0ix5qs4FimtsO6
+ 09ghDnJc0hOu0/78Cub9WeFR02u/Q/8HTIxK1bdgh5dnFcWm8CS2q3ddt4hOv3Ij6upntCuCvLR
+ BDmfNOGVNbnyXcPfP9jncdNkRts+dc1RaIsY8oUhYwGEXxGfZGJ3urVkaubf9mZTEugrkjoBIZo
+ DCqz+xl/98NDGp8pcbRTJTUjvmVVYuJQeTJNy0mrGwXy7P38r69+jglzbia1yi2rRSLza+JpOfO
+ bd+yf432G/QEtdqyJ5YcJ58FzvxrBAhvclDjE4CeCrXK85/PJP/2fm0c0S1txo2BG5MivF3l5qa
+ XGZwTNkP
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_06,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ clxscore=1015 suspectscore=0 spamscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300042
 
-Some older boards only require a default pinctrl. Add a minItems
-property so these don't cause dt-validate warnings.
+On 9/3/25 10:27 AM, Wangao Wang wrote:
+> Add the IRIS video-codec node on X1E80100 platform to support video
+> functionality.
+> 
+> Signed-off-by: Wangao Wang <quic_wangaow@quicinc.com>
+> ---
 
-Reported-by: kernel test robot <lkp@intel.com>
-Closes: https://lore.kernel.org/oe-kbuild-all/202509030625.PBgLIAwG-lkp@intel.com/
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
- Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+[...]
 
-diff --git a/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
-index fba1cc50fdf07cc25d42f45512c385a9b8207b9b..186ce8ff4626a1eb07633e08aeb6322ae2eb25a8 100644
---- a/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
-+++ b/Documentation/devicetree/bindings/mmc/sdhci-pxa.yaml
-@@ -44,6 +44,7 @@ allOf:
-           items:
-             - const: default
-             - const: state_cmd_gpio
-+          minItems: 1
- 
-         pinctrl-1:
-           description:
-@@ -61,6 +62,7 @@ allOf:
-           items:
-             - const: default
-             - const: state_uhs
-+          minItems: 1
- 
-         pinctrl-1:
-           description:
+> +			memory-region = <&video_mem>;
+> +
+> +			resets = <&gcc GCC_VIDEO_AXI0_CLK_ARES>;
+> +			reset-names = "bus";
+> +
+> +			iommus = <&apps_smmu 0x1940 0x0>,
+> +				     <&apps_smmu 0x1947 0x0>;
 
----
-base-commit: 5d50cf9f7cf20a17ac469c20a2e07c29c1f6aab7
-change-id: 20250903-pxav3-uhs-fix-9cbcfd2ec0b1
+the '<'s should be aligned
 
-Best regards,
--- 
-Duje Mihanović <duje@dujemihanovic.xyz>
-
+Konrad
 
