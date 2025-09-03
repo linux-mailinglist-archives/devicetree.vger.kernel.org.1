@@ -1,138 +1,142 @@
-Return-Path: <devicetree+bounces-212328-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212329-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF7E3B4263E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:09:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ED43B42646
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:11:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 919C71BA0D21
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:09:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F329D3BFB42
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:11:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582AD2BD029;
-	Wed,  3 Sep 2025 16:08:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZSDqUf6I"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C6E2BD580;
+	Wed,  3 Sep 2025 16:11:15 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 300A72BD013;
-	Wed,  3 Sep 2025 16:08:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A6C1E4AE;
+	Wed,  3 Sep 2025 16:11:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756915739; cv=none; b=gmefqsYVutYgmzn9BxlNnIy3LrUW2arWX0b3yEG2e7CAdtgw7jPAE89hV9EMbo4OiQ9ZsPHejAsiDo5BQJI2ErcfDTqXGbocX1NvKLOunO6UpH+J2phAGmS6yLvZ6X1kAEwU72So8iEYxynLG1fJnkcaItGpUX7ZZ9o1qBGHhFU=
+	t=1756915875; cv=none; b=JJFlu8hQYHmAQRQmbndIDLHCJVJnZGrTB0dnrn5/pZtOiPR4Vh0gTWQeqBjwWIcWx5d4e2BjHIXZViIrO8rjf9PkBMr1ttLXxSJ6IqvIqN6xf2i5X6BVGJFHXgobrhGkrAblkjyeK0F3brEwYBaaHWtvbA4TowwHwPL6Pe7jqds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756915739; c=relaxed/simple;
-	bh=mtkcys/OuZJbfEkAwwoIDAScOcNW90WlNc0yQmGWZfg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C1WWrSd8uTs2aax/AqGFMR2g1kpzkxWszWxRKQRaAs3LeiQvyXa7ngI7157nGGEpMayKNBZH1darBQmG76KzdiMEi8lrXRzqf4ubyDEYYB9u9IGC/dKJ9Xqh/I3DyuEtVI120u2zpwo2TCgeJv1qhJPUkyLfgeeeUFG0HzOqPz8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZSDqUf6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2BEC5C4CEE7;
-	Wed,  3 Sep 2025 16:08:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756915738;
-	bh=mtkcys/OuZJbfEkAwwoIDAScOcNW90WlNc0yQmGWZfg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZSDqUf6IwDBoRlD6+/P99Cun1RwHR1RnDE5smkFXoy9Fxq0qLXFRxHKhbs9S7lI3K
-	 uZO9k4sL2JU3bHo/b/+ubWqrgWzQT3Y+WmjgVB9Zyw633PmWK4V7M210WRYWxHo7pP
-	 7zFgcsgR53O8c3k6rVA4mvcF335AQ/xW1GCCaG/csu4/zydm7rw1429sZxv8MF/J9x
-	 f45sX2o6fegNEvFlV0yy55+GjPD5xxiMvRlY2C2NB4TuV3JSNZ7wzuGk6jon3E1RPd
-	 Doxm/tBzNBIMZMCtRxyITj2CnToSi+y0HNhb5HZxIo60On6VHtUCP9ZdBaPSf0DXrz
-	 d8az9llxSVHew==
-Date: Wed, 3 Sep 2025 17:08:54 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Woodrow Douglass <wdouglass@carnegierobotics.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/2] regulator: pf530x: NXP PF530x regulator driver
-Message-ID: <cd9e526d-9f17-4c2d-99f7-a495e2d58d73@sirena.org.uk>
-References: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
- <20250902-pf530x-v3-0-4242e7687761@carnegierobotics.com>
+	s=arc-20240116; t=1756915875; c=relaxed/simple;
+	bh=IbusH9NWKOse/MmWhLMJmjfclKRjhrodSRa7rAqYtKg=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=dWhchvWRM/kUdd2DFkmW0m5daHx609iw2EPt5+1ITCCJsuGjco9Vzo5O6b/VETruLkiUhqmBPBrUpWxn9peuo7lN3jnuTrHANTOZ+Apn9y00sgIYQdpJ/FZBs3pWGOfVr78KMAFdf0c0XKuUaF7yssC4yqIw6ItuJIkx5A3r2K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cH6wm3ttyz6M54k;
+	Thu,  4 Sep 2025 00:08:40 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 01B151400D9;
+	Thu,  4 Sep 2025 00:11:09 +0800 (CST)
+Received: from localhost (10.202.227.251) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 3 Sep
+ 2025 18:11:07 +0200
+Date: Wed, 3 Sep 2025 17:11:05 +0100
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: David Lechner <dlechner@baylibre.com>
+CC: Marilene Andrade Garcia <marilene.agarcia@gmail.com>,
+	<linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, Kim Seer Paller <kimseer.paller@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Lars-Peter Clausen
+	<lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>, "Rob
+ Herring" <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, Marcelo Schmitt <marcelo.schmitt1@gmail.com>,
+	Marcelo Schmitt <Marcelo.Schmitt@analog.com>, Ceclan Dumitru
+	<dumitru.ceclan@analog.com>, Jonathan Santos <Jonathan.Santos@analog.com>,
+	Dragos Bogdan <dragos.bogdan@analog.com>
+Subject: Re: [PATCH v10 0/2] Add MAX14001/MAX14002 support
+Message-ID: <20250903171105.00003dcd@huawei.com>
+In-Reply-To: <dfcdaf9a-1980-4059-9268-2e9ae96831e8@baylibre.com>
+References: <cover.1756816682.git.marilene.agarcia@gmail.com>
+	<dfcdaf9a-1980-4059-9268-2e9ae96831e8@baylibre.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ZXhJwh23vIJKsLSp"
-Content-Disposition: inline
-In-Reply-To: <20250902-pf530x-v3-0-4242e7687761@carnegierobotics.com>
-X-Cookie: You were s'posed to laugh!
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
 
---ZXhJwh23vIJKsLSp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>=20
+> > because of the unique way this device handles communication, such as=20
+> > inverting bits before sending a message, updating the write enable regi=
+ster=20
+> > before writing any other register, and updating it again afterward. How=
+ever,=20
+> > as I am still new to the IIO kernel code, I may be missing something. I=
+f you=20
+> > could provide further explanation or an example, I would be grateful.
+> >=20
+> > Regarding locking, Kim=E2=80=99s original code implemented it, and it r=
+emains in=20
+> > the driver.
+> >=20
+> > I still have a question about using _mean_raw (IIO_CHAN_INFO_AVERAGE_RA=
+W)=20
+> > to read the register containing the latest filtered average ADC reading=
+s.=20
+> > Should I create a v11 version with a patch to include in_voltageY_mean_=
+raw=20
+> > in the file /linux/Documentation/ABI/testing/sysfs-bus-iio?  =20
+>=20
+> There is already "/sys/bus/iio/devices/iio:deviceX/in_Y_mean_raw" which
+> I think is intended to cover that.
+>=20
+> > The idea is to use in_voltageY_mean_raw to return the filtered average =
+and=20
+> > also to set how many ADC readings (0, 2, 4, or 8) are included in the m=
+ean=20
 
-On Wed, Sep 03, 2025 at 11:31:36AM -0400, Woodrow Douglass wrote:
-> On 9/2/25 11:08, Mark Brown wrote:
-> > On Tue, Sep 02, 2025 at 10:21:33AM -0400, Woodrow Douglass wrote:
+0 is an odd value, I assume 1 given average of 0 readings is effectively un=
+defined.
 
-> >> +static int pf530x_get_status(struct regulator_dev *rdev)
-> >> +{
+> > calculation. Any feedback on using IIO_CHAN_INFO_AVERAGE_RAW this way w=
+ould=20
+> > be appreciated.
 
-> > I would have expected this function to check INT_SENSE1/2 for current
-> > error statuses and report those.
+Sorry I missed this question in earlier versions.  I'm terrible at reading
+cover letters!
 
-> I have added the INT_SENSE1 bits to the REGULATOR_STATUS_ERROR return value. I'm
-> not sure how to properly represent the thermal bits in INT_SENSE2 here -- this
-> part can safely run at high temperatures, some of those bits are just
-> informational in some designs (including the board I'm working on now)
+Definitely don't use the in_voltage_mean_raw value for the control of the a=
+veraging
+width.  That is too obscure and normal convention is read and write of
+sysfs attributes should see effectively the same value (or not all
+either read or write)
 
-If the device can happily run at those levels then report as a warning.
+This is a little unusual as normally when we see this sort of thing it
+easily maps to oversampling but in this case it's a moving window average
+rather than a downsampling style.
 
-> > The custom is_enabled() operation doesn't seem to line up with the
-> > generic regmap enable/disable operations, and we don't seem to have
-> > enable_val or disable_val in the regulator_desc which the generic ops
-> > expect.  The whole connection with the modes seems a bit odd, the
-> > standby voltages look like they'd more naturally map to the regulator
-> > API's suspend mode but perhaps these devices are not usually integrated
-> > in that way and this would be controlled separately to system suspend.
+So a few options come to mind.
+1. Treat it as a filter on a channel. Describe with 3dB point and type as
+   box filter.
+   We probably want to describe it as an additional channel to do this or
+   we could have assumption that to read unfiltered, you set the
+   filter 3dB to inf (see other discussion ongoing about that).
 
-> I agree, I was misguided here. I've added enable_reg, enable_mask, enable_val,
-> and disable_val to the regulator_desc initializer, and moved to the regmap
-> function from helpers.c. I'm moving the "suspend mode" settings too here. The
-> board i'm working with has the suspend pin grounded, so I can't really test
-> suspend mode -- supporting that may have to wait for a future patchset.
+2. Add another attribute to add richer info to the in_voltage_mean_raw
+   Something like in_voltage_mean_num.
+   Bit of a special case but we have had the mean_raw interface a long time
+   so we can't get rid of that and it seems illogical to force use of filter
+   ABI to control it.
 
-That's fine, someone can always extend the functionality later.
+> >=20
+Other stuff from David followed but I have nothing to add to that.
 
-> >> +static int pf530x_identify(struct pf530x_chip *chip)
-> >> +{
+Jonathan
 
-> >> +	dev_info(chip->dev, "%s Regulator found.\n", name);
-
-> > It wouldn't hurt to read and log the data in REV, EMREV and PROG_ID too
-> > (it can be helpful when debugging).
-
-> I've added REV and PROG_ID, EMREV is listed as "Reserved for NXP Internal Use"
-> on page 95 of the datasheet, and  -- I can include those bits here but i'm not
-> sure they're very useful; if you'd like me to include those bits anyway i will
-
-IIRC something in there mentioned it was a metal revision which would
-make sense for the name.  Given the name you may as well include them,
-worst case they just get ignored best case it helps someone debug some
-issue sometime.
-
---ZXhJwh23vIJKsLSp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi4aBUACgkQJNaLcl1U
-h9Dtpwf/Ukc6dbCrtZOsHbBctRiMsNl+XIJBspR7pGSgzC5V0BOjCHTiU5AGWXOf
-LnXl9777oLoiLLYx/cBCrHTVR/V/P70t/h3DconrMoF8l1H/k6wXqlfTUBV1iugg
-ZCTRMKglg7o8MFRNiZx1dDOvs0mixNDPcbdtt9p6okPdWVllqc1n6PlPmx2d/rF9
-rWvCc97+Wnz4agfMcQCPfz1hNbdU2WNIl4o/Qc2Vuxokdhc36uzsaIz64JQL/jtr
-IK80ZNqsW15DIe1JVYFvQNx4pkpb+6SwMxSON4axCvryG6QSBWTO3cWQdpybV8Os
-Do8d93StRgrpRnzC1VZaL5m1HEDsUA==
-=wnur
------END PGP SIGNATURE-----
-
---ZXhJwh23vIJKsLSp--
 
