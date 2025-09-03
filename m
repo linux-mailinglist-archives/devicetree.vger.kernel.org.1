@@ -1,187 +1,170 @@
-Return-Path: <devicetree+bounces-212320-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212316-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06B42B4260C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:57:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C719AB425CB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:47:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5477B1891562
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:58:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 51A271896353
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:48:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B41BC299957;
-	Wed,  3 Sep 2025 15:57:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB0E21D3F6;
+	Wed,  3 Sep 2025 15:47:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="MoqhkWoK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31351288C34;
-	Wed,  3 Sep 2025 15:56:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2E38285043
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:47:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756915024; cv=none; b=gVK47UgM3eYK/3xlBljLM9o9mcn2mA8jkJnhGGgCRJjgfeX69g2Nl73H7cK+5bwlPvcKGEDKlmjscfKsECX+wV8d1UiNBTvBAuapn7ez8Xosf8Yo886mUkw/rmDCd8vPJtnKAfb73V6eZlGPbRn2PnMuhVrlGXkj5swH6Rca9sQ=
+	t=1756914469; cv=none; b=lhKOr7z4dyZU0Xelg8my7y4ddYK1z4wtH8zqa3AqPJujHg0GMBVbLh6P/uI4T9EG3liELuuEL/R86eYAK+Mz51IxAyRj8Ue3DWoSPBsKf6zPuFGaVyIawdmrMPQAwdpa4T4fulEmw3dvp91Php+5vnDNQCckHpMUyx6PwWCzUVE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756915024; c=relaxed/simple;
-	bh=xgruJY70XCMa147iGgxAQGJXOf5yGwR93Wdz3hxbdi8=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=thWlXeZM+uc61SyzZ/yW4E4+QbsOsvihvyA7Otc3b5iW4Ck+8aYibkpBYrFgClfxCzlNRbcaPNZs5WmN/eckM3ONaMakGrIgDG5p0Sx2Y2dI9UnWWohT4Rhs2+mUZwHfQNB34jcEB0l9yAnn1rLhy4sYpp4qHwatL3vhNvNzhDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.231])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cH6J52WPsz6HJbP;
-	Wed,  3 Sep 2025 23:40:21 +0800 (CST)
-Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
-	by mail.maildlp.com (Postfix) with ESMTPS id B9D87140275;
-	Wed,  3 Sep 2025 23:41:14 +0800 (CST)
-Received: from localhost (10.202.227.251) by frapeml500008.china.huawei.com
- (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Wed, 3 Sep
- 2025 17:41:13 +0200
-Date: Wed, 3 Sep 2025 16:41:11 +0100
-From: Jonathan Cameron <jonathan.cameron@huawei.com>
-To: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-CC: Daniel Lezcano <daniel.lezcano@linaro.org>, <jic23@kernel.org>,
-	<dlechner@baylibre.com>, <nuno.sa@analog.com>, <andy@kernel.org>,
-	<robh@kernel.org>, <conor+dt@kernel.org>, <krzk+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <s32@nxp.com>, <linux-kernel@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <chester62515@gmail.com>, <mbrugger@suse.com>,
-	<ghennadi.procopciuc@oss.nxp.com>
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-Message-ID: <20250903164111.00004bc6@huawei.com>
-In-Reply-To: <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
-	<20250903102756.1748596-3-daniel.lezcano@linaro.org>
-	<eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
-X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
+	s=arc-20240116; t=1756914469; c=relaxed/simple;
+	bh=XInwh7iVomsQx5qogF3hzih+Y3WyM16GQrfW14cftWI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HBZiJS/kEk02IC56y8QEy3uAGdzxeqIDGttlaL4fL7zLi1ovUNNkTwXLelPvYrzAlBuuBatg7p1KLEf7UyIGre5FmHqKxfDZpT4pVqsHla1dIsP5isB/l6rp1It+LS3nyzWrfAKlT6zibbQUBsamlHq4ZXAYVygoWkY9h+Y70Zw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=MoqhkWoK; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583Dwpsb007488
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:47:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	oU9zNSZ+JNQecUFr9QN7ywvBOG1sjWRxRq01g9yamiI=; b=MoqhkWoKRseuQIXB
+	zhRJ6euWY97pDSUuhd3mKCZpuIgDFvV/gqKtF8qamruclyNzXc6uR+s/w1GXm5wl
+	mOHlceyHakYFsQU2zLvvRoZF1urhyT0xldpqnRx/iZnPzn4thFCjDJ80HDATBZ80
+	+Bkg9dZmYVh8WKf7PenuHvVjizd43iSjFLxK9Cqp/M3+EsOMA6jz1w2DLotpCoS5
+	uCqGKy1LarQoximJsUB9CeBPnzw2viL3VacWZA0IUK7veCA2hDogndrU+gagpO+c
+	3BTzR43Th+S5McMANst+BNgapNJBsojjIsnK2OpJazJ+vxAxm/PUsgKqYWuHZ1Iy
+	AJd+lA==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uscv4ck4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:47:46 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-24b2336e513so1135265ad.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:47:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756914465; x=1757519265;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oU9zNSZ+JNQecUFr9QN7ywvBOG1sjWRxRq01g9yamiI=;
+        b=oAIcQ+WRwC4z4QHZtMZdXsUVHhGYFqeg8EWWFvrguA02CGXDQyRqNxRmxMVdU4yZ4Q
+         FrHhcgT49yEEyIq/o5Ifors2A6RLrxCXJ5T4NI+R/7GebhrurtTlx1WIoSdlRX0EMOEz
+         /LLd/L4Y3zN+Qcum3mDOwGqmmCBuKFcZ7G7kXcieMm8wMLbQb2OyCebLUziRQaJUJqXw
+         YGQvAyEJilWUJfRuJ3HbjrFlh4Jxhr5nVOOS1xtBj/xh014L9qCNs9zDFoKZb7zY7ysf
+         YRyYHXv+97fnl4HfueYdcCEqqcOjiWRCRa9O4ub1e8PY6/7lwko5IwIzujGPv5renZ8F
+         MX9w==
+X-Forwarded-Encrypted: i=1; AJvYcCUCVnrGYGd8h83iU1N8tKIFKLATVqF0RfQnu0xnoK83aWaQ5czjjmTd2FFCEJm126WfSHLdtQbPZ9ua@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz/C2TQJTgXNcikhWJSUDTMjd0xtyxx6bmc3XfhLT61lFcMnu3I
+	CpFYDlSKnrnJNkTSQ20/MWUi3BnsKhGcnywGFDMB/uKenHrc+El1y10SprDPWlUtm7xZK7pY0ag
+	QNY/ro4Jd1IARMQZ8Thk+jPZnnAqb71ns5HmuuWMLGxYziSkPm9DCFUq9+9wjnw04
+X-Gm-Gg: ASbGncvrR71ghXRfjcZ7AYqwzAp1v/mrHZBvBhVWFRvRM7Xh5gCWIhjsXcbsqsLdyTG
+	ExFG3BVzkmqpihWzqX67M6mbp9k9gEG9yakUFTUXdyirZbnKt4QD/e5FB6rM/armKnsClchg2zC
+	HKNWmJa5Ay5RhqNHWFV4LeDv7Wt0kUjBxwptq56oAcqoyfsQbEDgjpHYrqjIEQjR9Z+ameWi5UK
+	zP0CzUn0hjLoCvLjrbMRrQlVUmxqcpfkkPtyEcW2H0zioYqBjH4yvSPo+WLfkA+y8EG5jQTkeRS
+	6l5dGi7IrnaYoW4EtXxYk+u4C7GE63eLjo0fwu1as6fhd64okO7msqyWjv70ryep+jv/
+X-Received: by 2002:a17:902:c950:b0:24b:1585:6363 with SMTP id d9443c01a7336-24b158565c2mr73678255ad.8.1756914465253;
+        Wed, 03 Sep 2025 08:47:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IF4YwLQKquajxMk71cIseTHOUFmzvVFh27auBfgVNaa4odZqX0nZOQA82oA2Q+AJfG8X0fGzA==
+X-Received: by 2002:a17:902:c950:b0:24b:1585:6363 with SMTP id d9443c01a7336-24b158565c2mr73677845ad.8.1756914464769;
+        Wed, 03 Sep 2025 08:47:44 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24903705b91sm166483095ad.12.2025.09.03.08.47.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 08:47:44 -0700 (PDT)
+Date: Wed, 3 Sep 2025 21:17:38 +0530
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+Subject: Re: [PATCH v2 04/13] arm64: dts: qcom: lemans-evk: Add nvmem-layout
+ for EEPROM
+Message-ID: <aLhjGuaAybp2CeIg@hu-wasimn-hyd.qualcomm.com>
+References: <20250903-lemans-evk-bu-v2-0-bfa381bf8ba2@oss.qualcomm.com>
+ <20250903-lemans-evk-bu-v2-4-bfa381bf8ba2@oss.qualcomm.com>
+ <39c258b4-cd1f-4fc7-a871-7d2298389bf8@oss.qualcomm.com>
+ <aLhMkp+QRIKlgYMx@hu-wasimn-hyd.qualcomm.com>
+ <aLhZ8VpI4/fzo9h8@hu-wasimn-hyd.qualcomm.com>
+ <c7b87a26-2529-4306-86b3-0b62805f0a2a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100006.china.huawei.com (7.191.160.224) To
- frapeml500008.china.huawei.com (7.182.85.71)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c7b87a26-2529-4306-86b3-0b62805f0a2a@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMSBTYWx0ZWRfX2aPcHmiHa2QM
+ FJuCAvqA+xS0+YkbY4nRy0B0n87ujRYc+jKK/3Cv7EFWuvt26g/KgCP62AzC3YKFtvh+U18QQB2
+ 7OBUfBV7ClD7FDiXO1La82Ya05AUSaAtXj7ZvRm2M/IyaTjhykh+CyNKJyMi21p9VvbRzfwO6FE
+ 1sP0tZYGplDjODHACCTVswyqsR/MxzKH81mzwkMuTA6c1v+sbFfqU6TFcvaXgWojcoiHstWdqd3
+ U1Sqb9GzUGdkjn1a5UOEbxJX3bM9anYkHP18mELxSaF12ru3XSLzC/aPwyRPQK7cLlodjd6xGXQ
+ jGmqONRHZyQgMWGzhAFmwHmftos5FeV5Uko1rXLzcCWKzfiC1/TWyxCqAnO7sYe/Yu1rTDupnQ4
+ io7ishFN
+X-Authority-Analysis: v=2.4 cv=A8xsP7WG c=1 sm=1 tr=0 ts=68b86322 cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=QqZMUp9YY9ei_m5RKlQA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: AjqJaW9wihkb9fHDFGdbBTrpASXyjUCY
+X-Proofpoint-GUID: AjqJaW9wihkb9fHDFGdbBTrpASXyjUCY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015
+ suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300031
 
-On Wed, 03 Sep 2025 12:20:39 +0100
-Nuno S=E1 <noname.nuno@gmail.com> wrote:
+On Wed, Sep 03, 2025 at 05:12:44PM +0200, Konrad Dybcio wrote:
+> On 9/3/25 5:08 PM, Wasim Nazir wrote:
+> > On Wed, Sep 03, 2025 at 07:41:30PM +0530, Wasim Nazir wrote:
+> >> On Wed, Sep 03, 2025 at 02:29:11PM +0200, Konrad Dybcio wrote:
+> >>> On 9/3/25 1:47 PM, Wasim Nazir wrote:
+> >>>> From: Monish Chunara <quic_mchunara@quicinc.com>
+> >>>>
+> >>>> Define the nvmem layout on the EEPROM connected via I2C to enable
+> >>>> structured storage and access to board-specific configuration data,
+> >>>> such as MAC addresses for Ethernet.
+> >>>
+> >>> The commit subject should emphasize the introduction of the EEPROM
+> >>> itself, with the layout being a minor detail, yet the description of
+> >>> its use which you provided is important and welcome
+> >>>
+> >>
+> >> Thanks, Konrad, for pointing this out. I’ll update it in the next
+> >> series.
+> > 
+> > Moreover, I notice that compatible definition is missing for this
+> > EEPROM. I will add it in next series.
+> 
+> I think the pattern match in at24.yaml should catch it
+> 
 
-> On Wed, 2025-09-03 at 12:27 +0200, Daniel Lezcano wrote:
-> > From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> >=20
-> > The NXP S32G2 and S32G3 platforms integrate a successive approximation
-> > register (SAR) ADC. Two instances are available, each providing 8
-> > multiplexed input channels with 12-bit resolution. The conversion rate
-> > is up to 1 Msps depending on the configuration and sampling window.
-> >=20
-> > The SAR ADC supports raw, buffer, and trigger modes. It can operate
-> > in both single-shot and continuous conversion modes, with optional
-> > hardware triggering through the cross-trigger unit (CTU) or external
-> > events. An internal prescaler allows adjusting the sampling clock,
-> > while per-channel programmable sampling times provide fine-grained
-> > trade-offs between accuracy and latency. Automatic calibration is
-> > performed at probe time to minimize offset and gain errors.
-> >=20
-> > The driver is derived from the BSP implementation and has been partly
-> > rewritten to comply with upstream requirements. For this reason, all
-> > contributors are listed as co-developers, while the author refers to
-> > the initial BSP driver file creator.
-> >=20
-> > All modes have been validated on the S32G274-RDB2 platform using an
-> > externally generated square wave captured by the ADC. Tests covered
-> > buffered streaming via IIO, trigger synchronization, and accuracy
-> > verification against a precision laboratory signal source.
-> >=20
-> > Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp=
-.com>
-> > Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.c=
-om>
-> > Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> > Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
-> > Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-> > Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
-> > Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-> > Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
-> > --- =20
->=20
-> Hi David,
->=20
-> Just some minor review for now...
-A couple of follow ups (ignoring the DMA buf as others are better
-than I am to comment on that!)
+The EEPROM used on this platform is from Giantec, which requires a
+dedicated compatible string.
+While the generic "atmel,24c256" compatible is already supported in
+at24.yaml.
 
-> > +/*
-> > + * The documentation describes the reset values for the
-> > + * registers. However some registers do not have these values after a
-> > + * reset. It is a not desirable situation. In some other SoC family
-> > + * documentation NXP recommend to not assume the default values are
-> > + * set and to initialize the registers conforming to the documentation
-> > + * reset information to prevent this situation. Assume the same rule
-> > + * applies here as there is a discrepancy between what is read from
-> > + * the registers at reset time and the documentation.
-> > + */
-> > +static void nxp_sar_adc_set_default_values(struct nxp_sar_adc *info)
-> > +{
-> > +	const u32 mcr_default	=3D 0x00003901;
-> > +	const u32 msr_default	=3D 0x00000001;
-> > +	const u32 ctr_default	=3D 0x00000014;
-> > +	const u32 cimr_default	=3D 0x00000000;
-> > +	const u32 ncmr_default	=3D 0x00000000;
-> > + =20
->=20
-> const does not really bring much here. I would rather have them as #defin=
-es.
-
-Unless they can be broken down into meaningful fields I'd
-not bother with defines. Just put the values in the writel()
-as their meaning is clear from what is being registered.
-
->=20
-> > +	writel(mcr_default, REG_ADC_MCR(info->regs));
-> > +	writel(msr_default, REG_ADC_MSR(info->regs));
-> > +	writel(ctr_default, REG_ADC_CTR0(info->regs));
-> > +	writel(ctr_default, REG_ADC_CTR1(info->regs));
-> > +	writel(cimr_default, REG_ADC_CIMR0(info->regs));
-> > +	writel(cimr_default, REG_ADC_CIMR1(info->regs));
-> > +	writel(ncmr_default, REG_ADC_NCMR0(info->regs));
-> > +	writel(ncmr_default, REG_ADC_NCMR1(info->regs));
-> > +}
-
-> > +};
-> > +MODULE_DEVICE_TABLE(of, nxp_sar_adc_match);
-> > +
-> > +static struct platform_driver nxp_sar_adc_driver =3D {
-> > +	.probe=A0=A0=A0=A0=A0=A0=A0=A0=A0 =3D nxp_sar_adc_probe,
-> > +	.remove=A0=A0=A0=A0=A0=A0=A0=A0 =3D nxp_sar_adc_remove,
-> > +	.driver=A0=A0=A0=A0=A0=A0=A0=A0 =3D {
-> > +		.name=A0=A0 =3D DRIVER_NAME,
-> > +		.of_match_table =3D nxp_sar_adc_match,
-> > +#ifdef CONFIG_PM_SLEEP =20
->=20
-> You should not need the above. Look at pm_ptr() and friends.
-
-Further to that, DEFINE_SIMPLE_DEV_PM_OPS() and drop the guards
-around the functions.  The trick here is that it exposes
-the functions to the compiler but lets it figure out they aren't
-actually used and drop them.  All with out ifdef or __maybe_unused
-etc.
-
->=20
-> > +		.pm=A0=A0=A0=A0 =3D &nxp_sar_adc_pm_ops,
-> > +#endif
-> > +	},
-> > +};
-> > +
-> > +module_platform_driver(nxp_sar_adc_driver);
-> > +
-> > +MODULE_AUTHOR("NXP");
-> > +MODULE_DESCRIPTION("NXP SAR-ADC driver");
-> > +MODULE_LICENSE("GPL"); =20
->=20
-
+-- 
+Regards,
+Wasim
 
