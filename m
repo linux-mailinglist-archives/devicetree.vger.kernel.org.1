@@ -1,175 +1,168 @@
-Return-Path: <devicetree+bounces-211991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211993-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62887B41736
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:50:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 06DCDB4173E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:51:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44A4D1B2523A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:50:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DE231720DD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:51:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CB92DF6F8;
-	Wed,  3 Sep 2025 07:50:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23C32E090B;
+	Wed,  3 Sep 2025 07:51:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Yb+FWuiZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF412DE6FC
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:50:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F1242DC330;
+	Wed,  3 Sep 2025 07:51:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756885819; cv=none; b=TCNcqrpJOQ7rClUFZR/Iffv9elT768lokZGyBMF8knNPdlKxrBb9bOZOh3Ga73s+mO1OQu96SzfCjfDNOKHMjyh2tDQrcSjkm02y0nO38s8AF9R18cOaZ9xjjbJ3mOmk6FL6VSiYytMC0hFQQfq7elh6XOM7+8nZuDR9NBfw/fU=
+	t=1756885904; cv=none; b=BiTVv470nk1Wl/zrAZ3niyS4F5m6KVieEfIcjr8e+3HlTlX+KUidKs6cczKJzp/wYUEWTpcKOS7/SvnssoqHUHhZPY4L3sjoZMo0U1dN85fKcWl3gcE2m5125CrD1EIZrAhO8bnGCBqUKOwwRTy2m639s+UfShhSP5aMpsPqgCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756885819; c=relaxed/simple;
-	bh=TuBgFCVN80P4zt0j6ecpb8b24JTC+uS9IYg1hpSa7Uc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DnE9OMdlm4suAI5sMf1syl+xNXLEqrQ+bRcmwJYtRx7n643oHYCkLfxezBGh6Vm4aHEp18W4K9DaCou99i5Da4bnXo8+8cIku2+Tyr1tariMX+GgTulEsnTlUZd4Sy4afZEsUTqmoLhbbBmShOUSAmbvdGOIMBtI+o+bp5CFsEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
-	(envelope-from <a.fatoum@pengutronix.de>)
-	id 1utiFt-0008Ru-6M; Wed, 03 Sep 2025 09:50:09 +0200
-Message-ID: <1bf75411-4a51-4103-b314-a8a7253bafca@pengutronix.de>
-Date: Wed, 3 Sep 2025 09:50:08 +0200
+	s=arc-20240116; t=1756885904; c=relaxed/simple;
+	bh=mV0ZuCfcATBvbQ0xkVmvRYkhtyi+VD/NilHQnisIkfQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=gMLct94gcSSd8FY+SBNodtEhYGxgonV6ldSKDIIgnWJqY6d/pQ07jP0k3AMK+lQyi2WfvoCo89QDWRHwWfvJhhXkhquCS3HM5jELAGheKrLxaOa88ItGbrnbhpOcW+O0TpRts0nVDp9BTEYDXNzu1bf5dhOeFbdOPbByiTFp8qQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Yb+FWuiZ; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 21AB9443C6;
+	Wed,  3 Sep 2025 07:51:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1756885897;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=1CocstRRSzAohJcoaTSBgtYSwdX5wTjwztL33/hiTn8=;
+	b=Yb+FWuiZlCkgr2nRaszUaQz4ELaVNBGTsxOosPE6Q6tYRI2SXHtayquSFRCfbiBJUrFHLq
+	tNZFqqRZ8jmTNiI45G2qnZGjzKLjr6QVWOyIjW3yg5kip6htopHu2w+YZIpmKfYhLTarKZ
+	6e8bdKV5SKGu8EbftKNbuPw+yKbrHYR4KJCuPm08jPQpIKCOWCY0F/Fm8bHKxkdFBZyln+
+	juU/jrxerJxET4fr7aRgfOZ4woEULhwE3jH96u7HJGQaeZn7qJhcyU9C+YuKwEVmpQblNS
+	lvO96WpzRTURd+mAWHaSgRFK8NptcEBOCOAgMSqapLxrqUeYV+xYPQ1rMhCV9Q==
+From: Romain Gantois <romain.gantois@bootlin.com>
+To: Matthew Gerlach <matthew.gerlach@altera.com>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject:
+ Re: [PATCH v2 2/2] dt-bindings: net: renesas,rzn1-gmac: Constrain interrupts
+Date: Wed, 03 Sep 2025 09:51:26 +0200
+Message-ID: <13032782.O9o76ZdvQC@fw-rgant>
+In-Reply-To: <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+References:
+ <20250902154051.263156-3-krzysztof.kozlowski@linaro.org>
+ <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] ARM: dts: imx6ul-tx6ul: Switch away from deprecated
- `phy-reset-gpios`
-To: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
- Csaba Buday <buday.csaba@prolan.hu>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu>
- <fa7e2cef-5242-4f3b-84ea-d77b959f6bdb@pengutronix.de>
- <c85a94ee-59e1-47d6-8200-813bb434caf2@prolan.hu>
-Content-Language: en-US
-From: Ahmad Fatoum <a.fatoum@pengutronix.de>
-In-Reply-To: <c85a94ee-59e1-47d6-8200-813bb434caf2@prolan.hu>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: multipart/signed; boundary="nextPart6217165.DvuYhMxLoT";
+ micalg="pgp-sha512"; protocol="application/pgp-signature"
+X-GND-State: clean
+X-GND-Score: -100
+X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddvheekucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpefhvfevufffkfgjfhggtgesghdtreertddtjeenucfhrhhomheptfhomhgrihhnucfirghnthhoihhsuceorhhomhgrihhnrdhgrghnthhoihhssegsohhothhlihhnrdgtohhmqeenucggtffrrghtthgvrhhnpeeikeekffdvuefgkeejgeefhfdvteeuhfdtleeiudehieeludelvdetleeggfffffenucfkphepledtrdekledrudeifedruddvjeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepihhnvghtpeeltddrkeelrdduieefrdduvdejpdhhvghlohepfhifqdhrghgrnhhtrdhlohgtrghlnhgvthdpmhgrihhlfhhrohhmpehrohhmrghinhdrghgrnhhtohhishessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvddupdhrtghpthhtohepmhgrthhthhgvfidrghgvrhhlrggthhesrghlthgvrhgrrdgtohhmpdhrtghpthhtoheprghnughrvgifodhnvghtuggvvheslhhunhhnrdgthhdprhgtphhtthhopegurghvvghmsegurghvvghmlhhofhhtrdhnvghtpdhrtghpthhtohepvgguuhhmrgiivghtsehgohhoghhlvgdrtghomhdprhgtphhtthhopehkuhgsrgeskhgvrhhnvghlrdhorhhgpdhrt
+ ghpthhtohepphgrsggvnhhisehrvgguhhgrthdrtghomhdprhgtphhtthhopehrohgshheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhg
+X-GND-Sasl: romain.gantois@bootlin.com
 
-Hi,
+--nextPart6217165.DvuYhMxLoT
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"; protected-headers="v1"
+From: Romain Gantois <romain.gantois@bootlin.com>
+Date: Wed, 03 Sep 2025 09:51:26 +0200
+Message-ID: <13032782.O9o76ZdvQC@fw-rgant>
+In-Reply-To: <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
 
-On 03.09.25 09:43, Csókás Bence wrote:
-> Hi,
-> 
-> On 2025. 09. 03. 9:28, Ahmad Fatoum wrote:
->> Hello,
->>
->> On 15.08.25 17:17, Bence Csókás wrote:
->>> The Ethernet PHY's reset GPIO should be specified in the node of the PHY
->>> itself, instead of the MAC (`fec`). The latter is deprecated, and was an
->>> i.MX-specific extension, incompatible with the new reset controller
->>> subsystem.
->>
->> One reason to do it this way is that the PHY is in reset when the OS starts
->> and the external phy-reset-gpios allows MAC probe to get the PHY out of
->> reset, so it can be probed after reading its vendor/device IDs.
->>
->> Does switching to this new binding address this scenario? If so, it should
->> be noted in the commit message.
-> 
-> Yes, but after it has been reset, if the platform supports Power Management, the PHY's clock will be turned off, which some PHYs (in our case the LAN8710) don't tolerate. This has been reported many times, just search LKML for "lan8710 reset".
-> 
-> So we want a more general solution [1] where the PHY subsystem resets them before enumerating. However, if the MAC driver claims the GPIO, then it can't be used by the PHY.
+Hi Krzysztof,
 
-I agree that it makes sense for a PHY reset to be associated with the PHY
-device and controlled by the PHY driver. I am wary of regressions though,
-which is why I wanted the commit message to clearly spell out the implications.
-
-> I will clarify the commit msg with this in mind.
-
-Thanks.
-
-> [1] https://lore.kernel.org/lkml/20250709133222.48802-4-buday.csaba@prolan.hu/
-
-Is this mainline yet?
-
-Cheers,
-Ahmad
-
+On Tuesday, 2 September 2025 17:40:53 CEST Krzysztof Kozlowski wrote:
+> Renesas RZN1 GMAC uses three interrupts in in-kernel DTS and common
+> snps,dwmac.yaml binding is flexible, so define precise constraint for
+> this device.
 > 
->>>
->>> Co-developed-by: Csaba Buday <buday.csaba@prolan.hu>
->>> Signed-off-by: Csaba Buday <buday.csaba@prolan.hu>lan8710 reset
->>> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
->>> ---
->>>   arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi | 8 +++++++-
->>>   1 file changed, 7 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
->>> index f053358bc9317f8447d65013a18670cb470106b2..0a5e90704ea481b0716d6ff6bc6d2110914d4f31 100644
->>> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
->>> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
->>> @@ -246,7 +246,6 @@ &fec1 {
->>>       pinctrl-names = "default";
->>>       pinctrl-0 = <&pinctrl_enet1 &pinctrl_enet1_mdio &pinctrl_etnphy0_rst>;
->>>       phy-mode = "rmii";
->>> -    phy-reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
->>>       phy-supply = <&reg_3v3_etn>;
->>>       phy-handle = <&etnphy0>;
->>>       status = "okay";
->>> @@ -262,6 +261,13 @@ etnphy0: ethernet-phy@0 {
->>>               pinctrl-0 = <&pinctrl_etnphy0_int>;
->>>               interrupt-parent = <&gpio5>;
->>>               interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
->>> +            /* Reset SHOULD be a PHY property */
->>
->> Comment belongs into commit message.
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > 
-> Agreed.
+> ---
 > 
->>> +            reset-names = "phy";
->>> +            reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
->>> +            reset-assert-us = <100>;
->>> +            reset-deassert-us = <25000>;
->>> +            /* Energy detect sometimes causes link failures */
->>> +            smsc,disable-energy-detect;
->>
->> Unrelated change not described in the commit message.
+> Changes in v2:
+> 1. Minor typo in commit msg.
+> 2. one->three interrupts in commit msg
+> 3. Rb tag
+> ---
+>  .../devicetree/bindings/net/renesas,rzn1-gmac.yaml       | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> Oh, this has accidentally made it into here from our DT. Thanks for spotting it!
+> diff --git a/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml index
+> d9a8d586e260..16dd7a2631ab 100644
+> --- a/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> +++ b/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.yaml
+> @@ -30,6 +30,15 @@ properties:
+>        - const: renesas,rzn1-gmac
+>        - const: snps,dwmac
 > 
->> Cheers,
->> Ahmad
->>
->>>               status = "okay";
->>>           };
->>>  
->>> ---
->>> base-commit: 0cc53520e68bea7fb80fdc6bdf8d226d1b6a98d9
->>> change-id: 20250815-b4-tx6ul-dt-phy-rst-7afc190a6907
->>>
->>> Best regards,
->>
->>
-> 
-> Bence
-> 
-> 
+> +  interrupts:
+> +    maxItems: 3
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: macirq
+> +      - const: eth_wake_irq
+> +      - const: eth_lpi
+> +
+>    pcs-handle:
+>      description:
+>        phandle pointing to a PCS sub-node compatible with
 
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+LGTM.
+
+Reviewed-by: Romain Gantois <romain.gantois@bootlin.com>
+
+
+--nextPart6217165.DvuYhMxLoT
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part.
+Content-Transfer-Encoding: 7Bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEIcCsAScRrtr7W0x0KCYAIARzeA4FAmi3834ACgkQKCYAIARz
+eA7RNg//V4dk6mgmH97uD+XYikoAmRYpNxcP1tF4TPEBmM8inft958wcps+BK+oj
+rBOtT+EpaiI13HpLUFzOX6TSgY6L0DacsWoAJAbFJr7OuS/MuJjignny1UCNEm9R
+ZFFCzMr0E3AlyPQ8WxgksOvop/ZzRKIodKsUMq4u0v6Y7inbV+UVJre1egV+ReDf
+YSGjgS4HibKWrUbZCF4HjD8qglzueQ35C6eCpcDBU2+4mTBnVKwH32ZEg2ehJ+Cd
+ohKKI9Jtg13/QqWZZsccjzdMNaOqMtRyhs9qFrHk9+ddgoGtD2ANJ2Ka56OQwvb0
+Y02hNnji+IPla0tiioZf9ARG/yfV/zH02o4JAEXAbMXpv7ZPRa9ektGDDImYPahL
+i7+NyCgDSOA0R6b0m0bToaZyIFf/VWPkoo8Z8AmrgiQo2d6flhfd5ce71GuIPQfC
+WfhDHjQYDmB0wonkXg/HcSOc1R2WL/nf33jEVvr2q8lvikohEbYQHi848DEhZX4N
+4LcIzz28RC/hiDRhKBhxkHGHjYoBcTsNjeD3Xk0IIqr2bEenInwNPnhFuSzlo1Zc
+u616y3AZbqeu0tQHPDeMtBGP4/omxeVR7WalyXS5WdhrOJDsQdWJm5jmoodDCAeQ
+1Zogcm8As8XDF5BZ91YvI/W5ojzJ/5gIJ8UcJZxheHO5i4bppU0=
+=22P1
+-----END PGP SIGNATURE-----
+
+--nextPart6217165.DvuYhMxLoT--
+
+
+
 
