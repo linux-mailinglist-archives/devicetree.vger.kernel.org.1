@@ -1,85 +1,85 @@
-Return-Path: <devicetree+bounces-212297-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212298-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1657B424B3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:15:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FFA8B424B8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:15:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ADDB584FCE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:14:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2C37020493C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:14:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52D8E320387;
-	Wed,  3 Sep 2025 15:14:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1531031B137;
+	Wed,  3 Sep 2025 15:14:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Km/12yOc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Yu/rHzUM"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD61331576D
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:14:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B8F1320A21
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:14:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756912442; cv=none; b=Ta/14QYGlujgUyv/60EfArk7pbhh6iSTt8DN0jK9FUKvgd8Ref+QAIHkp0+ZMAuyX9DSw30N49GxvMx6RTxxmUlz52XfyLTxQfymgKAePyYtJxHs/sk4nKNyicld5BMqabfbYf6CK0UZlrryfcMDhUurBTnm3caPQ5INfqjEea0=
+	t=1756912447; cv=none; b=pS4YTSnpiu9L9UwrRffynMOLVzX2SLb+Qo9vRE19wlvNSP3evADJMytt9nachykljvlcuW1m5na/aL6vvGLM4DrFJOn5Jpx1z4oNhvEg++w+krUqYy6SMgHRZDNr1mzJjcizpcLA1DF7JtpPPy2lrs/F/gVabRCCKLl5iHFr1H4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756912442; c=relaxed/simple;
-	bh=XFm/BadHDzadfJbe7CFKN0imNyFqdCDjXz6VuEFz8Vw=;
+	s=arc-20240116; t=1756912447; c=relaxed/simple;
+	bh=apwKk+ikM3l/V1EQQjFWc2jNPkFZenZw1Re+pEBEENs=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Y4aUfRBFhT+mopuSHHvAbns4ULTg1uSkG1M0oKwjtWVe525KO5Liyi4jy90ch7Vszl8tbi26X8JflaCYKQIfF+ggeyhLiq6PRqnV04Vuz2+0C81SXKQAztF6gHQfDlRMdOSd/RB/udkVuw7UIJpMFutprGdMqYnvCc67qSW681A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Km/12yOc; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=eOgumGgm2LWAvmrCJ24n2WMIw2+V9Fln8UbAoqCUGFeni4HRZmBtEi7qyF74et5XzJvqwiOsz6mIKANo3xbIJamIWL/egSNmT18uZob1qkRzN+R/SEodcJsn96R56710lz2QNy8nGiW5+5gJeiP3hxj1UzmP9gVjL/yFIOFF7R4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Yu/rHzUM; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwxxP008347
-	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:13:59 GMT
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwqkD007495
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:14:04 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=RzL4kYDIxuH
-	5s4GrG8w0rRMRXppv6MYJkkpGNs4+K8A=; b=Km/12yOcEbyfKQ8OskOzsEjhsTW
-	3ejAHzA25uMh1rrBnurCAaHl3DyaY9eFx2fDEKGkz8CR2OjfK8a+gLHXILetdc0M
-	qa2QZN6x2LPo1QMWpEL0gXJmKmvrXYQOVxD9ocEwmpA01YNwVCRyA0pYM+GWG0og
-	YcOakpN/gA5y5nrlYrkHb6rimfirybcgaOEpaioqHgFCbGvWSzltNMwA6YpZG2T4
-	3QT2lPrQMiAJxWDvkiayP693LaNYw1Hj8Pb1RQ4EAdNIr0/pdvofjqg++pr0lCfW
-	QY+0ayf5niylzgD6E9kE8J7ow5UKBwqlv1dH6WgKhblV5Yzs37QGsGvgrqQ==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48w8wy81cd-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=VZTZQqgdtSX
+	dHRS6Xhizb7R5zVIthwUpM+I82rokNQQ=; b=Yu/rHzUMtnnrgXAPEP0W5+0cUEG
+	zIqf3rivDfhLME/e/StUh907hMugCjr2YrrAlzdvSKf5IbT7UIaJ4EyO7tPC0uxe
+	fLav7e0a3dpPIgN+MhsaFq+4B/gUwdZereF8+JKCR0I1m/Mj0PbE3VF8D3+v8+iw
+	6Gnnxo7VczFMUB+GMYYPfZby8EPa2sSBJUTi3n6wTjnNRMzSw/hgau8ZfKHTSejp
+	rPVy+iAkZGOrddNsUtjuQx1wIxXO4JaWBIA5UaJHBG1wyD6GpjAojoH1Ww1onToI
+	flRnx7iyk+NnPzVbYH5ZNzncoXr3DfH4syrEM5y1zjPtbCi7O344ahGAI4w==
+Received: from mail-pl1-f199.google.com (mail-pl1-f199.google.com [209.85.214.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uscv49dn-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:13:59 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-24b2b347073so562295ad.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:13:59 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:14:04 +0000 (GMT)
+Received: by mail-pl1-f199.google.com with SMTP id d9443c01a7336-244581ce13aso598585ad.2
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:14:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756912438; x=1757517238;
+        d=1e100.net; s=20230601; t=1756912443; x=1757517243;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=RzL4kYDIxuH5s4GrG8w0rRMRXppv6MYJkkpGNs4+K8A=;
-        b=lwom8tjQoJF8q26QqmEkIf7Ks/WPTmMXtXnak70Gl2B6HSHECj6t1C+vP58IMJA8aA
-         k7ONO3af4sCkGKbwm5Mw7le4ZpgasIwixQ8m14/Gsa/eXzo3MgQhu6BsvoVv8BNDC+Sx
-         8dePVT2v4jZ7y9HhxgaouraV5lAbNvYLqEN9VicXgcR/Ev0pbULsIHZdMjsG5SRvSi0K
-         TP3lWONEy6+h7lRVIxd1WO1rfauH79DNUCttNmnVVKKBX9sRixFVaEjlrg3dyxKYf/Xs
-         abcItCDJsUnEifc1Atm6GTKKN20lLKrgo+h/ygaJX+UdPyClr0Ietv/W3Vd46A/vJyzy
-         zG8g==
-X-Forwarded-Encrypted: i=1; AJvYcCXG1TEV1nxrHfkvP7M5xGVw1J6dyeWSJ7bEjARrEHF0xhVyx7UB7aQR92/+/tlWWyoa+heeh8mnUMIs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxFhB3REwi90QF/P++tjbSrc7lZj5hHWfRoPnw0na3Rfp7oKn2u
-	ZvHKOBKNLHdh/lXJLbSMhApW0Poi7T1R1quqpi+LMFGDT1MtRzgJ2PnsT8c/jTJItyvRg0Dw3bU
-	YwGLyQ2fSOy224KKJXIh1hUzlpJhaJ6BKAmF3DAGRVHUNnAxCfCWE+q4DQz1ELVNl
-X-Gm-Gg: ASbGncsnuOjFRByCFg2srIEMNTzRrUKLJ9xkAa4nzIdpS6ZMm87HnD2d6oOdeu4kmnY
-	2vdaH2AK4g+X+N43XYMFXRzTyovejzRuyYTGpCvRRrKSf/tBYPo+Kin56fn2eduI4Os7DrOUu2n
-	ZnIYWrk2aMbg35gUznZJNBQfiuNnpEpPM34HOYn+Z2aKA57mdyDzSTnsdpfcfct6bgcLrQpFSoo
-	kthNMRmT6mToqTFqzlm8w+EAEeo1HAq6+XHbEDbHf9DDjza8n1GcWc8ZsnzAvG8cupYwhOg8hsq
-	RAEANh4a9dNtl/INL1NQJ9DK/RHiyab/mAu7F++82utSjDec65W1T9vTbcyFV4KWc1WOBtlIyJP
-	N
-X-Received: by 2002:a17:903:350d:b0:24b:299a:a8c8 with SMTP id d9443c01a7336-24b299aab5fmr72552285ad.20.1756912438224;
-        Wed, 03 Sep 2025 08:13:58 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFTvTSzNvtnYATXSFnYQsCvI8SPhdcYHjrUO+5N2sNnL4YMyS9bz/HRtJJrkQSDQo1/PcpV5g==
-X-Received: by 2002:a17:903:350d:b0:24b:299a:a8c8 with SMTP id d9443c01a7336-24b299aab5fmr72551665ad.20.1756912437706;
-        Wed, 03 Sep 2025 08:13:57 -0700 (PDT)
+        bh=VZTZQqgdtSXdHRS6Xhizb7R5zVIthwUpM+I82rokNQQ=;
+        b=CfrU2iIRtElYaPgYuiO5YNVUavRmMXSYCzBEdPpx19/uig3MeWutHPcpr+e6I1bq28
+         HW7UhV0XiQDSre3hwlZQlLvAj+OU1/LYojArWbIl5hdK0RvsfX8eC3n0aOHkZBNwnpMc
+         /pLgi6R4WKdT1W/3yKIVE4iH84eg48gUU/o+8mm7yJQj9BiQemgw1jJQvy31vTXqEoqE
+         vkCxCy/xWIhuuTI52EwRz+tcMn6Ycd6Or6WKFlTBHRTue+7syaPsQAvDqVsm2vZw9SZr
+         in+QHbM/iOsv5btgwHmS/3kZ7c7uP+EVgSozB9o+TaV7Ke03UYz2zDNWX4Rnb8KrtBC0
+         YUZA==
+X-Forwarded-Encrypted: i=1; AJvYcCWfzVi06qH1fX8mC+Stg/E/HeRuM6pfvO7+fujxJ7zZ2gJBwakDGHRBeNGl5/yfn5x9wJE/G2/Spn0B@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKKEMOcA42d73+ggYyDEJdh0wRAThDFzo2jprncGsWCLce4Oot
+	cvCx/Cb+AALcW11b65JJj/v9nb/xDhMDtI2LS+jWOkLVfSMrJKW7OBqEYLK04fZQByAoeysnuzT
+	RBsr28XsNGOBrXj40GsFuy9tHQcHGOgsG+06JmX2/R11/ypHdnTNmVpeOb+UM6vi+
+X-Gm-Gg: ASbGnct0SdvPGneA0jPi+siAVmeyPQCUhvGEl4/gQmrHczs5JlA2qU+Aemvzt1hoMBf
+	+6/YMy7q65XINzSZIDw1g+AZKFvr/Zj/iaxYxpfBOHMATp3lUiWucmy6Uyt/OzhrwsPa7jW1kOy
+	DxceLHxnwonrvOWHOZTr8E8RDhlD4OMxBvG2/EcRhRwZgtHkcla9W/t3DMyIrzGw1cGqmILa3t8
+	xOr6OrvJcZb9hIu3soRSULr090Gd/Wj93DxNDTCOR4h92rvcwBP08qmQzwNEiTXUhg3tYBQubyN
+	gSgUeBL5sPu0qSAfnarqGjcsqMORE5JaV0F1lGG3acSFlbCGJIzaz0iX/luNLtbb7RhAoRXpt80
+	V
+X-Received: by 2002:a17:903:3d0b:b0:24a:c62a:dede with SMTP id d9443c01a7336-24ac62aea77mr145251205ad.26.1756912442932;
+        Wed, 03 Sep 2025 08:14:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHVvxveVOhkQWe2XBaZgNd81gr3PM1rlr7IZRl+AQORLEL7olQsqnPY/Lmo+ZFAIsPUQi/Fdw==
+X-Received: by 2002:a17:903:3d0b:b0:24a:c62a:dede with SMTP id d9443c01a7336-24ac62aea77mr145250685ad.26.1756912442311;
+        Wed, 03 Sep 2025 08:14:02 -0700 (PDT)
 Received: from hu-mohs-hyd.qualcomm.com ([202.46.23.25])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24903758b89sm164818945ad.59.2025.09.03.08.13.53
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24903758b89sm164818945ad.59.2025.09.03.08.13.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 08:13:57 -0700 (PDT)
+        Wed, 03 Sep 2025 08:14:02 -0700 (PDT)
 From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
 To: Srinivas Kandagatla <srini@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
@@ -93,10 +93,10 @@ Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
         prasad.kumpatla@oss.qualcomm.com,
         Prasad Kumpatla <quic_pkumpatl@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v9 1/8] ASoC: dt-bindings: qcom,lpass-va-macro: Update bindings for clocks to support ADSP
-Date: Wed,  3 Sep 2025 20:43:30 +0530
-Message-Id: <20250903151337.1037246-2-mohammad.rafi.shaik@oss.qualcomm.com>
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: [PATCH v9 2/8] arm64: dts: qcom: qcs6490-audioreach: Add AudioReach support for QCS6490
+Date: Wed,  3 Sep 2025 20:43:31 +0530
+Message-Id: <20250903151337.1037246-3-mohammad.rafi.shaik@oss.qualcomm.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20250903151337.1037246-1-mohammad.rafi.shaik@oss.qualcomm.com>
 References: <20250903151337.1037246-1-mohammad.rafi.shaik@oss.qualcomm.com>
@@ -107,76 +107,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Ycq95xRf c=1 sm=1 tr=0 ts=68b85b37 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
- a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=iKSB4sV-3DizVrPEodAA:9 a=GvdueXVYPmCkWapjIL-Q:22 a=TjNXssC_j7lpFel5tvFf:22
- a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: WqDBBo_D2Suo6yFNz-jrFKZDpYyIE92a
-X-Proofpoint-ORIG-GUID: WqDBBo_D2Suo6yFNz-jrFKZDpYyIE92a
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAxMDEwMSBTYWx0ZWRfX+ZbwhXuiNOZd
- wESVyJ40moNdLwxG0ZNHypu/s3ZpDFrgn3/7P3iOSmlMUh3n0ufqgrV/CRxJ07VQw3/TmZmcscK
- 0qQo4RFiZzUeKuwwElZaYr90rgNay5Ypum7I5TnBy9faItAfuv8MWkUXNbFf4VNyaZPD2FVxNTZ
- I/pAZIOVDo5pFdhnCYmFZfSrEdrb4qZbFUZwlels98LoWNF41b3Lj+gA6Tq0/n37Srx3gwaQMbC
- TpSPJv1nu0TdmAckEtUzlHAUijf2SDhJzds8snQwBNoU/qNCmA6Ve6UZBDEQy1g53u4Pjks5VrH
- jal40l4dwvrQYTl6d153M9dtUazAbHOPqvZWM6x9TG18CX1qrlDkyITENWpYATNFzsPMCtdEcDQ
- fn/o686T
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMSBTYWx0ZWRfXwyROx+EA4yKi
+ CaSwDC8Keip7ouE34apnN1XYiEG6mxrImzFhvRsq3mz0JgY+147KeHZJ+slVoPf6nQk5GMas1Pm
+ hVC1nVYpG4KcbyDMa/EymZWGnUyXyAYN+cQlfC6RX263Jf4NqalgsZiUQgFGjFN/BqG2RSpVLbM
+ 9SXrV53XPgdYilBRF/7G6jn3uTiQj1X6vqFWLOkud6+sitGcCNZgkcaymdGFne5TFbbnwTKITBa
+ ZKpaPg0jAExgQoJhQ6KjcXm7W9mX01PMNbdLFCebwZsX35GjUWmx8UJrWzMJr08lhf0k6Jxsnvp
+ 2qQFnYWzzDh56eu07WIhkZgCrr9MoQTar7sEXAfqnvlCA0yqEwdcvv0v2zxeDnVh5d+lObF2KlE
+ ypkaUX5l
+X-Authority-Analysis: v=2.4 cv=A8xsP7WG c=1 sm=1 tr=0 ts=68b85b3c cx=c_pps
+ a=JL+w9abYAAE89/QcEU+0QA==:117 a=ZePRamnt/+rB5gQjfz0u9A==:17
+ a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=RwPLVlW_fRfmQ7ZdlRkA:9
+ a=324X-CrmTo6CU4MGRt3R:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: OBl6Evp7iCVigD_YYOyNKwTcuQT0nvfW
+X-Proofpoint-GUID: OBl6Evp7iCVigD_YYOyNKwTcuQT0nvfW
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 priorityscore=1501 adultscore=0 phishscore=0 malwarescore=0
- bulkscore=0 suspectscore=0 impostorscore=0 spamscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509010101
+ adultscore=0 spamscore=0 impostorscore=0 bulkscore=0 clxscore=1015
+ suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300031
 
-Manage clock settings for ADSP solution. On Existing ADSP bypass
-solutions, the macro and dcodec GDSCs are enabled using power domains
-in lpass-va-macro which is not applicable for ADSP based platform.
+Introduce qcs6490-audioreach.dtsi to support AudioReach architecture on
+QCS6490 platforms. The existing ADSP Bypass DTSI files such as sc7280.dtsi,
+which is tailored for ADSP Bypass architecture as they lack DSP-specific
+nodes required for AudioReach. The new qcs6490-audioreach.dtsi file defines
+nodes for AudioReach specific components such as APM (Audio Process
+Manager), PRM (Proxy Resource Manager), and GPR (Generic Packet Router).
+This change enable the audio from the legacy ADSP Bypass solution to
+the AudioReach framework.
 
 Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
 Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
 Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 ---
- .../bindings/sound/qcom,lpass-va-macro.yaml   | 23 +++++++++++++++----
- 1 file changed, 18 insertions(+), 5 deletions(-)
+ .../boot/dts/qcom/qcs6490-audioreach.dtsi     | 52 +++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |  2 +-
+ 2 files changed, 53 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-index dd549db6c841..3bfb0538dba2 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-va-macro.yaml
-@@ -79,12 +79,25 @@ allOf:
-         compatible:
-           contains:
-             const: qcom,sc7280-lpass-va-macro
+diff --git a/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+new file mode 100644
+index 000000000000..980499fb3c35
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/qcs6490-audioreach.dtsi
+@@ -0,0 +1,52 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
++ *
++ * Common definitions for SC7280-based boards with AudioReach.
++ */
 +
-     then:
--      properties:
--        clocks:
--          maxItems: 1
--        clock-names:
--          maxItems: 1
-+      if:
-+        required:
-+          - power-domains
-+      then:
-+        properties:
-+          clocks:
-+            maxItems: 1
-+          clock-names:
-+            maxItems: 1
-+      else:
-+        properties:
-+          clocks:
-+            minItems: 3
-+            maxItems: 3
-+          clock-names:
-+            minItems: 3
-+            maxItems: 3
++#include <dt-bindings/clock/qcom,lpass-sc7280.h>
++#include <dt-bindings/soc/qcom,gpr.h>
++#include <dt-bindings/sound/qcom,q6afe.h>
++#include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
++
++&remoteproc_adsp_glink {
++	/delete-node/ apr;
++
++	gpr {
++		compatible = "qcom,gpr";
++		qcom,glink-channels = "adsp_apps";
++		qcom,domain = <GPR_DOMAIN_ID_ADSP>;
++		qcom,intents = <512 20>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		q6apm: service@1 {
++			compatible = "qcom,q6apm";
++			reg = <GPR_APM_MODULE_IID>;
++			#sound-dai-cells = <0>;
++			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
++
++			q6apmdai: dais {
++				compatible = "qcom,q6apm-dais";
++				iommus = <&apps_smmu 0x1801 0x0>;
++			};
++
++			q6apmbedai: bedais {
++				compatible = "qcom,q6apm-lpass-dais";
++				#sound-dai-cells = <1>;
++			};
++		};
++
++		q6prm: service@2 {
++			compatible = "qcom,q6prm";
++			reg = <GPR_PRM_MODULE_IID>;
++			qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
++
++			q6prmcc: clock-controller {
++				compatible = "qcom,q6prm-lpass-clocks";
++				#clock-cells = <2>;
++			};
++		};
++	};
++};
+diff --git a/arch/arm64/boot/dts/qcom/sc7280.dtsi b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+index 8561fc217229..9fa294cc9a3e 100644
+--- a/arch/arm64/boot/dts/qcom/sc7280.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7280.dtsi
+@@ -3944,7 +3944,7 @@ remoteproc_adsp: remoteproc@3700000 {
  
-   - if:
-       properties:
+ 			status = "disabled";
+ 
+-			glink-edge {
++			remoteproc_adsp_glink: glink-edge {
+ 				interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+ 							     IPCC_MPROC_SIGNAL_GLINK_QMP
+ 							     IRQ_TYPE_EDGE_RISING>;
 -- 
 2.34.1
 
