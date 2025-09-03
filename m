@@ -1,236 +1,190 @@
-Return-Path: <devicetree+bounces-212226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22136B421DD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:36:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3FC6B421E5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:37:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7746D1B23B5E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:36:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B9401894027
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:37:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0073304967;
-	Wed,  3 Sep 2025 13:35:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB987309DCE;
+	Wed,  3 Sep 2025 13:36:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gSm9Bpqx"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="C7fAWz/r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FA6D1FDE09;
-	Wed,  3 Sep 2025 13:35:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E9953090EE
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 13:36:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756906555; cv=none; b=BLwc6Bb3/2dpm7dWqov6dVjkSGrs4lBJNVKEjU9XUg3o+sfD//4k0tNYKvJYAKzBq4+dIDJzC4tknyn1aXNOOwHBkRQrzy6OF6w1PAkZnzcZXu6s92r/WtSCsPTpmkujDj3+Q6Bf354z1VxkLWViHNo0czfqqyLK+jnrUMwZUiY=
+	t=1756906606; cv=none; b=L9ENcHqUW2v1Go+IK8M1L1so/RBkP44A9g4EY8PX4exNYRnnvHvAtHO01JVlJgqsg7cgjy9YB9iYpUjZoVat/o7dV4bMKVHm9iQebuXIUMTzu3+gUZhk/BYXn+lOxUsx3SSj9Ub0WScw1Daj4WUOVA0Uhxuz1OB2WO8J2LywL6o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756906555; c=relaxed/simple;
-	bh=sTpJYr2zp8LHrOcPJLG4wwyrHVGeO0gIJp52vosX9gk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fE5qqpLVT1RDOJ7NE+nDWb5zSriPAbEeLkBxB9b/Ozdl8mxQ/LXE/pZJXtjFuSPn1pkcgSA8IQFk5S0KItjPtSuy62YxYd/Un0jiayqyOnq+VpRZ2B5+v3vtoC5Qlm0PJhYNL66+SuZ4wJ2FJRhpaZGWKmWzk5gYhmBh4nJ5P0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gSm9Bpqx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF386C4CEF0;
-	Wed,  3 Sep 2025 13:35:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756906555;
-	bh=sTpJYr2zp8LHrOcPJLG4wwyrHVGeO0gIJp52vosX9gk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gSm9BpqxhoY5su2yUqKJjCmxZjfNyREzTeBLgxg2CXQzawHfgDGsAycXu0hFl6loo
-	 i4UYSrj/9TkJGdTJN/j5pCpmBXf6P9tYJWy4XMiP0NFnZT9l+LXHsyt1rQquVbYJs1
-	 +ChPT8tFBZFuDrpTyxQ2iSiGZxvEORwjeeeFCkN/ikL611j2ilGrw4/HBIAyYThikw
-	 nbOWh2gzkK9O3hPcT/pc3bisY9tpbMTI/wqj4qjprPGsWPEHRSga5fxWLWIw4GKpsE
-	 cImSI2186Y3iwXG+HCUh/AvWetxKUgh7g4hKDX0/2gjQuuwcNj6jNnLyRuTVwRhOUG
-	 1GHuArs5fOmYw==
-Date: Wed, 3 Sep 2025 14:35:50 +0100
-From: Lee Jones <lee@kernel.org>
-To: Alexander Kurz <akurz@blala.de>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Dzmitry Sankouski <dsankouski@gmail.com>,
-	"Dr. David Alan Gilbert" <linux@treblig.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] Input: mc13783-pwrbutton: enable other mc13xxx
- PMIC
-Message-ID: <20250903133550.GB2764654@google.com>
-References: <20250829201517.15374-1-akurz@blala.de>
- <20250829201517.15374-5-akurz@blala.de>
+	s=arc-20240116; t=1756906606; c=relaxed/simple;
+	bh=hNsS2uc9yOMQ2NSuhnYTKcplUu66M1ylThnjBJY/bbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=pYcaAzuubJiOYrilYMHR05UJpvmGnaaaY2gdEw2Zn5Tk3PfBVtnm+c40XIn43DBa0k7j1KfUJEFBAYFmHBcr8hBko4rsop31R3Cjh+hzbXNAJ2FkVQzw+KUKQPZmfcRmUGaWtn0WDn0GFolQ+sJCTizCpVQnryhaeUjVxoWfgUo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=C7fAWz/r; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583Ba9pI025178
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 13:36:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	lN8gdknZMrOiQok/7MvQU3sHMt/V6D5KvcciwLonHIE=; b=C7fAWz/rbvK32/ph
+	nAkHjns/kz0KodePUhe9V5KmdHJ5AEnJnJyqRlkMQpyXEMZ6OS1uP0tb9jcmByBh
+	iv4TAlYU1/i3LW8nUal8SkvnEvJK7aqhA4umZZ4DYWdO5/3Kc+fEC0E+sx1pzLwR
+	sIGqboGIVun+G4ER13ZhrKdVqZlcuiBEAmbcRPzm1LW8bJ2pOAxmTq910/s1TnOx
+	Rqmdv3ezfaWdGo2bHT1yPXUm62Qfbo3KbJ1AUFA/enB/5xmPOJje+njoYDPF3W+D
+	D6dCkoOwRbBB2GWqs/KbMQFGvodjMJnFxcAjycmVk72zQB0N4JXjyJb0TXI1yAKa
+	bz6OMw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48xmxj0ck5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 13:36:44 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b307e1bef2so17698361cf.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 06:36:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756906603; x=1757511403;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lN8gdknZMrOiQok/7MvQU3sHMt/V6D5KvcciwLonHIE=;
+        b=KXsEawnzcXBmYl7lnwxZhiuaFZIR9P6rgt7YdqAp8sR1ZmEmcn8o4OKax6xwtFsX+v
+         MJUoL8fbd9tLermhDyrOv5cyxupawXnGQtTFHbE/175l7/Jwi8ntNpoh2POo52YTjOeH
+         X70xceyi+/8FhRMQSwIRPPp0f0V+SN0AasSF+R/kix0TLic8WI29TYIBJ9sfma/mNAbp
+         eBfPwlUenxTsVWcQ+2Oaej4a0eNsLxpX+OqfLRlzC73p2yhXOhrN2mOMkev49KPrGBYL
+         ToeRLRw6BhlWwWeeCbE2IL0IkE8+/wd70V3S1fI1LtbbTUehkF/SWEDGXYElgU/w/Hs3
+         Tumw==
+X-Forwarded-Encrypted: i=1; AJvYcCV5NPeLm5m22+FT11OdtgnmuvddxGqLGFZyC+jZSwleNvy/LIrlUyNv7j473Bfolx2pYY7cE/FEYI/s@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyl2yrdFuX8rXtMn6KJ2lKtczZqLFfBZfQ1JkOU8RnzMo99mUu/
+	rw4db4TKbzLiEBFfdw9zS3SwGEbRRkzC7ER1wrqydvM4ZqlGUQDEmW6Wl1yOqcxm2y92rhXAd5S
+	C039Ch9bcG+gEamlFE0WlwDsVxN1Ub1tWiMSE5kRAQwWIbdOlpBOgEtbyHlUAmtff
+X-Gm-Gg: ASbGnculb1VeygJAZY/6d+H8WRTrqDtd6SagC3HKBa/u4KdhklKF0OYhnEERHxHxUcm
+	miUyLB+ScwV/z0LC027ZUKp1oCc/45VhWa8MmvTn6mgp/NfdkB4OetIC5W6oI5cRWCfPaPMs3gH
+	fUDKUKAgrmmSYbc0RiurpSpY8cnNP++CCTIDZGZStK+xSnAVKB0fDSUPDBSlaz4z0Ggcfhdbb6v
+	EKkOOcrcllqfMt4YbTiP0fPD47WS1uym8IOyLALJgdLrWpNIobWk0P8exePG9Y2S1A66PzCGPER
+	tB4gcS5SKnKYn7VTnipJikwBu5XWyDoQZyl0vTRKGNM+K4vMJG5wzJPA3E9AZEpxHKrzjfewmY2
+	jeFpVPBmGTFCFEJjZ3fr2zQ==
+X-Received: by 2002:a05:622a:4506:b0:4b3:4590:ab74 with SMTP id d75a77b69052e-4b34590ba5bmr55006861cf.13.1756906603098;
+        Wed, 03 Sep 2025 06:36:43 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IErXOAvUamYTNZwdXsoIgSgCVJyJNUAEhsmG6GIw8r9rMGaKeXaF6CVWYD77CBPNPOt2y9/Dg==
+X-Received: by 2002:a05:622a:4506:b0:4b3:4590:ab74 with SMTP id d75a77b69052e-4b34590ba5bmr55006561cf.13.1756906602636;
+        Wed, 03 Sep 2025 06:36:42 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0423ed35e4sm805734266b.25.2025.09.03.06.36.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 06:36:42 -0700 (PDT)
+Message-ID: <f169be5a-faa5-4824-861e-27bd2083b9cf@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 15:36:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250829201517.15374-5-akurz@blala.de>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Akhil P Oommen <akhilpo@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Connor Abbott <cwabbott0@gmail.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov
+ <lumag@kernel.org>,
+        Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+References: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
+ <20250822-a663-gpu-support-v4-3-97d26bb2144e@oss.qualcomm.com>
+ <f11b778d-eba1-4712-81c7-b83f2cb38b46@oss.qualcomm.com>
+ <exkrgx6rdotfrrsnklsd7zk4ydehsk5vaoevibpqisyq2dwbd4@sa4kgnuexlna>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <exkrgx6rdotfrrsnklsd7zk4ydehsk5vaoevibpqisyq2dwbd4@sa4kgnuexlna>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAzMDExNyBTYWx0ZWRfX0LSbgEz95QCU
+ 9Q3mIGsQIT4YelJwPYQZqXoOuuOGyC8q88LP1hnyXouRZAI+tOo91Dn0rHwKcg3j2YdLvKKx62L
+ kDgOnSyC0OqTpsWRUySRRgykv5eAA0v9j1PdWEOLdnUPJEON1kGVq5yNbbodXWcRLhr2mQeY2nG
+ ijBgD5fR6LA2kal7L38N8H6u4oZ0MQGT2EU/+kZkhgidpfdeUpLZhVHYDE6tAIyVkFGlnf5ZkJ+
+ KJb5kIWr6afylHpixrrDy50TrUzjNDpY8wJN40Tp+B09TIeOO75O/VJrZBl/GjmPdyPCLx+cDbU
+ pKc2okL4DJNcu0x8Ers+vLN2DnSqQlQ5IER0H2cIMgkMKcBoc1ECrQcYq7USssVW4Nt6jXDCPSb
+ dQDwdFmh
+X-Authority-Analysis: v=2.4 cv=a5cw9VSF c=1 sm=1 tr=0 ts=68b8446c cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=KKAkSRfTAAAA:8 a=azIdKaGB62pXRnNptYYA:9 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: Z8enNqwF-OR447F2WkGc3DDx3xRNs3u5
+X-Proofpoint-ORIG-GUID: Z8enNqwF-OR447F2WkGc3DDx3xRNs3u5
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ phishscore=0 impostorscore=0 adultscore=0 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509030117
 
-On Fri, 29 Aug 2025, Alexander Kurz wrote:
-
-> All three mc13xxx types do feature two common power buttons referred as
-> ONOFD[12] (mc13783) and PWRON[12] (mc13892/mc34708) in the SoC reference
-> manuals. Add support for PWRON[12] (mc13892/mc34708) but skip support for
-> button PWRON3 (mc13892) for sake of simplicity.
+On 9/3/25 2:39 PM, Dmitry Baryshkov wrote:
+> On Wed, Sep 03, 2025 at 02:26:30PM +0200, Konrad Dybcio wrote:
+>> On 8/21/25 8:55 PM, Akhil P Oommen wrote:
+>>> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+>>>
+>>> Add gpu and gmu nodes for sa8775p chipset. As of now all
+>>> SKUs have the same GPU fmax, so there is no requirement of
+>>> speed bin support.
+>>>
+>>> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>> ---
+>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 116 +++++++++++++++++++++++++++++++++++
+>>>  1 file changed, 116 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>>> index 8ceb59742a9fc6562b2c38731ddabe3a549f7f35..8eac8d4719db9230105ad93ac22287850b6b007c 100644
+>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>>> @@ -1097,6 +1097,18 @@ ipcc: mailbox@408000 {
+>>>  			#mbox-cells = <2>;
+>>>  		};
+>>>  
+>>> +		qfprom: efuse@784000 {
+>>> +			compatible = "qcom,sa8775p-qfprom", "qcom,qfprom";
+>>> +			reg = <0x0 0x00784000 0x0 0x2410>;
+>>
+>> len = 0x3000
+>>
+>> [...]
+>>
+>>> +		gmu: gmu@3d6a000 {
+>>> +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
+>>> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
+>>
+>> This bleeds into GPU_CC, len should be 0x26000
 > 
-> Signed-off-by: Alexander Kurz <akurz@blala.de>
-> ---
->  drivers/input/misc/Kconfig             |  4 +--
->  drivers/input/misc/mc13783-pwrbutton.c | 44 +++++++++++++++++++++++---
+> gpucc is in the middle of GMU, see other platforms.
 
->  include/linux/mfd/mc13783.h            |  4 +--
->  include/linux/mfd/mc13xxx.h            |  2 ++
+This is not the case here
 
-Acked-by: Lee Jones <lee@kernel.org>
-
->  4 files changed, 46 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
-> index 0fb21c99a5e3..b66e920369f2 100644
-> --- a/drivers/input/misc/Kconfig
-> +++ b/drivers/input/misc/Kconfig
-> @@ -276,8 +276,8 @@ config INPUT_MC13783_PWRBUTTON
->  	tristate "MC13783 ON buttons"
->  	depends on MFD_MC13XXX
->  	help
-> -	  Support the ON buttons of MC13783 PMIC as an input device
-> -	  reporting power button status.
-> +	  Support the ON buttons of MC13783/MC13892/MC34708 PMIC as an input
-> +	  device reporting power button status.
->  
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called mc13783-pwrbutton.
-> diff --git a/drivers/input/misc/mc13783-pwrbutton.c b/drivers/input/misc/mc13783-pwrbutton.c
-> index ace9f286fd24..c9eea57ceedd 100644
-> --- a/drivers/input/misc/mc13783-pwrbutton.c
-> +++ b/drivers/input/misc/mc13783-pwrbutton.c
-> @@ -30,16 +30,21 @@
->  #include <linux/sched.h>
->  #include <linux/slab.h>
->  
-> +struct mc13xxx_button_devtype {
-> +	int button_id_max;
-> +};
-> +
->  struct mc13783_pwrb {
->  	struct input_dev *pwr;
->  	struct mc13xxx *mc13783;
-> -#define MC13783_PWRB_B1_POL_INVERT	(1 << 0)
-> -#define MC13783_PWRB_B2_POL_INVERT	(1 << 1)
-> -#define MC13783_PWRB_B3_POL_INVERT	(1 << 2)
->  	int flags;
->  	unsigned short keymap[3];
->  };
->  
-> +#define MC13783_PWRB_B1_POL_INVERT	(1 << 0)
-> +#define MC13783_PWRB_B2_POL_INVERT	(1 << 1)
-> +#define MC13783_PWRB_B3_POL_INVERT	(1 << 2)
-> +
->  #define MC13783_REG_INTERRUPT_SENSE_1		5
->  #define MC13783_IRQSENSE1_ONOFD1S		(1 << 3)
->  #define MC13783_IRQSENSE1_ONOFD2S		(1 << 4)
-> @@ -108,6 +113,8 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
->  {
->  	const struct mc13xxx_buttons_platform_data *pdata;
->  	struct mc13xxx *mc13783 = dev_get_drvdata(pdev->dev.parent);
-> +	struct mc13xxx_button_devtype *devtype =
-> +		(struct mc13xxx_button_devtype *)pdev->id_entry->driver_data;
->  	struct input_dev *pwr;
->  	struct mc13783_pwrb *priv;
->  	int err = 0;
-> @@ -127,6 +134,11 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
->  	if (!priv)
->  		return -ENOMEM;
->  
-> +	if (devtype->button_id_max < 2 && pdata->b_on_flags[2] & 0x3) {
-> +		dev_err(&pdev->dev, "button not supported\n");
-> +		return -ENODEV;
-> +	}
-> +
->  	reg |= (pdata->b_on_flags[0] & 0x3) << MC13783_POWER_CONTROL_2_ON1BDBNC;
->  	reg |= (pdata->b_on_flags[1] & 0x3) << MC13783_POWER_CONTROL_2_ON2BDBNC;
->  	reg |= (pdata->b_on_flags[2] & 0x3) << MC13783_POWER_CONTROL_2_ON3BDBNC;
-> @@ -239,12 +251,15 @@ static void mc13783_pwrbutton_remove(struct platform_device *pdev)
->  {
->  	struct mc13783_pwrb *priv = platform_get_drvdata(pdev);
->  	const struct mc13xxx_buttons_platform_data *pdata;
-> +	struct mc13xxx_button_devtype *devtype =
-> +		(struct mc13xxx_button_devtype *)pdev->id_entry->driver_data;
->  
->  	pdata = dev_get_platdata(&pdev->dev);
->  
->  	mc13xxx_lock(priv->mc13783);
->  
-> -	if (pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE)
-> +	if (devtype->button_id_max >= 2 &&
-> +		pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE)
->  		mc13xxx_irq_free(priv->mc13783, MC13783_IRQ_ONOFD3, priv);
->  	if (pdata->b_on_flags[1] & MC13783_BUTTON_ENABLE)
->  		mc13xxx_irq_free(priv->mc13783, MC13783_IRQ_ONOFD2, priv);
-> @@ -254,7 +269,28 @@ static void mc13783_pwrbutton_remove(struct platform_device *pdev)
->  	mc13xxx_unlock(priv->mc13783);
->  }
->  
-> +static const struct mc13xxx_button_devtype mc13783_button_devtype = {
-> +	.button_id_max	= 2,
-> +};
-> +
-> +static const struct mc13xxx_button_devtype mc13892_button_devtype = {
-> +	/* PWRON3 is not supported yet. */
-> +	.button_id_max	= 1,
-> +};
-> +
-> +static const struct mc13xxx_button_devtype mc34708_button_devtype = {
-> +	.button_id_max	= 1,
-> +};
-> +
-> +static const struct platform_device_id mc13xxx_pwrbutton_idtable[] = {
-> +	{ "mc13783-pwrbutton", (kernel_ulong_t)&mc13783_button_devtype },
-> +	{ "mc13892-pwrbutton", (kernel_ulong_t)&mc13892_button_devtype },
-> +	{ "mc34708-pwrbutton", (kernel_ulong_t)&mc34708_button_devtype },
-> +	{ /* sentinel */ }
-> +};
-> +
->  static struct platform_driver mc13783_pwrbutton_driver = {
-> +	.id_table	= mc13xxx_pwrbutton_idtable,
->  	.probe		= mc13783_pwrbutton_probe,
->  	.remove		= mc13783_pwrbutton_remove,
->  	.driver		= {
-> diff --git a/include/linux/mfd/mc13783.h b/include/linux/mfd/mc13783.h
-> index c25b1676741b..ab6db774e1fa 100644
-> --- a/include/linux/mfd/mc13783.h
-> +++ b/include/linux/mfd/mc13783.h
-> @@ -65,8 +65,8 @@
->  #define MC13783_IRQ_UDM		23
->  #define MC13783_IRQ_1HZ		MC13XXX_IRQ_1HZ
->  #define MC13783_IRQ_TODA	MC13XXX_IRQ_TODA
-> -#define MC13783_IRQ_ONOFD1	27
-> -#define MC13783_IRQ_ONOFD2	28
-> +#define MC13783_IRQ_ONOFD1	MC13XXX_IRQ_PWRON1
-> +#define MC13783_IRQ_ONOFD2	MC13XXX_IRQ_PWRON2
->  #define MC13783_IRQ_ONOFD3	29
->  #define MC13783_IRQ_SYSRST	MC13XXX_IRQ_SYSRST
->  #define MC13783_IRQ_RTCRST	MC13XXX_IRQ_RTCRST
-> diff --git a/include/linux/mfd/mc13xxx.h b/include/linux/mfd/mc13xxx.h
-> index 0393083af28a..36e5e7de7cb2 100644
-> --- a/include/linux/mfd/mc13xxx.h
-> +++ b/include/linux/mfd/mc13xxx.h
-> @@ -67,6 +67,8 @@ int mc13xxx_irq_unmask(struct mc13xxx *mc13xxx, int irq);
->  #define MC13XXX_IRQ_LOBATH	14
->  #define MC13XXX_IRQ_1HZ		24
->  #define MC13XXX_IRQ_TODA	25
-> +#define MC13XXX_IRQ_PWRON1	27
-> +#define MC13XXX_IRQ_PWRON2	28
->  #define MC13XXX_IRQ_SYSRST	30
->  #define MC13XXX_IRQ_RTCRST	31
->  #define MC13XXX_IRQ_PC		32
-> -- 
-> 2.39.5
-> 
-
--- 
-Lee Jones [李琼斯]
+Konrad
 
