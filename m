@@ -1,66 +1,61 @@
-Return-Path: <devicetree+bounces-212168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 108A5B41EBB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:19:47 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C9FFB41EC1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:20:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B21A41BA42FA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:20:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 580D47AF79E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:18:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68F752F8BEE;
-	Wed,  3 Sep 2025 12:19:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F4CF2F3C0C;
+	Wed,  3 Sep 2025 12:20:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="0GyFtSxD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HTkiMoiN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD6362F6178;
-	Wed,  3 Sep 2025 12:19:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70C2D2EA48F;
+	Wed,  3 Sep 2025 12:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756901976; cv=none; b=ldCcojwvUS3FKngElQTfSX2HpYUkHDURwsekSVsqhfGIx+vY5eDSj0VBQSvCl/+QEDwZTWJCuOVgfMwuhypsehjzFZvW63awil+Vd6QYZ5ENSdeA/32FZtX4qQBdM7W4q5aEJS1GqDdejgk8HmwLqBEGUf9WOnUiY4uTIo8s0Bc=
+	t=1756902004; cv=none; b=kHCa1Qvtoz/ERqRf8fJegEDp7KiNQ2uavfNcNLGwe7CI2642UuEY/RgbtD2k4IVwfCFoWpLeMDid2DPRpLh/BG8zbDtKYqauI84tytZh1qeVhzyTgmKD6wdqIEErbeEqs3bendmKoBqScS9TrVWp2S+ueOR6MxBPdN5G5ZTIDrs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756901976; c=relaxed/simple;
-	bh=oDhD56IfuO3o9coc4tc7y6naPZd9iYaopYyQn6gukfE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hFBzKB9i7E0BhaNkg2n9qVO0MOlHcyK+JKuU84tVZCzGGHnH2ATtLQ5Kxss4W6DI11K9xqjfaeHn5JFbkFB5n/CV0lU6CLOpY0mhbBDXDeuIVxdTxOXrkWrHUjNlOGuT3S5odkxn20sActdSwA4j1Ve9ERbg/WFQvNXv51gJKkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=0GyFtSxD; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
-	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=J1KfW10yfYRUz0dRGNkZQYEnp2Hun5fkPdAXq0a5CeI=; b=0GyFtSxDP50gFZGFy+2kOXaebj
-	S6P0FLjftPJ/knLJcL/8zL2kJncKmqdJUhHRRXiTE2VxVCrXm8oGZKljkALqMrzWnRcfqlwCSi21K
-	LfjlaVmB76UU26NV9SOmyHtsmef3wI6OJbn4yTC/ca0gwQdtHJKXB8YbeUD7OxpPadtNtDj3QWlIg
-	Q0EcLR7vtD4dbJ8iwKNJaMdf63zciJBX2aohUPO/ZRkvkb4vRmIRdoZZ4jpiuOFKe8qA5AxmjWQi1
-	svARzV7X+tDsqwEvqM1UclnHxGXuUiqe8ZyNVbQ/vjIjiucPZ1QDVLB2yybks6SNRZDVLRZcfb2E9
-	Xetbyl4g==;
-Received: from [213.70.33.227] (helo=localhost.localdomain)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1utmSX-0006Bv-Fb; Wed, 03 Sep 2025 14:19:29 +0200
-From: Heiko Stuebner <heiko@sntech.de>
-To: robh@kernel.org,
-	WeiHao Li <cn.liweihao@gmail.com>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	hjc@rock-chips.com,
-	andy.yan@rock-chips.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-clk@vger.kernel.org
-Subject: Re: (subset) [PATCH v1 0/7] drm/rockchip: Add MIPI DSI support for RK3368
-Date: Wed,  3 Sep 2025 14:19:19 +0200
-Message-ID: <175690195013.3771488.435870786224873257.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250831104855.45883-1-cn.liweihao@gmail.com>
-References: <20250831104855.45883-1-cn.liweihao@gmail.com>
+	s=arc-20240116; t=1756902004; c=relaxed/simple;
+	bh=9URczS0VB9EctpFDAS3hOzqSsUg9Ay9Qy/aJrO0mPYo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=IX5wxh9S8P5F3wlMwCC8fMQGJMQVriv+Kw0bkuFluwt+DXi3P8QLZd1IE8SthD1pyjS7ihOlSTZyywG8A3rvUR9pYKjyL9bLwbnEkW+yWC71iUbmazmiqAcN+nPstjbyem08E1H+03hqOon25fT96G8mcWkmim2NVkO29J4hxuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HTkiMoiN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11B4EC4CEF0;
+	Wed,  3 Sep 2025 12:19:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756902004;
+	bh=9URczS0VB9EctpFDAS3hOzqSsUg9Ay9Qy/aJrO0mPYo=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=HTkiMoiN1rQZ4wOADiWn87Zuy4gLl1coCPzfJHA+8djXjpUPYvHduqErQgjNZH2ay
+	 hJEZTTq4V9WJfS0Bfs0shTkUSV+xwrktlesKwvV2JeF/97YzyIuIFrHPKMvCmiYq7y
+	 eJvqF4KKq+TSgmH9m/E3Hf7uPG6Pfzsu12NiIg1Akqn9OKeuhVAXunRhyzL9OxZI61
+	 hjOaSy62p3yjoUadBNHgQewbvz6AwzkUkyH/5c76+AghzLQcgTcY33UprXzkijC2sY
+	 0Q8Lm63wP+d3ohyCDhHNiTVjACXY/LYUAc+/HORDXy3gRGuW7cYXNd/Jfay8uDTi4b
+	 h4sXzod/zJiFA==
+From: Lee Jones <lee@kernel.org>
+To: lee@kernel.org, lgirdwood@gmail.com, broonie@kernel.org, 
+ alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org, 
+ conor+dt@kernel.org, Alex Elder <elder@riscstar.com>
+Cc: mat.jonczyk@o2.pl, dlan@gentoo.org, paul.walmsley@sifive.com, 
+ palmer@dabbelt.com, aou@eecs.berkeley.edu, alex@ghiti.fr, 
+ linux.amoon@gmail.com, troymitchell988@gmail.com, guodong@riscstar.com, 
+ linux-rtc@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, spacemit@lists.linux.dev, 
+ linux-kernel@vger.kernel.org
+In-Reply-To: <20250825172057.163883-1-elder@riscstar.com>
+References: <20250825172057.163883-1-elder@riscstar.com>
+Subject: Re: (subset) [PATCH v13 0/7] spacemit: introduce P1 PMIC support
+Message-Id: <175690199980.2656286.5459018179105557107.b4-ty@kernel.org>
+Date: Wed, 03 Sep 2025 13:19:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,33 +64,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.15-dev-c81fc
 
-
-On Sun, 31 Aug 2025 18:48:48 +0800, WeiHao Li wrote:
-> This series adds MIPI DSI support for the Rockchip RK3368 SoC, enabling
-> native display connectivity through the MIPI DSI host controller and
-> PHY. The changes span multiple subsystems, including clock control,
-> DRM/VOP integration, DSI controller binding, and PHY driver updates.
+On Mon, 25 Aug 2025 12:20:49 -0500, Alex Elder wrote:
+> The SpacemiT P1 is an I2C-controlled PMIC that implements 6 buck
+> converters and 12 LDOs.  It contains a load switch, ADC channels,
+> GPIOs, a real-time clock, and a watchdog timer.
 > 
-> Key changes:
->   - Update the Rockchip MIPI DSI PHY driver to preperly handle RK3368
->     phy initialization.
->   - Add missing lut_size of vop_data for RK3368.
->   - Add missing clock ID SCLK_MIPIDSI_24M to the RK3368 CRU driver,
->     which is required for enabling the 24MHz reference clock.
->   - Add MIPI DSI node to rk3368.dtsi with correct clocks, resets,
->     and register mappings.
+> This series introduces a multifunction driver for the P1 PMIC as
+> well as drivers for its regulators and RTC.
 > 
 > [...]
 
 Applied, thanks!
 
-[3/7] dt-bindings: clock: rk3368: Add SCLK_MIPIDSI_24M
-      commit: 4a76a0a889cef284327f265f97edc4ff2f3e11cc
-[4/7] clk: rockchip: use clock ids for SCLK_MIPIDSI_24M on rk3368
-      commit: 77111b2c22ef5b368da5c833175b6f7806b39ccb
+[1/7] dt-bindings: mfd: add support the SpacemiT P1 PMIC
+      commit: baac6755d3e8ddf47eee2be3ca72fe14ebae2143
+[2/7] mfd: simple-mfd-i2c: add SpacemiT P1 support
+      commit: 49833495c85f26d070e70148fd9607c6fbf927fd
 
-Best regards,
--- 
-Heiko Stuebner <heiko@sntech.de>
+--
+Lee Jones [李琼斯]
+
 
