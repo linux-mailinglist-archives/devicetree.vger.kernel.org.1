@@ -1,196 +1,198 @@
-Return-Path: <devicetree+bounces-212330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3A2B4264D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:12:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 904C4B42656
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:13:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE5623B1229
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:12:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 267A11BA32FD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:13:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BCAF2BE633;
-	Wed,  3 Sep 2025 16:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC0D52BEC42;
+	Wed,  3 Sep 2025 16:13:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OknD3L55"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RcwnqjG3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4221D2BE646;
-	Wed,  3 Sep 2025 16:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 603552BE7CC
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 16:13:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756915947; cv=none; b=qorBiNkdV85vVa2FLVSygbo065HruIeC+3yJ105knRK/MoLL40231kmpNNV4ve+6HtDnDzuwALhy7yc0tD9imqCxdp5Huw4kTdfgHSYrOasWJvK0ZGTknvAcnJKGTYVN2/Qc/pJJHxRgssslw0qhMrmxkxA1o39Mn9QamRK7IKw=
+	t=1756915986; cv=none; b=U3mS9D5rvcPl2F//YXz9QfXdrDciQuQMSZfQOk43rpluXS3XahQoOwbaej6qZ535nMCictDWpUP0z/lU+OTQdCl7qNWnE8FYgLjkzeavZfXucOuIjHaHFZJqbTMGzC2MMc207Dqm7kJTvCMwqdJ3/vIZOL6AnYQwV7h/HELA+Hg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756915947; c=relaxed/simple;
-	bh=c5SrGvIiXz36QZActioetkFJi0lAw1vS03dG6Q6OdRw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MZuZlq75OqsmqCLxLnbrI/thn29Yf3c9kKxtyoMCpF27tqZrLLvU/sIGBMr1hvRmw6Ll/BNfunfjfa2l27mTrfS4AmWIvh7YeFFYrlm2VwNeTgoCI7xi/BlUwL1dtAfhvXKZbPxMMdRcdWXh6FCWA62D0Cr7gTICZBkS2mgCH+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OknD3L55; arc=none smtp.client-ip=209.85.221.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3cdfb1ff7aeso77040f8f.2;
-        Wed, 03 Sep 2025 09:12:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756915943; x=1757520743; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=mSH3Zacp/f+cickpwsilQ+TYRotewL36J8+/+EeU+iA=;
-        b=OknD3L55UgloZy3oRTWnlr6wPtZDHSLbRAQ5NS3itNXtw2f0QmRs1FROZX0kZGrKq/
-         2jSZeSrKR6S7Mglea6Yegnz965QFyHISDVx5fYOt9eBcP+hPHEJvpP2UEl8ZGgl1Wg7E
-         qs9FckFRstH35LY+sPgZSpE+emVokBD2hk5me8HWQJAhRM6GdOV7U77TuARryU6UCkhU
-         O2xAdVytUGgt2gGVih/ESDgrJOAoLlfx9tULz1nAp5blET0H9hCYs+9ZaW+lh9ZU1/iJ
-         sgeu5CSXssMY5TqoQ6ZsFP19PB1WN/sDxpRdg2Iwi2F5UWSZRaN8Y5s2edjjEAkO7StI
-         QSMA==
+	s=arc-20240116; t=1756915986; c=relaxed/simple;
+	bh=npa6VTO3UD4EmfEg4HVC1uujU7lkywOp1bop//9kLe0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=N0ms9yNbjeu9Nfzo0XR6D61c7DMnEikdMzY4w6eZSIun18jTsDrjmUoWnN64SSKxpqhOMrLlJhwtSLZKSzb5RcLjvcqJuajRZYE/4PM5dyXILJfwfOLGKwLrunfuUcL/iklLb0quiDs2p8bJL5Gh773189i7dQIqDBhztk1hBxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RcwnqjG3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583Dwso3032510
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 16:13:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	pKeGXm8jI+JpucgwsLhCt1MqYWl2JGrUgMOwCF0ZLRw=; b=RcwnqjG3gzZFzE5y
+	qk0DpNv2Z9TZ/bvR+tO3S4pDWBBktCGCpsH1epbK0E1RpKxO2iLyG5xmhciO2pKt
+	qCU+iB4l77rt009pAJYpZmWzNzzC6whn7GzU+IFxXVSxW7i2EG6Bmk/6gEBkPDT1
+	DjE0WOfBwjNYbG+qwHdqww/EIEvnIk3fxh6yaPQE0JyHUAsOebQH28DzBNrKDLFO
+	McOgq085DUVyLmPxGlqK09VDyxDvLJI2hZjlEn19Jbf5DaHLfVTtP0cxC/KWi3K4
+	cfXSyFe7/lPyPeS5SZeC5FyxM/EE30UXGx+3w5XLDCQ8QoTjg8oU9f5gdl2InkCe
+	zawcTw==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ush348bd-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 16:13:04 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b32dfb5c6fso189241cf.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 09:13:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756915943; x=1757520743;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mSH3Zacp/f+cickpwsilQ+TYRotewL36J8+/+EeU+iA=;
-        b=YZCfjt7QD8ad7FY4YRsWbp9gUWYt1w0heM0H0aXbeYYdoEQ/vjGgXN7nIxQ5yHC9XT
-         Ti02Raf6pVWfF4p4B9DppXYQO0kqA0eNnHbAEfNeCl+pQfmKMWJbAcpkL0aGVQmEREbF
-         wgYmkE0d+g7c6TprzxVNjr36NpwafIxwunFWI5VqV/xyNICWfu1UI+xgPVUkaSt+yDav
-         EDHuyUO+QMr7GUfbdOuIxP10GXCjvLfQqDjsdKMTYPOttYe+lMANEPJHl+ObyvQqtobK
-         5tEp8mB97gk4OfTOLn99YEOHnp38IhZRXzX5916IPT65D+hLXiac/hP/PGxSR2I1R91j
-         L/NA==
-X-Forwarded-Encrypted: i=1; AJvYcCVy4E7Hc95mdFNdhxW2HRpvto90LeOKh6h+aEEG/x0FLVygWrE4EFN+LAu3hePpvucOfNJ5lYfnSNNs0BQ=@vger.kernel.org, AJvYcCWeAyOBiQZosUFGTuvTjK7xWXmNLa4CF3DOgp6yJ7IvP8DLJnTURuKO/MZA8k/CQCMV1EE/P9phTCMB@vger.kernel.org
-X-Gm-Message-State: AOJu0YxoW88Mw/C1wy2frqO+WQSR0v8TTyIu9I11RURrXa6Dok1b0AKo
-	E4QBkCAlvhTUwOOaKz/gRr4ZTIzXJWcbJpYeUUVFJyLQSoAp1GKS9L0z
-X-Gm-Gg: ASbGncuty2ihdD34zwitFeCakrWRzdDltBZbXkKTv1bra65+x2cj/x9mC3SlaH2xMmt
-	RXk9m/LfrLDZ0CD7U1RZCu2PRmFC3MCW45KrClgdj7GyYdXMZ4tVSNbp+OV8j8rGdVUH9QvhgXK
-	Y2ur95dkaw8xEPNTrKU85+asM2s0TzroDHT8+wr7ZpRMSWPFRI8lPwdgclCzPK+giT5uYkYmH46
-	t/CD002dKIkU0NJepboksyP25AMgxCNjOfaqUPQnAdcpERU7yS2rex7iMkyErsBiW99a9MfO/+l
-	p3ATE4bWtM+kCIu886tGFix5p5Es22mIVoifgJl3Xg3bVY6p/W0j3MTYywx5X/4jAl8GPoiFUwq
-	tIlnUu0CGrO7qbrmsE37mOXY+eDKSfH8lDuCLYvadXnLy+0fvV9PXYAKkgQmz16WlV6+zF8sitn
-	RVJY2PwKuHuvRwefQyujo=
-X-Google-Smtp-Source: AGHT+IHY1b3uufepgZb7f9ysqZmKK+/Hd8xA7Sv2qwFfaxBcYfbZY2Np9JxcRK+tnTw30ZuHhEZrcA==
-X-Received: by 2002:a05:6000:2410:b0:3d8:e1de:7e4f with SMTP id ffacd0b85a97d-3d8e1edc849mr6275167f8f.21.1756915943185;
-        Wed, 03 Sep 2025 09:12:23 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34494776sm23960790f8f.61.2025.09.03.09.12.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 09:12:22 -0700 (PDT)
-Date: Wed, 3 Sep 2025 18:12:19 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: David Hildenbrand <david@redhat.com>
-Cc: Frank van der Linden <fvdl@google.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-mm@kvack.org
-Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
-Message-ID: <g34tb2ontlnazift3sik5dqs75a7k2bhzo74kknkxoegv4q5vb@jsqo7v6awovf>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-4-thierry.reding@gmail.com>
- <CAPTztWa7kcx8bBEJEKvnjcD4v1-eDLVxMd9C10XiBQi4CDLfHg@mail.gmail.com>
- <e513c127-d4f4-4e93-8d4b-23d1e4fdceb5@redhat.com>
+        d=1e100.net; s=20230601; t=1756915983; x=1757520783;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pKeGXm8jI+JpucgwsLhCt1MqYWl2JGrUgMOwCF0ZLRw=;
+        b=PNG14hUkXuqUZFNuY0ql5H/UqMo/uBKvj6+m51/p6DNNnc6hCT6+MSHrSksBH6WPLy
+         ba3EPmoi/FtGNVxGbJKyR57EtXGiZHDWzSe68jL+9An/jqkvLxGuk+UtwXvo1SZr84Bu
+         Km1utu41JHNvrYUej0VRsGVgcWqIQpBCyY5SZCsgOmnqR+8FeyGh4rqW6PXvY1nyaZJp
+         aibZ80yigcdbPhuwpPaQa0RHKKxYemZwUO/rkrtArVI59aA0fKOUOBxvLivGJkpxtiUK
+         7zMVsOzBfVWUqpvvfOICGOgDhEWUMcel+LNQmAQ8NvcOd0JCzuNlW0qdbXU+wac045pB
+         rAyw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWWWU8zaa7B1scHO94p1Ej/GOZDYNcp1vGGRS/iHIhqU8yGK0/ktA6F7nKzpoYNXWIzWv272Ucnydb@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywjg8byTZ+lJU5QSh/miOpXr6dmpfIPfFAk5kDOxLMHZeEd8lZ3
+	n/xa9w4ln8QPSSKJLWi1xHdzYe/M0EpQ/Uvm0O+hP27uri2S/+DQ+HlhqMqE1WuB+8Ocxcdjfyk
+	zmhaccQDsDdbDhBV6018RKiF7WmgvzeSiyPwouVBj9HfmIch1GAigHfNTH7qnmJb/
+X-Gm-Gg: ASbGncvJTYiHHoY11xEkC4TvnVqhAmi/qUW6QM7PhDnqHn5/hyhFqZ88AFWaKVSE2MQ
+	43e+YNCaCtiAnQg18G3YqZtzV0jNR1RavJjXW7nZ9V3ElMB/k3LevgmnlSyNLpiqk0E6UUpHewP
+	a33+Omwb1+dr44U6zHgxthIJ8U2f6bOy9xzuEYG5bsPYHWaQxUJiccbtghvTclUD7XSyo6EiGhk
+	o8WstAomZtlztQ7MZqe8cJNuBAV0+sARW1RniIQD18HdzIvD5GwZUDnBvXJrjA1iw9lAT8Z7Jyt
+	ZSOYCH3HGOgfuqQukVr+GJUMKYjSo7UNgM/HFIMyK1eoOH1QkUlPjfknd4G63YiuBAxD8VXlu2h
+	Iak0o+T43Cp/68OLywermLw==
+X-Received: by 2002:a05:622a:4506:b0:4b3:4590:ab74 with SMTP id d75a77b69052e-4b34590ba5bmr60324181cf.13.1756915982750;
+        Wed, 03 Sep 2025 09:13:02 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEfWwWchCPw1ePeEGx4qP5S7OYtJkgaeMl5VvODCf95CzdX3BdtWxnPTsVZ03+bkL8BPje0cQ==
+X-Received: by 2002:a05:622a:4506:b0:4b3:4590:ab74 with SMTP id d75a77b69052e-4b34590ba5bmr60323761cf.13.1756915982100;
+        Wed, 03 Sep 2025 09:13:02 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b04110b94cbsm1003115266b.93.2025.09.03.09.12.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 09:13:01 -0700 (PDT)
+Message-ID: <c82d44af-d107-4e84-b5ae-eeb624bc03af@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 18:12:59 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="nfbiwxgfuwekt25w"
-Content-Disposition: inline
-In-Reply-To: <e513c127-d4f4-4e93-8d4b-23d1e4fdceb5@redhat.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: lemans: Add SDHC controller and SDC
+ pin configuration
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-2-08016e0d3ce5@oss.qualcomm.com>
+ <rxd4js6hb5ccejge2i2fp2syqlzdghqs75hb5ufqrhvpwubjyz@zwumzc7wphjx>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <rxd4js6hb5ccejge2i2fp2syqlzdghqs75hb5ufqrhvpwubjyz@zwumzc7wphjx>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMiBTYWx0ZWRfX/f7Earpu+jyh
+ 5Dso6dxptyEhMj26Z1G9OtVTlE2k23o34Ai4exTjc7mGKMV2rPMIwiLjD8b5I30Q7tOD2i5LYQc
+ uKM5lyRh2naVCuee5j9clJr2zVlZi+1HLUPsN/VylOjrLcqSK725p6l+ILSImJJG+LKvQE4Y15x
+ dtblW7YpvtrfFOXI0fpMDhkWheb8lADneihN8Wliz6KL+XwoO5umGngEyqqtHYzwF1oY3AbTa0Z
+ C+mRNUvMLZteNBcWQgtyfz0qHOi6aY+m/zYePg9IpD99+LwlFezqAv9nIk948GXg3cOBoLNQbTt
+ IiaMfgZec3x7w8rwBGPf9eU5bJcsDLEVu1ygaGGnKuKq6yMPd7Vk1BOPnVtxS1Ti5t//kz8LgEv
+ JvoWVkZM
+X-Proofpoint-ORIG-GUID: O8TwzA2tPlI5_7TuOmfa5Qs8AUmP5MGR
+X-Proofpoint-GUID: O8TwzA2tPlI5_7TuOmfa5Qs8AUmP5MGR
+X-Authority-Analysis: v=2.4 cv=M9NNKzws c=1 sm=1 tr=0 ts=68b86910 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=onm5DRxEkm4ScgEcFVIA:9 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 suspectscore=0 phishscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300032
 
+On 8/27/25 3:20 AM, Dmitry Baryshkov wrote:
+> On Tue, Aug 26, 2025 at 11:51:01PM +0530, Wasim Nazir wrote:
+>> From: Monish Chunara <quic_mchunara@quicinc.com>
+>>
+>> Introduce the SDHC v5 controller node for the Lemans platform.
+>> This controller supports either eMMC or SD-card, but only one
+>> can be active at a time. SD-card is the preferred configuration
+>> on Lemans targets, so describe this controller.
+>>
+>> Define the SDC interface pins including clk, cmd, and data lines
+>> to enable proper communication with the SDHC controller.
+>>
+>> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+>> Co-developed-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+>> ---
+>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 70 ++++++++++++++++++++++++++++++++++++
+>>  1 file changed, 70 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> index 99a566b42ef2..a5a3cdba47f3 100644
+>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+>> @@ -3834,6 +3834,36 @@ apss_tpdm2_out: endpoint {
+>>  			};
+>>  		};
+>>  
+>> +		sdhc: mmc@87c4000 {
+>> +			compatible = "qcom,sa8775p-sdhci", "qcom,sdhci-msm-v5";
+>> +			reg = <0x0 0x087c4000 0x0 0x1000>;
+>> +
+>> +			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+>> +				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
+>> +			interrupt-names = "hc_irq", "pwr_irq";
+>> +
+>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+>> +				 <&gcc GCC_SDCC1_APPS_CLK>;
+>> +			clock-names = "iface", "core";
+>> +
+>> +			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
+>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
+>> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+>> +
+>> +			iommus = <&apps_smmu 0x0 0x0>;
+>> +			dma-coherent;
+>> +
+>> +			resets = <&gcc GCC_SDCC1_BCR>;
+>> +
+>> +			no-sdio;
+>> +			no-mmc;
+>> +			bus-width = <4>;
+> 
+> This is the board configuration, it should be defined in the EVK DTS.
 
---nfbiwxgfuwekt25w
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
-MIME-Version: 1.0
+Unless the controller is actually incapable of doing non-SDCards
 
-On Tue, Sep 02, 2025 at 09:04:24PM +0200, David Hildenbrand wrote:
->=20
-> > > +>> +struct cma *__init cma_create(phys_addr_t base, phys_addr_t size,
-> > > +                             unsigned int order_per_bit, const char =
-*name)
-> > > +{
-> > > +       struct cma *cma;
-> > > +       int ret;
-> > > +
-> > > +       ret =3D cma_check_memory(base, size);
-> > > +       if (ret < 0)
-> > > +               return ERR_PTR(ret);
-> > > +
-> > > +       cma =3D kzalloc(sizeof(*cma), GFP_KERNEL);
-> > > +       if (!cma)
-> > > +               return ERR_PTR(-ENOMEM);
-> > > +
-> > > +       cma_init_area(cma, name, size, order_per_bit);
-> > > +       cma->ranges[0].base_pfn =3D PFN_DOWN(base);
-> > > +       cma->ranges[0].early_pfn =3D PFN_DOWN(base);
-> > > +       cma->ranges[0].count =3D cma->count;
-> > > +       cma->nranges =3D 1;
-> > > +
-> > > +       cma_activate_area(cma);
-> > > +
-> > > +       return cma;
-> > > +}
-> > > +
-> > > +void cma_free(struct cma *cma)
-> > > +{
-> > > +       kfree(cma);
-> > > +}
-> > > --
-> > > 2.50.0
-> >=20
-> >=20
-> > I agree that supporting dynamic CMA areas would be good. However, by
-> > doing it like this, these CMA areas are invisible to the rest of the
-> > system. E.g. cma_for_each_area() does not know about them. It seems a
-> > bit inconsistent that there will now be some areas that are globally
-> > known, and some that are not.
->=20
-> Yeah, I'm not a fan of that.
->=20
-> What is the big problem we are trying to solve here? Why do they have to =
-be
-> dynamic, why do they even have to support freeing?
+But from the limited information I can find, this one should be able
+to do both
 
-Freeing isn't necessarily something that I've needed. It just seemed
-like there wasn't really a good reason not to support it. The current
-implementation here is not sufficient, though, because we'd need to
-properly undo everything that cma_activate_area() does. I think the
-cleanup: block in cma_activate_area() is probably sufficient.
-
-The problem that I'm trying to solve is that currently, depending on the
-use-case the kernel configuration needs to be changed and the kernel
-rebuilt in order to support it. However there doesn't seem to be a good
-technical reason for that limitation. The only reason it is this way
-seems to be that, well, it's always been this way.
-
-Thierry
-
---nfbiwxgfuwekt25w
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi4aOMACgkQ3SOs138+
-s6EWag//TG8GKL8D+KtYbrfxxwO/AEt7PxS9tKNaQ4uX/W4JVPtJSVqumPpLlATz
-kSWcKAk8uyNWVRifoC26e2FU+eTup+VsLHQK/3g6/EEv0rt/jn5mJWu91ckJuH+N
-nWHOeXCqeuGYN01d2wYby1PZ6Mtvbe6PlBifyLpvoAsUpN1n4HvE1CWu45gZIR5d
-2WqzOWqLtDf4dyhpPKzu3xwXMgms8SyLEY64ulTMjg02QvIFPhJ/EN3VMs20tuX7
-1UBiq4yw7ylaSoKAUdFEB9sOq4tpnoi9YY9fgoMhnCvwP5wZFwKbqYIhfGqzEGWo
-Yad3Oba0P1qxdCFeOabbitgjRtZQO8pJNfGuJImpP4fE8Bz547KcSbcORfZvu16h
-lJENGR4OXALHeSbgAELkUWTBnxAEHs356KGRoIxOarNda5xvFHp9joOODPz5s/j8
-kIeQjrt23Vl4uqqlzr2n8ZwIQY6Whc2OuPnY/1/sKenSXKrqnfTudaRnsPMFQXPQ
-ae+Iq9kecL40EJmZx03IkKwsxZ1dqfr4h0K9cQRa+mj5Xg+1TXfTXfcsaDLiqZeg
-a1sQbf3ZbKYz88yJmRp2UrbJMGkqjnuwvvD2MkLtxqTS2pIl/sUGx/ltZDu592uU
-dfOddTVrqV/MBj0YtLFpU4cFY/4pdIkqP01sN61Bbn+jvYFcceA=
-=8yPm
------END PGP SIGNATURE-----
-
---nfbiwxgfuwekt25w--
+Konrad
 
