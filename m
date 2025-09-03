@@ -1,130 +1,152 @@
-Return-Path: <devicetree+bounces-212282-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212270-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FD3CB423BA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:30:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9D2BB4237F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:24:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60629165BB5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7EC513A8F6B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:24:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C6761A288;
-	Wed,  3 Sep 2025 14:30:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E73530F52B;
+	Wed,  3 Sep 2025 14:24:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="E5Zro3jM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GowLDbcu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3ECD018C31
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DF513093C4
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:24:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756909834; cv=none; b=UTVFfezLxAWHMdVsxRNoLjxrtXNij76rHQTsKs5GKyYckMQS+quCDnn21qeacr5mwMulWKp/xpCfBDM9OF9njzNEIbszZ1Mt63K607r9HP+68Zg9swSBKZ3ScabWgBRMTMw8c3taddMiMZJO+UVTECkoWweGBmI0LdTaXV96Dw8=
+	t=1756909482; cv=none; b=WIO1mr2IZaE+97m2B/y2kH8eBcbXnXDK9M4xnGpTnoV0hPpGLl4zRgDUWzSoHG6Wnl3Aq6GOiDko+zXxi1M0KCYNuZgnbT1GYikoUw45Wcf4X8tXDIbUtmGqR57HR+FogUp5KE2UzMeNQirDWgMoVidfYj5YaV9xqqr4+B2oOSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756909834; c=relaxed/simple;
-	bh=8W3N0rduFyxn66fNF2DYTMrnkR7Rdkbspz+xyu5B9l0=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=oRqb9iU0Kfab4AmIKVv4QvJcm2AOTGZIbnQJ5nNnndSfDYFcp6nehKKGp2WSP8WU0LqFZSREoUffwnZSEcz2KENd9C9uSXKBKN7gNv7gaclCYSWJGn+BzyGD8hhHOmShwouBvi8YYns7jFRjTgp5VTC1HcarSrPytr1iqY69nW8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=E5Zro3jM; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 941DB1015C66
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 19:54:00 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 941DB1015C66
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1756909440; bh=8W3N0rduFyxn66fNF2DYTMrnkR7Rdkbspz+xyu5B9l0=;
-	h=Date:From:To:Cc:Subject:From;
-	b=E5Zro3jM2Lc3UVGB2qxb1S7U+eictojxl1doJXJ/uXAsO45XM3nMSeMsoC4d1gIKp
-	 iQUypBSQAapsIBgFnBHx4ULhSr2ezixTU0COBdhF2SlyX8Qnbb4E9r6sz+VP5f+BR8
-	 FKMMw81a63ZN+UKtDb6bgKpA4QLZjg/iUwZj5H2w=
-Received: (qmail 20211 invoked by uid 510); 3 Sep 2025 19:54:00 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 3.206997 secs; 03 Sep 2025 19:54:00 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
-  by ldns1.iitb.ac.in with SMTP; 3 Sep 2025 19:53:57 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns1.iitb.ac.in (Postfix) with ESMTP id B0CDF360036;
-	Wed,  3 Sep 2025 19:53:56 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 1A9531E8143E;
-	Wed,  3 Sep 2025 19:53:56 +0530 (IST)
-Date: Wed, 3 Sep 2025 19:53:49 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org
-Cc: skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: [PATCH 0/7] rtc: m41t93: add new features alarm, clock out, watchdog
-Message-ID: <cover.1756908788.git.akhilesh@ee.iitb.ac.in>
+	s=arc-20240116; t=1756909482; c=relaxed/simple;
+	bh=boXlFe+neX+rbXfuMW2IbPpgXk7Xd+Trui4cXXc1XHI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ivnZmUexwqOPtkJ3Id8Ejt6evhTYODQvCPbeo85S3vK5vLBlTUGnRnfNsfDNkr/LD3NGoDvBKKOCRdQnNURtnPn6Xnv/wtIpWcHniGrQil+pyUWAK3GTOkYJVpQhtQyTUpYDzE7m9TBgWUYjdmWOuIP1QqEgYRjzhRTtamGGBbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GowLDbcu; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45cb6d8f42cso5013975e9.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:24:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756909479; x=1757514279; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=11JUQ5ev+7cUmEafuoYU8OrU4sJAEkKk/NLhU0bkFyo=;
+        b=GowLDbcuCW8V88vjNmnsasQ4ROJT3JBVTVpij+GyHOm7/c7XaC51PiLJ3BCpxsmziJ
+         VCwev1FZJKPZUcFkDBp3brW4XTNS/gsFq0tf1VF373KW96Wl63Fq+Us2jirXB0/O5UTh
+         akIXpbBXuB3pK/vmc+uy5eMCKyzEH8pbiqeBLkAspFj1ueO5Idk5x5t2q1ofpJu/zo/s
+         g9jj7j/cmldpiustFWTX+oUsKhFghX/3f49LsUai3v6JJLUH6hu4kT13lLv0uB4O5SWX
+         6DAaw7o1p1no5mRLxXN0eV0HbdrvxpXfdA6DONvA/hzQCQcJMhezzcrlgwt7XS/uk1TP
+         L5zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756909479; x=1757514279;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=11JUQ5ev+7cUmEafuoYU8OrU4sJAEkKk/NLhU0bkFyo=;
+        b=B/dIeGtpi97Mb2B/jrMWXmMgdnJTL7raN4soejQNfafBA3iMEHlX/oxrRaX48c01gZ
+         lxd2vbKclUqYZut5IQCdX5imQM+rVIKOsh6H6eNfe5jMZdZLyP02Tzp5F4vvbepHH34M
+         Wh7w1p5B50cW1FTqZstQ63LZtoWAoZHiT2KH4n0SyNaBexqSxc3UDR6tgOEVJtRm7mGZ
+         4Es39GthN+4cF11VaQOQB5cp2JhbCe/S3aHf8LcPw0F35anmE33IoH+zPhYK82LXGml5
+         g+Ti54rQWbJmQEUsvaUHqUb/mQXU2rIF2kXxlRfCRNaHwfpyyyhqzM5SeGa27b4F/g+7
+         a4vg==
+X-Forwarded-Encrypted: i=1; AJvYcCUabZpJTaD7XJUNxcek00Dvk8hElHriVHB/YI9cgJezvysT97CZ0HJ5Fh0SYz8LV+mW8Z8y0ZLDK/h6@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8RLY0X/tlpC5IMwyoX4+ypYeVD0xMuupFKBHGf5mo0PxGLK8M
+	sh6WK4qm6YlfkwdYLi73gSevwdn766rCKycBffGj523ggjkfGten9r1Bt0XDkG9NTdA=
+X-Gm-Gg: ASbGncv+JSNGXm06X8sWOhJItyPPWU4MWyI9ioQiEKR/ruya0vgRvveX/y+rA5gQYAo
+	n5kS7H3nS4lRAtwWKejBgTlu7XY26UVo9pIrLRDfJ82mxQkJgN7EfL5lmfJiZv7qj256hj712SZ
+	DoIB50yp4QAz4MctpTqHgTQhGmGjS1IDrIWtRxePmV1K/dNf9mU2ntOKOQx/RwxvO4IGomt1wyX
+	YYdWbsw8peUfBAzsENJOZbl2JghMcoqwMBLApAiYTHQfzb1s6vuaFTiyC3Xm8wxWNgWpUx8p+5w
+	IuwgunGhheg9KF5latwq6fivBEqGqwuVqWYNYxfLycviyGpWPg21dU/8V8lpsChWlgJnmoB2Gig
+	gjWH/YNUXopV8h/rHcm4uopr8++hGWZOAvdjjKhrE5f5cjC9+5pm8z7vv3bM5lV0VICfY2zoied
+	uChQ==
+X-Google-Smtp-Source: AGHT+IHO7lF68sZSzRU3Ji9xQ8Bg+5ordTX8h7glVlsP3LEnejSEX9Agz2jxEBMCAJA/KkoY5VsH0g==
+X-Received: by 2002:a05:600c:4588:b0:45b:86ee:4181 with SMTP id 5b1f17b1804b1-45b86ee4497mr127647825e9.22.1756909478846;
+        Wed, 03 Sep 2025 07:24:38 -0700 (PDT)
+Received: from ta2.c.googlers.com (219.43.233.35.bc.googleusercontent.com. [35.233.43.219])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3dc1cd4a7d2sm3996035f8f.33.2025.09.03.07.24.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 07:24:38 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v3 0/3] arm64: dts: exynos: gs101: add cpufreq support
+Date: Wed, 03 Sep 2025 14:24:34 +0000
+Message-Id: <20250903-acpm-dvfs-dt-v3-0-f24059e5cd95@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKJPuGgC/3XMSw6CMBSF4a2Qjq1pL0VaR+7DOKAP4CZKSUsaD
+ eneLYzUxOE5yfevJLqALpJztZLgEkb0Uxn1oSJm7KbBUbRlE2DQMMkV7cz8oDb1kdqFspM2rRL
+ aGmNJIXNwPT733PVW9ohx8eG11xPf3j+hxCmjwtVSq0YwacTljlMX/NGHgWylBB8a2h8NRTtuQ
+ SpmOehvnXN+AxSdEN3nAAAA
+X-Change-ID: 20250819-acpm-dvfs-dt-06bc794bdccd
+To: Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ willmcvicker@google.com, kernel-team@android.com, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756909477; l=1514;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=boXlFe+neX+rbXfuMW2IbPpgXk7Xd+Trui4cXXc1XHI=;
+ b=L9P2BH3epk84RCrBmVx2GaIRgBviB5UvLL4K9afDUGFWG1bnkaX/YQ0iUz/gTH10jTAwgbS/K
+ uCXKN6hqgpUCSs2U83YiZnWujnFKvoXNO7QtM+1u4yl4QYXFHL9A9cv
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-This patch series adds following to m41t93 rtc driver.
+Define the CPU clocks and OPPs.
 
-Functionalities: 
-- Alarm support (support to configure alarm 1)
-- Square wave output support
-- Watchdog support
+Patch #2 has a dependency on the ACPM clock bindings sent at:
+https://lore.kernel.org/linux-samsung-soc/20250903-acpm-clk-v3-1-65ecd42d88c7@linaro.org/
 
-Code improvements:
-this series migrates existing driver to use standard regmap interface
-for spi instead of direct spi calls and uses regmap for new features.
+The following error will be seen without the bindings patch:
+arch/arm64/boot/dts/exynos/google/gs101.dtsi:10:10: fatal error: dt-bindings/clock/google,gs101-acpm.h: No such file or directory
+   10 | #include <dt-bindings/clock/google,gs101-acpm.h>
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Bug fix: 
-Fixes device probe issue after power-on due to incorrect assumptions of
-reset values of the registers.
+Thanks,
+ta
 
-Device tree support:
-Adds device tree support to the driver along with binding documentation.
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Changes in v3:
+- the ACPM clock bindings were moved to their own file, update the
+  references accordingly.
+- Link to v2: https://lore.kernel.org/r/20250827-acpm-dvfs-dt-v2-0-e1d2890d12b4@linaro.org
 
-Testing:
-This patch series is validated on TI am62x board with m41t93 rtc chip
-connected to spi0 bus.
-regmap migration is additionally tested by observing spi transfers
-with the help of logic analyzer. Short summary of test flow is added in
-commit message of respective features.
+Changes in v2:
+- acpm node becomes a clock provider.
+- reword commit message, extend cover letter with info about dependency
+  on a bindings patch.
+- Link to v1: https://lore.kernel.org/r/20250819-acpm-dvfs-dt-v1-0-4e38b95408c4@linaro.org
 
-Datasheet:
-https://www.st.com/resource/en/datasheet/m41t93.pdf
+---
+Tudor Ambarus (3):
+      arm64: dts: exynos: gs101: add #clock-cells to the ACPM protocol node
+      arm64: dts: exynos: gs101: add CPU clocks
+      arm64: dts: exynos: gs101: add OPPs
 
-patch 4 to 7 depend on patch 3 (regmap patch)
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi | 285 +++++++++++++++++++++++++++
+ 1 file changed, 285 insertions(+)
+---
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+change-id: 20250819-acpm-dvfs-dt-06bc794bdccd
 
-Regards,
-Akhilesh
-
-Akhilesh Patil (7):
-  rtc: m41t93: add device tree support
-  dt-bindings: rtc: add bindings for m41t93
-  rtc: m41t93: migrate to regmap api for register access
-  rtc: m41t93: Add alarm support
-  rtc: m41t93: fix device connection/detection logic during probe
-  rtc: m41t93: Add square wave clock provider support
-  rtc: m41t93: Add watchdog support
-
- .../devicetree/bindings/rtc/st,m41t93.yaml    |  43 ++
- drivers/rtc/rtc-m41t93.c                      | 489 ++++++++++++++++--
- 2 files changed, 479 insertions(+), 53 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
-
+Best regards,
 -- 
-2.34.1
+Tudor Ambarus <tudor.ambarus@linaro.org>
 
 
