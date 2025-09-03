@@ -1,143 +1,227 @@
-Return-Path: <devicetree+bounces-212326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC66B4262B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:02:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3168CB42635
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:05:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B78E017FEC2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:02:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D53113B0650
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:05:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A0B92BE628;
-	Wed,  3 Sep 2025 16:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A6E29C323;
+	Wed,  3 Sep 2025 16:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="paMOUG4f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cnxHXzPl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0A3529DB86
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 16:02:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C05BA295D90;
+	Wed,  3 Sep 2025 16:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756915328; cv=none; b=kNZFEDXgkwMZnU68aqzsyYxFqmYCL9HTpDh+oQvdsTg2C2Yqj1uZTmqlIAHkD1GlrBJBnVlzdVYwf5LdNBgOiqd14mZfSVpD1xrQ16YPdtjPerjHOnqMrxSGOjpGl8DIlgptL53eAnoxkZOEBuv6uOdC3jLFzXWmCtW7s7W4Kh4=
+	t=1756915542; cv=none; b=e7votlZ+3jb1sc7IUf1qp8BFRvnxP1CV/1YBj4Nmd58X9Ld4Svc8F4NwSk3Pv3ZtA+oWkE48YkTVO6cl437qSSLohFTEeDJdvUKDGup6OIW06izXDcL/9BgVYHDpxmhG0yeIQ430TR27/48WVTbleCMa9Fo2Dl6BzePwLrd/g50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756915328; c=relaxed/simple;
-	bh=duCAr7CO/N1Ze4ijxMI+nhb3sedWh7XRQtNULBNw7Yc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RB3Ge0Kru3/jGzdMSnR/BjTn7UErhv2TETuf1Y/cR9qP+onjEq9RqVGN7p+WfyMkmbRCRiqdfcskMhuDTomLYAdwLnYHLgG23c39wmUGSoVM1XsEvNzkdu+NbUdKxUWdhTgGTgQ7y5Y7Ke1G7dxKEDlhBwg3O/S3DYcwpBGen04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=paMOUG4f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwqdW029700
-	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 16:02:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ufkKfMtF2sFaOT1A75ow461HdClQcHWGVHzSfn9/S2w=; b=paMOUG4f4olZvDlC
-	gma5g/I5WSNuYq6qS1l+Xt6+llYCURDMNeeKgTlridcomHF2zBXLevGozYUQ6HdP
-	8Zyl2KaS1A2nShuiQGZcOjMzi3Y7JEU3y3yjqAvl8vMvAxLxVU25QWGajl2viDag
-	nUh+NH31cs1QvoiV0hQAo2DMIp5LcEtZ9OqCSzpLk6kYCfrSd8T5yrPD8oAaMroa
-	uf5OTH2qi8QLRjthJJPE7W/XASU8xBxDzAqzWNoo2r5jPxzs0JD+1VNt1tzJJhi2
-	VshNLVDDR3CD3+AaHAX96YNNYnpYh2SFdiEyKokd4j2HVom68+vlgNj9L1nYqdrT
-	o3cf6A==
-Received: from mail-vs1-f72.google.com (mail-vs1-f72.google.com [209.85.217.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnpcep6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 16:02:05 +0000 (GMT)
-Received: by mail-vs1-f72.google.com with SMTP id ada2fe7eead31-52db72e4157so3310137.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 09:02:05 -0700 (PDT)
+	s=arc-20240116; t=1756915542; c=relaxed/simple;
+	bh=XoA6/8NPRcv5my8H/1RERk//DLfQsR/fo42vPj45ReM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iclevdCXqzh1ANHx8RCT60aDZnypuege/0VVTtG8MbE9qSQnTF1GamPhWYt7/Gud1aUNpyrDySjAFQ22etxvSQDDP4XsaNYwhgZyF7TFRZZNuM28E2WPpy/UN3+fgI7JBpvpAM3txay4MS6ezsgv1gyZNNcRFGZtypFc81klUu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cnxHXzPl; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3dae49b1293so62260f8f.1;
+        Wed, 03 Sep 2025 09:05:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756915539; x=1757520339; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yLCSap59X655LjRRdRVDlno90QWSbu9XZF5TPpJulw8=;
+        b=cnxHXzPlRfEdn6jkV7ZzhNW8nVylUdflDZaG8gyRu1NUH5mhOpkC/u4EWYTkcBQeBC
+         Tr3oR/A0uERjARWHP81rmuR/6SD5VB1KH3cYhKomVkiMwjcrggwjyKwAEPyE+3Kf3EsV
+         5dPDPr6ziwYoe6/eHCsMFiUhHGu9IWeY03GbkxoT+8wytqkHTRTxU4kEBRoOwXX4SG6X
+         x7wLMhvWbByKNoobp4M5RloTg+Wy6Q1Yq/Ef4HXYZsfjVB8H2famJ87rUhU9ldHcbGhI
+         v9qb2fD6ueqZUFXy3jqRftKTZeK7N48StoGUC6dhONMVLAuiuqSVUzNX2LmVHWwqErXc
+         +wwQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756915325; x=1757520125;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ufkKfMtF2sFaOT1A75ow461HdClQcHWGVHzSfn9/S2w=;
-        b=NxSelXwRu3HvXcH3WKJpEJ0NFxKksJwC2woQtUk26rbceOQl3l8EQ/sv4d7ycwyRJ6
-         Ev6ifkHUKeioOy/WWTOgRH+K0JWhxDxR/46C93P9CCY5mkOlqwJALUL+ovmYvC9Oeexf
-         QQ0ofsIJ/Pvc7F1dNEY8PX/QwXhXVsg1n2qZClCYhJbLtVoUL2hbOzRSeClMGGZ+zSYc
-         XE/oWST9m/RyqYSlulFTBrF4ly/RRln8a8l+Muck9vLrh5w2RLzeRnHtK8hph21tf6ry
-         Z5/6IvbGLf76tz5hx0/AqGqdpSA64F8Y4SeYuI142MP6nmVSBYjZp+Ytpxfi0LYLGABT
-         7B5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWllwLxaUqz445enryCXDdueyf7Ln8KXoouLA7drWYp0UfnABkEqSNXUc07z1+QDan1ht+Ra7HjSCZo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzw05xbju5DFZTaOJgTwZKjOM4H/ZIfZL28bq6kfxGA1ksDggKy
-	Q2+wlEOZ/9uQWyXzVTaFEYQsZnddvSilyzDLA4EKPZsfnFVdgfWzzjOX8i/Anx9dFDthsjq61s8
-	9i+ugUSoX+0Yq2ERQMUt7rg6a01Y6G7IkLNAQr/GH9o++xnv1eFuB9t/g+3DfOqLM
-X-Gm-Gg: ASbGncuVi5Yjj05Chc/JLEkqvo4c+QNRFDdVelEowhJLCABtwioLzjU7dSgRdjbGCZ5
-	CS/HRznuPMa8GVMFVj6/hB/b6TJSQFEln20qdejVE77C5iCd0WLge57SdBrfklIRMdHmucBknwi
-	IlWRbBDGep5FUFz/lAdQAf4+vtjn99xj5X9KO1PDhADeCSwMgq+7zjpHIMqKm17JIuQ7KJq8nNH
-	yoYcY8sI+DxrBX4BH/AlFYTUv86o5KoKDVhBC8HHoWOXdJwyMdiFyl0uzSLD2k9I+7s4ohgXbCj
-	P8l2wG/BeiUpMQuMeU8TEGJDy62kB1reRu5mbIxzaORN4mGN9maB632XkNE5pixhhNTKw5PkNlr
-	v9+8DKMF5TmTS+/0JdFXOPA==
-X-Received: by 2002:a05:6122:2015:b0:544:91a8:a8c9 with SMTP id 71dfb90a1353d-5449592885fmr2297754e0c.3.1756915323596;
-        Wed, 03 Sep 2025 09:02:03 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFNOwCrprQOUcxuZaV/B20qgOB8K6FfIsDK3UCpWlIJhUbywwkcF3iym3uiTsjk25+FxGpDqA==
-X-Received: by 2002:a05:6122:2015:b0:544:91a8:a8c9 with SMTP id 71dfb90a1353d-5449592885fmr2297638e0c.3.1756915322699;
-        Wed, 03 Sep 2025 09:02:02 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc1c7dfesm12285170a12.7.2025.09.03.09.02.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 09:02:01 -0700 (PDT)
-Message-ID: <ca2b6089-54f8-459e-8cc0-accf802026e2@oss.qualcomm.com>
-Date: Wed, 3 Sep 2025 18:01:59 +0200
+        d=1e100.net; s=20230601; t=1756915539; x=1757520339;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yLCSap59X655LjRRdRVDlno90QWSbu9XZF5TPpJulw8=;
+        b=K5vS5apy0YFu7EAdtrdUcKLxMmDqMy9jJAdkZoXNB188roOXALguGrSVxDY8i1B4Lk
+         F7l/fBWQQsl3sgIgiY8+LjIPtggZER2v05iXXYkCEyH+hjduGSFLu+g3rCzOkD2voEr5
+         f8RFC/J9guKniCJ1XvlvUFnjHFojfpBQ3r27XtVovveCT+MkCG21d/40JSEG3TyZ0/ai
+         vmNg/BTov20sTf91UJcUZJuw45As52zhVkwcW04wSoRaBIotAHHrOWVPMHLozRZWJfdE
+         KLw9mk7JooFyykHVRly3rCQwuJ/ECzFn3Nk/Ss9+b5oqlHNRiMUN68QfT/zmNebruJH2
+         1hNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUCJOgPCkHXQOWd2zl2OjxaCnj0EKaHGBFKB9Xl/w8T/L80SgdXmRSYVSDDQr/cY/o7QuyG/omoks9+cYo=@vger.kernel.org, AJvYcCW7IH86dvGVaZAC71z13waUuNnlRot3fv+cnI08CZPnWohYg+Dva0KpoyGqTB6g/4UpBlCgbWJmEYNF@vger.kernel.org
+X-Gm-Message-State: AOJu0YzlaAqgg9Bh3IQz2MHSGTuX9aFxy15PzWPGkQHKyn3/105d6mT2
+	cphu8UoMC9g9PN0NXb03WoVtbjlJQmQgnXqdsAfB403ruotiDUB7TN+n
+X-Gm-Gg: ASbGncvjtyE3yCvkpoRWwN6HeCTiQpTU8DwEHaCUxSZBBDkijnxtMhqecr+mLKshFZ9
+	ze+1Bmg8ERlVZFYYJyzvIFDlYFmlDy8h2cjyIPpt8aAKFyy8vlYju6P/UOeuC0TG2uHsQXeXTKe
+	pLoAABGXFgS8/eHNquAZ0bt8zoe4sHisiJ+5/sPfiG03IAlsP2W+M+69cLRkOB1mkXPe06d+Fl+
+	/ARBOAeo16YZIMPHVW8CG3x5j7wBgSBUkO8zuGY4G758DSD36PPmjfXUDNRt1VkddCGPeh7bSIH
+	7RYuRKZ5k1YY+RWoe2HFH0bxXB4oluZFCLRbWNimAIREStn1LoBCRM+Y9q/DYCm8s+CIBc97wzy
+	acFed48P4cB+i60/cB2X25oguxBPF0U5aTwQrxqWx0lhVgFHpibTytMOKZWfW2Ys8DAvfH9Ija1
+	NCXtkcda0J
+X-Google-Smtp-Source: AGHT+IEK8F7kNjGc7W/OtAYN0SPufkeKfdMjFea1WYfcRndMdqBIHchu0H33lCxAbsFDmGMqVedfpQ==
+X-Received: by 2002:a05:6000:3111:b0:3db:c7aa:2c4a with SMTP id ffacd0b85a97d-3dbc7aa304amr3472709f8f.42.1756915538938;
+        Wed, 03 Sep 2025 09:05:38 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d66b013b7dsm13160799f8f.28.2025.09.03.09.05.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 09:05:37 -0700 (PDT)
+Date: Wed, 3 Sep 2025 18:05:35 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Frank van der Linden <fvdl@google.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
+	Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
+Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
+Message-ID: <v7zrmrhvemyymq6qamz6wbgzr4cijfe4n76ivwyadmltadlot7@3csy442wfasf>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-4-thierry.reding@gmail.com>
+ <CAPTztWa7kcx8bBEJEKvnjcD4v1-eDLVxMd9C10XiBQi4CDLfHg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: ipq5424: add i2c nodes
-To: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>, andersson@kernel.org,
-        konradybcio@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-        conor+dt@kernel.org, quic_msavaliy@quicinc.com,
-        quic_vdadhani@quicinc.com, andi.shyti@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
-Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
-        kathiravan.thirumoorthy@oss.qualcomm.com
-References: <20250903080948.3898671-1-quic_mmanikan@quicinc.com>
- <20250903080948.3898671-3-quic_mmanikan@quicinc.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250903080948.3898671-3-quic_mmanikan@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: h44PG3Bb0cEEV6zasRKOeicuww6MnLT4
-X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b8667d cx=c_pps
- a=DUEm7b3gzWu7BqY5nP7+9g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=v5yAd65IgAm86a0TdQQA:9 a=QEXdDO2ut3YA:10 a=-aSRE8QhW-JAV6biHavz:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-ORIG-GUID: h44PG3Bb0cEEV6zasRKOeicuww6MnLT4
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX8fIht/G/Hlox
- Me4BonlEkbFnu6VayXZ30sG+ByRMEDUCBQGV4CLAgpEtISrQ7HLLZggwQA6+P75s8G0xHrlX7uV
- lTHDeABdN7WKHCBh7mL1/l4VufTA/gIXLp2EcnggURWz8ksFXl3OAwvofb4yc/t1VH50qytwGpj
- PDsgqNxrBr0kPO+CdSnv6FTJ2IYtm1GF2H9A8OHhkE5c20ETFgBW6/pEiAFlHhjICS3wTOaz7/u
- 6cQrwl+cE3aQtlejQo71nh36Q47j7mr7c6v4YVgdjDnGM3DTXHTd/HAXP+fCJYxFSog1BidbRWu
- 9P2IYAsCjSrVDRPk5Fymps0HRzEyvlrszFsuESfcG8Jc3BS+Y92mmIsdG6Wu4qGBN/mc54HK3zj
- KSUqNAZF
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300001
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cd2jrjiunyvxx6e3"
+Content-Disposition: inline
+In-Reply-To: <CAPTztWa7kcx8bBEJEKvnjcD4v1-eDLVxMd9C10XiBQi4CDLfHg@mail.gmail.com>
 
-On 9/3/25 10:09 AM, Manikanta Mylavarapu wrote:
-> Serial engines 2 and 3 on the IPQ5424 support I2C. The I2C instance
-> operates on serial engine 2, designated as i2c0, and on serial engine 3,
-> designated as i2c1. Add both the i2c0 and i2c1 nodes.
-> 
-> Signed-off-by: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
-> ---
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+--cd2jrjiunyvxx6e3
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
+MIME-Version: 1.0
 
-Konrad
+On Tue, Sep 02, 2025 at 10:27:01AM -0700, Frank van der Linden wrote:
+> On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding@gma=
+il.com> wrote:
+> >
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> > There is no technical reason why there should be a limited number of CMA
+> > regions, so extract some code into helpers and use them to create extra
+> > functions (cma_create() and cma_free()) that allow creating and freeing,
+> > respectively, CMA regions dynamically at runtime.
+> >
+> > Note that these dynamically created CMA areas are treated specially and
+> > do not contribute to the number of total CMA pages so that this count
+> > still only applies to the fixed number of CMA areas.
+> >
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  include/linux/cma.h | 16 ++++++++
+> >  mm/cma.c            | 89 ++++++++++++++++++++++++++++++++++-----------
+> >  2 files changed, 83 insertions(+), 22 deletions(-)
+[...]
+> I agree that supporting dynamic CMA areas would be good. However, by
+> doing it like this, these CMA areas are invisible to the rest of the
+> system. E.g. cma_for_each_area() does not know about them. It seems a
+> bit inconsistent that there will now be some areas that are globally
+> known, and some that are not.
+
+That was kind of the point of this experiment. When I started on this I
+ran into the case where I was running out of predefined CMA areas and as
+I went looking for ways on how to fix this, I realized that there's not
+much reason to keep a global list of these areas. And even less reason
+to limit the number of CMA areas to this predefined list. Very little
+code outside of the core CMA code even uses this.
+
+There's one instance of cma_for_each_area() that I don't grok. There's
+another early MMU fixup for CMA areas in 32-bit ARM that. Other than
+that there's a few places where the total CMA page count is shown for
+informational purposes and I don't know how useful that really is
+because totalcma_pages doesn't really track how many pages are used for
+CMA, but pages that could potentially be used for CMA.
+
+And that's about it.
+
+It seems like there are cases where we might really need to globally
+know about some of these areas, specifically ones that are allocated
+very early during boot and then used for very specific purposes.
+
+However, it seems to me like CMA is more universally useful than just
+for these cases and I don't see the usefulness of tracking these more
+generic uses.
+
+> I am being somewhat selfish here, as I have some WIP code that needs
+> the global list :-) But I think the inconsistency is a more general
+> point than just what I want (and the s390 code does use
+> cma_for_each_area()). Maybe you could keep maintaining a global
+> structure containing all areas?
+
+If it's really useful to be able to access all CMA areas, then we could
+easily just add them all to a global linked list upon activation (we may
+still want/need to keep the predefined list around for all those early
+allocation cases). That way we'd get the best of both worlds.
+
+> What do you think are the chances of running out of the global count
+> of areas?
+
+Well, I did run out of CMA areas during the early VPR testing because I
+was initially testing with 16 areas and a different allocation scheme
+that turned out to cause too many resizes in common cases.
+
+However, given that the default is 8 on normal systems (20 on NUMA) and
+is configurable, it means that even with restricting this to 4 for VPR
+doesn't always guarantee that all 4 are available. Again, yes, we could
+keep bumping that number, but why not turn this into something a bit
+more robust where nobody has to know or care about how many there are?
+
+> Also, you say that "these are treated specially and do not contribute
+> to the number of total CMA pages". But, if I'm reading this right, you
+> do call cma_activate_area(), which will do
+> init_cma_reserved_pageblock() for each pageblock in it. Which adjusts
+> the CMA counters for the zone they are in. But your change does not
+> adjust totalcma_pages for dynamically created areas. That seems
+> inconsistent, too.
+
+I was referring to just totalcma_pages that isn't impacted by these
+dynamically allocated regions. This is, again, because I don't see why
+that information would be useful. It's a fairly easy change to update
+that value, so if people prefer that, I can add that.
+
+I don't see an immediate connection between totalcma_pages and
+init_cma_reserved_pageblock(). I thought the latter was primarily useful
+for making sure that the CMA pages can be migrated, which is still
+critical for this use-case.
+
+Thierry
+
+--cd2jrjiunyvxx6e3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi4Z0wACgkQ3SOs138+
+s6HhmA//SMOIdCPTIhm9/2hI6bIiP7AY1j6GdkcEqHRdfrj9+7vySjIRju4hKC3/
+YFfr1tCxniYIMxmH+EBUK8bZT3ul0IYLIAO0WA2a8Tc2MypvKL7bvvo4lf+ecbUE
+Nsu3LO8MVZQTZ2KFR6mFiXKVi4MTs7XD05csQuvxazvHixU+AueWaKsSwhL1YWmK
+yZ14mjJNHFwVJrZ+4Pj4nsmjQw6Qe9D8eZ+d1gXMeTyPg+RJDay+EJBxM7/Vs8Sy
+T0m/UudLZIle+EYXBzhlKyHvkFDuUuutaZaYESuiRvts7iwQnhLYaIheHIj9x2gG
+VC1vjkFeh4RhbB1srxB71CzyJPKbwJ5oIdvnA1kBeDUlPGuFGm1wM+FygAwoKXvR
+HHCF+FaX4H/FeFz0y6z0fkvhfLm+LLuBBuj5KHTCblCLk3cYfVha+Lr4msWjbI4I
+51F8NtxQehBsHWv1F2JOguGRE4lv3svHyb3yuQeJC9SPdN12/2gmY85xnm3knlhB
+hq9a/y2r622vqFwgPTg5kKhBdjIwWf6tdxefR230K+Qw5ypbrNQQoPhFR/4lG2IX
+n/BX8IGEoVCHH7OC3/JfinZyE2td7+xKs/GF81elCfACdkeCRJhL4EWSGVRTI/TP
+3OcUwmEbp+Cr0gdYspxD0nxw7bP5SUuAIZRRBEH1KfamNw5DEcE=
+=TbFN
+-----END PGP SIGNATURE-----
+
+--cd2jrjiunyvxx6e3--
 
