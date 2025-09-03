@@ -1,152 +1,162 @@
-Return-Path: <devicetree+bounces-212377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30A52B428FD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:48:59 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 180CAB4292C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:56:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD7341BA042F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:49:19 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1C041A85F3C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 800C32D63FC;
-	Wed,  3 Sep 2025 18:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C6E4362098;
+	Wed,  3 Sep 2025 18:56:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="u8NVAyIs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="T8Ppfyv+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0E117A2F6
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 18:48:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6D251547C9;
+	Wed,  3 Sep 2025 18:56:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756925334; cv=none; b=U10Cw3w3mJ55NWgNI7mis+J8zyw1naPSXsPJd6S9Pm/iVmsDfZrMUylCDtjQi3NLhORIhSxlwXbhmF+ZCJzZlKdL/QQ0jIYiWPrfYNtl6gfQtJnXQTdhTaCFe2Xqq+5ZTW7QqslhIE5fMfTrQ0OpcOznMfTqsWikRbnSabdSGPA=
+	t=1756925789; cv=none; b=BFRwMftgj1qoBGG8DNXelQWs8rQhn72B4R4e6E5EPdLLResHIaptKfKQRBKzkcrzkCDOolBV3X9sVIVTyi39QZYej2UFIAPJR6H8bY5Ty+xv9ERbfN/Swl9wFIod9sPda5I3wuPceZDWlD2hYDobj8pUT0fj0BceJiaftiWOAFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756925334; c=relaxed/simple;
-	bh=SpKd2275sVbG0K2FZVdjWp6/Z18/FkDT3HL6WWRqaEg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=boqYSoSqPncqitfVZ8vE+AhYyqBZJTiZVqsoQYKFpWxoUy1qe2QFhYaxcLDx4V0OjqVne037M0+TuyVqgxAEPo832XA4GSd/NCoPdAXdcE+fu+8g/y0SmWGfEKrgsP77t1SSunEbbjW84FOGyXDy0irBW9Tk4ztify3BbSwC6A0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=u8NVAyIs; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55f69cf4b77so159977e87.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 11:48:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1756925331; x=1757530131; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SpKd2275sVbG0K2FZVdjWp6/Z18/FkDT3HL6WWRqaEg=;
-        b=u8NVAyIssw3t9zRxrhEdCcCnI4vtKVD3XlZ8yldVYCetM4tNhB0ojB5yEjQxdYcZuL
-         uFxVqeYQDEjhtuNrfOywtvaNsI6gXtpWnZlzB2hXk5AIEddfdLGLuZDRF+gCiJEMUkAf
-         JqlhATiGlk7Lnq6JWFSlXJXDmCRfEua9X0gLEPfKI8WKslnejCzheeHVmE+Od2m/uoIc
-         6vN/cRkO50PPj4x7WrupBb8vXri+i+HdeU5j11AudTTqqjvVXWwXsh/fV5qdOIVIDSRb
-         /A8OVPt/C90ULjKekIvYcWxNBN/kncF+w5tANejOL88gaVainBq4Ay7i8dXHSwQnp+PQ
-         TqlA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756925331; x=1757530131;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SpKd2275sVbG0K2FZVdjWp6/Z18/FkDT3HL6WWRqaEg=;
-        b=L5Gy/EPFfuI2bm9Z9D6RiPKCvVNiYvDx6KrnkSED8SVw5d0lmAJ4a4w/7ncOhRuSI5
-         5YX1I7cs+3owtGhO40zZswIdo3OXElGxyuYv895X0ybvuRI2bXiCzh81cxqk6BxOEgRa
-         1G71lafeWyfiHDd7GitGAaaJ5FWfLkCGGKwC7+uyaBhzFk2E5wLd6SKyS9rmz9vtP6Ky
-         4hDCJbuUenE05H+DI8lYsLZw9EgXVcM5aP1pTFO0I1TD9jPbS1dkW11SE6A6MFhsWPj6
-         jsh1PFSzXj2cq8Z4hGiQyOx6aW1RVk9+KGCV3F+xsW+gZ6vNt7S0ZecfMNWxD+NPt6AF
-         XK/Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUw+q6lXskEWPctshW+/TbKXO0dsTRw9BRQfsM3NSjM1eW3sKdryc8dAW8EUUk+/TCPP1FdCoeu6+gC@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw1LhTccLEWqTrUumVlhMoS8xO0l0eVpsx+mpfIPYCVm1tkOXvy
-	siCRYh/3fr3iNaJit+OcsRzSvSMYxfUVgkHWz4sjJR/Zk+oWV53nkbqmfNEbneJM4O2qsf2Wc53
-	fSPMEQRDVZWqoTFfT11KNhQMi+cZOjriIvvfJF/E5KUP9ntCcGsi8
-X-Gm-Gg: ASbGncvIya60HWOws1hhOnaiSLo6vaK85sGg0HexDkPgingGbXg++jukGXnDCqnnm60
-	65+lRct7yoGTyN9nVLgztagy0PdTMfdn7BNqTVGz33X3e3gAlfaC/lf/Wo/X4yc/xGa9Uu+rFWn
-	7Gp66OOAEuIr4P5WG8RREfvmJwxBavFTdEBSzzgv9FteEtVaM7wyjSDJmTxBN9XAknlgD35eHKH
-	KDUufFT0vO2qvY/qGMww2gtBNSb5XQlQhJOu9hndAQ=
-X-Google-Smtp-Source: AGHT+IF5G/J215zB6F+3YqHgBGUMzaMxIb8FdX2l9xOBS14z2EjkTnAnD4URRw2r/tfzfVxdowvkPYNpzRoqDhW7JLg=
-X-Received: by 2002:a05:6512:660a:b0:55f:595f:9a31 with SMTP id
- 2adb3069b0e04-55f709747b3mr4044420e87.51.1756925330683; Wed, 03 Sep 2025
- 11:48:50 -0700 (PDT)
+	s=arc-20240116; t=1756925789; c=relaxed/simple;
+	bh=Di/kTCAveoUUjQoVNNWL0t0vFQa2mlSFvm1V0OlnA+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=Qkyc2lYEOJy6ETAL42CzsyccZD8xnVCGp4/MzwtNUHOulREeGDAC2oC6QVYRVMLByGDp/7MgvGKjKoarBTONq/xVdyux7u6+qy0IsH3FDUzbdSGgWrrnVAvKR1tvyr9sUxi/JUhQOBF+q6Owit57L2+iDzDjR2d6JuBwDPiDoXY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=T8Ppfyv+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 264F4C4CEF4;
+	Wed,  3 Sep 2025 18:56:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756925787;
+	bh=Di/kTCAveoUUjQoVNNWL0t0vFQa2mlSFvm1V0OlnA+g=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=T8Ppfyv+fQ4oge60ckzlsCSvW0CS+/8F/KblhmfNBNBDzbKqjG7GHTSmPj8+pbYSs
+	 mJZyGaAF+FSfRZJYUrRoY1RxsOJYKLbo7FUWl5LlNY9jkGZTtNi/QSLtW73ZanbFbf
+	 JPggwbng1Y4ppaHYCO3f8mvPWg94FyZZK/2fGBwBcfFUT2FeKfmJBtIfyKwsngOk/3
+	 S564EK9e3uTxJ8CeP6MfogFN2CJIBe1ksKCl8OAIJuMzW5ZbSWH0+xhQBwpzPW6Gs5
+	 ShvvfeiN2Ce2wFeeWi3NEq2gII1Sn07PzDp5WzIeNdJZE0KylQfjniN6JbvWBzRvoe
+	 BZvD5XS18d8Xw==
+Date: Wed, 3 Sep 2025 13:56:25 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping
+Message-ID: <20250903185625.GA1213441@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-5-thierry.reding@gmail.com> <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
- <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
-In-Reply-To: <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
-From: John Stultz <jstultz@google.com>
-Date: Wed, 3 Sep 2025 11:48:38 -0700
-X-Gm-Features: Ac12FXyfpojM7sYEH_SV5iPkXzxCBmlghsM38HwpGdBEBMQS7yemN51cEMcgCs0
-Message-ID: <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <rijfzrfngdtfc2ckxarzrcyt3xx23mldmijdlx7efbkputhkxz@i4cvdsmtavge>
 
-On Wed, Sep 3, 2025 at 8:38=E2=80=AFAM Thierry Reding <thierry.reding@gmail=
-.com> wrote:
->
-> On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
-> > On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding@g=
-mail.com> wrote:
-> > >
-> > > From: Thierry Reding <treding@nvidia.com>
-> > >
-> > > Add a callback to struct dma_heap_ops that heap providers can impleme=
-nt
-> > > to show information about the state of the heap in debugfs. A top-lev=
-el
-> > > directory named "dma_heap" is created in debugfs and individual files
-> > > will be named after the heaps.
-> > >
-> >
-> > I know its debugfs, but this feels a little loosey-goosey as an uAPI.
->
-> Well, the whole point of debugfs is that it's not really an ABI. Nothing
-> should ever rely on the presence of these files.
->
-> > Is there any expected format for the show function?
-> >
-> > What would other dmabuf heaps ideally export via this interface?
->
-> I've thought about this a bit and I'm not sure it makes sense to
-> standardize on this. I think on one hand having a list of buffers
-> exported by the dma-buf heap is probably the lowest common denominator,
-> but then there might be a bunch of other things that are very heap-
-> specific that some heap might want to export.
->
-> > Is there some consistent dma_heap-ish concept for it to justify it
-> > being under a dma_heap directory, and not just an independent debugfs
-> > file for the driver implementing the dmabuf heap?
->
-> Well, I think just the fact that it's a dma-heap would qualify its
-> corresponding debugfs to be in a well-known location. We could of course
-> pick some arbitrary location, but that's just a recipe for chaos because
-> then everybody puts these whereever they want. There's really no
-> standard place for driver-specific debugfs files to go, so putting it
-> into some "subsystem"-specific directory seems like the better option.
+On Mon, Sep 01, 2025 at 07:18:17PM +0530, Manivannan Sadhasivam wrote:
+> On Thu, Aug 28, 2025 at 01:04:23PM GMT, Krishna Chaitanya Chundru wrote:
+> > External Local Bus Interface(ELBI) registers are optional registers in
+> > DWC IPs having vendor specific registers.
+> > 
+> > Since ELBI register space is applicable for all DWC based controllers,
+> > move the resource get code to DWC core and make it optional.
+> 
+> As discussed offline, this changes also warrants switching the glue
+> drivers to use 'dw_pci::elbi' base instead of their own. So I've
+> ammended this commit to include those changes also while applying
+> (which was straightforward).
 
-Ok, I guess I was thinking if the files are organizationally cohesive
-to be under the dma-heap directory, they ought to have some
-consistency between them.
+I'm glad if we can do this in the DWC core instead of individual
+drivers, but in the case of qcom, this changes the mapping from using
+devm_pci_remap_cfgspace() to using devm_ioremap_resource():
 
-But I can see your perspective here that organizing the driver
-specific debug files in a directory helps with folks finding and
-identifying it.
+  qcom_pcie_ep_get_io_resources
+    platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi")
+    devm_pci_remap_cfg_resource
+      devm_pci_remap_cfgspace
+        pci_remap_cfgspace
+          ioremap_np                  # (except on arch/arm)
 
-Thanks for clarifying!
--john
+  dw_pcie_get_resources
+    platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi")
+    devm_ioremap_resource
+      __devm_ioremap_resource(..., DEVM_IOREMAP)
+        __devm_ioremap
+          switch (type)
+          case DEVM_IOREMAP: ioremap
+
+I assume this change from ioremap_np() to ioremap() is fine, but
+please verify and update the commit log to mention this change and
+explain why it's ok.
+
+(I don't think the qcom changes were posted to the mailing list; you
+can see them here:
+https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-ecam&id=d39e0103e38f9889271a77a837b6179b42d6730d)
+
+> > Suggested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > ---
+> >  drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++++
+> >  drivers/pci/controller/dwc/pcie-designware.h | 1 +
+> >  2 files changed, 10 insertions(+)
+> > 
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+> > index 89aad5a08928cc29870ab258d33bee9ff8f83143..4684c671a81bee468f686a83cc992433b38af59d 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware.c
+> > +++ b/drivers/pci/controller/dwc/pcie-designware.c
+> > @@ -167,6 +167,15 @@ int dw_pcie_get_resources(struct dw_pcie *pci)
+> >  		}
+> >  	}
+> >  
+> > +	if (!pci->elbi_base) {
+> > +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "elbi");
+> > +		if (res) {
+> > +			pci->elbi_base = devm_ioremap_resource(pci->dev, res);
+> > +			if (IS_ERR(pci->elbi_base))
+> > +				return PTR_ERR(pci->elbi_base);
+> > +		}
+> > +	}
+> > +
+> >  	/* LLDD is supposed to manually switch the clocks and resets state */
+> >  	if (dw_pcie_cap_is(pci, REQ_RES)) {
+> >  		ret = dw_pcie_get_clocks(pci);
+> > diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> > index 00f52d472dcdd794013a865ad6c4c7cc251edb48..ceb022506c3191cd8fe580411526e20cc3758fed 100644
+> > --- a/drivers/pci/controller/dwc/pcie-designware.h
+> > +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> > @@ -492,6 +492,7 @@ struct dw_pcie {
+> >  	resource_size_t		dbi_phys_addr;
+> >  	void __iomem		*dbi_base2;
+> >  	void __iomem		*atu_base;
+> > +	void __iomem		*elbi_base;
+> >  	resource_size_t		atu_phys_addr;
+> >  	size_t			atu_size;
+> >  	resource_size_t		parent_bus_offset;
+> > 
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> மணிவண்ணன் சதாசிவம்
 
