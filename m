@@ -1,83 +1,40 @@
-Return-Path: <devicetree+bounces-211990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3E64B41731
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:50:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62887B41736
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:50:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6651017B425
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:50:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44A4D1B2523A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:50:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E7552DFA2B;
-	Wed,  3 Sep 2025 07:49:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kz5u3PbT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8CB92DF6F8;
+	Wed,  3 Sep 2025 07:50:19 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D5C2DF135
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:49:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF412DE6FC
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756885796; cv=none; b=gR2KpH9Gl5dqYltKqVUwpeqQvNFc9lcr9zqtTFs/iYm/pU7CDdVplYZK7a9c3GOuiAEy1iXqrPgy7s4dCFT0dAIB4AB85TXp7uS6kbQOEJX7SLYCfxqY0LYyudHM5Sgdgjd5X95d8ejmqFkAkmPG5H4tyP7TW21mlJA1C1cWASs=
+	t=1756885819; cv=none; b=TCNcqrpJOQ7rClUFZR/Iffv9elT768lokZGyBMF8knNPdlKxrBb9bOZOh3Ga73s+mO1OQu96SzfCjfDNOKHMjyh2tDQrcSjkm02y0nO38s8AF9R18cOaZ9xjjbJ3mOmk6FL6VSiYytMC0hFQQfq7elh6XOM7+8nZuDR9NBfw/fU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756885796; c=relaxed/simple;
-	bh=EJfrYL5HJI0QUtaBffL6WlEbo2xIumV+JPls7FbJoTI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=WK3Mwm7ROKutCww2iCo8t0OreRcskpn3N2fSp5RjAec3Q3YhaUa21emGe+8dNOcYStk9ZV89HC17+CBcNtqyuciOjwmKBiwe2334ngN6696FazxZ3MDuOju8tQx6U5ysJnX27w1tWRhHSbKEhP2n8Hrz9Eqv3aoZJSLT9xKfNJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kz5u3PbT; arc=none smtp.client-ip=209.85.221.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3cf991e8bb8so3033079f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 00:49:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756885793; x=1757490593; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PioyJaDS8ksrS/yIYTZans1q2zfR8i6mk/EV1gul67A=;
-        b=Kz5u3PbTnXQhIla15B4QrJUgKE/Bq1kyHRsyWJerX6SjoDavyhzSkYNT4/0Eg5DVZG
-         jvEpKAgQA3QLS3cYCOGFAnNZ4UYFILGxCREqAJ/XK6dVFFKcWCYrj60aqUB8AXgmnymZ
-         vBjEsl6ck9coPHCxJWJ2gwyPkwpqC688+XlJcptZ6ycs+uc1wWiSK07Z9IxzwHBV9b5j
-         gMTbxRjCZcReV/u9JI7u8WyxgKtZ16r/tJrBxdt53QlKcezTwLdXx47ucZXdt0YLxDFa
-         HTIEnPizgqEzbjxa/LK1LkUqBPfwHfwUvHnfW8vgT7azl4TRbYJaWZBl5g1mQN7C8Dri
-         XlQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756885793; x=1757490593;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=PioyJaDS8ksrS/yIYTZans1q2zfR8i6mk/EV1gul67A=;
-        b=jUgvyo0oB0xWfq3HxOqyHqyJg7u4fc1wyBLWgqBwAJ99Ql9aGo24sHwhQhZ/LaMJLv
-         ryzU8LRzHcmG/zbqBPhvdE65IrFrATurh8RUXUqRuhMuuRyIhvceldcbj4YYkZ9trHIw
-         oW3UQDhsmSx5MnCtxasTpf8vrH1vGhYsztMkCPt4IQhTwdr/EShaqkpUrY1ESGMfC5uV
-         Wm5i5W5ph5y7svqjpmDmVYxfGbAYsOd2TgrkhL9mvn2YtYUqXnJS47ZDFDeLvzHaZhfV
-         a4k7jqY25vfOe1KxzTLI7A8rl5gz9KpxMkFlCWYrf5SOmvinqnJnl7Ou2hP4wF5wGeqG
-         55Bg==
-X-Forwarded-Encrypted: i=1; AJvYcCUfqT9ip1So3+O0pNkcuK1Ifh5451WaB8NJqBC18Qt9FtqVV1KBfkaECP3tpOLXOcYpasehP162Oygc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0XabhWEqqNk059NHHoEB+6M+P5aC7BeoYKkdgqdhMrj/z/IKt
-	Qz8FS4YHoys8b1h7uryWiShfeF+S4mwfb+LgdJiJcnn57B0SpkLiL75uSIbmQPyyiE4=
-X-Gm-Gg: ASbGncu3BdJid9XQGq0nmJbDviG6eQMQjVHr1hzdTMdGNa8YYG+m2IpUYSggZEAsMYY
-	1/8qwgudUzFyym+0Ufp8CpijCCW2dVp9cre7kvUhhbPaedCoulSTs9ASFVFMDZphXH+jogb15K+
-	3HmDBcCjZdVwaCWfn4Sl3y8CJI9N2FIEtFeDgUNB+YZ7z4ty2WhtMHpdwgWPHLz+ncDiNzgzcPJ
-	qlUB0sT6RpEcOJ6hVbhDM1vm6BaqWwT/0BjRQmfhgCzF3pjmdAt5WKFtaCrl6gPONijZboFQ82T
-	3Vzr1DJ8sqIhjUuwqFMCay7qDKS0ByhleWsE19sgs/lCTCKZfUnGdJIlPX/1SRleF6W9J8Nj9eB
-	wOgWNE7NbYBmHUylYEzxL593J8zkdW1pyBnsq/o8Ta5CamcFjLLsX+HELJ4pv2Jk661kWpynrzx
-	3rjNi+JoBHT4LbzWCj9g==
-X-Google-Smtp-Source: AGHT+IGNcwf7dquah88p3kbUCZQzfg4W/YTjPdyhyrclopN+udAN3w1xt+8R2YdXZebjRcfFI3x01g==
-X-Received: by 2002:a05:6000:2011:b0:3c9:3f46:70eb with SMTP id ffacd0b85a97d-3d1def69bc3mr8693458f8f.52.1756885793260;
-        Wed, 03 Sep 2025 00:49:53 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:431c:dad5:266c:f97? ([2a01:e0a:3d9:2080:431c:dad5:266c:f97])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b93fae643sm75085675e9.3.2025.09.03.00.49.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 00:49:52 -0700 (PDT)
-Message-ID: <418ba924-7e3d-474f-ab1e-084ca8ad313d@linaro.org>
-Date: Wed, 3 Sep 2025 09:49:51 +0200
+	s=arc-20240116; t=1756885819; c=relaxed/simple;
+	bh=TuBgFCVN80P4zt0j6ecpb8b24JTC+uS9IYg1hpSa7Uc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DnE9OMdlm4suAI5sMf1syl+xNXLEqrQ+bRcmwJYtRx7n643oHYCkLfxezBGh6Vm4aHEp18W4K9DaCou99i5Da4bnXo8+8cIku2+Tyr1tariMX+GgTulEsnTlUZd4Sy4afZEsUTqmoLhbbBmShOUSAmbvdGOIMBtI+o+bp5CFsEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+	by metis.whiteo.stw.pengutronix.de with esmtp (Exim 4.92)
+	(envelope-from <a.fatoum@pengutronix.de>)
+	id 1utiFt-0008Ru-6M; Wed, 03 Sep 2025 09:50:09 +0200
+Message-ID: <1bf75411-4a51-4103-b314-a8a7253bafca@pengutronix.de>
+Date: Wed, 3 Sep 2025 09:50:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,153 +42,134 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 3/5] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp-phy:
- Document static lanes mapping
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Subject: Re: [PATCH] ARM: dts: imx6ul-tx6ul: Switch away from deprecated
+ `phy-reset-gpios`
+To: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>,
  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org
-References: <20250902-topic-x1e80100-hdmi-v2-0-f4ccf0ef79ab@linaro.org>
- <20250902-topic-x1e80100-hdmi-v2-3-f4ccf0ef79ab@linaro.org>
- <20250903-amaranth-rhino-of-wind-3b8850@kuoka>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250903-amaranth-rhino-of-wind-3b8850@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, imx@lists.linux.dev,
+ Csaba Buday <buday.csaba@prolan.hu>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu>
+ <fa7e2cef-5242-4f3b-84ea-d77b959f6bdb@pengutronix.de>
+ <c85a94ee-59e1-47d6-8200-813bb434caf2@prolan.hu>
+Content-Language: en-US
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <c85a94ee-59e1-47d6-8200-813bb434caf2@prolan.hu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 03/09/2025 09:07, Krzysztof Kozlowski wrote:
-> On Tue, Sep 02, 2025 at 11:00:30AM +0200, Neil Armstrong wrote:
->> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
->> of a combo glue to route either lanes to the 4 shared physical lanes.
+Hi,
+
+On 03.09.25 09:43, Csókás Bence wrote:
+> Hi,
+> 
+> On 2025. 09. 03. 9:28, Ahmad Fatoum wrote:
+>> Hello,
 >>
->> The routing of the lanes can be:
->> - 2 DP + 2 USB3
->> - 4 DP
->> - 2 USB3
+>> On 15.08.25 17:17, Bence Csókás wrote:
+>>> The Ethernet PHY's reset GPIO should be specified in the node of the PHY
+>>> itself, instead of the MAC (`fec`). The latter is deprecated, and was an
+>>> i.MX-specific extension, incompatible with the new reset controller
+>>> subsystem.
 >>
->> The layout of the lanes was designed to be mapped and swapped
->> related to the USB-C Power Delivery negociation, so it supports
->> a finite set of mappings inherited by the USB-C Altmode layouts.
+>> One reason to do it this way is that the PHY is in reset when the OS starts
+>> and the external phy-reset-gpios allows MAC probe to get the PHY out of
+>> reset, so it can be probed after reading its vendor/device IDs.
 >>
->> Nevertheless those QMP Comby PHY can be statically used to
->> drive a DisplayPort connector, DP->HDMI bridge, USB3 A Connector,
->> etc... without an USB-C connector and no PD events.
+>> Does switching to this new binding address this scenario? If so, it should
+>> be noted in the commit message.
 > 
-> What is the use case for static mapping? Embedded HDMI port on T14s
-> laptop?
+> Yes, but after it has been reset, if the platform supports Power Management, the PHY's clock will be turned off, which some PHYs (in our case the LAN8710) don't tolerate. This has been reported many times, just search LKML for "lan8710 reset".
 > 
+> So we want a more general solution [1] where the PHY subsystem resets them before enumerating. However, if the MAC driver claims the GPIO, then it can't be used by the PHY.
+
+I agree that it makes sense for a PHY reset to be associated with the PHY
+device and controlled by the PHY driver. I am wary of regressions though,
+which is why I wanted the commit message to clearly spell out the implications.
+
+> I will clarify the commit msg with this in mind.
+
+Thanks.
+
+> [1] https://lore.kernel.org/lkml/20250709133222.48802-4-buday.csaba@prolan.hu/
+
+Is this mainline yet?
+
+Cheers,
+Ahmad
+
+> 
+>>>
+>>> Co-developed-by: Csaba Buday <buday.csaba@prolan.hu>
+>>> Signed-off-by: Csaba Buday <buday.csaba@prolan.hu>lan8710 reset
+>>> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+>>> ---
+>>>   arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi | 8 +++++++-
+>>>   1 file changed, 7 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+>>> index f053358bc9317f8447d65013a18670cb470106b2..0a5e90704ea481b0716d6ff6bc6d2110914d4f31 100644
+>>> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+>>> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
+>>> @@ -246,7 +246,6 @@ &fec1 {
+>>>       pinctrl-names = "default";
+>>>       pinctrl-0 = <&pinctrl_enet1 &pinctrl_enet1_mdio &pinctrl_etnphy0_rst>;
+>>>       phy-mode = "rmii";
+>>> -    phy-reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
+>>>       phy-supply = <&reg_3v3_etn>;
+>>>       phy-handle = <&etnphy0>;
+>>>       status = "okay";
+>>> @@ -262,6 +261,13 @@ etnphy0: ethernet-phy@0 {
+>>>               pinctrl-0 = <&pinctrl_etnphy0_int>;
+>>>               interrupt-parent = <&gpio5>;
+>>>               interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
+>>> +            /* Reset SHOULD be a PHY property */
 >>
->> Add a property that documents the static lanes mapping to
->> each underlying PHY to allow supporting boards directly
->> connecting USB3 and DisplayPort lanes to the QMP Combo
->> lanes.
+>> Comment belongs into commit message.
+> 
+> Agreed.
+> 
+>>> +            reset-names = "phy";
+>>> +            reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
+>>> +            reset-assert-us = <100>;
+>>> +            reset-deassert-us = <25000>;
+>>> +            /* Energy detect sometimes causes link failures */
+>>> +            smsc,disable-energy-detect;
 >>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         | 29 ++++++++++++++++++++++
->>   1 file changed, 29 insertions(+)
+>> Unrelated change not described in the commit message.
+> 
+> Oh, this has accidentally made it into here from our DT. Thanks for spotting it!
+> 
+>> Cheers,
+>> Ahmad
 >>
->> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->> index c8bc512df08b5694c8599f475de78679a4438449..12511a462bc6245e0b82726d053d8605148c5047 100644
->> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->> @@ -76,6 +76,35 @@ properties:
->>     mode-switch: true
->>     orientation-switch: true
->>   
->> +  qcom,static-lanes-mapping:
->> +    $ref: /schemas/types.yaml#/definitions/uint32-array
->> +    minItems: 4
->> +    items:
->> +      enum:
->> +        - 0 # Unconnected (PHY_NONE)
->> +        - 4 # USB3 (PHY_TYPE_USB3)
->> +        - 6 # DisplayPort (PHY_TYPE_DP)
->> +    description:
->> +      Describes the static mapping of the Combo PHY lanes, when not used
->> +      a in a Type-C dynamic setup using USB-C PD Events to change the mapping.
->> +      The 4 lanes can either routed to the underlying DP PHY or the USB3 PHY.
->> +      Only 2 of the lanes can be connected to the USB3 PHY, but the 4 lanes can
->> +      be connected to the DP PHY.
->> +      The numbers corresponds to the PHY Type the lanes are connected to.
->> +      The possible combinations are
->> +        <0 0 0 0> when none are connected
->> +        <4 4 0 6> USB3 and DP single lane
->> +        <4 4 6 6> USB3 and DP
->> +        <6 6 4 4> DP and USB3
->> +        <6 0 4 4> DP and USB3 single lane
+>>>               status = "okay";
+>>>           };
+>>>  
+>>> ---
+>>> base-commit: 0cc53520e68bea7fb80fdc6bdf8d226d1b6a98d9
+>>> change-id: 20250815-b4-tx6ul-dt-phy-rst-7afc190a6907
+>>>
+>>> Best regards,
+>>
+>>
 > 
->> +        <4 4 0 0> USB3 Only
->> +        <0 0 4 4> USB3 Only
+> Bence
 > 
-> Why do you need to handle here and in few other places mirrored case?
-> Isn't enough to just say you only want USB3? Maybe my first question
-> (what is usecase for this) answers this, though.
-
-Usecase is larger than the HDMI on the T14s, we must handle boards directly
-connected some USB-A and DP stuff directly on the combo lanes.
-
-See https://lore.kernel.org/all/8A7C126C22789C9B+f30def47-302a-45ee-8f76-64ef277f773f@radxa.com/
-
-> 
-> This looks similar to rockchip,dp-lane-mux, from the objective point of
-> view. Please look there and if it is really similar concept this would
-> warrant having it as generic property in video-interfaces for example.
-
-Yes it's quite the same
-
-> 
-> I also wonder if this should not be stored in the endpoint.
-
-But I'm trying to store this in the endpoint as [1], the Bindings & DT part looks fine,
-but the driver part looks horrible...
-
-I'll probably post an RFC of that shortly
-
-[1] https://lore.kernel.org/all/14f334fc-35de-4f21-8eb1-f6b41ac24704@linaro.org/
-
-Neil
-
-> 
-> Best regards,
-> Krzysztof
 > 
 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
