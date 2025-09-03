@@ -1,147 +1,194 @@
-Return-Path: <devicetree+bounces-212374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A2F7B4286A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 19:58:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C310AB42879
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:01:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3DB7E56539C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:58:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48D8358023F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:01:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2D13352070;
-	Wed,  3 Sep 2025 17:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D437362068;
+	Wed,  3 Sep 2025 18:01:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R/XGKVsA"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j4ceDE7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09FEE350D68;
-	Wed,  3 Sep 2025 17:58:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC9A35CEA5
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 18:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756922303; cv=none; b=r6EH+disiK2bRkJqRyEQpXJPja/QO1EsuTxp5x/Kmj2UFkOY6GdNeaSDPjf4ish3y5t/E+jr24H80QQ+2wGDUWdPEFLj6yTCiWbYBpTB10Pro0RN7kotDBmRZbRoFFZkfnsiK4Mlr5zIY1Rpl1SHpNCES5RvWMWiZIrR+t4qQaM=
+	t=1756922503; cv=none; b=mQizAQkaH7/mAC2HrTvgDqIH02E1GyLhtAXAfDDRykV/s0eZsHzaLd1v6YTMmRHd5ZkU1r+CztwcTnwE1/7OOLOLUFKjDXABNtIpwgA03jnXG6o9lktmxdz3M26UkrHbode1q207vmBV1DfQReN1FAgVNFk7f99JzEYMT232DoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756922303; c=relaxed/simple;
-	bh=wY2bW8fq3Ft+chy83Xdc3EUaRkyWqSV3KeQlYOmD67I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pGZcZXK15jqsS+quS5clWaqowRatBccJhvObaTSHfHD4rkAkwWjdrpA4W3m8UewyLduPAv8WeIr8+KCYn3VgveHar0w2JHhfsRKLEH59Xhhqjx55EsuuPa3KlGzyx5kArW8uQ7ZBw5AILxuVFlpBguR6Z0kMvv3eGV+c4uLmmgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R/XGKVsA; arc=none smtp.client-ip=209.85.167.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-55f6aef1a7dso129486e87.0;
-        Wed, 03 Sep 2025 10:58:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756922299; x=1757527099; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rVkerZVITJ75R1A8DbL3xIDB9OLG8LafZy9yCcs7YDc=;
-        b=R/XGKVsAjk2uFVa62AQTvsgPPfs/vpYpTsgqy8/7KlpB2EP+Qt418KPUQuk37aaKNm
-         psyvyvJ62ItDrZrqflivCqyBcfypp1Caff6wA3h6Z1UwgJhaxFS6cLDkgmmLbqgplwzs
-         mAc2N7/NUUaC1Sdt2BAplcMjRPhY6425aGwDpDrewRjeVL+UJkAanqijLv6XwJF9scDz
-         v2K71sIQau6hJdgpVPoWhthKomEZbm+lj9bZukBdzBWhPEos+cpD/N+XZk3D4XqwliRC
-         EV23Ku6vk5XJOi/2p9ez6A8B3rvSkGM6NBMlB+iZtHuFxyiUOS+yDSPf6IcpMh2Z16vk
-         JPYw==
+	s=arc-20240116; t=1756922503; c=relaxed/simple;
+	bh=7pnDp9VhTyE3htCGAVgMQLhag197BUUR1H7lClQJXHk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Pw6sXY4vQEUJ8BHOQZKISAOX+7DHTpx33hDE95OvzedeIzl3mBvGN5V3U5P0lNsX1ODczrUX9W9uXDdE8LlOcscOkBlpTuz2B4Gnq9/Roa8cMIpKLVPnnkCJ6FIYbQ17ZiuOIAatbSYJGoFthdC1VcKYPNtXVYcvxQ1YsYH1pKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j4ceDE7d; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DxMtq006150
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 18:01:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	e/p6NQMyBBmLey3xjPGP/xYfDYla1BUyFB6KTGlNvQY=; b=j4ceDE7dGvyAemkZ
+	CRwsJwmPM7rg/FpONIX/f3c9qs9NwhXkXZxENiVJ8wD+2cTwRj4EDfqTQ2kB9L4t
+	wG/gLq4r9g6ywmf4IZjotAEI/Z+TOjzSDZKo2eo2XMbgstm3sqX46sMnfVb8qACI
+	jzl1PVtSscG+pIVykfyEE2HAqMOU5ty8qlC1hCjn2oMvmdWMvz3DwFwakG04RzhR
+	X1sOaln/i252utxL6KjL3uvkS8BvlRwStcT0VhtZiTCoeYzzhir0xL67xGDWjhIU
+	QDqBeUeTcUnsZzwVefnTn/2B1fLySSqwLoAKwcMUCtBLTIHO9KzItooslQwEXF0H
+	dZHv0A==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s4tfv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 18:01:40 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b4fb25c2e56so69002a12.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 11:01:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756922299; x=1757527099;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rVkerZVITJ75R1A8DbL3xIDB9OLG8LafZy9yCcs7YDc=;
-        b=OAd4iif4NaB7sHxMwGV7i3L+6S5MqWciG6zOowo/SK0gaUFnrrODB8GzznBUO5Q7il
-         gkv++LrqpxB4B5IEBDHVN5JjLgoInDNCnyiiRpkOvfMlAHEE2yQqUSZgQxiN1AMQ5i64
-         MaaCFx8YE6nQx3ha7nW5nM0VCzAwQEMiOzhyx759L1zLwj31RGNX2IbtOW+VnLYgLc3C
-         +vT9oLM+ib0PgDrz2iyzFuzc6tnnm9Xmi/VIh+HeAYj+5ibF7v8nKS2tNw3nODaFb5TT
-         iEEf/qmEUizQ4rUyUtUWCRTqMHHZwaCFoImz+3qXgXpz5HDtBZ9kDsO1Z3pc4Y5jjkE3
-         eZbg==
-X-Forwarded-Encrypted: i=1; AJvYcCUVoARWKPVBsH6aQOhXt1SLUUs0DwUs+4RicvVL49PkEWEe4ORU5lwR2SaC7y03neI+nMqUm267AdhwbbEj@vger.kernel.org, AJvYcCUhTFlutrGmdNE2QV/dOlfteCIQF9DrJKnt8BJ7G6WxkLUinhWaVn+yr54ifspA4NAXsEKGY7ymrhO0WWc=@vger.kernel.org, AJvYcCUvVwavXIsUCJEp/80XdJ/0SubDTY5BPFlsKliQmnQKAsUjCeQ3GAOWYApGm/rdwbXNFfSfaHh/ZxD2@vger.kernel.org, AJvYcCWBWvcUbhs5zYyb/boeLR7dGVU8qmbx09RDcFwqv/1kVOTiuR2y3CDbDEXbQhP7SU/zguAwdhUoE8OSow==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCR/u+5Lt7hc8MjrbdQWgyvCzMktjlA7wNnF8BROtgTOHGDGFq
-	SQQcCnwDBcBZp2gFiXFVau+HRaeIcC05Icay3w1/i4xn8i6c0jtm41NVT32RE2eI+A3eFGmz4A9
-	0GDOW2SlvZ5xzO8FHPenw/fNt55R+0F8=
-X-Gm-Gg: ASbGncu8BNpiic4mGKJaRUG4/vIua51yqF5w98VF2L9g+lZDdygXUVvFqwJ/PJY7jzA
-	cdSO4+jiMb/5W3TjZ4WxOttBBS5Yaq0FwEeO8CByiXlg88dlzKXwOMKb7a1QioUmngOYew8EZlS
-	CHo2D0jWYPHpnQIVubmD2HTe6nm8bnd3Zss3vwUXfIAb0VmVuWhctYCSXIulJF+rkFOo8RrS0Ft
-	E7hMjbazsFgOoejRg==
-X-Google-Smtp-Source: AGHT+IEM3391jGaZ5H7KUN2s6kIYrcivIvySSHlaVz037M26bpuhJ5pwlWQPEBWsLq32weOR5d9HjCh3JN3yqFD4VuU=
-X-Received: by 2002:a05:6512:258c:b0:55f:6c72:b70d with SMTP id
- 2adb3069b0e04-55f709f6057mr4422732e87.48.1756922298765; Wed, 03 Sep 2025
- 10:58:18 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756922500; x=1757527300;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=e/p6NQMyBBmLey3xjPGP/xYfDYla1BUyFB6KTGlNvQY=;
+        b=o1lTHHFgzI4ldHCwDMCwbdOf4UA1qP8e1TYE69FPvI0eTIwnI8tYmJTvCTX7goNWKc
+         lUQEHufhaVqnfGl49215JKpvXKLjGGCAa2V5JvORrDyBlcWU+xAltSl+QMN/xcSE6HLu
+         armWe0QF1qrrlaO6J/ld5wGziOGrp9PUuAVD/sd8sbSVq1esn0Rlp34eW5XhyVDyqaN8
+         xaQ4qS1Xv5X5UwSr/DAAn87ymekjsibldCtRWuCVNF8xiOjapGPoxFQkhUxozYsNiH4W
+         tv6aLaJJzRCrqUIVJLqGyoe+cD5zNSJwcM+HEGCW7uDfOXxk1omgqYeJb6mj4c+0Y+62
+         XD2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXf/nkb9fqwJ/Wa1+sFnpYidvJMBC86kX9oDUJjnx+lGy2cDg+g58OYnb1sIcZr1zFaDF6LCTvOXfBc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwM/MsqkaqRQaDkxCWMvFV5VQO4qfPXI/RikX2VSY0plwOcRZXH
+	P80s3veQ93riuInO/Vd/A5U6/Ah64XQVvi+qxjIFl9pJaAvlx4YozzDjrYjucheGTooCQPZLCTi
+	aGFzrSODSDSKLdxJFwOd9tGw+dSV1VCZbmNozKW4foIcVO6beTNKoCL1V3Gjwau3W
+X-Gm-Gg: ASbGncvPrTpVj9Mx72UGdUpbirM8913frd4UbNod7WygT/XaJUApRoDCC8i9ZX+Bzu1
+	lShrj0ym4yqaE0IJQ18tAdxsU9Wpfoofav/vSPrHta8akb5qHYiI0QZRrssGu09GZvpGuf750dH
+	UMP5hJAPo2Dnv3WTEkcmDEUJozytOHoI8/DRoO1NYUDRh0qQlnbMa4rT7tnrG740mrnAxCaVWAR
+	pdW4tElYogaDeQrLRpKiDDqhGExe32bn49FbupYMLptrrGVd6k+NqXjxduXzzwEtLhSlEkZ8Obl
+	XLUfyokImgWCxrkOtf3xmMtGKtEpqqkWb4YjXB7qZpspdhI5/xO8/cqcm8dOvtoyCEoJXe8=
+X-Received: by 2002:a17:90b:1b12:b0:327:7c8e:8720 with SMTP id 98e67ed59e1d1-328156e57demr19444737a91.34.1756922498375;
+        Wed, 03 Sep 2025 11:01:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFeb9eLZArrjeEJcIg/7Rx3a/Fa169OALXNV2q0nNF+8FgBvv+z9E0vUippWGNtAeLloBrrCg==
+X-Received: by 2002:a17:90b:1b12:b0:327:7c8e:8720 with SMTP id 98e67ed59e1d1-328156e57demr19444658a91.34.1756922497588;
+        Wed, 03 Sep 2025 11:01:37 -0700 (PDT)
+Received: from [192.168.1.8] ([136.185.244.63])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327da90e423sm18122214a91.20.2025.09.03.11.01.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 11:01:37 -0700 (PDT)
+Message-ID: <6cdeac85-a803-4b75-8fb5-c9d485ae374c@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 23:31:30 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250812-tegra186-pinctrl-v3-0-115714eeecb1@gmail.com>
- <CACRpkdb=U=h5OguMuy9G6avCCN6Aem=2_60C+_uBsrY+UvD5ng@mail.gmail.com>
- <CALHNRZ-dRvaN_SyHRfAsq2MO-ec8rzkeCy6CtJpYdWTobf1-Wg@mail.gmail.com> <CACRpkdb46OwzNQuSp0+QQVjy2LojMyhdE7XrNwdsyqGi5okASw@mail.gmail.com>
-In-Reply-To: <CACRpkdb46OwzNQuSp0+QQVjy2LojMyhdE7XrNwdsyqGi5okASw@mail.gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Wed, 3 Sep 2025 12:58:06 -0500
-X-Gm-Features: Ac12FXwYT3HuWemAngCiQwse3I0_AJd8-Hn-0mwSL6IgfLf-ieUlbAGMCMdMG4Q
-Message-ID: <CALHNRZ_+Oh2AGZTvJ66EjBEKEf7PdQsMM_BTNNnjENJpbOKiog@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] pinctrl: tegra: Add Tegra186 pinmux driver
-To: Linus Walleij <linus.walleij@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Bartosz Golaszewski <brgl@bgdev.pl>, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: interconnect: add clocks property to
+ enable QoS on sa8775p
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Georgi Djakov <djakov@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: Raviteja Laggyshetty <quic_rlaggysh@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Mike Tipton <mike.tipton@oss.qualcomm.com>
+References: <20250808140300.14784-1-odelu.kukatla@oss.qualcomm.com>
+ <20250808140300.14784-2-odelu.kukatla@oss.qualcomm.com>
+ <90b51e31-3217-4483-bb5b-ec328665a723@kernel.org>
+ <28b97952-1b67-411f-a7fb-ddd558739839@oss.qualcomm.com>
+ <ac83c453-c24d-4c4d-83bc-9ed13f2f9d1e@kernel.org>
+ <7d3e5cf7-4167-4005-ba4b-c1915c254705@oss.qualcomm.com>
+ <00f50d92-e4ea-4805-b771-147fa5f5ebe4@kernel.org>
+ <249f8109-31b1-4cb8-a5a4-b30c27b2e987@oss.qualcomm.com>
+ <6e036d6a-f2d1-43d6-bb35-54467edd7ec9@kernel.org>
+ <26e5309e-3705-4d70-a2e7-3f0e9344816b@kernel.org>
+ <3c4751c3-52d5-408e-ae80-df22bcff5d8a@oss.qualcomm.com>
+Content-Language: en-US
+From: Odelu Kukatla <odelu.kukatla@oss.qualcomm.com>
+In-Reply-To: <3c4751c3-52d5-408e-ae80-df22bcff5d8a@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX3IjKdfbgJ9++
+ Ls3zvRO0bo24LWPugyZiZrXi5oL2cUtfP5wzMnaWA/D8FG/Rr/mGPOEqcwBBu/42MaOiwpI3R0Z
+ yEi5Qt/5Wp/U5RC++ViasINV+uLvnRVuG2w8/vdr4BTmd562GoxiODv4DHwvRLd2Nhsa+C5nhg2
+ Ft8zfWuPm81hMY8kwjOgBZjYZEAkVW7fTu7+F5qgGinah0qP5cHKUB6RWKrvLoN06AGzQWXJvZv
+ OsOg6TdkPoDhW/289+IYlNMxUlpXPuPXvaKYe6c7pyIszVYTU3srv5AqNXpAPuUAQXiX/rMCAW1
+ BNsMfe7KBIVj8w0kG8vzqXGXLRzXIHNcCXDLp5seocxzb+JjJdcRKabmm5Z3+cziqCZQ3WXT6Iw
+ 4+n6xtw6
+X-Proofpoint-GUID: G469rqda2jLia9r_rG4g0SQ6h9pNUq2m
+X-Proofpoint-ORIG-GUID: G469rqda2jLia9r_rG4g0SQ6h9pNUq2m
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b88284 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=yA1qRYK8n1cH6pNkam3zVg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=8_klXzSyxtcaGXXTCUoA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_09,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Wed, Sep 3, 2025 at 1:55=E2=80=AFAM Linus Walleij <linus.walleij@linaro.=
-org> wrote:
->
-> On Wed, Sep 3, 2025 at 6:54=E2=80=AFAM Aaron Kling <webgeek1234@gmail.com=
-> wrote:
-> > On Tue, Aug 19, 2025 at 6:30=E2=80=AFAM Linus Walleij <linus.walleij@li=
-naro.org> wrote:
-> > >
-> > > On Tue, Aug 12, 2025 at 11:24=E2=80=AFPM Aaron Kling via B4 Relay
-> > > <devnull+webgeek1234.gmail.com@kernel.org> wrote:
-> > >
-> > > > This series adds support for Tegra186 pin control, based on a downs=
-tream
-> > > > driver, updated to match the existing Tegra194 driver.
-> > > >
-> > > > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > > (...)
-> > > > Aaron Kling (3):
-> > > >       dt-bindings: pinctrl: Document Tegra186 pin controllers
-> > > >       pinctrl: tegra: Add Tegra186 pinmux driver
-> > >
-> > > These two applied to the pin control git tree.
-> >
-> > On patch 3, Mikko noted that I accidentally amended the formatting
-> > changes intended for patch 2 into patch 3. Linus, since you've already
-> > picked this up to your tree, is it too late to fix this properly in a
-> > new revision? It doesn't appear to have made it to the main tree yet.
-> > Or do I need to send in a fixup?
->
-> It's one of the first drivers I merged with plenty of other stuff on top
-> so I can't amend it, just send a fixup based on my "devel" branch
-> (or linux-next, it should work too).
 
-I am highly confused now. When I went to make the fixup series, the
-fixup didn't apply. Looking at next-20250903 [0], pinctrl-tegra186.c
-looks like I wanted it to, the base commit has all the format fixes.
-Which doesn't match the commit on this series. Which leads me to a
-couple questions:
 
-1) Does anyone know what happened? I'm not particularly a fan of not
-knowing why something happened, even if it's beneficial at the time.
+On 9/3/2025 6:12 PM, Konrad Dybcio wrote:
+> On 8/28/25 11:59 PM, Georgi Djakov wrote:
+>> On 8/28/25 9:20 PM, Krzysztof Kozlowski wrote:
+>>> On 28/08/2025 20:16, Odelu Kukatla wrote:
+>>>>
+>>>>>> QoS configuration is essential for managing latency and bandwidth across
+>>>>>> subsystems such as CPU, GPU, and multimedia engines. Without it, the
+>>>>>> system may experience performance degradation, especially under
+>>>>>
+>>>>> So how was it working for the last 2 years?
+>>>>>
+>>>> The system may function normally without this feature. However, enabling
+>>>
+>>>
+>>> Huh? So you agree but keep continuing the discussion?
+>>>
+>>> I don't understand what we are discussing in such case, but just to
+>>> close the topic from my side and be explicit: based on above you cannot
+>>> break the ABI.
+>>
+>> To be even more specific, if we already have some DT binding without any
+>> clocks and reg properties, we can't just suddenly change them from now
+>> on to be "required". But they can still be "optional" and this will not
+>> break the ABI, right? The old DT is still valid and the QoS will be
+>> active when the new properties are present and this is handled properly
+>> by the driver.
+> 
+> Correct and this very approach was used to retrofit QoS onto an even older
+> sc7280 icc driver.
+> 
+> The icc-rpmh core already ignores QoS configuration if the clocks are not
+> provided.
+> 
+> Konrad
 
-2) What should I do with the dt commit now? Ask the Tegra subsystem
-maintainer to do a manual fixup when pulling? Even without a manual
-fixup, the bad part of the commit would fall out when getting applied
-on top of next.
+Thanks Krzysztof, Georgi, Konrad for the detailed discussion.
+To summarize: we can’t make reg and clocks properties required now for
+sa8775p, and making these properties optional ensures backward
+compatibility.
+I will address this in the next revision.
 
-Aaron
+Thanks again for the comments.
 
-[0] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tre=
-e/drivers/pinctrl/tegra/pinctrl-tegra186.c?h=3Dnext-20250903
+Best regards,
+Odelu
+
+
 
