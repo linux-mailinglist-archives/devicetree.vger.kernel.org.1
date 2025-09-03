@@ -1,121 +1,239 @@
-Return-Path: <devicetree+bounces-211929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CD82B4156C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:47:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CB33B4157F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 051CE1B20080
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:48:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E64B05E4E16
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:49:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AD262D978D;
-	Wed,  3 Sep 2025 06:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7048B2D879E;
+	Wed,  3 Sep 2025 06:48:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fdzZTuYk"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Rf+Di0b1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690C92D9494
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 06:47:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0432D8776
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 06:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756882047; cv=none; b=dSHwQD2WuD+6ASOZzvb8dV5zsLa4hvI7mvMx1Fhb5t+UyZpBE284r+pLb8YBlsBDvgZtnZdUaNpmQoVWnoVX2ugHr4/1mL1OLT5o4RcFvFIV1FGY90hJ/ZYKV4jQ3JIt9c3bj0HMvKB9KlVOk12JjVbuFT76LYrVHSg5C2MSV04=
+	t=1756882122; cv=none; b=bBVj6nBl1p+Fprrtb1NkTNwXKVfkZ66Ol0NCXspooI3mJNt8t3KuSeT/8GILNIYKRxbmBty4yJ9Ydhv+jbbiPWr7P97gXEUhMzFKe51cAYIN/V6SjIQBhITKJDHukckwI7g9Evr59LBx7EQL7i6+JbgvQjAzNoMuN3inxghFRC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756882047; c=relaxed/simple;
-	bh=JPf9MBwFsXDqpcdtjQzlVagg9Dgm72GKmuu+o+i6Jps=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JzjJSa0wqb3W7IQJXmzibV6j9a4UZHVc8bqdpXxD7xSEyC6IiJhMOEAg+NwoCPxGqPyLp2mNnmAiRG6PjuP7aai/ESVD2M8DZ3otlDA6e6mrJGqBEAfQ+Na46zMaN4DVBKTzqSG2Zh4HnxCxB8HQ6VO+oWFWcDM4WHq+VloBUBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fdzZTuYk; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-55f7b6e4145so2737074e87.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 23:47:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756882043; x=1757486843; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JPf9MBwFsXDqpcdtjQzlVagg9Dgm72GKmuu+o+i6Jps=;
-        b=fdzZTuYkF29QgBigJfqqWon5n83S460gZRV2f4jgqqMtXu/gzDeqg+NYLgPQ0RV38P
-         Sk/Jako15oRICnUN33bJMaU1upbbGzl3acZCpyGWq1NP56J4hY38LB9F9wkMgJuv5bR5
-         OOFIq3ZOdI3Hb4toCnPk9ls5Jt5jswt2WXIrFoRtz3i/ZvkQp0aKas+BS5k50Vc8XLvh
-         MhUvkvcLieCyIPaaZvTUu9zsK0eaJxlocxMgEqvisIEgL1DfJXauJAislBcZbusE5JcC
-         sGBwcDp/0bfqxQjB4ucerRbjw+pJJvi5YnVOqGjmbTfM4u0RQV33fizl8MW0mIYGRT+W
-         surg==
+	s=arc-20240116; t=1756882122; c=relaxed/simple;
+	bh=QNETejy8uanB4DbCbMajxL7kyf3pgVxS5zjvtDEcMvQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CNELX9pdBzlAGvZdtCMrgUEVcFjY9GbbRUP330vgVmRsVLW7IJ7j0kzVY6JRkqvO50Jsm9e2BqLGGR034/jCTufg5jBPIpPmTEoncdA02Nebz89MQmfAr31HVh+JEoDqmHlI7ejIJ8eVpwf6qZCPAXuZhLiz8EupVrvm3o3fuxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Rf+Di0b1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58324STE032759
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 06:48:39 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	UplUJq8ROfhu7BqKPo/OWnnkm2YY2UUYgpYkcYVmLtU=; b=Rf+Di0b1XaFbFdif
+	icQQ5eiVbQ5UD0xJs4i8FBpNgSfBqRE4+QzYso80duVSjDgVT/v6ySUcpAcD5Cc8
+	iplX8bdJZufXXPaQlMXpjeYB3JqByU8Qyl0dgARBYYM0mdRZxJ9joSW1bZnNkEAy
+	4qPTeC/lYwe+xTEJkbVOp0zBJGE7lbmqWpTI+nQfbBzvOg2D/zKNuidPudSjjmte
+	heoP7/3NWvFDNwtAetTlW5L2HIk63PDn1Fp2KhWtFCCjDKSIDvcKYLYB7FvwfSx1
+	kBdAyFKPnBtzh3O6pRKScijx45wDgKuH0qievbO/qSK6y0Z4901Cotvyn2glEBUB
+	W9T6WA==
+Received: from mail-pg1-f198.google.com (mail-pg1-f198.google.com [209.85.215.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8tfgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 06:48:39 +0000 (GMT)
+Received: by mail-pg1-f198.google.com with SMTP id 41be03b00d2f7-b4c949fc524so4219793a12.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Sep 2025 23:48:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756882043; x=1757486843;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JPf9MBwFsXDqpcdtjQzlVagg9Dgm72GKmuu+o+i6Jps=;
-        b=hEc8XdaJDZ4NZzNk4VyGZTLmH49Xej6R+kD8lCbW9yC7gILaawV1lD9Y13Yj1Ex3S3
-         Wl68HBwEyyK/O+lpcxqaKvWrcJhTKpX5N9JnwB/pJJ6cGMGBWGrJ4EyfZK6iMUPuVELM
-         9UF0jkMAaPClxjlJp0HZ/8RT65AISsg8ascOAUxLCz89XPlJ95EzWLxPQtX3hf5ik7Gf
-         UuzHStkEOq5fmQxRU6duGPOqlme3Mujj9SmefxlCi4HUXfoLO7ZTIV5gUoodTUNyHJFs
-         TQ//tTIRAQGibYlx+7BBz5i9HWWOKyZPl4YrCYF4Lby/wQBZi8y86VpU13228X1o4oHd
-         vorg==
-X-Forwarded-Encrypted: i=1; AJvYcCUNFIVN3COvpRHwOGlkv2bdPjMlUjo3CNOhl4kUn8iGb3PDsQFUoDI5MFyKssDTgy/1Sy8R0XMAeOSQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwgFCRZiT7bDct3IqtuimfFXX5+4IiyWbs4TMToP1qETRgTu2ep
-	i1C9iZChai1OlcUibikwbaxzQ92vLOxZEtgF+Yyv5f2vRZCBi1tnLUnny/VyjkxM+a5tKQXi7Fs
-	P2eVmkoP8z07hDpInJE7+ZGuhCWKINyejIv9ttH875Q==
-X-Gm-Gg: ASbGnct3SHXvn+ycd3T/dyRFYb54VFzRbQxcyC1oQjTVgr+i9ybmB35wkp43/SP2vkh
-	sjBIaC88eIYvUK32cYw3w2HU1bKM2UHrTZtz4I5Y2x8IweQs2j4b0rVCcmIo7TyzJ65nS+pPE3N
-	DqF8VceTfCZqMv7BSVFYiSIDH5vXPH+htWyEpkblfAvM1o4Q2fUKsbyCuV6TQvsXmqailu+4YdN
-	7EYHePhw7DaFkGcYg==
-X-Google-Smtp-Source: AGHT+IG4YC4WaIVhdE/SO0C9kkujplv36YQBR7QppVwWs93lEzjQRfRa2semDZGhdaQs2p7GqIs9i0ivFJhWbHX0Rek=
-X-Received: by 2002:a05:6512:2508:b0:55f:4b53:6fc3 with SMTP id
- 2adb3069b0e04-55f708b1a85mr4516238e87.16.1756882043464; Tue, 02 Sep 2025
- 23:47:23 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756882118; x=1757486918;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=UplUJq8ROfhu7BqKPo/OWnnkm2YY2UUYgpYkcYVmLtU=;
+        b=Ka0FK9nhSWbj6fCALCD7nUeB3P4FacvNusnyO9c8372e2Ajzb1SZLS1Ypza7voJeaN
+         +NBv4QoqSnjfaLIH94ZQadoTfnmx/cD2hI5GSdRKvhFpwye3H22B8EidPPps7mQum06D
+         pkR0YVNL4W90Q9JBeK3RJXqV9+ao0uhnIvusdbINN3LU++0rbPAhmfpSfxGcrnGG3Dro
+         jBi3/qI+8xoO+Xxb690fX14l06/ETZVD5cLp1mOsvCLkPe1EldfBeFKR1ohhcYHWWezx
+         nd8EHhKGxS7Duc5vmbyQwAYUIJKeEDlDD8Kk5AUGRXV1MP00ob35q2Ed7E//04GbHJdK
+         gMnA==
+X-Forwarded-Encrypted: i=1; AJvYcCWYLKbprj9NSpBNHaFGvaokxUXuWVPMEZoXtjH5836WTHZIKY4aUUNkiMoGaIWPvPmDP5T9snZkJvYc@vger.kernel.org
+X-Gm-Message-State: AOJu0YzKP/1jmAEjSh92M/zgS/u3LyHQovTg3djCFrNkLdWcso+FHk/Y
+	PY0fm6mr5b/I+TiyVq7sY5lEBmA+GFPvmUYsp7gGWqhsLRcVtco7d2hceKdMzE1KiJiNqDL2m4Q
+	K21GTGkD6RXKGGapavfAFFG1uicu70yki2rlroeuOS52mTNektxW/IUvTkawKzVik
+X-Gm-Gg: ASbGnct+2tcozBry+bl7Nu7oq252ijkDrZXYddRfUz1l7080SuNEJ7/AEWY0r4hrKiD
+	S4bhAoY6XOalHSPsS+iXgkz5F/sz+hST5MhIxZ+I+uUsF3VCksy9aQcChQtB+3xAD392DHgT9IT
+	D0Lm9io/c1sk5qyz87koU/ZwxszGU4RJhWmS5DOLP1hNMKFE40C7WaV/2yMWstNh2mWAgJdwS53
+	IUZmqsDLEGFaADk/hf0NZ1/QtMP93LxlvTLUzCqTsvalrLnUoczqKgrvPkV+sR6ORvPskdfz+F8
+	IPiTXv7y8aJ0rnECAuMlJEGSvlWWng7XyCYf3l/XeJTfyeogjrkh6Xfj6vTPeaPXEgq5
+X-Received: by 2002:a05:6a20:431e:b0:246:291:f62f with SMTP id adf61e73a8af0-2460291faf9mr5149343637.49.1756882118042;
+        Tue, 02 Sep 2025 23:48:38 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHIxL5LJvIslpakw4KnTomsCuBiD9Sug0ns2e208gVccm3vzwjO7n8Sz0L59v8OSUoEfyQkww==
+X-Received: by 2002:a05:6a20:431e:b0:246:291:f62f with SMTP id adf61e73a8af0-2460291faf9mr5149314637.49.1756882117530;
+        Tue, 02 Sep 2025 23:48:37 -0700 (PDT)
+Received: from [192.168.0.195] ([49.204.24.116])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4cd092de08sm13657435a12.22.2025.09.02.23.48.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 02 Sep 2025 23:48:37 -0700 (PDT)
+Message-ID: <0ec3b848-3fb0-4522-af1a-159fd7dc5dd4@oss.qualcomm.com>
+Date: Wed, 3 Sep 2025 12:18:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1756813980.git.mazziesaccount@gmail.com>
- <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
- <CACRpkdbOhm4PawYZUxU1SMi8WGr-LxhR1jhSVPDvPh3TTp8SWQ@mail.gmail.com> <ffef0fa6-45e4-467b-b264-1df15754d213@gmail.com>
-In-Reply-To: <ffef0fa6-45e4-467b-b264-1df15754d213@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Wed, 3 Sep 2025 08:47:11 +0200
-X-Gm-Features: Ac12FXz2kUTuIK7Qu_UhO-ePUCmnG1GuzLVWHurE-uLTn1uN0blwAJJV5wrS6c4
-Message-ID: <CACRpkdbPzq6yKMHJXaFmXZSsttUkt5OAKRTSc_pjLwZZiZr7Gw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Matti Vaittinen <mazziesaccount@gmail.com>, Michael Walle <mwalle@kernel.org>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
-	Tobias Sperling <tobias.sperling@softing.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
-	Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>, 
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>, 
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>, Hans de Goede <hansg@kernel.org>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] clk: qcom: branch: Extend invert logic for branch2
+ mem clocks
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20250829-sm8750-videocc-v2-v2-0-4517a5300e41@oss.qualcomm.com>
+ <20250829-sm8750-videocc-v2-v2-1-4517a5300e41@oss.qualcomm.com>
+ <ecnfaig4uqlgvvhcadh6pofe7vmlx274gtaabmop6w4gggtjkw@ry3pudcp3hx4>
+Content-Language: en-US
+From: Taniya Das <taniya.das@oss.qualcomm.com>
+In-Reply-To: <ecnfaig4uqlgvvhcadh6pofe7vmlx274gtaabmop6w4gggtjkw@ry3pudcp3hx4>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: p-vhjRLZbno2_Be7J5sGkAhzN1A5MPlp
+X-Proofpoint-GUID: p-vhjRLZbno2_Be7J5sGkAhzN1A5MPlp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX+RDUY1s13hLB
+ oZoItqke14y4BTxlncTR+8/V4If+X2N3z2fbFKw5qBOiXcSHgcro8Txj0xHnfeKJK+sAT0l5ghb
+ OWi/0eMuqrIpPmJOCZHekyR7yZ8ZaE+y148b+fOw6ZouvFpFnRK+AlKKg+8Ud6QkBZ5BakHNEQz
+ t3t27wOSLv28cI2mq49q7x+HwqPdPkxT3Pe1B1XqgctzYqFBI4mtKP/saZ/V0ayjtwkklWrBXyp
+ Li+7ipAee69j3OVp5mDBvj6wU3z4LqoL2GKVjlQc8bMBfAi8ppA1zvupyaazuw8n0Yskh3JosZ5
+ hKOJS4EbVpGtd7+pRtUIu9YTl/z2fMaj06XDXm1EkLyP6QaxZoNPinZI5EyIWshbZjSWjLridRx
+ 61W0mJ1X
+X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b7e4c7 cx=c_pps
+ a=Qgeoaf8Lrialg5Z894R3/Q==:117 a=PZ7RaY4/qyhr7oYTfvPPhg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=04NQbcWpfGPlwerc6EQA:9
+ a=QEXdDO2ut3YA:10 a=x9snwWr2DeNwDh03kgHS:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1099,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_02,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
 
-On Wed, Sep 3, 2025 at 7:23=E2=80=AFAM Matti Vaittinen <mazziesaccount@gmai=
-l.com> wrote:
 
-> Anyways, fast-forward to this day, I don't see it handling valid_mask. I
-> think it is a must for this device/driver, where pins can be either
-> GPIOs or ADC inputs.
 
-Why not just add a .init_valid_mask() to
-struct gpio_regmap_config so it can just pass that
-down to its gpio_chip?
+On 8/30/2025 5:47 AM, Dmitry Baryshkov wrote:
+> On Fri, Aug 29, 2025 at 03:45:17PM +0530, Taniya Das wrote:
+>> Some clock branches require inverted logic for memory gating, where
+>> disabling the memory involves setting a bit and enabling it involves
+>> clearing the same bit. This behavior differs from the standard approach
+>> memory branch clocks ops where enabling typically sets the bit.
+>>
+>> Introducing the mem_enable_invert to allow conditional handling of
+>> these sequences of the inverted control logic for memory operations
+>> required on those memory clock branches.
+>>
+>> Signed-off-by: Taniya Das <taniya.das@oss.qualcomm.com>
+>> ---
+>>  drivers/clk/qcom/clk-branch.c | 14 +++++++++++---
+>>  drivers/clk/qcom/clk-branch.h |  4 ++++
+>>  2 files changed, 15 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/clk-branch.c b/drivers/clk/qcom/clk-branch.c
+>> index 0f10090d4ae681babbdbbb1b6c68ffe77af7a784..90da1c94b4736f65c87aec92303d511c4aa9a173 100644
+>> --- a/drivers/clk/qcom/clk-branch.c
+>> +++ b/drivers/clk/qcom/clk-branch.c
+>> @@ -142,8 +142,12 @@ static int clk_branch2_mem_enable(struct clk_hw *hw)
+>>  	u32 val;
+>>  	int ret;
+>>  
+>> -	regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
+>> -			   mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+>> +	if (mem_br->mem_enable_invert)
+>> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
+>> +				  mem_br->mem_enable_mask, 0);
+>> +	else
+>> +		regmap_update_bits(branch.clkr.regmap, mem_br->mem_enable_reg,
+>> +				  mem_br->mem_enable_ack_mask, mem_br->mem_enable_ack_mask);
+> 
+> Please check that your lines are properly indented.
+> 
 
-OK I don't want to load you with too much extra work for
-the driver, but it seems such a small thing for a blocker,
-and Michael who wrote the library is really helpful
-with extending the code, so consider it!
+Sorry, sure will fix in the next patch.
 
-Yours,
-Linus Walleij
+>>  
+>>  	ret = regmap_read_poll_timeout(branch.clkr.regmap, mem_br->mem_ack_reg,
+>>  				       val, val & mem_br->mem_enable_ack_mask, 0, 200);
+>> @@ -159,7 +163,11 @@ static void clk_branch2_mem_disable(struct clk_hw *hw)
+>>  {
+>>  	struct clk_mem_branch *mem_br = to_clk_mem_branch(hw);
+>>  
+>> -	regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
+>> +	if (mem_br->mem_enable_invert)
+>> +		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
+>> +			   mem_br->mem_enable_mask, mem_br->mem_enable_mask);
+> 
+> This creates assymmetry. The drivers uses mem_enable_mask in one case
+> and mem_enable_ack_mask in another.
+
+Will try to use the common mask.
+
+> 
+>> +	else
+>> +		regmap_update_bits(mem_br->branch.clkr.regmap, mem_br->mem_enable_reg,
+>>  			   mem_br->mem_enable_ack_mask, 0);
+> 
+> And here.
+> 
+
+Will fix here too.
+
+>>  
+>>  	return clk_branch2_disable(hw);
+>> diff --git a/drivers/clk/qcom/clk-branch.h b/drivers/clk/qcom/clk-branch.h
+>> index 292756435f53648640717734af198442a315272e..6bc2ba2b5350554005b7f0c84f933580b7582fc7 100644
+>> --- a/drivers/clk/qcom/clk-branch.h
+>> +++ b/drivers/clk/qcom/clk-branch.h
+>> @@ -44,6 +44,8 @@ struct clk_branch {
+>>   * @mem_enable_reg: branch clock memory gating register
+>>   * @mem_ack_reg: branch clock memory ack register
+>>   * @mem_enable_ack_mask: branch clock memory enable and ack field in @mem_ack_reg
+>> + * @mem_enable_mask: branch clock memory enable mask
+>> + * @mem_enable_invert: branch clock memory enable and disable has invert logic
+>>   * @branch: branch clock gating handle
+>>   *
+>>   * Clock which can gate its memories.
+>> @@ -52,6 +54,8 @@ struct clk_mem_branch {
+>>  	u32	mem_enable_reg;
+>>  	u32	mem_ack_reg;
+>>  	u32	mem_enable_ack_mask;
+>> +	u32	mem_enable_mask;
+>> +	bool	mem_enable_invert;
+>>  	struct clk_branch branch;
+>>  };
+>>  
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
+
+-- 
+Thanks,
+Taniya Das
+
 
