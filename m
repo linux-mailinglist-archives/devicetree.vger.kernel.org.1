@@ -1,142 +1,110 @@
-Return-Path: <devicetree+bounces-212403-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212404-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3286DB42A6C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:03:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D741B42A74
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA21B7C0EFA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:03:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E62A67B07DF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:02:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29D6C238D22;
-	Wed,  3 Sep 2025 20:03:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XpunDJ7M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC22B2DCBF3;
+	Wed,  3 Sep 2025 20:04:20 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7962B32F754;
-	Wed,  3 Sep 2025 20:03:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8BB2D8767
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 20:04:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756929800; cv=none; b=H9lFnH4qh/a7EeJNuUeCCPznQ4iHtSfrfjb4FTCkUUHof1Rq5Ai/o72bX3IIb5O4wQ7yz2kMnYoVX4f1hEKxVmFdsc2adY4BzL12cUMdyflAS0zCQ9Xau8+E7uLWxCIywEWQM4qEz2YepSRr4+n0PPlAapx/4IbWRxPjt8fx3QY=
+	t=1756929860; cv=none; b=nhUO+u1sQNpHwzQaX05Y4rO5R+KVCjigLZ6By8IVNNax7g6urjqf4VJ0zM5eQd7sC+ROP6GC4Topaerqy4FiFbGZwmbcaZ9/0LzDCoQC9ck1rhnmUA4gThqERU0axGxavSAprhFEwI57zuS05x/EGKKCDaPODk5p7/6xovd1Bww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756929800; c=relaxed/simple;
-	bh=/GnEnyvIds6NMEuy70lyQ7iozsauSfnagRTg05Nb+2E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=kJSBG2bG4HaKvjU88IATu3YOXXmq2FlnF2Y74nzgQw9tAx/Q15A9GD8xMTF7M9jyA2GD/5afZTkva4lUpuLlwAzTwZZJpikb69ic1A3axEmvKc9WADKHBCWm9jSMfreXRyqeqUJvkqZPuCfCaZSBSox8uyOkwNmJs0fo9YyAkCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XpunDJ7M; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-55ce508d4d6so200519e87.0;
-        Wed, 03 Sep 2025 13:03:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756929797; x=1757534597; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=OVCyKPOHSsiPuZSH2bGLKwR4+CtPnqenhzlKImlxxGM=;
-        b=XpunDJ7MD1CqNCh5kb8wvcCicyNH6saZxcy30Hr5B9WtNbM3CPCYMIskxtJiSKDqf6
-         tbvuh9E8EsGi78GUSmF8dbYkwJ0vsMnvYSzSc1iJJleiYTHniW3J0HmFKZl5EupMyL90
-         8KPuEoI1PsJyZe6WLrJcocAMGpVCorr/RdxfVecqjQKv0Q1yGt7OV3KrirRHa4SPgMTb
-         /f/qNA4WiOJol7BDpQ+JLGJ/Ania/tAosYtsZep/5GugouAvVA+YLu/sjPuCjlf+sinn
-         HpyIRpW2dyPiaJ3Pm1NcfLCufr18Zjv8Bzi8jqzO4qlnDD/XzLQ0BWRel17bMcsNg68a
-         1pMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756929797; x=1757534597;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OVCyKPOHSsiPuZSH2bGLKwR4+CtPnqenhzlKImlxxGM=;
-        b=ruT+epKLBGVOyqj3O2CDbn9BySTLV6/ZYmIwPuQZBp3e5ir+itRtpCuPJ5JudXXVLD
-         Cg/KTJbyfD9PoVVxYBxOXZMV4QU5ldAG8HEIaeksGo5Jt8muUFyb7VUo20W5GXXIXHL1
-         w8wahAxFMsNSLSvjNyAfnhoRr6Uj6SCw/YWW/EO+1FJJUTs33kVdvp7xryo0Iu5FF5F3
-         511tVWQH3TAcQe/OKAjGrs7CgStdZ3RwYT+93/uuXZVJoBfhMa0EXzTEvIJejiMogIIM
-         Rb4XDy2zsVjIVv790nEiITfrlUUU5dxJk7BNGYHoiQctISmFK7ESoLrmFJ3iH5fqT8n/
-         qzXw==
-X-Forwarded-Encrypted: i=1; AJvYcCUulxwvq2K+sl2CBqoPVfY2rmQzlVkmu3YqH894bdg/NwQvFiDRbU4g7qN/Am82YtARw9hVpXIf79ItdqfZ@vger.kernel.org, AJvYcCX2K/KNsBiPxD83Jig1DXtcVQArRTXs653CaFHdoko3pFK73T70EIquTgnaeuorquqkAI1lHKLdfrggXBo=@vger.kernel.org, AJvYcCXfbY7uDkEVCgInimjaKJhKkh5tvO0Nmv9m0SwTorh6IW/yEk/NHIWZqzBtzrkXdgRj9cc9vpM1ROAD@vger.kernel.org, AJvYcCXgSAx8KFmxndWZrVBM+I3HdNWYHoT7t35Aub91VaU4/mYRvAdNB26EdPgwHRryGY29pHZovkkZc86i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz2NuLCxooek7bvIqEb+UqMmmZTGjzwYYK2nquM0okg/Go1d37z
-	83JOIPKLe1a5kreUJsR9jiej6lSwTbFq9xatvkR6VDOvh9QsnpeYdRJF8NSBQatOzJzu2LKXTgq
-	4pB73hxwOFU4xszAShGL115IDV8lim3M=
-X-Gm-Gg: ASbGncv6alX9EytDyB1oQ/PepmPJOYJ3mYTt7odHsNuC6u0EKxpTHAdv2W/yjWAcxWI
-	GvrnxHvWuqPpvQuRaaYj/dvJEWwwa7lRfiP6WSiDpPkoFTq7uArBZ2WtJFy60TItInQHD7MdjVF
-	n5FFi4u/ayWMIjLW/y57vJ067t1ri+UkWrTYgQYS//kdPYSxA/8t9GwWPoVy1aGJ4XLln+jQmuP
-	A7+VWupczbFWKvI7emw0p02GIxF
-X-Google-Smtp-Source: AGHT+IGQ+MSQmso+WRSx4PehMSzyC243Ed59bXozsvm2C9c3duCkAx99xM+64CNu/YaQvU0yXQneMAeWEzI0NJeRFiY=
-X-Received: by 2002:a05:6512:eaa:b0:55f:4321:4ad6 with SMTP id
- 2adb3069b0e04-55f70948893mr5066121e87.44.1756929796386; Wed, 03 Sep 2025
- 13:03:16 -0700 (PDT)
+	s=arc-20240116; t=1756929860; c=relaxed/simple;
+	bh=pAN6PIM4md0itR0IZeLNuftH6ftDls/UYlIeziCbJZY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Ix/2Kxf6PpQiCNHbKKmMHd2n8O4Qkl0AxblqLbUgTN13dUmwuB23ZFAzKLTzoRVLV2EqtNWq5zJ2iSiAiE0/jNbpU8YPCxXfZg49e1f/gk8zOhd2DKqudVkFgHP16G+Zags2hlQbs9uuCDOc9UoZjaBLN+E8gQsEhl57V78tNK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com; spf=pass smtp.mailfrom=douglass.dev; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=douglass.dev
+Feedback-ID: 3578:1022:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 871822494;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Wed, 03 Sep 2025 20:03:58 +0000 (UTC)
+From: Woodrow Douglass <wdouglass@carnegierobotics.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Woodrow Douglass <wdouglass@carnegierobotics.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v4 0/2] regulator: pf530x: NXP PF530x regulator driver
+Date: Wed,  3 Sep 2025 16:03:40 -0400
+Message-Id: <20250902-pf530x-v4-0-4727f112424e@carnegierobotics.com>
+X-Mailer: git-send-email 2.39.5
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903-tegra210-speedo-v2-0-89e6f86b8942@gmail.com> <20250903-tegra210-speedo-v2-1-89e6f86b8942@gmail.com>
-In-Reply-To: <20250903-tegra210-speedo-v2-1-89e6f86b8942@gmail.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Wed, 3 Sep 2025 15:03:04 -0500
-X-Gm-Features: Ac12FXyxjeI6n6U06P265p3zT3OBNoc4LSPzdOdF_n2VtoVV-v4DkdQvlgmhS_Y
-Message-ID: <CALHNRZ83jeMbudD9LfddEntkLDgygsg_D5LAovXXpFnZie9D7w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: clock: tegra124-dfll: Add property to
- limit frequency
-To: webgeek1234@gmail.com
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Joseph Lo <josephl@nvidia.com>, Peter De Schrijver <pdeschrijver@nvidia.com>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Thierry Reding <treding@nvidia.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1923; i=wdouglass@carnegierobotics.com; h=from:subject:message-id; bh=pAN6PIM4md0itR0IZeLNuftH6ftDls/UYlIeziCbJZY=; b=owEBbQGS/pANAwAKAewLuLlPNh4UAcsmYgBouJ7x9M83blIQTmXfbYjmYdYhxzGLPzE4J+z4x VIgOdIRi02JATMEAAEKAB0WIQSIUqjrbDLQw0mgxHLsC7i5TzYeFAUCaLie8QAKCRDsC7i5TzYe FK0ZB/sFcFpKSocwqm/8gqhduSeVg6dW84Ms3WmYhj8BB9U2yQ/3F5kaYcVW0aeqqWkmJqvlhrS KDedNxxXkEC37R8+asdGjjcCkrZk+u613WDmwwQSNQSrGmrV+vKoXGWcmyQUraB2NMVSMC4PLRN 1pdq0VpE0UjUVzl35jcBSVcvYhbfddUOYO1I79QLXBSE8SVo5tx1mqRvyr90vcjBruepJB37ZJv ip20Dm7JSUapMOQZfrTDdWkYjWXrbjNcQTBq/ZlHuS+4ZBMv06O12frvj1IDIGxzPlAB6pDy/tZ lYJOmuV1LhFC7tnz/3oNm5qet2JTrSn5+XpnbQ34/XbL2CTt
+X-Developer-Key: i=wdouglass@carnegierobotics.com; a=openpgp; fpr=8852A8EB6C32D0C349A0C472EC0BB8B94F361E14
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 3, 2025 at 2:30=E2=80=AFPM Aaron Kling via B4 Relay
-<devnull+webgeek1234.gmail.com@kernel.org> wrote:
->
-> From: Aaron Kling <webgeek1234@gmail.com>
->
-> The dfll driver generates opp tables based on internal CVB tables
-> instead of using dt opp tables. Some devices such as the Jetson Nano
-> require limiting the max frequency even further than the corresponding
-> CVB table allows in order to maintain thermal limits.
->
-> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> ---
->  Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt | 3 +++
->  1 file changed, 3 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll=
-.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
-> index f7d347385b5775ddd702ecbb9821acfc9d4b9ff2..8a049b684f962f2b06209a478=
-66711b92c15c085 100644
-> --- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
-> +++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
-> @@ -70,6 +70,9 @@ Required properties for PWM mode:
->    - dvfs_pwm_enable: I/O pad configuration when PWM control is enabled.
->    - dvfs_pwm_disable: I/O pad configuration when PWM control is disabled=
-.
->
-> +Optional properties for limiting frequency:
-> +- nvidia,dfll-max-freq: Maximum scaling frequency in hertz.
-> +
->  Example for I2C:
->
->  clock@70110000 {
->
-> --
-> 2.50.1
->
->
+I wrote this driver to read settings and state from the nxp pf530x
+regulator. Please consider it for inclusion, any criticism is welcome.
 
-Yes, I know this still needs to be converted to json before it can be
-merged, but I wanted to get an updated revision of this and another
-series that depends on it out for everything else to be reviewed. I'd
-still like to see Thierry's conversion pushed, then I can stack this
-on top of that.
+This revision (v4) incorporates suggestions from Krzysztof Kozlowski
+and Mark Brown. Thank you very much for your feedback! Based on what
+I've read, i'm starting a new thread with this revision. Please let me
+know if that's not the right thing to do -- I'm still learning this
+process, so please excuse the mistakes that I've made.
 
-Aaron
+Thanks,
+Woodrow Douglass
+
+--
+2.39.5
+
+---
+Changes in v4:
+- Added REGULATOR_ERROR_OVER_TEMP_WARN to pf530x_get_error_flags
+- Added EMREV to the info print
+- Link to v3: https://lore.kernel.org/r/20250902-pf530x-v3-0-4242e7687761@carnegierobotics.com
+
+Changes in v3:
+- Replaced REGCACHE_RBTREE with REGCACHE_MAPLE
+- Replaced pf530x_is_enabled function with regulator_is_enabled_regmap
+- Added status bits from INT_SENSE1 to pf530x_get_status function
+- Added extra context to info print upon chip identification
+- Reworked devtree to not require nested "regulators" subnode
+- Some minor reformatting of comment style and long lines
+- Link to v2: https://lore.kernel.org/r/20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com
+
+---
+Woodrow Douglass (2):
+      regulator: pf530x: Add a driver for the NXP PF5300 Regulator
+      regulator: pf530x: dt-bindings: nxp,pf530x-regulator
+
+ .../devicetree/bindings/regulator/nxp,pf5300.yaml  |  52 +++
+ MAINTAINERS                                        |   6 +
+ drivers/regulator/Kconfig                          |  12 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pf530x-regulator.c               | 378 +++++++++++++++++++++
+ 5 files changed, 449 insertions(+)
+---
+base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
+change-id: 20250902-pf530x-6db7b921120c
+
+Best regards,
+-- 
+Woodrow Douglass <wdouglass@carnegierobotics.com>
+
 
