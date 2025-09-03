@@ -1,138 +1,158 @@
-Return-Path: <devicetree+bounces-212293-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212294-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3D6FB42471
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:08:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B19AB42474
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:09:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 325097B7057
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:07:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB3AF20511D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:09:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79EF31A56D;
-	Wed,  3 Sep 2025 15:08:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89E9F315767;
+	Wed,  3 Sep 2025 15:08:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="le96U6k7"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="c7zz34nU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBE393148C9
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:08:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B733431353E
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756912109; cv=none; b=nJ6mmxrn6M/Z3aB7pktknGNYE22IJdduUHSnCebhBMkyQWVtINgqfMSOSTsZrJz9cKrCYNdHgkgyxAo3qNjkWu//yCbsM+jOafaIa/3gN9grpy17se0yBs8Kz4Bm8TS33kfhpt/+NoLzpIHycG3gAaJLXOaOJABB5p3q+/mP7GA=
+	t=1756912125; cv=none; b=Zo8RNZWuhURo/KNOiTe6SsT8P8iu65vz8AbmK6XxCQc818DXEzqY/otC9bHqB3YgS5PFfWbnorIWO3+sGG/z3MRABvMcXII4ITnegpb655yPbuyhuIlxckLwRfqZxyS425bhvGX9t4OXL2OS6vF42PphUpd4h5v3tFivLXv8eYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756912109; c=relaxed/simple;
-	bh=96YaeCpb+HKVPG3JA2d5NfvcGaCRpyQaoylvRtxb4uc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hGrCjQoryGGzM0Yh5p+NFEXOhcgKIh4s9go8czwMxN2k3NP6I/wwSuzx6FQdcJTRvcAw6X9mMITV0S/4RjS4Th3iyU9YVZaS+oz8LkV0Qv5ycWHfUIYGsJpcG/S6ly9L+02TU593RW3TOgNcMBwMTf91ogR2tdbHANvDZVE3Zbc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=le96U6k7; arc=none smtp.client-ip=209.85.208.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-61e8fdfd9b4so2272761a12.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:08:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756912106; x=1757516906; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=96YaeCpb+HKVPG3JA2d5NfvcGaCRpyQaoylvRtxb4uc=;
-        b=le96U6k79NkgVQa7/QcjlCjZi80ce7VQIrSBEgDupAk69tWX3uUW27C6NRN833BmM+
-         q2XrP5cfRzC3Hw5RZoKwOK0Nfp982sdXyaaAQx4EEfyWPHgKbSyxQmWB7ydRRbhnLqGR
-         7R52k6Jurt8hBO13HrFDPqiZY1+PNoKcwYxigAJuiKE9jeyWD9Rqj7RJMLtrfJLqwlud
-         aBqVzh7fiPivYo0iVSVnNZlFu8AEnnL+cwuDHUIYS7lF6OMVSaW7t3wM9H9AXXNqi82X
-         x4n0wRbl3lIaNUU+vAm+yUlNl7zGr5Y4ECSaSru3M9qT3H1VPh3q8CKUs8tdBCztDTLq
-         mOAg==
+	s=arc-20240116; t=1756912125; c=relaxed/simple;
+	bh=PEIi8D0ILG9jAGxoIJMBRZSWEk2VBd2QP0UtYPalGGA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CLYgycx8Au2WWorShFLUISJPSTzk5lxg4KYtmNiWDlQASodG7j4ciX//kdU0S6FJeAHcMUSPmdM/loT1er+FVEN9JHFefdrfPmA1RgYQ+1UAYR4v8As5d+SxkDSJ0mEtvIifkMiHlapopwyNoQU7pvmZcbryczbmBoeS9Yfo1sI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=c7zz34nU; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwtdI005008
+	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:08:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	SoH3YrDUa+bqYy/B2DvJjbGT8HAhLxpc8jLwcSCRwOE=; b=c7zz34nUkwhhp/Eq
+	Mdzh+jIjmrvNfvg2XDP9A6GiLYwcb70u1CPkEEPQWqWUlSR4yA3rJsiYVVZX/+oy
+	FPFf2QVrEoMzhJQtj8fOWntauHfzkGH2g0lRgfhTxvRsh2TJ7+KY/gk1Pxp5BvMu
+	zYfBzx422kavaKCTuORYKPi8Nj6sKGrMLTt04onUqcE0HRdL2+yPHsWrXJKBIEjN
+	z98FHOAmD5EtQuteeua8/prVTBeS9o2R03Dc2Z+zL3pgUKpzRdO/1wWS9aqt6kz9
+	cNyinp9j2oDWkLqn5rEAV6BrZM5s6VGeL7zdIfubBK+RyS7+ctzgYkUb5NB+avMx
+	ZriPpg==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s47na-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:08:42 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-77237977e7aso7760b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:08:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756912106; x=1757516906;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=96YaeCpb+HKVPG3JA2d5NfvcGaCRpyQaoylvRtxb4uc=;
-        b=sUJdiY6WdkH0LIXRokdtjNI9ErIFavUy0z2vpQS+7o4qjY0HONspVxxcwXrAX6XziI
-         7IYJSz4usSeYqi4xUQHzbSk4zt2o26f+XSlcUtC9fojynt/axotVcJ6WW8PRFbRminim
-         W4dm7kTtSmTFtbFnuFBczabmuc8wD7fEMyQqrk2k8HDems32/gSTpbenBka2cWZFdATG
-         AKpA6rS1U8uv+Vbju/RGq7RrrrN5svjkRXcWYCWS9AK1QqXZqD4fZ45jA1ldI9I8XXp1
-         WgBdYC2yyCgisObYLKyC0VbeDlek9wEgSFhfqfXASMkz//KT/1t5s+7S0Y4DRecuKOhl
-         O9UQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUGdS5NaY4OciowOzkfBtATas2uQjH+c7zfiJ5gD1nhfrzDVSAj4houSzQQJ6tqrL7pezsnbvAZbi8v@vger.kernel.org
-X-Gm-Message-State: AOJu0YyLuN5r9WvqVASL71/zneysjy5gXadx4dGnZ6QHkcLz2PYSzo6p
-	kgIPSj4Q3QncJOxtGssvp75sKAWTV6G2QP04L4mJ516aNT+7V8uf/4Pz9PV/Jqf9tgf5opmzEVU
-	t20Aq61wNe9PyzbQzIGrzZ97uXw6oLAD/rxad1+XU8w==
-X-Gm-Gg: ASbGncu22L7TQf2YyVCCeZxqVF6+KMBh3s0Tt6ASvafIG/hSVM6vfmrcvZNILvzlKkJ
-	nvIG2lKEFAJoxZ5rdNo4PZ9yHEfnrA+GmlC7l1nWkXjoTUy5wOOTaIXAlNprMVdXJCBJqmPbUfD
-	4OYPwPrQyd+Wf2FX/42PNIZZnlsMp7WtVjfWidj9Y2SFlz3hsJvklTrm+PeM9UwcjnFLEL0KnVd
-	7THWsXlOu3a4minEnb/33gkXYJbHRvuRo2bFxTGLDHHm593sIPXI0QEjFOLdBTOfvr70Q5NU9eG
-	njVDuDTvwhoVByEJ
-X-Google-Smtp-Source: AGHT+IFn7BWyhxyqlF2KcZUxCc0qBvV63/yqKBt2qJWo0WsCdrH2xfKlcteVT3gnPfYsWlvKxJ4MQhTpAo8e8ENe2Tc=
-X-Received: by 2002:a05:6402:504b:b0:618:3521:6842 with SMTP id
- 4fb4d7f45d1cf-61d26d9c52dmr14417866a12.16.1756912106252; Wed, 03 Sep 2025
- 08:08:26 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1756912122; x=1757516922;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SoH3YrDUa+bqYy/B2DvJjbGT8HAhLxpc8jLwcSCRwOE=;
+        b=w4WmdxygEQYKX0sTVhTMS4S9TZI+1eNV08VXIPODYemBOwIROhqErOXtQ4JRgQaSud
+         MjvVTKX9wUNavQM84Cpv4C90zWeLwIGWOAorbElkhqPIwgmucoVifTOuFuYuJ1sUiITK
+         +K8iwTqC+FgjZvx8dZUOd6tVkWw2+GJzC3whahWUjBhzGJzP0ymXxTEUXebm/DIk1sXE
+         8yF91QdGzI31hk5USh1JKZRjg8aeFnEIomddC3vViqp28qxRwkidfVk/Rib1CMXb82PB
+         WFYFVCbg0wWe6p9WJz6fdjG+OSkJUprefg+OzW2hTe8m2NGMWs/2sqaimIZrPo6LlCL3
+         hUCA==
+X-Forwarded-Encrypted: i=1; AJvYcCVv8oU6dWKXUxQ67fdPDutqMAVSjrBj/itpWeOCxJ6P2rjiF1iDU3iki2tIDjJ194pvs007z4pvpl/8@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw0fnF4P2aadF5L7Knz5VsyI3S7d3Rd6WHzUKyn7HfneJxmKCYb
+	eQ1T4/4fY8xgrnKw/t4ChUvQ4Ate7FiTOR5rugI2niR3/WnWc0eVtVclElA+3U2OsEIzpfGHTeU
+	pW4VPVNlK1LTD8aLNT2uMEVmbkpumMm6aWB+mSCHUUFGd8c5QkOauf4Nz8Aw0rPET
+X-Gm-Gg: ASbGncvEJhtbbPhc28xc75JpSci7+IjmMNpDhQawGXEFXGgOzCuyKiVghV0AEjIYEBR
+	pTqUvPXxKhJ0NB97kj8KANifvo/YehNPFYhpHAWkOXb0e06vQ3ofbb6SXQE5acsZcnsE4ylUvmA
+	vwPvHuRs4jt3vdBHD7qQ0jS9jgnORYfwB/8+pPva/ZinSvFn+DnhPsxxy8S+XG6ovkvdeG4wlG9
+	MRLkkbYcpPctQVyu94ktysrGWs3V9jVhftdkNkNePs4ILM+whBQDNVC2bVhLaTEoqCdcQu/j+hZ
+	NT+ZcdodkSHKUACl4mKm351rHLe09srCUuxLIilaU3iN+q1ZmQdktn4XDl1HUQKqV2Nu
+X-Received: by 2002:aa7:8895:0:b0:771:fab2:83ca with SMTP id d2e1a72fcca58-7723e21e641mr21760175b3a.4.1756912121953;
+        Wed, 03 Sep 2025 08:08:41 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHoo21E/5aDqRCm9BjpK6u1Ze7qpiyckB+Jd3+cAAsY5ZXnVugKuxKFWIjKzAdwtxx5J+LzRw==
+X-Received: by 2002:aa7:8895:0:b0:771:fab2:83ca with SMTP id d2e1a72fcca58-7723e21e641mr21760127b3a.4.1756912121469;
+        Wed, 03 Sep 2025 08:08:41 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a4e3fa1sm16546097b3a.83.2025.09.03.08.08.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 08:08:40 -0700 (PDT)
+Date: Wed, 3 Sep 2025 20:38:33 +0530
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+Subject: Re: [PATCH v2 04/13] arm64: dts: qcom: lemans-evk: Add nvmem-layout
+ for EEPROM
+Message-ID: <aLhZ8VpI4/fzo9h8@hu-wasimn-hyd.qualcomm.com>
+References: <20250903-lemans-evk-bu-v2-0-bfa381bf8ba2@oss.qualcomm.com>
+ <20250903-lemans-evk-bu-v2-4-bfa381bf8ba2@oss.qualcomm.com>
+ <39c258b4-cd1f-4fc7-a871-7d2298389bf8@oss.qualcomm.com>
+ <aLhMkp+QRIKlgYMx@hu-wasimn-hyd.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250821-imx95-rproc-1-v5-0-e93191dfac51@nxp.com>
- <20250821-imx95-rproc-1-v5-2-e93191dfac51@nxp.com> <aLHOhKpAQbVCC76-@p14s>
- <20250830125208.GA22718@nxa18884-linux.ap.freescale.net> <aLcdmY-gqd5cFOYc@p14s>
- <20250903045611.GA8860@nxa18884-linux.ap.freescale.net> <20250903063915.GA18615@nxa18884-linux.ap.freescale.net>
- <CAEnQRZBCxp4rT=es3fDh2w1Ut=i4u3GCnyoOFjqJEMj3CLWPWA@mail.gmail.com>
-In-Reply-To: <CAEnQRZBCxp4rT=es3fDh2w1Ut=i4u3GCnyoOFjqJEMj3CLWPWA@mail.gmail.com>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Wed, 3 Sep 2025 09:08:14 -0600
-X-Gm-Features: Ac12FXyQRSgi-B9_MD_FBGgX_7saidUAIRI9AwJxOjtr7PuEWmGlg5OZDn0enLY
-Message-ID: <CANLsYkwE+6B_CgCJQdYF_n-XOH7AkDF_e2KTJnK4EtNtHRX__w@mail.gmail.com>
-Subject: Re: [PATCH v5 2/3] remoteproc: imx_rproc: Add support for System
- Manager API
-To: Daniel Baluta <daniel.baluta@gmail.com>
-Cc: Peng Fan <peng.fan@oss.nxp.com>, Peng Fan <peng.fan@nxp.com>, 
-	Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	Daniel Baluta <daniel.baluta@nxp.com>, Iuliana Prodan <iuliana.prodan@nxp.com>, 
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <aLhMkp+QRIKlgYMx@hu-wasimn-hyd.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX89YIGwWrxuCz
+ zE1Y+Sc8MpwcdKNNKvRHmwv5nkIAa+vWSBDXb0gm+x9g9bmbMS/Bf1LbcIQvK5raX1dLA017OVP
+ fHvTbnD3Y3cv+Exf2v7fEvskIp4XJSZUqF1k3pmWQSMNsJrb7g4MCyFV4WwNT920LsSXHprQHq3
+ Qg053leWcpKxk22+LdKcoDBnyRjQvSsBt7+FpNOPwsBXL5DAyVHzUndwCcWBX0nekQd2SNTB1bB
+ tFhcFtjBfNfH+yoqt5CT9osPjikAQNg7pX276d8vhgc9tq72o5XoPYt+ea+YUOdOWIPyOkmfD+J
+ e2hCEVOeaq0U7JdQauOeW2s8ro4cG0xCQBSd7zTqAsE4jbgWDyIPSdQIcxOt+rXIaUSvoeKd8VF
+ cRu2Rp8+
+X-Proofpoint-GUID: agOR9ShSkTtnJaZ9a8fmcv5uP4R6i_gz
+X-Proofpoint-ORIG-GUID: agOR9ShSkTtnJaZ9a8fmcv5uP4R6i_gz
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b859fb cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=aoA1JJJOD3z3MUMqd-EA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10
+ a=OpyuDcXvxspvyRM73sMx:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On Wed, 3 Sept 2025 at 01:20, Daniel Baluta <daniel.baluta@gmail.com> wrote=
-:
->
-> <snip>
->
-> > >Please give detailed suggestions, but not a general comment.
-> >
-> >
-> > @Daniel, @Frank =E2=80=94 since you've reviewed and R-b'd this patchset=
-, do you
-> > have thoughts on the latest feedback from Mathieu? Would you agree that
-> > further simplification is needed, or is the current structure acceptabl=
-e?=E2=80=9D
->
-> Peng, please trim the message when replying so that you keep only
-> relevant part of the text.
->
-> I think you are both right here. I understand your frustration :)
-> but also Mathieu's point of view is reasonable.
->
-> For a person who doesn't know the internals of IMX remoteproc the code
-> is a little
-> bit hard to understand. Peng I've given you my R-b because even if the
-> feels like
-> it is getting complicated it is still manageable and you are the
-> maintainer for it.
->
-> Allow me a few days to see if we can simplify the logic.
->
+On Wed, Sep 03, 2025 at 07:41:30PM +0530, Wasim Nazir wrote:
+> On Wed, Sep 03, 2025 at 02:29:11PM +0200, Konrad Dybcio wrote:
+> > On 9/3/25 1:47 PM, Wasim Nazir wrote:
+> > > From: Monish Chunara <quic_mchunara@quicinc.com>
+> > > 
+> > > Define the nvmem layout on the EEPROM connected via I2C to enable
+> > > structured storage and access to board-specific configuration data,
+> > > such as MAC addresses for Ethernet.
+> > 
+> > The commit subject should emphasize the introduction of the EEPROM
+> > itself, with the layout being a minor detail, yet the description of
+> > its use which you provided is important and welcome
+> > 
+> 
+> Thanks, Konrad, for pointing this out. I’ll update it in the next
+> series.
 
-Excellent.
+Moreover, I notice that compatible definition is missing for this
+EEPROM. I will add it in next series.
 
-> thanks,
-> Daniel.
+-- 
+Regards,
+Wasim
 
