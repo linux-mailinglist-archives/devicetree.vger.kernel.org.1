@@ -1,115 +1,141 @@
-Return-Path: <devicetree+bounces-212100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95750B41CC3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:09:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49170B41CBB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:08:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 66CB14E4B89
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:09:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 34FD7546DB3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:08:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D28A12F4A14;
-	Wed,  3 Sep 2025 11:09:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A5B92F547D;
+	Wed,  3 Sep 2025 11:08:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b="pzmGJUW5"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SeAALVaf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.3])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41D52F6180;
-	Wed,  3 Sep 2025 11:09:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=117.135.210.3
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A16FD2F4A14;
+	Wed,  3 Sep 2025 11:08:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756897787; cv=none; b=Sp4Z6sXCfT4RVEWFfvpC/7m/W74D3Vonz4/GQc8R9S//fOqJfxBHkXcOMdQygXjC+BpQA/KHemB5CJRnm4R5iBoLRFajjOfYvFrBH0JGYa7EmICUxz4Ff5CP6MDjKtTQdLrnE1Hv0M2ZOIQuQwuuvPVxV9ml8EAjEhNNj4XIKu8=
+	t=1756897695; cv=none; b=sKlXLfIL0xQsrOQM040EhKQ90yU+QxG52SJcdvqLh+YeGGJE47xb7Kga7qGiRP8EfSe8DQCgRrDzmdx5qhUGoyKafwKZqGARPP2HeEXKY0rkvKR2fsw38wHAvVvbl6sc/YKLq04Hp2M6M6R54U2MxTEQ+CCHnhMrGxUByX68Dyg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756897787; c=relaxed/simple;
-	bh=5JuM+zVZonADMosGAewf0MPciwlPQvws9ZO+aeqWtgo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Oi3nw0dMGl0NGE4yUn3btwrLdLO3q9p46yfQJS72Z5yj74yZAUYZN0wd9338BmadMBGGduPSvhdNEp0aoRjVxhMviZFFspoTJGPhoWjQUgZ3EMdv42BUZ6yQgFEM5+7FnMnvD+SeqOrzER3difTjUyOKxNPSWZxRrzOmvcknZFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com; spf=pass smtp.mailfrom=163.com; dkim=pass (1024-bit key) header.d=163.com header.i=@163.com header.b=pzmGJUW5; arc=none smtp.client-ip=117.135.210.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=163.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=163.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
-	s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=c0
-	/SBiSXOOl6HFr+JmOjCWEmu3pstjSyRziH55Av6WA=; b=pzmGJUW5GsUD0zajgM
-	1dLJ5xfepWw+5r6dKHs8FqtSnbSrW6yE4YGJJgieet+W9uNB1cCZPLY2cMlHAziF
-	CeAW/sq3nKyZtSTjyQ6nN4BdM4UVJOfciEZrD2to83lqxyMEtbXujEgp3CHn79sV
-	nTWuDvNnkqHafHOXA5tRWUOXE=
-Received: from ProDesk.. (unknown [])
-	by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id _____wC3ZLuqIbhoXAZsFw--.3268S4;
-	Wed, 03 Sep 2025 19:08:34 +0800 (CST)
-From: Andy Yan <andyshrk@163.com>
-To: dmitry.baryshkov@oss.qualcomm.com,
-	heiko@sntech.de
-Cc: mripard@kernel.org,
-	neil.armstrong@linaro.org,
-	andrzej.hajda@intel.com,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	Laurent.pinchart@ideasonboard.com,
-	maarten.lankhorst@linux.intel.com,
-	rfoss@kernel.org,
-	simona@ffwll.ch,
-	tzimmermann@suse.de,
-	knaerzche@gmail.com,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	linux-rockchip@lists.infradead.org,
-	Andy Yan <andy.yan@rock-chips.com>
-Subject: [PATCH v7 2/2] MAINTAINERS: Add entry for Innosilicon hdmi bridge library
-Date: Wed,  3 Sep 2025 19:07:39 +0800
-Message-ID: <20250903110825.776807-3-andyshrk@163.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250903110825.776807-1-andyshrk@163.com>
-References: <20250903110825.776807-1-andyshrk@163.com>
+	s=arc-20240116; t=1756897695; c=relaxed/simple;
+	bh=hsbplQXkIgA37YP5Hij+j9CljYvH3aawi/l8DPlQ+b4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=D/BePKOopCkEeD9XU/pxGNU6ey7Xd1Fk6fKlUcg6rNPQ6m2p1BWfLGby0iCLcobfhWN7vC8a1Hps1W9JBQtAvL/3jg+Xv/Zzpbj3WrbIlN7vo/HR9z1BZgFY/i7RNaRY8eE0N0x+hMYlnLUKGUfBJee5waq3yhHv9H7j4E0Yj1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SeAALVaf; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583AQOFT032191;
+	Wed, 3 Sep 2025 11:08:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Nx1aRmTFwve7HbtAAO/FVUGNc41TS5u5EKcY/Z96E0k=; b=SeAALVafy1aL0qod
+	1g/XgCg8ghWMnqU96q9xOARoombDx+SkTF3Q33g01ycxOPPvCiypLQGHsTel2qB/
+	hS5eSh3bDAxl5ANdspit6G1r1QmJhfdwpSLZyaIxdRst7XSiltLlr0UUaFu1hIYU
+	423jf7vLkyOfNVw/H51ObRfCxZ83t6BPPHZwYvAWwe+dXMLpAMNpiOPh4pQtIRho
+	Pf2Aay+s9P+hRQnlNg7b/BQP20nnJ5U8wL2Xm/zabSkZr8LifEc0vO2G69olAXou
+	u9WpZhyROb4Lxlxb/67VCGAySaLhbQwOM4Rrd44Wm8Caw9ga4oj4cxQKPKKaQZxk
+	37zZKg==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8ubh0-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Sep 2025 11:08:10 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 583B89UA028316
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 3 Sep 2025 11:08:09 GMT
+Received: from [10.216.53.8] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.24; Wed, 3 Sep
+ 2025 04:08:03 -0700
+Message-ID: <1f77c650-3b09-580b-e3cc-85afca056160@quicinc.com>
+Date: Wed, 3 Sep 2025 16:37:57 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:_____wC3ZLuqIbhoXAZsFw--.3268S4
-X-Coremail-Antispam: 1Uf129KBjvdXoW7GFy8uFyxCFy5Kr17Zr48tFb_yoWfGrX_GF
-	18JrW8Zr4jkFWjy397Ca1fX3sIkw4xtF1fXFn5tws7Jwn8AryDJwn2gryIgr15CF1xGayq
-	qayUXF9Ikr13WjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IU0iqXJUUUUU==
-X-CM-SenderInfo: 5dqg52xkunqiywtou0bp/xtbBEAO9Xmi4H7lLfwAAsy
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.15.1
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: Add Monaco EVK initial board
+ support
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+CC: Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Rakesh Kota <rakesh.kota@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Viken Dadhaniya
+	<viken.dadhaniya@oss.qualcomm.com>,
+        Mohd Ayaan Anwar
+	<quic_mohdayaa@quicinc.com>,
+        Arun Khannna <quic_arkhanna@quicinc.com>,
+        "Monish Chunara" <quic_mchunara@quicinc.com>,
+        Swati Agarwal
+	<swati.agarwal@oss.qualcomm.com>
+References: <20250826181506.3698370-1-umang.chheda@oss.qualcomm.com>
+ <20250826181506.3698370-3-umang.chheda@oss.qualcomm.com>
+ <ao3nb3xkeutqetqx7amlfbqtvhuyojfvzm4prsze2mhgb2rpnc@s2bsigcrlxzo>
+ <26faedb2-63ca-e2e0-aad6-49575a8c49bf@quicinc.com>
+ <j3kuygqqymh5pbujdum4tc275fbd5xrhejry4c5spuivxloon4@zrqfuqtydvyf>
+From: Vikash Garodia <quic_vgarodia@quicinc.com>
+In-Reply-To: <j3kuygqqymh5pbujdum4tc275fbd5xrhejry4c5spuivxloon4@zrqfuqtydvyf>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: rV6Pxi5aXBdMZqphX6sEzVBHxi03iRlb
+X-Proofpoint-GUID: rV6Pxi5aXBdMZqphX6sEzVBHxi03iRlb
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX6QFWl0eJDqrT
+ wmTLKT3ohhunIYKNzmca2LA2PCfJR17LMem/YxAROcwnUjEN8hcp5fGQ3RrLhper/3i4b7Izg2n
+ ZmPraLB068B6OHgJwn44SMTnGFz5N1ClDOLulzRuTZUmPCzHjoJGXcRIe0DhoiWRH/4icvk71MG
+ XUiBVTqQWTED9J4BdIAJiVW//DQbRMECo9CmUBgavNhwB/TwEbFOmWhrm69zqxSmugEzauFaGyV
+ 4udgBzAeLjRrKicm5W15nXzq5ueDkDlwhhPI7mn7JyIooMghL7AS34jeBaWKBDq1euZEbJoU1lz
+ 3TMrQA0nCqICBFbO49fqyfzCOaJ9vKtUDHpXRYyMun12YKi4koFPXyDXI1wU9AG7EAS8O5H2NeH
+ SO1X8LRC
+X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b8219a cx=c_pps
+ a=JYp8KDb2vCoCEuGobkYCKw==:117 a=JYp8KDb2vCoCEuGobkYCKw==:17
+ a=GEpy-HfZoHoA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
+ a=DOWRbtWmwZy1LnYVOegA:9 a=QEXdDO2ut3YA:10
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_06,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
 
-From: Andy Yan <andy.yan@rock-chips.com>
 
-Add entry for Innosilicon hdmi bridge library
+On 9/3/2025 4:33 PM, Dmitry Baryshkov wrote:
+>>>> - Support for the Iris video decoder, including the required
+>>>>     firmware, to enable video decoding capabilities.
+>>> I don't see firmware being declared here.
+>> It would pick the default firmware from driver monaco platform data.
+> Yes, but the commit message says something different.
 
-Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
----
+You are right. Should be updated in the next revision.
 
-(no changes since v1)
-
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 88851907b6725..d4b5eea84cb9f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12085,6 +12085,14 @@ M:	Samuel Holland <samuel@sholland.org>
- S:	Maintained
- F:	drivers/power/supply/ip5xxx_power.c
- 
-+INNOSILICON HDMI BRIDGE DRIVER
-+M:	Andy Yan <andy.yan@rock-chips.com>
-+L:	dri-devel@lists.freedesktop.org
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	drivers/gpu/drm/bridge/inno-hdmi.c
-+F:	include/drm/bridge/inno_hdmi.h
-+
- INOTIFY
- M:	Jan Kara <jack@suse.cz>
- R:	Amir Goldstein <amir73il@gmail.com>
--- 
-2.43.0
-
+Regards,
+Vikash
 
