@@ -1,102 +1,75 @@
-Return-Path: <devicetree+bounces-211896-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211897-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 327DCB41390
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:31:42 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B62B413A3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:47:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E0F3F5E5C7E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 04:31:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C343B7B38B1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 04:45:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F35C2222A7;
-	Wed,  3 Sep 2025 04:31:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C29A2C3770;
+	Wed,  3 Sep 2025 04:47:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="O/Q0+huT"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="vUc474dY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 043F44F5E0;
-	Wed,  3 Sep 2025 04:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720441DE3DC;
+	Wed,  3 Sep 2025 04:47:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=90.155.50.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756873897; cv=none; b=BydYPGgFEdBU1y5SVnrWmsEBr6jcjab/9Cr5TygRaZCls6qRluaadXg2Z7cf9himbikc9nphVix0Ubd2SUb9eM/RcVV+XGVewQa2Nrw+Y0gzOT3IiFU9Yw/oKAcOXhEfxzBrVUPmzWKLs5yBhGirAK1oeSf38+BEUmJDWZXfwhI=
+	t=1756874823; cv=none; b=DaXy03vcbIeJB2Yq/9GpVWRYrC2XySuI5LzhXbVEqZSIMEo1wfCDf9GRoycXDMke2WOHC9t4R8KPd9PaPxWeiRBMjzmgMv1ZufIQ2KbP1FqycTFHZPYNy59cO+VX4G0xAFyQTPbK9WJDjZFuH0Jj29NZaGI8PY3N4SUCwoZ8fV8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756873897; c=relaxed/simple;
-	bh=zOfqp69JcHUenStvsJhSWzm74vh4e1gjzLYrUutW6B4=;
-	h=Message-ID:Subject:From:To:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fo0PRZKnsPlUrlEZW5JFendOR6n+Z2209G9v57J//1akq3tYViGfVS2y74Hy9lcH62f1TRTxzpsxQJt8HA/h+unTZyrWSKiZISELonkI7fmKDtJZcjmWsFFNTiaTOb1aGUXWl4SC3sHQw6Ai1wTxrGg3DF9DIyR0K8mtKD6WrSQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=O/Q0+huT; arc=none smtp.client-ip=203.29.241.158
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1756873885;
-	bh=zOfqp69JcHUenStvsJhSWzm74vh4e1gjzLYrUutW6B4=;
-	h=Subject:From:To:Date:In-Reply-To:References;
-	b=O/Q0+huTqBG5Gci+NR6iWMVRDmD/ivXH9zJMQTBvhMosT3ddDaIrwYrEpax1mEsGU
-	 uOudqMsjwzGhx4g8z5V+Il3mXfk9JbMAx/FG/leY6hYZkSmMzgiS7oSwKqan6oXMtW
-	 eC7PHv+6g+iQBPqU1R/QL41KA7ruDcywh8LzH+J4m+vQfQMGC+K3BBTvCl3doU/O8v
-	 YeJqwZ6/lWTREgVFa0M6gQt7kl5c1NvlcOLkYJGczMXSZb8UGT6bfVBYoEEeg1XlmK
-	 1S0ZXDTD3W5CgV8AgqSZMxTXM3AiuaFA5sIFFQVA9wjRrvWSD4YP+km8nJs9Wfinyy
-	 lQ4Ych5bkaZJg==
-Received: from [192.168.68.113] (unknown [180.150.112.213])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D50876E02C;
-	Wed,  3 Sep 2025 12:31:23 +0800 (AWST)
-Message-ID: <3a65d568540e9ca43d3bfc24cfe5f72d2bb12b3b.camel@codeconstruct.com.au>
-Subject: Re: [PATCH v3 3/3] ARM: dts: aspeed: harma: add mp5990
-From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: Peter Yin <peteryin.openbmc@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski
-	 <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
-	 <joel@jms.id.au>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 03 Sep 2025 14:01:22 +0930
-In-Reply-To: <20250828074955.542711-4-peteryin.openbmc@gmail.com>
-References: <20250828074955.542711-1-peteryin.openbmc@gmail.com>
-	 <20250828074955.542711-4-peteryin.openbmc@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1756874823; c=relaxed/simple;
+	bh=Q6sLYZfbTF2EVDK67+GnWbAGy3UzZVGmyT0OpcGqbnE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=N5wYMf9KWmF6IKF2EPqmWfYdafYyYJ5neCBrHqF5mAASsxknQTaovfIoWNWMajp1Qs8GpFtqrdtyvNDbah8TITaS9ymAtJpg5QywpSNg/bgWhgZXCCx5/UtFXV8LVlSy//nqBq/wbLgsmNVdz4M7P1Hvcw/0RjBq6Peo3ncDSmI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=vUc474dY; arc=none smtp.client-ip=90.155.50.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description;
+	bh=Oz+na+DDB0qci4Krf6kgl2+d1IC1NsN0QPDO6XJVDfE=; b=vUc474dYrwmNySav+vM3lsDLpH
+	jUDoLv4Fjw+3UWTx5CY25Gp9VHD3c3B7zWcYUJE5f+Xl/Xdyr3H/nRhHkEm8Xx91s23QorubXifzO
+	quLUCCP1bu/C8aowpigJqm4Osuc/AQARO+wxtacoM3s1CwJJJOtc/NoL8aANB6mzmPl847jEz9rwK
+	oMmrG2de/ya8NMX1cvDVJz7lys6UI9X8DcQGpwta6Nvl8LAP5Hg1brF6K8sc2sBxvY6GWKsPa8G+4
+	rmeWD6DnTon2c1/o7+wAnVbdy81TpUo97qq52No0BO2IOrr0zcm8PN2ncOxmbHLVRHnpXOsOSLTve
+	oKYbJCdA==;
+Received: from willy by casper.infradead.org with local (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1utfOa-0000000FGiY-0yoh;
+	Wed, 03 Sep 2025 04:46:56 +0000
+Date: Wed, 3 Sep 2025 05:46:55 +0100
+From: Matthew Wilcox <willy@infradead.org>
+To: Ranganath V N <vnranganath.20@gmail.com>
+Cc: rdunlap@infradead.org, brauner@kernel.org, conor+dt@kernel.org,
+	corbet@lwn.net, devicetree@vger.kernel.org, djwong@kernel.org,
+	krzk+dt@kernel.org, krzk@kernel.org, kvm@vger.kernel.org,
+	laurent.pinchart@ideasonboard.com, linux-doc@vger.kernel.org,
+	linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-xfs@vger.kernel.org, pbonzini@redhat.com, robh@kernel.org
+Subject: Re: [PATCH] Documentation: Fix spelling mistakes
+Message-ID: <aLfIP0nXp06l6xcd@casper.infradead.org>
+References: <A33D792E-4773-458B-ACF4-5E66B1FCB5AC@infradead.org>
+ <20250903040043.19398-1-vnranganath.20@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903040043.19398-1-vnranganath.20@gmail.com>
 
-SGkgUGV0ZXIsCgpPbiBUaHUsIDIwMjUtMDgtMjggYXQgMTU6NDkgKzA4MDAsIFBldGVyIFlpbiB3
-cm90ZToKPiBBZGQgc3VwcG9ydCBmb3IgdGhlIEhTQyBNUDU5OTAgZGV2aWNlIG9uIHRoZSBIYXJt
-YSBwbGF0Zm9ybS4KPiAKPiBUaGlzIGNoYW5nZSB1cGRhdGVzIHRoZSBkZXZpY2UgdHJlZSB0byBp
-bmNsdWRlIHRoZSBNUDU5OTAgSFNDCj4gKEhvdCBTd2FwIENvbnRyb2xsZXIpLCBhbGxvd2luZyBw
-cm9wZXIgY29uZmlndXJhdGlvbiBhbmQgaW50ZWdyYXRpb24KPiB3aXRoIHRoZSBwbGF0Zm9ybS4K
-PiAKPiBTaWduZWQtb2ZmLWJ5OiBQZXRlciBZaW4gPHBldGVyeWluLm9wZW5ibWNAZ21haWwuY29t
-Pgo+IC0tLQo+IMKgYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJvb2st
-aGFybWEuZHRzIHwgNCArKysrCj4gwqAxIGZpbGUgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspCj4g
-Cj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQtYm1jLWZhY2Vi
-b29rLWhhcm1hLmR0cwo+IGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFj
-ZWJvb2staGFybWEuZHRzCj4gaW5kZXggODEyNzhhNzcwMmRlLi4yM2VhZjQ3YTM4ZTggMTAwNjQ0
-Cj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJvb2staGFy
-bWEuZHRzCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL2FzcGVlZC1ibWMtZmFjZWJv
-b2staGFybWEuZHRzCj4gQEAgLTUyMCw2ICs1MjAsMTAgQEAgaW11eDI4OiBpMmNAMCB7Cj4gwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgI2FkZHJlc3MtY2Vs
-bHMgPSA8MT47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgI3NpemUtY2VsbHMgPSA8MD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgcmVnID0gPDA+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgcG93ZXItc2Vuc29yQDIwIHsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBjb21wYXRpYmxlID0g
-Im1wcyxtcDU5OTAiOwo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDIwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoH07Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgcG93ZXItbW9uaXRvckA2MSB7Cj4gwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoGNvbXBh
-dGlibGUgPSAiaXNpbCxpc2w2OTI2MCI7Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHJlZyA9IDwweDYxPjsKCkkndmUgYXBw
-bGllZCB0aGUgc2VyaWVzLCBob3dldmVyLCBjYW4geW91IHBsZWFzZSBzZW5kIGEgZm9sbG93LXVw
-IHBhdGNoCmFkZGluZyBuZXctbGluZXMgYmV0d2VlbiB0aGUgY2hpbGQgbm9kZXMgb2YgaW11eDI4
-PyBJdCdzIG5vdCBjb25zaXN0ZW50CndpdGggdGhlIHJlc3Qgb2YgdGhlIGRldmljZXRyZWUgYW5k
-IGlzIGEgYml0IGRlbnNlLgoKVGhhbmtzLAoKQW5kcmV3Cgo=
+On Wed, Sep 03, 2025 at 09:30:43AM +0530, Ranganath V N wrote:
+> Thanks for the response. Do you want me to resend the patch by ignoring this?
+> particular "serie".
 
+No.  "serie" is obsolete and was clearly a typo.
 
