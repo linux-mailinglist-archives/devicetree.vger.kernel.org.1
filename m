@@ -1,102 +1,148 @@
-Return-Path: <devicetree+bounces-211904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 68C63B41444
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:19:21 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFE1CB41447
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:19:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AE9F1B2715D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:19:42 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2FE5E188B158
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:20:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D23842C21DC;
-	Wed,  3 Sep 2025 05:19:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00ED3223DFD;
+	Wed,  3 Sep 2025 05:19:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="nGG27zwB"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="CW/QlFXs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C27D01DE2D8;
-	Wed,  3 Sep 2025 05:19:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34E37189BB6
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 05:19:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756876756; cv=none; b=B0A2AeuSSh63rIcR/V8Dq7aQ8c3FX5cV7FCCwq/M8HR7DouRmVYWTlG+uQyQxlbU/FKVQOGdC3ct7NqhamkSEGvDN03/5xTa536m+hPY9i4+nTskpPmCJcgdgV4kBbjy3WwuipAPLZ/yFRIKtCdqgeniL+wzfEQDQEYhaeV+SQI=
+	t=1756876790; cv=none; b=sqhzN2cSiFWDhK8XWeHTMV+IY7TVfmgVYJg38v0RQ42ph5puM3m2guEBIKigo2YdQhlxkCqowKSusHkLAHUsvE7u9gH7OSR/NyU61izylcd3XmFM8rdnV3axDcfOKe3zLJHLaP0eD4oH5oCXmHOl94PESyPfp0imk3lc/ExhJf0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756876756; c=relaxed/simple;
-	bh=7ZYNSTK4YsnxBQmoYz7w1ZYPUcs2CciPuFZ/Nw25UYQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=CWo3cm2JaZzf9N9LwjxnuWkumpIiDwecoaoB6zdOwhpM1cN9QtvAD9yS7+9cTRo1jIVL592nyFliQphj9tUjssV3gzS8fM4ynIUBrk5AYuOy8m+PrBCzVxR+xgE88fxmp9DCMZQL3mYQgsKQqSzS6ZDMJrPrm38nwTyNkxKI9zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=nGG27zwB; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5835J5dg2693289;
-	Wed, 3 Sep 2025 00:19:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756876745;
-	bh=fFnDPqUapCpZq44H9P2mGHmeMombMf+LktHqojkMpLA=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=nGG27zwBFw4zR3DDV+gRfobREsQuTq4FLtmKTXqoJDfe0a6zkpVrAkMhMAqtXIf/H
-	 UTQfsp+F0UF6nZR7Cd1Z6IWuZYbRIOkHd2DY08wObCFFu7JUEzF5TDWTQCme4lSJzR
-	 9zRBQXT1rxaCsVj1YqQ3JuyTwFnf9/UZjhstmoaY=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5835J5pl2804916
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 3 Sep 2025 00:19:05 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
- Sep 2025 00:19:05 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 3 Sep 2025 00:19:04 -0500
-Received: from [172.24.231.157] (hp-z2-tower.dhcp.ti.com [172.24.231.157])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5835J0rR748052;
-	Wed, 3 Sep 2025 00:19:01 -0500
-Message-ID: <068a4bc4-70b4-41a6-b60d-be88d67a0709@ti.com>
-Date: Wed, 3 Sep 2025 10:48:59 +0530
+	s=arc-20240116; t=1756876790; c=relaxed/simple;
+	bh=zPZlV7Py6/VRUORcSB1dWGAGhVzyzc70O8zyBF7V8tQ=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=iVriM1JTqM67j4mupDvlLsvUa/9i1UvVN/g8NClsUWEyBRXUu8B1ZpfKP3sk9ObileD+xlyQK8lqpobXeBGmY2jCEoJO8Osz85MrSCD/v4Uo2maTxknlu18b2/AUPXfnjNUZQ8F+OZ00dsGtzHpYqhFJ72ZpWpHyJDJYpHvWOu4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=CW/QlFXs; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1756876787;
+	bh=zPZlV7Py6/VRUORcSB1dWGAGhVzyzc70O8zyBF7V8tQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=CW/QlFXsuzAcNLftV0U2xce2xp2B/g48O+/UrXEyV9J72oh287kr8qrneOSLQKqEw
+	 lwgy8e+DpddxwKZSai4eCuJxgF8VhkcTc10s9du8G1nktTa6ZI6aTlPuNCX6psyUOF
+	 i7od2YPjJ/7qF4be7lUpdWXc58VmCSRTRYD5h7IwcSpFYHUB+NyUy33x8nBL5Vcxa0
+	 F8IX+413MPzXuz0uElHCvwT+N6lbu9UPzdrmkJm8C0rcyihCFIrgui0NQHGaNZUnsO
+	 CL6+syxHAzBXWjU/r7hnLC5FdULCUXdZloKmzp4e9YSmB269Jsg+0TaQ3Z6xLRYQdl
+	 BhtxXHaIiN22g==
+Received: from [192.168.68.113] (unknown [180.150.112.213])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BC0556ED31;
+	Wed,  3 Sep 2025 13:19:46 +0800 (AWST)
+Message-ID: <ae0a7a59eef7f2370174454a06f90ba61d4b49bc.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v4 0/4] ARM: dts: aspeed: Add Balcones system
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Eddie James <eajames@linux.ibm.com>, "Rob Herring (Arm)"
+ <robh@kernel.org>
+Cc: linux-aspeed@lists.ozlabs.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, krzk+dt@kernel.org
+Date: Wed, 03 Sep 2025 14:49:46 +0930
+In-Reply-To: <f366aedf-0231-43f1-8416-994ca4b91342@linux.ibm.com>
+References: <20250815194730.41695-1-eajames@linux.ibm.com>
+	 <175530106096.3523003.10423924922951806073.robh@kernel.org>
+	 <f366aedf-0231-43f1-8416-994ca4b91342@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] arm64: dts: ti: k3-am62d2-evm: Enable USB support
-To: Paresh Bhagat <p-bhagat@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <praneeth@ti.com>
-CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
-        <s-vadapalli@ti.com>
-References: <20250823032304.1085775-1-p-bhagat@ti.com>
- <20250823032304.1085775-3-p-bhagat@ti.com>
-Content-Language: en-US
-From: Hrushikesh Salunke <h-salunke@ti.com>
-In-Reply-To: <20250823032304.1085775-3-p-bhagat@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Eddie,
 
+On Wed, 2025-08-20 at 14:40 -0500, Eddie James wrote:
+>=20
+> On 8/15/25 6:38 PM, Rob Herring (Arm) wrote:
+> > On Fri, 15 Aug 2025 14:47:26 -0500, Eddie James wrote:
+> > > The Balcones system is similar to Bonnell but with a POWER11 processo=
+r.
+> > >=20
+> > > Changes since v3:
+> > > =C2=A0 - Add max31785 to the max31790 document instead of to trivial-=
+devices
+> > > =C2=A0 - Fix minor formatting in dps310 document
+> > >=20
+> > > Changes since v2:
+> > > =C2=A0 - Fix a couple of incorrect i2c addresses
+> > > =C2=A0 - Document dps310 and max31785 properly
+> > > =C2=A0 - Drop the UCD binding documentation update, it's been fixed
+> > >=20
+> > > Changes since v1:
+> > > =C2=A0 - Add all the ucd9000 driver supported compatible strings
+> > > =C2=A0 - Fix node ordering in Balcones device tree
+> > > =C2=A0 - Improve commit message to explain addition of ibm-power11-du=
+al.dtsi
+> > >=20
+> > > Eddie James (4):
+> > > =C2=A0=C2=A0 dt-bindings: arm: aspeed: add IBM Balcones board
+> > > =C2=A0=C2=A0 dt-bindings: iio: Add Infineon DPS310 sensor documentati=
+on
+> > > =C2=A0=C2=A0 dt-bindings: hwmon: Move max31785 compatibles to max3179=
+0 document
+> > > =C2=A0=C2=A0 ARM: dts: aspeed: Add Balcones system
+> > >=20
+> > > =C2=A0 .../bindings/arm/aspeed/aspeed.yaml=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > > =C2=A0 .../devicetree/bindings/hwmon/max31785.txt=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 22 -
+> > > =C2=A0 .../bindings/hwmon/maxim,max31790.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 6 +-
+> > > =C2=A0 .../iio/pressure/infineon,dps310.yaml=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 44 +
+> > > =C2=A0 .../devicetree/bindings/trivial-devices.yaml=C2=A0 |=C2=A0=C2=
+=A0 2 -
+> > > =C2=A0 MAINTAINERS=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0 |=C2=A0=C2=A0 1 +
+> > > =C2=A0 arch/arm/boot/dts/aspeed/Makefile=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > > =C2=A0 .../dts/aspeed/aspeed-bmc-ibm-balcones.dts=C2=A0=C2=A0=C2=A0 |=
+ 609 ++++++++++++++
+> > > =C2=A0 .../arm/boot/dts/aspeed/ibm-power11-dual.dtsi | 779 ++++++++++=
+++++++++
+> > > =C2=A0 .../arm/boot/dts/aspeed/ibm-power11-quad.dtsi | 769 +---------=
+-------
+> > > =C2=A0 10 files changed, 1442 insertions(+), 792 deletions(-)
+> > > =C2=A0 delete mode 100644 Documentation/devicetree/bindings/hwmon/max=
+31785.txt
+> > > =C2=A0 create mode 100644 Documentation/devicetree/bindings/iio/press=
+ure/infineon,dps310.yaml
+> > > =C2=A0 create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-ibm-bal=
+cones.dts
+> > > =C2=A0 create mode 100644 arch/arm/boot/dts/aspeed/ibm-power11-dual.d=
+tsi
+> > >=20
+> > > --
+> > > 2.50.1
+> > >=20
+> > >=20
+> > >=20
+>=20
+> Andrew, are these warnings acceptable?
+>=20
 
-On 23/08/25 08:53, Paresh Bhagat wrote:
-> Add pinmux configuration for USB1 interface and enable the node for
-> functionality. Also enable data transfer on USB0, on existing power
-> delivery configuration.
-> 
-> Co-developed-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-> Signed-off-by: Paresh Bhagat <p-bhagat@ti.com>
-> ---
+Please fix (at least) the maxim,max31785a-related warnings (rename
+child nodes).
 
-Reviewed-by: Hrushikesh Salunke <h-salunke@ti.com>
+Andrew
 
-
-Regards,
-Hrushikesh.
 
