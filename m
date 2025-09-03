@@ -1,227 +1,204 @@
-Return-Path: <devicetree+bounces-212332-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212335-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2BEEB42661
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:14:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAB3B42672
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:16:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8252C7B4A61
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:13:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7B495E7297
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A19222BE651;
-	Wed,  3 Sep 2025 16:14:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48BB62C027E;
+	Wed,  3 Sep 2025 16:16:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="NuXUBFo1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="U0ZcdiMv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 183A229B777
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 16:14:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B4BE36B;
+	Wed,  3 Sep 2025 16:16:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756916071; cv=none; b=LJ/3bJCf/JJ6fA5n1lVuyYKY4DnRisPcupTgg0pE8LJSwZlmjOSLndlu72DGeQNsxZ80VJThRtixFR3aewJLSAQv7Xgl3zDzd8D6sKitHYxqCobwWwlvM2NBg0TMNh9bdjpTHc8o20m5mqWgc6cXXmEvNqDkxio+DODOpMlHeVQ=
+	t=1756916195; cv=none; b=pHgAAO+RqoxpJN3wbng8K1gLFKSEofW5WrQH3jPkggHBJDZzVnLSYqXPvo9YSIsKTIpN72qDaOMtqTB9spsqYtxrQ1Rblj68B6O/NPgLrlblKYnHiM29W7jEaK6XL3kU2VWQBBSfsbqF9NOvyiUN3tAuIKesiT6/nhYo2PWiRQU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756916071; c=relaxed/simple;
-	bh=gjxPFC3HjovHgwlt0kv7nGbyyrTTFMVsFPAfgNJbK+k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KalJCYqSWmrGHwtdWesv08P428Xy3uUnb39EknqmXwN0HBb/E2uHJcwSH67WzWq9goxeSSGmEPl4ZaWZxldA5JntA1qTHdZCVk4g3rB7YXdx8geoYGVIr/5d7Vzm5ixkc5HgkRSEuh0Y8uxGRUB6zkwe2QWeRWvKxVUsSq0X9iU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=NuXUBFo1; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1756916068;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=bzt9EmHzCNTi5JpIlfAxwaC9x9EuNT1d//8tcvBDG2w=;
-	b=NuXUBFo1eHNR+/nSFuIMlrTCRCTzlxunKrVYWOHlzhK5iTWszBg20zzd0MdUc86K3sD+E5
-	3x6sE7JFxb4fJ8J1Fsqa7qgLs4mOD1AEPFQfyNEgKggLcnYgKQwNTn9tBkLppYOxlm7Wja
-	SM5BCzRlQaVts5iBdg5r/qPZCixJKrQ=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-315-NMTh9AWGNpqCtF8grwgUTQ-1; Wed, 03 Sep 2025 12:14:26 -0400
-X-MC-Unique: NMTh9AWGNpqCtF8grwgUTQ-1
-X-Mimecast-MFC-AGG-ID: NMTh9AWGNpqCtF8grwgUTQ_1756916066
-Received: by mail-wm1-f71.google.com with SMTP id 5b1f17b1804b1-45a15f10f31so7989705e9.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 09:14:26 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756916066; x=1757520866;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bzt9EmHzCNTi5JpIlfAxwaC9x9EuNT1d//8tcvBDG2w=;
-        b=lwiF+9SD/K//I90w3+iW+U+jo5rCwUuE6ZmGN5kB1i8jGXQo3DHGYBmbAOQPy++52+
-         OnUIypexBkNGz3YHqNJKgjECkp+iNaxzfLgkkAoZ3ZAN0dKCpkdAbkx64K2IrgKUL3cj
-         xC6bxsFMj9GL9x3CYNmXCo96XMFaIyBs39gcC02GWKz/C+9cDWUQUj5+SXW5aaoRZwjV
-         qjUK6XIpv/OdnBeoMeqaEJiJSK8XIu8+E9/IPod19RNfancKQCZiA82sUuURf3Fu7eSw
-         WbS/YG5GXq54mhonQib7rxquMfuaImpYecTnIj5V3U0Sh5T/IVXjRQlx4ie13VeeNDXC
-         EjAA==
-X-Forwarded-Encrypted: i=1; AJvYcCVRyj2cCPmMFhKJztu+8uIRJk1/ShhHnQSL5BrKni4gPi8NWeGRpiXJ4CAd0r6IaS4NBsWUBmeSYTGS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxGdBefbrOBI/TqGg3aJeHJ6wjGCGsCUCELxHMsy1FLGsd5qQ4W
-	dwTkVjxSrPB+b0PVQ0tYAF0hRrN8dKp7vcQm+YFYPTXKlvUTg24BTveRIOJRQOnrUQ6/++Bkhk3
-	+a5nAq+30iN3w/RiIrjZqTazU2uqe6CP/3M6H42Sh76O5a+l1l9BW3KQ5mkyrL5M=
-X-Gm-Gg: ASbGncu9NzZ8XElEsUTjod4EASzOKVMFMagj8wxcT3jZw08xg4q1EB2ORWW4JATSdd6
-	KC9r39uKu681x5YG82rWEW+jxE5BuIoZk2bJYthmLPtlKolBP+jkDqeWV/oJRZiygzde0Ld5pg+
-	ulItkFUSY8UnM+kaECKCe5u3LaTd2+RoKeuoa0rYsTvEgxIqB4cg6dur7ItBd9iAk+Roig9Ce7N
-	X6gp0v/nLUVU63jYB51k0/vPetUQoOTucs+a3S1MAbgryEVD2adFsPsuwOn2+2pEWYIa7sj7EJK
-	5aGYvpEKKTfFLSTCtkkktObr+q3SGZ5YhW7vFudsJ62YSOOJMhcOK2qlRGcnQ+K85/6reUAjF7y
-	yhEvFywGun2iCqN2Q0vwj4Xg/Bwn7apIr+nZrCcD0SiXCNk+DpJSZ5CWfm7Ct5s4/c60=
-X-Received: by 2002:a05:600c:c4a1:b0:459:443e:b18a with SMTP id 5b1f17b1804b1-45b8559aff8mr148123485e9.14.1756916065715;
-        Wed, 03 Sep 2025 09:14:25 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHrG1gLsbYnBIn3I8NtcnWq9Wo53kgjPvmlGfN/iDdEiLF/Lvowr8NqtI002hGo3+RIVMQJCw==
-X-Received: by 2002:a05:600c:c4a1:b0:459:443e:b18a with SMTP id 5b1f17b1804b1-45b8559aff8mr148122835e9.14.1756916065025;
-        Wed, 03 Sep 2025 09:14:25 -0700 (PDT)
-Received: from ?IPV6:2003:d8:2f09:9c00:8173:2a94:640d:dd31? (p200300d82f099c0081732a94640ddd31.dip0.t-ipconnect.de. [2003:d8:2f09:9c00:8173:2a94:640d:dd31])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9a6ecfafsm79703055e9.21.2025.09.03.09.14.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 09:14:24 -0700 (PDT)
-Message-ID: <78b9c23d-98ce-4b06-9acf-d36c58777d56@redhat.com>
-Date: Wed, 3 Sep 2025 18:14:23 +0200
+	s=arc-20240116; t=1756916195; c=relaxed/simple;
+	bh=QrZ1xBXZfnmeUYwuf4tYL7a2LZz7hVimzmzBV48W7SM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=twE1fmRB/OY8T2Udgij3MIUM6a1sbfpw7v1AKk3yzHWhx8Axl/13uOdRc7eIcPN9s8YIvaqEArfyo8xb+mdkiwqtpq804xYJC4VqSm94AtkvROlYEj+MA74U2FZ0L3NUZ0mQBqVKV6COL1lR3r8Eh10HJDLhSQnh7iC8UaP66So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=U0ZcdiMv; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756916193; x=1788452193;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=QrZ1xBXZfnmeUYwuf4tYL7a2LZz7hVimzmzBV48W7SM=;
+  b=U0ZcdiMvUSV+U0mscu9PbmxHDerTEW3igfgQ+9q2pWBuDybMyjj32hDK
+   uVuqwiXxyKZJajzMZXvaCrOzHO7RKg0VPym2KI/5inddZ/98PvPUJCS8Z
+   9500UxWMm2o26oiq9+gx+gspcnRIc18wwUjKgqqkBw8REJUXKUeJ65WZU
+   1STxwPHh2L66YRTDPI7Hiv+Q7omex/xUn0wwcRt0gvMNdBgLtHOjbNtQ8
+   b16LPQLtzO8x6Z8sahqOXTkCv3D71AvepA8d7obseaqpHy9QUGvAAXKr6
+   mZ7/erHscACTZNlbEixjXQugQ9kJf6q1ZDr4UywcLxGJfSPHAeaWCo8gH
+   w==;
+X-CSE-ConnectionGUID: vBCy4yW6RQSPPzbSUcs+Rg==
+X-CSE-MsgGUID: y3mq2aQNTjSopV0jFzOEAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76839620"
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
+   d="scan'208";a="76839620"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2025 09:16:31 -0700
+X-CSE-ConnectionGUID: h2nnzHojS7WwighpkOdYcQ==
+X-CSE-MsgGUID: L3aVKnAYRX+fBoJTiDYFkQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,236,1751266800"; 
+   d="scan'208";a="195279702"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by fmviesa002.fm.intel.com with ESMTP; 03 Sep 2025 09:16:25 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1utq8g-00047n-23;
+	Wed, 03 Sep 2025 16:15:24 +0000
+Date: Thu, 4 Sep 2025 00:14:25 +0800
+From: kernel test robot <lkp@intel.com>
+To: MD Danish Anwar <danishanwar@ti.com>,
+	Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+	Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+	Mengyuan Lou <mengyuanlou@net-swift.com>,
+	Xin Guo <guoxin09@huawei.com>, Lei Wei <quic_leiwei@quicinc.com>,
+	Lee Trager <lee@trager.us>, Michael Ellerman <mpe@ellerman.id.au>,
+	Fan Gong <gongfan1@huawei.com>,
+	Lorenzo Bianconi <lorenzo@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Lukas Bulwahn <lukas.bulwahn@redhat.com>,
+	Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
+	Suman Anna <s-anna@ti.com>
+Cc: oe-kbuild-all@lists.linux.dev, netdev@vger.kernel.org,
+	Tero Kristo <kristo@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v2 4/8] net: rpmsg-eth: Add basic rpmsg skeleton
+Message-ID: <202509032343.1y6JMbSq-lkp@intel.com>
+References: <20250902090746.3221225-5-danishanwar@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
-To: Thierry Reding <thierry.reding@gmail.com>
-Cc: Frank van der Linden <fvdl@google.com>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Sumit Semwal <sumit.semwal@linaro.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>,
- "T.J. Mercier" <tjmercier@google.com>,
- Andrew Morton <akpm@linux-foundation.org>, Mike Rapoport <rppt@kernel.org>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
- linux-mm@kvack.org
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-4-thierry.reding@gmail.com>
- <CAPTztWa7kcx8bBEJEKvnjcD4v1-eDLVxMd9C10XiBQi4CDLfHg@mail.gmail.com>
- <e513c127-d4f4-4e93-8d4b-23d1e4fdceb5@redhat.com>
- <g34tb2ontlnazift3sik5dqs75a7k2bhzo74kknkxoegv4q5vb@jsqo7v6awovf>
-From: David Hildenbrand <david@redhat.com>
-Content-Language: en-US
-Autocrypt: addr=david@redhat.com; keydata=
- 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
- qIws/H2t
-In-Reply-To: <g34tb2ontlnazift3sik5dqs75a7k2bhzo74kknkxoegv4q5vb@jsqo7v6awovf>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250902090746.3221225-5-danishanwar@ti.com>
 
-On 03.09.25 18:12, Thierry Reding wrote:
-> On Tue, Sep 02, 2025 at 09:04:24PM +0200, David Hildenbrand wrote:
->>
->>>> +>> +struct cma *__init cma_create(phys_addr_t base, phys_addr_t size,
->>>> +                             unsigned int order_per_bit, const char *name)
->>>> +{
->>>> +       struct cma *cma;
->>>> +       int ret;
->>>> +
->>>> +       ret = cma_check_memory(base, size);
->>>> +       if (ret < 0)
->>>> +               return ERR_PTR(ret);
->>>> +
->>>> +       cma = kzalloc(sizeof(*cma), GFP_KERNEL);
->>>> +       if (!cma)
->>>> +               return ERR_PTR(-ENOMEM);
->>>> +
->>>> +       cma_init_area(cma, name, size, order_per_bit);
->>>> +       cma->ranges[0].base_pfn = PFN_DOWN(base);
->>>> +       cma->ranges[0].early_pfn = PFN_DOWN(base);
->>>> +       cma->ranges[0].count = cma->count;
->>>> +       cma->nranges = 1;
->>>> +
->>>> +       cma_activate_area(cma);
->>>> +
->>>> +       return cma;
->>>> +}
->>>> +
->>>> +void cma_free(struct cma *cma)
->>>> +{
->>>> +       kfree(cma);
->>>> +}
->>>> --
->>>> 2.50.0
->>>
->>>
->>> I agree that supporting dynamic CMA areas would be good. However, by
->>> doing it like this, these CMA areas are invisible to the rest of the
->>> system. E.g. cma_for_each_area() does not know about them. It seems a
->>> bit inconsistent that there will now be some areas that are globally
->>> known, and some that are not.
->>
->> Yeah, I'm not a fan of that.
->>
->> What is the big problem we are trying to solve here? Why do they have to be
->> dynamic, why do they even have to support freeing?
-> 
-> Freeing isn't necessarily something that I've needed. It just seemed
-> like there wasn't really a good reason not to support it. The current
-> implementation here is not sufficient, though, because we'd need to
-> properly undo everything that cma_activate_area() does. I think the
-> cleanup: block in cma_activate_area() is probably sufficient.
-> 
-> The problem that I'm trying to solve is that currently, depending on the
-> use-case the kernel configuration needs to be changed and the kernel
-> rebuilt in order to support it. However there doesn't seem to be a good
-> technical reason for that limitation. The only reason it is this way
-> seems to be that, well, it's always been this way.
+Hi MD,
 
-Right, and we can just dynamically grow the array, keep them in a list etc.
+kernel test robot noticed the following build errors:
+
+[auto build test ERROR on 2fd4161d0d2547650d9559d57fc67b4e0a26a9e3]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/MD-Danish-Anwar/dt-bindings-net-ti-rpmsg-eth-Add-DT-binding-for-RPMSG-ETH/20250902-171411
+base:   2fd4161d0d2547650d9559d57fc67b4e0a26a9e3
+patch link:    https://lore.kernel.org/r/20250902090746.3221225-5-danishanwar%40ti.com
+patch subject: [PATCH net-next v2 4/8] net: rpmsg-eth: Add basic rpmsg skeleton
+config: i386-allmodconfig (https://download.01.org/0day-ci/archive/20250903/202509032343.1y6JMbSq-lkp@intel.com/config)
+compiler: gcc-13 (Debian 13.3.0-16) 13.3.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250903/202509032343.1y6JMbSq-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509032343.1y6JMbSq-lkp@intel.com/
+
+All error/warnings (new ones prefixed by >>):
+
+   drivers/net/ethernet/rpmsg_eth.c: In function 'rpmsg_eth_get_shm_info':
+>> drivers/net/ethernet/rpmsg_eth.c:88:29: error: implicit declaration of function 'devm_ioremap' [-Werror=implicit-function-declaration]
+      88 |         common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
+         |                             ^~~~~~~~~~~~
+>> drivers/net/ethernet/rpmsg_eth.c:88:27: warning: assignment to 'void *' from 'int' makes pointer from integer without a cast [-Wint-conversion]
+      88 |         common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
+         |                           ^
+   cc1: some warnings being treated as errors
+
+
+vim +/devm_ioremap +88 drivers/net/ethernet/rpmsg_eth.c
+
+    34	
+    35	/**
+    36	 * rpmsg_eth_get_shm_info - Retrieve shared memory region for RPMsg Ethernet
+    37	 * @common: Pointer to rpmsg_eth_common structure
+    38	 *
+    39	 * This function locates and maps the reserved memory region for the RPMsg
+    40	 * Ethernet device by traversing the device tree hierarchy. It first identifies
+    41	 * the associated remote processor (rproc), then locates the "rpmsg-eth" child
+    42	 * node within the rproc's device tree node, and finally retrieves the
+    43	 * "memory-region" phandle that points to the reserved memory region.
+    44	 * Once found, the shared memory region is mapped into the
+    45	 * kernel's virtual address space using devm_ioremap()
+    46	 *
+    47	 * Return: 0 on success, negative error code on failure.
+    48	 */
+    49	static int rpmsg_eth_get_shm_info(struct rpmsg_eth_common *common)
+    50	{
+    51		struct device_node *np, *rpmsg_eth_node, *rmem_np;
+    52		struct reserved_mem *rmem;
+    53		struct rproc *rproc;
+    54	
+    55		/* Get the remote processor associated with this device */
+    56		rproc = rproc_get_by_child(&common->rpdev->dev);
+    57		if (!rproc) {
+    58			dev_err(common->dev, "rpmsg eth device not child of rproc\n");
+    59			return -EINVAL;
+    60		}
+    61	
+    62		/* Get the device node from rproc or its parent */
+    63		np = rproc->dev.of_node ?: (rproc->dev.parent ? rproc->dev.parent->of_node : NULL);
+    64		if (!np) {
+    65			dev_err(common->dev, "Cannot find rproc device node\n");
+    66			return -ENODEV;
+    67		}
+    68	
+    69		/* Get the rpmsg-eth child node */
+    70		rpmsg_eth_node = of_get_child_by_name(np, "rpmsg-eth");
+    71		if (!rpmsg_eth_node) {
+    72			dev_err(common->dev, "Couldn't get rpmsg-eth node from np\n");
+    73			return -ENODEV;
+    74		}
+    75	
+    76		/* Parse the memory-region phandle */
+    77		rmem_np = of_parse_phandle(rpmsg_eth_node, "memory-region", 0);
+    78		of_node_put(rpmsg_eth_node);
+    79		if (!rmem_np)
+    80			return -EINVAL;
+    81	
+    82		/* Lookup the reserved memory region */
+    83		rmem = of_reserved_mem_lookup(rmem_np);
+    84		of_node_put(rmem_np);
+    85		if (!rmem)
+    86			return -EINVAL;
+    87	
+  > 88		common->port->shm = devm_ioremap(common->dev, rmem->base, rmem->size);
+    89		if (IS_ERR(common->port->shm))
+    90			return PTR_ERR(common->port->shm);
+    91	
+    92		common->port->buf_size = rmem->size;
+    93	
+    94		return 0;
+    95	}
+    96	
 
 -- 
-Cheers
-
-David / dhildenb
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
