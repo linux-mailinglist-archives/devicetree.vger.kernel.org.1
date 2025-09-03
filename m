@@ -1,82 +1,141 @@
-Return-Path: <devicetree+bounces-212076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D36BCB41BA6
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:19:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC1C8B41BAA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:21:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A61A1169D6B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:19:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E83D97A1D57
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:19:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2272E7BAB;
-	Wed,  3 Sep 2025 10:19:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF76F2E8E1F;
+	Wed,  3 Sep 2025 10:21:04 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from freeshell.de (freeshell.de [116.202.128.144])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D5C27056A;
-	Wed,  3 Sep 2025 10:19:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.202.128.144
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64EBE2E8B9C;
+	Wed,  3 Sep 2025 10:21:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756894789; cv=none; b=qr/ABzE3VPbhCwQENnGRuigVsYxWxVV+3J9LXPbW9ppSriNWX5UCsTyGyRjT2V/hsvKYVKhV4k5Yx+y7uhsZIBbacD6zLZf6DCNcaz+BbAHq3b0FeX4grSQAj7BRjPgbMYsBK6GRgMjB1lZdxvYUox1ChE1U9MMtCiPKuV/xkiU=
+	t=1756894864; cv=none; b=U73KxYTuI0phoAaC/gZdCO5pVz/pOBRs1ELslgAmEhq1U9F2SQnSDf5nAvuYvUH6Ae/UakCJdzhP8FuAo0zLU96PAypFgx2uRyV5rS+ukpUEQOlYhsCfOTnRhJIWdKsP4l3rOAOX3EnMF8VGjFvigUELyiogxMxEt1afsbuiZO4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756894789; c=relaxed/simple;
-	bh=PLR5CEMrnGUffbfzrN013g8lieSo4iNkmltjgQs9v9o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=elCqMyaF3aUj8SwXemkE82fkUuKCP3lBx3wDPzqHPVKTapwh8vRbRiElydG5dMQmRfOadS1JxGgPDKsuy8xnmDCSwGy+NRhmojnbg22J0G/nMfiyxXuWPhvX3WeSl+2jLHyiB+aEXBTtOnDxAtah0rfxJ/OB/Cv6yGgvxCdiHjA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de; spf=pass smtp.mailfrom=freeshell.de; arc=none smtp.client-ip=116.202.128.144
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=freeshell.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freeshell.de
-Received: from [192.168.2.54] (unknown [216.234.200.243])
-	(Authenticated sender: e)
-	by freeshell.de (Postfix) with ESMTPSA id 85E50B22027F;
-	Wed,  3 Sep 2025 12:19:44 +0200 (CEST)
-Message-ID: <067174f5-32ea-45df-9a48-96222850e813@freeshell.de>
-Date: Wed, 3 Sep 2025 03:19:42 -0700
+	s=arc-20240116; t=1756894864; c=relaxed/simple;
+	bh=L3vddjUU1jpt8BxPZ+4MbL520RZhTPPHok7S2N8mXFo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Og2eTdMmI/2p2nyz891KJxp1O/fEfNfAIVJAykOu8h+HEwnnpdu2hrLFGtdD3e4+Oc+KR3o015tMSiJ9GCB96si9R6hrnqCAtru7uEIUGRkjCm7vG2YvUuohDZkfoLZoO4JqP8ZBwZPbchPyAFNWrPpZyLhCDAxG0Er3UFG/an0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4D0121688;
+	Wed,  3 Sep 2025 03:20:53 -0700 (PDT)
+Received: from donnerap (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 088923F6A8;
+	Wed,  3 Sep 2025 03:20:59 -0700 (PDT)
+Date: Wed, 3 Sep 2025 11:20:54 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@csie.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
+ <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
+ Mikhail Kalashnikov <iuncuim@gmail.com>
+Subject: Re: [PATCH 3/5] clk: sunxi-ng: mp: support clocks with just a shift
+ register
+Message-ID: <20250903112054.173fe7b8@donnerap>
+In-Reply-To: <CAGb2v66DHvE5gcWDvHwoiiCgNEnPiGjB6ash407PwJr8oMwyhw@mail.gmail.com>
+References: <20250903000910.4860-1-andre.przywara@arm.com>
+	<20250903000910.4860-4-andre.przywara@arm.com>
+	<CAGb2v66DHvE5gcWDvHwoiiCgNEnPiGjB6ash407PwJr8oMwyhw@mail.gmail.com>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/2] riscv: dts: starfive: jh7110-common: drop no-mmc
- and power-on-delay-ms from mmc interfaces
-To: Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- devicetree@vger.kernel.org
-References: <20250903101346.861076-1-e@freeshell.de>
-Content-Language: en-US
-From: E Shattow <e@freeshell.de>
-In-Reply-To: <20250903101346.861076-1-e@freeshell.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
 
+On Wed, 3 Sep 2025 12:20:55 +0800
+Chen-Yu Tsai <wens@csie.org> wrote:
 
-On 9/3/25 03:13, E Shattow wrote:
-> Drop no-mmc and power-on-delay-ms properties.
-> 
-> The committer cannot be reached for comment and per discussion [1] and
-> testing there is not any observable problem that is being solved by
-> having these properties for the VisionFive 2 or similar variant boards
-> through the jh7110-common.dtsi include.
-> 
-> E Shattow (2):
->   riscv: dts: starfive: jh7110-common: drop no-mmc property from mmc1
->   riscv: dts: starfive: jh7110-common: drop mmc post-power-on-delay-ms
-> 
->  arch/riscv/boot/dts/starfive/jh7110-common.dtsi | 3 ---
->  1 file changed, 3 deletions(-)
-> 
-> 
-> base-commit: f66eb149b87677da3171a0ed51c77c3599ad55d6
+> On Wed, Sep 3, 2025 at 8:09=E2=80=AFAM Andre Przywara <andre.przywara@arm=
+.com> wrote:
+> >
+> > The "mp" clock models a mod clock with divider and a shift field. At
+> > least one clock in the Allwinner A523 features just a power-of-2 divider
+> > field, so support an initialisation of the clock without providing an
+> > actual divider field.
+> >
+> > Add a check whether the "width" field is 0, and skip the divider
+> > handling in this case, as the GENMASK macro will not work with a zero
+> > length.
+> >
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > --- =20
+>=20
+> In my series I have a patch that adds this to the divider clocks,
+> thus adding a P-clock type to the M-clock bits.
 
-P.S. missed the URL for reference [1] in this cover letter. It is:
+Yeah, I saw that, but wasn't convinced this would be better. Hence wanted
+to post my version as an alternative.
 
-1:
-https://lore.kernel.org/lkml/NT0PR01MB1312E0D9EE9F158A57B77700E63D2@NT0PR01MB1312.CHNPR01.prod.partner.outlook.cn/
+> Maybe use that instead? I prefer we use actual matching types instead
+> of disabling one part of a complex clock type.
+
+Good that you bring up that topic: when looking for matching clocks I saw
+we have a lot of them, though often one is just a subset of some others,
+with some code duplication. And we use the pattern of "use type A, but
+without feature X" already, for instance for "NKMP without the K".
+
+So I was wondering if we should revisit this and clean this up. IIUC those
+clocks were all modelled after the H3 and earlier generation, and the
+clocks have changed since then. For instance I don't see PLLs with two
+multipliers (NK) after the A64 anymore.
+
+So what about we consolidate the various types into just a few distinct
+ones, like NKMP for all PLLs, for instance, and provides macros that
+disable fields as needed? This could ideally be done under the hood,
+leaving the per-SoC drivers mostly alone, hopefully.
+
+What do people think about that?
+
+Cheers,
+Andre
+
+> >  drivers/clk/sunxi-ng/ccu_mp.c | 6 ++++--
+> >  1 file changed, 4 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/clk/sunxi-ng/ccu_mp.c b/drivers/clk/sunxi-ng/ccu_m=
+p.c
+> > index 354c981943b6f..a03dac294d048 100644
+> > --- a/drivers/clk/sunxi-ng/ccu_mp.c
+> > +++ b/drivers/clk/sunxi-ng/ccu_mp.c
+> > @@ -236,9 +236,11 @@ static int ccu_mp_set_rate(struct clk_hw *hw, unsi=
+gned long rate,
+> >         spin_lock_irqsave(cmp->common.lock, flags);
+> >
+> >         reg =3D readl(cmp->common.base + cmp->common.reg);
+> > -       reg &=3D ~GENMASK(cmp->m.width + cmp->m.shift - 1, cmp->m.shift=
+);
+> > +       if (cmp->m.width)
+> > +               reg &=3D ~GENMASK(cmp->m.width + cmp->m.shift - 1, cmp-=
+>m.shift);
+> >         reg &=3D ~GENMASK(cmp->p.width + cmp->p.shift - 1, cmp->p.shift=
+);
+> > -       reg |=3D (m - cmp->m.offset) << cmp->m.shift;
+> > +       if (cmp->m.width)
+> > +               reg |=3D (m - cmp->m.offset) << cmp->m.shift;
+> >         if (shift)
+> >                 reg |=3D ilog2(p) << cmp->p.shift;
+> >         else
+> > --
+> > 2.46.3
+> > =20
+
 
