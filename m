@@ -1,102 +1,123 @@
-Return-Path: <devicetree+bounces-212285-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212286-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9820DB423F2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:45:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24EC4B423F7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 45E503BA9FB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:45:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1E81BA2E9E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:47:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7A111F4E57;
-	Wed,  3 Sep 2025 14:45:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24644220F5E;
+	Wed,  3 Sep 2025 14:46:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="chLVbEXB"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="3d9aSZPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9714213E90;
-	Wed,  3 Sep 2025 14:45:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AC6A1EA7E4;
+	Wed,  3 Sep 2025 14:46:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756910735; cv=none; b=S33sGP6hxdcWlefjhqyVtbrihCkxsKd6Q+ti4cdlytvIqVU14dSPuSpdkGorIsXk/qpVuObmxRxYtLtUGWoURgeQTL2YSOEAcc7kNgsYGb2JDZ+d93v6MuX2LTE+7Sy0KfJv+9fKkvcErjIYt0CCqo1UlCqVzZZLg0wGOVYcj3w=
+	t=1756910810; cv=none; b=rRFQ1jg503QpJTivRqVLzPbfuAuvJO067hhXLZUnWx+rgTksAqpLmAuE+i5G7M9lN+sNgZbylKgmsZeCyfcHQTqPMf04mx3ixaF/uFuQKr4ZM09dyE9GfzhSrtn6pflXAH6X/qDFzq4bMOYfW+Qz2TUDSvrp4hro1YFISs03tDQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756910735; c=relaxed/simple;
-	bh=7+gB4wClHZLbOPv8Ga3IIMlxYPUuhv8wxQJ/4mVAIN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=XutQFxKi1ukPRL3MAWQG78w/xjod555hgT+tgRH1gY6nGYK6Dq8b8ohe/j3lW3jjl6f2r84titEa2OfV6nYZMX67G7VxYXAjK+Y2JrabP2KUz4x6+0IWyyjjhVZmPZ6vNXGFi/Wc+0LyOqpsBUIzxuZ5EfrCiL0op9xIRas54F8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=chLVbEXB; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 583EjQ0h2853536;
-	Wed, 3 Sep 2025 09:45:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756910726;
-	bh=TfPaCBrR2tmIHJVvAad4MWUXwXE/O4PmaW4tn4Elrow=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=chLVbEXBKAXHKbMs+9MjMrL03jucvt1pGrGOOfxfKtp4VgAocT61sIveT2rZ8q98L
-	 3QRMm95QGE3rQ7JlTS9FSdEfW+IPj2BQRYp+c34IWykCUOF/5ClfzroVeU97v/00D0
-	 EHTMk+FzEGv3gFMH7bHP5QqXAb15U1GCn6c1F81M=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 583EjP8J3673568
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Wed, 3 Sep 2025 09:45:25 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
- Sep 2025 09:45:25 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Wed, 3 Sep 2025 09:45:25 -0500
-Received: from [10.24.69.191] (pratham-workstation-pc.dhcp.ti.com [10.24.69.191])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 583EjLpE1727136;
-	Wed, 3 Sep 2025 09:45:21 -0500
-Message-ID: <8de87cc4-c46b-4039-bcdd-48133fe3c694@ti.com>
-Date: Wed, 3 Sep 2025 20:15:20 +0530
+	s=arc-20240116; t=1756910810; c=relaxed/simple;
+	bh=J1PKNIgZOCKgEUdO8M5JDkq4fiPls0L34C3HgSWF9pI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Ex2MxdLN3/dbjpmX/lo+cxTCA+r1ujPSqNZhOp8uvme7hwvAo8YV76GTH5eKdp+WH4UdjvmRZXSHBiaP/2FdAsLlED75twshAe0PI+REIbfyP/TMDYXAMpUYjOmBujOdQ3NUWlRfqfO0ESN4tHZMGv+EzW09UnqaygyDL6pJv1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=3d9aSZPs; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=fj3F4CR220kgIik6Toc/cmZCKNEv2XOOqIQqcF1ImAs=; b=3d9aSZPs3YmAbFASAiHJJcRzGD
+	fl2yMQ8DmjfTp6BbqLH7rIT2d77qfEB5Z+Y3/TvVDjT6wUAtXu/ENwN6EG2X//C4oeWM/kjAdgfxL
+	A694dMtmMqBNIb8h0atjUe70ar36QSdcZGS2V7lVdWAhrq/ScnBLUi3G/rdz/Vs4Ojj/3MbHG320S
+	ZRrjHpfBqZtlgfWGJBUaKIHpb6URoYypOkt4AYTv/24i82Ubg9uaXxpMpVw/4TTofxGQ15mggaxe0
+	BuFsZMXnY/HvCX/NBQPB2UnAzG31UmQZCKP7YdTXyJCqScWP+DXLeNLysRPnEhCaCLpypNh/VCOzx
+	J06xky9g==;
+Date: Wed, 3 Sep 2025 16:46:43 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: lee@kernel.org, krzk+dt@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, ukleinek@kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org, shuah@kernel.org
+Subject: Re: [PATCH v5] dt-bindings: mfd: twl: Add missing sub-nodes for
+ TWL4030 & TWL603x
+Message-ID: <20250903164643.0d0d2144@akair>
+In-Reply-To: <CANBuOYrcdzDytx0f=ZbpMujcNGn8RLGZwOJBE8FzPsGtt1y9iQ@mail.gmail.com>
+References: <20250902212921.89759-1-jihed.chaibi.dev@gmail.com>
+	<20250903000804.689a0a06@akair>
+	<CANBuOYrcdzDytx0f=ZbpMujcNGn8RLGZwOJBE8FzPsGtt1y9iQ@mail.gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] crypto: ti - Enable compile testing for dthev2
-To: Herbert Xu <herbert@gondor.apana.org.au>
-CC: "David S . Miller" <davem@davemloft.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-crypto@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kamlesh Gurudasani <kamlesh@ti.com>,
-        Manorit
- Chawdhry <m-chawdhry@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Praneeth
- Bajjuri <praneeth@ti.com>, Vishal Mahaveer <vishalm@ti.com>,
-        Kavitha
- Malarvizhi <k-malarvizhi@ti.com>
-References: <20250820092710.3510788-1-t-pratham@ti.com>
- <aLK7vIQktZuJFAQd@gondor.apana.org.au>
-Content-Language: en-US
-From: T Pratham <t-pratham@ti.com>
-In-Reply-To: <aLK7vIQktZuJFAQd@gondor.apana.org.au>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 30/08/25 14:22, Herbert Xu wrote:
-> Allow ti dthev2 driver to be compile-tested.
+Am Wed, 3 Sep 2025 00:55:25 +0200
+schrieb Jihed Chaibi <jihed.chaibi.dev@gmail.com>:
+
+> > > +                  - ti,twl4030-power-idle-osc-off  
+> >
+> > this allows quite weird combinations like
+> >  "ti,twl4030-power-idle", "ti,twl4030-power-idle".
+> > I would propose to rather clean this up to things used in
+> > twl4030-power.c and at the same time available in dts, also
+> > taking the brush in the dts. I do not expect that these specific
+> > compatibles are in use anywhere. I looked around earlier.
+> >
+> > Regards,
+> > Andreas  
 > 
-> Signed-off-by: Herbert Xu <herbert@gondor.apana.org.au>
+> Hi Andreas,
 > 
+> Thank you for the feedback. I've done a deeper investigation into
+> the 'power:compatible' strings to see if the schema could be made
+> stricter.
+> 
+> While cleaning up the list, I found an existing DTSI file
+> (logicpd-torpedo-som.dtsi) that uses the combination:
+> 'compatible = "ti,twl4030-power-idle-osc-off", "ti,twl4030-power-idle";'
+> 
+> Since this "idle, idle" combination is already in use, it seems we
+> cannot make the schema stricter without breaking this existing
+> board.
+> 
+well the only maybe fallback line  I see here is
+ti,twl4030-power-idle-osc-off -> ti,twl4030-power-idle ->
+ti,twl4030-power.
+But you allow "twl,twl4030-power-idle", "ti,twl4030-power-idle"
+That absolutely makes no sense.
 
-Acked-by: T Pratham <t-pratham@ti.com>
+Then the question is whether there is the need for fallback compatibles.
+They are needed if there is one piece of software which does only know
+the fallback and can use the hardware in some limited mode, e.g.
+u-boot using some mmc controller only without some high speed mode.
+Looking around, I do not find anything in u-boot or barebox for the
+twl4030-power compatibles.
 
--- 
-Regards
-T Pratham <t-pratham@ti.com>
+And if we define "ti,twl4030-power-idle" as a fallback for
+"ti,twl4030-power-idle-osc-off", then it is a fallback for everyone
+using "ti,twl4030-power-idle-osc-off", so then the dts would need to be
+corrected.
+
+There is one exception: "ti,twl4030-power-omap3-evm" is still used but
+not everybody knows it (e.g. pm34xx.c), so there is a reason for a
+fallback compatible:"ti,twl4030-power-idle"
+
+And the rest, time for the brush and lets not totally mess up
+ti,twl.yaml.
+
+Regards,
+Andreas
 
