@@ -1,76 +1,78 @@
-Return-Path: <devicetree+bounces-212080-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212081-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C184B41BCD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:28:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32BEDB41BCF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:28:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4D0875E718E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:28:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BA4281BA59AD
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 834222EA17B;
-	Wed,  3 Sep 2025 10:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CD7A2ECD11;
+	Wed,  3 Sep 2025 10:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OiQ86Q9T"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bc/t6wiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B35911DA60F
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 10:28:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD2E2E9EDA
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 10:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756895283; cv=none; b=lnooQeJeKiMJBvwC+G4IwZThPdLE0OLMPOpj//EXSB38FAYl9ZVuukYxmFDADafX+p4DDQitjjbgp2lE2B5cWBAFROkGkx2Mj6+mq/ILzDA5trtwQjAWaoWEjP5bXNeZUB/vc7wPEw3kArA5pIBP1e80TMIhjWZ/XvBMAWPCAyY=
+	t=1756895284; cv=none; b=LF6gOnCMJF1ndat2VDMSIOxP/NZSYLScng1z213J1Vc/A5Ik+BroGFx4WyrZGN5nnp47qyJ/88fHdP+/j2anfIhGrQcMm6ZPPIhn+ct516owzqhoQiKAFighxn4kaozPrVn+QrWWJYxwziFODaVTsBsyy8rYJQwVdj9PPM57rQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756895283; c=relaxed/simple;
-	bh=le66QlMuZE7hH1oOfQ5HrC4Y1Tp6IgLYo/j2eYYGOLI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=LYXsDaRkr3QelqqRZHD5b4wTbds7wBHZqnXs4Na+cRQBMwTFtYOK+M0wmSp6lvGUSRIecU7WprL9zk5YwUAo/gDljCf1ip/b+5jYMkAY7PLtz1829JjzUKporPtAgHcW4KuMGqL5ItAPWDQhI7J1RuzyxrsQ5NNkPGgWLgOfLqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OiQ86Q9T; arc=none smtp.client-ip=209.85.221.50
+	s=arc-20240116; t=1756895284; c=relaxed/simple;
+	bh=SkomEAWMr7dqJHQ8N7mLoE3pG7f6Vktqf3CG8y3O0qo=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=AYgRM7mRM5NaVDoiWzljjABiEm3PMxb2/aFDg11zytZkk99QBFXvqljNZEAVGx94ZG0jrInjBs6y3kmFE8cWixDkoMtgPQPAyINbk1xwiLyir0ST9kqVYwyWfW3dJEig06XYIMcKdDQM+1qEVENlKXvSd8kxkzr4Q1GwOM3JhDE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bc/t6wiO; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so4332741f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 03:28:01 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45cb5e1adf7so4536315e9.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 03:28:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756895280; x=1757500080; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=M1WQS2V0Aq4ymgCMCBADFQC3VfxKGm3mbnfHsQGlDKY=;
-        b=OiQ86Q9T7E4GYTCLRDAUAmriq+r22M+C47vmvBnvkMX0CKzPO1AGokAPLEmUEtmyAK
-         vnLXIrs7jVxYLNZytHx6xNfBXGUpspUfmrMkPoopmyqLr+Y2BkUZhcvEecn/Jcp9u0y5
-         +OmabEP68JmE+bLBYUDbLNej3ArhaF+6fTEDH6axrjFKZE3nZuaOTUOztjxrouCXROnS
-         4hLLOG535ljYscVDVVteq999Gk34Ka/X4XuqyEZVB+dwzmvDNfHbImO2MCnkv1bYIDzb
-         YB/xFFUTNRTkf9CbEjOrrSLVvQBSctUw2R3KgrLCbPG1n3vQ93NR1s/WhTd/ontzznIw
-         6lBQ==
+        d=linaro.org; s=google; t=1756895281; x=1757500081; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zjVYYBfOPHu5us2l/I8UPnxyPLOr26L4rzL/vKv2LrY=;
+        b=bc/t6wiOSzGTRwzBHJwjcZWc3NrpL+oE0G3dawPq60iMEhV/zdvdka2j+voEQ8minM
+         jrdh0J9r+IusE6oBXEyjFmZI3fVbLDS1vJlGWLtrq9vGlq3h+2DAlJeiY8LuAHfVIj8Q
+         +hwaV65+CClatmXSVNxsOoJ2YfaQH2QQrcWY7Pbirm5+pzHGfwt4rscupuYl4uXrtL8h
+         hKoVU8rs+nUTRac34YdugcMq8SZevy1Hw6ksGFdooLYt47AuX9/fSm7NgA7Iczk7mFWF
+         TRvoXl7ivbnwyZzYZ4zCfZDSrFsHd1eq+BhBWu63vjjVY/VuFbbskjL0eMuLqqxzchtm
+         OB0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756895280; x=1757500080;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=M1WQS2V0Aq4ymgCMCBADFQC3VfxKGm3mbnfHsQGlDKY=;
-        b=ZMTey5P4eW+qGQD5uc0zKqJlYgvgyQN+GlLKmcbtJC6Oe0DMNQG2Dqj6YsZhyk7wBF
-         CRAJ9F3WnQQLg3i7qrCyl4RH7l9Sn2Pbbatjkvd4TBQEF6iMMjHg5Zs+L8eNOgMa5Tw4
-         7lZdZdb5N0z7sdYH5MbHUsWLu89exMaro3yXiCpve7qCk1+sYwytVxEvwRBfUNigq7Y/
-         /5vd1ia7OSFxlSL9i8S60Zw2LKU6xxW2cCpwH9x1cafWlaBeIoeXRjbaBNOIrDPrZpVs
-         gmqbWS5B/a9TrjShHIYwijofEPTuM2MIQkP9TbRfSxhv3Rz4W0DapvyR7gSOgDC2Fv+3
-         AzBg==
-X-Forwarded-Encrypted: i=1; AJvYcCXhThEjVvyk5sy5F0P+JrdN0714I+Uva19v9KrYGkA0c6LEj7plZdY8NkSfQHM6NQXI10qkt6aI0aHM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz+1p6gfyWE1nODmYU5umLvxGOczG3asl9HoUn7lE00YMXXLRUt
-	RBxA6KxDqwvDS//EjVcwT7QCYA+GYSWfZQDTiAAGoYRkWa9e0AoBVTLfj0tRWB6YTek=
-X-Gm-Gg: ASbGncvmQZ16RQmtm3xR5LhTYitl1WOrTSQ1NPOnafXcBRytdOC+IHoWMfXkPHu4zxa
-	FsVor2KaUxGgnD+6oC0ZlyDihqrUToFjaGXUP8crLpx6g5yXyC3LnDZFkvQbl0sn0AszCcvf22D
-	Cg4k+qkZzwWgT72OB7O6UYyw72T25Sd+ZRTzioAYKq5lUmJivIVZL1Lk3OA3LuUoNbzK13cmnTp
-	b3YUNjLP2e+YjuyoxZxYQ1xB2CpkMPMHCC5PWpccJQusy93EJk25/ChCCiTusvjgANpyYf52APk
-	6dXdyx+cTs9qa+X3zWSpookTDqkum1S98tRu5H/V2b4S/RjVYij6pg1HeWikqPcqvP8OM3SEN0s
-	f6QG/n9qYXdbwHzY76AWOeRwEXmT0Pua0KuUJe6PoY/axVf0yPZMs2Q==
-X-Google-Smtp-Source: AGHT+IGUUt/nsQbBtMP9pzpPTBYBPoasAKJzS5Dkyri2rpl0+/sHhf/B6Fxwr6gUabi0H0wXSYBQiw==
-X-Received: by 2002:a05:6000:3111:b0:3db:c7aa:2c4a with SMTP id ffacd0b85a97d-3dbc7aa304amr2579469f8f.42.1756895280034;
+        d=1e100.net; s=20230601; t=1756895281; x=1757500081;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zjVYYBfOPHu5us2l/I8UPnxyPLOr26L4rzL/vKv2LrY=;
+        b=bOvmMFf47D9bbcC8yibL67UEzMqW7hX8wTZ2gyBcoJ7EXK8B7VBdo8YI4Uf5bjwZZW
+         AAyTMhbHYovKwBgmlVU+Aw78cbnGVFIiy0VpN5s/UM5gwb4+pa6GtLoquYP6QF4aFUUY
+         49KLCUPF3jJ1OY83oWuBOqx3rXaaALf+LOM+U0RHPJ3FwXf8hPipVzxUShwz17RwL4wx
+         sbi9oEDhmWidzXbxntnypy4gL5pTCCPJG2WOq2s4L7CwX4ErFfLDm7wytTY9ZS/96wBY
+         pDF7JRUx/oBL7j17wrNnPVXjXP1Y2PA9ivLADYVw6ExOPM/42XDEbLWHnIY95mx7zMIc
+         VoYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUJ+eLicNrYhkaDsyvzA7qfh33AyviU5Mdqvb6mIe1Fk0v3buI35FjGgURQvycdBEOyf5zF3nN0fv+W@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx6ZItUwGT+X9XeGVYxHjbqvceSwXin7LeU8M00yJr796uKVs/X
+	HPq9NQIVSYSnsV/T/fw5sMEGuedIvEhi9hxCJxJgXkUsxxY9PsqGmB4HY7KEYjIXRIQ=
+X-Gm-Gg: ASbGncvVY0rNW/Jd9P7U5ILc7e6xI0vdrsoUE/zO/AI0mDzvamQjxfXPwtCkHT/i2UO
+	1Q4PPkT8N5MmR8VDQ8L7xEFV0P+MZVTTTgz6HOzvankX76ynN1rpszMYvwqjmclzcsNzJ4WsWQU
+	5r6RZ8X+AoPiiOMr8beZVzAl4laXoP46SNNXbN4SMDUr/n7RenDHumAGhpOfAzKvMRvkFWjStvD
+	iwHE7HSIQb1F5QtPmC0VVbF+ifScPHZxARsT9PRvEkXOLGaoIJdk7CFcbdWmC7Kavu/Ja/6EF4u
+	iBO4kJmIKbUh7TuNhCsC6FdZP6FnNFl2yvKcfVqIWEsvzRTQgbhm9fnuC4uv9D3MqSHUnApeYA4
+	CRWBu4bo00XvQrgk2EXlHvHRA0VzocugIJ3E/eJmK8fSyJFWUUgUPlA==
+X-Google-Smtp-Source: AGHT+IGSUORYJzBn7O96WsftU689TaesXpGZtVK+MUa18v5BS6kecsxo5Ta5IrwC022eEBj1aLixuA==
+X-Received: by 2002:a05:600c:3b9a:b0:45b:8866:50fd with SMTP id 5b1f17b1804b1-45b88665357mr104875915e9.32.1756895280998;
         Wed, 03 Sep 2025 03:28:00 -0700 (PDT)
 Received: from mai.box.freepro.com ([2a05:6e02:1041:c10:2a30:223c:d73b:565a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9ab7c7dbsm55992855e9.11.2025.09.03.03.27.59
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9ab7c7dbsm55992855e9.11.2025.09.03.03.28.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 03:27:59 -0700 (PDT)
+        Wed, 03 Sep 2025 03:28:00 -0700 (PDT)
 From: Daniel Lezcano <daniel.lezcano@linaro.org>
 To: jic23@kernel.org,
 	dlechner@baylibre.com,
@@ -86,10 +88,12 @@ Cc: linux-iio@vger.kernel.org,
 	chester62515@gmail.com,
 	mbrugger@suse.com,
 	ghennadi.procopciuc@oss.nxp.com
-Subject: [PATCH v1 0/2] NXP SAR ADC IIO driver for s32g2/3 platforms
-Date: Wed,  3 Sep 2025 12:27:54 +0200
-Message-ID: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+Subject: [PATCH v1 1/2] dt-bindings: iio: adc: Add the NXP SAR ADC for s32g2/3 platforms
+Date: Wed,  3 Sep 2025 12:27:55 +0200
+Message-ID: <20250903102756.1748596-2-daniel.lezcano@linaro.org>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -98,28 +102,90 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The S32G2 and S32G3 platforms have a couple of successive
-approximation register (SAR) ADCs with eight channels and 12-bit
-resolution. These changes provide the driver support for these ADCs
-and the bindings describing them.
+The s32g2 and s32g3 NXP platforms have two instances of a Successive
+Approximation Register ADC. It supports the raw, trigger and scan
+modes which involves the DMA. Add their descriptions.
 
-The driver is derived from the BSP driver version. It has been partly
-rewritten to conform to upstream criteria.
-
-https://github.com/nxp-auto-linux/linux/blob/release/bsp44.0-6.6.85-rt/drivers/iio/adc/s32cc_adc.c
-
-Daniel Lezcano (2):
-  dt-bindings: iio: Add the NXP SAR ADC for s32g2/3 platforms
-  iio: adc: Add the NXP SAR ADC support for the s32g2/3 platforms
-
- .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   |   68 ++
- drivers/iio/adc/Kconfig                       |   13 +
- drivers/iio/adc/Makefile                      |    1 +
- drivers/iio/adc/nxp-sar-adc.c                 | 1046 +++++++++++++++++
- 4 files changed, 1128 insertions(+)
+Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+---
+ .../bindings/iio/adc/nxp,s32g2-sar-adc.yaml   | 68 +++++++++++++++++++
+ 1 file changed, 68 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
- create mode 100644 drivers/iio/adc/nxp-sar-adc.c
 
+diff --git a/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml b/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+new file mode 100644
+index 000000000000..dc6ec240f816
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/nxp,s32g2-sar-adc.yaml
+@@ -0,0 +1,68 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/nxp,s32g2-sar-adc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP Successive Approximation ADC
++
++description:
++  The NXP SAR ADC provides fast and accurate analog-to-digital
++  conversion using the Successive Approximation Register (SAR) method.
++  It has 12-bit resolution with 8 input channels. Conversions can be
++  launched in software or using hardware triggers. It supports
++  continuous and one-shot modes with separate registers.
++
++maintainers:
++  - Daniel Lezcano <daniel.lezcano@kernel.org>
++
++properties:
++  compatible:
++    oneOf:
++      - const: nxp,s32g2-sar-adc
++      - items:
++          - const: nxp,s32g3-sar-adc
++          - const: nxp,s32g2-sar-adc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++  clock-names:
++    minItems: 1
++
++  dmas:
++    minItems: 1
++
++  dma-names:
++    const: rx
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - dmas
++  - dma-names
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    adc@401f8000 {
++        compatible = "nxp,s32g2-sar-adc";
++        reg = <0x401f8000 0x1000>;
++        interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
++        clocks = <&clks 0x41>;
++        clock-names = "adc";
++        dmas = <&edma0 0 32>;
++        dma-names = "rx";
++    };
 -- 
 2.43.0
 
