@@ -1,237 +1,113 @@
-Return-Path: <devicetree+bounces-212240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605D2B4224E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:45:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7D79B42262
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:47:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF8723A302C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:45:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56DAF1BA20E3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:48:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A223230AD07;
-	Wed,  3 Sep 2025 13:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gygmG0je"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D407A30BF58;
+	Wed,  3 Sep 2025 13:47:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com [209.85.221.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5260B2749D9;
-	Wed,  3 Sep 2025 13:45:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAC7F30ACEA;
+	Wed,  3 Sep 2025 13:47:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756907102; cv=none; b=ASWWBnyaLPzCpouINo8mJK6NpirQrUcdZbGl647PEaBLfiga04RFHFGMBeWtreoWeW+N7pM9ZBwlKoyaARlYpbVIh0BORZEP06KSG1Sjxt0/Xw6W7TOY7YSShfDI6emYaXusILGwGbllT6nbxKJSb6oQMaaLxG/N+0KYjJJrGXk=
+	t=1756907267; cv=none; b=FjSPsRjatrb1aY9pT4DDpx1kNW3fRnmB1XRfU68+/sTgO/XW6uOjyGvWb/UpKbpjKFziopW6LJsM8ocoIvG/1Uxez4KI4Wn3+ZwMMf4UgAvdDHENlKV8xTX8iRAAyZegSn5csiob+XJY2q6Z0tuRPPIzDr9uamJo1XO8ovdnMoA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756907102; c=relaxed/simple;
-	bh=ueWHIf9d79yBu/xoe2MyNyLUSaPK1ynnR4XQhYYYAAg=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=Fk47kKBklz1wtqt8F13MAeY6gs5LebzYGS6rFr9ymXaG6ZoNcicmGAsjnCp4Yq99aCePbzxK9Y1cpH3MF3TMBgLwAE+dSjqUdd7QG45rnXVHKR0gpZ7gEd2+rkhuT+g5fQfCNKjy0KzdxC/g03V3Z8OdVLnafP9t8czrnWqmmQQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gygmG0je; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1756907098;
-	bh=ueWHIf9d79yBu/xoe2MyNyLUSaPK1ynnR4XQhYYYAAg=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=gygmG0jefBTVHTdvu7MTAa1kGNz0BtjW8x4yYTuee16ehpKx5198ZSqNRqXNH5ynr
-	 fHvybg3f/PiNcsYz5nzjg7DKdlmoqUckBN9F8xB8IeADqDTCcHpWUFWEaRlKzR8yIP
-	 bjIO5PVx4kKJpxOGi9yynyilLPxu9147ONUaURTyO/QCdc22pq0/Y1qhDyR0Iy4+TN
-	 bBKFLj6kOhMOGhHreQM5+9mGdvAtBX8sYXqUDuTT5rHrsocV5mufSQS88mFOoSJ0FY
-	 sZ2jNgRB3/RZQC54P6bIpfdDhVGmNpPtqsrgGgPgYvMbQYhuPVBY57VYaZrOttJqaX
-	 J4mRJNaDDThuQ==
-Received: from [IPv6:2606:6d00:11:5a76::5ac] (unknown [IPv6:2606:6d00:11:5a76::5ac])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nicolas)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 262D717E0199;
-	Wed,  3 Sep 2025 15:44:57 +0200 (CEST)
-Message-ID: <d70c5113608c89fd79687a7669b0fa53140bea7b.camel@collabora.com>
-Subject: Re: [PATCH v2 1/7] media: rkvdec: Add HEVC backend
-From: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-To: Jonas Karlman <jonas@kwiboo.se>, Detlev Casanova
-	 <detlev.casanova@collabora.com>
-Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>, Mauro Carvalho Chehab
-	 <mchehab@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Alex Bee
-	 <knaerzche@gmail.com>, Sebastian Fricke <sebastian.fricke@collabora.com>, 
-	linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Date: Wed, 03 Sep 2025 09:44:54 -0400
-In-Reply-To: <8394c12a-1e1e-44fc-9bb5-92a464dfe410@kwiboo.se>
-References: <20250810212454.3237486-1-jonas@kwiboo.se>
-	 <20250810212454.3237486-2-jonas@kwiboo.se>
-	 <432ab63698b27ca5bce3a7a30d630685aff782b6.camel@collabora.com>
-	 <8394c12a-1e1e-44fc-9bb5-92a464dfe410@kwiboo.se>
-Autocrypt: addr=nicolas.dufresne@collabora.com; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Organization: Collabora Canada
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-01LGmJnWEk6ULtBixrzA"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1756907267; c=relaxed/simple;
+	bh=+aIEvRz96pG/rWgZPTWZU8F4KJkk2PAPAif7c1zrzKU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Ik1qM52jVoAVa3rGFA6Faz5QDJQ4dhbl6f9UdntjBQv9q+s2+bUGo/QiLTEtTjs33AQnY3ol2Y52mAE/w8ykul0nKbSk65fkKoApSvThFrcdAw6aVCEoWtfazZFgnGCUIsz8YwzaksbUL21ZQ5+PBoZUNSTBspb8MpAHYdvez0g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-544bac3caf2so660333e0c.0;
+        Wed, 03 Sep 2025 06:47:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756907264; x=1757512064;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c1BtAlNfdBNrmtyMejkFRvl8J4TdOP8bGgfOa98i5TY=;
+        b=AGM787fHBCxHTxXRhra3HE5kuuGfWYt+sVUtYoz6zIcRi51Zv3THYBDq3fHs36dg32
+         DkLg/NiO5KOyXCDIu8PQFVwzhMYe1UOfDu86xTRjEdqo3rWgVvKZGxQiVDPJmPEhozlf
+         22Ahw7MfIiO6oZP6Bvfw0B0pMDi0bfyR1rvf5I1JBrVMEmUBG2KwWXa0V3LMcRAEQzL8
+         My6EUgZLV9GS1DZ15OfVRhdViQTW6adLOYFEdQ0T/j+dL41J23sYRehkew4u3lROxnL/
+         KNtIb5nm0GZReGxNwJYgOrpIPbUVfy4e73f8fSFj9CzBOSZGi3cLsanMOfjIqekFQXLy
+         Aaiw==
+X-Forwarded-Encrypted: i=1; AJvYcCUa8aFvKzTwiouZ4/w6BbaKbgpvLhIbQUhT8dMgFNTPsHTC1LOLs9Nu1m2fZPgDJsl08YgUbR8nwDzSQKUceWNKE78=@vger.kernel.org, AJvYcCVctnEypXZfDtJE33pzwVW45TS/+9uMzQAkRDWSLvLmzYcXqBCZaFn3omdJazxo/JppP0dgWnCz4gY+u2hm@vger.kernel.org, AJvYcCXiMJY5DFfY9qrlTmnvv+CPXWLRJubvzik71Nwr36QtIQuHeFsm9NkFbU9AthWpP+F4fU+xqmJIM+lJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YzO5NOyki5XpE2Dk5w1WEKy6THA/BU+Ct4duu3MOqJAvexdRzEA
+	LvYGLKscf/12tR8YmrYhAT2rUzK3haRCh01gFnyR2yrwiHbvvQ+7tM8+wEnEZgK7
+X-Gm-Gg: ASbGnctjX08MnBLbpReYrAcr0YviICV2oaU1sR15k+bqIxE4JJbxGN4kBT5slbC6xt1
+	zG4Q8O8EIHVrzpLGyLZ8lzqUQuOfdb5DTfGZMLmgRBprxk4vJTdRhp1iasH4RdFihqCivQGYP3o
+	leGVYIHE/7+mH5stypOtu1tJFHJ6trWw4dGCId9McYLhI0+YIyjMrXKnwsI8JU6yj3kns/L0Voy
+	w+1PN6VJE+vq2IRlujqDW5H9pH+Oa0ENqB/QjhXsHDEdVo2psRYd3buTd/K9kQBbLLhF60vphZd
+	HORlQsy0Uw1Wk50SoxGexYRiSatvXEAq1L+/QBkdyAkRpErXPzqUD/s/vRamzuJtJmu48fFmSMr
+	a6zlsi9Z+xw+1e+zr3ikwLIa8vFz+LTGGxqdjgbOX/Wmkt3124/pGAhA+qssv
+X-Google-Smtp-Source: AGHT+IG+skzSwblB/onKuoHMB3txsR2536BKMAlUXQzjtsNdZJMdE1paQsqe+m8znqBub/SRMfm9CA==
+X-Received: by 2002:a05:6122:3b08:b0:539:237c:f95d with SMTP id 71dfb90a1353d-5449e5efd11mr5126398e0c.0.1756907264571;
+        Wed, 03 Sep 2025 06:47:44 -0700 (PDT)
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com. [209.85.217.41])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-544912c7cbcsm6947701e0c.2.2025.09.03.06.47.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 06:47:44 -0700 (PDT)
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-528d157a48cso531126137.0;
+        Wed, 03 Sep 2025 06:47:43 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUkS4OGH7YVkYmNcJBKPcVLmsB0e+FBoiDmPNSal5axqUt/MTVNApnSKYRi+/XmkMZPolD5bV3IgGnKSZX0@vger.kernel.org, AJvYcCV7Cf4SJAmNz6ClN7H78bfddiga+fEBphys1KNc10Iy3vrZ1sajfbuYuM2mVuxEy+XN+OIIXuBAyyaQrBFl3qwCpFQ=@vger.kernel.org, AJvYcCVOGYaV+ivCon+Nbl/g5D19VWRvmIxL0xNKa89cXoydWogCgAoTI/Et0B6wYzW3DCSCwnX+A91n4uFk@vger.kernel.org
+X-Received: by 2002:a05:6102:6213:20b0:4fb:fbdb:283c with SMTP id
+ ada2fe7eead31-52aedbfdacemr5177326137.13.1756907263484; Wed, 03 Sep 2025
+ 06:47:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-
-
---=-01LGmJnWEk6ULtBixrzA
+References: <20250821161946.1096033-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250821161946.1096033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250821161946.1096033-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 3 Sep 2025 15:47:31 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWC8LMvihq-t=+YEfaUNJyfUK0NXsr+rCe1W7Os6ymQdA@mail.gmail.com>
+X-Gm-Features: Ac12FXxUHRqb268-w_80icrYBatNkcf2nXjOZMLs8qj1YY0RroAd_gw6UC6VZBw
+Message-ID: <CAMuHMdWC8LMvihq-t=+YEfaUNJyfUK0NXsr+rCe1W7Os6ymQdA@mail.gmail.com>
+Subject: Re: [PATCH 1/6] arm64: dts: renesas: r9a09g077: Add WDT nodes
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi,
+Hi Prabhakar,
 
-Le mercredi 03 septembre 2025 =C3=A0 09:28 +0200, Jonas Karlman a =C3=A9cri=
-t=C2=A0:
-> Hi Nicolas,
->=20
-> On 8/29/2025 10:22 PM, Nicolas Dufresne wrote:
-> > Le dimanche 10 ao=C3=BBt 2025 =C3=A0 21:24 +0000, Jonas Karlman a =C3=
-=A9crit=C2=A0:
-> > > The Rockchip VDEC supports the HEVC codec with the Main and Main10
-> > > Profile up to Level 5.1 High tier: 4096x2304@60 fps.
-> > >=20
-> > > Add the backend for HEVC format to the decoder.
-> > >=20
-> > > Signed-off-by: Alex Bee <knaerzche@gmail.com>
-> > > Signed-off-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > > Signed-off-by: Sebastian Fricke <sebastian.fricke@collabora.com>
-> > > Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
-> >=20
-> > Re-reading myself, most of my comments were off or really "nitty". So l=
-et's move
-> > forward and spare you the v3. Detlev is happy to rebase and work on top=
- of your
-> > series, so let's help everyone getting better RK codec support.
-> >=20
-> > Tested-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> > Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
-> >=20
-> > Just to be transparent, during testing, it was notice that some concurr=
-ent
-> > decoding resulted into failures. I tested Detlev port to structure regi=
-sters,
-> > and it didn't change anything (so probably not a stalled state, or one =
-that we
-> > control). This could easily be a HW issue with older chip. Since you ha=
-ve used
-> > this for years without major issue reported, I happy to move on.
->=20
-> Thanks, I found some minor changes compared to the LibreELEC version
-> that I am running some new tests on, plan to send out a v3 as soon as
-> testing completes later today.
+On Thu, 21 Aug 2025 at 18:19, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Add WDT0-5 nodes to RZ/T2H (R9A09G077) SoC DTSI.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Ok, I will be patient then.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.18.
 
->=20
-> In LibreELEC version we enable some error detection,
->=20
-> 	// sw_cabac_error_e - cabac error enable
-> 	writel(0xfdfffffd, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
-> 	// slice end error enable =3D BIT(28)
-> 	// frame end error enable =3D BIT(29)
-> 	writel(0x30000000, rkvdec->regs + RKVDEC_REG_H264_ERR_E);
->=20
-> and in this series it was fully disabled to closer match H264/VP9:
->=20
-> 	writel(0, rkvdec->regs + RKVDEC_REG_STRMD_ERR_EN);
-> 	writel(0, rkvdec->regs + RKVDEC_REG_H264_ERR_E);
+Gr{oetje,eeting}s,
 
-In error detection mode, the IP will emit an IRQ on the first error. It doe=
-s not
-self reset, this is just to let you read the macroblock index that wasn't
-decoded properly. The problem is that we don't know how to resume it. That =
-lead
-to HW lockup and timeout on packet lost during RTP streaming tests. It is l=
-ikely
-best to keep this off. It is meant to be used to do concealment of lost
-macroblock in software.
+                        Geert
 
->=20
-> There is also an extra memset(0, ...) in rkvdec_hevc_start:
->=20
-> 	memset(priv_tbl, 0, sizeof(*priv_tbl));
->=20
-> This should not really be needed and was removed in this series.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Ack.
-
->=20
-> Still unclear if any of these will result in a changed behavior. Enable
-> of cabac/slice end/frame end error could possible activate some more
-> states when block issue a self-reset, but I am only guessing.
->=20
-> One thing to note for the flaky tests is that when they fail, they
-> typically just end up with a different consistent checksum. I have not
-> done any visual inspection of those frames, but will extract each frame
-> and compare them both bitwise and visually.
-
-Thanks, looking forward v3. Please note the fh changes, which I needed to
-manually apply here.
-
-Nicolas
-
->=20
-> Regards,
-> Jonas
->=20
-> >=20
-> > regards,
-> > Nicolas
-> >=20
-> > > ---
-> > > Changes in v2:
-> > > - Use new_value in transpose_and_flatten_matrices()
-> > > - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
-> > > - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
-> > > ---
-> > > =C2=A0.../media/platform/rockchip/rkvdec/Makefile=C2=A0=C2=A0 |=C2=A0=
-=C2=A0=C2=A0 2 +-
-> > > =C2=A0.../rockchip/rkvdec/rkvdec-hevc-data.c=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 | 1848 +++++++++++++++++
-> > > =C2=A0.../platform/rockchip/rkvdec/rkvdec-hevc.c=C2=A0=C2=A0=C2=A0 |=
-=C2=A0 817 ++++++++
-> > > =C2=A0.../platform/rockchip/rkvdec/rkvdec-regs.h=C2=A0=C2=A0=C2=A0 |=
-=C2=A0=C2=A0=C2=A0 2 +
-> > > =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.c=C2=A0=C2=A0 |=C2=A0=
-=C2=A0 76 +
-> > > =C2=A0.../media/platform/rockchip/rkvdec/rkvdec.h=C2=A0=C2=A0 |=C2=A0=
-=C2=A0=C2=A0 1 +
-> > > =C2=A06 files changed, 2745 insertions(+), 1 deletion(-)
-> > > =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvde=
-c-hevc-data.c
-> > > =C2=A0create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvde=
-c-hevc.c
->=20
-> [snip]
-
---=-01LGmJnWEk6ULtBixrzA
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaLhGVgAKCRDZQZRRKWBy
-9FCIAQCI6CQzFHJa2ahw9v9vkMrM8rY/vHwc0Y9bQvtjN0ajggD+IDtToz6FywF5
-f3aZ8Z6hHZTjgca9WG/TO6CEF2n7swQ=
-=kQsS
------END PGP SIGNATURE-----
-
---=-01LGmJnWEk6ULtBixrzA--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
