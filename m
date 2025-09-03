@@ -1,194 +1,169 @@
-Return-Path: <devicetree+bounces-212245-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212246-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66E87B4226E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:51:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D51F5B4228B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:56:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 206D93AB9CC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:51:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6111C3BCF1D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:56:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71FA130DD30;
-	Wed,  3 Sep 2025 13:51:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dpd8hw/M"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1950E2F4A14;
+	Wed,  3 Sep 2025 13:56:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00C8E2FDC57
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 13:51:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E75581459F7
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 13:56:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756907489; cv=none; b=I6mNvBMO1DkDUE2aOuksACNbCI10Q9634vS/QtWCatrVx4tMkrt2gQf0J5KYQv2Zb+x+OLbip1yozdh69322mWJM/o9E0Qba66yiHhbxw2Af1L5fbxXTpKMuQTc8xLdL4AeiZQ6dEHzhmiQe+DAqA5V8OIDRZ7F4RdresHxNn68=
+	t=1756907772; cv=none; b=AuNLUgAqZ8lnKzMWcxwVFBKYXc6E39GFnRRTH+hLF/gm5w/NuDxfWyB0cSUFrb38z16v5MfQD8wFJ004t+Q7/R5tMfV0pD2/4mV8+HBCyzMtJ4xUBLYrLL+OqghGkrI6z9+bnnGCQBIupzE7HQLdz4nzapO6vTQi8hMtskN8+oI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756907489; c=relaxed/simple;
-	bh=n8Ihtdnse3VN/XbE/VuoI9w327s4Ffs6XQa/1KWmmzs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=Q7dt4AI/n18sOSItMvmsaTBkmBItryjXo8+a8eWulnuJmRzRmdalhPIiGHy/ZdktHwTxuKPUmHC/0CQ3KIBAqGwUbqGS04wI0rr8uEc1mHNHxoRsd240zSL43vCwZ5t+QZZw7YPUYsJ3t0ejyNXCYZ/+AXtneNY8uG2kITqwYjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dpd8hw/M; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250903135124epoutp03e2865457d9343e7e5afe99d7ec8e16c7~hygyI9Oi91584815848epoutp03c
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 13:51:24 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250903135124epoutp03e2865457d9343e7e5afe99d7ec8e16c7~hygyI9Oi91584815848epoutp03c
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756907484;
-	bh=dBdIdnKI53kzwYZV6kySizOPUkzoS2PQD2DaHLLIqVs=;
-	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
-	b=dpd8hw/MupKTr0qtPO77S41WAB8tiH6YV/1JhHJBPEo3/4hwDwHHPHeAglXSEuURo
-	 yrsKiwkV5fuDTfYvShVDeCmIhmZwr3zd5ozvD/HAnDR2qhXqhLQzKTGYAWG8J8xYnR
-	 AAPqLNsh5LFGngoS6smBXAW7X5xHYz4x7z5ER3yM=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
-	epcas5p1.samsung.com (KnoxPortal) with ESMTPS id
-	20250903135124epcas5p18fa26f5f659e6fee887eb66d26da80c4~hygxjFWjW3191731917epcas5p1g;
-	Wed,  3 Sep 2025 13:51:24 +0000 (GMT)
-Received: from epcas5p2.samsung.com (unknown [182.195.38.94]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cH3tM1dWgz2SSKY; Wed,  3 Sep
-	2025 13:51:23 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250903135122epcas5p33bc7da2841b332773bceb3535f368af2~hygwEAZGf2373223732epcas5p3U;
-	Wed,  3 Sep 2025 13:51:22 +0000 (GMT)
-Received: from INBRO002520 (unknown [107.122.1.191]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250903135121epsmtip12fd955463311b1f218dd2bddb5a961ad~hyguqdbwg1911719117epsmtip1h;
-	Wed,  3 Sep 2025 13:51:20 +0000 (GMT)
-From: "Devang Tailor" <dev.tailor@samsung.com>
-To: "'Alexandre Belloni'" <alexandre.belloni@bootlin.com>
-Cc: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<alim.akhtar@samsung.com>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-	<faraz.ata@samsung.com>
-In-Reply-To: <20250903122342a2996825@mail.local>
-Subject: RE: [PATCH v2 0/3] On-chip RTC support for ExynosAutov9
-Date: Wed, 3 Sep 2025 19:21:19 +0530
-Message-ID: <001a01dc1cd9$d52c1830$7f844890$@samsung.com>
+	s=arc-20240116; t=1756907772; c=relaxed/simple;
+	bh=fTo/pKhkHizPHqoUnL2WzHA12NcPmmB+hWHggZRRSy0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=AHsnI15E8qk69O8julncpPFQZrUfn+qdPvIV/tn5x9e6CsvSco8hu8bEduVF2DXRmvyxrk3mSl1ccCRwQs2Rqp/mTjbWm/KinfazX4jWAL8Sk+tpTBWcVLCszVVUfpnhdeXzy4AKu19Qi0wR9nWQHm1XA8Uv4Pi3CwGQ3agaUFA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1utnxx-0007v9-36; Wed, 03 Sep 2025 15:56:01 +0200
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1utnxw-003ZMP-1v;
+	Wed, 03 Sep 2025 15:56:00 +0200
+Received: from localhost ([::1] helo=dude02.red.stw.pengutronix.de)
+	by dude02.red.stw.pengutronix.de with esmtp (Exim 4.98.2)
+	(envelope-from <s.hauer@pengutronix.de>)
+	id 1utnxw-000000034Tm-25PX;
+	Wed, 03 Sep 2025 15:56:00 +0200
+From: Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH v6 0/2] clk: add support for TI CDCE6214
+Date: Wed, 03 Sep 2025 15:55:44 +0200
+Message-Id: <20250903-clk-cdce6214-v6-0-b2cc0a6f282b@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ8w0UJjWiHDR7+9bjoByRdFpd+nAMc6yo9AXLNbhMBpryuBbMOciLw
-Content-Language: en-in
-X-CMS-MailID: 20250903135122epcas5p33bc7da2841b332773bceb3535f368af2
-X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250710082533epcas5p111be26bea2ccc08718eebcb12929bbbf
-References: <CGME20250710082533epcas5p111be26bea2ccc08718eebcb12929bbbf@epcas5p1.samsung.com>
-	<20250710083434.1821671-1-dev.tailor@samsung.com>
-	<000001dc1cc7$6bfee9d0$43fcbd70$@samsung.com>
-	<20250903122342a2996825@mail.local>
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOBIuGgC/3XQTW7CMBCG4asgrzEaj//irnqPikVsj8EqSpBDI
+ xDK3euwaRTS5TvSPIvvyQYqmQb2sXuyQmMect/VMPsdC+e2OxHPsTZDQA0KGh4u3zzEQAaF4hC
+ sAiVjQGNZfbkWSvn+4r6Otc95uPXl8dJHMV//gUbBgfuoyILD1on0eaXu9HMrfZfvh0hs1kZcC
+ m4lYBUUeNTeIlLwm4JcCAJWgqxCtDIkl5KMDWwKaiHItVAX4S4JTVagaYPZFPSfYMR6Bz0LTja
+ +oQjeqTdhmqZfCdctOLUBAAA=
+X-Change-ID: 20250408-clk-cdce6214-0c74043dc267
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, kernel@pengutronix.de, 
+ Linus Walleij <linus.walleij@linaro.org>, linux-gpio@vger.kernel.org, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ Sascha Hauer <s.hauer@pengutronix.de>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756907760; l=3397;
+ i=s.hauer@pengutronix.de; s=20230412; h=from:subject:message-id;
+ bh=fTo/pKhkHizPHqoUnL2WzHA12NcPmmB+hWHggZRRSy0=;
+ b=hL8uJrVr5lZfgRtcIAmFlgnVj2sE7TkxBrrqZYO9g9v53iUUxY4ipRd2Sye3dtS+A44xpoeoM
+ OPigN2nOBM3DM4J3jSoHVd35BWChit5Cwlc2XQhVbn8QqgAGGN2LK7/
+X-Developer-Key: i=s.hauer@pengutronix.de; a=ed25519;
+ pk=4kuc9ocmECiBJKWxYgqyhtZOHj5AWi7+d0n/UjhkwTg=
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: s.hauer@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
+The CDCE6214 is a Ultra-Low Power Clock Generator With One PLL, Four
+Differential Outputs, Two Inputs, and Internal EEPROM.
 
-Hi Alexandre,
+This series adds a common clk framework driver for this chip along with
+the dt-bindings document.
 
+The most controversial part of this series was the binding I introduced
+for configuring the pins of the CDCE6214. With v6 I have now integrated
+a pinctrl driver into the driver in the hope that this silences the
+discussion around the pins.
 
-> -----Original Message-----
-> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Sent: 03 September 2025 17:54
-> To: Devang Tailor <dev.tailor@samsung.com>
-> Cc: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> alim.akhtar@samsung.com; devicetree@vger.kernel.org; linux-arm-
-> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
-> kernel@vger.kernel.org; linux-rtc@vger.kernel.org; faraz.ata@samsung.com
-> Subject: Re: [PATCH v2 0/3] On-chip RTC support for ExynosAutov9
-> 
-> On 03/09/2025 17:09:32+0530, Devang Tailor wrote:
-> >
-> > Hi,
-> >
-> >
-> > > -----Original Message-----
-> > > From: Devang Tailor <dev.tailor@samsung.com>
-> > > Sent: 10 July 2025 14:05
-> > > To: robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > > alim.akhtar@samsung.com; alexandre.belloni@bootlin.com;
-> > > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > > linux- samsung-soc@vger.kernel.org; linux-kernel@vger.kernel.org;
-> > > linux- rtc@vger.kernel.org; faraz.ata@samsung.com
-> > > Cc: Devang Tailor <dev.tailor@samsung.com>
-> > > Subject: [PATCH v2 0/3] On-chip RTC support for ExynosAutov9
-> > >
-> > > Enable on-chip RTC support. The on-chip RTC of this SoC is similar
-> > > to the previous versions of Samsung SoC. So re-use the existing RTC
-> > > driver with applicable call-backs for initialization and IRQ handling.
-> > > Add a separate call-back for disabling RTC since existing '.disable'
-> > > call-backs updates additional bit not valid for RTC of ExynosAutov9.
-> > >
-> > > Setting and getting hardware clock has been tested using 'hwclock'
-> > > and 'date' utilities.
-> > >
-> > > Alarm interrupt has been checked with incrementing interrupt count
-> > > via "cat /proc/interrupts | grep rtc" for 10sec wakeup time via
-> > > "echo +10 > /sys/class/rtc/rtc0/wakealarm"
-> > >
-> > > changelog
-> > > ---
-> > > Changes in v2:
-> > > - Fixed the review comment of v1 for mis-aligmnent & asymmetry bit
-> logic.
-> > > - link for v1 :
-> > > https://lore.kernel.org/linux-rtc/20250702052426.2404256-1-
-> > > dev.tailor@samsung.com/
-> > >
-> >
-> > Reminder!
-> > Can you please help to identify if anything is pending in this patch
-series ? I
-> see all three patches are reviewed.
-> >
-> 
-> You have actions after those reviews:
-> 
->
-https://lore.kernel.org/all/20250711-shapeless-adorable-lobster-d2efbf@krzk-
-> bin/
-> 
+Sascha
 
-Thanks for the pointer. I had given the explanation for that,
-https://lore.kernel.org/all/188001dbf249$831afd00$8950f700$@samsung.com/
-after which I didn't get any feedback.
+Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+---
+Changes in v6:
+- use pinctrl subsystem to configure pins
+- Link to v5: https://lore.kernel.org/r/20250618-clk-cdce6214-v5-0-9938b8ed0b94@pengutronix.de
 
-As per my understanding I have addressed the review comment given in V1 for
-[PATCH 2/3] (without ignoring any).
-So I am not getting what I have missed. Would you help to point out what was
-left ?
+Changes in v5:
+- Reword commit message for binding patch (Krzysztof)
+- Make clock binding yaml simpler (Krzysztof)
+- add link to datasheet to driver code (Stephen)
+- Drop inclusion of linux/clk.h (Stephen)
+- Add missing #include <linux/bitfield.h> (Kernel test robot)
+- simplify cdce6214_clk_out0_get_parent() (Stephen)
+- Use divider_get_val() where appropriate (Stephen)
+- Add Rxx defines for registers (Stephen)
+- Add define for magic value 24 (Stephen)
+- introduce and use cdce6214_clk_psx_mask() (Stephen)
+- Use clamp() instead of open code (Stephen)
+- declare const arrays const (Stephen)
+- more use of dev_err_probe() (Stephen)
+- use determine_rate() instead of round_rate (Stephen)
+- split out pin configuration to separate patches
+- Link to v4: https://lore.kernel.org/r/20250430-clk-cdce6214-v4-0-9f15e7126ac6@pengutronix.de
 
-> > >
-> > > Devang Tailor (3):
-> > >   dt-bindings: rtc: s3c-rtc: add compatible for exynosautov9
-> > >   rtc: s3c: support for exynosautov9 on-chip RTC
-> > >   arm64: dts: exynosautov9: add RTC DT node
-> > >
-> > >  .../devicetree/bindings/rtc/s3c-rtc.yaml       |  1 +
-> > >  .../boot/dts/exynos/exynosautov9-sadk.dts      |  4 ++++
-> > >  arch/arm64/boot/dts/exynos/exynosautov9.dtsi   | 10 ++++++++++
-> > >  drivers/rtc/rtc-s3c.c                          | 18
-++++++++++++++++++
-> > >  4 files changed, 33 insertions(+)
-> > >
-> > >
-> > > base-commit: 58ba80c4740212c29a1cf9b48f588e60a7612209
-> > > --
-> > > 2.34.1
-> >
-> >
-> 
-> --
-> Alexandre Belloni, co-owner and COO, Bootlin Embedded Linux and Kernel
-> engineering https://protect2.fireeye.com/v1/url?k=62b10b19-03cce365-
-> 62b08056-74fe485cc33c-bc602ba9f8c455fd&q=1&e=14890047-79c7-46fe-
-> 85a0-48fc7c9b3d91&u=https%3A%2F%2Fbootlin.com%2F
+Changes in v4:
+- add missing '>' modifier in include/dt-bindings/clock/ti,cdce6214.h
+- fix clocks maxItems should be 2
+- add missing license in include/dt-bindings/clock/ti,cdce6214.h
+- Fix checkpatch issues
+- Link to v3: https://lore.kernel.org/r/20250410-clk-cdce6214-v3-0-d73cf9ff3d80@pengutronix.de
+
+Changes in v3:
+- Use string properties instead of int for enums
+- Use units from property-units in dtschema
+- Link to v2: https://lore.kernel.org/r/20250409-clk-cdce6214-v2-0-40b25b722ecb@pengutronix.de
+
+Changes in v2:
+- Use consistent quotes in binding document
+- make clock-names an enum to make each clock fully optional
+- drop '|' in binding description where not needed
+- encode clock input mode into integer
+- encode clock output mode into integer
+- do not use defines for reg properties
+- support setting load capacity for the oscillator via device tree
+- support setting Bias current for the oscillator via device tree
+- support setting polarities of CMOS outputs via device tree
+- fix compatible string in driver
+- remove unused struct cdce6214_config
+- Link to v1: https://lore.kernel.org/r/20250408-clk-cdce6214-v1-0-bd4e7092a91f@pengutronix.de
+
+---
+Sascha Hauer (2):
+      dt-bindings: clock: add TI CDCE6214 binding
+      clk: add TI CDCE6214 clock driver
+
+ .../devicetree/bindings/clock/ti,cdce6214.yaml     |  198 +++
+ drivers/clk/Kconfig                                |    7 +
+ drivers/clk/Makefile                               |    1 +
+ drivers/clk/clk-cdce6214.c                         | 1620 ++++++++++++++++++++
+ include/dt-bindings/clock/ti,cdce6214.h            |   24 +
+ 5 files changed, 1850 insertions(+)
+---
+base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
+change-id: 20250408-clk-cdce6214-0c74043dc267
+
+Best regards,
+-- 
+Sascha Hauer <s.hauer@pengutronix.de>
 
 
