@@ -1,88 +1,52 @@
-Return-Path: <devicetree+bounces-212305-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212306-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6356B424C7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:16:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B9EB424F6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:21:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B6A41885514
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:16:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1802E17432A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:19:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4782340D9A;
-	Wed,  3 Sep 2025 15:14:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 870382580F0;
+	Wed,  3 Sep 2025 15:16:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="F2ny0UHt"
+	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="ErY3l/KV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA1BE340D87
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F14E63CF;
+	Wed,  3 Sep 2025 15:16:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756912477; cv=none; b=J/0jr2bng4fRWWYzY9uMV9teV3xSt9uM4u875DUStcuIxaZs0NTWGSlOGNZc95lR8pwPhi1noh2AuNsrn3ctYkg1Syr5RNTOImrK2WCzED65g6FYoNo1ORfHO/6cBpsvHDZlgtXH0vDz3V4SA0snI5wwmIFNz0SKzJHkitfn7u0=
+	t=1756912611; cv=none; b=kbczkalBrbmuZ6URa6JsI17icbe1dEzR8cdxuWcvSouyO9NQMMMMJo8KkwSr2ho333H6YW7788ntw++XqcOzCM8urX8yFRHyyvw7q8mio3hE36aUBTjyevenAxoQLrzh9PtNbk2P5eUz3K6J0Tnf2jrT5NB3WxZAA5bTgisAmjI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756912477; c=relaxed/simple;
-	bh=AmE3vN+qmvFJO55R8itzAjaA4PSPcgcddXsqYpwHxSo=;
+	s=arc-20240116; t=1756912611; c=relaxed/simple;
+	bh=ttg+OChwUbkpoVDWCw3xGKa0n3d+t7aSDC55RG2VqSo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WmUHdn7Stw/NZCjXrnU1dWNaTwIr6mxZvib97/hemSe7Yq3OgqLz5JiZNmdAs6r/kvPeMgh3ZBQLnU9uVJNEjtXGp6nI5ZHkDQSQQC7qRVcgzxpsXKVLVN+U3F5/KiWZwo7N8zZL4cUuQoNaLnof/Xd7AgTR5mjoTW7CzY3Ugyw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=F2ny0UHt; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DwpvQ029576
-	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:14:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	h4UktVIdm2c0x5SK3djoEMrvw4KVq2MmQq9SrdZVv5U=; b=F2ny0UHtZ4m8BKGP
-	Xig1qKmRBm55LMfbgSdQU/9ufvvoqSL0dGVnZ+R69YKJsqnXPEr8wIFa17M/jUsT
-	JYAcCik2Pqry6a8U7R3E+91GsDM1zuDt+6Z+iYeGVq60+1L8gAddxIrU5nMjMgf1
-	KXiLc9MWmawjJFHpSqVdfJdYBEs9Bqzp6DL5Zwcmot388PPS6+6b2TZCG/yacbix
-	K0Ke21bWkicUeZwFCzW5KusAfkdrrJUnXe/mjCPBDGB7DgMPGrVQD+LUcMiaU3/Y
-	S4jdzdfMIr8MLQrCakVOYxvlSJmP9tafv0sOjPte4oPLP33bzWIzkrH7FQj9UsWx
-	2fyPsQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnpca7j-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:14:34 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b331150323so71761cf.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:14:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756912474; x=1757517274;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h4UktVIdm2c0x5SK3djoEMrvw4KVq2MmQq9SrdZVv5U=;
-        b=Mr1Yl72J/RbI57SCUMfYGlhYV15WtSvjMUjlhHp9zHyKsBrHRjGU2sjw4mqhJXDDKq
-         ho4zxLGAJ/uYV7o3sIMRPmIjyIjS7mNPYjMG18YNw+ZBtfpHnu01nQMIV5zPodmU8rXD
-         gUS6hF3YwEx4FFvmNdIL2San4nh69uEoqnl8IST+zYvDWdG3WA/qCn7EuLuxm5p2s+No
-         1U8AGz6MhYjsepDoVe+ZodcSSJyNzvd341BGdsTOlNFRbEQob+wMw202Gflxbpmu01tL
-         2LSolJIvj6r2tIk8Tg6sdY2ZGCd0jPDf+EJd/3hoOPe6poHjPTgQ0XcduTJO6WAIjt5l
-         vW8A==
-X-Forwarded-Encrypted: i=1; AJvYcCV4Hbjoml0ejr01m3/zNsXniwgS4qjLbJno7z92FlFVK3f7oepZp9py5C7Dlg2MdQV7kxkz2C4Hv4q+@vger.kernel.org
-X-Gm-Message-State: AOJu0YyQ3+ArYzhk9jqYSy2F/BMr3NzG7EzALgu/q28Tq5eBzb10oj02
-	MB6rc1G6vAS7Hgcd7KzqAAVl7lKZdJquDL3Y7BxA79G8/EHRpW2MfKdkfRiDtEPL4FyAh2g0Wxe
-	/GRHIdEqAhAcVNi5kpA/DNeOLzHjzDbwmftyO87UGmftw24+U7u+O/cDUQr8ymJ5l
-X-Gm-Gg: ASbGncvwBXzBBy96qJVCYdmjbVNgy0qhpHOICh/9Zy59opUJiqGYDtGMZ3s29hO8fzA
-	0Gp+OaMpsYI2Lp97m8TJINerTc6gOr75PxK209cA7CB3tyTKrkBZLWKfoBsb55VU6iJDYiGQOxC
-	ZqE5MS2j2KcU9sL/3jmoVHJk2NWapc2uRasN25PVioNOh4OJZxrOazqzso380NIbpSarHLN7EPn
-	OhpbwHZnW8DT+MEoCcqAWlklGRH1VR6ESxiEcF3Jn50zQrR6onil0Tvth140vzcrNniiVH0geDC
-	AeX1KO/2TAo1K6WIDS9nvb47+Y2motVaXNiHBNKnUnCFAtbGIrUzvMVzwIjwHXda0Uqzb5JkboN
-	B22rHHVeuN73yH/exGFVIBw==
-X-Received: by 2002:a05:622a:1a04:b0:4b4:95d0:ffd3 with SMTP id d75a77b69052e-4b495d11860mr13068571cf.1.1756912473875;
-        Wed, 03 Sep 2025 08:14:33 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH3ugZbdxH7Mywin5NR6XHzSclz/+UkkqzuW+1UkBm9a3K2qRCxgaknMn8ihcTkzrrBdvAapg==
-X-Received: by 2002:a05:622a:1a04:b0:4b4:95d0:ffd3 with SMTP id d75a77b69052e-4b495d11860mr13068051cf.1.1756912473181;
-        Wed, 03 Sep 2025 08:14:33 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b040a410817sm1034669266b.101.2025.09.03.08.14.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 08:14:32 -0700 (PDT)
-Message-ID: <c3de911c-e80a-429d-8a5c-c693546d4abf@oss.qualcomm.com>
-Date: Wed, 3 Sep 2025 17:14:29 +0200
+	 In-Reply-To:Content-Type; b=fPUO4dspRjA6SnZ1vMSE2qOdaDQWxKeLKvvUruLq6NHPfUV5V8uSpbf9KrNK4kO5LDSmmWSInjPl/AnJubrKPTAASL2vQA/Wysxrsjp2x4SGlz/ltqcCmdPZOKes5Cp//d9a5ErlVJLxq/5W1OR12ETpqMKuCaDclhSSgYzB1eA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=ErY3l/KV; arc=none smtp.client-ip=168.119.41.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
+	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
+	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
+	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=a3G9xHdW/VxHSePvTIzerhYn95SpSnVWLe7bCZKfh6U=; b=ErY3l/KVYqsCbtBZ+lyIGVK6W5
+	WIbVl4M+Tc128AqaMRvcelzBJaKWXq8+iGnxTyjvVOzsNAU7D9LLM61gxtDs5DVXK9RVlMOIQ75vW
+	duwF15DALAsLbMOX3tYlNgNiFfAsR09Jr49oSG+WNy284Vx7xELoC4QkQ5ZlYs1bUmSk=;
+Received: from 194-208-208-245.tele.net ([194.208.208.245]:61793 helo=[192.168.0.207])
+	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
+	(Exim 4.93)
+	(envelope-from <matthias.fend@emfend.at>)
+	id 1utpDx-005LvW-4e; Wed, 03 Sep 2025 17:16:38 +0200
+Message-ID: <8417d761-114b-4e41-8a4a-9eac2600637f@emfend.at>
+Date: Wed, 3 Sep 2025 17:16:36 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,112 +54,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Akhil P Oommen <akhilpo@oss.qualcomm.com>, Sean Paul <sean@poorly.run>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Connor Abbott <cwabbott0@gmail.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov
- <lumag@kernel.org>,
-        Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
-References: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
- <20250822-a663-gpu-support-v4-3-97d26bb2144e@oss.qualcomm.com>
- <f11b778d-eba1-4712-81c7-b83f2cb38b46@oss.qualcomm.com>
- <exkrgx6rdotfrrsnklsd7zk4ydehsk5vaoevibpqisyq2dwbd4@sa4kgnuexlna>
- <f169be5a-faa5-4824-861e-27bd2083b9cf@oss.qualcomm.com>
- <t5pxum74q3fwf6wgcbaeaginjvtjfn357pkfswvafsggtmvxfv@jl5qjfhpmmow>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <t5pxum74q3fwf6wgcbaeaginjvtjfn357pkfswvafsggtmvxfv@jl5qjfhpmmow>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v2 0/2] media: add Himax HM1246 image sensor
+To: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, bsp-development.geo@leica-geosystems.com,
+ Sakari Ailus <sakari.ailus@linux.intel.com>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
+Content-Language: de-DE
+From: Matthias Fend <matthias.fend@emfend.at>
+In-Reply-To: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: I6vmqqBf1YO0ox2PNPgbTW6L7L2XcJSo
-X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b85b5a cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=KKAkSRfTAAAA:8 a=dNECfGFYMPGvbPEIsa0A:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: I6vmqqBf1YO0ox2PNPgbTW6L7L2XcJSo
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX8G7pY/rIQgZl
- 4qdOhiYIWysAE8AgsKJr8Xygl0w+/cWFPTfjvBThC+qzisbEyeQZ7KTDCPa2AE3CgTQvISVlj4h
- 9xeZ4PB+MYoDkgWCq7r+RpowNYleGMUmPLuPW+jRt/+6cITNXGDn+/Vx7tlblADHVrY3XWA9GFm
- 5K6r+EyNmi9nHsWRv9NzUkalw/TKLyOCW0XfofmdM0HHtIM1jqSPOdelIhPivONeBgBlxMx4Rkw
- 4ucTbD5HhSVGZ5nOIkuCWsDD67cxt8HdHE3WlWKbr3M5bc7An767Z8so7FotJ7eu5DIXXAKq0zQ
- tE7xHpNrlW3yCH/VGH2d0WhxI+hmpwxe2zij1tOVZxIOAiX8Peebr+9aD32SBzVa7VeHjic7VOI
- K6P0QYN6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300001
+X-Spam-Score: 
+X-Spam-Bar: 
+X-Spam-Report: 
 
-On 9/3/25 4:00 PM, Dmitry Baryshkov wrote:
-> On Wed, Sep 03, 2025 at 03:36:34PM +0200, Konrad Dybcio wrote:
->> On 9/3/25 2:39 PM, Dmitry Baryshkov wrote:
->>> On Wed, Sep 03, 2025 at 02:26:30PM +0200, Konrad Dybcio wrote:
->>>> On 8/21/25 8:55 PM, Akhil P Oommen wrote:
->>>>> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
->>>>>
->>>>> Add gpu and gmu nodes for sa8775p chipset. As of now all
->>>>> SKUs have the same GPU fmax, so there is no requirement of
->>>>> speed bin support.
->>>>>
->>>>> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
->>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
->>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>> ---
->>>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 116 +++++++++++++++++++++++++++++++++++
->>>>>  1 file changed, 116 insertions(+)
->>>>>
->>>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
->>>>> index 8ceb59742a9fc6562b2c38731ddabe3a549f7f35..8eac8d4719db9230105ad93ac22287850b6b007c 100644
->>>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
->>>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
->>>>> @@ -1097,6 +1097,18 @@ ipcc: mailbox@408000 {
->>>>>  			#mbox-cells = <2>;
->>>>>  		};
->>>>>  
->>>>> +		qfprom: efuse@784000 {
->>>>> +			compatible = "qcom,sa8775p-qfprom", "qcom,qfprom";
->>>>> +			reg = <0x0 0x00784000 0x0 0x2410>;
->>>>
->>>> len = 0x3000
->>>>
->>>> [...]
->>>>
->>>>> +		gmu: gmu@3d6a000 {
->>>>> +			compatible = "qcom,adreno-gmu-663.0", "qcom,adreno-gmu";
->>>>> +			reg = <0x0 0x03d6a000 0x0 0x34000>,
->>>>
->>>> This bleeds into GPU_CC, len should be 0x26000
->>>
->>> gpucc is in the middle of GMU, see other platforms.
->>
->> This is not the case here
+Hi all,
+
+since I sent the first version of this patch series quite some time ago 
+and, apart from the bindings there has been no feedback, I wanted to 
+check whether there might be any fundamental concerns (such as the 
+sensor being somewhat older)?
+
+If there are no general objections to this driver, I would be very 
+grateful for any comments or suggestions for improvement.
+
+Thanks
+  ~Matthias
+
+Added Sakari and Laurent to CC.
+
+Am 26.05.2025 um 08:59 schrieb Matthias Fend:
+> Hello,
 > 
-> Why? I think GPU CC is a part of the GMU by design: GMU accesses GPU CC
-> registers directly from the firmware.
+> this series adds support for the Himax HM1246 image sensor.
+> The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
+> array size of 1296 x 976. The datasheet can b
+> Currently, only the native RAW mode is supported. Other modes and the
+> internal image signal processing pipeline are not currently supported.
+> The data sheet is available on the manufacturer's website [1].
+> Tested on i.MX8MP hardware. A Toshiba TC358746 bridge was used to convert
+> the sensor's parallel video output into MIPI signals for the i.MX8MP.
+> 
+> Best regards
+>   ~Matthias
+>   
+> [1] https://www.himax.com.tw/wp-content/uploads/2024/03/HM1246-AWD_DS_v01.pdf
+> 
+> v4l2-compliance 1.28.1, 64 bits, 64-bit time_t
+> 
+> Compliance test for device /dev/v4l-subdev4:
+> 
+> Driver Info:
+>          Driver version   : 6.12.0
+>          Capabilities     : 0x00000000
+>          Client Capabilities: 0x0000000000000003
+> streams interval-uses-which
+> Required ioctls:
+>          test VIDIOC_SUDBEV_QUERYCAP: OK
+>          test invalid ioctls: OK
+> 
+> Allow for multiple opens:
+>          test second /dev/v4l-subdev4 open: OK
+>          test VIDIOC_SUBDEV_QUERYCAP: OK
+>          test for unlimited opens: OK
+> 
+> Debug ioctls:
+>          test VIDIOC_LOG_STATUS: OK (Not Supported)
+> 
+> Input ioctls:
+>          test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+>          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>          test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+>          test VIDIOC_ENUMAUDIO: OK (Not Supported)
+>          test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+>          test VIDIOC_G/S_AUDIO: OK (Not Supported)
+>          Inputs: 0 Audio Inputs: 0 Tuners: 0
+> 
+> Output ioctls:
+>          test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+>          test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+>          test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+>          test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+>          test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+>          Outputs: 0 Audio Outputs: 0 Modulators: 0
+> 
+> Input/Output configuration ioctls:
+>          test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+>          test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+>          test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+>          test VIDIOC_G/S_EDID: OK (Not Supported)
+> 
+> Control ioctls:
+>          test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK
+>          test VIDIOC_QUERYCTRL: OK
+>          test VIDIOC_G/S_CTRL: OK
+>          test VIDIOC_G/S/TRY_EXT_CTRLS: OK
+>          test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK
+>          test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+>          Standard Controls: 15 Private Controls: 0
+> 
+> Format ioctls:
+>          test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+>          test VIDIOC_G/S_PARM: OK (Not Supported)
+>          test VIDIOC_G_FBUF: OK (Not Supported)
+>          test VIDIOC_G_FMT: OK (Not Supported)
+>          test VIDIOC_TRY_FMT: OK (Not Supported)
+>          test VIDIOC_S_FMT: OK (Not Supported)
+>          test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+>          test Cropping: OK (Not Supported)
+>          test Composing: OK (Not Supported)
+>          test Scaling: OK (Not Supported)
+> 
+> Codec ioctls:
+>          test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>          test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>          test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+> 
+> Buffer ioctls:
+>          test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+>          test CREATE_BUFS maximum buffers: OK
+>          test VIDIOC_REMOVE_BUFS: OK
+>          test VIDIOC_EXPBUF: OK (Not Supported)
+>          test Requests: OK (Not Supported)
+> 
+> Total for device /dev/v4l-subdev4: 45, Succeeded: 45, Failed: 0, Warnings: 0
+> 
+> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
+> ---
+> Changes in v2:
+> - Use macros for 64-bit division
+> - Avoid compiler warnings about potentially uninitialized variables
+> - Fix two uses of dev_err_probe
+> - Link to v1: https://lore.kernel.org/r/20250403-hm1246-v1-0-30990d71bc42@emfend.at
+> 
+> ---
+> Matthias Fend (2):
+>        media: dt-bindings: i2c: add Himax HM1246 image sensor
+>        media: i2c: add Himax HM1246 image sensor driver
+> 
+>   .../bindings/media/i2c/himax,hm1246.yaml           |  111 ++
+>   MAINTAINERS                                        |    8 +
+>   drivers/media/i2c/Kconfig                          |    9 +
+>   drivers/media/i2c/Makefile                         |    1 +
+>   drivers/media/i2c/hm1246.c                         | 1421 ++++++++++++++++++++
+>   5 files changed, 1550 insertions(+)
+> ---
+> base-commit: 0ff41df1cb268fc69e703a08a57ee14ae967d0ca
+> change-id: 20250403-hm1246-96b0cdab773c
+> 
+> Best regards,
 
-Correct, however this is only a similarly sounding argument - the DT
-describes the hardware from the main Arm cluster POV. The GMU Cortex-M
-core has its own address map etc.
-
-Konrad
 
