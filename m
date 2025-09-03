@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-212472-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212473-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8B4AB42DB1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:52:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F4A1B42DB5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:55:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5E0D03BBD16
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:51:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 21346567ACC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:55:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD3D72FC01C;
-	Wed,  3 Sep 2025 23:51:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BFDC42F3615;
+	Wed,  3 Sep 2025 23:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="djuAXn5V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWuz7rO9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CA452ECD1C;
-	Wed,  3 Sep 2025 23:51:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C27E2D0621;
+	Wed,  3 Sep 2025 23:55:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756943501; cv=none; b=tjXgkKD5E2ilhYfSx1RrJRomzkcdIw8YCJvUkqpRyFXYvXynD1JPbDV3ZLCF+c+gKElrNyl96B9fGvLxv1zCbmF3+MsiKqzuSBlSspsjUaVkSSLEtwurZ2WSULqFiWDaNbb1jzwIn+EuCEyMWItyndiLt1RbLeKZ1/d3Dey+8xM=
+	t=1756943717; cv=none; b=rflFXwX4mhnXFWfbWNJEoKxtH8BteWifzSt9nJGkcnj+S6/hViKPM49YrDNW7VxS4nfsES3xCzWpxJoWJQ3Tpv4G2PGiSnt4AGZAqELCVl+4rJlMinSo7IIMiaepcMyhCcn+v8k138pUxbRLh/twoha/aUs3RvbLoU9SsYsyBZ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756943501; c=relaxed/simple;
-	bh=jIL8HMWY74/M006Uey55mR2tjICrYWUq/L0Z06cYtog=;
+	s=arc-20240116; t=1756943717; c=relaxed/simple;
+	bh=stPXXt3aFflck7RvYXXDEOtlDLuJaXPiZ7XrvWIPpUo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OQtg4YxqC57mW5C2z5OxptRUmoNeIiHysZBqmZ1ULfd8mC/rdJh3Lpe1KmEMVGnf+0tJ737nWL18ksTaWv39wfGBg5YGgRrkbpMpiU67zzRrFKTmkCVW4k7gGPLmKBI4ZsNlQaPNVCHrgLjdtihMlUR5VoJo14uGq7trd3IxQkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=djuAXn5V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 672BBC4CEF4;
-	Wed,  3 Sep 2025 23:51:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qJUw26LdsjBKCWxTQjB9B5S1EOz1qFNSOuTj34zWj3oJ7ePmc+LPwE5NlnWYvM052JB5K4pZ5OtQyBB41WvTGBcH8N7Z3E6ONl6JwT3+089kN2iJ3K31XrfCkVdfpvK5rdw8Op8tfCS6jFqlbKoiU/Qo6AX2sr6PN1JCz+9DM2g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWuz7rO9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C525C4CEE7;
+	Wed,  3 Sep 2025 23:55:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756943501;
-	bh=jIL8HMWY74/M006Uey55mR2tjICrYWUq/L0Z06cYtog=;
+	s=k20201202; t=1756943717;
+	bh=stPXXt3aFflck7RvYXXDEOtlDLuJaXPiZ7XrvWIPpUo=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=djuAXn5VMQ2y8yvgwfyLrjCfR0TOF/VhEJFie2YmnDBAgTJfdhGOjeuRbcxYx904B
-	 u8Tc2QDnzzxNnEVjJQJGw33t1B8PaE6UrAdHpk1Q6msSjjQi2+pbCEPx23xZ/dvQVl
-	 xcBUC3z51wgl7Zt3W2618KrCm0pzg4s/QIlfh2lazmDsBvci0kTlQ4lIqX43ipS2Rd
-	 A8A8vZHxFSUQTShZrZuZ3g0k9HTmxjPzO6xfcAJHOPXZsK0kYyfhhNnnoLidGnpG2A
-	 csByR51yJjs4O/EaFr4JeOHOX+Y4WgHN4oSFXZWLVg4aKURLRvnwC1gkYSGygApklV
-	 8HI4j6rXSdTSA==
-Date: Wed, 3 Sep 2025 18:51:38 -0500
-From: Rob Herring <robh@kernel.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sibi Sankar <quic_sibis@quicinc.com>,
-	Rajendra Nayak <quic_rjendra@quicinc.com>,
-	Johan Hovold <johan@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom-edp: Add missing clock for
- X Elite
-Message-ID: <20250903235138.GA3348310-robh@kernel.org>
-References: <20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org>
- <20250903-phy-qcom-edp-add-missing-refclk-v2-1-d88c1b0cdc1b@linaro.org>
- <11155d6c-cc11-4c5b-839b-2456e88fbb7f@oss.qualcomm.com>
+	b=pWuz7rO9Eigxxa53nEhXgXyDnAKPBgoLueFy7yrL/Q4grA5dTleI0hnfq1Hn+A4i8
+	 KobenaNzrJyYILgl+mDA1m0mN7TQfC9AmVEf+wwYB0MwS6w3v3QP7Pkw2kDUPjjJ/j
+	 xXBXXBv+flBVrCIdzOmiHfkRHUqOeaWWpHv8mbyVa2HaeP27ZqNZ547FLFe7pCMkV3
+	 +2geir6AWlxrcjlgd5x0cDVmQXHL1us9aZ6SlE4v2CMiJNHM4E5ZJXr1FdXhez9aGI
+	 oy9tmMYucXzDMtveOjpzvqi69yuEwjwDGIm5G6yKjcbErI4HxhZeMWRdraswQ7PSN+
+	 ReTtRBwDUYfjQ==
+Date: Wed, 3 Sep 2025 18:55:14 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: broonie@kernel.org, patches@opensource.cirrus.com,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
+	krzk+dt@kernel.org, shuah@kernel.org, zhoubinbin@loongson.cn,
+	drake@endlessm.com, KCHSU0@nuvoton.com, matteomartelli3@gmail.com,
+	katsuhiro@katsuster.net, lgirdwood@gmail.com
+Subject: Re: [PATCH v2 1/3] ASoC: dt-bindings: everest,es8316: Document
+ routing strings
+Message-ID: <175694371395.3386752.1635490926247373183.robh@kernel.org>
+References: <20250903160119.83625-1-jihed.chaibi.dev@gmail.com>
+ <20250903160119.83625-2-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,40 +63,24 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <11155d6c-cc11-4c5b-839b-2456e88fbb7f@oss.qualcomm.com>
+In-Reply-To: <20250903160119.83625-2-jihed.chaibi.dev@gmail.com>
 
-On Wed, Sep 03, 2025 at 03:37:25PM +0200, Konrad Dybcio wrote:
-> On 9/3/25 2:37 PM, Abel Vesa wrote:
-> > On X Elite platform, the eDP PHY uses one more clock called
-> > refclk. Add it to the schema.
-> > 
-> > Cc: stable@vger.kernel.org # v6.10
-> > Fixes: 5d5607861350 ("dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles")
-> > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> > ---
-> >  .../devicetree/bindings/phy/qcom,edp-phy.yaml      | 28 +++++++++++++++++++++-
-> >  1 file changed, 27 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> > index eb97181cbb9579893b4ee26a39c3559ad87b2fba..a8ba0aa9ff9d83f317bd897a7d564f7e13f6a1e2 100644
-> > --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> > +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
-> > @@ -37,12 +37,15 @@ properties:
-> >        - description: PLL register block
-> >  
-> >    clocks:
-> > -    maxItems: 2
-> > +    minItems: 2
-> > +    maxItems: 3
-> >  
-> >    clock-names:
-> > +    minItems: 2
-> >      items:
-> >        - const: aux
-> >        - const: cfg_ahb
-> > +      - const: refclk
+
+On Wed, 03 Sep 2025 18:01:17 +0200, Jihed Chaibi wrote:
+> Add a list of the es8316 pin names to the binding's description to make
+> it self-contained and improve the user experience for board developers.
 > 
-> "ref"?
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> 
+> ---
+> Changes in v2:
+>  - Rephrased description to refer to device pins instead of the
+>    driver.
+> ---
+>  .../bindings/sound/everest,es8316.yaml           | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
+> 
 
-Certainly more consistent with other QCom phy bindings.
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+
 
