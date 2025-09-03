@@ -1,109 +1,111 @@
-Return-Path: <devicetree+bounces-212466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD9A1B42D38
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:10:39 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 233E0B42D5D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:27:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0702C1898C67
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:10:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC8F93AB1C5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AED982F360B;
-	Wed,  3 Sep 2025 23:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 091DC26F463;
+	Wed,  3 Sep 2025 23:27:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ldlah4M3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 389822EBB86
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 23:10:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58731459F7;
+	Wed,  3 Sep 2025 23:27:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756941021; cv=none; b=CteWWnoKN0aERPQXJd8AWbLn6u9ha34gSodNzXycoKtEhV3jfESoVU+0HyolEpNOHuBe3mTLTgO5qGFNa7/1+i54mHmRWvAM6i+5Ms8ZsbV56E/dMmYEE9PPI3vdQshWKFDFh06MduBiqPzmXGDOHDA3q5yWgc/5lQLLn2YD1uk=
+	t=1756942064; cv=none; b=pxh/C4ogpp/TQEzAFown9/9HsbDqaveH0GkMo66d6ZwLWDLBFFt7TgkTbqJGrWgCiaaY7sM91fowMgB1JGHqMDgSG4z9W9OirMu7hGcasOPCLvZb4aOWxlUSlLvqmE0qiETDrm5mtlw0q39pWptRxhh5FZg1C1xfl2OYIvwbk3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756941021; c=relaxed/simple;
-	bh=zF0rpYQcropjs/QHVgLpXTyYqcX8FR6+GfZCmWuGNyA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ku+YGwDaqmmvwOUVj2xRjpb2bHfUNX5HheCFvxN2paGiy7KYHj11g5D9drEauhcxbYNT2xrx3TyPp9irqIW8HovjyK3PydTgTIzHTtj4dZuQQL1OqPaR6ayKr44jZq9Z4O8rUBSi6Jw09h9ymkqeS9ZUIeo3nfbDIy21kxA2sN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1utwcA-0003ct-05; Thu, 04 Sep 2025 01:10:06 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1utwc9-003dGy-1b;
-	Thu, 04 Sep 2025 01:10:05 +0200
-Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <mfe@pengutronix.de>)
-	id 1utwc9-0008y1-13;
-	Thu, 04 Sep 2025 01:10:05 +0200
-Date: Thu, 4 Sep 2025 01:10:05 +0200
-From: Marco Felsch <m.felsch@pengutronix.de>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de
-Subject: Re: [PATCH v3 3/4] dt-bindings: usb: microchip,usb2514: add support
- for port vbus-supply
-Message-ID: <20250903231005.jblajn7yxihsgfpp@pengutronix.de>
-References: <20250821-v6-16-topic-usb-onboard-dev-v3-0-6d2b38a5d818@pengutronix.de>
- <20250821-v6-16-topic-usb-onboard-dev-v3-3-6d2b38a5d818@pengutronix.de>
- <20250822-maize-elk-of-growth-2a30bb@kuoka>
- <20250822103005.c7ba7dclbgdadyw7@pengutronix.de>
- <dc4046e5-7912-4942-b313-20f29213773c@kernel.org>
+	s=arc-20240116; t=1756942064; c=relaxed/simple;
+	bh=AEj1ut4nnqnWq24GOBtJDcvtfSaWbvakcSXdhfDlddc=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=sqW20m9uOUWDwJLgHFLg+toC4Kl9OMv0P2oCPf4bMFbt6jamrFzYiaQ+gxR1Awwc20/cpbAvfRt8jQUx+snLIssk2rJEOBe9NOVErv+jaq1oO3/wQO+jXx34Mk1QEoyHsFK0ddLXQ3nqcXSFE9L1Ed8XhUAZT4KH05SR7QljNd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ldlah4M3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18FE8C4CEE7;
+	Wed,  3 Sep 2025 23:27:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756942064;
+	bh=AEj1ut4nnqnWq24GOBtJDcvtfSaWbvakcSXdhfDlddc=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=Ldlah4M3xYRMQ13HGwDjqjTnbdq1rH2Hf83aVgmMBJE2e8SBpBNadUH74xRZY+n2Q
+	 naR8MdrqP1CJVqRxVjpaPUC+zz3b5qovCMnK8sC1Rh2LgjoVSuEcfOd+0bk8lvE4ir
+	 IkMSbVk+DoWBx8Si/PCGMy8mfXyVKclVwdASCUvZgZcy3LStrtBOtEZwv0Ewoq3r4H
+	 VMhHkGCmIz3qFTZcdN1yenEcvyW/M6mTjUpTsrO2IaITxcsUiHygyI6dCSoCJ17s2X
+	 mnPFQQLu+hdhlYQVZ4G/59Llwy+MHfG+V/djLSD45qIVp3iCNAXQ8vOhSsrl/HA1m/
+	 ppZf8LnETO2yQ==
+Date: Wed, 03 Sep 2025 18:27:42 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc4046e5-7912-4942-b313-20f29213773c@kernel.org>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>, 
+ Guenter Roeck <linux@roeck-us.net>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>, 
+ Wim Van Sebroeck <wim@linux-watchdog.org>
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+In-Reply-To: <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
+Message-Id: <175694204303.3260042.16528672909501752752.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: Add binding for gunyah watchdog
 
-On 25-08-24, Krzysztof Kozlowski wrote:
-> On 22/08/2025 12:30, Marco Felsch wrote:
-> >> The binding does not list ports now, but lists hard-wired devices, so my
-> >> question is now: is this per hard-wired device or per port (even if port
-> >> is hot-pluggable)?
-> > 
-> > Sorry but I don't get you. The binding lists the regulators required to
-> > enable/disable the hub downstream port VBUS. These regulators are
+
+On Wed, 03 Sep 2025 19:33:59 +0000, Hrishabh Rajput wrote:
+> The Gunyah Hypervisor applies a devicetree overlay providing the
+> pretimeout interrupt for the Gunyah Watchdog that it will be using to
+> notify watchdog's pretimeout event. Add the DT bindings that Gunyah
+> adheres to for the hypervisor and watchdog.
 > 
-> Is the port an external facing connector or a hard-wired USB device
-> (please read the binding)?
+> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+> ---
+>  .../bindings/watchdog/qcom,gh-watchdog.yaml        | 76 ++++++++++++++++++++++
+>  MAINTAINERS                                        |  1 +
+>  2 files changed, 77 insertions(+)
+> 
 
-It's completely irrelevant isn't it? The host is in charge of enabling
-the VBUS supply via a dedicated GPIO (e.g. a I2C GPIO expander). If the
-VBUS is off, no device appear, if it is on, the device gets powered and
-appears within the system. If no device is plugged yet and the VBUS is
-enabled, the device gets enumerated immediatly.
+My bot found errors running 'make dt_binding_check' on your patch:
 
-Normally the VBUS supplies are controlled by the HUB control signals,
-but unfortunately our design didn't used these and yes in my case it's a
-hard-wired device.
+yamllint warnings/errors:
 
-Generally speaking I don't see how this will make a difference for
-hard-wired or hot-pluggable devices.
+dtschema/dtc warnings/errors:
+Error: Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.example.dts:37.3-38.1 syntax error
+FATAL ERROR: Unable to parse input tree
+make[2]: *** [scripts/Makefile.dtbs:131: Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1519: dt_binding_check] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
 
-Regards,
-  Marco
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
