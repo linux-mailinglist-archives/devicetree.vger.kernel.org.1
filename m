@@ -1,151 +1,152 @@
-Return-Path: <devicetree+bounces-212112-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BD125B41D32
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:39:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C34CB41D38
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:42:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6FC383BA889
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:39:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EFD0E1BA3556
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:42:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C75BA2FAC12;
-	Wed,  3 Sep 2025 11:39:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 914D92FB63A;
+	Wed,  3 Sep 2025 11:42:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="nbCnIuKd"
+	dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b="OtO/c1uL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f53.google.com (mail-pj1-f53.google.com [209.85.216.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E48212FABE2
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:39:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 06DCF2F998A
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:42:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756899581; cv=none; b=Pb3auKLgyCSrVlSJOKANHw/sYAswBQOREVn3mLerpSQejlqWDelF0w8Uf08qR0ksOyKrMH/64eIy9zNRtNnFRNhWR5k2TwEZsZPba0FjNk/fKmhX9i2HlcFFKelGyDhCdM3sn42aClRk/qjPqpAuuX48hGMfxilWogKf6KuepWY=
+	t=1756899730; cv=none; b=tckGE1RPu0MgiqMrz5YKppQohcm1pJfW0FJhJKHD+/9cf4nQ8r/H//R6/ZPFGD/+4Y1AuqvtNLPhAcGq+feCqwBRsSSeomb1gmRG4Zw1vZ7xQ/4W2/sryZRFrliQIMwMdZardMoxVPr7TkoPyjYWAO2xLS3QE04wJ/UIuRCX+GY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756899581; c=relaxed/simple;
-	bh=DEKA94TkS8M4IPM3sEAm/5Qz3a9I4jWJINH3l1Tj/dY=;
-	h=From:To:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
-	 Content-Type:References; b=jFv9Bfp28CKT+jYH9WK2QDJujLksI8hFr1OJNOQ7/jpX7HY6jJ/daADb9/4ZHwTR9FC7oLMCUfjbYJoVUTEsiUcM+JC9DBwLcbVihLMew6/EG1FW2luMSOpHDS+pbxSs6Ougs2WKhwzwRdPNbGNw2WfwfPRszp44fvlEdpOFgII=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=nbCnIuKd; arc=none smtp.client-ip=203.254.224.34
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
-	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250903113936epoutp04cbebb4d7a67b34e1b789fffa9eb5b328~hwttUc3tl1410814108epoutp04U
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:39:36 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250903113936epoutp04cbebb4d7a67b34e1b789fffa9eb5b328~hwttUc3tl1410814108epoutp04U
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756899576;
-	bh=7brYymqqs4aIaN8Zo+JAkRMDFy6v/aAdvXLq9zLu890=;
-	h=From:To:In-Reply-To:Subject:Date:References:From;
-	b=nbCnIuKd5yIhoIE+HHSRXan/tD+ViEyZ8LVorLByq27qYgcqt/txouJAuDyrJrNXG
-	 d0kL19mYOXMlDG/sVQ5CNH9AJU98j2WWIIjmqzDbRKr7y1dGpCz5TC1hLBReAduiWj
-	 AVjNYCduDqNeEI+Hwpuul+dQRMjYlotdFhsRu4Xs=
-Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
-	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250903113936epcas5p2a2fc50ab07b0fd777b4bee856b31511c~hwttCSEIa0673206732epcas5p2L;
-	Wed,  3 Sep 2025 11:39:36 +0000 (GMT)
-Received: from epcas5p3.samsung.com (unknown [182.195.38.93]) by
-	epsnrtp01.localdomain (Postfix) with ESMTP id 4cH0yH46Bnz6B9m4; Wed,  3 Sep
-	2025 11:39:35 +0000 (GMT)
-Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
-	epcas5p3.samsung.com (KnoxPortal) with ESMTPA id
-	20250903113935epcas5p3227334fa7684fe2170093c2851f27476~hwtrskr2T2284122841epcas5p3A;
-	Wed,  3 Sep 2025 11:39:35 +0000 (GMT)
-Received: from INBRO002520 (unknown [107.122.1.191]) by epsmtip1.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250903113933epsmtip13e7d48e7582eba797719ac5d7c4a2873~hwtqTZwKo0781907819epsmtip1o;
-	Wed,  3 Sep 2025 11:39:33 +0000 (GMT)
-From: "Devang Tailor" <dev.tailor@samsung.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<alim.akhtar@samsung.com>, <alexandre.belloni@bootlin.com>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-samsung-soc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-rtc@vger.kernel.org>, <faraz.ata@samsung.com>
-In-Reply-To: <20250710083434.1821671-1-dev.tailor@samsung.com>
-Subject: RE: [PATCH v2 0/3] On-chip RTC support for ExynosAutov9
-Date: Wed, 3 Sep 2025 17:09:32 +0530
-Message-ID: <000001dc1cc7$6bfee9d0$43fcbd70$@samsung.com>
+	s=arc-20240116; t=1756899730; c=relaxed/simple;
+	bh=0rqJGPrSdA1PEzC6ErrBXnN/AHdlqO4b6tAy+IDJM30=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hdM60xQPju0pSKLmUorRq2iIuqxVVNy2wi6PYTkZght70tdtuK9VRblsUCdxDZwOhhVcHA4bWPfRXZtm86DzDcLZTHL5sq5Yo33yO8f9pHRn6xz9V7iISW0wlMheLULQriwRh9j9d8HLJ19AmoFB47M38E42mkFMRA6QQwOOJ7M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com; spf=pass smtp.mailfrom=bytedance.com; dkim=pass (2048-bit key) header.d=bytedance.com header.i=@bytedance.com header.b=OtO/c1uL; arc=none smtp.client-ip=209.85.216.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=bytedance.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bytedance.com
+Received: by mail-pj1-f53.google.com with SMTP id 98e67ed59e1d1-327f8726b95so867661a91.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 04:42:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bytedance.com; s=google; t=1756899728; x=1757504528; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ft7a1y38TQmqSZ+GiWBdbP1PqNWAejf1LfumBwWdqBM=;
+        b=OtO/c1uL/uwzSC6eQGa75Ch1Gc2GN3XLl1F49JzfMU5n+t4EJKGQdXKjbpe+Maxn9D
+         V1b9eC1G8y6i9IgvLXdEvciQzZ1xkW5kOSit5jnE4vV1wragSMHgF/m5r9+Dh+Nz2mwy
+         SVnFE7WyU5NIByTmJaLAUgDNRITgTg95RU6Vdpq+AEDOZUvSBpvEqQdc+AU04tPv6eOY
+         TQE4/aJ1Z/nzS8zVmFNy/Vs9DGQRg4xRIixteRNRE12374A408YlQFSmbEzF8wwpdCB4
+         vfGAM2TSfpI9dChoOtYfjxZ0jkq8SO7xF43ppWfwnnh/HCe2SdOiNFGd5cGb3ptI4pf3
+         jl6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756899728; x=1757504528;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ft7a1y38TQmqSZ+GiWBdbP1PqNWAejf1LfumBwWdqBM=;
+        b=aosFtYJowcNRfeOfEz12gbUF7cXtktlkkc773sggCq9cAl57hjE6oC2s/3ULgMubGy
+         rgALd1E0qEK778P8qenIdnRlQe3J0F6mt/oRz757u3yp4U8fVnRT0QOcaOKzF/QGRmJm
+         CbYEpdhs2x7aScDDNJXMen186fu091/6A9l5gHvCz+cBOL3BNcvBOLAeKfx1onRZC9gz
+         tjg7X3Y3Bqun4fdzsCkOxaipS0gG/qXWstL1gW2G5vjlPAY4yDPgXTK1hQdLj6fT3FrX
+         btafY+7uYgFD4mZak0PZRPFZdjhjVjftiWmvgUJz5Wzvg8Y/ZzlDrHnpbSkoIuLrl48T
+         1QBw==
+X-Forwarded-Encrypted: i=1; AJvYcCUIO3HZPAq8/GswbpG0OGOBpoWKvc3QQCI+pCixmFutK313zWO9bzJ/srHlTXcDbQ2lGt6BnTergRPe@vger.kernel.org
+X-Gm-Message-State: AOJu0YwKUy/CkDRK/CZ3EAQ6/g4VHpDdTcF5E9efLy0e0Y2YUBHKTU5b
+	FJ4xOnTTML+hEdPy5JHHyUOqzNepZyGc8+lt96JoHPkqhjZM8a1vxy8vRqpjNkVQQwB1b6/nAZp
+	Bg7BmIGewDnQVfGgMpW3ARM/WLCFHwvR/WBDqny4e+g==
+X-Gm-Gg: ASbGncs62Ldf++qgOzZiikXY8GiWt2sxvCRt7yYewE6J9UL6qK7xg4Igaibpvlz22+T
+	TVu0irXoCLYiKjgLqmpNkp7zEYdfDqjoE3H7Q/LAudw/aLqZineTuA5KIelUZa+WmvzyQ3JqgT4
+	859DAptmZ6ipYb039N9VyBBaYnY62esU1LYWzAeeZHe8CgeXF5pPzkx7SFfh64pGP0tRrUgLOvS
+	RD87rdAzd//z+l9kKl+Inn4+dUqGSOdzonHiQ0JuvxQ/wYTF2Y65Us/aZM=
+X-Google-Smtp-Source: AGHT+IFtJbKlmEkW5GGySvPf1/HOA+JVG5Zy6u8Y+RfeMdmIZ6i1j+zUKLBeK7ONCJdCDpwadOW6zM4NzlV/gKsIpD0=
+X-Received: by 2002:a17:90b:4e88:b0:31c:39c2:b027 with SMTP id
+ 98e67ed59e1d1-32815438312mr20559057a91.7.1756899728089; Wed, 03 Sep 2025
+ 04:42:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20250902042432.78960-1-luxu.kernel@bytedance.com> <aLciY2putG8g2P9F@andrea>
+In-Reply-To: <aLciY2putG8g2P9F@andrea>
+From: Xu Lu <luxu.kernel@bytedance.com>
+Date: Wed, 3 Sep 2025 19:41:57 +0800
+X-Gm-Features: Ac12FXyU8EgKWXBaEJy_wfubw9BJFW5J8dcyAUN_yKwbpnfcVBbrt6BJ6erPgkA
+Message-ID: <CAPYmKFvLSri1-PKSHfgG03w3zLbp9w2FaY7v5-jM__LufqPf2Q@mail.gmail.com>
+Subject: Re: [External] Re: [PATCH v2 0/4] riscv: Add Zalasr ISA extension support
+To: Andrea Parri <parri.andrea@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	alex@ghiti.fr, ajones@ventanamicro.com, brs@rivosinc.com, 
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	linux-kernel@vger.kernel.org, apw@canonical.com, joe@perches.com
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Mailer: Microsoft Outlook 16.0
-Thread-Index: AQJ8w0UJjWiHDR7+9bjoByRdFpd+nAMc6yo9sycffmA=
-Content-Language: en-in
-X-CMS-MailID: 20250903113935epcas5p3227334fa7684fe2170093c2851f27476
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-CMS-TYPE: 105P
-cpgsPolicy: CPGSC10-542,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250710082533epcas5p111be26bea2ccc08718eebcb12929bbbf
-References: <CGME20250710082533epcas5p111be26bea2ccc08718eebcb12929bbbf@epcas5p1.samsung.com>
-	<20250710083434.1821671-1-dev.tailor@samsung.com>
 
+Hi Andrea,
 
-Hi,
+Great catch! Thanks a lot for your review.
 
+The problem comes from the mixed use of acquire/release semantics via
+fence and via real ld.aq/sd.rl. I would prefer your method (a). The
+existing atomic acquire/release functions' implementation can be
+further modified to amocas.sq/amocas.rl/lr.aq/sc.rl. I will send the
+next version after I finish it and hope you can help with review then.
 
-> -----Original Message-----
-> From: Devang Tailor <dev.tailor=40samsung.com>
-> Sent: 10 July 2025 14:05
-> To: robh=40kernel.org; krzk+dt=40kernel.org; conor+dt=40kernel.org;
-> alim.akhtar=40samsung.com; alexandre.belloni=40bootlin.com;
-> devicetree=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; lin=
-ux-
-> samsung-soc=40vger.kernel.org; linux-kernel=40vger.kernel.org; linux-
-> rtc=40vger.kernel.org; faraz.ata=40samsung.com
-> Cc: Devang Tailor <dev.tailor=40samsung.com>
-> Subject: =5BPATCH v2 0/3=5D On-chip RTC support for ExynosAutov9
->=20
-> Enable on-chip RTC support. The on-chip RTC of this SoC is similar to the
-> previous versions of Samsung SoC. So re-use the existing RTC driver with
-> applicable call-backs for initialization and IRQ handling.
-> Add a separate call-back for disabling RTC since existing '.disable'
-> call-backs updates additional bit not valid for RTC of ExynosAutov9.
->=20
-> Setting and getting hardware clock has been tested using 'hwclock'
-> and 'date' utilities.
->=20
-> Alarm interrupt has been checked with incrementing interrupt count via =
-=22cat
-> /proc/interrupts =7C grep rtc=22 for 10sec wakeup time via =22echo +10 >
-> /sys/class/rtc/rtc0/wakealarm=22
->=20
-> changelog
-> ---
-> Changes in v2:
-> - Fixed the review comment of v1 for mis-aligmnent & asymmetry bit logic.
-> - link for v1 : https://lore.kernel.org/linux-rtc/20250702052426.2404256-=
-1-
-> dev.tailor=40samsung.com/
->=20
+Best regards,
+Xu Lu
 
-Reminder=21
-Can you please help to identify if anything is pending in this patch series=
- ? I see all three patches are reviewed.
-
->=20
-> Devang Tailor (3):
->   dt-bindings: rtc: s3c-rtc: add compatible for exynosautov9
->   rtc: s3c: support for exynosautov9 on-chip RTC
->   arm64: dts: exynosautov9: add RTC DT node
->=20
->  .../devicetree/bindings/rtc/s3c-rtc.yaml       =7C  1 +
->  .../boot/dts/exynos/exynosautov9-sadk.dts      =7C  4 ++++
->  arch/arm64/boot/dts/exynos/exynosautov9.dtsi   =7C 10 ++++++++++
->  drivers/rtc/rtc-s3c.c                          =7C 18 ++++++++++++++++++
->  4 files changed, 33 insertions(+)
->=20
->=20
-> base-commit: 58ba80c4740212c29a1cf9b48f588e60a7612209
-> --
-> 2.34.1
-
-
+On Wed, Sep 3, 2025 at 12:59=E2=80=AFAM Andrea Parri <parri.andrea@gmail.co=
+m> wrote:
+>
+> > Xu Lu (4):
+> >   riscv: add ISA extension parsing for Zalasr
+> >   dt-bindings: riscv: Add Zalasr ISA extension description
+> >   riscv: Instroduce Zalasr instructions
+> >   riscv: Use Zalasr for smp_load_acquire/smp_store_release
+>
+> Informally put, our (Linux) memory consistency model specifies that any
+> sequence
+>
+>   spin_unlock(s);
+>   spin_lock(t);
+>
+> behaves "as it provides at least FENCE.TSO ordering between operations
+> which precede the UNLOCK+LOCK sequence and operations which follow the
+> sequence".  Unless I missing something, the patch set in question breaks
+> such ordering property (on RISC-V): for example, a "release" annotation,
+> .RL (as in spin_unlock() -> smp_store_release(), after patch #4) paired
+> with an "acquire" fence, FENCE R,RW (as could be found in spin_lock() ->
+> atomic_try_cmpxchg_acquire()) do not provide the specified property.
+>
+> I _think some solutions to the issue above include:
+>
+>  a) make sure an .RL annotation is always paired with an .AQ annotation
+>     and viceversa an .AQ annotation is paired with an .RL annotation
+>     (this approach matches the current arm64 approach/implementation);
+>
+>  b) on the opposite direction, always pair FENCE R,RW (or occasionally
+>     FENCE R,R) with FENCE RW,W (this matches the current approach/the
+>     current implementation within riscv);
+>
+>  c) mix the previous two solutions (resp., annotations and fences), but
+>     make sure to "upgrade" any releases to provide (insert) a FENCE.TSO.
+>
+> (a) would align RISC-V and ARM64 (which is a good thing IMO), though it
+> is probably the most invasive approach among the three approaches above
+> (requiring certain changes to arch/riscv/include/asm/{cmpxchg,atomic}.h,
+> which are already relatively messy due to the various ZABHA plus ZACAS
+> switches).  Overall, I'm not too exited at the idea of reviewing any of
+> those changes, but if the community opts for it, I'll almost definitely
+> take a closer look with due calm.  ;-)
+>
+>   Andrea
 
