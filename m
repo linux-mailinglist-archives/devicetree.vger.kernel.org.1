@@ -1,203 +1,118 @@
-Return-Path: <devicetree+bounces-211920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92929B41522
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:24:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AB1CB41525
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:25:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B95F171D7C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:24:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 386AC5E11DF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:25:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1CD12D1F5E;
-	Wed,  3 Sep 2025 06:24:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEA212C235D;
+	Wed,  3 Sep 2025 06:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="gEhSP1mt"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="E9G3saOg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBAA9263C75;
-	Wed,  3 Sep 2025 06:24:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13DFF33991;
+	Wed,  3 Sep 2025 06:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756880665; cv=none; b=hnVTb7VlWeWpv8mUL064nHnbt2joMjP106RP0qZvU680y+8vViszws9O+MH6CQt7ganpOQJ03WH0oeGWUyGe0nRexkd9nH03+SwjdH7BRld3/ax7wEAq+psWKwlxON3KYc5N6rN2Wgu61FORB/JKT72Xo9QfbJSTQmpwRZz649g=
+	t=1756880733; cv=none; b=HlFgN9/ZIPL7eV451ZXdMwPckDRRUK43MjjE2QRK5/59Q1gSofJxW7dEu+qFhxmM0CYsk2SuNWGcpRjhsT4bZ92bEYLkTmVRMzGfitIXYKpK9B9Qf7kykP4bocNJRvgguAiP+DEZYyyj25eUPyCKMyTf136eHJtqeLwcICJHwMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756880665; c=relaxed/simple;
-	bh=Iv7bNu8u4qg1R4rWSyiQsI+0IiNTLHdoRTQUkbCexds=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=Dq6b7GAirfyLUiL1vOLnKURo8RUFPa/Q4oiQwl/pp3nGlMGQ36zM6oQK3w/pQEXJcq020uG/3/oFUKiiNFpP4DA5c6yuiIy5PwgqjqDlEs723P4BP+WZHbFa76IJ99LosNJmLaF+bSanW1K9jzxjmPweLuEIGYgt3WsfJWPqHU4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=gEhSP1mt; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=x4tCiHtEuBHcImWWTid6RD8zgtR1UUnyUWotA4DUPnM=; b=gEhSP1mtfUGcLZ09rC2smCtsK6
-	T0tSls0dAi/cgEHrDAQ2LfNb4+LPYu/okrLOXpML/Fx8NqGVNseED23x0c+pPTBE+s61KBJTuQMsx
-	vfKgL62zMUIiQAb5NqJNiq7sBJVDEbXfIT7djkWNiiood2lMStN/Gtb3B6U5/j/Efxv4qYsuO9MTA
-	+5zD/Qqn6N6+LkrSXIdWDMAVH2z4xda+9mPD5ljmN+u8e9ILp8jvh8wynTJsQDJ21+kZIMfi8jh4N
-	10u7WjZfgECckNcZYqHHVUv/wN5abRN8PXomVtoeRz/haH1Elo7TGKsC8VUgNGf3eYDZPs078izSY
-	QvHEHZQw==;
-Received: from [122.175.9.182] (port=39230 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1utgug-0000000AzlO-2Eye;
-	Wed, 03 Sep 2025 02:24:11 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id 715AC1782011;
-	Wed,  3 Sep 2025 11:53:58 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 4B13717820F5;
-	Wed,  3 Sep 2025 11:53:58 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id MbJDssR--aGZ; Wed,  3 Sep 2025 11:53:58 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id E63761782011;
-	Wed,  3 Sep 2025 11:53:57 +0530 (IST)
-Date: Wed, 3 Sep 2025 11:53:57 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: Md Danish Anwar <a0501179@ti.com>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	kuba <kuba@kernel.org>, pabeni <pabeni@redhat.com>, 
-	robh <robh@kernel.org>, krzk+dt <krzk+dt@kernel.org>, 
-	conor+dt <conor+dt@kernel.org>, ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	m-malladi <m-malladi@ti.com>, s hauer <s.hauer@pengutronix.de>, 
-	afd <afd@ti.com>, jacob e keller <jacob.e.keller@intel.com>, 
-	horms <horms@kernel.org>, johan <johan@kernel.org>, 
-	m-karicheri2 <m-karicheri2@ti.com>, s-anna <s-anna@ti.com>, 
-	glaroque <glaroque@baylibre.com>, 
-	saikrishnag <saikrishnag@marvell.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	Bastien Curutchet <bastien.curutchet@bootlin.com>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <806290623.278790.1756880637551.JavaMail.zimbra@couthit.local>
-In-Reply-To: <1b892cde-bcdc-4a4e-83b7-35cc13eef8f4@ti.com>
-References: <20250822132758.2771308-1-parvathi@couthit.com> <20250822132758.2771308-3-parvathi@couthit.com> <1b892cde-bcdc-4a4e-83b7-35cc13eef8f4@ti.com>
-Subject: Re: [PATCH net-next v14 2/5] net: ti: icssm-prueth: Adds ICSSM
- Ethernet driver
+	s=arc-20240116; t=1756880733; c=relaxed/simple;
+	bh=i6LCcIRSvAuT7iUlLN37HnrnlPGfEuzO4Rr9CeIQdxE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fudbuVFEReTJP0vUna88d+qIuISOQB5+AISU/jN/W2gNU49onEph3MSHxsbEKkx5lE4XzmKDx+AiHTI0SkOUmzf2bEjGCn1yt3lndXh1AE5qlNm6HRQX3BNaxrgJDl7VPt20AfXp68EAFUrXDKn1VznKYx7hyTiaZMoA2aF+4jM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=E9G3saOg; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5836PIXg2766070;
+	Wed, 3 Sep 2025 01:25:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756880718;
+	bh=FLLuPDMDoXGdW5biy5c1UWsZe2pTqclSdI7bjGJ1gJE=;
+	h=From:To:CC:Subject:Date;
+	b=E9G3saOgStPL2LW0i9/Yi8ddwJffVLrFjeBARLv4RpcEn9bo+JQ6JIF04rM90xAyy
+	 00Uv83g6zMhyJ/cPc/mtHPYtR2yEBKEaRlJRg9nD2sTeev/Y5jpM+JCv3VmMlPHLMR
+	 WPk4nRCtSpXVLsdUBg8l3huJJIACZFo+VCSQirhA=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5836PIJj4066360
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 3 Sep 2025 01:25:18 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
+ Sep 2025 01:25:18 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 3 Sep 2025 01:25:18 -0500
+Received: from localhost (ula0502350.dhcp.ti.com [172.24.233.249])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5836PH7d829213;
+	Wed, 3 Sep 2025 01:25:17 -0500
+From: Paresh Bhagat <p-bhagat@ti.com>
+To: <nm@ti.com>, <vigneshr@ti.com>, <praneeth@ti.com>
+CC: <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <khasim@ti.com>, <v-singh1@ti.com>, <afd@ti.com>, <bb@ti.com>,
+        <devarsht@ti.com>, <s-vadapalli@ti.com>
+Subject: [PATCH v3 0/2] Add USB support for AM62D2
+Date: Wed, 3 Sep 2025 11:55:11 +0530
+Message-ID: <20250903062513.813925-1-p-bhagat@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: icssm-prueth: Adds ICSSM Ethernet driver
-Thread-Index: mF5rnq3mgVHUKrTfxh1Anq5GbFjbRg==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+This patch series introduces following changes:
 
->=20
-> On 8/22/2025 6:55 PM, Parvathi Pudi wrote:
->> From: Roger Quadros <rogerq@ti.com>
->>=20
->> Updates Kernel configuration to enable PRUETH driver and its dependencie=
-s
->> along with makefile changes to add the new PRUETH driver.
->>=20
->> Changes includes init and deinit of ICSSM PRU Ethernet driver including
->> net dev registration and firmware loading for DUAL-MAC mode running on
->> PRU-ICSS2 instance.
->>=20
->> Changes also includes link handling, PRU booting, default firmware loadi=
-ng
->> and PRU stopping using existing remoteproc driver APIs.
->>=20
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> Signed-off-by: Basharath Hussain Khaja <basharath@couthit.com>
->> Signed-off-by: Parvathi Pudi <parvathi@couthit.com>
->=20
-> [ ... ]
->=20
->> +=09/* get mac address from DT and set private and netdev addr */
->> +=09ret =3D of_get_ethdev_address(eth_node, ndev);
->> +=09if (!is_valid_ether_addr(ndev->dev_addr)) {
->> +=09=09eth_hw_addr_random(ndev);
->> +=09=09dev_warn(prueth->dev, "port %d: using random MAC addr: %pM\n",
->> +=09=09=09 port, ndev->dev_addr);
->> +=09}
->> +=09ether_addr_copy(emac->mac_addr, ndev->dev_addr);
->> +
->> +=09/* connect PHY */
->> +=09emac->phydev =3D of_phy_get_and_connect(ndev, eth_node,
->> +=09=09=09=09=09      icssm_emac_adjust_link);
->> +=09if (!emac->phydev) {
->> +=09=09dev_dbg(prueth->dev, "PHY connection failed\n");
->> +=09=09ret =3D -EPROBE_DEFER;
->> +=09=09goto free;
->> +=09}
->> +
->=20
-> Why are you returning EPROBE_DEFER here? If phy connection fails, you
-> should just return and fail the probe. That's what ICSSG driver does.
->=20
-> In drivers/net/ethernet/ti/icssg/icssg_prueth.c
->=20
-> 404   =E2=94=82     ndev->phydev =3D of_phy_connect(emac->ndev, emac->phy=
-_node,
-> 405   =E2=94=82                       &emac_adjust_link, 0,
-> 406   =E2=94=82                       emac->phy_if);
-> 407   =E2=94=82     if (!ndev->phydev) {
-> 408   =E2=94=82         dev_err(prueth->dev, "couldn't connect to phy %s\=
-n",
-> 409   =E2=94=82             emac->phy_node->full_name);
-> 410   =E2=94=82         return -ENODEV;
-> 411   =E2=94=82     }
->=20
->=20
-> Before phy connect you do `dev_warn(prueth->dev, "port %d: using random
-> MAC addr: %pM\n"`
->=20
-> If device is using random mac address, this will be printed, your phy
-> connect fails, you try probe again, print comes again, phy fails again
-> and so on ...
->=20
-> This results in system getting spammed with continuos prints of "using
-> random MAC addr"
->=20
-> I suggest if phy fails, let the probe fail don't do EPROBE_DEFER.
->=20
-> Saw this issue on few boards which has issue with ICSSG phy.
->=20
+* Patch 1 fixes the main pad length in main_pmx/padconfig for AM62D
+ and AM62A. This also fixes "i2c 0-003f: deferred probe pending".
 
-Yes, we will check and address this in the next version.
+* Patch 2 enables USB support for AM62D2-EVM by adding pinmux and device
+ tree nodes.
 
-Thanks and Regards,
-Parvathi.
+Change Log:
+
+	v2->v3:
+		- Update commit description for first patch.
+
+	v1->v2:
+		- Added fixes and Cc tag for Patch 1.
+		- Dropped two patches for OPP (applied).
+
+v2-https://lore.kernel.org/all/20250823032304.1085775-1-p-bhagat@ti.com/
+v1-https://lore.kernel.org/all/20250820083331.3412378-1-p-bhagat@ti.com/
+
+Boot Logs-
+https://gist.github.com/paresh-bhagat12/e29d33c3fd92ff17580edf1441ece9f9
+
+Tech Ref Manual-https://www.ti.com/lit/pdf/sprujd4
+Schematics Link-https://www.ti.com/lit/zip/sprcal5
+
+Paresh Bhagat (1):
+  arm64: dts: ti: k3-am62d2-evm: Enable USB support
+
+Vibhore Vardhan (1):
+  arm64: dts: ti: k3-am62a-main: Fix main padcfg length
+
+ arch/arm64/boot/dts/ti/k3-am62a-main.dtsi |  2 +-
+ arch/arm64/boot/dts/ti/k3-am62d2-evm.dts  | 21 +++++++++++++++++++++
+ 2 files changed, 22 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
