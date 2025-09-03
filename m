@@ -1,247 +1,164 @@
-Return-Path: <devicetree+bounces-212033-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212034-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A508DB41981
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:01:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDC9EB41989
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:04:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E929518857DF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:01:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 751A27A3793
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:02:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DB5C2ECE97;
-	Wed,  3 Sep 2025 09:01:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="JVVbtdeQ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205702EF65C;
+	Wed,  3 Sep 2025 09:04:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 635EB1A7264;
-	Wed,  3 Sep 2025 09:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3AEB223DCE;
+	Wed,  3 Sep 2025 09:04:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756890088; cv=none; b=uIrOwiENqpZr6iRWHrlVTEk5V/PC2aEqv+1yvS/9ikR/M5+NZBdWbN2RilTNqQdjUxLW1VEVDpwKISj2u8Nm0l+/bC75/gaUiPwSAlAn+ROg1YgrhECUJXGkJlQMQ3FQ9k8Th5rdsv5Er6TcIXWEXl3Ye8B1M0KF9anKjHI6ngs=
+	t=1756890246; cv=none; b=iD7oGVPLEcfS7leAeqC2P/ZmJC6/lwoft4eco4C1FaU+hDtpCogVizoRt1A00tnhade1BDMlrvEBe3ZW7wGt7UwEdKz7Z5Pxw4VwVdKap8U4ogHfZzas+i/QY5DLzEwUbBfbAa9Do4PTdC3D+A2cFiI755WYM31oPWz41+/8stA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756890088; c=relaxed/simple;
-	bh=RUEmUKNYm6/iJgFZj0dysnF0Rzwitb3AXoVyRx2E8CQ=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgxpiNPG9tQjXHhHGrf1BZGHqJvA+fGn4Jejqc0CPeMdMjq4wV3uWMMNA/6BJR4nE4Jo3Jp+0pJf5xljaUIuNYm93Np80HBat9j/0BTEIV7PCRtlNB9c69R6RbXUDwfj9PAP00gve43aLRwDQcN23VzVLd6iGfm801N+bIOOjUA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=JVVbtdeQ; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 6151BA079A;
-	Wed,  3 Sep 2025 11:01:22 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=xI8kR4Vsm264OZYzKPTA
-	7zHRqZ4MLO4Aq50kaY8JXe0=; b=JVVbtdeQaUMRFpo8oLiVhxU2KVOGZNKGqec6
-	reucawqe031zerfch0qTB/uxnc73NIhehHNTyrOPoocvzIKPNFjIzTCbHkzPAD73
-	xeRrC6hoeHBawJBst9kgS6vFTWUmOdVBJuIKdx2iuClwaWtoeU6HHnAvT+oy1S9p
-	iwubdydIXaRR6hVtWaBJAepotRXK02k3H8LyAdthSaIwy8wTqGvjyeBnqnJ/ty9S
-	34rDLSgbCBHCs2p1gEHtyhnaLHKEYF4HaN7knCd0LQ+nYjw/1VsFZhleugPdUhNr
-	TpUP+upCeI8eQI0835R/NaTFUNISyENHuv+vovgtB26qdPOAt7vUQEhwLTeBS9UB
-	efgkNqA+DvjL6ymLu6PLkBI5JfesRa66inSU1R2tg5YefN1k+LQIQY3FNPOuLlwO
-	4Tw2JhB2VsiSzqQZfKV6OmmHXVXgUg1mMR96FAu93tbCZKrQshft+Wiq7P+VY/vA
-	P2Udb+T1aP1FgvLoErYOhpX4LsMq7BdaEgK0ZeyOBHywG5hOXtQLF/NE9XPJA9Go
-	Efe5gkMMjCGD+K9LIh/d4EorwsyaUY036+ToGWb9tkosksVCVYW95qJcHbwVBejs
-	ec8yBV4ClKrBeIRN6r5e8i4Ko8OgzHcbDoqtS4wVLTW0X8EiMhEdqQSJRy8YnUvW
-	7qdS5sY=
-Date: Wed, 3 Sep 2025 11:01:20 +0200
-From: Buday Csaba <buday.csaba@prolan.hu>
-To: Ahmad Fatoum <a.fatoum@pengutronix.de>
-CC: =?iso-8859-1?B?Q3Pza+Fz?= Bence <csokas.bence@prolan.hu>, Rob Herring
-	<robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, <devicetree@vger.kernel.org>,
-	<imx@lists.linux.dev>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] ARM: dts: imx6ul-tx6ul: Switch away from deprecated
- `phy-reset-gpios`
-Message-ID: <aLgD4Dx828nKXfkC@debianbuilder>
-References: <20250815-b4-tx6ul-dt-phy-rst-v1-1-9b65e315d9d3@prolan.hu>
- <fa7e2cef-5242-4f3b-84ea-d77b959f6bdb@pengutronix.de>
- <c85a94ee-59e1-47d6-8200-813bb434caf2@prolan.hu>
- <1bf75411-4a51-4103-b314-a8a7253bafca@pengutronix.de>
- <aLf162kc8_VB163Z@debianbuilder>
- <e3966efb-9f81-4c01-86f3-c89864a89173@pengutronix.de>
+	s=arc-20240116; t=1756890246; c=relaxed/simple;
+	bh=vA9jnmlBUP3FklleJJI5iKZg6DXJS/5anQEmrvZXGp0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=P3OwTWC4Sl+Qz/cQ5L0pUNPJhZEmWf9i307401+GRh4mgHZH8CWyC9/kJIp7ZT0rrm3BXcwrf2RKeqRe3NfChOSjKj7F5ofInBd/qulB+3HFh1Cbzpnmbe6Fi+OBClmIRKjYSETJfhN+BSK8WtQPCgAdNIDF9zG1oHMZYjyjjxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-545df2bb95dso46113e0c.0;
+        Wed, 03 Sep 2025 02:04:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756890242; x=1757495042;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=L8E1gfV12IoHmzjtc69UL/4JE5r/dCdO6yqQdpD9wQk=;
+        b=AGh5EZIp/W1YIwKqy8g1a8PZ+pxw+qsIFRE/uA4G+//+BaBk93DTnq2bv+tPTQFSNM
+         hBA7WT56IaU0MosxieRrctQ4VLT0OkfaQpoDdGZmcX5nkpq6OTm5bH65KO3n0PUjgOiW
+         i6rL4CprGazPm6XrSQ5mVV70JH/EEIfCgQuClq2hUon9DdniYDx670paHS65ied/FH/G
+         A+deQWtQ9CS5pd3YH1dD+s/mJQUdbl2EJ1yJiPsYM+SuooDJmebXuyqPX3XrmhLqHUkE
+         MNB2EV1jHBdEf9ouWxxp5T1AaQm+oQ+Bc291Vd2boS5qZ1zJ6cBR5ScrjMejdIxb5eT9
+         +gEg==
+X-Forwarded-Encrypted: i=1; AJvYcCVQQSGS/nw/MWWxblgNEuAiMx/8N0/SQA8Fb8qkwR1C+P/zC5Af01ZpT3nelzS9CX7mTuLrfXHvIwD3@vger.kernel.org, AJvYcCVxhRq8orZyyXfWNEqpdP3O0TFB3BoYi4C7ILvz844XUKuaNGCsyKZAV28xgWH+1VErtet5hP+0s3c0Y99h@vger.kernel.org, AJvYcCWZqpS69rCPXwoDE9cYvfK1ZAhESZDwhRYlZZpSmCHUmFUHDNYFMgr08OdUgxsQ/1St31wxDVuHdYRTMCyOcR3EC/Y=@vger.kernel.org, AJvYcCXBk0eIdWxQCJ0ofle21k78bBA8gqOdC209ywU9WOAbZLF4ywOKGFONmU9+CAGJl2BCAEzEqDhoe6NI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz1VGksHE/KC/Z8ZeHlljOyjMzM4gZKL4ADcBCn+OBBbe8o9g7N
+	WX/sFFr6MkrVo4NUP1J53hitF6/uNA+VCEkOm0mq2/RUkel1GN5L3fNMRIKb68gw
+X-Gm-Gg: ASbGnctHFSWjzEDx9aInIbAzwcGnqplvslfMU0RPExjDuE5XLPy2KS4XgfqlXeT6D9f
+	fuJ7ArExuIKpmRFvl+UmDZyrYX7g8aofKjbW0g7X3FakniQBHEyg/MArwjkqNcLvzmQuoqpG0mO
+	P1fAo0ZeUQjQMkisqybuiSCQSqOcCcqqTaKzVWmVov+plIi5CmVH+FyI2dfgsEQuuvYMd5luYDP
+	QoPAnSCirm0Cdybbuhdoyz3bwea71iF+t1nBtOEwtsf2+RGAxiPQMPgHQEYXcgJ0trg42MbsLU4
+	JEOHJexxyELKUxMvztO0tsYynU5eqfkW3Y3fQjbfK+B9AITU0NLLRXB88XVNkwbTD6oIfOh1eZu
+	zuQZxUbLMcQCqbO7CdrH6S1/aSTcpZ0k2GBAvl3OloFV0CKXTXnyC4U8UgbyXP6RZ
+X-Google-Smtp-Source: AGHT+IFLpw8/G+iiDbZHYmo+wVyLT6enu466IKkpf28l92eQHFQnud0lNGi6jd7hyhWl0dsSLLlLog==
+X-Received: by 2002:a05:6122:1350:b0:544:9414:105f with SMTP id 71dfb90a1353d-544a018f69fmr4091500e0c.2.1756890242410;
+        Wed, 03 Sep 2025 02:04:02 -0700 (PDT)
+Received: from mail-vk1-f176.google.com (mail-vk1-f176.google.com. [209.85.221.176])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54491318ecbsm6508305e0c.11.2025.09.03.02.04.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 02:04:02 -0700 (PDT)
+Received: by mail-vk1-f176.google.com with SMTP id 71dfb90a1353d-5448c576e3bso2040062e0c.3;
+        Wed, 03 Sep 2025 02:04:01 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUa0R8AqMyxCtblcyjiJL97CfRztkCqT9GAnAu1V2RwXH5uD4d8DLExjg8QhU3XnnhQZ27QATpafKhpFUyn@vger.kernel.org, AJvYcCUrUKWNz399T+Sm4WZ9J7dB5s2h+U5W2jVcN3dCjDnTIkMl+w2kDZTc31vrH4IkFjUNncD9+Wy6Dxd6Z6ZQhgATA+Q=@vger.kernel.org, AJvYcCVEzk/XWwo/t+J981e1hTAY4YoRz7DnrP0Ht9l9DaxX03XkAG0QBQSZneTNwCCpLz+l/HzD+c92+Dke@vger.kernel.org, AJvYcCXZpblgmikVQ/Uuie4c3NDtBKtjDzY7Sh3iTPDzOBqNl14xg7jlgTgbuBUtfbRj4nhqHf1bTs6Oi8Mv@vger.kernel.org
+X-Received: by 2002:a05:6122:2022:b0:543:88f1:6621 with SMTP id
+ 71dfb90a1353d-544a018f9e2mr4632015e0c.3.1756890241565; Wed, 03 Sep 2025
+ 02:04:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e3966efb-9f81-4c01-86f3-c89864a89173@pengutronix.de>
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1756890080;VERSION=7998;MC=2853248995;ID=1364479;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155E637062
+References: <20250901183000.1357758-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250901183000.1357758-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWARu=9__pqcHXUq92LYuxAQPZNJ6Fn_b7Z6x78i4twDw@mail.gmail.com> <CA+V-a8t1PDpqqMAdWxPeQfH6MWQe0GHsuBSzRbaRFRPPMf_iQA@mail.gmail.com>
+In-Reply-To: <CA+V-a8t1PDpqqMAdWxPeQfH6MWQe0GHsuBSzRbaRFRPPMf_iQA@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 3 Sep 2025 11:03:49 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWN=ofULw+TZVA6eY3hAyaiKMN6z2Z57KH=EDUzxbDf1A@mail.gmail.com>
+X-Gm-Features: Ac12FXyZJ2tTmfzSZt6j8i3Vojt6dcDScwwN-MKjTprlJ7ET5Z105TlKcWgucK0
+Message-ID: <CAMuHMdWN=ofULw+TZVA6eY3hAyaiKMN6z2Z57KH=EDUzxbDf1A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] clk: renesas: r9a09g077: Add Ethernet Subsystem
+ core and module clocks
+To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 03, 2025 at 10:43:46AM +0200, Ahmad Fatoum wrote:
-> Hi,
-> 
-> On 9/3/25 10:01 AM, Buday Csaba wrote:
-> > On Wed, Sep 03, 2025 at 09:50:08AM +0200, Ahmad Fatoum wrote:
-> >>> [1] https://lore.kernel.org/lkml/20250709133222.48802-4-buday.csaba@prolan.hu/
-> >>
-> >> Is this mainline yet?
-> >>
-> > 
-> > No, it is not. It was never the most beautiful piece of code, so I understand
-> > that.
-> > 
-> > But if you could give us some guidance, that would help a lot.
-> > 
-> > Specifically:
-> > 
-> > 1)  If `phy-reset-gpios` is deprecated, than we should start treating it as
-> >     such, and not rely on it in future releases. Perhaps we should also add a
-> >     warning message, when it is found in the device tree.
-> 
-> Disagreed. Deprecated properties should be removed only about clarifying
-> the impact of the removal on users. Replacing a deprecated property with
-> an expectation that bootloader board code has deasserted reset is not
-> acceptable IMO.
+Hi Prabhakar,
 
-I was only trying to reason, that since `phy-reset-gpios` has been marked as 
-deprecated in 5.3 (which was 6 years ago), perhaps a inserting a warning note
-now would be appropriate.
-But that is related to the driver, not the DT.
-I completely agree with the rest.
-
-> 
-> > 2)  On the other hand, if it is here to stay for a long time, it should be
-> >     fixed. Now the gpio is claimed during fec_reset_phy(), and never released.
-> >     It can not be used by the driver later, like in fec_init(), because the
-> >     gpio reference is only stored in a local variable of fec_reset_phy().
-> >     Previous patches that would have stored the reference in the driver were
-> >     rejected on the grounds that it is deprecated. But if it is not, then we
-> >     can create a patch that would make it work properly.
-> 
-> Ye, this needs to be solved differently.
-> 
-> > 3)  Andrew pointed out, that resetting a PHY before probing it may cause
-> >     regressions. That is certainly a valid concern, but for most of the 
-> >     devices resetting it means starting from a known state, and should be the
-> >     default. But we could create a device tree property, that controls this
-> >     behaviour.
-> 
-> Marco had a more involved series to address this:
-> https://lore.kernel.org/all/20230405-net-next-topic-net-phy-reset-v1-0-7e5329f08002@pengutronix.de/
-> 
-> But it went no where. I don't recall the details.
+On Tue, 2 Sept 2025 at 17:06, Lad, Prabhakar <prabhakar.csengg@gmail.com> w=
+rote:
+> On Tue, Sep 2, 2025 at 2:01=E2=80=AFPM Geert Uytterhoeven <geert@linux-m6=
+8k.org> wrote:
+> > On Mon, 1 Sept 2025 at 20:30, Prabhakar <prabhakar.csengg@gmail.com> wr=
+ote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Add module and core clocks used by Ethernet Subsystem (Ethernet_SS),
+> > > Ethernet MAC (GMAC), Ethernet Switch (ETHSW).
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com=
 >
+> >
+> > > --- a/drivers/clk/renesas/r9a09g077-cpg.c
+> > > +++ b/drivers/clk/renesas/r9a09g077-cpg.c
+> > > @@ -181,7 +191,12 @@ static const struct mssr_mod_clk r9a09g077_mod_c=
+lks[] __initconst =3D {
+> > >         DEF_MOD("sci4fck", 12, CLK_SCI4ASYNC),
+> > >         DEF_MOD("iic0", 100, R9A09G077_CLK_PCLKL),
+> > >         DEF_MOD("iic1", 101, R9A09G077_CLK_PCLKL),
+> > > +       DEF_MOD("gmac0", 400, R9A09G077_CLK_PCLKM),
+> > > +       DEF_MOD("ethsw", 401, R9A09G077_CLK_PCLKM),
+> >
+> > According to Table 7.13 ("Overview of Clock Generation Circuit
+> > Specifications (Internal Clock)"), ETCLKA is used as the operating
+> > clock for ETHSW?
+> >
+> There are 3 clock inputs to ETHSW,
+> - PCLKM -  bus clock
+> - ETCLKA - operating clock
+> - ETCLKB - Ts clock
+>
+> Based on Documentation/devicetree/bindings/net/dsa/renesas,rzn1-a5psw.yam=
+l
+> we have two clocks for RZ/N1 (Ts clock is missing)
+> - description: AHB clock used for the switch register interface
+> - description: Switch system clock
+>
+> - const: hclk
+> - const: clk
+>
+> So I was treating,
+> - hclk -> PCLKM,
+> - clk   -> ETCLKA
+> - ts    -> ETCLKB
+>
+> Since pclkm is used for register access, I added this entry to the
+> r9a09g077_mod_clks array as I was under the impression the clocks used
+> for reg access need to go into this array.
 
-Interesting. So Andrew is not against resetting before probe, it just has to
-be done properly. ;)
- 
-> I think the best you can do with existing bindings is to give your PHY a
-> compatible that spells out vendor/device ID, e.g. ethernet-phy-id0141.0dd4.
-> 
-> Then Linux can probe the device even while it's in reset.
-> 
-> The downside is that it hardcodes a specific PHY ID, but this may be
-> acceptable here.
+OK, thanks for the explanation!
 
-Yes, for now that would be acceptable for us, with some loss of generality.
+Gr{oetje,eeting}s,
 
-Regards,
-Csaba
+                        Geert
 
-> 
-> Cheers,
-> Ahmad
-> 
-> > 
-> > Regards,
-> > Csaba
-> > 
-> >> Cheers,
-> >> Ahmad
-> >>
-> >>>
-> >>>>>
-> >>>>> Co-developed-by: Csaba Buday <buday.csaba@prolan.hu>
-> >>>>> Signed-off-by: Csaba Buday <buday.csaba@prolan.hu>lan8710 reset
-> >>>>> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
-> >>>>> ---
-> >>>>>   arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi | 8 +++++++-
-> >>>>>   1 file changed, 7 insertions(+), 1 deletion(-)
-> >>>>>
-> >>>>> diff --git a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> >>>>> index f053358bc9317f8447d65013a18670cb470106b2..0a5e90704ea481b0716d6ff6bc6d2110914d4f31 100644
-> >>>>> --- a/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> >>>>> +++ b/arch/arm/boot/dts/nxp/imx/imx6ul-tx6ul.dtsi
-> >>>>> @@ -246,7 +246,6 @@ &fec1 {
-> >>>>>       pinctrl-names = "default";
-> >>>>>       pinctrl-0 = <&pinctrl_enet1 &pinctrl_enet1_mdio &pinctrl_etnphy0_rst>;
-> >>>>>       phy-mode = "rmii";
-> >>>>> -    phy-reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
-> >>>>>       phy-supply = <&reg_3v3_etn>;
-> >>>>>       phy-handle = <&etnphy0>;
-> >>>>>       status = "okay";
-> >>>>> @@ -262,6 +261,13 @@ etnphy0: ethernet-phy@0 {
-> >>>>>               pinctrl-0 = <&pinctrl_etnphy0_int>;
-> >>>>>               interrupt-parent = <&gpio5>;
-> >>>>>               interrupts = <5 IRQ_TYPE_EDGE_FALLING>;
-> >>>>> +            /* Reset SHOULD be a PHY property */
-> >>>>
-> >>>> Comment belongs into commit message.
-> >>>
-> >>> Agreed.
-> >>>
-> >>>>> +            reset-names = "phy";
-> >>>>> +            reset-gpios = <&gpio5 6 GPIO_ACTIVE_LOW>;
-> >>>>> +            reset-assert-us = <100>;
-> >>>>> +            reset-deassert-us = <25000>;
-> >>>>> +            /* Energy detect sometimes causes link failures */
-> >>>>> +            smsc,disable-energy-detect;
-> >>>>
-> >>>> Unrelated change not described in the commit message.
-> >>>
-> >>> Oh, this has accidentally made it into here from our DT. Thanks for spotting it!
-> >>>
-> >>>> Cheers,
-> >>>> Ahmad
-> >>>>
-> >>>>>               status = "okay";
-> >>>>>           };
-> >>>>>  
-> >>>>> ---
-> >>>>> base-commit: 0cc53520e68bea7fb80fdc6bdf8d226d1b6a98d9
-> >>>>> change-id: 20250815-b4-tx6ul-dt-phy-rst-7afc190a6907
-> >>>>>
-> >>>>> Best regards,
-> >>>>
-> >>>>
-> >>>
-> >>> Bence
-> >>>
-> >>>
-> >>
-> >>
-> >> -- 
-> >> Pengutronix e.K.                           |                             |
-> >> Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-> >> 31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-> >> Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-> >>
-> > 
-> > 
-> 
-> -- 
-> Pengutronix e.K.                  |                             |
-> Steuerwalder Str. 21              | http://www.pengutronix.de/  |
-> 31137 Hildesheim, Germany         | Phone: +49-5121-206917-0    |
-> Amtsgericht Hildesheim, HRA 2686  | Fax:   +49-5121-206917-5555 |
-> 
-> 
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
