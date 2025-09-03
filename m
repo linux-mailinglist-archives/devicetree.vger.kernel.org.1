@@ -1,464 +1,198 @@
-Return-Path: <devicetree+bounces-212290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BC9B42423
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:55:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA905B42419
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:54:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D367916ABAE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:55:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E55657C33A9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:54:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1BF31A064;
-	Wed,  3 Sep 2025 14:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3FE30BF77;
+	Wed,  3 Sep 2025 14:54:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b="rJs54jCP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ElGRsFvJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5ADD31A071
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABC230BB90
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:53:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756911259; cv=none; b=bsG3t8hwBarDLZy4p/lpGrx/DuOVal7DgHCge/QBrUhS+HPWp5WjJLyo1NnsDOS+1w5CQ7XNKFRuXB6llT+A8opKAnO56HxzB2lQY6fiEjjU/Dv6pdysIaoY1KaK6CzJxnQodR5GvMemDgIwVYJ/McUh3ww5wIjlVYbRjSuBwUI=
+	t=1756911241; cv=none; b=l0EdyTGI+rBI5FJtPBBjIF5INrw9J3xzX5bQKz/ram6E0vJz/UImEPCbq+ioOuljIpxqbhj72sHqixXKDhCwMlqJb9y8/1jc+FMdvOk1YXXXVst0qOR6tPGDnh8+BBayibEGRNAVKg0tXLUEfzNQBTagxUwPqzjAo6XTeFSsr+4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756911259; c=relaxed/simple;
-	bh=KpHOj0mNA4+e9kUqlWS2RJgWfZkd6/Eg0O9escihThQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Yjg+VDm3CtvgJmR5sXtWJ5bmYUlRTUX55Qpk3icWOzQkQGjqIYRp4QBhuvW3wTQdraPAu4CBTYcxmUK/VXPs8vSwvMtmtFptNdXTfghj6PkydDis1yruLnDA7rKfhWsq7Tb38hKwoF7zMk3/emn5HMrWJlpl9zn6MyHSFBaA/6c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be; spf=fail smtp.mailfrom=hammernet.be; dkim=pass (2048-bit key) header.d=hammernet-be.20230601.gappssmtp.com header.i=@hammernet-be.20230601.gappssmtp.com header.b=rJs54jCP; arc=none smtp.client-ip=209.85.221.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=hammernet.be
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=hammernet.be
-Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3d1bf79d75aso571699f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:54:16 -0700 (PDT)
+	s=arc-20240116; t=1756911241; c=relaxed/simple;
+	bh=unDqZyH1QB0AZnE+jIy/cbveVXnikGD65lmG99tqIe0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fCeSB6FsP6bAK6O6fQbfpV8rIgmrBrENd54Z4KFPWbCiGoC3XPLi2JO2N4cLY6vhkpBOWHEDNQJHckZ92uZqfrqivskjMxPtPDPzkKAX2aulbUC989yxercWMzSXWnZm6rYzbm308tCsP4iy9Y6tfHKGZPYJrWI/GX5FdX7z1T8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ElGRsFvJ; arc=none smtp.client-ip=209.85.221.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so11808f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:53:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=hammernet-be.20230601.gappssmtp.com; s=20230601; t=1756911254; x=1757516054; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KfRoqQl7bTrgAdolwwez1LaewcASB4l+oYGwiyVhGj4=;
-        b=rJs54jCP70fD74UKZO5ubYeUtJ8SM4L4T1Z3vgE+LBRGFbNMSSbQG7p9y8vo8NZvZg
-         k3eZZTd609zGNPV7rymGvawjRGEQ5At+clvcDgSTWnkU+4Wr0mQ7utyPxb+EkTFc5SF8
-         Y19ypw5qbGDKCWr2FyL83ZlFictZKM4HwrmZ4ghVXK7iixncFbYHKmXk8YHZbSvhvK7q
-         BJ2IJMieTGeQt4rYDxBp1OTNMj9ELhg+ccbwgXhwK4d+RsCFxJib82H6LUXHSJDFcwbO
-         1ArPK4chQWx3bsYvUAAr8tDM4ZkBDWbyscAq5cHK4YEDkoCfCApy5pIpvAudBZ/7qmni
-         7HrQ==
+        d=linaro.org; s=google; t=1756911238; x=1757516038; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yoaNAmWhIibGu6l1WRy5RqFKcSEP315ehpRCdLHsl14=;
+        b=ElGRsFvJjKb6W+daOxlv/O2CFyeAtJ9hdLOWpcnFaGSxSPsuYAkaxMmOAg1MW9sP/G
+         vLzzNlbMhIlhOer4oDjNeEqtqVnfOO200OW9o9b9qbjgtypayBW2sIMiifggZFNwx14y
+         /ZMgdlaE7XoJVhotKXe9+KajSTPcCUWhvfiZJPnwDFRDLRjL4Wq8CS1ZIR6da0mjq7P9
+         apEVHzZtQVfRodptHAtsVTcT3/XqT0WDMG5oEnpkm0LRK3fmsw5n7npiV9aP3cKAPzQS
+         37F+atFcfecj2TJlaucd08UiTxlytYxBsairpQY68RtR5uBWiIztgvvEJ0a+61TDflWE
+         cQeg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756911254; x=1757516054;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KfRoqQl7bTrgAdolwwez1LaewcASB4l+oYGwiyVhGj4=;
-        b=erSIM39oNT9eq4rbOJdUCVYFmW1YSLkWQGT7CBgAaLUvPdl5ECRb3KOaVJTHmjyyOX
-         QCZjkD6mmnlxL3TnCC7+Ug4RxcqnfVUZk/alWC3vggfdwrtZSlAVTBSxIaL5CA4BE2mR
-         uaZqDldMHz36OcU67nwQ0+I0Q+5EtbO4jydOylKqCllmNi2J9AEYE1rV7LbXjtIrdaZy
-         7poXxFzHs+BQeUp/CmTzGcbxSCWAXsoq/DW/BohFQyjfnuCiQlLUkHzbr7o9ysJqciz0
-         ZVa3kfpLhEXguT8lXP0DNNJgfXifZI3iZ5SY7Oa7zzZtB4MHe5RXXSOBGHr4FwJp/8x7
-         d8PA==
-X-Forwarded-Encrypted: i=1; AJvYcCWEztL1WJ3DL5iY2wHoKYs4uK2BzMLnBEWcZuM24k6XstKgGs/8yaJuO5Qcl/j8mqe8FP8rxytfxk2O@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx0dewFMoPdSXgfK/ZKZ1eIhWicQYWETD6MoIp3VudqCmjizQ6J
-	HgDp+StYdStixjJz/TkgOBX1mK4AecqXQ6IYtnAPu87C7VB+cP5w4z2LgFM4VA57hbzfkNo1GkW
-	4rkTcr7o=
-X-Gm-Gg: ASbGncsBdknEakW3mTnVyBd/Wjye48oAJLkhh5C9zIxes56phbPcQ/u7WO3dNabGWh2
-	QDYz9XsauLHtLAePu/aA5v/O1Nj8CA5nvfgJKluwzo/r8yDjJap5epbv1luSurPi4/4G/1ClOUS
-	GNGFnQTN/ZvWd1Pz4RC9N8p8RUJMLfXjr8u2jcG9iEq1MHxeLUMyzWFz3rucznnII3+txLNNhxj
-	1s9nb9zknyy8Rfa0oE76/rWeiZovkUedjVaYz/b0Ee5paIZw/81dEC0qmdsKbFk9hcVs5ylNMbb
-	JffRRPmwpSR6lV4Xsm6wINuNrWnHttpsn40KJXBWJpm5gGWquw4NPqr376bUhhRdOAblhFRI6xQ
-	wLFt2CuXfaux/OTGOXenJrCZVRwFGZJnd/xrYVStTNqVCMaldI7glqbTRQzSHBXLJtbwIvg==
-X-Google-Smtp-Source: AGHT+IFKlUEKzOojQldM0O3QUhp1WqFQrJMW4YyIwO+SE1fmwBD/U9KH7gat3RRaNFqT/jHFuMp31A==
-X-Received: by 2002:a05:6000:1ac8:b0:3c7:244:a4be with SMTP id ffacd0b85a97d-3d1dd04e24bmr13949477f8f.10.1756911254206;
-        Wed, 03 Sep 2025 07:54:14 -0700 (PDT)
-Received: from pop-os.telenet.be ([2a02:1807:2a00:3400:7e45:593:64fd:6612])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3dc1cd4a7d2sm4087175f8f.33.2025.09.03.07.54.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 07:54:13 -0700 (PDT)
-From: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-To: dlan@gentoo.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	alex@ghiti.fr
-Cc: skhan@linuxfoundation.org,
-	linux-kernel-mentees@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
-Subject: [PATCH] riscv: dts: spacemit: add UART pinctrl combinations
-Date: Wed,  3 Sep 2025 16:53:34 +0200
-Message-ID: <20250903145334.425633-1-hendrik.hamerlinck@hammernet.be>
-X-Mailer: git-send-email 2.43.0
+        d=1e100.net; s=20230601; t=1756911238; x=1757516038;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yoaNAmWhIibGu6l1WRy5RqFKcSEP315ehpRCdLHsl14=;
+        b=UHMenL5BEgcNvVnmCHBG6qvQnKKd7ALdABvV72UObWyZVoxSEuKbNNrA+zdXpluX59
+         jTQAJvsvp1fi4Dhj4DV02L1JEsREGpRZjju8HQslGr3yipEVqlGIb1xCb0iEXfvAcnnq
+         Xck4mq/mIB8Sf4sH9vj3pShYoog1AuBakhgd4b9nQPKPf2uTpH1x+0Tws5zxiXdGssxt
+         yb9m5rYFaCce6uwqBXNpfC4PTgwy7okrGpbJvg4Mhy3pGLDaB9C9JItPBPMgnUfWqpBa
+         E+3Jwx244BdTj6Y4G56zTaJjJQ0Bf/1hS+u18iCGkr/tO6/1lUQmfANsbYPA+Q/8fXUy
+         KL8w==
+X-Forwarded-Encrypted: i=1; AJvYcCWu77z1qnAai2TIU4mrT14vs/U4o5BK7sx9Q+5kmV/CbAdIbxY9s7E6pkvyJQ0n6Ocd3AlA3Ao26+Fz@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnIoVYd8hc8NsNo1f18gB5xNzC1fJ8vhAEaNxWTCiguIYpjLfI
+	pN2LWDRlT9YACRWw3RbHlIPlByOLVnhSVbaA5tGHOoqUL1NvQOZVP2gmL0f8vBC4UDc=
+X-Gm-Gg: ASbGncuLVmQ+6gy40SrF0HE/VZvuIWmuTVTGF48mWK73aBFvCD3WArNWyY89Sq365IZ
+	7xd9T/oBNrLtMKFlV1KxRGi9gPgFKRe4pBDhJqbl4ZUTOasBtt5GJ3gKeafqZz0OJmDfgncQWNb
+	OZ3H6eTE2BeJtvF/IlycjylhfW/0B6ic4Sm56Xa1GoN10yz2dE/f0nEGJJCheVfVsr1Qp2u2lF3
+	9M8lrRLu8y/MktFMD2a/iobQaZGlekTn2H47QeTAGn27i98mIIRONxnfcyjTiF6r90/Jgj7XzyC
+	ttmuJIkf8sFenN9s5wP65UW7G0L050VsFGxIe0I0cCf5eHrke8BvBsqMRU6foswiDktGY/Q4OeD
+	c8w5y8gpJeGCCEilqizNQQHu3YIAP3tz6K0IZjv4MimwkjXFzR6Pl0KmBdEiHUhDOVdW/XVvps4
+	jVAo1RR1X8adSE/avEyOPaXok=
+X-Google-Smtp-Source: AGHT+IHKfKTbLX6DEzjRIqHHgWQYsVAqnbGKlA7TGvZ37mdtddbwJKcqflssNkEpjctd+pomGp9Tmg==
+X-Received: by 2002:a05:6000:2908:b0:3d1:8d1e:906 with SMTP id ffacd0b85a97d-3d1e08a06aemr12584267f8f.59.1756911237655;
+        Wed, 03 Sep 2025 07:53:57 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:2a30:223c:d73b:565a? ([2a05:6e02:1041:c10:2a30:223c:d73b:565a])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45b940bbc0dsm89079915e9.2.2025.09.03.07.53.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 07:53:57 -0700 (PDT)
+Message-ID: <3659b492-c135-4fe1-9ffe-70877e4da0f5@linaro.org>
+Date: Wed, 3 Sep 2025 16:53:56 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, jic23@kernel.org,
+ dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
+ conor+dt@kernel.org, krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+ <20250903102756.1748596-3-daniel.lezcano@linaro.org>
+ <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-This adds UART pinctrl configurations based on the SoC datasheet and the
-downstream Bianbu Linux tree. The drive strength values were taken from
-the downstream implementation, which uses medium drive strength.
 
-For convenience, the board DTS files have been updated to include all
-UART instances with their possible pinmux options in a disabled state.
+Hi Nuno,
 
-Tested this locally on both Orange Pi RV2 and Banana Pi BPI-F3 boards. 
+On 03/09/2025 13:20, Nuno Sá wrote:
+> On Wed, 2025-09-03 at 12:27 +0200, Daniel Lezcano wrote:
+>> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+>>
+>> The NXP S32G2 and S32G3 platforms integrate a successive approximation
+>> register (SAR) ADC. Two instances are available, each providing 8
+>> multiplexed input channels with 12-bit resolution. The conversion rate
+>> is up to 1 Msps depending on the configuration and sampling window.
+>>
+>> The SAR ADC supports raw, buffer, and trigger modes. It can operate
+>> in both single-shot and continuous conversion modes, with optional
+>> hardware triggering through the cross-trigger unit (CTU) or external
+>> events. An internal prescaler allows adjusting the sampling clock,
+>> while per-channel programmable sampling times provide fine-grained
+>> trade-offs between accuracy and latency. Automatic calibration is
+>> performed at probe time to minimize offset and gain errors.
+>>
+>> The driver is derived from the BSP implementation and has been partly
+>> rewritten to comply with upstream requirements. For this reason, all
+>> contributors are listed as co-developers, while the author refers to
+>> the initial BSP driver file creator.
+>>
+>> All modes have been validated on the S32G274-RDB2 platform using an
+>> externally generated square wave captured by the ADC. Tests covered
+>> buffered streaming via IIO, trigger synchronization, and accuracy
+>> verification against a precision laboratory signal source.
+>>
+>> Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
+>> Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
+>> Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+>> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
+>> Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+>> Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
+>> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+>> Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+>> ---
+> 
+> Hi David,
 
-Signed-off-by: Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
----
- .../boot/dts/spacemit/k1-bananapi-f3.dts      |  18 ++
- .../boot/dts/spacemit/k1-orangepi-rv2.dts     |  18 ++
- arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi  | 276 +++++++++++++++++-
- 3 files changed, 309 insertions(+), 3 deletions(-)
+s/David/Daniel/ :)
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-index 6013be258542..661d47d1ce9e 100644
---- a/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts
-@@ -49,3 +49,21 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart5_3_cfg>;
-+	status = "disabled";
-+};
-+
-+&uart8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart8_2_cfg>;
-+	status = "disabled";
-+};
-+
-+&uart9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart9_2_cfg>;
-+	status = "disabled";
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-index 337240ebb7b7..dc45b75b1ad4 100644
---- a/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-orangepi-rv2.dts
-@@ -38,3 +38,21 @@ &uart0 {
- 	pinctrl-0 = <&uart0_2_cfg>;
- 	status = "okay";
- };
-+
-+&uart5 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart5_3_cfg>;
-+	status = "disabled";
-+};
-+
-+&uart8 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart8_2_cfg>;
-+	status = "disabled";
-+};
-+
-+&uart9 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart9_2_cfg>;
-+	status = "disabled";
-+};
-diff --git a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-index 381055737422..43425530b5bf 100644
---- a/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-+++ b/arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi
-@@ -11,12 +11,282 @@
- #define K1_GPIO(x)	(x / 32) (x % 32)
- 
- &pinctrl {
-+	uart0_0_cfg: uart0-0-cfg {
-+		uart0-0-pins {
-+			pinmux = <K1_PADCONF(104, 3)>,	/* uart0_txd */
-+				 <K1_PADCONF(105, 3)>;	/* uart0_rxd */
-+			power-source = <3300>;
-+			bias-pull-up;
-+			drive-strength = <19>;
-+		};
-+	};
-+
-+	uart0_1_cfg: uart0-1-cfg {
-+		uart0-1-pins {
-+			pinmux = <K1_PADCONF(108, 1)>,	/* uart0_txd */
-+				 <K1_PADCONF(80, 3)>;	/* uart0_rxd */
-+			power-source = <3300>;
-+			bias-pull-up;
-+			drive-strength = <19>;
-+		};
-+	};
-+
- 	uart0_2_cfg: uart0-2-cfg {
- 		uart0-2-pins {
--			pinmux = <K1_PADCONF(68, 2)>,
--				 <K1_PADCONF(69, 2)>;
-+			pinmux = <K1_PADCONF(68, 2)>,	/* uart0_txd */
-+				 <K1_PADCONF(69, 2)>;	/* uart0_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
- 
--			bias-pull-up = <0>;
-+	uart2_0_cfg: uart2-0-cfg {
-+		uart2-0-pins {
-+			pinmux = <K1_PADCONF(21, 1)>,	/* uart2_txd */
-+				 <K1_PADCONF(22, 1)>,	/* uart2_rxd */
-+				 <K1_PADCONF(23, 1)>,	/* uart2_cts */
-+				 <K1_PADCONF(24, 1)>;	/* uart2_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart3_0_cfg: uart3-0-cfg {
-+		uart3-0-pins {
-+			pinmux = <K1_PADCONF(81, 2)>,	/* uart3_txd */
-+				 <K1_PADCONF(82, 2)>,	/* uart3_rxd */
-+				 <K1_PADCONF(83, 2)>,	/* uart3_cts */
-+				 <K1_PADCONF(84, 2)>;	/* uart3_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart3_1_cfg: uart3-1-cfg {
-+		uart3-1-pins {
-+			pinmux = <K1_PADCONF(18, 2)>,	/* uart3_txd */
-+				 <K1_PADCONF(19, 2)>,	/* uart3_rxd */
-+				 <K1_PADCONF(20, 2)>,	/* uart3_cts */
-+				 <K1_PADCONF(21, 2)>;	/* uart3_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart3_2_cfg: uart3-2-cfg {
-+		uart3-2-pins {
-+			pinmux = <K1_PADCONF(53, 4)>,	/* uart3_txd */
-+				 <K1_PADCONF(54, 4)>,	/* uart3_rxd */
-+				 <K1_PADCONF(55, 4)>,	/* uart3_cts */
-+				 <K1_PADCONF(56, 4)>;	/* uart3_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart4_0_cfg: uart4-0-cfg {
-+		uart4-0-pins {
-+			pinmux = <K1_PADCONF(100, 4)>,	/* uart4_txd */
-+				 <K1_PADCONF(101, 4)>;	/* uart4_rxd */
-+			power-source = <3300>;
-+			bias-pull-up;
-+			drive-strength = <19>;
-+		};
-+	};
-+
-+	uart4_1_cfg: uart4-1-cfg {
-+		uart4-1-pins {
-+			pinmux = <K1_PADCONF(81, 3)>,	/* uart4_cts */
-+				 <K1_PADCONF(82, 3)>,	/* uart4_rts */
-+				 <K1_PADCONF(83, 3)>,	/* uart4_txd */
-+				 <K1_PADCONF(84, 3)>;	/* uart4_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart4_2_cfg: uart4-2-cfg {
-+		uart4-2-pins {
-+			pinmux = <K1_PADCONF(23, 2)>,	/* uart4_txd */
-+				 <K1_PADCONF(24, 2)>;	/* uart4_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart4_3_cfg: uart4-3-cfg {
-+		uart4-3-pins {
-+			pinmux = <K1_PADCONF(33, 2)>,	/* uart4_txd */
-+				 <K1_PADCONF(34, 2)>,	/* uart4_rxd */
-+				 <K1_PADCONF(35, 2)>,	/* uart4_cts */
-+				 <K1_PADCONF(36, 2)>;	/* uart4_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart4_4_cfg: uart4-4-cfg {
-+		uart4-4-pins {
-+			pinmux = <K1_PADCONF(111, 4)>,	/* uart4_txd */
-+				 <K1_PADCONF(112, 4)>,	/* uart4_rxd */
-+				 <K1_PADCONF(113, 4)>,	/* uart4_cts */
-+				 <K1_PADCONF(114, 4)>;	/* uart4_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart5_0_cfg: uart5-0-cfg {
-+		uart5-0-pins {
-+			pinmux = <K1_PADCONF(102, 3)>,	/* uart5_txd */
-+				 <K1_PADCONF(103, 3)>;	/* uart5_rxd */
-+			power-source = <3300>;
-+			bias-pull-up;
-+			drive-strength = <19>;
-+		};
-+	};
-+
-+	uart5_1_cfg: uart5-1-cfg {
-+		uart5-1-pins {
-+			pinmux = <K1_PADCONF(25, 2)>,	/* uart5_txd */
-+				 <K1_PADCONF(26, 2)>,	/* uart5_rxd */
-+				 <K1_PADCONF(27, 2)>,	/* uart5_cts */
-+				 <K1_PADCONF(28, 2)>;	/* uart5_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart5_2_cfg: uart5-2-cfg {
-+		uart5-2-pins {
-+			pinmux = <K1_PADCONF(42, 2)>,	/* uart5_txd */
-+				 <K1_PADCONF(43, 2)>,	/* uart5_rxd */
-+				 <K1_PADCONF(44, 2)>,	/* uart5_cts */
-+				 <K1_PADCONF(45, 2)>;	/* uart5_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart5_3_cfg: uart5-3-cfg {
-+		uart5-3-pins {
-+			pinmux = <K1_PADCONF(70, 4)>,	/* uart5_txd */
-+				 <K1_PADCONF(71, 4)>,	/* uart5_rxd */
-+				 <K1_PADCONF(72, 4)>,	/* uart5_cts */
-+				 <K1_PADCONF(73, 4)>;	/* uart5_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart6_0_cfg: uart6-0-cfg {
-+		uart6-0-pins {
-+			pinmux = <K1_PADCONF(85, 2)>,	/* uart6_cts */
-+				 <K1_PADCONF(86, 2)>,	/* uart6_txd */
-+				 <K1_PADCONF(87, 2)>,	/* uart6_rxd */
-+				 <K1_PADCONF(90, 2)>;	/* uart6_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart6_1_cfg: uart6-1-cfg {
-+		uart6-1-pins {
-+			pinmux = <K1_PADCONF(0, 2)>,	/* uart6_txd */
-+				 <K1_PADCONF(1, 2)>,	/* uart6_rxd */
-+				 <K1_PADCONF(2, 2)>,	/* uart6_cts */
-+				 <K1_PADCONF(3, 2)>;	/* uart6_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart6_2_cfg: uart6-2-cfg {
-+		uart6-2-pins {
-+			pinmux = <K1_PADCONF(56, 2)>,	/* uart6_txd */
-+				 <K1_PADCONF(57, 2)>;	/* uart6_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart7_0_cfg: uart7-0-cfg {
-+		uart7-0-pins {
-+			pinmux = <K1_PADCONF(88, 2)>,	/* uart7_txd */
-+				 <K1_PADCONF(89, 2)>;	/* uart7_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart7_1_cfg: uart7-1-cfg {
-+		uart7-1-pins {
-+			pinmux = <K1_PADCONF(4, 2)>,	/* uart7_txd */
-+				 <K1_PADCONF(5, 2)>,	/* uart7_rxd */
-+				 <K1_PADCONF(6, 2)>,	/* uart7_cts */
-+				 <K1_PADCONF(7, 2)>;	/* uart7_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart8_0_cfg: uart8-0-cfg {
-+		uart8-0-pins {
-+			pinmux = <K1_PADCONF(82, 4)>,	/* uart8_txd */
-+				 <K1_PADCONF(83, 4)>;	/* uart8_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart8_1_cfg: uart8-1-cfg {
-+		uart8-1-pins {
-+			pinmux = <K1_PADCONF(8, 2)>,	/* uart8_txd */
-+				 <K1_PADCONF(9, 2)>,	/* uart8_rxd */
-+				 <K1_PADCONF(10, 2)>,	/* uart8_cts */
-+				 <K1_PADCONF(11, 2)>;	/* uart8_rts */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart8_2_cfg: uart8-2-cfg {
-+		uart8-2-pins {
-+			pinmux = <K1_PADCONF(75, 4)>,	/* uart8_txd */
-+				 <K1_PADCONF(76, 4)>,	/* uart8_rxd */
-+				 <K1_PADCONF(77, 4)>,	/* uart8_cts */
-+				 <K1_PADCONF(78, 4)>;	/* uart8_rts */
-+			power-source = <3300>;
-+			bias-pull-up;
-+			drive-strength = <19>;
-+		};
-+	};
-+
-+	uart9_0_cfg: uart9-0-cfg {
-+		uart9-0-pins {
-+			pinmux = <K1_PADCONF(12, 2)>,	/* uart9_txd */
-+				 <K1_PADCONF(13, 2)>;	/* uart9_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart9_1_cfg: uart9-1-cfg {
-+		uart9-1-pins {
-+			pinmux = <K1_PADCONF(110, 3)>,	/* uart9_cts */
-+				 <K1_PADCONF(115, 3)>,	/* uart9_rts */
-+				 <K1_PADCONF(116, 3)>,	/* uart9_txd */
-+				 <K1_PADCONF(117, 3)>;	/* uart9_rxd */
-+			bias-pull-up;
-+			drive-strength = <32>;
-+		};
-+	};
-+
-+	uart9_2_cfg: uart9-2-cfg {
-+		uart9-2-pins {
-+			pinmux = <K1_PADCONF(72, 2)>,	/* uart9_txd */
-+				 <K1_PADCONF(73, 2)>;	/* uart9_rxd */
-+			bias-pull-up;
- 			drive-strength = <32>;
- 		};
- 	};
+> Just some minor review for now...
+
+Whow, thanks for fast review !
+
+[ ... ]
+
+>> +static int nxp_sar_adc_dma_probe(struct device *dev, struct nxp_sar_adc
+>> *info)
+>> +{
+>> +	struct device *dev_dma;
+>> +	int ret;
+>> +	u8 *rx_buf;
+>> +
+>> +	info->dma_chan = devm_dma_request_chan(dev, "rx");
+>> +	if (IS_ERR(info->dma_chan))
+>> +		return PTR_ERR(info->dma_chan);
+>> +
+>> +	dev_dma = info->dma_chan->device->dev;
+>> +	rx_buf = dma_alloc_coherent(dev_dma, NXP_SAR_ADC_DMA_BUFF_SZ,
+>> +				    &info->rx_dma_buf, GFP_KERNEL);
+>> +	if (!rx_buf)
+>> +		return -ENOMEM;
+>> +
+> 
+> The above needs some discussion at the very least. Have you considered the IIO
+> DMA buffer interface? It should be extendable to accommodate any particularity
+> of your usecase (or we should at least discuss it).
+> 
+> With it, you also gain a userspace interface where you can actually share DMA
+> buffers in a zero copy fashion. You can also share these buffers with USB
+> gadgets. For instance, with libiio, you would be able to fetch samples from your
+> host machine (through USB) in a very fast way (zero copy between IIO and USB).
+> 
+> Setting up DMA to then "having" to push it to a SW buffer and needing a syscall
+> to retrieve the data seems counter-productive.
+
+I'm not very used to dma. If there is a better implementation to put in 
+place I'll be glad to take any suggestion to understand the approach.
+
+Is there any driver using the IIO DMA buffer interface I can refer to ?
+
+[ ... ]
+
+
 -- 
-2.43.0
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
