@@ -1,81 +1,148 @@
-Return-Path: <devicetree+bounces-212084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212085-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4840FB41BFB
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:37:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95DAFB41C0C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:41:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6012C7A9718
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:35:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C43C67A33CA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 10:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260E12EB5AF;
-	Wed,  3 Sep 2025 10:37:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEB6C2F1FC7;
+	Wed,  3 Sep 2025 10:41:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JagdKvI8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JSr4pE4D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9F9C2DECC5;
-	Wed,  3 Sep 2025 10:37:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE061E5206;
+	Wed,  3 Sep 2025 10:41:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756895837; cv=none; b=KF7ncUu78+fH1lVtV7yDb4rgnWu7mHeDeWtSNRJc/bfYCO6fKyB79gbwV3TneIUwyU2A7QMIBG1ATuM1/qBUfpUIkYmN3CxUgihjBw0pKipjFEKuRRyu5x3YxUi8JleCufpJPsRjnILRvBUeo35V65fhl0siEeVMPttCYTdml6I=
+	t=1756896081; cv=none; b=kLyI54iC1tyJE3p+z+NgoEKNyplZeCSKRBsl8PLmrOSTqBJ57cca20/CCoCmWI/xeMMphcpVswmxqZKEXLOe+goYzcpV6F/jAL7UvU0yiZUqSwj3oRctO/w026afx/dHG/VRjv/aTy++7nr6Va7IsS2Qy66i6iysTq5yngVnho4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756895837; c=relaxed/simple;
-	bh=d84xsn1/XRPPl7BGLeHHOGgmU77ohZxDzmlv/AfyDw4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qnw72FoffLs5/SoKpgGdKH7r2E8oe+jJUX2Fh8dD2+TOTlRAD2quYNW4X/nJ4gUyUA3q1fDK75rvlTlSKkziURT+TRANEWiWGHsTCSAJ+STPI0YI89BldrAFjrxCK1Dit87WeDiYh4PEp1++UyPHwScXLrdpeOXBvampduivupw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JagdKvI8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E3DBC4CEF0;
-	Wed,  3 Sep 2025 10:37:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756895834;
-	bh=d84xsn1/XRPPl7BGLeHHOGgmU77ohZxDzmlv/AfyDw4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JagdKvI8miQa5QU7EjHTmmx38UccgHBf+y4JG2z00Rs4G9HpUWFt2V2O98t6rwop+
-	 KfdV8PWQvBmLTOzCUO+fc2xYR1nOif+qzvXXvuyf2UvCJtdLLAUA5EjPouLyjiDdCs
-	 9t8gdC8k7wO0kWhiRJi7QGpL7MzsXVkyhkCnvpknNxkf1+I5ktiDvq50RoLlGXG+0J
-	 /AffNlIajhVrersLo/ImtmYqD+Z2Z8qRTCYPIPOW8KxzjycNgj8qshE3/ZgdohF+LQ
-	 9NZwPbFa1xCn5g6EePXMkk2N4yi18Dk5npv0aKktqPdNKdbHDJg1D/AZXn+/M7M9yZ
-	 HTu8OS/OR3Kdg==
-Date: Wed, 3 Sep 2025 12:37:09 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH 1/2] i2c: s3c2410: Drop S3C2410 OF support
-Message-ID: <jllb7g27r72hvfusjzetcj2tyio3w73hz7jey4hnwq2iohxqtz@wbshht7hqp2s>
-References: <20250830103601.82046-3-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1756896081; c=relaxed/simple;
+	bh=cQ5AxTNObd/Ros3LgbI1d2H9KbaWvkEuSSK99ckKyZU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=di2BFh681IjW7tqvQatHWlmizsxErX1ZsK1GgBrHYS6OxFtKxOnHh+adne22kuhDxiE9gvQ4bGzc4QMCoTggnU7+buhSRIbHi/corX5Hy2XgnPJAXYg8XmH8+6aOMrQkcDc66hBONM67GhaUFMEt1NHBVjp/u9z/R4tq3gJyXrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JSr4pE4D; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-24456ce0b96so9676385ad.0;
+        Wed, 03 Sep 2025 03:41:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756896079; x=1757500879; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=M0EPRZe8YJObgeqfHix/soVRNAxr+rVxG0fDuUG583s=;
+        b=JSr4pE4DJAelgsOFQLCl9PTMAmOEWjINBaA0MxebU4uBde2i91d3UO/11Jj9V7rJMN
+         tZLVqgkiFUauJNzyX9ZGJNMETg1lwWNj4oVuy25OzpkcYvB/rbADohz7vWRi1eSse6In
+         +7WfA+kVcZrBHwKLPQ+Sn3OiKKzRdgt+XuF0WO/jAgPyYCuElbXMhFW/2GM4YGcO7Rv8
+         Q6FgMeDo9OJyn3UWXK/NFbcCJ3yX5umwiNBdmodXv6Vj6sVBH9h7tY+59KetT/oVq7Pq
+         lStxiL4X910lIPgwYoDXSMGBDjt2iQ7vkN6kBR60m0S0X6L2yl5DLsB6gEqH5PeFDrcR
+         7TLQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756896079; x=1757500879;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=M0EPRZe8YJObgeqfHix/soVRNAxr+rVxG0fDuUG583s=;
+        b=JFrbPQcEYiqIVallhg2SKaRY/glbyLqvmUrzG/IJUOCdhLorv7e+MRavrBstr/+O9D
+         JCvO4coTWBjWpmitH0o0outBE6pt3c48gNQstMUViRvNAR/lOeRDjnp+JvrwtTPdNR1h
+         Tg5YDjeiGEWXHdvtJm9vaper4tFN/hVU5HaiXauZrq3CyC95LNmXN5qQ0s9IFPrel4sQ
+         ABFa93QB7/lkxN66Y3Pc0I0qLf+NJto0c7CYYMiZQPH1tTSAxTUwNfd/4uNhsf3K32uA
+         J0cIoBQ4ezAG8qlZqfF9oUd2APE6R19fhCuVL0fFtl5jBjx+VWg/eTvcTMJ/k0gyKvpP
+         AX7w==
+X-Forwarded-Encrypted: i=1; AJvYcCV8kp2iLbqc8JgmXdI0932avydv0+RMGcH8YCIbbfYuSXVzzIMsIaMm81tH/zY4y+J9tcQ76Yd1kUYlPHMc@vger.kernel.org, AJvYcCVk9JfyDD2Qhy3C/dyJ510qCBk9LL+7CcItgkiSxTxPmMT3JJHBh8My35NWEsF7pp/JgGBIWoyOXHCG6QA=@vger.kernel.org, AJvYcCXQiB1xldv9JmKjQ8Mq0Cp/Cc5eHsoYX9/KRNEC7OopVs31pXGuOUNMaQTWc0DBBcNu8m5WhVaE2Ci8@vger.kernel.org
+X-Gm-Message-State: AOJu0YyqY+PJPUmEtftUTowvUP9jDA2OXxJ0eIH9PM1ozzh4dqmnkQgJ
+	j0REJb1D7vAR9Qz17ciVybaRCNE/lSJGWBVnCGFcDBhFJCq71wq2IBwOMscxTkItMmdmR1+RLf8
+	bkGLZI3zUfiCUQ8AK6KWTfLLW8hMPZ0M=
+X-Gm-Gg: ASbGncudKiBjQhNG10u7P0nytkzKSPZhGfdAdUrBKPfFsStS6gTMXKNkmKbRbXGhMNF
+	emG12IbMFNFFpOtDhi6nSoMRGx2C/aTXQah+wn9oQEuXzUUkaPGRYsXT/125MSpdAYVE7hXipMK
+	O2s1Vtc+zVguKL2mFfgKnqWGjV3g5YSgyZc0sIuCE9lyUE9X+3yMgii9g3WrWcjVxrT0Uh7ogNi
+	cpPf5U=
+X-Google-Smtp-Source: AGHT+IFBlgHU9/9J/ynH5B/Y0lYKvN7CIRjLzFRFLjCUSdV7/phYhX05by3bq36srAY3SNogU76UhQZ1T1/Qk7whF0E=
+X-Received: by 2002:a17:902:e891:b0:246:2da9:73a2 with SMTP id
+ d9443c01a7336-2493eff73d7mr197893025ad.27.1756896079484; Wed, 03 Sep 2025
+ 03:41:19 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250830103601.82046-3-krzysztof.kozlowski@linaro.org>
+References: <20250821073131.2550798-1-shengjiu.wang@nxp.com>
+ <20250821073131.2550798-5-shengjiu.wang@nxp.com> <20250901185208.394cd162@booty>
+In-Reply-To: <20250901185208.394cd162@booty>
+From: Shengjiu Wang <shengjiu.wang@gmail.com>
+Date: Wed, 3 Sep 2025 18:41:05 +0800
+X-Gm-Features: Ac12FXx8o6RDyP5im-Wa5RK1y5nzjHR2o5AyrKxsM3tEIkvqqNNrZcDYhIoBDY8
+Message-ID: <CAA+D8AOCTqb5jLeRapYk4wRGZrsrPiuAR=ow3OA1B0+M9X4k7w@mail.gmail.com>
+Subject: Re: [PATCH v5 4/7] drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958()
+ for iec958 format
+To: Luca Ceresoli <luca.ceresoli@bootlin.com>
+Cc: Shengjiu Wang <shengjiu.wang@nxp.com>, andrzej.hajda@intel.com, 
+	neil.armstrong@linaro.org, rfoss@kernel.org, 
+	Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se, jernej.skrabec@gmail.com, 
+	maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, 
+	airlied@gmail.com, simona@ffwll.ch, lumag@kernel.org, dianders@chromium.org, 
+	cristian.ciocaltea@collabora.com, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, victor.liu@nxp.com, shawnguo@kernel.org, 
+	s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com, 
+	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, p.zabel@pengutronix.de, 
+	devicetree@vger.kernel.org, l.stach@pengutronix.de, perex@perex.cz, 
+	tiwai@suse.com, linux-sound@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+On Tue, Sep 2, 2025 at 12:52=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
+n.com> wrote:
+>
+> Hello Shengjiu,
+>
+> On Thu, 21 Aug 2025 15:31:28 +0800
+> Shengjiu Wang <shengjiu.wang@nxp.com> wrote:
+>
+> > Add API dw_hdmi_set_sample_iec958() for IEC958 format because audio dev=
+ice
+> > driver needs IEC958 information to configure this specific setting.
+> >
+> > Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> > Acked-by: Liu Ying <victor.liu@nxp.com>
+>
+> [...]
+>
+> > +void dw_hdmi_set_sample_iec958(struct dw_hdmi *hdmi, unsigned int iec9=
+58)
+> > +{
+> > +     mutex_lock(&hdmi->audio_mutex);
+> > +     hdmi->sample_iec958 =3D iec958;
+> > +     mutex_unlock(&hdmi->audio_mutex);
+> > +}
+>
+> Apologies for jumping in the discussion as late as in v5, but I noticed
+> this patch and I was wondering whether this mutex_lock/unlock() is
+> really needed, as you're copying an int.
 
-On Sat, Aug 30, 2025 at 12:36:02PM +0200, Krzysztof Kozlowski wrote:
-> Samsung S3C2410 SoC was removed from the Linux kernel in the
-> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
-> 2023.  There are no in-kernel users of "samsung,s3c2410-i2c" compatible.
-> 
-> However, there is still a user of "s3c2410-i2c" platform device ID,
-> S3C64xx platform, so that part needs to stay.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Thanks for your comments.
 
-both patches reviewed and merged to i2c/i2c-host.
+Seems it is not necessary to add mutex here. I just follow the code as
+other similar functions.  I will send a new version to update it.
 
-Thanks,
-Andi
+Best regards
+Shengjiu Wang
+
+Shengjiu Wang
+>
+> Luca
+>
+> --
+> Luca Ceresoli, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 
