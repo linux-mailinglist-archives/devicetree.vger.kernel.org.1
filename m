@@ -1,266 +1,125 @@
-Return-Path: <devicetree+bounces-211982-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211986-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134E9B416CF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:37:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6589DB416F7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:40:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 814021BA2C71
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:37:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 39189188A7FB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:40:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F6132DE6F7;
-	Wed,  3 Sep 2025 07:37:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911952DCF56;
+	Wed,  3 Sep 2025 07:39:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="mMIes7F9"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="f6PnfX05"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1B82DC336
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:36:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88A5733991;
+	Wed,  3 Sep 2025 07:39:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756885021; cv=none; b=AigR1SVp0RwUF75u5DXd6CMONvRDyAfycptHvXN1CQkp7WjeokfUwi9vYb8KGSM38OnfQk0Nl0Hnns/8RbbxXkZ5AvZPUhQTYge33rHJwVu76uNgEHkCXwjPNtOGEXyBLbZaUmrOZGSxu3egjYtOaCXeyTtr2305tu8E+fchftI=
+	t=1756885194; cv=none; b=kDi1GwKTE5C3Zv7ciY9cExSGgEp1YTtCEO6kI7EH8rfOWLiu1OrgJ/b/Ozvy2tlGyxejEBROSe9lkOg8qNlmAjFl+MX1w65pcCdcVMu5OmI97CHpAOA052GbY3u3M9DkLkT6P8UwhHrSe7n0N+mW7naq2g21mjeHm9/KyCM5GeE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756885021; c=relaxed/simple;
-	bh=wmwFnX/4LAHinkHU5D+kQBEzh05EfP1qhhvkUjlqssY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
-	 Content-Type:References; b=fWWPE9KIWVzZ/APGZXPpHMpr91gXESEPCG5oSG/OCaFBilrd02um86KJzuvuDVdqVPlWreE4UKajn73+FAy1XjhzF9Iy1JR12Rigqb/tErwxO+ogomoMzLs6oQ4SE456RKF0JuBEVdQYALUkrN3eQfq1xblcXsoOdOTBV9O3PSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=mMIes7F9; arc=none smtp.client-ip=203.254.224.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p2.samsung.com (unknown [182.195.41.54])
-	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250903073656epoutp03089bb559366a7c48953413ea6417514c~htZ0sR01h0135901359epoutp03j
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:36:56 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250903073656epoutp03089bb559366a7c48953413ea6417514c~htZ0sR01h0135901359epoutp03j
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-	s=mail20170921; t=1756885016;
-	bh=QbAAN8lX9u7ye0RuKSQreAcwMv69aFgIjOskci50R+0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=mMIes7F9rdAjB76H3SySa28SbU84vno/XKn5g+DiO1CeQE3QfqQu6KMHWbp+iytH7
-	 o6zkvvHeEWr2hEi6bYjH32p8aAZzobyVtNEPH+++p3ZmmUWMWaJA9wPBQUI+5Hf8KV
-	 zXq/36xE1NBtMOc5Mo07VhUCx7P9udcy9IRUjF7c=
-Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
-	epcas2p3.samsung.com (KnoxPortal) with ESMTPS id
-	20250903073654epcas2p3edea5f547b3a2f2bda7364d5b527d50b~htZzVfbhn1134111341epcas2p3B;
-	Wed,  3 Sep 2025 07:36:54 +0000 (GMT)
-Received: from epcas2p3.samsung.com (unknown [182.195.36.91]) by
-	epsnrtp03.localdomain (Postfix) with ESMTP id 4cGvZG29Rjz3hhT8; Wed,  3 Sep
-	2025 07:36:54 +0000 (GMT)
-Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
-	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250903073653epcas2p4bd8e50a6bfc1f5935ff8a01addf3d835~htZyMgjtT0220702207epcas2p4I;
-	Wed,  3 Sep 2025 07:36:53 +0000 (GMT)
-Received: from asswp60 (unknown [10.229.9.60]) by epsmtip2.samsung.com
-	(KnoxPortal) with ESMTPA id
-	20250903073653epsmtip20b983213ee13ab91c02b90ee8dbe90c7~htZyIDTUh3057830578epsmtip2z;
-	Wed,  3 Sep 2025 07:36:53 +0000 (GMT)
-From: Shin Son <shin.son@samsung.com>
-To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
-	<krzk@kernel.org>, "Rafael J . Wysocki" <rafael@kernel.org>, Daniel Lezcano
-	<daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, Lukasz Luba
-	<lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, Conor Dooley
-	<conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
-Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: exynosautov920: Add tmu hardware binding
-Date: Wed,  3 Sep 2025 16:36:34 +0900
-Message-ID: <20250903073634.1898865-4-shin.son@samsung.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250903073634.1898865-1-shin.son@samsung.com>
+	s=arc-20240116; t=1756885194; c=relaxed/simple;
+	bh=6uwz7gDsJt7qJxikPyOGFrgLUhMH6zeFa0DlKrhFpC0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=jSe0gNqajCRD49w/ig1zj91607inE7LDswPvVc2v4qHK8/eK0hzTgWuRiPek4aQ7yveBouP+jsBoT7vojx/4PEsgyUAB6XTTBQZeMPqP1wbFSfBAZPA8Hfm5BMdbfPpViecui3buc9GkGNS3ofNUBmyr4zqazkA/yDtS+ZVlWCk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=f6PnfX05; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5835jZYh007176;
+	Wed, 3 Sep 2025 09:39:41 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=selector1; bh=
+	oTO3GWe6vWTxVF1nz0fRYpUGQk7A1HpUGiGkoFHYPaU=; b=f6PnfX052q4atmjA
+	4p3rG7NLg6nSAVvfPHh6OoDoJ9dtKFB0rFd47RkIdkqjqCCGJjNTrbpt4kg2J84U
+	pBnd95KHLWdfLW5pqkSEbZmPM8Cys06fUkwx6ech9Oc9DGwOBLwv4Ariy2xGfNPc
+	9jqReH9MmUyvD2HO+ValDs6G3mc1iSD94QBiqSQz/s/mdWrIBcThvxei/RxUlH76
+	1r3e7ySt4POeitq9b+NXlZTINueQH+OPaIYYAhULAZq/FiHjJN7cNvZUa1p5mFV2
+	lbaiHBVoulwpXub7Ej9idqGItDfO1fCXtNIxRRBhD3nHfWwZUd+GR6DTF0PWUlgO
+	AKhqoA==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48upqkg5u3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 03 Sep 2025 09:39:41 +0200 (MEST)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 8F4154002D;
+	Wed,  3 Sep 2025 09:38:53 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C354029038A;
+	Wed,  3 Sep 2025 09:38:20 +0200 (CEST)
+Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 3 Sep
+ 2025 09:38:20 +0200
+Message-ID: <667a4a36-5b5a-4a45-9300-d0abd10d4b53@foss.st.com>
+Date: Wed, 3 Sep 2025 09:38:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250903073653epcas2p4bd8e50a6bfc1f5935ff8a01addf3d835
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: AUTO_CONFIDENTIAL
-CMS-TYPE: 102P
-cpgsPolicy: CPGSC10-234,Y
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250903073653epcas2p4bd8e50a6bfc1f5935ff8a01addf3d835
-References: <20250903073634.1898865-1-shin.son@samsung.com>
-	<CGME20250903073653epcas2p4bd8e50a6bfc1f5935ff8a01addf3d835@epcas2p4.samsung.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] ARM: dts: stm32: stm32mp151c-plyaqm: Use correct
+ dai-format property
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>, <mcoquelin.stm32@gmail.com>,
+        <robh@kernel.org>
+CC: <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <shuah@kernel.org>
+References: <20250830225115.303663-1-jihed.chaibi.dev@gmail.com>
+Content-Language: en-US
+From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <20250830225115.303663-1-jihed.chaibi.dev@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-03_04,2025-08-28_01,2025-03-28_01
 
-Create a new exynosautov920-tmu.dtsi describing new TMU hardware
-and include it from exynosautov920.dtsi.
+Hi Jihed
 
-The exynosautov920-tmu node uses the misc clock as its source
-and exposes two new DT properties:
+On 8/31/25 00:51, Jihed Chaibi wrote:
+> The stm32-i2s binding inherits from the standard audio-graph-port
+> schema for its 'port' subnode, audio-graph-port requires the use
+> of the 'dai-format' property. The stm32mp151c-plyaqm dts file was
+> using the non-standard name 'format'.
+> 
+> Correct the property name to 'dai-format' to fix the dtbs_check
+> validation error.
+> 
+> Fixes: 9365fa46be358 ("ARM: dts: stm32: Add Plymovent AQM devicetree")
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> ---
+>   arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts b/arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
+> index 39a3211c613..55fe916740d 100644
+> --- a/arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
+> +++ b/arch/arm/boot/dts/st/stm32mp151c-plyaqm.dts
+> @@ -239,7 +239,7 @@ &i2s1 {
+>   
+>   	i2s1_port: port {
+>   		i2s1_endpoint: endpoint {
+> -			format = "i2s";
+> +			dai-format = "i2s";
+>   			mclk-fs = <256>;
+>   			remote-endpoint = <&codec_endpoint>;
+>   		};
 
-- samsung,hw-sensor-indices: defines valid sensors for the bitmap
+Applied on stm32-next.
 
-This TMU binding defines six thermal zones with a critical trip point
-at 125 degrees:
-
-tmu_top : cpucl0-0, cpucl1
-tmu_sub0: cpucl0-1, cpucl2
-tmu_sub1: g3d, npu
-
-Signed-off-by: Shin Son <shin.son@samsung.com>
----
- .../boot/dts/exynos/exynosautov920-tmu.dtsi   | 97 +++++++++++++++++++
- .../arm64/boot/dts/exynos/exynosautov920.dtsi | 31 ++++++
- 2 files changed, 128 insertions(+)
- create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-new file mode 100644
-index 000000000000..eb1864e69bef
---- /dev/null
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Samsung's ExynosAuto920 TMU configurations device tree source
-+ *
-+ * Copyright (c) 2020 Samsung Electronics Co., Ltd.
-+ *
-+ * Samsung's ExynosAuto920 SoC TMU(Thermal Managemenut Unit) are listed as
-+ * device tree nodes in this file.
-+ */
-+
-+/ {
-+	thermal-zones {
-+		cpucl0-0-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_top 0>;
-+
-+			trips {
-+				cpucl0_0_critical: cpucl0-0-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpucl0-1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_sub0 0>;
-+
-+			trips {
-+				cpucl0_1_critical: cpucl0-1-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpucl1-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_top 1>;
-+
-+			trips {
-+				cpucl1_critical: cpucl1-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		cpucl2-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_sub0 1>;
-+
-+			trips {
-+				cpucl2_critical: cpucl2-critical {
-+					temperature = <125000>;	/* millicelsius */
-+					hysteresis = <0>;	/* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		g3d-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_sub1 0>;
-+
-+			trips {
-+				g3d_critical: g3d-critical {
-+					temperature = <125000>; /* millicelsius */
-+					hysteresis = <0>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		npu-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&tmu_sub1 1>;
-+
-+			trips {
-+				npu_critical: npu-critical {
-+					temperature = <125000>; /* millicelsius */
-+					hysteresis = <0>; /* millicelsius */
-+					type = "critical";
-+				};
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-index 0fdf2062930a..642f766d4106 100644
---- a/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynosautov920.dtsi
-@@ -330,6 +330,36 @@ watchdog_cl1: watchdog@10070000 {
- 			samsung,cluster-index = <1>;
- 		};
- 
-+		tmu_top: tmu@100a0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100A0000 0x1000>;
-+			interrupts = <GIC_SPI 951 IRQ_TYPE_LEVEL_HIGH>;
-+			#thermal-sensor-cells = <1>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			samsung,hw-sensor-indices = <1 2 3 4 5 6 7 8 9 10 11 12>;
-+		};
-+
-+		tmu_sub0: tmu@100b0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100B0000 0x1000>;
-+			interrupts = <GIC_SPI 950 IRQ_TYPE_LEVEL_HIGH>;
-+			#thermal-sensor-cells = <1>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			samsung,hw-sensor-indices = <3 4 5 6 7 8 9 10>;
-+		};
-+
-+		tmu_sub1: tmu@100c0000 {
-+			compatible = "samsung,exynosautov920-tmu";
-+			reg = <0x100C0000 0x1000>;
-+			interrupts = <GIC_SPI 949 IRQ_TYPE_LEVEL_HIGH>;
-+			#thermal-sensor-cells = <1>;
-+			clocks = <&cmu_misc CLK_DOUT_MISC_NOCP>;
-+			clock-names = "tmu_apbif";
-+			samsung,hw-sensor-indices = <1 2 3 4 6 7>;
-+		};
-+
- 		gic: interrupt-controller@10400000 {
- 			compatible = "arm,gic-v3";
- 			#interrupt-cells = <3>;
-@@ -1507,3 +1537,4 @@ timer {
- };
- 
- #include "exynosautov920-pinctrl.dtsi"
-+#include "exynosautov920-tmu.dtsi"
--- 
-2.50.1
-
+Thanks
+Alex
 
