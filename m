@@ -1,116 +1,85 @@
-Return-Path: <devicetree+bounces-212444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27A49B42BF1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:30:01 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2B3B42C00
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:36:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA8C41BC44CF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:30:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D9DB5821E6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 21:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EC872EB843;
-	Wed,  3 Sep 2025 21:29:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9C322E92D9;
+	Wed,  3 Sep 2025 21:36:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="anAcspD2";
-	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="pqNva9nI"
+	dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b="Ol70bpOK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+Received: from ms.lwn.net (ms.lwn.net [45.79.88.28])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC252E03FF;
-	Wed,  3 Sep 2025 21:29:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F37A1A7264;
+	Wed,  3 Sep 2025 21:36:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.79.88.28
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756934996; cv=none; b=WuarSM5J00q4/ftlkbyuXFX36XFSNoODOPre914qfxVR2r3UMYe0VAYpYYnvNW7Y3JPVzuUrCkGK7vLrFRnDMUWnlwsUCSjX3weWZCiXcKivqTLgZdNdJj7RYqiay46OsATQgTNASqD6vYoo3g6JM4B1qezFliXVaZSEiqhCzJQ=
+	t=1756935391; cv=none; b=fZ8NGwEhEY3a30P7fayjOsLC2G7ONeFXGxU0Wi7ljE/ZAbfBZglOaJKWVuJhkI7rjFAm8fZ8tOIqdBkOUioVAji1a8d6G/oY+KKIKZSjgzYYxIXg1yap4RYwN9d6ZI9v+sJI+wroEu0vykkHEOp0xtF07XfAoOWmtyy00P0fKLc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756934996; c=relaxed/simple;
-	bh=Pm72KJkyOx20dJkg1/oHOJ+b8z/476MTARgoZvT6Kko=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=WqWCAEV5X/8g4euaAIO3Ey/qQPlJnmSwsoOL1MFtjVblbcqoOo4z/Qh1uwhpJ4BkimtpO1O/LyL3SwOOl9/hVqQLErv1gPwPYZyva+PcL59R8NxzXw9eM28ON08xHDCWyfL1De+JNUi9hXmxX58EDJ/5J3STO6LvCYG53Y7Ch20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=anAcspD2; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=pqNva9nI; arc=none smtp.client-ip=5.75.144.95
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
-DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1756934856; bh=KWG1lKRUoYbRab1ldXHp7em
-	ZA3hhQoPTXfqyJ/dofyE=; b=anAcspD2TR1NSE4GORNByPsFoFmmZh9N4ZRwfas5cB2Fs+6s18
-	utAbAfhbhOkoGcq3F5QrY4KhKeAITnsDfeXFMkOWqLGPFZ9i+ida1kidConVIbhZxiR6wrpo0zl
-	Q9d2jMGe0VBoXE0yCxgMN0ScP79GuGuubSoysPHiic7LKx1qqBIl9pU100v6J4n+4dBYLcaqVSo
-	4eGYtVpkJKwPud1F00n07K89X4EcSw/C1XMi0veqWx+hrGg/8MyCFumRGC9jxZxpgvQ0da5Vbdq
-	9bWE7VywZA/Z9wt+Nf7Tanjx8SMGntoGMcxFzZ3h0HdUDgZAcqDXwnGUoy0hA+OeqGw==;
-DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
-	h=To:Message-Id:Subject:Date:From; t=1756934856; bh=KWG1lKRUoYbRab1ldXHp7em
-	ZA3hhQoPTXfqyJ/dofyE=; b=pqNva9nIU9A+d2o7h6gM74nzifXEx6oZ2iZBDwwUfPl99wCDFM
-	LQFTpXSMeeIK1VeLCiFaMJ1ID/9fIt89wiBQ==;
-From: =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Date: Wed, 03 Sep 2025 23:27:33 +0200
-Subject: [PATCH v2] arm64: dts: qcom: msm8953-xiaomi-daisy: fix cd-gpios
+	s=arc-20240116; t=1756935391; c=relaxed/simple;
+	bh=FQRiATk851DE+sQx8K9vrHHe8Nv+hN4a0iHa6RunT5s=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=bOKHGOmdeey5ir+wUc6dKWu8Dx3yC6IcfaM++zB0yP+cJ65ESiiK+jZkBwSKI6rU5bOUlLktjd4Wh0LdUV43BadoGF2gcDFdwUe7QgxSsBhphCdJd14I66cNFGFQZ8QKhDQ17kLwtQd4fPm1EYW0FUzKP2OV6RYWEv8v53lBf1U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net; spf=pass smtp.mailfrom=lwn.net; dkim=pass (2048-bit key) header.d=lwn.net header.i=@lwn.net header.b=Ol70bpOK; arc=none smtp.client-ip=45.79.88.28
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lwn.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lwn.net
+DKIM-Filter: OpenDKIM Filter v2.11.0 ms.lwn.net 1FCA940AE3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lwn.net; s=20201203;
+	t=1756935389; bh=eV1vHge7txHRhdDG6zovkldYQtjRUoiVkp6bm2mfYN4=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=Ol70bpOKujxFnwZVq7Q/1s1OzTO33ELJboyfyGWxWkZlzWSo8XIp3QLiKcTR1F0K7
+	 mWEA47jtPd27LMz4YoCYIYe6ubzNSDDlQLGN411bR5d5k9UH7oDZpLs7pCJskp5fJQ
+	 BZgKuXkYIWDKt2a1zdcevDIsqdgg5WdNxgkgNbm41bFz4hFjU8/U0c6PzN8gNTBNWm
+	 LoI4cp3dVyPBNFOd/Chu3rGyp3RyXj7RUOE5Tl6vh5irFcPqeQbr2WcgNm0sltrFgU
+	 KYQrguBAWX3fjype7GXwvf/HSwsdnHKa41KNsR3S8HV9FGXY+meUWnVfppy8lZ7bOW
+	 SvMF3Vlf7jEwg==
+Received: from localhost (unknown [IPv6:2601:280:4600:2da9::1fe])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ms.lwn.net (Postfix) with ESMTPSA id 1FCA940AE3;
+	Wed,  3 Sep 2025 21:36:29 +0000 (UTC)
+From: Jonathan Corbet <corbet@lwn.net>
+To: Ranganath V N <vnranganath.20@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ brauner@kernel.org, djwong@kernel.org, pbonzini@redhat.com,
+ laurent.pinchart@ideasonboard.com, vnranganath.20@gmail.com,
+ devicetree@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, kvm@vger.kernel.org
+Subject: Re: [PATCH] Documentation: Fix spelling mistakes
+In-Reply-To: <20250902193822.6349-1-vnranganath.20@gmail.com>
+References: <20250902193822.6349-1-vnranganath.20@gmail.com>
+Date: Wed, 03 Sep 2025 15:36:28 -0600
+Message-ID: <871ponqkv7.fsf@trenco.lwn.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20250903-daisy-sd-fix-v2-1-e08c50f3be57@mainlining.org>
-X-B4-Tracking: v=1; b=H4sIAMSyuGgC/3WMQQ7CIBAAv9Ls2TVAVdCT/zA9YFnpJgoNGGLT8
- Hexd48zycwKmRJThku3QqLCmWNooHYdjJMNnpBdY1BCHYXpBTrLecHs8MEfFFKOqj+cDCkLLZk
- TNb3tbkPjifM7pmW7F/mzf0ZFokStNJneno2+m+vLcnhy4OD3MXkYaq1fCb7Ovq0AAAA=
-X-Change-ID: 20250830-daisy-sd-fix-011c23468e2a
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Alejandro Tafalla <atafalla@dnyon.com>, 
- Luca Weiss <luca@lucaweiss.eu>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Barnab=C3=A1s_Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756934856; l=1448;
- i=barnabas.czeman@mainlining.org; s=20240730; h=from:subject:message-id;
- bh=Pm72KJkyOx20dJkg1/oHOJ+b8z/476MTARgoZvT6Kko=;
- b=spjJ8/o1wszYQYfWdN0OlEkMr5Iy/iURdUV18eYwxwctOkz4dAEUbdslorYf1a5057gPB6ymH
- ibY4rwWRiHnD1EiYlJi//WON2mkrxq8vVZg/6UNcXGtxc8JN1FVqqaM
-X-Developer-Key: i=barnabas.czeman@mainlining.org; a=ed25519;
- pk=TWUSIGgwW/Sn4xnX25nw+lszj1AT/A3bzkahn7EhOFc=
+Content-Type: text/plain
 
-SD detection was not working because cd-gpios flag
-was wrongly configured, according to downstream sources
-device is using GPIO_ACTIVE_HIGH.
-Fix SD detection with change cd-gpios from GPIO_ACTIVE_LOW
-to GPIO_ACTIVE_HIGH.
+Ranganath V N <vnranganath.20@gmail.com> writes:
 
-Fixes: 38d779c26395 ("arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A2 Lite")
-Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
----
-Changes in v2:
-- Reword the commit.
-- Link to v1: https://lore.kernel.org/r/20250830-daisy-sd-fix-v1-1-727e83a987b8@mainlining.org
----
- arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Corrected a few spelling mistakes to improve the readability.
+>
+> Signed-off-by: Ranganath V N <vnranganath.20@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
+>  Documentation/filesystems/iomap/operations.rst           | 2 +-
+>  Documentation/virt/kvm/review-checklist.rst              | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-index 336b916729e4721b5ba8f4f7e368d0d838aa54ab..ddd7af616794290aa1f06228a95cfa1d42b006e6 100644
---- a/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-+++ b/arch/arm64/boot/dts/qcom/msm8953-xiaomi-daisy.dts
-@@ -296,7 +296,7 @@ &sdhc_2 {
- 	vmmc-supply = <&pm8953_l11>;
- 	vqmmc-supply = <&pm8953_l12>;
- 
--	cd-gpios = <&tlmm 133 GPIO_ACTIVE_LOW>;
-+	cd-gpios = <&tlmm 133 GPIO_ACTIVE_HIGH>;
- 
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <&sdc2_clk_on &sdc2_cmd_on &sdc2_data_on &sdc2_cd_on>;
+Applied, thanks.
 
----
-base-commit: 5d50cf9f7cf20a17ac469c20a2e07c29c1f6aab7
-change-id: 20250830-daisy-sd-fix-011c23468e2a
-
-Best regards,
--- 
-Barnabás Czémán <barnabas.czeman@mainlining.org>
-
+jon
 
