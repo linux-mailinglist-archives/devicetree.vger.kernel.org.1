@@ -1,99 +1,113 @@
-Return-Path: <devicetree+bounces-212372-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212373-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ED74B427F8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 19:29:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777C0B4280E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 19:37:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4D7E1A83E5C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:30:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 48E1858181A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFA9931578B;
-	Wed,  3 Sep 2025 17:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45142D46BD;
+	Wed,  3 Sep 2025 17:37:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="MlkBA6Qn"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sWT7gyqL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay.smtp-ext.broadcom.com (relay.smtp-ext.broadcom.com [192.19.144.205])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1528D2765E3;
-	Wed,  3 Sep 2025 17:29:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.19.144.205
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B15861547C9;
+	Wed,  3 Sep 2025 17:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756920579; cv=none; b=WSqLo+q8GbYlOWEyNsLZUJYDpjbiGI5j1UGsFiwxEsokSnh1XmBGOJ892aPyJZGd+Mt6skqF4P8OQ1lEIbBxkBNRTyBRPlB8ArkgrYEVkIO7Iw0AJcrCs/E318cv5xZKs0ZrTjTwvh1SOMjO7BtNPuQ+79xwiolNJU6MqZn/Ols=
+	t=1756921059; cv=none; b=pJrXMUBf2HxJhy/ANrGjJv8FUISE0nKUGI/NYCjq2AW2MN1Y5A90erQgKufKx2EBb/cXfXyeaBjdtDW2YVmUsulAPAVVMOi1Dd0gOHwsEXcJSyojBE7N//bJ9lvCdi3aOsibpLcjnJt/q9Gyv/U1ywyUDyabzqxU+ajEzkfCidU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756920579; c=relaxed/simple;
-	bh=MgR3tYmVRb8vi08gFaEidd7fXX3CfhvWHiW0QflcxGo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Wv3F91p0P2QZG2ruVZ70c/U1zyT2HHEggumyOXqs4Rh23Qf2QAMtMtZs+yYLKi760br/S1yic1QixN9icfGc+gmPuaGyvodpaq+l9pF0DDGYAv5xVpMSIWgAKsZz4fPSogO+ix2uumfmA6Dd9zSeUpYH8HMB6Vk+hG+ghzEfjM0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=MlkBA6Qn; arc=none smtp.client-ip=192.19.144.205
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: from mail-lvn-it-01.broadcom.com (mail-lvn-it-01.lvn.broadcom.net [10.36.132.253])
-	by relay.smtp-ext.broadcom.com (Postfix) with ESMTP id 6A66BC000C6F;
-	Wed,  3 Sep 2025 10:22:55 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 relay.smtp-ext.broadcom.com 6A66BC000C6F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=broadcom.com;
-	s=dkimrelay; t=1756920175;
-	bh=MgR3tYmVRb8vi08gFaEidd7fXX3CfhvWHiW0QflcxGo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MlkBA6QnPCNo2FcawW4uT+Gz1EJVgjkBd9nbRAdayc/HP+ysGLPlA8GU9E5AmwLJa
-	 Pstlg+3YByjjjpg4r/X8vQx1vz62LtFWO9r5NGOVsjFhS3yMrR81drZjApVRRHPEIO
-	 O18WrfkYWFVsHr9ILOgmdOsR7c63nfWMTCN0nAxg=
-Received: from fainelli-desktop.igp.broadcom.net (fainelli-desktop.dhcp.broadcom.net [10.67.48.245])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mail-lvn-it-01.broadcom.com (Postfix) with ESMTPSA id 0A6A0180004FC;
-	Wed,  3 Sep 2025 10:22:55 -0700 (PDT)
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-To: bcm-kernel-feedback-list@broadcom.com,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Subject: Re: [PATCH] arm64: dts: broadcom: bcm2712: Add default GIC address cells
-Date: Wed,  3 Sep 2025 10:22:54 -0700
-Message-ID: <20250903172254.2512047-1-florian.fainelli@broadcom.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250822133407.312505-2-krzysztof.kozlowski@linaro.org>
-References: <20250822133407.312505-2-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1756921059; c=relaxed/simple;
+	bh=F9Gp6CV4E8HRJ0qdd3K4Ng1mxFLLKfFJsyPWLsgFWKA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=evVGeQNk+ZHqKT0TNi2UmWcvHmbCae/sF7BKbNrES4QSJH7aqcChjez1h5mAr3agw9qk5Tv/4VQA/16zuF6JOvE8LJKdhPZ/O2BWr2OHmQIUQevoQwQXlCHhJkPgHcOohmRxnUukmXzO1VfrzPC0uPAf56wlm8pk1uli7fqJZSA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sWT7gyqL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52C8EC4CEE7;
+	Wed,  3 Sep 2025 17:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756921059;
+	bh=F9Gp6CV4E8HRJ0qdd3K4Ng1mxFLLKfFJsyPWLsgFWKA=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=sWT7gyqLK6HfvDZ+1Gycs+KDBWl4gwm/A/mcSKd+7FVAer600fup/bmePZ5lYpFJm
+	 T1hMuCiXJ/caWobhBrF1CbRCe4mQDj3yJglOoYBuNzp1juCFchtKYx9eOODfIkUXxE
+	 IxliW1RtLq/xO4Xm3rKkxNJuU+qCmJFAKpQTXYziUtftUHjxwl7PNTaNBnnXmx8CvP
+	 hSFchGBlhtvrLm7Cafz0NH7+4c/4MlcMMnOVaW1QAc3daYNMpDXx56Ke90XwEniXG6
+	 9oA78bqLUuLQSwfb28AF6E8DWS5/+gSp/TeUfsHBP8xHlfEWzCZozHNBDso3PbDYGa
+	 EEqQ87Ctrkreg==
+From: Mark Brown <broonie@kernel.org>
+To: srini@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
+ Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: conor+dt@kernel.org, perex@perex.cz, tiwai@suse.com, 
+ linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
+References: <20250902140044.54508-1-srinivas.kandagatla@oss.qualcomm.com>
+Subject: Re: [PATCH 0/6] ASoC: qcom: add support for Glymur
+Message-Id: <175692105707.244487.8107730396325224823.b4-ty@kernel.org>
+Date: Wed, 03 Sep 2025 18:37:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-dfb17
 
-From: Florian Fainelli <f.fainelli@gmail.com>
+On Tue, 02 Sep 2025 15:00:38 +0100, Srinivas Kandagatla wrote:
+> This patchset adds basic support for Glymur sound card,
+> - by reusing x1e80100 snd card machine
+> - reusing lpass wsa and va codec macro which are identical to v2.9 codec version.
+> 
+> For now only tested WSA and VA, which is why tx and rx codec macros are
+> not added as part of this series.
+> 
+> [...]
 
-On Fri, 22 Aug 2025 15:34:08 +0200, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Add missing address-cells 0 to GIC interrupt node to silence W=1
-> warning:
-> 
->   bcm2712.dtsi:494.4-497.31: Warning (interrupt_map): /axi/pcie@1000110000:interrupt-map:
->     Missing property '#address-cells' in node /soc@107c000000/interrupt-controller@7fff9000, using 0 as fallback
-> 
-> Value '0' is correct because:
-> 1. GIC interrupt controller does not have children,
-> 2. interrupt-map property (in PCI node) consists of five components and
->    the fourth component "parent unit address", which size is defined by
->    '#address-cells' of the node pointed to by the interrupt-parent
->    component, is not used (=0)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
+Applied to
 
-Applied to https://github.com/Broadcom/stblinux/commits/devicetree-arm64/next, thanks!
---
-Florian
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/6] ASoC: qcom: x1e80100: set card driver name from match data
+      commit: 5ab26b8ca5649e4a16e4b48efe5a0b92299c8f51
+[2/6] ASoC: dt-bindings: qcom,sm8250: Add glymur sound card
+      commit: 8f48b160e1b8f0c959e25df63994e6204b3794a8
+[3/6] ASoC: qcom: x1e80100: add compatible for glymur SoC
+      commit: 8c7ea98650e644ff61d3774085f732b40d8f7788
+[4/6] ASoC: dt-bindings: qcom: Add Glymur LPASS wsa and va macro codecs
+      commit: 25436580f025d42bd7ccf3b960f4c405f3c91512
+[5/6] ASoC: codecs: lpass-macro: add Codec version 2.9
+      commit: c73e2c5672dae4f6711cab99cabff9e72cd0591a
+[6/6] ASoC: codecs: lpass-wsa-macro: add Codev version 2.9
+      commit: ce1a46b2d6a8465a86f7a6f71beb4c6de83bce5c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
 
