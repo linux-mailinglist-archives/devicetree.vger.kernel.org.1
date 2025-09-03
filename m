@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-211980-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211983-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A350B416C8
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:37:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34169B416D0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:37:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10FF63A95D4
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:37:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F311F54704A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:37:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB9FE2DCF53;
-	Wed,  3 Sep 2025 07:36:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48F662DE6F8;
+	Wed,  3 Sep 2025 07:37:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="c7/JdKyn"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="W9I06kB8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3610833991
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8286B2DC32C
 	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:36:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756885019; cv=none; b=bj5orkhsVrfr8Xr1L7ZOXRyZy/zbjvHXqYQae3ApurcGa6QBnO9Wrbv7PYvZhXG/hEWlGnp5S0hD/HNmAGPV57E0QWJ0k8Ts6QTgLRIIwRUEWmI4b/8aiiNvcgLai2m5HXCdftnNLih3S83jJ3N+ons110XQPjLNnyrvms8EEB4=
+	t=1756885021; cv=none; b=AlrhlF88z2X934ItfIEG5UY829+8pOWp/ZVwwxqmBRhbp7VfE99nOcxZ2BfYaSjpmrduaMlsyVXL6ct9jvUAzyHUqCrg/CHdvP5GckHeqtTZWDhkAl81LE53NbURlKF5O8bl0rfq284ybzBpSJHHU6aUxJB1Ox3ftcZyHKQFx1w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756885019; c=relaxed/simple;
-	bh=oI9ruJXE3Tfc8ztXuSdTu88fF7VUxQLNLARHE417v/w=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type:
-	 References; b=Uu3m3tq5J5daKvWQyXjs4EzxxxOI1eS4qA6ja2lU0B41SFmG92LvCE2SGNQbVQdwwp77qpc/y4Z+Ns6swaEoQ1mGzeS20cyBEwL25MS9ih8F0xxRnXfwfqvH+xoWdZYp+/iSl/PEACXVVHpHsVu1pYdBT+xBU0534Q24x7DASXg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=c7/JdKyn; arc=none smtp.client-ip=203.254.224.24
+	s=arc-20240116; t=1756885021; c=relaxed/simple;
+	bh=g3tgyOs23YpUvObhE0YplDgm3jnpZOHrz8FpnHVIPfs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:MIME-Version:
+	 Content-Type:References; b=AGHX6z+0t5XQeucveNV1UeYV5bjQkaLqsI15a7lKTDs1qFGUAtsc8tO4wLFmfNJ3FjvgISJIWML1Clj7kALgLQMqNxfVDbPGe8wmWJ2K5AjgLhdYG1tz3Kmc4EN/VtmffCclCUrruRs51v+YGNyuCDS3Qj3V9XQb6iqNS9bD3ok=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=W9I06kB8; arc=none smtp.client-ip=203.254.224.33
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
-Received: from epcas2p1.samsung.com (unknown [182.195.41.53])
-	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250903073655epoutp013060e76206ab536b686cb3f38b13d22b~htZzsvtJM2240622406epoutp01T
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20250903073655epoutp03e02cafc1d7341b73842ea5cd4344d91d~htZ0IOJ7g0094700947epoutp03q
 	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 07:36:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250903073655epoutp013060e76206ab536b686cb3f38b13d22b~htZzsvtJM2240622406epoutp01T
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20250903073655epoutp03e02cafc1d7341b73842ea5cd4344d91d~htZ0IOJ7g0094700947epoutp03q
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
 	s=mail20170921; t=1756885015;
-	bh=C12f3ohxzfB7ELhKTKFriefQ22srh7Dm7SaUfSw9ItU=;
-	h=From:To:Cc:Subject:Date:References:From;
-	b=c7/JdKyn/F49h+qTEcpbCur/8gcRIn6vSjY5zLeR+CxRp+/zMwcPToPlAv7kKfXv5
-	 /kSXJz8riaYpfO/GsDBr6dZ2chwTdTaYLWgC+lXQGZkmqCe8VgZ3h7VYH8x79B74rv
-	 mw5ruNare//yysMwFJvmTeew2LWX1QYstdoJmtAQ=
-Received: from epsnrtp02.localdomain (unknown [182.195.42.154]) by
+	bh=n+ccpHfpuSvqRE/S9bXMM814UA2wwwc6G81EdmNEHxw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=W9I06kB8XMxsCyYj1hBm8af6ZUXOgiHp2aaCCIKhm+XyGHWzyj+ZrMfx3TEIL4cXy
+	 AXQx7Hb3+nnN1YQWiliYT1GBpu0vROD4jBR7bWYmzwMRA2HY71gJcqjx7RdA+AiWku
+	 YhnGrqg1OSKrrQx8dAZkr9jqUPPZLmK0Dpew/194=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
 	epcas2p2.samsung.com (KnoxPortal) with ESMTPS id
-	20250903073654epcas2p2fc7ce62b8c242ddfec893d303b523a5e~htZzMZIvH0888008880epcas2p2L;
+	20250903073654epcas2p2b977e318ee22d780716a3dfe2e24f978~htZzWCftL0888008880epcas2p2N;
 	Wed,  3 Sep 2025 07:36:54 +0000 (GMT)
-Received: from epcas2p4.samsung.com (unknown [182.195.36.99]) by
-	epsnrtp02.localdomain (Postfix) with ESMTP id 4cGvZG0kxsz2SSKn; Wed,  3 Sep
+Received: from epcas2p2.samsung.com (unknown [182.195.36.92]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4cGvZG1v8wz3hhT9; Wed,  3 Sep
 	2025 07:36:54 +0000 (GMT)
 Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
 	epcas2p4.samsung.com (KnoxPortal) with ESMTPA id
-	20250903073653epcas2p49e89e5face6059bc8a58f212faa835d1~htZx8PTcr0925409254epcas2p4v;
+	20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91~htZyBr--N0242502425epcas2p49;
 	Wed,  3 Sep 2025 07:36:53 +0000 (GMT)
 Received: from asswp60 (unknown [10.229.9.60]) by epsmtip2.samsung.com
 	(KnoxPortal) with ESMTPA id
-	20250903073653epsmtip27f0a34b766443223f32830a2ec8775eb~htZx3tggi2959129591epsmtip2E;
+	20250903073653epsmtip2e0ddaa81875a8957ac8c69675b5cb1f3~htZx80LMz3060930609epsmtip2m;
 	Wed,  3 Sep 2025 07:36:53 +0000 (GMT)
 From: Shin Son <shin.son@samsung.com>
 To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
@@ -66,10 +66,12 @@ To: Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>, Krzysztof Kozlowski
 Cc: Shin Son <shin.son@samsung.com>, linux-pm@vger.kernel.org,
 	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 0/3] Add exynosautov920 thermal support
-Date: Wed,  3 Sep 2025 16:36:31 +0900
-Message-ID: <20250903073634.1898865-1-shin.son@samsung.com>
+Subject: [PATCH v2 1/3] dt-bindings: thermal: samsung: Add tmu-name and
+ sensor-index-ranges properties
+Date: Wed,  3 Sep 2025 16:36:32 +0900
+Message-ID: <20250903073634.1898865-2-shin.son@samsung.com>
 X-Mailer: git-send-email 2.50.1
+In-Reply-To: <20250903073634.1898865-1-shin.son@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,47 +79,87 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-CMS-MailID: 20250903073653epcas2p49e89e5face6059bc8a58f212faa835d1
+X-CMS-MailID: 20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91
 X-Msg-Generator: CA
 Content-Type: text/plain; charset="utf-8"
 X-Sendblock-Type: AUTO_CONFIDENTIAL
 CMS-TYPE: 102P
 cpgsPolicy: CPGSC10-234,Y
 X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20250903073653epcas2p49e89e5face6059bc8a58f212faa835d1
-References: <CGME20250903073653epcas2p49e89e5face6059bc8a58f212faa835d1@epcas2p4.samsung.com>
+X-CMS-RootMailID: 20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91
+References: <20250903073634.1898865-1-shin.son@samsung.com>
+	<CGME20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91@epcas2p4.samsung.com>
 
-This patch series adds support for exynosautov920, automotive-grade
-processor. Although the exynosautov920's TMU hardware differs slightly
-from exisiting platform, its read and calibration logic closely follow
-our legacy TMU interface. To prevent runtime and build time errors,
-it is kept as a single change rather than being split.
+The exynosautov920 TMU requires per-sensor interrupt enablement
+for its critical trip points.
+Add a DT property to the Samsung thermal bindings
+to support this requirement:
 
-This change merges the new exynosautov920-specific register definitions and
-timing parameters into the exynos-tmu driver, ensuring consistent behavior
-across all Exynos series. All new code paths have been tested on a
-exynosautov920 board and verified to correctly read temperatures and
-emulate behavior.
+- **samsung,hw-sensor-indices**: Defines the sensors currently
+                                 mapped to the TMU hardware.
+				 Indices not listed are absent or fused off
 
-Changes in v2:
-- Replace the generic property with a vendor-specific one.
-- Added an indices property instead of ranges.
-- Shortened thermal node name and made them more generic.
-- Updated the indices logic accordingly after removing the ranges property.
+Additionally, add myself to the bindings' maintainers list, as I plan
+to actively work on the exynosautov920 TMU support and handle further
+updates in this area.
 
-Shin Son (3):
-  dt-bindings: thermal: samsung: Add tmu-name and sensor-index-ranges
-    properties
-  thermal: exynos_tmu: Support new hardware and update TMU interface
-  arm64: dts: exynosautov920: Add tmu hardware binding
+Signed-off-by: Shin Son <shin.son@samsung.com>
+---
+ .../bindings/thermal/samsung,exynos-thermal.yaml | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
- .../thermal/samsung,exynos-thermal.yaml       |  16 +-
- .../boot/dts/exynos/exynosautov920-tmu.dtsi   |  97 +++++
- .../arm64/boot/dts/exynos/exynosautov920.dtsi |  31 ++
- drivers/thermal/samsung/exynos_tmu.c          | 340 ++++++++++++++++--
- 4 files changed, 446 insertions(+), 38 deletions(-)
- create mode 100644 arch/arm64/boot/dts/exynos/exynosautov920-tmu.dtsi
-
+diff --git a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
+index 29a08b0729ee..abd89902d33a 100644
+--- a/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
++++ b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal.yaml
+@@ -8,6 +8,7 @@ title: Samsung Exynos SoC Thermal Management Unit (TMU)
+ 
+ maintainers:
+   - Krzysztof Kozlowski <krzk@kernel.org>
++  - Shin Son <shin.son@samsung.com>
+ 
+ description: |
+   For multi-instance tmu each instance should have an alias correctly numbered
+@@ -27,6 +28,7 @@ properties:
+       - samsung,exynos5420-tmu-ext-triminfo
+       - samsung,exynos5433-tmu
+       - samsung,exynos7-tmu
++      - samsung,exynosautov920-tmu
+ 
+   clocks:
+     minItems: 1
+@@ -62,11 +64,22 @@ properties:
+     minItems: 1
+ 
+   '#thermal-sensor-cells':
+-    const: 0
++    enum:
++      - 0
++      - 1
+ 
+   vtmu-supply:
+     description: The regulator node supplying voltage to TMU.
+ 
++  samsung,hw-sensor-indices:
++    description: |
++      List of hardware sensor indices that are physically present and usable
++      in this TMU instance. Indices not listed are either unmapped or unused.
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    minItems: 1
++    maxItems: 16
++    uniqueItems: true
++
+ required:
+   - compatible
+   - clocks
+@@ -131,6 +144,7 @@ allOf:
+               - samsung,exynos5250-tmu
+               - samsung,exynos5260-tmu
+               - samsung,exynos5420-tmu
++              - samsung,exynosautov920-tmu
+     then:
+       properties:
+         clocks:
 -- 
 2.50.1
 
