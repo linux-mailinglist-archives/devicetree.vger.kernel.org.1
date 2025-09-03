@@ -1,275 +1,213 @@
-Return-Path: <devicetree+bounces-212336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FC14B42676
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:17:03 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22EECB42684
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 18:17:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE8EE6808A0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:16:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A02C21BA3C1B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:18:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F682C0280;
-	Wed,  3 Sep 2025 16:16:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B015E2C0F69;
+	Wed,  3 Sep 2025 16:17:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="QNc1W652"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i69K8/fH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from DU2PR03CU002.outbound.protection.outlook.com (mail-northeuropeazon11011026.outbound.protection.outlook.com [52.101.65.26])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 664E42BF005;
-	Wed,  3 Sep 2025 16:16:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.65.26
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756916218; cv=fail; b=BSHbyYi8R+IRPq55MbgsbqeYtyHWhARzmy1craPBmeGx+T5KJDt5JG1+vlkq+T3UIBamzOcVyVJKVX0bSQGL2vdV2IovqpwoEIlbLOLkSC+bs5rqKw8uVdCeX4S1ctP4OfJDDcbT3k1keTnpZmgn4L5d+DEgk98FOWveUDsTN2U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756916218; c=relaxed/simple;
-	bh=2zYnQ7GqIcIynrJhdhScC8U8zfDtgOY6Kki6p3kHnNE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=nCs74s3FXsmt0p0Kej/1kRr05Tchvrr4HWkvQunG3opy42DSriKVgiauVz2NKX8CcXRByFztAXsbJ9I4iU5IFPYfpmcKAo8TuCquTh5yJdJ6gPxh32tjZcbS4jFZXop7cLpMRbz53Slvt5qlq4MFXVTz4IrTrRVAaZE7psq375M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=QNc1W652; arc=fail smtp.client-ip=52.101.65.26
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=F5SjH1uPV3gCJgWf6VUNFAovMTarHCsCoNxhkPsirA1qjO1dYxnxI5MP+CEu+JoIuzzSaQwk5SpitOys4oSeUAQYU4/Ax4O+bVv9kN06TJS9Pnf5TefbqpghI2WarM0YKQss9JRu+YFee3BeJQ+goC78qEmebzMLMSfkvgTZUjavdRn3dChH9psMDvJqcy3FkNdVj9utBFkBxVfYWepnaVtJbf4XJeGoFAQsQumpUO8WCzrAlc2Pr74Z6Dpe+H2BY/swkN69vCiiYo7Ggkd1B3UxdaHJEVd8XpA58hPMtSuq4SXvcuPijQK4iYQYUcYqCKgNQkl5D2f5Jl6bTl2veg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=rGAbVVoCB/myKVsFsCmZ/RXtZWg4XKET30Muzuywiqs=;
- b=KaIcREEvSQUW6lmokiaZllhGsTHSnheuHltNIHIMMRXcWIVqEOZ4lQxfHP8uDwUn20CH4LlEU4cJbKREEp+9c4zyBqD8WD83hP+0a1mjxQD7216j27xMFuZYDI0BIgoSiuOi9wuPUii4HTMyqsHdUwY98PBim6fRbXFlJCzY9F3UYTIRl7BRuZ+JSZ2ZNsAkGJp3qdfj3EpURhpAMk0diIY7EyOD/imz4AkP47qv1xPrH9+iUpKATb6xl4T3k57GMOLfjS1sjbjHzAU/Ujy7SDKMxeu93uJ+UPXhthWYFM7OcS2Oe2KsRuwpa5ndMpRhK2rVxFqHbc3ZI9LKGz2UQQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=rGAbVVoCB/myKVsFsCmZ/RXtZWg4XKET30Muzuywiqs=;
- b=QNc1W6522g0e+AX573tnxfJMKo+zOkXM7CPmLWElhL5cslaBko+0Bs5PqFS0wCPP2hrZqX5MFfdh7kRpT1nkw1KyYjabHJ9c3YMh/6wHaQnb/JF5PaROV5op0gwuXfH58Pn/B8X7GkiMvPyVmjUoUpAFPSLHZa3p/VwuQ8Pl0Zr1KatGrg0Xo5cHupB5eibOzmqRnfDhB/xdYrxe/zSJ5mr8zzEePLEQb2Fb4Q6wA0U1zoHlHV0dK5UnwSvpZi2e5DHgf2XfwJDMuXDH7pfZoO63lSffMbHO7gfx9VsqD6oKRPEsQumZw2FD5POVfEf92/XpjoH98KGgzZyv7KoVIw==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com (2603:10a6:102:23f::21)
- by DU4PR04MB10483.eurprd04.prod.outlook.com (2603:10a6:10:565::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.17; Wed, 3 Sep
- 2025 16:16:53 +0000
-Received: from PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15]) by PAXSPRMB0053.eurprd04.prod.outlook.com
- ([fe80::504f:2a06:4579:5f15%7]) with mapi id 15.20.9094.015; Wed, 3 Sep 2025
- 16:16:52 +0000
-Date: Wed, 3 Sep 2025 12:16:42 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE5E2C027F;
+	Wed,  3 Sep 2025 16:17:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756916250; cv=none; b=Kj3aNFrAehllUcZ5hyy7c3Mnrc5jBUlhHpdVpKWPjpNqu2louBKkFgkt07M2/JRRiXVpyptYMICAv5UsXMfSF7IdN4rLXro5cRDhP2Kf+h00cYE9OHFTAICpX4ayWijrfRAgCm+pc2MfhNXO+xjBmw4yzODkepZVqvNgAJdnAf0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756916250; c=relaxed/simple;
+	bh=CCln4rPb3P+0/6GwoT/lBnSgMtAhhtryaHSoqSLxhb8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iD8AZTkWTjFShoQA+ttBG/U0SDhD172vgDRo03lKfUVae3jkLy7Khxwt6yPAUmuQrMffO2OBtUw9xElcnOhqVVKsQZbsolD3ulr2XoLLjcWQlvp7a3jSYtAd8wcugb8bq2tmbBfNvUaeqKKEaznNTQ89GZ2Tf54r1Rcg5p9/sZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i69K8/fH; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3dea538b826so74751f8f.2;
+        Wed, 03 Sep 2025 09:17:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756916247; x=1757521047; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zhI3DRe5+X+SOWNKbXoFOHpSP7IEamKPQO7YKwNjIhM=;
+        b=i69K8/fHUgbvRh7BwpHUYknmLVnuMpT3Qo+bFZyphm1gSN8zdDs/aUijOlpgM9t9+w
+         6H6cb4VlNzAo5ki1Qh2hogoFrKPKdJcgCVe80Bil7JCcWtYYeB7vhvoODyFLFTzVE+aN
+         oVnXBJAGNzJOY4pRfjouCswG6plv/rG8ZXgeMT6rgUk7eRPVts1XAJ3J+MrDDr7UD6R8
+         y5g6Re6rm32EDIrSFxCjmfCJRT01/zahUy0invWbTu4GmPK5s7asgexLc6nDHL/xaK0i
+         2h62SPZVPlDtz+2mTaLGl7YrDOW0wGghbhVDJIDM4J/P+lb2M45TfU90vop+jgM2xboO
+         ylVg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756916247; x=1757521047;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zhI3DRe5+X+SOWNKbXoFOHpSP7IEamKPQO7YKwNjIhM=;
+        b=d4KmlHR7MF9kmXuNqjP2/wZqdOLiXesOycSSRPm3tRuxyC9OgedegwUPP7IIzyr79I
+         ExCabcrlUXBRrQu3JdoGxGF3X3sQmQ6TanmyYh8bQ+R3jafwYJ3sLMuTtNcuSzkm4xGW
+         tNb56Dw7nIq2v45Wm8OnFuTyl7xabyJBcVq0/34HTAqmK9lgqJersGL/ybDdE1eoYu/j
+         2LiWs5gIhhXnztYvMoJmjE6SLGoWrq3JBDu5S6RPOi/SwBE1Vy+/s+7d6qjAeCoZVKUY
+         DngkWAMoC38YQ3DY427TJ09EHAx5A/btplewsbX+8dA2BwHnGYB+M7LYQTrCtQT0psks
+         Gmcg==
+X-Forwarded-Encrypted: i=1; AJvYcCUc04AVYcrKd9HC7oMu47NHlDuO3tVkobT08vr5tWHlZW1iTr4u2MpG+KPgclGPJpSLbV5vpEr5mahMwIQ3@vger.kernel.org, AJvYcCVEptEmbX8daBH6tBOaWWJ+p41hdHChF44K4dIvevHMzlQR7eTCBVxa47r7ZyPmsGeCSxOcNl7SAVLP@vger.kernel.org, AJvYcCW2atzLL5o/n/j8rvdu5kYD1twy/bAvQuFdBjQtjfrAvSOce0DqQ9VrDMst0RwdMLkJSQTeZD1gDwg8@vger.kernel.org, AJvYcCWaN228wDiaY+So8Hir77PE4zAdPXUBpvE4HCU0X9Vls9jRdimcPRdYssgdkNvvMCm9FuXg2a5JIINlqmVG9S5hD4k=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy8yQB1ZJ3mpGXvRIAYeHBszTv6iBbNC969Dq44Ja6y1UhDmorQ
+	H+ApGaCVqfj/CGG2ZGBs4dJtA4nrb3R71uLAdneU/jAqVoC4unH8Y9nU
+X-Gm-Gg: ASbGncsuzZW/ZLi2oxMI5Wy+ySV805aCe3/NMWoXOK4xK4Qr4/68xsvL8Fggf9dV7Az
+	SB65KPHZZVnVVAB8LhXOwi5Du2LaxItu74d5TTmoBvbWhQxiY4Hsj3+rtvJVFqM+cfeFG4M0og1
+	5n08n9Qv4Erl+QkphrUkf5SgbBRwEWJo9kApezDy797C9qIeVpuGIbcx6nL6dZFAi3Rp/sdCMta
+	GPSIWC4qSU+Y/7AMpgMQI2tD/uLXn+1bREBK8p1J5UPZw806yXnTi3wvFcJvGW2PsQwh91SvzoE
+	ZQZzz/uSJOuWNdOMPqnarAam5ymt6zxSwDfCdqAMlsEEc4gtvUV/PaVNKaPXUxVxc5OZ682hxzw
+	7bZpJ+uiYz4r5Iqp4MwaudVuCm1SGK+iiW/ud9FMqFQrpDnquiw06ojt+BeZ/2KmiWww=
+X-Google-Smtp-Source: AGHT+IGQvSyrqgXepsg7T3rt6MRb4D5lOt6u9g5K86HhZIiJtDR8DJpMha1fmoke+OZcXHmTNn9xUg==
+X-Received: by 2002:a05:6000:40d9:b0:3dc:1473:18bb with SMTP id ffacd0b85a97d-3dc14731910mr4074650f8f.39.1756916246607;
+        Wed, 03 Sep 2025 09:17:26 -0700 (PDT)
+Received: from iku.example.org ([2a06:5906:61b:2d00:9019:aa0f:b6e4:7952])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3db72983560sm5645734f8f.1.2025.09.03.09.17.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 09:17:26 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>,
+	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+	Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <aLhp6ui9b/OpOUyX@lizhi-Precision-Tower-5810>
-References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
- <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
- <20250901154610.GB13448@pendragon.ideasonboard.com>
- <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
- <20250902083554.GD13448@pendragon.ideasonboard.com>
- <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
- <20250902123524.GK13448@pendragon.ideasonboard.com>
- <647fdf8a-835b-44d1-b0b8-a3d253a14787@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <647fdf8a-835b-44d1-b0b8-a3d253a14787@kernel.org>
-X-ClientProxiedBy: PH5P222CA0007.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:510:34b::13) To PAXSPRMB0053.eurprd04.prod.outlook.com
- (2603:10a6:102:23f::21)
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v8 0/6] Add support for DU/DSI clocks and DSI driver support for the Renesas RZ/V2H(P) SoC
+Date: Wed,  3 Sep 2025 17:17:12 +0100
+Message-ID: <20250903161718.180488-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXSPRMB0053:EE_|DU4PR04MB10483:EE_
-X-MS-Office365-Filtering-Correlation-Id: 78dd9f8b-94c2-4cf9-96ed-08ddeb054b02
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|10070799003|7416014|1800799024|376014|52116014|19092799006|366016;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?Ea9awQaga6rVfgruFQMyuCu9Vr4drVASO44cz+lIkYY52TIOY0/5QWTOOVHF?=
- =?us-ascii?Q?cK0nmVpekPNNgYtfVniOI0bBc83skecgtFsdNU/rZLW3dcKZms5yiEBrQGl1?=
- =?us-ascii?Q?Z9ZsNa9ajzR9RQnBFrja+nrN9z3sSe9Q68h63VxUl9I9+NharNCXU+Yc3T2E?=
- =?us-ascii?Q?gOzyrSK0vjez8GK51dh7U9jFKnSNavNsMkU/L+RPxL/jDh2yD63itAVK5Qlb?=
- =?us-ascii?Q?F5oftA72vf/mr9GYkk/3ppEym28Me2aovVXur7BQTfJQZ5EZudZepEdaH7pQ?=
- =?us-ascii?Q?4/ZW1nrovgB2GpWruQb2JaEGZenuQfrH0D5mn9Q7zobTUqXkQxeuUX6eXPFU?=
- =?us-ascii?Q?En6lP3BHE0+smc+p2P8P/whAj56ftGluaZUrpPUboclHVbhoe+i5Jt3yA7gd?=
- =?us-ascii?Q?Uw4Vgf6r/h3hLFADtOTzlQz1mLssDZuYClaLTHnpHfrbbSG4xB+LnBM7f0RE?=
- =?us-ascii?Q?hypDTB5uJAGzvqnxHVY9kunzDq1+IcYQJK9q9RxETpm3BsoR8ZPpYFqEiz7M?=
- =?us-ascii?Q?BiZ2ZVx9p6HKinxwzv3MaqV0vXtJyoe4FgFIIWWFryaGbI90A6jKV+VK5cqg?=
- =?us-ascii?Q?cQJIF9h122GYNHwL0vOhrBbRyXBhjHoPIAEkK9JiK0dFmXQZp+wW4v5z51Mk?=
- =?us-ascii?Q?D9T2yesrMi6fgrY/QYetLViLBh1/FLQ7qySGTmOYN3C8of8ytmJ4dqYziJwF?=
- =?us-ascii?Q?vWk18ms12WoLFPvFYqBitCdUed6Gwj3gHGuTvxjiNjANHLu49OzRUZjg3EXI?=
- =?us-ascii?Q?HCC0keTxch0st9uSTNNm/629cCo9IpQQ01v2I83C5CFsIaApnU8orBOkQQI0?=
- =?us-ascii?Q?tICRv6vy/aqfbJ41heIO0WRVfjYo/fqvEB8V9SsDDEt3sCnl76lT2248ikjn?=
- =?us-ascii?Q?xIIEi+natrYDCibKje4XiUktZRf+JSGLYNvA5KKdMX5d0kZGCGp4NeKve7yM?=
- =?us-ascii?Q?cLrKIFXX8Ch78IjVS5wxB3Jhepsufj6Z1yyPlHDCvKbS1dUiumFWPHU9BiGJ?=
- =?us-ascii?Q?5meuKDtm6rWMtisVYDecSlu5K9OH3m3DnpZ5BD7KHCMCMhWgI/G3BaaUXGsu?=
- =?us-ascii?Q?HTSXOShAtB5T74a48lWImr/yBXMQA8vlM9OgS02OWHVFrkhbUv3D7+pyu28h?=
- =?us-ascii?Q?nwN3EMqtpPIHUwHX+1lp8IrWQvuB8JIRlxS2hktosCx9XvU36jNOuC+6RUhx?=
- =?us-ascii?Q?Eck40pGr3mp2Jdkcw4W1q6QQKL6K+g7MUtOh9SKYlN3FrVCHXCZ1udwEEIPU?=
- =?us-ascii?Q?o1Tt7DA9xVNhEg+E8GyP+8l6wesuTB8oMI5z2y2QdGxWfwhYAVfl2b0Vh9An?=
- =?us-ascii?Q?njwKxCWS0MLLzjEgTXxek1DQ5tOpS1fLfcPh+rEoXjvQaO/3bO0nZjOWpmkS?=
- =?us-ascii?Q?p9hE+Jw=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXSPRMB0053.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(7416014)(1800799024)(376014)(52116014)(19092799006)(366016);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?WbYonPNLuGoErbKmB/VbifBv6szYstC8tlxj7//dYvtpm/mppacMWNan2jzn?=
- =?us-ascii?Q?ZvpoD/5G0AFROWvPDIcQ5wX/oFMbu5nm/ySfJ/wfiiXUcxsXsJ9Ocu0isGEh?=
- =?us-ascii?Q?h5G7Se32phO/pTY8NJnvRqDlz2jrqk+ZE047fwb1tZ0cbbv8a476AVGm3+nn?=
- =?us-ascii?Q?STujIfHR+vbxSKZW9Pf9Tkdn5DNVImrWDqJmJ+eahjygdNgkafGOmyHAfxVt?=
- =?us-ascii?Q?/pDn2e0uy/Hp04cy4MLBzDBxjBFYY7kOVmzi5YO/2G5429t5cbMRH15OhuwY?=
- =?us-ascii?Q?Aiqy7Wg4lQo3PqWtOzZFxf2URevPrVq3FNzpG4nXfCaWTv6IpW0goWe5ZIjM?=
- =?us-ascii?Q?wCOdqkMHO1kCWFWXnY8iwnQY71nR2axIyQXV8mT2A0J3frGzj2bnPUp+XRqw?=
- =?us-ascii?Q?uVKg4A4TUj0va1r5aoBU3napU0yVXysvvXCTZKL3sh2y8cYMQHg5zJcu7b52?=
- =?us-ascii?Q?mie3h3VYAlOAJF/itwd61nf2zZDXDK59Rb9ofMXQYsOmn73QWk7upraDnBBv?=
- =?us-ascii?Q?8F7UnRpCXMjGd69lAfEgcnL01LnCUMxMoUzxndz4bCBJjD3Zs5jx0/rJscOc?=
- =?us-ascii?Q?fz+WszU85RgFym7RVlYZXwyTLO2CHu/sMzRene+BZXL8GoeJ/BkAGCoSAeCp?=
- =?us-ascii?Q?h7NNwGCiHhR6sKc/ly0HpFLpduqytrBrAOKpmsVOcsF/5fP7xuXHD6LGkUQa?=
- =?us-ascii?Q?4Px4asu3LcSuWLWmChQnmIrKkUCB7oxz7UhsK9FtlvmPnlNCQayXzU7xg6kw?=
- =?us-ascii?Q?yHlDmouU4zNAsbc8I4HQhWwp9LmnMTwv5TIZtEsXoPLEN9ofc/WDMYvF5o+4?=
- =?us-ascii?Q?s9s/FjolwXFjUtcRSbbfj2d/Vhs9ZBC1UxZwfksfrkSw1zG2XSC2yX1/k4CW?=
- =?us-ascii?Q?q8bjh++iARlkgWrpFXO1IcKRw/irqA5rCaSsKVqaP+ko+4dFknhn0N+uuWjL?=
- =?us-ascii?Q?PT/0xNeihUg3TbfdyOjN30X2mKTMhgnnbwb5MudiJ4vK19otvo/ONOo7XClQ?=
- =?us-ascii?Q?56WXTCz1WHwfwq4++Axh41vPSZDmmjh14feXEI9BQ+KtAGKdFGjhXPu/OkZb?=
- =?us-ascii?Q?T4RUC72ZWBf923PgGZ/RKSOW9ts75LraZavLN+u48i1nijt3A55NFhpqKGXD?=
- =?us-ascii?Q?q1IYs4VCIuV2/L6PDWHVx78I4FMQKAY9Plb0TEj0Wg5UNkDo21uddfZkZb82?=
- =?us-ascii?Q?xxDC/beLpMzTTuWMOxwaKlbhO2QIJv99ZYRCWIfVDAH4y30H9sDeak13UHLj?=
- =?us-ascii?Q?XE8kVY+X+sAwdCpQsbs17NQfw2NaZPDFhxzYWkS+PH6mo9bOP9t9Eva+VOTG?=
- =?us-ascii?Q?HT1Soa5bn3rY7iiNFi8eeicafpZhFjDCi6sUrhID0eSJ/wGoPaJ2ae7bzATc?=
- =?us-ascii?Q?i3WW+WjgcbSdVDB+GyhkFSXq1aVUL6dyqsOJ5h6mNaxxVOBRloVJvLh/RJVp?=
- =?us-ascii?Q?S7WRRLOslJzLnkp8/PpfsVp9GBe0fC6kxl9koCVFM96pRYKiY0SBFUdeFRZs?=
- =?us-ascii?Q?YDamTTJFOsxmn6CCFdTJpdG77k8rVcDTkDlpRd2kz16c03bEaCyqgbYuF+yK?=
- =?us-ascii?Q?bPpCXlMqOWOBRbKzy/MxUDSb1duDlIc1Om5UAM6OuhV0UboEzNPzmy0UE29u?=
- =?us-ascii?Q?WC7ML0Zmbom9hZ/nthVmWvnvPMuvvEEVWKwYoGCkB8+E?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 78dd9f8b-94c2-4cf9-96ed-08ddeb054b02
-X-MS-Exchange-CrossTenant-AuthSource: PAXSPRMB0053.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Sep 2025 16:16:52.4669
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: k//nBjiq8zE0PAA6A8COrfKV50Oi9ey0IYR1B6TxRacmhc7np3zLxTiA+3ovv3OTntSzsL90OJ/xTRFyqP/v2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU4PR04MB10483
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 02, 2025 at 05:53:39PM +0200, Krzysztof Kozlowski wrote:
-> On 02/09/2025 14:35, Laurent Pinchart wrote:
-> > On Tue, Sep 02, 2025 at 02:26:53PM +0200, Krzysztof Kozlowski wrote:
-> >> On 02/09/2025 10:35, Laurent Pinchart wrote:
-> >>>>>>          compatible:
-> >>>>>>            contains:
-> >>>>>>              enum:
-> >>>>>> -              - fsl,imx8qxp-mipi-csi2
-> >>>>>> +              - fsl,imx8ulp-mipi-csi2
-> >>>>>> +    then:
-> >>>>>> +      properties:
-> >>>>>> +        reg:
-> >>>>>> +          minItems: 2
-> >>>>>> +        resets:
-> >>>>>> +          minItems: 2
-> >>>>>> +          maxItems: 2
-> >>>>>> +        clocks:
-> >>>>>> +          minItems: 4
-> >>>>>> +        clock-names:
-> >>>>>> +          minItems: 4
-> >>>>>
-> >>>>> But according to this, the ULP version requires more clocks than the QXP
-> >>>>> version.
-> >>>>
-> >>>> If only clock number difference, generally, it is still compatible and can
-> >>>> be fallback, especialy driver use devm_bulk_clk_get_all().
-> >>>
-> >>> That's a driver-specific implementation decision, so I don't think it
-> >>> should be taken into account to decide on compatibility.
-> >>
-> >> The clock inputs do not restrict compatibility. If Linux can use
-> >> fallback to bind and operate properly, then it's a strong indication
-> >> devices are compatible.
-> >>
-> >> Imagine exactly the same registers, so same programming interface, but
-> >> one device takes one more clock which just needs to be enabled through
-> >> its lifetime. Such devices are fully compatible, even though clock
-> >> inputs differ.
-> >
-> > That's only the case if someone enables the clock, isn't it ? From a DT
-> > binding point of view, how can we know that the extra clock will be
->
-> We talk about software using the binding in this particular case. Can
-> the software use fallback? Yes, it can.
->
-> > enabled by a component separate from the driver (in this case by the
-> > fact that the devm_bulk_clk_get_all() function gets all clocks) ?
->
-> If you go that way, only 100% identical devices are compatible.
->
-> >
-> >> I also wanted to express exactly that case on my slides from OSSE -
-> >> slide 28:
-> >> https://osseu2025.sched.com/event/25Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-kozlowski-linaro
-> >
-> > Quoting that slide, you wrote
-> >
-> > "Two devices are compatible when the new device works with Linux drivers
-> > bound via fallback (old) compatible".
-> >
-> > That is clearly the case here for the existing *Linux* driver. But what
-> > if the driver called devm_bulkd_clk_get() with a device-specific list of
-> > clocks ? Or what if the same DT bindings are used on an OS that has no
-> > clk_get_all() equivalent ? This is my concern with declaring those two
-> > devices as compatible: they may be from the point of view of the current
-> > implementation of the corresponding Linux kernel driver, but DT bindings
-> > are not Linux-specific.
->
-> It seems you think of compatibility as new device is compatible with old
-> kernel, e.g. one not requesting that clock. We don't talk about such case.
->
-> >
-> > Or do DT bindings assume that drivers have to always enable all clocks
-> > declared in DT, even if they don't know what those clocks are ? That
-> > seems error-prone, in quite a few cases drivers need to handle separate
-> > clocks in a device-specific way, with for instance a particular
-> > ordering, preventing them from using devm_bulk_clk_get_all(). If all
-> > drivers are required to manage all clocks declared in DT, this would get
-> > messy quite quickly.
-> >
-> I don't really want to dive into such specifics, because it is
-> impossible to create a generic rule of out. We decide here about
-> programming interface mostly. Can Linux use the one from fallback-device
-> to properly operate the new one? Can the same driver bind to fallback
-> and operate the new device?
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-So my understand is correct. we should use fallback string if driver can
-work with it.
+Hi All,
 
-Frank
+This patch series adds DU/DSI clocks and provides support for the
+MIPI DSI interface on the RZ/V2H(P) SoC. It was originally part of
+series [0], but has now been split into 6 patches due to dependencies
+on the clock driver, making it easier to review and merge.
 
->
-> If you enable clock by clock for whatever reason, e.g. very specific
-> programming power up sequence, then answer would be: no, Linux cannot
-> use fallback because handling clocks differ.
->
-> Best regards,
-> Krzysztof
+[0] https://lore.kernel.org/all/20250430204112.342123-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+v7->v8:
+- Added reviewed-by tags from Tomi, Geert and Biju
+- Dropped rzv2h_get_pll_dsi_info() helper and opencoded instead.
+- Dropped is_plldsi parameter from rzv2h_cpg_pll_clk_register()
+- Updated commit message for patch 5/6 and 6/6
+- Switched to use devm_clk_get() instead of devm_clk_get_optional()
+  as lpclk clock is available on all SoCs.
+- Simplified check in rzv2h_mipi_dsi_dphy_init() for PLL parameters
+- Renamed start_index member to base_value in struct rzv2h_mipi_dsi_timings
+- Added comments in the code for DSI arrays and their usage
+- Added comments in the code for sleeps
+- Rebased the changes on next-20250902
+
+v6->v7:
+- Renamed pllclk to pllrefclk in DT binding
+- Added a new patch to add instance field to struct pll
+- Renamed rzv2h_pll_div_limits to rzv2h_pll_limits
+- Included fout_min and fout_max in the rzv2h_pll_limits structure
+- Renamed rzv2h_plldsi_parameters to rzv2h_pll_div_pars and re-structured
+  for readability
+- Dropped rzv2h_dsi_get_pll_parameters_values() instead added modular apis
+  to calculate the PLL parameters ie rzv2h_get_pll_pars/rzv2h_get_pll_div_pars/
+  rzv2h_get_pll_dtable_pars
+- Dropped plldsi_limits from rzv2h_cpg_info structure
+- Updated the DSI driver to use the new PLL APIs
+- Included the LPCLK patch
+- Rebased the changes on next-20250728
+
+v5-> v6:
+- Renamed CPG_PLL_STBY_SSCGEN_WEN to CPG_PLL_STBY_SSC_EN_WEN
+- Updated CPG_PLL_CLK1_DIV_K, CPG_PLL_CLK1_DIV_M, and
+  CPG_PLL_CLK1_DIV_P macros to use GENMASK
+- Updated req->rate in rzv2h_cpg_plldsi_div_determine_rate()
+- Dropped the cast in rzv2h_cpg_plldsi_div_set_rate()
+- Dropped rzv2h_cpg_plldsi_round_rate() and implemented
+  rzv2h_cpg_plldsi_determine_rate() instead
+- Made use of FIELD_PREP()
+- Moved CPG_CSDIV1 macro in patch 2/4
+- Dropped two_pow_s in rzv2h_dsi_get_pll_parameters_values()
+- Used mul_u32_u32() while calculating output_m and output_k_range
+- Used div_s64() instead of div64_s64() while calculating
+  pll_k
+- Used mul_u32_u32() while calculating fvco and fvco checks
+- Rounded the final output using DIV_U64_ROUND_CLOSEST()
+- Renamed CLK_DIV_PLLETH_LPCLK to CLK_CDIV4_PLLETH_LPCLK
+- Renamed CLK_CSDIV_PLLETH_LPCLK to CLK_PLLETH_LPCLK_GEAR
+- Renamed CLK_PLLDSI_SDIV2 to CLK_PLLDSI_GEAR
+- Renamed plldsi_sdiv2 to plldsi_gear
+- Preserved the sort order (by part number).
+- Added reviewed tag from Geert.
+- Made use of GENMASK() macro for PLLCLKSET0R_PLL_*,
+  PHYTCLKSETR_* and PHYTHSSETR_* macros.
+- Replaced 10000000UL with 10 * MEGA
+- Renamed mode_freq_hz to mode_freq_khz in rzv2h_dsi_mode_calc
+- Replaced `i -= 1;` with `i--;`
+- Renamed RZV2H_MIPI_DPHY_FOUT_MIN_IN_MEGA to
+  RZV2H_MIPI_DPHY_FOUT_MIN_IN_MHZ and
+  RZV2H_MIPI_DPHY_FOUT_MAX_IN_MEGA to
+  RZV2H_MIPI_DPHY_FOUT_MAX_IN_MHZ.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (6):
+  clk: renesas: rzv2h-cpg: Add instance field to struct pll
+  clk: renesas: rzv2h-cpg: Add support for DSI clocks
+  clk: renesas: r9a09g057: Add clock and reset entries for DSI and LCDC
+  dt-bindings: display: bridge: renesas,dsi: Document RZ/V2H(P) and
+    RZ/V2N
+  drm: renesas: rz-du: mipi_dsi: Add LPCLK clock support
+  drm: renesas: rz-du: mipi_dsi: Add support for RZ/V2H(P) SoC
+
+ .../bindings/display/bridge/renesas,dsi.yaml  | 120 +++--
+ drivers/clk/renesas/r9a09g057-cpg.c           |  62 +++
+ drivers/clk/renesas/rzv2h-cpg.c               | 298 +++++++++++-
+ drivers/clk/renesas/rzv2h-cpg.h               |  29 +-
+ .../gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c    | 451 ++++++++++++++++++
+ .../drm/renesas/rz-du/rzg2l_mipi_dsi_regs.h   |  34 ++
+ include/linux/clk/renesas-rzv2h-cpg-pll.h     | 395 +++++++++++++++
+ 7 files changed, 1349 insertions(+), 40 deletions(-)
+ create mode 100644 include/linux/clk/renesas-rzv2h-cpg-pll.h
+
+-- 
+2.51.0
+
 
