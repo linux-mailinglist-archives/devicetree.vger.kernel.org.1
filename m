@@ -1,227 +1,172 @@
-Return-Path: <devicetree+bounces-212314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE0C4B42599
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:35:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8ECDFB425B1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:38:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A7B5E3BE757
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:33:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59B3454144C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:38:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5899F23D7DA;
-	Wed,  3 Sep 2025 15:33:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE72A27F166;
+	Wed,  3 Sep 2025 15:38:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="mRKl18PC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DofudDW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B00181E1E12
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB53E28151C;
+	Wed,  3 Sep 2025 15:38:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756913630; cv=none; b=EaQR+I1WJz1FH722Vz9ACFKicNFNAdbYbSxpojXx+aHGQueTxFwtiVDxApOtAGjqL4NkAyzdmK4UjjI1fnkZat/2V/bgj+LR31QfTflAMEL/YiVwQtDdUbcmRdpLUdqN/NezCB0RSDI7IkXY1/nNJuFh04Qv5GMXpiHMn0VB8/k=
+	t=1756913893; cv=none; b=qOllBEQuuQNCHBlxsziy4tpv6InLODrUgD/X0ZFNDya5mUQHGPUdPpd33Qtpsqd+X6sBK5NgafaB/Jkuz72zd/tGnknGtJ8d8qM57XJd31OlemxMJJRizi0hrXyjH4+Jsn9MnkmWzStDS2qnIYncR6xe8p8LeioRdy12KWH6m7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756913630; c=relaxed/simple;
-	bh=xO6iAnignT0uPUWlfXo2NngCyqiMjodQj+U6s9rd10U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YYziTHZ3AtzJuBRyKjS3dZPqb+vYr5jYATXsxrO4rVk1AbLVu8724MVe9puFU2h5qcl8ea0G/VkLXcmmjUseXAFqaHj0CPX/X5Knt4Y1Q8pQckA2dPEN/BGUIJeiDD4EmQ7Bh4UfXfcUZJxKpNKJo2tc+VoJJrSHDODYrd30piQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=mRKl18PC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DxA9s005586
-	for <devicetree@vger.kernel.org>; Wed, 3 Sep 2025 15:33:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	18o1iHxtl5lTw0Ly+5dz1N5tWp+vbDygIfwrS6qTOYE=; b=mRKl18PCkjiiZrjF
-	RK5cDhHOTeFBUGNaLF50985gAUPoKy0UxpWGyefJ/sIymAFf9WdrsZAvBGysKlZL
-	ogiYrL67EsG/NDKsyv2D/2YyeA8ZAXXglAo1vppSAZ4KMdVWXVzZP0uFT2kC9njE
-	QJkiDe9jZk+J7xcYcUwICfIwE0lMk4sXFh/gXB9jrJMF1KyDr/qu4UlqyRQ/STiQ
-	rVh6q10wu9HngwX5Ir35vQ8xCcVWY4BM653n4wK14w7SvJOmJcT75oD6f8ey23UK
-	SyGxuNtnf3SMY591WQwDVi2Ng2a8+Vieb1aWog1FVGfwl+yldEo8irqlQUxCv8jP
-	Sl6RJg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjm57q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 15:33:47 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b32eddd8a6so37561cf.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:33:47 -0700 (PDT)
+	s=arc-20240116; t=1756913893; c=relaxed/simple;
+	bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U5aflz/MMbbbMRdFmcM0DcN41IMvxcVh+4I9vIUQWAy5RyQ/cgiHEKRk1BzFaPq07Z8T8XQiDFLTlKpE2+xWY1jLok6fW/H9ymPkGYi+iNIfPT2N5+5XARPV2aGmNyxTa1NUGrRAMD7uwaAJk1T6BbeiToetbwd81ETGxYziKzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DofudDW5; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45b89147cfbso633465e9.3;
+        Wed, 03 Sep 2025 08:38:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756913890; x=1757518690; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
+        b=DofudDW52HX0q+5z13B4Q/PvnEMbULyTVLwUvsJP2PAV/yjfYlHCDRIgDX/bTtsL42
+         LQerHgLGKc8EA2OE5B6g6DXxmkHs0Cpc83VE4DNTlFlJbb4GX5gd2lg+Orcg+7wnoofE
+         2UkQcmRVAD0RBEww99covA9Npi8/e/XEa3v7o/Sv7SfA4m3iCELwuM7GrHaLNA3XV+Uc
+         Mq5S6EhMUf7hUh2ozuwSht+E383etEWguqCUdIlQdjxkjglZ8WuClx69LZqhkjUfmxjz
+         2CwzZc1IG3xhZL2ystWH/AGTt9EMLPRkNXA/gexQSLlApkUNNzMuGhvX797uL1A9x6lp
+         f1qg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756913626; x=1757518426;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=18o1iHxtl5lTw0Ly+5dz1N5tWp+vbDygIfwrS6qTOYE=;
-        b=fYgRoXXFU6cb6j02ESyiY14j5jaMCPtcBkvrIzVmWXhC8eCsOpT9Hvy941GXKxO6YO
-         dH1klcZ9lfiioxZL7jjzeou1PjHeT4vHApIc95dYD12QBWqtWyDEM658JlxPtiwqz9hO
-         lO8UGETQqTIs6+Fu9aQ79hQWMSGeWqgIdjXDTA2hSH3zQpCJCmMyrROadmJCzmvuySdf
-         Rb2Qv4jEmg8P66J4i3Z49Os34vkBf56u3UlM5Z8NmT1puji8sF7rW/FJQA9VjjyHDOhW
-         Rehm64c8G1Cd7X736SAI/ZYzrVTK5QGn9Yq8ui8mASxJCVA7VjSDNF7pCcYua47DZFPI
-         5u5w==
-X-Forwarded-Encrypted: i=1; AJvYcCVTbAtG2WHta/xANjjCsYwsPpTYFytgJ4VV0oCwvQm32y23MqpKtf+knC1Zw8lIF3kZDC1tgonZ5njT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yxxuh9oms/rIm4QZO0aSYn0q7mMr4MEgwn3VCNSNLRYae+FdDJM
-	plBvNxYZo5qLszUwAbk0OVSA7qWyb3CTdNnqKzGfNF4H/hrVsohBVSw1DLLK4DIcn0GuIYSE35R
-	39GK6OPK41oz/Kj9fgusi/sbx6cxBeCVySiWCpP+cHZjNRnV/R/qsClHgboB23Dus
-X-Gm-Gg: ASbGncuAJ/pXjLBQTRYhKytTWU92fBnIj/4I6yxeATtcWoVwwVqTrBRyhFOKlDzbhnA
-	vi+vWFLtWzPz3/Og+/MkJtc6CL7ClXf4U/Ejgt+Af9V6qBF9kbpBMqHC/ieLW2Pnwip/l4yhQgp
-	ustGwCZU0ErOXb4BHLqGQOaUqBKosxR06IpBiyk/vuPfhZMO1qKkVTdOqxuFtdDEX14h0pUbB3M
-	oUQcwTKTDY5uOeCEpRX0YBVa+diH6+DQerVSlWmTAVQfQUA1kcU+uhDgK702oDaJdXQovh90E3O
-	0AOin3w88f9oRbq/I8T+EkHQAWabnU12zd4jgDWYT5/spdP8yZ0f12SE/2RRTh4K5P0KUoV3klX
-	cKoxSn45mtwXmQaKtM/toKQ==
-X-Received: by 2002:a05:622a:295:b0:4b5:a0fb:599e with SMTP id d75a77b69052e-4b5a0fb5d27mr3955851cf.2.1756913626374;
-        Wed, 03 Sep 2025 08:33:46 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHL1vuGWMGXs2GJGdTf4JnsvsnA4SogcFyon1Ve1Y6vNl70a0aW3lgP59SAzB8uqaJmkyQcnA==
-X-Received: by 2002:a05:622a:295:b0:4b5:a0fb:599e with SMTP id d75a77b69052e-4b5a0fb5d27mr3955501cf.2.1756913625820;
-        Wed, 03 Sep 2025 08:33:45 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aff138a8c1dsm1235771166b.99.2025.09.03.08.33.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 08:33:45 -0700 (PDT)
-Message-ID: <f34c72ee-971b-47e8-8d49-6355b2660925@oss.qualcomm.com>
-Date: Wed, 3 Sep 2025 17:33:41 +0200
+        d=1e100.net; s=20230601; t=1756913890; x=1757518690;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VPbwCRLjCS0JlRjDhk1ZHzDpInRFzDVXs0glfOj9Nmk=;
+        b=VDhYPEO/7z0J7rKLmYprhmuAww31ZKJYP3C2h/VNi1MyIFM77da2PX/zAE2nPS4ryB
+         GPkc4Ewxz/fFLnbTDPnJf2GEtBbAZE6qdjZEGISqSF0dimlBc3OTzsPIMUMDr9JwP6G3
+         cjAZee8Yq0GIf+J/IPkrZomjWZQSi54Vh8ldkMjKWyBEGTI8uqaw5g1XEUXPvIL+wCqJ
+         6nHNtF5T2rK2m9JMgnICGryWXkz+maK+7hm5Lp+F4ygvLBDh6iIA45g4LSjtJJFjH2qt
+         WrovdBkeLBo5eZrhOToY5ZDja5cYwoKCxAtCNRoWcS0WEgZee9CLZzOmVbmjboS7HwKS
+         05HA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyulWrLjVigKa52Etxs9qEQUfAABEwm3+SJNEnJTrheDFlUCC2EiRV/MZIOa8D+vHNDy9JNH/mWxtX@vger.kernel.org, AJvYcCXu2ZkEtqqrSKQ4jzgHUILZLbMLsLMUw1RVRPdmuBfOYY229lA70oRn+QM8+Rq+4LJKETERa/x1ILmUw/E=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxcilK4VeKXNPasdznhi/J9C4lG8opIFDGuQilzcMsJ95koVZ1X
+	vO2NEcmQqbJjSKqIu4KQHMsRnUGmCcm2aGZ9g2EtqeNKdLwbDvDnLilj
+X-Gm-Gg: ASbGncvsxy/Gsyv3i1v6xIBNRMFiz0NDXpPCsjEQOxZUHNaXPetP/DPfD7pPVQIVQtS
+	mUGND5HDlIurwGzfis/EeKoDTASM5AkxSJXklJUTlMLXrO+DGlBbVTZ10LiceB91oHAJhw04A2U
+	xPaHgKV6/KILxvDBC4dG4i17Sbbvpx8qTyFUngomNuGziS3y/0KxZuY4FRt995PZKrSidtNFEZG
+	+evBm4TMmJt/SpCwNUhRgI8rE06Od2iVTVM4nVGifckS2hIA85Y+OwYrTUL3tWEiDagso+VD44f
+	+6ugrLyPlysnKgdJwvDH1lExMOe0sBVN8Ub2Ae2hOliCGUL3eeR0V06SK9i22/fffMfYzChF3Qq
+	XdiohFRmIIbSv6/Z37BtHCsKHfvf9ggEjCcxPimD0lHXrGtvLCkvqfrcYAMG36InafBHMwSJcIi
+	7/ekJBg1gZESLwr+x/DV4=
+X-Google-Smtp-Source: AGHT+IFJMszbSGSF1PbWonv1NoW4j1E7tepFW666Fw1sEE/F4ZJzmOwpg3R8c/5zqgWpxpRXy3A2Sg==
+X-Received: by 2002:a05:600c:4ec9:b0:45b:7ffa:1bf8 with SMTP id 5b1f17b1804b1-45b934f6a56mr68840825e9.23.1756913889833;
+        Wed, 03 Sep 2025 08:38:09 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9c234b24sm59432145e9.16.2025.09.03.08.38.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 08:38:08 -0700 (PDT)
+Date: Wed, 3 Sep 2025 17:38:06 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: John Stultz <jstultz@google.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+	linux-mm@kvack.org
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+Message-ID: <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-5-thierry.reding@gmail.com>
+ <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 9/9] arm64: dts: qcom: Add MST pixel streams for
- displayport
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Abel Vesa <abel.vesa@linaro.org>, Mahadevan <quic_mahap@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20250903-dp_mst_bindings-v8-0-7526f0311eaa@oss.qualcomm.com>
- <20250903-dp_mst_bindings-v8-9-7526f0311eaa@oss.qualcomm.com>
- <964a58d4-ddb6-4c98-9283-1769c0f11204@oss.qualcomm.com>
- <rfhqfbx4q3kl35ktzaexjjshzosv4a2tkjthtvo24aoisrdvj7@i63a55qx4mnn>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <rfhqfbx4q3kl35ktzaexjjshzosv4a2tkjthtvo24aoisrdvj7@i63a55qx4mnn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b85fdb cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=xrVuZHS62xsaktVfuFIA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: Bn8ojhXp6a_9LC90LXlYKW_EbOSAxq_Z
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX1vbboEf3AiV3
- OzgJljfgL8TVjrHRtGVKxCbWnfV19Sv2rmd2TwqoSEIN60q1VhFwJjEmWvjiGqQB+Q8FSWDJNj9
- nGK/32Gsx2vCUkbFhDpWVwJagLRJgse4PVMkuGjS6iLVd0Z+WlVzZt9Y7f5AzjPiW7eA8XSieJu
- lgD5q5rr54u443kgTiU0z3NanrO+eo16jarWKyLq+4OW1KI46ph0GOcsTVXV2HiEU15uWE14RwH
- GsVR2rGqKEb69dfl50ycaRCoViaZRF+NJPgG/dfKN1VoMiruFCwhFOf+TMqAIq3zz6gUevITT1K
- GOHQmAR+DjqsWjCdvxe/FB9NJ9QBqlqpLclRy8uyiALd0nTHHHnXhSCZyCn5FcBsVCLe9JrCz4h
- aWqdsHoP
-X-Proofpoint-ORIG-GUID: Bn8ojhXp6a_9LC90LXlYKW_EbOSAxq_Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-03_08,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="sulytsn4e2thgtl4"
+Content-Disposition: inline
+In-Reply-To: <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
 
-On 9/3/25 3:58 PM, Dmitry Baryshkov wrote:
-> On Wed, Sep 03, 2025 at 03:41:45PM +0200, Konrad Dybcio wrote:
->> On 9/3/25 1:58 PM, Dmitry Baryshkov wrote:
->>> From: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
->>>
->>> Update Qualcomm DT files in order to declare extra stream pixel clocks
->>> and extra register resources used on these platforms to support
->>> DisplayPort MST.
->>>
->>> The driver will continue to work with the old DTS files as even after
->>> adding MST support the driver will have to support old DTS files which
->>> didn't have MST clocks.
->>>
->>> Signed-off-by: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
->>> ---
->>
->> [...]
->>
->>> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
->>> index 70c87c79e1325f4ab4c81f34e99c0b52be4b3810..e6a7248040095077d6f98d632f4e8a1868432445 100644
->>> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
->>> @@ -3241,16 +3241,20 @@ mdss_dp0: displayport-controller@ae90000 {
->>>  					 <&dispcc DISP_CC_MDSS_DP_AUX_CLK>,
->>>  					 <&dispcc DISP_CC_MDSS_DP_LINK_CLK>,
->>>  					 <&dispcc DISP_CC_MDSS_DP_LINK_INTF_CLK>,
->>> -					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>;
->>> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK>,
->>> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK>;
->>>  				clock-names = "core_iface",
->>>  					      "core_aux",
->>>  					      "ctrl_link",
->>>  					      "ctrl_link_iface",
->>> -					      "stream_pixel";
->>> +					      "stream_pixel",
->>> +					      "stream_1_pixel";
->>>  
->>>  				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK_CLK_SRC>,
->>> -						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>;
->>> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL_CLK_SRC>,
->>> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK_SRC>;
->>>  				assigned-clock-parents = <&usb_prim_qmpphy QMP_USB43DP_DP_LINK_CLK>,
->>> +							 <&usb_prim_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
->>>  							 <&usb_prim_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->>>  
->>>  				phys = <&usb_prim_qmpphy QMP_USB43DP_DP_PHY>;
->>> @@ -3319,16 +3323,20 @@ mdss_dp1: displayport-controller@ae98000 {
->>>  					 <&dispcc DISP_CC_MDSS_DP_AUX1_CLK>,
->>>  					 <&dispcc DISP_CC_MDSS_DP_LINK1_CLK>,
->>>  					 <&dispcc DISP_CC_MDSS_DP_LINK1_INTF_CLK>,
->>> -					 <&dispcc DISP_CC_MDSS_DP_PIXEL2_CLK>;
->>> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL2_CLK>,
->>> +					 <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK>;
->>>  				clock-names = "core_iface",
->>>  					      "core_aux",
->>>  					      "ctrl_link",
->>>  					      "ctrl_link_iface",
->>> -					      "stream_pixel";
->>> +					      "stream_pixel",
->>> +					      "stream_1_pixel";
->>>  
->>>  				assigned-clocks = <&dispcc DISP_CC_MDSS_DP_LINK1_CLK_SRC>,
->>> -						  <&dispcc DISP_CC_MDSS_DP_PIXEL2_CLK_SRC>;
->>> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL2_CLK_SRC>,
->>> +						  <&dispcc DISP_CC_MDSS_DP_PIXEL1_CLK_SRC>;
->>>  				assigned-clock-parents = <&usb_sec_qmpphy QMP_USB43DP_DP_LINK_CLK>,
->>> +							 <&usb_sec_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>,
->>>  							 <&usb_sec_qmpphy QMP_USB43DP_DP_VCO_DIV_CLK>;
->>
->> Something's not right here
-> 
-> No, it's correct as far as I understand. On this platform INTF3 / PIXEL1
-> is shared between INTF0 / PIXEL and INTF4 / PIXEL2. So it is
-> counterintuitive, but seems to be correct.
 
-Eh, I unfortunately found confirmation for what you said. Hopefully this
-doesn't cause too much extra pain on the driver side
+--sulytsn4e2thgtl4
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+MIME-Version: 1.0
 
-Konrad
+On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
+> On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding@gma=
+il.com> wrote:
+> >
+> > From: Thierry Reding <treding@nvidia.com>
+> >
+> > Add a callback to struct dma_heap_ops that heap providers can implement
+> > to show information about the state of the heap in debugfs. A top-level
+> > directory named "dma_heap" is created in debugfs and individual files
+> > will be named after the heaps.
+> >
+>=20
+> I know its debugfs, but this feels a little loosey-goosey as an uAPI.
+
+Well, the whole point of debugfs is that it's not really an ABI. Nothing
+should ever rely on the presence of these files.
+
+> Is there any expected format for the show function?
+>=20
+> What would other dmabuf heaps ideally export via this interface?
+
+I've thought about this a bit and I'm not sure it makes sense to
+standardize on this. I think on one hand having a list of buffers
+exported by the dma-buf heap is probably the lowest common denominator,
+but then there might be a bunch of other things that are very heap-
+specific that some heap might want to export.
+
+> Is there some consistent dma_heap-ish concept for it to justify it
+> being under a dma_heap directory, and not just an independent debugfs
+> file for the driver implementing the dmabuf heap?
+
+Well, I think just the fact that it's a dma-heap would qualify its
+corresponding debugfs to be in a well-known location. We could of course
+pick some arbitrary location, but that's just a recipe for chaos because
+then everybody puts these whereever they want. There's really no
+standard place for driver-specific debugfs files to go, so putting it
+into some "subsystem"-specific directory seems like the better option.
+
+Thierry
+
+--sulytsn4e2thgtl4
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi4YNsACgkQ3SOs138+
+s6FLbg//VYHy8TOrGMpDWro/ULEXXUAldaCb7nmtSEpNIXvKqfV5j9D/dcMLpLtY
+LC53YPVnMm9g5c6mZ0w7DfUU5q+qAwCe2mvhA+Fm3UaRF2jMKhD/5LG4rk7ELWsL
+Xb3raJAlnNFO9AHgE7oEwGYjF8q94yEiAZHNO62j1kxJ00CpZCxyG2rie7iaTAMh
+VToay43MFoIv9ulrESaonZk84vL4HzYJZIZXeIgjs+mS0BmFH5fxvCPerNuiG4gf
+Z4N4cCDGWfJ+EYFuMZ3p2pbLivKlTqI3QdihV8BO13OMaADW7vmSPMdDzYSgQ/R9
+KdwIIctBlRpiGYOJCPb83kZFsFXwU4Cvnfc3HJDTjwLwlbIrAFTlPnyhL9eWEeZD
+oD4Jdnf/tHXH9tFJUEZ+cPA8mCHjMrnL3mTItfYILkvaGuZGRRdacy5fyICO0fbv
+xB0k9rSgPfwlafKgaHj3wQD02D1qmGZqATxAVYXu/RT682hMAYX8JJS5ar64fQ35
+esRjjoSdlzaVisao/gog2ThKdoPsThxcMXcM4nHHMfkd+wURKomTszYl8lZGew3Y
+dzUR7jKgI/rPUUUpBD7D+cPzNy5p2JzoQMPoBtKMPOOq6tQ1BXYJgXZtfW8DO1T6
+QgUM6P7kdw0Dce+0PdZOD3TvkpPucxyqZlLA13ZLCYeW8xZKwsk=
+=6VMq
+-----END PGP SIGNATURE-----
+
+--sulytsn4e2thgtl4--
 
