@@ -1,140 +1,108 @@
-Return-Path: <devicetree+bounces-212258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3584FB422BA
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:59:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A89B422C8
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:00:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7DED1B27DD1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:59:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3554F7AD380
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:57:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2E463115AC;
-	Wed,  3 Sep 2025 13:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8042830EF91;
+	Wed,  3 Sep 2025 13:58:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="dv+aGAmr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e4TIvj5E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f178.google.com (mail-pg1-f178.google.com [209.85.215.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F35E430EF6D;
-	Wed,  3 Sep 2025 13:58:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.207.212.93
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E15572D9EDF;
+	Wed,  3 Sep 2025 13:58:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756907920; cv=none; b=LDzPpQ1SEsvUD2E4SwNdda1nm+xlP2Tp2r/q+zDI6p0/pzliNUb1v04I42GTfvKKcx9QaXqr1FXk+jN3rH71HXsof/W0x8Wz4XXm4t9VOdsAhpoyN1y1fxUzv51ykviTg6uXkYyX1momZ59A4y6rxVTKrvGfEYWH76+EjUDArdQ=
+	t=1756907916; cv=none; b=A8MKZj18RMPsII5ANSSDtz4ObVl3nSXtyuIQ4lr/P77l5sVkUmplNdzpxQ1MLp25BO/Q/0BVvUZXgCLjDSxzm2Ybrd2wJlvMMCHRf6X9xsj045vtLYumekZLRLGIAocI20YekvDiH5tyk5kgdzOGTe59JbrYMgxaP0+BV7Kk2hQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756907920; c=relaxed/simple;
-	bh=x94k57n5g4szNvbim9+TTaaBYUxakxMIrHZ7n4YCMcU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=RakVgCMc8TlSIN+0zTn/rcwfWNDid2UeFJgIbr5HZjY+u2mXsmU9h0Pt6YuSjAkPJTxzUasSty+C1Evt+BG99hAUsZNaJ/lCMUzxUIiXjhcEvzPROvudYJDd6smm3KgDvJHSv4mEqwSyUMNomn77GQGEsOgajYkslYIAKLRDoN8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=dv+aGAmr; arc=none smtp.client-ip=91.207.212.93
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583BRm9D016232;
-	Wed, 3 Sep 2025 15:58:30 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	4UlTu2YpLab0/pa6q4pnPYbb7UfqHxugcQ+IeQKpoe8=; b=dv+aGAmrdVz2+GR7
-	WbDwiJvebx2c1PJDxXNLuofMlIPs+uPWjzRncV3nJtg529P2gJ38/DUXZI5R9qSl
-	q8xEuxTcsC9GTw6bAT8OWdgHd3mqQU6mCLGHVvl0PL58yezEUoff4wlMfedUl7GQ
-	vC/SuSvFwhMjOZFIc1uHi8dyse+ZOpaGzp5Pa4DJNAQ1vdb0tKxq0S0/pWyKN15W
-	pyt+LdVjNuT6NCU6m/f5aKVTgN1ywevniL28nsQgnW/MkdlHiL+O1bqP5fR9QXOL
-	nb44vr2wn/jF/Z5r9DgZBr9Qg9YoPCRFChnxVQnDZ+wpd34L4sO44ppHbMbvgcad
-	k+rH0g==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48ur6frr2c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Sep 2025 15:58:30 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id 44DEE40048;
-	Wed,  3 Sep 2025 15:57:35 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 64962399931;
-	Wed,  3 Sep 2025 15:56:57 +0200 (CEST)
-Received: from [10.48.86.79] (10.48.86.79) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 3 Sep
- 2025 15:56:56 +0200
-Message-ID: <66a94f4b-2efa-4671-9668-71995a9c1ac4@foss.st.com>
-Date: Wed, 3 Sep 2025 15:56:56 +0200
+	s=arc-20240116; t=1756907916; c=relaxed/simple;
+	bh=IirmmlGam5se7iXc/mYiqtSiPLOv0qa9RK4q0YNBGlE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=T5LAjIyTw0SkZniNEanzfnCK0tTYPBnD+uJoy35AkzU+BJcz0sBuN9ep+fYid32UgSwlUzrSXgP52y0iYHLuckHC6+EP/qVlWsNsHu4kRU1Uxp8EbdtsZJcYFekup2SDKcf/PFOCFxzLXF2UmaMoNriNSzzEDP6vxI4cv2VJRrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e4TIvj5E; arc=none smtp.client-ip=209.85.215.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f178.google.com with SMTP id 41be03b00d2f7-b49c1c130c9so4483211a12.0;
+        Wed, 03 Sep 2025 06:58:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756907914; x=1757512714; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=lXT0zXsgfMx57Cdo6jSoHQ+Yt/gY84DdNKZyQH26IQg=;
+        b=e4TIvj5EuNyNcdhi6pPUWdeDyvXN5ZD8MJHhSnkxRfxWBapbFvBSDwwQPo5Oa3ykvs
+         QYVT0dRfBgBA3M+tjl4T9ormgKnAk0DUXFe7R4TUc3e9EET8SBd64IolSM4nblVltzvX
+         7zJGM/t4XkI56r4tW5cAerxLOIhpsBt0XS+4ZlWUWU9on8d7hAvLFdJvh8o66OJSa3Sm
+         CksRTQSlyo73QzDfsTUNyz+tC33jTG2TWTqDh/19kQ6tT0pzbxVVD1yjk8IPCqXkrVWN
+         Npu+gWkNtGD69jgcXJIzaNJo74bhrTr7YMXHehQTLBZkYBYNg7P491jYIIzV6NsetH/M
+         n5Kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756907914; x=1757512714;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lXT0zXsgfMx57Cdo6jSoHQ+Yt/gY84DdNKZyQH26IQg=;
+        b=llFG7/GQyEro9QnoF6RF8mjQnRCDFkBjfMEzOy+WUKcrwrIE+NdQ2uDxI7U/8pQB5t
+         i3uMw2XzaUkNKjFeTL4bfWfQnIfKUFB/F/ws4ZlJc9b4lAbsADGMc9XBD0m9dlPew98/
+         xWCzgkXYkn8ZA4SVRTAhZCi4/Sjl4LaeA/yxk5xahdsuuw8SKbdYwtF2IjzjLG54eKfM
+         WJvS6QQ53pK7/lMqJmClAG+I6Jbvqqe6Vw/I39xoElBIhDV2XvjAVPDOBVt77TOi4WVA
+         VZ6+9K+bjb5gaAusDz5lXY48qr8f3tFe3mw9e/Fn8V8FpocX8b2QGT8InX6hNYht5KoS
+         404Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUkaJa0WnPr2ml41uCB5BGLnwf8y+PDWBP5O3D52KVjHSOlP/ifeeo66iY4qjbL/PlPkt8o0iimLrqT@vger.kernel.org, AJvYcCXU/an3kto+1DjsInAboO+/hQH7qIoIwNcMIEKNCZj7tT+fFeIiT9yKrmmGc/wUabtnIMt82WqR2vEKlGk=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQJEVWNvDv5Ss7TxZx6AKLMeU0i1Bygq8G0gpJ7MJjcIY6xB+b
+	c2UlWjmXBJckf9id/VjEJMSrlA9AUMPWXF1l4z9tGvpt9Bd8DuW0+D5U
+X-Gm-Gg: ASbGncsf8Z1wVCXcN7WOJ9tdAcuWKOe923h/+k6qhtzVzS8Er0dNNlivj9sz48DxK5W
+	Lfv3rCcyDri37OWjyzs1gJS3/+TphDiBIN1TtnuumEeQvaVDfuhx9c8YQXSOwobjXhpQTwUwcLZ
+	EbY0Ft0TiyLsK/bXPdtlpJe1pM9x91Q1N++Z2Did7GmjcUv2SLkvt/ilIyMgaSUq9OIlxCE15U0
+	ZSBpwtAXrJx2ya8BxZhRHipf60N9P5gesNfkxvQFrFRdnKSh3JYP0dLbE96Skp8f8Sm4K8Q5UhE
+	c2QMuS0FGHuxK3IgfNDuTWNQd/ZbzC8lWcV9hjcPwYAMDPAd1NIcSSo27Oh1SsfaS0lfdvdLkmj
+	jIGEmQYIgujbj/QrdV+ynVJM5yg913SWffw==
+X-Google-Smtp-Source: AGHT+IFByx0S9UioQ8gncPIVwKiyz3GHx/abqmcrtcNwY0/ie4OlrIycNKCUo1uT/Pn0HRCthAHqHA==
+X-Received: by 2002:a17:90b:1848:b0:321:c81b:29cd with SMTP id 98e67ed59e1d1-32815412269mr17826703a91.1.1756907913902;
+        Wed, 03 Sep 2025 06:58:33 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:dde1:b1e1:74ba:18b3])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-329d089395esm6675303a91.1.2025.09.03.06.58.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 06:58:33 -0700 (PDT)
+Date: Wed, 3 Sep 2025 06:58:30 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	Frank.Li@nxp.com, linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: input: touchscreen: tsc2007: Document
+ 'wakeup-source'
+Message-ID: <gjjtam5kuujgxrwo33azwrw37lfvmnftpp4nnx2uqgnfbxzdoo@2vci7h3oxfob>
+References: <20250822213245.125901-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RESEND PATCH v2 0/5] STM32 pinctrl: Add mux function RSVD
-To: Antonio Borneo <antonio.borneo@foss.st.com>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC: Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Fabien Dessenne
-	<fabien.dessenne@foss.st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <20250610152309.299438-1-antonio.borneo@foss.st.com>
-Content-Language: en-US
-From: Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20250610152309.299438-1-antonio.borneo@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822213245.125901-1-festevam@gmail.com>
 
-Ciao Antonio
+On Fri, Aug 22, 2025 at 06:32:45PM -0300, Fabio Estevam wrote:
+> The 'wakeup-source' property is used by many devicetree files and is
+> also supported by the tsc2007_core driver.
+> 
+> Document it to avoid the following dt-schema warning:
+> 
+> 'wakeup-source' does not match any of the regexes: '^pinctrl-[0-9]+$'
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
 
-On 6/10/25 17:23, Antonio Borneo wrote:
-> This v2 is a subset of the v1, split-out to simplify the review.
-> 
-> This subset:
-> - introduces the pinctrl mux function RSVD,
-> - adds two use cases requiring RSVD,
-> - minor re-format of the dt-bindings.
-> 
-> Changes v1 -> v2 subset:
-> - rebased on v6.16-rc1,
-> - added use cases of the new mux function RSVD,
-> - added Reviewed-by: on 2/5 (former 04/14 in v1),
-> - added commit to re-format the dt-bindings,
-> - Link to v1: https://lore.kernel.org/lkml/20241022155658.1647350-1-antonio.borneo@foss.st.com/
-> 
-> 
-> Antonio Borneo (3):
->    ARM: dts: stm32: Add pinmux for CM4 leds pins
->    ARM: dts: stm32: Add leds for CM4 on stm32mp15xx-ed1 and
->      stm32mp15xx-dkx
->    dt-bindings: pinctrl: stm32: Add missing blank lines
-> 
-> Fabien Dessenne (2):
->    pinctrl: stm32: Handle RSVD pin configuration
->    dt-bindings: pinctrl: stm32: Add RSVD mux function
-> 
->   .../bindings/pinctrl/st,stm32-pinctrl.yaml    | 25 +++++++++++++++++++
->   arch/arm/boot/dts/st/stm32mp15-pinctrl.dtsi   | 14 +++++++++++
->   arch/arm/boot/dts/st/stm32mp157c-ed1.dts      |  2 ++
->   arch/arm/boot/dts/st/stm32mp15xx-dkx.dtsi     |  2 ++
->   drivers/pinctrl/stm32/pinctrl-stm32.c         |  9 +++++++
->   drivers/pinctrl/stm32/pinctrl-stm32.h         |  3 ++-
->   include/dt-bindings/pinctrl/stm32-pinfunc.h   |  1 +
->   7 files changed, 55 insertions(+), 1 deletion(-)
-> 
-> 
-> base-commit: 19272b37aa4f83ca52bdf9c16d5d81bdd1354494
+Applied, thank you.
 
-DT patches applied on stm32-next.
-
-Thanks!!
-Alex
+-- 
+Dmitry
 
