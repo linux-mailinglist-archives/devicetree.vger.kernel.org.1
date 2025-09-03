@@ -1,64 +1,63 @@
-Return-Path: <devicetree+bounces-211909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B3D6B4145F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:31:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71056B41477
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 07:46:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F68C7A6234
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:29:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2C6313A9C0A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 05:46:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4FF3C2D0C7D;
-	Wed,  3 Sep 2025 05:31:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E67E28689C;
+	Wed,  3 Sep 2025 05:46:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="fACK4iWC"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="Ve/eYgzS"
 X-Original-To: devicetree@vger.kernel.org
 Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6F16198A11;
-	Wed,  3 Sep 2025 05:31:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58FD220EB;
+	Wed,  3 Sep 2025 05:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756877485; cv=none; b=VR2QtWM4TEkoXzubpXvJwaMneCKA1prxUx4of/uHTim0Hjo7yUYDHRI/XiqKAm/D8w9VmWe+ufvMef/L49b45mnwTR3A45fG6+VL7pKyciWb3iQx3ID6nXWH7juFlOpzVUyVLHd94v97Oj/9KLlGE6ImssiDy7cGafbpCRcjF/o=
+	t=1756878404; cv=none; b=GHDmdnTvgidn3GbEH+Aa+Vevkoo5glBzSsb8eyRolLu/8aZ8QGdLV4SpAki8IgKBTzquX7SsNOEpj8vf3pCQ3YyJ93Dv76+7OQCiZCeJ9EbD2cL1BQJqsXBgmqjB1gLXqFPFsOQzI7AzGwNzSbeiBf1DyHJ1r6YM3TBs4ebDYPE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756877485; c=relaxed/simple;
-	bh=JnGCK1lahw6eKRr1X7LuKjE36AI6nTTs35DYpWRjgPc=;
+	s=arc-20240116; t=1756878404; c=relaxed/simple;
+	bh=Zffg5Z8PXY4zN2j9mhgh+YxhyBSx05brIZWAwih9GV0=;
 	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=OseoByuFlk7uGnvk614N3gCf2q1ypG4rafnFFrrJlCfdeghYzYpYXcpvx3scoaZ+1PC5LgRh6xXYFRjwYK4M7UePq6kkoISWXzeZ8HkYRiCZYBXT87QGOzQg7G6Qq41dANwyPcU5MMvfmurW3R1RzcLtdaeGlkFJkWkTyVHH6+U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=fACK4iWC; arc=none smtp.client-ip=203.29.241.158
+	 Content-Type:MIME-Version; b=dT5JOf/C4hUcK8dHa5NVQIggrkVIfxj450g2BvJk5uoQufTC1GUCC+yavQxhEBCDpGQjOPryUAlOiqB1Qt+vRSy8qEDlbXKSiUO6T1oerb5cXALCW2D/zy//7ciEgtjmNM6znExavo99LyQuPndHZqZwY9UJKfFDdLhPj4WJ8lU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=Ve/eYgzS; arc=none smtp.client-ip=203.29.241.158
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=codeconstruct.com.au; s=2022a; t=1756877481;
-	bh=JnGCK1lahw6eKRr1X7LuKjE36AI6nTTs35DYpWRjgPc=;
+	d=codeconstruct.com.au; s=2022a; t=1756878400;
+	bh=Zffg5Z8PXY4zN2j9mhgh+YxhyBSx05brIZWAwih9GV0=;
 	h=Subject:From:To:Cc:Date:In-Reply-To:References;
-	b=fACK4iWCaKo+xngoM6xHxCzq0XPdutG9X6hPIigvvWVSmK74s7mhro+frrRzWJf8X
-	 OOYOjzr4AOdyVtWojQJJE9cQfqj7xvXWFZpR3a+PY+wIfKrOKt55gO4N+8L09S8Tof
-	 nA+VmVkuO2mOzgy7lo0knxxgHC7hsYG92ijBNNs2CMCqkTVcQk9KEMdD0UFul/dnju
-	 ISXtX1w929DiSsKtz9ZKAGunLxnoeB4VbtTHYubhHvG677FF4F4W32PwzSXte0UPDK
-	 KHrFXLX0JS5qVR35s/NXnjkWfUMyz/fjnuHj+h68ZgA6PWkdyMzMCOoyfOD4CGbljF
-	 9jSktTJKjFDYg==
+	b=Ve/eYgzSLT+JX8CYm/uZYyXSsH/1b/RAEpWcreHIQTlZ9J6GgZuBvNJy/9KHhUxLM
+	 GCfJxVtR+BQ58eP6pe+FfQ2UZ8JlDemGxWY7vJmD6RGwLRTVZzI6tQYw/zbA7UgkWu
+	 nZ3RfXQnbK2JLf+eG2tmoD00VihAjzwKZ1zLM4moSDStti+gVvdTDhxCbedkkS5bjC
+	 2baawU2OyhSLiGH8ZYyO7GO7FuKdzcP3RR+lZpRwAfgnbDZdl+En2RcbeHVanf7F2c
+	 ncL5ApDbUGPNGQHUQusvKr05fLEC1JvXB5qfkQ0X15JbMqLfU7RAX7CCKIfkE9OHpN
+	 2PKFxr9fcI+Ew==
 Received: from [192.168.68.113] (unknown [180.150.112.213])
-	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id D93F56E02C;
-	Wed,  3 Sep 2025 13:31:20 +0800 (AWST)
-Message-ID: <307fa87eb552ac4a1f6dd6139450786195e3892a.camel@codeconstruct.com.au>
-Subject: Re: [PATCH] ARM: dts: aspeed: Fix/add I2C device vendor prefixes
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id BFD326E02C;
+	Wed,  3 Sep 2025 13:46:37 +0800 (AWST)
+Message-ID: <c9348ebb7f0cd24c950ba07abf4641a1d5382160.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v8 2/2] ARM: dts: aspeed: Add NVIDIA GB200 UT3.0b board
 From: Andrew Jeffery <andrew@codeconstruct.com.au>
-To: "Rob Herring (Arm)" <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Joel Stanley
- <joel@jms.id.au>, Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
- <magnus.damm@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Date: Wed, 03 Sep 2025 15:01:20 +0930
-In-Reply-To: <20250815230841.3487764-1-robh@kernel.org>
-References: <20250815230841.3487764-1-robh@kernel.org>
+To: Donald Shannon <donalds@nvidia.com>, robh@kernel.org,
+ krzk+dt@kernel.org,  conor+dt@kernel.org
+Cc: joel@jms.id.au, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org, 
+	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
+Date: Wed, 03 Sep 2025 15:16:36 +0930
+In-Reply-To: <20250815224344.908130-3-donalds@nvidia.com>
+References: <20250815224344.908130-1-donalds@nvidia.com>
+	 <20250815224344.908130-3-donalds@nvidia.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: base64
 User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -67,38 +66,90 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 
-Hi Rob,
+SGkgRG9uYWxkLAoKU29ycnkgZm9yIHRoZSBkZWxheS4KCk9uIEZyaSwgMjAyNS0wOC0xNSBhdCAx
+NTo0MyAtMDcwMCwgRG9uYWxkIFNoYW5ub24gd3JvdGU6Cj4gVGhpcyBpcyBhbiBBc3BlZWQgQVNU
+MjYwMCBiYXNlZCB1bml0IHRlc3RpbmcgcGxhdGZvcm0gZm9yIEdCMjAwLgo+IFVUMy4wYiBpcyBk
+aWZmZXJlbnQgdGhhbiBudmlkaWEtZ2IyMDBudmwtYm1jIGR1ZSB0byBuZXR3b3JraW5nIHRvcG9s
+b2d5Cj4gZGlmZmVyZW5jZXMsIGFkZGl0aW9uYWwgZ3BpbyBleHBhbmRlcnMsIGFuZCB2b2x0YWdl
+IHJlZ3VsYXRvciBnYXRpbmcKPiBzb21lIGRldmljZXMuCj4gCj4gUmVmZXJlbmNlIHRvIEFzdDI2
+MDAgU09DIFsxXS4KPiBSZWZlcmVuY2UgdG8gQmxhY2t3ZWxsIEdCMjAwTlZMIFBsYXRmb3JtIFsy
+XS4KPiAKPiBMaW5rOiBodHRwczovL3d3dy5hc3BlZWR0ZWNoLmNvbS9zZXJ2ZXJfYXN0MjYwMC/C
+oFsxXQo+IExpbms6IGh0dHBzOi8vbnZkYW0ud2lkZW4ubmV0L3Mvd3duc3hyaG0ydy9ibGFja3dl
+bGwtZGF0YXNoZWV0LTMzODQ3MDPCoFsyXQo+IFNpZ25lZC1vZmYtYnk6IERvbmFsZCBTaGFubm9u
+IDxkb25hbGRzQG52aWRpYS5jb20+Cj4gLS0tCj4gwqBhcmNoL2FybS9ib290L2R0cy9hc3BlZWQv
+TWFrZWZpbGXCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfMKgwqDCoCAxICsKPiDCoC4uLi9hc3Bl
+ZWQvYXNwZWVkLWJtYy1udmlkaWEtZ2IyMDAtdXQzMGIuZHRzwqAgfCAxMDMwICsrKysrKysrKysr
+KysrKysrCj4gwqAyIGZpbGVzIGNoYW5nZWQsIDEwMzEgaW5zZXJ0aW9ucygrKQo+IMKgY3JlYXRl
+IG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL2FzcGVlZC9hc3BlZWQtYm1jLW52aWRpYS1n
+YjIwMC11dDMwYi5kdHMKPiAKPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVk
+L01ha2VmaWxlIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL01ha2VmaWxlCj4gaW5kZXggYWJh
+NzQ1MWFiNzQ5Li4zN2VkYzQ2MjVhOWYgMTAwNjQ0Cj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMv
+YXNwZWVkL01ha2VmaWxlCj4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvYXNwZWVkL01ha2VmaWxl
+Cj4gCgoqc25pcCoKCj4gKyZncGlvMCB7Cj4gK8KgwqDCoMKgwqDCoMKgZ3Bpby1saW5lLW5hbWVz
+ID0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypBMC1BNyovICIiLCAiIiwgIiIs
+ICIiLCAiIiwgIiIsICIiLCAiIiwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypC
+MC1CNyovICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwKPiArwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgLypDMC1DNyovICJTR1BJT19JMkNfTVVYX1NFTC1PIiwgIiIsICIiLCAi
+IiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qRDAt
+RDcqLyAiIiwgIiIsICIiLCAiVUFSVDFfTVVYX1NFTC1PIiwgIiIsICJGUEdBX1BFWF9SU1RfTC1P
+IiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKkUwLUU3Ki8gIlJU
+TDgyMjFfUEhZX1JTVF9MLU8iLCAiUlRMODIxMV9QSFlfSU5UX0wtSSIswqAiIiwgIlVBUlQzX01V
+WF9TRUwtTyIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCIiLCAiIiwgIiIsICJTR1BJT19CTUNf
+RU4tTyIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qRjAtRjcqLyAiIiwgIiIs
+ICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oC8qRzAtRzcqLyAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoC8qSDAtSDcqLyAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwg
+IiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qSTAtSTcqLyAiIiwgIiIsICIi
+LCAiIiwgIiIsICJRU1BJMl9SU1RfTC1PIiwgIkdMT0JBTF9XUF9CTUMtTyIsICJCTUNfRERSNF9U
+RU4tTyIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qSjAtSjcqLyAiIiwgIiIs
+ICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oC8qSzAtSzcqLyAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoC8qTDAtTDcqLyAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwg
+IiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qTTAtTTcqLyAiUENJRV9FUF9S
+U1RfRU4tTyIsICJCTUNfRlJVX1dQLU8iLCAiRlBHQV9SU1RfTC1PIiwgIlNUQllfUE9XRVJfRU4t
+TyIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCJTVEJZX1BPV0VSX1BHLUkiLCAiUENJRV9FUF9S
+U1RfTC1PIiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKk4wLU43
+Ki8gIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqAvKk8wLU83Ki8gIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKlAwLVA3Ki8gIiIsICIiLCAiIiwgIiIsICIi
+LCAiIiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKlEwLVE3Ki8g
+IiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAvKlIwLVI3Ki8gIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKlMwLVM3Ki8gIiIsICIiLCAiIiwgIiIsICIiLCAi
+IiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKlQwLVQ3Ki8gIiIs
+ICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqAvKlUwLVU3Ki8gIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLAo+ICvCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAvKlYwLVY3Ki8gIkFQX0VST1RfUkVRLU8iLCAiRVJPVF9B
+UF9HTlQtSSIsICIiLCAiIiwiUENCX1RFTVBfQUxFUlQtSSIsICIiLCIiLCAiIiwKPiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypXMC1XNyovICIiLCAiIiwgIiIsICIiLCAiIiwgIiIs
+ICIiLCAiIiwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypYMC1YNyovICIiLCAi
+IiwgIlRQTV9NVVhfU0VMLU8iLCAiIiwgIiIsICIiLCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoC8qWTAtWTcqLyAiIiwgIiIsICIiLCAiRU1NQ19SU1QtTyIsICIiLCIi
+LCAiIiwgIiIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoC8qWjAtWjcqLyAiQk1D
+X1JFQURZLU8iLCIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiOwo+ICt9Owo+ICsKPiArJmdwaW8x
+IHsKPiArwqDCoMKgwqDCoMKgwqAvKiAzNiAxLjhWIEdQSU9zICovCj4gK8KgwqDCoMKgwqDCoMKg
+Z3Bpby1saW5lLW5hbWVzID0KPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypBMC1B
+NyovICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwKPiArwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgLypCMC1CNyovICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICJJT19FWFBBTkRF
+Ul9JTlRfTC1JIiwiIiwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgLypDMC1DNyov
+ICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgLypEMC1ENyovICIiLCAiIiwgIiIsICIiLCAiIiwgIiIsICJTUElfSE9TVF9UUE1f
+UlNUX0wtTyIsICJTUElfQk1DX0ZQR0FfSU5UX0wtSSIsCj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoC8qRTAtRTcqLyAiIiwgIiIsICIiLCAiIiwgIiIsICIiLCAiIiwgIiI7Cj4gK307
+Cj4gKwo+ICsmc2dwaW9tMCB7CgpTbyB0aGUgc3R5bGUgZ3VpZGUgYXNrcyB0aGUgcmVmZXJlbmNl
+ZCBub2RlcyB0byBiZSBvcmRlcmVkIGVpdGhlcgphbHBoYWJldGljYWxseSwgb3IgaW4gRFRTSSBv
+cmRlclsxXSAod2hpY2ggc2hvdWxkIGJlIHVuaXQtYWRkcmVzcwpvcmRlcikuCgpbMV06IGh0dHBz
+Oi8vZG9jcy5rZXJuZWwub3JnL2RldmljZXRyZWUvYmluZGluZ3MvZHRzLWNvZGluZy1zdHlsZS5o
+dG1sI29yZGVyLW9mLW5vZGVzCgpXaGF0IHdlIGhhdmUgdG8gdGhlIHF1b3RlZCBzZWN0aW9uIGFi
+b3ZlIGlzbid0IGluIGFscGhhYmV0aWNhbCBvcmRlci4KVG8gdGhpcyBwb2ludCBpdCB3YXMgRFRT
+SSBvcmRlciwgYnV0IHRoYXQgYnJlYWtzIGhlcmUgdG9vLgoKTXkgcHJlZmVyZW5jZSBpcyB0aGF0
+IG5vZGVzIGluIHRoZSBEVFMgcmVmZXJlbmNpbmcgdGhlIERUU0kgYXJlCmFscGhhYmV0aWNhbCAo
+YXMgd2UgY2FuJ3Qgc2VlIHRoZSB1bml0IGFkZHJlc3MgZm9yIG9yZGVyaW5nKS4gQ2FuIHlvdQpw
+bGVhc2UgZml4IGl0PwoKWW91IG1lbnRpb24gaW4geW91ciBjb3ZlciBsZXR0ZXIgdGhhdCBvcmRl
+cmluZyB3YXMgYWRkcmVzc2VkIGluIHYzIC0KZGlkIHdlIGxvc2UgdGhhdCBhbG9uZyB0aGUgd2F5
+PwoKKnNuaXAqCgo+ICsKPiArJnVhcnRfcm91dGluZyB7IH07CgpEcm9wIHRoaXM/CgpDaGVlcnMs
+CgpBbmRyZXcK
 
-On Fri, 2025-08-15 at 18:08 -0500, Rob Herring (Arm) wrote:
-> The ASpeed DTS files have various I2C devices with missing or incorrect
-> vendor prefixes in their compatible strings. This hasn't really mattered
-> and doesn't impact ABI compatibility as I2C devices get matched with thei=
-r
-> vendor prefix stripped.
->=20
-> With this, the "maxim,max31790" nodes now validate and have some
-> warnings. Remove the spurious "#address-cells" and "#size-cells"
-> properties to fix the warnings.
->=20
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
-> =C2=A0.../aspeed-bmc-arm-stardragon4800-rep2.dts=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 2 +-
-> =C2=A0.../dts/aspeed/aspeed-bmc-facebook-harma.dts=C2=A0 |=C2=A0 8 ++----=
--
-> =C2=A0.../aspeed/aspeed-bmc-facebook-minerva.dts=C2=A0=C2=A0=C2=A0 | 24 +=
-++++--------------
-> =C2=A0.../aspeed/aspeed-bmc-facebook-tiogapass.dts=C2=A0 |=C2=A0 2 +-
-> =C2=A0.../dts/aspeed/aspeed-bmc-lenovo-hr855xg2.dts |=C2=A0 2 +-
-> =C2=A0.../dts/aspeed/aspeed-bmc-opp-palmetto.dts=C2=A0=C2=A0=C2=A0 |=C2=
-=A0 2 +-
-> =C2=A0.../boot/dts/aspeed/aspeed-bmc-quanta-s6q.dts |=C2=A0 4 ++--
-> =C2=A07 files changed, 14 insertions(+), 30 deletions(-)
->=20
-
-I see you've applied this to your tree. Sorry for being slow on the up-
-take, I've been focusing on other things recently. Happy to take it
-though, if you're happy to drop it?
-
-Andrew
 
