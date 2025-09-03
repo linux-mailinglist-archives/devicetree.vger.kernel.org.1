@@ -1,143 +1,203 @@
-Return-Path: <devicetree+bounces-211894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A27AB41379
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:21:20 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E1E8B4138C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:28:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECF311A85F36
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 04:21:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1465C204570
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 04:28:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C33972D0C7D;
-	Wed,  3 Sep 2025 04:21:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D491B2D3A6F;
+	Wed,  3 Sep 2025 04:28:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dBqIbFBp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A613217A2E6;
-	Wed,  3 Sep 2025 04:21:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0176728689C
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 04:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756873276; cv=none; b=sK16WnhOXonI7U79k35qd3s/lfMqECp62g1yDGUEuQuAk12cHXoZ+MDz2Hw9KwERW8hr2OVUFFFdFEHXFTFsc+zhp2ooItZ2mJcGui3xlanzY9qDFMP68XunvK+yZ1SADTvm2He8YhzDxeTs3s3YgXzQgxMbEofAS//i8UeBt0o=
+	t=1756873707; cv=none; b=Gct272tkdQ/dEZPDZbjBOsSTdePDJk8K9jHY0JwUQq2DiFq4UAvbgNdEYunYIqHon6HxnOAC5ntKqvqv0TNPDTS2dL7WMFp/ufeAak34vqmJLfnmJOmhHdI5Y0UWxU7hlTwBxexN4WXZCh8wqqPzo8rC5BmHfveCgQ/oHIlZAqE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756873276; c=relaxed/simple;
-	bh=ZoXxCHWqaro5pXtAU4oVQfP5mp8AkjK8NRJcUqEzsiE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Kp0jUo1gVcYb69SnA36jj+gX8p26CdrK55kXAAeekmiGqyxm9VgG0PcDR4c0vWhlyEBgwnJXpJx5/c8x6eCFcimm6EUFeGHyEYsJJQBSQvHku9MgFz308LhALM4Wr4BIscYM6gB6FZTIR2VkXO+e1KLa7rP+y5gAqsKbsWqKgCg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55f76277413so3633438e87.3;
-        Tue, 02 Sep 2025 21:21:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756873270; x=1757478070;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ADtwGUks5/GGWfb4oIFPF0C8f7SmDwE61v3oi+KH4+E=;
-        b=nfUlBMWefwchqSdkZ4+EqzudDE3SzXU0YEQlA7FdLKy9s9ntZdAA7VYIhaxJILmIeu
-         Y5a/ZFAgDtCbo+OTuNF98PPxalRnGyZ8vyRXkcnzbZipsxPbtQ8WmA2Od+xhgXtxsU1h
-         E6PERtY8oDCLpMZxeDuWXT0MeuKpPaagiqhMc8TbKJuoeOUTY0kLloMSzKmKKrUC8w1F
-         88aguQ/krpOD2c52ssh5UOHItptgULWi8Pr3ZMq06pa30UYy4hqex+ZRBPLr3YzxXIJq
-         llVyrn5EuPv/h4ptIiP+JmkQxxaKdKh/uL3EGg9O/iJzg22b9fETlOiii55vJq36n/vP
-         npJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXJnG3PLsx2/WMDZqGDO/U912qGgrVAoijytP/I/FLjSpHqJ2iPTpVjvBVhjiKVfq4Z8k9pGNON+jV7@vger.kernel.org, AJvYcCXiwhCSN0u2xnGt1zUJcTIdr9d/GP/Q9OM1oZ6vUOr88SlqrmMxJ7+MoSSnH8j+si2U0dKtJz6wv45J@vger.kernel.org
-X-Gm-Message-State: AOJu0YyFn3lCxfXLV659J6EE/3I+8yWXvQsfUTHwe7FFyyV/hq6Qlufo
-	c5JlKUjRrUZX34Vr2PNZzdnrroFU5TuJJNHdwGBDSMNf+K6aqvt8jYaXOLkW3bRM
-X-Gm-Gg: ASbGncsyegWq6rFYuv57DRs4D9Z7aA8k3bLo570meFFOECMGM9NJwfYxwKccwLtdKjl
-	g1VpCMP7Pl5b5rLmqHpHlZAYcS9ZmpchXhoOciINlyP5J3FqGhVCUvesqIwXE/SN4eHST+oQKKx
-	zpig7079Q/jTTC1AhXJGMQqKBiKKeBnYLjgAT2d1vv3t9RSnzWXCuq+Nap16TaXhxwFggFYfGxp
-	+DNR9J/q/InYZvsA/4mwU2v2dwUTGiHMdTpZC3zOd4qgFM4AItjeg4tVFI+Q+BXaWWeAlxi0LrN
-	Wsoi0ClIY+p7I/MYycJPBdtXJd5aOxCupF39gNPAgEEc8iHcZDmUhiRbMmYli7OvmnBy5gk+AKH
-	jY4vEiiBJT9LjJhE2YgLKIuPRTaIA2RccAeLrohc1konO5Vs/XzpWiu9dWBaejw==
-X-Google-Smtp-Source: AGHT+IGKpurOeaAlRPQn5kLQGQbzlNMRAHGJW2qM/CfCp67QxWWRMC3vy6peed0odjLeqRt7SNC3zg==
-X-Received: by 2002:a2e:be09:0:b0:338:7f3:a757 with SMTP id 38308e7fff4ca-3380802eda9mr1550911fa.10.1756873270201;
-        Tue, 02 Sep 2025 21:21:10 -0700 (PDT)
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com. [209.85.167.50])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f4c4ed3csm7714101fa.4.2025.09.02.21.21.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 Sep 2025 21:21:08 -0700 (PDT)
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55ce508d4d6so5280207e87.0;
-        Tue, 02 Sep 2025 21:21:08 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU6to7P1iTy4R+ERR/zfgya5/Fnw0Tr9Br9D8cG/TcbERncfeyS/fR3VjkmQQBUzZo3sERMROleYQii@vger.kernel.org, AJvYcCVKpfRxN8g2gTvNO3yieG7AX4tvLLV0E/H3F1gB5Dw+vIMa9Q7cGTsoKFArhKO1dsCljAYLViQJ+WT2@vger.kernel.org
-X-Received: by 2002:a05:651c:551:b0:336:e102:9611 with SMTP id
- 38308e7fff4ca-336e1029af0mr33033101fa.36.1756873267878; Tue, 02 Sep 2025
- 21:21:07 -0700 (PDT)
+	s=arc-20240116; t=1756873707; c=relaxed/simple;
+	bh=rzQOIiOOgo8Bl7ImQyPmenuJvoK1gvj5EgcM1s5npLY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=AxwwNGrhcmjVxo+wY3FjJHMGB7Kh4J50+sK1W7FDIFwnbYvarnYUNeBObyi71Snl1Ux+cN/VivRc9B0nH/1RjBdIPEvqW/OThqPKhU0muKBEePIY7MQQju6rJ41G5LA6MGpElYXf40ud/z3N+ZQoMIF6N0mLoTFjJPxHdKaEf9U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dBqIbFBp; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p2.samsung.com (unknown [182.195.41.40])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250903042823epoutp02e7b5e4ab80e67a03331c0a15145eecc5~hq1MX9duy0719907199epoutp02H
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 04:28:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250903042823epoutp02e7b5e4ab80e67a03331c0a15145eecc5~hq1MX9duy0719907199epoutp02H
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756873703;
+	bh=4z/3Wi1eUiYqGMgmAAnBBhtwdX8IJWlmAPv7y2AI0zY=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=dBqIbFBpomLu+s0zM90unBBR3MaFPNORAEP361BccKz6lrWpPzv7Xwe7sDlkyFNha
+	 xRW8G/YWYdspAeAyz0hNRRxD6CV0DohNstOPCrb/5ElseQcNmi84ZLDI85oNJv9nQ5
+	 ps+uPRf/e1wyPqbqS/GbruHjJFXlwwkb11foZfSU=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250903042822epcas5p41e705b5815d3ca3fc53e39b4eb58a097~hq1MJKBRg0277702777epcas5p4E;
+	Wed,  3 Sep 2025 04:28:22 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.94]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4cGqNj2Ss4z3hhT4; Wed,  3 Sep
+	2025 04:28:21 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250903042820epcas5p2811be3432a678c59f99a118e28a9f820~hq1Jmde3W0253402534epcas5p2J;
+	Wed,  3 Sep 2025 04:28:20 +0000 (GMT)
+Received: from INBRO002756 (unknown [107.122.3.168]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250903042818epsmtip1fdc1da40fbc789005c33ac7a6322b930~hq1H2bREI0216802168epsmtip1O;
+	Wed,  3 Sep 2025 04:28:18 +0000 (GMT)
+From: "Alim Akhtar" <alim.akhtar@samsung.com>
+To: "'Ram Kumar Dwivedi'" <quic_rdwivedi@quicinc.com>,
+	<avri.altman@wdc.com>, <bvanassche@acm.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <mani@kernel.org>,
+	<James.Bottomley@HansenPartnership.com>, <martin.petersen@oracle.com>
+Cc: <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>, "'Nitin
+ Rawat'" <quic_nitirawa@quicinc.com>
+In-Reply-To: <20250902164900.21685-4-quic_rdwivedi@quicinc.com>
+Subject: RE: [PATCH V5 3/4] ufs: pltfrm: Allow limiting HS gear and rate via
+ DT
+Date: Wed, 3 Sep 2025 09:58:16 +0530
+Message-ID: <3a9001dc1c8b$2d303c40$8790b4c0$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903000910.4860-1-andre.przywara@arm.com> <20250903000910.4860-4-andre.przywara@arm.com>
-In-Reply-To: <20250903000910.4860-4-andre.przywara@arm.com>
-Reply-To: wens@csie.org
-From: Chen-Yu Tsai <wens@csie.org>
-Date: Wed, 3 Sep 2025 12:20:55 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66DHvE5gcWDvHwoiiCgNEnPiGjB6ash407PwJr8oMwyhw@mail.gmail.com>
-X-Gm-Features: Ac12FXwDJPiA6-F7YvlIel1VqSOtkOlXCU1uqZBll3biFaGOGyU1Aw_g7q5-Q7Y
-Message-ID: <CAGb2v66DHvE5gcWDvHwoiiCgNEnPiGjB6ash407PwJr8oMwyhw@mail.gmail.com>
-Subject: Re: [PATCH 3/5] clk: sunxi-ng: mp: support clocks with just a shift register
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
-	Mikhail Kalashnikov <iuncuim@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQDbtq+ZX022GZqTIcIYj1g81c9NHgJq+hI3AQZfT0q2ZhhPUA==
+Content-Language: en-us
+X-CMS-MailID: 20250903042820epcas5p2811be3432a678c59f99a118e28a9f820
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250902164940epcas5p47c93faf63a98377e97f3f6d06fe23f96
+References: <20250902164900.21685-1-quic_rdwivedi@quicinc.com>
+	<CGME20250902164940epcas5p47c93faf63a98377e97f3f6d06fe23f96@epcas5p4.samsung.com>
+	<20250902164900.21685-4-quic_rdwivedi@quicinc.com>
 
-On Wed, Sep 3, 2025 at 8:09=E2=80=AFAM Andre Przywara <andre.przywara@arm.c=
-om> wrote:
->
-> The "mp" clock models a mod clock with divider and a shift field. At
-> least one clock in the Allwinner A523 features just a power-of-2 divider
-> field, so support an initialisation of the clock without providing an
-> actual divider field.
->
-> Add a check whether the "width" field is 0, and skip the divider
-> handling in this case, as the GENMASK macro will not work with a zero
-> length.
->
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+
+
+> -----Original Message-----
+> From: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
+> Sent: Tuesday, September 2, 2025 10:19 PM
+> To: alim.akhtar@samsung.com; avri.altman@wdc.com;
+> bvanassche@acm.org; robh@kernel.org; krzk+dt@kernel.org;
+> conor+dt@kernel.org; mani@kernel.org;
+> James.Bottomley@HansenPartnership.com; martin.petersen@oracle.com
+> Cc: linux-scsi@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-msm@vger.kernel.org; Nitin Rawat
+> <quic_nitirawa@quicinc.com>
+> Subject: [PATCH V5 3/4] ufs: pltfrm: Allow limiting HS gear and rate via
+DT
+> 
+> Add support for parsing 'limit-hs-gear' and 'limit-rate' device tree
+properties
+> to restrict high-speed gear and rate during initialization.
+> 
+> This is useful in cases where the customer board may have signal
+integrity,
+> clock configuration or layout issues that prevent reliable operation at
+higher
+> gears. Such limitations are especially critical in those platforms, where
+> stability is prioritized over peak performance.
+> 
+> Co-developed-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Nitin Rawat <quic_nitirawa@quicinc.com>
+> Signed-off-by: Ram Kumar Dwivedi <quic_rdwivedi@quicinc.com>
 > ---
+>  drivers/ufs/host/ufshcd-pltfrm.c | 36
+> ++++++++++++++++++++++++++++++++  drivers/ufs/host/ufshcd-pltfrm.h
+> |  1 +
+>  2 files changed, 37 insertions(+)
+> 
+> diff --git a/drivers/ufs/host/ufshcd-pltfrm.c b/drivers/ufs/host/ufshcd-
+> pltfrm.c
+> index ffe5d1d2b215..4df6885f0dc0 100644
+> --- a/drivers/ufs/host/ufshcd-pltfrm.c
+> +++ b/drivers/ufs/host/ufshcd-pltfrm.c
+> @@ -430,6 +430,42 @@ int ufshcd_negotiate_pwr_params(const struct
+> ufs_host_params *host_params,  }
+> EXPORT_SYMBOL_GPL(ufshcd_negotiate_pwr_params);
+> 
+> +/**
+> + * ufshcd_parse_limits - Parse DT-based gear and rate limits for UFS
+> + * @hba: Pointer to UFS host bus adapter instance
+> + * @host_params: Pointer to UFS host parameters structure to be updated
+> + *
+> + * This function reads optional device tree properties to apply
+> + * platform-specific constraints.
+> + *
+> + * "limit-hs-gear": Specifies the max HS gear.
+> + * "limit-rate": Specifies the max High-Speed rate.
+> + */
+> +void ufshcd_parse_limits(struct ufs_hba *hba, struct ufs_host_params
 
-In my series I have a patch that adds this to the divider clocks,
-thus adding a P-clock type to the M-clock bits.
+May be s/ufshcd_parse_limits/ ufshcd_parse_gear_limits()
 
-Maybe use that instead? I prefer we use actual matching types instead
-of disabling one part of a complex clock type.
+"Limits" is very generic and also not aligning with the property names.
+Also suggest to change limit-rate to limit-gear-rate.
 
-ChenYu
+> +*host_params) {
+> +	struct device_node *np = hba->dev->of_node;
+> +	u32 hs_gear;
+> +	const char *hs_rate;
+> +
+> +	if (!np)
+> +		return;
+Probably a overkill here, please check if this will ever hit? 
 
->  drivers/clk/sunxi-ng/ccu_mp.c | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/clk/sunxi-ng/ccu_mp.c b/drivers/clk/sunxi-ng/ccu_mp.=
-c
-> index 354c981943b6f..a03dac294d048 100644
-> --- a/drivers/clk/sunxi-ng/ccu_mp.c
-> +++ b/drivers/clk/sunxi-ng/ccu_mp.c
-> @@ -236,9 +236,11 @@ static int ccu_mp_set_rate(struct clk_hw *hw, unsign=
-ed long rate,
->         spin_lock_irqsave(cmp->common.lock, flags);
->
->         reg =3D readl(cmp->common.base + cmp->common.reg);
-> -       reg &=3D ~GENMASK(cmp->m.width + cmp->m.shift - 1, cmp->m.shift);
-> +       if (cmp->m.width)
-> +               reg &=3D ~GENMASK(cmp->m.width + cmp->m.shift - 1, cmp->m=
-.shift);
->         reg &=3D ~GENMASK(cmp->p.width + cmp->p.shift - 1, cmp->p.shift);
-> -       reg |=3D (m - cmp->m.offset) << cmp->m.shift;
-> +       if (cmp->m.width)
-> +               reg |=3D (m - cmp->m.offset) << cmp->m.shift;
->         if (shift)
->                 reg |=3D ilog2(p) << cmp->p.shift;
->         else
+> +
+> +	if (!of_property_read_u32(np, "limit-hs-gear", &hs_gear)) {
+> +		host_params->hs_tx_gear = hs_gear;
+> +		host_params->hs_rx_gear = hs_gear;
+> +	}
+> +
+> +	if (!of_property_read_string(np, "limit-rate", &hs_rate)) {
+> +		if (!strcmp(hs_rate, "rate-a"))
+> +			host_params->hs_rate = PA_HS_MODE_A;
+> +		else if (!strcmp(hs_rate, "rate-b"))
+> +			host_params->hs_rate = PA_HS_MODE_B;
+> +		else
+> +			dev_warn(hba->dev, "Invalid limit-rate: %s\n",
+> hs_rate);
+> +	}
+> +}
+> +EXPORT_SYMBOL_GPL(ufshcd_parse_limits);
+> +
+>  void ufshcd_init_host_params(struct ufs_host_params *host_params)  {
+>  	*host_params = (struct ufs_host_params){ diff --git
+> a/drivers/ufs/host/ufshcd-pltfrm.h b/drivers/ufs/host/ufshcd-pltfrm.h
+> index 3017f8e8f93c..1617f2541273 100644
+> --- a/drivers/ufs/host/ufshcd-pltfrm.h
+> +++ b/drivers/ufs/host/ufshcd-pltfrm.h
+> @@ -29,6 +29,7 @@ int ufshcd_negotiate_pwr_params(const struct
+> ufs_host_params *host_params,
+>  				const struct ufs_pa_layer_attr *dev_max,
+>  				struct ufs_pa_layer_attr *agreed_pwr);  void
+> ufshcd_init_host_params(struct ufs_host_params *host_params);
+> +void ufshcd_parse_limits(struct ufs_hba *hba, struct ufs_host_params
+> +*host_params);
+>  int ufshcd_pltfrm_init(struct platform_device *pdev,
+>  		       const struct ufs_hba_variant_ops *vops);  void
+> ufshcd_pltfrm_remove(struct platform_device *pdev);
 > --
-> 2.46.3
->
+> 2.50.1
+
+
 
