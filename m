@@ -1,95 +1,175 @@
-Return-Path: <devicetree+bounces-212048-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212049-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13F0AB41A65
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:46:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51AAEB41A78
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:48:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 094E6164B0C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:46:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE45A1BA4B87
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 09:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 103C32C1591;
-	Wed,  3 Sep 2025 09:46:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="HcFGa0Tr"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28C7274FDB;
+	Wed,  3 Sep 2025 09:47:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323CB18DF80
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 09:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D71AA26F295;
+	Wed,  3 Sep 2025 09:47:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756892767; cv=none; b=XoF6tDym3+yUFv/NXyXAbccYvfr3GYiWnE8FdTpj3qSYdF3F6hQyx71IpthdEr9ylXmhdTD3lczvvyB0Fl+3Ddpynr86QI0+PWYQh9ERP69/EyuCC3WWzarpG9UoEdUw0CvdDBu9OZNJEGs+i/CkPKStajBzk0dfFY3dK69HwxA=
+	t=1756892823; cv=none; b=k6Y4KzU5dsSv/eYcCzYaF/V6x/uSh3HgBVBTD+X4ShRtnIcbH/gJfaA95XHw1Ou51/kzPVoymbCpSA36ZCnwO6IZJsbIqCT/E24VemKNbRmKlvwh9qR5n6pHpnVNWy24Ad5SxjiVli2MirFdBL2ik3IxcP2MZiXfSutcYK5Sdxw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756892767; c=relaxed/simple;
-	bh=mJEZezaaAvDWlpLgZGr6gvr2k1GiPwLmXdP8VleSAVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dD38rYvlUm3R6JXFWhu+ry1iu3Qe2wOrVsoNQ8cVSD8wKGCFBgzoFdAoc3nKaR26Sy8M0kelgkmGp1HkPj5EonL6p+Foq3yociM9WGf269S9Ag0WDMU/sl06CoJrJWkfIOfLlm43m/+uKxsR3Bq3LDdbL/sWuR2p53AHkgbZCoQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=HcFGa0Tr; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=qZD6
-	3uFUUWm/vKdNbnOPDAIu7KIlkgvjimOu757PzOY=; b=HcFGa0Trj5A9lugbOuv7
-	nAQ5a//v4VMybK49wDJ16RvfaBJRqz5Gc4hMYVLUwU4fuWIqXYNzIkB8ugrLOCuR
-	zRzjJ1K3u4rhVCKCjFv5PQwxE80LdYfCT+wUcIsuXgRkMN6wdyVRshzoGBrkqb1h
-	q1IkJQSdr90orGtWPU4blEZOluYp+t+7LbiaPcmzrI5JCI79F8GOZEjxg4BA8D8p
-	LB1quYysEiyyu/lVvEM3mpR6jfRlUiYi23qPZCGy9yENwiFjmaMZhy3hvlWWCGUz
-	HtOGfDjsQ7xCi6D/wTxJRgG3hlJm/Q+RmHDiPc2tZE6nIKS+/11l5NZr7zUWe2XP
-	2Q==
-Received: (qmail 3244023 invoked from network); 3 Sep 2025 11:45:53 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 3 Sep 2025 11:45:53 +0200
-X-UD-Smtp-Session: l3s3148p1@/45yeOI9IIMujnu+
-Date: Wed, 3 Sep 2025 11:45:52 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Matthew Gerlach <matthew.gerlach@altera.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: renesas,rzn1-gmac: Constrain
- interrupts
-Message-ID: <aLgOUGOp7Db0keZ-@ninjato>
-References: <20250902154051.263156-3-krzysztof.kozlowski@linaro.org>
- <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1756892823; c=relaxed/simple;
+	bh=+hyGf877IWWapmR76LJP4YO434xPnBDCXZM23K5QIpY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Yev/qODrwdh4Ry0K+isqXpfY5Uiuu5ApsZwbSU4WzHHzAqV86zNp7oxQr7txQZAxUpuyMOy2TFRNjM7xAMXz2ZJKYFeV7daJcA/CTkCGr7lmZpUKgPoKkWZWUUmT7ewMwKByhCk18tAVdQjXKlJUAvrLXpUC/MAj0yr8f9vQdus=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5D7E1595;
+	Wed,  3 Sep 2025 02:46:52 -0700 (PDT)
+Received: from donnerap (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 749973F694;
+	Wed,  3 Sep 2025 02:46:59 -0700 (PDT)
+Date: Wed, 3 Sep 2025 10:46:44 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
+ <jernej.skrabec@gmail.com>, Chen-Yu Tsai <wens@csie.org>, Samuel Holland
+ <samuel@sholland.org>, linux-clk@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, Mikhail Kalashnikov <iuncuim@gmail.com>
+Subject: Re: [PATCH 1/5] dt-bindings: clock: sun55i-a523-ccu: Add A523 CPU
+ CCU clock controller
+Message-ID: <20250903104644.7359a86d@donnerap>
+In-Reply-To: <20250903-meticulous-didactic-degu-621fe0@kuoka>
+References: <20250903000910.4860-1-andre.przywara@arm.com>
+	<20250903000910.4860-2-andre.przywara@arm.com>
+	<20250903-meticulous-didactic-degu-621fe0@kuoka>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250902154051.263156-4-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 02, 2025 at 05:40:53PM +0200, Krzysztof Kozlowski wrote:
-> Renesas RZN1 GMAC uses three interrupts in in-kernel DTS and common
-> snps,dwmac.yaml binding is flexible, so define precise constraint for
-> this device.
+On Wed, 3 Sep 2025 10:08:33 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
+
+Hi,
+
+> On Wed, Sep 03, 2025 at 01:09:06AM +0100, Andre Przywara wrote:
+> > There are four clock controllers in the A523 SoC, but only three are
+> > described in the DT binding so far.
+> > 
+> > Add a description for the CPU CCU, which provides separate clocks for
+> > the two CPU clusters and the DSU interconnect.
+> > 
+> > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > ---
+> >  .../clock/allwinner,sun55i-a523-ccu.yaml      | 25 +++++++++++++++++++
+> >  .../dt-bindings/clock/sun55i-a523-cpu-ccu.h   | 13 ++++++++++
+> >  2 files changed, 38 insertions(+)
+> >  create mode 100644 include/dt-bindings/clock/sun55i-a523-cpu-ccu.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> > index 1dbd92febc471..367d26800fd0d 100644
+> > --- a/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> > +++ b/Documentation/devicetree/bindings/clock/allwinner,sun55i-a523-ccu.yaml
+> > @@ -19,6 +19,7 @@ properties:
+> >    compatible:
+> >      enum:
+> >        - allwinner,sun55i-a523-ccu
+> > +      - allwinner,sun55i-a523-cpu-ccu
+> >        - allwinner,sun55i-a523-mcu-ccu
+> >        - allwinner,sun55i-a523-r-ccu
+> >  
+> > @@ -64,6 +65,30 @@ allOf:
+> >              - const: iosc
+> >              - const: losc-fanout
+> >  
+> > +  - if:
+> > +      properties:
+> > +        compatible:
+> > +          enum:
+> > +            - allwinner,sun55i-a523-cpu-ccu
+> > +
+> > +    then:
+> > +      properties:
+> > +        clocks:
+> > +          items:
+> > +            - description: High Frequency Oscillator (usually at 24MHz)
+> > +            - description: Low Frequency Oscillator (usually at 32kHz)
+> > +            - description: Internal Oscillator
+> > +            - description: Peripherals PLL 0 (1200 MHz output)
+> > +            - description: Peripherals PLL 0 (600 MHz output)
+> > +
+> > +        clock-names:
+> > +          items:
+> > +            - const: hosc
+> > +            - const: losc
+> > +            - const: iosc
+> > +            - const: pll-periph0-2x
+> > +            - const: pll-periph0-600m
+> > +
+> >    - if:
+> >        properties:
+> >          compatible:
+> > diff --git a/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h b/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h
+> > new file mode 100644
+> > index 0000000000000..042f2310f64de
+> > --- /dev/null
+> > +++ b/include/dt-bindings/clock/sun55i-a523-cpu-ccu.h  
 > 
-> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Filename based on compatible.
+> 
+> 
+> > @@ -0,0 +1,13 @@
+> > +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
+> > +/*
+> > + * Copyright 2025 Arm Ltd.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_CLK_SUN55I_A523_CPU_CCU_H_
+> > +#define _DT_BINDINGS_CLK_SUN55I_A523_CPU_CCU_H_
+> > +
+> > +#define CLK_CPU_L		7
+> > +#define CLK_CPU_DSU		8
+> > +#define CLK_CPU_B		9  
+> 
+> I don't see the header being used by the driver and odd numbers (they
+> should start from 0 or 1) suggest these are not bindings.
 
-Double checked with the original RZ/N1 docs:
+This header is included by the private header (at the end of patch 4/5).
+The private header is then included by the driver.
+Happy to change that, but that's the pattern used in all the other drivers.
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Those numbers represent the publicly exposed clocks, the other clocks are
+internal. Having gaps in those numbers is somewhat common in sunxi-ng
+(check sun50i-h616-ccu.h). This large gap at the beginning here is mostly
+due to the somewhat extreme design of this CCU, which requires quite some
+helper clocks to get to the actual ones.
+We could sort the identifiers to have the public clocks first, but
+that would only be the case until we discover a missed clock (which seems
+to happen from times to times). And again, that's the pattern used in the
+sibling drivers, so I'd rather stay consistent here.
+
+Cheers,
+Andre
+
+> Otherwise please explain in commit msg what exactly are you binding
+> here.
+> 
+> Best regards,
+> Krzysztof
+> 
 
 
