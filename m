@@ -1,137 +1,145 @@
-Return-Path: <devicetree+bounces-212154-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212111-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F967B41E23
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:02:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1C66B41D30
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:39:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 865472074F9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:02:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CA963B79B5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 11:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0654A2F3C0C;
-	Wed,  3 Sep 2025 12:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16D272FABE2;
+	Wed,  3 Sep 2025 11:39:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=norik.com header.i=@norik.com header.b="SESqPzoN"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JAfQV2hp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cp2.siel.si (cp2.siel.si [46.19.12.180])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E6D92EC0AC;
-	Wed,  3 Sep 2025 12:01:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.19.12.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5582D978D
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 11:39:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756900866; cv=none; b=RmUKGBhqwUHMz8zMq0ZZFG43JEe8IHliN1b+G4LhDo7Tt0xIztVfvMv4iQebW10ii1DSqMD6++/6N1otlD5PKqrhW/mayF5kzV7UoaDa0Bd1KXdi/o+GOXWoAlH3CNRwBk3L3NK3UNOXluV5kAR0Mw5CIJ5SagmVs9GNfcuwA+0=
+	t=1756899562; cv=none; b=erfmFnMndv7GH2uyoa7TJ65E5qirdzMPShvTf7Y8T06jSbKuHXEkNfBOadN/XJMd1K4x05mgcTjxb+sCvbQ3TKsPEVStQK0yZpE65WF5r81Dhebs/STeYGkjTN6EzU/UgMGS5CXyMEuSLywKmZMl8NPcleUWuuQc6Co02iZHNDY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756900866; c=relaxed/simple;
-	bh=LYrr4fPnCxCnQubga6pk+f0CUrdMYZH4/FfkfeOVMGY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=TF2vWv5nqL4+hEEPIMfQUxhO12PKcOgkFal53eSR5hsMklWIhAU5mBTYUfRboT6CjSU2kCFANdB2ihEgNyAH3SAXy+D+TC6MZMcdIdouWNSYrUugl48dExO9TX4C5BQF7Dcaa82zz2wmuJWLOQ7YlgUY+FMZgulOQALK96R/PIk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com; spf=pass smtp.mailfrom=norik.com; dkim=pass (2048-bit key) header.d=norik.com header.i=@norik.com header.b=SESqPzoN; arc=none smtp.client-ip=46.19.12.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=norik.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=norik.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-	s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-	Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=L6hrEb4mgX5Mvff5n1A3e3PGtiUPufA/mp16ZKLUduI=; b=SESqPzoNzja2yHIA9DttFu4KeB
-	P1rI6Rk88w3oln3CQcR7dXnup20dhDIBFzM0pqUDitW63iNDegbV6yUMolCCNxSMTzQWveIkB3xmH
-	kYgEMa6eyUpMAx6mTo+4ujC8G5Sr54agjAWGGkIlIsl3FV/h2CXiGDAJzScAdD13WFYOO6QNCcPIc
-	R6c334PfyTckpqKAnl9tN5piOdDyoeu53R3hKsW/QS1Rkck21cHPGVymIt2ne2efjxo5t19HJ+KZA
-	lrDqM1/+pdDkZ76LwekTaTR2l5xh0A4pUjUE+vxGDYMC2zeWFxjh1anEH/CYmK+jcDYklkkV89H+P
-	9hp5dyCw==;
-Received: from 89-212-21-243.static.t-2.net ([89.212.21.243]:52410 helo=localhost.localdomain)
-	by cp2.siel.si with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <primoz.fiser@norik.com>)
-	id 1utlnU-000000034mQ-1vsS;
-	Wed, 03 Sep 2025 13:37:02 +0200
-From: Primoz Fiser <primoz.fiser@norik.com>
-To: Peter Rosin <peda@axentia.se>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	upstream@lists.phytec.de
-Subject: [PATCH 2/2] arm64: dts: freescale: imx93-phyboard-nash: Current sense via iio-hwmon
-Date: Wed,  3 Sep 2025 13:37:00 +0200
-Message-Id: <20250903113700.3079626-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250903113700.3079626-1-primoz.fiser@norik.com>
-References: <20250903113700.3079626-1-primoz.fiser@norik.com>
+	s=arc-20240116; t=1756899562; c=relaxed/simple;
+	bh=98Hx3HfQiC0khecw0J8Jgqy0QJbIjnzJCVX0L42gisI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=CKfObcefECKbnGE3i28YWnJfXFjMtLYPtVugiHvFtMweuvMaNuKIUpLezZGf56j1ziV/zYy4j3vxnnJhVlaoC8LhMiLzohJucmMTAE7lI50nrAADEd3qfwbtl5mk8DUZsi3lKauBqivW+G4TaJOEGlOArjGXBQFygQPilcBiq0w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JAfQV2hp; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 583BdD2T3252926;
+	Wed, 3 Sep 2025 06:39:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756899553;
+	bh=vPbWqm2e8Pleqh1YH+aI+ivP4R4vMJt3pSY+QJLucY8=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=JAfQV2hpQR5m/PvoWDxcipHesmIlLvsceH769vET85mrq+vlx50Dbbxjf4zfsQIgI
+	 bbBS1jEshTbckVtwlirVXdRtmUXJMT/Qlu19ju/dvPqcmPRL4KuKgs+ycuCGCor6R4
+	 J5uR8KIBKmuTbMK3UcP11dEj9Eu37s+vwPIlKAFU=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 583BdD5r3489464
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 3 Sep 2025 06:39:13 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
+ Sep 2025 06:39:12 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 3 Sep 2025 06:39:12 -0500
+Received: from [172.24.233.62] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.233.62])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 583Bd9Is1215759;
+	Wed, 3 Sep 2025 06:39:10 -0500
+Message-ID: <1adea165-ae87-463f-a03e-2fe27f4b8695@ti.com>
+Date: Wed, 3 Sep 2025 17:09:09 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cp2.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cp2.siel.si: authenticated_id: primoz.fiser@norik.com
-X-Authenticated-Sender: cp2.siel.si: primoz.fiser@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: ti: k3-j721e-main: Add DSI and DPHY-TX
+To: Harikrishna Shenoy <h-shenoy@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+References: <20250822124622.1424473-1-h-shenoy@ti.com>
+Content-Language: en-US
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20250822124622.1424473-1-h-shenoy@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Commit 21179eae56de ("arm64: dts: freescale: imx93-phyboard-nash: Add
-current sense amplifier") added information about the current sensing
-circuitry found on the board. Now, lets provide current sense reading
-also via IIO-hwmon subsystem. This way, SoM current can be read directly
-via sysfs property more conveniently for the customers. No need for them
-to manually apply scaling factor calculations anymore.
+Hi Hari,
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
----
- arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+On 22/08/25 18:16, Harikrishna Shenoy wrote:
+> From: Rahul T R <r-ravikumar@ti.com>
+> 
+> TI's J721E SoC supports a DPI to DSI video signal conversion bridge on
+> it's platform bus. The IP is from Cadence, and it has a custom TI
+> wrapper around it to facilitate integration.
+> 
+> This IP takes the DPI video signals from DSS and alongwith the DPHY IP,
+> it transmits DSI video signals out of the SoC.
+> 
+> Add support for DSI bridge and the DPHY-TX.
+> 
+> Signed-off-by: Rahul T R <r-ravikumar@ti.com>
+> Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 31 +++++++++++++++++++++++
+>   1 file changed, 31 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index ab3666ff4297..d65b6fcae338 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1887,6 +1887,37 @@ port@4 {
+>   		};
+>   	};
+>   
+> +	dphy2: phy@4480000 {
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-index 71a0e9f270af..d05645f25bba 100644
---- a/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-phyboard-nash.dts
-@@ -27,8 +27,9 @@ chosen {
- 		stdout-path = &lpuart1;
- 	};
- 
--	current-sense {
-+	curr_sens: current-sense {
- 		compatible = "current-sense-amplifier";
-+		#io-channel-cells = <0>;
- 		io-channels = <&adc1 1>;
- 		sense-gain-div = <2>;
- 		sense-gain-mult = <50>;
-@@ -44,6 +45,11 @@ flexcan1_tc: can-phy0 {
- 		standby-gpios = <&gpio4 16 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&curr_sens 0>;
-+	};
-+
- 	reg_usdhc2_vmmc: regulator-usdhc2 {
- 		compatible = "regulator-fixed";
- 		gpio = <&gpio3 7 GPIO_ACTIVE_HIGH>;
--- 
-2.34.1
+I would suggest to have a better label naming:
+s/dphy2/dphy_tx
+s/dphy1/dphy_rx
+
+> +		compatible = "ti,j721e-dphy";
+> +		reg = <0x00 0x04480000 0x00 0x1000>;
+> +		clocks = <&k3_clks 296 1>, <&k3_clks 296 3>;
+> +		clock-names = "psm", "pll_ref";
+> +		#phy-cells = <0>;
+> +		power-domains = <&k3_pds 296 TI_SCI_PD_EXCLUSIVE>;
+> +		assigned-clocks = <&k3_clks 296 3>;
+> +		assigned-clock-parents = <&k3_clks 296 4>;
+> +		assigned-clock-rates = <19200000>;
+> +		status = "disabled";
+> +	};
+> +
+> +	dsi0: dsi@4800000 {
+> +		compatible = "ti,j721e-dsi";
+> +		reg = <0x00 0x04800000 0x00 0x100000>, <0x00 0x04710000 0x00 0x100>;
+> +		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
+> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> +		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
+> +		interrupt-parent = <&gic500>;
+> +		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
+> +		phys = <&dphy2>;
+
+phys = <&dphy_tx>
+
+and likewise for dphy_rx.
+
+Regards
+Devarsh
 
 
