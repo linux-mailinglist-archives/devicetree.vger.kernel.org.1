@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-212211-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F383B42016
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:54:20 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83AD1B420BB
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:16:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 59F32167917
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 12:54:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F7B83B86C1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:16:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BC3B2741DA;
-	Wed,  3 Sep 2025 12:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D6343FB31;
+	Wed,  3 Sep 2025 13:15:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aGqYmZkR"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qu4mmDCD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 449D178F58;
-	Wed,  3 Sep 2025 12:54:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CE71C8F6F;
+	Wed,  3 Sep 2025 13:15:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756904057; cv=none; b=lawTR7uyCEYs8BdcHwFD+6QrLCYScPUMaC/CV5p0V10MxcLaG89Eg4IafUgmGaBmpQkK6b8KoV5okfqpVGaAIhpSGytaEK5JxLNOtHUueUpv4QpWlO0hWl9QfvI7SSOYG8PuXQBHAmXAeSPOY35+fuESKi75FdEDVpn2+IKdC7I=
+	t=1756905346; cv=none; b=fJnOdMC2WYR84kNQsRgDvah3RJcc+b+HubuiV8C4tNNn41TTZsKaBUd0Copx+i0oZ9k07K66XIkrmulc5rL50UNWD9JggqQuojGgo+Mr0hewUVEjelf89nNsVQf4e8mHn05FEvCBTJuANJjMd3/QqUusO/trpsUm9B6WKoURJz0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756904057; c=relaxed/simple;
-	bh=GKyzok/z2dxUBYclYVhvEXgcpXK2CUMlhu43nRL68EI=;
+	s=arc-20240116; t=1756905346; c=relaxed/simple;
+	bh=65Cy4eE/Dbap4x4XSMPP5MYg4UIWlMJAYB2KAsuUEOM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tXjs4HA2ESz+uL6OHD3FKN/1dg/XgxJBM2DKdvaUTtc1GwSWL3yLesKV6wZwcWHC0V8siXgpaw07h+YZ3xNZnOa5WjK229zr0LQPZ4v7XGHOFu4egwuUF3a02SwVjMZek7ribbm/f09JXH7+4H0qwX6dgwEH5eC0JU1lDn5NrWk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aGqYmZkR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FB4CC4CEF0;
-	Wed,  3 Sep 2025 12:54:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756904056;
-	bh=GKyzok/z2dxUBYclYVhvEXgcpXK2CUMlhu43nRL68EI=;
+	 In-Reply-To:Content-Type; b=IhAC7raepKtbgnJ4k6DB+pSUEhkli+OG5oFfaYeWjhOfHWduOFAicYDFKkYlbW7kDpDQ9Rn6s/+2ronlF0+2n3fUlbjjsHcEn9YuF1ApTlaTjW4/X32+Mzi6cb/u8MbJWeRYdVCnAIVXCp6wbaPD7RrtcFzwQnv6ZBgj9HNFWac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qu4mmDCD; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1756904745;
+	bh=65Cy4eE/Dbap4x4XSMPP5MYg4UIWlMJAYB2KAsuUEOM=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=aGqYmZkRR1fuAHbSynfrAmBfRIiWr5y46yverkTaB/Q+Z5kCkOfz41rnYUvqCi7lN
-	 wLqIGAo5qY58FY6OJCVJuQjfR4mwTh3zodjMCqSGtEkNkj9fCSFu4QaNV7ApnafUP/
-	 +mXTY6HwkjIdi2zwlSkqmq40swY0mrEqJXcsLvUN+8+RYzjev6g2w6byTBl4GahEmA
-	 a8+ITTbTu7q2SzFUw2cVH19+LZSRsU/c01C+38NRhMXPEGgTzxOdg8oHv+LLdE+cbt
-	 f82rTtlkUZ1bo6fs9rkjpr+ngaoSPjRChb+3eOzFcURViENkXR5nrtzIW82gY/QenJ
-	 By9aGQYH6AxSg==
-Message-ID: <f2550076-57b5-46f2-a90a-414e5f2cb8d7@kernel.org>
-Date: Wed, 3 Sep 2025 14:54:06 +0200
+	b=qu4mmDCDhFLO5+ELxckT0gE8rs6NIalQ//oyW76Y1Q12bEdUkmyxERmGtl3gd/5Cb
+	 ACWOJ8mwcL5RwYv04uIf4VWQx4M8gzjuUMg2xAu7cwent5z5hZHNyCcZJZjdXGZ6B5
+	 Glf7D3k2pwuXHnEPWq/avscUiPDC0ExrnhAsli3I/xv52eXqiBTCOJDcDdcT8JUmNX
+	 rWu6x3+kIPa0tfE1yG+4hAlLFHNeUQ5c/e8Eabcqnob+JSr+6zO9yVsUOEYVBX5vNy
+	 kAb06ow8nOgQFQ+kk2uAPy7wTkRZ7w+YmGZkVGNYPVt+JQRnZ+J5yXIcFCtB3jsrsc
+	 0Xv/mjVBORwdw==
+Received: from [192.168.1.90] (unknown [82.79.138.60])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: cristicc)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 9FE5517E0FFA;
+	Wed,  3 Sep 2025 15:05:44 +0200 (CEST)
+Message-ID: <218de818-2063-432d-b61b-4537ea702cd6@collabora.com>
+Date: Wed, 3 Sep 2025 16:05:44 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,128 +57,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v2 2/8] dt-bindings: remoteproc: k3-r5f: Add
- rpmsg-eth subnode
-To: MD Danish Anwar <danishanwar@ti.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Mathieu Poirier <mathieu.poirier@linaro.org>, Simon Horman
- <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
- Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
- Mengyuan Lou <mengyuanlou@net-swift.com>, Xin Guo <guoxin09@huawei.com>,
- Lei Wei <quic_leiwei@quicinc.com>, Lee Trager <lee@trager.us>,
- Michael Ellerman <mpe@ellerman.id.au>, Fan Gong <gongfan1@huawei.com>,
- Lorenzo Bianconi <lorenzo@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>,
- Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
- Suman Anna <s-anna@ti.com>, Tero Kristo <kristo@kernel.org>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org,
- linux-doc@vger.kernel.org, linux-arm-kernel@lists.infradead.org, srk@ti.com,
- Roger Quadros <rogerq@kernel.org>
-References: <20250902090746.3221225-1-danishanwar@ti.com>
- <20250902090746.3221225-3-danishanwar@ti.com>
- <20250903-peculiar-hot-monkey-4e7c36@kuoka>
- <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v7 1/2] drm/rockchip: inno-hdmi: Convert to drm bridge
+To: Heiko Stuebner <heiko@sntech.de>, dmitry.baryshkov@oss.qualcomm.com,
+ Andy Yan <andyshrk@163.com>
+Cc: mripard@kernel.org, neil.armstrong@linaro.org, andrzej.hajda@intel.com,
+ jernej.skrabec@gmail.com, jonas@kwiboo.se,
+ Laurent.pinchart@ideasonboard.com, maarten.lankhorst@linux.intel.com,
+ rfoss@kernel.org, simona@ffwll.ch, tzimmermann@suse.de, knaerzche@gmail.com,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, Andy Yan <andy.yan@rock-chips.com>
+References: <20250903110825.776807-1-andyshrk@163.com>
+ <20250903110825.776807-2-andyshrk@163.com> <5255838.1BCLMh4Saa@phil>
 Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
+From: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+In-Reply-To: <5255838.1BCLMh4Saa@phil>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 03/09/2025 09:57, MD Danish Anwar wrote:
->>> Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
->>> ---
->>>  .../devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml     | 6 ++++++
->>>  1 file changed, 6 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>> index a492f74a8608..4dbd708ec8ee 100644
->>> --- a/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>> +++ b/Documentation/devicetree/bindings/remoteproc/ti,k3-r5f-rproc.yaml
->>> @@ -210,6 +210,12 @@ patternProperties:
->>>            should be defined as per the generic bindings in,
->>>            Documentation/devicetree/bindings/sram/sram.yaml
->>>  
->>> +      rpmsg-eth:
->>> +        $ref: /schemas/net/ti,rpmsg-eth.yaml
+Hello Heiko,
+
+On 9/3/25 2:59 PM, Heiko Stuebner wrote:
+> Hi Andy,
+> 
+> Am Mittwoch, 3. September 2025, 13:07:38 Mitteleuropäische Sommerzeit schrieb Andy Yan:
+>> From: Andy Yan <andy.yan@rock-chips.com>
 >>
->> No, not a separate device. Please read slides from my DT for beginners
+>> Convert it to drm bridge driver, it will be convenient for us to
+>> migrate the connector part to the display driver later.
+>>
+>> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
 > 
-> I had synced with Andrew and we came to the conclusion that including
-> rpmsg-eth this way will follow the DT guidelines and should be okay.
-
-... and did you check the guidelines? Instead of repeating something not
-related to my comment rather bring argument matching the comment.
-
-
-...
-
-> @@ -768,6 +774,7 @@ &main_r5fss0_core0 {
->  	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
->  	memory-region = <&main_r5fss0_core0_dma_memory_region>,
->  			<&main_r5fss0_core0_memory_region>;
-> +	rpmsg-eth-region = <&main_r5fss0_core0_memory_region_shm>;
-
-You already have here memory-region, so use that one.
-
->  };
+> more like a general remark, this essentially conflicts with the
+> big hiword-cleanup [0] that was merged today, as the inno-hdmi driver
+> "lost" its separate HIWORD_UPDATE macro in favor a nicer generic one.
 > 
->  &main_r5fss0_core1 {
-> 
-> 
-> In this approach I am creating a new phandle to a memory region that
-> will be used by my device.
+> I'm not sure what the best way to proceed is, apart from waiting for
+> 6.18-rc1.
 
+This is actually what I also intended to ask you, as I'm in the process of
+rebasing the HDMI CEC series on top of next-20250903.
 
+Would it be possible to have an immutable branch of bitmap-for-next and get
+it merged to drm-misc-next?
 
-Best regards,
-Krzysztof
+Regards,
+Cristian
 
