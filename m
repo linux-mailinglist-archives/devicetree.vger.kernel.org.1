@@ -1,495 +1,347 @@
-Return-Path: <devicetree+bounces-212310-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92076B42586
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F6CB4259D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:36:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEE171A85CB7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:31:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 845461BC7F27
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A413C272E43;
-	Wed,  3 Sep 2025 15:28:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WDtLapsd"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 368D3274643;
+	Wed,  3 Sep 2025 15:32:35 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F725271A9D
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10855271459
+	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 15:32:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756913295; cv=none; b=BAXVwvS6eSvbciLjFw4HO1V+KpMxJ1XquDtV0UkOig0OyCE8mxhtFCMzFsXrhZJeEhgXrTLj3D7v50njysAhDtt4slAhL7+O0ZpPjVt5DkfdSm65txbvLEBRn6boiur9Itl9EdR0I85VRvv72QyZJhKwZK1XFoAqMJLLGupG2rk=
+	t=1756913555; cv=none; b=ONx4LXvrXwC32qDxvx+oF5Ra6dhIcUeD+7LpEmgc/XpDYWACE2tyYH4GMBxCGeFpbxtrG11kUv0ii+mA2wzpZcIOVneKBnV9TELUfEjNLNM8P+KxufFjey3jDd0s3y5/Qw0wjVaCE2vEuExcqc8OX5uLd7FkIld/gKaNpETuH/Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756913295; c=relaxed/simple;
-	bh=KaFGZuOlr53tA5CLbYg/3cGDK7DZ4Kb9dmPKV4O181o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=C8mWfHZXhIDxxbENH7YMuq2cQCW7Fn5icxkImN9zMCd5PU1vebnaeQwBvfe2oX9XzDYRzmfNsyFBNYUVHdJ0zOhtAlOOPUOm2+cjGDA12VxyMxRNSnApotzcheNM0vMQwyxrnoYgw6hkouoxBE1hOLvGil3ZRATpLsPfsdCdIdg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WDtLapsd; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45cb5e5e71eso425585e9.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 08:28:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756913292; x=1757518092; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RMOYVSoK5BkxYevwHV6Cyg4/hrGKJ/HxslO02CI64SA=;
-        b=WDtLapsdHESCCZFanp1DDcawP2MZOvufYZZWrp8wRW0XZ1P0cN7rrkNau66B8FkRnV
-         lDp1NJUvvo2u7nYIzrCmIao3gOK4ILon9nKy3/++jZCf4JDQgc9FqJWKb4LZPFprYteY
-         CrMpkE4aCCHmsH1UoUnRTNNVd4G0/CbXVkHugtH/rbAxvTF37wgnavjo9re5VWRDFkFj
-         7r+zvnW/jXxJifl/VHQxy5SaboHtLinlvKZwT9WNrk6PPzbKmm++2Yjw/ImoWU+NyT+f
-         Pr0BbXKjDeCMcgkiTgVDXn9U3vEXZXZaJMm3VUnKqtbGKwK6CVs4JOF3K0mR/dLIMuED
-         b+pQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756913292; x=1757518092;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RMOYVSoK5BkxYevwHV6Cyg4/hrGKJ/HxslO02CI64SA=;
-        b=V6bOXY6aVw0kG+hg3hsthHi2ZatG7ZQHFS4BS/9rS/CC7zhcgK8f3vxjhCG0iDCncE
-         8MpVZXfTUU9bs74xoftSwl+UETWnUA2ezUpZ6/N8692VfJe4dcN/sRzht3D5B11J/sbc
-         LzS2fnX79NizR2EIHlhUd5KplXnVkS5R/d8D0UDQXs8waLuVDZiaBwUpZDtxmVNR7fDB
-         Q13sKcVttTF+/tckAn+88R3yZ87f8zk/22vwTxl15Rt3fyvNrZi3wmQ9crTw0rx3znyD
-         wcH+N6Z2xjvIWhrMK4PUMZeP9LEuqRN2GrvounZH9yx3Gpjs8OGaxUMUyRF7ewj2O5Yp
-         mzUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWY6StQotDLOjftxpWgOC8Lh7Ef5gS6yzH8SgWXiA/zgLnLIx457TZySnmUUcIDvBdsP1ZnfqcRrWqA@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRzWKBY4alY0No03Z5bnFoyXdJz+e0I/zOOuY0Yb7ZPgR+3ZnV
-	/27A/1ylYzWbO7POI2IxdgPVIqLAgHfq4bfmXwpfa3zI6+9NqrFwO9zxVcyu0s0OqJg=
-X-Gm-Gg: ASbGncupCc7trqbIFBXfBwIB+1lUl6NZGxBoeJpgl7skeXT5xYhZquT4TzYvWnUECUH
-	sQVQclEZX+YbqwLp6fbspgB21Wrm9rkQRVUNc/xNfcwZAZscHojg3fBEtTxTf0wARypnsRNLNHJ
-	LhnMLLfAnWLdm0igDS/95tVFTUUOwUc+2kHHDUGEk+1ZwrrGntvRhSORoogxfNBkjRadjvQgYPz
-	SvaZCvb01UY8OeWxeYghvf40gAZik/SBX9dL4rZyRxh3ef0qIYmiyzvl9FF/aLbLH2hNhWF+UHt
-	C9XvnVVkHERCe+cF6B2yimQMeGgrnV/31bO/tebAYwRl11hmDzvCoxS32OQnPyEcHxVxfS0F0le
-	iZ6kGGOuhR19OVWj0L4CI2nDILAgn0BxymAMXe7Q3U3LaFtfse6b/xwL/PQD6c1cNjqEx+F4pMb
-	IDW5AoR75CkvXPxrLGNWFkuBw=
-X-Google-Smtp-Source: AGHT+IEuh6crD5+Cf4a9xDtCrUUELdcNnUdyzt4VPPB76Nxw/zsI9NCkM8/M+S5XzWuIb/KHOg3KzA==
-X-Received: by 2002:a05:600c:470b:b0:45b:90fc:1ede with SMTP id 5b1f17b1804b1-45c8e725fbdmr34472765e9.6.1756913291411;
-        Wed, 03 Sep 2025 08:28:11 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:2a30:223c:d73b:565a? ([2a05:6e02:1041:c10:2a30:223c:d73b:565a])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3cf270fbd01sm24499827f8f.13.2025.09.03.08.28.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 08:28:10 -0700 (PDT)
-Message-ID: <a34efc36-0100-4a7f-b131-566413ab88ae@linaro.org>
-Date: Wed, 3 Sep 2025 17:28:09 +0200
+	s=arc-20240116; t=1756913555; c=relaxed/simple;
+	bh=cHBQ8j6RxUC9Ms6/bHBFv1Ch4/EE2YLkhPSpWOTu/Ro=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U/SlukU9NnRsKY3fM3Ph3YrGZUqhKSuJJsbzjC0NgB/nWvmHU9fXdbDSfqf5D8Ky0DPvHVvM2Bm94S4ZnqZGDVU8K3CseFovI1el2HyX62oVfOpRX5YXXpZCAfmEjkSB7u+GzVvmgJjkbE/qFKBLjmqGd9vagP9XcIQQHmv50lA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com; spf=pass smtp.mailfrom=douglass.dev; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=carnegierobotics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=douglass.dev
+Feedback-ID: 3578:1022:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -360649041;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Wed, 03 Sep 2025 15:31:50 +0000 (UTC)
+From: Woodrow Douglass <wdouglass@carnegierobotics.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Woodrow Douglass <wdouglass@carnegierobotics.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] regulator: pf530x: NXP PF530x regulator driver
+Date: Wed,  3 Sep 2025 11:31:36 -0400
+Message-Id: <20250902-pf530x-v3-0-4242e7687761@carnegierobotics.com>
+X-Mailer: git-send-email 2.39.5
+In-Reply-To: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
+References: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
- <20250903102756.1748596-3-daniel.lezcano@linaro.org>
- <aLgrGlpNrDTC5LAd@smile.fi.intel.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aLgrGlpNrDTC5LAd@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
+X-Mailer: b4 0.12.0
+X-Developer-Signature: v=1; a=openpgp-sha256; l=10306; i=wdouglass@carnegierobotics.com; h=from:subject:message-id; bh=cHBQ8j6RxUC9Ms6/bHBFv1Ch4/EE2YLkhPSpWOTu/Ro=; b=owEBbQGS/pANAwAKAewLuLlPNh4UAcsmYgBouF1WMr8aaHwci3yi+f39tl9JXpr94miUUKVaO pTbVsoAQCiJATMEAAEKAB0WIQSIUqjrbDLQw0mgxHLsC7i5TzYeFAUCaLhdVgAKCRDsC7i5TzYe FPoqB/9Wizw/HyOyX64gNzv+o+QcZl3W0qOyqyP0Y1ga0q6NuupaK4xTsk4Mib5xP35FFzS+Mcu Xfe8qNqUv4atpiwLdU2UddSocfmQbrxF2ajad68Xg+7fkZUvber2XMX7R5Wvcl7q0BMWMs46gEg iWmkcPjTupM+5+1qNkJmIbojDxNfbU+LKqGkfpGODwdThobwBUdh/dWn51Q1T4X9QSHjX72X+zn LaTXTWwl5PB9shyJeW3Vu9HYd6IXiy5S8/2N6FK3zZvKrOu4voEaE9EGrMMInSn+ySw7Y/52qc0 fr7rBLqd31LD7JPIqWMCATmGZM3awmiejvkphn2l4YaGQuvk
+X-Developer-Key: i=wdouglass@carnegierobotics.com; a=openpgp; fpr=8852A8EB6C32D0C349A0C472EC0BB8B94F361E14
 Content-Transfer-Encoding: 8bit
 
+All,
 
-Hi Andy,
+Sorry for resubmitting the original patches, i thought that's what was
+wanted. I'm trying very hard not to break ettiquite here. Below are
+some responses to your earlier comments. Thank you.
 
-thank you for the review
-
-
-On 03/09/2025 13:48, Andy Shevchenko wrote:
-> On Wed, Sep 03, 2025 at 12:27:56PM +0200, Daniel Lezcano wrote:
->> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
->>
->> The NXP S32G2 and S32G3 platforms integrate a successive approximation
->> register (SAR) ADC. Two instances are available, each providing 8
->> multiplexed input channels with 12-bit resolution. The conversion rate
->> is up to 1 Msps depending on the configuration and sampling window.
->>
->> The SAR ADC supports raw, buffer, and trigger modes. It can operate
->> in both single-shot and continuous conversion modes, with optional
->> hardware triggering through the cross-trigger unit (CTU) or external
->> events. An internal prescaler allows adjusting the sampling clock,
->> while per-channel programmable sampling times provide fine-grained
->> trade-offs between accuracy and latency. Automatic calibration is
->> performed at probe time to minimize offset and gain errors.
->>
->> The driver is derived from the BSP implementation and has been partly
->> rewritten to comply with upstream requirements. For this reason, all
->> contributors are listed as co-developers, while the author refers to
->> the initial BSP driver file creator.
->>
->> All modes have been validated on the S32G274-RDB2 platform using an
->> externally generated square wave captured by the ADC. Tests covered
->> buffered streaming via IIO, trigger synchronization, and accuracy
->> verification against a precision laboratory signal source.
+On 9/2/25 11:08, Mark Brown wrote:
+> On Tue, Sep 02, 2025 at 10:21:33AM -0400, Woodrow Douglass wrote:
 > 
-> ...
+>>  obj-$(CONFIG_REGULATOR_PALMAS) += palmas-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PCA9450) += pca9450-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PF9453) += pf9453-regulator.o
+>> +obj-$(CONFIG_REGULATOR_PF530X) += pf530x-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PF8X00) += pf8x00-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PFUZE100) += pfuze100-regulator.o
+>>  obj-$(CONFIG_REGULATOR_PV88060) += pv88060-regulator.o
 > 
->> +#include <linux/circ_buf.h>
+> I'd say please keep this sorted but there's some cleanup needed here
+> already so whatever, let's deal with that separately.
 > 
-> Why not kfifo?
-
-Are you suggesting to use kfifo instead of the circular buffer in the code ?
-
->> +#include <linux/clk.h>
->> +#include <linux/completion.h>
->> +#include <linux/dma-mapping.h>
->> +#include <linux/dmaengine.h>
->> +#include <linux/interrupt.h>
->> +#include <linux/iopoll.h>
+>> +static const struct regmap_config pf530x_regmap_config = {
+>> +       .reg_bits = 8,
+>> +       .val_bits = 8,
+>> +       .max_register = PF530X_OTP_MODE,
+>> +       .cache_type = REGCACHE_RBTREE,
+>> +};
 > 
-> + match.h and more are missing...
+> In general it's better to use _MAPLE register caches unless you've got a
+> good reason not to, the data structure is more modern.
 > 
->> +#include <linux/module.h>
+>> +static int pf530x_is_enabled(struct regulator_dev *rdev)
+>> +{
+>> +	//first get mode
 > 
->> +#include <linux/of_irq.h>
->> +#include <linux/of_platform.h>
-> 
-> Misuse of headers, and please make driver agnostic. There is none OF specifics
-> in the code AFAICT.
-> 
->> +#include <linux/platform_device.h>
->> +#include <linux/slab.h>
-> 
-> ...
-> 
->> +/* Main Configuration Register */
->> +#define REG_ADC_MCR(__base)		(__base)
-> 
-> Useless macro. Perhaps (looking the others) this should be
-> ((__base) + 0x00) which makes much more sense.
-
-Sure
-
->> +#define REG_ADC_MCR_NRSMPL_32		BIT(11)
->> +#define REG_ADC_MCR_NRSMPL_128		BIT(12)
->> +#define REG_ADC_MCR_NRSMPL_512		(BIT(11) | BIT(12))
-> 
-> These are not bits, please use them in a form of 0, 1, 2, 3 and why not using
-> bitfield.h?
+> Usual comment style would have a space after the //.
 >
-> ...
-> 
->> +#define NXP_SAR_ADC_CONV_TIMEOUT_MS	100
->> +#define NXP_SAR_ADC_CAL_TIMEOUT_US	100000
-> 
-> (100 * USEC_PER_MSEC)
-> 
->> +#define NXP_SAR_ADC_WAIT_US		2000
-> 
-> (2 * USEC_PER_MSEC)
 
-Why is this more understandable than the raw value ?
+this exact comment got lost in the fallout of the regmap changes below, but
+i've fixed this issue elsewhere in the file, thanks.
 
-> 
->> +#define NXP_SAR_ADC_DMA_BUFF_SZ		(PAGE_SIZE * NXP_SAR_ADC_DMA_SAMPLE_SZ)
-> 
-> Oh, PAGE_SIZE is not good to use. I believe this HW is not tolerant to any page size.
-> (Note, we made similar mistake in Intel IPU3 camera driver, which is now fixed)
-
-Is it acceptable to put a hardcoded 4096 value ?
-
-> ...
-> 
->> +	/* Protect circular buffers access. */
->> +	spinlock_t lock;
-> 
-> + spinlock.h
-> 
->> +	/*
->> +	 * Save and restore context
->> +	 */
->> +	u32 inpsamp;
->> +	u32 pwdn;
-> 
-> + types.h
-> 
-> ...
-> 
->> +		ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk) * 3U));
-> 
-> + delay.h
-> 
-> Actually + math64.h (no need to include math.h which I mentioned elsewhere).
-> 
-> ...
-> 
->> +static inline int nxp_sar_adc_calibration_wait(void __iomem *base)
+>> +static int pf530x_get_status(struct regulator_dev *rdev)
 >> +{
->> +	u32 msr, ret;
->> +
->> +	ret = read_poll_timeout(readl, msr, !(msr & REG_ADC_MSR_CALBUSY),
 > 
-> Why not readl_poll_timeout()?
-> 
->> +				NXP_SAR_ADC_WAIT_US,
->> +				NXP_SAR_ADC_CAL_TIMEOUT_US,
->> +				true, REG_ADC_MSR(base));
->> +	if (ret)
->> +		return ret;
-> 
->> +	if (!(msr & REG_ADC_MSR_CALFAIL))
->> +		return 0;
-> 
-> I would expect standard pattern — "errors first", but here either works.
+> I would have expected this function to check INT_SENSE1/2 for current
+> error statuses and report those.
 
-Does it mean this chunk of code can be preserved or do you prefer an 
-error block followed with a return 0 ?
+I have added the INT_SENSE1 bits to the REGULATOR_STATUS_ERROR return value. I'm
+not sure how to properly represent the thermal bits in INT_SENSE2 here -- this
+part can safely run at high temperatures, some of those bits are just
+informational in some designs (including the board I'm working on now)
 
->> +	/*
->> +	 * If the calibration fails, the status register bit must be
->> +	 * cleared
->> +	 */
->> +	msr &= ~REG_ADC_MSR_CALFAIL;
->> +
->> +	writel(msr, REG_ADC_MSR(base));
->> +
->> +	return -EAGAIN;
->> +}
 > 
-> ...
+>> +static int pf530x_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
 > 
+> I see INT_STATUS2 has thermal warning/error interrupts in it as well.
+> Not essential but it'd be nice to also check those.  These statuses are
+> also clear on write so I'd expect a write to clear them, even though the
+> device lacks an actual interrupt line so it's all somewhat ornamantal
+> ATM :/  I suppse we ought to implement some core thing to do polling for
+> non-interrupting regulators, but that's definitely out of scope for this
+> driver.
+> 
+>> +static const struct regulator_ops pf530x_regulator_ops = {
+>> +	.enable = regulator_enable_regmap,
+>> +	.disable = regulator_disable_regmap,
+>> +	.is_enabled = pf530x_is_enabled,
+> 
+> The custom is_enabled() operation doesn't seem to line up with the
+> generic regmap enable/disable operations, and we don't seem to have
+> enable_val or disable_val in the regulator_desc which the generic ops
+> expect.  The whole connection with the modes seems a bit odd, the
+> standby voltages look like they'd more naturally map to the regulator
+> API's suspend mode but perhaps these devices are not usually integrated
+> in that way and this would be controlled separately to system suspend.
+
+I agree, I was misguided here. I've added enable_reg, enable_mask, enable_val,
+and disable_val to the regulator_desc initializer, and moved to the regmap
+function from helpers.c. I'm moving the "suspend mode" settings too here. The
+board i'm working with has the suspend pin grounded, so I can't really test
+suspend mode -- supporting that may have to wait for a future patchset.
+
+> 
+>> +static int pf530x_identify(struct pf530x_chip *chip)
 >> +{
->> +	struct nxp_sar_adc *info = iio_priv(indio_dev);
->> +	int i, ret;
 > 
-> Why is 'i' signed?
+>> +	dev_info(chip->dev, "%s Regulator found.\n", name);
+> 
+> It wouldn't hurt to read and log the data in REV, EMREV and PROG_ID too
+> (it can be helpful when debugging).
+
+I've added REV and PROG_ID, EMREV is listed as "Reserved for NXP Internal Use"
+on page 95 of the datasheet, and  -- I can include those bits here but i'm not
+sure they're very useful; if you'd like me to include those bits anyway i will
+
+On 9/2/25 15:19, Krzysztof Kozlowski wrote:
+> On 02/09/2025 16:21, Woodrow Douglass wrote:
+>> Bindings for the pf530x series of voltage regulators
+>>
+>> Signed-off-by: Woodrow Douglass <wdouglass@carnegierobotics.com>
+>> ---
+>>  .../regulator/nxp,pf530x-regulator.yaml       | 74 +++++++++++++++++++
+> 
+> <form letter>
+> Please use scripts/get_maintainers.pl to get a list of necessary people
+> and lists to CC. It might happen, that command when run on an older
+> kernel, gives you outdated entries. Therefore please be sure you base
+> your patches on recent Linux kernel.
+> 
+> Tools like b4 or scripts/get_maintainer.pl provide you proper list of
+> people, so fix your workflow. Tools might also fail if you work on some
+> ancient tree (don't, instead use mainline) or work on fork of kernel
+> (don't, instead use mainline). Just use b4 and everything should be
+> fine, although remember about `b4 prep --auto-to-cc` if you added new
+> patches to the patchset.
+> 
+> You missed at least devicetree list (maybe more), so this won't be
+> tested by automated tooling. Performing review on untested code might be
+> a waste of time.
+> 
+> Please kindly resend and include all necessary To/Cc entries.
+> </form letter>
+> 
+> 
+>>  1 file changed, 74 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml b/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
+>> new file mode 100644
+>> index 000000000000..f1065b167491
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
+> 
+> 
+> Filename should match compatible, so nxp,pf5300.yaml.
+> 
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/regulator/nxp,pf530x-regulator.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NXP PF5300/PF5301/PF5302 PMIC regulators
+>> +
+>> +maintainers:
+>> +  - Woodrow Douglass <wdouglass@carnegierobotics.com>
+>> +
+>> +description: |
+>> +  The PF5300, PF5301, and PF5302 integrate high-performance buck converters, 12 A, 8 A,
+>> +  and 15 A, respectively, to power high-end automotive and industrial processors. With adaptive
+>> +  voltage positioning and a high-bandwidth loop, they offer transient regulation to minimize capacitor
+>> +  requirements.
+> 
+> Wrap according to Linux coding style.
 > 
 >> +
->> +	for (i = 0; i < info->channels_used; i++) {
->> +		ret = nxp_sar_adc_read_data(info, info->buffered_chan[i]);
->> +		if (ret < 0) {
->> +			nxp_sar_adc_read_notify(info);
->> +			return;
->> +		}
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - nxp,pf5300
+>> +      - nxp,pf5301
+>> +      - nxp,pf5302
+> 
+> Your driver clearly suggests these are compatible, so express it (see
+> example schema).
+>
+
+I'm not sure I understand this comment. The difference in these parts is
+only the current limit, so the software interface is compatible -- should I
+only have a single "compatible" string (nxp,pf5300) and ignore the other
+two variants? Seems like it would limit searchability for future users of
+the driver, but maybe i'm not understanding what you're asking for here?
+I was following nxp,pf8x00-regulator.yaml as an example (I am also using
+that regulator in this design) and i guess it must be a bit dated.
+
 >> +
->> +		info->buffer[i] = ret;
->> +	}
+>> +  reg:
+>> +    maxItems: 1
 >> +
->> +	nxp_sar_adc_read_notify(info);
->> +	iio_push_to_buffers_with_timestamp(indio_dev,
->> +					   info->buffer,
->> +					   iio_get_time_ns(indio_dev));
->> +	iio_trigger_notify_done(indio_dev->trig);
->> +}
+>> +  regulators:
 > 
-> ...
+> No need for this node.
 > 
->> +	/*
->> +	 * On disable, we have to wait for the transaction to finish.
->> +	 * ADC does not abort the transaction if a chain conversion
->> +	 * is in progress.
->> +	 * Wait for the worst case scenario - 80 ADC clk cycles.
->> +	 */
->> +	ndelay(div64_u64(NSEC_PER_SEC, clk_get_rate(info->clk)) * 80U);
-> 
-> Could it possible go wrong and with low rate clocks (kHz:ish) this will go into
-> lo-o-o-o-ng *atomic* delay?
-
-It is the ADC clock where we need to wait for 80 cycles. The lowest 
-clock rate is 40MHz, but on this platform it is 80MHz IIRC. This routine 
-is called only when the capture finishes. Except I'm missing something, 
-this scenario should not happen.
-
->> +}
-> 
-> ...
-> 
->> +		nxp_sar_adc_channels_enable(info, 1 >> chan->channel);
-> 
-> 1 >> ?!? Did you want BIT(channel)? Or simply channel != 0?
-
-Yeah, BIT(chan->channel) is better
-
->> +static void nxp_sar_adc_dma_cb(void *data)
->> +{
->> +	struct nxp_sar_adc *info = iio_priv((struct iio_dev *)data);
->> +	struct iio_dev *indio_dev = data;
->> +	struct dma_tx_state state;
->> +	struct circ_buf *dma_buf;
->> +	struct device *dev_dma;
->> +	unsigned long flags;
->> +	u32 *dma_samples;
->> +	s64 timestamp;
->> +	int idx, ret;
+>> +    type: object
+>> +    description: |
+>> +      list of regulators provided by this controller
 >> +
->> +	dma_buf = &info->dma_buf;
->> +	dma_samples = (u32 *)dma_buf->buf;
->> +	dev_dma = info->dma_chan->device->dev;
+>> +    properties:
+>> +      SW1:
 > 
->> +	spin_lock_irqsave(&info->lock, flags);
+> No need, drop the node.
 > 
-> Why not guard()() from cleanup.h?
-
-sure
-
->> +	dmaengine_tx_status(info->dma_chan,
->> +			    info->cookie, &state);
-> 
-> Perfectly one line. No return check?
-
-Ok, will see if the IIO DMA API has an impact on this portion of code 
-before checking the return code. However, the status is often ignored in 
-the other drivers.
-
-[ ... ]
-
->> +/*
->> + * The documentation describes the reset values for the
->> + * registers. However some registers do not have these values after a
->> + * reset. It is a not desirable situation. In some other SoC family
->> + * documentation NXP recommend to not assume the default values are
->> + * set and to initialize the registers conforming to the documentation
->> + * reset information to prevent this situation. Assume the same rule
->> + * applies here as there is a discrepancy between what is read from
->> + * the registers at reset time and the documentation.
->> + */
->> +static void nxp_sar_adc_set_default_values(struct nxp_sar_adc *info)
->> +{
->> +	const u32 mcr_default	= 0x00003901;
->> +	const u32 msr_default	= 0x00000001;
->> +	const u32 ctr_default	= 0x00000014;
->> +	const u32 cimr_default	= 0x00000000;
->> +	const u32 ncmr_default	= 0x00000000;
-> 
-> What is the purpose of having these constant to be temporary variables in the
-> code?
-
-The purpose is to group everything in a single function. As the default 
-values are only used in this function, creating the macros where we have 
-to roll up and down to check their values seemed to me pointless. But if 
-you prefer macros, it is fine I can convert them.
-
->> +	writel(mcr_default, REG_ADC_MCR(info->regs));
->> +	writel(msr_default, REG_ADC_MSR(info->regs));
->> +	writel(ctr_default, REG_ADC_CTR0(info->regs));
->> +	writel(ctr_default, REG_ADC_CTR1(info->regs));
->> +	writel(cimr_default, REG_ADC_CIMR0(info->regs));
->> +	writel(cimr_default, REG_ADC_CIMR1(info->regs));
->> +	writel(ncmr_default, REG_ADC_NCMR0(info->regs));
->> +	writel(ncmr_default, REG_ADC_NCMR1(info->regs));
->> +}
-> 
-> ...
-> 
->> +static int nxp_sar_adc_probe(struct platform_device *pdev)
->> +{
->> +	const struct nxp_sar_adc_data *data;
->> +	struct nxp_sar_adc *info;
->> +	struct iio_dev *indio_dev;
->> +	struct resource *mem;
->> +	struct device *dev = &pdev->dev;
->> +	int irq;
->> +	int ret;
+>> +        type: object
+>> +        $ref: regulator.yaml#
+>> +        description:
+>> +          Properties for the regulator.
 >> +
->> +	indio_dev = devm_iio_device_alloc(dev, sizeof(struct nxp_sar_adc));
->> +	if (!indio_dev)
->> +		return -ENOMEM;
+>> +        properties:
+>> +          regulator-name:
+>> +            pattern: "^SW1$"
+> 
+> No, drop entirely regulator-name. Just embed the properties in parent node.
+> 
+>> +            description:
+>> +              Name of the single regulator
 >> +
->> +	info = iio_priv(indio_dev);
-> 
->> +	data = of_device_get_match_data(dev);
-> 
-> We have an agnostic alternative in property.h.
-> 
->> +	info->vref = data->vref;
-> 
-> vref_uV / vref_mV in both cases?
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - regulators
+>> +
 
-Good suggestion, it makes sense
+I have removed the regulators node (and refactored the driver to
+not require it)
 
->> +	info->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
->> +	if (IS_ERR(info->regs))
->> +		return dev_err_probe(dev, PTR_ERR(info->regs),
->> +				     "failed to get and remap resource");
+>> +additionalProperties: false
 >> +
->> +	irq = platform_get_irq(pdev, 0);
->> +	if (irq < 0)
+>> +examples:
+>> +  - |
+>> +    i2c1 {
 > 
->> +		return dev_err_probe(dev, irq, "no irq resource\n");
+> i2c
 > 
-> No need, it prints message if fails.
-> 
->> +	ret = devm_request_irq(dev, irq, nxp_sar_adc_isr, 0,
->> +			       dev_name(dev), indio_dev);
->> +	if (ret < 0)
->> +		dev_err_probe(dev, ret, "failed requesting irq, irq = %d\n", irq);
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
 >> +
->> +	info->regs_phys = mem->start;
->> +	spin_lock_init(&info->lock);
->> +
->> +	info->clk = devm_clk_get_enabled(dev, "adc");
->> +	if (IS_ERR(info->clk))
->> +		return dev_err_probe(dev, PTR_ERR(info->clk),
->> +				     "failed to get the clock\n");
+>> +        vddi_0_75@28 {
 > 
->> +	platform_set_drvdata(pdev, indio_dev);
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> If you cannot find a name matching your device, please check in kernel
+> sources for similar cases or you can grow the spec (via pull request to
+> DT spec repo).
 > 
->> +	init_completion(&info->completion);
->> +
->> +	indio_dev->name = dev_name(dev);
->> +	indio_dev->info = &nxp_sar_adc_iio_info;
->> +	indio_dev->modes = INDIO_DIRECT_MODE | INDIO_BUFFER_SOFTWARE;
->> +	indio_dev->channels = nxp_sar_adc_iio_channels;
->> +	indio_dev->num_channels = ARRAY_SIZE(nxp_sar_adc_iio_channels);
->> +
->> +	nxp_sar_adc_set_default_values(info);
->> +
->> +	ret = nxp_sar_adc_calibration(info);
->> +	if (ret) {
->> +		dev_err(dev, "Calibration failed: %d\n", ret);
->> +		return ret;
+> See also DTS coding style.
 > 
-> Be consistent. It looks like driver is written by 2+ people who do not
-> communicate with each other.
+>
 
-Indeed ... :)
+I have updated this example to be more generic.
 
->> +	}
->> +
->> +	ret = nxp_sar_adc_dma_probe(dev, info);
->> +	if (ret) {
->> +		dev_err(dev, "Failed to initialize the dma\n");
->> +		return ret;
->> +	}
->> +
->> +	ret = devm_iio_triggered_buffer_setup(dev, indio_dev,
->> +					      &iio_pollfunc_store_time,
->> +					      &nxp_sar_adc_trigger_handler,
->> +					      &iio_triggered_buffer_setup_ops);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Couldn't initialise the buffer\n");
->> +		return ret;
->> +	}
->> +
->> +	ret = devm_iio_device_register(dev, indio_dev);
->> +	if (ret) {
->> +		dev_err(dev, "Couldn't register the device.\n");
->> +		return ret;
->> +	}
 > 
->> +	dev_info(dev, "Device initialized successfully.\n");
+> Best regards,
+> Krzysztof
 > 
-> Noise. This should be dropped.
 
-Ok, thanks again for the review
+Thanks again,
+Woodrow Douglass
 
-   -- Daniel
+--
+2.39.5
 
+---
+Changes in v3:
+- Replaced REGCACHE_RBTREE with REGCACHE_MAPLE
+- Replaced pf530x_is_enabled function with regulator_is_enabled_regmap
+- Added status bits from INT_SENSE1 to pf530x_get_status function
+- Added extra context to info print upon chip identification
+- Reworked devtree to not require nested "regulators" subnode
+- Some minor reformatting of comment style and long lines
+- Link to v2: https://lore.kernel.org/r/20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com
+
+---
+Woodrow Douglass (2):
+      regulator: pf530x: Add a driver for the NXP PF5300 Regulator
+      regulator: pf530x: dt-bindings: nxp,pf530x-regulator
+
+ .../devicetree/bindings/regulator/nxp,pf5300.yaml  |  52 +++
+ MAINTAINERS                                        |   6 +
+ drivers/regulator/Kconfig                          |  12 +
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/pf530x-regulator.c               | 359 +++++++++++++++++++++
+ 5 files changed, 430 insertions(+)
+---
+base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
+change-id: 20250902-pf530x-6db7b921120c
+
+Best regards,
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Woodrow Douglass <wdouglass@carnegierobotics.com>
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
 
