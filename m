@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-211915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-211916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ABE2DB414CC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:14:17 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D89C3B414D0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 08:16:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48D217A318E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:12:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77A805E624D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 06:16:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E979F2D73B2;
-	Wed,  3 Sep 2025 06:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E4F27FB2D;
+	Wed,  3 Sep 2025 06:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vo5dIU3C"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JaQkxdD4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0CED14A9B;
-	Wed,  3 Sep 2025 06:14:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26F372C18A;
+	Wed,  3 Sep 2025 06:16:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756880049; cv=none; b=jpavorcX4MH9epFyfC8tBwofb+dD/GY/cjroONNmRevm5WlXIbFsAc4UVhOSGLsnIHZgs+DS7OtIeKrudZW6F5fIvKJlv1x8Zayak1Qn/VXsu1wjGnHMXUcphXIKnlF0Na5+qf8YvW/u6Msjmu5onhVi4p6YXiSz+SAfrY7HWLM=
+	t=1756880185; cv=none; b=NKJX9x/HiEAO1Rrv9+juQV6M/+WxesNiXQ+BH5YYz45h98hnzq2VidFQvgL61cKpKXrRHr0tIzz5brPLFt7hijd+AeSKx9ujBjBE1xnliamOMt7sF7bLDg8F3iIlUjFRjmbHUY+qrE0HoWJaoxNPDojK1F63JgeZv2YuH7Ge20Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756880049; c=relaxed/simple;
-	bh=Z0ZueLOg7EgXP4wjwbs33b6kJu0PLFw/NnsxA0K9Eqs=;
+	s=arc-20240116; t=1756880185; c=relaxed/simple;
+	bh=YTYDq8mWYeFxq/m6j/JOi51yICuDOulAL7CCMmSZi4M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GW4Z0YS3QQky3N3EhbZ+/Cy58khPDN7Ac1PAkBKkw1Kymz3EfyJ2q5+rZwmZi8Zg1nWjOtA2JCUj/ZRodNgW5iu4fHeHmJU7wgI2a5mHQckU3z2AOJeGNyhBT7Vwn8lYcdVqBGFvr48N3TLq82+cXW8tpqobS22Y1wbPQ7TQXg8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vo5dIU3C; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F218FC4CEF0;
-	Wed,  3 Sep 2025 06:14:06 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=Bay/L6CIl6N6vTU3rIOXDYuUKh7RSwQW271yt3n+vRFksqWYdrZ/FmKE1Pd4NcgAw0MXPviP0WMHSrW7pyskglw02nnfnSm/b72i9LvFEJSh0Uzr7QF40wqYQrIvkFMWX8vN5Xe+MaORB1dqrX62tH6DYvkb/k1Z8eJ8zL2/DHI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JaQkxdD4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE250C4CEF0;
+	Wed,  3 Sep 2025 06:16:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756880049;
-	bh=Z0ZueLOg7EgXP4wjwbs33b6kJu0PLFw/NnsxA0K9Eqs=;
+	s=k20201202; t=1756880184;
+	bh=YTYDq8mWYeFxq/m6j/JOi51yICuDOulAL7CCMmSZi4M=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Vo5dIU3CVhcV4y/VVOlW34ypUKtDL6kyzZ6mNkF3V+f+HBHMr+K2abMr7wuLSdB8z
-	 OffZhveIbeSFBI3khwOMw15JTa4XARoCvoFsEleAVw5gXZRINMaA/YQ78jgmX4KUMu
-	 1q6b17YKrTtGssCbnsurMw/NpkzP3TjbH4fqxqE/y/IbBoRyn64u8Xu/R1YuZh6bbP
-	 I4OFSAoBigkohi9V7o8KUbJ9AYJC/QWrtYkBWfKXUi02A9BK/TfLA3/0b/9VVb3eJS
-	 l3RJp8sg61nTPTaoFvR/5JA5gRpyLHsyHcLiUuof0Zm9ZNxIqLyIr/NQ4mgqRduhio
-	 ff3K0rQGzhVnA==
-Message-ID: <05665d48-72d7-4304-9dd1-1f337235ecd4@kernel.org>
-Date: Wed, 3 Sep 2025 08:14:05 +0200
+	b=JaQkxdD4rLLJ69VUwt6PrnI6XTN9+FIKjckdvO/474eSyV13QOeLzgwJt4UmWnW8n
+	 AgyMZAImtjiBa8/GHK7ttOWwzQDGSO0lQihYCPm3omr76F0+OEEG4N9ZFpNFjNbecc
+	 Wf6uXX0j2+2p+W4HpDnLTVzmKbum/izqhyc3kDQqX3NjuzyrBUQW+7MLcwBV2Ipzq0
+	 Me5P7Ce6L4FUZ9VbJaeh9GWePsWc80HJgw1H/eOhebnzsCyuaXM7XOUL8lQGEclIXk
+	 29X+4rVjceqMVYxjPxruCXjWdMrF+XC53m3zdWw46u/s4fGHgW5yKJmR5RhdEMep8i
+	 PXfqiKaA0jPLw==
+Message-ID: <a527e022-75ad-492e-a3e3-579cacd7d324@kernel.org>
+Date: Wed, 3 Sep 2025 08:16:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,15 +50,15 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/8] arm64: dts: bst: add support for Black Sesame
- Technologies C1200 CDCU1.0 board
-To: Albert Yang <yangzh0906@thundersoft.com>
-Cc: adrian.hunter@intel.com, arnd@arndb.de, conor+dt@kernel.org,
- devicetree@vger.kernel.org, gordon.ge@bst.ai, krzk+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- robh@kernel.org
-References: <ce1285be-5a3f-4d4b-bca1-e31f56573597@kernel.org>
- <20250903034018.3422601-1-yangzh0906@thundersoft.com>
+Subject: Re: [PATCH v2 2/2] regulator: pf530x: dt-bindings:
+ nxp,pf530x-regulator
+To: Woodrow Douglass <wdouglass@carnegierobotics.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250902-pf530x-v2-0-f105eb073cb1@carnegierobotics.com>
+ <20250902-pf530x-v2-2-f105eb073cb1@carnegierobotics.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -104,33 +104,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250903034018.3422601-1-yangzh0906@thundersoft.com>
+In-Reply-To: <20250902-pf530x-v2-2-f105eb073cb1@carnegierobotics.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 03/09/2025 05:40, Albert Yang wrote:
+On 02/09/2025 23:17, Woodrow Douglass wrote:
+> Bindings for the pf530x series of voltage regulators
 > 
->>> +           gic: interrupt-controller@32800000 {
->>> +                   compatible = "arm,gic-v3";
->>> +                   #interrupt-cells = <3>;
->>> +                   #address-cells = <2>;
->>> +                   #size-cells = <2>;
->>> +                   interrupt-controller;
->>> +                   ranges;
->>> +                   reg = <0x0 0x32800000 0x0 0x10000>,
->>> +                         <0x0 0x32880000 0x0 0x100000>;
->>
->> Random order...
+> Signed-off-by: Woodrow Douglass <wdouglass@carnegierobotics.com>
+> ---
+>  .../bindings/regulator/nxp,pf530x-regulator.yaml   | 74 ++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
 > 
-> Refs: arm,gic‑v3 binding
-> https://raw.githubusercontent.com/torvalds/linux/master/Documentation/devicetree/bindings/interrupt-controller/arm,gic-v3.yaml
-> Updated as follows:
 
-No, you need to finally read and follow DTS coding style.
+Nothing improved and you sent it AFTER you received my feedback.
 
-> 		gic: interrupt-controller@32800000 {
-> 			compatible = "arm,gic-v3";
-> 			#interrupt-cells = <3>;
+Don't ignore the comments.
+
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets.
+
+<form letter>
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+</form letter>
+
 Best regards,
 Krzysztof
 
