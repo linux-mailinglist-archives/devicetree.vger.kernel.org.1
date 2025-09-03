@@ -1,198 +1,249 @@
-Return-Path: <devicetree+bounces-212289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA905B42419
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 16:54:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDDBB4245C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 17:04:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E55657C33A9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 14:54:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A7651BC0C63
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:04:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D3FE30BF77;
-	Wed,  3 Sep 2025 14:54:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ElGRsFvJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA6DC3002BF;
+	Wed,  3 Sep 2025 15:04:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6ABC230BB90
-	for <devicetree@vger.kernel.org>; Wed,  3 Sep 2025 14:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 581DA2D6604;
+	Wed,  3 Sep 2025 15:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756911241; cv=none; b=l0EdyTGI+rBI5FJtPBBjIF5INrw9J3xzX5bQKz/ram6E0vJz/UImEPCbq+ioOuljIpxqbhj72sHqixXKDhCwMlqJb9y8/1jc+FMdvOk1YXXXVst0qOR6tPGDnh8+BBayibEGRNAVKg0tXLUEfzNQBTagxUwPqzjAo6XTeFSsr+4=
+	t=1756911872; cv=none; b=tXdymkTTTw0S0uvOPF2ScTYfxtYDZPoQIFtjZjRCKt2rbW7sqqwI6pnxYnpQ13FVWGSd8jR/hMm2yU+rkEGYp/V5B/+T6BiyP0gBS7CDpGG/B+Rn9SheUl/k096PM3pggWPvYNvhIeXRrNp4t5uzlNaCu1Y84kyoZrN2FPw7Rkw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756911241; c=relaxed/simple;
-	bh=unDqZyH1QB0AZnE+jIy/cbveVXnikGD65lmG99tqIe0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fCeSB6FsP6bAK6O6fQbfpV8rIgmrBrENd54Z4KFPWbCiGoC3XPLi2JO2N4cLY6vhkpBOWHEDNQJHckZ92uZqfrqivskjMxPtPDPzkKAX2aulbUC989yxercWMzSXWnZm6rYzbm308tCsP4iy9Y6tfHKGZPYJrWI/GX5FdX7z1T8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ElGRsFvJ; arc=none smtp.client-ip=209.85.221.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so11808f8f.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 07:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756911238; x=1757516038; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yoaNAmWhIibGu6l1WRy5RqFKcSEP315ehpRCdLHsl14=;
-        b=ElGRsFvJjKb6W+daOxlv/O2CFyeAtJ9hdLOWpcnFaGSxSPsuYAkaxMmOAg1MW9sP/G
-         vLzzNlbMhIlhOer4oDjNeEqtqVnfOO200OW9o9b9qbjgtypayBW2sIMiifggZFNwx14y
-         /ZMgdlaE7XoJVhotKXe9+KajSTPcCUWhvfiZJPnwDFRDLRjL4Wq8CS1ZIR6da0mjq7P9
-         apEVHzZtQVfRodptHAtsVTcT3/XqT0WDMG5oEnpkm0LRK3fmsw5n7npiV9aP3cKAPzQS
-         37F+atFcfecj2TJlaucd08UiTxlytYxBsairpQY68RtR5uBWiIztgvvEJ0a+61TDflWE
-         cQeg==
+	s=arc-20240116; t=1756911872; c=relaxed/simple;
+	bh=h8smzc7ZHq9Va/r9ZxrqhulE3gzpiaWyH0i/4kfVPa4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tXydPInGHRidGiv2nXanxuOc0HY4fCjmcoGfFo9U8zpIO+G6xwAxxQOS5DQLGiJt5sJuGfHHe7oI4VAMb2LWB2/bKtXiCqwEBIOVNY0eYNccT/oQul2okX1dj/ZHIsupqg/czBRmOqZ5p+ztzzopRhQuyYpkZZ2pBf4nqqCbLkc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-71d601859f5so218677b3.0;
+        Wed, 03 Sep 2025 08:04:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756911238; x=1757516038;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yoaNAmWhIibGu6l1WRy5RqFKcSEP315ehpRCdLHsl14=;
-        b=UHMenL5BEgcNvVnmCHBG6qvQnKKd7ALdABvV72UObWyZVoxSEuKbNNrA+zdXpluX59
-         jTQAJvsvp1fi4Dhj4DV02L1JEsREGpRZjju8HQslGr3yipEVqlGIb1xCb0iEXfvAcnnq
-         Xck4mq/mIB8Sf4sH9vj3pShYoog1AuBakhgd4b9nQPKPf2uTpH1x+0Tws5zxiXdGssxt
-         yb9m5rYFaCce6uwqBXNpfC4PTgwy7okrGpbJvg4Mhy3pGLDaB9C9JItPBPMgnUfWqpBa
-         E+3Jwx244BdTj6Y4G56zTaJjJQ0Bf/1hS+u18iCGkr/tO6/1lUQmfANsbYPA+Q/8fXUy
-         KL8w==
-X-Forwarded-Encrypted: i=1; AJvYcCWu77z1qnAai2TIU4mrT14vs/U4o5BK7sx9Q+5kmV/CbAdIbxY9s7E6pkvyJQ0n6Ocd3AlA3Ao26+Fz@vger.kernel.org
-X-Gm-Message-State: AOJu0YwnIoVYd8hc8NsNo1f18gB5xNzC1fJ8vhAEaNxWTCiguIYpjLfI
-	pN2LWDRlT9YACRWw3RbHlIPlByOLVnhSVbaA5tGHOoqUL1NvQOZVP2gmL0f8vBC4UDc=
-X-Gm-Gg: ASbGncuLVmQ+6gy40SrF0HE/VZvuIWmuTVTGF48mWK73aBFvCD3WArNWyY89Sq365IZ
-	7xd9T/oBNrLtMKFlV1KxRGi9gPgFKRe4pBDhJqbl4ZUTOasBtt5GJ3gKeafqZz0OJmDfgncQWNb
-	OZ3H6eTE2BeJtvF/IlycjylhfW/0B6ic4Sm56Xa1GoN10yz2dE/f0nEGJJCheVfVsr1Qp2u2lF3
-	9M8lrRLu8y/MktFMD2a/iobQaZGlekTn2H47QeTAGn27i98mIIRONxnfcyjTiF6r90/Jgj7XzyC
-	ttmuJIkf8sFenN9s5wP65UW7G0L050VsFGxIe0I0cCf5eHrke8BvBsqMRU6foswiDktGY/Q4OeD
-	c8w5y8gpJeGCCEilqizNQQHu3YIAP3tz6K0IZjv4MimwkjXFzR6Pl0KmBdEiHUhDOVdW/XVvps4
-	jVAo1RR1X8adSE/avEyOPaXok=
-X-Google-Smtp-Source: AGHT+IHKfKTbLX6DEzjRIqHHgWQYsVAqnbGKlA7TGvZ37mdtddbwJKcqflssNkEpjctd+pomGp9Tmg==
-X-Received: by 2002:a05:6000:2908:b0:3d1:8d1e:906 with SMTP id ffacd0b85a97d-3d1e08a06aemr12584267f8f.59.1756911237655;
-        Wed, 03 Sep 2025 07:53:57 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:2a30:223c:d73b:565a? ([2a05:6e02:1041:c10:2a30:223c:d73b:565a])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45b940bbc0dsm89079915e9.2.2025.09.03.07.53.56
+        d=1e100.net; s=20230601; t=1756911869; x=1757516669;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lfxaat4ZLKZU69SwdrM/SBfl8rybrnaouM8vw93evjg=;
+        b=KDBooPf4lN3mzH/HxenEb1q3gi6f3WVkOlZ66+gsCCU+161a0Y9k47iGWZovxZ05Lw
+         mVK+8T7SJM71Vuhzg28rlo9uErEMnP3asLsYzR6CXEOZ9KdmKiTAsnPWTnOc7+IB4zca
+         EPSLgDdd5wFSDqVHsKxHUtTHtzDE7hCSdmltv4pKjceVOyW4cZgiRCzDL+kjBOtXJl7s
+         1z1tFDn3nOal8ZIbMt1Be1fpQpcuMWWI0K44TLzGK0ItTcmHB/ULpzZFBQTheFu5PbEV
+         4zXHs8uMmspgf2mZjcuNqOk+MgtEZLzml6jmvH9+OaPcPirLY0h0YMAVuR05WJ7nik2F
+         6wiA==
+X-Forwarded-Encrypted: i=1; AJvYcCUHz9I9268WEmVvBWQ+jI5JDPcrSAKRftEbMHpTgruoUVe4Xq3kU6s95VDg6v6OkLrck/qLt3FG8SfF@vger.kernel.org, AJvYcCUN9EAfAlumyyFce7CiHnl/upvikF+jh0bFQeseBGpzV1hM28PfX+nh32OrO+K19GBnKmNairlYaUL+w5aG+z2It9U=@vger.kernel.org, AJvYcCVQSK+meWbvPXJPLh/+PzBdR/y3J2dqanPXovRkr7h/tF3Lc/BscKw5QDDAuK67bj5lvdPLollFaffEHZb/@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjZs9fNA8ceeQCgxV4gd3hbS+9PqPwpmR23bFKLYOn/V6f3YMo
+	v/cqy2hUetNh4TXHxxa+71kCaHGzaDtSSY5SlV9GyKT9ldfAaYH0Ey424caVmnja
+X-Gm-Gg: ASbGncvGjXsbt5bf/KG69ILeYKpiuXTBO+Ajq+MgW4dJh/B38zfB515u6ps1wOz9BCV
+	8Ga+M/tX5ATitItdsoimqy+88Eg06FrVULnG1Ku7MW7jrlgS+2CyTyYn2qAu9E8G5yh/EH6j5pV
+	fuYlSeekX15gVxTFF7skGvUHF3r/BhGYYqJYSYyD1xzeHgvYBprg0BdOA+a501tOBZpPyyru43Z
+	tPEzexT6WSccm5YqlQ4+yvolnbUunlPcfBZE9yNsol5M19H/nxp1c8qSgrpbYBD68kSRGJRojKZ
+	glYvzcgyh5VjVPFBAyzbniLYG2kI9Jr0dx4FLzEKKvk/ZnOSTva1+Dm+YFun9zKweut4LL1DEVn
+	DajwlfRBGei6QWOeNHgBEx0UttB7Iftq8buTdht4fOByHT6AqnAhR5HUm7sD3r6l8
+X-Google-Smtp-Source: AGHT+IFiCAwvXt8gl25yKEJU0gCavGCSDLg0XodGdzKYmmpRtx0j2wJ4m2KrjE1Bx8VgeE6d4KPvLA==
+X-Received: by 2002:a05:690c:7203:b0:721:6b2e:a07a with SMTP id 00721157ae682-72276580c26mr179495857b3.51.1756911868268;
+        Wed, 03 Sep 2025 08:04:28 -0700 (PDT)
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com. [209.85.128.171])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-723a82d6ad1sm14215087b3.5.2025.09.03.08.04.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 07:53:57 -0700 (PDT)
-Message-ID: <3659b492-c135-4fe1-9ffe-70877e4da0f5@linaro.org>
-Date: Wed, 3 Sep 2025 16:53:56 +0200
+        Wed, 03 Sep 2025 08:04:27 -0700 (PDT)
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-71d601859f5so218047b3.0;
+        Wed, 03 Sep 2025 08:04:27 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV8+vmMZ6MmT22g++OKN3YZ/5XBPfo076vi7LpsNzs3FlIdj34YnJ0mfw59eHX4LVvCyQX3HZYPGD3BK5sHSQEd5n8=@vger.kernel.org, AJvYcCVBeaJFeXjBMxGNYJoRBPWL8jvHwXBM0BCP+uPS4AHfehKGHXkzsvFen/yXMKIdsLXvKdEQ0jIwgdSxbmLo@vger.kernel.org, AJvYcCVrCG8joKwYrtjFMKazErtAkAh5r9F9Pll8l22lzzamwR5VgAYnFrkP37T/EGtPi7mZHJNII3vpg8nE@vger.kernel.org
+X-Received: by 2002:a05:690e:4281:20b0:604:3849:9be9 with SMTP id
+ 956f58d0204a3-6043858ff35mr196806d50.13.1756911867549; Wed, 03 Sep 2025
+ 08:04:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, jic23@kernel.org,
- dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org, robh@kernel.org,
- conor+dt@kernel.org, krzk+dt@kernel.org
-Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
- <20250903102756.1748596-3-daniel.lezcano@linaro.org>
- <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20250821161946.1096033-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250821161946.1096033-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250821161946.1096033-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 3 Sep 2025 17:04:15 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVb_5+gVDCUYYZ2Xj55gXzZATx+5vaY6uS1TuCNYb9Qeg@mail.gmail.com>
+X-Gm-Features: Ac12FXzyG34U6XPHgyKHtYspSpPi6ndMXIbD2Xuo0m32dAbQoSis4tQUVb1Fekc
+Message-ID: <CAMuHMdVb_5+gVDCUYYZ2Xj55gXzZATx+5vaY6uS1TuCNYb9Qeg@mail.gmail.com>
+Subject: Re: [PATCH 6/6] arm64: dts: renesas: rzt2h-n2h-evk: Enable USB2.0 support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 
+Hi Prabhakar,
 
-Hi Nuno,
+On Thu, 21 Aug 2025 at 18:19, Prabhakar <prabhakar.csengg@gmail.com> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+>
+> Enable USB2.0 support on RZ/T2H and RZ/N2H EVKs.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 03/09/2025 13:20, Nuno Sá wrote:
-> On Wed, 2025-09-03 at 12:27 +0200, Daniel Lezcano wrote:
->> From: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
->>
->> The NXP S32G2 and S32G3 platforms integrate a successive approximation
->> register (SAR) ADC. Two instances are available, each providing 8
->> multiplexed input channels with 12-bit resolution. The conversion rate
->> is up to 1 Msps depending on the configuration and sampling window.
->>
->> The SAR ADC supports raw, buffer, and trigger modes. It can operate
->> in both single-shot and continuous conversion modes, with optional
->> hardware triggering through the cross-trigger unit (CTU) or external
->> events. An internal prescaler allows adjusting the sampling clock,
->> while per-channel programmable sampling times provide fine-grained
->> trade-offs between accuracy and latency. Automatic calibration is
->> performed at probe time to minimize offset and gain errors.
->>
->> The driver is derived from the BSP implementation and has been partly
->> rewritten to comply with upstream requirements. For this reason, all
->> contributors are listed as co-developers, while the author refers to
->> the initial BSP driver file creator.
->>
->> All modes have been validated on the S32G274-RDB2 platform using an
->> externally generated square wave captured by the ADC. Tests covered
->> buffered streaming via IIO, trigger synchronization, and accuracy
->> verification against a precision laboratory signal source.
->>
->> Co-developed-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
->> Signed-off-by: Alexandru-Catalin Ionita <alexandru-catalin.ionita@nxp.com>
->> Co-developed-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
->> Signed-off-by: Ciprian Costea <ciprianmarian.costea@nxp.com>
->> Co-developed-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
->> Signed-off-by: Radu Pirea (NXP OSS) <radu-nicolae.pirea@oss.nxp.com>
->> Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
->> Co-developed-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->> Signed-off-by: Daniel Lezcano <daniel.lezcano@linaro.org>
->> ---
-> 
-> Hi David,
+Thanks for your patch!
 
-s/David/Daniel/ :)
+> --- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+> @@ -29,6 +29,28 @@
+>   */
+>  #define SD1_MICRO_SD   1
+>
+> +/*
+> + * USB Pin Configuration:
+> + *
+> + * This board is equipped with three USB connectors: Type-A (CN80), Mini-B (CN79),
+> + * and Micro-AB (CN33). The RZ/T2H SoC has a single USB channel, so either the USB
+> + * host interface or the USB function interface can be used, but not both at the
+> + * same time.
 
-> Just some minor review for now...
+Please reflow the text to fit in 80 columns.
 
-Whow, thanks for fast review !
+The last sentence applies to the CN80 and CN79 connectors only, right?
 
-[ ... ]
+> + *
+> + * By default, the Type-A (CN80) and Mini-B (CN79) connectors are enabled.
+> + * Configure the switches as follows:
+> + *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] = ON
+> + *   - USB_VBUSIN (used for USB function): SW7[7] = OFF; SW7[8] = ON
+> + *   - USB_VBUSEN (used for USB_HF_VBUSEN): SW7[9] = OFF; SW7[10] = ON
+> + *
+> + * To enable the Micro-AB (CN33) USB OTG connector, set the following macro to 1
+> + * and configure the switches as follows:
+> + *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] = ON
+> + *   - USB_VBUSIN (used for USB OTG): SW7[7] = ON; SW7[8] = OFF
+> + *   - USB_VBUSEN (used for USB_OTG_VBUSEN): SW7[9] = ON; SW7[10] = OFF
+> + */
+> +#define USB_OTG                0
+> +
+>  #include "rzt2h-n2h-evk-common.dtsi"
+>
+>  / {
+> @@ -145,4 +167,18 @@ i2c1_pins: i2c1-pins {
+>                 pinmux = <RZT2H_PORT_PINMUX(5, 0, 0x17)>, /* SDA */
+>                          <RZT2H_PORT_PINMUX(4, 7, 0x17)>; /* SCL */
+>         };
+> +
+> +#if USB_OTG
+> +       usb-exicen-hog {
+> +               gpio-hog;
+> +               gpios = <RZT2H_GPIO(0, 2) GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "usb_exicen_a";
+> +       };
+> +#endif
+> +
+> +       usb_pins: usb-pins {
+> +               pinmux = <RZT2H_PORT_PINMUX(0, 0, 0x13)>, /* VBUS */
 
->> +static int nxp_sar_adc_dma_probe(struct device *dev, struct nxp_sar_adc
->> *info)
->> +{
->> +	struct device *dev_dma;
->> +	int ret;
->> +	u8 *rx_buf;
->> +
->> +	info->dma_chan = devm_dma_request_chan(dev, "rx");
->> +	if (IS_ERR(info->dma_chan))
->> +		return PTR_ERR(info->dma_chan);
->> +
->> +	dev_dma = info->dma_chan->device->dev;
->> +	rx_buf = dma_alloc_coherent(dev_dma, NXP_SAR_ADC_DMA_BUFF_SZ,
->> +				    &info->rx_dma_buf, GFP_KERNEL);
->> +	if (!rx_buf)
->> +		return -ENOMEM;
->> +
-> 
-> The above needs some discussion at the very least. Have you considered the IIO
-> DMA buffer interface? It should be extendable to accommodate any particularity
-> of your usecase (or we should at least discuss it).
-> 
-> With it, you also gain a userspace interface where you can actually share DMA
-> buffers in a zero copy fashion. You can also share these buffers with USB
-> gadgets. For instance, with libiio, you would be able to fetch samples from your
-> host machine (through USB) in a very fast way (zero copy between IIO and USB).
-> 
-> Setting up DMA to then "having" to push it to a SW buffer and needing a syscall
-> to retrieve the data seems counter-productive.
+s/VBUS/VBUSEN/?
 
-I'm not very used to dma. If there is a better implementation to put in 
-place I'll be glad to take any suggestion to understand the approach.
+> +                        <RZT2H_PORT_PINMUX(0, 1, 0x13)>; /* OVRCUR */
+> +       };
+>  };
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> index 80f358fb2d74..b98b0f7c1128 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+> @@ -33,6 +33,33 @@
+>   */
+>  #define SD1_MICRO_SD   1
+>
+> +/*
+> + * USB Pin Configuration:
+> + *
+> + * This board is equipped with three USB connectors: Type-A (CN7), Mini-B (CN8),
+> + * and Micro-AB (CN9). The RZ/N2H SoC has a single USB channel, so either the USB
+> + * host interface or the USB function interface can be used, but not both at the
+> + * same time.
 
-Is there any driver using the IIO DMA buffer interface I can refer to ?
+Please reflow the text to fit in 80 columns.
 
-[ ... ]
+The last sentence applies to the CN7 and CN8 connectors only, right?
 
+> + *
+> + * By default, the Type-A (CN7) and Mini-B (CN8) connectors are enabled.
+> + * Configure the switches as follows:
+> + *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] = OFF;
+
+s/DSW2[6]/DSW2[5]/?
+
+> + *     - P02_2 (used for VBUSEN): DSW14[5] = OFF; DSW14[6] = ON
+> + *     - P02_3 (used for USB_OVRCUR): DSW14[1] = OFF; DSW14[2] = ON
+> + *   - USB_VBUSIN (used for VBUS of CN8 for function): DSW16[1] = OFF; DSW16[2] = ON
+> + *   - USB_VBUSEN (used for USB_HF_VBUSEN): DSW16[3] = OFF; DSW16[4] = ON
+> + *
+> + * To enable the Micro-AB (CN9) USB OTG connector, set the following macro to 1
+> + * and configure the switches as follows:
+> + *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] = OFF;
+
+s/DSW2[6]/DSW2[5]/?
+
+> + *     - P02_2 (used for VBUSEN): DSW14[5] = OFF; DSW14[6] = ON
+> + *     - P02_3 (used for USB_OVRCUR): DSW14[1] = OFF; DSW14[2] = ON
+> + *   - USB_VBUSIN (used for VBUS of CN9 for OTG): DSW16[1] = ON; DSW16[2] = OFF
+> + *   - USB_VBUSEN (used for USB_OTG_VBUSEN): DSW16[3] = ON; DSW16[4] = OFF
+> + *   - USB_EXICEN (used for USB OTG EXICEN): DSW14[3] = OFF; DSW14[4] = ON
+
+Looks like you could use P00_0 - P00_2 instead of P02_2 - P02_3, like
+on the RZ/T2H EVK?
+But you don't want to do that because you want to use these pins for Ethernet?
+
+> + */
+> +#define USB_OTG                0
+> +
+>  #include "rzt2h-n2h-evk-common.dtsi"
+>
+>  /*
+> @@ -185,4 +212,18 @@ i2c1_pins: i2c1-pins {
+>                 pinmux = <RZT2H_PORT_PINMUX(3, 3, 0x17)>,
+>                          <RZT2H_PORT_PINMUX(3, 4, 0x17)>;
+>         };
+> +
+> +#if USB_OTG
+> +       usb-exicen-hog {
+> +               gpio-hog;
+> +               gpios = <RZT2H_GPIO(2, 4) GPIO_ACTIVE_HIGH>;
+> +               output-high;
+> +               line-name = "usb_exicen_a";
+> +       };
+> +#endif
+> +
+> +       usb_pins: usb-pins {
+> +               pinmux = <RZT2H_PORT_PINMUX(2, 2, 0x13)>, /* VBUS */
+
+s/VBUS/VBUSEN/?
+
+> +                        <RZT2H_PORT_PINMUX(2, 3, 0x13)>; /* OVRCUR */
+> +       };
+>  };
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
