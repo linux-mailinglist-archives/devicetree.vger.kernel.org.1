@@ -1,115 +1,229 @@
-Return-Path: <devicetree+bounces-212227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212225-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F65DB421F0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:37:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5166B421E6
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 15:37:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CACF168EBD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:36:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FE6B5457C3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 13:35:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E171304967;
-	Wed,  3 Sep 2025 13:36:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440CC30AAAD;
+	Wed,  3 Sep 2025 13:35:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="OswDVRc0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aunVBMVS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A274E26463A;
-	Wed,  3 Sep 2025 13:36:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 108BE3093C8;
+	Wed,  3 Sep 2025 13:35:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756906604; cv=none; b=cmwmDpFk5OT3AoUfd1ZBUUd3IJBP819c/O8hstD9kHZaUZ00NCsq6cH2S42XCbcLgidp4Zj9AaZKlCWKN2cWEaY41VT0eMrN9HCadkRsEsD1/FFUYm5+EXzsxkeC53mknB83cfldI7B4KA4NgnOousYqgIS12FQoajw5/UALBCk=
+	t=1756906524; cv=none; b=NUFTbZ5UWwYoNeLcClsMIKvSN6nffiv0oPzh67yDQtrcQY+lwNa/Wy49dpjG2QDMkToqrHj2j21NjVdpLI+4dXmPL4B0NtHkY3Pft8rYsthB9uCQnM9fO6Z4rvPahTaL+t2Ay+5vOQXn5JjoiZzFjH7CiOP1gKRc2Lz1cY7Ry+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756906604; c=relaxed/simple;
-	bh=Y3gIGrF42jI+3IzuwOT5sPZFYcfgGiHCTqp57EkTB9w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=cRMzTpXGO3OTR7eDca0r0JrD++amsfwWtZ+ZeToyeQDqkGU/6zTp5kScY6gQwawTW9JwSK9rkOeSX17J1ClMMFmraa3BhnUkMsv8aQ/ENySH5Qa+DXidNcrBxNy77k80brFY4RAVZuzsXz7E1OBr9TsJq8YiLsDN5CotLltx7L8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=OswDVRc0; arc=none smtp.client-ip=185.132.182.106
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
-Received: from pps.filterd (m0369458.ppops.net [127.0.0.1])
-	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 583DWqw3022718;
-	Wed, 3 Sep 2025 15:36:20 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=selector1; bh=
-	bzHn34jeAFC+trUamzDM6dfK6EpwqtxxyQu4NkAXCys=; b=OswDVRc0fkrDCn+U
-	jX9Y6JwB7sKv9I9GTRnblCrimf8bCCzaFC3f1b+uFYAEXx6/574guT5BrAlfqg1T
-	PrWMo7cxoxMAkTaiYjUpKBkHTr3sfMklY/xnyHXWZyfGvPD5YTYsSuSyEZCRLqRw
-	I5zHZ507T90b1NGGwQSvuo5slo6I7Q/q9a7UgHQS24fchqokjpK66XnlEmg7UyyL
-	eG8m6eKen77x59fEljxL5h50lzGd+MZ2LXqtLAhaz5FekOi8b8KxAZZyyWPja/tD
-	reaKyH3dlFCXRvxHAQYTHdLWJ0nq3v9hOXTHThTsGo1C/QUXCp66FCoIvJ9p/fuB
-	NFd1tw==
-Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
-	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 48vav2q0p7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 03 Sep 2025 15:36:20 +0200 (MEST)
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id EA26D40049;
-	Wed,  3 Sep 2025 15:35:27 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6162A2B4B41;
-	Wed,  3 Sep 2025 15:34:53 +0200 (CEST)
-Received: from [10.48.87.141] (10.48.87.141) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 3 Sep
- 2025 15:34:52 +0200
-Message-ID: <9cfa9cb4-bf7e-4d48-b0cc-0726784b7462@foss.st.com>
-Date: Wed, 3 Sep 2025 15:35:01 +0200
+	s=arc-20240116; t=1756906524; c=relaxed/simple;
+	bh=B4Uua83WqvGn9xcywAsGwKgNMnkrfNj/6a5jDSjsg1k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+01N1+/rch6sMhRO2Gqaymyrx9ECKB6d41d0sjaUPDaNde3A5llqIi+a3MzrLPFpShL9axQ92FJqGX53qxpe9SZMGVxkqYpwaifbsFVGLHMESIDw3JvnFQYkKYtxW7sep1ZcUdwSMxNpy1+vdCzuDR2fC14BfsUWoYGGptjuoM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aunVBMVS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04823C4CEF5;
+	Wed,  3 Sep 2025 13:35:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756906523;
+	bh=B4Uua83WqvGn9xcywAsGwKgNMnkrfNj/6a5jDSjsg1k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aunVBMVSGtb9j901yrt1VJ4vNNWpkxqyzH03OoGKBR4+9WlTbZteUCTHAn+/eJNcW
+	 NchuP0cbpn6uPUrnS5h0brw7NS0EHPLLc3iZc8HkOGWrsJyxvufrfHZ1e2JK4kFYjn
+	 DhkB46s46ZWZeNlVu+uS8l3+SrZuFJ+X9oM+JJ9iR0mgoJ4fuYAilargSzyUQQFlTx
+	 WEkF8HNvJeCTkmB3/YsufH3Hl6wjcgco4TXhYZn2XfUGM0/lRKtVlfZ+s18/WZUd37
+	 Cv7hk7QfiiwIlNFyoPyitUbqQI9OsSndskj92+4ZUIPumvdf92nSVbdKZEW+ODDg07
+	 i9jubOV6iiwvA==
+Date: Wed, 3 Sep 2025 14:35:18 +0100
+From: Lee Jones <lee@kernel.org>
+To: Alexander Kurz <akurz@blala.de>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Dzmitry Sankouski <dsankouski@gmail.com>,
+	"Dr. David Alan Gilbert" <linux@treblig.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@baylibre.com>,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/7] Input: mc13783-pwrbutton: convert pdata members
+ to array
+Message-ID: <20250903133518.GA2764654@google.com>
+References: <20250829201517.15374-1-akurz@blala.de>
+ <20250829201517.15374-4-akurz@blala.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/4] arm64: dts: st: enable ethernet1 controller on
- stm32mp257f-dk
-To: Andrew Lunn <andrew@lunn.ch>
-CC: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20250903-mp2_ethernet-v1-0-4105b0ad2344@foss.st.com>
- <20250903-mp2_ethernet-v1-2-4105b0ad2344@foss.st.com>
- <5c49e94a-9267-459a-ba6c-70f3763f1a7b@lunn.ch>
-Content-Language: en-US
-From: Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <5c49e94a-9267-459a-ba6c-70f3763f1a7b@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-03_07,2025-08-28_01,2025-03-28_01
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250829201517.15374-4-akurz@blala.de>
 
+On Fri, 29 Aug 2025, Alexander Kurz wrote:
 
-
-On 9/3/25 14:21, Andrew Lunn wrote:
->> +&ethernet1 {
->> +	pinctrl-0 = <&eth1_rgmii_pins_b>;
->> +	pinctrl-1 = <&eth1_rgmii_sleep_pins_b>;
->> +	pinctrl-names = "default", "sleep";
->> +	max-speed = <1000>;
+> As preparation for mc13783-pwrbutton OF support, convert the members of
+> mc13xxx_buttons_platform_data to arrays to allow index access within
+> the next commit.
 > 
-> RGMII naturally has a max-speed of 1G, so this line is pointless.
-> 
-> You only use max-speed when you need to restrict the system below what
-> it would normally use, for example if the PCB is badly designed and
-> the tracks don't support 1G, but can do 100Mbps
-> 
-> 	Andrew
+> Signed-off-by: Alexander Kurz <akurz@blala.de>
+> ---
+>  drivers/input/misc/mc13783-pwrbutton.c | 54 +++++++++++++-------------
 
-Right, I'll simply remove these lines.
+>  include/linux/mfd/mc13xxx.h            |  8 +---
 
-Gatien
+Acked-by: Lee Jones <lee@kernel.org>
+
+>  2 files changed, 29 insertions(+), 33 deletions(-)
+> 
+> diff --git a/drivers/input/misc/mc13783-pwrbutton.c b/drivers/input/misc/mc13783-pwrbutton.c
+> index 9fd84b8d163d..ace9f286fd24 100644
+> --- a/drivers/input/misc/mc13783-pwrbutton.c
+> +++ b/drivers/input/misc/mc13783-pwrbutton.c
+> @@ -127,24 +127,24 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  	if (!priv)
+>  		return -ENOMEM;
+>  
+> -	reg |= (pdata->b1on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON1BDBNC;
+> -	reg |= (pdata->b2on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON2BDBNC;
+> -	reg |= (pdata->b3on_flags & 0x3) << MC13783_POWER_CONTROL_2_ON3BDBNC;
+> +	reg |= (pdata->b_on_flags[0] & 0x3) << MC13783_POWER_CONTROL_2_ON1BDBNC;
+> +	reg |= (pdata->b_on_flags[1] & 0x3) << MC13783_POWER_CONTROL_2_ON2BDBNC;
+> +	reg |= (pdata->b_on_flags[2] & 0x3) << MC13783_POWER_CONTROL_2_ON3BDBNC;
+>  
+>  	priv->pwr = pwr;
+>  	priv->mc13783 = mc13783;
+>  
+>  	mc13xxx_lock(mc13783);
+>  
+> -	if (pdata->b1on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[0] = pdata->b1on_key;
+> -		if (pdata->b1on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b1on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[0] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[0] = pdata->b_on_key[0];
+> +		if (pdata->b_on_key[0] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[0], pwr->keybit);
+>  
+> -		if (pdata->b1on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[0] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B1_POL_INVERT;
+>  
+> -		if (pdata->b1on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[0] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON1BRSTEN;
+>  
+>  		err = mc13xxx_irq_request(mc13783, MC13783_IRQ_ONOFD1,
+> @@ -155,15 +155,15 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	if (pdata->b2on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[1] = pdata->b2on_key;
+> -		if (pdata->b2on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b2on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[1] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[1] = pdata->b_on_key[1];
+> +		if (pdata->b_on_key[1] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[1], pwr->keybit);
+>  
+> -		if (pdata->b2on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[1] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B2_POL_INVERT;
+>  
+> -		if (pdata->b2on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[1] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON2BRSTEN;
+>  
+>  		err = mc13xxx_irq_request(mc13783, MC13783_IRQ_ONOFD2,
+> @@ -174,15 +174,15 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> -	if (pdata->b3on_flags & MC13783_BUTTON_ENABLE) {
+> -		priv->keymap[2] = pdata->b3on_key;
+> -		if (pdata->b3on_key != KEY_RESERVED)
+> -			__set_bit(pdata->b3on_key, pwr->keybit);
+> +	if (pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE) {
+> +		priv->keymap[2] = pdata->b_on_key[2];
+> +		if (pdata->b_on_key[2] != KEY_RESERVED)
+> +			__set_bit(pdata->b_on_key[2], pwr->keybit);
+>  
+> -		if (pdata->b3on_flags & MC13783_BUTTON_POL_INVERT)
+> +		if (pdata->b_on_flags[2] & MC13783_BUTTON_POL_INVERT)
+>  			priv->flags |= MC13783_PWRB_B3_POL_INVERT;
+>  
+> -		if (pdata->b3on_flags & MC13783_BUTTON_RESET_EN)
+> +		if (pdata->b_on_flags[2] & MC13783_BUTTON_RESET_EN)
+>  			reg |= MC13783_POWER_CONTROL_2_ON3BRSTEN;
+>  
+>  		err = mc13xxx_irq_request(mc13783, MC13783_IRQ_ONOFD3,
+> @@ -218,15 +218,15 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
+>  free_irq:
+>  	mc13xxx_lock(mc13783);
+>  
+> -	if (pdata->b3on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(mc13783, MC13783_IRQ_ONOFD3, priv);
+>  
+>  free_irq_b2:
+> -	if (pdata->b2on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[1] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(mc13783, MC13783_IRQ_ONOFD2, priv);
+>  
+>  free_irq_b1:
+> -	if (pdata->b1on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[0] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(mc13783, MC13783_IRQ_ONOFD1, priv);
+>  
+>  free_mc13xxx_lock:
+> @@ -244,11 +244,11 @@ static void mc13783_pwrbutton_remove(struct platform_device *pdev)
+>  
+>  	mc13xxx_lock(priv->mc13783);
+>  
+> -	if (pdata->b3on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[2] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(priv->mc13783, MC13783_IRQ_ONOFD3, priv);
+> -	if (pdata->b2on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[1] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(priv->mc13783, MC13783_IRQ_ONOFD2, priv);
+> -	if (pdata->b1on_flags & MC13783_BUTTON_ENABLE)
+> +	if (pdata->b_on_flags[0] & MC13783_BUTTON_ENABLE)
+>  		mc13xxx_irq_free(priv->mc13783, MC13783_IRQ_ONOFD1, priv);
+>  
+>  	mc13xxx_unlock(priv->mc13783);
+> diff --git a/include/linux/mfd/mc13xxx.h b/include/linux/mfd/mc13xxx.h
+> index f372926d5894..0393083af28a 100644
+> --- a/include/linux/mfd/mc13xxx.h
+> +++ b/include/linux/mfd/mc13xxx.h
+> @@ -187,12 +187,8 @@ struct mc13xxx_leds_platform_data {
+>  #define MC13783_BUTTON_RESET_EN		(1 << 4)
+>  
+>  struct mc13xxx_buttons_platform_data {
+> -	int b1on_flags;
+> -	unsigned short b1on_key;
+> -	int b2on_flags;
+> -	unsigned short b2on_key;
+> -	int b3on_flags;
+> -	unsigned short b3on_key;
+> +	int b_on_flags[3];
+> +	unsigned int b_on_key[3];
+>  };
+>  
+>  #define MC13783_TS_ATO_FIRST	false
+> -- 
+> 2.39.5
+> 
+
+-- 
+Lee Jones [李琼斯]
 
