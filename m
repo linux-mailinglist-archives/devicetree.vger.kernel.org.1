@@ -1,170 +1,219 @@
-Return-Path: <devicetree+bounces-212464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE93DB42D1F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:59:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86B33B42D2A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:01:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4BF1E3B2130
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:59:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3383916A820
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:01:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B85692DFF28;
-	Wed,  3 Sep 2025 22:59:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BED9D2DA779;
+	Wed,  3 Sep 2025 23:01:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BySSq+sV"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="E9X/y0U+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-106111.protonmail.ch (mail-106111.protonmail.ch [79.135.106.111])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F25B1D88A4;
-	Wed,  3 Sep 2025 22:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B6D692DECBF;
+	Wed,  3 Sep 2025 23:01:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=79.135.106.111
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756940365; cv=none; b=hkewLEJajMeYQzuO1sSsxcUq8+mnJb03yNrY0o3aPlhqSXATsKxJ1tf2Fs0AoAgnMSQgfkJlTEKPa/gbSHZtpgjlp/mBzZ76gkayWYEXVYu9smvTt6lO7qJ3xsZ9OKnkG17zDqbAmGn5j7EgkgDYY0nu3LSGylJwllSetNWpfMw=
+	t=1756940489; cv=none; b=fc/oFJnmY0zWep6ahXNmt/XzHQ3Nhix/Wg38/QyWp5JiLOORU0pmhX01Fz72aMDMMpTFf/moBTIs95/FEXbhmyUlQfQWizhanU5/4KOVR8Eh5A2TrAwnTMisHhgCjrx3vV2+GjMbqGcse3V1Zr1klmTwC9wG5O/J8ylLNxyUyR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756940365; c=relaxed/simple;
-	bh=zAZE2E5bn9s5utD0mvDXNU3x1IycGc7eg/BFJEIzRDE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u6B2uzt3ZZrLeW/Zw6r3xRUlyU0wNV33+ZZEHuSbPY/gVmvvIqltUzy8JEKmy72qlyT7b9tt3eofQVfqV8Zfp/YIwRpGjJK7tFI9UBWqwQQF+K7/W1p3gaGh0z7dp26RwaeEAWBuY8MLrwoHzPi+pPNWyZ8iRWbidWh/jxfc1fg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BySSq+sV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E91AC4CEE7;
-	Wed,  3 Sep 2025 22:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756940365;
-	bh=zAZE2E5bn9s5utD0mvDXNU3x1IycGc7eg/BFJEIzRDE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BySSq+sVdzxn2IOx35RmUn963piXTAT31hvCzQBe2t2zJlhSCVsNlFk/iHKl4vHPH
-	 Gp5DCyewN7pcTZCAtj9tdxlG8iWTbj5HlGviIqeG9J1ZJM4IivgEoMhUQxTn+O0CVS
-	 KNBkeIZ5SsAwPRfDCVXPYosOBcwuoPel48TvlvtCwkq5tI72bYBvyiPbImOnLZPwed
-	 WeE/55OVS5qwZiyfz2v0tZ7lET/7r/pMFwwe21Qbe3BIL4WcfGBHziakuc6W8rC2v/
-	 fvVgMT3mIjQCVHdx9Dbkwk4ZB32NVaoEuDAs08a0cBqMBywUEHiF2r+4949ROVdEo0
-	 Gt2aRlBDZZV5A==
-Date: Thu, 4 Sep 2025 00:59:20 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Jonas Jelonek <jelonek.jonas@gmail.com>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Markus Stockhausen <markus.stockhausen@gmx.de>, 
-	Sven Eckelmann <sven@narfation.org>, Harshal Gohel <hg@simonwunderlich.de>, 
-	Wolfram Sang <wsa+renesas@sang-engineering.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v7 03/12] i2c: rtl9300: remove broken SMBus Quick
- operation support
-Message-ID: <cfdleondrrpfyfts423cwdcsb5mmqovej5hwke7ndghzlnwci7@d6i7ltgoxbee>
-References: <20250831100457.3114-1-jelonek.jonas@gmail.com>
- <20250831100457.3114-4-jelonek.jonas@gmail.com>
+	s=arc-20240116; t=1756940489; c=relaxed/simple;
+	bh=lZ9xb05bUXxKypMRgvZnimpNmq21pgLVLuItt/0VFy4=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=BwkDQJAWGJsF3rvEUVumoZePZ+VURN7C/aUS9ptcH/H9Q1j2/q0qo7sXtRot3wOl8+3Nx3wz5hBhyXSm5yhjVwI0QtYJ2RrbOv60P3yRDLyn2plpYNtSsjSPZwKOsFsPy8VqLKFNO7ImrOH00HwS+W1gEj456dE3eFzWBIP7okw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=E9X/y0U+; arc=none smtp.client-ip=79.135.106.111
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1756940477; x=1757199677;
+	bh=auZFfKxrrTCXJ1CCI6DDscX7wnIOgy6WBhNj7GtVhbg=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:From:To:
+	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=E9X/y0U+Gnzi8BWpYc3G+wxmYVKc4FEQXrvwuJPBcJfnCvtOdEG+CJ2hTngoFc7fL
+	 XvPdNlVAE+oZSifPj1NkGoT5D8iicgZ1YrCmNASznGLkVeW6fTQUj0QNQm44q7NI90
+	 KuQDdjzv9iPx3BfIYx9cdvRjT6nyRYLJEWcXgBrNc3Ucln6QMWpA3Tij5qNh6baqjk
+	 OByzA6ewal95TXMPkcwFHeVw3bvVAdNaVpUeRLtl5vlAkYXk4+/aji5OFkkG9xBezG
+	 DZRcZcKb1tZ+iZbSBj4S6ThF071boS5QfS2jqAoVQpzPslxwJNLMFe9mg5pIoG0uhG
+	 ZczV9pTksa67Q==
+X-Pm-Submission-Id: 4cHJ4q3ZjKz2ScCs
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+To: hansg@kernel.org,
+	Aleksandrs Vinarskis <alex@vinarskis.com>,
+	Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: andy.shevchenko@gmail.com,
+	devicetree@vger.kernel.org,
+	linus.walleij@linaro.org,
+	linux-kernel@vger.kernel.org,
+	linux-leds@vger.kernel.org
+Subject: Re: [PATCH 2/2] leds: led-class: Add devicetree support to led_get()
+Date: Thu,  4 Sep 2025 01:01:12 +0200
+Message-ID: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
+X-Mailer: git-send-email 2.48.1
+In-Reply-To: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
+References: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250831100457.3114-4-jelonek.jonas@gmail.com>
+Content-Transfer-Encoding: 8bit
 
-Hi Jonas,
-
-On Sun, Aug 31, 2025 at 10:04:48AM +0000, Jonas Jelonek wrote:
-> Remove the SMBus Quick operation from this driver because it is not
-> natively supported by the hardware and is wrongly implemented in the
-> driver.
+> Hi Aleksandrs,
 > 
-> The I2C controllers in Realtek RTL9300 and RTL9310 are SMBus-compliant
-> but there doesn't seem to be native support for the SMBus Quick
-> operation. It is not explicitly mentioned in the documentation but
-> looking at the registers which configure an SMBus transaction, one can
-> see that the data length cannot be set to 0. This suggests that the
-> hardware doesn't allow any SMBus message without data bytes (except for
-> those it does on it's own, see SMBus Block Read).
+> Thank you for working on this.
 > 
-> The current implementation of SMBus Quick operation passes a length of
-> 0 (which is actually invalid). Before the fix of a bug in a previous
-> commit, this led to a read operation of 16 bytes from any register (the
-> one of a former transaction or any other value.
+> On 2-Sep-25 1:10 PM, Aleksandrs Vinarskis wrote:
+> > From: Hans de Goede <hansg@kernel.org>
+> > 
+> > Turn of_led_get() into a more generic __of_led_get() helper function,
+> > which can lookup LEDs in devicetree by either name or index.
+> > 
+> > And use this new helper to add devicetree support to the generic
+> > (non devicetree specific) [devm_]led_get() function.
+> > 
+> > This uses the standard devicetree pattern of adding a -names string array
+> > to map names to the indexes for an array of resources.
+> > 
+> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> > Reviewed-by: Lee Jones <lee@kernel.org>
+> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> > Signed-off-by: Hans de Goede <hdegoede@redhat.com>
 > 
-> This caused issues like soft-bricked SFP modules after a simple probe
-> with i2cdetect which uses Quick by default. Running this with SFP
-> modules whose EEPROM isn't write-protected, some of the initial bytes
-> are overwritten because a 16-byte write operation is executed instead of
-> a Quick Write. (This temporarily soft-bricked one of my DAC cables.)
+> Please update this to:
 > 
-> Because SMBus Quick operation is obviously not supported on these
-> controllers (because a length of 0 cannot be set, even when no register
-> address is set), remove that instead of claiming there is support. There
-> also shouldn't be any kind of emulated 'Quick' which just does another
-> kind of operation in the background. Otherwise, specific issues occur
-> in case of a 'Quick' Write which actually writes unknown data to an
-> unknown register.
+> Reviewed-by: Hans de Goede <hansg@kernel.org>
 > 
-> Fixes: c366be720235 ("i2c: Add driver for the RTL9300 I2C controller")
-> Cc: <stable@vger.kernel.org> # v6.13+
-> Signed-off-by: Jonas Jelonek <jelonek.jonas@gmail.com>
-> Tested-by: Sven Eckelmann <sven@narfation.org>
-> Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz> # On RTL9302C based board
-> Tested-by: Markus Stockhausen <markus.stockhausen@gmx.de>
-
-Applied from 1-3 to i2c/i2c-host-fixes.
-
-But...
-
-> ---
->  drivers/i2c/busses/i2c-rtl9300.c | 15 +++------------
->  1 file changed, 3 insertions(+), 12 deletions(-)
+> to match the update of the author which you already did.
 > 
-> diff --git a/drivers/i2c/busses/i2c-rtl9300.c b/drivers/i2c/busses/i2c-rtl9300.c
-> index ebd4a85e1bde..9e6232075137 100644
-> --- a/drivers/i2c/busses/i2c-rtl9300.c
-> +++ b/drivers/i2c/busses/i2c-rtl9300.c
-> @@ -235,15 +235,6 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->  	}
->  
->  	switch (size) {
-> -	case I2C_SMBUS_QUICK:
-> -		ret = rtl9300_i2c_config_xfer(i2c, chan, addr, 0);
-> -		if (ret)
-> -			goto out_unlock;
-> -		ret = rtl9300_i2c_reg_addr_set(i2c, 0, 0);
-> -		if (ret)
-> -			goto out_unlock;
-> -		break;
-> -
->  	case I2C_SMBUS_BYTE:
->  		if (read_write == I2C_SMBUS_WRITE) {
->  			ret = rtl9300_i2c_config_xfer(i2c, chan, addr, 0);
-> @@ -344,9 +335,9 @@ static int rtl9300_i2c_smbus_xfer(struct i2c_adapter *adap, u16 addr, unsigned s
->  
->  static u32 rtl9300_i2c_func(struct i2c_adapter *a)
->  {
-> -	return I2C_FUNC_SMBUS_QUICK | I2C_FUNC_SMBUS_BYTE |
-> -	       I2C_FUNC_SMBUS_BYTE_DATA | I2C_FUNC_SMBUS_WORD_DATA |
-> -	       I2C_FUNC_SMBUS_BLOCK_DATA | I2C_FUNC_SMBUS_I2C_BLOCK;
-> +	return I2C_FUNC_SMBUS_BYTE | I2C_FUNC_SMBUS_BYTE_DATA |
-> +	       I2C_FUNC_SMBUS_WORD_DATA | I2C_FUNC_SMBUS_BLOCK_DATA |
-> +	       I2C_FUNC_SMBUS_I2C_BLOCK;
+> Also note that checkpatch should complain about the mismatch,
+> please ensure to run checkpatch before posting v2.
 
-this was creating a conflict with:
+Hi,
 
-5090e2b3808e ("i2c: rtl9300: Implement I2C block read and write")
+ahh, I actually did not even see that email got changed, apologies. Seems
+'b4' auto-corrected it when sending, which would explain why checkpatch
+did not catch it, as I run it before importing and sending via 'b4'. Sure,
+will fix - did you mean to change your signoff to R-by, or is it a mistake?
 
-In the sense that I don't have this change in the fixes path, but
-I have it in the non-fixes. For now, until Wolfram pulls the
-fixes, I removed the patch and I will add it back next week to
-avoid conflicts in the -next branch.
-
-Next week I will apply the rest of the patches in the series, as
-well.
-
-Thanks,
-Andi
-
->  }
->  
->  static const struct i2c_algorithm rtl9300_i2c_algo = {
-> -- 
-> 2.48.1
 > 
+> > Tested-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> > ---
+> >  drivers/leds/led-class.c | 38 +++++++++++++++++++++++++++++---------
+> >  1 file changed, 29 insertions(+), 9 deletions(-)
+> > 
+> > diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
+> > index 15633fbf3c166aa4f521774d245f6399a642bced..6f2ef4fa556b44ed3bf69dff556ae16fd2b7652b 100644
+> > --- a/drivers/leds/led-class.c
+> > +++ b/drivers/leds/led-class.c
+> > @@ -248,19 +248,18 @@ static const struct class leds_class = {
+> >  	.pm = &leds_class_dev_pm_ops,
+> >  };
+> >  
+> > -/**
+> > - * of_led_get() - request a LED device via the LED framework
+> > - * @np: device node to get the LED device from
+> > - * @index: the index of the LED
+> > - *
+> > - * Returns the LED device parsed from the phandle specified in the "leds"
+> > - * property of a device tree node or a negative error-code on failure.
+> > - */
+> > -static struct led_classdev *of_led_get(struct device_node *np, int index)
+> > +static struct led_classdev *__of_led_get(struct device_node *np, int index,
+> > +					 const char *name)
+> >  {
+> >  	struct device *led_dev;
+> >  	struct device_node *led_node;
+> >  
+> > +	/*
+> > +	 * For named LEDs, first look up the name in the "led-names" property.
+> > +	 * If it cannot be found, then of_parse_phandle() will propagate the error.
+> > +	 */
+> > +	if (name)
+> > +		index = of_property_match_string(np, "led-names", name);
+> >  	led_node = of_parse_phandle(np, "leds", index);
+> >  	if (!led_node)
+> >  		return ERR_PTR(-ENOENT);
+> > @@ -271,6 +270,20 @@ static struct led_classdev *of_led_get(struct device_node *np, int index)
+> >  	return led_module_get(led_dev);
+> >  }
+> >  
+> > +/**
+> > + * of_led_get() - request a LED device via the LED framework
+> > + * @np: device node to get the LED device from
+> > + * @index: the index of the LED
+> > + *
+> > + * Returns the LED device parsed from the phandle specified in the "leds"
+> > + * property of a device tree node or a negative error-code on failure.
+> > + */
+> > +struct led_classdev *of_led_get(struct device_node *np, int index)
+> > +{
+> > +	return __of_led_get(np, index, NULL);
+> > +}
+> > +EXPORT_SYMBOL_GPL(of_led_get);
+> 
+> I probably did this myself, but since of_led_get() is private now
+> (I guess it was not private before?) and since we are moving away from
+> "of" specific functions to using generic dev_xxxx functions in the kernel
+> in general, I think this just should be a static helper.
+> 
+> Or probably even better: just add the name argument to of_led_get()
+> before without renaming it, update the existing callers to pass
+> an extra NULL arg and completely drop this wrapper.
+> 
+
+That indeed sounds like a better and cleaner option, will change it.
+This way also incorporates the rest of the feedback on this series.
+
+> Also notice that adding the EXPORT_SYMBOL_GPL() while there was
+> none before should go hand in hand with adding a prototype to
+> a relevant .h file. However please just keep this private and
+> drop the wrapper.
+
+Thanks for the clarification, missed that, and the review.
+
+Alex
+
+> 
+> Regards,
+> 
+> Hans
+> 
+> 
+> 
+> 
+> > +
+> >  /**
+> >   * led_put() - release a LED device
+> >   * @led_cdev: LED device
+> > @@ -342,9 +355,16 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
+> >  struct led_classdev *led_get(struct device *dev, char *con_id)
+> >  {
+> >  	struct led_lookup_data *lookup;
+> > +	struct led_classdev *led_cdev;
+> >  	const char *provider = NULL;
+> >  	struct device *led_dev;
+> >  
+> > +	if (dev->of_node) {
+> > +		led_cdev = __of_led_get(dev->of_node, -1, con_id);
+> > +		if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
+> > +			return led_cdev;
+> > +	}
+> > +
+> >  	mutex_lock(&leds_lookup_lock);
+> >  	list_for_each_entry(lookup, &leds_lookup_list, list) {
+> >  		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
+> > 
 
