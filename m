@@ -1,78 +1,152 @@
-Return-Path: <devicetree+bounces-212431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99774B42B33
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:43:39 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B91B42B44
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 22:46:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 536B47C484E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:43:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EE05171634
+	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 20:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABAE3019B3;
-	Wed,  3 Sep 2025 20:43:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDE852D9EE1;
+	Wed,  3 Sep 2025 20:46:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TvJVPQ+H"
+	dkim=pass (2048-bit key) header.d=carnegierobotics.com header.i=@carnegierobotics.com header.b="E+2nOlpk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from 005.lax.mailroute.net (005.lax.mailroute.net [199.89.1.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9D27F2D46CB;
-	Wed,  3 Sep 2025 20:43:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCCAB285053;
+	Wed,  3 Sep 2025 20:46:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=199.89.1.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756932214; cv=none; b=iqPfSNLtrm6UCkvKtIh9ue+WO3CNz3dsfEGiBF1bIPM5BbNxBnY3ewFgS6hWquiEiBgSJET81zHvitmwHXRhQZ53llpozen0nBfdGszc6DTEbEtUYFLI0G0monJyInCYGZG/i8IWp8Ata+tl1kz2C0kjyq8W1M5Huw2dXfzjsDk=
+	t=1756932408; cv=none; b=O7PWYqXsp6xBBbgOmwvQkLdbtn4KWS2WI5YuOOd21L6s2dahd569aYFZ9TIbVuXe80POGcL7gaeLHrr1AsszbjShuBPPVGbK5Bl1reCRz4Hp0Mc1o9euU0b3QIv/HjM8HISBviuDe3hrId8jm+GUcsUgqRcU46FUc6qmRUL5Q+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756932214; c=relaxed/simple;
-	bh=ZrWBzTUTC9WAJnOWtFKBqgBmqR3PSN/MgEY8CcIWquE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ro7E/cFYbwmAM/QSEC/mnqfzPfbG6TcU9TdJ+usU8kv/2tI4/6Bi2a4cF+16L126t6DkxaMwXRzIo8fpGCNCQZudtYKdkDMnEhDf1AvbG6AJ1OzxmdcXN0PxZzKzxkZzwX0KNxf7Hz11fMaPmrWOlE4zzi1MAV/ehuzneR/FYo8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TvJVPQ+H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB5E0C4CEE7;
-	Wed,  3 Sep 2025 20:43:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756932214;
-	bh=ZrWBzTUTC9WAJnOWtFKBqgBmqR3PSN/MgEY8CcIWquE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TvJVPQ+HQ/rwtKiosl4LwntAXSfNwkXfqX1dGopbUp7W1REtiKer5OaqMuzAD15WM
-	 QN0Whv2F9y9QSIQwGBaVFwmOLhhw3+5C2x2uvdVSgxmfLbojk7hG1fB2DLdPXQsN8r
-	 VoAB2qJO2XXzWHHtzH6mf3+Jp6Vxu57TCED4bQZgLqnBQiVVhu4jazenSk7SxNENrx
-	 oybCGHLnpntuWEvbT/MTJj5CHsuU0hzYfvhjHKAHBTsqAPfZ+wbKcYvfQiiTnhGlma
-	 xGFKUP7XKMy9btc04i0W7N1+Ee7kOdmn7RCU6sq4w8FYuZQHdnYE0X0WrmzMmu7aLs
-	 quW5rmAQThpxw==
-Date: Wed, 3 Sep 2025 15:43:31 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Conley Lee <conleylee@foxmail.com>
-Cc: linux-sunxi@lists.linux.dev, edumazet@google.com,
-	linux-kernel@vger.kernel.org, mripard@kernel.org,
-	devicetree@vger.kernel.org, andrew+netdev@lunn.ch,
-	netdev@vger.kernel.org, wens@csie.org, davem@davemloft.net,
-	kuba@kernel.org
-Subject: Re: [PATCH] dt-bindings: net: sun4i-emac: add dma support
-Message-ID: <175693221068.2743688.18419126286062022173.robh@kernel.org>
-References: <tencent_4E434174E9D516431365413D1B8047C6BB06@qq.com>
+	s=arc-20240116; t=1756932408; c=relaxed/simple;
+	bh=Jh8YJTI6x+CDN9DdHtnOFTsKzYbssGelp2jGpmIMkrU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=UKfq3WUIkv8OsuYBd4uUrH6MSr0dvOE5Bpvg5c3ku9lSz3gfGCKfBzA5ILAdvlnXOqE+5Pfow2yoEtrFuKtPmIHCguTHc8oQ3Lt1o9fkvcAEj1tjAIjITCu269KusYd3M2uuf33ETEkBa2x3i9wjPQq3RVTYkRN4af6Lm+MQdkI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=carnegierobotics.com; spf=pass smtp.mailfrom=carnegierobotics.com; dkim=pass (2048-bit key) header.d=carnegierobotics.com header.i=@carnegierobotics.com header.b=E+2nOlpk; arc=none smtp.client-ip=199.89.1.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=carnegierobotics.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=carnegierobotics.com
+Received: from localhost (localhost [127.0.0.1])
+	by 005.lax.mailroute.net (Postfix) with ESMTP id 4cHF5X2Rb9zmDP4q;
+	Wed,  3 Sep 2025 20:46:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	carnegierobotics.com; h=mime-version:content-transfer-encoding
+	:content-id:content-type:content-type:user-agent
+	:content-language:accept-language:in-reply-to:references
+	:message-id:date:date:subject:subject:from:from:received
+	:received:received:received; s=mr01; t=1756932399; x=1759524400;
+	 bh=Jh8YJTI6x+CDN9DdHtnOFTsKzYbssGelp2jGpmIMkrU=; b=E+2nOlpk9kB7
+	l2Z1ZwvEE1hxebt0XWUp6DjQcTyA4Qa+PK0apomA/chNaRjDfmaDjIOxLjG2RGnW
+	A3fYXV7aPOSYSs79PdVfZv70UV2JBmH+T0jhK6ztUaONJjv2H8MY/V6b47rV9A7k
+	7lZYKyxjExH+E4kHXcrMEP0mtXsNOrDr/eYoIWWiKqAThGveQVFncqW5rWHbv3kw
+	jSpyepflTQsEurPzLddHdEDgkHsVzIpUsW0sT5JrEZATDHa+pPeh3aib3nO8Zw+u
+	8J/bp2QLNGWVUq395k2rRwXXTJ55sLfhg9RJfKNwfmW/yvSNNSCHXFDc13LUYGZe
+	2gMwFVIcUA==
+X-Virus-Scanned: by MailRoute
+Received: from 005.lax.mailroute.net ([127.0.0.1])
+ by localhost (005.lax [127.0.0.1]) (mroute_mailscanner, port 10026) with LMTP
+ id ny3V4AAdRe_U; Wed,  3 Sep 2025 20:46:39 +0000 (UTC)
+Received: from mail.carnegierobotics.com (static-108-39-229-99.pitbpa.fios.verizon.net [108.39.229.99])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by 005.lax.mailroute.net (Postfix) with ESMTPS id 4cHF5Q4Mj9zmCQWV;
+	Wed,  3 Sep 2025 20:46:33 +0000 (UTC)
+Received: from CRL-PGH-EX19-1.crl.local (10.1.7.176) by
+ CRL-PGH-EX19-1.crl.local (10.1.7.176) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1544.33; Wed, 3 Sep 2025 16:46:32 -0400
+Received: from CRL-PGH-EX19-1.crl.local ([fe80::81d6:ea84:15d9:67d4]) by
+ CRL-PGH-EX19-1.crl.local ([fe80::81d6:ea84:15d9:67d4%7]) with mapi id
+ 15.02.1544.033; Wed, 3 Sep 2025 16:46:32 -0400
+From: Woody Douglass <wdouglass@carnegierobotics.com>
+To: "Rob Herring (Arm)" <robh@kernel.org>
+CC: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, Mark Brown
+	<broonie@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, Liam Girdwood
+	<lgirdwood@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH v3 2/2] regulator: pf530x: dt-bindings:
+ nxp,pf530x-regulator
+Thread-Topic: [PATCH v3 2/2] regulator: pf530x: dt-bindings:
+ nxp,pf530x-regulator
+Thread-Index: AQHcHRH7NxCOvr8uJ0qr5q/ZrBTWhrSCMJMA
+Date: Wed, 3 Sep 2025 20:46:32 +0000
+Message-ID: <40798d54-fb25-45b1-80c8-b378adb545d9@carnegierobotics.com>
+References: <20250902-pf530x-v3-0-4242e7687761@carnegierobotics.com>
+ <20250902-pf530x-v3-2-4242e7687761@carnegierobotics.com>
+ <175693109173.2632698.2374155993251530154.robh@kernel.org>
+In-Reply-To: <175693109173.2632698.2374155993251530154.robh@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Mozilla Thunderbird
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4D935D938058004396B4D0A21BEF59F2@crl.local>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <tencent_4E434174E9D516431365413D1B8047C6BB06@qq.com>
 
-
-On Wed, 03 Sep 2025 16:22:38 +0800, Conley Lee wrote:
-> The sun4i EMAC supports DMA for data transmission,
-> so it is necessary to add DMA options to the device tree bindings.
-> 
-> Signed-off-by: Conley Lee <conleylee@foxmail.com>
-> ---
->  .../bindings/net/allwinner,sun4i-a10-emac.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-
-Acked-by: Rob Herring (Arm) <robh@kernel.org>
-
+Um9iLA0KDQpUaGFuayB5b3UgZm9yIHBvaW50aW5nIHRoaXMgb3V0ISBJIHdpbGwgcmViYXNlIG9u
+IHRoZSBsYXRlc3QgcmMxIGFuZCBydW4gYG1ha2UgZHRfYmluZGluZ19jaGVja2AgYmVmb3JlIHN1
+Ym1pdHRpbmcgdjUhDQoNClRoYW5rcyBhZ2FpbiwNCldvb2Ryb3cgRG91Z2xhc3MNCg0KT24gOS8z
+LzI1IDE2OjMzLCBSb2IgSGVycmluZyAoQXJtKSB3cm90ZToNCj4gDQo+IE9uIFdlZCwgMDMgU2Vw
+IDIwMjUgMTE6MzE6MzggLTA0MDAsIFdvb2Ryb3cgRG91Z2xhc3Mgd3JvdGU6DQo+PiBCaW5kaW5n
+cyBmb3IgdGhlIHBmNTMweCBzZXJpZXMgb2Ygdm9sdGFnZSByZWd1bGF0b3JzDQo+Pg0KPj4gU2ln
+bmVkLW9mZi1ieTogV29vZHJvdyBEb3VnbGFzcyA8d2RvdWdsYXNzQGNhcm5lZ2llcm9ib3RpY3Mu
+Y29tPg0KPj4gLS0tDQo+PiAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvcmVndWxhdG9yL254cCxw
+ZjUzMDAueWFtbCAgfCA1MiArKysrKysrKysrKysrKysrKysrKysrDQo+PiAgMSBmaWxlIGNoYW5n
+ZWQsIDUyIGluc2VydGlvbnMoKykNCj4+DQo+IA0KPiBNeSBib3QgZm91bmQgZXJyb3JzIHJ1bm5p
+bmcgJ21ha2UgZHRfYmluZGluZ19jaGVjaycgb24geW91ciBwYXRjaDoNCj4gDQo+IHlhbWxsaW50
+IHdhcm5pbmdzL2Vycm9yczoNCj4gDQo+IGR0c2NoZW1hL2R0YyB3YXJuaW5ncy9lcnJvcnM6DQo+
+IC9idWlsZHMvcm9iaGVycmluZy9kdC1yZXZpZXctY2kvbGludXgvRG9jdW1lbnRhdGlvbi9kZXZp
+Y2V0cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9ueHAscGY1MzAwLnlhbWw6IHByb3BlcnRpZXM6ICdh
+ZGRpdGlvbmFsUHJvcGVydGllcycgc2hvdWxkIG5vdCBiZSB2YWxpZCB1bmRlciB7JyRyZWYnOiAn
+Iy9kZWZpbml0aW9ucy9qc29uLXNjaGVtYS1wcm9wLW5hbWVzJ30NCj4gCWhpbnQ6IEEganNvbi1z
+Y2hlbWEga2V5d29yZCB3YXMgZm91bmQgaW5zdGVhZCBvZiBhIERUIHByb3BlcnR5IG5hbWUuDQo+
+IAlmcm9tIHNjaGVtYSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9tZXRhLXNjaGVtYXMva2V5
+d29yZHMueWFtbCMNCj4gL2J1aWxkcy9yb2JoZXJyaW5nL2R0LXJldmlldy1jaS9saW51eC9Eb2N1
+bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVndWxhdG9yL254cCxwZjUzMDAueWFtbDog
+JGlkOiBDYW5ub3QgZGV0ZXJtaW5lIGJhc2UgcGF0aCBmcm9tICRpZCwgcmVsYXRpdmUgcGF0aC9m
+aWxlbmFtZSBkb2Vzbid0IG1hdGNoIGFjdHVhbCBwYXRoIG9yIGZpbGVuYW1lDQo+ICAJICRpZDog
+aHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvcmVndWxhdG9yL254cCxwZjUzMHgtcmVndWxh
+dG9yLnlhbWwNCj4gIAlmaWxlOiAvYnVpbGRzL3JvYmhlcnJpbmcvZHQtcmV2aWV3LWNpL2xpbnV4
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbnhwLHBmNTMwMC55
+YW1sDQo+IC9idWlsZHMvcm9iaGVycmluZy9kdC1yZXZpZXctY2kvbGludXgvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9ueHAscGY1MzAwLmV4YW1wbGUuZHRiOiBy
+ZWd1bGF0b3JAMjggKG54cCxwZjUzMDIpOiAncmVndWxhdG9yLWFsd2F5cy1vbicsICdyZWd1bGF0
+b3ItYm9vdC1vbicsICdyZWd1bGF0b3ItbWF4LW1pY3Jvdm9sdCcsICdyZWd1bGF0b3ItbWluLW1p
+Y3Jvdm9sdCcgZG8gbm90IG1hdGNoIGFueSBvZiB0aGUgcmVnZXhlczogJ15waW5jdHJsLVswLTld
+KyQnDQo+IAlmcm9tIHNjaGVtYSAkaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3Jl
+Z3VsYXRvci9ueHAscGY1MzB4LXJlZ3VsYXRvci55YW1sIw0KPiAvYnVpbGRzL3JvYmhlcnJpbmcv
+ZHQtcmV2aWV3LWNpL2xpbnV4L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1
+bGF0b3IvbnhwLHBmNTMwMC5leGFtcGxlLmR0YjogcmVndWxhdG9yQDI4IChueHAscGY1MzAyKTog
+J3JlZ3VsYXRvcnMnIGlzIGEgcmVxdWlyZWQgcHJvcGVydHkNCj4gCWZyb20gc2NoZW1hICRpZDog
+aHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvcmVndWxhdG9yL254cCxwZjUzMHgtcmVndWxh
+dG9yLnlhbWwjDQo+IA0KPiBkb2MgcmVmZXJlbmNlIGVycm9ycyAobWFrZSByZWZjaGVja2RvY3Mp
+Og0KPiBXYXJuaW5nOiBNQUlOVEFJTkVSUyByZWZlcmVuY2VzIGEgZmlsZSB0aGF0IGRvZXNuJ3Qg
+ZXhpc3Q6IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbnhwLHBm
+NTMweC1yZWd1bGF0b3IueWFtbA0KPiBNQUlOVEFJTkVSUzogRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL3JlZ3VsYXRvci9ueHAscGY1MzB4LXJlZ3VsYXRvci55YW1sDQo+IA0KPiBT
+ZWUgaHR0cHM6Ly9wYXRjaHdvcmsub3psYWJzLm9yZy9wcm9qZWN0L2RldmljZXRyZWUtYmluZGlu
+Z3MvcGF0Y2gvMjAyNTA5MDItcGY1MzB4LXYzLTItNDI0MmU3Njg3NzYxQGNhcm5lZ2llcm9ib3Rp
+Y3MuY29tDQo+IA0KPiBUaGUgYmFzZSBmb3IgdGhlIHNlcmllcyBpcyBnZW5lcmFsbHkgdGhlIGxh
+dGVzdCByYzEuIEEgZGlmZmVyZW50IGRlcGVuZGVuY3kNCj4gc2hvdWxkIGJlIG5vdGVkIGluICp0
+aGlzKiBwYXRjaC4NCj4gDQo+IElmIHlvdSBhbHJlYWR5IHJhbiAnbWFrZSBkdF9iaW5kaW5nX2No
+ZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUNCj4gZXJyb3IocyksIHRoZW4gbWFrZSBzdXJl
+ICd5YW1sbGludCcgaXMgaW5zdGFsbGVkIGFuZCBkdC1zY2hlbWEgaXMgdXAgdG8NCj4gZGF0ZToN
+Cj4gDQo+IHBpcDMgaW5zdGFsbCBkdHNjaGVtYSAtLXVwZ3JhZGUNCj4gDQo+IFBsZWFzZSBjaGVj
+ayBhbmQgcmUtc3VibWl0IGFmdGVyIHJ1bm5pbmcgdGhlIGFib3ZlIGNvbW1hbmQgeW91cnNlbGYu
+IE5vdGUNCj4gdGhhdCBEVF9TQ0hFTUFfRklMRVMgY2FuIGJlIHNldCB0byB5b3VyIHNjaGVtYSBm
+aWxlIHRvIHNwZWVkIHVwIGNoZWNraW5nDQo+IHlvdXIgc2NoZW1hLiBIb3dldmVyLCBpdCBtdXN0
+IGJlIHVuc2V0IHRvIHRlc3QgYWxsIGV4YW1wbGVzIHdpdGggeW91ciBzY2hlbWEuDQo+IA0KPiAN
+Cg0K
 
