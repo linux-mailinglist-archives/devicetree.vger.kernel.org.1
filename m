@@ -1,133 +1,242 @@
-Return-Path: <devicetree+bounces-212648-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212649-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80689B4364D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52ACBB43657
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:57:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 39F4648444F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:52:33 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EA721165F92
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:57:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D2152D0614;
-	Thu,  4 Sep 2025 08:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 006862D061E;
+	Thu,  4 Sep 2025 08:57:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JSp2pW1X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JZxGE2UB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A905C24167F
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 08:52:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D630D24167F;
+	Thu,  4 Sep 2025 08:57:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756975952; cv=none; b=bjhbnekTajB1pWVuCBylNWuzXGUut2gXORuZgGcqbDoXjadLwuMN7FRuf9ClLe7PMYfA373bWq3YdYKL0UUomYEauv5hvuvyCxKQVFyj7WxiG6ujYwW4YzUMW8sJE91upTnOTMhI3yvqkO9afpgGizwfijsFu72a4fsc2geLwe8=
+	t=1756976259; cv=none; b=hB0ry7I2zscdWWmEM8vixLlEHDicB+tYxm05eCDcu2f2Mz/RRGR4PuMktgS7sqjt+sqHgp5mCvtKj3+gOVVMU7t7J2VP5PfzrtFFTnuzjKS0R1KCLXgQ6kNUnzk+QyGuH+KYW/ByHuazjUjcbxNT408yLHqI9DhMF+QdqLu6xCs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756975952; c=relaxed/simple;
-	bh=qjZa4YKZFgevyucA5IS3M7gwJDXEq9cxnfkjLJMJsNw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qio3B1lJipOZVKrpRcmSiI/Zl+u4DkdeD1vSYjZu7Pyz6y/uv94uQb9m4dryk05/tLJ9HcU4+YFsVWAGDp57CJXzUGWvahg4w8fE9nRyGl0Jd6aj0x+voP2RqI90B/2+ftl2Uhx1W1HJ6nmxfho+pIy4+LgiSR20hjq1BymLupY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JSp2pW1X; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45cb659e858so6129895e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 01:52:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756975949; x=1757580749; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=7gK6n/g/HuSb43cbH0cdIC2KH3XWzF+uMZuIHFj3Zpo=;
-        b=JSp2pW1XWgx5EWNvIZ9CENaCNQS8HjxNimipmNAdi5cRHXsC4qw1FTX9S5XoK36wtQ
-         9wxxRe04oFWsaazBDrCg/LtQr4q04+OFmGJBWZzwvZCc1qOsLxl7CBPJkvV3xSxoQOc7
-         zdWKOlan3lXDekPXeyRJ/R7ryQBPz5ORHIx4ilryzkwIXZqSGbV4f/EqFz51yZmhbPQb
-         yqK9Jho5cch7HNH3MMP0DfudbbtxxlJ7IGjSZ0mNzH6fCaJhTMDvYh5eBui+C/F0yuLn
-         CEbOZfHK6mv4lXTQJyDE/ljrvL1LuQtzQ8rsMJAHpKB4r8qALJaWUKUgsI/cy31lVmOE
-         mzeQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756975949; x=1757580749;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7gK6n/g/HuSb43cbH0cdIC2KH3XWzF+uMZuIHFj3Zpo=;
-        b=XhUwLkYoSDmrTdsVPzPYm914TzbDdljYhU10+TF9g/Oz7IJlmAMyf8ubHrTYBV+fPF
-         dg/YsiGATq0zO8yp2MPw+1tvA3nwiV1vzVj24vA/ZFMcjT9HMaDFU2vMvxJetAAopJXW
-         rEvsGH7VDIvNWJGPRgqBT084i1RCkteSd+Fjymwiz3aB+s6EGz6WpYwWhISnqI3AM5rA
-         LODAkHQ4GvxrN3lcavf7JkqGMKos8LJ0M/1eI2xJmd2PMfq5GEsPDNG0MK6pEfv3u1IF
-         EgAk0G9cnTW4Wa5jS9DYUikJNeKo+gf+rCo0O2YWvuG6BcwAthiDek9l9fJ8tEJlokRX
-         in4w==
-X-Forwarded-Encrypted: i=1; AJvYcCVdkvloZvsiRSGOxk9fNDTVKZBfuCHXpL/DUc296HAcRiHczj+ryeVMkwLrldqLBKyLv+7Go5jFn7r0@vger.kernel.org
-X-Gm-Message-State: AOJu0YySfZDwMtbNDTbO76oueLZbNNqYp8gOTM5Snz4Aj0aM14CgIwkL
-	GYXLYoixrFKwJi3Cht4TwAgGwwD5odnwSXHaWSI7lWvDeVbQhZMxICeAuWrUKOkxs6g=
-X-Gm-Gg: ASbGncsCasqf1eYSOKz5VrOtmdf51+ZWu3AkwgPv0fo5MMQlofS8VLdDH4XNZnsy/3E
-	K79YvVxD5zMAVKmc52zTSbpFU5eZhefjGrSwTAOhLSpnCV0gZrLQRfurjhVOeXwoE5AozCFXSyu
-	zbmpYeBl1niXsMTcG155RgdXDU7QJO5xdsc8noL6IcbABKiO80HXpoJbWr7fmNTr+SYB1xRbpBL
-	rG1icztLaugKvwNyU3G8LTVjY5PlB6jZpRR0mOKdnQgWpGlhq53FkYCvaPCvdkKlxN2+mCfeES0
-	LzDinIywFpH9qIw6u2TLKK8RlaE43p1tZrM1IO31j8EuL7GCYEZqIpGo2V73PQjacpmawz0lTpf
-	aA0Jopjd5ukgNDmxS3Sa2BxtO3Ju5uMS6
-X-Google-Smtp-Source: AGHT+IHtO9lhAj+5b+dFwSvHFWLll5r95zkvUmodvWJ+Fdu92nqESPLKzmEOTmjK13cRmo2Ta3LMHg==
-X-Received: by 2002:a05:600c:5253:b0:45d:98be:ee91 with SMTP id 5b1f17b1804b1-45d98bef030mr24615585e9.9.1756975949013;
-        Thu, 04 Sep 2025 01:52:29 -0700 (PDT)
-Received: from linaro.org ([86.121.170.194])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d7ac825b88sm13968312f8f.7.2025.09.04.01.52.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 01:52:28 -0700 (PDT)
-Date: Thu, 4 Sep 2025 11:52:26 +0300
-From: Abel Vesa <abel.vesa@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
-	Rajendra Nayak <quic_rjendra@quicinc.com>, Johan Hovold <johan@kernel.org>, 
-	Taniya Das <quic_tdas@quicinc.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: Add missing TCSR refclk to the
- DP PHYs
-Message-ID: <qlqsefvnibw4esm5wz7khmyfdnszn5veinfb3k2w67f5v73kry@rzclmu57ybdh>
-References: <20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org>
- <20250903-phy-qcom-edp-add-missing-refclk-v2-3-d88c1b0cdc1b@linaro.org>
- <34d9e8eb-e0f4-47e9-a731-fe50e932fea1@oss.qualcomm.com>
+	s=arc-20240116; t=1756976259; c=relaxed/simple;
+	bh=ef0an2s0RMq35BHmE3vLeCCXeXHzfb8w06p6vIy8qfs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=CGAoP9PAjvzsdbrf9x/z9iroN9NL9iGO6Ehk46E+bBTf3rkyn5dWxIM46IhdLkzMAijYyUAWiI0TnMCTParsM6JSNlsJyU67b2kepnhTgGCHQ1ZYJ96k/kE1rRiJMuQ6zObrwmCn+TSmtEfOj8amAN1Bz/x/frqisVUjDqN0/C0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JZxGE2UB; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5848vKau3472912;
+	Thu, 4 Sep 2025 03:57:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756976240;
+	bh=uF4m/pRRU4rgRt7tXnCtpn8VYgPl9axTqJo4BB655os=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=JZxGE2UBN40dWWYuDmfX2FMeRszsL4a7bvGt7TEhMXmCCHwYjN8WkLUZC0Nl8do7C
+	 vkSvHNg5bkVnCHd/DMKtwrMrLFq3xXWEnWD+Emu44QX7Cro4DUhm7eNrSVVNFg8K3m
+	 GOzORqTCUFmXIrpiXg1HAODHPx4WgDrzpblcQdt0=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5848vKSn749886
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 4 Sep 2025 03:57:20 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
+ Sep 2025 03:57:20 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 4 Sep 2025 03:57:20 -0500
+Received: from [172.24.20.139] (lt5cd2489kgj.dhcp.ti.com [172.24.20.139])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5848vFWj3006227;
+	Thu, 4 Sep 2025 03:57:15 -0500
+Message-ID: <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
+Date: Thu, 4 Sep 2025 14:27:14 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <34d9e8eb-e0f4-47e9-a731-fe50e932fea1@oss.qualcomm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining
+ macros
+To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <vishalm@ti.com>, <sebin.francis@ti.com>, <u-kumar1@ti.com>
+References: <20250902071917.1616729-1-a-kaur@ti.com>
+ <20250902071917.1616729-4-a-kaur@ti.com>
+Content-Language: en-US
+From: "Kumar, Udit" <u-kumar1@ti.com>
+In-Reply-To: <20250902071917.1616729-4-a-kaur@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 25-09-04 10:40:36, Konrad Dybcio wrote:
-> On 9/3/25 2:37 PM, Abel Vesa wrote:
-> > The DP PHYs on X1E80100 need the refclk which is provided
-> > by the TCSR CC. So add it to the PHYs.
-> > 
-> > Cc: stable@vger.kernel.org # v6.9
-> 
-> You want to backport this to 6.9, but you also want to backport
-> the driver patch to 6.10, "meh"
-> 
-> I'm not sure it makes sense to backport functionally, as this would
-> only exhibit issues if:
-> 
-> a) the UEFI did no work to enable the refclk
-> or:
-> b) unused cleanup would happen
-> 
-> but the board would not survive booting with b) in v6.9, at least
-> it wouldn't have display  - see Commit b60521eff227 ("clk: qcom:
-> gcc-x1e80100: Unregister GCC_GPU_CFG_AHB_CLK/GCC_DISP_XO_CLK")
-> 
-> and a) is not something we'd hit on any of the upstream-supported
-> targets
+Hello Akashdeep,
 
-You are correct.
+On 9/2/2025 12:49 PM, Akashdeep Kaur wrote:
+> Add the drive stregth, schmitt trigger enable macros to pinctrl file.
+> Add the missing macros for DeepSleep configuration control referenced
+> from "Table 14-6172. Description Of The Pad Configuration Register Bits"
+> in AM625 TRM[0].
+> Add some DeepSleep macros to provide combinations that can be used
+> directly in device tree files example PIN_DS_OUTPUT_LOW that
+> configures pin to be output and also sets its value to 0.
+>
+> [0] https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
+>
+> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-pinctrl.h | 55 +++++++++++++++++++++++++++--
+>   1 file changed, 52 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> index c0f09be8d3f9..39aad59075d1 100644
+> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
+> @@ -3,15 +3,20 @@
+>    * This header provides constants for pinctrl bindings for TI's K3 SoC
+>    * family.
+>    *
+> - * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
+> + * Copyright (C) 2018-2025 Texas Instruments Incorporated - https://www.ti.com/
+>    */
+>   #ifndef DTS_ARM64_TI_K3_PINCTRL_H
+>   #define DTS_ARM64_TI_K3_PINCTRL_H
+>   
+> +#define WKUP_LVL_EN_SHIFT       (7)
+> +#define WKUP_LVL_POL_SHIFT      (8)
+>   #define ST_EN_SHIFT		(14)
+>   #define PULLUDEN_SHIFT		(16)
+>   #define PULLTYPESEL_SHIFT	(17)
+>   #define RXACTIVE_SHIFT		(18)
+> +#define DRV_STR_SHIFT           (19)
 
-However, HW-wise, this clock is there and is needed, regardless
-if UEFI leaves it enabled or not. So it makes sense to go all the way
-back to 6.9 and fix it.
+referring to above TRM mentioned in commit message
 
+Bit 20-19 are for DRV_STR, and description says
+
+0 - Default
+1 - Reserved
+2 - Reserved
+3 - Reserved
+
+Not sure, is there some additional document to be referred for 
+PIN_DRIVE_STRENGTH
+
+
+> +#define DS_ISO_OVERRIDE_SHIFT   (22)
+> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
+
+Please follow same convention as for rest of bit fields
+
+DS_ISO_OVERRIDE_SHIFT  to ISO_OVR_SHIFT and
+DS_ISO_BYPASS_EN_SHIFT to ISO_BYP_SHIFT
+
+
+
+>   #define DEBOUNCE_SHIFT		(11)
+>   #define FORCE_DS_EN_SHIFT	(15)
+>   #define DS_EN_SHIFT		(24)
+> @@ -19,6 +24,7 @@
+>   #define DS_OUT_VAL_SHIFT	(26)
+>   #define DS_PULLUD_EN_SHIFT	(27)
+>   #define DS_PULLTYPE_SEL_SHIFT	(28)
+> +#define WKUP_EN_SHIFT           (29)
+>   
+>   /* Schmitt trigger configuration */
+>   #define ST_DISABLE		(0 << ST_EN_SHIFT)
+> @@ -33,6 +39,26 @@
+>   #define INPUT_EN		(1 << RXACTIVE_SHIFT)
+>   #define INPUT_DISABLE		(0 << RXACTIVE_SHIFT)
+>   
+> +#define DS_PULL_DISABLE         (1 << DS_PULLUD_EN_SHIFT)
+> +#define DS_PULL_ENABLE          (0 << DS_PULLUD_EN_SHIFT)
+
+what is purpose of shifting zero,
+
+
+> +
+> +#define DS_PULL_UP              (1 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
+> +#define DS_PULL_DOWN            (0 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
+> +
+> +#define DS_INPUT_EN             (1 << DS_OUT_DIS_SHIFT)
+> +#define DS_INPUT_DISABLE        (0 << DS_OUT_DIS_SHIFT)
+> +
+> +#define DS_OUT_VALUE_ZERO       (0 << DS_OUT_VAL_SHIFT)
+> +#define DS_OUT_VALUE_ONE        (1 << DS_OUT_VAL_SHIFT)
+> +
+> +#define WKUP_ENABLE             (1 << WKUP_EN_SHIFT)
+> +#define WKUP_ON_LEVEL           (1 << WKUP_LVL_EN_SHIFT)
+> +#define WKUP_ON_EDGE            (0 << WKUP_LVL_EN_SHIFT)
+> +#define WKUP_LEVEL_LOW          (0 << WKUP_LVL_POL_SHIFT)
+> +#define WKUP_LEVEL_HIGH         (1 << WKUP_LVL_POL_SHIFT)
+> +
+> +#define WKUP_DISABLE            (0 << WKUP_EN_SHIFT)
+> +
+>   /* Only these macros are expected be used directly in device tree files */
+>   #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
+>   #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
+> @@ -53,18 +79,41 @@
+>   #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
+>   #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
+>   
+> +#define PIN_DRIVE_STRENGTH_NOMINAL      (0 << DRV_STR_SHIFT)
+> +#define PIN_DRIVE_STRENGTH_SLOW         (1 << DRV_STR_SHIFT)
+> +#define PIN_DRIVE_STRENGTH_FAST         (2 << DRV_STR_SHIFT)
+> +
+> +#define PIN_SCHMITT_TRIGGER_DISABLE	(0 << ST_EN_SHIFT)
+> +#define PIN_SCHMITT_TRIGGER_ENABLE	(1 << ST_EN_SHIFT)
+> +
+>   #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
+>   #define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
+>   #define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
+>   #define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
+> -#define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
+> -#define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
+> +#define PIN_DS_OUT_ENABLE		DS_INPUT_DISABLE
+> +#define PIN_DS_OUT_DISABLE		DS_INPUT_EN
+>   #define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
+>   #define PIN_DS_OUT_VALUE_ONE		(1 << DS_OUT_VAL_SHIFT)
+>   #define PIN_DS_PULLUD_ENABLE		(0 << DS_PULLUD_EN_SHIFT)
+>   #define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
+>   #define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
+>   #define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
+> +#define PIN_DS_ISO_BYPASS               (1 << DS_ISO_BYPASS_EN_SHIFT)
+> +#define PIN_DS_ISO_BYPASS_DISABLE       (0 << DS_ISO_BYPASS_EN_SHIFT)
+> +
+> +#define DS_STATE_VAL                    (1 << DS_EN_SHIFT)
+> +#define ACTIVE_STATE_VAL                (0 << DS_EN_SHIFT)
+> +
+
+Please do not mix PIN_x #define with other internal defines
+
+
+> +#define PIN_DS_OUTPUT_LOW               (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
+> +#define PIN_DS_OUTPUT_HIGH              (DS_STATE_VAL | DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
+> +#define PIN_DS_INPUT                    (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DISABLE)
+> +#define PIN_DS_INPUT_PULLUP             (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_UP)
+> +#define PIN_DS_INPUT_PULLDOWN           (DS_STATE_VAL | DS_INPUT_EN | DS_PULL_DOWN)
+> +
+> +#define PIN_WKUP_EN_EDGE                (WKUP_ENABLE | WKUP_ON_EDGE)
+> +#define PIN_WKUP_EN_LEVEL_LOW           (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_LOW)
+> +#define PIN_WKUP_EN_LEVEL_HIGH          (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_HIGH)
+> +#define PIN_WKUP_EN                     WKUP_EN_EDGE
+
+what is difference between PIN_WKUP_EN_EDGE and PIN_WKUP_EN
+
+
+>   
+>   /* Default mux configuration for gpio-ranges to use with pinctrl */
+>   #define PIN_GPIO_RANGE_IOPAD	(PIN_INPUT | 7)
 
