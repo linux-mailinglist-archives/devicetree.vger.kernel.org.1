@@ -1,197 +1,174 @@
-Return-Path: <devicetree+bounces-212767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0BB1B43AF3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:04:17 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48EFEB43AFE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:05:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 572EF3A93F0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:04:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 255BE1C276E3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A2726A0C7;
-	Thu,  4 Sep 2025 12:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4A52BE7D2;
+	Thu,  4 Sep 2025 12:05:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BcymKmc0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LbWttJF1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE582CCC0;
-	Thu,  4 Sep 2025 12:04:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC3527A469;
+	Thu,  4 Sep 2025 12:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756987453; cv=none; b=e0+TiU34xCAIs6VQcu0IpU5SnO37mijYOa42JQfR3SWkyzfSr18lfXXISCT8U55HjywEMhEGoM0akvPWrH5NXXRsL/uWe/AoBnD+Zen4IXutLqDAc4SaOTyi1paXH9DC7+uJhc2iPKRJDF/lPjOSfjPWnhCOfZPbVFsceoB/CdE=
+	t=1756987513; cv=none; b=CvN0k7vHW9zkYLpxOMd6sMj3I6dy5O+CHo1JrGLyWJMtWKyhy2CUTfaHfE7GOHZUCmEtYW9Q/BXvXfoCiJDY7mTC4anr7gd6OkGGpqgSRJTUaCSxLSmG80+4urow2iCVTyrAmp350Z40avUz863GHs0XSWYcQPoIJoh6HM5xsks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756987453; c=relaxed/simple;
-	bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n1W3Jd02kvfJB/ikX0BTMH8a6jhE/Uc93GAS2JIk6U48tXBHXGp+uBRvOYWRfvFOfdpMwDLsIBicJM/+I7oiUGz/LYfBAmzFpzXpgOq/qR/kX6z+d80/Gr7gHJ9LqNiHG793fomAYpQCIuSKmUns3SVOrfr3DTTpZWIGnjskGwI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BcymKmc0; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45b79ec2fbeso6699075e9.3;
-        Thu, 04 Sep 2025 05:04:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756987450; x=1757592250; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
-        b=BcymKmc08I09F2h3/HkPTc2tIywVZnvEDh9WzzBwzATFEoHVIUEOkTAHzEPoww6yRL
-         EBDX54eSWT0crxdjH/iaTbeT83gTmn2t4MJHuF6l4g9l59kwhpk2T0VMktRk7VtEVer2
-         es/Xgh0Fq2Fq9Jnjs/Ka0ke1XDw5KqdRT1IqI0Xdz7EwnROr4Fr68+UTPtD+lhkdRG5T
-         hDj6dXa3urVQs1H3+KCCBIBnX/UcatSa/DGydV73eIVbvaxBTuKqr+rNlFChgKD1/S8d
-         EDRYabkxUJmkpOUWp4UgxqbzEIEUiVOcok0ElIqxvixekJLi4Pul5p090V/c2LvUB+xm
-         OoRw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756987450; x=1757592250;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
-        b=P5EF0ewSOhagZx4O6oLTmAnPREuN9oPa0YwbW7qE5naYkXZf1z0tSxXkMEshuiUhNn
-         z8mx50IrxUomWNnU3C/aUrIT+KMFWlrD9AnX4FbUPd4GXJsBiKJW6Dkgb03majkE9aEI
-         MOAv4qi2MwWVCVNy7ujaRjisPOXZA7yTMbhWIRgOU9LTQp1lvjJ2Hfis7xq92d+fre9a
-         s6dWXWt4pTu6xJXIwBlnGtW977Ps8XAZKqdMFl16rjn7uU7z0G8zWsDAidKC48gXdw1t
-         E2hraxuFfCFvxxuUp4phCJVxhfu3F0DVfRI6NooH5J726sq1MxmJZEiqbuv08pJpxqcN
-         CZwg==
-X-Forwarded-Encrypted: i=1; AJvYcCU5t0UdB1ZNfDPokDEjeybrI3pcrtR/OZIc7JMMa7a9tKl6O28pGfmdT6oG69lm7vmxQaHBtfg0a/7sRsc=@vger.kernel.org, AJvYcCUCs06g7bPtahI+5ScZQ0qkuIKdemMsFjuW3lxR7zoEZXmGbV9AbvzSItNzUl8Du/4sD57s6PhHTFBJ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwfKYYv5VNXpHDMK4YzJ0QboHp2DHlTckRKxxMR94zx14di25gf
-	Zf430XQKgJKwfwPzNBQKBXNbfClDc7ejxx5h+Fg0p0trNpqI6ml7/nhP
-X-Gm-Gg: ASbGnctE0Y1f5FthWceiW93wDD3j//6Y/mxjQJjRsYheRJ+GkN4VNTyaXhjfNkEo/fF
-	P/nsUf3HFqNAt+37Yx9eQ0LGCLdbGgihgo3Ln/JwoBQA810WVQqDvn8KBdYEmkuJ11/T+ql/z2n
-	KqRBiIKUhTY95VKEVh/SRI1L7O/V4NmW1Thjxoq6O0awKPHrud6n65FQFjC9o4Y+Knfq0kInz49
-	QyBwP0OlpsxptIc9Ft/I20XqTMiz4lv/YDr+Xepf0WVtr2mk2zff4BVuc2Jst1jX2EfyALcwXbC
-	qv3/X6C8qwZoi3ATuGCu+JljbNu0m64oHva5ES3Zv9BgyQfrmI2199i42YNSbdKbrcfi06REwDI
-	Mahlla3HteCFIBINir8IEghxp4yyvYQbkfQp8JB02xF+EgAkSsiPH4WvCag83t2/4k6L8tfg56Y
-	WgqL9BN1BYu8PIs+Ybgzigumk5W4g2Ig==
-X-Google-Smtp-Source: AGHT+IGVHgAQ3rYyWGpANjjI/b4lpqEcMAsgs+SEt1MbrHmOvH15O1otXHYn+//vwM4FBU00m/l7Ow==
-X-Received: by 2002:a05:600c:1c95:b0:45b:8abf:4583 with SMTP id 5b1f17b1804b1-45b8abf46edmr100558005e9.19.1756987449310;
-        Thu, 04 Sep 2025 05:04:09 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45cb5693921sm79929805e9.0.2025.09.04.05.04.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 05:04:07 -0700 (PDT)
-Date: Thu, 4 Sep 2025 14:04:05 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: John Stultz <jstultz@google.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-mm@kvack.org
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
-Message-ID: <sb76bsg5d45r5qgq4zy3svbh42ydkk4vrh6a7vh73eibvqbfjd@3r4exdhogde6>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-5-thierry.reding@gmail.com>
- <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
- <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
- <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
+	s=arc-20240116; t=1756987513; c=relaxed/simple;
+	bh=13BOPU+7OAPKTnYNAO+wiCO8MYkbV3q62X00Giano/A=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=EWcweWt+T+tqaSWHD1mg1B464RAJKAJ2GXf1aW+s1Mt26ClJpYDOqMGGnKd+lt9uWUzNVTyCyb2Ahds+S9b4vuEMb+KyQyf6dVUwyX4GcTwAqOeICVnUcyAzAxaCOmqrzZaE7Iy08B/6q8d+HzNa3QrSyVyliR/oqoDJNSF/2ms=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LbWttJF1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7156EC4CEF0;
+	Thu,  4 Sep 2025 12:05:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756987512;
+	bh=13BOPU+7OAPKTnYNAO+wiCO8MYkbV3q62X00Giano/A=;
+	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
+	b=LbWttJF1sUXLDHN5KJorsUknmbIr4HkYcANOJ3lsoM+NcL2qpe+atXDS8QmjnL+Q4
+	 LPvM+Yj2xepCaHa58ARltxT0y2IBh6Gpo8I2uINd0qotpV95uaZ96yfOHRGCjeMXgS
+	 +Lb5A01VTPwewbLWFkI31zZwH5mpr3H1ctxV5emM/W+d/+MRrewdypklfuiBnrkE6P
+	 qP7rQYvrVHcC3rquKIDee6mJSbAkf/ulBfFnNKOU0SzSxnes4TbiwapAvA3Jbfd1w6
+	 yHYUEt+y/lBlGWVBAN/tlHTxF6CrQIAAJhh6M5fuQpG6UsD1wHl4JTKB2VsqovenX+
+	 lYjJ/Z8TWokDw==
+Message-ID: <e89de497-9c6e-4a4c-8f66-019d349c171b@kernel.org>
+Date: Thu, 4 Sep 2025 14:05:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="n7xt7eiet7j4nzny"
-Content-Disposition: inline
-In-Reply-To: <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer
+ documentation
+From: Hans de Goede <hansg@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: robh@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, lee@kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@kernel.org
+References: <20250902182114.GA965402-robh@kernel.org>
+ <20250903235615.134520-1-alex@vinarskis.com>
+ <20250904-brave-zippy-quoll-fcb054@kuoka>
+ <daf442a6-b4d6-4213-8ec0-10397d682cc4@kernel.org>
+ <fdc68c54-a499-4ba6-8788-70c7ea515f2d@kernel.org>
+ <691f72aa-6d3e-47a1-9efe-a5f7a61ecb72@kernel.org>
+ <9c536e24-ab5a-454a-93af-6d4c51d4e1ce@kernel.org>
+ <ece22424-ea6f-4d6e-8964-3418853dba2f@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <ece22424-ea6f-4d6e-8964-3418853dba2f@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Krzysztof,
+
+On 4-Sep-25 1:47 PM, Hans de Goede wrote:
+> Hi Krzysztof,
+> 
+> On 4-Sep-25 12:47 PM, Krzysztof Kozlowski wrote:
+>> On 04/09/2025 12:29, Hans de Goede wrote:
+>>> Hi Krzysztof,
+>>>
+>>> On 4-Sep-25 11:45 AM, Krzysztof Kozlowski wrote:
+>>>> On 04/09/2025 09:26, Hans de Goede wrote:
+>>>>>>>>> +maintainers:
+>>>>>>>>> +  - Aleksandrs Vinarskis <alex@vinarskis.com>
+>>>>>>>>> +
+>>>>>>>>> +description:
+>>>>>>>>> +  Some LED defined in DT are required by other DT consumers, for example
+>>>>>>>>> +  v4l2 subnode may require privacy or flash LED.
+>>>>>>>>> +
+>>>>>>>>> +  Document LED properties that its consumers may define.
+>>>>>>>>
+>>>>>>>> We already have the trigger-source binding for "attaching" LEDs to 
+>>>>>>>> devices. Why does that not work here?
+>>>>>>>
+>>>>>>> I have not actually considered this, as the existing privacy-led solution
+>>>>>>> from the original series is not trigger based. At least one of the reasons
+>>>>>>> for that is that trigger source can be rather easily altered from user
+>>>>>>> space, which would've been bad for this use case. If v4l2 acquires control
+>>>>>>> over the LED it actually removes triggers and disables sysfs on that LED.
+>>>>>>
+>>>>>> So does that mean that v4l2 solves the problem of "trigger source can be
+>>>>>> rather easily altered from user space"?
+>>>>>
+>>>>> Yes, currently the v4l2-core already does:
+>>>>
+>>>> Thanks, I understand that it solves the problem described in the patch,
+>>>> so the patch can be dropped.
+>>>
+>>> I'm a bit confused now, do you mean that this dt-bindings patch can
+>>> be dropped ?
+>>
+>> Yes.
+>>
+>> Alex's explanation to Rob felt confusing, so I asked for clarification.
+>> You clarfiied that that v4l2 solves the problem, therefore there is no
+>> problem to be solved.
+>>
+>> If there is no problem to be solved, this patch is not needed.
+>>
+>> If this patch is needed, just describe the problem accurately.
+>>
+>>>
+>>> The existing v4l2-core code solves getting the privacy-LED on ACPI/x86_64,
+>>> on DT there is no official bindings-docs for directly getting a LED with
+>>
+>> There are and Rob pointed to them. If Rob's answer is not enough, make
+>> it explicit.
+>>
+>> Really, there are here some long explanations which do not really
+>> explain this in simple terms. Simple term is: "existing property foo
+>> does not work because <here goes the reason>".
+> 
+> The existing trigger-source binding for "attaching" LEDs to 
+> devices does not work because:
+> 
+> 1. It depends on the Linux specific LED trigger mechanism where as
+>    DT should describe hw in an OS agnostic manner
+> 
+> 2. It puts the world upside down by giving possible event-sources 
+>    for the (again) Linux specific trigger rather then allowing
+>    specifying e.g. specific privacy and flash LEDs as part
+>    of a camera dts node. IOW it makes the LED DT note point to
+>    the camera, while the LED is a part of the camera-module.
+>    not the other way around. So it does not properly allow
+>    describing the composition of the camera.
+> 
+>    Note that Rob actually put "" around attaching because this
+>    property really is not proper attaching / composition as
+>    we would normally do in dt.
+> 
+> IMHO 1. alone (this being Linux specific) warrants a new better
+> binding for this.
+
+And:
+
+3. There already are bindings using a leds = phandle-array property in:
+Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+
+So we already have this as another and IMHO much clenaer way to tie
+a LED to a device.
+
+The suggest generic leds = phandle-array property description added
+in this new binding just adds a leds-names to give names to the
+various indexes in the array which is a very common design-pattern
+in dt-bindings.
+
+Regards,
+
+Hans
 
 
---n7xt7eiet7j4nzny
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
-MIME-Version: 1.0
-
-On Wed, Sep 03, 2025 at 11:48:38AM -0700, John Stultz wrote:
-> On Wed, Sep 3, 2025 at 8:38=E2=80=AFAM Thierry Reding <thierry.reding@gma=
-il.com> wrote:
-> >
-> > On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
-> > > On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding=
-@gmail.com> wrote:
-> > > >
-> > > > From: Thierry Reding <treding@nvidia.com>
-> > > >
-> > > > Add a callback to struct dma_heap_ops that heap providers can imple=
-ment
-> > > > to show information about the state of the heap in debugfs. A top-l=
-evel
-> > > > directory named "dma_heap" is created in debugfs and individual fil=
-es
-> > > > will be named after the heaps.
-> > > >
-> > >
-> > > I know its debugfs, but this feels a little loosey-goosey as an uAPI.
-> >
-> > Well, the whole point of debugfs is that it's not really an ABI. Nothing
-> > should ever rely on the presence of these files.
-> >
-> > > Is there any expected format for the show function?
-> > >
-> > > What would other dmabuf heaps ideally export via this interface?
-> >
-> > I've thought about this a bit and I'm not sure it makes sense to
-> > standardize on this. I think on one hand having a list of buffers
-> > exported by the dma-buf heap is probably the lowest common denominator,
-> > but then there might be a bunch of other things that are very heap-
-> > specific that some heap might want to export.
-> >
-> > > Is there some consistent dma_heap-ish concept for it to justify it
-> > > being under a dma_heap directory, and not just an independent debugfs
-> > > file for the driver implementing the dmabuf heap?
-> >
-> > Well, I think just the fact that it's a dma-heap would qualify its
-> > corresponding debugfs to be in a well-known location. We could of course
-> > pick some arbitrary location, but that's just a recipe for chaos because
-> > then everybody puts these whereever they want. There's really no
-> > standard place for driver-specific debugfs files to go, so putting it
-> > into some "subsystem"-specific directory seems like the better option.
->=20
-> Ok, I guess I was thinking if the files are organizationally cohesive
-> to be under the dma-heap directory, they ought to have some
-> consistency between them.
-
-As far as I can tell there's not even enough information in a dma-heap
-to add any common debugfs snippets. As I mentioned earlier, a list of
-buffers allocated from a dma-heap is about the only generic piece of
-information that I can think of, but we don't track these buffers in a
-generic way. None of the existing heaps do so either seem to be
-interested in this either.
-
-It's also not like it's very useful information most of the time, it's
-mainly in this driver so that it can be inspected at runtime to see what
-the allocation pattern looks like at various stages and maybe help tune
-the division into chunks.
-
-Thierry
-
---n7xt7eiet7j4nzny
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi5gDMACgkQ3SOs138+
-s6Fs+g//UOYEclDiMQaLHjmLrIy415HNAOvJ45jAQXSXODXhEWUoeeT6VpX4alVY
-nX8oVWTi6ne/gxdb5ecijq0xe98suaGyb0ExszrPDOsykvikNhAMO8+hGNgfvnU4
-L/lvQqTxM8wGz/D1A7z3CyhBipu8GNIYxlF64O9ejq22NqDZGLykvHupw8SubU4G
-LQRHuwu39Yb2Hj+r8IMiSXCjWPHtelnA4HXM7hnURUkRNIKkoSp5g9UQJIlw84Y3
-U+4zSs9x9IOUr2l35QMwJEq1R168TIAj6gm1G1eSKxGDlIc5DgU4Ei4QTmki+Qhj
-hvToHncu1BTaA5YvpgcFKmgCD1jFX93fx2to90mPpWMonySn4EyL0wAqwycfUuC7
-D4mKmRF+Dj5RGmrRATN2yZ+2l+N2GgCzJ9EoNNacTl0fFy14FHVwiqn6OVlrIMVl
-+olxYn2Ta8T9EMnKrQquQtoEbFJT1mfXUfAlHFDGJocYgKrO+o1zpFzZtEGd92sZ
-hpSs5qlYH7hLQaj7P2Pb29mfloQZ9XK3YSNcttTbnFU2dyEahlPvx/VJTCCQvNeY
-g03SAA1priYhlLGKdaa19fDxICteA6dmc9Ba6ejSvKXLHejTFlLooK+hkSmufJIu
-3DdzixdgWcOsgxrw2vvHlU0U5bPvKnfbiUJUL557Iwo9vw3KKHw=
-=G6AW
------END PGP SIGNATURE-----
-
---n7xt7eiet7j4nzny--
 
