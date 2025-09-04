@@ -1,162 +1,135 @@
-Return-Path: <devicetree+bounces-212814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00A4FB43CE2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:18:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 88E15B43CF1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:21:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 789BB1C274FA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:18:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2692F7AD552
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:19:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1499A2D5412;
-	Thu,  4 Sep 2025 13:18:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C19A2FE05F;
+	Thu,  4 Sep 2025 13:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwVFousB"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GIduNvg/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D938A198851;
-	Thu,  4 Sep 2025 13:17:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3FB158DAC;
+	Thu,  4 Sep 2025 13:21:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756991880; cv=none; b=Ht7LgSIk6NbkbJlvAmngneuvEGQ323s2O9dDea7xSmkgEnY9C7WYVK39LXSaPEfOWgIZvUZNyKRkrWKlveuasNZxWGktvCSw9I8X4jdqc6CEavy/AVSsWfhjDfK7sfI0EE3nxb5IuEDX8q+g6AWwU3bZYVMyquK3po/0R1AT5Go=
+	t=1756992079; cv=none; b=V/gZJnFopJE8Jw+60wVT9HpexAWT1AhoQPgBJxFxYEAe5eI0GRjR/WJvV/tvWns4QApfizaqcmM573SRd053jlEjXIdUzDjnTt288qcU8KlRULSuD7yFdFMEgMUcx44XEcGNmwkmaVSnU/31upBEElXpMoLJVHQjbXYw50aNsHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756991880; c=relaxed/simple;
-	bh=WxaD6gphkJ2Gk/Jf0nfE5M7L6/fiMPCyPbZwunINGek=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=nL+QZsplbjgjorEO6kP1TDgbHwub8KFq4c/SsvAbDuxLsy96lpX5h7Wp/gpnBCrYRVjiDCmBawSe3suds3h/tqNGv9LCj3WxF8VBazHu81mJeM0wYTgfI1oGNmcRm/VNTCXRv3yCZNCG2pcrM9V6paE+vHY7mGlGARyyBcVccyg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwVFousB; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1CAAC4CEF0;
-	Thu,  4 Sep 2025 13:17:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756991879;
-	bh=WxaD6gphkJ2Gk/Jf0nfE5M7L6/fiMPCyPbZwunINGek=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=CwVFousBcrdbNKei8QUIwVjeqiVm/FHgN3lSpNE0OWBvxkiLb7JPZh9S3DvUrggva
-	 9IJEromdZCrdwMI3zLk6PCQfRt3OoPdsH5Kz6pLxLD7CvlKf3xEk2HlNMl/SUNSaYK
-	 NWZI73AXgi7V0x1dyxQhs2plRNOZcZvfrf85ho5166BZqN5tag0YATIj1LXkS0lIDx
-	 Bq9JvKh6pzxJHWZz8orVT/jS0TVUe0Xw0oX73quG8ZPwjJjI114f23b94q5UPP+OzS
-	 MxjXIE+aimWLVNiRSgTtm5PNPWYRoDltG+w5gx2q3nFh/ACUgJZF6BgHmJChqE/Uy8
-	 Wudd3C/BIu0pg==
-Message-ID: <29a91114-d862-452e-b7bf-1b659ad7d831@kernel.org>
-Date: Thu, 4 Sep 2025 15:17:55 +0200
+	s=arc-20240116; t=1756992079; c=relaxed/simple;
+	bh=/0B3jovSesp/hxR08tvuxjzy1mvl0Jv+lkX17ZO+zUo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GxT5D1Z6RPxxp1cmx2N51EdyuGB13fvH2/eC5A0rY416kQx4Fz7fDyjtFNfZ1vQs4jyr61OHjbx5RH7qzmHW5nHWrwGkjJD/3PjSCungxPsA+8ASSQYb8LxIpvQ49NK+wt5Uxe9s7BjZezfsTDUPuBwc4roYSr1kOgP0y7r+VDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GIduNvg/; arc=none smtp.client-ip=209.85.128.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-71d60110772so11171997b3.0;
+        Thu, 04 Sep 2025 06:21:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756992077; x=1757596877; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=UW3lWz1gWateAvfJ4OmLaSxYKXnyj9z9mVCRV3AJ32A=;
+        b=GIduNvg/Tj3AOqfhcp6fWcMKkPYbvFK1ex6+DvQjQiz/NZ4e3JPQbubFWoi3nuc9da
+         Br9fi581SrCqghUcU6scW4/JyG1qRHpFTMY4CFcl00Oe1YqtBnDHD+HnJigl516pQvdR
+         QGxHzUpcrReE+ccMCN/wD2ZvOof/rgAOFkAbKZFpHqV1wtY3fwt9msTtJoVhK8hWfknI
+         o/TbRs6IxMCb2IHpGm7hSZltuzgTGII2vLLZaWDk4bmxrql6UE8DyuVPjXqsMUungz6g
+         KrDzK6uR4K3cR1EFhqdPZD3AL40oI+5I8bONuKAz4JKHoZNQW5pYCe6dkgHT+K0nlsa6
+         vgcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756992077; x=1757596877;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UW3lWz1gWateAvfJ4OmLaSxYKXnyj9z9mVCRV3AJ32A=;
+        b=OHAfVT+Fvzx22HuQ2C2s2GQJOjf+Y737bDZus32PGgL3rPTeQclU0VsH/A02H+qoId
+         UQ3ts0g4WwUkZFsVIfIAfDPXbJh8u+J550q4PR3FrqpwMoAoPUnO3D8UR6zEJ5ts1jLG
+         026uqr4zOsTrtHEVb/pPanXwAoyHObOh6tsrDqs1I4mL4DalN/Fpk115SLENfLJAoR+8
+         mIm1IwGYnxWzwA8k0t58UZMWteSCq+Oq+ZG5y/s9KypXvaKyYDN24iAJ2qxFTR8kZ4OI
+         U3r9sepUUmsGGhj9BlstfDjqjqNsaXw7tSoVSRI9u8v88HaLjSTqeCb5N5OpiyY1GCE0
+         D78w==
+X-Forwarded-Encrypted: i=1; AJvYcCU0byhzbYajmMZLMvTSVWy23Ks5ijp8Ac9LfPHcLpMqbrNyZYmISvBRpY0aBUhPMHp/YXfnhUqpbUFp@vger.kernel.org, AJvYcCUUKBSY6IJA820geomG5RwdiE07Rgz11Gdnhu8cxEbdqK7lFzjx1SYfoQaN4J65GaWZv61eb5eZ@vger.kernel.org, AJvYcCVy1fKaDnhE3I53PkZbkvPpeC0OTnHA3dr6DDmSDVMt7GMSbD21aTZIxT/Ph9gXQ6n5FXJT1jh42W4HhR5g@vger.kernel.org
+X-Gm-Message-State: AOJu0YwxkaiMfHQA4+1yZ0iltrI+NNdZB8E6m2rdTW6qZL+z7uFvgfga
+	ATcGAwBDitlbjefJQb/kFCvXZ18pjUxblFrP7lxgnATwI5hi225TBZW/
+X-Gm-Gg: ASbGncvkmIQfWyIgDdd8QsJIjMEiM7pmcFMc8KIjCH5AHFgwacYKgaG5scAJPDH2D/I
+	dboORqRgBP5uqVcG38YOt0gZeVHHXjf0GyoTnrhWjNmN9bWJzvAibkq1HcIv3M2GEwMWWXAQRsA
+	kzR4TmGKdFV97lnsCwjrXqXEMN5kKy81grF5/ycqUW6QzBGOjWzxfl+n9mqCvRgy8pTgSxQmG7z
+	z/+kJ6RAzLi9e2C6/76kxIJJu7vYv5RNDDPvTleD5dbiTwzBLrpD+2fRxbuR/oOSKdUFbHey2df
+	I4YDfTg/TpG2GWZUjT3uhdPGcGIzb+L+AKfYwq8FaJn6iE3Si8U7/ib9OTjokVOxiQjx6V/6Mz5
+	JxHNxqVyvpUIfObZNCwMP4X3wTF+xdadCv3UHsgoEGEXdgd/lSAOU
+X-Google-Smtp-Source: AGHT+IF9+DoFzLHOQRcPIJ7cBivUYyoDwWq+J13ybXKomD3r4/KZ33bHYn/W4QL4kQIHtZodp5+7Tg==
+X-Received: by 2002:a05:690c:4c11:b0:719:4cff:16db with SMTP id 00721157ae682-722764f3cd0mr60887077b3.25.1756992076451;
+        Thu, 04 Sep 2025 06:21:16 -0700 (PDT)
+Received: from hoboy.vegasvil.org ([2600:1700:2430:6f6f:e2d5:5eff:fea5:802f])
+        by smtp.gmail.com with ESMTPSA id 00721157ae682-723a8503a46sm21340297b3.46.2025.09.04.06.21.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 06:21:15 -0700 (PDT)
+Date: Thu, 4 Sep 2025 06:21:12 -0700
+From: Richard Cochran <richardcochran@gmail.com>
+To: Wei Fang <wei.fang@nxp.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
+	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
+	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+	vadim.fedorenko@linux.dev, Frank.Li@nxp.com, shawnguo@kernel.org,
+	fushi.peng@nxp.com, devicetree@vger.kernel.org,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v6 net-next 03/17] ptp: add helpers to get the phc_index
+ by of_node or dev
+Message-ID: <aLmSSC90dWDfhGkL@hoboy.vegasvil.org>
+References: <20250827063332.1217664-1-wei.fang@nxp.com>
+ <20250827063332.1217664-4-wei.fang@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: Add binding for gunyah watchdog
-To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>,
- Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
- <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
- <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
- <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
- <099a7c48-c447-40d4-9076-570f5a5058a2@oss.qualcomm.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <099a7c48-c447-40d4-9076-570f5a5058a2@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250827063332.1217664-4-wei.fang@nxp.com>
 
-On 04/09/2025 15:07, Hrishabh Rajput wrote:
->>> +properties:
->>> +  compatible:
->>> +    allOf:
->>> +      - const: gunyah-hypervisor
->>> +      - const: simple-bus
->> What? No.
->>
->> Don't create patches with AI.
+On Wed, Aug 27, 2025 at 02:33:18PM +0800, Wei Fang wrote:
+> Some Ethernet controllers do not have an integrated PTP timer function.
+> Instead, the PTP timer is a separated device and provides PTP hardware
+> clock to the Ethernet controller to use. Therefore, the Ethernet
+> controller driver needs to obtain the PTP clock's phc_index in its
+> ethtool_ops::get_ts_info(). Currently, most drivers implement this in
+> the following ways.
 > 
-> This patch was not created with AI. Reference was taken from the patch [1].
-
-There is no such syntax like allOf in [1]. Nowhere in Linux kernel, btw,
-that's some total invention, thus my gut told me - it must be made with
-poor AI tools.
-
+> 1. The PTP device driver adds a custom API and exports it to the Ethernet
+> controller driver.
+> 2. The PTP device driver adds private data to its device structure. So
+> the private data structure needs to be exposed to the Ethernet controller
+> driver.
 > 
-> That being said, I see your point about the mistakes which were made 
-> while adding the compatible "simple-bus".
-> I apologize for the same.
+> When registering the ptp clock, ptp_clock_register() always saves the
+> ptp_clock pointer to the private data of ptp_clock::dev. Therefore, as
+> long as ptp_clock::dev is obtained, the phc_index can be obtained. So
+> the following generic APIs can be added to the ptp driver to obtain the
+> phc_index.
 > 
-> I will make sure `make dt_binding_check` passes with latest versions of 
-> dtschema and yamllint as pointed out by Rob and as should have been done 
-> with this patch as well.
+> 1. ptp_clock_index_by_dev(): Obtain the phc_index by the device pointer
+> of the PTP device.
+> 2.ptp_clock_index_by_of_node(): Obtain the phc_index by the of_node
+> pointer of the PTP device.
+> 
+> Also, we can add another API like ptp_clock_index_by_fwnode() to get the
+> phc_index by fwnode of PTP device. However, this API is not used in this
+> patch set, so it is better to add it when needed.
+> 
+> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> Signed-off-by: Wei Fang <wei.fang@nxp.com>
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
 
-No, that's not enough.
-
-You should ask for internal review. I did an extra effort, I checked
-that and:
-
-1. You did post it for internal review, BUT:
-
-2. Your internal testing system pointed out errors (schema failure) or
-failed itself,
-
-3. You did not ask your internal testing system to RETEST the patch, in
-case this was a system failure. That's your mistake. If this was true
-failure of schema, then you obviously should not send it, but
-investigate why schema fails on your patch.
-
-4. You did not receive review (at least no track of it) but decided to
-post it on mailing list. That's also your mistake, because lack of
-internal review does not mean you can post it to the mailing lists. Talk
-with your managers or colleagues about missing review, for example.
-
-Best regards,
-Krzysztof
+Acked-by: Richard Cochran <richardcochran@gmail.com>
 
