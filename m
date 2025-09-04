@@ -1,222 +1,168 @@
-Return-Path: <devicetree+bounces-213100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5AA5B44A0C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:01:18 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FF6AB44A10
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:01:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EE5D179C1B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:53:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF6F01C27835
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:02:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA9842F4A0F;
-	Thu,  4 Sep 2025 22:53:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E5872C1587;
+	Thu,  4 Sep 2025 23:01:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="NmlUE5Qr"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="cxbgcgE1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-24420.protonmail.ch (mail-24420.protonmail.ch [109.224.244.20])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D394B2F3C3E
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 22:52:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF3BD2727E5
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 23:01:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757026381; cv=none; b=O0r6ciTFORH9qvXea2fDlTAYAJ/BGBtkwXQgTFVD70dbpeB+ZGCR6J72W0Pkwk2SSFEqHS3U7zxrlmYfeZHUeH1i71K8cjoVBlwjjF7wZ8MjTr7x7pJlSYfLp87ThmEup0ojWIRfWomdUVf94gttNMVFoG/gEJX50sIeST+z8cY=
+	t=1757026909; cv=none; b=ZIH0rfSFnB/4vJFab6WByVJUQorOXFamjSt/zUDDMC5ZcNLOTb1RVLD0k+/bQNqVP8ApSufHzSPxcH8LnzBvAuSc6QFzTalZHbYLCg1uuuJveXv06n0R36hxSZDY7Xb+NjXcyRvB2p2JWVc/4/cMLBILPfHe3OhVjIvySmQpMi0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757026381; c=relaxed/simple;
-	bh=2qEfTuQbxq4dEuf34SXqxiyMI483CYAAykSVdrB6xyA=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GizCMeudIdEO5e5n5A5mPkUiqmwNoGpMUkB0t6bCjxRo3A2iuZdOR2Y7v/ZTQwfsGp8gFBPtiwL99hFVkeA80+CCeaqjEh7uJrGSU1MeWo9KZgKSAMoKgzXCzADC3aE+6sBbd9k4SZK/Vw7iubNnqnNoeA5y4uegCq0xXkigQ1g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=NmlUE5Qr; arc=none smtp.client-ip=109.224.244.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
-	s=protonmail; t=1757026375; x=1757285575;
-	bh=aM3c6Yuzp8F2byGnnh40DrCDZBPjyinQft4WloVRyw8=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=NmlUE5QrbKoRXoFKHlEpOtanZJmeoHaPB0nSR07bD1iEE5M9/mqC2LN+jWeF2zWwe
-	 +aEmbrvn+4saRbeBskUO+dN99BugXYqw2N1LDhWdfg/w4pscaTFl/0AO1C272RSizy
-	 mmDpEz5G0NEL4EjcnfrQHXW0AiuDz/1QIbd3bR8hMaLorlZLBGW3F1oaHw+AU93OOd
-	 c1p7c8hxpFMzB0U/YAeRfo3eCUKaTXDxA4UYZWY7KEPrvpqNMArc/t9VlnJPm+QBpi
-	 FyOCUgFKd177+de+dCfi7m/v9xTEHtKT/IMMa09ttofatKvqgihmammFCXNcZAIn0C
-	 4lu/f0LOkjRpg==
-Date: Thu, 04 Sep 2025 22:52:52 +0000
-To: Rob Herring <robh@kernel.org>
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: Hans de Goede <hansg@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, bryan.odonoghue@linaro.org, conor+dt@kernel.org, devicetree@vger.kernel.org, krzk+dt@kernel.org, lee@kernel.org, linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer documentation
-Message-ID: <mezxKi1PjYxVeMQouXO6GIllmTyc_TxT8zQdbpoDYTutqhJ6q5ydm7Q6MsjM3iiFvVuz0t6Uz80dvIjVaJJrNehz9xvTXTCgZiccv1ihd5Q=@vinarskis.com>
-In-Reply-To: <20250904141004.GA3875305-robh@kernel.org>
-References: <20250902182114.GA965402-robh@kernel.org> <20250903235615.134520-1-alex@vinarskis.com> <20250904-brave-zippy-quoll-fcb054@kuoka> <daf442a6-b4d6-4213-8ec0-10397d682cc4@kernel.org> <fdc68c54-a499-4ba6-8788-70c7ea515f2d@kernel.org> <691f72aa-6d3e-47a1-9efe-a5f7a61ecb72@kernel.org> <9c536e24-ab5a-454a-93af-6d4c51d4e1ce@kernel.org> <ece22424-ea6f-4d6e-8964-3418853dba2f@kernel.org> <e89de497-9c6e-4a4c-8f66-019d349c171b@kernel.org> <20250904141004.GA3875305-robh@kernel.org>
-Feedback-ID: 158356072:user:proton
-X-Pm-Message-ID: 44efca61c0533fe4c4af410e474a0f59544dcdc3
+	s=arc-20240116; t=1757026909; c=relaxed/simple;
+	bh=QIAtTJTOWc2cm4r1AvvZcuu+0yp32J2PCv2mbv+ufT0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WMov3oDMZmkUpsmb+1WlO1NejnPejqmgbO6KysB70zKWAF4JIsiQFtfFftLskGHTg2ecAddarynl58dFV13+Dr3N+852JVSpG9Zx9+7MN0pMx6d/siXUvSoWKFeTMBbdJ19z4xVbyNWnlB3cYvi9A4yaP1R/S3a+XCeBQhw+6KE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=cxbgcgE1; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584IM9qR031829
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 23:01:46 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=etXN28r9jaaYlfuPDpTiD3hF
+	bcuxX5byMenXbqFORPk=; b=cxbgcgE19sPkiCfBgjxSL0gtQ/GF3vK/15azlZvP
+	rMuvJB/9qEBN0q6sBcwnl9uFN+JtlDrdp8dp+rYhd2DCbtiVVBW/iwZF2CydTRPj
+	L+67D9ejpUL41AaGRfS5mticXJ6YXt/avFmZAIzh//5kypz7QoTbbZoUeWGRGSb3
+	Rc3bkJEE4pjCW9wR/q7Xyfx64s4CDG8JHeDFB9Jtz8EWTPcisFAlCOEAVDB4wTg5
+	RE2zApN6d9drKEa3jXmknkDaQ3r567urujro2hcAdKSC1fR7s6+cvQ3WgzPj94l/
+	3wtLGq4KUK0kJsmF3YLwmxdVqpse6Ts7mdmEdpuCPio5dg==
+Received: from mail-vs1-f70.google.com (mail-vs1-f70.google.com [209.85.217.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urw096uh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 23:01:46 +0000 (GMT)
+Received: by mail-vs1-f70.google.com with SMTP id ada2fe7eead31-5353106c96cso817960137.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 16:01:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757026906; x=1757631706;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=etXN28r9jaaYlfuPDpTiD3hFbcuxX5byMenXbqFORPk=;
+        b=nDEE+2lH7UQ9aVVK/EbVlkPEWhlSD7B01OeZL4ryEry2wKwz5WaCdqxaf2PY7dJJv/
+         UtmhKYg5qgEHfCY5sZg4m7V5X+842T/MplwgBNG95yOz6uGnr7VnZgHCZrYsr9wWJvzd
+         ilhorwGMW70Ou4JKkD62cgqynwsJw++d1cj/yMjbGCgfH839Wyu5KHIzlcs+WfQ32ku3
+         n4jiQJUc4iF91K7XPYeLzSkcHd1MC7OYtLo9CIjyJPfVUTWuLht2xN6Y8U+yl7y83XLC
+         sLXKSNdk7BCsuZ7b10axWnxBXkjt3BEKS2dlIKfr4fLnASBs9u7jQ8/e9OSx77vXFft/
+         5c0g==
+X-Forwarded-Encrypted: i=1; AJvYcCVyhHkPCNkAKJf5gt6cUnWCh6tvoxPBYIuHfvxQncoE+YJ3/cisG48SROUh8IimkH9WIM+tV65Jg7uh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy2E1MaHIDJolTXyihZcGzCRHa4RELSXKpf3mllP8xig7MPS9AX
+	r3Tsrxy+6To/k0Y9wF5Z2VE/ocViiCTdZmuq8Jrpi4blMYyYltKGX1NmTT+1Ae6gXvBre8jt4m2
+	kTsLOoAi46d0GFF8eP3cfyfrsZSQbIZ/tMx4cZEfrQzMYZ6f+fGZ5vshhOguYYG2a
+X-Gm-Gg: ASbGncvh+w5/olAOuJae4iBeQm7JDnt3M7m1EQWrLJH5U7Nx07cJ/y4jPULIGB2rf+c
+	4e340IwtL1GzZSV3FfmgmblzQt5HgPup7OXARdMBXLSlhPX310KKL5NV+S4/shr1gl5tUdSLZed
+	laOpYZSPp4ZGNs38VRb94BiDeIjI9qF0eZlE/hWMUplOzcleyVLQd9hyziMM2cpDKm1G9iZJ7ns
+	AXOf3vlJ23YZHAbBvFxIJJ4JxjGyUigv2kVFK8of87/rd2nxHTQQ89uj7KxbQ6mD5BTdxRC6hAk
+	vXl0meja5xOEEM85Nfv3udIzeF7zqXwbE7ATDsPcYvpw8GV6tmVI98/3qEw43xVUEE8IiW0SX+b
+	aBY1501E6K3DvApBp7+br7EUDZKaWi7hBWQFmRIbG/H7iSOTUY8HY
+X-Received: by 2002:a05:6102:4412:b0:508:aeba:ac31 with SMTP id ada2fe7eead31-52b198509ddmr6977172137.2.1757026905702;
+        Thu, 04 Sep 2025 16:01:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFZFTY0xHZC0fSrJeqcA/zXmLkbjpVOO2YoQKWjdh8znnPj9BanzEoFDRvnxif8pLwlmRxjVg==
+X-Received: by 2002:a05:6102:4412:b0:508:aeba:ac31 with SMTP id ada2fe7eead31-52b198509ddmr6977153137.2.1757026905323;
+        Thu, 04 Sep 2025 16:01:45 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608acea11fsm1477286e87.80.2025.09.04.16.01.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 16:01:44 -0700 (PDT)
+Date: Fri, 5 Sep 2025 02:01:42 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        David Airlie <airlied@gmail.com>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Rob Herring <robh@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+        Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] drm/panel: ilitek-ili9881c: Turn
+ ILI9881C_COMMAND_INSTR() parameters lowercase
+Message-ID: <tzz75sv4orkbydpd2wmqxvsoyhc6as3uusjmt6rcw45mjz74wi@r7wm7wibzaom>
+References: <20250904205541.186001-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904205541.186001-1-marek.vasut+renesas@mailbox.org>
+X-Proofpoint-GUID: Wtmo6-BkJKW-vNpJ7flyeJTT4v6XvM0I
+X-Proofpoint-ORIG-GUID: Wtmo6-BkJKW-vNpJ7flyeJTT4v6XvM0I
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNyBTYWx0ZWRfX8XdlYwtR/flk
+ hfkQ8WVsc7pxG8DQjmdgEycHNx57HgOvUCJ+kHufb7CjrZpAtnxeuSTl9Yj/9fz9Rpow7Uv20Vv
+ gx4pBxM9QTXkDgpOiPvEMRONVaosbeNjl8GlNlZsFmINoKjTu7+Uz+wX5Kf5zY8EfYl8PMaBfFX
+ zhGadExjUxHJj7Wri9Arqc0gG3hJP/QVahJm+o0QtXvo6yhyE50Sdt4wHLL49z2GjNIusYtDumn
+ JmwC9k0W5Ij/O9zpzPcJ730Q9G+EwIVsKsHtXTxZaoxgm2/2Zzgywx06pipejICKNtivUQ8apkD
+ 0S4Ew6RS+S9nmRPpqx+M5gOI8ZPD6y7/SNxEAyXS1SXpKKueDBD8FmfvZAa0/1+gIrOQJlm8Dls
+ T3T43XB/
+X-Authority-Analysis: v=2.4 cv=NrDRc9dJ c=1 sm=1 tr=0 ts=68ba1a5a cx=c_pps
+ a=N1BjEkVkxJi3uNfLdpvX3g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=b3CbU_ItAAAA:8 a=VwQbUJbxAAAA:8 a=RF00TdSWAAAA:8
+ a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=QyXUC8HyAAAA:8 a=KKAkSRfTAAAA:8
+ a=e5mUnYsNAAAA:8 a=dCZUmJHuHaGrPOQQW1IA:9 a=CjuIK1q_8ugA:10
+ a=crWF4MFLhNY0qMRaF8an:22 a=Rv2g8BkzVjQTVhhssdqe:22 a=_nx8FpPT0le-2JWwMI5O:22
+ a=cvBusfyB2V15izCimMoJ:22 a=Vxmtnl_E_bksehYqCbjh:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_08,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300027
+
+On Thu, Sep 04, 2025 at 10:55:15PM +0200, Marek Vasut wrote:
+> Make all ILI9881C_COMMAND_INSTR() parameters consistently lowercase.
+> No functional change.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> NOTE: Use vim :%s@ILI9881C_COMMAND_INSTR\(.0x.*\)),@ILI9881C_COMMAND_INSTR\L\1),
+> ---
+>  drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 888 +++++++++---------
+>  1 file changed, 444 insertions(+), 444 deletions(-)
+> 
+
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
-
-
-
-
-On Thursday, September 4th, 2025 at 16:10, Rob Herring <robh@kernel.org> wr=
-ote:
-
->=20
->=20
-> On Thu, Sep 04, 2025 at 02:05:08PM +0200, Hans de Goede wrote:
->=20
-> > Hi Krzysztof,
-> >=20
-> > On 4-Sep-25 1:47 PM, Hans de Goede wrote:
-> >=20
-> > > Hi Krzysztof,
-> > >=20
-> > > On 4-Sep-25 12:47 PM, Krzysztof Kozlowski wrote:
-> > >=20
-> > > > On 04/09/2025 12:29, Hans de Goede wrote:
-> > > >=20
-> > > > > Hi Krzysztof,
-> > > > >=20
-> > > > > On 4-Sep-25 11:45 AM, Krzysztof Kozlowski wrote:
-> > > > >=20
-> > > > > > On 04/09/2025 09:26, Hans de Goede wrote:
-> > > > > >=20
-> > > > > > > > > > > +maintainers:
-> > > > > > > > > > > + - Aleksandrs Vinarskis alex@vinarskis.com
-> > > > > > > > > > > +
-> > > > > > > > > > > +description:
-> > > > > > > > > > > + Some LED defined in DT are required by other DT con=
-sumers, for example
-> > > > > > > > > > > + v4l2 subnode may require privacy or flash LED.
-> > > > > > > > > > > +
-> > > > > > > > > > > + Document LED properties that its consumers may defi=
-ne.
-> > > > > > > > > >=20
-> > > > > > > > > > We already have the trigger-source binding for "attachi=
-ng" LEDs to
-> > > > > > > > > > devices. Why does that not work here?
-> > > > > > > > >=20
-> > > > > > > > > I have not actually considered this, as the existing priv=
-acy-led solution
-> > > > > > > > > from the original series is not trigger based. At least o=
-ne of the reasons
-> > > > > > > > > for that is that trigger source can be rather easily alte=
-red from user
-> > > > > > > > > space, which would've been bad for this use case. If v4l2=
- acquires control
-> > > > > > > > > over the LED it actually removes triggers and disables sy=
-sfs on that LED.
-> > > > > > > >=20
-> > > > > > > > So does that mean that v4l2 solves the problem of "trigger =
-source can be
-> > > > > > > > rather easily altered from user space"?
-> > > > > > >=20
-> > > > > > > Yes, currently the v4l2-core already does:
-> > > > > >=20
-> > > > > > Thanks, I understand that it solves the problem described in th=
-e patch,
-> > > > > > so the patch can be dropped.
-> > > > >=20
-> > > > > I'm a bit confused now, do you mean that this dt-bindings patch c=
-an
-> > > > > be dropped ?
-> > > >=20
-> > > > Yes.
-> > > >=20
-> > > > Alex's explanation to Rob felt confusing, so I asked for clarificat=
-ion.
-> > > > You clarfiied that that v4l2 solves the problem, therefore there is=
- no
-> > > > problem to be solved.
-> > > >=20
-> > > > If there is no problem to be solved, this patch is not needed.
-> > > >=20
-> > > > If this patch is needed, just describe the problem accurately.
-> > > >=20
-> > > > > The existing v4l2-core code solves getting the privacy-LED on ACP=
-I/x86_64,
-> > > > > on DT there is no official bindings-docs for directly getting a L=
-ED with
-> > > >=20
-> > > > There are and Rob pointed to them. If Rob's answer is not enough, m=
-ake
-> > > > it explicit.
-> > > >=20
-> > > > Really, there are here some long explanations which do not really
-> > > > explain this in simple terms. Simple term is: "existing property fo=
-o
-> > > > does not work because <here goes the reason>".
-
-Ill extend the commit description to better explain why the existing trigge=
-r-source
-could not be re-used.
-
-> > >=20
-> > > The existing trigger-source binding for "attaching" LEDs to
-> > > devices does not work because:
-> > >=20
-> > > 1. It depends on the Linux specific LED trigger mechanism where as
-> > > DT should describe hw in an OS agnostic manner
->=20
->=20
-> Using a binding does not require using the linux subsystem normally
-> associated with it. Certainly the naming was inspired by the Linux
-> subsystem, but it's really nothing more than a link.
->=20
-> > > 2. It puts the world upside down by giving possible event-sources
-> > > for the (again) Linux specific trigger rather then allowing
-> > > specifying e.g. specific privacy and flash LEDs as part
-> > > of a camera dts node. IOW it makes the LED DT note point to
-> > > the camera, while the LED is a part of the camera-module.
-> > > not the other way around. So it does not properly allow
-> > > describing the composition of the camera.
->=20
->=20
-> Direction of the connection doesn't really matter. You can get the
-> association either way. But certainly one way is easier than the other.
->=20
-> > > Note that Rob actually put "" around attaching because this
-> > > property really is not proper attaching / composition as
-> > > we would normally do in dt.
-> > >=20
-> > > IMHO 1. alone (this being Linux specific) warrants a new better
-> > > binding for this.
-> >=20
-> > And:
-> >=20
-> > 3. There already are bindings using a leds =3D phandle-array property i=
-n:
-> > Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
->=20
-
-Another example using leds =3D phandle-array in:
-Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
-
->=20
-> This is most convincing for me. So please move this to a
-> led-consumer.yaml schema first so we have exactly 1 definition of the
-> property. And summarize the discussion here for why we need this.
-
-Just to confirm that I understood this discussion correctly:
-- Keep 'led-consumer.yaml' (with improved description)
-- Drop leds property from existing schemas that use it as phandle-array
-- Instead reference 'led-consumer.yaml' via 'allOf'. This should also be
-  added to 'video-interface-devices.yaml' as various camera schemas based
-  on it typically do not allow unevaluated properties.
-
-Thanks for the reviews,
-
-Alex
-
->=20
-> Rob
+-- 
+With best wishes
+Dmitry
 
