@@ -1,112 +1,236 @@
-Return-Path: <devicetree+bounces-212916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9634B4407B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:25:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24F59B44092
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:27:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97797176824
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:25:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C01B81C864CB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:27:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DD024DD0B;
-	Thu,  4 Sep 2025 15:25:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2419E239086;
+	Thu,  4 Sep 2025 15:27:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hswTf+9y"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IHTh20+/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726B323BD00;
-	Thu,  4 Sep 2025 15:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E3023ABAB;
+	Thu,  4 Sep 2025 15:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756999518; cv=none; b=LHmTzGiHl1ai2fKvIHGW2Bodr2C9nHTUhRL5FN8cAIHklXSFid9CFSIxq0fbQy+AjnqToRmpfH7316EoWLIeJSH3JF/qlymRLBrQq8EzMCxhRGO9giEo2U5M5ykpidYE0KNFNPbAjkn0Zdpd3Om8eROUE2mGiWDBrCYpthAPIaA=
+	t=1756999634; cv=none; b=qTRrPfb6six4zSp+J8yL6JccymtPMS2pfSSqE4AJ8lpirXbnqsggDeIA5J+K4up1xcnSmLsRk1xUT8ouyDh23lwzWpm5VKK4FOHzlvnboklt8rv5bbuc8mkfVIqcuZDP6gLWaYnfiBKbiO3+IRpRlnT/cMenPjZWxmit+4AHt64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756999518; c=relaxed/simple;
-	bh=/1s3A0/1oBRPiM9eEOONTjAK8lc6tIfcMEkuSsvZEvY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SWWHHSYJIp+PEC7p+QnRvmiOdpQPMJxRywEfymbUEQB31YbL7Uos1tttq7yNfYI2bnG1LdltQzyY3g/uXcEoNKanoJTsbJ90PjmVE7gyQd/rXH5sFwCsPvtYCQoA7K/zgaWZdvqJBdngbv7zceBH1eIDJ3gMoDJ+vpvxbeEqI9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hswTf+9y; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 313DDF09;
-	Thu,  4 Sep 2025 17:24:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1756999445;
-	bh=/1s3A0/1oBRPiM9eEOONTjAK8lc6tIfcMEkuSsvZEvY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hswTf+9y9UmB4SW/1NT0RfARopIG6TZ/RjY+p43TkroKJop2mUKxtDRSSLL+PBzHe
-	 EPbW+6puxdLcsoLXSc0s6vyM8AOnLrUoQOe0b7f2X40zKWGQJXDBmtyeuJMAl/Asvw
-	 rouNayHuUAH+ssOyy5YXVHxEIhrkB/Nq3WBC/TZo=
-Date: Thu, 4 Sep 2025 17:24:52 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/4] arm64: dts: renesas: sparrow-hawk: Add overlay
- for IMX219 on J1
-Message-ID: <20250904152452.GD6174@pendragon.ideasonboard.com>
-References: <20250827221424.640770-1-niklas.soderlund+renesas@ragnatech.se>
- <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
- <CAMuHMdUOKJXjk78Bgmazd4prGX21SDk_h=37ewEOwgdf9iAfcA@mail.gmail.com>
- <20250901140657.GA481255@ragnatech.se>
+	s=arc-20240116; t=1756999634; c=relaxed/simple;
+	bh=QGT4nMVqsTOjW4heFuCYqs5+xXUX0f70MfCiBGQ+/g8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Yxyia4mEzzek/+d6wlbWic7vzHmCO3NY1juP5NdMNglNOftIi3slzj/kBlmXG7/akxYr3pdrKmfZRuAFLtvoZmr7tYXRgiX7ztqgp8PJwUWiD2/INK1EdfexldvIoHJAllqrGpIiIHmv2w+C6sfNn43GXKLhjm7WhxWV4KVg6yM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IHTh20+/; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584FR39u3106568;
+	Thu, 4 Sep 2025 10:27:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756999623;
+	bh=pnelLJyS9J55hcHKl4p6uGqOHl1Ys0oXzYQLKPfkrEQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=IHTh20+/gih3yKu3QsCiGw7GD9puu2EmeSCpat9wR2nCNB4G0+2bYY4GCmLs8rVpz
+	 c1TSCdcirLvNUtEWbP4Uf7fJrUBkw5Y/JMEyWukDWZ2mHYJx7tKN26bNdGD5Bpd5rY
+	 VVfm89P7Rh90fTBjy4WyjQYpqxFKs5oNw+/6/bOI=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584FR3Kj215045
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 4 Sep 2025 10:27:03 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
+ Sep 2025 10:27:03 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 4 Sep 2025 10:27:02 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584FR3Lq3471897;
+	Thu, 4 Sep 2025 10:27:03 -0500
+Message-ID: <44a55012-32e9-4ecd-8643-d9c0008bc5d2@ti.com>
+Date: Thu, 4 Sep 2025 10:27:02 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250901140657.GA481255@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62p/j722s: Move sdhci0 from
+ common
+To: Nishanth Menon <nm@ti.com>
+CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250904004723.2856005-1-jm@ti.com>
+ <20250904004723.2856005-2-jm@ti.com>
+ <20250904033834.cmn5i7satksnpr6o@revolver>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <20250904033834.cmn5i7satksnpr6o@revolver>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Sep 01, 2025 at 04:06:57PM +0200, Niklas Söderlund wrote:
-> On 2025-09-01 16:03:49 +0200, Geert Uytterhoeven wrote:
-> > On Thu, 28 Aug 2025 at 00:15, Niklas Söderlund wrote:
-> > > Add an overlay to connect an IMX219 camera sensor to the J1 connector.
-> > > The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video capture
-> > > pipeline behind the CSI40 Rx to be enabled to process images from the
-> > > sensor.
-> > >
-> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> > > ---
-> > > * Changes since v3
-> > > - Use correct port@0 instead of port.
-> > 
-> > Thanks for the update!
-> > 
-> > > --- a/arch/arm64/boot/dts/renesas/Makefile
-> > > +++ b/arch/arm64/boot/dts/renesas/Makefile
-> > > @@ -96,7 +96,10 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
-> > >
-> > >  DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
-> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
-> > > +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
-> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
-> > > +r8a779g3-sparrow-hawk-camera-j1-imx219-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
-> > > +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtb
-> > >  r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
-> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
-> > 
-> > Usually we keep the related parts together, but we indeed already have
-> > one case of interleaving.  I am not sure which style is best...
+Hi Nishanth,
+
+On 9/3/25 10:38 PM, Nishanth Menon wrote:
+> On 19:47-20250903, Judith Mendez wrote:
+>> Since eMMC HS400 has been descoped for j722s due to errata i2478 [0]
+>> and is supported for am62p SR1.2 device, remove sdhci0 node from
+>> common-main.dtsi and include instead in each device's main.dtsi
+>> appropriately.
+>>
+>> [0] https://www.ti.com/lit/pdf/sprz575
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   .../dts/ti/k3-am62p-j722s-common-main.dtsi    | 25 -------------------
+>>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 25 +++++++++++++++++++
+>>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     | 22 ++++++++++++++++
+>>   3 files changed, 47 insertions(+), 25 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> index 4427b12058a6..84083f5125df 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> @@ -566,31 +566,6 @@ main_gpio1: gpio@601000 {
+>>   		clock-names = "gpio";
+>>   	};
+>>   
+>> -	sdhci0: mmc@fa10000 {
+>> -		compatible = "ti,am64-sdhci-8bit";
+>> -		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+>> -		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> -		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+>> -		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+>> -		clock-names = "clk_ahb", "clk_xin";
+>> -		bus-width = <8>;
+>> -		mmc-ddr-1_8v;
+>> -		mmc-hs200-1_8v;
+>> -		mmc-hs400-1_8v;
+>> -		ti,clkbuf-sel = <0x7>;
+>> -		ti,strobe-sel = <0x77>;
+>> -		ti,trm-icp = <0x8>;
+>> -		ti,otap-del-sel-legacy = <0x1>;
+>> -		ti,otap-del-sel-mmc-hs = <0x1>;
+>> -		ti,otap-del-sel-ddr52 = <0x6>;
+>> -		ti,otap-del-sel-hs200 = <0x8>;
+>> -		ti,otap-del-sel-hs400 = <0x5>;
 > 
-> I have no real preference. The style here is only me trying to mimic 
-> what I seen elsewhere in the file. Want me to switch to the other style?
+> would'nt it be sufficient to provide this in am62p and keep the common
+> stuff here?
 
-I don't mind much either way either. The patch series looks good to me,
-I think it can be merged once we decide on a style.
+Either way works, I can keep a common no problem.
 
--- 
-Regards,
+> 
+> Additionally handling of SR1.2 should be documented in am62p
 
-Laurent Pinchart
+WYM? Why document anything on  SR1.2? For am62p, we support HS400 mode
+which is the default, all other silicon revision will automatically
+be reduced to HS200, that logic is abstracted away in the driver.
+
+There is nothing to document here IMO.
+
+~ Judith
+
+
+
+> 
+>> -		ti,itap-del-sel-legacy = <0x10>;
+>> -		ti,itap-del-sel-mmc-hs = <0xa>;
+>> -		ti,itap-del-sel-ddr52 = <0x3>;
+>> -		status = "disabled";
+>> -	};
+>> -
+>>   	sdhci1: mmc@fa00000 {
+>>   		compatible = "ti,am62-sdhci";
+>>   		reg = <0x00 0x0fa00000 0x00 0x1000>, <0x00 0x0fa08000 0x00 0x400>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>> index 6aea9d3f134e..fb8473ce403a 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>> @@ -31,6 +31,31 @@ usb1: usb@31100000 {
+>>   			snps,usb2-lpm-disable;
+>>   		};
+>>   	};
+>> +
+>> +	sdhci0: mmc@fa10000 {
+>> +		compatible = "ti,am64-sdhci-8bit";
+>> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+>> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+>> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+>> +		clock-names = "clk_ahb", "clk_xin";
+>> +		bus-width = <8>;
+>> +		mmc-ddr-1_8v;
+>> +		mmc-hs200-1_8v;
+>> +		mmc-hs400-1_8v;
+>> +		ti,clkbuf-sel = <0x7>;
+>> +		ti,strobe-sel = <0x77>;
+>> +		ti,trm-icp = <0x8>;
+>> +		ti,otap-del-sel-legacy = <0x1>;
+>> +		ti,otap-del-sel-mmc-hs = <0x1>;
+>> +		ti,otap-del-sel-ddr52 = <0x6>;
+>> +		ti,otap-del-sel-hs200 = <0x8>;
+>> +		ti,otap-del-sel-hs400 = <0x5>;
+>> +		ti,itap-del-sel-legacy = <0x10>;
+>> +		ti,itap-del-sel-mmc-hs = <0xa>;
+>> +		ti,itap-del-sel-ddr52 = <0x3>;
+>> +		status = "disabled";
+>> +	};
+>>   };
+>>   
+>>   &oc_sram {
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+>> index 993828872dfb..2978fe1a151e 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+>> @@ -404,6 +404,28 @@ e5010: jpeg-encoder@fd20000 {
+>>   		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+>>   		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+>>   	};
+>> +
+>> +	sdhci0: mmc@fa10000 {
+>> +		compatible = "ti,am64-sdhci-8bit";
+>> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+>> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+>> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+>> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+>> +		clock-names = "clk_ahb", "clk_xin";
+>> +		bus-width = <8>;
+>> +		mmc-ddr-1_8v;
+>> +		mmc-hs200-1_8v;
+>> +		ti,clkbuf-sel = <0x7>;
+>> +		ti,trm-icp = <0x8>;
+>> +		ti,otap-del-sel-legacy = <0x1>;
+>> +		ti,otap-del-sel-mmc-hs = <0x1>;
+>> +		ti,otap-del-sel-ddr52 = <0x6>;
+>> +		ti,otap-del-sel-hs200 = <0x8>;
+>> +		ti,itap-del-sel-legacy = <0x10>;
+>> +		ti,itap-del-sel-mmc-hs = <0xa>;
+>> +		ti,itap-del-sel-ddr52 = <0x3>;
+>> +		status = "disabled";
+>> +	};
+>>   };
+>>   
+>>   &main_bcdma_csi {
+>> -- 
+>> 2.51.0
+>>
+> 
+
 
