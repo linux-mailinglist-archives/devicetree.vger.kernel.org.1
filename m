@@ -1,143 +1,147 @@
-Return-Path: <devicetree+bounces-213086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213090-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317B6B44879
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:28:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEF2B4489A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:34:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 051A31C868AA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:29:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDEBBAA0F55
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ED672C0290;
-	Thu,  4 Sep 2025 21:28:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449F62C11F5;
+	Thu,  4 Sep 2025 21:33:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Z0j6tRne"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="fSiUCYcQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 909E22BEFE7;
-	Thu,  4 Sep 2025 21:28:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10BC22BEFE7;
+	Thu,  4 Sep 2025 21:33:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757021319; cv=none; b=BXTE2k9BFNVGJZJySxWPov8GehNBJAMiizGFFJ7b3+Gtgzv4ooS+KJ0DSFdYT4LhW4CQGLyREYZJ7RYgIjHNuGu9PL+PkSa7GPPQJIA1t6ton7ktyJpwpG+IQK3Y3KLPh2WbtpLt2p8WbUE0TnVYjZvyTKN3iPPcUnv8F1JBKNE=
+	t=1757021637; cv=none; b=h5g6tobOCM4jPSqWGC851Fa3IS2U//5nXUGZrVi8aybyOvotlsbb1A55JZD8s2vPB10JGEWrbyWwOCjLxrgFFVLyMwmhlVBES6qFpxPnp6rFSlJVTsfR2S7iMIvCwn4SdFBLVoRzY6OSAvEpu8ithb6OivRkgaEjE7tERP9+sJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757021319; c=relaxed/simple;
-	bh=XfGcghG19TabjT51QdOsitXxhnwZTmBxIT0FUrZXRpA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=b7aB/9RlFZhYeoXZvcfL7F2/yrIWBsXY9LfEUjs8i9etfMzxGtBplKub3oh8/xnHz+7DBWIht6TJ4EyQVt9woSnNnfqFgFO82D5al4Tr45HLFo0uy73i3813X1akWI3aGQObvi44K1ZGz5fdtjWL8QFWCxSuNQ8XwneGX/r3yPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Z0j6tRne; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584LSWW53169123;
-	Thu, 4 Sep 2025 16:28:32 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757021312;
-	bh=ffpMJyApy52p0uslmGd/xoHzUe/PhPzo7pID9ctc1EU=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=Z0j6tRneAzThXhUP/H3kXnLtgPX+Fp6BKKPv7BBSbHnrjzRPvpzgi6vBSMBFjbkK0
-	 d66otnNwiAlxDqBNbiGOQ3bwJ9Frh3oNw/3CpuwUmz+pf0TwaxHnku1E8wYCGFBDno
-	 USYuBmITcRtx4JKSYeJbkcMgzqG8avTUevJ7+dEk=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584LSWD54090301
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 16:28:32 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 16:28:31 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 16:28:31 -0500
-Received: from uda0506412.dhcp.ti.com (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584LSTnQ3903903;
-	Thu, 4 Sep 2025 16:28:31 -0500
-From: Kendall Willis <k-willis@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
-        <msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
-        <k-willis@ti.com>
-Subject: [PATCH 3/3] arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
-Date: Thu, 4 Sep 2025 16:28:27 -0500
-Message-ID: <20250904212827.3730314-4-k-willis@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250904212827.3730314-1-k-willis@ti.com>
-References: <20250904212827.3730314-1-k-willis@ti.com>
+	s=arc-20240116; t=1757021637; c=relaxed/simple;
+	bh=p/s/kJpm8SZfihBzXvBjykI1k2rg3DZ0ryhkDZpJKe4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=q75Rip2Nq9j9Etpq43NCzvH24+bhN6vYsMAweqcVIL2jq4aFx53vpvfrwtcbX1+RkpqEUBs4jt/PcvJ9Fld9J5xwswE8DlL1k02fgbbYQ/NfJKtbAmkmwIyJ+CioPOd2xqwUXZ+4BGsbX4E5jmhFkYsYgQynBv0d5lHCeHkBOVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=fSiUCYcQ; arc=none smtp.client-ip=198.175.65.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757021636; x=1788557636;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=p/s/kJpm8SZfihBzXvBjykI1k2rg3DZ0ryhkDZpJKe4=;
+  b=fSiUCYcQqPUoC+0oVVx2LIg01FIa6JOmML/lNH3Y37JdoInrnOq1ppX4
+   azwqJRwY+3A2bWOmU6y6zZMyuuwAyWG4y8IwZHVdycOchxVNxqtxzQ315
+   qk8gNyRuLZgbItuvs6RCsXx+Kc5mioOOMFEsd7W7Em7AKl71JDeh8uNK5
+   v29nYIUkG6Hc5LKPkxUjM/Kp4j5v96rWDWtOUi9C+aX2mTcnWaziEnaqU
+   nUis4RF51OD+pK3LjBLP3HGbI2Zce0KxqU07gPAQbqYuGfGCN1KVwC3IE
+   Jg+d6LzUWLenu7um91D7JLZT+sJzmvoPO0T0rY39CSdtdFJe5B/6Lcpsz
+   A==;
+X-CSE-ConnectionGUID: 70bzBgCgR7uxMRNnQbCuxw==
+X-CSE-MsgGUID: oxHPqsB8S/KDRJenDSpQSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="59522603"
+X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
+   d="scan'208";a="59522603"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 14:33:55 -0700
+X-CSE-ConnectionGUID: d8h7wvHORNuG1VzVvVYbxw==
+X-CSE-MsgGUID: X2KPy3u+TVekGncrgIKZIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
+   d="scan'208";a="171891495"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by orviesa007.jf.intel.com with ESMTP; 04 Sep 2025 14:33:49 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uuHa1-0005wZ-1p;
+	Thu, 04 Sep 2025 21:33:25 +0000
+Date: Fri, 5 Sep 2025 05:30:48 +0800
+From: kernel test robot <lkp@intel.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v2 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap
+ Controller
+Message-ID: <202509050501.MXDrcrZA-lkp@intel.com>
+References: <20250903-ltc4283-support-v2-2-6bce091510bf@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-ltc4283-support-v2-2-6bce091510bf@analog.com>
 
-The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
-is enabled. Add the necessary pins needed to wakeup the system. Add the
-system idle states that the Main UART can wakeup the system from.
+Hi Nuno,
 
-Signed-off-by: Kendall Willis <k-willis@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 24 ++++++++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+kernel test robot noticed the following build warnings:
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-index 899da7896563b..1857437eb9c34 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-@@ -340,14 +340,26 @@ AM62PX_IOPAD(0x0164, PIN_INPUT, 0) /* (A20) RGMII2_TX_CTL */
- 		bootph-all;
- 	};
- 
--	main_uart0_pins_default: main-uart0-default-pins {
-+	main_uart0_tx_pins_default: main-uart0-tx-default-pins {
- 		pinctrl-single,pins = <
--			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
- 			AM62PX_IOPAD(0x1cc, PIN_OUTPUT, 0)	/* (B22) UART0_TXD */
- 		>;
- 		bootph-all;
- 	};
- 
-+	main_uart0_rx_pins_default: main-uart0-rx-default-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x1c8, PIN_INPUT, 0)	/* (A22) UART0_RXD */
-+		>;
-+		bootph-all;
-+	};
-+
-+	main_uart0_rx_pins_wakeup: main-uart0-rx-wakeup-pins {
-+		pinctrl-single,pins = <
-+			AM62PX_IOPAD(0x1c8, PIN_INPUT | PIN_WKUP_EN, 0)	/* (A22) UART0_RXD */
-+		>;
-+	};
-+
- 	main_uart1_pins_default: main-uart1-default-pins {
- 		pinctrl-single,pins = <
- 			AM62PX_IOPAD(0x0194, PIN_INPUT, 2) /* (D25) MCASP0_AXR3.UART1_CTSn */
-@@ -738,8 +750,12 @@ &mcu_r5fss0_core0 {
- };
- 
- &main_uart0 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&main_uart0_pins_default>;
-+	pinctrl-names = "default", "wakeup";
-+	pinctrl-0 = <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_default>;
-+	pinctrl-1 = <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_wakeup>;
-+	wakeup-source = <&system_deep_sleep>,
-+			<&system_mcu_only>,
-+			<&system_standby>;
- 	status = "okay";
- 	bootph-all;
- };
+[auto build test WARNING on 9703c672af8dd3573c76ce509dfff26bf6c4768d]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Nuno-S-via-B4-Relay/dt-binbings-hwmon-Document-the-LTC4283-Swap-Controller/20250903-180813
+base:   9703c672af8dd3573c76ce509dfff26bf6c4768d
+patch link:    https://lore.kernel.org/r/20250903-ltc4283-support-v2-2-6bce091510bf%40analog.com
+patch subject: [PATCH v2 2/3] hwmon: ltc4283: Add support for the LTC4283 Swap Controller
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250905/202509050501.MXDrcrZA-lkp@intel.com/config)
+compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250905/202509050501.MXDrcrZA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509050501.MXDrcrZA-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+>> drivers/hwmon/ltc4283.c:595:10: warning: result of comparison of constant 65536 with expression of type 'u16' (aka 'unsigned short') is always false [-Wtautological-constant-out-of-range-compare]
+     595 |         if (tmp == BIT(16))
+         |             ~~~ ^  ~~~~~~~
+   1 warning generated.
+
+
+vim +595 drivers/hwmon/ltc4283.c
+
+   586	
+   587	static int __ltc4283_write_in_history(struct ltc4283_hwmon *st,
+   588					      u32 reg, long lowest, u32 fs)
+   589	{
+   590		__be16 __raw;
+   591		u16 tmp;
+   592		int ret;
+   593	
+   594		tmp = DIV_ROUND_CLOSEST(BIT(16) * lowest, fs);
+ > 595		if (tmp == BIT(16))
+   596			tmp = U16_MAX;
+   597	
+   598		__raw = cpu_to_be16(tmp);
+   599	
+   600		ret = regmap_bulk_write(st->map, reg, &__raw, sizeof(__raw));
+   601		if (ret)
+   602			return ret;
+   603	
+   604		tmp = 0;
+   605		return regmap_bulk_write(st->map, reg + 1,  &tmp, sizeof(tmp));
+   606	}
+   607	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
