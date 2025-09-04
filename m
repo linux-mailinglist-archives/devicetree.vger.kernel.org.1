@@ -1,517 +1,248 @@
-Return-Path: <devicetree+bounces-212560-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212561-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16441B4333E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:03:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A574B43355
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:06:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF5DD1C2755F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:02:02 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB895189D630
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:07:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 647252BEFE0;
-	Thu,  4 Sep 2025 06:56:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF932288514;
+	Thu,  4 Sep 2025 07:06:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PHuKQ1Ud"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="DFAwFoPi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from MRWPR03CU001.outbound.protection.outlook.com (mail-francesouthazon11011012.outbound.protection.outlook.com [40.107.130.12])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62E0288C30
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 06:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756968990; cv=none; b=EVEp8XzyVt2gWTJezlHsP78vuBCbtfFhVKhWTRgcpzL9FJzEcGs+JvwivuO5lKP/OM2M2Rx9Bn48lKZgS5yJfzqMiPK1ijlSgnPCBP+bwt9PBWdnFjewkzZUnP020MxP51XgqeFm1Et1p9zqU/gss3BYVUiiIGeKDu7/mxfG4l0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756968990; c=relaxed/simple;
-	bh=srebaxDv3eZJ3Yn5QEdqdMvmUTaVbZloO57dCUSYXak=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ef2kfZq0XrRzFgry82e3K/MIUaxoVRVei0MirqgyUCiPf4+EsNnIow2DVSqkQh6RmhuFVAAQbOyEZMrI6VhmRdHoyo57S3p7nm9VVwDPFZrNW6o7xRW9brz7j4F8DGWfyYvlUKdn1oVZ/+x7kn7L9D5iRhVl5ubG27NysQcN6LY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PHuKQ1Ud; arc=none smtp.client-ip=209.85.221.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3dad6252eacso345158f8f.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 23:56:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756968986; x=1757573786; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iuWa/TU+jCKequWuceGeCu2kioVsaALaGs2DgkR7OiI=;
-        b=PHuKQ1Ud/7Nf26cpdr0/i2FPotSJrTJM6AeVrArKIZSJUXENMnkKYerOLBQeASOtf2
-         nrkxXDx7hJ+12fKe0QhPzV5yzTTUIuNOspS+1LNMZkM3nvRTx/6JN1UPX0WVtqIPs3jT
-         hMEf6DVvBTlHmd/C9/WDTHoNoU2ChGSq+ZSHVJICGGHS2xuRBcZ4HrSo5ygjRqk2qZiR
-         qGJrGgeT5YQeAXV+H9HLZN4hqJZnw7Mr/c0nRSkXh9/BeDWUXrtvd1s7VMqjT0aeVL3G
-         rc3mk04NmPHUVpSJ0+MmjE5QagqoJFPBreuGMd3o5JSiE2b3mNbSdFxJT9Hlmxv1ySL/
-         XyvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756968986; x=1757573786;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iuWa/TU+jCKequWuceGeCu2kioVsaALaGs2DgkR7OiI=;
-        b=Xba+YvcMmqVABRrIqhP/wFg88aTJMtWwqYqUJA9H30QeHDtWjeO67EiCZ+bLJ05X5Q
-         D6pIKJkDDuuO/OvZnGICJ9T1hVF1tVP/w50KD8J5zj/JDYseIpgq9HL/qv4ffVIhh+32
-         5bvyZT4tSAaEVlRJ0wvKH3r9fmjBf65l0oLTU533MxRdS9FfAEGi6ZidCm747IyYyT1o
-         O5IJlPK8pxfGcbfuSynyHPXn7/GwGfDghmktK4ekXtPJD3Qy5kTL9xNpSrKqJ55rWWXl
-         hbs0HMXegsH1T5/sr83JIK4lj+Ib4vJsfkQxaZsC41j5RCPBDu69XnTZXLFvIR7BTECl
-         gahg==
-X-Forwarded-Encrypted: i=1; AJvYcCXN2LOedg7Plm/9yeA8wrkrTZk0DFqu5/ZlUjWzigA6qP/homkpxtc/mtc/8F314l4UKSuJMCmI2XSe@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw+tP32v/JgDX4cG+EMCE7wfgIMqfcI41Z9RiHu/nsotErJ8fJe
-	gKlGzydGUN83iLMStutGKa2mcYX30Kc7zI+YULFT1e7wCZ7T1pUyJQu6fqhH6mTDPE8=
-X-Gm-Gg: ASbGncsNV1acfD+HvaR6/B9Mbj12V4EScoThFOEfdKF/eZeeGut7LtP2ZHqMntYBxJu
-	H9aH2FQRLp2OzPO0333P5VTMYUE4m0HPHL3gf6vtJVkECHEH5DQdEvnKFoIL9BZY+N6si1297f+
-	RMpenigRf7rAYD6UweQ4TvB/QbTTIn+a+4QmZznb3qce2cvItY5YPRbDJjhUleBzlOZGrTNrY3w
-	IZplHC/I6rZkGPSQzBTSHJCVORLi11i0X18HkazTv4od1u6qzpv3bV0F4uOYlv/5Grj4XQ0dSr+
-	a6TBF3ij8KOTZ7XMLkN6/80q1JN2TLyfYHOIVMk6KjvbkwzU7p+PSM7GcdMhuxUCquis/NDLBUY
-	jv2vQbmqZ5Rg41a0Kvtk7cmrVVaqOqz5CzQ==
-X-Google-Smtp-Source: AGHT+IGZcOQmL7QDDiQf5uiqGROnu/ur6py/GIqo6bRLjxu/5sY/Q4fqFg8GKpIxdF5jT/ziSXFakQ==
-X-Received: by 2002:a05:6000:2384:b0:3cd:ac2b:7f0 with SMTP id ffacd0b85a97d-3d1def61f55mr11300684f8f.49.1756968986068;
-        Wed, 03 Sep 2025 23:56:26 -0700 (PDT)
-Received: from hackbox.lan ([86.121.170.194])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d701622b92sm15256075f8f.58.2025.09.03.23.56.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 23:56:25 -0700 (PDT)
-From: Abel Vesa <abel.vesa@linaro.org>
-Date: Thu, 04 Sep 2025 09:55:53 +0300
-Subject: [PATCH 3/3] phy: qcom: edp: Add Glymur platform support
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05FEF22AE65;
+	Thu,  4 Sep 2025 07:06:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.130.12
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756969596; cv=fail; b=iYbYkhXni7mTPkT8R4eV3c82Klo/IaRGPbFGPCi19HpJnMjUel7Nlnw1Oae/Xn4b+Mx8yYPwYX0kG78rNzLsosWitwZ/3cZ6G6ACv6kk5vFWKx4b5iheqNgHz2NSgxk29+4vb+AEws3cAChCWlBiLf+B+gGEuo+ROH1sV/bVauw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756969596; c=relaxed/simple;
+	bh=JD2ssr8dqHk8SPDu9WfzNKh9AWC0KTAm0bipY/00pig=;
+	h=From:To:Subject:Date:Message-Id:Content-Type:MIME-Version; b=ECkx8gyaOl0fP5bsv6HxV3qeOOOKv+5lIreeOvMsFqgMchP62ktamSbRGM+0Ym0mQA1EAmp8WXzEVS52OJ/pyyM6YXaTiw8584UfBXBShzICep2vIWTIpplYy6p9FWcfyvLN7tPGeb/Gj/NZ7DXCWUBT5xDsxeB/Tt3uD5Jpoug=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=DFAwFoPi; arc=fail smtp.client-ip=40.107.130.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=yRr10+k6fHEfuyoMeHW01s/LYCVD+jjHjt/T/ngkFyk9DIIC5ffpubTGmeM64l1UazWn+BMTQPvoeO1RMf93CWQ1aJ/ArwmHYHkTSuZ3EFb8NetIsqGf1FkRd+zkKnbYJdxq5kcLMsnYokksb9vCPH0LF0M6B818mhWSQPQwWyB0u1bqfmPUQB/rtQ3tQK+7b3ohG22jikc1HqeGRATHqLQ8jyikraYex5Al/qv8bqvn2rXK6hQcnouJJgAr7ORk6Mp4tPtabFl8waaN1rAOfNdhwahwvW713miHyALXu1tkEv3JI5+NGajWXjXJ+iPOQe+uAD/WMkZZ4MiFd14gpg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RG4ubNH7+DieWFZx7HpdIpc6Wtmn8ks6ugIT99hjjlw=;
+ b=gST/QBoyjPzudiZAfqe2TqMYU1xFew0IJpif5omZknnyW2WrX3npzhTCUjwmPF1UgKZGz66eCvs7xaZraxwqJNEl5XllfB70W8H3e+frwlaxYLnI/WLJRGyEo7KpNKooVaC6jzzgYT0s0dyrFz35iqOTISk7sXR9bgA+z6Uu67SpPp2uPhGnUVIKKJdgBqaqP6QqrrXVfBxQLHns2gYpdx8euQTjwCSeBeodZeZmY8HyuoZZnpUwDcHIR8UCdfEPu5NrKo1GhYs53oTdcveSCeddbk7JjlkBWNJgMD6ksmhjOsLZUJZJLoKJFDas2K1sbpnqlspQOLFJoun4siko8A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RG4ubNH7+DieWFZx7HpdIpc6Wtmn8ks6ugIT99hjjlw=;
+ b=DFAwFoPij1kOMKIx+HPNtrpEOtzDVAL50RiZOqBLZ0tGF8NAz84L9vBGzZseB5S/q8PippO+CA7fzf+JTSSHgbXGOzjIVY9GpPzrLdzxBtACEmcSssxnSJzHQs7xp081b0u37dtZtbH4TNcmpTtAkTayW0utf46QTs0Du30G9RHTWMyyjbWR9205I5VSnSfyPr+VG5dEkRq1gWe6YFUYk75eWNl2LUkYDO9CSZ2pTqXlhVRXpP2JV/az5mD57+qIW8Qi0L41MH/rjz91YL7rOo0pIq7kZI071x8lu/gP2ozaMteQK+Lv/zCLVHU5lDD3RhGi7DC8TFWMRnrmu1xMwg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com (2603:10a6:208:191::20)
+ by DB8PR04MB7002.eurprd04.prod.outlook.com (2603:10a6:10:119::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.17; Thu, 4 Sep
+ 2025 07:06:30 +0000
+Received: from AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b]) by AM0PR04MB7044.eurprd04.prod.outlook.com
+ ([fe80::bab2:d15c:fcf8:ef2b%6]) with mapi id 15.20.9094.016; Thu, 4 Sep 2025
+ 07:06:30 +0000
+From: Shengjiu Wang <shengjiu.wang@nxp.com>
+To: andrzej.hajda@intel.com,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	Laurent.pinchart@ideasonboard.com,
+	jonas@kwiboo.se,
+	jernej.skrabec@gmail.com,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	tzimmermann@suse.de,
+	airlied@gmail.com,
+	simona@ffwll.ch,
+	lumag@kernel.org,
+	dianders@chromium.org,
+	cristian.ciocaltea@collabora.com,
+	luca.ceresoli@bootlin.com,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	victor.liu@nxp.com,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de,
+	kernel@pengutronix.de,
+	festevam@gmail.com,
+	imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	p.zabel@pengutronix.de,
+	devicetree@vger.kernel.org,
+	l.stach@pengutronix.de,
+	shengjiu.wang@gmail.com,
+	perex@perex.cz,
+	tiwai@suse.com,
+	linux-sound@vger.kernel.org
+Subject: [PATCH v6 0/7] drm/bridge: imx: Add HDMI PAI driver on i.MX8MP
+Date: Thu,  4 Sep 2025 15:05:53 +0800
+Message-Id: <20250904070600.1361165-1-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR04CA0016.apcprd04.prod.outlook.com
+ (2603:1096:4:197::7) To AM0PR04MB7044.eurprd04.prod.outlook.com
+ (2603:10a6:208:191::20)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250904-phy-qcom-edp-add-glymur-support-v1-3-e83c6b9a145b@linaro.org>
-References: <20250904-phy-qcom-edp-add-glymur-support-v1-0-e83c6b9a145b@linaro.org>
-In-Reply-To: <20250904-phy-qcom-edp-add-glymur-support-v1-0-e83c6b9a145b@linaro.org>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
-X-Mailer: b4 0.15-dev-dedf8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=13462; i=abel.vesa@linaro.org;
- h=from:subject:message-id; bh=srebaxDv3eZJ3Yn5QEdqdMvmUTaVbZloO57dCUSYXak=;
- b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBouTgRgAN4hAbV4ZOmc33+OmGfaLXBmYCk+Kvd+
- RiIB5LGl8KJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaLk4EQAKCRAbX0TJAJUV
- VovpD/9OvHlxnwtUWXo367Losskrr81TZQxUS7pGnkp5abwlhIRkQf3B65I6ti5Y535Vyl7XWIy
- uJtOiOstGYLS4P09KbsK0cSWnsqBkT6CkkMs2LeQFnBXxWi7oqQadMxh+Bgppd7VFAT51BPwerm
- kzBGvidicXT+UpUMAD0YZpqUPFOmEwlVfayYT1y1HpdAKEfXt1VPlKLMWsnwK/vEFe7Zj4VXltE
- tAFXtClNYrChgDm5WGfmCAPozHkTrt/cVp2HFsuNdHp7Biof/WC3JwHHXqkgWltqXxcN3frgAtU
- kTk6UwORgyk/Yi9TyEEI9p+gfmLLkii6tFSTq5HhlCpntjlw6lkoco6cGgOelcSOW4RhZDqWh4U
- CNEPcP94yF+Qm7YjBOp27PtjhqniZRruhTeDI+XJxzDxQf/PmJRL+BDMBstYiSe2A9WNy/ad+8R
- dPgs01QqO/vLeFticouvsBp4/QzF9eezlaFSUla5pJD4irnPvEYqXCyuiSvr9Qi+4WqLAEzKc5V
- Km3IdwDY6nhLlQHSZVM2vG2nd8lgfxSryTCMtC9GaIfUld5RYbG9v5Sv6nz3JDjNsDqksWSPR9A
- hg+stA+UgbbPxuIomRXsLtdFim9+HuTed9+nhg/vNfskzdJtMRXiLfm4CawdbdCly9uEwI0Fz7J
- 1/t9WYM6TnsmggQ==
-X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
- fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM0PR04MB7044:EE_|DB8PR04MB7002:EE_
+X-MS-Office365-Filtering-Correlation-Id: b929a883-09d7-4a3c-8d83-08ddeb819273
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+ BCL:0;ARA:13230040|366016|1800799024|19092799006|7416014|376014|52116014|921020|38350700014;
+X-Microsoft-Antispam-Message-Info:
+ =?us-ascii?Q?1slpSYycDT75rTaogjLoGQIFPVg0foi6s4qXZV/UVESq5VjnUPcLlqVLp3Ho?=
+ =?us-ascii?Q?2tYAGFBn4LxPMf6ImjfylK93QnNyMX4hRivhj4deOPt8mTnjmukEfLiTj1uF?=
+ =?us-ascii?Q?dVnoh+qV3feoG3seLZfTeR+MYL7LpTPSMRyXDA0ZySLa68dWSuCOVD5C+LJG?=
+ =?us-ascii?Q?ltPT3k//YtzLXC+giiCibd5MWVZs9GR3CHQdzyE+STePxCW+IFkp+hO2+7kl?=
+ =?us-ascii?Q?nWBzGiukpRBKSwmJ90FyoDPlojZcT5YKngmTS+l8cSsMdq26AkZQR6wA5WrT?=
+ =?us-ascii?Q?jx/rKIXA9l+7cwKGwBr+sWAqSszNPKE1+YCUTRrsCkgUODtUiK14UfodUpYf?=
+ =?us-ascii?Q?WZdlub9MhT9d/4Ca1IGq9+slbGmH5if9w1UY70yuuV9tona8ihvdqImgHQo9?=
+ =?us-ascii?Q?OfOrV17Dz8/J//v/Itgk863K/wTlPBnqUXqJDG2z/L3nLnrQnqQW+wUC1yx3?=
+ =?us-ascii?Q?4QcXzZASFRjl7+1jQH0ebnVKqF589l2whushjy2sCCo7r77LVI1Bbjx1+bfa?=
+ =?us-ascii?Q?x3/1dyn/K8hNEvZ53CMx2e01KgobaXEDHBG0mllcsAM5vFB9ZJ8PGWhYBLAh?=
+ =?us-ascii?Q?c567NrKkkDe4YVG8K6DN3yXtvrqstHgAjLBQ2+oBTPPW9McALkDbieeencLF?=
+ =?us-ascii?Q?roNx6+A0UGpFoIfzm/55SPaPPJ3EihnIPoSEXK+xwhspOQAHeJSA92AEVtSi?=
+ =?us-ascii?Q?1Jg1EfKGEODvl9XWhSC8o56H1LqXdzTtljw0n1LuC7/Mehio99o4fNCkeOgk?=
+ =?us-ascii?Q?2u8PvN8zrUvW/WxSGsWgTzhsCkjiFhMsa38/KER1o7oQdk524W2isaNZEZVh?=
+ =?us-ascii?Q?QuXJabHa4CtrF1L/PHhnShq9iYlL4ipQzEhlJZ4vs2Z46DscN8qWZHOsStxl?=
+ =?us-ascii?Q?R70FKHeGl9IZrOixkMrmB8Mn5RqL8O+r2F+uuHrAa3E6+YmCWIa094lceM7Q?=
+ =?us-ascii?Q?L5w2BgF6t2CJEklDSR2Gxo3yUnPXvdPvvKbMQ3Ik21lzexoYUr14nJBm7izZ?=
+ =?us-ascii?Q?D6NmCCEZGmy3lAWvn0zlzeef0gvVL2j31m7jNYm2/1g1GgFeg/3vU+G0PaQz?=
+ =?us-ascii?Q?92yhBJCtfXaLYTgZ6nfS5BTi8Ha8IAsjB/amksN4h0Lwq9ceRLf7Noav+usO?=
+ =?us-ascii?Q?KrV8R7TjqWjA/JnPMuX8L58LuxCJbUsv58HboVY+OH5UhhQ8iJFCmmg17zeo?=
+ =?us-ascii?Q?gWI7QjyCMjAua8YLnsm7Ac5P/QrqLjFgBrt4iSxRtaLGdAgpWGRs3WzsZwvz?=
+ =?us-ascii?Q?o2LEdX5Xxn2SuzuBpY2xjsmMfVAVm+SUYNk1C4pWTWXhFx7DhDJLj9Mu/CPv?=
+ =?us-ascii?Q?cjbv9Rb2Wk8ao1b4l78xmja8VWcaF6DBXDp1xdIuGMDip0XSkBEPyZezCNSs?=
+ =?us-ascii?Q?ewFQqDHNc0VVPoYaii7fMLU8mRnaIOWjVULok5Jz3JV/0yGp4dNNO6UvHyoE?=
+ =?us-ascii?Q?bbrXdMqDzm4cvyqVqJ7kfhQL3q5/1VZVkufenvQS2NtTiWWGOIUWdJQe7qVK?=
+ =?us-ascii?Q?3vh2UWmOzbg3ZU0=3D?=
+X-Forefront-Antispam-Report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB7044.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(19092799006)(7416014)(376014)(52116014)(921020)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+ =?us-ascii?Q?2UQt5g5cFvtlUhY5c970A8k5KWN5q9eTZIJrh4UBnc3hMPM/R1DgzpKMUcfc?=
+ =?us-ascii?Q?v6zXbCmA+i4+x0UqGjzX4IDu5yT0Nv5sW0h49y79eUyCm9wvNpBscY7XyOwP?=
+ =?us-ascii?Q?rYPFj3norWWf3NbDuttwZk45VsHvZRolrEwwZzejCipYqx/DftrNgIOxvl5D?=
+ =?us-ascii?Q?eGJKgBVMjT0glIa/WQIPspXkbNqHAXZgLYVF976vQSaMkuvgcxNza5w0gZtw?=
+ =?us-ascii?Q?D99PQgQVq73nhGO4B07jLgQYhdPAtnzCDenGXkaWiGDH6F3WFozgt/BhWZvW?=
+ =?us-ascii?Q?Vp0R17EVNtDVIlvKrLpYpByqGBXb0Sd625hCBTjHWH9FDisqzcqasx1QL+S6?=
+ =?us-ascii?Q?nmYkxsChVG82IJGAvlhk7iJJymyZC75rMTDSYvYFqypWg+/tNvWPKakqJlWg?=
+ =?us-ascii?Q?Uuzl1be/C8ZUzODec1rgJNg/lWCsskVixxiJxQYKZ53rk5oMdtKDLyO/KqpP?=
+ =?us-ascii?Q?fr2MQtZLCr1aWcO/IEgIr7gFxY++ayNgq7BHqKtKGkTzN8Vhw3F3UiZbtYgO?=
+ =?us-ascii?Q?E8PiQ3oMVu4ApoaC+Fh/SRxSLXiJ7nefGzh1DUfSuXLiCtmyyUi7Xp7DBUhP?=
+ =?us-ascii?Q?NGO8lvc6H394BtxPoaVB5i6rxTv/875i5//IIY72eVd4oNi09gDgDfxAxdz4?=
+ =?us-ascii?Q?AhoueezTWn3Rd0vBwfuTdCMjjWlaSK5h6MiY8EzMXs4ASU0EATaFkuZTNmqS?=
+ =?us-ascii?Q?f3GewKW2SmvhCZ+h4tZLAn+d1LHdhP1lXaJGpmnknAEM0rGjvm2A/JDGOpdA?=
+ =?us-ascii?Q?xZ3iSbg0/Pok8qpKRF+aI0jRRFvq44gYn2LNmHBI0EfN5i5zGPqY5sVD4Tpz?=
+ =?us-ascii?Q?nCiT3BRpG+X/dXYALoT/4SOTDz4j0K9TmyTwnOtr5sfFNi9MQmSa4QDIp22k?=
+ =?us-ascii?Q?ca3HLFihzShjydfJ7CabNMhZ4vvcTkKKMkv93oYQgJcugexrf9vHjx4IxSgL?=
+ =?us-ascii?Q?9kffVWhMDvgppzOklIVzLVOf0UiaCgt8vHa7S6OcZx9i6JCIlBaa1woFBJtR?=
+ =?us-ascii?Q?r/8B+B/Hk5oKP5cnL4bMWCIlfuyyHgezt+vUtO4XyqoCNAuuigPTOECOv+aF?=
+ =?us-ascii?Q?i2peGaI+GK72cxz8GpJoG7ZgzOvxRIvkLTtSTrkmvSCAjgJvidt1h7KE650W?=
+ =?us-ascii?Q?R7oaI1GgyDiChgNYYgf2xF3xl1jT+pOxDNdEskVyhBK0Q3QfY58K0jyhRsxr?=
+ =?us-ascii?Q?GyYZcEfgyzI2BgzdpEbLxM5Sqw+7Egm9eVgdFSaEfQjfzN8RTdVFBggHtpV3?=
+ =?us-ascii?Q?f1WsWFMMTDFbuaaoH6VO+Hvuk8Gg0enb/cYGmAqC81IF1TQtaVJPz8+Pchc8?=
+ =?us-ascii?Q?JdbAd6i+y/DkSET05GPhIzrqULislY7bLucsdD0A1Y8QaWvnUp0XWZb4XGwu?=
+ =?us-ascii?Q?R0fZ5efU+GBF6941iUYcfC6JQKx9og4Tujj8kXFdQlbR1fxVUvJz06rzQEzx?=
+ =?us-ascii?Q?K+Q6TWhpsJmN46UdBPIPK9cnsxN8ZcesWfz0JbhiOXpFUdfSSATRnQsGNYjk?=
+ =?us-ascii?Q?5ZuFjW25kHImRfrW8dV8XxTu+45JZnuw+lUZYVpOEnMRpwGHf8MQ0UHFwMpB?=
+ =?us-ascii?Q?lr8UnfpxXYhkhyM7aQJbeau8t9TBlPnQ2SJJ5vye?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b929a883-09d7-4a3c-8d83-08ddeb819273
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB7044.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 07:06:30.0250
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: BwjKaqVQNLwSt93i8CLAt2iBMxi9kjyv3pTYKifNF4Se04GzPDcI+pyHFHOxllGMr+J8knshsYPplwq+ODiMTQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7002
 
-The Qualcomm Glymur platform has the new v8 version
-of the eDP/DP PHY. So rework the driver to support this
-new version and add the platform specific configuration data.
+The HDMI TX Parallel Audio Interface (HTX_PAI) is a digital module that
+acts as the bridge between the Audio Subsystem to the HDMI TX Controller.
 
-Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
----
- drivers/phy/qualcomm/phy-qcom-edp.c | 239 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 232 insertions(+), 7 deletions(-)
+Add HDMI PAI driver on i.MX8MP to make HDMI audio function fully work.
 
-diff --git a/drivers/phy/qualcomm/phy-qcom-edp.c b/drivers/phy/qualcomm/phy-qcom-edp.c
-index 116b7f7b4f8be93e5128c3cc6f382ce7576accbc..26af8d8db4d765ce35132a0fd092f8c8634e43d6 100644
---- a/drivers/phy/qualcomm/phy-qcom-edp.c
-+++ b/drivers/phy/qualcomm/phy-qcom-edp.c
-@@ -25,6 +25,7 @@
- #include "phy-qcom-qmp-dp-phy.h"
- #include "phy-qcom-qmp-qserdes-com-v4.h"
- #include "phy-qcom-qmp-qserdes-com-v6.h"
-+#include "phy-qcom-qmp-qserdes-com-v8.h"
- 
- /* EDP_PHY registers */
- #define DP_PHY_CFG                              0x0010
-@@ -32,7 +33,7 @@
- #define DP_PHY_PD_CTL                           0x001c
- #define DP_PHY_MODE                             0x0020
- 
--#define DP_AUX_CFG_SIZE                         10
-+#define DP_AUX_CFG_SIZE                         13
- #define DP_PHY_AUX_CFG(n)                       (0x24 + (0x04 * (n)))
- 
- #define DP_PHY_AUX_INTERRUPT_MASK		0x0058
-@@ -76,6 +77,7 @@ struct phy_ver_ops {
- 	int (*com_power_on)(const struct qcom_edp *edp);
- 	int (*com_resetsm_cntrl)(const struct qcom_edp *edp);
- 	int (*com_bias_en_clkbuflr)(const struct qcom_edp *edp);
-+	int (*com_clk_fwd_cfg)(const struct qcom_edp *edp);
- 	int (*com_configure_pll)(const struct qcom_edp *edp);
- 	int (*com_configure_ssc)(const struct qcom_edp *edp);
- };
-@@ -83,6 +85,8 @@ struct phy_ver_ops {
- struct qcom_edp_phy_cfg {
- 	bool is_edp;
- 	const u8 *aux_cfg;
-+	int aux_cfg_size;
-+	const u8 *vco_div_cfg;
- 	const struct qcom_edp_swing_pre_emph_cfg *swing_pre_emph_cfg;
- 	const struct phy_ver_ops *ver_ops;
- };
-@@ -185,6 +189,10 @@ static const u8 edp_phy_aux_cfg_v4[10] = {
- 	0x00, 0x13, 0x24, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03
- };
- 
-+static const u8 edp_phy_vco_div_cfg_v4[4] = {
-+	0x1, 0x1, 0x2, 0x0,
-+};
-+
- static const u8 edp_pre_emp_hbr_rbr_v5[4][4] = {
- 	{ 0x05, 0x11, 0x17, 0x1d },
- 	{ 0x05, 0x11, 0x18, 0xff },
-@@ -199,6 +207,14 @@ static const u8 edp_pre_emp_hbr2_hbr3_v5[4][4] = {
- 	{ 0x0d, 0xff, 0xff, 0xff }
- };
- 
-+static const u8 edp_phy_aux_cfg_v8[13] = {
-+	0x00, 0x00, 0xa0, 0x00, 0x0a, 0x26, 0x0a, 0x03, 0x37, 0x03, 0x02, 0x02, 0x4,
-+};
-+
-+static const u8 edp_phy_vco_div_cfg_v8[4] = {
-+	0x1, 0x1, 0x1, 0x1,
-+};
-+
- static const struct qcom_edp_swing_pre_emph_cfg edp_phy_swing_pre_emph_cfg_v5 = {
- 	.swing_hbr_rbr = &edp_swing_hbr_rbr,
- 	.swing_hbr3_hbr2 = &edp_swing_hbr2_hbr3,
-@@ -224,7 +240,11 @@ static int qcom_edp_phy_init(struct phy *phy)
- 	if (ret)
- 		goto out_disable_supplies;
- 
--	memcpy(aux_cfg, edp->cfg->aux_cfg, sizeof(aux_cfg));
-+	memcpy(aux_cfg, edp->cfg->aux_cfg, edp->cfg->aux_cfg_size);
-+
-+	ret = edp->cfg->ver_ops->com_clk_fwd_cfg(edp);
-+	if (ret)
-+		return ret;
- 
- 	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
- 	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
-@@ -252,7 +272,7 @@ static int qcom_edp_phy_init(struct phy *phy)
- 
- 	writel(0xfc, edp->edp + DP_PHY_MODE);
- 
--	for (int i = 0; i < DP_AUX_CFG_SIZE; i++)
-+	for (int i = 0; i < edp->cfg->aux_cfg_size; i++)
- 		writel(aux_cfg[i], edp->edp + DP_PHY_AUX_CFG(i));
- 
- 	writel(PHY_AUX_STOP_ERR_MASK | PHY_AUX_DEC_ERR_MASK |
-@@ -345,22 +365,22 @@ static int qcom_edp_set_vco_div(const struct qcom_edp *edp, unsigned long *pixel
- 
- 	switch (dp_opts->link_rate) {
- 	case 1620:
--		vco_div = 0x1;
-+		vco_div = edp->cfg->vco_div_cfg[0];
- 		*pixel_freq = 1620000000UL / 2;
- 		break;
- 
- 	case 2700:
--		vco_div = 0x1;
-+		vco_div = edp->cfg->vco_div_cfg[1];
- 		*pixel_freq = 2700000000UL / 2;
- 		break;
- 
- 	case 5400:
--		vco_div = 0x2;
-+		vco_div = edp->cfg->vco_div_cfg[2];
- 		*pixel_freq = 5400000000UL / 4;
- 		break;
- 
- 	case 8100:
--		vco_div = 0x0;
-+		vco_div = edp->cfg->vco_div_cfg[3];
- 		*pixel_freq = 8100000000UL / 6;
- 		break;
- 
-@@ -398,6 +418,11 @@ static int qcom_edp_phy_com_resetsm_cntrl_v4(const struct qcom_edp *edp)
- 				     val, val & BIT(0), 500, 10000);
- }
- 
-+static int qcom_edp_com_clk_fwd_cfg_v4(const struct qcom_edp *edp)
-+{
-+	return 0;
-+}
-+
- static int qcom_edp_com_bias_en_clkbuflr_v4(const struct qcom_edp *edp)
- {
- 	/* Turn on BIAS current for PHY/PLL */
-@@ -530,6 +555,7 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v4 = {
- 	.com_power_on		= qcom_edp_phy_power_on_v4,
- 	.com_resetsm_cntrl	= qcom_edp_phy_com_resetsm_cntrl_v4,
- 	.com_bias_en_clkbuflr	= qcom_edp_com_bias_en_clkbuflr_v4,
-+	.com_clk_fwd_cfg	= qcom_edp_com_clk_fwd_cfg_v4,
- 	.com_configure_pll	= qcom_edp_com_configure_pll_v4,
- 	.com_configure_ssc	= qcom_edp_com_configure_ssc_v4,
- };
-@@ -538,16 +564,21 @@ static const struct qcom_edp_phy_cfg sa8775p_dp_phy_cfg = {
- 	.is_edp = false,
- 	.aux_cfg = edp_phy_aux_cfg_v5,
- 	.swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg_v5,
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v4,
- 	.ver_ops = &qcom_edp_phy_ops_v4,
- };
- 
- static const struct qcom_edp_phy_cfg sc7280_dp_phy_cfg = {
- 	.aux_cfg = edp_phy_aux_cfg_v4,
-+	.aux_cfg_size = ARRAY_SIZE(edp_phy_aux_cfg_v4),
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v4,
- 	.ver_ops = &qcom_edp_phy_ops_v4,
- };
- 
- static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
- 	.aux_cfg = edp_phy_aux_cfg_v4,
-+	.aux_cfg_size = ARRAY_SIZE(edp_phy_aux_cfg_v4),
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v4,
- 	.swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
- 	.ver_ops = &qcom_edp_phy_ops_v4,
- };
-@@ -555,10 +586,37 @@ static const struct qcom_edp_phy_cfg sc8280xp_dp_phy_cfg = {
- static const struct qcom_edp_phy_cfg sc8280xp_edp_phy_cfg = {
- 	.is_edp = true,
- 	.aux_cfg = edp_phy_aux_cfg_v4,
-+	.aux_cfg_size = ARRAY_SIZE(edp_phy_aux_cfg_v4),
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v4,
- 	.swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg,
- 	.ver_ops = &qcom_edp_phy_ops_v4,
- };
- 
-+static int qcom_edp_phy_com_resetsm_cntrl_v8(const struct qcom_edp *edp)
-+{
-+	u32 val;
-+
-+	writel(0x20, edp->pll + QSERDES_V8_COM_RESETSM_CNTRL);
-+
-+	return readl_poll_timeout(edp->pll + QSERDES_V8_COM_C_READY_STATUS,
-+				     val, val & BIT(0), 500, 10000);
-+}
-+
-+static int qcom_edp_com_clk_fwd_cfg_v8(const struct qcom_edp *edp)
-+{
-+	writel(0x3f, edp->pll + QSERDES_V8_COM_CLK_FWD_CONFIG_1);
-+
-+	return 0;
-+}
-+
-+static int qcom_edp_com_bias_en_clkbuflr_v8(const struct qcom_edp *edp)
-+{
-+	/* Turn on BIAS current for PHY/PLL */
-+	writel(0x1f, edp->pll + QSERDES_V8_COM_BIAS_EN_CLKBUFLR_EN);
-+
-+	return 0;
-+}
-+
- static int qcom_edp_phy_power_on_v6(const struct qcom_edp *edp)
- {
- 	u32 val;
-@@ -724,6 +782,139 @@ static int qcom_edp_com_configure_pll_v6(const struct qcom_edp *edp)
- 	return 0;
- }
- 
-+static int qcom_edp_com_configure_ssc_v8(const struct qcom_edp *edp)
-+{
-+	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-+	u32 step1;
-+	u32 step2;
-+
-+	switch (dp_opts->link_rate) {
-+	case 1620:
-+	case 2700:
-+	case 8100:
-+		step1 = 0x5b;
-+		step2 = 0x02;
-+		break;
-+
-+	case 5400:
-+		step1 = 0x5b;
-+		step2 = 0x02;
-+		break;
-+
-+	default:
-+		/* Other link rates aren't supported */
-+		return -EINVAL;
-+	}
-+
-+	writel(0x01, edp->pll + QSERDES_V8_COM_SSC_EN_CENTER);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_SSC_ADJ_PER1);
-+	writel(0x6b, edp->pll + QSERDES_V8_COM_SSC_PER1);
-+	writel(0x02, edp->pll + QSERDES_V8_COM_SSC_PER2);
-+	writel(step1, edp->pll + QSERDES_V8_COM_SSC_STEP_SIZE1_MODE0);
-+	writel(step2, edp->pll + QSERDES_V8_COM_SSC_STEP_SIZE2_MODE0);
-+
-+	return 0;
-+}
-+
-+static int qcom_edp_com_configure_pll_v8(const struct qcom_edp *edp)
-+{
-+	const struct phy_configure_opts_dp *dp_opts = &edp->dp_opts;
-+	u32 div_frac_start2_mode0;
-+	u32 div_frac_start3_mode0;
-+	u32 dec_start_mode0;
-+	u32 lock_cmp1_mode0;
-+	u32 lock_cmp2_mode0;
-+	u32 code1_mode0;
-+	u32 code2_mode0;
-+	u32 hsclk_sel;
-+
-+	switch (dp_opts->link_rate) {
-+	case 1620:
-+		hsclk_sel = 0x5;
-+		dec_start_mode0 = 0x34;
-+		div_frac_start2_mode0 = 0xc0;
-+		div_frac_start3_mode0 = 0x0b;
-+		lock_cmp1_mode0 = 0x37;
-+		lock_cmp2_mode0 = 0x04;
-+		code1_mode0 = 0x71;
-+		code2_mode0 = 0x0c;
-+		break;
-+
-+	case 2700:
-+		hsclk_sel = 0x3;
-+		dec_start_mode0 = 0x34;
-+		div_frac_start2_mode0 = 0xc0;
-+		div_frac_start3_mode0 = 0x0b;
-+		lock_cmp1_mode0 = 0x07;
-+		lock_cmp2_mode0 = 0x07;
-+		code1_mode0 = 0x71;
-+		code2_mode0 = 0x0c;
-+		break;
-+
-+	case 5400:
-+		hsclk_sel = 0x2;
-+		dec_start_mode0 = 0x4f;
-+		div_frac_start2_mode0 = 0xa0;
-+		div_frac_start3_mode0 = 0x01;
-+		lock_cmp1_mode0 = 0x18;
-+		lock_cmp2_mode0 = 0x15;
-+		code1_mode0 = 0x14;
-+		code2_mode0 = 0x25;
-+		break;
-+
-+	case 8100:
-+		hsclk_sel = 0x2;
-+		dec_start_mode0 = 0x4f;
-+		div_frac_start2_mode0 = 0xa0;
-+		div_frac_start3_mode0 = 0x01;
-+		lock_cmp1_mode0 = 0x18;
-+		lock_cmp2_mode0 = 0x15;
-+		code1_mode0 = 0x14;
-+		code2_mode0 = 0x25;
-+		break;
-+
-+	default:
-+		/* Other link rates aren't supported */
-+		return -EINVAL;
-+	}
-+
-+	writel(0x01, edp->pll + QSERDES_V8_COM_SVS_MODE_CLK_SEL);
-+	writel(0x3b, edp->pll + QSERDES_V8_COM_SYSCLK_EN_SEL);
-+	writel(0x02, edp->pll + QSERDES_V8_COM_SYS_CLK_CTRL);
-+	writel(0x0c, edp->pll + QSERDES_V8_COM_CLK_ENABLE1);
-+	writel(0x06, edp->pll + QSERDES_V8_COM_SYSCLK_BUF_ENABLE);
-+	writel(0x30, edp->pll + QSERDES_V8_COM_CLK_SELECT);
-+	writel(hsclk_sel, edp->pll + QSERDES_V8_COM_HSCLK_SEL_1);
-+	writel(0x07, edp->pll + QSERDES_V8_COM_PLL_IVCO);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_LOCK_CMP_EN);
-+	writel(0x36, edp->pll + QSERDES_V8_COM_PLL_CCTRL_MODE0);
-+	writel(0x16, edp->pll + QSERDES_V8_COM_PLL_RCTRL_MODE0);
-+	writel(0x06, edp->pll + QSERDES_V8_COM_CP_CTRL_MODE0);
-+	writel(dec_start_mode0, edp->pll + QSERDES_V8_COM_DEC_START_MODE0);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_DIV_FRAC_START1_MODE0);
-+	writel(div_frac_start2_mode0, edp->pll + QSERDES_V8_COM_DIV_FRAC_START2_MODE0);
-+	writel(div_frac_start3_mode0, edp->pll + QSERDES_V8_COM_DIV_FRAC_START3_MODE0);
-+	writel(0x96, edp->pll + QSERDES_V8_COM_CMN_CONFIG_1);
-+	writel(0x3f, edp->pll + QSERDES_V8_COM_INTEGLOOP_GAIN0_MODE0);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_INTEGLOOP_GAIN1_MODE0);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_VCO_TUNE_MAP);
-+	writel(lock_cmp1_mode0, edp->pll + QSERDES_V8_COM_LOCK_CMP1_MODE0);
-+	writel(lock_cmp2_mode0, edp->pll + QSERDES_V8_COM_LOCK_CMP2_MODE0);
-+
-+	writel(0x0a, edp->pll + QSERDES_V8_COM_BG_TIMER);
-+	writel(0x0a, edp->pll + QSERDES_V8_COM_CORECLK_DIV_MODE0);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_VCO_TUNE_CTRL);
-+	writel(0x1f, edp->pll + QSERDES_V8_COM_BIAS_EN_CLKBUFLR_EN);
-+	writel(0x00, edp->pll + QSERDES_V8_COM_CORE_CLK_EN);
-+	writel(0xa0, edp->pll + QSERDES_V8_COM_VCO_TUNE1_MODE0);
-+	writel(0x01, edp->pll + QSERDES_V8_COM_VCO_TUNE2_MODE0);
-+
-+	writel(code1_mode0, edp->pll + QSERDES_V8_COM_BIN_VCOCAL_CMP_CODE1_MODE0);
-+	writel(code2_mode0, edp->pll + QSERDES_V8_COM_BIN_VCOCAL_CMP_CODE2_MODE0);
-+
-+	return 0;
-+}
-+
- static const struct phy_ver_ops qcom_edp_phy_ops_v6 = {
- 	.com_power_on		= qcom_edp_phy_power_on_v6,
- 	.com_resetsm_cntrl	= qcom_edp_phy_com_resetsm_cntrl_v6,
-@@ -732,12 +923,45 @@ static const struct phy_ver_ops qcom_edp_phy_ops_v6 = {
- 	.com_configure_ssc	= qcom_edp_com_configure_ssc_v6,
- };
- 
-+static int qcom_edp_phy_power_on_v8(const struct qcom_edp *edp)
-+{
-+	u32 val;
-+
-+	writel(DP_PHY_PD_CTL_PWRDN | DP_PHY_PD_CTL_AUX_PWRDN |
-+	       DP_PHY_PD_CTL_LANE_0_1_PWRDN | DP_PHY_PD_CTL_LANE_2_3_PWRDN |
-+	       DP_PHY_PD_CTL_PLL_PWRDN | DP_PHY_PD_CTL_DP_CLAMP_EN,
-+	       edp->edp + DP_PHY_PD_CTL);
-+	writel(0xfc, edp->edp + DP_PHY_MODE);
-+
-+	return readl_poll_timeout(edp->pll + QSERDES_V8_COM_CMN_STATUS,
-+				     val, val & BIT(7), 5, 200);
-+}
-+
-+static const struct phy_ver_ops qcom_edp_phy_ops_v8 = {
-+	.com_power_on		= qcom_edp_phy_power_on_v8,
-+	.com_resetsm_cntrl	= qcom_edp_phy_com_resetsm_cntrl_v8,
-+	.com_bias_en_clkbuflr	= qcom_edp_com_bias_en_clkbuflr_v8,
-+	.com_clk_fwd_cfg	= qcom_edp_com_clk_fwd_cfg_v8,
-+	.com_configure_pll	= qcom_edp_com_configure_pll_v8,
-+	.com_configure_ssc	= qcom_edp_com_configure_ssc_v8,
-+};
-+
- static struct qcom_edp_phy_cfg x1e80100_phy_cfg = {
- 	.aux_cfg = edp_phy_aux_cfg_v4,
-+	.aux_cfg_size = ARRAY_SIZE(edp_phy_aux_cfg_v4),
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v4,
- 	.swing_pre_emph_cfg = &dp_phy_swing_pre_emph_cfg,
- 	.ver_ops = &qcom_edp_phy_ops_v6,
- };
- 
-+static struct qcom_edp_phy_cfg glymur_phy_cfg = {
-+	.aux_cfg = edp_phy_aux_cfg_v8,
-+	.aux_cfg_size = ARRAY_SIZE(edp_phy_aux_cfg_v8),
-+	.vco_div_cfg = edp_phy_vco_div_cfg_v8,
-+	.swing_pre_emph_cfg = &edp_phy_swing_pre_emph_cfg_v5,
-+	.ver_ops = &qcom_edp_phy_ops_v8,
-+};
-+
- static int qcom_edp_phy_power_on(struct phy *phy)
- {
- 	const struct qcom_edp *edp = phy_get_drvdata(phy);
-@@ -1141,6 +1365,7 @@ static const struct of_device_id qcom_edp_phy_match_table[] = {
- 	{ .compatible = "qcom,sc8280xp-dp-phy", .data = &sc8280xp_dp_phy_cfg, },
- 	{ .compatible = "qcom,sc8280xp-edp-phy", .data = &sc8280xp_edp_phy_cfg, },
- 	{ .compatible = "qcom,x1e80100-dp-phy", .data = &x1e80100_phy_cfg, },
-+	{ .compatible = "qcom,glymur-dp-phy", .data = &glymur_phy_cfg, },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, qcom_edp_phy_match_table);
+changes in v6:
+- remove mutex in dw_hdmi_set_sample_iec958()
+
+changes in v5:
+- add empty line commit message for patch 7
+- remove blank line in dts node
+- add component_unbind_all when dw_hdmi_probe return error
+
+changes in v4:
+- separate dts for soc and board
+- bind hdmi_pai with hdmi_tx by moving some code to .bind() and .unbind()
+- add "select DRM_DW_HDMI" to fix build error reported by test robot
+- remove unnecessary code/definition in pai driver
+
+changes in v3:
+- add space and 'U' in asoundef.h
+- add more commit message for binding doc commit
+- add bitfield.h header for fixing build error
+
+changes in v2:
+- address some comments on commit messages
+- add two more commits:
+  add definitions for the bits in IEC958 subframe
+  add API dw_hdmi_set_sample_iec958() for iec958 format
+- use component helper in hdmi_pai and hdmi_tx driver
+- use regmap in hdmi_pai driver.
+- add clocks in binding doc
+
+Shengjiu Wang (7):
+  dt-bindings: display: imx: add HDMI PAI for i.MX8MP
+  ALSA: Add definitions for the bits in IEC958 subframe
+  drm/bridge: dw-hdmi: Add API dw_hdmi_to_plat_data() to get plat_data
+  drm/bridge: dw-hdmi: Add API dw_hdmi_set_sample_iec958() for iec958
+    format
+  drm/bridge: imx: add driver for HDMI TX Parallel Audio Interface
+  arm64: dts: imx8mp: Add hdmi parallel audio interface node
+  arm64: dts: imx8mp-evk: enable hdmi_pai device
+
+ .../display/bridge/fsl,imx8mp-hdmi-tx.yaml    |  12 ++
+ .../display/imx/fsl,imx8mp-hdmi-pai.yaml      |  69 ++++++++
+ arch/arm64/boot/dts/freescale/imx8mp-evk.dts  |   4 +
+ arch/arm64/boot/dts/freescale/imx8mp.dtsi     |  27 ++-
+ drivers/gpu/drm/bridge/imx/Kconfig            |  11 ++
+ drivers/gpu/drm/bridge/imx/Makefile           |   1 +
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c  | 158 ++++++++++++++++++
+ drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c   |  65 ++++++-
+ .../drm/bridge/synopsys/dw-hdmi-gp-audio.c    |   5 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi.c     |  16 +-
+ include/drm/bridge/dw_hdmi.h                  |  11 +-
+ include/sound/asoundef.h                      |   9 +
+ 12 files changed, 380 insertions(+), 8 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,imx8mp-hdmi-pai.yaml
+ create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-pai.c
 
 -- 
-2.45.2
+2.34.1
 
 
