@@ -1,135 +1,118 @@
-Return-Path: <devicetree+bounces-212815-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212816-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88E15B43CF1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:21:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73ACCB43CFD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:22:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2692F7AD552
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:19:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 492BB17DDBB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:22:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C19A2FE05F;
-	Thu,  4 Sep 2025 13:21:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 347B62ECEB8;
+	Thu,  4 Sep 2025 13:22:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GIduNvg/"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="ANIvYDKC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE3FB158DAC;
-	Thu,  4 Sep 2025 13:21:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4EE853002D8
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:22:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756992079; cv=none; b=V/gZJnFopJE8Jw+60wVT9HpexAWT1AhoQPgBJxFxYEAe5eI0GRjR/WJvV/tvWns4QApfizaqcmM573SRd053jlEjXIdUzDjnTt288qcU8KlRULSuD7yFdFMEgMUcx44XEcGNmwkmaVSnU/31upBEElXpMoLJVHQjbXYw50aNsHA=
+	t=1756992150; cv=none; b=WX00uBcZsXTAoNlRE7Rx0skhroRLDwytxyR0VhJte68ztU5icwEDB+9m3Gis0JyQI5yOq8tCThw1px8tWlFlMrR4wTOeJsIazRlUiF1x3DhGfCKSFLEk8ajPok4bgt+HOtDvOJsDh7RwLiXGyDpdvrrtS1xZgVqEt6KIyByMCWw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756992079; c=relaxed/simple;
-	bh=/0B3jovSesp/hxR08tvuxjzy1mvl0Jv+lkX17ZO+zUo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GxT5D1Z6RPxxp1cmx2N51EdyuGB13fvH2/eC5A0rY416kQx4Fz7fDyjtFNfZ1vQs4jyr61OHjbx5RH7qzmHW5nHWrwGkjJD/3PjSCungxPsA+8ASSQYb8LxIpvQ49NK+wt5Uxe9s7BjZezfsTDUPuBwc4roYSr1kOgP0y7r+VDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GIduNvg/; arc=none smtp.client-ip=209.85.128.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-71d60110772so11171997b3.0;
-        Thu, 04 Sep 2025 06:21:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756992077; x=1757596877; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=UW3lWz1gWateAvfJ4OmLaSxYKXnyj9z9mVCRV3AJ32A=;
-        b=GIduNvg/Tj3AOqfhcp6fWcMKkPYbvFK1ex6+DvQjQiz/NZ4e3JPQbubFWoi3nuc9da
-         Br9fi581SrCqghUcU6scW4/JyG1qRHpFTMY4CFcl00Oe1YqtBnDHD+HnJigl516pQvdR
-         QGxHzUpcrReE+ccMCN/wD2ZvOof/rgAOFkAbKZFpHqV1wtY3fwt9msTtJoVhK8hWfknI
-         o/TbRs6IxMCb2IHpGm7hSZltuzgTGII2vLLZaWDk4bmxrql6UE8DyuVPjXqsMUungz6g
-         KrDzK6uR4K3cR1EFhqdPZD3AL40oI+5I8bONuKAz4JKHoZNQW5pYCe6dkgHT+K0nlsa6
-         vgcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756992077; x=1757596877;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UW3lWz1gWateAvfJ4OmLaSxYKXnyj9z9mVCRV3AJ32A=;
-        b=OHAfVT+Fvzx22HuQ2C2s2GQJOjf+Y737bDZus32PGgL3rPTeQclU0VsH/A02H+qoId
-         UQ3ts0g4WwUkZFsVIfIAfDPXbJh8u+J550q4PR3FrqpwMoAoPUnO3D8UR6zEJ5ts1jLG
-         026uqr4zOsTrtHEVb/pPanXwAoyHObOh6tsrDqs1I4mL4DalN/Fpk115SLENfLJAoR+8
-         mIm1IwGYnxWzwA8k0t58UZMWteSCq+Oq+ZG5y/s9KypXvaKyYDN24iAJ2qxFTR8kZ4OI
-         U3r9sepUUmsGGhj9BlstfDjqjqNsaXw7tSoVSRI9u8v88HaLjSTqeCb5N5OpiyY1GCE0
-         D78w==
-X-Forwarded-Encrypted: i=1; AJvYcCU0byhzbYajmMZLMvTSVWy23Ks5ijp8Ac9LfPHcLpMqbrNyZYmISvBRpY0aBUhPMHp/YXfnhUqpbUFp@vger.kernel.org, AJvYcCUUKBSY6IJA820geomG5RwdiE07Rgz11Gdnhu8cxEbdqK7lFzjx1SYfoQaN4J65GaWZv61eb5eZ@vger.kernel.org, AJvYcCVy1fKaDnhE3I53PkZbkvPpeC0OTnHA3dr6DDmSDVMt7GMSbD21aTZIxT/Ph9gXQ6n5FXJT1jh42W4HhR5g@vger.kernel.org
-X-Gm-Message-State: AOJu0YwxkaiMfHQA4+1yZ0iltrI+NNdZB8E6m2rdTW6qZL+z7uFvgfga
-	ATcGAwBDitlbjefJQb/kFCvXZ18pjUxblFrP7lxgnATwI5hi225TBZW/
-X-Gm-Gg: ASbGncvkmIQfWyIgDdd8QsJIjMEiM7pmcFMc8KIjCH5AHFgwacYKgaG5scAJPDH2D/I
-	dboORqRgBP5uqVcG38YOt0gZeVHHXjf0GyoTnrhWjNmN9bWJzvAibkq1HcIv3M2GEwMWWXAQRsA
-	kzR4TmGKdFV97lnsCwjrXqXEMN5kKy81grF5/ycqUW6QzBGOjWzxfl+n9mqCvRgy8pTgSxQmG7z
-	z/+kJ6RAzLi9e2C6/76kxIJJu7vYv5RNDDPvTleD5dbiTwzBLrpD+2fRxbuR/oOSKdUFbHey2df
-	I4YDfTg/TpG2GWZUjT3uhdPGcGIzb+L+AKfYwq8FaJn6iE3Si8U7/ib9OTjokVOxiQjx6V/6Mz5
-	JxHNxqVyvpUIfObZNCwMP4X3wTF+xdadCv3UHsgoEGEXdgd/lSAOU
-X-Google-Smtp-Source: AGHT+IF9+DoFzLHOQRcPIJ7cBivUYyoDwWq+J13ybXKomD3r4/KZ33bHYn/W4QL4kQIHtZodp5+7Tg==
-X-Received: by 2002:a05:690c:4c11:b0:719:4cff:16db with SMTP id 00721157ae682-722764f3cd0mr60887077b3.25.1756992076451;
-        Thu, 04 Sep 2025 06:21:16 -0700 (PDT)
-Received: from hoboy.vegasvil.org ([2600:1700:2430:6f6f:e2d5:5eff:fea5:802f])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-723a8503a46sm21340297b3.46.2025.09.04.06.21.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 06:21:15 -0700 (PDT)
-Date: Thu, 4 Sep 2025 06:21:12 -0700
-From: Richard Cochran <richardcochran@gmail.com>
-To: Wei Fang <wei.fang@nxp.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	claudiu.manoil@nxp.com, vladimir.oltean@nxp.com,
-	xiaoning.wang@nxp.com, andrew+netdev@lunn.ch, davem@davemloft.net,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	vadim.fedorenko@linux.dev, Frank.Li@nxp.com, shawnguo@kernel.org,
-	fushi.peng@nxp.com, devicetree@vger.kernel.org,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v6 net-next 03/17] ptp: add helpers to get the phc_index
- by of_node or dev
-Message-ID: <aLmSSC90dWDfhGkL@hoboy.vegasvil.org>
-References: <20250827063332.1217664-1-wei.fang@nxp.com>
- <20250827063332.1217664-4-wei.fang@nxp.com>
+	s=arc-20240116; t=1756992150; c=relaxed/simple;
+	bh=RsWh05uC5lR3sho55vyl9b8++qMmNkd3wJbF1aUAkBI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B125IgnF1JhUwlHvj/BlZ1zwXdwaIInuMFLGaG9LlVQ7w9daEyKVEMFykIO7eZgT6Tb3hxURt7h2asOSL+VF85pmGMYBCwuROHw0NFzMQukXAmI22UShjoztjnbWO4SLKvyurKZE7GkxU/1KfU6bXB/qs2O7/OrF9hlTCM+uHA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=ANIvYDKC; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cHgBS3z9qz9tDy;
+	Thu,  4 Sep 2025 15:22:24 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756992144;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=P14jZkTZ2+u7vI7hYdRXpcT9fXkr0x5aIO0upkvLBic=;
+	b=ANIvYDKCbjfVCwXbxl//QcpZCl00FYQAsZeTQhF/42edtJJGpI09Vfl7JMYSBlaP9pxHWS
+	fBaYazKItq1Ofg+Qrq6zBaF/Da+HWWCzGhVMqhUETpHZsYZvgx+89lC2TUvn/9yDC+W4ig
+	jKPXkccLdZUoUkBzfnJMETQeNntPyI9AQRUUJc9hDWWlQ48lmRUJeu3RRedhkN+4bhtBYn
+	r8AMQiULzbktNaDG8XnmbJWGS7ENypY0VJ+mrABI2vocgz/dD8sR8TBonw9n5HacupYuwq
+	ivFBCujJ5KRXJplhjItVx5tlfDFkJu4Nl4ZA9dxv1MUCleM8mSdb1VVvGrkDlw==
+Message-ID: <ff353bd9-500b-4d73-86d3-32283774082c@mailbox.org>
+Date: Thu, 4 Sep 2025 15:22:18 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250827063332.1217664-4-wei.fang@nxp.com>
+Subject: Re: [PATCH v2 9/9] arm64: dts: imx95: Describe Mali G310 GPU
+To: Peng Fan <peng.fan@oss.nxp.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Fabio Estevam <festevam@gmail.com>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev
+References: <20250321200625.132494-1-marex@denx.de>
+ <20250321200625.132494-10-marex@denx.de> <6144881.lOV4Wx5bFT@steina-w>
+ <20250904095435.GD13411@nxa18884-linux.ap.freescale.net>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250904095435.GD13411@nxa18884-linux.ap.freescale.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 9f0efbf0e2d99046b6c
+X-MBO-RS-META: 9wx1ezgab7qjqngeykn69ohkyf1cs1n1
 
-On Wed, Aug 27, 2025 at 02:33:18PM +0800, Wei Fang wrote:
-> Some Ethernet controllers do not have an integrated PTP timer function.
-> Instead, the PTP timer is a separated device and provides PTP hardware
-> clock to the Ethernet controller to use. Therefore, the Ethernet
-> controller driver needs to obtain the PTP clock's phc_index in its
-> ethtool_ops::get_ts_info(). Currently, most drivers implement this in
-> the following ways.
-> 
-> 1. The PTP device driver adds a custom API and exports it to the Ethernet
-> controller driver.
-> 2. The PTP device driver adds private data to its device structure. So
-> the private data structure needs to be exposed to the Ethernet controller
-> driver.
-> 
-> When registering the ptp clock, ptp_clock_register() always saves the
-> ptp_clock pointer to the private data of ptp_clock::dev. Therefore, as
-> long as ptp_clock::dev is obtained, the phc_index can be obtained. So
-> the following generic APIs can be added to the ptp driver to obtain the
-> phc_index.
-> 
-> 1. ptp_clock_index_by_dev(): Obtain the phc_index by the device pointer
-> of the PTP device.
-> 2.ptp_clock_index_by_of_node(): Obtain the phc_index by the of_node
-> pointer of the PTP device.
-> 
-> Also, we can add another API like ptp_clock_index_by_fwnode() to get the
-> phc_index by fwnode of PTP device. However, this API is not used in this
-> patch set, so it is better to add it when needed.
-> 
-> Suggested-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> Signed-off-by: Wei Fang <wei.fang@nxp.com>
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+On 9/4/25 11:54 AM, Peng Fan wrote:
 
-Acked-by: Richard Cochran <richardcochran@gmail.com>
+Hello Peng,
+
+>>> @@ -1890,6 +1919,35 @@ netc_emdio: mdio@0,0 {
+>>>   			};
+>>>   		};
+>>>   
+>>> +		gpu_blk_ctrl: reset-controller@4d810000 {
+>>> +			compatible = "nxp,imx95-gpu-blk-ctrl";
+>>> +			reg = <0x0 0x4d810000 0x0 0xc>;
+>>> +			#reset-cells = <1>;
+>>> +			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
+>>> +			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
+>>> +			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
+>>> +			assigned-clock-rates = <133333333>;
+>>> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
+>>> +		};
+>>
+>> With the SM release lf-6.12.3-1.0.0 AP does not have any access to
+>> this BLK_CTRL anymore. See [1]
+> 
+> Right. In configs/mx95evk.cfg, BLK_CTRL_GPUMIX is assigned to M33P, and
+> System manager will automatically handle this reset.
+This discussion will get interesting, because there are systems in the 
+field where this is not the case, and they cannot easily update their 
+bootloader. How do we handle that ?
+
+I can still update most of the systems I care about, but this really 
+isn't the way to handle this, because this reset part is part of 
+firmware ABI, which has changed now.
 
