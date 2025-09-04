@@ -1,180 +1,161 @@
-Return-Path: <devicetree+bounces-212765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212766-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED6AB43AC0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:51:41 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 421B8B43AE1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:58:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C8A43A272E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:51:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCBBC1C278F5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:58:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BBAD2FB608;
-	Thu,  4 Sep 2025 11:51:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45A52FCC01;
+	Thu,  4 Sep 2025 11:58:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iqoPVOcO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ij9mIURC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6AB332BDC09
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 11:51:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CA42F9C2C;
+	Thu,  4 Sep 2025 11:58:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756986695; cv=none; b=UnTFuA/YlVvN8a3lDgpHYhygh8XtEA7QdhkIHSrMipvXzWFsXc/DBeXfra+Bcj9k3JFacpEPHqIRnubezx/CKh+gAFSC0PwHJYOFeyRKB3ewtantJihs3VuNVLsc6iOV2dSzd/6w1B7af1epm5lXnMW5+F42DUxz/hmYRSckVOk=
+	t=1756987090; cv=none; b=aaatqv/LbUG1Szm1sKkrRzsUZKxKM+6bl2MHTFFJMk+9eYN3a06QlgvGKwxumJPSDEOZMPffSRtEs1TlbQGt8Yhy0EDuKHewDmAeJ+eUbUc+qOtJpVDsRA4THqmQYRstXTKkuePmfgM7LTRm3Wjnwlc4GFKXGLP8Vj0hvYGvadM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756986695; c=relaxed/simple;
-	bh=JSAewW8zh+fZ1yWrIB6R0zPGW0XQeqq2H1lJm3a4q3w=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qAmjMDlkESKl3xkfMXfo5ucUV+CNwDc4rpR4aeGQQhQkEghfrdfA5by+Y4cC/+fx0bb2VhNvjHwiOMmGQO63NEW3Wy++BSxfm0u50/x5OG0gXJJYlxovIlIgZ9kk7iR1uZiZAK6ZnUP/zdDtrWW2GWQCoYou0nQ9wcNdcnKhYvM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iqoPVOcO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849XC26023981
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 11:51:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	R584vso3cXH+lZvw8QUqkj0DVoP99aWNoUcXQnm1Bos=; b=iqoPVOcOymn9TzJw
-	ev9hVa9paR1Bu/l3KDd8xXCkudVJcQnKdARp0wjkqgE5Ji5oJXNHZToxR+8s037T
-	U+XCLWZj6sT3PuAYLcflUyN4YlmLAgPS1pPcvwQMZC8Ip1BgTmsyW0VZksperwGP
-	EB9ED036mlEHy7VcxDD6RUaYEcNlKPlYf4fna0SM68P3zyynlfFc6MkcxorOu6Ez
-	6mYrBIiKxm5dKHiWcmUPX38kSlTHrkH7DigmqUwEw0Vqznvce8GzdFWuejvlCyBA
-	dIPRkxdC7ZV7MvazlRdzpnpqFgQM80Mm1mWseqMyGiOz9Ycr2rgIOG8542YxxB23
-	logJKg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ut2fq7b6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:51:32 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b331150323so2313601cf.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 04:51:32 -0700 (PDT)
+	s=arc-20240116; t=1756987090; c=relaxed/simple;
+	bh=tATAdd7QzloSVi9rWZgMv3zaCJnGVv99/EXyM7XWqZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=XYVAvLaJz+VDDA32c6hS5iFJfvsub0b86erC7L2nV1YUxQM1+dY58fPlVqmVLO1qH3IJvOdky9uKjI16x65OQw+HQMN9SrFizsqLwAI7ZWOOryjIYjh027LYBBmzrJ9FrJ1VTr3VbVHRTrUQqlqdV+++tXeCva1nPfA2M735so0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ij9mIURC; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-24cd340377dso2245195ad.1;
+        Thu, 04 Sep 2025 04:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756987088; x=1757591888; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8Pj9Rbb/L1TaHYcKBCDlyOBLhhs01TGFvbTqDDZZhC4=;
+        b=Ij9mIURCnDNbl9PlkZSEFe5Hx13d0fGoBEggh8cFMk2Ya3HSlf+xo2OBlsDl8EZZJZ
+         i4vmTdGKj/jDOb0s2G4h0bUL6Wk19ov8EOpqbvOCgipdRJN6v5zDqBtiQIUTjlcLq7zp
+         RCL5N5uDbE19Mi1OVjkW+p/Q0hgsobksG1Qm5T27zQ5lznlZgvXJAzVtM3kMXc6AUlWE
+         zORHjdVACxXcup+eIn5eArEmheGnp1OVyftTaNv22KBkAxA38r4NdqxHp0c1JAZ9sD85
+         8exC8ijJDCNg/cJbxw++zcj0C4VZERQgO9B4x0ivRtTvO3PFxvVRtdM2TvEOI+JMxh57
+         EPkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756986691; x=1757591491;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1756987088; x=1757591888;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=R584vso3cXH+lZvw8QUqkj0DVoP99aWNoUcXQnm1Bos=;
-        b=AxyZvLgvcPPUScXKn3l2DBOWKLkSw/tuqGu13WWjFdMi1m9KJTgYzci8UC/wp9p0uN
-         Orjl1i+zcqhcdyU2pNS6iZVoO6NHjrn6rtU4zBGCAZFiax80CL14maElWYM3K3FHfaNC
-         hSHgELLFfX0rXbFkJIciNP6qRS/j7cNdD0GZRoubI5N3h6pqYjgRPJAXhY+1SYI5kbeZ
-         wCZZAm0XAIqJizCkwuj0C3CQ4eOE1Mb7YRRVuny31ZnRj7wDkLkXs3b+i1v46Gfx5RKR
-         4NiDvCG5e4Z1MdP28A9v14c5lthCaIxhe+tfTLa1X6t60E9pOfVtdBxHjlrvv2Xw9wbn
-         RU6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVq2GELTRCWeVDwxGqd65fWBPhwrYZqXEfieo6ISHsJ6N8TmNXB4GDAxO4qz+BJwGtLEokbK4qoxGx3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAIw9kcF/6MuAbyD9AQuSyRYGDhI92DZv2byexooqM2rj9BJ6K
-	JVVr0E0NAc27W3dVmxG5wanuDMzFXkLyj9oexu0IsB92bPmMg61PMKoTPUJgrXyjLpg/sCpv6cA
-	lTV+1lkVTRwVIbAi4oJZMfNeUUPl/8UgKd0KDh9Du7pHMoPpvHBLPZg18zdlYp+Ck
-X-Gm-Gg: ASbGnct3uvtHMZFYBRdoQvo6Rrq+vgNA/SdCpaqsP4eO2DOVby+gsz5qkbG8J9qybLJ
-	R/36QHEaAFkq2UT4bqW2QpIYcbpIWLXxPyqTlkWt6CLpn/5VDIrme94ZHcTFOGMO0/tuuqohMRD
-	eFVzZFxkqRiIdIlK0m9eX3wRyIfkPPVKrcYseKIduIpHGvfKL/8kQaq61yB8i4ahd2YT6rx52KA
-	9qADlX+KS9maTce7dQKqLEW4IX7cPF3nTSpwth1udoDn9Xq3VOvGR4V95b4HkUsk2kMuSwatPPA
-	znldw8A+sEbYO27PV0Wj1IS2i1mFEI5+wEtwgoMC4ftUoDMOnO/wKusnWvY4WQiZMo0b/BQixF+
-	jTuKO6kVLKvAy/SybyclyiA==
-X-Received: by 2002:a05:622a:1183:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b30e98a593mr167186581cf.8.1756986691142;
-        Thu, 04 Sep 2025 04:51:31 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGtk32uxf4nTUrAFGKTvW4bcrfE5iHxFvZZlL7ScTS2HEnwcL8cjqjvnygnT0gm/C5S7hxpyA==
-X-Received: by 2002:a05:622a:1183:b0:4a9:9695:64c0 with SMTP id d75a77b69052e-4b30e98a593mr167186321cf.8.1756986690665;
-        Thu, 04 Sep 2025 04:51:30 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aff12a6b404sm1434629966b.88.2025.09.04.04.51.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 04:51:30 -0700 (PDT)
-Message-ID: <72a24049-81e4-4ce9-8bdf-63315209be7a@oss.qualcomm.com>
-Date: Thu, 4 Sep 2025 13:51:27 +0200
+        bh=8Pj9Rbb/L1TaHYcKBCDlyOBLhhs01TGFvbTqDDZZhC4=;
+        b=Gg+Skln9AqRC/UlgB4L/Tm1xXXQSx51onaSG7IzjfFXC5ihCxjaKDGsPUBZGhefsRW
+         bBEi+WebYG57G3dwN3Fe7NfVNTW/rI1GxIo69cRnlbUjNNNM41YbwrJK1WC7wRQWj0ym
+         6MdagDSLp3DFX3BUd1Qztye1BejUSJO/6vpnogNepUaf9/nDsD3CBBfwZgR3sPjYXrCh
+         tIe5fTdLxO2v5PgnX7AcKkIY6n4RHvpJN4zASwX0hgYo/5wmWWiYJnLRZ3+6hLjiBrS0
+         tYFiCAz6g1nGLqd2AkxmhhZsJcTjJsKVzoFETGUFurJUSIHmCXrsU4b45iI0ga67JyOm
+         GZSw==
+X-Forwarded-Encrypted: i=1; AJvYcCUtQRaBC2T44Y6DmLYCyqC4mA7t3ofVM5JH46T4O7q6TIKqwBCY8Z/UAbilnsgTX2mkkhk8qrzdC1LAKMJ3@vger.kernel.org, AJvYcCV2cXNY+TYJeSnS8PPan2RSOuekB1CHYbFY61nlEb9qF+pcGp2Wz+VKmxv+ZSsPLCwUykPWydO4SbpP@vger.kernel.org, AJvYcCVJS1ec2Gr3YyvG6q6XQXrm2QTcFhba0YufGMHXdpLVzVN+AHuSF9poKjtHqC64ssjHlZMxh6eAM1vu73s=@vger.kernel.org, AJvYcCWNaxt0cu7odmz5m3zDdfFyBKH4WVu4JfHajv6V1pm2orcxDs9KYEjO6h0+ZaPxldV9GVoCUHXv/V/eQ3U=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyrMW97ZVfHenRqMm0UC/TLJIEs7TtH6WEoGqpCAJKXz7wpIY8C
+	+0kLR+4GLzj4FXPpIwcsTdN3/63FUtO4jLgqrl7nCRls5cMNcB6TRcCA
+X-Gm-Gg: ASbGnctQiu6I5fEKD7oyLIO41Cdbne4coViKo0tdjN9+TiuNm+8KbadtL+FtFFR64YR
+	C/cJhDHebDqV1uzyX9k/+nNUHrmFL+Jv8XSdAMYA57a+5M2w+VjjD4kNwe2J39/tcWMRjxID7oP
+	b7l3sylBm3pj7a+sOIOuSAM2fKYrGhmVlyTP1h7xAftSixvukXSXWXDXdGqezaBSA8pHXdF/IOR
+	Ejuo95Yl3Z6PZBcnrSL/GHCEFqs9hfgUJktsXJWtn7q6PMFedu7ZzG/B//blw1w4ZjrRiB7BSxz
+	Js0lYZRzsYsppqLx65K+NN3Yj8xoOEv8hwxJJxx5b+sd8lV8PoTfIIlKly4wjbgmCndBKuPds2c
+	7L9aQh7rf3rHIeaR8ZxdPp70=
+X-Google-Smtp-Source: AGHT+IEywwoOozpv7rN+XI2LuxYw5YAulyQKJc60fWfypt28B7vos4U96NKKRXKORY1kAm/Eb5L6qg==
+X-Received: by 2002:a17:902:db03:b0:249:c66:199e with SMTP id d9443c01a7336-24944a177fbmr249151225ad.26.1756987088248;
+        Thu, 04 Sep 2025 04:58:08 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:463b:8ef9:3432:4c09])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-249037223d7sm182682615ad.32.2025.09.04.04.58.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 04:58:07 -0700 (PDT)
+Date: Thu, 4 Sep 2025 04:58:05 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
+	Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
+Subject: Re: [PATCH v1 1/2] input: rmi4: fix RMI_2D clipping
+Message-ID: <75wc4lutipb7uszkqfuakjl7iqsygjif4df5phosifkgi3serc@t75jpefbbbcs>
+References: <20250903161947.109328-1-clamor95@gmail.com>
+ <20250903161947.109328-2-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/7] i2c: qcom-cci: Add msm8953 compatible
-To: Luca Weiss <luca@lucaweiss.eu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: Loic Poulain <loic.poulain@oss.qualcomm.com>,
-        Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250810-msm8953-cci-v1-0-e83f104cabfc@lucaweiss.eu>
- <20250810-msm8953-cci-v1-2-e83f104cabfc@lucaweiss.eu>
- <aJnefpETGJm_cuRY@shikoro> <f956eccec6b8ae2737b1e758b8357051@lucaweiss.eu>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <f956eccec6b8ae2737b1e758b8357051@lucaweiss.eu>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzOCBTYWx0ZWRfX77T1niPMwwJ2
- nheK6GjZcOStKVoOu0RkiL71+HMe7yJk1uglqvxy4o8yHwfFuAPhmi5rq/vDTfbyhDms+uMyfiq
- qEs9VpuCw+YzbqLWBbuIx0/qZAMoSMfe6EFR7H4almhiXGIepVfhqxM/Qak3a9p9v6lulN3S08T
- 2Q75s0dAUGvRmz1BmOg0+sNcpbAh/xGNVkDKwhrtJ9GdFbudS0G6cBAQmS2F8umP3/lExh9w7Yd
- za82CttKI5UYqdj/OFYBwdYlYZCyBN/6LxsSrxSXK/JEc3AR+r4/pJxsdfwLMoDYL0UyHrXstnY
- XNt6kvXl+T0wIqi/LZCdOh4j1UeIK4TZuk2tisMs2RZ2DQZJcteUoG1MDTSIxCwa/AOYDY1TwK9
- 2PN9Jhbi
-X-Proofpoint-ORIG-GUID: Jcl9UHhDhaJ8X5ofrghSEKf0N5PUoAO0
-X-Proofpoint-GUID: Jcl9UHhDhaJ8X5ofrghSEKf0N5PUoAO0
-X-Authority-Analysis: v=2.4 cv=U7iSDfru c=1 sm=1 tr=0 ts=68b97d44 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=_dxgTR6_AXVo8Bd06IIA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=kacYvNCVWA4VmyqE58fU:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_04,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 phishscore=0 clxscore=1015 impostorscore=0 suspectscore=0
- malwarescore=0 priorityscore=1501 adultscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300038
+In-Reply-To: <20250903161947.109328-2-clamor95@gmail.com>
 
-On 8/15/25 9:12 AM, Luca Weiss wrote:
-> Hi Wolfram,
+Hi Svyatoslav,
+
+On Wed, Sep 03, 2025 at 07:19:45PM +0300, Svyatoslav Ryhel wrote:
+> From: Jonas Schw�bel <jonasschwoebel@yahoo.de>
 > 
-> On 2025-08-11 14:13, Wolfram Sang wrote:
->> On Sun, Aug 10, 2025 at 05:37:53PM +0200, Luca Weiss wrote:
->>> Add a config for the v1.2.5 CCI found on msm8953 which has different
->>
->> Given the above version number...
->>
->>>  static const struct of_device_id cci_dt_match[] = {
->>>      { .compatible = "qcom,msm8226-cci", .data = &cci_v1_data},
->>> +    { .compatible = "qcom,msm8953-cci", .data = &cci_msm8953_data},
->>
->> ... why don't we use it here to stay consistent? cci_v1_2_5_data?
+> The physical max_y value was overridden with a clip_y_max value. This
+> caused problems when inverting/flipping the screen. Further it messed up
+> calculation of resolution.
 > 
-> I don't think the existing 'v2' or 'v1' configs have much to do with the actual
-> HW_VERSION of the IP block. For example on of the newer Qualcomm SoCs has HW
-> version 1.7.0 and is many years newer than the msm8996 which was called 'v2'.
-
-Most of the i2c-speed-dependent configs are electrical and therefore may
-be configured as you wish.. I recall Sony Xperia kernels made changes to
-that rather often, whether really necessary - I don't know.
-The programming guide suggests a couple sets of values, picked in order
-to meet the I2C spec.
-
-The queue depths and max r/w lengths are per-instance (SoC specific) and
-change very rarely.
-
+> Signed-off-by: Jonas Schw�bel <jonasschwoebel@yahoo.de>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/input/rmi4/rmi_2d_sensor.c | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> I'm also not sure what these parameters depend on, if it's CCI HW version, or
-> something else. So naming it after the SoC should be a safer bet. Also the
-> msm8974-cci was only named 'v1.5' because it's an inbetween mix of the v1 and
-> v2 that were already upstream so arguably that one shouldn't have been called
-> v1.5 in the first place either.
+> diff --git a/drivers/input/rmi4/rmi_2d_sensor.c b/drivers/input/rmi4/rmi_2d_sensor.c
+> index b7fe6eb35a4e..b4762b3c8b24 100644
+> --- a/drivers/input/rmi4/rmi_2d_sensor.c
+> +++ b/drivers/input/rmi4/rmi_2d_sensor.c
+> @@ -56,7 +56,7 @@ void rmi_2d_sensor_abs_process(struct rmi_2d_sensor *sensor,
+>  		obj->x = min(sensor->max_x, obj->x);
+>  
+>  	if (axis_align->clip_y_high)
+> -		obj->y =  min(sensor->max_y, obj->y);
+> +		obj->y =  min(axis_align->clip_y_high, obj->y);
+>  
+>  	sensor->tracking_pos[slot].x = obj->x;
+>  	sensor->tracking_pos[slot].y = obj->y;
+> @@ -149,13 +149,12 @@ static void rmi_2d_sensor_set_input_params(struct rmi_2d_sensor *sensor)
+>  
+>  		sensor->min_y = sensor->axis_align.clip_y_low;
+>  		if (sensor->axis_align.clip_y_high)
+> -			sensor->max_y = min(sensor->max_y,
+> +			max_y = min(sensor->max_y,
 
-AFAICS there is no "v2" CCI in existence, msm8996 is v1.4.0 and newer
-platforms are v1.x.y.
+I see that you want to have sensor->max_y to carry maximum coordinate
+the sensor is capable of reporting, so that flipping works properly. If
+this is the case you should also be deleting sensor->min_y and always
+use 0 in its place, otherwise there is inconsistency.
 
-JFYI there's a revision ID register at (base + 0x0) which the driver's probe
-function conveniently reads and prints with dev_dbg.
+You also need to deal with X coordinate in the similar fashion.
 
-Konrad
+>  				sensor->axis_align.clip_y_high);
+>  
+>  		set_bit(EV_ABS, input->evbit);
+>  
+>  		max_x = sensor->max_x;
+> -		max_y = sensor->max_y;
 
+This makes max_y potentially uninitialized.
+
+>  		if (sensor->axis_align.swap_axes)
+>  			swap(max_x, max_y);
+>  		input_set_abs_params(input, ABS_MT_POSITION_X, 0, max_x, 0, 0);
+
+I am unconvinced that using raw sensor coordinates to calculate
+resolution is a good idea. It has potential to regress existing users. 
+
+Thanks.
+
+-- 
+Dmitry
 
