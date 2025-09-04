@@ -1,131 +1,177 @@
-Return-Path: <devicetree+bounces-212514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2B12B43030
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:02:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38685B43072
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:23:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79BD87C793D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:02:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEEDD1BC845D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:23:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0851F419B;
-	Thu,  4 Sep 2025 03:02:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D700129293D;
+	Thu,  4 Sep 2025 03:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Noc91Gn5"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nW/g39gI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7249C8FE
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 03:02:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955632877E3;
+	Thu,  4 Sep 2025 03:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756954925; cv=none; b=CykTtIiQatbzWWSDpwJdBIYblbDw/DlVmazfBaBLtmzfyjTlqsR6VElqh+/D0/eI2LwCBsTB0Fdfp6ZbuSpQzfksJaVKKR3HKld2nzpAOY62w85V/uCCg7Pdj9PQy/m0FawlYgGlx3KXEexXrm/1eYRRcrF6Y8OFM3WmaDcPxtI=
+	t=1756956157; cv=none; b=hkN1OBYLi0YD/5tGf5db9zeZGA56iVPLJM3vXrkmEL1Y3+lMv96pn1fiAXOvEkd4Scgt6yCpr2ws2nBECaZI+/LI4ZJQ87HvDuipMO2KPgfV75LroNAanPwlyZ9kITbfSUcqMZLX6k4QF+1tgS+LbhUWrRN3lSlh01Wm0NFagZw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756954925; c=relaxed/simple;
-	bh=LwwSp2VGYvrv/hSMJWpdzyIChlL8ttFwCPxmHeAwKNE=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t6SdAQu5+5cvfRH0DCirNG4wuawksy1aJchf9OU890EdUNNZRIS+KXWyaLAINL6V6A4oGWYbK7CHmLZaRI08NrzOmRi1v4oJSZGzgCv96SuoBXu66bbcgLAN6dtA+Zu9kFDGeqRqmhup074tmJl8ZYCdGfra8Duo2GjK/nHiYqw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Noc91Gn5; arc=none smtp.client-ip=209.85.210.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7454a992f7dso479051a34.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 20:02:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756954922; x=1757559722; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=QT7by1gfa9pKhUAtv+8oGByeE/LYqWFquUc9CO+EUmo=;
-        b=Noc91Gn51BJEu19HF5fvhbKA3P94t1/DPqeE+oSuazvVXC+ghD65UxUBU7O1pcCTE4
-         lNAY/J0wQuBAzk54vrprzpkH8FqBPbMFiGb8Sa+5PbGBBBphvcWsKaA+UTPcJfhbxLKr
-         PWhxTkAA9htvs2hYzK+Stn9z2NZRkojNsw7GUL9yIy7ssnOs14NEABYNa4Y7O3cD8YjD
-         sJaVawrSv+PaxfHQNT9bVN7E5ym/6ETVW5E9HoEjc40nnwrsxrlsogPRJ0qNLG21MJPi
-         zTD5rjcKiYGSmlVe76UegwLqqjoTrSnf041W9026QceVXgc1QbidE/WnpLIh0b5ERLWd
-         WObQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756954922; x=1757559722;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=QT7by1gfa9pKhUAtv+8oGByeE/LYqWFquUc9CO+EUmo=;
-        b=DQYilFhYn+NEnGJ6vo5ks9BJSoXb5jBPAqUo9/bhV+iJ1HaezoFmaftFluIrmC2xa3
-         LjWSogq3XOUU7DywY5wN+F2OuXGEOJKxkzbu0OivWICqlpgQ2JzrjKNWZCo+IwaGXjus
-         pxG6WJlICJObWfc/HGu/MkgFfRGf7E40rWeQBagAORY257oK3YMLsyr+uHNKy6kAWML3
-         8QiqI2NmP3I452sM1yE9ctsldes57KmQZ5GHKVQyY9ldu0IoxTbk2zrhKYqDtl2GGvmx
-         C2LaEZDTPv1LfBFg5NZ1YR0lf/31VGBT/O7gSPFimKtzqJM3h17WS+ueQWtU4iprXayP
-         FcCg==
-X-Forwarded-Encrypted: i=1; AJvYcCUoFwv0Fu2s+fS8GONgTKPPRFk/ALwz4ChYXBPDCOSt7BsCIuyFqHLcjQXY0Qd9c6+ghYq29TNk5urR@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyz3Qhia6QHcBIN3LU6SrliHgCd1MrbqiHz8ArlJPhHvTsWZBRe
-	cbi0WgqrAkg5Pp8mLdrhZc3ZCbDu7O1MWHPGGzWxeifrf+bwRlo90WT/
-X-Gm-Gg: ASbGncuUHwzN7VpJNEfRzfBV2Dwc+aXLBFWZKem/kJoR89O4cOR2YWHxSxdjKWw3NE4
-	LF2/hkWBcSVcAF34EV/UfSBtB+350lbM0XTJJF7+iy9i0Y6dO2cy5qCgKR+dFl5215svW1c487R
-	pmuEWM7zwzxf29l6VBLc1qdDjjf0adjq348c9liaZsZMgleG8ztwM5vOnJOqaK4C8gijFsObFtF
-	7TVnzijkqh2oLKRS+b/QTNWzUL6tjV9e2uV7k4W/ClgpGLeyBuml6MJflPyf+UF54X+ehCLW1SE
-	imEHqdcjxL3WfhvaGl/OUKmateC3a22Vvns1mJr/w2Gvo2mKugcm+MB6uZA2GJpBBxWFYJ1laN3
-	GCeVfY848zyAyv4iVwK/E4YGapyD+X8FhUuZqZ9GBR2yWv9oH9QU=
-X-Google-Smtp-Source: AGHT+IFikeTWfA0Ri8vuJ5/yqUfpE5MwjQOIwn7/c1zwNw8O5lCPtcAHELSxXUuR8uEwh3MYjWv1DA==
-X-Received: by 2002:a05:6830:398a:b0:745:a1d8:9deb with SMTP id 46e09a7af769-745a1d8a3bemr829168a34.1.1756954921729;
-        Wed, 03 Sep 2025 20:02:01 -0700 (PDT)
-Received: from localhost.localdomain ([2603:8081:ad00:4a:c274:2bff:fefd:7058])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7457428b1b8sm2555110a34.6.2025.09.03.20.02.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 20:02:01 -0700 (PDT)
-From: Jimmy Hon <honyuenkwun@gmail.com>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Cenk Uluisik <cenk.uluisik@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	s=arc-20240116; t=1756956157; c=relaxed/simple;
+	bh=bNSAahrLsh5lIaRJtRcrZ2VrezcQXtPhuB+zZ94/O9Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BkNZWFdPt1o4Nbr0ktpwPaoxVn4IpcUhU6b1rsQcdJUZ066F4T8P8/gJhAgoXSRyTb0+o0cA//pKXdL8ldCSNjsCZNzwjIf3kfVuSBoPZOc4S4myW12gIuH50/OaOwuOfyu64ABDNievEk/L5IBPmULaq5/9H41K03bdpVIshx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nW/g39gI; arc=none smtp.client-ip=192.198.163.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756956156; x=1788492156;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=bNSAahrLsh5lIaRJtRcrZ2VrezcQXtPhuB+zZ94/O9Q=;
+  b=nW/g39gI6GK2t0cLfd2hQg4s+31u2Nm0nLHA27HdUYSWozlntN7n9seN
+   ajeyO2b6W2fs4aY9ESQAYoze4pYF2+cSsG6C1/2RmTihON1NmK3bKCB9L
+   XQmhZtDZxfn0vDXzvPivDtYVc0GbCp6ub/BWEQR0HSSyBNNDBaPPf/rpQ
+   4vjN0MJ9erj0CvO1+rJRfoisBsWDhgZV+qytfAfoDtq4HdW6apObWB0Er
+   XKNy+/PN9z+wvAtzrFOsEkrNNbcWHa/g0Ctb/TXbHvZMMx/mgyt1+UxZ0
+   0+2992AKu9yMe2+uDFvSEM3LPNj9+eomFlf1l/i2laRI7Kw9glHUpvi+Y
+   Q==;
+X-CSE-ConnectionGUID: W05EzdIMR9OWrDpDlxtI/w==
+X-CSE-MsgGUID: P8HsuEztSSCEME/G9pnarQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76888141"
+X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; 
+   d="scan'208";a="76888141"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2025 20:22:35 -0700
+X-CSE-ConnectionGUID: 5lDAPx0BTNOEIpwwL2WBRA==
+X-CSE-MsgGUID: oUclYMeDRJiAetZVddROEg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; 
+   d="scan'208";a="171056164"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by orviesa010.jf.intel.com with ESMTP; 03 Sep 2025 20:22:31 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uu0YO-0004hL-2j;
+	Thu, 04 Sep 2025 03:22:28 +0000
+Date: Thu, 4 Sep 2025 11:19:30 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Saravana Kannan <saravanak@google.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	Jimmy Hon <honyuenkwun@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Fix the headphone detection on the orangepi 5
-Date: Thu,  4 Sep 2025 03:01:50 +0000
-Message-ID: <20250904030150.986042-1-honyuenkwun@gmail.com>
-X-Mailer: git-send-email 2.51.0
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>
+Subject: Re: [PATCH v2 5/5] PCI: qcom: Allow pwrctrl core to toggle PERST#
+ for new DT binding
+Message-ID: <202509041110.4DgQKyf1-lkp@intel.com>
+References: <20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061@oss.qualcomm.com>
 
-The logic of the headphone detect pin seems to be inverted, with this
-change headphones actually output sound when plugged in.
+Hi Manivannan,
 
-Does not need workaround of using pin-switches to enable output.
+kernel test robot noticed the following build errors:
 
-Verified by checking /sys/kernel/debug/gpio.
+[auto build test ERROR on 8f5ae30d69d7543eee0d70083daf4de8fe15d585]
 
-Fixes: ae46756faff8 ("arm64: dts: rockchip: analog audio on Orange Pi 5")
-Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
----
-similar to the fix for the Orange Pi 5 Plus [1]
+url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-qcom-Wait-for-PCIE_RESET_CONFIG_WAIT_MS-after-PERST-deassert/20250903-151623
+base:   8f5ae30d69d7543eee0d70083daf4de8fe15d585
+patch link:    https://lore.kernel.org/r/20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061%40oss.qualcomm.com
+patch subject: [PATCH v2 5/5] PCI: qcom: Allow pwrctrl core to toggle PERST# for new DT binding
+config: i386-buildonly-randconfig-002-20250904 (https://download.01.org/0day-ci/archive/20250904/202509041110.4DgQKyf1-lkp@intel.com/config)
+compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250904/202509041110.4DgQKyf1-lkp@intel.com/reproduce)
 
-[1] https://lore.kernel.org/linux-rockchip/20250823-orangepi5-v1-1-ae77dd0e06d7@hotmail.com/
----
- arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509041110.4DgQKyf1-lkp@intel.com/
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
-index 34d195872a99..9bc7662ce9c8 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
-@@ -42,9 +42,8 @@ analog-sound {
- 		simple-audio-card,bitclock-master = <&masterdai>;
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&masterdai>;
--		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
-+		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
- 		simple-audio-card,mclk-fs = <256>;
--		simple-audio-card,pin-switches = "Headphones";
- 		simple-audio-card,routing =
- 			"Headphones", "LOUT1",
- 			"Headphones", "ROUT1",
+All errors (new ones prefixed by >>):
+
+   drivers/pci/controller/dwc/pcie-qcom.c: In function 'qcom_pcie_host_init':
+>> drivers/pci/controller/dwc/pcie-qcom.c:1405:23: error: 'struct pci_host_bridge' has no member named 'toggle_perst'
+    1405 |         pci->pp.bridge->toggle_perst = qcom_pcie_toggle_perst;
+         |                       ^~
+
+
+vim +1405 drivers/pci/controller/dwc/pcie-qcom.c
+
+  1368	
+  1369	static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+  1370	{
+  1371		struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+  1372		struct qcom_pcie *pcie = to_qcom_pcie(pci);
+  1373		int ret;
+  1374	
+  1375		qcom_ep_reset_assert(pcie, NULL);
+  1376	
+  1377		ret = pcie->cfg->ops->init(pcie);
+  1378		if (ret)
+  1379			return ret;
+  1380	
+  1381		ret = qcom_pcie_phy_power_on(pcie);
+  1382		if (ret)
+  1383			goto err_deinit;
+  1384	
+  1385		if (pcie->cfg->ops->post_init) {
+  1386			ret = pcie->cfg->ops->post_init(pcie);
+  1387			if (ret)
+  1388				goto err_disable_phy;
+  1389		}
+  1390	
+  1391		/*
+  1392		 * Only deassert PERST# for all devices here if legacy binding is used.
+  1393		 * For the new binding, pwrctrl driver is expected to toggle PERST# for
+  1394		 * individual devices.
+  1395		 */
+  1396		if (list_empty(&pcie->perst))
+  1397			qcom_ep_reset_deassert(pcie, NULL);
+  1398	
+  1399		if (pcie->cfg->ops->config_sid) {
+  1400			ret = pcie->cfg->ops->config_sid(pcie);
+  1401			if (ret)
+  1402				goto err_assert_reset;
+  1403		}
+  1404	
+> 1405		pci->pp.bridge->toggle_perst = qcom_pcie_toggle_perst;
+  1406	
+  1407		return 0;
+  1408	
+  1409	err_assert_reset:
+  1410		qcom_ep_reset_assert(pcie, NULL);
+  1411	err_disable_phy:
+  1412		qcom_pcie_phy_power_off(pcie);
+  1413	err_deinit:
+  1414		pcie->cfg->ops->deinit(pcie);
+  1415	
+  1416		return ret;
+  1417	}
+  1418	
+
 -- 
-2.51.0
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
