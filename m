@@ -1,215 +1,111 @@
-Return-Path: <devicetree+bounces-212502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C713AB42FBA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:25:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE413B42FE0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:42:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F375670EE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:25:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64FB1485208
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C861EEA55;
-	Thu,  4 Sep 2025 02:25:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AC31F8ADD;
+	Thu,  4 Sep 2025 02:42:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="T9WxGV1I"
+	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="zgdPixrz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out28-1.mail.aliyun.com (out28-1.mail.aliyun.com [115.124.28.1])
+Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAC115D3;
-	Thu,  4 Sep 2025 02:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B328A3D3B3;
+	Thu,  4 Sep 2025 02:42:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756952734; cv=none; b=J8SR58DiH8EJ8tzKzXtj0HfzfPthQl4Mojczcq5fzYvTmiycwJmvYh2KRJOEvHZCvEdnMe3BXwhkMjPXdjKpGnPibAiFkOBSMBSvUhBAitlqfnvUXRRi8v0f/T2JYTzxiVHVMF84+Lv1k6Xo/uRNmd/oSdCoevYsETiNcRuyiYc=
+	t=1756953773; cv=none; b=DMYgpYjgxQCk753s0di+LrkcUUCfcb0hDN/bfZSA6xfNDDJ3SWBbVNk1DeLYaxXjN+E+VkRp3QE3hjl++XTyWlZeebvhMY2GvRHXdvlG/bAMHB8uQAq1IIuqO/IV6eCCJ1201lxg4Q6OQzJrdjOEbmeYlDCzqfhmjSOjz42xRXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756952734; c=relaxed/simple;
-	bh=KCWy2vyJnmAL/W01W+0b35DGYVII6tot8QB1eTqX2bM=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=b4ibcVTSAWpY6cH/9CGtEuVDE8nzT0CWEHY2a7BLubNT+ZMpSM9MGyNJe4FAcS8RQbh+z/JzuAAuasQFjl/dDRd9ShjziZ7ODNB8Rzi/pFw8YMNQzW/u+VFpGIpnBwOS0ubJGokco99RO6FwmM6kDjpYmZ4LP+UfJnctZXi9GCU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=T9WxGV1I; arc=none smtp.client-ip=115.124.28.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
-DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=lontium.com; s=default;
-	t=1756952728; h=From:To:Subject:Date:Message-Id:MIME-Version;
-	bh=Un06HqfwPQsE/oAIO6ZXBVvPYAItl1qANIL2H+2XnCw=;
-	b=T9WxGV1Iv/FDUQZDbtqrEvtpe5r00KL9fdfqLsNK88rH/tqLnEfM8zuJ2TNfvhsvVsyFn2cZI2XauwBzdCGdfMDIFa4GFLQRx3FF7LYIOWAXOnyHj6FK2tzv/z/k9ud6Yns22ni8DpYCbba9YM43t600R+z4PyZBAmYu3P+T2XFt3v7t326YB1Hlr+Hsk7pK63PhGdu9FD0weva4g/8i7usk3z9Py5v4Tzpni8D56y+SBQZpNIWrE4KyGZPmfa6miiFkOVvNjlZAxVC+hHTw7glKUGTs7QBHvvDPygCbkkkwh8ZgQ/dRwc98QY0C74C6efWJNMhkhoQaJjESqHffhw==
-Received: from localhost.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.eX3U4ee_1756952727 cluster:ay29)
-          by smtp.aliyun-inc.com;
-          Thu, 04 Sep 2025 10:25:27 +0800
-From: syyang <syyang@lontium.com>
-To: robh@kernel.org
-Cc: Laurent.pinchart@ideasonboard.com,
-	andrzej.hajda@intel.com,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	jernej.skrabec@gmail.com,
-	jonas@kwiboo.se,
-	krzk+dt@kernel.org,
-	linux-kernel@vger.kernel.org,
-	neil.armstrong@linaro.org,
-	rfoss@kernel.org,
-	syyang@lontium.com,
-	yangsunyun1993@gmail.com
-Subject: [PATCH v2 1/2] This patch adds a new device tree binding documentation.
-Date: Wed,  3 Sep 2025 19:25:24 -0700
-Message-Id: <20250904022524.1748587-1-syyang@lontium.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <175691717884.2393851.6340903042726389490.robh@kernel.org>
-References: <175691717884.2393851.6340903042726389490.robh@kernel.org>
+	s=arc-20240116; t=1756953773; c=relaxed/simple;
+	bh=LQ1AA6YtGx0dyBtxOqIWy5XG55hhZgcniAQICgxVYLE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jNT3dLVyH629RtFb093EYASJgwQexcKpSN9XJ1pD33Htv5//ZV2wAo3jY8XAnny53fCf67KIcPoRCMQ2Z89TYu5UPtVGckXKUy1xfyWPoPsSuJQw087XKjQwoCBPxA2Bs28HnLEnImNHiSEIJex/WdqRFLPT2X0u3/b9bj4SvnM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=zgdPixrz; arc=none smtp.client-ip=198.137.202.133
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+	bh=t6Qv7z1IN8S8fv1frwsYzP+oy3CFyPNsjv2eggmm0RA=; b=zgdPixrzDDevLDZ83jSHOwgKf9
+	iVbwl3LwKxvnX487n3tBetP+/pjSRWgdbJpBYkv+qV7b3w4Dw+San7GE8lzh/hZ9guYtNoyIuY3bZ
+	qit2B8QFI9UhgnV11v82DY44AU+OmF3pbLQ/+HBS9rZ5j5zkO+FfcPGEMPSrCwCllGXtdx+2bE0Ed
+	WSiTx/Hypmxc81neIZu9Ks/6B1nBqgvsGzqEJiAR2IrtHz1gAU8crTz/SUkqiBItyRbDPHk9logYs
+	CpEqF8VFX6DgAUFbOSs231zVd9FkB0nDMTFGf723AEfVdIqS5dyeAum3RdChMs1QQ6g5tM1VG9eTl
+	Dwx445+g==;
+Received: from [50.53.25.54] (helo=[192.168.254.17])
+	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+	id 1utzvy-00000008S2K-0NuR;
+	Thu, 04 Sep 2025 02:42:46 +0000
+Message-ID: <afd7e91d-8c79-4f78-8c79-3b667b35f8f8@infradead.org>
+Date: Wed, 3 Sep 2025 19:42:45 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
+ Swap Controller
+To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-doc@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
+References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
+ <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Fix device tree binding validation errors reported by Rob Herring.
+Hi--
 
-v2:
-- Fixed $id field to match actual filename (lontium,lt9611c.yaml)
-- build pass
+On 9/3/25 3:05 AM, Nuno Sá via B4 Relay wrote:
+> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
+> index e43abb322fa6e15f19f2f498aa5adea03e6cd3bf..0273b0f8944b634f14141aac4d99f502d03b3a32 100644
+> --- a/drivers/gpio/Kconfig
+> +++ b/drivers/gpio/Kconfig
+> @@ -461,6 +461,16 @@ config GPIO_LPC32XX
+>  	  Select this option to enable GPIO driver for
+>  	  NXP LPC32XX devices.
+>  
 
-Thanks to Rob Herring for the review and feedback.
+How about either of these instead?
 
-Signed-off-by: syyang <syyang@lontium.com>
----
- .../display/bridge/lontium,lt9611c.yaml       | 121 ++++++++++++++++++
- 1 file changed, 121 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+> +config GPIO_LTC4283
+> +	tristate "Analog Devices LTC4283 GPIO support"
+> +	depends on SENSORS_LTC4283
+> +	help
+> +	  If you say yes here you want the GPIO function available in Analog
+> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-new file mode 100644
-index 000000000000..712644da4f1d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-@@ -0,0 +1,121 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/lontium,lt9611c.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Lontium LT9611C 2 Port MIPI to HDMI Bridge
-+
-+maintainers:
-+  - Rob Herring <robh@kernel.org>
-+
-+description: |
-+  The LT9611C are bridge devices which convert DSI to HDMI
-+
-+properties:
-+  compatible:
-+    enum:
-+      - lontium,lt9611c
-+
-+  reg:
-+    maxItems: 1
-+
-+  "#sound-dai-cells":
-+    const: 0
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: GPIO connected to active high RESET pin.
-+
-+  vdd-supply:
-+    description: Regulator for 1.2V MIPI phy power.
-+
-+  vcc-supply:
-+    description: Regulator for 3.3V IO power.
-+
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Primary MIPI port-1 for MIPI input
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          Additional MIPI port-2 for MIPI input, used in combination
-+          with primary MIPI port-1 to drive higher resolution displays
-+
-+      port@2:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description:
-+          HDMI port for HDMI output
-+
-+    required:
-+      - port@0
-+      - port@2
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - vdd-supply
-+  - vcc-supply
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c10 {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      hdmi-bridge@41 {
-+        compatible = "lontium,lt9611c";
-+        reg = <0x41>;
-+        #sound-dai-cells = <0>;
-+        interrupts-extended = <&pio 128 GPIO_ACTIVE_HIGH>;
-+        reset-gpios = <&pio 127 GPIO_ACTIVE_HIGH>;
-+        vdd-supply = <&lt9611_1v2>;
-+        vcc-supply = <&lt9611_3v3>;
-+        status = "okay";
-+
-+        ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          port@0 {
-+            reg = <0>;
-+            lt9611_a: endpoint {
-+              remote-endpoint = <&dsi0_out>;
-+            };
-+          };
-+
-+          port@1 {
-+            reg = <1>;
-+            lt9611_b: endpoint {
-+              remote-endpoint = <&dsi1_out>;
-+            };
-+          };
-+
-+          port@2 {
-+            reg = <2>;
-+            lt9611_out: endpoint {
-+              remote-endpoint = <&hdmi_con>;
-+            };
-+          };
-+        };
-+      };
-+    };
-+
-+...
-+
+this
+
+> +	  Say yes here you want the GPIO function available in Analog
+> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
+
+or this
+
+> +	  If you say yes here you get the GPIO function available in Analog
+> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
+
+or use the GPIO_LPC32XX kconfig entry just above here as a model.
+
+thanks.
 -- 
-2.25.1
+~Randy
 
 
