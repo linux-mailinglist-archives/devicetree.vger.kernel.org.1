@@ -1,99 +1,66 @@
-Return-Path: <devicetree+bounces-212893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 939ADB43F38
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:41:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A2FF0B43F52
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:43:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E2774A43835
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:38:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FCED1886E21
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15F083164CB;
-	Thu,  4 Sep 2025 14:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B02C43375BE;
+	Thu,  4 Sep 2025 14:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o92AJnVr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BzLs1jLZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD5A130F557;
-	Thu,  4 Sep 2025 14:35:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 809CD335BC8;
+	Thu,  4 Sep 2025 14:35:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756996521; cv=none; b=kcrn+NU5MT7lxRwh1CSo4c1z1fJMNpPmsa2BXtY9enzdKfkO0eTzmBXUo48LrZFPQDRHG+QjpIF4lHDi+GTRBiyEKR1mYFKcuT6ywIbaT7REouAsMpidIgv/k98O1aHepstYJ7oPoZFF4HFk7YwBalM3d3IbR8oIcOo4YfQaDEA=
+	t=1756996544; cv=none; b=TlzPLM6kQgHO6M0TyHmME3kbBbk/jqaM0T11CXyxsrdGMe5JAyT7AnCKfxuGK4gOJtv8UKhZx2tkyP5JXq9VoS53ssgwMI9UbUzywpomjZyi5C+OMrMXrQGEUR4XquTGboc5stW4o+RWGQadcCEthFu21LR7S5+9WH39J9O2Spo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756996521; c=relaxed/simple;
-	bh=8kIGznDy+yBjtOzEZBMp/gYRmqnIWETZTPphA2eOkh8=;
+	s=arc-20240116; t=1756996544; c=relaxed/simple;
+	bh=JHSvbJN9XyO7iXA7BkLL03mfNXZPxjof/6gragZbhAE=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jPCrzasyYqYONFINqhggIVJE0flifYOLfb1a1E+DWN6ipI/PbRlFuUdMVmnDH+N4l3JYlPifElhmc1y3L8S2HynPyB8SeNiz9OFmjutseQcHULbpbZfPM9+t0+d+2UYvygzYMoj48Xjhw8Owukody/EOTnLHSwBe/RVPq4pcTWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o92AJnVr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7651AC4CEF0;
-	Thu,  4 Sep 2025 14:35:17 +0000 (UTC)
+	 MIME-Version:Content-Type; b=PHgWLT3+kX86Nqu4BHEt4H/ItDOpXd703If8N+F0Cyayk65Fx6vaoWtog4sZZW681iePa7hwMdz/sKJxvg+lYcxyVJ4DIyAporQp7vODoppEt6mntuoSL2AOgh/xkugbf3XgAW+oBsdNEteCzWLOepZWH9LpGYoe26XthlCCUEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BzLs1jLZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A61DC4CEFA;
+	Thu,  4 Sep 2025 14:35:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756996520;
-	bh=8kIGznDy+yBjtOzEZBMp/gYRmqnIWETZTPphA2eOkh8=;
+	s=k20201202; t=1756996544;
+	bh=JHSvbJN9XyO7iXA7BkLL03mfNXZPxjof/6gragZbhAE=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=o92AJnVroMgO0xyUlw5zPy+0SOqoU8a73BKt5yk4HJ/rA6ZxM/Z4lnFBvkqCTCcUt
-	 g55GxGyJ4kUwstKETLKrzHpfRrXg1HXAFoT0g4qT6YMWzAA+sBlDYUwQKIxp3EWIAq
-	 qSjq8hUsOGyVnMDYJl6+EUFw/w0owqY6Wo9+MsgUIRgAJ5+NY8nrN2n+lOZRu8+feE
-	 eoTkxkplcOyrx0yLVoCoIHziOC/DHMYyRGcfgYBUVwTa4aZJwEGv9m6LNB7YRSjOhS
-	 PhPBCM5x3ORKjDJK7txAcwIKaho+KEKGM9LQ5AvnsrOOD6SmUSh3mB3CpmVsRjSDhP
-	 EgaYwvQIsFwSQ==
+	b=BzLs1jLZB0047pCneh/THFDnUvUx0qgo22u5C1M2PqLYEFTGgXgp3J6am7+L7aycn
+	 Qjp6kh8RNqZpvL2WNAFRVMSdY2ZYZW1Xfu4hlXAfgwGUkk1Tq917XyffuGv9hFYZmd
+	 zPKZP9dTOogXQ48Q9Ib5NXe73YdfgbbPT5Tn7/dJDVnFhbbTDAzcQXI6kmkWSjY4GJ
+	 DVKu7StTXJiBYtc931B/sD2KCisSC0NwsjQjDPZ+d5gwhMfRpatI0SGIIlaTDv7Cun
+	 rLHaFtp7HlO94oCawfqAUn3TsdfHF+4p6UVeAeuLZh+YJnyKv4slU9YOrClGokBg82
+	 54vfXnpb6rohA==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Michael Turquette <mturquette@baylibre.com>,
 	Stephen Boyd <sboyd@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Stephan Gerhold <stephan@gerhold.net>,
-	=?UTF-8?q?Otto=20Pfl=C3=BCger?= <otto.pflueger@abscue.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Lee Jones <lee@kernel.org>,
-	Joerg Roedel <joro@8bytes.org>,
-	Will Deacon <will@kernel.org>,
-	Robin Murphy <robin.murphy@arm.com>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Sean Paul <sean@poorly.run>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	David Airlie <airlied@gmail.com>,
-	Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Dmitry Baryshkov <lumag@kernel.org>,
-	Rob Clark <robin.clark@oss.qualcomm.com>,
-	Abhinav Kumar <abhinav.kumar@linux.dev>,
-	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-	Robert Marko <robimarko@gmail.com>,
-	Adam Skladowski <a_skl39@protonmail.com>,
-	Sireesh Kodali <sireeshkodali@protonmail.com>,
-	Das Srinagesh <quic_gurus@quicinc.com>,
-	Srinivas Kandagatla <srini@kernel.org>,
-	=?UTF-8?q?Barnab=C3=A1s=20Cz=C3=A9m=C3=A1n?= <barnabas.czeman@mainlining.org>
-Cc: linux-arm-msm@vger.kernel.org,
+	Taniya Das <taniya.das@oss.qualcomm.com>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+	Imran Shaik <quic_imrashai@quicinc.com>,
+	Jagadeesh Kona <quic_jkona@quicinc.com>,
+	linux-arm-msm@vger.kernel.org,
 	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org,
-	iommu@lists.linux.dev,
-	dri-devel@lists.freedesktop.org,
-	freedreno@lists.freedesktop.org,
-	phone-devel@vger.kernel.org,
-	~postmarketos/upstreaming@lists.sr.ht,
-	linux@mainlining.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Daniil Titov <daniilt971@gmail.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-	Dang Huynh <danct12@riseup.net>,
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v9 0/7] Initial support of MSM8937 and Xiaomi Redmi 3S
-Date: Thu,  4 Sep 2025 09:35:13 -0500
-Message-ID: <175699650574.2182703.5262816788916742029.b4-ty@kernel.org>
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH 0/2] Add support for Display clock controllers for Glymur SoC
+Date: Thu,  4 Sep 2025 09:35:36 -0500
+Message-ID: <175699653015.2182903.5847736371433718879.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250903-msm8937-v9-0-a097c91c5801@mainlining.org>
-References: <20250903-msm8937-v9-0-a097c91c5801@mainlining.org>
+In-Reply-To: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
+References: <20250829-glymur-disp-clock-controllers-v1-0-0ce6fabd837c@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,22 +71,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 03 Sep 2025 23:08:20 +0200, Barnabás Czémán wrote:
-> This patch series add initial support for MSM8937 SoC
-> and Xiaomi Redmi 3S (land).
+On Fri, 29 Aug 2025 13:28:02 +0530, Taniya Das wrote:
+> Introduce the support for Display clock controller(DISPCC) for
 > 
-> The series is extending the MSM8917 gcc and pinctrl drivers
-> because they are sibling SoCs.
-> MSM8937 have 4 more A53 cores and have one more dsi port then
-> MSM8917.
-> It implements little-big architecture and uses Adreno 505.
+> Qualcomm's next gen compute SoC - Glymur.
+> 
+> Device tree changes aren't part of this series and will be posted separately after the
+> official announcement of the Glymur SoC.
 > 
 > [...]
 
 Applied, thanks!
 
-[3/7] dt-bindings: firmware: qcom,scm: Add MSM8937
-      commit: cf13bed78c90b2c0fc65774e86d564c868fa2a23
+[2/2] clk: qcom: dispcc-glymur: Add support for Display Clock Controller
+      commit: b4d15211c4086a8a6d670cdba9649112fed67f86
 
 Best regards,
 -- 
