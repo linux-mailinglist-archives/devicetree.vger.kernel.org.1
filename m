@@ -1,190 +1,158 @@
-Return-Path: <devicetree+bounces-213055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D82B447A5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:45:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016CBB447A4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DE9C586BAD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:45:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2C894874F7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:45:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C241A2747B;
-	Thu,  4 Sep 2025 20:45:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7559D2868AF;
+	Thu,  4 Sep 2025 20:45:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="jIfxdcwK";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kFZ6fULo"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ASsq+nhj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922311F4168;
-	Thu,  4 Sep 2025 20:45:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E625D286412
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 20:45:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757018750; cv=none; b=AcFOm/WIbRZPQ3B5cw8urCGp6nXSLzI6ity5R0oS5CuPkBWe/XLXDsCaXxp48vcIpjJWBOvtMjC4arUXStnDhY1TxTiYy57QqAm0SHvO9+f8CH3mSOApb0A8OjxNDcT5zUevtnvxCyoa5SnCKJlcC9JlvFb2+l62P5MGbXMHUoM=
+	t=1757018730; cv=none; b=W3QK1edGCSHLCW3Ka38PRmL5d1czpD2sOeBVgHcadHT9XxxrhsrlKapIDODFN+qDLCnlC6dmFChHwJWhhNgf5WI8UkPoY/Zcf6D8vjd7DgGY6jffikGipUedcaAg1tgsIymhqT1p4nyvu+K2DXoDS+y1TyH5F+ZdkgQB8GZATcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757018750; c=relaxed/simple;
-	bh=05i5KKzlsbT/8I79/AsjlFkfQC/HDtaYEWwTXvjLtSc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jfmPDrvodTK1nxl0oPJMCaOqF/e5RjZF8pqgUrn6vl395OFRbS3/8Ujz/pKxtX19OmIS6MdfkTsbGCU3LA90beM6woC4Goz2e36hThyoXGe+Mw2u/RyEUbVPT+iMPnsgg0TzrpVvmOU+/go4jD4axgm8t1Zw5uk8GOaU2BIR/zY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=jIfxdcwK; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kFZ6fULo; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHs223M9sz9t9t;
-	Thu,  4 Sep 2025 22:45:46 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757018746;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Gu9QfSR06q9gQse2ZBICxJa2UFCZpC56QqcslqucwuE=;
-	b=jIfxdcwKB+041GOrNihkdrUbdB6SkGFw3SbztFhDhSLSJUuAML7CYPCYUit2HJ8hOiWIGU
-	4/kRY5JDoKnljd4oG66MWWiCWVdTiBSBX2kZDdg1JUDNgpF+AXskBlyUeg04/YerW1uErK
-	lyPgNd3mgNayTVD/nMEmnD3FFanTzrGzHmWNfHqZS5mX294TW5bl+CrLGjYBNwF4iSb85S
-	b8joR/ojgf0Dz+VUJdj7FSBRgiqdXkf1oqQz/ciHFIJ7oVYjtxJX8yy7zKUPEWBt6U7FR0
-	2DFTrK1bXeIOqhli5vzI5+BkWBcpSQ94FrxnP3GrrknvnRnfvnwF05ySBq45Sg==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=kFZ6fULo;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757018744;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Gu9QfSR06q9gQse2ZBICxJa2UFCZpC56QqcslqucwuE=;
-	b=kFZ6fULolcuNmXOd+8DAb3Rgtphasmqs2mkaZM+AN+iSWWizXzRwC4GLRflBDq2JQtNmKm
-	I02AYhkyfG+DAs6ue/62esVrXWkVUB3gLbtyyO8Ag2jn3M4aHc/iIqsGe0ehFYpW+V1+iD
-	E7OR24FDKcX2sB5yK0U49FVAc7RO3Yb/qU79MoZTgAt2hvk3u/xrQo8mT7GJJEJPB091AU
-	hUqq++vzjudawhGxNO9nyl0Rpi/z1G8o7L2gn6ZwR3LW5x675Ksq3s5ixf+GVZcsLonBOa
-	BpTHI0zefb+l7iJfJ/QLI7qY2zWhB4Zk6UAqWOw+/tTr7d1s8gqCB3VnF4tMWA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO to Retronix R-Car V4H Sparrow Hawk
-Date: Thu,  4 Sep 2025 22:44:56 +0200
-Message-ID: <20250904204522.180439-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1757018730; c=relaxed/simple;
+	bh=goHFT5Fojx7NPl6TJEnx+eQN9pctyR3h8wRytbQqm7M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2gR7G67uElIE+3lmtwaLtwHdF8C11Y7yBwk4fzy8kdB0fuuNGMQVRVPy9Pfja9gG11eAAEtnczBiwN7b5NZmBzsNa5KiKfeo3OXb5sAGVU5kX0PjuOT+TXUIR44VPmtDKFkC216akhJ0szN+yeZPzM/coWWMYW/jpM24sleS6c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ASsq+nhj; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584IJSdd008117
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 20:45:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=ah8XoJw+rgAX/8W20N8ua7Zu
+	YMCg6XGeT4CJSEmlEg0=; b=ASsq+nhjXy0T/utxPI0L81ICdz13PV+WiSq4OoGB
+	9pa7gEUH/ByTZFniwt19U98nOgxrN/BWLh6G3dVN5LEtJTVf3IRoOg4eBA02kWb1
+	GT7mIt013gPkB2Ph9I9NgdfBsisfb+8erqoPgv9NFGkX6YAGuUuMahEweMBKBfwP
+	CyTRn1yV+HjzvhI+grE4Unkjko8LUQMeV9dheKVNofoea+CxxAl/HWvc63yz7pA1
+	X3x5ggfNdmdTdUcB5tyy7UuG/hco53ZIDoBTA6GHXDMYhOcLsQi90jYixQ+cdTJm
+	sO9ENsmffFJWkPSVC8gUwQsfEzisALm9VcJgVfAW698Iqw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjru1b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 20:45:23 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b335bd70b8so25862291cf.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 13:45:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757018723; x=1757623523;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ah8XoJw+rgAX/8W20N8ua7ZuYMCg6XGeT4CJSEmlEg0=;
+        b=rnvYUd+xGp7TGiMzgncsVwQ1EMo8IbIwg8XbB4y0WTQT8ncPCA6+MhTby3vKyFSYDl
+         Pht6zxh0BsLD5MMr7nqc7OOXqzz7/kNeVnPuaQzguW+OnFf34sObrit0CuVpwUHZv2ec
+         G6YyiD6Fa3+jEo+9XyKOS0g47EirSpW/s12Z1qks93WURO7lpjjVWrpXMV1elmuaiW8e
+         pLACPQxO5xgm6y2qjUmNnxWyk8YupXYkNjmoawJOLtnmESMiPsiB1ae9ToH8ldRpV9Dr
+         NwwukPqZ57JkxXz5tsrjIP99y+iPZs6Ge9v0X1NlZsDBtVG8Aic19aarc+YfmEJv9p0q
+         kqXA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhSYQPr73WXSW3jvkqkekE58htwOyf4QJ7B0jWvBlypU8yaG65jnLnRIaGWd8NnA/k3mcHNxhocJMZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YweN2aYsDx+LTNkfGONhPjCsoqIAbpwBlbaYkvialS3frT10w//
+	sKrNFjoiLiX1uVcocSURmm7cHF5/e0NYvQKANXfgTfmzThGz3FAzk3iCQ7nah+pCQBgv84ctOvY
+	ilZFFbPcDTO/Hhx3evD3s86hY7gyATyK8Her8+oQCV3YxxA/MUOZJ//HvlEd1D8aq
+X-Gm-Gg: ASbGncvsinrTLOMq30hxiHcM5l2JkujPYjEA3ZvN48hKz1V/RE5zdGue79RiA02txsX
+	NF6X2OaFGaHff21egRp9bwus+gkEv63euDgRZ20vBh+niHdvAlMwRXyRya+MPSqwJuJgYwngDKc
+	imZHj2UjX9ZAzf3zU44ccYMAAtzzbodZf/eoZvFU1M/UeBslPl7epbIYp0cx+6RIJzs7AB+EpHC
+	TpyZ1aYnGGr8sZLR/2xqJlO68RlDEq8N7jC+mYDLOuwnr7zx6F3ng/bcWe9io/awk/H39nl+deb
+	gLkL4SOGVYxTzRBHtZ1KEnJSpjyJ8mjcG/aswZ63g8+VbIGSIqKttGgw/JveHnO5uBYEDlujBKb
+	p1nGH8RNcIHQStN9do6ld4QAczI8QpQdQwjMmSHCSbkfIvqyQkjf0
+X-Received: by 2002:ac8:5d0f:0:b0:4a4:41d5:2a03 with SMTP id d75a77b69052e-4b31d7f0a03mr103406331cf.4.1757018722462;
+        Thu, 04 Sep 2025 13:45:22 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+J8L1I5811Gh82XYHGA2tv3WmCtFswhuFoDmxujp1dacvtjBsEDeCAlLFIU0h8/1YiIUj8Q==
+X-Received: by 2002:ac8:5d0f:0:b0:4a4:41d5:2a03 with SMTP id d75a77b69052e-4b31d7f0a03mr103405881cf.4.1757018721940;
+        Thu, 04 Sep 2025 13:45:21 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f50b0898sm16424661fa.58.2025.09.04.13.45.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 13:45:21 -0700 (PDT)
+Date: Thu, 4 Sep 2025 23:45:18 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Vladimir Yakovlev <vovchkir@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: himax-hx83102: add panel starry xr109ia2t
+Message-ID: <to4alnxchf56lkvguacmh35bquzbczlonhqi5xoi33alufu36j@4cgkzx3sgzod>
+References: <20250904002232.322218-1-vovchkir@gmail.com>
+ <20250904002232.322218-3-vovchkir@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: c5fb2a05ee80b534582
-X-MBO-RS-META: w3o1ifttorfcjdp54tt1zupytisdirwx
-X-Rspamd-Queue-Id: 4cHs223M9sz9t9t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904002232.322218-3-vovchkir@gmail.com>
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b9fa63 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=ACYfBu3xzRVhRnfl0NsA:9 a=CjuIK1q_8ugA:10
+ a=dawVfQjAaf238kedN5IG:22
+X-Proofpoint-GUID: oVD87O61-ErARFR_y8INocaXWlDDoKun
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX4olLcq0zxXnK
+ NoWTqzNqigcj/st6/e/0wRu7pLWLXAsKP5PB48CLmbmHeXvw7OsU/RRpV+v4V+PY38+aoGtV9uG
+ yhwxlNNQwr4mwl+O7aFp2fpOvCBAourZcYsDxLLwspDK5AKfHe/moGnQQ6BqaNcDMgvLS5eoEz2
+ ZklPuKySXwgMUkVgKYHh5N1c09Q8v61m/Dg3xbr4B2HfgZo9oJNoLgtI5f981UyQ1Ov0ieDBowe
+ dNWNMO9bPQH6QQVad6BIEBYOHjFcQSnwDr0KHkNV140YnZme1ltKKU38LOXuukbW23aWzCLVpgo
+ FU4ghtFoiOiy9/BJuMlfTbiugVm1ZFIg7IQTAcrU1N++sTKzaOyNu2Sux3p/OjjqPMSmB4HVgun
+ Wzf5tXz/
+X-Proofpoint-ORIG-GUID: oVD87O61-ErARFR_y8INocaXWlDDoKun
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_07,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-Add DT overlay to bind Argon40 fan HAT, on Retronix R-Car V4H
-Sparrow Hawk board. Fan RPM control and full RPM on reboot has
-been tested.
+On Thu, Sep 04, 2025 at 03:22:32AM +0300, Vladimir Yakovlev wrote:
+> The STARRY XR109AI2T is a 10.95" 1200x2000 (WUXGA+) TFT LCD panel with
+> himax-hx83102 controller. Hence, we add a new compatible with panel
+> specific config.
+> 
+> Signed-off-by: Vladimir Yakovlev <vovchkir@gmail.com>
+> ---
+>  drivers/gpu/drm/panel/panel-himax-hx83102.c | 193 ++++++++++++++++++++
+>  1 file changed, 193 insertions(+)
+> 
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Magnus Damm <magnus.damm@gmail.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-NOTE: Depends on series:
-      https://lore.kernel.org/linux-hwmon/20250904202157.170600-1-marek.vasut+renesas@mailbox.org/
----
- arch/arm64/boot/dts/renesas/Makefile          |  3 +
- .../r8a779g3-sparrow-hawk-fan-argon40.dtso    | 56 +++++++++++++++++++
- 2 files changed, 59 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
+> +
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETPOWER, 0x2C, 0xB1,
+> +				     0xB1, 0x2D, 0xED, 0x32, 0xD7, 0x43, 0x36,
+> +				     0x36, 0x36, 0x36);
 
-diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
-index bef624636d58b..b2325d1ddf9d3 100644
---- a/arch/arm64/boot/dts/renesas/Makefile
-+++ b/arch/arm64/boot/dts/renesas/Makefile
-@@ -96,6 +96,9 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
- 
- DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
-+dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtbo
-+r8a779g3-sparrow-hawk-fan-argon40-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-argon40.dtbo
-+dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtb
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
- r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
- dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
-diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
-new file mode 100644
-index 0000000000000..e63fd3e18b2a1
---- /dev/null
-+++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
-@@ -0,0 +1,56 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+/*
-+ * Device Tree Overlay for the Argon40 HAT blower fan in connector CN7
-+ * on R-Car V4H ES3.0 Sparrow Hawk board
-+ *
-+ * Copyright (C) 2025 Marek Vasut <marek.vasut+renesas@mailbox.org>
-+ *
-+ * Example usage:
-+ *
-+ * # Localize hwmon sysfs directory that matches the PWM fan,
-+ * # enable the PWM fan, and configure the fan speed manually.
-+ * r8a779g3-sparrow-hawk$ grep -H . /sys/class/hwmon/hwmon?/name
-+ * /sys/class/hwmon/hwmon0/name:sensor1_thermal
-+ * /sys/class/hwmon/hwmon1/name:sensor2_thermal
-+ * /sys/class/hwmon/hwmon2/name:sensor3_thermal
-+ * /sys/class/hwmon/hwmon3/name:sensor4_thermal
-+ * /sys/class/hwmon/hwmon4/name:pwmfan
-+ *                       ^      ^^^^^^
-+ *
-+ * # Select mode 2 , enable fan PWM and regulator and keep them enabled.
-+ * # For details, see Linux Documentation/hwmon/pwm-fan.rst
-+ * r8a779g3-sparrow-hawk$ echo 2 > /sys/class/hwmon/hwmon4/pwm1_enable
-+ *
-+ * # Configure PWM fan speed in range 0..255 , 0 is stopped , 255 is full speed .
-+ * # Fan speed 101 is about 2/5 of the PWM fan speed:
-+ * r8a779g3-sparrow-hawk$ echo 101 > /sys/class/hwmon/hwmon4/pwm1
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	pwm-fan {
-+		compatible = "pwm-fan";
-+		#cooling-cells = <2>;
-+		/* PWM period: 33us ~= 30 kHz */
-+		pwms = <&pwmhat 0 33334 0>;
-+		/* Available cooling levels */
-+		cooling-levels = <0 50 100 150 200 255>;
-+		fan-shutdown-percent = <100>;
-+	};
-+};
-+
-+/* Page 31 / IO_CN */
-+&i2c3 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pwmhat: pwm@1a {
-+		compatible = "argon40,fan-hat";
-+		reg = <0x1a>;
-+		#pwm-cells = <3>;
-+	};
-+};
+The rest of the file uses lower case hex. Could you please follow the
+pattern? The rest LGTM.
+
+
+> +	mipi_dsi_dcs_write_seq_multi(&dsi_ctx, HX83102_SETSPCCMD, 0xD9);
+
 -- 
-2.50.1
-
+With best wishes
+Dmitry
 
