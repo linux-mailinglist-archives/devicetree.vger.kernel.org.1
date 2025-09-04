@@ -1,199 +1,183 @@
-Return-Path: <devicetree+bounces-212609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 054E4B4350D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:11:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DF48FB43513
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:12:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8E7D5686B87
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:11:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 671A47C40CF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:11:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24EAF2AE68;
-	Thu,  4 Sep 2025 08:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 107B62BF3F3;
+	Thu,  4 Sep 2025 08:11:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="PAyrJXuf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 169702C028B;
-	Thu,  4 Sep 2025 08:10:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 923482BEC5F
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 08:11:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756973457; cv=none; b=CtD+VPVXl9Keif7jNQyfIv7hzbAGzt3OiZ4ZdHZHhaSiLAEKMF44aHKNN8TiKCe64BNKh74UP34gRiLXC+O2l8bkYt41wFpgWHOMjPcbh8PmJbgROOHV7NiZ78/N7AoeKQbV5sz+EBS7EqAWuLUoOiGSzulhglAHcKoCs3ZyvmY=
+	t=1756973493; cv=none; b=HTLHtP7Yww9E6owNJfBqcyUUg5T92AZKAQIMoey/SRzrHYo/T1MOH9emu/w3cSbhSwgSYve+GoRuYoKG1d0Ce6waca0tqjoNNH4HDqzhZ5RrbIeIukdQRzOowZ7p//9MgoDDxHlesDThtutlg+VpRfYXErk+xwFscsACJR2Y5pQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756973457; c=relaxed/simple;
-	bh=qTz5Q3dBw3oX8QOJDlh3RtZii4ROKC8FKHxOsPE7448=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
-	 MIME-Version:Message-ID; b=duOXfV64ifX4rVRFl7MTCQ5zeHtvw1vWb+aos4lfnvpQNrpQI6mTADUhXsqxJQfHPSQiPELBKgLixw899PPTnJV5ckh4F/nrMD1bQxVpMYYIyHityAjp9cOLHprM7SlusEfNdQuhKX1Lw6m70PCEnN/qYCrl2+jwVtQ/+aLGzDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from zhangsenchuan$eswincomputing.com ( [10.12.96.83] ) by
- ajax-webmail-app2 (Coremail) ; Thu, 4 Sep 2025 16:10:23 +0800 (GMT+08:00)
-Date: Thu, 4 Sep 2025 16:10:23 +0800 (GMT+08:00)
-X-CM-HeaderCharset: UTF-8
-From: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-To: "Manivannan Sadhasivam" <mani@kernel.org>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
-	johan+linaro@kernel.org, quic_schintav@quicinc.com,
-	shradha.t@samsung.com, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
-	inochiama@gmail.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700
- PCIe host controller
-X-Priority: 3
-X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
- 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
- mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
-In-Reply-To: <nq3xoih7kbjdaxnwoduz3o2nxt2ikahbogqdraibznrlqwqw5r@ovjarka5eagm>
-References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
- <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
- <nq3xoih7kbjdaxnwoduz3o2nxt2ikahbogqdraibznrlqwqw5r@ovjarka5eagm>
-Content-Transfer-Encoding: base64
-Content-Type: text/plain; charset=UTF-8
+	s=arc-20240116; t=1756973493; c=relaxed/simple;
+	bh=4h08wpz5drqqCtxh2Mgu2qUofUwO3S1QVgxWjKb5L3I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NXyahYxKtdTpaY+eEMQjHRUyCMD4wUKIpafMXaUPyiMYVRW4xI0+YnvK+HXa/PlU5O4YCi8TuNiZA6i1WW70+sSW1C4Gs6IEGfZd9rc3SncswXtJ3BUbbYsWf38rbR+0/I568CFPdYWBGeOZCy2XquKds1uGUkDUME9sNFWhrp8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=PAyrJXuf; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5841YIvO019989
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 08:11:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	L7t4dwQgkA12CDBLO/H8GwQ2txzuPeZic7pjO4qLBo4=; b=PAyrJXufetwiSgVz
+	uAdzS+qwhc3dwJknZKxoaGTAS+xCPuTAIIoVT2ZUmCGZD/mIlEkCe9snuoRBm53y
+	/N0daTcncnqxhGRTJ0qDB1TfUMCyJXFooAVkLKE6X8stOnVO6MGvOvMP9vjcmuZA
+	Z5+CTZQ5KNtG7+FDlSHessrX60NHta3TYynN+kcjyjTM/9UAiD/FxVURjzXGTPgW
+	FxFYtRn/7iBHcXiZ+Qi5HW3wDSnrSRhcX4cNPcWJBd09kqLClpPabkkpMFuak1Xm
+	xbHPuwTAaNlrmmB3LLoMz5G9Q4BXBPwM9nhtEj0CVOW1DhmP0mZO7qBJdomwTKZF
+	vSGHBw==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48utk96jq4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 08:11:30 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b3037bd983so3106201cf.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 01:11:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756973489; x=1757578289;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=L7t4dwQgkA12CDBLO/H8GwQ2txzuPeZic7pjO4qLBo4=;
+        b=T7aCZ5GoXUfaMM8pYr7W+aON0obqWmuXjh6GDBK/f6FL/RvRGHkZR2nmbrqwlN1QvJ
+         C+QzM4maS923a9UkVo8L0shQ0rpHyd0+7+J/IKjBsm5ZSpLpFVhq9bcfkj2gKAXQPMGV
+         SR8dB9+qMvqlS7mlVPWyDYLTa+YmjOojCvF1T12DX9mACqYvVdS+qH+H899GRmD2yv1i
+         8LqCKP4vsWiC/vojFIDHonMmP4zlLYp2u+OEIMjbTT0B/tv+TMCkV4jrZQVad6+GDQ+g
+         4orMN07UYX425DJNXhatQqdVf5esSbaY7RrDnPhNn/nNXiEaappmdPch4FLCKs/VHpiC
+         uzKg==
+X-Forwarded-Encrypted: i=1; AJvYcCUNRcbAs/4p98DIIy/B1+z6tdTUYiw5ivCO1Yr1xGTUvzHNUyWzajKPoTSfA5tISWA/KgHUCvEAxFAx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz69Uh9x991KAX/oD4gAbkr2FecyqEFH/ugqgI/9Nuha3GkeP6d
+	jLk3cITu5luWPvrY9vmtDflT5aaRy1fzDs0ihnw+eW1qbvNyQ+mf/sNllbNIoemghsaO+mz0K8x
+	TtQYgtmA988m0KDhl2QKfMErGFu9ihz0O3xKa/LFDKCUHeSUh1306yc8epyJYo+2/
+X-Gm-Gg: ASbGncsGRJ0j6B8C3/X3Nt8jeVBohcGSa1VEOwkK8fAlkBkGVrFMSKWHmr1hY9f4IaU
+	Qgl/oR6VkzESjizlUWOiA+XFKBbQkPzWvNKsHdZaiWc0A0mwGyShbzKBTeVBIMhWkqxTODVibwe
+	GylzBauXpmvj+hdqu+OLQvROwyWnzIsw5k6Va9/GcI9BJViVH3+HWCVj7ixa1qt1J6Y7w7HtuC8
+	UaDO2LG5NIg9Y2CBEPQEO0YgGEUnl0Hd73FBpWf0PL6CwBpxbaAJlT8RWfXCmUFRO7OBg1x02sq
+	ffXOqsQSSqw+Aya/kqntYasmaUsWnlVwB4ngci4ttofgZOT7N8HE+uSTYxM1MaydKBsJADGrWH/
+	n7im/zTiGUNEIKiLvGjJLzA==
+X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr174091001cf.8.1756973489291;
+        Thu, 04 Sep 2025 01:11:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IETRY11wlgI/tWg0eDPS0dRUFiv1L7olBCrkOPdcF5xbIyJYVEuM11SwnRqh3KhtLOSUAXIXw==
+X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr174090681cf.8.1756973488627;
+        Thu, 04 Sep 2025 01:11:28 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b041770913fsm1097170666b.107.2025.09.04.01.11.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 01:11:28 -0700 (PDT)
+Message-ID: <1b92fe18-67bd-4fda-b7c2-952ed96aaa61@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 10:11:26 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Message-ID: <9cb374f.cc7.19913c6dd06.Coremail.zhangsenchuan@eswincomputing.com>
-X-Coremail-Locale: en_US
-X-CM-TRANSID:TQJkCgA31pRvSblowVjIAA--.24043W
-X-CM-SenderInfo: x2kd0wpvhquxxxdqqvxvzl0uprps33xlqjhudrp/1tbiAgEPBmi4b
-	dETlAABsg
-X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWxJw
-	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
-	daVFxhVjvjDU=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom-edp: Add missing clock for
+ X Elite
+To: Rob Herring <robh@kernel.org>
+Cc: Abel Vesa <abel.vesa@linaro.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Johan Hovold <johan@kernel.org>, Taniya Das <quic_tdas@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+References: <20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org>
+ <20250903-phy-qcom-edp-add-missing-refclk-v2-1-d88c1b0cdc1b@linaro.org>
+ <11155d6c-cc11-4c5b-839b-2456e88fbb7f@oss.qualcomm.com>
+ <20250903235138.GA3348310-robh@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250903235138.GA3348310-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: S0XMvFXeB5ocwokNKvHRLekRrPkSSG9Y
+X-Proofpoint-ORIG-GUID: S0XMvFXeB5ocwokNKvHRLekRrPkSSG9Y
+X-Authority-Analysis: v=2.4 cv=ccnSrmDM c=1 sm=1 tr=0 ts=68b949b2 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8
+ a=_W-1yxQpv4NGZoZ9-g4A:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+ a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDA0MiBTYWx0ZWRfX3KXvwzYbCFY/
+ 3aF5wLnmXwV2XObygUPGrd/SVJ0bFf/eetHOMFchuYuTJEszcBuBwkliAa6OmZfUd8y+M/017Qj
+ GuUVBG3He6p3pu0sv7Vu+mNBfQ5S6FnC8stK2LKPRjjRR2uTGf3G8fZvRUkntVhs7T5aC9jafJU
+ OqpzajCwnf60FEMWcIOhUolRTnugeNshtsQ+HFktFryHpiZ4syTiN9a9zPsNthTS/Kv7vS2MmuP
+ AL3Y4eOlFhUKaMI8kFgXiT08v3iveHaDSBtNjrZe2fjIZJteZjA5gGYUKLVWJAWi05FgIDOfDFj
+ aCC3M8n8TG85tE7LdrzWxe7fnfa3y27+KGz1FcC7kewSsrMW8fOtOplmABMIWTsaGQESHkH6qNO
+ Lb+SToqA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_02,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ clxscore=1015 suspectscore=0 spamscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300042
 
-CgoKPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2VzLS0tLS0KPiBGcm9tOiAiTWFuaXZhbm5hbiBTYWRo
-YXNpdmFtIiA8bWFuaUBrZXJuZWwub3JnPgo+IFNlbmQgdGltZTpNb25kYXksIDAxLzA5LzIwMjUg
-MTQ6MDQ6NTAKPiBUbzogemhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20KPiBDYzogYmhl
-bGdhYXNAZ29vZ2xlLmNvbSwgbHBpZXJhbGlzaUBrZXJuZWwub3JnLCBrd2lsY3p5bnNraUBrZXJu
-ZWwub3JnLCByb2JoQGtlcm5lbC5vcmcsIGtyemsrZHRAa2VybmVsLm9yZywgY29ub3IrZHRAa2Vy
-bmVsLm9yZywgbGludXgtcGNpQHZnZXIua2VybmVsLm9yZywgZGV2aWNldHJlZUB2Z2VyLmtlcm5l
-bC5vcmcsIGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcsIHAuemFiZWxAcGVuZ3V0cm9uaXgu
-ZGUsIGpvaGFuK2xpbmFyb0BrZXJuZWwub3JnLCBxdWljX3NjaGludGF2QHF1aWNpbmMuY29tLCBz
-aHJhZGhhLnRAc2Ftc3VuZy5jb20sIGNhc3NlbEBrZXJuZWwub3JnLCB0aGlwcGVzd2FteS5oYXZh
-bGlnZUBhbWQuY29tLCBtYXlhbmsucmFuYUBvc3MucXVhbGNvbW0uY29tLCBpbm9jaGlhbWFAZ21h
-aWwuY29tLCBuaW5neXVAZXN3aW5jb21wdXRpbmcuY29tLCBsaW5taW5AZXN3aW5jb21wdXRpbmcu
-Y29tLCBwaW5rZXNoLnZhZ2hlbGFAZWluZm9jaGlwcy5jb20KPiBTdWJqZWN0OiBSZTogW1BBVENI
-IHYyIDEvMl0gZHQtYmluZGluZ3M6IFBDSTogZWljNzcwMDogQWRkIEVzd2luIGVpYzc3MDAgUENJ
-ZSBob3N0IGNvbnRyb2xsZXIKPiAKPiBPbiBGcmksIEF1ZyAyOSwgMjAyNSBhdCAwNDoyMjozN1BN
-IEdNVCwgemhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20gd3JvdGU6Cj4gPiBGcm9tOiBT
-ZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGluZy5jb20+Cj4gPiAKPiA+
-IEFkZCBEZXZpY2UgVHJlZSBiaW5kaW5nIGRvY3VtZW50YXRpb24gZm9yIHRoZSBFU1dJTiBFSUM3
-NzAwCj4gPiBQQ0llIGNvbnRyb2xsZXIgbW9kdWxlLHRoZSBQQ0llIGNvbnRyb2xsZXIgZW5hYmxl
-cyB0aGUgY29yZQo+ID4gdG8gY29ycmVjdGx5IGluaXRpYWxpemUgYW5kIG1hbmFnZSB0aGUgUENJ
-ZSBidXMgYW5kIGNvbm5lY3RlZAo+ID4gZGV2aWNlcy4KPiA+IAo+ID4gU2lnbmVkLW9mZi1ieTog
-WXUgTmluZyA8bmluZ3l1QGVzd2luY29tcHV0aW5nLmNvbT4KPiA+IFNpZ25lZC1vZmYtYnk6IFNl
-bmNodWFuIFpoYW5nIDx6aGFuZ3NlbmNodWFuQGVzd2luY29tcHV0aW5nLmNvbT4KPiA+IC0tLQo+
-ID4gIC4uLi9iaW5kaW5ncy9wY2kvZXN3aW4sZWljNzcwMC1wY2llLnlhbWwgICAgICB8IDE0MiAr
-KysrKysrKysrKysrKysrKysKPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTQyIGluc2VydGlvbnMoKykK
-PiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
-L3BjaS9lc3dpbixlaWM3NzAwLXBjaWUueWFtbAo+ID4gCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9lc3dpbixlaWM3NzAwLXBjaWUueWFtbCBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9wY2kvZXN3aW4sZWljNzcwMC1wY2ll
-LnlhbWwKPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0Cj4gPiBpbmRleCAwMDAwMDAwMDAwMDAuLjY1
-ZjY0MDkwMmIxMQo+ID4gLS0tIC9kZXYvbnVsbAo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL3BjaS9lc3dpbixlaWM3NzAwLXBjaWUueWFtbAo+ID4gQEAgLTAsMCAr
-MSwxNDIgQEAKPiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9S
-IEJTRC0yLUNsYXVzZSkKPiA+ICslWUFNTCAxLjIKPiA+ICstLS0KPiA+ICskaWQ6IGh0dHA6Ly9k
-ZXZpY2V0cmVlLm9yZy9zY2hlbWFzL3BjaS9lc3dpbixlaWM3NzAwLXBjaWUueWFtbCMKPiA+ICsk
-c2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMKPiA+
-ICsKPiA+ICt0aXRsZTogRXN3aW4gRUlDNzcwMCBQQ0llIGhvc3QgY29udHJvbGxlcgo+ID4gKwo+
-ID4gK21haW50YWluZXJzOgo+ID4gKyAgLSBZdSBOaW5nIDxuaW5neXVAZXN3aW5jb21wdXRpbmcu
-Y29tPgo+ID4gKyAgLSBTZW5jaHVhbiBaaGFuZyA8emhhbmdzZW5jaHVhbkBlc3dpbmNvbXB1dGlu
-Zy5jb20+Cj4gPiArCj4gPiArZGVzY3JpcHRpb246Cj4gPiArICBUaGUgUENJZSBjb250cm9sbGVy
-IG9uIEVJQzc3MDAgU29DLgo+ID4gKwo+ID4gK2FsbE9mOgo+ID4gKyAgLSAkcmVmOiAvc2NoZW1h
-cy9wY2kvcGNpLWhvc3QtYnJpZGdlLnlhbWwjCj4gPiArCj4gPiArcHJvcGVydGllczoKPiA+ICsg
-IGNvbXBhdGlibGU6Cj4gPiArICAgIGNvbnN0OiBlc3dpbixlaWM3NzAwLXBjaWUKPiA+ICsKPiA+
-ICsgIHJlZzoKPiA+ICsgICAgbWF4SXRlbXM6IDMKPiA+ICsKPiA+ICsgIHJlZy1uYW1lczoKPiA+
-ICsgICAgaXRlbXM6Cj4gPiArICAgICAgLSBjb25zdDogZGJpCj4gPiArICAgICAgLSBjb25zdDog
-Y29uZmlnCj4gPiArICAgICAgLSBjb25zdDogbWdtdAo+ID4gKwo+ID4gKyAgcmFuZ2VzOgo+ID4g
-KyAgICBtYXhJdGVtczogMwo+ID4gKwo+ID4gKyAgbnVtLWxhbmVzOgo+ID4gKyAgICBjb25zdDog
-NAo+ID4gKwo+ID4gKyAgJyNpbnRlcnJ1cHQtY2VsbHMnOgo+ID4gKyAgICBjb25zdDogMQo+ID4g
-Kwo+ID4gKyAgaW50ZXJydXB0czoKPiA+ICsgICAgbWF4SXRlbXM6IDkKPiA+ICsKPiA+ICsgIGlu
-dGVycnVwdC1uYW1lczoKPiA+ICsgICAgaXRlbXM6Cj4gPiArICAgICAgLSBjb25zdDogbXNpCj4g
-PiArICAgICAgLSBjb25zdDogaW50YQo+ID4gKyAgICAgIC0gY29uc3Q6IGludGIKPiA+ICsgICAg
-ICAtIGNvbnN0OiBpbnRjCj4gPiArICAgICAgLSBjb25zdDogaW50ZAo+ID4gKyAgICAgIC0gY29u
-c3Q6IGludGUKPiA+ICsgICAgICAtIGNvbnN0OiBpbnRmCj4gPiArICAgICAgLSBjb25zdDogaW50
-Zwo+ID4gKyAgICAgIC0gY29uc3Q6IGludGgKPiAKPiBXaGF0PyBBcmUgdGhlc2Ugc3RhbmRhcmQg
-SU5UeCBvciBzb21ldGhpbmcgZWxlc2U/IFBDSShlKSBzcGVjIGRlZmluZXMgb25seQo+IElOVHtB
-LUR9Lgo+IAoKRGVhciBNYW5pdmFubmFuCgpUaGFuayB5b3UgZm9yIHlvdXIgdGhvcm91Z2ggcmV2
-aWV3IC4KWW91IGFyZSByaWdodCwgdGhlIFBDSShlKSBzcGVjIGRlZmluZXMgb25seSBmb3VyIGxl
-Z2FjeSBJTlR4IGludGVycnVwdHMgKElOVEEjLCBJTlRCIywgSU5UQyMsICBJTlREIykuIApQQ0ko
-ZSkgc3BlYyBkZWZpbmVzIGFsc28gbWVudGlvbnMgdGhhdCBJTlRYIGludGVycnVwdHMgaGF2ZSB0
-d28gY29udHJvbCBzdGF0ZXMgKEFzc2VydF9JTlR4L0RlYXNzZXJ0X0lOVHggTWVzc2FnZSkuCklu
-IG91ciB5YW1sLCBpbnRhfmludGQgY29ycmVzcG9uZHMgdG8gQXNzZXJ0X0lOVEF+QXNzZXJ0X0lO
-VEQsIGFuZCBpbnRlfmludGggY29ycmVzcG9uZHMgdG8gRGVhc3NlcnRfSU5UQX5EZWFzc2VydF9J
-TlRELiAKTWF5IEkgYXNrIGlmIGludGV+aW50aCBuZWVkcyB0byBiZSByZW1vdmVkIG9yIGlmIHRo
-ZSBuYW1pbmcgbmVlZHMgdG8gYmUgc3RhbmRhcmRpemVkPyAKSSBzYXcgdGhhdCBpbiAic2lmaXZl
-LGZ1NzQwLXBjaWUueWFtbCIsIGludGVycnVwdC1uYW1lcyBvbmx5IHJldGFpbiBpbnRhIHRvIGlu
-dGQuCgo+ID4gKwo+ID4gKyAgaW50ZXJydXB0LW1hcDoKPiA+ICsgICAgbWF4SXRlbXM6IDQKPiA+
-ICsKPiA+ICsgIGludGVycnVwdC1tYXAtbWFzazoKPiA+ICsgICAgaXRlbXM6Cj4gPiArICAgICAg
-LSBjb25zdDogMAo+ID4gKyAgICAgIC0gY29uc3Q6IDAKPiA+ICsgICAgICAtIGNvbnN0OiAwCj4g
-PiArICAgICAgLSBjb25zdDogNwo+ID4gKwo+ID4gKyAgY2xvY2tzOgo+ID4gKyAgICBtYXhJdGVt
-czogNAo+ID4gKwo+ID4gKyAgY2xvY2stbmFtZXM6Cj4gPiArICAgIGl0ZW1zOgo+ID4gKyAgICAg
-IC0gY29uc3Q6IG1zdHIKPiA+ICsgICAgICAtIGNvbnN0OiBkYmkKPiA+ICsgICAgICAtIGNvbnN0
-OiBwY2xrCj4gPiArICAgICAgLSBjb25zdDogYXV4Cj4gPiArCj4gPiArICByZXNldHM6Cj4gPiAr
-ICAgIG1heEl0ZW1zOiAzCj4gPiArCj4gPiArICByZXNldC1uYW1lczoKPiA+ICsgICAgaXRlbXM6
-Cj4gPiArICAgICAgLSBjb25zdDogY2ZnCj4gPiArICAgICAgLSBjb25zdDogcG93ZXJ1cAo+ID4g
-KyAgICAgIC0gY29uc3Q6IHB3cmVuCj4gPiArCj4gPiArcmVxdWlyZWQ6Cj4gPiArICAtIGNvbXBh
-dGlibGUKPiA+ICsgIC0gcmVnCj4gPiArICAtIHJhbmdlcwo+ID4gKyAgLSBudW0tbGFuZXMKPiA+
-ICsgIC0gaW50ZXJydXB0cwo+ID4gKyAgLSBpbnRlcnJ1cHQtbmFtZXMKPiA+ICsgIC0gaW50ZXJy
-dXB0LW1hcC1tYXNrCj4gPiArICAtIGludGVycnVwdC1tYXAKPiA+ICsgIC0gJyNpbnRlcnJ1cHQt
-Y2VsbHMnCj4gPiArICAtIGNsb2Nrcwo+ID4gKyAgLSBjbG9jay1uYW1lcwo+ID4gKyAgLSByZXNl
-dHMKPiA+ICsgIC0gcmVzZXQtbmFtZXMKPiA+ICsKPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6
-IGZhbHNlCj4gPiArCj4gPiArZXhhbXBsZXM6Cj4gPiArICAtIHwKPiA+ICsgICAgc29jIHsKPiA+
-ICsgICAgICAgICNhZGRyZXNzLWNlbGxzID0gPDI+Owo+ID4gKyAgICAgICAgI3NpemUtY2VsbHMg
-PSA8Mj47Cj4gPiArCj4gPiArICAgICAgICBwY2llQDU0MDAwMDAwIHsKPiA+ICsgICAgICAgICAg
-ICBjb21wYXRpYmxlID0gImVzd2luLGVpYzc3MDAtcGNpZSI7Cj4gPiArICAgICAgICAgICAgcmVn
-ID0gPDB4MCAweDU0MDAwMDAwIDB4MCAweDQwMDAwMDA+LAo+ID4gKyAgICAgICAgICAgICAgICAg
-IDwweDAgMHg0MDAwMDAwMCAweDAgMHg4MDAwMDA+LAo+ID4gKyAgICAgICAgICAgICAgICAgIDww
-eDAgMHg1MDAwMDAwMCAweDAgMHgxMDAwMDA+Owo+ID4gKyAgICAgICAgICAgIHJlZy1uYW1lcyA9
-ICJkYmkiLCAiY29uZmlnIiwgIm1nbXQiOwo+ID4gKyAgICAgICAgICAgICNhZGRyZXNzLWNlbGxz
-ID0gPDM+Owo+ID4gKyAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDI+Owo+ID4gKyAgICAgICAg
-ICAgICNpbnRlcnJ1cHQtY2VsbHMgPSA8MT47Cj4gPiArICAgICAgICAgICAgcmFuZ2VzID0gPDB4
-ODEwMDAwMDAgMHgwIDB4NDA4MDAwMDAgMHgwIDB4NDA4MDAwMDAgMHgwIDB4ODAwMDAwPiwKPiAK
-PiBJL08gQ1BVIHJhbmdlIHN0YXJ0cyBmcm9tIDB4MAo+IAo+IEFsc28sIEkgZG9uJ3QgdGhpbmsg
-eW91IG5lZWQgdG8gc2V0IHRoZSByZWxvY2F0YWJsZSBmbGFnIChiaXQgMzEpIGZvciBhbnkKPiBy
-ZWdpb25zLgoKaWYgY2Fubm90IHNldCB0aGUgcmVsb2NhdGFibGUgZmxhZyAoYml0IDMxKSBmb3Ig
-YW55IHJlZ2lvbnMuSXMgaXQgYXBwcm9wcmlhdGUgdG8gd3JpdGUgaXQgdGhpcyB3YXnvvJoKcmFu
-Z2VzID0gPDB4MDEwMDAwMDAgMHgwIDB4NDA4MDAwMDAgMHgwIDB4NDA4MDAwMDAgMHgwIDB4ODAw
-MDAwPiwKICAgICAgICAgPDB4MDIwMDAwMDAgMHgwIDB4NDEwMDAwMDAgMHgwIDB4NDEwMDAwMDAg
-MHgwIDB4ZjAwMDAwMD4sCiAgICAgICAgIDwweDQzMDAwMDAwIDB4ODAgMHgwMDAwMDAwMCAweDgw
-IDB4MDAwMDAwMDAgMHgyIDB4MDAwMDAwMDA+OwoKPiAKPiA+ICsgICAgICAgICAgICAgICAgICAg
-ICA8MHg4MjAwMDAwMCAweDAgMHg0MTAwMDAwMCAweDAgMHg0MTAwMDAwMCAweDAgMHhmMDAwMDAw
-PiwKPiA+ICsgICAgICAgICAgICAgICAgICAgICA8MHhjMzAwMDAwMCAweDgwIDB4MDAwMDAwMDAg
-MHg4MCAweDAwMDAwMDAwIDB4MiAweDAwMDAwMDAwPjsKPiA+ICsgICAgICAgICAgICBidXMtcmFu
-Z2UgPSA8MHgwIDB4ZmY+Owo+ID4gKyAgICAgICAgICAgIGNsb2NrcyA9IDwmY2xvY2sgNTYyPiwK
-PiA+ICsgICAgICAgICAgICAgICAgICAgICA8JmNsb2NrIDU2Mz4sCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgPCZjbG9jayA1NjQ+LAo+ID4gKyAgICAgICAgICAgICAgICAgICAgIDwmY2xvY2sg
-NTY1PjsKPiAKPiBEb24ndCB5b3UgaGF2ZSBjbG9jayBkZWZpbml0aW9ucyBmb3IgdGhlc2UgdmFs
-dWVzPwo+IAoKT3VyIGNsb2NrIGFuZCByZXNldCBkcml2ZXJzIGhhdmUgdGhlIGRlZmluaXRpb25z
-IG9mIHRoZXNlIHZhbHVlcywgYnV0IHRoZSBjbG9jayBhbmQgcmVzZXQgZHJpdmVycyBhcmUgdW5k
-ZXIgcmV2aWV3LiAKQ3VycmVudGx5LCB0aGVzZSB2YWx1ZXMgY2FuIG9ubHkgYmUgcmVwbGFjZWQg
-YnkgY29uc3RhbnRzLgoKPiA+ICsgICAgICAgICAgICBjbG9jay1uYW1lcyA9ICJtc3RyIiwgImRi
-aSIsICJwY2xrIiwgImF1eCI7Cj4gPiArICAgICAgICAgICAgcmVzZXRzID0gPCZyZXNldCA4ICgx
-IDw8IDApPiwKPiA+ICsgICAgICAgICAgICAgICAgICAgICA8JnJlc2V0IDggKDEgPDwgMSk+LAo+
-ID4gKyAgICAgICAgICAgICAgICAgICAgIDwmcmVzZXQgOCAoMSA8PCAyKT47Cj4gCj4gU2FtZSBo
-ZXJlLgo+IAo+ID4gKyAgICAgICAgICAgIHJlc2V0LW5hbWVzID0gImNmZyIsICJwb3dlcnVwIiwg
-InB3cmVuIjsKPiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHRzID0gPDIyMD4sIDwxNzk+LCA8MTgw
-PiwgPDE4MT4sIDwxODI+LCA8MTgzPiwgPDE4ND4sIDwxODU+LCA8MTg2PjsKPiA+ICsgICAgICAg
-ICAgICBpbnRlcnJ1cHQtbmFtZXMgPSAibXNpIiwgImludGEiLCAiaW50YiIsICJpbnRjIiwgImlu
-dGQiLAo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICJpbnRlIiwgImludGYiLCAi
-aW50ZyIsICJpbnRoIjsKPiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHQtcGFyZW50ID0gPCZwbGlj
-PjsKPiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8MHgwIDB4MCAweDAgMHg3
-PjsKPiA+ICsgICAgICAgICAgICBpbnRlcnJ1cHQtbWFwID0gPDB4MCAweDAgMHgwIDB4MSAmcGxp
-YyAxNzk+LAo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICA8MHgwIDB4MCAweDAgMHgy
-ICZwbGljIDE4MD4sCj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwweDAgMHgwIDB4
-MCAweDMgJnBsaWMgMTgxPiwKPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgPDB4MCAw
-eDAgMHgwIDB4NCAmcGxpYyAxODI+Owo+ID4gKyAgICAgICAgICAgIGRldmljZV90eXBlID0gInBj
-aSI7Cj4gPiArICAgICAgICAgICAgbnVtLWxhbmVzID0gPDB4ND47Cj4gCj4gbml0OiBNb3N0IG9m
-IHRoZSBiaW5kaW5ncyBkZWZpbmUgbnVtLWxhbmVzIGFzIGRlY2ltYWwuCj4gCgoKCgpCZXN0IFJl
-Z2FyZHMsCgpTZW5jaHVhbiBaaGFuZwoKCg==
+On 9/4/25 1:51 AM, Rob Herring wrote:
+> On Wed, Sep 03, 2025 at 03:37:25PM +0200, Konrad Dybcio wrote:
+>> On 9/3/25 2:37 PM, Abel Vesa wrote:
+>>> On X Elite platform, the eDP PHY uses one more clock called
+>>> refclk. Add it to the schema.
+>>>
+>>> Cc: stable@vger.kernel.org # v6.10
+>>> Fixes: 5d5607861350 ("dt-bindings: phy: qcom-edp: Add X1E80100 PHY compatibles")
+>>> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+>>> ---
+>>>  .../devicetree/bindings/phy/qcom,edp-phy.yaml      | 28 +++++++++++++++++++++-
+>>>  1 file changed, 27 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+>>> index eb97181cbb9579893b4ee26a39c3559ad87b2fba..a8ba0aa9ff9d83f317bd897a7d564f7e13f6a1e2 100644
+>>> --- a/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+>>> +++ b/Documentation/devicetree/bindings/phy/qcom,edp-phy.yaml
+>>> @@ -37,12 +37,15 @@ properties:
+>>>        - description: PLL register block
+>>>  
+>>>    clocks:
+>>> -    maxItems: 2
+>>> +    minItems: 2
+>>> +    maxItems: 3
+>>>  
+>>>    clock-names:
+>>> +    minItems: 2
+>>>      items:
+>>>        - const: aux
+>>>        - const: cfg_ahb
+>>> +      - const: refclk
+>>
+>> "ref"?
+> 
+> Certainly more consistent with other QCom phy bindings.
+
+That, and the name of a clock-names entry ending in 'clk' is simply
+superfluous
+
+Konrad
 
