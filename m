@@ -1,177 +1,220 @@
-Return-Path: <devicetree+bounces-212515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38685B43072
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:23:19 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 833A8B43082
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:38:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EEEDD1BC845D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:23:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 138A71B20B83
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:39:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D700129293D;
-	Thu,  4 Sep 2025 03:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E0027FD74;
+	Thu,  4 Sep 2025 03:38:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nW/g39gI"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="FbxQFnI7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 955632877E3;
-	Thu,  4 Sep 2025 03:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.8
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC14E4437A;
+	Thu,  4 Sep 2025 03:38:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756956157; cv=none; b=hkN1OBYLi0YD/5tGf5db9zeZGA56iVPLJM3vXrkmEL1Y3+lMv96pn1fiAXOvEkd4Scgt6yCpr2ws2nBECaZI+/LI4ZJQ87HvDuipMO2KPgfV75LroNAanPwlyZ9kITbfSUcqMZLX6k4QF+1tgS+LbhUWrRN3lSlh01Wm0NFagZw=
+	t=1756957123; cv=none; b=QeiVVI490V8hsXbGM2g1gPqXZOT4oCj/XamhJupHMzngc8Ss2pIq6HNyrWRDfmFBDH/29s74s0T7eWZagD3y43c1xiRbg3H5SK5ux+jZghj07/a6C0zYHrFBA4WuIrTuQG+HyASh55A2bKzNltwPqWY0ybq7OPs+SnIE7i+YV4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756956157; c=relaxed/simple;
-	bh=bNSAahrLsh5lIaRJtRcrZ2VrezcQXtPhuB+zZ94/O9Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BkNZWFdPt1o4Nbr0ktpwPaoxVn4IpcUhU6b1rsQcdJUZ066F4T8P8/gJhAgoXSRyTb0+o0cA//pKXdL8ldCSNjsCZNzwjIf3kfVuSBoPZOc4S4myW12gIuH50/OaOwuOfyu64ABDNievEk/L5IBPmULaq5/9H41K03bdpVIshx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nW/g39gI; arc=none smtp.client-ip=192.198.163.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756956156; x=1788492156;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bNSAahrLsh5lIaRJtRcrZ2VrezcQXtPhuB+zZ94/O9Q=;
-  b=nW/g39gI6GK2t0cLfd2hQg4s+31u2Nm0nLHA27HdUYSWozlntN7n9seN
-   ajeyO2b6W2fs4aY9ESQAYoze4pYF2+cSsG6C1/2RmTihON1NmK3bKCB9L
-   XQmhZtDZxfn0vDXzvPivDtYVc0GbCp6ub/BWEQR0HSSyBNNDBaPPf/rpQ
-   4vjN0MJ9erj0CvO1+rJRfoisBsWDhgZV+qytfAfoDtq4HdW6apObWB0Er
-   XKNy+/PN9z+wvAtzrFOsEkrNNbcWHa/g0Ctb/TXbHvZMMx/mgyt1+UxZ0
-   0+2992AKu9yMe2+uDFvSEM3LPNj9+eomFlf1l/i2laRI7Kw9glHUpvi+Y
-   Q==;
-X-CSE-ConnectionGUID: W05EzdIMR9OWrDpDlxtI/w==
-X-CSE-MsgGUID: P8HsuEztSSCEME/G9pnarQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="76888141"
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; 
-   d="scan'208";a="76888141"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Sep 2025 20:22:35 -0700
-X-CSE-ConnectionGUID: 5lDAPx0BTNOEIpwwL2WBRA==
-X-CSE-MsgGUID: oUclYMeDRJiAetZVddROEg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,237,1751266800"; 
-   d="scan'208";a="171056164"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by orviesa010.jf.intel.com with ESMTP; 03 Sep 2025 20:22:31 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uu0YO-0004hL-2j;
-	Thu, 04 Sep 2025 03:22:28 +0000
-Date: Thu, 4 Sep 2025 11:19:30 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manivannan Sadhasivam via B4 Relay <devnull+manivannan.sadhasivam.oss.qualcomm.com@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Saravana Kannan <saravanak@google.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v2 5/5] PCI: qcom: Allow pwrctrl core to toggle PERST#
- for new DT binding
-Message-ID: <202509041110.4DgQKyf1-lkp@intel.com>
-References: <20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061@oss.qualcomm.com>
+	s=arc-20240116; t=1756957123; c=relaxed/simple;
+	bh=yp4h80D+lfP9yLXutl3SXKGCKWjXsjW0pVN3LZiv7rM=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QeZVZfkbjIOhf0Yc2Z7nS2GtT+SrKepVq1nCE6httYCtUE0eJ+aFat+ePu79uHQtPx88StCZPceA/KLmYP3vAUzjfnL1O0oH6ASyP9yHKa1rM/O67poV3R9sqzd6HyniL8+pPCmCsC5OPaXxcLg2Kr0CXKZWhUYtn9vRYulpXzw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=FbxQFnI7; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5843cZ1h2984143;
+	Wed, 3 Sep 2025 22:38:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756957115;
+	bh=miUAPPRPjN8qAJAGGG1aIrOjILdNp+0GSmr4IvkmH+Y=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=FbxQFnI70M3jWOUAjhXGGA7oCRs4fNij7f9JIE97nZ3KDt5Kcoez3Q+ucm2l7xWkD
+	 XBsUJBqctdkEKKtLTQTu/kpGlt/qyuWXTJ3aKaY1MSUfi6RxiJCmcZMxla+PPpcBZw
+	 n1sdI97nUfqN97NQe2o5bMFq+eT1mxdjsV372mL4=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5843cZ1K4014145
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Wed, 3 Sep 2025 22:38:35 -0500
+Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Wed, 3
+ Sep 2025 22:38:34 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Wed, 3 Sep 2025 22:38:34 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5843cYxw2326292;
+	Wed, 3 Sep 2025 22:38:34 -0500
+Date: Wed, 3 Sep 2025 22:38:34 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Judith Mendez <jm@ti.com>
+CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62p/j722s: Move sdhci0 from
+ common
+Message-ID: <20250904033834.cmn5i7satksnpr6o@revolver>
+References: <20250904004723.2856005-1-jm@ti.com>
+ <20250904004723.2856005-2-jm@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061@oss.qualcomm.com>
+In-Reply-To: <20250904004723.2856005-2-jm@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Manivannan,
+On 19:47-20250903, Judith Mendez wrote:
+> Since eMMC HS400 has been descoped for j722s due to errata i2478 [0]
+> and is supported for am62p SR1.2 device, remove sdhci0 node from
+> common-main.dtsi and include instead in each device's main.dtsi
+> appropriately.
+> 
+> [0] https://www.ti.com/lit/pdf/sprz575
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>  .../dts/ti/k3-am62p-j722s-common-main.dtsi    | 25 -------------------
+>  arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 25 +++++++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     | 22 ++++++++++++++++
+>  3 files changed, 47 insertions(+), 25 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 4427b12058a6..84083f5125df 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -566,31 +566,6 @@ main_gpio1: gpio@601000 {
+>  		clock-names = "gpio";
+>  	};
+>  
+> -	sdhci0: mmc@fa10000 {
+> -		compatible = "ti,am64-sdhci-8bit";
+> -		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+> -		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> -		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+> -		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+> -		clock-names = "clk_ahb", "clk_xin";
+> -		bus-width = <8>;
+> -		mmc-ddr-1_8v;
+> -		mmc-hs200-1_8v;
+> -		mmc-hs400-1_8v;
+> -		ti,clkbuf-sel = <0x7>;
+> -		ti,strobe-sel = <0x77>;
+> -		ti,trm-icp = <0x8>;
+> -		ti,otap-del-sel-legacy = <0x1>;
+> -		ti,otap-del-sel-mmc-hs = <0x1>;
+> -		ti,otap-del-sel-ddr52 = <0x6>;
+> -		ti,otap-del-sel-hs200 = <0x8>;
+> -		ti,otap-del-sel-hs400 = <0x5>;
 
-kernel test robot noticed the following build errors:
+would'nt it be sufficient to provide this in am62p and keep the common
+stuff here?
 
-[auto build test ERROR on 8f5ae30d69d7543eee0d70083daf4de8fe15d585]
+Additionally handling of SR1.2 should be documented in am62p
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manivannan-Sadhasivam-via-B4-Relay/PCI-qcom-Wait-for-PCIE_RESET_CONFIG_WAIT_MS-after-PERST-deassert/20250903-151623
-base:   8f5ae30d69d7543eee0d70083daf4de8fe15d585
-patch link:    https://lore.kernel.org/r/20250903-pci-pwrctrl-perst-v2-5-2d461ed0e061%40oss.qualcomm.com
-patch subject: [PATCH v2 5/5] PCI: qcom: Allow pwrctrl core to toggle PERST# for new DT binding
-config: i386-buildonly-randconfig-002-20250904 (https://download.01.org/0day-ci/archive/20250904/202509041110.4DgQKyf1-lkp@intel.com/config)
-compiler: gcc-12 (Debian 12.4.0-5) 12.4.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250904/202509041110.4DgQKyf1-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509041110.4DgQKyf1-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/pci/controller/dwc/pcie-qcom.c: In function 'qcom_pcie_host_init':
->> drivers/pci/controller/dwc/pcie-qcom.c:1405:23: error: 'struct pci_host_bridge' has no member named 'toggle_perst'
-    1405 |         pci->pp.bridge->toggle_perst = qcom_pcie_toggle_perst;
-         |                       ^~
-
-
-vim +1405 drivers/pci/controller/dwc/pcie-qcom.c
-
-  1368	
-  1369	static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-  1370	{
-  1371		struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-  1372		struct qcom_pcie *pcie = to_qcom_pcie(pci);
-  1373		int ret;
-  1374	
-  1375		qcom_ep_reset_assert(pcie, NULL);
-  1376	
-  1377		ret = pcie->cfg->ops->init(pcie);
-  1378		if (ret)
-  1379			return ret;
-  1380	
-  1381		ret = qcom_pcie_phy_power_on(pcie);
-  1382		if (ret)
-  1383			goto err_deinit;
-  1384	
-  1385		if (pcie->cfg->ops->post_init) {
-  1386			ret = pcie->cfg->ops->post_init(pcie);
-  1387			if (ret)
-  1388				goto err_disable_phy;
-  1389		}
-  1390	
-  1391		/*
-  1392		 * Only deassert PERST# for all devices here if legacy binding is used.
-  1393		 * For the new binding, pwrctrl driver is expected to toggle PERST# for
-  1394		 * individual devices.
-  1395		 */
-  1396		if (list_empty(&pcie->perst))
-  1397			qcom_ep_reset_deassert(pcie, NULL);
-  1398	
-  1399		if (pcie->cfg->ops->config_sid) {
-  1400			ret = pcie->cfg->ops->config_sid(pcie);
-  1401			if (ret)
-  1402				goto err_assert_reset;
-  1403		}
-  1404	
-> 1405		pci->pp.bridge->toggle_perst = qcom_pcie_toggle_perst;
-  1406	
-  1407		return 0;
-  1408	
-  1409	err_assert_reset:
-  1410		qcom_ep_reset_assert(pcie, NULL);
-  1411	err_disable_phy:
-  1412		qcom_pcie_phy_power_off(pcie);
-  1413	err_deinit:
-  1414		pcie->cfg->ops->deinit(pcie);
-  1415	
-  1416		return ret;
-  1417	}
-  1418	
+> -		ti,itap-del-sel-legacy = <0x10>;
+> -		ti,itap-del-sel-mmc-hs = <0xa>;
+> -		ti,itap-del-sel-ddr52 = <0x3>;
+> -		status = "disabled";
+> -	};
+> -
+>  	sdhci1: mmc@fa00000 {
+>  		compatible = "ti,am62-sdhci";
+>  		reg = <0x00 0x0fa00000 0x00 0x1000>, <0x00 0x0fa08000 0x00 0x400>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> index 6aea9d3f134e..fb8473ce403a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> @@ -31,6 +31,31 @@ usb1: usb@31100000 {
+>  			snps,usb2-lpm-disable;
+>  		};
+>  	};
+> +
+> +	sdhci0: mmc@fa10000 {
+> +		compatible = "ti,am64-sdhci-8bit";
+> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		bus-width = <8>;
+> +		mmc-ddr-1_8v;
+> +		mmc-hs200-1_8v;
+> +		mmc-hs400-1_8v;
+> +		ti,clkbuf-sel = <0x7>;
+> +		ti,strobe-sel = <0x77>;
+> +		ti,trm-icp = <0x8>;
+> +		ti,otap-del-sel-legacy = <0x1>;
+> +		ti,otap-del-sel-mmc-hs = <0x1>;
+> +		ti,otap-del-sel-ddr52 = <0x6>;
+> +		ti,otap-del-sel-hs200 = <0x8>;
+> +		ti,otap-del-sel-hs400 = <0x5>;
+> +		ti,itap-del-sel-legacy = <0x10>;
+> +		ti,itap-del-sel-mmc-hs = <0xa>;
+> +		ti,itap-del-sel-ddr52 = <0x3>;
+> +		status = "disabled";
+> +	};
+>  };
+>  
+>  &oc_sram {
+> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> index 993828872dfb..2978fe1a151e 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
+> @@ -404,6 +404,28 @@ e5010: jpeg-encoder@fd20000 {
+>  		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+>  		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+>  	};
+> +
+> +	sdhci0: mmc@fa10000 {
+> +		compatible = "ti,am64-sdhci-8bit";
+> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
+> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
+> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
+> +		clock-names = "clk_ahb", "clk_xin";
+> +		bus-width = <8>;
+> +		mmc-ddr-1_8v;
+> +		mmc-hs200-1_8v;
+> +		ti,clkbuf-sel = <0x7>;
+> +		ti,trm-icp = <0x8>;
+> +		ti,otap-del-sel-legacy = <0x1>;
+> +		ti,otap-del-sel-mmc-hs = <0x1>;
+> +		ti,otap-del-sel-ddr52 = <0x6>;
+> +		ti,otap-del-sel-hs200 = <0x8>;
+> +		ti,itap-del-sel-legacy = <0x10>;
+> +		ti,itap-del-sel-mmc-hs = <0xa>;
+> +		ti,itap-del-sel-ddr52 = <0x3>;
+> +		status = "disabled";
+> +	};
+>  };
+>  
+>  &main_bcdma_csi {
+> -- 
+> 2.51.0
+> 
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+https://ti.com/opensource
 
