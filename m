@@ -1,63 +1,88 @@
-Return-Path: <devicetree+bounces-212749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16792B43A58
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:39:29 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF047B43A63
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:40:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 77B844E0470
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:39:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EB03487FF7
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:40:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49B62D322E;
-	Thu,  4 Sep 2025 11:39:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F522EA15D;
+	Thu,  4 Sep 2025 11:40:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XVQSIxjc"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="RAXXm/pt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A335B199FAB;
-	Thu,  4 Sep 2025 11:39:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9DE2773CD
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 11:40:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756985964; cv=none; b=aqKr02kzbQNCmzhxZhxzTdFBexrURirne4Z7AU52EqV4WmQZ88mBfUjWvyM7I99H8ZEzXkVZhzz4tdQKxTGor6t2D4twSXILaKPmpM/2z+yVoPtMJbfA40AflCb5TStSjCrrABwi1SIydu2/D0rnAtccxutg1JpmzVWFe7yh8n0=
+	t=1756986049; cv=none; b=t44fyarD3q5d0P+FZNCqqQ02TsYuSSdIdYXjpDhGj6s12mHDP1YQTnPVOE5nmb4GHrFgAmbYbiwo5TB+ctnLwxY8TCqfUPzunuDJRrDaRT4rxV6Zj/lMUFQuVYkwSYxB3OeIkUkZK3QXljg4Z+oUOpdmcfsY9a6cxUlMD4uY7YI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756985964; c=relaxed/simple;
-	bh=2U5CDPjzMznv+UvEAc5er/yLZ1DQhSBNife/xt5jUeI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=GP5sQFwCSgXcglQ/wVe9TL28iDj7AyFgvpH5dkn6HpB3hWKyLAfxWQTQvpieBr9IM/yhiHgRIAknOIACcqpeEpWM6+emNeQDY9QusyGKfk0jcq9JSW6vCx6j5Lbdr/1j1zPKGW3pHoh4zxrDAi23xNPqw4dkbz0EH1EToc1DmjM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XVQSIxjc; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584BdGe03065055;
-	Thu, 4 Sep 2025 06:39:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756985956;
-	bh=lZfF/R1zkJ9I0QIH48kfv3UNizAJBc+dQQgfeHqphm0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=XVQSIxjcZzBKVfvpPw3T6boKWKnuJ56UGQe0lIyzw+Rxx9Fr3epsBxfpxtUaDaf9J
-	 R+snO8+M7jBzLm5obedp3HJWLC5uk90Fq033r/kX2fwBI3GUAbG69TSYyujJNyLWCh
-	 P3i1rXnbD3fGqPojIxLD9Yd5urdzIUZR+Fu3U9rA=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584BdGiH141119
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 06:39:16 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 06:39:15 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 06:39:15 -0500
-Received: from [10.24.68.177] (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584BdBOA2904556;
-	Thu, 4 Sep 2025 06:39:12 -0500
-Message-ID: <b0ccb51f-14f4-43c9-9646-296d6e9d559c@ti.com>
-Date: Thu, 4 Sep 2025 17:09:11 +0530
+	s=arc-20240116; t=1756986049; c=relaxed/simple;
+	bh=y4uU4DStFdyRet9AcYiazndrVi6RmdR0kimclhECy6o=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=CeQMNqaGeAKuUjoSJhxMgvqcJNQDop8VCE8qyKf57geeVXU9AVqf13O1u6Yz0nqpIOeGS7DEjsnlt+XO0cWdP3Gp4fOt6Po957H6hLzk6nZg3In2crc3WVKp9cA5eMEXhZa1GvPuTCJcJybXXdrDpVTWsOdgQjt2lC0ykNU4D2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=RAXXm/pt; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X89Y008120
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 11:40:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	1z7m0o38hbU9AqKGZ4FuuaCFFD5bgtOtsvABF1Bvah8=; b=RAXXm/ptWnxJyvcX
+	v1eBBSbyN/JTB0EL5QKFWzGqGItY7pmBvsDlLg+iuYeTUuUOvttWODcbwJAH7VV8
+	vICORRep524tmcvJ38tE07nTLbhTEG+y45DG1b2YKPFIivx2qp8uhGG3MwBycPDK
+	BoUJZV1EelCu8Hkf9L2XXyBqzdAtgwv6ax5hQpFrNiv8Ps3hUehg1PYSniO+6UtC
+	Rmyt2Qjlh2RcrOApnmeMBXYkHVcMq8MH733QDU8TAdYs+B6z+NJGiT2U6JM7m6ig
+	EFszQO1+lKdlqwlfdT1MgU7/0we9d98qxfLhQ4PztgdqEjfPoa09muQa07GvpQVD
+	zbgDEA==
+Received: from mail-pj1-f72.google.com (mail-pj1-f72.google.com [209.85.216.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjq9d4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:40:46 +0000 (GMT)
+Received: by mail-pj1-f72.google.com with SMTP id 98e67ed59e1d1-329e3db861eso899547a91.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 04:40:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756986045; x=1757590845;
+        h=content-transfer-encoding:in-reply-to:content-language:references
+         :cc:to:subject:from:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1z7m0o38hbU9AqKGZ4FuuaCFFD5bgtOtsvABF1Bvah8=;
+        b=tiIvSyYu050y2YXX4q0sfVPy4gCvXuVF5VPgCpISUxMShkO1TQSOudkkdzOzGHTdB0
+         4fu+z5b3l/1VaaxFa1D14VjzYPzSHXv1O8OSe1xW8zkfrqxp1AO+lCD6SD9tOaDWvoH1
+         BfEY+hdP0qb2DWVzkJwe7Kg5vGwY0WAJq4cycPAV3HSbqODHI4vEd4wYMkNHRyaSFtOL
+         21VB8RGVj0HsFZwSnGamuQXFLbFBgNKBXGJVxNrbaS+s9u/VwuFLjUMU0UNcokLv7bxD
+         QDVJPoeYmL8tGSg5/QESpP+W5VuWxpW+u3M2k+WSd7HzSMr+hVj5WPAqo5B1fFn5zoVd
+         t9DA==
+X-Forwarded-Encrypted: i=1; AJvYcCVMIR3Aqt+nmmgFckgrd+JP1nMbNd/CRFu7E9P5Z2PAWP6bBpWBc0SRBuCBFRvdQFN7JEDiCsAXEFZB@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxu4ZOumNxHhaS6lJDxZKoSJVvBFhaauHJj9n0621y/Pp4xyHi9
+	01wvu1MVW+3k1Cg8jDzb5giuP6ErFA6aldpd9ZkmIa8ay0BJyg1Nvd+nY0zpqrOLxrh/SoMay7K
+	2iM76KpcBUhjmPuebPa36TVCRgMfUd8ngTp8aqYwVkCSS2h7WSrNRfxyXdg76Vi+P
+X-Gm-Gg: ASbGnctEuaAJJuJyFrbBKqPnyUoxcrsmGGHxy6yE/eWBVGFzso9AfTAT1laRn6umWzG
+	hwiC/zy1IZdna54NvTj9U4udGXRIrS6dVag7KDeuVZV2pK+MCHNohySC2se/KozTdoHqcVeFSs2
+	e2tw9MEP7DnFWuunohJUEXGVPnyUXgt94N/5HrEhY65/pSi/p6NbVh2NUdwnso8j2B8JYhzKwIb
+	9gELeHuh6pWOMddjGTxB7MjrU6QZ6SACyCaIksC5fMd6W3P8oRWe30gY2Xtb6KygZL1dUpSn/5B
+	N+19KB37f7fYqlEwu0SCGK37rhyH7UkgXuzVOuSQqeO4OjumZVOX76Q/eMbN1XiZEYJXFZdBzZz
+	RzLzVg7w=
+X-Received: by 2002:a17:90b:39cd:b0:32b:b26e:1576 with SMTP id 98e67ed59e1d1-32bb26e2980mr285570a91.37.1756986045423;
+        Thu, 04 Sep 2025 04:40:45 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGMFNOMLLYtgWEqcqOq6EVf91r655xof1zYJbYaf62p1HLzxciYIZxP4GW3srcr5KRaLqcL0Q==
+X-Received: by 2002:a17:90b:39cd:b0:32b:b26e:1576 with SMTP id 98e67ed59e1d1-32bb26e2980mr285519a91.37.1756986044844;
+        Thu, 04 Sep 2025 04:40:44 -0700 (PDT)
+Received: from [192.168.215.112] ([152.57.118.202])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4fa7484ec5sm4065312a12.49.2025.09.04.04.40.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 04:40:44 -0700 (PDT)
+Message-ID: <7276d39b-a514-4265-a125-7e08f364f979@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 17:10:33 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,139 +90,237 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining
- macros
-To: "Kumar, Udit" <u-kumar1@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <vishalm@ti.com>, <sebin.francis@ti.com>
-References: <20250902071917.1616729-1-a-kaur@ti.com>
- <20250902071917.1616729-4-a-kaur@ti.com>
- <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
+From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Subject: Re: [PATCH 2/2] watchdog: Add driver for Gunyah Watchdog
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250903-gunyah_watchdog-v1-2-3ae690530e4b@oss.qualcomm.com>
+ <mfvuoslj27mbayypzr3wuagrq3p5wzelklgveedhwrxiaavwxy@7ipv2tup6oou>
 Content-Language: en-US
-From: Akashdeep Kaur <a-kaur@ti.com>
-In-Reply-To: <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <mfvuoslj27mbayypzr3wuagrq3p5wzelklgveedhwrxiaavwxy@7ipv2tup6oou>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b97abf cx=c_pps
+ a=RP+M6JBNLl+fLTcSJhASfg==:117 a=EtPCCmwehmAcwtUnapKH4g==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=EUspDBNiAAAA:8 a=Y2IgW4ZSIErcYl4phlAA:9 a=QEXdDO2ut3YA:10
+ a=iS9zxrgQBfv6-_F4QbHw:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: z1nBksln8OPdxVXZBCKqg9cZyLy-fJQp
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfXwV8l88CaihyL
+ pf+jEQkhJcG9T0QtFZemxcNq3H5FOmgVW1L1yUCny2kUkhaUTa6pR15hMy27dl06D+0fYP1vbwj
+ 7XlLImMklfTpFqytu0qJ83TdLIpr+iVlbLxuvSqJYY8BjmIZBpdOh78FlmPXgetwX4MXl8Djae6
+ w9sK1Pg2RhSeqJ4QAaa+0LCD1XgTGjERjEpASGrcLuo73LGg+MRJTwJaQr24wXvQyPVcvBrY86k
+ 2hYf0nBpgEQmE/C7YORroTK9yGAEan6JE19X0sPao36xIk4PDyCHl8qaftDgW6QTJxs2FtJiiEU
+ kpPOYJ/oYBpY9QkV5vqYlv+QUp7kxAfj20+scsUxXOphrzwY7TS6KaaHFHFhXxZJ9oov9WIKr5A
+ ZPI4EQAe
+X-Proofpoint-ORIG-GUID: z1nBksln8OPdxVXZBCKqg9cZyLy-fJQp
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_04,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1011 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-Hi Udit,
 
-On 04/09/25 14:27, Kumar, Udit wrote:
-> Hello Akashdeep,
-> 
-> On 9/2/2025 12:49 PM, Akashdeep Kaur wrote:
->> Add the drive stregth, schmitt trigger enable macros to pinctrl file.
->> Add the missing macros for DeepSleep configuration control referenced
->> from "Table 14-6172. Description Of The Pad Configuration Register Bits"
->> in AM625 TRM[0].
->> Add some DeepSleep macros to provide combinations that can be used
->> directly in device tree files example PIN_DS_OUTPUT_LOW that
->> configures pin to be output and also sets its value to 0.
+On 9/4/2025 1:43 AM, Bjorn Andersson wrote:
+> On Wed, Sep 03, 2025 at 07:34:00PM +0000, Hrishabh Rajput via B4 Relay wrote:
+>> From: Hrishabh Rajput<hrishabh.rajput@oss.qualcomm.com>
 >>
->> [0] https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
-...
->>   #define PULLTYPESEL_SHIFT    (17)
->>   #define RXACTIVE_SHIFT        (18)
->> +#define DRV_STR_SHIFT           (19)
-> 
-> referring to above TRM mentioned in commit message
-> 
-> Bit 20-19 are for DRV_STR, and description says
-> 
-> 0 - Default
-> 1 - Reserved
-> 2 - Reserved
-> 3 - Reserved
-> 
-> Not sure, is there some additional document to be referred for 
-> PIN_DRIVE_STRENGTH
+>> Add driver to support the SMC-based watchdog timer provided by the
+>> Gunyah Hypervisor.
+>>
+> Start the commit message with a problem description, end with a
+> technical description of the solution. I.e. move this paragraph down.
 
-This information will be updated in TRM in coming cycles.
-> 
-> 
->> +#define DS_ISO_OVERRIDE_SHIFT   (22)
->> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
-> 
-> Please follow same convention as for rest of bit fields
 
-Updated.
+Thanks, that would make more sense. Will rearrange this.
 
-> 
-> DS_ISO_OVERRIDE_SHIFT  to ISO_OVR_SHIFT and
-> DS_ISO_BYPASS_EN_SHIFT to ISO_BYP_SHIFT
-> 
-> 
-> 
->>   #define DEBOUNCE_SHIFT        (11)
->>   #define FORCE_DS_EN_SHIFT    (15)
->>   #define DS_EN_SHIFT        (24)
->> @@ -19,6 +24,7 @@
->>   #define DS_OUT_VAL_SHIFT    (26)
->>   #define DS_PULLUD_EN_SHIFT    (27)
->>   #define DS_PULLTYPE_SEL_SHIFT    (28)
->> +#define WKUP_EN_SHIFT           (29)
->>   /* Schmitt trigger configuration */
->>   #define ST_DISABLE        (0 << ST_EN_SHIFT)
->> @@ -33,6 +39,26 @@
->>   #define INPUT_EN        (1 << RXACTIVE_SHIFT)
->>   #define INPUT_DISABLE        (0 << RXACTIVE_SHIFT)
->> +#define DS_PULL_DISABLE         (1 << DS_PULLUD_EN_SHIFT)
->> +#define DS_PULL_ENABLE          (0 << DS_PULLUD_EN_SHIFT)
-> 
-> what is purpose of shifting zero,
-This is added for consistency across the entire file.
-> 
-> 
+>> On Qualcomm SoCs running under the Gunyah hypervisor, access to watchdog
+>> through MMIO is not available. Depending on the hypervisor
+>> configuration, the watchdog is either fully emulated or exposed via
+>> ARM's SMC Calling Conventions (SMCCC) through the Vendor Specific
+>> Hypervisor Service Calls space.
+>>
+>> When the SMC-based interface is enabled, a device tree overlay is used
+>> to provide the pretimeout interrupt configuration.
+>>
+>> Signed-off-by: Hrishabh Rajput<hrishabh.rajput@oss.qualcomm.com>
+> [..]
+>> diff --git a/drivers/watchdog/gunyah_wdt.c b/drivers/watchdog/gunyah_wdt.c
+> [..]
+>> +#define GUNYAH_WDT_SMCCC_CALL_VAL(func_id) \
+>> +	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL, ARM_SMCCC_SMC_32,\
+>> +			   ARM_SMCCC_OWNER_VENDOR_HYP, func_id)
 >> +
->> +#define DS_PULL_UP              (1 << DS_PULLTYPE_SEL_SHIFT | 
-...
->> +#define PIN_DS_OUT_DISABLE        DS_INPUT_EN
->>   #define PIN_DS_OUT_VALUE_ZERO        (0 << DS_OUT_VAL_SHIFT)
->>   #define PIN_DS_OUT_VALUE_ONE        (1 << DS_OUT_VAL_SHIFT)
->>   #define PIN_DS_PULLUD_ENABLE        (0 << DS_PULLUD_EN_SHIFT)
->>   #define PIN_DS_PULLUD_DISABLE        (1 << DS_PULLUD_EN_SHIFT)
->>   #define PIN_DS_PULL_DOWN        (0 << DS_PULLTYPE_SEL_SHIFT)
->>   #define PIN_DS_PULL_UP            (1 << DS_PULLTYPE_SEL_SHIFT)
->> +#define PIN_DS_ISO_BYPASS               (1 << DS_ISO_BYPASS_EN_SHIFT)
->> +#define PIN_DS_ISO_BYPASS_DISABLE       (0 << DS_ISO_BYPASS_EN_SHIFT)
->> +
->> +#define DS_STATE_VAL                    (1 << DS_EN_SHIFT)
->> +#define ACTIVE_STATE_VAL                (0 << DS_EN_SHIFT)
->> +
-> 
-> Please do not mix PIN_x #define with other internal defines
+>> +/* SMCCC function IDs for watchdog operations */
+>> +#define GUNYAH_WDT_CONTROL   GUNYAH_WDT_SMCCC_CALL_VAL(0x0005)
+>> +#define GUNYAH_WDT_STATUS    GUNYAH_WDT_SMCCC_CALL_VAL(0x0006)
+>> +#define GUNYAH_WDT_PING       GUNYAH_WDT_SMCCC_CALL_VAL(0x0007)
+> Uneven indentation.
 
-Moved these to appropriate location.
 
-> 
->> +#define PIN_DS_OUTPUT_LOW               (DS_STATE_VAL | 
->> DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
->> +#define PIN_DS_OUTPUT_HIGH              (DS_STATE_VAL | 
->> DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
->> +#define PIN_DS_INPUT                    (DS_STATE_VAL | DS_INPUT_EN | 
->> DS_PULL_DISABLE)
->> +#define PIN_DS_INPUT_PULLUP             (DS_STATE_VAL | DS_INPUT_EN | 
->> DS_PULL_UP)
->> +#define PIN_DS_INPUT_PULLDOWN           (DS_STATE_VAL | DS_INPUT_EN | 
->> DS_PULL_DOWN)
+This crept in somehow. Will fix it. Thanks.
+
+>> +#define GUNYAH_WDT_SET_TIME  GUNYAH_WDT_SMCCC_CALL_VAL(0x0008)
 >> +
->> +#define PIN_WKUP_EN_EDGE                (WKUP_ENABLE | WKUP_ON_EDGE)
->> +#define PIN_WKUP_EN_LEVEL_LOW           (WKUP_ENABLE | WKUP_ON_LEVEL 
->> | WKUP_LEVEL_LOW)
->> +#define PIN_WKUP_EN_LEVEL_HIGH          (WKUP_ENABLE | WKUP_ON_LEVEL 
->> | WKUP_LEVEL_HIGH)
->> +#define PIN_WKUP_EN                     WKUP_EN_EDGE
-> 
-> what is difference between PIN_WKUP_EN_EDGE and PIN_WKUP_EN
-Combined the macros to have default wakeup on edge
-> 
-> 
->>   /* Default mux configuration for gpio-ranges to use with pinctrl */
->>   #define PIN_GPIO_RANGE_IOPAD    (PIN_INPUT | 7)
+>> +/*
+>> + * Control values for GUNYAH_WDT_CONTROL.
+>> + * Bit 0 is used to enable or disable the watchdog. If this bit is set,
+>> + * then the watchdog is enabled and vice versa.
+>> + * Bit 1 should always be set to 1 as this bit is reserved in Gunyah and
+>> + * it's expected to be 1.
+>> + */
+>> +#define WDT_CTRL_ENABLE  (BIT(1) | BIT(0))
+>> +#define WDT_CTRL_DISABLE BIT(1)
+>> +
+>> +struct gunyah_wdt {
+>> +	unsigned int pretimeout_irq;
+> This is only used momentarily in gunyah_wdt_probe(), make it a local
+> variable.
+>> +	struct watchdog_device wdd;
+> Which means that gunyah_wdt is just watchdog_device, so you can drop
+> gunyah_wdt completely, and put wdd directly in drvdata.
 
-Regards,
-Akashdeep Kaur
+
+That would definitely be a better way to do it. Thanks.
+
+>> +};
+>> +
+> [..]
+>> +static int __init gunyah_wdt_init(void)
+>> +{
+>> +	return platform_driver_register(&gunyah_wdt_driver);
+>> +}
+>> +
+>> +module_init(gunyah_wdt_init);
+> module_platform_driver(gunyah_wdt_driver);
+
+
+This is intentional. I intend to keep this module persistent. No 
+module_exit(gunyah_wdt_exit).
+
+>> +
+>> +MODULE_DESCRIPTION("Gunyah Watchdog Driver");
+>> +MODULE_LICENSE("GPL");
+>> diff --git a/include/linux/gunyah_errno.h b/include/linux/gunyah_errno.h
+>> new file mode 100644
+>> index 000000000000..518228e333bd
+>> --- /dev/null
+>> +++ b/include/linux/gunyah_errno.h
+>> @@ -0,0 +1,77 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only */
+>> +/*
+>> + * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+>> + */
+> Isn't this content solely used from within gunyah_wdt.c? Why is it a
+> separate header file? Just move it into the c-file.
+> Regards,
+> Bjorn
+
+
+This header file is partially taken from [1] and I have only renamed it 
+to gh_errno.h.
+
+The error codes are not specific to watchdog and we have other drivers 
+in the patch series [2] (which [1] is a part of) that would be using this.
+
+[1] 
+https://lore.kernel.org/all/20240222-gunyah-v17-3-1e9da6763d38@quicinc.com/
+
+[2] 
+https://lore.kernel.org/all/20240222-gunyah-v17-0-1e9da6763d38@quicinc.com/
+
+Thanks,
+
+Hrishabh
+
+>> +
+>> +#ifndef _LINUX_GUNYAH_ERRNO_H
+>> +#define _LINUX_GUNYAH_ERRNO_H
+>> +
+>> +#include <linux/errno.h>
+>> +
+>> +enum gunyah_error {
+>> +	GUNYAH_ERROR_OK				= 0,
+>> +	GUNYAH_ERROR_UNIMPLEMENTED		= -1,
+>> +	GUNYAH_ERROR_RETRY			= -2,
+>> +
+>> +	GUNYAH_ERROR_ARG_INVAL			= 1,
+>> +	GUNYAH_ERROR_ARG_SIZE			= 2,
+>> +	GUNYAH_ERROR_ARG_ALIGN			= 3,
+>> +
+>> +	GUNYAH_ERROR_NOMEM			= 10,
+>> +
+>> +	GUNYAH_ERROR_ADDR_OVFL			= 20,
+>> +	GUNYAH_ERROR_ADDR_UNFL			= 21,
+>> +	GUNYAH_ERROR_ADDR_INVAL			= 22,
+>> +
+>> +	GUNYAH_ERROR_DENIED			= 30,
+>> +	GUNYAH_ERROR_BUSY			= 31,
+>> +	GUNYAH_ERROR_IDLE			= 32,
+>> +
+>> +	GUNYAH_ERROR_IRQ_BOUND			= 40,
+>> +	GUNYAH_ERROR_IRQ_UNBOUND		= 41,
+>> +
+>> +	GUNYAH_ERROR_CSPACE_CAP_NULL		= 50,
+>> +	GUNYAH_ERROR_CSPACE_CAP_REVOKED		= 51,
+>> +	GUNYAH_ERROR_CSPACE_WRONG_OBJ_TYPE	= 52,
+>> +	GUNYAH_ERROR_CSPACE_INSUF_RIGHTS	= 53,
+>> +	GUNYAH_ERROR_CSPACE_FULL		= 54,
+>> +
+>> +	GUNYAH_ERROR_MSGQUEUE_EMPTY		= 60,
+>> +	GUNYAH_ERROR_MSGQUEUE_FULL		= 61,
+>> +};
+>> +
+>> +/**
+>> + * gunyah_error_remap() - Remap Gunyah hypervisor errors into a Linux error code
+>> + * @gunyah_error: Gunyah hypercall return value
+>> + */
+>> +static inline int gunyah_error_remap(enum gunyah_error gunyah_error)
+>> +{
+>> +	switch (gunyah_error) {
+>> +	case GUNYAH_ERROR_OK:
+>> +		return 0;
+>> +	case GUNYAH_ERROR_NOMEM:
+>> +		return -ENOMEM;
+>> +	case GUNYAH_ERROR_DENIED:
+>> +	case GUNYAH_ERROR_CSPACE_CAP_NULL:
+>> +	case GUNYAH_ERROR_CSPACE_CAP_REVOKED:
+>> +	case GUNYAH_ERROR_CSPACE_WRONG_OBJ_TYPE:
+>> +	case GUNYAH_ERROR_CSPACE_INSUF_RIGHTS:
+>> +	case GUNYAH_ERROR_CSPACE_FULL:
+>> +		return -EACCES;
+>> +	case GUNYAH_ERROR_BUSY:
+>> +	case GUNYAH_ERROR_IDLE:
+>> +		return -EBUSY;
+>> +	case GUNYAH_ERROR_IRQ_BOUND:
+>> +	case GUNYAH_ERROR_IRQ_UNBOUND:
+>> +	case GUNYAH_ERROR_MSGQUEUE_FULL:
+>> +	case GUNYAH_ERROR_MSGQUEUE_EMPTY:
+>> +		return -EIO;
+>> +	case GUNYAH_ERROR_UNIMPLEMENTED:
+>> +	case GUNYAH_ERROR_RETRY:
+>> +		return -EOPNOTSUPP;
+>> +	default:
+>> +		return -EINVAL;
+>> +	}
+>> +}
+>> +
+>> +#endif
+>>
+>> -- 
+>> 2.43.0
+>>
+>>
 
