@@ -1,200 +1,140 @@
-Return-Path: <devicetree+bounces-212843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C796CB43DAB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:49:27 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9FF6EB43DB3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:50:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63EEF1C854CB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:49:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C22743B0FAD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:50:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FAA42D47F1;
-	Thu,  4 Sep 2025 13:49:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0DF306D3D;
+	Thu,  4 Sep 2025 13:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="a6DjApMN"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Z8oGhy3B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09F4223B616;
-	Thu,  4 Sep 2025 13:49:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2343054D2
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756993762; cv=none; b=guc8kvdYMrqFfz2NKhiRaC4CL5bsT3p1ATS9OjFLh8MkM+ll9HCzaW5sSxFmDoG1b3l9p+x8rPZQBwJ15GC8SJ07bYVs38CluQzp09WfdSOR5EzA9AAUZIvFBoR5La1JcOfN08TYINNO7jQ//fp2S4vCJNVo5ARodGpTkFHfKak=
+	t=1756993783; cv=none; b=dquj756DE2fcywy/lAxp40F4ycUnr81ce7yTh8lMSJR/E2NcPt5PfDCrJfVaJsY8dZdrN5wusJOzm/eoPGq5oV8mma+sDHpYFFEgNUi2X3bIsIdtvi/RFJQIuAE9JXBgQMNUi61mRwRk1mFdyiUPXhK9iFBKTqoLXyosf6gTrAM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756993762; c=relaxed/simple;
-	bh=AkLMZM2IWuZTM3/2Jc4sRylXbsnaUGbk4biSzT3SKRY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Fh5drxCVF3hHoSdxMkXYZ8TC03l/sYmbuV7OctEAI+8RjqBn4nHDJRbQME2cXp3sVOTrAjdZg+SHQCjV5E4InDdu50e1D1AfSqMncy+3qCcNYKZD0xQu1H/pJMNAuIRpHPMUFEFS3ORIW6eGiJh3gSKZZA+gdNeiJQU9k57DaBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=a6DjApMN; arc=none smtp.client-ip=198.175.65.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756993761; x=1788529761;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=AkLMZM2IWuZTM3/2Jc4sRylXbsnaUGbk4biSzT3SKRY=;
-  b=a6DjApMNScDsM5T1tiqiPuxTfniOnorUhfnlD8nHvESLAa3W55lNvNXs
-   hS1kFOhJz3mBVb1lCrfhqIlhkIqZbbvJH0E/Z9cqPC9JWA6G7OXR/3TfD
-   DL4UZ5uVOWx0H6vFxTMKJPc/aRsRrmZPDktkE139Jdz1eml/RYNal9/Kz
-   t92O+cjEWPElMHDNT2Dx3w69SAZ5VuIC5pVeoAXB1rMf1u1EydAYpTdvp
-   LoNuKfdDynMDt5xPQnh89BLTDZ1bj+ooXYDXTJVIjzklbTNm/raVDisdy
-   p0f+/6ysAfUljZc+8vBdBurXjTvM/sCHZJKmWApWDNJ3K252tTPDeUGX9
-   A==;
-X-CSE-ConnectionGUID: SAPTXMoHT+eEH3l3vII1VA==
-X-CSE-MsgGUID: 901zvDddTjeoG9P6iJiNfg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="69595854"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="69595854"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 06:49:20 -0700
-X-CSE-ConnectionGUID: mAtn5fxNRc2bybinVojzcg==
-X-CSE-MsgGUID: zJgKwK+8QS2lsmlHSg5pnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="177113763"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 06:49:17 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uuAKw-0000000BHbp-2mBK;
-	Thu, 04 Sep 2025 16:49:14 +0300
-Date: Thu, 4 Sep 2025 16:49:14 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Remi Buisson <Remi.Buisson@tdk.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 3/9] iio: imu: inv_icm45600: add buffer support in iio
- devices
-Message-ID: <aLmY2mKg_FsPOpsq@smile.fi.intel.com>
-References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
- <20250820-add_newport_driver-v5-3-2fc9f13dddee@tdk.com>
- <aKbk9WYtfb5L5la4@smile.fi.intel.com>
- <FR2PPF4571F02BCCFD984FDD99C69CAE7298C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1756993783; c=relaxed/simple;
+	bh=0A6d2OfdcQaf6fvM7d144gsJwiSxigjXsdQkyq1yPrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Nm1oskg8+6V1XqcPXVYMl+o+1/61diEyPjwY0g9yfSP/+o9cPVsOdqj0yNCnzvD/zoc/e9AgmUmlvUwdvH5MpjjpWVRUWGDiLZFza8IQXgqiO7BSuBY//I32MKZI4IrVFahz0VlRfdMgFfimD+qa1tAm5UzBEF8SfqltUL1bAVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Z8oGhy3B; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cHgnt1KWHz9srp;
+	Thu,  4 Sep 2025 15:49:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756993778;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7Eyv4JfVwk6E7rSyv4qxxGsrvnR26XQTwFmzC798VcA=;
+	b=Z8oGhy3BizEHytmaH8F6sq9GpUXO8WVDZYaX3DqqpQ5FOZLnpCLgY5+KwRcHe/2Bymwo53
+	pWeX0VVqcbLJTlM/79SHzKAKZTPcxMe+OFOu+vlajVrtgz2pcbha11l+uViNnaak+dE5tC
+	kdIvb4wYEbp0Cr8BIdD6BsZyQeTGT3pMmZUS19RKcBlSNN8ty8CCZXCjYiMVOANSdqXdSx
+	1iKFM0oZB10Ks2J6ktdRWIVDBHng1p6JLsrJN+onB7MYAv6LiRMZ3P7h6ImasnOfyQH5cX
+	ZaWy/mNKr9TO6yOdfJUnjtbuk5NeSbBsHtIrAqNZJm7WotSMIBOIZtAEdl4WWw==
+Message-ID: <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
+Date: Thu, 4 Sep 2025 15:49:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <FR2PPF4571F02BCCFD984FDD99C69CAE7298C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+To: Boris Brezillon <boris.brezillon@collabora.com>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, imx@lists.linux.dev
+References: <20250321200625.132494-1-marex@denx.de>
+ <20250321200625.132494-5-marex@denx.de>
+ <20250324094333.7afb17a1@collabora.com>
+ <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
+ <20250325084349.344a0f11@collabora.com>
+ <7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
+ <20250325153507.61d82e39@collabora.com>
+ <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
+ <20250325155231.0d1b1000@collabora.com>
+ <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
+ <20250904082224.113d0cd1@fedora>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250904082224.113d0cd1@fedora>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 74f787c64e361a067a0
+X-MBO-RS-META: 4dihidnqffe48jkhfqpgw3ysi95xrxr6
 
-+Cc I³C people to comment on the returned values on the regmap. See below.
+On 9/4/25 8:22 AM, Boris Brezillon wrote:
+> Hello Marek,
 
-On Thu, Sep 04, 2025 at 01:01:32PM +0000, Remi Buisson wrote:
-> >From: Andy Shevchenko <andriy.shevchenko@intel.com> 
-> >Sent: Thursday, August 21, 2025 11:21 AM
-> >On Wed, Aug 20, 2025 at 02:24:21PM +0000, Remi Buisson via B4 Relay wrote:
+Hello Boris,
 
-...
-
-> >> +#define INV_ICM45600_SENSOR_CONF_KEEP_VALUES {U8_MAX, U8_MAX, U8_MAX, U8_MAX, }
-> >
-> >When one line, no need to have inner trailing comma, besides that missed
-> >space.
-> The trailing comma was a request from Jonathan Cameron on the v2 of patchset.
-> Let me know, if you disagree with him and I'll fix.
-
-I see, then let's ask him, because it's a usual pattern for
-the one-line arrays like this to have no inner trailing commas.
-
-> And I'll add a space before first element.
-
-...
-
-> >> +	/* Try to read all FIFO data in internal buffer. */
-> >> +	st->fifo.count = fifo_nb * packet_size;
-> >> +	ret = regmap_noinc_read(st->map, INV_ICM45600_REG_FIFO_DATA,
-> >> +				st->fifo.data, st->fifo.count);
-> >> +	if (ret == -ENOTSUPP || ret == -EFBIG) {
-> >
-> >Strictly speaking this is a bit of layering issue, do we have other means to
-> >check the support before even trying?
+>> Can you please test the following patch (also attached) on one of your
+>> devices, and tell me what the status is at the end . The diff sets the
+>> GLB_HALT bit and then clears it again, which I suspect should first halt
+>> the GPU and (this is what I am unsure about) then again un-halt/resume
+>> the GPU ?
 > 
-> No unfortunately, we can't with current I3C regmap implementation.
-> I2C and SPI regmaps are able to split transfers according to max_read_len.
-> But for I3C, it is left to the controller driver, which usually only returns an error.
+> It doesn't work like that. What you're describing is like executing
+> "shutdown" on your terminal and then typing "boot" on the keyboard
+> after your computer has been shut down.
 
-Have it been discussed with I³C maintainers / stakeholders? Because this kind of APIs
-will be hard to follow and even change for both sides caller and callee.
+That is what I thought , yes .
 
-> >> +		/* Read full fifo is not supported, read samples one by one. */
-> >> +		ret = 0;
-> >> +		for (i = 0; i < st->fifo.count && ret == 0; i += packet_size)
-> >> +			ret = regmap_noinc_read(st->map, INV_ICM45600_REG_FIFO_DATA,
-> >> +						&st->fifo.data[i], packet_size);
-> >> +	}
-> >> +	if (ret)
-> >> +		return ret;
+I think what I am looking for is the "power key" .
 
-...
+[...]
 
-> >> +	/* Disable FIFO and set depth. */
-> >> +	val = FIELD_PREP(INV_ICM45600_FIFO_CONFIG0_MODE_MASK,
-> >> +			 INV_ICM45600_FIFO_CONFIG0_MODE_BYPASS);
-> >> +	val |= INV_ICM45600_FIFO_CONFIG0_FIFO_DEPTH_MAX;
-> >
-> >FIELD_MODIFY()
-> Ok, great.
+>> That means, the GPU remains halted at the end, even if the "GLB_HALT"
+>> bit is cleared before the last print. The clearing of GLB_HALT is also
+>> what panthor_fw_post_reset() does.
+> 
+> After the halt has been processed by the FW, the memory region where
+> you check the halt status again is inert, since the micro-controller
+> (MCU) supposed to update those bits is off at this point. The FW
+> interface is really just a shared memory region between the CPU and
+> MCU, nothing more.
 
-Actually this is not a modification per se, it's just an assignment (PREP)
-split to two lines, can you just make it a single expression (wrapped on a few
-lines, though)?
+Right.
 
-...
+>> I suspect the extra soft reset I did before "un-halted" the GPU and
+>> allowed it to proceed.
+> 
+> Hm, not quite. I mean, you still need to explicitly boot the MCU after
+> a reset, which is what the write to MCU_CONTROL [1] does. What the
+> soft-reset does though, is reset all GPU blocks, including the MCU.
+> This means the MCU starts from a fresh state when you reach [1].
 
-> >asm/byteorder.h ?
-> Yes.
-> Is linux/byteorder/generic.h OK?
+I have a feeling the write to MCU_CONTROL does nothing in my case.
 
-No, as I put it.
-
-linux/*
-...blank line...
-asm/*
-...blank line...
-linux/iio/*
-...blank line...
-
-...
-
-> >> -	scoped_guard(mutex, &st->lock)
-> >> +	scoped_guard(mutex, &st->lock) {
-> >
-> >Ah, nice. It should have been done in the first place and put a comment to that
-> >patch that scoped_guard() {} used specifically for limiting churn in the next
-> >changes.
-> If ok for you, I'll keep that as it is.
-> If I add a comment in previous patch, I'll anyway have to delete it this patch.
-
-"Comment" is to be added to the email and not the code. It's a free words to
-the cover letter and/or to this email after '---' line but before the actual
-diff.
-
-But {} should be added as even in the first patch this is multi-line body.
-
-> >> +	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Is there some way to probe the MCU state before/after setting GLB_HALT, 
+and also before/after the MCU_CONTROL write, using 
+gpu_read()/gpu_write() register operations, to find out what is going on 
+with the MCU at each point ?
 
