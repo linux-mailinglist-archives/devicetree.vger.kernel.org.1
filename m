@@ -1,169 +1,121 @@
-Return-Path: <devicetree+bounces-212786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212787-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FFC8B43BCF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:38:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBA3B43BD5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:38:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EC331A0061C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:38:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF65DA00567
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:38:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC6392FF168;
-	Thu,  4 Sep 2025 12:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD59D2F1FC4;
+	Thu,  4 Sep 2025 12:38:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T8ia1wzj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M5TcjKiq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1662F3C21;
-	Thu,  4 Sep 2025 12:37:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2A82749E5;
+	Thu,  4 Sep 2025 12:38:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756989433; cv=none; b=nIZeBhFLiBv0FXwpTxW0G0V5znY4ZHZ2Odu52HN8H/Ppa6ypBZod2LXvQFMz/ZldiYkYgGWSt8PqsLftVP6sH+6ccrdgfl2n4+vzPTz/kSCjhxnW77poEqCu2vbxtTRelMmMuuDxnemuC9U/5ZzZeG/ne+vwP4x7H9OW7ZXC/Q0=
+	t=1756989509; cv=none; b=KnVqJAn+IDYALgdP46NnZd6SUpaegsNVTXxeP13DEf7qUF5yKnEAJA3y/7WFLOcrT0mCXf/BHz1n66qAOYnFzKmWWj1ZxyQwfZ3Kvt9Y6pjs+CX/KXMhgRq5fiyYaBZgeHikQL3XIp+1170oNiU3vEY+VhZJIbFDNPgnPhK4Qeo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756989433; c=relaxed/simple;
-	bh=rXBmsI4w/3h8ir12BVsWSwZi6qczH8g4D17zg11ZzC4=;
+	s=arc-20240116; t=1756989509; c=relaxed/simple;
+	bh=FBGLD3KXpGnBfJUXJqFViPTZk56264NLPCfYoX+fVpM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nkwu2S2m2UFIFM8QSJnbhU4TKN+UJ/pv872rIeohvhznZ+Ru16jJfjXxgFDurk9wx7jz9jigf2sIWhmoRGn9HafjtPo1MFP3NkD/Le8WnTBpGVtadLcxQAx7VyfndiXaCj0jYUwgIN5XQADQTS0R7YFaEMu+rXS9YOHbaSuw/PY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T8ia1wzj; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-55f78e3cdf9so1163362e87.1;
-        Thu, 04 Sep 2025 05:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756989430; x=1757594230; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=utboUAkRWD3W823EUt0eFdmV1SheR5646sGCHwREubE=;
-        b=T8ia1wzj2alybdPtwsaEeHjLRcrxvVqOA3Ya1GH9dXTR7tzrzLnoE0QRDyQmL+dtqZ
-         jzMb/hmm+UCgNPKT4/e9u1WbivezgKPvVGtSIhk13Huy5QpsOZJR4Tbgg17T476d4Mul
-         DEhJlKHa1o18L+rlKXQ2A8miLW93d8bgHbdV6+O6Ni/MDIvB5vFbg63ECtxr4JPBqjhQ
-         klbxDSTxe+AQVgSTzdayWEOaZT5dhUtiF/r2Uqv7MPW3ISK35omkf7pS7nAdLVGuXesw
-         M6YwYiXHW2XkLcHIQ0Cya3Ej1APyG+cbcKfvkP7mtQghDgZ+UkvdxjfXpBBVM9pV8LUX
-         l/0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756989430; x=1757594230;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=utboUAkRWD3W823EUt0eFdmV1SheR5646sGCHwREubE=;
-        b=OdhTtM4gunRXaRzl7P6SYOgXWrmgT5BQesYHxG4ugDQJyMmWdERXEGvShs1lXeOflo
-         647Prl1O4md4mFx5qawnzDVPH3ucDVMo2ClHL0d8nDG+DnHt+hD3xdV3Vk8zLbQpAZD4
-         kOzJwRA9Uis2ZF5dXqv684Ld1N8FpWgEJZZzQxgdN0twc8NUlYvQ1w9FH/pY0NsYmELm
-         jQkJd/kaqqJia61hIzd2TsDnLhmdP2GwnpL7aHXEjCNE1zaBeHT9lVz+9uJabUUodMk1
-         z3IkKGKAtEw6QwMPNid1Fcwti1eshHsfb6L4sflSXsk2P+zZTskUUwmjuDjczqwrvLXy
-         KQfw==
-X-Forwarded-Encrypted: i=1; AJvYcCW7j6212u/BwZQpojM1rMWZPuoakd7XxWugVuNcnJxB50r+sRpgCDUUIz7eRFHnGIKnEsLiSbQK8N/Y@vger.kernel.org, AJvYcCXEkR3jLEKEN82Og+BDDN4hqcad3GYTPXTEhVrzltUDk+7O9fqoByO1O3MagNvotDvn9tvLBtIKQZxC@vger.kernel.org, AJvYcCXJgZL/zIscofCQ52UsPZShWIRcpv8DSXr047bl+hM5Pq5LTz8NBkCXba/EHThGtdCuQ1OmDqDnASWmhg==@vger.kernel.org, AJvYcCXeC9DqVm6hXjpD/inVpuTDaIsfidY0p4tGiN4thLviY1LZwgs6GuS7ah50PBR5OTTfooSB5W7UeaiJAsP0@vger.kernel.org
-X-Gm-Message-State: AOJu0YxN7+0WeLVO29oN0HmFg3kASD/HXiv6b2ksk9gsU99z5fK0Ha2+
-	iAi1ihhcSHA/ltCtEvxWu/GifecwdvpU9++0Zo2TcxkiMUgUe88C/Fko
-X-Gm-Gg: ASbGncuqixsKzfprc04g1IOmgfSKTImyYyWcREHIxJsW8t+b740xFlE2gnSC7RxNJKK
-	UXz3bEakDYhS5VeqDxZohiKBCBYJRRCdYWBHREQm4Ax+C/0r71MV6bQ70eETDf/HxU6utXEw+ly
-	pvvICo49zBlZvJeB1SV5cZx7pJaUwYRgvZJEz+yMaKxQkotusKNDufWiX7CYPnzxMbThb9UEy23
-	chFmk7liGatsBC5yzxTZeff/0FwyzxDfed2sb1UZ6uKT55f3fmKyFPmlp1mNBTzI8TukLCVlWPy
-	swz7gxakzxfh4TI9eJxSCqxij1hB4vTdjxgc/csRCdVFvWn5G/8mTaUws76Y0hXFZi8R4yuDHCy
-	5DXNv2ctLhPXfVfne6LIA4cwC5Q==
-X-Google-Smtp-Source: AGHT+IGZFdh/1hV9nEbPLIhK0qnUZcojDiv933VLC6F/dKSgGvYZE/iGr5UVxQrrHfo1EJN1zz/6cA==
-X-Received: by 2002:a05:6512:2c8e:b0:55f:4856:de87 with SMTP id 2adb3069b0e04-55f708a2d51mr5987953e87.4.1756989429865;
-        Thu, 04 Sep 2025 05:37:09 -0700 (PDT)
-Received: from mva-rohm ([213.255.186.37])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ab928fesm1151046e87.37.2025.09.04.05.37.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 05:37:08 -0700 (PDT)
-Date: Thu, 4 Sep 2025 15:37:05 +0300
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matti Vaittinen <mazziesaccount@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Esteban Blanc <eblanc@baylibre.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	Eason Yang <j2anfernee@gmail.com>,
-	Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: [PATCH v2 3/3] MAINTAINERS: Support ROHM BD79112 ADC
-Message-ID: <7c7e8e80e128d2eace1c1632de4315de3df5e8bd.1756988028.git.mazziesaccount@gmail.com>
-References: <cover.1756988028.git.mazziesaccount@gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=H7O/P6syHiwicHgVhekykvjOf7eLXUnY8AR04A1LPZYP3uNqQoS1+CvLUg+F96+yW1qH1PuOur9fMsD0UCoiphGodgw8cvkET4Iyy0hO/DFyWPKAjiz3gr2RPbxYkBJi7Ad0X1Y5oJ2nOUpyMkOnnGdfICv7u4OwA5s54eP6sis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M5TcjKiq; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756989508; x=1788525508;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=FBGLD3KXpGnBfJUXJqFViPTZk56264NLPCfYoX+fVpM=;
+  b=M5TcjKiq2zQSbtSJABbQLujviAwxhupadab6b0fqa0Zf8EU3j8kXrsog
+   MhWRLSTiKRNVoV7medXyPztMiA/ozYT9ymB6yA2TU0eli2fMWSmxCfdOE
+   xSZUUSCsNwPfJlfBrF1Xz6TAS36XNeVtMYYzGPsRDNzHTfSn83+yTw/qv
+   CsUhq1CDSUexTkPjyS2oD8zckyppDg+UNlow+TGSgJf3jEPLXfDrfbhNZ
+   97Ej4zGWp82Oz1s86G/xadli4/qGwyCkplqXlecK+BMMmYBv7XysTrk1q
+   4HIYWyam6/3VX8Yq5sI39h1TImE0ua2OPJwg7qbX56XNWgWEWRebp72z/
+   Q==;
+X-CSE-ConnectionGUID: CCI12jfVS/GojIH6OgrjCw==
+X-CSE-MsgGUID: tNDq1kz3SsakGgwhb5QZpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70030657"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
+   d="scan'208";a="70030657"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 05:38:27 -0700
+X-CSE-ConnectionGUID: nO4eeNixTqKJl6ZGSDOJpg==
+X-CSE-MsgGUID: uVrUxsVqSRSnPCJvRO0NNA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
+   d="scan'208";a="176223164"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by orviesa004.jf.intel.com with ESMTP; 04 Sep 2025 05:38:22 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uu9E1-0005IF-0F;
+	Thu, 04 Sep 2025 12:38:06 +0000
+Date: Thu, 4 Sep 2025 20:37:31 +0800
+From: kernel test robot <lkp@intel.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
+	michal.simek@amd.com, alexandre.belloni@bootlin.com,
+	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, kees@kernel.org, gustavoars@kernel.org,
+	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	manion05gk@gmail.com,
+	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Subject: Re: [PATCH V3 2/2] i3c: master: Add AMD I3C bus controller driver
+Message-ID: <202509042006.MI4nEHWs-lkp@intel.com>
+References: <20250903095906.3260804-3-manikanta.guntupalli@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="baTTKEtKJ7KAcghN"
-Content-Disposition: inline
-In-Reply-To: <cover.1756988028.git.mazziesaccount@gmail.com>
-
-
---baTTKEtKJ7KAcghN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20250903095906.3260804-3-manikanta.guntupalli@amd.com>
 
-Add the ROHM BD79112 ADC in the list of the BD791xx ADC drivers
-which are maintained by undersigned.
+Hi Manikanta,
 
-Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+kernel test robot noticed the following build warnings:
 
----
-Revision history:
-v1 =3D> :
- - no changes
----
- MAINTAINERS | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+[auto build test WARNING on robh/for-next]
+[also build test WARNING on linus/master v6.17-rc4 next-20250904]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index af1c8d2bfb3d..8e78a1168c17 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21864,9 +21864,10 @@ S:	Supported
- F:	drivers/power/supply/bd99954-charger.c
- F:	drivers/power/supply/bd99954-charger.h
-=20
--ROHM BD79124 ADC / GPO IC
-+ROHM BD791xx ADC / GPO IC
- M:	Matti Vaittinen <mazziesaccount@gmail.com>
- S:	Supported
-+F:	drivers/iio/adc/rohm-bd79112.c
- F:	drivers/iio/adc/rohm-bd79124.c
-=20
- ROHM BH1745 COLOUR SENSOR
---=20
-2.51.0
+url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250903-220233
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+patch link:    https://lore.kernel.org/r/20250903095906.3260804-3-manikanta.guntupalli%40amd.com
+patch subject: [PATCH V3 2/2] i3c: master: Add AMD I3C bus controller driver
+config: loongarch-allyesconfig (https://download.01.org/0day-ci/archive/20250904/202509042006.MI4nEHWs-lkp@intel.com/config)
+compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 2e122990391b2ba062e6308a12cfedf7206270ba)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250904/202509042006.MI4nEHWs-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509042006.MI4nEHWs-lkp@intel.com/
 
---baTTKEtKJ7KAcghN
-Content-Type: application/pgp-signature; name=signature.asc
+All warnings (new ones prefixed by >>):
 
------BEGIN PGP SIGNATURE-----
+>> Warning: drivers/i3c/master/amd-i3c-master.c:156 struct member 'daa' not described in 'xi3c_master'
 
-iQEzBAEBCgAdFiEEIx+f8wZb28fLKEhTeFA3/03aocUFAmi5h/EACgkQeFA3/03a
-ocUxwAf9EYjDUo85Y8rxE5OLosjz9/BzWTPZjcx8ZIQn+G40FUS5RKDLmfbyu+XE
-RAdiv21ezKNDQkgSboq5J5w0lc+st5eHvcWDPJ5ZgecCFyvAVRV6jrFz5qKlTnX/
-YNZYqDXVvAi9unpDSLpc5HXKUNeugbKBa1PpIuE6uLcMmSO00MBwG1jlBQiFlG4I
-dv0+UDKQGwRXpAvW8T2d3ZdmjkFp3IrNbnLPxXQBTA8cyAh3l0jggFrcqhRSqg3N
-E8glw4Fa9iALJN8U7vy/jtyjbbP4wNSCgL6htuxDmhahpTVx23ACRd9lZH5FjNSM
-V3ySUCKMHnIRSgCrPGXyuSs182ZLkA==
-=yme7
------END PGP SIGNATURE-----
-
---baTTKEtKJ7KAcghN--
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
