@@ -1,111 +1,165 @@
-Return-Path: <devicetree+bounces-212503-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212504-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE413B42FE0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:42:57 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 323C5B42FF1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:45:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 64FB1485208
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:42:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C4D48545DBB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:45:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02AC31F8ADD;
-	Thu,  4 Sep 2025 02:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b="zgdPixrz"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 349E41FBC8E;
+	Thu,  4 Sep 2025 02:44:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from bombadil.infradead.org (bombadil.infradead.org [198.137.202.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B328A3D3B3;
-	Thu,  4 Sep 2025 02:42:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.137.202.133
+Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [13.75.44.102])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01D911F7098;
+	Thu,  4 Sep 2025 02:44:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.75.44.102
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756953773; cv=none; b=DMYgpYjgxQCk753s0di+LrkcUUCfcb0hDN/bfZSA6xfNDDJ3SWBbVNk1DeLYaxXjN+E+VkRp3QE3hjl++XTyWlZeebvhMY2GvRHXdvlG/bAMHB8uQAq1IIuqO/IV6eCCJ1201lxg4Q6OQzJrdjOEbmeYlDCzqfhmjSOjz42xRXA=
+	t=1756953893; cv=none; b=OT785qLonvy9ix+qYwa1w44iwp7ySyO9qRKaTRrPotPgQDAMwmnWyYQA3DAMci1t2mjT8SBCShiRbYbyv2bIHkN+NqSiWd45RNs7P3sj31I8z9w2EyR+liH9G9MgUwjUS+4B2CTvAZulkNIEfQGmOyE47vtFtoZ+WNeetQv/c0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756953773; c=relaxed/simple;
-	bh=LQ1AA6YtGx0dyBtxOqIWy5XG55hhZgcniAQICgxVYLE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jNT3dLVyH629RtFb093EYASJgwQexcKpSN9XJ1pD33Htv5//ZV2wAo3jY8XAnny53fCf67KIcPoRCMQ2Z89TYu5UPtVGckXKUy1xfyWPoPsSuJQw087XKjQwoCBPxA2Bs28HnLEnImNHiSEIJex/WdqRFLPT2X0u3/b9bj4SvnM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org; spf=none smtp.mailfrom=infradead.org; dkim=pass (2048-bit key) header.d=infradead.org header.i=@infradead.org header.b=zgdPixrz; arc=none smtp.client-ip=198.137.202.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=infradead.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=infradead.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
-	Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
-	Message-ID:Sender:Reply-To:Content-ID:Content-Description;
-	bh=t6Qv7z1IN8S8fv1frwsYzP+oy3CFyPNsjv2eggmm0RA=; b=zgdPixrzDDevLDZ83jSHOwgKf9
-	iVbwl3LwKxvnX487n3tBetP+/pjSRWgdbJpBYkv+qV7b3w4Dw+San7GE8lzh/hZ9guYtNoyIuY3bZ
-	qit2B8QFI9UhgnV11v82DY44AU+OmF3pbLQ/+HBS9rZ5j5zkO+FfcPGEMPSrCwCllGXtdx+2bE0Ed
-	WSiTx/Hypmxc81neIZu9Ks/6B1nBqgvsGzqEJiAR2IrtHz1gAU8crTz/SUkqiBItyRbDPHk9logYs
-	CpEqF8VFX6DgAUFbOSs231zVd9FkB0nDMTFGf723AEfVdIqS5dyeAum3RdChMs1QQ6g5tM1VG9eTl
-	Dwx445+g==;
-Received: from [50.53.25.54] (helo=[192.168.254.17])
-	by bombadil.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
-	id 1utzvy-00000008S2K-0NuR;
-	Thu, 04 Sep 2025 02:42:46 +0000
-Message-ID: <afd7e91d-8c79-4f78-8c79-3b667b35f8f8@infradead.org>
-Date: Wed, 3 Sep 2025 19:42:45 -0700
+	s=arc-20240116; t=1756953893; c=relaxed/simple;
+	bh=KRCGlopRUnMqp26El2EZ35VBypuAVZXu6UPeUAuaLe0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 MIME-Version:Message-ID; b=pkSYozcmojka7dPnbdlo+b4Pi8xhAqwxhY8nwOGWuBUpSXXs48/+IYK0ooBET8lJVHLY2gHB2b5MRjjpvVJRU25s4S07tukFAUrgbEmccKaLOBg3Q6N3JtDv3To8Rlu3QRyWumA6NcKk04MwiwetljObkjomOpIIdelj85AP8i4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=13.75.44.102
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from dongxuyang$eswincomputing.com ( [10.12.96.41] ) by
+ ajax-webmail-app2 (Coremail) ; Thu, 4 Sep 2025 10:44:36 +0800 (GMT+08:00)
+Date: Thu, 4 Sep 2025 10:44:36 +0800 (GMT+08:00)
+X-CM-HeaderCharset: UTF-8
+From: =?UTF-8?B?6JGj57uq5rSL?= <dongxuyang@eswincomputing.com>
+To: p.zabel@pengutronix.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: ningyu@eswincomputing.com, linmin@eswincomputing.com,
+	huangyifeng@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v6 0/2] Add driver support for ESWIN eic7700 SoC reset
+ controller
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2024.2-cmXT6 build
+ 20241203(6b039d88) Copyright (c) 2002-2025 www.mailtech.cn
+ mispb-72143050-eaf5-4703-89e0-86624513b4ce-eswincomputing.com
+In-Reply-To: <20250826110610.1338-1-dongxuyang@eswincomputing.com>
+References: <20250826110610.1338-1-dongxuyang@eswincomputing.com>
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
- Swap Controller
-To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
- Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
- <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
-Content-Language: en-US
-From: Randy Dunlap <rdunlap@infradead.org>
-In-Reply-To: <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Message-ID: <5f0dfba0.c4f.199129c978f.Coremail.dongxuyang@eswincomputing.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:TQJkCgDHZpUU_bho7SjIAA--.24298W
+X-CM-SenderInfo: pgrqw5xx1d0w46hv4xpqfrz1xxwl0woofrz/1tbiAgEPAmi4bdEKs
+	wABsa
+X-Coremail-Antispam: 1Ur529EdanIXcx71UUUUU7IcSsGvfJ3iIAIbVAYjsxI4VWDJw
+	CS07vEb4IE77IF4wCS07vE1I0E4x80FVAKz4kxMIAIbVAFxVCaYxvI4VCIwcAKzIAtYxBI
+	daVFxhVjvjDU=
 
-Hi--
-
-On 9/3/25 3:05 AM, Nuno Sá via B4 Relay wrote:
-> diff --git a/drivers/gpio/Kconfig b/drivers/gpio/Kconfig
-> index e43abb322fa6e15f19f2f498aa5adea03e6cd3bf..0273b0f8944b634f14141aac4d99f502d03b3a32 100644
-> --- a/drivers/gpio/Kconfig
-> +++ b/drivers/gpio/Kconfig
-> @@ -461,6 +461,16 @@ config GPIO_LPC32XX
->  	  Select this option to enable GPIO driver for
->  	  NXP LPC32XX devices.
->  
-
-How about either of these instead?
-
-> +config GPIO_LTC4283
-> +	tristate "Analog Devices LTC4283 GPIO support"
-> +	depends on SENSORS_LTC4283
-> +	help
-> +	  If you say yes here you want the GPIO function available in Analog
-> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
-
-this
-
-> +	  Say yes here you want the GPIO function available in Analog
-> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
-
-or this
-
-> +	  If you say yes here you get the GPIO function available in Analog
-> +	  Devices LTC4283 Negative Voltage Hot Swap Controller.
-
-or use the GPIO_LPC32XX kconfig entry just above here as a model.
-
-thanks.
--- 
-~Randy
-
+SGkgYWxsLAoKR2VudGxlIHBpbmcuCgpUaGFua3MsClh1eWFuZyBEb25nCgo+IAo+IFRoaXMgc2Vy
+aWVzIGRlcGVuZHMgb24gdGhlIHZlbmRvciBwcmVmaXggWzFdIGFuZCBjb25maWcgb3B0aW9uIHBh
+dGNoIFsyXS4KPiAKPiBbMV0gaHR0cHM6Ly9naXQua2VybmVsLm9yZy9wdWIvc2NtL2xpbnV4L2tl
+cm5lbC9naXQvbmV4dC9saW51eC1uZXh0LmdpdC9jb21taXQvP2g9bmV4dC0yMDI1MDgyNSZpZD1h
+YzI5ZTQ0ODdhYTIwYTIxYjdjM2ZhY2JkMWYxNGY1MDkzODM1ZGM5Cj4gWzJdIGh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2FsbC8yMDI1MDgyNTEzMjQyNy4xNjE4MDg5LTMtcGlua2VzaC52YWdoZWxh
+QGVpbmZvY2hpcHMuY29tLwo+IAo+IFVwZGF0ZXM6Cj4gCj4gICBkdC1iaW5kaW5nczogcmVzZXQ6
+IGVzd2luOiBEb2N1bWVudGF0aW9uIGZvciBlaWM3NzAwIFNvQwo+ICAgdjUgLT4gdjY6Cj4gICAg
+IEFkZCBkZXBlbmRlbmNpZXMgb2YgdmVuZG9yIHByZWZpeCBhbmQgY29uZmlnIG9wdGlvbiBwYXRj
+aCBpbiBjb3Zlci1sZXR0ZXIuCj4gICAgIExpbmsgdG8gdjU6IGh0dHBzOi8vbG9yZS5rZXJuZWwu
+b3JnL2FsbC8yMDI1MDcyNTA5MzI0OS42NjktMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNv
+bS8KPiAKPiAgIHY0IC0+IHY1Ogo+ICAgICAxLiBEcm9wcGVkIEVJQzc3MDBfUkVTRVRfTUFYIGZy
+b20gYmluZGluZ3MuCj4gICAgIDIuIEFkZCAiUmV2aWV3ZWQtYnkiIHRhZyBvZiAiS3J6eXN6dG9m
+IEtvemxvd3NraSIgZm9yIFBhdGNoIDEuCj4gICAgIDMuIENvcnJlY3RlZCB0aGUgbGluayB0byBw
+cmV2aW91cyB2ZXJzaW9ucy4KPiAgICAgTGluayB0byB2NDogaHR0cHM6Ly9sb3JlLmtlcm5lbC5v
+cmcvYWxsLzIwMjUwNzE1MTIxNDI3LjE0NjYtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNv
+bS8KPiAKPiAgIHYzIC0+IHY0Ogo+ICAgICAxLiBSZW1vdmUgcmVnaXN0ZXIgb2Zmc2V0cyBpbiBk
+dC1iaW5kaW5ncy4KPiAgICAgMi4gVGhlIGNvbnN0IHZhbHVlIG9mICIjcmVzZXQtY2VsbCIgd2Fz
+IGNoYW5nZWQgZnJvbSAyIHRvIDEuCj4gICAgICAgIEJlY2F1c2UgdGhlIG9mZnNldHMgd2VyZSBy
+ZW1vdmVkIGZyb20gZHQtYmluZGluZ3MuIFRoZXJlIGFyZQo+ICAgICAgICBvbmx5IElEcy4gQW5k
+IHJlbW92ZWQgdGhlIGRlc2NyaXB0aW9uIG9mIGl0Lgo+ICAgICAzLiBNb2RpZnkgY29weXJpZ2h0
+IHllYXIgZnJvbSAyMDI0IHRvIDIwMjUuCj4gICAgIDQuIFJlZGVmaW5lZCB0aGUgSURzIGluIHRo
+ZSBkdC1iaW5kaW5ncyBhbmQgdXNlZCB0aGVzZSB0byBidWlsZCBhCj4gICAgICAgIHJlc2V0IGFy
+cmF5IGluIHJlc2V0IGRyaXZlci4gRW5zdXJlIHRoYXQgdGhlIHJlc2V0IHJlZ2lzdGVyIGFuZAo+
+ICAgICAgICByZXNldCB2YWx1ZSBjb3JyZXNwb25kaW5nIHRvIHRoZSBJRHMgYXJlIGNvcnJlY3Qu
+Cj4gICAgIExpbmsgdG8gdjM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDYxOTA3
+NTgxMS4xMjMwLTEtZG9uZ3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2MiAtPiB2
+MzoKPiAgICAgMS4gRHJvcCBzeXNjb24gYW5kIHNpbXBsZS1tZmQgZnJvbSB5YW1sIGFuZCBjb2Rl
+LCBiZWNhdXNlIHRoZXNlIGFyZQo+ICAgICAgICBub3QgbmVjZXNzYXJ5Lgo+ICAgICAyLiBVcGRh
+dGUgZGVzY3JpcHRpb24gdG8gaW50cm9kdWNlIHJlc2V0IGNvbnRyb2xsZXIuCj4gICAgIDMuIEFk
+ZCByZXNldCBjb250cm9sIGluZGljZXMgZm9yIGR0LWJpbmRpbmdzLgo+ICAgICA0LiBLZWVwIHRo
+ZSByZWdpc3RlciBvZmZzZXRzIGluIGR0LWJpbmRpbmdzLgo+ICAgICBMaW5rIHRvIHYyOiBodHRw
+czovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4MTEuMTIzMC0xLWRvbmd4dXlhbmdA
+ZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+ICAgdjEgLT4gdjI6Cj4gICAgIDEuIENsZWFyIHdhcm5p
+bmdzL2Vycm9ycyBmb3IgdXNpbmcgIm1ha2UgZHRfYmluZGluZ19jaGVjayIuCj4gICAgIDIuIFVw
+ZGF0ZSBleGFtcGxlLCBjaGFuZ2UgcGFyZW50IG5vZGUgZnJvbSBzeXMtY3JnIHRvIHJlc2V0LWNv
+bnRyb2xsZXIKPiAgICAgICAgZm9yIHJlc2V0IHlhbWwuCj4gICAgIDMuIERyb3AgdGhlIGNoaWxk
+IG5vZGUgYW5kIGFkZCAnI3Jlc2V0LWNlbGxzJyB0byB0aGUgcGFyZW50IG5vZGUuCj4gICAgIDQu
+IERyb3AgdGhlIGRlc2NyaXB0aW9uLCBiZWNhdXNlIHN5cy1jcmcgYmxvY2sgaXMgY2hhbmdlZCB0
+byByZXNldC0KPiAgICAgICAgY29udHJvbGxlci4KPiAgICAgNS4gQ2hhbmdlIGhleCBudW1iZXJz
+IHRvIGRlY2ltYWwgbnVtYmVycyBnb2luZyBmcm9tIDAsIGFuZCBkcm9wIHRoZQo+ICAgICAgICBu
+b3QgbmVlZGVkIGhhcmR3YXJlIG51bWJlcnMuCj4gICAgIExpbmsgdG8gdjE6IGh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2FsbC8yMDI1MDYxOTA3NTgxMS4xMjMwLTEtZG9uZ3h1eWFuZ0Blc3dpbmNv
+bXB1dGluZy5jb20vCj4gCj4gICByZXNldDogZXN3aW46IEFkZCBlaWM3NzAwIHJlc2V0IGRyaXZl
+cgo+ICAgdjUgLT4gdjY6Cj4gICAgIDEuIFJlbW92ZWQgcGxhdGZvcm1fc2V0X2RydmRhdGEoKSBm
+dW5jdGlvbi4KPiAgICAgMi4gSW4gcHJvYmUgZnVuY3Rpb24sIGRlZmluZWQgc3RydWN0IGRldmlj
+ZSAqZGV2ID0gJnBkZXYtPmRldi4KPiAgICAgICAgTW9kaWZpZWQgJnBkZXYtPmRldiB0byBkZXYu
+Cj4gICAgIExpbmsgdG8gdjU6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDcyNTA5
+MzI0OS42NjktMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiAgIHY0IC0+IHY1
+Ogo+ICAgICAxLiBUaGUgdmFsdWUgb2YgLm1heF9yZWdpc3RlciBpcyAweDdmZmZjLgo+ICAgICAy
+LiBDb252ZXJ0ZWQgInRvX2Vzd2luX3Jlc2V0X2RhdGEiIGZyb20gbWFjcm8gdG8gaW5saW5lIGZ1
+bmN0aW9uLgo+ICAgICAzLiBNb2RpZmllZCBFSUM3NzAwX1JFU0VUX09GRlNFVCB0byBFSUM3NzAw
+X1JFU0VUIGFuZCBlaWM3NzAwXwo+ICAgICAgICByZWdpc3Rlcl9vZmZzZXQgdG8gZWljNzcwMF9y
+ZXNldC4KPiAgICAgNC4gU2luY2UgRUlDNzcwMF9SRVNFVF9NQVggaXMgZHJvcHBlZCwgdXNlZCBl
+aWM3NzAwX3Jlc2V0W10gd2l0aG91dAo+ICAgICAgICBFSUM3NzAwX1JFU0VUX01BWC4KPiAgICAg
+NS4gUmVtb3ZlZCBmdW5jdGlvbiBlc3dpbl9yZXNldF9zZXQsIGFuZCBwdXQgcmVnbWFwX2NsZWFy
+X2JpdHMgaW4KPiAgICAgICAgZXN3aW5fcmVzZXRfYXNzZXJ0IGFuZCByZWdtYXBfc2V0X2JpdHMg
+aW4gZXN3aW5fcmVzZXRfZGVhc3NlcnQuCj4gICAgIDYuIEFkZGVkIHVzbGVlcF9yYW5nZSBpbiBm
+dW5jdGlvbiBlc3dpbl9yZXNldF9yZXNldCB3aGljaCB3YXMgbWlzc2VkLgo+ICAgICA3LiBVc2Vk
+IEFSUkFZX1NJWkUoZWljNzcwMF9yZXNldCkgZm9yIGRhdGEtPnJjZGV2Lm5yX3Jlc2V0cy4KPiAg
+ICAgOC4gVXNlIGJ1aWx0aW5fcGxhdGZvcm1fZHJpdmVyLCBiZWNhdXNlIHJlc2V0IGRyaXZlciBp
+cyBhIHJlc2V0Cj4gICAgICAgIGNvbnRyb2xsZXIgZm9yIFNvQy4gUmVtb3ZlZCBlc3dpbl9yZXNl
+dF9pbml0IGZ1bmN0aW9uLgo+ICAgICA5LiBNb2RpZmllZCBlc3dpbl9yZXNldF8qIHRvIGVpYzc3
+MDBfcmVzZXRfKi4KPiAgICAgTGluayB0byB2NDogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxs
+LzIwMjUwNzE1MTIxNDI3LjE0NjYtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAK
+PiAgIHYzIC0+IHY0Ogo+ICAgICAxLiBBZGQgJ2NvbnN0JyBmb3IgdGhlIGRlZmluaXRpb24uIEl0
+IGlzICdjb25zdCBzdHJ1Y3Qgb2ZfcGhhbmRsZV8KPiAgICAgICAgYXJncyAqcmVzZXRfc3BlYyA9
+IGRhdGE7Jy4KPiAgICAgMi4gTW9kaWZ5IGNvcHlyaWdodCB5ZWFyIGZyb20gMjAyNCB0byAyMDI1
+Lgo+ICAgICAzLiBJbmNsdWRlZCAiZXN3aW4sZWljNzcwMC1yZXNldC5oIiBpbiByZXNldCBkcml2
+ZXIuCj4gICAgIDQuIEFkZGVkIG1hcHBpbmcgdGFibGUgZm9yIHJlc2V0IElEcy4KPiAgICAgNS4g
+UmVtb3ZlZCBvZl94bGF0ZSBhbmQgaWRyIGZ1bmN0aW9ucyBhcyB3ZSBhcmUgdXNpbmcgSURzIGZy
+b20gRFRTLgo+ICAgICA2LiBSZW1vdmVkIC5yZW1vdmUgZnVuY3Rpb24uCj4gICAgIExpbmsgdG8g
+djM6IGh0dHBzOi8vbG9yZS5rZXJuZWwub3JnL2FsbC8yMDI1MDYxOTA3NTgxMS4xMjMwLTEtZG9u
+Z3h1eWFuZ0Blc3dpbmNvbXB1dGluZy5jb20vCj4gCj4gICB2MiAtPiB2MzoKPiAgICAgMS4gQ2hh
+bmdlIHN5c2Nvbl9ub2RlX3RvX3JlZ21hcCgpIHRvIE1NSU8gcmVnbWFwIGZ1bmN0aW9ucywgYmVj
+YXVzZQo+ICAgICAgICBkcm9wcGVkIHN5c2Nvbi4KPiAgICAgMi4gQWRkIEJJVCgpIGluIGZ1bmN0
+aW9uIGVzd2luX3Jlc2V0X3NldCgpIHRvIHNoaWZ0IHRoZSByZXNldAo+ICAgICAgICBjb250cm9s
+IGluZGljZXMuCj4gICAgIDMuIFJlbW92ZSBmb3JjZWQgdHlwZSBjb252ZXJzaW9ucyBmcm9tIGZ1
+bmN0aW9uIGVzd2luX3Jlc2V0X29mXwo+ICAgICAgICB4bGF0ZV9sb29rdXBfaWQoKS4KPiAgICAg
+TGluayB0byB2MjogaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjUwNjE5MDc1ODExLjEy
+MzAtMS1kb25neHV5YW5nQGVzd2luY29tcHV0aW5nLmNvbS8KPiAKPiAgIHYxIC0+IHYyOgo+ICAg
+ICAxLiBNb2RpZnkgdGhlIGNvZGUgYWNjb3JkaW5nIHRvIHRoZSBzdWdnZXN0aW9ucy4KPiAgICAg
+Mi4gVXNlIGVzd2luX3Jlc2V0X2Fzc2VydCgpIGFuZCBlc3dpbl9yZXNldF9kZWFzc2VydCBpbiBm
+dW5jdGlvbgo+ICAgICAgICBlc3dpbl9yZXNldF9yZXNldCgpLgo+ICAgICAzLiBQbGFjZSBSRVNF
+VF9FSUM3NzAwIGluIEtjb25maWcgYW5kIE1ha2VmaWxlIGluIG9yZGVyLgo+ICAgICA0LiBVc2Ug
+ZGV2X2Vycl9wcm9iZSgpIGluIHByb2JlIGZ1bmN0aW9uLgo+ICAgICBMaW5rIHRvIHYxOiBodHRw
+czovL2xvcmUua2VybmVsLm9yZy9hbGwvMjAyNTA2MTkwNzU4MTEuMTIzMC0xLWRvbmd4dXlhbmdA
+ZXN3aW5jb21wdXRpbmcuY29tLwo+IAo+IFh1eWFuZyBEb25nICgyKToKPiAgIGR0LWJpbmRpbmdz
+OiByZXNldDogZXN3aW46IERvY3VtZW50YXRpb24gZm9yIGVpYzc3MDAgU29DCj4gICByZXNldDog
+ZXN3aW46IEFkZCBlaWM3NzAwIHJlc2V0IGRyaXZlcgo+IAo+ICAuLi4vYmluZGluZ3MvcmVzZXQv
+ZXN3aW4sZWljNzcwMC1yZXNldC55YW1sICAgfCAgNDIgKysKPiAgZHJpdmVycy9yZXNldC9LY29u
+ZmlnICAgICAgICAgICAgICAgICAgICAgICAgIHwgIDEwICsKPiAgZHJpdmVycy9yZXNldC9NYWtl
+ZmlsZSAgICAgICAgICAgICAgICAgICAgICAgIHwgICAxICsKPiAgZHJpdmVycy9yZXNldC9yZXNl
+dC1laWM3NzAwLmMgICAgICAgICAgICAgICAgIHwgNDI4ICsrKysrKysrKysrKysrKysrKwo+ICAu
+Li4vZHQtYmluZGluZ3MvcmVzZXQvZXN3aW4sZWljNzcwMC1yZXNldC5oICAgfCAyOTggKysrKysr
+KysrKysrCj4gIDUgZmlsZXMgY2hhbmdlZCwgNzc5IGluc2VydGlvbnMoKykKPiAgY3JlYXRlIG1v
+ZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9lc3dpbixl
+aWM3NzAwLXJlc2V0LnlhbWwKPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvcmVzZXQvcmVz
+ZXQtZWljNzcwMC5jCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Jl
+c2V0L2Vzd2luLGVpYzc3MDAtcmVzZXQuaAo+IAo+IC0tCj4gMi4xNy4xCg==
 
