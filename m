@@ -1,270 +1,162 @@
-Return-Path: <devicetree+bounces-212813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E39CB43CD6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:17:27 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 00A4FB43CE2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:18:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0280A03068
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:17:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 789BB1C274FA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:18:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFDB5198851;
-	Thu,  4 Sep 2025 13:17:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1499A2D5412;
+	Thu,  4 Sep 2025 13:18:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="QOEeWodh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CwVFousB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1855C5B21A;
-	Thu,  4 Sep 2025 13:17:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D938A198851;
+	Thu,  4 Sep 2025 13:17:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756991841; cv=none; b=GftW2Xlyp5TlkzEuJ4huG+ha+gIrFKW/B1VF39St8liTteYraF6bG3WJ9s+0gymkgtBLzpRnezyK0qhDdibzYopjmqKMrd/8IYYnE9kIY3jckPVCVOu2I67BfP2WciMxdQyJrwe0Jc7IY7OziC/J5Q2d6XTROeaM2WtIbg2aaxk=
+	t=1756991880; cv=none; b=Ht7LgSIk6NbkbJlvAmngneuvEGQ323s2O9dDea7xSmkgEnY9C7WYVK39LXSaPEfOWgIZvUZNyKRkrWKlveuasNZxWGktvCSw9I8X4jdqc6CEavy/AVSsWfhjDfK7sfI0EE3nxb5IuEDX8q+g6AWwU3bZYVMyquK3po/0R1AT5Go=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756991841; c=relaxed/simple;
-	bh=GZgfMe3TroFvgjok++upgu6x7x/+2ppU32692Lp6mmc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bg6YILNLlfMncHOZwJcTb4qoALJz4+yp1dmzCQio0OkpGIXgzqLek7tt72Z4Sl8+isPzd5QkSWBIkutCeG3mpQNzUaV5hfNKzaXG2b7owCK9MaTIy4qqiUOJIilnvNUnfeYsI7jccjz9lqCod7r/1wM9yPt6sZAUevJwyWmu0gs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=QOEeWodh; arc=none smtp.client-ip=198.175.65.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756991840; x=1788527840;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=GZgfMe3TroFvgjok++upgu6x7x/+2ppU32692Lp6mmc=;
-  b=QOEeWodhWPEPEXXY7psOMVDQOJ5Syjz4NJeLfHmh+zdDpL+4CifkW7jQ
-   9VZI3SqdK6yZR76G7rQgyN7aK7UyeCa4eKKXuFtWwdKiyNrFqiVdGjLsE
-   OMmtN6TN9QhoS27eRNZsvs+UskuZfxXZXP10r1inJBv4XNYVgUCPXKO4g
-   nDcypMeji8/+FzRVUdByODVj8sljgDUMyOsy8DcMRzHxJwFD3QSFgVx5x
-   1VFrjPD8xQCHmtM2BKTbTVoSAgRoMN7T0YUfCZsgjlSFIKmV99WIdnD3B
-   JVAIGYWS73BR5kSR7UCJrxm8pZgt7DR+uWHaP/ZhrT2b89Z25ffj65Cdi
-   Q==;
-X-CSE-ConnectionGUID: b/a73pBrS8GwFsVXA/Jlew==
-X-CSE-MsgGUID: rGMAOR9mSUmzNDZt4hH2pA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="59186411"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="59186411"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 06:17:18 -0700
-X-CSE-ConnectionGUID: w93+n0GzT2OyFR+vp0DBrQ==
-X-CSE-MsgGUID: 27dCC6muRWibyP4Fg4Z32Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="172256644"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 06:17:15 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uu9pw-0000000BHAS-3fE4;
-	Thu, 04 Sep 2025 16:17:12 +0300
-Date: Thu, 4 Sep 2025 16:17:12 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Remi Buisson <Remi.Buisson@tdk.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v5 2/9] iio: imu: inv_icm45600: add new inv_icm45600
- driver
-Message-ID: <aLmRWHZ-fNYjeYll@smile.fi.intel.com>
-References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
- <20250820-add_newport_driver-v5-2-2fc9f13dddee@tdk.com>
- <aKbgt_g3FsLMM8-g@smile.fi.intel.com>
- <FR2PPF4571F02BCC073F7740CBA818676388C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+	s=arc-20240116; t=1756991880; c=relaxed/simple;
+	bh=WxaD6gphkJ2Gk/Jf0nfE5M7L6/fiMPCyPbZwunINGek=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=nL+QZsplbjgjorEO6kP1TDgbHwub8KFq4c/SsvAbDuxLsy96lpX5h7Wp/gpnBCrYRVjiDCmBawSe3suds3h/tqNGv9LCj3WxF8VBazHu81mJeM0wYTgfI1oGNmcRm/VNTCXRv3yCZNCG2pcrM9V6paE+vHY7mGlGARyyBcVccyg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CwVFousB; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1CAAC4CEF0;
+	Thu,  4 Sep 2025 13:17:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756991879;
+	bh=WxaD6gphkJ2Gk/Jf0nfE5M7L6/fiMPCyPbZwunINGek=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CwVFousBcrdbNKei8QUIwVjeqiVm/FHgN3lSpNE0OWBvxkiLb7JPZh9S3DvUrggva
+	 9IJEromdZCrdwMI3zLk6PCQfRt3OoPdsH5Kz6pLxLD7CvlKf3xEk2HlNMl/SUNSaYK
+	 NWZI73AXgi7V0x1dyxQhs2plRNOZcZvfrf85ho5166BZqN5tag0YATIj1LXkS0lIDx
+	 Bq9JvKh6pzxJHWZz8orVT/jS0TVUe0Xw0oX73quG8ZPwjJjI114f23b94q5UPP+OzS
+	 MxjXIE+aimWLVNiRSgTtm5PNPWYRoDltG+w5gx2q3nFh/ACUgJZF6BgHmJChqE/Uy8
+	 Wudd3C/BIu0pg==
+Message-ID: <29a91114-d862-452e-b7bf-1b659ad7d831@kernel.org>
+Date: Thu, 4 Sep 2025 15:17:55 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <FR2PPF4571F02BCC073F7740CBA818676388C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: Add binding for gunyah watchdog
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
+ <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
+ <099a7c48-c447-40d4-9076-570f5a5058a2@oss.qualcomm.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <099a7c48-c447-40d4-9076-570f5a5058a2@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Sep 04, 2025 at 12:58:10PM +0000, Remi Buisson wrote:
-> >From: Andy Shevchenko <andriy.shevchenko@intel.com> 
-> >Sent: Thursday, August 21, 2025 11:03 AM
-> >On Wed, Aug 20, 2025 at 02:24:20PM +0000, Remi Buisson via B4 Relay wrote:
-
-...
-
-> >> +struct inv_icm45600_state {
-> >> +	struct mutex lock;
-> >
-> >No header for this.
+On 04/09/2025 15:07, Hrishabh Rajput wrote:
+>>> +properties:
+>>> +  compatible:
+>>> +    allOf:
+>>> +      - const: gunyah-hypervisor
+>>> +      - const: simple-bus
+>> What? No.
+>>
+>> Don't create patches with AI.
 > 
-> Correct
+> This patch was not created with AI. Reference was taken from the patch [1].
 
-Please, add.
+There is no such syntax like allOf in [1]. Nowhere in Linux kernel, btw,
+that's some total invention, thus my gut told me - it must be made with
+poor AI tools.
 
-...
-
-> >> +	struct regmap *map;
-> >
-> >No forward declaration.
 > 
-> Correct again
-
-Ditto.
-
-...
-
-> >> +	struct regulator *vddio_supply;
-> >
-> >Ditto.
+> That being said, I see your point about the mistakes which were made 
+> while adding the compatible "simple-bus".
+> I apologize for the same.
 > 
-> Correct
+> I will make sure `make dt_binding_check` passes with latest versions of 
+> dtschema and yamllint as pointed out by Rob and as should have been done 
+> with this patch as well.
 
-Ditto.
+No, that's not enough.
 
-...
+You should ask for internal review. I did an extra effort, I checked
+that and:
 
-> >> +static const struct regmap_config inv_icm45600_regmap_config = {
-> >> +	.reg_bits = 16,
-> >> +	.val_bits = 8,
-> >
-> >No cache?
-> >
-> If OK for you, we prefer to push this patch without cache.
-> And introduce it in another patchset.
+1. You did post it for internal review, BUT:
 
-Fine to me if there is a comment given (in the email, not in the code) to
-justify this split. Enabling cache is one line, but, of cource, it might
-require a cache handling in the corner or special cases.
+2. Your internal testing system pointed out errors (schema failure) or
+failed itself,
 
-> >> +};
+3. You did not ask your internal testing system to RETEST the patch, in
+case this was a system failure. That's your mistake. If this was true
+failure of schema, then you obviously should not send it, but
+investigate why schema fails on your patch.
 
-...
+4. You did not receive review (at least no track of it) but decided to
+post it on mailing list. That's also your mistake, because lack of
+internal review does not mean you can post it to the mailing lists. Talk
+with your managers or colleagues about missing review, for example.
 
-> >> +/**
-> >> + *  inv_icm45600_setup() - check and setup chip
-> >> + *  @st:	driver internal state
-> >> + *  @chip_info:	detected chip description
-> >> + *  @reset:	define whether a reset is required or not
-> >> + *  @bus_setup:	callback for setting up bus specific registers
-> >> + *
-> >> + *  Returns 0 on success, a negative error code otherwise.
-> >
-> >Please, run kernel-doc validator. It's not happy (Return section is missing)
-> 
-> kernel-doc does not complain on this, on my side. 
-> I ran kernel-doc.py -v -none drivers/iio/imu/inv_icm45600/*
-> Is there any option I'm missing.
-> Anyway, I will add the missing colon and check the result.
-
--Wall is missed in the command line.
-
-> >> + */
-
-...
-
-> >> +		if (val == U8_MAX || val == 0)
-> >
-> >Hmm... Perhaps in_range() ?
-> 
-> Not sure of the benefit of this change.
-> I prefer to keep it this way if OK for you.
-
-It depends on the semantics of the value in the 'val'. And hence semantics of 0
-and U8_MAX.
-
-> >> +			return dev_err_probe(dev, -ENODEV,
-> >> +					     "Invalid whoami %#02x expected %#02x (%s)\n",
-> >> +					     val, chip_info->whoami, chip_info->name);
-
-...
-
-> >> +		ret = regmap_write(st->map, INV_ICM45600_REG_MISC2,
-> >> +				   INV_ICM45600_MISC2_SOFT_RESET);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +		/* IMU reset time: 1ms. */
-> >> +		fsleep(1000);
-> >
-> >Use 1 * USEC_PER_MSEC and drop useless comment after that.
-> >You will need time.h for it.
-> 
-> Thanks for the tip, clear improvement.
-> >
-> >> +
-> >> +		if (bus_setup) {
-> >> +			ret = bus_setup(st);
-> >> +			if (ret)
-> >> +				return ret;
-> >> +		}
-> >> +
-> >> +		ret = regmap_read(st->map, INV_ICM45600_REG_INT_STATUS, &val);
-> >> +		if (ret)
-> >> +			return ret;
-> >> +		if (!(val & INV_ICM45600_INT_STATUS_RESET_DONE)) {
-> >> +			dev_err(dev, "reset error, reset done bit not set\n");
-> >> +			return -ENODEV;
-> >> +		}
-> >
-> >...
-> >
-> >> +static int inv_icm45600_enable_regulator_vddio(struct inv_icm45600_state *st)
-> >> +{
-> >> +	int ret;
-> >> +
-> >> +	ret = regulator_enable(st->vddio_supply);
-> >> +	if (ret)
-> >> +		return ret;
-> >> +
-> >> +	/* Wait a little for supply ramp. */
-> >> +	fsleep(3000);
-> >
-> >As per above.
-> Yes.
-
-For both cases actually you can leave a comment, but rewrite it in a way that
-it refers to the datasheet. This will be useful.
-
-> >> +	return 0;
-> >> +}
-
-...
-
-> >> +	/* IMU start-up time. */
-> >> +	fsleep(100000);
-> >
-> >100 * USEC_PER_MSEC
-> Yes.
-
-As per above.
-
-...
-
-> >> +	scoped_guard(mutex, &st->lock)
-> >> +		/* Restore sensors state. */
-> >> +		ret = inv_icm45600_set_pwr_mgmt0(st, st->suspended.gyro,
-> >> +						st->suspended.accel, NULL);
-> >
-> >With guard()() this whole construction will look better.
-> 
-> It's coming in later patch.
-> I thought it would better follow coding guidelines this way.
-> But let me know if it is not the case.
-
-Ah, yes, but weren't {} missing?
-
-> >> +	return ret;
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+Best regards,
+Krzysztof
 
