@@ -1,191 +1,204 @@
-Return-Path: <devicetree+bounces-212899-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212900-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343F1B43F4A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:42:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 985DDB43F7C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:47:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7D422586FE4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:42:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF01B1889C37
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:43:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2939530ACE0;
-	Thu,  4 Sep 2025 14:39:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300DD3148C9;
+	Thu,  4 Sep 2025 14:40:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="j9W5jwEl"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mWXMFSc+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com [209.85.214.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 23C65309DD2
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:39:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B5231352F
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:40:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756996774; cv=none; b=uQEfLZUOk1OnmozSaUL+tf3ycYha68KLgRzq4d4+eMNGI3nD40sJqEaF1CbtUlcTqQ89lCqBn9gwUsCKrfQ0UW9LODs4dJV3fGJjCAX86LR1RfekBxkTz1NkLSDMFwtzoPu5G96sC86+iuRXeRi+Rbz1eJcUxh0j4DnDrEQMH8g=
+	t=1756996846; cv=none; b=cH3aZkExMQa2Qqc53WtgT7PJmjSIRpWZ7tEDEbIC6G6YJaPru6nFU0wxAO9Gb4xIlFLWzeMvquYD+Qu7N0Q5VIAc3bRBMTpQXr5cYwJ/SEujVe7C/1aCzdSGNY+RBlHlR2XpYSAmEAhDTjT7bQPxB1xUn4NyV5OkRtblTk8P37o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756996774; c=relaxed/simple;
-	bh=PdKgDAkZqj76ujCFHiYUV2a4vgAUgOQCtX/qwYcNlis=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TbEUiex3wKoLFoRunx8VgZRpdI1ig6MEmRmUGnniHzl0kj4b65OOCZ53XCyUp41HfeASQKRQFJo7LWWxofVPAAbGjkiNuGcJkvDdEGkCHCJ7Aey0otJ9lVdfdnBejI8hm0iE+qYaZweynpgenGvgMQtmbl3X+iIw3qUc4hecDLE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=j9W5jwEl; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849XKPK023173
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 14:39:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Pw5whXpBpvNS8WxXMKd8zSVMyaNdMtCxEMvZdYte1hE=; b=j9W5jwEl4/qxn/DX
-	P8ISRGWboF81TxkIWTMQ8uPx3CWQm1bVl/GHMugZ8Uwb6xsybpQidE7y4iyF1y09
-	XTE5GbwoQOPXurjEmO26ehr/KYsr1LmeAn9ou/KU4bkk+flpsPRiOxPj10wG+CHB
-	9wMSKIvXWx6EefHvTO6faydm9xcFN0j78Z9ZEZ/kBEraxpJtIn9VRJsXTEnGemcq
-	Bssab+r28VgcgiKEK+LR6L9F3oIoI5Lbx9CdNBAfqaVS/UE8uK4otsXZIyD7cCoc
-	CnWx8/t4E6qscpSLpGLIzoRV75DGMhl8sahaVdhGjiSbKHC3vBJtkhUDeEgKNGHE
-	h/Heyg==
-Received: from mail-pl1-f198.google.com (mail-pl1-f198.google.com [209.85.214.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uq0eqxk1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 14:39:31 +0000 (GMT)
-Received: by mail-pl1-f198.google.com with SMTP id d9443c01a7336-24c99bd543aso17372835ad.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:39:31 -0700 (PDT)
+	s=arc-20240116; t=1756996846; c=relaxed/simple;
+	bh=zqvvSo0TXB3FkNDe2btSaJpcFhEudIv8pOiajsXr31s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ts/bnSnY4dm6EjY9VbM7lUDZKHi3pvkjQluQkr11Qzf2M9o9+BIdR09nsZT1JnOIGv9KlmAx0PfpUR84EyT1hqgTQtq4YJ5nt1U35WKAqDLg6gXl+bTVcDiyGZ2t5ll9Ihu2+9tWGc9z4OXhSrPd4dJTT7v631wtO/kzo16lYSI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mWXMFSc+; arc=none smtp.client-ip=209.85.214.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f182.google.com with SMTP id d9443c01a7336-248ff68356aso14183275ad.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:40:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756996843; x=1757601643; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X1KqFT7E4GyG/SOTOK0WZOyrHnlFYC93qFLmJ/jKTrg=;
+        b=mWXMFSc+nv912MUTbZw1rhQ3veUWkL1DVD9UaR10cg6KWPuP4PREbxcqQ8OtlrcD3x
+         Hgn6hrjGwB4KxUm7MclsT880AgpZCxzclbMSiJxIUvO4261gNkKFUO621cCVMEzHdNwb
+         tM1Gi5Cxcx79yqNQqYMFLQH5i5hLz2Y9+ArBcEHQzhQGODRcV8WOH/27SMODzDuiS0en
+         23DhvjlPu+Jmbld5NfhXB7sgqnSjpPRXurwNrH7OFUHQsUZjnhjCkvzLjHoH2SZwqqnE
+         elfc3eY434CEv4iYMjGuIv7/7WTOYYAu9QCWPbDvLvkTTtMmwJt/iSGNljBn0PlmVNNA
+         BCUQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756996770; x=1757601570;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pw5whXpBpvNS8WxXMKd8zSVMyaNdMtCxEMvZdYte1hE=;
-        b=WhPgKDSedqdSuWZP48GkMIcBIeEc3wQcJBNJGOUXslAFK/OLebo2p1+wKlS+MmK0uK
-         eTCAsnC6LreSeFLq0QC6dXQKCIoLj2a54CjTJdJdBRx+WPFCasuEPZL3qwv5sNBj/t6z
-         wnf3Fnp7xroor6v41OYusB5zusvSu4/SWKzUYSo7/qY/fZBiwq32dsKNf0AD4CzXJ42x
-         Kj+e2AH69Umra4X1XpZcRHaKKW0cFS32xNDpEztCXsQkQrc0f6+8rkPhGhGmYeNRchD8
-         czDeTzWICeVkR9q0fBRuSkK9V0i0yg9c1OFnNN32qNFMg4vF/iWj7cfR/ODhcKOj5CUs
-         21IA==
-X-Forwarded-Encrypted: i=1; AJvYcCVgcPCKBGa6B049leCwVqWjELCBPJNngyBujxqZvUh4QpHBG6WmrC8i1vTIbfZnFh+Sy7UswtIP7gQl@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJ/XfVaU2HlkawBgfFN+klsEOLJRBohmKh1fPFJxspvE7INY7y
-	+Ba4sPii+oo1N2ysYsyZKFd02lNkvqYVVv6cmHCKfwpY8NTmR6t2PODRjzUD9jWxhv/kH+m5oKN
-	iLvgqDbSzLLG+yCETOZ7dexBvWx520xIaYETQCTIRpScVmn01A+aaxcddM8lQHDFq
-X-Gm-Gg: ASbGncuzQ1xrqV13haN8HrI0rqUZUwttQ9ekUJE9c4+gYCYYEthws2aj54wAPf1hYNz
-	C55I1+5vEMxi5GjR2HLj3cHN3QAYOEqCjPX2rc25mfj/Kimnw75ThdZwX1GqXLY1Q7tJ56KwtM9
-	9fZiyt0fO54NNbr2qC6ULoyDSNYkwnfavxZYMh0DfegxKmUTUzICngMGmuP6B3mAoBFj+F2RSnn
-	g46PB3Zt0+JRvPq/9tzIcTmLvFjPAdV6Ms1xoDVuAsswUD947P7pN668SyeH0FYA7SthvmUDes1
-	eYIsnDWj6MI/9tN9DrI81wEvNq8eIq/dapUDCqVolTD2Git3TFiLADti7Up80H+vimq3IovEplN
-	X1LIjGII=
-X-Received: by 2002:a17:902:ceca:b0:24c:d6f7:2788 with SMTP id d9443c01a7336-24cd6f729demr16657835ad.57.1756996770464;
-        Thu, 04 Sep 2025 07:39:30 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEi6kGCUhUfwu5x4jMfrg5WbhkrMkiCM2GTKdX0bXB/HRO/3Es+MmJciwCepdhATrDfobpMGw==
-X-Received: by 2002:a17:902:ceca:b0:24c:d6f7:2788 with SMTP id d9443c01a7336-24cd6f729demr16657435ad.57.1756996769927;
-        Thu, 04 Sep 2025 07:39:29 -0700 (PDT)
-Received: from [192.168.215.112] ([152.57.129.192])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24ccc79a345sm17693515ad.132.2025.09.04.07.39.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 07:39:29 -0700 (PDT)
-Message-ID: <1f12cf45-410c-41b2-a55c-94b438dc2719@oss.qualcomm.com>
-Date: Thu, 4 Sep 2025 20:09:22 +0530
+        d=1e100.net; s=20230601; t=1756996843; x=1757601643;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X1KqFT7E4GyG/SOTOK0WZOyrHnlFYC93qFLmJ/jKTrg=;
+        b=FusgcG+uq4iuBFmooVmtTmrQd7Z8kP0wQF9tX92xXHWVTr0bZkZVZILkFor4FhI+Yq
+         vCOWS1vPOaprA2LlzCeT18gj+Qh8zu9O21k0Z3uSpgFTqCC7W3Rgjhvd0xqOP+TNz9LX
+         5oVS6tH6Cj9trvymxVsb9TnvnQYSWC5wKOIGG5sV6xK2BF0exBEhN0K9Il1WjyC8EeDI
+         p9aku3fIh0uuzeXUCkthjw3oilWBeclHbQ4lcn3t2G9X4Q37vPXN/y5fX+utzcRiQIrI
+         I939xmnKVtNPAG8Yat/yi2lT5rUjtwv62NWo56CH+TdVcJho5pNkyLo3fHfI2Y7oYRB+
+         Puug==
+X-Forwarded-Encrypted: i=1; AJvYcCUDSWmPY0vRhPArYMDIUVkVv864iiCaE2j+EwNg+E8lfeNuE9CC5f5Ua85F49LqFP4hdbbqelDocRHv@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzh1k6pW3FbQ60FkNnRoTBT4XS50kjOtnoN4AYrQ3ce1eLeYxhD
+	NuippKezXYBne7J1fTxZk0V/1GTX6FaGBJkmOl6g1sD1HMHgX/RG2Z2WxoP3TuhcvcXojaCsVfO
+	BT5hMudzu8yCF/WpeEQ4yzpJjfF71p00Ffs0x7OPMVw==
+X-Gm-Gg: ASbGnctIdpvrMf9cb5Y5tscRo8bam7E6pRBr+tnDTvOq3UhBMLbRO35yh2hAqL+/VfE
+	RSPyTo/0JqgaEHIEXFJLGs+8MG7CGKkKlFagVI6EuqNiyxH/h+I/nLuWLTyoJdd8zQQd7DNf/VS
+	2BHcdjvFI6QWYaw3Y2Qeyu/pfQL2Ytum/uIQ+jGYgaYeknwGynTOsMT7lB1AyUY/tSnMKQqcGp+
+	hsjpUBNDA==
+X-Google-Smtp-Source: AGHT+IEivb/Ke5Y/N7ysCpClj2ior/OnU7zMvr6vUkDewWL8kJYVeAtE6EcqAr1FQN0FeRMUaS9AlSy/Yr3XQteFNac=
+X-Received: by 2002:a17:902:f642:b0:234:986c:66cf with SMTP id
+ d9443c01a7336-24944ac387bmr243602675ad.16.1756996843341; Thu, 04 Sep 2025
+ 07:40:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
-To: Rob Herring <robh@kernel.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
- <20250904001014.GA3405605-robh@kernel.org>
-Content-Language: en-US
-From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-In-Reply-To: <20250904001014.GA3405605-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: u0XyPITdQC9ybYvpsEumJ4I3KJlHdWu7
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwNCBTYWx0ZWRfX3vnYII1CFq6F
- Hqv7UajSI/o/tD777wDyURpqTtKl7nV26UpjApTA0FRdhz1HbiWzGhTSXKbiByE0lSRxEjkB4vl
- G/BxBnGWP5RisVLJXoVYU2woDqK0h/PMmJwKeXXkTFcDRUilm/o8hT2Uj5lz3G5QwlS08Bbuy6E
- FvbQpXCdaEuO0gr57c8Kox3VstRrWyjw8nlOIoKh/Zo1WdNYJpaNnIiVMfFVfwwI7D1qmtUW+ip
- 1rE2/N/0/cDKaGj81FoWmXwcw7Y9yO2ahBLihBq8yb9cAsOmFYtptR++gd5v7fkd2PyQ5Jpat+6
- h8XSL+nG2C955RYxpqn0tb2nkW6eL16qGZfslTzpQUz3sbDT8gtInb6/vkh38o6IawZi8tUhlUp
- 7kcA/T4o
-X-Proofpoint-ORIG-GUID: u0XyPITdQC9ybYvpsEumJ4I3KJlHdWu7
-X-Authority-Analysis: v=2.4 cv=ea09f6EH c=1 sm=1 tr=0 ts=68b9a4a3 cx=c_pps
- a=MTSHoo12Qbhz2p7MsH1ifg==:117 a=o0dP3Ed1ANdhMlAYVkqilg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=AtXW_PjUgssW4A6z-zMA:9
- a=QEXdDO2ut3YA:10 a=GvdueXVYPmCkWapjIL-Q:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 clxscore=1015 malwarescore=0 phishscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300004
+References: <20250902174351.2457022-1-raymond.mao@linaro.org> <aLkAYitpWxWx131p@zatzit>
+In-Reply-To: <aLkAYitpWxWx131p@zatzit>
+From: Raymond Mao <raymond.mao@linaro.org>
+Date: Thu, 4 Sep 2025 10:40:31 -0400
+X-Gm-Features: Ac12FXxZk0dlcdKvvKrNgUzQLsHOKQcnK2_VUsguVb8gKm4aMWXeyWYtaEDYZ3I
+Message-ID: <CAEfUkULwQxJ-EKT7bQ8+hkH+_xO8esThnL2P_Rc-32tHyMdA1A@mail.gmail.com>
+Subject: Re: [PATCH v2] docs: devicetree: overlay-notes: recommend top-level
+ compatible in DTSO
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org, 
+	devicetree@vger.kernel.org, ilias.apalodimas@linaro.org, 
+	Conor Dooley <conor.dooley@microchip.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+Hi David,
 
-On 9/4/2025 5:40 AM, Rob Herring wrote:
-> On Wed, Sep 03, 2025 at 07:33:58PM +0000, Hrishabh Rajput wrote:
->> Gunyah is a Type-I hypervisor which was introduced in the patch series
->> [1]. It is an open source hypervisor. The source repo is available at
->> [2].
->>
->> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
->> access the MMIO watchdog. It either provides the fully emulated MMIO
->> based watchdog interface or the SMC-based watchdog interface depending
->> on the hypervisor configuration.
-> EFI provides a standard watchdog interface. Why can't you use that?
+On Wed, 3 Sept 2025 at 22:58, David Gibson <david@gibson.dropbear.id.au> wrote:
+>
+> On Tue, Sep 02, 2025 at 10:43:50AM -0700, Raymond Mao wrote:
+> > When managing multiple base device trees and overlays in a structured
+> > way (e.g. bundled in firmware or tools), it is helpful to identify the
+> > intended target base DT for each overlay, which can be done via a
+> > top-level compatible string in the overlay.
+> >
+> > This provides a way to identify which overlays should be applied once the
+> > DT is selected for the case when a device have a common firmware binary
+> > which only differs on the DT and overlays.
+> >
+> > This patch updates the document with a note and example for this
+> > practice.
+> > For more information on this firmware requirement, please see [1].
+> >
+> > [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
+>
+> I think this idea is probably useful enough to be a good idea anyway.
+> However, note that it leans in to an existing ugliness of the overlay format:
+>
+> Overlay dtbs kind of mix "in band" information - the actual new
+> content for the tree - with "out of band" information - how to apply
+> the overlay itself.  Whether a given property is data or metadata is
+> determined by it's place in the tree in a moderately complex and not
+> super obvious way.
+>
+> About the clearest divide that exists is that generally the root and
+> first-level subnodes are information only for overlay application,
+> everything under that is data to be applied to the tree.  This all
+> tends to have names that would be unlikely (though not strictly
+> impossible) in a fully applied tree.
+>
+> Putting 'compatible' at the root of the overlay is putting something
+> that looks very much like a regular device tree property in a place
+> and with a function that's purely about applying / validating the
+> overlay itself.
+>
 
-I need to explore about EFI watchdog. But Gunyah Hypervisor does provide 
-various interfaces for watchdog including fully emulated watchdog.
+Since all information at the root of an overlay is considered as
+metadata (out-of-band),
+If you think 'compatible' is confused, I can change it to
+'overlay-compatible' - which should be 'unlikely' to exist in a full
+tree.
 
-There are Qualcomm SoCs in the market that ship with SMC-based watchdog 
-interface configuration of the Gunyah Hypervisor. The purpose of this 
-patch to add support for that configuration.
+Regards,
+Raymond
 
->> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
->> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
-> Is a watchdog really a hypervisor service? Couldn't a non-virtualized
-> OS want to call a watchdog (in secure mode) as well? But I don't know
-> how the SMCCC call space is divided up...
-
-
-Sure, a non-virtualized OS could directly access the watchdog. 
-Hypervisor needs to interfere when there are multiple virtual machines 
-running simultaneously and we only have a single watchdog device.
-
->> This patch series adds support for the SMC-based watchdog interface
->> provided by the Gunyah Hypervisor. The driver supports start/stop
->> operations, timeout and pretimeout configuration, pretimeout interrupt
->> handling and system restart via watchdog.
-> Shouldn't system restart be handled by PSCI?
-
-
-By "system restart via watchdog" I meant the restart routine in the 
-watchdog_ops struct. And I've kept the watchdog restart priority to the 
-lowest i.e., 0, so it will be used a last resort.
-
-> Why can't you probe by trying to see if watchdog smc call succeeds to
-> see if there is a watchdog? Then you don't need DT for it.
->   
-> Rob
-
-We could do that for checking if SMC-based watchdog interface is 
-supported, but DT provides an additional information about the 
-pretimeout IRQ.
-
-And there is no way to get that information apart from the DT.
-
-
-Thanks,
-
-Hrishabh
-
+> > Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
+> > ---
+> > Changes in v2:
+> > - Updated commit message.
+> >
+> >  Documentation/devicetree/overlay-notes.rst | 28 ++++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/devicetree/overlay-notes.rst
+> > index 35e79242af9a..30b142d1b2ee 100644
+> > --- a/Documentation/devicetree/overlay-notes.rst
+> > +++ b/Documentation/devicetree/overlay-notes.rst
+> > @@ -103,6 +103,34 @@ The above bar.dtso example modified to use target path syntax is::
+> >      ---- bar.dtso --------------------------------------------------------------
+> >
+> >
+> > +Overlay identification
+> > +----------------------
+> > +
+> > +When managing overlays dynamically or bundling multiple base device trees
+> > +and overlays in a single system (e.g., in firmware, initramfs, or user-space
+> > +tools), it becomes important to associate each overlay with its intended
+> > +target base DT.
+> > +
+> > +To support this, overlays should include the top-level compatible string
+> > +from its base DT.
+> > +This enables higher-level software or firmware to identify which base DT
+> > +an overlay is compatible with and apply it accordingly.
+> > +
+> > +Example usage::
+> > +
+> > +    ---- bar.dtso - overlay with top-level compatible string -------------------
+> > +     /dts-v1/;
+> > +     /plugin/;
+> > +     compatible = "corp,foo";
+>
+> This is not valid dts syntax.  Properties must be within a node.
+>
+> > +
+> > +     ...
+> > +    ---- bar.dtso --------------------------------------------------------------
+> > +
+> > +This top-level compatible string is not required by the kernel overlay
+> > +mechanism itself, but it is strongly recommended for managing overlays in
+> > +scalable systems.
+> > +
+> > +
+> >  Overlay in-kernel API
+> >  --------------------------------
+> >
+> > --
+> > 2.25.1
+> >
+> >
+>
+> --
+> David Gibson (he or they)       | I'll have my music baroque, and my code
+> david AT gibson.dropbear.id.au  | minimalist, thank you, not the other way
+>                                 | around.
+> http://www.ozlabs.org/~dgibson
 
