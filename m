@@ -1,131 +1,149 @@
-Return-Path: <devicetree+bounces-212957-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212958-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B432BB44392
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:50:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE70CB443A3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BE81178127
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:48:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49C311883322
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44073221FC3;
-	Thu,  4 Sep 2025 16:48:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746DC23D7C7;
+	Thu,  4 Sep 2025 16:52:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BtOu0hc7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fgCxiFYj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7418A1F5E6;
-	Thu,  4 Sep 2025 16:48:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC8F827FD7C
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 16:52:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757004490; cv=none; b=simYKABK4zNZ8SaxYnZQJcr6wyHHkZM3LKrBtIFb/lyKk3SFDwhX0Zq3Vhy2E5x70tr/X0lDvvQ5aDnhoCbUgMrU/E3FsEoyyf1szPSkFFpO4JkhxPNp+hUICjN31+T8dYod3K39FNupsLWEjvBcKp4uIQZPJ+s5E8mPRGS8lWM=
+	t=1757004778; cv=none; b=YTOvqBoZ0H2YBsm/FmnsBznkQJXp+h14JnmmwoN024FnTguD9PszF4IaDg81nwtxNvv1QDhUwloC5EZSnjaDETJiPsCxiN/91uZQNoe5BXq6uP2vj2KKfLdAQe0Cv6HrosU/rPe4QWleWUiVkhVI+enMvKwzSRx/K7iOwcoSX5Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757004490; c=relaxed/simple;
-	bh=aKlEsmb3gUg35aFO1hKP5pVn6VvRRI/bXaxmIEuQZoc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gayAXzrrdTLZs9ImG42fZOx24RrOlAzW8AgfaV7O3z2wETsZAlCygLHXjseT5J5MeidbQ6lEM6cIj0e7zdxCRoEt9/gor8q9+WlwfyFTDLpPB7oIoP28DQUhJ99ns/Bc4ms4Bd65vDvBjvulZSX5Sphb3oG9iU7cIBsHOtWGc/c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BtOu0hc7; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-55f6f7edf45so1220510e87.2;
-        Thu, 04 Sep 2025 09:48:08 -0700 (PDT)
+	s=arc-20240116; t=1757004778; c=relaxed/simple;
+	bh=7fvOz14syBHStBNZy4sYRSSBrNYheDkpZc1heoV3si8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=amtxxCzR1NDla5rHwKEKJhB3ZMxL9AxbxlH6NYII4ql5emyG9zQ4x41QEO2MClX7OWrWv/9glBRgNoy6pn/XAB4iiP4jQ2J/zMs1THZfdB/l4ggRHPzgopZOo6CeImlqK8sacoo2DCiyuDYk5i2t2TsAoSVq3Lx+OghllTbHMT0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fgCxiFYj; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45b869d3571so4885295e9.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 09:52:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757004486; x=1757609286; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aKlEsmb3gUg35aFO1hKP5pVn6VvRRI/bXaxmIEuQZoc=;
-        b=BtOu0hc7Kl1F3b0NTYrscb8e92ZvTyX0pfs4IR1nzQBCuuDYCngR25YUSlyPyB/CkZ
-         J5ZUn+c/Xal2eJGmY2nu8y+z21ANZKjo9b/UFqPLeEUrQZ0Qa6vtpSB+tQ1KDB/wlqmX
-         Z62vH7BDApx8sSiKQA2jKGeXsuSHAB7fpPaASYYp8QwBRHsabYtTYXn2fEx5TWqIH5g3
-         4/9vQqIfF9PMsI6AckHmlr3JAUGmwoT2Z0Z6Y7tuv6jAWrIAFKLBmf9wyXLBZPeV4/+a
-         Wi8OJNkdEFFES+tI28iLwr+6RfCItTbQKvLkXWuq+sagEt/DQVO93vZ27PjRyWHjdN4s
-         T+Fg==
+        d=linaro.org; s=google; t=1757004775; x=1757609575; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xFh89iR809PVR/b4+ILAvd+FMJiKpRfITsgR1aQ1ciM=;
+        b=fgCxiFYjvONXUxH8Fv4gWtI7BDc3qzsItZayOnkLbCWNz0bRUceFWIRlUB0j0b+CCP
+         5/3qUH4o8HiPDFngtrez6Pubh1XTKk96vLJNMv9PNV7mK+axW/iJDwAhDUQXhfo+30ap
+         Ntp/CRPHIuZgnc3xYw/l6/nYotOZjuLpcSVgeoT3dlgdj9xgqehvsT0/W1J1kMf0StRQ
+         1N9MRJ2xUOrDrgARXTcRlYnQn8JBznw+qXOrPXX8tXGoVTjd68UTPoLJSoLniNpk6P4w
+         Pb87SN2BNka5AF/SNem9VdXQy+wLqhTlO4C5OnvKZaqG31m9kDEoIBupqgUc6HoDq5/P
+         BrCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757004486; x=1757609286;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aKlEsmb3gUg35aFO1hKP5pVn6VvRRI/bXaxmIEuQZoc=;
-        b=Y27Ko9USRnCLd7jrrzMtNZJaFN2xFlJ08a7Va6gc0YtweLhP0ZduimyanKo69uxKtn
-         qGw56cv9Ze8mJIPX+H7aOYrefFcEOyHs0S3FicrLTgScbbEAZLSU21ywdQ0hl0Ih9afT
-         5xeIdu8Z03xk4sgu4xOhcO+J4jSmFnqLI0F2tX7nqqtndKmsBfQoZiN7Vj4GiQT4Wbqn
-         gF20ACcQIf5tveFn/hJwnZc4Uoh+kmdHjUmoxy7srfopovKUMG7UjikYZJxo3k/UGjov
-         Woyk7RvuU0ri678EIKpKejnXrSBYT4uxw/2KD/rU0uF7WYb/N+1JVAwHWvhnNF7wJOgp
-         sSqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWbLQ8QCrHkIRFbIC9LCj7dpWa2GXzSxpZcftB3usNlp8X/7+oy0fDro096oJIZLhgbB35S3xbHcSs=@vger.kernel.org, AJvYcCWfGu9mTMGlTGITeZLi6JMltY7VKmE+7lbpGSWt+Fsd3sBi9oPCWWdrplyInIf0tyLkhQ4FxfD0vjc7@vger.kernel.org, AJvYcCX6DKCmmQgTpPaH2aCCh3s51tOkgMk7tCGRSmxuGlvCE/Iw38Aiggr8Km9Vf7weBvLIg+dc900Te9hxJZ3p@vger.kernel.org, AJvYcCXSFEh/HBI6LwW6amDq5qQ1fGyjG759mEodPz+CuX3AaSGdJvZrX7GNGu192rlaVuK/cppufr3b2WpKl/0=@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywxp55HWJPE4cuqAi3XwEKy7m/4NXC2wpHVrZsT7MuMoegrR/hA
-	QDJ5oMPUZbIEflWx6YJ7tATea27hdlvpEuBy+pl8EZtat2FlezN8uU+wPXVfnSIylgI5egJCRw6
-	ihIplS+rNYgwkj3/iC5orTUYDMMx+XYeY7RZLBWs=
-X-Gm-Gg: ASbGnct3iuO4kRwnt31kOYaOhZqri3z/KRpBFt1KkHcUqBBdUeMjyWi/nzgNRxBfHTw
-	ZJccCLwPyFPg6DBVkSQ8OREuUk9ifQtUjgceLksj6thwxfG0EOZueOpflEsfKs0Tq1/k5Oqgrx8
-	yAXS5AwcjaBd11koDKusDJtHEvXJbCSeoevqXCFruYniicMaoZIw7/WxV6YCbwV8Kkr6MQmnZFa
-	Wm4dhLby9GRZ+blBg==
-X-Google-Smtp-Source: AGHT+IGUXtao2giLvBNZSYyvfOW6A0wh9AUywf97mYfCeIlRNIoyGOKR/Rj7+FNpDc7Jkh9xwe76uHDoyTmTZ8JcDDk=
-X-Received: by 2002:a05:6512:680b:b0:55f:3f00:a830 with SMTP id
- 2adb3069b0e04-55f709b63acmr5069075e87.57.1757004486276; Thu, 04 Sep 2025
- 09:48:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757004775; x=1757609575;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xFh89iR809PVR/b4+ILAvd+FMJiKpRfITsgR1aQ1ciM=;
+        b=scV+t+mqKDJQzBcJ56NgDL+F0aem6wjrxb1NnDKKQp//DoLZFHUCflA6tBXqwyX5Rd
+         NCPXTGc+t8+O2O6od2pYi2Ak97mTAlwGOlhrQ1dm+QunmYe9ywpTLned1UgNKVfVmvmU
+         eebS14NiydZEeEalWTjjR6k9/Pcqy2j2CHWS1TT7D9cv9tIgMQlfSPc9ZYMPKFvS4MIT
+         pBRrLeVYYio3wVwwXx4FboJKP1GVhRbbQVIdXe4lpjkA53uWs+LyOyv8Lhq5ui/tpsqM
+         xZ0l1cSLjb8dka8oRtgjY6y8E1iuvEhKS0jvVq4MTwP/OH698jOGhY2weXQtrs3k3EmA
+         S6MA==
+X-Forwarded-Encrypted: i=1; AJvYcCVvJvPyMK9QmDv6h7FwAX2j7K4r+Nc75BPk1sAv1pxaaTvdEW6zpx5TPtITHSD7v9Ups4F80+w2lqXm@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRaASWXIOMnH4XYV5wXQ/lnnlOUCDxydQaIkMgja5J1hq1/mvC
+	KYT0DguZE1JaOjxPZPya5P4hZF/IrAE/46Wz0I4Z4HRQqCRripxUMVOV786qXVGgLYQ=
+X-Gm-Gg: ASbGnctzqGj7OdXaefqQt8GvMugbhkxl93cMDfWSlB/dvuvG7favSNvVq15z7baCwuO
+	Hmy84+o2JpFdN2wa9Kl0LN9M7qSzpkxywrh+WMroiF03cdLXgnXEz2AKVYHvSG5hLYqQTBkV2d2
+	N3pwMkRpdYe3ZVeT2uo9KCSfaYel6ym/si1j98hpwvDVVIhpLgbqG15SUH2Q+WddEX/dVAOGKu8
+	V0to2zcrkhnkHNz+Q2+uZaw8+CETEHLhHD3hZUsASodZ78aPFK0ITT8l5EEx1fmMv7hLRIOyPjZ
+	cfFVW3eMMxF1GW4XqDd3FPMzY04LyBBSaXmfpp6J0JnJxrE5UkSeXwhllM71fpb9SEnekwaFwxm
+	kD1xKxQSjZM2ovi8Pv0638mrAywJtbpuB+oOMKtS+fbDuCTZy+X0sV2HribzUl0PHuApvlZdFKz
+	50mMaFRpnS+64Tefjb/lFBFMI=
+X-Google-Smtp-Source: AGHT+IF/3UAqS8oVgCQ/U/GWGmEsXBPfC2dj5lpBtR7xMDWEaxaLpTFZgIdSL6vjxf+WzDQruLwXDQ==
+X-Received: by 2002:a05:600c:3baa:b0:45b:8b3e:9f7b with SMTP id 5b1f17b1804b1-45b8b3ea15cmr138645635e9.3.1757004774916;
+        Thu, 04 Sep 2025 09:52:54 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:1ca0:c789:48cd:e2f9? ([2a05:6e02:1041:c10:1ca0:c789:48cd:e2f9])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45cb5693921sm91433315e9.0.2025.09.04.09.52.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 09:52:54 -0700 (PDT)
+Message-ID: <9d4e7851-a874-413b-974c-d499ed59f553@linaro.org>
+Date: Thu, 4 Sep 2025 18:52:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com> <cfffcabd-c33b-46f9-9b16-b6063ceee4c1@nvidia.com>
-In-Reply-To: <cfffcabd-c33b-46f9-9b16-b6063ceee4c1@nvidia.com>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 4 Sep 2025 11:47:54 -0500
-X-Gm-Features: Ac12FXwfngil2eotOy06lxex9b0oCj_6ZTJzvZJmC_5pOBeZGrM9F6XfwKF2Ucs
-Message-ID: <CALHNRZ_-V+tQCy8k-fh7g1Q5QF6rWKtTBMK9F4Ah6M5KjaZf3g@mail.gmail.com>
-Subject: Re: [PATCH 0/8] Support dynamic EMC frequency scaling on Tegra186/Tegra194
-To: Sumit Gupta <sumitg@nvidia.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	"Rafael J. Wysocki" <rafael@kernel.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, bbasu@nvidia.com, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
+ linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+ <20250903102756.1748596-3-daniel.lezcano@linaro.org>
+ <aLgrGlpNrDTC5LAd@smile.fi.intel.com>
+ <a34efc36-0100-4a7f-b131-566413ab88ae@linaro.org>
+ <aLlAugdr-hwMNIje@smile.fi.intel.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <aLlAugdr-hwMNIje@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Thu, Sep 4, 2025 at 6:47=E2=80=AFAM Sumit Gupta <sumitg@nvidia.com> wrot=
-e:
->
->
-> On 01/09/25 09:03, Aaron Kling via B4 Relay wrote:
-> > External email: Use caution opening links or attachments
-> >
-> >
-> > This series borrows the concept used on Tegra234 to scale EMC based on
-> > CPU frequency and applies it to Tegra186 and Tegra194. Except that the
-> > bpmp on those archs does not support bandwidth manager, so the scaling
-> > iteself is handled similar to how Tegra124 currently works.
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
->
-> Tegra186/194 had multiple drivers for BWMGR, ISOMGR and LA+PTSA configs
-> on the CPU side. I am not sure how effective this patch series will be
-> in absence
-> of those components. In Tegra234, those were moved to BPMP-FW. So, Kernel
-> forwards the BW request to BPMP (R5) who takes care of setting the final
-> freq.
+On 04/09/2025 09:33, Andy Shevchenko wrote:
+> On Wed, Sep 03, 2025 at 05:28:09PM +0200, Daniel Lezcano wrote:
+>> On 03/09/2025 13:48, Andy Shevchenko wrote:
+>>> On Wed, Sep 03, 2025 at 12:27:56PM +0200, Daniel Lezcano wrote:
 
-I know it's not ideal, but it seems to be working okay as a rough
-approximation. When the cpu governor kicks up the cpu freq, the emc
-freq scales to match. In my testing, this has been enough to keep aosp
-from obviously lagging. Existing drivers for earlier archs, such as
-tegra124-emc, stub out LA+PTSA as well. Does the lack of that handling
-make things worse for Tegra186/194 than it would for
-Tegra124/Tegra210? I'm trying to improve things across all these archs
-small pieces at time. In several of my recent series, I'm just trying
-to get any form of load based dfs to work, so I don't have to keep
-everything pegged to max frequency with the associated thermals and
-power usage.
+[ ... ]
 
-Aaron
+>>>> +	ret = read_poll_timeout(readl, msr, !(msr & REG_ADC_MSR_CALBUSY),
+>>>
+>>> Why not readl_poll_timeout()?
+>>>
+>>>> +				NXP_SAR_ADC_WAIT_US,
+>>>> +				NXP_SAR_ADC_CAL_TIMEOUT_US,
+>>>> +				true, REG_ADC_MSR(base));
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>
+>>>> +	if (!(msr & REG_ADC_MSR_CALFAIL))
+>>>> +		return 0;
+>>>
+>>> I would expect standard pattern — "errors first", but here either works.
+>>
+>> Does it mean this chunk of code can be preserved or do you prefer an error
+>> block followed with a return 0 ?
+> 
+> Up to you. Only the question above (readl_poll_timeout() use) stays unanswered
+> so far.
+
+It is a typo, it should be readl_poll_timeout() as you suggested
+
+[ ... ]
+
+
+Thanks
+
+   -- Daniel
+
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
