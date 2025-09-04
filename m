@@ -1,328 +1,190 @@
-Return-Path: <devicetree+bounces-212905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7F77B43F8F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:50:14 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E510B43F96
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:51:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 074597A19C3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:48:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5EE6A7B4A2B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:49:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C91041F03DE;
-	Thu,  4 Sep 2025 14:50:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3012C3090DF;
+	Thu,  4 Sep 2025 14:50:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="f3qtFbjR"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="nWBjnhvg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013060.outbound.protection.outlook.com [40.107.162.60])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6111915746F;
-	Thu,  4 Sep 2025 14:50:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.60
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756997406; cv=fail; b=KUPUgYj8q+S2E7AokRTP2OKk2bwlU/gbgwppSf2WUBeFw4vclBxbJk+trBDSaq0NoMgnDydSH1XaeRU+dW0srHOp5MlD02Vt1bdAK8YTNCmXdHlkggANeB/TWmIaDea2JMedtupl3hJ+0AmJismn2KeVfKNCfycFqo+H/N64iFk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756997406; c=relaxed/simple;
-	bh=xzxkg91iAUxCFCarUy4dbDZFbWLyKxGinaQldhV31YU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Vt6KDsvqhiP7Tly2l/2QEUySk/FyuMdSF0owozeki73hKKSRvRLxJEZsIyzmQikqB0ZtHHn13P9L6KR0pIHuO+vwIAIhldl8mPdwe99CMiYRkk4Hgno7vC43gxZ3JMP2CZ+4zXLNbpOyMXXn2JJ7nwfktuKicSVpqAKo3uBe2bQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=f3qtFbjR; arc=fail smtp.client-ip=40.107.162.60
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=pvv4h4Mo8tOvaGDn0qUKoq16dvmX8bg06zoQU6KinrTokg2js+gI9Xwa2DsOj4JeAVUgxD4DYxsNYhUuy3DHo1VArV9GdulfXSLUoKWVHijXTEI1hGWnX5bV+D5VdNhlHyOm0QARYztrAwkPj7sWeyQET7qvUNNuHgtBPg8DWBNz6hHYWgxhM30Kq9uQsaFVB1Ia7kfI+WD6w/EbSEjAOB8pKtXYyTXeUN+7GDYd+qSqvGL6rqR1Gf/7ZZw1RPsVI4etXWGuEUbtY+yNyXjX5jBj93sbR7Dn/yzzhCd56Nlqwm6Wtbt+V0AvwWAfvbYdMXDQG3tj0ccyPEiDM4u4/w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4DYWAeKh3Hj9OaV5yFCYGjE3HAEPyEq4DXbAegkcXzc=;
- b=QvMRqqi82lNV3Ges7ATvDo/h8LujSR5n/w8l8Fa/vQ5/0uBHYSNYRhVWVdodBG754lIAhZXbgjTpwPJ1b2IbL2wYQFzaaCkhwj6cpdQvk/TipLUyrhv5zbLkTlgzz7+RZM0JiVlhRvgSGI+M3E0W2DK5wCaXoAzSJi+OSsIq80yFcl95Xf1WZg7FA5zzUyIlsoEynxcFh6BwmK7HFLhfiroy6LuseInaYD14SaOtUrndbZPvK5i40F34DXVIvgA0V4ktl9pSnUZCxu2kPJs/VMj2YUmD6GL3K9YJ2DMYrTCRG2fVE2LTsC7N32JC1acwKpSjQ/I7SUOjqhUk5VuZTA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4DYWAeKh3Hj9OaV5yFCYGjE3HAEPyEq4DXbAegkcXzc=;
- b=f3qtFbjR140wifouha9KiLgV+RC+Vx97xgzo2XdKexZI0aoHxcQ02nnU6BYTy/l18tj2xPjrjjcRcJn+eqFLyt18ljn7zlpwhHSJzvvglJhaw1dnuyzPiV+dYd7GSLrx2VmoVZN7+FPKNkg+sDJxw/LX+4vuGzRTW432VNSdpoAhVgivvttgNWriYsFQ+z4QjGsDFU3OcBEO3zk+GdBzyLwBSMWCkmornjP/8A3Wi+pvW/NYjpAU8OXwkghSc8G/Vb90TKDeBcoYPNqHnoJrXDo3mJZvBScBEEXg1ggxuw9Dk83w7sMP7xfL556rgnnn0zjGPovjxA1WzeDxXD911w==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by VI1PR04MB6896.eurprd04.prod.outlook.com (2603:10a6:803:12e::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Thu, 4 Sep
- 2025 14:49:57 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9094.015; Thu, 4 Sep 2025
- 14:49:56 +0000
-Date: Thu, 4 Sep 2025 10:49:48 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Guoniu Zhou <guoniu.zhou@nxp.com>,
-	Rui Miguel Silva <rmfrfs@gmail.com>,
-	Martin Kepplinger <martink@posteo.de>,
-	Purism Kernel Team <kernel@puri.sm>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/4] media: dt-bindings: nxp,imx8mq-mipi-csi2: Add
- i.MX8ULP compatible string
-Message-ID: <aLmnDASizRALzVMM@lizhi-Precision-Tower-5810>
-References: <20250901-csi2_imx8ulp-v5-0-67964d1471f3@nxp.com>
- <20250901-csi2_imx8ulp-v5-1-67964d1471f3@nxp.com>
- <20250901154610.GB13448@pendragon.ideasonboard.com>
- <aLZMQ7c8qr5XO88d@lizhi-Precision-Tower-5810>
- <20250902083554.GD13448@pendragon.ideasonboard.com>
- <7c461931-3b04-4354-a892-52f469511c5a@kernel.org>
- <20250902123524.GK13448@pendragon.ideasonboard.com>
- <647fdf8a-835b-44d1-b0b8-a3d253a14787@kernel.org>
- <20250903192142.GA10637@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903192142.GA10637@pendragon.ideasonboard.com>
-X-ClientProxiedBy: PH8P221CA0063.NAMP221.PROD.OUTLOOK.COM
- (2603:10b6:510:349::15) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A09EC3090CA
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756997422; cv=none; b=kZjt3X1EYeEzKHK2tLReLYfXq9u/+KD3bJ8dLVTK+wfWDeaNE1cAXy3ZF11LfFGRLONR1Vdl1iw0fzixu7BlOYtryz/rR9j8b0gyA0Pis8khoQiRCXAQYhQMlOz4p70Ou1FjlLzHhV9rkRFgRMoyLQ/EXuyVJoU9e7sb/P8AZps=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756997422; c=relaxed/simple;
+	bh=alMbirdT3CCc6D7G4e583oLfyh6D9HJKmtifjlFhTOk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YXNXx2uD8kaouzl3gp05kUZ/ZcqnoFksaloD+pr1qtUpRyjTWJ0e10JekiLM2XeZtRlsjf5yNbQDcrGxUS314GhHqKUISw/xL1wszbMPJjerxUU2ihFfOeRSds9cXwH/dwqnX1qMitShkwTGoMUGs2T7g7mL8K4npAA4b5n3st8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=nWBjnhvg; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X8kR008125
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 14:50:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vEN3DVQPWnQ3YmNmi0dGVFvSE5AeHGCdQkQ8yWp6IEM=; b=nWBjnhvgBAlcyJEd
+	8K6sQ67Jt1vV0mUBXuWNZB+AydZGmLwO7+mQn/QTdhJEmnNJuR8YBYCSvkHnhBuZ
+	iDiuP60TvAkucuIN4zMJ/SqcgtBVS6qUZxVuk+s3d+YxKKcCov7Hrfjxu3V7F9US
+	fBSVit+0cQzXoXHUBmuCosYJUyzi74tuK7wTIY2xFGsJ+CZIbq+4AsTrze4WRt7L
+	xI8xGXNZbUYTX9Jzq64Mi8g7k84jVxUVyXdDiM1V9qzyr+Sawp1oiu9dANZ3CrrH
+	xYMS9RrjcGUCXSS8jvCMAQ0/dt/CyIlh2VbcpsH2J+xFhdBMUi8NG5GW/fPHTXhc
+	oRx9VA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjqshe-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 14:50:18 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso4459021cf.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:50:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756997407; x=1757602207;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vEN3DVQPWnQ3YmNmi0dGVFvSE5AeHGCdQkQ8yWp6IEM=;
+        b=U4nzFKNODLEHYCbhl0fjc5MY22To1vKbdVUT7tfP6fVosSGNBzScXfOUHsaOrg0rgg
+         ILHzXXMTJKbAFGV52gPDRnWJ1bnmSDaA+gX80MlikrG0qKmP3Gc6EfNmNwR0jV9I0qPF
+         uzEE1sBxia9ioOUOcnPFAB7GORA217dkLlB6MIsBjuZD8DV4JO/07teSTFu+7ro7GQi1
+         3QY0jP8NgIWebE0xb86IiKxwEW9AfyoDvoAEFiZiPQI4w+pvXAIBITPlZ04lOCloaBiG
+         4zAli5KuGDj61fM4HbW7lTvn6X2DImXa53IzwF88Yi9yzXNjuseFNLxKrDaIy/9wG9g0
+         BY1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUsBNs7gX0e6HGDi086FyFBXyVY6LhXdBopU/9VuRg9TqsdZa4vYX7hgJdMeMzxbabPQMifaxDN73mW@vger.kernel.org
+X-Gm-Message-State: AOJu0YzuxHDyz95XC/ttIfo+QKzGerE7FECTNT73TL6QUHSN/tdP40NR
+	4tsNiNuGsdlBKGkNjyM0/r1qUtzFQSg4upNcIU5KPhAQ2m7gV38hGQDv8AXHBzwg6uyfgZUg6zZ
+	SHkL4Q4Khy0Q8APDVs3afpg9sL1emejAObxQumfA5pfqSKwcGe57dnLj+fpyB1bDf
+X-Gm-Gg: ASbGncsxcOa6C5YuLO7mcbbv8cB+G47IgLmPctQdIy0mDVTwZjihjH9dvIQsKDpqTHr
+	L9xezjufFrnoXTbhabE5KMhre6P+B9G9YlCKV55KHj0y1KwBp0GvUkwWMqDZFxIrZgPA5MmmvUw
+	dyCWyuPL/365N22E0nlwWkkwNzNCejTt8pDZRncyw+w7cEW2Pa/InWeqgSjq3AMBN3vQv6pnIO/
+	MwyLGSTp1xoUTP6l435gALpq1d2khlCq0D1gxImsAUTHS9e5BcEZ6GniTyFZDGoFAMOgSuonBWc
+	4Dx3l2t1sMRqkp8K72EuNnIdmoa8ie2NclU3MwmbHND99+e+fmkvr+4NsRM6afKdzZanIOKk16p
+	YPaK6LAhRwGoq8OYTMI4uPA==
+X-Received: by 2002:a05:622a:314:b0:4b2:9c61:4925 with SMTP id d75a77b69052e-4b313f6f611mr170378071cf.11.1756997406606;
+        Thu, 04 Sep 2025 07:50:06 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH6TDGPjmSsCamHewOM2+IFNcFZnByXwpc+6NwBdpVl4gFaguUqKR2wdfL7cEbd1fWAsWZrWw==
+X-Received: by 2002:a05:622a:314:b0:4b2:9c61:4925 with SMTP id d75a77b69052e-4b313f6f611mr170377791cf.11.1756997405872;
+        Thu, 04 Sep 2025 07:50:05 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b046cd5c274sm375616366b.98.2025.09.04.07.50.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 07:50:05 -0700 (PDT)
+Message-ID: <6501e5b4-9939-4dac-991c-7a2033cfb506@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 16:50:02 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|VI1PR04MB6896:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5f6a7c52-fbc4-408a-04f8-08ddebc25071
-X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
- BCL:0;ARA:13230040|1800799024|19092799006|366016|7416014|376014|52116014|38350700014;
-X-Microsoft-Antispam-Message-Info:
- =?us-ascii?Q?8al2OpTJexT83gMFuDk2kDEQamynQLKbam7P42ExdUUVM5EKxu05eGSWqhS5?=
- =?us-ascii?Q?6riaWdM2/EtktkvFDyV6ZFXXaUzN44GBqfPTXpIncPUHPu5eGRr5MyIKHbmG?=
- =?us-ascii?Q?cdiUgAgRyzo5FZI2/IxfNdKSAtZl0Eh0w8Ikcd8tEfxiVCU5inXc9hj8Oiyf?=
- =?us-ascii?Q?Q5JR5jZXfV9GeeG4OPFPpRSTtGPfPmn8m6jK5Knch/IZXbNvrP5EqEOE8CIZ?=
- =?us-ascii?Q?tzDFwF0KMKQkiUoRAsovTy0RUCgFWSCHJhYl6EkaVldwJi2P3oNNll4GHtHh?=
- =?us-ascii?Q?+m4wU8BoAnXlgZHdmuZCv8rZ5XnxMflaEoGmBXi+AUHc/HseI3VmMjun+Nun?=
- =?us-ascii?Q?wxfJwIwGi+gkg91oqKVZ2/n50xODRIr0AZU49g1FrXHtRTiQPmjyysWZhmG3?=
- =?us-ascii?Q?YwUUVgSuiCA4h0vsXTa5PYaFT9IrtX25CrKkDx9wg7y42Du/9qMeJzu15bgk?=
- =?us-ascii?Q?qyOMo+FwQmwnepwkonlJ80bwgOjO9fH0BepQUri8Xhh5sZ7bbf/Uptln0AXA?=
- =?us-ascii?Q?Ko3QKZmI71RHBLCetST9357270YzrpCrQNhzQzZPbm32rSa2JDE8hFrJC0df?=
- =?us-ascii?Q?t3V+bkgK8+9lontqEnUTGZeuqOPVBMUxbsSdGI5n+rWXHiy/rLlcPPb7XwN+?=
- =?us-ascii?Q?XOb5Alh9uI/STold5MzElRua/Abr61PL4mihpdOkvxKPOTMEy9vL7vXEjspC?=
- =?us-ascii?Q?9KOlLF7wWqXxn5kRe/y3FocHSe9d1NXubzVz8ez+OGalflLRVDo1aqd9HCmd?=
- =?us-ascii?Q?t53FZhdekJaei6U79TeeNgOXh6fUz2xVcP7dp5N4ev6g9Wn0EM3iAnecn1f1?=
- =?us-ascii?Q?rFiQt5baSdqCBpwhPMNALQ/6kut0e5XuVY3Qltp0I0BkSjqLkZr10pE42kJn?=
- =?us-ascii?Q?etxsKnDfEYzlomyGJK3aD7CAOBo2God5PaLg71AmeEjakufuSjQbnFQZow9k?=
- =?us-ascii?Q?dKjef+ZOurimRlVYZyaftGAjn3C8BpwfdWPs6OmGHZO59hikidV0Mu+7FhDR?=
- =?us-ascii?Q?DdAyeEuN+uzFtl6m1RUgoNY/YlQdlUGlA3NAAaF72h5uFPzRTwDYu+hM4pEJ?=
- =?us-ascii?Q?SbE2H9wEV7B8es50XYbkiUtspUtjTtZdy0k6WlZu2o4akPbrey1/8T0dn0R8?=
- =?us-ascii?Q?rdUVg4XiGNUKvZ99a0lEZksOFgfD+pkjSNVpjWT63Q67bwMcd/0iZYQGtnww?=
- =?us-ascii?Q?SHnP/xaAdk/zVPuvFSGyFyivKk7GGp0dgw9l9xof5x2qNn2rE2e+PeljzLv0?=
- =?us-ascii?Q?nGNyP6pGWiHogPNmV3qqZQYeWXwz5LZkq3QmPp9BU1ShsBjAQr0qDt9+v8H0?=
- =?us-ascii?Q?pmB+YopJ0akP3tuKtiSZa1H8Av8s73sswEEG5jVvYEQWrqZ0qlDfrZ1u0E9S?=
- =?us-ascii?Q?VWmDpRf01d6XKsza3nyH/efaB9U4M2YMw1A2pt3sP0m85o+HfMq87r1lp0SK?=
- =?us-ascii?Q?ThtBAj8S/E8=3D?=
-X-Forefront-Antispam-Report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(19092799006)(366016)(7416014)(376014)(52116014)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
- =?us-ascii?Q?WnHnOXizdFVCcZLrrStO+FNxGeMNF4/HPXaQ1/PouHJ1zK/ykvajPjaR5/po?=
- =?us-ascii?Q?PG0yxWa3nMjsnCVJk5VT/rUYpEZBV93GLgWcONuSOM503sQct980aGafTwS4?=
- =?us-ascii?Q?DawF8r0CqnKK3NiBkj36QjqPQ7M6stocsPPk/bgwkpJKikp2pILL8KQadl22?=
- =?us-ascii?Q?NojInH957FYRt0dpNYaH7pxyaP4YAizoyFdJjGRmR1jezCnr0coifmYTkg8M?=
- =?us-ascii?Q?SX/qQDHBHA4Q2KX4vlYYONtOzQK+PJ3Etm/vvfLjKfIYgO/NOIIKWARTWAWw?=
- =?us-ascii?Q?/DlAXmx+FbhemHS4I67h627WmSW3XmTJTRrm5ThTsebZaZlRcqxX6jOzDVho?=
- =?us-ascii?Q?aFqSizCZUkAvnZ1jiNq/Caolnj2T7sTlohkRwwIZ6iIkcu6foJKONeaOMZQb?=
- =?us-ascii?Q?TpCcBQhciqvO24X1VzXhe/byXPws12ViizUOGphhhbNbOXFHYg9KT6sLIClN?=
- =?us-ascii?Q?ie+ocSqrYSpzAY7B2v55KjaiIevI3zlz7DDHWzN9YGVqPRJkH76vkBTnp//P?=
- =?us-ascii?Q?XAXeH9GaTvdC5ISIZQlPhl2rZjjpz3xfGmg/k5Ctk0c4SMSqiD+5jhtiU6Yy?=
- =?us-ascii?Q?mJeim4zmDYTM96OcQMKk/wXq7J43DaIYFUQOsutQxXrr7PYEmV0bSXeGt2HV?=
- =?us-ascii?Q?9bzUJzR6KYOwKXoLhHuYeZirQt/kC4rSVUWKsAai57R17M+qQNpQYqm+OEsU?=
- =?us-ascii?Q?rp+vFHq9UmjEhe5i9NPJI5qATOWWAuVb2m8vhlWSPhhwkDWbHseyjRFileM7?=
- =?us-ascii?Q?3ov9WqQrpDTFIve2cGPVvZmiBNp7bEe0s0XA+LBn8ZaUaFIJMu96zBPgtpcf?=
- =?us-ascii?Q?+B/QN9vxHOCK29jO/9a/w8gkNkTMCCMS9fN+gcINraRP41ES1uedZqlM8Wgh?=
- =?us-ascii?Q?/gxcP2cNmxwjsegl2daBi4f8RtJqOMj3iCLQhb1lYmwifxfV19RW2AtM071o?=
- =?us-ascii?Q?aGcQ4BZlRSr8tH0jhBtKkXGhT9wq/nvxLGr4a6To1jkNeO6t+LJaujvI/niq?=
- =?us-ascii?Q?2QmYm8J+Sdp8iKeZJYZwsXBTp01yxgQ/LD4mYrMZdUdByka8xeDsMg4KCSYn?=
- =?us-ascii?Q?eR5JoKt5KUKTJKeaFKJ1gSeJypSduVdmsMadyWxYfQVPr0JX3/SpK3ImNHNm?=
- =?us-ascii?Q?9ZkzYPG+xpcCkE8tcgGWJXHoWa/0A2+unLItTRJh1Jxlyb+YGunzB3eiE2Q6?=
- =?us-ascii?Q?6Kgf4hIGtF75kEoj3LHCN+6urItS9YjF9pAYvJ6539BXKwTykOVoOLp0vsxb?=
- =?us-ascii?Q?w3rl5XNhWtpxEsHjG7N3kR3q+sfHJ2NJ7ujKARpTg4gyMBBwUP/WGXLCXMex?=
- =?us-ascii?Q?v6uKGHWxNrLXdMsqhwc0MTj2u92/Z2WWX3MeLFAW1VRhF6lnDwY9FqKRVV7c?=
- =?us-ascii?Q?AubmVzn/NDdxqGwNDGjK6lA2dvBd0GBWTGz+LGzowWPLxE7i0pIsI+wftGd/?=
- =?us-ascii?Q?cTZjPgrpRb5gxB/uzIdrIk1wzIrzVkgyVmSMBKNIEIeFZshMw+cSthQYjDmM?=
- =?us-ascii?Q?2sx8mZeetWbAV09dQd3icL/Z4ItC9m8UNLY5T0dbcxpU4+3NdIMjTYc9Lp4O?=
- =?us-ascii?Q?lajPAsfkvYNc8Edjb4Cd08N81Uyk8U+gbuqNvMVX?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5f6a7c52-fbc4-408a-04f8-08ddebc25071
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 14:49:56.4394
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B+VnTw5HQpbJbZXDyGjy04WKFcLZrDXv4FwgjXleK+qH2GWBUyKC7OxpHLdipfQCuD77ZtrWqiwYYmXDtPRr4Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6896
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] i2c: qcom-cci: Add OPP table support and enforce
+ FAST_PLUS requirements
+To: Konrad Dybcio <konradybcio@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Loic Poulain <loic.poulain@oss.qualcomm.com>,
+        Robert Foss
+ <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
+ <20250904-topic-cci_updates-v1-4-d38559692703@oss.qualcomm.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250904-topic-cci_updates-v1-4-d38559692703@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b9a72a cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=scFqH3SFngUqC7XewS8A:9
+ a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: ZZVuK_lBBfhxDKQl7jlkMiXPKbQmW3aR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX8ZTeZ2IBSurk
+ t/9uCweeNHlqMOCiRaVtJXbP1ObYEw7kOVsUx6ydF659i3J/SOTiGhxe8Qd23tpuH0Knb+bhmap
+ FmoM7JQ9keJMZuiV89DLMDPxapptlsBGRZ9CJSHGUgpF77Kx2xQxLCZQHIa1Twgk9dxvotUhhBP
+ zipWMGefFaqN9h4mLIVDwuWXv/EogHoEypnRrHgey/GGhAkV/76jVfn5bqHQQPrBS/sy3MdW2ki
+ McqGQ+7TX89XrqykPf84XOtjAURQBD/uoC931JDUWXEL8cDL70NIpEfsED+9LdUqvHJtbXoskZf
+ NC7URUCpbdLo7kCQdZVozvimGjS7DkBZYkcBRfpafIztK/+djRRgvjx8zXy9e11EJZtYO9rZFPm
+ /rWK06aE
+X-Proofpoint-ORIG-GUID: ZZVuK_lBBfhxDKQl7jlkMiXPKbQmW3aR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-On Wed, Sep 03, 2025 at 09:21:43PM +0200, Laurent Pinchart wrote:
-> On Tue, Sep 02, 2025 at 05:53:39PM +0200, Krzysztof Kozlowski wrote:
-> > On 02/09/2025 14:35, Laurent Pinchart wrote:
-> > > On Tue, Sep 02, 2025 at 02:26:53PM +0200, Krzysztof Kozlowski wrote:
-> > >> On 02/09/2025 10:35, Laurent Pinchart wrote:
-> > >>>>>>          compatible:
-> > >>>>>>            contains:
-> > >>>>>>              enum:
-> > >>>>>> -              - fsl,imx8qxp-mipi-csi2
-> > >>>>>> +              - fsl,imx8ulp-mipi-csi2
-> > >>>>>> +    then:
-> > >>>>>> +      properties:
-> > >>>>>> +        reg:
-> > >>>>>> +          minItems: 2
-> > >>>>>> +        resets:
-> > >>>>>> +          minItems: 2
-> > >>>>>> +          maxItems: 2
-> > >>>>>> +        clocks:
-> > >>>>>> +          minItems: 4
-> > >>>>>> +        clock-names:
-> > >>>>>> +          minItems: 4
-> > >>>>>
-> > >>>>> But according to this, the ULP version requires more clocks than the QXP
-> > >>>>> version.
-> > >>>>
-> > >>>> If only clock number difference, generally, it is still compatible and can
-> > >>>> be fallback, especialy driver use devm_bulk_clk_get_all().
-> > >>>
-> > >>> That's a driver-specific implementation decision, so I don't think it
-> > >>> should be taken into account to decide on compatibility.
-> > >>
-> > >> The clock inputs do not restrict compatibility. If Linux can use
-> > >> fallback to bind and operate properly, then it's a strong indication
-> > >> devices are compatible.
-> > >>
-> > >> Imagine exactly the same registers, so same programming interface, but
-> > >> one device takes one more clock which just needs to be enabled through
-> > >> its lifetime. Such devices are fully compatible, even though clock
-> > >> inputs differ.
-> > >
-> > > That's only the case if someone enables the clock, isn't it ? From a DT
-> > > binding point of view, how can we know that the extra clock will be
-> >
-> > We talk about software using the binding in this particular case. Can
-> > the software use fallback? Yes, it can.
->
-> The Linux kernel driver, in its current implementation, can, yes. No
-> disagreement about that.
->
-> > > enabled by a component separate from the driver (in this case by the
-> > > fact that the devm_bulk_clk_get_all() function gets all clocks) ?
-> >
-> > If you go that way, only 100% identical devices are compatible.
-> >
-> > >> I also wanted to express exactly that case on my slides from OSSE -
-> > >> slide 28:
-> > >> https://osseu2025.sched.com/event/25Vsl/dts-101-from-roots-to-trees-aka-devicetree-for-beginners-krzysztof-kozlowski-linaro
-> > >
-> > > Quoting that slide, you wrote
-> > >
-> > > "Two devices are compatible when the new device works with Linux drivers
-> > > bound via fallback (old) compatible".
-> > >
-> > > That is clearly the case here for the existing *Linux* driver. But what
-> > > if the driver called devm_bulkd_clk_get() with a device-specific list of
-> > > clocks ? Or what if the same DT bindings are used on an OS that has no
-> > > clk_get_all() equivalent ? This is my concern with declaring those two
-> > > devices as compatible: they may be from the point of view of the current
-> > > implementation of the corresponding Linux kernel driver, but DT bindings
-> > > are not Linux-specific.
-> >
-> > It seems you think of compatibility as new device is compatible with old
-> > kernel, e.g. one not requesting that clock. We don't talk about such case.
->
-> No no, I'm considering compatibility in the same sense as you. Sorry if
-> that wasn't clear.
->
-> > > Or do DT bindings assume that drivers have to always enable all clocks
-> > > declared in DT, even if they don't know what those clocks are ? That
-> > > seems error-prone, in quite a few cases drivers need to handle separate
-> > > clocks in a device-specific way, with for instance a particular
-> > > ordering, preventing them from using devm_bulk_clk_get_all(). If all
-> > > drivers are required to manage all clocks declared in DT, this would get
-> > > messy quite quickly.
-> >
-> > I don't really want to dive into such specifics, because it is
-> > impossible to create a generic rule of out.
->
-> We're on the same page there :-)
->
-> Compatible strings model compatibility with software. As DT bindings are
-> not OS-specific, they should be designed based on the concept of a
-> driver, and not on a particular driver implementation. As a conceptual
-> generic driver can't be precisely defined, we will always have edge
-> cases.
->
-> In this specific case, I think that devm_bulk_clk_get_all() is too much
-> of a Linux-specific concept to consider that devices with different
-> clocks are compatible. Even considering Linux only, a driver that needs
-> to handle at least one of the clocks in a particular way (for instance
-> to guarantee a device-specific clock sequencing requirement, or to
-> retrieve or set the frequency of a particular clock) will need to get
-> clocks by their names, making fully generic handling of all clocks not
-> possible.
+On 9/4/25 4:31 PM, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> 
+> The CCI clock has voltage requirements, which need to be described
+> through an OPP table.
+> 
+> The 1 MHz FAST_PLUS mode requires the CCI core clock runs at 37,5 MHz
+> (which is a value common across all SoCs), since it's not possible to
+> reach the required timings with the default 19.2 MHz rate.
+> 
+> Address both issues by introducing an OPP table and using it to vote
+> for the faster rate.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> ---
+>  drivers/i2c/busses/i2c-qcom-cci.c | 33 +++++++++++++++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
+> index 74fedfdec3ae4e034ec4d946179e963c783b5923..d6192e2a5e3bc4d908cba594d1910a41f3a41e9c 100644
+> --- a/drivers/i2c/busses/i2c-qcom-cci.c
+> +++ b/drivers/i2c/busses/i2c-qcom-cci.c
+> @@ -10,6 +10,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_opp.h>
+>  #include <linux/pm_runtime.h>
+>  
+>  #define CCI_HW_VERSION				0x0
+> @@ -121,6 +122,7 @@ struct cci_data {
+>  	struct i2c_adapter_quirks quirks;
+>  	u16 queue_size[NUM_QUEUES];
+>  	struct hw_params params[3];
+> +	bool fast_mode_plus_supported;
+>  };
+>  
+>  struct cci {
+> @@ -466,9 +468,22 @@ static const struct i2c_algorithm cci_algo = {
+>  	.functionality = cci_func,
+>  };
+>  
+> +static unsigned long cci_desired_clk_rate(struct cci *cci)
+> +{
+> +	if (cci->data->fast_mode_plus_supported)
+> +		return 37500000ULL;
+> +
+> +	return 19200000ULL;
 
-New added clocks is simple clock, needn't specific handler. Only need
-enable at runtime resume.
+Well this is embarrassing
 
-Back compatible is hard to decouple with driver's implement 100%.
+ULL -> UL
 
-Compatible string C1 have clock A, B, C
-Compatible string C2 have clock A, B, C, D, E, F
-
-A, B, C is common for both C1 and C2, which need special handle.
-D, E, F is simple enable at probe or runtime resume.
-
-Can C1 be back compatible C2 (assume all the same except only D, E, F
-clock difference)? It is always depend on drivers' implemment.
-
-Add back compatible have NOT bad impact for drivers and bindings. Although
-back compatible "C1", "C2", driver still use can use C1 firstly to do
-special process.
-
-
-> For such drivers, difference in clocks will preclude
-> considering two devices as compatible.
->
-> As this is somewhat of an edge case someone will need to make a
-> decision, and I won't fight tooth and nail over it.
-
-Agree. Need a guide line. My opinion is
-
-back compatible if there are no new drvdata (pltdata) in drivers.
-Needn't back compatible if need add new item in drvdata(pltdata) in drivers.
-
-Frank
->
-> > We decide here about
-> > programming interface mostly. Can Linux use the one from fallback-device
-> > to properly operate the new one? Can the same driver bind to fallback
-> > and operate the new device?
-> >
-> > If you enable clock by clock for whatever reason, e.g. very specific
-> > programming power up sequence, then answer would be: no, Linux cannot
-> > use fallback because handling clocks differ.
->
-> --
-> Regards,
->
-> Laurent Pinchart
+Konrad
 
