@@ -1,154 +1,142 @@
-Return-Path: <devicetree+bounces-212857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3495B43DFD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:04:47 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7F09B43DF5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:03:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A81087A9F18
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:03:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F5DD3B43BD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:03:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1D330147F;
-	Thu,  4 Sep 2025 14:04:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7CEF305E05;
+	Thu,  4 Sep 2025 14:03:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KfJohFUH"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HvZD2U9R"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3952D8771;
-	Thu,  4 Sep 2025 14:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD0A2D6619
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:03:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756994679; cv=none; b=dEzAtVj0GQJ9AX9aQt+97z+jLJirH3ZnHunQZYL95n/gJCx6XqepipXK4rbIVMiTn9FWG2vhaTC2tXox0SC8j1W45GcDyq6tCgdHo2GrxGpBwmcqoy+gcFLJym4+9R4pb8C6hBfB7DD5ukoqMbyq99JZF63+VvdwuGX0MqzqPGc=
+	t=1756994613; cv=none; b=rzLsmkv+GDRlD9eB1PudRwKaek7y2z/xAfiom5B3CZjFEmeTdsoa1VleTfRwKesJIGZ9335F2bVgi/VZPZce8AqAvU3cpehknXtHqGum8E/qvruNDjhHB1Lt8fbtgiFwMTj0PgyUuGnZ7n3QPhcvVVZDIfgxKdWkAftVk+xN/RE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756994679; c=relaxed/simple;
-	bh=8D15COu2exGUd3E0Qy8knhTqB4T/stT3kGk+YvNt1Xc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BtGJNnHqiAsLiPU25ARVPZjYgLNvKVd4UdnlFgS/1OMVsiss/8/lLDdB+NOB7m6XCEe8jNou9HJbFshHdqRu1qa5nACBSipqdYFWmIJRtcDk1Z0KWCf18f2+ZRSss1X9koT7pZqQ8DCJwerWs+VOBuCUQ7mZi9YC+oRrhAZKg+M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KfJohFUH; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756994678; x=1788530678;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=8D15COu2exGUd3E0Qy8knhTqB4T/stT3kGk+YvNt1Xc=;
-  b=KfJohFUH7Hn1UeO43oPCiN3r+3F941+Cogr92jFKdEr40icswc/cO/Q1
-   P4ZXVOEFo4TOHlPuR/3xJYWVJqbuoj3LLbSOOUmWEF59xJhZaQ3xqLwIV
-   zZoIdG376fb/57Zl6nMqJdCHKUNd7dd0WnXBywvjPToeTaNJ72YD+D/tu
-   CJfOt1RX9do3P6jR3r2MnvnazJ302KTRUQ6dbBbpXXiZG7BmOdpt89X5Q
-   qjPZJ0WiQoBA4A6BVYaZ33ifaOVyiSKNgcjAHI3jgdLGIQKL/JIh53vMN
-   iqYLxc84JY6RmGVe1btPRJFy225gJwcXpk0s3EbEe1d4kWXe+lIfJPH+z
-   w==;
-X-CSE-ConnectionGUID: dur8aXbyR4icYs9PvtclUw==
-X-CSE-MsgGUID: 8XQCbnVKQZGLYFK/yZFDaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70431585"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="70431585"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 07:04:37 -0700
-X-CSE-ConnectionGUID: jk3xqa1ERUuvLneeMH0DuQ==
-X-CSE-MsgGUID: ZlXGG7xRRzuIrTFtgMNG7w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="202827580"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by fmviesa001.fm.intel.com with ESMTP; 04 Sep 2025 07:04:31 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uuAYv-0005Mt-2U;
-	Thu, 04 Sep 2025 14:03:53 +0000
-Date: Thu, 4 Sep 2025 22:02:41 +0800
-From: kernel test robot <lkp@intel.com>
-To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Esteban Blanc <eblanc@baylibre.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
-	Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-Message-ID: <202509042119.GiwpuwCl-lkp@intel.com>
-References: <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
+	s=arc-20240116; t=1756994613; c=relaxed/simple;
+	bh=ArO34LFWAHT6cgbIIgrLmpPjzc7jkLJhhCwhm9njkJg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dHad09pPuKIwf+/1WUvSWHXO2p+VP66hendXxTaittNsAbeWRE+edema2gg3X7PvTZdjq7xKeM6n1yvd1WWaWas4ud1b9TyMF9yAExT+DCp90Vf5aoJf3O4YIF97TCs76c3QqaueM7U4FWixoCE8echp/G+qNZO+A/ijfXEXjRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HvZD2U9R; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X7AL003771
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 14:03:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YWpJrvw9vwWJVOBOCwWHiQEXh4D7P2GkFtskOHhXN7Y=; b=HvZD2U9R+UWFBATU
+	91D05jhpzqp6KNdXE7VUfdWfkq4yof3ZGyKHqzdB0+LNdIQiaIUn0Hel4LsbAc8X
+	wzH5F5WZFsmmB8W7sCXmF+GIpiJetOBAsigKfR44f6Ps5XN8d8DOjw3mqX5vqXd+
+	IWlCXfrhw4+15tMhAVRmOhCdCoFjGgLyCXnPY2YseUL73dbEZNI9oyLQu51UX4pS
+	8XfI5pNBsqMp2vym9bISUg2YH9AMmk/ZTWvOmrh9YqtA3LMb9BiEws8fsIGcoyyj
+	dTKdWI5DHaGx5PYXjxAS8gBVcatA/18h+Y07O69Scy2mxFL9dHiDMKlYhK8XEkEA
+	qGWCkA==
+Received: from mail-vs1-f71.google.com (mail-vs1-f71.google.com [209.85.217.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s7rvc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 14:03:31 +0000 (GMT)
+Received: by mail-vs1-f71.google.com with SMTP id ada2fe7eead31-53502031d18so40391137.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:03:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756994610; x=1757599410;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YWpJrvw9vwWJVOBOCwWHiQEXh4D7P2GkFtskOHhXN7Y=;
+        b=IW7bneYUcf+e9zyOWVdYQKEj47sH9fP9HGYPSyIU0i8iDbPJx8andNSGdUa4ibv2OT
+         2IyREfyjtV2eLu24De5IEkOKQHhfgOWpz5C6izgrwuGugX2QioAiSHQXvcBLJKYjYowR
+         HhOKnjQBk5f9nWKEWmbUVZhUKgQl5/l0zhHElkt2LVyTnED/8dFor6+WPbtaZk+0dUgh
+         9qdiiIyIaIiyb6zzeP9qJQMR+qyeoNXHQr1nxdP4DG7F/FKRe96Qv3QDRkT/C7PNiGPo
+         S5Rg01UgznarGXQbjyWg+FnqgPMbjhy1od9UyGsv0jjoUIPwyzc6IPonP7EVaydLUKiZ
+         CEGg==
+X-Forwarded-Encrypted: i=1; AJvYcCV5C5Y54F6AIINtYDTDse4E1nUp2GKN6H/Mb3jmFeLPrNdTXZPW8TlTqmpYxudEJvonyRkOytlzH0ld@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqcG+Lf0KSS0zw7c/XVuZLj5+Q2LNiUl+dFZDHSVssMP0kBfkh
+	McgWoDBR6uJR4/9vVQ2gvGWlol1C3EK1w8+cq3i1K9lK4fr0wsKH1GCBPM2FaOtsSfvCqn36IYs
+	xskAHjOZfJxA8md8aDKtOXBNTn705Ozr9R+gchTLKnmvKcx8SCO1e1RytICV5H5Gl
+X-Gm-Gg: ASbGncsmerOah/gBBRHxWceWhamJVnH8im7xVespfRPJSbSH9C/8M2PyleJcO+lbqKH
+	oH5faYPXMHwLVUN4BEeGIAuriqGfbhKM/qiwF4OB8H/txMMO5dPTKX2hD8hAOAZYS6cInd13R8c
+	DSuzH/Dew/z+Z1ZCvR1v0L5y6SADn4ep384v+86vaTfqcPvk8X/EOInZhoukk+SzRPI4Tu8DUoe
+	3ei28P4kFKD+Sog09qAfz0I8kZc7MKfwvDEjDgXigIx0LyEHtiuwu/bHtuV/CYrYYUVCX7y7GLW
+	qT/4iH//Szze6PoUnZbgE+xq6XGrEagXzwdk92B+kdCfP9xogofTHhgKRnBVEobPIceHsJEFT5G
+	d90F57a7dIqiYWJ1OfgdGEw==
+X-Received: by 2002:a05:6122:530d:10b0:545:eb6c:c6cd with SMTP id 71dfb90a1353d-545eb6ccd07mr149561e0c.0.1756994608508;
+        Thu, 04 Sep 2025 07:03:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEemEW1KVZ+XfsmWOhxU5sZGSGNKVct6j7eGnjkrqmieGlIosDSRswoXL29fuGAJkdSjSxbYg==
+X-Received: by 2002:a05:6122:530d:10b0:545:eb6c:c6cd with SMTP id 71dfb90a1353d-545eb6ccd07mr149338e0c.0.1756994605943;
+        Thu, 04 Sep 2025 07:03:25 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62069b79e1asm848778a12.26.2025.09.04.07.03.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 07:03:24 -0700 (PDT)
+Message-ID: <2c5d97b4-762a-4bbc-b85e-53bc59aaa4c9@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 16:03:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: qcom: sdm845-enchilada: Add notification LED
+To: David Heidelberg <david@ixit.cz>, Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Antonio Rische <nt8r@protonmail.com>
+References: <20250904-enchilada-led-v1-1-dcf936ea7795@ixit.cz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250904-enchilada-led-v1-1-dcf936ea7795@ixit.cz>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfXzCMIEdUwKCi3
+ gD4AtnYIKSQsPTodCpEyEjlZGt1qt46xnkjzd7ndIudDG1C4f91DTiZYJTzIjbxuxwU08dMhWlN
+ BmwJVlUiUxozwdNP6eGQuYZSQM7lKsGFOXIs2U4j+AUdp1ygglpWGiQsqw3ab9CnN5umWY+EJxZ
+ KCpvqClgTjdTsjHYXwdqZVyPDImhY47H/oUbBL0asMB1rVb8zn0bMNsAcqzFm6BuMMA3DbiweB9
+ KBguUhPKl86BqbR1TMbAexINcefg8vaYtDZFoTj7OzUZoRz6N8x/ZLLhqv+nEDnMChM2M1ViSyc
+ SOtnu2dahoETkTd8x/ziG6AqvnjTV2iWbTnWfIuXi7ip0QxKMOreilaJxNztG8Ym7VWss3tkvhj
+ P8AVWg2O
+X-Proofpoint-GUID: cSzyg4fO-pcLl4K9aZN8WYg1fWu0iYwA
+X-Proofpoint-ORIG-GUID: cSzyg4fO-pcLl4K9aZN8WYg1fWu0iYwA
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b99c33 cx=c_pps
+ a=P2rfLEam3zuxRRdjJWA2cw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=sfOm8-O8AAAA:8 a=EUspDBNiAAAA:8
+ a=sMes0nJH1TucWEBAg2MA:9 a=QEXdDO2ut3YA:10 a=ODZdjJIeia2B_SHc_B0f:22
+ a=TvTJqdcANYtsRzA46cdi:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-Hi Matti,
+On 9/4/25 3:54 PM, David Heidelberg wrote:
+> From: Antonio Rische <nt8r@protonmail.com>
+> 
+> Add the notification LED for the device.
+> The R/G/B channels are controlled by the PMI8998 LPG.
+> 
+> Signed-off-by: Antonio Rische <nt8r@protonmail.com>
+> Signed-off-by: David Heidelberg <david@ixit.cz>
+> ---
 
-kernel test robot noticed the following build warnings:
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-[auto build test WARNING on d1487b0b78720b86ec2a2ac7acc683ec90627e5b]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/dt-bindings-iio-adc-ROHM-BD79112-ADC-GPIO/20250902-203558
-base:   d1487b0b78720b86ec2a2ac7acc683ec90627e5b
-patch link:    https://lore.kernel.org/r/08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount%40gmail.com
-patch subject: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-config: sparc-randconfig-r071-20250904 (https://download.01.org/0day-ci/archive/20250904/202509042119.GiwpuwCl-lkp@intel.com/config)
-compiler: sparc-linux-gcc (GCC) 14.3.0
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509042119.GiwpuwCl-lkp@intel.com/
-
-smatch warnings:
-drivers/iio/adc/rohm-bd79112.c:212 bd79112_read_raw() warn: inconsistent indenting
-
-vim +212 drivers/iio/adc/rohm-bd79112.c
-
-   192	
-   193	static int bd79112_read_raw(struct iio_dev *indio_dev,
-   194				    struct iio_chan_spec const *chan, int *val,
-   195				    int *val2, long m)
-   196	{
-   197		struct bd79112_data *data = iio_priv(indio_dev);
-   198		int ret;
-   199	
-   200		switch (m) {
-   201		case IIO_CHAN_INFO_RAW:
-   202			ret = regmap_read(data->map, chan->channel, val);
-   203			if (ret < 0)
-   204				return ret;
-   205	
-   206			return IIO_VAL_INT;
-   207	
-   208		case IIO_CHAN_INFO_SCALE:
-   209			 *val = data->vref_mv;
-   210			 *val2 = 12;
-   211	
- > 212			return IIO_VAL_FRACTIONAL_LOG2;
-   213		}
-   214	
-   215		return -EINVAL;
-   216	}
-   217	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
