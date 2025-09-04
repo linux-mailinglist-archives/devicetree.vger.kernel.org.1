@@ -1,540 +1,190 @@
-Return-Path: <devicetree+bounces-213052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213055-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5E2AB4479C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:44:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D82B447A5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:45:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7042B1C214DC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:45:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7DE9C586BAD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:45:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20643284B37;
-	Thu,  4 Sep 2025 20:44:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C241A2747B;
+	Thu,  4 Sep 2025 20:45:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dNL6U9lg"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="jIfxdcwK";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kFZ6fULo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB7A228468D;
-	Thu,  4 Sep 2025 20:44:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922311F4168;
+	Thu,  4 Sep 2025 20:45:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757018682; cv=none; b=Vw1sGYas42TCDQhbn4Ot0s+UCkuXhNZ3Ih6Ehbx0fAlbWlCisCb9caoSVbLcF4XADhaTbtafLHL0g/cR97Yu2/DZ+VqJjyikZhKbl5TTEn4cDto5PNvWUNYlSwzwSmbH1nTSVSmyE4i55PdFxT7lVKNfjTQAb7Y7RG9inJQcmYQ=
+	t=1757018750; cv=none; b=AcFOm/WIbRZPQ3B5cw8urCGp6nXSLzI6ity5R0oS5CuPkBWe/XLXDsCaXxp48vcIpjJWBOvtMjC4arUXStnDhY1TxTiYy57QqAm0SHvO9+f8CH3mSOApb0A8OjxNDcT5zUevtnvxCyoa5SnCKJlcC9JlvFb2+l62P5MGbXMHUoM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757018682; c=relaxed/simple;
-	bh=yRhBN8Cg8Mh2IvqxC8lT4PdkpIOwKSFChvp58UPwuT0=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dR1lX59pTu+TsepLdJJE8Fv1YOBcGH/pE9Qbivk/Nl79rzLfiKRZpRORewpvwy6G0Rgzf2fRuEpiz5lFSACdcdA57zIrw3PIGcjiHVnCKt8few8rK0Fw6BAzSZzAKZfNVYqwLdZE5VvyZpyAZOFqrhpvB+asIlFKysJAqHAP8Uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dNL6U9lg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 8D5B9C4CEF5;
-	Thu,  4 Sep 2025 20:44:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757018681;
-	bh=yRhBN8Cg8Mh2IvqxC8lT4PdkpIOwKSFChvp58UPwuT0=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=dNL6U9lg7bepoRy8FshYBD7oANBt8vLnVRvLkqVieZ8+PBMbs4mVDmLmhSkCJ55I7
-	 BhzpyBB+XbF48jSNcTYSISxcnqrBK7sfbLN2GGDLmtObJJasnTTfTqlfU8wXMPL/LW
-	 U2ISk6Uo9JDV9ck8HVWWszXr1D3xjlZFGvexzz6W5cdUAjCqU/ngi7do/GfML7JCHv
-	 BPc5EbMpzIRmkMRSY9oswWlzHU+MBH+qzNE2k5ODcyjJ13I1TTP//laoIcHsqYfUHn
-	 kyJzXLYq7OdQIomARGY80zWaBVmZ5WfGC99hyOPQcf2ZDsMJ47N5bx8Os6iDurjub0
-	 qYrn+eWc70TpQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 866D7CA1015;
-	Thu,  4 Sep 2025 20:44:41 +0000 (UTC)
-From: Woodrow Douglass via B4 Relay <devnull+wdouglass.carnegierobotics.com@kernel.org>
-Date: Thu, 04 Sep 2025 16:44:36 -0400
-Subject: [PATCH v6 2/2] regulator: pf530x: Add a driver for the NXP PF5300
- Regulator
+	s=arc-20240116; t=1757018750; c=relaxed/simple;
+	bh=05i5KKzlsbT/8I79/AsjlFkfQC/HDtaYEWwTXvjLtSc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=jfmPDrvodTK1nxl0oPJMCaOqF/e5RjZF8pqgUrn6vl395OFRbS3/8Ujz/pKxtX19OmIS6MdfkTsbGCU3LA90beM6woC4Goz2e36hThyoXGe+Mw2u/RyEUbVPT+iMPnsgg0TzrpVvmOU+/go4jD4axgm8t1Zw5uk8GOaU2BIR/zY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=jIfxdcwK; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kFZ6fULo; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHs223M9sz9t9t;
+	Thu,  4 Sep 2025 22:45:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757018746;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Gu9QfSR06q9gQse2ZBICxJa2UFCZpC56QqcslqucwuE=;
+	b=jIfxdcwKB+041GOrNihkdrUbdB6SkGFw3SbztFhDhSLSJUuAML7CYPCYUit2HJ8hOiWIGU
+	4/kRY5JDoKnljd4oG66MWWiCWVdTiBSBX2kZDdg1JUDNgpF+AXskBlyUeg04/YerW1uErK
+	lyPgNd3mgNayTVD/nMEmnD3FFanTzrGzHmWNfHqZS5mX294TW5bl+CrLGjYBNwF4iSb85S
+	b8joR/ojgf0Dz+VUJdj7FSBRgiqdXkf1oqQz/ciHFIJ7oVYjtxJX8yy7zKUPEWBt6U7FR0
+	2DFTrK1bXeIOqhli5vzI5+BkWBcpSQ94FrxnP3GrrknvnRnfvnwF05ySBq45Sg==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=kFZ6fULo;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757018744;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=Gu9QfSR06q9gQse2ZBICxJa2UFCZpC56QqcslqucwuE=;
+	b=kFZ6fULolcuNmXOd+8DAb3Rgtphasmqs2mkaZM+AN+iSWWizXzRwC4GLRflBDq2JQtNmKm
+	I02AYhkyfG+DAs6ue/62esVrXWkVUB3gLbtyyO8Ag2jn3M4aHc/iIqsGe0ehFYpW+V1+iD
+	E7OR24FDKcX2sB5yK0U49FVAc7RO3Yb/qU79MoZTgAt2hvk3u/xrQo8mT7GJJEJPB091AU
+	hUqq++vzjudawhGxNO9nyl0Rpi/z1G8o7L2gn6ZwR3LW5x675Ksq3s5ixf+GVZcsLonBOa
+	BpTHI0zefb+l7iJfJ/QLI7qY2zWhB4Zk6UAqWOw+/tTr7d1s8gqCB3VnF4tMWA==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO to Retronix R-Car V4H Sparrow Hawk
+Date: Thu,  4 Sep 2025 22:44:56 +0200
+Message-ID: <20250904204522.180439-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250902-pf530x-v6-2-ae5efea2198d@carnegierobotics.com>
-References: <20250902-pf530x-v6-0-ae5efea2198d@carnegierobotics.com>
-In-Reply-To: <20250902-pf530x-v6-0-ae5efea2198d@carnegierobotics.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Woodrow Douglass <wdouglass@carnegierobotics.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.12.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=12876;
- i=wdouglass@carnegierobotics.com; h=from:subject:message-id;
- bh=4xomC22sZeoE0/GjeYr2EJnfhRct4GMD+4LxZDoHdEI=;
- b=owEBbQGS/pANAwAKAewLuLlPNh4UAcsmYgBoufo4fynAjrWSJTy/4kXH0bwqT8Tm/bL79Yn6y
- jvRTa236FaJATMEAAEKAB0WIQSIUqjrbDLQw0mgxHLsC7i5TzYeFAUCaLn6OAAKCRDsC7i5TzYe
- FBI8B/0QwBgKL4IeQ6gh2CC0jSCAYdPFsxWIzfKw4JEHG7CGzOkIQuoE5TvXH5mTkyKszGbe26x
- I0xuiCRYQNllL1aTxGFcH6Ndu7StzknUoNqwd0UrxPEZHpraMmbOIuqtn/qhd6Fp3l39v35O6lF
- zwsAtovnm8kJGTIPHLPZ1earmHxWkWEmgnZreC1QSxiMi7+hmZbRMmWvu5KvOLpwOnKLItipYFx
- xtPN4AKRwHafDoD72hkTETiUxQHHgxpcz8lXqo9i3B3xf9av1zJzlmVEQY9m3q62vLuUG2g/GOK
- RPDgfSWiMylw7ZunS3kVb5WV7J0/a7j4Av7GrB+86nWM8r9C
-X-Developer-Key: i=wdouglass@carnegierobotics.com; a=openpgp;
- fpr=8852A8EB6C32D0C349A0C472EC0BB8B94F361E14
-X-Endpoint-Received: by B4 Relay for wdouglass@carnegierobotics.com/default
- with auth_id=514
-X-Original-From: Woodrow Douglass <wdouglass@carnegierobotics.com>
-Reply-To: wdouglass@carnegierobotics.com
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: c5fb2a05ee80b534582
+X-MBO-RS-META: w3o1ifttorfcjdp54tt1zupytisdirwx
+X-Rspamd-Queue-Id: 4cHs223M9sz9t9t
 
-From: Woodrow Douglass <wdouglass@carnegierobotics.com>
+Add DT overlay to bind Argon40 fan HAT, on Retronix R-Car V4H
+Sparrow Hawk board. Fan RPM control and full RPM on reboot has
+been tested.
 
-This driver allows reading some regulator settings and adjusting
-output voltage. It is based on information from the datasheet
-at https://www.nxp.com/docs/en/data-sheet/PF5300.pdf
-
-Signed-off-by: Woodrow Douglass <wdouglass@carnegierobotics.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
- MAINTAINERS                          |   6 +
- drivers/regulator/Kconfig            |  12 ++
- drivers/regulator/Makefile           |   1 +
- drivers/regulator/pf530x-regulator.c | 378 +++++++++++++++++++++++++++++++++++
- 4 files changed, 397 insertions(+)
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+NOTE: Depends on series:
+      https://lore.kernel.org/linux-hwmon/20250904202157.170600-1-marek.vasut+renesas@mailbox.org/
+---
+ arch/arm64/boot/dts/renesas/Makefile          |  3 +
+ .../r8a779g3-sparrow-hawk-fan-argon40.dtso    | 56 +++++++++++++++++++
+ 2 files changed, 59 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6dcfbd11efef..7374cb0ae5d4 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18291,6 +18291,12 @@ F:	Documentation/devicetree/bindings/clock/*imx*
- F:	drivers/clk/imx/
- F:	include/dt-bindings/clock/*imx*
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index bef624636d58b..b2325d1ddf9d3 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -96,6 +96,9 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
  
-+NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
-+M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/regulator/nxp,pf5300.yaml
-+F:	drivers/regulator/pf530x-regulator.c
-+
- NXP PF8100/PF8121A/PF8200 PMIC REGULATOR DEVICE DRIVER
- M:	Jagan Teki <jagan@amarulasolutions.com>
- S:	Maintained
-diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index eaa6df1c9f80..611356bea09d 100644
---- a/drivers/regulator/Kconfig
-+++ b/drivers/regulator/Kconfig
-@@ -1006,6 +1006,18 @@ config REGULATOR_PCAP
- 	 This driver provides support for the voltage regulators of the
- 	 PCAP2 PMIC.
- 
-+config REGULATOR_PF530X
-+	tristate "NXP PF5300/PF5301/PF5302 regulator driver"
-+	depends on I2C && OF
-+	select REGMAP_I2C
-+	help
-+	  Say y here to support the regulators found on the NXP
-+	  PF5300/PF5301/PF5302 PMIC.
-+
-+	  Say M here if you want to support for the regulators found
-+	  on the NXP PF5300/PF5301/PF5302 PMIC. The module will be named
-+	  "pf530x-regulator".
-+
- config REGULATOR_PF8X00
- 	tristate "NXP PF8100/PF8121A/PF8200 regulator driver"
- 	depends on I2C && OF
-diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index be98b29d6675..60ca55d04aef 100644
---- a/drivers/regulator/Makefile
-+++ b/drivers/regulator/Makefile
-@@ -125,6 +125,7 @@ obj-$(CONFIG_REGULATOR_QCOM_USB_VBUS) += qcom_usb_vbus-regulator.o
- obj-$(CONFIG_REGULATOR_PALMAS) += palmas-regulator.o
- obj-$(CONFIG_REGULATOR_PCA9450) += pca9450-regulator.o
- obj-$(CONFIG_REGULATOR_PF9453) += pf9453-regulator.o
-+obj-$(CONFIG_REGULATOR_PF530X) += pf530x-regulator.o
- obj-$(CONFIG_REGULATOR_PF8X00) += pf8x00-regulator.o
- obj-$(CONFIG_REGULATOR_PFUZE100) += pfuze100-regulator.o
- obj-$(CONFIG_REGULATOR_PV88060) += pv88060-regulator.o
-diff --git a/drivers/regulator/pf530x-regulator.c b/drivers/regulator/pf530x-regulator.c
+ DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
++dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtbo
++r8a779g3-sparrow-hawk-fan-argon40-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-argon40.dtbo
++dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtb
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+ r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
 new file mode 100644
-index 000000000000..509e08953685
+index 0000000000000..e63fd3e18b2a1
 --- /dev/null
-+++ b/drivers/regulator/pf530x-regulator.c
-@@ -0,0 +1,378 @@
-+// SPDX-License-Identifier: GPL-2.0+
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
+@@ -0,0 +1,56 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Overlay for the Argon40 HAT blower fan in connector CN7
++ * on R-Car V4H ES3.0 Sparrow Hawk board
++ *
++ * Copyright (C) 2025 Marek Vasut <marek.vasut+renesas@mailbox.org>
++ *
++ * Example usage:
++ *
++ * # Localize hwmon sysfs directory that matches the PWM fan,
++ * # enable the PWM fan, and configure the fan speed manually.
++ * r8a779g3-sparrow-hawk$ grep -H . /sys/class/hwmon/hwmon?/name
++ * /sys/class/hwmon/hwmon0/name:sensor1_thermal
++ * /sys/class/hwmon/hwmon1/name:sensor2_thermal
++ * /sys/class/hwmon/hwmon2/name:sensor3_thermal
++ * /sys/class/hwmon/hwmon3/name:sensor4_thermal
++ * /sys/class/hwmon/hwmon4/name:pwmfan
++ *                       ^      ^^^^^^
++ *
++ * # Select mode 2 , enable fan PWM and regulator and keep them enabled.
++ * # For details, see Linux Documentation/hwmon/pwm-fan.rst
++ * r8a779g3-sparrow-hawk$ echo 2 > /sys/class/hwmon/hwmon4/pwm1_enable
++ *
++ * # Configure PWM fan speed in range 0..255 , 0 is stopped , 255 is full speed .
++ * # Fan speed 101 is about 2/5 of the PWM fan speed:
++ * r8a779g3-sparrow-hawk$ echo 101 > /sys/class/hwmon/hwmon4/pwm1
++ */
 +
-+// documentation of this device is available at
-+// https://www.nxp.com/docs/en/data-sheet/PF5300.pdf
++/dts-v1/;
++/plugin/;
 +
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/i2c.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/driver.h>
-+#include <linux/regulator/consumer.h>
-+#include <linux/regulator/machine.h>
-+#include <linux/regulator/of_regulator.h>
-+
-+/* registers */
-+#define PF530X_DEVICEID			0x00
-+#define PF530X_REV				0x01
-+#define PF530X_EMREV			0x02
-+#define PF530X_PROGID			0x03
-+#define PF530X_CONFIG1			0x04
-+#define PF530X_INT_STATUS1		0x05
-+#define PF530X_INT_SENSE1		0x06
-+#define PF530X_INT_STATUS2		0x07
-+#define PF530X_INT_SENSE2		0x08
-+#define PF530X_BIST_STAT1		0x09
-+#define PF530X_BIST_CTRL		0x0a
-+#define PF530X_STATE			0x0b
-+#define PF530X_STATE_CTRL		0x0c
-+#define PF530X_SW1_VOLT			0x0d
-+#define PF530X_SW1_STBY_VOLT	0x0e
-+#define PF530X_SW1_CTRL1		0x0f
-+#define PF530X_SW1_CTRL2		0x10
-+#define PF530X_CLK_CTRL			0x11
-+#define PF530X_SEQ_CTRL1		0x12
-+#define PF530X_SEQ_CTRL2		0x13
-+#define PF530X_RANDOM_CHK		0x14
-+#define PF530X_RANDOM_GEN		0x15
-+#define PF530X_WD_CTRL1			0x16
-+#define PF530X_WD_SEED			0x17
-+#define PF530X_WD_ANSWER		0x18
-+#define PF530X_FLT_CNT1			0x19
-+#define PF530X_FLT_CNT2			0x1a
-+#define PF530X_OTP_MODE			0x2f
-+
-+enum pf530x_states {
-+	PF530X_STATE_POF,
-+	PF530X_STATE_FUSE_LOAD,
-+	PF530X_STATE_LP_OFF,
-+	PF530X_STATE_SELF_TEST,
-+	PF530X_STATE_POWER_UP,
-+	PF530X_STATE_INIT,
-+	PF530X_STATE_IO_RELEASE,
-+	PF530X_STATE_RUN,
-+	PF530X_STATE_STANDBY,
-+	PF530X_STATE_FAULT,
-+	PF530X_STATE_FAILSAFE,
-+	PF530X_STATE_POWER_DOWN,
-+	PF530X_STATE_2MS_SELFTEST_RETRY,
-+	PF530X_STATE_OFF_DLY,
++&{/} {
++	pwm-fan {
++		compatible = "pwm-fan";
++		#cooling-cells = <2>;
++		/* PWM period: 33us ~= 30 kHz */
++		pwms = <&pwmhat 0 33334 0>;
++		/* Available cooling levels */
++		cooling-levels = <0 50 100 150 200 255>;
++		fan-shutdown-percent = <100>;
++	};
 +};
 +
-+#define PF530_FAM			0x50
-+enum pf530x_devid {
-+	PF5300			= 0x3,
-+	PF5301			= 0x4,
-+	PF5302			= 0x5,
++/* Page 31 / IO_CN */
++&i2c3 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <400000>;
++	status = "okay";
++
++	pwmhat: pwm@1a {
++		compatible = "argon40,fan-hat";
++		reg = <0x1a>;
++		#pwm-cells = <3>;
++	};
 +};
-+
-+#define PF530x_FAM			0x50
-+#define PF530x_DEVICE_FAM_MASK		GENMASK(7, 4)
-+#define PF530x_DEVICE_ID_MASK		GENMASK(3, 0)
-+
-+#define PF530x_STATE_MASK		GENMASK(3, 0)
-+#define PF530x_STATE_RUN		0x07
-+#define PF530x_STATE_STANDBY	0x08
-+#define PF530x_STATE_LP_OFF		0x02
-+
-+#define PF530X_OTP_STBY_MODE	GENMASK(3, 2)
-+#define PF530X_OTP_RUN_MODE		GENMASK(1, 0)
-+
-+#define PF530X_INT_STATUS_OV	BIT(1)
-+#define PF530X_INT_STATUS_UV	BIT(2)
-+#define PF530X_INT_STATUS_ILIM	BIT(3)
-+
-+#define SW1_ILIM_S	BIT(0)
-+#define VMON_UV_S	BIT(1)
-+#define VMON_OV_S	BIT(2)
-+#define VIN_OVLO_S	BIT(3)
-+#define BG_ERR_S	BIT(6)
-+
-+#define THERM_155_S	BIT(3)
-+#define THERM_140_S	BIT(2)
-+#define THERM_125_S	BIT(1)
-+#define THERM_110_S	BIT(0)
-+
-+struct pf530x_chip {
-+	struct regmap *regmap;
-+	struct device *dev;
-+};
-+
-+static const struct regmap_config pf530x_regmap_config = {
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = PF530X_OTP_MODE,
-+	.cache_type = REGCACHE_MAPLE,
-+};
-+
-+static int pf530x_get_status(struct regulator_dev *rdev)
-+{
-+	unsigned int state;
-+	int ret;
-+
-+	ret = regmap_read(rdev->regmap, PF530X_INT_SENSE1, &state);
-+	if (ret != 0)
-+		return ret;
-+
-+	if ((state & (BG_ERR_S | SW1_ILIM_S | VMON_UV_S | VMON_OV_S | VIN_OVLO_S))
-+			!= 0)
-+		return REGULATOR_STATUS_ERROR;
-+
-+	// no errors, check if what non-error state we're in
-+	ret = regmap_read(rdev->regmap, PF530X_STATE, &state);
-+	if (ret != 0)
-+		return ret;
-+
-+	state &= PF530x_STATE_MASK;
-+
-+	switch (state) {
-+	case PF530x_STATE_RUN:
-+		ret = REGULATOR_STATUS_NORMAL;
-+		break;
-+	case PF530x_STATE_STANDBY:
-+		ret = REGULATOR_STATUS_STANDBY;
-+		break;
-+	case PF530x_STATE_LP_OFF:
-+		ret = REGULATOR_STATUS_OFF;
-+		break;
-+	default:
-+		ret = REGULATOR_STATUS_ERROR;
-+		break;
-+	}
-+	return ret;
-+}
-+
-+static int pf530x_get_error_flags(struct regulator_dev *rdev, unsigned int *flags)
-+{
-+	unsigned int status;
-+	int ret;
-+
-+	ret = regmap_read(rdev->regmap, PF530X_INT_STATUS1, &status);
-+
-+	if (ret != 0)
-+		return ret;
-+
-+	*flags = 0;
-+
-+	if (status & PF530X_INT_STATUS_OV)
-+		*flags |= REGULATOR_ERROR_OVER_VOLTAGE_WARN;
-+
-+	if (status & PF530X_INT_STATUS_UV)
-+		*flags |= REGULATOR_ERROR_UNDER_VOLTAGE;
-+
-+	if (status & PF530X_INT_STATUS_ILIM)
-+		*flags |= REGULATOR_ERROR_OVER_CURRENT;
-+
-+	ret = regmap_read(rdev->regmap, PF530X_INT_SENSE2, &status);
-+
-+	if (ret != 0)
-+		return ret;
-+
-+	if ((status & (THERM_155_S |
-+		       THERM_140_S |
-+		       THERM_125_S |
-+		       THERM_110_S)) != 0)
-+		*flags |= REGULATOR_ERROR_OVER_TEMP_WARN;
-+
-+	return 0;
-+}
-+
-+static const struct regulator_ops pf530x_regulator_ops = {
-+	.enable = regulator_enable_regmap,
-+	.disable = regulator_disable_regmap,
-+	.is_enabled = regulator_is_enabled_regmap,
-+	.map_voltage = regulator_map_voltage_linear_range,
-+	.list_voltage = regulator_list_voltage_linear_range,
-+	.set_voltage_sel = regulator_set_voltage_sel_regmap,
-+	.get_voltage_sel = regulator_get_voltage_sel_regmap,
-+	.get_status = pf530x_get_status,
-+	.get_error_flags = pf530x_get_error_flags,
-+	.set_bypass = regulator_set_bypass_regmap,
-+	.get_bypass = regulator_get_bypass_regmap,
-+};
-+
-+static struct linear_range vrange = REGULATOR_LINEAR_RANGE(500000, 0, 140, 5000);
-+
-+static struct regulator_desc pf530x_reg_desc = {
-+	.name = "SW1",
-+	.ops = &pf530x_regulator_ops,
-+	.linear_ranges = &vrange,
-+	.n_linear_ranges = 1,
-+	.type = REGULATOR_VOLTAGE,
-+	.id = 0,
-+	.owner = THIS_MODULE,
-+	.vsel_reg = PF530X_SW1_VOLT,
-+	.vsel_mask = 0xFF,
-+	.bypass_reg = PF530X_SW1_CTRL2,
-+	.bypass_mask = 0x07,
-+	.bypass_val_on = 0x07,
-+	.bypass_val_off = 0x00,
-+	.enable_reg = PF530X_SW1_CTRL1,
-+	.enable_mask = GENMASK(5, 2),
-+	.enable_val = GENMASK(5, 2),
-+	.disable_val = 0,
-+};
-+
-+static int pf530x_identify(struct pf530x_chip *chip)
-+{
-+	unsigned int value;
-+	u8 dev_fam, dev_id, full_layer_rev, metal_layer_rev, prog_idh, prog_idl, emrev;
-+	const char *name = NULL;
-+	int ret;
-+
-+	ret = regmap_read(chip->regmap, PF530X_DEVICEID, &value);
-+	if (ret) {
-+		dev_err(chip->dev, "failed to read chip family\n");
-+		return ret;
-+	}
-+
-+	dev_fam = value & PF530x_DEVICE_FAM_MASK;
-+	switch (dev_fam) {
-+	case PF530x_FAM:
-+		break;
-+	default:
-+		dev_err(chip->dev,
-+			"Chip 0x%x is not from PF530X family\n", dev_fam);
-+		return ret;
-+	}
-+
-+	dev_id = value & PF530x_DEVICE_ID_MASK;
-+	switch (dev_id) {
-+	case PF5300:
-+		name = "PF5300";
-+		break;
-+	case PF5301:
-+		name = "PF5301";
-+		break;
-+	case PF5302:
-+		name = "PF5302";
-+		break;
-+	default:
-+		dev_err(chip->dev, "Unknown pf530x device id 0x%x\n", dev_id);
-+		return -ENODEV;
-+	}
-+
-+	ret = regmap_read(chip->regmap, PF530X_REV, &value);
-+	if (ret) {
-+		dev_err(chip->dev, "failed to read chip rev\n");
-+		return ret;
-+	}
-+
-+	full_layer_rev = ((value & 0xF0) == 0) ? '0' : ((((value & 0xF0) >> 4) - 1) + 'A');
-+	metal_layer_rev = value & 0xF;
-+
-+	ret = regmap_read(chip->regmap, PF530X_EMREV, &value);
-+	if (ret) {
-+		dev_err(chip->dev, "failed to read chip emrev register\n");
-+		return ret;
-+	}
-+
-+	prog_idh = (value >> 4) + 'A';
-+	// prog_idh skips 'O', per page 96 of the datasheet
-+	if (prog_idh >= 'O')
-+		prog_idh += 1;
-+
-+	emrev = value & 0x7;
-+
-+	ret = regmap_read(chip->regmap, PF530X_PROGID, &value);
-+	if (ret) {
-+		dev_err(chip->dev, "failed to read chip progid register\n");
-+		return ret;
-+	}
-+
-+	if (value >= 0x22) {
-+		dev_err(chip->dev, "invalid value for progid register\n");
-+		return -ENODEV;
-+	} else if (value < 10) {
-+		prog_idl = value + '0';
-+	} else {
-+		prog_idl = (value - 10) + 'A';
-+		// prog_idh skips 'O', per page 97 of the datasheet
-+		if (prog_idl >= 'O')
-+			prog_idl += 1;
-+	}
-+
-+	dev_info(chip->dev, "%s Regulator found (Rev %c%d ProgID %c%c EMREV %x).\n",
-+		 name, full_layer_rev, metal_layer_rev, prog_idh, prog_idl, emrev);
-+
-+	return 0;
-+}
-+
-+static int pf530x_i2c_probe(struct i2c_client *client)
-+{
-+	struct regulator_config config = { NULL, };
-+	struct pf530x_chip *chip;
-+	int ret;
-+	struct regulator_dev *rdev;
-+	struct regulator_init_data *init_data;
-+
-+	chip = devm_kzalloc(&client->dev, sizeof(*chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	i2c_set_clientdata(client, chip);
-+	chip->dev = &client->dev;
-+
-+	chip->regmap = devm_regmap_init_i2c(client, &pf530x_regmap_config);
-+	if (IS_ERR(chip->regmap)) {
-+		ret = PTR_ERR(chip->regmap);
-+		dev_err(&client->dev,
-+			"regmap allocation failed with err %d\n", ret);
-+		return ret;
-+	}
-+
-+	ret = pf530x_identify(chip);
-+	if (ret)
-+		return ret;
-+
-+	init_data = of_get_regulator_init_data(chip->dev, chip->dev->of_node, &pf530x_reg_desc);
-+	if (!init_data)
-+		return -ENODATA;
-+
-+	config.dev = chip->dev;
-+	config.driver_data = &pf530x_reg_desc;
-+	config.of_node = chip->dev->of_node;
-+	config.regmap = chip->regmap;
-+	config.init_data = init_data;
-+
-+	// the config parameter gets copied, it's ok to pass a pointer on the stack here
-+	rdev = devm_regulator_register(&client->dev, &pf530x_reg_desc, &config);
-+	if (IS_ERR(rdev)) {
-+		dev_err(&client->dev, "failed to register %s regulator\n", pf530x_reg_desc.name);
-+		return PTR_ERR(rdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id pf530x_dt_ids[] = {
-+	{ .compatible = "nxp,pf5300",},
-+	{ .compatible = "nxp,pf5301",},
-+	{ .compatible = "nxp,pf5302",},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, pf530x_dt_ids);
-+
-+static const struct i2c_device_id pf530x_i2c_id[] = {
-+	{ "pf5300", 0 },
-+	{ "pf5301", 0 },
-+	{ "pf5302", 0 },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, pf530x_i2c_id);
-+
-+static struct i2c_driver pf530x_regulator_driver = {
-+	.id_table = pf530x_i2c_id,
-+	.driver = {
-+		.name = "pf530x",
-+		.of_match_table = pf530x_dt_ids,
-+	},
-+	.probe = pf530x_i2c_probe,
-+};
-+module_i2c_driver(pf530x_regulator_driver);
-+
-+MODULE_AUTHOR("Woodrow Douglass <wdouglass@carnegierobotics.com>");
-+MODULE_DESCRIPTION("Regulator Driver for NXP's PF5300/PF5301/PF5302 PMIC");
-+MODULE_LICENSE("GPL");
-
 -- 
-2.39.5
-
+2.50.1
 
 
