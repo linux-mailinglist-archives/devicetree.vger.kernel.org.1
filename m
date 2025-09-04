@@ -1,120 +1,349 @@
-Return-Path: <devicetree+bounces-212998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 411DDB445F0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:58:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6558FB44603
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:00:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06E941891F66
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:59:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 197713B3BC1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:00:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5D125FA2D;
-	Thu,  4 Sep 2025 18:58:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D492E26D4DA;
+	Thu,  4 Sep 2025 19:00:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VsB1r+8n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WUGg1ODx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB302586C8
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 18:58:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DE8C26B2A5;
+	Thu,  4 Sep 2025 19:00:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757012318; cv=none; b=nEqbPOZbG4Ql+4k6vFEgA1YFXIJduZrTcjwkjcWMkkXzy9KlyuYPgmefEIvHjTVwNMfhIoatqfhtglhheh0g3VpJfNOyo/G//tDLfUHDXT2g0wabPXN+de3E19zVfTVTApMv0dhXsWEq5TfAaCcWwuMEPh2Nv4m9TvS1eqh0MX8=
+	t=1757012406; cv=none; b=RjJuh0QweRPUOoWKYUKvCvKmZ4mtwIPcNnJF71+JHM/dkGsCUQCghDylagZ7ZHtFj3C4HIFbyWTbnBTSiCDpjBFDpB0bA0hmfS9BLMHC6qxdlu4BWgFU5KV5qTyHzjQ48mQXNxOECqzOXIwOkIxBsOhwEXP7UnRG1I2619bet0o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757012318; c=relaxed/simple;
-	bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=T1aG2WV/6UUH3f3WceJvMvYchhs77KH+0S8CHx8HSWSwRM4sChSfbSf+JvxkCVPVNteNunu6ZuxUK+kXBg7gkj7vi+LX3HeatUIiTHb4WCf7ajhGu2/54IjrWXGVw70kNKQikE+DzweWAOwogCoo44nsCWPFWOtLZcJyHOW5xiY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VsB1r+8n; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55f98e7782bso1627035e87.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:58:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757012315; x=1757617115; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
-        b=VsB1r+8nlysBMHPYCxFE4JKWTFG+MiNWatds6C14GZ0SQJq42TilqQslyEJgJuAFTw
-         X60QBNL2twwNTyNFzK0BIYP6lsWuWonoWfbeAOgUkttm7uCNz8xX3s/YAvLjZBEpbaEu
-         UFWB+0x6gH+AJvO7cxykB+pUS7qlA6FJ19x9Si389r8Tf2mUBSsjLV4/UAS+7hdXMmmk
-         kNWAXNBH0Vwq8XGv994jFuVfR3T1IUzpjs0j4iWYdCKoo3O1No1F7dWGErFCm2ksF7OD
-         RUQ5hQHXs+I3rrDvKySnrmnOMEB+0/6hwoBVY+qVxHxmGZ7m8DizDmNQDKTYuy4H7qUn
-         Xemg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757012315; x=1757617115;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
-        b=bX3h394N4tP5WO7as3SvMAK9AgQos0lt2wGAX8CGpbgQ48+oNZNFvdPoNqeguyW4a9
-         5Av1uujoy2aSPH8GcihPPmhOM88haowuljSFz7z/pegKwxsgAONlgR9OTD3kLPCA2RGJ
-         vXM4RkMiBN4U0JmwiLDhWuA+1UEtaIj63t56sjVtnC6krW9euubGCni9956AvXqWqKzc
-         /KGSXNaOyvwVOSpkvkqIyeOYki9LnPJNzVPF1yWJ0RdbzawoGiw5otfu90ljPZtRgkRs
-         nWCI2RyPOKgl18hAF6aROmk8mtNsRm0ZNDbiojPpMcMTUhv7AnO8U8hnBqP3qByQYmAn
-         dwGw==
-X-Forwarded-Encrypted: i=1; AJvYcCWVhk5ohhhftk6KRnEc1YDucPupTuz8owc0QTgL7UsV0XNkrWiAI76g2EoZ3EeYzbN671YgwsITEiT+@vger.kernel.org
-X-Gm-Message-State: AOJu0YxwwG6kqrCOxNPvNG7HvVniJrzdOZB9N3M75X2uwn1UJ4b1M7rA
-	xDdzhLXs1h/JxNLG/8V8qmtZieff4k3rMFGi7aBkVlipkL7dc+XDcvOqpcsW9ZN2NCKg24KC+3Z
-	UJFqWOS9pzBt6XlHA4sWRLD5Df9mZQYOWRD4Bs0YqWYNTIVxhZYTL
-X-Gm-Gg: ASbGncv0bSN+AKfoTq+31aZShtR4Y3ks16Qs+HVe+XVnYWmGOBpffHv+PX9ShBz+CoO
-	/c+C24Y1SECttzP7q9g4w54rheTVsD1WIJF0XPl+PiAkldLhK8k5vB6ti/q8PJyzhBk6/V2b4Jg
-	PVdcR0EYfvV+fcR3jQGm3S9IJg5LpoAhjBqERQkPo2SSaWoWg2BE9vSBCf9Vte3ej720Co+WxP0
-	kEWb9m7f6Pn9oev/w==
-X-Google-Smtp-Source: AGHT+IG+D8oTOCZCybe0jTMWAtEyJVHcF+x1RsxL88xvQswzc/kVAOPXSmL8jd/l58Uw6kNKnmcj7kant2xsnzkphIA=
-X-Received: by 2002:a05:6512:31c4:b0:55f:5700:5cb9 with SMTP id
- 2adb3069b0e04-560995f4a0dmr209732e87.24.1757012315206; Thu, 04 Sep 2025
- 11:58:35 -0700 (PDT)
+	s=arc-20240116; t=1757012406; c=relaxed/simple;
+	bh=GGNzgggiwqfI3Drgy4V1N79jaY0m+XWuKRb9blp6bKQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k4MGt+qsM8Z0iM4kXHXL2XXi7KatORhZc/Cg5SwDRkG2LRSflobVPCrCvP+aQIfqi94rwtB1Hc5Z1OWC1OIFuXcFB9mZiHgookAe+F/PgcwtNjJezCqpJpvfGfWDCAT1E2rX3o3dStvNm8uvioyd52w/01j4OYFi42zTV0x5I+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WUGg1ODx; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EBBA8C4CEF0;
+	Thu,  4 Sep 2025 19:00:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757012406;
+	bh=GGNzgggiwqfI3Drgy4V1N79jaY0m+XWuKRb9blp6bKQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WUGg1ODx0wmrOlaMSpYAGSjxmkV4hRMETLkDU1ck8RQRFxf1+zVXptsIYoL8cwYbT
+	 2ujiGiRWHCKCq2UdtUvsb7h2AwXXAThnfpLTFabx/M66svYHZh+REAMLddu2nZ9AG5
+	 3dUfFMbeaewDo4dMFlXKZ8zwXnUL2USbv3LCg/6mHK4XT2sESDdjd3vvnSb51ksZDm
+	 MabejUxX+1CSi0GUH7SiRc04m/iS/2vda+kZPirq2fcAh8mGCbnPqChDw/AZwXdD2e
+	 j4OmrZ65yAowpjdATltYeeGWI9To/gMk27uMkGullFXGM4Kc/PSjE92/rzi+Xv9M18
+	 yY8n6k3/+hYxw==
+Date: Thu, 4 Sep 2025 14:00:05 -0500
+From: Rob Herring <robh@kernel.org>
+To: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
+	linux-gpio@vger.kernel.org,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>
+Subject: Re: [PATCH v6 1/2] dt-bindings: clock: add TI CDCE6214 binding
+Message-ID: <20250904190005.GA19595-robh@kernel.org>
+References: <20250903-clk-cdce6214-v6-0-b2cc0a6f282b@pengutronix.de>
+ <20250903-clk-cdce6214-v6-1-b2cc0a6f282b@pengutronix.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1756372805.git.andrea.porta@suse.com> <7ed0f2779829f4e63b69d8cf5cedda9f849996bc.1756372805.git.andrea.porta@suse.com>
-In-Reply-To: <7ed0f2779829f4e63b69d8cf5cedda9f849996bc.1756372805.git.andrea.porta@suse.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 4 Sep 2025 20:58:23 +0200
-X-Gm-Features: Ac12FXymNXEWp0akA1KKPpfwK827qyFlyk8eBQbtNKsw_bFGu0HOwHEo76-xbLA
-Message-ID: <CACRpkdZAROUdz1SJY=h_dcUiojazO1fYxGJ8X2KEE6ow7oFZaA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: Add support for Broadcom STB
- pin controller
-To: Andrea della Porta <andrea.porta@suse.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, iivanov@suse.de, 
-	svarbanov@suse.de, mbrugger@suse.com, 
-	Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-clk-cdce6214-v6-1-b2cc0a6f282b@pengutronix.de>
 
-On Thu, Aug 28, 2025 at 2:45=E2=80=AFPM Andrea della Porta
-<andrea.porta@suse.com> wrote:
+On Wed, Sep 03, 2025 at 03:55:45PM +0200, Sascha Hauer wrote:
+> Add device tree binding for the CDCE6214, an Ultra-Low Power Clock
+> Generator With One PLL, Four Differential Outputs, Two Inputs, and
+> Internal EEPROM.
+> 
+> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
+> ---
+>  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 198 +++++++++++++++++++++
+>  include/dt-bindings/clock/ti,cdce6214.h            |  24 +++
+>  2 files changed, 222 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..4d40b8101fd7e094bb1b79c071e1be2c1fefec23
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/ti,cdce6214.yaml
+> @@ -0,0 +1,198 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/ti,cdce6214.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI CDCE6214 programmable clock generator with PLL
+> +
+> +maintainers:
+> +  - Sascha Hauer <s.hauer@pengutronix.de>
+> +
+> +description: >
+> +  Ultra-Low Power Clock Generator With One PLL, Four Differential Outputs,
+> +  Two Inputs, and Internal EEPROM
+> +
+> +  - CDCE6214: https://www.ti.com/product/CDCE6214
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - ti,cdce6214
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    items:
+> +      - enum: [ priref, secref ]
+> +      - const: secref
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
 
-> From: "Ivan T. Ivanov" <iivanov@suse.de>
->
-> The STB pin controller represents a family whose silicon instances
-> are found e.g. on BCM2712 SoC.
->
-> In particular, on RaspberryPi 5, there are two separate instantiations
-> of the same IP block which differ in the number of pins that are
-> associated and the pinmux functions for each of those pins. The
-> -aon- variant stands for 'Always On'.
->
-> Depending on the revision of the BCM2712 (CO or D0), the pin
-> controller instance has slight differences in the register layout.
->
-> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
-> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+No child nodes with 'reg', so drop #address/size-cells.
 
-Fixed up the extraneous label and whitespace error
-and applied this patch!
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +patternProperties:
+> +  '-pins$':
+> +    type: object
+> +    additionalProperties: false
 
-Yours,
-Linus Walleij
+blank line
+
+> +    patternProperties:
+> +      '^conf':
+> +        type: object
+> +        additionalProperties: false
+> +        $ref: /schemas/pinctrl/pincfg-node.yaml#
+> +
+> +        properties:
+> +          pins:
+> +            items:
+> +              enum: [priref, secref, out0, out1, out2, out3, out4 ]
+> +          io-standard:
+
+Needs a vendor prefix.
+
+> +            description: |
+> +              1: CMOS
+> +              2: LVDS
+> +              3: Low-Power HCSL
+> +              4: XTAL mode
+> +              5: differential
+> +            enum: [1, 2, 3, 4, 5]
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+
+blank line between properties
+
+> +          xo-cload-femtofarad:
+
+Needs a vendor prefix
+
+Use standard unit suffixes. It's "-femtofarads".
+
+> +            description: >
+
+Don't need '>'.
+
+> +              Load capacity for XO in Femtofarad
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +          xo-bias-microampere:
+
+vendor prefix and unit suffix.
+
+> +            description: |
+
+Don't need '|'.
+
+> +              Bias current setting of the XO
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +          cmosp-mode:
+
+Vendor prefix
+
+And so on...
+
+> +            description: |
+> +              Driving mode for CMOSN output:
+> +              1: Low Polarity
+> +              2: High Polrity
+> +              3: Disable
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            maximum: 3
+> +          cmosn-mode:
+> +            description: |
+> +              Driving mode for CMOSN output:
+> +              1: Low Polarity
+> +              2: High Polrity
+> +              3: Disable
+> +            $ref: /schemas/types.yaml#/definitions/uint32
+> +            maximum: 3
+> +
+> +        allOf:
+> +          - if:
+> +              properties:
+> +                pins:
+> +                  contains:
+> +                    const: priref
+> +            then:
+> +              properties:
+> +                io-standard:
+> +                  enum: [ 1, 5 ]
+> +
+> +          - if:
+> +              properties:
+> +                pins:
+> +                  contains:
+> +                    const: secref
+> +            then:
+> +              properties:
+> +                io-standard:
+> +                  enum: [ 1, 4, 5 ]
+> +
+> +          - if:
+> +              properties:
+> +                pins:
+> +                  contains:
+> +                    const: out0
+> +            then:
+> +              properties:
+> +                io-standard:
+> +                  enum: [ 1 ]
+> +
+> +          - if:
+> +              properties:
+> +                pins:
+> +                  contains:
+> +                    enum:
+> +                      - out1
+> +                      - out4
+> +            then:
+> +              properties:
+> +                io-standard:
+> +                  enum: [ 1, 2, 3 ]
+> +
+> +          - if:
+> +              properties:
+> +                pins:
+> +                  contains:
+> +                    enum:
+> +                      - out2
+> +                      - out3
+> +            then:
+> +              properties:
+> +                io-standard:
+> +                  enum: [ 2, 3 ]
+> +
+> +        required:
+> +          - pins
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/ti,cdce6214.h>
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        clock-generator@67 {
+> +            compatible = "ti,cdce6214";
+> +            reg = <0x67>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            #clock-cells = <1>;
+> +            clocks = <&clock_ref25m>;
+> +            clock-names = "priref";
+> +
+> +            cdce6214_pins: cdce6214-pins {
+> +                conf1 {
+> +                    pins = "secref";
+> +                    io-standard = <CDCE6214_IOSTD_XTAL>;
+> +                    xo-cload-femtofarad = <8100>;
+> +                    xo-bias-microampere = <100>;
+> +                };
+> +
+> +                conf2 {
+> +                    pins = "out1";
+> +                    io-standard = <CDCE6214_IOSTD_CMOS>;
+> +                    cmosp-mode = <CDCE6214_CMOS_MODE_HIGH>;
+> +                    cmosn-mode = <CDCE6214_CMOS_MODE_LOW>;
+> +                };
+> +
+> +                conf3 {
+> +                    pins = "out4";
+> +                    io-standard = <CDCE6214_IOSTD_CMOS>;
+> +                    cmosp-mode = <CDCE6214_CMOS_MODE_HIGH>;
+> +                    cmosn-mode = <CDCE6214_CMOS_MODE_LOW>;
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/include/dt-bindings/clock/ti,cdce6214.h b/include/dt-bindings/clock/ti,cdce6214.h
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..6d2cc5f01864e70a3fbccbfe20e67899e0d049e4
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/ti,cdce6214.h
+> @@ -0,0 +1,24 @@
+> +#ifndef _DT_BINDINGS_CLK_TI_CDCE6214_H
+> +#define _DT_BINDINGS_CLK_TI_CDCE6214_H
+> +
+> +/* Clock indices for the clocks provided by the CDCE6214 */
+> +#define CDCE6214_CLK_OUT0	2
+> +#define CDCE6214_CLK_OUT1	3
+> +#define CDCE6214_CLK_OUT2	4
+> +#define CDCE6214_CLK_OUT3	5
+> +#define CDCE6214_CLK_OUT4	6
+> +#define CDCE6214_CLK_PLL	7
+> +#define CDCE6214_CLK_PSA	8
+> +#define CDCE6214_CLK_PSB	9
+> +
+> +#define CDCE6214_IOSTD_CMOS	1
+> +#define CDCE6214_IOSTD_LVDS	2
+> +#define CDCE6214_IOSTD_LP_HCSL	3
+> +#define CDCE6214_IOSTD_XTAL	4
+> +#define CDCE6214_IOSTD_DIFF	5
+> +
+> +#define CDCE6214_CMOS_MODE_LOW		1
+> +#define CDCE6214_CMOS_MODE_HIGH		2
+> +#define CDCE6214_CMOS_MODE_DISABLED	3
+> +
+> +#endif /* _DT_BINDINGS_CLK_TI_CDCE6214_H */
+> 
+> -- 
+> 2.47.2
+> 
 
