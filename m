@@ -1,203 +1,217 @@
-Return-Path: <devicetree+bounces-212920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8AA9B440A4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B875B440AD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F5DF3BD5D0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:30:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884B8A01534
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:31:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE9A1E2834;
-	Thu,  4 Sep 2025 15:30:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43D2233152;
+	Thu,  4 Sep 2025 15:31:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="C8U/y9EE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L9Zxp4ZW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013008.outbound.protection.outlook.com [52.101.83.8])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09B1129B0;
-	Thu,  4 Sep 2025 15:30:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.8
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756999843; cv=fail; b=AQD6XlXxhvfyBFOK4AXysXmCMnO//2zzXcPQMAKcBpxpranT2iYWPsfr/dYzl5hErMYIQUQyxBLlcgcrIyHq2yciiW/khwIJ15C7uIhoKe2dAMU3NgaZ/Dv9lZmpFRVaFyL8L1elK/cVkZnlVMuDD/biA1sQOEhjHKv+5kVle4A=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756999843; c=relaxed/simple;
-	bh=/39AhQNh1Ql6gcFjKNDj1+ryBP9b6K4AmJtQQcd74bg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=ldYHh78F0Yfp7Q/mcWLLb1EGBDkkbszYgZ3zS++w31q+IBuJJEhFM9Px8IIZphOT35n02iedQSGb/6SwxPlZmsa/Tp/fen638oTOW13vtY0+4kLGOiF/V6ZtiUCdTdkj+0t++l4xEG1ZnIcPbN0MWH9DIytAgu6eNxUg1N//QFY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=C8U/y9EE; arc=fail smtp.client-ip=52.101.83.8
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=YzyFT7BU91aI+2ASkU50bnBpVUfRjNxxDefumCGZLaSxIfTJUGAkln9K7LEcEoXd8u6FckcbSIyb3HgFPIuO2u7hM6uqkzaH4ePqvjDolWLWa4qj92EPt/fTRO6or/9UD/2gDBKwnZTOGodLC7r5ZbacczEkTnV/9eIFg2uOGea9Ym65aAZIsZFgL6s1zY0LJedkZ0BXvNYW8qJTAQx9XUbVSAYxv0c+XR/rFvI9X5prvAkV8jQ4CpB7MDRiOtIFOGZGcVYt6Pz5Fgx+nfdUamf2YD7HCLQEWh4mydCW0MI6Trs2Py+s706TJKist1O5o1RPGfPnMV6uUhMwuflpuA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mlTGJucx5i0NZAxAJnprPERVdTbuzBag27XaFz1Z80I=;
- b=VZnYApx7SefKW7TmJ91XJTWNyiJ1nv5v1Z2NNg5bdexB8sn56QSmwY3wGXekTZF8ZTCUBkhvh3nNPjPmFFQQFHToPp0TKV//ayg+JBgPU/EgrmelrztwaNPuYCLOnE5+liZ/0MbLJ/r6gtzgoiUBdqedf8442Gt9vOXsu1TYkYVJcsNOcKUxFiTwD93fLBgMnlWubGeJ1uS0frQ9K24W61C6+fpTSzK5YN1w1PgPfTcsTg9N4TDN4cGVdEqEc2EGiflnaon7+f4r8TQgCPAAMcy0OjN7DccxKd3ChoJOtHDOy1kHtu3nQZtldTHtF3Qxziogd6xJfgF/CzEvwIu/WQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mlTGJucx5i0NZAxAJnprPERVdTbuzBag27XaFz1Z80I=;
- b=C8U/y9EEuoF1lQrC5UcMvE0KYbuKTpNsNUgP13EtQJYVWWhUuWrJg0ClV9VuYmlFTdho8I4Dl8yjNFxa62L1tQZ0eHer+I+tClGaB8BTBwqmZBK5uIBQifKs8fc4YnpL5UvGYXV6uwhLIrxfkZp2cAuaWGl2TOezOAq2NlivVWBjElSSDGJ3sCpD5BGPxbi87Nrf/W22bAxnu8flwZ/0SJovsXbyjc9g8NQOUF/AIVwCYdgJ4lKJsJGMFWcc2h6EcLLyiGrG4eC6VuxCF8Gnj10WGN3rozzp/WPjhXCoqI+PMOYn50Lr1O71H7T9xEAZOwOsi7eKRiIyXEQvhqRK3g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by DB9PR04MB8362.eurprd04.prod.outlook.com (2603:10a6:10:241::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9073.27; Thu, 4 Sep
- 2025 15:30:34 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9094.015; Thu, 4 Sep 2025
- 15:30:34 +0000
-Date: Thu, 4 Sep 2025 11:30:27 -0400
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] docs: dt: writing-schema: Describe defining properties
- in top-level
-Message-ID: <aLmwk/0gqrivgl1U@lizhi-Precision-Tower-5810>
-References: <20250904142400.179955-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250904142400.179955-2-krzysztof.kozlowski@linaro.org>
-X-ClientProxiedBy: BYAPR05CA0107.namprd05.prod.outlook.com
- (2603:10b6:a03:e0::48) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B5329B0;
+	Thu,  4 Sep 2025 15:31:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756999863; cv=none; b=McaKyHEqIGIMpobJmjGPFCOe1nrV5KKN6vLUaSpc+3WTRkto1cPkLq9t4fikGbnQbNkYS7xmr5NRM+gIjoMp+8BgHG2clEbEiXxAx9H1eM4nHjonbRGfawZubJiVHMS+ybHeuDza15A/JzEG2SJd382LRYq9w8IEm41dr7r5i/I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756999863; c=relaxed/simple;
+	bh=1aKpEQb07K7bq0JI6ungYiw2uqCF7T5zoE0XrueT7NU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DN2ZjPteWtnt4G3KrUw9ee/XKHIz+WOfvca+RzTZW+BgypGAjntY3+0fmHzJ0+kdau7NrEVEMH/8bszuubC/C77c0zyuGOKIDSvXfdpUdBe/J0A4EKa28/FePSetGF7yjTRsYjHNwOm1uZGNg4GQUkI8AuJ3SoOgPSHyKac+auY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L9Zxp4ZW; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3df3be0e098so607245f8f.1;
+        Thu, 04 Sep 2025 08:31:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756999859; x=1757604659; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8xE4rmjGRisIQDV5Gl3u0Fv0zsZRWzQtHGzTA13lIgs=;
+        b=L9Zxp4ZWBnB0u7ckQTMmaejLYG8HjLQdi5I/1CGN1/Pq4P9DXTCGRxO3IaE0uwKXfM
+         gXn4v7u91jdBBB5w3eRRW4s02KUEc4Z8Pl8zIeqwgKWuqZj5uaC1K8f8kG6y31T2mp1K
+         91+InJWgtJEkNnlzHye15lICZRauK4J3xRBKTFv51cVb+ZJUmXlzcRr4i99ls34sLc3t
+         Hr8FyS9Ktux5yVr+4xFKRL/4keP/IN7j8x/IY4+e8GB6a19qxHrSdk5PKDtegxrbjDC8
+         ECcWgKvLdN5pMOvrI5liYwPqwUNYsbEDxnMoad7h69mAAhI3LiIpjHRS6urcZbbHFi8K
+         Ntgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756999859; x=1757604659;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8xE4rmjGRisIQDV5Gl3u0Fv0zsZRWzQtHGzTA13lIgs=;
+        b=LgAWSoGszRNBuBbQjZneiYAKlELie4uTdSOD8URwRRMJtB1L73hRFxg4LGWx6i1fuu
+         4JB8UQvBESmcq42grZ6ehzTtdxA5H4F8o+yjoKq1QFUq6q2UjpNPA1CjwYKtMl9fHmgF
+         x3IKEcl+IWuBNHz8GwMaQTSVKh590dkcptoW53FmDJ81fWOOqRDQotIClDKm6cfXW89k
+         F/eObRqA1mYW+Ak8WCpBkGS2rbWr8awjdxrq+RkQuFtHSNsyR2NegYEZ016Jtrq+VIF8
+         xF3tcO/B4x70veooYMZA+cuYjgPER0U+Kv+1+rhut+kReUHhAB87WZzb7waRXtuB1Adt
+         0ybw==
+X-Forwarded-Encrypted: i=1; AJvYcCVaQ43nDDOoZGD9l4rwaqv9OQo2QjOs3hoQj7z4bfL0iMrD2eb7PaoixtkljAtzmiX3uUZYDGHvSEs8@vger.kernel.org, AJvYcCVqRr+4O5m9UGOJHBIqwgdKDXsy0hC0wXb1i+CcsMwLjguNSPzp8lkIbpztOIXai3kSTn/XYHLu8TQmK9M=@vger.kernel.org
+X-Gm-Message-State: AOJu0YzLti4rb1MKxNefnCtlcyr6+aB7KN28A/TwNzXtzlKZE7wPhJ/r
+	fQ7Nt2NSCJSaOlovH0EEN+V7KL1Mor4l8wWFKOtsCcQN5T7/RYVhCaxf
+X-Gm-Gg: ASbGncubdd0VSpstJ/qtbL9oGIjBSd8WKz+v61Ah4Q9zbvbrWqx4iQo7NPQH00ej7vF
+	jX+4Hupdca/J80Xogwb491+nbBw2j+gL2betzl00VKeRl+F69PZ8iQkzlnVfmKWFURN43y9Bb8I
+	LUMy/3pID0dMSsZoSiFJWaRcSPsSTopoUMo9UqXTdoXTOkZ9DqcJJO3O0BpHOEXXx9+/O2h93v0
+	2java+KDTOAInTC42GqgBiBi9chR27U+aJqwM9w9W9eRB6041wtYApP486emzYOuO8VgXHcmFvN
+	S0qMwApnijqvbmO9d42f0oFJPOG3NOrkyvgGDZPJTjm5Q2OnS7bPKfeuoYAPXEl31hoPG5fNAyK
+	D9kdonxqIAQiYPVoaLUhifFLsU5XUQ5RxPgtu3oZP+y5EBbJDzUz3Bk9y3zXWjTS7pOxW/DNfb1
+	VI//wf0ZhI
+X-Google-Smtp-Source: AGHT+IELB08VGh3VAq+KT32lgs3tsogmI3gmF9iQ69mvKEfdnKdejg4TzGBR9ruyPEVGthqdMWy/EA==
+X-Received: by 2002:a5d:588b:0:b0:3dc:1473:18f3 with SMTP id ffacd0b85a97d-3dc14731977mr5762689f8f.41.1756999858759;
+        Thu, 04 Sep 2025 08:30:58 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d0a1f807f9sm27264155f8f.38.2025.09.04.08.30.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 08:30:57 -0700 (PDT)
+Date: Thu, 4 Sep 2025 17:30:55 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
+	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+	linux-mm@kvack.org
+Subject: Re: [PATCH 6/9] arm64: tegra: Add VPR placeholder node on Tegra234
+Message-ID: <dzbefkymgrtyxfgfcdu4kq7rmgpa6khfqyhzz4a6y3qqonc4gj@yfafsqwnloia>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-7-thierry.reding@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|DB9PR04MB8362:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac03a1e0-3568-4cde-77b1-08ddebc7fd7b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|19092799006|366016|376014|52116014|1800799024|38350700014|7053199007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?OpzhX37xsP9GfBhumFNNFNx0jzrZC7CyEOXL+SnCFtI3ZxQ7jQijRf8ViTjI?=
- =?us-ascii?Q?Js3xnWXLxIYjOR7cYWB8qNY4+YFdL1LvgA926qWCObQF+wG7g9qpBXxS1oO0?=
- =?us-ascii?Q?mmBbPERXOfVfWR2hv2U7jqu9ja5ShgcuhVa4lQLaGGNw9W6kKzVFHSjXou/d?=
- =?us-ascii?Q?A02SXaWBV58TxNZUzyxuixZe8K1ENnF9tbvMYlY6OjRR6GOVF5q1z1EhZRSe?=
- =?us-ascii?Q?8iBWdg8EL7dSPW0BCwQKkMx4FlYxLOnimLE92kHN3MeRc0fyInam+EvGNeoM?=
- =?us-ascii?Q?EYr21xSuncYacTiA+EE8zP7Ffy57mr9RgpNqllJp8bsCgsoneZQfQNZRFSrW?=
- =?us-ascii?Q?yfZKHVCg9DEZaSSoqXM8O0QkA4aIVLrNN/wR1Q1+tgpH5cq+BQ6LPw8WU9/B?=
- =?us-ascii?Q?UJR+13wBraM2l2QaEN266ZpvuxbsfTfbSHp6Q4LFfpr3QaaiyIicbA6hUtiw?=
- =?us-ascii?Q?oBKxMhT9uCDSMoRDyONlefUEFHHT3eE8G+0d5Mo1eoRxGF9phlVpe1/kIfxv?=
- =?us-ascii?Q?8akmeAkknp4TpkzZ6o7xx2RZDCPGD3ESljzZo9TYJ4DgJuiJkUnlNCltbcMj?=
- =?us-ascii?Q?4RJhowiciPZy3zRZ6BQenfyKaZb5udaS5itY2DmGfATn7FGgS5HoRN0K3E9x?=
- =?us-ascii?Q?B8mFMRWgwDjInyQFqZvT31O4fqkuKi7ecxMnObuLM1N1Gy7pNZMw6vixaRwt?=
- =?us-ascii?Q?bhXOrXa2BwiD9IMwK71FJsYK5AgeFWFNXdOyA/RqIFlnd36fwUK1ZtlZ9lu5?=
- =?us-ascii?Q?nUaufUsPWOyUY0TLYphqDKdNQuaWldE8NVr4LnvPywtfZEFFiG4oJOwa+67D?=
- =?us-ascii?Q?4QnVwpLIpcdIiy3a8z/tpacp9hliTM+xq7ZGZ+aB2bs6IyYWSaKtrRWCth8d?=
- =?us-ascii?Q?ZhBJ63/aqcTTaPd5CtPq2oFCH2tT1F7+jP+yDbkLBV8Om6o1+IPxMbgNpbCw?=
- =?us-ascii?Q?Y+v/G/z+VnegBmOIO30lBBjrLXV4ws3LYBkLpq8eqiQjo3W510P3bhjSIxG8?=
- =?us-ascii?Q?bTj1aAFU8mO+AIFOOCQk40wwZmT3IY/iAhWovmleuEBKJb8DG80YHYnhx0gT?=
- =?us-ascii?Q?0NHR0Eba81DJ8dgON+uR2VprPQoUcw/v2Y8QLFnA7+25qWMnwgGS81jJ4ILF?=
- =?us-ascii?Q?I0pkrrU+pVQVyGVXNtjuFgNAJyTKfhMFrrWWrViIkY4DFXqBcmeh14w+JouX?=
- =?us-ascii?Q?C6LEcFJZHHrwk3ZjlUMa9uFQDFKUp9sDIxs59n7Ci8YCQGUJ8/QjKYSnPjaV?=
- =?us-ascii?Q?TfxkwkfieiHG3F+vltp4IedKbEBZuUZMO7lqLOMExSogBu81N1G7OkWq5c8s?=
- =?us-ascii?Q?g0ThWkEmFHTUfG8oBJr8rRY06lPwowrVUCRbU6yFo9LotNdm3m5n+RrE8sJm?=
- =?us-ascii?Q?QRv1wHlxHQmDvzyhdH0bRCGLuVMk4qfy/pkKxvnFq2EsaEX4OB5fvZETMcGf?=
- =?us-ascii?Q?RLWGavwATYLgpXT5kLriHQH67paeKKmVH1cklO4NcMIKOSM37i0rdw=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(52116014)(1800799024)(38350700014)(7053199007);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?lUVsD5URmH5/eqQVh/fGr8mOGZIWLPk1/k0xjYouwhydWLGL9NDhl+Lvs54K?=
- =?us-ascii?Q?ysNEM3zMNhoOoUfT0+BEgY1UzymdXxfeJ1QaLHp6yZABhxrEvSIK0trYVgLb?=
- =?us-ascii?Q?nBkujOSL/TqC89iFPEHrlkORiP7f3ASHBeXbt92Yz3yOwDMzP1vdmRCwtpqz?=
- =?us-ascii?Q?THuJ5pZSHhWLku1ct0tKY6vf5BbPs5mDTsavVr/7FnqiYARU3HHEVTIH3PHp?=
- =?us-ascii?Q?RZHP8RXZhewG0iBya4rfJkSwig/R0L/IV57Y//nWB00wYbtX44efn8e31oTW?=
- =?us-ascii?Q?VQq7DHoBPb45iBwe6BDXB+uNVccLH42OHIHDvQh3V5GzrMXP8BwJ4kX25ujV?=
- =?us-ascii?Q?IDpcMPzAX5bOMiq/g0nU2kKiQdLrYstabbWVjoW2Jr9be4D2eymnYhEettR5?=
- =?us-ascii?Q?ZY38idvv2ZSq8anNb5vwkCx/nRhWFzaE7w8sPFiKRwY37QaaWWbJUVUmO3iw?=
- =?us-ascii?Q?oTkAEKns1HLUK9ofQDt4WyqCpbanKJFaDINAy6rLCH9dhi0u8V6tEUaKS/KL?=
- =?us-ascii?Q?3voj0n6QY7L8GvJYcVfWET+jCMQ9VmKcr+FRmegvpCI9VJheqMGbh3WASvUD?=
- =?us-ascii?Q?mMW9u84jcAXWNm2vqVa5GjIzZpQ/lrNWfeXSk+vFh/RQst3Yh5X4SohvpzA5?=
- =?us-ascii?Q?adWExPdm1rqKFQFXNPucgIgPwFBRy1mzHcdhYPTXsUlAgZSZHTrRzVBeqcdy?=
- =?us-ascii?Q?7VeTiV7Gm78aFHkK5hj2HoqhGU8NZft3pwpYPopyBx7JSHa+i28llt2oj0oc?=
- =?us-ascii?Q?6HCy/+ye7fMF80ayo7p93lcLcvb4l88HZBvQKV0KUKTgTsGknFy6Cz48wV/R?=
- =?us-ascii?Q?sgGs0hw9f3nx2qJbNAlgjco7pTyXi+m8gXtWrOUL1CKMnflMYY9tUWSJPTPR?=
- =?us-ascii?Q?Jbql8SiHdjwRQqoeiC6aqr2/4Lo3Lfw4+X7WFkL/T4CORnDPJP7kQkfIs8/u?=
- =?us-ascii?Q?fZPrtOXEd9MaUPvzwkl0eVPqxSJmGWDA7/F2X2G4kao2TN3Zse8j32Sg0hlF?=
- =?us-ascii?Q?VnAfIbcgAi+UNNmWW70dcaTaFebFRhhbRRETCTNtAztrSraBZ3HY658ehBGh?=
- =?us-ascii?Q?uCP9/oEZNYA4Hdx1oz5TuzQYkyQhZcNCk7+b6ZwRw9qoUDrWhusdK6NgInar?=
- =?us-ascii?Q?oOLSpW27HBaKo5fb5JyX4Db+E7HGIx8QG4VF7Ly38AXqjWFRjO8nYxVtZi+/?=
- =?us-ascii?Q?AszWJpFNgI2tGzGaQ92BeNrHe7qZvjpxYQ2/ELI71aMDBLYCyF/orTjY5nk0?=
- =?us-ascii?Q?IobAiGHUp1IyxAQBjKCgtwkS+vqoM7lJcB19J/6qXIrR1KxNKYVmAADj2t1d?=
- =?us-ascii?Q?ipSqNmbFjDiu0Q1UNJ3Zp/1mHr3iO5sUW1py0wvWqaW9xSNBSdpRELkwpFdE?=
- =?us-ascii?Q?GEG4cD90YDv+vOhmg6Nxpmr49dfdA6VBjHUw5rD2COzdVp+SZk4mvv9rGVH4?=
- =?us-ascii?Q?XJ0VYzuKs/PVquR/fep5vb+zdylzVABGXLcFO9hmV5tU11VkokwPTHn3b8aG?=
- =?us-ascii?Q?9jAefFhYfheNT9+pl1alBeUkFTNmDQhH5bUQI7VgOJPwhGT2+qbRPuOSj2Tc?=
- =?us-ascii?Q?MHXfliWP6DAzLank7pjw0A6fqqtdh4T0GAzEioAP?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac03a1e0-3568-4cde-77b1-08ddebc7fd7b
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 15:30:34.2683
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: CAk2BroWzig5vOWfQxFS1A7hlMMOsO2W6qbK0/KLR09vE31O3P9W2UfPWqpBLMrt5JsbjnaixzENDEKH6tz8/Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8362
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="4xtz2xrto4fsphdg"
+Content-Disposition: inline
+In-Reply-To: <20250902154630.4032984-7-thierry.reding@gmail.com>
 
-On Thu, Sep 04, 2025 at 04:24:01PM +0200, Krzysztof Kozlowski wrote:
-> Document established Devicetree bindings maintainers review practice:
-> Properties having differences per each device in the binding, e.g.
-> different constraints for lists or different allowed values, should
-> still be defined in top-level 'properties' section and only customized
-> in 'if:then:'.
 
-'customized' is not easy understand in my view.
+--4xtz2xrto4fsphdg
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 6/9] arm64: tegra: Add VPR placeholder node on Tegra234
+MIME-Version: 1.0
 
-only restrict (such as limit number of item, limit data range, disabllow
-properties) in 'if: then:' section.
-
->
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Tue, Sep 02, 2025 at 05:46:26PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
+>=20
+> This node contains two sets of properties, one for the case where the
+> VPR is resizable (in which case the VPR region will be dynamically
+> allocated at boot time) and another case where the VPR is fixed in size
+> and initialized by early firmware.
+>=20
+> The firmware running on the device is responsible for updating the node
+> with the real physical address for the fixed VPR case and remove the
+> properties needed only for resizable VPR. Similarly, if the VPR is
+> resizable, the firmware should remove the "reg" property since it is no
+> longer needed.
+>=20
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  Documentation/devicetree/bindings/writing-schema.rst | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
-> index 470d1521fa17..e0859094575d 100644
-> --- a/Documentation/devicetree/bindings/writing-schema.rst
-> +++ b/Documentation/devicetree/bindings/writing-schema.rst
-> @@ -165,6 +165,14 @@ The YAML Devicetree format also makes all string values an array and scalar
->  values a matrix (in order to define groupings) even when only a single value
->  is present. Single entries in schemas are fixed up to match this encoding.
->
-> +When bindings cover multiple similar devices that differ in some properties,
-> +those properties should be constrained for each device. This usually means:
+>  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 34 ++++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/d=
+ts/nvidia/tegra234.dtsi
+> index df034dbb8285..4d572f5fa0b1 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+> @@ -28,6 +28,40 @@ aliases {
+>  		i2c8 =3D &dp_aux_ch3_i2c;
+>  	};
+> =20
+> +	reserved-memory {
+> +		#address-cells =3D <2>;
+> +		#size-cells =3D <2>;
+> +		ranges;
 > +
-> + * In top level 'properties' define the property with the broadest constraints.
-> + * In 'if:then:' blocks, further narrow the constraints for those properties.
-> + * Do not define the properties within an 'if:then:' block (note that
-> +   'additionalItems' also won't allow that).
+> +		vpr: video-protection-region@0 {
+> +			compatible =3D "nvidia,tegra-video-protection-region";
+> +			status =3D "disabled";
+> +			no-map;
 > +
+> +			/*
+> +			 * Two variants exist for this. For fixed VPR, the
+> +			 * firmware is supposed to update the "reg" property
+> +			 * with the fixed memory region configured as VPR.
+> +			 *
+> +			 * For resizable VPR we don't care about the exact
+> +			 * address and instead want a reserved region to be
+> +			 * allocated with a certain size and alignment at
+> +			 * boot time.
+> +			 *
+> +			 * The firmware is responsible for removing the
+> +			 * unused set of properties.
+> +			 */
+> +
+> +			/* fixed VPR */
+> +			reg =3D <0x0 0x0 0x0 0x0>;
+> +
+> +			/* resizable VPR */
+> +			size =3D <0x0 0x70000000>;
+> +			alignment =3D <0x0 0x100000>;
+> +			reusable;
+> +		};
+> +	};
 
-I can understand what your said. I think it would be better if add some
-simple examples.
+Hi DT maintainers,
 
-Frank
+I wanted to get some feedback on this type of placeholder DT node. This
+doesn't actually validate properly because it contains properties for
+both the fixed and resizable VPR variants, which are mutually exclusive.
+However, the way that this currently works is that UEFI will remove and
+update whatever properties need to change during boot, so the booted
+kernel ends up with the correct, non-conflicting information.
 
->  Coding style
->  ------------
->
-> --
-> 2.48.1
->
+The reason why it was done this way is because it simplifies the code in
+UEFI to update this node. Also, without this being a placeholder I don't
+know what to put into this. There's no "default" for this. One option is
+to not have this in the DT at all and completely create it at boot time,
+but then it becomes quite difficult to create the phandle references.
+
+While at it, I'm not sure if I properly understand how to correctly name
+a reserved-memory region that is dynamically allocated like in the case
+of resizable VPR? It doesn't have a base address during boot and the
+kernel will allocate memory where it sees fit. Do I just leave out the
+unit-address in that case?
+
+Thanks,
+Thierry
+
+--4xtz2xrto4fsphdg
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi5sKwACgkQ3SOs138+
+s6EL1w/+O3vMzwflDNuAsOeJT5PO30EnSdPQtwSfs1kegW1Z0O7O+SxPDRbIOumH
+ZtXCWjmHUA0x4A4tV1KHYusXEpLe8kdgMeaFYK3XECONFcW/xto7lbOk9ujNo4B0
+RSBU+KmbKVeHe3JQ8ENftNYUpQqLHdBEi/FZVlgjZW8KLe+MuWHnvoZsutLTvLim
+edJeSpS/ms98AYPqE+MACLkqG92b1y0jgGhsa3dymQhX6RYbJxLTzO3SCG9WKpFL
+OkfgV5XwyRYgsBQDIkJnBu4+CtPOO2mJeUQGuHgvSlfv8Ulz6jYKIcPQj5hhJ8KZ
+qtqV5vMoRauXf76f97vKenJ86SPlWymUWCj5/K88mqtDm9EUoTtMT0LfGhCsIfIX
+TNBYgIz79w16UvFuZ/CmD2MEUPi00WpA5b2UyifcHKKnORwL08lBhLD0r5UWMf/H
+qUqNt0qtK2EuPjOeUMwB8YN5VPZCP4oWEWoSVCF3cbjUitjx2ogJRMgeazsAZdmP
+x1+CSVvTpQ1RqXIn3ezRgBkPLQ2d1KJIJdv+pdQn1zcFTuqd0nP5yFS52TiWsJ8/
+cczmrWcs3r30Aoaw3e0rW3OQHghuXLaavcm6FmLVFGs4VDlpRbFnESuLbynzAbAk
+7VfAJwgPBaLVqs2UqkC5ezADL7wV+VxmrcPUry4JBO+17jVwwBk=
+=p0GH
+-----END PGP SIGNATURE-----
+
+--4xtz2xrto4fsphdg--
 
