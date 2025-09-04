@@ -1,168 +1,270 @@
-Return-Path: <devicetree+bounces-212544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40327B43281
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:36:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C2E9B43291
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:37:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 090065679F6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:36:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 085AC1C22334
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:37:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7117275B0A;
-	Thu,  4 Sep 2025 06:36:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 42679275AE9;
+	Thu,  4 Sep 2025 06:37:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UUBraTIi"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="CrA2ZP0V";
+	dkim=fail reason="key not found in DNS" (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b="DpOUZ/fT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A29213E6A
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 06:35:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60F3123D7EC
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 06:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756967761; cv=none; b=E/zBS0LtCJSRisIm8WbkC9EW5la8nj8aB+8ge6NMUCSeNuQTvIjN8SiMXZojaaTqCoozxrnMrJPDUgCKEhwc+Rl9qIJ/Mp9nrjcbtvFScmZt80cM3PppSKTWHWFfbbtp4mSTSrl+2/YS5vujcpKcWV5IAlNGxTNTZpwo8S5QMJI=
+	t=1756967839; cv=none; b=aKwKM4VHnRPt5rnGaFxD81MoulZYopYjqX5pxIQ3g7RaLlFoOf9ZhEFGirzjwz8D6KSCVqi5h3nnYhFoV1UbjxNBLZaOugLpcu6JJzHjqf0JKn5UZhJLNdCtjqea2pCMUskxUrOjzbyOVcMbCNzL8l/FKUTCfT7Dai9u0b9+nTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756967761; c=relaxed/simple;
-	bh=UJ0KZK1xnQRZT7iijdpjHkkIB/eIpt+SFyHW2s2cSnQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HhlJNJab+3w2FRun4/KXVzmYZHMNDXPLo7PNFLF13zmZd22OIsKpStnnRWvH9ucYr4mywriU9fqDswL5uUPgYTXzNqKdx0qj9UbYznjfACh/fe9W4nC5EqN/wi0hcU157lXV3TXwPHVAKRI+IGbZYP4mGhuzwDl6v/Q3/EsLgjo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UUBraTIi; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5841Tuwo029895
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 06:35:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	kWQHe8aTqvkPbjKWyJC9RECFwkQ22fnfERhVPTlFZgY=; b=UUBraTIiFcKJ6O5N
-	918tFPm4wsDxLklKZtmyxTos6whJ1M2uIltlFrYEOlQKn9p+tYRzNJ4Qy5LKIYUQ
-	OOwaMHJIH2+ZEqTVRJtydZy8ifR/h+dRWXcIZ2bW8dshnckSC2gf6aAfvoRfpZnZ
-	OLkVucATNaBNeSRfan/+aY8UUJSSWabrf6WOtHoxqAWYMSkzhobJ+E7lv+uXKih3
-	Y6GGHc2l6bGbDwT7PhNO6ribX19Nq3teOnAhwWK/ilIdYiC0P8XeJqK9veAPeOcl
-	eKfr6HcHe0DAGxARIgmhYFahTMTkiIGU8pDQtLoeHkQC2TizaCZNfHl4RM7TzKny
-	9tjN5g==
-Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnpekvx-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:35:59 +0000 (GMT)
-Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3276af4de80so781329a91.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 23:35:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756967758; x=1757572558;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kWQHe8aTqvkPbjKWyJC9RECFwkQ22fnfERhVPTlFZgY=;
-        b=E6FeytLF8rqmt93pkf+/2NUEhrT24PjEPTZ0jUrxR/qSyT+w+bPHjWgM2ag41hbxzH
-         5pVbZ6NihXBUXpLsAsR30rZOu6Wy4zBvR1MUS4iaWsl96NZP6FzK8XOHSVHNczqRGQJf
-         RlyMvF6+NHhNRgmDy5ksropaBcWplTYruZjsn3HKm9VWp+XPnFOG5yDncibkyFBDhLa4
-         jTSd+i76nvv6vIydRvu+5BDIH5PTcMSZqzOqGm6fRENOeiV6/Z7LTD9AUR9/WHDSoPbL
-         VvGUoUOH0JIUktwBp/TZvIIY24FSzJMkZlwozPKEt+8qOlVzLJi1QEv1RZGaBLM0cxSb
-         Hvww==
-X-Forwarded-Encrypted: i=1; AJvYcCWaxvGxaa81uRvd5A04EZqlwQunI6M98OVWP6/WVF08AhY5/FjwGvLaN+U82sYlZWPpEQXZtLOdLzJu@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWE8jh9C1jBhd+6/Rr3/vaOVKD1v3VD1IzH6a4jMbMA4d9fQqK
-	EoCsR5q5gPPYrCF39Dj2f94+Ixd/mpW05RcQp5nn8aUVXrVYx8GSJl8fTumb0/FjgH+GI7ld06+
-	kJRzvyIanLNda0q1h1BRM8N7/XpHKL3t3mbwPslvCpDUNrG/vwlpZG6GUsPUPCNbq
-X-Gm-Gg: ASbGncvQMdh0RJLVRnuh595dkrIDkoc4+KEYGGiOmlYhAvpJY1HfuNp1NApJlmh7Xxn
-	26hbAqG8YXeqt904cHou9QbTlKRu6mfvXO1bd1SgYEw0zDSauUr/k2BGwyMru/UpCtZUkBZrm8L
-	Ooo7FsMOGYqS7F9AlYNwQyd4Ntup+PU1uXTG3hgK641q1+rwDyWV+2i7dgx/5+NBL3RAOuJc3sy
-	a/6yqTooKT+FXohdIqVuoRXlq0QoQGYoVqq0dLSAuin+CNsHvfqG5BAysTcY47tSDYhDy9CF027
-	8O1jiwQtQXOQiWkYt6wBlJPPRNk6IffM4HFl0YrINEVPdX773nOK9SVeQ2peElM76zM3YJJNnDN
-	X4ETKcDcHSFWF8qJGm2eOkGpqKZgcRA==
-X-Received: by 2002:a17:90b:2245:b0:32b:90a5:ed2c with SMTP id 98e67ed59e1d1-32b90a5f1f2mr2536804a91.20.1756967757710;
-        Wed, 03 Sep 2025 23:35:57 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE0AZclcAiAIE/RLioDWTNitUCYKwiFoqEf+Fx+HDf/RA/CibTj/rrt4B/KuNcWo8T1gpG/rw==
-X-Received: by 2002:a17:90b:2245:b0:32b:90a5:ed2c with SMTP id 98e67ed59e1d1-32b90a5f1f2mr2536773a91.20.1756967757183;
-        Wed, 03 Sep 2025 23:35:57 -0700 (PDT)
-Received: from [10.133.33.41] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4fa1f21415sm4007673a12.18.2025.09.03.23.35.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 23:35:56 -0700 (PDT)
-Message-ID: <25379ac1-4559-4803-b03c-bd24355d3b4a@oss.qualcomm.com>
-Date: Thu, 4 Sep 2025 14:35:48 +0800
+	s=arc-20240116; t=1756967839; c=relaxed/simple;
+	bh=Vwy0j5YzLjOUkAEbFgFU37WsHRlbewebumRB2qqKYAA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=k04dLUetqdCMXhd2ng/AXU5GQoowLfmlKr7kSofvdY4k7yoDdrx6BSvBPV4sIxdFASxQIkZm6pIWbJ3ojOwQXA7gDWdgfpEGY/3YWrBofEJt0nbCjRGQe6YZa8KpdSV4e+KdMwuMJxHpkZLj4nMPg8HmkjOFmBYdzVGJjvVHH/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=CrA2ZP0V; dkim=fail (0-bit key) header.d=ew.tq-group.com header.i=@ew.tq-group.com header.b=DpOUZ/fT reason="key not found in DNS"; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1756967835; x=1788503835;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=kkpN9KMDd74VuED4g9h4cMoXAQt3UR7LWE3gnTyIkZQ=;
+  b=CrA2ZP0VFrll8u5Ae0YS0cgLZW/CIfe//cP80CibwqciNH9hLpF8Qsfl
+   xgXaNzLsrgO+xXt90dCBk6ksjijAcOBY84RXvcR+0QrpkBTF73glTqmN5
+   UR/3LkwKTn+Ubtj6QEaD5SEmmxl+ICwrZ6qsJblj7xJyjd+REP1QiD7v9
+   nZYElos7mpojg8YomOMtUDO+/QTmvmip5cRAvw73tAyYd7X/WlBYeVcPI
+   HHpx64zQCXdL/DC/b7ENRpmaIvrgTtdidU93zAx62O6aOoEBsZAAK7yrN
+   1gVwd0c+LtmqK3ClNYtFhG33V03oDVMyn7MdsR9ANXeFkAHCJeHXxEGmk
+   A==;
+X-CSE-ConnectionGUID: 9p8QZnA8QQWNINsHY/Q+VQ==
+X-CSE-MsgGUID: biZXPoVjT3KkCsQH8tWQtQ==
+X-IronPort-AV: E=Sophos;i="6.18,237,1751234400"; 
+   d="scan'208";a="46067816"
+Received: from vmailcow01.tq-net.de ([10.150.86.48])
+  by mx1.tq-group.com with ESMTP; 04 Sep 2025 08:37:05 +0200
+X-CheckPoint: {68B93391-1B-299FBAB0-EF52EDE7}
+X-MAIL-CPID: 52B18138E6B4DEB93BDE63A8203E6266_5
+X-Control-Analysis: str=0001.0A2D0328.68B93393.002F,ss=1,re=0.000,recu=0.000,reip=0.000,cl=1,cld=1,fgs=0
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id E0794169FDB;
+	Thu,  4 Sep 2025 08:36:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ew.tq-group.com;
+	s=dkim; t=1756967821;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=kkpN9KMDd74VuED4g9h4cMoXAQt3UR7LWE3gnTyIkZQ=;
+	b=DpOUZ/fT26CvO8fVeJgmIcJ4c5oQnWe9OOXeTeeswSRHFoh3tLJOXR8/fx1qGyLCPZ2hLZ
+	szKvg/xhil1zwPQfEMtIcik45sP/T1Ld2DrWiqqlyah5c8/JySSEMH3xrTKJf9GnlGzM2k
+	crfs0GtdUSf+8UjkJWF/CtwInJLPkQHha25k61L3qO3uGVPoJeDxHBkM/6qmH7Ktir2BOt
+	R3FmWdFOrPuKs8Qlywz72rfABpHU9LkfBDV8/EBwifItNKL5T7fyLYTivozlQj0N4Q8xMA
+	EHFw9m+7UVDXV/649G0nhvtdWs3XmOAdS7sBoXsHyPrIz1ZgSG2Dn2dHfIz+aA==
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Marek Vasut <marek.vasut@mailbox.org>, dri-devel@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ imx@lists.linux.dev, Boris Brezillon <boris.brezillon@collabora.com>
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+Date: Thu, 04 Sep 2025 08:36:55 +0200
+Message-ID: <3372501.aeNJFYEL58@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20250904082224.113d0cd1@fedora>
+References:
+ <20250321200625.132494-1-marex@denx.de>
+ <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
+ <20250904082224.113d0cd1@fedora>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 2/6] dt-bindings: display/msm: dp-controller: document
- QCS8300 compatible
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250901-qcs8300_mdss-v10-0-87cab7e48479@oss.qualcomm.com>
- <20250901-qcs8300_mdss-v10-2-87cab7e48479@oss.qualcomm.com>
- <j7whxaqfeyz6fqwg54h2mivobbvo3plvxxzor7whmwjkhavndw@ulqfidkwwn6j>
-Content-Language: en-US
-From: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-In-Reply-To: <j7whxaqfeyz6fqwg54h2mivobbvo3plvxxzor7whmwjkhavndw@ulqfidkwwn6j>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-GUID: IbdZwkvYPJshhi_iC6LRx-3rurg6y8IK
-X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b9334f cx=c_pps
- a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=Ik-895_utKsnK2WA_CQA:9
- a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
-X-Proofpoint-ORIG-GUID: IbdZwkvYPJshhi_iC6LRx-3rurg6y8IK
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfXwOSFx0mjPGK6
- 8GXfHtjlZSEwh7XXi0v7PXUAPU7LnmQxYK59EcPRGvbjWvTmwtCt5uNmiyjwJfYGoptywiBvd3Z
- LH2O4bLUnkyyqPAreDRmSDzg1uki7pXjC3R8Uasa3kcT2wkCOn/dHaUOQaMnZ6KCWe8RjPlJaln
- JNcuGkfyNC+qUpjtHVD6dA06MC1vwxM1zYflBmCd+WlRGa6fiNOUXsRX9qqjI/BPC6Hpn9ereg5
- keJS1jmB4MctCJJMNpXl0a/xQb0oPznXAgoWwVSX9/A9zmG22aEsOU6YsUg7nIxgkkFmWJzYBx1
- z/tXC/yac4EcxuRVR5JBvWFVI0um+5lOWdIiU6GLY7V9WG8w4FAvHQNhenCCb2lxIOQ2+E5fjha
- yIeKOJvK
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_02,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300001
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Last-TLS-Session-Version: TLSv1.3
 
+Hi,
 
+Am Donnerstag, 4. September 2025, 08:22:24 CEST schrieb Boris Brezillon:
+> On Wed, 3 Sep 2025 23:44:59 +0200
+> Marek Vasut <marek.vasut@mailbox.org> wrote:
+>=20
+> > On 3/25/25 3:52 PM, Boris Brezillon wrote:
+> >=20
+> > Hello Boris,
+> >=20
+> > sorry for the late reply.
+> >=20
+> > >>>>>>> Hm, that might be the cause of the fast reset issue (which is a=
+ fast
+> > >>>>>>> resume more than a fast reset BTW): if you re-assert the reset =
+line on
+> > >>>>>>> runtime suspend, I guess this causes a full GPU reset, and the =
+MCU ends
+> > >>>>>>> up in a state where it needs a slow reset (all data sections re=
+set to
+> > >>>>>>> their initial state). Can you try to move the reset_control_[de=
+]assert
+> > >>>>>>> to the unplug/init functions? =20
+> > >>>>>> Is it correct to assume , that if I remove all reset_control_ass=
+ert()
+> > >>>>>> calls (and keep only the _deassert() calls), the slow resume pro=
+blem
+> > >>>>>> should go away too ? =20
+> > >>>>>
+> > >>>>> Yeah, dropping the _assert()s should do the trick. =20
+> > >>>> Hmmm, no, that does not help. I was hoping maybe NXP can chime in =
+and
+> > >>>> suggest something too ? =20
+> > >>>
+> > >>> Can you try keep all the clks/regulators/power-domains/... on after
+> > >>> init, and see if the fast resume works with that. If it does,
+> > >>> re-introduce one resource at a time to find out which one causes the
+> > >>> MCU to lose its state. =20
+> > >>
+> > >> I already tried that too . I spent quite a while until I reached tha=
+t L2
+> > >> workaround in fact. =20
+> > >=20
+> > > So, with your RPM suspend/resume being NOPs, it still doesn't work?
+> > > Unless the FW is doing something behind our back, I don't really see
+> > > why this would fail on your platform, but not on the rk3588. Are you
+> > > sure the power domains are kept on at all times. I'm asking, because =
+if
+> > > you linked all the PDs, the on/off sequence is automatically handled =
+by
+> > > the RPM core at suspend/resume time. =20
+> >=20
+> > I revisited this now.
+> >=20
+> > Can you please test the following patch (also attached) on one of your=
+=20
+> > devices, and tell me what the status is at the end . The diff sets the=
+=20
+> > GLB_HALT bit and then clears it again, which I suspect should first hal=
+t=20
+> > the GPU and (this is what I am unsure about) then again un-halt/resume=
+=20
+> > the GPU ?
+>=20
+> It doesn't work like that. What you're describing is like executing
+> "shutdown" on your terminal and then typing "boot" on the keyboard
+> after your computer has been shut down.
+>=20
+> >=20
+> > "
+> > diff --git a/drivers/gpu/drm/panthor/panthor_fw.c=20
+> > b/drivers/gpu/drm/panthor/panthor_fw.c
+> > index 9bf06e55eaeea..57c0d4fd29aa2 100644
+> > --- a/drivers/gpu/drm/panthor/panthor_fw.c
+> > +++ b/drivers/gpu/drm/panthor/panthor_fw.c
+> > @@ -1087,8 +1087,16 @@ void panthor_fw_pre_reset(struct panthor_device=
+=20
+> > *ptdev, bool on_hang)
+> >   		struct panthor_fw_global_iface *glb_iface =3D=20
+> > panthor_fw_get_glb_iface(ptdev);
+> >   		u32 status;
+> >=20
+> > +pr_err("%s[%d] pre-halt status=3D%x\n", __func__, __LINE__,=20
+> > gpu_read(ptdev, MCU_STATUS));
+> > +
+> >   		panthor_fw_update_reqs(glb_iface, req, GLB_HALT, GLB_HALT);
+> >   		gpu_write(ptdev, CSF_DOORBELL(CSF_GLB_DOORBELL_ID), 1);
+> > +mdelay(100);
+> > +pr_err("%s[%d] likely-halted status=3D%x\n", __func__, __LINE__,=20
+> > gpu_read(ptdev, MCU_STATUS));
+> > +		panthor_fw_update_reqs(glb_iface, req, 0, GLB_HALT);
+> > +mdelay(100);
+> > +pr_err("%s[%d] likely-running ? status=3D%x\n", __func__, __LINE__,=20
+> > gpu_read(ptdev, MCU_STATUS));
+> > +
+> >   		if (!gpu_read_poll_timeout(ptdev, MCU_STATUS, status,
+> >   					   status =3D=3D MCU_STATUS_HALT, 10,
+> >   					   100000)) {
+> > "
+> >=20
+> > In my case, the relevant output looks like this:
+> >=20
+> > "
+> > [    3.326805] panthor_fw_pre_reset[1090] pre-halt status=3D1
+> > [    3.432151] panthor_fw_pre_reset[1095] likely-halted status=3D2
+> > [    3.542179] panthor_fw_pre_reset[1098] likely-running ? status=3D2
+> > "
+> >=20
+> > That means, the GPU remains halted at the end, even if the "GLB_HALT"=20
+> > bit is cleared before the last print. The clearing of GLB_HALT is also=
+=20
+> > what panthor_fw_post_reset() does.
+>=20
+> After the halt has been processed by the FW, the memory region where
+> you check the halt status again is inert, since the micro-controller
+> (MCU) supposed to update those bits is off at this point. The FW
+> interface is really just a shared memory region between the CPU and
+> MCU, nothing more.
+>=20
+> >=20
+> > I suspect the extra soft reset I did before "un-halted" the GPU and=20
+> > allowed it to proceed.
+>=20
+> Hm, not quite. I mean, you still need to explicitly boot the MCU after
+> a reset, which is what the write to MCU_CONTROL [1] does. What the
+> soft-reset does though, is reset all GPU blocks, including the MCU.
+> This means the MCU starts from a fresh state when you reach [1].
+>=20
+> If I had to guess, I'd say something is messed up when the GPU is
+> halted, and you need a soft-reset to recover from that. Unfortunately,
+> I don't know enough about what your FW is doing to help. Maybe
+> Arm/Freescale could...
+>=20
+> >=20
+> > I wonder if there is some way to un-halt the GPU using some gpu_write()=
+=20
+> > direct register access, is there ?
+>=20
+> That's MCU_CONTROL, yes. And it's done here [1] already.
+>=20
+> > Maybe the GPU remains halted because=20
+> > setting the GLB_HALT stops command stream processing, and the GPU never=
+=20
+> > samples the clearing of GLB_HALT and therefore remains halted forever ?
+>=20
+> Exactly that, and that's expected.
 
-On 9/4/2025 7:45 AM, Dmitry Baryshkov wrote:
-> On Mon, Sep 01, 2025 at 05:57:30PM +0800, Yongxing Mou wrote:
->> Add compatible string for the DisplayPort controller found on the
->> Qualcomm QCS8300 SoC.
->>
->> The Qualcomm QCS8300 platform comes with one DisplayPort controller
->> that supports 4 MST streams.
->>
->> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
->> ---
->>   .../bindings/display/msm/dp-controller.yaml           | 19 +++++++++++++++++++
->>   1 file changed, 19 insertions(+)
-> 
-> I've picked up the last version of the DP MST patchset. Could you please
-> rebase this patchset on top of it, hopefully making it finally
-> mergeable.
-> 
-> 
-Sure. will update it.
+=46YI: in a new release of system manager software (starting from lf-6.12.3=
+=2D1.0.0),
+the GPU reset is reasserted in SM software already [1] and access to GPU
+block control has been removed from Cortex-A [2]. Starting from B0 step this
+version is required AFAIK.
+
+Best regards
+Alexander
+
+[1] https://github.com/nxp-imx/imx-sm/commit/2dcc0409ede82eef54857be50daa58=
+8b23b3ba7b
+[2] https://github.com/nxp-imx/imx-sm/commit/a3e5da9ea51144f513ac3909fa151f=
+a7df394100
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
 
