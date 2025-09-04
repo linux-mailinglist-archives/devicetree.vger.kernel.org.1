@@ -1,120 +1,166 @@
-Return-Path: <devicetree+bounces-213020-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213019-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DB5CB446CA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:57:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65C1EB446C9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:57:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59D56A06296
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:57:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 20AB0A063EB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:57:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 839CA2777F3;
-	Thu,  4 Sep 2025 19:57:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74C04277C8C;
+	Thu,  4 Sep 2025 19:57:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="PgFHKxgk";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="IsHrLgJ5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Iv+32+pl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97C6B1BD035;
-	Thu,  4 Sep 2025 19:57:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 905A52773EA
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 19:57:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757015868; cv=none; b=tKKSoo72eOAh6p18azmc9JsaA9cNhFDGFV5PZ3PCJ3ySOLxUdMmKH73KmcNfVpRvDD1frS+YOm6YydRsUrElebSpTINsXwAuh7BOB1UjXk+A966h5sXOLlY6uwIouKu7YToE9j9UtDESM7bFXWS05r2/oEXa9kJtTstyNp6PY60=
+	t=1757015861; cv=none; b=sNQ2h+DpfdT5UNmFcnMnq//VQ87hvFM/zqpMooXfXlqgWbeQ/JVmyPi56sPtm4xEudg+NKfXjC0LLW5EN81KagqgCBkHY1NMRc15fbkkOwgCrdl6LzORI+Zf2f64Lexgy01fFrqPjRbIQ/tNiIHm6pItvrJ+0PuX4mDm9gebh2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757015868; c=relaxed/simple;
-	bh=n5nrwsjWsKuEqHajZEaLFb/qo1iIyEfFFoVWELct2zI=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=iluGbym3piXy5elQi03brTIg89lNcFjXRiP2uDL3hpGlif/iJMTARW3Fz2wvjS/9N8JR9Rq/jaRT/7fbTbzwlbaveUH+UBoMTHnm3Ccez88kI7MWLRSD8Cue8551sqDmmzg/MODo+hchJ1eA+CHoquzJLbIa2zT50UvZXFGchI0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=PgFHKxgk; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=IsHrLgJ5; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cHqyc52Nyz9skk;
-	Thu,  4 Sep 2025 21:57:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757015864;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Xp//stt9NXgtksT8Wy/exrEd6nmzs3RkU+yIcz8kMtY=;
-	b=PgFHKxgkkXT2ksNpcRaml11ZFM365Rq2ux8l1feSo+lIH7nrytPwaOGpWtCB79an4NJpTg
-	C7Pnad47SLLvLYU0RP4VWUqT5h8wYjklj/d3+W7xEDgBZySytQQwh0/OILwLEuPezN5moh
-	KFvfUFF9qRI/Pv1d/CfIKQWvMG85D3lylN8Ylfe0jCDyXIZt+PbyuKCshMzTyRmws3Wxbi
-	GkPRlabIC8myLqU4IpEdS2S/MasRB3m1Z2z+L15FeYfyj0dIgNZmEHopeeQgoXywRD1Ia1
-	uTY6GQhrABlukNKbwRGYzt0j3HXdbEIIpad3+5ywYcVvBaz6USG2pga3G6tpXQ==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=IsHrLgJ5;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757015862;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=Xp//stt9NXgtksT8Wy/exrEd6nmzs3RkU+yIcz8kMtY=;
-	b=IsHrLgJ56GTXpG/eEakha6fsVddd1A3/u+2S8G8iiymdEurVwbqXCy6lz/5vkdfPmw2+M/
-	c2NklRJYRuqOVaNCSoNA5zCUwV+Xw7+WEhQsWoSfuzAxmMDOKjZDM0fPBFhNy3pmTwVV/x
-	ZFQuJOyR8GQ3VdCuqcf4HhLNyg4tT5OoCa1ys+G37n3q+yqbqzy7GquVJlLkreNwKAvNwZ
-	xib0ozkRwG9MNpu1svIXCuATq7FeXTbhhUUVN1NsrUb3tOlun1WA7joF31h+5jKYWbFJeR
-	obh1X31jMNJiOG5mvfdFd3YGZRIrgBoo32UaomJmABm6gsb+DNVEuHSxqockxA==
-To: linux-input@vger.kernel.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH] dt-bindings: input: touchscreen: goodix: Drop 'interrupts' requirement
-Date: Thu,  4 Sep 2025 21:57:04 +0200
-Message-ID: <20250904195727.168152-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1757015861; c=relaxed/simple;
+	bh=AkQDfljW56aeK9hFyEplI/9Ee67wMd+uq6QJcRF62eo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fhQ195x1PBE957fmPrHS/vHOGhfJgz83PYz3yuDKakl3aYs1ShJCmd3WXpQVkLiJv3O7TtM7WiTu+XqG+84fAuwglT5ezi3sQ2D2Kf1mQzcmeu4BCPpslxBH3M3Finnc7Shcp57jthimOc6L5gKn/k3n/Jq0MRb/w+P5HI/Fa30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Iv+32+pl; arc=none smtp.client-ip=209.85.208.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-337cc414358so13324641fa.3
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 12:57:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757015857; x=1757620657; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6kwPz46AfjWSljE81nGPsJRjk/PBKufX3IFU3DIxO20=;
+        b=Iv+32+pl+RF/5u9CXQ2H/5eyAmAkycT/gu4sr+1dppOQN7ClaN1+UkvsAo99TDI91J
+         JZTVbf1mcgBfbJyKlqFd/ymeo2YWyWes8minSpK/VUiXqtkViDeOzo2lbrRAE5bQek52
+         q7j1d2+8Ch3M7w8baGcVVxySNOnd3S8w3zQ1FKgO/1yjTjh5HXjnSgWETLcT72Gu/vjb
+         ffs9gc7cT4wIel3sXqOYcTnic/NCW8dGMWJ7sHdrnzLj4QQ/LSUXF7Rmr0UlikLNkxeq
+         gW2jIybvjzI3HKgnIZedva/HORa3f5dytWHHplPHe20DUd1v5W8Uzb2HzpDXsUZFSytk
+         aCsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757015857; x=1757620657;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6kwPz46AfjWSljE81nGPsJRjk/PBKufX3IFU3DIxO20=;
+        b=rACuhAR4QEaAFz3gaX9s4tZalLvbg8caRnEuwhmb5c9i3e1yImdadpBkjXEkujODD2
+         efkrEIqclkXGqHhIAYl4vZWpRH+mtuErYaugJYRe+6PVCOWxuf1Zp7hPm3DeFr4L/xpz
+         4redZ7kXoxfrdNyz/VUCJ3I7wu7peIX7UC9QLSkr08pZCaWu9TxX+UPaYgNSnGfqWrDS
+         MHjcC0ditFCZr+GrHSbPJR1vNONNo5hJ9OTCvuTMhGzlFtY1+zmtjU0JwPDol+IrBPZz
+         B+04jw4fqE4oFceR5cSO1DNzGe6f3f1TyHO56iHtfLGKhK/Ld8KlUCJHBM0aFdUFRElI
+         QOxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVzhh0oGdqiw/5B/aGvwqfJUlgu2Wlu0u25NDRi5IXyHQtu5oMLkVwiHVUECZPW9uCMA/az1rbxiLGI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5oQO+VXq8TSKa+d9iuiyE9xl/avUgDOCsPes3xBZ+jq9YIJKc
+	HtSpS6oVZeG8a0HcSdj74izTQe+cmKJ7LGzCTHZtHwAY4lVlJ5/z662YOmaNxuCX0mXC7haiX2i
+	563eiJ0mzzF6/NV6KREmw4zMC1whqRY4dD8jRqXk7kA==
+X-Gm-Gg: ASbGncvEAUJbZ4v6sSvaBVVYqPmQ53CWY0wrixF3iW01RaBy+45Y8aEIfvCBv+hSYti
+	4HXHb8D8v7Y+rirGLoAP2cfxlgbwTiIbQ9ptBnVHH3zG7eXJdwvXL79pJveD5vhK+MnBxOLvt1w
+	izpXQhKOeerUVgxrO4z7XCQkTyHU7wEgSrxnzz1aES+hwAUFNCzcCbfGHaVXkIW7epR3UmS2/oW
+	WkjEX8=
+X-Google-Smtp-Source: AGHT+IGSNGuoZa0tGd2MuceeY+rWx4+fE98zKz5kXJNG5SS9yafrJ2IfBrrLXPyBqms3qzMRhIcBxsxK/c607/IOLes=
+X-Received: by 2002:a2e:a4d8:0:b0:32c:abf4:d76a with SMTP id
+ 38308e7fff4ca-336caf58af5mr43186631fa.38.1757015856723; Thu, 04 Sep 2025
+ 12:57:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: 0a9de777aa544b54acd
-X-MBO-RS-META: odpy85haxabhfu8ab7pbdqje9t1iu8sd
-X-Rspamd-Queue-Id: 4cHqyc52Nyz9skk
+References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com> <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
+In-Reply-To: <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 4 Sep 2025 21:57:25 +0200
+X-Gm-Features: Ac12FXySP_jPTakETmSTujg6AZkgjLE-3L81eBmgyMtwcrvqz9e4_hK7r8cr0mE
+Message-ID: <CACRpkdbgcCjZbZ2HtrNO7vK1HXzrwxkrNFCzqGguq=ckKg3cFQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
+ Swap Controller
+To: nuno.sa@analog.com
+Cc: linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Since commit 409fe0cea366 ("Input: goodix - add support for polling mode")
-the interrupts property is optional, since at least the Linux kernel driver
-supports also polling mode.
+Hi Nuno,
 
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-input@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org
----
- Documentation/devicetree/bindings/input/touchscreen/goodix.yaml | 1 -
- 1 file changed, 1 deletion(-)
+thanks for your patch!
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-index eb4992f708b70..a96137c6f0635 100644
---- a/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-+++ b/Documentation/devicetree/bindings/input/touchscreen/goodix.yaml
-@@ -62,7 +62,6 @@ additionalProperties: false
- required:
-   - compatible
-   - reg
--  - interrupts
- 
- examples:
-   - |
--- 
-2.50.1
+On Wed, Sep 3, 2025 at 12:04=E2=80=AFPM Nuno S=C3=A1 via B4 Relay
+<devnull+nuno.sa.analog.com@kernel.org> wrote:
 
+> From: Nuno S=C3=A1 <nuno.sa@analog.com>
+>
+> The LTC4283 device has up to 8 pins that can be configured as GPIOs.
+>
+> Note that PGIO pins are not set as GPIOs by default so if they are
+> configured to be used as GPIOs we need to make sure to initialize them
+> to a sane default. They are set as inputs by default.
+>
+> Signed-off-by: Nuno S=C3=A1 <nuno.sa@analog.com>
+
+(...)
+
+> +config GPIO_LTC4283
+> +       tristate "Analog Devices LTC4283 GPIO support"
+> +       depends on SENSORS_LTC4283
+
+Could that be
+depends on REGMAP && (SENSOR_LTC4283 || COMPILE_TEST)
+?
+
+Or does something blow up if you do that? (I guess it also needs
+AUXBUS but more on that below)
+
+should it also be
+
+default SENSOR_LTC4283
+
+Sof if that is compiled in (=3Dy) or module (=3Dm) then this becomes
+the same by default?
+
+> +       help
+> +         If you say yes here you want the GPIO function available in Ana=
+log
+> +         Devices LTC4283 Negative Voltage Hot Swap Controller.
+> +
+> +         This driver can also be built as a module. If so, the module wi=
+ll
+> +         be called gpio-ltc4283.
+> +
+>  config GPIO_MB86S7X
+
+This is placed among the memory-mapped drivers, but:
+
+> +#include <linux/auxiliary_bus.h>
+(...)
+> +static struct auxiliary_driver ltc4283_gpio_driver =3D {
+> +       .probe =3D ltc4283_gpio_probe,
+> +       .id_table =3D ltc4283_aux_id_table,
+> +};
+> +module_auxiliary_driver(ltc4283_gpio_driver);
+
+Create a new submenu for auxiliary bus drivers and add it
+there. We already have a submenu for MFD so why not?
+
+menu "AUXBUS GPIO expanders"
+  depends on AUXILIARY_BUS
+...
+
+Have you looked into using GPIO_REGMAP?
+I guess some specials are used here so maybe it is
+not possible.
+
+Yours,
+Linus Walleij
 
