@@ -1,292 +1,215 @@
-Return-Path: <devicetree+bounces-212500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 30701B42FB4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:22:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C713AB42FBA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:25:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DFD21560720
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:22:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F375670EE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:25:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1C871EBFFF;
-	Thu,  4 Sep 2025 02:22:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C861EEA55;
+	Thu,  4 Sep 2025 02:25:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="XxpUJ52f"
+	dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b="T9WxGV1I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out28-1.mail.aliyun.com (out28-1.mail.aliyun.com [115.124.28.1])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D660134A8
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 02:22:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDAC115D3;
+	Thu,  4 Sep 2025 02:25:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=115.124.28.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756952524; cv=none; b=D6qYW1OvYz091qn2p5BtyhQOtAZv+zLjIVwCl9dBhgb0xtAqHhqHe/yaz2BgIhZwtklQzTkBDDytwHGJzmvPTPT7yx/cBNXlUi2rVIRZt9+3i76F/yps/60CCbs5sBU0GND716x4ucCu6WlFJqGiVSYzTcv1F951WrZn5+BzC60=
+	t=1756952734; cv=none; b=J8SR58DiH8EJ8tzKzXtj0HfzfPthQl4Mojczcq5fzYvTmiycwJmvYh2KRJOEvHZCvEdnMe3BXwhkMjPXdjKpGnPibAiFkOBSMBSvUhBAitlqfnvUXRRi8v0f/T2JYTzxiVHVMF84+Lv1k6Xo/uRNmd/oSdCoevYsETiNcRuyiYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756952524; c=relaxed/simple;
-	bh=3plnOV/tQZr+r/U+s46fToEDbwaCSdIaXgEr35yJ0d4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j2tPhwrtp7dIihAVhtioXSL2vC+6m3ydExrHxr71FySqN5rrPh1RJGgjVhzywTe3CKLSV31HOI0he6ezEZjifPwiLvt21/IIuE1M0nr1rH/EQUR2mJ3I4QpOCspoddBFQ6scQFyJugVjcwmJgVue5sOkXuAQH7U+CZbWOLs27VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=XxpUJ52f; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58415cUx029727
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 02:22:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=UqDA79vMuQ4DioUE8hancjBP
-	t/X6lnrlS8udMgPwyC4=; b=XxpUJ52fovBMOcvGzxoFCaL4Ohs8e6Fe5+id3dKW
-	86M1mZdhiZPYEak4mTHcUmJDAnr/5Ja48YnpdAjqlxO927h/MyuNmhU2ZA0TuhQc
-	Uf63oew1YSVi84L+sJ1BhpygvuYIM25U+a9Grj/ZchhrwahYPh9Ac665IaK12Ian
-	9UOcpCybB8mnqo/gNgUSi8B6oJQJgJhVWqm215j3dx6h8E7Lc0gMwfa/V5tVtGan
-	HOrzAf/ZQFeblPUjGDaUhbPX41G3X/bxP5twah3x6tB2MfF4WwIPzbGUa2R3KhaI
-	SU9sIXSNHQVkj511Ognmwfy3qxO+krWzAQs/tAzQMZD5vw==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urw05vt1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 02:22:01 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b4980c96c3so18270181cf.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 19:22:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756952521; x=1757557321;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UqDA79vMuQ4DioUE8hancjBPt/X6lnrlS8udMgPwyC4=;
-        b=glOrQQaQiyVy6QUofKmXLI2R7b8mZDfXRv8YLNliTYYlgRdTV6EP4I0hgv61eYTD0i
-         3FM4Lsstp8gDRkr6yXfCLHze4dhhFXhm+kV4+jn4JxVPiCpsh+kLFr4r+RIctkVo0dYM
-         +M1zSML5k5WvX17zdUJXzBd5Ozvc0jZwC9UabIhqaqXnYnqrCUcYYZOgV8uRE+cWGvd2
-         NLhNjnABsf/KzD5dDHeTHKvT63sny3AlyKsH0cdPnvVMcRuc8UTk9YYw0fivvNFistLA
-         Al3iuVufygHCzyc3o2PYCiR96i5OzHkRpbyk9Nx6oOdc2vt4vbNAT00ZtHiWNEMBNfdY
-         UWig==
-X-Forwarded-Encrypted: i=1; AJvYcCX4ARMBaSn+J3IzlEWLbx/SJHeNjvnIg6gauOwo3YzQB9jVajl0BwNZ9+bK6LEsFb6Vrebpf8L4CyIy@vger.kernel.org
-X-Gm-Message-State: AOJu0YyIDWjdP6L3ZyrzStgX0bHWY4qXmrRNb7Nxuo+ldsBDx/pJ/9oK
-	YlMiZsAeOKKVD7jlHSqkmxN08yfmiiN8THwi5KFY2mj5G563Lekyj1Dv5g5c2emJZMuA4X++axA
-	Yne6s24TdcFQEr7TtRRvh6ZAtiflHHCpvRARUaj2+0bV5CJU5+JbmhyRiLSZaqdMt
-X-Gm-Gg: ASbGncuWY++snLnjyXljNxkUpBeHS4IzMU9z8HhezGwN15ICU5s5qliTm3/Bj406rHF
-	mt/2LsMumQcQXjXbb9o1Q1LfzycQuU4Gl2swKBmE+HzEOP6OPY+fugf+8kezFI3zR2MDy6mtQoO
-	JB1deg0cV0x7zgHaPtBQuYUbU2vOTx+7LINP9psNaGxUFQVt8O3XJR0QpmYarYROk+cY/Bubeyo
-	QIC/hJAYej8T0bn2XivqQSNctm5yq51HL+oyS/4V+DvuPUcZOwLwFeBY48THyqrbzlAYeOo6kdV
-	vyy2qNRvN8szoNRzLLxpPgUCJHuv5evmGFRgLOHWKXPO+JozXXtvTzuuWZn3abZDj0woWuqb7TX
-	MDy9bJxQ2npyiBzJRySj3ebC3qgGhOraee2aHSg1e6H7hE0vkTXan
-X-Received: by 2002:a05:622a:8c9:b0:4b2:8ac5:27c4 with SMTP id d75a77b69052e-4b31dd7ab57mr235391661cf.79.1756952520695;
-        Wed, 03 Sep 2025 19:22:00 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGTGQK4o8JOfJXm8YdRgThRFbgc3hvhYcbAu5TkwFenQldv2fSoa+WwUY/vg70G3SHonyTuLw==
-X-Received: by 2002:a05:622a:8c9:b0:4b2:8ac5:27c4 with SMTP id d75a77b69052e-4b31dd7ab57mr235391361cf.79.1756952520189;
-        Wed, 03 Sep 2025 19:22:00 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ad5027esm880943e87.149.2025.09.03.19.21.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 19:21:59 -0700 (PDT)
-Date: Thu, 4 Sep 2025 05:21:57 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: syyang <syyang@lontium.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andrzej.hajda@intel.com, neil.armstrong@linaro.org, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        yangsunyun1993@gmail.com
-Subject: Re: [PATCH v1 1/2] This patch adds a new device tree binding
- documentation.
-Message-ID: <lcyori44rm5p35wykk2rb54zbrrpft5c7uibi376jihemkb67w@px3nj72a5hx4>
-References: <20250903123825.1721443-1-syyang@lontium.com>
- <20250903123825.1721443-2-syyang@lontium.com>
+	s=arc-20240116; t=1756952734; c=relaxed/simple;
+	bh=KCWy2vyJnmAL/W01W+0b35DGYVII6tot8QB1eTqX2bM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=b4ibcVTSAWpY6cH/9CGtEuVDE8nzT0CWEHY2a7BLubNT+ZMpSM9MGyNJe4FAcS8RQbh+z/JzuAAuasQFjl/dDRd9ShjziZ7ODNB8Rzi/pFw8YMNQzW/u+VFpGIpnBwOS0ubJGokco99RO6FwmM6kDjpYmZ4LP+UfJnctZXi9GCU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com; spf=pass smtp.mailfrom=lontium.com; dkim=pass (2048-bit key) header.d=lontium.com header.i=@lontium.com header.b=T9WxGV1I; arc=none smtp.client-ip=115.124.28.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lontium.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lontium.com
+DKIM-Signature:v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=lontium.com; s=default;
+	t=1756952728; h=From:To:Subject:Date:Message-Id:MIME-Version;
+	bh=Un06HqfwPQsE/oAIO6ZXBVvPYAItl1qANIL2H+2XnCw=;
+	b=T9WxGV1Iv/FDUQZDbtqrEvtpe5r00KL9fdfqLsNK88rH/tqLnEfM8zuJ2TNfvhsvVsyFn2cZI2XauwBzdCGdfMDIFa4GFLQRx3FF7LYIOWAXOnyHj6FK2tzv/z/k9ud6Yns22ni8DpYCbba9YM43t600R+z4PyZBAmYu3P+T2XFt3v7t326YB1Hlr+Hsk7pK63PhGdu9FD0weva4g/8i7usk3z9Py5v4Tzpni8D56y+SBQZpNIWrE4KyGZPmfa6miiFkOVvNjlZAxVC+hHTw7glKUGTs7QBHvvDPygCbkkkwh8ZgQ/dRwc98QY0C74C6efWJNMhkhoQaJjESqHffhw==
+Received: from localhost.localdomain(mailfrom:syyang@lontium.com fp:SMTPD_---.eX3U4ee_1756952727 cluster:ay29)
+          by smtp.aliyun-inc.com;
+          Thu, 04 Sep 2025 10:25:27 +0800
+From: syyang <syyang@lontium.com>
+To: robh@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com,
+	andrzej.hajda@intel.com,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	jernej.skrabec@gmail.com,
+	jonas@kwiboo.se,
+	krzk+dt@kernel.org,
+	linux-kernel@vger.kernel.org,
+	neil.armstrong@linaro.org,
+	rfoss@kernel.org,
+	syyang@lontium.com,
+	yangsunyun1993@gmail.com
+Subject: [PATCH v2 1/2] This patch adds a new device tree binding documentation.
+Date: Wed,  3 Sep 2025 19:25:24 -0700
+Message-Id: <20250904022524.1748587-1-syyang@lontium.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <175691717884.2393851.6340903042726389490.robh@kernel.org>
+References: <175691717884.2393851.6340903042726389490.robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903123825.1721443-2-syyang@lontium.com>
-X-Proofpoint-GUID: PqZ4yJMlj8Xp8RRf4d0x6FjcJvRff2SJ
-X-Proofpoint-ORIG-GUID: PqZ4yJMlj8Xp8RRf4d0x6FjcJvRff2SJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNyBTYWx0ZWRfX77JFeTpKZpY+
- YB/x24e+gzFkNYY4fZDeWhIRLNNBZf1FTo29QDEhSi1lERc3E93Nv29/ffoRl0Hkb1d4DrUtvFv
- Sb5I+i5Y0kf7VtwCnxuv1+EExa9Htd/b2iq/FW0vfux/LD9vJN4NztErdNXFPFtqgtgBKGZCBE/
- m9vE2hFQyOCX4+cp2KFcV9xoRAF+cEncM5sGRAFSkuDy/WRgtoGKji8HkZc9P7TbGloLxuQFmMT
- wTNFFuI3J9EdUVd1oVCoC4vFN+0D3AsWiuIQVKAVJjHA40ZmU944N4x2hj9QSF9op0lu5Kn7MYj
- cRN/hGXEB1IbOEEd2c+0NckO36SfvGk5jqhXDl/v/GWIEscyBeKULxMtgokh/tRtODYpJe0Sdx7
- KXwBzK64
-X-Authority-Analysis: v=2.4 cv=NrDRc9dJ c=1 sm=1 tr=0 ts=68b8f7c9 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=gEfo2CItAAAA:8 a=Kz8-B0t5AAAA:8 a=VwQbUJbxAAAA:8
- a=zoi4mhQgz1elOlvs71MA:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
- a=sptkURWiP4Gy88Gu7hUp:22 a=RuZk68QooNbwfxovefhk:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_01,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
- impostorscore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300027
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 03, 2025 at 05:38:24AM -0700, syyang wrote:
-> - New device tree binding documentation at
->   Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-> 
-> Signed-off-by: syyang <syyang@lontium.com>
+Fix device tree binding validation errors reported by Rob Herring.
 
-Please fix your Git setup and use your full name in SoB tag and author
-metadata.
+v2:
+- Fixed $id field to match actual filename (lontium,lt9611c.yaml)
+- build pass
 
-> ---
->  .../display/bridge/lontium,lt9611c.yaml       | 123 ++++++++++++++++++
->  1 file changed, 123 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-> new file mode 100644
-> index 000000000000..e8f204c71a95
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
-> @@ -0,0 +1,123 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/bridge/lontium,lt9611.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Lontium LT9611C 2 Port MIPI to HDMI Bridge
-> +
-> +maintainers:
-> +  - Rob Herring <robh@kernel.org>
+Thanks to Rob Herring for the review and feedback.
 
-Are you sure?
+Signed-off-by: syyang <syyang@lontium.com>
+---
+ .../display/bridge/lontium,lt9611c.yaml       | 121 ++++++++++++++++++
+ 1 file changed, 121 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
 
-> +
-> +description: |
-> +  The LT9611C are bridge devices which convert DSI to HDMI
-
-Can't you extend the existing lontium,lt9611.yaml?
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - lontium,lt9611c
-> +      - lontium,lt9611uxd
-
-
-
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    maxItems: 1
-> +    description: GPIO connected to active high RESET pin.
-> +
-> +  vdd-supply:
-> +    description: Regulator for 1.2V MIPI phy power.
-> +
-> +  vcc-supply:
-> +    description: Regulator for 3.3V IO power.
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Primary MIPI port-1 for MIPI input
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          Additional MIPI port-2 for MIPI input, used in combination
-> +          with primary MIPI port-1 to drive higher resolution displays
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description:
-> +          HDMI port for HDMI output
-> +
-> +    required:
-> +      - port@0
-> +      - port@2
-
-All of this totally looks like lontium,lt9611.yaml, except the
-vdd-supply voltage difference.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - vdd-supply
-> +  - vcc-supply
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c10 {
-> +      #address-cells = <1>;
-> +      #size-cells = <0>;
-> +
-> +      hdmi-bridge@41 {
-> +        compatible = "lontium,lt9611c";
-> +        reg = <0x41>;
-> +        #sound-dai-cells = <0>;
-> +        interrupts-extended = <&pio 128 GPIO_ACTIVE_HIGH>;
-> +        reset-gpios = <&pio 127 GPIO_ACTIVE_HIGH>;
-> +        vdd-supply = <&lt9611_1v2>;
-> +        vcc-supply = <&lt9611_3v3>;
-> +        dsi-lanes = <4>;
-> +        status = "okay";
-> +
-> +        ports {
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          port@0 {
-> +            reg = <0>;
-> +            lt9611_a: endpoint {
-> +              remote-endpoint = <&dsi0_out>;
-> +            };
-> +          };
-> +
-> +          port@1 {
-> +            reg = <1>;
-> +            lt9611_b: endpoint {
-> +              remote-endpoint = <&dsi1_out>;
-> +            };
-> +          };
-> +
-> +          port@2 {
-> +            reg = <2>;
-> +            lt9611_out: endpoint {
-> +              remote-endpoint = <&hdmi_con>;
-> +            };
-> +          };
-> +        };
-> +      };
-> +    };
-> +
-> +...
-> +
-> -- 
-> 2.25.1
-> 
-
+diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+new file mode 100644
+index 000000000000..712644da4f1d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+@@ -0,0 +1,121 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/bridge/lontium,lt9611c.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Lontium LT9611C 2 Port MIPI to HDMI Bridge
++
++maintainers:
++  - Rob Herring <robh@kernel.org>
++
++description: |
++  The LT9611C are bridge devices which convert DSI to HDMI
++
++properties:
++  compatible:
++    enum:
++      - lontium,lt9611c
++
++  reg:
++    maxItems: 1
++
++  "#sound-dai-cells":
++    const: 0
++
++  interrupts:
++    maxItems: 1
++
++  reset-gpios:
++    maxItems: 1
++    description: GPIO connected to active high RESET pin.
++
++  vdd-supply:
++    description: Regulator for 1.2V MIPI phy power.
++
++  vcc-supply:
++    description: Regulator for 3.3V IO power.
++
++  ports:
++    $ref: /schemas/graph.yaml#/properties/ports
++
++    properties:
++      port@0:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Primary MIPI port-1 for MIPI input
++
++      port@1:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          Additional MIPI port-2 for MIPI input, used in combination
++          with primary MIPI port-1 to drive higher resolution displays
++
++      port@2:
++        $ref: /schemas/graph.yaml#/properties/port
++        description:
++          HDMI port for HDMI output
++
++    required:
++      - port@0
++      - port@2
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - vdd-supply
++  - vcc-supply
++  - ports
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c10 {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      hdmi-bridge@41 {
++        compatible = "lontium,lt9611c";
++        reg = <0x41>;
++        #sound-dai-cells = <0>;
++        interrupts-extended = <&pio 128 GPIO_ACTIVE_HIGH>;
++        reset-gpios = <&pio 127 GPIO_ACTIVE_HIGH>;
++        vdd-supply = <&lt9611_1v2>;
++        vcc-supply = <&lt9611_3v3>;
++        status = "okay";
++
++        ports {
++          #address-cells = <1>;
++          #size-cells = <0>;
++
++          port@0 {
++            reg = <0>;
++            lt9611_a: endpoint {
++              remote-endpoint = <&dsi0_out>;
++            };
++          };
++
++          port@1 {
++            reg = <1>;
++            lt9611_b: endpoint {
++              remote-endpoint = <&dsi1_out>;
++            };
++          };
++
++          port@2 {
++            reg = <2>;
++            lt9611_out: endpoint {
++              remote-endpoint = <&hdmi_con>;
++            };
++          };
++        };
++      };
++    };
++
++...
++
 -- 
-With best wishes
-Dmitry
+2.25.1
+
 
