@@ -1,130 +1,116 @@
-Return-Path: <devicetree+bounces-213103-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 417B4B44A28
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:06:45 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E199B44A3B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:08:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 13BDD4E0F7E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:06:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A1661CC0778
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:09:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31C062EE274;
-	Thu,  4 Sep 2025 23:06:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08D912EDD74;
+	Thu,  4 Sep 2025 23:08:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="I67m+Bs0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PWVGnI3y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95CEA2EDD69;
-	Thu,  4 Sep 2025 23:06:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD4E42EC0A3;
+	Thu,  4 Sep 2025 23:08:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757027201; cv=none; b=cPJND4xvXxfXqtoTOsx3geIhNBKlSDPsjFknFBBi8J6Bi72s07FdhfxokqVLJwuy48D1HKxptkmUvUK/1cnC7JG6awU9FPdvw610Ozle4JN+4rJvEGBxhLoxixALXU8WixUGcgYUCG3jIfFggqvoXiUQpDmxw+J9pteM/1D5JvA=
+	t=1757027328; cv=none; b=HugtC1WV9kZaq/W4c06bRZjHaLX8Ft/PsEaf5rlo7WZvhyriVpiTDBiKGs7T842OKtEkhyDyw7QjQkjFwuDp3LjHe03IgGOHKqo9nsUTAAtp4QJLXR9XACmnXgQyVFEpRPSsOjywWknaG3n3SXTctfzFppdJiRK1Xofd40mC8T4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757027201; c=relaxed/simple;
-	bh=ZuEO4PslU/pm55gCZ905+7/xl3aHK66V3E8iOO5lwR0=;
+	s=arc-20240116; t=1757027328; c=relaxed/simple;
+	bh=pKSe2I7FsIz9oUe8RUcoh1IepJvglPcizoO8xLPceOs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=H5vObGB3kkzp8UiFpumF0Auln2JY3bKacG4Otp/4xtNKYV/v/BDoQjmFF9uH+RSDb9N1EyA9CnOO4phqbZHmuOKAmRQ2Oe2/Ts9n7xeDFR6ukFgLqKnMMfgrybLAMc0KssQ/67pebe6OQsBBMEFVSrm4TORR8PLg1dQt+b5r0UM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=I67m+Bs0; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-71d601859f5so15831197b3.0;
-        Thu, 04 Sep 2025 16:06:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757027198; x=1757631998; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zz0GiMYb44SvgwnTpnJ1WiT4G0dl9xf04AReEOrfC2g=;
-        b=I67m+Bs0OpKmD+ppEqYmE04x2sd81nJpqZUo+vt0CD2ZNgonul201Chi4wVinty0Yv
-         wIsV1mRokFlURA85KXj+HXZTN/2tcwuZlpTQqYjXBUDd5HdjxqJ6F2WqvosNUVu3IT1N
-         jtkZemZBRvy19syNQiiGcNjkA/Ph2Z5dgrBG90VQhhtsBX3kdgEXfp3JtAXs+YMsDf5j
-         Rydf05O9SaUXfpZC19nAZT+KUP1/FGEcfbocsDT+AyfVnYrDr2C0yzHDQ2o+GclUJyZw
-         rjShV6uOgMvPdim2NnU/xOpQT4j8XjiyMiZwLgkEJzdudUtx4hoqiB5+y+8isNMaO5vo
-         s4bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757027198; x=1757631998;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Zz0GiMYb44SvgwnTpnJ1WiT4G0dl9xf04AReEOrfC2g=;
-        b=NyXri6fWfPvifKEWy4Ulry6fWk1BcRC8xdfHusED96TEDlgEXH1hYuiHT2pkJDaJnn
-         5YXX1oJTelvRuEIDmr4+8pAVbi+NIFodHLaQeJro1LDb0MM1ukIP98wlaZPZMyofPr2w
-         M7GadvR0nFK6N+fcH0r1UHAYydbRdWkJikpx43nFlGolsJwxWnz2vFgVU8jhrk4MrUht
-         rSQgWc4XKTPfx+FSYw7zWj5HnNx/nyEGjGGuIbuiTH0GPuZ1Hn/65V5sA7w939Lz8T9b
-         fZZJtKvzP7rImadJfXKN1AEbGespwmbt2eFIr/BZFdPcMlB+HssZJrz9zfsAbbVQBqs9
-         gP4A==
-X-Forwarded-Encrypted: i=1; AJvYcCVKWgCwWVELK/0efPzO+tyzSGIJK/vjgij2HGbpeBis2kuIibNLrE2sHhG89bkyWBtObNhJ3RyCtetyjV0H@vger.kernel.org, AJvYcCWdkmbhvJts4VzynES0lGHDEVM9BoonAqdgOqMbsNjtQoRkQsBHZGH13KPTV8xc9vLE6N2HdZmhHV5S@vger.kernel.org
-X-Gm-Message-State: AOJu0YzdQDPd/YUX3XMqPRADPJyOBZQW3OKRjgcJLu9bPhyWSFz0jCDj
-	HzwEXSVeUejzu19R7HSCZ+hYvOoRLXq2y8Z7kewH3/QFSpsgAC//ztq9Zc6Wzqrc+WWx9TQG8el
-	x8Xw+3Aihgx1lFyRIamNO2gX8vfqYBoI=
-X-Gm-Gg: ASbGncuX6e7zxwruoy2qLm1UD8t1crJNkbLcSIthpnyZAHoMGFJBzSwc14BhBeLM1OV
-	IUzWhkW5yXnVn31f53sE8uUj65vzkROR1t9Afo9OSVzXMaxzmN5RYf1bu2lzh1FCrkVX3LmZKG/
-	T22yaiYyH/am4w3tbPC7RhgpcoFvKtIrxrJqSwcJl15Qa8De3YIcS+YMxe2sW2l2W+qxSnJllg1
-	9uOx+wq7F0ixmqSLYS+vB4ItOF4FUC/j6zNVucYtuvyfrPtOp+BWDARgOy4vnB3r9r+BVke3eey
-	MUQOfOOOsw82x/YtEQ==
-X-Google-Smtp-Source: AGHT+IH/UOPapUe67ml8mQg2G5ZORmPRUqKua+tHRBkgLjhGsyEaV9W6C1STKBiXSzNdaKZDJ9D9LdHr4bJeBLGW/a0=
-X-Received: by 2002:a05:690c:dcd:b0:721:5b31:54ce with SMTP id
- 00721157ae682-722764fe1e2mr215403527b3.31.1757027198220; Thu, 04 Sep 2025
- 16:06:38 -0700 (PDT)
+	 To:Cc:Content-Type; b=EXBymYMqL0NnVUqAR9tIzWr8eOld1HGd4ktbs6LZwsZPqTEiHniVgBRLhaNqabyqSIENdDQDHktdbqr16pEAymiaUTCgXWbWa2impKCQaCiYvXOYKFvLJ4MrIOOL4+WxASh0/jNY9XCbsR9jai8kvqm+BXp5y6TiBdDxsmfPoIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PWVGnI3y; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B532C4CEF0;
+	Thu,  4 Sep 2025 23:08:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757027328;
+	bh=pKSe2I7FsIz9oUe8RUcoh1IepJvglPcizoO8xLPceOs=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=PWVGnI3yQot/KdaG1EVdkAbuVJdE/TtmQUqBtPWtO0/WAT5bhvfpna2y5JWrO6Bt3
+	 UC1qy2MIPAxZK84a4VpO9a8W6VZWWhd8yaPZulKoMh8IgJM5BSd1hYZxWFLfoJMOX/
+	 SQ5wIB6s1Y8ba9+dbAPOcPvIZb0bOfi8EcErC1h6mhWY5P7i7kl1R7YoYP6n5CM9Eh
+	 jDl27KFiR9BdMu2Dg7Th4WEHiQlPJL8/f0iumlFPX+bizIJOe/vDqqnUtd6FDKDLbL
+	 XL264+1re99nRp+4j+PQzgLa/a+LgonEirFWkL1TJC5dDWWj4wm0L7YkCURaGSd8MC
+	 z5oZ01kV9P+BA==
+Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-6188b5b113eso2598872a12.0;
+        Thu, 04 Sep 2025 16:08:48 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUh8/3hTcMMOcBMzoT9u3w7qKK2NxHnA4SJyPHWYsJ+IRHwM/rkrvtIR+O3QYerfp1YxiRGRdzE+ZwGXLng@vger.kernel.org, AJvYcCW1bzbFyEkJOinGH2HbpS8P8Bb69Y/L+ghrz1scP0BB2X/juHN+mT0QZxs3ZpgDC+OdE1e6YBRxvKcjQx0=@vger.kernel.org, AJvYcCWDcg+DE40RJQeeQQpWqOsxd8HWCpwaszdXGf/nPsFCT6q/jDJZEToRqlLR3hfjirHWOF7VIQdK5CbgfnY5Zw==@vger.kernel.org, AJvYcCXvwp8ZlF2lcD3KyMUJvoir65w1qDce3lHv1g7IFeBhuZcTOplCrCFihwPGOBbmspFG/C1r5Cnx1Wh2@vger.kernel.org
+X-Gm-Message-State: AOJu0YwG4zbyA2ng8YsLCZCxsyInjcxsd0A0pjBhy12rLlR4f+t5pHRB
+	1jjQZe9phoMotN3ly+UL7jqQgIezQ8B1PwCgajhJNVzB9VZogPEj4kSJnk5yBmHDhRn5ruGb+4N
+	oWREdWF11SJnHw2f4wjEkUlVp8u7tKA==
+X-Google-Smtp-Source: AGHT+IENPZS9r0ij8qIOTkrijmtaIJvR+B2HNNGoggTiYYs/kxVwzXqyQELzGZLM6QK19zRSdfZJVmKtU72fD3rHT2Q=
+X-Received: by 2002:a05:6402:84e:b0:61c:f0cb:94f1 with SMTP id
+ 4fb4d7f45d1cf-61d26fd1008mr18367716a12.18.1757027326925; Thu, 04 Sep 2025
+ 16:08:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903225504.542268-1-olvaffe@gmail.com> <20250903225504.542268-3-olvaffe@gmail.com>
- <20250904080239.779b5e24@fedora>
-In-Reply-To: <20250904080239.779b5e24@fedora>
-From: Chia-I Wu <olvaffe@gmail.com>
-Date: Thu, 4 Sep 2025 16:06:26 -0700
-X-Gm-Features: Ac12FXzcL3-czZFvhjU2Mujq6i9ZrXWDYBfA8bIrDPlQ3iKdmOHkCSCvjxw7aN8
-Message-ID: <CAPaKu7RdpEtwqDHrjt4HJOJVYeRjUa38Sk70=6dD9WmXYtf_jw@mail.gmail.com>
-Subject: Re: [RFC PATCH 2/2] drm/panthor: add initial mt8196 support
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20250724132808.101351-1-srinivas.kandagatla@oss.qualcomm.com>
+ <CAL_JsqKG+dcMgp1QF4F3Oxh5Shvagg6cSde=g1JMcEAquZhH_Q@mail.gmail.com> <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com>
+In-Reply-To: <990cb5af-3846-44a3-b373-ded62d3309b9@oss.qualcomm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 4 Sep 2025 18:08:35 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
+X-Gm-Features: Ac12FXw7xn0otJeNBaP13ioqKPeSvsenM1h4BTS1EUlXELhLcOu6XHmBpXxjmMc
+Message-ID: <CAL_Jsq+zC91GPdzQQa9F8KEw5UL4xc13u5U_5vTyQG1WeJa5rw@mail.gmail.com>
+Subject: Re: [PATCH] slimbus: qcom: remove unused qcom controller driver
+To: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+Cc: srini@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Sep 3, 2025 at 11:02=E2=80=AFPM Boris Brezillon
-<boris.brezillon@collabora.com> wrote:
+On Tue, Aug 19, 2025 at 8:44=E2=80=AFAM Srinivas Kandagatla
+<srinivas.kandagatla@oss.qualcomm.com> wrote:
 >
-> On Wed,  3 Sep 2025 15:55:04 -0700
-> Chia-I Wu <olvaffe@gmail.com> wrote:
+> Thanks Rob for reporting this,
 >
-> > diff --git a/drivers/gpu/drm/panthor/Makefile b/drivers/gpu/drm/panthor=
-/Makefile
-> > index 02db21748c125..75e92c461304b 100644
-> > --- a/drivers/gpu/drm/panthor/Makefile
-> > +++ b/drivers/gpu/drm/panthor/Makefile
-> > @@ -12,4 +12,6 @@ panthor-y :=3D \
-> >       panthor_mmu.o \
-> >       panthor_sched.o
+> On 8/19/25 2:35 PM, Rob Herring wrote:
+> > On Thu, Jul 24, 2025 at 8:28=E2=80=AFAM <srinivas.kandagatla@oss.qualco=
+mm.com> wrote:
+> >>
+> >> From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
+> >>
+> >> Qcom Slimbus controller driver is totally unused and dead code, there =
+is
+> >> no point in keeping this driver in the kernel without users.
+> >>
+> >> This patch removes the driver along with device tree bindings.
+> >>
+> >> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.c=
+om>
+> >> ---
+> >>  .../bindings/slimbus/qcom,slim.yaml           |  86 --
+> >>  drivers/slimbus/Kconfig                       |   7 -
+> >>  drivers/slimbus/Makefile                      |   3 -
+> >>  drivers/slimbus/qcom-ctrl.c                   | 735 -----------------=
+-
+> >>  4 files changed, 831 deletions(-)
+> >>  delete mode 100644 Documentation/devicetree/bindings/slimbus/qcom,sli=
+m.yaml
+> >>  delete mode 100644 drivers/slimbus/qcom-ctrl.c
 > >
-> > +panthor-$(CONFIG_DRM_PANTHOR_SOC_MT8196) +=3D panthor_soc_mt8196.o
+> > This adds warnings to dt_binding_check:
+> >
+> > Documentation/devicetree/bindings/slimbus/slimbus.example.dtb:
+> > /example-0/soc/slim@28080000: failed to match any schema with
+> > compatible: ['qcom,apq8064-slim', 'qcom,slim']
 >
-> Based on the stuff you describe (ASN hash, core mask read from an nvmem
-> cell, extra clks/regulators?), I don't think we need per-soc source
-> files and per-soc config options. If it becomes too HW specific (no
-> abstraction to make it SoC-agnostic), we can reconsider the per-SoC
-> file approach, but I believe it can all live in panthor_drv.c for now.
-That's about right except no extra clk/regulator is needed.
+> Will replace this example with slim-ngd and fold it in the original patch=
+.
 
-gpueb on mt8196 is yet another mcu running on its own fw.  It can
-provide clk/regulator to panthor and no change is needed from panthor.
-But it can also do dvfs autonomously, in which case panthor needs to
-be modified to make clk/regulator/devfreq optional.  I think the
-latter is where Nicolas Frattaroli is going and requires more invasive
-integration.
+Still warning in linux-next...
 
