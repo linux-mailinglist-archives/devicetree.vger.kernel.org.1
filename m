@@ -1,203 +1,148 @@
-Return-Path: <devicetree+bounces-212509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58E1EB43021
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 04:59:01 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5E5CB43028
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:00:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14619200E58
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:59:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2FC57ADAE1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:58:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE13B239573;
-	Thu,  4 Sep 2025 02:58:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 726221EA7C9;
+	Thu,  4 Sep 2025 03:00:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="pG6mpbbR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y8KlkoSL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6C1E23F439;
-	Thu,  4 Sep 2025 02:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEA6F1EE019;
+	Thu,  4 Sep 2025 03:00:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756954734; cv=none; b=FcUcZfnvCcvFCwufH2mRDIzrNzPQ3s6f3qCDj4EbzzHRy0uwJE/6AEpuXt23+Qko4UpkFnn8YDAXYNvybWEAFd83gfPzixTDI/gIpJbpKqHc3wyuDM/FTroMSM6VVzVvMueIm3KhjJGqvqXZGXa/7b+RvYvCfZ0bFWMuWeKrjP0=
+	t=1756954817; cv=none; b=KsjFmq4vz+1ewzv2HhVXtYV2l8yJmML+9cl33jWYRs0PRNBtMX3LNy3bA1/zYuseyPNzS564E8PHtjftvT0ePd0uJN4keeR+dnpNgX4HMxMwn5FbjpQg7IsdRe679v+E1uo1qlK+DdzVmd74peQcJ4UlYq8eviO6WgAo7iqzw4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756954734; c=relaxed/simple;
-	bh=FTXLxSm5XRx5K6N1cUG/Pp8Dj2ugNjB+8Hr6SF2HjF0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L48/vTku5wxFaM9ODn8XduSxX8BHK039tK03Kv9qvuhn/K9Ph/4nYi36vcp6WRsArrP3hcqUnvWREhG2WeFbLCWTrdoqmA/hsRLdFlLzvXdmfjjqX0dyAwKECX5WAnubOJdOaxuV0FqNdijI5M9Qg33s/1RB7mt1oujAYEcSZVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=pG6mpbbR; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+	s=arc-20240116; t=1756954817; c=relaxed/simple;
+	bh=DR9R3XunPL5phVZguwOyECoq4O8IMCWYj0R0VN53bBY=;
+	h=From:To:Subject:Date:Message-Id:MIME-Version; b=pRSAT0wQVIslUateXJdYzXGvTdhIO/awOuZQlHqBbRirNWMT8vJxv1MM8sVMGZuoVz5ZrXHMFQ296LcO26uN/Ke1nx4PSlH8nia2/fAtRUBf5/i+dBCojkU1HTOyRlFqwBp1PLLOo0gHdrvl/tmvIUlHksAhfSli2zCBzZN6hag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y8KlkoSL; arc=none smtp.client-ip=209.85.210.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-74382048b8cso413450a34.3;
+        Wed, 03 Sep 2025 20:00:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202508; t=1756954727;
-	bh=u/cz5gFnPDLf+w3W9DzyMROPsahYfYi4KmvveDhRwgo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pG6mpbbRtGd1j7r+3y8B6e69itVB4401JTUPQnONKbE+ldSlrlX73ktF9Cj9X8HiZ
-	 MCZdLKcV54hNcvboJGtZXP+sorrgqb5ElvEtFIr4wj0T/vyQ7m3R0EwklMmXR5/K9M
-	 /+nv0NnTmyy8IqQf2GESmB3GezMdlMC/LPG8sU3C4RuFyGD4/EEfaEt5kAqyIWzE+P
-	 Q2FVFfkVOasRxIuBTI7FJFtOCutqj4A+Be6Mcxbfg9KG9wpromrRH+4/RJbc44AsOa
-	 CpiLoItFR1ipH8p65siEXZ2iDHG2QFK3z549puZcEl8ajim+2v4cnepdXIQuaqtk3V
-	 d4frzJxEDtp1w==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4cHPLv68Rlz4wB1; Thu,  4 Sep 2025 12:58:47 +1000 (AEST)
-Date: Thu, 4 Sep 2025 12:58:42 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Raymond Mao <raymond.mao@linaro.org>
-Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	devicetree@vger.kernel.org, ilias.apalodimas@linaro.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] docs: devicetree: overlay-notes: recommend top-level
- compatible in DTSO
-Message-ID: <aLkAYitpWxWx131p@zatzit>
-References: <20250902174351.2457022-1-raymond.mao@linaro.org>
+        d=gmail.com; s=20230601; t=1756954815; x=1757559615; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vFU219JiYxB+UL7dKKMifccL2sg9lhUG+NSi9MilUC4=;
+        b=Y8KlkoSLTHy/9arFe5h9l74HAHSPp1ceuETkt1mJU4rw4Wjgu1CgRD0dgA0F7eulsE
+         xZtANVgkwYL7J3aBENu7HhxAAXReNlSpn6+F80Kx5Zs6CuPYGmUXtpuTeTg5uwffBtvA
+         Xg1vKopL+TikQPDnzzrN6Kt2H+FmidZ/rrJglA+O9g6TZHtbYRFHmwqHS4ovbPJGn/UE
+         Mh0Kzne9wIvUMg26t5DjUGGNv/N0qcUtYTANSoU172WwDXcJI15bwEGwca2CUOZJ0qz7
+         y5F/65Mt6iwszoHxqd2lIa/AT2D+bgqaw2jLVXMAaZ+zEglXEcYagtgN1OehfFV7d/rq
+         xgJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756954815; x=1757559615;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vFU219JiYxB+UL7dKKMifccL2sg9lhUG+NSi9MilUC4=;
+        b=dOLfm7jNUEb60P9xa0aFfoCLWIEhUahQhWkN59QwiTnwXs9zdQCWFLggDKVz3UMOGJ
+         SQWGLkipnYsAwPIT4xwUP4ruIrsrDwW7zx0Nk6Y0sLsAQvrRxOdnCcq9MWVOnmVW6lt1
+         B4eOI668E+cTvjBzT7gK7wzXxuLRqndj2L8fa37/dSrTWZWSgKio1R22JBowudRoaP69
+         goYTs+zrzHWHfor0giHvEhszZn97QeQqQPZ0CV5OBBnC2gcDGa0Y/50J0fp2Z3r3oAsg
+         uXOmRGk3ekLSnmmqiveDupduWmby/C3ZusIxEYbemT3HsuKfRynBn3OvnrkzOf0LijBS
+         XM/w==
+X-Forwarded-Encrypted: i=1; AJvYcCU5mTWi5GHgvaLQfPCFAtIeJ1HJ7mTPjFMJOPU06i+HX/xDQnm51PT4l9FbC3i8jk/6G2/qxLJ3B4AhobEk@vger.kernel.org, AJvYcCVza/2yc2fcGKImFRh/hGbx2ddvFsRer8l5f6EuRiaUxCvHybRnl9da1vMUmpkpBvXHCWrWY+agLYZ9@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywi5jWtcGFjJCHijZgVjMI+hu0RLG451KTP5b6zyLQ4Qfhn7u+d
+	0Lb8uNkcwsLRI9G/2XUPkiXB6ixU6bb6751wk/WdYAZLH21xIuZpoaUn
+X-Gm-Gg: ASbGncvX+U44bKKToEpQl9uynYl1xUZMU3HF89WKsNKZF0FFsYYSDoeXImi4dsOZM2q
+	FuixxNKrH5/mv2t+egfCihyRL+PWJTRj4EY8EXxStEnQsIIIh75wBHtcspkrUuMbScaFkFwOvcP
+	tlQnMp4kfAOVB9XX6/oKTrOwZa1BcCVkfc9dHhpttPCsCEVjCSoSuRISpqLvoWOocCuqwZsH8h1
+	CEA0cqy1WE3OS/R2ivQU1fEuVLTQ6DP6F3bglOvGanvz2Jd+cWxkTQfbuv/Cw/9L7DA262FCLfH
+	Ksx6ZHf3CIwjrXdxnvhV0NWIlCLhMXZxHBepeX8LbgTP8Bc9J1YS1dEYwTbDQsBAQwWL8atFMzM
+	fFcWww94bLKVp02I3R2fkImRXQUp1qWnAQ3s6cn2TyqU=
+X-Google-Smtp-Source: AGHT+IFKeulPMsBsQALjUqa6sF2+AWk4bJt+0haQDiVNq0B22+NXV63rjkaWnjX7VtXX2WZpPqcF0w==
+X-Received: by 2002:a05:6808:1b20:b0:438:3911:48a3 with SMTP id 5614622812f47-4383911506bmr1569553b6e.48.1756954814645;
+        Wed, 03 Sep 2025 20:00:14 -0700 (PDT)
+Received: from localhost.localdomain ([122.8.183.87])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-4380007b0b6sm2262726b6e.25.2025.09.03.20.00.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 20:00:13 -0700 (PDT)
+From: Chen Wang <unicornxw@gmail.com>
+To: u.kleine-koenig@baylibre.com,
+	aou@eecs.berkeley.edu,
+	unicorn_wang@outlook.com,
+	conor+dt@kernel.org,
+	inochiama@gmail.com,
+	krzk+dt@kernel.org,
+	looong.bin@gmail.com,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	robh@kernel.org,
+	tglx@linutronix.de,
+	sycamoremoon376@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	sophgo@lists.linux.dev
+Subject: [PATCH v3 0/3] irqchip/sg2042-msi: Set irq type according to DT configuration
+Date: Thu,  4 Sep 2025 11:00:06 +0800
+Message-Id: <cover.1756953919.git.unicorn_wang@outlook.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="LpS/mvko/ul+nKVk"
-Content-Disposition: inline
-In-Reply-To: <20250902174351.2457022-1-raymond.mao@linaro.org>
+Content-Transfer-Encoding: 8bit
+
+From: Chen Wang <unicorn_wang@outlook.com>
+
+Read the device tree configuration and then use it to set the
+interrupt type.
+
+This patchset is based on irq/drivers branch of tip.
+
+---
+
+Changes in v3:
+  Thers is no major change in this version. Just adjust the order of the patches
+  to change the DTs first. Thanks to Thomas for the suggestion.
+
+Changes in v2:
+  The patch series is based on irq/drivers branch of tip. You can simply review
+  or test the patches at the link [2].
+
+  Reverted the change to obtain params of "msi-ranges"; it's better not to
+  assume the value of "#interrupt-cells" is 2, even though it's known to be
+  the case. Thanks to Inochi for the comments.
+
+Changes in v1:
+  The patch series is based on irq/drivers branch of tip. You can simply review
+  or test the patches at the link [1].
+
+Link: https://lore.kernel.org/linux-riscv/cover.1756103516.git.unicorn_wang@outlook.com/ [1]
+Link: https://lore.kernel.org/linux-riscv/cover.1756169460.git.unicorn_wang@outlook.com/ [2]
+---
+
+Chen Wang (3):
+  riscv: sophgo: dts: sg2042: change msi irq type to
+    IRQ_TYPE_EDGE_RISING
+  riscv: sophgo: dts: sg2044: change msi irq type to
+    IRQ_TYPE_EDGE_RISING
+  irqchip/sg2042-msi: Set irq type according to DT configuration
+
+ arch/riscv/boot/dts/sophgo/sg2042.dtsi | 2 +-
+ arch/riscv/boot/dts/sophgo/sg2044.dtsi | 2 +-
+ drivers/irqchip/irq-sg2042-msi.c       | 7 +++++--
+ 3 files changed, 7 insertions(+), 4 deletions(-)
 
 
---LpS/mvko/ul+nKVk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+base-commit: d36bf356068cdb5499b9bc458db9149c0fd938a2
+-- 
+2.34.1
 
-On Tue, Sep 02, 2025 at 10:43:50AM -0700, Raymond Mao wrote:
-> When managing multiple base device trees and overlays in a structured
-> way (e.g. bundled in firmware or tools), it is helpful to identify the
-> intended target base DT for each overlay, which can be done via a
-> top-level compatible string in the overlay.
->=20
-> This provides a way to identify which overlays should be applied once the
-> DT is selected for the case when a device have a common firmware binary
-> which only differs on the DT and overlays.
->=20
-> This patch updates the document with a note and example for this
-> practice.
-> For more information on this firmware requirement, please see [1].
->=20
-> [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
-
-I think this idea is probably useful enough to be a good idea anyway.
-However, note that it leans in to an existing ugliness of the overlay forma=
-t:
-
-Overlay dtbs kind of mix "in band" information - the actual new
-content for the tree - with "out of band" information - how to apply
-the overlay itself.  Whether a given property is data or metadata is
-determined by it's place in the tree in a moderately complex and not
-super obvious way.
-
-About the clearest divide that exists is that generally the root and
-first-level subnodes are information only for overlay application,
-everything under that is data to be applied to the tree.  This all
-tends to have names that would be unlikely (though not strictly
-impossible) in a fully applied tree.
-
-Putting 'compatible' at the root of the overlay is putting something
-that looks very much like a regular device tree property in a place
-and with a function that's purely about applying / validating the
-overlay itself.
-
-> Suggested-by: Ilias Apalodimas <ilias.apalodimas@linaro.org>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Raymond Mao <raymond.mao@linaro.org>
-> ---
-> Changes in v2:
-> - Updated commit message.
->=20
->  Documentation/devicetree/overlay-notes.rst | 28 ++++++++++++++++++++++
->  1 file changed, 28 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/overlay-notes.rst b/Documentation/d=
-evicetree/overlay-notes.rst
-> index 35e79242af9a..30b142d1b2ee 100644
-> --- a/Documentation/devicetree/overlay-notes.rst
-> +++ b/Documentation/devicetree/overlay-notes.rst
-> @@ -103,6 +103,34 @@ The above bar.dtso example modified to use target pa=
-th syntax is::
->      ---- bar.dtso ------------------------------------------------------=
---------
-> =20
-> =20
-> +Overlay identification
-> +----------------------
-> +
-> +When managing overlays dynamically or bundling multiple base device trees
-> +and overlays in a single system (e.g., in firmware, initramfs, or user-s=
-pace
-> +tools), it becomes important to associate each overlay with its intended
-> +target base DT.
-> +
-> +To support this, overlays should include the top-level compatible string
-> +from its base DT.
-> +This enables higher-level software or firmware to identify which base DT
-> +an overlay is compatible with and apply it accordingly.
-> +
-> +Example usage::
-> +
-> +    ---- bar.dtso - overlay with top-level compatible string -----------=
---------
-> +	/dts-v1/;
-> +	/plugin/;
-> +	compatible =3D "corp,foo";
-
-This is not valid dts syntax.  Properties must be within a node.
-
-> +
-> +	...
-> +    ---- bar.dtso ------------------------------------------------------=
---------
-> +
-> +This top-level compatible string is not required by the kernel overlay
-> +mechanism itself, but it is strongly recommended for managing overlays in
-> +scalable systems.
-> +
-> +
->  Overlay in-kernel API
->  --------------------------------
-> =20
-> --=20
-> 2.25.1
->=20
->=20
-
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
-
---LpS/mvko/ul+nKVk
-Content-Type: application/pgp-signature; name=signature.asc
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmi5AGEACgkQzQJF27ox
-2GeGuw/9GFIC/VwZAiCLKeFz4rMslFWYRnN5uQDhDzU6gFaRVJZgr2m1P7poSWFX
-91KtHcnUfiXc2dFE6ndfBrPnudTyPdMujkVEpKuM/KNGpLoDBDLni0tSIZKJIohs
-FW8t4tBVFx+nm8CDjXr/KJWXip4Q79ypUWRlMpUgM50WyYlrVD6nHkzfse/jeRWE
-dM0aMFvP9labF9BMWBgM6bSfQRIWQA2TtWEIIkl48vx7G5hOxN3pN65B3XXNZKVJ
-Kq8RPizP2amltzd5h+duL/HnWFxWw+2wdKwqRomw24JHlnvUnPLUMO3TP0hsYr+W
-0212oiD+XQqLku3yrG/QAodOyOH53w7VauhfhbdTvYJ4qa5xDe866x7TW/408jw0
-14sUEKGpDQJvC1cQ89O0KEnvdXar444abNDGB5b4HlJsLVbnDKN/k/OieutTUGI/
-fCKk7umFVsgS9VrebgO+FdTO6s+x+X0T+O0/TS2WeRJu+P589c0UL4kYT97jTNFW
-nkUX3wvs262xinsInPjneBSYvwVIR2YEnfpbRyGOeDowb7YTSpVxcnCDfp6y3Ksf
-e1RqZnuu3/vrrfFWPXxDTjb7nTBSaIGdmSwHO8fwouW0cQe/S4nylIYHsG2NUIsr
-g1r19xbeeos3uhwNA8mFQjNS7CLvxsjVE8/Jx8qoasg6O+z0TxY=
-=Y1Ke
------END PGP SIGNATURE-----
-
---LpS/mvko/ul+nKVk--
 
