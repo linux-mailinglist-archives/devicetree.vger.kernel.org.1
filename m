@@ -1,60 +1,74 @@
-Return-Path: <devicetree+bounces-213008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 890A3B44649
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:22:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87EDCB4464F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 46AA91CC3A6E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:22:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ACE488123
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:24:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2E01C26FA77;
-	Thu,  4 Sep 2025 19:22:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5DE27144B;
+	Thu,  4 Sep 2025 19:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i5/eO+uE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp3+Ln+h"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0189315DBC1;
-	Thu,  4 Sep 2025 19:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B687915DBC1;
+	Thu,  4 Sep 2025 19:24:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757013743; cv=none; b=Ycisn5ZuMtu38lSXjjtV0fgtIaQTQL2cU1xZTgcEtTLodPSzEbPfAfHa0yGfksoVJahqZpXcu3zzDd4vbQXskiN+4hadG+slIpru1nbQ8L+UM5hMMEed/3RD3ipqDptifbPlglchyaj2pHjT6bTKcnvMMmocFbZvE/EtKdIEV7A=
+	t=1757013850; cv=none; b=cluZMhdtDCGUw+hW7+XLp2+C3TejE+revnsiMZ1TGNtZofL1ATvA2MrTPyauzdaOMAZskxquz1eBWp4Pqu06ui9OhF1RqEc2r0dS3liivje2Q2jZXKZV5fdBEilm71PeNGYW5Z1O1HneTJikByp1xw1VJX0Y63jefACNTzUbnp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757013743; c=relaxed/simple;
-	bh=Lq715o4AtQ1M/Ec2GCwC/M7b+u8Q7zWIeKZ45ythTf0=;
+	s=arc-20240116; t=1757013850; c=relaxed/simple;
+	bh=DcZBwbvCs/APcDLJmkpflaT6uT/JUTX4N2f8nqi57sg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XgYiPUM+8ViiIK+7J5tUXTqyskTXMAIsXzHZJWq75OBSgCxAC64OTZFsqv8vpYM5eWot5xaWeVeCwAdgT3xqE9Db4hC3yjfnOV7AJBn+bu93yyA2I5T9b9YbcPtsKXSgc1LX7GEyZKukO/MlT/ArGpLkckSrqezA+ckmLtEIT9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i5/eO+uE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BE0DC4CEF0;
-	Thu,  4 Sep 2025 19:22:18 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RkIYsHGyWGqDauWJwQdeBy1szEu7C1HooWifexcYJc4UtqcFXNAJY4OP9YkczUHkLA7IZg5NF6j6NAUCsQaNKb6AmXTVMWiXPEYj9QIyx9WuNur5w/wQ9Z/2VicyA0aleF+Z9ohXMXZvjmU/qMcmIvzG/v9tcuiXWmLQpyvPOTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gp3+Ln+h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D14C4CEF0;
+	Thu,  4 Sep 2025 19:24:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757013741;
-	bh=Lq715o4AtQ1M/Ec2GCwC/M7b+u8Q7zWIeKZ45ythTf0=;
+	s=k20201202; t=1757013850;
+	bh=DcZBwbvCs/APcDLJmkpflaT6uT/JUTX4N2f8nqi57sg=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=i5/eO+uE82zes/6v7IZAQJPKG2GeaZ/MF1Rt05Y9wLk0c19z8DE5XaCYEN4cnKdQs
-	 3dDQyK0kGtyMOD3Ku47SRXl96mcD6UM4YLl/+EV4lts9r37S0ykCGM4UEcFNhjZ9ZQ
-	 9kVA3oGdsftwap540m5w/ouh/vhn9vgNOe7H8HHEoYIJZ1DpgnR6DZGkojuGcauj+l
-	 ZpwWAIkbz2EgC27gO8GDyEVSifAIwxGiVzsn2EStv/3vp+x6i86OCy3YI6vng5kT4w
-	 I4GgQik3IutMUowHBejzXAdOEsdzm5GpIVrNENzbLSXQgAs0iB9n3aYaj4K/HhXiOD
-	 fViK5ZX07sPyQ==
-Date: Thu, 4 Sep 2025 20:22:16 +0100
+	b=gp3+Ln+hhB1+8+lkFXXSillDiYum+dAPdUfELaZ7FRDiOTzBpVrgbAwIhJ+3hXR1s
+	 dOn4PqmUueHjXKJUs635qGZN7SZRDdWsMXwiPlPWkYDXvLnR8QGou6xrYNB97GTIXE
+	 PbOMK2KV0EMEuszui0Rr+3gdzdcyUC3XFFgRw1qNt7Jarycl+lPLEq7BWZZWAuS7pO
+	 SpxTYO34dGmrwlyYX+yQTNkv3IentC7g/DdNwluX0DVdFU7WWzab0K57zoWo9IXl+E
+	 OVGDEjjhcfpPp6NAjNrqHvOxoSDwRDe09WSFwDba3EIevvWIpnxJAEsbyA48Y61ecz
+	 kz8xv94usKF6A==
+Date: Thu, 4 Sep 2025 20:24:02 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
- strings per SerDes and instantiation
-Message-ID: <20250904-molar-prune-4d3420b1bcb4@spud>
-References: <20250904154402.300032-1-vladimir.oltean@nxp.com>
- <20250904154402.300032-14-vladimir.oltean@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Esteban Blanc <eblanc@baylibre.com>,
+	Herve Codina <herve.codina@bootlin.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	Eason Yang <j2anfernee@gmail.com>,
+	Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: ROHM BD79112 ADC/GPIO
+Message-ID: <20250904-suffering-napping-cfb886addf1e@spud>
+References: <cover.1756988028.git.mazziesaccount@gmail.com>
+ <af7292dea5cebe97553af67a8897e092bef3ec56.1756988028.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,88 +76,40 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="RNJ48Z5sF50vbdIN"
+	protocol="application/pgp-signature"; boundary="TYMVqA+xISrwz0kg"
 Content-Disposition: inline
-In-Reply-To: <20250904154402.300032-14-vladimir.oltean@nxp.com>
+In-Reply-To: <af7292dea5cebe97553af67a8897e092bef3ec56.1756988028.git.mazziesaccount@gmail.com>
 
 
---RNJ48Z5sF50vbdIN
+--TYMVqA+xISrwz0kg
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 04, 2025 at 06:44:01PM +0300, Vladimir Oltean wrote:
-> Going by the generic "fsl,lynx-28g" compatible string and expecting all
-> SerDes instantiations on all SoCs to use it was a mistake.
+On Thu, Sep 04, 2025 at 03:36:30PM +0300, Matti Vaittinen wrote:
+> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
+> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
 >=20
-> They all share the same register map, sure, but the number of protocol
-> converters and lanes which are instantiated differs in a way that isn't
-> detectable by software. So distinguish them by compatible strings.
-> At the same time, keep "fsl,lynx-28g" as backup.
+> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
+> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
+> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+>=20
+> Add a device tree binding document for the ROHM BD79112.
+>=20
+> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Why keep the backup? Doesn't sound like you can use it for anything,
-unless there's some minimum set of capabilities that all devices
-support. If that's not the case, should it not just be marked deprecated
-or removed entirely?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
->=20
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
-> ---
->  .../devicetree/bindings/phy/fsl,lynx-28g.yaml     | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml b/Do=
-cumentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> index ff9f9ca0f19c..55d773c8d0e4 100644
-> --- a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
-> @@ -11,8 +11,17 @@ maintainers:
-> =20
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,lynx-28g
-> +    oneOf:
-> +      - items:
-> +          - const: fsl,lynx-28g
-> +      - items:
-> +          - enum:
-> +              - fsl,lx2160a-serdes1
-> +              - fsl,lx2160a-serdes2
-> +              - fsl,lx2160a-serdes3
-> +              - fsl,lx2162a-serdes1
-> +              - fsl,lx2162a-serdes2
-> +          - const: fsl,lynx-28g
-> =20
->    reg:
->      maxItems: 1
-> @@ -33,7 +42,7 @@ examples:
->        #address-cells =3D <2>;
->        #size-cells =3D <2>;
->        serdes_1: phy@1ea0000 {
-> -        compatible =3D "fsl,lynx-28g";
-> +        compatible =3D "fsl,lx2160a-serdes1", "fsl,lynx-28g";
->          reg =3D <0x0 0x1ea0000 0x0 0x1e30>;
->          #phy-cells =3D <1>;
->        };
-> --=20
-> 2.34.1
->=20
-
---RNJ48Z5sF50vbdIN
+--TYMVqA+xISrwz0kg
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLnm5wAKCRB4tDGHoIJi
-0pErAP9yvf3WBafNeMNSZ2REiiIYTnnAkYySqATqbln4O/ZYAgD/UvrGl28vLgSC
-Z1g1U1BnJkUXXdApv5dywfEXMFCl4gA=
-=dIYP
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLnnUgAKCRB4tDGHoIJi
+0hpgAQDEQSDG09i4H4ASWiQgAGYg6VSHoZz4ZF4QmHuzBaKuagD/ScVzBQXl5SZQ
+ctKeXmDU5aEZNzQzIDFHLgQG0q0O6w4=
+=YMPt
 -----END PGP SIGNATURE-----
 
---RNJ48Z5sF50vbdIN--
+--TYMVqA+xISrwz0kg--
 
