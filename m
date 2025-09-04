@@ -1,174 +1,128 @@
-Return-Path: <devicetree+bounces-212768-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212769-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48EFEB43AFE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:05:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 432C9B43B02
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:06:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 255BE1C276E3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:05:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E5E6A17106D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:06:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A4A52BE7D2;
-	Thu,  4 Sep 2025 12:05:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 314B927A468;
+	Thu,  4 Sep 2025 12:06:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LbWttJF1"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="x4q2fq7M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AC3527A469;
-	Thu,  4 Sep 2025 12:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C33FE2CCC0
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 12:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756987513; cv=none; b=CvN0k7vHW9zkYLpxOMd6sMj3I6dy5O+CHo1JrGLyWJMtWKyhy2CUTfaHfE7GOHZUCmEtYW9Q/BXvXfoCiJDY7mTC4anr7gd6OkGGpqgSRJTUaCSxLSmG80+4urow2iCVTyrAmp350Z40avUz863GHs0XSWYcQPoIJoh6HM5xsks=
+	t=1756987603; cv=none; b=RCt2YN4PrmZ6/kgHG+Cd65qsrIuzg/L4lvKf22evbGR0QgRg5LoO/uNofVOzERg40nUx8RJXMkh8g3NEIqmQO8w4DWQR5rwiQbOJVjNokpJq+SzEU31GPm7yeGBxV6CY51GrzmDWlFNmJLqsX5ctFNMvZ9/CVZNo1J2j6Gh8esU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756987513; c=relaxed/simple;
-	bh=13BOPU+7OAPKTnYNAO+wiCO8MYkbV3q62X00Giano/A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=EWcweWt+T+tqaSWHD1mg1B464RAJKAJ2GXf1aW+s1Mt26ClJpYDOqMGGnKd+lt9uWUzNVTyCyb2Ahds+S9b4vuEMb+KyQyf6dVUwyX4GcTwAqOeICVnUcyAzAxaCOmqrzZaE7Iy08B/6q8d+HzNa3QrSyVyliR/oqoDJNSF/2ms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LbWttJF1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7156EC4CEF0;
-	Thu,  4 Sep 2025 12:05:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756987512;
-	bh=13BOPU+7OAPKTnYNAO+wiCO8MYkbV3q62X00Giano/A=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=LbWttJF1sUXLDHN5KJorsUknmbIr4HkYcANOJ3lsoM+NcL2qpe+atXDS8QmjnL+Q4
-	 LPvM+Yj2xepCaHa58ARltxT0y2IBh6Gpo8I2uINd0qotpV95uaZ96yfOHRGCjeMXgS
-	 +Lb5A01VTPwewbLWFkI31zZwH5mpr3H1ctxV5emM/W+d/+MRrewdypklfuiBnrkE6P
-	 qP7rQYvrVHcC3rquKIDee6mJSbAkf/ulBfFnNKOU0SzSxnes4TbiwapAvA3Jbfd1w6
-	 yHYUEt+y/lBlGWVBAN/tlHTxF6CrQIAAJhh6M5fuQpG6UsD1wHl4JTKB2VsqovenX+
-	 lYjJ/Z8TWokDw==
-Message-ID: <e89de497-9c6e-4a4c-8f66-019d349c171b@kernel.org>
-Date: Thu, 4 Sep 2025 14:05:08 +0200
+	s=arc-20240116; t=1756987603; c=relaxed/simple;
+	bh=BQAe+JjSh2q+k6497/0Vzpn/TGXqaKHnZLgVqN30iWM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VM1XGPnXoZt3ybGRzUM2dttMSwwBUT1LtQQri30IpmBvF6uW2wXp3ImeHkNOIjDFKVSjprQK5oYckM14tqgm7sIz+XXDG8FotTRHveff5OqJFwMCqWdF71vzawyx6Nu5gAgN+kIHMI3mEA55EHdfa+SVCDqwG13LEXztOud9NBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=x4q2fq7M; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 194A11A0DBB;
+	Thu,  4 Sep 2025 12:06:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id D6570606BB;
+	Thu,  4 Sep 2025 12:06:37 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 9572C1C22CD4A;
+	Thu,  4 Sep 2025 14:06:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1756987595; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 in-reply-to:references; bh=mIlmuo0Gtp9GO6zHaQ/K5OHjdFMQzgyW4t7BFdCXnm8=;
+	b=x4q2fq7MGG0YkXFf63P8x8iowmcOaB5uN3MXm/gDQchzTtrGTJy4+kUaSJTz90iluRHKKK
+	CtVCXJu4Z42L3iJwW6uwD+6jzsA/JtuBw0YIexwEd4DlA1jXOR3Z9gqWChHkDR0lPtvAXD
+	BkZ/tup6tQGrmbkfZGB1jxP0GN7WagtqlVrWzZBR5kCj4SstT/fDUoskrHKlWZisWtUY/k
+	GnAI9AGTXcZj4CznV3qo1HqKoKq6tIdT8Tur0zbZpeDn/k2cHO8f70GMnKi9XBNJj9KBm8
+	EML/9cfGbgLk9cbOJCXQyraNqTrt+dQEzpqCwv5a5YLAIJZCuQZEHsDxP2DnQA==
+Date: Thu, 4 Sep 2025 14:06:26 +0200
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	"open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: rtc: pcf2127: add compatible string
+ nxp,rtc-pcf2123
+Message-ID: <20250904120626554f89c7@mail.local>
+References: <20250903165536.431586-1-Frank.Li@nxp.com>
+ <202509031658298690ab12@mail.local>
+ <aLiHyoI6orsalmyJ@lizhi-Precision-Tower-5810>
+ <202509031924363f3ca29e@mail.local>
+ <20250904-mustard-lion-of-downpour-f07cea@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer
- documentation
-From: Hans de Goede <hansg@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: robh@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, krzk+dt@kernel.org, lee@kernel.org,
- linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@kernel.org
-References: <20250902182114.GA965402-robh@kernel.org>
- <20250903235615.134520-1-alex@vinarskis.com>
- <20250904-brave-zippy-quoll-fcb054@kuoka>
- <daf442a6-b4d6-4213-8ec0-10397d682cc4@kernel.org>
- <fdc68c54-a499-4ba6-8788-70c7ea515f2d@kernel.org>
- <691f72aa-6d3e-47a1-9efe-a5f7a61ecb72@kernel.org>
- <9c536e24-ab5a-454a-93af-6d4c51d4e1ce@kernel.org>
- <ece22424-ea6f-4d6e-8964-3418853dba2f@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <ece22424-ea6f-4d6e-8964-3418853dba2f@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904-mustard-lion-of-downpour-f07cea@kuoka>
+X-Last-TLS-Session-Version: TLSv1.3
 
-Hi Krzysztof,
-
-On 4-Sep-25 1:47 PM, Hans de Goede wrote:
-> Hi Krzysztof,
+On 04/09/2025 11:29:25+0200, Krzysztof Kozlowski wrote:
+> On Wed, Sep 03, 2025 at 09:24:36PM +0200, Alexandre Belloni wrote:
+> > On 03/09/2025 14:24:10-0400, Frank Li wrote:
+> > > On Wed, Sep 03, 2025 at 06:58:29PM +0200, Alexandre Belloni wrote:
+> > > > On 03/09/2025 12:55:36-0400, Frank Li wrote:
+> > > > > Add compatible string nxp,rtc-pcf2123, which style is not consistent with
+> > > > > existed compatible string because existed driver and dts use
+> > > > > nxp,rtc-pcf2123.
+> > > > >
+> > > > > Fix below CHECK_DTBS warning:
+> > > > > arch/arm/boot/dts/nxp/imx/imx6q-evi.dtb: /soc/bus@2000000/spba-bus@2000000/spi@2018000/rtc@3: failed to match any schema with compatible: ['nxp,rtc-pcf2123']
+> > > > >
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 1 +
+> > > > >  1 file changed, 1 insertion(+)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > > index 11fcf0ca1ae07..595c20df6a411 100644
+> > > > > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > > @@ -20,6 +20,7 @@ properties:
+> > > > >        - nxp,pcf2127
+> > > > >        - nxp,pcf2129
+> > > > >        - nxp,pcf2131
+> > > > > +      - nxp,rtc-pcf2123
+> > > >
+> > > > Nope, you need to fix the devicetree.
 > 
-> On 4-Sep-25 12:47 PM, Krzysztof Kozlowski wrote:
->> On 04/09/2025 12:29, Hans de Goede wrote:
->>> Hi Krzysztof,
->>>
->>> On 4-Sep-25 11:45 AM, Krzysztof Kozlowski wrote:
->>>> On 04/09/2025 09:26, Hans de Goede wrote:
->>>>>>>>> +maintainers:
->>>>>>>>> +  - Aleksandrs Vinarskis <alex@vinarskis.com>
->>>>>>>>> +
->>>>>>>>> +description:
->>>>>>>>> +  Some LED defined in DT are required by other DT consumers, for example
->>>>>>>>> +  v4l2 subnode may require privacy or flash LED.
->>>>>>>>> +
->>>>>>>>> +  Document LED properties that its consumers may define.
->>>>>>>>
->>>>>>>> We already have the trigger-source binding for "attaching" LEDs to 
->>>>>>>> devices. Why does that not work here?
->>>>>>>
->>>>>>> I have not actually considered this, as the existing privacy-led solution
->>>>>>> from the original series is not trigger based. At least one of the reasons
->>>>>>> for that is that trigger source can be rather easily altered from user
->>>>>>> space, which would've been bad for this use case. If v4l2 acquires control
->>>>>>> over the LED it actually removes triggers and disables sysfs on that LED.
->>>>>>
->>>>>> So does that mean that v4l2 solves the problem of "trigger source can be
->>>>>> rather easily altered from user space"?
->>>>>
->>>>> Yes, currently the v4l2-core already does:
->>>>
->>>> Thanks, I understand that it solves the problem described in the patch,
->>>> so the patch can be dropped.
->>>
->>> I'm a bit confused now, do you mean that this dt-bindings patch can
->>> be dropped ?
->>
->> Yes.
->>
->> Alex's explanation to Rob felt confusing, so I asked for clarification.
->> You clarfiied that that v4l2 solves the problem, therefore there is no
->> problem to be solved.
->>
->> If there is no problem to be solved, this patch is not needed.
->>
->> If this patch is needed, just describe the problem accurately.
->>
->>>
->>> The existing v4l2-core code solves getting the privacy-LED on ACPI/x86_64,
->>> on DT there is no official bindings-docs for directly getting a LED with
->>
->> There are and Rob pointed to them. If Rob's answer is not enough, make
->> it explicit.
->>
->> Really, there are here some long explanations which do not really
->> explain this in simple terms. Simple term is: "existing property foo
->> does not work because <here goes the reason>".
+> Yep, 6 years is enough for all users to adjust, so I agree.
 > 
-> The existing trigger-source binding for "attaching" LEDs to 
-> devices does not work because:
+> > > 
+> > > Oh, driver drivers/rtc/rtc-pcf2123.c also use nxp,rtc-pcf2123. For such old
+> > > devices, generally keep it as it.
+> > > 
+> > > Maybe DT team members provide more professional comments for it.
+> > 
+> > It is there for DT ABI compatibility, we don't need to advertise its
+> > existence in the doc, you must fix the device tree.
 > 
-> 1. It depends on the Linux specific LED trigger mechanism where as
->    DT should describe hw in an OS agnostic manner
+> In-tree compatibles should be documented anyway (as "deprecated: true").
 > 
-> 2. It puts the world upside down by giving possible event-sources 
->    for the (again) Linux specific trigger rather then allowing
->    specifying e.g. specific privacy and flash LEDs as part
->    of a camera dts node. IOW it makes the LED DT note point to
->    the camera, while the LED is a part of the camera-module.
->    not the other way around. So it does not properly allow
->    describing the composition of the camera.
-> 
->    Note that Rob actually put "" around attaching because this
->    property really is not proper attaching / composition as
->    we would normally do in dt.
-> 
-> IMHO 1. alone (this being Linux specific) warrants a new better
-> binding for this.
 
-And:
+There is one device tree to fix, then we won't have any occurrence
+in-tree anymore.
 
-3. There already are bindings using a leds = phandle-array property in:
-Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-
-So we already have this as another and IMHO much clenaer way to tie
-a LED to a device.
-
-The suggest generic leds = phandle-array property description added
-in this new binding just adds a leds-names to give names to the
-various indexes in the array which is a very common design-pattern
-in dt-bindings.
-
-Regards,
-
-Hans
-
-
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
