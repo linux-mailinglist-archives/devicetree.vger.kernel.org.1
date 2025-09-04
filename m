@@ -1,345 +1,227 @@
-Return-Path: <devicetree+bounces-212973-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212974-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C705B44457
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:29:19 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DDF1B44465
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:32:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E8EA9179BD7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:29:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254B17A8804
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:30:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FA4E30FC0C;
-	Thu,  4 Sep 2025 17:28:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D91312EFD80;
+	Thu,  4 Sep 2025 17:32:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dAHMNRgm"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SyQqNY4M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48D8D30ACFD;
-	Thu,  4 Sep 2025 17:28:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47F8D23A564
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 17:32:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757006937; cv=none; b=eHtsZXhVuKxB3swPoWARx+eVEZJ4jthmLQAeQNCb52l0PfWg7bt8BZSBJcxprG2GTBApe93WeCDkZaltarwlxE75fN8PqRP8p3KH9Ts7OMSmFf3lJxOYCxpp6W5ooQnUiZKegYJ3Z7ImkA0C65jSmeRoTGyXGGApqsnv1IL2nwo=
+	t=1757007131; cv=none; b=Cfj/qzKGOAdhScqF9/WVWeOeHVzNBiVVEG4/FFA6+guvqVZ8eg6yxUwaey4Y2beG12asqJCp9Qnpc7Jvrr8mnXfTuO/XMyNb4cldg3Smx1Sc7MZhBBQQvHhWvc+hz0jNQ6ZAndLx6Z5RsYRjOERtDVu5Moo77SFO5/aFXrLBOMQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757006937; c=relaxed/simple;
-	bh=NhkIXhC7w+TGOm3iyYU2TFlcEu/S0DW0XgNG9zQEOMc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iPrqS61T9YfpGDA3t+lUha4ZGrbFkUMiB6p7tgzBYNXtapYRJmFq/0G6bqS0SAjHkAIKGJqhsFYO6cKxnYMlUGZQiHqTOFYQQ3Ung0n0g0muFw+yl7eZEMD5KljBL0pI5Gp+s2gJvCG9stsHo07XdElpo7/UxyrUouxlJ2d6rjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dAHMNRgm; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-55f76454f69so1254936e87.0;
-        Thu, 04 Sep 2025 10:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757006933; x=1757611733; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DSwI61WL8IVeh7wDpcBrc2Ynj3mrDWJKVAn398YwFXU=;
-        b=dAHMNRgm/qQxxcu/9HodPQKfAKgvsjcDBltjedHVZjzl/K96iJFGoCosXVqEkotgYm
-         Ifr/wCxgoFxTwIRXrIkDrwt+ZzyX4migM3lHIclU+gjg5kFPiAqBNIxfQXfi9r9MrOjC
-         OXNRjo+PpaE506T+sVuHXp6MLilcG0De9bwe0e9jpdfW+gQxaOsfcO26Kg8N4Ptoup4v
-         ocYMix8l07e3utAQs5mYoTCqZJpVOQhmzdkvg2HFq7lyelpgZNQviC+X8+WzCPuamI2y
-         ZqBhkXPqAtKt8zaQr0+OvOPWZdDFGXB4gPotaDJS5X1+ZfnNA7eke9v/C9IgExX3d4f6
-         glBA==
+	s=arc-20240116; t=1757007131; c=relaxed/simple;
+	bh=S6K7ZuuI9Bt+Smd+P1c+fd+/jUyGt2Lk9wkEvGESl70=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Yw+rF0/ijx+W6U00l7x4JdRkX+0TZS4JOwVyr6iIpXnlW3ogF5L47Fn2c0OViPs1veL0ihTnGx1i1d7pdBCxRyHf7lhY7P3xyA1btsUypPz+Nc4VNV/MbVAL8paS29Hik5kt+wswRVMqo8wfJlKFfBge7JgMRNRgz631mCLn7Jg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SyQqNY4M; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584GUv6a018533
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 17:32:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	Da73JYrU/YH6aVt86oA5anWyeFztGpATifsoe84jD5s=; b=SyQqNY4MUimxvb2E
+	dphFdMl8HZnvD9gFoeUmBK78RINJHp4EvPzSR/kBUwREEKvdIgZ69XaIXfiAskS0
+	kstFiRXXynOQDO/+Bhf7eG3rMYPBQoTBVh/uj8rhfxcQdjKNCaQVP9RAbQizEJOI
+	xJ+XeQ1mgH8r2Lr+YpmR65BvGf00qbzFtgrzxAtC86q6uCMA4RYT3/X7XeeqEPc+
+	Ueooe7YQhng4pqWkdkYL890YuD5u3eC7RjgTzQEt9DRsi1XSHFTqc61HkL7iMvRT
+	BIJbvAEmb04Qebhdh+6JJxPXWDRN7xe39AXYJ6KAOtXHSwsLvA25RqDwWhU3aRz7
+	Wn5rfw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48yebur6qj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 17:32:09 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b32fe42b83so21005391cf.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 10:32:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757006933; x=1757611733;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DSwI61WL8IVeh7wDpcBrc2Ynj3mrDWJKVAn398YwFXU=;
-        b=DtmWLXIi7Pz8enDFtdZ46T3U4DsmHKytnAcbFO73w4lpuR2E8y6ESredqdzWKR1T/9
-         j3PV713nHprCaTFvBWdOHzHP7Q8AAsSPfaUOZtxSjZqzIZVABi2lGQBrZrqA/KF1a+HK
-         AXQ80o3b8Q44k89lNUmzkbBLcWvUHqqTq/AdyYXg7tyJCzrx7m/67z8wR4BPxmKVeLEv
-         3M6LWe5U9by39i5vADWB8pmTy2FEalYbTf3OMM07yZY9w53iJjtwLUXtOUNxJsI+nPJN
-         m+xqMFivqICIfvYAhsehGZHGgZ1tgs7MmC/xNDu1gWAHf/dVujWmxdvWVcoPYoGsx9UM
-         9mLg==
-X-Forwarded-Encrypted: i=1; AJvYcCVPsvXYzSQs0r+8b3KmJKW2m11a1h23uZKo/VMBXj9txTkorn3nkTDMFT9XtiW77e4M2SwlZ1yHCQg=@vger.kernel.org, AJvYcCVtLDYuDvxjiCnBBCkrCrIeK2oAiv8gRP24Wg5Shsef/0yvcSfPwgT57yo9Lfl/ZoOgQZfHaSHTKRHPoFU=@vger.kernel.org, AJvYcCXOlnw0hFI+ivaC3H4g5QGUazJjyqhHnXZD9GukdAktDJqK9kyfhLLwgggNBAaviPyQPdcFPyBHDJ1TVKQ6@vger.kernel.org, AJvYcCXShZpn7KlBvr8sUrP20CixlwoIUjdsJozDAiJqSKGsU5W4v7UbzAKSj/11ify6A1+Fq2xTyTHYKpd7@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx5bVBt8sKqXjo+C4ldTsSGvpTmQ8GMppJLfKgDEeT+kx8wgwqH
-	eQddwzZCIYquqv3mnGkQLn3elxTgsvH4VQgvZZ+XtqCgme1zL72y8scHVrgnep+LGhQG3WoM05o
-	PPCSe6eV/0xJXtVT94jxz98rRVqbp9SE=
-X-Gm-Gg: ASbGncuBiw3ZassVHAIxuqXsdlolt6jZwYjJ94+BPqVqgYpWISMWTqGbIB3vCqpQGg4
-	TCeaxaGBwoBKNpbWGJJhQWoM25Vqja4WpolNSl5ty1Y//3iYC7mqKrN7IsfVilX65R/qST8KAR/
-	y7dniVvoMdx/oCpF6jKuO2iST1crzLm0utsYVwAX37MVzJeymv7P6M8b+dxcWWqvuNZjHW7Hjet
-	lYfZqqBIyh2rF9Gtw==
-X-Google-Smtp-Source: AGHT+IEmKm5z3+4UsCNF7tYNuaX/TlayQR+W73dq374TEwEYPRINixXfuytelD0RucR69hGpw712dsVZsY4MlOCqjzs=
-X-Received: by 2002:a05:6512:b8a:b0:55f:6831:6ef9 with SMTP id
- 2adb3069b0e04-55f70969065mr6172160e87.46.1757006932917; Thu, 04 Sep 2025
- 10:28:52 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757007128; x=1757611928;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Da73JYrU/YH6aVt86oA5anWyeFztGpATifsoe84jD5s=;
+        b=MgONW8uz0lnPslFPSfBJIBdIqGKctEMCkSdanrY0r5I1vip++FLOxDuy0MWDFIwYSI
+         /aPL9EcDiqM6CpPgVn9Ft27iWtkzdYOTyJnbtiTcNF/1E/QwrFl0TancpkXUuEiD+I8g
+         R0fuyOUWtaZ4apaAKwKYPcjWsp6b/r/Kf1FbtZ7mk9NpjlFZxa9GmZKkCSa0JCdDl6Bz
+         UI/y5uZXblV28jpaG/iEvSWrWI0uIq1xy/oe1K+lUyTfbhX9Qlmg7IGZ9+KmohL7MHcR
+         hUiN1XRMHZRU01H3F8dnTSfvNATl1Y3LWciMnw0bfTK2nC33b6P2uKQWnZJAtXv29R0B
+         4YYA==
+X-Forwarded-Encrypted: i=1; AJvYcCUnUTpo1jW7TSjlKvTWNnCjB3p+OQDcMgEBqe8Ij73Ypx0/ReZzZ9pbeyCysL2HL2JFIRga+gFubCdZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFOoWF8i+VFze2xv3WK+KuspdRMbqWPpIpT1yEkESqldJyLkeH
+	MPkRL7Gs5CEHcX2mOkw65TpKsIfISpHZ4clNfgQhoP+BdcBNMREuhjvJYRS2lLAb5TYXbrslj8p
+	9bMOMG+Cfm1vjivc98r5XXRQkrQxT7CKl2nOgl2TxsCrfeqO2wyD8fm0qGcLVH8WS
+X-Gm-Gg: ASbGncvsipTu8vnYn2ainJY8FHZpdL1WWz4xYlIoSvxVRV4sNSzH2s/J4ItL02mNKYW
+	gTMdZjgF0FDgaZAeUmpExdmMTMR4ItkQ9cBouklpNGtH0nCYeNyL/OkmdNRg1kWsaToSb310l0l
+	my3otBn2KMR908o1De+VaSeU3sVpVdUxt548oTfxK5cQ9gs3MoOjJ1lhUN+O3k545f3h410nQCn
+	AjXSH66m6P5IvXFCE68dIH9efOQusoklDkg1EydBB/NzQbgsjk+TwfgsLRD2TdSJ8uFsSZuG394
+	Ws6hL6yIz4dibZurA+rdztAvteswjQ6TBWZEokIDPIu00s8spdwYJwuOPcEtP/6IloqddWwQLrz
+	n3ryLntRoPHuhM4TqhyCbKSAWnmBcj6xot1/T+d6VabI6ml1W8b4D
+X-Received: by 2002:a05:622a:5809:b0:4b2:ed1b:c4ef with SMTP id d75a77b69052e-4b31dce5334mr232514611cf.82.1757007128112;
+        Thu, 04 Sep 2025 10:32:08 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHzY46Xf0yuYtNJopahgPntF+57SdK24XGBjq5que+6q55hgL1+myrBZjHkcDslthTY8AGG6A==
+X-Received: by 2002:a05:622a:5809:b0:4b2:ed1b:c4ef with SMTP id d75a77b69052e-4b31dce5334mr232514251cf.82.1757007127542;
+        Thu, 04 Sep 2025 10:32:07 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ace9fd1sm1316585e87.83.2025.09.04.10.32.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 10:32:06 -0700 (PDT)
+Date: Thu, 4 Sep 2025 20:32:04 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: lemans: Add SDHC controller and
+ SDC pin configuration
+Message-ID: <zofmya5h3yrz7wfcl4gozsmfjdeaixoir3zrk5kqpymbz5mkha@qxhj26jow5eh>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-2-08016e0d3ce5@oss.qualcomm.com>
+ <rxd4js6hb5ccejge2i2fp2syqlzdghqs75hb5ufqrhvpwubjyz@zwumzc7wphjx>
+ <c82d44af-d107-4e84-b5ae-eeb624bc03af@oss.qualcomm.com>
+ <aLhssUQa7tvUfu2j@hu-wasimn-hyd.qualcomm.com>
+ <tqm4sxoya3hue7mof3uqo4nu2b77ionmxi65ewfxtjouvn5xlt@d6ala2j2msbn>
+ <3b691f3a-633c-4a7f-bc38-a9c464d83fe1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903-t210-actmon-v2-0-e0d534d4f8ea@gmail.com>
- <20250903-t210-actmon-v2-5-e0d534d4f8ea@gmail.com> <20250904-aloof-cow-of-speed-ad5fe5@kuoka>
-In-Reply-To: <20250904-aloof-cow-of-speed-ad5fe5@kuoka>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Thu, 4 Sep 2025 12:28:40 -0500
-X-Gm-Features: Ac12FXwoUbHXbnjPltBaIDA6qIv1rYOBoXszdGWN7uaYcYD8LQamV8-PcX0xrq8
-Message-ID: <CALHNRZ-A6L1s_Uc0cO-+akHyzHGkb4bkYd0pNKX96DqJfOBp9g@mail.gmail.com>
-Subject: Re: [PATCH v2 5/8] memory: tegra210: Support interconnect framework
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3b691f3a-633c-4a7f-bc38-a9c464d83fe1@oss.qualcomm.com>
+X-Proofpoint-GUID: lCeqpuTGLAgcF71ywZY8VhQmbk1480im
+X-Authority-Analysis: v=2.4 cv=X+ZSKHTe c=1 sm=1 tr=0 ts=68b9cd19 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=7jlciowUQMUDIi_Z8n8A:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=dawVfQjAaf238kedN5IG:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA0MDE2MyBTYWx0ZWRfX9M4qxcLsKmu8
+ GACjt8VCYU/jP4xGYXV9XUfoC2K0d0PVH5Ti+OlVTVp+z+fcOVhuVn+YAatb/PK4QHmR4nRJ7yu
+ gtKcUOIxW0pGq6H2xdJolz1u4WXhdE55k+5fOerjcMEKyzWY1Gkf1FxWkQw4mm9WH/0fUbE6Er7
+ j9uq0zQIcPzEUaX9yJ1PUT+J3MOAh/jJsbjQUfHNYl/XZt/C/ANNWEPgRPmt6GA2KScSovHTiDI
+ /By9apQC9fHuL9HhN90zqaErteHiH3GUT/TvyILoZzuNKjBo2lLjWgqIQFZmOLbHvx2bSmbjfs9
+ I8kiftc1YmZCTAP9JY5Oe7hhRtiqFUO/4Zkga1TjMn2+WNoT42hszrt5e2FYapyAmgGInCxjAzh
+ eCBxsVOL
+X-Proofpoint-ORIG-GUID: lCeqpuTGLAgcF71ywZY8VhQmbk1480im
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_06,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509040163
 
-On Thu, Sep 4, 2025 at 3:17=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Wed, Sep 03, 2025 at 02:50:11PM -0500, Aaron Kling wrote:
-> > This makes mc and emc interconnect providers and allows for dynamic
-> > memory clock scaling.
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
-> > ---
-> >  drivers/memory/tegra/Kconfig             |   1 +
-> >  drivers/memory/tegra/tegra210-emc-core.c | 274 +++++++++++++++++++++++=
-+++++++-
-> >  drivers/memory/tegra/tegra210-emc.h      |  23 +++
-> >  drivers/memory/tegra/tegra210.c          |  81 +++++++++
-> >  4 files changed, 377 insertions(+), 2 deletions(-)
->
-> Patch #3 was memory, patch #4 was soc, patch #5 is memory, so that
-> mixup pattern continues.
->
-> Please address the earlier feedback.
+On Thu, Sep 04, 2025 at 04:34:05PM +0200, Konrad Dybcio wrote:
+> On 9/4/25 3:35 PM, Dmitry Baryshkov wrote:
+> > On Wed, Sep 03, 2025 at 09:58:33PM +0530, Wasim Nazir wrote:
+> >> On Wed, Sep 03, 2025 at 06:12:59PM +0200, Konrad Dybcio wrote:
+> >>> On 8/27/25 3:20 AM, Dmitry Baryshkov wrote:
+> >>>> On Tue, Aug 26, 2025 at 11:51:01PM +0530, Wasim Nazir wrote:
+> >>>>> From: Monish Chunara <quic_mchunara@quicinc.com>
+> >>>>>
+> >>>>> Introduce the SDHC v5 controller node for the Lemans platform.
+> >>>>> This controller supports either eMMC or SD-card, but only one
+> >>>>> can be active at a time. SD-card is the preferred configuration
+> >>>>> on Lemans targets, so describe this controller.
+> >>>>>
+> >>>>> Define the SDC interface pins including clk, cmd, and data lines
+> >>>>> to enable proper communication with the SDHC controller.
+> >>>>>
+> >>>>> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+> >>>>> Co-developed-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> >>>>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> >>>>> ---
+> >>>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 70 ++++++++++++++++++++++++++++++++++++
+> >>>>>  1 file changed, 70 insertions(+)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> index 99a566b42ef2..a5a3cdba47f3 100644
+> >>>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> @@ -3834,6 +3834,36 @@ apss_tpdm2_out: endpoint {
+> >>>>>  			};
+> >>>>>  		};
+> >>>>>  
+> >>>>> +		sdhc: mmc@87c4000 {
+> >>>>> +			compatible = "qcom,sa8775p-sdhci", "qcom,sdhci-msm-v5";
+> >>>>> +			reg = <0x0 0x087c4000 0x0 0x1000>;
+> >>>>> +
+> >>>>> +			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+> >>>>> +				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
+> >>>>> +			interrupt-names = "hc_irq", "pwr_irq";
+> >>>>> +
+> >>>>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> >>>>> +				 <&gcc GCC_SDCC1_APPS_CLK>;
+> >>>>> +			clock-names = "iface", "core";
+> >>>>> +
+> >>>>> +			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
+> >>>>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
+> >>>>> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+> >>>>> +
+> >>>>> +			iommus = <&apps_smmu 0x0 0x0>;
+> >>>>> +			dma-coherent;
+> >>>>> +
+> >>>>> +			resets = <&gcc GCC_SDCC1_BCR>;
+> >>>>> +
+> >>>>> +			no-sdio;
+> >>>>> +			no-mmc;
+> >>>>> +			bus-width = <4>;
+> >>>>
+> >>>> This is the board configuration, it should be defined in the EVK DTS.
+> >>>
+> >>> Unless the controller is actually incapable of doing non-SDCards
+> >>>
+> >>> But from the limited information I can find, this one should be able
+> >>> to do both
+> >>>
+> >>
+> >> It’s doable, but the bus width differs when this controller is used for
+> >> eMMC, which is supported on the Mezz board. So, it’s cleaner to define
+> >> only what’s needed for each specific usecase on the board.
+> > 
+> > `git grep no-sdio arch/arm64/boot/dts/qcom/` shows that we have those
+> > properties inside the board DT. I don't see a reason to deviate.
+> 
+> Just to make sure we're clear
+> 
+> I want the author to keep bus-width in SoC dt and move the other
+> properties to the board dt
 
-Alright, I double check the docs and re-order this and my other series
-for the next revisions. I had a misunderstanding how subsystems were
-split up, which caused most but not all of the issues.
+I think bus-width is also a property of the board. In the end, it's a
+question of schematics whether we route 1 wire or all 4 wires. git-log
+shows that bus-width is being sent in both files (and probalby we should
+sort that out).
 
->
-> >
-> > diff --git a/drivers/memory/tegra/Kconfig b/drivers/memory/tegra/Kconfi=
-g
-> > index fc5a277918267ee8240f9fb9efeb80275db4790b..2d0be29afe2b9ebf9a0630e=
-f7fb6fb43ff359499 100644
-> > --- a/drivers/memory/tegra/Kconfig
-> > +++ b/drivers/memory/tegra/Kconfig
-> > @@ -55,6 +55,7 @@ config TEGRA210_EMC
-> >       tristate "NVIDIA Tegra210 External Memory Controller driver"
-> >       depends on ARCH_TEGRA_210_SOC || COMPILE_TEST
-> >       select TEGRA210_EMC_TABLE
-> > +     select PM_OPP
-> >       help
-> >         This driver is for the External Memory Controller (EMC) found o=
-n
-> >         Tegra210 chips. The EMC controls the external DRAM on the board=
-.
-> > diff --git a/drivers/memory/tegra/tegra210-emc-core.c b/drivers/memory/=
-tegra/tegra210-emc-core.c
-> > index e96ca4157d48182574310f8caf72687bed7cc16a..f12e60b47fa87d629505cde=
-57310d2bb68fc87f3 100644
-> > --- a/drivers/memory/tegra/tegra210-emc-core.c
-> > +++ b/drivers/memory/tegra/tegra210-emc-core.c
-> > @@ -13,6 +13,7 @@
-> >  #include <linux/module.h>
-> >  #include <linux/of_reserved_mem.h>
-> >  #include <linux/platform_device.h>
-> > +#include <linux/pm_opp.h>
-> >  #include <linux/slab.h>
-> >  #include <linux/thermal.h>
-> >  #include <soc/tegra/fuse.h>
-> > @@ -1569,6 +1570,79 @@ static int tegra210_emc_set_rate(struct device *=
-dev,
-> >       return 0;
-> >  }
-> >
->
-> ...
->
-> > @@ -1758,6 +1832,193 @@ static void tegra210_emc_debugfs_init(struct te=
-gra210_emc *emc)
-> >                           &tegra210_emc_debug_temperature_fops);
-> >  }
-> >
-> > +static inline struct tegra210_emc *
-> > +to_tegra210_emc_provider(struct icc_provider *provider)
-> > +{
-> > +     return container_of(provider, struct tegra210_emc, icc_provider);
-> > +}
-> > +
-> > +static struct icc_node_data *
-> > +emc_of_icc_xlate_extended(const struct of_phandle_args *spec, void *da=
-ta)
-> > +{
-> > +     struct icc_provider *provider =3D data;
-> > +     struct icc_node_data *ndata;
-> > +     struct icc_node *node;
-> > +
-> > +     /* External Memory is the only possible ICC route */
-> > +     list_for_each_entry(node, &provider->nodes, node_list) {
-> > +             if (node->id !=3D TEGRA_ICC_EMEM)
-> > +                     continue;
-> > +
-> > +             ndata =3D kzalloc(sizeof(*ndata), GFP_KERNEL);
-> > +             if (!ndata)
-> > +                     return ERR_PTR(-ENOMEM);
-> > +
-> > +             /*
-> > +              * SRC and DST nodes should have matching TAG in order to=
- have
-> > +              * it set by default for a requested path.
-> > +              */
-> > +             ndata->tag =3D TEGRA_MC_ICC_TAG_ISO;
-> > +             ndata->node =3D node;
-> > +
-> > +             return ndata;
-> > +     }
-> > +
-> > +     return ERR_PTR(-EPROBE_DEFER);
-> > +}
-> > +
-> > +static int emc_icc_set(struct icc_node *src, struct icc_node *dst)
-> > +{
-> > +     struct tegra210_emc *emc =3D to_tegra210_emc_provider(dst->provid=
-er);
-> > +     unsigned long long peak_bw =3D icc_units_to_bps(dst->peak_bw);
-> > +     unsigned long long avg_bw =3D icc_units_to_bps(dst->avg_bw);
-> > +     unsigned long long rate =3D max(avg_bw, peak_bw);
-> > +     const unsigned int ddr =3D 2;
->
-> Just use defines in top part for this.
->
-> > +     int err;
-> > +
-> > +     /*
-> > +      * Tegra210 memory layout can be 1 channel at 64-bit or 2 channel=
-s
-> > +      * at 32-bit each. Either way, the total bus width will always be
-> > +      * 64-bit.
-> > +      */
-> > +     const unsigned int dram_data_bus_width_bytes =3D 64 / 8;
->
-> Same here.
->
-> > +
-> > +     /*
-> > +      * Tegra210 EMC runs on a clock rate of SDRAM bus. This means tha=
-t
-> > +      * EMC clock rate is twice smaller than the peak data rate becaus=
-e
-> > +      * data is sampled on both EMC clock edges.
-> > +      */
-> > +     do_div(rate, ddr * dram_data_bus_width_bytes);
-> > +     rate =3D min_t(u64, rate, U32_MAX);
-> > +
-> > +     err =3D emc_set_min_rate(emc, rate, EMC_RATE_ICC);
-> > +     if (err)
-> > +             return err;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int tegra_emc_icc_get_init_bw(struct icc_node *node, u32 *avg, =
-u32 *peak)
-> > +{
-> > +     *avg =3D 0;
-> > +     *peak =3D 0;
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int tegra_emc_interconnect_init(struct tegra210_emc *emc)
-> > +{
-> > +     const struct tegra_mc_soc *soc =3D emc->mc->soc;
-> > +     struct icc_node *node;
-> > +     int err;
-> > +
-> > +     emc->icc_provider.dev =3D emc->dev;
-> > +     emc->icc_provider.set =3D emc_icc_set;
-> > +     emc->icc_provider.data =3D &emc->icc_provider;
-> > +     emc->icc_provider.aggregate =3D soc->icc_ops->aggregate;
-> > +     emc->icc_provider.xlate_extended =3D emc_of_icc_xlate_extended;
-> > +     emc->icc_provider.get_bw =3D tegra_emc_icc_get_init_bw;
-> > +
-> > +     icc_provider_init(&emc->icc_provider);
-> > +
-> > +     /* create External Memory Controller node */
-> > +     node =3D icc_node_create(TEGRA_ICC_EMC);
-> > +     if (IS_ERR(node)) {
-> > +             err =3D PTR_ERR(node);
-> > +             goto err_msg;
-> > +     }
-> > +
-> > +     node->name =3D "External Memory Controller";
-> > +     icc_node_add(node, &emc->icc_provider);
-> > +
-> > +     /* link External Memory Controller to External Memory (DRAM) */
-> > +     err =3D icc_link_create(node, TEGRA_ICC_EMEM);
-> > +     if (err)
-> > +             goto remove_nodes;
-> > +
-> > +     /* create External Memory node */
-> > +     node =3D icc_node_create(TEGRA_ICC_EMEM);
-> > +     if (IS_ERR(node)) {
-> > +             err =3D PTR_ERR(node);
-> > +             goto remove_nodes;
-> > +     }
-> > +
-> > +     node->name =3D "External Memory (DRAM)";
-> > +     icc_node_add(node, &emc->icc_provider);
-> > +
-> > +     err =3D icc_provider_register(&emc->icc_provider);
-> > +     if (err)
-> > +             goto remove_nodes;
-> > +
-> > +     return 0;
-> > +
-> > +remove_nodes:
-> > +     icc_nodes_remove(&emc->icc_provider);
-> > +err_msg:
-> > +     dev_err(emc->dev, "failed to initialize ICC: %d\n", err);
-> > +
-> > +     return err;
-> > +}
-> > +
-> > +static int tegra_emc_opp_table_init(struct tegra210_emc *emc)
-> > +{
-> > +     u32 hw_version =3D BIT(tegra_sku_info.soc_speedo_id);
-> > +     struct dev_pm_opp *opp;
-> > +     unsigned long rate;
-> > +     int opp_token, err, max_opps, i;
-> > +
-> > +     err =3D dev_pm_opp_set_supported_hw(emc->dev, &hw_version, 1);
-> > +     if (err < 0) {
-> > +             dev_err(emc->dev, "failed to set OPP supported HW: %d\n",=
- err);
-> > +             return err;
-> > +     }
-> > +     opp_token =3D err;
-> > +
-> > +     err =3D dev_pm_opp_of_add_table(emc->dev);
-> > +     if (err) {
-> > +             if (err =3D=3D -ENODEV)
-> > +                     dev_err(emc->dev, "OPP table not found, please up=
-date your device tree\n");
->
-> So this looks like the actual ABI break.
+> 
+> Konrad
 
-Okay, so let's discuss this. For reference, I based this patch off the
-tegra124 change [0], which also caused an abi break. I know past
-changes don't justify current mistakes, but this is the context. This
-series adds all new required dt properties to the arch common dtsi, so
-any newly compiled dtb will work. Any old dtb with a new kernel would
-fail to probe, however. I think it would be safe to just skip the
-interconnect init if the opp table init returns ENODEV, then let probe
-succeed, but I would have to verify that. Do I need to do that and
-drop the new requires from the binding?
-
-Aaron
-
-[0] https://github.com/torvalds/linux/commit/380def2d4cf257663de42618e57134=
-afeded32dd#diff-3ff603a1ea7654928390eb213cea0424b6a12251bccbb5fd3b9720402a3=
-c076aR1435
+-- 
+With best wishes
+Dmitry
 
