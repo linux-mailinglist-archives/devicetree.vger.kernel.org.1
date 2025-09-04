@@ -1,88 +1,80 @@
-Return-Path: <devicetree+bounces-212780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5B9CB43BA1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3EFEB43BAC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:35:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A02E81B24F1F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:30:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6D1C41BC4601
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1CE82F28EE;
-	Thu,  4 Sep 2025 12:29:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 421092E7620;
+	Thu,  4 Sep 2025 12:35:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KAocQBHd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Bg6hOliE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66D082EB871
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 12:29:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49D8C2773CB;
+	Thu,  4 Sep 2025 12:35:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756988984; cv=none; b=kA8fgQvezg3JvPEJ+0Rv2TOnALMZyQqgC0HPrNj+q3/pyPSN401IxM1HtMRresi9EtILLuPrAO+GQuweAZjO19D5gEU9YI0MCLxj0F0aTGEWinWVK/y3rfjBcUbkHpnCkjCKaKhXdG2JTA9qXjW/DwcNziW0aUx/owFqcZDrb+I=
+	t=1756989342; cv=none; b=qCVOrwU2GGXP25iFdss2ZKLAJS56j0dDBKyrPb90Pz1xjfgUjF2eyWrU7SZ6KseSEaw2nLBOpoDuvIKVZo/COJ4umhlnCB4djzB8GahL4I2isWeIgnDc/xvAFl/ezK9JMzETczkrp5G3RTEcNRws0djeFbqFLpLrBaknhLSx2zI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756988984; c=relaxed/simple;
-	bh=prRAN2SiSAb/u9+OvVy7joIO67ql8BGArockTzY/cnM=;
+	s=arc-20240116; t=1756989342; c=relaxed/simple;
+	bh=iGXqsuFVuUG2I1oYAHZMxD6alZmWDXebto1yrO4oz5o=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AG5xEabLmMKQOLk++Dm4o4hYUZpxHcG/yip0jIFNyQmq3ZU64SBIA8mGKMGTw42jdygmKi1PNOoNvR+5xg9bWhNKzSYo5f010c/gXr3fH3BbCCUg17bYqU3b4hhuCsQMLv8gUKJvMZYVJ/L8ZUSJExTEDFeSlsS+1PclJAzcL6E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KAocQBHd; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X9Dk007610
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 12:29:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	8MmD4u7VxkulDeDKbSghx2SZtMVKQSBEQjy2GAas2Xk=; b=KAocQBHdKoC0bMjx
-	3LePPTQ6ynVfireF0lNP0G0tG8lCfhmYf8BYPJg4dViUSJcCAFS8bBudYXn69Tog
-	pLl2Fjxuy3qXrRwWnnnSKR475Bs4w6c8lyGOAt8W8gxLedwAYBiic7/z3x/ntQs8
-	OLVJgOoeb4ArqfSDKrFaDs9m8gLq5mwMXwsre45hJlb1w0Grc58HQuRTXgqqWUrQ
-	zn1+ebex5KLaA/FFfeSGMLg5I2NxLNTruJf2syTc90AP+0uVlV7FsiD3SiJqMkka
-	YOodrxh99zFwflk7Zw/QNCmDauegOOS0r9H/nFlRjxAi5cAHMxwwwv8+tiqcV7cU
-	iRpu8A==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8ybgk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 12:29:41 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b32216a52cso2504901cf.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 05:29:41 -0700 (PDT)
+	 In-Reply-To:Content-Type; b=TxUPzDNzVv/cxdaKCrpkhk822uooHDou3wBtCgksBL1ClahQRLfnRV3zkAjtR42JMrEOh6IcPpnoDFmO+M35UHynmcWRJBjyyMn5V1q8kgh1RrruB2ur8JgLM8kXYBBgBvr80LPHX1+Krb2KTpF4ziAsoRCHwn+TAkNIqD7Vfh0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Bg6hOliE; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5607a240c75so1014525e87.2;
+        Thu, 04 Sep 2025 05:35:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756989338; x=1757594138; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DzLj+zIgPpFrAWVtQ6jPGHmw4+7i/5dMoIlp+lkaKxU=;
+        b=Bg6hOliEUsH9Vc1qD4Pt2pr28rcTznEsyc3MdkW88lmU+EExJDvLQ6n7IHOP5wgHOP
+         8EmmQmfwJmKhr/zWXr94pSkEmicJQ1tpCGV0i+0IhtlCGz6XSjKZhigIN48bqS16e1z6
+         or3eoImaCLTuxV+CLbgsngznPiJRCDt3jXNeiaxQzFQjyymRdMt194jc6jbCRxgJassM
+         qmMWagCkmkaOgf4NntjdwhBg8mI/vp+HhuKNOI9tQqfCi7FxbvpXgycfb8zd5iu0WQsP
+         T6SWAJwPlG9lFAVDGLM/aDCOJ/EOaUPFNz2+bHIt+JiicS1BDNaDepTt14Fr8HaefLSC
+         u+kA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756988980; x=1757593780;
+        d=1e100.net; s=20230601; t=1756989338; x=1757594138;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8MmD4u7VxkulDeDKbSghx2SZtMVKQSBEQjy2GAas2Xk=;
-        b=Q177Jkpn5tFmb1B5Unm4uiwM+pM+se4ZwddHKrrA+cG/1pFUgYs7y/O81h/SwGk9XJ
-         rOJDyaSCl6tvyqSmAw8g9OyEs2w5h1KW5vad2XlS2bGZOnO/96oygTTfGW6nYXNcKy7m
-         Y3GwyKpnraLY7RTWETDyj3h2Ec29IMsdtRkpohx6cVd3IKlT/hKnNpsBxSi67naS6kgg
-         kt8Bjc/r+S1hoNTWYiLiDJezyzA09tBZ7NADV8o+v0YKoFOCS3ds+5ZXi30ma5zOGdst
-         xlVD9LNTf8lSGtJXFNf0RYENR4+vv95LNbun55LfLKu7TgseUBzMLL5w1a1N9C2qv5HS
-         T52w==
-X-Forwarded-Encrypted: i=1; AJvYcCXcNyxHPNB4xXLQhBkajDYPrISctiXFx0gVN+ZaS9jF7enAQTQEOKE5X7XcveV8To9hDXAbw/QkKSPs@vger.kernel.org
-X-Gm-Message-State: AOJu0YxuAxmNk9EDgysR1L1COe9O4NpqrBePMNJe5F2ceey3dYvNPbKH
-	/s3sYF3M0sN96MMK/82ASQ1SkYijrQ5295stj7491D8pJiugd3eEVJJyosVqJb9sM+P5UOBB7Am
-	64Tu9GzXqDetBXxboCVEY544FTGKNH9G8oUox0guMHn3w6I5E/RRQokbYtgq8C30x
-X-Gm-Gg: ASbGnctbQdW6rIxJaNFjKlwBxb+dA3sBJKr2uX2TBlJb4QS4LAz1RzHa+nxcbQXNX1R
-	w+/a4cZYVcgvDXxl7VRWTu1YJCJ9NoAp/bqlV53kO5xa6HJlZuo9U7xuH2ps/uh1lWAtvpbJ6Sl
-	nOnaJY+7bB6bec8i3GkCQqBsGhnPB7RHa87CDJbxbg1SzC+NRZRB1a5YwbLa6nmWdgmRSdIbvQg
-	Y3KOA4pfwVGJkA7WxTp+WsnSL2nr4ZzSeOv+by41DfV4EYJdMeBT/w4wyLHJKH7m9DHWcIGfAyO
-	guq0riptq1CgIT6Vy1h7N1PXQy9KrGMyM6kzHYaEJqcbOjOD0nWq6VS+h8NxLE+nDPsV1mfZSO9
-	3SNRPnTl6j2SCjVDitLAzQg==
-X-Received: by 2002:ac8:7c55:0:b0:4b2:d981:9d4a with SMTP id d75a77b69052e-4b30e932ab7mr175134551cf.6.1756988980342;
-        Thu, 04 Sep 2025 05:29:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGTfxzsYnZYb0m5gz1tPNelxJIih7NJHAZeds3PRFC3JhLe9jDQapqBbetmcr0xmuOXgNFQcw==
-X-Received: by 2002:ac8:7c55:0:b0:4b2:d981:9d4a with SMTP id d75a77b69052e-4b30e932ab7mr175134161cf.6.1756988979595;
-        Thu, 04 Sep 2025 05:29:39 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b045e576edbsm537149666b.75.2025.09.04.05.29.37
+        bh=DzLj+zIgPpFrAWVtQ6jPGHmw4+7i/5dMoIlp+lkaKxU=;
+        b=llq3rzq36mzc88+fBgJ11yoTg7MrEXfAZTxri05vJA90Vn3CFHEV5LaX+zkwM+BIUI
+         YTgJttYv2TTT2T3YDYfWfrWpnq26RnMKZdJAJCe++N3oloz6aywt4pUscp6ovYeECzvo
+         GALb3WPMqFI8wAYuJz5F3fTiLvfsi5d0089bINbPy9nBxR0hqjuUncSzY+52XTNvsYOM
+         iUpe8xgqtqTj7qf0jg5Nj1nGcpLX/s6UWKNIjIN96kbuiDVYVorszkUZ2vzFjC4ttJaY
+         ANz4AF7kQujwA7T0PpOIIecjnFRB//sfGNp1RqD6ARN/htVRkH5ZTqjjTVKtktRvNSrB
+         SqbA==
+X-Forwarded-Encrypted: i=1; AJvYcCViFNA0ZALerrA69jAmaK0ybiZC9khPTuY8gcITySeeXXm9O5bLL5rvj1pDG0YzJ6ib3f7pPMsRUbfF@vger.kernel.org, AJvYcCVrTm0lcMBIls6ihvkw7czlYzfu5QT222cxPBckOSOJ/8C1xnicgQFzwL3Y2FiND7mz5qgwrdZlSAoor0uV@vger.kernel.org, AJvYcCXazBo8Q9g5Y8xcrdGUi8bSeLwsIyyhPMAe2Bunss5odJy/kRLo8fNdjxq149/AwUn2nwJyIf4Wfv+zKA==@vger.kernel.org, AJvYcCXhyiEjELJkpm0XxUfo6J3EqK/7UY4k3S+M8l/lRLzJgmZ+T0f6//BXp3LFKZ+lWfsSZtojxo7z/kLm@vger.kernel.org
+X-Gm-Message-State: AOJu0YwSYckjiL+ZI+ExkL44QKILlqn4TT4IXJCptL3YSlQ5KEqt/SS4
+	4a/RM0yRuEOxgVXP9myhASPEzlhCeHB72xmbGi03jCm3KfatCaSmjXAI
+X-Gm-Gg: ASbGncvWLKuHX3Sf6xgx0qbhgrA0fojTkLBVQgJiYGYiucpxjiQAT5l7M8UcfbA3Kfi
+	AYMnj6uC3ccghLnyDvuWeIxNglDBsf6R7n0fDrEQsAD7ylEchU+P/R6JzGcfO69y4LScvpB2Lbl
+	9qKmjqcHGpD9MCls/HR6s6Pjo12nqxxA3jX4LMefmlaiwepS/KSch8Gj9rp01v6lcNtfFKdIWpS
+	qUVp53bBhbAgwsihOvtlowYTHW9Mwjk56vP/ZAAwhCKpNe01Q9KHpjQ7LxId9jx3GgKajpLCrJC
+	CLEvmQ+54dhps1Klmg4Zx1WT/R28NFxLvBkRSEQXsqfslNmSZZd2YDMGleCfgbTmq73sb/LtEU2
+	xliCZ4MYebjG2GsCMyTc5YnGmQf40TDrU
+X-Google-Smtp-Source: AGHT+IENMFv5xHK/CdOCub0m4AEAAbu/52uJtZNubU/VRWn4qjb27C+owK+OSqSLCNN4YWFaLtIHPQ==
+X-Received: by 2002:a05:6512:6390:b0:55f:348b:ffd with SMTP id 2adb3069b0e04-55f708c1fcfmr4313703e87.21.1756989337947;
+        Thu, 04 Sep 2025 05:35:37 -0700 (PDT)
+Received: from [10.38.18.54] ([213.255.186.37])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ab5c174sm1216379e87.11.2025.09.04.05.35.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 05:29:39 -0700 (PDT)
-Message-ID: <cf6b7766-0c67-42fd-a67e-ce349688d9a1@oss.qualcomm.com>
-Date: Thu, 4 Sep 2025 14:29:36 +0200
+        Thu, 04 Sep 2025 05:35:37 -0700 (PDT)
+Message-ID: <43141a95-2267-44de-bd7e-11eb8c80090e@gmail.com>
+Date: Thu, 4 Sep 2025 15:35:36 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,88 +82,165 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 7/8] arm64: dts: qcom: qcm6490-idp: Add WSA8830
- speakers and WCD9370 headset codec
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com,
-        prasad.kumpatla@oss.qualcomm.com,
-        Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-References: <20250903151337.1037246-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250903151337.1037246-8-mohammad.rafi.shaik@oss.qualcomm.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250903151337.1037246-8-mohammad.rafi.shaik@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: vNLJGUR-vuNzXNYKWM5pyh_zmJiVC_ZR
-X-Proofpoint-GUID: vNLJGUR-vuNzXNYKWM5pyh_zmJiVC_ZR
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX5cs1exezURZL
- 0M/KcoZUETHpzvUFUJ0oxpfrK7o1ut3/iDlXl9HmAqTCnEEm2H5POAdLs6n4BDs5jT9rdQPFu7J
- KnhOhUBt8zg6n99LwwWQFLoWHJw2czIz6M1mVnDDEC+WBFnnrfc5d/jooSCwvdI/QTrWOAzf3G6
- STYZEKd5U2zGwyv7fBleOwx4tyNxlOqVyPdAF6nhzDAK9WmrZ3KnD/MnwG5+eIc/9y5FkI5MHS3
- z0bU0oVzjffgddKBBtDK1kbejJOPWcO7eCIlAASIE3dCjpq5ec3BefrlvShbR/uzRarTGFT10BI
- 2n404rqa3msSDq+Ydz7XEksQhp7fJIpt5i1m6liQvJcMvRmrOg8l1Qc17yOsF3qDS9VA5sU0M5z
- Nb0TT/lS
-X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b98635 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
- a=q1CUbaEDzoJ2oNbkCL4A:9 a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_04,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
+Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+To: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@intel.com>,
+ Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
+ Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+ Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <cover.1756813980.git.mazziesaccount@gmail.com>
+ <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
+ <aLb8HuIG0XXLu653@smile.fi.intel.com>
+ <00ee1968-a471-4d2b-a024-4bee00e40513@gmail.com>
+ <aLglJoqBDap_eMIj@smile.fi.intel.com>
+ <10c6b0c4-d75f-494c-bb3c-883c06cf3bc2@gmail.com>
+ <CAHp75Ve4vgU5kK3z3bZyGqDOPVkMbW7RUd6_EA3jjZSeruWs=Q@mail.gmail.com>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <CAHp75Ve4vgU5kK3z3bZyGqDOPVkMbW7RUd6_EA3jjZSeruWs=Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 9/3/25 5:13 PM, Mohammad Rafi Shaik wrote:
-> Add nodes for WSA8830 speakers and WCD9370 headset codec
-> on qcm6490-idp board and enable lpass macros along with
-> audio support pin controls.
+On 03/09/2025 16:29, Andy Shevchenko wrote:
+> On Wed, Sep 3, 2025 at 3:14 PM Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+>> On 03/09/2025 14:23, Andy Shevchenko wrote:
+>>> On Wed, Sep 03, 2025 at 09:52:02AM +0300, Matti Vaittinen wrote:
+>>>> On 02/09/2025 17:15, Andy Shevchenko wrote:
+>>>>> On Tue, Sep 02, 2025 at 03:24:31PM +0300, Matti Vaittinen wrote:
 > 
-> Co-developed-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> Signed-off-by: Prasad Kumpatla <quic_pkumpatl@quicinc.com>
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> ---
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
->  arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 123 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/sc7280.dtsi     |  12 +++
->  2 files changed, 135 insertions(+)
+> ...
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> index 8ed6e28b0c29..379ee346a33a 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
-> @@ -18,6 +18,7 @@
->  #include "pm7325.dtsi"
->  #include "pm8350c.dtsi"
->  #include "pmk8350.dtsi"
-> +#include "qcs6490-audioreach.dtsi"
->  
->  /delete-node/ &ipa_fw_mem;
->  /delete-node/ &rmtfs_mem;
-> @@ -169,6 +170,30 @@ vph_pwr: vph-pwr-regulator {
->  		regulator-min-microvolt = <3700000>;
->  		regulator-max-microvolt = <3700000>;
->  	};
-> +
-> +	wcd9370: audio-codec-0 {
+>>>>>> +  data->vref_mv = ret / 1000;
+>>>>>
+>>>>> (MICRO / MILLI)
+>>>>
+>>>> I find this much more confusing than plain 1000. (I know we had this type of
+>>>> discussion before. See [1] again).
+>>>
+>>> Rings a bell, but that's what IIO reviewers suggest to do nowadays as a
+>>> compromise between creating a new bunch of unit (V) related definitions.
+>>
+>> I am sorry, but this just seems stupid to me. I'd say that it is very
+>> obvious for most of the readers dividing microvolts by 1000 results
+>> millivolts. And if it is not, then having this MICRO / MILLI is likely
+>> to just cause more confusion.
+> 
+> No, it tells that we have a value in microSOMETHING that is converted
+> to MILLIsomething.
 
-nit: the trailing -0 is unnecessary, as there's only one codec
+No. I disagree. This tells that 'ret' from the regulator API is divided 
+by some unknown value, which is a result of division of two odd defines. 
+Especially odd because one would intuitively think MICRO is smaller than 
+MILLI. You need to look up the definitions to understand WTF is really 
+going on. I think this is plain terrible.
 
-Konrad
+The fact that we store value in vref_mv should be enough of hint that 
+idea is to have value in millivolts. Dividing by 1000 before assigning 
+makes it 100% clear the ret is in microvolts even if you didn't know the 
+regulator API to return micro volts.
+
+>> I _really_ dislike these defines. Why is MILLI 1000? Why it isn't 0.001?
+> 
+> You know exactly a few reasons why it's not.
+> 
+>> It makes no sense that KILO and MILLI are the same. Especially not when
+>> we are dealing with physics.
+> 
+> Yes, this is the limitation of computers and particularly of _a_ kernel.
+
+No. In my opinion, this is an example of, hopefully unintentional, 
+obfuscation where blindly following some paradigm like 'avoid plain 
+numbers and always use named defines' just results things getting worse. 
+That combined with bad naming. If KILO is 1000, then MILLI can't be 
+1000. That's 1 per milli.
+
+And still, the original "mv = uv / 1000" is superior in clarity. Using 
+(MICRO / MILLI) there to avoid plain number is just a sign of blindly 
+and religiously following some 'golden rule', even when it results worse 
+code.
+
+>> This is just an obfuscation compared to using plain 1000. (I kind of
+>> understand having a define for a value like 100000 - where counting the
+>> zeros gets cumbersome, although 100 * 1000 would be equally clear. But
+>> 1000 _is_ really 100% clear, whereas MICRO / MILLI is not).
+> 
+> See above why this way.
+
+I see no real justification to degrade this - other than "because I say 
+so". Sorry but that's not really a good reason to me.
+
+> ...
+> 
+>>>>>> +  gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
+>>>>>> +                                    iio_dev->num_channels);
+>>>>>
+>>>>>> +
+>>>>>
+>>>>> Instead of leaving this rather unneeded blank line I would move above...
+>>>>>
+>>>>>> +  /* We're done if all channels are reserved for ADC. */
+>>>>>
+>>>>> ...to be here
+>>>>>
+>>>>>      gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
+>>>>>                                        iio_dev->num_channels);
+>>>>
+>>>> I suppose you mean something like:
+>>>>
+>>>> register_gpios:
+>>>>       /* We're done if all channels are reserved for ADC. */
+>>>>       gpio_pins = bd79112_get_gpio_pins(iio_dev->channels,
+>>>>                                             iio_dev->num_channels);
+>>>>       if (!gpio_pins)
+>>>>               return 0;
+>>>>
+>>>> right?
+>>>
+>>> Yes.
+>>>
+>>>> I don't like this because now the comment suggests we do call
+>>>> bd79112_get_gpio_pins() only to see if all channels were for ADCs. This,
+>>>> however, is not THE reason for this call, only an optimization. I think:
+>>>> having:
+>>>>
+>>>>           /* We're done if all channels are reserved for ADC. */
+>>>
+>>> Then you can amend the comment
+>>>
+>>>            /* If all channels are reserved for ADC, we are done. */
+>>>
+>>>>           if (!gpio_pins)
+>>>>                   return 0;
+>>>>
+>>>> is clearer.
+>>>
+>>> Which makes my approach sustainable.
+>>
+>> I like your wording better, but placing this comment before the call to
+>> bd79112_get_gpio_pins() is still more confusing that placing it before
+>> the actual check:
+>>          if (!gpio_pins)
+>> is still misleading. Comment applies to the check, not the retrieval.
+> 
+> The variable assignment, or i.o.w. the source of the value we are
+> testing is also part of the equation.
+
+The comment explains why the check, not why the value is obtained.
+
+Yours,
+	-- Matti
 
