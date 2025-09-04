@@ -1,131 +1,112 @@
-Return-Path: <devicetree+bounces-212915-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 998E0B44063
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:20:52 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9634B4407B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:25:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C83257A2923
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:19:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97797176824
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:25:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D491245023;
-	Thu,  4 Sep 2025 15:20:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32DD024DD0B;
+	Thu,  4 Sep 2025 15:25:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="U7Y5JcbY"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="hswTf+9y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A7B123F43C
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 15:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 726B323BD00;
+	Thu,  4 Sep 2025 15:25:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756999229; cv=none; b=E+fhkiSBiyAGGFuHs8WwC7gPXyl28Ln6Mmeuu08hz6BUBAQ/QCWFcqqUTKr4dFHPxfUYlJvFXHA5crd8FuVUdJFXuZ/6piwtkp24vbLaVXwE3a/WqoceDDB/XJAGA0Rz4kTs4QDKGcwOGPP1J8z1TdZrleOlSTUaB+FjoajWti4=
+	t=1756999518; cv=none; b=LHmTzGiHl1ai2fKvIHGW2Bodr2C9nHTUhRL5FN8cAIHklXSFid9CFSIxq0fbQy+AjnqToRmpfH7316EoWLIeJSH3JF/qlymRLBrQq8EzMCxhRGO9giEo2U5M5ykpidYE0KNFNPbAjkn0Zdpd3Om8eROUE2mGiWDBrCYpthAPIaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756999229; c=relaxed/simple;
-	bh=lVG6RUOs/vuQiBSENy+Q+/Zs0wuP4CpZcsQ73d+Pss8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KpBXoX9gttF3jBuLIen7KOur50nf8ennD0om4xpl4vXRJGIsUfauK3/qksA+HfvPcjbC5252rx/GqiWbZxTFeIkxZETfXIeihe5I2W6AzDWcC15EDFtZBVXiLZli1/T+i+ItGGkUHMxLOmC6uKQBle3I5wxv6gltqZeZzlI4N2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=U7Y5JcbY; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1756999225;
-	bh=lVG6RUOs/vuQiBSENy+Q+/Zs0wuP4CpZcsQ73d+Pss8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=U7Y5JcbY2K+IP0RMcFoAhMxwWToXwsmZAUBPqSUOj9V997aSIGUmbeK0y6imQs3Mq
-	 /yPGz/VKDcqdAlxxChCXdUDccQSCCrYO4CdLPYL4kBDnGqqnjlpchyf4QFdGbXfcpA
-	 s2cd5lGAV2Um5SV545DCTXRIJJPXvwOKFonzwsvH+mZSWKpDK5FZOkP+2ew0Rs5nHg
-	 wBtisdLnWdyT4UFDT1tBM9hQcvR5sfg7iZ7U/DEdUKx0NHagcfrDeXuT8Q/itWCbBc
-	 QjAgvmjtx5TS18EhBtX3mi52zUojjACKwpZnC5uobBoTUFImGh4oXZDLVVJa6ZGyBI
-	 cv54/J3WQod/w==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id A057617E04D6;
-	Thu,  4 Sep 2025 17:20:24 +0200 (CEST)
-Date: Thu, 4 Sep 2025 17:20:19 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Peng Fan <peng.fan@nxp.com>, linux-arm-kernel@lists.infradead.org, Conor
- Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, Fabio
- Estevam <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Liviu Dudau <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel
- <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>, Steven Price
- <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-Message-ID: <20250904172019.58e5f589@fedora>
-In-Reply-To: <36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
-References: <20250321200625.132494-1-marex@denx.de>
-	<20250321200625.132494-5-marex@denx.de>
-	<20250324094333.7afb17a1@collabora.com>
-	<c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
-	<20250325084349.344a0f11@collabora.com>
-	<7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
-	<20250325153507.61d82e39@collabora.com>
-	<4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
-	<20250325155231.0d1b1000@collabora.com>
-	<838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
-	<20250904082224.113d0cd1@fedora>
-	<7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
-	<20250904160445.1671f140@fedora>
-	<36298ed9-05e4-4871-8e99-dfe814342c29@mailbox.org>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1756999518; c=relaxed/simple;
+	bh=/1s3A0/1oBRPiM9eEOONTjAK8lc6tIfcMEkuSsvZEvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SWWHHSYJIp+PEC7p+QnRvmiOdpQPMJxRywEfymbUEQB31YbL7Uos1tttq7yNfYI2bnG1LdltQzyY3g/uXcEoNKanoJTsbJ90PjmVE7gyQd/rXH5sFwCsPvtYCQoA7K/zgaWZdvqJBdngbv7zceBH1eIDJ3gMoDJ+vpvxbeEqI9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=hswTf+9y; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
+	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id 313DDF09;
+	Thu,  4 Sep 2025 17:24:05 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1756999445;
+	bh=/1s3A0/1oBRPiM9eEOONTjAK8lc6tIfcMEkuSsvZEvY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=hswTf+9y9UmB4SW/1NT0RfARopIG6TZ/RjY+p43TkroKJop2mUKxtDRSSLL+PBzHe
+	 EPbW+6puxdLcsoLXSc0s6vyM8AOnLrUoQOe0b7f2X40zKWGQJXDBmtyeuJMAl/Asvw
+	 rouNayHuUAH+ssOyy5YXVHxEIhrkB/Nq3WBC/TZo=
+Date: Thu, 4 Sep 2025 17:24:52 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] arm64: dts: renesas: sparrow-hawk: Add overlay
+ for IMX219 on J1
+Message-ID: <20250904152452.GD6174@pendragon.ideasonboard.com>
+References: <20250827221424.640770-1-niklas.soderlund+renesas@ragnatech.se>
+ <20250827221424.640770-2-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdUOKJXjk78Bgmazd4prGX21SDk_h=37ewEOwgdf9iAfcA@mail.gmail.com>
+ <20250901140657.GA481255@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250901140657.GA481255@ragnatech.se>
 
-On Thu, 4 Sep 2025 16:54:38 +0200
-Marek Vasut <marek.vasut@mailbox.org> wrote:
-
-> On 9/4/25 4:04 PM, Boris Brezillon wrote:
-> 
-> Hello Boris,
-> 
-> >>>> I suspect the extra soft reset I did before "un-halted" the GPU and
-> >>>> allowed it to proceed.  
-> >>>
-> >>> Hm, not quite. I mean, you still need to explicitly boot the MCU after
-> >>> a reset, which is what the write to MCU_CONTROL [1] does. What the
-> >>> soft-reset does though, is reset all GPU blocks, including the MCU.
-> >>> This means the MCU starts from a fresh state when you reach [1].  
-> >>
-> >> I have a feeling the write to MCU_CONTROL does nothing in my case.  
+On Mon, Sep 01, 2025 at 04:06:57PM +0200, Niklas Söderlund wrote:
+> On 2025-09-01 16:03:49 +0200, Geert Uytterhoeven wrote:
+> > On Thu, 28 Aug 2025 at 00:15, Niklas Söderlund wrote:
+> > > Add an overlay to connect an IMX219 camera sensor to the J1 connector.
+> > > The IMX219 utilizes 2 CSI-2 D-PHY lanes. This enables the video capture
+> > > pipeline behind the CSI40 Rx to be enabled to process images from the
+> > > sensor.
+> > >
+> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > > ---
+> > > * Changes since v3
+> > > - Use correct port@0 instead of port.
 > > 
-> > I believe it does, otherwise you wouldn't be able to kick the MCU
-> > and get things working until the first runtime suspend happens. I gut
-> > feeling is that there's something fishy in the FW or SoC integration
-> > that causes the FW HALT request to put the MCU/GPU in a bad state
-> > preventing further MCU_CONTROL(AUTO_START) from functioning correctly
-> > after that point.  
-> 
-> I wonder who at NXP could chime in ... Peng, do you know ?
-> 
-> >> Is there some way to probe the MCU state before/after setting GLB_HALT,
-> >> and also before/after the MCU_CONTROL write, using
-> >> gpu_read()/gpu_write() register operations, to find out what is going on
-> >> with the MCU at each point ?  
+> > Thanks for the update!
 > > 
-> > Yes, there's an MCU_STATUS register [1].  
-> Is that the only register I can use , or is there something more 
-> detailed ? This register only returns values 0..3 which is not very 
-> informative.
+> > > --- a/arch/arm64/boot/dts/renesas/Makefile
+> > > +++ b/arch/arm64/boot/dts/renesas/Makefile
+> > > @@ -96,7 +96,10 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
+> > >
+> > >  DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
+> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
+> > > +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> > > +r8a779g3-sparrow-hawk-camera-j1-imx219-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-camera-j1-imx219.dtbo
+> > > +dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-camera-j1-imx219.dtb
+> > >  r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
+> > >  dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
+> > 
+> > Usually we keep the related parts together, but we indeed already have
+> > one case of interleaving.  I am not sure which style is best...
+> 
+> I have no real preference. The style here is only me trying to mimic 
+> what I seen elsewhere in the file. Want me to switch to the other style?
 
-Not that I'm aware.
+I don't mind much either way either. The patch series looks good to me,
+I think it can be merged once we decide on a style.
+
+-- 
+Regards,
+
+Laurent Pinchart
 
