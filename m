@@ -1,128 +1,111 @@
-Return-Path: <devicetree+bounces-212747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8290FB43A3D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:33:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3C16B43A42
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:33:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 844AA16EF4D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:32:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F2121C285BC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:34:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FB92FD7B1;
-	Thu,  4 Sep 2025 11:32:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE1A27464F;
+	Thu,  4 Sep 2025 11:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+jmeyIb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 690262FD1C2
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 11:32:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FE7242D6B;
+	Thu,  4 Sep 2025 11:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756985529; cv=none; b=V/qgwnr7GOAqLsxZGtlsw78dfGvJ/Sez6F7ZMBfF1UvUjLFb8czD4PX4g6Lf1C4WS39H+LWQUQK2J/l+nXdSkRwbdt81ZfLpKsQcNPOmKbL7MbUVcw0gT/OJiJUZNEERMJ0BYroPpQ6f+B2PoG2BbrTsDmip6KxrNMZ8pFh7+iI=
+	t=1756985609; cv=none; b=K6wdw3DZPS18RLEMbh3YhJZ0NLb/Gaie3Cs2tBoXaCwZAMN8dHM0JFPmVTJb6y9Hze+aLiJLaEjki6PqCDrqk0s0fSTX8euBBGsVHCMWkrXAlcqtTNK96TapRWHQ5QuqoukaML1eHCgyeEHPGV8XhReQLxid0XZLuimCuuzc1P8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756985529; c=relaxed/simple;
-	bh=Q2qBJPDf2nMSdqr38T/UuOwrbPDS9xsdvLR7qAJBjW0=;
+	s=arc-20240116; t=1756985609; c=relaxed/simple;
+	bh=T/DqnimmqNg1hlwVomLilFseGcUlFUOn2fQG5yvijQk=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AlxZffdIQbVLWEubSDS/S7VCCsUZr9r/4w4VCnWpsTudZ/OCi1SED688ccnGZdG9IX1xNbdEtHwXkcrTk1/Hg8Pz4Fc4PiYxegloXcUC4FCwm1SmHfsBK3iBkGRfyRXoA4f8SWIsKAFimNartcpAy1pit2jTrsJDFU/KZ1OvCEg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uu8Bz-0005GV-Pu; Thu, 04 Sep 2025 13:31:51 +0200
-Received: from pty.whiteo.stw.pengutronix.de ([2a0a:edc0:2:b01:1d::c5])
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uu8Bz-003iZT-1g;
-	Thu, 04 Sep 2025 13:31:51 +0200
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1uu8Bz-0029s9-1E;
-	Thu, 04 Sep 2025 13:31:51 +0200
-Date: Thu, 4 Sep 2025 13:31:51 +0200
-From: Sascha Hauer <s.hauer@pengutronix.de>
+	 Content-Type:Content-Disposition:In-Reply-To; b=sWCYSI6QbHUvIiM60UFbZUue3jp5+jWj5cI2oqzufrXeSoCm2PLddo3XZ8UXDB0PzxhjdYFNpJvMggH7C6Gua/upxkgCrXKWAo/+cHVkTpesg5Du5pDj0IPps9E9gsm25oRhE8ITZp9c7N9XzmVPdN0p2F/T1hpJxRLRv+7OIzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+jmeyIb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 702E5C4CEF0;
+	Thu,  4 Sep 2025 11:33:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756985609;
+	bh=T/DqnimmqNg1hlwVomLilFseGcUlFUOn2fQG5yvijQk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k+jmeyIbEV8woAPaZSKtQ8hpqIDBGsndebxBZBRiIxj75tE4tekGxc3z3n/p3XBtZ
+	 RLeoAmCRPw1fOJBcLFLwsXaX+moovvpf8oyfZAcJzsumM7lxZIFAEZjosOdGA3wTjV
+	 abxdgfIE+UFQWlIACop18h+oEdajxri48MAmClU+59R3mMGHB6Wjg1Gk1+TQWlUMyy
+	 0QRBoTDKbLpwPIvQRB3m1Pjm1hgd6rIuhlJrNEeYXSogl5Fgy7foXJGV3UDQR0ci+z
+	 Ij8f80wjQnxfwKGCoCOxsoc8c2mCgiIY5gm/Lstir/+UK/ZXPAdf5ZbQ0g0MT5SN8c
+	 piVshZUPh8uCA==
+Date: Thu, 4 Sep 2025 12:33:24 +0100
+From: Mark Brown <broonie@kernel.org>
 To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+Cc: Woodrow Douglass <wdouglass@carnegierobotics.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	kernel@pengutronix.de, Linus Walleij <linus.walleij@linaro.org>,
-	linux-gpio@vger.kernel.org,
-	Alvin =?iso-8859-15?Q?=A6ipraga?= <alsi@bang-olufsen.dk>
-Subject: Re: [PATCH v6 1/2] dt-bindings: clock: add TI CDCE6214 binding
-Message-ID: <aLl4p9hFp7l9dy1c@pengutronix.de>
-References: <20250903-clk-cdce6214-v6-0-b2cc0a6f282b@pengutronix.de>
- <20250903-clk-cdce6214-v6-1-b2cc0a6f282b@pengutronix.de>
- <20250904-arboreal-upbeat-iguana-aebba6@kuoka>
- <aLlBAuYoHIJZLfiE@pengutronix.de>
- <2c7fefb2-9a0c-451f-84f6-dc5a19707699@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 2/2] regulator: pf530x: dt-bindings:
+ nxp,pf530x-regulator
+Message-ID: <c4402946-9b76-4e1f-9a03-e5985cb023a3@sirena.org.uk>
+References: <20250902-pf530x-v4-0-4727f112424e@carnegierobotics.com>
+ <20250902-pf530x-v4-2-4727f112424e@carnegierobotics.com>
+ <997eb50b-db3e-4c0e-be29-0d04fef73ccf@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="DnZTrNpTjH7ExAQo"
+Content-Disposition: inline
+In-Reply-To: <997eb50b-db3e-4c0e-be29-0d04fef73ccf@kernel.org>
+X-Cookie: No lifeguard on duty.
+
+
+--DnZTrNpTjH7ExAQo
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <2c7fefb2-9a0c-451f-84f6-dc5a19707699@kernel.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Sep 04, 2025 at 11:43:53AM +0200, Krzysztof Kozlowski wrote:
-> On 04/09/2025 09:34, Sascha Hauer wrote:
-> > On Thu, Sep 04, 2025 at 09:18:13AM +0200, Krzysztof Kozlowski wrote:
-> >> On Wed, Sep 03, 2025 at 03:55:45PM +0200, Sascha Hauer wrote:
-> >>> Add device tree binding for the CDCE6214, an Ultra-Low Power Clock
-> >>> Generator With One PLL, Four Differential Outputs, Two Inputs, and
-> >>> Internal EEPROM.
-> >>>
-> >>> Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
-> >>> ---
-> >>>  .../devicetree/bindings/clock/ti,cdce6214.yaml     | 198 +++++++++++++++++++++
-> >>>  include/dt-bindings/clock/ti,cdce6214.h            |  24 +++
-> >>>  2 files changed, 222 insertions(+)
-> >>>
-> >>
-> >> I don't understand what is happening here.
-> >>
-> >> Patch changed in weird and unexplained way - nothing in the changelog
-> >> explains dropping SPDX - and does not pass even checkpatch.
-> > 
-> > I removed the SPDX by accident, will add it back of course.
-> > 
-> > Other than that, what's weird? Changelog says I now use the pinctrl
-> > subsystem to configure pins. OK, that also changes the binding, I could
-> > have mentioned that explicitly, sorry for that.
-> 
-> There were four patches before, now there are two and changelog says
-> only about pinctrl to configure pins. That's very vague and you expect
-> me to decipher what changed in the bindings.
+On Thu, Sep 04, 2025 at 07:44:57AM +0200, Krzysztof Kozlowski wrote:
+> On 03/09/2025 22:03, Woodrow Douglass wrote:
 
-In v5 I tried splitting the driver/bindings up into a basic part which
-and a part which added the pin config stuff in the hope that the first
-two patches could be applied first. This was not very well received, so
-I merged it back.
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - nxp,pf5300
+> > +      - nxp,pf5301
+> > +      - nxp,pf5302
 
-I am aware that the binding looks quite different now, but this really
-goes down to using the pinctrl bindings now.
+> Still compatibility not expressed.
 
-Sascha
+> Please respond to comments.
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+He did reply to this in the cover letter (possibly for v3?) explaining
+that he couldn't understand what you are talking about, the devices have
+the same register interface but differ in the rated current.  TBH I
+can't really understand what the issue is either, perhaps if you could
+suggest a concrete change you're looking for?
+
+--DnZTrNpTjH7ExAQo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi5eQMACgkQJNaLcl1U
+h9CRyQf+NI8NKm+mTQzzGv//Sx1/jmAow9toT4Nzzcqk39hRPhkmRy3PkwvNWwOq
+ogFXsF8u9CKkNk0B7Zrj1cy3GZCVbdBBFiKgIcK5zZcjGn+TL2gAQuxfq3BpyZZq
+Agox2r4IdwVSLM+VTUyhbZNZ6Y9L31qnhZhfkCJFqwWotZNGobQsX6JQEU/VN42M
+k7M4BVqOkNicdEigR8zHJxqGj2Va0YhtqyEJGIn1YZNwzcJ5xKz5kTfrPufRFcA6
+E0LpYPVRifmUCAKtv9UwPyPGbFbAWUvvQI9mhL7/mWfs1W/WjSqNifidwUQSOZkd
+VV3x9iF7SfbRU97RIRpAPsxcojOVoQ==
+=hh+k
+-----END PGP SIGNATURE-----
+
+--DnZTrNpTjH7ExAQo--
 
