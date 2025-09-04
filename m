@@ -1,258 +1,316 @@
-Return-Path: <devicetree+bounces-212770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C99D2B43B0B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:07:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FD34B43B4A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:14:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 130587C2CC9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:07:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A958F175893
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:14:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3FA4E27EFF7;
-	Thu,  4 Sep 2025 12:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 064A02D46CB;
+	Thu,  4 Sep 2025 12:14:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bP4RbSBr"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="kgl1zpw0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010063.outbound.protection.outlook.com [52.101.69.63])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 278BD277CA4;
-	Thu,  4 Sep 2025 12:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756987626; cv=none; b=WJfetJdVH1ISS3uava1NrJZXymdhScZtYJZP4u5GoQaIFTEuM7s0iLAZT+qIMdlbGHLu0NDJHYdJyKU4sMXfUbABczWQqxbagRvdjTkrKl1NqvUto0QgcDVKwqooXodDh8WoXLtukKW9UdT9xDHwfjUQbOQ3j/Ptf8nYUXuGWzs=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756987626; c=relaxed/simple;
-	bh=2IaZrodBHzAYTfaiQbPmHvspCNf3DSKkqnw6CJ260QM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=teo2dIY8diOfI49vPjkz6csRZtBDtqzHNjg44uJjBoYGhcAqhM2M6TMXCQdnbza2qckBrCOjhXYxpBUUVKpE+420ExCFOmCjb6V4U+c0H3zDgszxN1R53UBG/TvRwGqY/CItOD8fZjEvYz4TP4goLdy2Tf8tPLqbVFagFvQNZtc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bP4RbSBr; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-3ce4ed7a73fso593101f8f.1;
-        Thu, 04 Sep 2025 05:07:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756987622; x=1757592422; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=PLld95qjRcnXUupD3eIzFa+wkQsC9TBTtZNr9c2tK1s=;
-        b=bP4RbSBrK484fZdi0taKaO4HvbfBLWYZ6BzdIrK/QepCpOgwULrP1s5C11bCnXyl9d
-         GwHW451UgCneYvXRlyLxVpwlLYAagu56SsooPuXRz+C70NME0MkBqXxmKXG4VpyUED/p
-         SYSh5mUuQNmKl3BWo68L0rdz5l7CYoSyBC/AKWJaVPvWQvn51pIf86tuwL4UcC2CAfES
-         hDrojP4BE84wAZRlI8KfzoTAJNsHY5WNiToTlbkrbP7twckdc6NRGBmmsEPObvpntMM0
-         aBknXIcjrs5FNnLhrODcA+ObSHDFj45Jiq2GCqJ3cvfzSEPjkun/Z1zx0f0Kw7XTUJ4p
-         CNdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756987622; x=1757592422;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PLld95qjRcnXUupD3eIzFa+wkQsC9TBTtZNr9c2tK1s=;
-        b=pBgaSdlAKfHxg6QSxrR5sIcu4mcuvuCfvCVzrvR+H6nmFJu7A/kC84100vabunTuRr
-         5yT8t5clT/xozSXhWhF0hfVXMJX9yeFsMAPD3vm7GboNmiKgdbqa+dhU7/GSMNoVNBzE
-         UDEcxHsxi9zRFPRSHIoukPVni+eqK2zcjV/jOTgJJ51JmDDI9WZ3KnY6qob2bWJEpLPi
-         KuctzeoVMg044Uh0zwUxONDzaKNjHZNhZnARomEG6UEMg2o6VV93drTcXTWOaPKjx0S4
-         CuE78HxRdhd/EbofuWrFQkiUoERuuF1XbCnAovrC8jSqzsWjWO9wircrVPVlfWCPXUZY
-         DcXA==
-X-Forwarded-Encrypted: i=1; AJvYcCVknwqtUGwqVM72SgWb3wlMrKVus+jTXl9lXQASQr+D4m+IwMP2pQPcFsZRguKlb3Agbz2fdI/VwEjG@vger.kernel.org, AJvYcCXEvcctOHMcy6H+mAUjvby4RtHzbnfobEU0eJOGcbFt7X7sG4rLlQ/4yp1LW5I5DbKh5TvDsmHiRBthyLI=@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz3otkcEtG2RGOgAXp3Bh6SvGxAcczskXPv3aabx7X7pUI9LozX
-	ON2mUvB7WgGaD2IguJJhaVJOTaaLfGAxKzlL3TRh7uL2Z3wCk3YJPU5A
-X-Gm-Gg: ASbGnct/0dmlLEy2pNiKhKqdndmaHJpiljN1KLsodF73Bh0AkDsMXem0TK5wd3pgydB
-	SJ622PN9LaxNT+3sMtKpiV0JRSgbt91DmlTQ6t59vFoiFtf8AJIOqaU9G1H8YurzEMAEQELWFqO
-	f2Nf+J+Fy8NaMxsEs89bUNAAYY2RvML8F7TEK2bX2QRJzmQdcqK8dcuvPndsNlfEGQgLBmgzC/d
-	0gqP2T4++FoKj8POro3Q4lLbQNJsipqprVynuV02rSpWTKMr0pKkKpLbmqWkyR0oNJ88Ys7wCIF
-	EBPd69hN5kVw7wHzg86j83l3zz/idfrG4AgbAIpBTTdPzxz4obfdau48+y8XMAmUr6XIL4j+t3Z
-	KU86xye4mlgWOotprhsV/RpBN0GmbomUjg7QDro7kuug8iOSMdDk97Y1jEGcS37QgmmsOUXVkKP
-	cJTfUeB7d/
-X-Google-Smtp-Source: AGHT+IG59eYhocU/Hh7asCkInZg6kFlAG3r0FLBdaakyF5gvjtdvhWnDUh6z/r89PFN/6r5wlaCujQ==
-X-Received: by 2002:adf:a406:0:b0:3e1:7964:2c17 with SMTP id ffacd0b85a97d-3e17964361cmr922214f8f.62.1756987622170;
-        Thu, 04 Sep 2025 05:07:02 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3df4fd372c1sm5436504f8f.29.2025.09.04.05.07.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 05:07:00 -0700 (PDT)
-Date: Thu, 4 Sep 2025 14:06:58 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Frank van der Linden <fvdl@google.com>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33E562E8B84;
+	Thu,  4 Sep 2025 12:14:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.63
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756988084; cv=fail; b=pvp5luD1q0d6IyQcm1E1KK0zpAllSJoNzK2fCOJhop+oUwICdnJPUIFFqZQgpYhsnNahZw+H2fTOrwwevYGyp67paCSrK8uhfRUNgjx6cz3Fye21JFiaSs4NGchmFY9O8Kb5lhw6OF1YTYCpf9vNXesBkGGlOH5C2w4lPVitpKs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756988084; c=relaxed/simple;
+	bh=MgpYUF0WbV+m7Xa5eE2KR9FdXZchQUwof/RfAwkG4Y4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=l4UHFz/FMaBEJqqW2xbYHbA8MksghxfzP+N/Dpwe7nzjLV8mAFSpPClbb3UJowjfL0+Xgual1pk6KNjdDtOHsBeu0LdPi9lS7kHFM7j6x6M4Etu3hSiK2/aVZcHFC/OjLfya8Ex0uk6cfQeUydYZsteKnICw0+kMdp2OM9tlyeE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=kgl1zpw0; arc=fail smtp.client-ip=52.101.69.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fJ2efAS0NpZVa4oCsPeW4i2imc9zyyRf2vPJnCRu1RkAIsQ15TQL469o0G+ZSKfvBgvDe22UiGBqCZjK19qKQY7A0pg67SFe2WlbWz9eMaR0JBPoiXJtWqErlVIqXctKYPII8+Ox8VYur+L9zD4W1+dXMGSUjkkFlJt5sR2i4yYpVTOfrFFaM6baYB1/aaxYiOSSL71UCnXOwWKoP1pMY6PxL4SNGS7JK2tWtIgvN01SMIkm9VresCGXghxjTJ6/h16yb8wBqqw+zmO2ePyG9Vq/p37GNHgCOqlpSMI8VdgG5Jj5SsTWJx8U87BeywnJ00iU/rkfCPj9TJAzbYrxGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=PTG0hpViq4x1WdXPUY0ZvleNgY+ZRGbVt6Kx4/giHAg=;
+ b=eKWulGUJsg6s0n6mEuJSvGWjIEdGFsANg3se+c3e50AGI1hEGd2ZhmY19v6/iNtgB0Qhzstf0woeS4R7P/FKuZ8qEX/QTfK/TFZ7jb7YQePmgvf490NzNrvEOTkAJgejnNfeQLbToMJU4tA4rXXK/lJeIwwCoq58tF/beBm6aOFnFPuycF9wZZLNOxG8JoOhmTPEANSYrzrw6M7zuYtamtPdaG+G77vTtZxfZ33XlmlxAxMNQOy2XvLXjvWNnm7z7TvVtK35PtkXK1kbIPrVQFPix/ppPhff/WQ6rMXo4dsQpA4mNm31t1wEhnF9xJFRULxSugmAdYZa1ezQZvt4dQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=PTG0hpViq4x1WdXPUY0ZvleNgY+ZRGbVt6Kx4/giHAg=;
+ b=kgl1zpw0nAZfWVBUEkpaoCn+42Ac3R20FogmPweLZjGSjDyshff2a4uWUH9BoEigM6CvilmRAU1APdeMAOjmGHrD/a+Cr91ppiZTHiiYtvWLXmUo4VBNUTShT+/HBdKlcwA0U+weREOHi/PV49oWwiGue1pECRCItVOMX/7aFheLQTctYbgOcwdOhQwD/ih5TJW2pLlHPYvYYG0vUYwE5MgDdNHD5k1FBzcZUyS0U4bVArpXDBcuzglygE7wtYRMpl8dHlsZRe/+rFQ+eo3C6jfwr9zlxR7tp2J9zCCgbcJq03S8rJCpScIsMLzO2vU0+7AdSHLVJpoWyYBlnpK9BQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from GV1PR04MB9135.eurprd04.prod.outlook.com (2603:10a6:150:26::19)
+ by DUZPR04MB9872.eurprd04.prod.outlook.com (2603:10a6:10:4dc::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Thu, 4 Sep
+ 2025 12:14:37 +0000
+Received: from GV1PR04MB9135.eurprd04.prod.outlook.com
+ ([fe80::b1f6:475e:de5d:8442]) by GV1PR04MB9135.eurprd04.prod.outlook.com
+ ([fe80::b1f6:475e:de5d:8442%5]) with mapi id 15.20.9094.015; Thu, 4 Sep 2025
+ 12:14:36 +0000
+Date: Thu, 4 Sep 2025 15:14:31 +0300
+From: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: imx@lists.linux.dev, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
-	John Stultz <jstultz@google.com>, "T.J. Mercier" <tjmercier@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@redhat.com>, 
-	Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, linux-mm@kvack.org
-Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
-Message-ID: <zmsn3bdqj2eclrm3xehnp27u57orqiq74ki2qn6aahpiamp4sn@wgalbnbpzmr4>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-4-thierry.reding@gmail.com>
- <CAPTztWa7kcx8bBEJEKvnjcD4v1-eDLVxMd9C10XiBQi4CDLfHg@mail.gmail.com>
- <v7zrmrhvemyymq6qamz6wbgzr4cijfe4n76ivwyadmltadlot7@3csy442wfasf>
- <CAPTztWZJqzbR7Y6jE6NM1qQOumYz-ckzSfGDfUcsgMVU7SBb0Q@mail.gmail.com>
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/9] dt-bindings: display: imx: Add bindings for
+ i.MX94 DCIF
+Message-ID: <s6uc6wjdb3seygps6nvusvu3x2io46dc5kai2bnelpnggpgyyh@j2ao3lhupohz>
+References: <20250903123332.2569241-1-laurentiu.palcu@oss.nxp.com>
+ <20250903123332.2569241-5-laurentiu.palcu@oss.nxp.com>
+ <20250904-attentive-seagull-of-fantasy-adea9f@kuoka>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904-attentive-seagull-of-fantasy-adea9f@kuoka>
+X-ClientProxiedBy: AS4PR10CA0006.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5dc::6) To GV1PR04MB9135.eurprd04.prod.outlook.com
+ (2603:10a6:150:26::19)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dxmjpjrjb5ukagg6"
-Content-Disposition: inline
-In-Reply-To: <CAPTztWZJqzbR7Y6jE6NM1qQOumYz-ckzSfGDfUcsgMVU7SBb0Q@mail.gmail.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: GV1PR04MB9135:EE_|DUZPR04MB9872:EE_
+X-MS-Office365-Filtering-Correlation-Id: fe09cacc-d69f-4a1f-fd24-08ddebac9d26
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?IRrTExC3N9Nu08WDhz7rcAbIJ2ggEWET32uQfvKCCBAyE3WUE5AHySKeWMrm?=
+ =?us-ascii?Q?CPvzRVV6vjjuIEFVEaVMZ0JsfLgcCIOCXkE+IIOl/4RM5s9M1+rZmcrZfYaY?=
+ =?us-ascii?Q?bUMUvg3cHUCqfpUh8KyLqaF5ia/gXZngQBF30dg/fp66Bw7/qPoEaAWYF6Uo?=
+ =?us-ascii?Q?FYkRUhdR07KfHi1+V/Ua/RgRkPLWnO2xvx60fclXgDELlwAGNguHv2HR/zHG?=
+ =?us-ascii?Q?f/gl3RFHchLrubSOA9uZtiT2IFCF+PXqSgpJcr7VMHE2iPbaTDiDUTSgEPvx?=
+ =?us-ascii?Q?E3XHCGi5PM9FFy8bh7NZ4TK4bBpFLVkr6qj0RGlOMBVVhYmRDGIeMc4utLdq?=
+ =?us-ascii?Q?GYOLxpTvkPHIoq5C8N4rEdpvz1LmGhvrh6iqEjozLHw51cei5xFsFd6de/R6?=
+ =?us-ascii?Q?Vi1XpBhuiJ6iUpIyZa7Pf+AfdIwvPKkkOb/u7cyoEo7ks+PfBztMLPaen5e0?=
+ =?us-ascii?Q?13p2EXhn697sRerpNUbXMfuNgD0mhnIBnB6mtIVnT+y3i6WJO2hqNM4YFL8/?=
+ =?us-ascii?Q?jyNtVhLgiU41SJjEusob+naWNSiWzp2kpUu/U0D9nTQCN/aJ5It74EwRlfuW?=
+ =?us-ascii?Q?R85QzP4nY5i1BakJhCugRNy9BNOxLOkRhB71oNdd+26jPFTk6xeHicAXPkol?=
+ =?us-ascii?Q?mDgNrub7DwmghdXumvhpfZUVDTi9uE/YC4e0FFR5yvkEGAIsZ++I0OSHRQXV?=
+ =?us-ascii?Q?6O6Yb6W9kNQyzmunaqZjOetqdtmTab/ND7YRuIaQtBce7kCTJz8G/aE9qPeQ?=
+ =?us-ascii?Q?AMGo61NB6HYMP/1VH3RM4HQLQEYtfgmQn6WllWY1cjrrlyTIaLFUGbT6sDuG?=
+ =?us-ascii?Q?OZlNfeUrRFrxWlo7s3XqyprEfTR60GHgx5lvV9PV0JMF2sDnRSj4LVZOAe4J?=
+ =?us-ascii?Q?TMKnTIsuk+rVNE5JAZksI/WYDXuypkbj/Yj939USvLcbyxjVBzZ8q4/ehorI?=
+ =?us-ascii?Q?6HalNexPAhgX1yVnCHxPRoDhgxN6S0Ag3Wj43IQLuu8+TW5C1CRAQWW5r2cy?=
+ =?us-ascii?Q?h3tRiCOnNvSdDLiN7fU9dSP67uJDuXtbYuawlVQCHn0OM6YuNI3JZJ1+8AMG?=
+ =?us-ascii?Q?3lgZVHJogFoTD/egxiJN47el8LC82v9JqpGCuU+U4LpcWzkq+642N5DQwcRi?=
+ =?us-ascii?Q?h+R1JCCMdEe931GHfjtgfngJ0k5UTUgsOO1OGJ6WpZXKGJYrk73Vn4u6zwrs?=
+ =?us-ascii?Q?ZQMg57136MAN23i+HTfeyzcpcXQJBQGTcV7DQ8Bsr5HK8LbivZBMn4oBp6Nk?=
+ =?us-ascii?Q?d1uEh1g9OU6E1ZzDMP5Ew1YcEDsyIm+B+nK8ZdyjbdXTO3flYC4zDMv8Nyzp?=
+ =?us-ascii?Q?ap06NR6UmLQE59t73obVl3HxNA865SgIpfbtsaAh5XbQg8uKrWqIvdt7Xls9?=
+ =?us-ascii?Q?PcshMJk+sSQKFd1GUIiCU1u24OTE?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR04MB9135.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?tJArZRVCop8vGEoKBmitLTuMxF2xWIbCeCJfdia0R38lbEqcdjiPXe/I9oDq?=
+ =?us-ascii?Q?Ed1SU7ZjjzBdScLxMBdtttcwoloJ0ENtEZzJxhVzMaGC0gYT4lJFrIGlepgw?=
+ =?us-ascii?Q?+DpOXD8QMHN4fyAH4DBJ4fzOtamguHVa8ktxPPOr6sygziwMzkJcJaXchazG?=
+ =?us-ascii?Q?EyI7DCg/m7XnETfOIidsR7IkfcgGAu2VE6qrpsHaWgyHLvGjn5G6tcEhU9k5?=
+ =?us-ascii?Q?IFM2b9mw/vh+BFsy/ux/SM2WrUdK6ILI/fo9Ck8yl7se3Jra+NvVIytv76hD?=
+ =?us-ascii?Q?wWeJhvcCx3v9Yp1ub0dNWEiW+yerAOEFozYU0BR1jW0h0MzdSYKE2UQQPx4M?=
+ =?us-ascii?Q?krBoCFYDF1I0U6mRh0lUoJ0tUWZgUJ8MDay1Dn5b+OCSTvamv4XeWxLv2XSS?=
+ =?us-ascii?Q?SIpx4Kpq31OJODnNWNLMi4Kg0qb8DpXOftzZh6KJiylva7OEXrVYKXd0ofY7?=
+ =?us-ascii?Q?kna8l4iPwj+Ao5yvPuT8i3TGBYfJYOOWuXEb1NA3Aezi62dh97iezAfaWljF?=
+ =?us-ascii?Q?3PazR5BCLw+I0/v//KnmIyCnYr5jlBQkayBVnnYFdbbWmeBUFHrWRpN/AckB?=
+ =?us-ascii?Q?AZxDesxLG+XgzV+jaAVxck/sWPiL5B8fuHqZHhG3FQnnMlAjLfYcyjFqerd5?=
+ =?us-ascii?Q?povnNdibQ3AOlun5dc+vPn99As+Ym/eODE38MePndc7ugXM8hgnhldOjq4+D?=
+ =?us-ascii?Q?xNpEX5Webv1mnE5qqA2dwi5V4YtMtC/eEslRpn0gUVVnQTAHA1XnEEy+zxEh?=
+ =?us-ascii?Q?vr3Nv6LISlAXj+chzSzifedMCQBzbOKsvlWQO8WGXX1js7FChMRvcLOci1ht?=
+ =?us-ascii?Q?DibL6lZxxBJrWqsftDlyFPF3zIrGrTSYK2CD8VgMfjwXIcZ0RFqTcU7y6nE1?=
+ =?us-ascii?Q?YdWtOpVzCHE0tW7DN1Yz/g5zqoRXGkBk5XR6kTg+YkGxDqPyN/iJYyoI0SEo?=
+ =?us-ascii?Q?u8K69H2y+fsOobvyDGmmtcZemsOmxvXMP7Ut8zOT14LBuflJEd8IoxzW1mSl?=
+ =?us-ascii?Q?OuQbW4zdysEpN9EhW5BVr8Bj8SmOGpEnOSPOtH209WcRKUwflRKpd+0dV9/I?=
+ =?us-ascii?Q?rUS6gkE4vsyZGMOEVXqBIaSxqDEw6qqSZUa49BUJSSDG+RsmEP6zTYajOjcs?=
+ =?us-ascii?Q?yc8l6yrxISJVGwgYuApe8R7uof4/RTeOmbES9ncDWC4i9kaBoItSEzu8z3Rk?=
+ =?us-ascii?Q?r3qCh8O4fBv77F1lTghkoJyOTHYqHZ2YL7ffZHY9DQC2pkyiQ0iViwo9RYGh?=
+ =?us-ascii?Q?N4+Ap4HohTJ+hSvlg4Mu0uypfgxeoYoKcsBerlGndytAZS94E+6X1rrT7/cF?=
+ =?us-ascii?Q?0swobbnR86klM4pUamGb1ihmD7gAPl3lUauzIdXHInbH3cfOQPQtv+lQQW+0?=
+ =?us-ascii?Q?KgJKbbHX5rXIkaw0YqO9wVsv0BjPFu0lztS8pD5ol/M+dvcvqtZVuJ/6FhQM?=
+ =?us-ascii?Q?Cj45etqtiu43evCkGazjAWGFmYiIprWbTn5zJ7HAbLJ2LkhqFUHL405pXt8s?=
+ =?us-ascii?Q?hpJHj/4r9M+aqnezdJ8FZS9qOkaa0dODlkA5t/JyFUZUqlODW7ND+FIVWQEV?=
+ =?us-ascii?Q?01msEBII5WZnPCSDkxojuMUwu6cuNnImIAoWyvITYJ4GZ5o4uTGSLnf9Bjfx?=
+ =?us-ascii?Q?KA=3D=3D?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: fe09cacc-d69f-4a1f-fd24-08ddebac9d26
+X-MS-Exchange-CrossTenant-AuthSource: GV1PR04MB9135.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 12:14:36.4511
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tFLDYeq6jnS+4tFCxcCha8e3WwXQi96hvBxkyWWHjle6qT8LrQkF1CxXWTeygLnn6MROpPyXMGtLRGC/OLKLJQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DUZPR04MB9872
 
+On Thu, Sep 04, 2025 at 09:24:57AM +0200, Krzysztof Kozlowski wrote:
+> On Wed, Sep 03, 2025 at 03:33:22PM +0300, Laurentiu Palcu wrote:
+> > DCIF is the i.MX94 Display Controller Interface which is used to
+> > drive a TFT LCD panel or connects to a display interface depending
+> > on the chip configuration.
+> 
+> It looks like you are going to send v5, so:
+> 
+> A nit, subject: drop second/last, redundant "bindings for". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+> 
+> Anyway, nothing in the changelog explains dropping tags.
+> 
+> I am not going to do the work twice. Write proper changelogs.
 
---dxmjpjrjb5ukagg6
-Content-Type: text/plain; protected-headers=v1; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 3/9] mm/cma: Allow dynamically creating CMA areas
-MIME-Version: 1.0
+Sorry about that. :/ I agree it's frustrating to do the same work
+twice... I admit I was lazy and only wrote a changelog in the
+cover-letter. I will try to add a changelog to each changed patch next
+time.
 
-On Wed, Sep 03, 2025 at 09:41:18AM -0700, Frank van der Linden wrote:
-> On Wed, Sep 3, 2025 at 9:05=E2=80=AFAM Thierry Reding <thierry.reding@gma=
-il.com> wrote:
-> >
-> > On Tue, Sep 02, 2025 at 10:27:01AM -0700, Frank van der Linden wrote:
-> > > On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding=
-@gmail.com> wrote:
-> > > >
-> > > > From: Thierry Reding <treding@nvidia.com>
-> > > >
-> > > > There is no technical reason why there should be a limited number o=
-f CMA
-> > > > regions, so extract some code into helpers and use them to create e=
-xtra
-> > > > functions (cma_create() and cma_free()) that allow creating and fre=
-eing,
-> > > > respectively, CMA regions dynamically at runtime.
-> > > >
-> > > > Note that these dynamically created CMA areas are treated specially=
- and
-> > > > do not contribute to the number of total CMA pages so that this cou=
-nt
-> > > > still only applies to the fixed number of CMA areas.
-> > > >
-> > > > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > > > ---
-> > > >  include/linux/cma.h | 16 ++++++++
-> > > >  mm/cma.c            | 89 ++++++++++++++++++++++++++++++++++-------=
-----
-> > > >  2 files changed, 83 insertions(+), 22 deletions(-)
-> > [...]
-> > > I agree that supporting dynamic CMA areas would be good. However, by
-> > > doing it like this, these CMA areas are invisible to the rest of the
-> > > system. E.g. cma_for_each_area() does not know about them. It seems a
-> > > bit inconsistent that there will now be some areas that are globally
-> > > known, and some that are not.
-> >
-> > That was kind of the point of this experiment. When I started on this I
-> > ran into the case where I was running out of predefined CMA areas and as
-> > I went looking for ways on how to fix this, I realized that there's not
-> > much reason to keep a global list of these areas. And even less reason
-> > to limit the number of CMA areas to this predefined list. Very little
-> > code outside of the core CMA code even uses this.
-> >
-> > There's one instance of cma_for_each_area() that I don't grok. There's
-> > another early MMU fixup for CMA areas in 32-bit ARM that. Other than
-> > that there's a few places where the total CMA page count is shown for
-> > informational purposes and I don't know how useful that really is
-> > because totalcma_pages doesn't really track how many pages are used for
-> > CMA, but pages that could potentially be used for CMA.
-> >
-> > And that's about it.
-> >
-> > It seems like there are cases where we might really need to globally
-> > know about some of these areas, specifically ones that are allocated
-> > very early during boot and then used for very specific purposes.
-> >
-> > However, it seems to me like CMA is more universally useful than just
-> > for these cases and I don't see the usefulness of tracking these more
-> > generic uses.
-> >
-> > > I am being somewhat selfish here, as I have some WIP code that needs
-> > > the global list :-) But I think the inconsistency is a more general
-> > > point than just what I want (and the s390 code does use
-> > > cma_for_each_area()). Maybe you could keep maintaining a global
-> > > structure containing all areas?
-> >
-> > If it's really useful to be able to access all CMA areas, then we could
-> > easily just add them all to a global linked list upon activation (we may
-> > still want/need to keep the predefined list around for all those early
-> > allocation cases). That way we'd get the best of both worlds.
-> >
-> > > What do you think are the chances of running out of the global count
-> > > of areas?
-> >
-> > Well, I did run out of CMA areas during the early VPR testing because I
-> > was initially testing with 16 areas and a different allocation scheme
-> > that turned out to cause too many resizes in common cases.
-> >
-> > However, given that the default is 8 on normal systems (20 on NUMA) and
-> > is configurable, it means that even with restricting this to 4 for VPR
-> > doesn't always guarantee that all 4 are available. Again, yes, we could
-> > keep bumping that number, but why not turn this into something a bit
-> > more robust where nobody has to know or care about how many there are?
-> >
-> > > Also, you say that "these are treated specially and do not contribute
-> > > to the number of total CMA pages". But, if I'm reading this right, you
-> > > do call cma_activate_area(), which will do
-> > > init_cma_reserved_pageblock() for each pageblock in it. Which adjusts
-> > > the CMA counters for the zone they are in. But your change does not
-> > > adjust totalcma_pages for dynamically created areas. That seems
-> > > inconsistent, too.
-> >
-> > I was referring to just totalcma_pages that isn't impacted by these
-> > dynamically allocated regions. This is, again, because I don't see why
-> > that information would be useful. It's a fairly easy change to update
-> > that value, so if people prefer that, I can add that.
-> >
-> > I don't see an immediate connection between totalcma_pages and
-> > init_cma_reserved_pageblock(). I thought the latter was primarily useful
-> > for making sure that the CMA pages can be migrated, which is still
-> > critical for this use-case.
->=20
-> My comment was about statistics, they would be inconsistent after your
-> change. E.g. currently, totalcma_pages is equal to the sum of CMA
-> pages in each zone. But that would no longer be true, and applications
-> / administrators looking at those statistics might see the
-> inconsistency (between meminfo and vmstat) and wonder what's going on.
-> It seems best to keep those numbers in sync.
->=20
-> In general, I think it's fine to support dynamic allocation, and I
-> agree with your arguments that it doesn't seem right to set the number
-> of CMA areas via a config option. I would just like there to be a
-> canonical way to find all CMA areas.
+The r-b tag was dropped in v4 because I removed the QoS functionality until
+I find a better way to handle it. Hence, the 'nxp,blk-ctl' property in
+the binding needed to be dropped as well.
 
-Okay, so judging by your and David's feedback, it sounds like I should
-add a bit of code to track dynamically allocated areas within a global
-list, along with the existing predefined regions and keep totalcma_pages
-updated so that the global view is consistent.
+Thanks,
+Laurentiu
 
-I'll look into that. Thanks for the feedback.
-
-Thierry
-
---dxmjpjrjb5ukagg6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi5gOIACgkQ3SOs138+
-s6HoXw//XNrWJmAMVCgR+fCzlx0zoU4zdXoaxEp6EQWJKYjG//X6xi10kqOs2jVR
-uu5knOytKBYAZxrbGlElM3YDTUvN62voCXi2dgvDZ53e0xVNnz+JbhGvA4FRpqU4
-57ax3pJqEz4nWK7WnYrovlUSwMEPyzXb8KiRydUchOAr/QQfaCQKP1+HUgjsNsi0
-0JgzT2LrmkZJvzpYS1gK7Kyb7hnGh620lWwILWeiB8Y9XvtuktdxcuTqvt3hp3TF
-d8WHkQgF591iqMllbP1UFBd4zh852n3wuS/NutP4F2xH87BvkL+Az3uo4oAkqRW5
-ihpe1fdjufRrSa8j4he62obtU3HQUFzXH+1nktOYrN+NGtqvRm6FJGjbg9MgAN+J
-NeEn2yAIbCOT7Xhv/tAPSlB86nJVG3mmbWkfzVQhMdkeQrrTOkE7WHVH8YsDKF0x
-fEnOR+NpJ5NAe74DupV116N6YvFBd7Za9uHVPW4Xue+vqShxRl0H3/mIpmZg0JHf
-La8GRnYptVZoHP7YncT7rIFLmvBwf98uE+jUpHPrYbnrvBoXzECCg9higjZ/6faY
-X+rx5NUc6BRVTVncIvdiKwTR/g/F/9fFBAlDx3ie4MEJgtL6yvEIuCyw58N3X/uu
-UZmj3uvPk4sZILsIZO7+65qLprdN/o+T1UBAL8aWUo7bSNflcKw=
-=jDv8
------END PGP SIGNATURE-----
-
---dxmjpjrjb5ukagg6--
+> 
+> <form letter>
+> This is a friendly reminder during the review process.
+> 
+> It looks like you received a tag and forgot to add it.
+> 
+> If you do not know the process, here is a short explanation:
+> Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+> versions of patchset, under or above your Signed-off-by tag, unless
+> patch changed significantly (e.g. new properties added to the DT
+> bindings). Tag is "received", when provided in a message replied to you
+> on the mailing list. Tools like b4 can help here. However, there's no
+> need to repost patches *only* to add the tags. The upstream maintainer
+> will do that for tags received on the version they apply.
+> 
+> Please read:
+> https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+> 
+> If a tag was not added on purpose, please state why and what changed.
+> </form letter>
+> 
+> > 
+> > Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> > ---
+> >  .../bindings/display/imx/nxp,imx94-dcif.yaml  | 82 +++++++++++++++++++
+> >  1 file changed, 82 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
+> > new file mode 100644
+> > index 0000000000000..54419c589ef74
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
+> > @@ -0,0 +1,82 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +# Copyright 2025 NXP
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/display/imx/nxp,imx94-dcif.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: i.MX94 Display Control Interface (DCIF)
+> > +
+> > +maintainers:
+> > +  - Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+> > +
+> > +description:
+> > +  The Display Control Interface(DCIF) is a system master that fetches graphics
+> > +  stored in memory and displays them on a TFT LCD panel or connects to a
+> > +  display interface depending on the chip configuration.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nxp,imx94-dcif
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    items:
+> > +      - description: CPU domain 0 (controlled by common registers group).
+> > +      - description: CPU domain 1 (controlled by background layer registers group).
+> > +      - description: CPU domain 2 (controlled by foreground layer registers group).
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: common
+> > +      - const: bg_layer
+> > +      - const: fg_layer
+> > +
+> > +  clocks:
+> > +    maxItems: 3
+> > +
+> > +  clock-names:
+> > +    items:
+> > +      - const: apb
+> > +      - const: axi
+> > +      - const: pix
+> > +
+> > +  power-domains:
+> > +    maxItems: 1
+> > +
+> > +  port:
+> > +    $ref: /schemas/graph.yaml#/properties/port
+> > +    description: Display Pixel Interface(DPI) output port
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    soc {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        display-controller@4b120000 {
+> > +            compatible = "nxp,imx94-dcif";
+> > +            reg = <0x0 0x4b120000 0x0 0x300000>;
+> > +            interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
+> > +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "common", "bg_layer", "fg_layer";
+> > +            clocks = <&scmi_clk 69>, <&scmi_clk 70>, <&dispmix_csr 0>;
+> > +            clock-names = "apb", "axi", "pix";
+> > +            assigned-clocks = <&dispmix_csr 0>;
+> > +            assigned-clock-parents = <&ldb_pll_pixel>;
+> > +            power-domains = <&scmi_devpd 11>;
+> > +
+> > +            port {
+> > +                dcif_out: endpoint {
+> > +                    remote-endpoint = <&ldb_in>;
+> > +                };
+> > +            };
+> > +        };
+> > +    };
+> > -- 
+> > 2.49.0
+> > 
 
