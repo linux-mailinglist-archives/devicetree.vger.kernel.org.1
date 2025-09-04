@@ -1,97 +1,93 @@
-Return-Path: <devicetree+bounces-212854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC699B43DEA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:00:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3495B43DFD
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:04:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6151D3B014E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:00:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A81087A9F18
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:03:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BF2F304BB6;
-	Thu,  4 Sep 2025 14:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE1D330147F;
+	Thu,  4 Sep 2025 14:04:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="aiQ840y1"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="KfJohFUH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D693430147F
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA3952D8771;
+	Thu,  4 Sep 2025 14:04:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756994414; cv=none; b=NjPLafJ3kxgqzeddFNLJgJSpMzpZ3lYIHyyZ+FzM+U1EVHk/EQ5UTp1bE/uyaDAdYmb4+aNPMI7JlDklE7ekL4s/sHFcvIHrVp5xipBcTD8vRE/x4SLx2zdDCf2sv3KpqRSLijYSE4CtwlPCFV1Bv0i/wjITFueLOVuAs2c/N5I=
+	t=1756994679; cv=none; b=dEzAtVj0GQJ9AX9aQt+97z+jLJirH3ZnHunQZYL95n/gJCx6XqepipXK4rbIVMiTn9FWG2vhaTC2tXox0SC8j1W45GcDyq6tCgdHo2GrxGpBwmcqoy+gcFLJym4+9R4pb8C6hBfB7DD5ukoqMbyq99JZF63+VvdwuGX0MqzqPGc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756994414; c=relaxed/simple;
-	bh=vu/lR54XEDQQa3fvTSvkK9DY3Ceu5L9G0y9ysxDeew8=;
+	s=arc-20240116; t=1756994679; c=relaxed/simple;
+	bh=8D15COu2exGUd3E0Qy8knhTqB4T/stT3kGk+YvNt1Xc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DxauFCtKBzSCa09jqdpdazYkc2HxwXj4OBigBH64vIBVKP5VAC6iK8l1WM1KfeUMsY+/JMUdvepmVKkT70y59IpluFEoFgiDQQCiRn7SDTdW6jMhVadieSrdjyAtMkEpMeYYOCgcAzce8KJQ0OzkZ+IxhYK0EWBmUT8rQkXfZto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=aiQ840y1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X7sn022976
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 14:00:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=Uptw0dRl7YW+LaH6Bz8q8rzE
-	zjyijfxJOm8LQWhCZ+U=; b=aiQ840y1T4XIi0S9YmR2pzI+Yz3y8dKMPxBebvek
-	wIUG6dCbgwaViWfPR1j8EU0JQ6AzbT9R8BxsUo/OueC6QbyX7hO1J0TqW/xA8CSR
-	CnbnkLaf98zcuT5n+6ShATUibRun6f9t4dnkhx1VOoRUni4HxHtqgMgrNfQ1YShJ
-	DWLaytyN0omLp0xHm7Z9dDlSjKg/69yswSYYojRxK4/KvaoB69ux3VWc3aSfvmfD
-	NOOrkxqmPjFwtItj80HfU6lh7KI0l/LK46dw0Zrrfd4PmzaKH5OP0VuDJTunxZpq
-	B6m8bP2pBeK8DU3p28btNpVtsloLUBsQW9B2gFq19DFFjA==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48uq0eqtk7-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 14:00:12 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b3349c2c38so25540921cf.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:00:11 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756994411; x=1757599211;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Uptw0dRl7YW+LaH6Bz8q8rzEzjyijfxJOm8LQWhCZ+U=;
-        b=NQxUyoQW6+X9OR9fbyxMiiG+r7BgO0JZV5hI09BkE6hyYZnxmGWnOut2EOfvKLngmo
-         MAhojixrfruubKnRnZvqYwBw/t84P29sEKgIU59dKMsGvVXFxNWLPHLxx5l3vvr/8KKk
-         5/B488oftEgDarQEHzh6uIDkC/Hx8RhFK0oqBYbHEkawVXZpa6IrRWzscvpCTt9Ny+qb
-         rzPUtHmqa9ns9UzasMyED8aqPqWPNz3Ft1mfhJuM4N4JtiW6QRuaJYW2/HsBP6RVOB7c
-         fulnL/u0nz7YkA7uY4rkYCKppX8veNDU01AnJnKSHc4ZHqms5I+v3qQtxPkmxLOh4Y4J
-         AMsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXM7RDaG8FT7WebUPJbCCa1PY0ggX95/ZIPEWJbCyydUkwfxl7KErWA8/QsvmZmcAMDkczCffiXbOOz@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx7DV8pmuaeZKt2IqgxDpY/bheFbBE4bYOQ7+ItnxdmOLfJGiUS
-	ZkQkTI57MZnrVi8RBfJgtfrMqUYW+nqv/TBUR5t5jiB6xKcmniBX4CW9x/8HKh3FC30ikcT+xmK
-	ZPVqykffTAmO3R2xhrOadMJb9dbgLFurelV2sSMhP6XrMTe9rTA1ei/Ta0YQ876q2
-X-Gm-Gg: ASbGnctJoND69GO5jOixpNMBF0hv0UEfZA0isYasXhLK2zCpXliSywnPRTW4XCXifwI
-	+utI/t2WxZfcTfz/Q5yAJ9lTaOMriCYWFgUGW23hQ3SCxG8Lsp/j/jukXoipI0DSyElXKxGO1Bw
-	I6M+3KSmUSwedXdBy5CCeVg8hXSBotZdcHjDx/QzpESmwO8X6PZZQw5zuJjOKgexCdTMNUBuelN
-	T9mSgdsFCYbyaHqBeHw80PCFG8x2c1BInobudOdLJgrjnp5LjKmtzbdqnUg4VHZlmpLChrvkBOk
-	FfSF+5ukocfHNgOpWFx9v0YkvXvbK+PAeWqvxuqsMYdIf3ppdFFfRrDYM+WZJiICZGJwG82/ZMJ
-	N0K78t7Y3KBp0H5L3jFy6KhBg0j4v6gtvzz87wbgAykIAFsmEbMeK
-X-Received: by 2002:a05:622a:5a0e:b0:4b4:94e7:72ff with SMTP id d75a77b69052e-4b494e77707mr66824521cf.30.1756994410426;
-        Thu, 04 Sep 2025 07:00:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFwARaMkXqyukGrdjdAD2h8y2fUXhI65qlFW8+laMCPTiKqFhNTFQRZKJrHyCepIok7qk4PTA==
-X-Received: by 2002:a05:622a:5a0e:b0:4b4:94e7:72ff with SMTP id d75a77b69052e-4b494e77707mr66823511cf.30.1756994409513;
-        Thu, 04 Sep 2025 07:00:09 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ab5dd03sm1244263e87.28.2025.09.04.07.00.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 07:00:08 -0700 (PDT)
-Date: Thu, 4 Sep 2025 17:00:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: apq8016-sbc: Correct HDMI bridge
- #sound-dai-cells
-Message-ID: <h2fb4pz62uol24jmf44nopmq4h7jw2prnpttgfs62znkztosdz@hbzc73urm6ze>
-References: <20250904084421.82985-3-krzysztof.kozlowski@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=BtGJNnHqiAsLiPU25ARVPZjYgLNvKVd4UdnlFgS/1OMVsiss/8/lLDdB+NOB7m6XCEe8jNou9HJbFshHdqRu1qa5nACBSipqdYFWmIJRtcDk1Z0KWCf18f2+ZRSss1X9koT7pZqQ8DCJwerWs+VOBuCUQ7mZi9YC+oRrhAZKg+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=KfJohFUH; arc=none smtp.client-ip=198.175.65.13
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1756994678; x=1788530678;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8D15COu2exGUd3E0Qy8knhTqB4T/stT3kGk+YvNt1Xc=;
+  b=KfJohFUH7Hn1UeO43oPCiN3r+3F941+Cogr92jFKdEr40icswc/cO/Q1
+   P4ZXVOEFo4TOHlPuR/3xJYWVJqbuoj3LLbSOOUmWEF59xJhZaQ3xqLwIV
+   zZoIdG376fb/57Zl6nMqJdCHKUNd7dd0WnXBywvjPToeTaNJ72YD+D/tu
+   CJfOt1RX9do3P6jR3r2MnvnazJ302KTRUQ6dbBbpXXiZG7BmOdpt89X5Q
+   qjPZJ0WiQoBA4A6BVYaZ33ifaOVyiSKNgcjAHI3jgdLGIQKL/JIh53vMN
+   iqYLxc84JY6RmGVe1btPRJFy225gJwcXpk0s3EbEe1d4kWXe+lIfJPH+z
+   w==;
+X-CSE-ConnectionGUID: dur8aXbyR4icYs9PvtclUw==
+X-CSE-MsgGUID: 8XQCbnVKQZGLYFK/yZFDaQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70431585"
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
+   d="scan'208";a="70431585"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 07:04:37 -0700
+X-CSE-ConnectionGUID: jk3xqa1ERUuvLneeMH0DuQ==
+X-CSE-MsgGUID: ZlXGG7xRRzuIrTFtgMNG7w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
+   d="scan'208";a="202827580"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by fmviesa001.fm.intel.com with ESMTP; 04 Sep 2025 07:04:31 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uuAYv-0005Mt-2U;
+	Thu, 04 Sep 2025 14:03:53 +0000
+Date: Thu, 4 Sep 2025 22:02:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+	Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: oe-kbuild-all@lists.linux.dev, Jonathan Cameron <jic23@kernel.org>,
+	David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Marcelo Schmitt <marcelo.schmitt@analog.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Tobias Sperling <tobias.sperling@softing.com>,
+	Antoniu Miclaus <antoniu.miclaus@analog.com>,
+	Trevor Gamblin <tgamblin@baylibre.com>,
+	Esteban Blanc <eblanc@baylibre.com>,
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+	Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
+	Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+Message-ID: <202509042119.GiwpuwCl-lkp@intel.com>
+References: <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -100,47 +96,59 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250904084421.82985-3-krzysztof.kozlowski@linaro.org>
-X-Proofpoint-GUID: HmvWFCoSqiGvu2odD7Bsne7tOuDSviOx
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwNCBTYWx0ZWRfX1V0wdZLL/8vv
- CORPSSkCnjz7fHzRqQmuvTrKjft2/KkCO5r6QdD4VDloRltYoRnrjP6nGlzS9eWfYQHMuRbSBn9
- ZwASLaO3tIpFkV/oMtNlXvToNmdeuSVeJ60v+rZbM3WxPJCCrrLFVuqNf5dw0WX/Dc7uL161SQF
- O0ZWm3HiCF0w1Q66vRVmrdX95gbnfo+UnxBydoSPc8GVnxrVN1/2hiND2lJwwq27XhnYEgJS0qr
- TYUZh/d8ckQaGb3/P9kJkZn24z96R1qyfg6mNQIztdbveNx7tVNssFtF7hBGbzCNWEMEiI0OQUk
- HJJDgik/HMuYWcuQ8HIUqbBcF9R4szttq5grHzVXKnl7jjAsfyIqmvQTex5WnvOtYJ73LBgzhbc
- 9pBKKX2N
-X-Proofpoint-ORIG-GUID: HmvWFCoSqiGvu2odD7Bsne7tOuDSviOx
-X-Authority-Analysis: v=2.4 cv=ea09f6EH c=1 sm=1 tr=0 ts=68b99b6c cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=EUspDBNiAAAA:8 a=zNhK7oAxo_OHXOIITUgA:9
- a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 clxscore=1015 malwarescore=0 phishscore=0
- bulkscore=0 spamscore=0 priorityscore=1501 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300004
+In-Reply-To: <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
 
-On Thu, Sep 04, 2025 at 10:44:22AM +0200, Krzysztof Kozlowski wrote:
-> HDMI bridge has only one sound DAI and bindings already expect that
-> (dtbs_check):
-> 
->   apq8016-sbc.dtb: bridge@39 (adi,adv7533): #sound-dai-cells: 0 was expected
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/apq8016-sbc.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-> 
+Hi Matti,
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+kernel test robot noticed the following build warnings:
 
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+[auto build test WARNING on d1487b0b78720b86ec2a2ac7acc683ec90627e5b]
 
+url:    https://github.com/intel-lab-lkp/linux/commits/Matti-Vaittinen/dt-bindings-iio-adc-ROHM-BD79112-ADC-GPIO/20250902-203558
+base:   d1487b0b78720b86ec2a2ac7acc683ec90627e5b
+patch link:    https://lore.kernel.org/r/08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount%40gmail.com
+patch subject: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+config: sparc-randconfig-r071-20250904 (https://download.01.org/0day-ci/archive/20250904/202509042119.GiwpuwCl-lkp@intel.com/config)
+compiler: sparc-linux-gcc (GCC) 14.3.0
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509042119.GiwpuwCl-lkp@intel.com/
+
+smatch warnings:
+drivers/iio/adc/rohm-bd79112.c:212 bd79112_read_raw() warn: inconsistent indenting
+
+vim +212 drivers/iio/adc/rohm-bd79112.c
+
+   192	
+   193	static int bd79112_read_raw(struct iio_dev *indio_dev,
+   194				    struct iio_chan_spec const *chan, int *val,
+   195				    int *val2, long m)
+   196	{
+   197		struct bd79112_data *data = iio_priv(indio_dev);
+   198		int ret;
+   199	
+   200		switch (m) {
+   201		case IIO_CHAN_INFO_RAW:
+   202			ret = regmap_read(data->map, chan->channel, val);
+   203			if (ret < 0)
+   204				return ret;
+   205	
+   206			return IIO_VAL_INT;
+   207	
+   208		case IIO_CHAN_INFO_SCALE:
+   209			 *val = data->vref_mv;
+   210			 *val2 = 12;
+   211	
+ > 212			return IIO_VAL_FRACTIONAL_LOG2;
+   213		}
+   214	
+   215		return -EINVAL;
+   216	}
+   217	
 
 -- 
-With best wishes
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
