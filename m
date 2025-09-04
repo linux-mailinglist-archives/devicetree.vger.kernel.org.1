@@ -1,437 +1,261 @@
-Return-Path: <devicetree+bounces-212940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B213DB44281
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:17:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EDC61B44310
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:40:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1353A04D7B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:17:37 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 268FF5A7121
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D7BB22258E;
-	Thu,  4 Sep 2025 16:17:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA7A02F8BD1;
+	Thu,  4 Sep 2025 16:39:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dHC2BBtu"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="S0mDsHyE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 46DF52F85B;
-	Thu,  4 Sep 2025 16:17:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDF322D3731
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 16:39:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757002657; cv=none; b=rhcAktAJACFgoJSpLxIHAeccSE+jF5ctd4KroNZRinXZTJg7ab0vZhgCnjOCKUmUPandPr3oWYEQjvybdoknTAAAwDUUI4eYf5ju69+71tG4c+1kDXlRifOosUgjiMMgQR9stuux0BxuX4Yt5gbkBwaF73nhtRqMugueGMMUhYs=
+	t=1757003965; cv=none; b=jI4VgWsidfI7mvfD1c9/IlnOYc170fKpBplty705sQf9mh7onjhbfqvP/wPnOPM32RK1hHGNfk1yUE3YKzwc2C+Ipu3FeJpEeXF4N8rWg7b5ahEZqGcVd+iZdJY0DVmhsQk6LupNI8l6OGft12480O1CM2iB4TADSDYxYZJ0j2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757002657; c=relaxed/simple;
-	bh=aS4m+j4x0Lbp5L5OTCA58QWhFR0XSf+Gnc/huuxfs5E=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=avG9nvbyQmcjv0yhwBYnQpcX1+t19h0i3vI+W7Fdya6qILKuvPSTrprwPXtXXIlwrUzkz816dzlHqMnXCcRisYBDnzj8GSjO67VcFYBPAe+sICmWvFyKAkU4ivr+nOL5PLl6YbsiZwjJ/y6I60hftdCItB8lsCOGDkBzsi6X4v0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dHC2BBtu; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-32bab30eefbso500979a91.1;
-        Thu, 04 Sep 2025 09:17:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757002654; x=1757607454; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yvIGNWKLCjQ2uahB1o048h1iG+G/TvRCcRw5Y64YDV4=;
-        b=dHC2BBtualEASgblDx023jxNTxO87COXGTauZmWSO/saXi5JR074C/akuYTcFh30RU
-         /IlwEYAwgmfwWIFQZCARZG/o7mUMdX5OuU4KqiG7ULw5qP56TNEDNWgkVyvms4A+RJDB
-         enoVHG6XZz03mrpfAEJ8aHCqCI/MSq5823eOv9zXjRR0NMb2G3i0mo6fErUFnaGfZrmU
-         WHAhS9/U8M30JC1+6SNzq5fQacF89IZbSgmkNdhAD5HOCK2XxdTUNda6g4UCL8ehIr4R
-         9mMeJj6vM3998+ArktZLn6dQKY/2OCA/pTgvWZnwAcGuvj0Nq22c+hbLD9uIUXOAAwi9
-         Upaw==
+	s=arc-20240116; t=1757003965; c=relaxed/simple;
+	bh=GpD8BNFg396KGkNiIgm2sGFzaEIO7uHRIjt6IC/agYg=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=hk/BZxM6QGF8cuNNeggegOSnTl5GOwkvHEd1iA61UQRYMnHmWC5AIATZ6AMWJYGCqtl272gv8qmEv0gVwI6N7bhtQQ9Oz43vTeGSnoZG3lmipevKo9ig+GqWtlT09mPutVRnBVwrk4lAy4aeGhzeooxzKTCQJ457DALNa4nBejk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=S0mDsHyE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849XALS031836
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 16:39:22 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=MNSbbZpCQsAdgAsVO32TmZ
+	c29SrY2CxEjrNrN62kiYk=; b=S0mDsHyE5AMM8Qa8wWRHJL71l1yQ0FuWh/Zh1P
+	8s/iCZpmz9HsbtSGpNX9huIp/G1s9uhoUH098Vq3QZaV6XzbaTdAhJYb/WKQdQP5
+	RS4f+8PJNUxMUI6ZQjQ/Qr2GM7gzKedDUnkFL2hdBfuZpaihxMfGbvOlDTbKgAiA
+	NxhrdADaH7/gMxoArh1I8/kM5UIwrrtWd/1xYQputVHiRIvwV5/XbWr7PUeti8P9
+	dtTTtllC5b/Iv7t9UEtDpnswiik7JwwpacYAJ7qXKZXlcFe7F8yKw1v8trW97ccv
+	RIRMp6mmVff1xzao7F6duS9cCAddoa8B8Zswu1XhLR41QyRA==
+Received: from mail-pf1-f198.google.com (mail-pf1-f198.google.com [209.85.210.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urw088kk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 16:39:22 +0000 (GMT)
+Received: by mail-pf1-f198.google.com with SMTP id d2e1a72fcca58-7724877cd7cso1386886b3a.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 09:39:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757002654; x=1757607454;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yvIGNWKLCjQ2uahB1o048h1iG+G/TvRCcRw5Y64YDV4=;
-        b=EUJqX7WpjozopVTANqO8w0kd0u453zoq2n/d33hSuU6sTIrKNglCDfCFWGZgjemcZf
-         u4bmVh/YSoblvttkMK1mcelwh0WIWRStjl4xCvCTLjPeVZCFDXAU8Rk33Z6zg36xSSbS
-         /5JbKj3GVS+ALB9nOXiMoyT1PU7OocWjrwo2/WJEJIn1UWmj86jlcn0s27Tk/Yqn/vb5
-         cjnleQbFd+2s9xTbnlsrlR8VcgF4l0BrYa7GiS3SdkR86cnrhMRmlYp+sVSsKcyOHPhE
-         0HQyR7MCIPjXduXlsG2pJJ8ADIeo+U1ESBELfO1Sr7Jv5ay+gYgUIl5/9ygRo6+p9toU
-         rOkw==
-X-Forwarded-Encrypted: i=1; AJvYcCVjDbLnyinfg1gR6gKNR/ccsna7BaPSFGDnSXSVwtdyL6MS8KfFRF/9ZYxIlPCjGqy9HxcehCJ0/0mjVw==@vger.kernel.org, AJvYcCWGlVPf70QCNz+qGmGJ0a/+tmQfEUW3Xv4S7cQHWytOoKVpZcEv/EdkxWHzXxYVIeRdGchPpAUm6UU/@vger.kernel.org, AJvYcCWW6gw1HzIXidu63Xqp0he4LZvu8UOKwRqag8y78GSLhS93Y3r2wiw3Wj8IGqYom9B7SAQZjXCc9cAmCrh0@vger.kernel.org, AJvYcCWrl1x/tq8R1GZrKsjZHaSUoBjocCmZoKbclq98HatoIDZDjJO4ZxYx9KHmqJZnHtOl+4EhpLba9xm3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwmVUqIiMRd9nEWE/HcsiWFwJCVU7xGRDRdpeKvZ8XEPIw2ZUC9
-	90osOmy80QsKwx5yZ0A2dDptVujGkZljGGEr0gO7YrnA+wpfyFvmmGiYjmBdYQ==
-X-Gm-Gg: ASbGncupyjoAOAUx7yiSZEixHW+TE2QXEhRQsepjMti+GHA2vrK2H8sZn/7kkiLAKZ5
-	k0w7YcF1bly4FZaZBhmVZvhMhjmUPB8kirl6fvxkDCAf7j0TKFQ90RcGk06xR+EUAMY2f/qoYyP
-	wQI4hF1/Y1ysHiLgasp8jMFuO/k3BigmLfHepunr2Z13q3jvHH7zbRiK1+0qhMjNDtUWpYfA1o4
-	Eb9dixb6OJ4Z4fowo2VzKrOdMapefnOE2TU13Xw4WNH3EJhMQgg5CJjBE/tyiNBn+beaXfkB3XC
-	rGUSFPasejC5NbYh/g8Oar27R5sXdsstQ+TBBwal0BuA4SzjB71YqkknMDvXe4S0TdE6NoFnoPk
-	3PELvgFnQstipWGsK5vpQrgQUy//31Fj3bwrFxTI4/HtNuhpw8HeYtg==
-X-Google-Smtp-Source: AGHT+IGWLWlrRe5uglr/JGHLmTi9vnmsy+GoA2XmVyOvmMoBaVi+ynMunWIN2yeQbyLvv2l7GNE2Bg==
-X-Received: by 2002:a17:90b:1fc3:b0:329:8520:cee7 with SMTP id 98e67ed59e1d1-32bbdfed9ecmr216517a91.14.1757002654255;
-        Thu, 04 Sep 2025 09:17:34 -0700 (PDT)
-Received: from DESKTOP-P76LG1N.lan ([58.187.51.224])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32b617b104csm5149107a91.21.2025.09.04.09.17.30
+        d=1e100.net; s=20230601; t=1757003961; x=1757608761;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MNSbbZpCQsAdgAsVO32TmZc29SrY2CxEjrNrN62kiYk=;
+        b=UD51B6GfgtLgpmIjHN7e+SMJaWGY6uYTeRncKxOg9PgJJGCyEkwPcDSxrc9INefnkk
+         OwfIVfvfpgz37OTu1Qo4zjYejhfVU6wAmk1AjYwNVu7noCBy3ipd8YgHKMnnBjoBTEjk
+         x4hgThKchOlrURVVlY9uzlRgGTkPRqQqPY0+bdXERP7GI6tGcSNkVBr5tWPSnr+aoW4f
+         0XGbrnlH1tW+ZM5CUTv50i87qsG1FyNsr+nwxTImOga262ZzMbXNgt5+x/QlIc6B9BqO
+         hPQe5ZXt9yl0FmpM6twGSoEygEUrb/gpOkVRpFqW+2x3TMMLJx6cAWlCvcJKxPkxxRBF
+         ZfoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXu8g4k1yTQHqIOQHz4KPzApUYaaVXZ3Szhku8vRn+qcxcFEh8s2ZJh3tOB5mYI72IrJmwivnvncuCb@vger.kernel.org
+X-Gm-Message-State: AOJu0YzDCG6A/FnBasxF+wCv+9JY8jyQzyXIVHSl6skSK/i1RuKQ6s+O
+	15zilzFkYvArXxjogyu2sm7EzR8nEVbZaQ23H/0dttYYWRoUboBgv9uEMEcCKJOIKwYouj9K2No
+	//bbUq7vckdJeBRQFxL3evN+FXHLNBV4UXEi7takfv9w2l8/77CEYz6JZsZX1hOa9
+X-Gm-Gg: ASbGnctTgZjSNzu/eUYlw1C2F0IzoIoXqiIsPMWM4BNB9TQ7gSRUptKndFpmIcvNKJE
+	pNyprDmuGRx+TWbXr+SUcTPq+cuOLB1PYWVVUqr7pDIQO+HO6eHNzjmy6XJOq4GSHNi3cK7OTPS
+	B2OJm2cCiFmcdecKwHctvmWtLIxA/XWZQIz9Xc3Kqv+KMNrsAf+IqitFKyvi1eVc1X5F+SSBlaQ
+	1rF7THS+jKPEfcg4DxvWqQ6q4gp9y0XCOCjff8LvpfnT6XUd0rMdxw/A10Gn2g6P3LOXA7YLQ3m
+	Qxy6Sk9tKR8l/Xhp3zxqH+ljZQDI3pyYhWEtQHrYW/zf+Pqzz03i58EWUGtW5y5H7DLU
+X-Received: by 2002:a05:6a20:4303:b0:24e:84c9:e98f with SMTP id adf61e73a8af0-24e84c9ebf4mr415414637.59.1757003961262;
+        Thu, 04 Sep 2025 09:39:21 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IENfHKOfMUlhg5WU9p/8Sk77cSDyMNV/t6TSuChQ6ApcsAK5PWqLjiRWeH9hsnd1eiAaGZG1w==
+X-Received: by 2002:a05:6a20:4303:b0:24e:84c9:e98f with SMTP id adf61e73a8af0-24e84c9ebf4mr415330637.59.1757003960584;
+        Thu, 04 Sep 2025 09:39:20 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4cd006e2c6sm17346371a12.2.2025.09.04.09.39.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 09:17:33 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org
-Subject: Re: [PATCH v13 RESEND 2/4] leds: add basic support for TI/National Semiconductor LP5812 LED Driver
-Date: Thu,  4 Sep 2025 23:17:28 +0700
-Message-Id: <20250904161728.24020-1-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250902121130.GK2163762@google.com>
-References: <20250902121130.GK2163762@google.com>
+        Thu, 04 Sep 2025 09:39:19 -0700 (PDT)
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Subject: [PATCH v3 00/14] arm64: dts: qcom: lemans-evk: Extend board
+ support for additional peripherals
+Date: Thu, 04 Sep 2025 22:08:56 +0530
+Message-Id: <20250904-lemans-evk-bu-v3-0-8bbaac1f25e8@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKDAuWgC/23M0QqCMBTG8VeRXTc521RWV71HdLHNY47U2ZajE
+ N+9KUEg3Rz4H/h+MwnoLQZyymbiMdpg3ZBCHDJiWjXckNo6NeHAS5CsoB32aggU453qiaIBVho
+ sQAKStBk9Nva1eZdr6taGp/PvjY9s/X4lXu2kyCjQxLAKoRYGy7MLIX9MqjOu7/N0yApG/kOOI
+ PYIT4hulJBMN1Ir/gdZluUD9J8OkvYAAAA=
+X-Change-ID: 20250814-lemans-evk-bu-ec015ce4080e
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>,
+        Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
+        Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-e44bb
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757003953; l=4648;
+ i=wasim.nazir@oss.qualcomm.com; s=20250807; h=from:subject:message-id;
+ bh=GpD8BNFg396KGkNiIgm2sGFzaEIO7uHRIjt6IC/agYg=;
+ b=2CMcvZ4DfkFj/djWAIguElhQ7xU1SjResWfi0MSzltJRxTory6Sq+cgPwGMH4eiSSWEzFAaWJ
+ BF63OoT1E09BGtdC9EOIJ4+vllZmGPr/UcswbqnaemOFuOVRX0XZzJu
+X-Developer-Key: i=wasim.nazir@oss.qualcomm.com; a=ed25519;
+ pk=4ymqwKogZUOQnbcvSUHyO19kcEVTLEk3Qc4u795hiZM=
+X-Proofpoint-GUID: XF3ZrDBZ73MUz8HfKTXKYb3q8HzXnV6h
+X-Proofpoint-ORIG-GUID: XF3ZrDBZ73MUz8HfKTXKYb3q8HzXnV6h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNyBTYWx0ZWRfX8/3b50r71L1w
+ 3tClmQzqwdCg/fnVLkyadZ7SCgOLhz6hGnhk7sO7A2aLJMLN/qAHZHw/00fjhvdp9w4z9cxjt8a
+ CynQcn9QoqaD62oP1RCwYKIMcfif+luxdn9joqqk2+TsKmJuQUZ/i2LhaUMHeb7nbjH4X1ZQS8w
+ 7ljFd5GlkUcfnR52cTih3UjmgxW+XN0uoWJ1Kin/RPPhwcxQFbCx4WNr/Tpiq8MYsUQUhkdQWSN
+ KHJnx1/3xKZpcLh5Crjtchvr/EIfpzLPmdiLytrIDCkfM7zwBMHpGtpmacJOmMkV8acvLB0F0qH
+ poqmUBrexdt4/HFiDNff4JciFhEZWn5VOSAHtngu0gCHYQf0QfUNc79GuORfgzUVpisi7f695zG
+ mrhk5TKT
+X-Authority-Analysis: v=2.4 cv=NrDRc9dJ c=1 sm=1 tr=0 ts=68b9c0ba cx=c_pps
+ a=m5Vt/hrsBiPMCU0y4gIsQw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=UzDb-niT3-dnCAiDllkA:9 a=QEXdDO2ut3YA:10 a=IoOABgeZipijB_acs4fv:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_06,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ clxscore=1015 suspectscore=0 malwarescore=0 priorityscore=1501 phishscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 adultscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300027
 
-On Tue, 2 Sep 2025, Lee Jones wrote:
+This series extend support for additional peripherals on the Qualcomm
+Lemans EVK board to enhance overall hardware functionality.
 
-> On Mon, 18 Aug 2025, Nam Tran wrote:
-> 
-> > The LP5812 is a 4x3 matrix RGB LED driver with an autonomous animation
-> > engine and time-cross-multiplexing (TCM) support for up to 12 LEDs or
-> > 4 RGB LEDs. Each LED can be configured through the related registers
-> > to realize vivid and fancy lighting effects.
-> > 
-> > This patch adds minimal driver support for the LP5812, implementing
-> > only the essential functionality: I2C communication with the device,
-> > LED registration, brightness control in manual mode, and basic sysfs
-> > interfaces for LED configuration and fault monitoring.
-> > 
-> > Signed-off-by: Nam Tran <trannamatk@gmail.com>
-> > ---
-> >  MAINTAINERS                    |    4 +
-> >  drivers/leds/rgb/Kconfig       |   13 +
-> >  drivers/leds/rgb/Makefile      |    1 +
-> >  drivers/leds/rgb/leds-lp5812.c | 1086 ++++++++++++++++++++++++++++++++
-> >  drivers/leds/rgb/leds-lp5812.h |  164 +++++
-> >  5 files changed, 1268 insertions(+)
-> >  create mode 100644 drivers/leds/rgb/leds-lp5812.c
-> >  create mode 100644 drivers/leds/rgb/leds-lp5812.h
-> > 
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 99512777b890..c2e1c02e206d 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -24828,6 +24828,10 @@ M:	Nam Tran <trannamatk@gmail.com>
-> >  L:	linux-leds@vger.kernel.org
-> >  S:	Maintained
-> >  F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-> > +F:	drivers/leds/rgb/Kconfig
-> > +F:	drivers/leds/rgb/Makefile
-> > +F:	drivers/leds/rgb/leds-lp5812.c
-> > +F:	drivers/leds/rgb/leds-lp5812.h
-> >  
-> >  TEXAS INSTRUMENTS' LB8864 LED BACKLIGHT DRIVER
-> >  M:	Alexander Sverdlin <alexander.sverdlin@siemens.com>
-> > diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-> > index 222d943d826a..28ef4c487367 100644
-> > --- a/drivers/leds/rgb/Kconfig
-> > +++ b/drivers/leds/rgb/Kconfig
-> > @@ -26,6 +26,19 @@ config LEDS_KTD202X
-> >  	  To compile this driver as a module, choose M here: the module
-> >  	  will be called leds-ktd202x.
-> >  
-> > +config LEDS_LP5812
-> > +	tristate "LED support for Texas Instruments LP5812"
-> > +	depends on I2C
-> > +	help
-> > +	  If you say Y here you get support for TI LP5812 LED driver.
-> > +	  The LP5812 is a 4x3 matrix RGB LED driver with autonomous
-> > +	  animation engine control.
-> > +
-> > +	  To compile this driver as a module, choose M here: the
-> > +	  module will be called leds-lp5812.
-> > +
-> > +	  If unsure, say N.
-> > +
-> >  config LEDS_NCP5623
-> >  	tristate "LED support for NCP5623"
-> >  	depends on I2C
-> > diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-> > index a501fd27f179..be45991f63f5 100644
-> > --- a/drivers/leds/rgb/Makefile
-> > +++ b/drivers/leds/rgb/Makefile
-> > @@ -2,6 +2,7 @@
-> >  
-> >  obj-$(CONFIG_LEDS_GROUP_MULTICOLOR)	+= leds-group-multicolor.o
-> >  obj-$(CONFIG_LEDS_KTD202X)		+= leds-ktd202x.o
-> > +obj-$(CONFIG_LEDS_LP5812)		+= leds-lp5812.o
-> >  obj-$(CONFIG_LEDS_NCP5623)		+= leds-ncp5623.o
-> >  obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
-> >  obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
-> > diff --git a/drivers/leds/rgb/leds-lp5812.c b/drivers/leds/rgb/leds-lp5812.c
-> > new file mode 100644
-> > index 000000000000..fb5ea449761a
-> > --- /dev/null
-> > +++ b/drivers/leds/rgb/leds-lp5812.c
-> > @@ -0,0 +1,1086 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * LP5812 LED driver
-> > + *
-> > + * Copyright (C) 2025 Texas Instruments
-> > + *
-> > + * Author: Jared Zhou <jared-zhou@ti.com>
-> > + */
-> > +
-> > +#include <linux/delay.h>
-> > +#include <linux/i2c.h>
-> > +#include <linux/init.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/led-class-multicolor.h>
-> > +#include <linux/leds.h>
-> > +#include <linux/module.h>
-> > +#include <linux/mutex.h>
-> > +#include <linux/sysfs.h>
-> > +#include <linux/types.h>
-> > +
-> > +#include "leds-lp5812.h"
-> > +
-> > +static int lp5812_write(struct lp5812_chip *chip, u16 reg, u8 val)
-> > +{
-> > +	struct device *dev = &chip->client->dev;
-> > +	struct i2c_msg msg;
-> > +	u8 buf[2];
-> > +	u8 extracted_bits;
-> 
-> What bits are being extracted?
-> 
-> addr_low?
-> 
+It includes:
+  - New peripherals like:
+    - I2C based devices like GPIO I/O expander and EEPROM.
+    - GPI (Generic Peripheral Interface) DMA controllers and QUPv3 controllers
+      for peripheral communication.
+    - PCIe HW with required regulators and PHYs.
+    - Remoteproc subsystems for supported DSPs.
+    - Iris video codec.
+    - First USB controller in device mode.
+    - SD card support on SDHC v5.
+    - Qca8081 2.5G Ethernet PHY.
+  - Audio change [1] to support capture and playback on I2S.
 
-According to the LP5812 datasheet (page 24, I2C Data Format section),
-the first byte includes 5 bits for the chip address, the next 2 bits
-are register address bits [9:8], and the last bit is the R/W flag.
-Therefore, I need to extract bits [9:8] from the register address and
-place them into bits [2:1] of the first byte. I'll also update the
-variable name to make this clearer.
+Dependency:
+  - The ethernet PHY QCA8081 depends on CONFIG_QCA808X_PHY, without
+    which ethernet will not work.
 
-> > +	int ret;
-> > +
-> > +	/* Extract register address bits 9 and 8 for Address Byte 1 */
-> > +	extracted_bits = (reg >> 8) & 0x03;
-> 
-> Define all magic numbers throughout.  This includes MASKs and SHIFTs.
-> 
+[1] https://lore.kernel.org/linux-arm-msm/20250822131902.1848802-1-mohammad.rafi.shaik@oss.qualcomm.com/
 
-I'll replace the inline constants with proper macros.
+---
+Changes in v3:
+- Re-order QUP patch 05/13 (v2) to not break i2c node enablement in patch
+  03/13 (v2) - Dmitry.
+- Update commit text for QUP patch to highlight which all clients each
+  QUP is accessing.
+- Add dedicated compatible for Giantec EEPROM, because usage of generic
+  compatible "atmel,24c256" alone is not advised.
+- Update commit text for EEPROM patch 04/13 (v2) to emphasize on EEPROM
+  enablement - Konrad.
+- Put 'reg' property after 'compatible' in Expander - Konrad.
+- Put 'pinctrl-names' after 'pinctrl-n' in PCIe - Konrad.
+- SDHC:
+    - Update interconnect nodes with ICC_TAG macro - Konrad.
+    - Put new lines for each entry in interrupt-names, clock-names,
+      interconnect-names - Konrad.
+    - Put bias properties below drive-strength for consistency in
+      sdc-default-state - Konrad.
+    - Move 'bus-width' property to SOC DT - Konrad.
+    - Move 'no-mmc' and 'no-sdio' properties to board DT - Dmitry/Konrad.
+- Add 'Reviewed-by' tag from Konrad [2] on Audio patch 13/13 (v2),
+  although the commit text is changed now.
+- Link to v2: [3]
 
-> > +	/* Prepare payload: Address Byte 2 (bits [7:0]) and value to write */
-> > +	buf[0] = (u8)(reg & 0xFF);
-> > +	buf[1] = val;
-> > +
-> > +	/* Construct I2C message for a write operation */
-> > +	msg.addr = (chip->client->addr << 2) | extracted_bits;
-> > +	msg.flags = 0;
-> > +	msg.len = sizeof(buf);
-> > +	msg.buf = buf;
-> > +
-> > +	ret = i2c_transfer(chip->client->adapter, &msg, 1);
-> 
-> 	if (ret == 1)
-> 		return 0;
-> 
-> 	dev_err(dev, "I2C write error, ret=%d\n", ret);
-> 	return ret < 0 ? ret : -EIO;
-> 
->
+[2] https://lore.kernel.org/linux-arm-msm/b4b6678b-46dd-4f57-9c26-ff0e4108bf79@oss.qualcomm.com/
+[3] https://lore.kernel.org/r/20250903-lemans-evk-bu-v2-0-bfa381bf8ba2@oss.qualcomm.com
 
-This logic is cleaner. I will update it.
+Changes in v2:
+- Split the patch 3/5 in v1 into separate patch per author - Bjorn.
+- Use generic node names for expander - Krzysztof.
+- Change video firmware to 16MB comapatible - Dmitry.
+- SDHC:
+    - Arrange SDHCI-compatible alphanumerically - Dmitry.
+    - Move OPP table and power-domains to lemans.dtsi as these are
+      part of SoC.
+    - Move bus-width to board file - Dmitry.
+    - Change 'states' property to array in vreg_sdc and also re-arrange
+      the other properties.
+- Remove the redundant snps,ps-speed property from the ethernet node as
+  the MAC is actually relying on PCS auto-negotiation to set its speed
+  (via ethqos_configure_sgmii called as part of mac_link_up).
+- Refine commit text for audio patch - Bjorn.
+- Link to v1: https://lore.kernel.org/r/20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com
 
-> > +	if (ret != 1) {
-> > +		dev_err(dev, "I2C write error, ret=%d\n", ret);
-> > +		ret = ret < 0 ? ret : -EIO;
-> > +	} else {
-> > +		ret = 0;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int lp5812_read(struct lp5812_chip *chip, u16 reg, u8 *val)
-> > +{
-> > +	struct device *dev = &chip->client->dev;
-> > +	struct i2c_msg msgs[2];
-> > +	u8 ret_val;
-> > +	u8 extracted_bits;
-> > +	u8 converted_reg;
-> > +	int ret;
-> > +
-> > +	/* Extract register address bits 9 and 8 for Address Byte 1 */
-> > +	extracted_bits = (reg >> 8) & 0x03;
-> > +
-> > +	/* Lower 8 bits go in Address Byte 2 */
-> > +	converted_reg = (u8)(reg & 0xFF);
-> > +
-> > +	/* Prepare I2C write message to set register address */
-> > +	msgs[0].addr = (chip->client->addr << 2) | extracted_bits;
-> > +	msgs[0].flags = 0;
-> > +	msgs[0].len = 1;
-> > +	msgs[0].buf = &converted_reg;
-> > +
-> > +	/* Prepare I2C read message to retrieve register value */
-> > +	msgs[1].addr = (chip->client->addr << 2) | extracted_bits;
-> > +	msgs[1].flags = I2C_M_RD;
-> > +	msgs[1].len = 1;
-> > +	msgs[1].buf = &ret_val;
-> > +
-> > +	ret = i2c_transfer(chip->client->adapter, msgs, 2);
-> 
-> As above.
->
+---
+Krishna Kurapati (1):
+      arm64: dts: qcom: lemans-evk: Enable first USB controller in device mode
 
-I will update this as well.
+Mohammad Rafi Shaik (2):
+      arm64: dts: qcom: lemans: Add gpr node
+      arm64: dts: qcom: lemans-evk: Add sound card
 
-> > +	if (ret != 2) {
-> > +		dev_err(dev, "I2C read error, ret=%d\n", ret);
-> > +		*val = 0;
-> > +		ret = ret < 0 ? ret : -EIO;
-> > +	} else {
-> > +		/* Store the value retrieved from the hardware */
-> > +		*val = ret_val;
-> > +		ret = 0;
-> > +	}
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int lp5812_read_tsd_config_status(struct lp5812_chip *chip, u8 *reg_val)
-> > +{
-> > +	return lp5812_read(chip, chip->cfg->reg_tsd_config_status.addr, reg_val);
-> > +}
-> > +
-> > +static int lp5812_update_regs_config(struct lp5812_chip *chip)
-> > +{
-> > +	u8 reg_val;
-> > +	int ret;
-> > +
-> > +	ret = lp5812_write(chip, chip->cfg->reg_cmd_update.addr, LP5812_UPDATE_CMD_VAL);
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	ret = lp5812_read_tsd_config_status(chip, &reg_val); /* Save register value */
-> 
-> Save register value where?
->
+Mohd Ayaan Anwar (1):
+      arm64: dts: qcom: lemans-evk: Enable 2.5G Ethernet interface
 
-This function just reads the TSD config status register into reg_val for verification.
-This comment is redundant. I will remove it.
+Monish Chunara (4):
+      dt-bindings: mmc: sdhci-msm: Document the Lemans compatible
+      arm64: dts: qcom: lemans: Add SDHC controller and SDC pin configuration
+      arm64: dts: qcom: lemans-evk: Add EEPROM and nvmem layout
+      arm64: dts: qcom: lemans-evk: Enable SDHCI for SD Card
 
-> > +	if (ret)
-> > +		return ret;
-> > +
-> > +	return reg_val & 0x01;
-> 
-> What bit is this?  Please define it properly.
->
+Nirmesh Kumar Singh (1):
+      arm64: dts: qcom: lemans-evk: Add TCA9534 I/O expander
 
-This is config_err_status. I will replace it with a properly defined macro.
+Sushrut Shree Trivedi (1):
+      arm64: dts: qcom: lemans-evk: Enable PCIe support
 
-> > +}
-> > +
-> > +static int lp5812_fault_clear(struct lp5812_chip *chip, u8 value)
-> > +{
-> > +
-> > +	if (value == 0)
-> 
-> What do these values mean?  Define?
-> 
-> A switch() would be better.
->
+Vikash Garodia (1):
+      arm64: dts: qcom: lemans-evk: Enable Iris video codec support
 
-I agree, I'll switch to 'switch()' and replace raw numbers with enums/macros for clarity.
+Viken Dadhaniya (1):
+      arm64: dts: qcom: lemans-evk: Enable GPI DMA and QUPv3 controllers
 
-> > +		reg_val = LOD_CLEAR_VAL;
-> > +	else if (value == 1)
-> > +		reg_val = LSD_CLEAR_VAL;
-> > +	else if (value == 2)
-> > +		reg_val = TSD_CLEAR_VAL;
-> > +	else if (value == 3)
-> > +		reg_val = FAULT_CLEAR_ALL;
-> > +	else
-> > +		return -EINVAL;
-> > +
-> > +	return lp5812_write(chip, chip->cfg->reg_reset.addr, reg_val);
-> > +}
-> > +
-> > +static void set_mix_sel_led(struct lp5812_chip *chip, int mix_sel_led)
-> 
-> What is a "mix_sel_led"?
-> 
-> If forthcoming nomenclature can't be incorporated use comments.
->
+Wasim Nazir (2):
+      dt-bindings: eeprom: at24: Add compatible for Giantec GT24C256C
+      arm64: dts: qcom: lemans-evk: Enable remoteproc subsystems
 
-I will change the name of this function.
-
-> > +{
-> > +	if (mix_sel_led == 0)
-> > +		chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = 1;
-> 
-> What are you doing here?
-> 
-> Why not something like:
-> 
->   chip->u_drive_mode.s_drive_mode.mix_sel_led[mix_sel_led] = true;
-> 
-> Or if there is only one:
-> 
->   chip->u_drive_mode.s_drive_mode.mix_sel_led = mix_sel_led;
->
-
-You're right. I'll rework it.
-
-> > +	if (mix_sel_led == 1)
-> > +		chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = 1;
-> > +
-> > +	if (mix_sel_led == 2)
-> > +		chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = 1;
-> > +
-> > +	if (mix_sel_led == 3)
-> > +		chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = 1;
-> > +}
-> > +
-> > +static ssize_t parse_drive_mode(struct lp5812_chip *chip, char *str)
-> > +{
-> > +	char *sub_str;
-> > +	int tcm_scan_num, mix_scan_num, mix_sel_led, scan_oder[4], i, ret;
-> > +
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_0 = 0;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_1 = 0;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_2 = 0;
-> > +	chip->u_drive_mode.s_drive_mode.mix_sel_led_3 = 0;
-> > +
-> > +	sub_str = strsep(&str, ":");
-> 
-> This is totally unacceptable, sorry.
-> 
-> One value per sysfs file.
-> 
-> No parsing of weird and wonderful concats of data is allowed.
-> 
-> I'll end the review here.
-
-I will change solution to get value from sysfs file. No parsing or concats.
-Is it acceptable to consider a string format like "tcmscan:1:0:..." as a single value?
-
-Thank you for the detailed review.
+ Documentation/devicetree/bindings/eeprom/at24.yaml |   1 +
+ .../devicetree/bindings/mmc/sdhci-msm.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/lemans-evk.dts            | 416 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi               | 147 ++++++++
+ 4 files changed, 565 insertions(+)
+---
+base-commit: 5d50cf9f7cf20a17ac469c20a2e07c29c1f6aab7
+change-id: 20250814-lemans-evk-bu-ec015ce4080e
 
 Best regards,
-Nam Tran
+--  
+Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+
 
