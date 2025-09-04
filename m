@@ -1,118 +1,189 @@
-Return-Path: <devicetree+bounces-212652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD118B43660
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:58:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49FEDB4366D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:00:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 94AF9586B17
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:58:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5635F1BC2D6F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:00:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B41C2D238F;
-	Thu,  4 Sep 2025 08:58:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24CB22D1F7B;
+	Thu,  4 Sep 2025 08:59:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 065F12D1916;
-	Thu,  4 Sep 2025 08:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+Received: from zg8tmja2lje4os4yms4ymjma.icoremail.net (zg8tmja2lje4os4yms4ymjma.icoremail.net [206.189.21.223])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8164524167F;
+	Thu,  4 Sep 2025 08:59:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=206.189.21.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756976303; cv=none; b=T22wIU0k1dCP2cMDZD7SfTrq15oGJJvIpoC2EYnzfGif16TTGo8PN/aRQEoFbsjaUI7vk3gSlJC4/uQnBIalbYGDcnUUaGNR7B5Bge+eqeZmDmJmqw2nQSyN2+pxYPhm6iGPPTPlYZFA/k8MlLSu+HcQbLT1NTqpupe9Uqfr8QA=
+	t=1756976398; cv=none; b=limp7ZhStU6ApNUYVu08hwLaiebGgJoVXlXoNeTBCUl80iLAh4WhXXD/1YOZ8DW0p4KWT04KuxzMaqGjY1LlsosMTa64KH1TL8NChm7xYkCSzwiTahMHLLFB9IGJwTcvPH6MkcMoJWPVfyi7z3ehE5Sv61ntm8a8SBDEjxt4mEk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756976303; c=relaxed/simple;
-	bh=g8qOaQav8mXTG7NUPTOLm8W2uC66hNf4wEBj5Jpjy9w=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WQ473kp7NGTDVFVYa09y3KRAH5psAXtigbumRMuE0VSrfOPAR4TEVGxD07s2ERmBoClqFI3Hug76rf/WzKxQSlJeF7YP3vpUeNH4YOOjcdb/Gh1xtvnSXuKMFk8vPgWhrM4qZ6exqJryxExifPDO3iaeJFLmXOiFHOLnFt+9QvA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-8942afd0421so247260241.3;
-        Thu, 04 Sep 2025 01:58:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756976301; x=1757581101;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Mf7qeMVDdO/hh/wSHvB0/S9IRpetU7zeKJmw3FtqwCw=;
-        b=OufLGzKIuJ6roWoNHjXur7HoAslnsRo2kMZWdknzOKCHZV/m00rnuVi6qvpGgDttrw
-         QCJerqRQ5jHWKcZJIVaIF1/DEa5uM/boPez6l5HrxRpwWlKiuv7KE7ZRc6duyFN0ThC1
-         MKjxTNoCe+YoYRqY11Aq4LP7BZAcwAfgf1/j+f9PkiOrxCWNC5hCVRFmsrwni/uDVDv4
-         kVrqQD5pZ+Mrawgkph5m12jdTlTBn9ap70BNOOn9erxkj2wVpLuS+a/I6qK0mNK7N1K9
-         WU1gKmLPDc9meR3oyHlL+xuntGKjrO905Et4YWs2E/GrTPtP2EM6WUWSLSyUl5U4FdbY
-         YfhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUD/hplBlp9DSKJx15b9wB1dyj5HiOijw6cY4hWewcj9vVWHd9hj1mxw/jdDwu96j/zFu0Exr6UdeBmGWAVl69KaL4=@vger.kernel.org, AJvYcCUzjWgrQyLIgk4FmeK8boBMsppyqa2HY9NlK+wlf9z1d68k5XaixawSa3InZTzlBgyuO4Z1hrkEXB7I@vger.kernel.org, AJvYcCVePv2Rne0avDhA/0VgqRPF+tj/29TcBfUEcAn6jxeqBQsG3rLun0X3eFl5TQI/3M1e5tJiZddgypYW@vger.kernel.org, AJvYcCXmIRGGFLWb68OqBwOTikCKgWzUQmeIvBSDavZDzE6BXEpTfRTheQErWKjB+PVSaU2Q1gIjOFWhBSaEoX9c@vger.kernel.org
-X-Gm-Message-State: AOJu0YznJ9MUdHChTmuDS/qkxXtHcA+u4vZNnjTQKlrOWjzojIGnG9BR
-	IZBjhVZNhQReX7EQRQT0gKIzSFhVA8jIC0fW9ULdpG1EpmT5nydILKlKFPoEvHDK
-X-Gm-Gg: ASbGnctQerkOFupvF/RozHZKcZDDbY2IOZ3mtOqBKrIzSB3pyOcHaTVtIfU1h0lS4MS
-	2d91jGZ5sR/DHaazN5ECKrcD6YYJHUcs1ulN2B80L94sdqzVTRh0Gmp0sA0PkaRp8ukdoopvH5p
-	R2oVqhJ7FGHWuJhetyQ/DCMFZ03vaNAU2hU3F7BrQ5CJBQCum9n0RwNuDR+6XeWCwUIj+jG+UiR
-	zFF1455eepxh9gDTqBR64IHro5PKZwLbAlw9p96cT+EcB7ytWmieC9+s0icqa1ixBr9pgbzvJIt
-	gzSo7wVmUlYwHlyNcJET0II6cIyxZLe7YtKSBCLZVODlrpHGHtqgd5SP/1rWVrIBTId//Y2pt5v
-	HO5FhEXlLbfKSHa/6hVtYWmETDVwh2xPjVCnpyESWVfhT2vYoOg9hBhV17Hsp8zBRcvuUwhqQp7
-	bF0Hm+Ow==
-X-Google-Smtp-Source: AGHT+IG3kCelUM9oT8dqnH5oslsBJLLhYUQCqOyHf2vOncpmDahqoCn6+5KKMRNeMSk9D4kYHUB59A==
-X-Received: by 2002:a05:6102:508e:b0:520:c529:d77c with SMTP id ada2fe7eead31-52b1b1f45c5mr5834839137.20.1756976300613;
-        Thu, 04 Sep 2025 01:58:20 -0700 (PDT)
-Received: from mail-ua1-f47.google.com (mail-ua1-f47.google.com. [209.85.222.47])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-89a35fb95d2sm1994414241.15.2025.09.04.01.58.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 01:58:20 -0700 (PDT)
-Received: by mail-ua1-f47.google.com with SMTP id a1e0cc1a2514c-89ea3532bfbso148785241.2;
-        Thu, 04 Sep 2025 01:58:19 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU1xZUt2dyGcIApNkaHdVkVljmHXcRGIf+s9HSKNXyO6OzjUZuJwP4R7HXl1wKllxQyEJJ4DkEsi2Wb@vger.kernel.org, AJvYcCUzid8zMUvToPsOw9XLj0C++Y7swPuFKCLNiFDR9jOx4nBTwyTnBoEpb2N+GD4yNMmgXFmt42YUNjNX@vger.kernel.org, AJvYcCVsDiN/Ehv07sNz7iclZho+Zb/CLfN8FIqjXERWWAeZz/oshgYKOGUP6yRSbLVbWcNPMfjR/YGmYM5wbC2z@vger.kernel.org, AJvYcCWXmJsTv7A3ZKN4Csl7sQmvwbNBu1vQdjz2nJKcmjcIFF/ieZew62GpJk3d6ghmf6mAHrmsDiFa7b69WwQ9Q/cIC1E=@vger.kernel.org
-X-Received: by 2002:a05:6102:510e:b0:524:b344:748d with SMTP id
- ada2fe7eead31-52b1b2ea2a7mr7026962137.17.1756976299710; Thu, 04 Sep 2025
- 01:58:19 -0700 (PDT)
+	s=arc-20240116; t=1756976398; c=relaxed/simple;
+	bh=TyJkCCbUPD4VJsWVif6zYXzeJFnFiI63DHb4IK+7uJg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Zxz2KbpUyy3ZWhH0aXmuZj6rts9OQe4H6Ls6Dy42p11A41xDpnormPIm4KpHt6IdjOzqZun+cFt/Jag+2rNS3k50spG/NtwNb7Fk5uoi6rfKvQYPefob/SyBOWJTd3Zp6bBAlmlXer2m15aIDNSXhHSXXz0ikIbAfaQ5Kan5hZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=206.189.21.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
+Received: from E0005182LT.eswin.cn (unknown [10.12.96.155])
+	by app1 (Coremail) with SMTP id TAJkCgDn_Q7kVLlosGTIAA--.33516S2;
+	Thu, 04 Sep 2025 16:59:19 +0800 (CST)
+From: weishangjuan@eswincomputing.com
+To: devicetree@vger.kernel.org,
+	andrew+netdev@lunn.ch,
+	davem@davemloft.net,
+	edumazet@google.com,
+	kuba@kernel.org,
+	pabeni@redhat.com,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com,
+	yong.liang.choong@linux.intel.com,
+	vladimir.oltean@nxp.com,
+	rmk+kernel@armlinux.org.uk,
+	faizal.abdul.rahim@linux.intel.com,
+	prabhakar.mahadev-lad.rj@bp.renesas.com,
+	inochiama@gmail.com,
+	jan.petrous@oss.nxp.com,
+	jszhang@kernel.org,
+	p.zabel@pengutronix.de,
+	boon.khai.ng@altera.com,
+	0x1207@gmail.com,
+	netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	emil.renner.berthing@canonical.com
+Cc: ningyu@eswincomputing.com,
+	linmin@eswincomputing.com,
+	lizhi2@eswincomputing.com,
+	pinkesh.vaghela@einfochips.com,
+	Shangjuan Wei <weishangjuan@eswincomputing.com>
+Subject: [PATCH v5 0/2] Add driver support for Eswin eic7700 SoC ethernet controller
+Date: Thu,  4 Sep 2025 16:59:13 +0800
+Message-Id: <20250904085913.2494-1-weishangjuan@eswincomputing.com>
+X-Mailer: git-send-email 2.31.1.windows.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250904071954.3176806-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20250904071954.3176806-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20250904071954.3176806-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 4 Sep 2025 10:58:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXs8MrAwxQ2O-YrgG3EQoQY-jtX7+LGQ5T6uSOd3sas9g@mail.gmail.com>
-X-Gm-Features: Ac12FXyz1X26Ahnp1-o9LPuMgQOMAfU7pqA9_BZ38MYL8Q6UEVoUm9wp4EP6TCk
-Message-ID: <CAMuHMdXs8MrAwxQ2O-YrgG3EQoQY-jtX7+LGQ5T6uSOd3sas9g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] clk: renesas: r9a09g077: Add Ethernet Subsystem
- core and module clocks
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:TAJkCgDn_Q7kVLlosGTIAA--.33516S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxZF4ftw1UXFy5try3WrykZrb_yoWrAryrpF
+	W0kry5Wwn8AryxXw4Iyw10kFyfJan7JF1akr1Iqw1fXa1qya90qr4ak3WjgFy7Cr4DZ34Y
+	gay3ZFW7Ca4ay3DanT9S1TB71UUUUUDqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBm14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
+	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
+	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
+	2Ix0cI8IcVAFwI0_JrI_JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
+	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
+	Y2ka0xkIwI1lw4CEc2x0rVAKj4xxMxkF7I0En4kS14v26rWY6Fy7MxkIecxEwVCm-wCF04
+	k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18
+	MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Wrv_Gr1UMIIYrxkI7VAKI4
+	8JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4U
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I
+	8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73UjIFyTuYvjTRAnYwUUUUU
+X-CM-SenderInfo: pzhl2xxdqjy31dq6v25zlqu0xpsx3x1qjou0bp/
 
-On Thu, 4 Sept 2025 at 09:20, Prabhakar <prabhakar.csengg@gmail.com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Add module and core clocks used by Ethernet Subsystem (Ethernet_SS),
-> Ethernet MAC (GMAC), Ethernet Switch (ETHSW).
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v2->v3:
-> - Dropped adding GMAC core clocks.
+From: Shangjuan Wei <weishangjuan@eswincomputing.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-clk for v6.18.
+This series depends on the config option patch [1].
 
-Gr{oetje,eeting}s,
+[1] https://lore.kernel.org/all/20250825132427.1618089-3-pinkesh.vaghela@einfochips.com/
 
-                        Geert
+Updates:
+
+  Changes in v5：
+  - Updated eswin,eic7700-eth.yaml
+    - Use "items" instead "enum" for clock-names
+    - Arrange clocks description in correct order
+    - Delete redundant descriptions for eswin,hsp-sp-csr property
+  - Updated dwmac-eic7700.c  
+    - Optimize the implementation of eic7700_ appy_delay
+    - Update comments and remove reg checking
+    - Use FIELD_PREP in eic7700_apply_delay function
+    - Use clk_bulk related APIs to manage clks
+  - Link to v4: https://lore.kernel.org/all/20250827081135.2243-1-weishangjuan@eswincomputing.com/
+
+  Changes in v4:
+  - Updated eswin,eic7700-eth.yaml
+    - Modify reg:minItems:1 to reg:maxItems: 1
+    - Delete minItems and maxItems of clock and clock-names
+    - Delete phy-mode and phy-handle properties
+    - Add description for clock
+    - Add types of clock-names
+    - Delete descriptions for rx-internal-delay-ps and tx-internal-delay-ps
+    - Add enum value for rx-internal-delay-ps and tx-internal-delay-ps
+    - Modify description for eswin,hsp-sp-csr property
+    - Delete eswin,syscrg-csr and eswin,dly-hsp-reg properties
+    - Modify phy-mode="rgmii" to phy-mode="rgmii-id"
+  - Updated dwmac-eic7700.c
+    - Remove fix_mac_speed and configure different delays for different rates
+    - Merge the offset of the dly register into the eswin, hsp sp csr attributes
+      for unified management
+    - Add missing Author and optimize the number of characters per
+      line to within 80
+    - Support default delay configuration and add the handling of vendor delay 
+      configuration
+    - Add clks_config for pm_runtime
+    - Modify the attribute format, such as eswin,hsp_sp_csr to eswin,hsp-sp-csr
+  - Link to v3: https://lore.kernel.org/all/20250703091808.1092-1-weishangjuan@eswincomputing.com/
+
+  Changes in v3:
+  - Updated eswin,eic7700-eth.yaml
+    - Modify snps,dwmac to snps,dwmac-5.20
+    - Remove the description of reg
+    - Modify the value of clock minItems and maxItems
+    - Modify the value of clock-names minItems and maxItems
+    - Add descriptions of snps,write-questions, snps,read-questions
+    - Add rx-internal-delay-ps and tx-internal-delay-ps properties
+    - Modify descriptions for custom properties, such as eswin,hsp-sp-csr
+    - Delete snps,axi-config property
+    - Add snps,fixed-burst snps,aal snps,tso properties
+    - Delete snps,lpi_en property
+    - Modify format of custom properties
+  - Updated dwmac-eic7700.c
+    - Simplify drivers and remove unnecessary API and DTS attribute configurations
+    - Increase the mapping from tx/rx_delay_ps to private dly
+  - Link to v2: https://lore.kernel.org/all/aDad+8YHEFdOIs38@mev-dev.igk.intel.com/
+
+  Changes in v2:
+  - Updated eswin,eic7700-eth.yaml
+    - Add snps,dwmac in binding file
+    - Modify the description of reg
+    - Modify the number of clock-names
+    - Changed the names of reset-names and phy-mode
+    - Add description for custom properties, such as eswin,hsp_sp_csr
+    - Delete snps,blen snps,rd_osr_lmt snps,wr_osr_lmt properties
+  - Updated dwmac-eic7700.c
+    - Remove the code related to PHY LED configuration from the MAC driver
+    - Adjust the code format and driver interfaces, such as replacing kzalloc
+      with devm_kzalloc, etc.
+    - Use phylib instead of the GPIO API in the driver to implement the PHY
+      reset function
+  - Link to v1: https://lore.kernel.org/all/20250516010849.784-1-weishangjuan@eswincomputing.com/
+
+Shangjuan Wei (2):
+  dt-bindings: ethernet: eswin: Document for EIC7700 SoC
+  ethernet: eswin: Add eic7700 ethernet driver
+
+ .../bindings/net/eswin,eic7700-eth.yaml       | 128 +++++++++
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  11 +
+ drivers/net/ethernet/stmicro/stmmac/Makefile  |   1 +
+ .../ethernet/stmicro/stmmac/dwmac-eic7700.c   | 250 ++++++++++++++++++
+ 4 files changed, 390 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/eswin,eic7700-eth.yaml
+ create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-eic7700.c
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.17.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
