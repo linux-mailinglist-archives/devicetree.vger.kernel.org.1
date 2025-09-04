@@ -1,140 +1,168 @@
-Return-Path: <devicetree+bounces-212543-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212544-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0573AB43278
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:35:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40327B43281
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:36:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AE5718960F9
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:35:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 090065679F6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:36:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D467B275B0D;
-	Thu,  4 Sep 2025 06:35:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7117275B0A;
+	Thu,  4 Sep 2025 06:36:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="UUBraTIi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from azure-sdnproxy.icoremail.net (azure-sdnproxy.icoremail.net [207.46.229.174])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B845A274FE3;
-	Thu,  4 Sep 2025 06:34:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=207.46.229.174
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 21A29213E6A
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 06:35:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756967702; cv=none; b=c+tsiA+RO61ejDPgy1NbEFdKi7eRHUHv2nDWrQLqW0iUiywdJ9uaGW+i+TzE5CqjxzEMTX8/nWtVuOX03HzT60KeI2xfykfwWaF+xABsucjIwSwudz0RnwrDY0DV12UaK0HivxddN0DibEkfrvSrsngOr4b5UWMf7AIjflgSBg8=
+	t=1756967761; cv=none; b=E/zBS0LtCJSRisIm8WbkC9EW5la8nj8aB+8ge6NMUCSeNuQTvIjN8SiMXZojaaTqCoozxrnMrJPDUgCKEhwc+Rl9qIJ/Mp9nrjcbtvFScmZt80cM3PppSKTWHWFfbbtp4mSTSrl+2/YS5vujcpKcWV5IAlNGxTNTZpwo8S5QMJI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756967702; c=relaxed/simple;
-	bh=Tkri1JDAFjCg+7BznGdB8556T/CQsfaj0b90N8OAIGs=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=V0AaeduXY8rDLXW/1CSnzeI20pRkbdnvGOZ+ziJPH/w0Gb0lrro1ZLPCb829JaqdiCSCNVJxY+7qldUsiG2FtQeMNPE2sN/JggV+oMPRW0Fm1tJX8RB6XWukv3GaNMnYhGcXiEnGBPf73uNf0a6Yk7YuyFJWCGfShj2dED8CWas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com; spf=pass smtp.mailfrom=eswincomputing.com; arc=none smtp.client-ip=207.46.229.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=eswincomputing.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=eswincomputing.com
-Received: from E0006800LT.eswin.cn (unknown [10.12.96.77])
-	by app1 (Coremail) with SMTP id TAJkCgAHHxALM7lokE_IAA--.20421S2;
-	Thu, 04 Sep 2025 14:34:53 +0800 (CST)
-From: Yulin Lu <luyulin@eswincomputing.com>
-To: dlemoal@kernel.org,
-	cassel@kernel.org,
-	robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	vkoul@kernel.org,
-	kishon@kernel.org,
-	linux-phy@lists.infradead.org
-Cc: ningyu@eswincomputing.com,
-	zhengyu@eswincomputing.com,
-	linmin@eswincomputing.com,
-	huangyifeng@eswincomputing.com,
-	fenglin@eswincomputing.com,
-	lianghujun@eswincomputing.com,
-	Yulin Lu <luyulin@eswincomputing.com>
-Subject: [PATCH v3 0/3] Add driver support for Eswin EIC7700 SoC SATA Controller and PHY
-Date: Thu,  4 Sep 2025 14:34:27 +0800
-Message-Id: <20250904063427.1954-1-luyulin@eswincomputing.com>
-X-Mailer: git-send-email 2.31.1.windows.1
+	s=arc-20240116; t=1756967761; c=relaxed/simple;
+	bh=UJ0KZK1xnQRZT7iijdpjHkkIB/eIpt+SFyHW2s2cSnQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HhlJNJab+3w2FRun4/KXVzmYZHMNDXPLo7PNFLF13zmZd22OIsKpStnnRWvH9ucYr4mywriU9fqDswL5uUPgYTXzNqKdx0qj9UbYznjfACh/fe9W4nC5EqN/wi0hcU157lXV3TXwPHVAKRI+IGbZYP4mGhuzwDl6v/Q3/EsLgjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=UUBraTIi; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5841Tuwo029895
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 06:35:59 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	kWQHe8aTqvkPbjKWyJC9RECFwkQ22fnfERhVPTlFZgY=; b=UUBraTIiFcKJ6O5N
+	918tFPm4wsDxLklKZtmyxTos6whJ1M2uIltlFrYEOlQKn9p+tYRzNJ4Qy5LKIYUQ
+	OOwaMHJIH2+ZEqTVRJtydZy8ifR/h+dRWXcIZ2bW8dshnckSC2gf6aAfvoRfpZnZ
+	OLkVucATNaBNeSRfan/+aY8UUJSSWabrf6WOtHoxqAWYMSkzhobJ+E7lv+uXKih3
+	Y6GGHc2l6bGbDwT7PhNO6ribX19Nq3teOnAhwWK/ilIdYiC0P8XeJqK9veAPeOcl
+	eKfr6HcHe0DAGxARIgmhYFahTMTkiIGU8pDQtLoeHkQC2TizaCZNfHl4RM7TzKny
+	9tjN5g==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnpekvx-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:35:59 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-3276af4de80so781329a91.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 23:35:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756967758; x=1757572558;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kWQHe8aTqvkPbjKWyJC9RECFwkQ22fnfERhVPTlFZgY=;
+        b=E6FeytLF8rqmt93pkf+/2NUEhrT24PjEPTZ0jUrxR/qSyT+w+bPHjWgM2ag41hbxzH
+         5pVbZ6NihXBUXpLsAsR30rZOu6Wy4zBvR1MUS4iaWsl96NZP6FzK8XOHSVHNczqRGQJf
+         RlyMvF6+NHhNRgmDy5ksropaBcWplTYruZjsn3HKm9VWp+XPnFOG5yDncibkyFBDhLa4
+         jTSd+i76nvv6vIydRvu+5BDIH5PTcMSZqzOqGm6fRENOeiV6/Z7LTD9AUR9/WHDSoPbL
+         VvGUoUOH0JIUktwBp/TZvIIY24FSzJMkZlwozPKEt+8qOlVzLJi1QEv1RZGaBLM0cxSb
+         Hvww==
+X-Forwarded-Encrypted: i=1; AJvYcCWaxvGxaa81uRvd5A04EZqlwQunI6M98OVWP6/WVF08AhY5/FjwGvLaN+U82sYlZWPpEQXZtLOdLzJu@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWE8jh9C1jBhd+6/Rr3/vaOVKD1v3VD1IzH6a4jMbMA4d9fQqK
+	EoCsR5q5gPPYrCF39Dj2f94+Ixd/mpW05RcQp5nn8aUVXrVYx8GSJl8fTumb0/FjgH+GI7ld06+
+	kJRzvyIanLNda0q1h1BRM8N7/XpHKL3t3mbwPslvCpDUNrG/vwlpZG6GUsPUPCNbq
+X-Gm-Gg: ASbGncvQMdh0RJLVRnuh595dkrIDkoc4+KEYGGiOmlYhAvpJY1HfuNp1NApJlmh7Xxn
+	26hbAqG8YXeqt904cHou9QbTlKRu6mfvXO1bd1SgYEw0zDSauUr/k2BGwyMru/UpCtZUkBZrm8L
+	Ooo7FsMOGYqS7F9AlYNwQyd4Ntup+PU1uXTG3hgK641q1+rwDyWV+2i7dgx/5+NBL3RAOuJc3sy
+	a/6yqTooKT+FXohdIqVuoRXlq0QoQGYoVqq0dLSAuin+CNsHvfqG5BAysTcY47tSDYhDy9CF027
+	8O1jiwQtQXOQiWkYt6wBlJPPRNk6IffM4HFl0YrINEVPdX773nOK9SVeQ2peElM76zM3YJJNnDN
+	X4ETKcDcHSFWF8qJGm2eOkGpqKZgcRA==
+X-Received: by 2002:a17:90b:2245:b0:32b:90a5:ed2c with SMTP id 98e67ed59e1d1-32b90a5f1f2mr2536804a91.20.1756967757710;
+        Wed, 03 Sep 2025 23:35:57 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE0AZclcAiAIE/RLioDWTNitUCYKwiFoqEf+Fx+HDf/RA/CibTj/rrt4B/KuNcWo8T1gpG/rw==
+X-Received: by 2002:a17:90b:2245:b0:32b:90a5:ed2c with SMTP id 98e67ed59e1d1-32b90a5f1f2mr2536773a91.20.1756967757183;
+        Wed, 03 Sep 2025 23:35:57 -0700 (PDT)
+Received: from [10.133.33.41] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4fa1f21415sm4007673a12.18.2025.09.03.23.35.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Sep 2025 23:35:56 -0700 (PDT)
+Message-ID: <25379ac1-4559-4803-b03c-bd24355d3b4a@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 14:35:48 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:TAJkCgAHHxALM7lokE_IAA--.20421S2
-X-Coremail-Antispam: 1UD129KBjvJXoWxZF4DZryDXF1rAr4xWFW5trb_yoW5Xryfpa
-	1kCryYyr1ktryxJan7Ja10kFy3Aan7GFWakrZrXw15X39I93yvqa1fK3WYyF97Cw1kXr1Y
-	vF4aga45CFy5ArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUU9G14x267AKxVW5JVWrJwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-	1l84ACjcxK6xIIjxv20xvE14v26w1j6s0DM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4U
-	JVWxJr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
-	CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
-	2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
-	W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
-	Y2ka0xkIwI1lc7CjxVAaw2AFwI0_GFv_Wrylc2xSY4AK6svPMxAIw28IcxkI7VAKI48JMx
-	C20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAF
-	wI0_JrI_JrWlx4CE17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20x
-	vE14v26r1j6r1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v2
-	0xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxV
-	W8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7sRidbbtUUUUU==
-X-CM-SenderInfo: pox13z1lq6v25zlqu0xpsx3x1qjou0bp/
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v10 2/6] dt-bindings: display/msm: dp-controller: document
+ QCS8300 compatible
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Abhinav Kumar
+ <abhinav.kumar@linux.dev>,
+        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250901-qcs8300_mdss-v10-0-87cab7e48479@oss.qualcomm.com>
+ <20250901-qcs8300_mdss-v10-2-87cab7e48479@oss.qualcomm.com>
+ <j7whxaqfeyz6fqwg54h2mivobbvo3plvxxzor7whmwjkhavndw@ulqfidkwwn6j>
+Content-Language: en-US
+From: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+In-Reply-To: <j7whxaqfeyz6fqwg54h2mivobbvo3plvxxzor7whmwjkhavndw@ulqfidkwwn6j>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-GUID: IbdZwkvYPJshhi_iC6LRx-3rurg6y8IK
+X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68b9334f cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=Ik-895_utKsnK2WA_CQA:9
+ a=QEXdDO2ut3YA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-ORIG-GUID: IbdZwkvYPJshhi_iC6LRx-3rurg6y8IK
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfXwOSFx0mjPGK6
+ 8GXfHtjlZSEwh7XXi0v7PXUAPU7LnmQxYK59EcPRGvbjWvTmwtCt5uNmiyjwJfYGoptywiBvd3Z
+ LH2O4bLUnkyyqPAreDRmSDzg1uki7pXjC3R8Uasa3kcT2wkCOn/dHaUOQaMnZ6KCWe8RjPlJaln
+ JNcuGkfyNC+qUpjtHVD6dA06MC1vwxM1zYflBmCd+WlRGa6fiNOUXsRX9qqjI/BPC6Hpn9ereg5
+ keJS1jmB4MctCJJMNpXl0a/xQb0oPznXAgoWwVSX9/A9zmG22aEsOU6YsUg7nIxgkkFmWJzYBx1
+ z/tXC/yac4EcxuRVR5JBvWFVI0um+5lOWdIiU6GLY7V9WG8w4FAvHQNhenCCb2lxIOQ2+E5fjha
+ yIeKOJvK
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_02,2025-08-28_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
+ spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300001
 
-This series depends on the config option patch [1].
 
-[1] https://lore.kernel.org/all/20250825132427.1618089-3-pinkesh.vaghela@einfochips.com/
 
-Updates:
-  v2 -> v3:
-    - Use full name in "From" and "Signed-off-by" fields information.
-    - eswin,eic7700-ahci.yaml
-      - Remove the introduction to the reg, interrupts, phys, and phy-names fields.
-      - Modify the usage of the clocks field in the examples.
-      - Corrected the order of dt properties.
-    - phy-eic7700-sata.c
-      - Register operations use the GENMASK macro and FIELD_PREP instead of
-        the original bit offset method, and add "#include <linux/bitfield.h>".
-      - Modified some macro definition names.
-      - Remove the redundant initialization assignments for "ret" and "val".
-      - Delete ".suppress_bind_attrs = true".
-      - Modify the driver name.
-      - Add "#include <linux/io.h>" to fix the robot test issue.
-    - Link to v2: https://lore.kernel.org/lkml/20250819134722.220-1-luyulin@eswincomputing.com/
-
-  v2 -> v1:
-    - Delete the original controller driver and use ahci_dwc.c instead.
-    - Add eswin,eic7700-ahci.yaml
-      - Correct the descriptions of reset, interrupt and other
-        hardware resources for the sata controller on EIC7700 SoC.
-      - The clocks for both sata controller and sata PHY are controlled
-        via a register bit in the HSP bus and are not registered in the
-        clock tree. Clock are managed within the PHY driver, therefore
-        it is not described in this document.
-      - Add $ref: snps,dwc-ahci-common.yaml#.
-    - Add eswin,eic7700-sata-phy.yaml
-      - Add this file to include the description of the PHY on EIC7700 SoC.
-    - Add an eswin directory under the PHY driver path, and include the SATA
-      PHY driver code for EIC7700 SoC.
-    - Link to v1: https://lore.kernel.org/all/20250515085114.1692-1-hehuan1@eswincomputing.com/
-
-Yulin Lu (3):
-  dt-bindings: ata: eswin: Document for EIC7700 SoC ahci
-  dt-bindings: phy: eswin: Document for EIC7700 SoC SATA PHY
-  phy: eswin: Create eswin directory and add EIC7700 SATA PHY driver
-
- .../bindings/ata/eswin,eic7700-ahci.yaml      |  80 +++++++
- .../bindings/phy/eswin,eic7700-sata-phy.yaml  |  36 +++
- drivers/phy/Kconfig                           |   1 +
- drivers/phy/Makefile                          |   1 +
- drivers/phy/eswin/Kconfig                     |  14 ++
- drivers/phy/eswin/Makefile                    |   2 +
- drivers/phy/eswin/phy-eic7700-sata.c          | 205 ++++++++++++++++++
- 7 files changed, 339 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/ata/eswin,eic7700-ahci.yaml
- create mode 100644 Documentation/devicetree/bindings/phy/eswin,eic7700-sata-phy.yaml
- create mode 100644 drivers/phy/eswin/Kconfig
- create mode 100644 drivers/phy/eswin/Makefile
- create mode 100644 drivers/phy/eswin/phy-eic7700-sata.c
-
--- 
-2.25.1
+On 9/4/2025 7:45 AM, Dmitry Baryshkov wrote:
+> On Mon, Sep 01, 2025 at 05:57:30PM +0800, Yongxing Mou wrote:
+>> Add compatible string for the DisplayPort controller found on the
+>> Qualcomm QCS8300 SoC.
+>>
+>> The Qualcomm QCS8300 platform comes with one DisplayPort controller
+>> that supports 4 MST streams.
+>>
+>> Signed-off-by: Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+>> ---
+>>   .../bindings/display/msm/dp-controller.yaml           | 19 +++++++++++++++++++
+>>   1 file changed, 19 insertions(+)
+> 
+> I've picked up the last version of the DP MST patchset. Could you please
+> rebase this patchset on top of it, hopefully making it finally
+> mergeable.
+> 
+> 
+Sure. will update it.
 
 
