@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-212569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B46CCB4336F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:08:48 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70DEAB43372
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:10:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E4FB01740BE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:08:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 182E23BA625
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:10:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 538CA288513;
-	Thu,  4 Sep 2025 07:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CBBD288C36;
+	Thu,  4 Sep 2025 07:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m6N7cdaK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="An8Kl5ac"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A57E2857F2;
-	Thu,  4 Sep 2025 07:08:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CEE51EDA02;
+	Thu,  4 Sep 2025 07:10:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756969725; cv=none; b=LrQMrBXj+gXXS1fgq7pa922vxovvqifDbBiCG+Vdmpm/2DHQ5CtypanRsDVjTCpQgQgd59tMHw7R4IXB+9uVM7VvesFEOBJF1Gq6E2k51XX6qxa7SA+VIK+ST7RoLOPEyHyGh6OSzvqTjQ5xHPSntwjpF0fqjHeBz/UPNjnap0w=
+	t=1756969841; cv=none; b=uRl4hE+qH5IvXbpBm1DnbEbbseZjzhb9vyTv1WWRDmF1maGtIBiJfH5oknQ3E/AFYsVZ9MO8GMpru0epwv/LZZtGFurPX0qgtUyaQLWxmHjfQobu19ShBK6SH483wwUbQIRQmG7MisrgVuJraSHrj69IFf5/QsCKTqlEVPT7fs4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756969725; c=relaxed/simple;
-	bh=tehr5OKKPXDCgpZtWn7ZOAAHOWoGtGokgtR8Jjc1MmQ=;
+	s=arc-20240116; t=1756969841; c=relaxed/simple;
+	bh=aIoUIGaDJsZoyrXYOkLi6ZN2KP9FMUCrU0p7BNcXSr4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XNIdyRangBC3svu+Itw4ifiUG+sMDAUdY2wGW8MTvpZJtN9QYLRZVpzXwvtrsFmdHT7YezAzUVs0ILls47N8MpLK94U7ZGIGsMEyODN4K0S+79sBSEobP17pinQVJ4eckpWkSD/1T42bnYD4KStDQiNRy7M9BoLT6PulltRDfvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m6N7cdaK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 204A4C4CEF0;
-	Thu,  4 Sep 2025 07:08:41 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=CQfMRd4npNI1FFZLlZhbf9vwFOeYh+U16A3R2ekamO3St0vRNFzCkK5+sJPhI9OGwQZtgxHwgrxX7jH/Cre1TgtAj+UsG/BWvwgn9ty6Vsmyg7Y+vrTwB/i2xaZKMqau4a9DzsHKN9Mfd7y0EPTye+d7QQDuh0SuxqMcMXRgm04=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=An8Kl5ac; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CA66EC4CEF0;
+	Thu,  4 Sep 2025 07:10:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756969724;
-	bh=tehr5OKKPXDCgpZtWn7ZOAAHOWoGtGokgtR8Jjc1MmQ=;
+	s=k20201202; t=1756969841;
+	bh=aIoUIGaDJsZoyrXYOkLi6ZN2KP9FMUCrU0p7BNcXSr4=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m6N7cdaKytyYJvWSl2a8fggZCeLDv0l3a2ZrFDuyip4K89mgISHAkwOXShutQqbR+
-	 s9aZd5DijS6AeOMlcDIJSVZZaxNt6K4gnVJFzxk1P5TbWjJfjEd6TrrwYoc69MSVUd
-	 48HbqappdvFS9PwbBWefa8AOOEyiX42YZ8/PMkwZeL2PK/UWtmtb+uyPDL5zyYWN0E
-	 0goQHM8QRzjX0jRlvGX+echcqvlzluu3YEc0Mp+NU6YfoR4c+EO1JdKDhJPP98oCtL
-	 WjATJAbaYiBoOAf8uA5r7LjTWMfVcOnA4AXspvjIFoXDIly3Ruqhuq81FJftRUj2QQ
-	 I69EU8jKSYjbg==
-Message-ID: <7a6aa370-a9e5-41f4-86d8-09d3f5c7643d@kernel.org>
-Date: Thu, 4 Sep 2025 09:08:40 +0200
+	b=An8Kl5acras9I4lHnUieoIBo+W50Qr/If6OPd0Ib49YaWAWCdqPfiHBPy1AEWd1rd
+	 asZisBtDZA5+cJD4lFQEL/oIW91ItPvW9pO5mf7wDGOW9C/kHwbJf26hnSvnU5TDdo
+	 UkcWZG1WJKzJ1MKOK7qu8xtvFnuI6EM+T5Xl7wUP16V1Wkp8pTbtpVVEBiyXBgnNpw
+	 UkwILvr/4rgZ2v71CtSqdOhM35vD1ZmOAgCN1qnSEikm3rYdHWMSeYP4EpGJPmaClD
+	 uIraTO9JlrfoYmE4+x3XCKm9M5eer1GkvagVtwlR4OQI3fS3pTaI4VMfPmjp6ChZGa
+	 6KYuCkzKqDo0w==
+Message-ID: <8489c13b-6810-480c-9894-bb5c80cfbde0@kernel.org>
+Date: Thu, 4 Sep 2025 09:10:34 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,169 +50,116 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] leds: led-class: Add devicetree support to led_get()
-To: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: andy.shevchenko@gmail.com, devicetree@vger.kernel.org,
- linus.walleij@linaro.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org
-References: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
- <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <8aa9dfc5-5e77-48af-b2f4-f1964d20d6d1@kernel.org>
+Subject: Re: [PATCH v3 1/3] dt-bindings: ata: eswin: Document for EIC7700 SoC
+ ahci
+To: Yulin Lu <luyulin@eswincomputing.com>, dlemoal@kernel.org,
+ cassel@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, vkoul@kernel.org, kishon@kernel.org,
+ linux-phy@lists.infradead.org
+Cc: ningyu@eswincomputing.com, zhengyu@eswincomputing.com,
+ linmin@eswincomputing.com, huangyifeng@eswincomputing.com,
+ fenglin@eswincomputing.com, lianghujun@eswincomputing.com
+References: <20250904063427.1954-1-luyulin@eswincomputing.com>
+ <20250904063718.421-1-luyulin@eswincomputing.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250904063718.421-1-luyulin@eswincomputing.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-Hi,
+On 04/09/2025 08:37, Yulin Lu wrote:
+> Add document for the SATA AHCI controller on the EIC7700 SoC platform,
 
-On 4-Sep-25 1:01 AM, Aleksandrs Vinarskis wrote:
->> Hi Aleksandrs,
->>
->> Thank you for working on this.
->>
->> On 2-Sep-25 1:10 PM, Aleksandrs Vinarskis wrote:
->>> From: Hans de Goede <hansg@kernel.org>
->>>
->>> Turn of_led_get() into a more generic __of_led_get() helper function,
->>> which can lookup LEDs in devicetree by either name or index.
->>>
->>> And use this new helper to add devicetree support to the generic
->>> (non devicetree specific) [devm_]led_get() function.
->>>
->>> This uses the standard devicetree pattern of adding a -names string array
->>> to map names to the indexes for an array of resources.
->>>
->>> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
->>> Reviewed-by: Lee Jones <lee@kernel.org>
->>> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
->>> Signed-off-by: Hans de Goede <hdegoede@redhat.com>
->>
->> Please update this to:
->>
->> Reviewed-by: Hans de Goede <hansg@kernel.org>
->>
->> to match the update of the author which you already did.
->>
->> Also note that checkpatch should complain about the mismatch,
->> please ensure to run checkpatch before posting v2.
+Subject: drop "for", wrong grammar. "Document" is a verb.
+
+> including descriptions of its hardware configurations.
 > 
-> Hi,
-> 
-> ahh, I actually did not even see that email got changed, apologies. Seems
-> 'b4' auto-corrected it when sending,
+> Signed-off-by: Yulin Lu <luyulin@eswincomputing.com>
 
-I already wondered if it might be something like that. b4 probably did
-this because of the .mailmap entry mapping my Red Hat address (which
-I've stopped using since I'm leaving Red Hat) to hansg@kernel.org .
 
-> which would explain why checkpatch
-> did not catch it, as I run it before importing and sending via 'b4'. Sure,
-> will fix - did you mean to change your signoff to R-by, or is it a mistake?
+...
 
-It is a mistake please keep it as S-o-b.
+> +
+> +maintainers:
+> +  - Yulin Lu <luyulin@eswincomputing.com>
+> +  - Huan He <hehuan1@eswincomputing.com>
+> +
+> +description:
+> +  This document defines device tree bindings for the Synopsys DWC
 
-> 
->>
->>> Tested-by: Aleksandrs Vinarskis <alex@vinarskis.com>
->>> ---
->>>  drivers/leds/led-class.c | 38 +++++++++++++++++++++++++++++---------
->>>  1 file changed, 29 insertions(+), 9 deletions(-)
->>>
->>> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
->>> index 15633fbf3c166aa4f521774d245f6399a642bced..6f2ef4fa556b44ed3bf69dff556ae16fd2b7652b 100644
->>> --- a/drivers/leds/led-class.c
->>> +++ b/drivers/leds/led-class.c
->>> @@ -248,19 +248,18 @@ static const struct class leds_class = {
->>>  	.pm = &leds_class_dev_pm_ops,
->>>  };
->>>  
->>> -/**
->>> - * of_led_get() - request a LED device via the LED framework
->>> - * @np: device node to get the LED device from
->>> - * @index: the index of the LED
->>> - *
->>> - * Returns the LED device parsed from the phandle specified in the "leds"
->>> - * property of a device tree node or a negative error-code on failure.
->>> - */
->>> -static struct led_classdev *of_led_get(struct device_node *np, int index)
->>> +static struct led_classdev *__of_led_get(struct device_node *np, int index,
->>> +					 const char *name)
->>>  {
->>>  	struct device *led_dev;
->>>  	struct device_node *led_node;
->>>  
->>> +	/*
->>> +	 * For named LEDs, first look up the name in the "led-names" property.
->>> +	 * If it cannot be found, then of_parse_phandle() will propagate the error.
->>> +	 */
->>> +	if (name)
->>> +		index = of_property_match_string(np, "led-names", name);
->>>  	led_node = of_parse_phandle(np, "leds", index);
->>>  	if (!led_node)
->>>  		return ERR_PTR(-ENOENT);
->>> @@ -271,6 +270,20 @@ static struct led_classdev *of_led_get(struct device_node *np, int index)
->>>  	return led_module_get(led_dev);
->>>  }
->>>  
->>> +/**
->>> + * of_led_get() - request a LED device via the LED framework
->>> + * @np: device node to get the LED device from
->>> + * @index: the index of the LED
->>> + *
->>> + * Returns the LED device parsed from the phandle specified in the "leds"
->>> + * property of a device tree node or a negative error-code on failure.
->>> + */
->>> +struct led_classdev *of_led_get(struct device_node *np, int index)
->>> +{
->>> +	return __of_led_get(np, index, NULL);
->>> +}
->>> +EXPORT_SYMBOL_GPL(of_led_get);
->>
->> I probably did this myself, but since of_led_get() is private now
->> (I guess it was not private before?) and since we are moving away from
->> "of" specific functions to using generic dev_xxxx functions in the kernel
->> in general, I think this just should be a static helper.
->>
->> Or probably even better: just add the name argument to of_led_get()
->> before without renaming it, update the existing callers to pass
->> an extra NULL arg and completely drop this wrapper.
->>
-> 
-> That indeed sounds like a better and cleaner option, will change it.
-> This way also incorporates the rest of the feedback on this series.
+Describe the hardware, not the document. Entire line is completely
+redundant.
 
-Sounds good.
-
-Regards,
-
-Hans
+> +  implementation of the AHCI SATA controller found in Eswin's
+> +  Eic7700 SoC platform.
+> +
 
 
 
->>> +
->>>  /**
->>>   * led_put() - release a LED device
->>>   * @led_cdev: LED device
->>> @@ -342,9 +355,16 @@ EXPORT_SYMBOL_GPL(devm_of_led_get);
->>>  struct led_classdev *led_get(struct device *dev, char *con_id)
->>>  {
->>>  	struct led_lookup_data *lookup;
->>> +	struct led_classdev *led_cdev;
->>>  	const char *provider = NULL;
->>>  	struct device *led_dev;
->>>  
->>> +	if (dev->of_node) {
->>> +		led_cdev = __of_led_get(dev->of_node, -1, con_id);
->>> +		if (!IS_ERR(led_cdev) || PTR_ERR(led_cdev) != -ENOENT)
->>> +			return led_cdev;
->>> +	}
->>> +
->>>  	mutex_lock(&leds_lookup_lock);
->>>  	list_for_each_entry(lookup, &leds_lookup_list, list) {
->>>  		if (!strcmp(lookup->dev_id, dev_name(dev)) &&
->>>
+...
 
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: aclk
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: arst
+> +
+> +  ports-implemented:
+> +    const: 1
+
+I do not see how you addressed request about firmware. Nothing changed
+here, no explanation in the commit msg.
+
+
+Best regards,
+Krzysztof
 
