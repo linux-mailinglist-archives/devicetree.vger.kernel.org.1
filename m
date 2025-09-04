@@ -1,161 +1,197 @@
-Return-Path: <devicetree+bounces-212766-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 421B8B43AE1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:58:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0BB1B43AF3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:04:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CCBBC1C278F5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:58:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 572EF3A93F0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:04:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C45A52FCC01;
-	Thu,  4 Sep 2025 11:58:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25A2726A0C7;
+	Thu,  4 Sep 2025 12:04:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ij9mIURC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BcymKmc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43CA42F9C2C;
-	Thu,  4 Sep 2025 11:58:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DE582CCC0;
+	Thu,  4 Sep 2025 12:04:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756987090; cv=none; b=aaatqv/LbUG1Szm1sKkrRzsUZKxKM+6bl2MHTFFJMk+9eYN3a06QlgvGKwxumJPSDEOZMPffSRtEs1TlbQGt8Yhy0EDuKHewDmAeJ+eUbUc+qOtJpVDsRA4THqmQYRstXTKkuePmfgM7LTRm3Wjnwlc4GFKXGLP8Vj0hvYGvadM=
+	t=1756987453; cv=none; b=e0+TiU34xCAIs6VQcu0IpU5SnO37mijYOa42JQfR3SWkyzfSr18lfXXISCT8U55HjywEMhEGoM0akvPWrH5NXXRsL/uWe/AoBnD+Zen4IXutLqDAc4SaOTyi1paXH9DC7+uJhc2iPKRJDF/lPjOSfjPWnhCOfZPbVFsceoB/CdE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756987090; c=relaxed/simple;
-	bh=tATAdd7QzloSVi9rWZgMv3zaCJnGVv99/EXyM7XWqZA=;
+	s=arc-20240116; t=1756987453; c=relaxed/simple;
+	bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XYVAvLaJz+VDDA32c6hS5iFJfvsub0b86erC7L2nV1YUxQM1+dY58fPlVqmVLO1qH3IJvOdky9uKjI16x65OQw+HQMN9SrFizsqLwAI7ZWOOryjIYjh027LYBBmzrJ9FrJ1VTr3VbVHRTrUQqlqdV+++tXeCva1nPfA2M735so0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ij9mIURC; arc=none smtp.client-ip=209.85.214.180
+	 Content-Type:Content-Disposition:In-Reply-To; b=n1W3Jd02kvfJB/ikX0BTMH8a6jhE/Uc93GAS2JIk6U48tXBHXGp+uBRvOYWRfvFOfdpMwDLsIBicJM/+I7oiUGz/LYfBAmzFpzXpgOq/qR/kX6z+d80/Gr7gHJ9LqNiHG793fomAYpQCIuSKmUns3SVOrfr3DTTpZWIGnjskGwI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BcymKmc0; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-24cd340377dso2245195ad.1;
-        Thu, 04 Sep 2025 04:58:08 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45b79ec2fbeso6699075e9.3;
+        Thu, 04 Sep 2025 05:04:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756987088; x=1757591888; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=8Pj9Rbb/L1TaHYcKBCDlyOBLhhs01TGFvbTqDDZZhC4=;
-        b=Ij9mIURCnDNbl9PlkZSEFe5Hx13d0fGoBEggh8cFMk2Ya3HSlf+xo2OBlsDl8EZZJZ
-         i4vmTdGKj/jDOb0s2G4h0bUL6Wk19ov8EOpqbvOCgipdRJN6v5zDqBtiQIUTjlcLq7zp
-         RCL5N5uDbE19Mi1OVjkW+p/Q0hgsobksG1Qm5T27zQ5lznlZgvXJAzVtM3kMXc6AUlWE
-         zORHjdVACxXcup+eIn5eArEmheGnp1OVyftTaNv22KBkAxA38r4NdqxHp0c1JAZ9sD85
-         8exC8ijJDCNg/cJbxw++zcj0C4VZERQgO9B4x0ivRtTvO3PFxvVRtdM2TvEOI+JMxh57
-         EPkQ==
+        d=gmail.com; s=20230601; t=1756987450; x=1757592250; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
+        b=BcymKmc08I09F2h3/HkPTc2tIywVZnvEDh9WzzBwzATFEoHVIUEOkTAHzEPoww6yRL
+         EBDX54eSWT0crxdjH/iaTbeT83gTmn2t4MJHuF6l4g9l59kwhpk2T0VMktRk7VtEVer2
+         es/Xgh0Fq2Fq9Jnjs/Ka0ke1XDw5KqdRT1IqI0Xdz7EwnROr4Fr68+UTPtD+lhkdRG5T
+         hDj6dXa3urVQs1H3+KCCBIBnX/UcatSa/DGydV73eIVbvaxBTuKqr+rNlFChgKD1/S8d
+         EDRYabkxUJmkpOUWp4UgxqbzEIEUiVOcok0ElIqxvixekJLi4Pul5p090V/c2LvUB+xm
+         OoRw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756987088; x=1757591888;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8Pj9Rbb/L1TaHYcKBCDlyOBLhhs01TGFvbTqDDZZhC4=;
-        b=Gg+Skln9AqRC/UlgB4L/Tm1xXXQSx51onaSG7IzjfFXC5ihCxjaKDGsPUBZGhefsRW
-         bBEi+WebYG57G3dwN3Fe7NfVNTW/rI1GxIo69cRnlbUjNNNM41YbwrJK1WC7wRQWj0ym
-         6MdagDSLp3DFX3BUd1Qztye1BejUSJO/6vpnogNepUaf9/nDsD3CBBfwZgR3sPjYXrCh
-         tIe5fTdLxO2v5PgnX7AcKkIY6n4RHvpJN4zASwX0hgYo/5wmWWiYJnLRZ3+6hLjiBrS0
-         tYFiCAz6g1nGLqd2AkxmhhZsJcTjJsKVzoFETGUFurJUSIHmCXrsU4b45iI0ga67JyOm
-         GZSw==
-X-Forwarded-Encrypted: i=1; AJvYcCUtQRaBC2T44Y6DmLYCyqC4mA7t3ofVM5JH46T4O7q6TIKqwBCY8Z/UAbilnsgTX2mkkhk8qrzdC1LAKMJ3@vger.kernel.org, AJvYcCV2cXNY+TYJeSnS8PPan2RSOuekB1CHYbFY61nlEb9qF+pcGp2Wz+VKmxv+ZSsPLCwUykPWydO4SbpP@vger.kernel.org, AJvYcCVJS1ec2Gr3YyvG6q6XQXrm2QTcFhba0YufGMHXdpLVzVN+AHuSF9poKjtHqC64ssjHlZMxh6eAM1vu73s=@vger.kernel.org, AJvYcCWNaxt0cu7odmz5m3zDdfFyBKH4WVu4JfHajv6V1pm2orcxDs9KYEjO6h0+ZaPxldV9GVoCUHXv/V/eQ3U=@vger.kernel.org
-X-Gm-Message-State: AOJu0YyrMW97ZVfHenRqMm0UC/TLJIEs7TtH6WEoGqpCAJKXz7wpIY8C
-	+0kLR+4GLzj4FXPpIwcsTdN3/63FUtO4jLgqrl7nCRls5cMNcB6TRcCA
-X-Gm-Gg: ASbGnctQiu6I5fEKD7oyLIO41Cdbne4coViKo0tdjN9+TiuNm+8KbadtL+FtFFR64YR
-	C/cJhDHebDqV1uzyX9k/+nNUHrmFL+Jv8XSdAMYA57a+5M2w+VjjD4kNwe2J39/tcWMRjxID7oP
-	b7l3sylBm3pj7a+sOIOuSAM2fKYrGhmVlyTP1h7xAftSixvukXSXWXDXdGqezaBSA8pHXdF/IOR
-	Ejuo95Yl3Z6PZBcnrSL/GHCEFqs9hfgUJktsXJWtn7q6PMFedu7ZzG/B//blw1w4ZjrRiB7BSxz
-	Js0lYZRzsYsppqLx65K+NN3Yj8xoOEv8hwxJJxx5b+sd8lV8PoTfIIlKly4wjbgmCndBKuPds2c
-	7L9aQh7rf3rHIeaR8ZxdPp70=
-X-Google-Smtp-Source: AGHT+IEywwoOozpv7rN+XI2LuxYw5YAulyQKJc60fWfypt28B7vos4U96NKKRXKORY1kAm/Eb5L6qg==
-X-Received: by 2002:a17:902:db03:b0:249:c66:199e with SMTP id d9443c01a7336-24944a177fbmr249151225ad.26.1756987088248;
-        Thu, 04 Sep 2025 04:58:08 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:463b:8ef9:3432:4c09])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-249037223d7sm182682615ad.32.2025.09.04.04.58.07
+        d=1e100.net; s=20230601; t=1756987450; x=1757592250;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=CYiE/pA9YF+I4gC3nqqr/NiV56Cz+ejODJOLdKJjvLU=;
+        b=P5EF0ewSOhagZx4O6oLTmAnPREuN9oPa0YwbW7qE5naYkXZf1z0tSxXkMEshuiUhNn
+         z8mx50IrxUomWNnU3C/aUrIT+KMFWlrD9AnX4FbUPd4GXJsBiKJW6Dkgb03majkE9aEI
+         MOAv4qi2MwWVCVNy7ujaRjisPOXZA7yTMbhWIRgOU9LTQp1lvjJ2Hfis7xq92d+fre9a
+         s6dWXWt4pTu6xJXIwBlnGtW977Ps8XAZKqdMFl16rjn7uU7z0G8zWsDAidKC48gXdw1t
+         E2hraxuFfCFvxxuUp4phCJVxhfu3F0DVfRI6NooH5J726sq1MxmJZEiqbuv08pJpxqcN
+         CZwg==
+X-Forwarded-Encrypted: i=1; AJvYcCU5t0UdB1ZNfDPokDEjeybrI3pcrtR/OZIc7JMMa7a9tKl6O28pGfmdT6oG69lm7vmxQaHBtfg0a/7sRsc=@vger.kernel.org, AJvYcCUCs06g7bPtahI+5ScZQ0qkuIKdemMsFjuW3lxR7zoEZXmGbV9AbvzSItNzUl8Du/4sD57s6PhHTFBJ@vger.kernel.org
+X-Gm-Message-State: AOJu0YwfKYYv5VNXpHDMK4YzJ0QboHp2DHlTckRKxxMR94zx14di25gf
+	Zf430XQKgJKwfwPzNBQKBXNbfClDc7ejxx5h+Fg0p0trNpqI6ml7/nhP
+X-Gm-Gg: ASbGnctE0Y1f5FthWceiW93wDD3j//6Y/mxjQJjRsYheRJ+GkN4VNTyaXhjfNkEo/fF
+	P/nsUf3HFqNAt+37Yx9eQ0LGCLdbGgihgo3Ln/JwoBQA810WVQqDvn8KBdYEmkuJ11/T+ql/z2n
+	KqRBiIKUhTY95VKEVh/SRI1L7O/V4NmW1Thjxoq6O0awKPHrud6n65FQFjC9o4Y+Knfq0kInz49
+	QyBwP0OlpsxptIc9Ft/I20XqTMiz4lv/YDr+Xepf0WVtr2mk2zff4BVuc2Jst1jX2EfyALcwXbC
+	qv3/X6C8qwZoi3ATuGCu+JljbNu0m64oHva5ES3Zv9BgyQfrmI2199i42YNSbdKbrcfi06REwDI
+	Mahlla3HteCFIBINir8IEghxp4yyvYQbkfQp8JB02xF+EgAkSsiPH4WvCag83t2/4k6L8tfg56Y
+	WgqL9BN1BYu8PIs+Ybgzigumk5W4g2Ig==
+X-Google-Smtp-Source: AGHT+IGVHgAQ3rYyWGpANjjI/b4lpqEcMAsgs+SEt1MbrHmOvH15O1otXHYn+//vwM4FBU00m/l7Ow==
+X-Received: by 2002:a05:600c:1c95:b0:45b:8abf:4583 with SMTP id 5b1f17b1804b1-45b8abf46edmr100558005e9.19.1756987449310;
+        Thu, 04 Sep 2025 05:04:09 -0700 (PDT)
+Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45cb5693921sm79929805e9.0.2025.09.04.05.04.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 04:58:07 -0700 (PDT)
-Date: Thu, 4 Sep 2025 04:58:05 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
+        Thu, 04 Sep 2025 05:04:07 -0700 (PDT)
+Date: Thu, 4 Sep 2025 14:04:05 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: John Stultz <jstultz@google.com>
+Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Sumit Semwal <sumit.semwal@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org
-Subject: Re: [PATCH v1 1/2] input: rmi4: fix RMI_2D clipping
-Message-ID: <75wc4lutipb7uszkqfuakjl7iqsygjif4df5phosifkgi3serc@t75jpefbbbcs>
-References: <20250903161947.109328-1-clamor95@gmail.com>
- <20250903161947.109328-2-clamor95@gmail.com>
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>, Brian Starkey <Brian.Starkey@arm.com>, 
+	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
+	linux-mm@kvack.org
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+Message-ID: <sb76bsg5d45r5qgq4zy3svbh42ydkk4vrh6a7vh73eibvqbfjd@3r4exdhogde6>
+References: <20250902154630.4032984-1-thierry.reding@gmail.com>
+ <20250902154630.4032984-5-thierry.reding@gmail.com>
+ <CANDhNCoM4RFX-QccF7xT=+-tduGj9OZ_8SgrTVyRucMwyVc73Q@mail.gmail.com>
+ <e6twhwxi55eesb7xirei7wezzb77qjiji2mccgqlziisjzl3q5@3ny5e6lbgebz>
+ <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="n7xt7eiet7j4nzny"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250903161947.109328-2-clamor95@gmail.com>
+In-Reply-To: <CANDhNCrO21O_URa1iHuroOoG-g61DL7uvECTwVxiuitCTi=i4g@mail.gmail.com>
 
-Hi Svyatoslav,
 
-On Wed, Sep 03, 2025 at 07:19:45PM +0300, Svyatoslav Ryhel wrote:
-> From: Jonas Schwöbel <jonasschwoebel@yahoo.de>
-> 
-> The physical max_y value was overridden with a clip_y_max value. This
-> caused problems when inverting/flipping the screen. Further it messed up
-> calculation of resolution.
-> 
-> Signed-off-by: Jonas Schwöbel <jonasschwoebel@yahoo.de>
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  drivers/input/rmi4/rmi_2d_sensor.c | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/input/rmi4/rmi_2d_sensor.c b/drivers/input/rmi4/rmi_2d_sensor.c
-> index b7fe6eb35a4e..b4762b3c8b24 100644
-> --- a/drivers/input/rmi4/rmi_2d_sensor.c
-> +++ b/drivers/input/rmi4/rmi_2d_sensor.c
-> @@ -56,7 +56,7 @@ void rmi_2d_sensor_abs_process(struct rmi_2d_sensor *sensor,
->  		obj->x = min(sensor->max_x, obj->x);
->  
->  	if (axis_align->clip_y_high)
-> -		obj->y =  min(sensor->max_y, obj->y);
-> +		obj->y =  min(axis_align->clip_y_high, obj->y);
->  
->  	sensor->tracking_pos[slot].x = obj->x;
->  	sensor->tracking_pos[slot].y = obj->y;
-> @@ -149,13 +149,12 @@ static void rmi_2d_sensor_set_input_params(struct rmi_2d_sensor *sensor)
->  
->  		sensor->min_y = sensor->axis_align.clip_y_low;
->  		if (sensor->axis_align.clip_y_high)
-> -			sensor->max_y = min(sensor->max_y,
-> +			max_y = min(sensor->max_y,
+--n7xt7eiet7j4nzny
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 4/9] dma-buf: heaps: Add debugfs support
+MIME-Version: 1.0
 
-I see that you want to have sensor->max_y to carry maximum coordinate
-the sensor is capable of reporting, so that flipping works properly. If
-this is the case you should also be deleting sensor->min_y and always
-use 0 in its place, otherwise there is inconsistency.
+On Wed, Sep 03, 2025 at 11:48:38AM -0700, John Stultz wrote:
+> On Wed, Sep 3, 2025 at 8:38=E2=80=AFAM Thierry Reding <thierry.reding@gma=
+il.com> wrote:
+> >
+> > On Tue, Sep 02, 2025 at 03:37:45PM -0700, John Stultz wrote:
+> > > On Tue, Sep 2, 2025 at 8:46=E2=80=AFAM Thierry Reding <thierry.reding=
+@gmail.com> wrote:
+> > > >
+> > > > From: Thierry Reding <treding@nvidia.com>
+> > > >
+> > > > Add a callback to struct dma_heap_ops that heap providers can imple=
+ment
+> > > > to show information about the state of the heap in debugfs. A top-l=
+evel
+> > > > directory named "dma_heap" is created in debugfs and individual fil=
+es
+> > > > will be named after the heaps.
+> > > >
+> > >
+> > > I know its debugfs, but this feels a little loosey-goosey as an uAPI.
+> >
+> > Well, the whole point of debugfs is that it's not really an ABI. Nothing
+> > should ever rely on the presence of these files.
+> >
+> > > Is there any expected format for the show function?
+> > >
+> > > What would other dmabuf heaps ideally export via this interface?
+> >
+> > I've thought about this a bit and I'm not sure it makes sense to
+> > standardize on this. I think on one hand having a list of buffers
+> > exported by the dma-buf heap is probably the lowest common denominator,
+> > but then there might be a bunch of other things that are very heap-
+> > specific that some heap might want to export.
+> >
+> > > Is there some consistent dma_heap-ish concept for it to justify it
+> > > being under a dma_heap directory, and not just an independent debugfs
+> > > file for the driver implementing the dmabuf heap?
+> >
+> > Well, I think just the fact that it's a dma-heap would qualify its
+> > corresponding debugfs to be in a well-known location. We could of course
+> > pick some arbitrary location, but that's just a recipe for chaos because
+> > then everybody puts these whereever they want. There's really no
+> > standard place for driver-specific debugfs files to go, so putting it
+> > into some "subsystem"-specific directory seems like the better option.
+>=20
+> Ok, I guess I was thinking if the files are organizationally cohesive
+> to be under the dma-heap directory, they ought to have some
+> consistency between them.
 
-You also need to deal with X coordinate in the similar fashion.
+As far as I can tell there's not even enough information in a dma-heap
+to add any common debugfs snippets. As I mentioned earlier, a list of
+buffers allocated from a dma-heap is about the only generic piece of
+information that I can think of, but we don't track these buffers in a
+generic way. None of the existing heaps do so either seem to be
+interested in this either.
 
->  				sensor->axis_align.clip_y_high);
->  
->  		set_bit(EV_ABS, input->evbit);
->  
->  		max_x = sensor->max_x;
-> -		max_y = sensor->max_y;
+It's also not like it's very useful information most of the time, it's
+mainly in this driver so that it can be inspected at runtime to see what
+the allocation pattern looks like at various stages and maybe help tune
+the division into chunks.
 
-This makes max_y potentially uninitialized.
+Thierry
 
->  		if (sensor->axis_align.swap_axes)
->  			swap(max_x, max_y);
->  		input_set_abs_params(input, ABS_MT_POSITION_X, 0, max_x, 0, 0);
+--n7xt7eiet7j4nzny
+Content-Type: application/pgp-signature; name="signature.asc"
 
-I am unconvinced that using raw sensor coordinates to calculate
-resolution is a good idea. It has potential to regress existing users. 
+-----BEGIN PGP SIGNATURE-----
 
-Thanks.
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi5gDMACgkQ3SOs138+
+s6Fs+g//UOYEclDiMQaLHjmLrIy415HNAOvJ45jAQXSXODXhEWUoeeT6VpX4alVY
+nX8oVWTi6ne/gxdb5ecijq0xe98suaGyb0ExszrPDOsykvikNhAMO8+hGNgfvnU4
+L/lvQqTxM8wGz/D1A7z3CyhBipu8GNIYxlF64O9ejq22NqDZGLykvHupw8SubU4G
+LQRHuwu39Yb2Hj+r8IMiSXCjWPHtelnA4HXM7hnURUkRNIKkoSp5g9UQJIlw84Y3
+U+4zSs9x9IOUr2l35QMwJEq1R168TIAj6gm1G1eSKxGDlIc5DgU4Ei4QTmki+Qhj
+hvToHncu1BTaA5YvpgcFKmgCD1jFX93fx2to90mPpWMonySn4EyL0wAqwycfUuC7
+D4mKmRF+Dj5RGmrRATN2yZ+2l+N2GgCzJ9EoNNacTl0fFy14FHVwiqn6OVlrIMVl
++olxYn2Ta8T9EMnKrQquQtoEbFJT1mfXUfAlHFDGJocYgKrO+o1zpFzZtEGd92sZ
+hpSs5qlYH7hLQaj7P2Pb29mfloQZ9XK3YSNcttTbnFU2dyEahlPvx/VJTCCQvNeY
+g03SAA1priYhlLGKdaa19fDxICteA6dmc9Ba6ejSvKXLHejTFlLooK+hkSmufJIu
+3DdzixdgWcOsgxrw2vvHlU0U5bPvKnfbiUJUL557Iwo9vw3KKHw=
+=G6AW
+-----END PGP SIGNATURE-----
 
--- 
-Dmitry
+--n7xt7eiet7j4nzny--
 
