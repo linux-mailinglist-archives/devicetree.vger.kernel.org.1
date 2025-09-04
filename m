@@ -1,186 +1,248 @@
-Return-Path: <devicetree+bounces-212662-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212663-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F401B4369A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:05:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E907BB43699
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:05:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3A777A5B8A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:04:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DE1C4871DB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:05:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 422F22E1F11;
-	Thu,  4 Sep 2025 09:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37CE02DA760;
+	Thu,  4 Sep 2025 09:05:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="J8CdGFlp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XEFHiV93"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC7222DF15E
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 09:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C2AB286D57;
+	Thu,  4 Sep 2025 09:05:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756976727; cv=none; b=emaUbm2ywXgpvIFmm/+c8zsZTCf4b/L2w4ZqwZl92/T/DwEegaDe2Pa0goUXBiK4eGBBd4PaeD3fpws3VtHCtxk9K07Y5lBuH8XTpX/Pyjlcd6X4Qgbx++pyMy1UfIqFfjfjGZaXyh5OsWPdADCDMZ0Oc+zbnQn1B9l85V+2Nn4=
+	t=1756976745; cv=none; b=QgNRaBepOqRJiM44icT4bLkh/o//kTBT8Ijoh07zfwSzOdTXfSR0Vbf3TUJYy0ZRpPWSFP5Qov3gHOrS04ojzd0RVqUBOWgbmryF39NTUP6Q5ghzxeqxkHAMrKHIuVCdPAtAhWhdJBloRKTqO84CrMNpT3ATKDxBBFmck/Btucw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756976727; c=relaxed/simple;
-	bh=plmPEpfQMO3YEjTyCXmuGh54NXSVgSjwnmBAsPAbVyU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BSJ5P4cVO5XvWM7XwpONYvOVn5bTBV7kzfUKajW8Y7mSnW9H90gl5Cl8eMFvAo3p7bPUfF8yTxXEeOhieDRuJAOLhrO+PkEPQval4sgkYlxObkZiaAUBgMYj4XO2ub/sFqkofWsvwQjx534Ha6fxencLwsk7UiFBOENH4POhFLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=J8CdGFlp; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5840lrgD005012
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 09:05:25 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	Y3354bZOtkc6dotBrNo46+kgtyiv6WAidh4XlD2eQB0=; b=J8CdGFlpYm23cM3o
-	qA9PNlfuOuT/8H21G4e1agtfqjPU0sHk741L/txViUEOWwz8iCNFjhv9muUZ0wbx
-	gaDTd7JeDpC0gqgImekJ4YiDCvqRj5eBmBlwnte8tCMHTWv2SNZ7SynLJdCLulPw
-	N4uHT+qhQQJGl5cupih1yGy/TVqCpGUI1LpIXkNBeIPDgbpyx4qAV+ONX+SNn1IW
-	KvEG2ZB7fh4HHi2Qj8E56l+YdrKbt9h3GtDbK0UtHQOv4U5/vBQ5omax5XVtS43I
-	kF6l6bo9Tb4kbIbCGd5vaZhQxGdtrLfutgcTogjUoB2kUGnPi8pTc+t0vyTM6347
-	oOUQHg==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s6xyu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 09:05:24 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b3ca5e94d3so1757491cf.3
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 02:05:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756976723; x=1757581523;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y3354bZOtkc6dotBrNo46+kgtyiv6WAidh4XlD2eQB0=;
-        b=jqjL2wgPuMK5pqTkH+8+47RELUbILoFzFvdfFH3kXnHU80qUog3Zpdz4sdPbxjPa+q
-         Sl6J8DoKDDixmm/rGU+z5Ykv6IJn+ih9QLlx8nYl6rfL9eaxHsIrDuUUGNwDDtQyRykf
-         Ts+Q7pZl5G5FrbAShf8z5RcNpzgXFdmPz2Zw/Fc5dFjTz4qYlvCalNQ4juW/8ZhsJxCr
-         NmVCFPX9cg86uY7CSnVOeLsP+KheSIC8i63qgHrZSP+9UxvE35wQizr1r4WviVx3aQ3O
-         ZyK5WGeAg4SVOunj9PyvS7wh4TmAOex7mFwUI1Ce2VIBZDaZLn4oVchIXPeTS7jsoLQD
-         qCPQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUwJ8bLWgOTOY8wfQWGVAzoiRmNlKoEt+bcAWNY+LazpwpNxl3qO61p0wxwSZo+bgeLCbghihUKtCK3@vger.kernel.org
-X-Gm-Message-State: AOJu0YxpnUrAE3uVVlvbAMNOCTcWu2GPoTN7uBOVFz9sxlJd4zdBOSfs
-	+VLzik1bB0wG8PFCoa8XG8aucX0dgM8BTdQRnXZS2Gxhi3lQZZTTVuJtp2+HeizExwTJ9WTBHF7
-	V1qRhd9F2uMHO/Pp8rEedG6KEk0rPMwljyYz8xDdUfqUX5BK5S9DJHAwtsC5piUoQ
-X-Gm-Gg: ASbGncsl690xjyF/fH/l9FyT5lzYcKYJPPpW9LLRwlZWXF4X4xJH8iSYNzuMbmyiEi/
-	B5rRt6T/neJ2Os2JX1+fl4eHybGi80hCgv3SqLumSIBqf/9l8DJ5QKg/FEToSABCCSQMp/GCDpF
-	DuqAPYjB2TGzzgBql6xjLz00IPc/td8vIWQrEFhZMWp09jtKhEncFrRfx68RUXkOcxY1Pi64Fz3
-	mcO7k7P9oD8YR9Ph1YPTqHlQ7ZG62qtaWzG0jRzxyPrsgCrdhdwnXUlNzHzqgXLnqPHPUL968dY
-	PbK+Rze+6Bxnm4BcdZHVr9WiYcCOXU8UBYe6Gazmrla+ZKAnBeBlcT77e8XU3y6biAi2Brr5FQ2
-	BXTm7rGWchHMV8OXTua1g/A==
-X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr174872821cf.8.1756976722799;
-        Thu, 04 Sep 2025 02:05:22 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGKp0JIOqe7KcHRuwNbMy/T1sz594GUnF25np1+U7x9aNCZ0OMz0fmzvg55AOLuXRjrIcc7gQ==
-X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr174872511cf.8.1756976722305;
-        Thu, 04 Sep 2025 02:05:22 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b041f6fb232sm1089893966b.87.2025.09.04.02.05.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 02:05:21 -0700 (PDT)
-Message-ID: <da1781f2-448e-4236-8af2-d2ee0744f588@oss.qualcomm.com>
-Date: Thu, 4 Sep 2025 11:05:19 +0200
+	s=arc-20240116; t=1756976745; c=relaxed/simple;
+	bh=qpJEbsGUlkK+Dfp4ef8wzkLzFlzAmg1kYILcdgh25nc=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ESxEote24XVqerhq5PuQzp3gosKmdSpVH5BDLzwk56sfBsSC0NBx9ZdwTyotNbKdDbR4swGl3mfMuHND47jdqHr89ENBIgFrZkBuB+u6i2y/Pq2e9lZVd3zo1Yloq++74VUJ9af2D1kU8ShLE+XGlOzHj0DcSezX9AjVoSkVQ4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XEFHiV93; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58495QVJ2978623;
+	Thu, 4 Sep 2025 04:05:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756976726;
+	bh=gxzy7uwdX7Ek0PQkPPdMgH4YMmHeib9QbVidr/oqQjs=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=XEFHiV93E26A/sdAT0hiWrNOMYt3uAUFdYMzs2lcK2nJkDzoYghXXxJpUv1/FXzTh
+	 vwghCj+4DCwWiG4XMVcQLgI3PQe3oJ7bDEjWYlGEfRRwthxW6zWqIBaqmSBTohAIis
+	 WiAcrs1WUH8hKV0ZWz5H6yP0/XylwCNrwEwBtfgg=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58495Pgc3699330
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 4 Sep 2025 04:05:25 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
+ Sep 2025 04:05:24 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 4 Sep 2025 04:05:24 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58495Ncv3019525;
+	Thu, 4 Sep 2025 04:05:24 -0500
+Date: Thu, 4 Sep 2025 14:35:23 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Markus Schneider-Pargmann <msp@baylibre.com>
+CC: Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Marc Kleine-Budde
+	<mkl@pengutronix.de>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski
+	<krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, Vishal Mahaveer
+	<vishalm@ti.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Sebin Francis
+	<sebin.francis@ti.com>,
+        Kendall Willis <k-willis@ti.com>, Akashdeep Kaur
+	<a-kaur@ti.com>,
+        Simon Horman <horms@kernel.org>,
+        Vincent MAILHOL
+	<mailhol.vincent@wanadoo.fr>,
+        <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v9 4/4] can: m_can: Support pinctrl wakeup state
+Message-ID: <20250904090523.4zglietnh3fvbhnr@lcpd911>
+References: <20250820-topic-mcan-wakeup-source-v6-12-v9-0-0ac13f2ddd67@baylibre.com>
+ <20250820-topic-mcan-wakeup-source-v6-12-v9-4-0ac13f2ddd67@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/3] pinctrl: qcom: Add SDM660 LPASS LPI TLMM
-To: Richard Acayan <mailingradian@gmail.com>,
-        Nickolay Goppen <setotau@mainlining.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
-        linux@mainlining.org, Nickolay Goppen <setotau@yandex.ru>
-References: <20250903-sdm660-lpass-lpi-v5-0-fe171098b6a1@mainlining.org>
- <20250903-sdm660-lpass-lpi-v5-3-fe171098b6a1@mainlining.org>
- <aLixvcgoRIHoniv-@radian>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <aLixvcgoRIHoniv-@radian>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX4SCAnzhDr0tK
- jUe84Ei7TBjyMdGo5wbeNxDuXuX2F0zIMpd+UWBoQhP3pmcw92DXNKDaHGdXyWHsMAiFAQFat5J
- WRfjPbRT/HkR+tZ+dxR2VhX3/oJ42TWGhAEgmV6vLMrDD0NJT5+l/VxOsSgmi+uOJYoPcVLHrLW
- FcyP+uXJXO35JTM5fDMxr5y7Ak6USpZDbdzCLlXQHe6rcZD2R6Y+3s9mbnxmE3xFsa0YyKNkqMl
- RtPWKRNPt/lsNUX30C2KyqCIpcehXOc48LfHhweHr2OIhu4nuZFB3ANF/m01zlu/AlMm6JnT8KW
- q1YF0RrBu3nGY+ms7LHzJPp1eFv7weFIEZDoBishAu3Zc1PAgOUt2JihRVxqypBS5w5Z/ML4DuR
- 6eArbWL9
-X-Proofpoint-GUID: 5J0yEOjIklMrDYfOBezlp1Q-ydMJTMmK
-X-Proofpoint-ORIG-GUID: 5J0yEOjIklMrDYfOBezlp1Q-ydMJTMmK
-X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b95654 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=qC_FGOx9AAAA:8 a=pGLkceISAAAA:8
- a=OuZLqq7tAAAA:8 a=EUspDBNiAAAA:8 a=cKVQg8D8wNGJnLBI7BwA:9 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22 a=fsdK_YakeE02zTmptMdW:22 a=AKGiAy9iJ-JzxKVHQNES:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
- suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20250820-topic-mcan-wakeup-source-v6-12-v9-4-0ac13f2ddd67@baylibre.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 9/3/25 11:23 PM, Richard Acayan wrote:
-> On Wed, Sep 03, 2025 at 04:39:03PM +0300, Nickolay Goppen wrote:
->> From: Richard Acayan <mailingradian@gmail.com>
->>
->> The Snapdragon 660 has a Low-Power Island (LPI) TLMM for configuring
->> pins related to audio. Add the driver for this.
->> Also, this driver uses predefined pin_offsets for each pin taken from
->> downstream driver, which does not follow the usual 0x1000 distance
->> between pins and uses an array with predefined offsets that do not
->> follow any regular pattern [1].
->>
->> [1] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/drivers/pinctrl/qcom/pinctrl-lpi.c#L107
->>
->> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->> Co-developed-by: Nickolay Goppen <setotau@mainlining.org>
->> Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
->> ---
+On Aug 20, 2025 at 14:42:28 +0200, Markus Schneider-Pargmann wrote:
+> am62 requires a wakeup flag being set in pinctrl when mcan pins acts as
+
+Let's call it "TI AM62x SoC" or TI K3 SoCs? This commit goes into a driver so let's not assume
+everyone knows what am62 means ;)
+
+Also nit: s/"mcan pins acts"/"mcan pins act"/
+
+> a wakeup source. Add support to select the wakeup state if WOL is
+> enabled.
 > 
-> (snip)
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>  drivers/net/can/m_can/m_can.c | 69 +++++++++++++++++++++++++++++++++++++++++--
+>  drivers/net/can/m_can/m_can.h |  3 ++
+>  2 files changed, 70 insertions(+), 2 deletions(-)
 > 
->> +const struct lpi_pingroup sdm660_lpi_pinctrl_groups[] = {
->> +	LPI_PINGROUP_OFFSET(0, LPI_NO_SLEW, _, _, _, _, 0x0000),
->> +	LPI_PINGROUP_OFFSET(1, LPI_NO_SLEW, _, _, _, _, 0x1000),
->> +	LPI_PINGROUP_OFFSET(2, LPI_NO_SLEW, _, _, _, _, 0x2000),
->> +	LPI_PINGROUP_OFFSET(3, LPI_NO_SLEW, _, _, _, _, 0x2010),
->> +	LPI_PINGROUP_OFFSET(4, LPI_NO_SLEW, _, _, _, _, 0x3000),
->> +	LPI_PINGROUP_OFFSET(5, LPI_NO_SLEW, _, _, _, _, 0x3010),
->> +	LPI_PINGROUP_OFFSET(6, LPI_NO_SLEW, _, _, _, _, 0x4000),
->> +	LPI_PINGROUP_OFFSET(7, LPI_NO_SLEW, _, _, _, _, 0x4010),
->> +	LPI_PINGROUP_OFFSET(8, LPI_NO_SLEW, _, _, _, _, 0x5000),
->> +	LPI_PINGROUP_OFFSET(9, LPI_NO_SLEW, _, _, _, _, 0x5010),
->> +	LPI_PINGROUP_OFFSET(10, LPI_NO_SLEW, _, _, _, _, 0x5020),
->> +	LPI_PINGROUP_OFFSET(11, LPI_NO_SLEW, _, _, _, _, 0x5030),
->> +	LPI_PINGROUP_OFFSET(12, LPI_NO_SLEW, _, _, _, _, 0x6000),
->> +	LPI_PINGROUP_OFFSET(13, LPI_NO_SLEW, _, _, _, _, 0x6010),
->> +	LPI_PINGROUP_OFFSET(14, LPI_NO_SLEW, _, _, _, _, 0x7000),
->> +	LPI_PINGROUP_OFFSET(15, LPI_NO_SLEW, _, _, _, _, 0x7010),
->> +	LPI_PINGROUP_OFFSET(16, LPI_NO_SLEW, _, _, _, _, 0x5040),
->> +	LPI_PINGROUP_OFFSET(17, LPI_NO_SLEW, _, _, _, _, 0x5050),
->> +
->> +	/* The function names of the PDM GPIOs are derived from SDM670 */
+> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
+> index e08fae5ddf5efa8345670dd50d50954ec5d52b29..a1fa4b2f6b6cc94e5e10259cca53bd931ab238c8 100644
+> --- a/drivers/net/can/m_can/m_can.c
+> +++ b/drivers/net/can/m_can/m_can.c
+> @@ -2249,7 +2249,26 @@ static int m_can_set_wol(struct net_device *dev, struct ethtool_wolinfo *wol)
+>  		return ret;
+>  	}
+>  
+> +	if (!IS_ERR_OR_NULL(cdev->pinctrl_state_wakeup)) {
+> +		if (wol_enable)
+> +			ret = pinctrl_select_state(cdev->pinctrl, cdev->pinctrl_state_wakeup);
+> +		else
+> +			ret = pinctrl_pm_select_default_state(cdev->dev);
+> +
+> +		if (ret) {
+> +			netdev_err(cdev->net, "Failed to select pinctrl state %pE\n",
+> +				   ERR_PTR(ret));
+> +			goto err_wakeup_enable;
+> +		}
+> +	}
+> +
+>  	return 0;
+> +
+> +err_wakeup_enable:
+> +	/* Revert wakeup enable */
+> +	device_set_wakeup_enable(cdev->dev, !wol_enable);
+> +
+> +	return ret;
+>  }
+>  
+>  static const struct ethtool_ops m_can_ethtool_ops_coalescing = {
+> @@ -2377,6 +2396,42 @@ int m_can_class_get_clocks(struct m_can_classdev *cdev)
+>  }
+>  EXPORT_SYMBOL_GPL(m_can_class_get_clocks);
+>  
+> +static bool m_can_class_wakeup_pinctrl_enabled(struct m_can_classdev *class_dev)
+> +{
+> +	return device_may_wakeup(class_dev->dev) && class_dev->pinctrl_state_wakeup;
+> +}
+> +
+> +static int m_can_class_setup_optional_pinctrl(struct m_can_classdev *class_dev)
+> +{
+> +	struct device *dev = class_dev->dev;
+> +	int ret;
+> +
+> +	class_dev->pinctrl = devm_pinctrl_get(dev);
+> +	if (IS_ERR(class_dev->pinctrl)) {
+> +		ret = PTR_ERR(class_dev->pinctrl);
+> +		class_dev->pinctrl = NULL;
+> +
+> +		if (ret == -ENODEV)
+> +			return 0;
+> +
+> +		return dev_err_probe(dev, ret, "Failed to get pinctrl\n");
+> +	}
+> +
+> +	class_dev->pinctrl_state_wakeup =
+> +		pinctrl_lookup_state(class_dev->pinctrl, "wakeup");
+> +	if (IS_ERR(class_dev->pinctrl_state_wakeup)) {
+> +		ret = PTR_ERR(class_dev->pinctrl_state_wakeup);
+> +		class_dev->pinctrl_state_wakeup = NULL;
+> +
+> +		if (ret == -ENODEV)
+> +			return 0;
+> +
+> +		return dev_err_probe(dev, ret, "Failed to lookup pinctrl wakeup state\n");
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
+>  						int sizeof_priv)
+>  {
+> @@ -2418,7 +2473,15 @@ struct m_can_classdev *m_can_class_allocate_dev(struct device *dev,
+>  	m_can_of_parse_mram(class_dev, mram_config_vals);
+>  	spin_lock_init(&class_dev->tx_handling_spinlock);
+>  
+> +	ret = m_can_class_setup_optional_pinctrl(class_dev);
+
+optional makes it sound a little confusing IMO, might make sense to call
+it something like m_can_class_configure_pinctrl or m_can_class_setup_wakeup_pinctrl
+
+> +	if (ret)
+> +		goto err_free_candev;
+> +
+>  	return class_dev;
+> +
+> +err_free_candev:
+> +	free_candev(net_dev);
+> +	return ERR_PTR(ret);
+>  }
+>  EXPORT_SYMBOL_GPL(m_can_class_allocate_dev);
+>  
+> @@ -2533,7 +2596,8 @@ int m_can_class_suspend(struct device *dev)
+>  		m_can_clk_stop(cdev);
+>  	}
+>  
+> -	pinctrl_pm_select_sleep_state(dev);
+> +	if (!m_can_class_wakeup_pinctrl_enabled(cdev))
+> +		pinctrl_pm_select_sleep_state(dev);
+>  
+>  	cdev->can.state = CAN_STATE_SLEEPING;
+>  
+> @@ -2547,7 +2611,8 @@ int m_can_class_resume(struct device *dev)
+>  	struct net_device *ndev = cdev->net;
+>  	int ret = 0;
+>  
+> -	pinctrl_pm_select_default_state(dev);
+> +	if (!m_can_class_wakeup_pinctrl_enabled(cdev))
+> +		pinctrl_pm_select_default_state(dev);
+>  
+>  	cdev->can.state = CAN_STATE_ERROR_ACTIVE;
+>  
+> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
+> index bd4746c63af3f0a032910644dfd48a9ebb3a6168..583c7f1d005d61b3fc8587697388522993ff11a8 100644
+> --- a/drivers/net/can/m_can/m_can.h
+> +++ b/drivers/net/can/m_can/m_can.h
+> @@ -128,6 +128,9 @@ struct m_can_classdev {
+>  	struct mram_cfg mcfg[MRAM_CFG_NUM];
+>  
+>  	struct hrtimer hrtimer;
+> +
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pinctrl_state_wakeup;
+>  };
+>  
+>  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int sizeof_priv);
 > 
-> Not anymore, the names now match the other LPI drivers closer.
-> This can be removed.
+> -- 
+> 2.50.1
+> 
 
-With the comment removed:
-
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-
-Konrad
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
