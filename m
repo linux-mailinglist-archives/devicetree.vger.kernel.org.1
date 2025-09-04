@@ -1,101 +1,90 @@
-Return-Path: <devicetree+bounces-212513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 379CFB4302E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:01:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2B12B43030
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCADE7B5FEC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:00:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 79BD87C793D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 03:02:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7DA761EA7C9;
-	Thu,  4 Sep 2025 03:01:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C0851F419B;
+	Thu,  4 Sep 2025 03:02:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JGjNQ+7q"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Noc91Gn5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+Received: from mail-ot1-f43.google.com (mail-ot1-f43.google.com [209.85.210.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAC3BC8FE;
-	Thu,  4 Sep 2025 03:01:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7249C8FE
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 03:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756954894; cv=none; b=SajKfrLgn++k1AR2Szdx1bWBz3dmw2wP3TT93smQVcz/eJn9kAWk3PvOB6G/zWEfzcNtDyn1YS6UgQ2d/qNE49Nfyf0UWVnNZlBQrBQXmEXkl0uJURReCohTuJBkDBwiuY3HlSWsLrIMsCE0JX2yfhpOYOfJ2H1gNw7En0vrPig=
+	t=1756954925; cv=none; b=CykTtIiQatbzWWSDpwJdBIYblbDw/DlVmazfBaBLtmzfyjTlqsR6VElqh+/D0/eI2LwCBsTB0Fdfp6ZbuSpQzfksJaVKKR3HKld2nzpAOY62w85V/uCCg7Pdj9PQy/m0FawlYgGlx3KXEexXrm/1eYRRcrF6Y8OFM3WmaDcPxtI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756954894; c=relaxed/simple;
-	bh=OM+N0mj6PjGykT2FoWQd4MIbb/hzZ0tAzLpZGoLpbXc=;
-	h=From:To:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=eHoTB2kceEQfDc7sG51Abx8e1EyK4qouMc86Q0kJaVWoXi1LXH3D9/l49ziyTsbtnTcGdWN0CM0EfVXMCE+T3DqCOGBjKgvhBXyT8fGtMb34P8PKvpfk0UjG2Ccyxlvqa7omsZFKoLop5jNojNI+DsddVNDJvrGaVgZasJqt7BQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JGjNQ+7q; arc=none smtp.client-ip=209.85.210.47
+	s=arc-20240116; t=1756954925; c=relaxed/simple;
+	bh=LwwSp2VGYvrv/hSMJWpdzyIChlL8ttFwCPxmHeAwKNE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t6SdAQu5+5cvfRH0DCirNG4wuawksy1aJchf9OU890EdUNNZRIS+KXWyaLAINL6V6A4oGWYbK7CHmLZaRI08NrzOmRi1v4oJSZGzgCv96SuoBXu66bbcgLAN6dtA+Zu9kFDGeqRqmhup074tmJl8ZYCdGfra8Duo2GjK/nHiYqw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Noc91Gn5; arc=none smtp.client-ip=209.85.210.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f47.google.com with SMTP id 46e09a7af769-745514a7b1fso222681a34.2;
-        Wed, 03 Sep 2025 20:01:32 -0700 (PDT)
+Received: by mail-ot1-f43.google.com with SMTP id 46e09a7af769-7454a992f7dso479051a34.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 20:02:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756954892; x=1757559692; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=W9CajuAm7VsoRhpeotc4jxkIe8TBDwxy99+zM/DwbrY=;
-        b=JGjNQ+7qgbqwV7Y3RdUGunC+3Chz063hfzn/x4hmKRpPVVQ9zkj+Sf5nUsq894WXis
-         /OmQgisLlRm9g54rDTQI08++pnOvoqxiW8URQ7Pccf+aiD0evbp3XjdDvAmihV+F1fJm
-         wqa38i1Y6z/Ri0dBKP5VtrMkPqP1/riOsO+xFiq1QfqxIOdRWmxuyCQCDP/3qzG8tAh/
-         iOqr6BK4U4Ci8CvVv9dmGukQ69npzGWSxrVBcU759t5UWRZ+N1amzwQTeGT2OvzZ5hHo
-         EU9+zR/8pnTBGxFpbRqT1sluy+zvVizl6TFBptoaZ4b2UcWnj7Wn/TPRhAVRgUGJzjuS
-         ROkw==
+        d=gmail.com; s=20230601; t=1756954922; x=1757559722; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=QT7by1gfa9pKhUAtv+8oGByeE/LYqWFquUc9CO+EUmo=;
+        b=Noc91Gn51BJEu19HF5fvhbKA3P94t1/DPqeE+oSuazvVXC+ghD65UxUBU7O1pcCTE4
+         lNAY/J0wQuBAzk54vrprzpkH8FqBPbMFiGb8Sa+5PbGBBBphvcWsKaA+UTPcJfhbxLKr
+         PWhxTkAA9htvs2hYzK+Stn9z2NZRkojNsw7GUL9yIy7ssnOs14NEABYNa4Y7O3cD8YjD
+         sJaVawrSv+PaxfHQNT9bVN7E5ym/6ETVW5E9HoEjc40nnwrsxrlsogPRJ0qNLG21MJPi
+         zTD5rjcKiYGSmlVe76UegwLqqjoTrSnf041W9026QceVXgc1QbidE/WnpLIh0b5ERLWd
+         WObQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756954892; x=1757559692;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=W9CajuAm7VsoRhpeotc4jxkIe8TBDwxy99+zM/DwbrY=;
-        b=s2F+OHmH9aqDsBYTtjcCIlhN1rf9jeTPz4HtEBoeJ17rK9i26b41GiVzQEOdkdlrEf
-         yQoEZLWmRY0KALzzK019Zl7FpNACrPk7MFj9Gpzs+3gZHGEzFWtv6HAJmehIH7IUObs0
-         4Js6K+0xkIwLHku/M/oyGhFJb+gh8OKyj/0s1PP8k0bNmJLjCqlk1PYNwb9Zgyscapdn
-         7PEvUEh1MCutYQiUY1PkVcORtyCdygrLtM2BHpUBytJ+o5XNpYbtIZOvoa1H8/HZ716U
-         VTPiBvlF8ls2+rDrl7Kf8gLFFWEVI5RVQCbJ4GJ4fhMnl9HtqGJ8LkM8GPp236zJyi+a
-         k91Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUNga/mjccn1x13XMWn72vLzgd+HAexxdWGY1geSXQT+UGls58GMSWM2n7fcpi/MkB73vpeG2QDKxth@vger.kernel.org, AJvYcCXlA0dW4JzjPdan90iZibPIYsBobVdsP1KHzTklIhtdXT+I0v/TLClZ7wpG5ExPJ3fz8TmqOkWmcHV9yM63@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMEiGSeXNzf8jewcNCl3w5tzUb+1/v0NSkj1MApOeIlHu7eWLW
-	O+TiPCMTz2X3SB+d4eqJaY3Kbh05jObypxPqmxy2c/YVNZGzoEeMwEkS
-X-Gm-Gg: ASbGncsXCrNllWeSrbQt39uvvWMJyu57tF9CzGZC2VWWFiHn8vISSZhWMRYdC0IkmHf
-	VzsK+2qu4Q1gPIc/5LaXOHpXcvo+D7vXbKPWVyAplQcGv/pv9DY9xsvLHakuQz2EmwJJeBE0hnw
-	Fy4FeTCjK/COD8x1/zK81amxwBVrLxLt+W70aVxOts3UioK6USGB143Yfpj/8m9fuP0G+rpiOPK
-	8IqC9OI2m1+g/hyUUgAWHnUEKm+6Xh4lixrSVpS48WWZUWJOxxVtn4dUo5oXO3kObEVGmBWpkWF
-	yiH2mbpYy8zxtuxa/5rtKEIX9y1jmxsNd/6qyAujyood4J1WZVmEbF7kYzaODvAV/QtzPq9Y2pi
-	mY5KCvZkFLsncOAbWSnSZfMkmMbockeucvpO4jrODmjw=
-X-Google-Smtp-Source: AGHT+IELP+mxSGzElVCEVywyn+fMnmBhJCUygHmISkh2tEXspU6mwEADZzjNbwOJ0l2qTQ0URFRXBg==
-X-Received: by 2002:a05:6808:152a:b0:438:247a:7d8f with SMTP id 5614622812f47-438247a8372mr2232071b6e.4.1756954891838;
-        Wed, 03 Sep 2025 20:01:31 -0700 (PDT)
-Received: from localhost.localdomain ([122.8.183.87])
-        by smtp.gmail.com with ESMTPSA id 46e09a7af769-745a09af8efsm406946a34.29.2025.09.03.20.01.28
+        d=1e100.net; s=20230601; t=1756954922; x=1757559722;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QT7by1gfa9pKhUAtv+8oGByeE/LYqWFquUc9CO+EUmo=;
+        b=DQYilFhYn+NEnGJ6vo5ks9BJSoXb5jBPAqUo9/bhV+iJ1HaezoFmaftFluIrmC2xa3
+         LjWSogq3XOUU7DywY5wN+F2OuXGEOJKxkzbu0OivWICqlpgQ2JzrjKNWZCo+IwaGXjus
+         pxG6WJlICJObWfc/HGu/MkgFfRGf7E40rWeQBagAORY257oK3YMLsyr+uHNKy6kAWML3
+         8QiqI2NmP3I452sM1yE9ctsldes57KmQZ5GHKVQyY9ldu0IoxTbk2zrhKYqDtl2GGvmx
+         C2LaEZDTPv1LfBFg5NZ1YR0lf/31VGBT/O7gSPFimKtzqJM3h17WS+ueQWtU4iprXayP
+         FcCg==
+X-Forwarded-Encrypted: i=1; AJvYcCUoFwv0Fu2s+fS8GONgTKPPRFk/ALwz4ChYXBPDCOSt7BsCIuyFqHLcjQXY0Qd9c6+ghYq29TNk5urR@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyz3Qhia6QHcBIN3LU6SrliHgCd1MrbqiHz8ArlJPhHvTsWZBRe
+	cbi0WgqrAkg5Pp8mLdrhZc3ZCbDu7O1MWHPGGzWxeifrf+bwRlo90WT/
+X-Gm-Gg: ASbGncuUHwzN7VpJNEfRzfBV2Dwc+aXLBFWZKem/kJoR89O4cOR2YWHxSxdjKWw3NE4
+	LF2/hkWBcSVcAF34EV/UfSBtB+350lbM0XTJJF7+iy9i0Y6dO2cy5qCgKR+dFl5215svW1c487R
+	pmuEWM7zwzxf29l6VBLc1qdDjjf0adjq348c9liaZsZMgleG8ztwM5vOnJOqaK4C8gijFsObFtF
+	7TVnzijkqh2oLKRS+b/QTNWzUL6tjV9e2uV7k4W/ClgpGLeyBuml6MJflPyf+UF54X+ehCLW1SE
+	imEHqdcjxL3WfhvaGl/OUKmateC3a22Vvns1mJr/w2Gvo2mKugcm+MB6uZA2GJpBBxWFYJ1laN3
+	GCeVfY848zyAyv4iVwK/E4YGapyD+X8FhUuZqZ9GBR2yWv9oH9QU=
+X-Google-Smtp-Source: AGHT+IFikeTWfA0Ri8vuJ5/yqUfpE5MwjQOIwn7/c1zwNw8O5lCPtcAHELSxXUuR8uEwh3MYjWv1DA==
+X-Received: by 2002:a05:6830:398a:b0:745:a1d8:9deb with SMTP id 46e09a7af769-745a1d8a3bemr829168a34.1.1756954921729;
+        Wed, 03 Sep 2025 20:02:01 -0700 (PDT)
+Received: from localhost.localdomain ([2603:8081:ad00:4a:c274:2bff:fefd:7058])
+        by smtp.gmail.com with ESMTPSA id 46e09a7af769-7457428b1b8sm2555110a34.6.2025.09.03.20.02.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 03 Sep 2025 20:01:30 -0700 (PDT)
-From: Chen Wang <unicornxw@gmail.com>
-To: u.kleine-koenig@baylibre.com,
-	aou@eecs.berkeley.edu,
-	unicorn_wang@outlook.com,
-	conor+dt@kernel.org,
-	inochiama@gmail.com,
-	krzk+dt@kernel.org,
-	looong.bin@gmail.com,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	robh@kernel.org,
-	tglx@linutronix.de,
-	sycamoremoon376@gmail.com,
+        Wed, 03 Sep 2025 20:02:01 -0700 (PDT)
+From: Jimmy Hon <honyuenkwun@gmail.com>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Cenk Uluisik <cenk.uluisik@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org,
-	sophgo@lists.linux.dev
-Subject: [PATCH v3 3/3] irqchip/sg2042-msi: Set irq type according to DT configuration
-Date: Thu,  4 Sep 2025 11:01:19 +0800
-Message-Id: <b22d2b0a00a96161253435d17b3c66538f3ba1c2.1756953919.git.unicorn_wang@outlook.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <cover.1756953919.git.unicorn_wang@outlook.com>
-References: <cover.1756953919.git.unicorn_wang@outlook.com>
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	Jimmy Hon <honyuenkwun@gmail.com>
+Subject: [PATCH] arm64: dts: rockchip: Fix the headphone detection on the orangepi 5
+Date: Thu,  4 Sep 2025 03:01:50 +0000
+Message-ID: <20250904030150.986042-1-honyuenkwun@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -104,63 +93,39 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Chen Wang <unicorn_wang@outlook.com>
+The logic of the headphone detect pin seems to be inverted, with this
+change headphones actually output sound when plugged in.
 
-Read the device tree configuration and use it to set the
-interrupt type.
+Does not need workaround of using pin-switches to enable output.
 
-Tested-by: Inochi Amaoto <inochiama@gmail.com> # Sophgo SRD3-10
-Signed-off-by: Chen Wang <unicorn_wang@outlook.com>
+Verified by checking /sys/kernel/debug/gpio.
+
+Fixes: ae46756faff8 ("arm64: dts: rockchip: analog audio on Orange Pi 5")
+Signed-off-by: Jimmy Hon <honyuenkwun@gmail.com>
 ---
- drivers/irqchip/irq-sg2042-msi.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+similar to the fix for the Orange Pi 5 Plus [1]
 
-diff --git a/drivers/irqchip/irq-sg2042-msi.c b/drivers/irqchip/irq-sg2042-msi.c
-index 3b13dbbfdb51..f7cf0dc72eab 100644
---- a/drivers/irqchip/irq-sg2042-msi.c
-+++ b/drivers/irqchip/irq-sg2042-msi.c
-@@ -30,6 +30,7 @@ struct sg204x_msi_chip_info {
-  * @doorbell_addr:	see TRM, 10.1.32, GP_INTR0_SET
-  * @irq_first:		First vectors number that MSIs starts
-  * @num_irqs:		Number of vectors for MSIs
-+ * @irq_type:		IRQ type for MSIs
-  * @msi_map:		mapping for allocated MSI vectors.
-  * @msi_map_lock:	Lock for msi_map
-  * @chip_info:		chip specific infomations
-@@ -41,6 +42,7 @@ struct sg204x_msi_chipdata {
- 
- 	u32					irq_first;
- 	u32					num_irqs;
-+	unsigned int				irq_type;
- 
- 	unsigned long				*msi_map;
- 	struct mutex				msi_map_lock;
-@@ -137,14 +139,14 @@ static int sg204x_msi_parent_domain_alloc(struct irq_domain *domain, unsigned in
- 	fwspec.fwnode = domain->parent->fwnode;
- 	fwspec.param_count = 2;
- 	fwspec.param[0] = data->irq_first + hwirq;
--	fwspec.param[1] = IRQ_TYPE_EDGE_RISING;
-+	fwspec.param[1] = data->irq_type;
- 
- 	ret = irq_domain_alloc_irqs_parent(domain, virq, 1, &fwspec);
- 	if (ret)
- 		return ret;
- 
- 	d = irq_domain_get_irq_data(domain->parent, virq);
--	return d->chip->irq_set_type(d, IRQ_TYPE_EDGE_RISING);
-+	return d->chip->irq_set_type(d, data->irq_type);
- }
- 
- static int sg204x_msi_middle_domain_alloc(struct irq_domain *domain, unsigned int virq,
-@@ -298,6 +300,7 @@ static int sg2042_msi_probe(struct platform_device *pdev)
- 	}
- 
- 	data->irq_first = (u32)args.args[0];
-+	data->irq_type = (unsigned int)args.args[1];
- 	data->num_irqs = (u32)args.args[args.nargs - 1];
- 
- 	mutex_init(&data->msi_map_lock);
+[1] https://lore.kernel.org/linux-rockchip/20250823-orangepi5-v1-1-ae77dd0e06d7@hotmail.com/
+---
+ arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
+index 34d195872a99..9bc7662ce9c8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588s-orangepi-5.dtsi
+@@ -42,9 +42,8 @@ analog-sound {
+ 		simple-audio-card,bitclock-master = <&masterdai>;
+ 		simple-audio-card,format = "i2s";
+ 		simple-audio-card,frame-master = <&masterdai>;
+-		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_LOW>;
++		simple-audio-card,hp-det-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
+ 		simple-audio-card,mclk-fs = <256>;
+-		simple-audio-card,pin-switches = "Headphones";
+ 		simple-audio-card,routing =
+ 			"Headphones", "LOUT1",
+ 			"Headphones", "ROUT1",
 -- 
-2.34.1
+2.51.0
 
 
