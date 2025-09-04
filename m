@@ -1,268 +1,181 @@
-Return-Path: <devicetree+bounces-213092-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213093-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25B2DB4494B
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BA5AB4494C
 	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D23631CC6BF1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:12:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 320053A5079
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:13:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C5172E370E;
-	Thu,  4 Sep 2025 22:07:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F0D82BE628;
+	Thu,  4 Sep 2025 22:13:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kDGRrFQy"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="PdVEKevU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010050.outbound.protection.outlook.com [52.101.69.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B7E2E2F1A;
-	Thu,  4 Sep 2025 22:07:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757023622; cv=none; b=ZrkdSp11eVIQnQxfuai5tGakwGftTAYzTuosZLfUlOTGkZa+cn3h7U91sSbf4WjQr1jELsjToXg+UplwVdVXdF0IdsywbJSX9m0hY/z1ocy6w5B7CUAZq5eWem9FVErMnqdz3JFP+q+OPCRW7i9VD+vyH8TJav7WOEN6/HIdCqI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757023622; c=relaxed/simple;
-	bh=jJhRUuO/5DksvNEh02TanYPo+USrmlI2eOgLzi4mPFM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=cqvNQ9maIvxak/zNAfIUTy4iWyu5oLoBW8a5B8K8+naW1khtfBPedvU7o5ootgzCe+LrtT0vVjefIMPfBSkH2H29Zl5G83SX/LE2QpU8vUFTskYwJeOApHoUwJvHu5+XX9WPSVjUanoely58YDkehanE9jQIflhtu3tLyLWx7hY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kDGRrFQy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9796C4CEF0;
-	Thu,  4 Sep 2025 22:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757023621;
-	bh=jJhRUuO/5DksvNEh02TanYPo+USrmlI2eOgLzi4mPFM=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kDGRrFQytiXE5Ip6YxTa0R0mkMN5RaF9UTszBwoFZtJnkO1V/EoecRbaGxKF/ET4F
-	 FPcLYBtr9F+CHIflB8qfiKS/bHBOKFG8Ikm+bOYiwanbskT52gvpIVoAQioRhIRESj
-	 oPIy+k5tg40MdhJBOsWZ/jpvPxEm/3QxQc50aJQucHQjnhNmjdlJltultYDHFIFs98
-	 szz5/d44JMXWUpAO2kc8//+WYcJ3rwHLlv6lxAysPBfQh0jQa009nuGzoKKLs0pusG
-	 LdiHrafda5JQh6sgdFUQc7Zi16Mj9HI1nNyweF22ireYdqnU407EXEOo/Pl1/xBO7d
-	 yzaiwabt7rwxQ==
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b045d56e181so222170166b.2;
-        Thu, 04 Sep 2025 15:07:01 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXZZ9UHTu071T5Ex0r/ig/BtpfC3jB1J8aZctP5qy0r/y9NeD1E0yArFLJDCVJXwZgrxCnASF+oryQJkC9f@vger.kernel.org, AJvYcCXucovPLwetTlKrpJElWGg4NGw10IKMate5WrE+yR/4eivtt9X9zJSZl9KUcheMVS+1EWleWGCEseYp@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz0hdb5HUSKaNmcrGGj6/2F/TxOLJiqCA7agprRS/oCvsMBE+u7
-	KHKMjoKyQ29q0xUGPaOTpxx7LM+I7RwFVgNHik6iKFhlkQWIJhve9lfSRJt0VicDuu2QU2ydewo
-	/2txmABrZM4zY86BuZC9CGuUa7FjEwA==
-X-Google-Smtp-Source: AGHT+IFPU86J5q2os3DqVwm6OQaIRkb2uYTcTl4ECKidm6RB8z6xN09U8ImNFZgAVv9Nyn09Omd/IqLY/RP2kNmAtGk=
-X-Received: by 2002:a17:906:7308:b0:b04:616c:d762 with SMTP id
- a640c23a62f3a-b04616cdf1fmr904842166b.0.1757023620219; Thu, 04 Sep 2025
- 15:07:00 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F73C2C3272
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 22:13:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757024003; cv=fail; b=hwI00wukPYjbhm9yyXVx2/J/3QtN+dw8CqcJuAMiZMwOHarYn07fubs0+YX9Hiri2EQgauC0oJzrW+/nkEFi4vZseM662BY0zGy9P4XHBuySFtWl01vfTBjpLkYQ0Z7fscTvLIykK8Fg1OTjkQFbpbF6oFNIRtRvbEVNfcq4koU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757024003; c=relaxed/simple;
+	bh=MvOOivR+sw9BZNlVzirDd3GmkMXEDcPxATjEbsI3XKw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=OYR5hYcw/8bNtnW0v1meRxgJqFJ/gOFE1BP9Olh1oQBv8IzLZ/XxxzU5JMnc8Bcp7fttmxrYc1EfBbNHl2aFSO6Tk0GHmDW/w4I/FW7UeTR86dfacvSMOFzgk5hwW/IEHHm0/k+11ARidtQnnSiZP0aEDHibEI53/9BbrZ298Ms=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=PdVEKevU; arc=fail smtp.client-ip=52.101.69.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U16LalbQiSoozKN5/vj6tO6dkF4pYRm5F7In4IDiQMDAhTwiUG1T/5r7pVBmYkEOMTy7++x3cpqRu3ULgTjGzCa30IrMcKIu8ZSyWliBEnqTruhrgpsl+wWIuWP1ug+/RF0+Yu4FkeCvYdZechmf7tVxsLD03jxSqvi5v1TxoxA/l/kRLXcS28KQCBbvDt2AVeHp4qI50atO/01BoXaPU0A9RQthA46decRSlMPYVH219kWuLyA9bErwLisZFJry7ysuAQveRmQcAntHFK155BBWoJ66aFtF40kdUA/S3gnueD6dx8ooKKXzj1UZ2rePjIHcHP4vA7vg4hxkbkY0TQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=m+Z/7yMBxQb40jBAHsvE8vNdDAOSYkl1IRJRqIqtSLw=;
+ b=NORQgfrT59m8jfPVDvWv4UTLRqd6X2UQLxtuBy7SkuVVWg7elEcGUK8SNAAFcZzpqRuyBW6MWkilGcQFEdt8UZe21vItgqeE/U6Gv4K7C1+zMAZKPg2iMXfBuBTU+SsxjEk6xINV2cQNxAlrY7cqYw7BcrFSw/2jtT19zSi+oYJoF4V2epIbNK+W8tMquLKjEapVgwteNTgXderejnrVXZYQdgg+T4hMolSwwDJHITObRSG7csESEkubfK4+6jg4p3XT/g4tMf6AbYDHbWa7WT5QCplWg1VtTsahvjqiQAAKbVGlX/Qk6TxH9I97AzpiNdq7AR46E5RTGyxA5WdO6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=m+Z/7yMBxQb40jBAHsvE8vNdDAOSYkl1IRJRqIqtSLw=;
+ b=PdVEKevUf1layMOZ2aZBll0QsIxi0M1zAe977ENA7qU8PgBhcPaf/wCj1b5xZRjKc6qWiWsQ32MCIKa1+JRwxT/wNwgW6tWKfjYEn9lpxGh9nZHtHFOlw8DjSpGrpjBJtl23pM26REvfu7B05vLF2utf5gozkGHTGVBQAK9WcAFXhnEUi6em+R0/pgjmlGmOHv+cWVsgTaMnA8ix2a+3hRDEpUcfh2PdeqWO2kc4ceN4jPJjQoTh73cVB6FXVq51lu54ZHD5HtRpBKxw42Vfr8y+CiIHW2lyV7hfhGYs1AUoDqA2d1gxjh4LnkJjnY9L0fc/k75YaunJqcKzlm9x7g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by PAXPR04MB8989.eurprd04.prod.outlook.com (2603:10a6:102:20c::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Thu, 4 Sep
+ 2025 22:13:17 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9094.015; Thu, 4 Sep 2025
+ 22:13:17 +0000
+Date: Thu, 4 Sep 2025 18:13:11 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Vladimir Zapolskiy <vz@mleia.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Piotr Wojtaszczyk <piotr.wojtaszczyk@timesys.com>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 0/7] ARM: dts: lpc32xx: a number of dt binding clean-ups
+Message-ID: <aLoO99v9aJD5aU9w@lizhi-Precision-Tower-5810>
+References: <20250904184647.397104-1-vz@mleia.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904184647.397104-1-vz@mleia.com>
+X-ClientProxiedBy: PH8PR02CA0053.namprd02.prod.outlook.com
+ (2603:10b6:510:2da::24) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815144736.1438060-1-ivecera@redhat.com> <20250820211350.GA1072343-robh@kernel.org>
- <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
-In-Reply-To: <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 4 Sep 2025 17:06:48 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
-X-Gm-Features: Ac12FXzrq6H3317mJJXy9VKhjd67b1NEF52ll39fJK2DNVneuUd7QWVkJXMJpLI
-Message-ID: <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com, 
-	Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PAXPR04MB8989:EE_
+X-MS-Office365-Filtering-Correlation-Id: 489f0154-c7fd-4b42-3a06-08ddec003fcb
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|52116014|366016|19092799006|1800799024|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?Znukv1IkEaGQNX0SvryiU3/zr+O89ZDPIud2fFkCIwYZuZ1oe3Y40jQy3acu?=
+ =?us-ascii?Q?kvuS+APbNzWd+bzjOcHtCTZ/aZ8EnDVnbOguNRMSAqCOxmjTHrxcTL9v62hf?=
+ =?us-ascii?Q?PyqskSo1SSjRfeUlKlVV7YilztfcN6XQ33blVGwDcR/kuWipX5yPRV/7fj4B?=
+ =?us-ascii?Q?R3YJ5aRcTr1Rls0hPeFkJIx4rscEehhaifrMp9uumamM69ug7D8TxCeTBuzi?=
+ =?us-ascii?Q?aqfmmp9LJnJugBb2t+UOXsOu1zcQ6qKv2h7eiPWjIuK9kLYyORD1Mniqf87+?=
+ =?us-ascii?Q?pCLZzRcb6ppd8DxjRFA5UKMTY9tfElJIb2u/HO67/WieRW0pEj7CacSuG64m?=
+ =?us-ascii?Q?g3xLb9QKIofmMjkKiqdWa6yzslAS36RZZcBR4NgflPrA1nFG+cObmfiTtN/f?=
+ =?us-ascii?Q?eYxg9KKVTJQeqMUgBHzKAKLu8s/tzqjb3e4bRODFQR4SK9OP6cxH60thbCYt?=
+ =?us-ascii?Q?97ry3NUHHuBmpMBwPVCPkEH2JT2NmKJDJ3EHbTEnt6ZwTY1n23KcjNhr+IwR?=
+ =?us-ascii?Q?gUUAU+kasRcHkNSPnbYJ4CHORSIl9IFoYvuQ0g3at8wdTo+boCJEEQQbBt/N?=
+ =?us-ascii?Q?hbFRLunnGYQosJQMeh+GjK4kujQKvJbK5xy3Glbc2jrmO9xkuXSRV5jvtGWV?=
+ =?us-ascii?Q?kyn6qTnvHyIGLXiulGpcLNNDe76Byv6KyLSXnDlUWsirZLNNNSjLR0uGQ4qZ?=
+ =?us-ascii?Q?zKu5l6g9dpeQXHhiozfyhNRE8u+CnO1gH+8trDR1fB/kK4YSyuqYx5jBULhG?=
+ =?us-ascii?Q?g1wQXCA7+yquAq2dGIDmEpcBM8sBIESzQcPUAJcSfSOiA9ruaKxuSj655Czl?=
+ =?us-ascii?Q?mEzqJboaZlyXxIrIsFqFOGGf+LZfRq/R1NDv2cczAXJOQc2C/OiKzv2UtCPC?=
+ =?us-ascii?Q?cWcKSAbzx8rsfUNXlxwmQuUEwRWgTyK+TS4+PMMBzpLfVV/fRmTCwmjXGF29?=
+ =?us-ascii?Q?ml1ZmPYuL7yIfbdHBi8iUH6Z9DKEcj2TEaBnwpr7KduQsNUrRHu3hX4QTjP3?=
+ =?us-ascii?Q?2zF9xst3pFfxGU7kNR0hPY6orb3uuP/mN1YFlS49o/QtCUPRvNj625GOTlWF?=
+ =?us-ascii?Q?n+vuapKakTKnFcsyzTnD46AReltsjJaFWfzqfOpUAZSQBMG7AJrzV8EzoqaT?=
+ =?us-ascii?Q?kHF9+c6cG670Do6Ck8jQMQMRIcaFLIHzd/Xo/XNrVOKJicva7E7KbxHF0U4O?=
+ =?us-ascii?Q?hXBd+OCa0MAzn+xA2vvxPLpK7yNkpO2uj0qAGs9aoNmmJ9eKB0Wqnx9iMleO?=
+ =?us-ascii?Q?MUR4W89gZ7LC5RyJ0J0XFsXwUl6oJHTCZsewMiUMM84+EcJcurzi3jLllxB8?=
+ =?us-ascii?Q?Y3N8uJVdxQpzfk9YsWrXFL+LXR6gg4jZGNUU411jW/R8/Bk/n/ftyXL/LL3p?=
+ =?us-ascii?Q?n9yJzTqRSdLvydByYd/6TKNk1zjM1d5QZxSRiq+Bkz/7G1B/bKzk1+CvL6BW?=
+ =?us-ascii?Q?CX+SM514SzsYZ7MvMoNU9VlsNY0xAGjYhUn0J/LFzrpVI6SSXTegIQ=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(52116014)(366016)(19092799006)(1800799024)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?hqr6ncssIpR8qMn6PJ26/vPVFhdusNISnvQVjZJ+vMKUJarz1JUvuV4MJdjC?=
+ =?us-ascii?Q?LWtwWKBmnxmFB20GwcDwfWB0rIhv6piIXoIB9Fk+Y+RySdfz7dCz4COQgVu0?=
+ =?us-ascii?Q?eKb4zjNcuuSbaHEXtAv1lKIQcAjSIE8jlaXngcMC4jSURHJkGGqGY9YciAKn?=
+ =?us-ascii?Q?8eECehB7/psMpiQKGOrKNruB51qKqE3n2PF7rhC0zC/K0vei9n7hYEoU0upP?=
+ =?us-ascii?Q?FTIGxVCBC1LZCdolaulXe32AecleuILfmIrkWmEZhc0+bABiS7kweq0fkBUC?=
+ =?us-ascii?Q?bhOmw82wLQJYKb1DX7eKMSHkZMFBAyLo9iYDP189e07TUcQf0KN/wipuV38h?=
+ =?us-ascii?Q?5TpYKzwxw6cdmwUKBfoXAs+ANvhsRpWJLIdtvAD36YrvTF3j9TTQe9hHG4Us?=
+ =?us-ascii?Q?jC7e+1t4K4FvxchxjetIq4zJPtrT+It3KyWLjORiGA5BuYZl6c8jPDLK3VkW?=
+ =?us-ascii?Q?ptVrmmwM61Q05F/V+rQ/w6fkJQ7xm5xVY8tl3KPDmwRhUIe6oDiVKrkFcSBi?=
+ =?us-ascii?Q?6x86eyC327XRfaIsfqwzULx/h0lqX3KYn8FZGwdsd1dxP2tFCeXqc2cIpTjV?=
+ =?us-ascii?Q?mtk4lXyTqaROYT0EV2fWxQEXYACEkBtyvPvRJXHPvNPFk4sPDhKc9J842+NR?=
+ =?us-ascii?Q?12LZufO7xaU1ehy88+iWsbfbjdxomm55Q4hRTMUypO0jK8WVxvTifSbIt2/J?=
+ =?us-ascii?Q?r+1PdzoKfUa8zhmPGBByTflIXnq9wqZBzX+idNF9RgTTiR+jjuT04ZDxvGXV?=
+ =?us-ascii?Q?I0D/NBQf9Q+98FQUOADmy/0GkMeQabCpCD0ZbgAx5JBCubk8XW+pCJzNNBXj?=
+ =?us-ascii?Q?YxGQ3aA2Ug37bozoNblAsFen22iabBthzbrnySs99q734hCXtOhRacjdwHKE?=
+ =?us-ascii?Q?i+rV52jo9CB/dlVUqAo/h4McyFRrk3BF/1ThHO4U83vBpWCj7jLesl/Vy2ip?=
+ =?us-ascii?Q?Bzzlmu4vcLZz06DJK5L9PZs5B+gR1QK/oALcMsBIF2HGRTD6L6fKOw4Yjqgd?=
+ =?us-ascii?Q?0suVsAXyV0EfGfv0+CR/MNJcQD2/pR5dF7633XerHEjzLtrQs8DbYlDM+Ht4?=
+ =?us-ascii?Q?tNsDdzzOpWs/+elpfief5jnD0O70n3jvD8ErpkTZCwi8ahLSVfK1I2DnZhV5?=
+ =?us-ascii?Q?9kLgt4gKi8N15bodxFdF4KwJPyW4PmivUAEd13lRSz0jVX0N1SAiaJMuk8gO?=
+ =?us-ascii?Q?/PIQ1WGYRONBM7cSK9mrYmZDpPHV8GC3/IT2jwLjkaJ1MBeV/ITnlx+8D0Od?=
+ =?us-ascii?Q?VtmCMCeChb915jHtK/VTRDd0xnwzTI9GFWfDLgF6G/i3V3HeFD8wSaHFfhiO?=
+ =?us-ascii?Q?zk72LhwXiEeN13dLsnMWIWFWNdaPYGgCGDNdgsnZLNPj5MbXFsSOi/Xzzbvi?=
+ =?us-ascii?Q?Ar0OP097YQBO9d2P7igRI7Wm6FWpStpAzzsAxMRbqu6LhrkQ8HBoq626mxl1?=
+ =?us-ascii?Q?PAHyrw9OjCBkGIhjeiE1I9MJ0tQYJhL1zeWlW2j08gstthSn2xlubHkZ3KY0?=
+ =?us-ascii?Q?VJeywI3iDMIbOlM0sS5d2uQroxsIhMUa5LS2hTIqt+SxEMnT32DmV09jV2me?=
+ =?us-ascii?Q?++Dryq2btJfjwCsgQ+3zINzOnlzri1vXL95I6Z3Z?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 489f0154-c7fd-4b42-3a06-08ddec003fcb
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 22:13:17.5348
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: lozTmzO8d2f6XwNDXC7q9n4WDlB1Qa4ZS7/FKfMf1UrfxMvUkYRiHKxOD4uv7DTDbLOJW2owRbR3u+8Y2zBPUw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8989
 
-On Fri, Aug 29, 2025 at 8:29=E2=80=AFAM Ivan Vecera <ivecera@redhat.com> wr=
-ote:
+On Thu, Sep 04, 2025 at 09:46:40PM +0300, Vladimir Zapolskiy wrote:
+> The short series contains a number of trivial clean-ups in a shared
+> lpc32xx.dtsi file utilized by all NXP LPC32xx powered boards.
 >
-> Hi Rob,
+> Vladimir Zapolskiy (7):
+>   dt-bindings: arm: nxp: lpc: Assign myself as maintainer of NXP LPC32xx platforms
+>   ARM: dts: lpc32xx: Set motor PWM #pwm-cells property value to 3 cells
+>   ARM: dts: lpc32xx: Correct motor PWM device tree node name
+>   ARM: dts: lpc32xx: Correct SD/MMC controller device node name
+>   ARM: dts: lpc32xx: Specify a precise version of the SD/MMC controller IP
+>   ARM: dts: lpc32xx: Specify #dma-cells property of PL080 DMA controller
+>   ARM: dts: lpc32xx: Correct PL080 DMA controller device node name
 >
-> On 20. 08. 25 11:13 odp., Rob Herring wrote:
-> > On Fri, Aug 15, 2025 at 04:47:35PM +0200, Ivan Vecera wrote:
-> >> In case of SyncE scenario a DPLL channels generates a clean frequency
-> >> synchronous Ethernet clock (SyncE) and feeds it into the NIC transmit
-> >> path. The DPLL channel can be locked either to the recovered clock
-> >> from the NIC's PHY (Loop timing scenario) or to some external signal
-> >> source (e.g. GNSS) (Externally timed scenario).
-> >>
-> >> The example shows both situations. NIC1 recovers the input SyncE signa=
-l
-> >> that is used as an input reference for DPLL channel 1. The channel loc=
-ks
-> >> to this signal, filters jitter/wander and provides holdover. On output
-> >> the channel feeds a stable, phase-aligned clock back into the NIC1.
-> >> In the 2nd case the DPLL channel 2 locks to a master clock from GNSS a=
-nd
-> >> feeds a clean SyncE signal into the NIC2.
-> >>
-> >>                 +-----------+
-> >>              +--|   NIC 1   |<-+
-> >>              |  +-----------+  |
-> >>              |                 |
-> >>              | RxCLK     TxCLK |
-> >>              |                 |
-> >>              |  +-----------+  |
-> >>              +->| channel 1 |--+
-> >> +------+        |-- DPLL ---|
-> >> | GNSS |---------->| channel 2 |--+
-> >> +------+  RefCLK   +-----------+  |
-> >>                                |
-> >>                          TxCLK |
-> >>                                |
-> >>                 +-----------+  |
-> >>                 |   NIC 2   |<-+
-> >>                 +-----------+
-> >>
-> >> In the situations above the DPLL channels should be registered into
-> >> the DPLL sub-system with the same Clock Identity as PHCs present
-> >> in the NICs (for the example above DPLL channel 1 uses the same
-> >> Clock ID as NIC1's PHC and the channel 2 as NIC2's PHC).
-> >>
-> >> Because a NIC PHC's Clock ID is derived from the NIC's MAC address,
-> >> add a per-channel property 'ethernet-handle' that specifies a referenc=
-e
-> >> to a node representing an Ethernet device that uses this channel
-> >> to synchronize its hardware clock. Additionally convert existing
-> >> 'dpll-types' list property to 'dpll-type' per-channel property.
-> >>
-> >> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> >> Signed-off-by: Ivan Vecera <ivecera@redhat.com>
-> >> ---
-> >>   .../devicetree/bindings/dpll/dpll-device.yaml | 40 ++++++++++++++++-=
---
-> >>   .../bindings/dpll/microchip,zl30731.yaml      | 29 +++++++++++++-
-> >>   2 files changed, 62 insertions(+), 7 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b=
-/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> index fb8d7a9a3693f..798c5484657cf 100644
-> >> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> @@ -27,11 +27,41 @@ properties:
-> >>     "#size-cells":
-> >>       const: 0
-> >>
-> >> -  dpll-types:
-> >> -    description: List of DPLL channel types, one per DPLL instance.
-> >> -    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> >> -    items:
-> >> -      enum: [pps, eec]
-> >
-> > Dropping this is an ABI change. You can't do that unless you are
-> > confident there are no users both in existing DTs and OSs.
->
-> Get it, will keep.
->
-> >> +  channels:
-> >> +    type: object
-> >> +    description: DPLL channels
-> >> +    unevaluatedProperties: false
-> >> +
-> >> +    properties:
-> >> +      "#address-cells":
-> >> +        const: 1
-> >> +      "#size-cells":
-> >> +        const: 0
-> >> +
-> >> +    patternProperties:
-> >> +      "^channel@[0-9a-f]+$":
-> >> +        type: object
-> >> +        description: DPLL channel
-> >> +        unevaluatedProperties: false
-> >> +
-> >> +        properties:
-> >> +          reg:
-> >> +            description: Hardware index of the DPLL channel
-> >> +            maxItems: 1
-> >> +
-> >> +          dpll-type:
-> >> +            description: DPLL channel type
-> >> +            $ref: /schemas/types.yaml#/definitions/string
-> >> +            enum: [pps, eec]
-> >> +
-> >> +          ethernet-handle:
-> >> +            description:
-> >> +              Specifies a reference to a node representing an Etherne=
-t device
-> >> +              that uses this channel to synchronize its hardware cloc=
-k.
-> >> +            $ref: /schemas/types.yaml#/definitions/phandle
-> >
-> > Seems a bit odd to me that the ethernet controller doesn't have a link
-> > to this node instead.
->
-> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
-> net/network-class.yaml ? If so, yes, it would be possible, and the way
-> I look at it now, it would probably be better. The DPLL driver can
-> enumerate all devices across the system that has this specific property
-> and check its value.
+>  .../devicetree/bindings/arm/nxp/lpc32xx.yaml          |  2 +-
+>  arch/arm/boot/dts/nxp/lpc/lpc32xx.dtsi                | 11 ++++++-----
+>  2 files changed, 7 insertions(+), 6 deletions(-)
 
-Yes. Or into ethernet-controller.yaml. Is a DPLL used with wifi,
-bluetooth, etc.?
+For the whole serial.
 
+Reviewed-by: Frank Li <Frank.Li@nxp.com>
 >
-> See the proposal below...
->
-> Thanks,
-> Ivan
->
-> ---
->   Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
->   Documentation/devicetree/bindings/net/network-class.yaml | 7 +++++++
->   2 files changed, 13 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> index fb8d7a9a3693f..560351df1bec3 100644
-> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> @@ -27,6 +27,12 @@ properties:
->     "#size-cells":
->       const: 0
->
-> +  "#dpll-cells":
-> +    description: |
-> +      Number of cells in a dpll specifier. The cell specifies the index
-> +      of the channel within the DPLL device.
-> +    const: 1
-
-If it is 1 for everyone, then you don't need a property for it. The
-question is whether it would need to vary. Perhaps some configuration
-flags/info might be needed? Connection type or frequency looking at
-the existing configuration setting?
-
-> +
->     dpll-types:
->       description: List of DPLL channel types, one per DPLL instance.
->       $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> diff --git a/Documentation/devicetree/bindings/net/network-class.yaml
-> b/Documentation/devicetree/bindings/net/network-class.yaml
-> index 06461fb92eb84..144badb3b7ff1 100644
-> --- a/Documentation/devicetree/bindings/net/network-class.yaml
-> +++ b/Documentation/devicetree/bindings/net/network-class.yaml
-> @@ -17,6 +17,13 @@ properties:
->       default: 48
->       const: 48
->
-> +  dpll:
-> +    description:
-> +      Specifies DPLL device phandle and index of the DPLL channel within
-> +      this device used by this network device to synchronize its hardwar=
-e
-> +      clock.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-
-If you have cells, then this should be phandle-array.
-
-> +
->     local-mac-address:
->       description:
->         Specifies MAC address that was assigned to the network device
-> described by
+> --
+> 2.49.0
 >
 
