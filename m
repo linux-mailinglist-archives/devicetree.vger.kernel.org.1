@@ -1,161 +1,251 @@
-Return-Path: <devicetree+bounces-213108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F36EBB44A7A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:38:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 829A3B44A88
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:46:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B858958748B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:38:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42E3516A96F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:46:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED71F2F069E;
-	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8FA2222AC;
+	Thu,  4 Sep 2025 23:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0tclXte"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RKkfQf2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10652D73B3;
-	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A2F1A76BB;
+	Thu,  4 Sep 2025 23:46:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757029082; cv=none; b=b0nYvtLu8dyBkxORh9bbquf5bulrtPUCmoKMVEBBSMKH4znLlB05XhjsfcCwrKSls1iqfi/2CCt+H7CxmjFBMbel5nSTp0AzFDNl3FGDQbkG02Ze1oE/xvFCOTVjLMv3h2TAHmq9unyjk6NHn7mXRrIsAQNivztnbdeLewkj6tc=
+	t=1757029590; cv=none; b=KK2ZsPu5hPV/NqXF1Sgm0i+HXLiCgu9Smtur9U8fWubAru/oNwB5lO4AK3cxurbcUx+W8fxvmHeU8Zm48TM9ApBUmmcqbJ0wWJ/OCZ3beoAlacA2SNoG+4ZuRt5onGChlX716qibnDlTLKUC/3XnPqn7MSXRqzfeBQ68H/b+5QU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757029082; c=relaxed/simple;
-	bh=i+01YYY1wAETl8uPU7E8Ydrb8Pq90kKfcxjQN9XqHmY=;
+	s=arc-20240116; t=1757029590; c=relaxed/simple;
+	bh=i1kFtWy98vImxO8YkS1RH8GElz9dgakxtm96c9NmdD4=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=MbkvQuhKVKNiYGLR5GzchF0VFj5BzQp5jd/405ixKAzN/xv7bnRNOLpLaNEFJ85ZppvphFcS0LTM9ag5v1RvJDQEgmhktEVYsU/Q2Lmk6zspINSC9dBs+VgE196GQsdq5b3o/cpef2IHL2FFEHJbDtoYpzqONBiXKC25fAV+xaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0tclXte; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AE71C4AF0B;
-	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
+	 To:Cc:Content-Type; b=k9atK7t36C9C+xyR2diUHjs/xSXLe4epKl+micJVDeIwerPCZhH0oRwWa93G0gRPEBM9seIqndip7G6x0CSM3cNlHoGaFwY4MPrfya4taSOIeqH62wJAo7AoZuRyIezEEmS9vAxBFWZflprcbKbt60+Aw0ljsBc31aTEA7PG2mg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RKkfQf2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F298C4CEF4;
+	Thu,  4 Sep 2025 23:46:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757029082;
-	bh=i+01YYY1wAETl8uPU7E8Ydrb8Pq90kKfcxjQN9XqHmY=;
+	s=k20201202; t=1757029589;
+	bh=i1kFtWy98vImxO8YkS1RH8GElz9dgakxtm96c9NmdD4=;
 	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=s0tclXteDCYT7ZyezWUyvRUi0f5+96I4ovEgEgImvic6Dv+KBtSrWdbVnK2tqLq+c
-	 zYTydfFUT5LZM1VFk21uICVuI/giz7wjdwFJDSQ+7tF8SQyT/UFWr8OkNG32WL00jx
-	 /QjjqDhpXIf4Ou8VyU5G2Si6Xc/JFkS8Xr/RhxiV/fMjiaVTDLyeqa7LVm40D5+MMJ
-	 Ree6mP727tgdQSBFo2kWqF5I0F28o8OGWGgfAVPskBIcOeCY4gtS7aoa894ol+jfND
-	 5IU34nskxf63KG6x5GrV2FgGM356CeFuiYSwbStPpfHj1MAfafOS+mhmCbLLpkSD8g
-	 6rpdd21u5PA0Q==
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-61e4254271dso2980823a12.2;
-        Thu, 04 Sep 2025 16:38:02 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUaxpDJPtteGe1364WeKKKZfi6vxNueNayyJ0YvzkxZpjHUWraqViwPt7Jjy5+dmEwo+y5jtRtBmvew@vger.kernel.org, AJvYcCWSDB2hP8tUVHAJbyGdIehe1H4iKICcncAt96xUGoN48DWfZBhdTljqaQMyhXZLWCZmrQW2Sk9VEzzXaedi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw9Z4WAtNLaj74svRP98LqDxfuRXo6q8RB9UIFos8bUAFrVdLBP
-	L2c7rXOLbYVvULHIZ4lThN84+/ZythN0qGboO1dnzhxp8SjfFLSRtQxTPY061844XZYeorYDZWz
-	bmHD5qRK6Rjr2c6tjSLvtCl1QykoYBQ==
-X-Google-Smtp-Source: AGHT+IFFN6fk5YVg+B1Gm6YAlYwOQG6ufa/AOFFGb2DahNQbjmVf7LcAWNTuQcant4szK9wxkX0bXwvOq8gcg3FZDZM=
-X-Received: by 2002:a05:6402:90a:b0:61e:1636:aeee with SMTP id
- 4fb4d7f45d1cf-61e1636b01bmr14623674a12.38.1757029080874; Thu, 04 Sep 2025
- 16:38:00 -0700 (PDT)
+	b=RKkfQf2F2iXVQnd3u2s1Vpw416n8APKIV+klP8CIlxhOGsrFQcEruD3e1jJY4TS/+
+	 GNGL5Eu9fnKALGAGXmc5WdjSoiu8hGFxf2x23O9DqXuWXx6cVe/LbA1tYi9gx4qF6Q
+	 czU4cIgWTR8ArAkIpF/IixIPcs86X65pelkr+qtHkVuvHOMK4jrRe3Hbu+ztl3JJ5h
+	 KanIaXDpZKJxlwkPpx0yu/sA4jMVB/bnjB+JBIHXWf6I1ec0NAvs6I4iyGagAXaTMT
+	 NSjZ8ZMiRKnAKWXYLtA1KwgleVv/iqKs3VLUU+3LRkiexc4IFhpBpLvRaExOIzB6RV
+	 G5bHBnMLjOQCQ==
+Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6188b5ad681so2501926a12.0;
+        Thu, 04 Sep 2025 16:46:29 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXdpB4in2RG6KAeMisqCffBcI2P/JUAOwDorSIeU1ao7v1BW9rYQXvRrMnKZjbzbT8kMj7ncw0QvK+RWT8z@vger.kernel.org, AJvYcCXpZf5kOBUepYNIOFcw3FcrOfRK5Dzui/9iBkVU6ck00dRhX57MRsKLVki39a/xjqSgNC+7SaBDRUyn@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZGMfBS46UG0LzV+3HBsB3HN5KveXsIyIkCdATphBv4hEjKFlN
+	SjPWKaaT9oLAzunUpjNQrK0XrZ3ze6UZGsKrPZTEVd9baqkpVqbkBe6/g5OEEJbquWpsOvL5SIR
+	Qd5aMzDK2VIrj976htpI/xYQVB8B0xA==
+X-Google-Smtp-Source: AGHT+IEz5bRGq1Ef5wXJp0xhiW6NY7VImt7KxXjfQYc7qioU1N0YZwuPJSsQyLbbm0HDP2yexpCWjHdRGmZMKty8ZyY=
+X-Received: by 2002:a05:6402:370c:b0:61d:1182:7679 with SMTP id
+ 4fb4d7f45d1cf-61d26d72ffamr19643711a12.27.1757029588044; Thu, 04 Sep 2025
+ 16:46:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250714-sti-rework-v2-0-f4274920858b@gmail.com> <20250714-sti-rework-v2-1-f4274920858b@gmail.com>
-In-Reply-To: <20250714-sti-rework-v2-1-f4274920858b@gmail.com>
+References: <20250805232502.2827725-1-robh@kernel.org>
+In-Reply-To: <20250805232502.2827725-1-robh@kernel.org>
 From: Rob Herring <robh@kernel.org>
-Date: Thu, 4 Sep 2025 18:37:49 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
-X-Gm-Features: Ac12FXyVHTjBeXc1k7EZQPMmRZXJqAQXLxtZHtgAqDf9uO9vDCivi8C1SxLEoVo
-Message-ID: <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] ARM: sti: drop B2120 board support
-To: Raphael Gallais-Pou <rgallaispou@gmail.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Patrice Chotard <patrice.chotard@foss.st.com>, Russell King <linux@armlinux.org.uk>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
+Date: Thu, 4 Sep 2025 18:46:03 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqLQ_5X0STH=eSbjtkLkvgr+iPDwtLQYCntgiO8s1Dwy4A@mail.gmail.com>
+X-Gm-Features: Ac12FXzGVurdBcMt-pBPjtPBNvxvRRQD8iIew05zyJeySdOtVRKk7OooxuRiu0A
+Message-ID: <CAL_JsqLQ_5X0STH=eSbjtkLkvgr+iPDwtLQYCntgiO8s1Dwy4A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: marvell: Convert marvell,armada-370-xp
+ boards to DT schema
+To: Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
+	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 14, 2025 at 8:54=E2=80=AFAM Raphael Gallais-Pou
-<rgallaispou@gmail.com> wrote:
+On Tue, Aug 5, 2025 at 6:25=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
+wrote:
 >
-> B2120 boards are internal boards which never were commercialised.
+> Convert Marvell Armada 370/XP based boards to DT schema format.
 >
-> Drop them.
->
-> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 > ---
->  arch/arm/boot/dts/st/Makefile           |   2 -
->  arch/arm/boot/dts/st/stih407-b2120.dts  |  27 -----
->  arch/arm/boot/dts/st/stih407.dtsi       | 145 ----------------------
->  arch/arm/boot/dts/st/stih410-b2120.dts  |  66 ----------
->  arch/arm/boot/dts/st/stihxxx-b2120.dtsi | 206 --------------------------=
-------
->  5 files changed, 446 deletions(-)
+>  .../bindings/arm/marvell/98dx3236.txt         | 23 ------
+>  .../bindings/arm/marvell/armada-370-xp.txt    | 24 ------
+>  .../arm/marvell/marvell,armada-370-xp.yaml    | 78 +++++++++++++++++++
+>  3 files changed, 78 insertions(+), 47 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/98dx323=
+6.txt
+>  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-=
+370-xp.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/marvell/marvell=
+,armada-370-xp.yaml
+
+Ping on this and the 5 other board conversions.
+
 >
-> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefil=
-e
-> index cc9948b9870f7f73629573149bfd342af75b07da..f57fc6dc48a00c9a9323b4508=
-e5e4e161b197c47 100644
-> --- a/arch/arm/boot/dts/st/Makefile
-> +++ b/arch/arm/boot/dts/st/Makefile
-> @@ -13,8 +13,6 @@ dtb-$(CONFIG_ARCH_SPEAR3XX) +=3D \
->  dtb-$(CONFIG_ARCH_SPEAR6XX) +=3D \
->         spear600-evb.dtb
->  dtb-$(CONFIG_ARCH_STI) +=3D \
-> -       stih407-b2120.dtb \
-> -       stih410-b2120.dtb \
->         stih410-b2260.dtb \
->         stih418-b2199.dtb \
->         stih418-b2264.dtb
-> diff --git a/arch/arm/boot/dts/st/stih407-b2120.dts b/arch/arm/boot/dts/s=
-t/stih407-b2120.dts
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt b=
+/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
 > deleted file mode 100644
-> index 9c79982ee7ba8fadb1a2a92e732bf7f652b74c38..0000000000000000000000000=
-000000000000000
-> --- a/arch/arm/boot/dts/st/stih407-b2120.dts
+> index 64e8c73fc5ab..000000000000
+> --- a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
 > +++ /dev/null
-> @@ -1,27 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * Copyright (C) 2014 STMicroelectronics (R&D) Limited.
-> - * Author: Giuseppe Cavallaro <peppe.cavallaro@st.com>
-> - */
-> -/dts-v1/;
-> -#include "stih407.dtsi"
-> -#include "stihxxx-b2120.dtsi"
-> -/ {
-> -       model =3D "STiH407 B2120";
-> -       compatible =3D "st,stih407-b2120", "st,stih407";
+> @@ -1,23 +0,0 @@
+> -Marvell 98DX3236, 98DX3336 and 98DX4251 Platforms Device Tree Bindings
+> -----------------------------------------------------------------------
 > -
-> -       chosen {
-> -               stdout-path =3D &sbc_serial0;
-> -       };
+> -Boards with a SoC of the Marvell 98DX3236, 98DX3336 and 98DX4251 familie=
+s
+> -shall have the following property:
 > -
-> -       memory@40000000 {
-> -               device_type =3D "memory";
-> -               reg =3D <0x40000000 0x80000000>;
-> -       };
+> -Required root node property:
 > -
-> -       aliases {
-> -               serial0 =3D &sbc_serial0;
-> -               ethernet0 =3D &ethernet0;
-> -       };
+> -compatible: must contain "marvell,armadaxp-98dx3236"
 > -
-> -};
-> diff --git a/arch/arm/boot/dts/st/stih407.dtsi b/arch/arm/boot/dts/st/sti=
-h407.dtsi
+> -In addition, boards using the Marvell 98DX3336 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp-98dx3336"
+> -
+> -In addition, boards using the Marvell 98DX4251 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp-98dx4251"
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.=
+txt b/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
 > deleted file mode 100644
-> index aca43d2bdaad44ef2a0e8a120c679c217709af44..0000000000000000000000000=
-000000000000000
-> --- a/arch/arm/boot/dts/st/stih407.dtsi
+> index c6ed90ea6e17..000000000000
+> --- a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
 > +++ /dev/null
-> @@ -1,145 +0,0 @@
-> -// SPDX-License-Identifier: GPL-2.0-only
-> -/*
-> - * Copyright (C) 2015 STMicroelectronics Limited.
-> - * Author: Gabriel Fernandez <gabriel.fernandez@linaro.org>
-> - */
-> -#include "stih407-clock.dtsi"
-
-Looks like this file is unused now too and can be removed.
-
-Rob
+> @@ -1,24 +0,0 @@
+> -Marvell Armada 370 and Armada XP Platforms Device Tree Bindings
+> ----------------------------------------------------------------
+> -
+> -Boards with a SoC of the Marvell Armada 370 and Armada XP families
+> -shall have the following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armada-370-xp"
+> -
+> -In addition, boards using the Marvell Armada 370 SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armada370"
+> -
+> -In addition, boards using the Marvell Armada XP SoC shall have the
+> -following property:
+> -
+> -Required root node property:
+> -
+> -compatible: must contain "marvell,armadaxp"
+> -
+> diff --git a/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
+-370-xp.yaml b/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
+-370-xp.yaml
+> new file mode 100644
+> index 000000000000..e65eadfbd097
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/marvell/marvell,armada-370-xp=
+.yaml
+> @@ -0,0 +1,78 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +---
+> +$id: http://devicetree.org/schemas/arm/marvell/marvell,armada-370-xp.yam=
+l#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Marvell Armada 370 and Armada XP platforms
+> +
+> +maintainers:
+> +  - Andrew Lunn <andrew@lunn.ch>
+> +  - Gregory Clement <gregory.clement@bootlin.com>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - ctera,c200-v2
+> +              - dlink,dns327l
+> +              - globalscale,mirabox
+> +              - netgear,readynas-102
+> +              - netgear,readynas-104
+> +              - marvell,a370-db
+> +              - marvell,a370-rd
+> +              - seagate,dart-2
+> +              - seagate,dart-4
+> +              - seagate,cumulus-max
+> +              - seagate,cumulus
+> +              - synology,ds213j
+> +          - const: marvell,armada370
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - mikrotik,crs305-1g-4s
+> +              - mikrotik,crs326-24g-2s
+> +              - mikrotik,crs328-4c-20s-4s
+> +          - const: marvell,armadaxp-98dx3236
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: marvell,db-xc3-24g4xg
+> +          - const: marvell,armadaxp-98dx3336
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: marvell,db-dxbc2
+> +          - const: marvell,armadaxp-98dx4251
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - lenovo,ix4-300d
+> +              - linksys,mamba
+> +              - marvell,rd-axpwifiap
+> +              - netgear,readynas-2120
+> +              - synology,ds414
+> +          - const: marvell,armadaxp-mv78230
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - const: plathome,openblocks-ax3-4
+> +          - const: marvell,armadaxp-mv78260
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +      - items:
+> +          - enum:
+> +              - marvell,axp-db
+> +              - marvell,axp-gp
+> +              - marvell,axp-matrix
+> +          - const: marvell,armadaxp-mv78460
+> +          - const: marvell,armadaxp
+> +          - const: marvell,armada-370-xp
+> +
+> +additionalProperties: true
+> --
+> 2.47.2
+>
 
