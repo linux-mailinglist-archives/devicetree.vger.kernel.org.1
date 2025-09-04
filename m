@@ -1,63 +1,48 @@
-Return-Path: <devicetree+bounces-212523-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212524-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06172B431B3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:44:04 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB93EB431B5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:44:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B6EE71C237DD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:44:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A1315659DC
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:44:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E52C2405EB;
-	Thu,  4 Sep 2025 05:43:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA53F24167F;
+	Thu,  4 Sep 2025 05:44:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="EmkR/F3c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QoubimvR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C6FF23B627;
-	Thu,  4 Sep 2025 05:43:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81A99224B03;
+	Thu,  4 Sep 2025 05:44:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756964638; cv=none; b=YqXOYtEe9Rh0o1aQprMSlLSGQUlBimyPnpAJoN5DdrQZy/9c5Ej5hb2+B9QsDV1UU27iBEDwByskv1OOu1Ud9tOzGoZXnt/Q1JjBhX4Tpj7w9XQmUA0a8P9XtZCum51TzDM3LZbR8pRFU6j402L/jTLGFGZMCGkydV5gr/Epd8o=
+	t=1756964678; cv=none; b=obIcPP/l2qRGXj4+ouXjcZfLu1izsg7mRkr9LqtoU5kU6gNXIvrtnlssl4kaVEu0P7alHTn8S3yllUQO/673inIUnSTu7EJIc825yplkd16HXz1lxv5c3RJB6BoAsnXBBujz4keGyNBbjD/rXJfO2aAewNXOJm254oBwZW0mw74=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756964638; c=relaxed/simple;
-	bh=ZUj/WoAq115Q2cD8ESZPsGtWQFjGhFZrLxiNY/MDBcg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=izKCl1IzbqSnX46qm1XM4yuXgKxje9l2axjVd4hwqCra6QD0lNXHU5Vxit9QpiqmWcWKlVl9xvdgKe6eBIowhfuNtfyynGTgj4+4KRI19KCpLHmFIfKHEA02fG9atOpZ3KBO2/XNFBCZTgK9Mu12N6rQlwJSegMl9HHGuhOpCeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=EmkR/F3c; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5845hkqw2940972;
-	Thu, 4 Sep 2025 00:43:46 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756964626;
-	bh=47DEz/6ha8fZiHE5oM7w1+bkW2dkQmrKXzDB+j6xPJw=;
-	h=Date:Subject:To:References:From:In-Reply-To;
-	b=EmkR/F3c23o5OuA4YkYjGrSEbr5bzGuG0pyFGnXHqwi1/IaMyE4ZyEhZ8wP8rKrsE
-	 6GeUeAuE2a1po7BQIJ08OsnD4xRUIKTlikh7l9YGpRqbZb+7T2RpConxu+M/+e2+ze
-	 vsJKsUJ5iDfj0wonZTmxNvLw3b3zqKie41nCSLEM=
-Received: from DFLE107.ent.ti.com (dfle107.ent.ti.com [10.64.6.28])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5845hkwR641637
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 00:43:46 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 00:43:46 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 00:43:46 -0500
-Received: from [172.24.233.62] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.233.62])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5845hfOS2766310;
-	Thu, 4 Sep 2025 00:43:42 -0500
-Message-ID: <49db8bea-80a0-4f09-9b39-20fd7493b5da@ti.com>
-Date: Thu, 4 Sep 2025 11:13:40 +0530
+	s=arc-20240116; t=1756964678; c=relaxed/simple;
+	bh=IkypIjiZkV8g6vnDD0lxifjqxhali/hvZxf3C1VNQDc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZmNSaFU/Jaw/6QFSd5NVsDxZXZlXtdVpmZeSZWNXU3Boimwb9WHWfcx7l7I71jXO1UoEgIFPKTUYS+veLITxZyCmaXVT/3lzVKaJLZC+n2VSu95z/SZhMrQOdcHB53+XjqrksJD3j+V3C9II/3NTBm+aFAsuKxktzbck8sgywzU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QoubimvR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CFF6DC4CEF0;
+	Thu,  4 Sep 2025 05:44:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756964678;
+	bh=IkypIjiZkV8g6vnDD0lxifjqxhali/hvZxf3C1VNQDc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=QoubimvRNDH21fqoixIiqSNDgGdrqTd7D+nkJEOQMaXwYoljZ6NDK22wAwQATuLH7
+	 aiHzh9+C/cCK/HqKl0/iODgi5re8sBtWV1oecsnqjjhLZVA4qEqrQQ9CIKx2XSfpB3
+	 WWHJtzdEO/0n+RDrpownp4neKuevkTcuV4fADA6zPbs/J0bCsyRldVn3L7ejpuKGuf
+	 WSRP03D6e1RJZZSyMn/9kaI2LqIQFHWCrMAc9ysRgZyQXRylDLUuCq/I9BjPXMVdcu
+	 NyGwpY0m7vdKYzkFt0zwt9xQBscjcNxiJ0m1E3AUVgoJxCjsSvgYYEMDk1EgHS9DUk
+	 xSJoMb1b2ZHdQ==
+Message-ID: <b893b98a-59f8-4b0a-b42a-66046bfa7435@kernel.org>
+Date: Thu, 4 Sep 2025 07:44:33 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,54 +50,97 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RESEND] arm64: dts: ti: k3-j721e-main: Update DSS EDP
- integration configuration register
-To: Harikrishna Shenoy <h-shenoy@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <r-ravikumar@ti.com>, <tomi.valkeinen@ti.com>,
-        <a-bhatia1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <aradhya.bhatia@linux.dev>, <u-kumar1@ti.com>, <s-jain1@ti.com>
-References: <20250904050940.2913567-1-h-shenoy@ti.com>
+Subject: Re: [PATCH v4 1/2] regulator: pf530x: Add a driver for the NXP PF5300
+ Regulator
+To: Woodrow Douglass <wdouglass@carnegierobotics.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250902-pf530x-v4-0-4727f112424e@carnegierobotics.com>
+ <20250902-pf530x-v4-1-4727f112424e@carnegierobotics.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20250904050940.2913567-1-h-shenoy@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250902-pf530x-v4-1-4727f112424e@carnegierobotics.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 04/09/25 10:39, Harikrishna Shenoy wrote:
-> Fix size of DSS_EDP0_INT_CFG_VP to 256B as stated in
-> TRM Table 2-1 MAIN Domain Memory Map.
-> Link: https://www.ti.com/lit/zip/spruil1/SPRUIL_DRA829_TDA4VM
+On 03/09/2025 22:03, Woodrow Douglass wrote:
+> This driver allows reading some regulator settings and adjusting
+> output voltage. It is based on information from the datasheet
+> at https://www.nxp.com/docs/en/data-sheet/PF5300.pdf
 > 
-> Fixes: 92c996f4ceab ("arm64: dts: ti: k3-j721e-*: add DP & DP PHY")
-> 
-
-Remove this blank line. With this,
-
-Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
-
-Regards
-Devarsh
-
+> Signed-off-by: Woodrow Douglass <wdouglass@carnegierobotics.com>
 > ---
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+>  MAINTAINERS                          |   6 +
+>  drivers/regulator/Kconfig            |  12 ++
+>  drivers/regulator/Makefile           |   1 +
+>  drivers/regulator/pf530x-regulator.c | 378 +++++++++++++++++++++++++++++++++++
+>  4 files changed, 397 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index ab3666ff4297..3fa7537d5414 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -1863,7 +1863,7 @@ mhdp: dp-bridge@a000000 {
->   		 * the PHY driver.
->   		 */
->   		reg = <0x00 0x0a000000 0x00 0x030a00>, /* DSS_EDP0_V2A_CORE_VP_REGS_APB */
-> -		      <0x00 0x04f40000 0x00 0x20>;    /* DSS_EDP0_INTG_CFG_VP */
-> +		      <0x00 0x04f40000 0x00 0x100>;    /* DSS_EDP0_INTG_CFG_VP */
->   		reg-names = "mhdptx", "j721e-intg";
->   
->   		clocks = <&k3_clks 151 36>;
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 6dcfbd11efef..2c2d165a40ff 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18291,6 +18291,12 @@ F:	Documentation/devicetree/bindings/clock/*imx*
+>  F:	drivers/clk/imx/
+>  F:	include/dt-bindings/clock/*imx*
+>  
+> +NXP PF5300/PF5301/PF5302 PMIC REGULATOR DEVICE DRIVER
+> +M:	Woodrow Douglass <wdouglass@carnegierobotics.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/regulator/nxp,pf530x-regulator.yaml
+There is no such file at this stage.... but if you fix order, it would
+be. Anyway, please be sure your patchsets are properly bisectable.
 
+Please organize the patch documenting compatible (DT bindings) before
+their user.
+See also:
+https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
+
+Best regards,
+Krzysztof
 
