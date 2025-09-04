@@ -1,115 +1,108 @@
-Return-Path: <devicetree+bounces-213009-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87EDCB4464F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:24:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3BD14B44672
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:31:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48ACE488123
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:24:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B6D77587347
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:31:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA5DE27144B;
-	Thu,  4 Sep 2025 19:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED0D2580FF;
+	Thu,  4 Sep 2025 19:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gp3+Ln+h"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XqU9NY0f"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B687915DBC1;
-	Thu,  4 Sep 2025 19:24:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A2083AC1C;
+	Thu,  4 Sep 2025 19:30:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757013850; cv=none; b=cluZMhdtDCGUw+hW7+XLp2+C3TejE+revnsiMZ1TGNtZofL1ATvA2MrTPyauzdaOMAZskxquz1eBWp4Pqu06ui9OhF1RqEc2r0dS3liivje2Q2jZXKZV5fdBEilm71PeNGYW5Z1O1HneTJikByp1xw1VJX0Y63jefACNTzUbnp0=
+	t=1757014240; cv=none; b=G37fq7Muoed5RkS5VI5E5WtxK66UyK6QyDRiPbU8YVvyE/eKEJg3qiZdy1/R9erPqZR/iE20lVqQhn4ZPO6VHP0TceZHVepItgF1H3+yHg4cNlL996tAcrCxmGYhJeTb+qtGpLNoJMfqsfjw23b1hDR8dYWMygv3yKSW8KCvsCk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757013850; c=relaxed/simple;
-	bh=DcZBwbvCs/APcDLJmkpflaT6uT/JUTX4N2f8nqi57sg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RkIYsHGyWGqDauWJwQdeBy1szEu7C1HooWifexcYJc4UtqcFXNAJY4OP9YkczUHkLA7IZg5NF6j6NAUCsQaNKb6AmXTVMWiXPEYj9QIyx9WuNur5w/wQ9Z/2VicyA0aleF+Z9ohXMXZvjmU/qMcmIvzG/v9tcuiXWmLQpyvPOTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gp3+Ln+h; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7D14C4CEF0;
-	Thu,  4 Sep 2025 19:24:04 +0000 (UTC)
+	s=arc-20240116; t=1757014240; c=relaxed/simple;
+	bh=0RZ8CnMwf4NqKb6arTE1y1641ehql4WXMwOOTJDdIbw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=K8x/IUExnLPPTcRp9eG0eZPCVfQJMu2xJrTDH16m4VgLzOLL7yCwgekusYKDfAjY4lQgb1Iploo8U1JJt/mEIWSMVpNR670Wd9HF19Et76CxGFOcJKPXnGTwx4Kjnut+2BHV3m774LjI5AOEwDJOYdWtNorsThmUHe79lL8mwL8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XqU9NY0f; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 909FDC4CEF6;
+	Thu,  4 Sep 2025 19:30:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757013850;
-	bh=DcZBwbvCs/APcDLJmkpflaT6uT/JUTX4N2f8nqi57sg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gp3+Ln+hhB1+8+lkFXXSillDiYum+dAPdUfELaZ7FRDiOTzBpVrgbAwIhJ+3hXR1s
-	 dOn4PqmUueHjXKJUs635qGZN7SZRDdWsMXwiPlPWkYDXvLnR8QGou6xrYNB97GTIXE
-	 PbOMK2KV0EMEuszui0Rr+3gdzdcyUC3XFFgRw1qNt7Jarycl+lPLEq7BWZZWAuS7pO
-	 SpxTYO34dGmrwlyYX+yQTNkv3IentC7g/DdNwluX0DVdFU7WWzab0K57zoWo9IXl+E
-	 OVGDEjjhcfpPp6NAjNrqHvOxoSDwRDe09WSFwDba3EIevvWIpnxJAEsbyA48Y61ecz
-	 kz8xv94usKF6A==
-Date: Thu, 4 Sep 2025 20:24:02 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Marcelo Schmitt <marcelo.schmitt@analog.com>,
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
-	Tobias Sperling <tobias.sperling@softing.com>,
-	Antoniu Miclaus <antoniu.miclaus@analog.com>,
-	Trevor Gamblin <tgamblin@baylibre.com>,
-	Esteban Blanc <eblanc@baylibre.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>,
-	Eason Yang <j2anfernee@gmail.com>,
-	Pop Ioan Daniel <pop.ioan-daniel@analog.com>,
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio: adc: ROHM BD79112 ADC/GPIO
-Message-ID: <20250904-suffering-napping-cfb886addf1e@spud>
-References: <cover.1756988028.git.mazziesaccount@gmail.com>
- <af7292dea5cebe97553af67a8897e092bef3ec56.1756988028.git.mazziesaccount@gmail.com>
+	s=k20201202; t=1757014240;
+	bh=0RZ8CnMwf4NqKb6arTE1y1641ehql4WXMwOOTJDdIbw=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=XqU9NY0f4OsloxJ8hrjbay3uVxPdDfrJdhw+yQhou50Mf8usGqoTPhJTDxoNZp+w6
+	 eu6nxigNZ8yXtk74xrcMlP3GhpB2hvBpxU8ah4yk5t3JX8Lb1vFpRH7YwijLTSgbWz
+	 qa9mBqjd3NaDpDjXFuhgVL3ZcMFKlqGV8sDgsAaqf5VbqGYVLBnMpIt1xy+iFdzoOR
+	 gNmUrbAa7u2A5P+g9AScjho9KWkTUaNgRl2ZBG1zaws8KKSV6BH1t5vhbS0CK2T0zA
+	 ywZqzYHxLFtRwnoZ7Dz4d747xiS8+AL/sRcm6VTWQeX0uaJ4oW2rz2DMJ+YwSutGZT
+	 wOMJINbdy8Rbw==
+Message-ID: <5b02ef9e-3017-400a-826c-59b5d5770a44@kernel.org>
+Date: Thu, 4 Sep 2025 21:30:30 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="TYMVqA+xISrwz0kg"
-Content-Disposition: inline
-In-Reply-To: <af7292dea5cebe97553af67a8897e092bef3ec56.1756988028.git.mazziesaccount@gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 7/9] nvme: apple: Add Apple A11 support
+To: Janne Grunau <j@jannau.net>, Christoph Hellwig <hch@lst.de>
+Cc: Nick Chan <towinchenmi@gmail.com>,
+ Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>,
+ Jassi Brar <jassisinghbrar@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Hector Martin <marcan@marcan.st>,
+ Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+ Robin Murphy <robin.murphy@arm.com>, Keith Busch <kbusch@kernel.org>,
+ Jens Axboe <axboe@kernel.dk>, Sagi Grimberg <sagi@grimberg.me>,
+ asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ iommu@lists.linux.dev, linux-nvme@lists.infradead.org
+References: <20250821-t8015-nvme-v3-0-14a4178adf68@gmail.com>
+ <20250821-t8015-nvme-v3-7-14a4178adf68@gmail.com>
+ <20250825080710.GA23193@lst.de>
+ <89251134-9685-439e-b220-92717663f038@kernel.org>
+ <20250902052646.GA11139@lst.de> <20250903095325.GA89417@robin.jannau.net>
+Content-Language: en-US
+From: Sven Peter <sven@kernel.org>
+In-Reply-To: <20250903095325.GA89417@robin.jannau.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+On 03.09.25 11:53, Janne Grunau wrote:
+> On Tue, Sep 02, 2025 at 07:26:46AM +0200, Christoph Hellwig wrote:
+>> On Wed, Aug 27, 2025 at 05:56:33PM +0200, Sven Peter wrote:
+>>>> Do you want to merge this through the apple SOC tree?  If so:
+>>>>
+>>>> Acked-by: Christoph Hellwig <hch@lst.de>
+>>>>
+>>>>
+>>>
+>>> I don't think that's necessary since there are no build time dependencies
+>>> but if you want to I can take it through there.
+>>
+>> Merging it through nvme sounds fine as well, I just through up
+>> grabbing everything together would be easier.  I also noticed there's
+>> another Apple hw enablement series that touches nvme, so I guess both
+>> should go through the same tree?
+> 
+> yes, they should go through the same tree if they go in the same cycle.
+> They conflict in dt-bindings and possibly the driver. We should avoid
+> burden someone else with this conflict resolution.
+
+Good points, I'll pick up the latest version of this series on the 
+weekend then and handle any conflicts in case the other one is ready for 
+this cycle (which it probably will be) as well then.
 
 
---TYMVqA+xISrwz0kg
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks,
 
-On Thu, Sep 04, 2025 at 03:36:30PM +0300, Matti Vaittinen wrote:
-> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
->=20
-> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> daisy-chain configuration) and maximum sampling rate is 1MSPS.
->=20
-> Add a device tree binding document for the ROHM BD79112.
->=20
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Sven
 
---TYMVqA+xISrwz0kg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLnnUgAKCRB4tDGHoIJi
-0hpgAQDEQSDG09i4H4ASWiQgAGYg6VSHoZz4ZF4QmHuzBaKuagD/ScVzBQXl5SZQ
-ctKeXmDU5aEZNzQzIDFHLgQG0q0O6w4=
-=YMPt
------END PGP SIGNATURE-----
-
---TYMVqA+xISrwz0kg--
 
