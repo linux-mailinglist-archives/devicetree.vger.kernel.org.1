@@ -1,61 +1,68 @@
-Return-Path: <devicetree+bounces-212929-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212936-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49C30B44231
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:06:22 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 634F6B44249
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:09:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E4971641DE
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:06:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BD64164966
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:09:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3525729AB07;
-	Thu,  4 Sep 2025 16:06:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAE622D46AF;
+	Thu,  4 Sep 2025 16:08:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TOeKKfIP"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="fwATaZHN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 092891F4262;
-	Thu,  4 Sep 2025 16:06:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAFA123D7FF
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 16:08:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757001963; cv=none; b=sdnVrIZyM13aTnUczeKYtSk+XdqQWNbzKX0n6vsVHbt9X+H5XkasUZf8Q/ftr0A2u62MJ3aipvnXJ80KTEHk14T/5Qbd7ckHRxLHhmsDKQsSCYgTC4G1ZsVM0BvotC/Mf+bD1yKeI+TqA8FoMu6RoEQBexHZ4z90LciWoA8E760=
+	t=1757002136; cv=none; b=LRE4W8fgyqE+raclxGdiTSJMz8nwOZPtrPr/XPXQDIJguPjgDXvdXHCqrSU4tHNd6na7CVYOSjgSsqxqopBRjMnwsTjLa5h1qByCNzvnZOW2kPywtrC0Yx3h6uIe1flBbhNSMnbyaHZUYXuJPE7b5FKY7SMcsBxVlLQC0toIyLk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757001963; c=relaxed/simple;
-	bh=d4for+WQoYCCURZaNQO+bUjSv8L423bE+qzlhaNgZ+w=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=OS2gcLQgWVUeVA/VGukPvvjJB1HkpTlWF44g8tbWhnu5glPpKFnXH97RAgbYOOv0ktIFBhQ8Hpuxvc/En2bcOTuWOvxOk6uxKGUI4+4Fvwtg9us25sTKVTZeImVXBhEwQMu487Nl5nFGSk6BeyvDhl7BGeBe1UgADLkIWKprg0Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TOeKKfIP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E1F6C4CEF0;
-	Thu,  4 Sep 2025 16:06:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757001962;
-	bh=d4for+WQoYCCURZaNQO+bUjSv8L423bE+qzlhaNgZ+w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=TOeKKfIPisHwrw2KCfdrPm36Vdx/JsF1wSupeYOSSEq/io9Mtuc/867lhZAqhY5Vr
-	 vy8SYOGiUC/YRPg2Y9h/21mmkfwJjREdTWBcpSF67/cx2afwEDX74AcOQnOGZOqReS
-	 /ZDm9wSDcY6cjFBkwBfuV2JqvIZAWs9S1jNDrJ49V8Eo1mjK2BveDg3TwoDyIF/CPR
-	 KsbOhakBtoIwJsmq3FaSe0WZ1JkjRNv5n2los27EPzLMr2yyPDQhBEPuKobggnCGFJ
-	 VxdGEA7CHKf1fjYPAp5Hl2/qF4kyVL1xxmOD9mp820Z2MZOeXtV8Zj22voC1kX7Ozj
-	 jVHFWNNCDMixQ==
-Date: Thu, 4 Sep 2025 11:06:00 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	s=arc-20240116; t=1757002136; c=relaxed/simple;
+	bh=fGXsrzt6u8YTKnC/hBZpqHUAVKGxcAQu9zwDNMaiVlo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=f/WMLT63nHqMwVD+BH9C8K3GzrL0AoR+wlm8zo2rui/jxzzMXIdYfpyfJF9IIElXZYQnlsz/8aKK0qoAGejaABUs/yrhuu9QQNnFPrQOoXI4cs51Mj/XHYHWELCNLTmI27iyDfGMQ5yaFRitwDHJDT2qUooX35k1J1BrMcnzuY8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=fwATaZHN; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=fGXs
+	rzt6u8YTKnC/hBZpqHUAVKGxcAQu9zwDNMaiVlo=; b=fwATaZHNVLw5UQDUrrt/
+	Vs66TdoJ8AIiN4XiINPlBk6/WdC3Ye80fUOSfLwNnnIZp7G+XlFknHpfUqRYocFC
+	ZRqPaAIsAC7XlIwfQwfnK/n+6qci6i/80I1N65Srr72JaD+FlcMN8L822lp6R6Uc
+	tUq1fD56DjxXBQTmQi9ySso1HHOdGaserRCikoBL0kmsV1fSwrx4X+ueJA/HAfIl
+	rTAuPePQcDgHclAUfcEAO8XoQi6b86E73VrRxIfIPwYiw4vS6vgT85+31+6SSkhR
+	ukCuGscr/4q26PzKnyu7lo1Zp2Upivn5l5M2Ch0A+xIQBlMuZc6zv2ArwTUjYvNE
+	KA==
+Received: (qmail 3727582 invoked from network); 4 Sep 2025 18:08:50 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 4 Sep 2025 18:08:50 +0200
+X-UD-Smtp-Session: l3s3148p1@gcfS7/s9SN8ujnuV
+Date: Thu, 4 Sep 2025 18:08:49 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de, johan+linaro@kernel.org,
-	quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
-	inochiama@gmail.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
- host controller
-Message-ID: <20250904160600.GA1264982@bhelgaas>
+	linux-renesas-soc@vger.kernel.org,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and RZ/V2N
+ support
+Message-ID: <aLm5kbgRIcomBo6a@ninjato>
+References: <20250904160305.247618-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,182 +71,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+In-Reply-To: <20250904160305.247618-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On Fri, Aug 29, 2025 at 04:22:37PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add Device Tree binding documentation for the ESWIN EIC7700
-> PCIe controller module,the PCIe controller enables the core
-> to correctly initialize and manage the PCIe bus and connected
-> devices.
-> 
-> Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> ---
->  .../bindings/pci/eswin,eic7700-pcie.yaml      | 142 ++++++++++++++++++
->  1 file changed, 142 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> new file mode 100644
-> index 000000000000..65f640902b11
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> @@ -0,0 +1,142 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Eswin EIC7700 PCIe host controller
-> +
-> +maintainers:
-> +  - Yu Ning <ningyu@eswincomputing.com>
-> +  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> +
-> +description:
-> +  The PCIe controller on EIC7700 SoC.
-> +
-> +allOf:
-> +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: eswin,eic7700-pcie
-> +
-> +  reg:
-> +    maxItems: 3
-> +
-> +  reg-names:
-> +    items:
-> +      - const: dbi
-> +      - const: config
-> +      - const: mgmt
-> +
-> +  ranges:
-> +    maxItems: 3
-> +
-> +  num-lanes:
-> +    const: 4
-> +
-> +  '#interrupt-cells':
-> +    const: 1
-> +
-> +  interrupts:
-> +    maxItems: 9
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: msi
-> +      - const: inta
-> +      - const: intb
-> +      - const: intc
-> +      - const: intd
-> +      - const: inte
-> +      - const: intf
-> +      - const: intg
-> +      - const: inth
-> +
-> +  interrupt-map:
-> +    maxItems: 4
-> +
-> +  interrupt-map-mask:
-> +    items:
-> +      - const: 0
-> +      - const: 0
-> +      - const: 0
-> +      - const: 7
-> +
-> +  clocks:
-> +    maxItems: 4
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mstr
-> +      - const: dbi
-> +      - const: pclk
-> +      - const: aux
-> +
-> +  resets:
-> +    maxItems: 3
-> +
-> +  reset-names:
-> +    items:
-> +      - const: cfg
-> +      - const: powerup
-> +      - const: pwren
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - num-lanes
-> +  - interrupts
-> +  - interrupt-names
-> +  - interrupt-map-mask
-> +  - interrupt-map
-> +  - '#interrupt-cells'
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        pcie@54000000 {
-> +            compatible = "eswin,eic7700-pcie";
-> +            reg = <0x0 0x54000000 0x0 0x4000000>,
-> +                  <0x0 0x40000000 0x0 0x800000>,
-> +                  <0x0 0x50000000 0x0 0x100000>;
-> +            reg-names = "dbi", "config", "mgmt";
-> +            #address-cells = <3>;
-> +            #size-cells = <2>;
-> +            #interrupt-cells = <1>;
-> +            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
-> +                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
-> +                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
-> +            bus-range = <0x0 0xff>;
-> +            clocks = <&clock 562>,
-> +                     <&clock 563>,
-> +                     <&clock 564>,
-> +                     <&clock 565>;
-> +            clock-names = "mstr", "dbi", "pclk", "aux";
-> +            resets = <&reset 8 (1 << 0)>,
-> +                     <&reset 8 (1 << 1)>,
-> +                     <&reset 8 (1 << 2)>;
-> +            reset-names = "cfg", "powerup", "pwren";
-> +            interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
-> +            interrupt-names = "msi", "inta", "intb", "intc", "intd",
-> +                              "inte", "intf", "intg", "inth";
-> +            interrupt-parent = <&plic>;
-> +            interrupt-map-mask = <0x0 0x0 0x0 0x7>;
-> +            interrupt-map = <0x0 0x0 0x0 0x1 &plic 179>,
-> +                            <0x0 0x0 0x0 0x2 &plic 180>,
-> +                            <0x0 0x0 0x0 0x3 &plic 181>,
-> +                            <0x0 0x0 0x0 0x4 &plic 182>;
-> +            device_type = "pci";
-> +            num-lanes = <0x4>;
+Hi,
 
-num-lanes and perst are per-Root Port items.  Please put anything
-related specifically to the Root Port in its own stanza to make it
-easier to support multiple Root Ports in future versions of the
-hardware.
+> Add device tree binding support for the I3C Bus Interface on Renesas
+> RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
+> that found on the RZ/G3E SoC.
 
-See
-https://lore.kernel.org/linux-pci/20250625221653.GA1590146@bhelgaas/
-for examples of how to do this.
+Cool, has it been tested with devices already?
 
-> +        };
-> +    };
-> --
-> 2.25.1
-> 
+> -title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
+> +title: Renesas RZ/G3S, RZ/G3E, RZ/V2H(P) and RZ/V2N I3C Bus Interface
+
+I suggest "Renesas I3C Bus Interface". The above is not going to scale.
+
+Rest looks good from a glimpse!
+
 
