@@ -1,156 +1,152 @@
-Return-Path: <devicetree+bounces-212903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 08BFEB43F66
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:45:29 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 76B93B43F8C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:49:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 27CCF5A6D50
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:44:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D18E18861E8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:46:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 097DA3090DB;
-	Thu,  4 Sep 2025 14:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E34951F4165;
+	Thu,  4 Sep 2025 14:46:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="buy9Zu0Z"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="F2iBe9zd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C87E3090EF
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E19E19E7E2
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:46:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756997046; cv=none; b=Oy9pRoJ9V1C3wo4RGbNVreZxUTDToojeP/1yGwQGjDlzvYHK77XYvkZugVlMj1e88sHbedy1ialfv7ALHPiv0Z5d2GCqZwlfE+q55wSS6vI07zVZPYAZYEe4e0IraGo9awxe4C91k+s9JoxnXP/cuUoXOZ7sDCwNHWbzwU1/nAY=
+	t=1756997181; cv=none; b=Kk0HO34YsWzHlk8rbkTGHePIJMz9hOg4gQmjI6Bpq+cF2r0/TtT2kppx6JWxfoxuZY3dZqGe9uM2lt6RlGW4NT3nO/UD0E0aBbOV1eoLRuNGKcsaVd8XUXm1mZEGNNQCItJQJtcb/k7/Mkdob+9jvjy6tH/NTDoFa9az9TyvGAk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756997046; c=relaxed/simple;
-	bh=fJE2yF/PvWH3g7fdEOCUn49CqL0Rrtpc7KRDzBeXS9A=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=f6C43qDqg9j0j9DtCXiEX7MXHrCc8EIqXrf5dgi+eTIvN9JopfMfmibvb2m1M6M3ZO1qqCQSSFr7cn/cstRIirm1v1T4Z6iAmCACYeCvLpVke6oPGoqCMURuzsHB5/Ykdj9nldF6k4MEHlmyGkJSQMj3l5ByCdld2jVoEUo/jdI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=buy9Zu0Z; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1756997044;
+	s=arc-20240116; t=1756997181; c=relaxed/simple;
+	bh=zT9Pq87cqpAvOSWai8c5qrhIMeLDe2eXLY7Do+c6oRQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=e08ShD6pLtLUQF7rQsLkAaPGXv6ToDERPN2NyxwTTsZFR+PMMGD9yA/cWAtiyZvfHi/ecAthXOs5Z92qH97PiW2deJp9B6yLHINr19VoauBvLEfMOR2ZDM8ZImizDrK4/jvokTZi3aGMm8V3pq+jEePTjLt7LSI5rlTuMeTzrTo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=F2iBe9zd; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cHj3D3blCz9tFV;
+	Thu,  4 Sep 2025 16:46:16 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756997176;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=3FsChnjzIB7Kv9twtI1vDkbPW57rkIUWsti3YFoQlUs=;
-	b=buy9Zu0Zm7CZ5BIj6BxRuc0Wb0yMobWuWoupEkaYBAAdHEnaZls00R9Gw+KuDGxaA581Ma
-	t/bonp61sbyPpAXCFVBilMyaGjDqXMjB3gTps1RlzinFkieVSjHL+1G4IREW2sO4bP627u
-	JCskrmuFfI2m4q5AZlGe6UURmWTpNa0=
-Received: from mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-572-oiJcdi-4NV6kWH0YGfplcA-1; Thu,
- 04 Sep 2025 10:44:00 -0400
-X-MC-Unique: oiJcdi-4NV6kWH0YGfplcA-1
-X-Mimecast-MFC-AGG-ID: oiJcdi-4NV6kWH0YGfplcA_1756997038
-Received: from mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.12])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-08.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 9AA571800366;
-	Thu,  4 Sep 2025 14:43:57 +0000 (UTC)
-Received: from [10.45.224.74] (unknown [10.45.224.74])
-	by mx-prod-int-03.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 91B2E19560B8;
-	Thu,  4 Sep 2025 14:43:53 +0000 (UTC)
-Message-ID: <906137ef-822d-4178-b80d-d332ab1046dc@redhat.com>
-Date: Thu, 4 Sep 2025 16:43:52 +0200
+	bh=v3GFnHtIblNt4J73Ub9v6dpzDoaywFOdLjrcnDFlhlw=;
+	b=F2iBe9zdgFRK2TtiNEprqg+Jymv+RN2AS6WabCLEtHcjyuSYku9hArJ1Xc0XhqALy4lOaR
+	e30O4AdWf9E+JT7UAJ2GhQGKJBNJNJX/6YIL824tgVX07kN2wTdSbCROvUHJmHeTciKwCV
+	yFASCZV++Xm05PDyCxpqET79B6r8Em6FZusqntwMa9MIQbP5aH34Yc2zMp1+/SE3ZqZDsh
+	ZhyYoiz/TrGr3QQlHXgd6HlYBIPc2c0VTnn4WoM59ngfUVLHDkNjik2P7Qdg/49VPia6vB
+	DkxFilh8AqD7Hn0Usg1LZTa1nBCpU5h6rD8wEGltJsn+GrpcwIxQx5IGMcPnPw==
+Message-ID: <8cc352ee-8279-46c5-901b-e6624156263a@mailbox.org>
+Date: Thu, 4 Sep 2025 16:46:11 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-From: Ivan Vecera <ivecera@redhat.com>
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com,
- Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250815144736.1438060-1-ivecera@redhat.com>
- <20250820211350.GA1072343-robh@kernel.org>
- <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ dri-devel@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ Boris Brezillon <boris.brezillon@collabora.com>
+References: <20250321200625.132494-1-marex@denx.de>
+ <3372501.aeNJFYEL58@steina-w>
+ <52e3c5dd-6952-43b5-94f9-43f30734680e@mailbox.org>
+ <7020337.lOV4Wx5bFT@steina-w>
 Content-Language: en-US
-In-Reply-To: <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <7020337.lOV4Wx5bFT@steina-w>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.12
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: k5w75xojfhphx8ai93r4gzgxiibg3nfm
+X-MBO-RS-ID: 3e8e287770314cb04a9
 
-Hi Rob,
+On 9/4/25 4:39 PM, Alexander Stein wrote:
+> Hi,
+> 
+> Am Donnerstag, 4. September 2025, 15:52:38 CEST schrieb Marek Vasut:
+>> On 9/4/25 8:36 AM, Alexander Stein wrote:
+>>
+>> Hello Alexander,
+>>
+>>>>> Maybe the GPU remains halted because
+>>>>> setting the GLB_HALT stops command stream processing, and the GPU never
+>>>>> samples the clearing of GLB_HALT and therefore remains halted forever ?
+>>>>
+>>>> Exactly that, and that's expected.
+>>>
+>>> FYI: in a new release of system manager software (starting from lf-6.12.3-1.0.0),
+>>> the GPU reset is reasserted in SM software already [1] and access to GPU
+>>> block control has been removed from Cortex-A [2]. Starting from B0 step this
+>>> version is required AFAIK.
+>>
+>> I don't think the SM is involved in this, because if I do the following
+>> test, the MCU also fails to boot unless I do a reset:
+> 
+> Is this some other reset than BLK_CTRL_GPUMIX? If so, it might be required.
+> Don't know much about internal details though.
+Yes
 
-any comment to my second proposal (below)?
-
-Thank you,
-Ivan
-
-On 29. 08. 25 3:29 odp., Ivan Vecera wrote:
->> Seems a bit odd to me that the ethernet controller doesn't have a link
->> to this node instead.
-> 
-> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
-> net/network-class.yaml ? If so, yes, it would be possible, and the way
-> I look at it now, it would probably be better. The DPLL driver can
-> enumerate all devices across the system that has this specific property
-> and check its value.
-> 
-> See the proposal below...
-> 
-> Thanks,
-> Ivan
-> 
-> ---
->   Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
->   Documentation/devicetree/bindings/net/network-class.yaml | 7 +++++++
->   2 files changed, 13 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml b/ 
-> Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> index fb8d7a9a3693f..560351df1bec3 100644
-> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> @@ -27,6 +27,12 @@ properties:
->     "#size-cells":
->       const: 0
-> 
-> +  "#dpll-cells":
-> +    description: |
-> +      Number of cells in a dpll specifier. The cell specifies the index
-> +      of the channel within the DPLL device.
-> +    const: 1
-> +
->     dpll-types:
->       description: List of DPLL channel types, one per DPLL instance.
->       $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> diff --git a/Documentation/devicetree/bindings/net/network-class.yaml b/ 
-> Documentation/devicetree/bindings/net/network-class.yaml
-> index 06461fb92eb84..144badb3b7ff1 100644
-> --- a/Documentation/devicetree/bindings/net/network-class.yaml
-> +++ b/Documentation/devicetree/bindings/net/network-class.yaml
-> @@ -17,6 +17,13 @@ properties:
->       default: 48
->       const: 48
-> 
-> +  dpll:
-> +    description:
-> +      Specifies DPLL device phandle and index of the DPLL channel within
-> +      this device used by this network device to synchronize its hardware
-> +      clock.
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +
->     local-mac-address:
->       description:
->         Specifies MAC address that was assigned to the network device 
-> described by
-
+    296	/**
+    297	 * panthor_gpu_soft_reset() - Issue a soft-reset
+    298	 * @ptdev: Device.
+    299	 *
+    300	 * Return: 0 on success, a negative error code otherwise.
+    301	 */
+    302	int panthor_gpu_soft_reset(struct panthor_device *ptdev)
+    303	{
+    304		bool timedout = false;
+    305		unsigned long flags;
+    306	
+    307		spin_lock_irqsave(&ptdev->gpu->reqs_lock, flags);
+    308		if (!drm_WARN_ON(&ptdev->base,
+    309				 ptdev->gpu->pending_reqs & GPU_IRQ_RESET_COMPLETED)) {
+    310			ptdev->gpu->pending_reqs |= GPU_IRQ_RESET_COMPLETED;
+    311			gpu_write(ptdev, GPU_INT_CLEAR, GPU_IRQ_RESET_COMPLETED);
+    312			gpu_write(ptdev, GPU_CMD, GPU_SOFT_RESET);
+    313		}
+    314		spin_unlock_irqrestore(&ptdev->gpu->reqs_lock, flags);
+    315	
+    316		if (!wait_event_timeout(ptdev->gpu->reqs_acked,
+    317					!(ptdev->gpu->pending_reqs & GPU_IRQ_RESET_COMPLETED),
+    318					msecs_to_jiffies(100))) {
+    319			spin_lock_irqsave(&ptdev->gpu->reqs_lock, flags);
+    320			if ((ptdev->gpu->pending_reqs & GPU_IRQ_RESET_COMPLETED) != 0 &&
+    321			    !(gpu_read(ptdev, GPU_INT_RAWSTAT) & GPU_IRQ_RESET_COMPLETED))
+    322				timedout = true;
+    323			else
+    324				ptdev->gpu->pending_reqs &= ~GPU_IRQ_RESET_COMPLETED;
+    325			spin_unlock_irqrestore(&ptdev->gpu->reqs_lock, flags);
+    326		}
+    327	
+    328		if (timedout) {
+    329			drm_err(&ptdev->base, "Soft reset timeout");
+    330			return -ETIMEDOUT;
+    331		}
+    332	
+    333		return 0;
+    334	}
 
