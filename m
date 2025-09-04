@@ -1,99 +1,93 @@
-Return-Path: <devicetree+bounces-212928-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212930-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96FAFB44208
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:03:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C41A9B4423F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:08:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF0F1CC28D0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:03:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E1F417BA468
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:06:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEFE2C21D8;
-	Thu,  4 Sep 2025 16:03:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E2E42D23AD;
+	Thu,  4 Sep 2025 16:08:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HU+Cd349"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mQeLaCbu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36562367DC;
-	Thu,  4 Sep 2025 16:03:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7A6915B0EC;
+	Thu,  4 Sep 2025 16:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757001795; cv=none; b=uS+j2HvdrBoS3WH8ccQpKRhDDj+s4s2mCswbwbh/ud+1vMxaQQ20femfWAslPTeUFmAty6DRBfaiYTy8wfvJyE7uBR3h1xO+nne7rY0aCddxT5LPOsus3WPOHEk4LOG7qRUysIXXEN3GuvIvXoZVyRQGnqaw956JvHglKLMWcOc=
+	t=1757002091; cv=none; b=eBuuVMrwlyjTUaWjydB01qK/aiDFO+HqnjyD7+wXEztSNH46cjP5Ex9S6jf4zHr/f90qou21sKnP3bWqfQjBCuwI7EKQXz8bx3YLcPo8frHyTkyZJHfjzFjutpAYO2HVUiDm5flk0w/M/w0XzrxJvzpZeR7NPXC/Eyfs0DVxGVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757001795; c=relaxed/simple;
-	bh=sAzFasY0irDT+RWFfdcKlsf9/BNuAkoj4KNlayvUweA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fpwgjxyI+40lL3i4NGnxqksCC6/k8eI2uY70yc5KFvXDCQAOll02M9Mo9rMSJyVlTVxGey3F/D5HGfxesF1N6pt94aXNmWiCS+/35ARlMetO55NKL0ePMhXWjNCngZivN3JgCjhmZmg0B4FJZGv85qetyPByR6oHgXfFFVWY43M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HU+Cd349; arc=none smtp.client-ip=209.85.128.54
+	s=arc-20240116; t=1757002091; c=relaxed/simple;
+	bh=hjfEhzugQD19ibBRchiFnAbtH7EF4Igl+FxrYCdziFQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ezUv0tGB12xZsOLVDx0yg8iJCyNHIhgdhItNI96MbBF+2LrMz6AgqfgSMjVsgsW1TRNobswQI8RgsoNKVXPIPaBMd3U//IbuO4LRZ/QSaBT+KS1OLk2wqiE+xBN124bhixy/dpxD1yM4AMbEbiVRdakPdFa54F9gumOpZEjy6SE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mQeLaCbu; arc=none smtp.client-ip=209.85.160.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45b7da4101fso4560175e9.3;
-        Thu, 04 Sep 2025 09:03:12 -0700 (PDT)
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-31d8778ce02so340120fac.1;
+        Thu, 04 Sep 2025 09:08:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757001791; x=1757606591; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1757002089; x=1757606889; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=inlzeL92Q1+R3JzgzpZ5gZz+OI69SWz4CtAKRdZzkcw=;
-        b=HU+Cd349SNI+fA9/mWPl1jIUXtGKL2WCqRxKOwc+gnJRQTgaGRe8wNQca1ClfUa1yD
-         /Hkeg/7or6fE4pzxq6TmsnwysknPYvrHYPA9hnN4ntd1VTa4nA7IO9WBq2FwcSfyNSgU
-         yG+m9DO0izzs/CBTc1F/IuvmVHGXqmbnmv8rERzX+G9HLYAW/7hI8sWzpyZIQgTPw2hc
-         LuLX4Y8n4z8M9wq2tNzBnaPpS4WBhQKncO9rtlb6BtVYY+BZ0ZfQV4XjA0DviOpM4cxu
-         UGJorKj16Nv3dMgpTgkmyF59xKy/Zhi29ps92U1YAA5kkEZjzRMdz9c62RWIZoZpdF4I
-         RZog==
+        bh=dnLQTlyK5KH3ehk4moKP2An86eSERrKdK5nAInHs2V4=;
+        b=mQeLaCbuiA9jk7l2dv3YQd9SIWtfuFAWKKLTefvgTZDRkZgVBpU6wX31njPG7bUEHm
+         L89Sfee+XlUSC9x5uMvHRnkHtVhi/KuWvf8Z9N0kCz5WKZr163NH/6wq6WldS5ko86Et
+         jjDMAvb08ITOD7StvG5aCis4Ga9NBRiC2X5PqyQvudzyw0di00jbQi4w+20ziJzAW2y7
+         lAqI/b2fJBMMlS6tuWoPjvrM/yZaeAUDxm8ojSK0H2LAM3ENC9gQIHKU0dYwUyIXU9eV
+         ZbD04WhM3bo7pw7Btx+xDH0uZ9rt1eiU8Uea+HnVQcrV1d0czXjyiQyXF5K/r9R9I1+W
+         1Vdg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757001791; x=1757606591;
+        d=1e100.net; s=20230601; t=1757002089; x=1757606889;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=inlzeL92Q1+R3JzgzpZ5gZz+OI69SWz4CtAKRdZzkcw=;
-        b=DkTPQk9uOV46FxVenhuOnDmLCVq7ZVRTkIqZUPmlna+ulI8POpACP5UdsMTmuxcFck
-         zT5+gYxng570KhQ8aDMEi8kS5CeCCTvgNclsGrxcvluUq9hvLDYWhpTnNJyeXuu3ZDU1
-         TwVmcAuKBmg/oJX+sc2y3feOuXklJUeSuJ5pMwa0yIkNgS2080Brr8SWDSvBP2RPBvZl
-         rK/Dy0saCegSkANutxLXS2QKoqn//tvdOUq4knHIXlNobAnxXAeeDyjUcuKp9jufydrp
-         dSZrXpW2qd5Fwgz7/awLxuSKODiUKOU9U/MizrRi6HjcGL+dlcR0bKZPtq222gf8x8ey
-         kmbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCULIepyvkeGjTbKVu8qB/9ApSJou/iEp7FK866jhf3rvhC+foHZCkmHuNW6ToYojppZPrO8LT6Y2Knffx2f@vger.kernel.org, AJvYcCWjY76Jw31TucJyd9mNX8I0zS7w//a5ju/1dsN8UaZQ1SeWIYiOzFN3FW4OnCUUbusYDUnEMNyB2QNtx3b2jh8YrY0=@vger.kernel.org, AJvYcCX4/YQZAtaHxMWd/QBmshymMQDELVY3Eppd79HEjYpyhAW7TuYsDGDbwC9sYw9M+3tuKKZNbGM2r6k5@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws5LsgNg1yVdLYXI2Hc3o+bIsaK7KooCmnCWhfVD9JQPf3BSjI
-	QEJ2c7SIn4uV/SvVTG/V97zM1VguQ6k5xO5ajUJJdlGfeRjGeqT4t0z+
-X-Gm-Gg: ASbGncv/p4fOZNr+rndLMhnVsmoxmMApTup/udZZ1qRccMdGji+VKIUemNQMZ88VV+3
-	6HXfxna2vqwt2XKck5jRwqNX+ZiJT8skRv97IycWXn+knnCkPIruEsJdGV2CiYHNeer4bYjHnYT
-	LiJbQOGkJsAOTugn4G6RjSHZQhm5OMyLz/vyf/VrJB01kiYggHI/agYQFzW+eAPhqLLsc36rBBj
-	44/s/6NABZ5PYk6patTZKUnLJ/OB/CCL0LAzoR/0OAPPyg2oZJRkudIi2hEDTYqzPSW0xPy1fdV
-	JweThU8n2C3meu3b5T9eYfnFmVaufQJdnIwJnXp7XbPen9NvjNtXAVnpDX8FdRmhXPy9zPO22qD
-	XaIyIazjJaDUPrvRC76UCz3LpSbXoB9yyVya8wcZrCEA6d7LLmvk4pBSuqg==
-X-Google-Smtp-Source: AGHT+IFgIVReQPVQhz9k/P9YI/MxpwIZDmDNHMJlsOtsRqB1HD/exOoyXUahixSAJHYLjPaR1ELVcw==
-X-Received: by 2002:a05:600c:4452:b0:455:f187:6203 with SMTP id 5b1f17b1804b1-45b855983cfmr146238965e9.27.1757001790426;
-        Thu, 04 Sep 2025 09:03:10 -0700 (PDT)
-Received: from iku.Home ([2a06:5906:61b:2d00:904e:70c8:edf3:59a4])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b98e77231sm117935885e9.12.2025.09.04.09.03.09
+        bh=dnLQTlyK5KH3ehk4moKP2An86eSERrKdK5nAInHs2V4=;
+        b=uBPQujDzgypItZ0I83L4nVeZVQNURVPymBapt7z7VSw2syYPxX96Gg6kh4LMDwBEy2
+         T6BlpXG+/o1WkA8VpTFqt+zh5PvaIO0zjDI4XiFu9cPYLhQgDEEuSJwXbpp74+qynh5q
+         mM7Lx6cp4bP3BfO+/yePIPpeBCkKCSg5nlP3KqFoBLBn+OZFmE6tVMVhtvFXc2LY0KXG
+         hhtBC4fxdDliOdfzi4vFNO1Gu+rea/zl/Y6KaK46otiGUHORnLFZoENSyBFZlKZagJOx
+         RIxQgL0T2+nluhii9wAlFUfi1R+Gr0ZjS5y9eJ2QGzEP74eQk+lB+EhaWFjfNtY1XaT2
+         ezXw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0htnKCs94GLJkm3JA0am/imV9peUc9yHublFT2oHti6vkkHvaWYro5tkBRXha+lzOfAu0abGMGdjg@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywc5J+1l7+hbxizQdn/SFjNuq/ZO74l/gN0GV12VdBbmtpjXEz0
+	VsyaH0+9dUXvBKJVBIxT7J45nLIWOVzzPWMOFfFMNpfE/c5RV8BaRuhPXEgjiA==
+X-Gm-Gg: ASbGncs4qhXKUDIHYkQ5HfTGhiIVvKsEZuw6sQqcx9DBXdJmkUMzXiSuH++Xcwz2oVF
+	kMiWyiNRjv5EXUHfWaYuu02+mIcNk7PAvvXg7elG6zlk3VlXYK5kPwxqQv40AFxFWrDxugA1ubB
+	OtDyljqGCs7rEzwU+EJdAxXsznpQZpHVldIWxiqRs+oS8yAEqYyk2aFXyOWYdNGLT9QYgu2yOB7
+	D5cZeq+Jw4tulX1TEgiYtyksZejwA3K2vHg5OgyzHrijA130mYomokc3lgKhD1G80tltnIIPaEY
+	CaPsJzGB9J8gUM9jl+sUGvKbj+EkCMWu+0CNOyDgS0UKPKspVQb39+AsJp/8a4ZtbjEx0kJ2Wjs
+	xxJxQmg7C1ZUd55fnE26ZlpIKkih7pf6cbRLn7sZskzN5z9dlIDiM
+X-Google-Smtp-Source: AGHT+IHAQn8TOWyz0EjpBcfuRhkynnc9V07I0DmI0NICnfkyTH8REAuzTc1BBFIjCRqvT5UC1qY6Zg==
+X-Received: by 2002:a05:6870:7308:b0:2c2:4d73:ec43 with SMTP id 586e51a60fabf-31f3bc02ed3mr118866fac.15.1757002087843;
+        Thu, 04 Sep 2025 09:08:07 -0700 (PDT)
+Received: from localhost.localdomain ([2600:1700:fb0:1bc0:c51e:64e3:dc5d:9652])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-319b5fcbf6asm2437593fac.20.2025.09.04.09.08.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 09:03:09 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-i3c@lists.infradead.org,
+        Thu, 04 Sep 2025 09:08:07 -0700 (PDT)
+From: Chris Morgan <macroalpha82@gmail.com>
+To: linux-rockchip@lists.infradead.org
+Cc: linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and RZ/V2N support
-Date: Thu,  4 Sep 2025 17:03:05 +0100
-Message-ID: <20250904160305.247618-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.51.0
+	broonie@kernel.org,
+	lee@kernel.org,
+	lgirdwood@gmail.com,
+	sre@kernel.org,
+	heiko@sntech.de,
+	conor+dt@kernel.org,
+	krzk+dt@kernel.org,
+	robh@kernel.org,
+	Chris Morgan <macromorgan@hotmail.com>
+Subject: [PATCH v8 0/5] Add Texas Instruments BQ25703A Charger
+Date: Thu,  4 Sep 2025 11:05:25 -0500
+Message-ID: <20250904160530.66178-1-macroalpha82@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,57 +96,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Chris Morgan <macromorgan@hotmail.com>
 
-Add device tree binding support for the I3C Bus Interface on Renesas
-RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
-that found on the RZ/G3E SoC.
+Add support for the Texas Instruments BQ25703A charger manager. The
+device integrates a boost converter with the charger manager. This
+series adds the device as an MFD with separate regulator and power
+supply drivers. This allows us to manage a circular dependency with
+a type-c port manager which depends on the regulator for usb-otg
+but supplies power to the BQ25703A charger.
 
-Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
-"renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
-"renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
-compatibility with the RZ/G3E implementation.
-
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 ---
- .../devicetree/bindings/i3c/renesas,i3c.yaml     | 16 +++++++++++-----
- 1 file changed, 11 insertions(+), 5 deletions(-)
+Changes since RFC
+ - Corrected some minor issues with code and device-tree labels.
+ - Replaced most of the manufacturer specific device-tree properties
+   with monitored-battery properties.
+Changes since V2
+ - Added reference to power-supply.yaml and removed note for i2c
+   address per recommendation from Sebastian.
+ - Corrected documentation error for charger driver found by kernel
+   test robot.
+ - Corrected duplicate POWER_SUPPLY_USB_TYPE_PD entry and corrected
+   ichg logic in power supply changed function.
+ - Corrected missing linux/bitfield.h header in regulator driver found
+   by kernel test robot.
+Changes since V3
+ - Changed name of regulator from usb_otg_vbus to just vbus to align
+   with datasheet.
+ - Additional cleanup of the device tree documentation.
+Changes since V4
+ - Replaced instances of dev_err followed by a return in the probe
+   functions with a return of dev_err_probe instead.
+ - Simplified cell definition of main driver for probe.
+ - Updated copyright year to 2025 on copyright strings.
+Changes since V5
+ - Removed erroneous Reviewed-by tag from mfd patch.
+ - Made mfd_cells static const in mfd probe function.
+ - Removed unneeded enum from header file.
+Changes since V6
+ - Fixed https://lore.kernel.org/all/202508181503.GrRD2T4C-lkp@intel.com/
+   by explicitly setting the register in question to 0 and adding a
+   note to describe the change.
+ - Fixed https://lore.kernel.org/all/202508210308.Lw2Klipk-lkp@intel.com/
+   by changing an IS_ERR_OR_NULL() to just an IS_ERR().
+ - Fixed https://lore.kernel.org/all/202508141051.hwl2Erq6-lkp@intel.com/
+   by removing the uninitalized variable in question which is not
+   needed.
+Changes since V7:
+ - Changed regmap cache type in mfd to REGCACHE_MAPLE.
+ - Corrected mfd_cell struct location.
+ - Added whitespace for readability. 
 
-diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-index fe2e9633c46f..e41ba3ba4b58 100644
---- a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-+++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
-@@ -4,7 +4,7 @@
- $id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
--title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
-+title: Renesas RZ/G3S, RZ/G3E, RZ/V2H(P) and RZ/V2N I3C Bus Interface
- 
- maintainers:
-   - Wolfram Sang <wsa+renesas@sang-engineering.com>
-@@ -12,10 +12,16 @@ maintainers:
- 
- properties:
-   compatible:
--    items:
--      - enum:
--          - renesas,r9a08g045-i3c # RZ/G3S
--          - renesas,r9a09g047-i3c # RZ/G3E
-+    oneOf:
-+      - items:
-+          - enum:
-+              - renesas,r9a08g045-i3c # RZ/G3S
-+              - renesas,r9a09g047-i3c # RZ/G3E
-+      - items:
-+          - enum:
-+              - renesas,r9a09g056-i3c # RZ/V2N
-+              - renesas,r9a09g057-i3c # RZ/V2H(P)
-+          - const: renesas,r9a09g047-i3c
- 
-   reg:
-     maxItems: 1
+Chris Morgan (5):
+  dt-bindings: mfd: ti,bq25703a: Add TI BQ25703A Charger
+  mfd: bq257xx: Add support for BQ25703A core driver
+  power: supply: bq257xx: Add support for BQ257XX charger
+  regulator: bq257xx: Add bq257xx boost regulator driver
+  arm64: dts: rockchip: Add USB and charger to Gameforce Ace
+
+ .../devicetree/bindings/mfd/ti,bq25703a.yaml  | 117 +++
+ .../dts/rockchip/rk3588s-gameforce-ace.dts    | 122 +++
+ drivers/mfd/Kconfig                           |  11 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/mfd/bq257xx.c                         |  99 +++
+ drivers/power/supply/Kconfig                  |   7 +
+ drivers/power/supply/Makefile                 |   1 +
+ drivers/power/supply/bq257xx_charger.c        | 755 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   8 +
+ drivers/regulator/Makefile                    |   1 +
+ drivers/regulator/bq257xx-regulator.c         | 186 +++++
+ include/linux/mfd/bq257xx.h                   | 104 +++
+ 12 files changed, 1412 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/ti,bq25703a.yaml
+ create mode 100644 drivers/mfd/bq257xx.c
+ create mode 100644 drivers/power/supply/bq257xx_charger.c
+ create mode 100644 drivers/regulator/bq257xx-regulator.c
+ create mode 100644 include/linux/mfd/bq257xx.h
+
 -- 
-2.51.0
+2.43.0
 
 
