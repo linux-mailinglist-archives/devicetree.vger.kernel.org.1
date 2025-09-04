@@ -1,134 +1,105 @@
-Return-Path: <devicetree+bounces-213089-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40331B44887
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:31:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD49EB448CB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:49:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 075F01C87CCB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:32:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A1B116C0C5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 21:49:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5CB329C343;
-	Thu,  4 Sep 2025 21:31:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEF40299948;
+	Thu,  4 Sep 2025 21:49:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="KkMgZWe+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kRz18qze"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2038621FF44;
-	Thu,  4 Sep 2025 21:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86ED0BA4A;
+	Thu,  4 Sep 2025 21:49:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757021495; cv=none; b=NhDGUguzKw/ZJ2nfM+aayTtWhKwdldwx39G+DUvhUlSAf+fwvy9QqTo4IRw1i48wudUsJaA6u5QZNsgA7/OWPypPihln4snvf9xPYRP/EiTGvAFPfCTlxuSsmNRcyBwR9lPrpn9o4DVSjq3m/rLNOcsIZPfGXflHsAMgAe9FnpA=
+	t=1757022550; cv=none; b=plkj1VTARpBbN1d4nXVXCCqaZB6ZwyMuZ5jJQP0R6Q0Qhae803op1cWWgynaszntBj3TAJHabZuA0QMMOB5rpa4T3EAelYiB86+xU6Ef07XGU5M8ryfoLOv+bT+44LY16FEcCmkafYVnRNlGiXKD/i/G8i01Wovo/ruQIVAi+I8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757021495; c=relaxed/simple;
-	bh=+sm4UcxA0vSUoTY8xGWPKzfLP4Q5abU5CRVblQJLvNA=;
+	s=arc-20240116; t=1757022550; c=relaxed/simple;
+	bh=TMssmfr6Ux793m0iP09iig4VNiue9TXEr6uOT9wRYhM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=W2WQ7T9PkECehLtBcPrxbP3h1WxSKhnwbx9Qg4rWJJTSrw13FkzUYkaIYvlRC1EtA4FNhdrGPZG9T5pwxCGaBV1SooL7TKoZSlg3dKKXTHKNOctapRedd4kqc74h/W9e++I+5JdeWkpq10kWbbJGFmKTddx32idAwimk05hXRro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=KkMgZWe+; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=6H1pSOS0tE8x4+w4j5sSTNSvLpOtXpis8kCsGfo1lcM=; b=KkMgZWe+XVf2JxNzPK4es8X5Pk
-	08NY++duiwnRg15poUU2Xa53D+o5nE3vzxllBZdeJDRLTejJKchTMJIf3qjK5EyxV6ZpE1AZMFQR2
-	UE2uvX8UmgWim2jW90temcr6HpOXtagXU9OIu3+sHOzxalUz5zBukXlR6r6H1zvPR+qfS4/waOn65
-	Cm44rA5rJDq3iWf2cA6Fyv3Pz861y67zugaUaa6T+ZysZGg7YzULl5Mh4WcqmC0xWj3dR/fT0uffh
-	tDEbUQc+fjqUV060l0CY6vBVs0P1i08ZCg04FpwjwQqJ13b8upZlbpdrUlgvX102c42IFL33cBIRk
-	twajxq3A==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:35846)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.2)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1uuHY7-000000002ZH-0ZPb;
-	Thu, 04 Sep 2025 22:31:19 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.98.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1uuHY2-000000001sE-2wEY;
-	Thu, 04 Sep 2025 22:31:14 +0100
-Date: Thu, 4 Sep 2025 22:31:14 +0100
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=MF3Sh2Iefy6pg/cV29qctxbH4BJyaR6tBGB0Wep1Wm/vOk/DwK9eVzzU7SakPKkKL4qFweydGYms+R1fMr23D1IwGjI+3HWGOjd9TaUAZAFqqd66dVFRKPOn+w1iz2a1Gis0nlEw09BTK1AI/ROVOvNGqJJb1G5jap2fWMAApK0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kRz18qze; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2941C4CEF0;
+	Thu,  4 Sep 2025 21:49:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757022550;
+	bh=TMssmfr6Ux793m0iP09iig4VNiue9TXEr6uOT9wRYhM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kRz18qzeLCcAzy4y8bhCvYXUvjJcV7sRjsZXK+MxYDMucIr1ggqDgC85YWNAemAWc
+	 rx5aIlmDWeB759ZUHkcYPTg+vfq7ZcQmG7toKdl0qWjgN3c+SpwEttVX7i13x0UMBY
+	 lge1x451WwrZgHE/3V6kbw3D0er6au0pfSYeM7CuCeh2hnG0paZg7c+HLAhKyNs6WE
+	 yUP42sNN4uyXVM1MOuTkosbdI2R+irloN/wbrQoQjSWpIYeE3+96eqvo625lztVLMV
+	 rAQWGjAKmm/XBCoqUSjIev582Me209rBfKN/QpfYXHO4EUC3wCFSgwBqJDr6RUHcWq
+	 8MONyy47FZRbw==
+Date: Thu, 4 Sep 2025 16:49:09 -0500
+From: Rob Herring <robh@kernel.org>
+To: Aaron Kling <webgeek1234@gmail.com>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-	Alexandre Torgue <alexandre.torgue@foss.st.com>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-	Jose Abreu <joabreu@synopsys.com>, netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-stm32@st-md-mailman.stormreply.com,
-	linux-arm-kernel@lists.infradead.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH net-next v2 2/3] net: stmmac: dwmac-renesas-gbeth: Use OF
- data for configuration
-Message-ID: <aLoFIoqT2A2RmrfR@shell.armlinux.org.uk>
-References: <20250904203949.292066-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20250904203949.292066-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <aLn7XVnWmHv1Bfe2@shell.armlinux.org.uk>
- <CA+V-a8umpEzwO5XnFVNB-TkDtEh9K48OKqaDE_SwzGfXk+9qEA@mail.gmail.com>
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Joseph Lo <josephl@nvidia.com>,
+	Peter De Schrijver <pdeschrijver@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org, Thierry Reding <treding@nvidia.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: tegra124-dfll: Add property
+ to limit frequency
+Message-ID: <20250904214909.GA69864-robh@kernel.org>
+References: <20250903-tegra210-speedo-v2-0-89e6f86b8942@gmail.com>
+ <20250903-tegra210-speedo-v2-1-89e6f86b8942@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+V-a8umpEzwO5XnFVNB-TkDtEh9K48OKqaDE_SwzGfXk+9qEA@mail.gmail.com>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20250903-tegra210-speedo-v2-1-89e6f86b8942@gmail.com>
 
-On Thu, Sep 04, 2025 at 10:10:32PM +0100, Lad, Prabhakar wrote:
-> Hi Russell,
+On Wed, Sep 03, 2025 at 02:30:16PM -0500, Aaron Kling wrote:
+> The dfll driver generates opp tables based on internal CVB tables
+> instead of using dt opp tables. Some devices such as the Jetson Nano
+> require limiting the max frequency even further than the corresponding
+> CVB table allows in order to maintain thermal limits.
 > 
-> On Thu, Sep 4, 2025 at 9:49 PM Russell King (Oracle)
-> <linux@armlinux.org.uk> wrote:
-> >
-> > On Thu, Sep 04, 2025 at 09:39:48PM +0100, Prabhakar wrote:
-> > >       plat_dat->init = renesas_gbeth_init;
-> > >       plat_dat->exit = renesas_gbeth_exit;
-> > > -     plat_dat->flags |= STMMAC_FLAG_HWTSTAMP_CORRECT_LATENCY |
-> > > -                        STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
-> > > -                        STMMAC_FLAG_SPH_DISABLE;
-> > > +     plat_dat->flags |= gbeth->of_data->stmmac_flags;
-> >
-> > You include the first two flags in your new device. I would like to see
-> > at least STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP always being set. The only
-> > reason we have the STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP flag is to avoid
-> > changing existing behaviour and causing regressions. New stuff should
-> > always set this.
-> >
-> Me confused, STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP flag is set in the new
-> device [0]. The reason STMMAC_FLAG_SPH_DISABLE flag being dropped in
-> the new device is SPHEN=1 in MAC HW feature reg for the new device.
+> Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
+> index f7d347385b5775ddd702ecbb9821acfc9d4b9ff2..8a049b684f962f2b06209a47866711b92c15c085 100644
+> --- a/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
+> +++ b/Documentation/devicetree/bindings/clock/nvidia,tegra124-dfll.txt
+> @@ -70,6 +70,9 @@ Required properties for PWM mode:
+>    - dvfs_pwm_enable: I/O pad configuration when PWM control is enabled.
+>    - dvfs_pwm_disable: I/O pad configuration when PWM control is disabled.
+>  
+> +Optional properties for limiting frequency:
+> +- nvidia,dfll-max-freq: Maximum scaling frequency in hertz.
 
-What I'm saying is I'd like to see:
+Use standard unit suffix: nvidia,dfll-max-hz
 
-	plat_dat->flags |= STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP |
-			   gbeth->of_data->stmmac_flags;
-
-iow, it is set unconditionally, even if forgotten in a future patch.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+> +
+>  Example for I2C:
+>  
+>  clock@70110000 {
+> 
+> -- 
+> 2.50.1
+> 
 
