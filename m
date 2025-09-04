@@ -1,207 +1,196 @@
-Return-Path: <devicetree+bounces-212691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C131B43871
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:19:05 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5EF5B4389F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:24:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B4371C81BF4
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:19:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72E843A0F6E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:22:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C250F2FABFB;
-	Thu,  4 Sep 2025 10:17:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 915542EBBA8;
+	Thu,  4 Sep 2025 10:22:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="b2+Ubdhu"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="dtC4k+RO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 203FF2FA0F1
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 10:17:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 515ED2135B9
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 10:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756981023; cv=none; b=pGzO37xn/1jpxXye5s1/Ga84BAw3n/fvJnaU9KUW1XcGRoqWnGcsLuGZGJ5NeGnsqKX868maJ/oQgcNGll46XyJMkaHiu71IzafMhoJxiedpeQhcXytWn5YvygkIh3sy/yShRg/LLNTS3Z0pJf9uwLfnndWKdREFAdZzXEhS8+M=
+	t=1756981329; cv=none; b=MAtenhPQEbwvRLub9ldmWajSlaRuugzhKUbpvcDhTkWxHPJJdM3/Xd68FwJ9l9HDT8sPXig0smDgZFPLKxJY2op4VK4gabEz1pCMALKjGfdWUqs54upnihtx9NNUZRfZK5HxCXjRJbRguiGy6VuJ7imkRtLwdZtuY9RhRzpt160=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756981023; c=relaxed/simple;
-	bh=7MJyzBaUxP9X5PagJDcFR2Xl0v9tA5iGZjMRO04beHg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ol9BekWWQnGKO8E0ZOKmEgqoqfYO83dSLKX2U80j45SR8kCjJzYuAQAc1MO6KXYSkQ171Zrf2hoL0mO/MxdJtEkRMQMqhvCdboKcgTEnftV7qMsCwU/7YlYuoa6SNrgzx7JJ/mpfJHf1Gt63YLpVeVDV/Q0IVTe5z7sKB/7dHe0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=b2+Ubdhu; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849XJh1008316
-	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 10:17:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=rmgllivFRv6RjPwaBGym+Zby
-	4n60SrTDmfiiEvhrg5E=; b=b2+UbdhuhLawegkDcLTK0dX7H/ggcXf3MnP37WvU
-	c2aEonH9wF0KhNcaKD6oLOfakxBTr58H8WNkcve053YRYurMvjEzksh5jwxIUozJ
-	pu2nu6SPAxDk8IAeTeaDOuIViFGlAbA6GDH9sGYi+lXbti1tNjB0IB2FqbRW2jrA
-	YNVNmCacrLyh/GYV+y8Ol4dmdbzNn/yHEKicAmEWWN88PkZlVIbEEe7nS47rbTvX
-	OYv5eLMFVOOITqurcEpiqbSnTgfHeogQWBGsH7z+A0qcEpUvtY2EMXsutsK0vSfX
-	RGCP5nM6Wh2Lgo3pR/mKoA/CpcoDH6deWIDYQhMHLFxt0A==
-Received: from mail-pl1-f200.google.com (mail-pl1-f200.google.com [209.85.214.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjq2ug-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 10:17:00 +0000 (GMT)
-Received: by mail-pl1-f200.google.com with SMTP id d9443c01a7336-24b4aa90c20so12575425ad.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 03:17:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756981020; x=1757585820;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rmgllivFRv6RjPwaBGym+Zby4n60SrTDmfiiEvhrg5E=;
-        b=uzsQ9x4exVt8+ruCnFT2tIzN+oqFADFJIYW4hoelWYdcRWRvEV7y0/HZU/CVc9Xytw
-         q6RkDyH/ISCedIIKrfquLv52geQbkAq0oyOLU9vLDMZeLJiqgBWGfgdxc149nghHZapc
-         ryK6D4sYaRX62oJGZ/4O5dvy4iuKZiYp9Hl6HV4V/gWs8j0Cnnj0TwxMpzpNCov8q+6b
-         Kjz5xeNKXgh/qzC+CIRkWtRjeWh0SaqYVnwt2XYSOvbA90+Ppff4xuQFCOsdgdTy0uEm
-         qS1CFnxHPDhdslwK752HpizF3R0cjX4A/nAhSdlJUkqBJob+shwEUHBZa38Zbnp3wbKr
-         sGnA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwYf4wonGwU4B0SRHHrPMkIFHtSTNXY6+SVwQd3bd1BArMiFH0RphB0nkN6hY+VrY9kff+6sKeahOo@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz5OJxZGsMbgVhl/sZqab6ZmWvY3ccV3eUuu+h/aBmb8pePAocX
-	saM+GxkX3mpTmJuVBUveUAaQN4e6X2KYSfs213pqd/jcMDuamAp/ykOXmzjE6yTFc04YD6g6f3w
-	Q9F1dDVFiC5lpNc+z3dE0OjPFIEVIWa11OYmJEcTe2IweguW22CBA+I4PwGnFtauF
-X-Gm-Gg: ASbGncuWRJLyI7X/Rjp2/jDMDVp1SuQQ06mvn7YcRdsxn7I6EmI1UniKvvn7CWywenz
-	oGOl5Njfyk/HKtz/DX5fg5ibhyW0Aura9312kyGzM6qnAUJsu6dTtr/lo6ImzMPa207S/PYLix4
-	a6lValTbll8JsyjJoMgJ2KQ3PmpPZ8auFPqRA7Bzxxj3ALxl/hfytus5WfR5quowSjnneOY/Ssm
-	uMFlgcfKZBfYH/aLirEOMuURoZklbmQctseziyg/IypXV1p7Jm5RrAzO4kXXPvEImnCsjATel9R
-	sQCC4voW0Q88qivKZuxzqcvfBgM3KODdg2A0p57qPWdLl71HmEOPdn+MkhCEMxbMBvZx+qbEVw=
-	=
-X-Received: by 2002:a17:902:f70d:b0:248:d917:a57c with SMTP id d9443c01a7336-24944ad11e1mr272852235ad.40.1756981019657;
-        Thu, 04 Sep 2025 03:16:59 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF62jdk6gndKp8OgF73KFyvJIMRCikJPPEDPzJaEVOadSZ9EtTIxaw+Nb5rGXP78fAdDW33dA==
-X-Received: by 2002:a17:902:f70d:b0:248:d917:a57c with SMTP id d9443c01a7336-24944ad11e1mr272851775ad.40.1756981019086;
-        Thu, 04 Sep 2025 03:16:59 -0700 (PDT)
-Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24cc91987f4sm14453055ad.33.2025.09.04.03.16.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 03:16:58 -0700 (PDT)
-Date: Thu, 4 Sep 2025 15:46:52 +0530
-From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: hrishabh.rajput@oss.qualcomm.com, Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: Add binding for gunyah watchdog
-Message-ID: <5210a5e2-0d75-4532-b3ca-1cbdf8ea2a9e@quicinc.com>
-References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
- <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
- <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
+	s=arc-20240116; t=1756981329; c=relaxed/simple;
+	bh=8tFDp5B828+ijVc2o8d07iFvW8uCL7mdBZj+JaNrshM=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=gi2NfGu5LJHHcMXOPXyXj5hGfQ2LpwHI5NLbI7Z7ULls4mV46BzCLJczrJjBVqlkQF/o1oSSNhIOomOUndKrZXUYrXJ7AbD5+7PRVf0CNgEf+WkSSWZebxCPxl63wN68YGCfXZHDw+6rkGvuVzLWdsMOh02g8515mmhyDE1eZN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=dtC4k+RO; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p3.samsung.com (unknown [182.195.41.41])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250904102204epoutp0107f40b6a8c7ef3e8e2b9f2c9391b91c7~iDTShjg133082230822epoutp01F
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 10:22:04 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250904102204epoutp0107f40b6a8c7ef3e8e2b9f2c9391b91c7~iDTShjg133082230822epoutp01F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756981324;
+	bh=iSP1hOZ0AsVWU04bWbtB20mHDgaN9TSqIhbjaBRHRyQ=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=dtC4k+ROPg66f9lY1NsNI0wkpkKWkj1gTW5yRJduCxfBnOEsKH4wmdjUM/PyQn0SO
+	 vEUC1TELplS2e5ut9rgeOU523Cht2Yp5bREFpQXb0+FMVgIWIPVjLC75CGrg0FBDCw
+	 31FxD3UbtbGr3e9BLqrEgmgvP3KJ4K+ypQOG8iB4=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250904102203epcas5p2b0df51eeea6ec050252650f41b15b480~iDTR7ag6b1396913969epcas5p2r;
+	Thu,  4 Sep 2025 10:22:03 +0000 (GMT)
+Received: from epcas5p4.samsung.com (unknown [182.195.38.93]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4cHbBL4fQ3z6B9m4; Thu,  4 Sep
+	2025 10:22:02 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPA id
+	20250904102201epcas5p2b0faaa8e8b9f42d99b4cfe51b76ad30b~iDTQVvWuh0469504695epcas5p2e;
+	Thu,  4 Sep 2025 10:22:01 +0000 (GMT)
+Received: from INBRO001840 (unknown [107.122.3.105]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250904102158epsmtip1ead7e955e4664fff710c39fa1f568ca0~iDTNWxioq1828118281epsmtip1H;
+	Thu,  4 Sep 2025 10:21:58 +0000 (GMT)
+From: "Pritam Manohar Sutar" <pritam.sutar@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: <vkoul@kernel.org>, <kishon@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <alim.akhtar@samsung.com>,
+	<andre.draszik@linaro.org>, <peter.griffin@linaro.org>,
+	<kauschluss@disroot.org>, <ivo.ivanov.ivanov1@gmail.com>,
+	<igor.belwon@mentallysanemainliners.org>, <m.szyprowski@samsung.com>,
+	<s.nawrocki@samsung.com>, <linux-phy@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<rosa.pila@samsung.com>, <dev.tailor@samsung.com>, <faraz.ata@samsung.com>,
+	<muhammed.ali@samsung.com>, <selvarasu.g@samsung.com>
+In-Reply-To: <87857202-b436-4476-9384-67566126d844@kernel.org>
+Subject: RE: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Date: Thu, 4 Sep 2025 15:51:57 +0530
+Message-ID: <001001dc1d85$c0d56a60$42803f20$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
-X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b9671d cx=c_pps
- a=IZJwPbhc+fLeJZngyXXI0A==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
- a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8
- a=gEfo2CItAAAA:8 a=NEAV23lmAAAA:8 a=EUspDBNiAAAA:8 a=oqeMfTGgUyYRHvyDDiUA:9
- a=CjuIK1q_8ugA:10 a=i6qsmYmKKdoA:10 a=csto0wWSG80A:10
- a=uG9DUKGECoFWVXl0Dc02:22 a=d3PnA9EDa4IxuAV0gXij:22 a=sptkURWiP4Gy88Gu7hUp:22
-X-Proofpoint-GUID: B9MovX19YTlfZSIPBqw1hFujfv-AfQbO
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX77O9OchVm9/5
- /wPSxj6ddzzKAIizC4Li2JEX3lgVRJvW0zsuISiWCvHY2X14vS5frmV78Lt07NBuicyrCzAwIwV
- JaTul/HcFDqcZKrHsW6ADc/YOg/MTxnDuoMjJW/RrHtEdcm1oc67bf6j1eTPB3Acw3R+qIPObNj
- 9FCEhoMcFtlbuG4L8Kv4Wa+rwxoD3khY5IvNOvyccTiGhBAQSZ6KRca4ycARZY0AOKBEF/gYkEa
- u88J88zOOJT/rKf92eMVVN2kMnFpoZVNNMm8cfkxyb4mxFtrTgW+p9MYzIyxXiUdJ6jynPQLToG
- Nns2BiviYZX+dzMkHSgkD7SEFZF/HGwZdiIhQR+rbw8p2kxAKRXgqDpX3ahVngRLe6Tg7jGvHl8
- 66wlYCzi
-X-Proofpoint-ORIG-GUID: B9MovX19YTlfZSIPBqw1hFujfv-AfQbO
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_03,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
- adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQIRMOVGdWg5oRjNsRBgEjzIeIB8IgGabj6EAmTXuDcB8lF0oAGjtHpaA19Hw4WzwQPd4A==
+Content-Language: en-in
+X-CMS-MailID: 20250904102201epcas5p2b0faaa8e8b9f42d99b4cfe51b76ad30b
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e
+References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+	<CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
+	<20250903073827.3015662-2-pritam.sutar@samsung.com>
+	<20250904-interesting-lovely-ringtail-38bbef@kuoka>
+	<000001dc1d70$aebf7d80$0c3e7880$@samsung.com>
+	<87857202-b436-4476-9384-67566126d844@kernel.org>
 
-On Thu, Sep 04, 2025 at 11:52:32AM +0200, Krzysztof Kozlowski wrote:
-> On 03/09/2025 21:33, Hrishabh Rajput via B4 Relay wrote:
-> > From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> > 
-> > The Gunyah Hypervisor applies a devicetree overlay providing the
-> > pretimeout interrupt for the Gunyah Watchdog that it will be using to
-> > notify watchdog's pretimeout event. Add the DT bindings that Gunyah
-> > adheres to for the hypervisor and watchdog.
-> 
-> Wasn't tested, so limited review.
-> 
-> Please use subject prefixes matching the subsystem. You can get them for
-> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-> your patch is touching. For bindings, the preferred subjects are
-> explained here:
-> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
-> 
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> 
-> > 
-> > Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> > ---
-> >  .../bindings/watchdog/qcom,gh-watchdog.yaml        | 76 ++++++++++++++++++++++
-> >  MAINTAINERS                                        |  1 +
-> >  2 files changed, 77 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml b/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml
-> > new file mode 100644
-> > index 000000000000..bde8438c6242
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml
-> > @@ -0,0 +1,76 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/watchdog/qcom,gh-watchdog.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Gunyah Virtual Watchdog
-> > +
-> > +maintainers:
-> > +  - Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-> > +
-> > +description: |+
-> > +  The Gunyah Hypervisor provides an SMC-based watchdog interface for its virtual
-> > +  machines. The virtual machines use this information to determine the
-> > +  pretimeout IRQ which the hypervisor will be using to communicate pretimeout
-> > +  event.
-> > +  See also: [1]
-> > +
-> > +  [1]: https://github.com/quic/gunyah-resource-manager/blob/1b23ceb0dfa010b3b6b5a5f7a4ec1e95b93ab99d/src/vm_creation/dto_construct.c#L519
-> > +
-> > +properties:
-> > +  compatible:
-> > +    allOf:
-> > +      - const: gunyah-hypervisor
-> > +      - const: simple-bus
-> 
-> What? No.
-> 
-> Don't create patches with AI.
-> 
-I am next to Hrishabh when he is writing this patch. I can confirm he
-did not use AI :-) not sure what tool Krzysztof is using to catch
-patches being written with AI, that tool needs some improvement for
-sure. 
+Hi Krzysztof,
 
-I will let Hrishabh share why he put simple-bus here.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> Sent: 04 September 2025 03:12 PM
+> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com;
+> andre.draszik=40linaro.org; peter.griffin=40linaro.org; kauschluss=40disr=
+oot.org;
+> ivo.ivanov.ivanov1=40gmail.com; igor.belwon=40mentallysanemainliners.org;
+> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org; linux-s=
+amsung-
+> soc=40vger.kernel.org; rosa.pila=40samsung.com; dev.tailor=40samsung.com;
+> faraz.ata=40samsung.com; muhammed.ali=40samsung.com;
+> selvarasu.g=40samsung.com
+> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy: a=
+dd
+> ExynosAutov920 HS phy compatible
+>=20
+> On 04/09/2025 09:51, Pritam Manohar Sutar wrote:
+> > Hi Krzysztof,
+> >
+> >> -----Original Message-----
+> >> From: Krzysztof Kozlowski <krzk=40kernel.org>
+> >> Sent: 04 September 2025 12:18 PM
+> >> To: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >> Cc: vkoul=40kernel.org; kishon=40kernel.org; robh=40kernel.org;
+> >> krzk+dt=40kernel.org; conor+dt=40kernel.org; alim.akhtar=40samsung.com=
+;
+> >> andre.draszik=40linaro.org; peter.griffin=40linaro.org;
+> >> kauschluss=40disroot.org; ivo.ivanov.ivanov1=40gmail.com;
+> >> igor.belwon=40mentallysanemainliners.org;
+> >> m.szyprowski=40samsung.com; s.nawrocki=40samsung.com; linux-
+> >> phy=40lists.infradead.org; devicetree=40vger.kernel.org; linux-
+> >> kernel=40vger.kernel.org; linux-arm-kernel=40lists.infradead.org;
+> >> linux-samsung- soc=40vger.kernel.org; rosa.pila=40samsung.com;
+> >> dev.tailor=40samsung.com; faraz.ata=40samsung.com;
+> >> muhammed.ali=40samsung.com; selvarasu.g=40samsung.com
+> >> Subject: Re: =5BPATCH v8 1/6=5D dt-bindings: phy: samsung,usb3-drd-phy=
+:
+> >> add
+> >> ExynosAutov920 HS phy compatible
+> >>
+> >> On Wed, Sep 03, 2025 at 01:08:22PM +0530, Pritam Manohar Sutar wrote:
+> >>> Document support for the USB20 phy found on the ExynosAutov920 SoC.
+> >>> The
+> >>> USB20 phy is functionally identical to that on the Exynos850 SoC, so
+> >>> no driver changes are needed to support this phy. However, add a
+> >>> dedicated compatible string for USB20 phy found in this SoC.
+> >>>
+> >>> Signed-off-by: Pritam Manohar Sutar <pritam.sutar=40samsung.com>
+> >>
+> >> You just dropped all tags without explaining why.
+> >
+> > Regretted inconvenience.
+> >
+> > There were significant changes in supplies' names in driver and
+> > schemas (patch-set v8). This led to make changes in patch no 5.  And
+> > review for these changes is needed.  Hence, removed RB tag in this patc=
+h-set.
+> >
+> > There was a ask for the same https://lore.kernel.org/linux-
+> phy/000401dc18cd=24ec02a1b0=24c407e510=24=40samsung.com/=23:=7E:text=3DLe=
+t%20me%
+> 20know%2C%20because%20of%20above%20changes%2C%20should%20be%20
+> removing%20your%20%0A%27reviewed%2Dby%27%20tag%20from%20patch%
+> 201%20and%203.
+> >
+>=20
+>=20
+> Where in the changelog you explained why you dropped the tags?
 
-Thanks,
-Pavan
+Along with supplies' names, there were similar commit messages=20
+for patch no 1, 3 as patch no 5 (v7). (though, they were explaining=20
+schema more than h/w). Changed commit messages of the=20
+patch no 1, 3, 5 (v7) as per reference commits and would like=20
+to get them reviewed again, so did not add RB for patch 1 and 3,
+which you had given RB (in v7).=20
+
+Forgot to add these details for dropping the RB tags in changelog.=20
+Do I need to send v9 by retaining RB for patch 1 and 3?
+
+>=20
+> Best regards,
+> Krzysztof
+
+
+Thank you.
+
+Regards,
+Pritam
+
 
