@@ -1,111 +1,203 @@
-Return-Path: <devicetree+bounces-212748-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212749-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3C16B43A42
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:33:51 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16792B43A58
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:39:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5F2121C285BC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:34:12 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 77B844E0470
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:39:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFE1A27464F;
-	Thu,  4 Sep 2025 11:33:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B49B62D322E;
+	Thu,  4 Sep 2025 11:39:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+jmeyIb"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XVQSIxjc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FE7242D6B;
-	Thu,  4 Sep 2025 11:33:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A335B199FAB;
+	Thu,  4 Sep 2025 11:39:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756985609; cv=none; b=K6wdw3DZPS18RLEMbh3YhJZ0NLb/Gaie3Cs2tBoXaCwZAMN8dHM0JFPmVTJb6y9Hze+aLiJLaEjki6PqCDrqk0s0fSTX8euBBGsVHCMWkrXAlcqtTNK96TapRWHQ5QuqoukaML1eHCgyeEHPGV8XhReQLxid0XZLuimCuuzc1P8=
+	t=1756985964; cv=none; b=aqKr02kzbQNCmzhxZhxzTdFBexrURirne4Z7AU52EqV4WmQZ88mBfUjWvyM7I99H8ZEzXkVZhzz4tdQKxTGor6t2D4twSXILaKPmpM/2z+yVoPtMJbfA40AflCb5TStSjCrrABwi1SIydu2/D0rnAtccxutg1JpmzVWFe7yh8n0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756985609; c=relaxed/simple;
-	bh=T/DqnimmqNg1hlwVomLilFseGcUlFUOn2fQG5yvijQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sWCYSI6QbHUvIiM60UFbZUue3jp5+jWj5cI2oqzufrXeSoCm2PLddo3XZ8UXDB0PzxhjdYFNpJvMggH7C6Gua/upxkgCrXKWAo/+cHVkTpesg5Du5pDj0IPps9E9gsm25oRhE8ITZp9c7N9XzmVPdN0p2F/T1hpJxRLRv+7OIzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+jmeyIb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 702E5C4CEF0;
-	Thu,  4 Sep 2025 11:33:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756985609;
-	bh=T/DqnimmqNg1hlwVomLilFseGcUlFUOn2fQG5yvijQk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k+jmeyIbEV8woAPaZSKtQ8hpqIDBGsndebxBZBRiIxj75tE4tekGxc3z3n/p3XBtZ
-	 RLeoAmCRPw1fOJBcLFLwsXaX+moovvpf8oyfZAcJzsumM7lxZIFAEZjosOdGA3wTjV
-	 abxdgfIE+UFQWlIACop18h+oEdajxri48MAmClU+59R3mMGHB6Wjg1Gk1+TQWlUMyy
-	 0QRBoTDKbLpwPIvQRB3m1Pjm1hgd6rIuhlJrNEeYXSogl5Fgy7foXJGV3UDQR0ci+z
-	 Ij8f80wjQnxfwKGCoCOxsoc8c2mCgiIY5gm/Lstir/+UK/ZXPAdf5ZbQ0g0MT5SN8c
-	 piVshZUPh8uCA==
-Date: Thu, 4 Sep 2025 12:33:24 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Woodrow Douglass <wdouglass@carnegierobotics.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] regulator: pf530x: dt-bindings:
- nxp,pf530x-regulator
-Message-ID: <c4402946-9b76-4e1f-9a03-e5985cb023a3@sirena.org.uk>
-References: <20250902-pf530x-v4-0-4727f112424e@carnegierobotics.com>
- <20250902-pf530x-v4-2-4727f112424e@carnegierobotics.com>
- <997eb50b-db3e-4c0e-be29-0d04fef73ccf@kernel.org>
+	s=arc-20240116; t=1756985964; c=relaxed/simple;
+	bh=2U5CDPjzMznv+UvEAc5er/yLZ1DQhSBNife/xt5jUeI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=GP5sQFwCSgXcglQ/wVe9TL28iDj7AyFgvpH5dkn6HpB3hWKyLAfxWQTQvpieBr9IM/yhiHgRIAknOIACcqpeEpWM6+emNeQDY9QusyGKfk0jcq9JSW6vCx6j5Lbdr/1j1zPKGW3pHoh4zxrDAi23xNPqw4dkbz0EH1EToc1DmjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XVQSIxjc; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584BdGe03065055;
+	Thu, 4 Sep 2025 06:39:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1756985956;
+	bh=lZfF/R1zkJ9I0QIH48kfv3UNizAJBc+dQQgfeHqphm0=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=XVQSIxjcZzBKVfvpPw3T6boKWKnuJ56UGQe0lIyzw+Rxx9Fr3epsBxfpxtUaDaf9J
+	 R+snO8+M7jBzLm5obedp3HJWLC5uk90Fq033r/kX2fwBI3GUAbG69TSYyujJNyLWCh
+	 P3i1rXnbD3fGqPojIxLD9Yd5urdzIUZR+Fu3U9rA=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584BdGiH141119
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Thu, 4 Sep 2025 06:39:16 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
+ Sep 2025 06:39:15 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Thu, 4 Sep 2025 06:39:15 -0500
+Received: from [10.24.68.177] (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584BdBOA2904556;
+	Thu, 4 Sep 2025 06:39:12 -0500
+Message-ID: <b0ccb51f-14f4-43c9-9646-296d6e9d559c@ti.com>
+Date: Thu, 4 Sep 2025 17:09:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="DnZTrNpTjH7ExAQo"
-Content-Disposition: inline
-In-Reply-To: <997eb50b-db3e-4c0e-be29-0d04fef73ccf@kernel.org>
-X-Cookie: No lifeguard on duty.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining
+ macros
+To: "Kumar, Udit" <u-kumar1@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <kristo@kernel.org>,
+        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <vishalm@ti.com>, <sebin.francis@ti.com>
+References: <20250902071917.1616729-1-a-kaur@ti.com>
+ <20250902071917.1616729-4-a-kaur@ti.com>
+ <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
+Content-Language: en-US
+From: Akashdeep Kaur <a-kaur@ti.com>
+In-Reply-To: <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
+Hi Udit,
 
---DnZTrNpTjH7ExAQo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 04/09/25 14:27, Kumar, Udit wrote:
+> Hello Akashdeep,
+> 
+> On 9/2/2025 12:49 PM, Akashdeep Kaur wrote:
+>> Add the drive stregth, schmitt trigger enable macros to pinctrl file.
+>> Add the missing macros for DeepSleep configuration control referenced
+>> from "Table 14-6172. Description Of The Pad Configuration Register Bits"
+>> in AM625 TRM[0].
+>> Add some DeepSleep macros to provide combinations that can be used
+>> directly in device tree files example PIN_DS_OUTPUT_LOW that
+>> configures pin to be output and also sets its value to 0.
+>>
+>> [0] https://www.ti.com/lit/ug/spruiv7b/spruiv7b.pdf
+...
+>>   #define PULLTYPESEL_SHIFT    (17)
+>>   #define RXACTIVE_SHIFT        (18)
+>> +#define DRV_STR_SHIFT           (19)
+> 
+> referring to above TRM mentioned in commit message
+> 
+> Bit 20-19 are for DRV_STR, and description says
+> 
+> 0 - Default
+> 1 - Reserved
+> 2 - Reserved
+> 3 - Reserved
+> 
+> Not sure, is there some additional document to be referred for 
+> PIN_DRIVE_STRENGTH
 
-On Thu, Sep 04, 2025 at 07:44:57AM +0200, Krzysztof Kozlowski wrote:
-> On 03/09/2025 22:03, Woodrow Douglass wrote:
+This information will be updated in TRM in coming cycles.
+> 
+> 
+>> +#define DS_ISO_OVERRIDE_SHIFT   (22)
+>> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
+> 
+> Please follow same convention as for rest of bit fields
 
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - nxp,pf5300
-> > +      - nxp,pf5301
-> > +      - nxp,pf5302
+Updated.
 
-> Still compatibility not expressed.
+> 
+> DS_ISO_OVERRIDE_SHIFT  to ISO_OVR_SHIFT and
+> DS_ISO_BYPASS_EN_SHIFT to ISO_BYP_SHIFT
+> 
+> 
+> 
+>>   #define DEBOUNCE_SHIFT        (11)
+>>   #define FORCE_DS_EN_SHIFT    (15)
+>>   #define DS_EN_SHIFT        (24)
+>> @@ -19,6 +24,7 @@
+>>   #define DS_OUT_VAL_SHIFT    (26)
+>>   #define DS_PULLUD_EN_SHIFT    (27)
+>>   #define DS_PULLTYPE_SEL_SHIFT    (28)
+>> +#define WKUP_EN_SHIFT           (29)
+>>   /* Schmitt trigger configuration */
+>>   #define ST_DISABLE        (0 << ST_EN_SHIFT)
+>> @@ -33,6 +39,26 @@
+>>   #define INPUT_EN        (1 << RXACTIVE_SHIFT)
+>>   #define INPUT_DISABLE        (0 << RXACTIVE_SHIFT)
+>> +#define DS_PULL_DISABLE         (1 << DS_PULLUD_EN_SHIFT)
+>> +#define DS_PULL_ENABLE          (0 << DS_PULLUD_EN_SHIFT)
+> 
+> what is purpose of shifting zero,
+This is added for consistency across the entire file.
+> 
+> 
+>> +
+>> +#define DS_PULL_UP              (1 << DS_PULLTYPE_SEL_SHIFT | 
+...
+>> +#define PIN_DS_OUT_DISABLE        DS_INPUT_EN
+>>   #define PIN_DS_OUT_VALUE_ZERO        (0 << DS_OUT_VAL_SHIFT)
+>>   #define PIN_DS_OUT_VALUE_ONE        (1 << DS_OUT_VAL_SHIFT)
+>>   #define PIN_DS_PULLUD_ENABLE        (0 << DS_PULLUD_EN_SHIFT)
+>>   #define PIN_DS_PULLUD_DISABLE        (1 << DS_PULLUD_EN_SHIFT)
+>>   #define PIN_DS_PULL_DOWN        (0 << DS_PULLTYPE_SEL_SHIFT)
+>>   #define PIN_DS_PULL_UP            (1 << DS_PULLTYPE_SEL_SHIFT)
+>> +#define PIN_DS_ISO_BYPASS               (1 << DS_ISO_BYPASS_EN_SHIFT)
+>> +#define PIN_DS_ISO_BYPASS_DISABLE       (0 << DS_ISO_BYPASS_EN_SHIFT)
+>> +
+>> +#define DS_STATE_VAL                    (1 << DS_EN_SHIFT)
+>> +#define ACTIVE_STATE_VAL                (0 << DS_EN_SHIFT)
+>> +
+> 
+> Please do not mix PIN_x #define with other internal defines
 
-> Please respond to comments.
+Moved these to appropriate location.
 
-He did reply to this in the cover letter (possibly for v3?) explaining
-that he couldn't understand what you are talking about, the devices have
-the same register interface but differ in the rated current.  TBH I
-can't really understand what the issue is either, perhaps if you could
-suggest a concrete change you're looking for?
+> 
+>> +#define PIN_DS_OUTPUT_LOW               (DS_STATE_VAL | 
+>> DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
+>> +#define PIN_DS_OUTPUT_HIGH              (DS_STATE_VAL | 
+>> DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
+>> +#define PIN_DS_INPUT                    (DS_STATE_VAL | DS_INPUT_EN | 
+>> DS_PULL_DISABLE)
+>> +#define PIN_DS_INPUT_PULLUP             (DS_STATE_VAL | DS_INPUT_EN | 
+>> DS_PULL_UP)
+>> +#define PIN_DS_INPUT_PULLDOWN           (DS_STATE_VAL | DS_INPUT_EN | 
+>> DS_PULL_DOWN)
+>> +
+>> +#define PIN_WKUP_EN_EDGE                (WKUP_ENABLE | WKUP_ON_EDGE)
+>> +#define PIN_WKUP_EN_LEVEL_LOW           (WKUP_ENABLE | WKUP_ON_LEVEL 
+>> | WKUP_LEVEL_LOW)
+>> +#define PIN_WKUP_EN_LEVEL_HIGH          (WKUP_ENABLE | WKUP_ON_LEVEL 
+>> | WKUP_LEVEL_HIGH)
+>> +#define PIN_WKUP_EN                     WKUP_EN_EDGE
+> 
+> what is difference between PIN_WKUP_EN_EDGE and PIN_WKUP_EN
+Combined the macros to have default wakeup on edge
+> 
+> 
+>>   /* Default mux configuration for gpio-ranges to use with pinctrl */
+>>   #define PIN_GPIO_RANGE_IOPAD    (PIN_INPUT | 7)
 
---DnZTrNpTjH7ExAQo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi5eQMACgkQJNaLcl1U
-h9CRyQf+NI8NKm+mTQzzGv//Sx1/jmAow9toT4Nzzcqk39hRPhkmRy3PkwvNWwOq
-ogFXsF8u9CKkNk0B7Zrj1cy3GZCVbdBBFiKgIcK5zZcjGn+TL2gAQuxfq3BpyZZq
-Agox2r4IdwVSLM+VTUyhbZNZ6Y9L31qnhZhfkCJFqwWotZNGobQsX6JQEU/VN42M
-k7M4BVqOkNicdEigR8zHJxqGj2Va0YhtqyEJGIn1YZNwzcJ5xKz5kTfrPufRFcA6
-E0LpYPVRifmUCAKtv9UwPyPGbFbAWUvvQI9mhL7/mWfs1W/WjSqNifidwUQSOZkd
-VV3x9iF7SfbRU97RIRpAPsxcojOVoQ==
-=hh+k
------END PGP SIGNATURE-----
-
---DnZTrNpTjH7ExAQo--
+Regards,
+Akashdeep Kaur
 
