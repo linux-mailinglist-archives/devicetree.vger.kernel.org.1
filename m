@@ -1,140 +1,207 @@
-Return-Path: <devicetree+bounces-212844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FF6EB43DB3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:50:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F0ABB43DBF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:52:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C22743B0FAD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:50:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B4173A056C2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:52:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC0DF306D3D;
-	Thu,  4 Sep 2025 13:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AF8A3002A5;
+	Thu,  4 Sep 2025 13:52:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="Z8oGhy3B"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="jJUAFgrg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD2343054D2
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:49:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F3A27991E
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:52:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756993783; cv=none; b=dquj756DE2fcywy/lAxp40F4ycUnr81ce7yTh8lMSJR/E2NcPt5PfDCrJfVaJsY8dZdrN5wusJOzm/eoPGq5oV8mma+sDHpYFFEgNUi2X3bIsIdtvi/RFJQIuAE9JXBgQMNUi61mRwRk1mFdyiUPXhK9iFBKTqoLXyosf6gTrAM=
+	t=1756993954; cv=none; b=lIIhTWAX5E7UxTD/5UJN8/GgTHHu89ZQJSyMeZ8/7uEorlhRewmrtLHBtK6gi3jG9BPO9R62BJnyl0kHj22/fAeZZgZrQDEMDti7h/zw98rk6CuLB21cBjwUBC4/sGIR8tq5PdaROjpZ8b2rSo1WqeJ8sJ3GyAzl/HaEXcKE6Z4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756993783; c=relaxed/simple;
-	bh=0A6d2OfdcQaf6fvM7d144gsJwiSxigjXsdQkyq1yPrc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Nm1oskg8+6V1XqcPXVYMl+o+1/61diEyPjwY0g9yfSP/+o9cPVsOdqj0yNCnzvD/zoc/e9AgmUmlvUwdvH5MpjjpWVRUWGDiLZFza8IQXgqiO7BSuBY//I32MKZI4IrVFahz0VlRfdMgFfimD+qa1tAm5UzBEF8SfqltUL1bAVA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=Z8oGhy3B; arc=none smtp.client-ip=80.241.56.161
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cHgnt1KWHz9srp;
-	Thu,  4 Sep 2025 15:49:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1756993778;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7Eyv4JfVwk6E7rSyv4qxxGsrvnR26XQTwFmzC798VcA=;
-	b=Z8oGhy3BizEHytmaH8F6sq9GpUXO8WVDZYaX3DqqpQ5FOZLnpCLgY5+KwRcHe/2Bymwo53
-	pWeX0VVqcbLJTlM/79SHzKAKZTPcxMe+OFOu+vlajVrtgz2pcbha11l+uViNnaak+dE5tC
-	kdIvb4wYEbp0Cr8BIdD6BsZyQeTGT3pMmZUS19RKcBlSNN8ty8CCZXCjYiMVOANSdqXdSx
-	1iKFM0oZB10Ks2J6ktdRWIVDBHng1p6JLsrJN+onB7MYAv6LiRMZ3P7h6ImasnOfyQH5cX
-	ZaWy/mNKr9TO6yOdfJUnjtbuk5NeSbBsHtIrAqNZJm7WotSMIBOIZtAEdl4WWw==
-Message-ID: <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
-Date: Thu, 4 Sep 2025 15:49:31 +0200
+	s=arc-20240116; t=1756993954; c=relaxed/simple;
+	bh=HIX4eku98Wc54feYB0CQVeLO6u4tKzM8o896BSZOplE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gT+OdWPTFLNJsFG0LXbQDlWzUgMGqGHSmmdqEhZhTwE87sHuSoTT5RMep/yLW8aontIZOftNY5TNxvLJJ1fCBRov8pvfi96MfVjKBikuqKPpA13Qsx5eVS1k31rbN4F3UImezLFpY1idT/DQkuVkel8SbJA/N33e8Er5r+Mk3cE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=jJUAFgrg; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X79H003771
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 13:52:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	N4tKvhnJISTCkWgQtCnG+ZlZTaMj9wRAoIAEATKuC6g=; b=jJUAFgrgLl1eO0XE
+	H435B9ors58IzgB9fud572oJwSlLJJ1zz1V3r3g0JZEvX6XMeB1ezvMYv3sg7VFa
+	z2pUlv8pMnc2ozaaGDPlq+R/FpPUsOgpYYjtzXrwO1hn9N1fAarSrjDbRGw8WqlW
+	DiyKjciWFQsKfz9Lr/Ts97u+vGK1tzkJ9Jt7aYEzoaDvXEreEoQ+xiDt+UNkpysT
+	Aq45yYvWMiQx+MzI4Nc0zdIYMeIvHSPDyBZo4AKIsgD0Fd5zDhYC7CP2Q9b3zhDy
+	TkeuZAMAzzz5AogPNNg9YwuqPzXH9osD0I7LnHSsPuiFLxvmQW/yfnKV818qGrMg
+	+fP6rQ==
+Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8s7qux-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 13:52:31 +0000 (GMT)
+Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7273bea8979so15053086d6.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:52:31 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756993950; x=1757598750;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=N4tKvhnJISTCkWgQtCnG+ZlZTaMj9wRAoIAEATKuC6g=;
+        b=UM+G5rI472Hq/R7nfbls/1vIqhostPX/+MCzh7Q/eqFAlzvyfH2DuBUyUc7k5lDZTp
+         LpJnnLuw+yEqu6GuyHcH4zbi5BA428IC1Kd6grMCcUlwCL5NZcrAzsJP5AP3ZTAKaXOk
+         HlAczRlDOGomByCJODkdiF0kEIfAXWVBmxwpcz68kyHzKLH1DLx8Xxrs1n0M9fVa9RHJ
+         bkcj6Eke960BgXFqosPyd6jlJPMsT331BF418GG0BEPKBjAIVFtMWeBHlSaSZt/k5Z54
+         li/GrFe4YRIwBwc9ir+6uaWvfhajNEF57TDsae+Axt6GugsBUdPaBpqVJtkMbMcumaT5
+         u3Bg==
+X-Forwarded-Encrypted: i=1; AJvYcCVbkpH7l719R4za+IWKwZixhq2Sf88zgNEF69yQh43KJWX4O+HOj5aA8L+CyoumrTRsf0T8GPR4ZhfI@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz49vgLK3Q/qQIbqrJ4Jxy5kebJjJl/AKEJjhjAqG9IUXWDR/7q
+	GHLZHREft4endN4+tHcZuTdwbhJ+1T1QE6ls6YIJ9n/+Bfb0iRMBfgGPMNF/90FwhfKAVwIO0ze
+	ruM4K5EYf7qCmd7oQOpp6jZYvuYFGT3s1oEbSwTZGi2ZuogNma3BMOy69Lz7eBPUR
+X-Gm-Gg: ASbGncuQVhgA6NRfkhEmr1H5XuqdomrJ1QSnr+YgYV0ooH6NIxv1t2zOzTOpYC667PD
+	I7cYz6b5ChElLvx47yxp+KiY8pseywrLZh05sHKEHzFNMcgvrTCpskNdfcGsSNmfbz8YSs3cfJc
+	8kqFxYDn6FkowT8/3E/m6yN5lt9xrMQpoP69LhPSGj7S/X1tbUsvWFJdqtEwb7sbO/fYdp4qbsK
+	p4JFgHVRMdGSaPZKdXR5APRNG5ZJk7ISpEe/09KZ4wEMXMbo/uy3YNa6L9WuwD88vGlwa6a3Ozg
+	ji8n1sIIjZApUUhSP8sUhMHZGwxOitBxQYaWQZ9Zl/i1cfDtF7vTfgI3k6lzSDDtvSE+4pOiBtZ
+	sOcawYGUScacvFyAaqSAUTna/IANWUtbnhsN5P/bzhOT84ahEUNgy
+X-Received: by 2002:a05:6214:21c8:b0:725:16ca:a76a with SMTP id 6a1803df08f44-72516caace5mr71502196d6.3.1756993949986;
+        Thu, 04 Sep 2025 06:52:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE0EbzO3RGw4eqBINrGkwEPKwOp5hhL8Lt3eiyZMY3NmrRXVtmOrj8S+YObl1fR76T6Vkoa2A==
+X-Received: by 2002:a05:6214:21c8:b0:725:16ca:a76a with SMTP id 6a1803df08f44-72516caace5mr71501656d6.3.1756993949282;
+        Thu, 04 Sep 2025 06:52:29 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608aba7e15sm1241448e87.52.2025.09.04.06.52.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 06:52:28 -0700 (PDT)
+Date: Thu, 4 Sep 2025 16:52:26 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Subject: Re: [PATCH v9 2/3] arm64: dts: qcom: Add HAMOA-IOT-SOM platform
+Message-ID: <2o2ypmxo6wbohrb5edkj27ueqpgbqhsnqu4ofzfubtfwg7vyri@mdsu4ca63fr5>
+References: <20250904-hamoa_initial-v9-0-d73213fa7542@oss.qualcomm.com>
+ <20250904-hamoa_initial-v9-2-d73213fa7542@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Boris Brezillon <boris.brezillon@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, imx@lists.linux.dev
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-5-marex@denx.de>
- <20250324094333.7afb17a1@collabora.com>
- <c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
- <20250325084349.344a0f11@collabora.com>
- <7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
- <20250325153507.61d82e39@collabora.com>
- <4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
- <20250325155231.0d1b1000@collabora.com>
- <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
- <20250904082224.113d0cd1@fedora>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250904082224.113d0cd1@fedora>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 74f787c64e361a067a0
-X-MBO-RS-META: 4dihidnqffe48jkhfqpgw3ysi95xrxr6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250904-hamoa_initial-v9-2-d73213fa7542@oss.qualcomm.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX8VgZhr4Sf2n4
+ HleHVHX/aFjk3ToScFPMsLK5+Wc2+D/o7DAjbLEhyfA/7qWuMigAU5yt/AcgC2Eo1bD66rI4GGi
+ 9+MT6zYNUFlo4BQQ9OUuCquTIa+m6TAPk2j1OvuiWMLbQa2t4aeRPjMV2LXkIRuZfyLz5FzuIqF
+ ikRqgo3Sc9GB3tbKIy7b6Daho0ZZyCLo/q7x9HPqFN+hFXi+B52FEhFaK2wo5oqreKy0lJsJULB
+ VQHomJfHQC9XxmbPkmoFtPziYV595833eM84UiYrIBn4XPtMJ3hURFBjmKNwCZMteg7GPMqOw9E
+ sE9jmNQfuJSwtdFrQPgD9ZBC1TaJSmiJF/CGQwoDvjKJLOaUjDjl935JpbADiPI789axZoNfrDN
+ odnpAe7O
+X-Proofpoint-GUID: YUzIwqwooNeVQANXcdXmomYMlmpMiTaX
+X-Proofpoint-ORIG-GUID: YUzIwqwooNeVQANXcdXmomYMlmpMiTaX
+X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68b9999f cx=c_pps
+ a=wEM5vcRIz55oU/E2lInRtA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+ a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=PhgHo22kut4TJJxNvVMA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
+ suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
 
-On 9/4/25 8:22 AM, Boris Brezillon wrote:
-> Hello Marek,
-
-Hello Boris,
-
->> Can you please test the following patch (also attached) on one of your
->> devices, and tell me what the status is at the end . The diff sets the
->> GLB_HALT bit and then clears it again, which I suspect should first halt
->> the GPU and (this is what I am unsure about) then again un-halt/resume
->> the GPU ?
+On Thu, Sep 04, 2025 at 03:48:33PM +0800, Yijie Yang wrote:
+> The HAMOA-IOT-SOM is a compact computing module that integrates a System
+> on Chip (SoC) — specifically the x1e80100 — along with essential
+> components optimized for IoT applications. It is designed to be mounted on
+> carrier boards, enabling the development of complete embedded systems.
 > 
-> It doesn't work like that. What you're describing is like executing
-> "shutdown" on your terminal and then typing "boot" on the keyboard
-> after your computer has been shut down.
+> This change enables the following components:
 
-That is what I thought , yes .
+Documentation/process/submitting-patches.rst, "[This patch] makes xyzzy
+do frot".
 
-I think what I am looking for is the "power key" .
+> - Regulators on the SOM
+> - Reserved memory regions
+> - PCIe6a and its PHY
+> - PCIe4 and its PHY
+> - USB0 through USB6 and their PHYs
+> - ADSP, CDSP
+> - WLAN, Bluetooth (M.2 interface)
 
-[...]
+No, you don't. WiFi and BT are not present on the SoM.
 
->> That means, the GPU remains halted at the end, even if the "GLB_HALT"
->> bit is cleared before the last print. The clearing of GLB_HALT is also
->> what panthor_fw_post_reset() does.
 > 
-> After the halt has been processed by the FW, the memory region where
-> you check the halt status again is inert, since the micro-controller
-> (MCU) supposed to update those bits is off at this point. The FW
-> interface is really just a shared memory region between the CPU and
-> MCU, nothing more.
+> Written in collaboration with Yingying Tang (PCIe4 and WLAN)
+> <quic_yintang@quicinc.com>.
 
-Right.
+Co-developed-by, Signed-off-by.
 
->> I suspect the extra soft reset I did before "un-halted" the GPU and
->> allowed it to proceed.
 > 
-> Hm, not quite. I mean, you still need to explicitly boot the MCU after
-> a reset, which is what the write to MCU_CONTROL [1] does. What the
-> soft-reset does though, is reset all GPU blocks, including the MCU.
-> This means the MCU starts from a fresh state when you reach [1].
+> Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
+> ---
+>  arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi | 609 ++++++++++++++++++++++++++++
+>  1 file changed, 609 insertions(+)
 
-I have a feeling the write to MCU_CONTROL does nothing in my case.
+> +
+> +&usb_1_ss0 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss0_dwc3 {
+> +	dr_mode = "otg";
+> +	usb-role-switch;
 
-Is there some way to probe the MCU state before/after setting GLB_HALT, 
-and also before/after the MCU_CONTROL write, using 
-gpu_read()/gpu_write() register operations, to find out what is going on 
-with the MCU at each point ?
+Please check with Johan or any other X1E8 developers and make this into
+a platform default.
+
+> +};
+> +
+> +&usb_1_ss0_hsphy {
+> +	vdd-supply = <&vreg_l3j_0p8>;
+> +	vdda12-supply = <&vreg_l2j_1p2>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss0_qmpphy {
+> +	vdda-phy-supply = <&vreg_l2j_1p2>;
+> +	vdda-pll-supply = <&vreg_l1j_0p8>;
+> +
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb_1_ss1_dwc3 {
+> +	dr_mode = "otg";
+> +	usb-role-switch;
+> +};
+> +
+
+The same.
+
+-- 
+With best wishes
+Dmitry
 
