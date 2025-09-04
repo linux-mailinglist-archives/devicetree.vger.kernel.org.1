@@ -1,214 +1,120 @@
-Return-Path: <devicetree+bounces-212997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 113BAB445E6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:57:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 411DDB445F0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:58:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32A6F1CC3A4D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:57:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06E941891F66
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:59:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26BB426B2D3;
-	Thu,  4 Sep 2025 18:56:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE5D125FA2D;
+	Thu,  4 Sep 2025 18:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=squebb.ca header.i=@squebb.ca header.b="lzrKdoY4";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MOlxFmiI"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VsB1r+8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-a2-smtp.messagingengine.com (fout-a2-smtp.messagingengine.com [103.168.172.145])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 72A5F267AF6;
-	Thu,  4 Sep 2025 18:56:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.145
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB302586C8
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 18:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757012201; cv=none; b=V6ydmWuLNGbB//0xksOCqA0eISi1SUbIkF1wmktAha9x74sgwrnYS1pEiLWU+5yyWeR9Z3pID4CkRLHIIMa/aXcRrOTMdjvWs5wfl0fnfOfhmaOHSCahy4F1NdfgPniWkm4gb6Dw5rJAejxNGLGy9sEC0dUL2eFW3cglkClpXaw=
+	t=1757012318; cv=none; b=nEqbPOZbG4Ql+4k6vFEgA1YFXIJduZrTcjwkjcWMkkXzy9KlyuYPgmefEIvHjTVwNMfhIoatqfhtglhheh0g3VpJfNOyo/G//tDLfUHDXT2g0wabPXN+de3E19zVfTVTApMv0dhXsWEq5TfAaCcWwuMEPh2Nv4m9TvS1eqh0MX8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757012201; c=relaxed/simple;
-	bh=+8yYrN9eZg46gNH7uB5YrYrugTVxjxh4HzNwHnrPdkc=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=fzA4ENSD1G1iVqb2W52mLWFZpv9XRbPEPpy1KsQnmDkSGas9x05kfDQ/FUB5bFY3DQt9WkxSgzwpksDDUp8YU1BnMsM6gSF5h0aTRYiZWXjREuCnBOnwSaSPMrFWqChDJ2nbGsV1VFvtrApZILlVWD+/Xwd3ysN9S8YLSPHTeF0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=squebb.ca; spf=pass smtp.mailfrom=squebb.ca; dkim=pass (2048-bit key) header.d=squebb.ca header.i=@squebb.ca header.b=lzrKdoY4; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MOlxFmiI; arc=none smtp.client-ip=103.168.172.145
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=squebb.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=squebb.ca
-Received: from phl-compute-12.internal (phl-compute-12.internal [10.202.2.52])
-	by mailfout.phl.internal (Postfix) with ESMTP id 9AF82EC0266;
-	Thu,  4 Sep 2025 14:56:37 -0400 (EDT)
-Received: from phl-imap-08 ([10.202.2.84])
-  by phl-compute-12.internal (MEProxy); Thu, 04 Sep 2025 14:56:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=squebb.ca; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:date:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to; s=fm2; t=1757012197;
-	 x=1757098597; bh=7rzgU6/+xZPjOX1WExw5X2Safwl0wrZ8s4OUB4n+T4s=; b=
-	lzrKdoY4RXoZYIOSzL1zRt3ov+2mI3ng8ht5UikURkuG5rmJSkPUCOTs8JXXgY67
-	xjcunljgJgVL218DysfG1jTi14D0aUTMPSK4s910KentdF1oiwtSXcpHLPqJZHSu
-	9S1QKEQUpzPQnpAU73oKMHp2bpvwcEh4LrtZiFCJd8l4H9ltfI0ySmeBNy3qYzc7
-	9bOQI+I7fmzoQoxpXXIwQolLEtvQSkMsIg0/4J2fq5YFarS/sKeg+bGJaabR6kxg
-	mVJ86GjJXCvRiZjpRJcdY5SNtDExfLvfPL+pX3Lu09Coyyj+3ASRDaS+eyX2zB+u
-	a/pcscmh7H62zzUnI9WJ8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1757012197; x=
-	1757098597; bh=7rzgU6/+xZPjOX1WExw5X2Safwl0wrZ8s4OUB4n+T4s=; b=M
-	OlxFmiIPvxSU/oDSlanMmImcNr8eWRk64kQpqv+12v9zTpU5rkxIX5pB2gOHJzp8
-	RrXYw4X1ON+WvMS9X0cVHBap/JOpHeLDR27SjxoQgXjPumcvKkOfClsJ+2O2/bgB
-	GUF70alkrnM5B6HV5JMt4xVWGpsxsNsR8bOhoZ732BVQAITF7+UQ8Potk5547myk
-	PlFI0nuWeBUWu6/ZUxa2zBWbaRbnRwFxeGJ6qiJYQ7vI9kNf4F9vAk2KWc0n9Xon
-	h+hGwmDIE8sf1UH0TJlXCeoLdOVBHj9mXRkwiYf9XDgVMqNOTwidN+2SaKg2zh3A
-	+nMFjq9eUwT/OxVPHqTwg==
-X-ME-Sender: <xms:5OC5aGBFmhwp6koGHj6-xjfzuh-IqcLf_VBw6XpZYC0JCVvbpR7Mzg>
-    <xme:5OC5aAjmeUScbnss4AsYArx60cG8mw_oC81XoI6kKuDI6zuF2zncLXHbAyLzclRe7
-    KJyucYcUWocOVdUZK8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdeijeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfurfetoffkrfgpnffqhgenuceurghi
-    lhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmnecujfgurh
-    epofggfffhvfevkfgjfhfutgfgsehtjeertdertddtnecuhfhrohhmpedfofgrrhhkucfr
-    vggrrhhsohhnfdcuoehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrqe
-    enucggtffrrghtthgvrhhnpefhuedvheetgeehtdehtdevheduvdejjefggfeijedvgeek
-    hfefleehkeehvdffheenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpehmphgvrghrshhonhdqlhgvnhhovhhosehsqhhuvggssgdrtggrpdhnsggp
-    rhgtphhtthhopeduhedpmhhouggvpehsmhhtphhouhhtpdhrtghpthhtohepuggvrhgvkh
-    hjohhhnhdrtghlrghrkhesghhmrghilhdrtghomhdprhgtphhtthhopehhmhhhsehhmhhh
-    rdgvnhhgrdgsrhdprhgtphhtthhopegrnhguvghrshhsohhnsehkvghrnhgvlhdrohhrgh
-    dprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohep
-    hhgrnhhsgheskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhonhhrrgguhigstghioh
-    eskhgvrhhnvghlrdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdho
-    rhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehsrh
-    gvsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:5OC5aLpUcBHmQYc76N1Gwun1b6jafEN_ctWEu4v5VzaDwlDLm77u_Q>
-    <xmx:5OC5aAhLZzYRa7zeWbx33A82psAapANHW27wH0KqhR8odPU_tYXRWw>
-    <xmx:5OC5aCZuKuQZKyoIZsaZaCeT1bRVrilZbqXn52TosN3HlEe2resgDw>
-    <xmx:5OC5aAlIDpQXPeOtxvnwK2F_grRXDOFA0PAGBf8tnu8xzp8PnsUjEQ>
-    <xmx:5eC5aNvYwlgegQRoz1S-cXSuW8HAXhDkcLPsSMAdBGtu14F7zyvNmDeF>
-Feedback-ID: ibe194615:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id 2CC642CE0072; Thu,  4 Sep 2025 14:56:36 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1757012318; c=relaxed/simple;
+	bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=T1aG2WV/6UUH3f3WceJvMvYchhs77KH+0S8CHx8HSWSwRM4sChSfbSf+JvxkCVPVNteNunu6ZuxUK+kXBg7gkj7vi+LX3HeatUIiTHb4WCf7ajhGu2/54IjrWXGVw70kNKQikE+DzweWAOwogCoo44nsCWPFWOtLZcJyHOW5xiY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VsB1r+8n; arc=none smtp.client-ip=209.85.167.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-55f98e7782bso1627035e87.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:58:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757012315; x=1757617115; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
+        b=VsB1r+8nlysBMHPYCxFE4JKWTFG+MiNWatds6C14GZ0SQJq42TilqQslyEJgJuAFTw
+         X60QBNL2twwNTyNFzK0BIYP6lsWuWonoWfbeAOgUkttm7uCNz8xX3s/YAvLjZBEpbaEu
+         UFWB+0x6gH+AJvO7cxykB+pUS7qlA6FJ19x9Si389r8Tf2mUBSsjLV4/UAS+7hdXMmmk
+         kNWAXNBH0Vwq8XGv994jFuVfR3T1IUzpjs0j4iWYdCKoo3O1No1F7dWGErFCm2ksF7OD
+         RUQ5hQHXs+I3rrDvKySnrmnOMEB+0/6hwoBVY+qVxHxmGZ7m8DizDmNQDKTYuy4H7qUn
+         Xemg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757012315; x=1757617115;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eXvwqhdr5kSofiFo/qxPpUj+SANKhSZFihnmnpGw640=;
+        b=bX3h394N4tP5WO7as3SvMAK9AgQos0lt2wGAX8CGpbgQ48+oNZNFvdPoNqeguyW4a9
+         5Av1uujoy2aSPH8GcihPPmhOM88haowuljSFz7z/pegKwxsgAONlgR9OTD3kLPCA2RGJ
+         vXM4RkMiBN4U0JmwiLDhWuA+1UEtaIj63t56sjVtnC6krW9euubGCni9956AvXqWqKzc
+         /KGSXNaOyvwVOSpkvkqIyeOYki9LnPJNzVPF1yWJ0RdbzawoGiw5otfu90ljPZtRgkRs
+         nWCI2RyPOKgl18hAF6aROmk8mtNsRm0ZNDbiojPpMcMTUhv7AnO8U8hnBqP3qByQYmAn
+         dwGw==
+X-Forwarded-Encrypted: i=1; AJvYcCWVhk5ohhhftk6KRnEc1YDucPupTuz8owc0QTgL7UsV0XNkrWiAI76g2EoZ3EeYzbN671YgwsITEiT+@vger.kernel.org
+X-Gm-Message-State: AOJu0YxwwG6kqrCOxNPvNG7HvVniJrzdOZB9N3M75X2uwn1UJ4b1M7rA
+	xDdzhLXs1h/JxNLG/8V8qmtZieff4k3rMFGi7aBkVlipkL7dc+XDcvOqpcsW9ZN2NCKg24KC+3Z
+	UJFqWOS9pzBt6XlHA4sWRLD5Df9mZQYOWRD4Bs0YqWYNTIVxhZYTL
+X-Gm-Gg: ASbGncv0bSN+AKfoTq+31aZShtR4Y3ks16Qs+HVe+XVnYWmGOBpffHv+PX9ShBz+CoO
+	/c+C24Y1SECttzP7q9g4w54rheTVsD1WIJF0XPl+PiAkldLhK8k5vB6ti/q8PJyzhBk6/V2b4Jg
+	PVdcR0EYfvV+fcR3jQGm3S9IJg5LpoAhjBqERQkPo2SSaWoWg2BE9vSBCf9Vte3ej720Co+WxP0
+	kEWb9m7f6Pn9oev/w==
+X-Google-Smtp-Source: AGHT+IG+D8oTOCZCybe0jTMWAtEyJVHcF+x1RsxL88xvQswzc/kVAOPXSmL8jd/l58Uw6kNKnmcj7kant2xsnzkphIA=
+X-Received: by 2002:a05:6512:31c4:b0:55f:5700:5cb9 with SMTP id
+ 2adb3069b0e04-560995f4a0dmr209732e87.24.1757012315206; Thu, 04 Sep 2025
+ 11:58:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: A0cV_uEw7IB3
-Date: Thu, 04 Sep 2025 14:56:07 -0400
-From: "Mark Pearson" <mpearson-lenovo@squebb.ca>
-To: "Sebastian Reichel" <sre@kernel.org>
-Cc: "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Hans de Goede" <hansg@kernel.org>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>,
- "Bjorn Andersson" <andersson@kernel.org>,
- "Konrad Dybcio" <konradybcio@kernel.org>,
- "Derek J . Clark" <derekjohn.clark@gmail.com>,
- "Henrique de Moraes Holschuh" <hmh@hmh.eng.br>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- "platform-driver-x86@vger.kernel.org" <platform-driver-x86@vger.kernel.org>,
- linux-arm-msm@vger.kernel.org
-Message-Id: <ec295b0c-4a65-4cfe-8d38-99c5c4db9099@app.fastmail.com>
-In-Reply-To: 
- <pslvca6j5fpr5dgvciwlaz3fubnkjq5olfontaaytt56xs4bvk@5typdoosbreo>
-References: <20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com>
- <20250831-thinkpad-t14s-ec-v1-2-6e06a07afe0f@collabora.com>
- <ea0b329e-ab3e-4655-8f27-e7a74784302a@app.fastmail.com>
- <pslvca6j5fpr5dgvciwlaz3fubnkjq5olfontaaytt56xs4bvk@5typdoosbreo>
-Subject: Re: [PATCH 2/3] platform: arm64: thinkpad-t14s-ec: new driver
-Content-Type: text/plain
-Content-Transfer-Encoding: 7bit
+References: <cover.1756372805.git.andrea.porta@suse.com> <7ed0f2779829f4e63b69d8cf5cedda9f849996bc.1756372805.git.andrea.porta@suse.com>
+In-Reply-To: <7ed0f2779829f4e63b69d8cf5cedda9f849996bc.1756372805.git.andrea.porta@suse.com>
+From: Linus Walleij <linus.walleij@linaro.org>
+Date: Thu, 4 Sep 2025 20:58:23 +0200
+X-Gm-Features: Ac12FXymNXEWp0akA1KKPpfwK827qyFlyk8eBQbtNKsw_bFGu0HOwHEo76-xbLA
+Message-ID: <CACRpkdZAROUdz1SJY=h_dcUiojazO1fYxGJ8X2KEE6ow7oFZaA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] dt-bindings: pinctrl: Add support for Broadcom STB
+ pin controller
+To: Andrea della Porta <andrea.porta@suse.com>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	florian.fainelli@broadcom.com, wahrenst@gmx.net, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, iivanov@suse.de, 
+	svarbanov@suse.de, mbrugger@suse.com, 
+	Jonathan Bell <jonathan@raspberrypi.com>, Phil Elwell <phil@raspberrypi.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Sebastian,
+On Thu, Aug 28, 2025 at 2:45=E2=80=AFPM Andrea della Porta
+<andrea.porta@suse.com> wrote:
 
-On Mon, Sep 1, 2025, at 12:10 PM, Sebastian Reichel wrote:
-> Hello Mark,
+> From: "Ivan T. Ivanov" <iivanov@suse.de>
 >
-> On Mon, Sep 01, 2025 at 09:48:39AM -0400, Mark Pearson wrote:
->> On Sun, Aug 31, 2025, at 5:28 PM, Sebastian Reichel wrote:
->> > Introduce EC driver for the ThinkPad T14s Gen6 Snapdragon, which
->> > is in theory compatible with ThinkPad ACPI. On Linux the system
->> > is booted with device tree, which is not supported by the ThinkPad
->> > ACPI driver. Also most of the hardware compatibility is handled
->> > via ACPI tables, which are obviously not used when booting via
->> > device tree. Thus adding DT compatibility to the existing driver
->> > is not worth it (almost no code sharing).
->> >
->> > The driver currently exposes features, which are not available
->> > via other means:
->> >
->> >  * Extra Keys
->> >  * System LEDs
->> >  * Keyboard Backlight Control
->> >
->> > The driver has been developed by reading the ACPI DSDT. There
->> > are some more features around thermal control, which are not
->> > yet supported by the driver.
->> >
->> 
->> Thanks for working on this - it's great.
+> The STB pin controller represents a family whose silicon instances
+> are found e.g. on BCM2712 SoC.
 >
-> It's a personal scratch your own itch project, as I daily drive the
-> machine.
+> In particular, on RaspberryPi 5, there are two separate instantiations
+> of the same IP block which differ in the number of pins that are
+> associated and the pinmux functions for each of those pins. The
+> -aon- variant stands for 'Always On'.
 >
->> I'll see if I can get the EC spec so I can do some checking on the
->> values (I thought I had it already, but I can't find it). If this
->> file can be used for other platforms then it might be good to
->> rename the file to not be specific to the t14s? I'm curious if it
->> can be used on the X13s or the Yoga platform.
+> Depending on the revision of the BCM2712 (CO or D0), the pin
+> controller instance has slight differences in the register layout.
 >
-> Maybe. I only have the T14s (apart of my older Intel/AMD ThinkPads,
-> which use the ACPI driver). The ACPI DSDT functions completley
-> abstract the lowlevel I2C interface, so in theory every ThinkPad
-> could have a completley different EC and still use the same ACPI
-> driver. So this needs to be checked per-device. Hopefully the low
-> level interface is similar in those, so that we don't need to spam
-> the kernel tree with multiple different EC drivers :)
->
-Looks like you're right to make this platform specific. At least for now it looks like the definitions are tied to the platform.
-Strange as we have a common spec on the x86 Thinkpads, but at least for now this is t14s Qualcomm specific.
+> Signed-off-by: Ivan T. Ivanov <iivanov@suse.de>
+> Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 
->> Couple of notes
->>  - I do agree it doesn't make sense to add this to thinkpad_acpi.
->>    That file is too big anyway.
->>  - If there are other pieces like this where some detail of the
->>    platform is needed, please do let me know. I never got enough
->>    time to work on this platform directly, and it wasn't in our
->>    Linux program, but I do have access and support from the
->>    platform team for getting details on it. If I can help, so not
->>    too much reverse engineering is needed, I'm happy to.
->
-> Thanks for the offer.
->
-I did get back some details - not quite as much as I wanted, but enough to confirm that all your definitions look correct.
-Main point of interest is they didn't send me the BL2 details - so not sure if that is needed?
+Fixed up the extraneous label and whitespace error
+and applied this patch!
 
-> I would be interested in bits around system suspend. Right now
-> support on X1E is limited to sending the CPU into suspend. Much of
-> the machine seems to be still powered. Right now the keyboard
-> backlight and all the status LEDs stay on and the LID + power led
-> does not go into the typical breathing pattern. Additionally I had
-> to disable wakeup capabilities for the EC interrupt, as closing the
-> LID generates an event and thus an interrupt, which wakes the
-> system. Obviousy that is undesired from user's perspective. My guess
-> is, that there might be some register to mask events, but I haven't
-> found it so far. Alternatively the EC might mask them automatically
-> when the system is send into suspend, which I also have not yet
-> figured out :) The only bit I know is, that EC register 0xE0 is
-> involved in modern standby.
->
-I still have some more digging to do here I'm afraid.
-
-> Apart from that and (probably) unrelated to the EC: I noticed that
-> accessing the built-in webcam (with the X1E camera patches from
-> Bryan O'Donoghue) does not enable the status LED. It would be
-> nice if you can check how that is wired, so that it can be enabled
-> when a camera stream is started.
->
-Ack. Don't know the details on that yet.
-
-Mark
+Yours,
+Linus Walleij
 
