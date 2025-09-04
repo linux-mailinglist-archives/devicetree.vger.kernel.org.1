@@ -1,165 +1,123 @@
-Return-Path: <devicetree+bounces-212811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D1D46B43CB0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:12:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC5D1B43CD0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:15:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6F6013ABD59
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:12:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7055E1888E15
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:16:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 382713002CA;
-	Thu,  4 Sep 2025 13:12:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A79EF190664;
+	Thu,  4 Sep 2025 13:15:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="b2wJsqmp"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="BLMQ8FSb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout1.samsung.com (mailout1.samsung.com [203.254.224.24])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C5922356C9
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 865465B21A
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:15:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.24
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756991566; cv=none; b=GJbJP2+SK1xsyL6QEu7fm8YHlOzOjJ+gLXcjk0qBylesUi7ZDfum3coKXJM8WQaOzjLD2G3Ffn7vDOwoqlgNzJuXhQRtC59PNma4Ue2j4slgbVN5QFNEsBmZVCjtawURK+9WHnqwJnRTP+Oy0pQXo6trybASHS35QzRjzHiyE+Q=
+	t=1756991743; cv=none; b=HpVlCPmVpxbQvh8EN1a8kT1qxWKQU2UUlRO0YZMWdCujhr7ebk59HWth2nz/74GourPxisB/kDoUgOqNoIY5bSyllR9kFVteFNahNiwG2QmaaisMZHNw9vwyoHg//6XoZA5saL4cDV08ieiOIs4RE6JvagDo3c6MwJ4p7OCKWJQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756991566; c=relaxed/simple;
-	bh=tTD8/KZNPK7y/Zsh9BIyKd25zvynGbP8RvxqqF37kKw=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=Xv5ajNNBGVw5k9/GWfC6hlMn5MHYhcUHKGuupE9wV+/RfFeTqtvHKm5tP9OA6DgK8IUZo86IDQCd6pnpjvKouOGD26GKiF618VOaqwWfmxVdJWtfTmOP+/IOQpFrmKvoJA8HeM8n0x1+u3wlr/BuAoFqu1r73ADZ6SiT63UAZsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=b2wJsqmp; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3d17f24d42fso842613f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:12:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756991563; x=1757596363; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=q37h+ky8KgDI6nxANYK2Pjj3yAESYs3p69Lz9iQGACo=;
-        b=b2wJsqmpvry0Pgnor/spiEfJQDOGcfYT4SIPP/wVjIfvJysofaehAJFIP8xlcyk4zI
-         wwzwrHzMVh6cRmiqpOOGdGBxhtvcQKkIEv17ZnYBuvrYMAAfp1hwgrdJYb24gZlch4M4
-         pQdPYTrnbVBIWOGMA2i3lWoIYwR3tnjhDUnBOxahEKTGz/aFs93F5YtTcWDochk7Wcjm
-         lTNXHLdqIWn6m9DDgAY+INaK+lJFP/PtWjEtx57zXlch+SiiPM049TRNfdDoQjkTjyIN
-         VUF1Vt1H+qzyG2kCU0r44ql7flQ3QCv1hr+NbAu0lr4rHzMusdBODiBRagqoFD++gKNb
-         NGzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756991563; x=1757596363;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=q37h+ky8KgDI6nxANYK2Pjj3yAESYs3p69Lz9iQGACo=;
-        b=S9+Uj4tHIQi26ifoX3BG98Mb2E8B4dPLErkM8VIQrtz4QRP2okLZgC29uNqJL3aUGf
-         UiAEobsxiTY+plZdkBdiSFWcguwajoOGClFE+jJE9pjbylJzhVIOprRMyr8qcvx5rNxF
-         0IS9kVLmLw13FrQmS4szCZDVvA6sb/m1FXpGZcEZrzfM3/VxSeAM7aCcWdREbmzXGVbY
-         iG/yVSFQdh+VEFhf2Cnvw/hzpuXZvr7Wjmya1KVglJHzV/29eQ+SFNTQSHneG/IjtaaQ
-         bOFyqc1rf0vBFfSdNR/Sn8cf1aR8bGx1zituYGSS/mlGOz1xqu7KEF/8AHfEt6lmRjgV
-         eGsw==
-X-Forwarded-Encrypted: i=1; AJvYcCWmRD6VP8ujW1esFX2RUPM+ZJvAMUQx4sGu5XLPShvb4Q9HOk9+An9YjvTahT2H+zAMTmYeByz8Awvc@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz1Px/3WPQ2x3NoUYFLZFfmCajjpaXmF1VSq+O56D8LJNkzoIpF
-	2hAPQAtt4NHwm/2hRzHSECPZWEB32ic8Lb9F6bJYjGcMPj5waFf4LEiCXb8RgmUtXjc=
-X-Gm-Gg: ASbGncvs97ENxAEvKuBBu5PIAFtRBHXNcwLHRlmEQeFxI3CnzkBwZSTrNwhxn9UjkHg
-	1hfSZ4MjB+zdTTua55pNe7v67ew6PE7/UTNF1qDLFBYxZ/qAJW5aB1+4BBo+SlDqcCo4T6jclGd
-	1Q0T2a3Cr128U45w12YBt8jLSfk2/MVvjsGUYylHTO3oB3kHW9YfjcFl28sU7MrTwTB2r/o6+ov
-	VNG0jy6WoSDZqFA9MQxIOP5RBFo+wGPnl0cuorPb8OJAbpg8sy0D0sncmpDbwcHdy9zFl7uTRzy
-	JxFqBsSTpNzezE/oXy1KVXA2zQSVH3Awmq1APV3tWuHHCOFg2HrwVQWAItFFpNd67Mt5GnCfqF/
-	GXWZjGw3jDFf+wQ55PM3t7KKunBL9fZNYcY3Wf16PeaSbtU7HWhregJYPEthLjnRSQA4V9Gv+pW
-	W/k8AWENAjVg+VdkghBT78
-X-Google-Smtp-Source: AGHT+IGiI9xIKpNtw87Z8iocXL4dnNY2WYRgffXXE5zlClWZ1Pvq/OnWmVDZhVEmIgZmS+YQ1COScQ==
-X-Received: by 2002:a05:6000:2890:b0:3de:c5b3:dda3 with SMTP id ffacd0b85a97d-3dec5b3e22emr5042055f8f.44.1756991562729;
-        Thu, 04 Sep 2025 06:12:42 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:8c14:335d:24b1:fa98? ([2a01:e0a:3d9:2080:8c14:335d:24b1:fa98])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dd063fc8dsm16757225e9.7.2025.09.04.06.12.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 06:12:42 -0700 (PDT)
-Message-ID: <a36b3ded-23d4-414d-ba3c-485a9fa2fe36@linaro.org>
-Date: Thu, 4 Sep 2025 15:12:41 +0200
+	s=arc-20240116; t=1756991743; c=relaxed/simple;
+	bh=CoeAzI0fKvJPdWZVvZ5pCR7mtsucacBqXi849vxNA3Q=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=gn9qiisw6aEwpSYqsb1I+r4jkZQp2fneyrXjFTMJR8ZgIPEJkPv2YJqmn+S4bM8FIZOT4PCEIDBXqoqseNGBGXiKYTWm3gwj+p7YGWHL6Z3dAh2w4Wn14UvzInJ7jzfyJEjfxeSasjHSGSnRagZh0+NG+lxiv5SAioC1K/lvilk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=BLMQ8FSb; arc=none smtp.client-ip=203.254.224.24
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p4.samsung.com (unknown [182.195.41.42])
+	by mailout1.samsung.com (KnoxPortal) with ESMTP id 20250904131539epoutp01090864df590cefac4eabf484e5b5b912~iFq2qbnvb1726317263epoutp01b
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:15:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20250904131539epoutp01090864df590cefac4eabf484e5b5b912~iFq2qbnvb1726317263epoutp01b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1756991739;
+	bh=JTG7qchiHqeqMFWuTMOT+gd1Ea0jVcixNMJtGw+oY0A=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=BLMQ8FSbfQ91l7vyXTL8w/v8fv8SAMr/Fsk8SGsXM5eXT1Qu0An22RULOcd6X6wtn
+	 vj/o0YobavLKg6ak5iJY6tpJg7WtmGVKBjCUU/EhwxX1sM2at6e161ds3oJxC9s5V4
+	 DThVud16RTY5uyQOVuDaAZdTO8+I/8Zg9f36c0Wg=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPS id
+	20250904131538epcas5p486a8856f505d224a648a60508c13ab7e~iFq15YM1e0207602076epcas5p4q;
+	Thu,  4 Sep 2025 13:15:38 +0000 (GMT)
+Received: from epcas5p3.samsung.com (unknown [182.195.38.92]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4cHg2d6Nydz6B9m4; Thu,  4 Sep
+	2025 13:15:37 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p4.samsung.com (KnoxPortal) with ESMTPA id
+	20250904131537epcas5p4118d6ba9cee9c0ed472b423c33f12023~iFq0MP_KJ0207602076epcas5p4o;
+	Thu,  4 Sep 2025 13:15:37 +0000 (GMT)
+Received: from INBRO000519 (unknown [107.122.1.150]) by epsmtip2.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250904131535epsmtip2d279d32747258521bfc1fb18051f45d3~iFqybtU1v0228702287epsmtip2I;
+	Thu,  4 Sep 2025 13:15:35 +0000 (GMT)
+From: "Faraz Ata" <faraz.ata@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>, <andi.shyti@kernel.org>,
+	<robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+	<alim.akhtar@samsung.com>
+Cc: <linux-i2c@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-samsung-soc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <rosa.pila@samsung.com>,
+	<pritam.sutar@samsung.com>, <dev.tailor@samsung.com>
+In-Reply-To: <5643d3e6-a034-4e2a-babd-d82fb3d58e9d@kernel.org>
+Subject: RE: [PATCH] dt-bindings: i2c: exynos5: add exynosautov920-hsi2c
+ compatible
+Date: Thu, 4 Sep 2025 18:45:08 +0530
+Message-ID: <08cd01dc1d9e$00d416d0$027c4470$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 0/3] thermal: Support Amlogic C3 thermal
-To: xianwei.zhao@amlogic.com, Guillaume La Roque <glaroque@baylibre.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-pm@vger.kernel.org, linux-amlogic@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, Liming Xue <liming.xue@amlogic.com>
-References: <20250722-c3-thermal-v2-0-b2231b4be79e@amlogic.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <20250722-c3-thermal-v2-0-b2231b4be79e@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQMyl6jZ32DHOO134xOI05SqoiCOxQG1dU1GAuUAJa2xsTgNkA==
+Content-Language: en-us
+X-CMS-MailID: 20250904131537epcas5p4118d6ba9cee9c0ed472b423c33f12023
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250904071941epcas5p1ffa00f3f1cb69f7a10d08c1e96174cf1
+References: <CGME20250904071941epcas5p1ffa00f3f1cb69f7a10d08c1e96174cf1@epcas5p1.samsung.com>
+	<20250904072844.358759-1-faraz.ata@samsung.com>
+	<5643d3e6-a034-4e2a-babd-d82fb3d58e9d@kernel.org>
 
-Hi,
+Hi Krzysztof,
 
-On 22/07/2025 13:26, Xianwei Zhao via B4 Relay wrote:
-> Add Amlogic C3 thermal compatible string, private_data
-> of driver and device node.
+> -----Original Message-----
+> From: Krzysztof Kozlowski <krzk@kernel.org>
+> Sent: Thursday, September 4, 2025 1:35 PM
+> To: Faraz Ata <faraz.ata@samsung.com>; andi.shyti@kernel.org;
+> robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
+> alim.akhtar@samsung.com
+> Cc: linux-i2c@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+> kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
+> kernel@vger.kernel.org; rosa.pila@samsung.com;
+> pritam.sutar@samsung.com; dev.tailor@samsung.com
+> Subject: Re: [PATCH] dt-bindings: i2c: exynos5: add exynosautov920-hsi2c
+> compatible
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Changes in v2:
-> - Modify the binding file according to Rob's suggestion.
-> - Link to v1: https://lore.kernel.org/r/20250718-c3-thermal-v1-0-674f9a991690@amlogic.com
+> On 04/09/2025 09:28, Faraz Ata wrote:
+> > Add "samsung,exynosautov920-hsi2c" dedicated compatible for HSI2C
+> > found in ExynosAutov920 SoC.
+> >
+> > Signed-off-by: Faraz Ata <faraz.ata@samsung.com>
+> > ---
 > 
-> ---
-> Xianwei Zhao (3):
->        dt-bindings: thermal: amlogic: Add compatible string for C3
->        thermal: amlogic: Support C3 thermal controller driver
->        arm64: dts: amlogic: c3: Add tempsensor controller node
+> Where is any user of it? I looked on lore and found nothing.
 > 
->   .../devicetree/bindings/thermal/amlogic,thermal.yaml          |  4 +++-
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi                   | 11 +++++++++++
->   drivers/thermal/amlogic_thermal.c                             | 10 ++++++++++
->   3 files changed, 24 insertions(+), 1 deletion(-)
-> ---
-> base-commit: 58abdca0eb653c1a2e755ba9ba406ee475d87636
-> change-id: 20250718-c3-thermal-cfdf0a2bbf52
-> 
+I will send dt patch shortly.
+
 > Best regards,
+> Krzysztof
 
-Patches 1 & 2 are reviewed and ready to be merged. I'll take patch 3 for next cycle.
-
-Thanks,
-Neil
 
