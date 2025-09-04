@@ -1,123 +1,152 @@
-Return-Path: <devicetree+bounces-212858-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F30FB43E05
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:05:24 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D6BB43E0E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:07:29 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05965188ECDB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:05:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4CD6D7ACC5A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:05:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA6C6302779;
-	Thu,  4 Sep 2025 14:04:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 044753064AF;
+	Thu,  4 Sep 2025 14:07:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="RflE5jop"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RxQvHPqh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C960301466
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:04:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60994163;
+	Thu,  4 Sep 2025 14:07:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756994694; cv=none; b=S4qlQwEZwNNlEv+wq0qT5p32QCxucB2SYalU38HSuooOQCmzmTlEKbgKANogEjpQRKt0vIFU3IUxSSd/lIdGBaye1p0MEerbHtO1Ns+IxootOC2SwlKZBcZy1N4IpZhFb3r8fEKBz8B54PPMWjnqsG7n2w79vOfAVdnHEPk/Quk=
+	t=1756994836; cv=none; b=BAMAaFn8O3XZB8TRksjluyrLU1TykylBlLfGTGxgi/JZKpx22g0h0A+U0XR7IHsdMFprx7i0k1GhOz/Orz7dZQjEHS75rZ//06wuWI9cOdNeJLRj3yhV8r4Dt8mfV7EPYOp6tku9PL+Zm3LELm/Gg+Ik8o0xh0x2a8mP4KxiFFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756994694; c=relaxed/simple;
-	bh=6QoSyBbdtINchh/KfpXAbLxJBZNAu4kUO37s+5VC3OE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=GsshcQ5YdS+Pk36O2C6Kb7MlSf4uIgjWyJQUHudUmmEO477KSx1bPK7wbTVJYfb/roCWiMqwEEhUhIkIOOG+rkxk/PbfLF+Kq720KgViqKw5rvxlb/7pNIvTjUXDn764pyrqs3pFw7GusaPvUdpTCmvOpgevU1Pk5IdneryA/hk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=RflE5jop; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1756994691;
-	bh=6QoSyBbdtINchh/KfpXAbLxJBZNAu4kUO37s+5VC3OE=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=RflE5jopt5njlxGhDC3AQjyRyIPKw9BYjyVeuh8p3sZ4CxUB4DnPdESkuwkbUnwEk
-	 r+f7FY7ipdHcA6nC1BMelz2e5gJVvDPGOWSXh2MUzsU7IRS4yoX9eQRFX2aRkVW9Eo
-	 Zwz/C+PWPmLRiHE/jc9a4VqOElzxRM/FLuT/8hEYYd1iDtMfrMHLF51RfElfCbnfNF
-	 +bgFxnfkWCFFqFWYI+Jileitn5LjWNWYHXSKp0kiFfqE+6qLwXYdVyRUhnpGmjbumr
-	 kFK4IO9FVT4zOfEC0RfrLOl1Yt3inf1x8FWvzfj+QQppSoZlpsnvO4jfDQTb+D2l+m
-	 Cta+AbMlTIrsw==
-Received: from fedora (unknown [IPv6:2a01:e0a:2c:6930:d919:a6e:5ea1:8a9f])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8088E17E03B8;
-	Thu,  4 Sep 2025 16:04:50 +0200 (CEST)
-Date: Thu, 4 Sep 2025 16:04:45 +0200
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley
- <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>, Fabio Estevam
- <festevam@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau
- <liviu.dudau@arm.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>, Philipp Zabel
- <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>, Shawn Guo
- <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>, Steven Price
- <steven.price@arm.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- imx@lists.linux.dev
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-Message-ID: <20250904160445.1671f140@fedora>
-In-Reply-To: <7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
-References: <20250321200625.132494-1-marex@denx.de>
-	<20250321200625.132494-5-marex@denx.de>
-	<20250324094333.7afb17a1@collabora.com>
-	<c1de2afb-3559-4fbb-b13b-2373175b420b@denx.de>
-	<20250325084349.344a0f11@collabora.com>
-	<7aadf355-edf0-46fc-b969-65c3789375ca@denx.de>
-	<20250325153507.61d82e39@collabora.com>
-	<4c06aef3-a254-437c-aa15-8e3eb7bf5951@denx.de>
-	<20250325155231.0d1b1000@collabora.com>
-	<838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
-	<20250904082224.113d0cd1@fedora>
-	<7d4e773b-64ac-49ce-8d8b-7a39c353d18f@mailbox.org>
-Organization: Collabora
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1756994836; c=relaxed/simple;
+	bh=ly5NeSE539nxeXkPhgKBaDj4r7GvtHEHx5sOROseuOI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=PHCSh+INEJmny63Pvnbafsq9ENngCtQpabpg51j/ob91IfOTouiekX6NRMCKKdbmswg87zkzgynZ5xIQVhXyHLWdLGuj8DOZZoz1EjEirbx+Pp/LgwpwZPI8H6iGDNES78DJLwauXhU7WeVBmHz7IsaastgRvcSkqvk4MiRHMy8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RxQvHPqh; arc=none smtp.client-ip=209.85.222.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-7f74b42ec59so72341585a.2;
+        Thu, 04 Sep 2025 07:07:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756994834; x=1757599634; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eihtZU8OHYKgtMximmIrUFJ856exD8VD53vOuodUiTU=;
+        b=RxQvHPqhaUWfVgs2fdW7u9hdu5II8asXVgiIRylLJM6dvzxNSXfsTe1cvKmOxC4uYU
+         IkDZWEP0p+i9rcCGfezhN1/ab/MwbnKiLnomvPmGS1r1j+aMi0Pt8SDTupKzCVmthlCG
+         arAjcegwBMjVRIYagmbvGSsZIun8kiraDJSX8rI5Bq+0XIHqM8Z/CgcxiaH7Z/dMLE8H
+         kVRAPKngtbrgiNPr9y1WZVqZxqm+ipnIyGDg57pYa3f/uwcYw+7fx0WvADFK8aaUSyz0
+         wf+4SYDGIr4+PUp+y1opU+bukJi1ueeTY4bTtFWciZKYApME0D32IZJ3iHoHwy7pTGi2
+         Ynsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756994834; x=1757599634;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eihtZU8OHYKgtMximmIrUFJ856exD8VD53vOuodUiTU=;
+        b=m5rgGBScYV8lB+TXwnRJYHiy/y5+BaMACKPRSpZzsjteWd0Q/gDyVt9JD7SVFKD/yV
+         HUn/S1f0U9XnADb2laIwzI7WP4Bh9Cwy63Z09SijUYSuAzJSfI10deKWkByEguAtM6tD
+         hLcFYoGaLYVwBSn2uV/ctlbf6cv/KF7ywySIYMwWLIOc/2MqgI43jpMfokflcQWSKjjq
+         8AQQQNHtJTWpJiMERXenHU11RRS84CMCKDKYq24pwcImW8tiOO8rR24SLXsBol3zJeRH
+         5uRcKJ0yqlthp8UcOfURjaiZ9goY+PR8po1Fixx7ko/LQthiy0Mj55XeKs4oglIkMKND
+         dB7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUrtBnBs/AjofAQ57hIhI7POM1yjpWLPGKphlkY84Mi7Gq/DV5T46GoImtIxBPAe5UsKjutnXA7SQdv@vger.kernel.org, AJvYcCUuxrx2LXFrFY5LTzH9HGXEjR6AzaN4x1ABmmWCb0kv/nktUDe+yRb2e9RkrE0WSHc4D0z5Sgxvwbr+0O8K@vger.kernel.org, AJvYcCWS4X4zD2JUksCfnTUyDSdupI/cAyM26tfttYTIEwwYLUBr/W52o9pWVQrFthRXMTEegmyVl7T9fM0J@vger.kernel.org, AJvYcCXVFqaxqUCBHH3l+P5dUI31VRCaqzFb2zqLLOnavwqnohbtc6sv2nu5yDa4pZRckqzDw+32gniEU0Cq@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyim9HJUKlBfugFFvoxBFbyXMAHulYIcA6eug3t13mU6P6NjXWK
+	rlSgzNOIEFyhjxo5dZhWPoyFeJZwu8gnSxYgGfQf6ci0cDnlhn+f3Uv5u3uFYAl5
+X-Gm-Gg: ASbGncv0/XEGQbFsPjMFOjKuOz99jgGfX0GUND9s9GwV23Xg5U8ERaZ++3ekksrFQcm
+	9cEFWkn6EOKhGt/jJQJyAWcRYF+BWm7PgWwFJ/PvzE60nyeT5mevL3renNUppZyQ/SV6q9KVzPU
+	YlxHszNeon4v1NLo899JtrmVJeT81S0FmHVOxL88MOtrWtGv9m9/Rvh52o8r+sHfpbctv45gJdP
+	ia2iWGeRP/PpIb4j815+NUCeuA/1SQQc8lcqorD6r9DKhp2HfxvR+7UrYRiwsBIBx2We96dA477
+	vJehWHP7uISXsA2DQRGHf4taWC3qo6TQKCiGAWNDJ81GsYup4SGlGAc3QvKMYw2L/O6QUfDzITy
+	4XiqCC1EEodOphkWqKEdzJDNUiPu0
+X-Google-Smtp-Source: AGHT+IFAmc0wnCtcOEvRgXDrQ6IUkfol6ZeLbzKo/Il17bCwAzz4m4TitxyZWAzjU/KhfhX5q02NmA==
+X-Received: by 2002:a05:620a:394f:b0:806:522a:25ae with SMTP id af79cd13be357-806522a2b71mr1163297885a.36.1756994833844;
+        Thu, 04 Sep 2025 07:07:13 -0700 (PDT)
+Received: from [127.0.0.1] ([74.249.85.194])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-80bdedfeaedsm212280285a.70.2025.09.04.07.07.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 07:07:13 -0700 (PDT)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH v3 0/4] Add PERIC0/1 support for Exynos 990 and hsi2c
+ compatible
+Date: Thu, 04 Sep 2025 14:07:10 +0000
+Message-Id: <20250904-perics-usi-v3-0-3ea109705cb6@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAA6duWgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDC2ND3QKg+uRi3dLiTF1DI0tTYyPDVFPT5CQloIaCotS0zAqwYdGxtbU
+ ANmCpbFwAAAA=
+X-Change-ID: 20250831-perics-usi-1295321e55cb
+To: Krzysztof Kozlowski <krzk@kernel.org>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
+ Andi Shyti <andi.shyti@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ Denzeel Oliva <wachiturroxd150@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756994833; l=1287;
+ i=wachiturroxd150@gmail.com; s=20250831; h=from:subject:message-id;
+ bh=ly5NeSE539nxeXkPhgKBaDj4r7GvtHEHx5sOROseuOI=;
+ b=x5fRiKxuNl7/HyAUuv2TiCNfWDovKgGZuKvCrCwKms3j7fN31H08qUfze44YgZlEusYLZ0AnJ
+ RgL9/06hOEIBF6BxPXba4/LTG3kFYYYN4WKqsB2MOZ/NMszO+WUFfjB
+X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
+ pk=3fZmF8+BzoNPhZuzL19/BkBXzCDwLBPlLqQYILU0U5k=
 
-On Thu, 4 Sep 2025 15:49:31 +0200
-Marek Vasut <marek.vasut@mailbox.org> wrote:
+Hi,
 
-> >> I suspect the extra soft reset I did before "un-halted" the GPU and
-> >> allowed it to proceed.  
-> > 
-> > Hm, not quite. I mean, you still need to explicitly boot the MCU after
-> > a reset, which is what the write to MCU_CONTROL [1] does. What the
-> > soft-reset does though, is reset all GPU blocks, including the MCU.
-> > This means the MCU starts from a fresh state when you reach [1].  
-> 
-> I have a feeling the write to MCU_CONTROL does nothing in my case.
+This patch series enables the PERIC0/1 (Peripheral Connectivity)
+and compatible hsi2c for Exynos990:
 
-I believe it does, otherwise you wouldn't be able to kick the MCU
-and get things working until the first runtime suspend happens. I gut
-feeling is that there's something fishy in the FW or SoC integration
-that causes the FW HALT request to put the MCU/GPU in a bad state
-preventing further MCU_CONTROL(AUTO_START) from functioning correctly
-after that point.
+- PERIC0/1 feeds HSI2C, SPI and UART
 
-> 
-> Is there some way to probe the MCU state before/after setting GLB_HALT, 
-> and also before/after the MCU_CONTROL write, using 
-> gpu_read()/gpu_write() register operations, to find out what is going on 
-> with the MCU at each point ?
+Changes in v2:
+- Remove other unnecessary patches not related to mainline style
 
-Yes, there's an MCU_STATUS register [1].
+Changes in v3:
+- Fix compatible string ordering in bindings (alphabetical)
+- Reorder device tree nodes by address as requested
 
-[1]https://elixir.bootlin.com/linux/v6.16.4/source/drivers/gpu/drm/panthor/panthor_fw.c#L1045
+Denzeel Oliva
 
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+---
+Denzeel Oliva (4):
+      dt-bindings: clock: exynos990: Add PERIC0 and PERIC1 clock units
+      dt-bindings: i2c: exynos5: Add exynos990-hsi2c compatible
+      clk: samsung: exynos990: Add PERIC0 and PERIC1 clock support
+      arm64: dts: exynos990: Enable PERIC0 and PERIC1 clock controllers
+
+ .../bindings/clock/samsung,exynos990-clock.yaml    |   24 +
+ .../devicetree/bindings/i2c/i2c-exynos5.yaml       |    1 +
+ arch/arm64/boot/dts/exynos/exynos990.dtsi          |   22 +
+ drivers/clk/samsung/clk-exynos990.c                | 1152 ++++++++++++++++++++
+ include/dt-bindings/clock/samsung,exynos990.h      |  176 +++
+ 5 files changed, 1375 insertions(+)
+---
+base-commit: 1b15d1010a693feaf99fe3e08271cfc72be0f9f2
+change-id: 20250831-perics-usi-1295321e55cb
+
+Best regards,
+-- 
+Denzeel Oliva <wachiturroxd150@gmail.com>
 
 
