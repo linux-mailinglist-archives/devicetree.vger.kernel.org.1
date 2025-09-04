@@ -1,165 +1,139 @@
-Return-Path: <devicetree+bounces-212722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE1FB43969
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:59:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FBB1B43971
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:02:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2EC5178745
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:59:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2B667B3DC6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:00:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 895D52FB60E;
-	Thu,  4 Sep 2025 10:59:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C572FB626;
+	Thu,  4 Sep 2025 11:02:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fCGOoLzp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="leNnvCIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80F6B2EE294;
-	Thu,  4 Sep 2025 10:59:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D7B258EED;
+	Thu,  4 Sep 2025 11:02:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756983568; cv=none; b=NLofTnAvBImcoXQ9EPDTRAwFr9s+1VgLrRfkQ7Ul19XQpkAh9K2tJodTF3qqXopHoGxXLjupxSS0Ze2u87y/u2jK6U6Dl18W0AyAx/bStSQ9LH25WTz3wZgbvRPIk/TH+tvIso5xEBwskeu/S711RH3wU1YEgMdk8/G6y3by2D4=
+	t=1756983728; cv=none; b=sR+30ye0WyV0aWpvkKACn/8A/j7D9Vq1/NuYggzulzVc48DSJ77HVhJ2YQkyg59Vk1wdNSpAni+aS5C0aDz7F9bez25pkg6ARLgPjEpkR2/H7Los7k+FUTuJE5rEMHcPkBiOvFZD2EA4p852IPQpYSMMYTmn8dYsNey00E4ZBMI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756983568; c=relaxed/simple;
-	bh=LLaWek7ZiyOIs4xGPWo28ZeywonYE/j7nxi3naAFXWg=;
-	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=jFIxpKlBDSShPDXV/PFZ2as+AJveWPtf2TSTQTb80k0LcfxbMFYe6zM2mABh/zfp95oKfv3s3xK89oapd4KT4iTiBD4mXmSA3ExO0nJUc6iQe03zX0hvszrMtVWEqZ4WDkR6wib9+42xCzoGzOkQaaGiJSsEm+hPZymva+vLhfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fCGOoLzp; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584AxKSU2996009;
-	Thu, 4 Sep 2025 05:59:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756983560;
-	bh=2LIre3TFhr3h5fh/GInYRrsD3Rw8KDu39s4B2GrA9Lc=;
-	h=From:To:Subject:Date;
-	b=fCGOoLzptGzx7i5mnk6oQ39voYQMJMMRZYGyt7cVsJiY6+fDvFRTgz61Rd/G8wau+
-	 0E0aUdcJEVxCYYWMyFKjlq6P67lCh/Rgb1TNnfcSYv3J8MsrwtVFOdqDFPGcbrgS5L
-	 6FIae1MqDR7/yUWdgeL1ACeoE+AS2bTu+N9qdYLM=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584AxKM8122137
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 05:59:20 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 05:59:19 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 05:59:19 -0500
-Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584AxFad3147561;
-	Thu, 4 Sep 2025 05:59:16 -0500
-From: Harikrishna Shenoy <h-shenoy@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
-        <s-jain1@ti.com>
-Subject: [PATCH v2] arm64: dts: ti: k3-j721e-main: Add DSI and DPHY-TX
-Date: Thu, 4 Sep 2025 16:29:15 +0530
-Message-ID: <20250904105915.3043773-1-h-shenoy@ti.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1756983728; c=relaxed/simple;
+	bh=ZpDcHfqbkNtTxnr0oZm/g5zBZ1ZFTvCY+OSWik2dRxo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=o7CJ2frNL+kED1ERTClCa6Mf813isxQK6Jw6aqNUtiT1a/Wj2DMutWWi/TPnnpFadu2KWVPWVjlh3YrSFg7yAFjSfAGS7Xu/uMpZmAsrrMLrwS/0SQJM6tU6RGj4LbstS+YpvHljFD1FTW7W5HdTr4zUowELS1r9skLlAIxoSCM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=leNnvCIz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95525C4CEF0;
+	Thu,  4 Sep 2025 11:02:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756983727;
+	bh=ZpDcHfqbkNtTxnr0oZm/g5zBZ1ZFTvCY+OSWik2dRxo=;
+	h=Date:Subject:To:References:From:In-Reply-To:From;
+	b=leNnvCIzUqbZXSKYxxwQATWQSVml0HMUG7F0t2gRvGtH54Y/HEB1PvGlarlYt8DmX
+	 CEA3ssCqmQTLjt8w1vEiQlltNs4cPFPhVu4wgatF0Vbb4AJvT5jSUv3cvpwmb0OLBt
+	 w9TcLFndUURBe/vyJpZFF6xamj2ZgQC7ykwqIosQxmQYXtNLBOi7NGuvXdz/C358hG
+	 2nc7eoAQFYONDO/a324NAC4nIDctkcqTJyFq8BiDZR73meXE8Pi0BWL+PQJMV9iGaK
+	 7jct9tthS63A7t4gNgNBF+ChDwlYwfpe229MKb27TkVAFjYI62HUinsjHTM8cqqOR9
+	 qhQrIaa9IIf6A==
+Message-ID: <f5953064-b369-4c17-ab09-d45a54f9d4f1@kernel.org>
+Date: Thu, 4 Sep 2025 13:02:03 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-main: Add DSI and DPHY-TX
+To: Harikrishna Shenoy <h-shenoy@ti.com>, nm@ti.com, vigneshr@ti.com,
+ kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devarsht@ti.com, u-kumar1@ti.com,
+ s-jain1@ti.com
+References: <20250904105915.3043773-1-h-shenoy@ti.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250904105915.3043773-1-h-shenoy@ti.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-From: Rahul T R <r-ravikumar@ti.com>
+On 04/09/2025 12:59, Harikrishna Shenoy wrote:
+> +	dsi0: dsi@4800000 {
+> +		compatible = "ti,j721e-dsi";
+> +		reg = <0x00 0x04800000 0x00 0x100000>, <0x00 0x04710000 0x00 0x100>;
+> +		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
+> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
+> +		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
+> +		interrupt-parent = <&gic500>;
+> +		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
+> +		phys = <&dphy_tx>;
+> +		phy-names = "dphy";
+> +		status = "disabled";
+> +
+> +		dsi0_ports: ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
 
-TI's J721E SoC supports a DPI to DSI video signal conversion bridge on
-it's platform bus. The IP is from Cadence, and it has a custom TI
-wrapper around it to facilitate integration.
+Missing ports. This is quite odd to see only cells here. You probably
+wanted to omit endpoints, but ports are fixed per SoC.
 
-This IP takes the DPI video signals from DSS and alongwith the DPHY IP,
-it transmits DSI video signals out of the SoC.
-
-Add support for DSI bridge and the DPHY-TX.
-
-Signed-off-by: Rahul T R <r-ravikumar@ti.com>
-Signed-off-by: Jayesh Choudhary <j-choudhary@ti.com>
-Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
----
-Changelog v1 --> v2:
-- Updated phy labels
-
-Link to v1:https://lore.kernel.org/all/1adea165-ae87-463f-a03e-2fe27f4b8695@ti.com/
+> +		};
+> +	};
+> +
+>  	dss: dss@4a00000 {
+>  		compatible = "ti,j721e-dss";
+>  		reg =
 
 
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 35 +++++++++++++++++++++--
- 1 file changed, 33 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index ab3666ff4297..df489bce86c9 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -671,7 +671,7 @@ cdns_csi2rx1: csi-bridge@4514000 {
- 				 <&k3_clks 27 2>, <&k3_clks 27 3>, <&k3_clks 27 3>;
- 			clock-names = "sys_clk", "p_clk", "pixel_if0_clk",
- 				      "pixel_if1_clk", "pixel_if2_clk", "pixel_if3_clk";
--			phys = <&dphy1>;
-+			phys = <&dphy_rx>;
- 			phy-names = "dphy";
- 
- 			ports {
-@@ -714,7 +714,7 @@ dphy0: phy@4580000 {
- 		status = "disabled";
- 	};
- 
--	dphy1: phy@4590000 {
-+	dphy_rx: phy@4590000 {
- 		compatible = "cdns,dphy-rx";
- 		reg = <0x0 0x4590000 0x0 0x1100>;
- 		#phy-cells = <0>;
-@@ -1887,6 +1887,37 @@ port@4 {
- 		};
- 	};
- 
-+	dphy_tx: phy@4480000 {
-+		compatible = "ti,j721e-dphy";
-+		reg = <0x00 0x04480000 0x00 0x1000>;
-+		clocks = <&k3_clks 296 1>, <&k3_clks 296 3>;
-+		clock-names = "psm", "pll_ref";
-+		#phy-cells = <0>;
-+		power-domains = <&k3_pds 296 TI_SCI_PD_EXCLUSIVE>;
-+		assigned-clocks = <&k3_clks 296 3>;
-+		assigned-clock-parents = <&k3_clks 296 4>;
-+		assigned-clock-rates = <19200000>;
-+		status = "disabled";
-+	};
-+
-+	dsi0: dsi@4800000 {
-+		compatible = "ti,j721e-dsi";
-+		reg = <0x00 0x04800000 0x00 0x100000>, <0x00 0x04710000 0x00 0x100>;
-+		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
-+		clock-names = "dsi_p_clk", "dsi_sys_clk";
-+		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
-+		interrupt-parent = <&gic500>;
-+		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
-+		phys = <&dphy_tx>;
-+		phy-names = "dphy";
-+		status = "disabled";
-+
-+		dsi0_ports: ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
- 	dss: dss@4a00000 {
- 		compatible = "ti,j721e-dss";
- 		reg =
--- 
-2.34.1
-
+Best regards,
+Krzysztof
 
