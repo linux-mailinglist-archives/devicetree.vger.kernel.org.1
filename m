@@ -1,236 +1,224 @@
-Return-Path: <devicetree+bounces-212917-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24F59B44092
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A250CB4409B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:29:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C01B81C864CB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:27:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2AD021C86D61
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2419E239086;
-	Thu,  4 Sep 2025 15:27:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944F8258ECD;
+	Thu,  4 Sep 2025 15:29:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IHTh20+/"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="JykgU5gr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E3023ABAB;
-	Thu,  4 Sep 2025 15:27:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E85501CEAB2
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 15:29:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756999634; cv=none; b=qTRrPfb6six4zSp+J8yL6JccymtPMS2pfSSqE4AJ8lpirXbnqsggDeIA5J+K4up1xcnSmLsRk1xUT8ouyDh23lwzWpm5VKK4FOHzlvnboklt8rv5bbuc8mkfVIqcuZDP6gLWaYnfiBKbiO3+IRpRlnT/cMenPjZWxmit+4AHt64=
+	t=1756999762; cv=none; b=XN4g1LSWhTFHRZwUvAjQvGZtkmK2ZIzyNFdbeucqhj6HugP7/cQcntA1tE6KoA1mjIIWfrhbftNgVlEbfoj+XSwVPE1Q7Qig6JwE1UuHVYuB+4X08dHIZmMFEAMw0vVjtMqzMMsMsi0jrWyEP/D0w1geZV6ZT7sYZRoJv+uIYpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756999634; c=relaxed/simple;
-	bh=QGT4nMVqsTOjW4heFuCYqs5+xXUX0f70MfCiBGQ+/g8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=Yxyia4mEzzek/+d6wlbWic7vzHmCO3NY1juP5NdMNglNOftIi3slzj/kBlmXG7/akxYr3pdrKmfZRuAFLtvoZmr7tYXRgiX7ztqgp8PJwUWiD2/INK1EdfexldvIoHJAllqrGpIiIHmv2w+C6sfNn43GXKLhjm7WhxWV4KVg6yM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IHTh20+/; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 584FR39u3106568;
-	Thu, 4 Sep 2025 10:27:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756999623;
-	bh=pnelLJyS9J55hcHKl4p6uGqOHl1Ys0oXzYQLKPfkrEQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=IHTh20+/gih3yKu3QsCiGw7GD9puu2EmeSCpat9wR2nCNB4G0+2bYY4GCmLs8rVpz
-	 c1TSCdcirLvNUtEWbP4Uf7fJrUBkw5Y/JMEyWukDWZ2mHYJx7tKN26bNdGD5Bpd5rY
-	 VVfm89P7Rh90fTBjy4WyjQYpqxFKs5oNw+/6/bOI=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 584FR3Kj215045
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 10:27:03 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 10:27:03 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 10:27:02 -0500
-Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 584FR3Lq3471897;
-	Thu, 4 Sep 2025 10:27:03 -0500
-Message-ID: <44a55012-32e9-4ecd-8643-d9c0008bc5d2@ti.com>
-Date: Thu, 4 Sep 2025 10:27:02 -0500
+	s=arc-20240116; t=1756999762; c=relaxed/simple;
+	bh=EUUOJm8+pqfJE0C02BV4F6cE3SBmlMX62RiOmXxnlyg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lWz7iMmFoZsuxE4V/g7PBHY81N9ruAIv/6ODBNXe20sGLPD/ZK3gYtp4RnZMaCOMUUnUqE8R5k7uUp/oQhWquuDY99Z/QnRDLBZqnALnL6LEdqz9GD+kS1brGtUxxqtTAe7nZrt2H9qiBzRzAGOh9AMQj3LCpG1n4tbrkGvs1XA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=JykgU5gr; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849XAEc008141
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 15:29:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	aCKrmPJEFXGT0WYbXHZg3VTYOIhYkJFe7iTrbDkI7Yg=; b=JykgU5grP0LzChRS
+	jo5fMTmzga1W8yeVxF9tViRBvkFXCJtHR7aVYgmLnoqxhr9ttxNTxlGbZsS4LdRN
+	kpsDb53P3r3X5KkbWDFxac815aVm1cUa1fLkD+NMSL3FOGhM9YAkXrkyeUJ6g3r3
+	go9383tqDVDZUo6MbK/JJTuRcmNg1ikvHWaGxgVpgdiWVZtxFlqnPTviuC+i6zOb
+	orDfQhNzgKA3FudfFzcbgNh+zFlz7oubp3DMwkUV0jJ773Z7HdaX0J8xPyo1ow8k
+	K3nxAlgQPa+EMv+QseXkgHtUGVQYJJTg5oHDfA744/Dzy+cff7TLAMoZHK2yoRJS
+	uYvHtQ==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjqwbh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 15:29:18 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-329ee88fb47so1773791a91.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 08:29:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756999757; x=1757604557;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aCKrmPJEFXGT0WYbXHZg3VTYOIhYkJFe7iTrbDkI7Yg=;
+        b=Y3PZZXXT18mC0OvXyd1xcXHhasONJIqA+Lt1hc2QuAYiVDTABnBWkd+L/dt2JZTr9r
+         ZbPE5rnjhpZnHB2sMCt8e61/rms88XIK9oJ0g6jACTMnK3s9rBoFDMDfHR5+t1R5oStr
+         QeZ7qHcPKEPOSkXZeTTXGzyY524R7GrMTDE01tSrlFBiDxFtYrMVVHpkKS7aKn7FdQSq
+         BzWqzu7OrpQMoHQ8rBppQknNlRu953IXUUs93EEVY701PQ5aefVdQcN6Qxhijor66/B5
+         MvPYmrOy7r3F2h55MKjH7R0DbooQZ3D+LTWZTizIyqKnISZVSSxv4MMFIJQb0VP2OZm8
+         oqxA==
+X-Forwarded-Encrypted: i=1; AJvYcCVn4Iq5Tk4Mg7gdxKIdXpau6qQ95bSH03Xe7R6b1t4lG6rcO2wO/j/LOwiECKsuF2bTtg3hhxrSNXV8@vger.kernel.org
+X-Gm-Message-State: AOJu0YzS+zUvio/X8camFNzgv0x6v1Bm6eTqcPum8ol2saIJqWgBGHOs
+	04aovwrJ7tzM3nOTOFWV/0DcqD/GUTl/1staQmfcqgaxO3qyu73dtTnLv3fWc7+wopRcxWJYpAP
+	IKa5LSxN4XX6bbHx7VV+yiwb1ePzsAvvIpQLcgS5ut/66OEdPSntY0F0mbsABoc9m
+X-Gm-Gg: ASbGncsrGbXp7+qOBOnMsqx9odnsP2EI3jbXoU55hY+jnQO6rMiyPw1fZOqKAwwHHHw
+	HTV58I+b1FptvjllA8ctE6Jb6zUeK10adorvYdUZpsS4ZTtzhsAothldpeBAbb6w1pQytbrQW4H
+	0RtEHIqXl3Mb2uY47lVt6dPb60koQzm+92QaDvEDtL2aLN/z1yBOpdygH+AHT/LYeyMfJDNGq8a
+	cR2tSc/CGmq4qKZ1USvc/9n6JfAitAsZ/UqaMzKKtsVj7wvmo5eA3ZSaxJ6YH3YireekOJ6I9gA
+	4y5SGArs89lEK+lXZQY27TdzGlwS6QiZxGuDVlWCd7Do2aQFSwG8y7GA5d2bDYeChaIM
+X-Received: by 2002:a17:902:d4c1:b0:24c:92b5:2175 with SMTP id d9443c01a7336-24c92b5262fmr76676065ad.24.1756999757449;
+        Thu, 04 Sep 2025 08:29:17 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE4JhBNWdG2V+TxgIDesrLMeTY0t0q4ahoJ30jB1TKaWOy2/eOV1xvyNkelIVpDUVQxYmrVWg==
+X-Received: by 2002:a17:902:d4c1:b0:24c:92b5:2175 with SMTP id d9443c01a7336-24c92b5262fmr76675745ad.24.1756999756970;
+        Thu, 04 Sep 2025 08:29:16 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327c5fc5055sm22049502a91.14.2025.09.04.08.29.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 08:29:16 -0700 (PDT)
+Date: Thu, 4 Sep 2025 20:59:09 +0530
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
+Subject: Re: [PATCH 2/5] arm64: dts: qcom: lemans: Add SDHC controller and
+ SDC pin configuration
+Message-ID: <aLmwRSROlgXxw3bI@hu-wasimn-hyd.qualcomm.com>
+References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
+ <20250826-lemans-evk-bu-v1-2-08016e0d3ce5@oss.qualcomm.com>
+ <rxd4js6hb5ccejge2i2fp2syqlzdghqs75hb5ufqrhvpwubjyz@zwumzc7wphjx>
+ <c82d44af-d107-4e84-b5ae-eeb624bc03af@oss.qualcomm.com>
+ <aLhssUQa7tvUfu2j@hu-wasimn-hyd.qualcomm.com>
+ <tqm4sxoya3hue7mof3uqo4nu2b77ionmxi65ewfxtjouvn5xlt@d6ala2j2msbn>
+ <3b691f3a-633c-4a7f-bc38-a9c464d83fe1@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-am62p/j722s: Move sdhci0 from
- common
-To: Nishanth Menon <nm@ti.com>
-CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250904004723.2856005-1-jm@ti.com>
- <20250904004723.2856005-2-jm@ti.com>
- <20250904033834.cmn5i7satksnpr6o@revolver>
-Content-Language: en-US
-From: Judith Mendez <jm@ti.com>
-In-Reply-To: <20250904033834.cmn5i7satksnpr6o@revolver>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3b691f3a-633c-4a7f-bc38-a9c464d83fe1@oss.qualcomm.com>
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b9b04e cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=7jlciowUQMUDIi_Z8n8A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=uKXjsCUrEbL0IQVhDsJ9:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: qfhXlLPb3C8tWnDK3S5vdhvQvNUHIM4h
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX0Z2nAtbMfIt9
+ AhdHCIyDTOMl6eB0M1YLdqARbA9L7HDlBDIiIlg3p+h9WeqVOEm5Urro8fFUGntECYb7Ze9cf9I
+ ZEWg/CXLCl8DRTxqYiv6dnYCVFHCo/W122jMRUhN0kpB4hx9R/EPOVLb79em949m0PfkQDYAlT4
+ cxiZwAz891IB+cOv7WJf6i6pcvLlo4qiA8vTNLvi9eF1MQXNcuj7eZfBoHRpE0zpQHIh/tiyqQF
+ QGVJfCw6GR7y8QVoW1KiD+F+cpqq4nITqSRvU49k+T8O6l+u+1JBTIrFI1LGgGD3QqV5LzIBHEA
+ xXyGxrTkujoJQaW3tgb35cpst2jpFZes50sKkdLm8o3ShdZ6MapT007DbF9Lsw1NK2r8AlfBvS1
+ 2X75tR9Q
+X-Proofpoint-ORIG-GUID: qfhXlLPb3C8tWnDK3S5vdhvQvNUHIM4h
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_05,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-Hi Nishanth,
-
-On 9/3/25 10:38 PM, Nishanth Menon wrote:
-> On 19:47-20250903, Judith Mendez wrote:
->> Since eMMC HS400 has been descoped for j722s due to errata i2478 [0]
->> and is supported for am62p SR1.2 device, remove sdhci0 node from
->> common-main.dtsi and include instead in each device's main.dtsi
->> appropriately.
->>
->> [0] https://www.ti.com/lit/pdf/sprz575
->> Signed-off-by: Judith Mendez <jm@ti.com>
->> ---
->>   .../dts/ti/k3-am62p-j722s-common-main.dtsi    | 25 -------------------
->>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi     | 25 +++++++++++++++++++
->>   arch/arm64/boot/dts/ti/k3-j722s-main.dtsi     | 22 ++++++++++++++++
->>   3 files changed, 47 insertions(+), 25 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> index 4427b12058a6..84083f5125df 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
->> @@ -566,31 +566,6 @@ main_gpio1: gpio@601000 {
->>   		clock-names = "gpio";
->>   	};
->>   
->> -	sdhci0: mmc@fa10000 {
->> -		compatible = "ti,am64-sdhci-8bit";
->> -		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
->> -		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
->> -		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
->> -		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
->> -		clock-names = "clk_ahb", "clk_xin";
->> -		bus-width = <8>;
->> -		mmc-ddr-1_8v;
->> -		mmc-hs200-1_8v;
->> -		mmc-hs400-1_8v;
->> -		ti,clkbuf-sel = <0x7>;
->> -		ti,strobe-sel = <0x77>;
->> -		ti,trm-icp = <0x8>;
->> -		ti,otap-del-sel-legacy = <0x1>;
->> -		ti,otap-del-sel-mmc-hs = <0x1>;
->> -		ti,otap-del-sel-ddr52 = <0x6>;
->> -		ti,otap-del-sel-hs200 = <0x8>;
->> -		ti,otap-del-sel-hs400 = <0x5>;
+On Thu, Sep 04, 2025 at 04:34:05PM +0200, Konrad Dybcio wrote:
+> On 9/4/25 3:35 PM, Dmitry Baryshkov wrote:
+> > On Wed, Sep 03, 2025 at 09:58:33PM +0530, Wasim Nazir wrote:
+> >> On Wed, Sep 03, 2025 at 06:12:59PM +0200, Konrad Dybcio wrote:
+> >>> On 8/27/25 3:20 AM, Dmitry Baryshkov wrote:
+> >>>> On Tue, Aug 26, 2025 at 11:51:01PM +0530, Wasim Nazir wrote:
+> >>>>> From: Monish Chunara <quic_mchunara@quicinc.com>
+> >>>>>
+> >>>>> Introduce the SDHC v5 controller node for the Lemans platform.
+> >>>>> This controller supports either eMMC or SD-card, but only one
+> >>>>> can be active at a time. SD-card is the preferred configuration
+> >>>>> on Lemans targets, so describe this controller.
+> >>>>>
+> >>>>> Define the SDC interface pins including clk, cmd, and data lines
+> >>>>> to enable proper communication with the SDHC controller.
+> >>>>>
+> >>>>> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
+> >>>>> Co-developed-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> >>>>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+> >>>>> ---
+> >>>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 70 ++++++++++++++++++++++++++++++++++++
+> >>>>>  1 file changed, 70 insertions(+)
+> >>>>>
+> >>>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> index 99a566b42ef2..a5a3cdba47f3 100644
+> >>>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>> @@ -3834,6 +3834,36 @@ apss_tpdm2_out: endpoint {
+> >>>>>  			};
+> >>>>>  		};
+> >>>>>  
+> >>>>> +		sdhc: mmc@87c4000 {
+> >>>>> +			compatible = "qcom,sa8775p-sdhci", "qcom,sdhci-msm-v5";
+> >>>>> +			reg = <0x0 0x087c4000 0x0 0x1000>;
+> >>>>> +
+> >>>>> +			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
+> >>>>> +				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
+> >>>>> +			interrupt-names = "hc_irq", "pwr_irq";
+> >>>>> +
+> >>>>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> >>>>> +				 <&gcc GCC_SDCC1_APPS_CLK>;
+> >>>>> +			clock-names = "iface", "core";
+> >>>>> +
+> >>>>> +			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
+> >>>>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
+> >>>>> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
+> >>>>> +
+> >>>>> +			iommus = <&apps_smmu 0x0 0x0>;
+> >>>>> +			dma-coherent;
+> >>>>> +
+> >>>>> +			resets = <&gcc GCC_SDCC1_BCR>;
+> >>>>> +
+> >>>>> +			no-sdio;
+> >>>>> +			no-mmc;
+> >>>>> +			bus-width = <4>;
+> >>>>
+> >>>> This is the board configuration, it should be defined in the EVK DTS.
+> >>>
+> >>> Unless the controller is actually incapable of doing non-SDCards
+> >>>
+> >>> But from the limited information I can find, this one should be able
+> >>> to do both
+> >>>
+> >>
+> >> It’s doable, but the bus width differs when this controller is used for
+> >> eMMC, which is supported on the Mezz board. So, it’s cleaner to define
+> >> only what’s needed for each specific usecase on the board.
+> > 
+> > `git grep no-sdio arch/arm64/boot/dts/qcom/` shows that we have those
+> > properties inside the board DT. I don't see a reason to deviate.
 > 
-> would'nt it be sufficient to provide this in am62p and keep the common
-> stuff here?
-
-Either way works, I can keep a common no problem.
-
+> Just to make sure we're clear
 > 
-> Additionally handling of SR1.2 should be documented in am62p
-
-WYM? Why document anything on  SR1.2? For am62p, we support HS400 mode
-which is the default, all other silicon revision will automatically
-be reduced to HS200, that logic is abstracted away in the driver.
-
-There is nothing to document here IMO.
-
-~ Judith
-
-
-
-> 
->> -		ti,itap-del-sel-legacy = <0x10>;
->> -		ti,itap-del-sel-mmc-hs = <0xa>;
->> -		ti,itap-del-sel-ddr52 = <0x3>;
->> -		status = "disabled";
->> -	};
->> -
->>   	sdhci1: mmc@fa00000 {
->>   		compatible = "ti,am62-sdhci";
->>   		reg = <0x00 0x0fa00000 0x00 0x1000>, <0x00 0x0fa08000 0x00 0x400>;
->> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> index 6aea9d3f134e..fb8473ce403a 100644
->> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
->> @@ -31,6 +31,31 @@ usb1: usb@31100000 {
->>   			snps,usb2-lpm-disable;
->>   		};
->>   	};
->> +
->> +	sdhci0: mmc@fa10000 {
->> +		compatible = "ti,am64-sdhci-8bit";
->> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
->> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
->> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
->> +		clock-names = "clk_ahb", "clk_xin";
->> +		bus-width = <8>;
->> +		mmc-ddr-1_8v;
->> +		mmc-hs200-1_8v;
->> +		mmc-hs400-1_8v;
->> +		ti,clkbuf-sel = <0x7>;
->> +		ti,strobe-sel = <0x77>;
->> +		ti,trm-icp = <0x8>;
->> +		ti,otap-del-sel-legacy = <0x1>;
->> +		ti,otap-del-sel-mmc-hs = <0x1>;
->> +		ti,otap-del-sel-ddr52 = <0x6>;
->> +		ti,otap-del-sel-hs200 = <0x8>;
->> +		ti,otap-del-sel-hs400 = <0x5>;
->> +		ti,itap-del-sel-legacy = <0x10>;
->> +		ti,itap-del-sel-mmc-hs = <0xa>;
->> +		ti,itap-del-sel-ddr52 = <0x3>;
->> +		status = "disabled";
->> +	};
->>   };
->>   
->>   &oc_sram {
->> diff --git a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> index 993828872dfb..2978fe1a151e 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j722s-main.dtsi
->> @@ -404,6 +404,28 @@ e5010: jpeg-encoder@fd20000 {
->>   		power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
->>   		interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->>   	};
->> +
->> +	sdhci0: mmc@fa10000 {
->> +		compatible = "ti,am64-sdhci-8bit";
->> +		reg = <0x00 0x0fa10000 0x00 0x1000>, <0x00 0x0fa18000 0x00 0x400>;
->> +		interrupts = <GIC_SPI 133 IRQ_TYPE_LEVEL_HIGH>;
->> +		power-domains = <&k3_pds 57 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 57 1>, <&k3_clks 57 2>;
->> +		clock-names = "clk_ahb", "clk_xin";
->> +		bus-width = <8>;
->> +		mmc-ddr-1_8v;
->> +		mmc-hs200-1_8v;
->> +		ti,clkbuf-sel = <0x7>;
->> +		ti,trm-icp = <0x8>;
->> +		ti,otap-del-sel-legacy = <0x1>;
->> +		ti,otap-del-sel-mmc-hs = <0x1>;
->> +		ti,otap-del-sel-ddr52 = <0x6>;
->> +		ti,otap-del-sel-hs200 = <0x8>;
->> +		ti,itap-del-sel-legacy = <0x10>;
->> +		ti,itap-del-sel-mmc-hs = <0xa>;
->> +		ti,itap-del-sel-ddr52 = <0x3>;
->> +		status = "disabled";
->> +	};
->>   };
->>   
->>   &main_bcdma_csi {
->> -- 
->> 2.51.0
->>
+> I want the author to keep bus-width in SoC dt and move the other
+> properties to the board dt
 > 
 
+I'll move the no-sdio and no-mmc properties to the board-specific device
+tree file, and keep the bus-width configuration in the SoC-level file.
+
+
+-- 
+Regards,
+Wasim
 
