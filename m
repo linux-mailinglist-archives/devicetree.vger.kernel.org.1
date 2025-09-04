@@ -1,163 +1,127 @@
-Return-Path: <devicetree+bounces-212862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212864-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1E25B43E1A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:07:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EE0BB43E2A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:09:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47581188B5F6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:08:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04A861C2594A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:09:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56661308F34;
-	Thu,  4 Sep 2025 14:07:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D11B6306D3E;
+	Thu,  4 Sep 2025 14:07:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JFN2t3q7"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jNZna4yI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f176.google.com (mail-qk1-f176.google.com [209.85.222.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4530307AD3;
-	Thu,  4 Sep 2025 14:07:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8C892222AC;
+	Thu,  4 Sep 2025 14:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756994840; cv=none; b=t27TVchEmmScbdKHtPrClwWiTK87/0ecdu00IB3UOdu4GOOE8g3kRja4AjHU5AxwIyrVz/9KVeUOAJlyvQ6krGB442cKQrat1JurTHwZTeMOV4CL50Kjz1OVM0blSvZx5JSkb3UCnJWlQFRji88ZPiQi6TdUJgmcTyDEoIO/rhI=
+	t=1756994878; cv=none; b=euLkRh0GSLSm0lCcqFAXp/GvdOsuNAw1L15U2moHwsfMBpPYg7U83sDUBcO4neo+/TLQMpl/yH4UQRwfWLp/1B7RDpcjZe2GAtRrUCMpW6bvLzR93RtRbsA0ujLofhSJmgV7dK7a4+2zDYNkHC/p+oid1MzCT8mZ3EAnco642P4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756994840; c=relaxed/simple;
-	bh=2QadQ6p8DLVRx/cTe7HdT6hSMdg6XZNjMfLKvG2yQww=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=C0C56E8i/H+Sp9RKYQFuWUkqjqthGXTW5ci4skZ8Kp9rPpCP0YtStRgHJisFRYFY+OqsotYxeUcf/3Rq2sJo7EG8Pipyj6ZhRlLzYq1taNruQdnQ1LrLMXVC8gvly5iNW46hNvHAbkNYou9EanLmsHFVyen1Ph82FZ76tKiqdng=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JFN2t3q7; arc=none smtp.client-ip=209.85.222.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-qk1-f176.google.com with SMTP id af79cd13be357-80a6937c99bso113822585a.2;
-        Thu, 04 Sep 2025 07:07:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756994837; x=1757599637; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=AQbUui2bkGKG7EBeLpHjxdTepdI99tueiIT2G5JOAB0=;
-        b=JFN2t3q7xvpap1qRJyCsV4n8YgHvMBVieJeRBr2WpmoF0Ywjsy5LdD/cO72AjmA/wB
-         RY+mbEshnPKQr6/n6bm4JnczASsOTYzu7ZwWN/YX75Rg5+oD+Rfyy2UUwoAuMpyoNj8F
-         G4VfDLKIBRXADO3zQUf86teRTanDeCSZM3rGEEXz6jyJX3xwxDtYD6crYSxTg7d350kp
-         +x83VbvpZ7U3uslIEVY6Cw2dxMI6Ino0sXuxde7RX0/DQzp2xpKor7pI2zvIDzr2uwLg
-         RWxCAr6w22kuvCZmXiskisBn8exjLYWWOXul+8YVcHSiqoVV9Jdx0TjYARTWZCP5lfXe
-         dnmQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756994837; x=1757599637;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AQbUui2bkGKG7EBeLpHjxdTepdI99tueiIT2G5JOAB0=;
-        b=bLSbaHwOmFMCzzM//d+7EtUjfMET8jXcXLwGMISXXOhDUcriyz6UOPYk0xpduA11ag
-         4Xd19We4DMI1SRk9uIcSoFXJU4nMT9RNIkFMwcJULA1pWEHLBuh4XpzLvNE9ddmyA/+q
-         cw09LNuG5E6Ql2aCoVb+MuW5Te5irAAwNqrGjye6y/fHhgaZ2XvyrtvLxEEWK/OqiQUW
-         12RTcerlZBaQySL0ojq2WRiRtQAay2CwEQKT8W/dxrB8aC/8X70CEwSngCge4DTTTkUl
-         zFEX+QwlWO8lsaF6X+o7ZyBKuw/69As2Wlmb4+rJ9A/d8C0k0ls1wPJcfxTi7/ioefat
-         +2Ww==
-X-Forwarded-Encrypted: i=1; AJvYcCUPMNl71VcCsxR53wk5SSURETBb2Dv/vwneemKNYDQ+KleDY04AWlgpR6Iu+jeMaoAidB64cJoTdPqV@vger.kernel.org, AJvYcCWLtMbOOyfp2Pldcfe+Bp69Ag7fGzdiijnnCdbWiuHtgDjpa/dwwys4fGOrPIxcMt45OLgUf7ZvBVhSw9fE@vger.kernel.org, AJvYcCWnwE6ww7VTvllsUdaJNaFbHjPAFJrQq2KW1zMSMvVHrDxUbF7HnZYnQuZuenZj6bu67YV2hUBHUsyS@vger.kernel.org, AJvYcCX/kUg1gc0WLoTho1bmuhXRHR/W3D0hnAsZaCe+1FL2zognGlZpM1XKyaCkVNWzT3JCEoD9qxaD6Pb9@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEtUqOT752+9ssUaT9k/ZgZOCwDxcEeVOSkGcFn1d8qeb7fFz1
-	m2MmrKfXHYxrRWcQnNHInp5Fdv1D9HiF9748l/MfvR0UPemdU9UJUXs9uhx+863I
-X-Gm-Gg: ASbGnctL+Xd0UuGC76iJXZljf7pZD0H/T43Kg88LHKY7feS5SX9trbrhyh9Ug1PdXOc
-	fHg8T6VYBcvU9kyn9prC9ksMczIrRrV/ZtxvyPOZWXlfrf9oVJliYott/vBUdJYzC4QXDsZ3I3A
-	BYuUKxFF5rh/XKrIuh/ATcsdkU9Y1SaZb0oeHbqRp83yIhDSnI+ZDcl6MLmJK0/Oa8BXHPaHIWS
-	JDaWI77NZlhof4F8+5AEK4ZQNVZNGFZSclkNanoa58VBPKWogV0l8j1KcfEH4PBIcyuN0RnvSg3
-	8hADAxD0sMmj3qiDTFL7mcTG86/vJQikBXGDxxI68KFqECq30B40E3BdfUNmTfxHlz76f1U2cJW
-	ucAFyfDy3MuUyd/B1BJpNjWvjTi1EiSvZALVdETYSCaMUNV/DqA==
-X-Google-Smtp-Source: AGHT+IHq/xxFdWJlU+2WryWLfgdKbagbPMPj9QUjM/EX0bmWcPN2dNhctsEDsJoaBCr6UBfUzIFnyg==
-X-Received: by 2002:a05:620a:4621:b0:809:e8aa:aa89 with SMTP id af79cd13be357-809e8aaab57mr909452685a.14.1756994836809;
-        Thu, 04 Sep 2025 07:07:16 -0700 (PDT)
-Received: from [127.0.0.1] ([74.249.85.194])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-80bdedfeaedsm212280285a.70.2025.09.04.07.07.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 07:07:16 -0700 (PDT)
-From: Denzeel Oliva <wachiturroxd150@gmail.com>
-Date: Thu, 04 Sep 2025 14:07:14 +0000
-Subject: [PATCH v3 4/4] arm64: dts: exynos990: Enable PERIC0 and PERIC1
- clock controllers
+	s=arc-20240116; t=1756994878; c=relaxed/simple;
+	bh=83qKXqxzTjXqiIxqE1Oi+C0b2TBjxEpEofB6xNXsUDs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=B95+3x02Ik1R4OoTkHz7TD7Qonu9kCWKBgEGh1SZoP8rb/xxpqNozvKCHC2fwuHQda+YXcV1dZEs8Cgmyy/Fks5SqQYVv3LJXZMFQxeBDUXUVNowe2TZDs6BqhUCpCKdIALWOYdpAbe6J9sJduJdmCsGub5F1bXVfOjDgk3CNX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jNZna4yI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 097D2C4CEF0;
+	Thu,  4 Sep 2025 14:07:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756994878;
+	bh=83qKXqxzTjXqiIxqE1Oi+C0b2TBjxEpEofB6xNXsUDs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=jNZna4yIHMTBnVj/o1c8Jq0lsBBZw/LZqCHXrOOG8zhpv8/gL2MizSbv97ZIS9Emr
+	 lde6W3/40C9CXT5ij1kf9+NpV4xcUSX/4DpsUeH4wKnfwMRrzLjaw139t1XOCIiD17
+	 Urzr4BaxKnkO1lolQBUgi+FaqS6/KWcfcD5LX3uujKhCvmWPNSv2stViWjj6K33S9b
+	 bV8bQSrzBe2Z6BSBT1wdJkDDFDVVviANWO3M7cdhJ3BTQkzSmMAZbVWu2ICk493SP3
+	 S5KK9w0kGxwyIhDXI7eZL10yShdVSEse2KbOxSU5U61RHw1R9z0U8NvrzZFARo3089
+	 UKULz+2YPt48w==
+Message-ID: <9050a07a-e94e-4d34-b4aa-bd2e6f91f792@kernel.org>
+Date: Thu, 4 Sep 2025 16:07:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 0/2] regulator: pf530x: NXP PF530x regulator driver
+To: Woody Douglass <wdouglass@carnegierobotics.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20250902-pf530x-v5-0-658c403e6a52@carnegierobotics.com>
+ <3c45fe88-c9f4-4606-87bc-726f262998cc@carnegierobotics.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <3c45fe88-c9f4-4606-87bc-726f262998cc@carnegierobotics.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250904-perics-usi-v3-4-3ea109705cb6@gmail.com>
-References: <20250904-perics-usi-v3-0-3ea109705cb6@gmail.com>
-In-Reply-To: <20250904-perics-usi-v3-0-3ea109705cb6@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, 
- Sylwester Nawrocki <s.nawrocki@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Alim Akhtar <alim.akhtar@samsung.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Igor Belwon <igor.belwon@mentallysanemainliners.org>, 
- Andi Shyti <andi.shyti@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
- Denzeel Oliva <wachiturroxd150@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1756994833; l=1581;
- i=wachiturroxd150@gmail.com; s=20250831; h=from:subject:message-id;
- bh=2QadQ6p8DLVRx/cTe7HdT6hSMdg6XZNjMfLKvG2yQww=;
- b=lhQ28jDDQdtdqkS4uzcvkeiUDTYYHpnSRGBbH3JSREg1X9aSx2b7oxOVidB1+ag+Id/8EocOy
- SdDO4lDJsJnBk0iZx1BQW2zDy23X5do+OlT4DHo+XBt+zMPTK8f3W3R
-X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
- pk=3fZmF8+BzoNPhZuzL19/BkBXzCDwLBPlLqQYILU0U5k=
 
-Add clock controller nodes for PERIC0 and PERIC1 blocks for USI nodes.
+On 04/09/2025 15:57, Woody Douglass wrote:
+> All,
+> 
+> When i submitted this patch, I got a bunch of "unsolicited mail" bounces from gmail. My 
+> @carnegierobotics.com address is an exchange server with no exposed smtp, so i have to
+> send patches with `git send-email` via an envelope sender (git@douglass.dev). I suspect 
+> this is what caused this. I'm sorry for the inconvenience; patch v5 still seems to be 
+> on the lkml archive.
 
-Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
----
- arch/arm64/boot/dts/exynos/exynos990.dtsi | 22 ++++++++++++++++++++++
- 1 file changed, 22 insertions(+)
+Maybe b4 relay will be helpful:
+https://b4.docs.kernel.org/en/latest/contributor/send.html
 
-diff --git a/arch/arm64/boot/dts/exynos/exynos990.dtsi b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-index dd7f99f51a75412f5c3b91c3425a63652546fa5e..418fc59fd9e9122f3059482276d3388920fab382 100644
---- a/arch/arm64/boot/dts/exynos/exynos990.dtsi
-+++ b/arch/arm64/boot/dts/exynos/exynos990.dtsi
-@@ -225,12 +225,34 @@ gic: interrupt-controller@10101000 {
- 			#size-cells = <1>;
- 		};
- 
-+		cmu_peric0: clock-controller@10400000 {
-+			compatible = "samsung,exynos990-cmu-peric0";
-+			reg = <0x10400000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>,
-+				 <&cmu_top CLK_DOUT_CMU_PERIC0_BUS>,
-+				 <&cmu_top CLK_DOUT_CMU_PERIC0_IP>;
-+			clock-names = "oscclk", "bus", "ip";
-+		};
-+
- 		pinctrl_peric0: pinctrl@10430000 {
- 			compatible = "samsung,exynos990-pinctrl";
- 			reg = <0x10430000 0x1000>;
- 			interrupts = <GIC_SPI 392 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		cmu_peric1: clock-controller@10700000 {
-+			compatible = "samsung,exynos990-cmu-peric1";
-+			reg = <0x10700000 0x8000>;
-+			#clock-cells = <1>;
-+
-+			clocks = <&oscclk>,
-+				 <&cmu_top CLK_DOUT_CMU_PERIC1_BUS>,
-+				 <&cmu_top CLK_DOUT_CMU_PERIC1_IP>;
-+			clock-names = "oscclk", "bus", "ip";
-+		};
-+
- 		pinctrl_peric1: pinctrl@10730000 {
- 			compatible = "samsung,exynos990-pinctrl";
- 			reg = <0x10730000 0x1000>;
+but if you have own SMTP, then could work as well.
 
--- 
-2.50.1
-
+Best regards,
+Krzysztof
 
