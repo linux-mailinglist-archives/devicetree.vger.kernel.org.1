@@ -1,246 +1,351 @@
-Return-Path: <devicetree+bounces-212926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212927-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A8799B44122
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:54:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D2A5B441F3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:02:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5D315A44A0C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:54:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34F62A48443
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:01:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9E5D280335;
-	Thu,  4 Sep 2025 15:54:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571C22EBB92;
+	Thu,  4 Sep 2025 16:01:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b="u0kUJwzu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FSCMmZex"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78D0A271454
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 15:54:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD062C21D8;
+	Thu,  4 Sep 2025 16:01:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757001267; cv=none; b=cOFeVFtz7R2zyoNxACJgUAQ4TMqZb488kwrC4CrVQ45ihaFgMdBRL+0eFVJI8bONYHAO7ZQFmPiqHUxVqQj87axtXcFc7tOUoWvqcPvdEciIUIFAwLvbeB2hfbF+/kw+zNAvZZvgem7wrorGIBttn6ipN1tcEhCxd5zmjVYE5ok=
+	t=1757001702; cv=none; b=fLvCRG2QVJVmAhsuvE6XBj9Z3qiTZG3i7h7q+N9N8tOOHFpb4/2+ogy9+2VrSKDZJ2ehvm4T7ISG2QtjfrUyYtx0TvMmTu6+cphUZOQmPM468K87q7oxcjipR68OcAQ+yEfP+cQtXWLeaCuszFGQI/bzAbDLb0EJ0vkQFnVxizU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757001267; c=relaxed/simple;
-	bh=NZsXl6YNvbNKl/6Z8/xkPxia+1Mmiwl62zs5F3BiEBQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=dbTioIZ8TMeiaIkMKP3eNS7ObHP81xZHvGxcs7c4UjBu8bvwvCu8qBB/XB0MD18ANFttdc0uZlGrW99atltrET0CgmhlCdldyG6Kgjw/HgTEH73z7y+ZrsK/0L6OOTtNHIL+yoVmftGYcKcHz/ste4DnnuVu6DzC8Y/v0e6MMrA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca; spf=pass smtp.mailfrom=ndufresne.ca; dkim=pass (2048-bit key) header.d=ndufresne-ca.20230601.gappssmtp.com header.i=@ndufresne-ca.20230601.gappssmtp.com header.b=u0kUJwzu; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ndufresne.ca
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ndufresne.ca
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-70ba7aa131fso12794346d6.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 08:54:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ndufresne-ca.20230601.gappssmtp.com; s=20230601; t=1757001263; x=1757606063; darn=vger.kernel.org;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=CupnfoR7Wq8Isj3y9KQeT4kDofo2q3g9cffLLEa/Bmw=;
-        b=u0kUJwzuP6Eoqz3N7QFYqX3uLgQx8UgJePqhNhhOVMowfjiQp9S+SuuOEXqxL9wYdj
-         pmwJhSl25Znh5WBP4lHxihNc26VfgXX6RbTV/WcvJw9Q59bqKuEA0YJtL1s21q4SLfRb
-         Rvj6leTRsXmbN6nhkEKR6TXrbQ7igIFZwBnN19E2l+/yXrkjfMgnnL+ZCLGWVpC31SVq
-         tFF3Lx0rCLDegEi5QQZ/Zr3f5fJMEH0XA34Y9dY/8Ht1hDUBkiEkG8ftawyqVErnB7o3
-         lz4nSyyhQDki6Y3+1TWRIdgMCA8gRTdssWML0o8j+XvIwLf2SEAK2t2A8zwEVrTU7g8N
-         Tk7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757001263; x=1757606063;
-        h=mime-version:user-agent:autocrypt:references:in-reply-to:date:cc:to
-         :from:subject:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CupnfoR7Wq8Isj3y9KQeT4kDofo2q3g9cffLLEa/Bmw=;
-        b=r3uMtT+A00MQZjzXxYkRg9dVl3AJrMAasCEmXoDFAtZQUYR1CadlvIwvZQQQZ7++Ni
-         Ublmr0wSrBU1Kya7ajyjEVr4KF/6BQWdgkuQRew9WjuVYjrUR9gu5TIC6D6WxA02mHBH
-         VDFL9XZTg0iK1hS7AIlNyGnlFpsYeLBmCejs6n36LndK6Jtex+C2ZOQqw7SoBtirqMlU
-         taM8Sfg3eMaw9Q77lxjgeTkZrzh3hYnen/vsQTN6PaUytn6TP3wf0OddaYe61HxaXKX4
-         6Y5oZrB+s8KEx2gFXLbYyFhUrThx8ZKgG+8MSoqCwMB+Ef4S62bhOEQKY1oFqvJMkSW3
-         iscw==
-X-Forwarded-Encrypted: i=1; AJvYcCW4sSAb3l1sbML7vOvrXwL4uYzgY1pGmTQCmLwTomjMgb5058rX7ue3GDbRcKC9agmmsCrHrLj45+KN@vger.kernel.org
-X-Gm-Message-State: AOJu0YwGwm2w/WXT7KcxnpHo5CDCxxkX58HDBQ3sOX9o6y7cmlP3fzR7
-	FTJlfA/sWhCwUlwHwjK0yE608vPyyJAZvBO60HUPawWAzqQGv89xcQ7BDb4ZtU4TarPalAY8S6x
-	qx2oDFD1RiA==
-X-Gm-Gg: ASbGncvTCpfH0z6/gwANWMjtNuNjMu4xcCTAQ+ttxBbwC9BqMdTJ1xL0Ud982t5sLo1
-	llLd8GOGvbiV2NwMdGO1RwNA6JXUnqW+WDRmamssZnA+b8oCIr+OzVWUNIUMK+XfJbJs7JVxvh7
-	F6B/Pgp8n8/27M/Dr6okYHCJPrMBBe0Hq8rTGFDGHMiVEMSCIMa3p9edSpvnr4flhVtBFYRx4oi
-	j4bIe7q5aYBDamlRmwtQKDmsv35jmhCCET/7MtWVcJJvh5aCdWDpzDDSt+aqX4jGq9D5cw+vkTI
-	hvvH0YxyIlghsrr5vKClibI0AOitViYRoGFAoXD9ZR6zmccGLQhMaswduIRrr4fIc7KbMuT/11L
-	yppScsRa9/ZsMKQSO0CMjBdZ3YRLcSIVZMsiNJw==
-X-Google-Smtp-Source: AGHT+IFE52FvAlaKtWbQ5o0NmfX8WgTvwUZ6/IuQgIgkYceXVYsMPe+6Yfn/RZ/Fv/powbGQSeXrcw==
-X-Received: by 2002:a05:6214:19cc:b0:716:ba73:8b72 with SMTP id 6a1803df08f44-716ba738bf2mr241684946d6.19.1757001262970;
-        Thu, 04 Sep 2025 08:54:22 -0700 (PDT)
-Received: from ?IPv6:2606:6d00:11:5a76::5ac? ([2606:6d00:11:5a76::5ac])
-        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-720b4947b1asm48950046d6.41.2025.09.04.08.54.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 08:54:22 -0700 (PDT)
-Message-ID: <59e87d8e346bb16b225382b9a4500e1b16bbf776.camel@ndufresne.ca>
-Subject: Re: [PATCH v2 0/8] Add support for Wave6 video codec driver
-From: Nicolas Dufresne <nicolas@ndufresne.ca>
-To: Marek Vasut <marek.vasut@mailbox.org>, Nas Chung
- <nas.chung@chipsnmedia.com>, 	mchehab@kernel.org, hverkuil@xs4all.nl,
- sebastian.fricke@collabora.com, 	robh@kernel.org, krzk+dt@kernel.org,
- conor+dt@kernel.org
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-imx@nxp.com,
- jackson.lee@chipsnmedia.com, 	lafley.kim@chipsnmedia.com
-Date: Thu, 04 Sep 2025 11:54:20 -0400
-In-Reply-To: <472aac3c-9d3e-4892-8d6c-665fa6793464@mailbox.org>
-References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
-	 <f03d0ae0-d28b-4b06-8f63-9d06f15c0522@mailbox.org>
-	 <fcfa00b5ae102d76b02ce1667d27822e6d2c3c81.camel@ndufresne.ca>
-	 <472aac3c-9d3e-4892-8d6c-665fa6793464@mailbox.org>
-Autocrypt: addr=nicolas@ndufresne.ca; prefer-encrypt=mutual;
- keydata=mDMEaCN2ixYJKwYBBAHaRw8BAQdAM0EHepTful3JOIzcPv6ekHOenE1u0vDG1gdHFrChD
- /e0J05pY29sYXMgRHVmcmVzbmUgPG5pY29sYXNAbmR1ZnJlc25lLmNhPoicBBMWCgBEAhsDBQsJCA
- cCAiICBhUKCQgLAgQWAgMBAh4HAheABQkJZfd1FiEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrjo
- CGQEACgkQ2UGUUSlgcvQlQwD/RjpU1SZYcKG6pnfnQ8ivgtTkGDRUJ8gP3fK7+XUjRNIA/iXfhXMN
- abIWxO2oCXKf3TdD7aQ4070KO6zSxIcxgNQFtDFOaWNvbGFzIER1ZnJlc25lIDxuaWNvbGFzLmR1Z
- nJlc25lQGNvbGxhYm9yYS5jb20+iJkEExYKAEECGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4
- AWIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaCyyxgUJCWX3dQAKCRDZQZRRKWBy9ARJAP96pFmLffZ
- smBUpkyVBfFAf+zq6BJt769R0al3kHvUKdgD9G7KAHuioxD2v6SX7idpIazjzx8b8rfzwTWyOQWHC
- AAS0LU5pY29sYXMgRHVmcmVzbmUgPG5pY29sYXMuZHVmcmVzbmVAZ21haWwuY29tPoiZBBMWCgBBF
- iEE7w1SgRXEw8IaBG8S2UGUUSlgcvQFAmibrGYCGwMFCQll93UFCwkIBwICIgIGFQoJCAsCBBYCAw
- ECHgcCF4AACgkQ2UGUUSlgcvRObgD/YnQjfi4+L8f4fI7p1pPMTwRTcaRdy6aqkKEmKsCArzQBAK8
- bRLv9QjuqsE6oQZra/RB4widZPvphs78H0P6NmpIJ
-Content-Type: multipart/signed; micalg="pgp-sha512";
-	protocol="application/pgp-signature"; boundary="=-rQkiAugD/o1ZvBT9U1nt"
-User-Agent: Evolution 3.56.2 (3.56.2-1.fc42) 
+	s=arc-20240116; t=1757001702; c=relaxed/simple;
+	bh=j/h9kq4nhFbaFX5wXh7GT4njNgD0lqzfJ3Jo/r2pfxM=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=lPg4eOjWS739Qla3hWuOvNJGSxNkRSeu7MApKzDXfaagkrSZYfKHrQVMUFLY7KjuJohVMJGWxaHFrk5rubTOs7xcpPSw0DDjzaMKQ9RrunJ3B0UZz0wq0mPqDRBfcW+y+fwW3vsM2GEyKDsVKp/7dS4Gl/EhFSqWi1P3YaKElik=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FSCMmZex; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893ECC4CEF0;
+	Thu,  4 Sep 2025 16:01:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757001701;
+	bh=j/h9kq4nhFbaFX5wXh7GT4njNgD0lqzfJ3Jo/r2pfxM=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=FSCMmZexlnQFzSQ6QvHrfaxOk9aXbg5BeYwz2y+pvlloLC7g+XzmMTI1/vqyyeP4C
+	 eeR/a9EG++Vo2g39abRPCfvHqnRmbgQDJR+b4peazBqn0KiIogFbLrse28xTSyA4q+
+	 fvYoXo7YFCtZM8GU6JRGhDncIIZqnt5uxbZ2yNoE7ZSah9iYndF6LaMcckpSERQrBw
+	 kQfJM68Kf1oEia5MGerO4z0zuyRPrVwwVP/miHIy1XSjbarU1kPtmdhYpEiplBNdL6
+	 G0U9nQXtvO8KMvQs3QbNArNQQIiRWtYCqDIlQ1LqHYVqlZbec6A8mbQjjI2oIMU706
+	 k540sqLMjHO4Q==
+Date: Thu, 4 Sep 2025 11:01:40 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: zhangsenchuan@eswincomputing.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	p.zabel@pengutronix.de, johan+linaro@kernel.org,
+	quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org,
+	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
+	inochiama@gmail.com, ningyu@eswincomputing.com,
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v2 2/2] PCI: eic7700: Add Eswin eic7700 PCIe host
+ controller driver
+Message-ID: <20250904160140.GA1263976@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250829082405.1203-1-zhangsenchuan@eswincomputing.com>
 
+On Fri, Aug 29, 2025 at 04:24:05PM +0800, zhangsenchuan@eswincomputing.com wrote:
+> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> 
+> Add driver for the Eswin EIC7700 PCIe host controller.
+> The controller is based on the DesignWare PCIe core.
 
---=-rQkiAugD/o1ZvBT9U1nt
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Wrap to fill 75 columns.
 
-Hi,
+> +++ b/drivers/pci/controller/dwc/Kconfig
+> @@ -492,4 +492,16 @@ config PCIE_VISCONTI_HOST
+>  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
+>  	  This driver supports TMPV7708 SoC.
+> 
+> +config PCIE_EIC7700
+> +	tristate "ESWIN PCIe host controller"
 
-Le jeudi 04 septembre 2025 =C3=A0 17:32 +0200, Marek Vasut a =C3=A9crit=C2=
-=A0:
-> On 9/4/25 3:25 PM, Nicolas Dufresne wrote:
-> > Hi,
-> >=20
-> > Le mercredi 03 septembre 2025 =C3=A0 23:47 +0200, Marek Vasut a =C3=A9c=
-rit=C2=A0:
-> > > On 4/22/25 11:31 AM, Nas Chung wrote:
-> > > > This patch series introduces support for the Chips&Media Wave6 vide=
-o
-> > > > codec IP, a completely different hardware architecture compared to =
-Wave5.
-> > > >=20
-> > > > The wave6 driver is a M2M stateful encoder/decoder driver.
-> > > > It supports various video formats, including H.264 and H.265,
-> > > > for both encoding and decoding.
-> > > > While other versions of the Wave6 IP may support VP9 decoding and
-> > > > AV1 decoding and encoding those formats are not implemented or vali=
-dated
-> > > > in this driver at this time.
-> > > >=20
-> > > > On NXP i.MX SoCs, the Wave6 IP functionality is split between two r=
-egions:
-> > > > VPU Control region, Manages shared resources such as firmware memor=
-y.
-> > > > VPU Core region, Provides encoding and decoding capabilities.
-> > > > The VPU core cannot operate independently without the VPU control r=
-egion.
-> > > >=20
-> > > > This driver has been tested with GStreamer on:
-> > > > - NXP i.MX95 board
-> > > > - pre-silicon FPGA environment
-> > > >=20
-> > > > Test results for decoder fluster:
-> > > > - JVT-AVC_V1, Ran 77/135 tests successfully=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in 35.519 secs
-> > > > - JVT-FR-EXT, Ran 25/69 tests successfully=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in 17.725 secs
-> > > > - JCT-VC-HEVC_V1, Ran 132/147 tests successfully=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 in 81.549 secs
-> > > > - All failures are due to unsupported hardware features:
-> > > > -- 10bit, Resolutions higher than 4K, FMO, MBAFF
-> > > > -- Extended profile, Field encoding and High422 sreams.
-> > > >=20
-> > > > Test results for v4l2-compliance:
-> > > > v4l2-compliance 1.29.0-5359, 64 bits, 64-bit time_t
-> > > > v4l2-compliance SHA: 2a91a869eb8a 2025-04-12 11:35:53
-> > > >=20
-> > > > Compliance test for wave6-dec device /dev/video0:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fail: ../utils/v4l2-compliance/v4l2-te=
-st-controls.cpp(1180): !have_source_change || !have_eos
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 test VIDIOC_=
-(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
-> > > > Total for wave6-dec device /dev/video0: 48, Succeeded: 47, Failed: =
-1, Warnings: 0
-> > > >=20
-> > > > Compliance test for wave6-enc device /dev/video1:
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fail: ../utils/v4l2-compliance/v4l2-te=
-st-controls.cpp(1169): node->codec_mask & STATEFUL_ENCODER
-> > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 test VIDIOC_=
-(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
-> > > > Total for wave6-enc device /dev/video1: 48, Succeeded: 47, Failed: =
-1, Warnings: 0
-> > > >=20
-> > > > Note: the failures are all related with the eos event.
-> > >=20
-> > > For what its worth, the whole series:
-> > >=20
-> > > Tested-by: Marek Vasut <marek.vasut@mailbox.org> # NXP i.MX95 rev. A0
-> >=20
-> > Do you mind sharing what tests you have done ? Are you confirming the s=
-ame
-> > fluster and compliance results, have you done more ? Since this is larg=
-ely
-> > inspired on Wave5, I'd like to see people testing real-world playback, =
-with
-> > seeks, dynamic resolution changes, data lost. On Wave5, latest performa=
-nce
-> > patches leads to crash or hangs.
-> I did not use fluster this time, I used h264 decode of 1920x1080 60 FPS=
-=20
-> stream. The pipeline was very basic, something along the lines of:
->=20
-> gst-launch-1.0 -v filesrc location=3D/test.mp4 ! qtdemux ! h264parse !=
-=20
-> v4l2h264dec ! fpsdisplaysink text-overlay=3Dfalse video-sink=3Dwaylandsin=
-k
+Should say "ESWIN PCIe controller" to match other entries.
 
-Thanks for the detail. Since you have a running setup, perhaps consider tes=
-ting
-with the following, left/right keyboard arrow will let you jump around in t=
-he
-media.
+> +	depends on PCI_MSI
+> +	depends on ARCH_ESWIN || COMPILE_TEST
 
-  gst-play-1.0 --audiosink=3Dfakeaudiosink --videosink=3Dwaylandsink /test.=
-mp4
+Reorder these to match other entries, i.e.,
 
-That would at least cover seeking use cases. I provided Nas a stream that
-aggressively do resolution changes to reproduce a Wave5 crash, I would expe=
-ct
-him to test and report against Wave6 too. If you'd like to have that sample=
-, let
-me know, its not very big, and free, but I'd rather not do attachements ove=
-r the
-mailing list.
+	depends on ARCH_ESWIN || COMPILE_TEST
+	depends on PCI_MSI
 
-regards,
-Nicolas
+> +	select PCIE_DW_HOST
+> +	help
+> +	  Enables support for the PCIe controller in the Eswin SoC
+> +	  The PCI controller on Eswin is based on DesignWare hardware
+> +	  It is a high-speed hardware bus standard used to connect
+> +	  processors with external devices. Say Y here if you want
+> +	  PCIe controller support for the ESWIN.
 
---=-rQkiAugD/o1ZvBT9U1nt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
+Alphabetize so the menuconfig entries remain sorted by vendor.
 
------BEGIN PGP SIGNATURE-----
+> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
 
-iHUEABYKAB0WIQTvDVKBFcTDwhoEbxLZQZRRKWBy9AUCaLm2LAAKCRDZQZRRKWBy
-9EtkAQCHftEHuFqu/CGZGFVjDS0zfFNB49nCoSFYLcOlPivn+gD/THK9ihIjKXNh
-HFMc495U+ea+XAU+U2kGkIqsH9fdjgk=
-=CPDD
------END PGP SIGNATURE-----
+> +#include <linux/module.h>
+> +#include <linux/pci.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/resource.h>
+> +#include <linux/types.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/reset.h>
+> +#include <linux/pm_runtime.h>
 
---=-rQkiAugD/o1ZvBT9U1nt--
+Usually people sort these alphabetically.
+
+> +#define PCIE_PM_SEL_AUX_CLK BIT(16)
+> +#define PCIEMGMT_APP_LTSSM_ENABLE BIT(5)
+
+Put these under the offset of the register that contains them so we
+can tell the connections.
+
+> +#define PCIEMGMT_CTRL0_OFFSET 0x0
+> +#define PCIEMGMT_STATUS0_OFFSET 0x100
+> +
+> +#define PCIE_TYPE_DEV_VEND_ID 0x0
+
+This looks like PCI_VENDOR_ID; use that instead.
+
+> +#define PCIE_DSP_PF0_MSI_CAP 0x50
+> +#define PCIE_NEXT_CAP_PTR 0x70
+
+These look like fixed offsets in config space that should be
+discovered by the usual method of traversing the capability lists,
+e.g., dw_pcie_find_capability().
+
+> +#define DEVICE_CONTROL_DEVICE_STATUS 0x78
+
+I don't think you need this at all (see below).  But if you do, the
+use below should include PCI_EXP_DEVCTL (e.g., as an offset from the
+start of the PCIe Capability) so grep can find it.
+
+> +#define PCIE_MSI_MULTIPLE_MSG_32 (0x5 << 17)
+> +#define PCIE_MSI_MULTIPLE_MSG_MASK (0x7 << 17)
+
+Use PCI_MSI_FLAGS_QMASK instead.
+
+> +#define PCIEMGMT_LINKUP_STATE_VALIDATE ((0x11 << 2) | 0x3)
+> +#define PCIEMGMT_LINKUP_STATE_MASK 0xff
+
+Line up all the values of these #defines.
+
+> +static int eswin_pcie_host_init(struct dw_pcie_rp *pp)
+> +{
+> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> +	struct eswin_pcie *pcie = dev_get_drvdata(pci->dev);
+> +	int ret;
+> +	u32 val;
+> +	u32 retries;
+> +
+> +	/* Fetch clocks */
+> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
+> +	if (pcie->num_clks < 0)
+> +		return dev_err_probe(pci->dev, pcie->num_clks,
+> +				     "failed to get pcie clocks\n");
+> +
+> +	ret = eswin_pcie_power_on(pcie);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* set device type : rc */
+> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+> +	val &= 0xfffffff0;
+> +	writel_relaxed(val | 0x4, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+
+"rc" is not a device type (a Root Complex is not itself a PCI device
+that appears in config space).  I think you're talking about a Root
+Port, which is a PCIe device, so this should be
+PCI_EXP_TYPE_ROOT_PORT.
+
+> +	ret = reset_control_assert(pcie->perst);
+> +	if (ret) {
+> +		dev_err(pci->dev, "perst assert signal is invalid");
+> +		goto err_perst;
+> +	}
+> +	msleep(100);
+
+This sleep needs a comment (if it's specific to eic7700) or a standard
+#define from drivers/pci/pci.h (if something from the PCIe spec).
+
+> +	ret = reset_control_deassert(pcie->perst);
+> +	if (ret) {
+> +		dev_err(pci->dev, "perst deassert signal is invalid");
+> +		goto err_perst;
+> +	}
+> +
+> +	/* app_hold_phy_rst */
+> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+> +	val &= ~(0x40);
+> +	writel_relaxed(val, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
+> +
+> +	/*
+> +	 * It takes at least 20ms to wait for the pcie
+> +	 * status register to be 0.
+
+s/pcie/PCIe/ (follow spec usage in comments, messages, etc)
+
+> +	 */
+> +	retries = 30;
+> +	do {
+> +		val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_STATUS0_OFFSET);
+> +		if (!(val & PCIE_PM_SEL_AUX_CLK))
+> +			break;
+> +		usleep_range(1000, 1100);
+> +		retries--;
+> +	} while (retries);
+
+This delay should also have a citation to eic7700 spec if it came from
+there.  Suggest fsleep() instead of usleep_range().  The exact delay
+doesn't look critical here.
+
+> +	if (!retries) {
+> +		dev_err(pci->dev, "No clock exist.\n");
+
+Drop period at end of messages.
+
+> +		ret = -ENODEV;
+> +		goto err_clock;
+> +	}
+> +
+> +	/* config eswin vendor id and eic7700 device id */
+> +	dw_pcie_writel_dbi(pci, PCIE_TYPE_DEV_VEND_ID, 0x20301fe1);
+> +
+> +	/* lane fix config, real driver NOT need, default x4 */
+> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL);
+> +	val &= 0xffffff80;
+> +	val |= 0x44;
+> +	dw_pcie_writel_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL, val);
+> +
+> +	val = dw_pcie_readl_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS);
+> +	val &= ~(0x7 << 5);
+> +	val |= (0x2 << 5);
+> +	dw_pcie_writel_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS, val);
+
+This sets MPS, which should be done by the PCI core, not by the
+driver.
+
+> +	/*  config support 32 msi vectors */
+
+Use "MSI" and "MSI-X" in comments, etc to match spec usage.
+
+> +	val = dw_pcie_readl_dbi(pci, PCIE_DSP_PF0_MSI_CAP);
+> +	val &= ~PCIE_MSI_MULTIPLE_MSG_MASK;
+> +	val |= PCIE_MSI_MULTIPLE_MSG_32;
+
+Use FIELD_PREP() as in dw_pcie_ep_set_msi().
+
+> +	dw_pcie_writel_dbi(pci, PCIE_DSP_PF0_MSI_CAP, val);
+> +
+> +	/* disable msix cap */
+> +	val = dw_pcie_readl_dbi(pci, PCIE_NEXT_CAP_PTR);
+> +	val &= 0xffff00ff;
+> +	dw_pcie_writel_dbi(pci, PCIE_NEXT_CAP_PTR, val);
+> +
+> +	return 0;
+> +
+> +err_clock:
+> +	reset_control_assert(pcie->perst);
+> +err_perst:
+> +	eswin_pcie_power_off(pcie);
+> +	return ret;
+> +}
+> +
+> +static const struct dw_pcie_host_ops eswin_pcie_host_ops = {
+> +	.init = eswin_pcie_host_init,
+> +};
+> +
+> +static const struct dw_pcie_ops dw_pcie_ops = {
+> +	.start_link = eswin_pcie_start_link,
+> +	.link_up = eswin_pcie_link_up,
+> +};
+> +
+> +static int eswin_pcie_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct dw_pcie *pci;
+> +	struct eswin_pcie *pcie;
+> +	int ret;
+> +
+> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
+> +	if (!pcie)
+> +		return -ENOMEM;
+> +
+> +	pci = &pcie->pci;
+> +	pci->dev = dev;
+> +	pci->ops = &dw_pcie_ops;
+> +	pci->pp.ops = &eswin_pcie_host_ops;
+> +
+> +	/* SiFive specific region: mgmt */
+> +	pcie->mgmt_base = devm_platform_ioremap_resource_byname(pdev, "mgmt");
+> +	if (IS_ERR(pcie->mgmt_base))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->mgmt_base),
+> +				     "failed to map mgmt memory\n");
+> +
+> +	/* Fetch reset */
+> +	pcie->powerup_rst = devm_reset_control_get_optional(&pdev->dev,
+> +							    "powerup");
+> +	if (IS_ERR_OR_NULL(pcie->powerup_rst))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->powerup_rst),
+> +				     "unable to get powerup reset\n");
+> +
+> +	pcie->cfg_rst = devm_reset_control_get_optional(&pdev->dev, "cfg");
+> +	if (IS_ERR_OR_NULL(pcie->cfg_rst))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg_rst),
+> +				     "unable to get cfg reset\n");
+> +
+> +	pcie->perst = devm_reset_control_get_optional(&pdev->dev, "pwren");
+
+Why is this not called "perst" in devicetree?
+
+> +	if (IS_ERR_OR_NULL(pcie->perst))
+> +		return dev_err_probe(dev, PTR_ERR(pcie->perst),
+> +				     "unable to get perst reset\n");
+> +
+> +	platform_set_drvdata(pdev, pcie);
+> +
+> +	pm_runtime_set_active(dev);
+> +	pm_runtime_enable(dev);
+> +	ret = pm_runtime_get_sync(dev);
+> +	if (ret < 0) {
+> +		dev_err(dev, "pm_runtime_get_sync failed: %d\n", ret);
+> +		goto err_get_sync;
+> +	}
+> +
+> +	ret = dw_pcie_host_init(&pci->pp);
+> +	if (ret) {
+> +		dev_err(dev, "failed to initialize host: %d\n", ret);
+> +		goto err_host_init;
+> +	}
+> +
+> +	return ret;
+> +
+> +err_host_init:
+> +	pm_runtime_put_sync(dev);
+> +err_get_sync:
+> +	pm_runtime_disable(dev);
+> +	return ret;
+> +}
 
