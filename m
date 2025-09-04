@@ -1,186 +1,204 @@
-Return-Path: <devicetree+bounces-212778-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212776-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD878B43B95
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:28:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B656B43B86
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:27:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88C6C486100
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:28:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 053183AAFC4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:27:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E8942EB5CE;
-	Thu,  4 Sep 2025 12:28:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF31A2F1FC4;
+	Thu,  4 Sep 2025 12:27:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="aZGRaPS2"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="HnH2Meh/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8D5B2EA480;
-	Thu,  4 Sep 2025 12:28:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 47E832EDD75
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 12:27:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756988917; cv=none; b=KPxN1uEpG/mP4MgAVbLQKpm4aQXpjjHM5WSYhR8A2mkUrOaNcVFUjzJGR8p6uoDP/ts6ZSbZbVNGgpGiXmMuupR7mnMfWl2FW5btvm5lBJtJH6E/Rsub7JGkKNMEzLYPUHZGk1s6s9ndWYQJa9Y8INy6xRIAjdxiDdl+3sS/7pY=
+	t=1756988832; cv=none; b=CV4Fhkzy4tfltyPvntYiyai/uip1ijfQtC1AQ20dxKVUK38lerZgUBB/afl4OrPgiTTB+Y4RO9Fwaun38IW8X4McwGDCNAFzsVrkyN5ayl8aOPD2Udcy4OOzKk5vm9VhCbE5mWOPk8R995z/ww8B76sFs1YAYgzk5XDcA58Lnqk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756988917; c=relaxed/simple;
-	bh=3kXMsEvtVTGzcyhvJNBolHNZKok6L0CuTxiUsIfG3nk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ScWww3KearYBvnPdvgpIb5F2px9vTxpBPa6iCVWVxoVHQ6rIGqvkAPVidLmCmGv2LNUaS61zA4BtCNp5pas3TTEI1PR3HJs+PSartAst9KaPJD0814hhWGsXUZHNwQxCrOLpJk5CzXSMPeXuIuIEAtP/1gnueBBkc8iGuDyFmR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=aZGRaPS2; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1756988916; x=1788524916;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3kXMsEvtVTGzcyhvJNBolHNZKok6L0CuTxiUsIfG3nk=;
-  b=aZGRaPS25Pcm9Gv+fpgW3Kvgrg/wSp8IoR5gDP+VMksvFiwLhtQHoE28
-   zxdaAx8F9Qc7BmGN6Re1G7I8lBxZVyvHtMitwOD65VeDbfFAq4FBSm2X8
-   A6ki87pCqaJ5T9VxE8t0iUOHw//r19JBUgoGH//O8AbwqwRKk45n6KFIr
-   Tdg5HdJbnDa+NRBGY5segxin8DItzG1685/5tgg2ajayE0YSLN0SPz8P+
-   xzSgi3DkfT2HoQMQWTemxDn9e+gD3wfkYFikGvA200yNaWMUc/HEFYOne
-   XF6/ncqip7RNs3zNHuLSB5uORJdVkvq4IM0VzTD51S5lEuHTstAk89Lpt
-   Q==;
-X-CSE-ConnectionGUID: QAcxiTqETZK3huwMlJ32ag==
-X-CSE-MsgGUID: MhQGH8yMRfKIOU/22GnvBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11542"; a="70420812"
-X-IronPort-AV: E=Sophos;i="6.18,238,1751266800"; 
-   d="scan'208";a="70420812"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 05:28:36 -0700
-X-CSE-ConnectionGUID: IDJ6lS2mTt2m9S789U3zXQ==
-X-CSE-MsgGUID: nKkv4LIVRSW6f7ykFF5arQ==
-X-ExtLoop1: 1
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by fmviesa003.fm.intel.com with ESMTP; 04 Sep 2025 05:28:27 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uu93x-0005Hz-0p;
-	Thu, 04 Sep 2025 12:27:56 +0000
-Date: Thu, 4 Sep 2025 20:26:32 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
-	michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
-	shubhrajyoti.datta@amd.com, manion05gk@gmail.com,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V3 2/2] i3c: master: Add AMD I3C bus controller driver
-Message-ID: <202509042018.CCuFpnkb-lkp@intel.com>
-References: <20250903095906.3260804-3-manikanta.guntupalli@amd.com>
+	s=arc-20240116; t=1756988832; c=relaxed/simple;
+	bh=f4BEDTpaIFxgOxQCFGxUUhEky18+3IyRDrYj23UF1v8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SgW0DKqx6zsv3LJ1mlWcuoJPiAzcDZecytcEzuK2pyu5TIPEp1Y2ONt7dE9YM9VzxKfU3pgTIaGzeVDs919j2IozVQkhmaFENHNVWJ/7NEjSs4FWrD/19Ocva/qDwmjY/QTQJ0zHnxN0TQORtdyhqiaE6j4pCfW+E5k2X5ZE904=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=HnH2Meh/; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X7Ti012042
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 12:27:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	6/8bBRQQfSsfRGQAqYBd7sJUcBVC/hns4We20/YRtIY=; b=HnH2Meh/0Ulpkx62
+	sbUWp5L0yXnt6vtFSgMk1l4jfGQy3S9u+q722SZ9shJeGOStOTAoyHNWSIfyw2zd
+	qvoTRJKM7DKvBlzOWCNolNzyNU/pALkyt3Jdu31MOJskjtKbnPZLCSIzaukl5Yxo
+	5wIR7nh35jbjSD/HSL1/35w09hJ2Vi5018Vj4SteG06IKw1+/3kvT6DzlAoSegDE
+	yn3MeJFyCexFNeaYcl4AWIHmRuba7ueWRCPNtcLtG3nTkP32qT5YWGLedGoT/Xj6
+	+rffLJP8ScZmmDH1iYc1bc3ntkRzZ03LxXfdAxs2ebLy6ER5b27N8CCSR9xOp68L
+	48IZyQ==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48xmxj3y5m-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 12:27:10 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b32dfb5c6fso3322961cf.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 05:27:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756988829; x=1757593629;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6/8bBRQQfSsfRGQAqYBd7sJUcBVC/hns4We20/YRtIY=;
+        b=V0YFy/nG1tUTxWY9RQud97MGOybclRkJHajEl4t0LtLzlyyxk3kJq5cStYaTEmqZXi
+         G1Fr9qp5ci/vckkI+YC6CDgEtLKbdtaWcK0Qk+xlfbbqV7BTnK+WNK8/OkQsBK1Yk897
+         R43U6uPoCcYgUMOOKDTiLiRganX79aZZ4v1gxPF/yvSviUXWr9IVcMcNyTs8Za3m5RaM
+         GpDHyNA3o1mlZRhoJ1YXu+4S4yb+iIiBxMEADWUzKdaw3PkRz9KTxgihgNvoNXbtFXFc
+         Jbg7t4JwcaNm4edWbEH5UOJntxa+xFTRlfoH8QdTWeDldKuxn0xOyenF44sYVRZ+92P3
+         XHNA==
+X-Forwarded-Encrypted: i=1; AJvYcCUkDt2epKfaw1VHrc3xe8D61YE9wrS7iNTdXXjt3hxmuxICN4a9nHj4Ogu8MnoYuzNAUauELyIPYmDT@vger.kernel.org
+X-Gm-Message-State: AOJu0Yym/Jv6hNqBvQ5nLw+iJIS1jANeu++ei9bTO3/Pm1U7TiV6zb9M
+	G0VJl8zwQRrVTg/FaoeaJuKkQRZakLLpmNHFc+byGNreSLF7eSMeod2rLzJoKJTWn4No9TBS96E
+	2KzeSKI+BEbOlakqq2HmydJ0qvm/P4O4YSc8cY988uYsdXLNd+SrcYe96+ZQT4HEP
+X-Gm-Gg: ASbGnctYoNUk+EvzFUvEJ6sQs0nQecCanasj2FB8wWiVs2TvdKqHc99AMzL7KnWZH2U
+	T2OAnKzL5ice7HSOZY5e7OGuk43ZIz7EMzIw0Z7bod4sHNYq2M7eJ1hSuEjd23kqf6TItj9/kWv
+	ZzBuiiu5Kv/Sjq+luazui7uST20ruNvCzd8HMDzSEN1/wCYJsBtV1QoN5t7creivuCb4VnoR+aJ
+	x2oseDVdfxhiy2fuMWfX3Uml140q/+ForXDOMwEAHOliBF0t5jAIz4HNmiIbn1CptHtFGkZoSOw
+	nse+607eJ2Jibr6lGR/4IiPO7b8T8JXHC6Ji/U6WEhZgV4Wz3+UyEc/8QEsaItxUKAr6RRrnVZe
+	urZOO9pvAA8MBOIwjXxYJ7A==
+X-Received: by 2002:ac8:5a8d:0:b0:4b4:907a:f4dc with SMTP id d75a77b69052e-4b4907aff6amr44513251cf.8.1756988829047;
+        Thu, 04 Sep 2025 05:27:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG7fByTNFwWLSt3Qdv4UjF2X7GxBRz0W/fUi7b1qegd+l6kiz0+neLeqvIjx1M7JKz/RF8LlA==
+X-Received: by 2002:ac8:5a8d:0:b0:4b4:907a:f4dc with SMTP id d75a77b69052e-4b4907aff6amr44512881cf.8.1756988828400;
+        Thu, 04 Sep 2025 05:27:08 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b009ae4f2ddsm1374396066b.82.2025.09.04.05.27.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 05:27:07 -0700 (PDT)
+Message-ID: <d12957f0-f8b5-4b29-967c-576dadd565de@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 14:27:04 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903095906.3260804-3-manikanta.guntupalli@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 4/4] arm64: dts: qcom: sm8550: Add max-sd-hs-hz
+ property
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Sarthak Garg <quic_sartgarg@quicinc.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Adrian Hunter <adrian.hunter@intel.com>
+Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        quic_nguyenb@quicinc.com, quic_rampraka@quicinc.com,
+        quic_pragalla@quicinc.com, quic_sayalil@quicinc.com,
+        quic_nitirawa@quicinc.com, quic_bhaskarv@quicinc.com,
+        kernel@oss.qualcomm.com
+References: <20250903080404.3260135-1-quic_sartgarg@quicinc.com>
+ <20250903080404.3260135-5-quic_sartgarg@quicinc.com>
+ <6deac56f-e21a-4447-bfa7-a414084676b8@kernel.org>
+ <be87fb2f-7036-4039-8ba2-63d54a9ae732@oss.qualcomm.com>
+ <23c29fb7-c0a4-4519-9b8d-e68255b83a10@kernel.org>
+ <a304ec1c-7364-4926-8763-8c731e461eb9@kernel.org>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a304ec1c-7364-4926-8763-8c731e461eb9@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAzMDExNyBTYWx0ZWRfX7uYo2NZismrU
+ j8ql9jgirG/bQVpQq5SKbIKsF8uWugbQZ8tpTsR+MRIJz/HXESH/bV5MoRYX2jGhk0Dzcc1BkyK
+ Xvj35PCh3IrJsh50NaaKb8iQ3pAQj5vZ6ymMvQ5887VaEti1Rkq7FzSAeBdPC0sB4l3VZD+9hiW
+ 6yd2Fz+hWH/b0IYHK9cA5ggttzQlc/6c3U0cX9NY5K/qLAu+ffW4KOfQoJ5LpDzX4e4bQmqJ2z6
+ dSpX5tpqvW20C7pVs/2iZpO+1TFti7L0ORNrQRB9e97IxVSuSKhk2/XRohRx5DVi0U0uqq5Xm0y
+ wM5rM6G+sWK0AwRSALRdzo3aHsgKJYtaaH8rNDthC96P3VZjI4SrpsTu+zPEQS5h+A+xVyiskim
+ 85Mlj4p9
+X-Authority-Analysis: v=2.4 cv=a5cw9VSF c=1 sm=1 tr=0 ts=68b9859e cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=noZB7YPBI9-alL1Zr8wA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: bws2dQtdSAqC7iF2VMLiYMDGkAqnWLQ_
+X-Proofpoint-ORIG-GUID: bws2dQtdSAqC7iF2VMLiYMDGkAqnWLQ_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_04,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 clxscore=1015 bulkscore=0 priorityscore=1501
+ phishscore=0 impostorscore=0 adultscore=0 spamscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509030117
 
-Hi Manikanta,
+On 9/4/25 12:52 PM, Krzysztof Kozlowski wrote:
+> On 04/09/2025 12:51, Krzysztof Kozlowski wrote:
+>> On 04/09/2025 10:36, Konrad Dybcio wrote:
+>>> On 9/3/25 10:21 AM, 'Krzysztof Kozlowski' via kernel wrote:
+>>>> On 03/09/2025 10:04, Sarthak Garg wrote:
+>>>>> Due to board-specific hardware constraints particularly related
+>>>>> to level shifter in this case the maximum frequency for SD High-Speed
+>>>>> (HS) mode must be limited to 37.5 MHz to ensure reliable operation of SD
+>>>>> card in HS mode.
+>>>>>
+>>>>> This is achieved by introducing the `max-sd-hs-hz` property in the
+>>>>> device tree, allowing the controller to operate within safe frequency
+>>>>> limits for HS mode.
+>>>>>
+>>>>
+>>>> Probably we will now replicate the same discussion... And it will be
+>>>> happening every time you send the same and not reflect it in commit msg.
+> 
+> Just to emphasize this - it will happen EVERY time.
+> 
+>>>>
+>>>> Bindings say board setup, this commit msg says board config, but the
+>>>> patch says SoC. This is not correct.
+>>>
+>>> Both are correct, looking at the problem from two perspectives.
+>>>
+>>> The bindings description mentions board-specific limitations (e.g. because
+>>> "the board's electrical design does not allow one to achieve the full rated
+>>> frequency that the SoC can otherwise do, in a stable way")
+>>>
+>>> Here the author tries to argue that almost all SM8550 boards are broken
+>>> in this sense, because the reference design did not feature the required
+>>> passive components, making most (derivative) designs sort of "broken by
+>>> default" - and only some (if any?) vendors decided to go with the
+>>> additional components required to lift this limitation.
+>>>
+>>> This in turn makes it fair to assume the developer experience would benefit
+>>> from having the SD card high speed modes always work (with the slight speed
+>>> cap which may not be required for the 1 or 2 designs that took the extra
+>>> step) without each board DT creator having to track down this property
+>>> separately.
+>>
+>> And then if you send same v3, I will ask the same. Can the author
+> 
+> v3 -> v6
 
-kernel test robot noticed the following build errors:
+So, would you be accepting of this patch if the commit message was:
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.17-rc4 next-20250904]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+arm64: dts: qcom: sm8550: Limit max SD HS mode frequency by default
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250903-220233
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250903095906.3260804-3-manikanta.guntupalli%40amd.com
-patch subject: [PATCH V3 2/2] i3c: master: Add AMD I3C bus controller driver
-config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20250904/202509042018.CCuFpnkb-lkp@intel.com/config)
-compiler: clang version 17.0.6 (https://github.com/llvm/llvm-project 6009708b4367171ccdbf4b5905cb6a803753fe18)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250904/202509042018.CCuFpnkb-lkp@intel.com/reproduce)
+Due to an implementation detail in this SoC, additional passive
+electrical components are required to achieve the maximum rated speed
+of the SD controller when paired with a High-Speed SD Card. Without them,
+the clock frequency must be limited to 37.5 MHz for link stability.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509042018.CCuFpnkb-lkp@intel.com/
+Because the reference design does not contain these components, most
+(derivative) boards do not have them either. To accommodate for that,
+apply the frequency limit by default and delegate lifting it to the
+odd boards that do contain the necessary onboard hardware.
 
-All error/warnings (new ones prefixed by >>):
-
->> drivers/i3c/master/amd-i3c-master.c:182:9: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     182 |         return FIELD_GET(XI3C_RESP_CODE_MASK, response_data);
-         |                ^
-   drivers/i3c/master/amd-i3c-master.c:338:29: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     338 |         while (cmd->rx_len > 0 && !xi3c_is_resp_available(master)) {
-         |                                    ^
-   drivers/i3c/master/amd-i3c-master.c:102:8: note: expanded from macro 'xi3c_is_resp_available'
-     102 |         ((u8)(FIELD_GET(XI3C_SR_RESP_NOT_EMPTY_MASK,                            \
-         |               ^
-   drivers/i3c/master/amd-i3c-master.c:382:29: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     382 |         while (cmd->tx_len > 0 && !xi3c_is_resp_available(master)) {
-         |                                    ^
-   drivers/i3c/master/amd-i3c-master.c:102:8: note: expanded from macro 'xi3c_is_resp_available'
-     102 |         ((u8)(FIELD_GET(XI3C_SR_RESP_NOT_EMPTY_MASK,                            \
-         |               ^
-   drivers/i3c/master/amd-i3c-master.c:592:20: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     592 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^
->> drivers/i3c/master/amd-i3c-master.c:592:30: warning: shift count >= width of type [-Wshift-count-overflow]
-     592 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:53:26: note: expanded from macro 'XI3C_PID_MASK'
-      53 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~~~~~~~~~
-   include/linux/bits.h:51:24: note: expanded from macro 'GENMASK'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bits.h:49:20: note: expanded from macro 'GENMASK_TYPE'
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:835:6: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     835 |         if (xi3c_getrevisionnumber(master) == 0)
-         |             ^
-   drivers/i3c/master/amd-i3c-master.c:90:8: note: expanded from macro 'xi3c_getrevisionnumber'
-      90 |         ((u8)(FIELD_GET(XI3C_REV_NUM_MASK,                                      \
-         |               ^
-   drivers/i3c/master/amd-i3c-master.c:925:15: error: call to undeclared function 'FIELD_GET'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
-     925 |         info.pid = ((FIELD_GET(XI3C_PID1_MASK, pid1_bcr_dcr) << 32) |
-         |                      ^
-   drivers/i3c/master/amd-i3c-master.c:925:55: warning: shift count >= width of type [-Wshift-count-overflow]
-     925 |         info.pid = ((FIELD_GET(XI3C_PID1_MASK, pid1_bcr_dcr) << 32) |
-         |                                                              ^  ~~
-   2 warnings and 6 errors generated.
-
-
-vim +/FIELD_GET +182 drivers/i3c/master/amd-i3c-master.c
-
-   164	
-   165	static int xi3c_get_response(struct xi3c_master *master)
-   166	{
-   167		u32 resp_reg, response_data;
-   168		int ret;
-   169	
-   170		ret = readl_poll_timeout(master->membase + XI3C_SR_OFFSET,
-   171					 resp_reg,
-   172					 resp_reg & XI3C_SR_RESP_NOT_EMPTY_MASK,
-   173					 0, XI3C_XFER_TIMEOUT_MS);
-   174		if (ret) {
-   175			dev_err(master->dev, "AXI I3C response timeout\n");
-   176			return ret;
-   177		}
-   178	
-   179		response_data = readl(master->membase + XI3C_RESP_STATUS_FIFO_OFFSET);
-   180	
-   181		/* Return response code */
- > 182		return FIELD_GET(XI3C_RESP_CODE_MASK, response_data);
-   183	}
-   184	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Konrad
 
