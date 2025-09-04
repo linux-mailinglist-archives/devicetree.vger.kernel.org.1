@@ -1,92 +1,118 @@
-Return-Path: <devicetree+bounces-212883-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212884-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7E52B43ED6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:33:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEA91B43ED9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:33:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8F63C7BE690
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:31:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8338F161C11
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:33:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55B863090DB;
-	Thu,  4 Sep 2025 14:30:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC011307492;
+	Thu,  4 Sep 2025 14:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FIWRYE8H"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hc+8bPvJ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24CE02EE280;
-	Thu,  4 Sep 2025 14:30:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C161DBB2E;
+	Thu,  4 Sep 2025 14:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756996203; cv=none; b=PXiL/EVy+V6Dif9tDCP1faux58PizhN0XfQOKxDI0RHZtIh8ffu5p/HV2Sh9lItWg+jJlxegJrcvmBTunxXWZaMbedoLU9xozp9qS3Fg6ImCuOhVLDO5TXiuFP7Mz/gtDlroOniuKyTIPh8sE44DX6xsFMvA2de/rAyOTZBi6Nc=
+	t=1756996288; cv=none; b=tFHmjYCJXy2VPVQOLmubIz/flUxB258RMpLYty7pbYWM7A2ufkOuPG9BOAliGK8z4JBwLPjODn5y7HUBM6rZUmtCZwtttvSyKXNjU5OrlJMAFIhr0z+Ctw360cBxwjN/vNhEfW0liSE0peeRSQADKG9dSe4L5Nv7r4R6ZnUXGXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756996203; c=relaxed/simple;
-	bh=hfqUmxyvWjOpj/ppJISVApfcPDrvyLkYMG+I4BD2WTM=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=awzn0Mxc93Wkdm8AH/qjiP+bs8TF/ROecWXwf0vVWfbQyJrqk6Kxw1DIkpKCOEf1LNnev2R22JWfL/H650wyJCZkKNhgOQjem7s1HBxoKhLn9TGFXbsd0fX/OPSd4Y1AA5oP3vO9aj4GTYm5GOh9kijmhVVqtfKPgfHo4ZD3Btk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FIWRYE8H; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B0DC4CEF0;
-	Thu,  4 Sep 2025 14:30:02 +0000 (UTC)
+	s=arc-20240116; t=1756996288; c=relaxed/simple;
+	bh=tSWUUB+hrE4+dSzwJcjhcs8ywDmf+PJIMEIsmDA5gmk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=qGZDTR8rOZlWTb6n/5Cets2qirI3yjtoft2e0gKhiPn+cSj0PBphGjecxPhM/4pi6cF2HAE2mtwhJNyr12/wJsVMx7yVUFg/RC+CkSuNo1RZtqqH55FW+ZGPsb9/qphZHIgN2eRrxKJCX4oFyZgWWexIKNGp67SbMMhGgK35Cmw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hc+8bPvJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8992C4CEF0;
+	Thu,  4 Sep 2025 14:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756996202;
-	bh=hfqUmxyvWjOpj/ppJISVApfcPDrvyLkYMG+I4BD2WTM=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=FIWRYE8H/axj6J2Cb1T1M1s0ntujCp1kvZq9x55Pdv+gOMoJWxQsWQPJiaNsa/yNw
-	 9xWzSwxWsq0ASHmR4Gb7HCfot76KT2TQ/jj1zPLFC9TR4VRpG/gYhlv0E1CrS7PnXT
-	 qUc4HyMlS05eyUTSJQtLWmchhjANigB/VNlri2BsjLaL0rbCux2om3RCg1lYT4KDfu
-	 Bwx0/pppCdvWdPdJsTSlj1X8mcaTYVS9wat0mBC33qBvGpAQVwQAqoZAUnUwCCppwk
-	 yAZ7F2SIUm4Ke/r9IKWDA5jV+5tjaovtOvD4hE0XxIbrbHxGWBh+4yr5GhIltHUSUT
-	 8CaPbkhhc4sgQ==
-Received: from [10.30.226.235] (localhost [IPv6:::1])
-	by aws-us-west-2-korg-oddjob-rhel9-1.codeaurora.org (Postfix) with ESMTP id B2790383BF69;
-	Thu,  4 Sep 2025 14:30:08 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=k20201202; t=1756996288;
+	bh=tSWUUB+hrE4+dSzwJcjhcs8ywDmf+PJIMEIsmDA5gmk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=hc+8bPvJJJDFvNuIR6vQmK/xQDATgX0met1M7sgGa0VWgBmj3By6tldDTO7EntruZ
+	 /AUQmDsXDB+JOe0XwifSH0qeVxHtnaZAignutUUGhzOHU2O+ZYnFIntzlOL+lagJ2Q
+	 07SiVHVswPAYCpo/N/jcr1qRJN+bxMSKuE/Uhjmoi9+xKEzbrkijGQz20AGrncsH6M
+	 QzhMCuOpbffLfHBOQXjncf6gUdbfwDD/hbi4/SkiAJmA8FEgFBRtPJPk3xcQhWIA+7
+	 Ae2p5DmMRZo6u2RkmkZ7A93eorsTKY5AcN7egHnXAilzqbZmR4OvKHIuyD6iB68CsT
+	 ftzTHCQQlotTg==
+From: Konrad Dybcio <konradybcio@kernel.org>
+Subject: [PATCH 0/5] Qualcomm CCI I2C clock requirements enforcement
+Date: Thu, 04 Sep 2025 16:31:19 +0200
+Message-Id: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: sun4i-emac: add dma support
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <175699620753.1830074.1985525927961130750.git-patchwork-notify@kernel.org>
-Date: Thu, 04 Sep 2025 14:30:07 +0000
-References: <tencent_4E434174E9D516431365413D1B8047C6BB06@qq.com>
-In-Reply-To: <tencent_4E434174E9D516431365413D1B8047C6BB06@qq.com>
-To: Conley Lee <conleylee@foxmail.com>
-Cc: andrew+netdev@lunn.ch, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, wens@csie.org, mripard@kernel.org, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALeiuWgC/x3MQQqAIBBA0avIrBMmMaiuEhE2TjWbEq0IpLsnL
+ d/i/wyJo3CCXmWIfEuSYy+oKwW0uX1lLb4YDJoGO7T6PIKQJpLpCt6dnHSLuHjqZuedhdKFyIs
+ 8/3MY3/cDO2ESwmMAAAA=
+X-Change-ID: 20250904-topic-cci_updates-800fdc9bada4
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Loic Poulain <loic.poulain@oss.qualcomm.com>, 
+ Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1756996284; l=1624;
+ i=konrad.dybcio@oss.qualcomm.com; s=20230215; h=from:subject:message-id;
+ bh=tSWUUB+hrE4+dSzwJcjhcs8ywDmf+PJIMEIsmDA5gmk=;
+ b=JVSpCYcGaUW1sPo1zSg8DkJtunnAeGUy1aN+ZSgI4n7SI4SdBNR1UFhRyAbFR6+exxLxgxIMl
+ XEvAVbjkSRyDY4ARF9RkHb4lDFw3QdXuUPIaqEQ4t2FluqjyLiBtubp
+X-Developer-Key: i=konrad.dybcio@oss.qualcomm.com; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Hello:
+The hardware requires the faster of the two (37.5 MHz as opposed to
+19.2 MHz) clock rates to hit the required timings for I2C Fast+ Mode.
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Additionally, the magic presets for electrical tuning registers on SoCs
+supporting that faster mode ("cci_v2" in the driver) are calculated
+based on that faster frequency.
 
-On Wed,  3 Sep 2025 16:22:38 +0800 you wrote:
-> The sun4i EMAC supports DMA for data transmission,
-> so it is necessary to add DMA options to the device tree bindings.
-> 
-> Signed-off-by: Conley Lee <conleylee@foxmail.com>
-> ---
->  .../bindings/net/allwinner,sun4i-a10-emac.yaml           | 9 +++++++++
->  1 file changed, 9 insertions(+)
+Moreover, while its unlikely that it would ever exhibit as an issue
+given CCI is a slow & tiny core, we do need to express a minimal voltage
+level for any given clock rate, which is where the (optional -
+backwards compat) OPP table addition comes in.
 
-Here is the summary with links:
-  - dt-bindings: net: sun4i-emac: add dma support
-    https://git.kernel.org/netdev/net-next/c/3cd4c4f3955b
+This series helps ensure all these requirements are met.
 
-You are awesome, thank you!
+Patch 1 is a related but independent fix, can be picked right away
+Patch 5 can be functionally merged as-is, but depends on patch 2 for
+bindings
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+---
+Konrad Dybcio (5):
+      arm64: dts: qcom: sc8280xp: Fix CCI3 interrupt
+      dt-bindings: i2c: qcom-cci: Allow operating-points-v2
+      i2c: qcom-cci: Drop single-line wrappers
+      i2c: qcom-cci: Add OPP table support and enforce FAST_PLUS requirements
+      arm64: dts: qcom: sc8280xp: Add OPP table for CCI hosts
+
+ .../devicetree/bindings/i2c/qcom,i2c-cci.yaml      |  2 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi             | 16 +++++++-
+ drivers/i2c/busses/i2c-qcom-cci.c                  | 45 +++++++++++++++++-----
+ 3 files changed, 52 insertions(+), 11 deletions(-)
+---
+base-commit: 4ac65880ebca1b68495bd8704263b26c050ac010
+change-id: 20250904-topic-cci_updates-800fdc9bada4
+
+Best regards,
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
 
