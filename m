@@ -1,142 +1,131 @@
-Return-Path: <devicetree+bounces-212848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59BE4B43DC7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:53:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D426B43DC6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:53:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 01FEDA0571A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:53:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF3275A3958
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EA8D3081AE;
-	Thu,  4 Sep 2025 13:52:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C85301025;
+	Thu,  4 Sep 2025 13:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="X8msqeS+"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="BjckCSaV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E63B307487
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:52:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9BA2FD7BE
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:52:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756993964; cv=none; b=HMiT9dhKxoXrZkr+WrecpPuGgwGbFx3cben3s69dTw2j/LJVJMfn810byEYPUOJ/6stBPBB91kdvWNL5nahNKgZTfBerbDc5/mIW1y0eVMR05KctMLJh9+pgjDueMixmZLB4HHv6Q4VuRVc8lzHHp9CbCNq580A8wpvdu8Wkeoo=
+	t=1756993975; cv=none; b=L6t2Vy4eSqi+geZq0b1dD6rvbQIxH/1jsyFhVDjKju7S6SAaEwcIYnhvDCGRDAn8CLuqZTjn/wjaOqbVGJTULs2O7yZmvjJ551n+xSPvQs+aUI+rgudpl5h/NgqMc+BPwLktM5ysE5zK/yfgUZ0in8tZoMbCgQxhsyrv71Sl+qk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756993964; c=relaxed/simple;
-	bh=azzF6D1Hdr2J15DBAunoU08XP5o/DuQKJToDYFBh5ow=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=plcwIwoyP/Vn2OKymJDC1I3MS0/8a94Dr2nmvyNohMaduW8A8gxgLT618UL5L7gjV8zCC3FUf1aGUAJb5Og2Abpe/bKSImM8cYzGtEMoA6HiPM0z5nQAAlgWpDIUbCE5fG27LoyvW7UvhtUjtGOCOBKeZBnQc0fylT5OnFt2/cg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=X8msqeS+; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-61ea08e565bso147932a12.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:52:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756993960; x=1757598760; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cgeGgsFM+rQArXvxzAToJZRLnYQpJqlxlgbUcOeTf/U=;
-        b=X8msqeS+dg2LWZq7e35Yr/gne8Q0jp7vNVBFqfrqxvlYEc5O4UhFiPQSst4IhTB8EF
-         7dG+4tnSwaTiQMomcB0q8gmVhw3FDEzJD0zOq04sw9V/VUAim77L218cLqslUlUQZcXO
-         99IQvgYV4QkjcjQmZ/GUuBsNCc5mDsIIwdtt2kgS2lkItBXu+qSbDxfErkyxsMWLfEyK
-         0J8oORbzKlOOyHFg+vEvrN6CeTxkULfr49PPdTpPqufj6UzWnPG8WcfN/L8JUaw2IzJd
-         qIkdWpZ1ZvL3yUviEIQpnH7YzbaUuuodyOnMxQt3ZE2HHM3AXax+Ig6XLG77/rc+fV6y
-         +tnw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756993960; x=1757598760;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cgeGgsFM+rQArXvxzAToJZRLnYQpJqlxlgbUcOeTf/U=;
-        b=p1+JjLge7bacAXXKOSW08hT1MozzEjFYXAM9tBP6X6npqYqeXpnO0yzAIV88GFgeXm
-         7WgBjSZ7yH1hhy9v04mvuwd9W5sFEGalBnL1FcATf3879YV4q6gHen8twTz/Kg/Rgr66
-         3pflb5MnQD/SkKh93JeRNFyAZYnU2Iuejh+NZd4Ex9UhmItGj9mwaD0xACXv8pwBtVtt
-         b2Q9OFADR2QRDb2DWlXlM07Wx6ZrSzn7kgcm8PePuUeqMXolqH7bxHMpHHRuaiSzlV13
-         bq2pKwK0LqCYhC/8JylzSY/7C38UrU0mCHuKRBHNhju4HWghRyC5kM72pjeBRDTdkOAm
-         ztyg==
-X-Forwarded-Encrypted: i=1; AJvYcCWAnQ3cxO2USoufuO4ta5b1X7kZC8/EEupSZ32LMGyq457KxSmAd5iuiBxR3mNXmpean70g7OsZrJzS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwaI+c9mZkHKwpvnZ1nUAlAWRBLjUnnfmJAjRhyJreFgQ3k5JLe
-	17fzcXYFbt7SVWHANQxhWIAw7ABAb6Ex3nePqgbKk/ie2gsMWcGMQRVM5GnVLghFb0w=
-X-Gm-Gg: ASbGnctQMTbQWovd59fmYmcI3CF4I+Iv+dSZ65I79SslH3STLbAm2lND8BRWqM/zUkO
-	5ikjW3g0sDhLQEkUjIRGh+DfH0XR9luBXJyECcKy3LLmyg+p8J7DZ9hWbVrZb38CVMx1PaHLA6Y
-	nUh8GTi0tmepCJxQ7SIPGBHrtguAqhsXtwYiFESrkR+qHQz8QM2sFtg97iydCHgucOvtZn9ayJJ
-	3DOeBWfEr+EG61fChGBZE2//Rwo8yvJ8ntIdGGZM7lL14qtujwaR84Q7ScG70pXqorKs3Eud16r
-	PH24oKXWdnnupPqGBAovabb4T+ejDC/kylTuDyWEKCzexjA41HrRY3W5FQc17Ah4HNtEfEjDZwU
-	K1sUMeIa9tsiDwZYdd8iVvBFBGIJ/Sikj+Q==
-X-Google-Smtp-Source: AGHT+IENiGowH65uqsGasImJfhU5ju4Jy1wXyVGZWUIgsAvpgpMXFrjAosxNPFmKdbC/U5NW3+rMwg==
-X-Received: by 2002:a17:906:ef05:b0:afe:872a:aa5d with SMTP id a640c23a62f3a-aff0f022fa9mr1200463066b.8.1756993959596;
-        Thu, 04 Sep 2025 06:52:39 -0700 (PDT)
-Received: from kuoka.. ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aff0a591819sm1510983766b.41.2025.09.04.06.52.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 06:52:38 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] arm64: dts: toshiba: tmpv7708: Add default GIC address cells
-Date: Thu,  4 Sep 2025 15:52:31 +0200
-Message-ID: <175699390854.173213.7488244114872177547.b4-ty@linaro.org>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250822133340.312380-2-krzysztof.kozlowski@linaro.org>
-References: <20250822133340.312380-2-krzysztof.kozlowski@linaro.org>
+	s=arc-20240116; t=1756993975; c=relaxed/simple;
+	bh=TD3K2bwl33Tm5V0SrUJw6QYG3+XiDV8oNEjRcg1ow/4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aufbjX/G1eW9Oupvz9HSJeRcwuyp/6pDnsPgwUhwFrKxoEX8DUCmeUzVO8n9uaM8e9GZ0pKo+dSszeEbKrmiXroSlgo6G8fY4h+S70k4NtZdvtbbUZH5HgOEmDTunPvYvIAeTMGVUaA/mhw7uAmztauXf8tFru0MivM8lJjQXYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=BjckCSaV; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHgsS0KXcz9tRM;
+	Thu,  4 Sep 2025 15:52:44 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756993964;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2sqEiKEPfpjIjaLh3x1IaYvvWhZgSYs4b16QXZYZKsE=;
+	b=BjckCSaVvLxdM6JfXq8jeTi7phlIQw71ena4GzJUXYlc8a6jDL7TVdZOWQ2pvKGQuPCIhp
+	ikxEigM6lZAzeHO7x6qu54yCbFuZJXvgV+YQnV/I6W69vKHS3S04W5gzmsBdXIcjuoytSo
+	RhjHJAYGnEOvusE5YLXBKOQBDE9tLHC6qRsE0mbh6bHdC+eEaGdG+ayt56MtaD+f0YEgep
+	+T8gL+IUsy85FIhuOkAvxIb1x4WdxuiFgtJZnDIPiNLSw2ylUJZ5jcu0gzrVUGNN6/zK1c
+	Z+c7qQe7pqavwLrr8pBV6Ogwo6lY4UOkGZzAq4gniN4NfY5ezAz7qXH4dd0beQ==
+Message-ID: <52e3c5dd-6952-43b5-94f9-43f30734680e@mailbox.org>
+Date: Thu, 4 Sep 2025 15:52:38 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1057; i=krzysztof.kozlowski@linaro.org;
- h=from:subject:message-id; bh=JAwT2iPNt0TjVzVINIBUXGLhXR1IIpvFzujMO5pZKB4=;
- b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBouZmfDWRJhl6b8w/8lg/0UJorn6ZScQfnQoFSS
- VWnfGSa3qKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaLmZnwAKCRDBN2bmhouD
- 19qHEACHjaZQXOJurWs1+uc09ch7Ro25A/y9Bw7jFLvs2B+A3naqZxaF0gxgKyx/cMCr/T9u61z
- HY/rzoIoXsmYL/Sqs6mX35jtP6tktdeTB7H3db5EinZo4t8DoUTomfVTMtS58dGp04zT/tJQ9w6
- Iw1B5u4x5BlxEXcoumOakBjn5X7TmVm4LkqB/wEneETqCqGQlbHOPy4s5Z0DlgKYfTrbQy6XQ6M
- wsTP7BEQ/EomzGk9NHtWsfkVCdYfrugM5NRgxBjxIcC8bXzpqjDOO1rrU+HNBrv4PyEejQmhGKv
- UbpGUVFjEFZBFUnQjjLeWErR/YnJM6WgsXXl8v0GHuUYHPsBj2hRA7O2ZJ0awPdt28c69dGJSKS
- 2PTvO8L+KUYX4bJFJC12BNIn5IsyLtbtVrkj/1IsepHQwjd0RcSAYXLsE+Ho8CuO+B3YUjHNj/R
- keyRvrG/6gJv1g+givKQbePm2rW11cBf2/yrwYtO13swEjRizbuABQZnEkyr/l4s+Zxdn0DpmCl
- /Vbt5vLYw+uQsCEHjiy+V6VOaF2xhCMdDhur/avNDDwoPOQgvMMKHlXKn1FY7l2ZdlF1qef88Qb
- rs9kR5ZY2v3lGUjp4EnRD2ezJ+R77Gdlq/jG5kWSlKgzxebKx0SqqTSOWKr20bbZP50nxc2chNF 53z2xcvrrvHjXTg==
-X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
+To: Alexander Stein <alexander.stein@ew.tq-group.com>,
+ dri-devel@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
+ Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Steven Price <steven.price@arm.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
+ Boris Brezillon <boris.brezillon@collabora.com>
+References: <20250321200625.132494-1-marex@denx.de>
+ <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
+ <20250904082224.113d0cd1@fedora> <3372501.aeNJFYEL58@steina-w>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <3372501.aeNJFYEL58@steina-w>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: 963jdt3ncpa8jjh39d33r7supr6zwjrz
+X-MBO-RS-ID: 7589421d111ea690b65
 
+On 9/4/25 8:36 AM, Alexander Stein wrote:
 
-On Fri, 22 Aug 2025 15:33:41 +0200, Krzysztof Kozlowski wrote:
-> Add missing address-cells 0 to GIC interrupt node to silence W=1
-> warning:
+Hello Alexander,
+
+>>> Maybe the GPU remains halted because
+>>> setting the GLB_HALT stops command stream processing, and the GPU never
+>>> samples the clearing of GLB_HALT and therefore remains halted forever ?
+>>
+>> Exactly that, and that's expected.
 > 
->   tmpv7708.dtsi:503.4-507.28: Warning (interrupt_map): /soc/pcie@28400000:interrupt-map:
->     Missing property '#address-cells' in node /soc/interrupt-controller@24001000, using 0 as fallback
-> 
-> Value '0' is correct because:
-> 1. GIC interrupt controller does not have children,
-> 2. interrupt-map property (in PCI node) consists of five components and
->    the fourth component "parent unit address", which size is defined by
->    '#address-cells' of the node pointed to by the interrupt-parent
->    component, is not used (=0)
-> 
-> [...]
+> FYI: in a new release of system manager software (starting from lf-6.12.3-1.0.0),
+> the GPU reset is reasserted in SM software already [1] and access to GPU
+> block control has been removed from Cortex-A [2]. Starting from B0 step this
+> version is required AFAIK.
 
-Applied, thanks!
+I don't think the SM is involved in this, because if I do the following 
+test, the MCU also fails to boot unless I do a reset:
 
-No one picked these up, so I grabbed them. Please let me know if someone else
-wants to take it.
+"
+diff --git a/drivers/gpu/drm/panthor/panthor_device.c 
+b/drivers/gpu/drm/panthor/panthor_device.c
+index d4d73eebca49d..fd81cd2654111 100644
+--- a/drivers/gpu/drm/panthor/panthor_device.c
++++ b/drivers/gpu/drm/panthor/panthor_device.c
+@@ -642,6 +642,18 @@ int panthor_device_suspend(struct device *dev)
+  		panthor_fw_suspend(ptdev);
+  		panthor_mmu_suspend(ptdev);
+  		panthor_gpu_suspend(ptdev);
++
++
++panthor_gpu_soft_reset(ptdev); // needed, else panthor_fw_resume() 
+below fails
++
++		panthor_gpu_resume(ptdev);
++		panthor_mmu_resume(ptdev);
++
++		ret = panthor_fw_resume(ptdev);
++		if (!ret)
++			return 0;
++
++
+  		drm_dev_exit(cookie);
+  	}
 
-[1/1] arm64: dts: toshiba: tmpv7708: Add default GIC address cells
-      https://git.kernel.org/krzk/linux-dt/c/7ee0f223cabe9b9384250024fec577c731cbcf72
-
-Best regards,
--- 
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+"
 
