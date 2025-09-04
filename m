@@ -1,188 +1,98 @@
-Return-Path: <devicetree+bounces-212476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85CCEB42DBC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 01:56:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D0CB42DED
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:10:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 15C4F1C231CC
-	for <lists+devicetree@lfdr.de>; Wed,  3 Sep 2025 23:56:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BA283B53D5
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:10:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4A8A2F3C32;
-	Wed,  3 Sep 2025 23:56:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D213FB661;
+	Thu,  4 Sep 2025 00:10:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="gXZ+AP05"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pr8ooTkp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-244108.protonmail.ch (mail-244108.protonmail.ch [109.224.244.108])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C752D7DC2;
-	Wed,  3 Sep 2025 23:56:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.108
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF39749C;
+	Thu,  4 Sep 2025 00:10:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756943791; cv=none; b=W+VYqp4u6He55PQ/fPdlteQoyN5bYwiyQ5+aj17nL1Gb9bHEzNnVSrm4Eo5AGmVeqmxTU4SBpBqsdMyvsYauvkuKCu2MkKwNwrNw5IfMhBxpxbxUY2+XjDieMQMHb9eLmmF6KNNNgH7iWpUXQP0rqoaXU70eyjBOV/n314A0sDY=
+	t=1756944621; cv=none; b=jMjyGFww3nhMakrpMX/xB1w/KypTI0kWh8nHbWDcfCg+hs7JcGxkQ1IUMWmacvic3ULOdbTvwRoqJbXM9bZMk0M1yFe2jCB942fp5dXSk+cxuQf4zYXeTSSM/RjI9KZbw6telkB8s2opEAaj1h77PPe6CSerhdEFCbch5gLPDXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756943791; c=relaxed/simple;
-	bh=D/mDCChrYqtDDtdXfScMQpY0yIpDjNoZE3g/ZJ+d2UA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=HGPgSL/idoqNQXlnKz1V1ZgCBcVfbLzh36x3404Hqbt334leVbItsSb8oVmi8G8AN9eAqZUto9zWg4NcOlBOq5Myf9526qTg+bB3uFSfgcq1zmswdzNPHEtAlueoJoOhylG2tES9DKkw8AyYmytGbjq14OzuRY0tP1pNoYlr+jw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=gXZ+AP05; arc=none smtp.client-ip=109.224.244.108
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
-	s=protonmail; t=1756943779; x=1757202979;
-	bh=ntDpt7+HVnRWmi4X9YIRcXQEYGfUYQYmSHg1m3hbxyQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:From:To:
-	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=gXZ+AP05Uflj/zoh/w6+7gVcu4keyIqogk4lcyVZiv+7gQZLpcFzApxG/KFVQL3xj
-	 0urH8vRyzizckl3uDX8jJzPmF8R1sVaneg++vEiiNyj/+OqgNmQcmJ9Mzv2Lto8uit
-	 Rh+vSFYEfKfOgKecClHigeXj9cuU5NbfxphXjxM8rjjNPy7+pRwmQsxlNNQL6o+rqh
-	 cjWWgRNLmKdjEQuY/fvo9chwvp/3uMNw4252TGZ0WeYv2TCn0a9XvsUomfwDnwZxS9
-	 HdSZVOc0TvlTMCS7gijOaoPmj867F/YvzRBeN0UF5jlRn/BWV7xog/chUosrGyUPNh
-	 mnWxrZw0MY2Pw==
-X-Pm-Submission-Id: 4cHKJK54ppz2ScCs
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-To: robh@kernel.org,
-	Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: bryan.odonoghue@linaro.org,
-	conor+dt@kernel.org,
-	devicetree@vger.kernel.org,
-	hansg@kernel.org,
-	krzk+dt@kernel.org,
-	lee@kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	pavel@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer documentation
-Date: Thu,  4 Sep 2025 01:56:15 +0200
-Message-ID: <20250903235615.134520-1-alex@vinarskis.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20250902182114.GA965402-robh@kernel.org>
-References: <20250902182114.GA965402-robh@kernel.org>
+	s=arc-20240116; t=1756944621; c=relaxed/simple;
+	bh=xLTUgYpzyJUGQC8iGmNCWf2tluEEgft6La/4Blouoww=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iO28/Ndp46KaCVHOy9HLJ+Tb11SXyUEo2mKqgphcZxW8Q9ZM6IM0zGXxw4CLOVPAS6I7vPcpJ5ylgFUq79P8Ct7Y/4o2lVKC3LYa5Q+Ogljgz4atkzbFqZmRD9R5Bqf088DD89lwDpgarleUEVBgQ4wHJ/NyhpH1RI+1HxJinpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pr8ooTkp; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD611C4CEE7;
+	Thu,  4 Sep 2025 00:10:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756944620;
+	bh=xLTUgYpzyJUGQC8iGmNCWf2tluEEgft6La/4Blouoww=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pr8ooTkp5X63oq60GYII6ufmf73Tu/V4wMy5FfBKW3enutpe21ce9NSZ9r/9+BIa1
+	 QNmdc8QYmWEvlYACtm5vQBlmmQa/7R7TuwUjoq1NqXNG/iDyQcBkrz+A6mCPhnA0Bm
+	 KaUAXelCuIWHuT5Bunwq6+1t4VKF3tIvpYCEuQ3sK5juz62hYLTbdhL2rzY0MHQgIr
+	 Qd43UvP6ORpkbhcWf8nycewvgqOH8U8EyQOrTQBlhBLdOGNdQugD2nN0foJJoQNM63
+	 7JcIA7/yGfCiVe2BKoGCT1x/Mh36Cf4T2EXGhnNc7t0hJ7wH0D/yKI/HRSf27sUHhy
+	 x32cVoiNHYA1A==
+Date: Wed, 3 Sep 2025 19:10:14 -0500
+From: Rob Herring <robh@kernel.org>
+To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <20250904001014.GA3405605-robh@kernel.org>
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
 
-> On Tue, Sep 02, 2025 at 11:10:51AM +0000, Aleksandrs Vinarskis wrote:
-> > Currently supports passing 'led-names' used to map LED devices to their
-> > respective functions.
-> > 
-> > Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> > ---
-> >  .../devicetree/bindings/leds/leds-consumer.yaml    | 69 ++++++++++++++++++++++
-> >  1 file changed, 69 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..a63e78417df84609e279835f7dae62e3ad2f0bf5
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Common leds consumer
-> > +
-> > +maintainers:
-> > +  - Aleksandrs Vinarskis <alex@vinarskis.com>
-> > +
-> > +description:
-> > +  Some LED defined in DT are required by other DT consumers, for example
-> > +  v4l2 subnode may require privacy or flash LED.
-> > +
-> > +  Document LED properties that its consumers may define.
+On Wed, Sep 03, 2025 at 07:33:58PM +0000, Hrishabh Rajput wrote:
+> Gunyah is a Type-I hypervisor which was introduced in the patch series
+> [1]. It is an open source hypervisor. The source repo is available at
+> [2].
 > 
-> We already have the trigger-source binding for "attaching" LEDs to 
-> devices. Why does that not work here?
+> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+> access the MMIO watchdog. It either provides the fully emulated MMIO
+> based watchdog interface or the SMC-based watchdog interface depending
+> on the hypervisor configuration.
 
-I have not actually considered this, as the existing privacy-led solution
-from the original series is not trigger based. At least one of the reasons
-for that is that trigger source can be rather easily altered from user
-space, which would've been bad for this use case. If v4l2 acquires control
-over the LED it actually removes triggers and disables sysfs on that LED.
+EFI provides a standard watchdog interface. Why can't you use that?
 
-Regarding DT check that is failing because 'ovti,ov02e10.yaml' does not
-allow for additional properties - the same issue would apply to basically
-any camera, I missed it. So would need to either include this new binding
-in 'video-interface-devices.yaml', or drop new binding and directly include
-these new generic LED related properties in the video one. However, in this
-case it gets a bit ugly, as the latter already contains 'flash-leds' for
-flash specifically, and we would be adding a more generic way only used for
-privacy LED, at least for now... not too sure whats the best way here,
-leaning towards 1st option.
+> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
 
-Let me know what you think,
+Is a watchdog really a hypervisor service? Couldn't a non-virtualized 
+OS want to call a watchdog (in secure mode) as well? But I don't know 
+how the SMCCC call space is divided up...
 
-Alex
+> This patch series adds support for the SMC-based watchdog interface
+> provided by the Gunyah Hypervisor. The driver supports start/stop
+> operations, timeout and pretimeout configuration, pretimeout interrupt
+> handling and system restart via watchdog.
 
+Shouldn't system restart be handled by PSCI?
 
-> 
-> Rob
-> 
-> > +
-> > +properties:
-> > +  leds:
-> > +    description:
-> > +      Phandle to LED device(s) required by particular consumer.
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +  led-names:
-> > +    description:
-> > +      List of device name(s). Used to map LED devices to their respective
-> > +      functions, when consumer requires more than one LED.
-> > +
-> > +additionalProperties: true
-> > +
-> > +examples:
-> > +  - |
-> > +    #include <dt-bindings/gpio/gpio.h>
-> > +    #include <dt-bindings/leds/common.h>
-> > +
-> > +    i2c {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +
-> > +      camera@36 {
-> > +        compatible = "ovti,ov02c10";
-> > +        reg = <0x36>;
-> > +
-> > +        reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
-> > +        pinctrl-names = "default";
-> > +        pinctrl-0 = <&cam_rgb_default>;
-> > +
-> > +        led-names = "privacy-led";
-> > +        leds = <&privacy_led>;
-> > +
-> > +        clocks = <&ov02e10_clk>;
-> > +
-> > +        assigned-clocks = <&ov02e10_clk>;
-> > +        assigned-clock-rates = <19200000>;
-> > +
-> > +        avdd-supply = <&vreg_l7b_2p8>;
-> > +        dvdd-supply = <&vreg_l7b_2p8>;
-> > +        dovdd-supply = <&vreg_cam_1p8>;
-> > +
-> > +        port {
-> > +          ov02e10_ep: endpoint {
-> > +            data-lanes = <1 2>;
-> > +            link-frequencies = /bits/ 64 <400000000>;
-> > +            remote-endpoint = <&csiphy4_ep>;
-> > +          };
-> > +        };
-> > +      };
-> > +    };
-> > +
-> > +...
-> > 
-> > -- 
-> > 2.48.1
-> > 
+Why can't you probe by trying to see if watchdog smc call succeeds to 
+see if there is a watchdog? Then you don't need DT for it.
+ 
+Rob
 
