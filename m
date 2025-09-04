@@ -1,217 +1,141 @@
-Return-Path: <devicetree+bounces-212921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B875B440AD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:31:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ED6DB440B6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:33:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 884B8A01534
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:31:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 78BCF1C8655E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:33:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B43D2233152;
-	Thu,  4 Sep 2025 15:31:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33ADB25A334;
+	Thu,  4 Sep 2025 15:32:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="L9Zxp4ZW"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="l1cE2wrC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4B5329B0;
-	Thu,  4 Sep 2025 15:31:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 693EB2566E2;
+	Thu,  4 Sep 2025 15:32:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756999863; cv=none; b=McaKyHEqIGIMpobJmjGPFCOe1nrV5KKN6vLUaSpc+3WTRkto1cPkLq9t4fikGbnQbNkYS7xmr5NRM+gIjoMp+8BgHG2clEbEiXxAx9H1eM4nHjonbRGfawZubJiVHMS+ybHeuDza15A/JzEG2SJd382LRYq9w8IEm41dr7r5i/I=
+	t=1756999974; cv=none; b=Ufda5nzjZbQ98p9tuS+zHcN46kBXaPiu4u6bkE/5TQpBmQDe1cYQxddNwwt/Xea5FgPnLcU4n5lIbZVSA5/qstIjrla3UhzZBDVT81tkuAFNjL+aEtt7J+RlLuVGkbcjaknPiqzmwWlvotecWlUCf1dw2Cd46EGOILkBSmFSR2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756999863; c=relaxed/simple;
-	bh=1aKpEQb07K7bq0JI6ungYiw2uqCF7T5zoE0XrueT7NU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DN2ZjPteWtnt4G3KrUw9ee/XKHIz+WOfvca+RzTZW+BgypGAjntY3+0fmHzJ0+kdau7NrEVEMH/8bszuubC/C77c0zyuGOKIDSvXfdpUdBe/J0A4EKa28/FePSetGF7yjTRsYjHNwOm1uZGNg4GQUkI8AuJ3SoOgPSHyKac+auY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=L9Zxp4ZW; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3df3be0e098so607245f8f.1;
-        Thu, 04 Sep 2025 08:31:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756999859; x=1757604659; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xE4rmjGRisIQDV5Gl3u0Fv0zsZRWzQtHGzTA13lIgs=;
-        b=L9Zxp4ZWBnB0u7ckQTMmaejLYG8HjLQdi5I/1CGN1/Pq4P9DXTCGRxO3IaE0uwKXfM
-         gXn4v7u91jdBBB5w3eRRW4s02KUEc4Z8Pl8zIeqwgKWuqZj5uaC1K8f8kG6y31T2mp1K
-         91+InJWgtJEkNnlzHye15lICZRauK4J3xRBKTFv51cVb+ZJUmXlzcRr4i99ls34sLc3t
-         Hr8FyS9Ktux5yVr+4xFKRL/4keP/IN7j8x/IY4+e8GB6a19qxHrSdk5PKDtegxrbjDC8
-         ECcWgKvLdN5pMOvrI5liYwPqwUNYsbEDxnMoad7h69mAAhI3LiIpjHRS6urcZbbHFi8K
-         Ntgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756999859; x=1757604659;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8xE4rmjGRisIQDV5Gl3u0Fv0zsZRWzQtHGzTA13lIgs=;
-        b=LgAWSoGszRNBuBbQjZneiYAKlELie4uTdSOD8URwRRMJtB1L73hRFxg4LGWx6i1fuu
-         4JB8UQvBESmcq42grZ6ehzTtdxA5H4F8o+yjoKq1QFUq6q2UjpNPA1CjwYKtMl9fHmgF
-         x3IKEcl+IWuBNHz8GwMaQTSVKh590dkcptoW53FmDJ81fWOOqRDQotIClDKm6cfXW89k
-         F/eObRqA1mYW+Ak8WCpBkGS2rbWr8awjdxrq+RkQuFtHSNsyR2NegYEZ016Jtrq+VIF8
-         xF3tcO/B4x70veooYMZA+cuYjgPER0U+Kv+1+rhut+kReUHhAB87WZzb7waRXtuB1Adt
-         0ybw==
-X-Forwarded-Encrypted: i=1; AJvYcCVaQ43nDDOoZGD9l4rwaqv9OQo2QjOs3hoQj7z4bfL0iMrD2eb7PaoixtkljAtzmiX3uUZYDGHvSEs8@vger.kernel.org, AJvYcCVqRr+4O5m9UGOJHBIqwgdKDXsy0hC0wXb1i+CcsMwLjguNSPzp8lkIbpztOIXai3kSTn/XYHLu8TQmK9M=@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLti4rb1MKxNefnCtlcyr6+aB7KN28A/TwNzXtzlKZE7wPhJ/r
-	fQ7Nt2NSCJSaOlovH0EEN+V7KL1Mor4l8wWFKOtsCcQN5T7/RYVhCaxf
-X-Gm-Gg: ASbGncubdd0VSpstJ/qtbL9oGIjBSd8WKz+v61Ah4Q9zbvbrWqx4iQo7NPQH00ej7vF
-	jX+4Hupdca/J80Xogwb491+nbBw2j+gL2betzl00VKeRl+F69PZ8iQkzlnVfmKWFURN43y9Bb8I
-	LUMy/3pID0dMSsZoSiFJWaRcSPsSTopoUMo9UqXTdoXTOkZ9DqcJJO3O0BpHOEXXx9+/O2h93v0
-	2java+KDTOAInTC42GqgBiBi9chR27U+aJqwM9w9W9eRB6041wtYApP486emzYOuO8VgXHcmFvN
-	S0qMwApnijqvbmO9d42f0oFJPOG3NOrkyvgGDZPJTjm5Q2OnS7bPKfeuoYAPXEl31hoPG5fNAyK
-	D9kdonxqIAQiYPVoaLUhifFLsU5XUQ5RxPgtu3oZP+y5EBbJDzUz3Bk9y3zXWjTS7pOxW/DNfb1
-	VI//wf0ZhI
-X-Google-Smtp-Source: AGHT+IELB08VGh3VAq+KT32lgs3tsogmI3gmF9iQ69mvKEfdnKdejg4TzGBR9ruyPEVGthqdMWy/EA==
-X-Received: by 2002:a5d:588b:0:b0:3dc:1473:18f3 with SMTP id ffacd0b85a97d-3dc14731977mr5762689f8f.41.1756999858759;
-        Thu, 04 Sep 2025 08:30:58 -0700 (PDT)
-Received: from orome (p200300e41f1c4d00f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f1c:4d00:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d0a1f807f9sm27264155f8f.38.2025.09.04.08.30.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 08:30:57 -0700 (PDT)
-Date: Thu, 4 Sep 2025 17:30:55 +0200
-From: Thierry Reding <thierry.reding@gmail.com>
-To: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Sumit Semwal <sumit.semwal@linaro.org>, Benjamin Gaignard <benjamin.gaignard@collabora.com>, 
-	Brian Starkey <Brian.Starkey@arm.com>, John Stultz <jstultz@google.com>, 
-	"T.J. Mercier" <tjmercier@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	David Hildenbrand <david@redhat.com>, Mike Rapoport <rppt@kernel.org>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linaro-mm-sig@lists.linaro.org, 
-	linux-mm@kvack.org
-Subject: Re: [PATCH 6/9] arm64: tegra: Add VPR placeholder node on Tegra234
-Message-ID: <dzbefkymgrtyxfgfcdu4kq7rmgpa6khfqyhzz4a6y3qqonc4gj@yfafsqwnloia>
-References: <20250902154630.4032984-1-thierry.reding@gmail.com>
- <20250902154630.4032984-7-thierry.reding@gmail.com>
+	s=arc-20240116; t=1756999974; c=relaxed/simple;
+	bh=tDTbE3SehodMHw7uN73rIR5YQxukV3vhONZfNB5DYxE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dEFZ9DVbRlu4cMMF8+akZ9Izbkt7ruGv0FRrQrdXlyLD6rkQE25MIxH2Dm+7TjE3Y93r78P32IgdisaNglZdkJiVmFSc+30p/WXATEvuNmsComt9UyKdBqlU1xlv/Jy2zZv9/RB4J2e6EzGRt5XJbv+XUzXmw9j7DXTKI8wUpd8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=l1cE2wrC; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:b231:465::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHk4w4LNXz9sWS;
+	Thu,  4 Sep 2025 17:32:48 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1756999968;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JIzZVheBRvd0iBPFoIGMoS2ar7q8yBpuYylj7gKGkt8=;
+	b=l1cE2wrC8tFhr3lNLLGeDqyCiW5tXKlSkRZVLpTDb48ra5RX9AJXKOZfJwOnKu89Ijxnix
+	kMsI0zpruaAlJZZ9m0nENDX0vd1rJra2I3jYNtKzJtE6+60uVRwKQ6VpPJPSwuhn8GpvVl
+	5BUMdnlvFb2J7hWIi8u9FVbydwX1g+aO725fJhgLg2IfvonEndnN8JXtTnrpWN4oclufdO
+	X30Uy1moDoUgSYRl0HVGo+o6BnJb4mlb45DtVqxuL2KQMYW7RGkVXor3+G3Av5MlEvlo0A
+	8XO4qy0E1NsmBHxR4eAlr7kr8e3j2LuqTDdVOAF18LShrgpzyaCV+qZwWnHSUw==
+Message-ID: <472aac3c-9d3e-4892-8d6c-665fa6793464@mailbox.org>
+Date: Thu, 4 Sep 2025 17:32:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4xtz2xrto4fsphdg"
-Content-Disposition: inline
-In-Reply-To: <20250902154630.4032984-7-thierry.reding@gmail.com>
+Subject: Re: [PATCH v2 0/8] Add support for Wave6 video codec driver
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org,
+ hverkuil@xs4all.nl, sebastian.fricke@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+ jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com
+References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
+ <f03d0ae0-d28b-4b06-8f63-9d06f15c0522@mailbox.org>
+ <fcfa00b5ae102d76b02ce1667d27822e6d2c3c81.camel@ndufresne.ca>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <fcfa00b5ae102d76b02ce1667d27822e6d2c3c81.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 2dd240b7f7c824b2b50
+X-MBO-RS-META: nbjes31bh5qwrbn7sqdhimymj64fxzc6
 
+On 9/4/25 3:25 PM, Nicolas Dufresne wrote:
+> Hi,
+> 
+> Le mercredi 03 septembre 2025 à 23:47 +0200, Marek Vasut a écrit :
+>> On 4/22/25 11:31 AM, Nas Chung wrote:
+>>> This patch series introduces support for the Chips&Media Wave6 video
+>>> codec IP, a completely different hardware architecture compared to Wave5.
+>>>
+>>> The wave6 driver is a M2M stateful encoder/decoder driver.
+>>> It supports various video formats, including H.264 and H.265,
+>>> for both encoding and decoding.
+>>> While other versions of the Wave6 IP may support VP9 decoding and
+>>> AV1 decoding and encoding those formats are not implemented or validated
+>>> in this driver at this time.
+>>>
+>>> On NXP i.MX SoCs, the Wave6 IP functionality is split between two regions:
+>>> VPU Control region, Manages shared resources such as firmware memory.
+>>> VPU Core region, Provides encoding and decoding capabilities.
+>>> The VPU core cannot operate independently without the VPU control region.
+>>>
+>>> This driver has been tested with GStreamer on:
+>>> - NXP i.MX95 board
+>>> - pre-silicon FPGA environment
+>>>
+>>> Test results for decoder fluster:
+>>> - JVT-AVC_V1, Ran 77/135 tests successfully              in 35.519 secs
+>>> - JVT-FR-EXT, Ran 25/69 tests successfully               in 17.725 secs
+>>> - JCT-VC-HEVC_V1, Ran 132/147 tests successfully         in 81.549 secs
+>>> - All failures are due to unsupported hardware features:
+>>> -- 10bit, Resolutions higher than 4K, FMO, MBAFF
+>>> -- Extended profile, Field encoding and High422 sreams.
+>>>
+>>> Test results for v4l2-compliance:
+>>> v4l2-compliance 1.29.0-5359, 64 bits, 64-bit time_t
+>>> v4l2-compliance SHA: 2a91a869eb8a 2025-04-12 11:35:53
+>>>
+>>> Compliance test for wave6-dec device /dev/video0:
+>>>                   fail: ../utils/v4l2-compliance/v4l2-test-controls.cpp(1180): !have_source_change || !have_eos
+>>>           test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+>>> Total for wave6-dec device /dev/video0: 48, Succeeded: 47, Failed: 1, Warnings: 0
+>>>
+>>> Compliance test for wave6-enc device /dev/video1:
+>>>                   fail: ../utils/v4l2-compliance/v4l2-test-controls.cpp(1169): node->codec_mask & STATEFUL_ENCODER
+>>>           test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: FAIL
+>>> Total for wave6-enc device /dev/video1: 48, Succeeded: 47, Failed: 1, Warnings: 0
+>>>
+>>> Note: the failures are all related with the eos event.
+>>
+>> For what its worth, the whole series:
+>>
+>> Tested-by: Marek Vasut <marek.vasut@mailbox.org> # NXP i.MX95 rev. A0
+> 
+> Do you mind sharing what tests you have done ? Are you confirming the same
+> fluster and compliance results, have you done more ? Since this is largely
+> inspired on Wave5, I'd like to see people testing real-world playback, with
+> seeks, dynamic resolution changes, data lost. On Wave5, latest performance
+> patches leads to crash or hangs.
+I did not use fluster this time, I used h264 decode of 1920x1080 60 FPS 
+stream. The pipeline was very basic, something along the lines of:
 
---4xtz2xrto4fsphdg
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH 6/9] arm64: tegra: Add VPR placeholder node on Tegra234
-MIME-Version: 1.0
-
-On Tue, Sep 02, 2025 at 05:46:26PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
->=20
-> This node contains two sets of properties, one for the case where the
-> VPR is resizable (in which case the VPR region will be dynamically
-> allocated at boot time) and another case where the VPR is fixed in size
-> and initialized by early firmware.
->=20
-> The firmware running on the device is responsible for updating the node
-> with the real physical address for the fixed VPR case and remove the
-> properties needed only for resizable VPR. Similarly, if the VPR is
-> resizable, the firmware should remove the "reg" property since it is no
-> longer needed.
->=20
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  arch/arm64/boot/dts/nvidia/tegra234.dtsi | 34 ++++++++++++++++++++++++
->  1 file changed, 34 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra234.dtsi
-> index df034dbb8285..4d572f5fa0b1 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
-> @@ -28,6 +28,40 @@ aliases {
->  		i2c8 =3D &dp_aux_ch3_i2c;
->  	};
-> =20
-> +	reserved-memory {
-> +		#address-cells =3D <2>;
-> +		#size-cells =3D <2>;
-> +		ranges;
-> +
-> +		vpr: video-protection-region@0 {
-> +			compatible =3D "nvidia,tegra-video-protection-region";
-> +			status =3D "disabled";
-> +			no-map;
-> +
-> +			/*
-> +			 * Two variants exist for this. For fixed VPR, the
-> +			 * firmware is supposed to update the "reg" property
-> +			 * with the fixed memory region configured as VPR.
-> +			 *
-> +			 * For resizable VPR we don't care about the exact
-> +			 * address and instead want a reserved region to be
-> +			 * allocated with a certain size and alignment at
-> +			 * boot time.
-> +			 *
-> +			 * The firmware is responsible for removing the
-> +			 * unused set of properties.
-> +			 */
-> +
-> +			/* fixed VPR */
-> +			reg =3D <0x0 0x0 0x0 0x0>;
-> +
-> +			/* resizable VPR */
-> +			size =3D <0x0 0x70000000>;
-> +			alignment =3D <0x0 0x100000>;
-> +			reusable;
-> +		};
-> +	};
-
-Hi DT maintainers,
-
-I wanted to get some feedback on this type of placeholder DT node. This
-doesn't actually validate properly because it contains properties for
-both the fixed and resizable VPR variants, which are mutually exclusive.
-However, the way that this currently works is that UEFI will remove and
-update whatever properties need to change during boot, so the booted
-kernel ends up with the correct, non-conflicting information.
-
-The reason why it was done this way is because it simplifies the code in
-UEFI to update this node. Also, without this being a placeholder I don't
-know what to put into this. There's no "default" for this. One option is
-to not have this in the DT at all and completely create it at boot time,
-but then it becomes quite difficult to create the phandle references.
-
-While at it, I'm not sure if I properly understand how to correctly name
-a reserved-memory region that is dynamically allocated like in the case
-of resizable VPR? It doesn't have a base address during boot and the
-kernel will allocate memory where it sees fit. Do I just leave out the
-unit-address in that case?
-
-Thanks,
-Thierry
-
---4xtz2xrto4fsphdg
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmi5sKwACgkQ3SOs138+
-s6EL1w/+O3vMzwflDNuAsOeJT5PO30EnSdPQtwSfs1kegW1Z0O7O+SxPDRbIOumH
-ZtXCWjmHUA0x4A4tV1KHYusXEpLe8kdgMeaFYK3XECONFcW/xto7lbOk9ujNo4B0
-RSBU+KmbKVeHe3JQ8ENftNYUpQqLHdBEi/FZVlgjZW8KLe+MuWHnvoZsutLTvLim
-edJeSpS/ms98AYPqE+MACLkqG92b1y0jgGhsa3dymQhX6RYbJxLTzO3SCG9WKpFL
-OkfgV5XwyRYgsBQDIkJnBu4+CtPOO2mJeUQGuHgvSlfv8Ulz6jYKIcPQj5hhJ8KZ
-qtqV5vMoRauXf76f97vKenJ86SPlWymUWCj5/K88mqtDm9EUoTtMT0LfGhCsIfIX
-TNBYgIz79w16UvFuZ/CmD2MEUPi00WpA5b2UyifcHKKnORwL08lBhLD0r5UWMf/H
-qUqNt0qtK2EuPjOeUMwB8YN5VPZCP4oWEWoSVCF3cbjUitjx2ogJRMgeazsAZdmP
-x1+CSVvTpQ1RqXIn3ezRgBkPLQ2d1KJIJdv+pdQn1zcFTuqd0nP5yFS52TiWsJ8/
-cczmrWcs3r30Aoaw3e0rW3OQHghuXLaavcm6FmLVFGs4VDlpRbFnESuLbynzAbAk
-7VfAJwgPBaLVqs2UqkC5ezADL7wV+VxmrcPUry4JBO+17jVwwBk=
-=p0GH
------END PGP SIGNATURE-----
-
---4xtz2xrto4fsphdg--
+gst-launch-1.0 -v filesrc location=/test.mp4 ! qtdemux ! h264parse ! 
+v4l2h264dec ! fpsdisplaysink text-overlay=false video-sink=waylandsink
 
