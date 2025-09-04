@@ -1,98 +1,119 @@
-Return-Path: <devicetree+bounces-212477-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212478-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0D0CB42DED
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:10:28 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A920B42E19
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 02:24:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3BA283B53D5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:10:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC8CB1C22969
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 00:24:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D213FB661;
-	Thu,  4 Sep 2025 00:10:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D0622036ED;
+	Thu,  4 Sep 2025 00:22:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pr8ooTkp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jRAus1nI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BF39749C;
-	Thu,  4 Sep 2025 00:10:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5EA9A1A256E;
+	Thu,  4 Sep 2025 00:22:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756944621; cv=none; b=jMjyGFww3nhMakrpMX/xB1w/KypTI0kWh8nHbWDcfCg+hs7JcGxkQ1IUMWmacvic3ULOdbTvwRoqJbXM9bZMk0M1yFe2jCB942fp5dXSk+cxuQf4zYXeTSSM/RjI9KZbw6telkB8s2opEAaj1h77PPe6CSerhdEFCbch5gLPDXc=
+	t=1756945358; cv=none; b=u1aBalrtipWaLni8Ju/TahSgUclR1h9a47UV7U/TU+81A3Q9LQ0BApp3AIEcwUD1M14QaHdc5yA1aFyFbKb/A5gcAoYDl+Yl7evFFpfFeJReah1CvcQo5oEsFrcNfvOmX7GIf39XeACtSGY94hHvZt8UHvmaz9XvDkZ1O18NgG8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756944621; c=relaxed/simple;
-	bh=xLTUgYpzyJUGQC8iGmNCWf2tluEEgft6La/4Blouoww=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iO28/Ndp46KaCVHOy9HLJ+Tb11SXyUEo2mKqgphcZxW8Q9ZM6IM0zGXxw4CLOVPAS6I7vPcpJ5ylgFUq79P8Ct7Y/4o2lVKC3LYa5Q+Ogljgz4atkzbFqZmRD9R5Bqf088DD89lwDpgarleUEVBgQ4wHJ/NyhpH1RI+1HxJinpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pr8ooTkp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CD611C4CEE7;
-	Thu,  4 Sep 2025 00:10:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756944620;
-	bh=xLTUgYpzyJUGQC8iGmNCWf2tluEEgft6La/4Blouoww=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Pr8ooTkp5X63oq60GYII6ufmf73Tu/V4wMy5FfBKW3enutpe21ce9NSZ9r/9+BIa1
-	 QNmdc8QYmWEvlYACtm5vQBlmmQa/7R7TuwUjoq1NqXNG/iDyQcBkrz+A6mCPhnA0Bm
-	 KaUAXelCuIWHuT5Bunwq6+1t4VKF3tIvpYCEuQ3sK5juz62hYLTbdhL2rzY0MHQgIr
-	 Qd43UvP6ORpkbhcWf8nycewvgqOH8U8EyQOrTQBlhBLdOGNdQugD2nN0foJJoQNM63
-	 7JcIA7/yGfCiVe2BKoGCT1x/Mh36Cf4T2EXGhnNc7t0hJ7wH0D/yKI/HRSf27sUHhy
-	 x32cVoiNHYA1A==
-Date: Wed, 3 Sep 2025 19:10:14 -0500
-From: Rob Herring <robh@kernel.org>
-To: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konradybcio@kernel.org>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
+	s=arc-20240116; t=1756945358; c=relaxed/simple;
+	bh=EbDRs8jVEyTPoShvrlIQOnlqcNkZ4iZROBNRv8M/EmA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pKwkuwIei463ZJPumhZzDsXnIlCX6ijbNyIZbilZYFvYdCl63GQELhz4/TRjQw+gxQFesToqyKGSsbxiikQWIKg9CBViGbJL7aUIAlyEbwuQlJKt8eFo4FsBCe2uvmmOr7ikNqN+dYBLvAY9i18wMmCcj+lzaaTAbouWbcw1G9g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jRAus1nI; arc=none smtp.client-ip=209.85.167.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-55f7cd8ec2cso528606e87.2;
+        Wed, 03 Sep 2025 17:22:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756945354; x=1757550154; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cRvY1i3eeK8uU5EXQ8tuV00NMUEY0gXTuGA41ZnQTAo=;
+        b=jRAus1nI3RnPQkbe/2DGTsAs616BCvR5adIzSCVMIFo9UM4IUJh4O+x86RqyL5B185
+         fNxoaO2cSeAusmPbunICxlgyjE/jXyzeEdLWGZFe4UKO5eCWIA0AtgCVV1WpeYTa+1NC
+         IwgU35tNQs+5I34OOJX4hfPDdETvgx1tOlI4y0/+UDlrrhWC28IMB9J7Gnrpi3y1dItn
+         tAEkF/X4yZYF0QFfVdGS8bVBHlS17rm40kT5CuocWm6bhWVVN+svG0wXwn+U85+9g7FV
+         T+LH8PEmowOsURBBpnZtUWAOstN4WstjIbW0dZme2n1IAmSfAAe2NXHAzE5SJmEySksN
+         Qaqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756945354; x=1757550154;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cRvY1i3eeK8uU5EXQ8tuV00NMUEY0gXTuGA41ZnQTAo=;
+        b=G/LGpGrGhc2wWKbkhKywwCLULw4G6+WATKZ3/To544lMmDJLQ58DIhJv0s1uX8GFL7
+         uHhrg849BqatJWgjNrOqTU7b/Nkl8sEF/KMfHEhY1PpsTiU9BFjrBwM2SbqdfRFjHVwW
+         sTbILSvgxWFX1I6AvMAPZtsvnp84GSwIzAwTZtIaumVO/Ae9hYWO/jSO6jGQQmRnLopP
+         O9OdFk/L8fPAobOppOVbiesj0qoC+44qBxIHs0Xdar+vGbiUA5lKJPz2hymSCn5LpK6E
+         B3BP1cPMR6lR/AQUaeyNQDSlIuC1CeOm+zXaMdH1KNJX9/0bHz0vsFgQSxU/LW8f+hCX
+         u+ZA==
+X-Forwarded-Encrypted: i=1; AJvYcCV99SLXWb3RFkCG7/UUtYc1dWLtEcN3xaKs+bovvNiJQ6TRcAT3k1DL/sr2c0ulVp+FVUuFpmBG3Kq337Rl@vger.kernel.org, AJvYcCWHjuKu6Udrvtsh6U/YU5A1/b0mUMYhDGm5lK35WB0hdYv0g6wYOBxdcwh93nD85hAAhtHxoeq9sB9l@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywm/Ag+BB/swtIs6JUDMJwLxymhnHrPpDQt713n5Ph53Vr8Ac/z
+	rQ/rd2+XK1TNePSkCXT5K2zb3oMQh84bUYkFzKtJQanbKARuyUlWIq8x
+X-Gm-Gg: ASbGnctl9N/gfk8NijdM9lVJ1ENwCISqsw0DwQOC6PwF0jKFt9nng+OREsxh/ruxSMj
+	Gx/+r6i/EqvJod98Cjt45tLaTJlTZz7lrEgORxY8UUeTMgdldyWdUKxQjBxmeP34SCb/13p7Z3H
+	UmGwz8D4et0ORFOOpheQI0bMICFswWOhAC0+qzm7Ks5UEIYyTQHCJvZPyJAKEG4boyJuCB/QJ3b
+	5Soq8KPtqk0fdVjMF9zBa/IsW9OFgYxvuai3z0U0bxuwXdJPdxMPYSQwZ92xO6Oo9fRuZtRwh//
+	TgH3mLBxajZpwBSRVH3hqEalMC4cC79d2Zrss/udHekSc/Y7DtnMoGXUYw8Idz5Aro/4f7lt7R4
+	ZNgH0hHgJcvjmOKPS2gmMdalI4IwSZMOONkEiA1ni7h9Hsp4PCelX+g==
+X-Google-Smtp-Source: AGHT+IGQYJrReh76jTMJs2xkORkCKN7mTZ3yHyfY6cgCRALHPcO7cHaChEQ2cH2SUktxRValZPoV5Q==
+X-Received: by 2002:a05:6512:2313:b0:55f:46cd:2c88 with SMTP id 2adb3069b0e04-55f708a2c31mr5338174e87.9.1756945354277;
+        Wed, 03 Sep 2025 17:22:34 -0700 (PDT)
+Received: from vovchkir.localdomain ([95.161.221.106])
+        by smtp.googlemail.com with ESMTPSA id 2adb3069b0e04-5608ab8e95bsm821613e87.34.2025.09.03.17.22.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 17:22:33 -0700 (PDT)
+From: Vladimir Yakovlev <vovchkir@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+	dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
-Message-ID: <20250904001014.GA3405605-robh@kernel.org>
-References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+Cc: vovchkir@gmail.com
+Subject: [PATCH 0/2] support for xr109ai2t panel
+Date: Thu,  4 Sep 2025 03:22:30 +0300
+Message-Id: <20250904002232.322218-1-vovchkir@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+Content-Transfer-Encoding: 8bit
 
-On Wed, Sep 03, 2025 at 07:33:58PM +0000, Hrishabh Rajput wrote:
-> Gunyah is a Type-I hypervisor which was introduced in the patch series
-> [1]. It is an open source hypervisor. The source repo is available at
-> [2].
-> 
-> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
-> access the MMIO watchdog. It either provides the fully emulated MMIO
-> based watchdog interface or the SMC-based watchdog interface depending
-> on the hypervisor configuration.
+Hello!
 
-EFI provides a standard watchdog interface. Why can't you use that?
+This adds support for the STARRY XR109IA2T panel based on the hx83102 chip
 
-> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
-> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+Thanks
 
-Is a watchdog really a hypervisor service? Couldn't a non-virtualized 
-OS want to call a watchdog (in secure mode) as well? But I don't know 
-how the SMCCC call space is divided up...
+Vladimir Yakovlev (2):
+  dt-bindings: display: panel: Add compatible for STARRY xr109ai2t
+  drm/panel: himax-hx83102: add panel starry xr109ia2t
 
-> This patch series adds support for the SMC-based watchdog interface
-> provided by the Gunyah Hypervisor. The driver supports start/stop
-> operations, timeout and pretimeout configuration, pretimeout interrupt
-> handling and system restart via watchdog.
+ .../bindings/display/panel/himax,hx83102.yaml |   2 +
+ drivers/gpu/drm/panel/panel-himax-hx83102.c   | 193 ++++++++++++++++++
+ 2 files changed, 195 insertions(+)
 
-Shouldn't system restart be handled by PSCI?
+-- 
+2.34.1
 
-Why can't you probe by trying to see if watchdog smc call succeeds to 
-see if there is a watchdog? Then you don't need DT for it.
- 
-Rob
 
