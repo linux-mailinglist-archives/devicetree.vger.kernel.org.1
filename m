@@ -1,57 +1,63 @@
-Return-Path: <devicetree+bounces-212549-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212550-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F146CB432B1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:41:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 230E7B432C3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:48:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B2C603A8AEA
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:41:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D08631C255E0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:48:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717F42773FF;
-	Thu,  4 Sep 2025 06:41:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51D552857C1;
+	Thu,  4 Sep 2025 06:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W4FHu9Fo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VKF40z36"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44D2F21C9F9;
-	Thu,  4 Sep 2025 06:41:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F8FB285069;
+	Thu,  4 Sep 2025 06:48:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756968088; cv=none; b=Svia2mY8l5rdx17t3fnd4wmoWJR7kwYE0NITIwYxPZ2G6yIzpYl4MTJNjeqoDLpCouWKeYKe9ASTuPaOG/WZHe1IjU2T7/wBBbZBBoOOezjLtZQO2i/ogfVk0mzLMKEylLzAzGleuq1dM0DAj4aFHaOGlPF/82MBP82tNAfcr14=
+	t=1756968498; cv=none; b=C2Dediy7u2R6KsMeorhoTatBEBJEJ4LL75AyHx9B5Qe8OcVUjeHcU9PGwA1z5TfSL6SDoZ1gQitdrE3hGto6rYOgPr2Da5xZ5wqTi4edhpO4DWH8MyIBWq/tXDO3UUQi+LtXw5b1Nai4iTxXi/EdbG8oSn0iNdypUngYRR1+h5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756968088; c=relaxed/simple;
-	bh=U4B61QoK2r4mgogUEGYi5eBvsr+AgbLckE9RxAwb2O4=;
+	s=arc-20240116; t=1756968498; c=relaxed/simple;
+	bh=WyIvrOVDNWf5X8qTZLswd5dlm0L7vHB640A5eFNHu8Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=K1cG62uq/nmfHUpOMY6BcGxQRxAXED1rS14JK+fAns5yckKoCe563TvCMAxXnL7/cS+6Tj7v304gQ5l3ztDL4KE7TWeHiP79lAwnBtc9Y2gxGs/PKDsdW/9sV8iV5AzCfEKLDsi72IFXZZ7X/y5wbABuqQmqoAtHD6rirGp2vrs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W4FHu9Fo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3234EC4CEF0;
-	Thu,  4 Sep 2025 06:41:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hPc5pIavln/dA2OGyvU6mecN0MvhOqMkDe1XWXPALVdxBFl0fcE9K3N9lNkKfqxeIs5RBU0D3WYVGM5+QUXoeSe6zGw2S7md3W92D2zrAVovGXz0yfJp+1Z442sJcJnWTRV5bKujOJZUd8y5txlyF01cn61L3NRVDEBfQfCkvlc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VKF40z36; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 107DBC4CEF0;
+	Thu,  4 Sep 2025 06:48:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756968087;
-	bh=U4B61QoK2r4mgogUEGYi5eBvsr+AgbLckE9RxAwb2O4=;
+	s=k20201202; t=1756968496;
+	bh=WyIvrOVDNWf5X8qTZLswd5dlm0L7vHB640A5eFNHu8Y=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W4FHu9Fobx8HemmN4ZPBJxpSX6Hi/kEypWrXHEl1k3spCd36WN5o1EG04ws/c3DwW
-	 qMJHgJMvZe2icvDnT7ghYgFOxbWsGqcuOYaCH8FnhLWL/rc6n+uq+JpB90Xll8KFK9
-	 E6JYYs7qhoCTHiMqCksGaV5Et7l77MeJMHcEFjqCDPCwNd6dsPBVjsl8HgYELMpvE4
-	 eAp7vsvMXbAeMZwucVcsPEv+6oFVSG+qqkDiB7EoZ9uRa0hnUSAAkI0hJH4VSfLXc6
-	 8/dd5L50fJacMnfuzLddMBaoS6JYs4Am9WE+RMqBTGBdr5l4E+FihBKMV02YeuHH1v
-	 H6bV98qgZ2PqA==
-Date: Thu, 4 Sep 2025 08:41:25 +0200
+	b=VKF40z36T6RfMUh5C1AQd4nbgMrAgm0MeJh780thFPYJbKuSL0apzCOU7eP15cHUK
+	 kKm5/Dejsjsy6TfPgf0zobV/ssA91J8UYmFvtpaRcUAWot99NvbxHuzx1JQEGKFI58
+	 QiiL0ok7G5sQSlo8yvQkPEQuS88rzE1HcgPzWmNuI1Ito7lyj/jVpZ4v3jh3HHOZYA
+	 SbnveT0uf1mhQkjGNzzBPrZiVfd1dH5QTeAL8Sj8fmkJFB/mA1ig3njRVkWqUw2Xbg
+	 iEaN3gGOGDzF2JpzLMRwW1iT1xPXR8bgc1/8gSlkA+U/icaAippFP4/wLerAesmnDW
+	 GWNpLB3ZFLi5Q==
+Date: Thu, 4 Sep 2025 08:48:14 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: robh@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, hansg@kernel.org, krzk+dt@kernel.org, lee@kernel.org, 
-	linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer
- documentation
-Message-ID: <20250904-brave-zippy-quoll-fcb054@kuoka>
-References: <20250902182114.GA965402-robh@kernel.org>
- <20250903235615.134520-1-alex@vinarskis.com>
+To: Pritam Manohar Sutar <pritam.sutar@samsung.com>
+Cc: vkoul@kernel.org, kishon@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, alim.akhtar@samsung.com, 
+	andre.draszik@linaro.org, peter.griffin@linaro.org, kauschluss@disroot.org, 
+	ivo.ivanov.ivanov1@gmail.com, igor.belwon@mentallysanemainliners.org, m.szyprowski@samsung.com, 
+	s.nawrocki@samsung.com, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-samsung-soc@vger.kernel.org, rosa.pila@samsung.com, dev.tailor@samsung.com, 
+	faraz.ata@samsung.com, muhammed.ali@samsung.com, selvarasu.g@samsung.com
+Subject: Re: [PATCH v8 1/6] dt-bindings: phy: samsung,usb3-drd-phy: add
+ ExynosAutov920 HS phy compatible
+Message-ID: <20250904-interesting-lovely-ringtail-38bbef@kuoka>
+References: <20250903073827.3015662-1-pritam.sutar@samsung.com>
+ <CGME20250903072936epcas5p4a28d0e63c7f0792b516b0cbc68bf3a8e@epcas5p4.samsung.com>
+ <20250903073827.3015662-2-pritam.sutar@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,52 +66,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250903235615.134520-1-alex@vinarskis.com>
+In-Reply-To: <20250903073827.3015662-2-pritam.sutar@samsung.com>
 
-On Thu, Sep 04, 2025 at 01:56:15AM +0200, Aleksandrs Vinarskis wrote:
-> > On Tue, Sep 02, 2025 at 11:10:51AM +0000, Aleksandrs Vinarskis wrote:
-> > > Currently supports passing 'led-names' used to map LED devices to their
-> > > respective functions.
-> > > 
-> > > Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> > > ---
-> > >  .../devicetree/bindings/leds/leds-consumer.yaml    | 69 ++++++++++++++++++++++
-> > >  1 file changed, 69 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..a63e78417df84609e279835f7dae62e3ad2f0bf5
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
-> > > @@ -0,0 +1,69 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Common leds consumer
-> > > +
-> > > +maintainers:
-> > > +  - Aleksandrs Vinarskis <alex@vinarskis.com>
-> > > +
-> > > +description:
-> > > +  Some LED defined in DT are required by other DT consumers, for example
-> > > +  v4l2 subnode may require privacy or flash LED.
-> > > +
-> > > +  Document LED properties that its consumers may define.
-> > 
-> > We already have the trigger-source binding for "attaching" LEDs to 
-> > devices. Why does that not work here?
+On Wed, Sep 03, 2025 at 01:08:22PM +0530, Pritam Manohar Sutar wrote:
+> Document support for the USB20 phy found on the ExynosAutov920 SoC. The
+> USB20 phy is functionally identical to that on the Exynos850 SoC, so no
+> driver changes are needed to support this phy. However, add a dedicated
+> compatible string for USB20 phy found in this SoC.
 > 
-> I have not actually considered this, as the existing privacy-led solution
-> from the original series is not trigger based. At least one of the reasons
-> for that is that trigger source can be rather easily altered from user
-> space, which would've been bad for this use case. If v4l2 acquires control
-> over the LED it actually removes triggers and disables sysfs on that LED.
+> Signed-off-by: Pritam Manohar Sutar <pritam.sutar@samsung.com>
 
-So does that mean that v4l2 solves the problem of "trigger source can be
-rather easily altered from user space"?
+You just dropped all tags without explaining why.
+
+<form letter>
+This is a friendly reminder during the review process.
+
+It looks like you received a tag and forgot to add it.
+
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions of patchset, under or above your Signed-off-by tag, unless
+patch changed significantly (e.g. new properties added to the DT
+bindings). Tag is "received", when provided in a message replied to you
+on the mailing list. Tools like b4 can help here. However, there's no
+need to repost patches *only* to add the tags. The upstream maintainer
+will do that for tags received on the version they apply.
+
+Please read:
+https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+If a tag was not added on purpose, please state why and what changed.
+</form letter>
 
 Best regards,
 Krzysztof
