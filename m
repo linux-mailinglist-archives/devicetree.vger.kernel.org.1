@@ -1,321 +1,282 @@
-Return-Path: <devicetree+bounces-212644-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57487B43627
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:43:35 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D90B1B437E1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 12:04:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4BDC818893BD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:43:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 834CA7A6E89
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:03:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A2F2C17B4;
-	Thu,  4 Sep 2025 08:43:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 621C12EBB8A;
+	Thu,  4 Sep 2025 10:04:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="JxcHDMYd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ao9mV0Tr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013003.outbound.protection.outlook.com [52.101.72.3])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BC282264B1
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 08:43:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.3
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756975401; cv=fail; b=ECgRJkMvSkIrF2THYYQmm6NgpcY4gpgrr2VfmC1n/kGiedhPI0ztW+hQzvUZclyGwmBIu6xHJKvCKKhlLNMfHj3XotGiiR9+tmFU9MkKDa6Ky4TEMaU6hjUfkfQjRYk0iV97MgH57tIE8u+tOeEEM6FYPpMgePK63d9ojdZ8ZXo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756975401; c=relaxed/simple;
-	bh=YwruPY+VNjfE7M9qRYhEhf0sW7gEfjOSPzhnPw71fro=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=VeQvip/LTy9VQkj7YY8K6AJMl4bkwAF1pax4an1cM8EsYfudbtRbB7K2Fp7OkJGb95KCFnJdmkgnB2nVkf8Ug0q9UlMSms29CZ/ciAicF3rBrst72hWGDF//Bb2dPdCXPZF9fVUSd4KIVG93WSQ8qzyQi1EFAsI9NwmFmuVzK0c=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=JxcHDMYd; arc=fail smtp.client-ip=52.101.72.3
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=CqnLgX4lxbz1jQ3o1Z3GqEvxL8XenEwnNhSZ6CV6gchDnMyjl7NkxWR1Sjkajh0HGGW6z4LshYmYyz4Pg0ftRhMMn6T9bRSHErUtPeahvB/lAayUsYcsMkZLad7iuGBlmv3Wue8VVjYaI7l6iSDVALUUalaunq1bwagDWVTbKEojMIxxDiUCz7MZdtPMRTNY5s6V/1hf6WjVm23/cSLwaUJM1+JLAwVQCFB8/K6rlpOgSctbVw8XpQhfNsNyvqSWOarJaJ1nkRIwYiL6ay5QhK+PZTiKNaOcHDfUT2IvdC0Yp0qHajqALO3IbsiUqA94uzeC3TzseHEg00Ysf+cJvw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Zu3E1WjY4WmyqXOsrv2s9p7xCmhaD8t/JWDK9bjZqR8=;
- b=EpGnCjYHwOgz6efgvOPjTr31mMZhgZcMHYMJ2h+Lfq5LSPXx4aQmypdr0/plcbpUJDuQ4hrgFDm8TrvSzngsNYxKszKYQbscHtn9OeiCwZVoKg3psr6sMn8Bi2CWNVJ7bLwX5QuxoYK5syaIcn5RKGqT5ttAJXZc26ZS8CUb4CrqrBvMySPDo1hdctJnojv6km0nYVbarjI4WhlUNPyuqQ9fcwV1S54XVhjWxqaONazjH7N4GIPt618H83tI9xFq6o1XDMOK8APWI/9tkfbAZldc0JCKAYgtK4urYM9dblJhFMrYUwe/RwKal+dYMFXfTaY1ASyynm+0Tc7xgt3IhA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector1-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Zu3E1WjY4WmyqXOsrv2s9p7xCmhaD8t/JWDK9bjZqR8=;
- b=JxcHDMYdnVW/NTn9ZxQ2U/I8+35Rukj3RgHb/TQtnqdv4sC+ykduG6aXzGRxVI+BvgsHh73j6brcdcYaRWMy0SWY5LnPHuENaldvT1hMu2TYz9unng54wf3LanUkzdnUklWlEHZu/7R8D0WAkO/GhNebQDZiQFcYNvQmmnsRF7ysIR049EdA/D5zIRDPPfTzC8aYEnkHXqm6xAmLO+ycDHCjNbCwiLZElcccIAn8zkXQhG5CH77dAJUkVQwB6bhOWojdrLeD+1abDzkpA9GKNCu/WhpkAvZEG55QydJAV4c5Z/2YxnmNNOjUrIggY8qs/S2Geiw5R6Xmxnv/k/nOsg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by PA1PR04MB11033.eurprd04.prod.outlook.com (2603:10a6:102:484::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Thu, 4 Sep
- 2025 08:43:15 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%7]) with mapi id 15.20.9094.016; Thu, 4 Sep 2025
- 08:43:15 +0000
-Date: Thu, 4 Sep 2025 17:54:35 +0800
-From: Peng Fan <peng.fan@oss.nxp.com>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: linux-arm-kernel@lists.infradead.org, dri-devel@lists.freedesktop.org,
-	Marek Vasut <marex@denx.de>,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Airlie <airlied@gmail.com>,
-	Fabio Estevam <festevam@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDC429AAEA;
+	Thu,  4 Sep 2025 10:04:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1756980282; cv=none; b=dTYhUB/Od+Y/CNo1KGYiuM4kE0xnYWWf5OgPnqa4m1OKU14n8FzE7vfhHyDX2WXIFrPmoq4rDtB++z3hjUuflDaYCzecIm8vq5scfVv6XWBpos5P4ax0vRjR19eowikyA70fghf6I30NQTSP8MDvhRAY5zxtxhlZbRzMVoJeRpc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1756980282; c=relaxed/simple;
+	bh=e8sCNKLHXZ3wRWcF/RMe9GH1E1HkP51BQPrLQvBj+Jk=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SZyH+g3b99jk/QyGPO0kIkGqaCS68GwXcviPi/nZn/dzocTJ3q4/7wbioeGFpMM6urafboTQJoGReIcv+BLUcd60tHYoenGtNbJlJwuCZmDfwqbHVovdTMTtSDdTpCQmZyUVQ+ded9HRcOjpCxnL/sItDJ8zJ1s7sQBdxfjt4PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ao9mV0Tr; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45b7da4101fso2776605e9.3;
+        Thu, 04 Sep 2025 03:04:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1756980279; x=1757585079; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ek9EYKXS2K219Y+/XLtHfNLMKPr93OF7TadNV0PAfFs=;
+        b=Ao9mV0Tr8Lv51GS5B4ntczdKBvYr2c09EZEF8g07rpS3ut6hh5qJckUIFs37QSW4a3
+         5SuNohbY6wzX0iMkyoKT6r/Dd4/h+7/XLM1hxvhnmrc321XjPhP5+pMINJnEoIP+Gslm
+         6YwhZgORMtc4QoJg5X6XMrK+n1W9lngdTUi7z54JVpNhRHgFEV5XmJmtzI8Yq7CPt8ff
+         cMnDgFf5+iZ2XYjmAVfMwe2rUzHKIWyEtl8ZT5gxquXqFdyMQZs1mVElG1yMXw5Z3Jfy
+         Adqclcnder1EyGgFqNxfZmLDuNya+dUGZAuGZWSyyMlZPg0TI8YPayJzKnVdhLoIYn9d
+         5maQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756980279; x=1757585079;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ek9EYKXS2K219Y+/XLtHfNLMKPr93OF7TadNV0PAfFs=;
+        b=kmOPyXoCxdioZc3hdfvHoy+VGrUVsElLmtqMy4yN0IJjSxuO0CgWjMWN5F1JoCW+vb
+         5+3nhCh1StnEPoFpO9PufpAg9yk4ZKThoBthxyzvqDrb6csj81w0MPrYafFA8Lxogq88
+         igMle0wIVH9S5e2q3aAmvbaoX66Xxw0TW8+e85oGrHxBtt5rNPG/mNK+duLtA+g1Nfqm
+         gP6sDW+rM3/jNsPVs7/jHeKnh4BfwGm27ZMCEXQquRKQU+sqzf6/LfyaqVwMqzY45UMo
+         lc+zMW0aHwhDOsOFCwDijuwHYkcX2nPtmoS/MWV9uyVyWmTIbYnRmNpcBHdzLQyl3vHl
+         1GVA==
+X-Forwarded-Encrypted: i=1; AJvYcCVkS06iUA2tuKm3ePPhAotUfyDcs1wIfHhc8vBCWvqncAw44Ms9T7jvbkPuU6D5+YBb3XVZbOkQSUrQjRh6@vger.kernel.org, AJvYcCXzsNIkqYCqnvW0D6JUjkaeaaYEcJcmuRxPrGiozreZ3/BVcTvuLonATMtnLq+COMVbdIIzBqtOeXfx@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx58Rb/1tJsZuxHt2bNcpS4cfrsYD4bo86QA52F+F2K7zhaL9+1
+	QRveht7BKV9Q0mFmqj9XuzMwSLxLO+csY+6NZo9GnG6qB2tGF/XC+8fG
+X-Gm-Gg: ASbGnctiPRqUA3OIH9nd2D+3BgAuQaBXOHEGMW7md89rhOeL+tjKDGZoXfUszCnGGr7
+	1bHEFS3vTbLUXDcUUnAea3gi1wtKcWiJgHxJLrPZ9rzHtKrh+/NDOQfSrVWVwxiK/9pnre/MKvg
+	kqUjiIEQeIgEQXAG7X7CP8UzyLIV52kLJhNN21n8CH6zyaD0USMecKY5NoGe41uwE97D0sjxr1j
+	8315aQTxZbJYOfXkfGU4Z9bz6wcQoaRbcfjiC3NDk4C9frj8OODEIebDUm2kf6GwLex+e2x1YEQ
+	74aGIyUkGLs29o35/jXLzqyF+BXdTEN4OJ1hUaNH4B6u8bi2blXFR50STP8emiqNkotyTzzBjNB
+	u0o342uwrnWzRK3A1VdhYFTH2SMipWvMokxnMfZC4hXlvVJkMPrUP1vI/Wg==
+X-Google-Smtp-Source: AGHT+IH/n4569WVp7OYtaqAxS3++rY5OHrFxGS8luoF7L0HnUjYxEiq5MoQT0FbLi9B/HY0tyzRYuA==
+X-Received: by 2002:a05:600c:8b8b:b0:45c:b609:cbc5 with SMTP id 5b1f17b1804b1-45cb609cea7mr42663535e9.20.1756980278393;
+        Thu, 04 Sep 2025 03:04:38 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:904e:70c8:edf3:59a4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e68c83asm301288725e9.20.2025.09.04.03.04.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 03:04:37 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
 	Rob Herring <robh@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Sebastian Reichel <sre@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>,
-	Steven Price <steven.price@arm.com>,
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: Re: [PATCH v2 9/9] arm64: dts: imx95: Describe Mali G310 GPU
-Message-ID: <20250904095435.GD13411@nxa18884-linux.ap.freescale.net>
-References: <20250321200625.132494-1-marex@denx.de>
- <20250321200625.132494-10-marex@denx.de>
- <6144881.lOV4Wx5bFT@steina-w>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6144881.lOV4Wx5bFT@steina-w>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-ClientProxiedBy: SG2PR06CA0237.apcprd06.prod.outlook.com
- (2603:1096:4:ac::21) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzt2h-n2h-evk: Enable USB2.0 support
+Date: Thu,  4 Sep 2025 11:04:35 +0100
+Message-ID: <20250904100435.4033858-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|PA1PR04MB11033:EE_
-X-MS-Office365-Filtering-Correlation-Id: a6e67714-b2b9-4d62-fea0-08ddeb8f16e3
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|19092799006|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?qJwvdSgTM9wqciqBkPNEYOm5QqwFhS9WjBgI7jsW9+KYR0SJ1KmBGc43njk9?=
- =?us-ascii?Q?ToShLVU4l3GXQuSicXoAWaGZNQXMQPkoxWpIl/H6rDSilgeAmU22V0AXBze0?=
- =?us-ascii?Q?bMNvWddTpEn34dj5/TqhQF1TavSw++JWj4BBBUsAt1L7wz6XTNw9RfBul3t5?=
- =?us-ascii?Q?BooybzZptpstN28V1ESJLhKXiflX972exY7q7M8fwD7X7uyYJH3tIOLn0bCj?=
- =?us-ascii?Q?HGZh6RwsxwcvSwgWpruH+qYR5uVrePyhbJAxcEmoPHGle66CydRpq42ueaPA?=
- =?us-ascii?Q?VvlqmFyIHX/BC9nzjuewAP6o5g8NWYnsa97Q0R9AbvJ/A98tYbhqNpLUq/hN?=
- =?us-ascii?Q?qUhBMrT4A845ed9ufeo+yrr+RNmuCK5egfNt9rrRxfGw5MlPbrsi2INbP46b?=
- =?us-ascii?Q?e5NGZRp1oq/Sv3CDJ3rQYnpeR6QS9jkHZQjYCHQ+GMYmyON7T8TTVmrWsHdb?=
- =?us-ascii?Q?e8GIaudeVyj3dT1kgasRtRDUxDrm93pox6AhmqreV/t6RAhlGoUhAsRufI2g?=
- =?us-ascii?Q?a7fgVbiIMLSFi7jydJWk2QiMLctYBrrq4MFYP0e0Z6mwvwKye2of9ESOSE01?=
- =?us-ascii?Q?qkyoSadiLk8/kvYOrkw3RiRXxTkEOhD1F0rfqU2tdbzVhDdyUGL5nSGMU+J9?=
- =?us-ascii?Q?QcoAx/B8wHUdGKZl3w4k5CEkZTQWjBAwoWD/X2fp1aEdbdJZhlHkjta3MvoJ?=
- =?us-ascii?Q?oSouqjtFd1AIclscZNvp3dQV2VSvFEzSt3q5seWs0iKgmiHTUKKwNtqEMMlZ?=
- =?us-ascii?Q?WoNkIflwpFeELrpOzI4tNEupe4r3Fs3l0MFXYLSRC9xaHnekj8buUW90aOcN?=
- =?us-ascii?Q?i6C6ZqvLjowMsSkN4ilyOfgKhwSS9u3ou1eaAO38mJU7korK9JC00nvgn74Q?=
- =?us-ascii?Q?m9rCFRwNKC9CnfY3WQE5mtXaA+ChVhSO6cskWAslRyQRoakJZPDfMV6ctTRz?=
- =?us-ascii?Q?2/1KMo+Z0fn4FVl9l7SigPYooJPLqQ6Y9J48n27TkDS80hESmjexoxA65E8x?=
- =?us-ascii?Q?50+G8UTCx9SHPl0rVUuB8QS7vDrxm49n7R+t1jAYC0ormO+rIjMil9s2hRjd?=
- =?us-ascii?Q?qleFvym+2N5y2tFUDMC4xq8KEn3mTUlE2Vzll7youSgwqzR0MuzzDJzLfq/O?=
- =?us-ascii?Q?PWnPFqXP0PimmXyFE8CEgDsGabn+VB6Y5WLQNtBSIuplk/SIsAZHkFfY3l30?=
- =?us-ascii?Q?ev2+S9a2pNm6tsPYdHBBthyAeAoyehipaRGuiNM8YnLrILA1Gd4Ynh/Jg1MD?=
- =?us-ascii?Q?bntb9t6xdpuWgdckM85yyz/DAE1RkeZ9b4GsG085zlIYUsSJYjLJsrcs3oZv?=
- =?us-ascii?Q?JkfFkrpZlfTVgP55mEMUMs/mHjXCpFVDv9K9cJBEdT1LUNFJrSQgxElwCPr4?=
- =?us-ascii?Q?5wMqTkooXiUGHVK55k8l7VxfVwm/CRcCC+c7layy+YEaby82xS4oFP4YoOuV?=
- =?us-ascii?Q?x7ASyrlK5Is=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?YUnpARJVRG/eT9IyCpWE+H8wEAuhxDzvcQ5z17Rliu7cIYgsb/b1aa/pwyCa?=
- =?us-ascii?Q?vweq/fDGy21fppdEIjyPji+KcFfqHQZuFdPnaDwvPyfrWznvbW7Y0bjQVv9W?=
- =?us-ascii?Q?YBn8pJPrnCcXyw8Qp6QteWGbQAduVdlIydc5EJraZqBuJXrfuAWFstWBBtc8?=
- =?us-ascii?Q?0nW2iijBVdiAWU34mV/kaAjPQ/kCH5evuFgRVswQedmxmRHV5DZfZaEfoIHo?=
- =?us-ascii?Q?/T2OMoqv9uqdeiayfxMN96jkovxZQproflCxvAx533YZRuBY/7kMjV2koFpE?=
- =?us-ascii?Q?YdmesIiypJAEhzQrydMLieAwqQWHj2+vETBBBb2CcTAYGVxdNi+bNV0nWeQd?=
- =?us-ascii?Q?CCKGbQ631pVB9DqLnjWQ7LJ+qMDDXfZpgKHMYBhr/HQNuMwU+kKrMhv/LfTq?=
- =?us-ascii?Q?1khMTmovHABNaprJkqkdKH4MFicj5nw3v8Kj7M5YT8APq8Chx9Y3vaKNk28H?=
- =?us-ascii?Q?qqZPntSB9OE2vkT9CsV9CaViHFNXMK317+3/+SfDBEKWsvt3CfzJAXmJOJsy?=
- =?us-ascii?Q?GUXrr38MSlLuM7W6EV5BhuxaNC4i3Z8lVNDtZmqz8L9xpU+HxilE2kHk+i22?=
- =?us-ascii?Q?JLZe9v1sXiDBn1JLHhK+yYDaxsZXdmEGxrYsB26YdFNLNB2X5EifHuJ6MCch?=
- =?us-ascii?Q?diNT9516hhmGnZx3Aj/Qtwpp1fBpS1Re+8rgTw7o5CqpbzI7x+LGurv6Lp1x?=
- =?us-ascii?Q?6Xft+czBOD3Zlh+4bjpRYMx76X/bstgtKO+Xhr2v5L8Mxx/HDWCUqDhK/Y8S?=
- =?us-ascii?Q?pdYeR+ZS4FiPgHLeyqgsdzqKVCqJSTcr5HB/Ko0qV5PXd3yO5L/3NtZm0Ogi?=
- =?us-ascii?Q?qy1H6FgnF7zzMtzHtCEodxJlIkqCnhghM0gahYnOkHpVlCcpWkB+KlBSq1yo?=
- =?us-ascii?Q?XgNj2hW/TRvhg2sBgr0R09Giu4jaNknzGg9QDwOTiDlhKtjT/fNA8L1qDA4f?=
- =?us-ascii?Q?hSlliCzb0aD21kwQgUULL7kh4QAVH1A0jk1uvChma8TIAxRh3OxwguWh8mvj?=
- =?us-ascii?Q?6S0A1EjtLiO+GT8lmSOxR5FT/FrlXzSIWVXBtdtG1ZiX57kr5lbaJIJH2RrI?=
- =?us-ascii?Q?CZBkORg9qbvSYMHZ1BzM7vTQXLbIdCHjlf6fYI0eivqEri56o2eWBOV2dcXX?=
- =?us-ascii?Q?6UQCmCipk1I08Sg91BQSvvF6Kint62XWQDQsaz3Rj/z7FMB+RtE5qn7zx/W2?=
- =?us-ascii?Q?LwSFXIsbDunAsOl7sY7O/yEmPKfVYk8HKW7SVrg4BNbvcm4mZ8CkVjuuekLP?=
- =?us-ascii?Q?M3iLMmngcGS2BnHL9BxcHF27KKXv19O01W2iM1EC/54i70gJX5G+RGlqobC1?=
- =?us-ascii?Q?qRE5IcXetwAFiQhGxyJ6aLAjJSDaULfDUAnFhiSz/HoZE91TIcrbeochsXPp?=
- =?us-ascii?Q?GL2XEpgdbLqIEMFQsFcnubVWb0jK1BCJfJOMF+6rMgJd7W5LN5KdBhZARP3D?=
- =?us-ascii?Q?F8ngQLVMTdRw1PIV0uMM3giwrutxf+xLovu3r2ykWyTOpk5k23aN7xybznzq?=
- =?us-ascii?Q?vLR2QBnyywc4MZAg2fLZ7fXqh/iH/XsZqXqml4YJylLq/g2PWqbNCkQcWnNs?=
- =?us-ascii?Q?4IYlcBK0VSWRUB1svH0rnnL/S3+bGYFg880cvcY6?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6e67714-b2b9-4d62-fea0-08ddeb8f16e3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 08:43:15.5749
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yy49sAcY9t+0Cg57pzj7Rz+jAcWP0fcTIZbSDt3NuiJEGN8mGqEwitBsUv8YFioeeAs2LaBNAZ73AnzAAwEY0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA1PR04MB11033
+Content-Transfer-Encoding: 8bit
 
-On Mon, Mar 24, 2025 at 08:02:06AM +0100, Alexander Stein wrote:
->Am Freitag, 21. M?rz 2025, 21:05:59 CET schrieb Marek Vasut:
->> The instance of the GPU populated in i.MX95 is the G310,
->> describe this GPU in the DT. Include description of the
->> GPUMIX block controller, which can be operated as a simple
->> reset. Include dummy GPU voltage regulator and OPP tables.
->> 
->> Signed-off-by: Marek Vasut <marex@denx.de>
->> ---
->> Cc: Boris Brezillon <boris.brezillon@collabora.com>
->> Cc: Conor Dooley <conor+dt@kernel.org>
->> Cc: David Airlie <airlied@gmail.com>
->> Cc: Fabio Estevam <festevam@gmail.com>
->> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
->> Cc: Liviu Dudau <liviu.dudau@arm.com>
->> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->> Cc: Maxime Ripard <mripard@kernel.org>
->> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->> Cc: Philipp Zabel <p.zabel@pengutronix.de>
->> Cc: Rob Herring <robh@kernel.org>
->> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->> Cc: Sebastian Reichel <sre@kernel.org>
->> Cc: Shawn Guo <shawnguo@kernel.org>
->> Cc: Simona Vetter <simona@ffwll.ch>
->> Cc: Steven Price <steven.price@arm.com>
->> Cc: Thomas Zimmermann <tzimmermann@suse.de>
->> Cc: devicetree@vger.kernel.org
->> Cc: dri-devel@lists.freedesktop.org
->> Cc: imx@lists.linux.dev
->> Cc: linux-arm-kernel@lists.infradead.org
->> ---
->> V2: - Drop regulator-{always,boot}-on from fixed-gpu-reg regulator
->>     - Keep the GPU and GPUMIX always enabled
->>     - Switch from fsl, to nxp, vendor prefix
->>     - Fix opp_table to opp-table
->>     - Describe IMX95_CLK_GPUAPB as coregroup clock
->>     - Sort interrupts by their names to match bindings
->> ---
->>  arch/arm64/boot/dts/freescale/imx95.dtsi | 58 ++++++++++++++++++++++++
->>  1 file changed, 58 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/freescale/imx95.dtsi b/arch/arm64/boot/dts/freescale/imx95.dtsi
->> index 9bb26b466a061..3acdbd7fd4eee 100644
->> --- a/arch/arm64/boot/dts/freescale/imx95.dtsi
->> +++ b/arch/arm64/boot/dts/freescale/imx95.dtsi
->> @@ -249,6 +249,35 @@ dummy: clock-dummy {
->>  		clock-output-names = "dummy";
->>  	};
->>  
->> +	gpu_fixed_reg: fixed-gpu-reg {
->> +		compatible = "regulator-fixed";
->> +		regulator-min-microvolt = <920000>;
->> +		regulator-max-microvolt = <920000>;
->> +		regulator-name = "vdd_gpu";
->> +	};
->> +
->> +	gpu_opp_table: opp-table {
->> +		compatible = "operating-points-v2";
->> +
->> +		opp-500000000 {
->> +			opp-hz = /bits/ 64 <500000000>;
->> +			opp-hz-real = /bits/ 64 <500000000>;
->> +			opp-microvolt = <920000>;
->> +		};
->> +
->> +		opp-800000000 {
->> +			opp-hz = /bits/ 64 <800000000>;
->> +			opp-hz-real = /bits/ 64 <800000000>;
->> +			opp-microvolt = <920000>;
->> +		};
->> +
->> +		opp-1000000000 {
->> +			opp-hz = /bits/ 64 <1000000000>;
->> +			opp-hz-real = /bits/ 64 <1000000000>;
->> +			opp-microvolt = <920000>;
->> +		};
->> +	};
->> +
->>  	clk_ext1: clock-ext1 {
->>  		compatible = "fixed-clock";
->>  		#clock-cells = <0>;
->> @@ -1890,6 +1919,35 @@ netc_emdio: mdio@0,0 {
->>  			};
->>  		};
->>  
->> +		gpu_blk_ctrl: reset-controller@4d810000 {
->> +			compatible = "nxp,imx95-gpu-blk-ctrl";
->> +			reg = <0x0 0x4d810000 0x0 0xc>;
->> +			#reset-cells = <1>;
->> +			clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
->> +			assigned-clocks = <&scmi_clk IMX95_CLK_GPUAPB>;
->> +			assigned-clock-parents = <&scmi_clk IMX95_CLK_SYSPLL1_PFD1_DIV2>;
->> +			assigned-clock-rates = <133333333>;
->> +			power-domains = <&scmi_devpd IMX95_PD_GPU>;
->> +		};
->
->With the SM release lf-6.12.3-1.0.0 AP does not have any access to
->this BLK_CTRL anymore. See [1]
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Right. In configs/mx95evk.cfg, BLK_CTRL_GPUMIX is assigned to M33P, and
-System manager will automatically handle this reset.
+Enable USB2.0 support on RZ/T2H and RZ/N2H EVKs.
 
-Regards
-Peng
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+v1->v2:
+- Reflowed comments to adhere to 80 char width.
+- Updated comment about simultaneously using USB host and function interfaces.
 
->
->Best regards,
->Alexander
->
->[1] https://github.com/nxp-imx/imx-sm/blob/master/sm/doc/rn_cl.md#sm-184-deassert-the-gpu-reset-when-the-gpumix-is-powered-up-rn_detail_sm_184
->
->> +
->> +		gpu: gpu@4d900000 {
->> +			compatible = "nxp,imx95-mali", "arm,mali-valhall-csf";
->> +			reg = <0 0x4d900000 0 0x480000>;
->> +			clocks = <&scmi_clk IMX95_CLK_GPU>, <&scmi_clk IMX95_CLK_GPUAPB>;
->> +			clock-names = "core", "coregroup";
->> +			interrupts = <GIC_SPI 289 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 290 IRQ_TYPE_LEVEL_HIGH>,
->> +				     <GIC_SPI 288 IRQ_TYPE_LEVEL_HIGH>;
->> +			interrupt-names = "job", "mmu", "gpu";
->> +			mali-supply = <&gpu_fixed_reg>;
->> +			operating-points-v2 = <&gpu_opp_table>;
->> +			power-domains = <&scmi_devpd IMX95_PD_GPU>, <&scmi_perf IMX95_PERF_GPU>;
->> +			power-domain-names = "mix", "perf";
->> +			resets = <&gpu_blk_ctrl 0>;
->> +			#cooling-cells = <2>;
->> +			dynamic-power-coefficient = <1013>;
->> +		};
->> +
->>  		ddr-pmu@4e090dc0 {
->>  			compatible = "fsl,imx95-ddr-pmu", "fsl,imx93-ddr-pmu";
->>  			reg = <0x0 0x4e090dc0 0x0 0x200>;
->> 
->
->
->-- 
->TQ-Systems GmbH | M?hlstra?e 2, Gut Delling | 82229 Seefeld, Germany
->Amtsgericht M?nchen, HRB 105018
->Gesch?ftsf?hrer: Detlef Schneider, R?diger Stahl, Stefan Schneider
->http://www.tq-group.com/
->
->
+Note, this patch was originally part of series [0], rest of the
+patches have been accepted so just sending this one.
+[0] https://lore.kernel.org/all/20250821161946.1096033-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ .../dts/renesas/r9a09g077m44-rzt2h-evk.dts    | 36 ++++++++++++++++
+ .../dts/renesas/r9a09g087m44-rzn2h-evk.dts    | 41 +++++++++++++++++++
+ .../dts/renesas/rzt2h-n2h-evk-common.dtsi     | 22 ++++++++++
+ 3 files changed, 99 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+index 264f7ddb8cc5..2bf867273ad0 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g077m44-rzt2h-evk.dts
+@@ -29,6 +29,28 @@
+  */
+ #define SD1_MICRO_SD	1
+ 
++/*
++ * USB Pin Configuration:
++ *
++ * This board is equipped with three USB connectors: Type-A (CN80), Mini-B
++ * (CN79), and Micro-AB (CN33). The RZ/T2H SoC has a single USB channel, so
++ * either the USB host interface or the USB function interface can be used,
++ * but not both simultaneously when using the CN79 and CN80 connectors.
++ *
++ * By default, the Type-A (CN80) and Mini-B (CN79) connectors are enabled.
++ * Configure the switches as follows:
++ *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] = ON
++ *   - USB_VBUSIN (used for USB function): SW7[7] = OFF; SW7[8] = ON
++ *   - USB_VBUSEN (used for USB_HF_VBUSEN): SW7[9] = OFF; SW7[10] = ON
++ *
++ * To enable the Micro-AB (CN33) USB OTG connector, set the following macro
++ * to 1 and configure the switches as follows:
++ *   - P00_0 - P00_2 (control signals for USB power supply): SW1[5] = ON
++ *   - USB_VBUSIN (used for USB OTG): SW7[7] = ON; SW7[8] = OFF
++ *   - USB_VBUSEN (used for USB_OTG_VBUSEN): SW7[9] = ON; SW7[10] = OFF
++ */
++#define USB_OTG		0
++
+ #include "rzt2h-n2h-evk-common.dtsi"
+ 
+ / {
+@@ -145,4 +167,18 @@ i2c1_pins: i2c1-pins {
+ 		pinmux = <RZT2H_PORT_PINMUX(5, 0, 0x17)>, /* SDA */
+ 			 <RZT2H_PORT_PINMUX(4, 7, 0x17)>; /* SCL */
+ 	};
++
++#if USB_OTG
++	usb-exicen-hog {
++		gpio-hog;
++		gpios = <RZT2H_GPIO(0, 2) GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "usb_exicen_a";
++	};
++#endif
++
++	usb_pins: usb-pins {
++		pinmux = <RZT2H_PORT_PINMUX(0, 0, 0x13)>, /* VBUSEN */
++			 <RZT2H_PORT_PINMUX(0, 1, 0x13)>; /* OVRCUR */
++	};
+ };
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+index 80f358fb2d74..084b3a0c8052 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g087m44-rzn2h-evk.dts
+@@ -33,6 +33,33 @@
+  */
+ #define SD1_MICRO_SD	1
+ 
++/*
++ * USB Pin Configuration:
++ *
++ * This board is equipped with three USB connectors: Type-A (CN7), Mini-B
++ * (CN8), and Micro-AB (CN9). The RZ/N2H SoC has a single USB channel, so
++ * either the USB host interface or the USB function interface can be used,
++ * but not both simultaneously when using the CN7 and CN8 connectors.
++ *
++ * By default, the Type-A (CN7) and Mini-B (CN8) connectors are enabled.
++ * Configure the switches as follows:
++ *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] = OFF;
++ *     - P02_2 (used for VBUSEN): DSW14[5] = OFF; DSW14[6] = ON
++ *     - P02_3 (used for USB_OVRCUR): DSW14[1] = OFF; DSW14[2] = ON
++ *   - USB_VBUSIN (used for VBUS of CN8): DSW16[1] = OFF; DSW16[2] = ON
++ *   - USB_VBUSEN (used for USB_HF_VBUSEN): DSW16[3] = OFF; DSW16[4] = ON
++ *
++ * To enable the Micro-AB (CN9) USB OTG connector, set the following macro
++ * to 1 and configure the switches as follows:
++ *   - P02_2 - P02_3 (control signals for USB power supply): DSW2[6] = OFF;
++ *     - P02_2 (used for VBUSEN): DSW14[5] = OFF; DSW14[6] = ON
++ *     - P02_3 (used for USB_OVRCUR): DSW14[1] = OFF; DSW14[2] = ON
++ *   - USB_VBUSIN (used for VBUS for OTG): DSW16[1] = ON; DSW16[2] = OFF
++ *   - USB_VBUSEN (used for USB_OTG_VBUSEN): DSW16[3] = ON; DSW16[4] = OFF
++ *   - USB_EXICEN (used for USB OTG EXICEN): DSW14[3] = OFF; DSW14[4] = ON
++ */
++#define USB_OTG		0
++
+ #include "rzt2h-n2h-evk-common.dtsi"
+ 
+ /*
+@@ -185,4 +212,18 @@ i2c1_pins: i2c1-pins {
+ 		pinmux = <RZT2H_PORT_PINMUX(3, 3, 0x17)>,
+ 			 <RZT2H_PORT_PINMUX(3, 4, 0x17)>;
+ 	};
++
++#if USB_OTG
++	usb-exicen-hog {
++		gpio-hog;
++		gpios = <RZT2H_GPIO(2, 4) GPIO_ACTIVE_HIGH>;
++		output-high;
++		line-name = "usb_exicen_a";
++	};
++#endif
++
++	usb_pins: usb-pins {
++		pinmux = <RZT2H_PORT_PINMUX(2, 2, 0x13)>, /* VBUSEN */
++			 <RZT2H_PORT_PINMUX(2, 3, 0x13)>; /* OVRCUR */
++	};
+ };
+diff --git a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+index 91068042bec0..5c91002c99c4 100644
+--- a/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzt2h-n2h-evk-common.dtsi
+@@ -65,10 +65,20 @@ vccq_sdhi1: regulator-vccq-sdhi1 {
+ #endif
+ };
+ 
++&ehci {
++	dr_mode = "otg";
++	status = "okay";
++};
++
+ &extal_clk {
+ 	clock-frequency = <25000000>;
+ };
+ 
++&hsusb {
++	dr_mode = "otg";
++	status = "okay";
++};
++
+ &i2c0 {
+ 	eeprom: eeprom@50 {
+ 		compatible = "renesas,r1ex24016", "atmel,24c16";
+@@ -77,6 +87,11 @@ eeprom: eeprom@50 {
+ 	};
+ };
+ 
++&ohci {
++	dr_mode = "otg";
++	status = "okay";
++};
++
+ &pinctrl {
+ 	/*
+ 	 * SCI0 Pin Configuration:
+@@ -218,6 +233,13 @@ &sdhi1 {
+ };
+ #endif
+ 
++&usb2_phy {
++	pinctrl-0 = <&usb_pins>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
+ &wdt2 {
+ 	status = "okay";
+ 	timeout-sec = <60>;
+-- 
+2.51.0
+
 
