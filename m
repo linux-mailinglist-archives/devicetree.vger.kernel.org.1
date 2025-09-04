@@ -1,205 +1,138 @@
-Return-Path: <devicetree+bounces-212584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D38FB433DF
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:25:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35CFCB433ED
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:27:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D832716F2E2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:25:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 151947C0BB8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 059BF29B20D;
-	Thu,  4 Sep 2025 07:25:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E18FB29B795;
+	Thu,  4 Sep 2025 07:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="I3CSQtaW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b9Ohtwe7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2C082857F2;
-	Thu,  4 Sep 2025 07:25:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B1A4728642E;
+	Thu,  4 Sep 2025 07:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756970700; cv=none; b=QGRsgPygdqVvcM6JdGPc5lzwhdQzqNgk+7FeMeWmALgFb4iyHW94qRuPWuND3eYADZeLpGHR9QwX/NofwLvj1ct+51zrn1aiXAcku8zDTPQnbofhDdI7CI+fm1JUOUzndwX+72Z+Rx4pikwQ9L2/RD2A4SIsXL0fry2xh1t3jf8=
+	t=1756970797; cv=none; b=dYG1NfTFnbRsi7gh1BPXMretcqTI8DcRADi0lZFDxvLjeab581q3KwptxGepl4/F3Eckmiml8VmwscgfpbbcLe3dlFOxdGTo3C7O3jp0NP0EdAsr8PeT9uzw8cGkPKVMFhdQwt/CECXuHIX0gKu93gjL9fIosgXPz0GNnTX8DlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756970700; c=relaxed/simple;
-	bh=g0FuMImBTb4zXFyvNIW7Qc6+EhCzoXvGszP1fCb2DTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TF2eGHfgnfwi2S8xGv49AzXEXmY4tmalah28s+gSCVDWuwtV/ssgbtik69ZLSZTLJu1Sqfns5yTj0JksH/qYvRrtETrqKHFEvEKEmsMpHF9qSzUqF2+Mjzxfzx8ohoYAHhybxWsKY6LNFpUZ8zJQYsRm7uMehY6yBR6f0GRxDWg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=I3CSQtaW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB03AC4CEF0;
-	Thu,  4 Sep 2025 07:24:59 +0000 (UTC)
+	s=arc-20240116; t=1756970797; c=relaxed/simple;
+	bh=+NYaOCPItpDlaD7FQ3Be9kESQKapmAmo5S7ez9CtVsI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mnzrcBdDxo4ZRV9iGJkY4aBeWuOO6hRXkzNkTcDd9lw4SsDnIilmlo6gOy1B9d3sNBp465PI28YIiEwi1dMvS404mD4cO7n6BzpKnIVXILhIMGD3EyPSGrk3A525UIdAWA5plIqnIA02vXDt5KXYXMogDM8QKmx2TEu0a17JfiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b9Ohtwe7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3316C4CEF0;
+	Thu,  4 Sep 2025 07:26:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756970700;
-	bh=g0FuMImBTb4zXFyvNIW7Qc6+EhCzoXvGszP1fCb2DTQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=I3CSQtaWLoUBZ85Cvb1X1zBhfnr9t+Mlx6sTaW7ep3CIC2futjzePPUqmfPk6v9Q3
-	 7hyDBFdOohOGBjOSv7NYmUiz/q01m8EecwxOGilSwsSSK4cdgjx6DOOJTUoLnnrkXD
-	 e0WgFviKLo69ikPOJ/vBYz0JPxcHfpMMiemJiGbKXu/ws4+yt3LOW0Qx2DCS3gv+8L
-	 CxYzje0TKoCaNijozuS+Uhu+deDHwFjdVbb9hAzF7QZqxYFYFRvhZQC058vyGhZvSk
-	 NRCTbMu7MA6lGlr0YbKBbumnI2POEyid1a7vxYb2Ef2XdgEgttGQjaZqBOzsrPN5qh
-	 SsKhLz9eDCnXg==
-Date: Thu, 4 Sep 2025 09:24:57 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc: imx@lists.linux.dev, Philipp Zabel <p.zabel@pengutronix.de>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/9] dt-bindings: display: imx: Add bindings for
- i.MX94 DCIF
-Message-ID: <20250904-attentive-seagull-of-fantasy-adea9f@kuoka>
-References: <20250903123332.2569241-1-laurentiu.palcu@oss.nxp.com>
- <20250903123332.2569241-5-laurentiu.palcu@oss.nxp.com>
+	s=k20201202; t=1756970797;
+	bh=+NYaOCPItpDlaD7FQ3Be9kESQKapmAmo5S7ez9CtVsI=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b9Ohtwe7z/w9fPYOLb5IhCNjven1ylN0T83xpiqZC60rvNm4ehiKPzrW4IqUn8bxn
+	 EX0oC1bCKWf2OWby32oH0cst+FPA4Z1cq5k1hyMnjZ3Wvn0KAPTr80+HJGUfO7vFge
+	 g9zzwZrDdJB2u5YFi0zuW23bMIZIZ1dWZcoVbE43uEivEhZxD2V6qZ1T5c+Ky23JSb
+	 NlyExosN4ryVn0yxZ0g1JAeUxRcbd/UI5Mo33Gln3ywWqJ33jhGhOmsJrwRkMzhRtZ
+	 urSVOWT/5kLn1CcjvnMmiKjLDf3VVC4FPUGfICqXGX0usP+TwWII/PTb29fdFYUQYe
+	 wP3yHm3bztlaA==
+Message-ID: <daf442a6-b4d6-4213-8ec0-10397d682cc4@kernel.org>
+Date: Thu, 4 Sep 2025 09:26:32 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250903123332.2569241-5-laurentiu.palcu@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: leds: add generic LED consumer
+ documentation
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+ Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: robh@kernel.org, bryan.odonoghue@linaro.org, conor+dt@kernel.org,
+ devicetree@vger.kernel.org, krzk+dt@kernel.org, lee@kernel.org,
+ linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org, pavel@kernel.org
+References: <20250902182114.GA965402-robh@kernel.org>
+ <20250903235615.134520-1-alex@vinarskis.com>
+ <20250904-brave-zippy-quoll-fcb054@kuoka>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20250904-brave-zippy-quoll-fcb054@kuoka>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Sep 03, 2025 at 03:33:22PM +0300, Laurentiu Palcu wrote:
-> DCIF is the i.MX94 Display Controller Interface which is used to
-> drive a TFT LCD panel or connects to a display interface depending
-> on the chip configuration.
-
-It looks like you are going to send v5, so:
-
-A nit, subject: drop second/last, redundant "bindings for". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-Anyway, nothing in the changelog explains dropping tags.
-
-I am not going to do the work twice. Write proper changelogs.
-
-<form letter>
-This is a friendly reminder during the review process.
-
-It looks like you received a tag and forgot to add it.
-
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions of patchset, under or above your Signed-off-by tag, unless
-patch changed significantly (e.g. new properties added to the DT
-bindings). Tag is "received", when provided in a message replied to you
-on the mailing list. Tools like b4 can help here. However, there's no
-need to repost patches *only* to add the tags. The upstream maintainer
-will do that for tags received on the version they apply.
-
-Please read:
-https://elixir.bootlin.com/linux/v6.12-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-If a tag was not added on purpose, please state why and what changed.
-</form letter>
-
+Hi, 
+On 4-Sep-25 8:41 AM, Krzysztof Kozlowski wrote:
+> On Thu, Sep 04, 2025 at 01:56:15AM +0200, Aleksandrs Vinarskis wrote:
+>>> On Tue, Sep 02, 2025 at 11:10:51AM +0000, Aleksandrs Vinarskis wrote:
+>>>> Currently supports passing 'led-names' used to map LED devices to their
+>>>> respective functions.
+>>>>
+>>>> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+>>>> ---
+>>>>  .../devicetree/bindings/leds/leds-consumer.yaml    | 69 ++++++++++++++++++++++
+>>>>  1 file changed, 69 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000000000000000000000000000000..a63e78417df84609e279835f7dae62e3ad2f0bf5
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+>>>> @@ -0,0 +1,69 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Common leds consumer
+>>>> +
+>>>> +maintainers:
+>>>> +  - Aleksandrs Vinarskis <alex@vinarskis.com>
+>>>> +
+>>>> +description:
+>>>> +  Some LED defined in DT are required by other DT consumers, for example
+>>>> +  v4l2 subnode may require privacy or flash LED.
+>>>> +
+>>>> +  Document LED properties that its consumers may define.
+>>>
+>>> We already have the trigger-source binding for "attaching" LEDs to 
+>>> devices. Why does that not work here?
+>>
+>> I have not actually considered this, as the existing privacy-led solution
+>> from the original series is not trigger based. At least one of the reasons
+>> for that is that trigger source can be rather easily altered from user
+>> space, which would've been bad for this use case. If v4l2 acquires control
+>> over the LED it actually removes triggers and disables sysfs on that LED.
 > 
-> Signed-off-by: Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> ---
->  .../bindings/display/imx/nxp,imx94-dcif.yaml  | 82 +++++++++++++++++++
->  1 file changed, 82 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> new file mode 100644
-> index 0000000000000..54419c589ef74
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/imx/nxp,imx94-dcif.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2025 NXP
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/imx/nxp,imx94-dcif.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: i.MX94 Display Control Interface (DCIF)
-> +
-> +maintainers:
-> +  - Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-> +
-> +description:
-> +  The Display Control Interface(DCIF) is a system master that fetches graphics
-> +  stored in memory and displays them on a TFT LCD panel or connects to a
-> +  display interface depending on the chip configuration.
-> +
-> +properties:
-> +  compatible:
-> +    const: nxp,imx94-dcif
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    items:
-> +      - description: CPU domain 0 (controlled by common registers group).
-> +      - description: CPU domain 1 (controlled by background layer registers group).
-> +      - description: CPU domain 2 (controlled by foreground layer registers group).
-> +
-> +  interrupt-names:
-> +    items:
-> +      - const: common
-> +      - const: bg_layer
-> +      - const: fg_layer
-> +
-> +  clocks:
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb
-> +      - const: axi
-> +      - const: pix
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/properties/port
-> +    description: Display Pixel Interface(DPI) output port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        display-controller@4b120000 {
-> +            compatible = "nxp,imx94-dcif";
-> +            reg = <0x0 0x4b120000 0x0 0x300000>;
-> +            interrupts = <GIC_SPI 377 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 378 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 379 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "common", "bg_layer", "fg_layer";
-> +            clocks = <&scmi_clk 69>, <&scmi_clk 70>, <&dispmix_csr 0>;
-> +            clock-names = "apb", "axi", "pix";
-> +            assigned-clocks = <&dispmix_csr 0>;
-> +            assigned-clock-parents = <&ldb_pll_pixel>;
-> +            power-domains = <&scmi_devpd 11>;
-> +
-> +            port {
-> +                dcif_out: endpoint {
-> +                    remote-endpoint = <&ldb_in>;
-> +                };
-> +            };
-> +        };
-> +    };
-> -- 
-> 2.49.0
-> 
+> So does that mean that v4l2 solves the problem of "trigger source can be
+> rather easily altered from user space"?
+
+Yes, currently the v4l2-core already does:
+
+	sd->privacy_led = led_get(sd->dev, "privacy-led")
+	led_sysfs_disable(sd->privacy_led);
+
+Which disallows changing the LED state or trigger from
+userspace. This is similar to how flash-LEDs are handled
+which also involves directly controlling the LED rather
+then using triggers and which also calls led_sysfs_disable().
+
+led_get() already works for this on x86 and is already used
+for this there which is why this code is already there.
+
+I guess the difference with triggers is that triggers are
+more of a soft binding between LED and controller of
+the LED and where here we need more of a hard binding.
+
+Regards,
+
+Hans
+
+
 
