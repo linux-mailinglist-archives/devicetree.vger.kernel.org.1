@@ -1,193 +1,118 @@
-Return-Path: <devicetree+bounces-213105-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213106-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E172B44A55
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:18:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BB0AB44A63
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:24:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ADB8E1CC0A68
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:19:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37D137AF723
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:23:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAD382E3B07;
-	Thu,  4 Sep 2025 23:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6472F656D;
+	Thu,  4 Sep 2025 23:24:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lqjaOWny"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H8rAoqbg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 236C028152B;
-	Thu,  4 Sep 2025 23:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6072EDD6C;
+	Thu,  4 Sep 2025 23:24:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757027927; cv=none; b=IJrAn6kSDzCY4Ku0QI1+R3U3ShB2+2JAp7my+QI4Z/DP+kG4JdKzs48uOlR2DDV52mRTjGq3nOrZZuVAxnVlA/IfN2DhpLG2+HbFEZf90/RIoI9FnUiZ63t+4s2hiNVpua1Gd9UzzPpcpoaV4KCbuX1uD9ZUYw0MG10lOYplaOI=
+	t=1757028277; cv=none; b=Mx60frNCa86S6t730XeF+MJWqxfCEkHHZzsZBvPH5GSunQBLEJBcrdc8O9Cj/uxuFgd1S0VP+tsBMB6wNeeTwH2OlWAUzynFtEEEnLFShqgaVRIxFtbh5pXI/BUOwyhNUhuej/TCFZUghhbbC1xBy0AYRags0TCEP7RIYa1SGwg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757027927; c=relaxed/simple;
-	bh=7oUbE5MjF2/t53JStvq0FFqNkrylG89SjgsEMwdhRyI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qVs8lSlo5lgtIv+bA7eJY2M3Lnz8eJ6N+I+ZzKILoy/ipDg28WPmVuluUOrqbj7toWbrhB9lcDV/K4w0WMmjb3BItHvcLyhOhGACUXsjbHD/ywA1Q60diogPQ98FwqTuC9eksNuoeabCbvMwjiJZY5quUH1IRAmNdVEdxCYN/oI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lqjaOWny; arc=none smtp.client-ip=209.85.219.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-e970e624b7cso2389683276.0;
-        Thu, 04 Sep 2025 16:18:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757027925; x=1757632725; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=VQWcOYSvoGf6CKIlQ65uFWfm+cKJc0xdhOAmhKddvzI=;
-        b=lqjaOWnyFksS8BExKUmT8bnG64t41ceEixyDEEE0CXC0CKMU2tsixn6HRWkTY/Cbbl
-         iAON0NGfIu2bPhJb9qhN9znR0q4t4g7DfHzrpKaRhi9AiQtByPRPXngN9GFz2TnpwXvW
-         zSLolWPjRssTsI9j132WM1dlJsHVC8oxeQwsDqJBl/YcblLkTqhC2KV8mbQoOPsVxj2s
-         xd6kHGx6JYzFxxk62xqrJZO6fQUFLDDAoTJaxczRqPE0F9e59w08SLXxSH8vlSZ9SkYA
-         hDl7asxKc1X72ZYpaYHwfAk7wAZqPHOmuIpPq/tN83ZWbhn5vJgphwiJnkQ/M6g2I0ND
-         rEhA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757027925; x=1757632725;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VQWcOYSvoGf6CKIlQ65uFWfm+cKJc0xdhOAmhKddvzI=;
-        b=fCTtxcctKmcLa1OTd1/t4r8PQXRC8Xe2QALYuv4JG3/jPlrdPnkdpdpYW//yXc/4S+
-         BE+DWF4MdfsLFuPUDoCRMlb65bNSNFgG+CF0/N90LMHFX/j/AQb2xtpz5mk0t6wfVMV1
-         SsDSXC8oEqIoxhNUgXFXg55yYOPb9aPgn0DhnT1rtBVTpL52z5K8vnEAj+7MnE4wh/fB
-         R3Js83wItUdyEsaBkhykGG3LxFf2kop7zc3JHBVIqk4JuKYNEfRQ9+hsm0r/Hi0pPoEh
-         TZ+/N2V14oRFP/W0nPmKgnEUstsvCYfnKuYGM9KPXEHVyw8ghc06wwyuC9cFENt79Jyh
-         mcKw==
-X-Forwarded-Encrypted: i=1; AJvYcCVUrquv64u5PkskH6339YmmZklc7pyUrfVReOvXBW4hUG8mlZAY6sMgr4Z2L4nnWUrNAHAqUJbem1zH@vger.kernel.org, AJvYcCVd8d/zLrL7C/2nKbq4D3bwKWMum1kHbcdY78nn9LCAHgKSNESr+e6KiaO217JntKIa3e9Bh8fQjAeCRLqb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyJwSCAoSvU4Nt/7fZ4miJD02DiEso71UFTvxi4n65oHGbFfrSB
-	SVT7IOKeVDQUJSv2UMubrP9lSyNBEmxvRuNkijVNPhNz9ka9ZthKciLDsXO99mEkotycQ8Jnlys
-	U1naYAJVzjQYOGledxGc0MwAdpXBcaYQ=
-X-Gm-Gg: ASbGncsxlPAv51PLRNiGipokAvxLytPIzLzPOKTLyUT3ilYKrsrwbuLa5hPpGk7HqGo
-	JSZJNQM3pZdE+xwT5BeCXbGPxC8DqKI4jcn2fEe+XXv5bkmJifApZCBsXkhAhG8P0vpjlSmw9GY
-	DhwFLMxrw7jj1Ajp7j3PR0LJ/jMS9xDxckaLGVY54G3+QFFWwjcYvGxkMaORM7Gy27sjpbSuYyf
-	Dm3qjL80K4mMuKL62s6hOlJ8wPDgTSs4v1ReYZq4qdS50d78Rkvan94wUc0d4MFY8fnIOue
-X-Google-Smtp-Source: AGHT+IHQpd6ZtxKh9UtLqej1FEwyk9wicyHA+rk6YLUxpDSr/eJRGonEqV6c9kpMfG14F2QX3PUE82AqC4KP582Ijug=
-X-Received: by 2002:a05:690e:682:b0:605:8820:1400 with SMTP id
- 956f58d0204a3-60b6663acb9mr1153046d50.6.1757027924783; Thu, 04 Sep 2025
- 16:18:44 -0700 (PDT)
+	s=arc-20240116; t=1757028277; c=relaxed/simple;
+	bh=OgkI8noiXQ5CWIZ0ZMUtx+0t4I0H3Sb21zhjyKKhbWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QVgpCKw6HbEW+S4aYd5MAc7//b65OWEPwdjHuIRBd1jdUY+OynNpM/53op4tVdHa3a/vV8fKzERGj7nSA3wjCoYXZA5ePx74Vqn2wrz7I7V90ze7lZJHOpm9sVn+q+Cp+47S3em7jLH9A4MX9jMCnajw39VRMJNiKovh/AipMXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H8rAoqbg; arc=none smtp.client-ip=192.198.163.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757028276; x=1788564276;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=OgkI8noiXQ5CWIZ0ZMUtx+0t4I0H3Sb21zhjyKKhbWc=;
+  b=H8rAoqbg97kJdRaIjmVWKDi7wkZVwK0qKaLtpsC6qz1HewB2I3lmEfc0
+   +2yumgzjvBpLkSEq3TqpI/PNCBJtGMRE8caiQANZiV2PEbpxgQzesW/rF
+   LXvhsM2uAGhzjVNourmVNZrIUElfkiaCmpvY51vO4BC4aRRgzkL+5lOTS
+   NPtgd8nun+9lWFNv4aMCoMytR+B0UT2/G98EH1yck0ziy2HlhrMe3h8v8
+   qMyQN/jrevRXj6ofavluXdTATfnXKdUQ8D5RXJ7o7AhFpNUzw00L6/Hwc
+   ycNP7hhDXS751/msRfnnGcxonV9WQ1Ka5olUsvIhlO7MXg6q5p3R4x0EB
+   w==;
+X-CSE-ConnectionGUID: 7XToG7ynQxCQF9e6ssehZQ==
+X-CSE-MsgGUID: NPP5JEavSNamjvfHqvnrsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="84813432"
+X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
+   d="scan'208";a="84813432"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 16:24:35 -0700
+X-CSE-ConnectionGUID: SOkaAXxtTq+dBZbVLsM6Ow==
+X-CSE-MsgGUID: M9KY89M4T3q/gJJ19iMC8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
+   d="scan'208";a="177239359"
+Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 04 Sep 2025 16:24:33 -0700
+Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uuJJ5-00061T-2J;
+	Thu, 04 Sep 2025 23:24:01 +0000
+Date: Fri, 5 Sep 2025 07:23:45 +0800
+From: kernel test robot <lkp@intel.com>
+To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>, alexandre.belloni@bootlin.com,
+	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH 7/7] rtc: m41t93: Add watchdog support
+Message-ID: <202509050759.dwYECwEA-lkp@intel.com>
+References: <694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh@ee.iitb.ac.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903225504.542268-1-olvaffe@gmail.com> <5820885.GXAFRqVoOG@workhorse>
-In-Reply-To: <5820885.GXAFRqVoOG@workhorse>
-From: Chia-I Wu <olvaffe@gmail.com>
-Date: Thu, 4 Sep 2025 16:18:34 -0700
-X-Gm-Features: Ac12FXxTh1_T9lA63L4EOYeuqGn1KZXof6RHOWwp-aPirUkUxtnZTJ9xkSu8gmQ
-Message-ID: <CAPaKu7RpgQiomxSWp8V=8S9QJxapcNNWquLU5XE+_jpzOue44A@mail.gmail.com>
-Subject: Re: [RFC PATCH 0/2] drm/panthor: initial mt8196 support
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Boris Brezillon <boris.brezillon@collabora.com>, Steven Price <steven.price@arm.com>, 
-	Liviu Dudau <liviu.dudau@arm.com>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh@ee.iitb.ac.in>
 
-On Thu, Sep 4, 2025 at 4:20=E2=80=AFAM Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
->
-> Hi,
->
-> On Thursday, 4 September 2025 00:55:02 Central European Summer Time Chia-=
-I Wu wrote:
-> > MediaTek MT8196 has Mali-G925-Immortalis, for which panthor gained
-> > support recently. But the soc also requires custom ASN hash to be
-> > enabled. This series introduces panthor_soc_data for per-soc data and
-> > uses it to enable custom ASN hash on MT8196.
-> >
-> > The clk/regulator provider on MT8196 is GPUEB, whose driver[1] needs to
-> > be cleaned up and upstreamed separately.
->
-> I'm currently working on this, I'm at a functional 800 LoC driver vs the
-> more than 30k LoC of the downstream... thing. I intend to send it in as
-> an RFC once the clock stuff lands, and I get some responses wrt to
-> figuring out what's still missing from linux-next aside from the DT to
-> get basic boot working so that I don't send in something that I
-> accidentally shredded during a rebase without noticing.
->
-> Cleaning up the downstream driver is a fool's errand, it's like 6?
-> separate drivers, with lots of global state (and no locking), without
-> using the common clock framework, and relying on abusing -supply DT
-> properties to force a certain probe order to make all the race
-> conditions it would otherwise have turn out fine. A lot of it is
-> code that seems dead, or wrappers wrapping wrappers that have nothing
-> to do with how the hardware actually works.
-That's very true :)
+Hi Akhilesh,
 
->
-> My solution adds a small mailbox driver for the GPUEB, and also adds
-> a new module that lives in the panthor tree and registers itself with
-> panthor's devfreq stuff to be a "devfreq provider". The motivation
-> for making it devfreq instead of a clock+regulator provider is that
-> the GPUEB seems to have several quite devfreq-like parts to it that
-> I am not yet using, namely setting a job completion target time and
-> several methods of limiting performance.
-Yeah, gpueb can do dvfs autonomously which is more similar to how
-desktop gpus handle dvfs.  We have yet to verify that on our devices.
-I also tend to trust devfreq more, but that might be partly because it
-is very hard to navigate through the downstream drivers.
+kernel test robot noticed the following build errors:
 
-Look forward to seeing what you got!
+[auto build test ERROR on abelloni/rtc-next]
+[also build test ERROR on linus/master v6.17-rc4 next-20250904]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
->
-> As it stands it can set the OPP, but boosting above 1.43 GHz does
-> not seem to stick. The boosting stuff may be done by the four or
-> five other ways it has to set some frequency target.
->
-> I'm hoping I can send this in maybe next week or the week after. If
-> things remain blocked by then it'll be compile-tested in its current
-> form only and lack some clock stuff.
->
-> Kind regards,
-> Nicolas Frattaroli
->
-> >
-> > This initial support also lacks support for some hw configs. On some
-> > configs, panthor is expected to query a mask from efuse to mask out
-> > unavailable shader cores from ptdev->gpu_info.shader_present. This
-> > requires extending panthor_soc_data with a callback to read the mask.
-> >
-> > This is an RFC because the dependent drivers are not ready yet. But I
-> > would like to gather opinions on having panthor_soc_data for
-> > soc-specific data and having CONFIG_DRM_PANTHOR_SOC_MT8196 for
-> > soc-specific code.
-> >
-> > [1] https://gitlab.freedesktop.org/olv/kernel/-/commit/170d5fc90f817dc9=
-0bde54b32872c59cf5c77779
-> >
-> > Chia-I Wu (2):
-> >   dt-bindings: gpu: mali-valhall-csf: add MediaTek MT8196 compatible
-> >   drm/panthor: add initial mt8196 support
-> >
-> >  .../bindings/gpu/arm,mali-valhall-csf.yaml    |  1 +
-> >  drivers/gpu/drm/panthor/Kconfig               |  6 +++++
-> >  drivers/gpu/drm/panthor/Makefile              |  2 ++
-> >  drivers/gpu/drm/panthor/panthor_device.c      |  2 ++
-> >  drivers/gpu/drm/panthor/panthor_device.h      |  4 +++
-> >  drivers/gpu/drm/panthor/panthor_drv.c         |  4 +++
-> >  drivers/gpu/drm/panthor/panthor_gpu.c         | 26 ++++++++++++++++++-
-> >  drivers/gpu/drm/panthor/panthor_regs.h        |  4 +++
-> >  drivers/gpu/drm/panthor/panthor_soc.h         | 26 +++++++++++++++++++
-> >  drivers/gpu/drm/panthor/panthor_soc_mt8196.c  |  9 +++++++
-> >  10 files changed, 83 insertions(+), 1 deletion(-)
-> >  create mode 100644 drivers/gpu/drm/panthor/panthor_soc.h
-> >  create mode 100644 drivers/gpu/drm/panthor/panthor_soc_mt8196.c
-> >
-> >
->
->
->
->
+url:    https://github.com/intel-lab-lkp/linux/commits/Akhilesh-Patil/rtc-m41t93-add-device-tree-support/20250903-223155
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
+patch link:    https://lore.kernel.org/r/694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh%40ee.iitb.ac.in
+patch subject: [PATCH 7/7] rtc: m41t93: Add watchdog support
+config: x86_64-randconfig-007-20250904 (https://download.01.org/0day-ci/archive/20250905/202509050759.dwYECwEA-lkp@intel.com/config)
+compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250905/202509050759.dwYECwEA-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509050759.dwYECwEA-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> ld.lld: error: undefined symbol: devm_watchdog_register_device
+   >>> referenced by rtc-m41t93.c:490 (drivers/rtc/rtc-m41t93.c:490)
+   >>>               drivers/rtc/rtc-m41t93.o:(m41t93_watchdog_register) in archive vmlinux.a
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
