@@ -1,172 +1,527 @@
-Return-Path: <devicetree+bounces-212987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9ED7EB44565
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:28:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB2A2B44580
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:34:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A5351C87292
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:29:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A499E17F649
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1B9343D9D;
-	Thu,  4 Sep 2025 18:28:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DC852FF157;
+	Thu,  4 Sep 2025 18:34:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DIORHLdp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="W2J1a+8V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f227.google.com (mail-il1-f227.google.com [209.85.166.227])
+Received: from mail-pj1-f45.google.com (mail-pj1-f45.google.com [209.85.216.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA7B343D7D
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 18:28:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.227
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBDD82367D5;
+	Thu,  4 Sep 2025 18:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757010522; cv=none; b=KOTWoNdkqRFmz/xmYW/TpLy429ZOsWWfG6GUKtd2Em2GdYNSJGgpza/yZV7mm1ALlJoV9VT8FfOIde6bi7ERpMTXII64qAJrAG2flXf5ZoOENxW4DwOi87iUQOI9pq3smPbBzm0PM3jUHQraLsUZM74rbkgd1eTaJuGNGb12ofM=
+	t=1757010886; cv=none; b=rF5g7Hjk/RgS3MME9toD4l3Ulw5exkLYqJvZABwWZ3d2C12EMnXnKtH+bpfdVYj6Lw71EZN76ezRLWQMwWC7GNfKov0PELDOVLTYSop0AJH3nb+fo1o7z3JO7+7KmSqj7fF2qKTKL2NN+Moo/WmtkgjbUW3nzBCjwwkXRL6bS/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757010522; c=relaxed/simple;
-	bh=q8yl9UAC+xlFQzwRViDxyj79HGQ8dK/5g+KGtqUhusA=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=DgryMJVrPQEBo37418E/KGcT1gSH/HHS6c9Ixr4WjShqOXmxfbR3d5N0nstErjaTtCBy39wTfg3qbSUgnsLtN13xu1LNnoMTe6OkDsmuHeh8bBs+kAL/72/MVUheUshc1Slo1dlz1GsGmBX23A4kD2HFkJLIV8I00GrazwH7Oyo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DIORHLdp; arc=none smtp.client-ip=209.85.166.227
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-il1-f227.google.com with SMTP id e9e14a558f8ab-3f65d600d35so12546005ab.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757010520; x=1757615320;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:dkim-signature:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=cqK97eCKaUkliEvZf9Ytd8do9pTcU9xExLvP6WCAzkE=;
-        b=shgkSlD6MQmEQAgjQYylcb+kHUuhNsDc6LCYtWrhXlaIBIYNcAkuPSiZ5ryIP9WKr+
-         3giiOiQazAZFoszG5noYmqEsNMXc03NSPDgQTGAY0A/tcKo8/gLbIg/hgKbZtBA75o8N
-         IdbRYspR8nWXIKLQjThBk/wy2tw6ZDhTbSFXAym8GBAec/Gs4bN392RekLHo4xjHtju8
-         YafF57Ex5Ie2F7xaKNRdFRusFzEYNKaR06vmOa7FK9a5tGunHc5i3b4kDUg7JV4dtHLb
-         hN/PLL/v+d4k/6K0Lb2KzGlTWINeCRA2+p+PEAX41/w+OUSRdTzqTAQQUFR/wRMpMYXt
-         DwQw==
-X-Forwarded-Encrypted: i=1; AJvYcCVH692426NBve99HhMwFWWY1N6Y2ppFysRT8kRfqlVdrxxDcCYwbPV6BvW8qeMorsx3SZzfD9hnjIFN@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzld3UA6C8G8SLa3kss8zDM/hiPp4JoOM9tmvl4965UCupH/izK
-	xUBfsZuzW85D69yfsOMCC6Mrjou0RPngrh502e663ZEL+QZNSpWQ7LbJc0GFcGqZbjP85lQjNWb
-	UYp1T1DkgHKOYXJ9TPtah7+r1OzB+7d3SmW+BUUwXPe5cMf6pOLJc0uzCqiMlDpxmOZZaARweNO
-	osZznE8pWEkHVRqq1cIVUYAUh2dE5qDw5JZxRI1yVmRYTon2vO8ijHl+VPlN1UkeKvtCCHSknQ2
-	jMmzcZPOh0NgaAY8ohMHg==
-X-Gm-Gg: ASbGnctlp+1436qF2WqpU8hOyIg0C1wf/Ub98phNfqxbVek/FO2GK1RDNbF37N9w780
-	+nvs3EGhNQdxK3RyUeJ7yoQhbgNpvOyd/ZVwpiIEA5WOhuTJO4m32noRPD/9VUJUB3ng++KetwG
-	GKewVhX2M9890xLuw8P6M8TDaz+gGNyZtg7ZFZfqV34rTBSOuJAuGg141bqc/zZSSPhH/iTq33Z
-	AjX8uNJ4J5XxzQyl2IT2BXST4ZZPIijKe70+CnHogzX2awiNtSo0049EglWlsnrn+ajtIo4OHmb
-	rEB8r9tYRxAld0pYxOiluT6o+2b2LKLcaVH7HgYqYwfUmNfYbyUI3eUza7Jl4oZUIpw/jEjUskK
-	nFXPbMvIs9aU/JL5rBIA80VYy54z2
-X-Google-Smtp-Source: AGHT+IHHeeOnBzGfqrKzLiWByqeQ/kgP73yZCeE/64UNAH/4TssNkfQzQ/wAd/7luRZr22062n09igILrneg
-X-Received: by 2002:a05:6e02:216b:b0:3f1:7907:5fb9 with SMTP id e9e14a558f8ab-3f3ffda5d39mr371546075ab.6.1757010520174;
-        Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com ([144.49.247.127])
-        by smtp-relay.gmail.com with ESMTPS id 8926c6da1cb9f-510247ce96esm507293173.3.2025.09.04.11.28.39
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e8704e0264so280725985a.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:28:39 -0700 (PDT)
+	s=arc-20240116; t=1757010886; c=relaxed/simple;
+	bh=fZUj9sGcqHQcU1ybE4WOTA/ZkXez2FzRpZFI4EwUp+g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zzw6rVRAXmJjzm7QaDsYj0xhqOIERhGyoeOaESzbsa6gBTSRtsEuAIw0oJsXLO/ZpALm/KZhdkprlbaU4T2JKvKr6Wa65vqKchgLzMcXqOOeEJcdqC+LlLB/KGZOcZb+SSlgDk0+Uk0w2tzPkRa/c85BdkBRfSPrzvxT4vdOyw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=W2J1a+8V; arc=none smtp.client-ip=209.85.216.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f45.google.com with SMTP id 98e67ed59e1d1-323267bc2eeso924100a91.1;
+        Thu, 04 Sep 2025 11:34:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1757010519; x=1757615319; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :references:cc:to:subject:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=cqK97eCKaUkliEvZf9Ytd8do9pTcU9xExLvP6WCAzkE=;
-        b=DIORHLdp/EqOZ0P5Qkl/kXd90YWjjSXRaqwmRhJqAzj4YVI7EPh2UR/V19EA45JlBg
-         P6r76Ga4pcV6L8iw9YYDabV9PQ2rhtzmZcE1Heno+EJWNC5A37clW9A+qHF6teW3lBpv
-         7glolW5kWzqQpHMa+L3gSoqW/PEz3GI/wtEwA=
-X-Forwarded-Encrypted: i=1; AJvYcCXnAb26r+cXIpUHlsqiRnqMfVhkB7AyyQFtgyHhS4TAzSfUdCQqi6gqVOD+PdGoZBxX5Ztmzlg+8usJ@vger.kernel.org
-X-Received: by 2002:a05:620a:4145:b0:7fd:6709:f091 with SMTP id af79cd13be357-7ff27b20401mr2095666785a.20.1757010519041;
-        Thu, 04 Sep 2025 11:28:39 -0700 (PDT)
-X-Received: by 2002:a05:620a:4145:b0:7fd:6709:f091 with SMTP id af79cd13be357-7ff27b20401mr2095663485a.20.1757010518465;
-        Thu, 04 Sep 2025 11:28:38 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-80aa62c789esm322292485a.11.2025.09.04.11.28.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 11:28:37 -0700 (PDT)
-Message-ID: <d36c5597-e26e-4ddc-93b3-222d8b40dab7@broadcom.com>
-Date: Thu, 4 Sep 2025 11:28:34 -0700
+        d=gmail.com; s=20230601; t=1757010883; x=1757615683; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qFL+1Z8SUYKDUHiaOV3SfbkU8PevwwtIRM6YkXhPXH8=;
+        b=W2J1a+8V1Wwjk9sLXk6S3O+rxozbX5V42nQq5wpelFWgJ/2ff0mP2syIDrjgxL/gKX
+         eZMQspwFwtm9LV+fBKKtkOhPY/wxDe2CFn/ZYuFcehH4RPLOBhBRZbWqpzNK8I0iTHRI
+         6VbFF7aJmarw+KpJpbUtrqve+aYg3Fkyo7M7c3lLlwR5QumAAm9lHQM9/prVDltO9VIG
+         9jcBm4h3c/iWoBX/ImiPTiOn5p45jn/fMBiEtYWCf7tDMIqeuc7Pm26SrMBMDEdR9UV1
+         5VwUAHunLoB2ptFxSBBsGgIyvlS/DqcR8Y/3sasTAk73qihAk2Ub75LpGiJSoSPM82ni
+         JKww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757010883; x=1757615683;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qFL+1Z8SUYKDUHiaOV3SfbkU8PevwwtIRM6YkXhPXH8=;
+        b=m7UMqtjL3YN2q+U9+2ekxe14Gg0rVQOOtAD/ujh/P4vE/GqtLLR7z1BLIgcfn+YcaQ
+         yPUJ54TnyADzXxZhgCqmMQlBFkpgA4gjVqc8z+LiFkBmn7D/0YhNx67j9bAks8tFM2l3
+         NZsDQ3nuo42reKJDSZuDSx4dw/UGcq9LInj7eOjxmZo57UA+iW/chyOz9XwISHonnTAg
+         z0ULxr1SpbXCTFMGOhEeymoTXo0J7uojcVn6Ou9T/b/ZCMW4jjmjlD4Wj0aLhbxfYHLp
+         ep0H0QaPOdiskYHenQ7J2l9aoEmZwZB1iSPG8n0CERKMPdCnpLYcHknWkd8dLzC0h7cR
+         blTg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8BPM2cZqhSBs921hqQ9YsbhZI+TUV8rbH5TYvJKGEe7tqhXpTbpS4GzwbRPvEo2bszFyxVCYunnJA@vger.kernel.org, AJvYcCVJK1uzwXwv1OEtPf3bAmOrTar3hEAEsOeumqfYhhLNCs69A2vkdhfJ2juzzveJGVTCP//PXCw8K/LpF/c=@vger.kernel.org, AJvYcCXGw7pUPPnWEEiVDj4G5OE0Jnvhpl37fy4KXqiOI66bhk4LOKB+I6S7XpmNT2j39B9wAZtFyGHU1Qnf@vger.kernel.org, AJvYcCXcKFGmIXyNMdfyUYcNbcgnI3BxW27nkWhty3b74vCVhCN2iQf6hw26sgjFHq+OU9JWlG3SNHFzCpij/rBh@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz5bH1DQzPi65OGtaVO5uY5M54RG4OVsw4BB7cTZAi07ra9Jtvo
+	AVRvkccf8tsjPXZz4Pz7/lJH0Cfl3brSeOWQgCZjH/nJDz16wYFz48IT
+X-Gm-Gg: ASbGncviemfur9R+OSTtRlEqR7cFZmINsIRwVJaak2lSMckjlNvVfnVNSHCQ/+pTo+Z
+	dV0XvoRAcK5/fjXk0tT0NEeJzVANaZUIXuUJNn2oQ3rf1+UAbSabANXfwOpZThnngWFv08IpQRO
+	bLBN0TJiHTEOHAdC2RPAMCG6hfOzmp37ls1LEbVA37VNdmoQioE8X/RSS/QuJbo5MBMeoUcuqoA
+	WK/CxPFoyeCCEbG/DVyiXbQL7EdHg4+YNkraHz4S/kQBBM0HprRH7fr1nlUzPxOSE/uqsHnX1rt
+	0ZbvC9yyRdaRrhJInbOvs01hKmZUeYCcHKulU3DGg/S7lZsJYgODiboNwZKcfTnlrYAPESRPMv+
+	37gEPs4T3y07/heeFy7tyFiJuPbAHFioL8cMiSkO8yGLdUg==
+X-Google-Smtp-Source: AGHT+IGGzZJBwSdKI5Xs1nbR7kZHmIwB0epOnhYorfR0hWoYZeqUNm6HCOh/tZoVS2t1fXefLwoh2w==
+X-Received: by 2002:a17:90b:4a91:b0:32b:6ac0:863f with SMTP id 98e67ed59e1d1-32b6ac08933mr8638817a91.18.1757010882855;
+        Thu, 04 Sep 2025 11:34:42 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32b988eed84sm2223557a91.8.2025.09.04.11.34.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 11:34:42 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 4 Sep 2025 11:34:40 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: gfuchedgi@gmail.com
+Cc: Robert Marko <robert.marko@sartura.hr>,
+	Luka Perkov <luka.perkov@sartura.hr>,
+	Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] hwmon: (tps23861) add class restrictions and
+ semi-auto mode support
+Message-ID: <0dd3aa96-13c9-4b2d-902a-21ab8baec170@roeck-us.net>
+References: <20250904-hwmon-tps23861-add-class-restrictions-v3-0-b4e33e6d066c@gmail.com>
+ <20250904-hwmon-tps23861-add-class-restrictions-v3-2-b4e33e6d066c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Subject: Re: [PATCH RESEND v6 0/9] clk: bcm: kona: Add bus clock support, bus
- clocks for BCM21664/BCM281xx
-To: Artur Weber <aweber.kernel@gmail.com>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Ray Jui <rjui@broadcom.com>,
- Scott Branden <sbranden@broadcom.com>,
- Broadcom internal kernel review list
- <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
- <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
- ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Alex Elder <elder@riscstar.com>
-References: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
-Content-Language: en-US
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904-hwmon-tps23861-add-class-restrictions-v3-2-b4e33e6d066c@gmail.com>
 
-On 9/1/25 10:07, Artur Weber wrote:
-> This patchset does the following:
+On Thu, Sep 04, 2025 at 10:33:45AM -0700, Gregory Fuchedgi via B4 Relay wrote:
+> From: Gregory Fuchedgi <gfuchedgi@gmail.com>
 > 
-> - Introduce support for bus clocks. These are fairly similar to
->    peripheral clocks, but only implement policy, gate and hyst.
+> This commit adds optional individual per-port device tree nodes, in which
+> ports can be:
+>   - restricted by class. For example, ti,class = <2> for a port would only
+>     enable power if class 1 or class 2 were negotiated. Requires interrupt
+>     handler to be configured if class != 4 (max supported). This is because
+>     hardware cannot be set with acceptable classes in advance. So the
+>     driver would enable Semi-Auto mode and in the interrupt handler would
+>     check negotiated class against device tree config and enable power only
+>     if it is acceptable class.
+>   - fully disabled. For boards that do not use all 4 ports. This would put
+>     disabled ports in Off state and would hide corresponding hwmon files.
+>   - off by default. The port is kept disabled, until enabled via
+>     corresponding in_enable in sysfs.
 > 
-> - Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
->    and update device tree bindings to match.
+> The driver keeps current behavior of using Auto mode for all ports if no
+> per-port device tree nodes given.
 > 
-> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
+> This commit also adds optional reset and ti,ports-shutdown pin support:
+>   - if reset pin is configured the chip will be reset in probe.
+>   - if both reset and shutdown pins are configured the driver would keep
+>     ports shut down while configuring the tps23861 over i2c. Having both
+>     shutdown and reset pins ensures no PoE activity happens while i2c
+>     configuration is happening.
+> 
+> Tested with hw poe tester:
+>  - Auto mode tested with no per-port DT settings as well as explicit port
+>    DT ti,class=4. Tested that no IRQ is required in this case.
+>  - Semi-Auto mode with class restricted to 0, 1, 2 or 3. IRQ required.
+>  - Tested current cut-offs in Semi-Auto mode.
+>  - On/off by default setting tested for both Auto and Semi-Auto modes.
+>  - Tested fully disabling the ports in DT.
+>  - Tested with both reset and ti,ports-shutdown gpios defined, as well as
+>    with reset only, as well as with neither reset nor shutdown.
+> 
+> Signed-off-by: Gregory Fuchedgi <gfuchedgi@gmail.com>
+> ---
+>  Documentation/hwmon/tps23861.rst |   6 +-
+>  drivers/hwmon/tps23861.c         | 249 ++++++++++++++++++++++++++++++++++++++-
+>  2 files changed, 249 insertions(+), 6 deletions(-)
+> 
+> diff --git a/Documentation/hwmon/tps23861.rst b/Documentation/hwmon/tps23861.rst
+> index 46d121ff3f316d977ab3d1ab4e0d7b7736a57c60..5d14f683d0de11091f4a845a78a613604cbde4cc 100644
+> --- a/Documentation/hwmon/tps23861.rst
+> +++ b/Documentation/hwmon/tps23861.rst
+> @@ -22,9 +22,13 @@ and monitoring capabilities.
+>  
+>  TPS23861 offers three modes of operation: Auto, Semi-Auto and Manual.
+>  
+> -This driver only supports the Auto mode of operation providing monitoring
+> +This driver supports Auto and Semi-Auto modes of operation providing monitoring
+>  as well as enabling/disabling the four ports.
+>  
+> +Ports that do not have associated child device tree entry or do not restrict poe
+> +class to 3 or lower will operate in Auto mode. Otherwise the port will port will
+> +operate in Semi-Auto mode and require an interrupt pin.
+> +
+>  Sysfs entries
+>  -------------
+>  
+> diff --git a/drivers/hwmon/tps23861.c b/drivers/hwmon/tps23861.c
+> index 4cb3960d51704f6ad4106adc927f213d090c0f9a..c43c667c5d7e6f7813f8ac6bc5267cb8fe562f9c 100644
+> --- a/drivers/hwmon/tps23861.c
+> +++ b/drivers/hwmon/tps23861.c
+> @@ -10,13 +10,26 @@
+>  #include <linux/bitfield.h>
+>  #include <linux/debugfs.h>
+>  #include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/hwmon-sysfs.h>
+>  #include <linux/hwmon.h>
+>  #include <linux/i2c.h>
+> +#include <linux/interrupt.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/regmap.h>
+>  
+> +#define MAX_SUPPORTED_POE_CLASS		4
+> +#define INTERRUPT_STATUS		0x0
+> +#define INTERRUPT_ENABLE		0x1
+> +#define INTERRUPT_CLASS			BIT(4)
+> +#define DETECTION_EVENT			0x5
+> +#define POWER_STATUS			0x10
+> +#define PORT_1_ICUT			0x2A
+> +#define PORT_1_ICUT_MASK		GENMASK(2, 0)
+> +#define RESET				0x1a
+> +#define RESET_CLRAIN			0x80
+>  #define TEMPERATURE			0x2c
+>  #define INPUT_VOLTAGE_LSB		0x2e
+>  #define INPUT_VOLTAGE_MSB		0x2f
+> @@ -102,6 +115,12 @@
+>  #define TPS23861_GENERAL_MASK_1		0x17
+>  #define TPS23861_CURRENT_SHUNT_MASK	BIT(0)
+>  
+> +#define TPS23861_TIME_RESET_US		5
+> +#define TPS23861_TIME_RESET_US_MAX	1000
+> +
+> +#define TPS23861_TIME_POWER_ON_RESET_MS 23
+> +#define TPS23861_TIME_I2C_MS		20
+> +
+>  #define TEMPERATURE_LSB			652 /* 0.652 degrees Celsius */
+>  #define VOLTAGE_LSB			3662 /* 3.662 mV */
+>  #define SHUNT_RESISTOR_DEFAULT		255000 /* 255 mOhm */
+> @@ -110,10 +129,28 @@
+>  #define RESISTANCE_LSB			110966 /* 11.0966 Ohm*/
+>  #define RESISTANCE_LSB_LOW		157216 /* 15.7216 Ohm*/
+>  
+> +struct tps23861_port_data { // From DT.
 
-Stephen, are you OK with taking all of those patches through the clock 
-tree? Patches #8 and #9 have a dependency on patches #2 and #3.
+C comments or C++ comment, but not both.
 
-Thanks!
--- 
-Florian
+> +	const char *label;
+> +	/* Maximum class accepted by the port. The hardware cannot be
+
+Standard multi-line comments, please. This is not the networking subsystem.
+
+> +	 * preconfigured to accept certain class only, so classification
+> +	 * interrupt handler is required to for power-on decision if class is
+> +	 * not MAX_SUPPORTED_POE_CLASS.
+> +	 */
+> +	u32 class;
+> +	/* true if the port is disabled in the DT */
+> +	bool fully_disabled;
+> +	/* true if the port shouldn't be enabled on driver init */
+> +	bool off_by_default;
+> +};
+> +
+>  struct tps23861_data {
+>  	struct regmap *regmap;
+>  	u32 shunt_resistor;
+>  	struct i2c_client *client;
+> +	struct gpio_desc *reset_gpio;
+> +	struct gpio_desc *shutdown_gpio;
+> +	int irq;
+> +	struct tps23861_port_data ports[TPS23861_NUM_PORTS];
+>  };
+>  
+>  static const struct regmap_config tps23861_regmap_config = {
+> @@ -205,13 +242,19 @@ static int tps23861_port_enable(struct tps23861_data *data, int channel)
+>  	regval |= BIT(channel);
+>  	regval |= BIT(channel + 4);
+>  	err = regmap_write(data->regmap, DETECT_CLASS_RESTART, regval);
+> -
+> -	return err;
+> +	if (err)
+> +		return err;
+> +	return regmap_write(data->regmap, RESET, RESET_CLRAIN);
+>  }
+>  
+> -static umode_t tps23861_is_visible(const void *data, enum hwmon_sensor_types type,
+> +static umode_t tps23861_is_visible(const void *input_data, enum hwmon_sensor_types type,
+>  				   u32 attr, int channel)
+>  {
+> +	const struct tps23861_data *data = input_data;
+> +
+> +	/* Channel may be >=TPS23861_NUM_PORTS for common Input voltage */
+> +	if (channel < TPS23861_NUM_PORTS && data->ports[channel].fully_disabled)
+> +		return 0;
+>  	switch (type) {
+>  	case hwmon_temp:
+>  		switch (attr) {
+> @@ -325,10 +368,15 @@ static int tps23861_read_string(struct device *dev,
+>  				enum hwmon_sensor_types type,
+>  				u32 attr, int channel, const char **str)
+>  {
+> +	struct tps23861_data *data = dev_get_drvdata(dev);
+> +
+>  	switch (type) {
+>  	case hwmon_in:
+>  	case hwmon_curr:
+> -		*str = tps23861_port_label[channel];
+> +		if (channel < TPS23861_NUM_PORTS)
+> +			*str = data->ports[channel].label;
+> +		else
+> +			*str = tps23861_port_label[channel];
+>  		break;
+>  	case hwmon_temp:
+>  		*str = "Die";
+> @@ -502,17 +550,155 @@ static int tps23861_port_status_show(struct seq_file *s, void *data)
+>  
+>  DEFINE_SHOW_ATTRIBUTE(tps23861_port_status);
+>  
+> +static inline bool tps23861_auto_mode(struct tps23861_port_data *port)
+> +{
+> +	return port->class == MAX_SUPPORTED_POE_CLASS;
+> +}
+> +
+> +static irqreturn_t tps23861_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct tps23861_data *data = (struct tps23861_data *)dev_id;
+> +	struct tps23861_port_data *ports = data->ports;
+> +	struct device *dev = &data->client->dev;
+> +
+> +	unsigned int intr_status, status, class, i;
+> +	unsigned int det_status = 0;
+> +	int ret;
+> +
+> +	ret = regmap_read(data->regmap, INTERRUPT_STATUS, &intr_status);
+> +	if (ret || intr_status == 0)
+> +		return IRQ_NONE;
+> +	if (intr_status & INTERRUPT_CLASS) {
+> +		regmap_read(data->regmap, DETECTION_EVENT, &det_status);
+> +		for (i = 0; i < TPS23861_NUM_PORTS; i++) {
+> +			if (tps23861_auto_mode(ports + i))
+> +				continue;
+> +			if (!(det_status & BIT(i + 4)))
+> +				continue;
+> +			ret = regmap_read(data->regmap, PORT_1_STATUS + i, &status);
+> +			if (ret)
+> +				continue;
+> +			class = FIELD_GET(PORT_STATUS_CLASS_MASK, status);
+> +			if (class == PORT_CLASS_0) {
+> +				/* class 0 is same power as class 3, change 0 to
+> +				 * 3 for easy comparison
+> +				 */
+> +				class = 3;
+> +			}
+> +			if (class == PORT_CLASS_UNKNOWN ||
+> +			    class > MAX_SUPPORTED_POE_CLASS)
+> +				continue;
+> +			if (class > ports[i].class) {
+> +				dev_info(dev, "%s class mismatch: got %d, want <= %d",
+> +					 ports[i].label, class, ports[i].class);
+> +				continue;
+
+In an interrupt handler ? Please don't.
+
+> +			}
+> +			regmap_read(data->regmap, POWER_STATUS, &status);
+> +			if (status & BIT(i))
+> +				continue; /* already enabled */
+> +			/* Set ICUT and poe+ according to class. Values in ICUT table happen
+> +			 * to match class values, so just set class.
+> +			 */
+> +			regmap_update_bits(data->regmap,
+> +					   PORT_1_ICUT + i / 2,
+> +					   PORT_1_ICUT_MASK << ((i % 2) * 4),
+> +					   class << ((i % 2) * 4));
+> +			regmap_update_bits(data->regmap, POE_PLUS,
+> +					   BIT(i + 4),
+> +					   class > 3 ? BIT(i + 4) : 0);
+> +			dev_info(dev, "%s class %d, enabling power",
+> +				 ports[i].label, class);
+
+Same here. If you want to have debugging messages, make it debug messages.
+
+> +			regmap_write(data->regmap, POWER_ENABLE, BIT(i));
+> +		}
+> +	}
+> +	regmap_write(data->regmap, RESET, RESET_CLRAIN);
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static int tps23861_reset(struct i2c_client *client)
+> +{
+> +	struct tps23861_data *data = i2c_get_clientdata(client);
+> +	unsigned int val;
+> +
+> +	if (data->reset_gpio) {
+> +		gpiod_direction_output(data->reset_gpio, true);
+> +		/* If shutdown pin is defined, use it to keep ports off, while
+> +		 * turning the chip on for i2c configuration.
+> +		 */
+> +		if (data->shutdown_gpio)
+> +			gpiod_direction_output(data->shutdown_gpio, true);
+> +		usleep_range(TPS23861_TIME_RESET_US, TPS23861_TIME_RESET_US_MAX);
+> +		gpiod_set_value_cansleep(data->reset_gpio, false);
+> +		msleep(TPS23861_TIME_POWER_ON_RESET_MS);
+> +		if (data->shutdown_gpio)
+> +			gpiod_set_value_cansleep(data->shutdown_gpio, false);
+> +		msleep(TPS23861_TIME_I2C_MS);
+> +	}
+> +
+> +	/* Check the device is responsive */
+> +	return regmap_read(data->regmap, OPERATING_MODE, &val);
+> +}
+> +
+> +static void tps23861_init_ports(struct i2c_client *client)
+> +{
+> +	struct tps23861_data *data = i2c_get_clientdata(client);
+> +	struct tps23861_port_data *ports = data->ports;
+> +	unsigned int i, mode;
+> +
+> +	for (i = 0; i < TPS23861_NUM_PORTS; i++) {
+> +		mode = ports[i].fully_disabled	     ? OPERATING_MODE_OFF :
+> +		       tps23861_auto_mode(&ports[i]) ? OPERATING_MODE_AUTO :
+> +						       OPERATING_MODE_SEMI;
+> +		regmap_update_bits(data->regmap, OPERATING_MODE,
+> +				   OPERATING_MODE_PORT_1_MASK << (2 * i),
+> +				   mode << (2 * i));
+> +		if (ports[i].fully_disabled)
+> +			continue;
+> +		if (ports[i].off_by_default)
+> +			tps23861_port_disable(data, i);
+> +		else
+> +			tps23861_port_enable(data, i);
+> +	}
+> +}
+> +
+>  static int tps23861_probe(struct i2c_client *client)
+>  {
+>  	struct device *dev = &client->dev;
+>  	struct tps23861_data *data;
+> +	struct tps23861_port_data *ports;
+>  	struct device *hwmon_dev;
+> +	struct gpio_desc *gpio;
+> +	struct device_node *child;
+>  	u32 shunt_resistor;
+> +	int ret;
+> +	unsigned int i;
+> +	bool need_irq = false;
+> +	const char *hwmon_name = client->name;
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+>  		return -ENOMEM;
+>  
+> +	ports = data->ports;
+> +	for (i = 0; i < TPS23861_NUM_PORTS; i++) {
+> +		ports[i].label = tps23861_port_label[i];
+> +		ports[i].class = MAX_SUPPORTED_POE_CLASS;
+> +	}
+> +
+> +	gpio = devm_gpiod_get_optional(dev, "reset", GPIOD_ASIS);
+> +	if (IS_ERR(gpio)) {
+> +		devm_kfree(dev, data);
+> +		return -EPROBE_DEFER;
+> +	}
+> +	data->reset_gpio = gpio;
+> +
+> +	gpio = devm_gpiod_get_optional(dev, "ti,ports-shutdown", GPIOD_ASIS);
+> +	if (IS_ERR(gpio)) {
+> +		devm_kfree(dev, data);
+> +		return -EPROBE_DEFER;
+> +	}
+> +	data->shutdown_gpio = gpio;
+> +
+>  	data->client = client;
+>  	i2c_set_clientdata(client, data);
+>  
+> @@ -521,6 +707,55 @@ static int tps23861_probe(struct i2c_client *client)
+>  		dev_err(dev, "failed to allocate register map\n");
+>  		return PTR_ERR(data->regmap);
+>  	}
+> +	ret = tps23861_reset(client);
+> +	if (ret)
+> +		return -ENODEV;
+> +	for_each_child_of_node(dev->of_node, child) {
+> +		ret = of_property_read_u32(child, "reg", &i);
+> +		if (ret || i >= TPS23861_NUM_PORTS) {
+> +			dev_err(dev, "node %s must define 'reg' < %d\n",
+> +				child->name, TPS23861_NUM_PORTS);
+
+If it is an error, return with an error. If it not an error,
+dev_err is not acceptable.
+
+> +			continue;
+> +		}
+> +		if (!of_device_is_available(child)) {
+> +			ports[i].fully_disabled = true;
+> +			continue;
+> +		}
+> +		ports[i].off_by_default = of_property_read_bool(child, "ti,off-by-default");
+> +		of_property_read_string(child, "label", &ports[i].label);
+> +		of_property_read_u32(child, "ti,class", &ports[i].class);
+> +		if (ports[i].class > MAX_SUPPORTED_POE_CLASS) {
+> +			dev_err(dev, "%s invalid class, disabling\n", ports[i].label);
+> +			ports[i].fully_disabled = true;
+> +			continue;
+> +		}
+> +		if (ports[i].class == 0) {
+> +			/* class 0 is same power as class 3, change 0 to 3 for
+> +			 * easy comparison
+> +			 */
+> +			ports[i].class = 3;
+> +		}
+> +		need_irq = need_irq || !tps23861_auto_mode(&ports[i]);
+> +		dev_info(dev, "%s: max class: %d, %s by default\n",
+> +			 ports[i].label, ports[i].class,
+> +			 ports[i].off_by_default ? "off" : "on");
+
+Please drop to dev_dbg or remove.
+
+> +	}
+> +	if (need_irq) {
+> +		data->irq = irq_of_parse_and_map(dev->of_node, 0);
+> +		if (!data->irq) {
+> +			dev_err(dev, "failed to configure irq\n");
+> +			return -EINVAL;
+> +		}
+> +		ret = devm_request_threaded_irq(dev, data->irq, NULL,
+> +						tps23861_irq_handler,
+> +						IRQF_TRIGGER_FALLING,
+> +						"tps23861_irq", data);
+> +		if (ret) {
+> +			dev_err(dev, "failed to request irq %d\n", data->irq);
+> +			return ret;
+> +		}
+> +		regmap_write(data->regmap, INTERRUPT_ENABLE, INTERRUPT_CLASS);
+> +	}
+>  
+>  	if (!of_property_read_u32(dev->of_node, "shunt-resistor-micro-ohms", &shunt_resistor))
+>  		data->shunt_resistor = shunt_resistor;
+> @@ -536,7 +771,11 @@ static int tps23861_probe(struct i2c_client *client)
+>  				TPS23861_GENERAL_MASK_1,
+>  				TPS23861_CURRENT_SHUNT_MASK);
+>  
+> -	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name,
+> +	of_property_read_string(dev->of_node, "label", &hwmon_name);
+> +
+> +	tps23861_init_ports(client);
+> +
+> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, hwmon_name,
+>  							 data, &tps23861_chip_info,
+>  							 NULL);
+>  	if (IS_ERR(hwmon_dev))
+> 
+> -- 
+> 2.43.0
+> 
+> 
 
