@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-212723-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FBB1B43971
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:02:16 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A50CB4397A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:04:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2B667B3DC6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:00:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D34D51C811EF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:04:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68C572FB626;
-	Thu,  4 Sep 2025 11:02:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BDE02FC002;
+	Thu,  4 Sep 2025 11:04:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="leNnvCIz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="u5nZ5Nuw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D7B258EED;
-	Thu,  4 Sep 2025 11:02:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F32A2FB63D;
+	Thu,  4 Sep 2025 11:04:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756983728; cv=none; b=sR+30ye0WyV0aWpvkKACn/8A/j7D9Vq1/NuYggzulzVc48DSJ77HVhJ2YQkyg59Vk1wdNSpAni+aS5C0aDz7F9bez25pkg6ARLgPjEpkR2/H7Los7k+FUTuJE5rEMHcPkBiOvFZD2EA4p852IPQpYSMMYTmn8dYsNey00E4ZBMI=
+	t=1756983874; cv=none; b=EGyPqyJbWIgnkHtNSuEmbSgipK8bv4cWQ6r0PKwFaJ0MQ3rYrQFpsddLPWtTPuTWmJ1Le4kOrc6qeVo66q38a30EmXqHSTOrAEP1NkM1/X5/UbfD5jzZfU2axFgyKd2xU/eXRKQQK0Em5LXwYpS/765j5aDHeZVBmvDlLdOLUUw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756983728; c=relaxed/simple;
-	bh=ZpDcHfqbkNtTxnr0oZm/g5zBZ1ZFTvCY+OSWik2dRxo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=o7CJ2frNL+kED1ERTClCa6Mf813isxQK6Jw6aqNUtiT1a/Wj2DMutWWi/TPnnpFadu2KWVPWVjlh3YrSFg7yAFjSfAGS7Xu/uMpZmAsrrMLrwS/0SQJM6tU6RGj4LbstS+YpvHljFD1FTW7W5HdTr4zUowELS1r9skLlAIxoSCM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=leNnvCIz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95525C4CEF0;
-	Thu,  4 Sep 2025 11:02:04 +0000 (UTC)
+	s=arc-20240116; t=1756983874; c=relaxed/simple;
+	bh=gZrdc2XAuoGO07YrW/d2XCXm0nua7N2x6yXGw6uJSFM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uE44124IIKKTRc8F4WVTtyJGH5SlJ4I0hZaH1rq7lIu6tRDz0iS4/6WxXtyOSq4zwyUKQf9bmdlMGk42xM9CZUW+qYY419YNJTzg5dhdOxIDubd2mSLpEwL7p7HGGnBJGz91XX6IMf4AcJNukzNgDuiWpvnKifOpLuiNGjearMA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=u5nZ5Nuw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0192AC4CEF0;
+	Thu,  4 Sep 2025 11:04:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756983727;
-	bh=ZpDcHfqbkNtTxnr0oZm/g5zBZ1ZFTvCY+OSWik2dRxo=;
-	h=Date:Subject:To:References:From:In-Reply-To:From;
-	b=leNnvCIzUqbZXSKYxxwQATWQSVml0HMUG7F0t2gRvGtH54Y/HEB1PvGlarlYt8DmX
-	 CEA3ssCqmQTLjt8w1vEiQlltNs4cPFPhVu4wgatF0Vbb4AJvT5jSUv3cvpwmb0OLBt
-	 w9TcLFndUURBe/vyJpZFF6xamj2ZgQC7ykwqIosQxmQYXtNLBOi7NGuvXdz/C358hG
-	 2nc7eoAQFYONDO/a324NAC4nIDctkcqTJyFq8BiDZR73meXE8Pi0BWL+PQJMV9iGaK
-	 7jct9tthS63A7t4gNgNBF+ChDwlYwfpe229MKb27TkVAFjYI62HUinsjHTM8cqqOR9
-	 qhQrIaa9IIf6A==
-Message-ID: <f5953064-b369-4c17-ab09-d45a54f9d4f1@kernel.org>
-Date: Thu, 4 Sep 2025 13:02:03 +0200
+	s=k20201202; t=1756983873;
+	bh=gZrdc2XAuoGO07YrW/d2XCXm0nua7N2x6yXGw6uJSFM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=u5nZ5Nuw7uG1NigAlPZqPweeFwAkjzTaWIj2XyrrBuZC5bFDSfUDUj3W+Fx3fAZdS
+	 lo0AF8Z7fH/gEFEguGfGRV3b37M4ePvOIO0bgUxW2RB33KmjCRlr+fs72pGD+W/PRy
+	 D61A7MSJez94CfOnjiD87phisk1nVNHg5NLSv2Q7aq7ZNgMv/XkJp9rMy5nsggPUI6
+	 /jDoHVyPFfEYzYsvu8dNemFouSL7pz7BJZV66VihCv/YaVV5Cz9i8Sg7EfRwrPyqwY
+	 U0T2/kB4DhHFiWgw1qov4Ip7Uuw8UYrFL6f4wzd9mo05aO9H0CaawZ6CIzCNH/jcVr
+	 QYZzkGa2W71ng==
+Message-ID: <e2c40d56-e0aa-45fa-958d-97dcf4f92a6c@kernel.org>
+Date: Thu, 4 Sep 2025 13:04:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,13 +50,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e-main: Add DSI and DPHY-TX
-To: Harikrishna Shenoy <h-shenoy@ti.com>, nm@ti.com, vigneshr@ti.com,
- kristo@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, devarsht@ti.com, u-kumar1@ti.com,
- s-jain1@ti.com
-References: <20250904105915.3043773-1-h-shenoy@ti.com>
+Subject: Re: [PATCH v1 2/2] This patch adds a new DRM bridge driver for the
+ Lontium LT9611C chip.
+To: =?UTF-8?B?5p2o5a2Z6L+Q?= <yangsunyun1993@gmail.com>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: syyang <syyang@lontium.com>, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+ rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+ jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+References: <20250903123825.1721443-1-syyang@lontium.com>
+ <20250903123825.1721443-3-syyang@lontium.com>
+ <24rahlm4kkob7knapdxxnjixye3khx3nv2425y4kkirat4lmam@gjey7zqsnzks>
+ <CAFQXuNZUfAJe4QEDfi+-1N99xO0_z5_Omnsn_-SXr2QPtvdL_g@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -102,36 +108,65 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250904105915.3043773-1-h-shenoy@ti.com>
+In-Reply-To: <CAFQXuNZUfAJe4QEDfi+-1N99xO0_z5_Omnsn_-SXr2QPtvdL_g@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 04/09/2025 12:59, Harikrishna Shenoy wrote:
-> +	dsi0: dsi@4800000 {
-> +		compatible = "ti,j721e-dsi";
-> +		reg = <0x00 0x04800000 0x00 0x100000>, <0x00 0x04710000 0x00 0x100>;
-> +		clocks = <&k3_clks 150 1>, <&k3_clks 150 5>;
-> +		clock-names = "dsi_p_clk", "dsi_sys_clk";
-> +		power-domains = <&k3_pds 150 TI_SCI_PD_EXCLUSIVE>;
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 600 IRQ_TYPE_LEVEL_HIGH>;
-> +		phys = <&dphy_tx>;
-> +		phy-names = "dphy";
-> +		status = "disabled";
-> +
-> +		dsi0_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
+On 04/09/2025 12:48, 杨孙运 wrote:
+>>> +
+>>> +static void lt9611c_cleanup_resources(struct lt9611c *lt9611c)
+>>> +{
+>>> +     struct device *dev = lt9611c->dev;
+>>> +
+>>> +     if (lt9611c->work_inited) {
+>>> +             cancel_work_sync(&lt9611c->work);
+>>> +             lt9611c->work_inited = false;
+>>> +             dev_err(dev, "work cancelled\n");
+>>
+>> Why???
+>>
+> ?? I don't understand.
 
-Missing ports. This is quite odd to see only cells here. You probably
-wanted to omit endpoints, but ports are fixed per SoC.
+You need to explain why that line - printing error - should be here. And
+focus on "WHY" part.
 
-> +		};
-> +	};
-> +
->  	dss: dss@4a00000 {
->  		compatible = "ti,j721e-dss";
->  		reg =
+> 
+>>> +     }
+>>> +
+>>> +     if (lt9611c->bridge_added) {
+>>> +             drm_bridge_remove(&lt9611c->bridge);
+>>> +             lt9611c->bridge_added = false;
+>>> +             dev_err(dev, "DRM bridge removed\n");
+>>> +     }
+>>> +
+>>> +     if (lt9611c->regulators_enabled) {
+>>> +             regulator_bulk_disable(ARRAY_SIZE(lt9611c->supplies), lt9611c->supplies);
+>>> +             lt9611c->regulators_enabled = false;
+>>> +             dev_err(dev, "regulators disabled\n");
+>>> +     }
+>>> +
+>>> +     if (lt9611c->audio_pdev)
+>>> +             lt9611c_audio_exit(lt9611c);
+>>> +
+>>> +     if (lt9611c->fw) {
+>>
+>> You definitely don't need firmware when the bridge is up and running.
+>>
+> The previous text has already described the working logic of the firmware.
+> 
+>>> +             release_firmware(lt9611c->fw);
+>>> +             lt9611c->fw = NULL;
+>>> +             dev_err(dev, "firmware released\n");
+>>> +     }
+>>> +
+>>> +     if (lt9611c->dsi0_node) {
+>>> +             of_node_put(lt9611c->dsi0_node);
+>>> +             lt9611c->dsi0_node = NULL;
+>>> +             dev_err(dev, "dsi0 node released\n");
+
+Your driver is way, way to noisy.
+
+Please read coding style - what does it say about driver being silent?
 
 
 Best regards,
