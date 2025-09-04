@@ -1,121 +1,126 @@
-Return-Path: <devicetree+bounces-212623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42FB5B435C3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:29:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F268B435DA
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 10:35:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C1C0B5E1E6A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:29:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60C247ACC84
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:34:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 202DA2C11F5;
-	Thu,  4 Sep 2025 08:29:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86BE02C17A3;
+	Thu,  4 Sep 2025 08:35:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mpO702DB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PFwaZDlx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6207A2BE65B;
-	Thu,  4 Sep 2025 08:29:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE1DE2C0293
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 08:35:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756974567; cv=none; b=Cd/BGjXBFgPx8iBv+j6lKD1pOUVWDqW38omsd/uC7rdzILLGVAvqqw7Phj/p9z1PvfWrXXnryMWyIHCEuQCkKR6XCv0TYSQH9HMd83YUKVNgFYqb2xf69PjQbO0dl3x2Kzj8LBS/5PJ9JbPvPowFehSqskjxiLYm1F6wpbhvi4o=
+	t=1756974949; cv=none; b=eZYicJyKMp7+bhd1CvHvf0pVg0LwQeAlnX+UoZ2eiYqOZLwaDUAxlT+Gf9kjkK75WfwAp5jKJ9Ze5Tfb2+Llp/dIQmWdo0JLTMXIsb6X6tkDWrKWsaJxQOGxFLg9toZcmUux1uKHk/jxhroky5zYvFk3ehnppWeZUqZ61m7XUp8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756974567; c=relaxed/simple;
-	bh=DsH+z8ZqcfRIqx8ipGPbLvscXJDw/h8yLf5Us8UAL2o=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eYeoDBtHs8jOPuj0tLNnB2acFvONFqTR25Al1UQ4T77AYL4zr7NB0R5ocduBg5ihM1s9gqbnCYIad4UfF5gGbKPXJ1NhVHYJeHUnVLrdiwXNwKsDv7VG4CskvNxHTtBjEdmfNuGhpOJZyQDfOrz0H0w39xD4HLZ3xTQksereNNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mpO702DB; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5848TKKm3034493;
-	Thu, 4 Sep 2025 03:29:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1756974560;
-	bh=PF+871OBmr63RAEPuWLxRZTj4+NEuwut1XCKOb5POuY=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=mpO702DBP25ljkQ+SVuEah13rOMzvpKRuH+2kPRFz61umuLhJwpQ9LPDtQIMuwtDK
-	 mDr3kUAlo8lFZVNq5Bpn6vE1UOb6Q79fuewv+sdilWEy499LSERMF5uB2JiWWQJ31E
-	 PDw5+OsC50+kt5DSSNCERydSZG60DykGqP5gQ3NY=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5848TKJu734742
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Thu, 4 Sep 2025 03:29:20 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Thu, 4
- Sep 2025 03:29:20 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Thu, 4 Sep 2025 03:29:20 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5848TJWF2972113;
-	Thu, 4 Sep 2025 03:29:19 -0500
-Date: Thu, 4 Sep 2025 13:59:18 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Akashdeep Kaur <a-kaur@ti.com>
-CC: <praneeth@ti.com>, <nm@ti.com>, <afd@ti.com>, <vigneshr@ti.com>,
-        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vishalm@ti.com>, <sebin.francis@ti.com>
-Subject: Re: [PATCH v3 1/3] arm64: dts: ti: k3-am62p5-sk: Remove the unused
- cfg in USB1_DRVVBUS
-Message-ID: <20250904082918.3jn2mcvnpwhbly4b@lcpd911>
-References: <20250902071917.1616729-1-a-kaur@ti.com>
- <20250902071917.1616729-2-a-kaur@ti.com>
+	s=arc-20240116; t=1756974949; c=relaxed/simple;
+	bh=h5RvIxe8l9bzN8R6dikvAkNskzPyZRDzMQGJ9HnLDwc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=j9BV6dhEO1hGuJoFsgHq75rJh0/ddWEwhBK8cfiLm3T+kEPiN9RahDXZwPVE8+xi1Sj59uNsOlW0IiA5h5r458Dt+JkFrQhjm97KbQFoOO7CEzbw5DMjSZOnFJSlZsmgTycgy55YyPhtPMSZHhm0Y/sniq6pA1RLY7ZZWlJLG6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PFwaZDlx; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3c68ac7e18aso582504f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 01:35:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756974946; x=1757579746; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fvYi+R5i77yXA26UvQlFEfyxfCLO5Nh7bbNkyAiJE6Y=;
+        b=PFwaZDlxI82RXm/WFSbYT61FqELc0WqAhsSHYkbXFHymbK0ayV+Y6xfqV95Ifjf+5H
+         TRLlyVoBAT+AgUNgjPZZMN/W6Zyk2t6VbnvvA1UTlxji1WK5My4knJOnuh3C2qAHOATB
+         PWdf6JLUOXkFVrm5SsT2nGw17PyKryicwZO7f2cWmUFtwuvmD5jW1wRoQVEy4oZw45LW
+         vOcpD+soWduIkzjhcsAUOTZZuX7v082pTftoiuJ7elDTw0OM+wUCRqg1G7HafedOM4XE
+         4Pe1TFx79EZ5J0W1eF2kGw3kypLGc+JV9iil5VTTF4dYdcvyT7ven5mFosiFspVVE7YR
+         Sg/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756974946; x=1757579746;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fvYi+R5i77yXA26UvQlFEfyxfCLO5Nh7bbNkyAiJE6Y=;
+        b=EL4GAQmfY6A6XRJAF6ZAwzmnY09ROjCRo1nQf4GM9kOKLIBHFdYDIX7HkuiZLyF1EH
+         2YDrFeFObsS04IVLoheo7iNjyxZsDVEMNvLPaFIkqWknTL3aF99SnK+Ydy6JM2K81ht8
+         wENAAELXlkSnMlfOkNBa2FM7unlQnvY4aLxFohvs9S3Mc27TOomDUO4ntAjCVED83Ae9
+         FYQDlGLXtLA7Rd1xitQHR+9YpS0g25CcMzyh2frgz5R0KjKsHeEEEEYfC3dGlEktSEhT
+         qD193cX4JuWbuYEl3glkoxj1H40sHCO1SOluM8yjluJgmED9O1z7FqER3uLaR08eKD7e
+         Mvzw==
+X-Forwarded-Encrypted: i=1; AJvYcCUQR0erUIvO36/2pFZGZ8e5FFLQlNKqNS/xR8xLzdNzg+ZuxZuvz6v5XdLJ+geqwoGS+yixTL4WuiAm@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywah8NXNL+8l7w/17XF46RitIifGy2f2Si6Op3o6DVQy7iy7Rfj
+	kADjWbNGOzZXC5oc3GTcVnwL9RtkWEAMFe6J16dOsZO6JMvHCZfVcBzW7wisDnxKZqg=
+X-Gm-Gg: ASbGncv8qmMV+T1MCLButIVL8OXBHi0Ju/dld+iwrMs+mb7JUZ8lySnDGBa5zzWuAMH
+	hL0y6j5Ixd7PTjKa1/mKaUVLmAc8TC4GtDZMIL7wAyfxnhOv6e/QHZe8JxHDWLj9NQHSwJKODaK
+	ed2fAhy1CXDxdj/XPcq0eZpDlTi7RLvdu6aoSxZSJ+4B5E5/p1/PkmmK27wXpCDbX3jvOLgLDpi
+	UvwLJwlXqBoqEOvw8tqpXHBo8ZdqJ6co9uFne6NhGN1IQWNl7I8LMlRgFm3siWrOq9QHuLE1wsl
+	RS7wveKyTDOOHXrVDrblQYEMMIK4XIGKOKg5beIgE+EFvqfj2+kPfJmhXpW/RyslWWXOu4aiCE6
+	cFapsW9BLwDS7DZfyeEGWWcPb/HgyHaIe
+X-Google-Smtp-Source: AGHT+IH6tluwSmCG7lH+rafRzjnl/FD5MXJunjJ8MX7ouc4VDFS8i7jTuo2LLXbEBzN3/cqZwlGBAA==
+X-Received: by 2002:a5d:5887:0:b0:3db:f9f7:df86 with SMTP id ffacd0b85a97d-3dbf9f7e8d7mr4806530f8f.61.1756974945927;
+        Thu, 04 Sep 2025 01:35:45 -0700 (PDT)
+Received: from linaro.org ([86.121.170.194])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e68c83asm297479605e9.20.2025.09.04.01.35.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 01:35:44 -0700 (PDT)
+Date: Thu, 4 Sep 2025 11:35:42 +0300
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <lumag@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Johan Hovold <johan@kernel.org>, 
+	Taniya Das <quic_tdas@quicinc.com>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: phy: qcom-edp: Add missing clock for
+ X Elite
+Message-ID: <nmennvrestyn6pf54wb7bwvblrtwdczqeokjdd7srj5eljyyfv@gqobw5rexdy6>
+References: <20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org>
+ <20250903-phy-qcom-edp-add-missing-refclk-v2-1-d88c1b0cdc1b@linaro.org>
+ <04437373-c5a2-43e4-b591-921ce450f3d8@linaro.org>
+ <49a1ed5b-2afd-46b5-b5b1-74dd82dae95b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250902071917.1616729-2-a-kaur@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+In-Reply-To: <49a1ed5b-2afd-46b5-b5b1-74dd82dae95b@linaro.org>
 
-On Sep 02, 2025 at 12:49:15 +0530, Akashdeep Kaur wrote:
-> After the SoC has entered the DeepSleep low power mode, USB1 can be used
-> to wakeup the SoC based on USB events triggered by USB devices. This
-> requires that the pin corresponding to the Type-A connector remains pulled
-> up even after the SoC has entered the DeepSleep low power mode.
-> For that, either DeepSleep pullup configuration can be selected or the pin
-> can have the same configuration that it had when SoC was in active mode.
-> But, in order for DeepSleep configuration to take effect, the DeepSleep
-> control bit has to be enabled.
-> Remove the unnecessary DeepSleep state configuration from USB1_DRVBUS pin,
-> as the DeepSleep control bit is not set and the active configuration is
-> sufficient to keep the pin pulled up. This simplifies the setup and removes
-> redundant configuration.
-> 
-> This reverts commit 115290c112952db27009668aa7ae2f29920704f0.
-> 
-> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> index 899da7896563..e8f0ac2c55e2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p5-sk.dts
-> @@ -360,7 +360,7 @@ AM62PX_IOPAD(0x01b0, PIN_OUTPUT, 2) /* (G20) MCASP0_ACLKR.UART1_TXD */
->  
->  	main_usb1_pins_default: main-usb1-default-pins {
->  		pinctrl-single,pins = <
-> -			AM62PX_IOPAD(0x0258, PIN_INPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (G21) USB1_DRVVBUS */
-> +			AM62PX_IOPAD(0x0258, PIN_INPUT, 0) /* (G21) USB1_DRVVBUS */
+On 25-09-04 08:51:49, Krzysztof Kozlowski wrote:
+> On 04/09/2025 08:50, Krzysztof Kozlowski wrote:
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          enum:
+> >> +            - qcom,x1e80100-dp-phy
+> >> +    then:
+> >> +      properties:
+> >> +        clocks:
+> >> +          minItems: 3
+> > 
+> > That's an ABI break, so you need to explain it and mention the impact.
+> > Reason that there is one more clock, but everything was working fine, is
+> > not usually enough.
+> Heh, I already asked for that at v1 and nothing improved.
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+I missed that comment. Sorry about that.
 
--- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+Will address in v3.
+
+Thanks for reviewing.
 
