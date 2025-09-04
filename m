@@ -1,253 +1,219 @@
-Return-Path: <devicetree+bounces-212871-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212873-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F62AB43E5D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:16:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 524FFB43E66
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:17:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F5501C271F0
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:17:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0CBBB54147A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:17:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1881F1D9663;
-	Thu,  4 Sep 2025 14:16:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C83F301486;
+	Thu,  4 Sep 2025 14:17:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="marQmdKw"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fbCncYCu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79DAC4A3C;
-	Thu,  4 Sep 2025 14:16:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BA2D2FFDFC;
+	Thu,  4 Sep 2025 14:17:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756995402; cv=none; b=pRZdg0b+b2JCJXfF95fuotnqHRU5i66PCLt3QIKc8iWrvWhgDhXOq1XZO7lk3yzJ0GsvpHvonkxnS2kuCSSBJRiuctk4SrcSBiFC5ja/yaBgJANhVsTms4cqSwv6Z/Qu0sYg1+EFpEqxenV3k5PvanHSPeMYKclpTtpyaGDEpds=
+	t=1756995432; cv=none; b=kM9Q6dVNLJy+KZVXfK0wE28kGV6gnCiiVZ29fdPm2f93hE9b3BnjqzRFec03rB1z68b/1FF63YtZ2/aPyOWNJLgQoDmTCDlyILgMeWZSteCw5ePHRr8MkMfwvsd5QBAI+AkPc6E+p5I1GdZCdy1CyCXZucTDiCzlrdZZA1rb2yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756995402; c=relaxed/simple;
-	bh=5JD7NhgGPRoFcFkVrc+c3UVJx/sGAKDgLgiPp7ERQxA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OrsfMkC9ZShQHyRMBxGDPaw2+CIvUYgYgbwMBIyV5xvSgaWxqRW2sTE0sV5c+G7YqnIu2U38oKU/Mt38MmlKA7ZgO8kwyuSI+TmgJHnPcA+4WE5QNnhgPWprJ1g/ZNfzbeUTUmtNG2yfaSxrnKW3k3EKgucIfuV0LBOQ6zHBEuE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=marQmdKw; arc=none smtp.client-ip=209.85.214.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-24879ed7c17so8715595ad.1;
-        Thu, 04 Sep 2025 07:16:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1756995400; x=1757600200; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=THkDqBuclfSIllzwX0v+uGw/c0rEtdNTR4cHi62pkEE=;
-        b=marQmdKw/3Dv/KbWZX+jH4XfR/4YLdefJ2Mamq5UJ7/feZKRv4a6kgf2hZCwO1+u1s
-         eBjb85l5mrAcZsVzl4MEnj44MQvUv4k1kZAb8xmfV93EI8gYIYV7yhA87r8pIRdtoZqr
-         YL3Lz+F+adva3uuv8lPMNMjYRuV5rXgZmxrlgbkNylw0u8crq3g2YrkgsFD1mpALIQZG
-         4WDv3ZG8eQ0UnukiTG3hLhsoRQdICxDsWhn+Bd1cVmLj9kmM3iqsOouGkJS2z/RY8np2
-         8W0KDlRjsoZ3WJfGsIXPh86YahB3eVZ+Em4kmLlGQuODtcN4hxL2i9AV4c14oMhIngKh
-         8cCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756995400; x=1757600200;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=THkDqBuclfSIllzwX0v+uGw/c0rEtdNTR4cHi62pkEE=;
-        b=XmYJQX5E2Yn7JYZkOQsY//8/0KnGBQWCfd7ZMWEmLRGBdGpNAc1A+KkpfgZEQRUpXN
-         bIhGlVSsquelGaXHjLs7/YhfhvqQnN6aENveWFOcufFUHJB7HJ79y+m57ox0/36dyWzk
-         1v8OVXr0zHhZw06+lmHkMszGZDwn8EoIlmiCGo+4m6KlPs0OenhMGJ7p1lYh5+vWML6L
-         kDCEEUuIGtWc0BLWbCWyvgnqAFiVQThFM+m2NwRiVnZuVb9F0/goei7ZE6cPfTQ0uhZA
-         wScl6Y5FRCHRV0433LNnW0Fw+PtW+4/ZfjIHMSGqP08HnNZ9G0HmXk3OHxqZsvCvLsHk
-         EsDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkvw2s/b/xWbWpMLXz6qL4WlXo+t9EhI7HTqKfoFuKbNY9Wq5CksFr9IHbPITVOEOozm7kePWn9cqXv+zm@vger.kernel.org, AJvYcCWzlKZjKmVVkH9/HdrYbDvSJXn/9LWCoispN/07ROSWGBGq2zL9ljLVWjGSO+WuOvzpVVe8inqWc0cD@vger.kernel.org, AJvYcCXyZYttSXel85DpzV7OTv7RdBaM4md4Ff+FkuGKtyAWusRABug5NboNw3+7cL93vUoY0E3KY0KQOnPcC08=@vger.kernel.org
-X-Gm-Message-State: AOJu0YybEnlS2Fgl0phMUr6bFPCndZOpzz1PlIKI4qDptomh/Qnmp+vG
-	2fwxifbOsAN3SmywXPM3nl2+g5R/x+VY0c+szgxHGU4gMU2vOOFAKFP3
-X-Gm-Gg: ASbGncve99TVBI4AdmY4oSOUjg3R74QKmPZgDwiXBRIp2e1pA16uTxWqTTvpkXsJCxP
-	dIVBWQ0ErH5FDimJe0j76tt5Lu11yrTb5TZh/2zTruswIiyeTGXDOsoWPhJLzEPt/BMkkBr7kpE
-	n9MLsfEbVNvOlDvbJnN4WpdfFR/GHUKklHTvRdz2fS0MS/PwHDvyDR3QhL3VJPwSID9yqPFx98b
-	535J6AVh27s4LK8pL46P5PcC1zz+hOzYskpBkH64eqWq/LK2S9UGGqRMVZUpsfj94CeLln63uU2
-	mbBQqGK2GpYIZR+Ba3Cuu+H0S9L1pZFmQBU0FSozPahsQHHMU2VZpr+hpY7iKR7gYkBPIDw0GF/
-	xi004tVxzpH+TS7C2RMxckB4=
-X-Google-Smtp-Source: AGHT+IGggMQ0gGUuTdj0jQKNaMSvb+X98sJgHYIMwU6UAzfjW12eZWknfzF54+2lsW7MbPdx2d0CDA==
-X-Received: by 2002:a17:903:2347:b0:24a:8d5e:948 with SMTP id d9443c01a7336-24a8d5e0c76mr238758475ad.55.1756995399529;
-        Thu, 04 Sep 2025 07:16:39 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:463b:8ef9:3432:4c09])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24ce20ea7cbsm6969655ad.28.2025.09.04.07.16.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 07:16:39 -0700 (PDT)
-Date: Thu, 4 Sep 2025 07:16:36 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Alexander Kurz <akurz@blala.de>
-Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Dzmitry Sankouski <dsankouski@gmail.com>, "Dr. David Alan Gilbert" <linux@treblig.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@baylibre.com>, 
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 7/7] Input: mc13783-pwrbutton: add OF support
-Message-ID: <y2maxuchkhzi64m4dko5j6o2slc272rbbdckefdsc2kwrvh5hc@aynprvbbilkr>
-References: <20250829201517.15374-1-akurz@blala.de>
- <20250829201517.15374-8-akurz@blala.de>
+	s=arc-20240116; t=1756995432; c=relaxed/simple;
+	bh=aCmXLdx4Hc9zvhSv2FDrd3wLpy0XzPSSkGZRGeb2boA=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=BXLmUhNlDzOMsNcBBODJim8DqfFtVR88p4AsNorhxCriMOU0JijRprKGsixMuxlNhQPyTD06UwssMLCAMN0SPIel6Q/oaRArH6PKC1QJhnpuAkjxWPJ4lvunuy1WLWTZTpL9mDmtJH3y64e5u5Uqw/KXFFxboqX6/InQMSzDXhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fbCncYCu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FBE4C4CEF7;
+	Thu,  4 Sep 2025 14:17:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756995431;
+	bh=aCmXLdx4Hc9zvhSv2FDrd3wLpy0XzPSSkGZRGeb2boA=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=fbCncYCuH+feAgyp4klVWcJckxsLV2tqtxLoEET1EwSHZnewjEFQ3IPZPVDHITnNh
+	 rLlu1HZcNBzAZIXOLkyL4x/dNA1MDOupa6hkIuixJdsDhyzPCyBdWmLNNmtfWMpKiG
+	 YGR+2N9Q3X/PxPT+0yu5kz+8Oc+0+23YR9gRDiJ90z8HecJK9utEyas9NOK1XyoL84
+	 Xsi8IEnnM1lGmBF/6IglpDrlHhh7NMu9W9wTtwFHwcXBqfZCmwVp3cJzck606ry2y1
+	 Swdvkhf7DSTmJNJtx3c01hvfCHRR7VjwS1OnLeXzJMqyaJaMo+AjGfzT6rSI3lWBLT
+	 t+ATTyJOVVXlA==
+Date: Thu, 04 Sep 2025 09:17:10 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829201517.15374-8-akurz@blala.de>
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, linux-kernel@vger.kernel.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+To: Yijie Yang <yijie.yang@oss.qualcomm.com>
+In-Reply-To: <20250904-hamoa_initial-v9-0-d73213fa7542@oss.qualcomm.com>
+References: <20250904-hamoa_initial-v9-0-d73213fa7542@oss.qualcomm.com>
+Message-Id: <175699523750.4060076.15321819933844414302.robh@kernel.org>
+Subject: Re: [PATCH v9 0/3] Initial support for Qualcomm Hamoa IOT EVK
+ board
 
-Hi Alexander,
 
-On Fri, Aug 29, 2025 at 08:15:17PM +0000, Alexander Kurz wrote:
-> Add OF support for the mc13783-pwrbutton so that it can be used with
-> modern DT based systems.
+On Thu, 04 Sep 2025 15:48:31 +0800, Yijie Yang wrote:
+> Introduce the device tree, DT bindings, and driver modifications required
+> to bring up the HAMOA-IOT-EVK evaluation board—based on the X1E80100 SoC—to
+> a UART shell.
+> This patch set focuses on two key hardware components: the HAMOA-IOT-SOM
+> and the HAMOA-IOT-EVK carrier board.
+> The HAMOA-IOT-SOM is a compact System on Module that integrates the SoC,
+> GPIOs, and PMICs. It is designed to be modular and can be paired with
+> various carrier boards to support different use cases.
+> The HAMOA-IOT-EVK is one such carrier board, designed for IoT scenarios.
+> It provides essential peripherals such as UART, on-board PMICs, and
+> USB-related components.
+> Together, these components form a flexible and scalable platform, and this
+> patch set enables their initial bring-up through proper device tree
+> configuration and driver support.
 > 
-> Signed-off-by: Alexander Kurz <akurz@blala.de>
+> Qualcomm SoCs often have multiple product variants, each identified by a
+> different SoC ID. For instance, the x1e80100 SoC has closely related
+> variants such as x1e78100 and x1e001de. This diversity in SoC identifiers
+> can lead to confusion and unnecessary maintenance complexity in the device
+> tree and related subsystems.
+> To address this, code names offer a more consistent and project-agnostic
+> way to represent SoC families. They tend to remain stable across
+> development efforts.
+> This patch series introduces "hamoa" as the codename for the x1e80100 SoC.
+> Going forward, all x1e80100-related variants—including x1e81000 and others
+> in the same family—will be represented under the "hamoa" designation in the
+> device tree.
+> This improves readability, streamlines future maintenance, and aligns with
+> common naming practices across Qualcomm-based platforms.
+> 
+> Features added and enabled:
+> - UART
+> - On-board regulators
+> - Regulators on the SOM
+> - PMIC GLINK
+> - USB0 through USB6 and their PHYs
+> - Embedded USB (eUSB) repeaters
+> - USB Type-C mux
+> - PCIe6a and its PHY
+> - PCIe4 and its PHY
+> - Reserved memory regions
+> - Pinctrl
+> - NVMe
+> - ADSP, CDSP
+> - WLAN, Bluetooth (M.2 interface)
+> - USB DisplayPort
+> - Graphic
+> - Audio
+> 
+> Signed-off-by: Yijie Yang <yijie.yang@oss.qualcomm.com>
 > ---
->  drivers/input/misc/mc13783-pwrbutton.c | 94 +++++++++++++++++++++++---
->  1 file changed, 86 insertions(+), 8 deletions(-)
+> Changes in v9:
+> - Sort the nodes within the root node in alphabetical order.
+> - Add WLAN control pin to the PMU.
+> - Link to v8: https://lore.kernel.org/r/20250828-hamoa_initial-v8-0-c9d173072a5c@oss.qualcomm.com
 > 
-> diff --git a/drivers/input/misc/mc13783-pwrbutton.c b/drivers/input/misc/mc13783-pwrbutton.c
-> index c9eea57ceedd..a20236b19103 100644
-> --- a/drivers/input/misc/mc13783-pwrbutton.c
-> +++ b/drivers/input/misc/mc13783-pwrbutton.c
-> @@ -27,6 +27,7 @@
->  #include <linux/interrupt.h>
->  #include <linux/platform_device.h>
->  #include <linux/mfd/mc13783.h>
-> +#include <linux/property.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
->  
-> @@ -109,8 +110,82 @@ static irqreturn_t button3_irq(int irq, void *_priv)
->  	return button_irq(MC13783_IRQ_ONOFD3, _priv);
->  }
->  
-> -static int mc13783_pwrbutton_probe(struct platform_device *pdev)
-> +#ifdef CONFIG_OF
+> Changes in v8:
+> - Change the style of how collaborators are listed.
+> - Link to v7: https://lore.kernel.org/r/20250827-hamoa_initial-v7-0-f9b81d564bb2@oss.qualcomm.com
+> 
+> Changes in v7:
+> - Configure the EDP regulator to boot-on.
+> - Change back to a year‑less copyright statement.
+> - Update base commit.
+> - Link to v6: https://lore.kernel.org/r/20250821-hamoa_initial-v6-0-72e4e01a55d0@oss.qualcomm.com
+> 
+> Changes in v6:
+> - Restore the full change log for each revision.
+> - Merge the changes related to Audio and Graphics into the patch series.
+> - Link to v5: https://lore.kernel.org/r/20250814-hamoa_initial-v5-0-817a9c6e8d47@oss.qualcomm.com
+> 
+> Changes in v5:
+> - Update base commit.
+> - Drop an already merged patch:
+> https://lore.kernel.org/all/20250804-hamoa_initial-v4-2-19edbb28677b@oss.qualcomm.com/
+> - Link to v4: https://lore.kernel.org/r/20250804-hamoa_initial-v4-0-19edbb28677b@oss.qualcomm.com
+> 
+> Changes in v4:
+> - Update commit messages.
+> - Update base commit.
+> - Update the format of the node mdss_dp3_out.
+> - Add comments to clarify certain nodes.
+> - Update the configuration of regulator-wcn-3p3 from regulator-boot-on to regulator-always-on.
+> - Link to v3: https://lore.kernel.org/r/20250729-hamoa_initial-v3-0-806e092789dc@oss.qualcomm.com
+> 
+> Changes in v3:
+> - Add compatible string and dt-bindings for SOM.
+> - Restore PMU-related regulators to comply with dt-binding rules and enable kernel-level power management.
+> - Adjust commit description accordingly.
+> - Link to v2: https://lore.kernel.org/r/20250724-hamoa_initial-v2-0-91b00c882d11@oss.qualcomm.com
+> 
+> Changes in v2:
+> - Merge the compatible rules and remove the compatible string map.
+> - Align the ADSP and CDSP firmware paths with other x1e80100 platforms.
+> - Remove the regulators on the M.2 card, as well as those managed by UEFI on this board.
+> - Merge another patch series that enables USB DisplayPort functionality on this platform: https://lore.kernel.org/all/20250723-x1e-evk-dp-v1-1-be76ce53b9b8@quicinc.com/
+> - Link to v1: https://lore.kernel.org/r/20250716-hamoa_initial-v1-0-f6f5d0f9a163@oss.qualcomm.com
+> 
+> ---
+> Yijie Yang (3):
+>       dt-bindings: arm: qcom: Document HAMOA-IOT-EVK board
+>       arm64: dts: qcom: Add HAMOA-IOT-SOM platform
+>       arm64: dts: qcom: Add base HAMOA-IOT-EVK board
+> 
+>  Documentation/devicetree/bindings/arm/qcom.yaml |    6 +
+>  arch/arm64/boot/dts/qcom/Makefile               |    1 +
+>  arch/arm64/boot/dts/qcom/hamoa-iot-evk.dts      | 1248 +++++++++++++++++++++++
+>  arch/arm64/boot/dts/qcom/hamoa-iot-som.dtsi     |  609 +++++++++++
+>  4 files changed, 1864 insertions(+)
+> ---
+> base-commit: b899981540841e409e496083921f2e5c4c209925
+> change-id: 20250604-hamoa_initial-0cd7036d7271
+> 
+> Best regards,
+> --
+> Yijie Yang <yijie.yang@oss.qualcomm.com>
+> 
+> 
+> 
 
-I do not think you need to guard this. As far as I can tell there are no
-users of platform data in mainline, so just switch to using generic
-device properties for configuration and get rid of struct
-mc13xxx_buttons_platform_data altogether.
 
-> +static struct mc13xxx_buttons_platform_data __init *mc13xxx_pwrbutton_probe_dt(
-> +	struct platform_device *pdev)
->  {
-> +	struct mc13xxx_buttons_platform_data *pdata;
-> +	struct fwnode_handle *child;
-> +	struct device *dev = &pdev->dev;
-> +	struct mc13xxx_button_devtype *devtype =
-> +		(struct mc13xxx_button_devtype *)platform_get_device_id(pdev)->driver_data;
-> +
-> +	pdata = devm_kzalloc(dev, sizeof(*pdata), GFP_KERNEL);
-> +	if (!pdata)
-> +		return ERR_PTR(-ENOMEM);
-> +
-> +	struct fwnode_handle *parent __free(fwnode_handle) =
-> +		device_get_named_child_node(dev->parent, "buttons");
-> +	if (!parent)
-> +		return ERR_PTR(-ENODATA);
-> +
-> +	fwnode_for_each_named_child_node(parent, child, "onkey") {
-> +		u32 idx;
-> +		u8 dbnc = MC13783_BUTTON_DBNC_30MS;
-> +		u16 dbnc_ms;
-> +
-> +		if (fwnode_property_read_u32(child, "reg", &idx))
-> +			continue;
-> +
-> +		if (idx > devtype->button_id_max) {
-> +			dev_warn(dev, "reg out of range\n");
-> +			continue;
-> +		}
-> +
-> +		fwnode_property_read_u16(child, "debounce-delay-ms", &dbnc_ms);
-> +		switch (dbnc_ms) {
-> +		case 0:
-> +			dbnc = MC13783_BUTTON_DBNC_0MS;
-> +			break;
-> +		case 30:
-> +			dbnc = MC13783_BUTTON_DBNC_30MS;
-> +			break;
-> +		case 150:
-> +			dbnc = MC13783_BUTTON_DBNC_150MS;
-> +			break;
-> +		case 750:
-> +			dbnc = MC13783_BUTTON_DBNC_750MS;
-> +			break;
-> +		default:
-> +			dev_warn(dev, "invalid debounce-delay-ms value\n");
-> +			continue;
-> +		}
-> +
-> +		if (fwnode_property_read_u32(child, "linux,code", &pdata->b_on_key[idx]))
-> +			continue;
-> +
-> +		if (fwnode_property_read_bool(child, "active-low"))
-> +			pdata->b_on_flags[idx] |= MC13783_BUTTON_POL_INVERT;
-> +
-> +		if (fwnode_property_read_bool(child, "fsl,enable-reset"))
-> +			pdata->b_on_flags[idx] |= MC13783_BUTTON_RESET_EN;
-> +
-> +		pdata->b_on_flags[idx] |= MC13783_BUTTON_ENABLE | dbnc;
-> +	}
-> +
-> +	return pdata;
-> +}
-> +#else
-> +static inline struct mc13xxx_buttons_platform_data __init *mc13xxx_pwrbutton_probe_dt(
-> +	struct platform_device *pdev)
-> +{
-> +	return ERR_PTR(-ENODEV);
-> +}
-> +#endif
-> +
-> +static int __init mc13783_pwrbutton_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
->  	const struct mc13xxx_buttons_platform_data *pdata;
->  	struct mc13xxx *mc13783 = dev_get_drvdata(pdev->dev.parent);
->  	struct mc13xxx_button_devtype *devtype =
-> @@ -121,9 +196,13 @@ static int mc13783_pwrbutton_probe(struct platform_device *pdev)
->  	int reg = 0;
->  
->  	pdata = dev_get_platdata(&pdev->dev);
-> -	if (!pdata) {
-> -		dev_err(&pdev->dev, "missing platform data\n");
-> -		return -ENODEV;
-> +	if (dev->parent->of_node) {
-> +		pdata = mc13xxx_pwrbutton_probe_dt(pdev);
-> +		if (IS_ERR(pdata))
-> +			return PTR_ERR(pdata);
-> +	} else if (!pdata) {
-> +		dev_err(dev, "missing platform data\n");
-> +		return -ENODATA;
->  	}
->  
->  	pwr = devm_input_allocate_device(&pdev->dev);
-> @@ -290,15 +369,14 @@ static const struct platform_device_id mc13xxx_pwrbutton_idtable[] = {
->  };
->  
->  static struct platform_driver mc13783_pwrbutton_driver = {
-> -	.id_table	= mc13xxx_pwrbutton_idtable,
-> -	.probe		= mc13783_pwrbutton_probe,
-> -	.remove		= mc13783_pwrbutton_remove,
->  	.driver		= {
->  		.name	= "mc13783-pwrbutton",
->  	},
-> +	.id_table	= mc13xxx_pwrbutton_idtable,
-> +	.remove		= mc13783_pwrbutton_remove,
->  };
->  
-> -module_platform_driver(mc13783_pwrbutton_driver);
-> +module_platform_driver_probe(mc13783_pwrbutton_driver, mc13783_pwrbutton_probe);
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Switching to module_platform_driver_probe() seems an unrelated change.
->  
->  MODULE_ALIAS("platform:mc13783-pwrbutton");
->  MODULE_DESCRIPTION("MC13783 Power Button");
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Thanks.
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
--- 
-Dmitry
+  pip3 install dtschema --upgrade
+
+
+This patch series was applied (using b4) to base:
+ Base: using specified base-commit b899981540841e409e496083921f2e5c4c209925
+
+If this is not the correct base, please add 'base-commit' tag
+(or use b4 which does this automatically)
+
+New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/qcom/' for 20250904-hamoa_initial-v9-0-d73213fa7542@oss.qualcomm.com:
+
+arch/arm64/boot/dts/qcom/hamoa-iot-evk.dtb: chosen: stdout-path:0: 'serial0: 115200n8' does not match '^[a-zA-Z0-9@/,+\-._]*(:[0-9]*[noe]?[78]?[r]?)?$'
+	from schema $id: http://devicetree.org/schemas/chosen.yaml#
+
+
+
+
+
 
