@@ -1,289 +1,142 @@
-Return-Path: <devicetree+bounces-213097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D5AC4B449B3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:35:28 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 364BAB449EF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:51:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E91B1BC8144
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:35:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A93D1791AB
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 22:51:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AECA32E7BD0;
-	Thu,  4 Sep 2025 22:35:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 148E52EDD4D;
+	Thu,  4 Sep 2025 22:51:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="A17uXoxJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gA2lXBAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2079.outbound.protection.outlook.com [40.107.243.79])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E95C0199E94;
-	Thu,  4 Sep 2025 22:35:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757025323; cv=fail; b=gGofOclCxTDdX3afNNP9H5z9x+Sa1TuAqKK2uuCuDCe4Lu8WAp7d+3FtxNQBypMTCDSyp38Dxh/5TUjXKj3YDNfWNUI2NV1PdUU4iVcmKK1LQv2IYNCSbvZAqkh/9DCKVbBpj8OdXf1lyXNVoagb+WULoOV05D5Ni+3Tw0JnP70=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757025323; c=relaxed/simple;
-	bh=dUf8hx07oegf0+R/z95/QSNxvtqqPcJApXhAXPyKRl4=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=aYqL2HAetN38ZL1WKoedKjArEkHAtLpcqPKe/0XKMWHlsPdkrGXt+3pxM21fj1uvJfTf+4gMFRF4eFfkXf8cxGNxqsezAuZ3UdRQOz+vaQdGOTnPV9gCDF8FyJlbJEQ6psVjgTstUSk9YpeZ0AbN8O0p/v6joJDdVJbmL6pZ55s=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=A17uXoxJ; arc=fail smtp.client-ip=40.107.243.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=zJf4NSNzcGGvw+fqNLomQ8DwFFK2ZFm5fWwyTz5mdlLUm4eVNssH+u5BGWbweGNAvXnoVdrZqLXrMq7ZKdZGlFF2YFj+PN6ivsMFxtC+erxuexiv46mjqbPr1zEuVhVYtiFa/4Y2clZAcZzVxVmLmKwnMfYiGB6eIsmrB2mprwMWBjFALTFOhEKPh+2ffvTBFOVwMXZS8FYLlGXi5JdBiEMUneWSCuqX+6YLbor0sC+GMA/RmeoP0g3LJEZFVRyRL//5Ks95SGSnNADooShCtVVU5ncyde8qI5k3gfAUB4Je4h4ZCtxEDcDDz4EG9x9mmbYnFnmZK4APOld2RepuvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8ZFNAlsk9zii1koVPsGDMHMT1gPWa2JQzDLfTeUbwOk=;
- b=E5rGiV89VcjrC5tMStGkS+/wHfVgYDoAQJwzGKkxNGGziMnClwD1nqkMnbi+M8nya/4+A9pT2dKmKIds4BdhL+1IXDiw20D6Oei5HGOg7pYYQlbJcuP69pdDEPWqumn7NDHi2obNhQR8syoGmFSA9GvWhoH8EvBLbBIB66ii7UgOEtc0Y9IqnRSmIY3qHxmgl9NpdutuluBv3qRkELytwrww05mc4Rq5k1qnjFeRH2fB0wzFGOYh140NLJUC0786hHA/nqJR5VnWTEELyGC6A9vPL1Nizuhe4XoQ5+Gr/SqcFOyQwGeg0cXltZvk0GswT2XeHrdS/fhG+8YWieuUBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8ZFNAlsk9zii1koVPsGDMHMT1gPWa2JQzDLfTeUbwOk=;
- b=A17uXoxJIYZsK7Ptb/pEkJMJNSlswAZnrHqqwear9R+bfRXBp+Yo8OYxte269J5lBVOOKdlNOeTDMhcwAjjHGW9gqHTrwlOKfNHWSfEfRvb0hkXeCaQH2+sD7XZYMj33+9p3cQm9m/kujq62GqvSql8DZ1zikfMQ7t3ZNPeM6/GPWTx3/6De6ZWMKiu+gMIyao6CHHtl+aB0St6UB8F2NA1c6a7J3o3AqylrcWEXKT7eGT/xzaTm9BlnRcDlSPDs06i8AMnfVHUVzIr+XUtmWYIypOxYz4YYEUJpgNN8Ag5N8M5bkLMovc0QGpP1q78DaLKhI7WIhtUd87ZJ56dxNg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com (2603:10b6:510:209::7)
- by CH1PR12MB9669.namprd12.prod.outlook.com (2603:10b6:610:2af::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.18; Thu, 4 Sep
- 2025 22:35:18 +0000
-Received: from PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d]) by PH7PR12MB7282.namprd12.prod.outlook.com
- ([fe80::6f03:f851:7f6c:c68d%7]) with mapi id 15.20.9073.026; Thu, 4 Sep 2025
- 22:35:17 +0000
-Message-ID: <457567cc-4863-42a4-8b91-27de17b51887@nvidia.com>
-Date: Thu, 4 Sep 2025 15:35:14 -0700
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 2/2] ARM: dts: aspeed: Add NVIDIA GB200 UT3.0b board
-To: Andrew Jeffery <andrew@codeconstruct.com.au>, robh@kernel.org,
- krzk+dt@kernel.org, conor+dt@kernel.org
-Cc: joel@jms.id.au, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
- linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org
-References: <20250815224344.908130-1-donalds@nvidia.com>
- <20250815224344.908130-3-donalds@nvidia.com>
- <c9348ebb7f0cd24c950ba07abf4641a1d5382160.camel@codeconstruct.com.au>
-Content-Language: en-US
-From: Donald Shannon <donalds@nvidia.com>
-In-Reply-To: <c9348ebb7f0cd24c950ba07abf4641a1d5382160.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SJ0PR03CA0193.namprd03.prod.outlook.com
- (2603:10b6:a03:2ef::18) To PH7PR12MB7282.namprd12.prod.outlook.com
- (2603:10b6:510:209::7)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEBDF273D6C;
+	Thu,  4 Sep 2025 22:51:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757026298; cv=none; b=HgeulfPwwFiE2lLZXBjujuxHu5CCI2mVyDLHmuDOi5GS4HU2zpmLsRjjlqtCCVPzD6ocIJVa2GPHo0ux4xVLHWHg7X1CcdkYo53hLmpIsEbGWGyU8x4dFY/QOA1fuZ0l1XQOjMUWJIgLw2CpRKUtt2jvrf9ls2OPoRWkEcHvtQw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757026298; c=relaxed/simple;
+	bh=rZxlIRFhfwXJ8Ey0B89TYPM99pCpKry9h4aA8gtZwaI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Dl+5VEqSoC6BB2trRKkDT4s1tFrN5XkRRc0wxXL27BRZRFKL8vs+6pcmSDZHjlvWAIZ+XcPqCn6cmTQEYGIl7D4iVe2TWZDpNVt9oyqNm0ARPkI3LSf7RWl1QfKiH8JyqrpdZcBIDsDPQL/Sg4w1t/0CcOp0c2WDHpyk9Mfp/9Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gA2lXBAZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E616C4CEF8;
+	Thu,  4 Sep 2025 22:51:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757026297;
+	bh=rZxlIRFhfwXJ8Ey0B89TYPM99pCpKry9h4aA8gtZwaI=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=gA2lXBAZQ1c6we6EDVbvHv6Tj3+Hfno0ZMz/zM2ejt3eJ5dEaaTZoHJFmVacOx93F
+	 7wvqVuFpmAQ0afNQh2bjNmZe4VhY0yx8zOKy0LNN/+l3vF42zYRxq9YIJuN1TQhL0p
+	 B0O+EjG6SdOj6xMkvGympx4RwRwkoI8e6c8T4ZGGWiLK2gm1ZQxT0sLSjankSumcPH
+	 RHxLXMe8vdBNBAwVQ3QvR5gSZLadOrg30fNzKVwCXOCAhV0qPE/mYYKnIwei4/NiEj
+	 o0ZBIOkxnDPSbr/RkQlft3p8stLtSsvLMWRknu5WRAXNfykxjX0GeNq2XvViAn+mBC
+	 Dea3uXCMNXr2g==
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-61a8c134533so2765660a12.3;
+        Thu, 04 Sep 2025 15:51:37 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVpxYeeQqTj7Ccw+hsY0iZxGBCsn2qog/RcqtuNx7lXN2yY8fnVs8Kce4l/T586fwus3rvqXA2AKUYo@vger.kernel.org, AJvYcCVsxyfoFkmM+8nWCiIjWtKASqs+fU40hdqvWqzrF5C85wksISUJ31Pao3p48t1esVxICXP3krn9PkIlCfo73Jg=@vger.kernel.org, AJvYcCWFU2J1uVzD3Xk3dqeyEbZWx3hZc2dQSWoEEknagl2ICRdpMmlL59r5kYb1UVBjU0bQCc80RvcpROlihRp22w==@vger.kernel.org, AJvYcCWWy9/JcyyoJnwjzsJ4INUbGDjEUyTRjrp8JerRxXLYTILU7X50nwpxSMkaHMr6ySRY+SBCawsCmIUexswi@vger.kernel.org
+X-Gm-Message-State: AOJu0YzE1WOkBcuT9gH/aDYeUYSedDrO39W3YPB285S3fYVlnXFUS3Q+
+	0LK5mFkre3KKRQz9Wxt+wFBQub9Qs7RbSoEXxRV47kkWEhxqj5M76vGCdZwXv1EfRF7lW41Y78s
+	l2I7FYcIF0mVYACTV0KajGvRHCjuUmQ==
+X-Google-Smtp-Source: AGHT+IGaxOtL7PADVJ97dEblpUi1tzP0d34qEZbRrN12oBJr/y3CK4z9uDffSlyNPCZutOvejrHGmEfss/I3Efw3GWs=
+X-Received: by 2002:a05:6402:3589:b0:620:a0ff:36b3 with SMTP id
+ 4fb4d7f45d1cf-620a0ff38d0mr2021228a12.8.1757026296065; Thu, 04 Sep 2025
+ 15:51:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB7282:EE_|CH1PR12MB9669:EE_
-X-MS-Office365-Filtering-Correlation-Id: 80e67b6c-095d-480d-4381-08ddec0352aa
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|376014|1800799024|7416014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?Z3VPeGZ4V1VybFVvOFpxOWQrNDQ5RW1BbktoRjd5aFZZbS8wS3I4NUNlZDE4?=
- =?utf-8?B?NHczVzUvSTNHSWMxaktxeFBlZm0wVUZRZ2FkL1UreUgvNHJLSHdDOUlPNXk0?=
- =?utf-8?B?eDNzUkEwNkVsdWRENEcyMGQzMm1hWG53V2lOb0duSUhFMVBNNmpuOWZpZy8z?=
- =?utf-8?B?dWc1ZFF5MEhCL2xLb3ZXVTI2K2h5QzVFQ29vU040VmhVTzltakdYazNKVTJV?=
- =?utf-8?B?RjlHYTJNd1dwaU8vdmRVRjltcDNKUEtsUVlaaGQ4dmZFcGdGWkpucitPNTZZ?=
- =?utf-8?B?QW03VGlZVng4dFpqMURCYjNDT2ovRSswWTM3eVhwSEZFYnZnTERjQ1lJZmZF?=
- =?utf-8?B?RC82U2NqRmNFV2oyeEk5MDZMVk1yU3ArREs1MGtENVRxdXRjYjVJNUVJODFD?=
- =?utf-8?B?Q2wzc0Y4ODFka2FjMzVBbEovSzJuVU5mWk9qbG5vam51SEVkSjdaOUVGUnVk?=
- =?utf-8?B?NnRybVc1Q2l2NUlNRWEvMVdCVGpYMklvKzJSRXRyVDBkV2w1V1hNWXNmZXlq?=
- =?utf-8?B?NmZtTnl5dGFwOWRhUExBbTlYeG9Kc1NicUZDakl5VXYyQUI4eGhTTTdrK1JF?=
- =?utf-8?B?YURZb0FOZ3lvSS85OHZrWmhoZWljV0l0RTNhdkhadWRmaW1WUnladGlSMlhJ?=
- =?utf-8?B?OWl5NWVucE44NjBhanpQVk0wOUxHd0x5bGFjWHJkSUViVUR2WUZyblVPUldi?=
- =?utf-8?B?YnR0cnFrZWs1RUE1RjVvRm1la3BMSWRMWlJsSjVoTTl1Z1Z0RlVVbS9qb0Zs?=
- =?utf-8?B?NHZPNkVqcjVzbnFVdnNIZ0V1UHJMT1BNZUNLbUc5MksweUJWc20vUmlqNFV2?=
- =?utf-8?B?UzJsUHZpTDkxVWFRMjY0VzhOZEJoU3RSUmpBeTVhYld3U2dZWWUwU2kvRnB1?=
- =?utf-8?B?RUxNZ2VVcTVublBuMENOYUh4bWpNWmJDaWVubkFSQ1RUQS9mY243VGxkY2hL?=
- =?utf-8?B?eDN1Y1dWRDJ1S0FvS1VJMHdaUm93T0dlMGtmVnNXdmhIdnRMQ0tYU1RoOE1i?=
- =?utf-8?B?RWFSVGRGaHdjZTJMbE9ncjBZcnVMNHZPMCtpQURYaWIwSm9UdEVSN1NvUSsy?=
- =?utf-8?B?S3ZycUlRWFEwMExscHhIcGIreTdqVjFKWFJ6TUxFNDVwdzdKSVY3ejVNSnF3?=
- =?utf-8?B?ekdXT1NLbWV4Mkx5MCtBK1VIUFMxWmZtdkFVVE5RTVBsWEtHVEFlbWhvS2VF?=
- =?utf-8?B?dHJRaWxhNGNySkZHWDR5UGNzUm41K2pPaGZBVzVqcmtjdXVuMzI4MHd6Szh5?=
- =?utf-8?B?dW5GaGZINEVucVlLTE90NllkVW5UU2F4S0d0S2VZN0oxaFJqRjBjV1l2SDA0?=
- =?utf-8?B?VXN0RzUxLzVGYUxyYk0xRG10THR1elRRMEI1VWhKdGR1R0VBcU9xSllxUFA2?=
- =?utf-8?B?dVBDNVY2cmN2aXZIVXcxRm5RcUxpR3BidWV3blJNdnlyM0NzSGt6azIyM29p?=
- =?utf-8?B?S1NqblFFUDQ1UW1rM2xEOG5IN0g4UktuaWRoSDdIV2JkV2J2R0hNZHBwRFpN?=
- =?utf-8?B?WG5EWTB2MFZmU1ZXTzZmbVREcGVGcGpuamp4UVlINFVNWE5NemJGdVdxKzFZ?=
- =?utf-8?B?d29rZzRuUitMWGtlS3V2L2pZUm1TUXpLTXdhTmM2TFhlbFdiako0R3p6SGZB?=
- =?utf-8?B?Y21VUHpJdVNNa25GN3MxdUtQcmtTbkhXQjZ1aFZLZUJqRUtOazBOR1d5NVRU?=
- =?utf-8?B?SW9keGN6UmJQZ0ptM2N5TStMZjlmMEJsYndpN2R1enRZUGtIaEd3Y3d4R1hN?=
- =?utf-8?B?clpEbnlSK2hHRE5hTkVUdldOQkpGZk53UlJ4Y0xBUzlTenpzY050Um51Y1I2?=
- =?utf-8?B?SThPTTdPVUtCQkxtZnpodEFLa0h5R2RTN0lLNTVFaVBScUFKVU9GaTdXdUR3?=
- =?utf-8?B?QXhRKytvaml1M1dPdlI3ejFWa3k0cEYrTjhaMnp0MXdSMTNXRitIbGw1b0U4?=
- =?utf-8?Q?mQsvcIgjoOE=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR12MB7282.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(376014)(1800799024)(7416014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?MktPZmh3UitGMmRwM1BVai91Q2RVSlNYSWwwbUVvZ3pqQU9OMUxpd1JKZFpI?=
- =?utf-8?B?RW9GN3JabHZ4aVpGVzRhdEYwbFQ4N1IxMFlHKzlZVGhPa0tVS3MyaldaTTZy?=
- =?utf-8?B?OTYwdjBueWlzd1Z5aFg4ZCtvRVRSc3lCaGx6ck4xTEdPZ2RaNnJUQmZtMS9Y?=
- =?utf-8?B?clZDVmZmRjZUakRubHVsTkVNdytZSVN1VXNPMTJ3ZGpGbHlCTm5IUDcvQ2Rh?=
- =?utf-8?B?cUFLNTR3QjNYNE5iSjF5MHdZUkY5MWRaSlM1VGVYUVZTVzJjQzhpUnVjd1JH?=
- =?utf-8?B?RUw4eEJOUVFPS2NGLzFqSW1lQTF3TFpVbzNZMmhRc2hLTTdHa1VwU0hNYkFC?=
- =?utf-8?B?Z1hUQ2JJYS84NTJjN0tzVWRiZExtUDQ0dndOUDRoY1ZDTTlCZktlS3A4cmxy?=
- =?utf-8?B?Rkptc2RHNDZIcGw0RU9IN0JZV3Bid1hoUHBsY1NMSnp4ZU80ZktoSDF2WFZx?=
- =?utf-8?B?MTF0NnJKVW5JMEdsa3ljbzVuM081UmQwZkJnb3FOZUxvaE1ObGxRdXVKQmVX?=
- =?utf-8?B?SldyU2hXaHRZdTJkVlQvK29OcnJTUllSRzVPNE5aZ0d6amdUUjNNQjVrSUR3?=
- =?utf-8?B?ajVnbTRycjcrczFZS0h1QlJJczhEUllEWnhGUnB6SytJMG5uWk1KV1A2SlE1?=
- =?utf-8?B?aGg4N1R0ODhWQ2pUUWJkTnZJUXA5LzVMZlBjY1NPdCtYMzd1WCtFR2tSVnVB?=
- =?utf-8?B?bStjYlJqeFBEV25lRVhrblE2bWVQcU5MY3lNTlhSaXVRdEdBaUk0OGJIZlpR?=
- =?utf-8?B?R1hrM0RuUUQyaE1XdUhnVXE3M3J3akxEc3B4ZHl3V1RZSUd6ZkoxeXFKQ241?=
- =?utf-8?B?Q2s2SEJuOU5RL0xkRTZWbGRNcEhYckJHa1MxOC9LVUZET3NQejhIYU82TDlv?=
- =?utf-8?B?U2Y5bjBtaWNwa0drMVVFa2ZhaHdqR1ZkN2dWRVI1UStYYS9KWFEwOWZMUVdY?=
- =?utf-8?B?OVA4ZkUyTXdnSTJYUVV4MWZQbE02TWNqdGJPUHAvWnVFaVRsOW5VbkgwMjFs?=
- =?utf-8?B?TjljNGY1YzhJWjJ1UjZCcWtNcnc2U0JDYmsvR2VRWnhQZ1AzcW1xL0dmM2Nq?=
- =?utf-8?B?SllmRmQxWlFlMGtiV29Eb0VuMGdGbDk2NDFEZXBBU1F4eUEzRityNUpHa0E0?=
- =?utf-8?B?bEVsN2ZZTE1CZUM3VzFLbGp6MmpPclpTQkxPVmo4WXlpVUNLQWt1ZW9sZTlv?=
- =?utf-8?B?WnlLbHRZR1ZwcC9ZZmt4SDRINEdiR25VTEVzckRKZk55eGtzMDQ5YUYyYzY1?=
- =?utf-8?B?UkxjV01DRGgrUHZORXZIdWtXbmgwTXNJc1pEcVJzeGhaYVA2a2NBSU5SNXVV?=
- =?utf-8?B?K2RCeHVBMkI1Y2JNNVRYUzBNeWJ1UndyclZHUEp1enBpVkdoZFFVcloveUN0?=
- =?utf-8?B?ZlJFQUhPdjZoeGtXeURIS1c0dEU1L2J2T1c2bkI2NWsxZEtBTUVwZDhraXpT?=
- =?utf-8?B?eFJjd2xrYyswazhwd01XY1JnZkJiUGM4cG5Od05YUHBYNXZqWDlIRm52MG56?=
- =?utf-8?B?U3dFYzd2MTZmbTUwcGhvVlZXdysra3pTQm40bkl1K1BNMjlLdnRQYUtRQW1k?=
- =?utf-8?B?WG9oeVVadkplemZyWXc2c0hRYTBQd3lTdTBrRHZyNGppek94WVNabzd1OUhS?=
- =?utf-8?B?ZlA5bDM2Y3liZmM1a2dSelZSRzVwRlV6bmp6VUNQV3g5L3N0Q2c2NlA0RTg5?=
- =?utf-8?B?QkNyNEZsUS9JSzhKZStORUZhMXg3WENMMmRUNk9wbGxJY2RZd1l0aE9JQzFv?=
- =?utf-8?B?OGFDelh4VjdDenlLTng4RG1OM21oalpCUE85L2srZXNSYXVYUmU3NHlOTHlw?=
- =?utf-8?B?S0pLUkE4WmYwY2E3RFNCU1pFeGtYS3NycG9Zb3V1Y3F3RlcyeXJkKzhXblBJ?=
- =?utf-8?B?ajJBbDA0R2pGMnkwRHVQTVFTUXdjdmVYK2Rra1FiQk9yN3o4R3B6S0gwQUVZ?=
- =?utf-8?B?Rk9NMU5iK1p2VXBSTjl5YTZYd1laT3pXYTZVMVZza0Z4Vk9YQS9WTTFFYyt4?=
- =?utf-8?B?UEo4R0JjMXRYVzNaMnFJcUdPaGZROHMvbFNMVFpMNytTdkpOZHFxNDlTbmtT?=
- =?utf-8?B?THN1NUg3N1RFYjV5aGM5N2Z4aFdQWHZaWEZabjhRTCtNeTRxS0RsOUxRcVVt?=
- =?utf-8?Q?jLgCDlmMAPrpFDUaX8SBFPgiB?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 80e67b6c-095d-480d-4381-08ddec0352aa
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB7282.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Sep 2025 22:35:17.4073
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: klc1ojWHAfPXQhXi7x0XukEurzzLdi/MB+jaJGQPr9OxZtjVyTFkGwryU2zZPFSQFXvyEmVY1I2px5RVv0NOWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PR12MB9669
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250904001014.GA3405605-robh@kernel.org> <a547ecce-31c7-4627-ac6f-aeeef81bd0ff@oss.qualcomm.com>
+In-Reply-To: <a547ecce-31c7-4627-ac6f-aeeef81bd0ff@oss.qualcomm.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 4 Sep 2025 17:51:24 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKuoJrkActpLXVUW9e9=R1FESUbD_rwBd5NGX2_Yv2ASw@mail.gmail.com>
+X-Gm-Features: Ac12FXzkfB2c0iRpvpGj-xHclRNDJptX4X0vzi65Szyc16ZA5DCfpUwJ2Dn7HNY
+Message-ID: <CAL_JsqKuoJrkActpLXVUW9e9=R1FESUbD_rwBd5NGX2_Yv2ASw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 9/2/25 22:46, Andrew Jeffery wrote:
+On Thu, Sep 4, 2025 at 6:31=E2=80=AFAM Konrad Dybcio
+<konrad.dybcio@oss.qualcomm.com> wrote:
+>
+> On 9/4/25 2:10 AM, Rob Herring wrote:
+> > On Wed, Sep 03, 2025 at 07:33:58PM +0000, Hrishabh Rajput wrote:
+> >> Gunyah is a Type-I hypervisor which was introduced in the patch series
+> >> [1]. It is an open source hypervisor. The source repo is available at
+> >> [2].
+> >>
+> >> The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+> >> access the MMIO watchdog. It either provides the fully emulated MMIO
+> >> based watchdog interface or the SMC-based watchdog interface depending
+> >> on the hypervisor configuration.
+> >
+> > EFI provides a standard watchdog interface. Why can't you use that?
+>
+> The use of UEFI at Qualcomm is not exactly what you would expect..
+>
+> >
+> >> The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+> >> version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+> >
+> > Is a watchdog really a hypervisor service? Couldn't a non-virtualized
+> > OS want to call a watchdog (in secure mode) as well? But I don't know
+> > how the SMCCC call space is divided up...
+>
+> Gunyah traps SMC calls and acts on a subset of them, passing others
+> to TZ
 
-> External email: Use caution opening links or attachments
->
->
-> Hi Donald,
->
-> Sorry for the delay.
->
-> On Fri, 2025-08-15 at 15:43 -0700, Donald Shannon wrote:
->> This is an Aspeed AST2600 based unit testing platform for GB200.
->> UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
->> differences, additional gpio expanders, and voltage regulator gating
->> some devices.
->>
->> Reference to Ast2600 SOC [1].
->> Reference to Blackwell GB200NVL Platform [2].
->>
->> Link: https://www.aspeedtech.com/server_ast2600/ [1]
->> Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
->> Signed-off-by: Donald Shannon <donalds@nvidia.com>
->> ---
->>   arch/arm/boot/dts/aspeed/Makefile             |    1 +
->>   .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1030 +++++++++++++++++
->>   2 files changed, 1031 insertions(+)
->>   create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
->>
->> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
->> index aba7451ab749..37edc4625a9f 100644
->> --- a/arch/arm/boot/dts/aspeed/Makefile
->> +++ b/arch/arm/boot/dts/aspeed/Makefile
->>
-> *snip*
->
->> +&gpio0 {
->> +       gpio-line-names =
->> +               /*A0-A7*/ "", "", "", "", "", "", "", "",
->> +               /*B0-B7*/ "", "", "", "", "", "", "", "",
->> +               /*C0-C7*/ "SGPIO_I2C_MUX_SEL-O", "", "", "", "", "", "", "",
->> +               /*D0-D7*/ "", "", "", "UART1_MUX_SEL-O", "", "FPGA_PEX_RST_L-O", "", "",
->> +               /*E0-E7*/ "RTL8221_PHY_RST_L-O", "RTL8211_PHY_INT_L-I", "", "UART3_MUX_SEL-O",
->> +                                       "", "", "", "SGPIO_BMC_EN-O",
->> +               /*F0-F7*/ "", "", "", "", "", "", "", "",
->> +               /*G0-G7*/ "", "", "", "", "", "", "", "",
->> +               /*H0-H7*/ "", "", "", "", "", "", "", "",
->> +               /*I0-I7*/ "", "", "", "", "", "QSPI2_RST_L-O", "GLOBAL_WP_BMC-O", "BMC_DDR4_TEN-O",
->> +               /*J0-J7*/ "", "", "", "", "", "", "", "",
->> +               /*K0-K7*/ "", "", "", "", "", "", "", "",
->> +               /*L0-L7*/ "", "", "", "", "", "", "", "",
->> +               /*M0-M7*/ "PCIE_EP_RST_EN-O", "BMC_FRU_WP-O", "FPGA_RST_L-O", "STBY_POWER_EN-O",
->> +                                       "STBY_POWER_PG-I", "PCIE_EP_RST_L-O", "", "",
->> +               /*N0-N7*/ "", "", "", "", "", "", "", "",
->> +               /*O0-O7*/ "", "", "", "", "", "", "", "",
->> +               /*P0-P7*/ "", "", "", "", "", "", "", "",
->> +               /*Q0-Q7*/ "", "", "", "", "", "", "", "",
->> +               /*R0-R7*/ "", "", "", "", "", "", "", "",
->> +               /*S0-S7*/ "", "", "", "", "", "", "", "",
->> +               /*T0-T7*/ "", "", "", "", "", "", "", "",
->> +               /*U0-U7*/ "", "", "", "", "", "", "", "",
->> +               /*V0-V7*/ "AP_EROT_REQ-O", "EROT_AP_GNT-I", "", "","PCB_TEMP_ALERT-I", "","", "",
->> +               /*W0-W7*/ "", "", "", "", "", "", "", "",
->> +               /*X0-X7*/ "", "", "TPM_MUX_SEL-O", "", "", "", "", "",
->> +               /*Y0-Y7*/ "", "", "", "EMMC_RST-O", "","", "", "",
->> +               /*Z0-Z7*/ "BMC_READY-O","", "", "", "", "", "", "";
->> +};
->> +
->> +&gpio1 {
->> +       /* 36 1.8V GPIOs */
->> +       gpio-line-names =
->> +               /*A0-A7*/ "", "", "", "", "", "", "", "",
->> +               /*B0-B7*/ "", "", "", "", "", "", "IO_EXPANDER_INT_L-I","",
->> +               /*C0-C7*/ "", "", "", "", "", "", "", "",
->> +               /*D0-D7*/ "", "", "", "", "", "", "SPI_HOST_TPM_RST_L-O", "SPI_BMC_FPGA_INT_L-I",
->> +               /*E0-E7*/ "", "", "", "", "", "", "", "";
->> +};
->> +
->> +&sgpiom0 {
-> So the style guide asks the referenced nodes to be ordered either
-> alphabetically, or in DTSI order[1] (which should be unit-address
-> order).
->
-> [1]: https://docs.kernel.org/devicetree/bindings/dts-coding-style.html#order-of-nodes
->
-> What we have to the quoted section above isn't in alphabetical order.
-> To this point it was DTSI order, but that breaks here too.
->
-> My preference is that nodes in the DTS referencing the DTSI are
-> alphabetical (as we can't see the unit address for ordering). Can you
-> please fix it?
->
-> You mention in your cover letter that ordering was addressed in v3 -
-> did we lose that along the way?
->
-> *snip*
->
->> +
->> +&uart_routing { };
-> Drop this?
->
-> Cheers,
->
-> Andrew
+My question was just whether it's the right call space to use. I would
+think hypervisor calls would be things like "vm start" or "vm stop",
+not something which in theory could be implemented without a
+hypervisor in the middle.
 
-Hi Andrew,
+> >> This patch series adds support for the SMC-based watchdog interface
+> >> provided by the Gunyah Hypervisor. The driver supports start/stop
+> >> operations, timeout and pretimeout configuration, pretimeout interrupt
+> >> handling and system restart via watchdog.
+> >
+> > Shouldn't system restart be handled by PSCI?
+>
+> I believe the author is trying to say that the watchdog is not
+> configurable from Linux at present, and if the platform hangs, there
+> are some indeterminate default settings in place
+>
+> >
+> > Why can't you probe by trying to see if watchdog smc call succeeds to
+> > see if there is a watchdog? Then you don't need DT for it.
+>
+> There apparently isn't a good way to tell from a running system whether
+> Gunyah is present, unless you make a smc call (which could in theory be
+> parsed by something else, say a different hypervisor..), but then this
+> patch only introduces the watchdog interface, without all the cruft that
+> would actually let us identify the hypervisor, get its version ID and
+> perform sanity checks..
 
-Thank you. I will switch to alphabetical order and remove uart_routing.
+IIRC, last time we got just a gunyah node. Now it's that plus a
+watchdog. What's next? I'm not really a fan of $soc_vendor hypervisor
+interfaces. I doubt anyone else is either. We have all sorts of
+standard interfaces already between virtio, vfio, EFI, SCMI, PSCI,
+etc. Can we please not abuse DT with $soc_vendor hypervisor devices.
 
-Thanks,
-
-Don
-
+Rob
 
