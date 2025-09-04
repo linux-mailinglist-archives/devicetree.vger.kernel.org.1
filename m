@@ -1,95 +1,88 @@
-Return-Path: <devicetree+bounces-212587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 343EBB433F6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:29:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73F11B433F9
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:29:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2DD917B930
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:29:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B399189419F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:30:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8104729BD81;
-	Thu,  4 Sep 2025 07:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 399E629BDA0;
+	Thu,  4 Sep 2025 07:29:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRE6gby3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mBzro54a"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55D3E29B78E;
-	Thu,  4 Sep 2025 07:29:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 126BC29BD92;
+	Thu,  4 Sep 2025 07:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756970959; cv=none; b=F+1EfCaHPA/TGj9aIG4hu9kl5xuNE+jIJxV0M/hRC2Sdzwt9B/NLPtj+x9af8RBOrxiL3su2JY+rvvRzf+qZWDZkUtAma6BkG1ZFc7WiRN9dbbRiN3N90fMcj9cO+ws7j7fSXo9QZw1npX4TknoiIsd9k0nVDDDhGXy2sjmX9To=
+	t=1756970994; cv=none; b=RmcQK2qWzC5mCsHhitcRdEIZrd2Sqr/fz8JlzkX3YoKKlDndz7rdpmh2tzlX+ahH+ZE/nAbiA59Pm+8L/mQPMZB9SCH2/mhKgV7NMAvYd9z1safB73UkiKDsV5LUCt5x5H9OvpF+1q+IiWs719ah3sa81ogJg9e3LGi0qJ3f59U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756970959; c=relaxed/simple;
-	bh=ZfDC/ITMRgaGG6h9hvAFUqwnJEvgAnYkZF1Z1AGJOhw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=C2pBmGXcoK4da3sBzhsOqCegpF+p9W8Yc6UuSBAcueDQU4HZnxAqb4KYaFKQjjY+jsZZiz7ayy1JM8BARQ3IA5X4Xc8Pr6GqvrtStggUoHyCqTunKdAyirY0nuyV2lx3vnnD3I4OdREo8/1X/YTPTbMOR3me9WyuJo43kJYbJVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRE6gby3; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33DC3C4CEF0;
-	Thu,  4 Sep 2025 07:29:16 +0000 (UTC)
+	s=arc-20240116; t=1756970994; c=relaxed/simple;
+	bh=eH8cDvd3H9MNJ1WHvOF2gG+uBWrtr7bwcPe6463npC4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=crAJ+EPhEvBEwJqGmIuXKpNA3Imr08sRkVCSyk07e45jJtPuN6GzLux7mA8O20S/OFTg9ls2mnlzg/lClVyLvMd/pktTG8cQIOFnTRfaMyh7D2Y58c93GXjL704HM8LCZfNaGjIk1NOi6BK2DRs/ECXb7k2S3obYxYMb22JgPzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mBzro54a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3E5A1C4CEF0;
+	Thu,  4 Sep 2025 07:29:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756970958;
-	bh=ZfDC/ITMRgaGG6h9hvAFUqwnJEvgAnYkZF1Z1AGJOhw=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MRE6gby3g/PKtN4d283wXDO3RQCpNJ/cS0zZp9OYUHEYIN05Mb7fo42b7vw6srfUS
-	 wMRKT5W2AGlOl1EvLwXpVw4ZUruA69531j7AkHeSI9thGPhsufC+G1EsRB+0sWCfb2
-	 5RVrZhYzu8S52+Y3gCJATZteAQUoRz1Vm6JN3Sa3T4GdFAilkqzKUH3deOdywx9T9f
-	 pOzwHgfk4rpLBaL99ZJDtqfpoOSPSNGiz+LfJBE2Ucvkx5kNVCrYTam5DWaDKKPEIY
-	 gbDUNYEMkVJLOhXc6fkF3poKUHo98Z7bxuFGob0GnAFHT13GO760GOsnNugh4zco5n
-	 6wspu8B8OOapQ==
-From: Srinivas Kandagatla <srini@kernel.org>
-To: Chester Lin <chester62515@gmail.com>, 
- Dan Carpenter <dan.carpenter@linaro.org>
-Cc: Ciprian Costea <ciprianmarian.costea@nxp.com>, 
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
- Fabio Estevam <festevam@gmail.com>, 
- Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>, imx@lists.linux.dev, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Shawn Guo <shawnguo@kernel.org>
-In-Reply-To: <cover.1756800543.git.dan.carpenter@linaro.org>
-References: <cover.1756800543.git.dan.carpenter@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/3] nvmem: s32g-ocotp: Add driver for S32G
- OCOTP
-Message-Id: <175697095597.8283.15697258146228301679.b4-ty@kernel.org>
-Date: Thu, 04 Sep 2025 08:29:15 +0100
+	s=k20201202; t=1756970993;
+	bh=eH8cDvd3H9MNJ1WHvOF2gG+uBWrtr7bwcPe6463npC4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=mBzro54aaf5Bkj6Fbxh6cMvQqaTCuRaTOGYkgsZjs88yn5wB0CP/pUhDUewAQquvd
+	 uvzDDDTu5+jqiPTGMR/wCNUPGiE6s6Ej6SLK7DHuh1JRphufwJde9wvPtscdqRlesz
+	 XmwfWzkokpHts8S1ILk/97skW1ut5htRsl5FfL1O30ArsSzKgRsfS5HZjGkUfCDPy+
+	 XelhXSCb6vQXwcyLZR0PuscvNABDMUOJ5hyQDZXh50KU0vku4FSiOQo3FfBgjVNhoi
+	 TBtjXLVuN+ZZ4YUO/eW4DNYygkHgBlh2zwb+FwVnNgMRL5LGmdCG0SAycA8Dqldc8a
+	 ouwRBhY9WmHOg==
+Date: Thu, 4 Sep 2025 09:29:51 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Michael Riesch <michael.riesch@collabora.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Kever Yang <kever.yang@rock-chips.com>, Jagan Teki <jagan@amarulasolutions.com>, 
+	Sebastian Reichel <sebastian.reichel@collabora.com>, Diederik de Haas <didi.debian@cknow.org>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Collabora Kernel Team <kernel@collabora.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Subject: Re: [PATCH v4 3/7] dt-bindings: phy: rockchip-inno-csi-dphy: add
+ rk3588 variant
+Message-ID: <20250904-space-swift-of-acumen-2fa4dc@kuoka>
+References: <20250616-rk3588-csi-dphy-v4-0-a4f340a7f0cf@collabora.com>
+ <20250616-rk3588-csi-dphy-v4-3-a4f340a7f0cf@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250616-rk3588-csi-dphy-v4-3-a4f340a7f0cf@collabora.com>
 
-
-On Tue, 02 Sep 2025 12:47:40 +0300, Dan Carpenter wrote:
-> This driver provides a way to access the On Chip One-Time Programmable
-> Controller (OCOTP) on the s32g chipset.  There are three versions of this
-> chip but they're compatible.
+On Wed, Sep 03, 2025 at 07:04:51PM +0200, Michael Riesch wrote:
+> The Rockchip RK3588 variant of the CSI-2 DPHY features two reset lines.
+> Add the variant and allow for the additional reset.
 > 
-> v3: Mostly small cleanups.  Re-order device tree entries.  Remove unused
->     label.  Use dev_err_probe().
+> While at it, fix the description of the first reset in order to avoid
+> confusion.
 > 
-> [...]
+> Signed-off-by: Michael Riesch <michael.riesch@collabora.com>
+> ---
+>  .../bindings/phy/rockchip-inno-csi-dphy.yaml       | 50 +++++++++++++++++++++-
+>  1 file changed, 49 insertions(+), 1 deletion(-)
 
-Applied, thanks!
-
-[1/3] dt-bindings: nvmem: Add the nxp,s32g-ocotp yaml file
-      commit: a3430382174a78a4a6b981feca44bcaa405e0f2c
-[2/3] nvmem: s32g-ocotp: Add driver for S32G OCOTP
-      commit: f7605ba1859724d44a7be4994335b31666110c84
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
--- 
-Srinivas Kandagatla <srini@kernel.org>
+Krzysztof
 
 
