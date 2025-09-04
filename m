@@ -1,199 +1,240 @@
-Return-Path: <devicetree+bounces-212806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85820B43C96
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:08:07 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BBC4B43C97
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:08:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 52FB11C8042E
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:08:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B67491C80667
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:08:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A911930102F;
-	Thu,  4 Sep 2025 13:07:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2C862FFDF7;
+	Thu,  4 Sep 2025 13:07:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Q2YlZfvG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AABA72F28E0
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:07:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43D3B2FE05F
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756991273; cv=none; b=Wf1c1XtBufAZgUx053ZfLiYc749vC5LgAmGHUgjBXcJ5KsGScLmN7+L/oQRXAu6EMjwPa6A/AS79xf+ITe6Oisb1tvqz2r5/DwLe3FUn60kSEppUMWLNulWEIlBYTNh9mzNmIDf3dHseB+o7Wnh4IKnX36XwtxWmnzpuIk29gXw=
+	t=1756991278; cv=none; b=RMugMGzuF1ucGs+5QzNRcXhgvTb2eAVlmDXwrzYQhfAZePkpqddp/2ac8ioqa2PXCpF+NxqTXnKzsBlBahffZtN5SnzkW/+V7l3K7xO/3vaCMobjXZoPaz7JYIwlRDVs2uGo7l+eWBY7HfBojf8RDWWNQD5twejLs+qNEQKLDGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756991273; c=relaxed/simple;
-	bh=DhE0eL3FCB3LnEeDU37nVit4zSnZ+uCwievCawz5WA4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=WEV6R1KtPwBoaJ7VvweUxSkD9f57besT3Bu4mBfTDsNOTxMl0V6J4Szekz5h9aJmPABN0gwQ34FO9J2pd0j2ww7qE2unRFMyGJCSRt+DvkrhHCpla6aRpCFE2o9Nox/v36rHP4My7FYmf761qTe9ih2+BePrH50WpPWQmaUtjtQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.89])
-	by gateway (Coremail) with SMTP id _____8BxmdEmj7lomqwGAA--.14230S3;
-	Thu, 04 Sep 2025 21:07:50 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.89])
-	by front1 (Coremail) with SMTP id qMiowJAxfcEIj7lotA5+AA--.16416S5;
-	Thu, 04 Sep 2025 21:07:49 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Keguang Zhang <keguang.zhang@gmail.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-mtd@lists.infradead.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v4 7/7] mtd: rawnand: loongson: Add Loongson-2K1000 NAND controller support
-Date: Thu,  4 Sep 2025 21:07:11 +0800
-Message-ID: <b9e9dd704ad62290218757e9ba9ea8c14d0e6878.1756991031.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1756991031.git.zhoubinbin@loongson.cn>
-References: <cover.1756991031.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1756991278; c=relaxed/simple;
+	bh=i7Wda34KnkW6Mxr7vtlQckQo/CbsEm0PTQVYdp+T5xs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=X2P0fx4ZjCICQsINfkUQZB3ow2oq79Jct0x2WfnV162RByXZhVYRkPpB1GGE0o9vy3tjeBTQI/Nq7eivpcMQhYjPcFV9xn+i+aRx4pSOHQ246NzxK+7ZyGMmi0PAx44exiXEzByW2KmIyHzEl77+PsQxV6VS08eimfSTtH6CABY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Q2YlZfvG; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X8bD008125
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 13:07:56 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	9Mtw+zFHKgxX84KUgMXqN5jBwQU2U9/gl7V5VWSgAWU=; b=Q2YlZfvG4o9UW02k
+	2VII0m74/LXq2+KAz6t97mFJwlCCvWTVWyu2yKNWFrEiniPlrSQS7SWDh/DDl7Tc
+	Mvn410RPsrzMgBUjY3DG7QomEUsl8s3V3bpEQxLvcQhm7YiY0mg5OgqyQygwwpNP
+	jDyue7AxlEs2eQ6S3lAHmUknWcGJk+w/VRhTUrry+XZsk288P68dgnhQbBR4lpxx
+	ZELotPA66tWDVikcgeTAyXvVsgS6ftKwhseBvTaPFqxK3jXX8Yk/ae4VDReawUQu
+	fIQGDh4FxfbMSdK8tDMAp6Ohsu0WgHBud/KILIxsv0tR6ONxAjwbhFdHmZioy3tD
+	9b0bqw==
+Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48urmjqgf2-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 13:07:56 +0000 (GMT)
+Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-772248bb841so1524768b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 06:07:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756991275; x=1757596075;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9Mtw+zFHKgxX84KUgMXqN5jBwQU2U9/gl7V5VWSgAWU=;
+        b=ZWxgaToOqjLfD1gdz4B/7J+bAMLAarcUNGsfeoJy801LRAQ1kmYQ2V9pQXg7Et1zel
+         kHmE+wj4IiBuaxnKhHfq3HTDwN/JbfWT0eiuikOpbf6zPdsU/E07fFKEfdORlQaNNlJr
+         IGDMQvdpIbuC4fI4VFyyIdiyFC9cPIvQ0BrGyXwWQKcb9m2jl9+WDvCXO9ObeUoOfrrM
+         y3dSCXXVOi5Y7M8/PPrS73LI4+HNc/sMEp802EQjruUM3kVrW+GAIvACD6i8qwDY6304
+         +/dbTV2EGaZ8jHizbBgwEudw7eXldLPVlHGdmQPhkQ6T2YEqfjH602pFL8dlGWURqe5R
+         hyzA==
+X-Forwarded-Encrypted: i=1; AJvYcCXrLTZfXyv0jYXRG5d6ASSXJUFL0VCaruX9Zxy7WFQWzIyZnZBPsXcCd1hoYYhl6jRe8XGdZxfH6Xlg@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw1jkIps64Le4KKJ0rPnv52nWbSuyX5srPNhRrhMtoo2wNo7YPb
+	EFC8vcjv33X0U6oHrs5sFQCWOS3DFsU01lfaYLgAtuXw8PqGgCZVRbzvIQBx5+uyJc9IQfyba79
+	Sm5UX84V2mNifE+On5OeyjbLtN4CmCkweuwzZBLLJR321f3LqI6M3R8ER/py0b/Pm
+X-Gm-Gg: ASbGnctwMsip1qhzVf0tgjCPW1c/6nndMUDCzbybP0kL91HW+GW9yMRcTnfbxJ6saJM
+	tzhbI90O65Q6CjYXAHuERn+ypzx9h1AYzJqcs2fQ+4Y06NFVJCDQeLal30CDHPeYl19AEzXakhE
+	55RssgpsHKTM+XBgDseIQ4Eo1PCufq1Ysrik4oyrZDy6iulDw2cIfsC9LVW1S/JMlEyYQrIaApw
+	n+1RWiGPQ1Gu5G7Ot4SCQEhwGZim/YNZOpsTnhsels6fM5bPAjjK67xsTSpYKyJzxLsYyvytpKA
+	khqHQREiwSKBeO5hS1MDOU03cuEkHEUcG/ZOKb9jYa+KxgX39oBs112BcfbBgzl5Q7OwbZZH0ZM
+	x
+X-Received: by 2002:aa7:8895:0:b0:772:3b9d:70f0 with SMTP id d2e1a72fcca58-7723e21a808mr24935253b3a.2.1756991274699;
+        Thu, 04 Sep 2025 06:07:54 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEOsIwWe48mV57+hdURmb7F/1RRflaAlxIyQfsmlF9Uie2Mg78PBmOG7S/u4oBd2+T479KtpA==
+X-Received: by 2002:aa7:8895:0:b0:772:3b9d:70f0 with SMTP id d2e1a72fcca58-7723e21a808mr24935209b3a.2.1756991274177;
+        Thu, 04 Sep 2025 06:07:54 -0700 (PDT)
+Received: from [192.168.215.112] ([106.206.58.2])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-772590e0519sm11838396b3a.84.2025.09.04.06.07.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 06:07:53 -0700 (PDT)
+Message-ID: <099a7c48-c447-40d4-9076-570f5a5058a2@oss.qualcomm.com>
+Date: Thu, 4 Sep 2025 18:37:40 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJAxfcEIj7lotA5+AA--.16416S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoWxGw45WFW3CrW8uF47Ar4UJrc_yoWrJr48pa
-	yUAay3KFW5tF45ua98tayrCF13Z34ftr9rJa9rW34Ik3sxJ3srWFy8GF1YvF4Yvry2gr12
-	qFyFgas7CFsrXrbCm3ZEXasCq-sJn29KB7ZKAUJUUUU3529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUm0b4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Ar0_tr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AK
-	xVW0oVCq3wAaw2AFwI0_JF0_Jw1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0c
-	Ia020Ex4CE44I27wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_ZF0_
-	GryDMcIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x
-	0EwIxGrwACjcxG6xCI17CEII8vrVW3JVW8Jr1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IY
-	c2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxV
-	Aqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q
-	6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Ar0_tr1lIxAIcVC0I7IYx2IY6x
-	kF7I0E14v26r4UJVWxJr1lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE
-	14v26r4UJVWxJr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBIdaVFxhVjvjDU0x
-	ZFpf9x07bYoGQUUUUU=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: Add binding for gunyah watchdog
+To: Krzysztof Kozlowski <krzk@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck
+ <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250903-gunyah_watchdog-v1-1-3ae690530e4b@oss.qualcomm.com>
+ <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
+Content-Language: en-US
+From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+In-Reply-To: <ea295ff6-5395-4470-afc2-76e5e2dc9fb5@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Authority-Analysis: v=2.4 cv=OemYDgTY c=1 sm=1 tr=0 ts=68b98f2c cx=c_pps
+ a=WW5sKcV1LcKqjgzy2JUPuA==:117 a=0ySTwGsjrHEnVRIoGa4+sA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8
+ a=gEfo2CItAAAA:8 a=NEAV23lmAAAA:8 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8
+ a=7snBibKccnROOREnhvIA:9 a=QEXdDO2ut3YA:10 a=i6qsmYmKKdoA:10
+ a=csto0wWSG80A:10 a=OpyuDcXvxspvyRM73sMx:22 a=d3PnA9EDa4IxuAV0gXij:22
+ a=sptkURWiP4Gy88Gu7hUp:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: RvhTUGnYHpjYYWlsyyiubOf_4nN-5tiR
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyNCBTYWx0ZWRfX45FC7+970O1P
+ gr4uCZYvBd7bDYWM/CQ7qs6JNBMaNXUcdP4d6yQfh3xPw0WkOem2rKQ9TkM7rwoB6A5DabBi5mm
+ Q6N5VWLiCVQlFCbbv7K70PIBOlstUVsmsHgpAOkbf9UDbTSluo8TNsyB1dOVUH5EVzfrx5WPwMj
+ 7AFk7rkeDhozhX5ZlmSH3EGM8yFGClXT5aR/JFeClaS1pnip7u9WflhLaIRL6UUrez6FGS/u/od
+ TEOqA++9Xr30eqVQg3y03JOOiFpdRITmU2HpSRAchRBglJnaL4jYuu3wUibkUBYOz+N11CZM0nV
+ MGvRiKld5P2UEXopRomxCUQ6D6qRWLeIFXQfg3qCCfzMgbxtTa87Mjkg2pqgjgkCbqVtBE0UNck
+ nS6vi5bS
+X-Proofpoint-ORIG-GUID: RvhTUGnYHpjYYWlsyyiubOf_4nN-5tiR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_04,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 suspectscore=0 spamscore=0 bulkscore=0 priorityscore=1501
+ adultscore=0 clxscore=1015 phishscore=0 impostorscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300024
 
-The Loongson-2K1000 NAND controller is also similar to the Loongson-1C.
 
-It supports a maximum capacity of 16GB FLASH per chip with a maximum
-page size of 8KB, and it supports up to 4 chip selects and 4 RDY
-signals.
+On 9/4/2025 3:22 PM, Krzysztof Kozlowski wrote:
+> On 03/09/2025 21:33, Hrishabh Rajput via B4 Relay wrote:
+>> From: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>>
+>> The Gunyah Hypervisor applies a devicetree overlay providing the
+>> pretimeout interrupt for the Gunyah Watchdog that it will be using to
+>> notify watchdog's pretimeout event. Add the DT bindings that Gunyah
+>> adheres to for the hypervisor and watchdog.
+> Wasn't tested, so limited review.
+>
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching. For bindings, the preferred subjects are
+> explained here:
+> https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+>
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+> See also:
+> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
+>
+Noted. Will go through the referenced links and update accordingly.
+>> Signed-off-by: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>> ---
+>>   .../bindings/watchdog/qcom,gh-watchdog.yaml        | 76 ++++++++++++++++++++++
+>>   MAINTAINERS                                        |  1 +
+>>   2 files changed, 77 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml b/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml
+>> new file mode 100644
+>> index 000000000000..bde8438c6242
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/watchdog/qcom,gh-watchdog.yaml
+>> @@ -0,0 +1,76 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/watchdog/qcom,gh-watchdog.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm Gunyah Virtual Watchdog
+>> +
+>> +maintainers:
+>> +  - Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>
+>> +
+>> +description: |+
+>> +  The Gunyah Hypervisor provides an SMC-based watchdog interface for its virtual
+>> +  machines. The virtual machines use this information to determine the
+>> +  pretimeout IRQ which the hypervisor will be using to communicate pretimeout
+>> +  event.
+>> +  See also: [1]
+>> +
+>> +  [1]: https://github.com/quic/gunyah-resource-manager/blob/1b23ceb0dfa010b3b6b5a5f7a4ec1e95b93ab99d/src/vm_creation/dto_construct.c#L519
+>> +
+>> +properties:
+>> +  compatible:
+>> +    allOf:
+>> +      - const: gunyah-hypervisor
+>> +      - const: simple-bus
+> What? No.
+>
+> Don't create patches with AI.
 
-The key difference from the Loongson-2K0500 is that it requires explicit
-configuration of the DMA control route. Typically, it is configured as
-APBDMA0.
+This patch was not created with AI. Reference was taken from the patch [1].
 
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- .../mtd/nand/raw/loongson-nand-controller.c   | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
+That being said, I see your point about the mistakes which were made 
+while adding the compatible "simple-bus".
+I apologize for the same.
 
-diff --git a/drivers/mtd/nand/raw/loongson-nand-controller.c b/drivers/mtd/nand/raw/loongson-nand-controller.c
-index 427a0daf8c55..8490412d5be1 100644
---- a/drivers/mtd/nand/raw/loongson-nand-controller.c
-+++ b/drivers/mtd/nand/raw/loongson-nand-controller.c
-@@ -74,6 +74,14 @@
- 
- #define BITS_PER_WORD			(4 * BITS_PER_BYTE)
- 
-+/* Loongson-2K1000 NAND DMA routing register */
-+#define LS2K1000_NAND_DMA_MASK         GENMASK(2, 0)
-+#define LS2K1000_DMA0_CONF             0x0
-+#define LS2K1000_DMA1_CONF             0x1
-+#define LS2K1000_DMA2_CONF             0x2
-+#define LS2K1000_DMA3_CONF             0x3
-+#define LS2K1000_DMA4_CONF             0x4
-+
- struct loongson_nand_host;
- 
- struct loongson_nand_op {
-@@ -103,6 +111,7 @@ struct loongson_nand_data {
- 	unsigned int wait_cycle;
- 	unsigned int nand_cs;
- 	unsigned int dma_bits;
-+	int (*dma_config)(struct device *dev);
- 	void (*set_addr)(struct loongson_nand_host *host, struct loongson_nand_op *op);
- };
- 
-@@ -759,6 +768,23 @@ static void loongson_nand_controller_cleanup(struct loongson_nand_host *host)
- 		dma_release_channel(host->dma_chan);
- }
- 
-+static int ls2k1000_nand_apbdma_config(struct device *dev)
-+{
-+	struct platform_device *pdev = to_platform_device(dev);
-+	void __iomem *regs;
-+	int val;
-+
-+	regs = devm_platform_ioremap_resource_byname(pdev, "dma-config");
-+	if (IS_ERR(regs))
-+		return PTR_ERR(regs);
-+
-+	val = readl(regs);
-+	val |= FIELD_PREP(LS2K1000_NAND_DMA_MASK, LS2K1000_DMA0_CONF);
-+	writel(val, regs);
-+
-+	return 0;
-+}
-+
- static int loongson_nand_controller_init(struct loongson_nand_host *host)
- {
- 	struct device *dev = host->dev;
-@@ -787,6 +813,12 @@ static int loongson_nand_controller_init(struct loongson_nand_host *host)
- 
- 	regmap_write(host->regmap, LOONGSON_NAND_CS_RDY_MAP, val);
- 
-+	if (host->data->dma_config) {
-+		ret = host->data->dma_config(dev);
-+		if (ret)
-+			return dev_err_probe(dev, ret, "failed to config DMA routing\n");
-+	}
-+
- 	chan = dma_request_chan(dev, "rxtx");
- 	if (IS_ERR(chan))
- 		return dev_err_probe(dev, PTR_ERR(chan), "failed to request DMA channel\n");
-@@ -941,6 +973,19 @@ static const struct loongson_nand_data ls2k0500_nand_data = {
- 	.set_addr = ls1c_nand_set_addr,
- };
- 
-+static const struct loongson_nand_data ls2k1000_nand_data = {
-+	.max_id_cycle = 6,
-+	.id_cycle_field = GENMASK(14, 12),
-+	.status_field = GENMASK(23, 16),
-+	.op_scope_field = GENMASK(29, 16),
-+	.hold_cycle = 0x4,
-+	.wait_cycle = 0x12,
-+	.nand_cs = 0x2,
-+	.dma_bits = 64,
-+	.dma_config = ls2k1000_nand_apbdma_config,
-+	.set_addr = ls1c_nand_set_addr,
-+};
-+
- static const struct of_device_id loongson_nand_match[] = {
- 	{
- 		.compatible = "loongson,ls1b-nand-controller",
-@@ -954,6 +999,10 @@ static const struct of_device_id loongson_nand_match[] = {
- 		.compatible = "loongson,ls2k0500-nand-controller",
- 		.data = &ls2k0500_nand_data,
- 	},
-+	{
-+		.compatible = "loongson,ls2k1000-nand-controller",
-+		.data = &ls2k1000_nand_data,
-+	},
- 	{ /* sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, loongson_nand_match);
--- 
-2.47.3
+I will make sure `make dt_binding_check` passes with latest versions of 
+dtschema and yamllint as pointed out by Rob and as should have been done 
+with this patch as well.
 
+
+[1] 
+https://lore.kernel.org/all/20240222-gunyah-v17-2-1e9da6763d38@quicinc.com/
+
+
+Thanks,
+
+Hrishabh
+
+>> +
+>> +  "#address-cells":
+>> +    description: Number of cells needed to represent 64-bit capability IDs.
+>> +    const: 2
+>> +
+>> +  "#size-cells":
+>> +    description: must be 0, because capability IDs are not memory address
+>> +                  ranges and do not have a size.
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  "^gh-watchdog":
+>
+> I could not express more: NAK. Does not match any DT style. Please do
+> some internal reviews first. This patch does not meet minimum quality
+> criteria for public posting.
+>
+>
+> Best regards,
+> Krzysztof
 
