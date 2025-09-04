@@ -1,156 +1,143 @@
-Return-Path: <devicetree+bounces-212556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212557-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAD27B432E1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 08:53:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 01C69B43338
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:02:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3C65683029
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 06:53:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5D801BC6BEE
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:01:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD988286D53;
-	Thu,  4 Sep 2025 06:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24C4F2877EE;
+	Thu,  4 Sep 2025 06:56:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="I2LZhG1b"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZatjNClD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D93427932D;
-	Thu,  4 Sep 2025 06:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40301286412
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 06:56:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756968770; cv=none; b=NJA1dPh+OCg8aCDK2/10KGX0Lm+pztSJslmI8d0bu23jek2/rrRfvNntHiIw+/b++MEhfs/XLkqb7Tac3XNWBTXJxCzdXanZltlrqhGjzh31F/lL7WJhFkbNfqXVgE5gcnXEbe594niMXzmu3G9rqf27jRLd2xyKcvSVG/mZdkI=
+	t=1756968984; cv=none; b=WnQGemNm0JeRffXs0U8/4tMlB8npqN2/z3sGIalvl35sgHRZ1X27E2tCfdEppTYpwHx+DJXOaLMn7W6MwrzkuHT9HL0Fgvv2RX8d7bGjExHIUJtwhafQeyYXPwFPkmGwb6TnoOeujHjDt3bbu5/LZL6z4fEmmOQ/b4ZKyWpeZTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756968770; c=relaxed/simple;
-	bh=BFiVUX5SnGpXTU5EPsk3g7ynGmoCRddVJ9DCtF02gxo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Kl9BTzi42QLCYW1evAe6U26Z7s9k5ZVRZrV51y9eLWKOnkGZSBEbBEtPguTM1f4xPNMW//JCbrNJv/k2EomCtrSNFUlhfjkmqcdx8lFNSrI8zdI1vh/yeyweaOmGluzUOAwZj9XnBTR0usWLY42blz3SKJAxNod1CZVyR0N0AQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=I2LZhG1b; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5841dIqU003427;
-	Thu, 4 Sep 2025 06:52:38 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=ueVIig/TQlb
-	tPgNi5E+6EzlMvVG+rDHGGgCXB11FwGs=; b=I2LZhG1bygSHD/ir6kKs0dnWEO6
-	i55DQU8f5N6Jb1q+cB0B20MzRxUrcPzFXLFEAZeP1q7/k1PKjNwsuEMT3QcVju7H
-	LjU1ExIwzzYqDSRSx7CSnpL7JE7LSxAljvCf65F3zwfVYg84Nd1ogCFzGpY6NGPD
-	bfvqkmBUdh12M74UlsdqFXNKuYQyrUnPPLJxDY7vw76RzpfuhxWxAj16c3gMTofZ
-	LaTzCVjQQ49Sjx7D8CVmlUk6OvhXDpDsVpfMO2q3gYhJPb+3kqekwz4BWVjBVqfb
-	+eYsoGIkXsWs14WAwBGo9icbt0jawmVkguUN3M5bsSYNN5CY09IC/cXlUtQ==
-Received: from aptaippmta01.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com [103.229.16.4])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura8xd04-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Sep 2025 06:52:37 +0000 (GMT)
-Received: from pps.filterd (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTP id 5846qZGd027255;
-	Thu, 4 Sep 2025 06:52:35 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 48utcmhds2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Sep 2025 06:52:35 +0000
-Received: from APTAIPPMTA01.qualcomm.com (APTAIPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 5846qYhQ027247;
-	Thu, 4 Sep 2025 06:52:35 GMT
-Received: from ziyuzhan-gv.ap.qualcomm.com (ziyuzhan-gv.qualcomm.com [10.64.66.102])
-	by APTAIPPMTA01.qualcomm.com (PPS) with ESMTPS id 5846qYgm027242
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 04 Sep 2025 06:52:34 +0000
-Received: by ziyuzhan-gv.ap.qualcomm.com (Postfix, from userid 4438065)
-	id 2DF80526; Thu,  4 Sep 2025 14:52:33 +0800 (CST)
-From: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com,
-        mani@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
-        bhelgaas@google.com, johan+linaro@kernel.org, vkoul@kernel.org,
-        kishon@kernel.org, neil.armstrong@linaro.org, abel.vesa@linaro.org,
-        kw@linux.com
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>,
-        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: [PATCH v6 3/3] arm64: dts: qcom: lemans: Add PCIe lane equalization preset properties
-Date: Thu,  4 Sep 2025 14:52:25 +0800
-Message-ID: <20250904065225.1762793-4-ziyue.zhang@oss.qualcomm.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250904065225.1762793-1-ziyue.zhang@oss.qualcomm.com>
-References: <20250904065225.1762793-1-ziyue.zhang@oss.qualcomm.com>
+	s=arc-20240116; t=1756968984; c=relaxed/simple;
+	bh=+jM2IX9YMvgKOzlDNA7D7HKUcXHwlAxrld3bjm7TAGs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=J0igSSCZQLaKgeO9eDp644nTxbrz4iwW/9+XLiUbeorh7L3zBc0rsXuofDinjVNJ9w7ylSwJXEikMxZWxrCJgAZjEsTtuqn/gGyAYtxVJDMAHzvyWpcE+jYY9PMgXlgez7+l8ihU626in4l+IgedTUHjQbymKCjDBiSBP3zB5gw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZatjNClD; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3d1bf79d7acso411856f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 23:56:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1756968980; x=1757573780; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=A7W+MHt4m6RVZcMRRD040CxW9PQRGlDxO7dLPVoTn8U=;
+        b=ZatjNClD4NdSb6p/YXRVkD8WTsvJjLUfQ6hDBkDZsYaYzj3QYO2HLU/cgghT61lMoS
+         JJvb4ISr/bKYnyS6iQQT0tBWiyc8vkoIlJ8i6+aTts6rEvLv8jbH8Oh/9oWOC+6Z9jrP
+         +JUXrXBh0OcDJ/fiyOAxLbnQS8QrT1dV0KuRM7lytGuyt8DZRonCK7Ogx8xO4z6DDMbx
+         AniWYv+yIE44dNjIitlrehLb4ytiKSZglEay8G1kEWA1O9vSmXpkhpywLf8zORn6//uW
+         fE0W+IkgdvCmgCFbLeoGljXvFoXaIsLVT4d/NEXQVJAzniEFQyy8vRxLOL6K/T/Lphmw
+         XjoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1756968980; x=1757573780;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A7W+MHt4m6RVZcMRRD040CxW9PQRGlDxO7dLPVoTn8U=;
+        b=FsLzYxsibFkQc1UwbxxiXGtxeKSZadbH1ysoTpJnWACw9LME5Gnfn9Oz8ykdRQwfnn
+         +NQB3IVfQ3BjF4WODThnPzb6zm9bVoYe1OnJ8Cr7giYd9x9sQyL5pmtjgOd0uauTJvn3
+         h9x1BK1CIng+98/K3RLYo1u2YOoqrPdovnUM0QJLrAehweetSw3lZbMNllquPIvFMvl+
+         +ZHGMhnq5J/HnwOD9881ZGUYEsGuUS1fixASs4SZd7yVVIdyJ8C0E5oCdVIqaKJ5SM2o
+         M21masWio1IL8jYlt2yd7cJgXIei6v6AR/rHbKttGp6XFMc0UvuoYXisLjr7/jSU4FL6
+         jHfw==
+X-Forwarded-Encrypted: i=1; AJvYcCW7iaNk83+KxW+ssHLmiXXG7N3W5imXRjuDEg54uj/EboIvW8eL/sKHTLR7kFMLsEDz55xrWatI9tn0@vger.kernel.org
+X-Gm-Message-State: AOJu0YwEN3ITNfJ6n+j9ox/X1AJx6fy8rmnRRFcb6FMTIpPLNaTNNL+Z
+	86xEyrQxAIF8nUEiNw0anzOrHR7jRlvzb5pSgGlUteUP6Vkk8EbhE+UylLFRQXzR9N8=
+X-Gm-Gg: ASbGnctbCRQDZAQLdwrmgYnilLkb5/2S7JDPFWpw7XRNMJ7yflCaBCprz7Qsrh4UX2i
+	I3bZYjGY+ckfTYRWJld5QhYIYxFzFVikCIpQQ8W5N1LDRRa78liS5LnvAvDvDOElm0k62UN+GPe
+	/tYC1lqDRMoc9yGyH5io6IIhgBpYufeP6KDO379Zul1iLfma4P83Ls2ZDxwtX569214xv+Xgt4+
+	sEH1u31Ysq8WSs0zPE9b4EVTrLN70HqWgqrWDcX3nDCD+jEyHBYKL4gzEkZZTStXkPcDS+0evyE
+	VN39MJxAkNxEe05LhukOYUe3D/dRm2ah6AxFLlDL7qy67/A4na3bVJZC3OHQoHqBNHoy0ooRxfZ
+	6P5QTLCgmNm+oDbWyy5EGgdc=
+X-Google-Smtp-Source: AGHT+IHrlWEGIp2jfPvPNYCuVdAm78L04cC7Ows1hq2QFUYr3F3uBfqzroHI+RRBQ1DT0GzNgdWAmw==
+X-Received: by 2002:a05:6000:2410:b0:3d8:e1de:7e4f with SMTP id ffacd0b85a97d-3d8e1edc849mr7713856f8f.21.1756968980518;
+        Wed, 03 Sep 2025 23:56:20 -0700 (PDT)
+Received: from hackbox.lan ([86.121.170.194])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3d701622b92sm15256075f8f.58.2025.09.03.23.56.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 03 Sep 2025 23:56:19 -0700 (PDT)
+From: Abel Vesa <abel.vesa@linaro.org>
+Subject: [PATCH 0/3] phy: qcom: edp: Add support for Glymur platform
+Date: Thu, 04 Sep 2025 09:55:50 +0300
+Message-Id: <20250904-phy-qcom-edp-add-glymur-support-v1-0-e83c6b9a145b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -CFzjaiGUGMpSZ7dT3JPLUgiSFozmDex
-X-Proofpoint-GUID: -CFzjaiGUGMpSZ7dT3JPLUgiSFozmDex
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX1T2uJ7sfeDE6
- psUBpSmDG/jvJ3LMOsxFtinz6YtjgIE+S9hlyMVKLk7Dl479Bqt8ILgvX7OYqQeDNB/EBNq0uf+
- wOnt/Qgqwx76Cswy5oGBM7eyvXKzARLY7cPAvsFgrPvAZEHcM1Dna7UMAoyXpQk/6w284/0MglW
- 3GANAbEqk9J4jz275qsRTxA3CFaQ7ap5eMlisV1k7tRUe+Xeb8mqwK1tU6F2q0+RESaOXy+MMyh
- asg+LhGjXqe/MD1VSgAqEzy50jZmQw3G56RFKQAnRjd2jRKF/yXuFJfAjYNoKRJqIMnse/i7aVA
- NRN1DSTRtDgMG/7q22fErWWCvmRXwzafezB2CGdSm7E0aJHmr8DzRut+GQhWQ5c9z5dHidQutcS
- mrWiXECJ
-X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68b93736 cx=c_pps
- a=nuhDOHQX5FNHPW3J6Bj6AA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=VwQbUJbxAAAA:8 a=XhQEiPrLEPsAcZFVs94A:9
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_02,2025-08-28_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
- clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPY3uWgC/x3NwQ6CMAyA4VchPdtkmyEyX8V4mLRCE2G1EwMhv
+ LuLx+/y/zsUNuEC12YH468UyXOFPzXQj2keGIWqIbjQuujOqOOG7z5PyKSYiHB4bdNiWBbVbB8
+ MqfP+QjE8ugi1osZPWf+H2/04fqXvaLtxAAAA
+X-Change-ID: 20250903-phy-qcom-edp-add-glymur-support-2a8117d92b89
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Johan Hovold <johan@kernel.org>, linux-arm-msm@vger.kernel.org, 
+ linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Abel Vesa <abel.vesa@linaro.org>
+X-Mailer: b4 0.15-dev-dedf8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1007; i=abel.vesa@linaro.org;
+ h=from:subject:message-id; bh=+jM2IX9YMvgKOzlDNA7D7HKUcXHwlAxrld3bjm7TAGs=;
+ b=owEBbQKS/ZANAwAKARtfRMkAlRVWAcsmYgBouTgDQFMOO1/9mhrp0khsNUjrwKGAFRw3CHW07
+ Hih9CyAHpmJAjMEAAEKAB0WIQRO8+4RTnqPKsqn0bgbX0TJAJUVVgUCaLk4AwAKCRAbX0TJAJUV
+ VmTXD/4zu1EOD49T4qwPcqvkip86WFCaFmszidMLCD93/3N4woAbLZB8JdxI9eARWU6Zem3C3lt
+ yfdiv9Q7HGdjWWfV/ODOm0t/jDeQGAAZeq8hr3Vd4g1gTu/bCN6Y5xceXFN03tQpWd3amXWoLOi
+ 3zd9kAZRHVbhWK9TKfuwZOT3YL7cru7WgYbiF/zgNU60V25aDradkYLqHr7mcWmn+w5opiawp8C
+ PcRNxTXFCUA6qhzChaxD681voDzUsJXUks4Eg78ii9z26niuCy1NCNYo2cukISD6x3Pv21I1Wg0
+ IpOhTWYt35FtvX/OsS9nwYlhw4cZsh5ALi+4xj4aC3/+sVZSlMCS9t5DjXG/dARqQ+S1cleu//P
+ JGWiZOeYNJ8/vqv0FkiVzucsQ1nF81BIX8tXw+fD9kykg7aA5ZvXhL/wUjb/9emetL/Tkuaibct
+ MPi+if842R8FDDfcW0yX5/mW3i3fWnQFq7T1Y5tMO3CtzheLdFcHiBLk0FtxtfhMs+gFL2IZ0Vu
+ z3ND2HzuA5Ud2B0dqBcME4QSCr/+1npIXHFIJDwklM9NALKGsxRT8xo3NE2qQDLMhFZwbxhSdgI
+ PL1FfUbrmF2GSGKUrg2YVFFzAN3q1LnyF7GviTDdpAbnLUUAMTHLb0S1l6+AbqUzgmG31GYnXAW
+ cjsoAyH2v97Y7sA==
+X-Developer-Key: i=abel.vesa@linaro.org; a=openpgp;
+ fpr=6AFF162D57F4223A8770EF5AF7BF214136F41FAE
 
-Add PCIe lane equalization preset properties with all values set to 5 for
-8.0 GT/s and 16.0 GT/s data rates to enhance link stability.
+The Glymur platform implements the eDP/DP PHY version 8.
+Add the necessary registers, rework the driver to accommodate
+this new version and add the Glymur specific configuration data.
 
-Co-developed-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Signed-off-by: Qiang Yu <qiang.yu@oss.qualcomm.com>
-Signed-off-by: Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Acked-by: Manivannan Sadhasivam <mani@kernel.org>
+This patchset depends on:
+https://lore.kernel.org/all/20250903-phy-qcom-edp-add-missing-refclk-v2-0-d88c1b0cdc1b@linaro.org/
+
+Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/lemans.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+Abel Vesa (3):
+      dt-bindings: phy: Add DP PHY compatible for Glymur
+      phy: qcom-qmp: qserdes-com: Add some more v8 register offsets
+      phy: qcom: edp: Add Glymur platform support
 
-diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-index 64f5378c6a47..c88bf206ea82 100644
---- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-+++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-@@ -7657,6 +7657,9 @@ pcie0: pcie@1c00000 {
- 		phys = <&pcie0_phy>;
- 		phy-names = "pciephy";
- 
-+		eq-presets-8gts = /bits/ 16 <0x5555 0x5555>;
-+		eq-presets-16gts = /bits/ 8 <0x55 0x55>;
-+
- 		status = "disabled";
- 
- 		pcieport0: pcie@0 {
-@@ -7827,6 +7830,9 @@ pcie1: pcie@1c10000 {
- 		phys = <&pcie1_phy>;
- 		phy-names = "pciephy";
- 
-+		eq-presets-8gts = /bits/ 16 <0x5555 0x5555 0x5555 0x5555>;
-+		eq-presets-16gts = /bits/ 8 <0x55 0x55 0x55 0x55>;
-+
- 		status = "disabled";
- 
- 		pcie@0 {
+ .../devicetree/bindings/phy/qcom,edp-phy.yaml      |   2 +
+ drivers/phy/qualcomm/phy-qcom-edp.c                | 239 ++++++++++++++++++++-
+ drivers/phy/qualcomm/phy-qcom-qmp-qserdes-com-v8.h |  12 ++
+ 3 files changed, 246 insertions(+), 7 deletions(-)
+---
+base-commit: ab918b506f0121423beef123577d5071eebf9218
+change-id: 20250903-phy-qcom-edp-add-glymur-support-2a8117d92b89
+
+Best regards,
 -- 
-2.43.0
+Abel Vesa <abel.vesa@linaro.org>
 
 
