@@ -1,81 +1,48 @@
-Return-Path: <devicetree+bounces-212526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4765DB431BC
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:45:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A153B431C6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 07:49:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC0D81892B2A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:46:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 191BE566487
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 05:49:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E8D3021C9F9;
-	Thu,  4 Sep 2025 05:45:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99CB2376F8;
+	Thu,  4 Sep 2025 05:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b="R2nAWOu8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rTzL+F86"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f46.google.com (mail-pj1-f46.google.com [209.85.216.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B3C26290
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 05:45:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0448632;
+	Thu,  4 Sep 2025 05:49:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756964754; cv=none; b=IvLYkS0JvHFAAo+udqoi0t0NLcQ9nu7/ZQJfBQ8CwOVJQV3me3AQmmH7oWxc2GSPiZhUvpA3oad46hSbI2eE2lzJ5Qcygs1bIiSW1GS4Dd+EIirdroUCfi8wWQQN/ly9rV/Ype+GjbGzg10cA7WOYzFdjTqb73WRFDXc+xRvFvk=
+	t=1756964992; cv=none; b=VKKw4s6lMUt6cRak0q96J+DYazTKSLn8ZNsztPIWYSDhXzkCCjnzBXbIV6iPLEgbTpssS/CPmpDJbvhwCUviJa3ZGisEqGjqU8Bv1M1Fzsaq5iv4TwUP07X00MrzxCEbHujUsLi5yRmdpXBqA4BYEvSGUef76bh/nZ7vR/QCBJ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756964754; c=relaxed/simple;
-	bh=JgH8Iwk889L8PR8q2W6YzSXypZ950buuZ3tCkWLq41A=;
+	s=arc-20240116; t=1756964992; c=relaxed/simple;
+	bh=9WQzIa3qfWUZV+EvhgZ4SESBS1eEflnShf9kFqeX2bs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q+YSxXbg/4OJwhYWaFUPQNuMEvvGzUpB3QuEVfXgsuvpN+N6CDgYoe648DFngKYo+hAVzSAwwqCH2w93Ya1+b5LoWFY5jGQ7KmaSNAZIHqRpgDNmCgq0j75qCMIAFgfzOKVvK7QgicDJJBJlCMkOdp1WW27QDSm6TrNluBF+eu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org; spf=fail smtp.mailfrom=beagleboard.org; dkim=pass (2048-bit key) header.d=beagleboard-org.20230601.gappssmtp.com header.i=@beagleboard-org.20230601.gappssmtp.com header.b=R2nAWOu8; arc=none smtp.client-ip=209.85.216.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=beagleboard.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=beagleboard.org
-Received: by mail-pj1-f46.google.com with SMTP id 98e67ed59e1d1-32326e5f0bfso490786a91.3
-        for <devicetree@vger.kernel.org>; Wed, 03 Sep 2025 22:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20230601.gappssmtp.com; s=20230601; t=1756964752; x=1757569552; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A5YGG4nuGu3lwoQw6peZ8To1oVtanSTvA4C4KW+QrcY=;
-        b=R2nAWOu8EEBKQ4ugTCLZ9N9hRX8+4j55yiuPzjn11Ld3a1xZcmm1rfgttJZ+UNiAxS
-         /AvqeFYRadMoRjsH3LzvHXHf9px0GIYB4q1Rm1VeuT+Xd2I2B/H5vHOt9tMZOz2p1NkW
-         BxDEBaDUzsGbAiR+spPRsmAWLORIAi1DQ7jIeCDtVPVA6ImIHi5yZCpKDIey692JB6wW
-         JVuPbopYtQg/yocYFqkY5DxZ4/pHkZ7sLvjdhGr8yG95fHFIfdNw/YQJGCQbhHxvYpru
-         Mue7ZGSgTLMv4GDFO/9woyOriIa/0op9NAS645tg6R+r+YYURdqTksHYGZKeBUzU6d6N
-         pmiw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756964752; x=1757569552;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A5YGG4nuGu3lwoQw6peZ8To1oVtanSTvA4C4KW+QrcY=;
-        b=JyPpLrk2rUgZ8qw24lzpoVMRS9pMIPZHiD13DeMjpGmmSv8KPPGndq9OMPPm/1Wstl
-         3OSOMQqbOFfTicnRdO77FF8DjNS/pAis/TO/LFESCUN8fnYyxtY2kwM8aOvsrWMbAeoC
-         jCr0DG5M4GbxX/QMfS2NbRYZgTejmL/oES5puur8ZwODWygFQBz+mOIbw5wEsIr1XOEs
-         tY0uSCOx9DtQVJEixTezpa+QRxiP0Fg5UL8XBfc9596oGd1/5JZs1Ht4AeKsqSYHAFu3
-         n+rXRVhePYJVS+OZRzUwmgXFWbRtpD7dig+2iptuSVx8yCgdO9Y6OQ2RtKh7GO/gqOAz
-         X4Gg==
-X-Forwarded-Encrypted: i=1; AJvYcCVSOsWJPFKJo/PUojZkVv9LkKBmDNSeNul3jUUZkdq3Q8bovjG+zoI35tToLdmh2XFe8SbvBZvxfuRB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy2YEAvj1hyIQvilmIB5NYj/3uUukz5JrbzklygfFGvDWz1yPJT
-	mMt/sqf+Ft509vxvTUisv0n4lz9tmq71JQiNEPTwfO5ijpnjxrhC8605Zq7LRnrm8Q==
-X-Gm-Gg: ASbGncsSNh9e9G/9x73Gk41x7OA/U1xixDxpGGlBl0P4P2QNyqd84DDNlVMgH87gjPr
-	tY+vmOr9BmOsVOgmJi7U82+Q4YMQS9DV6Y2N/fSRC1IS6GL9k0yeoLydfy12jmiqOGVL3PFqYHY
-	/Q/dmHKBvlxZvLaif87B+RndFNzVTl97omEPpfAem/uPqhlWgZHWYsmU7qJnV6nh2CmJ30PdDku
-	AkDb9pWJpXP5Pr/jlDvDxgRrfP3YYua7QjqGmtRS1adt/XtLzbznAer/Qd61RKIsmWzEmR9lrEo
-	ceSjepM5KZCEl1PHFWTd9ffzNqsU6KWnDWOUxVh2KqIb9tYTScN4qr9lbZKp0VIvOQsuhEaylgz
-	0EeZya0zXi+Z1JdyRIlLbv+MSoWcRTRxl/2Pii1v2i0UAFyIb/tfq/VKCaz62i1VgRLRpaw2Zbw
-	4sg5ag1dnn
-X-Google-Smtp-Source: AGHT+IFrlxZ8b1BV+14cO0Jkl6iP9ASKskEUevUR+DUKPI8hogCxqnuirxAeAY06esuqQII9DiUKcw==
-X-Received: by 2002:a17:90b:1dcc:b0:327:b321:b514 with SMTP id 98e67ed59e1d1-32815412acfmr22035641a91.2.1756964751828;
-        Wed, 03 Sep 2025 22:45:51 -0700 (PDT)
-Received: from ?IPV6:2401:4900:8898:c0b8:e77d:566:c015:a60f? ([2401:4900:8898:c0b8:e77d:566:c015:a60f])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-32b94a2feacsm358441a91.8.2025.09.03.22.45.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 03 Sep 2025 22:45:51 -0700 (PDT)
-Message-ID: <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
-Date: Thu, 4 Sep 2025 11:15:44 +0530
+	 In-Reply-To:Content-Type; b=G//LszjNQLdS8AqqaC58alm981l8qxpzAsbu1hT7JLKBuQ8Tl2sTlOAdDtG7P17d3ZfaYbC6HRBLwYLQTvuzuIRPGD0e06TEprP///lIIUp/eiqAPtsmBiGt72gCW/JhDqcf2BCA60gvXn2kzFDQEG7u9DI6Fbc9gTcxmOQvec8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rTzL+F86; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6F43C4CEF0;
+	Thu,  4 Sep 2025 05:49:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756964992;
+	bh=9WQzIa3qfWUZV+EvhgZ4SESBS1eEflnShf9kFqeX2bs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=rTzL+F86JVWgnktoyv0vu4spAbwRiYPEK2NTI22kayi/nfMBXKuSZhaNbc3cRxn6y
+	 0cxiJdrxiDORMBnH/Hch/JvkJKtT0cn3abPZbzvbbMhc5YJU4SY6yVi2oTr89fojKg
+	 qibr08LLv5NlxU8w574gxtW2GmX602Ez8UfbrD2zwZjwYdMVg2hTsCh50ogSAm0LTi
+	 fX5n1y0fi9ruvxmp6tV2N6QwXo494VkKfrQ+GhkDI7ZrnNN6kvqfgPhcklCOFQW5HC
+	 7oPZDozbFge3d4MhAnIcDJXSk+9vL3/i+QPoLpcxQXNZqt0kCwY/ni24YMANnIVFOm
+	 VtspCk1BYpdOw==
+Message-ID: <042523f7-2b75-4a04-8e0b-d1019ab84987@kernel.org>
+Date: Thu, 4 Sep 2025 07:49:46 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,459 +50,211 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: Device tree representation of (hotplug) connectors: discussion at
- ELCE
-To: David Gibson <david@gibson.dropbear.id.au>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
- Rob Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>,
- Geert Uytterhoeven <geert@linux-m68k.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Herve Codina <herve.codina@bootlin.com>,
- Andrew Davis <afd@ti.com>
-References: <20250902105710.00512c6d@booty> <aLkiNdGIXsogC6Rr@zatzit>
+Subject: Re: [PATCH v2 1/2] This patch adds a new device tree binding
+ documentation.
+To: syyang <syyang@lontium.com>, robh@kernel.org
+Cc: Laurent.pinchart@ideasonboard.com, andrzej.hajda@intel.com,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com, jonas@kwiboo.se,
+ krzk+dt@kernel.org, linux-kernel@vger.kernel.org, neil.armstrong@linaro.org,
+ rfoss@kernel.org, yangsunyun1993@gmail.com
+References: <175691717884.2393851.6340903042726389490.robh@kernel.org>
+ <20250904022524.1748587-1-syyang@lontium.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Ayush Singh <ayush@beagleboard.org>
-In-Reply-To: <aLkiNdGIXsogC6Rr@zatzit>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250904022524.1748587-1-syyang@lontium.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 9/4/25 10:53, David Gibson wrote:
+On 04/09/2025 04:25, syyang wrote:
+> Fix device tree binding validation errors reported by Rob Herring.
+> 
+> v2:
 
-> On Tue, Sep 02, 2025 at 10:57:10AM +0200, Luca Ceresoli wrote:
->> Hello,
->>
->> [this main was co-written by Hervé and Luca]
->>
->> Hervé and I are working since 1+y to allow describing hot-pluggable
->> add-ons and their connectors with device tree overlays. Our work is not
-> So.. I think this is a poor way of framing the question.  Device tree
-> overlays were, frankly, a quick hack to get some sort device tree
-> variability happening.  They were pretty easy to implement, but they
-> have a bunch of limitations.  Then, as such things so often are, they
-> were used and overused.
->
-> IMO, a lot of the problems being encountered now are really those
-> fundamental limitations of the overlay approach.  Trying to address
-> them "with device tree overlays" is constraining you to a poorly
-> thought out approach, adding hacks on top of hacks.
->
-> I proposed a possible "connector" format years ago (which I still
-> think could do with renewed consideration) as an *alternative to*
-> device tree overlays, not as an extension of them.
->
->> very much progressing because discussions about device tree bindings
->> has raised some issue that are not obvious to solve.
->>
->> This e-mail is a report of the efforts we did last week during the
->> Embedded Linux Conference Europe to try to address the currently
->> blocking issues.
->>
->> First, I gave a talk about the overall hotplug work, to provide a
->> status update but also to clarify the goals and use cases. Slides are
->> available at [2]. Goals include:
->>
->> - decoupling base board and add-on, so an addon can have a single dtbo
->>    valid for any base board, and vice versa
-> Good goal.  This one can be somewhat addressed within the dtbo format
-> (e.g. the 'export-symbols' proposal').  However doing so leans into
-> the limitations of the dtbo format, which I think won't serve you
-> well.
->
->> - supporting main boards with multiple connectors where multiple
->>    instances of the same addon model can be connected independently
-> Such as right here.  The basic overlay approach is really badly
-> suited to this.
->
->> - allowing overlay insertion and removal at runtime (hotplug)
-> Again, I think that's poor framing.  You want to be able to insert and
-> remove things into connectors.  Thinking of that as inserting and
-> removing overlays hotplug limits you to crappy solutions.  The basic
-> definition of overlay application is fundmentally lossy - making them
-> removable requires a pile of ugly hacks.  Better to look at an
-> approach at a different semantic layer.
->
->> The first goal implies that addon overlays do not refer to anything
->> (phandles) beyond the connector node.
->>
->> The talk has attracted a lot of people. All seats in the 200+ room were
->> taken, and when I asked who has a connector use case about 40-50
->> attendeed raised their hands. I also had several questions asked after
->> the talk and in the hallway.
->>
->> After the talk we had planned a discussion about the topic. Krzysztof
->> Kozlowski was present in person (thanks!), while Ayush Singh and
->> Wolfram Sang connected remotely. Jason Kridner (beagleboard.org) and
->> Geert Uytterhoeven were present and actively constributing to the
->> discussion. Unfortunately Rob Herring was not connected, but still we
->> tried to make the best out of the discussion. So we focused on
->> discussing the current proposals to go past the issues with our
->> export-symbols proposal raised mainly by Rob.
->>
->> Here is a summary of the ideas we have discussed, in order from
->> simplest discussion (looking like not doable) to most complex (which
->> look like doable).
->>
->> ---------------------------------------------------------------------
->>
->> Idea #1: Label on __overlay__
->> Proposed by Rob in [0]
->>
->>> Couldn't we make something like this work:
->>>
->>> connector: __overlay__ {
->>>     node {
->>>        foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
->>>     };
->>> };
->> This would be OK for simple cases but it only allows exporting one
->> label, for the connector (i.e. the overlay target node). More than one
->> label need to be referenced from the overlay for cases such as:
->>
->> - pinmux, where each pinmux configuration is a node, and is defined
->>    in the pinmux node outside of the connector
->> - HDMI ddc-i2c property, for HDMI chips in the overlay which needs to
->>    point at an I2C adapter in the base tree
-> Even wiring up plain old interrupts could be hard with this approach.
-> It's also not clear how it would be encoded in the dtb.
->   
->> ---------------------------------------------------------------------
->>
->> Idea #2: add /export/ keyword to mark labels to be exported
->> Proposed by Rob in [1]
->>
->> The idea is to mark modes in the base tree that can be referenced by
->> overlays:
->>
->>> /export/ label: node {
->>> };
->>>
->>> And then __symbols__ can be only those exported labels (unless -@ is used).
->> This is an opt-in version of the "global" __symbols__ to limit the
->> issues __symbols__ introduces. However it is not sufficient for
->> connectors because it tells what can be exported but not on which
->> connector. Also, overlays would need to refer to the nodes in the main
->> tree, thus not decoupling mainboard and addon.
-> Sounds like a strictly worse version of export-symbols.
->
->> ---------------------------------------------------------------------
->>
->> Idea #3: label on empty (*) node
->> (*) until overlay applied
->> Proposed by Hervé at LPC2024 in a discussion with Krzysztof, later
->> abandoned
->>
->> This is based on Idea #1 but tries to make HDMI ddc-i2c work:
->>
->> connector1: connector1 {
->>      #gpio-cells = <2>;
->>      gpio-map = <0 0 &soc_gpio 12 0>;
->>      gpio-map-mask = <0xf 0x0>;
->>      gpio-map-pass-thru = <0x0 0xf>;
->>
->>      i2c8: i2c-hdmi {                [**]
->>        i2c-parent = <&soc_i2c8>;
->>      }
->> };
->>
->> connector: __overlay__ {
->>     node {
->>        foo-gpio = <&connector 0 GPIO_ACTIVE_HIGH>;
->>     };
->>     i2c_hdmi: i2c-hdmi {
->>       //empty
->>     };
->>     hdmictrl@99876 {
->>        ddc-i2c = <&i2c_hdmi>;
->>     };
->> };
-> Having symbol / glue information that's local to a particular
-> connector is, I think, the way to go.  But again, I think encoding
-> this in terms of overlays semantics is going to make it harder than it
-> needs to be.
->
->> This would leverage the i2c-bus-extension work (also under discussion
->> [3]). Since for HDMI an I2C device is not added it would have a node
->> (i2c-hdmi) that is empty in the overlay (but not in the base tree and
->> thus not in the live tree after the overlay is applied). This empty
->> node is needed to ensure we can have a label (i2c_hdmi) that can be
->> referenced from elsewhere in the overlay (ddc-i2c).
->>
->> However there are various issues with this approach:
->>
->>   - mainlin, it does not handle pinumxes nicely
->>   - if the node that is overlayed by the empty node (i2c-hdmi) has a
->>     label in the base tree (line [**]), then the overlay-provided
->>     phandle ID would screw up the base-tree phandle ID
->>   - in dtbo, the empty node (i2c-hdmi) has a property in the overlay
->>     (phandle) but the node exists in the base tree, thus the property
->>     would leak on removal
->>
->> ---------------------------------------------------------------------
->>
->> Idea #4: resolving phandle errors by the connector driver
->> Proposed by Rob in [1]
->>
->>> I'll throw out another idea. What if we make resolving phandle errors
->>> something that can be handled by the connector driver? The driver
->>> knows 'connector' resolves to the connector node it is applying the
->>> overlay to.
->> This idea looked promising, so we tried simulating the process with a
->> dts/dtso example:
->>
->> Base tree:
->>
->> connector1 {
->>      compatible = "myvendor,myconn";
->>
->>      #gpio-cells = <2>;
->>      gpio-map = <0 0 &soc_gpio1 12 0>, <1 0 &soc_gpio3 42 0>;
->>      gpio-map-mask = <0xf 0x0>;
->>      gpio-map-pass-thru = <0x0 0xf>;
->>
->>      i2c-sensors {
->>         compatible = "i2c-bus-extension";
->>         i2c-parent = <&i2c@abcd0000>;
->>      };
->>
->>      hdmi-ddc-adapter = <&soc_i2c8>;
->>
->>      // All pinctrls that addons may need
->>      pin12-pinctrl-i2c = <&pin12_mode_i2c>;
->>      pin1-pinctrl-gpio = <&pin1_mode_gpio>;
->>      pin2-pinctrl-gpio = <&pin2_mode_gpio>;
->> };
->>
->> Overlay:
->>
->> / {
->>   fragment@0 {
->>    __overlay__ {
->>     node {
->>        foo-gpios = <&connector 0 GPIO_ACTIVE_HIGH>,  <&connector 1 GPIO_ACTIVE_HIGH>;
->>     };
->>     i2c-sensors {
->>        thm: thermal@15 {reg = <15>;...};
->>     };
->>     hdmictrl@12345678 {
->>        ddc-i2c = <&ddc_adapter>;   [*]
->>     };
->>     some_other_node {
->>        pinctrl-0 = <&pin12_pinctrl_i2c>;
->>        thermal = <&thm>;
->>     };
->> };
->>
->> This is what would happen for the HDMI ddc-i2c at line [*]:
->>
->> 1. of_overlay_fdt_apply_new(..., resolve_dt_error_cb) is called;
->>     it is a variant of of_overlay_fdt_apply() (name to be defined!) that:
->>       a. takes a function pointer to invoke the connector for resolving
->>          unknown labels
->>       b. does not even try to resolve phandles beyond the connector
->>       c. if target node has no phandle, creates one with next unused
->>          number
->> 2. resolver does not find 'ddc_adapter' label
->> 3. before calling it a fatal error, resolver calls connector driver
->>     callback
->> 4. connector driver callback knows the "ddc_adapter" string must be
->>     resolved using the "hdmi-ddc-adapter" property, returns soc_i2c8
->>     phandle ID
->>
->> connector driver callback in pseudocode:
->>
->>    resolve_dt_error_cb(conn, label)
->>    {
->>      switch (label) {
->>        case "connector":
->>          return conn->of_node;
->>        case "ddc_adapter":
->>          return resolve(conn->of_node, "hdmi-ddc-adapter");
->>        case "pin12_pinctrl_i2c":
->>          return resolve(conn->of_node, "pin12-pinctrl-i2c");
->>        }
->>    }
-> The idea of putting logic into a connector driver makes sense.
-> However, it's unclear to me where those strings its resolving are
-> actually encoded in the dtb.
->
->> We discussed some possible issues, such as: what if a label is actually
->> found in the base tree and thus resolved? This is handled by point 1.b.
->> above: the OF core does not even try to resolve phandles beyond the
->> connector, it would not make sense for connector anyway. In other words
->> it only resolves local fixups, which are internal to the overlay, such
->> as "thm" in the example above.
->>
->> This looked like the most promising approach because it handles nicely
->> HDMI DDC and pinmux and minimize pollution in the phandle ID space.
->>
->> ---------------------------------------------------------------------
->>
->> So that was what we discussed in the meeting last Tuesday. We hope this
->> will help in setting the current point and let the discussion move
->> forward.
-> Let me throw a few more ideas in the pot.  None of these are total
-> solutions, but I think they may make good components of solutions.
->
-> 1) Connector local labels/symbols/aliases
->
-> This is not a new idea - both the export-symbols proposal and my
-> ancient connector proposal had this in one form or another.  I think
-> something along these lines is almost essential.  Things that plug
-> into connectors almost always require references to several host board
-> resources (interrupt controller, gpio, ...).  In order to be pluggable
-> on multiple host boards you want to refer to those symbolically.  In
-> order to support multiple instances of the same connector type, you
-> need those symbols to refer to different things fordifferent connector
-> instances.
->
-> Whhat I think is a mistake is trying to tie this too closely to the
-> existing __symbols__ structure.  Those have an ugly encoding that
-> requires tortured processing in a way that's not natural for dtb
-> handling.  Plus they already kinda-sorta duplicate old-school aliases
-> in an odd way.
->
-> You want some sort of string => node mapping on the connector side,
-> and a way to mark portions of properties on the plugin side as being
-> resolved to some string reference.  But we can take the opportunity to
-> design a better way of doing that than the ugly one we have now.
+That's not the place where you put changelog.
+
+> - Fixed $id field to match actual filename (lontium,lt9611c.yaml)
+> - build pass
+> 
+> Thanks to Rob Herring for the review and feedback.
+
+Please carefully read submitting patches.
+
+Do not attach (thread) your patchsets to some other threads (unrelated
+or older versions). This buries them deep in the mailbox and might
+interfere with applying entire sets. See also:
+https://elixir.bootlin.com/linux/v6.16-rc2/source/Documentation/process/submitting-patches.rst#L830
+
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching. For bindings, the preferred subjects are
+explained here:
+https://www.kernel.org/doc/html/latest/devicetree/bindings/submitting-patches.html#i-for-patch-submitters
+
+> 
+> Signed-off-by: syyang <syyang@lontium.com>
+> ---
+>  .../display/bridge/lontium,lt9611c.yaml       | 121 ++++++++++++++++++
+>  1 file changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+> new file mode 100644
+> index 000000000000..712644da4f1d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/lontium,lt9611c.yaml
+> @@ -0,0 +1,121 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/lontium,lt9611c.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Lontium LT9611C 2 Port MIPI to HDMI Bridge
+> +
+> +maintainers:
+> +  - Rob Herring <robh@kernel.org>
+
+No, how so?
+
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The LT9611C are bridge devices which convert DSI to HDMI
+
+Why this cannot be added to lt9611 binding? Commit msg should clearly
+answer that.
+
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - lontium,lt9611c
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#sound-dai-cells":
+
+Missing dai-common ref.
+
+> +    const: 0
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +    description: GPIO connected to active high RESET pin.
+> +
+> +  vdd-supply:
+> +    description: Regulator for 1.2V MIPI phy power.
+> +
+> +  vcc-supply:
+> +    description: Regulator for 3.3V IO power.
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Primary MIPI port-1 for MIPI input
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Additional MIPI port-2 for MIPI input, used in combination
+> +          with primary MIPI port-1 to drive higher resolution displays
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          HDMI port for HDMI output
+> +
+> +    required:
+> +      - port@0
+> +      - port@2
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - vdd-supply
+> +  - vcc-supply
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c10 {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      hdmi-bridge@41 {
+> +        compatible = "lontium,lt9611c";
+> +        reg = <0x41>;
+> +        #sound-dai-cells = <0>;
+> +        interrupts-extended = <&pio 128 GPIO_ACTIVE_HIGH>;
+> +        reset-gpios = <&pio 127 GPIO_ACTIVE_HIGH>;
+> +        vdd-supply = <&lt9611_1v2>;
+> +        vcc-supply = <&lt9611_3v3>;
+> +        status = "okay";
+
+Nope, drop.
 
 
-Isn't export-symbols exactly this. We do take inspiration from 
-__symbols__. However, in case of export-symbols, its string => phandle 
-mapping (as opposed to string => string in __symbols__).
 
-I suppose export-symbols could follow aliase conventions, but that still 
-is a string => string mapping, which seems worse to me than a phandle 
-(since phandle size is constant).
-
-
->
-> 2) Extend dtb itself
->
-> A maor thing that makes current symbols and fixups ugly is the fact
-> that they are encoded into properties in the device tree itself,
-> despite being logically at a different semantic level.  Obviously you
-> *can* do that, but it's not natural.  It would make more sense to add
-> fixup tags into the dtb format itself.
-
-Having something akin to fixup in dtb format itself would be nice.
-
-
->
-> 3) bus-reg / bus-ranges
->
-> One thing that makes connector plugins a bit awkward is that they
-> often need to add things to multiple buses on the host system (MMIO &
-> i2c for a simple case).  This means that once resolved the plugin
-> isn't neatly a single subtree.  That's one factor making removal
-> really awkward.  Here's an idea I had a while ago to allow plugins to
-> be a single subtree, by extending what's allowed in the tree content:
->
-> Currently a node can only really have a presence on its immediate
-> parent bus, as encoded in the 'reg' and 'ranges' properties.
-> 'bus-reg' and 'bus-ranges' would extend that having a similar format
-> to 'reg' and 'ranges' but adding a phandle for each entry saying which
-> bus it lives on - somewhat similar to interrupt-map.
->
-> For example, here's an MMIO bus bridge of some sort, which has control
-> registers on I2C:
->
-> 	mmio-bus@... {
-> 		#address-cells = < 2 >;
-> 		#size-cells = < 2 >;
-> 		bridge@XXXX {
-> 			ranges = <...>;
-> 			bus-reg = <&i2c0 0x407>
-> 		}
-> 	}
-> 	i2c0: i2c@... {
-> 		#address-cells = < 1 >;
-> 		#size-cells = < 0 >;
-> 	}
->
-> In a sense this extends the device tree to a device DAG.
->
-> Obviously this does need changes at the OS device core level, but it
-> gives you a lot of flexibility having done so.
-
-
-There is an i2c-bus-extension [1] and spi-bus-extension proposal to do 
-the same. But, if we can figure out a common way for all buses, that 
-would be great.
-
-
-[1]: 
-https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootlin.com/
-
-[2]: 
-https://lore.kernel.org/all/20250729-spi-bus-extension-v1-0-b20c73f2161a@beagleboard.org/
-
-
->
-> 4) You don't necessarily need to build a "full" device tree
->
-> Flattened device trees (as opposed to original IEEE1275 device trees)
-> - by design - allow certain information to be omitted.  The most
-> common example is that for introspectable buses, like PCI, it's normal
-> to have the DT only include a node for the host bridge, with devices
-> under it being discovered by their own bus specific methods.  That's
-> discovery is handled by the bus/bridge driver.
->
-> Connectors usually aren't introspectable, but it's still possible to
-> use an approach like this where the connector driver's discovery
-> method is "look at a different device tree".  So, for example,
->
-> Board device tree:
->
-> / {
-> 	compatible = "board-with-foo-connector";
-> 	. . .
-> 	mmio@... {
-> 		foo-connector@... {
-> 			compatible = "foo-connector";
-> 			ranges = < ... >;
-> 		}
-> 	}
-> }
->
-> Foo device tree:
->
-> / {
-> 	compatible = "foo-device";
-> 	foo-port-id = < 0x1234 >;
-> 	component@... {
-> 		reg = < ... >;
-> 	}
-> }
->
-> Obviously a "foo device tree" would have different conventions than a
-> board device tree.  It wouldn't have /cpus, /memory, /chosen - but it
-> could have its own "magic" nodes that make sense for the properties of
-> the specific connector type.
->
-> Again, that would require work in the device core part of the OS.  The
-> bonus is that runtime addition and removal is now trivial.  No hacking
-> of the base device tree is needed, and so doesn't need to be reverted.
-> The connector driver just adds/removes the reference to its own
-> private tree.
->
-> This would, of course, need some way to refer to board resources
-> (interrupt controller, gpio controller) etc.  I think that can be
-> assembled using some of the previous ideas, though.
->
-
-I would need to wrap my head around this a bit, specially in context of 
-chaining connectors. It does seem like it will still require the points 
-you mentioned above to be present in one form or another, i.e. some way 
-to extend busses to different nodes/trees and connector (even a chained 
-one) local symbols/aliases.
-
-
-Best Regards,
-
-Ayush Singh
-
+Best regards,
+Krzysztof
 
