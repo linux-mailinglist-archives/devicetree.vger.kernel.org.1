@@ -1,239 +1,161 @@
-Return-Path: <devicetree+bounces-213107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B09AB44A68
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:28:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F36EBB44A7A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:38:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09BC4A02FB1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:28:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B858958748B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:38:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDB52F6573;
-	Thu,  4 Sep 2025 23:28:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED71F2F069E;
+	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ly5Ism6I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s0tclXte"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C660D2F6565;
-	Thu,  4 Sep 2025 23:28:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C10652D73B3;
+	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757028483; cv=none; b=qJdkcmyZHpVwKgB1qWdplqWvQW/oEBFj1O6IVGXSlwImjxLOLU9CaVMz5ozdCzP1/5MS4AdZv9XKlYRWQG8FvLRS01nPphIIzhhO8/vp1TlgKSkzmNywhHb+/but9i/94MAlqaqFxVCc2/Q6Of0+Z3YuQjUwuH1UfNYHM2MKK8s=
+	t=1757029082; cv=none; b=b0nYvtLu8dyBkxORh9bbquf5bulrtPUCmoKMVEBBSMKH4znLlB05XhjsfcCwrKSls1iqfi/2CCt+H7CxmjFBMbel5nSTp0AzFDNl3FGDQbkG02Ze1oE/xvFCOTVjLMv3h2TAHmq9unyjk6NHn7mXRrIsAQNivztnbdeLewkj6tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757028483; c=relaxed/simple;
-	bh=ly5f5L034OBshPPmHWgiZrq2nVBBsbg/Jf7vHlaQUWM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oFLV0JW4yjEwuXEwHg1PyKc9Efm0WASOO4iwHSYHQ9dBOFS9BKuexEI9oFyGj7vEGnvZPKbPABf5ytp6GZQWlNNSDUhLo6V4X5ciWdkHssnpUZJgabE3ljz5vH40EeZ5v+Eu+C+t7vs+QLN+JmWz8I5uzuaUwSkharMoiwTh+9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ly5Ism6I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC1D8C4CEF0;
-	Thu,  4 Sep 2025 23:28:02 +0000 (UTC)
+	s=arc-20240116; t=1757029082; c=relaxed/simple;
+	bh=i+01YYY1wAETl8uPU7E8Ydrb8Pq90kKfcxjQN9XqHmY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=MbkvQuhKVKNiYGLR5GzchF0VFj5BzQp5jd/405ixKAzN/xv7bnRNOLpLaNEFJ85ZppvphFcS0LTM9ag5v1RvJDQEgmhktEVYsU/Q2Lmk6zspINSC9dBs+VgE196GQsdq5b3o/cpef2IHL2FFEHJbDtoYpzqONBiXKC25fAV+xaM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s0tclXte; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AE71C4AF0B;
+	Thu,  4 Sep 2025 23:38:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757028483;
-	bh=ly5f5L034OBshPPmHWgiZrq2nVBBsbg/Jf7vHlaQUWM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ly5Ism6IqfIlvxasm57hCAO7wUxPD9JsMjU0KImRbjVR+rs9WCTTPAdwYEBlS51vZ
-	 4HFd3FLX/dY+XQm/OVs+D5ir6Gn87BiClCtZP4SZC2rKUdWsfK2tYs+10JGD/Nl42u
-	 Io4OE8+9SndISpcNgIahX/a8B5NmRi+elc1Hkgwt0QQLdkVvuSAROE7JP/PvsytowB
-	 in8swEKTSxL+mwG6+dsVtOnEvIaZMwMfe10nwj6RoXnaEVd7IPOZvyZXLC175mnvBm
-	 vXkw/6HkOffPJzWFll3xM2y3zY7GaQAPukOWVl6uAtEw6TcQf+OZYICggA7THrhYp+
-	 f6+LRhbzTxL4g==
-Date: Fri, 5 Sep 2025 01:28:00 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Kartik Rajput <kkartik@nvidia.com>
-Cc: akhilrajeev@nvidia.com, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, 
-	ldewangan@nvidia.com, digetx@gmail.com, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 4/5] i2c: tegra: Add support for SW mutex register
-Message-ID: <l4po62bw6672xpaabkbvu6snyg4hrgcdxaijpt6evizortwjok@jwg2asezj3cb>
-References: <20250828055933.496548-1-kkartik@nvidia.com>
- <20250828055933.496548-5-kkartik@nvidia.com>
+	s=k20201202; t=1757029082;
+	bh=i+01YYY1wAETl8uPU7E8Ydrb8Pq90kKfcxjQN9XqHmY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=s0tclXteDCYT7ZyezWUyvRUi0f5+96I4ovEgEgImvic6Dv+KBtSrWdbVnK2tqLq+c
+	 zYTydfFUT5LZM1VFk21uICVuI/giz7wjdwFJDSQ+7tF8SQyT/UFWr8OkNG32WL00jx
+	 /QjjqDhpXIf4Ou8VyU5G2Si6Xc/JFkS8Xr/RhxiV/fMjiaVTDLyeqa7LVm40D5+MMJ
+	 Ree6mP727tgdQSBFo2kWqF5I0F28o8OGWGgfAVPskBIcOeCY4gtS7aoa894ol+jfND
+	 5IU34nskxf63KG6x5GrV2FgGM356CeFuiYSwbStPpfHj1MAfafOS+mhmCbLLpkSD8g
+	 6rpdd21u5PA0Q==
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-61e4254271dso2980823a12.2;
+        Thu, 04 Sep 2025 16:38:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUaxpDJPtteGe1364WeKKKZfi6vxNueNayyJ0YvzkxZpjHUWraqViwPt7Jjy5+dmEwo+y5jtRtBmvew@vger.kernel.org, AJvYcCWSDB2hP8tUVHAJbyGdIehe1H4iKICcncAt96xUGoN48DWfZBhdTljqaQMyhXZLWCZmrQW2Sk9VEzzXaedi@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw9Z4WAtNLaj74svRP98LqDxfuRXo6q8RB9UIFos8bUAFrVdLBP
+	L2c7rXOLbYVvULHIZ4lThN84+/ZythN0qGboO1dnzhxp8SjfFLSRtQxTPY061844XZYeorYDZWz
+	bmHD5qRK6Rjr2c6tjSLvtCl1QykoYBQ==
+X-Google-Smtp-Source: AGHT+IFFN6fk5YVg+B1Gm6YAlYwOQG6ufa/AOFFGb2DahNQbjmVf7LcAWNTuQcant4szK9wxkX0bXwvOq8gcg3FZDZM=
+X-Received: by 2002:a05:6402:90a:b0:61e:1636:aeee with SMTP id
+ 4fb4d7f45d1cf-61e1636b01bmr14623674a12.38.1757029080874; Thu, 04 Sep 2025
+ 16:38:00 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250828055933.496548-5-kkartik@nvidia.com>
+References: <20250714-sti-rework-v2-0-f4274920858b@gmail.com> <20250714-sti-rework-v2-1-f4274920858b@gmail.com>
+In-Reply-To: <20250714-sti-rework-v2-1-f4274920858b@gmail.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 4 Sep 2025 18:37:49 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
+X-Gm-Features: Ac12FXyVHTjBeXc1k7EZQPMmRZXJqAQXLxtZHtgAqDf9uO9vDCivi8C1SxLEoVo
+Message-ID: <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] ARM: sti: drop B2120 board support
+To: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Patrice Chotard <patrice.chotard@foss.st.com>, Russell King <linux@armlinux.org.uk>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Kartik,
+On Mon, Jul 14, 2025 at 8:54=E2=80=AFAM Raphael Gallais-Pou
+<rgallaispou@gmail.com> wrote:
+>
+> B2120 boards are internal boards which never were commercialised.
+>
+> Drop them.
+>
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> ---
+>  arch/arm/boot/dts/st/Makefile           |   2 -
+>  arch/arm/boot/dts/st/stih407-b2120.dts  |  27 -----
+>  arch/arm/boot/dts/st/stih407.dtsi       | 145 ----------------------
+>  arch/arm/boot/dts/st/stih410-b2120.dts  |  66 ----------
+>  arch/arm/boot/dts/st/stihxxx-b2120.dtsi | 206 --------------------------=
+------
+>  5 files changed, 446 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefil=
+e
+> index cc9948b9870f7f73629573149bfd342af75b07da..f57fc6dc48a00c9a9323b4508=
+e5e4e161b197c47 100644
+> --- a/arch/arm/boot/dts/st/Makefile
+> +++ b/arch/arm/boot/dts/st/Makefile
+> @@ -13,8 +13,6 @@ dtb-$(CONFIG_ARCH_SPEAR3XX) +=3D \
+>  dtb-$(CONFIG_ARCH_SPEAR6XX) +=3D \
+>         spear600-evb.dtb
+>  dtb-$(CONFIG_ARCH_STI) +=3D \
+> -       stih407-b2120.dtb \
+> -       stih410-b2120.dtb \
+>         stih410-b2260.dtb \
+>         stih418-b2199.dtb \
+>         stih418-b2264.dtb
+> diff --git a/arch/arm/boot/dts/st/stih407-b2120.dts b/arch/arm/boot/dts/s=
+t/stih407-b2120.dts
+> deleted file mode 100644
+> index 9c79982ee7ba8fadb1a2a92e732bf7f652b74c38..0000000000000000000000000=
+000000000000000
+> --- a/arch/arm/boot/dts/st/stih407-b2120.dts
+> +++ /dev/null
+> @@ -1,27 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-only
+> -/*
+> - * Copyright (C) 2014 STMicroelectronics (R&D) Limited.
+> - * Author: Giuseppe Cavallaro <peppe.cavallaro@st.com>
+> - */
+> -/dts-v1/;
+> -#include "stih407.dtsi"
+> -#include "stihxxx-b2120.dtsi"
+> -/ {
+> -       model =3D "STiH407 B2120";
+> -       compatible =3D "st,stih407-b2120", "st,stih407";
+> -
+> -       chosen {
+> -               stdout-path =3D &sbc_serial0;
+> -       };
+> -
+> -       memory@40000000 {
+> -               device_type =3D "memory";
+> -               reg =3D <0x40000000 0x80000000>;
+> -       };
+> -
+> -       aliases {
+> -               serial0 =3D &sbc_serial0;
+> -               ethernet0 =3D &ethernet0;
+> -       };
+> -
+> -};
+> diff --git a/arch/arm/boot/dts/st/stih407.dtsi b/arch/arm/boot/dts/st/sti=
+h407.dtsi
+> deleted file mode 100644
+> index aca43d2bdaad44ef2a0e8a120c679c217709af44..0000000000000000000000000=
+000000000000000
+> --- a/arch/arm/boot/dts/st/stih407.dtsi
+> +++ /dev/null
+> @@ -1,145 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-only
+> -/*
+> - * Copyright (C) 2015 STMicroelectronics Limited.
+> - * Author: Gabriel Fernandez <gabriel.fernandez@linaro.org>
+> - */
+> -#include "stih407-clock.dtsi"
 
-On Thu, Aug 28, 2025 at 11:29:32AM +0530, Kartik Rajput wrote:
-> Add support for SW mutex register introduced in Tegra264 to provide
-> an option to share the interface between multiple firmwares and/or
-> VMs.
+Looks like this file is unused now too and can be removed.
 
-You could add a short description on how to use the mutex
-register here.
-
-> However, the hardware does not ensure any protection based on the
-> values. The driver/firmware should honor the peer who already holds
-> the mutex.
-> 
-> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
-> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
-
-...
-
-> @@ -381,6 +391,73 @@ static void i2c_readsl(struct tegra_i2c_dev *i2c_dev, void *data,
->  	readsl(i2c_dev->base + tegra_i2c_reg_addr(i2c_dev, reg), data, len);
->  }
->  
-> +static int tegra_i2c_mutex_acquired(struct tegra_i2c_dev *i2c_dev)
-
-this is a bool function.
-
-> +{
-> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
-> +	u32 val, id;
-> +
-> +	val = readl(i2c_dev->base + reg);
-> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
-> +
-> +	if (id != I2C_SW_MUTEX_ID_CCPLEX)
-> +		return 0;
-> +
-> +	return 1;
-
-return id != I2C_SW_MUTEX_ID_CCPLEX;
-
-> +}
-> +
-> +static int tegra_i2c_mutex_trylock(struct tegra_i2c_dev *i2c_dev)
-
-I think this can be bool.
-
-> +{
-> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
-> +	u32 val, id;
-> +
-> +	val = readl(i2c_dev->base + reg);
-> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
-> +	if (id != 0 && id != I2C_SW_MUTEX_ID_CCPLEX)
-> +		return 0;
-> +
-> +	val = FIELD_PREP(I2C_SW_MUTEX_REQUEST, I2C_SW_MUTEX_ID_CCPLEX);
-> +	writel(val, i2c_dev->base + reg);
-> +
-> +	return tegra_i2c_mutex_acquired(i2c_dev);
-> +}
-> +
-> +static int tegra_i2c_mutex_lock(struct tegra_i2c_dev *i2c_dev)
-> +{
-> +	int locked;
-
-I guess this can be bool.
-
-> +	int ret;
-> +
-> +	if (i2c_dev->atomic_mode)
-> +		ret = read_poll_timeout_atomic(tegra_i2c_mutex_trylock, locked, locked,
-> +					       USEC_PER_MSEC, I2C_SW_MUTEX_TIMEOUT_US,
-> +					       false, i2c_dev);
-> +	else
-> +		ret = read_poll_timeout(tegra_i2c_mutex_trylock, locked, locked, USEC_PER_MSEC,
-> +					I2C_SW_MUTEX_TIMEOUT_US, false, i2c_dev);
-> +
-> +	if (!tegra_i2c_mutex_acquired(i2c_dev))
-> +		dev_warn(i2c_dev->dev, "failed to acquire mutex\n");
-
-I would try a few times before giving up.
-
-Besides, is there a chance where ret is '0' and the mutex is not
-acquired? If so, we are not signalling error if the mutex is not
-acquired, but I think we should.
-
-I would do:
-
-	if (...)
-		ret = ...
-	else
-		ret = ...
-	
-	if (ret)
-		return ret;
-
-	if (!tegra_i2c_mutex_acquired(i2c_dev)) {
-		dev_warn(i2c_dev->dev, "failed to acquire mutex\n");
-		return -ESOMETHING;
-	}
-
-	return 0;
-
-Makes sense?
-
-> +
-> +	return ret;
-> +}
-> +
-> +static int tegra_i2c_mutex_unlock(struct tegra_i2c_dev *i2c_dev)
-> +{
-> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
-> +	u32 val, id;
-> +
-> +	val = readl(i2c_dev->base + reg);
-> +
-> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
-> +	if (id && id != I2C_SW_MUTEX_ID_CCPLEX) {
-> +		dev_warn(i2c_dev->dev, "unable to unlock mutex, mutex is owned by: %u\n", id);
-> +		return -EPERM;
-
-I would try a few times before giving up.
-
-> +	}
-> +
-> +	writel(0, i2c_dev->base + reg);
-> +
-> +	return 0;
-> +}
-> +
->  static void tegra_i2c_mask_irq(struct tegra_i2c_dev *i2c_dev, u32 mask)
->  {
->  	u32 int_mask;
-> @@ -1422,6 +1499,13 @@ static int tegra_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[],
->  		return ret;
->  	}
->  
-> +
-
-no need for this extra blank line.
-
-> +	if (i2c_dev->hw->has_mutex) {
-
-I would put this check in tegra_i2c_mutex_lock() and _unlock() in
-order to avoid two level indentation here.
-
-> +		ret = tegra_i2c_mutex_lock(i2c_dev);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
->  	for (i = 0; i < num; i++) {
->  		enum msg_end_type end_type = MSG_END_STOP;
->  
-> @@ -1451,6 +1535,12 @@ static int tegra_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[],
->  			break;
->  	}
->  
-> +	if (i2c_dev->hw->has_mutex) {
-> +		ret = tegra_i2c_mutex_unlock(i2c_dev);
-> +		if (ret)
-> +			return ret;
-
-We are skipping pm_runtime_put(), though.
-
-Thanks,
-Andi
-
-> +	}
-> +
->  	pm_runtime_put(i2c_dev->dev);
->  
->  	return ret ?: i;
+Rob
 
