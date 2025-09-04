@@ -1,97 +1,199 @@
-Return-Path: <devicetree+bounces-212959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CC3FB443B6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:56:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA12AB443C2
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EEC6416B194
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:56:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6602A3BEBAF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:59:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 740C72D6E63;
-	Thu,  4 Sep 2025 16:56:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C819224728B;
+	Thu,  4 Sep 2025 16:59:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MRds77gt"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Dga4DLc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BA76161302;
-	Thu,  4 Sep 2025 16:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009D7212576;
+	Thu,  4 Sep 2025 16:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757004993; cv=none; b=uU8jWjdhfA7OE28mSAEjYyKfFW9ilmOsqtGlaaatrEMse8z4hIAhMs8UhKd3+nNVMEE+dZZPStwSuWJsQoj46G8pZqSq/aNRz6z3qagE2EM/XF5d0eKQAhqANO3paBNKg92y7lh5/LT5dxk1IqdpbAXexhLc+jc8e93VVs7/ajc=
+	t=1757005155; cv=none; b=GU8tt1211yRDtDj6X7gCVSNBGawm8mJKrYHdnr64ERPjxi5qUf0W0kLptwtVBFLH1IJKuleeNLiTMTho8mFNXK4ni7isekbnGX8ASGPuXKLaQ/yqHmXEBeBAYRqWULHceloTi/bowqoqAA1W0qTHkdrJ3euNMXlnQzakFORwK0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757004993; c=relaxed/simple;
-	bh=ImW7nHIDuggd5SOCEFLJtg//+l9EU7YE2MdTLZBVX0U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=CLglbMRCyhiGL9zszxaG9dWReC2hM69HQMj/XgIujTRyaIs0XxxZAFG1mVMmzExYDIBnW8G3Z1jwckl1urctaKyYKsuVVkfHKCFyeT5nieVZxv5GFIeUrl7XZzn00vG3CSNCgCNr5CBBv9vQXagHOnCkoLVQxdf36I879lupfiI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MRds77gt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5F2BC4CEF0;
-	Thu,  4 Sep 2025 16:56:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757004992;
-	bh=ImW7nHIDuggd5SOCEFLJtg//+l9EU7YE2MdTLZBVX0U=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=MRds77gtY9/UIeTs6xJ1na4Y+fEwwHKz8RbrhEw05lVhJg2qjBU4jA/gd/Qt20PoL
-	 RQ8373z6Ew8Y8Ec9JEdo8yzm6XYY0LjgG82cnO22GjbgDKIgSoqQkkmhFDtO89odxl
-	 ArtVUrFmn3bXv1307ZupGQg9x2VOZWj2DEt6pxhJnIrQFX3KJVoIUtXs7c9kca/frT
-	 TqIFEa3XwwHkQem7GIEupiMkUEdS4EvBGTR3Mq0+nlqbcjDi/BY0K/D1FTumqTUprj
-	 fFKtAJTPeUSeUVhX0ltlGOIF8y6mkKPG3cq8rynmAq2E0MjQC7rLFu9QxLM+EKKSwd
-	 q2vYvZlEY+SZw==
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: andersson@kernel.org, konradybcio@kernel.org, robh@kernel.org, 
- krzk+dt@kernel.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
- lpieralisi@kernel.org, kwilczynski@kernel.org, bhelgaas@google.com, 
- johan+linaro@kernel.org, vkoul@kernel.org, kishon@kernel.org, 
- neil.armstrong@linaro.org, abel.vesa@linaro.org, 
- =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
- Ziyue Zhang <ziyue.zhang@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-phy@lists.infradead.org, qiang.yu@oss.qualcomm.com, 
- quic_krichai@quicinc.com, quic_vbadigan@quicinc.com
-In-Reply-To: <20250904065225.1762793-1-ziyue.zhang@oss.qualcomm.com>
-References: <20250904065225.1762793-1-ziyue.zhang@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v6 0/3] Add Equalization Settings for 8.0 GT/s
- and 32.0 GT/s and Add PCIe Lane Equalization Preset Properties for 8.0
- GT/s and 16.0 GT/s
-Message-Id: <175700498544.244191.11713819385906991702.b4-ty@kernel.org>
-Date: Thu, 04 Sep 2025 22:26:25 +0530
+	s=arc-20240116; t=1757005155; c=relaxed/simple;
+	bh=kHQTIB9PpQjtEaFO8B7Lx9rKPfE2yIvxKj21x7/oTu8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=EyWnT9DJa5VXl1LonTN1D7opNl9AsurGaOXtIWbKI4D5dYYA/EjXrzusNDWeV0sbudaMMIAvKBQyQTlHGSTQXdsacJm0RoeUHqAvrAVGm9yvSQnJ/DqijCfTDMC0rGMD6AtvYvHEcTaO2MBcg+epYYzYSlGRugsff6x9c8ERv3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Dga4DLc0; arc=none smtp.client-ip=209.85.221.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3c46686d1e6so967709f8f.3;
+        Thu, 04 Sep 2025 09:59:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757005152; x=1757609952; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FWZVGCMARJlCDcII5CNhWEQ7D8U03ixO3C2d6Md+0Pw=;
+        b=Dga4DLc0wJp47erOwyFVX+MzCAEvMRsw/Y+rWhV6ISRL8dYCen6ghCJhwocxwqITk3
+         SXFm9yIp6Q0dIqZ9/HsQ5BYb4R7h8BBxT2ipa6jdAdyVt90ym71j84b0AvwGrCkQoRxS
+         p6e5U+/mHP/RBN9zihKyPQBL11BkiZzS+qrEwmRYcjOcSa7qMpD23msMBV7z1MLTcjsF
+         WBp+w9veUKkR/4mkSXifcZCpOS7DERbtiO1r4CQh3K7XpjD9v0wFlqIlDUc+q7HOU6li
+         C2ottmWcB0rxXeUmnc3gh91YlJH9lEoaT7wzMZ7f9wDIdPA/dAOGsKipNyRrXU3eoZ5m
+         jGiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757005152; x=1757609952;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FWZVGCMARJlCDcII5CNhWEQ7D8U03ixO3C2d6Md+0Pw=;
+        b=a8+Qcvkib8GbBw7gemE9J85RjA1xWLaKVCFI6QNcYnCTfg2YWWzqOIh4WmbYbRQM7P
+         YAxjCCMm1Dt/1OFPwnQYf8aCdvcrFJmTEQxS6xtyIL5fhQj1jgTpP1Np7UF3jSJcjDf9
+         63KJEYHxC3JqPL1PuuIcFW/8WxYbDRBP0RvRgzLQHyyRuC31Bpw5QG4r6LxTAqsdsHIE
+         ZXbqC4whMt8kPqBw25IWzZdOge3WqZc7NodcduN2BbDSMdKH9zK5nWr8P04PrTZKHU8T
+         QXn9RacFGt3SBzLDfrExmq9hyi+FqeJAyOp/jSRFbTahW4JhVdM9wxPYPJD+aFX57C8F
+         OAIg==
+X-Forwarded-Encrypted: i=1; AJvYcCWoGw67b1eEE1eEqO+AQZzwiW0R/7iu453iZIknRhJpupJM90iuzCrVglylCc2rKiZwH8IUInOsHgJ8@vger.kernel.org, AJvYcCXtSEVQqu+2ThqDV4/6TWrGX4uyWTl+CbJ1ySgSSpBdlsbwhWMMGkV9KvFoaG10/cW95hUmIfWn9ZUL7e9G@vger.kernel.org
+X-Gm-Message-State: AOJu0YwnLOBiJwgECTmIbt4fpJBTpwGbbcOETO4MHyAKXtIXf2DnWILD
+	uPbrlWS2ABJV7OTnTbnoLvGktzT1Sjy8GfQrkRHV6YN4QH2rkvFFx6iN
+X-Gm-Gg: ASbGncv+didxU6QpPfOc9JlxBchObST1YqwWkY+hu61UmDNMkCD8sH5dl2I1bQO45mG
+	pyCLkiTRAJ9SXsY0RmRyuOjhRt9l75OugloYXu7D12Y/ArmNuAJ30iivSyJwU58FxX7iAhvh/w0
+	+Z3/ZEAlbfOiLVAf+oT49/teqdNeHgvDFfUR6i8JLkKwLonL6q2cGY0UZTKyquebkN+e8psRdhh
+	1VoFZOHwnecNHIJxsrsOe7gg0ye5wb5gQ66rpLHuzQz+HTFxEA60tlA8Hf8R6WzNdwaOcnIVEai
+	MKHFSJitPT0leg/AFIo/9QETlcrLeDNqn5N/WEDjgNfUMHnEwmUbzvSKbr8QAQjgGx99swGcFFS
+	Y6AoaLXpIHetmYDxjTDQD+c+W2075AyNrR4SJtBR2gh3iukmMfO7SMTm7bg==
+X-Google-Smtp-Source: AGHT+IE8mMn/NCxpS1bwhijGABS03g0L3l2i5YZVczGbTm8O3BWF4lE1LTO78C2EWmUKp3WlEKLNYg==
+X-Received: by 2002:a05:6000:65b:b0:3d4:a64:6754 with SMTP id ffacd0b85a97d-3d40a646bc2mr13687995f8f.62.1757005152109;
+        Thu, 04 Sep 2025 09:59:12 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:904e:70c8:edf3:59a4])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34493b8csm27633141f8f.59.2025.09.04.09.59.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 09:59:11 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] Add I3C support to RZ/V2N and RZ/V2H(P) SoCs
+Date: Thu,  4 Sep 2025 17:59:07 +0100
+Message-ID: <20250904165909.281131-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
+
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Hi All,
+
+This series adds I3C node to RZ/V2N and RZ/V2H(P) SoC DTSI files.
+
+I3C was tested on RZ/V2H(P) and RZ/V2N EVKs using P3T1085UK Arduino
+Shield Evaluation Board [0].
+
+Disable I2C2 on PMOD connector CN6 and enable I3C.
+
+Connect EVK TO P3T1085UK Arduino Shield Evaluation Board
+P3T1085UK <-> EVK PMOD CN6
+- J13[1] to CN6[3] (I3C_SCL)
+- J13[2] to CN6[4] (I3C_SDA)
+- J13[4] to CN6[5] (GND)
+- J9[7]  to CN6[11] (GND)
+- J9[9]  to CN6[6] (3.3V)
+
+On P3T1085UK,
+- JP2 pin1 to pin2 (I3C_SDA)
+- JP3 pin1 to pin2 (I3C_SCL)
+- JP1 pin2 to pin3 (VDD 3V3)
 
 
-On Thu, 04 Sep 2025 14:52:22 +0800, Ziyue Zhang wrote:
-> This series adds add equalization settings for 8.0 GT/s and 32.0 GT/s,
-> and add PCIe lane equalization preset properties for 8.0 GT/s and
-> 16.0 GT/s for sa8775p ride platform, which fix AER errors.
-> 
-> While equalization settings for 16 GT/s have already been set, this
-> update adds the required equalization settings for PCIe operating at
-> 8.0 GT/s and 32.0 GT/s, including the configuration of shadow registers,
-> ensuring optimal performance and stability.
-> 
-> [...]
+[0] https://www.nxp.com/design/design-center/development-boards-and-designs/analog-toolbox/arduino-shields-solutions/p3t1085uk-arduino-shield-evaluation-board:P3T1085UK-ARD
 
-Applied, thanks!
+Test Logs:
+--- RZ/V2H(P) ---
+root@rzv2h-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep i3c
+          i3c_0_pclk     1       2        0   100000000   0   0     50000      Y    12400000.i3c     pclk
+          i3c_0_pclkrw   1       2        0   100000000   0   0     50000      Y    12400000.i3c     pclkrw
+          i3c_0_tclk     1       2        0   200000000   0   0     50000      Y    12400000.i3c     tclk
+root@rzv2h-evk:~#
+root@rzv2h-evk:~# cat /sys/class/hwmon/*/temp1_input
+26687
+26812
+root@rzv2h-evk:~# cat /proc/interrupts | grep i3c
+150:         38          0          0          0    GICv3 709 Edge      i3c-resp
+151:          2          0          0          0    GICv3 712 Edge      i3c-rx
+152:          0          0          0          0    GICv3 713 Edge      i3c-tx
+153:          0          0          0          0    GICv3 721 Level     i3c-start
+154:          0          0          0          0    GICv3 722 Level     i3c-stop
+155:          0          0          0          0    GICv3 724 Level     i3c-tend
+156:          0          0          0          0    GICv3 725 Level     i3c-nack
+root@rzv2h-evk:~# cat /sys/class/hwmon/*/temp1_input
+26687
+26812
+root@rzv2h-evk:~# cat /proc/interrupts | grep i3c
+150:         42          0          0          0    GICv3 709 Edge      i3c-resp
+151:          2          0          0          0    GICv3 712 Edge      i3c-rx
+152:          0          0          0          0    GICv3 713 Edge      i3c-tx
+153:          0          0          0          0    GICv3 721 Level     i3c-start
+154:          0          0          0          0    GICv3 722 Level     i3c-stop
+155:          0          0          0          0    GICv3 724 Level     i3c-tend
+156:          0          0          0          0    GICv3 725 Level     i3c-nack
+root@rzv2h-evk:~#
 
-[1/3] PCI: qcom: Add equalization settings for 8.0 GT/s and 32.0 GT/s
-      commit: 37bf0f4e39de9b53bc6f8d3702b021e2c6b5bae3
-[2/3] PCI: qcom: fix macro typo for CURSOR
-      commit: ea5fbbc15906abdef174c88cecfec4b2a0c748b9
+--- RZ/V2N ---
+root@rzv2n-evk:~# cat /sys/kernel/debug/clk/clk_summary | grep i3c
+          i3c_0_pclk     1       2        0   100000000   0    0     50000      Y   12400000.i3c     pclk
+          i3c_0_pclkrw   1       2        0   100000000   0    0     50000      Y   12400000.i3c     pclkrw
+          i3c_0_tclk     1       2        0   200000000   0    0     50000      Y   12400000.i3c     tclk
+root@rzv2n-evk:~# cat /proc/interrupts | grep i3c
+ 65:         22          0          0          0    GICv3 709 Edge      i3c-resp
+ 66:          2          0          0          0    GICv3 712 Edge      i3c-rx
+ 67:          0          0          0          0    GICv3 713 Edge      i3c-tx
+ 68:          0          0          0          0    GICv3 721 Level     i3c-start
+ 69:          0          0          0          0    GICv3 722 Level     i3c-stop
+ 70:          0          0          0          0    GICv3 724 Level     i3c-tend
+ 71:          0          0          0          0    GICv3 725 Level     i3c-nack
+root@rzv2n-evk:~# cat /sys/class/hwmon/*/temp1_input
+27000
+27125
+root@rzv2n-evk:~# cat /proc/interrupts | grep i3c
+ 65:         26          0          0          0    GICv3 709 Edge      i3c-resp
+ 66:          2          0          0          0    GICv3 712 Edge      i3c-rx
+ 67:          0          0          0          0    GICv3 713 Edge      i3c-tx
+ 68:          0          0          0          0    GICv3 721 Level     i3c-start
+ 69:          0          0          0          0    GICv3 722 Level     i3c-stop
+ 70:          0          0          0          0    GICv3 724 Level     i3c-tend
+ 71:          0          0          0          0    GICv3 725 Level     i3c-nack
+root@rzv2n-evk:~#
 
-Best regards,
+Cheers,
+Prabhakar
+
+Lad Prabhakar (2):
+  arm64: dts: renesas: r9a09g057: Add I3C node
+  arm64: dts: renesas: r9a09g056: Add I3C node
+
+ arch/arm64/boot/dts/renesas/r9a09g056.dtsi | 33 ++++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r9a09g057.dtsi | 33 ++++++++++++++++++++++
+ 2 files changed, 66 insertions(+)
+
 -- 
-Manivannan Sadhasivam <mani@kernel.org>
+2.51.0
 
 
