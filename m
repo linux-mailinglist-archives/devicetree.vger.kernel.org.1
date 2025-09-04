@@ -1,247 +1,172 @@
-Return-Path: <devicetree+bounces-212986-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E54A8B4454A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:26:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ED7EB44565
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 20:28:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D7DBE7ADD9F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:24:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A5351C87292
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:29:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2AF7343216;
-	Thu,  4 Sep 2025 18:26:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF1B9343D9D;
+	Thu,  4 Sep 2025 18:28:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JIrxRGq3"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="DIORHLdp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-il1-f227.google.com (mail-il1-f227.google.com [209.85.166.227])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A48E342CA5;
-	Thu,  4 Sep 2025 18:26:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CA7B343D7D
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 18:28:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.227
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757010374; cv=none; b=nrUKDSnue+JGVObTk9Lbz0sJL8PgjKw+bgZsjzhwGuwarV2r0dkfErsmHoanJcn8sofEyesS+WIw8JWDSC85vC3GafCfGSKOVqeJW/EpqCd51Io0yaJn163jSRVKoEif4294XrHDu/1Rj/tJ3mh1l4v8/SMik6jJ8gfBof67rXQ=
+	t=1757010522; cv=none; b=KOTWoNdkqRFmz/xmYW/TpLy429ZOsWWfG6GUKtd2Em2GdYNSJGgpza/yZV7mm1ALlJoV9VT8FfOIde6bi7ERpMTXII64qAJrAG2flXf5ZoOENxW4DwOi87iUQOI9pq3smPbBzm0PM3jUHQraLsUZM74rbkgd1eTaJuGNGb12ofM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757010374; c=relaxed/simple;
-	bh=ZVdFeXDHFTGKIbHi47qBjTijLaJeWpzS+AmwXx8Vgko=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Zm0ZRat6bANy0jC/w+raA0mizBBU0pcCmpbIEF/bQalhK6X8poYmD6PZB3Xkn6U3M2qEonGshiw83NdIbVGEnUqFjums2J7SfMFDP1d3+wvUBOtr+7vLYt0WuOHZTPv86CfHYOdJPxk9Dku8S+T2dTlspfh9QCcgFglaYLK+yFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JIrxRGq3; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757010370;
-	bh=ZVdFeXDHFTGKIbHi47qBjTijLaJeWpzS+AmwXx8Vgko=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=JIrxRGq3SWliP09Sjp2aJF+aVSU4eXyl5sFSGJpZ+LY1h4oR33D6cP15Hlf30yTju
-	 fcfimSXRPWisGH/8Saa8V3Y+wo1h5bZLrsUWgVyJp8u5u957qzsPJV12ocye3b+I3i
-	 ppDmLp32p5vdqyK2u4xuZS+lb1IjK0eYS2VvFm9UCRBwP75BGKm7p5VvgfNb16RBNP
-	 m2b9+SrHTYymy8qOqQMdm5ZkV/LXjWs55XWS0dIX5weiBzNZkgLhrwv2SGjI1AR4fD
-	 wY0HQVESiosKOK8/McwjxwxxCXyunCF1og6X3KCZIcKp+HJP6FKq/thEJjb2DZ2s7n
-	 rsONdHfyE5Z9g==
-Received: from jupiter.universe (dyndsl-091-248-191-002.ewe-ip-backbone.de [91.248.191.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sre)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 7FEBD17E013C;
-	Thu,  4 Sep 2025 20:26:10 +0200 (CEST)
-Received: by jupiter.universe (Postfix, from userid 1000)
-	id 3F47E480048; Thu, 04 Sep 2025 20:26:10 +0200 (CEST)
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-Date: Thu, 04 Sep 2025 20:26:03 +0200
-Subject: [PATCH RFC 2/2] arm64: dts: rockchip: add USB-C DP AltMode for
- ROCK 5B family
+	s=arc-20240116; t=1757010522; c=relaxed/simple;
+	bh=q8yl9UAC+xlFQzwRViDxyj79HGQ8dK/5g+KGtqUhusA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=DgryMJVrPQEBo37418E/KGcT1gSH/HHS6c9Ixr4WjShqOXmxfbR3d5N0nstErjaTtCBy39wTfg3qbSUgnsLtN13xu1LNnoMTe6OkDsmuHeh8bBs+kAL/72/MVUheUshc1Slo1dlz1GsGmBX23A4kD2HFkJLIV8I00GrazwH7Oyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=DIORHLdp; arc=none smtp.client-ip=209.85.166.227
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
+Received: by mail-il1-f227.google.com with SMTP id e9e14a558f8ab-3f65d600d35so12546005ab.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757010520; x=1757615320;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:subject:from:user-agent:mime-version:date
+         :message-id:dkim-signature:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=cqK97eCKaUkliEvZf9Ytd8do9pTcU9xExLvP6WCAzkE=;
+        b=shgkSlD6MQmEQAgjQYylcb+kHUuhNsDc6LCYtWrhXlaIBIYNcAkuPSiZ5ryIP9WKr+
+         3giiOiQazAZFoszG5noYmqEsNMXc03NSPDgQTGAY0A/tcKo8/gLbIg/hgKbZtBA75o8N
+         IdbRYspR8nWXIKLQjThBk/wy2tw6ZDhTbSFXAym8GBAec/Gs4bN392RekLHo4xjHtju8
+         YafF57Ex5Ie2F7xaKNRdFRusFzEYNKaR06vmOa7FK9a5tGunHc5i3b4kDUg7JV4dtHLb
+         hN/PLL/v+d4k/6K0Lb2KzGlTWINeCRA2+p+PEAX41/w+OUSRdTzqTAQQUFR/wRMpMYXt
+         DwQw==
+X-Forwarded-Encrypted: i=1; AJvYcCVH692426NBve99HhMwFWWY1N6Y2ppFysRT8kRfqlVdrxxDcCYwbPV6BvW8qeMorsx3SZzfD9hnjIFN@vger.kernel.org
+X-Gm-Message-State: AOJu0Yzld3UA6C8G8SLa3kss8zDM/hiPp4JoOM9tmvl4965UCupH/izK
+	xUBfsZuzW85D69yfsOMCC6Mrjou0RPngrh502e663ZEL+QZNSpWQ7LbJc0GFcGqZbjP85lQjNWb
+	UYp1T1DkgHKOYXJ9TPtah7+r1OzB+7d3SmW+BUUwXPe5cMf6pOLJc0uzCqiMlDpxmOZZaARweNO
+	osZznE8pWEkHVRqq1cIVUYAUh2dE5qDw5JZxRI1yVmRYTon2vO8ijHl+VPlN1UkeKvtCCHSknQ2
+	jMmzcZPOh0NgaAY8ohMHg==
+X-Gm-Gg: ASbGnctlp+1436qF2WqpU8hOyIg0C1wf/Ub98phNfqxbVek/FO2GK1RDNbF37N9w780
+	+nvs3EGhNQdxK3RyUeJ7yoQhbgNpvOyd/ZVwpiIEA5WOhuTJO4m32noRPD/9VUJUB3ng++KetwG
+	GKewVhX2M9890xLuw8P6M8TDaz+gGNyZtg7ZFZfqV34rTBSOuJAuGg141bqc/zZSSPhH/iTq33Z
+	AjX8uNJ4J5XxzQyl2IT2BXST4ZZPIijKe70+CnHogzX2awiNtSo0049EglWlsnrn+ajtIo4OHmb
+	rEB8r9tYRxAld0pYxOiluT6o+2b2LKLcaVH7HgYqYwfUmNfYbyUI3eUza7Jl4oZUIpw/jEjUskK
+	nFXPbMvIs9aU/JL5rBIA80VYy54z2
+X-Google-Smtp-Source: AGHT+IHHeeOnBzGfqrKzLiWByqeQ/kgP73yZCeE/64UNAH/4TssNkfQzQ/wAd/7luRZr22062n09igILrneg
+X-Received: by 2002:a05:6e02:216b:b0:3f1:7907:5fb9 with SMTP id e9e14a558f8ab-3f3ffda5d39mr371546075ab.6.1757010520174;
+        Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
+Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com ([144.49.247.127])
+        by smtp-relay.gmail.com with ESMTPS id 8926c6da1cb9f-510247ce96esm507293173.3.2025.09.04.11.28.39
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 04 Sep 2025 11:28:40 -0700 (PDT)
+X-Relaying-Domain: broadcom.com
+X-CFilter-Loop: Reflected
+Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-7e8704e0264so280725985a.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 11:28:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=broadcom.com; s=google; t=1757010519; x=1757615319; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
+         :references:cc:to:subject:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=cqK97eCKaUkliEvZf9Ytd8do9pTcU9xExLvP6WCAzkE=;
+        b=DIORHLdp/EqOZ0P5Qkl/kXd90YWjjSXRaqwmRhJqAzj4YVI7EPh2UR/V19EA45JlBg
+         P6r76Ga4pcV6L8iw9YYDabV9PQ2rhtzmZcE1Heno+EJWNC5A37clW9A+qHF6teW3lBpv
+         7glolW5kWzqQpHMa+L3gSoqW/PEz3GI/wtEwA=
+X-Forwarded-Encrypted: i=1; AJvYcCXnAb26r+cXIpUHlsqiRnqMfVhkB7AyyQFtgyHhS4TAzSfUdCQqi6gqVOD+PdGoZBxX5Ztmzlg+8usJ@vger.kernel.org
+X-Received: by 2002:a05:620a:4145:b0:7fd:6709:f091 with SMTP id af79cd13be357-7ff27b20401mr2095666785a.20.1757010519041;
+        Thu, 04 Sep 2025 11:28:39 -0700 (PDT)
+X-Received: by 2002:a05:620a:4145:b0:7fd:6709:f091 with SMTP id af79cd13be357-7ff27b20401mr2095663485a.20.1757010518465;
+        Thu, 04 Sep 2025 11:28:38 -0700 (PDT)
+Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id af79cd13be357-80aa62c789esm322292485a.11.2025.09.04.11.28.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 11:28:37 -0700 (PDT)
+Message-ID: <d36c5597-e26e-4ddc-93b3-222d8b40dab7@broadcom.com>
+Date: Thu, 4 Sep 2025 11:28:34 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird Beta
+From: Florian Fainelli <florian.fainelli@broadcom.com>
+Subject: Re: [PATCH RESEND v6 0/9] clk: bcm: kona: Add bus clock support, bus
+ clocks for BCM21664/BCM281xx
+To: Artur Weber <aweber.kernel@gmail.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Ray Jui <rjui@broadcom.com>,
+ Scott Branden <sbranden@broadcom.com>,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Alex Elder <elder@kernel.org>, Stanislav Jakubek
+ <stano.jakubek@gmail.com>, linux-clk@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ ~postmarketos/upstreaming@lists.sr.ht, linux-arm-kernel@lists.infradead.org,
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Alex Elder <elder@riscstar.com>
+References: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
+Content-Language: en-US
+Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
+ xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
+ M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
+ JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
+ PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
+ KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
+ AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
+ IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
+ ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
+ bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
+ Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
+ tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
+ TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
+ zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
+ WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
+ IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
+ U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
+ 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
+ pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
+ MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
+ IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
+ gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
+ obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
+ N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
+ CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
+ C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
+ wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
+ EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
+ fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
+ MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
+ 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
+ 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
+In-Reply-To: <20250901-kona-bus-clock-v6-0-c3ac8215bd4d@gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250904-rock5b-dp-alt-mode-v1-2-23df726b31ce@collabora.com>
-References: <20250904-rock5b-dp-alt-mode-v1-0-23df726b31ce@collabora.com>
-In-Reply-To: <20250904-rock5b-dp-alt-mode-v1-0-23df726b31ce@collabora.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, 
- Frank Wang <frank.wang@rock-chips.com>, 
- Zhang Yubing <yubing.zhang@rock-chips.com>
-Cc: Andy Yan <andyshrk@163.com>, 
- Maud Spierings <maud_spierings@hotmail.com>, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Sebastian Reichel <sebastian.reichel@collabora.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3114;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=ZVdFeXDHFTGKIbHi47qBjTijLaJeWpzS+AmwXx8Vgko=;
- b=owJ4nAFtApL9kA0DAAoB2O7X88g7+poByyZiAGi52cIp7eVpQA0Sd4OgFJVSHe8qO0vCnXosU
- qmEq3m50tCTH4kCMwQAAQoAHRYhBO9mDQdGP4tyanlUE9ju1/PIO/qaBQJoudnCAAoJENju1/PI
- O/qay8wQAJH3PDFyf3UnbO0a1rGWzh1hcXe50Z/5Q1MxNcHheOwdmwHkWa70/uVf/bhf/mOicjJ
- Yb2DRUJalYIkOrr8fwHXOwMTSZTnyrrukuxOlhgF0hjZuP0/CAFuyTyx8G0ji35rO7PeSSXxwI/
- BY4F+r1+hBuzIcKOI+SkSYKLdYlGXdvtyzsqw3oAYbT8m+WLu4Tr00vMvm1QJ9swLh/WM4AjXMj
- OYgySJ7dJ5Pe0fwernjaqEWWuBFDKuW98HRTuPOzXGz2RFBVyBzt6qXlrStDEWAivYHV7FwdN7S
- t1y7YbS1KUMM09NTb3QY+ghMjs/5wy/swkSpBHSkimghnfvlXTpi/Di0zPOBDKVOI5oqz68c4cr
- O/Z5RMikQ2cG1IH7OtIAeCXLNNb2U+B/EuXqLPHu95zesY+d1hitUTwVF8nNUVGO2rgqxky3Sq1
- EXXpguMKIDUQdKLHYolIpUWj/CpRFwZV2qyIqAtvJiKjl7mD870NKvGgPPbBEBzNYWpfxVPS1a6
- Vxomx6Oqk6pEKz0cp/ABN8JxICgmpehOKIHs3a+lZG5TZbkUfHJgJYUvHyamG3gk6WcD8B4prky
- p1DOplrdMbLPaGmt8bYVlYETLJ+vncOcrVyMDrz2/ShMEqjkjjTfypZXpgMsjtieLG9IvbgWzLK
- diBXhm+Yz/GW3rBTPE7Y3Dg==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
 
-Enable support for USB-C DP AltMode to the ROCK 5B/5B+/5T.
+On 9/1/25 10:07, Artur Weber wrote:
+> This patchset does the following:
+> 
+> - Introduce support for bus clocks. These are fairly similar to
+>    peripheral clocks, but only implement policy, gate and hyst.
+> 
+> - Add matching bus clocks for BCM21664 and BCM281xx peripheral clocks
+>    and update device tree bindings to match.
+> 
+> Signed-off-by: Artur Weber <aweber.kernel@gmail.com>
 
-Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi   | 83 +++++++++++++++++++---
- 1 file changed, 72 insertions(+), 11 deletions(-)
+Stephen, are you OK with taking all of those patches through the clock 
+tree? Patches #8 and #9 have a dependency on patches #2 and #3.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-index 3bbe78810ec6f279a36d51d2fcef4a0f3f53036b..1e284dc48bd3fc2009f5f261e116bf8dbb96d7bd 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b-5bp-5t.dtsi
-@@ -177,6 +177,22 @@ &cpu_l3 {
- 	cpu-supply = <&vdd_cpu_lit_s0>;
- };
- 
-+&dp0 {
-+	status = "okay";
-+};
-+
-+&dp0_in {
-+	dp0_in_vp2: endpoint {
-+		remote-endpoint = <&vp2_out_dp0>;
-+	};
-+};
-+
-+&dp0_out {
-+	dp0_out_con: endpoint {
-+		remote-endpoint = <&usbdp_phy0_dp_in>;
-+	};
-+};
-+
- &gpu {
- 	mali-supply = <&vdd_gpu_s0>;
- 	status = "okay";
-@@ -352,21 +368,21 @@ ports {
- 				port@0 {
- 					reg = <0>;
- 					usbc0_hs: endpoint {
--						remote-endpoint = <&usb_host0_xhci_to_usbc0>;
-+						remote-endpoint = <&usb_host0_xhci_hs>;
- 					};
- 				};
- 
- 				port@1 {
- 					reg = <1>;
- 					usbc0_ss: endpoint {
--						remote-endpoint = <&usbdp_phy0_ss>;
-+						remote-endpoint = <&usbdp_phy0_ss_out>;
- 					};
- 				};
- 
- 				port@2 {
- 					reg = <2>;
- 					usbc0_sbu: endpoint {
--						remote-endpoint = <&usbdp_phy0_sbu>;
-+						remote-endpoint = <&usbdp_phy0_dp_out>;
- 					};
- 				};
- 			};
-@@ -993,18 +1009,41 @@ &usbdp_phy0 {
- 	orientation-switch;
- 	status = "okay";
- 
--	port {
-+	ports {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 
--		usbdp_phy0_ss: endpoint@0 {
-+
-+		port@0 {
- 			reg = <0>;
--			remote-endpoint = <&usbc0_ss>;
-+
-+			usbdp_phy0_ss_out: endpoint {
-+				remote-endpoint = <&usbc0_ss>;
-+			};
- 		};
- 
--		usbdp_phy0_sbu: endpoint@1 {
-+		port@1 {
- 			reg = <1>;
--			remote-endpoint = <&usbc0_sbu>;
-+
-+			usbdp_phy0_ss_in: endpoint {
-+				remote-endpoint = <&usb_host0_xhci_ss>;
-+			};
-+		};
-+
-+		port@2 {
-+			reg = <2>;
-+
-+			usbdp_phy0_dp_in: endpoint {
-+				remote-endpoint = <&dp0_out_con>;
-+			};
-+		};
-+
-+		port@3 {
-+			reg = <3>;
-+
-+			usbdp_phy0_dp_out: endpoint {
-+				remote-endpoint = <&usbc0_sbu>;
-+			};
- 		};
- 	};
- };
-@@ -1025,9 +1064,24 @@ &usb_host0_xhci {
- 	usb-role-switch;
- 	status = "okay";
- 
--	port {
--		usb_host0_xhci_to_usbc0: endpoint {
--			remote-endpoint = <&usbc0_hs>;
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			usb_host0_xhci_hs: endpoint {
-+				remote-endpoint = <&usbc0_hs>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			usb_host0_xhci_ss: endpoint {
-+				remote-endpoint = <&usbdp_phy0_ss_in>;
-+			};
- 		};
- 	};
- };
-@@ -1066,3 +1120,10 @@ vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
- 		remote-endpoint = <&hdmi1_in_vp1>;
- 	};
- };
-+
-+&vp2 {
-+	vp2_out_dp0: endpoint@a {
-+		reg = <ROCKCHIP_VOP2_EP_DP0>;
-+		remote-endpoint = <&dp0_in_vp2>;
-+	};
-+};
-
+Thanks!
 -- 
-2.50.1
-
+Florian
 
