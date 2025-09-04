@@ -1,351 +1,158 @@
-Return-Path: <devicetree+bounces-212927-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212928-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D2A5B441F3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:02:34 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96FAFB44208
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 18:03:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34F62A48443
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:01:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4CF0F1CC28D0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 571C22EBB92;
-	Thu,  4 Sep 2025 16:01:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAEFE2C21D8;
+	Thu,  4 Sep 2025 16:03:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FSCMmZex"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HU+Cd349"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CD062C21D8;
-	Thu,  4 Sep 2025 16:01:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A36562367DC;
+	Thu,  4 Sep 2025 16:03:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757001702; cv=none; b=fLvCRG2QVJVmAhsuvE6XBj9Z3qiTZG3i7h7q+N9N8tOOHFpb4/2+ogy9+2VrSKDZJ2ehvm4T7ISG2QtjfrUyYtx0TvMmTu6+cphUZOQmPM468K87q7oxcjipR68OcAQ+yEfP+cQtXWLeaCuszFGQI/bzAbDLb0EJ0vkQFnVxizU=
+	t=1757001795; cv=none; b=uS+j2HvdrBoS3WH8ccQpKRhDDj+s4s2mCswbwbh/ud+1vMxaQQ20femfWAslPTeUFmAty6DRBfaiYTy8wfvJyE7uBR3h1xO+nne7rY0aCddxT5LPOsus3WPOHEk4LOG7qRUysIXXEN3GuvIvXoZVyRQGnqaw956JvHglKLMWcOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757001702; c=relaxed/simple;
-	bh=j/h9kq4nhFbaFX5wXh7GT4njNgD0lqzfJ3Jo/r2pfxM=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=lPg4eOjWS739Qla3hWuOvNJGSxNkRSeu7MApKzDXfaagkrSZYfKHrQVMUFLY7KjuJohVMJGWxaHFrk5rubTOs7xcpPSw0DDjzaMKQ9RrunJ3B0UZz0wq0mPqDRBfcW+y+fwW3vsM2GEyKDsVKp/7dS4Gl/EhFSqWi1P3YaKElik=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FSCMmZex; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893ECC4CEF0;
-	Thu,  4 Sep 2025 16:01:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757001701;
-	bh=j/h9kq4nhFbaFX5wXh7GT4njNgD0lqzfJ3Jo/r2pfxM=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=FSCMmZexlnQFzSQ6QvHrfaxOk9aXbg5BeYwz2y+pvlloLC7g+XzmMTI1/vqyyeP4C
-	 eeR/a9EG++Vo2g39abRPCfvHqnRmbgQDJR+b4peazBqn0KiIogFbLrse28xTSyA4q+
-	 fvYoXo7YFCtZM8GU6JRGhDncIIZqnt5uxbZ2yNoE7ZSah9iYndF6LaMcckpSERQrBw
-	 kQfJM68Kf1oEia5MGerO4z0zuyRPrVwwVP/miHIy1XSjbarU1kPtmdhYpEiplBNdL6
-	 G0U9nQXtvO8KMvQs3QbNArNQQIiRWtYCqDIlQ1LqHYVqlZbec6A8mbQjjI2oIMU706
-	 k540sqLMjHO4Q==
-Date: Thu, 4 Sep 2025 11:01:40 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: zhangsenchuan@eswincomputing.com
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
-	mani@kernel.org, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	p.zabel@pengutronix.de, johan+linaro@kernel.org,
-	quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org,
-	thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com,
-	inochiama@gmail.com, ningyu@eswincomputing.com,
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v2 2/2] PCI: eic7700: Add Eswin eic7700 PCIe host
- controller driver
-Message-ID: <20250904160140.GA1263976@bhelgaas>
+	s=arc-20240116; t=1757001795; c=relaxed/simple;
+	bh=sAzFasY0irDT+RWFfdcKlsf9/BNuAkoj4KNlayvUweA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=fpwgjxyI+40lL3i4NGnxqksCC6/k8eI2uY70yc5KFvXDCQAOll02M9Mo9rMSJyVlTVxGey3F/D5HGfxesF1N6pt94aXNmWiCS+/35ARlMetO55NKL0ePMhXWjNCngZivN3JgCjhmZmg0B4FJZGv85qetyPByR6oHgXfFFVWY43M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HU+Cd349; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45b7da4101fso4560175e9.3;
+        Thu, 04 Sep 2025 09:03:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757001791; x=1757606591; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=inlzeL92Q1+R3JzgzpZ5gZz+OI69SWz4CtAKRdZzkcw=;
+        b=HU+Cd349SNI+fA9/mWPl1jIUXtGKL2WCqRxKOwc+gnJRQTgaGRe8wNQca1ClfUa1yD
+         /Hkeg/7or6fE4pzxq6TmsnwysknPYvrHYPA9hnN4ntd1VTa4nA7IO9WBq2FwcSfyNSgU
+         yG+m9DO0izzs/CBTc1F/IuvmVHGXqmbnmv8rERzX+G9HLYAW/7hI8sWzpyZIQgTPw2hc
+         LuLX4Y8n4z8M9wq2tNzBnaPpS4WBhQKncO9rtlb6BtVYY+BZ0ZfQV4XjA0DviOpM4cxu
+         UGJorKj16Nv3dMgpTgkmyF59xKy/Zhi29ps92U1YAA5kkEZjzRMdz9c62RWIZoZpdF4I
+         RZog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757001791; x=1757606591;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=inlzeL92Q1+R3JzgzpZ5gZz+OI69SWz4CtAKRdZzkcw=;
+        b=DkTPQk9uOV46FxVenhuOnDmLCVq7ZVRTkIqZUPmlna+ulI8POpACP5UdsMTmuxcFck
+         zT5+gYxng570KhQ8aDMEi8kS5CeCCTvgNclsGrxcvluUq9hvLDYWhpTnNJyeXuu3ZDU1
+         TwVmcAuKBmg/oJX+sc2y3feOuXklJUeSuJ5pMwa0yIkNgS2080Brr8SWDSvBP2RPBvZl
+         rK/Dy0saCegSkANutxLXS2QKoqn//tvdOUq4knHIXlNobAnxXAeeDyjUcuKp9jufydrp
+         dSZrXpW2qd5Fwgz7/awLxuSKODiUKOU9U/MizrRi6HjcGL+dlcR0bKZPtq222gf8x8ey
+         kmbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCULIepyvkeGjTbKVu8qB/9ApSJou/iEp7FK866jhf3rvhC+foHZCkmHuNW6ToYojppZPrO8LT6Y2Knffx2f@vger.kernel.org, AJvYcCWjY76Jw31TucJyd9mNX8I0zS7w//a5ju/1dsN8UaZQ1SeWIYiOzFN3FW4OnCUUbusYDUnEMNyB2QNtx3b2jh8YrY0=@vger.kernel.org, AJvYcCX4/YQZAtaHxMWd/QBmshymMQDELVY3Eppd79HEjYpyhAW7TuYsDGDbwC9sYw9M+3tuKKZNbGM2r6k5@vger.kernel.org
+X-Gm-Message-State: AOJu0Yws5LsgNg1yVdLYXI2Hc3o+bIsaK7KooCmnCWhfVD9JQPf3BSjI
+	QEJ2c7SIn4uV/SvVTG/V97zM1VguQ6k5xO5ajUJJdlGfeRjGeqT4t0z+
+X-Gm-Gg: ASbGncv/p4fOZNr+rndLMhnVsmoxmMApTup/udZZ1qRccMdGji+VKIUemNQMZ88VV+3
+	6HXfxna2vqwt2XKck5jRwqNX+ZiJT8skRv97IycWXn+knnCkPIruEsJdGV2CiYHNeer4bYjHnYT
+	LiJbQOGkJsAOTugn4G6RjSHZQhm5OMyLz/vyf/VrJB01kiYggHI/agYQFzW+eAPhqLLsc36rBBj
+	44/s/6NABZ5PYk6patTZKUnLJ/OB/CCL0LAzoR/0OAPPyg2oZJRkudIi2hEDTYqzPSW0xPy1fdV
+	JweThU8n2C3meu3b5T9eYfnFmVaufQJdnIwJnXp7XbPen9NvjNtXAVnpDX8FdRmhXPy9zPO22qD
+	XaIyIazjJaDUPrvRC76UCz3LpSbXoB9yyVya8wcZrCEA6d7LLmvk4pBSuqg==
+X-Google-Smtp-Source: AGHT+IFgIVReQPVQhz9k/P9YI/MxpwIZDmDNHMJlsOtsRqB1HD/exOoyXUahixSAJHYLjPaR1ELVcw==
+X-Received: by 2002:a05:600c:4452:b0:455:f187:6203 with SMTP id 5b1f17b1804b1-45b855983cfmr146238965e9.27.1757001790426;
+        Thu, 04 Sep 2025 09:03:10 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:904e:70c8:edf3:59a4])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b98e77231sm117935885e9.12.2025.09.04.09.03.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 09:03:09 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Frank Li <Frank.Li@nxp.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and RZ/V2N support
+Date: Thu,  4 Sep 2025 17:03:05 +0100
+Message-ID: <20250904160305.247618-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250829082405.1203-1-zhangsenchuan@eswincomputing.com>
+Content-Transfer-Encoding: 8bit
 
-On Fri, Aug 29, 2025 at 04:24:05PM +0800, zhangsenchuan@eswincomputing.com wrote:
-> From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> 
-> Add driver for the Eswin EIC7700 PCIe host controller.
-> The controller is based on the DesignWare PCIe core.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Wrap to fill 75 columns.
+Add device tree binding support for the I3C Bus Interface on Renesas
+RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
+that found on the RZ/G3E SoC.
 
-> +++ b/drivers/pci/controller/dwc/Kconfig
-> @@ -492,4 +492,16 @@ config PCIE_VISCONTI_HOST
->  	  Say Y here if you want PCIe controller support on Toshiba Visconti SoC.
->  	  This driver supports TMPV7708 SoC.
-> 
-> +config PCIE_EIC7700
-> +	tristate "ESWIN PCIe host controller"
+Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
+"renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
+"renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
+compatibility with the RZ/G3E implementation.
 
-Should say "ESWIN PCIe controller" to match other entries.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+---
+ .../devicetree/bindings/i3c/renesas,i3c.yaml     | 16 +++++++++++-----
+ 1 file changed, 11 insertions(+), 5 deletions(-)
 
-> +	depends on PCI_MSI
-> +	depends on ARCH_ESWIN || COMPILE_TEST
+diff --git a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+index fe2e9633c46f..e41ba3ba4b58 100644
+--- a/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
++++ b/Documentation/devicetree/bindings/i3c/renesas,i3c.yaml
+@@ -4,7 +4,7 @@
+ $id: http://devicetree.org/schemas/i3c/renesas,i3c.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Renesas RZ/G3S and RZ/G3E I3C Bus Interface
++title: Renesas RZ/G3S, RZ/G3E, RZ/V2H(P) and RZ/V2N I3C Bus Interface
+ 
+ maintainers:
+   - Wolfram Sang <wsa+renesas@sang-engineering.com>
+@@ -12,10 +12,16 @@ maintainers:
+ 
+ properties:
+   compatible:
+-    items:
+-      - enum:
+-          - renesas,r9a08g045-i3c # RZ/G3S
+-          - renesas,r9a09g047-i3c # RZ/G3E
++    oneOf:
++      - items:
++          - enum:
++              - renesas,r9a08g045-i3c # RZ/G3S
++              - renesas,r9a09g047-i3c # RZ/G3E
++      - items:
++          - enum:
++              - renesas,r9a09g056-i3c # RZ/V2N
++              - renesas,r9a09g057-i3c # RZ/V2H(P)
++          - const: renesas,r9a09g047-i3c
+ 
+   reg:
+     maxItems: 1
+-- 
+2.51.0
 
-Reorder these to match other entries, i.e.,
-
-	depends on ARCH_ESWIN || COMPILE_TEST
-	depends on PCI_MSI
-
-> +	select PCIE_DW_HOST
-> +	help
-> +	  Enables support for the PCIe controller in the Eswin SoC
-> +	  The PCI controller on Eswin is based on DesignWare hardware
-> +	  It is a high-speed hardware bus standard used to connect
-> +	  processors with external devices. Say Y here if you want
-> +	  PCIe controller support for the ESWIN.
-
-Alphabetize so the menuconfig entries remain sorted by vendor.
-
-> +++ b/drivers/pci/controller/dwc/pcie-eic7700.c
-
-> +#include <linux/module.h>
-> +#include <linux/pci.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/resource.h>
-> +#include <linux/types.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/reset.h>
-> +#include <linux/pm_runtime.h>
-
-Usually people sort these alphabetically.
-
-> +#define PCIE_PM_SEL_AUX_CLK BIT(16)
-> +#define PCIEMGMT_APP_LTSSM_ENABLE BIT(5)
-
-Put these under the offset of the register that contains them so we
-can tell the connections.
-
-> +#define PCIEMGMT_CTRL0_OFFSET 0x0
-> +#define PCIEMGMT_STATUS0_OFFSET 0x100
-> +
-> +#define PCIE_TYPE_DEV_VEND_ID 0x0
-
-This looks like PCI_VENDOR_ID; use that instead.
-
-> +#define PCIE_DSP_PF0_MSI_CAP 0x50
-> +#define PCIE_NEXT_CAP_PTR 0x70
-
-These look like fixed offsets in config space that should be
-discovered by the usual method of traversing the capability lists,
-e.g., dw_pcie_find_capability().
-
-> +#define DEVICE_CONTROL_DEVICE_STATUS 0x78
-
-I don't think you need this at all (see below).  But if you do, the
-use below should include PCI_EXP_DEVCTL (e.g., as an offset from the
-start of the PCIe Capability) so grep can find it.
-
-> +#define PCIE_MSI_MULTIPLE_MSG_32 (0x5 << 17)
-> +#define PCIE_MSI_MULTIPLE_MSG_MASK (0x7 << 17)
-
-Use PCI_MSI_FLAGS_QMASK instead.
-
-> +#define PCIEMGMT_LINKUP_STATE_VALIDATE ((0x11 << 2) | 0x3)
-> +#define PCIEMGMT_LINKUP_STATE_MASK 0xff
-
-Line up all the values of these #defines.
-
-> +static int eswin_pcie_host_init(struct dw_pcie_rp *pp)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> +	struct eswin_pcie *pcie = dev_get_drvdata(pci->dev);
-> +	int ret;
-> +	u32 val;
-> +	u32 retries;
-> +
-> +	/* Fetch clocks */
-> +	pcie->num_clks = devm_clk_bulk_get_all_enabled(pci->dev, &pcie->clks);
-> +	if (pcie->num_clks < 0)
-> +		return dev_err_probe(pci->dev, pcie->num_clks,
-> +				     "failed to get pcie clocks\n");
-> +
-> +	ret = eswin_pcie_power_on(pcie);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* set device type : rc */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val &= 0xfffffff0;
-> +	writel_relaxed(val | 0x4, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-
-"rc" is not a device type (a Root Complex is not itself a PCI device
-that appears in config space).  I think you're talking about a Root
-Port, which is a PCIe device, so this should be
-PCI_EXP_TYPE_ROOT_PORT.
-
-> +	ret = reset_control_assert(pcie->perst);
-> +	if (ret) {
-> +		dev_err(pci->dev, "perst assert signal is invalid");
-> +		goto err_perst;
-> +	}
-> +	msleep(100);
-
-This sleep needs a comment (if it's specific to eic7700) or a standard
-#define from drivers/pci/pci.h (if something from the PCIe spec).
-
-> +	ret = reset_control_deassert(pcie->perst);
-> +	if (ret) {
-> +		dev_err(pci->dev, "perst deassert signal is invalid");
-> +		goto err_perst;
-> +	}
-> +
-> +	/* app_hold_phy_rst */
-> +	val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +	val &= ~(0x40);
-> +	writel_relaxed(val, pcie->mgmt_base + PCIEMGMT_CTRL0_OFFSET);
-> +
-> +	/*
-> +	 * It takes at least 20ms to wait for the pcie
-> +	 * status register to be 0.
-
-s/pcie/PCIe/ (follow spec usage in comments, messages, etc)
-
-> +	 */
-> +	retries = 30;
-> +	do {
-> +		val = readl_relaxed(pcie->mgmt_base + PCIEMGMT_STATUS0_OFFSET);
-> +		if (!(val & PCIE_PM_SEL_AUX_CLK))
-> +			break;
-> +		usleep_range(1000, 1100);
-> +		retries--;
-> +	} while (retries);
-
-This delay should also have a citation to eic7700 spec if it came from
-there.  Suggest fsleep() instead of usleep_range().  The exact delay
-doesn't look critical here.
-
-> +	if (!retries) {
-> +		dev_err(pci->dev, "No clock exist.\n");
-
-Drop period at end of messages.
-
-> +		ret = -ENODEV;
-> +		goto err_clock;
-> +	}
-> +
-> +	/* config eswin vendor id and eic7700 device id */
-> +	dw_pcie_writel_dbi(pci, PCIE_TYPE_DEV_VEND_ID, 0x20301fe1);
-> +
-> +	/* lane fix config, real driver NOT need, default x4 */
-> +	val = dw_pcie_readl_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL);
-> +	val &= 0xffffff80;
-> +	val |= 0x44;
-> +	dw_pcie_writel_dbi(pci, PCIE_PORT_MULTI_LANE_CTRL, val);
-> +
-> +	val = dw_pcie_readl_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS);
-> +	val &= ~(0x7 << 5);
-> +	val |= (0x2 << 5);
-> +	dw_pcie_writel_dbi(pci, DEVICE_CONTROL_DEVICE_STATUS, val);
-
-This sets MPS, which should be done by the PCI core, not by the
-driver.
-
-> +	/*  config support 32 msi vectors */
-
-Use "MSI" and "MSI-X" in comments, etc to match spec usage.
-
-> +	val = dw_pcie_readl_dbi(pci, PCIE_DSP_PF0_MSI_CAP);
-> +	val &= ~PCIE_MSI_MULTIPLE_MSG_MASK;
-> +	val |= PCIE_MSI_MULTIPLE_MSG_32;
-
-Use FIELD_PREP() as in dw_pcie_ep_set_msi().
-
-> +	dw_pcie_writel_dbi(pci, PCIE_DSP_PF0_MSI_CAP, val);
-> +
-> +	/* disable msix cap */
-> +	val = dw_pcie_readl_dbi(pci, PCIE_NEXT_CAP_PTR);
-> +	val &= 0xffff00ff;
-> +	dw_pcie_writel_dbi(pci, PCIE_NEXT_CAP_PTR, val);
-> +
-> +	return 0;
-> +
-> +err_clock:
-> +	reset_control_assert(pcie->perst);
-> +err_perst:
-> +	eswin_pcie_power_off(pcie);
-> +	return ret;
-> +}
-> +
-> +static const struct dw_pcie_host_ops eswin_pcie_host_ops = {
-> +	.init = eswin_pcie_host_init,
-> +};
-> +
-> +static const struct dw_pcie_ops dw_pcie_ops = {
-> +	.start_link = eswin_pcie_start_link,
-> +	.link_up = eswin_pcie_link_up,
-> +};
-> +
-> +static int eswin_pcie_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct dw_pcie *pci;
-> +	struct eswin_pcie *pcie;
-> +	int ret;
-> +
-> +	pcie = devm_kzalloc(dev, sizeof(*pcie), GFP_KERNEL);
-> +	if (!pcie)
-> +		return -ENOMEM;
-> +
-> +	pci = &pcie->pci;
-> +	pci->dev = dev;
-> +	pci->ops = &dw_pcie_ops;
-> +	pci->pp.ops = &eswin_pcie_host_ops;
-> +
-> +	/* SiFive specific region: mgmt */
-> +	pcie->mgmt_base = devm_platform_ioremap_resource_byname(pdev, "mgmt");
-> +	if (IS_ERR(pcie->mgmt_base))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->mgmt_base),
-> +				     "failed to map mgmt memory\n");
-> +
-> +	/* Fetch reset */
-> +	pcie->powerup_rst = devm_reset_control_get_optional(&pdev->dev,
-> +							    "powerup");
-> +	if (IS_ERR_OR_NULL(pcie->powerup_rst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->powerup_rst),
-> +				     "unable to get powerup reset\n");
-> +
-> +	pcie->cfg_rst = devm_reset_control_get_optional(&pdev->dev, "cfg");
-> +	if (IS_ERR_OR_NULL(pcie->cfg_rst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->cfg_rst),
-> +				     "unable to get cfg reset\n");
-> +
-> +	pcie->perst = devm_reset_control_get_optional(&pdev->dev, "pwren");
-
-Why is this not called "perst" in devicetree?
-
-> +	if (IS_ERR_OR_NULL(pcie->perst))
-> +		return dev_err_probe(dev, PTR_ERR(pcie->perst),
-> +				     "unable to get perst reset\n");
-> +
-> +	platform_set_drvdata(pdev, pcie);
-> +
-> +	pm_runtime_set_active(dev);
-> +	pm_runtime_enable(dev);
-> +	ret = pm_runtime_get_sync(dev);
-> +	if (ret < 0) {
-> +		dev_err(dev, "pm_runtime_get_sync failed: %d\n", ret);
-> +		goto err_get_sync;
-> +	}
-> +
-> +	ret = dw_pcie_host_init(&pci->pp);
-> +	if (ret) {
-> +		dev_err(dev, "failed to initialize host: %d\n", ret);
-> +		goto err_host_init;
-> +	}
-> +
-> +	return ret;
-> +
-> +err_host_init:
-> +	pm_runtime_put_sync(dev);
-> +err_get_sync:
-> +	pm_runtime_disable(dev);
-> +	return ret;
-> +}
 
