@@ -1,78 +1,57 @@
-Return-Path: <devicetree+bounces-213106-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213107-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BB0AB44A63
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:24:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B09AB44A68
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:28:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 37D137AF723
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:23:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 09BC4A02FB1
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:28:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE6472F656D;
-	Thu,  4 Sep 2025 23:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BDB52F6573;
+	Thu,  4 Sep 2025 23:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="H8rAoqbg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ly5Ism6I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E6072EDD6C;
-	Thu,  4 Sep 2025 23:24:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C660D2F6565;
+	Thu,  4 Sep 2025 23:28:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757028277; cv=none; b=Mx60frNCa86S6t730XeF+MJWqxfCEkHHZzsZBvPH5GSunQBLEJBcrdc8O9Cj/uxuFgd1S0VP+tsBMB6wNeeTwH2OlWAUzynFtEEEnLFShqgaVRIxFtbh5pXI/BUOwyhNUhuej/TCFZUghhbbC1xBy0AYRags0TCEP7RIYa1SGwg=
+	t=1757028483; cv=none; b=qJdkcmyZHpVwKgB1qWdplqWvQW/oEBFj1O6IVGXSlwImjxLOLU9CaVMz5ozdCzP1/5MS4AdZv9XKlYRWQG8FvLRS01nPphIIzhhO8/vp1TlgKSkzmNywhHb+/but9i/94MAlqaqFxVCc2/Q6Of0+Z3YuQjUwuH1UfNYHM2MKK8s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757028277; c=relaxed/simple;
-	bh=OgkI8noiXQ5CWIZ0ZMUtx+0t4I0H3Sb21zhjyKKhbWc=;
+	s=arc-20240116; t=1757028483; c=relaxed/simple;
+	bh=ly5f5L034OBshPPmHWgiZrq2nVBBsbg/Jf7vHlaQUWM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QVgpCKw6HbEW+S4aYd5MAc7//b65OWEPwdjHuIRBd1jdUY+OynNpM/53op4tVdHa3a/vV8fKzERGj7nSA3wjCoYXZA5ePx74Vqn2wrz7I7V90ze7lZJHOpm9sVn+q+Cp+47S3em7jLH9A4MX9jMCnajw39VRMJNiKovh/AipMXs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=H8rAoqbg; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757028276; x=1788564276;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OgkI8noiXQ5CWIZ0ZMUtx+0t4I0H3Sb21zhjyKKhbWc=;
-  b=H8rAoqbg97kJdRaIjmVWKDi7wkZVwK0qKaLtpsC6qz1HewB2I3lmEfc0
-   +2yumgzjvBpLkSEq3TqpI/PNCBJtGMRE8caiQANZiV2PEbpxgQzesW/rF
-   LXvhsM2uAGhzjVNourmVNZrIUElfkiaCmpvY51vO4BC4aRRgzkL+5lOTS
-   NPtgd8nun+9lWFNv4aMCoMytR+B0UT2/G98EH1yck0ziy2HlhrMe3h8v8
-   qMyQN/jrevRXj6ofavluXdTATfnXKdUQ8D5RXJ7o7AhFpNUzw00L6/Hwc
-   ycNP7hhDXS751/msRfnnGcxonV9WQ1Ka5olUsvIhlO7MXg6q5p3R4x0EB
-   w==;
-X-CSE-ConnectionGUID: 7XToG7ynQxCQF9e6ssehZQ==
-X-CSE-MsgGUID: NPP5JEavSNamjvfHqvnrsQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="84813432"
-X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
-   d="scan'208";a="84813432"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Sep 2025 16:24:35 -0700
-X-CSE-ConnectionGUID: SOkaAXxtTq+dBZbVLsM6Ow==
-X-CSE-MsgGUID: M9KY89M4T3q/gJJ19iMC8g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,239,1751266800"; 
-   d="scan'208";a="177239359"
-Received: from lkp-server02.sh.intel.com (HELO 06ba48ef64e9) ([10.239.97.151])
-  by fmviesa004.fm.intel.com with ESMTP; 04 Sep 2025 16:24:33 -0700
-Received: from kbuild by 06ba48ef64e9 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uuJJ5-00061T-2J;
-	Thu, 04 Sep 2025 23:24:01 +0000
-Date: Fri, 5 Sep 2025 07:23:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Akhilesh Patil <akhilesh@ee.iitb.ac.in>, alexandre.belloni@bootlin.com,
-	krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 7/7] rtc: m41t93: Add watchdog support
-Message-ID: <202509050759.dwYECwEA-lkp@intel.com>
-References: <694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh@ee.iitb.ac.in>
+	 Content-Type:Content-Disposition:In-Reply-To; b=oFLV0JW4yjEwuXEwHg1PyKc9Efm0WASOO4iwHSYHQ9dBOFS9BKuexEI9oFyGj7vEGnvZPKbPABf5ytp6GZQWlNNSDUhLo6V4X5ciWdkHssnpUZJgabE3ljz5vH40EeZ5v+Eu+C+t7vs+QLN+JmWz8I5uzuaUwSkharMoiwTh+9Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ly5Ism6I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DC1D8C4CEF0;
+	Thu,  4 Sep 2025 23:28:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757028483;
+	bh=ly5f5L034OBshPPmHWgiZrq2nVBBsbg/Jf7vHlaQUWM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ly5Ism6IqfIlvxasm57hCAO7wUxPD9JsMjU0KImRbjVR+rs9WCTTPAdwYEBlS51vZ
+	 4HFd3FLX/dY+XQm/OVs+D5ir6Gn87BiClCtZP4SZC2rKUdWsfK2tYs+10JGD/Nl42u
+	 Io4OE8+9SndISpcNgIahX/a8B5NmRi+elc1Hkgwt0QQLdkVvuSAROE7JP/PvsytowB
+	 in8swEKTSxL+mwG6+dsVtOnEvIaZMwMfe10nwj6RoXnaEVd7IPOZvyZXLC175mnvBm
+	 vXkw/6HkOffPJzWFll3xM2y3zY7GaQAPukOWVl6uAtEw6TcQf+OZYICggA7THrhYp+
+	 f6+LRhbzTxL4g==
+Date: Fri, 5 Sep 2025 01:28:00 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Kartik Rajput <kkartik@nvidia.com>
+Cc: akhilrajeev@nvidia.com, robh@kernel.org, krzk+dt@kernel.org, 
+	conor+dt@kernel.org, thierry.reding@gmail.com, jonathanh@nvidia.com, 
+	ldewangan@nvidia.com, digetx@gmail.com, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 4/5] i2c: tegra: Add support for SW mutex register
+Message-ID: <l4po62bw6672xpaabkbvu6snyg4hrgcdxaijpt6evizortwjok@jwg2asezj3cb>
+References: <20250828055933.496548-1-kkartik@nvidia.com>
+ <20250828055933.496548-5-kkartik@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -81,38 +60,180 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh@ee.iitb.ac.in>
+In-Reply-To: <20250828055933.496548-5-kkartik@nvidia.com>
 
-Hi Akhilesh,
+Hi Kartik,
 
-kernel test robot noticed the following build errors:
+On Thu, Aug 28, 2025 at 11:29:32AM +0530, Kartik Rajput wrote:
+> Add support for SW mutex register introduced in Tegra264 to provide
+> an option to share the interface between multiple firmwares and/or
+> VMs.
 
-[auto build test ERROR on abelloni/rtc-next]
-[also build test ERROR on linus/master v6.17-rc4 next-20250904]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+You could add a short description on how to use the mutex
+register here.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Akhilesh-Patil/rtc-m41t93-add-device-tree-support/20250903-223155
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/abelloni/linux.git rtc-next
-patch link:    https://lore.kernel.org/r/694706ad8577a36ef8948e0d9ca7ea561900fbc2.1756908788.git.akhilesh%40ee.iitb.ac.in
-patch subject: [PATCH 7/7] rtc: m41t93: Add watchdog support
-config: x86_64-randconfig-007-20250904 (https://download.01.org/0day-ci/archive/20250905/202509050759.dwYECwEA-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250905/202509050759.dwYECwEA-lkp@intel.com/reproduce)
+> However, the hardware does not ensure any protection based on the
+> values. The driver/firmware should honor the peer who already holds
+> the mutex.
+> 
+> Signed-off-by: Kartik Rajput <kkartik@nvidia.com>
+> Signed-off-by: Akhil R <akhilrajeev@nvidia.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509050759.dwYECwEA-lkp@intel.com/
+...
 
-All errors (new ones prefixed by >>):
+> @@ -381,6 +391,73 @@ static void i2c_readsl(struct tegra_i2c_dev *i2c_dev, void *data,
+>  	readsl(i2c_dev->base + tegra_i2c_reg_addr(i2c_dev, reg), data, len);
+>  }
+>  
+> +static int tegra_i2c_mutex_acquired(struct tegra_i2c_dev *i2c_dev)
 
->> ld.lld: error: undefined symbol: devm_watchdog_register_device
-   >>> referenced by rtc-m41t93.c:490 (drivers/rtc/rtc-m41t93.c:490)
-   >>>               drivers/rtc/rtc-m41t93.o:(m41t93_watchdog_register) in archive vmlinux.a
+this is a bool function.
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +{
+> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
+> +	u32 val, id;
+> +
+> +	val = readl(i2c_dev->base + reg);
+> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
+> +
+> +	if (id != I2C_SW_MUTEX_ID_CCPLEX)
+> +		return 0;
+> +
+> +	return 1;
+
+return id != I2C_SW_MUTEX_ID_CCPLEX;
+
+> +}
+> +
+> +static int tegra_i2c_mutex_trylock(struct tegra_i2c_dev *i2c_dev)
+
+I think this can be bool.
+
+> +{
+> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
+> +	u32 val, id;
+> +
+> +	val = readl(i2c_dev->base + reg);
+> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
+> +	if (id != 0 && id != I2C_SW_MUTEX_ID_CCPLEX)
+> +		return 0;
+> +
+> +	val = FIELD_PREP(I2C_SW_MUTEX_REQUEST, I2C_SW_MUTEX_ID_CCPLEX);
+> +	writel(val, i2c_dev->base + reg);
+> +
+> +	return tegra_i2c_mutex_acquired(i2c_dev);
+> +}
+> +
+> +static int tegra_i2c_mutex_lock(struct tegra_i2c_dev *i2c_dev)
+> +{
+> +	int locked;
+
+I guess this can be bool.
+
+> +	int ret;
+> +
+> +	if (i2c_dev->atomic_mode)
+> +		ret = read_poll_timeout_atomic(tegra_i2c_mutex_trylock, locked, locked,
+> +					       USEC_PER_MSEC, I2C_SW_MUTEX_TIMEOUT_US,
+> +					       false, i2c_dev);
+> +	else
+> +		ret = read_poll_timeout(tegra_i2c_mutex_trylock, locked, locked, USEC_PER_MSEC,
+> +					I2C_SW_MUTEX_TIMEOUT_US, false, i2c_dev);
+> +
+> +	if (!tegra_i2c_mutex_acquired(i2c_dev))
+> +		dev_warn(i2c_dev->dev, "failed to acquire mutex\n");
+
+I would try a few times before giving up.
+
+Besides, is there a chance where ret is '0' and the mutex is not
+acquired? If so, we are not signalling error if the mutex is not
+acquired, but I think we should.
+
+I would do:
+
+	if (...)
+		ret = ...
+	else
+		ret = ...
+	
+	if (ret)
+		return ret;
+
+	if (!tegra_i2c_mutex_acquired(i2c_dev)) {
+		dev_warn(i2c_dev->dev, "failed to acquire mutex\n");
+		return -ESOMETHING;
+	}
+
+	return 0;
+
+Makes sense?
+
+> +
+> +	return ret;
+> +}
+> +
+> +static int tegra_i2c_mutex_unlock(struct tegra_i2c_dev *i2c_dev)
+> +{
+> +	unsigned int reg = tegra_i2c_reg_addr(i2c_dev, I2C_SW_MUTEX);
+> +	u32 val, id;
+> +
+> +	val = readl(i2c_dev->base + reg);
+> +
+> +	id = FIELD_GET(I2C_SW_MUTEX_GRANT, val);
+> +	if (id && id != I2C_SW_MUTEX_ID_CCPLEX) {
+> +		dev_warn(i2c_dev->dev, "unable to unlock mutex, mutex is owned by: %u\n", id);
+> +		return -EPERM;
+
+I would try a few times before giving up.
+
+> +	}
+> +
+> +	writel(0, i2c_dev->base + reg);
+> +
+> +	return 0;
+> +}
+> +
+>  static void tegra_i2c_mask_irq(struct tegra_i2c_dev *i2c_dev, u32 mask)
+>  {
+>  	u32 int_mask;
+> @@ -1422,6 +1499,13 @@ static int tegra_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[],
+>  		return ret;
+>  	}
+>  
+> +
+
+no need for this extra blank line.
+
+> +	if (i2c_dev->hw->has_mutex) {
+
+I would put this check in tegra_i2c_mutex_lock() and _unlock() in
+order to avoid two level indentation here.
+
+> +		ret = tegra_i2c_mutex_lock(i2c_dev);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+>  	for (i = 0; i < num; i++) {
+>  		enum msg_end_type end_type = MSG_END_STOP;
+>  
+> @@ -1451,6 +1535,12 @@ static int tegra_i2c_xfer(struct i2c_adapter *adap, struct i2c_msg msgs[],
+>  			break;
+>  	}
+>  
+> +	if (i2c_dev->hw->has_mutex) {
+> +		ret = tegra_i2c_mutex_unlock(i2c_dev);
+> +		if (ret)
+> +			return ret;
+
+We are skipping pm_runtime_put(), though.
+
+Thanks,
+Andi
+
+> +	}
+> +
+>  	pm_runtime_put(i2c_dev->dev);
+>  
+>  	return ret ?: i;
 
