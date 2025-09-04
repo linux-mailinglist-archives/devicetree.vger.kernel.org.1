@@ -1,81 +1,81 @@
-Return-Path: <devicetree+bounces-212908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DE9EB43FA5
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:52:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0391B43FA6
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 16:52:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8CA7618876A6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:51:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D4C0F7B0632
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 14:50:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACAAA3054CF;
-	Thu,  4 Sep 2025 14:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4F88301467;
+	Thu,  4 Sep 2025 14:52:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ad3dPfKy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fM/TL1Cg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB88C1DF97C
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:51:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D0E1253359
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 14:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756997467; cv=none; b=JYAG3uyi4YtcYGEX6aIG/YTc7Om2M75YCkZJkpM007V+j6IMsWukG4PM1PNV+ZIKmVYiH/OTpA/gBYcEst+FhGEq438tsbWp8WupXqmnnugdq8go6tfk+t/4xFE6Fo6PppsCaGsgVQhmFOsv/WaF6M8zTgRv1v0DlFDKASo8iXM=
+	t=1756997532; cv=none; b=Vj0C5/3Xr8k0oAtmplKaN6QvmO8PfZyOSlu9oX9igIcpcG48uLbg1ZmPT/UL/Pei435YeZ81n0PIngUIGPe3JvXELMFIUsTf/KkJl89tSNwKoa75J7cpHoSdGtJyMIxq07rLzgwQDNMOm6e5QMLQQm+2ytRkjQN4q1g5LNDZOQ0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756997467; c=relaxed/simple;
-	bh=mFi8f12a1bnt/zRkKSTt0ZafY90Bf2dQ+K7+kVMIlZU=;
+	s=arc-20240116; t=1756997532; c=relaxed/simple;
+	bh=Regk9837D3NO2JyFL4e0NWX9lDCfumsQhNU5GH68Kzc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ekd32JmyrlnZrf2V1KMxdSQiWHdCf4c8iUQ+5M5oiiPKJf0BL7vJUl1PUIdEiiqrSx/nL+sRKQfowt7CNPitq+isvY4ZXv15B2nt6m5Xh7tCnL0bD3He1oy+l8pNt4j7n/OqfFsUsh7fK6/4SDvTWjzk+jxPZrbZMkjbUTg/fPg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ad3dPfKy; arc=none smtp.client-ip=209.85.128.44
+	 In-Reply-To:Content-Type; b=Gp/Nm3YRmYcUzFEK+ft2iX6ZZyfNcGbXetEiZqMe1lf4KMosGsTXOPdKR+MTP/Apc381/R3jSY8V/ki/4Mi0SpkoTP/7zd3azUb+n8xGgBWYmR7wqRqp6KnCyLKcwEopj2RxfHOhIeNYD9/2DsknSeCvIRyuL3cXqiTWiCG64vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fM/TL1Cg; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45cb659e858so9686195e9.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:51:04 -0700 (PDT)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45dcfecdc0fso8489035e9.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 07:52:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1756997463; x=1757602263; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1756997528; x=1757602328; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Mm3xj885WkKRhuZyxbu5LG7P0HRA9OEYlHlAJLxX4fs=;
-        b=Ad3dPfKyqQ41DNzpxCzTtiMqbCSl25zh8K3r9RAroQg2QQrjzCjBN4N9qJx3v/wYai
-         /ruy2l9highlRFVPcgahoFE5JESgCnn8zuycfQLoOeJs351O+TOF5b51MK5Dxto0S5Am
-         4zV6h0dxkqnYcKVl9S2u0eoT76fkV1OYkmSeLJVDeUR8PaYApYbfh4hmS3sNHbS+x7EL
-         6yFjJHsw+Rm7q3awBX3LjAFWhk2OXlDWRDKpha4K51QzO8x1Bi0VN1TG0/VQV4WbeRCm
-         zZuxWnhcY2f1J4rPnK1eJis6Su1WNG7vO8Rf4uUrX/d5xNDBvsNW20anGC9kXtdsn5xx
-         NYFw==
+        bh=e/ycGZnds+z/QHl/WDFajxaBGcjIl8uT9DspiT23BE4=;
+        b=fM/TL1Cg3qcEeTClA3zrqQ9iBkqtIB+IZPoRRppM0R+QGNgz6hVfcSZ/5zua1t/Hql
+         l4brfekWvXY04CAZvkcae6TNrFul7nXKu9R/ac8dD1ncHyKHi4LMeiI1yTZjccVRfqRC
+         wSrsoHqv0dJLOl2e06wiRbNhXTgkCFNS2LuEFkzU8rlVOlH2G3sv7VcJ5dS9L5sVN7Py
+         zrpOqPcrVPo+VWBd4sdEXsy+4nzBbltElhcnW2tKictvpt9nzi6ykmTLQvB2H9ZxaTzG
+         IqeFe63/mkvCUqf7oFzFQ9UqEfN1JU6vZSo5Z3VENfYz8M2d2Ak5yq/fhZ6xCkDSig21
+         I4jA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1756997463; x=1757602263;
+        d=1e100.net; s=20230601; t=1756997528; x=1757602328;
         h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Mm3xj885WkKRhuZyxbu5LG7P0HRA9OEYlHlAJLxX4fs=;
-        b=OFdA56d0T/9/YkCycUL1PjVytNz/VMF1FoV+e3ZAdc3oKMyt66twzRKMhrtAEJR3nm
-         v4HjXoJEaKA9cApEbWa+HwHGz01BYUlPDomghRqjFvI+3SWEYodXjozdQhaJgTdBrfBR
-         gcnS0Tl9zKprKar1WkkpEQLxicFqV2FtXj6DU8mhV+J0LEzl87SmZSlbLzBaZsnblyXq
-         nIyTX9ATErEvYoYxkv4/K9sXrv0H3P5t//u85LQhYKJBj5+FnbXpxrNmBwD1oYFbQNn5
-         QZSys8OF4yVBoEiOWuR7opC9nxV6wiwk4MAgGLYoXkhrBzPWSGmH2Hx1X7Le2+hLxFzN
-         O48Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW/r2vjoJi+X7WADdmIZzasD1FQvBQRNhIcX/h7/WxKeOcF4ONSBQIThB+5NIWZ0uQkdcvu0s3XMI2e@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx1rap1JxmZa7aYA0CPNCj85TH5pp9EPsip4pgcziQDPOnfnrH1
-	rv76fGmvVnAafydlJh6y5vWbN6UI9XZ64YJ16hGWCzmgyW4/PUm+yUIK+1wwPkzYSdk=
-X-Gm-Gg: ASbGncs/3o12sZuaxWo5bDGQWGd1T/LEyGy1IWpTMb95HR4PNQY+T5zmcXFpxVn7UiH
-	TFrDhCPyda7GLD8fu+6fGGnIu79oqkZjPdgM7Ao6aPIUN3vrNA83DPq2e7xa9FW3eElROfASMMP
-	5KEtqdR3DM/j1p21ZIlls0PkQG74Hie0V2Yj6p0kZ8ytqDLjCeNAt6Lob9nOa6UWCUdjxfA+JuW
-	xxOWjFlx1A7QjjfEg/3QgKcekxD2xT0Ethcg32uD5roDFYCkpn79IUjCmc58DlsDE9MXr/+iaWG
-	IrK6yJ5wjLNQUtfz5OWx8KfMlCda2k81g32wVGQnjqTQTuQRoDQxN42LNZFuGB+wRAg7F4+vBvk
-	8dYIy6Nh8tkUaQffqeyZh5PlqY28iEbWMQi+f6m/L1csO2Nc2fuWj2HulJaUzAfxHKMTKUPpZfa
-	4tqqlo1szT08TE11fyV9gKBFq6H7IpWw==
-X-Google-Smtp-Source: AGHT+IGkh7sZxoYPIJSgoKIuQWnB6gAGim5zG62ByEZJnBJdkEVQMXHIGjBKP7FG3mVW3hDjXTcWGg==
-X-Received: by 2002:a05:600c:a04:b0:45b:8504:3002 with SMTP id 5b1f17b1804b1-45b8554eb18mr173687245e9.10.1756997462953;
-        Thu, 04 Sep 2025 07:51:02 -0700 (PDT)
+        bh=e/ycGZnds+z/QHl/WDFajxaBGcjIl8uT9DspiT23BE4=;
+        b=aR4KPe6Q3aP5YKLuiTbrrU+IUDgjP8OM1x/FxKMKjiePRkCJlKHmAWxRlIfCp0qjWK
+         yP9OJxXvMeOlDUZLAU1yh9joXGYyeUi9iXOjqXt/7UoIQFMixbBjc73EqvN2VW8NTRis
+         hHfKlMGqoU4tNWtwKmbgJyjQeqRnT8MDIP+4eunfX1BnGJ4eSm7n50Yn0XDrpOg2zbVW
+         8y2lbseaH+k7VIxm8IccOnn6S3HuEdklsUd6GAiV+/2q/ykRQ4Iwd6gPeLzMrisY5gv/
+         8JS1FsXsHnyH/uEcS4GCBt5ZSNTVU0ZyvYjS8lie5clAWW1wdAgrjiNmw7h6T74F3Fp3
+         ARNQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUQcwv7+EB8DqrDmSSab69xeF7wjYExaRgPRTJT15Od4Kh+xHOl3NnJRlir8IZ5OBPgusWiegrpMeOO@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyi1Z61bAYaqocKcQqZiEvGIeEERklG8L5gCngdP9zz3W5CQbjq
+	51D4r+ayjF5D11KyoscEa8Jy0WPzTYIF5dOH2TmFJ7XZ5op7fZFGY7cGCwHarw5Cx7A=
+X-Gm-Gg: ASbGncvmM1HYlo4elrF+HMSIphlx3YNaVd4t4RJl2FScs1d360Z8LgnTqd8n0g4/kzE
+	CC8fFQTHueDh7N1o0T1z0x/GqEQqW3DS64nAp6+q6XJEe1iXnMp25BxPyDO7RoHZCXS3tT7Kwvf
+	AMe/i9XremDmWM77uPHlKYoB6AFNHkdU0dYnm9B4SAJcYAII5nkPDLEK52j0uIfAfTuwx/PFxLF
+	51dGwJRqTBjTsIxGOwTUgKZS4HRkucnVl0WWF7ottateOVfVwid6Og6TtVjj25YU3cjORaLYVMD
+	04JZfrjZ+joAjbJx7zNBvrV/oXwAQEZYNLPS7ZhorKA6gOYXr/rSg7iFrMrLNHefFwzcOZ9/rt9
+	m1HxN6GBtEUAAOqByTpkNzR8uDtSQSrkNpf8qeQsklwuYVSI2bxvzbyyDlLQFGx7YfAww+p0s0w
+	4j9eUmQFD+kh+jkJckWIAAslanp43LEg==
+X-Google-Smtp-Source: AGHT+IHTsoxoB4HNlhL82k9H9mr9S0iDNSTkAjB8ilh2KdQhFDsFlKoFFZI/S3sZrW3O7oQ+6PlwTA==
+X-Received: by 2002:a05:600c:1c92:b0:45c:b540:763d with SMTP id 5b1f17b1804b1-45cb5407993mr60253385e9.33.1756997528266;
+        Thu, 04 Sep 2025 07:52:08 -0700 (PDT)
 Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dcfc414f4sm22307435e9.0.2025.09.04.07.51.00
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dcfd000dasm19823545e9.5.2025.09.04.07.52.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 07:51:02 -0700 (PDT)
-Message-ID: <6607f82a-e0d0-421c-a87a-fe67442c1c80@linaro.org>
-Date: Thu, 4 Sep 2025 15:50:59 +0100
+        Thu, 04 Sep 2025 07:52:07 -0700 (PDT)
+Message-ID: <8657e44a-9c3e-492d-8485-44ff92c3bd74@linaro.org>
+Date: Thu, 4 Sep 2025 15:52:04 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,7 +83,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: i2c: qcom-cci: Allow operating-points-v2
+Subject: Re: [PATCH 3/5] i2c: qcom-cci: Drop single-line wrappers
 To: Konrad Dybcio <konradybcio@kernel.org>,
  Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
@@ -94,39 +94,83 @@ Cc: Marijn Suijten <marijn.suijten@somainline.org>,
  linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
  Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 References: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
- <20250904-topic-cci_updates-v1-2-d38559692703@oss.qualcomm.com>
+ <20250904-topic-cci_updates-v1-3-d38559692703@oss.qualcomm.com>
 From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-In-Reply-To: <20250904-topic-cci_updates-v1-2-d38559692703@oss.qualcomm.com>
+In-Reply-To: <20250904-topic-cci_updates-v1-3-d38559692703@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 On 04/09/2025 15:31, Konrad Dybcio wrote:
 > From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> An OPP table is necessary to express combined voltage and frequency
-> requirements for the CCI hw block.
-> 
-> Allow passing one, without requiring its presence.
+> The CCI clock en/disable functions simply call bulk_ops, remove them.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->   Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
->   1 file changed, 2 insertions(+)
+>   drivers/i2c/busses/i2c-qcom-cci.c | 20 ++++++--------------
+>   1 file changed, 6 insertions(+), 14 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> index 73144473b9b24e574bfc6bd7d8908f2f3895e087..1bb9a70661a944c1bdc01d336475952221450dba 100644
-> --- a/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> +++ b/Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml
-> @@ -54,6 +54,8 @@ properties:
->     interrupts:
->       maxItems: 1
+> diff --git a/drivers/i2c/busses/i2c-qcom-cci.c b/drivers/i2c/busses/i2c-qcom-cci.c
+> index a3afa11a71a10dbb720ee9acb566991fe55b98a0..74fedfdec3ae4e034ec4d946179e963c783b5923 100644
+> --- a/drivers/i2c/busses/i2c-qcom-cci.c
+> +++ b/drivers/i2c/busses/i2c-qcom-cci.c
+> @@ -466,21 +466,12 @@ static const struct i2c_algorithm cci_algo = {
+>   	.functionality = cci_func,
+>   };
 >   
-> +  operating-points-v2: true
+> -static int cci_enable_clocks(struct cci *cci)
+> -{
+> -	return clk_bulk_prepare_enable(cci->nclocks, cci->clocks);
+> -}
+> -
+> -static void cci_disable_clocks(struct cci *cci)
+> -{
+> -	clk_bulk_disable_unprepare(cci->nclocks, cci->clocks);
+> -}
+> -
+>   static int __maybe_unused cci_suspend_runtime(struct device *dev)
+>   {
+>   	struct cci *cci = dev_get_drvdata(dev);
+>   
+> -	cci_disable_clocks(cci);
+> +	clk_bulk_disable_unprepare(cci->nclocks, cci->clocks);
 > +
->     power-domains:
->       maxItems: 1
+>   	return 0;
+>   }
 >   
+> @@ -489,11 +480,12 @@ static int __maybe_unused cci_resume_runtime(struct device *dev)
+>   	struct cci *cci = dev_get_drvdata(dev);
+>   	int ret;
+>   
+> -	ret = cci_enable_clocks(cci);
+> +	ret = clk_bulk_prepare_enable(cci->nclocks, cci->clocks);
+>   	if (ret)
+>   		return ret;
+>   
+>   	cci_init(cci);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -592,7 +584,7 @@ static int cci_probe(struct platform_device *pdev)
+>   		return dev_err_probe(dev, -EINVAL, "not enough clocks in DT\n");
+>   	cci->nclocks = ret;
+>   
+> -	ret = cci_enable_clocks(cci);
+> +	ret = clk_bulk_prepare_enable(cci->nclocks, cci->clocks);
+>   	if (ret < 0)
+>   		return ret;
+>   
+> @@ -651,7 +643,7 @@ static int cci_probe(struct platform_device *pdev)
+>   error:
+>   	disable_irq(cci->irq);
+>   disable_clocks:
+> -	cci_disable_clocks(cci);
+> +	clk_bulk_disable_unprepare(cci->nclocks, cci->clocks);
+>   
+>   	return ret;
+>   }
 > 
 Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
