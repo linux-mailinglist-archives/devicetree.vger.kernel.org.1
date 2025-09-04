@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-212675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA2EB4370C
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:25:39 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0239B43719
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 11:29:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03A123B67E7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:25:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 817731C28250
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 09:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD7C62F28EE;
-	Thu,  4 Sep 2025 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7477F2F60DD;
+	Thu,  4 Sep 2025 09:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QwA1vCuV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cYaolKcm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 900732F1FDF;
-	Thu,  4 Sep 2025 09:25:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C5941EEE6;
+	Thu,  4 Sep 2025 09:29:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756977925; cv=none; b=kGpC+A968+8r/kB/g1hUIQ98000CEiXWJolnnozDspBmkgHJf7uZYhOyyB8DFXg+wfxXlQgVF2XJ8sMuOOWWN+NvVfh25PNlxgOE9WyzTuVo4lPW6kLVTDgYJtyYJrzwkeWj2utO6VnArBDjB1rEhnGSkd0tbennYTU2/r+FwGA=
+	t=1756978168; cv=none; b=a/dP4lo2+gb/+/xPfChdYnXgr2xVOxEvfa4b9bJZlAIl9tMcEZpfdUfeCb0IOYu1gzI+E23teF43gV+U5BiYHn2pMDY4ibrwGdJ2REwLg45Uk+QvCDytAmyFRwuQbJ53oNDMS2Iv4U+utZ8sXA1WLsnsdHjoRejwUG0fMo446pw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756977925; c=relaxed/simple;
-	bh=hwRTKCdL66HqwgEbowScvq2KPYC+KLHro4EzaKow1fc=;
+	s=arc-20240116; t=1756978168; c=relaxed/simple;
+	bh=tLhzmUoB6F0bCZVOg6V1Z/71TJ8zwtXmXvbdCQbSAWY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GiBIuyIYLX9J5AlMYZ4LwdqdSRRC2BGJflOWnbvTRA000X7DEP5mS7zZR1dc1izOMdeB8z9+bpZytRC7Sfavxum+XmJY7+wWVadoyMck2MQWZqdhLLCI2HMRlyAcNBxv5Tk6TzUlORoZ8XmqPs2lsFC4kqwsmJldl24mA8Q4pV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QwA1vCuV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6EBBC4CEF0;
-	Thu,  4 Sep 2025 09:25:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=aQnc6Wy+ed1wGvVDfXoAtkzW1qAc1xGJ9KsV4G7VrCwjsirTa6EqAzrPg8pobbtF+pYO+yYzVy8djSQbkaMn2yaRE5AX/+frg02/CFiEHdkhkLIgNUScZqTlRwObemIQUdAsCqqprnMLAwynQmXCsGtMdvSihvL6UmNcF0UNDlY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cYaolKcm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABCDBC4CEF0;
+	Thu,  4 Sep 2025 09:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1756977925;
-	bh=hwRTKCdL66HqwgEbowScvq2KPYC+KLHro4EzaKow1fc=;
+	s=k20201202; t=1756978168;
+	bh=tLhzmUoB6F0bCZVOg6V1Z/71TJ8zwtXmXvbdCQbSAWY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QwA1vCuVEoTL7+ORmbKtHKFgEqk/PcT3FOmScnEpArXau1CYIqFQ9ek5uemOZZdMu
-	 PBka/05eHRsIJeb5mhpluLuCub0kf+qOfUwk7d2k0RJA7UGh+Np0CVUHpePbSRqiG/
-	 9NtRGkj/7wMXCzIzrjlxhmlF6QVqbUuwEZSpLe3Zs8rT+JWujk/A44pryJYTSc8DtT
-	 IrIp6b6rVQ8pv7dnpb7bKT73z9A/iiA7qs/sRAvGP0ZFzE8tBqOlbRwYXcCeTnq5kp
-	 /vlYQ9RnsdFim0vkREDJWppOfUEjUzZcNCKT2l1HlwNOuhSsJamP8TQYU9mNBEBqnq
-	 vVYB1A5tme04w==
-Date: Thu, 4 Sep 2025 11:25:22 +0200
+	b=cYaolKcm/+oQsHD+/h6GUtEn7176vTOWYyBMqmbAJMpbcbqR6PsVsp4ke3kKLrJbz
+	 adImpnCN0iquCCmunC1Bnad6/isCNihpmuPJrihaStEOSPtioa2iBKvhHTXuh6ZbNl
+	 nm3rRsql0/CMF5oRQih8zwqMReY8HsKZvuf99f5g2/rA4N9aL1d6Do77GjmsMp5Rp9
+	 Z032fgk9vDxFDiF4EYbz2dsGzjIVazhnCt1Nha3KtlSISytU0ofsofwfTFvNnbmCap
+	 sRXigqFOwL5oUd7eSWHvRJ+MPYh+18wRW+gjy6hWT1fvj373uNtfA9mJ/2WZ3iCggE
+	 HL98BEG1QpXTQ==
+Date: Thu, 4 Sep 2025 11:29:25 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: =?utf-8?Q?Beno=C3=AEt?= Monin <benoit.monin@bootlin.com>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Gregory CLEMENT <gregory.clement@bootlin.com>, =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	linux-mips@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
-	Sari Khoury <sari.khoury@mobileye.com>
-Subject: Re: [PATCH 05/19] dt-bindings: reset: add Mobileye eyeQ
-Message-ID: <20250904-muscular-witty-catfish-9c4676@kuoka>
-References: <20250903-clk-eyeq7-v1-0-3f5024b5d6e2@bootlin.com>
- <20250903-clk-eyeq7-v1-5-3f5024b5d6e2@bootlin.com>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: Frank Li <Frank.li@nxp.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH 1/1] dt-bindings: rtc: pcf2127: add compatible string
+ nxp,rtc-pcf2123
+Message-ID: <20250904-mustard-lion-of-downpour-f07cea@kuoka>
+References: <20250903165536.431586-1-Frank.Li@nxp.com>
+ <202509031658298690ab12@mail.local>
+ <aLiHyoI6orsalmyJ@lizhi-Precision-Tower-5810>
+ <202509031924363f3ca29e@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,38 +63,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250903-clk-eyeq7-v1-5-3f5024b5d6e2@bootlin.com>
+In-Reply-To: <202509031924363f3ca29e@mail.local>
 
-On Wed, Sep 03, 2025 at 02:47:12PM +0200, Beno=C3=AEt Monin wrote:
-> Define the indexes of the reset controllers present in 11 of the OLB
-> found in Mobileye eyeQ7H SoC. The define names start with EQ7HR, which
-> is the abbreviation of EyeQ7H Reset.
->=20
-> For the OLBs with multiple reset domains, the domain number is in the
-> define name (DOMx) and should also be passed in the device tree:
->=20
->     resets =3D <&olb_south 0 EQ7HR_SOUTH_DOM0_PCI_CTL>;
->=20
-> For the OLBs with a single reset domain, only the reset index is needed:
->=20
->     resets =3D <&olb_periph_west EQ7HR_PERIPH_UART>;
->=20
-> Some reset indexes are common between two OLB:
-> * EQ7HR_PERIPH defines the reset indexes of OLB periph_east and
->   periph_west.
-> * EQ7HR_DDR defines the reset indexes of OLB ddr0 and ddr1.
-> * EQ7HR_ACC defines the reset indexes of OLB acc0 and acc1.
-> * EQ7HR_XNN defines the reset indexes of OLB xnn0 and xnn1.
->=20
-> Signed-off-by: Sari Khoury <sari.khoury@mobileye.com>
-> Signed-off-by: Beno=C3=AEt Monin <benoit.monin@bootlin.com>
-> ---
->  MAINTAINERS                                     |  1 +
->  include/dt-bindings/reset/mobileye,eyeq-reset.h | 75 +++++++++++++++++++=
-++++++
+On Wed, Sep 03, 2025 at 09:24:36PM +0200, Alexandre Belloni wrote:
+> On 03/09/2025 14:24:10-0400, Frank Li wrote:
+> > On Wed, Sep 03, 2025 at 06:58:29PM +0200, Alexandre Belloni wrote:
+> > > On 03/09/2025 12:55:36-0400, Frank Li wrote:
+> > > > Add compatible string nxp,rtc-pcf2123, which style is not consistent with
+> > > > existed compatible string because existed driver and dts use
+> > > > nxp,rtc-pcf2123.
+> > > >
+> > > > Fix below CHECK_DTBS warning:
+> > > > arch/arm/boot/dts/nxp/imx/imx6q-evi.dtb: /soc/bus@2000000/spba-bus@2000000/spi@2018000/rtc@3: failed to match any schema with compatible: ['nxp,rtc-pcf2123']
+> > > >
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > index 11fcf0ca1ae07..595c20df6a411 100644
+> > > > --- a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+> > > > @@ -20,6 +20,7 @@ properties:
+> > > >        - nxp,pcf2127
+> > > >        - nxp,pcf2129
+> > > >        - nxp,pcf2131
+> > > > +      - nxp,rtc-pcf2123
+> > >
+> > > Nope, you need to fix the devicetree.
 
-That's not a separate patch. Binding headers go with bindings.
+Yep, 6 years is enough for all users to adjust, so I agree.
+
+> > 
+> > Oh, driver drivers/rtc/rtc-pcf2123.c also use nxp,rtc-pcf2123. For such old
+> > devices, generally keep it as it.
+> > 
+> > Maybe DT team members provide more professional comments for it.
+> 
+> It is there for DT ABI compatibility, we don't need to advertise its
+> existence in the doc, you must fix the device tree.
+
+In-tree compatibles should be documented anyway (as "deprecated: true").
 
 Best regards,
 Krzysztof
