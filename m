@@ -1,110 +1,220 @@
-Return-Path: <devicetree+bounces-212965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50149B443DB
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:04:28 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0D93EB443E0
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 19:06:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A88D57BBA80
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:02:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B313648793C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 17:06:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A65C3093B6;
-	Thu,  4 Sep 2025 17:03:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4328B230BFD;
+	Thu,  4 Sep 2025 17:06:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPdqa4hp"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DElUdKsm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB7B3090E2;
-	Thu,  4 Sep 2025 17:03:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4D31179BD
+	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 17:06:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757005419; cv=none; b=q8cBsRL+5JJszLP2A/43yT5adKOkziA4YIdoFb1AVD9w4eqiIO6RkgrQCYUaLct5uQuJOK05Vmx0xnfdeR+uw93OjECtelYZaxi+NwaYMVRV/UFXrZVoFOL35zijGs1oWyQ4uSh0aK1efS/gi5z9lUIs/qYPW/uUOWfnCH8cEh4=
+	t=1757005567; cv=none; b=XlEtNCmeHG/lyFU6FE8ZRS/0Yama0Il9VFMVQon70OOEatADelTeS7VYrYxl3jzgc+yCKD4DwQ7w0Oq/UwjmG5jkafyGTdATCr6VyevSYxPR5Ue8EmwgMu+j8cU0aMPjoz2DJR+Z1fpCeIlSZTi3NTBM+Cp/Frgi1l1+x1teJTo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757005419; c=relaxed/simple;
-	bh=h4enIaBWf2+tX5VpkMxuowPlacjc37bSzT6LA+Z6dc0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=uCnydai1eLAf29rgnUketPjo1tOaQMdhGWbplePs1E0Cwh3csaSX6lJ8BAnOhsyKhwvBL9j+RK3AYnYcaCddtUf4s9Z0YUGlngBCQ01Y0lVOzQI/NoUs1+OMw8NK2YJ/J3XdQRpjCiAo3wVZMX5/rrGAea2xdHsGSKOBC3lPab0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPdqa4hp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C378DC4CEF6;
-	Thu,  4 Sep 2025 17:03:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757005418;
-	bh=h4enIaBWf2+tX5VpkMxuowPlacjc37bSzT6LA+Z6dc0=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=CPdqa4hpp/WZLMFww90ZkJ92qlHLhVUK8/Q0aweFu8olhJTz3dbOioiSdHGbk1o4d
-	 sn2neJbvEbkXOJYmgy8Vp5W0CmOfDJ5+KHGMbDQoNHoCkAixjaLI3ObpyDBV1VPA2p
-	 f8saKAytKc9CjOv52rZn/zn7Qr6QEBy9iA3UujZUZciwTLB3hXSdDyHoU7cYdv+4f+
-	 YHGI8GiM5U3P4TA0FfnyBjmKwUuL/VVfuHUuefVHVF8v+X4gaE6VCjvtMHglrFmGIb
-	 5FS7MdVCc3BGRM3vbfogEpVFkMRZRLEEzRSw90tGUSNktxXxuGphODgZwllnCk+Igq
-	 4Jz/AAjTjp0xg==
-From: Mark Brown <broonie@kernel.org>
-To: Srinivas Kandagatla <srini@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-Cc: cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org, 
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, kernel@oss.qualcomm.com, 
- prasad.kumpatla@oss.qualcomm.com
-In-Reply-To: <20250903151337.1037246-1-mohammad.rafi.shaik@oss.qualcomm.com>
-References: <20250903151337.1037246-1-mohammad.rafi.shaik@oss.qualcomm.com>
-Subject: Re: (subset) [PATCH v9 0/8] Enable audio on qcs6490-RB3Gen2 and
- qcm6490-idp boards
-Message-Id: <175700541553.105370.12358134412351621959.b4-ty@kernel.org>
-Date: Thu, 04 Sep 2025 18:03:35 +0100
+	s=arc-20240116; t=1757005567; c=relaxed/simple;
+	bh=kex9c5ksWfEy4HCkCcEs7BW59/eVjTYWD+ai1fAWMMA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W7XDehLZ/TNEYi5cSREL69hA81XjTBRaWEnle3lq7CPqkFiuZJiRmJMRSsVyE2IIl3AavyhbLvSvnn4ZyyJIU0DXnFHR0hEwMAh6mGCkYRCvWcP949nNxxXYmMjsaEMyPU/oSV/tvJfQDOY3kG5uOPogW1lOv9Ekcijqui+AVhI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DElUdKsm; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5849X8J4022162
+	for <devicetree@vger.kernel.org>; Thu, 4 Sep 2025 17:06:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=3TzY0hMaxnKfqA1+sr6FktM0
+	GXuI/kkBpqMcqTX1ICw=; b=DElUdKsmHvnopTMyaZF3Di+MG2ZJ4rZMh1DSoVVL
+	sP4nkXD6wVBujv8ed0Ov8YPMOpf3/Rzj/MbsbDRdfQrkVhO4EeD4UNyhT7j8JZrL
+	BYamhpU98BRZqL2uYMoJyazUwD6lb2zcqpHqXRu6bCeBUDYJEfmGqaPDn8HXVKTN
+	JdURNvl/qezicwLXXxbTuczXMj1uYVqbw1uRk+bJfFjfTzaFZaUvTQGVDDrU5pmP
+	SYRe+5nTutwPbr3B7+14ADvFI34GkbaqzUDP7ZvhFKXFJGNquibQJ4+ExuCHNvxe
+	7vQUCe23lhY3muyTM9tvrDYBj504fHQt53gqVpCDuOwhFQ==
+Received: from mail-pg1-f200.google.com (mail-pg1-f200.google.com [209.85.215.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48utk984m5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 17:06:04 +0000 (GMT)
+Received: by mail-pg1-f200.google.com with SMTP id 41be03b00d2f7-b4fa4be5063so934142a12.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 10:06:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757005564; x=1757610364;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3TzY0hMaxnKfqA1+sr6FktM0GXuI/kkBpqMcqTX1ICw=;
+        b=kMzJnRHZJeftCHH+qC1YJJ9fGrfqToI33eajykkqnbnU/jy+1ik2y3GWgIxbZ1qc+y
+         xPCq8QxGH7jMv6UJJAwHSi92pBpbqGCGafc9H3JjJ4BuQYnAER/RxzFCTIrBP/pC+EUQ
+         ICUue2V8oODgMdxQ6Zazp/klUS1FoE3wStPFBjUmPZEe5joC7k92Ramrldh8rUNi/hj/
+         4QhSYaRRiJSapvjiZmVsxy/ZTQjxzt+/VVfaIs9nQNm2Xwu+9LPdCJ4SQupDpChgJc1D
+         QkN+ffnjmVuMAs2JgnpXOa1AmwHLWqi31wmqXQ4WfuDD0lytvfczuYbI46ku3PZC3eci
+         qoNg==
+X-Forwarded-Encrypted: i=1; AJvYcCU2O+1wHIJ1qLaVMwxdwliTX7Y87Xyts8D+ezp0/A+m/4r3YJGpI7uhfV9G4E2AuezZxVm7z5y0h7Rc@vger.kernel.org
+X-Gm-Message-State: AOJu0YwGHW3jUz3GtdNJHIak6ZpbsPxSwgRqmY1zPieEtUv3/dx0FlGz
+	mNl+0+TttUaT9SMhKigmAa/UZkonvL30yYee1sUmwZF5l9WCvJPp402cV6a+DFYu8BP/kzNTGFn
+	CjycdboC1t7RClEak1UurhtDgVQ+9WL00JcBGAFjaPkiNcZhZW8vkkgcRKHe17Y9J
+X-Gm-Gg: ASbGncugwsumE2SE4+YgNod2lTprF/J2KtL5JfM7WdgU3+KGRfu33LssB+7SxdkuCIr
+	0iBbSaKb0EfEWeOBMNk/G2lQCL3g27GTi5KKccLFDOEXBBInF2uLUtAvU43956gLnwj4NQKQEEo
+	MZRCgyphUfUb5fWWQsblDip1SWc24CoHTB6HLHf0BZWkskd3VmaFlIWIwUTJvtsuHotoFH4JzW0
+	SEkDG78MRV6X7fsjBc1WtowcKPearMlQu91vIRmzCC9xEgW8R9rYTvRf1H387idIGr0ZYu3UEAm
+	TCGyj2N65RP+B6naBvpISl6AtbFrVpmijywCKoFvnqZggaZcsXMD59YYbHegj77yrER3DqJnVQ=
+	=
+X-Received: by 2002:a05:6a20:5493:b0:243:d1bd:fbc9 with SMTP id adf61e73a8af0-243d6f7ef68mr28359318637.56.1757005563989;
+        Thu, 04 Sep 2025 10:06:03 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEjvSHSjScVhR0qGM4Bgt7y43u2+FjqX3ZFKJAbEdvUCzRzNDRc6FFqe8gLPFasv7ahFh/NAw==
+X-Received: by 2002:a05:6a20:5493:b0:243:d1bd:fbc9 with SMTP id adf61e73a8af0-243d6f7ef68mr28359260637.56.1757005563354;
+        Thu, 04 Sep 2025 10:06:03 -0700 (PDT)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-772396d2b97sm17564167b3a.67.2025.09.04.10.05.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 10:06:03 -0700 (PDT)
+Date: Thu, 4 Sep 2025 22:35:57 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        hrishabh.rajput@oss.qualcomm.com,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <91002189-9d9e-48a2-8424-c42705fed3f8@quicinc.com>
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <a3af076b-ca0b-4d5e-8294-2bf5a9814959@linaro.org>
+ <ec0dc13a-30f7-44a0-9a4a-5f44eccd3933@quicinc.com>
+ <qd22epqcu7sdza6jrl3tj7pceohqh3clsywv44uau5bvszux54@ajqseswmwf6x>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-dfb17
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <qd22epqcu7sdza6jrl3tj7pceohqh3clsywv44uau5bvszux54@ajqseswmwf6x>
+X-Proofpoint-GUID: 7tUiin06hfVjrXEXXqzXcGtHYkCanJSg
+X-Proofpoint-ORIG-GUID: 7tUiin06hfVjrXEXXqzXcGtHYkCanJSg
+X-Authority-Analysis: v=2.4 cv=ccnSrmDM c=1 sm=1 tr=0 ts=68b9c6fd cx=c_pps
+ a=oF/VQ+ItUULfLr/lQ2/icg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=GWRR-jdfUFecq8Rc7ecA:9
+ a=CjuIK1q_8ugA:10 a=3WC7DwWrALyhR5TkjVHa:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDA0MiBTYWx0ZWRfX7AQ3JdNGm6Ys
+ SA74XOZWpiAQwfeKKwdTeUTsOlP3L7hkSUSa/JtovHMbZTAzjEBDVF7R2bRwrdKQ2hZGymtVMvA
+ SsAvTb0eK42tgb2ltzLlnYjrbhS+LYdbSdhEGwUw0QylvPSEf/712iGm1WlXR7/VCMGtAR4b4rW
+ IRh9fbTbH8H9+NUYeZMIVCyXDBZn3EKBHfTNp2fyUlasDouyspLzMD18GXpVYh2L1sIfnvMy6K4
+ 7c16coZHqNE8H6etzcV2LofnSe3B4CApj+5GijVKKr3dGB5ubpgSRzyIhZMQ3ZJHwFpFmsursZG
+ sQN9qGl62uNRNEhzWmjaaFHtTr67u97Gns1Cd2iYD9amX9pzl7pqd/xBV5RvdY8Fj9o5/RFlYPL
+ ZKhdIbxY
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_06,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ adultscore=0 phishscore=0 priorityscore=1501 impostorscore=0 malwarescore=0
+ clxscore=1011 suspectscore=0 spamscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300042
 
-On Wed, 03 Sep 2025 20:43:29 +0530, Mohammad Rafi Shaik wrote:
-> Audio support is now enabled on the qcs6490-RB3Gen2 and qcm6490-idp boards.
-> The updates include adding the necessary audio device tree support and the
-> required dependencies.
+On Thu, Sep 04, 2025 at 08:53:14AM -0500, Bjorn Andersson wrote:
+> On Thu, Sep 04, 2025 at 02:48:03PM +0530, Pavan Kondeti wrote:
+> > On Thu, Sep 04, 2025 at 09:13:23AM +0200, Neil Armstrong wrote:
+> > > On 03/09/2025 21:33, Hrishabh Rajput via B4 Relay wrote:
+> > > > Gunyah is a Type-I hypervisor which was introduced in the patch series
+> > > > [1]. It is an open source hypervisor. The source repo is available at
+> > > > [2].
+> > > > 
+> > > > The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+> > > > access the MMIO watchdog. It either provides the fully emulated MMIO
+> > > > based watchdog interface or the SMC-based watchdog interface depending
+> > > > on the hypervisor configuration.
+> > > > The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+> > > > version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+> > > > 
+> > > > This patch series adds support for the SMC-based watchdog interface
+> > > > provided by the Gunyah Hypervisor. The driver supports start/stop
+> > > > operations, timeout and pretimeout configuration, pretimeout interrupt
+> > > > handling and system restart via watchdog.
+> > > > 
+> > > > This series is tested on SM8750 platform.
+> > > 
+> > > Would this driver work on older platforms like SM8550 & SM8650 ?
+> > > 
+> > 
+> > This driver should work on 8550 and 8650 too as long as the hypervisor
+> > overlay is applied to the device tree which happens in the bootloader.
+> > 
 > 
-> Both the qcs6490-RB3Gen2 and qcm6490-idp boards are derived from the
-> same SoC  platform. Therefore, the audio support changes are included
-> in a single patch set for consistency and ease of maintenance.
+> You have easy access to 8550 and 8650 MTP/QRD devices, please give us a
+> definitive answer.
 > 
-> [...]
 
-Applied to
+Thanks for asking this question. I believe the overlay part needs some
+discussion here.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+I have tried this series on 8550 MTP. The overlay failed, so watchdog
+device did not probe. same is the case with 8750 too. It works only
+after applying this patch. I will test and report my observation on 8650
+later.
 
-Thanks!
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 140b0b2abfb5..b200e8faa6df 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -1,4 +1,5 @@
+ # SPDX-License-Identifier: GPL-2.0
++DTC_FLAGS := -@
+ dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc.dtb
+ 
+ apq8016-sbc-usb-host-dtbs	:= apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index eac8de4005d8..7536b1a4ec97 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -328,7 +328,7 @@ cluster_sleep_1: cluster-sleep-1 {
+ 	};
+ 
+ 	firmware {
+-		scm: scm {
++		scm: qcom_scm {
+ 			compatible = "qcom,scm-sm8550", "qcom,scm";
+ 			qcom,dload-mode = <&tcsr 0x19000>;
+ 			interconnects = <&aggre2_noc MASTER_CRYPTO 0 &mc_virt SLAVE_EBI1 0>;
+@@ -4855,6 +4855,9 @@ compute-cb@8 {
+ 				};
+ 			};
+ 		};
++
++		qcom_tzlog: tz-log {
++		};
+ 	};
+ 
+ 	thermal-zones {
+@@ -5913,7 +5916,7 @@ trip-point2 {
+ 		};
+ 	};
+ 
+-	timer {
++	arch_timer: timer {
+ 		compatible = "arm,armv8-timer";
+ 		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
+ 			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(8) | IRQ_TYPE_LEVEL_LOW)>,
 
-[1/8] ASoC: dt-bindings: qcom,lpass-va-macro: Update bindings for clocks to support ADSP
-      commit: 7748328c2fd82efed24257b2bfd796eb1fa1d09b
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
 
 Thanks,
-Mark
-
+Pavan
 
