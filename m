@@ -1,131 +1,110 @@
-Return-Path: <devicetree+bounces-212849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-212850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D426B43DC6
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:53:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 089ADB43DC8
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 15:53:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EF3275A3958
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:53:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7EF5A38E3
+	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 13:53:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 44C85301025;
-	Thu,  4 Sep 2025 13:52:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D183303C96;
+	Thu,  4 Sep 2025 13:53:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="BjckCSaV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rmmetCR0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C9BA2FD7BE
-	for <devicetree@vger.kernel.org>; Thu,  4 Sep 2025 13:52:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E11012FC882;
+	Thu,  4 Sep 2025 13:53:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1756993975; cv=none; b=L6t2Vy4eSqi+geZq0b1dD6rvbQIxH/1jsyFhVDjKju7S6SAaEwcIYnhvDCGRDAn8CLuqZTjn/wjaOqbVGJTULs2O7yZmvjJ551n+xSPvQs+aUI+rgudpl5h/NgqMc+BPwLktM5ysE5zK/yfgUZ0in8tZoMbCgQxhsyrv71Sl+qk=
+	t=1756993998; cv=none; b=r5c5pfVE8WLX/AvOwC86275HhrsdFOqd4SQ7mkXL0DTUoEpQEStKAG2bR4DToLMRG7vHX8JdynqNrGPz3cJLGQw5u/0dNgeSuZg4/Z4n0G2XjxXbVrpj4ILN0Mmm8Qmc6cHadPNdponWNF/sbydYr7rPotdgULI2z3zjK/FJhpw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1756993975; c=relaxed/simple;
-	bh=TD3K2bwl33Tm5V0SrUJw6QYG3+XiDV8oNEjRcg1ow/4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aufbjX/G1eW9Oupvz9HSJeRcwuyp/6pDnsPgwUhwFrKxoEX8DUCmeUzVO8n9uaM8e9GZ0pKo+dSszeEbKrmiXroSlgo6G8fY4h+S70k4NtZdvtbbUZH5HgOEmDTunPvYvIAeTMGVUaA/mhw7uAmztauXf8tFru0MivM8lJjQXYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=BjckCSaV; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cHgsS0KXcz9tRM;
-	Thu,  4 Sep 2025 15:52:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1756993964;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2sqEiKEPfpjIjaLh3x1IaYvvWhZgSYs4b16QXZYZKsE=;
-	b=BjckCSaVvLxdM6JfXq8jeTi7phlIQw71ena4GzJUXYlc8a6jDL7TVdZOWQ2pvKGQuPCIhp
-	ikxEigM6lZAzeHO7x6qu54yCbFuZJXvgV+YQnV/I6W69vKHS3S04W5gzmsBdXIcjuoytSo
-	RhjHJAYGnEOvusE5YLXBKOQBDE9tLHC6qRsE0mbh6bHdC+eEaGdG+ayt56MtaD+f0YEgep
-	+T8gL+IUsy85FIhuOkAvxIb1x4WdxuiFgtJZnDIPiNLSw2ylUJZ5jcu0gzrVUGNN6/zK1c
-	Z+c7qQe7pqavwLrr8pBV6Ogwo6lY4UOkGZzAq4gniN4NfY5ezAz7qXH4dd0beQ==
-Message-ID: <52e3c5dd-6952-43b5-94f9-43f30734680e@mailbox.org>
-Date: Thu, 4 Sep 2025 15:52:38 +0200
+	s=arc-20240116; t=1756993998; c=relaxed/simple;
+	bh=uOos5RCK838XZxaPCeWihHvrPLkipPebSmrQNTvBjUo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H8vazFrWR0SQZnW7Z16ukUSHGk08qBF3kqI2UYfMW9SKKPrSwzITX1huQM+41Zu9eZInxL0GDCqK2nUPMCA5aSs+GF07SjHnM12H1Pr0YEkQdMmHoCVVXHha/xOpp36m7YNnahDLuDQQxpkv7Ye0Q1j41Qa/K8mcihSyklJN1nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rmmetCR0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7F629C4CEF1;
+	Thu,  4 Sep 2025 13:53:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1756993997;
+	bh=uOos5RCK838XZxaPCeWihHvrPLkipPebSmrQNTvBjUo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=rmmetCR0xcSvmfWa31P74Rurrq+iF+pBF+csmUjDb1Agv/lho2EemEzsQlUedwRw4
+	 Sl9e+9xPRBOH9irwkpTr1KsHFaXoq1eBiDTivkCgY2YcKV8rmsdUEt0lOSNpuHa2+N
+	 9Rzb29Yf5cYoBz9aXAqQ65c8VnPPjs3WuMy/NUYNvkV3YECC1xwPCDVSGACdV2UoyL
+	 UaRRc8DHHYPd6FlgFKiakYznOS3WgjI/kSeIxZdJfn1d+FKARP0hGLMQjtIH514GsB
+	 ZbkSKZVLWfu0Efc5gOP7XKQmtkXZWm1SIckAdcAjsKFxaswrXtNlHhQi2mk2ZxB7Bz
+	 8o+UDms+hrqZA==
+Date: Thu, 4 Sep 2025 08:53:14 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	hrishabh.rajput@oss.qualcomm.com, Konrad Dybcio <konradybcio@kernel.org>, 
+	Wim Van Sebroeck <wim@linux-watchdog.org>, Guenter Roeck <linux@roeck-us.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-watchdog@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <qd22epqcu7sdza6jrl3tj7pceohqh3clsywv44uau5bvszux54@ajqseswmwf6x>
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <a3af076b-ca0b-4d5e-8294-2bf5a9814959@linaro.org>
+ <ec0dc13a-30f7-44a0-9a4a-5f44eccd3933@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 4/9] drm/panthor: Implement optional reset
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- dri-devel@lists.freedesktop.org
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- David Airlie <airlied@gmail.com>, Fabio Estevam <festevam@gmail.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Philipp Zabel <p.zabel@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Sebastian Reichel <sre@kernel.org>,
- Shawn Guo <shawnguo@kernel.org>, Simona Vetter <simona@ffwll.ch>,
- Steven Price <steven.price@arm.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, devicetree@vger.kernel.org, imx@lists.linux.dev,
- Boris Brezillon <boris.brezillon@collabora.com>
-References: <20250321200625.132494-1-marex@denx.de>
- <838a0c6b-845b-428d-86b3-1480e5b8080f@mailbox.org>
- <20250904082224.113d0cd1@fedora> <3372501.aeNJFYEL58@steina-w>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <3372501.aeNJFYEL58@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: 963jdt3ncpa8jjh39d33r7supr6zwjrz
-X-MBO-RS-ID: 7589421d111ea690b65
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ec0dc13a-30f7-44a0-9a4a-5f44eccd3933@quicinc.com>
 
-On 9/4/25 8:36 AM, Alexander Stein wrote:
-
-Hello Alexander,
-
->>> Maybe the GPU remains halted because
->>> setting the GLB_HALT stops command stream processing, and the GPU never
->>> samples the clearing of GLB_HALT and therefore remains halted forever ?
->>
->> Exactly that, and that's expected.
+On Thu, Sep 04, 2025 at 02:48:03PM +0530, Pavan Kondeti wrote:
+> On Thu, Sep 04, 2025 at 09:13:23AM +0200, Neil Armstrong wrote:
+> > On 03/09/2025 21:33, Hrishabh Rajput via B4 Relay wrote:
+> > > Gunyah is a Type-I hypervisor which was introduced in the patch series
+> > > [1]. It is an open source hypervisor. The source repo is available at
+> > > [2].
+> > > 
+> > > The Gunyah Hypervisor doesn't allow its Virtual Machines to directly
+> > > access the MMIO watchdog. It either provides the fully emulated MMIO
+> > > based watchdog interface or the SMC-based watchdog interface depending
+> > > on the hypervisor configuration.
+> > > The SMC-based watchdog follows ARM's SMC Calling Convention (SMCCC)
+> > > version 1.1 and uses Vendor Specific Hypervisor Service Calls space.
+> > > 
+> > > This patch series adds support for the SMC-based watchdog interface
+> > > provided by the Gunyah Hypervisor. The driver supports start/stop
+> > > operations, timeout and pretimeout configuration, pretimeout interrupt
+> > > handling and system restart via watchdog.
+> > > 
+> > > This series is tested on SM8750 platform.
+> > 
+> > Would this driver work on older platforms like SM8550 & SM8650 ?
+> > 
 > 
-> FYI: in a new release of system manager software (starting from lf-6.12.3-1.0.0),
-> the GPU reset is reasserted in SM software already [1] and access to GPU
-> block control has been removed from Cortex-A [2]. Starting from B0 step this
-> version is required AFAIK.
+> This driver should work on 8550 and 8650 too as long as the hypervisor
+> overlay is applied to the device tree which happens in the bootloader.
+> 
 
-I don't think the SM is involved in this, because if I do the following 
-test, the MCU also fails to boot unless I do a reset:
+You have easy access to 8550 and 8650 MTP/QRD devices, please give us a
+definitive answer.
 
-"
-diff --git a/drivers/gpu/drm/panthor/panthor_device.c 
-b/drivers/gpu/drm/panthor/panthor_device.c
-index d4d73eebca49d..fd81cd2654111 100644
---- a/drivers/gpu/drm/panthor/panthor_device.c
-+++ b/drivers/gpu/drm/panthor/panthor_device.c
-@@ -642,6 +642,18 @@ int panthor_device_suspend(struct device *dev)
-  		panthor_fw_suspend(ptdev);
-  		panthor_mmu_suspend(ptdev);
-  		panthor_gpu_suspend(ptdev);
-+
-+
-+panthor_gpu_soft_reset(ptdev); // needed, else panthor_fw_resume() 
-below fails
-+
-+		panthor_gpu_resume(ptdev);
-+		panthor_mmu_resume(ptdev);
-+
-+		ret = panthor_fw_resume(ptdev);
-+		if (!ret)
-+			return 0;
-+
-+
-  		drm_dev_exit(cookie);
-  	}
+Regards,
+Bjorn
 
-"
+> I remember porting some hypercalls to 8550 upstream kernel to induce the
+> watchdog bite in panic to collect the dumps. one of the biggest benefit
+> w/ this driver is that we can collect dumps upon kernel panic. since we
+> won't be able to pet the watchdog upon panic, the bite would eventually
+> happens and device enters dump collection mode.
+> 
+> Thanks,
+> Pavan
 
