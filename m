@@ -1,89 +1,92 @@
-Return-Path: <devicetree+bounces-213722-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C011B46693
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:22:31 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64ECCB46697
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:22:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 275C11CC16CF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:22:52 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8464C7B9F06
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:21:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32CCA2882A9;
-	Fri,  5 Sep 2025 22:22:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EB928C5A3;
+	Fri,  5 Sep 2025 22:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="JRpQGtsL"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="lZhEdEOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-pl1-f173.google.com (mail-pl1-f173.google.com [209.85.214.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E5F28506F
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 22:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0336288C34
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 22:22:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757110935; cv=none; b=EUhRSjEv4yREPzmpmlARzeSYMzb0p1cIslnPUnfV+nYuD6ktBE+eiibRFRcUoCRVltrt76mhiakFlLI7fe9piD8EohH1H3pMNsiNN+nacNbmNIrbqPem13bRMF3LTWPHAKhr+8O/qaXJMR2mPcTDJPsBa2Tro8w5fOfTEBHRXj4=
+	t=1757110937; cv=none; b=soN24pZCk8L8a34ybL+8Xi/YC6cG2A6LgGDPpTx7D3VUXDLx7PiTX2EYlnSMasa/3k5s0YCfEdGYXb5tPehw27V7eCZ1D/a79b/rSAEPwQ5pO8pdCwTZtRfyPLswojTLF3bTtf0+Kea/mOxhgSx8R3YYXqMApYH3Nbu2FxN2gDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757110935; c=relaxed/simple;
-	bh=jn+MZ5+d97lgrG+nL2EHugJJgZgp2bHPyDe+yYWp08k=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=oUhXddALrkx87c2eWw3jh+DtubsJDJeMaiEV95EcDyCRouoj3xuKZ3MiPer8YnV1CF4xhO/y3BNGKqSWQ8+Pg5tYnm22DdqaVXYXgXWXRPkqR+Bh8uZJ3+937ujCVw8bwSn4RjxWnNLR/QkoVk4GuhsHdAe9ANdouVAlVllwoao=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=JRpQGtsL; arc=none smtp.client-ip=209.85.210.181
+	s=arc-20240116; t=1757110937; c=relaxed/simple;
+	bh=P1j50aF35GnkXQk2lVmzjTni8Ue0o+yg2rhWnEq3iWc=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=Ju9Inj4XnwzbfcipB0EUsDKxNd6N8dYVC9ib5knQJ09wr2K9JyqNEoWoJQjNTyeaA2wR0mLEX9tulDzDjJ8r1Vjbo47R2QbHPtMhp0bKkLyDNVx3a1RqXccucu4NifHNadCa4Zbqo7CXvSaV//2Wx1ERyUBmaCnsH/2+uh0PdrY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=lZhEdEOd; arc=none smtp.client-ip=209.85.214.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-76e4f2e4c40so2157678b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 15:22:13 -0700 (PDT)
+Received: by mail-pl1-f173.google.com with SMTP id d9443c01a7336-2445806df50so23317035ad.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 15:22:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757110933; x=1757715733; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757110935; x=1757715735; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UHO3loFaMTLM8uFwv63bYVveAEYQx6NyvCeDA98Eah4=;
-        b=JRpQGtsLRA1eMOq4JaVIyk4mcM/BmTzW0MKOG0F/6ylDwpjfdaVZ5OH0rteKrRWASf
-         oTE+v8+uHd7joQyEiaaiOWLu41eEbgSFA4eiBMb7WH3+O7YbeGjhafD60dreKBAOWNAg
-         JIllxR9QUjLCcmDOeGlNWVWjKF5hD53DeSyw2JTXGWzydalTvPrSxJfLb1xpex+8nI6Z
-         uepsRh3Rk//6L262YEngz4RvF34d+A20Vlqw0LqL7+JHvcHRzUibLAm/IJbQwPf5R8vu
-         kV07izRDFsIi537dQ+bnXeyOWvS8F8lAh3rGoS68K2UAm03TrFedFSgiZdNcCnfzbSBK
-         qFKg==
+         :references:in-reply-to:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=A3MoENRKP6mYeZPRW/pxLj4qhNh7qVu+dXlOTgSs04Y=;
+        b=lZhEdEOdtRkzD2rOLWVSU3Ocgh586guK3HJkZg5DOuvksqR5M3EuVbOEJ07zLx1+Va
+         OMuSxEr0wPiiOB2vwzvNEB6l9XJMU2xfvMrKH9OyjwkXbwMNYWt47dqEpbX0weq5kkXj
+         mbq/dEzjgDcWiKtXRT9KIPZ/hbyEeFAUXO7Xw07TTTyvESIuU7QGId6tJ5IiL8/7z1qr
+         /QKWNBEmXRqOQ8yN/ph9JR2heY8n9c0JhFRF4sUoIErUmSqEo4p/796tjyFviaF+dcB9
+         iJQ8xdHBFQO6EyBR2Wof1FiYyNayhW4EWk7K4n8sQfq5tg3KdoqQwwwYB79iIjtcpx2T
+         3J4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757110933; x=1757715733;
+        d=1e100.net; s=20230601; t=1757110935; x=1757715735;
         h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
+         :references:in-reply-to:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=UHO3loFaMTLM8uFwv63bYVveAEYQx6NyvCeDA98Eah4=;
-        b=PhYcs2rO+s3fYTvfRnYaA0kf1u6toqJ3I0I9xcvPQfemqACleq4+n065+ChTj4abz7
-         Ym7QtDcZ0GbBwT5/wpKkK48nvrzYwF+t+2GoC2E44su1GjLrZeUvmQLZdaKjhh7udjXd
-         woDSikXP2XZgFSQBwOcb+3cuapIBtbR/XatjGc8dUuR9XQl0UNXLRK3nhNsJ0ILIFCl2
-         E3B3vt99QwhW/ho86Z64mz8VMTyFaoAWIzwkDMCo1ttxkKQtA862KopRHRr9kClkhpAi
-         0sag6J3ZuE2z6yWXqSSHw63j6Kqedkn1DsS19oYiycSaqi8lgAWA8pdfV/QIgM+s4vSV
-         Hfkg==
-X-Forwarded-Encrypted: i=1; AJvYcCX5OR3vOa5XQkX957Nhgf9G4nqoQ6sLACmC857K1VNc+BDGjoUHc07Rr9EHQJxkU2Iz/rY1w9WJ6xZA@vger.kernel.org
-X-Gm-Message-State: AOJu0YxejNvtO5Wn2gmUahVhQRbOBl5c9bsKjoZIoK46yeDAYUgLqbVt
-	KplMJ9ztRxiBY5RC1IzgwCGxlsebQpOvoV5ADQ/LfkWg70Nxt9WnOB6TPN+e9u3WiHs=
-X-Gm-Gg: ASbGncvU6Z6VNJr1RSMgLoTK6Cro6l82oSBIWiZKsFNKf1Oxr90FQgGi6OrMrufHTCK
-	PnQdV32Xi64Qm2yGHrjUsLypI80BbOkh1SrVCCTT0idFz8ewZnBm401ICe9aYdb8QCDUuVZdACx
-	BLB4WV+GlfhW67Y5pG4l2ESk2C6jsx3X2taEWmdlM5/alWOo1/LCjAWBirB8+gvyW/Foo3KYRn+
-	m5ey3cNSSfw645lF6VAODBJ/bm782ZW8DpBOyv+q85FIjpHzn/yXlH6fod2RPVd35BWlVaRyfZ7
-	rLIy3AOxgkoBoLscMFfMuJG/smh2tyrhMT3p0vowp69hWXNqt9eExTLQcCb+WQzBOVvLbdkv/e7
-	CTm4pdrM8GJvE/HAKpd9yqyxVp87MKaw=
-X-Google-Smtp-Source: AGHT+IHbdxqjETLKCIYsM+vvWTUBcu92bCBkA6QMHPw45DcnfwpGvkag6fr4ck8750NnNpRjOpQxSQ==
-X-Received: by 2002:a05:6a20:a11e:b0:249:3006:7578 with SMTP id adf61e73a8af0-2534338b099mr567181637.36.1757110932917;
-        Fri, 05 Sep 2025 15:22:12 -0700 (PDT)
+        bh=A3MoENRKP6mYeZPRW/pxLj4qhNh7qVu+dXlOTgSs04Y=;
+        b=if6OPNblvZk4Duf+LKiD9e2zXJi8DJonxVEhTxeClHEHaFQKGH56J3/szzPi1DXBj8
+         HARC62ZNjy/0RnckF/OacoljvcA3PMlgAg851aU1bdWoOgObenBWxZOSfQqCu7RVGyZx
+         3xTjEWsysZBz+YPXZdjwq4csOF/0dG4tGMwlwqmgfPiyS/ovJIu9lSXapn9rVF/G21NZ
+         0JMteVAE+YEhnsZd6FtuNDBy6vkEb/1qihG97fTJEue7QnXz/A4EVsn1d9uqgbTBgSip
+         CBgOE2d+ru/gq052AbnTbFgT7ZQf1qxXCXNVlwDrjM/0lOvMFYdziiJZDkbJ5spxDJY6
+         tR7A==
+X-Forwarded-Encrypted: i=1; AJvYcCVJGruNFuOlGt6bLuj3R14W5ptHT/FyNoiduTpzESuzJh1dDA1N+054aQp0LvhwlbWnY6tYqoiqSa6x@vger.kernel.org
+X-Gm-Message-State: AOJu0YxU/p2TQayD54Z3KuCud3Gppq27hPQWHaYriP7c/pCqrCfj5Wox
+	3N9kcsIgrVQEWEqDyzWPXts+g8bTBhVe5U77SCXpH7enytuInxg0OBW3uzuidUQQUhI=
+X-Gm-Gg: ASbGncvnW95dqbyEuXUPc40gyzFemRKv5XE22GN0b4F8Vk02Cie4DLk83xkZJrCECRX
+	dPqE0vzgCp6bB44afNdIiO+DsZroibNVwlg8HxoPP2Y1AOg0rYYByikvaZF6CAdMF6c7m8BaNWT
+	rbMk86wed82wPWeuwgmyxF6GdxsOSePIpk+lquFIGFJ+xPgywEsl8VFF/K2Cxr7sPnWVO5aLT0C
+	U5e84kUCDCGkEzsoVRmns+VXT9czIz4tbTN9WddXNfMZmGJRjIfo4z4tnwYoM1qyCb7F7AAOqsb
+	TOCeRCyRBcnLCl2ae5WQhJr1xv5Q5wDKb+hyk80d3AyhxGR7WejUdkY1/xEk1OwFL0s8IORRttB
+	Ynd1QscoHwP0CJcWEknS+
+X-Google-Smtp-Source: AGHT+IGFh7XSvm1jmSq5I6nF/CZdeopZIBB37Nq6xs75hcHOkaln3WatQDx6FOTZQCdDBErB40YFkw==
+X-Received: by 2002:a17:902:dac6:b0:250:de70:cf9c with SMTP id d9443c01a7336-25174ff62d3mr2891525ad.47.1757110935003;
+        Fri, 05 Sep 2025 15:22:15 -0700 (PDT)
 Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a2b7d10sm23116992b3a.33.2025.09.05.15.22.12
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24ced7ea628sm33047585ad.6.2025.09.05.15.22.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 15:22:12 -0700 (PDT)
+        Fri, 05 Sep 2025 15:22:14 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
+To: Tony Lindgren <tony@atomide.com>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20250721173741.6369-1-bruno.thomsen@gmail.com>
-References: <20250721173741.6369-1-bruno.thomsen@gmail.com>
-Subject: Re: [PATCH] ARM: dts: am33xx-l4: fix UART compatible
-Message-Id: <175711093199.666031.10782227973545303080.b4-ty@baylibre.com>
-Date: Fri, 05 Sep 2025 15:22:12 -0700
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>, 
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
+ linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
+References: <20250819131651.86569-5-krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH 1/4] ARM: dts: omap: dm814x: Split 'reg' per
+ entry
+Message-Id: <175711093408.666031.690873725302943205.b4-ty@baylibre.com>
+Date: Fri, 05 Sep 2025 15:22:14 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,21 +98,19 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3-dev-d7477
 
 
-On Mon, 21 Jul 2025 19:37:41 +0200, Bruno Thomsen wrote:
-> Fixes the following dtschema check warning:
+On Tue, 19 Aug 2025 15:16:52 +0200, Krzysztof Kozlowski wrote:
+> Multiple entries in 'reg' should be encoded in separate <>.
 > 
-> serial@0 (ti,am3352-uart): compatible: 'oneOf' conditional failed, one must be fixed:
-> 	['ti,am3352-uart', 'ti,omap3-uart'] is too long
-> 	'ti,am3352-uart' is not one of ['ti,am64-uart', 'ti,j721e-uart']
-> 	'ti,am654-uart' was expected
-> 	from schema $id: http://devicetree.org/schemas/serial/8250_omap.yaml#
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: am33xx-l4: fix UART compatible
-      commit: ca8be8fc2c306efb090791835acfb5b33542ca1d
+[1/4] ARM: dts: omap: dm814x: Split 'reg' per entry
+      commit: 46179394d4e45d561a2c0185774c2f7b88fa7c14
+[2/4] ARM: dts: omap: dm816x: Split 'reg' per entry
+      commit: 7d7df1bc644a29e880181579994bd2da9fb1a6ce
+[3/4] ARM: dts: omap: Minor whitespace cleanup
+      commit: 9df7366a29192f860e9e35a258f0b000b6e4a754
 
 Best regards,
 -- 
