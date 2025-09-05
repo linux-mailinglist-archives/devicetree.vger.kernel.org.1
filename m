@@ -1,125 +1,115 @@
-Return-Path: <devicetree+bounces-213450-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213451-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2FD1B456DD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:50:55 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93048B456E1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:52:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 760E8188D99F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:51:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F1C63A7DA1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:52:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 951C8346A10;
-	Fri,  5 Sep 2025 11:50:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0338C34A30A;
+	Fri,  5 Sep 2025 11:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="r62uWWWh";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="W6wzAmKE"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KoNu/PZB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCF3F32275E;
-	Fri,  5 Sep 2025 11:50:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C0D90343D76;
+	Fri,  5 Sep 2025 11:52:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757073053; cv=none; b=ij6xlVY0zEsDM1HXFGNGrH4xILtekP1v5NWsZCSwNcJPnV3ZYiVtHl/AjX5ood/hLL9zsWZqTenF1bm/W5XhsU2IJR3GEQ/zcLoGDRKpisnx4Gzc+BybnYInZ6ZeGl7MofFm1IQbuOygrY3WNcqKXi1J2asKNZOeSgGJLkpedDU=
+	t=1757073128; cv=none; b=bgB/c5jUvXBrPH2BibwrdjmXz/LKas875JTG10l6hFTYKDaIqR9p9Wp/BlZao5b2j4YZbpk8bPcUZMTMrPnVtQbog/ttu64MXrFo+2aA5tA0aTjnwVVlLz1S3aV8c0plY/jYZayh9iFbtWH+JMR6QyjlMzoUfccdQamfGXBpnxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757073053; c=relaxed/simple;
-	bh=tcSEN58BXjNM5vZbAs0QFk1JcSFB+ZzKPWZNLOR4fuQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=u+5C0XKnXc+jcKIXXFrBGLDsSROrTKwWnkUIC9HQJi3tlLi840OuxlrqY2buFM0bInMwQFGlmesrc4hhQ6y5JcKNPikUwwY1u+7pGyw8TVq4dwtPeJyDsNCGc1JsIBOu9dDiwL1eFJ4iUpKyeVwgr8UmUrnnDm7RBsimJoH4YeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=r62uWWWh; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=W6wzAmKE; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	s=arc-20240116; t=1757073128; c=relaxed/simple;
+	bh=dST/8xVStC32ekP6gB7vITv41T5xV6Hei4eA5fX+3yk=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NFxRhVeXzMcAt5JRO/ghD7U085jR0+iWz/HS+rOuck9oAC2AV8PIpzeqZshrm0uVki7FnC8xmVtd66P3SoXYpcfiW/3NQUYuzDYqgTJf+aWG9mRLkUwqZXX0bXXw9hgqAh/kTY1bR5lm3PZFb9NVoCZeL9HPUBMhmNrnlqsMGIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KoNu/PZB; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1757073124;
+	bh=dST/8xVStC32ekP6gB7vITv41T5xV6Hei4eA5fX+3yk=;
+	h=From:Subject:Date:To:Cc:From;
+	b=KoNu/PZBVwQxyJw4U588Dtr1MZVIUtmtJ0zC3OZg2rcIFGvpNpdECWp7wcJgYpP9k
+	 e2Pd8w1XmR//tjpTp+D8wHXDsB/ox+1DfSB1VJm01fgXWxdS30Cfaz7SXIZcjoU8/a
+	 dlD3vb/uPlMB+pL0/eFx5ocaDodu0Z0VzRR4jOC8a7J76x62xAC220tmVssnkqC4NE
+	 UwAgInY549BINS5QjwXywrc7GdGqkCXrHBSNhCXR64TofvGvpwqHA2loICcu1K2RDQ
+	 YMYb2rOxGmHqECW3b7bKlno5gKINxEBOp0o/6rRaFBa8BM434PCAQTeY6lpSse2Osl
+	 9Egf+jiNiGQaA==
+Received: from localhost-live.home (2a01cb0892F2D600c8F85cf092D4Af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cJF6K5HQ3z9sps;
-	Fri,  5 Sep 2025 13:50:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757073049;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZGW/ungxqDBJW9YXMQpQD4nhCcnvrpn3JZwjvrh6Cg0=;
-	b=r62uWWWhiP+/TNFM9ojD9hGOynWoFijOzN0tq8G8HZ+DH/2n3Pw/zLcSbKG1tuQh15S/4U
-	vYHUt9u0M4vxS4Lq7D8jIFgpMuguuMGAPnhJw8KSZ+G6B9xywnWbwIDYMK/6KZxCREjcaD
-	MKufHBi/U2WL0I1I3TjEoiiyl94sFHp+EVJVYSZ2JklUhf8m7dZ13fEFrFRyeaf1CPAvE+
-	MHbJOB2FZd/rW3nFItO7Y9ArvnRYCanrtJD8CEwe8fmifsMQjjVJcFYJHcwcr/AjTRG7bp
-	VPeACTxdXHSuSPuRELq2FzUw2tlmD4Gn76UvfqMVzpFVG8KyW+c3s8lg+RJGKA==
-Message-ID: <82c9133b-050d-443f-afa5-31cb31c9e858@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757073047;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZGW/ungxqDBJW9YXMQpQD4nhCcnvrpn3JZwjvrh6Cg0=;
-	b=W6wzAmKEzXq3BtGTj/djFy2owFTO21A6RLHkXJCc369J1pED64e2IMAZ2sgP7OuQuRnt5r
-	WHHY5XizfwW1eW/pLMK86HCW2NduJZtzCbja5jq8dHi5sggtmtnxsqYU/8D3Y32h89/f9O
-	wB1widfF2KK8Tqvc82m2OEvFrVAat8IkoDTKtfAktnAFmxOvH9Hmwyjw7Hc2D2BBFeg3JP
-	eLMFpRXPa4YDeq/QB4uYG2U0y8zq64tcIc+E3DmbbL/tWwN7EqTd00Ee6HMJ5AYnMSTzOZ
-	cYOc13vzgnETEEBeLQIKQZPdrTtWV0z8y4JhvqwlPWw+sKx9fLkYujfpzG2f7g==
-Date: Fri, 5 Sep 2025 13:50:45 +0200
+	(Authenticated sender: jmassot)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 25A8417E0100;
+	Fri,  5 Sep 2025 13:52:04 +0200 (CEST)
+From: Julien Massot <julien.massot@collabora.com>
+Subject: [PATCH v3 0/3] Radxa NIO 12L: Add GPIO keys and LED support
+Date: Fri, 05 Sep 2025 13:51:57 +0200
+Message-Id: <20250905-radxa-nio-12-l-gpio-v3-0-40f11377fb55@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2] arm64: dts: renesas: r8a779g3: Add RPi Display 2 DTO
- to Retronix R-Car V4H Sparrow Hawk
-To: Geert Uytterhoeven <geert@linux-m68k.org>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm
- <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250904202838.172579-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdWnusjKE8FNQWX-0arcdbV-18KTCHKZmhs5r5kRXn46ZA@mail.gmail.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <CAMuHMdWnusjKE8FNQWX-0arcdbV-18KTCHKZmhs5r5kRXn46ZA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-MBO-RS-META: 3wqf1r8wd9xns1m3kdf8exxcee66ncs1
-X-MBO-RS-ID: 82a828f7ef46ba3f18d
+X-B4-Tracking: v=1; b=H4sIAN3OumgC/33NSwrCMBCA4auUrB1JJo0GV95DXKR5tIHalERCp
+ eTupl0Jirv5B+ablSQbvU3k0qwk2uyTD1MNfmiIHtTUW/CmNkGKgkrKICqzKJh8AIYwQj/XSbQ
+ OqdQoOOekXs7ROr/s6u1ee/DpGeJrf5LZtv3vZQYUDJUtdVIY1PKqwziqLkR11OFBNjPjh4On3
+ w5W5+yYdIq7zn07pZQ3mAz0zwIBAAA=
+X-Change-ID: 20250801-radxa-nio-12-l-gpio-54f208c25333
+To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+ devicetree@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
+X-Mailer: b4 0.14.2
 
-On 9/5/25 11:25 AM, Geert Uytterhoeven wrote:
+This patchset adds support for the GPIO-connected red and blue LEDs,
+as well as the various hardware buttons present on the Radxa NIO 12L
+board.
 
-Hello Geert,
+It also includes a fix for the missing release (key-up) interrupt
+handling for PMIC-managed GPIO keys.
 
->> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-rpi-display-2-7in.dtso
-> 
->> +&i2c0_mux3 {
->> +       #address-cells = <1>;
->> +       #size-cells = <0>;
->> +
->> +       mcu: gpio@45 {
->> +               compatible = "raspberrypi,touchscreen-panel-regulator-v2";
->> +               reg = <0x45>;
->> +               gpio-controller;
->> +               #gpio-cells = <2>;
->> +               #pwm-cells = <3>;
-> 
-> make dtbs_check:
-> 
->      arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-rpi-display-2-5in.dtb:
-> gpio@45 (raspberrypi,touchscreen-panel-regulator-v2): '#gpio-cells',
-> '#pwm-cells', 'gpio-controller' do not match any of the regexes:
-> '^pinctrl-[0-9]+$'
->              from schema $id:
-> http://devicetree.org/schemas/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml#
-> 
-> I noticed you posted patches to fix all other issues in DT bindings
-> triggered by this series, so I assume you just forgot to post the
-> fixes for this one (which you authored ;-)?
-I think the following patch handles this:
+Signed-off-by: Julien Massot <julien.massot@collabora.com>
+---
+Changes in v3:
+Patch 3/3: drop the deprecated LEDs label property
+- Link to v2: https://lore.kernel.org/r/20250826-radxa-nio-12-l-gpio-v2-0-7f18fa3fbfc8@collabora.com
 
-[PATCH] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi 
-720x1280 v2 binding
+Changes in v2:
+PATCH 1/3
+- Add Fixes tag
+- Drop Angelo's Reviewed-By since I'm now introducing the
+'key_release_irq' member that was missing in v1.
+- Link to v1: https://lore.kernel.org/r/20250801-radxa-nio-12-l-gpio-v1-0-d0840f85d2c8@collabora.com
+
+---
+Julien Massot (3):
+      Input: mtk-pmic-keys - MT6359 has a specific release irq
+      arm64: dts: mediatek: mt8395-nio-12l: add PMIC and GPIO keys support
+      arm64: dts: mediatek: mt8395-nio-12l: add support for blue and red LEDs
+
+ .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 65 ++++++++++++++++++++++
+ drivers/input/keyboard/mtk-pmic-keys.c             |  5 +-
+ 2 files changed, 69 insertions(+), 1 deletion(-)
+---
+base-commit: 6c68f4c0a147c025ae0b25fab688c7c47964a02f
+change-id: 20250801-radxa-nio-12-l-gpio-54f208c25333
+
+Best regards,
+-- 
+Julien Massot <julien.massot@collabora.com>
+
 
