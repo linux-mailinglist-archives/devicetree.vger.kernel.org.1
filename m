@@ -1,163 +1,194 @@
-Return-Path: <devicetree+bounces-213564-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213565-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18EACB45C2E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:18:05 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3935B45C3A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:19:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E328158302A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:13:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E23881895738
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C54C631B823;
-	Fri,  5 Sep 2025 15:13:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b="ZDEj1IOK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 796E331B835;
+	Fri,  5 Sep 2025 15:14:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6081631B806
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 15:13:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0DFE31B824;
+	Fri,  5 Sep 2025 15:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757085196; cv=none; b=ev1CSjk+4yiKLMa5E4rP2PiC/5wXCTPoe8LNxwlBg72+Da7CEX/0/V9eE2in3Jjz3ZMu5kXPSbvlvH75HXTWThD53618PpdMaQedItM5bVJy2YKkqJ1pX69l27GQhUIro8MbNybk/aeZHKahLWY5EHzAK8s/1H8b18JcxjgO8X8=
+	t=1757085265; cv=none; b=FOlVFguixHDRm8JrSi5CtHHInyHaB5ia2aowmStKxeG1BQ5C+tzpOZ6xOiT0kIHect7VbrRZOKgy5naG8pt0LtNN4U/gNWJ8QZtnA9qi0D/JE81BOpcLcFokgDOoejsHFY3uSnox+gbh4g2PLK4XYM/XOixN+UfUk3TQNIrDstc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757085196; c=relaxed/simple;
-	bh=vcbzZr+E02WokGut7C2c77Afxd5rpoCYAkJoIkII9d8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Flg0VgBW8+HTYxrPUPVteOAnN6gWAQ3X2taH/aG45cLxPsimbURk1aysR+IhVM9tis/fL2lFQ7EtIYwl75HgPyrUEwWVrckEs3ch84fD63tMKaE64es8FpMyjmCyRTkJoLIslojQJRIOhr7hpiPKbqe3Vvj+tZqGu5Bes9HimSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org; spf=none smtp.mailfrom=nigauri.org; dkim=pass (2048-bit key) header.d=nigauri-org.20230601.gappssmtp.com header.i=@nigauri-org.20230601.gappssmtp.com header.b=ZDEj1IOK; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nigauri.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=nigauri.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-61cb4374d2fso3484642a12.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 08:13:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=nigauri-org.20230601.gappssmtp.com; s=20230601; t=1757085192; x=1757689992; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DHMIdxjHKuTqVD8SOr4IvDDg7ji1cX6ZfEw+vHDGWBo=;
-        b=ZDEj1IOKepbUvHpZzM3m2lRtZAMUowMVafek24OUbq6KU2Yuk9ii+QaQXkAnYIQfxy
-         dy9FuNETwTcYZFNdIWkYC+dGAS8toGAG6DIsn5cIHxHryC/+F7gMkkWtAapjeFtLx1VP
-         I3wNPlt8z2s2OOaPvABV02Cs3iciXbstXd4dOVshdfCedPrgQmxytng1IeGb2LkZML1e
-         kDiuTD+OlqBPqKOQY3qA4xVp1PzAb7YUVlT6Od9S3E9HjfP/GpRqljMBhTTtj+UX2yw9
-         yFsMpTfLhX/gZ/IWde0k1nOXrsXESVYcG/g4vrVfQP0vZK/0pFrcK/raIhB9JFtF00d5
-         efMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757085192; x=1757689992;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DHMIdxjHKuTqVD8SOr4IvDDg7ji1cX6ZfEw+vHDGWBo=;
-        b=XUyv1wtmJro4Q6UvyzPwi9qQv2MokxENAJEXH1RDZV3PxmU4ZSXr1XYxiyZfvBJu47
-         EBPBUEV1fuJzCdH91Yjt0LoK6SX1/CCepKS2RUNXY8VZ/KdSdo66YugxGzpjgoIo7kDV
-         VLdZBkDd/n/BJK+9rZ1UrVZSOhEo/hE0IwGL44q8m0Rvaa3DKxgBdshxpMSXTvHkGdwc
-         Ec7MfTvaaOHKljuB+joQuXnUcEz4jVy/tOHdJiYZ8uI2dRUvT651wKHcdwxjdtdro32Y
-         I8RGlPl/emQURf4v6aH24ytYlx94p2qof3v7NmT3QsQRmx0bN35lB4IMyTvpPon3U/49
-         BHCA==
-X-Forwarded-Encrypted: i=1; AJvYcCVWWQwrgDcnC4425YFac/YIAsJcflJV6w82w0mCaAKj89fc/q4LNRSXde3Bai27KcAkVfeETc46aWEH@vger.kernel.org
-X-Gm-Message-State: AOJu0YyV7dcf1FNpwD6FZ8yImsuuugrvxUqH0WKPOmGNvqMjd2QvavKh
-	GA8ycmu/9Z5kw4wcdTj2cx9hy9xZPPk+SknMNQKldEPTbm9hFnf4YnQd159RiavHGdv/wSP8H7b
-	c7lPNcVbx6BJJVAZborVGQ1uN1G4g3lBW8htQS9A=
-X-Gm-Gg: ASbGnctR6y0z0nIrNGiX53aS1Sh7iEW8i+bkCZ0ICDpx02hZ36dtY9EVYwD6YKBrp8N
-	+SX5lRiPtcegAGRmjun2DttEgTD0PKk4Czrz6xffRgSocKBCND7yK+aq6WXrPNfTNNE9NNjMDSA
-	v8iNe/MGmKExdI/NPYqmr8IaDUwcVaSKNsVvPKvHB4FOasAc+k7tj66XJWq/Gp5NMrpw6dD1j5
-X-Google-Smtp-Source: AGHT+IE5RR3xHpHhW22PdOxC27cxpSABsoBUyfebHCL+SzRaex/Yg5PA4kv6ZoooBZkF06NN2M4yziw9mmi8ooK96Xw=
-X-Received: by 2002:a05:6402:35d6:b0:61e:d34c:d1d3 with SMTP id
- 4fb4d7f45d1cf-61ed34cd400mr10877470a12.19.1757085191500; Fri, 05 Sep 2025
- 08:13:11 -0700 (PDT)
+	s=arc-20240116; t=1757085265; c=relaxed/simple;
+	bh=BG2k1oDsnnhcNwGuKMXzIg8UPUKmN0Mer2rlo4LnUV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U0Kxd81IYbjUrvE3GavbW8tvrdjCS39GCoxz9rGwc56278fKofx8DLGbH71CdPvYH5qu7RBoJXISK34ix/yOMTlB684EBu+D70t91ss6folXGxkWbaM2DNa/z6mhTaeGaGBSpvMmbOBbNvZOn8g1S6F7HNJvB+cH9q/pK+FRfs4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E228F152B;
+	Fri,  5 Sep 2025 08:14:13 -0700 (PDT)
+Received: from donnerap (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9D9693F6A8;
+	Fri,  5 Sep 2025 08:14:20 -0700 (PDT)
+Date: Fri, 5 Sep 2025 16:14:18 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Chen-Yu Tsai <wens@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+ Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej@kernel.org>, Samuel
+ Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev,
+ linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/8] clk: sunxi-ng: sun55i-a523-ccu: Add missing NPU
+ module clock
+Message-ID: <20250905161418.30562637@donnerap>
+In-Reply-To: <20250830170901.1996227-5-wens@kernel.org>
+References: <20250830170901.1996227-1-wens@kernel.org>
+	<20250830170901.1996227-5-wens@kernel.org>
+Organization: ARM
+X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20241121071325.2148854-1-iwamatsu@nigauri.org> <CABMQnVJVTmnsx3RNYK01ikZ-jnn_y4pbrNAeZaKPzz0N_YFz5g@mail.gmail.com>
-In-Reply-To: <CABMQnVJVTmnsx3RNYK01ikZ-jnn_y4pbrNAeZaKPzz0N_YFz5g@mail.gmail.com>
-From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-Date: Sat, 6 Sep 2025 00:12:44 +0900
-X-Gm-Features: Ac12FXzTX4H5emedmc2ovwKAlGVEjYg6lVwTcyicNPf8FtCjYiYPI4wGLhju7oc
-Message-ID: <CABMQnVJsK3wNRQfGjomggKcwL5zaqBchoAKajbVb+ZXmrwn2iQ@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: socfpga: sodia: Fix mdio bus probe and PHY address
-To: dinguyen@kernel.org, robh+dt@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org
-Cc: Andrew Lunn <andrew@lunn.ch>, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-ping?
+On Sun, 31 Aug 2025 01:08:57 +0800
+Chen-Yu Tsai <wens@kernel.org> wrote:
 
-2025=E5=B9=B41=E6=9C=8814=E6=97=A5(=E7=81=AB) 22:50 Nobuhiro Iwamatsu <iwam=
-atsu@nigauri.org>:
->
-> Hi Dinh,
->
-> Could you check and apply this patch?
->
-> Thanks,
->   Nobuhiro
->
-> 2024=E5=B9=B411=E6=9C=8821=E6=97=A5(=E6=9C=A8) 16:13 Nobuhiro Iwamatsu <i=
-wamatsu@nigauri.org>:
-> >
-> > On SoCFPGA/Sodia board, mdio bus cannot be probed, so the PHY cannot be
-> > found and the network device does not work.
-> >
-> > ```
-> > stmmaceth ff702000.ethernet eth0: __stmmac_open: Cannot attach to PHY (=
-error: -19)
-> > ```
-> >
-> > To probe the mdio bus, add "snps,dwmac-mdio" as compatible string of th=
-e
-> > mdio bus. Also the PHY address connected to this board is 4. Therefore,
-> > change to 4.
-> >
-> > Cc: stable@vger.kernel.org # 6.3+
-> > Signed-off-by: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
-> > ---
-> >  v2: Update commit message from 'ID' to 'address'.
-> >      Drop Fixes tag, because that commit is not the cause.
-> >
-> >  arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts | 6 ++++--
-> >  1 file changed, 4 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts=
- b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
-> > index ce0d6514eeb571..e4794ccb8e413f 100644
-> > --- a/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
-> > +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_cyclone5_sodia.dts
-> > @@ -66,8 +66,10 @@ &gmac1 {
-> >         mdio0 {
-> >                 #address-cells =3D <1>;
-> >                 #size-cells =3D <0>;
-> > -               phy0: ethernet-phy@0 {
-> > -                       reg =3D <0>;
-> > +               compatible =3D "snps,dwmac-mdio";
-> > +
-> > +               phy0: ethernet-phy@4 {
-> > +                       reg =3D <4>;
-> >                         rxd0-skew-ps =3D <0>;
-> >                         rxd1-skew-ps =3D <0>;
-> >                         rxd2-skew-ps =3D <0>;
-> > --
-> > 2.45.2
-> >
->
->
-> --
-> Nobuhiro Iwamatsu
->    iwamatsu at {nigauri.org / debian.org / kernel.org}
->    GPG ID: 32247FBB40AD1FA6
+Hi,
 
+> From: Chen-Yu Tsai <wens@csie.org>
+> 
+> The main clock controller on the A523/T527 has the NPU's module clock.
+> It was missing from the original submission, likely because that was
+> based on the A523 user manual; the A523 is marketed without the NPU.
 
+Ah, sorry, I missed that one. I think I spotted writable bits in that
+register, but didn't find a clue what this clock was about. Anyway, checked
+the bits against the T527 manual, they match up.
 
---=20
-Nobuhiro Iwamatsu
-   iwamatsu at {nigauri.org / debian.org / kernel.org}
-   GPG ID: 32247FBB40AD1FA6
+> Also, merge the private header back into the driver code itself. The
+> header only contains a macro containing the total number of clocks.
+> This has to be updated every time a missing clock gets added. Having
+> it in a separate file doesn't help the process. Instead just drop the
+> macro, and thus the header no longer has any reason to exist.
+
+Interesting, looks nice, and solves Krzysztof's complaint the other
+day about the binding header inclusion missing from the driver as well.
+Just one thought:
+
+> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+> ---
+>  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 21 ++++++++++++++++++---
+>  drivers/clk/sunxi-ng/ccu-sun55i-a523.h | 14 --------------
+>  2 files changed, 18 insertions(+), 17 deletions(-)
+>  delete mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> index 1a9a1cb869e2..88405b624dc5 100644
+> --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
+> @@ -11,6 +11,9 @@
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+>  
+> +#include <dt-bindings/clock/sun55i-a523-ccu.h>
+> +#include <dt-bindings/reset/sun55i-a523-ccu.h>
+> +
+
+Should we have the number #define here, at a more central location? Seems a
+bit buried down in there. And then use a plural name while at it:
+
+#define NUM_CLOCKS	CLK_NPU + 1
+
+Alternatively, put .num behind .hws below, so that the last clock and the
+number definition are close together?
+
+Cheers,
+Andre
+
+>  #include "../clk.h"
+>  
+>  #include "ccu_common.h"
+> @@ -25,8 +28,6 @@
+>  #include "ccu_nkmp.h"
+>  #include "ccu_nm.h"
+>  
+> -#include "ccu-sun55i-a523.h"
+> -
+>  /*
+>   * The 24 MHz oscillator, the root of most of the clock tree.
+>   * .fw_name is the string used in the DT "clock-names" property, used to
+> @@ -486,6 +487,18 @@ static SUNXI_CCU_M_HW_WITH_MUX_GATE(ve_clk, "ve", ve_parents, 0x690,
+>  
+>  static SUNXI_CCU_GATE_HWS(bus_ve_clk, "bus-ve", ahb_hws, 0x69c, BIT(0), 0);
+>  
+> +static const struct clk_hw *npu_parents[] = {
+> +	&pll_periph0_480M_clk.common.hw,
+> +	&pll_periph0_600M_clk.hw,
+> +	&pll_periph0_800M_clk.common.hw,
+> +	&pll_npu_2x_clk.hw,
+> +};
+> +static SUNXI_CCU_M_HW_WITH_MUX_GATE(npu_clk, "npu", npu_parents, 0x6e0,
+> +				    0, 5,	/* M */
+> +				    24, 3,	/* mux */
+> +				    BIT(31),	/* gate */
+> +				    CLK_SET_RATE_PARENT);
+> +
+>  static SUNXI_CCU_GATE_HWS(bus_dma_clk, "bus-dma", ahb_hws, 0x70c, BIT(0), 0);
+>  
+>  static SUNXI_CCU_GATE_HWS(bus_msgbox_clk, "bus-msgbox", ahb_hws, 0x71c,
+> @@ -1217,6 +1230,7 @@ static struct ccu_common *sun55i_a523_ccu_clks[] = {
+>  	&bus_ce_sys_clk.common,
+>  	&ve_clk.common,
+>  	&bus_ve_clk.common,
+> +	&npu_clk.common,
+>  	&bus_dma_clk.common,
+>  	&bus_msgbox_clk.common,
+>  	&bus_spinlock_clk.common,
+> @@ -1343,7 +1357,7 @@ static struct ccu_common *sun55i_a523_ccu_clks[] = {
+>  };
+>  
+>  static struct clk_hw_onecell_data sun55i_a523_hw_clks = {
+> -	.num	= CLK_NUMBER,
+> +	.num	= CLK_NPU + 1,
+>  	.hws	= {
+>  		[CLK_PLL_DDR0]		= &pll_ddr_clk.common.hw,
+>  		[CLK_PLL_PERIPH0_4X]	= &pll_periph0_4x_clk.common.hw,
+> @@ -1524,6 +1538,7 @@ static struct clk_hw_onecell_data sun55i_a523_hw_clks = {
+>  		[CLK_FANOUT0]		= &fanout0_clk.common.hw,
+>  		[CLK_FANOUT1]		= &fanout1_clk.common.hw,
+>  		[CLK_FANOUT2]		= &fanout2_clk.common.hw,
+> +		[CLK_NPU]		= &npu_clk.common.hw,
+>  	},
+>  };
+>  
+> diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.h b/drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+> deleted file mode 100644
+> index fc8dd42f1b47..000000000000
+> --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.h
+> +++ /dev/null
+> @@ -1,14 +0,0 @@
+> -/* SPDX-License-Identifier: GPL-2.0 */
+> -/*
+> - * Copyright 2024 Arm Ltd.
+> - */
+> -
+> -#ifndef _CCU_SUN55I_A523_H
+> -#define _CCU_SUN55I_A523_H
+> -
+> -#include <dt-bindings/clock/sun55i-a523-ccu.h>
+> -#include <dt-bindings/reset/sun55i-a523-ccu.h>
+> -
+> -#define CLK_NUMBER	(CLK_FANOUT2 + 1)
+> -
+> -#endif /* _CCU_SUN55I_A523_H */
+
 
