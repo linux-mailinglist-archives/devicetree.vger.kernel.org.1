@@ -1,304 +1,124 @@
-Return-Path: <devicetree+bounces-213606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F97B45E1F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:27:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CB23B45E4A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:37:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 310403AED78
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:27:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2006D560FB9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:37:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E65C530216F;
-	Fri,  5 Sep 2025 16:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7450630215A;
+	Fri,  5 Sep 2025 16:37:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0BA631D750;
-	Fri,  5 Sep 2025 16:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EE6331D72C;
+	Fri,  5 Sep 2025 16:36:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757089640; cv=none; b=noVbiy8rAY2HRSyCUE7nkfkGLqKjhH1SmJhUjm/TvpbZ+xIUiwwNYbUcGv0FluTXXdEq737+1egRfHK7K/MmTeIVu2HRqept9IW8qgOTNIZ2QxVchmSlpuccRfjuJOmjS+JySSoCgkK56XbDoyz7HOwYkG2CdacKXADOzPGSGC8=
+	t=1757090223; cv=none; b=aGGQKseBgi8s+m0fJDBNWmOH0Ir3yn7dzZzqdPkQDJx7omEqS/0MtgTNhwlxSXzxb4eguwZSbMQJidWCcDHiLRM3TAO1ts6FP+BGNm3D7H2q1OxZhXvGlDt/JehBSnTcdp4nUXGNydt1Lpuc9HQc4kHqtsD+Yd/zGMfKYk4AKok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757089640; c=relaxed/simple;
-	bh=v/S/LJTOi6ZyryPMzGyn1/L7NYUSdlZ0YVbue83lmz8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jVyXX2C5DmldK7MhLKbL8qvVMrzzD0fFHHd9QZK1BM55EOAGH7oskGKHB2ajNC2IlhtugomeEcpBT87p2QSIsx+4fzTqV5YnjYKiYBN/7sAntRiVctV7Gur144P2CD0Yw6RcoB7FXRPer7aVSbevUn8xeLW/ZZ/9sTTb5fSDLis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C6141152B;
-	Fri,  5 Sep 2025 09:27:08 -0700 (PDT)
-Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4A4F83F63F;
-	Fri,  5 Sep 2025 09:27:11 -0700 (PDT)
-Date: Fri, 5 Sep 2025 17:27:08 +0100
-From: Dave Martin <Dave.Martin@arm.com>
-To: James Morse <james.morse@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	shameerali.kolothum.thodi@huawei.com,
-	D Scott Phillips OS <scott@os.amperecomputing.com>,
-	carl@os.amperecomputing.com, lcherian@marvell.com,
-	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
-	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
-	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
-	dfustini@baylibre.com, amitsinght@marvell.com,
-	David Hildenbrand <david@redhat.com>,
-	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
-	baisheng.gao@unisoc.com,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
-	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH 05/33] ACPI / PPTT: Find cache level by cache-id
-Message-ID: <aLsPXFI4VuueQVXM@e133380.arm.com>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-6-james.morse@arm.com>
- <aK7jEMqM/FoB4ABW@e133380.arm.com>
- <cc4881e8-5d90-4992-8cbf-650ea2efa5ca@arm.com>
+	s=arc-20240116; t=1757090223; c=relaxed/simple;
+	bh=WMWV/zs7VqRch5M/3X1/0RlFh3MfGA58RBWGgbiM7Cw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qUQAuOGbtqe9J1M4unug97MwwHw/s465e6JvlTxceoGlDzqoQyYr5N8pStj9OyIpY71tFKGWMzG9FjPu/5ZlD5SLE/NI2GRnTTyr6Y8MbVZOaQqELkAvsIDkS8RutFhIDfEOQ5LCVDw9rMIiEJbQqgGmJ7Q9fFOTlu108Zmbpcg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.106] (unknown [114.241.87.235])
+	by APP-05 (Coremail) with SMTP id zQCowAAHqRJZEbtoxoHZAA--.36388S2;
+	Sat, 06 Sep 2025 00:35:37 +0800 (CST)
+Message-ID: <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
+Date: Sat, 6 Sep 2025 00:35:37 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cc4881e8-5d90-4992-8cbf-650ea2efa5ca@arm.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Simon Horman <horms@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Vadim Fedorenko
+ <vadim.fedorenko@linux.dev>, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+ <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+ <20250905153500.GH553991@horms.kernel.org>
+ <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
+ <20250905160158.GI553991@horms.kernel.org>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250905160158.GI553991@horms.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:zQCowAAHqRJZEbtoxoHZAA--.36388S2
+X-Coremail-Antispam: 1UD129KBjvJXoWruFW5Ary5JFW7Wr13trW8WFg_yoW8Jr4fpa
+	y8Ka1qyF4Ut347JrWDX397Ar92yFn3JrW3Xrn3WayYgas0yr13t34xtrWjkw1DCrWF9w40
+	va1jqr9FgFW5WFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvvb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
+	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
+	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xII
+	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4
+	A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI
+	64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8Jw
+	Am72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr41lFIxGxcIEc7CjxVA2Y2ka0xkIwI1l
+	c7CjxVAaw2AFwI0_GFv_Wryl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr
+	1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE
+	14v26r4a6rW5MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCI42IY6I8E
+	87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCTnIWIevJa73Uj
+	IFyTuYvjxUvaZXDUUUU
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi James,
+On 9/6/25 00:01, Simon Horman wrote:
 
-On Thu, Aug 28, 2025 at 04:58:05PM +0100, James Morse wrote:
-> Hi Dave,
-> 
-> On 27/08/2025 11:50, Dave Martin wrote:
-> > Hi,
-> > 
-> > On Fri, Aug 22, 2025 at 03:29:46PM +0000, James Morse wrote:
-> >> The MPAM table identifies caches by id. The MPAM driver also wants to know
-> >> the cache level to determine if the platform is of the shape that can be
-> >> managed via resctrl. Cacheinfo has this information, but only for CPUs that
-> >> are online.
-> >>
-> >> Waiting for all CPUs to come online is a problem for platforms where
-> >> CPUs are brought online late by user-space.
-> >>
-> >> Add a helper that walks every possible cache, until it finds the one
-> >> identified by cache-id, then return the level.
-> >> Add a cleanup based free-ing mechanism for acpi_get_table().
-> 
-> > Does this mean that the early secondaries must be spread out across the
-> > whole topology so that everything can be probed?
-> >
-> > (i.e., a random subset is no good?)
-> 
-> For the mpam driver - it needs to see each cache with mpam hardware, which means a CPU
-> associated with each cache needs to be online. Random is fine - provided you get lucky.
+> On Fri, Sep 05, 2025 at 11:45:29PM +0800, Vivian Wang wrote:
+>
+> ...
+>
+> Hi Vivian,
+>
+>>>> +		status = emac_rx_frame_status(priv, rx_desc);
+>>>> +		if (unlikely(status == RX_FRAME_DISCARD)) {
+>>>> +			ndev->stats.rx_dropped++;
+>>> As per the comment in struct net-device,
+>>> ndev->stats should not be used in modern drivers.
+>>>
+>>> Probably you want to implement NETDEV_PCPU_STAT_TSTATS.
+>>>
+>>> Sorry for not mentioning this in an earlier review of
+>>> stats in this driver.
+>>>
+>> On a closer look, these counters in ndev->stats seems to be redundant
+>> with the hardware-tracked statistics, so maybe I should just not bother
+>> with updating ndev->stats. Does that make sense?
+> For rx/tx packets/bytes I think that makes sense.
+> But what about rx/tx drops?
 
-"Fine" = "not dependent on luck".  So, random is not fine.
+Right... but tstats doesn't have *_dropped. It seems that tx_dropped and
+rx_dropped are considered "slow path" for real devices. It makes sense
+to me that those should be very rare.
 
-> > If so, is this documented somewhere, such as in booting.rst?
-> 
-> booting.rst is for the bootloader.
-> Late secondaries is a bit of a niche sport, I've only seen it commonly done in VMs.
-> Most platforms so far have their MPAM controls on a global L3, so this requirement doesn't
-> make much of a difference.
-> 
-> The concern is that if resctrl gets probed after user-space has started, whatever
-> user-space service is supposed to set it up will have concluded its not supported. Working
-> with cache-ids for offline CPUs means you don't have to bring all the CPUs online - only
-> enough so that every piece of hardware is reachable.
-> 
-> 
-> > Maybe this is not a new requirement -- it's not an area that I'm very
-> > familiar with.
-> 
-> Hard to say - its a potentially surprising side effect of glomming OS accessible registers
-> onto the side of hardware that can be automatically powered off. (PSCI CPU_SUSPEND).
-> 
-> I did try getting cacheinfo to populate all the CPUs at boot, regardless of whether they
-> were online. Apparently that doesn't work for PowerPC where the properties of CPUs can
-> change while they are offline. (presumably due to RAS or a firmware update)
+So it seems that what I should do is to just track tx_dropped and
+rx_dropped myself in a member in emac_priv and report in the
+ndo_get_stats64 callback, and use the hardware stuff for the rest, as
+implemented now.
 
-So, it sounds like there is a requirement, but we don't document it,
-and if the requirement is not met then the user is presented with an
-obscure failure in the MPAM driver.  This seems a bit unhelpful?
+Vivian "dramforever" Wang
 
-I'm not saying booting.rst is the right place for this -- maybe the
-appropriate document doesn't exist yet.
-
-I wonder whether the required property is reasonable and general enough
-that it should be treated as a kernel boot requirement.
-
-Or, we require caches to be symmetric for non-early CPUs and reject
-those that don't match when they try to come online (similarly to
-the way cpufeatures deals with mismatches).
-
-
-> >> diff --git a/drivers/acpi/pptt.c b/drivers/acpi/pptt.c
-> >> index 8f9b9508acba..660457644a5b 100644
-> >> --- a/drivers/acpi/pptt.c
-> >> +++ b/drivers/acpi/pptt.c
-> >> @@ -907,3 +907,67 @@ int find_acpi_cpu_topology_hetero_id(unsigned int cpu)
-> >>  	return find_acpi_cpu_topology_tag(cpu, PPTT_ABORT_PACKAGE,
-> >>  					  ACPI_PPTT_ACPI_IDENTICAL);
-> >>  }
-> >> +
-> >> +/**
-> >> + * find_acpi_cache_level_from_id() - Get the level of the specified cache
-> >> + * @cache_id: The id field of the unified cache
-> >> + *
-> >> + * Determine the level relative to any CPU for the unified cache identified by
-> >> + * cache_id. This allows the property to be found even if the CPUs are offline.
-> >> + *
-> >> + * The returned level can be used to group unified caches that are peers.
-> >> + *
-> >> + * The PPTT table must be rev 3 or later,
-> >> + *
-> >> + * If one CPUs L2 is shared with another as L3, this function will return
-> >> + * an unpredictable value.
-> >> + *
-> >> + * Return: -ENOENT if the PPTT doesn't exist, or the cache cannot be found.
-> > 
-> > Nit: doesn't exist or its revision is too old.
-> 
-> ... its not old, but there is no published spec for that revision... unsupported?
-
-That seems OK, say,
-
-	"... if the PPTT doesn't exist or has an unsupported format, or ..."
-
-
-> >> + * Otherwise returns a value which represents the level of the specified cache.
-> >> + */
-> >> +int find_acpi_cache_level_from_id(u32 cache_id)
-> >> +{
-> >> +	u32 acpi_cpu_id;
-> >> +	int level, cpu, num_levels;
-> >> +	struct acpi_pptt_cache *cache;
-> >> +	struct acpi_pptt_cache_v1 *cache_v1;
-> >> +	struct acpi_pptt_processor *cpu_node;
-> >> +	struct acpi_table_header *table __free(acpi_table) = acpi_get_table_ret(ACPI_SIG_PPTT, 0);
-> 
-> > acpi_get_pptt() ? (See comment on patch 3.)
-> 
-> Yup,
-> 
-> > Comments there also suggest that the acpi_put_table() may be
-> > unnecessary, at least on some paths.
-> > 
-> > I haven't tried to understand the ins and outs of this.
-> 
-> It's grabbing one reference and using it for everything, because it needs to 'map' the
-> table in atomic context due to cpuhp, but can't.
-> Given how frequently its used, there is no problem just leaving it mapped.
-
-That's rather what I thought -- in which case we can use it (as you
-already concluded, by the looks of it).
-
-> >> +
-> >> +	if (IS_ERR(table))
-> >> +		return PTR_ERR(table);
-> >> +
-> >> +	if (table->revision < 3)
-> >> +		return -ENOENT;
-> >> +
-> >> +	/*
-> >> +	 * If we found the cache first, we'd still need to walk from each CPU
-> >> +	 * to find the level...
-> >> +	 */
-> 
-> > ^ Possibly confusing comment?  The cache id is the starting point for
-> > calling this function.  Is there a world in which we are at this point
-> > without first having found the cache node?
-> > 
-> > (If the comment is just a restatement of part of the kerneldoc
-> > description, maybe just drop it.)
-> 
-> It's describing the alternate world where the table is searched to find the cache first,
-> but then we'd still need to walk the table another NR_CPUs times, which can't be avoided.
-> I'll drop it - it was justifying why its done this way round...
-
-Oh, I see, this is "if the code had been written in such-and-such a way",
-not "if such-and-such a runtime precondition is met" ?
-
-The comment can be read both ways, as it stands.
-
-> 
-> >> +	for_each_possible_cpu(cpu) {
-> >> +		acpi_cpu_id = get_acpi_id_for_cpu(cpu);
-> >> +		cpu_node = acpi_find_processor_node(table, acpi_cpu_id);
-> >> +		if (!cpu_node)
-> >> +			return -ENOENT;
-> >> +		num_levels = acpi_count_levels(table, cpu_node, NULL);
-> > 
-> > Is the initial call to acpi_count_levels() really needed here?
-> > 
-> > It feels a bit like we end up enumerating the whole topology two or
-> > three times here; once to count how many levels there are, and then
-> > again to examine the nodes, and once more inside acpi_find_cache_node().
-> > 
-> > Why can't we just walk until we run out of levels?
-> 
-> This is looking for a unified cache - and we don't know where those start.
-> We could walk the first 100 caches, and stop once we start getting unified caches, then
-> they stop again ... but this seemed simpler.
-
-I'm still a bit confused.
-
-We start at level one, and then trace parents until we hit a unified
-cache or run out of levels.
-
-Why do we need to know a priori how many levels there are, when the
-way to determine that is part of the same procedure we're already doing
-(i.e., start at level one and trace parents until we run out of levels)?
-
-> > I may be missing some details of how these functions interact -- if
-> > this is only run at probe time, compact, well-factored code is
-> > more important than making things as fast as possible.
-
-(This still stands.)
-
-
-> >> diff --git a/include/linux/acpi.h b/include/linux/acpi.h
-
-[...]
-
-> >> @@ -221,6 +222,17 @@ void acpi_reserve_initial_tables (void);
-> >>  void acpi_table_init_complete (void);
-> >>  int acpi_table_init (void);
-> >>  
-> >> +static inline struct acpi_table_header *acpi_get_table_ret(char *signature, u32 instance)
-> >> +{
-> >> +	struct acpi_table_header *table;
-> >> +	int status = acpi_get_table(signature, instance, &table);
-> >> +
-> >> +	if (ACPI_FAILURE(status))
-> >> +		return ERR_PTR(-ENOENT);
-> >> +	return table;
-> >> +}
-> 
-> > This feels like something that ought to exist already.  If not, why
-> > not?  If so, are there open-coded versions of this spread around the
-> > ACPI tree that should be ported to use it?
-> 
-> 
-> It's a cleanup idiom helper that lets the compiler do this automagically - but its moot as
-> its not going to be needed in the pptt because of the acpi_get_pptt() thing.
-
-Ah, OK.
-
-Cheers
----Dave
 
