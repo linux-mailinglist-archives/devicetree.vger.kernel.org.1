@@ -1,104 +1,109 @@
-Return-Path: <devicetree+bounces-213678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 905CBB46371
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:18:45 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2702CB4636D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:18:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 388371897786
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:18:43 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F1CDE7BBD2C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:16:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2D6827A12B;
-	Fri,  5 Sep 2025 19:17:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16A41221265;
+	Fri,  5 Sep 2025 19:18:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RImwbbs/"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="C5a+ffIS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-103.mailbox.org (mout-p-103.mailbox.org [80.241.56.161])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 337E62AD2F;
-	Fri,  5 Sep 2025 19:17:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71D7C315D5D;
+	Fri,  5 Sep 2025 19:18:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.161
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757099866; cv=none; b=jy8q8WGQXti9QYUVYgq1jJdA0/prf3+SBQrPYaV4CZlvvsHwg3A7HWrRzlJwgwmeEv1XL7L7E3mS4mFIca22/S6zZfhD3FwZeneAGoeGkm1yVGKdlDUDtJ+Sc/w6uTehfwtvqpVx2Qty4pjc/v4P9jSYK0+k44FgxwzufAm80LY=
+	t=1757099883; cv=none; b=CtOPi7MbobSsMIM7aUj/TRACHeA/Sj2qePpepF3aofeYUOJlz/SOIvUJiOSE5CJK6GUvynYn7t1nJoz6QIEdW90gp6LGvoHObssxhmwrbuDX1SMHWU4YUglfhAxRCTfmEk/+3G+2GNDXjfpOTW5A0ttl9YAAmzC1YTLDX9mm+ec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757099866; c=relaxed/simple;
-	bh=d9riUk8d4MeIl+PcvKeh50CTyzrEM8TlhBq2jX/imDQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=QUjvUmEkz87nIrnigx0XysQXyHS9gmm7xkZmRCfaFE1Qb3VM50IuQ6PDgJcMrttlJR4jOuyLYRLCFlwohfyjdvzbyf0klFFlcLSPlHr9y6QAINxsNcBBRT0LbWwXJiKKjTdMqKiiLSt93pj3lI5hHNg4SU9aoqyPKpcYdzRsu8o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RImwbbs/; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-55f6bdcc195so3072020e87.0;
-        Fri, 05 Sep 2025 12:17:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757099863; x=1757704663; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d9riUk8d4MeIl+PcvKeh50CTyzrEM8TlhBq2jX/imDQ=;
-        b=RImwbbs/pZJJNpYgZP10EBQEHSAykK5D8YVGb7j+F8TCkpdSeQJL6URS2POWEeno7s
-         FJqMyrg5KTtKgOANynRXjEGyDYMMNG5t9kvB0pEnK6uD1zDmxNl9zCObq0NyNjF1SWiE
-         4FKBUVzhZd91Zt3H8MmwHAA8EqUOca7bapIBjLooYmOAFaLV7l3JkotbUW/G8QzUs0v/
-         8mzLK4MdFKnmILJdz+zcv9U0NcvBHdiP5aAbeFEMlcMF/MpCF23r1sr5EJdLQ83QYMdP
-         vaXYTSQAnepdhqpk0j9d4XV4DLrthbHbnvXeygcsGA6pJ55cYSIXI6NsQD+t+nfZ/V1p
-         jyNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757099863; x=1757704663;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=d9riUk8d4MeIl+PcvKeh50CTyzrEM8TlhBq2jX/imDQ=;
-        b=pAx7WttwS6hN73dy9dXZhLbNrnRFTJwOW4gVltu4Hn3Wt/AqTBQ3DI4CqqixSJoTeb
-         TBi+Ks3ZpyPAtadKISC47AXxjt/towFs84OcpCAmNRgbA21JiTrWhRSDGewdtvZp2KlZ
-         bwGf55UCOco6PEwvDN+dzZIC0Ts85Vz5N6j4tU6Am2T+jRVbtTyc3MZuIJMVhmATF9Vu
-         dsurlIVs5j7wcwvTyASf1On8QvHgE8J9azaDu2MSfb83rMH7nhokPKzE5e4j1mwA0/YG
-         9YbL7MHN5bFFlIjd2SDI7cZ44Tcxe8ifFm/yWvlwLRYYqOfyUsfQllwN5+2d5/N6f5Oa
-         jgiw==
-X-Forwarded-Encrypted: i=1; AJvYcCUDn2bikHiC5X9/ZjR0REbwql1vZ9ryuTmZYVTgFOpIH8vgtjFfwQQ/1tq3qDf6fhGXgtunai1SZoE7IAI=@vger.kernel.org, AJvYcCW7K63nmlF43blA0DLtTpuSSYKuz0urZBNi8uZRD/RMhr06AwQcf8J7kGImuFSanEwLL2nD5+eR6myq@vger.kernel.org, AJvYcCWCo51wpd4SExm6iEZsNc1GHqeivI8XY1gssSAHCKSbmXKu8xRdDFA/xU4aVM1ROEJWoM3wygn2ONmOd/xZ@vger.kernel.org
-X-Gm-Message-State: AOJu0YwuzAld8UOjLLeUfDchj6iEducrhHI/JR0lTKfp/1x3I+iceixn
-	rTo0HLb59vZhMB4jNDtyk510C3Lxud3uN4kLT1IfUZgY8sQfulYOCmLMUhd4hfnk/osDB9cEIMH
-	1RvlY8sFohNxBw4rweytRI5HWUQ/aH7c=
-X-Gm-Gg: ASbGncu56l9MgdWRi1YnTC46msi3nK818TPHjVV76BFS6Xw8hm3771dk9SiWsawTDaD
-	zf43HJGM6oVOQWvtdZqYt98f6LOoWfbjHH/dwmhLmUfqMwcqHYeF1A3xAVbnxmQhSbCtV601pbP
-	p3rg2/trZo6aHiIEr1foZuEAF7/NKcPDLtn9uGaB7eRCgJoPGVB/GQcsI+zCSj1FPj1htKe1wTJ
-	+a0K4kBXd0dBr/7S4M+ZmWlfXS28LSQQnWMvfa0c7LYMptGIw==
-X-Google-Smtp-Source: AGHT+IExNr7E9rD7sUYs1T/yf3koGRYXu/DH4f4r9pUApNVPygT+m2pxQCLbRRRJxgQIeFsJGBe+CsQwzmlorjCUV5s=
-X-Received: by 2002:a05:6512:144e:10b0:560:a641:6499 with SMTP id
- 2adb3069b0e04-560a6416d00mr1270504e87.9.1757099862969; Fri, 05 Sep 2025
- 12:17:42 -0700 (PDT)
+	s=arc-20240116; t=1757099883; c=relaxed/simple;
+	bh=7MRC0lZTayuh+KprYSHSa9qqkcqL8gzJBmURf1kGMUw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MFOKvnkowudJPkwbT1MJJIJOlVNTVN/K9EJQUmE6MB1GEcOLMI0mD8YijLCascpgsv5txt9dvVzKsQ8dg9c1o9b8goGCHuXqe6fhv7C/5v6fLijmUU0vjE3lXo/ulDcKyMIgDWMmTHhfuJOdiCQbz01dMY6bzZPQTQZ43mJCxT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=C5a+ffIS; arc=none smtp.client-ip=80.241.56.161
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [10.196.197.202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-103.mailbox.org (Postfix) with ESMTPS id 4cJR2F5sCJz9tDy;
+	Fri,  5 Sep 2025 21:17:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757099877;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=7AuHv2ylcVezR/vi7XrRIcEjiUPL9mtKb38cVL5qRBc=;
+	b=C5a+ffISn5r4R4Dt1okCaUiNMJskcAYc3nK4MmwmbywC47MfKOnrHKcS2A67uCZ+pmMRgs
+	/ACRnFdUb4YPqoPlfXB1RrDsrqqTzIjLawPCiQQ5+6nh+K8aGqgWBM9+LzQpDyNkSP5XMr
+	dHXtih5o2apl/GwG2KKSIQC7eTS7M3ZoCnVWGz6fjDQPTUs7jD7cCgBGWyNuotpXs7YSrp
+	rBSj7oSy5SI/HlJrN/FtTnR9Z0ENiUHaVD61/7mM5ODt5/42aHSmPVL0afDbFuVkZWDMvw
+	FpWYvO2A6gsy7/NFFf90+Q0aiP5hqTxvmaVy8do912rACIGttpnEMploRUEGTQ==
+Message-ID: <e4929fc7-d057-46a7-8603-68271e85b9b5@mailbox.org>
+Date: Fri, 5 Sep 2025 21:17:54 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905190645.609762-1-Frank.Li@nxp.com>
-In-Reply-To: <20250905190645.609762-1-Frank.Li@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Fri, 5 Sep 2025 16:17:31 -0300
-X-Gm-Features: Ac12FXz9svkM5bN90I8Wbp08WUFjnKgc2W1OxAbDeHh4SU05q4l2K1Kn6ku9BL4
-Message-ID: <CAOMZO5AKcNHvRpjhmGpGfPRaonU+quT=dDJQwLpDjBxTCXkTXQ@mail.gmail.com>
-Subject: Re: [PATCH 1/1] dt-bindings: input: convert tca8418_keypad.txt to
- yaml format
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi
+ 720x1280 v2 binding
+To: Conor Dooley <conor@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Conor Dooley <conor+dt@kernel.org>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ Florian Fainelli <florian.fainelli@broadcom.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-rpi-kernel@lists.infradead.org, linux-renesas-soc@vger.kernel.org
+References: <20250904200036.168222-1-marek.vasut+renesas@mailbox.org>
+ <20250905-humble-framing-3d9b786c87a2@spud>
+ <3ba2de63-4282-4b1e-a576-0b4501e56a7b@mailbox.org>
+ <20250905-imaginary-crazy-a5734cb794fc@spud>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250905-imaginary-crazy-a5734cb794fc@spud>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 40b1347b2509e434e1b
+X-MBO-RS-META: 4nawz5fb96azx54xwzyhdjacj1ddx7mw
 
-On Fri, Sep 5, 2025 at 4:08=E2=80=AFPM Frank Li <Frank.Li@nxp.com> wrote:
+On 9/5/25 9:03 PM, Conor Dooley wrote:
+> On Fri, Sep 05, 2025 at 08:55:16PM +0200, Marek Vasut wrote:
+>> On 9/5/25 8:46 PM, Conor Dooley wrote:
+>>
+>> Hi,
+>>
+>>>> +examples:
+>>>> +  - |
+>>>> +    i2c {
+>>>> +      #address-cells = <1>;
+>>>> +      #size-cells = <0>;
+>>>> +      gpio@45 {
+>>>
+>>> ngl, seems strange to classify the device as a regulator in directory
+>>> and name, but use gpio as the node name in the example.
+>>>
+>>> Otherwise, this seems fine - if you feel that the hardware is
+>>> substantively differentially to what's in the "v1" regulator then
+>>> keeping them apart is valid.
+>>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> I can rename it to "mcu@" or "mfd@" some such ?
+I called it a regulator@ and sent a V2. I didn't include the AB, please 
+give it a once-over and provide one if still applicable.
 
-> +title: I2C/SMBus keypad scanner
-
-This title is too generic.
-
-You should include the part number:
-
-title: TCA8418 I2C/SMBus keypad scanner
+Thanks !
 
