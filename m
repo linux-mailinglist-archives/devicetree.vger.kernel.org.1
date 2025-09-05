@@ -1,160 +1,127 @@
-Return-Path: <devicetree+bounces-213663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40410B462F3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:58:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 601B4B4630A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 21B9A1D21BD5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:59:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2848B5E10CF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91BAC315D2F;
-	Fri,  5 Sep 2025 18:58:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50E99315D52;
+	Fri,  5 Sep 2025 19:02:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TpTOJec0"
+	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="7FZXBHoR";
+	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="EY3Rm5jg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from haruka.juszkiewicz.com.pl (haruka.juszkiewicz.com.pl [185.243.53.191])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64848315D21;
-	Fri,  5 Sep 2025 18:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E8DF315D47;
+	Fri,  5 Sep 2025 19:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.243.53.191
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757098720; cv=none; b=iFVJCJTF1TCnjnNY1iuKE2v2XUk/002s1TdnQFiWlnOTQf5ck/r2Yeei2gbBvSz++DyCAkvY13LGA2SIH5ti9V1Zd6E1QMZWKw9Z4B8AXKCkmv4cf3HYEyNUQgY0ZMtq8JG82VlCmmcjNaqnDnxgyTOILfWAgnHNdluJC1ecbUg=
+	t=1757098924; cv=none; b=IfYqTsEbyWkovM0/2KkjtfPM+6ElYNppnAW3IeXfgqFkl8xMsHf50PFbHxOVkwG5pmlA+DuHQLAbDNPRnHerRdE5rf9UhPZkv28KUrAZR83aiJqD0Cp/IY622Baiq1RWeea69kmIwrasPfocZ5Q2sXDzHgy9jbgS7qfiKQWqWIM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757098720; c=relaxed/simple;
-	bh=1j2nvqsSjv1hxZplBEJyzuJp7KGzjYn/hIUUuBIiH0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O+yPxoOs1XtfgcNgv/plFv2V4FjWkEby4Z2O46h1YmQEEnsGY0RfyjPgAcOan12C5IE/L7xLGBISRz5sUHK/KN8tykppriP+rGFKagVU+JENPlAxdmd+DTfVH3UdT2Qxu6rDo3XK9tJoGdLwnAgLG98jON55wCpZdxc5ZNLzNOQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TpTOJec0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86AC4C4CEF1;
-	Fri,  5 Sep 2025 18:58:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757098719;
-	bh=1j2nvqsSjv1hxZplBEJyzuJp7KGzjYn/hIUUuBIiH0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TpTOJec0ZTN90j+7ZunteSx6Vm1Vz5HfggSaILeh9dTVXOEW7YaYHP05emPIlZo9f
-	 3vtm/zV8SCGVgu1ajVBaEYHCAqtCXbYMclNvPQNlzcesA3ocLdMS4FyM8L7rfWO76a
-	 iSmvWAOSbivxd64vfih9jNlbUPhaNgUeRXoO90rIz75J+0KGgyraBUcel509ipuuv2
-	 oHgG2zpCyMmY0xcEmtcQ+r7auOa8jOSAihk7ua6uieDfZrEqnMAgfdQioS+bPX9gLJ
-	 vGImoJAdWx8D/fpBV8f9YeHtcuFLDRFEPt6Hbntiilt7auUttt6rrFnYAHp9Xc8bMt
-	 b61/buJ50zPsg==
-Date: Fri, 5 Sep 2025 19:58:35 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Josua Mayer <josua@solid-run.com>
-Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
- strings per SerDes and instantiation
-Message-ID: <20250905-oxidation-pummel-7155593e06af@spud>
-References: <20250904154402.300032-1-vladimir.oltean@nxp.com>
- <20250904154402.300032-14-vladimir.oltean@nxp.com>
- <20250904-molar-prune-4d3420b1bcb4@spud>
- <20250905104921.7grpgloevlifa3kj@skbuf>
+	s=arc-20240116; t=1757098924; c=relaxed/simple;
+	bh=OajqByBsH5OPlXRdcq8gSwhpir9mkJFlhq+DtZdjgdI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=KvneUm+g7h+93t901nvA+fU8/XH08LmVfrDsJJBqHM3D9gC1JYmG9UULdQ7XJAmiz5ZcnamGLpi/560WEN5fVG+3vpEweP7idsBzKLukiZk8boozSAYVbldU2cLHoFCc917iz0wDrbU1/hqfw3EVgEi9ywJrpqkEHyI3TuRKYD8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl; spf=pass smtp.mailfrom=juszkiewicz.com.pl; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=7FZXBHoR; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=EY3Rm5jg; arc=none smtp.client-ip=185.243.53.191
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=juszkiewicz.com.pl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=juszkiewicz.com.pl;
+	s=mail; t=1757098920;
+	bh=OajqByBsH5OPlXRdcq8gSwhpir9mkJFlhq+DtZdjgdI=;
+	h=From:Date:Subject:To:Cc:From;
+	b=7FZXBHoRYSwGBBrBLCOJJADr8bmZs3LwZrIyKHRnc+7sk7nlQPIdl6Y/dF9MKAr7O
+	 7Vsp6FUout0+mrDKRKNtlNGK1YTsaTNUO1K/lJ3lWxB0Lv25OMHQZ9FNYfaervecMq
+	 eWialhNQm7+AeO5PNvijdXMbJ7dzD/fl2vI5E7Av1u90U7ms244lZEtBfogU/lOgvG
+	 Vhk38sDyZOgMO3kUK4h17jigh8t+CGEv5hfKbpCIZBqsqgdrquZCcP8s/5HPXOnraN
+	 f6qcBZ3JTpEC+LHP4qhhW9Z4X2sfvf5es4bgeAaYXFbKyaOyLNAzy8Mfd+i9Ar2qV4
+	 pBfBuO6C5ufUw==
+Received: from utena.juszkiewicz.com.pl (utena.juszkiewicz.com.pl [158.101.208.177])
+	by haruka.juszkiewicz.com.pl (Postfix) with ESMTPSA id 04B481FB29;
+	Fri, 05 Sep 2025 21:02:00 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7AF3545439;
+	Fri,  5 Sep 2025 21:01:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juszkiewicz.com.pl;
+	s=mail; t=1757098919;
+	h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding; bh=B1gRGSjw2aAAw0vLwu9XQY6YhFjjAP3pnVdOLPu8WI4=;
+	b=EY3Rm5jggcZGpgieNP9yQ8+ZMZ8Hh1diTRhlS961pP4bMMQgbMgIcP6GiDK7O8Esa7Mk9Z
+	924TAdvAKfcMbLUzGnPLwxraSHFmTsHOkiDc2+fdT/i3YHOrfyi+KB+7QJ9w02U9iXelkx
+	QgEgiAMDOzVc0yDUWW6q0SkweWbUIuNlxg4uw9bhRUo0oqe5kHdDfIIgdPzZ0CEtD7FhXT
+	KTh6X2BQMR7F9LJQpSFjZ79nsKUrqFplRWoGglLS3gPXLEWHqkUDSjHzGf9YqOaLgNKJnK
+	pp1CNjAVYdyVFpIh6ipDbGikj1XZF5A+V5NNzoroQeyo9qoeDWE29K2UtDklng==
+From: Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
+Date: Fri, 05 Sep 2025 21:01:51 +0200
+Subject: [PATCH v2] arm64: dts: rockchip: Add vcc supply for SPI Flash on
+ NanoPC-T6
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="wIYzLZScWcCcVZ80"
-Content-Disposition: inline
-In-Reply-To: <20250905104921.7grpgloevlifa3kj@skbuf>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250905-nanopc-t6-spi-nor-v2-1-098b476d9509@juszkiewicz.com.pl>
+X-B4-Tracking: v=1; b=H4sIAJ4zu2gC/x3MQQqAIBBA0avErBsQIaOuEi3CGWs2o2hEIN49a
+ fkW/1conIULrEOFzI8UidphxwH8dejJKNQN1tjJLGZCPTQmj7fDkgQ1ZpwNkSdnwxJm6F3KHOT
+ 9n9ve2gciHILRYwAAAA==
+X-Change-ID: 20250905-nanopc-t6-spi-nor-70ddcd62f9f7
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
+X-Mailer: b4 0.14.2
+X-Last-TLS-Session-Version: TLSv1.3
 
+FriendlyELEC NanoPC-T6 LTS schematics shows VCC_1V8_S3 being used to
+power SPI NOR chip.
 
---wIYzLZScWcCcVZ80
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This fixes the following kernel message:
 
-On Fri, Sep 05, 2025 at 01:49:21PM +0300, Vladimir Oltean wrote:
-> On Thu, Sep 04, 2025 at 08:22:16PM +0100, Conor Dooley wrote:
-> > On Thu, Sep 04, 2025 at 06:44:01PM +0300, Vladimir Oltean wrote:
-> > > Going by the generic "fsl,lynx-28g" compatible string and expecting a=
-ll
-> > > SerDes instantiations on all SoCs to use it was a mistake.
-> > >=20
-> > > They all share the same register map, sure, but the number of protocol
-> > > converters and lanes which are instantiated differs in a way that isn=
-'t
-> > > detectable by software. So distinguish them by compatible strings.
-> > > At the same time, keep "fsl,lynx-28g" as backup.
-> >=20
-> > Why keep the backup? Doesn't sound like you can use it for anything,
-> > unless there's some minimum set of capabilities that all devices
-> > support. If that's not the case, should it not just be marked deprecated
-> > or removed entirely?
->=20
-> To be honest, I could use some guidance on the best way to handle this.
->=20
-> When I had written this patch downstream, lx2160a.dtsi only had serdes_1
-> defined, as "fsl,lynx-28g", and this patch made more sense. Keep
-> "fsl,lynx-28g" as a synonym for "fsl,lx2160a-serdes1", so that new
-> device trees still work with old kernels (as is sometimes needed during
-> 'git bisect', etc), for some definition of the word "work" (more often
-> than not, unsatisfactory - for example, fw_devlink blocks probing the PHY
-> consumer driver if the PHY driver doesn't exist, but the 'phys' property
-> exists in the device tree).
->=20
-> Unbeknownst to me, commit 2f2900176b44 ("arm64: dts: lx2160a: describe
-> the SerDes block #2") came and defined the second SerDes also with
-> "fsl,lynx-28g".
->=20
-> The second SerDes is less capable than the first one, so the same
-> developer then started battling with the fact that the driver doesn't
-> know that serdes_2 doesn't support some protocols, and wrote some
-> patches like 9bef84d30f1f ("phy: lynx-28g: check return value when
-> calling lynx_28g_pll_get"), which in all likelihood could have been
-> avoided using a specific compatible string. The lynx_info ::
-> lane_supports_mode() method from patch 14/14 is supposed to say what is
-> supported per SerDes and what not.
+spi-nor spi5.0: supply vcc not found, using dummy regulator
 
-> In terms of implementation, what does "deprecating" the "fsl,lynx-28g"
-> compatible string mean, compared to removing it entirely? Would there be
-> any remaining driver support for it?
+Signed-off-by: Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
+Message-ID: <1652891b3fd7e1d1a279a3eb0e7a05ac763e48fb.1757097941.git.mjuszkiewicz@redhat.com>
+---
+FriendlyELEC NanoPC-T6 LTS schematics shows VCC_1V8_S3 being used to
+power SPI NOR chip.
 
-Really it does nothing much. The difference is that removing it entirely
-=66rom the binding will cause existing dts users to create warnings
-whereas marking it deprecated is more of an attempt to stop
-proliferation since it doesn't generate any warnings at the moment but
-people using the binding will see that it's not ideal. I personally use
-deprecated when using the old binding is only ill-advised because
-there's missing features etc and I opt for removal when the old binding
-is wrong and actively harmful. In both cases, I'd keep the old
-compatible in the driver for compatibility reasons.
+This fixes the following kernel message:
 
-> Should I compute the common set of
-> capabilities between SerDes #1 and #2, and only support that? What
-> impact would this have upon old device trees? Is it acceptable to just
-> remove support for them?
+spi-nor spi5.0: supply vcc not found, using dummy regulator
+---
+Changes in v2:
+- fixed format of "vcc-supply" field
+---
+ arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-Up to you really, if there is a common set between the two, that's
-probably the ideal thing to do for the generic compatible. If there
-isn't, and shit just ain't working properly at all for either then yeah,
-it might be for the better to remove support for it entirely from the
-driver too. Just make sure that you're clear about the fact that it just
-cannot work at all, and that's why you're axing it. Breaking
-compatibility is allowed, when there's justification for doing so, it's
-not a complete no-no.
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+index 3d8b6f0c55418805c0d614a4d65f67b0c660ca0f..69833a0a94d0f18d9ca86005ac22e58f4c036fa8 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3588-nanopc-t6.dtsi
+@@ -731,6 +731,7 @@ flash@0 {
+ 		spi-max-frequency = <104000000>;
+ 		spi-rx-bus-width = <4>;
+ 		spi-tx-bus-width = <1>;
++		vcc-supply = <&vcc_1v8_s3>;
+ 	};
+ };
+ 
 
---wIYzLZScWcCcVZ80
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+base-commit: 4ac65880ebca1b68495bd8704263b26c050ac010
+change-id: 20250905-nanopc-t6-spi-nor-70ddcd62f9f7
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+-- 
+Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsy2wAKCRB4tDGHoIJi
-0mPnAQDBoioe3QK3vWC3vPR4UEPBA8FwsbUqZE7RZ/XS+CbsWAEA/dsteEdBKb5w
-IeJ50tuLmPd0iVixuAiafJoPftMxcwM=
-=O7PP
------END PGP SIGNATURE-----
-
---wIYzLZScWcCcVZ80--
 
