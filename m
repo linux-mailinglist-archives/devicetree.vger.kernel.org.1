@@ -1,201 +1,151 @@
-Return-Path: <devicetree+bounces-213615-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9CB45EA9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:49:07 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2FA6B45F5E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:52:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4513517B8E0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:49:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9DFA97BB326
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7890030215C;
-	Fri,  5 Sep 2025 16:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D422306B3D;
+	Fri,  5 Sep 2025 16:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="ZDtmlhPR"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="j+wf9Fc2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4323.protonmail.ch (mail-4323.protonmail.ch [185.70.43.23])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E3A13D521;
-	Fri,  5 Sep 2025 16:49:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C29331D736;
+	Fri,  5 Sep 2025 16:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.12
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757090943; cv=none; b=mYzeUXVenddgRHJEl3M+pg6SioC5/00AeakzpFEgqRJZBWla45CsIA4xdA6198DoNnGwvJlsMcX0p7T4v5gqWzuBvxlnyuENErDcjj5XOOjSu9tim+3vfmTKxF8n0UHfB23L1q5eljmI6TT81phNuKFbT5nmqmMzmfyUsNYFuvA=
+	t=1757091118; cv=none; b=IfHwOnO6k/B3LCgsSEo2lt6kvONLuB7eVCBWCS2TuZZ/kC6CxDfrFT44bBWpUu0uuJ0wfoiocAnsT2+U8rgY4qYmx+Q2mOOBB7SRDZYE+hT83ZusVUej9+gZT54qWY3AJl3CD9SM89unM80dky3OpyuSf5qfuGTLuPXyEYyWirg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757090943; c=relaxed/simple;
-	bh=diSf69d2oQ1dS0WKoCbUPJHHMv6KOh1u+FVVXuJwOm4=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ShN71A+ChJ4BIYVa+Q8gl0DJF9XpSzuO/ZkJlHk6fLDx+TAScs3jm0gdM8De+JuPuH2MvqLu/IKTm7LIk6OqWEEU1//BNtQyGr0tcE80sLIX7U+PILVFi6HBahbNngCURswEXjCsJBwVBdRcTzwDDAmReWoAtoQddd02hXzrFKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=ZDtmlhPR; arc=none smtp.client-ip=185.70.43.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
-	s=protonmail; t=1757090938; x=1757350138;
-	bh=diSf69d2oQ1dS0WKoCbUPJHHMv6KOh1u+FVVXuJwOm4=;
-	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-	 Message-ID:BIMI-Selector;
-	b=ZDtmlhPROSqmOV/mM031irz4iMovwT/6c7BOlqR8Ko2upeeW6TEn7SntMw6fDzaw8
-	 qufJU7PvggauiQcOyjOrAzI3yS0QA+BYNuhcttRDGzTEZYXgriOgCZFO9/CrS7NmZ+
-	 vXeKW9lqxZ+c3FpKAnk5Rma4s0PIGZiCMtfP6yX3xK1uF2N500A8YyW6RI/xmeQJdf
-	 qzNR9dUL01iA1IZweZBwvtK64Ut0sdcFweynzR2gYabOjj/aXkPKVwdTEnqmnE/PVX
-	 Ztjcj1wPNky8uIsZSli6Y15XQYQXj9yTb8wy3xxlafgksyozXDcE7IVGZPqEJ4Z7PX
-	 I+EfDtxPPFVJQ==
-Date: Fri, 05 Sep 2025 16:48:52 +0000
-To: Rob Herring <robh@kernel.org>
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] dt-bindings: leds: commonize leds property
-Message-ID: <Lm6PLaup84KHzhxYTbsrQIbEeQpc6dj65aLkLFvOx7QwvuXS9ON53Csa2v6LBp4hd9iIQilvGhXqx4kXv4cfqgYUeA49vrVdWJw-fNMLu2Y=@vinarskis.com>
-In-Reply-To: <20250905152404.GB953718-robh@kernel.org>
-References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com> <20250905-leds-v2-2-ed8f66f56da8@vinarskis.com> <20250905152404.GB953718-robh@kernel.org>
-Feedback-ID: 158356072:user:proton
-X-Pm-Message-ID: 8506bc237e49fba276022028e967299c197ecd38
+	s=arc-20240116; t=1757091118; c=relaxed/simple;
+	bh=Q2NvVrGEL+0/GeOayDpQMKWrprzquXJGtl3FdPmWfso=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ANN5E8V40d4ckXAoI9PPRqAr+Dw6LIZrftTZKdb9AI+Rnn/t5CUekFmFFWFqDyr+9jaFTxq5stEJCGv1eW4Zjj6HW7y7Gzhd4FcDyX7o01TkXycjj5IigzqhVGpY2whI3sLeGPZLbmjSlSftgd7+hyyYRxXJ8stZUqcAq7CkHgw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=j+wf9Fc2; arc=none smtp.client-ip=198.175.65.12
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757091117; x=1788627117;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Q2NvVrGEL+0/GeOayDpQMKWrprzquXJGtl3FdPmWfso=;
+  b=j+wf9Fc2F/N9nBNlQdcqVmrgqCbMpDpKt1E17ZLzNDlKxbLlMo62Evb9
+   3NTqe7g3LL1UDsVsHqgsWrBJR2ya9TPv8Kflqi7aMxQjDtU+0qVixjgpN
+   Fri/fdzGoZ3D06vIGYqodKZI4HK4PfWfvLXTIdYgrFBJ3LL2U2aGo9Pbx
+   /m7DEQQNmGON0UwQUwCEoXWiTjc5oMP1L3QbbTsWXo+kJhTBG4iPxrOtL
+   Z0X28Ggt8nG23UrmJfaeD3AOHjfKeDZjcqZKIIGy1ZY8V19TIA8j4QLQR
+   J2X65iWvsJogxQVP4ELovNyMgFmfK0agKuNKR0cXs44rnGRUcXKA0A74E
+   g==;
+X-CSE-ConnectionGUID: vgRfJicaTmeAKNUoh9Pvtw==
+X-CSE-MsgGUID: 6mLxlJ9KTYWevXJ7+2qlAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70873803"
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
+   d="scan'208";a="70873803"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 09:51:57 -0700
+X-CSE-ConnectionGUID: dE/Fp5RbQ8uehYSfrW9X0A==
+X-CSE-MsgGUID: RulAsFpER2Wi6WqCD7ni9w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
+   d="scan'208";a="177422147"
+Received: from smile.fi.intel.com ([10.237.72.52])
+  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 09:51:53 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uuZfC-0000000BffY-2oy8;
+	Fri, 05 Sep 2025 19:51:50 +0300
+Date: Fri, 5 Sep 2025 19:51:50 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Jonathan Santos <Jonathan.Santos@analog.com>
+Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, lars@metafoo.de, jic23@kernel.org,
+	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
+Subject: Re: [PATCH v3 2/4] iio: adc: ad7768-1: introduce chip info for
+ future multidevice support
+Message-ID: <aLsVJraM57okkP1o@smile.fi.intel.com>
+References: <cover.1757001160.git.Jonathan.Santos@analog.com>
+ <098a8b2556ea95fdce5f81cbac98983f91ca1a9d.1757001160.git.Jonathan.Santos@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <098a8b2556ea95fdce5f81cbac98983f91ca1a9d.1757001160.git.Jonathan.Santos@analog.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
+
+On Fri, Sep 05, 2025 at 06:49:21AM -0300, Jonathan Santos wrote:
+> Add Chip info struct in SPI device to store channel information for
+> each supported part.
+
+...
+
+> +#define AD7768_CHAN(_idx, _msk_avail) { \
+
+I consider slightly better to read
+
+#define AD7768_CHAN(_idx, _msk_avail) \
+{ \
 
 
+> +	.type = IIO_VOLTAGE, \
+> +	.info_mask_separate_available = _msk_avail, \
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
+> +	.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE) | \
+
+> +			BIT(IIO_CHAN_INFO_LOW_PASS_FILTER_3DB_FREQUENCY) | \
+> +			BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), \
+
+In the original code below indentation was not broken.
 
 
+> +	.info_mask_shared_by_type_available = BIT(IIO_CHAN_INFO_OVERSAMPLING_RATIO), \
+> +	.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> +	.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_SAMP_FREQ), \
+> +	.ext_info = ad7768_ext_info, \
+> +	.indexed = 1, \
+> +	.channel = _idx, \
+> +	.scan_index = _idx, \
+> +	.has_ext_scan_type = 1, \
+> +	.ext_scan_type = ad7768_scan_type, \
+> +	.num_ext_scan_type = ARRAY_SIZE(ad7768_scan_type), \
+> +}
+
+...
+
+> +	st->chip = spi_get_device_match_data(spi);
+
+> +	if (!st->chip)
+> +		return dev_err_probe(&spi->dev, -ENODEV,
+> +				     "Could not find chip info data\n");
+
+Might be useful in some cases, but I don't see its value. Just always provide
+a chip_info and no need to care about this. Esp. this just shows that it's
+mandatory, but if absent, it will crash on the following line. Since it's about
+probe, one will notice it immediately, otherwise it will mean a submission of
+the code that has never been tested.
+
+TL;DR: just drop this check.
+
+> +	indio_dev->channels = st->chip->channel_spec;
 
 
-On Friday, September 5th, 2025 at 17:24, Rob Herring <robh@kernel.org> wrot=
-e:
+-- 
+With Best Regards,
+Andy Shevchenko
 
->=20
->=20
-> On Fri, Sep 05, 2025 at 09:59:30AM +0200, Aleksandrs Vinarskis wrote:
->=20
-> > A number of existing schemas use 'leds' property to provide
-> > phandle-array of LED(s) to the consumer. Additionally, with the
-> > upcoming privacy-led support in device-tree, v4l2 subnode could be a
-> > LED consumer, meaning that all camera sensors should support 'leds'
-> > and 'led-names' property via common 'video-interface-devices.yaml'.
-> >=20
-> > To avoid dublication, commonize 'leds' property from existing schemas
-> > to newly introduced 'led-consumer.yaml'.
-> >=20
-> > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
-> > ---
-> > .../devicetree/bindings/leds/backlight/led-backlight.yaml | 7 +------
-> > Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml | 6 +=
------
-> > .../devicetree/bindings/media/video-interface-devices.yaml | 3 +++
-> > 3 files changed, 5 insertions(+), 11 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backl=
-ight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.=
-yaml
-> > index f5554da6bc6c73e94c4a2c32b150b28351b25f16..5e19b4376715eeb05cb7892=
-55db209ed27f8822f 100644
-> > --- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.ya=
-ml
-> > +++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.ya=
-ml
-> > @@ -18,17 +18,12 @@ description:
-> >=20
-> > allOf:
-> > - $ref: common.yaml#
-> > + - $ref: /schemas/leds/leds-consumer.yaml#
->=20
->=20
-> Drop.
->=20
-> > properties:
-> > compatible:
-> > const: led-backlight
-> >=20
-> > - leds:
-> > - description: A list of LED nodes
-> > - $ref: /schemas/types.yaml#/definitions/phandle-array
-> > - items:
-> > - maxItems: 1
->=20
->=20
-> You need to keep the property here:
->=20
-> leds: true
->=20
-> > -
-> > required:
-> > - compatible
-> > - leds
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicol=
-or.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> > index 8ed059a5a724f68389a1d0c4396c85b9ccb2d9af..b4f326e8822a3bf452b22f5=
-b9fa7189696f760a4 100644
-> > --- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
-> > @@ -17,16 +17,12 @@ properties:
-> > compatible:
-> > const: leds-group-multicolor
-> >=20
-> > - leds:
-> > - description:
-> > - An aray of monochromatic leds
-> > - $ref: /schemas/types.yaml#/definitions/phandle-array
-> > -
-> > required:
-> > - leds
-> >=20
-> > allOf:
-> > - $ref: leds-class-multicolor.yaml#
-> > + - $ref: /schemas/leds/leds-consumer.yaml#
->=20
->=20
->=20
-> Same comments in this one.
->=20
-> > unevaluatedProperties: false
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/media/video-interface-de=
-vices.yaml b/Documentation/devicetree/bindings/media/video-interface-device=
-s.yaml
-> > index cf7712ad297c01c946fa4dfdaf9a21646e125099..1e25cea0ff71da2cfd1c7c4=
-642713199f3542c0a 100644
-> > --- a/Documentation/devicetree/bindings/media/video-interface-devices.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/media/video-interface-devices.y=
-aml
-> > @@ -10,6 +10,9 @@ maintainers:
-> > - Jacopo Mondi jacopo@jmondi.org
-> > - Sakari Ailus sakari.ailus@linux.intel.com
-> >=20
-> > +allOf:
-> > + - $ref: /schemas/leds/leds-consumer.yaml#
->=20
->=20
-> This can be dropped. The user still has to define how many entries and
-> what the values of led-names are.
 
-Hmm, but where should it be added then? If I just drop it, MIPI camera sche=
-mas which are based on 'video-interface-devices.yaml' and have 'unevaluated=
-Properties: false' throw warnings because 'leds' was not expected. Includin=
-g the example in 'led-consumer.yaml' as found by your bot (because of patch=
- order your bot only run on 1/4, adding this very change fixes it).
-In this case, v4l2 subnode is the LED user, which is some camera. It seems =
-most/all of these cameras are based on this binding, so instead of adding n=
-ew led related properties to all of them, I thought this is a good common p=
-lace for it... Shall I add #entries and available options for 'led-names' h=
-ere to make it complete?
-
-Thanks,
-Alex
-
->=20
-> > +
-> > properties:
-> > flash-leds:
-> > $ref: /schemas/types.yaml#/definitions/phandle-array
-> >=20
-> > --
-> > 2.48.1
 
