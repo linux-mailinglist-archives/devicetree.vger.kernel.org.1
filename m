@@ -1,120 +1,171 @@
-Return-Path: <devicetree+bounces-213445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC025B456BD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:44:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F7DB456BF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:44:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBA4216F389
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:44:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 601963AFF02
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:44:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C059345738;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB13F3469E0;
 	Fri,  5 Sep 2025 11:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hDtYt328";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QRISs8Vq"
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="JmF/Scg+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0yH5OsCc";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="JmF/Scg+";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="0yH5OsCc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7429E29B8F5;
-	Fri,  5 Sep 2025 11:44:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 247533451DC
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 11:44:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757072646; cv=none; b=WbHBsFhLEo86u9CW9kl6WiOE4Y5SJLvbQ4wuDoZO2ikHmgnvHeYWHzcBNQR6VgmtmG31eOorNA1n4bCPQssIiKVD4aC1IlxZ9+nLTwTZG9CqZaPwfEMXBT5Yw76BlFeR39RrMs6xEgN8ur/fU+BGpXeCMGLKTK0Qs0c1Jkq31lI=
+	t=1757072646; cv=none; b=hB/ips00Br9sXgGJzznKI0XC24RnD/jn9DBVSXypBSbPkDbt3K1OgYHvcyu8rziCPjH8gJjFbW+9lylXuOi5gBveQ+6SGAU9HlMCFSGXlNOhI7ZAaGr75A6tquoUblCo4C42XtIJorDia1zCnD4QfkRTKzpdB68U15Qwx2hZKSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1757072646; c=relaxed/simple;
-	bh=YL6zKpPJxCVYaZ/oCgyC13gWf+2ueXc8Wnx9s5GwqNg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=W5J68/MbuyplUoJ3a9a2RzdZBg0Ak4WCQ3In0SAgklIyT2Wtd9c0YLv19GJLkHI4hqgvLnZvuZdVruxnd2eLrgkf3NYwsR6ek9RIkexc+zo/ipGT42hHNnRNNQzNHckQoV2kieLxg6vvxQ8OMT0WoGFCjc9XGmbpRZ1VQ36C08U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hDtYt328; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QRISs8Vq; arc=none smtp.client-ip=80.241.56.152
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	bh=A0JZNcP/l7j7461GpAtddsPVcHGBybyL7IER6rtJFgM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JWEG/9kvHSw6C2CHFzh3IAXBObjzY820rxBp8YxlQpxY3NgoQ9sGVqYBf9SsRe3un4e1CR8QMqsDUH0XGUxczRxSSnFmRdKlfTHOEaZAjxM9Yova+0m5APivRsg10l3cCzWAN++ye2cHYXsyLLYF0F7m2t9jnNTyRGoblIOt2pk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=JmF/Scg+; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=0yH5OsCc; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=JmF/Scg+; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=0yH5OsCc; arc=none smtp.client-ip=195.135.223.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(No client certificate requested)
-	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cJDyN5zBbz9ttf;
-	Fri,  5 Sep 2025 13:43:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757072636;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	by smtp-out1.suse.de (Postfix) with ESMTPS id C02154E440;
+	Fri,  5 Sep 2025 11:44:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1757072642; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=m2Dk4rL1vEqekVW1M8NvOkpFPyRNDxfwkBtohMi9iV8=;
-	b=hDtYt328Cp2I4nZ6kjdeQcmCPSRQZk2GSp2Shg7HuTdOGYNEvJVeoQCWf7py/A4e3QuGZS
-	95OW60JmBtsH5xGfLrX2FZaIrAYCJPFEKPZrUDb0ueWiScogsIozkUbAEzzpNAp4HSXasy
-	j3EGE1BfNFcOoZwsFlDjzNChwKqgsV3KonlWenVmlYtQYNDVoSj7ljy5v015MxeliJ7Nwt
-	GW5WsnvgNTpxXyjwk6soO5XuGsoefjJk4rhCtND+4oybSK8YyeT2Aym5qwx68YUS97s0Wc
-	5fSiBCVZeLrpR+z0iyjU9HMRKkrH+m08kpezA5vTb2RoagpOCNLcWlSfJTu21A==
-Message-ID: <0c45d71f-d187-47b7-bdc9-f146bf740330@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757072634;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	bh=uqGmq+/tciN/X02OS0kFJpbQdadqAWQTqIRmXPCqGYs=;
+	b=JmF/Scg+6OLJ+HjL08exUUQWkL3dkcCmpCHobuPze67W32iNvfeayZgBBtXwoTMTXnUUMo
+	vNUiih25jAU6ZH98n0cA/IOGTYXlr41QPRVNNZzMLv/u2tQXvuSduY+T1qRuA73udPwTSG
+	4wpqz2qqF1/LnDgYtVoP2vkDYG8sKwY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1757072642;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=m2Dk4rL1vEqekVW1M8NvOkpFPyRNDxfwkBtohMi9iV8=;
-	b=QRISs8Vq+IWIeJEJsW4Gmc2+Qbi+/h03SBpcZWneJ5hvJaJN9STF1XVLavbEhRrgPHaAS2
-	ZKJnoFFi6HF68Gyrz6Lu4xD9AvESYdPmvz+dSE/iaeMsHt3wawqhu9kOXhexW2kzT/Whti
-	gY0xFKOD/Euj0b8S0cFLdwdDmnMpRQMHiND/3MLR1qdCgV97PLOBBxpD3ZwvCsce4DUFPe
-	pWU//LwHD5QPjY3YAO9uV82rvKOg7smle787kR33R5MUfedFjEA1MKxkc2KO/mtwwgc1CI
-	fgSCOxzkUfC971lQOSoGoTTXszSf3/kdgXz/8yLwj0z9qZaYrNtmq7zhMRWtzg==
-Date: Fri, 5 Sep 2025 13:43:52 +0200
+	bh=uqGmq+/tciN/X02OS0kFJpbQdadqAWQTqIRmXPCqGYs=;
+	b=0yH5OsCcQHpkeCegKTHMMsW+mYK9nyzTahKp7a72BZqvHrUFMStoTYENaVX32I4v5RtZma
+	OtRxu4qlxiskNrBQ==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+	t=1757072642; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uqGmq+/tciN/X02OS0kFJpbQdadqAWQTqIRmXPCqGYs=;
+	b=JmF/Scg+6OLJ+HjL08exUUQWkL3dkcCmpCHobuPze67W32iNvfeayZgBBtXwoTMTXnUUMo
+	vNUiih25jAU6ZH98n0cA/IOGTYXlr41QPRVNNZzMLv/u2tQXvuSduY+T1qRuA73udPwTSG
+	4wpqz2qqF1/LnDgYtVoP2vkDYG8sKwY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+	s=susede2_ed25519; t=1757072642;
+	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+	 mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uqGmq+/tciN/X02OS0kFJpbQdadqAWQTqIRmXPCqGYs=;
+	b=0yH5OsCcQHpkeCegKTHMMsW+mYK9nyzTahKp7a72BZqvHrUFMStoTYENaVX32I4v5RtZma
+	OtRxu4qlxiskNrBQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9A665139B9;
+	Fri,  5 Sep 2025 11:44:01 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+	by imap1.dmz-prg2.suse.org with ESMTPSA
+	id 1qPKIgHNumgiVQAAD6G6ig
+	(envelope-from <svarbanov@suse.de>); Fri, 05 Sep 2025 11:44:01 +0000
+Message-ID: <8574e531-fc4d-4f36-886b-6e7fc0656da3@suse.de>
+Date: Fri, 5 Sep 2025 14:43:57 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v5 0/4] arm64: dts: renesas: sparrow-hawk: Add overlays
- for camera sensors
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
-References: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 0/5] dd ethernet support for RPi5
+To: Jakub Kicinski <kuba@kernel.org>,
+ Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Stanimir Varbanov <svarbanov@suse.de>, netdev@vger.kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rpi-kernel@lists.infradead.org,
+ Broadcom internal kernel review list
+ <bcm-kernel-feedback-list@broadcom.com>, Andrew Lunn
+ <andrew+netdev@lunn.ch>, "David S . Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Andrea della Porta <andrea.porta@suse.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>, Phil Elwell
+ <phil@raspberrypi.com>, Jonathan Bell <jonathan@raspberrypi.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+References: <20250822093440.53941-1-svarbanov@suse.de>
+ <06017779-f03b-4006-8902-f0eb66a1b1a1@broadcom.com>
+ <20250904184757.1f7fb839@kernel.org> <20250904184941.207518c8@kernel.org>
 Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From: Stanimir Varbanov <svarbanov@suse.de>
+In-Reply-To: <20250904184941.207518c8@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: hnk6dy4otdj5woua96a87iusce94d3ik
-X-MBO-RS-ID: 24efc126920a7df24bc
+X-Spamd-Result: default: False [-2.80 / 50.00];
+	BAYES_HAM(-3.00)[100.00%];
+	SUSPICIOUS_RECIPS(1.50)[];
+	NEURAL_HAM_LONG(-1.00)[-1.000];
+	NEURAL_HAM_SHORT(-0.20)[-1.000];
+	MIME_GOOD(-0.10)[text/plain];
+	TO_MATCH_ENVRCPT_ALL(0.00)[];
+	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	RCPT_COUNT_TWELVE(0.00)[22];
+	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_ALL(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_EQ_ENVFROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	TAGGED_RCPT(0.00)[dt,netdev];
+	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[imap1.dmz-prg2.suse.org:helo,suse.de:mid]
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Spam-Score: -2.80
 
-On 9/5/25 10:40 AM, Niklas Söderlund wrote:
-> Hello,
-> 
-> This series adds a couple of overlays to verify the two CSI-2 busses
-> exposed on the V4H Sparrow Hawk board. The two busses are exposed on two
-> connectors labeled J1 and J2 on the board.
-> 
-> The first set adds overlays for the IMX219 camera sensor, one for each
-> connector (patch 1/4 and 2/4). A Raspberry Pi Camera Module 2 have been
-> used to verify the proper operation of the overlays.
-> 
-> The second sets adds overlays for the IMX462 camera sensors, also one
-> for each connector (patch 4/5 and 4/4). A DFM 36SX462-ML camera module
-> have been used to verify the proper operation of the overlays.
-> 
-> The reason two sets of overlays are needed is that the IMX219 uses
-> 2-lanes CSI-2 D-PHY bus, while the IMX462 uses a 4-lane CSI-2 D-PHY bus.
-> To be able to properly test both situations on the board each sensor
-> needs to be able to connected to each of the two external busses.
-> 
-> Obviously only one sensor can be connected to J1, and one to J2 at any
-> given time.
-> 
-> See individual patches for changelog.
-Series
+Hi Jacub,
 
-Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+On 9/5/25 4:49 AM, Jakub Kicinski wrote:
+> On Thu, 4 Sep 2025 18:47:57 -0700 Jakub Kicinski wrote:
+>>> netdev maintainers, I took patches 4 and 5 through the Broadcom ARM SoC 
+>>> tree, please take patches 1 through 3 inclusive, or let me know if I 
+>>> should take patch 2 as well.  
+>>
+>> Thanks for the heads up! Let me take patch 3 right now.
+> 
+> s/patch 3/patch 2/
+> 
+>> I'm a bit unclear on where we landed with the parallel efforts to add
+>> the >32b address support :(
+> 
 
-Thanks !
+If you talk about 1/5 from this series, you can ignore it for now. I'll
+monitor the fixes series from Théo Lebrun and will resend it if needed.
+
+regards,
+~Stan
 
