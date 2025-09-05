@@ -1,155 +1,113 @@
-Return-Path: <devicetree+bounces-213709-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213710-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA4D0B46511
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:58:55 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCFEEB4652E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:07:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3F637A4903E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:58:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B23781CC7CF4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD0142E11D5;
-	Fri,  5 Sep 2025 20:58:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520792EC081;
+	Fri,  5 Sep 2025 21:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="VO3ut7AQ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ec9Z9Z+L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9B772E54A9
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 20:58:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84E826B764;
+	Fri,  5 Sep 2025 21:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757105926; cv=none; b=nElNeA+7qJVmSrs68cbmuGhYGy1YY2Vn0LZgcwx+1X+aEFWxmF7eMJS3fhKV6khuX/gFNiU9uNbk97c5tK0oKvq5iisIFC6r9y8g3FWXklNdcDoO4MnPxVeVfa2usXBBcIW3VSn2Ux461Y+wa6Q4x/jiJlKam/WP4QHvzhhfCmU=
+	t=1757106468; cv=none; b=VigFRnzloMyC4FSanf4tWIKnOnwlxvLSjLCQSCHSyvQS69GYf86HljPjKtKBVrkrr6cd7DDDHXGFPpuP2nhQvQ4739nAjsyrDJ+vql8+sUuRRSGSmyLGzRSykv0tO9mNT2aLVjwGl28o5nn4JL4rt1tpoR+cSi+rbkG38tPXWGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757105926; c=relaxed/simple;
-	bh=JE+vWgl+J/mXD3WaYWUbbwLtIN+kep2SQRmhl33Q8hA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NoYlruzaqirII56dkXKXYOnEYw2rqUPrCXHa1BSFo0+jpcp85s7VhYU2d0lxq+hv/8u98QA6sMKM/tUmOMTCE3y4HS8kkvpA12f2qWqbl6LcA496h/koohupPQaqEu9FTi2gwER602tt7jtnJccsz3CKHgUaucA0ejQz19WkjB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=VO3ut7AQ; arc=none smtp.client-ip=209.85.221.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-3e4aeaa57b9so672356f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 13:58:44 -0700 (PDT)
+	s=arc-20240116; t=1757106468; c=relaxed/simple;
+	bh=3843Vv8j3E5LWD3oStta9RcM6gyBK20cJn58+zi7pbA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WE/KPAaIsQUtL39+r9cODrCS/NfgBiVrt7vSuY3fQBsvHTD6KmS1uCKHMdhQowfXiIV02M1qgvaXz19DoQvFbXafo4WUxhWTykgi7omaGpiTE/TRfXaI0sR/XQM7c5hR/TpIj8Ea6/qN2+SVsm4R2wZluakE1H10GQsdyxNICWs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ec9Z9Z+L; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-24af8cd99ddso33271255ad.0;
+        Fri, 05 Sep 2025 14:07:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757105923; x=1757710723; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SJ3qhvGkvWjmzTYnbRf6LUTpVwuX2R1TomdWWbhzJ/U=;
-        b=VO3ut7AQzqlyDgwT5nM6DYu+KEoO7CLp6zLxYXqpb3Ypg6BpnjAVWsnicIB+okfcns
-         Jia1ooUzBsLhOBqEL+xUelkaA37zpOqluWKj6Q4bWRjTlMBtK7iTuSpVuI5ghjKmGH7V
-         PMCAXTFEa2tjlqe6R3x1NRBmcsvIiM+xY7XW1TBd8uSbOvIz6zPBZA+89GyLgxF5rky+
-         +I7ganOLWUZbgrAIKOL5UWOfv49KX4pYbjt4UoROhcrQ89eQCoaxKvWx+AdW7ndwcr0Q
-         ryMSEgDIer0H1Trg7EEgZI7GjtvkDi4B2t+WMaDocBaXe7Fz/Na397kRmz7j5pVUyXI7
-         ZW8g==
+        d=gmail.com; s=20230601; t=1757106466; x=1757711266; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1OraY1KDXG5tLpby1/MhWp3WoQzDbT9BWKJqTltJE2A=;
+        b=Ec9Z9Z+LbuapUdDoYXfnqUM6p0W9JlcMSre+8MnlE1jdagKpb9qpJNFW4FezL63k6h
+         OSpni9nUXMJAw+d0ZhdfDEmpQsBFyRdWzEx650Ajp8HFslSso7YBEtkY1GU+nNan5jHK
+         ZZtsMZ30hDo67QYC/f2oTBk1d0DeajEP/fk/ATJAk4iVKjjQLWi2+wpfehKKIQEefzhw
+         5cEwnhVEcCD39r0oiAPglqxIyMz+dkLBA9w1hKaewrOFZTN1wyrEJ65XIG5CS/6r1IL7
+         zX2gp4fC2H3HCmFOXw2iNQahRd7G37qR1kWIDF/S110fMLgSUwaz43EWcGQSlyB/HMh/
+         jBdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757105923; x=1757710723;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SJ3qhvGkvWjmzTYnbRf6LUTpVwuX2R1TomdWWbhzJ/U=;
-        b=p0U0wfo6iuf4Hf9M/OnHme47yy8nivEQcPwNDLl7g5NEdqaeWPAeM4nVt4tNtN8NST
-         9h+rDk9uk5LL6OZFELyC+M5Hlm6rNn4RtPsXEyhkfH6uTBDFqbZoGyWD8NypFaL4VjX+
-         99nUQkk7CvRmmrfO1Wl3iZlqtaruTOHRiULehFgrOFuhUgtXt0FFRVKZXn3qmkRKxzdy
-         mHKJeWYnqYW2BBF869TZUqNR/tQ8SsCo4XYiku64PgKAjBgVqCpoHpGd6lbCYJ2eE/9z
-         1bJiHRCL5g34bZ79s5gmzzt0QyWcdOQQ1e/eYSQfV4PFrPxC8tw++OyGKRbyMbO8Lxcs
-         wCpg==
-X-Forwarded-Encrypted: i=1; AJvYcCW4IRL9HfLHmN5+gELv/68aII9gpKXCdSh6PWeN+P4hqWwUF1Xacm86Zp2rC86a85M9saje1ckPtwYP@vger.kernel.org
-X-Gm-Message-State: AOJu0YzQnsr+aYjAUsJWaeDxj9qjcbhbtQ5FjkhY0o0lpvZUV5VW1ZaJ
-	IyG/F5WYThM9kQUCx6cqIzaScCNVOPMzZuMLXWhea7DhzAIUE2NNvHZXGKwPS3Ud0GA=
-X-Gm-Gg: ASbGncvl9QTOQWMQi9Q5nJFPd6XQk431BhsUJC8hr1SGVoxn8ucovs4+3ZQhNwFBgwK
-	nf1e204474W7h0/Pm3w0Ywpx/ox6b5sAwV6xayaYO4Aw8kSsSSLPRi4Il30C7AK7rExq2YiFSGc
-	0wOcB0+3yl+idzynXGrO/G7l5xckstHRyBvvXQ3dVFXWqeVn8O1CBhv7trBQByGMHWmxCW5OndM
-	BdukmBHXr0I8JOErMwZUdO9cpcLLYvvy2vAsssyMq7m3jmFHp2s6lq6r3/rthksxS4oQ3UwVd0o
-	1JrWH+rz9M+48caQCCrTss0LqoGYUkzd3Phq1qj0giBrvPyNjgY6Z+pxJJljE7E9x8LT0ghUbFe
-	KWpnFYVpOm4DJLm2wiOjZPCkY1Yjo4KMja26mBYpjUI37CIKMWEb7tDcfbu+QupbtpW1OibLLq4
-	U2wPPGmO7/Ltio
-X-Google-Smtp-Source: AGHT+IELX1IohyCRbd4MOAxXRTUwh2SHXc2VAXJB7Lr05lK/1BKEmFD2R34ayIj0GxcCWJr9wAhxjw==
-X-Received: by 2002:a05:6000:268a:b0:3d4:2f8c:1d37 with SMTP id ffacd0b85a97d-3d42f8c2014mr20060507f8f.26.1757105923080;
-        Fri, 05 Sep 2025 13:58:43 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:43b0:7b3b:e0d9:6992? ([2a05:6e02:1041:c10:43b0:7b3b:e0d9:6992])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45dcfa3ec60sm95019335e9.15.2025.09.05.13.58.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Sep 2025 13:58:42 -0700 (PDT)
-Message-ID: <23b80d52-6149-483b-a159-276dd00d12cd@linaro.org>
-Date: Fri, 5 Sep 2025 22:58:41 +0200
+        d=1e100.net; s=20230601; t=1757106466; x=1757711266;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1OraY1KDXG5tLpby1/MhWp3WoQzDbT9BWKJqTltJE2A=;
+        b=pkucLRK1/rV3LDJW2CbIIqeWlRAtL9jLCIAiuyyEc3cKUl5vfibg8NRhLj95mOiZ0j
+         cnts6j9j/qPkkvQpVjyWtFsRViqT2EcvNyL+r0AiH0ug8DiCnFpm02elY5c4bjHlUIq0
+         aHnJtYBeyhGj6o+kun6Zsu4ivAoaNTtg5QeSbve2ZOBO6+Jo/dR9WRCsGQysYwTekPU6
+         BwHJ80yn9ao8IwJXgM7mIYCxaEEUDRDcDWFxotRqgKBNj+CVycZUIrY11Xnhj7oxtnIA
+         Slg37PFjJnnqfdZDytGkBmE4m2O5E1bqtnkPf/4wsU2576O2BUsV48vpZnvlCie3iu8p
+         FTSg==
+X-Forwarded-Encrypted: i=1; AJvYcCW1zbpT9OB9Dmsb+d+6o6rDxAEFwzUxV/apy6YuNvFwDeLgezk2nwkBhP/sEHgn0x4ITKBKeaPST++6@vger.kernel.org, AJvYcCWjPcmR9IzDouoiyY1DnnSqq0XCzPCQjyXjF8k3qKMh13/QHSFG6WnjAu4ONr5pwAv/QafWGg2ngKw15jmYdY0YDik=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyFpcmLmsDOa0LAXmfn+KqPM1Vp7JB9sVwynVg8z0kQX68o7eFT
+	hggb0AozE7jHnSLqDEGIl1ta9r4OuWo00Voj7uXDJ7jVJmSxjsYAAPAZ
+X-Gm-Gg: ASbGncsSLVQapmbWIGW2WO18jq6jak1JS81EMKeZW5kH6/DQV7TWCItCkH8a/97CBjh
+	iuJ4aupUwU7EVLYrXHfUiqOyfB1P3oa2nuJUeNPYuJ0TVZF8hhumihDKjejmELU39ysGXeZxiE1
+	0HX2pNPEL8M6MzvAuTi0uTkP3/1f4iO9+WvwXfl0/bEOLcwfqD/34dheLaD7YW/3AuhFggbncY0
+	Zqu2tShYXpwfj+JDD+s0Kj1S4plM/itnrnjGXcAMiZXUPqdVtO6Cwx0o+LbOe5P2y693PtPwGqT
+	5OdLzh6z/aqhhpMPxLqk2KmJGMq9ZJaGC3tYF3/HBCUcI8RL4B48al1AFzixq9QwaKrK1SBRhnN
+	eONMev8YAkIJRnbok0dwTuCJDMm7Jhv89Hxn8UgTdWa8UPA==
+X-Google-Smtp-Source: AGHT+IGS+ZDno32/glJ5EVArsVb5yN5iCNRV9PGoMVaxuwRlAOth3oklD9GFJuwyHCCgQsE7qY0Ysg==
+X-Received: by 2002:a17:903:2b03:b0:234:b743:c7a4 with SMTP id d9443c01a7336-25171cbfd83mr916675ad.38.1757106466161;
+        Fri, 05 Sep 2025 14:07:46 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24ccfc56e7esm46452545ad.58.2025.09.05.14.07.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Sep 2025 14:07:45 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Fri, 5 Sep 2025 14:07:44 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-hwmon@vger.kernel.org, Akinobu Mita <akinobu.mita@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document after
+ shutdown fan settings
+Message-ID: <7c2b7c73-1955-497b-81f3-3b31c1f1f2f7@roeck-us.net>
+References: <20250904202157.170600-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
- <noname.nuno@gmail.com>, jic23@kernel.org, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
-Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
- <20250903102756.1748596-3-daniel.lezcano@linaro.org>
- <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
- <0bfce1eb-69f1-4dae-b461-234eb98ffce1@linaro.org>
- <a3373804-08a4-4526-a432-c21a74ea3d6b@baylibre.com>
- <edc8e024-e425-49de-bfa2-44218fe72e26@linaro.org>
- <6b8cd005-b04c-4dd7-abf7-5a51319a5f0a@baylibre.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <6b8cd005-b04c-4dd7-abf7-5a51319a5f0a@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904202157.170600-1-marek.vasut+renesas@mailbox.org>
 
-On 05/09/2025 17:25, David Lechner wrote:
-> On 9/5/25 4:44 AM, Daniel Lezcano wrote:
->> On 04/09/2025 19:49, David Lechner wrote:
->>> On 9/4/25 12:40 PM, Daniel Lezcano wrote:
-
-[ ... ]
-
-> Taking a step back, what sort of real-world uses cases do you need to support?
-> Or are you just trying to implement everything that the ADC can do? The latter
-> can be a bit risky because you might end making something where you can't do
-> a buffered read and a single channel read at the same time, but later find out
-> you have a real-world application that needs to do this.
+On Thu, Sep 04, 2025 at 10:21:09PM +0200, Marek Vasut wrote:
+> Document fan-shutdown-percent property, used to describe fan RPM in percent
+> set during shutdown. This is used to keep the fan running at fixed RPM after
+> the kernel shut down, which is useful on hardware that does keep heating
+> itself even after the kernel did shut down, for example from some sort of
+> management core.
 > 
-> It looks like it would be possible to implement buffered reads in lots of ways.
-> IIO devices can have more than one buffer per device so we can add more in the
-> future if we need to. So I would just drop the DMA part of the implementation
-> for now and implement the basic triggered buffer using MCR[NSTART] and ECH
-> (End of Chain) interrupt request and just reading data from the ICDR registers.
-> 
-> I would wait to have a real-world application that requires DMA to decide the
-> best way to implement that. There are lots of possibilities, like does it need
-> an external trigger or is continuous mode good enough? Does it need to be cyclic
-> (something the IIO subsystem doesn't really support yet) or not. Is exact sample
-> timing important or do we just need a big buffer? These questions we can't
-> really answer without a specific application to use it.
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-In the case of this IP, the use cases are in the automotive context. The 
-system running on the APU is supposed to monitor at high rate (or not) 
-the different channels which can be connected to any device the 
-integrator choose to use.
+Applied.
 
-For this reason, the driver should be able to support the different 
-modes because the integrator of the car computer can decide to monitor 
-the devices connected to the different channels differently.
-
-Said differently, we need these modes because the capture depends on 
-what the integrator decide to connect to the different channels. That 
-could be a real high rate sampling, or triggered with a dedicated global 
-timer on the system or just read the value at a low rate. We just know 
-all these use cases exist.
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Guenter
 
