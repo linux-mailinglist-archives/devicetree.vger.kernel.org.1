@@ -1,340 +1,328 @@
-Return-Path: <devicetree+bounces-213345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0DA2B45298
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:10:08 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E7A5B452C3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:15:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C1B2518861E4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:10:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B095CA64658
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:14:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E4F930F557;
-	Fri,  5 Sep 2025 09:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JZG5blmF"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 970313126DB;
+	Fri,  5 Sep 2025 09:11:12 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8B028A704;
-	Fri,  5 Sep 2025 09:06:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5445227F727;
+	Fri,  5 Sep 2025 09:11:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757063206; cv=none; b=MACspXxJKhJYTtGhp0OG7adgLIZWgfYe6BHhs4nFskNscRe3q53CaoX/F54Jp5MuFU9OOcf6ucyEec9ExPEFkT5wcMkLPHbI/OueRd6QM0sv1oO/2p1IyhuTus8wOCc3s9BPNcW3CpaKrLmsV5kRM0OViID+tuMnVoxWbhj8IBI=
+	t=1757063472; cv=none; b=V2vECOl96TJVi8LjMPx1QkYYpZ35WHDxYdAXhfkKfpPVkwD28Wob9yCj4ms2hWwWcJ4sYmHm7H2UbFy9LQoSxFH9FtuCbHejxGLoxX5wLksLYxeQvMMGCepgPo4rLb3+SFMpyMrbmC8hvIw3WdQYY+fbH0MrFsRV+ALMnBQiI2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757063206; c=relaxed/simple;
-	bh=Nf4BNlj92A6Gq2vl04S2lCAj8pMT1QldYLkShSHu178=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ofrnjJg9D/o3NwZOvGH5Aq725uyhXDrP+0v2xZdjeiEKB6Hauzhyu5d+P4VLxLP0JYH6WOlg3Csttmh11ayq/G6DhSD1g35Doibhg2SfjqLYhjaiMFVNNvuIV9pNOK6pwHUt97rXlazVbuooECcqq0bLTVk4OGVCbhz87Ucja0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JZG5blmF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 05E21C4CEFB;
-	Fri,  5 Sep 2025 09:06:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757063206;
-	bh=Nf4BNlj92A6Gq2vl04S2lCAj8pMT1QldYLkShSHu178=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=JZG5blmFIaQPAQuViZoIXaY17JqFnqoY8c2N+iP+QeRohxocLqKH87oqTW9nbwPmD
-	 KWUwdhbFbpB0jpyfHMKwnmCG0HaAG9j33NBFA1gIB4zEcYDxLeOc5u86px77UNhxbc
-	 o8onfsUJZHn3fctc5XqZ454u3DQQhIFG0g5dIn7oITXlPcgDRKtkwc/bRT2kiL0Jrl
-	 l9jsA8kPH8lUCPtt4jdpYPJx6QpqPjDDtlzlwO+JYGHTu3jyhv158qRiLytrvTPkqR
-	 JoOvle+gBwCMbeQqEPuQ0tzalH/wHj5VW97cW5YYqqzDn1t12pVMN23zmS0/mMSkeM
-	 ocgzayxkwtTZA==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id EBC38CA0FED;
-	Fri,  5 Sep 2025 09:06:45 +0000 (UTC)
-From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
-Date: Fri, 05 Sep 2025 17:06:39 +0800
-Subject: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
+	s=arc-20240116; t=1757063472; c=relaxed/simple;
+	bh=fqcpDordpscDJwIcHZdzZ8Goz3yU6gxPtWg2vaIStQo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mprd+9WIetJkd6gKc7vxxevZ9Y1hhjo41q1L4GSR1/1bynd3PYdYc1+6GNDmD2Ax1gErWYeCf5Mhal0EqalX73mSxGpU0nE1Old4QKeLaccz86xB9hwLdK+1gI4Lr8QZvwzvovPEoH0TN3HuGsRKW6wEVLEekvmFzB35nIkZZd0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 44847152B;
+	Fri,  5 Sep 2025 02:11:01 -0700 (PDT)
+Received: from [10.1.196.42] (eglon.cambridge.arm.com [10.1.196.42])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id ACD343F694;
+	Fri,  5 Sep 2025 02:11:04 -0700 (PDT)
+Message-ID: <96827d9f-cea8-4ca3-b709-1ae09e3d901c@arm.com>
+Date: Fri, 5 Sep 2025 10:11:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 09/33] dt-bindings: arm: Add MPAM MSC binding
+To: Dave Martin <Dave.Martin@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+ D Scott Phillips OS <scott@os.amperecomputing.com>,
+ carl@os.amperecomputing.com, lcherian@marvell.com,
+ bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+ baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+ Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+ dfustini@baylibre.com, amitsinght@marvell.com,
+ David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
+ Koba Ko <kobak@nvidia.com>, Shanker Donthineni <sdonthineni@nvidia.com>,
+ fenghuay@nvidia.com, baisheng.gao@unisoc.com,
+ Jonathan Cameron <jonathan.cameron@huawei.com>, Rob Herring
+ <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+ Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
+ Will Deacon <will@kernel.org>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Danilo Krummrich <dakr@kernel.org>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-10-james.morse@arm.com>
+ <aK8w1L3gHBk2Fz1k@e133380.arm.com>
+Content-Language: en-GB
+From: James Morse <james.morse@arm.com>
+In-Reply-To: <aK8w1L3gHBk2Fz1k@e133380.arm.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
-References: <20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com>
-In-Reply-To: <20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com>
-To: Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
- linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>
-X-Mailer: b4 0.14.1
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757063204; l=7141;
- i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
- bh=kLmXzk491eV2x81ro4ZED7Iyt5KXxTTTzbVBOuqxLYA=;
- b=QmC/l58/sloPfIy5YK9Z1FVq75GuUgALvxzAREqNgwP7JwIOzanXydlUyAE4u1or3EOQq5eVN
- MpGpDf+BwBiD0KSvE5uuhqf0aHUOGVezhejOxbUq2YEBTrSd1PA2etz
-X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
- pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
-X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
- auth_id=203
-X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
-Reply-To: chuan.liu@amlogic.com
 
-From: Chuan Liu <chuan.liu@amlogic.com>
+Hi Dave,
 
-Add video encoder, demodulator and CVBS clocks.
+On 27/08/2025 17:22, Dave Martin wrote:
+> On Fri, Aug 22, 2025 at 03:29:50PM +0000, James Morse wrote:
+>> From: Rob Herring <robh@kernel.org>
+>>
+>> The binding is designed around the assumption that an MSC will be a
+>> sub-block of something else such as a memory controller, cache controller,
+>> or IOMMU. However, it's certainly possible a design does not have that
+>> association or has a mixture of both, so the binding illustrates how we can
+>> support that with RIS child nodes.
+>>
+>> A key part of MPAM is we need to know about all of the MSCs in the system
+>> before it can be enabled. This drives the need for the genericish
+>> 'arm,mpam-msc' compatible. Though we can't assume an MSC is accessible
+>> until a h/w specific driver potentially enables the h/w.
 
-Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
----
- drivers/clk/meson/s4-peripherals.c | 203 +++++++++++++++++++++++++++++++++++++
- 1 file changed, 203 insertions(+)
+> I'll leave detailed review to other people for now, since I'm not so up
+> to speed on all things DT.
 
-diff --git a/drivers/clk/meson/s4-peripherals.c b/drivers/clk/meson/s4-peripherals.c
-index 6d69b132d1e1..c0f877ce0993 100644
---- a/drivers/clk/meson/s4-peripherals.c
-+++ b/drivers/clk/meson/s4-peripherals.c
-@@ -44,6 +44,7 @@
- #define CLKCTRL_VDIN_MEAS_CLK_CTRL                 0x0f8
- #define CLKCTRL_VAPBCLK_CTRL                       0x0fc
- #define CLKCTRL_HDCP22_CTRL                        0x100
-+#define CLKCTRL_CDAC_CLK_CTRL                      0x108
- #define CLKCTRL_VDEC_CLK_CTRL                      0x140
- #define CLKCTRL_VDEC2_CLK_CTRL                     0x144
- #define CLKCTRL_VDEC3_CLK_CTRL                     0x148
-@@ -1126,6 +1127,22 @@ static struct clk_regmap s4_cts_encp_sel = {
- 	},
- };
- 
-+static struct clk_regmap s4_cts_encl_sel = {
-+	.data = &(struct clk_regmap_mux_data){
-+		.offset = CLKCTRL_VIID_CLK_DIV,
-+		.mask = 0xf,
-+		.shift = 12,
-+		.table = mux_table_cts_sel,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cts_encl_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_hws = s4_cts_parent_hws,
-+		.num_parents = ARRAY_SIZE(s4_cts_parent_hws),
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- static struct clk_regmap s4_cts_vdac_sel = {
- 	.data = &(struct clk_regmap_mux_data){
- 		.offset = CLKCTRL_VIID_CLK_DIV,
-@@ -1205,6 +1222,22 @@ static struct clk_regmap s4_cts_encp = {
- 	},
- };
- 
-+static struct clk_regmap s4_cts_encl = {
-+	.data = &(struct clk_regmap_gate_data){
-+		.offset = CLKCTRL_VID_CLK_CTRL2,
-+		.bit_idx = 3,
-+	},
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "cts_encl",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_cts_encl_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- static struct clk_regmap s4_cts_vdac = {
- 	.data = &(struct clk_regmap_gate_data){
- 		.offset = CLKCTRL_VID_CLK_CTRL2,
-@@ -2735,6 +2768,165 @@ static struct clk_regmap s4_gen_clk = {
- 	},
- };
- 
-+/* CVBS DAC */
-+static struct clk_regmap s4_cdac_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CLKCTRL_CDAC_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 16,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cdac_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .fw_name = "xtal", },
-+			{ .fw_name = "fclk_div5" },
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
-+static struct clk_regmap s4_cdac_div = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = CLKCTRL_CDAC_CLK_CTRL,
-+		.shift = 0,
-+		.width = 16,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cdac_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_cdac_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s4_cdac = {
-+	.data = &(struct clk_regmap_gate_data) {
-+		.offset = CLKCTRL_CDAC_CLK_CTRL,
-+		.bit_idx = 20,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "cdac",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_cdac_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s4_demod_core_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.mask = 0x3,
-+		.shift = 9,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "demod_core_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .fw_name = "xtal" },
-+			{ .fw_name = "fclk_div7" },
-+			{ .fw_name = "fclk_div4" }
-+		},
-+		.num_parents = 3,
-+	},
-+};
-+
-+static struct clk_regmap s4_demod_core_div = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.shift = 0,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "demod_core_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_demod_core_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s4_demod_core = {
-+	.data = &(struct clk_regmap_gate_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.bit_idx = 8
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "demod_core",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_demod_core_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+/* CVBS ADC */
-+static struct clk_regmap s4_adc_extclk_in_sel = {
-+	.data = &(struct clk_regmap_mux_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.mask = 0x7,
-+		.shift = 25,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "adc_extclk_in_sel",
-+		.ops = &clk_regmap_mux_ops,
-+		.parent_data = (const struct clk_parent_data []) {
-+			{ .fw_name = "xtal" },
-+			{ .fw_name = "fclk_div4" },
-+			{ .fw_name = "fclk_div3" },
-+			{ .fw_name = "fclk_div5" },
-+			{ .fw_name = "fclk_div7" },
-+			{ .fw_name = "mpll2" },
-+			{ .fw_name = "gp0_pll" },
-+			{ .fw_name = "hifi_pll" }
-+		},
-+		.num_parents = 8,
-+	},
-+};
-+
-+static struct clk_regmap s4_adc_extclk_in_div = {
-+	.data = &(struct clk_regmap_div_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.shift = 16,
-+		.width = 7,
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "adc_extclk_in_div",
-+		.ops = &clk_regmap_divider_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_adc_extclk_in_sel.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
-+static struct clk_regmap s4_adc_extclk_in = {
-+	.data = &(struct clk_regmap_gate_data) {
-+		.offset = CLKCTRL_DEMOD_CLK_CTRL,
-+		.bit_idx = 24
-+	},
-+	.hw.init = &(struct clk_init_data){
-+		.name = "adc_extclk_in",
-+		.ops = &clk_regmap_gate_ops,
-+		.parent_hws = (const struct clk_hw *[]) {
-+			&s4_adc_extclk_in_div.hw
-+		},
-+		.num_parents = 1,
-+		.flags = CLK_SET_RATE_PARENT,
-+	},
-+};
-+
- static const struct clk_parent_data s4_pclk_parents = { .hw = &s4_sys_clk.hw };
- 
- #define S4_PCLK(_name, _reg, _bit, _flags) \
-@@ -3028,6 +3220,17 @@ static struct clk_hw *s4_peripherals_hw_clks[] = {
- 	[CLKID_HDCP22_SKPCLK_SEL]	= &s4_hdcp22_skpclk_sel.hw,
- 	[CLKID_HDCP22_SKPCLK_DIV]	= &s4_hdcp22_skpclk_div.hw,
- 	[CLKID_HDCP22_SKPCLK]		= &s4_hdcp22_skpclk.hw,
-+	[CLKID_CTS_ENCL_SEL]		= &s4_cts_encl_sel.hw,
-+	[CLKID_CTS_ENCL]		= &s4_cts_encl.hw,
-+	[CLKID_CDAC_SEL]		= &s4_cdac_sel.hw,
-+	[CLKID_CDAC_DIV]		= &s4_cdac_div.hw,
-+	[CLKID_CDAC]			= &s4_cdac.hw,
-+	[CLKID_DEMOD_CORE_SEL]		= &s4_demod_core_sel.hw,
-+	[CLKID_DEMOD_CORE_DIV]		= &s4_demod_core_div.hw,
-+	[CLKID_DEMOD_CORE]		= &s4_demod_core.hw,
-+	[CLKID_ADC_EXTCLK_IN_SEL]	= &s4_adc_extclk_in_sel.hw,
-+	[CLKID_ADC_EXTCLK_IN_DIV]	= &s4_adc_extclk_in_div.hw,
-+	[CLKID_ADC_EXTCLK_IN]		= &s4_adc_extclk_in.hw,
- };
- 
- static const struct meson_clkc_data s4_peripherals_clkc_data = {
-
--- 
-2.42.0
+Me neither!
 
 
+>> diff --git a/Documentation/devicetree/bindings/arm/arm,mpam-msc.yaml b/Documentation/devicetree/bindings/arm/arm,mpam-msc.yaml
+> 
+> [...]
+> 
+>> @@ -0,0 +1,200 @@
+> 
+> [...]
+> 
+>> +title: Arm Memory System Resource Partitioning and Monitoring (MPAM)
+>> +
+>> +description: |
+>> +  The Arm MPAM specification can be found here:
+>> +
+>> +  https://developer.arm.com/documentation/ddi0598/latest
+>> +
+>> +maintainers:
+>> +  - Rob Herring <robh@kernel.org>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: arm,mpam-msc                   # Further details are discoverable
+>> +      - const: arm,mpam-memory-controller-msc
+> 
+> There seems to be no clear statement about how these differ.
+
+It's a more-specific compatible, I think these are usually things like:
+| compatible = "acme,mega-cache-9000", "arm,mpam-msc"
+
+Where the driver can key errata-workaround on the vendor specific bit when needed.
+
+In this case - I think they're examples, but Rob said they were supposed to be in some
+other list of compatible. (not sure what/where that is)
+
+
+
+>> +  reg:
+>> +    maxItems: 1
+>> +    description: A memory region containing registers as defined in the MPAM
+>> +      specification.
+
+> There seems to be no handling of PCC-based MSCs here.  Should there be?
+
+That is newer than this document. On DT platforms PCC is spelled SCMI, and is
+discoverable. Andre P prototyped this, (patches in the extras branch) but no-one
+has come out of the woodwork to say they actually need it yet.
+
+ACPI PCC is a definite maybe.
+
+
+> If this can be added later in a backwards-compatible way, I guess
+> that's not a problem (and this is what compatible strings are for, if
+> all else fails.)
+> 
+> An explicit statement that PCC is not supported here might be helpful,
+> though.
+
+I'm pretty sure its discoverable on DT/SCMI platforms.
+
+
+>> +  interrupts:
+>> +    minItems: 1
+>> +    items:
+>> +      - description: error (optional)
+>> +      - description: overflow (optional, only for monitoring)
+>> +
+>> +  interrupt-names:
+>> +    oneOf:
+>> +      - items:
+>> +          - enum: [ error, overflow ]
+>> +      - items:
+>> +          - const: error
+>> +          - const: overflow
+> 
+> Yeugh.  Is this really the only way to say "one or both of foo"?
+> 
+> (I don't know the answer to this -- though I can believe that it's
+> true.  Perhaps just not describing this property is another option.
+> Many bindings seem not to bother.)
+> 
+>> +
+>> +  arm,not-ready-us:
+>> +    description: The maximum time in microseconds for monitoring data to be
+>> +      accurate after a settings change. For more information, see the
+>> +      Not-Ready (NRDY) bit description in the MPAM specification.
+>> +
+>> +  numa-node-id: true # see NUMA binding
+>> +
+>> +  '#address-cells':
+>> +    const: 1
+>> +
+>> +  '#size-cells':
+>> +    const: 0
+>> +
+>> +patternProperties:
+>> +  '^ris@[0-9a-f]$':
+> 
+> It this supposed to be '^ris@[0-9a-f]+$' ?
+
+Looks like yes. Fixed.
+
+
+> Currently MPAMF_IDR.RIS_MAX is only 4 bits in size and so cannot be
+> greater than 0xf.  But it is not inconceivable that a future revision
+> of the architecture might enable more -- and the are 4 RES0 bits
+> looming over the RIS_MAX field, just waiting to be used...
+> 
+> (In any case, it feels wrong to try to enforce numeric bounds with a
+> regex, even in the cases where it happens to work straightforwardly.)
+> 
+>> +    type: object
+>> +    additionalProperties: false
+>> +    description:
+>> +      RIS nodes for each RIS in an MSC. These nodes are required for each RIS
+> 
+> The architectural term is "resource instance", not "RIS".
+> 
+> But "RIS nodes" is fine for describing the DT nodes, since we can call
+> them what we like, and "ris" is widely used inside the MPAM driver.
+
+
+> People writing DTs should not need to be familiar with the driver's
+> internal naming conventions, though.
+
+What about the architecture's name for fields?
+This number goes in MPAMCFG_PART_SEL.RIS.
+
+
+> (There are other instances, but I won't comment on them all
+> individually.)
+> 
+>> +      implementing known MPAM controls
+>> +
+>> +    properties:
+>> +      compatible:
+>> +        enum:
+>> +            # Bulk storage for cache
+> 
+> Nit: What is "bulk storage"?
+
+Probably to distinguish it from other storage a cache may have, such as tag-ram.
+
+
+> The MPAM spec just refers to "cache" or "cache memory".
+
+I figure these are comments, I'll remove them...
+
+
+>> +          - arm,mpam-cache
+>> +            # Memory bandwidth
+>> +          - arm,mpam-memory
+>> +
+>> +      reg:
+>> +        minimum: 0
+>> +        maximum: 0xf
+>> +
+>> +      cpus:
+>> +        description:
+>> +          Phandle(s) to the CPU node(s) this RIS belongs to. By default, the parent
+>> +          device's affinity is used.
+>> +
+>> +      arm,mpam-device:
+>> +        $ref: /schemas/types.yaml#/definitions/phandle
+>> +        description:
+>> +          By default, the MPAM enabled device associated with a RIS is the MSC's
+> 
+> Associated how?
+
+By the phandle this is a description for.
+
+
+> Is this the device where the physical resources managed by the MSC are located?
+
+Yes,
+
+
+>> +          parent node. It is possible for each RIS to be associated with different
+>> +          devices in which case 'arm,mpam-device' should be used.
+> 
+> [...]
+> 
+>> +examples:
+>> +  - |
+>> +    L3: cache-controller@30000000 {
+>> +        compatible = "arm,dsu-l3-cache", "cache";
+>> +        cache-level = <3>;
+>> +        cache-unified;
+>> +
+>> +        ranges = <0x0 0x30000000 0x800000>;
+>> +        #address-cells = <1>;
+>> +        #size-cells = <1>;
+>> +
+>> +        msc@10000 {
+>> +            compatible = "arm,mpam-msc";
+>> +
+>> +            /* CPU affinity implied by parent cache node's  */
+> 
+> "node's" -> "nodes".
+> 
+> (or it this supposed to be in the singular -- i.e., the immediately
+> parent cache node only?)
+
+The MSC's parent cache node can be used to find the affinity.
+I'll make it singular and drop the 's
+
+
+> Anyway, it looks like this is commenting on the "reg" property, which
+> doesn't seem right.
+> 
+> Is this commnent supposed instead to explain the omission of the "cpus"
+> property?  If so, that should be made clearer.
+
+
+I'll move it to the end of the list of properties so it doesn't look like it belongs to
+the one below it.
+
+
+>> +            reg = <0x10000 0x2000>;
+>> +            interrupts = <1>, <2>;
+>> +            interrupt-names = "error", "overflow";
+>> +            arm,not-ready-us = <1>;
+>> +        };
+>> +    };
+
+
+Thanks,
+
+James
 
