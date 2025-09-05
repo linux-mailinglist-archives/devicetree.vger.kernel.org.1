@@ -1,65 +1,72 @@
-Return-Path: <devicetree+bounces-213728-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213729-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E343B466DC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:52:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F6C9B466F5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:02:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0E0E1C22B3A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:52:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 330781C83955
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:02:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C07C129D29D;
-	Fri,  5 Sep 2025 22:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7707929D276;
+	Fri,  5 Sep 2025 23:02:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cClxvj29"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gJR8Peuy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BDC2524F;
-	Fri,  5 Sep 2025 22:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B6527CB04;
+	Fri,  5 Sep 2025 23:02:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757112721; cv=none; b=DZR8yyEB4ZPMrHxqVmIFwbayfUsLQjo1ZoL1gmiKyVKkuPz2lpuFq9/yvT9qwTam8xgwKMqIm7GdHmexWYzEoR+BO5L903Eay3rt28pzTN2ZdCXqqm6p85t60PEuxnLZCI3fxI4H5h4aZYVXnTvpW3aQGdJNKK3kMqBFX4y98i8=
+	t=1757113330; cv=none; b=NXpGzVTo03OQLBQcldKTRq+hrymUwURxlYzzDErNNRAkvr8Efx2TYs2Id50T4e0vX37j9jQNu1/J19pPVmHYLkiYv56kjehx8QKj20pdSNNFHAcLIAQa9bebvK6oUo30pMmZJ7nXrFyBVGjf+LkZaJP3um/O26dziLklAC1Zn6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757112721; c=relaxed/simple;
-	bh=l60dkoYMQd6R7LAx2baVP55rb2TCT2FRvS6OPwDjEa0=;
+	s=arc-20240116; t=1757113330; c=relaxed/simple;
+	bh=A+4/RdKySax+tzp4GDPn4PRAlrr/cIuU7Wohf04Emrs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GYol6l8COQNjrm/1/EVikkZXZvb7d93wxHsvt3IhDtl7fUgYcAN6eN64MQroFstWnu2Ki/f1U/5K9Z8T+VWNcqvxgz0JlngLCSEhLExqcOuYl3y6hFUXcNZ0+9eAQNn9Vh9e3s5maHbm0tKEMWBID1PpycPetgxBj894sNnGP2w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cClxvj29; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E45ADC4CEF1;
-	Fri,  5 Sep 2025 22:52:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=NfTO/eTsZcUbsnG/I53y9cFlhIaD4zfZs5vMZFxar1gtjx3oYmhoVaCLnQjSUHLDuZpHivIQBGO5W8MwDYJcHh17CndMgMUE1Tbl1LALpjVPDnL6WmJlzjhTa6pjc1MQ9AwD8pEP0b763HfDd3TyVJk5TIREua9FSVsrF+SS2TI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gJR8Peuy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0E75C4CEF1;
+	Fri,  5 Sep 2025 23:02:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757112721;
-	bh=l60dkoYMQd6R7LAx2baVP55rb2TCT2FRvS6OPwDjEa0=;
+	s=k20201202; t=1757113329;
+	bh=A+4/RdKySax+tzp4GDPn4PRAlrr/cIuU7Wohf04Emrs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cClxvj29M2e3KDkIgkmiYUfSDXzkuWy5oUvjb5kkZYK7M+gMzJfrS+K8ugUEG/Are
-	 3bDD/BJtCbkpp1dm7GZ6CNvMR5U2Duvz0eauHAYO7fDOofXFT7WmKtFFCcAB+NhYTd
-	 tbmrsKNllGTVtO4Eh7QYGJdtwZE/FHsAB0wc4FONERWLlShJz4UeLO9KHH9Zud3JJS
-	 xQeiwoxfwPFDmhnoMB7LWQJgaOKwkd8ukuEjN/8KvGWk7tgN0/A8MQ/fNkp5bAGaNO
-	 HnE8IbzwVitZTLFh7drome8VLwXrSDe5rMUaHfOJcP3G2MwvDjx+irD+T0JM5EzTGu
-	 Ghrt/79VY4Oeg==
-Date: Fri, 5 Sep 2025 17:52:00 -0500
+	b=gJR8Peuy40MtGwzANFz9PbLYWO6HTL+KwUXl8BCSi3g9DFIXW1L3UKNH1X+545mdM
+	 DP18sjIqbsM+dpCD7qMLBv2lsN1pwS7Xr/aMDqEGbEM6zrWV+fedBKT1WlBcE/Tq0u
+	 14NyYaGYukxn9wgLr7ImvCh8+xLcOBn+WIhQjg0JpENWRqzEOaxb2lhwNWB2WgSU9X
+	 6L+Nm8e65pDvfx3wXoDhOjGp0KodUbF9kV9y+RPjs8lTVA8e6SN3r4yQoON+DeBqpT
+	 Wsc4tjSK5EMpUwxbzyS/TLQ+RMqybcObpGQECFOpyVU/v4+KbjMmMBpnosefcpaF8f
+	 PP4fAYdYBqsxg==
+Date: Fri, 5 Sep 2025 18:02:09 -0500
 From: Rob Herring <robh@kernel.org>
-To: Cyril Chao <Cyril.Chao@mediatek.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	Darren Ye <darren.ye@mediatek.com>, linux-sound@vger.kernel.org,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v2 09/10] ASoC: dt-bindings: mediatek,mt8189-nau8825: add
- mt8189-nau8825 document
-Message-ID: <20250905225200.GA1355628-robh@kernel.org>
-References: <20250905071659.25805-1-Cyril.Chao@mediatek.com>
- <20250905071659.25805-10-Cyril.Chao@mediatek.com>
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: leds: commonize leds property
+Message-ID: <20250905230209.GA1423697-robh@kernel.org>
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com>
+ <20250905-leds-v2-2-ed8f66f56da8@vinarskis.com>
+ <20250905152404.GB953718-robh@kernel.org>
+ <Lm6PLaup84KHzhxYTbsrQIbEeQpc6dj65aLkLFvOx7QwvuXS9ON53Csa2v6LBp4hd9iIQilvGhXqx4kXv4cfqgYUeA49vrVdWJw-fNMLu2Y=@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,134 +75,131 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250905071659.25805-10-Cyril.Chao@mediatek.com>
+In-Reply-To: <Lm6PLaup84KHzhxYTbsrQIbEeQpc6dj65aLkLFvOx7QwvuXS9ON53Csa2v6LBp4hd9iIQilvGhXqx4kXv4cfqgYUeA49vrVdWJw-fNMLu2Y=@vinarskis.com>
 
-On Fri, Sep 05, 2025 at 03:15:54PM +0800, Cyril Chao wrote:
-> Add document for mt8189 board with nau8825.
+On Fri, Sep 05, 2025 at 04:48:52PM +0000, Aleksandrs Vinarskis wrote:
+> On Friday, September 5th, 2025 at 17:24, Rob Herring <robh@kernel.org> wrote:
 > 
-> Signed-off-by: Cyril Chao <Cyril.Chao@mediatek.com>
-> ---
->  .../sound/mediatek,mt8189-nau8825.yaml        | 101 ++++++++++++++++++
->  1 file changed, 101 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8189-nau8825.yaml
+> > 
+> > 
+> > On Fri, Sep 05, 2025 at 09:59:30AM +0200, Aleksandrs Vinarskis wrote:
+> > 
+> > > A number of existing schemas use 'leds' property to provide
+> > > phandle-array of LED(s) to the consumer. Additionally, with the
+> > > upcoming privacy-led support in device-tree, v4l2 subnode could be a
+> > > LED consumer, meaning that all camera sensors should support 'leds'
+> > > and 'led-names' property via common 'video-interface-devices.yaml'.
+> > > 
+> > > To avoid dublication, commonize 'leds' property from existing schemas
+> > > to newly introduced 'led-consumer.yaml'.
+> > > 
+> > > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+> > > ---
+> > > .../devicetree/bindings/leds/backlight/led-backlight.yaml | 7 +------
+> > > Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml | 6 +-----
+> > > .../devicetree/bindings/media/video-interface-devices.yaml | 3 +++
+> > > 3 files changed, 5 insertions(+), 11 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> > > index f5554da6bc6c73e94c4a2c32b150b28351b25f16..5e19b4376715eeb05cb789255db209ed27f8822f 100644
+> > > --- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> > > +++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> > > @@ -18,17 +18,12 @@ description:
+> > > 
+> > > allOf:
+> > > - $ref: common.yaml#
+> > > + - $ref: /schemas/leds/leds-consumer.yaml#
+> > 
+> > 
+> > Drop.
+> > 
+> > > properties:
+> > > compatible:
+> > > const: led-backlight
+> > > 
+> > > - leds:
+> > > - description: A list of LED nodes
+> > > - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > - items:
+> > > - maxItems: 1
+> > 
+> > 
+> > You need to keep the property here:
+> > 
+> > leds: true
+> > 
+> > > -
+> > > required:
+> > > - compatible
+> > > - leds
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > > index 8ed059a5a724f68389a1d0c4396c85b9ccb2d9af..b4f326e8822a3bf452b22f5b9fa7189696f760a4 100644
+> > > --- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > > +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > > @@ -17,16 +17,12 @@ properties:
+> > > compatible:
+> > > const: leds-group-multicolor
+> > > 
+> > > - leds:
+> > > - description:
+> > > - An aray of monochromatic leds
+> > > - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > > -
+> > > required:
+> > > - leds
+> > > 
+> > > allOf:
+> > > - $ref: leds-class-multicolor.yaml#
+> > > + - $ref: /schemas/leds/leds-consumer.yaml#
+> > 
+> > 
+> > 
+> > Same comments in this one.
+> > 
+> > > unevaluatedProperties: false
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> > > index cf7712ad297c01c946fa4dfdaf9a21646e125099..1e25cea0ff71da2cfd1c7c4642713199f3542c0a 100644
+> > > --- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> > > +++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> > > @@ -10,6 +10,9 @@ maintainers:
+> > > - Jacopo Mondi jacopo@jmondi.org
+> > > - Sakari Ailus sakari.ailus@linux.intel.com
+> > > 
+> > > +allOf:
+> > > + - $ref: /schemas/leds/leds-consumer.yaml#
+> > 
+> > 
+> > This can be dropped. The user still has to define how many entries and
+> > what the values of led-names are.
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8189-nau8825.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8189-nau8825.yaml
-> new file mode 100644
-> index 000000000000..db3a70c0b9d1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8189-nau8825.yaml
-> @@ -0,0 +1,101 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt8189-nau8825.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek MT8189 ASoC sound card
-> +
-> +maintainers:
-> +  - Darren Ye <darren.ye@mediatek.com>
-> +  - Cyril Chao <cyril.chao@mediatek.com>
-> +
-> +allOf:
-> +  - $ref: sound-card-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - mediatek,mt8189-nau8825
-> +      - mediatek,mt8189-rt5650
-> +      - mediatek,mt8189-rt5682s
-> +      - mediatek,mt8189-rt5682i
-> +
-> +  mediatek,platform:
-> +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: The phandle of MT8189 ASoC platform.
-> +
-> +patternProperties:
-> +  "^dai-link-[0-9]+$":
-> +    type: object
-> +    description:
-> +      Container for dai-link level properties and CODEC sub-nodes.
-> +
-> +    properties:
-> +      link-name:
-> +        description:
-> +          This property corresponds to the name of the BE dai-link to which
-> +          we are going to update parameters in this node.
-> +        items:
+> Hmm, but where should it be added then? If I just drop it, MIPI 
+> camera schemas which are based on 'video-interface-devices.yaml' and 
+> have 'unevaluatedProperties: false' throw warnings because 'leds' was 
+> not expected. Including the example in 'led-consumer.yaml' as found 
+> by your bot (because of patch order your bot only run on 1/4, adding 
+> this very change fixes it).
 
-Only 1 name? If so, drop 'items'.
+> In this case, v4l2 subnode is the LED user, which is some camera. It 
+> seems most/all of these cameras are based on this binding, so instead 
+> of adding new led related properties to all of them, I thought this 
+> is a good common place for it... Shall I add #entries and available 
+> options for 'led-names' here to make it complete?
 
-> +          enum:
-> +            - TDM_DPTX_BE
-> +            - I2SOUT0_BE
-> +            - I2SIN0_BE
-> +            - I2SOUT1_BE
-> +
-> +      codec:
-> +        description: Holds subnode which indicates codec dai.
-> +        type: object
-> +        additionalProperties: false
+Every camera doesn't have the same LEDs, so you have to define exactly 
+what's there for each one. If you want to do it in 
+video-interface-devices.yanl, then you are standardizing it for 
+everyone. Maybe that's fine? If so, you need something like:
 
-blank line
+leds:
+  minItems: 1
+  maxItems: 2
 
-> +        properties:
-> +          sound-dai:
-> +            minItems: 1
-> +            maxItems: 2
-> +        required:
-> +          - sound-dai
-> +
-> +      dai-format:
-> +        description: audio format.
-> +        items:
+led-names:
+  items:
+    enum:
+      - flash
+      - privacy
 
-Drop items
-
-> +          enum:
-> +            - i2s
-> +            - right_j
-> +            - left_j
-> +            - dsp_a
-> +            - dsp_b
-> +
-> +      mediatek,clk-provider:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description: Indicates dai-link clock master.
-> +        enum:
-> +          - cpu
-> +          - codec
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - link-name
-> +
-> +required:
-> +  - compatible
-> +  - mediatek,platform
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    sound {
-> +        compatible = "mediatek,mt8189-nau8825";
-> +        model = "mt8189_rt9123_8825";
-> +        mediatek,platform = <&afe>;
-> +        dai-link-0 {
-> +            link-name = "I2SOUT1_BE";
-> +            dai-format = "i2s";
-> +            mediatek,clk-provider = "cpu";
-> +            codec {
-> +                sound-dai = <&nau8825>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> 2.45.2
-> 
+Rob
 
