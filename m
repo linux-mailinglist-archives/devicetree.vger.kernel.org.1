@@ -1,121 +1,218 @@
-Return-Path: <devicetree+bounces-213302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A100DB450E8
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:10:37 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CEDCB450EB
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:10:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5413B3BDCCE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:10:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 188575816A4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:10:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EF1A2FD7A4;
-	Fri,  5 Sep 2025 08:10:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 767692FB60D;
+	Fri,  5 Sep 2025 08:10:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Bn5TQY4F"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="s7r1A9vu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3151F2FCC13
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:10:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417C2DF71;
+	Fri,  5 Sep 2025 08:10:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757059831; cv=none; b=NROJl5IsgNGpV61Rq4sg3eVTJP2hvupUhzF8YC2ANbs4HnCvgDxAXC9huP0y7eBe7JI3Xq8vj3oK3d7jCTVs/UwyfV9CPKYRFoy+7TtJ+Wu8O1XQ4oH2zmDF3k2R7r6tzkqsTnmuKqFHg3E+GL1/821L4Ws0tKIsU8tKcr31MkU=
+	t=1757059843; cv=none; b=u3GJLyRQbYZn9kqr+gzodqUj/cuDvCQG67hsN9UdzxyyLdznrJ9QURI7kg05Oy1fONP7mKE4uWtRXtlmmJvPx3aeUPzpevdHZK5vQ0dqX5s1p0WGjJqXAYdyQ/RBngimChw4D/muzHGVorrtNfW6vuXi0kzYjJTO5wTQefTOths=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757059831; c=relaxed/simple;
-	bh=BtGTpK92RV2Z6TkeFuzCre6Mq/G4NqRshn0AGkTNf4M=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J3wvip/zdSSjCiFEgKebBdE3pKCx4+Iq/ymytFCyuoL5byfhH1l5jD3Ls3DsiMoOIeGOSEHAslnLDY6DPSyCgCm2zxwA7ehYi5l+byTkPPxGuCNAjR942N4YlrD90q/0g7SaP4NrSVdWQJGmK3RTyoVK+p6Apbgm8BkjyhqUIxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Bn5TQY4F; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-336dc57f562so17020531fa.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 01:10:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757059828; x=1757664628; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BtGTpK92RV2Z6TkeFuzCre6Mq/G4NqRshn0AGkTNf4M=;
-        b=Bn5TQY4FBlGSlUcjEP+x3Di67lMAFi5yaMEi5qM+uA2mKdG79IcWxmnuhjx6zlGJws
-         87CUAK4UH4zuWowgtNdTjNQfE6BX/p8oT93qCOZhSx2ygm2iRd+xnNRiqfHIY3edK4wp
-         hrytwv8oKbIwmIYNPJmOhNraz05bJUQgJPdVu5AakjpJnhyv/PeXjVgQl/iCzRRf8nAZ
-         Vc4To6kk/LcIngsy/Ryr9EMmlvw52hHfFHMNd7tXueiX3Jb8rTXTZyfPD/jFm05PpaxP
-         x/MCZcK3qYafQ2wr1/qimNT8iv1hsopNK7dmAq5MuUJ3AD15BbYDtCX06sGg3M0quAjC
-         ogeA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757059828; x=1757664628;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BtGTpK92RV2Z6TkeFuzCre6Mq/G4NqRshn0AGkTNf4M=;
-        b=XZCoZjXxbI8A7ymfE+qnBTvImI/+7gydiEstItLWva/yHKKDhnSBRmIrZSc08Vcuz4
-         ulwJXkcKs9WwsdcivL8YmkI/QBQHM1B8CGNFDU8KYfAdya9jC6bnkBovXGWJ/KdKWNQ6
-         wfD7gqCuuwyNLRIjozowgAU51KHLeOVeIzQgWELDvJQay5DThGOX4cQTL4DzzFOH6eE2
-         Qj7mM6c1XzhRAbuhW3D/R1VKWZ0+QxbhAHCURYK2QuDmOs7b5HSN0JpZlHerjVsYr2Mc
-         ZcY3w4tLrXFyT+7yyChQNGyihrx05545txZfd+DDoN7nBhFUFWEoeQjpNm5GaRDyVOva
-         1qfw==
-X-Forwarded-Encrypted: i=1; AJvYcCUg96/NDQMddL89SS6VYGPax6QbvABq9WT6wW4ykqTlFn/53JItXWoedrj4TYGmGa84kYb1sa1vevE3@vger.kernel.org
-X-Gm-Message-State: AOJu0YwUlRMf9MloTKkrIUgfBCn9d+ifJt30o/Wpi1KaEnrVKVPEM1KN
-	Th0oDXFUZ+76gdooP7Aaz8E4LJpgrij7EC2Uhht+DZJmHZ4LZo7yxqgyulGCUp7K4ebHW7pqquv
-	wQENEf40b41iyVlXtTYC4MC6wR64A3jBPztSMzbrMtw==
-X-Gm-Gg: ASbGncukRv+HRwOHA3iBq827qyWR4xPfJpLnDRKzPhOx2HZTYs6gWfvqLCfZ2FFFRoL
-	qGmOy1HPfkbwnCOYPvj8fOTaROp5uN+8hMQnM6WWblAyl2mBaOJm8dlqS3/R4Puy3g93SWbrVkp
-	MeZr/70q5NshtYBxFD+q3c9ZpjGS0X0IcRwVEp981sZRBYYntOxmkx75ciIhwcahqxXUJmrCMsb
-	1zMGNM=
-X-Google-Smtp-Source: AGHT+IHGuueojXvcDw+IxXf2H0yV1IZv2l/On0WYvOmWs3UEZEA+8rzZONaAnBMOjzPj+g4/KV47tq/0JIxyMnlIPRA=
-X-Received: by 2002:a05:651c:989:b0:337:f40b:ceff with SMTP id
- 38308e7fff4ca-3381e2bd8bfmr6337601fa.0.1757059828213; Fri, 05 Sep 2025
- 01:10:28 -0700 (PDT)
+	s=arc-20240116; t=1757059843; c=relaxed/simple;
+	bh=5j4EJZCYnaX5wdGukSnYY4+GHzOWlhHBIHpH4amAKuc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lYTxV5+BKCoYwgXi8blgO79BfnC5OE4ThrDlkrSG38euNQpMVsgqhB7B9iwZmDWXGXKKj9NHW4sbthkoVjYiuufL98iTi4ICx/sH9bm95t5gg8K5cxkyEjSQBCsZ3jwhaNIj4L/TpErM/R6czz9XdqELEUG/xzObWAA0OH7xOA8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=s7r1A9vu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A526C4CEF1;
+	Fri,  5 Sep 2025 08:10:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757059842;
+	bh=5j4EJZCYnaX5wdGukSnYY4+GHzOWlhHBIHpH4amAKuc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=s7r1A9vu6gEFM8SHHq+HTmjSr1qaGBNGm8kBouACRDR81QrFR5g7GB1bWnBlmuPRU
+	 2S3a7tunL4DtPhLB6XPcKqAJJem637OWSLRDUHaFFGb4XNvjscqCCwZiEL6rIvT6CS
+	 CenMpUFAovfdjOOaSx0W9KFPe90QNEAwoeYyGjMZZgj9p2EcQ3m/K9VB/eZXyrAYKV
+	 yPArVMcyX17vb+7e0hk+5+j/5wMvcR6h2clHhtCuBOm6aseQ2Y79QniGc7WCeMisUh
+	 Q2d4N2J2azUO24TELOzbhFxpQ+Y/X+SC9o6LOENvQWplfUkYisvwuuRHEGiYyWs5Wg
+	 l07sVD5ba6jHQ==
+Date: Fri, 5 Sep 2025 10:10:40 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Gregory Fuchedgi <gfuchedgi@gmail.com>
+Cc: Robert Marko <robert.marko@sartura.hr>, 
+	Luka Perkov <luka.perkov@sartura.hr>, Jean Delvare <jdelvare@suse.com>, 
+	Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org, 
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: update TI TPS23861 with
+ per-port schema
+Message-ID: <20250905-deft-porcelain-teal-a3bdbf@kuoka>
+References: <20250904-hwmon-tps23861-add-class-restrictions-v3-0-b4e33e6d066c@gmail.com>
+ <20250904-hwmon-tps23861-add-class-restrictions-v3-1-b4e33e6d066c@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1757053456.git.mazziesaccount@gmail.com> <fc3cffa3b75d1fcd19df0ff794e6ad75c8c87373.1757053456.git.mazziesaccount@gmail.com>
-In-Reply-To: <fc3cffa3b75d1fcd19df0ff794e6ad75c8c87373.1757053456.git.mazziesaccount@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Fri, 5 Sep 2025 10:10:16 +0200
-X-Gm-Features: Ac12FXwzrJgD4cqNVEMDwjcqLjGCJuYfaMNmrTkon9AkUOYZTyb9cMdwIMQNW6c
-Message-ID: <CACRpkdaY3P7uj8dQfDbauvyJ_sSYPeUC7kK+DTMrkfT+BcLjCw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: ROHM BD79112 ADC/GPIO
-To: Matti Vaittinen <mazziesaccount@gmail.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Jonathan Cameron <jic23@kernel.org>, 
-	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Marcelo Schmitt <marcelo.schmitt@analog.com>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
-	Tobias Sperling <tobias.sperling@softing.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
-	Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>, 
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>, Hans de Goede <hansg@kernel.org>, 
-	Herve Codina <herve.codina@bootlin.com>, Alisa-Dariana Roman <alisadariana@gmail.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250904-hwmon-tps23861-add-class-restrictions-v3-1-b4e33e6d066c@gmail.com>
 
-On Fri, Sep 5, 2025 at 8:42=E2=80=AFAM Matti Vaittinen <mazziesaccount@gmai=
-l.com> wrote:
+On Thu, Sep 04, 2025 at 10:33:44AM -0700, Gregory Fuchedgi wrote:
+> Update schema after per-port poe class restrictions and a few other options
+> were implemented.
+> 
+> Signed-off-by: Gregory Fuchedgi <gfuchedgi@gmail.com>
+> ---
+>  .../devicetree/bindings/hwmon/ti,tps23861.yaml     | 93 +++++++++++++++++++++-
+>  1 file changed, 92 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+> index ee7de53e19184d4c3df7564624532306d885f6e4..7538d1a9c19905ec90c48d34f84a92c1972f566b 100644
+> --- a/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+> +++ b/Documentation/devicetree/bindings/hwmon/ti,tps23861.yaml
+> @@ -24,12 +24,60 @@ properties:
+>    reg:
+>      maxItems: 1
+>  
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+>    shunt-resistor-micro-ohms:
+>      description: The value of current sense resistor in microohms.
+>      default: 255000
+>      minimum: 250000
+>      maximum: 255000
+>  
+> +  reset-gpios:
+> +    description: GPIO for the reset pin.
+> +    maxItems: 1
+> +
+> +  ti,ports-shutdown-gpios:
 
-> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
-> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
->
-> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
-> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
-> daisy-chain configuration) and maximum sampling rate is 1MSPS.
->
-> Add a device tree binding document for the ROHM BD79112.
->
-> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+You can drop the vendor prefix, we do not have them for pins and
+supplies.
 
-Looking good!
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> +    description:
+> +      GPIO for the shutdown pin. Used to prevent PoE activity before the driver
+> +      had a chance to configure the chip.
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Only required if PoE class is restricted to less than class 4 in the
+> +      device tree.
+> +    maxItems: 1
+> +
+> +patternProperties:
+> +  "^poe-port@[0-3]$":
 
-Yours,
-Linus Walleij
+Keep consistent quotes, either ' or ".
+
+> +    type: object
+> +    description: Port specific nodes.
+> +    unevaluatedProperties: false
+> +    properties:
+> +      reg:
+> +        description: Port index.
+> +        items:
+
+Drop items, you want here a scalar, not array, and this suggests you
+miss array constrain.
+
+> +          maximum: 3
+> +
+> +      ti,class:
+> +        description: The maximum power class a port should accept.
+
+What's the meaning of values? There are no other generic properties like
+that? Last time it was a generic property, but maybe the answer to my
+question should be that there is or should be such generic one?
+
+Also, why exactly wouldn't you want to accept here always the highest
+power class? What makes it a board-level property?
+
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        maximum: 4
+
+default: [ ... ]
+
+> +
+> +      ti,off-by-default:
+> +        description: Indicates the port is off by default.
+
+I fail to see how this is property of a board... unless you wanted to
+figure out which ports are not connected, but status=disabled could be
+used for that.
+
+Sorry, but device has FIXED reset values for registers, so whether
+something is off or on by default is defined by compatible.
+
+
+> +        type: boolean
+> +
+> +      label:
+> +        description: Port label.
+> +
+> +    required:
+> +      - reg
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -45,9 +93,52 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <0>;
+>  
+> -        tps23861@30 {
+> +        poe_controller@30 {
+
+See DTS coding style.
+
+>              compatible = "ti,tps23861";
+>              reg = <0x30>;
+>              shunt-resistor-micro-ohms = <255000>;
+>          };
+>      };
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        poe_controller@28 {
+> +            compatible = "ti,tps23861";
+> +            reg = <0x28>;
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            shunt-resistor-micro-ohms = <255000>;
+> +            interrupt-parent = <&gpio1>;
+> +            interrupts = <14 IRQ_TYPE_EDGE_FALLING>;
+> +            label = "cabinet_poe_controller";
+> +            reset-gpios = <&gpio1 13 GPIO_ACTIVE_LOW>;
+> +            ti,ports-shutdown-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
+> +
+> +            poe-port@0 {
+> +                    reg = <0>;
+
+Mixed up indentation.
+
+> +                    ti,class = <2>; // Max PoE class allowed.
+> +                    ti,off-by-default;
+> +                    label = "cabinet_port_a";
+
+Best regards,
+Krzysztof
+
 
