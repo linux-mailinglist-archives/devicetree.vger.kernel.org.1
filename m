@@ -1,161 +1,132 @@
-Return-Path: <devicetree+bounces-213220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0963FB44DAB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:47:56 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 744BCB44DAF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:53:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9D7FE1890261
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:48:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 355861C26942
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:53:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5339A1F75A6;
-	Fri,  5 Sep 2025 05:47:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 582C3232369;
+	Fri,  5 Sep 2025 05:53:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JZ9DBeyA"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="rco3EMV4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A0C0EEAB;
-	Fri,  5 Sep 2025 05:47:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CADAEEAB;
+	Fri,  5 Sep 2025 05:53:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757051270; cv=none; b=r/IllSSXs+AOdF8hRJ0LJzE3izaKbWGmxOH1sdcvKlMooVudIUEzjXdav5wtfaMvs7cA4vzRydMXz6RnhBDBcwBsRHuy3LYnayuPAJt4BOXMRDMQvCYzLrmHzSJ7N0ncyZXxROfM4C8wmnscuO17cQsdcw5NNeARYEu7onGZwa4=
+	t=1757051586; cv=none; b=MWbGTCtkl4tx4VNxx0cYhNnDqtAUZI3AwCfzlJ86anEA55MjsTZAIx4KBFLBW+YXTYoxo0XL+yqTDRz6im99gy187zxEnMvFRu5NXIRBEOVA9jnE3/1hK8xQbmX3OcQvTNj5LVYRHpFw6b+BVkqy3064Lcvqk9MkWiZZhMAqoa0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757051270; c=relaxed/simple;
-	bh=Wz7naupFrJpTuHMt1wVGz7sZ5XBLZtPb9kQJkmHnnNs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S3CjNW2FcI+C0Hkp5VSNR+0hCw1tUVgrMT2+ao329EXg9noMswKBBArW2pO1YK0QsMo/CjezthsCZ2sZXwdkAEbdXf664SiFQF1JOnnxnlMjPpdfDY9g6fZXSEjwl2Q3abA5Qg7TMEXFC3Dma2o0XEJAZwtGBMQ5WZ6jDe+Hysg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JZ9DBeyA; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-55f6507bd53so1899991e87.3;
-        Thu, 04 Sep 2025 22:47:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757051267; x=1757656067; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=EY1wx/hTaPVWB7ToJ66uksdPwS0xHGCPH10mQTR6JuI=;
-        b=JZ9DBeyAdrNof5Vv7oLnRekarL2qg3bs01QMt7SLpbJ2swwEOkl6j3fdCtqFJo6zA0
-         CV0XYHIyRJQqs4tc3lOSOQ8LAiY1gcLcvjLfUT9hFvkrXtomkpa3nU/xDIIUvlamv3It
-         nrJc/sPuPsmLnZAoDS5WrHN9E+3kWIHQ8nJPm4FlBM+wJqp98AcjGI+IoAotpPrkjGaO
-         sO9eSSpbYPX5Fs6a+Mb9IKzVAhjL7rFfXVBRGr8dt7PdujxKI1M5Wabn5BUilA9LPyVx
-         wZZ2AQ6vtu4E5sEqe6ZLLoTrozXvyBumnaQdRz64JaAGaeEK0sr4lDjnbHuEGH2vv7/N
-         4JGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757051267; x=1757656067;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EY1wx/hTaPVWB7ToJ66uksdPwS0xHGCPH10mQTR6JuI=;
-        b=M79joxlZwyQBTAPi2DggYsK8e7VNlLYMdVKk6wkKZ7v08Lezv6Spl0HyDDeBucPD24
-         m0vObVQ/lpywGgn3JrE/z6VYylwGXnbok3KDqk8hWnXCk68ivzY+gfWx3vQOKPW0qPdV
-         7+4Bd6OnJ/OLIgKS1hKoLrXLwgExZK8FPVqsjyD4U/h02RTi5Xzy4MxwcAt3rhKaegh+
-         q4FOSaqTF/eFYem6BoaEtdEr6eL4EJDZvbu1m3mP0e5kiRiByPHMqd636Y/hHRwn+yQp
-         4hGBVTpZhiX3u6s12C/asG09c0vWVOoxDi/CC3A89IlHmLW2tFfV74A0JRWeN81Gshv2
-         LUmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUwXJ0GqR5L1AQUBC8SDEAg8LzRZPyCFI0HKq6/98xYhwKMwlYCQObVRh6/ySJLNrVdC3oP8TDozSC38g==@vger.kernel.org, AJvYcCVOBNdTd2ku+oAMQkJn3YiV0uuToBPoYAGnmhWMrIftNvunASHCnANLCJa+dq6k1ibV9KeUjmNhNauxvWfV@vger.kernel.org, AJvYcCWoMy6QQAmgMLLXnp8Wa2yE/dN1Getv9KfoPbEsG0pvrhTuEPS2Gxm+uv3PmiChSpVOqY51a9mI9OVb@vger.kernel.org, AJvYcCXk+72NoxukOVZCXqG43/jjRKBSkiHmjKBMuFq/SMGkSd3ZNOn2C3wSbJwYlNr7HwIG36kkDfmuWSWH@vger.kernel.org
-X-Gm-Message-State: AOJu0YzzzRXtLl3ycu1KQXVi4C9Fjkt6OkB16/hjkXrH6kduCNSxvZat
-	lJqxv5ZWiqHg19FFCnVXx2ipGqhN02RmG1qkDDGFeR2WNTwvbOI2ljJ/
-X-Gm-Gg: ASbGnctuGpdFQhKpTd1r6EKovAxwnV+HvLQfSdkBHRch5sErXGP5c7J4U9zB2Sr3qN2
-	PAG5JXBCIKruviWAzP8ry1/+csNV1DQN24plIZZbpBERJZarU40NZn2jc5zEn2i3UGkBlniNUPU
-	n5Low0reeoS841EvgaIh8L2KfUpPawu/fiIlPHFevuf2G7RQmRLWF9QzLX7++/2SiohGP0pK9Oo
-	1wYLGnL/+kkgzUDTM7GZ+g3hDEd2CgKvk3rzLAnDnPYFTk3T95T3irOTTgzXAnyVjezoUoaqK2q
-	XC1PkLe9/e+NSQyOsD0/r873Si9WCfJDBAOhkjHsK56ACbsgOUYqwvFkzJi19OVuz8NijKT1H+v
-	DDBDwG3bUtN546hu0UIiDvlN+U3nIa7qAHicx7AEnY/TiwwsVGXC3XHUxaTSZtfsvjkXFDRu+ly
-	vrttoU7aYbDPM0ZD4=
-X-Google-Smtp-Source: AGHT+IFpsuu1jzyehan4myYlV1Vbx2XvBMEJjqMLs1GIZrGmV7bs6BYZtSXMmSbFs0GHSOdFHOXlCA==
-X-Received: by 2002:a05:6512:2347:b0:55f:6ddb:25 with SMTP id 2adb3069b0e04-55f708a2b1amr7576130e87.3.1757051266342;
-        Thu, 04 Sep 2025 22:47:46 -0700 (PDT)
-Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ab5c226sm1645179e87.22.2025.09.04.22.47.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 22:47:45 -0700 (PDT)
-Message-ID: <37f9c6bd-f3b2-4258-a455-c4b08023d8a9@gmail.com>
-Date: Fri, 5 Sep 2025 08:47:44 +0300
+	s=arc-20240116; t=1757051586; c=relaxed/simple;
+	bh=tbNmxBvkmPLl/ntwp9nwG2AhqvpKbPi6ppZ4Gc0j83o=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V9f+Y0X0gDuAxcrphWCFAssFzAAg9Tdw7oODa1Q48Wuxag8hfz76fmZ0uXeX3ZmNRLL40GWNANIB30+EjOP8MEXGXNIjwFDiJRn8JSoWdKmG5hohi7RRTt5Fm7+0is2ZBaTJ3WDEd5PSGthUWNQ7j3YFIFwcb1gyqUbp3SxU5c4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=rco3EMV4; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Type:Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=deXU0gcF7yBIf+TpC1TbTUZssVkV6sZTs9sHoaAOhKo=; b=rco3EMV4Wt2VyqeetV9N8LyVPC
+	dX6SlBGQuX3s5tjDwMdjzgjNcf9snf4erTwYbUd2Syp8dj8NpyLauI+F9q8WONGecmcxY24Ag/rAq
+	dWx4ooli/OUns9yfIIvvWxkzlo8eRXKDOgHG/1AhSxp3mJdqdqhO2NawV/2tFjEq3oNrT7eyq1TlH
+	nf7dB+c2oNYsAOn/bvpTql/QESyUQGHOpb1j+m3dy4mz6236lgeWhWEex+MTo8zs7TwPI9CBWFa7N
+	ofNL0oRo7ifk5ab2jUNGaXdFji9RPT3BqJd+gw9VNOF7HOBxthcmUrqSrWJg47CJcvRcuc7CdM033
+	dv8lWy/Q==;
+Received: from i53875bb6.versanet.de ([83.135.91.182] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uuPNQ-0004GZ-TW; Fri, 05 Sep 2025 07:52:48 +0200
+From: Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>
+To: robh@kernel.org, WeiHao Li <cn.liweihao@gmail.com>
+Cc: hjc@rock-chips.com, andy.yan@rock-chips.com, krzk+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ WeiHao Li <cn.liweihao@gmail.com>
+Subject: Re: [PATCH v2 3/8] dt-bindings: clock: rk3368: Add SCLK_MIPIDSI_24M
+Date: Fri, 05 Sep 2025 07:52:47 +0200
+Message-ID: <2267196.NgBsaNRSFp@diego>
+In-Reply-To: <20250905025632.222422-4-cn.liweihao@gmail.com>
+References:
+ <20250905025632.222422-1-cn.liweihao@gmail.com>
+ <20250905025632.222422-4-cn.liweihao@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
- Jonathan Cameron <jic23@kernel.org>, David Lechner <dlechner@baylibre.com>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
- Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>,
- Marcelo Schmitt <marcelo.schmitt@analog.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>,
- Tobias Sperling <tobias.sperling@softing.com>,
- Antoniu Miclaus <antoniu.miclaus@analog.com>,
- Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>,
- Ramona Alexandra Nechita <ramona.nechita@analog.com>,
- Thomas Bonnefille <thomas.bonnefille@bootlin.com>,
- Hans de Goede <hansg@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org
-References: <cover.1756813980.git.mazziesaccount@gmail.com>
- <08929460fe11dd0b749c50a72a634423f13f4104.1756813980.git.mazziesaccount@gmail.com>
- <aLb8HuIG0XXLu653@smile.fi.intel.com>
-Content-Language: en-US, en-AU, en-GB, en-BW
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <aLb8HuIG0XXLu653@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On 02/09/2025 17:15, Andy Shevchenko wrote:
+Hi,
 
->> +	ret = devm_iio_adc_device_alloc_chaninfo_se(dev, &bd79112_chan_template,
->> +		BD79112_MAX_NUM_CHANNELS - 1, &cs);
-> 
-> Hmm... Indentation can be amended.
-> 
->> +	if (ret < 0) {
-> 
-> Why ' < 0' ?
-> 
->> +		/* Register all pins as GPIOs if there are no ADC channels */
->> +		if (ret == -ENOENT)
->> +			goto register_gpios;
->> +
->> +		return ret;
->> +	}
-> 
-> Assuming ret can't be positive this can be refactored as:
+Am Freitag, 5. September 2025, 04:56:27 Mitteleurop=C3=A4ische Sommerzeit s=
+chrieb WeiHao Li:
+> Add a clock id for mipi dsi reference clock, mipi dsi node used it.
+>=20
+> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
 
-I returned back to this after reading your comment to v2.
+another process-related comment :-) .
 
-ret can be positive.
+(1) You already got in v1 the
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
-> 
-> 	/* Register all pins as GPIOs if there are no ADC channels */
-> 	if (ret == -ENOENT)
-> 		goto register_gpios;
-> 	else if (ret)
-> 		return ret;
-> 
-> I find it easier to follow.
+So when sending a v2, please include such received tags
+(if there are no major changes to the relevant code)
 
-I still kinda like your suggestion. I'll change this to something like 
-below for v3:
+This prevents people from reviewing things needlessly multiple times.
+So patch 3 would look something like:
 
-         /* Register all pins as GPIOs if there are no ADC channels */
-         if (ret == -ENOENT)
-                 goto register_gpios;
+=2D-----------
+Add a clock id for mipi dsi reference clock, mipi dsi node used it.
 
-         if (ret < 0)
-                 return ret;
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
+Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
+=2D-----------
 
-Thanks again!
+(2) As can be seen in
+https://lore.kernel.org/linux-rockchip/175690195013.3771488.435870786224873=
+257.b4-ty@sntech.de/
 
-Yours,
-	-- Matti
+I already applied the two clock patches, so in newer versions don't
+send them anymore.
+
+
+Just to keep in mind for next time.
+
+
+Heiko
+
+> ---
+>  include/dt-bindings/clock/rk3368-cru.h | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/include/dt-bindings/clock/rk3368-cru.h b/include/dt-bindings=
+/clock/rk3368-cru.h
+> index ebae3cbf8..b951e2906 100644
+> --- a/include/dt-bindings/clock/rk3368-cru.h
+> +++ b/include/dt-bindings/clock/rk3368-cru.h
+> @@ -72,6 +72,7 @@
+>  #define SCLK_SFC		126
+>  #define SCLK_MAC		127
+>  #define SCLK_MACREF_OUT		128
+> +#define SCLK_MIPIDSI_24M	129
+>  #define SCLK_TIMER10		133
+>  #define SCLK_TIMER11		134
+>  #define SCLK_TIMER12		135
+>=20
+
+
+
+
 
