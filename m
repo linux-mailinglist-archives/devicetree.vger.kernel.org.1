@@ -1,229 +1,211 @@
-Return-Path: <devicetree+bounces-213111-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AD53B44AAA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 02:05:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E523B44AB6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 02:15:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 300743B5088
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:05:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4307E5477A3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:15:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 34DAD36D;
-	Fri,  5 Sep 2025 00:05:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70AD613AD3F;
+	Fri,  5 Sep 2025 00:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ANr/enwS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jY/QQlXW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7141620ED
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 00:05:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83AB286250
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 00:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757030723; cv=none; b=lbXdZI4s54cfEZXZScauIIwTANahjRw1eZ2qHiCQS8MkesNy46/W0P016zCUkknR0I3EgjMiJVwz3I5VfgPH73Bju1e9zMfOYkaG0pjeg9tPvAMngvoPdEXGf3DzMQwLbTlr7y86dEIVyFjutFtZVsm2hFkvin9GNi7EbmUDA1I=
+	t=1757031313; cv=none; b=A60xv00wpohPZI05nIDEsj7V8e6IPGu/shO774nyox7EFGRo5tiMeNkOz8xO9U0g5u6Sv+kz6Mq/4jqhsQmZ/jVm4Lu4uyEWe1UDMQKL01IBGKjd3MrKHWpWnciXOMzHnkIZ6O0MT4cg+EeJ24Z1DplswaOc3RbrzpzL9usI/3o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757030723; c=relaxed/simple;
-	bh=k0gBJ3jogdj1uP+WEsVSt9XnOlRNVILT17dl4GNHiWk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fNZsArqf47i8387VUwu5uvD2Ie+3Ho7onHqYTQpK2woKWXNChgGI41ioannErzBHgV9s1AvCAAos+RLVDxgFrhb+xldSr1BMO+jfC9YERbQPOSymqsVA8I0M6aBuBFi5x4HnwtwLdnmAhhZd6KMsK/07aMtQhB+Khh5N0RSJtsY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ANr/enwS; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584IGieD032210
-	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 00:05:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=FnmVTYg5qyuC90TtxfAp5dg0
-	tH1WOGwDVnnWVDmLEjk=; b=ANr/enwScsWo25ym6A1EbFIwB93CVeITfG6TuTZx
-	pQTNyfMDG8Xa7Ezx1E9lXfol9wnfY20WWcZ1cZbJBBou19QgAkT0glyuuZeIOeX4
-	a0AUMxBP/GE1bFIpcGJYPUCVVxQk/ijPxwWqETOQFecWo+4FmKDfIATFMBdGst8V
-	W28PAhm3PTEduaRGkkrY+HBb19Vq1TAfQ6NLhOd7LSXCmRq9NgZ4SJJcV8x3tDFd
-	KYh+Zx/N7Hx78Jd+fhI5Q8Weu1SFTncOM1BU5XYGP44AQRj45IRkTo/HdeWdjqCc
-	sAFxdBG1xZQexXDbkXRlAiULQIOCiOTywAEo4UTXGN251g==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48upnphdcy-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 00:05:19 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b3200a05dfso51551511cf.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 17:05:19 -0700 (PDT)
+	s=arc-20240116; t=1757031313; c=relaxed/simple;
+	bh=Nq0tYidYcWS7UH25GXS90yDlOI6V78+FMA1zNge1d5M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FEnD8QTq5Gz1+pjQLM1GJ+LPIPU+fgFwH+Xvc3thpv4RFyVar+iHoxFvUAaHnITOObXTjRwuzDfGnpb886ti0Tkj6dGKmmFzjnJ1Umvc0nhGcCiyJVqjjjQksDV22kfbFvBcXQ6c9rvTGGvIclAFbRiLmPN5jfnIVL3ON0RcxEg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jY/QQlXW; arc=none smtp.client-ip=209.85.128.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45cb6180b60so10188665e9.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 17:15:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757031309; x=1757636109; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=1n/rQnUEn7GyoDZq+ztDxxjMsob+AoSXhZdfC132cBM=;
+        b=jY/QQlXW+u68hBDecsKP+XYKy00bhXjjQHeBt18e0JUeqhlLcEtM1K023F8DYbq4hc
+         HA2az4zSd7QeLuVCbypOT/SrkbSkRot5cngY5Vti4rbVYmEGlpf18PlhV0BdNkiH879f
+         ws6j2bB8G75JN74+SKVbyUF12Tjd7ZQH7WfLnydPmgtmf4Lm4eMj2fbIX754DVfmnw3n
+         KxtL7Wth7cZW6oGjyKBlLi4YjxBUg6tv1Ks4FCEmpBiUl/Mq3Nw20+wxEpnA0mr4R4FX
+         DQNAt/WRFY9MOBhMAaYssvKPUhxJ7wyvZ8CKbCq/Li6/imzxLwCf/2FW5O+mD0pSC2No
+         7s7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757030711; x=1757635511;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FnmVTYg5qyuC90TtxfAp5dg0tH1WOGwDVnnWVDmLEjk=;
-        b=hQjSn3q75mpfIAwd4JVl/OoF+rRbdsDhDqeNa0PdZjFDJA5gL35hrO9G3dyKgJV3zJ
-         mzC58opY4wtpwoXFR9H0XWtbzhlhsChiiULOI7R4NxDIelUM2/b8TTdQ1rxJ0n1T4LEe
-         aDe1MguZO4d9X6AJsCPR+D1rLluArVbRCB0DZ1YcCiNtUQo/1wa3LvJf5R6zI4Leh2Iu
-         hIACeFplXmixm01+YwnLG++ZiO3Epn8G31LFaXQim76qKUjzCg9PLJMAvHdaKUJZyUqy
-         2W7qCmsJpXgDiLrrF08ossk0JAQeJzndX0qeH3LXX2ySDprjHMOIcCphimWMqwy1CsZ8
-         QOiw==
-X-Forwarded-Encrypted: i=1; AJvYcCXH85Ruku9qNCgewFvm+Te4JIi377UeJM5oghr75BFGObjrhtdi4ho3LU6UM8aQUv6oEbMULeoZ1z6P@vger.kernel.org
-X-Gm-Message-State: AOJu0YzJo9f4fn8UiPqXzIjUP3F5IoHknnibE5jk6Elqz9PX5DA6MJmv
-	SKu3dzynM4pVRxPJQSDCxbz/mmvemtdibzo8eOwcobKA+B4aDkQt/uwt1Kqda/EIE/1IprtKC3x
-	YoYOxGS1ZrwocXtPbH3LqbrKpMFw6BQXRe/JXf4FanGSxdRAztTvf7N0eHTZ2PYnY
-X-Gm-Gg: ASbGncvpAE+9jVhSjw8yQT/011Kme4GKBxJV6US2cK/eopeIbYAu/te+5NEZ/ZEqYpw
-	y4XAjYFN9LSXzk0mfXhrkJ0gsEE27Czup/trwZ2eLQe7cmC52DkWkBFEyUd7ugeBK/x2GdsMEJC
-	JlsfgnXQDYqBu2V+GBfq7x4rzqrl/70LlofBwVcN2z3mNkrKznQpb8f96iklzncOhiQtD1BBQBE
-	nEY5owrvTIZkfDKHSSdD8nb1bsyJZK050SjDyqCPBNlQV7bM9aB07UQt8dRYR8TTDEQNO8We4AM
-	904EsEjeyPmZsmahAa/svk8fvELVILV2lfOibJXiRUoQZaX9E0LGTCWBxrvSSdmhitK5igK+Row
-	kj/RU91SrpOGLhmX8CH7JFtjqan2MnZlqEd2xdjUFnCSoQQjUIrYM
-X-Received: by 2002:a05:6214:2025:b0:70f:a558:2955 with SMTP id 6a1803df08f44-72bc355d107mr23890886d6.22.1757030710915;
-        Thu, 04 Sep 2025 17:05:10 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHuz7rSIAfCmUlEAAoYDamxMn3kE6MVpgENng2PopXAtvFP/43O0lsMhMkHtfYx9Az0yrIbYA==
-X-Received: by 2002:a05:6214:2025:b0:70f:a558:2955 with SMTP id 6a1803df08f44-72bc355d107mr23890406d6.22.1757030710379;
-        Thu, 04 Sep 2025 17:05:10 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ad4d3efsm1478298e87.146.2025.09.04.17.05.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 04 Sep 2025 17:05:09 -0700 (PDT)
-Date: Fri, 5 Sep 2025 03:05:06 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Andy Yan <andyshrk@163.com>
-Cc: heiko@sntech.de, mripard@kernel.org, neil.armstrong@linaro.org,
-        andrzej.hajda@intel.com, jernej.skrabec@gmail.com, jonas@kwiboo.se,
-        Laurent.pinchart@ideasonboard.com, maarten.lankhorst@linux.intel.com,
-        rfoss@kernel.org, simona@ffwll.ch, tzimmermann@suse.de,
-        knaerzche@gmail.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Andy Yan <andy.yan@rock-chips.com>
-Subject: Re: [PATCH v7 1/2] drm/rockchip: inno-hdmi: Convert to drm bridge
-Message-ID: <u72vkfojufgvuqwuqpvgvnip3wogpgdcuc7bn46zo3bp7ogbu5@fmqotgyahrsn>
-References: <20250903110825.776807-1-andyshrk@163.com>
- <20250903110825.776807-2-andyshrk@163.com>
+        d=1e100.net; s=20230601; t=1757031309; x=1757636109;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=1n/rQnUEn7GyoDZq+ztDxxjMsob+AoSXhZdfC132cBM=;
+        b=jzxE4SgSmOWc7oNbV80HuQ9mki33I92BXUHCuRJWPXnY7aLe8qH2Ei32whhsH4sJE9
+         0g5xhYkGFCw0Lq9XqUoAOm8xwlDWEoWl0/SzFzd+EVl64GY3T4RqzrnYGnbmFMacGqFv
+         a2gQdkErtDxi1G0J6nuhbdFvIKeZ5Atly4cGTAdWzKOe2hKjSSvSLcxLTKPmz30cvwRt
+         Vj9Suh/vvXKTKW948Em8fsNQS+JJX7V43c6qzYB20e9FaK0kPXd+d8i4T3pAz8sXHiT0
+         jx9nuc5el/cZTq92VbeBKwwM8iAyTG/d9Ey0NCxPF9cWW2IL5x9I/DDz5NCIBvHS1xoE
+         T40A==
+X-Forwarded-Encrypted: i=1; AJvYcCVK/lzilCPALTaFNwonmhTHBNu5zWAM7GCejiVhE+4UmxZQzuAU2zvXfF1x8Sn0YSNcZihigUqgP/CD@vger.kernel.org
+X-Gm-Message-State: AOJu0YyhyBKDh9dWblnrM7AhRBnUr2nRa3KLLTKNNdhqnyhTgoRb/Hct
+	1aFNcCPbN25etTzLiTFN93q+imHtATnBSxQKsL3GlGR/TaFsPDqCsmv6wlB2FU6uQAL12esuWk3
+	+5rhn0KbuLJyoQKxmshjYor4YJFrSfe8E+H+HbAJ0XQ==
+X-Gm-Gg: ASbGncsMRyqqWrinf+P6/opsNgRW7Z6ZiQik7Cid4ikterMqIGXvpH6dTDVOFqK/S8O
+	v8QgutDwtt/VlLIuuxwfEFlIkWIkgkVZCJwS/dvbaXw3Hry79ySauOADvhHTPcDyMKYgD3w14BP
+	zM0xrTK0/VPtbdDR3juwEGhS9YU8ipFMwQeEBAFHSkaoZh71+PIcjPqWaOWeUtu9FpVi3Dejc++
+	lEZrw==
+X-Google-Smtp-Source: AGHT+IGj15U2Ts3kcu6tXtZt1/h5FIY/A1yk077GAC+Jyg1MndthZQ2lQpMOj8u6CbNn4gsvAMKWNZ1fsXJvpx9WBYE=
+X-Received: by 2002:a5d:5f46:0:b0:3d5:6551:4016 with SMTP id
+ ffacd0b85a97d-3d565515fe6mr13823174f8f.14.1757031308792; Thu, 04 Sep 2025
+ 17:15:08 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903110825.776807-2-andyshrk@163.com>
-X-Proofpoint-GUID: poF90w2BO0m7Al2zP-4p_s8oAUOWFFXc
-X-Authority-Analysis: v=2.4 cv=Jt/xrN4C c=1 sm=1 tr=0 ts=68ba293f cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=Byx-y9mGAAAA:8 a=s8YR1HE3AAAA:8
- a=kdxkXz20giiO-m4nxtAA:9 a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22
- a=jGH_LyMDp9YhSvY-UuyI:22
-X-Proofpoint-ORIG-GUID: poF90w2BO0m7Al2zP-4p_s8oAUOWFFXc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAwMSBTYWx0ZWRfX0Od27vNUn+/M
- O84qGqb6/ThZFNAWX6MSRNcRGh+ILiNw/sypZWDuuA/unBt/7qYwX+LGf4Fb8CuAaBoFdrYuWUa
- AW8Y9WcxVr3z5YKidS4mhaE59LsMDYx8cqrK/j3lPinLEqiQX4DuOiV7yLffE82Jqd2P3vmERA1
- olFYR8LDb/JSwYj8Entix2ikXFUfNsRFQmBuhboNj3ykkB38LF2xPmeh2A7HKca6xX3sLV19VPl
- Fz62OTcBx4BNqcAhYSx357JvG5Ppjo0ZJPUm+AAroTbmH0OlREGKfhHp9dNdwtyTyiI8EKSPD3c
- 0JNldcS/lRcAGfRI9q1p8xA+F0oKp2vU4G8u5IJNeitxeAiYOqNmrYdfoPk0V9RuQ7Dtt2gnv60
- OHEjnL+d
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-04_08,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 priorityscore=1501 clxscore=1015 bulkscore=0 impostorscore=0
- spamscore=0 phishscore=0 suspectscore=0 malwarescore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2508300001
+References: <20250814-wip-obbardc-qcom-t14s-oled-panel-v7-1-89966ae886a3@linaro.org>
+In-Reply-To: <20250814-wip-obbardc-qcom-t14s-oled-panel-v7-1-89966ae886a3@linaro.org>
+From: Christopher Obbard <christopher.obbard@linaro.org>
+Date: Fri, 5 Sep 2025 01:14:57 +0100
+X-Gm-Features: Ac12FXzgGD8FfSa_WME3qIhlvvQzp0tW_Hx2PtWKp2ZbsjrohS1FvpsYw3rDPSs
+Message-ID: <CACr-zFCjrQAM0W9NnWJTwGYc=MnR8ODawW-DK+LJjRJYJznaEQ@mail.gmail.com>
+Subject: Re: [PATCH v7] arm64: dts: qcom: x1e78100-t14s-oled: Add eDP panel
+To: Bjorn Andersson <andersson@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>, 
+	Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>, devicetree@vger.kernel.org, 
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Konrad Dybcio <quic_kdybcio@quicinc.com>, 
+	Douglas Anderson <dianders@chromium.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Konrad Dybcio <konradybcio@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+	Aleksandrs Vinarskis <alex.vinarskis@gmail.com>, Sibi Sankar <quic_sibis@quicinc.com>, 
+	Rajendra Nayak <quic_rjendra@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>, 
+	Jens Glathe <jens.glathe@oldschoolsolutions.biz>, Srinivas Kandagatla <srini@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Wed, Sep 03, 2025 at 07:07:38PM +0800, Andy Yan wrote:
-> From: Andy Yan <andy.yan@rock-chips.com>
-> 
-> Convert it to drm bridge driver, it will be convenient for us to
-> migrate the connector part to the display driver later.
-> 
-> Signed-off-by: Andy Yan <andy.yan@rock-chips.com>
-> 
+Hi Bjorn,
+
+Any feedback on this patch ?
+I'd love it if you could consider it for inclusion in your next qcom
+pull request.
+Or if there is any issues, I can send another version quickly. Let me know !
+
+Cheers!
+
+Chris
+
+
+On Thu, 14 Aug 2025 at 21:16, Christopher Obbard
+<christopher.obbard@linaro.org> wrote:
+>
+> Add the Samsung ATNA40YK20 eDP panel to the device tree for the
+> Snapdragon T14s OLED model.
+>
+> Signed-off-by: Christopher Obbard <christopher.obbard@linaro.org>
 > ---
-> 
+> The Snapdragon Lenovo T14s Gen6 can be bought with a number of different
+> panels. This patch series adds support for the OLED model which has a
+> Samsung ATNA40YK20 panel.
+>
+> This series depends on [0] which adds the edp_hpd_active pinctrl node.
+>
+> With this patch series the backlight of the OLED eDP panel does not
+> illuminate since the brightness is incorrectly read from the eDP panel
+> as (to be clear this is not a regression). This is fixed in [1].
+>
+> [0]: https://lore.kernel.org/linux-arm-msm/20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org/
+> [1]: https://lore.kernel.org/all/20250814-topic-x1e80100-t14s-oled-dp-brightness-v7-1-b3d7b4dfe8c5@linaro.org/
+> ---
 > Changes in v7:
-> - Rebase on latest drm-misc-next
-> 
+> - Remove patch adding edp_hpd_active since now handled in Stephan's series [0].
+> - Properly add OLED brighness patch as dependency [1].
+> - Link to v6: https://lore.kernel.org/r/20250731-wip-obbardc-qcom-t14s-oled-panel-v6-0-4782074104d1@linaro.org
+>
 > Changes in v6:
-> - Rebase on latest drm-misc-next
-> - Link to V5: https://lore.kernel.org/linux-rockchip/20250512124615.2848731-1-andyshrk@163.com/
-> 
+> - Squash patches adding "edp_hpd_active" node & its user (Johan).
+> - Sort new pinctrl node correctly by name (Johan).
+> - Use correct function "edp0_hot" instead of "edp_hot" (Johan).
+> - Drop review tags.
+> - Link to v5: https://lore.kernel.org/r/20250402-wip-obbardc-qcom-t14s-oled-panel-v5-0-ff33f4d0020f@linaro.org
+>
 > Changes in v5:
-> - Split cleanup code to seperate patch
-> - Switch to devm_drm_bridge_alloc() API
-> - Link to V4: https://lore.kernel.org/linux-rockchip/20250422070455.432666-1-andyshrk@163.com/
-> 
+> - Move edp_hpd_active from T14s DTS into SoC DTSI (Dmitry).
+> - Link to v4: https://lore.kernel.org/r/20250402-wip-obbardc-qcom-t14s-oled-panel-v4-0-41ba3f3739d0@linaro.org
+>
 > Changes in v4:
-> - Do not store colorimetry within inno_hdmi struct
-> - Link to V3: https://lore.kernel.org/linux-rockchip/20250402123150.238234-1-andyshrk@163.com/
-> 
+> - Rework HPD GPIO into eDP device rather than panel (Johan).
+> - Drop review tags for HPD GPIO patch.
+> - Link to v3: https://lore.kernel.org/r/20250327-wip-obbardc-qcom-t14s-oled-panel-v3-0-45d5f2747398@linaro.org
+>
 > Changes in v3:
-> - First included in v3
-> - Link to V2: https://lore.kernel.org/dri-devel/20250325132944.171111-1-andyshrk@163.com/
-> 
->  drivers/gpu/drm/bridge/Kconfig                |   7 +
->  drivers/gpu/drm/bridge/Makefile               |   1 +
->  .../inno_hdmi.c => bridge/inno-hdmi.c}        | 502 +++++-------------
->  drivers/gpu/drm/rockchip/Kconfig              |   1 +
->  drivers/gpu/drm/rockchip/Makefile             |   2 +-
->  drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c | 188 +++++++
->  include/drm/bridge/inno_hdmi.h                |  33 ++
->  7 files changed, 366 insertions(+), 368 deletions(-)
->  rename drivers/gpu/drm/{rockchip/inno_hdmi.c => bridge/inno-hdmi.c} (69%)
->  create mode 100644 drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c
->  create mode 100644 include/drm/bridge/inno_hdmi.h
-> 
-> @@ -637,14 +584,13 @@ static void inno_hdmi_init_hw(struct inno_hdmi *hdmi)
->  	hdmi_modb(hdmi, HDMI_STATUS, m_MASK_INT_HOTPLUG, v_MASK_INT_HOTPLUG(1));
->  }
->  
-> -static int inno_hdmi_disable_frame(struct drm_connector *connector,
-> -				   enum hdmi_infoframe_type type)
-> +static int inno_hdmi_bridge_clear_infoframe(struct drm_bridge *bridge,
-> +					    enum hdmi_infoframe_type type)
->  {
-> -	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
-> +	struct inno_hdmi *hdmi = bridge_to_inno_hdmi(bridge);
->  
->  	if (type != HDMI_INFOFRAME_TYPE_AVI) {
-> -		drm_err(connector->dev,
-> -			"Unsupported infoframe type: %u\n", type);
-> +		drm_err(bridge->dev, "Unsupported infoframe type: %u\n", type);
->  		return 0;
->  	}
->  
-> @@ -653,20 +599,19 @@ static int inno_hdmi_disable_frame(struct drm_connector *connector,
->  	return 0;
->  }
->  
-> -static int inno_hdmi_upload_frame(struct drm_connector *connector,
-> -				  enum hdmi_infoframe_type type,
-> -				  const u8 *buffer, size_t len)
-> +static int inno_hdmi_bridge_write_infoframe(struct drm_bridge *bridge,
-> +					    enum hdmi_infoframe_type type,
-> +					    const u8 *buffer, size_t len)
->  {
-> -	struct inno_hdmi *hdmi = connector_to_inno_hdmi(connector);
-> +	struct inno_hdmi *hdmi = bridge_to_inno_hdmi(bridge);
->  	ssize_t i;
->  
->  	if (type != HDMI_INFOFRAME_TYPE_AVI) {
-> -		drm_err(connector->dev,
-> -			"Unsupported infoframe type: %u\n", type);
-> +		drm_err(bridge->dev, "Unsupported infoframe type: %u\n", type);
->  		return 0;
->  	}
->  
-> -	inno_hdmi_disable_frame(connector, type);
-> +	inno_hdmi_bridge_clear_infoframe(bridge, type);
->  
->  	for (i = 0; i < len; i++)
->  		hdmi_writeb(hdmi, HDMI_CONTROL_PACKET_ADDR + i, buffer[i]);
-
-It's not an issue for this patch (and I think it can be fixed after this
-series is merged). I took a quick glance at frame programming. It feels
-like the clear_infoframe should be poking at registers 0x9c / 0x9d. And
-write_infoframe then can support HDMI, SPD and Audio infoframes in
-addition to the AVI. I don't have hardware to experiment (nor time :-)),
-but would there be a chance to improve this?
-
--- 
-With best wishes
-Dmitry
+> - Added review trailers from v2.
+> - Dropped dt-binding documentation patch (applied by Douglas Anderson into
+>   drm-misc-next).
+> - Dropped eDP maximum brightness patch (will be sent in separate
+>   series).
+> - Removed duplicate nodes in T14s OLED device tree.
+> - Reworked WIP comments from commit messages.
+> - Link to v2: https://lore.kernel.org/r/20250325-wip-obbardc-qcom-t14s-oled-panel-v2-0-e9bc7c9d30cc@linaro.org
+>
+> Changes in v2:
+> - Use the existing atna33xc20 driver rather than panel-edp.
+> - Add eDP panel into OLED devicetree.
+> - Add patch to read the correct maximum brightness from the eDP panel.
+> - Link to v1: https://lore.kernel.org/r/20250320-wip-obbardc-qcom-t14s-oled-panel-v1-1-05bc4bdcd82a@linaro.org
+> ---
+>  arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+> index be65fafafa736a0401a5872c40f69cb20cfbbd90..d524afa12d19b2a6f22a24b9bed6b6b40248375f 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s-oled.dts
+> @@ -10,3 +10,11 @@ / {
+>         compatible = "lenovo,thinkpad-t14s-oled", "lenovo,thinkpad-t14s",
+>                      "qcom,x1e78100", "qcom,x1e80100";
+>  };
+> +
+> +&panel {
+> +       compatible = "samsung,atna40yk20", "samsung,atna33xc20";
+> +       enable-gpios = <&pmc8380_3_gpios 4 GPIO_ACTIVE_HIGH>;
+> +
+> +       pinctrl-0 = <&edp_bl_en>;
+> +       pinctrl-names = "default";
+> +};
+>
+> ---
+> base-commit: 33a21dab19b31540dfeb06dde02e55129a10aec4
+> change-id: 20250320-wip-obbardc-qcom-t14s-oled-panel-b74fed21d600
+> prerequisite-message-id: <20250814-x1e80100-add-edp-hpd-v1-0-a52804db53f6@linaro.org>
+> prerequisite-patch-id: 658fd45e0cb953e3c667a30f2cf78cfd3582d552
+> prerequisite-patch-id: fc665d8cdd099464e6fa4401489fde70b65bed30
+> prerequisite-patch-id: 13ff38b40f2dcb283be82485e88ca4efc249599b
+> prerequisite-patch-id: 7d02075f074ad8f32eeaf5ee8833d0c6a230cea8
+> prerequisite-patch-id: 380fed6c07ca1ecdb73768054454e47c984d00e9
+> prerequisite-patch-id: 1f8b24fc983fa23abc97512e15626394ce760ffe
+> prerequisite-patch-id: 7d29e2fee2b19cf2d12d54cca052b1c1fb808c9d
+> prerequisite-patch-id: c5bf1706ecf4df7782707bbf0d18a0568842b562
+> prerequisite-patch-id: 34889448fd92cdc916e7e19eac8446710d2a646a
+> prerequisite-message-id: <20250814-topic-x1e80100-t14s-oled-dp-brightness-v7-1-b3d7b4dfe8c5@linaro.org>
+> prerequisite-patch-id: ceed93f46ae27c7980c5b57022068daaad8dc8c9
+>
+> Best regards,
+> --
+> Christopher Obbard <christopher.obbard@linaro.org>
+>
 
