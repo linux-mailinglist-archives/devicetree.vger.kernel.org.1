@@ -1,2026 +1,1252 @@
-Return-Path: <devicetree+bounces-213342-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213343-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 948D0B4524B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:59:50 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8196AB4525C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:02:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8CA3D3BAF8D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:59:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DDD4F1C8209C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:02:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8588E301497;
-	Fri,  5 Sep 2025 08:59:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TttBxe2H"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342372571DE;
+	Fri,  5 Sep 2025 09:02:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpbguseast1.qq.com (smtpbguseast1.qq.com [54.204.34.129])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D309727EFF1;
-	Fri,  5 Sep 2025 08:59:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C753229B2E;
+	Fri,  5 Sep 2025 09:02:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.204.34.129
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757062756; cv=none; b=PS1kKO1v8qV9Wlzwybnp0Ypn8hheH0OCI6fPIYzFQSYR3GwfAhJY2LLDl9I8teBqdKSCxI0hrbQn5XKjABYsdW77K9cGtRVa5/vrpIUfiTXOYAZDbRNyd4Tx/NbuTq4G9BPEQnJyE4athCc5ZV3xgwG28bE05qp6pYZElYfkkzQ=
+	t=1757062931; cv=none; b=A2oSi/B3qedD5CW7OgKCUiqVv60dyzM6TwZ4IHjTzA1vC+Tb+RYjjzqcIcOBCUsX7f/WMv1y95IvaX/7UFgxQMIZ2hZm/f19CmqeuVL6zKXUlgoBtzN2p0x327/feOX3ggjLveZRRHkJ+xAZv4Zfdt6kBlzmArTliYUnMps75mw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757062756; c=relaxed/simple;
-	bh=B4jq+bUdq0go2FSrSkpH9wLj/ai0NlkVugqe5Gminwg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RCotikrV3LVMgYEiNp14Ah+TTkb3KK9udEtK2eAFgNyhfXOryp2n2tZWlSgv1tDzLUr/0hu4rkfc64MXoTbW4m92INUH4ynU/WU4TeSyBfclsEJ242EVOrNHcPAsOqBCKtCizMUhPWxYsn37ezMWQAZ+jG7Ome+hDwEXdDgvinM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TttBxe2H; arc=none smtp.client-ip=209.85.166.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-3f65d600d35so19010045ab.0;
-        Fri, 05 Sep 2025 01:59:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757062752; x=1757667552; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iiismeoj4wyWJdoXzOzbVQuhmPQIcwv/dKDxPtdo+5E=;
-        b=TttBxe2Hq6MPOY3iCwnH9Uzhd4HiYWCPH4I6W1p8yyxscBSvoC/eTkg425iSHbruuO
-         Hns5BAtqXMvqOXmBXWu7B62jOJNQ+M6u8MChopzsyBfW/Z85mapGrujYSC4+NkbIfYhU
-         ph27JkEDVivhVkryvFv8Kfmjt7VhA8oGZwMVAQjR/XScLkYLlgornflxS1hmOgmSFRo/
-         K4KlisnVyqogY1SlrJeApixGIX4JT6tBi+WZkEGgbOQBgFwDvYrrgHIlQmsKLtuxD4tX
-         6KoN/ZO/1QZhWupdtLuDD4Ij+eTsxFNo7zB8f3sGRdwy2jZkShmwCN0WVP0KNYgTF2zp
-         MBXw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757062752; x=1757667552;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iiismeoj4wyWJdoXzOzbVQuhmPQIcwv/dKDxPtdo+5E=;
-        b=XxIpZVT3fdqwYEKWauarIZHD4ms1TG/bND5iOptc/02UTRfT1zshKvqMIgBcXpYgHa
-         Ly9ozzgJkyAppOk2jFwEtPM6OCpgU6ZfJqJ4hja2QZd60qqWLTcgdGNQOXEoUul8kJOY
-         8w8jyEj3D6+O1VBWc5HWiWGCp4JYzynJRypu4cqeYaXkdXqdK5maZWDJsgUjE1+L62s2
-         0qaPZ0SyZDYVpEIlxKfkCVbc7y9q2Jq0yFMVoVa6XzZtZTvXgqJfzna9Bn3Z84le3z/X
-         llkWFpxAtRzRTaj6968EcQzQI0t8990n0q8p00TXNOK6cUtPt0HR+lQ5Rkx0oNJLPjnE
-         n4Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCXKK38sF++eQYegvGMsD1bgpYbPxkR6ToDxZIMhdVRWUUAUzz68zhffMvXuDejHaBLBwhloCM4TeBdCxURs@vger.kernel.org, AJvYcCXTwD0gG3QL8JS/vohLsm2ZmYAnWY3M/l4yVLPvdF1bD/l05O+EOL8NxYM8awgzAeF1lFHyg5vet30h@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy/lDtMVRjWHUTk5H44fwy7qyQFTOqOJDKlI7JYZkMFOGtbCYNP
-	MhHRZ5AtWG+7J0iAPR9+22ObiE2rleS6wpWnNbqqpMZEyVB5/bcr76IAn52p0C1o0W/isOz9nuR
-	fRNzFbO5E1mtlxY2dtykaNNtMoafC9ZP3zE05OpVMpw==
-X-Gm-Gg: ASbGncsmoP4sFCK0N2kInX0my+iTuFdE8CIk5nxovmzc7MY+p9lkNvSAeU6s00pvsIw
-	sns5PyzJ+GNnxOwbCG0jOg9Eyf8bjn2Ght4BPktMAyLXyssW6o+lxX4FInlz3wjfJvTCQ+qAmvg
-	t3PmV1KvpcEMYiGhY4himLD/g851rH0IjmUt1PTRWHGPGQiruAKKtRP+S/jRc5s13akc3yV9MML
-	Vm/R9o=
-X-Google-Smtp-Source: AGHT+IEwzc2CDcYpI3xndtE/6ETJA+vU829vblh/ksDkK488o3afEswYfT7el2Q6znX6gr47bzPBWtl8+YHCtxay7As=
-X-Received: by 2002:a05:6e02:168c:b0:3f1:6141:8a40 with SMTP id
- e9e14a558f8ab-3f4021cb5ffmr341671505ab.23.1757062751434; Fri, 05 Sep 2025
- 01:59:11 -0700 (PDT)
+	s=arc-20240116; t=1757062931; c=relaxed/simple;
+	bh=/c7/Q1Tr4Z15MByN0fawtwcxTlz7RqyeYa5xyz2FVm8=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=qFKqwJ2zkxuxW7Grzf+m7et232HdWMKSI+kZpV7mEdMo+kt+0QEFZqoUM+t2UW+5tCXEMmDSgIE0YE2Ct9EBc0aO9HkkVg07UMdxqa47DWpwE5GWCZnBHvFaugvQv1Ud93HUOcsEPz/JjdhkuUcCzKIAMNoUUtwA+eK9b6igl+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=54.204.34.129
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
+X-QQ-mid: esmtpsz21t1757062908te66fb25d
+X-QQ-Originating-IP: Y2a2PRw/mXK3+I7/WoefYo8akf2Tv0U+w2QRgQDeYmM=
+Received: from localhost.localdomain ( [183.51.122.216])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Fri, 05 Sep 2025 17:01:46 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 12943143760514833952
+EX-QQ-RecipientCnt: 15
+From: Kaison Deng <dkx@t-chip.com.cn>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Wayne Chou <zxf@t-chip.com.cn>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kaison Deng <dkx@t-chip.com.cn>
+Subject: [PATCH] arm64: dts: rockchip: Add devicetree for the ROC-RK3588-RT
+Date: Fri,  5 Sep 2025 17:01:15 +0800
+Message-Id: <20250905090115.718622-1-dkx@t-chip.com.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903123825.1721443-1-syyang@lontium.com> <20250903123825.1721443-3-syyang@lontium.com>
- <24rahlm4kkob7knapdxxnjixye3khx3nv2425y4kkirat4lmam@gjey7zqsnzks>
- <CAFQXuNZUfAJe4QEDfi+-1N99xO0_z5_Omnsn_-SXr2QPtvdL_g@mail.gmail.com>
- <7cyypk5j7o5fglmibshg45iysffpdl75m6rqvv4b5zntfevhiz@zlt7ybuzkvrg>
- <CAFQXuNb+Eq6KPFvsnmGvn7KKjn4WRtMy1x4pn4ZvZoQ-_S_fYQ@mail.gmail.com> <d3e3b838-26fa-491e-8c4f-63a1693f2391@linaro.org>
-In-Reply-To: <d3e3b838-26fa-491e-8c4f-63a1693f2391@linaro.org>
-From: =?UTF-8?B?5p2o5a2Z6L+Q?= <yangsunyun1993@gmail.com>
-Date: Fri, 5 Sep 2025 16:58:59 +0800
-X-Gm-Features: Ac12FXycPouBKQsOiD-rMdgGiRoPpZeehRTIfww98paalAak1XoSqCRhOax9Z2Y
-Message-ID: <CAFQXuNbZfnySYmizY2=PJGLkk38WHOYbVcbPTRZvgY7bFdK8yg@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] This patch adds a new DRM bridge driver for the
- Lontium LT9611C chip.
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, syyang <syyang@lontium.com>, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	andrzej.hajda@intel.com, rfoss@kernel.org, Laurent.pinchart@ideasonboard.com, 
-	jonas@kwiboo.se, jernej.skrabec@gmail.com, devicetree@vger.kernel.org, 
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
-	xmzhu@lontium.com, llzhang@lontium.com, rlyu@lontium.com, xbpeng@lontium.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: OWetTbhfR/zw37WJeL2C6TvWSeIxdGUkbuRxZnfFP8laFmSITKEVwSHr
+	+pRvbu2wY7mYv42stKdzTHQ3MeHzgJkaQwini/PH+yET1SSYH7zBuZH/RRqkAybU06ovZ0M
+	ZYHqazmBoZbhrQ6CLYH4SIzPxgo1llw8W10A3W9/sibuue616mG8Zr2rmZvgjXzy6tZZ/C0
+	mttUg97mT838gEbkfnNRufDdWjhY3CX7DdBlAOttNNME2HzgfTNU3tE0sFvGjlQuLvGsVW/
+	GfERMaF9iczGk13C6rbJ/4C65tGVEyqVe0nPfvbguu9niqg0mBVUmdnBYpQDmJmUtk2uYqv
+	UYisSL98VtAD4rch/HDxo+O/As3WOxv9Khu7FHTJ403OGBAbKlTMI9ddpkdKfX+zzgrYlNE
+	d2432jhdFUA2v4vDt0gnfoHUqekfiIMdUq6wOB2e436Xc97sfVuJyvzMBKtF3zIB4gNQK6D
+	YEYJyG2bmKgTGl2fDDgXrYi0uZAd7BlWADWOZ0se5IAfxRUhaZ+RKlT7z8GzRIMbk9r153o
+	sywHX1t7htl07I7xBLpOxadGdFanPwXygp5LguaSO/JUxhzDbdru8UVgmbA5VIr1nZnDMXX
+	w1xRQ79PCiZ4jDkLAhbA+KRj6OFpMuKX8g/SDiPgbTdGXgfXYzxXlvV+oF8sLA0DiLuE9P5
+	qwwGjj61wH4qFW7XogPqBHHxVisQTFbAf6slPrYeNG2k3I2QUI9gvagPVX3Hy/Jx9NAogig
+	SLNS/bO+PD4ZSRjshZ8R6OdT0rM6wvSmOVVMqXfitefin7vG8PMkX++5mrdPHYKP/EjvmwC
+	yxejTyuGu+Eqo0jJu4BcouwEPVN7pz9O/uuGWj3AW2/ssm2/ptUQemhc/THJAQavjhaVl+Y
+	VzoZcA1YsJ1pDuKVXKfYT9OI/lPP9koeiIWVf3/NyxA1Zm4mAjTNl6z4ydemspA350yFOJS
+	Bnq7tVp47jMI+QD7EvcMNM9HY5I4sFIhvm3KY69VwH/or8OU3dCUYp4PkRMjX6lZwXnLXgO
+	PZOoyjnCDKhr078EDPQfeXZLB67c/0vTRZc5M/C1+69GjCPCUahCEkVqrWlwGeoshT/58/y
+	Nzzz7QL+wltB4o4N4MacNk=
+X-QQ-XMRINFO: MSVp+SPm3vtS1Vd6Y4Mggwc=
+X-QQ-RECHKSPAM: 0
 
-HI=EF=BC=8C
+The Firefly ROC-RK3588-RT is RK3588 based SBC featuring:
 
-As a vendors , we have begun to attempt to contribute to the Linux,
-and we are very willing to do so.
-there are still many rules that we don't understand and need to learn.
+- TF card slot
+- NVME 2242 socket
+- 1x USB 3.0 Port, 1x USB 2.0 Port, 1x Typec Port
+- 1x HDMI 2.1 out, 1x HDMI 2.0 out
+- 2x Gigabit Ethernet, 1x 2.5G Ethernet
+- M.2 E-KEY for Extended WiFI and Bluetoolh
+- ES8388 on-board sound codec - jack in/out
+- RTC
+- LED: WORK, DIY
+- BTB connector for PCie, UART, USB, CAN, SARADC, GPIO
 
-<neil.armstrong@linaro.org> =E4=BA=8E2025=E5=B9=B49=E6=9C=885=E6=97=A5=E5=
-=91=A8=E4=BA=94 16:10=E5=86=99=E9=81=93=EF=BC=9A
->
-> Hi,
->
-> First, thanks for submitting a driver for this bridge, it's highly apprec=
-iated
-> vendors makes this effort.
->
-> On 05/09/2025 04:55, =E6=9D=A8=E5=AD=99=E8=BF=90 wrote:
-> > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=
-=B9=B49=E6=9C=884=E6=97=A5=E5=91=A8=E5=9B=9B 22:39=E5=86=99=E9=81=93=EF=BC=
-=9A
-> >
-> >>
-> >> On Thu, Sep 04, 2025 at 06:48:13PM +0800, =E6=9D=A8=E5=AD=99=E8=BF=90 =
-wrote:
-> >>> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> =E4=BA=8E2025=E5=
-=B9=B49=E6=9C=884=E6=97=A5=E5=91=A8=E5=9B=9B 10:52=E5=86=99=E9=81=93=EF=BC=
-=9A
-> >>>>
-> >>>> On Wed, Sep 03, 2025 at 05:38:25AM -0700, syyang wrote:
-> >>>>> The following changes are included:
-> >>>>>
-> >>>>> - Updated Kconfig and Makefile to include the new driver
-> >>>>> - Implementation of the bridge driver at
-> >>>>>    drivers/gpu/drm/bridge/lontium-lt9611c.c
-> >>>>
-> >>>> This is really not interesting, it can be seen from the patch itself=
-.
-> >>>> Please read Documentation/process/submitting-patches.rst.
-> >>>>
-> >>> Sorry,  I will study submitting-patches.rst.
-> >>>
->
-> If you're unsure about the quality and acceptability of your patch,
-> please submit them as RFC.
->
-> If you have questions, you can discuss on IRC with linux developers
-> on OFTC #dri-devel for example.
->
-we will study it, thks.
+Signed-off-by: Kaison Deng <dkx@t-chip.com.cn>
+---
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../arm64/boot/dts/rockchip/rk3588-roc-rt.dts | 1120 +++++++++++++++++
+ 2 files changed, 1121 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
 
-> <snip>
->
-> >>>>> +
-> >>>>> +static unsigned int bits_reverse(u32 in_val, u8 bits)
-> >>>>> +{
-> >>>>> +     u32 out_val =3D 0;
-> >>>>> +     u8 i;
-> >>>>> +
-> >>>>> +     for (i =3D 0; i < bits; i++) {
-> >>>>> +             if (in_val & (1 << i))
-> >>>>> +                     out_val |=3D 1 << (bits - 1 - i);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return out_val;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static unsigned int get_crc(struct crc_info type, const u8 *buf, u=
-64 buf_len)
-> >>>>
-> >>>> Use library functions for that.
-> >>>>
-> >>>
-> >>> I'm not sure whether the algorithms in the llibrary functions are
-> >>> consistent with those designed in our chip.
-> >>> If either of them changes, it will cause the firmware updated to the
-> >>> chip to fail to run.
-> >>
-> >> CRC polynoms don't change that easily
-> >>
-> >>> I think it's safer to implement it using our own code.
-> >>
-> >> No, it's not.
-> >>
-> > If we calculate CRC_1 using the library function and then burn it
-> > together with the firmware into the chip, when the chip boot, it will
-> > use the internal hardware to calculate the firmware CRC_2.
-> > If CRC_1 is not equal to CRC_2, the chip will fail to boot. The
-> > library function will not be changed. I'm worried that the algorithm
-> > in our chip's hardware is different from the library function. I'll
-> > research it.
->
-> We very well know how checksum checking works, Linux has pretty solid
-> CRC library functions that can accomodate any polynomial & init values.
->
-> Please look at source/include/linux/crc8.h and use them accordingly.
->
-> If some changes would still be needed to generate the required CRC
-> then the library functions should be updated.
->
-> >
-> >>> I'll check it.
-> >>>
-> >>>>> +{
-> >>>>> +     u8 width =3D type.width;
-> >>>>> +     u32 poly =3D type.poly;
-> >>>>> +     u32 crc =3D type.crc_init;
-> >>>>> +     u32 xorout =3D type.xor_out;
-> >>>>> +     bool refin =3D type.refin;
-> >>>>> +     bool refout =3D type.refout;
-> >>>>> +     u8 n;
-> >>>>> +     u32 bits;
-> >>>>> +     u32 data;
-> >>>>> +     u8 i;
-> >>>>> +
-> >>>>> +     n =3D (width < 8) ? 0 : (width - 8);
-> >>>>> +     crc =3D (width < 8) ? (crc << (8 - width)) : crc;
-> >>>>> +     bits =3D (width < 8) ? 0x80 : (1 << (width - 1));
-> >>>>> +     poly =3D (width < 8) ? (poly << (8 - width)) : poly;
-> >>>>> +     while (buf_len--) {
-> >>>>> +             data =3D *(buf++);
-> >>>>> +             if (refin)
-> >>>>> +                     data =3D bits_reverse(data, 8);
-> >>>>> +             crc ^=3D (data << n);
-> >>>>> +             for (i =3D 0; i < 8; i++) {
-> >>>>> +                     if (crc & bits)
-> >>>>> +                             crc =3D (crc << 1) ^ poly;
-> >>>>> +                     else
-> >>>>> +                             crc =3D crc << 1;
-> >>>>> +             }
-> >>>>> +     }
-> >>>>> +     crc =3D (width < 8) ? (crc >> (8 - width)) : crc;
-> >>>>> +     if (refout)
-> >>>>> +             crc =3D bits_reverse(crc, width);
-> >>>>> +     crc ^=3D xorout;
-> >>>>> +
-> >>>>> +     return (crc & ((2 << (width - 1)) - 1));
-> >>>>> +}
-> >>>>> +
-> >>>>> +static u8 calculate_crc(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct crc_info type =3D {
-> >>>>> +             .width =3D 8,
-> >>>>> +             .poly =3D 0x31,
-> >>>>> +             .crc_init =3D 0,
-> >>>>> +             .xor_out =3D 0,
-> >>>>> +             .refout =3D false,
-> >>>>> +             .refin =3D false,
-> >>>>> +     };
-> >>>>> +     const u8 *upgrade_data;
-> >>>>> +     u64 len;
-> >>>>> +     u64 crc_size =3D FW_SIZE - 1;
-> >>>>> +     u8 default_val =3D 0xFF;
-> >>>>> +
-> >>>>> +     if (!lt9611c->fw || !lt9611c->fw->data || lt9611c->fw->size =
-=3D=3D 0) {
-> >>>>> +             dev_err(lt9611c->dev, "firmware data not available fo=
-r CRC\n");
-> >>>>> +             return 0;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     upgrade_data =3D lt9611c->fw->data;
-> >>>>> +     len =3D lt9611c->fw->size;
-> >>>>> +
-> >>>>> +     type.crc_init =3D get_crc(type, upgrade_data, len);
-> >>>>> +
-> >>>>> +     crc_size -=3D len;
-> >>>>> +     while (crc_size--)
-> >>>>> +             type.crc_init =3D get_crc(type, &default_val, 1);
-> >>>>> +
-> >>>>> +     return type.crc_init;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int i2c_write_byte(struct lt9611c *lt9611c, u8 reg, u8 val)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret =3D 0;
-> >>>>> +
-> >>>>> +     ret =3D regmap_write(lt9611c->regmap, reg, val);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev,
-> >>>>> +                     "regmap_write error: i2c addr=3D0x%02x, reg a=
-ddr=3D0x%02x, error=3D%d",
-> >>>>> +                     lt9611c->client->addr, reg, ret);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int i2c_read_byte(struct lt9611c *lt9611c, u8 reg, u8 *val)
-> >>>>
-> >>>> Drop these two wrappers, they provide no extra functionality.
-> >>>>
-> >>>
-> >>> I will consider fixing this issue. thanks.
->
-> Please avoid dead code and useless wrappers, and make debug code as minim=
-al
-> as possible and print only when strictly needed, and consider using _dbg
-> prints.
->
-> >>>
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret =3D 0;
-> >>>>> +     unsigned int tmp;
-> >>>>> +
-> >>>>> +     if (!val)
-> >>>>> +             return -EINVAL;
-> >>>>> +
-> >>>>> +     ret =3D regmap_read(lt9611c->regmap, reg, &tmp);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev,
-> >>>>> +                     "regmap_read error: i2c addr=3D0x%02x, reg ad=
-dr=3D0x%02x, error=3D%d",
-> >>>>> +                     lt9611c->client->addr, reg, ret);
-> >>>>> +
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     *val =3D (u8)tmp;
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int i2c_read_write_flow(struct lt9611c *lt9611c, u8 *params=
-,
-> >>>>> +                            unsigned int param_count, u8 *return_b=
-uffer,
-> >>>>> +                            unsigned int return_count)
-> >>>>> +{
-> >>>>> +     int count, i;
-> >>>>> +     u8 temp;
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xDE, 0x01);
-> >>>>
-> >>>> - lowercase all hex values
-> >>>
-> >>> i will fix , thanks.
-> >>>
-> >>>> - use paged writes as implemented for LT9611 and LT9611UXC
-> >>>>
-> >>> Don't understand.
-> >>
-> >> Use 16-bit addressing as done by those two drivers. This way 0xff
-> >> becomes a page switch.
-> >>
-> > i will research it.
->
-> Regmap supports page switching internally, check out how the other lontiu=
-m drivers are designed.
->
-> >
-> >>>
-> >>>>> +
-> >>>>> +     count =3D 0;
-> >>>>> +     do {
-> >>>>> +             i2c_read_byte(lt9611c, 0xAE, &temp);
-> >>>>> +             usleep_range(1000, 2000);
-> >>>>> +             count++;
-> >>>>> +     } while (count < 100 && temp !=3D 0x01);
-> >>>>> +
-> >>>>> +     if (temp !=3D 0x01)
-> >>>>> +             return -1;
-> >>>>> +
-> >>>>> +     for (i =3D 0; i < param_count; i++) {
-> >>>>> +             if (i > 0xDD - 0xB0)
-> >>>>> +                     break;
-> >>>>> +
-> >>>>> +             i2c_write_byte(lt9611c, 0xB0 + i, params[i]);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xDE, 0x02);
-> >>>>> +
-> >>>>> +     count =3D 0;
-> >>>>> +     do {
-> >>>>> +             i2c_read_byte(lt9611c, 0xAE, &temp);
-> >>>>> +             usleep_range(1000, 2000);
-> >>>>> +             count++;
-> >>>>> +     } while (count < 100 && temp !=3D 0x02);
-> >>>>> +
-> >>>>> +     if (temp !=3D 0x02)
-> >>>>> +             return -2;
-> >>>>> +
-> >>>>> +     for (i =3D 0; i < return_count; i++)
-> >>>>> +             i2c_read_byte(lt9611c, 0x85 + i, &return_buffer[i]);
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_prepare_firmware_data(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     /* ensure filesystem ready */
-> >>>>> +     msleep(3000);
-> >>>>
-> >>>> No. If the firmware is necessary and it's not ready, return
-> >>>> -EPROBE_DEFER.
-> >>>>
-> >>> The firmware is unnecessary . This part of the code is for customers
-> >>> who need to upgrade the chip firmware.
-> >>>
-> >>> Due to the different designs of the platform, the firmware used by
-> >>> each customer may be different.
-> >>
-> >> Well... That's a very bad way to go. We have had this issue with
-> >> LT9611UXC at one of my previous jobs. Our customers have had various
-> >> kinds of issues because of the wrong firmware.
-> >>
-> >> Please provide some reference, which works in a DSI-to-HDMI case and
-> >> make it _tunable_ rather than requiring to replace the firmware
-> >> completely.
-> >>
-> > i will research it.
-> > Yes, you worked together with my colleagues to handle the issue of
-> > LT9611UXC. (At that time, you used dmitry.baryshkov@linaro.org)
-> >
-> >>>
-> >>> Therefore, when they need to update the firmware, they only need to
-> >>> compile the firmware into the /lib/firmware directory during the
-> >>> compilation
-> >>> process, and then burn the image into the platform.
-> >>>
-> >>> Once reboot platform, the firmware upgrade can be automatically compl=
-eted.
-> >>
-> >> The firmware upgrade must be triggered by user, unless the FW is
-> >> completely empty.
-> >>
-> > Is it necessary for the authorities to insist on doing so?
->
-> If by authorities you mean the DRM Bridge Maintainers, then since I'm one
-> of the maintainers yes I insist you follow this scheme.
->
-> But as Dmitry said, if the bridge can work nominally without a firmware u=
-pgrade
-> then it's simpler to add the firmware update in a second time.
->
-> >
-> >>>
-> >>> When there is no need to upgrade the firmware, this part of the code
-> >>> will not affect the operation of the driver.
-> >>>
-> >>>>> +     ret =3D request_firmware(&lt9611c->fw, FW_FILE, dev);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "failed load file '%s', error type %d\n"=
-, FW_FILE, ret);
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->fw->size > FW_SIZE - 1) {
-> >>>>> +             dev_err(dev, "firmware too large (%zu > %d)\n", lt961=
-1c->fw->size, FW_SIZE - 1);
-> >>>>> +             lt9611c->fw =3D NULL;
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dev_info(dev, "firmware size: %zu bytes\n", lt9611c->fw->size=
-);
-> >>>>> +
-> >>>>> +     lt9611c->fw_crc =3D calculate_crc(lt9611c);
-> >>>>> +
-> >>>>> +     dev_info(dev, "LT9611C.bin crc: 0x%02X\n", lt9611c->fw_crc);
-> >>>>
-> >>>> No spamming with the unnecessary info. If you want, print the versio=
-n
-> >>>> of the firmware.
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_config_parameters(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xEE, 0x01);
-> >>>>> +     //fifo_rst_n
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE1);
-> >>>>> +     i2c_write_byte(lt9611c, 0x03, 0x3F);
-> >>>>> +     i2c_write_byte(lt9611c, 0x03, 0xFF);
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5E, 0xC1);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x00);
-> >>>>> +     i2c_write_byte(lt9611c, 0x59, 0x50);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x10);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x00);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x21);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_flash_to_fifo(struct lt9611c *lt9611c, u64 add=
-r)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5e, 0x5f);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x20);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x00);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5b, ((addr & 0xFF0000) >> 16));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5c, ((addr & 0xFF00) >> 8));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5d, (addr & 0xFF));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x10);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x00);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_wren(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x04);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5a, 0x00);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_wrdi(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x08);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x00);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_upgrade_judgment(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     u8 flash_crc;
-> >>>>> +
-> >>>>> +     if (!lt9611c)
-> >>>>> +             return -EINVAL;
-> >>>>
-> >>>> How can it be NULL here?
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     lt9611c_config_parameters(lt9611c);
-> >>>>> +     lt9611c_flash_to_fifo(lt9611c, FW_SIZE - 1);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x21);
-> >>>>> +
-> >>>>> +     ret =3D i2c_read_byte(lt9611c, 0x5f, &flash_crc);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "failed to read flash crc\n");
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dev_info(dev, "flash firmware crc=3D0x%02X, expected crc=3D0x=
-%02X",
-> >>>>> +              flash_crc, lt9611c->fw_crc);
-> >>>>
-> >>>> dev_dbg()
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     lt9611c_wrdi(lt9611c);
-> >>>>> +
-> >>>>> +     return (flash_crc =3D=3D lt9611c->fw_crc) ? NOT_UPGRADE : UPG=
-RADE;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int read_flash_reg_status(struct lt9611c *lt9611c, u8 *stat=
-us)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     //fifo_rst_n
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE1);
-> >>>>> +     i2c_write_byte(lt9611c, 0x03, 0x3F);
-> >>>>> +     i2c_write_byte(lt9611c, 0x03, 0xFF);
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5e, 0x40);
-> >>>>> +     i2c_write_byte(lt9611c, 0x56, 0x05);
-> >>>>> +     i2c_write_byte(lt9611c, 0x55, 0x25);
-> >>>>> +     i2c_write_byte(lt9611c, 0x55, 0x01);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x21);
-> >>>>> +
-> >>>>> +     ret =3D i2c_read_byte(lt9611c, 0x5f, status);
-> >>>>> +     if (ret < 0)
-> >>>>> +             dev_err(dev, "failed to read flash register status\n"=
-);
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_block_erase(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     u32 i =3D 0;
-> >>>>> +     u8 flash_status =3D 0;
-> >>>>> +     u8 block_num =3D 0x00;
-> >>>>> +     u32 flash_addr =3D 0x00;
-> >>>>> +
-> >>>>> +     for (block_num =3D 0; block_num < 2; block_num++) {
-> >>>>> +             flash_addr =3D (block_num * 0x008000);
-> >>>>> +             i2c_write_byte(lt9611c, 0xFF, 0xE0);
-> >>>>> +             i2c_write_byte(lt9611c, 0xEE, 0x01);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5A, 0x04);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5A, 0x00);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5B, flash_addr >> 16);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5C, flash_addr >> 8);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5D, flash_addr);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5A, 0x01);
-> >>>>> +             i2c_write_byte(lt9611c, 0x5A, 0x00);
-> >>>>> +             msleep(100);
-> >>>>> +             i =3D 0;
-> >>>>> +             while (1) {
-> >>>>> +                     read_flash_reg_status(lt9611c, &flash_status)=
-;
-> >>>>> +                     if ((flash_status & 0x01) =3D=3D 0)
-> >>>>> +                             break;
-> >>>>> +
-> >>>>> +                     if (i > 50)
-> >>>>> +                             break;
-> >>>>> +
-> >>>>> +                     i++;
-> >>>>> +                     msleep(50);
-> >>>>> +             }
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dev_info(dev, "erase flash done.\n");
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_crc_to_sram(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x51, 0x00);
-> >>>>> +     i2c_write_byte(lt9611c, 0x55, 0xc0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x55, 0x80);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5e, 0xc0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x21);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_data_to_sram(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x51, 0xff);
-> >>>>> +     i2c_write_byte(lt9611c, 0x55, 0x80);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5e, 0xc0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x58, 0x21);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_sram_to_flash(struct lt9611c *lt9611c, u64 add=
-r)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5b, ((addr & 0xFF0000) >> 16));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5c, ((addr & 0xFF00) >> 8));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5d, (addr & 0xFF));
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x30);
-> >>>>> +     i2c_write_byte(lt9611c, 0x5A, 0x00);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_write_data(struct lt9611c *lt9611c, u64 addr)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     int page =3D 0, num =3D 0, i =3D 0;
-> >>>>> +     const u8 *data;
-> >>>>> +     u64 size, index;
-> >>>>> +     u8 value;
-> >>>>> +
-> >>>>> +     data =3D lt9611c->fw->data;
-> >>>>> +     size =3D lt9611c->fw->size;
-> >>>>> +
-> >>>>> +     page =3D (size + LT_PAGE_SIZE - 1) / LT_PAGE_SIZE;
-> >>>>> +
-> >>>>> +     if (page * LT_PAGE_SIZE > 64 * 1024) {
-> >>>>> +             dev_err(dev, "firmware size out of range\n");
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dev_info(dev, "%u pages, total size %llu byte\n", page, size)=
-;
-> >>>>
-> >>>>
-> >>>> dev_dbg()
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     for (num =3D 0; num < page; num++) {
-> >>>>> +             lt9611c_data_to_sram(lt9611c);
-> >>>>> +
-> >>>>> +             for (i =3D 0; i < LT_PAGE_SIZE; i++) {
-> >>>>> +                     index =3D num * LT_PAGE_SIZE + i;
-> >>>>> +                     value =3D (index < size) ? data[index] : 0xFF=
-;
-> >>>>> +
-> >>>>> +                     ret =3D i2c_write_byte(lt9611c, 0x59, value);
-> >>>>> +                     if (ret < 0) {
-> >>>>> +                             dev_err(dev, "write error at page %u,=
- index %u\n", num, i);
-> >>>>> +                             return ret;
-> >>>>> +                     }
-> >>>>> +             }
-> >>>>> +
-> >>>>> +             lt9611c_wren(lt9611c);
-> >>>>> +             lt9611c_sram_to_flash(lt9611c, addr);
-> >>>>> +
-> >>>>> +             addr +=3D LT_PAGE_SIZE;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c_wrdi(lt9611c);
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_write_crc(struct lt9611c *lt9611c, u64 addr)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     u8 crc;
-> >>>>> +
-> >>>>> +     crc =3D lt9611c->fw_crc;
-> >>>>> +     lt9611c_crc_to_sram(lt9611c);
-> >>>>> +     ret =3D i2c_write_byte(lt9611c, 0x59, crc);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "failed to write CRC\n");
-> >>>>> +             return -1;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c_wren(lt9611c);
-> >>>>> +     lt9611c_sram_to_flash(lt9611c, addr);
-> >>>>> +     lt9611c_wrdi(lt9611c);
-> >>>>> +
-> >>>>> +     dev_info(dev, "CRC 0x%02X written to flash at addr 0x%llX\n",=
- crc, addr);
-> >>>>
-> >>>> dev_dbg
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_firmware_upgrade(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     dev_info(dev, "starting firmware upgrade, size: %zu bytes\n",=
- lt9611c->fw->size);
-> >>>>
-> >>>> dev_dbg
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     lt9611c_config_parameters(lt9611c);
-> >>>>> +     lt9611c_block_erase(lt9611c);
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_write_data(lt9611c, 0);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "Failed to write firmware data\n");
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_write_crc(lt9611c, FW_SIZE - 1);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "Failed to write firmware CRC\n");
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_upgrade_result(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     u8 crc_result;
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xee, 0x01);
-> >>>>> +     i2c_read_byte(lt9611c, 0x21, &crc_result);
-> >>>>> +
-> >>>>> +     if (crc_result =3D=3D lt9611c->fw_crc) {
-> >>>>> +             dev_info(dev, "LT9611C firmware upgrade success, CRC=
-=3D0x%02X\n", crc_result);
-> >>>>
-> >>>> dev_dbg
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +             return 0;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dev_err(dev, "LT9611C firmware upgrade failed, expected CRC=
-=3D0x%02X, read CRC=3D0x%02X\n",
-> >>>>> +             lt9611c->fw_crc, crc_result);
-> >>>>> +     return -EIO;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static struct lt9611c *bridge_to_lt9611c(struct drm_bridge *bridge=
-)
-> >>>>> +{
-> >>>>> +     return container_of(bridge, struct lt9611c, bridge);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_lock(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     mutex_lock(&lt9611c->ocm_lock);
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xee, 0x01);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_unlock(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xee, 0x00);
-> >>>>> +     mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static irqreturn_t lt9611c_irq_thread_handler(int irq, void *dev_i=
-d)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_id;
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     u8 irq_status;
-> >>>>> +     u8 cmd[5] =3D {0x52, 0x48, 0x31, 0x3a, 0x00};
-> >>>>> +     u8 data[5];
-> >>>>> +
-> >>>>> +     mutex_lock(&lt9611c->ocm_lock);
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_read_byte(lt9611c, 0x84, &irq_status);
-> >>>>> +
-> >>>>> +     if (!(irq_status & BIT(0))) {
-> >>>>> +             mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +             return IRQ_HANDLED;
-> >>>>> +     }
-> >>>>> +     dev_info(dev, "HPD interrupt triggered.\n");
-> >>>>
-> >>>> Nice joke. dev_dbg().
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xdf, irq_status & BIT(0));
-> >>>>> +     usleep_range(10000, 12000);
-> >>>>
-> >>>> Why?
-> >>>>
-> >>> Our chip design specification requires that this be done when clearin=
-g
-> >>> the interrupt.
-> >>
-> >> Add a comment.
-> >>
-> > i will add comment, thks
-> >
-> >>>
-> >>>>> +     i2c_write_byte(lt9611c, 0xdf, irq_status & (~BIT(0)));
-> >>>>> +
-> >>>>> +     ret =3D i2c_read_write_flow(lt9611c, cmd, 5, data, 5);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "failed to read HPD status\n");
-> >>>>> +     } else {
-> >>>>> +             lt9611c->hdmi_connected =3D (data[4] =3D=3D 0x02);
-> >>>>> +             dev_info(dev, "HDMI %s\n", lt9611c->hdmi_connected ? =
-"connected" : "disconnected");
-> >>>>
-> >>>> dev_dbg()
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c->audio_status =3D lt9611c->hdmi_connected ?
-> >>>>> +                     connector_status_connected :
-> >>>>> +                     connector_status_disconnected;
-> >>>>
-> >>>> What is it being used for? Why do you need separate status for audio=
-?
-> >>>>
-> >>> Used to update the connection status of the audio.
-> >>> The separate status indicators make it clearer for the readers.
-> >>>
-> >>>>> +
-> >>>>> +     schedule_work(&lt9611c->work);
-> >>>>> +
-> >>>>> +     mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +
-> >>>>> +     return IRQ_HANDLED;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_hpd_work(struct work_struct *work)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D container_of(work, struct lt9611c=
-, work);
-> >>>>> +     bool connected;
-> >>>>> +
-> >>>>> +     mutex_lock(&lt9611c->ocm_lock);
-> >>>>> +     connected =3D lt9611c->hdmi_connected;
-> >>>>> +     mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +
-> >>>>> +     drm_bridge_hpd_notify(&lt9611c->bridge,
-> >>>>> +                           connected ?
-> >>>>> +                      connector_status_connected :
-> >>>>> +                      connector_status_disconnected);
-> >>>>
-> >>>> Incorrect indentation.
-> >>>>
-> >>> ?   The checkpatch.pl did not detect it.
-> >>
-> >> use --strict.
-> >>
-> > i will , thks
-> >
-> >>>
-> >>>>> +
-> >>>>> +     lt9611c_audio_update_connector_status(lt9611c);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_reset(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-> >>>>> +     msleep(20);
-> >>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
-> >>>>> +     msleep(20);
-> >>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 1);
-> >>>>> +     msleep(400);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_regulator_init(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     lt9611c->supplies[0].supply =3D "vcc";
-> >>>>> +     lt9611c->supplies[1].supply =3D "vdd";
-> >>>>> +
-> >>>>> +     ret =3D devm_regulator_bulk_get(dev, 2, lt9611c->supplies);
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_regulator_enable(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     ret =3D regulator_enable(lt9611c->supplies[0].consumer);
-> >>>>> +     if (ret < 0)
-> >>>>> +             return ret;
-> >>>>> +
-> >>>>> +     usleep_range(5000, 10000);
-> >>>>> +
-> >>>>> +     ret =3D regulator_enable(lt9611c->supplies[1].consumer);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             regulator_disable(lt9611c->supplies[0].consumer);
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_regulator_disable(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     ret =3D regulator_disable(lt9611c->supplies[0].consumer);
-> >>>>> +     if (ret < 0)
-> >>>>> +             return ret;
-> >>>>> +
-> >>>>> +     usleep_range(5000, 10000);
-> >>>>> +
-> >>>>> +     ret =3D regulator_disable(lt9611c->supplies[1].consumer);
-> >>>>> +     if (ret < 0)
-> >>>>> +             return ret;
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static struct mipi_dsi_device *lt9611c_attach_dsi(struct lt9611c *=
-lt9611c,
-> >>>>> +                                               struct device_node =
-*dsi_node)
-> >>>>> +{
-> >>>>> +     const struct mipi_dsi_device_info info =3D { "lt9611c", 0, NU=
-LL };
-> >>>>> +     struct mipi_dsi_device *dsi;
-> >>>>> +     struct mipi_dsi_host *host;
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     host =3D of_find_mipi_dsi_host_by_node(dsi_node);
-> >>>>> +     if (!host)
-> >>>>> +             return ERR_PTR(dev_err_probe(dev, -EPROBE_DEFER, "fai=
-led to find dsi host\n"));
-> >>>>> +
-> >>>>> +     dsi =3D devm_mipi_dsi_device_register_full(dev, host, &info);
-> >>>>> +     if (IS_ERR(dsi)) {
-> >>>>> +             dev_err(dev, "failed to create dsi device\n");
-> >>>>> +             return dsi;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     dsi->lanes =3D 4;
-> >>>>> +     dsi->format =3D MIPI_DSI_FMT_RGB888;
-> >>>>> +     dsi->mode_flags =3D MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO=
-_SYNC_PULSE |
-> >>>>> +                      MIPI_DSI_MODE_VIDEO_HSE;
-> >>>>> +
-> >>>>> +     ret =3D devm_mipi_dsi_attach(dev, dsi);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "failed to attach dsi to host\n");
-> >>>>> +             return ERR_PTR(ret);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return dsi;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_bridge_attach(struct drm_bridge *bridge,
-> >>>>> +                              struct drm_encoder *encoder,
-> >>>>> +                              enum drm_bridge_attach_flags flags)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D bridge_to_lt9611c(bridge);
-> >>>>> +
-> >>>>> +     return drm_bridge_attach(encoder, lt9611c->next_bridge,
-> >>>>> +                              bridge, flags);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static enum drm_mode_status lt9611c_bridge_mode_valid(struct drm_b=
-ridge *bridge,
-> >>>>> +                                                   const struct dr=
-m_display_info *info,
-> >>>>> +                      const struct drm_display_mode *mode)
-> >>>>> +{
-> >>>>> +     u32 pixclk;
-> >>>>> +
-> >>>>> +     pixclk =3D (mode->htotal * mode->vtotal * drm_mode_vrefresh(m=
-ode)) / 1000000;
-> >>>>> +
-> >>>>> +     if (pixclk >=3D 25 && pixclk <=3D 340)
-> >>>>
-> >>>> Use .hdmi_tmds_char_rate_valid() for that.
-> >>>>
-> >>> I will check and test, thanks
-> >>>
-> >>>>> +             return MODE_OK;
-> >>>>> +     else
-> >>>>> +             return MODE_BAD;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_bridge_mode_set(struct drm_bridge *bridge,
-> >>>>> +                                 const struct drm_display_mode *mo=
-de,
-> >>>>> +                              const struct drm_display_mode *adj_m=
-ode)
-> >>>>
-> >>>> - Wrong indentation
-> >>> will fix, thanks
-> >>>
-> >>>> - mode_set callback is deprecated and should not be used for new
-> >>>>    drivers.
-> >>>>
-> >>> I found that kernel 6.17 is still in use mode_set callback.
-> >>
-> >> Check the documentation in drm_bridge_funcs.
-> >>
-> > i will research.
-> >
-> >>>
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D bridge_to_lt9611c(bridge);
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     u32 h_total, hactive, hsync_len, hfront_porch, hback_porch;
-> >>>>> +     u32 v_total, vactive, vsync_len, vfront_porch, vback_porch;
-> >>>>> +     u8 video_timing_set_cmd[26] =3D {0x57, 0x4D, 0x33, 0x3A};
-> >>>>> +     u8 return_timing_set_param[3];
-> >>>>> +     u8 framerate;
-> >>>>> +     u8 vic =3D 0x00;
-> >>>>> +
-> >>>>
-> >>>>> +     hsync_len =3D mode->hsync_end - mode->hsync_start;
-> >>>>> +     hfront_porch =3D mode->hsync_start - mode->hdisplay;
-> >>>>> +     hback_porch =3D mode->htotal - mode->hsync_end;
-> >>>>> +
-> >>>>> +     v_total =3D mode->vtotal;
-> >>>>> +     vactive =3D mode->vdisplay;
-> >>>>> +     vsync_len =3D mode->vsync_end - mode->vsync_start;
-> >>>>> +     vfront_porch =3D mode->vsync_start - mode->vdisplay;
-> >>>>> +     vback_porch =3D mode->vtotal - mode->vsync_end;
-> >>>>> +     framerate =3D drm_mode_vrefresh(mode);
-> >>>>> +     vic =3D drm_match_cea_mode(mode);
-> >>>>> +
-> >>>>> +     dev_info(dev, "Out video info:\n");
-> >>>>> +     dev_info(dev,
-> >>>>> +              "h_total=3D%d, hactive=3D%d, hsync_len=3D%d, hfront_=
-porch=3D%d, hback_porch=3D%d\n",
-> >>>>> +     h_total, hactive, hsync_len, hfront_porch, hback_porch);
-> >>>>> +     dev_info(dev,
-> >>>>> +              "v_total=3D%d, vactive=3D%d, vsync_len=3D%d, vfront_=
-porch=3D%d, vback_porch=3D%d\n",
-> >>>>> +     v_total, vactive, vsync_len, vfront_porch, vback_porch);
-> >>>>
-> >>>>
-> >>>> Fix indentation
-> >>> The indentation issue was not detected by checkpatch.pl.
-> >>
-> >> The indentation issue is detected by the brain and eye.
-> >>
-> > sorry, i will research.
-> >
-> >>>
-> >>>> Use dev_dbg / drm_dbg_kms() all over the driver. Your code is too
-> >>>> spammy.
-> >>>>
-> >>> i will fix, thanks
-> >>>
-> >>>>> +
-> >>>>> +     dev_info(dev, "framerate=3D%d\n", framerate);
-> >>>>> +     dev_info(dev, "vic =3D 0x%02X\n", vic);
-> >>>>> +
-> >>>>> +     video_timing_set_cmd[4] =3D (h_total >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[5] =3D h_total & 0xFF;
-> >>>>> +     video_timing_set_cmd[6] =3D (hactive >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[7] =3D hactive & 0xFF;
-> >>>>> +     video_timing_set_cmd[8] =3D (hfront_porch >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[9] =3D hfront_porch & 0xFF;
-> >>>>> +     video_timing_set_cmd[10] =3D (hsync_len >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[11] =3D hsync_len & 0xFF;
-> >>>>> +     video_timing_set_cmd[12] =3D (hback_porch >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[13] =3D hback_porch & 0xFF;
-> >>>>> +     video_timing_set_cmd[14] =3D (v_total >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[15] =3D v_total & 0xFF;
-> >>>>> +     video_timing_set_cmd[16] =3D (vactive >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[17] =3D vactive & 0xFF;
-> >>>>> +     video_timing_set_cmd[18] =3D (vfront_porch >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[19] =3D vfront_porch & 0xFF;
-> >>>>> +     video_timing_set_cmd[20] =3D (vsync_len >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[21] =3D vsync_len & 0xFF;
-> >>>>> +     video_timing_set_cmd[22] =3D (vback_porch >> 8) & 0xFF;
-> >>>>> +     video_timing_set_cmd[23] =3D vback_porch & 0xFF;
-> >>>>> +     video_timing_set_cmd[24] =3D framerate;
-> >>>>> +     video_timing_set_cmd[25] =3D vic;
-> >>>>> +
-> >>>>> +     mutex_lock(&lt9611c->ocm_lock);
-> >>>>> +     ret =3D i2c_read_write_flow(lt9611c, video_timing_set_cmd, 26=
-, return_timing_set_param, 3);
-> >>>>> +     if (ret)
-> >>>>> +             dev_err(dev, "video set failed\n");
-> >>>>> +     mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static enum drm_connector_status lt9611c_bridge_detect(struct drm_=
-bridge *bridge,
-> >>>>> +                                                    struct drm_con=
-nector *connector)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D bridge_to_lt9611c(bridge);
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +     bool connected =3D false;
-> >>>>> +     u8 cmd[5] =3D {0x52, 0x48, 0x31, 0x3a, 0x00};
-> >>>>> +     u8 data[5];
-> >>>>> +
-> >>>>> +     mutex_lock(&lt9611c->ocm_lock);
-> >>>>> +     ret =3D i2c_read_write_flow(lt9611c, cmd, 5, data, 5);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "Failed to read HPD status, cannot deter=
-mine HDMI connection (err=3D%d)\n",
-> >>>>> +                     ret);
-> >>>>> +     } else {
-> >>>>> +             connected =3D (data[4] =3D=3D 0x02);
-> >>>>> +     }
-> >>>>
-> >>>> THere is no need to put single-line statements in brackets. Drop tho=
-se.
-> >>>>
-> >>> yes, i will fix, thks
-> >>>
-> >>>>> +
-> >>>>> +     lt9611c->hdmi_connected =3D connected;
-> >>>>> +
-> >>>>> +     if (lt9611c->hdmi_connected)
-> >>>>> +             lt9611c->audio_status =3D connector_status_connected;
-> >>>>> +     else
-> >>>>> +             lt9611c->audio_status =3D connector_status_disconnect=
-ed;
-> >>>>> +
-> >>>>> +     mutex_unlock(&lt9611c->ocm_lock);
-> >>>>> +
-> >>>>> +     return connected ? connector_status_connected :
-> >>>>> +                             connector_status_disconnected;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_read_edid(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret, i, bytes_to_copy, offset =3D 0;
-> >>>>> +     u8 packets_num;
-> >>>>> +     u8 read_edid_data_cmd[5] =3D {0x52, 0x48, 0x33, 0x3A, 0x00};
-> >>>>> +     u8 return_edid_data[37];
-> >>>>> +     u8 read_edid_byte_num_cmd[5] =3D {0x52, 0x48, 0x32, 0x3A, 0x0=
-0};
-> >>>>> +     u8 return_edid_byte_num[6];
-> >>>>> +
-> >>>>> +     ret =3D i2c_read_write_flow(lt9611c, read_edid_byte_num_cmd, =
-5, return_edid_byte_num, 6);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "Failed to read EDID byte number\n");
-> >>>>> +             lt9611c->edid_valid =3D false;
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c->edid_len =3D (return_edid_byte_num[4] << 8) | return=
-_edid_byte_num[5];
-> >>>>> +
-> >>>>> +     if (!lt9611c->edid_buf || lt9611c->edid_len > (lt9611c->edid_=
-valid ?
-> >>>>> +                             lt9611c->edid_len : 0)) {
-> >>>>> +             kfree(lt9611c->edid_buf);
-> >>>>> +             lt9611c->edid_buf =3D kzalloc(lt9611c->edid_len, GFP_=
-KERNEL);
-> >>>>> +             if (!lt9611c->edid_buf) {
-> >>>>> +                     dev_err(dev, "Failed to allocate EDID buffer\=
-n");
-> >>>>> +                     lt9611c->edid_len =3D 0;
-> >>>>> +                     lt9611c->edid_valid =3D false;
-> >>>>> +                     return -ENOMEM;
-> >>>>> +             }
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     packets_num =3D (lt9611c->edid_len % 32) ? (lt9611c->edid_len=
- / 32 + 1) :
-> >>>>> +             (lt9611c->edid_len / 32);
-> >>>>> +     for (i =3D 0; i < packets_num; i++) {
-> >>>>> +             read_edid_data_cmd[4] =3D (u8)i;
-> >>>>> +             ret =3D i2c_read_write_flow(lt9611c, read_edid_data_c=
-md, 5, return_edid_data, 37);
-> >>>>> +             if (ret) {
-> >>>>> +                     dev_err(dev, "Failed to read EDID packet %d\n=
-", i);
-> >>>>> +                     lt9611c->edid_valid =3D false;
-> >>>>> +                     return -EIO;
-> >>>>> +             }
-> >>>>> +             offset =3D i * 32;
-> >>>>> +             bytes_to_copy =3D min(32, lt9611c->edid_len - offset)=
-;
-> >>>>> +             memcpy(lt9611c->edid_buf + offset, &return_edid_data[=
-5], bytes_to_copy);
-> >>>>
-> >>>> Don't store EDID in the long-term structures. Read it on demand.
-> >>>>
-> >>> I will think about this issue.
-> >>>
-> >>>>> +             }
-> >>>>> +
-> >>>>> +     lt9611c->edid_valid =3D true;
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_get_edid_block(void *data, u8 *buf, unsigned in=
-t block, size_t len)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D data;
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     unsigned int total_blocks;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     if (len > 128)
-> >>>>> +             return -EINVAL;
-> >>>>> +
-> >>>>> +     guard(mutex)(&lt9611c->ocm_lock);
-> >>>>> +     if (block =3D=3D 0 || !lt9611c->edid_valid) {
-> >>>>> +             ret =3D lt9611c_read_edid(lt9611c);
-> >>>>> +             if (ret) {
-> >>>>> +                     dev_err(dev, "EDID read failed\n");
-> >>>>> +                     return ret;
-> >>>>> +             }
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     total_blocks =3D lt9611c->edid_len / 128;
-> >>>>> +     if (!total_blocks) {
-> >>>>> +             dev_err(dev, "No valid EDID blocks\n");
-> >>>>> +             return -EIO;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (block >=3D total_blocks) {
-> >>>>> +             dev_err(dev,  "Requested block %u exceeds total block=
-s %u\n",
-> >>>>> +                     block, total_blocks);
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     memcpy(buf, lt9611c->edid_buf + block * 128, len);
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static const struct drm_edid *lt9611c_bridge_edid_read(struct drm_=
-bridge *bridge,
-> >>>>> +                                                    struct drm_con=
-nector *connector)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D bridge_to_lt9611c(bridge);
-> >>>>> +
-> >>>>> +     usleep_range(10000, 20000);
-> >>>>
-> >>>> Why?
-> >>>>
-> >>> Delay for a while to ensure that EDID is ready.
-> >>
-> >> Your other chip had interrupt status to note that EDID is ready. I hop=
-e
-> >> you have that one too. Blindly calling usleep_range() is a bad idea.
-> >>
-> > Different chips have different logic. i will research it.
-> >
-> >>>
-> >>>>> +     return drm_edid_read_custom(connector, lt9611c_get_edid_block=
-, lt9611c);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static const struct drm_bridge_funcs lt9611c_bridge_funcs =3D {
-> >>>>> +     .attach =3D lt9611c_bridge_attach,
-> >>>>> +     .mode_valid =3D lt9611c_bridge_mode_valid,
-> >>>>> +     .mode_set =3D lt9611c_bridge_mode_set,
-> >>>>> +     .detect =3D lt9611c_bridge_detect,
-> >>>>> +     .edid_read =3D lt9611c_bridge_edid_read,
-> >>>>> +};
-> >>>>> +
-> >>>>> +static int lt9611c_parse_dt(struct device *dev,
-> >>>>> +                         struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     lt9611c->dsi0_node =3D of_graph_get_remote_node(dev->of_node,=
- 0, -1);
-> >>>>> +     if (!lt9611c->dsi0_node) {
-> >>>>> +             dev_err(dev, "failed to get remote node for primary d=
-si\n");
-> >>>>> +             return -ENODEV;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c->dsi1_node =3D of_graph_get_remote_node(dev->of_node,=
- 1, -1);
-> >>>>> +
-> >>>>> +     return drm_of_find_panel_or_bridge(dev->of_node, 2, -1, NULL,=
- &lt9611c->next_bridge);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_gpio_init(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +
-> >>>>> +     lt9611c->reset_gpio =3D devm_gpiod_get(dev, "reset", GPIOD_OU=
-T_LOW);
-> >>>>> +     if (IS_ERR(lt9611c->reset_gpio)) {
-> >>>>> +             dev_err(dev, "failed to acquire reset gpio\n");
-> >>>>> +             return PTR_ERR(lt9611c->reset_gpio);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_read_version(struct lt9611c *lt9611c, u64 *ver=
-sion)
-> >>>>> +{
-> >>>>> +     u8 val;
-> >>>>> +     u64 ver =3D 0;
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xee, 0x01);
-> >>>>> +
-> >>>>> +     i2c_read_byte(lt9611c, 0x80, &val);
-> >>>>> +     ver =3D val;
-> >>>>> +
-> >>>>> +     i2c_read_byte(lt9611c, 0x81, &val);
-> >>>>> +     ver =3D (ver << 8) | val;
-> >>>>> +
-> >>>>> +     *version =3D ver;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_read_chipid(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     u8 val =3D 0;
-> >>>>> +
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe0);
-> >>>>> +     i2c_write_byte(lt9611c, 0xee, 0x01);
-> >>>>> +     i2c_write_byte(lt9611c, 0xff, 0xe1);
-> >>>>> +
-> >>>>> +     i2c_read_byte(lt9611c, 0x00, &val);
-> >>>>> +     if (val !=3D 0x23)
-> >>>>> +             return -ENODEV;
-> >>>>> +
-> >>>>> +     i2c_read_byte(lt9611c, 0x01, &val);
-> >>>>> +     if (val !=3D 0x06)
-> >>>>> +             return -ENODEV;
-> >>>>> +
-> >>>>> +     dev_info(dev, "ChipId =3D 0x2306\n");
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_hdmi_hw_params(struct device *dev, void *data,
-> >>>>> +                               struct hdmi_codec_daifmt *fmt,
-> >>>>> +                              struct hdmi_codec_params *hparms)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_get_drvdata(dev);
-> >>>>> +
-> >>>>> +      dev_info(lt9611c->dev, "SOC sample_rate: %d, sample_width: %=
-d, fmt: %d\n",
-> >>>>> +               hparms->sample_rate, hparms->sample_width, fmt->fmt=
-);
-> >>>>> +
-> >>>>> +     switch (hparms->sample_rate) {
-> >>>>> +     case 32000:
-> >>>>> +     case 44100:
-> >>>>> +     case 48000:
-> >>>>> +     case 88200:
-> >>>>> +     case 96000:
-> >>>>> +     case 176400:
-> >>>>> +     case 192000:
-> >>>>> +             break;
-> >>>>> +     default:
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     switch (hparms->sample_width) {
-> >>>>> +     case 16:
-> >>>>> +     case 18:
-> >>>>> +     case 20:
-> >>>>> +     case 24:
-> >>>>> +             break;
-> >>>>> +     default:
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     switch (fmt->fmt) {
-> >>>>> +     case HDMI_I2S:
-> >>>>> +     case HDMI_SPDIF:
-> >>>>> +             break;
-> >>>>> +     default:
-> >>>>> +             return -EINVAL;
-> >>>>> +     }
-> >>>>
-> >>>> Does that add anything on top of the limitations of hdmi-codec.c?
-> >>>>
-> >>> The parameters supported in the hdmi-codec.c may not be supported by
-> >>> my chip. Therefore, we can exclude the parameters that are not
-> >>> supported by the chip.
-> >>
-> >> Are they?
-> >>
-> > The firmware handles all parameter adaptation autonomously. This code
-> > merely needs to expose the chip's capabilities to hdmi-codec.c.
-> >
-> >>>
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_audio_shutdown(struct device *dev, void *data)
-> >>>>> +{
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_audio_startup(struct device *dev, void *data)
-> >>>>> +{
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_audio_update_connector_status(struct lt9611c *=
-lt9611c)
-> >>>>> +{
-> >>>>> +     enum drm_connector_status status;
-> >>>>> +
-> >>>>> +     status =3D lt9611c->audio_status;
-> >>>>> +     if (lt9611c->plugged_cb && lt9611c->codec_dev)
-> >>>>> +             lt9611c->plugged_cb(lt9611c->codec_dev,
-> >>>>> +                              status =3D=3D connector_status_conne=
-cted);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_hdmi_audio_hook_plugged_cb(struct device *dev,
-> >>>>> +                                           void *data,
-> >>>>> +                                      hdmi_codec_plugged_cb fn,
-> >>>>> +                                      struct device *codec_dev)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D data;
-> >>>>> +
-> >>>>> +     lt9611c->plugged_cb =3D fn;
-> >>>>> +     lt9611c->codec_dev =3D codec_dev;
-> >>>>> +     lt9611c_audio_update_connector_status(lt9611c);
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static const struct hdmi_codec_ops lt9611c_codec_ops =3D {
-> >>>>> +     .hw_params      =3D lt9611c_hdmi_hw_params,
-> >>>>> +     .audio_shutdown =3D lt9611c_audio_shutdown,
-> >>>>> +     .audio_startup =3D lt9611c_audio_startup,
-> >>>>> +     .hook_plugged_cb =3D lt9611c_hdmi_audio_hook_plugged_cb,
-> >>>>> +};
-> >>>>
-> >>>> No, we have HDMI audio helpers for that. Drop this and use the helpe=
-rs
-> >>>> instead.
-> >>>>
-> >>> =EF=BC=9F=EF=BC=9F=EF=BC=9F I don't understand.
-> >>
-> >> See <drm/display/drm_hdmi_audio_helper.h> and
-> >> https://lore.kernel.org/dri-devel/20250803-lt9611uxc-hdmi-v1-2-cb9ce17=
-93acf@oss.qualcomm.com/
-> >>
-> > i will research, thks.
-> > Could you please share the latest driver file for lt9611uxc.c that you
-> > have written? (to this email: syyang@lontium.com)
->
-> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/bridge/lont=
-ium-lt9611uxc.c
->
-> >
-> >>>
-> >>>>> +
-> >>>>> +static int lt9611c_audio_init(struct device *dev, struct lt9611c *=
-lt9611c)
-> >>>>> +{
-> >>>>> +     struct hdmi_codec_pdata codec_data =3D {
-> >>>>> +             .ops =3D &lt9611c_codec_ops,
-> >>>>> +             .max_i2s_channels =3D 2,
-> >>>>> +             .i2s =3D 1,
-> >>>>> +             .data =3D lt9611c,
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     lt9611c->audio_pdev =3D
-> >>>>> +             platform_device_register_data(dev, HDMI_CODEC_DRV_NAM=
-E,
-> >>>>> +                                           PLATFORM_DEVID_AUTO,
-> >>>>> +                                      &codec_data, sizeof(codec_da=
-ta));
-> >>>>> +
-> >>>>> +     return PTR_ERR_OR_ZERO(lt9611c->audio_pdev);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_audio_exit(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     if (lt9611c->audio_pdev) {
-> >>>>> +             platform_device_unregister(lt9611c->audio_pdev);
-> >>>>> +             lt9611c->audio_pdev =3D NULL;
-> >>>>> +     }
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_firmware_update_store(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     lt9611c_lock(lt9611c);
-> >>>>> +     ret =3D lt9611c_prepare_firmware_data(lt9611c);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "Failed prepare firmware data: %d\n", re=
-t);
-> >>>>> +             goto out;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_firmware_upgrade(lt9611c);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "upgrade failure\n");
-> >>>>> +             goto out;
-> >>>>> +     }
-> >>>>> +     lt9611c_reset(lt9611c);
-> >>>>> +     ret =3D lt9611c_upgrade_result(lt9611c);
-> >>>>> +     if (ret < 0)
-> >>>>> +             goto out;
-> >>>>> +
-> >>>>> +out:
-> >>>>> +     lt9611c_unlock(lt9611c);
-> >>>>> +     lt9611c_reset(lt9611c);
-> >>>>> +     if (lt9611c->fw) {
-> >>>>> +             release_firmware(lt9611c->fw);
-> >>>>> +             lt9611c->fw =3D NULL;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static ssize_t lt9611c_firmware_store(struct device *dev, struct d=
-evice_attribute *attr,
-> >>>>> +                                   const char *buf, size_t len)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_get_drvdata(dev);
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_firmware_update_store(lt9611c);
-> >>>>
-> >>>> Inline
-> >>>>
-> >>> i will fix,  thks
-> >>>
-> >>>>> +     if (ret < 0)
-> >>>>> +             return ret;
-> >>>>> +     return len;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static ssize_t lt9611c_firmware_show(struct device *dev, struct de=
-vice_attribute *attr, char *buf)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_get_drvdata(dev);
-> >>>>> +
-> >>>>> +     return sysfs_emit(buf, "0x%04llx\n", lt9611c->fw_version);
-> >>>>> +}
-> >>>>> +
-> >>>>> +static DEVICE_ATTR_RW(lt9611c_firmware);
-> >>>>> +
-> >>>>> +static struct attribute *lt9611c_attrs[] =3D {
-> >>>>> +     &dev_attr_lt9611c_firmware.attr,
-> >>>>> +     NULL,
-> >>>>> +};
-> >>>>> +
-> >>>>> +static const struct attribute_group lt9611c_attr_group =3D {
-> >>>>> +     .attrs =3D lt9611c_attrs,
-> >>>>> +};
-> >>>>> +
-> >>>>> +static const struct attribute_group *lt9611c_attr_groups[] =3D {
-> >>>>> +     &lt9611c_attr_group,
-> >>>>> +     NULL,
-> >>>>> +};
-> >>>>> +
-> >>>>> +static void lt9611c_cleanup_resources(struct lt9611c *lt9611c)
-> >>>>> +{
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +
-> >>>>> +     if (lt9611c->work_inited) {
-> >>>>> +             cancel_work_sync(&lt9611c->work);
-> >>>>> +             lt9611c->work_inited =3D false;
-> >>>>> +             dev_err(dev, "work cancelled\n");
-> >>>>
-> >>>> Why???
-> >>>>
-> >>> ?? I don't understand.
-> >>
-> >> Why do you need to be so spammy?
-> >>
-> > i will fix, thks
-> >
-> >>>
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->bridge_added) {
-> >>>>> +             drm_bridge_remove(&lt9611c->bridge);
-> >>>>> +             lt9611c->bridge_added =3D false;
-> >>>>> +             dev_err(dev, "DRM bridge removed\n");
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->regulators_enabled) {
-> >>>>> +             regulator_bulk_disable(ARRAY_SIZE(lt9611c->supplies),=
- lt9611c->supplies);
-> >>>>> +             lt9611c->regulators_enabled =3D false;
-> >>>>> +             dev_err(dev, "regulators disabled\n");
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->audio_pdev)
-> >>>>> +             lt9611c_audio_exit(lt9611c);
-> >>>>> +
-> >>>>> +     if (lt9611c->fw) {
-> >>>>
-> >>>> You definitely don't need firmware when the bridge is up and running=
-.
-> >>>>
-> >>> The previous text has already described the working logic of the firm=
-ware.
-> >>
-> >> It's another topic: you are storing the firmware in memory while the
-> >> driver is bound. It's not necessary. You can release it after updating
-> >> it on the chip.
-> >>
-> > I understand what you mean.
-> > Based on the above conversation, your intention is that when the
-> > customer needs to upgrade the firmware, they should modify the
-> > comparison conditions of the version, then compile and burn the
-> > kernel, and then perform the firmware upgrade, just like the LT9611UXC
-> > driver. Instead of loading the firmware every time.
-> > My design intention is to avoid the need for recompiling the driver
-> > when upgrading. Instead, a file named "LT9611C.bin" can be directly
-> > sent to the "/lib/firmware" directory via scp. Then you can either
-> > perform a reboot for the upgrade or execute the command manually for
-> > the upgrade.
-> > Perhaps you are suggesting that we could follow the design approach of
-> > the LT9611UXC driver?
->
-> Yes no need to rebuild, just use sysfs to trigger an update.
->
-I think you haven't attempted to understand the intention behind my design.
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index 9d56d4146b20..ad684e3831bc 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -181,6 +181,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-max.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-plus.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-orangepi-5-ultra.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-quartzpro64.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-roc-rt.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5-itx.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3588-rock-5b-pcie-ep.dtbo
+diff --git a/arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts b/arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
+new file mode 100644
+index 000000000000..1d50009d3153
+--- /dev/null
++++ b/arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
+@@ -0,0 +1,1120 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2025 Firefly Technology Co. Ltd
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include <dt-bindings/pinctrl/rockchip.h>
++#include <dt-bindings/soc/rockchip,vop2.h>
++#include <dt-bindings/usb/pd.h>
++#include "rk3588.dtsi"
++
++/ {
++	model = "Firefly RK3588-ROC-RT";
++	compatible = "firefly,rk3588-roc-rt", "rockchip,rk3588";
++
++	aliases {
++		mmc0 = &sdhci;
++		mmc1 = &sdmmc;
++		ethernet0 = &gmac0;
++		ethernet1 = &gmac1;
++	};
++
++	adc-keys-0 {
++		compatible = "adc-keys";
++		io-channels = <&saradc 1>;
++		io-channel-names = "buttons";
++		keyup-threshold-microvolt = <1800000>;
++		poll-interval = <100>;
++
++		button-recovery {
++			label = "Recovery";
++			linux,code = <KEY_VENDOR>;
++			press-threshold-microvolt = <17000>;
++		};
++	};
++
++	analog-sound {
++		compatible = "simple-audio-card";
++		pinctrl-0 = <&hp_detect>;
++		pinctrl-names = "default";
++		simple-audio-card,aux-devs = <&amp_headphones>;
++		simple-audio-card,format = "i2s";
++		simple-audio-card,hp-det-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_HIGH>;
++		simple-audio-card,mclk-fs = <384>;
++		simple-audio-card,name = "rockchip-es8388";
++		simple-audio-card,pin-switches = "Headphones";
++		simple-audio-card,routing =
++			"Speaker", "LOUT2",
++			"Speaker", "ROUT2",
++			"Headphones Amplifier INL", "LOUT1",
++			"Headphones Amplifier INR", "ROUT1",
++			"Headphones", "Headphones Amplifier OUTL",
++			"Headphones", "Headphones Amplifier OUTR",
++			"LINPUT1", "Microphone Jack",
++			"RINPUT1", "Microphone Jack",
++			"LINPUT2", "Onboard Microphone",
++			"RINPUT2", "Onboard Microphone";
++		simple-audio-card,widgets =
++			"Microphone", "Microphone Jack",
++			"Microphone", "Onboard Microphone",
++			"Headphone", "Headphones",
++			"Speaker", "Speaker";
++
++		simple-audio-card,cpu {
++			sound-dai = <&i2s0_8ch>;
++		};
++
++		simple-audio-card,codec {
++			sound-dai = <&es8388>;
++			system-clock-frequency = <12288000>;
++		};
++	};
++
++	amp_headphones: headphones-amplifier {
++		compatible = "simple-audio-amplifier";
++		enable-gpios = <&gpio1 RK_PD5 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&headphone_amplifier_en>;
++		sound-name-prefix = "Headphones Amplifier";
++	};
++
++	chosen {
++		stdout-path = "serial2:1500000n8";
++	};
++
++	fan: pwm-fan {
++		compatible = "pwm-fan";
++		cooling-levels = <0 70 75 80 100>;
++		fan-supply = <&vcc5v0_sys>;
++		#cooling-cells = <2>;
++		pwms = <&pwm15 0 50000 1>;
++	};
++
++	hdmi0-con {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi0_con_in: endpoint {
++				remote-endpoint = <&hdmi0_out_con>;
++			};
++		};
++	};
++
++	hdmi1-con {
++		compatible = "hdmi-connector";
++		type = "a";
++
++		port {
++			hdmi1_con_in: endpoint {
++				remote-endpoint = <&hdmi1_out_con>;
++			};
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		pinctrl-names = "default";
++		pinctrl-0 = <&led_pins>;
++
++		power_led {
++			gpios = <&gpio1 RK_PD3 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "default-on";
++		};
++
++		user_led {
++			gpios = <&gpio1 RK_PD2 GPIO_ACTIVE_HIGH>;
++			linux,default-trigger = "disk-activity";
++		};
++	};
++
++	vbus5v0_typec: regulator-vbus5v0-typec {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 RK_PA4 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&typec5v_pwren>;
++		regulator-name = "vbus5v0_typec";
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
++	vcc12v_dcin: regulator-vcc12v-dcin {
++		compatible = "regulator-fixed";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++		regulator-name = "vcc12v_dcin";
++	};
++
++	vcc3v3_sata2: vcc3v3-sata2 {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_HIGH>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "vcc3v3_sata2";
++		vin-supply = <&vcc3v3_sys>;
++	};
++
++	vcc3v3_sd_s0: regulator-vcc3v3-sd-s0 {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_HIGH>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "vcc3v3_sd_s0";
++		vin-supply = <&vcc_3v3_s3>;
++	};
++
++	vcc3v3_sys: regulator-vcc3v3-sys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc12v_dcin>;
++	};
++
++	vcc3v3_wlan: regulator-vcc3v3-wlan {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpios = <&gpio2 RK_PC3 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_pwren>;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-name = "wlan-en";
++		vin-supply = <&vcc3v3_sys>;
++	};
++
++	vcc5v0_sys: regulator-vcc5v0-sys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&vcc12v_dcin>;
++	};
++
++	vcc5v0_host: regulator-vcc5v0-host {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 RK_PA3 GPIO_ACTIVE_HIGH>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-name = "vcc5v0_host";
++		pinctrl-names = "default";
++		pinctrl-0 = <&vcc5v0_host_en>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
++	vcc5v0_host3: regulator-vcc5v0-host3 {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio1 RK_PA2 GPIO_ACTIVE_HIGH>;
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		regulator-name = "vcc5v0_host3";
++		pinctrl-names = "default";
++		pinctrl-0 = <&vcc5v0_host3_en>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++
++	vcc_1v1_nldo_s3: regulator-vcc-1v1-nldo-s3 {
++		compatible = "regulator-fixed";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <1100000>;
++		regulator-max-microvolt = <1100000>;
++		regulator-name = "vcc_1v1_nldo_s3";
++		vin-supply = <&vcc5v0_sys>;
++	};
++};
++
++&combphy0_ps {
++	status = "okay";
++};
++
++&combphy1_ps {
++	status = "okay";
++};
++
++&combphy2_psu {
++	status = "okay";
++};
++
++&cpu_b0 {
++	cpu-supply = <&vdd_cpu_big0_s0>;
++};
++
++&cpu_b1 {
++	cpu-supply = <&vdd_cpu_big0_s0>;
++};
++
++&cpu_b2 {
++	cpu-supply = <&vdd_cpu_big1_s0>;
++};
++
++&cpu_b3 {
++	cpu-supply = <&vdd_cpu_big1_s0>;
++};
++
++&cpu_l0 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
++
++&cpu_l1 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
++
++&cpu_l2 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
++
++&cpu_l3 {
++	cpu-supply = <&vdd_cpu_lit_s0>;
++};
++
++&gmac0 {
++	clock_in_out = "output";
++	phy-handle = <&rgmii_phy0>;
++	phy-mode = "rgmii-rxid";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gmac0_miim
++		     &gmac0_tx_bus2
++		     &gmac0_rx_bus2
++		     &gmac0_rgmii_clk
++		     &gmac0_rgmii_bus>;
++	tx_delay = <0x47>;
++	status = "okay";
++};
++
++&gmac1 {
++	clock_in_out = "output";
++	phy-handle = <&rgmii_phy1>;
++	phy-mode = "rgmii-rxid";
++	pinctrl-names = "default";
++	pinctrl-0 = <&gmac1_miim
++		     &gmac1_tx_bus2
++		     &gmac1_rx_bus2
++		     &gmac1_rgmii_clk
++		     &gmac1_rgmii_bus>;
++	tx_delay = <0x42>;
++	status = "okay";
++};
++
++&gpu {
++	mali-supply = <&vdd_gpu_s0>;
++	sram-supply = <&vdd_gpu_mem_s0>;
++	status = "okay";
++};
++
++&hdmi0 {
++	status = "okay";
++};
++
++&hdmi0_in {
++	hdmi0_in_vp0: endpoint {
++		remote-endpoint = <&vp0_out_hdmi0>;
++	};
++};
++
++&hdmi0_out {
++	hdmi0_out_con: endpoint {
++		remote-endpoint = <&hdmi0_con_in>;
++	};
++};
++
++&hdmi1 {
++	status = "okay";
++};
++
++&hdmi1_in {
++	hdmi1_in_vp1: endpoint {
++		remote-endpoint = <&vp1_out_hdmi1>;
++	};
++};
++
++&hdmi1_out {
++	hdmi1_out_con: endpoint {
++		remote-endpoint = <&hdmi1_con_in>;
++	};
++};
++
++&hdptxphy0 {
++	status = "okay";
++};
++
++&hdptxphy1 {
++	status = "okay";
++};
++
++&i2c0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c0m2_xfer>;
++	status = "okay";
++
++	/* pc9202 watchdog@3c with enable-gpio gpio0-c3 */
++
++	vdd_cpu_big0_s0: regulator@42 {
++		compatible = "rockchip,rk8602";
++		reg = <0x42>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-name = "vdd_cpu_big0_s0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <550000>;
++		regulator-max-microvolt = <1050000>;
++		regulator-ramp-delay = <2300>;
++		vin-supply = <&vcc5v0_sys>;
++
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++
++	vdd_cpu_big1_s0: regulator@43 {
++		compatible = "rockchip,rk8603", "rockchip,rk8602";
++		reg = <0x43>;
++		fcs,suspend-voltage-selector = <1>;
++		regulator-name = "vdd_cpu_big1_s0";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <550000>;
++		regulator-max-microvolt = <1050000>;
++		regulator-ramp-delay = <2300>;
++		vin-supply = <&vcc5v0_sys>;
++
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++};
++
++&i2c3 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c3m0_xfer>;
++
++	es8388: audio-codec@11 {
++		compatible = "everest,es8388", "everest,es8328";
++		reg = <0x11>;
++		clocks = <&cru I2S0_8CH_MCLKOUT>;
++		AVDD-supply = <&vcc_1v8_s0>;
++		DVDD-supply = <&vcc_1v8_s0>;
++		HPVDD-supply = <&vcc_3v3_s0>;
++		PVDD-supply = <&vcc_1v8_s0>;
++		assigned-clocks = <&cru I2S0_8CH_MCLKOUT>;
++		assigned-clock-rates = <12288000>;
++		#sound-dai-cells = <0>;
++	};
++};
++
++&i2c6 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c6m0_xfer>;
++
++	usbc0: usb-typec@22 {
++		compatible = "fcs,fusb302";
++		reg = <0x22>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PD3 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&usbc0_int>;
++		vbus-supply = <&vbus5v0_typec>;
++		status = "okay";
++
++		usb_con: connector {
++			compatible = "usb-c-connector";
++			label = "USB-C";
++			data-role = "dual";
++			op-sink-microwatt = <1000000>;
++			power-role = "dual";
++			sink-pdos =
++				<PDO_FIXED(5000, 1000, PDO_FIXED_USB_COMM)>;
++			source-pdos =
++				<PDO_FIXED(5000, 3000, PDO_FIXED_USB_COMM)>;
++			try-power-role = "source";
++
++			ports {
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				port@0 {
++					reg = <0>;
++
++					usbc0_orien_sw: endpoint {
++						remote-endpoint = <&usbdp_phy0_orientation_switch>;
++					};
++				};
++
++				port@1 {
++					reg = <1>;
++
++					usbc0_role_sw: endpoint {
++						remote-endpoint = <&dwc3_0_role_switch>;
++					};
++				};
++
++				port@2 {
++					reg = <2>;
++
++					dp_altmode_mux: endpoint {
++						remote-endpoint = <&usbdp_phy0_dp_altmode_mux>;
++					};
++				};
++			};
++		};
++	};
++
++	hym8563: rtc@51 {
++		compatible = "haoyu,hym8563";
++		reg = <0x51>;
++		#clock-cells = <0>;
++		clock-output-names = "hym8563";
++		pinctrl-names = "default";
++		pinctrl-0 = <&hym8563_int>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PB0 IRQ_TYPE_LEVEL_LOW>;
++		wakeup-source;
++	};
++};
++
++&i2s0_8ch {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2s0_lrck
++		     &i2s0_mclk
++		     &i2s0_sclk
++		     &i2s0_sdi0
++		     &i2s0_sdo0>;
++	status = "okay";
++};
++
++&mdio0 {
++	rgmii_phy0: ethernet-phy@1 {
++		compatible = "ethernet-phy-id001c.c916";
++		reg = <0x1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtl8211f_0_rst>;
++		reset-assert-us = <20000>;
++		reset-deassert-us = <100000>;
++		reset-gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&mdio1 {
++	rgmii_phy1: ethernet-phy@1 {
++		compatible = "ethernet-phy-id001c.c916";
++		reg = <0x1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&rtl8211f_1_rst>;
++		reset-assert-us = <20000>;
++		reset-deassert-us = <100000>;
++		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++	};
++};
++
++&pcie2x1l0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_0_rst>, <&pcie2_0_wake>, <&pcie2_0_clkreq>;
++	reset-gpios = <&gpio4 RK_PA5 GPIO_ACTIVE_HIGH>;
++	vpcie3v3-supply = <&vcc3v3_wlan>;
++	status = "okay";
++};
++
++&pcie2x1l2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pcie2_2_rst>;
++	reset-gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++};
++
++&pd_gpu {
++	domain-supply = <&vdd_gpu_s0>;
++};
++
++&pinctrl {
++	audio {
++		hp_detect: headphone-detect {
++			rockchip,pins = <1 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		headphone_amplifier_en: headphone-amplifier-en {
++			rockchip,pins = <1 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	gpio-leds {
++		led_pins: led-pins {
++			rockchip,pins =
++				<1 RK_PD3 RK_FUNC_GPIO &pcfg_pull_none>,
++				<1 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	hym8563 {
++		hym8563_int: hym8563-int {
++			rockchip,pins = <0 RK_PB0 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
++	pcie2 {
++		pcie2_0_rst: pcie2-0-rst {
++			rockchip,pins = <4 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		pcie2_0_wake: pcie2-0-wake {
++			rockchip,pins = <4 RK_PA4 4 &pcfg_pull_none>;
++		};
++
++		pcie2_0_clkreq: pcie2-0-clkreq {
++			rockchip,pins = <4 RK_PA3 4 &pcfg_pull_none>;
++		};
++
++		pcie2_2_rst: pcie2-2-rst {
++			rockchip,pins = <3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	rtl8211f {
++		rtl8211f_0_rst: rtl8211f-0-rst {
++			rockchip,pins = <3 RK_PC0 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++		rtl8211f_1_rst: rtl8211f-1-rst {
++			rockchip,pins = <3 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	usb {
++		vcc5v0_host_en: vcc5v0-host-en {
++			rockchip,pins = <1 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		vcc5v0_host3_en: vcc5v0-host3-en {
++			rockchip,pins = <1 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	usb-typec {
++		typec5v_pwren: typec5v-pwren {
++			rockchip,pins = <1 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		usbc0_int: usbc0-int {
++			rockchip,pins = <0 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++
++	wlan {
++		wifi_pwren: wifi-pwren {
++			rockchip,pins = <2 RK_PC3 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++	};
++};
++
++&pwm15 {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm15m2_pins>;
++};
++
++&saradc {
++	vref-supply = <&vcc_1v8_s0>;
++	status = "okay";
++};
++
++&sdhci {
++	bus-width = <8>;
++	no-sdio;
++	no-sd;
++	non-removable;
++	max-frequency = <200000000>;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
++	status = "okay";
++};
++
++&sdmmc {
++	bus-width = <4>;
++	cap-sd-highspeed;
++	disable-wp;
++	max-frequency = <150000000>;
++	no-sdio;
++	no-mmc;
++	sd-uhs-sdr104;
++	vmmc-supply = <&vcc3v3_sd_s0>;
++	vqmmc-supply = <&vccio_sd_s0>;
++	status = "okay";
++};
++
++&spi2 {
++	assigned-clocks = <&cru CLK_SPI2>;
++	assigned-clock-rates = <200000000>;
++	num-cs = <1>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi2m2_cs0 &spi2m2_pins>;
++	status = "okay";
++
++	pmic@0 {
++		compatible = "rockchip,rk806";
++		reg = <0x0>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_pins>, <&rk806_dvs1_null>,
++			    <&rk806_dvs2_null>, <&rk806_dvs3_null>;
++		spi-max-frequency = <1000000>;
++		system-power-controller;
++
++		vcc1-supply = <&vcc5v0_sys>;
++		vcc2-supply = <&vcc5v0_sys>;
++		vcc3-supply = <&vcc5v0_sys>;
++		vcc4-supply = <&vcc5v0_sys>;
++		vcc5-supply = <&vcc5v0_sys>;
++		vcc6-supply = <&vcc5v0_sys>;
++		vcc7-supply = <&vcc5v0_sys>;
++		vcc8-supply = <&vcc5v0_sys>;
++		vcc9-supply = <&vcc5v0_sys>;
++		vcc10-supply = <&vcc5v0_sys>;
++		vcc11-supply = <&vcc_2v0_pldo_s3>;
++		vcc12-supply = <&vcc5v0_sys>;
++		vcc13-supply = <&vcc_1v1_nldo_s3>;
++		vcc14-supply = <&vcc_1v1_nldo_s3>;
++		vcca-supply = <&vcc5v0_sys>;
++
++		rk806_dvs1_null: dvs1-null-pins {
++			pins = "gpio_pwrctrl1";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs2_null: dvs2-null-pins {
++			pins = "gpio_pwrctrl2";
++			function = "pin_fun0";
++		};
++
++		rk806_dvs3_null: dvs3-null-pins {
++			pins = "gpio_pwrctrl3";
++			function = "pin_fun0";
++		};
++
++		regulators {
++			vdd_gpu_s0: vdd_gpu_mem_s0: dcdc-reg1 {
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_gpu_s0";
++				regulator-enable-ramp-delay = <400>;
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_cpu_lit_s0: vdd_cpu_lit_mem_s0: dcdc-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_cpu_lit_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_log_s0: dcdc-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <750000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_log_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			vdd_vdenc_s0: vdd_vdenc_mem_s0: dcdc-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <550000>;
++				regulator-max-microvolt = <950000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_vdenc_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_ddr_s0: dcdc-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <675000>;
++				regulator-max-microvolt = <900000>;
++				regulator-ramp-delay = <12500>;
++				regulator-name = "vdd_ddr_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			vdd2_ddr_s3: dcdc-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vdd2_ddr_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_2v0_pldo_s3: dcdc-reg7 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <2000000>;
++				regulator-max-microvolt = <2000000>;
++				regulator-name = "vdd_2v0_pldo_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <2000000>;
++				};
++			};
++
++			vcc_3v3_s3: dcdc-reg8 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3300000>;
++				};
++			};
++
++			vddq_ddr_s0: dcdc-reg9 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-name = "vddq_ddr_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s3: dcdc-reg10 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avcc_1v8_s0: pldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "avcc_1v8_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v8_s0: pldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "vcc_1v8_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			avdd_1v2_s0: pldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1200000>;
++				regulator-max-microvolt = <1200000>;
++				regulator-name = "avdd_1v2_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_3v3_s0: pldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3300000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vcc_3v3_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vccio_sd_s0: pldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <3300000>;
++				regulator-name = "vccio_sd_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			pldo6_s3: pldo-reg6 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-name = "pldo6_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vdd_0v75_s3: nldo-reg1 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s3";
++
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <750000>;
++				};
++			};
++
++			avdd_ddr_pll_s0: nldo-reg2 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "avdd_ddr_pll_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++					regulator-suspend-microvolt = <850000>;
++				};
++			};
++
++			avdd_0v75_s0: nldo-reg3 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "avdd_0v75_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			avdd_0v85_s0: nldo-reg4 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <850000>;
++				regulator-max-microvolt = <850000>;
++				regulator-name = "avdd_0v85_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_0v75_s0: nldo-reg5 {
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <750000>;
++				regulator-name = "vdd_0v75_s0";
++
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++		};
++	};
++};
++
++&sata2 {
++	status = "okay";
++};
++
++&tsadc {
++	status = "okay";
++};
++
++&u2phy0 {
++	status = "okay";
++};
++
++&u2phy0_otg {
++	status = "okay";
++};
++
++&u2phy1 {
++	status = "okay";
++};
++
++&u2phy1_otg {
++	phy-supply = <&vcc5v0_host3>;
++	status = "okay";
++};
++
++&u2phy2 {
++	status = "okay";
++};
++
++&u2phy2_host {
++	phy-supply = <&vcc5v0_host>;
++	status = "okay";
++};
++
++&u2phy3 {
++	status = "okay";
++};
++
++&u2phy3_host {
++	phy-supply = <&vcc5v0_host3>;
++	status = "okay";
++};
++
++&uart2 {
++	pinctrl-0 = <&uart2m0_xfer>;
++	status = "okay";
++};
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host0_xhci {
++	dr_mode = "otg";
++	usb-role-switch;
++	status = "okay";
++
++	port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		dwc3_0_role_switch: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&usbc0_role_sw>;
++		};
++	};
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
++
++&usb_host1_xhci {
++	dr_mode = "host";
++	status = "okay";
++};
++
++&usbdp_phy0 {
++	mode-switch;
++	orientation-switch;
++	sbu1-dc-gpios = <&gpio4 RK_PA6 GPIO_ACTIVE_HIGH>;
++	sbu2-dc-gpios = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
++	status = "okay";
++
++	port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		usbdp_phy0_orientation_switch: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&usbc0_orien_sw>;
++		};
++
++		usbdp_phy0_dp_altmode_mux: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&dp_altmode_mux>;
++		};
++	};
++};
++
++&usbdp_phy1 {
++	rockchip,dp-lane-mux = <2 3>;
++	status = "okay";
++};
++
++&vop {
++	status = "okay";
++};
++
++&vop_mmu {
++	status = "okay";
++};
++
++&vp0 {
++	vp0_out_hdmi0: endpoint@ROCKCHIP_VOP2_EP_HDMI0 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI0>;
++		remote-endpoint = <&hdmi0_in_vp0>;
++	};
++};
++
++&vp1 {
++	vp1_out_hdmi1: endpoint@ROCKCHIP_VOP2_EP_HDMI1 {
++		reg = <ROCKCHIP_VOP2_EP_HDMI1>;
++		remote-endpoint = <&hdmi1_in_vp1>;
++	};
++};
++
 
-If during the debugging process, the customer discovers that a certain
-parameter in the chip's firmware is not suitable for the current
-situation, then he requests a perfect firmware from our company to be
-updated onto the chip.
+base-commit: 6cc18e940db6731556843b7fa2924eb2efcef53f
+-- 
+2.25.1
 
-When there are hundreds or tens of thousands of devices that need to
-be updated, simply use sysfs to trigger the update. It is a very bad
-thing.
-
-If you want to use version number comparison as the upgrade condition
-like in lt9611uxc.c, then the customer will need to modify the version
-number comparison condition and rebuild the driver. This method is not
-as simple as the one I have designed.
-
-> >
-> >>>
-> >>>>> +             release_firmware(lt9611c->fw);
-> >>>>> +             lt9611c->fw =3D NULL;
-> >>>>> +             dev_err(dev, "firmware released\n");
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->dsi0_node) {
-> >>>>> +             of_node_put(lt9611c->dsi0_node);
-> >>>>> +             lt9611c->dsi0_node =3D NULL;
-> >>>>> +             dev_err(dev, "dsi0 node released\n");
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->dsi1_node) {
-> >>>>> +             of_node_put(lt9611c->dsi1_node);
-> >>>>> +             lt9611c->dsi1_node =3D NULL;
-> >>>>> +             dev_err(dev, "dsi1 node released\n");
-> >>>>> +     }
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_main(void *data)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D data;
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +     struct i2c_client *client =3D lt9611c->client;
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     lt9611c->work_inited =3D false;
-> >>>>> +     lt9611c->bridge_added =3D false;
-> >>>>> +     lt9611c->regulators_enabled =3D false;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_parse_dt(dev, lt9611c);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "failed to parse device tree\n");
-> >>>>> +             return ret;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_gpio_init(lt9611c);
-> >>>>> +     if (ret < 0)
-> >>>>> +             goto err_cleanup;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_regulator_init(lt9611c);
-> >>>>> +     if (ret < 0)
-> >>>>> +             goto err_cleanup;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_regulator_enable(lt9611c);
-> >>>>> +     if (ret)
-> >>>>> +             goto err_cleanup;
-> >>>>> +
-> >>>>> +     lt9611c->regulators_enabled =3D true;
-> >>>>> +
-> >>>>> +     lt9611c_reset(lt9611c);
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_read_chipid(lt9611c);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "failed to read chip id.\n");
-> >>>>> +             goto err_cleanup;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c_lock(lt9611c);
-> >>>>> +     lt9611c_read_version(lt9611c, &lt9611c->fw_version);
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_prepare_firmware_data(lt9611c);
-> >>>>> +     if (ret =3D=3D 0 && lt9611c_upgrade_judgment(lt9611c) =3D=3D =
-UPGRADE) {
-> >>>>> +             dev_info(dev, "firmware upgrade needed\n");
-> >>>>> +
-> >>>>> +             ret =3D lt9611c_firmware_upgrade(lt9611c);
-> >>>>> +             if (ret < 0) {
-> >>>>> +                     dev_err(dev, "firmware upgrade failed\n");
-> >>>>> +                     lt9611c_unlock(lt9611c);
-> >>>>> +                     goto err_cleanup;
-> >>>>> +             }
-> >>>>> +
-> >>>>> +             lt9611c_reset(lt9611c);
-> >>>>> +             ret =3D lt9611c_upgrade_result(lt9611c);
-> >>>>> +             if (ret < 0) {
-> >>>>> +                     lt9611c_unlock(lt9611c);
-> >>>>> +                     goto err_cleanup;
-> >>>>> +             }
-> >>>>> +
-> >>>>> +             lt9611c_read_version(lt9611c, &lt9611c->fw_version);
-> >>>>> +             lt9611c_unlock(lt9611c);
-> >>>>> +
-> >>>>> +     } else {
-> >>>>> +             dev_info(dev, "skip firmware upgrade, using chip inte=
-rnal firmware\n");
-> >>>>> +             lt9611c_unlock(lt9611c);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     if (lt9611c->fw) {
-> >>>>> +             release_firmware(lt9611c->fw);
-> >>>>> +             lt9611c->fw =3D NULL;
-> >>>>> +     }
-> >>>>> +     dev_info(dev, "current version:0x%04llx", lt9611c->fw_version=
-);
-> >>>>> +
-> >>>>> +     INIT_WORK(&lt9611c->work, lt9611c_hpd_work);
-> >>>>> +     lt9611c->work_inited =3D true;
-> >>>>> +
-> >>>>> +     if (!client->irq) {
-> >>>>> +             dev_err(dev, "failed to get INTP IRQ\n");
-> >>>>> +             ret =3D -ENODEV;
-> >>>>> +             goto err_cleanup;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     ret =3D devm_request_threaded_irq(&client->dev, client->irq, =
-NULL,
-> >>>>> +                                     lt9611c_irq_thread_handler,
-> >>>>> +                                     IRQF_TRIGGER_HIGH | IRQF_ONES=
-HOT |
-> >>>>> +                                     IRQF_NO_AUTOEN,
-> >>>>> +                                     "lt9611c", lt9611c);
-> >>>>> +     if (ret) {
-> >>>>> +             dev_err(dev, "failed to request irq\n");
-> >>>>> +             goto err_cleanup;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c->bridge.funcs =3D &lt9611c_bridge_funcs;
-> >>>>> +     lt9611c->bridge.of_node =3D lt9611c->client->dev.of_node;
-> >>>>> +     lt9611c->bridge.ops =3D DRM_BRIDGE_OP_DETECT | DRM_BRIDGE_OP_=
-EDID | DRM_BRIDGE_OP_HPD;
-> >>>>> +     lt9611c->bridge.type =3D DRM_MODE_CONNECTOR_HDMIA;
-> >>>>> +
-> >>>>> +     drm_bridge_add(&lt9611c->bridge);
-> >>>>> +     lt9611c->bridge_added =3D true;
-> >>>>
-> >>>> No unnecessary flags, please. Implement proper cleanup path, unwindi=
-ng
-> >>>> resources one by one.
-> >>>>
-> >>> I will consider this issue. thks
-> >>>
-> >>>>> +
-> >>>>> +     /* Attach primary DSI */
-> >>>>> +     lt9611c->dsi0 =3D lt9611c_attach_dsi(lt9611c, lt9611c->dsi0_n=
-ode);
-> >>>>> +     if (IS_ERR(lt9611c->dsi0)) {
-> >>>>> +             ret =3D PTR_ERR(lt9611c->dsi0);
-> >>>>> +             dev_err(dev, "Failed to attach primary DSI, error=3D%=
-d\n", ret);
-> >>>>> +             goto err_cleanup;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     /* Attach secondary DSI, if specified */
-> >>>>> +     if (lt9611c->dsi1_node) {
-> >>>>> +             lt9611c->dsi1 =3D lt9611c_attach_dsi(lt9611c, lt9611c=
-->dsi1_node);
-> >>>>> +             if (IS_ERR(lt9611c->dsi1)) {
-> >>>>> +                     ret =3D PTR_ERR(lt9611c->dsi1);
-> >>>>> +                     dev_err(dev, "Failed to attach secondary DSI,=
- error=3D%d\n", ret);
-> >>>>> +                     goto err_cleanup;
-> >>>>> +             }
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c->audio_status =3D connector_status_disconnected;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_audio_init(dev, lt9611c);
-> >>>>> +     if (ret < 0) {
-> >>>>> +             dev_err(dev, "audio init failed\n");
-> >>>>> +             goto err_cleanup;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c_reset(lt9611c);
-> >>>>> +     enable_irq(lt9611c->client->irq);
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +
-> >>>>> +err_cleanup:
-> >>>>> +     lt9611c_cleanup_resources(lt9611c);
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_probe(struct i2c_client *client)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c;
-> >>>>> +     struct device *dev =3D &client->dev;
-> >>>>> +
-> >>>>> +     if (!i2c_check_functionality(client->adapter, I2C_FUNC_I2C)) =
-{
-> >>>>> +             dev_err(dev, "device doesn't support I2C\n");
-> >>>>> +             return -ENODEV;
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     lt9611c =3D devm_kzalloc(dev, sizeof(*lt9611c), GFP_KERNEL);
-> >>>>
-> >>>> devm_drm_bridge_alloc()
-> >>>>
-> >>> i will fix, thks
-> >>>
-> >>>>> +     if (!lt9611c)
-> >>>>> +             return -ENOMEM;
-> >>>>> +
-> >>>>> +     lt9611c->dev =3D dev;
-> >>>>> +     lt9611c->client =3D client;
-> >>>>> +     mutex_init(&lt9611c->ocm_lock);
-> >>>>> +
-> >>>>> +     lt9611c->regmap =3D devm_regmap_init_i2c(client, &lt9611c_reg=
-map_config);
-> >>>>> +     if (IS_ERR(lt9611c->regmap)) {
-> >>>>> +             dev_err(dev, "regmap i2c init failed\n");
-> >>>>> +             return PTR_ERR(lt9611c->regmap);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     i2c_set_clientdata(client, lt9611c);
-> >>>>> +
-> >>>>> +     lt9611c->kthread =3D kthread_run(lt9611c_main, lt9611c, "lt96=
-11c");
-> >>>>
-> >>>> Why do you need extra kthread for that???
-> >
-> > Upgrading the firmware takes time. execute it sequentially in the
-> > probe function, it will block the system boot.
-> > Using the kthread method will not block the system boot.
->
-> Just follow the drivers/gpu/drm/bridge/lontium-lt9611uxc.c way to do this=
-.
->
-In fact, I think the method in lontium-lt9611uxc.c is a very bad one.
-My clients often encounter situations where the system gets blocked
-during the firmware upgrade process, and they have no idea what has
-happened.
-
-> >
-> >>>>
-> >>>>> +     if (IS_ERR(lt9611c->kthread)) {
-> >>>>> +             dev_err(dev, "Failed to create kernel thread\n");
-> >>>>> +             return PTR_ERR(lt9611c->kthread);
-> >>>>> +     }
-> >>>>> +
-> >>>>> +     return 0;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static void lt9611c_remove(struct i2c_client *client)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D i2c_get_clientdata(client);
-> >>>>> +     struct device *dev =3D lt9611c->dev;
-> >>>>> +
-> >>>>> +     kfree(lt9611c->edid_buf);
-> >>>>> +     disable_irq(client->irq);
-> >>>>> +     lt9611c_cleanup_resources(lt9611c);
-> >>>>> +     mutex_destroy(&lt9611c->ocm_lock);
-> >>>>> +     dev_info(dev, "remove driver\n");
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_bridge_suspend(struct device *dev)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_get_drvdata(dev);
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     dev_info(lt9611c->dev, "suspend\n");
-> >>>>> +     disable_irq(lt9611c->client->irq);
-> >>>>> +     ret =3D lt9611c_regulator_disable(lt9611c);
-> >>>>> +     gpiod_set_value_cansleep(lt9611c->reset_gpio, 0);
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static int lt9611c_bridge_resume(struct device *dev)
-> >>>>> +{
-> >>>>> +     struct lt9611c *lt9611c =3D dev_get_drvdata(dev);
-> >>>>> +     int ret;
-> >>>>> +
-> >>>>> +     ret =3D lt9611c_regulator_enable(lt9611c);
-> >>>>> +     lt9611c_reset(lt9611c);
-> >>>>> +     enable_irq(lt9611c->client->irq);
-> >>>>> +     dev_info(lt9611c->dev, "resume\n");
-> >>>>> +
-> >>>>> +     return ret;
-> >>>>> +}
-> >>>>> +
-> >>>>> +static const struct dev_pm_ops lt9611c_bridge_pm_ops =3D {
-> >>>>> +     SET_SYSTEM_SLEEP_PM_OPS(lt9611c_bridge_suspend,
-> >>>>> +                             lt9611c_bridge_resume)
-> >>>>> +};
-> >>>>> +
-> >>>>> +static struct i2c_device_id lt9611c_id[] =3D {
-> >>>>> +     { "lontium,lt9611c", 0 },
-> >>>>> +     { /* sentinel */ }
-> >>>>> +};
-> >>>>> +
-> >>>>> +static const struct of_device_id lt9611c_match_table[] =3D {
-> >>>>> +     { .compatible =3D "lontium,lt9611c" },
-> >>>>
-> >>>> Your schema also had lt9611uxd
-> >>>>
-> >>> i will fix, thks
-> >>>
-> >>>>> +     { /* sentinel */ }
-> >>>>> +};
-> >>>>> +MODULE_DEVICE_TABLE(of, lt9611c_match_table);
-> >>>>> +
-> >>>>> +static struct i2c_driver lt9611c_driver =3D {
-> >>>>> +     .driver =3D {
-> >>>>> +             .name =3D "lt9611c",
-> >>>>> +             .of_match_table =3D lt9611c_match_table,
-> >>>>> +             .pm =3D &lt9611c_bridge_pm_ops,
-> >>>>> +             .dev_groups =3D lt9611c_attr_groups,
-> >>>>> +     },
-> >>>>> +     .probe =3D lt9611c_probe,
-> >>>>> +     .remove =3D lt9611c_remove,
-> >>>>> +     .id_table =3D lt9611c_id,
-> >>>>> +};
-> >>>>> +module_i2c_driver(lt9611c_driver);
-> >>>>> +
-> >>>>> +MODULE_AUTHOR("syyang <syyang@lontium.com>");
-> >>>>> +MODULE_LICENSE("GPL v2");
-> >>>>> +
-> >>>>> +MODULE_FIRMWARE(FW_FILE);
-> >>>>> --
-> >>>>> 2.25.1
-> >>>>>
-> >>>>
-> >>>> --
-> >>>> With best wishes
-> >>>> Dmitry
-> >>>
-> >>> Dmitry, thank you very much
-> >>
-> >> --
-> >> With best wishes
-> >> Dmitry
->
 
