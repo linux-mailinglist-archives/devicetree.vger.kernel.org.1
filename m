@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-213686-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 173A7B46499
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:33:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id ABCA3B464A4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:38:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C78217C889C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:33:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B28E1BC5CF7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:38:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5162874EA;
-	Fri,  5 Sep 2025 20:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1708A2C11F2;
+	Fri,  5 Sep 2025 20:38:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qci4YWjO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TboLt5L/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD6C1F4262;
-	Fri,  5 Sep 2025 20:33:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6BBF270557;
+	Fri,  5 Sep 2025 20:38:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757104387; cv=none; b=RMFmL4RPux+NSX4xLZMY8UO4aALihe5rRxjnZKsvHO64UMsM+2a3saTslbrDvKW9dg4+nMJcKNpMYbwFulxBmzpLknaKfCUykMsfuYyk5dRuN3fKlcGg/U+07t2vw0Q8uVyWuIuVwTieaVJyJLbifqgSAvGIboDOXLFGoTeLGRw=
+	t=1757104711; cv=none; b=BS6EbUMVyY1FcBKM74wb43U2Lc4kqOtxmwaZqZd/6WOQKzaY/Etiw4rSGOukfUYptB2N63wV07Oz5sH8sWTPUaRsWQDfhGQq0IxomK2qPsJ8TPRK8xWqzRcix8KtOqgjPFZz5O46GqmDQU/19AvCxIti3/qWgIEuGVzFWOiPOd0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757104387; c=relaxed/simple;
-	bh=7+4tc2DX6Np4dUdLk0Zy6oOY1gQEUFikJpLNx0nxG+k=;
+	s=arc-20240116; t=1757104711; c=relaxed/simple;
+	bh=1jzKDgZMiPtHutvrnfgdjjHYpvwH6zlRmiSOv9As9Ok=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=buseqwcpY8+SMzNZYJTam6wNwvRe7RMY9DO4/nfEGsU/HMQ011mYzeD/5Gn11mf/lPNfJAtDV0MzSKp8iCFhVAbDaDi08Wx0n7PWY/FTJgIL0vHpcjkMb3kiPmd1OkBPDKp9KXLuyoG54j5pVfM4OhmKyMfXmK2pgaC5F9IhJac=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qci4YWjO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0C53C4CEF1;
-	Fri,  5 Sep 2025 20:33:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=XR3PNOkTtEd5m+lxivaJ1IrZuAcTqRVAE2pDpgrLZFRDHvbx4nOgfxzvY1E5AdExECh/Ur6dQiLEpS7/V6D7P4eAFH6QtfjnX9OZncr3e3mnKd7DveVCGYUG0cYwGslF0POt5F81tNNG36C8Dg5geMVEhwiAaTcJbkafuvYozfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TboLt5L/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44AAEC4CEF1;
+	Fri,  5 Sep 2025 20:38:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757104386;
-	bh=7+4tc2DX6Np4dUdLk0Zy6oOY1gQEUFikJpLNx0nxG+k=;
+	s=k20201202; t=1757104710;
+	bh=1jzKDgZMiPtHutvrnfgdjjHYpvwH6zlRmiSOv9As9Ok=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qci4YWjOMckkPUqMCSj7Rfz/vQiLgNDyppbevOF5WgsBSYYOLOAqz/o/ypyWP57/q
-	 TvqgWRIOzxzA6B0PO16ZN6+9+EWHdK8vFLFkhJKiAbxo2ZCZT3fFMVZtm/GgG1e1Mf
-	 QLFuUM+JSIEvDeWWqc3XDO0g8iilrs+FOpqST+y7tyFknTmouW2uavqXrKgZJp9FMm
-	 sEpmT7NKe0CKqznLDessUxTNIgJHtEd5Cc1zHD1TUB16qknqnLmhCa9T6y9+CqZ6B8
-	 N0655fL7n8j8WqD7UR2wzhu0HlQdNj0uaa6xKU0vXMrzHtDPr0Yex+CUfvIDbgE3x2
-	 de1WpZvoxXpAQ==
-Date: Fri, 5 Sep 2025 15:33:05 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: input: convert max11801-ts to yaml
- format
-Message-ID: <175710438523.1268822.1694465252230993147.robh@kernel.org>
-References: <20250904200641.531897-1-Frank.Li@nxp.com>
+	b=TboLt5L/1XzMHZmVcNRsMUNW+rC2Mh3IDtafTLxBVs7T5elDXTLGZTk7tYDYTztjM
+	 gh7Fwrzl3HxluttGLY4iEb/Rbmq8CK4LOm1BETmJWdetT2UxGT8AScoPqIBL8nDq24
+	 JR35GMOxW9InfEkQNnjfs4IaCXLg2TC7M0pPP0k//z5x0G7Hd0E5TGFK22AiHHqxRS
+	 RECGQv6ZsgHeKNhZhw0uFhG4aFo/nWgYJ95Xl4mipJ5qu+5vYM2DpA+yMDUMhY9oSg
+	 DV+UmAS/AHtiQ0D5nY9txqX31NoM9wO/rg3T8zmrAE+k2TDnvME1k5P+N3rGapD1me
+	 h1Xw//46MNbCg==
+Date: Fri, 5 Sep 2025 15:38:29 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kendall Willis <k-willis@ti.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, vigneshr@ti.com, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	d-gole@ti.com, vishalm@ti.com, sebin.francis@ti.com,
+	msp@baylibre.com, khilman@baylibre.com, a-kaur@ti.com,
+	john.ogness@linutronix.de, andriy.shevchenko@linux.intel.com,
+	yujiaoliang@vivo.com, b-liu@ti.com, u.kleine-koenig@baylibre.com
+Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250_omap: Update wakeup-source
+ type property
+Message-ID: <20250905203829.GA1269545-robh@kernel.org>
+References: <20250904212455.3729029-1-k-willis@ti.com>
+ <20250904212455.3729029-2-k-willis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,21 +64,35 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250904200641.531897-1-Frank.Li@nxp.com>
+In-Reply-To: <20250904212455.3729029-2-k-willis@ti.com>
 
-
-On Thu, 04 Sep 2025 16:06:37 -0400, Frank Li wrote:
-> Convert max11801-ts to yaml format.
+On Thu, Sep 04, 2025 at 04:24:53PM -0500, Kendall Willis wrote:
+> Allow the wakeup-source property to be either of type boolean or of a
+> phandle array. The phandle array points to the system idle states that the
+> UART can wakeup the system from.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Kendall Willis <k-willis@ti.com>
 > ---
->  .../input/touchscreen/max11801-ts.txt         | 17 -------
->  .../input/touchscreen/maxim,max11801.yaml     | 46 +++++++++++++++++++
->  2 files changed, 46 insertions(+), 17 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/max11801-ts.txt
->  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/maxim,max11801.yaml
+>  Documentation/devicetree/bindings/serial/8250_omap.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> index 1859f71297ff2..851a5291b4be4 100644
+> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> @@ -69,7 +69,13 @@ properties:
+>    clock-frequency: true
+>    current-speed: true
+>    overrun-throttle-ms: true
+> -  wakeup-source: true
+> +
+> +  wakeup-source:
+> +    oneOf:
+> +      - type: boolean
+> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
+> +        description:
+> +          List of phandles to system idle states in which UARTs can wakeup the system.
 
-Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-
+You don't need to be defining the type here. Did you find either type 
+didn't work?
 
