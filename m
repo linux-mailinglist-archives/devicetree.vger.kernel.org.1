@@ -1,159 +1,137 @@
-Return-Path: <devicetree+bounces-213180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213216-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAF07B44D28
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:19:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FE15B44D74
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EED8581247
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:19:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3AF5F5833F5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:27:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F069D26A0C5;
-	Fri,  5 Sep 2025 05:19:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 799AD2F0673;
+	Fri,  5 Sep 2025 05:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="acMGw2xd"
+	dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b="WaFnr3jY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37832AD00;
-	Fri,  5 Sep 2025 05:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B51792EFDAB;
+	Fri,  5 Sep 2025 05:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.126.187
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757049543; cv=none; b=Lr9Qp6I59UVo6m/WNVrzcH8yUs9xKlbbEgpa5GQOxDZ2L5wsyyslJezcaNTcOEE1AUzZot7pvAyLCwi+TAkBOfzn2+G8/iB1ldoj0TdwvFMOJmFBDTMjmI3SZaFEuAuWkT5EONV+ERb0tLm+oYkIToQnc2LVj4rrcLga+Xu80bw=
+	t=1757049697; cv=none; b=uSlwZBHqmZp41kAITPRmQNz+sqha5uqthCsrmUckU5Vv6lVxbD3MGwaSx9Flv2zYnCfG+IZC5UWRShMXt6IqqfRJ47eGKdRTIrE8D5bnADF5laPEv4nElIjUdR2/t4Fx/NbpAMPPDcPw5bY1qFF9ypEGhNuSS3uuHORZL5uRmOA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757049543; c=relaxed/simple;
-	bh=0YbkTawyBInt9pUJ4jTW71f6Pk62hnb+ysAfsC1fzN4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=u9UHli8bNJjb5ZJ3fp8zMpRv8ONf++C/sfJtHXoyM17LHxeaolYTFAcFbMfZQPziIaaLMPvW8Ew1BUveJwNpROGqJfZdJp9XdN9wGzr5G9akNt00Zuxgfy81SiukXAO0+ABE6A2ACJP0o01kzqmCaF9B6jL2vP5Qs7Q9w5v+hE4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=acMGw2xd; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5855IuWq3246080;
-	Fri, 5 Sep 2025 00:18:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757049536;
-	bh=g/CjdO2oLUs6Kl6KrkstjG0mM0TAx6J8bSMY2vPc0j8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=acMGw2xddVqQt7//RKIZrvQ6Lu9HqXwl3RonGQ1UWoivS39hj/O9pO6gKzXmLR4zE
-	 G6YWaKA72SxroV0q2K7SvM0cl9Q5WMaPFaE+q6uGgUrjMM1/44/qkrTSwUWeEfGuNE
-	 mumn1EULm8kavxfXEPK9ZYHCh9OHKdyUAdKLrRbc=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5855IuvW688344
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 5 Sep 2025 00:18:56 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
- Sep 2025 00:18:56 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 5 Sep 2025 00:18:55 -0500
-Received: from [10.24.68.177] (akashdeep-hp-z2-tower-g5-workstation.dhcp.ti.com [10.24.68.177])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5855IpZV4124087;
-	Fri, 5 Sep 2025 00:18:52 -0500
-Message-ID: <9e0c355c-8b19-438e-98d9-d6290a562863@ti.com>
-Date: Fri, 5 Sep 2025 10:48:51 +0530
+	s=arc-20240116; t=1757049697; c=relaxed/simple;
+	bh=IvqLa41Rgi5MStRNwS+3vZ63wEGrIeqTNh3mmJUDLuc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ClnGUAJ07VoNSyyTEm25RHCr0kE3Am00fFmGJRaqkaDBtNxFECL60U38ethJhJtZkt70rrKwEHKcdEX5HnuhpDuWFoDN0zTPLGINwHJeEWw22Q2lKlHvCpNq5rw5KwbM0BBGfrP/gDHYPxkEkLuOqJbhMd9hWzZc9ujXQdFuRsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz; spf=pass smtp.mailfrom=oldschoolsolutions.biz; dkim=pass (2048-bit key) header.d=oldschoolsolutions.biz header.i=jens.glathe@oldschoolsolutions.biz header.b=WaFnr3jY; arc=none smtp.client-ip=212.227.126.187
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=oldschoolsolutions.biz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oldschoolsolutions.biz
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=oldschoolsolutions.biz; s=s1-ionos; t=1757049666; x=1757654466;
+	i=jens.glathe@oldschoolsolutions.biz;
+	bh=IvqLa41Rgi5MStRNwS+3vZ63wEGrIeqTNh3mmJUDLuc=;
+	h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To:Content-Type:
+	 Content-Transfer-Encoding:cc:content-transfer-encoding:
+	 content-type:date:from:message-id:mime-version:reply-to:subject:
+	 to;
+	b=WaFnr3jYim3zobWPzFyjE7uIAigGtvl8F40hi4JltJgyoKa0kl+ns5gF3aCU7h92
+	 MRe9tSIyP1VmkzjseAiHhtKH9Bm7ZDAl2pYkCJdTAjXyYNXltbhVa4SCn0lGNhtZs
+	 6Ymzo2BJWyf6JQNqBYNyMKbDZrt6ZtU1HopPsgI3poA0ATPli/A7FYhq0lhY5MATn
+	 lh6HLauJmdrUuiTM25UnyZGZ83Mnz/sVn9M7rkmkjdaH8tHLXogCKxfJBH7nepG2m
+	 LLM3ibOQ5wuTAicE/drVPuXqXHImu7gOQykAJ3VEnhgef5TVAF0EBJr81Ju2YaKw6
+	 FzfJSVnDjuvVIJgP6g==
+X-UI-Sender-Class: 55c96926-9e95-11ee-ae09-1f7a4046a0f6
+Received: from [192.168.0.145] ([91.64.235.193]) by mrelayeu.kundenserver.de
+ (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
+ 1Myb8P-1uXdm83dgj-012Zfc; Fri, 05 Sep 2025 07:21:06 +0200
+Message-ID: <2fca6922-c312-4ac6-9b1e-f2aa492e1c6d@oldschoolsolutions.biz>
+Date: Fri, 5 Sep 2025 07:19:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/3] arm64: dts: ti: k3-pinctrl: Add the remaining
- macros
-To: "Kumar, Udit" <u-kumar1@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <kristo@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <vishalm@ti.com>, <sebin.francis@ti.com>
-References: <20250902071917.1616729-1-a-kaur@ti.com>
- <20250902071917.1616729-4-a-kaur@ti.com>
- <b946af38-abf9-4b34-bf44-3ba9bc64bff7@ti.com>
- <b0ccb51f-14f4-43c9-9646-296d6e9d559c@ti.com>
- <f2e60ec2-5a1f-4cff-a8ee-c2555d835946@ti.com>
- <1a20e784-d2d7-46d7-b705-67e460b6ae33@ti.com>
- <8f0dc883-7bab-4ad8-8db2-6c8f8377fdb3@ti.com>
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v7] arm64: dts: qcom: x1e78100-t14s-oled: Add eDP panel
+To: Christopher Obbard <christopher.obbard@linaro.org>,
+ Douglas Anderson <dianders@chromium.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Aleksandrs Vinarskis <alex.vinarskis@gmail.com>,
+ Sibi Sankar <quic_sibis@quicinc.com>,
+ Rajendra Nayak <quic_rjendra@quicinc.com>, Xilin Wu <wuxilin123@gmail.com>,
+ Srinivas Kandagatla <srini@kernel.org>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+ Rui Miguel Silva <rui.silva@linaro.org>, Abel Vesa <abel.vesa@linaro.org>,
+ devicetree@vger.kernel.org, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Konrad Dybcio <quic_kdybcio@quicinc.com>
+References: <20250814-wip-obbardc-qcom-t14s-oled-panel-v7-1-89966ae886a3@linaro.org>
 Content-Language: en-US
-From: Akashdeep Kaur <a-kaur@ti.com>
-In-Reply-To: <8f0dc883-7bab-4ad8-8db2-6c8f8377fdb3@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+In-Reply-To: <20250814-wip-obbardc-qcom-t14s-oled-panel-v7-1-89966ae886a3@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:LCJFX39gSHvMklOr93P1mOJM7P4b9qcXgpSoFcZkrYwLAOCad08
+ qy2mWKK7IydJ9UKDeNFYsbw939l+e/isCLilco/K2AkEUUMciYONWHqGaHB8ny1WqLKOUHj
+ 8DVHhXGVMilw3wz0nHAWtLBDMqCu6Zw8sao1HXnNdHJRupM1bzpAYbr9yU8sWwLuvG8dwGd
+ BpqEhaFW9uzlWa0Jlx5CQ==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:+QBQyDHBlms=;2IonQUqzHq2LnYp6i3VkQ2d0i3r
+ TXVqC9rlkdIeaxw6rzfFBP1Y+pXcH7XgkG8KcPZ96bJflB2I1c0PONBhGJvzuq/sH0pAzwyjv
+ 9oZcjtt3JxoWxyj49aB3yplXGJUK1CGcsvf+o8qqCvCcTNOy+KaA2RBfbaISvwa9nbLfmQJQE
+ 7V2Un6KSQpjH+KTul8O37K0QX2xYx7jby2iJgSLkJQjPO8UVkjAL1HnTo6BtZWHkLoRMxdPwv
+ 9EJC+z0OI97h+Gd/mZSOY8TXAvLacC5/RlKZL+nFP4kTNh6+9Wbf4xDyOJAI/ZcRvrHFRUosF
+ nsVXP2sJsNKhg+9SSib96Db4fQ4n7EDM6DLZpNhhoHrzV4fDkJkm07Cd/dn30HgNn23dgRkJr
+ KflSykmlwj4Zzw5O8qCeNmzMMNk7ln5b6YjYsfc3GJgyVUbM0WAxsKHzQUK/uiN5iAJbCuqNl
+ /s5vzi2Q3qCmehVeLlZAaSzjWQWUgjIxIg2qrvrqLqUdKfjMLzF/zQT4BrWTSPrwNe2C4QPCS
+ eORhTrrf45/I+v04uyfV2CEuyxnn3B3si9eMgR7x1+agl8ANXWeaNbqYEmebYkGpAh9aC3RV1
+ AH+xZslX8wr4G/Efw6+o4Y2CUS9/YiBlPILB/zSScw7vT+RCMVnzLf+XsdIjXmzuTk7wIX2pr
+ fV0kEBvfusuVLA88sVAZK2fVyTfvK4yV+1rtZ6b9IkDENXfIuQsm1oQGfg6RiTzWhYJ8GX0GQ
+ Iw+LUwHOMALaP5tmc8lJ7KXpPclA8fxE68zRd+613ohW050ZkXEhsqLwP47VDhgLthYUgpvGZ
+ y3kk7tlh+e4aWQuyKnr1w0Pdtl7+gnFadRh3rWbx/NmgqJAvxYcuQ5h+3AMY2V93+1C8Qa8Zx
+ 1e9OoznArU++TTdmdPB2GslcUbzrfuVEcqj5cPVoY2YEANYPFMewQghG/OM+Tc/dvWojDrRu7
+ IcR/GHkx7Og3279gU0hVXzP39Kewe4htMcEKAXVNCBezVPW8M+iicJF66NOd/RULRWXs1kPAP
+ BJaRYh4ib6oxvxUUJ2ruTkkq8z/t0YPDr6ANzsvW05Y6WjSy07tFu3XjUHb7MAQlCJ4Ijfw0O
+ gBTBvI1AOLB/kh3GsEhCPL6BLYvlgKR8UkmPWP/I89lWjKZ+kV/Uyc8BP6/e4mekkyh0Oem3L
+ ubdW6WdzarOWdpyRWOOQRxWNrNhYFXFd/7ZsbHJlpkZACexNuusiU/Yo540MX+pDgKoHvnuIV
+ i07xtgKG+V2idzCK6BaMHpZKgaw1aTjIfwlozzz30fgZP+QMKr2yNlhF1e93+1YzPS6wK/+P0
+ 3u+aBaky/wG+EFiavKEkOhtJPB4U3/x5w0EutZDGssddSbJOiDoIXHM2VdrdjiLbKBHrSz1Iw
+ kmEU7V2U4etJZTJ9QF+znAtzsK4DLuZiVtclIfLqzQknav8x4rGfOBFGDDDV8ywMvFhhqGbjW
+ V3HTASx8dOGeIiJZ4UfL0/wMLWWrxpAikRReE/qws6z9dQ4m6FmZrnNkypB+be3v7Iemqwk7n
+ +/6k/icRYwV2KniJZF+Z2A0P4xNQB517eX10R5LwFg+WtR6568s/vXd6BNLHhvdQdZfgk9RDL
+ hjA3+5y1BxtKpSTPx7zuQM/WHR7YbbhTreyixdtNSuqGiFV3EBvakZOsRSR2gQdAWqrah9YSB
+ LepRHzoQzKPUtzQShD5ZIGsyEdZ7kO74ujxCc6IGRDHuZ0MbW5T4yCzkyaOQ9ox3aUL4VJ9+h
+ VRB1tjcN6jDhVPevtscNppc3g5SlVEAfhWmza11Hb/zxz/mTDQEo4nPo=
 
-On 05/09/25 10:27, Kumar, Udit wrote:
-> 
-> On 9/4/2025 7:16 PM, Akashdeep Kaur wrote:
->> Hi Udit,
->>
->> On 04/09/25 18:06, Kumar, Udit wrote:
->>>
->>
->> ...
->>
->>>> ...
->>>>>>   #define PULLTYPESEL_SHIFT    (17)
->>>>>>   #define RXACTIVE_SHIFT        (18)
->>>>>> +#define DRV_STR_SHIFT           (19)
->>>>>
->>>>> referring to above TRM mentioned in commit message
->>>>>
->>>>> Bit 20-19 are for DRV_STR, and description says
->>>>>
->>>>> 0 - Default
->>>>> 1 - Reserved
->>>>> 2 - Reserved
->>>>> 3 - Reserved
->>>>>
->>>>> Not sure, is there some additional document to be referred for 
->>>>> PIN_DRIVE_STRENGTH
->>>>
->>>> This information will be updated in TRM in coming cycles.
->>>
->>>
->>> Sorry ,
->>>
->>> can not ack before TRM update
->>
->> The information can be found at https://www.ti.com/lit/ug/spruj83b/ 
->> spruj83b.pdf in Table 14-8769. Description Of The Pad Configuration 
->> Register Bit
-> 
-> 
-> Then please give correct reference in commit message
+On 8/14/25 22:16, Christopher Obbard wrote:
 
-Updated the commit message!
+> Add the Samsung ATNA40YK20 eDP panel to the device tree for the
+> Snapdragon T14s OLED model.
+>
+Hi Christopher,
 
-> 
-> 
-> 
->>
->>>
->>>
->>>
->>>>>
->>>>>
->>>>>> +#define DS_ISO_OVERRIDE_SHIFT (22)
->>>>>> +#define DS_ISO_BYPASS_EN_SHIFT  (23)
->>>>>
->>
->> ...
->>
->>>>>
->>>>>>   /* Default mux configuration for gpio-ranges to use with pinctrl */
->>>>>>   #define PIN_GPIO_RANGE_IOPAD    (PIN_INPUT | 7)
->>>>
->>>> Regards,
->>>> Akashdeep Kaur
->>
->> Thanks,
->> Akashdeep Kaur
->>
+I have this model and the prerequisite patches in my tree and using it=20
+daily. Working very well.
+
+Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+
+with best regards
+
+Jens
 
 
