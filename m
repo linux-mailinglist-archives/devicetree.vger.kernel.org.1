@@ -1,115 +1,123 @@
-Return-Path: <devicetree+bounces-213500-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C23B8B458AA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:21:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4C2B458DA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:26:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E8E43A908D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:21:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E97BE1CC2997
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:26:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E0DF127AC5A;
-	Fri,  5 Sep 2025 13:21:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51EE534F49F;
+	Fri,  5 Sep 2025 13:24:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="PpaRUePr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="b1a+VTHi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE233191F98;
-	Fri,  5 Sep 2025 13:21:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6AB34F485;
+	Fri,  5 Sep 2025 13:24:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757078490; cv=none; b=jdKM+5Rl+V1cJYwgArhm3J5FRhgddf2+T91IZL8/lSARKIW94KLNrMQGzyzkK8CZSSu4HIoQG45Jgy+D9qXmDaYVz4SBFCa0kQORj7x94PHiJJbSTeuvH0sBsv3FFAVBp9gVh9sYrRae2NY9hyCvawrbK3D06HhvnfJUJE+HfMc=
+	t=1757078699; cv=none; b=COCALY0b1RiCFJMTntwpz4pt0ytHFu1MzPyCcHvjlGDno52Y+Lx1qvTKR8hjc0mZBuX078Bx1L+mUf4mNfu4DiNB+ZV3q54yk2DOH9Yq25mywBHcLUivXsaMwRO3o9XE6GAxsrnja7pYkJT9sAW3PfZlZgq11/X9rqTALCbrwpA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757078490; c=relaxed/simple;
-	bh=5LzAHgCUGNowNZG8+zWWeAtPEjv3HfW+vL/OBN9utHY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=E9G3JPRmVvLiI7wsVqc5EcYdYIHahA1QvqfoO+xQ57JatdQP5wDmjW7vB7vMZiMHIuOwJKa6twqohfCXHKhBm2F91CXh/zMSYYYbKu5d7LVIbkDGC7gPvq4dCYnyyQpWZLqhF2AfRLvtsQ/qo+rd+eGie7yGW/UTKkzTzA1HAmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=PpaRUePr; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757078480;
-	bh=5LzAHgCUGNowNZG8+zWWeAtPEjv3HfW+vL/OBN9utHY=;
-	h=From:Date:Subject:To:Cc:From;
-	b=PpaRUePreKEpkpL6JsC0+yrr9JQmvmZAOm5EU2habrc+2slwPpcYIwLj3JKBwil2s
-	 V0PAiuQRybZeZULK7jN8px3xw7IMcS2c1DrDH1oBo4EVJR4fxtxgogrXfA2dTRpaL6
-	 u41DAmTJx6PeXvRpXTGTOVgvYJB/2+MYhhNrpqKuUMa0MlFQEYg/n/h2+wREtUwvhN
-	 VhOlGeBXti6T29O6uiBcOIakEPNYbQOTp/+IpW4nrBq9VuU8dAgQJotXgwom4lsSuA
-	 XjZWNTaUBPtNm6UAhSPv1jsZDqSjuSQkBYw7IoPEBDHXSfTcCLX7wnWG/NzIUF7P5l
-	 ffI50ZCV8BFlg==
-Received: from localhost-live.home (2a01cb0892F2D600c8f85cF092d4AF51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id DB0FF17E0B85;
-	Fri,  5 Sep 2025 15:21:19 +0200 (CEST)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Fri, 05 Sep 2025 15:21:19 +0200
-Subject: [PATCH] arm64: dts: mediatek: mt8395-nio-12l: Enable UFS
+	s=arc-20240116; t=1757078699; c=relaxed/simple;
+	bh=BYXgjrfETWBC94bq+gRzSrmYuVcnmIm21cNjnYQZRbI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=DtllRYUpe+DNcECh9kzLnHFpsD6heTVIyCpVrNin9t5Wgzb89DaAfvatecZgUFXHRVBrknTGvILe4p+jHcRlHf9H+LMWDYDI9IPRxUWTtSyJgrUeX/wQy0AAD09vUZ/YDz+pV/cSQuaZb6Zxcq9uqvLaz9KXk56rvNqtZYK/+e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=b1a+VTHi; arc=none smtp.client-ip=209.85.214.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-24cdbeca71eso10141705ad.2;
+        Fri, 05 Sep 2025 06:24:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757078697; x=1757683497; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HUZ+q+JJg13FrFHzy6ZfeYtYvRdE7r/MNLwJRgdnPng=;
+        b=b1a+VTHiSkxGKo5/34IAmv7spKyKDjNcHrKNbLwLTwL1U9JoFmZs0nQFLkOImqk5fc
+         pUM/FBWFR+OQ8PJS6KpUF2s6qGOZYQBxPF/fJXDd7Dm3dBmSw40ScgSy6ayyZCHoIGHh
+         51AALkWvq7A1zYWOOO4wBLqrra0RvzB4+8/8GZUy51gFFn+x5n10elbIFq0ZXrBU/zeo
+         tr8XRl7nCANY/4F/O+fXjxY2jzbFBYf7UVyWp19hDVN2NIonkcKa0Z0yDDrreQ+gD066
+         jJwYfkiKB3ianbWu1l08HmHDOdYDa1U7YA/AlIOjNgOXInTFqoVei1VIuGYnrczkGfU/
+         Ghtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757078697; x=1757683497;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HUZ+q+JJg13FrFHzy6ZfeYtYvRdE7r/MNLwJRgdnPng=;
+        b=pBtS12WnKjCJEB608uYwIYquKOIut3qqBlbow4DhiSJfxUwZrkJWhxv+9LF1sfa3xV
+         fuj1yGtI2LyKXML6YyO5ohA4lqMVt+OYkYDtIP5vGT+v1Xe4n0xGlLquei9iG26UcCTK
+         29yvaWVhC7Q1YErAqZd5Bblil4ozUhzIvtOGvJAtqJwREETWn8mwRFpOLriWrpVALk5m
+         qZBpdu9HqyFwWgQRnUFhpsAqVb5oiURXOpXuYMoL0Y/Zt6kLZziC9Fh710MfTqFmclg9
+         wt+OSd6VltxVH+TD2ZSu9xlSuVwCzg/Xj0+h5yhp+EluDBv4Sk9tV4MbKS+NxqsnZD7Q
+         Ph3Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUWTk6jqJ3ZCxxtYyD+4eatsrRfV61AIdNf3+8q0/iEp1C2s3x/x4ApJauIn5Aa/Fy/NlGZWjX8GtVNFUy/@vger.kernel.org, AJvYcCWAkm9gejUhR3YMNIuWtKEMt3PWWv218Xjcx4lx50TCK9x7ebr7QSZBymyHfP12D8hkzNdiJwhW9BAv@vger.kernel.org, AJvYcCWTsj2gQDEEWeqdoI/fQX28L7GoMhar1pdMoXZqBXAOClVGjdfYwbqxADq1eFN/7Qcf66Pl91qmI+VQ@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/LL3ZZ8Yk4iQUK6iXHxZFQ6HsRb550DIqc/on4PN3xz2IiTul
+	6sIEIIvBTEq9GWqrIxj4H3gdz+dyR1Q5d0PkU+1V/Q793frsJKhPNg50
+X-Gm-Gg: ASbGncunjrn3hyKf8q07ZUDKwKIXxnHHkg/DLaw09v0g0ZRer+4qa0I78nBpyqZymgt
+	Lr8PFPFbqUraeVdast5JDCo51Mu87/H+iklC6OULCByhEkoMGxKZ6dOmAOzwm7ai5nJa1ACoMbv
+	fa8r2+RSnFAayRYombiU/leV/IB2JcUhFNg7u0OSfv8TlKjrflOJySN7I9Qbq7be4kphXYmdKZi
+	bg4oBLDgMpUVwaCnVUWTT/swUA/wXhJVzdYZzVmls08MSeItaoRfkqHLAEao4JiJsKNrDqqkyqh
+	1rKaO5hagFYqLp1/oLvXCbgRRw90LvSeQTOzms2AT4ts90k0A78zYqwRSQYV3OlvDsK/oMkbWDH
+	b2IO61XwUq/J72NawVwkRa/aQviF/+9qQ
+X-Google-Smtp-Source: AGHT+IGUYvJbv28CQfw0PH02I1cEnjbK4o/GeReRVwIEuFF3MpQPaqUM8HGBojCALZS/4ClS+kWakA==
+X-Received: by 2002:a17:903:32c3:b0:24c:8af7:6b06 with SMTP id d9443c01a7336-24c8af77cb4mr147770415ad.21.1757078697048;
+        Fri, 05 Sep 2025 06:24:57 -0700 (PDT)
+Received: from localhost.localdomain ([2401:ce20:10::d4])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24c8945d8d4sm76447955ad.127.2025.09.05.06.24.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Sep 2025 06:24:56 -0700 (PDT)
+From: WeiHao Li <cn.liweihao@gmail.com>
+To: heiko@sntech.de,
+	robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	WeiHao Li <cn.liweihao@gmail.com>
+Subject: [PATCH v1 0/4] clk/rockchip: Fix I2S 8CH mclk output for RK3368
+Date: Fri,  5 Sep 2025 21:23:24 +0800
+Message-ID: <20250905132328.9859-1-cn.liweihao@gmail.com>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250905-radxa-nio-12l-ufs-v1-1-e2468bfd2c69@collabora.com>
-X-B4-Tracking: v=1; b=H4sIAM7jumgC/x3MTQqAIBBA4avIrBtQ6ce6SrQwG2sgNJQiiO6et
- PwW7z2QKTFlGMQDiS7OHEOBqgS4zYaVkJdi0FI3spcNJrvcFgNHVHrH02d0RnXWtLWfaw2lOxJ
- 5vv/nOL3vB3UglfJjAAAA
-X-Change-ID: 20250905-radxa-nio-12l-ufs-c817a864fb42
-To: kernel@collabora.com, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-UFS is the primary storage for the Radxa NIO 12L. Enable it
-now that the ufshci and ufsphy nodes are available in the
-common mt8195 dtsi.
+I2S 8CH needs assign correct clock to output frequency wanted, this
+serial fix it.
 
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+These changes were tested on a RK3368-based board with es8316 codec [1],
+playback function is good.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index 329c60cc6a6be0b4be8c0b8bb033b32d35302804..4cbd78c126f6b56f1833d220f7a7fbc7e4320cbb 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -990,6 +990,16 @@ &uart1 {
- 	status = "okay";
- };
- 
-+&ufshci {
-+	vcc-supply = <&mt6359_vemc_1_ldo_reg>;
-+	vccq2-supply = <&mt6359_vufs_ldo_reg>;
-+	status = "okay";
-+};
-+
-+&ufsphy {
-+	status = "okay";
-+};
-+
- &ssusb0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&usb3_port0_pins>;
+[1] https://ieiao.github.io/wiki/embedded-dev/rockchip/rk3368
 
----
-base-commit: 6c68f4c0a147c025ae0b25fab688c7c47964a02f
-change-id: 20250905-radxa-nio-12l-ufs-c817a864fb42
+Tested-by: WeiHao Li <cn.liweihao@gmail.com>
+Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
 
-Best regards,
+WeiHao Li (4):
+  clk: rockchip: rk3368: fix SCLK_I2S_8CH_OUT flags
+  dt-bindings: clock: rk3368: add CLK_I2S_8CH_PRE and CLK_I2S_8CH_FRAC
+  clk: rockchip: rk3368: use clock ids CLK_I2S_8CH_PRE and
+    CLK_I2S_8CH_FRAC
+  arm64: dts: rockchip: Assign I2S 8 channel clock for rk3368
+
+ arch/arm64/boot/dts/rockchip/rk3368.dtsi | 2 ++
+ drivers/clk/rockchip/clk-rk3368.c        | 6 +++---
+ include/dt-bindings/clock/rk3368-cru.h   | 3 +++
+ 3 files changed, 8 insertions(+), 3 deletions(-)
+
 -- 
-Julien Massot <julien.massot@collabora.com>
+2.39.5
 
 
