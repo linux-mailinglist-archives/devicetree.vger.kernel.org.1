@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-213377-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213378-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F4F7B45458
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:18:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB5ABB45463
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:20:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC44558812C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:18:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E99A5A4431
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:20:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9FB52D46D8;
-	Fri,  5 Sep 2025 10:18:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D803B2D481C;
+	Fri,  5 Sep 2025 10:20:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="DQOqg39a"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="iDWdCbR5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F7CB2D5A01
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:18:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73E1A2D46D8
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757067497; cv=none; b=bvi/TRAjwsvh7mO51b91T9jWpZBMY2a+hcP9TQJM3oXsKIfS78GFQQATDpntdm2TN2mVJuPp8FZ4m4OvyJSRMgb1+BVnltsIv30t5bVicUzQUJUeDj/pns22Jx77upGh963Y+2xcKIQTKJ1Zi9nSLmRwaPHC/C41MF4tLBShrtI=
+	t=1757067624; cv=none; b=K+v4hseklyWh0mJjlujeEfPMZV+oufVk2OW5ivK/S/0GPgUcGuh5iw++2Dh4dwPT2jNjHSJswaKlY41db2sKnFxV11Blv9NcGLvyl19Dh8e0Ob5YJU8ZbCLJZ6ck2ZszhlXjzUic7jEzoywqUF10POLtOEMSvMlCWJaMUiz1N4k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757067497; c=relaxed/simple;
-	bh=ABIur89UaUQH4iZhJ+8yg3G7Bz9ucP0nEgnuQpXKwug=;
+	s=arc-20240116; t=1757067624; c=relaxed/simple;
+	bh=NhL39okvE1UQ0JDbrGcrVCu7unTeSnVwrFd1RwYqZM4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FsxprE6gcpX3bAxsaCE6xmeeSLOSLziBGvPPlgZ4vWsNqFiY9++34y4M3RCeofeFHDxn74QayABtWWAuRQ7xCUE8gbwmQb7FgeH4drIHwvkcfCWRQRLm4hHxvS+O8s5yOHlpoGP/gfcyCIbvf+Z9AZSD/rYH4sFTvLPq3UJi8OU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=DQOqg39a; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=ibQjMrLE00Sz921HjfrRLxZWlI53S4Tj+7NxiX+6sjgm2hkTRn9Ot8NXrTYVp2YUd8TSPcy3mxG0+XiF+bmKAknidFul4LUbRVIkbgaGzQd4d7K8AM7+Zdbv1ZDmZ93BGgk7PXItIA0FqAKl+xpiP63dDG4d4B+lpw+/vKc63vw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=iDWdCbR5; arc=none smtp.client-ip=205.220.168.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58591OmM022479
-	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 10:18:15 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5857AQbW012042
+	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 10:20:22 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	t/gSGlaIzRrQ1UraurtZ6p5ivpZcdKP5Wh2vnAwoGro=; b=DQOqg39aApWu6FTB
-	f21EDHdaRmdaVRIupxSUQpQELbNVMqW0EdY7poiLjg/hn1vpJkab76h+bo6I97NV
-	RMBv8hCjllImFopK2GstBG4XQ3+UMF6ho7Us1gUoJzGf+FiNS3yHVOP/pEZ4bs88
-	0JzpFSSpyqLnDDj2dc+9eU11mNNnaPBTh/fRRYUQr4UO48kqs/dnI26g72v48Ju3
-	OFLHG579QUPkqzjyUTgFq6Qh/ap+RsAvy8V/gViWMPb/qfFVCDanjM2wEpb6OPM5
-	1SjlIwkT4VXAu1Pw8pSF3EdF5jzbevDWUAS3Qg3WsjXFaLvRfJ9vi6D0L/z+Q9tN
-	NnZ5+g==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48xmxj7468-1
+	kTOVAGfJmHAMbslcDUKw3QbQxdL6mIKaKsV42CZz9as=; b=iDWdCbR5bU2UWlLU
+	y4vO0uzK/G082CYybYH9KBDzkgIiLLuDfn9q4i8gWqER57Y7OtZW00rEBUuV6zl6
+	Om4lUxRVewiEAxwZcqBC/hI6b6LtQgKMb416nUV1GcdIVpDXhAYBjI92I0IsjrEH
+	ZBqtY176u1be2bt5W7cnnS40jG5Fh4SAJgBtc7bu/7TtEwiOVF6JHtASmiEXYg/j
+	3ECvhkR55a5XHDPKKs7zB2jpTRjsUpNn5sl1hKCctVkD5/KuWPT9bIcKyZGj/zXG
+	R9N/qQJ5yquVKJBOwkqppq+Cpdw1sCokN8AaSlwshVaOJa+bZaseMXoRtfbgV9g+
+	FWlV6g==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48xmxj74c0-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 10:18:15 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b3037bd983so9484131cf.1
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 03:18:15 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 10:20:22 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b33e296278so4285971cf.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 03:20:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757067494; x=1757672294;
+        d=1e100.net; s=20230601; t=1757067621; x=1757672421;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t/gSGlaIzRrQ1UraurtZ6p5ivpZcdKP5Wh2vnAwoGro=;
-        b=D1uxAl2VfbpWtpvJfOwkmvBizEFVozCLg9C2GZWthqeenziC8lKd17WN++SJGyeJRG
-         dNiHhQiD4N7f1UCnRsUjZssNNj7ahIC8C7zmG/LuBWAGCuLRTtC7ihTtEphQhMCDdAGz
-         QMV41uUHrP4kKsDpl69ESqLlfP4QLyS0I7tVVbie/f7sXXPRP2+f0ku7oS+QcayFn4i5
-         tYkKJmP6ydJh9n6oS+gRpQL30ADxaIsl+Vi/kYlYx+4n9qRZqKEUO1DutM8OsyXfGRgr
-         LavOpn78oPNGCmQQTMRPgPXxEbaHqLw2+gc/afKwHPfBRS5Uaq6Ty4J/H5lzHq/DxRCM
-         aZNw==
-X-Forwarded-Encrypted: i=1; AJvYcCV3tJG6tw4dzNIhqZQr+J59l3/Uw41Dfya4Ag5F7b8QJrnh4R9TyAjqUm50YmvA0E0V2fZBA/QoI1Kq@vger.kernel.org
-X-Gm-Message-State: AOJu0YwLLzrE6szNALzmV1I5yheUh0bZxC6VOaG3WS2qkcptzzh+Am+0
-	WddFvXhGdOYXEMk7PXihUo0A5hynq1Zvjqn7SJQ2vC6RiINZaW8JINpJEuqpNcDlxGHwKy1io1O
-	IzbuIe0pbQAibPmAMEuGGEvBlE47vzQBkXb+Wot9bGQJQ9Dt/9bbjqd2tgfL++gpF
-X-Gm-Gg: ASbGncvEGl6dO/xPK9AOMKo9Lm8WLLGEls/QN6DxSZsVovaGL8M8mg+OdO86QvPYCjv
-	Jj+Mo+iaflrdmrIcBnGOYVQkZUvZ9zkMFQTb6gIgr2/+waC9ayHMCrV8xRMHzvQXJGgZFMpCbj5
-	pIgBtVm19W6KD3imWrPH03kJj90E+ZP3iIH+sJcuiNyzp7GWwYBDZRNRKKh7xsIGCUxOPSrAGAd
-	IejvVBkAEaFF18z91QaSwNXy2pPpMWBu/l1Rp7qK9QJt8QphfAva3tUuwlrA8I6kUXyN4LfrpHY
-	/+a+NfkuOSU233JJpPehhNJFjhqzUb+oFfs2gcrIzqeQHt7jtJ3e3frtL86n
-X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr209821031cf.8.1757067493845;
-        Fri, 05 Sep 2025 03:18:13 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGm0GDPluBTH8wXrFIv4L7Am13spyB96fU1sGLB+ZWmCx8jJQENGynGmk9e8TYrCKMaZBJvQw==
-X-Received: by 2002:ac8:5d12:0:b0:472:1d00:1fc3 with SMTP id d75a77b69052e-4b313f0e6e7mr209820761cf.8.1757067493074;
-        Fri, 05 Sep 2025 03:18:13 -0700 (PDT)
-Received: from [192.168.149.223] ([78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-621295d635asm1546531a12.40.2025.09.05.03.18.11
+        bh=kTOVAGfJmHAMbslcDUKw3QbQxdL6mIKaKsV42CZz9as=;
+        b=v7zb7oSIa6hm23T2gQMr186l9WI/byU0VU1hYK9eWl4KP2m8vsLm77veWwg3qZ7H3I
+         O2uG8kXj7WrolKA2TRvntxut9RtpPUDfwBsiuGad7uig1Y8BsuTVY4K/P1K83PxOgxUo
+         Vh4DQG8X9Ohvf+VWAVAuVKi+h6auuvjMRJfrBMYoM7I64zJ4pzOVFugucMXg4KLCirDJ
+         PrkYvWaeGqCLrXDnH35UU/Q52eAxwVC4cFPlbCwww1q1Gnem2yyBmDKrHCVUeUC8TkM8
+         moxaBemduqTlkvcM1XFMCKV5zX4exlwkmjem6AHwDZRejkIAQNYv9yXBnrAmQfjoxzAT
+         Rbfg==
+X-Forwarded-Encrypted: i=1; AJvYcCV3gq4DFYKOrT78Mr0vLV9s4gL41a8yfkBt2F0ZSfvx2VRjOzqTJ1JARnGOmtyZEzMgGo1TYCTK0k3M@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqfQlcssPcCsrNLqxrPSpVkIGevOCoiUj4ndsV+VQ7PK5G81zi
+	Q0EdunnxK5q6INuA8ZvBSJNDjMx/3Ux4ELJRAJhuvLjYttyHS+x2sgfE596VzMZGe0AxZLTEtt5
+	pSwaih7KkDznsuluj3LBYCYqWZ9U4r1ijz54wcML72HrZ2TXQjjFyGOcqB9SkRRjO
+X-Gm-Gg: ASbGnct5ektZYSpyC53FYeSWZy0C4cKwRq3yRoNi58+T3U+JWYXdip3mrx6W6UyRF+n
+	QDg2qqYVSzUSRxhKT62dP9Mf/az1vpsQBBDv6D7W2SPHgP9/eKbanSHj99FCvdph1DaLaEKBgZ/
+	c2dHMpSDWAZ0SXwaCjTUfvqckqvFQj6DiSli0CD9+oEz2qekzplqmicvj222xYMyJ+AXne+hcGo
+	l5L3QQHl5JFXmrmynYHjC61GbctuipgWToPaQPtaycGxLJ4ax0x+j6cy79eObUvi5tQzK1PyvNb
+	juTbGMhclsEX4/80onfSHA8550bj1JDDKg2dSG18+Kseqp5Ir32sn15mW0QGcfTwWg3T02+MYkQ
+	lzszPQ02A/GqOMWghKzUpdg==
+X-Received: by 2002:a05:622a:1483:b0:4b4:8e4d:6671 with SMTP id d75a77b69052e-4b48e4d6f04mr83378751cf.13.1757067620970;
+        Fri, 05 Sep 2025 03:20:20 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGO6Dw5E5OGVqQHPhLnTT6piTScFBZOcK2M8RO2gr8kQRnOFlQeerKrV8G2BH+P30VO7Bu8Lg==
+X-Received: by 2002:a05:622a:1483:b0:4b4:8e4d:6671 with SMTP id d75a77b69052e-4b48e4d6f04mr83378341cf.13.1757067620108;
+        Fri, 05 Sep 2025 03:20:20 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b047373b000sm497098966b.68.2025.09.05.03.20.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Sep 2025 03:18:12 -0700 (PDT)
-Message-ID: <e7f0b014-3dec-4276-a2dd-479d4248c7e6@oss.qualcomm.com>
-Date: Fri, 5 Sep 2025 12:18:06 +0200
+        Fri, 05 Sep 2025 03:20:19 -0700 (PDT)
+Message-ID: <e480ab16-bf98-4a3e-a7e1-67776a598201@oss.qualcomm.com>
+Date: Fri, 5 Sep 2025 12:20:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,42 +90,49 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
-To: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>,
-        Rob Herring <robh@kernel.org>
-Cc: Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck
- <linux@roeck-us.net>,
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: add generic LED consumer
+ documentation
+To: Aleksandrs Vinarskis <alex@vinarskis.com>,
+        Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
- <20250904001014.GA3405605-robh@kernel.org>
- <a547ecce-31c7-4627-ac6f-aeeef81bd0ff@oss.qualcomm.com>
- <CAL_JsqKuoJrkActpLXVUW9e9=R1FESUbD_rwBd5NGX2_Yv2ASw@mail.gmail.com>
- <99cacf08-0fb4-4b44-9036-96ea5fe01c10@quicinc.com>
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Daniel Thompson <danielt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Sakari Ailus
+ <sakari.ailus@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com>
+ <20250905-leds-v2-1-ed8f66f56da8@vinarskis.com>
 Content-Language: en-US
 From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <99cacf08-0fb4-4b44-9036-96ea5fe01c10@quicinc.com>
+In-Reply-To: <20250905-leds-v2-1-ed8f66f56da8@vinarskis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAzMDExNyBTYWx0ZWRfX3KG5Xjk5CbJo
- a7s0WOyIXGNans0uvyq0AwFKbgbyWfRHDvtFPwLddOPg1qJSNgbK/tRQy28M1N7wEEtM/L9GT0F
- J4p/xWkn4zF2hJ1aC+IaRpPi0lh5FdktQQKgTL247oPoLcc+G8E4jMi/FZJRD1B1qYhi6qtMcle
- 11B1ukaiunJI6aNFRrNF+4UxpvPH4Bak2SbllJSVkOfKbuFfvisrWZzTKV/Aft6u3h/KuxWwjXL
- k7sxFoKoGNKIJrAEYXxbftdUy7fvCaD6NUyYkoGGbiLNKjCJOb4jaZT8wIXXSYCZA2ReXUmNi/7
- 5MFWodr9HRodgSGGt/G0l3RpXK4ILZPUZNxteRYC9iTJmAPkEraunMGh6ZAQj7/klmFYNRqRMBc
- km6MPyi5
-X-Authority-Analysis: v=2.4 cv=a5cw9VSF c=1 sm=1 tr=0 ts=68bab8e7 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=GTJIHFHLksMJQnmeIaAA:9
- a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: c1UZSUms0IBBuC3rh1U0Uiu5Z6cpartn
-X-Proofpoint-ORIG-GUID: c1UZSUms0IBBuC3rh1U0Uiu5Z6cpartn
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTAzMDExNyBTYWx0ZWRfX1RjvK8vdaLoM
+ hsLF/pm6XUsObJMO7FV3HhhMV37lTx2zCjb70rN7CtE7QYsF6Qy8VH33G79j71v9BSZ74NLLYUJ
+ vu9Q21XM4zDiL3fbNHB4DIiHBhiuQFGGaSxRzCSY0ftijv7qT8uJ7I4d78qIW7+WuDo8aRDsWa2
+ UJlHSW5+1xmaB82BkUV2RKLquvCSSFC7IFowWO9OQ8UdUs6mS4u0vsffdw/1VisqN92jsJ8QQRr
+ LLfQLI274eNe2d7F+hRdfupBudtB2m/JNU37wBvpe+/yMlWZMtKxllPeLZoI6HD8iBAtcn5tQV3
+ HY9F/S6Ve88CfiRFOqCw32M7qcXvGLzVBq734E2wOj8InmaV7dzF5LAWg20Qi6iBPlaiaCD6uCR
+ xTZ6E4pt
+X-Authority-Analysis: v=2.4 cv=a5cw9VSF c=1 sm=1 tr=0 ts=68bab966 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=I76Qk8w-AAAA:8 a=2ng2SV8iM2HKWhXzYmMA:9
+ a=QEXdDO2ut3YA:10 a=a_PwQJl-kcHnX1M80qC6:22 a=vUPM0Wvl0xcrLs4nqPIT:22
+X-Proofpoint-GUID: N2iDFDI7kYINnY8bbYuQdK2DGMx51yyz
+X-Proofpoint-ORIG-GUID: N2iDFDI7kYINnY8bbYuQdK2DGMx51yyz
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-05_03,2025-09-04_01,2025-03-28_01
@@ -134,49 +142,41 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
  engine=8.19.0-2507300000 definitions=main-2509030117
 
-On 9/5/25 2:00 AM, Pavan Kondeti wrote:
-> On Thu, Sep 04, 2025 at 05:51:24PM -0500, Rob Herring wrote:
->>>>
->>>> Why can't you probe by trying to see if watchdog smc call succeeds to
->>>> see if there is a watchdog? Then you don't need DT for it.
->>>
->>> There apparently isn't a good way to tell from a running system whether
->>> Gunyah is present, unless you make a smc call (which could in theory be
->>> parsed by something else, say a different hypervisor..), but then this
->>> patch only introduces the watchdog interface, without all the cruft that
->>> would actually let us identify the hypervisor, get its version ID and
->>> perform sanity checks..
->>
->> IIRC, last time we got just a gunyah node. Now it's that plus a
->> watchdog. What's next? I'm not really a fan of $soc_vendor hypervisor
->> interfaces. I doubt anyone else is either. We have all sorts of
->> standard interfaces already between virtio, vfio, EFI, SCMI, PSCI,
->> etc. Can we please not abuse DT with $soc_vendor hypervisor devices.
->>
+On 9/5/25 9:59 AM, Aleksandrs Vinarskis wrote:
+> Introduce common generic led consumer binding, where consumer defines
+> led(s) by phandle, as opposed to trigger-source binding where the
+> trigger source is defined in led itself.
 > 
-> We are trying to make the watchdog work with existing SoCs, so we are
-> sticking with the existing interfaces. The newer devices will not
-> necessarily need DT to probe hypervisor interfaces.
+> Add already used in some schemas 'leds' parameter which expects
+> phandle-array. Additionally, introduce 'led-names' which could be used
+> by consumers to map LED devices to their respective functions.
 > 
-> To answer your question on why can't you probe watchdog smc call to see
-> if there is a watchdog. Yes, we can do that. It is just that we won't be
-> able to support pre-timeout IRQ. This IRQ is optional for watchdog
-> functionality, so this is something we can explore.
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
 
-FWIW Rob, we moved on to SBSA watchdog on newer Gunyah releases..
-Which is not ideal as it's still over MMIO, but there's some
-progress
+[...]
 
-I'm not a fan of including the hypervisor in the picture, but as
-Pavan said above, we're trying to squeeze the least amount of hacks
-necessary to get the most out of existing platforms (i.e. ones which
-will not get newer Gunyah).
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      camera@36 {
+> +        compatible = "ovti,ov02c10";
+> +        reg = <0x36>;
+> +
+> +        reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&cam_rgb_default>;
+> +
+> +        led-names = "privacy-led";
+> +        leds = <&privacy_led>;
 
-Perhaps we could extend the MSM KPSS watchdog driver (which pokes at
-the physical watchdog on the SoC and whose DT node represents
-"reality") and have it attempt to make the SMC call early during probe,
-making way for both physical and virt configurations without additional
-dt alterations..
+property
+property-names
+
+is a common pattern
+
+I know this is just an example, but people will copypaste it
 
 Konrad
 
