@@ -1,189 +1,137 @@
-Return-Path: <devicetree+bounces-213417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 470FBB45599
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:03:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A9CD2B4556B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:57:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F09B7587BAD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:03:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B92A188FBF7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:57:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66EA3341AC1;
-	Fri,  5 Sep 2025 11:03:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC4B6296BB0;
+	Fri,  5 Sep 2025 10:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NVvq4Cf/"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="daWxA7cl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+Received: from mailout4.samsung.com (mailout4.samsung.com [203.254.224.34])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 290E1341677;
-	Fri,  5 Sep 2025 11:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7C11179BD
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:57:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.34
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757070204; cv=none; b=OBvw3v/n1bZHAZ1PMwLYcwrmkm9xVTBm5tnnUZ4ZDwhafeq+zhtS+1BAIyu/KHPixYpL7piGaAwIh8cj40oFvPOj0wljk9IIIhY6dKDsKKEbV6hZYeobgeI2yB5QPxmWVraxj8k15L3/gxkZHbpVIqqG7oPpjtQZIcWghZzBsFc=
+	t=1757069835; cv=none; b=Z4i824mLUcLCqPwUoDI662KmDpjjdgZE87bPfDjMrTDyWbSA9d62phe6Tjp0o7QURCQDY5zP3XWyFm6hyoc5ODEypc1/M8QI5o2znfxIKVO6yvr5cJPQlgpRrHk3/NVzo8zslNnIP1Jhvh38EpjDhFu9j7X6g79T66rvw55R0XU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757070204; c=relaxed/simple;
-	bh=KN4dsiaZ268F8wno1pY0dZJf8plsMc1elk4smFEFKIw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lJYYHKW7wdxVoCuLjGALtjc4/HVTqiQDqw+WoEgickq4ocLkEOpX2ObfQ8zD7W8nWlJPG1duC0xMzJYIDOAWNYQx4V9PQShQPOIgiE2fibuurQOyS6FlQVsJUJJIsycAUUuaEnZp44vSAjmgMVC0knMBDitJ6NYQ586v9tMrE70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NVvq4Cf/; arc=none smtp.client-ip=192.198.163.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757070202; x=1788606202;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=KN4dsiaZ268F8wno1pY0dZJf8plsMc1elk4smFEFKIw=;
-  b=NVvq4Cf/wLcHx5L3RGfDGUcNiiVibONg5QGpVx5rIIZqKpHdQauMVoyF
-   p3KfJA7EksHe/6Q4QGw0WuDKo5QH6fi+kybYR/YAhd/JP8Ka/SwSBkDwA
-   gmGJr0mSXytj5ERRLQVKQ+rtiULeQQIvXVZ+T5dhU4ssYo885dVbSJadK
-   MkyfMGuL5U0+QNULvIYACwwq9znhpmXZouI/r4mzfixJDjbJhZ/4vxhjf
-   gHt3WtZZg2ZKilGkmFGOZGbdIQZwRwo5BhabQFpx6Bn0MWa3XtXj+FqaG
-   ibk0agI2+5peWKWz7bnk1772WYk5cOoUzH1Gyr9d2A1Nj/4ipv+JQAOpJ
-   w==;
-X-CSE-ConnectionGUID: +EKZJ7OrT8ecc3A1/2cuUA==
-X-CSE-MsgGUID: +8WZ4em4RDSAtuEt9WX8gQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="62050711"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="62050711"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
-  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 04:03:21 -0700
-X-CSE-ConnectionGUID: 53kU7cAnTr6NKDSKeZLK+w==
-X-CSE-MsgGUID: P5pb7rInQZK8UjIlkKEOQQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="176470702"
-Received: from kuha.fi.intel.com ([10.237.72.152])
-  by fmviesa005.fm.intel.com with SMTP; 05 Sep 2025 04:03:16 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 05 Sep 2025 14:03:15 +0300
-Date: Fri, 5 Sep 2025 14:03:15 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 09/22] usb: typec: tipd: Move initial irq mask to
- tipd_data
-Message-ID: <aLrDc-IMZkqzvnv2@kuha.fi.intel.com>
-References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
- <20250821-atcphy-6-17-v1-9-172beda182b8@kernel.org>
+	s=arc-20240116; t=1757069835; c=relaxed/simple;
+	bh=ATKQuN0iSsCm/zTiLYWLcUY1qkuM/AoRRzndqPvHBEE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type:
+	 References; b=tMVlLWC2eB/Rpi5SVPyyNcFxRe5aRK+Xps7NJ4zLWZEmXWjKtquyX2OFeECORQ0sv7ZKJzpaIipY3V0TLkjnQMQz5PrO9M70jX1UO9BTXQwARgPoesTQ7idqDPbWJsXki8N2BPTf1JiBlBXrYJNxiymUd2rhqT0CKXTbqriSmGk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=daWxA7cl; arc=none smtp.client-ip=203.254.224.34
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas5p1.samsung.com (unknown [182.195.41.39])
+	by mailout4.samsung.com (KnoxPortal) with ESMTP id 20250905105710epoutp04824d8284446a62598e1b742fad2cc5c7~iXbOVeclO1424214242epoutp04J
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:57:10 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20250905105710epoutp04824d8284446a62598e1b742fad2cc5c7~iXbOVeclO1424214242epoutp04J
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1757069830;
+	bh=eaEYsu1XFh1bBRI84CgBEoTw4JVROEnMh3Hmue1+h3o=;
+	h=From:To:Cc:Subject:Date:References:From;
+	b=daWxA7clxY7gasOel4hVJxRQy0xVB60sTTTaHn/W/LKexrdG/dyhpneUIXd6P+yWo
+	 fPJjvjhpL7Fh8L+HP+dSAnYvTdjZ6voqA5LimH087kt5fhhCngVDLqMCrQjtUro7iS
+	 kJa7yU4zMrerzyAg2h5gCF4H1l8Ce20iZI7VIJVU=
+Received: from epsnrtp03.localdomain (unknown [182.195.42.155]) by
+	epcas5p2.samsung.com (KnoxPortal) with ESMTPS id
+	20250905105709epcas5p2be42816c576a97cc611cbb0c4fe810c9~iXbNurTu73082030820epcas5p21;
+	Fri,  5 Sep 2025 10:57:09 +0000 (GMT)
+Received: from epcas5p1.samsung.com (unknown [182.195.38.90]) by
+	epsnrtp03.localdomain (Postfix) with ESMTP id 4cJCwN6db6z3hhT3; Fri,  5 Sep
+	2025 10:57:08 +0000 (GMT)
+Received: from epsmtip2.samsung.com (unknown [182.195.34.31]) by
+	epcas5p1.samsung.com (KnoxPortal) with ESMTPA id
+	20250905105708epcas5p159281b73f87fae88e824b97889908649~iXbMFh6xr2168021680epcas5p1g;
+	Fri,  5 Sep 2025 10:57:08 +0000 (GMT)
+Received: from bose.samsungds.net (unknown [107.108.83.9]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20250905105706epsmtip2d75bdbdc4f6d0085b8096f616afb39c0~iXbKeyat70714207142epsmtip2-;
+	Fri,  5 Sep 2025 10:57:06 +0000 (GMT)
+From: Devang Tailor <dev.tailor@samsung.com>
+To: alexandre.belloni@bootlin.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, alim.akhtar@samsung.com, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	henrik@grimler.se, faraz.ata@samsung.com
+Cc: Devang Tailor <dev.tailor@samsung.com>
+Subject: [PATCH v3 0/3] On-chip RTC support for ExynosAutov9
+Date: Fri,  5 Sep 2025 16:35:51 +0530
+Message-Id: <20250905110554.2212304-1-dev.tailor@samsung.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-atcphy-6-17-v1-9-172beda182b8@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-CMS-MailID: 20250905105708epcas5p159281b73f87fae88e824b97889908649
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+CMS-TYPE: 105P
+cpgsPolicy: CPGSC10-542,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250905105708epcas5p159281b73f87fae88e824b97889908649
+References: <CGME20250905105708epcas5p159281b73f87fae88e824b97889908649@epcas5p1.samsung.com>
 
-On Thu, Aug 21, 2025 at 03:39:01PM +0000, Sven Peter wrote:
-> Since the irq mask was originally added more tipd variants have been
-> introduced and there's now struct tipd_data. Move the initial mask in
-> there.
-> 
-> Signed-off-by: Sven Peter <sven@kernel.org>
+Enable on-chip RTC support. The on-chip RTC of this SoC is similar
+to the previous version of Samsung SoCs except for TICNT tick time
+counter. So re-use the existing RTC driver with applicable call-backs
+for initialization and IRQ handling without accessing TICNT counter.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+As suggested in review comment, instead of adding separate disable()
+call-back, re-used the existing s3c24xx_rtc_disable() by adding a new
+bool 'use_s3c2410_ticnt' in rtc_data to avoid accessing TICNT counter
+which is not valid for RTC of ExynosAutov9.
 
-> ---
->  drivers/usb/typec/tipd/core.c | 23 +++++++++++------------
->  1 file changed, 11 insertions(+), 12 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index 1c80296c3b273e24ceacb3feff432c4f6e6835cc..6d8bcbc9cad8a1394e066504d4c5ca570edd4e4f 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -112,6 +112,7 @@ struct tps6598x;
->  
->  struct tipd_data {
->  	irq_handler_t irq_handler;
-> +	u64 irq_mask1;
->  	int (*register_port)(struct tps6598x *tps, struct fwnode_handle *node);
->  	void (*trace_power_status)(u16 status);
->  	void (*trace_status)(u32 status);
-> @@ -1298,7 +1299,6 @@ static int tps6598x_probe(struct i2c_client *client)
->  	u32 status;
->  	u32 vid;
->  	int ret;
-> -	u64 mask1;
->  
->  	tps = devm_kzalloc(&client->dev, sizeof(*tps), GFP_KERNEL);
->  	if (!tps)
-> @@ -1337,16 +1337,6 @@ static int tps6598x_probe(struct i2c_client *client)
->  		if (ret)
->  			return ret;
->  
-> -		/* CD321X chips have all interrupts masked initially */
-> -		mask1 = APPLE_CD_REG_INT_POWER_STATUS_UPDATE |
-> -			APPLE_CD_REG_INT_DATA_STATUS_UPDATE |
-> -			APPLE_CD_REG_INT_PLUG_EVENT;
-> -
-> -	} else {
-> -		/* Enable power status, data status and plug event interrupts */
-> -		mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
-> -			TPS_REG_INT_DATA_STATUS_UPDATE |
-> -			TPS_REG_INT_PLUG_EVENT;
->  	}
->  
->  	tps->data = i2c_get_match_data(client);
-> @@ -1364,7 +1354,7 @@ static int tps6598x_probe(struct i2c_client *client)
->  			return ret;
->  	}
->  
-> -	ret = tps6598x_write64(tps, TPS_REG_INT_MASK1, mask1);
-> +	ret = tps6598x_write64(tps, TPS_REG_INT_MASK1, tps->data->irq_mask1);
->  	if (ret)
->  		goto err_reset_controller;
->  
-> @@ -1527,6 +1517,9 @@ static const struct dev_pm_ops tps6598x_pm_ops = {
->  
->  static const struct tipd_data cd321x_data = {
->  	.irq_handler = cd321x_interrupt,
-> +	.irq_mask1 = APPLE_CD_REG_INT_POWER_STATUS_UPDATE |
-> +		     APPLE_CD_REG_INT_DATA_STATUS_UPDATE |
-> +		     APPLE_CD_REG_INT_PLUG_EVENT,
->  	.register_port = tps6598x_register_port,
->  	.trace_power_status = trace_tps6598x_power_status,
->  	.trace_status = trace_tps6598x_status,
-> @@ -1536,6 +1529,9 @@ static const struct tipd_data cd321x_data = {
->  
->  static const struct tipd_data tps6598x_data = {
->  	.irq_handler = tps6598x_interrupt,
-> +	.irq_mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
-> +		     TPS_REG_INT_DATA_STATUS_UPDATE |
-> +		     TPS_REG_INT_PLUG_EVENT,
->  	.register_port = tps6598x_register_port,
->  	.trace_power_status = trace_tps6598x_power_status,
->  	.trace_status = trace_tps6598x_status,
-> @@ -1546,6 +1542,9 @@ static const struct tipd_data tps6598x_data = {
->  
->  static const struct tipd_data tps25750_data = {
->  	.irq_handler = tps25750_interrupt,
-> +	.irq_mask1 = TPS_REG_INT_POWER_STATUS_UPDATE |
-> +		     TPS_REG_INT_DATA_STATUS_UPDATE |
-> +		     TPS_REG_INT_PLUG_EVENT,
->  	.register_port = tps25750_register_port,
->  	.trace_power_status = trace_tps25750_power_status,
->  	.trace_status = trace_tps25750_status,
-> 
-> -- 
-> 2.34.1
-> 
+Setting and getting hardware clock has been tested using 'hwclock'
+and 'date' utilities.
 
+Alarm interrupt has been checked with incrementing interrupt
+count via "cat /proc/interrupts | grep rtc" for 10sec
+wakeup time via "echo +10 > /sys/class/rtc/rtc0/wakealarm"
+
+changelog
+---
+Changes in v3:
+- 1/3 : Added Tag 'Reviewed-by'
+- 2/3 : Fixed the review comment of v2 to re-use the existing disable()
+	instead of adding new one.
+      : Not adding Tag 'Reviewed-by' from V2 since the patch has been
+	changed
+- 3/3 : Added Tag 'Reviewed-by'
+link for v2 : https://lore.kernel.org/linux-rtc/20250710083434.1821671-1-dev.tailor@samsung.com/
+
+
+Changes in v2:
+- Fixed the review comment of v1 for mis-aligmnent & asymmetry bit logic.
+- link for v1 : https://lore.kernel.org/linux-rtc/20250702052426.2404256-1-dev.tailor@samsung.com/
+
+
+Devang Tailor (3):
+  dt-bindings: rtc: s3c-rtc: add compatible for exynosautov9
+  rtc: s3c: support for exynosautov9 on-chip RTC
+  arm64: dts: exynosautov9: add RTC DT node
+
+ .../devicetree/bindings/rtc/s3c-rtc.yaml      |  1 +
+ .../boot/dts/exynos/exynosautov9-sadk.dts     |  4 ++++
+ arch/arm64/boot/dts/exynos/exynosautov9.dtsi  | 10 +++++++++
+ drivers/rtc/rtc-s3c.c                         | 21 ++++++++++++++++---
+ 4 files changed, 33 insertions(+), 3 deletions(-)
+
+
+base-commit: 4ac65880ebca1b68495bd8704263b26c050ac010
 -- 
-heikki
+2.34.1
+
 
