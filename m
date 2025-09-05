@@ -1,106 +1,118 @@
-Return-Path: <devicetree+bounces-213413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2BEEB4558A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:01:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 119F8B45590
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:02:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 370BAB60756
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:00:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF9F03BF6C6
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:02:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52E0342C99;
-	Fri,  5 Sep 2025 11:01:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4E1532144A;
+	Fri,  5 Sep 2025 11:02:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b="NuM0vW9w"
+	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="gWSqpyMf";
+	dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b="aiQNrA+9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx.olsak.net (mx.olsak.net [37.205.8.231])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from haruka.juszkiewicz.com.pl (haruka.juszkiewicz.com.pl [185.243.53.191])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9326F22D4DE;
-	Fri,  5 Sep 2025 11:01:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.205.8.231
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26030286439;
+	Fri,  5 Sep 2025 11:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.243.53.191
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757070093; cv=none; b=e4aiKigzmbRni6lzBZN1+r4TR8H/QkTcaThBqW5a+UUJCAsSa796CpBFlCQb0sdwhosfenR980AVnFhOqxCmemfUsIcm0mND99uWZbJRY+rZX4kJTtyAOYyHPGrV5VwzYE60B1Z/unO+x4EzZbTo/nUk10qwytvC/smD/5iY5gw=
+	t=1757070163; cv=none; b=jG+bFsmIUMw1DI45/w2m6hSfy5a3TWM8RiCjNSrnFwXeRsofZ4XIJvPhp+Cg4lkZeAFByqiAnZEOvh7SvW4RqkL+n2VxBX3sU4bpWY7UBPyu4HJgygdaHzZiq4I+Bn/l/S7iyW/liV/GMaTqr7v3JyaJQHR76F5TsyeWd8MMHCQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757070093; c=relaxed/simple;
-	bh=9JhG6l9aYXd0tr5rpMP/JH7+4zmVZlrSGb616SvhYjU=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Ls28TogwNwjiMH4nNKekhUej47e1RkAlTmurRq1cNb8UReY/JM7B7FCvFOhZvY2o2sJIqnv1ZwbshZf15KK5Q8lGZhnKixWVNL2MJJvATRAYhY4D/gWo7tOlRMGx92nSDmW3jN9d2dd85PaLQF28ZoZhI1FLBvY+uAGbFIuH+yE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz; spf=pass smtp.mailfrom=dujemihanovic.xyz; dkim=pass (2048-bit key) header.d=dujemihanovic.xyz header.i=@dujemihanovic.xyz header.b=NuM0vW9w; arc=none smtp.client-ip=37.205.8.231
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=dujemihanovic.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dujemihanovic.xyz
-DKIM-Signature: a=rsa-sha256; bh=rlGvPgM9RCjyuzqwy9Jz8R1zuOjSOwFc2U7uSTIgvLY=;
- c=relaxed/relaxed; d=dujemihanovic.xyz;
- h=Subject:Subject:Sender:To:To:Cc:Cc:From:From:Date:Date:MIME-Version:MIME-Version:Content-Type:Content-Type:Content-Transfer-Encoding:Content-Transfer-Encoding:Reply-To:In-Reply-To:In-Reply-To:Message-Id:Message-Id:References:References:Autocrypt:Openpgp;
- i=@dujemihanovic.xyz; s=default; t=1757070067; v=1; x=1757502067;
- b=NuM0vW9w+Gg2NWMN6lw9uHVc8GTJypF+Yj+Z5X/pA4Qd2KHT6QqOFPEU+/wnYxZBIKhrjFQ/
- YztAcMSOmmGrlEO97CdbuBqM4/EPLSFJaSqO/lmjheL1CeWvQ4m89Q+qNvYZNETKJJIqK/pvdBI
- +035Nrjy5DzXKNS8WMeVxznUNpa2t8XleCdsdAuxfxacocYBJn2zOH7pW54mKAQv3qnc3SDF9mY
- DRC1ohaSPiCFZyWbJhbgZo+bZTJcOz7YCkOcXN/UJxqvi4w+Sz4YfJVM0B+arcQGBpjd+dBdR6F
- 8+FDVWWZ+EXP83kjJe4sW06HnmSP18GQcliqcNbViynCA==
-Received: by mx.olsak.net (envelope-sender <duje@dujemihanovic.xyz>) with
- ESMTPS id 87d9ab46; Fri, 05 Sep 2025 13:01:07 +0200
-From: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-Date: Fri, 05 Sep 2025 13:00:56 +0200
-Subject: [PATCH v3 3/3] mfd: 88pm886: Add GPADC cell
+	s=arc-20240116; t=1757070163; c=relaxed/simple;
+	bh=0WWTGQsEQ9lzz7bJ7y89bwI1VZur0nT4lh7qtGAWR4Y=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PaZquc5bnICvS430TepRv/l+YOoRMrSEUrxo9lvLiQLpXB+MHarpmYlGZM267rUagJ7n/HLuWApvV5/9g2NdqvgiUmNJrGVfvso8Zb7Xtl8AL2tbzybycQW2mc5cOHloThldOv2JIoWBa14BB8D899r2j13eNLpCBrCG0PfvhI8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl; spf=pass smtp.mailfrom=juszkiewicz.com.pl; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=gWSqpyMf; dkim=pass (2048-bit key) header.d=juszkiewicz.com.pl header.i=@juszkiewicz.com.pl header.b=aiQNrA+9; arc=none smtp.client-ip=185.243.53.191
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=juszkiewicz.com.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=juszkiewicz.com.pl
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=juszkiewicz.com.pl;
+	s=mail; t=1757070159;
+	bh=0WWTGQsEQ9lzz7bJ7y89bwI1VZur0nT4lh7qtGAWR4Y=;
+	h=From:To:Cc:Subject:Date:From;
+	b=gWSqpyMfGPMwxB+fAyLvrmVa3xWV7K6GM8o6Wp641za9iXv68v45NEJeGa9jul0hy
+	 fbMbstBXwCdBPeHFxcYA6J7syabjRcCJpEW+JPkBMwHy3YeUEw4Rydlm6DLUzBrURr
+	 cTBaANzIjaN8ZXhQdGJY4u6TWX1PlQNx39/nO6yoD5JkXVQmBjxmUfQ2QE/EF/q/Au
+	 btdAUI00sAi/r6T7aCY33q3Op6xhT1wX7mi3U/pPq7HD1PEuHeMQwodi0qoWqQ6lxi
+	 2jc1rVUfPXOVqJ/pzueRVBRinxQMMsQ1lWakq2m/FmkqSQv+4dhzDmX7svdo+so3BG
+	 SBuS13MbFf8Og==
+Received: from utena.juszkiewicz.com.pl (utena.juszkiewicz.com.pl [158.101.208.177])
+	by haruka.juszkiewicz.com.pl (Postfix) with ESMTPSA id 70A751FB29;
+	Fri, 05 Sep 2025 13:02:39 +0200 (CEST)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id AB62B453F5;
+	Fri,  5 Sep 2025 13:02:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=juszkiewicz.com.pl;
+	s=mail; t=1757070158; h=from:subject:date:message-id:to:cc:mime-version:
+	 content-transfer-encoding; bh=AQznFZ2/CAp5Ia9g3+t36AoVZFqyxkghcnOS1fDxNvI=;
+	b=aiQNrA+9ezwZkkfwIxLK7lUExyZ+S4bj0MGCyYKQ2eqcljH/5xS/nNQ1J0ap8losZOWfTb
+	NrNhAsr5MA3n7MdDTrAv6g1vFZuyv9gxH1lpfdxRA6peIA5wE8RvHmVVxl1o+WHDxrke3X
+	J7vBDLAbbfTzr3iYsqLYz/Ro5jWKQcMKmEbxK8oANCUJqMJaJAML03F84aFQh5NPzEVu5T
+	WaBN2vqNMadKGKtwn3kAIvJ8A6S03I4F6z63HUnDfnxvZ8OSKOiHQj6uWqUFJOdhkgb/Hg
+	8RcbxZz86Fi4QMoWuA9bEUr+JHfpehWh8DHAW3GYXrL65HYGL1PFOL259PwJQQ==
+From: Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Marcin Juszkiewicz <marcin@juszkiewicz.com.pl>
+Subject: [PATCH 0/1] Enable HDMI Receiver on NanoPC-T6
+Date: Fri,  5 Sep 2025 13:02:29 +0200
+Message-ID: <cover.1757068166.git.marcin@juszkiewicz.com.pl>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20250905-88pm886-gpadc-v3-3-4601ad9ccb51@dujemihanovic.xyz>
-References: <20250905-88pm886-gpadc-v3-0-4601ad9ccb51@dujemihanovic.xyz>
-In-Reply-To: <20250905-88pm886-gpadc-v3-0-4601ad9ccb51@dujemihanovic.xyz>
-To: Jonathan Cameron <jic23@kernel.org>, 
- David Lechner <dlechner@baylibre.com>, 
- =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>, 
- Andy Shevchenko <andy@kernel.org>, Karel Balej <balejk@matfyz.cz>, 
- Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: David Wronek <david@mainlining.org>, phone-devel@vger.kernel.org, 
- ~postmarketos/upstreaming@lists.sr.ht, linux-kernel@vger.kernel.org, 
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=797; i=duje@dujemihanovic.xyz;
- s=20240706; h=from:subject:message-id;
- bh=9JhG6l9aYXd0tr5rpMP/JH7+4zmVZlrSGb616SvhYjU=;
- b=owGbwMvMwCW21nBykGv/WmbG02pJDBm7Dr3Xy0yODL2z/MzlH+mPjKXX7JymPi3669KGOvaDd
- l5272aad5SyMIhxMciKKbLk/ne8xvtZZOv27GUGMHNYmUCGMHBxCsBEUp8w/FObwZheky7V/PL/
- 3K0TOWp/hdvrp19IMHy2LmXamkShAmaG/yluL5/anD6cF9ZuYcIyNd/2g5NW4N8LlslzrKb8Dq2
- X5wAA
-X-Developer-Key: i=duje@dujemihanovic.xyz; a=openpgp;
- fpr=6DFF41D60DF314B5B76BA630AD319352458FAD03
+X-Last-TLS-Session-Version: TLSv1.3
 
-Add a cell for the PMIC's onboard General Purpose ADC.
+For quite a while I had this patch in my local tree but never made it
+work. Kernel generates the following messages all the time:
 
-Acked-by: Karel Balej <balejk@matfyz.cz> # for the PMIC
-Signed-off-by: Duje Mihanović <duje@dujemihanovic.xyz>
----
-v2:
-- Sort cell names
----
- drivers/mfd/88pm886.c | 1 +
- 1 file changed, 1 insertion(+)
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: signal not lock, tmds_clk_ratio:0
+fdee0000.hdmi_receiver: hdmirx_wait_signal_lock: mu_st:0x2, scdc_st:0x0, dma_st10:0x10
 
-diff --git a/drivers/mfd/88pm886.c b/drivers/mfd/88pm886.c
-index 39dd9a818b0f0e1e5839f76768ff54940f4cefa5..e411d8dee55420e10b6d7ad7069576c681360de1 100644
---- a/drivers/mfd/88pm886.c
-+++ b/drivers/mfd/88pm886.c
-@@ -35,6 +35,7 @@ static const struct resource pm886_onkey_resources[] = {
- };
- 
- static const struct mfd_cell pm886_devs[] = {
-+	MFD_CELL_NAME("88pm886-gpadc"),
- 	MFD_CELL_RES("88pm886-onkey", pm886_onkey_resources),
- 	MFD_CELL_NAME("88pm886-regulator"),
- 	MFD_CELL_NAME("88pm886-rtc"),
+"v4l2-ctrl --all" reports that HDMI In is detected, /dev/video[0-4]
+exist.
+
+I tried two signal sources:
+- AMD Radeon WX2100 (via passive DisplayPort -> HDMI adapter)
+- AMD Radeon RX6700XT (HDMI port)
+
+Same situation with both - kernel messages as above on RK3588 system, no
+connected monitor on host side.
+
+Usually I used MPlayer or MPV to check v4l2 devices but here it fails
+too:
+
+$ mpv av://v4l2:/dev/video3
+[ffmpeg/demuxer] video4linux2,v4l2: Not a video capture device.
+[lavf] avformat_open_input() failed
+Failed to recognize file format.
+Exiting... (Errors when loading file)
+
+
+Checked SBC schematics again and HDMIIRX_DET_L line is GPIO1_D5 like it
+my patch.
+
+What I go wrong?
+
+Marcin Juszkiewicz (1):
+  arm64: dts: rockchip: enable HDMI Receiver on NanoPC T6
+
+ .../boot/dts/rockchip/rk3588-nanopc-t6.dtsi     | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
 -- 
 2.51.0
