@@ -1,100 +1,131 @@
-Return-Path: <devicetree+bounces-213647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C190B4624B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:32:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDA95B46255
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:35:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D2AD81CC7F63
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:32:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF1681899CEC
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:36:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BD399305976;
-	Fri,  5 Sep 2025 18:32:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1362235BEE;
+	Fri,  5 Sep 2025 18:35:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BUtojZFf"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="wSA1qxOQ";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="x0QyrUWO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95091305947;
-	Fri,  5 Sep 2025 18:32:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC16261B91;
+	Fri,  5 Sep 2025 18:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757097151; cv=none; b=R5OKbsq4LEN+uaoo/gvkoil+4++KK21DlX9UVXCLjPIrrubHKYjJ70Dp+SG6n6jOTDmj4igMKOYXNGKlctaX3/BAwMwBOaXFYWoPx+EWzYfJpOxE24Nb70JpsA2NUDy5LPAbrEVQi5iVX9fMPuoFulUDAk/PmQKNxmuJbD/tc8Y=
+	t=1757097334; cv=none; b=BISCdlnsAirKlcpySuqJyQUy8VbCCvIbJlK5EvzO1UMK3eeXdbUHVDXvhDpHiehnSROVYYlQ+KgebE5W2hMThOypcNTqLIi1tfmomA62BQgNmbs3jf78NYOIVlhhchFteTnvaVFnhyo+Qs1qqxy/1qBF6f1TMUkqMbgXpk9EIIQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757097151; c=relaxed/simple;
-	bh=e4JMOWDCtaWn4IWv+Qg9bqYdXONUBAHh8WRaRowDs6s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aVrhkspzz9okWob7pvS8QcTc5pwEDLp5NjjDuzQn+qbAJz0T1i4bXvDE7ijuuPsnZP/dOlHsRGnwI2kq6vY8z9NtMw2MIc7iY2KXwcxQk30UM4nlrSug10fvnb08sQ9YHbwfkcg4kAxuEJvbn7ZtiKx2uIO3cyO3CJprHD9TJ2o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BUtojZFf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE429C4CEF1;
-	Fri,  5 Sep 2025 18:32:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757097151;
-	bh=e4JMOWDCtaWn4IWv+Qg9bqYdXONUBAHh8WRaRowDs6s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BUtojZFfxPu8z3gD7wiOB66CARaIwLsYkUy3gjCrgMpyZVgcxewDZMKVj8e5UAa2X
-	 +HhOGkTGVs+WUqWWIy5ULM0j6/BhVLUL3s5fW81Un9h8AtnqrEXIErhW22zGgyr38u
-	 hGh8n9vAx5trCCECvpeVi6q0fjY+5B2CgtMN4uqTRSyJQ6WKlF9pT9OzsYsEFOhaSl
-	 QK2wr33IGQdg6hL+6sHohs7jdiqCr+uC3SBEUzC2Imwyx8DCLDGSHfRReIw7CprZr1
-	 24bR6LWwOJySdfP8rEueEz+q9REj18vjNRqqkuexNB1CIgt3JwVZBUIpvdSzigOuYs
-	 m8E6l6C4TcyKQ==
-Date: Fri, 5 Sep 2025 19:32:25 +0100
-From: Conor Dooley <conor@kernel.org>
-To: xianwei.zhao@amlogic.com
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Jianxin Pan <jianxin.pan@amlogic.com>,
-	Ulf Hansson <ulf.hansson@linaro.org>,
-	"hongyu.chen1" <hongyu.chen1@amlogic.com>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: power: keep alphabetical order
-Message-ID: <20250905-stew-removed-db191517cdf5@spud>
-References: <20250905-pm-fix-order-v1-1-3596e03d66e6@amlogic.com>
- <20250905-vexingly-crudely-36f9e510e9c5@spud>
+	s=arc-20240116; t=1757097334; c=relaxed/simple;
+	bh=cjEgaCsGMSqtIGWJ0USxp0TNTFQx8VP7nst0jTanjJ0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mp6+dh2wFZZ+dLlD6f3nYMMxsZY7cKNsN+XkfEsyJxdKK0/RCRi9jkZlGD9nFYJAYHLhpT/rLHl8uw9AZ1NRW+sz1JzNdjya0xwc2DsI98l+Q6rFvFigHcb9kVfwEzWcrXZIJ/hUxzoG5qg7PTkNAGt6jT+zY/5ZohTtpE7+6vU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=wSA1qxOQ; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=x0QyrUWO; arc=none smtp.client-ip=80.241.56.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cJQ5G0lxkz9sq0;
+	Fri,  5 Sep 2025 20:35:30 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757097330;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JZsROv5dMPlTRseUFed2DQIQDmI+zmlM+eHGw/139pU=;
+	b=wSA1qxOQ+B5OJr41dcgkZmuhOTiychl0t9gOaUn7ogSa8gIUiH9dW6JZ8B162DXzy3ILvd
+	0Xhp9WuEtlgSXYRAOytyyVYl8T2RqB4oqTqlw/vyGgIQcn/bJC1uVas7YP26Q+3tUlTdH9
+	H7TBlwpONHAUlTMGOghGNumalKlSQC3DnKZMnjTFAEewldEA1LN31OAIM3cycG1fIlcTnX
+	Glx8mK6rnJ7jn5VE3qGM6DiDHn23EiQxnF8WtfUA5Sl+lqKQFsz/YzwSxSbaesug68cDQh
+	91Hwj1GSW3NFaC9RLkYv27W1QQVmvrpC/JI53g3bREd9lyupZ4X4Zvi/+j9vtA==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=x0QyrUWO;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+Message-ID: <273d5067-4c9d-4c8c-8633-7f2d7c708216@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757097328;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=JZsROv5dMPlTRseUFed2DQIQDmI+zmlM+eHGw/139pU=;
+	b=x0QyrUWOzMPakvYxi/Zbh5R5bygqUzCDTJYvPKP8/FqgDkYQCCzFp4EXHsOu9quW+x4/5z
+	wdivkVL2ZkVk1m1mpFlfjkJOfwRqR/Qu3bfmnH6QEEol6An0CT1tskwG5X/h6VLQforpc1
+	NU92T1MSc2SeEo89qi1UpFDiSERlqoedGE/RJCl1ykcw7WXnWpVgpR0uWUp/fThPlbz+jQ
+	3wuTN7U3UwyA/Rlv6zmRcHpxpcDxuI/wqYwvjh8VxJhQwAJv0JpSRzSiD2VPbRbAzH6p+z
+	Ly/lSrveoFofuNyYYfIm3qikjSsVGg0I2DOsRK5QXEV68eZM4Or9qrQcK5AUxA==
+Date: Fri, 5 Sep 2025 20:35:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="ArYkgdtypeXZuzdN"
-Content-Disposition: inline
-In-Reply-To: <20250905-vexingly-crudely-36f9e510e9c5@spud>
+Subject: Re: [PATCH v2] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO
+ to Retronix R-Car V4H Sparrow Hawk
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org, Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm
+ <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20250905020149.257459-1-marek.vasut+renesas@mailbox.org>
+ <aLrXzl38OUhTJgxP@shikoro>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <aLrXzl38OUhTJgxP@shikoro>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 16010d7b6e6bae5f7f9
+X-MBO-RS-META: s9b7313iouson6bdjrfi5inu7cjzpbyt
+X-Rspamd-Queue-Id: 4cJQ5G0lxkz9sq0
 
+On 9/5/25 2:30 PM, Wolfram Sang wrote:
+> Hi Marek,
 
---ArYkgdtypeXZuzdN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hello Wolfram,
 
-On Fri, Sep 05, 2025 at 07:31:33PM +0100, Conor Dooley wrote:
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+>> + * r8a779g3-sparrow-hawk$ grep -H . /sys/class/hwmon/hwmon?/name
+>> + * /sys/class/hwmon/hwmon0/name:sensor1_thermal
+>> + * /sys/class/hwmon/hwmon1/name:sensor2_thermal
+>> + * /sys/class/hwmon/hwmon2/name:sensor3_thermal
+>> + * /sys/class/hwmon/hwmon3/name:sensor4_thermal
+>> + * /sys/class/hwmon/hwmon4/name:pwmfan
+>> + *                       ^      ^^^^^^
+> 
+> For me, the output looks different, though:
+> 
+> /sys/class/hwmon/hwmon0/name:pwmfan
+> /sys/class/hwmon/hwmon1/name:sensor1_thermal
+> /sys/class/hwmon/hwmon2/name:sensor2_thermal
+> /sys/class/hwmon/hwmon3/name:sensor3_thermal
+> /sys/class/hwmon/hwmon4/name:sensor4_thermal
+> /sys/class/hwmon/hwmon5/name:pwmfan
+> 
+> hwmon0 is the Argon, hwmon5 the (unpopulated) on board connector.
+> 
+> I hope the naming is stable, but in any case, the docs need to be
+> reworked a little, I guess?
 
-Actually no. Ack is dependant on $subject being scoped to the individual
-amlogic binding. Perhaps the subsystem maintainer can do it on
-application
+The hwmon devices are allocated first come first served, so the list can 
+look different for you. You need to look up the fan you want to control, 
+of course. Look up by name is simplest, if there are more fans, it might 
+be a bit more involved to find the right one.
 
-
-
---ArYkgdtypeXZuzdN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLssuQAKCRB4tDGHoIJi
-0pLHAPsGHxXqiKWNNentQqgjeU+9z7eQFW2LYOQzgEYNCmyDuQEA8yzY+9TrObfw
-cZ4RAaTfqlgFAYVSR2jknvD3eFTKJwY=
-=To+s
------END PGP SIGNATURE-----
-
---ArYkgdtypeXZuzdN--
+-- 
+Best regards,
+Marek Vasut
 
