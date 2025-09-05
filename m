@@ -1,89 +1,90 @@
-Return-Path: <devicetree+bounces-213725-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213726-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9612CB4669C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:22:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 03A27B4669F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:23:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D6BF1CC1B13
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:23:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7C9584320
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:23:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 49DCC296BC8;
-	Fri,  5 Sep 2025 22:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9925927AC35;
+	Fri,  5 Sep 2025 22:22:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="v7ddbdkv"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VverU1BD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com [209.85.210.169])
+Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4417284662
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 22:22:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD85295511
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 22:22:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757110939; cv=none; b=en7lbJ+TPHhgoC+UqyCwKGMx/161demDs4c6ObKS/zENjGbcFhQnuht6H9B/UTKfot/k/C3Q8E6f08t9z/PRgbzsgMSBDAevUDVL4H7HjwRI4S/OkANL2YTRxMHvN+WnV+UBlq8atXce/xV5WrqwJB/Db/zcnTZzKClfKqKmq2E=
+	t=1757110940; cv=none; b=ILdQGcfu7Z0HYJ4aJa6EoVTpXXOc8U2laLGtd9l/6nOQGO7+uGruVt2jI1KSPy3W7kyGWsoQGbGTzXmOJyxBVdPi3G+gOdP94/RsBX7ezH/13D3Ya4J6XFaB/BpS5I1/9TiqKJ1gdugpfDjnpLiufhJf5b62cMHliNSgew5vWZM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757110939; c=relaxed/simple;
-	bh=UafuaGrAhNBYEwWxu5zY9t7ThR2R224yKWDpl0S0AY0=;
+	s=arc-20240116; t=1757110940; c=relaxed/simple;
+	bh=4usknWEddfoi3Fas3Wgvr8wktFDBvKA4BChkoL+6ZII=;
 	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=cWcxCLV50vEtifsSDHVG4r4D5OMRJSxJPk6TRX6t1/CKA/agYZTY0YH2avguoE81Ej5ku3t4s7NaxurcXFsrBh4TgGXqM3vUMV7sk0zVcbe/aYd//L5Md3A5WmtgrcRgkIN12M3GQZucT/giqFagGEeRVDuiBfY/d0BR3RbbZNw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=v7ddbdkv; arc=none smtp.client-ip=209.85.210.169
+	 MIME-Version:Content-Type; b=AjOKwgsgxI6ytFtS4zuWqPwUdVe9Y7fDK54/n7GntS1grFNYD0iPx7egOCK97hr/Wh06KMK2JS6ZgeVJ2ewNO04U+eZacQcrzKaj+b+MX2nw4ZA0WkRKgmswBj+yerSgq44ybwKbCb2oD7NYQeuz+51WFchSPGX/+BUxkgeB1K8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VverU1BD; arc=none smtp.client-ip=209.85.215.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f169.google.com with SMTP id d2e1a72fcca58-77238a3101fso1904364b3a.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 15:22:17 -0700 (PDT)
+Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b52047b3f19so1159996a12.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 15:22:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757110937; x=1757715737; darn=vger.kernel.org;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757110938; x=1757715738; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=YXGZ7pRNDayxxoqb1j5l/r0hwWgUTmCUu/koa8CrTTs=;
-        b=v7ddbdkvm8IdCaG2ECMkqYPaOL/TwEtaQJ/dTX6lnDinPf8CcNUbTm3rECWeoYeX+J
-         i+Px0TVk5n4yXAXrTSoacAmOxnO44yM2uyMyZHyBFMnEqww2jInHLtwA3/69OccEo2Ia
-         QUubtYLrygHBOx4/3nEytD0aOsoOGJe2qIM4cvAPRVzXf0GNMaIC8/tBipWxtUYujVBc
-         MGk7Dhbi9k2Ogqdzf5Q6PArYp7oEVdWnOm9l/z+eqKwwltkCnrBPe0XZLo5vjTkj36y3
-         yJ/nGJOTEB8Sj5OPfgKL07MjwonLWQqVrbXNLSXxG6ABwD4EuXj9Mnf7VHJlHkrRp9Vn
-         inFA==
+        bh=ajXrw2kXWcvaLXXTxcLJ0XN71Q9IM46eyqVaC58AnZw=;
+        b=VverU1BDJnvUX8bN3NHzQpdocZt2adzhSN+Nvj1kEQXpwEUoHb4s2Hk+f7B5dHQqS5
+         XoPbhSV21MPrHBEdHIM/V5iesW00YhsTgyw9MieXwtusEfh1olRTdulr5Hp4w73sXBcG
+         GF1AhUNx5hqhohVjD7cby+al96I1HI6Vhfnu9q7rSg9r7KOSGPl+G73lb1WGO9sTER14
+         c6TGeuRbmmnohho1kEj9+WQAzqgJWn4Ni9UUGOAVPRPzTkWGEEI558IErMThyfbMAOXe
+         HH3uxcSDX/L+nwx+q8O1WK1R+WC822ophD21v5O72qmlihLfPN9K3x4sqqL8i0XpKNIi
+         IuUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757110937; x=1757715737;
+        d=1e100.net; s=20230601; t=1757110938; x=1757715738;
         h=content-transfer-encoding:mime-version:date:message-id:subject
          :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YXGZ7pRNDayxxoqb1j5l/r0hwWgUTmCUu/koa8CrTTs=;
-        b=K0CN8+ObUEjNA92knUzYDWKR8KxZCm5HCXk6ZbpLsgf4v0UQktZ58eAI507nddtrmM
-         KaMu5NPONK+eHAq7PUg3zlYxl/KoU6LQouZCsnm5QoyUkH805mBVCiIONFj8DrFRBXHK
-         dRpO2bV95ObxEpQquPscnVzdSExNdzhnL8GZfCV53HtJ5GomkcghOcJBQQyHAGmPGVUf
-         fgT3hu8bLGdYpw6kTS+bcosaPMDJKQIcu+sf0kgmYbsxabHXmOI/YJPapFemOXgT26NK
-         +dXqz3Txim5zIDi5WWJZ+1SjSc4Xpt0NePryLtXbvUZKXgzaaFxlwrwfgDi5/IT9c5jm
-         U6Dg==
-X-Forwarded-Encrypted: i=1; AJvYcCWiNalEtC8LurAb74zR04vIg/xJ8i6q2coxSBKLolQzyCqtsTPfYYUH2+a1GozpUfe39Mjic9ktpvLb@vger.kernel.org
-X-Gm-Message-State: AOJu0YyETMDLgvBKXlhgbEwe2EfGAQLyPWssgMueBFI5biwrVMafjhM2
-	wcNVZHcS+UFIVpY1RC/Mqoh3oO3AI5CUQ/4hZ8MjQ52aWkjPxCDd5yZQPpkgGffcdRI=
-X-Gm-Gg: ASbGncu6qWA12Zp9Hq677DSXliJtFtIi9TGbOBG5dOr8KIc2IMtOJDHFYb4L+6hig/E
-	pyQsbpQps+7wyUAX85mXViyyXykIyF2gcSW3MiQFIGmoIfPUY9PJvAJx4JnU/ifxDKvKMB/jJt5
-	xQZ9K6BktTzDzjJkNtZhJS8Vou+2ZUrK8frWq1I3ITUSV0rSSaxmCneOlmfn/s50Ux1k6NSBMzU
-	r6IcBKk7O8kA5L9EqqtHperYfWgoPYWAvKviewxX9htNjrDLaUp/sZd1JANIDc5ymr3o1ywLRW9
-	4pd9pvatgB0eaI8Tn7ZD4nHPKknNRctOE3uBeBrxhcHYCPom5qXp6v+w9BLDQwYOv9zbgIxYosl
-	iT0CPxMDojH+92WDeuIRN
-X-Google-Smtp-Source: AGHT+IGjknjH+FHD6rSrXSEZYpl+gZ+/zeKgcNJWJoULCQXwNQ0Z+EpholtI0q8+4gB9kMf0VxCkKQ==
-X-Received: by 2002:a05:6a20:939e:b0:251:5160:f6c4 with SMTP id adf61e73a8af0-25345e324ebmr515972637.50.1757110936974;
-        Fri, 05 Sep 2025 15:22:16 -0700 (PDT)
+        bh=ajXrw2kXWcvaLXXTxcLJ0XN71Q9IM46eyqVaC58AnZw=;
+        b=pduiUkkowZWoBwejW+hR1R1hoqN/1io1Zb93MEyktM15k1qLp8OUdxQyM3H26WC/8o
+         SN8P0LIeGnN+mCNMJM5TpSXvyd9DusEe5UJyTGyfYTsulolg4WI8CVASCdoxM/KRppJS
+         Aa94lO0pTEQTF7uwI2Vc/06FxRfPWSv6rMKkZuqqQlb6FxF7Zr2JQYe/9EI5/w9RUN10
+         C65C3C9hHyeuErqfe3L5Xu+GyuXS5yp0ZU0GNLqWvl9+odxFNXuZeyYMIl5dJdqa43ey
+         kwQtBRcFDg7i9ILp9J5mzh6g5vIkXsBWzVt9pZ68kpvhJW1YRFeBs+yGEQa0shIQPyqu
+         NalQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUhXg7VLyDKFFpoM0kUMjB0VzHIK9qPH+jvVAUYwpbd7DHr65gejObTFVU1WbEGh0tFpKlw2XQ2hz1e@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyIEn6WeQqQh0OB/+9VYKo9sbYozfJCuPR0KehcybJD3cRpNhX
+	DKqPkHokvgIvCGl0VWuckudb0m7WKqdb4SPqe8jQnn5/dZHsCLkSQcqJbPX98nueHGM=
+X-Gm-Gg: ASbGnctjExpT0auUXbSUYuXLmt25tmAdQ6hoURY8I+X6v1mPmua72G+QvEhn2O/AUmX
+	CorvlQHGXBMnG7QyD/wPC7EVhhXGZwRdAjh46pnb4Q3qbrFIF3mx6yf882/F19mwmQy9p0PSQqz
+	EJrzGMgyKowRjEBvPEuiqINE7r+A1gdqkHlbOuAu47Sk/dEcHLN+cBUMbFxT0D25pdgcTVEtrIx
+	xOdPgNyrMeBkReV0Xel/S+rohueajA+E5v4xGc6XbNR/X8JRCXFsTpmrtF9nVUKlWkKRKtYhnZA
+	qxJvrixfv9n/OOR2+Mqct2qUHYqXqlFQuaddLbzLNRmTKG+HiOPxF8V69mLqVlXC97SFuAG/abh
+	jax2Etb922pX6GOoagQmb
+X-Google-Smtp-Source: AGHT+IEvDKPFc4gicRV4XwsSMT0l8afEt7vdoanp91e0aTRQHmWzkYtjOcm3TMm9WB4qrIiHEdmjxA==
+X-Received: by 2002:a17:90b:3f8f:b0:32b:9d3c:13b3 with SMTP id 98e67ed59e1d1-32d43f60f43mr501790a91.18.1757110938006;
+        Fri, 05 Sep 2025 15:22:18 -0700 (PDT)
 Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4f8a0a3948sm12694052a12.27.2025.09.05.15.22.16
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a2af911sm22510696b3a.23.2025.09.05.15.22.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 15:22:16 -0700 (PDT)
+        Fri, 05 Sep 2025 15:22:17 -0700 (PDT)
 From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org, 
+To: tony@atomide.com, robh@kernel.org, 
+ Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: uri.mashiach@compulab.co.il, krzk+dt@kernel.org, conor+dt@kernel.org, 
  linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-kernel@vger.kernel.org, shuah@kernel.org
-In-Reply-To: <20250822225052.136919-1-jihed.chaibi.dev@gmail.com>
-References: <20250822225052.136919-1-jihed.chaibi.dev@gmail.com>
-Subject: Re: [PATCH] ARM: dts: ti: omap: omap3-devkit8000-lcd: Fix
- ti,keep-vref-on property to use correct boolean syntax in DTS
-Message-Id: <175711093617.666031.9922081579342524783.b4-ty@baylibre.com>
-Date: Fri, 05 Sep 2025 15:22:16 -0700
+In-Reply-To: <20250830215957.285694-1-jihed.chaibi.dev@gmail.com>
+References: <20250830215957.285694-1-jihed.chaibi.dev@gmail.com>
+Subject: Re: [PATCH] ARM: dts: omap: am335x-cm-t335: Remove unused mcasp
+ num-serializer property
+Message-Id: <175711093712.666031.7805837780140276251.b4-ty@baylibre.com>
+Date: Fri, 05 Sep 2025 15:22:17 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,20 +96,21 @@ Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.14.3-dev-d7477
 
 
-On Sat, 23 Aug 2025 00:50:52 +0200, Jihed Chaibi wrote:
-> The ti,keep-vref-on property, defined as a boolean flag in the Device
-> Tree schema, was incorrectly assigned a value (<1>) in the DTS file,
-> causing a validation error: "size (4) error for type flag". Remove
-> the value to match the schema and ensure compatibility with the driver
-> using device_property_read_bool(). This fixes the dtbs_check error.
+On Sat, 30 Aug 2025 23:59:57 +0200, Jihed Chaibi wrote:
+> The dtbs_check validation for am335x-cm-t335.dtb flags an error
+> for an unevaluated 'num-serializer' property in the mcasp0 node.
 > 
+> This property is obsolete; it is not defined in the davinci-mcasp-audio
+> schema and is not used by the corresponding (or any) driver.
+> 
+> Remove this unused property to fix the schema validation warning.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] ARM: dts: ti: omap: omap3-devkit8000-lcd: Fix ti,keep-vref-on property to use correct boolean syntax in DTS
-      commit: 5af5b85505bc859adb338fe5d6e4842e72cdf932
+[1/1] ARM: dts: omap: am335x-cm-t335: Remove unused mcasp num-serializer property
+      commit: 27322753c8b913fba05250e7b5abb1da31e6ed23
 
 Best regards,
 -- 
