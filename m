@@ -1,138 +1,196 @@
-Return-Path: <devicetree+bounces-213569-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213570-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9782B45C56
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:21:43 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 429A6B45C58
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:21:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 583FC16DCD6
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:17:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 009D8170807
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8737D1D90DF;
-	Fri,  5 Sep 2025 15:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 537CE2F1FD1;
+	Fri,  5 Sep 2025 15:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ogeoxe37"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l4j9yTlN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 567BE31B835;
-	Fri,  5 Sep 2025 15:17:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C7BB1C84AE;
+	Fri,  5 Sep 2025 15:17:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757085455; cv=none; b=pzPwatmIWNKNDlV+R05zRRKSefUV6Yj+a0r5U5UfdiH5bZkOB5EIJxQEEWQS4VCz7EVPWgHF+OuAJP0UQoj+yEEOsuX08Lby8JDzDiixugfuKyQfd3pEXXWj/GSa2o5ws/kre0KBGMk/PbD95N9lwOFdc1P70iDd9xGPpqyXa7E=
+	t=1757085461; cv=none; b=a6a1vGi5JaiuqANtVU5M1faJyZleISY72gyg5LlkVfmelNc303beBEditgMhMNgD+gwdbklEo8FyQuCajlQA3IQGVwazmTJXNMrcf+Ta1plls1qDzSbuqHb/yzUIQpcUcvxpdzmLl2yESYr4BZPY8CMw8uLG5lJftkiOoZuAAv8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757085455; c=relaxed/simple;
-	bh=dr+T2rwp5B5VrM1rUBLT6viu/Q1Jhzb6unLFntNx2/o=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ezGnHePKgqwFNRccoYFNoZcEs4oCj7hVf+csIorIVOvvP/tD+mIovKRXslbLaB98/mK86sgzjHN+moqDFbL9uBh0UE3Lo6S7s8X6YsCuzOYIiXjuEZjIdEAYRujDPqsMkl5hjTMcNJkY+lDhUJXXV7ICHdB2m+4H3xy1dWBq+6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ogeoxe37; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E84D8C4CEF4;
-	Fri,  5 Sep 2025 15:17:34 +0000 (UTC)
+	s=arc-20240116; t=1757085461; c=relaxed/simple;
+	bh=ZDMZmwFVprdwP6uIwZJxxoRillFdVRRDd7v74bXNSqs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Z8HAE6tVSCHTuigxiET67pyl6Ln8yhvGZ5H0wBQAKnjoZrtZw7Ro1uAQYj3F8yCz0zC9910Zh7rSrtsTExR6zVqoBBXRhijvYnV9YQV4SRo5kFx7ioCXarKMh2XyWFLi2o66/0bJ7oK5H1N6T++3/7NXvWUdiD9+t7kssnrPIYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l4j9yTlN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D300FC4CEF1;
+	Fri,  5 Sep 2025 15:17:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757085454;
-	bh=dr+T2rwp5B5VrM1rUBLT6viu/Q1Jhzb6unLFntNx2/o=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=ogeoxe37ksPcj8h2cL77V8KZpT6J9875/nOiZH8QepCfGPkYjNt4/oEh+JrcY9A7z
-	 N8GUmBWx/xFZ7LADTDAO5JNKmlzxSn+KnCpRDfdgT0T3OitF2zcX1sG3gl2zeo+6Ac
-	 UjySxmwlZ+kb8C4NrmUhr3oVsV/nngOC+NTZNgyGJs1Y9rW6b+whoMLEvD5y4DfnTB
-	 Zx3gi2SljRWd78NWlgL6BzJNH7EUwe3eaMG8HXLH/2zElwL0K0nfFojueWpIuh4u24
-	 714E5DefpgOSSuvuJpI+fsSLn6UDl4zcleFT2LH1YdVqjOhmNj7dafCIE/85utTudH
-	 z6t6IugrwJkfg==
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-336dc57f3f2so22264221fa.3;
-        Fri, 05 Sep 2025 08:17:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUV+jKgaBUjJyD8pylkxggLh4gAz5LdM/ngjEc883bmDH1X3D4FZRscVtu4UojzW/yC9A2dSy4NUqHy@vger.kernel.org, AJvYcCUgrNY+jE344RS/2EALE1ofqtssmBWmd0QBP9YDxWoCP76P8Hk+G+ag0kKWVNu5D8RfA3wPJ8SbwrAKIpdG@vger.kernel.org, AJvYcCWlayOM5zFXEi2e+l3PnsqLQ+zoQzeDvLXt50AEukCD6Oy5oGEjkJ6G2Qj0a8eVrMRMIs9I9HiA7aNg@vger.kernel.org
-X-Gm-Message-State: AOJu0YztXxpuJk6upK7IEytpALJDr0odqkL5Rhkvb7p54Z3aqW0Jxzwe
-	fGK5cw/19b0QssSmQ7CiTrpSMcxt2X3gI8oy+w5j60IvzWUbF2FOe9KozLp/Sbr3Yfy5QWp+QqC
-	UBZ7CjLti/w2sTLCFqkmEbKlTLJoAqqM=
-X-Google-Smtp-Source: AGHT+IHuctgvaReJVM5L6lLElO1ujTh+IJ3xit6qqIlU8KTDuhaXRGGAdYM2dar503Kj7x8VhbLVORGMlP0Lcie3F3I=
-X-Received: by 2002:a05:651c:b23:b0:337:e410:cb1d with SMTP id
- 38308e7fff4ca-337e410ccf5mr52525011fa.43.1757085453105; Fri, 05 Sep 2025
- 08:17:33 -0700 (PDT)
+	s=k20201202; t=1757085460;
+	bh=ZDMZmwFVprdwP6uIwZJxxoRillFdVRRDd7v74bXNSqs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l4j9yTlNkRclcDOMxYQ51YiZTtuXyRpFfmApayK9UpqbnK7mKINjELxwpt025Rwgc
+	 hIiEycQUINH8zlkSysf2YUWw1QfNsz8TyB48qeJH3KBbRaSmVCUBc66E1bS24mrlBp
+	 Z/2A33HLUhSvsPeU82bXzMCuoKgYmT25+F8qIcE8WOw3R5txSIzMx12TLzhHe3q0QK
+	 dKsRqd0pe1S64LygZFQQf8ktvgyTtLyTwzEegqdrKr9dEqKmoW9gNxfPc0DTmSuHMw
+	 myoGcE6Pcv5U8cz7M3FI5jOWoKzjjRuNkhISiau3dMlnEzPEBZQekkMM7naAoAJr3P
+	 AdGhzjrkEh+TA==
+Date: Fri, 5 Sep 2025 10:17:39 -0500
+From: Rob Herring <robh@kernel.org>
+To: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: leds: add generic LED consumer
+ documentation
+Message-ID: <20250905151739.GA953718-robh@kernel.org>
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com>
+ <20250905-leds-v2-1-ed8f66f56da8@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250830170901.1996227-1-wens@kernel.org> <20250830170901.1996227-4-wens@kernel.org>
- <20250905161236.51b6ecee@donnerap>
-In-Reply-To: <20250905161236.51b6ecee@donnerap>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Fri, 5 Sep 2025 23:17:19 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65utA6PsoAS-wLPskYy9GGXfESvtiwOBC4qSdi1XvLeKQ@mail.gmail.com>
-X-Gm-Features: Ac12FXx524PiYu7fy0CjI9wjWYIIgWKZl0OQuhFEwY-L-xvtcN5IjLcA6m5m72w
-Message-ID: <CAGb2v65utA6PsoAS-wLPskYy9GGXfESvtiwOBC4qSdi1XvLeKQ@mail.gmail.com>
-Subject: Re: [PATCH 3/8] clk: sunxi-ng: mp: Fix dual-divider clock rate readback
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905-leds-v2-1-ed8f66f56da8@vinarskis.com>
 
-On Fri, Sep 5, 2025 at 11:12=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> On Sun, 31 Aug 2025 01:08:56 +0800
-> Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > When dual-divider clock support was introduced, the P divider offset wa=
-s
-> > left out of the .recalc_rate readback function. This causes the clock
-> > rate to become bogus or even zero (possibly due to the P divider being
-> > 1, leading to a divide-by-zero).
->
-> Ah, a nice catch, thanks for that! Just curious, how did you find this?
-> The MMC clocks use the dual divider type as well, but I didn't observe
-> them being wrong?
+On Fri, Sep 05, 2025 at 09:59:29AM +0200, Aleksandrs Vinarskis wrote:
+> Introduce common generic led consumer binding, where consumer defines
+> led(s) by phandle, as opposed to trigger-source binding where the
+> trigger source is defined in led itself.
+> 
+> Add already used in some schemas 'leds' parameter which expects
+> phandle-array. Additionally, introduce 'led-names' which could be used
+> by consumers to map LED devices to their respective functions.
 
-I was looking at clk_summary in debugfs and kept seeing some of the audio
-clocks returning 0 and dumped the register to get the actual value. I then
-did a printk trace of the .determine_rate callback and saw that one of the
-dividers was always 1. I guessed that the .recalc_rate callback was to blam=
-e.
+Please update the existing user dropping the type $ref and indicate how 
+many entries (i.e. "maxItems: 1").
 
-> Regardless:
->
-> > Fix this by incorporating the P divider offset into the calculation.
-> >
-> > Fixes: 45717804b75e ("clk: sunxi-ng: mp: introduce dual-divider clock")
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
->
-> Reviewed-by: Andre Przywara <andre.przywara@arm.com>
+> 
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
+>  .../devicetree/bindings/leds/leds-consumer.yaml    | 85 ++++++++++++++++++++++
+>  1 file changed, 85 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..077dbe3ad9ff3fa15236b8dd1f448c00271e4810
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+> @@ -0,0 +1,85 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Common leds consumer
+> +
+> +maintainers:
+> +  - Aleksandrs Vinarskis <alex@vinarskis.com>
+> +
+> +description:
+> +  Some LED defined in DT are required by other DT consumers, for example
+> +  v4l2 subnode may require privacy or flash LED. Unlike trigger-source
+> +  approach which is typically used as 'soft' binding, referencing LED
+> +  devices by phandle makes things simpler when 'hard' binding is desired.
+> +
+> +  Document LED properties that its consumers may define.
+> +
 
-Thanks!
+select: true
 
 
-> Thanks,
-> Andre
->
-> > ---
-> >  drivers/clk/sunxi-ng/ccu_mp.c | 2 +-
-> >  1 file changed, 1 insertion(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/sunxi-ng/ccu_mp.c b/drivers/clk/sunxi-ng/ccu_m=
-p.c
-> > index 354c981943b6..4221b1888b38 100644
-> > --- a/drivers/clk/sunxi-ng/ccu_mp.c
-> > +++ b/drivers/clk/sunxi-ng/ccu_mp.c
-> > @@ -185,7 +185,7 @@ static unsigned long ccu_mp_recalc_rate(struct clk_=
-hw *hw,
-> >       p &=3D (1 << cmp->p.width) - 1;
-> >
-> >       if (cmp->common.features & CCU_FEATURE_DUAL_DIV)
-> > -             rate =3D (parent_rate / p) / m;
-> > +             rate =3D (parent_rate / (p + cmp->p.offset)) / m;
-> >       else
-> >               rate =3D (parent_rate >> p) / m;
-> >
->
+> +properties:
+> +  leds:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    description:
+> +      A list of LED device(s) required by a particular consumer.
+> +    items:
+> +      maxItems: 1
+> +
+> +  led-names:
+> +    description:
+> +      A list of device name(s). Used to map LED devices to their respective
+> +      functions, when consumer requires more than one LED.
+> +
+> +additionalProperties: true
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/leds/common.h>
+> +
+> +    leds {
+> +        compatible = "gpio-leds";
+> +
+> +        privacy_led: privacy-led {
+> +            color = <LED_COLOR_ID_RED>;
+> +            default-state = "off";
+> +            function = LED_FUNCTION_INDICATOR;
+> +            gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> +
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +
+> +      camera@36 {
+> +        compatible = "ovti,ov02c10";
+> +        reg = <0x36>;
+> +
+> +        reset-gpios = <&tlmm 237 GPIO_ACTIVE_LOW>;
+> +        pinctrl-names = "default";
+> +        pinctrl-0 = <&cam_rgb_default>;
+> +
+> +        led-names = "privacy-led";
+> +        leds = <&privacy_led>;
+> +
+> +        clocks = <&ov02e10_clk>;
+> +
+> +        assigned-clocks = <&ov02e10_clk>;
+> +        assigned-clock-rates = <19200000>;
+> +
+> +        avdd-supply = <&vreg_l7b_2p8>;
+> +        dvdd-supply = <&vreg_l7b_2p8>;
+> +        dovdd-supply = <&vreg_cam_1p8>;
+> +
+> +        port {
+> +          ov02e10_ep: endpoint {
+> +            data-lanes = <1 2>;
+> +            link-frequencies = /bits/ 64 <400000000>;
+> +            remote-endpoint = <&csiphy4_ep>;
+> +          };
+> +        };
+> +      };
+> +    };
+> +
+> +...
+> 
+> -- 
+> 2.48.1
+> 
 
