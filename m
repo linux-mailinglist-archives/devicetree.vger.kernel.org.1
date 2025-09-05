@@ -1,235 +1,119 @@
-Return-Path: <devicetree+bounces-213447-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A37F6B456C3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:45:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45F23B456D0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:49:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40C813B3E05
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0CC81C28446
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:49:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9FDD34A323;
-	Fri,  5 Sep 2025 11:45:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 18FA03451CF;
+	Fri,  5 Sep 2025 11:49:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Wz5hYcs9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="McN8/iSM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09174346A07
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 11:45:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69D9472615;
+	Fri,  5 Sep 2025 11:49:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757072718; cv=none; b=UglvdFfCbtpLOKPHBwkY7xkuBIb5GVJZUr3XsibkQSqRFm8fDnITPFg4LGQ/GZLIEOajEovyCZqTCytw8kBmV2M3oiD0sUfai+JYjgQE/RwRPkRTQ3+Hp4zqzbFn8YSWU8XsVLywIilBy7o0ADc747I4AOLgFdoxp52xchae/IY=
+	t=1757072948; cv=none; b=j1ClL2QvMLBpldOxQoDfVzi5cWSam323ga4bKSFYvqxHpqQE1VHjVvYEMCiCELKl/ZJmZgPbyo+wvPYgr6g3cDEmQYaGH6STBOcIcSxBHvtXJdgo40HEezZuhwFN2UvGnLpT6v8Ilz0US5wfpWFzxDXlfgKxpICuzfIp4wRiX2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757072718; c=relaxed/simple;
-	bh=BGGZ/ELDswRXBatmlsy/yvTpLKnGxcJMcui0IavQz28=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CQrdZN2ebs/RxnVDOSwwdAdOfpPHtN5BfIbhg1y0tuH8rPN0SQD8HljeXFXIdj/gBh+4evwfOcg91Ke39m67BuEQ7mca6Rwq+TlbS5XSItMJMyej7uwbUJ+u1/Cb91uciF5JmrUWAh4ZveCrGQpusrFoj++HIBkqj/02Tb/P0eE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Wz5hYcs9; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58575DHB003771
-	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 11:45:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	JrwiK3+YBBKfTwjeyYweO2evQz8q+FFooJOWqyd2ccc=; b=Wz5hYcs9FTztI+IU
-	CgkG401Y2rP/T87qgJJKLpMkXoqvnnWZ/MJGE0blxXjtnmeLp/jmueLL+UvM3yb0
-	53L74HNwwUvgITVz3wEW3b/A65X6E6NJG9NxPJHXeySO5MA38uk/ALMNoG7S4p6Q
-	F7E4MdiI6I7BOBDammHxZ8JEko2icpj6TQEd7e3NtlEr/pFakxcTuYWJKJCkZo9p
-	rC0ZP79vLWy+doLCJ42luGh6gFNA9G6nYKcLGZosOVzm6UphYl0uwLAbzlFqlPN+
-	8ChrLFMvh1M5RrEjnECuL0jCGX9ZT8uSG/Uun6Cm5hMqAWJZ1hZ9SoV/4/s2808E
-	aNCyXA==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com [209.85.222.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ur8sb40b-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 11:45:13 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-7fc5584a2e5so642785385a.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 04:45:13 -0700 (PDT)
+	s=arc-20240116; t=1757072948; c=relaxed/simple;
+	bh=Df20U8eLXlwJoFINrMRZTXja8QnLE3DWLst3QAqSPAw=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nKWilacpWN2+Z4FsS7wAqVWSaHyJsGf4N6DvX+n4kdFTLDuWDsu3xuWylW3s2Jj3PxBpJoYDq65lh3L3ZRvbuqt1Yv53XvWftboYQ1Vwu04qiuSO5WZxv2cq0o6JP1KV9a37nqR643A2lvqGV71xC+MZn+qNYQFbgUXTs3uXvw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=McN8/iSM; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-45b8b02dd14so14765025e9.1;
+        Fri, 05 Sep 2025 04:49:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757072945; x=1757677745; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Df20U8eLXlwJoFINrMRZTXja8QnLE3DWLst3QAqSPAw=;
+        b=McN8/iSMdlOR4XRQ2B9MEBwnkZ5WBOnRryVvIZHzBv+nywnrUoJTjXDVQssX+QT4Z4
+         X/SKSw16rtOFvAyJIW65P9wLHG69/HAqe27W+wfDD5LjSkuJk+EhB9qcrm5+WF6mcnKz
+         3YF2+MwHZrH66syLGMXrX83chTSDkBGM6DmdDsTOjjDRIXLlzZxrhcJXqr8hwFmUiw3y
+         j4ZmKyIA0dgrgaNZNbxkWw0uJAIfHI2xrwLKnUaqKWVHIl0yxWiTyMJwy6DRrKcC1yNs
+         k3lJptMG9SXt4FiefhFQG+YYpnCggDYFUoRg37yEX3qvvlTsRxfweR8iL4mvnW1kudBb
+         eSHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757072709; x=1757677509;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JrwiK3+YBBKfTwjeyYweO2evQz8q+FFooJOWqyd2ccc=;
-        b=YbGYAmalLr6VJuOQezOBl8dTMSavGxCPuRFpEzX5lcFWD+Mto6Okc16B4tFpBjqIr1
-         WmpWwhSXqTMz0heX9H1Yec6GADi8idmL0Fpkq40iNvwZnR0XGjc4aADP1KAA3NvCwdvH
-         ZK+tYbV5/i1M9God686sFSmNtSeiaPfsPlXY66qQ6UcM2/y6zjiqIkGMgnf/ngF/oq6M
-         3tz1KFRyBwT6dnIXwzLOW0d01RNCjTaPqDokXYtH7z/tMBHkiLz83Rjzk3RRgXkDd3J7
-         LpALw4vuU1G/i4ZsJZZhg/T35wnu2We03bYJ17MD0wAwdgAXA1NW/AAxpgNLV5dQ9C3J
-         gKMA==
-X-Forwarded-Encrypted: i=1; AJvYcCXOp9XcDevI6Skx7aO23z2LqPApOsZGBjoIwMshWwAkt1+yGdueMXjlDN41d4jsq19s3pUkfRRGUe0i@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0XbPRlhQGhdDCJ8suphr/8Cr48Rjk+wey/i0h2KAqRmk+wRJD
-	XCQYpqgu+9h5s0XhR9B6b670Eg0bDXg+c66v6txnpemw1fhORmwjJdxXiq5KJseTmf0pcEEZYYa
-	S3Dmos2SQ3dRjMH6CfUXSRCgYdPkKiDfTD4ygGQhQHoPHlobvd5NxLEpgekVC8A1S
-X-Gm-Gg: ASbGnctxb6nOg12uD9L1BTw+z4XWut7iEOtG/4OiJ+p06q+vVZaJF77LAO+c+klFrEf
-	RD7iyu1jZIKFz7oObgM7EmXyg+JZLrL6mQS6V+8GtgocXgDF9igjB0qJpTk2h63IhLrdqprldA7
-	iBxtNatJNWXe+vInpSp4/W+bfHTRuClK5FOTTuMp0bTn5vFFPYc4fodFgyUJHmH8LZPp8aNItN9
-	wpiRhF3VkXnQOufDxYr3VmbaUPyQ4RCcl5jJme1dEp0JNoqWETPuQ/vgQ1n0LtRl9ApU3JDomEV
-	J3/vHjFplnsYcfhAj4/pp6vO0cHrdjqRaq7bP3wc4Mgl4nw0tkTd+t8d4Db8dlWOXM4DCumiunf
-	S46vdMnhHnQAV4oxoyfy0vKIldcfD1YImWBCzriGQ+mcDqyMI1dZz
-X-Received: by 2002:a05:620a:179e:b0:7f3:62f3:32c7 with SMTP id af79cd13be357-7ff2b1d1980mr2415309285a.49.1757072708808;
-        Fri, 05 Sep 2025 04:45:08 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IEcuxKXmP9sMAXZXFv5luGupilJaBfmlbkboCf2+phHC9krfABEbIlHwDZFOn6G2BDDWqoqSw==
-X-Received: by 2002:a05:620a:179e:b0:7f3:62f3:32c7 with SMTP id af79cd13be357-7ff2b1d1980mr2415304485a.49.1757072708088;
-        Fri, 05 Sep 2025 04:45:08 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3380f68331asm9641041fa.12.2025.09.05.04.45.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 04:45:07 -0700 (PDT)
-Date: Fri, 5 Sep 2025 14:45:05 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>, kernel@oss.qualcomm.com,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        netdev@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>
-Subject: Re: [PATCH 2/5] arm64: dts: qcom: lemans: Add SDHC controller and
- SDC pin configuration
-Message-ID: <xausmwmh6ze5374eukv6pcmwe3lv4qun73pcszd3aqgjwm75u6@h3exsqf4dsfv>
-References: <20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com>
- <20250826-lemans-evk-bu-v1-2-08016e0d3ce5@oss.qualcomm.com>
- <rxd4js6hb5ccejge2i2fp2syqlzdghqs75hb5ufqrhvpwubjyz@zwumzc7wphjx>
- <c82d44af-d107-4e84-b5ae-eeb624bc03af@oss.qualcomm.com>
- <aLhssUQa7tvUfu2j@hu-wasimn-hyd.qualcomm.com>
- <tqm4sxoya3hue7mof3uqo4nu2b77ionmxi65ewfxtjouvn5xlt@d6ala2j2msbn>
- <3b691f3a-633c-4a7f-bc38-a9c464d83fe1@oss.qualcomm.com>
- <zofmya5h3yrz7wfcl4gozsmfjdeaixoir3zrk5kqpymbz5mkha@qxhj26jow5eh>
- <57ae28ea-85fd-4f8b-8e74-1efba33f0cd2@oss.qualcomm.com>
+        d=1e100.net; s=20230601; t=1757072945; x=1757677745;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Df20U8eLXlwJoFINrMRZTXja8QnLE3DWLst3QAqSPAw=;
+        b=D7hTAISWn5uryQeHqxawlyeS5bpx55ToghtavECclI9VbavBnf+CduzfUOkpYv18TO
+         srnUbaNKEdwlLmXsq5xSLArDQBdGDRUrp48eFxyVlRUWygyVgGE8ccIVIA2NEE3bYQeS
+         p70mm4foHbKtxYnf+EeTMypAG+4zRlMeFY+P8swml3UUATC3qxG2YOn88W+Cyxt9u84F
+         qUGm51/6PvTf3eaXA/vfiTCzsBBHfELFFrOB0c/fWc5cLQfdjSD1UTQO08ghdmmy6dYs
+         YMXpe0E91n2kZSbqMs3ZzZW+pWQNoluGrRO8cEYRBiMAIPLlnaS3SfKfA7PNWR4n80HG
+         HEiw==
+X-Forwarded-Encrypted: i=1; AJvYcCWKrjWYFeGOBawBB6cnV9q06ZHLbii1Rbi0RIRmDp8FokGd7gFnFH5W+VTMMuAANR8omEpjNRCxFOa6JEKED2YG2ME=@vger.kernel.org, AJvYcCWeR3z+hgmUDU5XYnSjUuqIV9Lj6asrfdBFPNYpJupr9r6xn4qUsg7zSuN1TGIPZxAv9jYkfo+NKvE1@vger.kernel.org, AJvYcCWkIzAUrLWXU8B3hT7y1X3iMWW2s4q/8H0y4cL8uVozwcMML5MzuU+GfaJ00Zo/J7TgFEw4oMfGYxWLcFJ6@vger.kernel.org, AJvYcCXZKvzDnv250vfoWCEKKkvR5gmtle3w2r1AaRvzzhvF2FiEBhnLGK4D7iwRt3ShHO1kBh9isv4T@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx4AwtB+Q1icbh3evC4VBYqplba8+4wCJ3i+V7obOC3SfpRIwr/
+	1lw6BklPQDdBkAis3uKvsHkrBrDU+HGUYRHtLZjjw3FlWoIK1nqgKUAqWPdWIkgUoQpgDTFHq6s
+	x81Ke2bUp8Mje9ia/5BTREwGx350dghM=
+X-Gm-Gg: ASbGnctOKGGJjP+idua9fWNgEsZODBKIpB8NJsfQO91q10OCOt1bzaEK5m6jGVDHyeP
+	TQBsP/dM7IdyTgVZ6vOZSyV4FQOe4fF5Hc1ZL40wlV/eb5+Fhqerm2b+oGpsC/+F/LG71cfgLOx
+	uQFs8SaNqUDzsMmj1+2ng9dW00pOnAX7wRUAfy66WEXgdSWN2Kkc+uOVUkiKcqkga6aOalQPP7Q
+	WPs0FCXDjMoAVDxDkfTnYP7T8Bn1JRUWUWVsFnd
+X-Google-Smtp-Source: AGHT+IF5J/PcStKYjOtqRY282bXKtlrfXrUZeJo8APJ8Hek9CEJ63pB//wmxrjL6Rhnna5oOANPbzyFTicW+juKh65Y=
+X-Received: by 2002:a05:600c:3145:b0:45b:64bc:56ea with SMTP id
+ 5b1f17b1804b1-45b8557055dmr196616325e9.23.1757072944367; Fri, 05 Sep 2025
+ 04:49:04 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <57ae28ea-85fd-4f8b-8e74-1efba33f0cd2@oss.qualcomm.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAxOSBTYWx0ZWRfX51O5g1705j/F
- Dvib881ffeW0iIo6CNycQIv3SRvcZ1YVWCcjopbLNSvlwAXZ0RlxncSuk+6rFxqrK3Mt1cZWMUJ
- V1bLnS4UlHVw+rbcNZhyjtT6BeB7K+DkWvCeoMpJ46o0fHMymAMU1W36Pv1q0VkxUFxU+BniP3k
- LeHvmqVcbVyxuCCy6lGpaDWDNGkdNjkMC9qFJTDSppTW/OHUheSpf5mi8ODTKboMFoYC+6QcgHF
- S8fDITkFnxS0qEs0HAfv71nLynX5tXxIRYpChRHN23zB4qpB2nqB5Lr0SNMCQRKu+q6azgAYdFh
- nL+JWBokjNRpxMXz2+d2BNwMw/GL8utIPt9GpYiGaqO9hpZqEYjz9pze88UK/1qiwc1DZYPlZpS
- yowmAdkZ
-X-Proofpoint-GUID: 3oqA4R7Hmm-9isgTgPzbksoSUgqTUT7i
-X-Proofpoint-ORIG-GUID: 3oqA4R7Hmm-9isgTgPzbksoSUgqTUT7i
-X-Authority-Analysis: v=2.4 cv=PNkP+eqC c=1 sm=1 tr=0 ts=68bacd4a cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=EUspDBNiAAAA:8 a=Hq1aP8QxBszXHj81Fu8A:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=IoWCM6iH3mJn3m4BftBB:22
- a=TjNXssC_j7lpFel5tvFf:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-05_03,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 bulkscore=0 priorityscore=1501 impostorscore=0 clxscore=1015
- suspectscore=0 adultscore=0 phishscore=0 malwarescore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300019
+References: <20250904114204.4148520-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250904114204.4148520-9-prabhakar.mahadev-lad.rj@bp.renesas.com> <fc103af7-0558-46bf-a668-d4d815ae704e@lunn.ch>
+In-Reply-To: <fc103af7-0558-46bf-a668-d4d815ae704e@lunn.ch>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 5 Sep 2025 12:48:37 +0100
+X-Gm-Features: Ac12FXypVFHVBLxkEzgMpaSiPzoRNtJcax8RRCNYnh1mWDmNLrR0ebAOwWEKVeM
+Message-ID: <CA+V-a8sP1HBmBr_mbJTwVRAu-ZxKiT7b9KW3o97HOhu8DAUavg@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 8/9] net: pcs: rzn1-miic: Add per-SoC control
+ for MIIC register unlock/lock
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 05, 2025 at 01:14:29PM +0200, Konrad Dybcio wrote:
-> On 9/4/25 7:32 PM, Dmitry Baryshkov wrote:
-> > On Thu, Sep 04, 2025 at 04:34:05PM +0200, Konrad Dybcio wrote:
-> >> On 9/4/25 3:35 PM, Dmitry Baryshkov wrote:
-> >>> On Wed, Sep 03, 2025 at 09:58:33PM +0530, Wasim Nazir wrote:
-> >>>> On Wed, Sep 03, 2025 at 06:12:59PM +0200, Konrad Dybcio wrote:
-> >>>>> On 8/27/25 3:20 AM, Dmitry Baryshkov wrote:
-> >>>>>> On Tue, Aug 26, 2025 at 11:51:01PM +0530, Wasim Nazir wrote:
-> >>>>>>> From: Monish Chunara <quic_mchunara@quicinc.com>
-> >>>>>>>
-> >>>>>>> Introduce the SDHC v5 controller node for the Lemans platform.
-> >>>>>>> This controller supports either eMMC or SD-card, but only one
-> >>>>>>> can be active at a time. SD-card is the preferred configuration
-> >>>>>>> on Lemans targets, so describe this controller.
-> >>>>>>>
-> >>>>>>> Define the SDC interface pins including clk, cmd, and data lines
-> >>>>>>> to enable proper communication with the SDHC controller.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Monish Chunara <quic_mchunara@quicinc.com>
-> >>>>>>> Co-developed-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> >>>>>>> Signed-off-by: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
-> >>>>>>> ---
-> >>>>>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 70 ++++++++++++++++++++++++++++++++++++
-> >>>>>>>  1 file changed, 70 insertions(+)
-> >>>>>>>
-> >>>>>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boot/dts/qcom/lemans.dtsi
-> >>>>>>> index 99a566b42ef2..a5a3cdba47f3 100644
-> >>>>>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
-> >>>>>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
-> >>>>>>> @@ -3834,6 +3834,36 @@ apss_tpdm2_out: endpoint {
-> >>>>>>>  			};
-> >>>>>>>  		};
-> >>>>>>>  
-> >>>>>>> +		sdhc: mmc@87c4000 {
-> >>>>>>> +			compatible = "qcom,sa8775p-sdhci", "qcom,sdhci-msm-v5";
-> >>>>>>> +			reg = <0x0 0x087c4000 0x0 0x1000>;
-> >>>>>>> +
-> >>>>>>> +			interrupts = <GIC_SPI 383 IRQ_TYPE_LEVEL_HIGH>,
-> >>>>>>> +				     <GIC_SPI 521 IRQ_TYPE_LEVEL_HIGH>;
-> >>>>>>> +			interrupt-names = "hc_irq", "pwr_irq";
-> >>>>>>> +
-> >>>>>>> +			clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> >>>>>>> +				 <&gcc GCC_SDCC1_APPS_CLK>;
-> >>>>>>> +			clock-names = "iface", "core";
-> >>>>>>> +
-> >>>>>>> +			interconnects = <&aggre1_noc MASTER_SDC 0 &mc_virt SLAVE_EBI1 0>,
-> >>>>>>> +					<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_SDC1 0>;
-> >>>>>>> +			interconnect-names = "sdhc-ddr", "cpu-sdhc";
-> >>>>>>> +
-> >>>>>>> +			iommus = <&apps_smmu 0x0 0x0>;
-> >>>>>>> +			dma-coherent;
-> >>>>>>> +
-> >>>>>>> +			resets = <&gcc GCC_SDCC1_BCR>;
-> >>>>>>> +
-> >>>>>>> +			no-sdio;
-> >>>>>>> +			no-mmc;
-> >>>>>>> +			bus-width = <4>;
-> >>>>>>
-> >>>>>> This is the board configuration, it should be defined in the EVK DTS.
-> >>>>>
-> >>>>> Unless the controller is actually incapable of doing non-SDCards
-> >>>>>
-> >>>>> But from the limited information I can find, this one should be able
-> >>>>> to do both
-> >>>>>
-> >>>>
-> >>>> It’s doable, but the bus width differs when this controller is used for
-> >>>> eMMC, which is supported on the Mezz board. So, it’s cleaner to define
-> >>>> only what’s needed for each specific usecase on the board.
-> >>>
-> >>> `git grep no-sdio arch/arm64/boot/dts/qcom/` shows that we have those
-> >>> properties inside the board DT. I don't see a reason to deviate.
-> >>
-> >> Just to make sure we're clear
-> >>
-> >> I want the author to keep bus-width in SoC dt and move the other
-> >> properties to the board dt
-> > 
-> > I think bus-width is also a property of the board. In the end, it's a
-> > question of schematics whether we route 1 wire or all 4 wires. git-log
-> > shows that bus-width is being sent in both files (and probalby we should
-> > sort that out).
-> 
-> Actually this is the controller capability, so if it can do 8, it should
-> be 8 and the MMC core will do whatever it pleases (the not-super-sure
-> docs that I have say 8 for this platform)
+Hi Andrew,
 
-Isn't it a physical width of the bus between the controller and the slot
-or eMMC chip?
+Thank you for the review.
 
--- 
-With best wishes
-Dmitry
+On Thu, Sep 4, 2025 at 9:55=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> > -static void miic_reg_writel(struct miic *miic, int offset, u32 value)
+> > +static inline void miic_unlock_regs(struct miic *miic)
+> > +{
+>
+> Please don't use inline in C files. The compiler should decide.
+>
+Ok, I will drop this in the next version.
+
+Cheers,
+Prabhakar
 
