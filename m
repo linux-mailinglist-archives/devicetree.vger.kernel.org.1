@@ -1,81 +1,64 @@
-Return-Path: <devicetree+bounces-213238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 974B1B44E37
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:49:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B989B44E3D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:50:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 334A5565763
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:49:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBBD11C2096A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:50:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C49D926A0DD;
-	Fri,  5 Sep 2025 06:49:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300C72D193B;
+	Fri,  5 Sep 2025 06:50:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f/MM6ggL"
+	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RN/Zhm1f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E57F4223DFB
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 06:49:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7DD1D9663
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 06:50:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757054947; cv=none; b=uIuaf7Fiu8w81NDbq+ecJOMiardJEl5bvKtz1PWsSaMV0H7pxmbZEy+KopwdNL2ja1C0fln4F2vQQrFIV6tAmiH/ylw8lS1dsL7svPrjZkZl+CM70Z4qlA3aobMHtgS+jEe5zbtOtQzGxu8SyQNTzmUp40l+0L0wNHSeDD5AQJ4=
+	t=1757055027; cv=none; b=UopFDtpJ9hdL1sS2zMAb3GjD7k0j79/jkiTzhZ9PSqXrxVmI4P+SZxr7ig2y3Qu/20ixfSG9kuitOe7UzRGYmEAtSX6nNJtXam9hA0zVcjWc5JsqjYUwHGMfPWC/UNR4PFeo0xx535TMs+Q10vZJXw9zTx0zs9dzWnpZPUCUGZ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757054947; c=relaxed/simple;
-	bh=PNwmuy9ZrUvG6BXlXC8y5kritsIgdToaDCNu24xtDEA=;
+	s=arc-20240116; t=1757055027; c=relaxed/simple;
+	bh=Y3vaYaLxaSBtwlXphX5LeCK51R2e4El29Banad48jA0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JvXGR2hgVsQiHu2Hbw5MLwOfBvePotj5SgzECqVTS/qYOE41uVcjnvDJary6K6/xLqsiyav5sh1HNQDKppQ2WcvPPv4zXcAUOkfeUzObvStBYBEkRR6XB8j1jBC3gCE2bAqHRgIWwtDViZ4sc3yjZZfu+uRnLOsgZZA2TziUw3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f/MM6ggL; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-3e1a31c692bso26304f8f.1
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 23:49:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757054944; x=1757659744; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=EKDOsWP8voctZ/Z4kh43R/z8whzRh07BGNOQiQAcmr4=;
-        b=f/MM6ggLmH7W/2kr4fLPSyztSw5axX1kIj67hB1LUhhILa+G36/2e+36MmkxvOQPYf
-         suHHgzVJ7NhHAQ6ti4Kj6waOn1Qyu4YTcJBsLWRUjkr+ZQ9na0El6GxSAMZixxRVzs8C
-         S9963cHBNsoX7QceD3SxYjUzw4D6/1xNfZ0Qr328EPZuFZLSVkySrMPGlm5SSP9zmlVS
-         fwfMvfb0Sg2NxwEiTalWo0Isa9f35yK1Cosm0nXJq+mDd5SR8gXn8BaA8Xus2Q/8xQzN
-         Qo+ju6zQt5OATU/y7/630+KA47FwcPLR9NWt3AXg1cFLpOk6WOG2wVxfAAlT9zuB4STC
-         WZlw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757054944; x=1757659744;
-        h=content-transfer-encoding:in-reply-to:autocrypt:content-language
-         :from:references:cc:to:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=EKDOsWP8voctZ/Z4kh43R/z8whzRh07BGNOQiQAcmr4=;
-        b=H3UvfZXN4FkOVLfxftDa9fREPC9OtanxYh0ciyQy+fO8oG24ngW0EQlsbszQsAMpCh
-         6ETxp9TfAq280V4au+TJvp44hBxdXCnwN1/FaSpQ+uJHaDC7/nV3Uhj/j0Ph4MFn0F93
-         ZSdLEHLHsXkJ23PWFTNL/HL/aox/CCvGuuSOQtUPcpFkhH8pQ+9s7oYCE1LjleUdPOyB
-         6H+VcJm50omqqttMGWaO3OPQi6aNPgHWt2ewWJjScySMABI9Mh6Cc0g+t+IcQrcgOt8Y
-         pw8hEX5fbVCQFWqFC7BA4nG0IuY3jd30ckQskw8EJvsNFtjEXNih2Z/UMfJCr3OYw/i4
-         E24Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW5Ua9hbQ+Mx8gXWY5y+Shw26Vvhukg9hDuqt3BYOoTXqFzNYk+7wZiSsdQhl+FLPrdqwsmdvPFHEnX@vger.kernel.org
-X-Gm-Message-State: AOJu0YzLgeCUN8BuEdCRT6j2357bvnHPU85xVXupynK3o8X4WInRlbpk
-	TIU2DfERrRNa4At/gfAVPfYokH4f1H6S8zv5DQ62tM+weu0m3cnbcFq9q+lLKyiSbh4=
-X-Gm-Gg: ASbGnctzH6wyCn4pvR4AVuEYMjaXz9C3dXZbYm0XNhPx3Csp0/UupjClC0o5Bhj7TUE
-	+Ms2VfQO/89GF1l40KununJb4Hc6ig6E/sqr5klUmZCLHk9oFhyekeJ8cb32E/syN/s466bIiqd
-	nfp/Sl5LJl1MOFp+8UKAXl3667jLmUwtl5QzWVQj7fw8FwsoruStgHyfS8Ssn5hJsngkjLmaQwO
-	8VV0/DCk//qxw+Pdc92Yk7vlOpe52IoP60+F30vdauTOLwZbfdtRMNXqp346y3JI+PN4JssCu83
-	uCuG9vfoi5n1UgIfHH8P6XJu9YlY5s2AyNgBUjzBf2xSPmhrN+nqmTMglCBXkK36rIyGwg7a1lG
-	fZ6fXTSSNw6CmKxp2X0W5rkAKNvmWT371IasN/mBQzck3PGODaPoJQIT3Y4Kvfbce
-X-Google-Smtp-Source: AGHT+IGrJWqN/vuJ5bYR8HntkcB6wDhwMnuKODVl27jVmQNuhe/bcRvAsFKD/PzJaLc98zEaFVnTCA==
-X-Received: by 2002:a5d:5f91:0:b0:3d4:6abb:7de1 with SMTP id ffacd0b85a97d-3d46abb844fmr6949454f8f.3.1757054944165;
-        Thu, 04 Sep 2025 23:49:04 -0700 (PDT)
-Received: from [192.168.1.29] ([178.197.219.123])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34493b8csm29592720f8f.59.2025.09.04.23.49.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 04 Sep 2025 23:49:03 -0700 (PDT)
-Message-ID: <8fe9ccd9-ec66-4174-896e-01501b8ad8ec@linaro.org>
-Date: Fri, 5 Sep 2025 08:49:01 +0200
+	 In-Reply-To:Content-Type; b=gLuLC54cOoV7Cxz+oxn6k6rAw4pFL1zsCt7yqQODhvknFTnMc++GFxE+a9+vITIB4rh83DzLw0Vtc7E2e1ueq2CrPoZQZ0Sy4Z68r1SS25uITYMFtrcL7VL8kbcnmRPZHYW2C6I0MNFz8ADJB7pTWMmGDNfxShZvT2Ot3Rg1CEU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=RN/Zhm1f; arc=none smtp.client-ip=170.10.129.124
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+	s=mimecast20190719; t=1757055024;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=PzkSnPUjwi+M04mIJFUTah0Llj9pDwzPR0FvY23x6pY=;
+	b=RN/Zhm1f8ZZ3Jf9lHLW8m7j54mfP9QXFIpkR46fH40++iLs+lsaETpHNjpG06iKG4VOFWR
+	aT2UDmGIlBkvn3vaFR2S+dEq1AoHqCXncgByJYCW1sDXAgepU2BXJbnCunqrPdeeCFvX+C
+	GuDp2cmfFusLoW0kC+ZARGzMd0DxR3A=
+Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
+ (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
+ relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
+ cipher=TLS_AES_256_GCM_SHA384) id us-mta-7-fN3M7AV3P9KsU3yFI72dPg-1; Fri,
+ 05 Sep 2025 02:50:14 -0400
+X-MC-Unique: fN3M7AV3P9KsU3yFI72dPg-1
+X-Mimecast-MFC-AGG-ID: fN3M7AV3P9KsU3yFI72dPg_1757055012
+Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 520EA19560AE;
+	Fri,  5 Sep 2025 06:50:12 +0000 (UTC)
+Received: from [10.45.224.74] (unknown [10.45.224.74])
+	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0E6A9180044F;
+	Fri,  5 Sep 2025 06:50:07 +0000 (UTC)
+Message-ID: <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
+Date: Fri, 5 Sep 2025 08:50:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,86 +66,105 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt: writing-schema: Describe defining properties in
- top-level
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250904142400.179955-2-krzysztof.kozlowski@linaro.org>
- <aLmwk/0gqrivgl1U@lizhi-Precision-Tower-5810>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
+ reference property
+To: Rob Herring <robh@kernel.org>
+Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com,
+ Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+ Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
+ Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Prathosh Satish <Prathosh.Satish@microchip.com>,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+References: <20250815144736.1438060-1-ivecera@redhat.com>
+ <20250820211350.GA1072343-robh@kernel.org>
+ <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
+ <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
 Content-Language: en-US
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- 2+47PN9NZAOyb771QoVr8A==
-In-Reply-To: <aLmwk/0gqrivgl1U@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+From: Ivan Vecera <ivecera@redhat.com>
+In-Reply-To: <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
 
-On 04/09/2025 17:30, Frank Li wrote:
->> diff --git a/Documentation/devicetree/bindings/writing-schema.rst b/Documentation/devicetree/bindings/writing-schema.rst
->> index 470d1521fa17..e0859094575d 100644
->> --- a/Documentation/devicetree/bindings/writing-schema.rst
->> +++ b/Documentation/devicetree/bindings/writing-schema.rst
->> @@ -165,6 +165,14 @@ The YAML Devicetree format also makes all string values an array and scalar
->>  values a matrix (in order to define groupings) even when only a single value
->>  is present. Single entries in schemas are fixed up to match this encoding.
+
+
+On 05. 09. 25 12:06 dop., Rob Herring wrote:
+> On Fri, Aug 29, 2025 at 8:29 AM Ivan Vecera <ivecera@redhat.com> wrote:
+>> ...
 >>
->> +When bindings cover multiple similar devices that differ in some properties,
->> +those properties should be constrained for each device. This usually means:
->> +
->> + * In top level 'properties' define the property with the broadest constraints.
->> + * In 'if:then:' blocks, further narrow the constraints for those properties.
->> + * Do not define the properties within an 'if:then:' block (note that
->> +   'additionalItems' also won't allow that).
->> +
+>> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
+>> net/network-class.yaml ? If so, yes, it would be possible, and the way
+>> I look at it now, it would probably be better. The DPLL driver can
+>> enumerate all devices across the system that has this specific property
+>> and check its value.
 > 
-> I can understand what your said. I think it would be better if add some
-> simple examples.
-Example for that is already there - at the bottom of this file.
+> Yes. Or into ethernet-controller.yaml. Is a DPLL used with wifi,
+> bluetooth, etc.?
 
-Best regards,
-Krzysztof
+AFAIK no... ethernet-controller makes sense.
+
+>>
+>> See the proposal below...
+>>
+>> Thanks,
+>> Ivan
+>>
+>> ---
+>>    Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
+>>    Documentation/devicetree/bindings/net/network-class.yaml | 7 +++++++
+>>    2 files changed, 13 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>> index fb8d7a9a3693f..560351df1bec3 100644
+>> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+>> @@ -27,6 +27,12 @@ properties:
+>>      "#size-cells":
+>>        const: 0
+>>
+>> +  "#dpll-cells":
+>> +    description: |
+>> +      Number of cells in a dpll specifier. The cell specifies the index
+>> +      of the channel within the DPLL device.
+>> +    const: 1
+> 
+> If it is 1 for everyone, then you don't need a property for it. The
+> question is whether it would need to vary. Perhaps some configuration
+> flags/info might be needed? Connection type or frequency looking at
+> the existing configuration setting?
+
+Connection type maybe... What I am trying to do is define a relationship
+between the network controller and the DPLL device, which together form
+a single entity from a use-case perspective (e.g., Ethernet uses an
+external DPLL device either to synchronize the recovered clock or to
+provide a SyncE signal synchronized with an external 1PPS source).
+
+Yesterday I was considering the implementation from the DPLL driver's
+perspective and encountered a problem when the relation is defined from
+the Ethernet controller's perspective. In that case, it would be
+necessary to enumerate all devices that contain a “dpll” property whose
+value references this DPLL device.
+
+This approach seems quite complicated, as it would require searching
+through all buses, all connected devices, and checking each fwnode for a
+“dpll” property containing the given reference. I don’t think this would
+be the right solution.
+
+I then came across graph bindings and ACPI graph extensions, which are
+widely used in the media and DRM subsystems to define relations between
+devices. Would this be an appropriate way to define a binding between an
+Ethernet controller and a DPLL device?
+
+If so, what would such a binding roughly look like? I’m not very
+experienced in this area, so I would appreciate any guidance.
+
+If not, wouldn’t it be better to define the relation from the DPLL
+device to the network controller, as originally proposed?
+
+Thanks,
+Ivan
+
 
