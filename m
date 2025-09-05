@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-213649-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213650-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165FFB4625E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:38:10 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57E61B4626B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D756C1CC83BF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:38:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D6787B9B1F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:39:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDE02737E7;
-	Fri,  5 Sep 2025 18:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C819273D81;
+	Fri,  5 Sep 2025 18:40:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LKX9Ju1m"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oLdZuogb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BBAF17F4F6;
-	Fri,  5 Sep 2025 18:38:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6056BA42;
+	Fri,  5 Sep 2025 18:40:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757097487; cv=none; b=KahHWuyCwVwp4VgFaPcMR2mlIoqxXeHSAAGP7E3DKDtCMBJ10bBDUE7R7oBbtjFRoXBd8AnxolFEWqAL4Cc1GMUm56CcfMlQV2CMXX9+kBaT8uosngYyvBndVED8hh0fUiHBYr7O2g4hUqFco+7kQmyYdLgg9vTNUtPypEhOwfI=
+	t=1757097640; cv=none; b=K4XlrGIAPv72kXPSqsL4HinZ4VvvG+23GaIoXCPoRnY8CenNfmAX9kaK4OGprrkjmgoICMSydEVdY0Cd0eJLQCneR8YhxVwwv2B/0KOzN2/8DDGqOrb3AkqQBD3fDQU4bQog8qp3SX5c609UvbSCIeLLQTRa+Bo0laVv2ibKoqI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757097487; c=relaxed/simple;
-	bh=zBznowgcA9KRpPYdFjqyySbRdKkl9xdj5USfqCcnRzE=;
+	s=arc-20240116; t=1757097640; c=relaxed/simple;
+	bh=zazs765EiAP1YNPFy8VgVtG1NsucovDF0NOtXp5Rdp0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JbtbhkImDdIC2Yfe9YR5IfDm6G8M+19cdzYKRoD3vO7AGbdKEVWeCR3hsCxP0ESXH1quat/z9ynE75Eg0yTv5HpY593dza+PKSupJLJBeRcBZx2Zn3W8iu2HdBfm7QQ+ld0r/jX/C6JKH4BrkeaTnOEivN1aAsDeMALzQlZpbfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LKX9Ju1m; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18486C4CEF1;
-	Fri,  5 Sep 2025 18:38:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uhRw5VQjXdJlGmow53tRGJXfPSM9MOPyiFDIaLx44RZMX4gklOomq+zXfuGins8b/Sgb7owyp9A/C4fRyz3tjZC47qagQoQksRPVFNMSPE0GaL4zbdoJyciAvxJGnep8/LIefwVrfpLasonvDw0ZKD+sQLrhIaNTR4ECvwpifF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oLdZuogb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3F64C4CEF1;
+	Fri,  5 Sep 2025 18:40:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757097487;
-	bh=zBznowgcA9KRpPYdFjqyySbRdKkl9xdj5USfqCcnRzE=;
+	s=k20201202; t=1757097639;
+	bh=zazs765EiAP1YNPFy8VgVtG1NsucovDF0NOtXp5Rdp0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LKX9Ju1mWOXI6N75KfrsrKrwLfvt94Xo7Jbvycrs9IXgcAFnJc1MoWmjzHNi1e8bV
-	 b7oIiDbtVqIwoFAbp7CuQUaSqsm05FRccpW8RQGc7uBYl1iQ6/ORuE37l+zFqol7tv
-	 N3109/8CwbsVFqDjUOjdmOL+7kqMTH4eLzEgZDLlnaEosbQSwQ3zj4grFA1h9/Egd+
-	 vwKy64+AOVyk8yoWTurZAmQ8WJMj1wHeoRhO1r4v+0x4TxtPsgXpTCf2CA3cGcc9MV
-	 D/TSUGfak+q+Gn1FXUVoAlQ+Mw5uT2M4bk8z2YLK7HCfSQSvZbJA/TR8VyqSbxXxSo
-	 JU8ShV4YUxkMw==
-Date: Fri, 5 Sep 2025 19:38:00 +0100
+	b=oLdZuogbEo/GI3zkymcBdtOez26VckC1jeHLR4xTgimm2jqpoPHK9EckuTB6mOtGW
+	 FMHsjQe4QdQZ8Y2bIL5NAj827F7MAZJUilvgU+wmVNILE0zfQviyGeMfedFjGzIsz5
+	 hOCjXUG9gGWKTaVvVe6q6tEW28AxP5vC6gVMwheM25W7KuQLreX5RzgrpqU3DQcWok
+	 TIqOzQf2gLuc/wS+zGUyWDn1iikjPHSSJ92wX51Ju3UtqpLpLDQVKDqncm9WRLJ9hl
+	 wOtVvtbSZrTuDtSxekrits4HOyCldeUy/KZ0iaMoUwAO1ohBvsvr+ViexJGrd9+jKx
+	 t+UujbdsObRrA==
+Date: Fri, 5 Sep 2025 19:40:35 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Kendall Willis <k-willis@ti.com>
-Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, vigneshr@ti.com,
-	linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org, d-gole@ti.com, vishalm@ti.com,
-	sebin.francis@ti.com, msp@baylibre.com, khilman@baylibre.com,
-	a-kaur@ti.com, john.ogness@linutronix.de,
-	andriy.shevchenko@linux.intel.com, yujiaoliang@vivo.com,
-	b-liu@ti.com, u.kleine-koenig@baylibre.com
-Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250_omap: Update wakeup-source
- type property
-Message-ID: <20250905-saloon-siesta-77da98d7ae02@spud>
-References: <20250904212455.3729029-1-k-willis@ti.com>
- <20250904212455.3729029-2-k-willis@ti.com>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: linux-hwmon@vger.kernel.org, Akinobu Mita <akinobu.mita@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jean Delvare <jdelvare@suse.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [RESEND PATCH 1/2] dt-bindings: hwmon: pwm-fan: Document after
+ shutdown fan settings
+Message-ID: <20250905-attention-unmoral-89d934074bf6@spud>
+References: <20250904202157.170600-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,65 +62,39 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="YBHU1HQe3eAUtz/k"
+	protocol="application/pgp-signature"; boundary="QxZVX/RcT9k3KTuQ"
 Content-Disposition: inline
-In-Reply-To: <20250904212455.3729029-2-k-willis@ti.com>
+In-Reply-To: <20250904202157.170600-1-marek.vasut+renesas@mailbox.org>
 
 
---YBHU1HQe3eAUtz/k
+--QxZVX/RcT9k3KTuQ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 04, 2025 at 04:24:53PM -0500, Kendall Willis wrote:
-> Allow the wakeup-source property to be either of type boolean or of a
-> phandle array. The phandle array points to the system idle states that the
-> UART can wakeup the system from.
+On Thu, Sep 04, 2025 at 10:21:09PM +0200, Marek Vasut wrote:
+> Document fan-shutdown-percent property, used to describe fan RPM in perce=
+nt
+> set during shutdown. This is used to keep the fan running at fixed RPM af=
+ter
+> the kernel shut down, which is useful on hardware that does keep heating
+> itself even after the kernel did shut down, for example from some sort of
+> management core.
 >=20
-> Signed-off-by: Kendall Willis <k-willis@ti.com>
-> ---
->  Documentation/devicetree/bindings/serial/8250_omap.yaml | 8 +++++++-
->  1 file changed, 7 insertions(+), 1 deletion(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Do=
-cumentation/devicetree/bindings/serial/8250_omap.yaml
-> index 1859f71297ff2..851a5291b4be4 100644
-> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
-> @@ -69,7 +69,13 @@ properties:
->    clock-frequency: true
->    current-speed: true
->    overrun-throttle-ms: true
-> -  wakeup-source: true
-> +
-> +  wakeup-source:
-> +    oneOf:
-> +      - type: boolean
-> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
-> +        description:
-> +          List of phandles to system idle states in which UARTs can wake=
-up the system.
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 
-Is there a single other instance of the wakeup-source property being
-used like this?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-> =20
->  required:
->    - compatible
-> --=20
-> 2.34.1
->=20
-
---YBHU1HQe3eAUtz/k
+--QxZVX/RcT9k3KTuQ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsuCAAKCRB4tDGHoIJi
-0sCOAP0YKRfgNPuWmw0VBD7mFYv3TWGmnWOS9WQUj1ptbhD6ygEA2tj71JTgNmGh
-//hKbMoedfGWmP9EJpLiTCdPihC7agU=
-=B5j5
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsuowAKCRB4tDGHoIJi
+0qfTAQDg1gtz7eMk9y+wSB8sMq81EkdkMLWjLCXFqTbFxxYrzwEAxgoRUmVDJTc4
+jOVOsE9yiEIsYDz16a8YWnAawoQvcQQ=
+=TMpf
 -----END PGP SIGNATURE-----
 
---YBHU1HQe3eAUtz/k--
+--QxZVX/RcT9k3KTuQ--
 
