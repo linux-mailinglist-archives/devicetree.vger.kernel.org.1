@@ -1,111 +1,305 @@
-Return-Path: <devicetree+bounces-213171-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213172-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 80724B44CF5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:06:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 27F82B44D00
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:08:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA18CA440EA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:06:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BF50D1BC0C2F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:09:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94E9226CE2D;
-	Fri,  5 Sep 2025 05:06:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74ACA84E07;
+	Fri,  5 Sep 2025 05:08:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="LTC40j2N"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="eE+AAGia"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B122F21ABB1
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 05:06:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DB25225A23
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 05:08:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757048771; cv=none; b=RM97YWgwt4dDj8HyDwflouDiLyW+yGySFR3WHhr4RYau1Ts/IZy2GI0I0hPvl43NAWqsizH5o+ucg/IsQaj4VItlUCJHmTdiE0byJ7bs8wVRzNDRA9dFMUUDlFAbrUmJK5Tdt2w4MMkmMvjshcK7Lp9eMUL/mULVwERxGlTelUY=
+	t=1757048919; cv=none; b=mgRV/UGF/iEBxANw10fJlefz30PABa1ROh78AB4XKFONGhCpTShH8aSUAa/+/AWKEIGsvi4LtVKjHLqApFGOdoNZaVnOtBqJ7fktPK+9ePbAmZdNA0LYwAAz75cwPvTOCA8UKkjeSXNDo1zKZseX3JoHx5vD/YqKaFBxE/Jsc0k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757048771; c=relaxed/simple;
-	bh=uyMA3OlxBR+8XDI4/fAiYBr3djQIzAJYAC/5TroND18=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=n8754//yB2Y5KvetSSpyXBY1OMxNOnDieGeBrnqEzMdp11gX9CTNmaMae5WFlFFXWN3PgrpwUBkJfAFO09ienNzA3Ic0kEjnpw+WA3/66ujx6ljgJl+PlBtofbxuvq/Zh5gsjLrphKkLCsR9jKW/bAmnqhW5hQ6y9uNkD6nMkLw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=LTC40j2N; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5607a240c75so1845049e87.2
-        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 22:06:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1757048767; x=1757653567; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uyMA3OlxBR+8XDI4/fAiYBr3djQIzAJYAC/5TroND18=;
-        b=LTC40j2NhJIUbfcfiwhuFTP1F4xtwf13zov2SaNIy71Uj+HZhKA4i1+IL+7NQ4ttpm
-         I3l3sTpHRneayPf47ZdQGN936BlRMJUJ8ziIHRvjTYZJr2qZ+u811X8NZP1G8yLD538V
-         2H6G9DZLCq0iUkxwAQnnJIJEYree7JYI5Efhk=
+	s=arc-20240116; t=1757048919; c=relaxed/simple;
+	bh=GrlHgzC2CZ+jmdFYYWA4oPGmFL26PhRfAOttrHjSV9M=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SiNSXzaAI0izdlAaL2qjdNsWVRohxiUpLdssauOR2Bn5FL90JijfBEfzSviLOXGh+EVqgVGgKu3F1OSmHlZe3ia3hu2WA8uwKfv4BzjKSa5mF6DK1pcIH87v4jOgeZy9HBOj0zjec3zDL6mfbMFsC4yiUKLDIKSwSuDs3bOdeH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=eE+AAGia; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584I0YxS007619
+	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 05:08:36 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	XSV9LgvcNte42quuPILmy53FTfP05rNvZ3H6trDOXVA=; b=eE+AAGiaO+bRxnq7
+	6QCLrNnCi4HVlWcL52am0ymom5JkC2A6sPXa/0TPeb9gEb0+LxgQRM8OLhLs8oL/
+	xdLXnry0dsr2g6ntdkJOTv59oVV3hQ4uGAwQUUB92V3ChvFHbI90kyaSf7PUdS5R
+	W/exYD/mq82BKtyFWi7SoMutwU4Dg4DNLg5VOayLHHcJXd4iKOGrl87qeg1VX2qh
+	ME+kZT6nEmYrleMV8dgRr2u8sxEL3sATP5CpESf4irxv8iyLuTGcLXnq5n9nhc2l
+	8BYkMlPiQye5Lw0p28LqcacTTh8FidpILrFQoDuS3hEXJ0Rx7IX7K58EBrDABO5A
+	Bl7S6w==
+Received: from mail-pg1-f199.google.com (mail-pg1-f199.google.com [209.85.215.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura91sfq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 05:08:36 +0000 (GMT)
+Received: by mail-pg1-f199.google.com with SMTP id 41be03b00d2f7-b4c949fc524so1359971a12.2
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 22:08:36 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757048767; x=1757653567;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uyMA3OlxBR+8XDI4/fAiYBr3djQIzAJYAC/5TroND18=;
-        b=bcXULtXgkPIfCKTG9KxRyU/PxPbm2hxap1X8X0zAuBAXgH2+n2mNUZSc31f2Y2Hs/q
-         wWJSk5OyTSgtmYCDo0mSqtLfHJu60Q4prgY5eZ4M2aBmxy1lR7qeD/hsFMTMAltPgf0P
-         Zqhl3NQmWWFCXQV5ay1LkIqn0hQiPnZpAvZzruk6jQF0MCpD2ouXXOWQcIIWP/ux2dbD
-         NmV3/hJq+f5l0jtafwzbzn9De0vXQPTTMtAwWe3FMWh4Z+GNfRYbHKojM7Zk5rQgFP1G
-         HdKlqPZZ6BeI7lYubKp2NWJVi4mdnyVsgOY9O5fLqJ568humbhnXIAuuo4JpKNRSJWaC
-         s9OA==
-X-Forwarded-Encrypted: i=1; AJvYcCXi/6GiBp0AZBJwDJoed4+JqHbAxD4826LhI8XJbNHBRVnnyHPwaMDtiQErhMg375E9YrxvWdKuuHaq@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy7ypCm/jLndOImtBceKqp2a+nLa0JGenyzZT4HKEKNQyNU1fyM
-	cKHaBUQbpAZzWLj4IvsX75r0Zw13xhSwHNNevcE9sS2qvYPhRRhSdCCENB6E8fpo7RsBxTQZtAp
-	h8d714j6X/4xmJ9bXtVhrVCD12aRsR24JRfcIcAwVZH7pEqGAM7WH0g==
-X-Gm-Gg: ASbGncuosP5KPWdTazZZL1sVU1H09Cf5tNtSiZbvw9/7JBEPi0Ukk+Do1KStiPQGwad
-	o27nWNDU+91TiExc/S7aupHsQs7RBuk9F4dZDZQrSuJuZCt4Sx920zs47EuJffzD6h/7A4zRbTF
-	dGKZ9R47Tazczh5lHlAwXAa4ZBqaBHVBVfbAziYWyvZyQQGghh7tHKcB+AkhtvuOOL6IlNwuYwZ
-	6NeKoFmC1q4Jn78TEOglrTigjcmr+kKlWma+Q==
-X-Google-Smtp-Source: AGHT+IHJjUpnhP9a9BCpvVLpzZvdmFRUDDu4oemMG1IXcZXVXfUhtp9wpdL0LzSmbU5jtUN4x+9LhikiWu80XNjJGfk=
-X-Received: by 2002:a05:651c:2109:b0:336:d879:140f with SMTP id
- 38308e7fff4ca-336d87916c1mr56567881fa.21.1757048766845; Thu, 04 Sep 2025
- 22:06:06 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757048915; x=1757653715;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=XSV9LgvcNte42quuPILmy53FTfP05rNvZ3H6trDOXVA=;
+        b=pktk4Cu0oJpFTHYGzkxFBLGEyo/ncFqUJA+voQICJwHhV4xluU+qpeG663t2aYn0ud
+         c29NsT+VgjCvIwnNUo72aYR1IMOAfY8LlqsqDsyN7aF8bXe/j7RbrfGDsVZagK9/AnrZ
+         HVWkccusgWYo7tPMjja3errhZ+fUzIUaSqHMci5zVp/WCR+UV6Asp6N170Ygldt4HTNe
+         55rIYGLRqTv1o4W7oWljMMlOVUeiBj/mn+YdmlFy2X8Etd3LL2zzHucK96IrttLwVkO0
+         ik0iLZdTaPm+xMGzF0R5KGI6tGHbFBX+0/dmOlJq2+JjvjpkNyAFekU6v+INrmNFQOne
+         tvIw==
+X-Forwarded-Encrypted: i=1; AJvYcCWl38SSaiVivJOJPkh0wm5eXdr8IIW50itiAoUAinVEoDOv9zyTRowgoUcMOIDUum4fzkdOqqw4zTsv@vger.kernel.org
+X-Gm-Message-State: AOJu0YxD1hjhF3s8rNJZAWMJR+u8Vq7DS14VN5b9IFXccCCr28L3mppe
+	3x1OpsOcqhQbkrSoHnGmbHntUqd8lKaR+5Zmx3AS8HCozgdGeOvhLRPuWrd0vISXRp0YwTR7cpB
+	0Wn3X+E1uMA85azQ+G7QYPiWFLHLJHhzOx93KjYuHYpQAJLKrM/quUBXgtceI7Uf0
+X-Gm-Gg: ASbGncsUC9AAvZStctrFD3BSqfFQcyARSi0jSWk8SoXapQVQ9V+szDISL20lsDIoMQk
+	xatqmHEJcVbuusmf/Hzr9J4rRI+UC8O5TBLgVom6P1Vz5OGlcRIoH/jJbzB2UWzymwskUtYoMe1
+	scPDQvbVFlUt1AIuY6xV5wX44o1MSrUglzLwUSWEr2Bl5o67c6LgbF0FqPP+Asxwuwrk6cL+UNk
+	c2uOCAxGL4Wk1+J2NuwCjHBew89EOXBqvSQ6wKBjL3GDjHwzkEB3tVyYxQj/Jn0ELu4Fs5bIOUr
+	BEIvjAaXojUUdD4tlO35Ll/CENl6WAP9r2tv7sOUlRAJGj/fheuj+oX6IlbVhAATe9PiJMiLEQ=
+	=
+X-Received: by 2002:a17:903:37c5:b0:24a:a2c5:a0a1 with SMTP id d9443c01a7336-24aa2c5a420mr239775525ad.21.1757048914841;
+        Thu, 04 Sep 2025 22:08:34 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHY/HqqWmtHl5e1NSr2FpgkUWCKmbzdwLY6Mz0jjApAO3v/DyNq9FxUsI0fmcFaLxI90E2kLw==
+X-Received: by 2002:a17:903:37c5:b0:24a:a2c5:a0a1 with SMTP id d9443c01a7336-24aa2c5a420mr239775175ad.21.1757048914300;
+        Thu, 04 Sep 2025 22:08:34 -0700 (PDT)
+Received: from [10.218.42.132] ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24905da183asm198371925ad.74.2025.09.04.22.08.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 04 Sep 2025 22:08:33 -0700 (PDT)
+Message-ID: <6502ef34-34c8-4aa5-a0f4-6860ac5a2802@oss.qualcomm.com>
+Date: Fri, 5 Sep 2025 10:38:31 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250829091913.131528-1-laura.nao@collabora.com> <20250829091913.131528-15-laura.nao@collabora.com>
-In-Reply-To: <20250829091913.131528-15-laura.nao@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 5 Sep 2025 13:05:55 +0800
-X-Gm-Features: Ac12FXzUw4mCbky5MPiHj8W2ByhD9sAje7rRwu3IY62BkDBlMB6KCGdwR2WWCfw
-Message-ID: <CAGXv+5Fj9Hwmk2y_bZhGX0EUEY42tm3t0nTrjtV-sYhD_B-xVg@mail.gmail.com>
-Subject: Re: [PATCH v5 14/27] clk: mediatek: Add MT8196 peripheral clock support
-To: Laura Nao <laura.nao@collabora.com>
-Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
-	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
-	richardcochran@gmail.com, guangjie.song@mediatek.com, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
-	kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v8 5/5] PCI: qcom: Add support for ECAM feature
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: cros-qcom-dts-watchers@chromium.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_mrana@quicinc.com,
+        quic_vpernami@quicinc.com, mmareddy@quicinc.com
+References: <20250903195721.GA1216663@bhelgaas>
+Content-Language: en-US
+From: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+In-Reply-To: <20250903195721.GA1216663@bhelgaas>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: zILmQy3Mo2lDgfKp_ywwfqk67cekRxrq
+X-Proofpoint-GUID: zILmQy3Mo2lDgfKp_ywwfqk67cekRxrq
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX6XkIjAro6Ktn
+ nf/+gODDu6TotWlAohWuyH+VAN/ofnV7vGGQy6YKw1+qrdXTpZgPITio800LlHZuZzvFW2mDMK6
+ W8iXNOPp80NHo63TWWBlb9ByVZnGiwSHBGhqPtuyEEAjfa3PkEU61dJ9q+SFWQE6LXIpGynEP+w
+ 8oActvL5KfYaFCW9x1Jmn/OpAIBcqppJ2uh6ZaxgK7fc30FzM98FzcRx3UG2zj5TIYjHtGdyhLZ
+ du9bgsloTrtDkeJgDXODUK6QGw8VcUI5Dg+TOjOv+ty1ByTFem31LpjDR+TZzh6XF08THvrvFPE
+ 1Wn3c0rer3QzsSVGILuuuv/cCHVqxQ4fPf3JltV0kdSQyZ7cW2m+tHrjv4b3udcKPneBMPMXmUj
+ mikEtiHH
+X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68ba7054 cx=c_pps
+ a=Oh5Dbbf/trHjhBongsHeRQ==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=9HwtANXkhL7ZsJXsY_EA:9
+ a=QEXdDO2ut3YA:10 a=_Vgx9l1VpLgwpw_dHYaR:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-05_01,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
 
-On Fri, Aug 29, 2025 at 5:21=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
- wrote:
->
-> Add support for the MT8196 peripheral clock controller, which provides
-> clock gate control for dma/flashif/msdc/pwm/spi/uart.
->
-> Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
-Not sure why CLK_OPS_PARENT_ENABLE was removed, but it does seem like the
-right thing to do, since this block is always on and doesn't require a
-clock to be enabled before accessing the registers.
 
-Reviewed-by: Chen-Yu Tsai <wenst@chromium.org> # CLK_OPS_PARENT_ENABLE chan=
-ge
+On 9/4/2025 1:27 AM, Bjorn Helgaas wrote:
+> On Thu, Aug 28, 2025 at 01:04:26PM +0530, Krishna Chaitanya Chundru wrote:
+>> The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+>> gives us the offset from which ELBI starts. So override ELBI with the
+>> offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
+>>
+>> On root bus, we have only the root port. Any access other than that
+>> should not go out of the link and should return all F's. Since the iATU
+>> is configured for the buses which starts after root bus, block the
+>> transactions starting from function 1 of the root bus to the end of
+>> the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+>> outside the link through ECAM blocker through PARF registers.
+>>
+>> Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-qcom.c | 70 ++++++++++++++++++++++++++++++++++
+>>   1 file changed, 70 insertions(+)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+>> index 5092752de23866ef95036bb3f8fae9bb06e8ea1e..8f3c86c77e2604fd7826083f63b66b4cb62a341d 100644
+>> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+>> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+>> @@ -55,6 +55,7 @@
+>>   #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+>>   #define PARF_Q2A_FLUSH				0x1ac
+>>   #define PARF_LTSSM				0x1b0
+>> +#define PARF_SLV_DBI_ELBI			0x1b4
+>>   #define PARF_INT_ALL_STATUS			0x224
+>>   #define PARF_INT_ALL_CLEAR			0x228
+>>   #define PARF_INT_ALL_MASK			0x22c
+>> @@ -64,6 +65,16 @@
+>>   #define PARF_DBI_BASE_ADDR_V2_HI		0x354
+>>   #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
+>>   #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
+>> +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
+>> +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
+>> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
+>> +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
+>> +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
+>> +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
+>> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
+>> +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
+>> +#define PARF_ECAM_BASE				0x380
+>> +#define PARF_ECAM_BASE_HI			0x384
+>>   #define PARF_NO_SNOOP_OVERRIDE			0x3d4
+>>   #define PARF_ATU_BASE_ADDR			0x634
+>>   #define PARF_ATU_BASE_ADDR_HI			0x638
+>> @@ -87,6 +98,7 @@
+>>   
+>>   /* PARF_SYS_CTRL register fields */
+>>   #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+>> +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
+>>   #define MST_WAKEUP_EN				BIT(13)
+>>   #define SLV_WAKEUP_EN				BIT(12)
+>>   #define MSTR_ACLK_CGC_DIS			BIT(10)
+>> @@ -134,6 +146,9 @@
+>>   /* PARF_LTSSM register fields */
+>>   #define LTSSM_EN				BIT(8)
+>>   
+>> +/* PARF_SLV_DBI_ELBI */
+>> +#define SLV_DBI_ELBI_ADDR_BASE			GENMASK(11, 0)
+>> +
+>>   /* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
+>>   #define PARF_INT_ALL_LINK_UP			BIT(13)
+>>   #define PARF_INT_MSI_DEV_0_7			GENMASK(30, 23)
+>> @@ -317,6 +332,48 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+>>   	qcom_perst_assert(pcie, false);
+>>   }
+>>   
+>> +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
+>> +{
+>> +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>> +	u64 addr, addr_end;
+>> +	u32 val;
+>> +
+>> +	/* Set the ECAM base */
+>> +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
+>> +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
+>> +
+>> +	/*
+>> +	 * The only device on root bus is the Root Port. Any access to the PCIe
+>> +	 * region will go outside the PCIe link. As part of enumeration the PCI
+>> +	 * sw can try to read to vendor ID & device ID with different device
+>> +	 * number and function number under root bus. As any access other than
+>> +	 * root bus, device 0, function 0, should not go out of the link and
+>> +	 * should return all F's. Since the iATU is configured for the buses
+>> +	 * which starts after root bus, block the transactions starting from
+>> +	 * function 1 of the root bus to the end of the root bus (i.e from
+>> +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
+>> +	 */
+>> +	addr = pci->dbi_phys_addr + SZ_4K;
+>> +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
+>> +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
+>> +
+>> +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
+>> +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
+>> +
+>> +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
+> 
+> I guess this is an implicit restriction to a single Root Port on the
+> root bus at bb:00.0, right?  So when the qcom IP eventually supports
+> multiple Root Ports or even a single Root Port at a different
+> device/function number, this would have to be updated somehow?
+> 
+> No need to change anything here; just making sure I understand what's
+> going on.
+> 
+You are correct Bjorn, this is for single root port on the root bus.
+when there is multi root port we need to change this logic in future if
+QCOM decides to have multi root port devices.
 
-Note that I did not go through the bit definitions. I assume the other
-Collabora folks did a good job of reviewing those.
+- Krishna Chaitanya.
+>> +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
+>> +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
+>> +
+>> +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
+>> +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
+>> +
+>> +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
+>> +	val |= PCIE_ECAM_BLOCKER_EN;
+>> +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
+>> +}
+>> +
+>>   static int qcom_pcie_start_link(struct dw_pcie *pci)
+>>   {
+>>   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>> @@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+>>   		qcom_pcie_common_set_16gt_lane_margining(pci);
+>>   	}
+>>   
+>> +	if (pci->pp.ecam_enabled)
+>> +		qcom_pci_config_ecam(&pci->pp);
+>> +
+>>   	/* Enable Link Training state machine */
+>>   	if (pcie->cfg->ops->ltssm_enable)
+>>   		pcie->cfg->ops->ltssm_enable(pcie);
+>> @@ -1314,6 +1374,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>   {
+>>   	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+>>   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+>> +	u16 offset;
+>>   	int ret;
+>>   
+>>   	qcom_ep_reset_assert(pcie);
+>> @@ -1322,6 +1383,15 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+>>   	if (ret)
+>>   		return ret;
+>>   
+>> +	if (pp->ecam_enabled) {
+>> +		/*
+>> +		 * Override ELBI when ECAM is enabled, as when ECAM
+>> +		 * is enabled ELBI moves along with the dbi config space.
+>> +		 */
+>> +		offset = FIELD_GET(SLV_DBI_ELBI_ADDR_BASE, readl(pcie->parf + PARF_SLV_DBI_ELBI));
+>> +		pci->elbi_base = pci->dbi_base + offset;
+>> +	}
+>> +
+>>   	ret = qcom_pcie_phy_power_on(pcie);
+>>   	if (ret)
+>>   		goto err_deinit;
+>>
+>> -- 
+>> 2.34.1
+>>
+> 
 
