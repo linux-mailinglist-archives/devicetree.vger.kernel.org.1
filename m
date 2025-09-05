@@ -1,99 +1,201 @@
-Return-Path: <devicetree+bounces-213613-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213615-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61925B45E7D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:45:33 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CD9CB45EA9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:49:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7065F1C81ED3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:45:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4513517B8E0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:49:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF64D309F1A;
-	Fri,  5 Sep 2025 16:45:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7890030215C;
+	Fri,  5 Sep 2025 16:49:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="N0DVrRFb"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="ZDtmlhPR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+Received: from mail-4323.protonmail.ch (mail-4323.protonmail.ch [185.70.43.23])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02D3530217F;
-	Fri,  5 Sep 2025 16:45:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9E3A13D521;
+	Fri,  5 Sep 2025 16:49:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.23
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757090719; cv=none; b=M+Kpuiltmq5tIaKTJ2oCUFXFCZadiy30PxIR4glkvqHSUT/E+kxaO3+6wnkhfdXMo5pKQZ40M7kSWtTzeQgthX0n788i3uZU6OW50dP+eGsldOCRj7P7lTDvAYhHU8ax5CblQDR1HmnXqworz8nuM7KxkhL4lyDUJsLOed+DlNg=
+	t=1757090943; cv=none; b=mYzeUXVenddgRHJEl3M+pg6SioC5/00AeakzpFEgqRJZBWla45CsIA4xdA6198DoNnGwvJlsMcX0p7T4v5gqWzuBvxlnyuENErDcjj5XOOjSu9tim+3vfmTKxF8n0UHfB23L1q5eljmI6TT81phNuKFbT5nmqmMzmfyUsNYFuvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757090719; c=relaxed/simple;
-	bh=J//GOtdAcyhFVkDXVSjfGjySdeaeurbPwX3waIGxCZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OgcWVx5/X1RvW4Z3/fCtG0RrDr7Btc1OxJbGcyZ9ou+v8cWoZOFcadgL6PTYEDI4VraZWfIXEpXikp44jx0UQZILRFAXUcTZHB2MIjDBaIZI/yRLBltdNOI4YltEpW5oqH9vjPxOPU7NLvok/YiFYtI8iI+LOujBgawn1cyeDlg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=N0DVrRFb; arc=none smtp.client-ip=192.198.163.9
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757090718; x=1788626718;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=J//GOtdAcyhFVkDXVSjfGjySdeaeurbPwX3waIGxCZU=;
-  b=N0DVrRFbB76Rgzlg1cME4MFzqxX1VHi1GEZ6VPywfLPO2/4LHHAKWEuP
-   wp2DgzCv/rsfaKwaoYQuCZtkNMtj/e2YlqZioPLVVnSbixAXAjcbkbBdO
-   J9C2t4yorP73qQTbO97gLUA8s4EzsX/pQ1DLXZFtw9NHpuxjoj3xKh9+7
-   JNCLvPS2dC/JKhxZVXtm85YoX6XLgNPaKi26VXNllreUrGPyo3jIZhojr
-   HIPUbEVO4HBhnaIB/Mz1WKfCkk2DRpaDHdXfMzy7fNuOchkzvv+T/7C5d
-   K9OvEb51dftiVBH4qb0DcwqqxE/R8FBfuxP4Y9K8D5fbTmbdzXQFBWPoO
-   A==;
-X-CSE-ConnectionGUID: QVeDpXTpSbqAg3dN9xpt1Q==
-X-CSE-MsgGUID: 3hT9NTAVRAGH/sFjiwLD+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="70149625"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="70149625"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
-  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 09:45:17 -0700
-X-CSE-ConnectionGUID: kKMV4G6YTxGOe8O6Lfq8xg==
-X-CSE-MsgGUID: wFGoXi64QU2fZAzvE6Garw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="203134496"
-Received: from smile.fi.intel.com ([10.237.72.52])
-  by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 09:45:14 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1uuZYl-0000000BfbA-2Kpi;
-	Fri, 05 Sep 2025 19:45:11 +0300
-Date: Fri, 5 Sep 2025 19:45:11 +0300
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: Jonathan Santos <Jonathan.Santos@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, lars@metafoo.de, jic23@kernel.org,
-	dlechner@baylibre.com, nuno.sa@analog.com, andy@kernel.org,
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-	marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
-Subject: Re: [PATCH v3 3/4] math.h: Add 64-bit fractional numbers types
-Message-ID: <aLsTlwvQd1Jgnlht@smile.fi.intel.com>
-References: <cover.1757001160.git.Jonathan.Santos@analog.com>
- <f9ebbb830fab46201dacbffa4cbe223782f0acf3.1757001160.git.Jonathan.Santos@analog.com>
+	s=arc-20240116; t=1757090943; c=relaxed/simple;
+	bh=diSf69d2oQ1dS0WKoCbUPJHHMv6KOh1u+FVVXuJwOm4=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ShN71A+ChJ4BIYVa+Q8gl0DJF9XpSzuO/ZkJlHk6fLDx+TAScs3jm0gdM8De+JuPuH2MvqLu/IKTm7LIk6OqWEEU1//BNtQyGr0tcE80sLIX7U+PILVFi6HBahbNngCURswEXjCsJBwVBdRcTzwDDAmReWoAtoQddd02hXzrFKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=ZDtmlhPR; arc=none smtp.client-ip=185.70.43.23
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1757090938; x=1757350138;
+	bh=diSf69d2oQ1dS0WKoCbUPJHHMv6KOh1u+FVVXuJwOm4=;
+	h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
+	 Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
+	 Message-ID:BIMI-Selector;
+	b=ZDtmlhPROSqmOV/mM031irz4iMovwT/6c7BOlqR8Ko2upeeW6TEn7SntMw6fDzaw8
+	 qufJU7PvggauiQcOyjOrAzI3yS0QA+BYNuhcttRDGzTEZYXgriOgCZFO9/CrS7NmZ+
+	 vXeKW9lqxZ+c3FpKAnk5Rma4s0PIGZiCMtfP6yX3xK1uF2N500A8YyW6RI/xmeQJdf
+	 qzNR9dUL01iA1IZweZBwvtK64Ut0sdcFweynzR2gYabOjj/aXkPKVwdTEnqmnE/PVX
+	 Ztjcj1wPNky8uIsZSli6Y15XQYQXj9yTb8wy3xxlafgksyozXDcE7IVGZPqEJ4Z7PX
+	 I+EfDtxPPFVJQ==
+Date: Fri, 05 Sep 2025 16:48:52 +0000
+To: Rob Herring <robh@kernel.org>
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: leds: commonize leds property
+Message-ID: <Lm6PLaup84KHzhxYTbsrQIbEeQpc6dj65aLkLFvOx7QwvuXS9ON53Csa2v6LBp4hd9iIQilvGhXqx4kXv4cfqgYUeA49vrVdWJw-fNMLu2Y=@vinarskis.com>
+In-Reply-To: <20250905152404.GB953718-robh@kernel.org>
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com> <20250905-leds-v2-2-ed8f66f56da8@vinarskis.com> <20250905152404.GB953718-robh@kernel.org>
+Feedback-ID: 158356072:user:proton
+X-Pm-Message-ID: 8506bc237e49fba276022028e967299c197ecd38
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f9ebbb830fab46201dacbffa4cbe223782f0acf3.1757001160.git.Jonathan.Santos@analog.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
-
-On Fri, Sep 05, 2025 at 06:49:32AM -0300, Jonathan Santos wrote:
-> Extend fractional numbers types to include __u64 and __s64 data types.
-
-Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-
--- 
-With Best Regards,
-Andy Shevchenko
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
 
+
+
+
+
+On Friday, September 5th, 2025 at 17:24, Rob Herring <robh@kernel.org> wrot=
+e:
+
+>=20
+>=20
+> On Fri, Sep 05, 2025 at 09:59:30AM +0200, Aleksandrs Vinarskis wrote:
+>=20
+> > A number of existing schemas use 'leds' property to provide
+> > phandle-array of LED(s) to the consumer. Additionally, with the
+> > upcoming privacy-led support in device-tree, v4l2 subnode could be a
+> > LED consumer, meaning that all camera sensors should support 'leds'
+> > and 'led-names' property via common 'video-interface-devices.yaml'.
+> >=20
+> > To avoid dublication, commonize 'leds' property from existing schemas
+> > to newly introduced 'led-consumer.yaml'.
+> >=20
+> > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+> > ---
+> > .../devicetree/bindings/leds/backlight/led-backlight.yaml | 7 +------
+> > Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml | 6 +=
+-----
+> > .../devicetree/bindings/media/video-interface-devices.yaml | 3 +++
+> > 3 files changed, 5 insertions(+), 11 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backl=
+ight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.=
+yaml
+> > index f5554da6bc6c73e94c4a2c32b150b28351b25f16..5e19b4376715eeb05cb7892=
+55db209ed27f8822f 100644
+> > --- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.ya=
+ml
+> > +++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.ya=
+ml
+> > @@ -18,17 +18,12 @@ description:
+> >=20
+> > allOf:
+> > - $ref: common.yaml#
+> > + - $ref: /schemas/leds/leds-consumer.yaml#
+>=20
+>=20
+> Drop.
+>=20
+> > properties:
+> > compatible:
+> > const: led-backlight
+> >=20
+> > - leds:
+> > - description: A list of LED nodes
+> > - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > - items:
+> > - maxItems: 1
+>=20
+>=20
+> You need to keep the property here:
+>=20
+> leds: true
+>=20
+> > -
+> > required:
+> > - compatible
+> > - leds
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicol=
+or.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > index 8ed059a5a724f68389a1d0c4396c85b9ccb2d9af..b4f326e8822a3bf452b22f5=
+b9fa7189696f760a4 100644
+> > --- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> > @@ -17,16 +17,12 @@ properties:
+> > compatible:
+> > const: leds-group-multicolor
+> >=20
+> > - leds:
+> > - description:
+> > - An aray of monochromatic leds
+> > - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > -
+> > required:
+> > - leds
+> >=20
+> > allOf:
+> > - $ref: leds-class-multicolor.yaml#
+> > + - $ref: /schemas/leds/leds-consumer.yaml#
+>=20
+>=20
+>=20
+> Same comments in this one.
+>=20
+> > unevaluatedProperties: false
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/media/video-interface-de=
+vices.yaml b/Documentation/devicetree/bindings/media/video-interface-device=
+s.yaml
+> > index cf7712ad297c01c946fa4dfdaf9a21646e125099..1e25cea0ff71da2cfd1c7c4=
+642713199f3542c0a 100644
+> > --- a/Documentation/devicetree/bindings/media/video-interface-devices.y=
+aml
+> > +++ b/Documentation/devicetree/bindings/media/video-interface-devices.y=
+aml
+> > @@ -10,6 +10,9 @@ maintainers:
+> > - Jacopo Mondi jacopo@jmondi.org
+> > - Sakari Ailus sakari.ailus@linux.intel.com
+> >=20
+> > +allOf:
+> > + - $ref: /schemas/leds/leds-consumer.yaml#
+>=20
+>=20
+> This can be dropped. The user still has to define how many entries and
+> what the values of led-names are.
+
+Hmm, but where should it be added then? If I just drop it, MIPI camera sche=
+mas which are based on 'video-interface-devices.yaml' and have 'unevaluated=
+Properties: false' throw warnings because 'leds' was not expected. Includin=
+g the example in 'led-consumer.yaml' as found by your bot (because of patch=
+ order your bot only run on 1/4, adding this very change fixes it).
+In this case, v4l2 subnode is the LED user, which is some camera. It seems =
+most/all of these cameras are based on this binding, so instead of adding n=
+ew led related properties to all of them, I thought this is a good common p=
+lace for it... Shall I add #entries and available options for 'led-names' h=
+ere to make it complete?
+
+Thanks,
+Alex
+
+>=20
+> > +
+> > properties:
+> > flash-leds:
+> > $ref: /schemas/types.yaml#/definitions/phandle-array
+> >=20
+> > --
+> > 2.48.1
 
