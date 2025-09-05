@@ -1,254 +1,148 @@
-Return-Path: <devicetree+bounces-213466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213468-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28B98B4571F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 14:01:42 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12530B4572C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 14:02:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D38F43B41A5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:01:40 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C91AA4E558C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:02:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F169D350D78;
-	Fri,  5 Sep 2025 12:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F56E2F5484;
+	Fri,  5 Sep 2025 12:02:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ak9de5Dx"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lr1TrZr9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
+Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F9EC2343BE;
-	Fri,  5 Sep 2025 12:00:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C253319E7F8;
+	Fri,  5 Sep 2025 12:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757073614; cv=none; b=Bcp+NbHV8BMohAhW5apJT9iwlWqRBb8FuyoeuUh8dOwYCg0SdZUQbdhsMf6Hw26kRTy02P5844TolgSGS6+TReM1LJko8rdJL8pIS3lKGFaRDZNHlKmCW3OYHT9WS447JoLoL/7P5jtLPMHlDyTBpGj9/API03AlHGND37l9Ti0=
+	t=1757073771; cv=none; b=sgKFQYEq8MwH13kGbU8YI5zlRx8r3gTp/O/MZQWVdcvH6k7yD2BN+PhQ3YIPf+sPWhVaJQIixonOPCJOxWAoth8dE7/SozGPrF8KCN5MmGCq1/sJ/425YFjKfT4iv1ORV1alxGRxoSV0T2J73BNVdpnHa+0HR5TuCNva6E++7+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757073614; c=relaxed/simple;
-	bh=lXISe0xsz5jXAKAliGKbVi5V4LE36s1ZbY9PbPUaJH0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=cQ5GqmKOt1tjLQ2CjqwXs8+wtrPg7O3082m379w8A3Equ8J/zoLkvY6c9jvacL8Bxc1jnpdSXERb4Lry8KKTOptUVgNyBRqlPqU0wiFvt5pPOmXY/k1rvvrFqde6OEy5jfv8ZiFQ84FhG1cTPDuJ4RI7gmzqLaSFNXeEuaEPJMk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ak9de5Dx; arc=none smtp.client-ip=209.85.210.171
+	s=arc-20240116; t=1757073771; c=relaxed/simple;
+	bh=xnlQwHesXOP2dDDQ+aWTnF4TrrBacXBh9qTURWV7gwQ=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q4DbYBCiXcSi/onB7rNa0IY4Wlvvie6JzSPraPjnD388fnmAqyzJByX2hHUWjbdl+iFelbsx+5lEoMtKDzXVj8JQIxbnFCxFVs+NPG6AFU3+vdE3mvXLza9BN54BXLb/oETJofMhPyDh3RkU2x5JMaa1NEIE0KTvSGOxifj7ok4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lr1TrZr9; arc=none smtp.client-ip=209.85.128.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-7724df82cabso2440561b3a.2;
-        Fri, 05 Sep 2025 05:00:12 -0700 (PDT)
+Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45cb5e5e71eso11785295e9.2;
+        Fri, 05 Sep 2025 05:02:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757073611; x=1757678411; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1757073768; x=1757678568; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jbHadlRPNZHf4QM7oZmMpzNXcctgtaP/Xq2UPJ6KP14=;
-        b=Ak9de5DxKf8CT0W+3wDkQxWCbSWzsz+85n8o2YnLwmPefI0qK28wPJyGvVV2e3SiMF
-         BhrK4Aok4WbfC08a2LwMvMLGLcueeo0rWIrGYG9ASnJVBWdi9XeWZMR02I9KENIVApGV
-         jqqEZwuB3txpLNSzCe2gFJbqzwKArJOJixQt2Oxik3ssgWIC0PxtJUMW45UN2bWoPEtX
-         OB2uuVbZwVtMO8cWHcK/f7VN1n/RGeIuNfkdFaMIrlTRa0ozPgnsiXwQztGkXm/u8YRw
-         bVWnxxgJP149KUe/sAU+/XIBRGThJZATWIjQ66+v9JDcDsfGNGOJDi4m/3zna6oVZFBb
-         HisQ==
+        bh=2p9jOJsI9vaYor/gi7quDFPvwuxPBD5F0qxTD9otNVs=;
+        b=lr1TrZr9q5rxHfBoEGDh/LIL7xwuUJ87TdUpSTvJKD/Idzz4ixalH0rDKMfV9LQpUf
+         teCMieTFbyz7SYMWN6oGMTTE8DTiwaUqE+Bf1uvR6gHAw69ifr51AfEzW4MPqZctydr/
+         edTn2DROOxxhmMSvG21JYQuIn0viPyH9RqPtKToHZTM0+xd8dnmc1LlUzxNcNcUFdcJj
+         hOLYsU4lAL//CH1/fA8UVUndsWK10DpjMnYwjyoAvQh7wSM+zx5opCRPsaPJ0ETe2o5N
+         PSacupNmYSHlpH1nAp1c06WhxeKsv1TC8o12BmSIWCuGSRz5cwcgCEXJVTTDPr4nS2lB
+         HKKA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757073611; x=1757678411;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1757073768; x=1757678568;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=jbHadlRPNZHf4QM7oZmMpzNXcctgtaP/Xq2UPJ6KP14=;
-        b=xPOOeAdLuDdGypmdxO+LnkGlWJw3rVgolua35pQQy77cWPVA+rgmlDjeWaohVZdjlL
-         WHLJLr+UnHL4HgkpyTjLWr0jnGXo6h0gAWATxPKXqTEmYKwioMYbK/rGU4aGb4nGOluc
-         mVQinyuhdLRPdYqST35EBNopLBWSvO8Vun9GS6cbVp0Ep8IcpRpANHcdEXW8g3CBF6tt
-         i7ec038eY8oeMDJBnUbhaPX1LLiZBmmhM9PPuylosxRQ0OHEU5Y9I+amaYMV8FcvtZTQ
-         NM30e267S78YXXM18DjQyZlsYpsIyr5grjv8NR0YCSUAOcb+xWqYEVNna1vh2ll1FXii
-         Jw5w==
-X-Forwarded-Encrypted: i=1; AJvYcCUkEEVSUGyG6QEGfXUU4IfU/b8VLFIZ4vw0xCY1i6gsdWy8eiuInDW6SLcXKCZsOW1nrmSP8fE+ULJL@vger.kernel.org, AJvYcCXU2BjalgOVLa9KsF1e3NeCdeKMANNzrIY9owwiXxoy/RJwfD3dzCXEAgMEXBXczx7yBvJPB5QpkKBtjhWT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy6XEG5QzxroGuEh79cLt1vMOxTgiR2wW3wwEeoYFs9y5h1xOnV
-	fBcg7DKTzleKT2yJ5Bka1QxV3tLddWaI4JC3w9pgsH2DH+k9hiLJXKkc
-X-Gm-Gg: ASbGnctbGLaxef01bEmN2kBaqNx8th9tmBY8UV/bK+Srm033XCC3k059IFVuamfhcyE
-	SeWQ7qujGUMDZMvjjm6KBv0mrh/DTP/+YZWYCmmvNo7tnIYyVkHeG+g87fvWbXxBE0MdUtqqXA/
-	SYQyaQ+PA8bIi8VVkU9EV9d1kzEbIv1ruaifUeSqmjDELTYMCNPQQDL4uN4LXrHyxcYJm8jZoxW
-	AkaRt/db7jHciRLSYPqvE2DWAU7e/Yre+Hz7mmc1RFEBSvNiIMmUlNn2HfZpohT4RwEN2v13EBU
-	WDhl4DjzEhGNkf69p4/b/zA0rl850FWFJrtBBN8K5Wai2kYvEQQAuJAvZqqnlJyaQKGnkMioZ/E
-	TUZz28gFA36QjjD5QOJze8PtWhcZADZw=
-X-Google-Smtp-Source: AGHT+IEHzTd/Vu5HIqp5Obu47X3pNPJVxl9wP0t91OrOXzNkFGFINMn4lFyMzbYJuqchoSIRXpB1mA==
-X-Received: by 2002:a05:6a20:7f8d:b0:243:c081:b4a7 with SMTP id adf61e73a8af0-243d6f85b56mr31346449637.59.1757073611194;
-        Fri, 05 Sep 2025 05:00:11 -0700 (PDT)
-Received: from rockpi-5b ([45.112.0.216])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-772396d2b97sm19633049b3a.67.2025.09.05.05.00.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 05:00:10 -0700 (PDT)
-From: Anand Moon <linux.amoon@gmail.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
-	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH v3 11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
-Date: Fri,  5 Sep 2025 17:27:42 +0530
-Message-ID: <20250905115836.7549-12-linux.amoon@gmail.com>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250905115836.7549-1-linux.amoon@gmail.com>
-References: <20250905115836.7549-1-linux.amoon@gmail.com>
+        bh=2p9jOJsI9vaYor/gi7quDFPvwuxPBD5F0qxTD9otNVs=;
+        b=K6XWGe6QPp/wNAKmd0jlh4BBjJ8pQDzkBSll/dKsgoyZB/bv8SgAG/qVJsrYTbLcxF
+         aEbtcWIE6TZDDZ7Sv5B2oUvEkEW0D95Bu3Mwz3sHYqxeT2MVTIiWv56gNg4DD4ZFciqQ
+         Eqz9kZe8rMPxig+B54VZ2LP7eKhKkIUX+pEOksddYzThr18Gw9bUxrNSb9aAXwk/Fa1o
+         oEouS9MT5IZrWmG2N+swjDeZqoe3v+/7fCsMI+5HUE8QN9FLxJk25YTwz3zdF2mdXkOM
+         NsO88xyPzQWd70QjvYcTWhvtLw0mnXrJzotkLkFXUBCHPAzkpC7ckKS8M4mj53e9NR4K
+         Te3w==
+X-Forwarded-Encrypted: i=1; AJvYcCVULaNfNEXdwklhwRfzTJ6Ktn/jAo/2hVoyvmReMElOHwlPnNfsy7VMQUBoGTYG7T/WswSVUCKeia8n@vger.kernel.org, AJvYcCWDyUZIwZxp6MDguLjJnX3eWrVzOTzNQUE/46KiFesXLZoumT00A2GhzpPewODJIyRnDPlUrCsWpIM5kpK0@vger.kernel.org, AJvYcCWR3IMZm/nkdqAx5IsWPA3JJZfUP3lVs2oTa9UKpsIXJ8BBNlEtEL3isCupIGznlKo6xJt9nT59OK7m5+EwUEii5MM=@vger.kernel.org, AJvYcCWdzRK0gKkluXJaKL4dtgDr8uKQKiGL/oaaemlHBgkXzW059qNRPo2N0g6wiY2/ILL2DohBM45V@vger.kernel.org
+X-Gm-Message-State: AOJu0Yw/bQz5zhIV+hF0+WQBXTM9fMYV7OiCY5C9Cd5tuD2jxGHDScUG
+	aaQbfrVZUiCv/dLIqbn+ONZ6lOJfPK06R9JusHf39fE6oVtnR6KSMC+0gFbODcS0nJLf56kRqnq
+	RkyrNzVNUL62rJDVy9jRAfXmg7J2SLGQ=
+X-Gm-Gg: ASbGncs48aITaWUmOhoUKwCVsZbzEdzFfHTS7u3JB97N7E2HxPnwf7OC38IzUJ0Xwiy
+	nSP2X2Xvon/PsDxLANaJm5i4LsGOiwsWwIs7XrBqXnbBH7aCymqIzpxIhvjVjjsQiwdqSqkRNq5
+	NcvfYOkbWbrcG2ESyqG0LFU9bUn3RFURpI2F1afrv/fbrXtCzsyfwZtzlCz8LVhRXg5K8zSJDHi
+	BKW/UnzAR0cI+ocawzIESMSFD1qtRYqDVcIQ/4PnVpk5KzkPlg=
+X-Google-Smtp-Source: AGHT+IFdNbes9YOJazZ/jkcC7CpYUmvjmyTzctIHw8JngzIufBAJDltcfI9aEkGQ17kqK8mcwsYN3FEysIuAXVo08Ec=
+X-Received: by 2002:a05:6000:26c4:b0:3ca:4e3:6ea6 with SMTP id
+ ffacd0b85a97d-3d1dee6d7e9mr19290849f8f.46.1757073767683; Fri, 05 Sep 2025
+ 05:02:47 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20250904114204.4148520-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250904114204.4148520-7-prabhakar.mahadev-lad.rj@bp.renesas.com> <021e970a-f606-4702-9f0e-b4b0576bc5d6@lunn.ch>
+In-Reply-To: <021e970a-f606-4702-9f0e-b4b0576bc5d6@lunn.ch>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 5 Sep 2025 13:02:21 +0100
+X-Gm-Features: Ac12FXzxz3naqLRqdbTKPufgNXpGKRJOQO-Ub4jeyjydA7gw1aMStbQP7vFttuI
+Message-ID: <CA+V-a8vudqkkdZDyvsBeuKCgGBYCeA4ydMgN5b-+1nkWcQe_0w@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 6/9] net: pcs: rzn1-miic: Make switch mode
+ mask SoC-specific
+To: Andrew Lunn <andrew@lunn.ch>, Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Magnus Damm <magnus.damm@gmail.com>, 
+	Wolfram Sang <wsa+renesas@sang-engineering.com>, linux-renesas-soc@vger.kernel.org, 
+	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-As per T7 datasheet add missing cache information to the Amlogic T7 SoC.
+Hi Andrew and Geert,
 
-- Each Cortex-A53 core has 32 KB of instruction cache and
-	32 KB of L1 data cache available.
-- Each Cortex-A73 core has 64 KB of L1 instruction cache and
-	64 KB of L1 data cache available.
-- The little (A53) cluster has 256 KB of unified L2 cache available.
-- The big (A73) cluster has 1 MB of unified L2 cache available.
+Thank you for the review.
 
-Signed-off-by: Anand Moon <linux.amoon@gmail.com>
----
- arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 74 +++++++++++++++++++++
- 1 file changed, 74 insertions(+)
+On Thu, Sep 4, 2025 at 9:37=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Thu, Sep 04, 2025 at 12:42:00PM +0100, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Move the hardcoded switch mode mask definition into the SoC-specific
+> > miic_of_data structure. This allows each SoC to define its own mask
+> > value rather than relying on a single fixed constant. For RZ/N1 the
+> > mask remains GENMASK(4, 0).
+> >
+> > This is in preparation for adding support for RZ/T2H, where the
+> > switch mode mask is GENMASK(2, 0).
+>
+> > -#define MIIC_MODCTRL_SW_MODE         GENMASK(4, 0)
+>
+> >       miic_reg_writel(miic, MIIC_MODCTRL,
+> > -                     FIELD_PREP(MIIC_MODCTRL_SW_MODE, cfg_mode));
+> > +                     ((cfg_mode << __ffs(sw_mode_mask)) & sw_mode_mask=
+));
+>
+> _ffs() should return 0 for both GENMASK(2,0) and GENMASK(4, 0). So
+> this __ffs() is pointless.
+>
+Agreed.
 
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-index ec743cad57dbf..6510068bcff92 100644
---- a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-@@ -53,6 +53,13 @@ cpu100: cpu@100 {
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x100>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu101: cpu@101 {
-@@ -60,6 +67,13 @@ cpu101: cpu@101 {
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x101>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu102: cpu@102 {
-@@ -67,6 +81,13 @@ cpu102: cpu@102 {
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x102>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu103: cpu@103 {
-@@ -74,6 +95,13 @@ cpu103: cpu@103 {
- 			compatible = "arm,cortex-a53";
- 			reg = <0x0 0x103>;
- 			enable-method = "psci";
-+			d-cache-line-size = <32>;
-+			d-cache-size = <0x8000>;
-+			d-cache-sets = <32>;
-+			i-cache-line-size = <32>;
-+			i-cache-size = <0x8000>;
-+			i-cache-sets = <32>;
-+			next-level-cache = <&l2_cache_l>;
- 		};
- 
- 		cpu0: cpu@0 {
-@@ -81,6 +109,13 @@ cpu0: cpu@0 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x0 0x0>;
- 			enable-method = "psci";
-+			d-cache-line-size = <64>;
-+			d-cache-size = <0x10000>;
-+			d-cache-sets = <64>;
-+			i-cache-line-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <64>;
-+			next-level-cache = <&l2_cache_b>;
- 		};
- 
- 		cpu1: cpu@1 {
-@@ -88,6 +123,13 @@ cpu1: cpu@1 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x0 0x1>;
- 			enable-method = "psci";
-+			d-cache-line-size = <64>;
-+			d-cache-size = <0x10000>;
-+			d-cache-sets = <64>;
-+			i-cache-line-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <64>;
-+			next-level-cache = <&l2_cache_b>;
- 		};
- 
- 		cpu2: cpu@2 {
-@@ -95,6 +137,13 @@ cpu2: cpu@2 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x0 0x2>;
- 			enable-method = "psci";
-+			d-cache-line-size = <64>;
-+			d-cache-size = <0x10000>;
-+			d-cache-sets = <64>;
-+			i-cache-line-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <64>;
-+			next-level-cache = <&l2_cache_b>;
- 		};
- 
- 		cpu3: cpu@3 {
-@@ -102,6 +151,31 @@ cpu3: cpu@3 {
- 			compatible = "arm,cortex-a73";
- 			reg = <0x0 0x3>;
- 			enable-method = "psci";
-+			d-cache-line-size = <64>;
-+			d-cache-size = <0x10000>;
-+			d-cache-sets = <64>;
-+			i-cache-line-size = <64>;
-+			i-cache-size = <0x10000>;
-+			i-cache-sets = <64>;
-+			next-level-cache = <&l2_cache_b>;
-+		};
-+
-+		l2_cache_l: l2-cache-cluster0 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x40000>;  /* L2. 256 KB */
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
-+		};
-+
-+		l2_cache_b: l2-cache-cluster1 {
-+			compatible = "cache";
-+			cache-level = <2>;
-+			cache-unified;
-+			cache-size = <0x100000>; /* L2. 1 Mb */
-+			cache-line-size = <64>;
-+			cache-sets = <512>;
- 		};
- 	};
- 
--- 
-2.50.1
+> You might however want to add a comment that this assumption is being
+> made.
+>
+I will add the below comment for this, so that once Geert's series [0]
+hits in it can be easily searched and replaced.
 
+/*
+* TODO: Replace with FIELD_PREP() when compile-time
+* constant restriction is lifted. Currently __ffs() returns 0 for sw_mode_m=
+ask.
+*/
+
+[0] https://lore.kernel.org/all/cover.1739540679.git.geert+renesas@glider.b=
+e
+
+Cheers,
+Prabhakar
 
