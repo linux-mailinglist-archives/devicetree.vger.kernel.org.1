@@ -1,69 +1,63 @@
-Return-Path: <devicetree+bounces-213634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DBC9B46199
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:00:46 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16865B461AD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:03:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E57745A14B9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:00:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DAD47A6A3B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:02:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75389306B26;
-	Fri,  5 Sep 2025 18:00:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F01631D750;
+	Fri,  5 Sep 2025 18:03:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oKnc1VSQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qFgDxtxL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4990E2F7AC1;
-	Fri,  5 Sep 2025 18:00:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E47F2F7AC1;
+	Fri,  5 Sep 2025 18:03:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757095241; cv=none; b=eSHgOtDzbo5MpxslxHkEgO8bP12W9bHAy2PsIX9aFLDl/bwHDvcf2CV4dhBKFZY6PPqLY7mO/B8zGiVgH1tUDPJtDK9oHsBpCoq4tEKRjcNI740U8Gpl4BrUkIwSH2eHeds0/HuRK418akDdj6A2JpG74wk1AoPwLuzTwWGreCc=
+	t=1757095428; cv=none; b=Oh6+PTGfPHrsaq/91tmMAt6fgapYon502ho/1/bW5sh/02bAzu8KDaLEAJQ1EcUsBiTPGhpGOJipvvxAxH6qspT74NqfJKY6jc/hhjq+XrZ+PDeg/WMyqdUto1r09so+4fdbcrhreUSLScYAIfcTi17STUU8WMtuzbxsZgZ6tmM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757095241; c=relaxed/simple;
-	bh=pgmvmFb/8kCCNlf55iLem9HEzp6mMHv7i0NyicdLw3k=;
+	s=arc-20240116; t=1757095428; c=relaxed/simple;
+	bh=aHNLolNwFIWfnR3I99LK8r6Twqb2kIqTa0Yq84hjZco=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eCv/y/DWpWIwFFVcFjouC2sFcLRLGIrcl0vXD+kdVBEcxX7aRZK92CddAgy07YZ1Lhpk8tniNuYJr/F/wJKVlAqHB4UBQ+vVJ0vpBxPZEc5o/86+RlitvAdcCsVNYyEGsRZTeA8/knuH5NPRLXCNwZu/66ibQ1euQNYblFf4JXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oKnc1VSQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9860C4CEF1;
-	Fri,  5 Sep 2025 18:00:40 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B8k2E25GzWwQveiGGh8Lxm2JekDrpQ226WKh72dKpYXgXGzgSKIMjgSXHHgZFf1J3rSBc+SShCBspPKdPM6AQrdXGfC4SIUSvHHOPUphpsUZFWTSjLLWdcgc346I4c3qb/02JXG2Im3AL84s2Fwpflpj4EGU3HlBbqOY9NhKbPc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qFgDxtxL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A9C73C4CEF1;
+	Fri,  5 Sep 2025 18:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757095240;
-	bh=pgmvmFb/8kCCNlf55iLem9HEzp6mMHv7i0NyicdLw3k=;
+	s=k20201202; t=1757095427;
+	bh=aHNLolNwFIWfnR3I99LK8r6Twqb2kIqTa0Yq84hjZco=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oKnc1VSQDVaKcv7LYjjc1Ax66S7zi9xjI8eoRSSKLtpWLpad1IwKwL139iPbJqw8d
-	 /nw9jsxo++HfXkc05NrCuh8O4ih+0u3T9MBJprmNBQavnpW94hXOXlnwOH0ZbjizZh
-	 /0qrQK6UiwlrIq90H5Wlo7TrhMfhNYSurii0sxqgcB+TayNk8pNtLefUFR7fynA6l4
-	 IaOg+V19WQig0hjz8wtWOVdX2Oxv27tm2/zPsP1z6moVQOAUfs5vfVWxZ32cEsn8t9
-	 P2/ehrXLbgkj7lGWD01R6w9twLiQbR29b8bEQOGgwXWwjJp8o4zeDoOhDZoYEIvguh
-	 IX/FMnpfZzOtg==
-Date: Fri, 5 Sep 2025 13:00:40 -0500
+	b=qFgDxtxLkDnaNWGC7yASrUFDQHbVOe35eVK5S9QFKMoH26XAbGr5w+5CMxqPB9/uX
+	 fcNCURIvQnpp4YnFM6L1fdEWOwDhW0tVwUj4TS+ZpOCZBGY4fTyIopm1ne6rtz/lr8
+	 Rutp6XzISO0+OFL8jyJCqhjE+QpyldalEf+4D/xidtnarTS/emidVENUwUAcvB1ahx
+	 UebB2P+p8n1UZeUDT0oMEnGSmzfyZzfhy5HihZFd88Q3jGQiw9lOeOPakSigW4NXc5
+	 346I+FpMDt8vQ0io4uhMajc1zZLSM7S7AHx1rnzTHeFWBLT/O6rjs5gxVMCUyRBr7n
+	 8sR7XShDXrITg==
+Date: Fri, 5 Sep 2025 13:03:46 -0500
 From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Russell King <linux@armlinux.org.uk>, Liu Ying <victor.liu@nxp.com>,
-	Maxime Ripard <mripard@kernel.org>, Robert Foss <rfoss@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Boris Brezillon <bbrezillon@kernel.org>,
-	Phong LE <ple@baylibre.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	linux-kernel@vger.kernel.org,
+To: Konrad Dybcio <konradybcio@kernel.org>
+Cc: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Simona Vetter <simona@ffwll.ch>, Conor Dooley <conor+dt@kernel.org>,
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Vinod Koul <vkoul@kernel.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: Re: [PATCH] dt-bindings: display: bridge: Reference DAI common schema
-Message-ID: <175709523857.1011984.7960625628072770929.robh@kernel.org>
-References: <20250904083816.48076-2-krzysztof.kozlowski@linaro.org>
+	linux-arm-msm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Loic Poulain <loic.poulain@oss.qualcomm.com>,
+	linux-i2c@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: i2c: qcom-cci: Allow operating-points-v2
+Message-ID: <175709542621.1016405.11547576176371094011.robh@kernel.org>
+References: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
+ <20250904-topic-cci_updates-v1-2-d38559692703@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,25 +66,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250904083816.48076-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250904-topic-cci_updates-v1-2-d38559692703@oss.qualcomm.com>
 
 
-On Thu, 04 Sep 2025 10:38:17 +0200, Krzysztof Kozlowski wrote:
-> Several display bridges (e.g. LVDS to HDMI converters) are used as sound
-> Digital Audio Interface (DAI) and have '#sound-dai-cells', thus they
-> should reference dai-common.yaml schema to allow common properties, like
-> DAI name.
+On Thu, 04 Sep 2025 16:31:21 +0200, Konrad Dybcio wrote:
+> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> An OPP table is necessary to express combined voltage and frequency
+> requirements for the CCI hw block.
+> 
+> Allow passing one, without requiring its presence.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 > ---
->  .../devicetree/bindings/display/bridge/ite,it6263.yaml       | 1 +
->  .../devicetree/bindings/display/bridge/ite,it66121.yaml      | 5 ++++-
->  .../devicetree/bindings/display/bridge/lontium,lt9611.yaml   | 5 ++++-
->  .../devicetree/bindings/display/bridge/nxp,tda998x.yaml      | 5 ++++-
->  .../devicetree/bindings/display/bridge/sil,sii9022.yaml      | 5 ++++-
->  5 files changed, 17 insertions(+), 4 deletions(-)
+>  Documentation/devicetree/bindings/i2c/qcom,i2c-cci.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Applied, thanks!
+Acked-by: Rob Herring (Arm) <robh@kernel.org>
 
 
