@@ -1,128 +1,86 @@
-Return-Path: <devicetree+bounces-213642-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213643-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA504B46236
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:25:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1B13B4623A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:26:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 839E81B2114A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:25:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 718E817FAD5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:26:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7202701B1;
-	Fri,  5 Sep 2025 18:25:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9731D255E40;
+	Fri,  5 Sep 2025 18:26:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="dqkjjCxy";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="qiH5lh+T"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lr94/cIu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F142226FA5E;
-	Fri,  5 Sep 2025 18:25:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F0BB33E7;
+	Fri,  5 Sep 2025 18:26:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757096709; cv=none; b=outQ9Caoo7n0jzlsh9CbkRlfd343pUuzmYh0qoy3yvVTF3yJgkvq7TzxuzQ0OTVQrz+5bYFM4YSBTXPeKSKcw6Zb4NBkB0fHFE7iBA12IOCfgiu+QKWnzb5szpTA7DBj4ZeFKqh1Yr7QWBXQ9dgE25USx6VUPrLUeKM+Y9hUaTg=
+	t=1757096797; cv=none; b=PD2/wrqw3heI9zxBsR9jqF2HeXHsSkxWgzK8bj+ws04t3IMqs/hToqavSFaNRtxTkbo+7hqWlypYZhX7wK8QEkr1dIT+61dYM3/TR5GTlDGj3aV3VUhGJDOqd2a9lz6ggxyjzLrnt2BRs3q5rH6vlBqmukUd0IjW7L+ebO+wyro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757096709; c=relaxed/simple;
-	bh=OFQ/nAmHxenTNd4gIUlItbzWOwUP/FPr2psmSslZO6M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pCFEWwomG6sVNfrlZEIRc+aQIrVRn3ZjdNrnixJ5VPAhWKATezm9PqNjVkeE4RMREQVYPejJf5n8X9NDrLXebXRf1AbLsK+NpJK9EwUA3Z/xI5EzoBC0fz1gMJ7HKRcHCVZWqOYmwiuDWiuX7W+nusA5ph8PZD5LzcGOSG8zSsM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=dqkjjCxy; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=qiH5lh+T; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cJPsD5ym5z9tB4;
-	Fri,  5 Sep 2025 20:25:04 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757096704;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Gp4f3eHdfQ1nienqUYYJxpFqMyiWaotva3r4C/g2Mes=;
-	b=dqkjjCxy5M18oj/8YlULNAcY9Djrf0XhsHzlm8/AQO7x03YtarRqEHj/ajVkl13JXF2Djh
-	9iBw1dGQOtcr3yM+TATSdFQeLSr/TuSoIetiPxtV6Bj7ttw2PZHfAwabwi/aXGDledshcl
-	7tC9Zx1c9kusFAF3Bv/iOpL9Z2P/o3RhoNfJd2Rzbv+iHSDRVNgGCCw6MR1zf3u/Vb2888
-	jWfx3EU1HZn9zsdpNXIKxBR9mmEmqgwvTWLCVapaOlae0SZ3Aq37wrr4lpIn7uyaoiIcfy
-	+bgH6GvRpX0vBeb1KXW97T3H50w6uyjIFjCDEC6IOS1IOsjg24Iv+L8RMeoVbw==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=qiH5lh+T;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::202 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
-Message-ID: <67648dce-379a-427e-8ea2-3eda7cefa024@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757096703;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Gp4f3eHdfQ1nienqUYYJxpFqMyiWaotva3r4C/g2Mes=;
-	b=qiH5lh+TWr6uM3iR1xxhdiFV8E+h2/9MT0PUmexX+VuJ8qylgADLdm7A8W7WtMI9wOgBPM
-	vc3JFRcNlSibj3u2fceQbCspsFaR1R3a0DyD/91D3dAAcqKgOwu87FMeMMtSRJR/ogau+z
-	E5Kw0HoWSwCupIy931AXI0XmRG5EoaruP6CAIj6JZ7kAlW+xyT3SmXs8ycIk9ZkAuSN57C
-	0lueYKbC5B8YYhHF6fZmdtxgPWNGtS/IKnGwchMQ6N/xYPVLb0tELJLydhwylTHR3YJbE6
-	zbQj2sJ/mHC8zYLx4/XnVZ75xIO4LVjAo9aoWVjR4DU4Cit2RSGP6edTTFwawQ==
-Date: Fri, 5 Sep 2025 20:24:58 +0200
+	s=arc-20240116; t=1757096797; c=relaxed/simple;
+	bh=LyeDu2i+o9HDa3/kwwKLQ3zkEkc/YK3lZMNTzfpm8EU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=M1tPWOdl59OqdrdGPP/KhJ5Vh+zSLFKv1h0QznL+VuwvEBUq3Y27SXZpt8qkAt8zJMSX5xoauzi5JBZYTF4KF7bC666Sa77jlmblBUi/kuosDcp4Bhe9fLG1Q6Y/e3b/jldEOa5HR6n+i4lKXdl1UHpZLSnmaEVWBKagE7MCgbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lr94/cIu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2770C4CEF1;
+	Fri,  5 Sep 2025 18:26:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757096797;
+	bh=LyeDu2i+o9HDa3/kwwKLQ3zkEkc/YK3lZMNTzfpm8EU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=lr94/cIuJT3cZOFrv+NriZvDh0IBH7VOJn7CT/KUMfAUQDE8iLCaJtLXo4eT1m88d
+	 AZHs84jECVBUSd+0oFEPmter5XOTuZdNlaaHKbmKunMTFPEDeg/WNHYUeRelnaWvQq
+	 E89pKiOCUVfEC19gjzIgWORGIM+aHE9OoQUG+hyQkhEMwn+SBrtfvaJk5mERqGRobt
+	 mrEyfLa4PNybctRdzkie6d19QhJJxUnLa6ORrl1VcjnjD6GPWgV3FUCOYoObIU428b
+	 QKqIVGv2LYyhYl+qkrLfh1eDnLaGhWUxwk43oLyUkS7/tFVDmqVTyb1194vWvSK+oG
+	 fWlmeHZSW9ypg==
+Date: Fri, 5 Sep 2025 19:26:32 +0100
+From: Conor Dooley <conor@kernel.org>
+To: WeiHao Li <cn.liweihao@gmail.com>
+Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/4] dt-bindings: phy: rockchip,inno-usb2phy: Document
+ rk3368 usb phy
+Message-ID: <20250905-crumb-district-ca69a00cf6ee@spud>
+References: <20250905125318.7956-1-cn.liweihao@gmail.com>
+ <20250905125318.7956-4-cn.liweihao@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Subject: Re: [PATCH v2 2/2] drm/panel: ilitek-ili9881c: Add configuration for
- 5" Raspberry Pi 720x1280
-To: Devarsh Thakkar <devarsht@ti.com>,
- Marek Vasut <marek.vasut+renesas@mailbox.org>,
- dri-devel@lists.freedesktop.org
-Cc: Conor Dooley <conor+dt@kernel.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- David Airlie <airlied@gmail.com>,
- Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
- Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20250904205743.186177-1-marek.vasut+renesas@mailbox.org>
- <20250904205743.186177-2-marek.vasut+renesas@mailbox.org>
- <c98e017d-5aa0-4b40-8ee1-5f58901b6c07@ti.com>
-Content-Language: en-US
-From: Marek Vasut <marek.vasut@mailbox.org>
-In-Reply-To: <c98e017d-5aa0-4b40-8ee1-5f58901b6c07@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-MBO-RS-ID: 6add872de2e58f6446b
-X-MBO-RS-META: rcqs7mmjq3ohca6dme9cmfznm3ut8g6c
-X-Rspamd-Queue-Id: 4cJPsD5ym5z9tB4
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="JICgwRvRS9Ky+b8v"
+Content-Disposition: inline
+In-Reply-To: <20250905125318.7956-4-cn.liweihao@gmail.com>
 
-On 9/5/25 3:18 PM, Devarsh Thakkar wrote:
-> Hi Marek,
 
-Hi,
+--JICgwRvRS9Ky+b8v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Thanks for the patch.
-> 
-> On 05/09/25 02:26, Marek Vasut wrote:
->> Add configuration for the 5" Raspberry Pi 720x1280 DSI panel
->> based on ili9881. This uses 10px longer horizontal sync pulse
->> and 10px shorter HBP to avoid very short hsync pulse.
-> 
-> Is there a publicly available datasheet for the aforementioned ilitek 
-> controller used in the panel, also does the same document also mention 
-> the manufacturer specific DSC commands used in rpi_5inch_init[] ?
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-Maybe internet search engine produces some results from some display 
-manufacturers ?
+--JICgwRvRS9Ky+b8v
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> Also is there a separate document mentioning timing parameters for porch 
-> values and sync pulse widths that you are using here for Raspberry Pi 
-> 720x1280 DSI panel ?
-Nope, like most of those panel init sequences, this comes from display 
-vendor or downstream kernel forks, in this case the rpi linux kernel 
-fork. The timings are slightly adjusted to avoid this very narrow hsync.
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsrWAAKCRB4tDGHoIJi
+0l5zAP9FcI/1JClbYyW8Ww/u1FjWaaTZPlI37QTxc3eyTNDk1gD/X+NwruBP7g7o
+k0a2fGxRECLLi6BGWP4ublx6JyltjAw=
+=gGkB
+-----END PGP SIGNATURE-----
+
+--JICgwRvRS9Ky+b8v--
 
