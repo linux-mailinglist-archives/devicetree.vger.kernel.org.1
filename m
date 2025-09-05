@@ -1,251 +1,165 @@
-Return-Path: <devicetree+bounces-213109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 829A3B44A88
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 01:46:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FC6DB44AA4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 02:01:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 42E3516A96F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Sep 2025 23:46:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2DAE6A01452
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 00:01:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C8FA2222AC;
-	Thu,  4 Sep 2025 23:46:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB73679F2;
+	Fri,  5 Sep 2025 00:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RKkfQf2F"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="LRzAF+la"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3A2F1A76BB;
-	Thu,  4 Sep 2025 23:46:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38374366
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 00:01:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757029590; cv=none; b=KK2ZsPu5hPV/NqXF1Sgm0i+HXLiCgu9Smtur9U8fWubAru/oNwB5lO4AK3cxurbcUx+W8fxvmHeU8Zm48TM9ApBUmmcqbJ0wWJ/OCZ3beoAlacA2SNoG+4ZuRt5onGChlX716qibnDlTLKUC/3XnPqn7MSXRqzfeBQ68H/b+5QU=
+	t=1757030462; cv=none; b=U+tOFBqWdSW871iyZoPZSAjPwRoXQL7OW1D9/MNMhE/Rd26qSVQqpuK/7pBUVbVpe7Nvyqsil8/OO0G5v1rq0/HCfoJbBml0lfDIyKBDsT5NuA4QQBJZ3Sf5Ili5nU+YkblyUAseAnGZTVhJ6XB2kZYTLJ7ckTO0ddBtq2e0Fio=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757029590; c=relaxed/simple;
-	bh=i1kFtWy98vImxO8YkS1RH8GElz9dgakxtm96c9NmdD4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=k9atK7t36C9C+xyR2diUHjs/xSXLe4epKl+micJVDeIwerPCZhH0oRwWa93G0gRPEBM9seIqndip7G6x0CSM3cNlHoGaFwY4MPrfya4taSOIeqH62wJAo7AoZuRyIezEEmS9vAxBFWZflprcbKbt60+Aw0ljsBc31aTEA7PG2mg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RKkfQf2F; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F298C4CEF4;
-	Thu,  4 Sep 2025 23:46:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757029589;
-	bh=i1kFtWy98vImxO8YkS1RH8GElz9dgakxtm96c9NmdD4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=RKkfQf2F2iXVQnd3u2s1Vpw416n8APKIV+klP8CIlxhOGsrFQcEruD3e1jJY4TS/+
-	 GNGL5Eu9fnKALGAGXmc5WdjSoiu8hGFxf2x23O9DqXuWXx6cVe/LbA1tYi9gx4qF6Q
-	 czU4cIgWTR8ArAkIpF/IixIPcs86X65pelkr+qtHkVuvHOMK4jrRe3Hbu+ztl3JJ5h
-	 KanIaXDpZKJxlwkPpx0yu/sA4jMVB/bnjB+JBIHXWf6I1ec0NAvs6I4iyGagAXaTMT
-	 NSjZ8ZMiRKnAKWXYLtA1KwgleVv/iqKs3VLUU+3LRkiexc4IFhpBpLvRaExOIzB6RV
-	 G5bHBnMLjOQCQ==
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-6188b5ad681so2501926a12.0;
-        Thu, 04 Sep 2025 16:46:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXdpB4in2RG6KAeMisqCffBcI2P/JUAOwDorSIeU1ao7v1BW9rYQXvRrMnKZjbzbT8kMj7ncw0QvK+RWT8z@vger.kernel.org, AJvYcCXpZf5kOBUepYNIOFcw3FcrOfRK5Dzui/9iBkVU6ck00dRhX57MRsKLVki39a/xjqSgNC+7SaBDRUyn@vger.kernel.org
-X-Gm-Message-State: AOJu0YzZGMfBS46UG0LzV+3HBsB3HN5KveXsIyIkCdATphBv4hEjKFlN
-	SjPWKaaT9oLAzunUpjNQrK0XrZ3ze6UZGsKrPZTEVd9baqkpVqbkBe6/g5OEEJbquWpsOvL5SIR
-	Qd5aMzDK2VIrj976htpI/xYQVB8B0xA==
-X-Google-Smtp-Source: AGHT+IEz5bRGq1Ef5wXJp0xhiW6NY7VImt7KxXjfQYc7qioU1N0YZwuPJSsQyLbbm0HDP2yexpCWjHdRGmZMKty8ZyY=
-X-Received: by 2002:a05:6402:370c:b0:61d:1182:7679 with SMTP id
- 4fb4d7f45d1cf-61d26d72ffamr19643711a12.27.1757029588044; Thu, 04 Sep 2025
- 16:46:28 -0700 (PDT)
+	s=arc-20240116; t=1757030462; c=relaxed/simple;
+	bh=0w8CuldlphcoO+tfKw4Vvvi3ndsc/ILcscWmhU+IA2Q=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PMgGJYs6IJMwhGn0H8jM9djZYVeLsL+dbHwN8DQrpKr0piCKYJsTo1Y65cF9yuGh5F2EUovCkYpAxiLbzXdssimrAMk0FBOLx9yyRV+P9NTcbIkDbTrQusmGjFfOm+fiRQV4O/Dgqf1YeJ+X8rsCEW+G/sQCENBCuz4+9WgZ7ko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=LRzAF+la; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 584IXk3F002355
+	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 00:01:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=0annG0Mntw/ZyjPohAYmMxqB
+	n0Karvid5pVkJViH9m0=; b=LRzAF+lakUH45oZMSsMsW8qDkTt1MyBthfz9jE7X
+	X/EqAUTyB0qrGk6uQhAPfCXl3ohhh5dfvLbmYSnerLwWHIZGMl0MkGrG/4QHsgrG
+	Y12JH1mzA2QJCrqYA9n3PiDaBAGL0kvrL1SsrKVtv4nqbS/RjubcJMIUmQDQfaOz
+	OcgAXnZzW3wKRZ4G0mLfKNDrcsBVB8YiO3M2IvN+pzxatpe3O0NcOxk1fHEPVY15
+	AUmsGXd6aAJ3ORO0f4s881g+TbmpMiBzri4X1gq9ep04KLq0mr0ZrHLVIg3YS8hW
+	wsZI2vlJ9ommlkO408nE7QMz50D+/ZBWNdBMWau1+0WdeA==
+Received: from mail-pj1-f71.google.com (mail-pj1-f71.google.com [209.85.216.71])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ush393kg-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 00:01:00 +0000 (GMT)
+Received: by mail-pj1-f71.google.com with SMTP id 98e67ed59e1d1-32bbacf6512so709286a91.1
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 17:01:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757030459; x=1757635259;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0annG0Mntw/ZyjPohAYmMxqBn0Karvid5pVkJViH9m0=;
+        b=KS9sRyg10AfhDNki8jvXw80iTg+aolH7EeRgXsMIA1db1SODWwfBn8mWivLZfTFGaN
+         i8/+tYWmf0MrjTZ+/VqX25bBC7D5JCT+Eh1NeKpapEp0b9/zyB2/SK+Qn7TFAUkavwCB
+         n6z1FIPvgSX5694T8mq8m5418SPVWKZv9PWZJcOSGI3ONlUDtK5/q4CgVsqWZAi6TIyH
+         GFsBvfs8nBVItrjbzlr56iJiuSLnQ7SgSc+FXApEtjiNne7toatKa/GyQr57hT+gHjnV
+         qpY4J8p6lb948kPD9SI5KBF3bg/BGxHWq/U0bWFzdWcmk6zjNvwFLaqDYELXuUYSHlPq
+         V0YA==
+X-Forwarded-Encrypted: i=1; AJvYcCXUY4zY+B9Hp3PXNckubH9AOON8An/JRZFL3Sh7UdHPn54G1bKao7qxWr5fAgdZUmU4rRazSKFCnl1S@vger.kernel.org
+X-Gm-Message-State: AOJu0Yyq0ibVfRYdt++fD+QCi1LTMJQbfimiFE11lctWaxs9f49LLo8D
+	pWxLpo0hPqrObnc3e9jKlHXAw2P1DrFSSfFi8HtYWpTr57xAId6iNSZQi4HPzERlEH95z/8kD9e
+	kNmQ1zFwNLAQTCT5csMXSYqMTA3d9+96z/AMYa7ttCS+QKCv1A5WCkQ9tlNaaVFE6
+X-Gm-Gg: ASbGncvHGWTzldY6q2uT1GjhZoUnfWJu9cvCgz4f026kNsSCKzI/uNsEV4BysoPJOYu
+	VMeligZ3dKYRtYo3zsmxyoo6GqhLfKi1V2bHPLXebo+KwcbYofobCOjy4ETxzZ7WNAbIVg9vy0n
+	JXin2b1tKGiXYphYHF/ZKGDSGwksH4/ab7LzPnj+nuOYDr8GkqY/t+TajPh2VtMFmDiLMXhG/Zt
+	y1SJVqqLtj+a6FXxu1DWfGnDc1D3cBSd9LSj+yYm/fxq7SDDvjFCyD/wj9d1Z8L8hRsdrEadWCD
+	ucBtL1nAWiMwrAkyGtb00MIue3XzP9p2O5H4CrnJPz474FTMeHP9v8LVbOWV64XGC9HvtjnjHQ=
+	=
+X-Received: by 2002:a17:90b:3905:b0:32b:8b8d:c2af with SMTP id 98e67ed59e1d1-32b8b8dc8e4mr6768769a91.9.1757030459291;
+        Thu, 04 Sep 2025 17:00:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHWcMG2DBkpOF6OBCTvV3qoquHwdXXHofKvm0rh/l6U97uk95e83IAK4maO0o3OOvqIAwx4fA==
+X-Received: by 2002:a17:90b:3905:b0:32b:8b8d:c2af with SMTP id 98e67ed59e1d1-32b8b8dc8e4mr6768715a91.9.1757030458813;
+        Thu, 04 Sep 2025 17:00:58 -0700 (PDT)
+Received: from hu-pkondeti-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3276f57b232sm26732940a91.2.2025.09.04.17.00.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 04 Sep 2025 17:00:58 -0700 (PDT)
+Date: Fri, 5 Sep 2025 05:30:52 +0530
+From: Pavan Kondeti <pavan.kondeti@oss.qualcomm.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Hrishabh Rajput <hrishabh.rajput@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] Add support for Gunyah Watchdog
+Message-ID: <99cacf08-0fb4-4b44-9036-96ea5fe01c10@quicinc.com>
+References: <20250903-gunyah_watchdog-v1-0-3ae690530e4b@oss.qualcomm.com>
+ <20250904001014.GA3405605-robh@kernel.org>
+ <a547ecce-31c7-4627-ac6f-aeeef81bd0ff@oss.qualcomm.com>
+ <CAL_JsqKuoJrkActpLXVUW9e9=R1FESUbD_rwBd5NGX2_Yv2ASw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250805232502.2827725-1-robh@kernel.org>
-In-Reply-To: <20250805232502.2827725-1-robh@kernel.org>
-From: Rob Herring <robh@kernel.org>
-Date: Thu, 4 Sep 2025 18:46:03 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqLQ_5X0STH=eSbjtkLkvgr+iPDwtLQYCntgiO8s1Dwy4A@mail.gmail.com>
-X-Gm-Features: Ac12FXzGVurdBcMt-pBPjtPBNvxvRRQD8iIew05zyJeySdOtVRKk7OooxuRiu0A
-Message-ID: <CAL_JsqLQ_5X0STH=eSbjtkLkvgr+iPDwtLQYCntgiO8s1Dwy4A@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: marvell: Convert marvell,armada-370-xp
- boards to DT schema
-To: Andrew Lunn <andrew@lunn.ch>, Gregory Clement <gregory.clement@bootlin.com>, 
-	Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKuoJrkActpLXVUW9e9=R1FESUbD_rwBd5NGX2_Yv2ASw@mail.gmail.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAzMiBTYWx0ZWRfXzcoG1PsgTBpf
+ 3flQ+/Wpp6tV7RTVMVPsQIWQf37MiJ6mctIUlSjfkPhB9j3ZvKqEmrAVK0SZXm7GQ32R38R1/Xq
+ 1rVZuFULk4YgcP+3uA8kLmG7zqaGG6pDrPBwioUZ66qTtAx/y1H6RrkLV9bK/0kdg+lecuaE87W
+ 59kZxd22SMr7BWXEv3GJgJyiBqEQS1IOQiKRhh+g/MWxXIBvyoW/BJft3WYfAaSMc9wpXpAT/LI
+ 35Qe40F1K0plQ639xZ/Qgl6/EuDKKtvkEldzsxFqflF59uZuT5cKqKACfucSDLIp2mlPEfEaEQU
+ BnMHiIRiCOq/bP4n/z2+Q0wp8jzUZ0dp/el6adW8El+vF1P9p7FyBNzhiALZ1YI8QEfteqEAyNP
+ ro1SJ12q
+X-Proofpoint-ORIG-GUID: mbPghCf5HRucMvLmZNgrYzTt_fuoKMLH
+X-Proofpoint-GUID: mbPghCf5HRucMvLmZNgrYzTt_fuoKMLH
+X-Authority-Analysis: v=2.4 cv=M9NNKzws c=1 sm=1 tr=0 ts=68ba283c cx=c_pps
+ a=UNFcQwm+pnOIJct1K4W+Mw==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=kj9zAlcOel0A:10 a=yJojWOMRYYMA:10 a=yPAEAbfnkOYWZhAY5OIA:9
+ a=CjuIK1q_8ugA:10 a=uKXjsCUrEbL0IQVhDsJ9:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-04_08,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 adultscore=0 spamscore=0 priorityscore=1501 malwarescore=0
+ clxscore=1015 suspectscore=0 phishscore=0 bulkscore=0 classifier=typeunknown
+ authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2508300032
 
-On Tue, Aug 5, 2025 at 6:25=E2=80=AFPM Rob Herring (Arm) <robh@kernel.org> =
-wrote:
->
-> Convert Marvell Armada 370/XP based boards to DT schema format.
->
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
-> ---
->  .../bindings/arm/marvell/98dx3236.txt         | 23 ------
->  .../bindings/arm/marvell/armada-370-xp.txt    | 24 ------
->  .../arm/marvell/marvell,armada-370-xp.yaml    | 78 +++++++++++++++++++
->  3 files changed, 78 insertions(+), 47 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/98dx323=
-6.txt
->  delete mode 100644 Documentation/devicetree/bindings/arm/marvell/armada-=
-370-xp.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/marvell/marvell=
-,armada-370-xp.yaml
+On Thu, Sep 04, 2025 at 05:51:24PM -0500, Rob Herring wrote:
+> > >
+> > > Why can't you probe by trying to see if watchdog smc call succeeds to
+> > > see if there is a watchdog? Then you don't need DT for it.
+> >
+> > There apparently isn't a good way to tell from a running system whether
+> > Gunyah is present, unless you make a smc call (which could in theory be
+> > parsed by something else, say a different hypervisor..), but then this
+> > patch only introduces the watchdog interface, without all the cruft that
+> > would actually let us identify the hypervisor, get its version ID and
+> > perform sanity checks..
+> 
+> IIRC, last time we got just a gunyah node. Now it's that plus a
+> watchdog. What's next? I'm not really a fan of $soc_vendor hypervisor
+> interfaces. I doubt anyone else is either. We have all sorts of
+> standard interfaces already between virtio, vfio, EFI, SCMI, PSCI,
+> etc. Can we please not abuse DT with $soc_vendor hypervisor devices.
+> 
 
-Ping on this and the 5 other board conversions.
+We are trying to make the watchdog work with existing SoCs, so we are
+sticking with the existing interfaces. The newer devices will not
+necessarily need DT to probe hypervisor interfaces.
 
->
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt b=
-/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
-> deleted file mode 100644
-> index 64e8c73fc5ab..000000000000
-> --- a/Documentation/devicetree/bindings/arm/marvell/98dx3236.txt
-> +++ /dev/null
-> @@ -1,23 +0,0 @@
-> -Marvell 98DX3236, 98DX3336 and 98DX4251 Platforms Device Tree Bindings
-> -----------------------------------------------------------------------
-> -
-> -Boards with a SoC of the Marvell 98DX3236, 98DX3336 and 98DX4251 familie=
-s
-> -shall have the following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armadaxp-98dx3236"
-> -
-> -In addition, boards using the Marvell 98DX3336 SoC shall have the
-> -following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armadaxp-98dx3336"
-> -
-> -In addition, boards using the Marvell 98DX4251 SoC shall have the
-> -following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armadaxp-98dx4251"
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.=
-txt b/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
-> deleted file mode 100644
-> index c6ed90ea6e17..000000000000
-> --- a/Documentation/devicetree/bindings/arm/marvell/armada-370-xp.txt
-> +++ /dev/null
-> @@ -1,24 +0,0 @@
-> -Marvell Armada 370 and Armada XP Platforms Device Tree Bindings
-> ----------------------------------------------------------------
-> -
-> -Boards with a SoC of the Marvell Armada 370 and Armada XP families
-> -shall have the following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armada-370-xp"
-> -
-> -In addition, boards using the Marvell Armada 370 SoC shall have the
-> -following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armada370"
-> -
-> -In addition, boards using the Marvell Armada XP SoC shall have the
-> -following property:
-> -
-> -Required root node property:
-> -
-> -compatible: must contain "marvell,armadaxp"
-> -
-> diff --git a/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
--370-xp.yaml b/Documentation/devicetree/bindings/arm/marvell/marvell,armada=
--370-xp.yaml
-> new file mode 100644
-> index 000000000000..e65eadfbd097
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/marvell/marvell,armada-370-xp=
-.yaml
-> @@ -0,0 +1,78 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +---
-> +$id: http://devicetree.org/schemas/arm/marvell/marvell,armada-370-xp.yam=
-l#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Marvell Armada 370 and Armada XP platforms
-> +
-> +maintainers:
-> +  - Andrew Lunn <andrew@lunn.ch>
-> +  - Gregory Clement <gregory.clement@bootlin.com>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - enum:
-> +              - ctera,c200-v2
-> +              - dlink,dns327l
-> +              - globalscale,mirabox
-> +              - netgear,readynas-102
-> +              - netgear,readynas-104
-> +              - marvell,a370-db
-> +              - marvell,a370-rd
-> +              - seagate,dart-2
-> +              - seagate,dart-4
-> +              - seagate,cumulus-max
-> +              - seagate,cumulus
-> +              - synology,ds213j
-> +          - const: marvell,armada370
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - enum:
-> +              - mikrotik,crs305-1g-4s
-> +              - mikrotik,crs326-24g-2s
-> +              - mikrotik,crs328-4c-20s-4s
-> +          - const: marvell,armadaxp-98dx3236
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - const: marvell,db-xc3-24g4xg
-> +          - const: marvell,armadaxp-98dx3336
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - const: marvell,db-dxbc2
-> +          - const: marvell,armadaxp-98dx4251
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - enum:
-> +              - lenovo,ix4-300d
-> +              - linksys,mamba
-> +              - marvell,rd-axpwifiap
-> +              - netgear,readynas-2120
-> +              - synology,ds414
-> +          - const: marvell,armadaxp-mv78230
-> +          - const: marvell,armadaxp
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - const: plathome,openblocks-ax3-4
-> +          - const: marvell,armadaxp-mv78260
-> +          - const: marvell,armadaxp
-> +          - const: marvell,armada-370-xp
-> +
-> +      - items:
-> +          - enum:
-> +              - marvell,axp-db
-> +              - marvell,axp-gp
-> +              - marvell,axp-matrix
-> +          - const: marvell,armadaxp-mv78460
-> +          - const: marvell,armadaxp
-> +          - const: marvell,armada-370-xp
-> +
-> +additionalProperties: true
-> --
-> 2.47.2
->
+To answer your question on why can't you probe watchdog smc call to see
+if there is a watchdog. Yes, we can do that. It is just that we won't be
+able to support pre-timeout IRQ. This IRQ is optional for watchdog
+functionality, so this is something we can explore.
+
+Thanks for the feedbck.
+
+Thanks,
+Pavan
 
