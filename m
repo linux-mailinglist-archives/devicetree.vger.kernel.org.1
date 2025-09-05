@@ -1,170 +1,179 @@
-Return-Path: <devicetree+bounces-213330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213328-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E3FDB451EA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:44:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3FD8B451E3
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:44:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 44AE7A0774F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:44:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 902BA1C82408
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:44:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDFC227D781;
-	Fri,  5 Sep 2025 08:44:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 291E41A9FB3;
+	Fri,  5 Sep 2025 08:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="lQbNGBaU"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="SKP4+Wkn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E22B27C872;
-	Fri,  5 Sep 2025 08:44:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25AD227C872
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757061885; cv=none; b=PRcdJ6yOH0uJHr7uYhsDloVx+QjRzfvdum2bEYo9BtNqgtCIx5XW0+LSP77EaC34hlgfFy7ZwZ9ZrEGUpX2/yMSnC9tqpizsYwkETkHi/eF9EedjABjeiE97QqzVIqQHpGODAzwyX1RwP9e+aTQaWt23UGysiHSlA/HAF9QGnXg=
+	t=1757061818; cv=none; b=kcUtB1pimbOoNkXDsiVW0Oxoav/BJrY7VbzJcG5hU59KYxvu22K5TY+y4IdxKl6hLJqPKwYZhhDVbtmSyOVtYqSF4kdcGq74zJeSEUZPkWYpS+BdP+mWag7/nKiKY0bz30fPvv92KOXQnox4QFH1sYAQ9+c98bKtf2dFv4CM+ts=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757061885; c=relaxed/simple;
-	bh=tqWqvgyY54FRPvxQsfqgJjAndlGuMZHlA4sehEjC8VI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=F3CLLHPHX0VGbFeSNYRRz7PE+q24b/fkaQ5pUxTxBkcJSTdR2MpCCKlYtEnhi7nYLEU0/ju0GLyfv3R8w4Cob4Hvccdta9o9FQqDdeYa3mu3Z72BbsGohoEzzezStXw1Bf2Bx1yUdsSf9hhEjtXePT71V0BqjM+/TRkRyf04wQo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=lQbNGBaU; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 8e3e6e8c8a3411f0bd5779446731db89-20250905
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=S8l7G2EepH8XkBBdvC2ecofLBYVddp2ctHowG/kpVt8=;
-	b=lQbNGBaUvqfAFqj0PgRdoSz2VsrnlJRlyu9tAhwyKRYFrkQRKIp8dpvobrpLVvtJA61KEHhMI0j8mU5BIJmeqJA83FfRcsdf0t38o1f8+YKTDlvSASGc+KiXXim8r87h4qE/qRL56WQw+KqyTDhVHUnTt1dNIx4Vo3y3uXx/bjs=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.3,REQID:a1d65ae8-45dd-47a8-aaa0-834d871d48e2,IP:0,UR
-	L:25,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
-	release,TS:25
-X-CID-META: VersionHash:f1326cf,CLOUDID:6b227884-5317-4626-9d82-238d715c253f,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:-5,Content:0|15|50,EDM:-3,IP:
-	nil,URL:11|97|99|83|106|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OS
-	I:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 8e3e6e8c8a3411f0bd5779446731db89-20250905
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw01.mediatek.com
-	(envelope-from <ot_zhangchao.zhang@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 1224739942; Fri, 05 Sep 2025 16:44:37 +0800
-Received: from mtkmbs11n1.mediatek.inc (172.21.101.185) by
- MTKMBS09N1.mediatek.inc (172.21.101.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1258.39; Fri, 5 Sep 2025 16:44:34 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1258.39 via Frontend Transport; Fri, 5 Sep 2025 16:44:33 +0800
-From: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
-To: Marcel Holtmann <marcel@holtmann.org>, Luiz Von Dentz
-	<luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Sean Wang <sean.wang@mediatek.com>, Jiande Lu <jiande.lu@mediatek.com>,
-	Deren Wu <deren.Wu@mediatek.com>, Chris Lu <chris.lu@mediatek.com>, Hao Qin
-	<Hao.qin@mediatek.com>, linux-bluetooth <linux-bluetooth@vger.kernel.org>,
-	linux-kernel <linux-kernel@vger.kernel.org>, linux-arm-kernel
-	<linux-arm-kernel@lists.infradead.org>, linux-mediatek
-	<linux-mediatek@lists.infradead.org>, devicetree
-	<devicetree@vger.kernel.org>, Zhangchao Zhang
-	<ot_zhangchao.zhang@mediatek.com>
-Subject: [PATCH v7] dt-bindings: net: mediatek,mt7925-bluetooth.yaml
-Date: Fri, 5 Sep 2025 16:44:33 +0800
-Message-ID: <20250905084433.26999-1-ot_zhangchao.zhang@mediatek.com>
-X-Mailer: git-send-email 2.46.0
+	s=arc-20240116; t=1757061818; c=relaxed/simple;
+	bh=qj3CPvvg9Wfb4aOeiYN5qE3V/WXSusmxmAmvExZAstk=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cp8GrcLpKF5GpvDXSS1ZH23KeDgkj/3/QpRkLIYqXNOmDMud4nynjFsgNjLtFnwAQJrq0jPrKBYvnN/6AZnWMRGHtJh769Gx0B606XZB5AbV9o8njZD+RQKX7iPLHhtciMAU9gpfRzHcT3+vH4T/kQhhk/mM+cNfiLYnnM/p8IY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=SKP4+Wkn; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-61d143aa4acso2908137a12.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 01:43:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=suse.com; s=google; t=1757061814; x=1757666614; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KFZ44yopGrsYMfdLKOB5nzNR8YL97RtHy31e0eAGVGk=;
+        b=SKP4+Wkn4MoJaOptM/YoCxClv5GNkiv72eza2pvsFYpJ9GQeFgehLlCMNs6AfSKxfH
+         fz9A1ztgZ9PldNft6odD+WizNt/fVoaT7MVFkL6JcAUoTGQHLku3KuiSjnDI6UV0IvRs
+         b4ru+cPfatayyhaezIv8YOEprweGB/nZ109gT2/8iXa0mUm8ZjezNa06rs8qOKsaA++q
+         hXfZaudFUKKyJ+DU5SOe6k3PjEXQK3YuXo2NvnFkSJVRZzCrmKwbUZHBAxaBuVJ0nlsB
+         woki3hIPlzwNfPrXex5v1OxflJwO5qTO1K5vyZV2DaXQg5N6MN2/yASr9eqi7TovYBAJ
+         csAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757061814; x=1757666614;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:date:from:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KFZ44yopGrsYMfdLKOB5nzNR8YL97RtHy31e0eAGVGk=;
+        b=NyiKTGtCFV/Vo/egSVPD3OTY9Bt66FIipO7QRPILIlffwahTZ6jj3NE+CmuJ7ei/oC
+         ItPOGV33Oqf5lDZ6GTS34jJ16RZuvYbyGqJEJMRhoDRYJ2GWcMDhbBsnlKm9n7MkOYFs
+         AzF0UAqbgvE5kKdcc6vWtNpAkeTkLfw2kVaxSaCQ6+98TBhoPjJClGrMqa3KOsfV8VO9
+         79UJatFPtfSkc7f/BxZVsJv5AxSPxAdECXdxJfBpfOrUlTmZJOObiUaKsnODmYTcQ5LY
+         F7UtTyPtpb0f7Is1/Hd5PVNxvsE5kwTd6GlH8pPe/GPvCYjwqoidIk1xKHL3L2DAmWdU
+         CfGg==
+X-Forwarded-Encrypted: i=1; AJvYcCWlCbdciTIsi46+5kjRdmdqGIF1bV/FgXNin3hPKqPy4m/onnhd4AcDg7nbfrTMnHH2POEwAIZOvsbb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwH/ykGoMBpQySTpoMLCoIS+EHAEwou9/EANsV7GIs+moVP+qiY
+	bsyC5o66A+OY0VxnCn/uuuuVlbSSjbD9uKDWMVvyuxGNKDtfGT8EOjh9bQNAenTHYJ0=
+X-Gm-Gg: ASbGncuh+hNwGEw7RR1YTOlr3fHuZQ1QBu9LpySstUZXNmdR9PKQnPowNDNW8BmsfUn
+	RFCZ9ub93IRb3oGZEyGvI1CR9nsUfJURuwOfF/tcUItI6j3NtU1Qv2j7L4DbLYoKWBlff+1Zfhl
+	srhbPhasaCTwZq80MMU6m4NBr+oQXbJ9C0E203Hjjspz2FhTm5kT0gL8HQ9SsRngcMzykNheSW/
+	+yhkGPoknqN5Q8Fq3nRDH9mvoCp8sOreWvUrbMcaT6QcHeXCY839YS2/mvpexvhVZ1vJWtpoPlG
+	t+rrH/tT9ciLgNqd6WDVm7cDKOEOmOw3HW3KrBp6ivLhzO+Wy2Czy2ftClxIlOdf26gc3wdBNbU
+	N1o2b0wpHznFbQTpQIZ3qP8DZJBVBV3HcHwvXWmv71k9Y/d9jWe7iqJmEpwzegHuYTSfBWxh/Bh
+	08FYcctsCKz3zDRES0n46qnqt/wBL26i4+
+X-Google-Smtp-Source: AGHT+IHSoczlmQQsMcIcDoA2nphrjHJmH+vwTBiXM5+w1FrleTBzhZMYXlRT74k2g1gKnwedKzI9pA==
+X-Received: by 2002:a17:906:f5a2:b0:b04:3955:10e2 with SMTP id a640c23a62f3a-b0439551a93mr1777660366b.25.1757061814481;
+        Fri, 05 Sep 2025 01:43:34 -0700 (PDT)
+Received: from localhost (host-79-31-194-29.retail.telecomitalia.it. [79.31.194.29])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b04148f95b5sm1353763866b.92.2025.09.05.01.43.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Sep 2025 01:43:34 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Fri, 5 Sep 2025 10:45:31 +0200
+To: Stanimir Varbanov <svarbanov@suse.de>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	iivanov@suse.de, mbrugger@suse.com,
+	Jonathan Bell <jonathan@raspberrypi.com>,
+	Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH 1/2] arm64: dts: broadcom: rp1: Add USB nodes
+Message-ID: <aLqjK0FYSkXtBvv5@apocalypse>
+References: <4e026a66001da7b4924d75bd7bee158cbb978eed.1756387905.git.andrea.porta@suse.com>
+ <50b59b27-cdf9-4af8-b31d-d5ccc68c73fd@suse.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <50b59b27-cdf9-4af8-b31d-d5ccc68c73fd@suse.de>
 
-Reset BT via BT_KILL_1V2_L hardware pin.
+Hi Stanimir,
 
-On the M.2 standard hardware pin interface, the MTK chip
-has a pin called BT_KILL_1V2_L or W_DISABLE#2, it uses
-function-level device reset (FLDR) to reset Bluetooth.
-When it is pulled low, it can external shut down the BT
-function, it is defined as 5 on the MT7925 chip, and is
-defined as 248 on the device tree pio controller.
+On 13:46 Thu 04 Sep     , Stanimir Varbanov wrote:
+> Hi Andrea,
+> 
+> Thank you for the patch!
+> 
+> On 8/28/25 4:50 PM, Andrea della Porta wrote:
+> > The RaspberryPi 5 has RP1 chipset containing two USB host controller,
+> > while presenting two USB 2.0 and two USB 3.0 ports to the outside.
+> > 
+> > Add the relevant USB nodes to the devicetree.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  arch/arm64/boot/dts/broadcom/rp1-common.dtsi | 28 ++++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+> > index 5002a375eb0b..116617fcb1eb 100644
+> > --- a/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+> > +++ b/arch/arm64/boot/dts/broadcom/rp1-common.dtsi
+> > @@ -39,4 +39,32 @@ rp1_gpio: pinctrl@400d0000 {
+> >  			     <1 IRQ_TYPE_LEVEL_HIGH>,
+> >  			     <2 IRQ_TYPE_LEVEL_HIGH>;
+> >  	};
+> > +
+> > +	rp1_usb0: usb@40200000 {
+> > +		reg = <0x00 0x40200000  0x0 0x100000>;
+> > +		compatible = "snps,dwc3";
+> > +		dr_mode = "host";
+> > +		interrupts = <31 IRQ_TYPE_EDGE_RISING>;
+> > +		usb3-lpm-capable;
+> > +		snps,dis_rxdet_inp3_quirk;
+> > +		snps,parkmode-disable-ss-quirk;
+> > +		snps,parkmode-disable-hs-quirk;
+> > +		snps,tx-max-burst = /bits/ 8 <8>;
+> > +		snps,tx-thr-num-pkt = /bits/ 8 <2>;
+> > +		status = "disabled";
+> > +	};
+> > +
+> 
+> I'd order the generic properties first and then vendor specific.
+> Something like this:
+> 
+> rp1_usb0: usb@40200000 {
+> 	compatible = "snps,dwc3";
+> 	reg = <0x00 0x40200000 0x0 0x100000>;
+> 	interrupts = <31 IRQ_TYPE_EDGE_RISING>;
+> 	dr_mode = "host";
+>         ....
+> }
 
-Signed-off-by: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
----
- .../bluetooth/mediatek,mt7925-bluetooth.yaml  | 47 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
+Ack.
 
-diff --git a/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
-new file mode 100644
-index 000000000000..dd24312735e0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/bluetooth/mediatek,mt7925-bluetooth.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Bluetooth mediatek use BT_KILL_1V2_L hardware pin to reset BT
-+
-+maintainers:
-+  - Sean Wang <sean.wang@mediatek.com>
-+
-+description:
-+  MT7925 modules provides hardware pin called W_DISABLE#2 to reset Bluetotoh,
-+  two methods are used to reset Bluetooth. When an exception occurs, resetting
-+  Bluetooth by hardware pin is more stable than resetting Bluetooth by software.
-+
-+allOf:
-+  - $ref: bluetooth-controller.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - mediatek,mt7925-bluetooth
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description:
-+      This pin can is used to externally reset BT function. When pull low,
-+      the Bluetooth and USB interface will be also disabled. After 100ms,
-+      it is pulled high to 3.3V to re_enable the device and trigger the
-+      next probe. This is typically used on M.2 key E modules.
-+
-+required:
-+  - compatible
-+  - reset-gpios
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    bluetooth {
-+      compatible = "mediatek,mt7925-bluetooth";
-+      #gpio-cells = <2>;
-+      reset-gpios = <&pio 248 GPIO_ACTIVE_LOW>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5959513a7359..d104a5821f20 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14676,6 +14676,7 @@ L:	linux-mediatek@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/bluetooth/mediatek,bluetooth.txt
- F:	Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7921s-bluetooth.yaml
-+F:	Documentation/devicetree/bindings/net/bluetooth/mediatek,mt7925-bluetooth.yaml
- F:	drivers/bluetooth/btmtkuart.c
- 
- MEDIATEK BOARD LEVEL SHUTDOWN DRIVERS
--- 
-2.45.2
+Many thanks,
+Andrea
 
+> 
+> > +	rp1_usb1: usb@40300000 {
+> > +		reg = <0x00 0x40300000  0x0 0x100000>;
+> > +		compatible = "snps,dwc3";
+> > +		dr_mode = "host";
+> > +		interrupts = <36 IRQ_TYPE_EDGE_RISING>;
+> > +		usb3-lpm-capable;
+> > +		snps,dis_rxdet_inp3_quirk;
+> > +		snps,parkmode-disable-ss-quirk;
+> > +		snps,parkmode-disable-hs-quirk;
+> > +		snps,tx-max-burst = /bits/ 8 <8>;
+> > +		snps,tx-thr-num-pkt = /bits/ 8 <2>;
+> > +		status = "disabled";
+> > +	};
+> >  };
+> 
 
