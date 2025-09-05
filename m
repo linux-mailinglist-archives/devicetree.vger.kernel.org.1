@@ -1,61 +1,58 @@
-Return-Path: <devicetree+bounces-213317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5410EB4514F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:26:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3574DB4518C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:34:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F6D24E4201
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:26:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C7D05A625A2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:34:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA2E42FF178;
-	Fri,  5 Sep 2025 08:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A2431813A;
+	Fri,  5 Sep 2025 08:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SIyBx6iS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fyF9DvME"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBBC22FD1A4;
-	Fri,  5 Sep 2025 08:26:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A984F3090CA;
+	Fri,  5 Sep 2025 08:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757060806; cv=none; b=YlFCy7sc7ABPkSJzBOIQ0R2o7wkGq3e7A47kvSah9x6wpfoSkwMDa8WzChyV5Y8nFIsZpSZHlgML12rK+TEKVj+wsqU95deQSMPqmkxa+xi9688J2FNJ1U/LX43/vk2YeRMC7IZqPWgNWmI7z9gNWONv5xvaY3luqgkD48Y1EnI=
+	t=1757060976; cv=none; b=B5V2uSVQm8g/RfTSWyMb8HCbSII5nyTwBkXvO7UAhvpL/fKZY81Z8jfLsI0nQqmcZMC/AlqsGN1FPsxoqtq9yYq84WcqNXfHyLqdp6820CduNJqveU0BRYaaKrIC+Vj2XtQa4fKxJXgb7cqJ8oJYh7pLRn/YtVFEZW/MeiLDJ4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757060806; c=relaxed/simple;
-	bh=CLdI6ur32afEiqGlVI3tRuJmZiIibp0yrP4zf7xjWyc=;
+	s=arc-20240116; t=1757060976; c=relaxed/simple;
+	bh=qTwRtRE61zsPY4Oik1TKuwEr2YgkQWcTIA6AodbDFbY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tuV0DnG2R6P/WA5U6i50YhgJT4Tc/KTbCoCoSMZHtaswCm3n0k5VqFkp20mYl57OcMyRHB9EdxL2tYTW39tG4bW7BGZH+l3x59JfmNPuPgSePaDj64u0WzT0kMySU9ziDM0L63IJluulLWpGmAr8ESz5Fj2FaINchee49QURDHo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SIyBx6iS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0657C4CEF1;
-	Fri,  5 Sep 2025 08:26:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iuvGiOzCunlaHrVYzVLbagz0GEpj2PMXlQ4Z0l1Yg9JwGYWXhr8HGZiPvPjx+TxxiEweN9+H8ByvF1nx4WV+u+J1d6Vuix1ZK91yAbS+CnNfsvdGGaLqVqVMY7Gdlo56s8VNwmn9xFiBmX2E7goDj4BtD+h66TznKcDIgnU1e1s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fyF9DvME; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1B22C4CEF1;
+	Fri,  5 Sep 2025 08:29:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757060806;
-	bh=CLdI6ur32afEiqGlVI3tRuJmZiIibp0yrP4zf7xjWyc=;
+	s=k20201202; t=1757060976;
+	bh=qTwRtRE61zsPY4Oik1TKuwEr2YgkQWcTIA6AodbDFbY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=SIyBx6iSgZ9Kn2f2NyibdwkBYeeFf6rKD6Bn1S2Om0IdJ+TIbQyLwO/MmW9cQls8R
-	 yjOyC53OqpDbotMzePlWX7BsPu8EGo68qrQuiugDRhbtdhvLXUIl+cIbIycwD0asSO
-	 593JZZPtRHHi886wZ2Qh/RysPIFsewc2QmjHRXOLgJX4VlSRvVLBYS6YMyh6EZqr5U
-	 0zJ9Xz4mNRS8Orsc/uIBpnyjBL2KNr8TzdpIE/6ig2rKAT5B9OWDKhLCQA8ak0Mlmm
-	 3VWaPdwjgmj0TtMIZRFJIYnx0pRctas/r68vP+BjXm9c+iAdMjvcVoxm6zVyH9SHBL
-	 sX7fhHCBG48YA==
-Date: Fri, 5 Sep 2025 10:26:43 +0200
-From: 'Krzysztof Kozlowski' <krzk@kernel.org>
-To: Faraz Ata <faraz.ata@samsung.com>
-Cc: andi.shyti@kernel.org, robh@kernel.org, krzk+dt@kernel.org, 
-	conor+dt@kernel.org, alim.akhtar@samsung.com, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, rosa.pila@samsung.com, 
-	pritam.sutar@samsung.com, dev.tailor@samsung.com
-Subject: Re: [PATCH] dt-bindings: i2c: exynos5: add exynosautov920-hsi2c
- compatible
-Message-ID: <20250905-cocky-woodoo-copperhead-9dadfd@kuoka>
-References: <CGME20250904071941epcas5p1ffa00f3f1cb69f7a10d08c1e96174cf1@epcas5p1.samsung.com>
- <20250904072844.358759-1-faraz.ata@samsung.com>
- <5643d3e6-a034-4e2a-babd-d82fb3d58e9d@kernel.org>
- <08cd01dc1d9e$00d416d0$027c4470$@samsung.com>
+	b=fyF9DvMEwnV5F2vH9gRUZIMZfim4cZhMh63nrQaXMvNQjJl/4Ri8WSywsq2l81CU9
+	 ccDxiyhVMJNjeSSdDp0qu2qFf/RJvGTgK22FQda7UjES7SSAb4uF+fd/4EVK7OmLEh
+	 NsG8WxdAtiT+Abc6fZiVs9P4bhB8WLQQSGSggExIGBWwkbXQcHZecPUkMH3AWRnLkh
+	 KgL0azlZq3Ar0vx0wjx97yMYMrB+yhBCpua3HoliUHxTh/ewRTOLNwpF214mpgJIDs
+	 /lVKkpWfDljD8d7co/3/N+CY+gRt6LjgnPjXWAfKY1JQTaJ2FzuJay1Ky9xPSoDxis
+	 wx9GOZfGOaxEw==
+Date: Fri, 5 Sep 2025 10:29:33 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
+ strings per SerDes and instantiation
+Message-ID: <20250905-bulky-umber-jaguarundi-1bf81c@kuoka>
+References: <20250904154402.300032-1-vladimir.oltean@nxp.com>
+ <20250904154402.300032-14-vladimir.oltean@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,36 +61,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <08cd01dc1d9e$00d416d0$027c4470$@samsung.com>
+In-Reply-To: <20250904154402.300032-14-vladimir.oltean@nxp.com>
 
-On Thu, Sep 04, 2025 at 06:45:08PM +0530, Faraz Ata wrote:
-> Hi Krzysztof,
+On Thu, Sep 04, 2025 at 06:44:01PM +0300, Vladimir Oltean wrote:
+> Going by the generic "fsl,lynx-28g" compatible string and expecting all
+> SerDes instantiations on all SoCs to use it was a mistake.
 > 
-> > -----Original Message-----
-> > From: Krzysztof Kozlowski <krzk@kernel.org>
-> > Sent: Thursday, September 4, 2025 1:35 PM
-> > To: Faraz Ata <faraz.ata@samsung.com>; andi.shyti@kernel.org;
-> > robh@kernel.org; krzk+dt@kernel.org; conor+dt@kernel.org;
-> > alim.akhtar@samsung.com
-> > Cc: linux-i2c@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
-> > kernel@lists.infradead.org; linux-samsung-soc@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; rosa.pila@samsung.com;
-> > pritam.sutar@samsung.com; dev.tailor@samsung.com
-> > Subject: Re: [PATCH] dt-bindings: i2c: exynos5: add exynosautov920-hsi2c
-> > compatible
-> > 
-> > On 04/09/2025 09:28, Faraz Ata wrote:
-> > > Add "samsung,exynosautov920-hsi2c" dedicated compatible for HSI2C
-> > > found in ExynosAutov920 SoC.
-> > >
-> > > Signed-off-by: Faraz Ata <faraz.ata@samsung.com>
-> > > ---
-> > 
-> > Where is any user of it? I looked on lore and found nothing.
-> > 
-> I will send dt patch shortly.
+> They all share the same register map, sure, but the number of protocol
+> converters and lanes which are instantiated differs in a way that isn't
+> detectable by software. So distinguish them by compatible strings.
+> At the same time, keep "fsl,lynx-28g" as backup.
+> 
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+> ---
+>  .../devicetree/bindings/phy/fsl,lynx-28g.yaml     | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+> index ff9f9ca0f19c..55d773c8d0e4 100644
+> --- a/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+> +++ b/Documentation/devicetree/bindings/phy/fsl,lynx-28g.yaml
+> @@ -11,8 +11,17 @@ maintainers:
+>  
+>  properties:
+>    compatible:
+> -    enum:
+> -      - fsl,lynx-28g
+> +    oneOf:
+> +      - items:
+> +          - const: fsl,lynx-28g
 
-Still no users. I will mark it as changes requested in the patchwork.
+Don't change that part. Previous enum was correct. You want oneOf and
+enum.
+
+> +      - items:
+> +          - enum:
+> +              - fsl,lx2160a-serdes1
+> +              - fsl,lx2160a-serdes2
+> +              - fsl,lx2160a-serdes3
+
+What are the differences? number of lanes? For this you can take
+num-lanes property.
+
+> +              - fsl,lx2162a-serdes1
+> +              - fsl,lx2162a-serdes2
+> +          - const: fsl,lynx-28g
 
 Best regards,
 Krzysztof
