@@ -1,98 +1,141 @@
-Return-Path: <devicetree+bounces-213290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213282-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75E8BB4505C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:54:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 578E4B45033
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:47:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3840D1C84F16
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:54:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BE99D7A23F1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9522D2F657C;
-	Fri,  5 Sep 2025 07:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944CA242D86;
+	Fri,  5 Sep 2025 07:47:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=datenfreihafen.org header.i=@datenfreihafen.org header.b="jkH2JhTl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gxj5SjIz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from proxima.lasnet.de (proxima.lasnet.de [78.47.171.185])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C9822F533F;
-	Fri,  5 Sep 2025 07:54:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.47.171.185
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C77514E2F2;
+	Fri,  5 Sep 2025 07:47:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757058866; cv=none; b=k+EuadLw7HymtJfWEXB4TILtzNTuM0t286OyYH+0KCntOimnZBwqRYpkTYXKJB+v0rLlbuO7LJVIZqtTwvr8F+phQIozkSA3LKHk+IZficGvVVleKFJ+ytT9KQ8noB9Cx8+ee/jR7CaaJVSzfIASSWtKpjrWbTikT4Akazf8qio=
+	t=1757058424; cv=none; b=kMXKbaMJ+2zu8gcZtreNBuDncemtTzY6VW2vmyykJk8gna3DHcUFMsRdehgjtx+ZFd57n0m4OEwGpeUEZovymIEYTAhIPa5d8XoU/cqlqb2c2ZqIGWZ0eBreJydsChi8x0hAGFDb0rA7o9iUAdjKpIrYoJtOOHiuB82prmewqzg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757058866; c=relaxed/simple;
-	bh=5n9zOkFssy2/AZSlIXFaEwVrcGNJwk6KNmav8dw9FLc=;
-	h=Message-ID:Date:MIME-Version:From:Cc:Subject:To:Content-Type; b=SL72Wq1Q+Aqi23Vy0C9NypgkryEhVvVbTVM3N3UnAEYT9FzB6OGTCxt8O8iOWESbJX27pQhSHaFX9NKYrcYa2DJPGQm8RUiz95QKFDkvY027ViDiMYN3m6jSunFmBOeUTjSnEymqw9lcttmTR7MG0k5DxiG37at5FH/LRnakb2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=datenfreihafen.org; spf=pass smtp.mailfrom=datenfreihafen.org; dkim=pass (2048-bit key) header.d=datenfreihafen.org header.i=@datenfreihafen.org header.b=jkH2JhTl; arc=none smtp.client-ip=78.47.171.185
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=datenfreihafen.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=datenfreihafen.org
-Received: from [192.168.2.30] (unknown [45.118.184.53])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: stefan@datenfreihafen.org)
-	by proxima.lasnet.de (Postfix) with ESMTPSA id 0689BC0488;
-	Fri,  5 Sep 2025 09:45:26 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=datenfreihafen.org;
-	s=2021; t=1757058327;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=xkWeTb8lOsbwxHBNQAiLG/GOYrFmBBfRltFTpI+7WeM=;
-	b=jkH2JhTlc3PgelBVDX5sr4jT/CL6PhAkkZdJOddka0LABnij0/XsXaCjyoUYwP2oOxCc1d
-	zmsfMyOORa3rkDhMHBEvuB6O3NpvP7Iz/RtXddbVPZBceefiFSELJQklV1z7XAx2Pfop4/
-	l87zZcva+wNvTcX7tfeWY12F8AiXZjVm6l8JqoJ95lH3d+QJ3R9CAZOu4uMUJmZYjUnjql
-	WtASpzUH2B9H0/YLmg6Sc0Rg5TXaqAupLnf4UIlGPdNgt32apBXe63tWWIbefHqcM81uUt
-	7oiKJ5dEYEHFIyE7ikB+Ri7wRybfom7u/kRtFNjS84bmkKE2HsMCqz0VQbyP7Q==
-Message-ID: <2a353817-f1da-4e7c-8b2c-0853779ec054@datenfreihafen.org>
-Date: Fri, 5 Sep 2025 09:45:26 +0200
+	s=arc-20240116; t=1757058424; c=relaxed/simple;
+	bh=X9O/FE8yapu+Tkiylk8h8PPSZSi+4NrKdxIeBU484kc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eTKhTeb+Tt9yzUnIjzboQDOGjzOQxvUptyu3Ra8B9AY4aIjUdcG9Z4visN592TCC6AuzZWbXmZFFkv7JSZHyxcAvQ2n5BkVQSjCzdP4wZp74RtkFRG7+sDtmNvdstw7YI3jB6VUKZDLk8R/p8h9XJ+2Prb6KY/NVb8JFPG6fXnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gxj5SjIz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62EE9C4CEF1;
+	Fri,  5 Sep 2025 07:47:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757058424;
+	bh=X9O/FE8yapu+Tkiylk8h8PPSZSi+4NrKdxIeBU484kc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Gxj5SjIz8HB3amYF0S1DCJ+jzsknGXqtqizW8Ic844n58B0W/1NwOufsacin/xUOX
+	 YzyBqXTRzstrJ8c8/a9xgCM+YVx8DnJGoMI3xY7HPoMD5oQBwUtdIxwAp7yLEEW8bV
+	 CjueosZpoZFkTc/lRe+X6okqFErtp9eXDUocp9OoRTGJKWYYf0VISpKusxM/X+mFw4
+	 Rt7lVsu3J8D++lKtMuLQaCsirDs1vJ6tjg0grnOIa63yBkRIv/NatX4Za1hvGMuBAq
+	 q3Q3oXEvtBoDraxVrjORcIwytJ2Z0dbEW53ZmeRs2x8SPfhnUlO+7wIgUYnt/hlqMA
+	 T0SdFDh79HDTg==
+Date: Fri, 5 Sep 2025 09:47:01 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Woodrow Douglass <wdouglass@carnegierobotics.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] regulator: pf530x: Add a driver for the NXP
+ PF5300 Regulator
+Message-ID: <20250905-chirpy-utopian-platypus-bea05f@kuoka>
+References: <20250902-pf530x-v6-0-ae5efea2198d@carnegierobotics.com>
+ <20250902-pf530x-v6-2-ae5efea2198d@carnegierobotics.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Stefan Schmidt <stefan@datenfreihafen.org>
-Content-Language: en-US
-Cc: Jan Lubbe <jlu@pengutronix.de>, stefan.schmidt@linaro.org
-Subject: Call for Participation: Embedded & IoT micro-conference at Linux
- Plumbers 2025
-To: linux-arm-kernel@lists.infradead.org, linux-embedded@vger.kernel.org,
- linux-arm-msm@vger.kernel.org,
- "linux-wpan@vger.kernel.org" <linux-wpan@vger.kernel.org>,
- BlueZ development <linux-bluetooth@vger.kernel.org>,
- linux-can <linux-can@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>,
- "yocto@lists.yoctoproject.org" <yocto@lists.yoctoproject.org>,
- openembeded-devel <openembedded-devel@lists.openembedded.org>,
- boot-architecture@lists.linaro.org
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250902-pf530x-v6-2-ae5efea2198d@carnegierobotics.com>
 
-We are happy to announce that the Embedded & IoT micro-conference was
-again accepted for Linux Plumbers this year. Hosted in beautiful Tokyo,
-Japan December 11-13.
-https://lpc.events/event/19/contributions/2005/
+On Thu, Sep 04, 2025 at 04:44:36PM -0400, Woodrow Douglass wrote:
+> +
+> +static const struct regulator_ops pf530x_regulator_ops = {
+> +	.enable = regulator_enable_regmap,
+> +	.disable = regulator_disable_regmap,
+> +	.is_enabled = regulator_is_enabled_regmap,
+> +	.map_voltage = regulator_map_voltage_linear_range,
+> +	.list_voltage = regulator_list_voltage_linear_range,
+> +	.set_voltage_sel = regulator_set_voltage_sel_regmap,
+> +	.get_voltage_sel = regulator_get_voltage_sel_regmap,
+> +	.get_status = pf530x_get_status,
+> +	.get_error_flags = pf530x_get_error_flags,
+> +	.set_bypass = regulator_set_bypass_regmap,
+> +	.get_bypass = regulator_get_bypass_regmap,
+> +};
+> +
+> +static struct linear_range vrange = REGULATOR_LINEAR_RANGE(500000, 0, 140, 5000);
 
-Topics cover all things embedded and IoT. Boot time to kernel size, low
-power communication, telemetry and also RTOS. Devicetree and build
-system have their own MC and we can move sessions between them as needed.
+This looks like could be const
 
-As with all MC's at Plumbers we are not looking for talks, but rather
-discussing current problems and working towards their solution. If your
-proposal has a specific stakeholder (maintainer, developer, company)
-that would be needed for a fruitful discussion, please mention it in
-your submission.
+> +
+> +static struct regulator_desc pf530x_reg_desc = {
 
-The CfP is open now and will run until October 3rd. Please do not wait
-until the end with your submissions as we are going to accept good
-proposals even before the end, so the MC might be filled up before 
-October 3rd.
+This as well (unless I missed something)
 
-Jan & Stefan
+> +	.name = "SW1",
+> +	.ops = &pf530x_regulator_ops,
+> +	.linear_ranges = &vrange,
+> +	.n_linear_ranges = 1,
+> +	.type = REGULATOR_VOLTAGE,
+> +	.id = 0,
+> +	.owner = THIS_MODULE,
+> +	.vsel_reg = PF530X_SW1_VOLT,
+> +	.vsel_mask = 0xFF,
+> +	.bypass_reg = PF530X_SW1_CTRL2,
+> +	.bypass_mask = 0x07,
+> +	.bypass_val_on = 0x07,
+> +	.bypass_val_off = 0x00,
+> +	.enable_reg = PF530X_SW1_CTRL1,
+> +	.enable_mask = GENMASK(5, 2),
+> +	.enable_val = GENMASK(5, 2),
+> +	.disable_val = 0,
+> +};
+> +
+
+...
+
+> +	config.dev = chip->dev;
+> +	config.driver_data = &pf530x_reg_desc;
+> +	config.of_node = chip->dev->of_node;
+> +	config.regmap = chip->regmap;
+> +	config.init_data = init_data;
+> +
+> +	// the config parameter gets copied, it's ok to pass a pointer on the stack here
+> +	rdev = devm_regulator_register(&client->dev, &pf530x_reg_desc, &config);
+> +	if (IS_ERR(rdev)) {
+> +		dev_err(&client->dev, "failed to register %s regulator\n", pf530x_reg_desc.name);
+> +		return PTR_ERR(rdev);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id pf530x_dt_ids[] = {
+> +	{ .compatible = "nxp,pf5300",},
+> +	{ .compatible = "nxp,pf5301",},
+
+Drop
+
+> +	{ .compatible = "nxp,pf5302",},
+
+Drop, that's the point of compatibility - less clutter in the drivers.
+
+Best regards,
+Krzysztof
+
 
