@@ -1,158 +1,218 @@
-Return-Path: <devicetree+bounces-213675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57D19B4634B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:14:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8959CB46372
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:18:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C1C71D22275
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:14:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB35BAA1667
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 79D3C1DE89A;
-	Fri,  5 Sep 2025 19:13:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA69315D4E;
+	Fri,  5 Sep 2025 19:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="XgOSuTMr"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kVEnAGCP";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aQ8uQS4j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A17D5315D2E;
-	Fri,  5 Sep 2025 19:13:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FDCA55;
+	Fri,  5 Sep 2025 19:16:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757099636; cv=none; b=aVPCkyUrNAle2WWRJ/6kHBpjtKV/CMv12xKzhNcg/LPpixpJKfm9T/PaOnk9UYnLfEN8nwYriO5f9Bhoae0ybKa4mGC/yNGipMu0bD0JoEv6rveVrg5lQMgbeQCq2LDD8xXF95iVkp2hrDwBiI3lRIzr//TgDxT7Vk4EeGFgvO0=
+	t=1757099817; cv=none; b=A93PJgIs4DinJJpYifToGMF62d2P+tY5e1R8buMFR5Rfs7TsgBHeH43vzB96JIa+ggTJYhlWfLdouATEjTsW3I3oeuNV6PfQVip4huUUBrisL4pQfXX3+FlqYHxBEgIcSB5c7LiGmPwdcpamkUwoRitFdtUw11/xRtXIHE2Uy08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757099636; c=relaxed/simple;
-	bh=COsR3o3jRXtG/eVY0etQxKPn+Y4jPbHMS2dccLQL5VI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HEVuIec9k5QP8wejzkwUEuZvIq+9gxVfpMHqNLB3vnXehW6u4uqc60lcPqU70H2NjptGWdDnw5c2ls4BM4tOprePgsa2+mD23AhRzu4Q+4jGc2r0XlB2XoXEHoX6r1aW3fsAu1rejBwsFTWtgdgkc8kXC0QgT27DhfCLsmFNWlU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=XgOSuTMr; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 585JDnsp3818914;
-	Fri, 5 Sep 2025 14:13:49 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757099629;
-	bh=QbLWe+luJ8UQUm6A8CsVavRbpzIlHzez8O5PKJ7kgHw=;
-	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=XgOSuTMrVHuAOmWF9avWPW01ZpMo1MXttiJrjLD3IUeRFKW9j8vWsj9uAxyOgLWgQ
-	 zuGX+fSG2U1FL4ITPsc+15lcb7ukcfHniGHqPweM7dm5PaBZanwqhYTtgONbul5prV
-	 N6q6Yjuj9qmEEfHBErjSiUBGU3LICwY5mAx/aOow=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 585JDnGo567808
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 5 Sep 2025 14:13:49 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
- Sep 2025 14:13:49 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 5 Sep 2025 14:13:49 -0500
-Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 585JDluN901359;
-	Fri, 5 Sep 2025 14:13:48 -0500
-Date: Sat, 6 Sep 2025 00:43:47 +0530
-From: Dhruva Gole <d-gole@ti.com>
-To: Beleswar Padhi <b-padhi@ti.com>
-CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
-        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 10/33] arm64: dts: ti: k3-am62: Enable Mailbox nodes
- at the board level
-Message-ID: <20250905191347.miywnqwn2jqgyptw@lcpd911>
-References: <20250905051846.1189612-1-b-padhi@ti.com>
- <20250905051846.1189612-11-b-padhi@ti.com>
+	s=arc-20240116; t=1757099817; c=relaxed/simple;
+	bh=S0G4DVVPhfl/gk2Z6JNs+/Nhk610SJfAbwYNBWesjGc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CtfJDEKcmVygsFVCyzItVlv8gIURIB8/dgLyGbVdbYgzm4ugzqgtYrZz4arvYfF5vteWL2KqG89urgN3+pLV32atHmnUshR90+qJKhJfV09WxT2iEToZ3znKK8FCz0HMDKHh1QG1fFvaHkgv88ucwODtm/ok+OKfoAxhzinMIDo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kVEnAGCP; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aQ8uQS4j; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cJR1154x6z9tDm;
+	Fri,  5 Sep 2025 21:16:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757099813;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VyVXJQZw/VxE1DIAGqJZQM99zmZvXcM4HzMm4Zo+WyQ=;
+	b=kVEnAGCPCqb1Tf5Scjil0a+3APbhpksBBCVZB7hhSqaE55OMqOjdx/bw2GG9A9K9NSpeID
+	vzqbMU78fIZLxbm12z2XfpYcbTMPaEikUcX05i47Qwlmd5/t6u+LzryYmEAv3p/BpyiOES
+	Jeiq5JgxBWA3SwJtyPKLRj5IWxFsZPm+H0Zwz4J3w5BdNjjNz1fkMqz4tLswmxuE5/Ho/1
+	36Vw0BtNFCJTTOzJNldXOOSATiasC3K0F2Lsg1dVeROEMyP5WL5rQ6ntvAR/sCJEJQs3RY
+	RV4t2/pN1zQ1wvXPeqyVu/sFzfHvQLHy/sJFbcxAS1Q2/wboblGSSvADSSKyYw==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=aQ8uQS4j;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757099811;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=VyVXJQZw/VxE1DIAGqJZQM99zmZvXcM4HzMm4Zo+WyQ=;
+	b=aQ8uQS4j7CavxwEqoLXsRi9fGqOLE34OjJuqE/msGflAXd2yJnYsdW/i4yxMJN8kKiQStc
+	YmCFWL9Thgel3VwjYXiQR4J9Ah1wWYZaQ1pCS4J1QFO3alm1s6y1tUC6JP5Yk5UWP5UmDy
+	ooOf0CEPbpjrrR59lO6d9kHblab0iI1Z1AceOfgvaHzlu0L9gZYk9lHLggCOzjK/vz4TDA
+	FnhhOW8HJhHgjbR1uNxrNF4LW1vQ0+NenDbp6/r1gElC6VBoqmow4budlFeGZZeDNFOdiZ
+	WmV/D4+TZgqvegMrloQNXILDv5g5TrglN/k2nILjCg8vnUo9V+pptjZBBxufGA==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-rpi-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v2] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi 720x1280 v2 binding
+Date: Fri,  5 Sep 2025 21:16:30 +0200
+Message-ID: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20250905051846.1189612-11-b-padhi@ti.com>
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: a809f2fb26ffded5227
+X-MBO-RS-META: chqjqj55drgqf9pmb1exbtomucpuoc3w
+X-Rspamd-Queue-Id: 4cJR1154x6z9tDm
 
-On Sep 05, 2025 at 10:48:23 +0530, Beleswar Padhi wrote:
-> Mailbox nodes defined in the top-level AM62x SoC dtsi files are
-> incomplete and may not be functional unless they are extended with a
-> chosen interrupt and connection to a remote processor.
-> 
-> As the remote processors depend on memory nodes which are only known at
-> the board integration level, these nodes should only be enabled when
-> provided with the above information.
-> 
-> Disable the Mailbox nodes in the dtsi files and only enable the ones
-> that are actually used on a given board.
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> Acked-by: Andrew Davis <afd@ti.com>
-> ---
-> v3: Changelog:
-> 1. Carried A/B tag.
-> 
-> Link to v2:
-> https://lore.kernel.org/all/20250823160901.2177841-11-b-padhi@ti.com/
-> 
-> v2: Changelog:
-> 1. Re-ordered patch from [PATCH 20/33] to [PATCH v2 10/33].
-> 2. Added new-line before sub-nodes in mailboxes.
-> 
-> Link to v1:
-> https://lore.kernel.org/all/20250814223839.3256046-21-b-padhi@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-am62-main.dtsi         | 1 +
->  arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts | 2 ++
->  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi       | 2 ++
->  3 files changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> index 029380dc1a35..40fb3c9e674c 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-> @@ -808,6 +808,7 @@ mailbox0_cluster0: mailbox@29000000 {
->  		#mbox-cells = <1>;
->  		ti,mbox-num-users = <4>;
->  		ti,mbox-num-fifos = <16>;
-> +		status = "disabled";
->  	};
->  
->  	ecap0: pwm@23100000 {
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> index 2e4cf65ee323..2eee5f638e0f 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-pocketbeagle2.dts
-> @@ -293,6 +293,8 @@ &epwm2 {
->  };
->  
->  &mailbox0_cluster0 {
-> +	status = "okay";
-> +
->  	mbox_m4_0: mbox-m4-0 {
->  		ti,mbox-rx = <0 0 0>;
->  		ti,mbox-tx = <1 0 0>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> index bc2289d74774..bbf2d630b305 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-> @@ -1317,6 +1317,8 @@ &main_i2c3 {
->  };
->  
->  &mailbox0_cluster0 {
-> +	status = "okay";
-> +
+The 5" and 7" Raspberry Pi 720x1280 Display 2 MCU is a bit more
+complex than the original Display 1 ATTINY88 and the binding is
+also a bit more demanding. Split the binding into separate file
+and fill in required gpio-controller, #gpio-cells and #pwm-cells
+which must be present for the V2 MCU. Include mention of the 5"
+panel in the description of Display 2, as the 5" panel uses the
+same MCU.
 
-Reviewed-by: Dhruva Gole <d-gole@ti.com>
+Fixes: 6d09c6e474bd ("regulator: dt-bindings: rpi-panel: Add regulator for 7" Raspberry Pi 720x1280")
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>
+Cc: Mark Brown <broonie@kernel.org>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-rpi-kernel@lists.infradead.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+V2: Replace node name from gpio@ to regulator@
+---
+ ...,7inch-touchscreen-panel-regulator-v2.yaml | 61 +++++++++++++++++++
+ ...ypi,7inch-touchscreen-panel-regulator.yaml |  7 +--
+ 2 files changed, 63 insertions(+), 5 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
 
+diff --git a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
+new file mode 100644
+index 0000000000000..37b9ed371b67d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
+@@ -0,0 +1,61 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RaspberryPi 5" and 7" display V2 MCU-based regulator/backlight controller
++
++maintainers:
++  - Marek Vasut <marek.vasut+renesas@mailbox.org>
++
++description: |
++  The RaspberryPi 5" and 7" display 2 has an MCU-based regulator, PWM
++  backlight and GPIO controller on the PCB, which is used to turn the
++  display unit on/off and control the backlight.
++
++allOf:
++  - $ref: regulator.yaml#
++
++properties:
++  compatible:
++    const: raspberrypi,touchscreen-panel-regulator-v2
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++  "#gpio-cells":
++    const: 2
++    description:
++      The first cell is the pin number, and the second cell is used to
++      specify the gpio polarity (GPIO_ACTIVE_HIGH or GPIO_ACTIVE_LOW).
++
++  "#pwm-cells":
++    const: 3
++    description: See ../../pwm/pwm.yaml for description of the cell formats.
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - "#gpio-cells"
++  - "#pwm-cells"
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      regulator@45 {
++        compatible = "raspberrypi,touchscreen-panel-regulator-v2";
++        reg = <0x45>;
++        gpio-controller;
++        #gpio-cells = <2>;
++        #pwm-cells = <3>;
++      };
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
+index 18944d39d08fc..41678400e63fa 100644
+--- a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
++++ b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
+@@ -12,17 +12,14 @@ maintainers:
+ description: |
+   The RaspberryPi 7" display has an ATTINY88-based regulator/backlight
+   controller on the PCB, which is used to turn the display unit on/off
+-  and control the backlight. The V2 supports 5" and 7" panels and also
+-  offers PWM backlight control.
++  and control the backlight.
+ 
+ allOf:
+   - $ref: regulator.yaml#
+ 
+ properties:
+   compatible:
+-    enum:
+-      - raspberrypi,7inch-touchscreen-panel-regulator
+-      - raspberrypi,touchscreen-panel-regulator-v2
++    const: raspberrypi,7inch-touchscreen-panel-regulator
+ 
+   reg:
+     maxItems: 1
 -- 
-Best regards,
-Dhruva Gole
-Texas Instruments Incorporated
+2.50.1
+
 
