@@ -1,211 +1,119 @@
-Return-Path: <devicetree+bounces-213344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69283B4527E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 25B70B452A7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:12:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A90B27BE99C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:02:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 94848B61AFF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:08:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCF37283FE0;
-	Fri,  5 Sep 2025 09:02:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C7DA30F54F;
+	Fri,  5 Sep 2025 09:06:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="u3Hpc2fg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lUajUdKg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D5D028468C;
-	Fri,  5 Sep 2025 09:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A7E227EFF1;
+	Fri,  5 Sep 2025 09:06:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757062964; cv=none; b=ce9jOvdQ8N4uPXPx2Q3VGsimzU23BcYumJEjcY07YGXFERNAnoIk630317Zi7QtcEirZ5rtETpFPhiey3HJI4b1CfF3YG++Wv4/0azkFziJ0wD3G6c/lC4pcPP4SV/bc5HtzbWvFNyFWItL6rK++8AM8pl91uU6SHJDx2xl+OS0=
+	t=1757063206; cv=none; b=iTs9mkz1XvgzDp3Ct7Ku1LhHPe+abUBQNI8euahXpZJdIn3CU/hPPCTc8MWEuJ1MP6Umpt3j31I4Jf3vyWWKGmBJLLIR038rj45ZD70HTXGj/gDZymqANpHHSiqLhjwVlJuzc+lxEpZCaeHNwV1dL5mO2Axf5L1rFQEDZts/JpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757062964; c=relaxed/simple;
-	bh=Y0krQ/dhwVEvyq75DSLzb/wzwZ/mZamFxcekM86ZgJw=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=U1g9hT0d4xdbmgoFlvJl556QbCVj2RLoGnoNAZFJwKKR3tYbP0FOPukrnMhteeJb40NZK0H5iuNIRB9UYP6T36iTChbBQ/IiMrFrnfmxj2VwQwpVx+c95IboSsePLKDru5wbfGmzup0GwqdwjcnGsvP9wpYLVAX9qcKmEoVpnSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=u3Hpc2fg; arc=none smtp.client-ip=185.246.85.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-03.galae.net (Postfix) with ESMTPS id 17EA74E40C32;
-	Fri,  5 Sep 2025 09:02:40 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id D54AA606C5;
-	Fri,  5 Sep 2025 09:02:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id A86AB102F1D40;
-	Fri,  5 Sep 2025 11:02:03 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757062958; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=EDM06GeR+DIfdwsC7qFlc6kZpFptQC37v7RnCGNQQKY=;
-	b=u3Hpc2fgxgudUL1L7iVhLC/HJ6hJFJp3owJHuqHzqSR/F+RFOeZQXHU++sPksWik/VpHZ7
-	n4ThcCSUb9T/cnX4HUV7sXfu9taxSru6Qi4dGl3U5LrvPS/mrK+BFq9dOdx/SLi9Wlmlst
-	DP2Ph0MTF1kSUQINhx0HqbWLYHyv5bqvcN8PN3eTiiNkYmoOghzrZ6Xk8yCrWLIA6IphKw
-	LMuaVu869ncqTjA0Y6nbscZRKOszn1TfngNf6yubsHw4DbRUyz2UtEzbdqA5OSXj3hEr3k
-	iBzF0T123MCy8QP1KH0dHfa1rP0UmnmFVuYRNZ0ywQMhuINwRD1M2ebq3jpnUQ==
+	s=arc-20240116; t=1757063206; c=relaxed/simple;
+	bh=rRDRie+arRa0yqYYOTsTXaDhoR4vLQdygBET+PjEQc4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Yq+OZ89go76tcsw8u3cucYQgJuu5jNaX/7h6gVjuEGsQvcJp/no0TRfS59i003dQ8TYig5u5NzowLYwmItJAqfXr26xIQoKqycm36wfxzsEPZMZNwLKCye0bdMUvSqCgqpiwmzKh8QpXi2aDpGpm8lmjbmU3Ao8Rzb4p+LarSkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lUajUdKg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id CF243C4CEF7;
+	Fri,  5 Sep 2025 09:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757063205;
+	bh=rRDRie+arRa0yqYYOTsTXaDhoR4vLQdygBET+PjEQc4=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lUajUdKgwY0Sq6MDHOLTnDF4kPjjkA3IujfW3bUn3lPncE/df3YKTc1oh3sxBDGoM
+	 +DSOcAV/jMRaVkHfCsmQe3Vu28Z8ocRHLIDMs0drHPr6rFzRMtkknHLjFxPgyjOU+i
+	 kq5XfePVWzDAo6ahRBU/3U/ZSzuShOupUHAmrW9zoncX5vxh8E6BcGM24gvtdukniV
+	 VNt/y3gwKLWOtwEwgyOwKUXG/BhfUNrTh2vkVak2Y1jJ9QZFdYxocuPy/ocbgSed0+
+	 YwS4X4cxROLD0XNVlnI5gyP0S/KzOImRt37xeMPq7N5MRgHYeTbrt/GNcfY2h8DwTB
+	 kpbR6jCIX0nPw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id B663CCA1016;
+	Fri,  5 Sep 2025 09:06:45 +0000 (UTC)
+From: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>
+Subject: [PATCH v3 0/2] clk: amlogic: add video-related clocks for S4 SoC
+Date: Fri, 05 Sep 2025 17:06:37 +0800
+Message-Id: <20250905-add_video_clk-v3-0-8304c91b8b94@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 05 Sep 2025 11:02:03 +0200
-Message-Id: <DCKQTNSCJD5Q.BKVVU59U0MU@bootlin.com>
-Cc: "Andrew Lunn" <andrew+netdev@lunn.ch>, "David S. Miller"
- <davem@davemloft.net>, "Eric Dumazet" <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, "Paolo Abeni" <pabeni@redhat.com>, "Rob
- Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Nicolas Ferre"
- <nicolas.ferre@microchip.com>, "Claudiu Beznea" <claudiu.beznea@tuxon.dev>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>, "Harini Katakam"
- <harini.katakam@xilinx.com>, "Richard Cochran" <richardcochran@gmail.com>,
- <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Sean Anderson" <sean.anderson@linux.dev>
-To: "Russell King (Oracle)" <linux@armlinux.org.uk>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH net v4 5/5] net: macb: avoid double endianness swap in
- macb_set_hwaddr()
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250820-macb-fixes-v4-0-23c399429164@bootlin.com>
- <20250820-macb-fixes-v4-5-23c399429164@bootlin.com>
- <aKXo_jihNKyJmxVQ@shell.armlinux.org.uk>
-In-Reply-To: <aKXo_jihNKyJmxVQ@shell.armlinux.org.uk>
-X-Last-TLS-Session-Version: TLSv1.3
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB6oumgC/3XMyQrCMBSF4VcpWRvJ2MGV7yFSmqm92DaSSFBK3
+ 920G1FweQ58/4KiDWAjOhULCjZBBD/nwQ8F0kM39xaDyRsxwiSpqMSdMW0CY32rxxs2mtdKCtk
+ QWqNs7sE6eO69yzXvAeLDh9eeT3R7/5USxQQLYitXcu54Sc/dNPoe9FH7CW2txD6+puLXs+yVY
+ kp20rGGiG+/rusbnwRNkuwAAAA=
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, Chuan Liu <chuan.liu@amlogic.com>
+X-Mailer: b4 0.14.1
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757063204; l=1186;
+ i=chuan.liu@amlogic.com; s=20240902; h=from:subject:message-id;
+ bh=rRDRie+arRa0yqYYOTsTXaDhoR4vLQdygBET+PjEQc4=;
+ b=A5m6cXJ2nTGuUrkU0tNq1RZdcImPw4PhYKxqStuGNEeMeM0a3mwpAAbZEQzsDgZKfdniWS/mU
+ DiNGQWNB4/XCv8eTNRvpCwrwuj7O8iIi4HFlBLfNIOJdFd7J13M0+Jx
+X-Developer-Key: i=chuan.liu@amlogic.com; a=ed25519;
+ pk=fnKDB+81SoWGKW2GJNFkKy/ULvsDmJZRGBE7pR5Xcpo=
+X-Endpoint-Received: by B4 Relay for chuan.liu@amlogic.com/20240902 with
+ auth_id=203
+X-Original-From: Chuan Liu <chuan.liu@amlogic.com>
+Reply-To: chuan.liu@amlogic.com
 
-Hello Russell,
+This patch introduces new clock support for video processing components
+including the encoder, demodulator and CVBS interface modules.
 
-On Wed Aug 20, 2025 at 5:25 PM CEST, Russell King (Oracle) wrote:
-> On Wed, Aug 20, 2025 at 04:55:09PM +0200, Th=C3=A9o Lebrun wrote:
->> writel() does a CPU->LE conversion. Drop manual cpu_to_le*() calls.
->>=20
->> On little-endian system:
->>  - cpu_to_le32() is a no-op (LE->LE),
->>  - writel() is a no-op (LE->LE),
->>  - dev_addr will therefore not be swapped and written as-is.
->>=20
->> On big-endian system:
->>  - cpu_to_le32() is a swap (BE->LE),
->>  - writel() is a swap (BE->LE),
->>  - dev_addr will therefore be swapped twice and written as a BE value.
->
-> I'm not convinced by this, I think you're missing something.
->
-> writel() on a BE or LE system will give you bits 7:0 of the CPU value
-> written to LE bit 7:0 of the register. It has to be this way, otherwise
-> we would need to do endian conversions everwhere where we write simple
-> numbers to device registers.
->
-> Why?
->
-> Remember that on a LE system with a 32-bit bus, a hex value of
-> 0x76543210 at the CPU when written without conversion will appear
-> as:
-> 	0 on bus bits 0:3
-> 	1 on bus bits 4:7
-> 	...
-> 	6 on bus bits 24:27
-> 	7 on bus bits 28:31
->
-> whereas on a BE system, this is reversed:
-> 	6 on bus bits 0:3
-> 	7 on bus bits 4:7
-> 	...
-> 	0 on bus bits 24:27
-> 	1 on bus bits 28:31
->
-> The specification is that writel() will write in LE format even on
-> BE systems, so there is a need to do an endian conversion for BE
-> systems.
->
-> So, if a device expects bits 0:7 on the bus to be the first byte of
-> the MAC address (high byte of the OUI) then this must be in CPU
-> bits 0:7 as well.
->
->
-> Now, assuming that a MAC address of AA:BB:CC:DD:EE:FF gets read as
-> 0xDDCCBBAA by the first read on a LE machine, it will get read as
-> 0xAABBCCDD on a BE machine.
->
-> We can now see that combining these two, getting rid of the
-> cpu_to_le32() is likely wrong.
->
-> Therefore, I am not convinced this patch is actually correct.
+The related clocks have passed clk-measure verification.
 
-Thanks for the above, in-detail, explanation. I agree with it all.
-I've always have had a hard time wrapping my head around endianness
-conversion.
+Signed-off-by: Chuan Liu <chuan.liu@amlogic.com>
+---
+Changes in v3:
+- Rebase with Jerome's latest code base.
+- Link to v2: https://lore.kernel.org/r/20250814-add_video_clk-v2-0-bb2b5a5f2904@amlogic.com
 
-Indeed the patch is wrong: the swap is required on BE platforms.
-My gripe is more with the semantic of the current code:
+Changes in v2:
+- Removed lcd_an clock tree (previously used in meson series but obsolete in
+newer chips).
+- Removed Rob's 'Acked-by' tag due to dt-binding changes (Is it necessary?).
+- Link to v1: https://lore.kernel.org/r/20250715-add_video_clk-v1-0-40e7f633f361@amlogic.com
 
-   bottom =3D cpu_to_le32(*((u32 *)bp->dev->dev_addr));
-   macb_or_gem_writel(bp, SA1B, bottom);
-   top =3D cpu_to_le16(*((u16 *)(bp->dev->dev_addr + 4)));
-   macb_or_gem_writel(bp, SA1T, top);
+---
+Chuan Liu (2):
+      dt-bindings: clock: add video clock indices for Amlogic S4 SoC
+      clk: amlogic: add video-related clocks for S4 SoC
 
-Notice how:
- - The type of the argument to cpu_to_le32(); pointer is to a CPU-endian
-   value (u32) but in reality is to a BE32.
- - We apply cpu_to_le32() to get a swap but the semantic is wrong; input
-   value is BE32 that we want to turn into CPU-endian.
- - Above two points apply to `u16 top` as well.
- - writel() are unrelated to the issue; they do the right thing by
-   writing a CPU value into a LE device register.
+ drivers/clk/meson/s4-peripherals.c                 | 203 +++++++++++++++++++++
+ .../clock/amlogic,s4-peripherals-clkc.h            |  11 ++
+ 2 files changed, 214 insertions(+)
+---
+base-commit: 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+change-id: 20250715-add_video_clk-dc38b5459018
 
-Sparse is complaining about the second bulletpoint; it won't complain
-about the first one because it trusts that you know what you are doing
-with explicit casts.
+Best regards,
+-- 
+Chuan Liu <chuan.liu@amlogic.com>
 
-   warning: incorrect type in assignment (different base types)
-      expected unsigned int [usertype] bottom
-      got restricted __le32 [usertype]
-
-If we want to keep to the same structure, this does the exact same but
-its semantic is more aligned to reality (to my eyes):
-
-   bottom =3D le32_to_cpu(*((__le32 *)bp->dev->dev_addr));
-   macb_or_gem_writel(bp, SA1B, bottom);
-   top =3D le16_to_cpu(*((__le16 *)(bp->dev->dev_addr + 4)));
-   macb_or_gem_writel(bp, SA1T, top);
-
-Notice how:
- - Casts are fixed to signal proper types.
- - Use le32_to_cpu().
-
-Sparse is happy and code has been tested on a BE platform.
-Assembly generated is strictly identical.
-
-However, I think we can do better. Second option:
-
-   const unsigned char *addr =3D bp->dev->dev_addr;
-
-   bottom =3D addr[0] << 0 | addr[1] << 8 | addr[2] << 16 | addr[3] << 24;
-   top =3D addr[4] << 0 | addr[5] << 8;
-
-This is a bit of a mouthful, what about this one?
-
-   bottom =3D get_unaligned_le32(addr);
-   top =3D get_unaligned_le16(addr + 4);
-
-It is my preferred. I found those helpers reading more code that reads
-the `unsigned char *dev_addr` field. Explicit and straight forward.
-
-Can you confirm that last option fits well?
-
-Thanks Russell,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
 
