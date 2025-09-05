@@ -1,242 +1,150 @@
-Return-Path: <devicetree+bounces-213370-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213371-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEB95B453EA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:59:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 08E82B453F4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:01:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 856B5A46730
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 09:59:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id C7EF04E31F7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17BF229992B;
-	Fri,  5 Sep 2025 09:59:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBF9E27A90A;
+	Fri,  5 Sep 2025 10:01:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="GUI0CfKg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MFxi6xLM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 747D6298CA2;
-	Fri,  5 Sep 2025 09:59:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757066392; cv=pass; b=jSE4SvQi2lj5Vr9LpRp+MpFxB2LDpUSSgaTSnCFM6UY78ublhzoSigA6DycLEuLddoMBbZqfuPkghoZxpvLcw0FcBofpLg/cpNFqS5Ho2jfV0nF3Im5jTVdZnJ99mOUCtRgq1UU1RvvmlASpZhVLNOPTjHPp4KyztuWrCVGi9dE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757066392; c=relaxed/simple;
-	bh=4B0uCafS9PeiWwtB76K0wpVYqUotJLtrS8aEO+uQLTQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LlManCDUCH76jj9k8BdgEdN9p5VCjNP3R2WmzFVzxLxVoIqGLwYpIGBhZCBsk9MvmYQBPSv5WJAiH8OsCUpNwe/J8LtQiBd8x/tOP4m067xUwZn5ozGmEVGhbHrE1qZ+9vepMt+g3LMKTeonGeZcjcSaMWilcyCfQXQiNuvTdGE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=GUI0CfKg; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (91-158-51-183.elisa-laajakaista.fi [91.158.51.183])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4cJBf52cjYzyTd;
-	Fri,  5 Sep 2025 12:59:41 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1757066381;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oxU6PeI8iqd+YU+k6CwK/hzw7lag9KitjUROGBpvzGM=;
-	b=GUI0CfKgySHWm7Ai8V/4Q+/y88QEc2bLWtjGFYKs/gyCjaBnn63TEnwZc0IJ22JPvTrpOp
-	1tN+SMDR3kNGkDPvYXj90eWNST1xMPF/q1cargR5yYXf76L6qkodwh8d188QB/on9obLb0
-	pvAFtlyrPl85XX5F+wjIcu1FlFcrU8s=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1757066381; a=rsa-sha256; cv=none;
-	b=ss4sCOxcsjmOecGY53Y1SCx43ctwU/adJnvSCrjJt12hgfr4BdJsaHqnMQRoBtz/Ck8UQr
-	jClsQldiaeCs/yj41q0KJG1sr4VfaQG4029fB9Oq9zgkqnb/Ec26AKM2np3M/tgo1JzGtK
-	MkaxjDHnZHE24nhR4dYZI/lpcjAlH5E=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1757066381;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=oxU6PeI8iqd+YU+k6CwK/hzw7lag9KitjUROGBpvzGM=;
-	b=y8gsDYeHGpYkGtnCvKUTtWPp489kC8Yom9V6pnpHQee4uHoDHvZE7NDddbsbqSBbNYWZsf
-	XX43UMgDQ2PUWDL+YhyAudCXCOc9GQMBFluqp+ZKrhBqXt0NBKb5HfqSb3QKOdDXcP0Jta
-	RTwsNuM7DJ3AsmOeh4KsgwYIb1BAvzA=
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 74846634C93;
-	Fri,  5 Sep 2025 12:59:40 +0300 (EEST)
-Date: Fri, 5 Sep 2025 12:59:40 +0300
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: i2c: add Himax HM1246 image
- sensor
-Message-ID: <aLq0jJtdaxIpN9CT@valkosipuli.retiisi.eu>
-References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
- <20250526-hm1246-v2-1-6b882827a3a5@emfend.at>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AABD3FF1;
+	Fri,  5 Sep 2025 10:01:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757066496; cv=none; b=bvmeQrOi7ufd73WxvSjQ6NNqHBtFLcJUOL0VLQjyFEUBp1W2GXDBbKXlTDuiW35IRxzFabitEpQmb0L/zGF2RMHPT+fm8WzP29YSLh6DlMAIpVyK7a8sPQ6HSjPRcHv3QCaVa5BP9/TUHaQ6acTT6A0Pk1LrblgQ3NBxLfsbR+s=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757066496; c=relaxed/simple;
+	bh=MI++7xSl6D0d/tvMOVR8S7KiVropv9tJ4R/VEjlTswc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Y8kIqibjSEcTNTkqgvkZpGI6TMTGzhR8swqqL5jb23J/PICYcWkJAqQ45VT+o6rPmVTryKtQemK3Yju5AZmyVUiGjBbMoPl7O4e6f9U3Xqn/ac/dCKex9eDRsbFKIO9eWk9faKMoKA/ZdMkW4Oi6J3Le2wdho9CTAbehNYcphvU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MFxi6xLM; arc=none smtp.client-ip=209.85.221.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-3df35a67434so1097434f8f.3;
+        Fri, 05 Sep 2025 03:01:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757066493; x=1757671293; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZEQHjjB0tYa1N8cGqzOlMz/FwpV1lIEE+NTIQ2azOHo=;
+        b=MFxi6xLMluKxY3AWeLBVWv/03CFKPLqZ73AE5riExwYq5+9AdrBJ1nBPWd2pMCs21h
+         71OoMpqEfCmTNXI7z64LZsapHeqYl9CJ0v2YXAk+QjIpwtilDYd2A57etV2WhJGkZW9J
+         KwfU0aT28Yuo0e6yiSztEGyKGAjrunvllFQ3ewYnH2Fko34CpC/VqG82CDw7aaBEoS0h
+         P7tz5c0XTBJ88X4dxJf9PSOICnLuywlTMeU0bZBslqmzRBiZ00bURJltrFkmKcNlDn6T
+         B6Wnd9F/lZro477fffcSEOiBd8dqr2HByBLGnOgO1WE+aNPRANEPwwd0pv2X+4yXjjDh
+         usNw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757066493; x=1757671293;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZEQHjjB0tYa1N8cGqzOlMz/FwpV1lIEE+NTIQ2azOHo=;
+        b=pJbgciep+1SAxmSQygJLZv3YDPcI5dHm2sS77Jpn0E37c/+fKbY2AwXHdg5fggLheY
+         zdzT9wR88dJh2IjGY1ogYGOsRWJMofo1uC14N8LsEYXShx5lO9S2bst154IotxPMlC4i
+         xEiPBsBRbP5ZrxNJUPKDnKwgZiKSLL6n325ctH1EGwmsZn4k8tPpv59OoTygleL+aMPn
+         dt7WP08aOQme+9KL44Z9WMPFxe+T7wTrmlcIVjUhD9vfDMBeJojokdYadHKvniRtsIVt
+         pFrW8pu4/y7RRUw0dhJ8IelihV3KVkGR8snoww3qYvsaA2npLIV7pXvlKv5CC94D0U5e
+         l7kg==
+X-Forwarded-Encrypted: i=1; AJvYcCUITINBq1fW5O5ZrgLGCiY/NnsaQ2ksT1Jq1fBKjE2zFHJmCc2buvYqU2lI7fHIyBxB1aHLekgR@vger.kernel.org, AJvYcCUPP1Yph9Yr+0TWs9qAT9GmYi8u+vx9rcfHIvr/wsArU+CPpPjZFmH5uBMJR07HYd+hzyFNWW6dhaMC03ci@vger.kernel.org, AJvYcCURvPxZyF8LmeNWr4B1kkQb+pkAOv/PsR84ls51B3yHx5admBEEq6N0Vx3EronXlkvjaid5ndIE6xsi@vger.kernel.org, AJvYcCXDelpUeUog4cy7Lfk3gu0v13WaFh2HFLYvh4UyiOewxa/cLIpXR7ubI/cTJH/MGCIgdsyEN8hbxsSrUq5B1jmhQOQ=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMNZxzMKfVnvhHpHbl0GSLvng4KHNBV6Bko9pHrzUhmwppGJNK
+	jLI9evPCAmXZ9TqyNmcjTd3QvuMnBrA8K7hxwqsMlwdH3t9yyJJkyMIJZ+XZCll5EtC5HsWcF+J
+	+ofr+iL9DddGRdIxMfMj92W4k7SubZtc=
+X-Gm-Gg: ASbGncvpeThzhS5hU8jSGnq6b4oK2pk5TPR4Keic1JkUYOb2ZrVKP3WMOFYRZuzairv
+	zFTOmSBzmAjjMh92MA0nVwIkvr2BPPsAyCNIcdCAdUYASiQV0oGgiw06Ggnksk5onZdxWg6CZma
+	AwmPFLGYu6ndvasTkfoVbIXzXQuZU+H8kHGN+RPPWqhjRMUsFaP75hMX5IYsQI4ONFlakpPFaFc
+	Yns44YvkDnEgZc1EPQbIisrZt6zTg==
+X-Google-Smtp-Source: AGHT+IENwDNnaA7LX8QdpGvHVZvc2cHkW8LLzE7YEDl4gIph1nAnHPcvvqrHhi6z/bmYC4D7PBM8OEiEwUc40Anwygw=
+X-Received: by 2002:a05:6000:2383:b0:3e2:6d96:b4da with SMTP id
+ ffacd0b85a97d-3e26d96bc68mr3684568f8f.38.1757066493047; Fri, 05 Sep 2025
+ 03:01:33 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250526-hm1246-v2-1-6b882827a3a5@emfend.at>
+References: <20250904114204.4148520-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20250904114204.4148520-7-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <021e970a-f606-4702-9f0e-b4b0576bc5d6@lunn.ch> <CAMuHMdVnhjA0xi+wojMc40Zmv_JBZpOm04GO_ewBSzFndbtegQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVnhjA0xi+wojMc40Zmv_JBZpOm04GO_ewBSzFndbtegQ@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 5 Sep 2025 11:01:06 +0100
+X-Gm-Features: Ac12FXxIWUyvkEfUz4q5orurH6BJWRXeslXNcn11rYAmFLfl-aoQgiX5uzP0Hng
+Message-ID: <CA+V-a8unTSqBottT7uDGkSxDYpRAYnpZvRC2RKsm9M0rw09iFQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v2 6/9] net: pcs: rzn1-miic: Make switch mode
+ mask SoC-specific
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Andrew Lunn <andrew@lunn.ch>, =?UTF-8?B?Q2zDqW1lbnQgTMOpZ2Vy?= <clement.leger@bootlin.com>, 
+	Andrew Lunn <andrew+netdev@lunn.ch>, "David S. Miller" <davem@davemloft.net>, 
+	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>, 
+	Philipp Zabel <p.zabel@pengutronix.de>, Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, netdev@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Matthias,
+Hi Geert,
 
-Thanks for the set.
+On Fri, Sep 5, 2025 at 8:02=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
+.org> wrote:
+>
+> Hi Andrew,
+>
+> On Thu, 4 Sept 2025 at 22:37, Andrew Lunn <andrew@lunn.ch> wrote:
+> > On Thu, Sep 04, 2025 at 12:42:00PM +0100, Prabhakar wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Move the hardcoded switch mode mask definition into the SoC-specific
+> > > miic_of_data structure. This allows each SoC to define its own mask
+> > > value rather than relying on a single fixed constant. For RZ/N1 the
+> > > mask remains GENMASK(4, 0).
+> > >
+> > > This is in preparation for adding support for RZ/T2H, where the
+> > > switch mode mask is GENMASK(2, 0).
+> >
+> > > -#define MIIC_MODCTRL_SW_MODE         GENMASK(4, 0)
+> >
+> > >       miic_reg_writel(miic, MIIC_MODCTRL,
+> > > -                     FIELD_PREP(MIIC_MODCTRL_SW_MODE, cfg_mode));
+> > > +                     ((cfg_mode << __ffs(sw_mode_mask)) & sw_mode_ma=
+sk));
+> >
+> > _ffs() should return 0 for both GENMASK(2,0) and GENMASK(4, 0). So
+> > this __ffs() is pointless.
+> >
+> > You might however want to add a comment that this assumption is being
+> > made.
+>
+> I guess Prabhakar did it this way to make it easier to find
+> candidates for a future conversion to field_prep(), if this ever becomes
+> available[1].
+>
+> [1] "[PATCH v3 0/4] Non-const bitfield helpers"
+>     https://lore.kernel.org/all/cover.1739540679.git.geert+renesas@glider=
+.be
+>
+Ah thanks, I wanted to explore this and add a new macro but I thought
+it might delay this series so I dropped it. Hopefully your series will
+get in soon.
 
-On Mon, May 26, 2025 at 08:59:27AM +0200, Matthias Fend wrote:
-> Add YAML device tree binding for Himax HM1246 image sensor.
-> 
-> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> ---
->  .../bindings/media/i2c/himax,hm1246.yaml           | 111 +++++++++++++++++++++
->  1 file changed, 111 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..8a67de7e3ffcaa9f1acfe443b1e36fffb79dbacf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> @@ -0,0 +1,111 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/himax,hm1246.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Himax HM1246-AWD 1/3.7-Inch megapixel SoC image sensor
-> +
-> +maintainers:
-> +  - Matthias Fend <matthias.fend@emfend.at>
-> +
-> +description:
-> +  The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
-> +  array size of 1296 x 976. It is programmable through an I2C interface and
-> +  connected via parallel bus.
-> +
-> +allOf:
-> +  - $ref: /schemas/media/video-interface-devices.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: himax,hm1246
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: Input reference clock (6 - 27 MHz)
-> +    maxItems: 1
-> +
-> +  reset-gpios:
-> +    description: Active low XSHUTDOWN pin
-> +    maxItems: 1
-> +
-> +  avdd-supply:
-> +    description: Power for analog circuit (3.0 - 3.6 V)
-> +
-> +  iovdd-supply:
-> +    description: Power for I/O circuit (1.7 - 3.6 V)
-> +
-> +  dvdd-supply:
-> +    description: Power for digital circuit (1.5 / 1.8 V)
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +    description: Parallel video output port
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          bus-type:
-> +            const: 5
-
-Does the device also support e.g. Bt.656? If not, you can drop this.
-
-If the rest of the parallel interface parameter properties aren't
-mandatory, what are their default values?
-
-> +
-> +        required:
-> +          - bus-type
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - avdd-supply
-> +  - iovdd-supply
-> +  - dvdd-supply
-> +  - port
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/media/video-interfaces.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        sensor@24 {
-> +            compatible =  "himax,hm1246";
-> +            reg = <0x24>;
-> +
-> +            clocks = <&hm1246_clk>;
-> +
-> +            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-> +
-> +            avdd-supply = <&hm1246_avdd>;
-> +            iovdd-supply = <&hm1246_iovdd>;
-> +            dvdd-supply = <&hm1246_dvdd>;
-> +
-> +            orientation = <2>;
-
-It'd be nice to add macros for these in
-include/dt-bindings/media/video-interfaces.h .
-
-> +            rotation = <0>;
-> +
-> +            port {
-> +                endpoint {
-> +                    remote-endpoint = <&isp_par_in>;
-> +                    bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
-> +                    bus-width = <10>;
-> +                    hsync-active = <1>; /* active high */
-> +                    vsync-active = <1>; /* active high */
-> +                    pclk-sample = <1>; /* sample on rising edge */
-> +                };
-> +            };
-> +        };
-> +    };
-> 
-
--- 
-Regards,
-
-Sakari Ailus
+Cheers,
+Prabhakar
 
