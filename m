@@ -1,228 +1,195 @@
-Return-Path: <devicetree+bounces-213327-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2A2EB451DE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:43:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6BAB45203
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:47:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA4DB60262
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:41:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABFF6172955
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:47:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2928B27F727;
-	Fri,  5 Sep 2025 08:42:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 940FC2F744B;
+	Fri,  5 Sep 2025 08:47:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Qj9HpBv3"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="VokOjQNR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2069.outbound.protection.outlook.com [40.107.237.69])
+Received: from mailout2.samsung.com (mailout2.samsung.com [203.254.224.25])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D691A9FB3;
-	Fri,  5 Sep 2025 08:42:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.69
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757061748; cv=fail; b=EsZklq/SrIhnbPA/0uqUqmKcUKNcFjY++IYyu6sj1XZ16YKx+JrgAnBslv9H084k7FLrIW3oNFr2GHkcrWYQtTUrsfW56EQz4ZSzHRoPXivKXrfTc+otGxNjBkyC8ciNEplD4wbGdJ4irbxTX5wGdBE6a1BEqPJtVUt89TVm9+0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757061748; c=relaxed/simple;
-	bh=+2u6B+o2HjfZcf2ObJXQcFL6uumPIahdfbJ4ULfh1bo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=amRF4u1GvLlEpFzXtngLaICvC0NsUOAT//IYRbJvQyQceaYutEHwTob8XqSzFRw+l1dG1bFWjruPkEyqJgZW1cyxHr0nyXhlUGP1WJEVsHaRKMTukgK1jEXjZR29qLL7y61z/4E76nPp/r3MPGyNQqFWKkLnA27oTjzacToMUoU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Qj9HpBv3; arc=fail smtp.client-ip=40.107.237.69
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nedcp1XL3hlFD9aa1KwYfVW/e4ome4MD9nA0TiCxc92hB/tdYe/kHujDk1xxTizV/WVxsHXOqfX7bxBtkYdYsFtJ1Wc5TiawW3ToBCT412ppX1IyIdBSteoXbNhwrhVTVesBZwKA1zD0TMyyBt7janMVveo13sycBcC6JCUaEVkePDtcGVPbs+PYSeYSHSbfKeE2pPodx3QXKZ0su+DBLzf7Mur/Udkgs8yDBoIfYCSaDZwmVuef39x0RzjRhmV8KNL1I6/IgejbyYPSvRSd3zU+GyuL+URcUpTPJrotOj1W1GPVs2Kl0JmjWPUmQqdV3rqInQCmUCmXY4bB4beuEQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vD7c7XGJ6/A752uiPnxtiGTYcKPl6rIY+JujYapuL/s=;
- b=zDaEy89qzPz+JN6pz4FNw08fpD6h0Dy/jZA+q738LsMkFANt7fFDCqAlqrWpeIlaSewPNY2JaNdrtfYcZnep+tK6ue5Cj3YAThb9pm6RQ3yDNlAcQUYBEQx7sxqwdYkLkWa8pWlb67wGzAsEP1+KXsWfXxxdg49CTqFDi+ucS0SHZR3CfTe6m3v0xYBSeu7PlnWMAjZIByRAN67LfNoOrjjGVYO57FomhRgKBPzEE0k21C33l2xi7WeSi20GmG4PNDK0iTO6n1WcUIUYlVInlNUtjnRY2jySxg5E7jzwccXNFdzXrOnDVyKgu3SAWWLwPR/+tdup29o+1Byk2fvpCQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vD7c7XGJ6/A752uiPnxtiGTYcKPl6rIY+JujYapuL/s=;
- b=Qj9HpBv3zey7Mf523nMt1gEUB4CH5wI9E1iNVrSItbv5TgZAOMgdXIQgiENvlOlEO36Osnbs0oXVLcHg2APwCSudAYZcuVh9RrbEUCadE7mPoiQHs8YgmBgFA5B+l1XsRhEL1d0cZaXZ3ZhVt31JuYrLIaJsoJTINzU25MTmmlE=
-Received: from SJ0PR13CA0028.namprd13.prod.outlook.com (2603:10b6:a03:2c0::33)
- by IA1PR12MB7613.namprd12.prod.outlook.com (2603:10b6:208:42a::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.18; Fri, 5 Sep
- 2025 08:42:21 +0000
-Received: from CO1PEPF000075EF.namprd03.prod.outlook.com
- (2603:10b6:a03:2c0:cafe::77) by SJ0PR13CA0028.outlook.office365.com
- (2603:10b6:a03:2c0::33) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.7 via Frontend Transport; Fri, 5
- Sep 2025 08:42:20 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000075EF.mail.protection.outlook.com (10.167.249.38) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.9094.14 via Frontend Transport; Fri, 5 Sep 2025 08:42:20 +0000
-Received: from satlexmb10.amd.com (10.181.42.219) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 5 Sep
- 2025 03:42:12 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb10.amd.com
- (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Fri, 5 Sep
- 2025 01:42:11 -0700
-Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39 via Frontend
- Transport; Fri, 5 Sep 2025 03:42:11 -0500
-From: Michal Simek <michal.simek@amd.com>
-To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
-	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Salih Erim <salih.erim@amd.com>, "Anish Kadamathikuttiyil Karthikeyan
- Pillai" <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>, Conor Dooley
-	<conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>, "Rafael
- J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Zhang Rui
-	<rui.zhang@intel.com>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
- BINDINGS" <devicetree@vger.kernel.org>, "open list:THERMAL"
-	<linux-pm@vger.kernel.org>
-Subject: [PATCH 4/6] dt-bindings: thermal: versal: Add description for Versal Thermal
-Date: Fri, 5 Sep 2025 10:41:47 +0200
-Message-ID: <c46889536b2555c25aa6f17facdf085956b648a4.1757061697.git.michal.simek@amd.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <cover.1757061697.git.michal.simek@amd.com>
-References: <cover.1757061697.git.michal.simek@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3778527703A
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.25
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757062068; cv=none; b=CMFKRjFfzD7TXFgYKVlMtwoU5iYtC8ucikxXjRMncg5LWmrLLrtgI4xsSar6EUyRAaaMEz+PCmr0Bp1khaDjx+BxstAnr1UqyJR+IO3lwrZPATOcogzWbEMrtc7SCHTImMpaRE7xsY+GJQo+lykv8Htgtt8y5jnouKrfTcpi8P0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757062068; c=relaxed/simple;
+	bh=fOZPrfeirJR+JDRPn+8B9LZz7+N94QcXaMJ5P19eoWc=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:Message-ID:MIME-Version:
+	 Content-Type:References; b=j/4cXyiDlcTBKEymHNnW7X+NnGf9N0nlx8dRFjQpoGcByrp/Lu90fRyWu2xLhBwvCX2HuAvP9066aycpPC7C+P6zbAHmS5xbL0/wuG5+CfoHprWhm9RwtcWEGiUPJX1A6B9AFqoeHaLPiPkoDdxtzHWGYMesw2ocQzKwZ4bwafg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=VokOjQNR; arc=none smtp.client-ip=203.254.224.25
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p3.samsung.com (unknown [182.195.41.55])
+	by mailout2.samsung.com (KnoxPortal) with ESMTP id 20250905084744epoutp0292e5bee78e0879c2e1543d38fe282d67~iVqNU5Mbj0663806638epoutp02j
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:47:44 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.samsung.com 20250905084744epoutp0292e5bee78e0879c2e1543d38fe282d67~iVqNU5Mbj0663806638epoutp02j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1757062064;
+	bh=mGHoIy1u5YwF44RSJWPpqSfDEUJvtheqWLknK2zHyFU=;
+	h=From:To:Cc:In-Reply-To:Subject:Date:References:From;
+	b=VokOjQNRa8qIcm/dtJHJLnFz4cy+2SXpSsrUeiIjUgZb52kFbUykbkZSNSPzbAbpK
+	 JskakR2E3dhwPWqjxKeaJ7obpfG0rmiJLZoVzkCT6YyyodrgQJeq8uqzTMY0Z4Ywax
+	 4WlxLolGlOritOGvJtNx2tTBdqjH62OcyBmCan/A=
+Received: from epsnrtp01.localdomain (unknown [182.195.42.153]) by
+	epcas2p1.samsung.com (KnoxPortal) with ESMTPS id
+	20250905084743epcas2p1209d3973b38799f3420a2824b3332e6b~iVqM0BAPM2283222832epcas2p11;
+	Fri,  5 Sep 2025 08:47:43 +0000 (GMT)
+Received: from epcas2p4.samsung.com (unknown [182.195.36.68]) by
+	epsnrtp01.localdomain (Postfix) with ESMTP id 4cJ8zC2rZ7z6B9mB; Fri,  5 Sep
+	2025 08:44:23 +0000 (GMT)
+Received: from epsmtip1.samsung.com (unknown [182.195.34.30]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20250905084422epcas2p3adcac9df0246c693fccd56c6321633a0~iVnRzknAo1169711697epcas2p3z;
+	Fri,  5 Sep 2025 08:44:22 +0000 (GMT)
+Received: from KORCO115296 (unknown [12.36.150.221]) by epsmtip1.samsung.com
+	(KnoxPortal) with ESMTPA id
+	20250905084422epsmtip1c3a98abb7296146ebad52327dc761bfb~iVnRuW2Wo1642316423epsmtip1R;
+	Fri,  5 Sep 2025 08:44:22 +0000 (GMT)
+From: =?UTF-8?B?7IaQ7Iug?= <shin.son@samsung.com>
+To: "'Krzysztof Kozlowski'" <krzk@kernel.org>
+Cc: "'Bartlomiej Zolnierkiewicz'" <bzolnier@gmail.com>, "'Rafael J .
+ Wysocki'" <rafael@kernel.org>, "'Daniel Lezcano'"
+	<daniel.lezcano@linaro.org>, "'Zhang Rui'" <rui.zhang@intel.com>, "'Lukasz
+ Luba'" <lukasz.luba@arm.com>, "'Rob Herring'" <robh@kernel.org>, "'Conor
+ Dooley'" <conor+dt@kernel.org>, "'Alim Akhtar'" <alim.akhtar@samsung.com>,
+	<linux-pm@vger.kernel.org>, <linux-samsung-soc@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<linux-kernel@vger.kernel.org>
+In-Reply-To: <20250904-chocolate-kangaroo-of-order-2cced3@kuoka>
+Subject: RE: [PATCH v2 1/3] dt-bindings: thermal: samsung: Add tmu-name and
+ sensor-index-ranges properties
+Date: Fri, 5 Sep 2025 17:44:22 +0900
+Message-ID: <022001dc1e41$46f7ba60$d4e72f20$@samsung.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2130; i=michal.simek@amd.com; h=from:subject:message-id; bh=kzf3zxCVMwBg6GlVmTOTrvwZyUlp+2MwNEb6Djv3yEE=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWTsWuRXlB1qe2vZkj6zd7+ty9fVnNjxovmRm+2ZKbfD1 13XkuXb3VHKwiDGwSArpsgynUnHYc23a0vFlkfmw8xhZQIZwsDFKQATiZvNyLD26/nF03+r6M8t eeH4fu3JH1NzkxWnuzdnhc1LfZI4z+o+w/9Ig47HScfl9Bxlzl/g93SYtL2Ib+IHOf9bSTMcmSc ECnIAAA==
-X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075EF:EE_|IA1PR12MB7613:EE_
-X-MS-Office365-Filtering-Correlation-Id: ac478399-4c49-4c01-130a-08ddec5820a8
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014|7416014|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?ebgy0BuOhtvpOcl/M9Svwt5goLO6nhIIQEB1aaJ+OE0jmTzq0gJ/Ys/tdyBP?=
- =?us-ascii?Q?A1bkOBWuqKM37BRODTYQAIlSaFat416ZTm4kt0Oc6eMkUBDVApuOprkAfcNi?=
- =?us-ascii?Q?ycxrP5J1Szu5fzu1tYhmG5VEmFowfcWMD4jaBhHw485VLdrU1xY0nZhNNiu4?=
- =?us-ascii?Q?q1gJwKxSGbFXNDEuDO5Wll2Nbe2mQ7NlEaQqzP5ewpRXwrmsBixcS7kiqf75?=
- =?us-ascii?Q?NeP38/K+RVFgO8gzW+ithNaOQx6fQ777LGFLqRct1YA8hx91ChriMgXDR15S?=
- =?us-ascii?Q?c3WdnmTOYEs9SFJAErr/xb1uFGCkgL6WErxS1OTSezAB6Tyx+QT73JtvK3Yc?=
- =?us-ascii?Q?yBqxOXRzfcTeYoOf9DyujRAgyOXpFj6c/wAGPBRQeFpOYoXs7Io9JsriiqtJ?=
- =?us-ascii?Q?4phuqTPeDXk7KtEHGDNYO5FqoapjxWBoqf6FTL11YVWq++NGySQvKSyaSJMV?=
- =?us-ascii?Q?Vv8EAJ5r/2IiVXpXU7cjsWP9f33DqNDiNILTlq/fpEuGovBaWg9rxB9/j8dI?=
- =?us-ascii?Q?i6BePp6/BX/iGIh0tCy1hSLY+TQOpdPHLhC8KBaweglh6cBQblmRnJe8XGC3?=
- =?us-ascii?Q?9aVwMH8f3y6cJjrPnHkSxWq0DeFzVPPXaMyeyaDzg4UVpIi7aAxEfdLNVv8Y?=
- =?us-ascii?Q?ECCMZUpWPFBETUNgdKV4IrBzaJm1p+yKE5c/9QP7i4EIlA6yje7dHd7kbniG?=
- =?us-ascii?Q?IESckbz636iIiTRtq2NnxxU3uDv77TxpALI7kz0+taR9FanlTwH3l5Xl0X28?=
- =?us-ascii?Q?rMtoUH0fI22nUMniMVALNBQaqjWmCZQ4CbvpDtz1ldFkT/MJf4BZ4MjMX6Dc?=
- =?us-ascii?Q?WevxGZF7CS9J0EwZzavIlYLop/vPTnu/dZDCrAs7YRSBY8oIzoP6NvEOVasJ?=
- =?us-ascii?Q?XfFUtIeeM+hZcQhOMGNx4tqjgMJX2dpT3uUr7ozZlULfisPCqQfpYoJeyzp9?=
- =?us-ascii?Q?Wc0bO2beY7CUO1U65otxXpShZD5eWHcl6rmTy/c58wTKnIKF0kyKl5bkc44j?=
- =?us-ascii?Q?ViIaaR9pLUyCI4iTN5tBx0otJwqUohQjccqSm5Wo28v3+H6MO1hv+CwTZbV3?=
- =?us-ascii?Q?A9lNaRyFEv2KTtNOT+5P/VZ9bH+zKRsDjyqDJLBon+u6VDwLzZkZHmRAM8HS?=
- =?us-ascii?Q?bhKchyVJbnoOiI8CmFQK6n1+iXCe4qR4VLlBmnk3R1LIP5Z8jaRwkV8PD7fM?=
- =?us-ascii?Q?vZytNfDipa2LZtRu1A5LYK/AN+1MwwdzsETqHxIsW2MjsEloroQXtTFteEYV?=
- =?us-ascii?Q?BAuItxJ/ZLhrt5ORbL+nIUTC4Ly8a0gwVXBIS8qCaKfCt0LM1Kmr0fuhCPZa?=
- =?us-ascii?Q?d9dFhD3xd/B7UqtJ9Oh0/hNyYd+4Zw6TyVjQ5kMllDEmSxwLeGn0XI13JD8z?=
- =?us-ascii?Q?YcIizvQq4FfjIAGzqPsYYSQLRluy5WfEEccE3qNsBt6m+deHKPCyH2eXjCQO?=
- =?us-ascii?Q?8Hx52yMr7VksuZHlWFEMc6ZhjSLy/pPkrR3gT4RU4gxEpDn51COyWQ=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014)(7416014)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 08:42:20.4280
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac478399-4c49-4c01-130a-08ddec5820a8
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075EF.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7613
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 15.0
+Thread-Index: AQJcDpuT0zWDya8nliyk6vzs/32vBQIURjbqAvLO/ccDYiYaWLNA+7WQ
+Content-Language: ko
+X-CMS-MailID: 20250905084422epcas2p3adcac9df0246c693fccd56c6321633a0
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+cpgsPolicy: CPGSC10-234,Y
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91
+References: <20250903073634.1898865-1-shin.son@samsung.com>
+	<CGME20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91@epcas2p4.samsung.com>
+	<20250903073634.1898865-2-shin.son@samsung.com>
+	<20250904-chocolate-kangaroo-of-order-2cced3@kuoka>
 
-From: Salih Erim <salih.erim@amd.com>
+Hello Krzysztof Kozlowski,
 
-Add description of Versal Thermal which describes IO channels to
-be binded to thermal. Constant channel of "sysmon-temp-channel" used as
-mapped iio channel.
+> -----Original Message-----
+> From: Krzysztof Kozlowski =5Bmailto:krzk=40kernel.org=5D
+> Sent: Thursday, September 4, 2025 5:00 PM
+> To: Shin Son <shin.son=40samsung.com>
+> Cc: Bartlomiej Zolnierkiewicz <bzolnier=40gmail.com>; Rafael J . Wysocki
+> <rafael=40kernel.org>; Daniel Lezcano <daniel.lezcano=40linaro.org>; Zhan=
+g Rui
+> <rui.zhang=40intel.com>; Lukasz Luba <lukasz.luba=40arm.com>; Rob Herring
+> <robh=40kernel.org>; Conor Dooley <conor+dt=40kernel.org>; Alim Akhtar
+> <alim.akhtar=40samsung.com>; linux-pm=40vger.kernel.org; linux-samsung-
+> soc=40vger.kernel.org; devicetree=40vger.kernel.org; linux-arm-
+> kernel=40lists.infradead.org; linux-kernel=40vger.kernel.org
+> Subject: Re: =5BPATCH v2 1/3=5D dt-bindings: thermal: samsung: Add tmu-na=
+me
+> and sensor-index-ranges properties
+>=20
+> On Wed, Sep 03, 2025 at 04:36:32PM +0900, Shin Son wrote:
+> > The exynosautov920 TMU requires per-sensor interrupt enablement for
+> > its critical trip points.
+> > Add a DT property to the Samsung thermal bindings to support this
+> > requirement:
+>=20
+> That's pretty redundant sentence.
 
-One temperature zone is used for the AI Engine temperature monitoring.
+I'll remove this sentence.
 
-Signed-off-by: Salih Erim <salih.erim@amd.com>
-Co-developed-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
-Signed-off-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
-Signed-off-by: Michal Simek <michal.simek@amd.com>
----
+> >
+> > - **samsung,hw-sensor-indices**: Defines the sensors currently
+> >                                  mapped to the TMU hardware.
+> > 				 Indices not listed are absent or fused off
+>=20
+> Don't write here any code, but concise prose dxescribing hardware.
+>=20
+> If sensors are fused out, you certainly can read their status from efuse,
+> no?
 
- .../bindings/thermal/xlnx,versal-thermal.yaml | 45 +++++++++++++++++++
- 1 file changed, 45 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
-
-diff --git a/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml b/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
-new file mode 100644
-index 000000000000..c374d7ae2d2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
-@@ -0,0 +1,45 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/thermal/xlnx,versal-thermal.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Xilinx Versal Thermal
-+
-+maintainers:
-+  - Salih Erim <salih.erim@amd.com>
-+
-+description:
-+  Versal Thermal uses Versal Sysmon hardware for temperature reading.
-+  It works as sensor interface to be defined in thermal zones.
-+
-+properties:
-+  compatible:
-+    const: xlnx,versal-thermal
-+
-+  '#thermal-sensor-cells':
-+    const: 1
-+
-+  io-channels:
-+    maxItems: 1
-+
-+  io-channel-names:
-+    const: sysmon-temp-channel
-+
-+required:
-+  - compatible
-+  - '#thermal-sensor-cells'
-+  - io-channels
-+  - io-channel-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    versal-thermal-sensor {
-+        compatible = "xlnx,versal-thermal";
-+        #thermal-sensor-cells = <1>;
-+        io-channels = <&sysmon0>;
-+        io-channel-names = "sysmon-temp-channel";
-+    };
-+...
--- 
-2.43.0
-
+=22fused out=22 was a wrong expression =E2=80=94=20sensors=20are=20not=20in=
+dicated=20in=20any=20register.=20Sorry=20for=20the=20confusion.=0D=0AThe=20=
+hardware=20does=20not=20provide=20a=20bitmask=20of=20present=20sensors.=0D=
+=0ATherefore,=20the=20DT=20must=20explicitly=20list=20which=20indices=20bel=
+ong=20to=20this=20TMU=20instance.=0D=0A=0D=0AAdditionally,=20I'll=20rephras=
+e=20this=20sentence=20to=20clearly=20describe=20the=20TMU=20hardware=20only=
+.=0D=0A=0D=0A>=20=0D=0A>=20This=20is=20really=20vague=20description=20of=20=
+hardware.=20I=20don't=20understand=20why=20you=0D=0A>=20are=20changing=20se=
+nsor-cells,=20why=20older=20variants=20of=20tmu=20gets=20now=20cells=3D1=0D=
+=0A>=20(missing=20constraints?).=0D=0A>=20=0D=0A>=20Why=20older=20variants=
+=20also=20get=20that=20property=20for=20sensors?=20It=20does=20not=20make=
+=0D=0A>=20sense=20there,=20because=20they=20have=20one-to-one=20mapping=20b=
+etween=20TMU=20and=20sensor.=0D=0A=0D=0AOlder=20variants=20should=20be=20fi=
+xed=20to=200,=0D=0Abut=20my=20patch=20mistakenly=20opened=20it=20with=20an=
+=20enum=20so=20that=201=20was=20also=20allowed=20there,=20I'll=20fix=20this=
+.=0D=0AI'll=20also=20restrict=20the=20sensor=20indices=20property=20to=20v9=
+20=20only.=0D=0A=0D=0A>=20=0D=0A>=20>=0D=0A>=20>=20Additionally,=20add=20my=
+self=20to=20the=20bindings'=20maintainers=20list,=20as=20I=20plan=0D=0A>=20=
+>=20to=20actively=20work=20on=20the=20exynosautov920=20TMU=20support=20and=
+=20handle=20further=0D=0A>=20>=20updates=20in=20this=20area.=0D=0A>=20>=0D=
+=0A>=20>=20Signed-off-by:=20Shin=20Son=20<shin.son=40samsung.com>=0D=0A>=20=
+>=20---=0D=0A>=20>=20=20.../bindings/thermal/samsung,exynos-thermal.yaml=20=
+=7C=2016=0D=0A>=20>=20+++++++++++++++-=0D=0A>=20>=20=201=20file=20changed,=
+=2015=20insertions(+),=201=20deletion(-)=0D=0A>=20>=0D=0A>=20>=20diff=20--g=
+it=0D=0A>=20>=20a/Documentation/devicetree/bindings/thermal/samsung,exynos-=
+thermal.yam=0D=0A>=20>=20l=0D=0A>=20>=20b/Documentation/devicetree/bindings=
+/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=20l=20index=2029a08b0729ee..=
+abd89902d33a=20100644=0D=0A>=20>=20---=0D=0A>=20>=20a/Documentation/devicet=
+ree/bindings/thermal/samsung,exynos-thermal.yam=0D=0A>=20>=20l=0D=0A>=20>=
+=20+++=20b/Documentation/devicetree/bindings/thermal/samsung,exynos-thermal=
+=0D=0A>=20>=20+++=20.yaml=0D=0A>=20>=20=40=40=20-8,6=20+8,7=20=40=40=20titl=
+e:=20Samsung=20Exynos=20SoC=20Thermal=20Management=20Unit=0D=0A>=20>=20(TMU=
+)=0D=0A>=20>=0D=0A>=20>=20=20maintainers:=0D=0A>=20>=20=20=20=20-=20Krzyszt=
+of=20Kozlowski=20<krzk=40kernel.org>=0D=0A>=20>=20+=20=20-=20Shin=20Son=20<=
+shin.son=40samsung.com>=0D=0A>=20>=0D=0A>=20>=20=20description:=20=7C=0D=0A=
+>=20>=20=20=20=20For=20multi-instance=20tmu=20each=20instance=20should=20ha=
+ve=20an=20alias=20correctly=0D=0A>=20>=20numbered=20=40=40=20-27,6=20+28,7=
+=20=40=40=20properties:=0D=0A>=20>=20=20=20=20=20=20=20=20-=20samsung,exyno=
+s5420-tmu-ext-triminfo=0D=0A>=20>=20=20=20=20=20=20=20=20-=20samsung,exynos=
+5433-tmu=0D=0A>=20>=20=20=20=20=20=20=20=20-=20samsung,exynos7-tmu=0D=0A>=
+=20>=20+=20=20=20=20=20=20-=20samsung,exynosautov920-tmu=0D=0A>=20>=0D=0A>=
+=20>=20=20=20=20clocks:=0D=0A>=20>=20=20=20=20=20=20minItems:=201=0D=0A>=20=
+>=20=40=40=20-62,11=20+64,22=20=40=40=20properties:=0D=0A>=20>=20=20=20=20=
+=20=20minItems:=201=0D=0A>=20>=0D=0A>=20>=20=20=20=20'=23thermal-sensor-cel=
+ls':=0D=0A>=20>=20-=20=20=20=20const:=200=0D=0A>=20>=20+=20=20=20=20enum:=
+=0D=0A>=20>=20+=20=20=20=20=20=20-=200=0D=0A>=20>=20+=20=20=20=20=20=20-=20=
+1=0D=0A>=20>=0D=0A>=20>=20=20=20=20vtmu-supply:=0D=0A>=20>=20=20=20=20=20=
+=20description:=20The=20regulator=20node=20supplying=20voltage=20to=20TMU.=
+=0D=0A>=20>=0D=0A>=20>=20+=20=20samsung,hw-sensor-indices:=0D=0A>=20>=20+=
+=20=20=20=20description:=20=7C=0D=0A>=20=0D=0A>=20Drop=20=7C=0D=0A=0D=0AI'l=
+l=20drop=20this.=0D=0A=0D=0A>=20=0D=0A>=20>=20+=20=20=20=20=20=20List=20of=
+=20hardware=20sensor=20indices=20that=20are=20physically=20present=20and=0D=
+=0A>=20usable=0D=0A>=20>=20+=20=20=20=20=20=20in=20this=20TMU=20instance.=
+=20Indices=20not=20listed=20are=20either=20unmapped=20or=0D=0A>=20unused.=
+=0D=0A>=20>=20+=20=20=20=20=24ref:=20/schemas/types.yaml=23/definitions/uin=
+t32-array=0D=0A>=20>=20+=20=20=20=20minItems:=201=0D=0A>=20>=20+=20=20=20=
+=20maxItems:=2016=0D=0A>=20>=20+=20=20=20=20uniqueItems:=20true=0D=0A>=20=
+=0D=0A>=20Best=20regards,=0D=0A>=20Krzysztof=0D=0A=0D=0AThanks.=0D=0A=0D=0A=
+Best=20regards,=0D=0AShin=20Son=0D=0A=0D=0A
 
