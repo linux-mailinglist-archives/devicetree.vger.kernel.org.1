@@ -1,232 +1,209 @@
-Return-Path: <devicetree+bounces-213577-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66FF6B45CAB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:35:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9436B45CC0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:42:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 222C416CE67
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:35:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 86D701C83D0D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:42:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 260B62F7ACE;
-	Fri,  5 Sep 2025 15:35:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628482FB0B8;
+	Fri,  5 Sep 2025 15:41:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CIOs0MwU"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="c5srzPtu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from AM0PR02CU008.outbound.protection.outlook.com (mail-westeuropeazon11013043.outbound.protection.outlook.com [52.101.72.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3D6E288C0E;
-	Fri,  5 Sep 2025 15:35:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757086508; cv=none; b=IO8s2wrfhJ4FUroP9q9wi0mmavS78sb7giqMVeoA3YmjdhBvH8ZIvHM0B2pzIgAzapiYaGwIox8rpKYELG48acz8/0equ2bDjt5m54WmTXNpUqhb/aPxpJ2BZ7/y5PYdQDFZfT6NOi32VMJKA1/3PLD+kpNduAZKkOtwHmRTURg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757086508; c=relaxed/simple;
-	bh=Dd9GrN9GAAxETey0gekWGcwpoSTvYJkigJI730T+I/A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hPV0jWWAYr9jpmhgnB9aszkqsEnngwGaZ7f2t4d33UOgfhFDWlUSiv358ESGqHNesCp28HsMGhSBNTx4GT3NMbwcPbvjTnzlKPCtBJY5bnJb7ytfXyDMBi5AlxWn66zMVAX5DGVIVLCeeDg0qVt5XsNvJwyk8RIIlD8+ebOI1Ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CIOs0MwU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBC64C4CEF1;
-	Fri,  5 Sep 2025 15:35:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757086507;
-	bh=Dd9GrN9GAAxETey0gekWGcwpoSTvYJkigJI730T+I/A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CIOs0MwUE2I3vXSEEPPTN+UByCEoKcgiRiHDw6TewSKVGn4/U8x5RRsuDen7Pv75K
-	 K9i75Y8ZRfml3R3Q1JnpNWMYn34xSqNuDVLpxxgG5HxeJe23vnQtFVTNanWHk41xRo
-	 dn94M2R3O7wAFnCVyCqxqFnWmwNKCJzlhT7uNvn71z5+bXgFxeBmpxwsnmVCJVGXJ0
-	 M3vbD4qErghqHC6JQSa3SvMb/rVimU6/KS1ERkLxBMxnQBnuBxxCH6h500PlXA4ZX3
-	 MIRmtSIRaFJ8WT6T5z5f1J/+8E/HTp/rn9O2xpmyUfu+VnWWNZE96DieKtFu5xkgXi
-	 SRz6ymsmWx+Sw==
-Date: Fri, 5 Sep 2025 16:35:00 +0100
-From: Simon Horman <horms@kernel.org>
-To: Vivian Wang <wangruikang@iscas.ac.cn>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 38AB3B640;
+	Fri,  5 Sep 2025 15:41:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.72.43
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757086918; cv=fail; b=XyPo1hZp1cH7A8I+/rRqwY/yhQgwBCluagqKiKgsZhBZ+IbNU06N64HcRU4+xq7YKEFZXQpgEk+GAgbcSKCForFx8NAKZCTX9MK8kO2ItJKEUBeKRA+YmrFpEvrQ3Ij5MxfLIafOZqVyN/FJhLuVCA1ip70ZCkzTrtp6i3yVWpU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757086918; c=relaxed/simple;
+	bh=ursclvbcXnaWe8mm5h9bfld3FEmm0EoqmaGHkvmIJDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=m0qdKHdRna8s5Q2z6VYiny+qZ4lkWqXhJOX2XH4daMH7uPbd0XjOETUddmJlzd8AvDMjsTHz5PpESWLFRZt1tBC3gwRsY4QPirBoXln3xW9k5Gv0zk8T5hFDFpC4tG21Hke+lS8KUppJrq7XmGTFp87GNxmjjLqWQcDYEfmyrvc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=c5srzPtu; arc=fail smtp.client-ip=52.101.72.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EKCerpV2QGVlicXlLbF+aPxE1kjrNXlq93308wK/zepIhmP+srHWz5gPSj/LcRBC74VqU0HDHzyHcp4NaX1GpHdKgBRWdw8rVq5iVUhUeZioADi6Soix6cu5yCIhig7nrzSqeQds+GrMyHz/MRlLNRs9+oeVCx0BH8WXF7WC+sCfLwt701Ydsn/WBDbFE8KuJtx9nYdIy0fdGucSmZs3EKZ3zG00nZGTsyn680fw3CXIFSfrDTjVOEo564Jw6pXntCQlVb2Oa+NoFMwjQo4YfLdXU1qn+m17bRalpJueF+PbHZHW0i0JJoPuh7Cbslj5rdNqb0pJhQC9xrcdJPgvEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=qdE3WynccPamT4llkdb3MUWyuV3tC/ud9BzGzfn7TDU=;
+ b=lvV9e+2hHPN85UVq+R7yGfiPZGbH0DdxybNFsWHiqk+IerykOdQwnwXQibxkg0ttEGs6dAfgRuh5CxZiZWvNc+Z8YSocwffvLHgci92iKW5JybcLOfhM8r2Bf0BwZMyjCFY2iwwRhUJ1bx4QiIAEFU9ORmvJazaD52sOsbltasFy3FhR1/EuJ6N/rWeQIJbVoF5web3392wjbVuknP0WnqF3SzTtNg3C8bWxnSwHhrORbW3tex9A38CHG+hUEx+qdboxtjODTJ/1e8eEgE9mjHCpft2H08VO6tv1TFN6RVpXR25RPvRjKuiY2dlp8az/Mi6hSOqdR2omU7DdJGrt5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qdE3WynccPamT4llkdb3MUWyuV3tC/ud9BzGzfn7TDU=;
+ b=c5srzPtuCwZeKrXyzkZnLTHIOTJldRdVAcmpoUOpN/7uOfJfOy49v5dwRQCJM0ZGZ1muUiJzXNyGeAHRbrkBYcWk6jj9J+KZ/8hJTE5jI26TIkwNosvpa3tCQpZ/i4pm5aH2jMcuZMzXzoBzhVIOi7q3R9DdZ9D0FEVnWquUeqtJJjJT34qFF3F4HIdgmSZgRIN8kfjw/0FL4bXqeMQOnJGZ586DTCMANbRkzrgTQ5b5YUAnNki/fUkkzaBY6Ho6OcARfs8/7ukaYmqs2+7AxHBsr5iI5Y00f8Zg6EQZLsLwWhTqKv4fsntXreFfnGksAIfliDQOY5H8TTlWVrxxPQ==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com (2603:10a6:20b:24b::14)
+ by AM9PR04MB7635.eurprd04.prod.outlook.com (2603:10a6:20b:285::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Fri, 5 Sep
+ 2025 15:41:53 +0000
+Received: from AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2]) by AM8PR04MB7779.eurprd04.prod.outlook.com
+ ([fe80::7417:d17f:8d97:44d2%7]) with mapi id 15.20.9094.016; Fri, 5 Sep 2025
+ 15:41:53 +0000
+Date: Fri, 5 Sep 2025 18:41:50 +0300
+From: Vladimir Oltean <vladimir.oltean@nxp.com>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: linux-phy@lists.infradead.org, Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
-	Vivian Wang <uwu@dram.page>,
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
-	Junhui Liu <junhui.liu@pigmoral.tech>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Troy Mitchell <troy.mitchell@linux.spacemit.com>
-Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
-Message-ID: <20250905153500.GH553991@horms.kernel.org>
-References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
- <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Josua Mayer <josua@solid-run.com>
+Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
+ strings per SerDes and instantiation
+Message-ID: <20250905154150.4tocaiqyumbiyxbh@skbuf>
+References: <20250904154402.300032-1-vladimir.oltean@nxp.com>
+ <20250904154402.300032-14-vladimir.oltean@nxp.com>
+ <20250905-bulky-umber-jaguarundi-1bf81c@kuoka>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905-bulky-umber-jaguarundi-1bf81c@kuoka>
+X-ClientProxiedBy: VI1PR09CA0129.eurprd09.prod.outlook.com
+ (2603:10a6:803:12c::13) To AM8PR04MB7779.eurprd04.prod.outlook.com
+ (2603:10a6:20b:24b::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM8PR04MB7779:EE_|AM9PR04MB7635:EE_
+X-MS-Office365-Filtering-Correlation-Id: f248c50c-f52f-40fb-203f-08ddec92bcc3
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|10070799003|1800799024|7416014|376014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?GsFOoRFShSUZz7r5IPe4kT62DZ100Sbp1unSuEqwgMFhyWb5xFPi3/qMzH9D?=
+ =?us-ascii?Q?luWJ7zPtKxMLmPgtkYUe7sSCIgvp4HHkB+3EHjBl4oOF+VTLTxpa4fsFNT4x?=
+ =?us-ascii?Q?kwHVeJSXyz1pCH2iO/e7RVjzSyJPJRrDF9P/hxo3o4HWLePN9IqMXuAaC/Or?=
+ =?us-ascii?Q?LAbACFquBhaw01UlRVqYIQRy8xaY4YWJ+R66JhoaydrS1610wg8QBMd9SsDt?=
+ =?us-ascii?Q?WXZxNIXjdFuvKXrRHSE0xqoWsPxT+JjnYB4UQlJgKXA+/JAnHlyG7/bJmxah?=
+ =?us-ascii?Q?hpsQTBJ1n8PJHrC9xX8/+n2uILYb6Avs/75m4wWVLAAYz2vSCtX+Qgafx8u1?=
+ =?us-ascii?Q?DoBYDWpeZYJ9eDwQ2cmJFQYIWXeUpv+TgIrxtylHfUtJ9kuhz0Kkgw78STPb?=
+ =?us-ascii?Q?mOGZpBucpZkMG0eWTspAAueohMSgHbiSkDIe61EWm7PX/MlbjSYJPZOcDjut?=
+ =?us-ascii?Q?SWlue0fdLp/wO8CK6uxjGADqNjz+7f6Zu8uSRccFYcOdiTzaxxkOsM4r0ieD?=
+ =?us-ascii?Q?ZdoLMHIcs2PAqj5pKnmRY68PXm40L/1kT+cj/9SqzMz8WcUuBg6XGSi1+F6T?=
+ =?us-ascii?Q?3CR4PP7ZktlX1xMKm3FRzKCs24yL1FJEmAdvvev1x+p/KcT5ADTxYZ7u9LIF?=
+ =?us-ascii?Q?cVsxV+N6lF1O8ItBBppydFA6gXtq/+tytVnZu/OOHF+CaiNNQjq7EwkLTzVe?=
+ =?us-ascii?Q?5pMfY37AX1MSxdaixI8Awem/gG/fh3yokIO3Iz3R+67eh5FhsQYrwipA+5Rc?=
+ =?us-ascii?Q?6nH+87p1pt/hOt+IwxQak067IGUkG7eyiGe71jR8J3CICd1ustlufwEk7Zpj?=
+ =?us-ascii?Q?0blhTlA95/1Ruc399gtTZRZjOjGcVBY+HNfSi98qRTm8BJ94d7f/rJ+euzlC?=
+ =?us-ascii?Q?XjGbZoc0ltgZGN0sDSpbLfXgY8yTd8gSU27WW+phhQEXGI4AHO/KLunke8TR?=
+ =?us-ascii?Q?MBEqxjYBv4py8Pr9Yrw3mLOeHNoEUH32zC6bmoZyxrTUAhO6L8/8gLMNuU2e?=
+ =?us-ascii?Q?sa/kV77oFgFeyUNZsxOMYOfziWS0+C7BRdDxWujd3lKpPQ2m5tS/6NySyONp?=
+ =?us-ascii?Q?DP3eB8opa98tDwUCfEeHIehr16Jh5YDEocFvvZiUWugupbwWO/OINw/jAO9M?=
+ =?us-ascii?Q?LxszNMPFMHZyzxa/35Cjx0Y1GD6mV5jIqamn7FMGUXyjMpuNtwTBKoZ2djB7?=
+ =?us-ascii?Q?YbhJNTx9TM576b7/cC8fe1UpxAN83D21Gat3m8SwoFhaFg0cSV8zJKmM/Rmo?=
+ =?us-ascii?Q?88CsaLs83Syk4bgFaheakM6Z6mWprMuMHTImGtv/Jv81pPCKR62ExFdfqzKb?=
+ =?us-ascii?Q?nF45fhvMLjBSj+Z90I9DEbX1byGpx2DnRit2Gjh3U3QKJwMtPgwuTD6EpWhj?=
+ =?us-ascii?Q?O0iaAyRujjZvUCxOfjYi/cnZCDLlGNE6cTi0k13AmxMW3BaBuktt976ieaLz?=
+ =?us-ascii?Q?/kN8KXAMej0=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7779.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(10070799003)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yZL2B8gyElEUWrR5GWl8PQaNQwF7ReHscSd8E3++iS4NGchhHrQwI7GmW/CL?=
+ =?us-ascii?Q?iroDro7WnVE77IA/HfUPFUZmi0jc0g9lvjdqSKH4TFle7m7pIQRykmr9NI+N?=
+ =?us-ascii?Q?b+GesZm+dmAA422enYF7cF7VjupmGIp8Jl+d7UOxz7y1AqN1P51kgpg5QBss?=
+ =?us-ascii?Q?Cswz19pdMJesXUw8BpbMMlVsZgLq0ha2IX+XaRtBCxvpN3jJxjxXk8JnsfoY?=
+ =?us-ascii?Q?GmCYzLRSfB+/qb0VS/qnEJiZGw5UUCrOKdpszf0c/nsRM3BvJJUc973A24LX?=
+ =?us-ascii?Q?uV14QgGRlKrkBcqM02p7TW+avc68waMtLXggWUrt84DZF3IZVCEC6UhcQsEg?=
+ =?us-ascii?Q?SGh85u35woYprL0w+FQZ7gZRRqXudAMDgKSWqQOMOUCorSTjOqxBeZw6psO8?=
+ =?us-ascii?Q?T2ek4Ko3TNJ4AweFu2WwPTrp7e++xrO/GjGi75oU7Hcz34mhvDo5ccE9OtFx?=
+ =?us-ascii?Q?W22ziCea8G/G+2V244WmfPkmcMzINIaR+CceIJMdfVUoQ/4Zd4bKU/2Ov76l?=
+ =?us-ascii?Q?e/YTu28kWIg7mzCh36d6mzqvJX5vlqRFyf9Jq7pqCMf9WJsOpeFCtjGlSPH3?=
+ =?us-ascii?Q?rsXW9QlfzR0yPfDdgd7qVyuY2y0c0UOdeM7GoEVxlSd5yapRU5TsA3VW3jOh?=
+ =?us-ascii?Q?XD271VZcPgiMaI3gpc4FZ7O08mlZmeJC5DYhyy62kSi2a8pk0c1Oh1+xnOx4?=
+ =?us-ascii?Q?+LR9fLIrv9Jg0X4UdZ1GAM0gPpkjl7jtaa3waj/foZm0KgdWyA3xzsiiwyzi?=
+ =?us-ascii?Q?UT6aqNM3E7Dlly71C+FKSFUtqvdcQVHRItWDKXx1lMCt8QftxgBbcivGJ5Oo?=
+ =?us-ascii?Q?OHM3/soKx/vSeEW/+9N0Fod7awVinP/Z84hTpW7sYdo3sct6joQfY5Y88h1V?=
+ =?us-ascii?Q?8sf+zPA328BxP79rp2xDyJrUaFTQF64HqVl3LZVQNbXvjYuvZIWj96FEo1Hd?=
+ =?us-ascii?Q?KGpjsv0H/BumlN6g5kTxDmjxDWxfFSg2HwTDkh9vh2RMOrrO8nEwcbI6Ixmy?=
+ =?us-ascii?Q?1M4NQRxewPr58y03IQMV7egI4f8zFK5xMddVDj+jaiZddNW0QsVKUywoTwfb?=
+ =?us-ascii?Q?nIiR6GPsKlg8IHecIB2NnC5DJYR8DWghwPCi86t78aKixp3fkLCiYKND45Kx?=
+ =?us-ascii?Q?d6iTS+Mw5MPw/auNCQjqOSv/SraCFrdZyw9TExzoDuUBrGY/t/SRDP8eSTey?=
+ =?us-ascii?Q?/HNIzIBYE6fXBXO8dS9AxyeakxmN69h8XzabWUj+3sYuAbEJ4s9/DUHNnLQR?=
+ =?us-ascii?Q?XBrV/TlVqHLP3SlOTmJx/oGwi7zi+ms/NTsYXL5t/G8iRiRzXmvUUIZYnZ7w?=
+ =?us-ascii?Q?RhFYtxWx1V3UW4UQCGp6biVZm0aEkZnEB7jHF63wyN0uAfxorJ41gbCByrDg?=
+ =?us-ascii?Q?hLnX9weYmDuphRMtMo5id5pZJ/J2gQiAzBxX+aI16XlM6VN3Ekc9niMszR8O?=
+ =?us-ascii?Q?ivZZI2z5OGbcsRSn0BFDE0dbjJFTVM8hHthMyGQoLVFqRSBrj2AEFl06kNRX?=
+ =?us-ascii?Q?xVMnbbo2lKTM7mk77U+hd3sSnxazMkrIGNWavVUYYl0yLloEddvxiflRwpa6?=
+ =?us-ascii?Q?R726ELEa8CIIkXiKoibUsKTROtXRPuDsxelVF9BmxhJzMid1EAATOBN4k9WX?=
+ =?us-ascii?Q?6hD180KOfHAbasxgaNoiEGV8eS7b2H/QCh5/XQ6IcOgi7t12rSW6IaYwDWXC?=
+ =?us-ascii?Q?PpBSOw=3D=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f248c50c-f52f-40fb-203f-08ddec92bcc3
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7779.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 15:41:53.3922
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: k0FOsBZQbJiz+LaI3iBjBIFr6WCcKIUZkautC9sfVpChfb00FCA7CY7uiBVTgcJdM5JnYK+7Rnpq4Yv9nBeSPA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7635
 
-On Fri, Sep 05, 2025 at 07:09:31PM +0800, Vivian Wang wrote:
-> The Ethernet MACs found on SpacemiT K1 appears to be a custom design
-> that only superficially resembles some other embedded MACs. SpacemiT
-> refers to them as "EMAC", so let's just call the driver "k1_emac".
+On Fri, Sep 05, 2025 at 10:29:33AM +0200, Krzysztof Kozlowski wrote:
+> >  properties:
+> >    compatible:
+> > -    enum:
+> > -      - fsl,lynx-28g
+> > +    oneOf:
+> > +      - items:
+> > +          - const: fsl,lynx-28g
 > 
-> Supports RGMII and RMII interfaces. Includes support for MAC hardware
-> statistics counters. PTP support is not implemented.
-> 
-> Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-> Reviewed-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
-> Reviewed-by: Vadim Fedorenko <vadim.fedorenko@linux.dev>
-> Reviewed-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
-> Tested-by: Junhui Liu <junhui.liu@pigmoral.tech>
-> Tested-by: Troy Mitchell <troy.mitchell@linux.spacemit.com>
+> Don't change that part. Previous enum was correct. You want oneOf and
+> enum.
 
-...
+Combining the feedback from Conor and Josua, I should only be permitting
+the use of "fsl,lynx-28g" as a fallback to "fsl,lx216{0,2}a-serdes{1,2}",
+or standalone. The description below achieves just that. Does it look ok
+to you?
 
-> diff --git a/drivers/net/ethernet/spacemit/k1_emac.c b/drivers/net/ethernet/spacemit/k1_emac.c
-
-...
-
-> +static void emac_init_hw(struct emac_priv *priv)
-> +{
-> +	/* Destination address for 802.3x Ethernet flow control */
-> +	u8 fc_dest_addr[ETH_ALEN] = { 0x01, 0x80, 0xc2, 0x00, 0x00, 0x01 };
-> +
-> +	u32 rxirq = 0, dma = 0;
-> +
-> +	regmap_set_bits(priv->regmap_apmu,
-> +			priv->regmap_apmu_offset + APMU_EMAC_CTRL_REG,
-> +			AXI_SINGLE_ID);
-> +
-> +	/* Disable transmit and receive units */
-> +	emac_wr(priv, MAC_RECEIVE_CONTROL, 0x0);
-> +	emac_wr(priv, MAC_TRANSMIT_CONTROL, 0x0);
-> +
-> +	/* Enable MAC address 1 filtering */
-> +	emac_wr(priv, MAC_ADDRESS_CONTROL, MREGBIT_MAC_ADDRESS1_ENABLE);
-> +
-> +	/* Zero initialize the multicast hash table */
-> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE1, 0x0);
-> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE2, 0x0);
-> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE3, 0x0);
-> +	emac_wr(priv, MAC_MULTICAST_HASH_TABLE4, 0x0);
-> +
-> +	/* Configure thresholds */
-> +	emac_wr(priv, MAC_TRANSMIT_FIFO_ALMOST_FULL, DEFAULT_TX_ALMOST_FULL);
-> +	emac_wr(priv, MAC_TRANSMIT_PACKET_START_THRESHOLD,
-> +		DEFAULT_TX_THRESHOLD);
-> +	emac_wr(priv, MAC_RECEIVE_PACKET_START_THRESHOLD, DEFAULT_RX_THRESHOLD);
-> +
-> +	/* Configure flow control (enabled in emac_adjust_link() later) */
-> +	emac_set_mac_addr_reg(priv, fc_dest_addr, MAC_FC_SOURCE_ADDRESS_HIGH);
-> +	emac_wr(priv, MAC_FC_PAUSE_HIGH_THRESHOLD, DEFAULT_FC_FIFO_HIGH);
-> +	emac_wr(priv, MAC_FC_HIGH_PAUSE_TIME, DEFAULT_FC_PAUSE_TIME);
-> +	emac_wr(priv, MAC_FC_PAUSE_LOW_THRESHOLD, 0);
-> +
-> +	/* RX IRQ mitigation */
-> +	rxirq = EMAC_RX_FRAMES & MREGBIT_RECEIVE_IRQ_FRAME_COUNTER_MASK;
-> +	rxirq |= (EMAC_RX_COAL_TIMEOUT
-> +		  << MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_SHIFT) &
-> +		 MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_MASK;
-
-Probably this driver can benefit from using FIELD_PREP and FIELD_GET
-in a number of places. In this case I think it would mean that
-MREGBIT_RECEIVE_IRQ_TIMEOUT_COUNTER_SHIFT can be removed entirely.
-
-> +
-> +	rxirq |= MREGBIT_RECEIVE_IRQ_MITIGATION_ENABLE;
-> +	emac_wr(priv, DMA_RECEIVE_IRQ_MITIGATION_CTRL, rxirq);
-
-...
-
-> +/* Returns number of packets received */
-> +static int emac_rx_clean_desc(struct emac_priv *priv, int budget)
-> +{
-> +	struct net_device *ndev = priv->ndev;
-> +	struct emac_rx_desc_buffer *rx_buf;
-> +	struct emac_desc_ring *rx_ring;
-> +	struct sk_buff *skb = NULL;
-> +	struct emac_desc *rx_desc;
-> +	u32 got = 0, skb_len, i;
-> +	int status;
-> +
-> +	rx_ring = &priv->rx_ring;
-> +
-> +	i = rx_ring->tail;
-> +
-> +	while (budget--) {
-> +		rx_desc = &((struct emac_desc *)rx_ring->desc_addr)[i];
-> +
-> +		/* Stop checking if rx_desc still owned by DMA */
-> +		if (READ_ONCE(rx_desc->desc0) & RX_DESC_0_OWN)
-> +			break;
-> +
-> +		dma_rmb();
-> +
-> +		rx_buf = &rx_ring->rx_desc_buf[i];
-> +
-> +		if (!rx_buf->skb)
-> +			break;
-> +
-> +		got++;
-> +
-> +		dma_unmap_single(&priv->pdev->dev, rx_buf->dma_addr,
-> +				 rx_buf->dma_len, DMA_FROM_DEVICE);
-> +
-> +		status = emac_rx_frame_status(priv, rx_desc);
-> +		if (unlikely(status == RX_FRAME_DISCARD)) {
-> +			ndev->stats.rx_dropped++;
-
-As per the comment in struct net-device,
-ndev->stats should not be used in modern drivers.
-
-Probably you want to implement NETDEV_PCPU_STAT_TSTATS.
-
-Sorry for not mentioning this in an earlier review of
-stats in this driver.
-
-> +			dev_kfree_skb_irq(rx_buf->skb);
-> +			rx_buf->skb = NULL;
-> +		} else {
-> +			skb = rx_buf->skb;
-> +			skb_len = rx_frame_len(rx_desc) - ETH_FCS_LEN;
-> +			skb_put(skb, skb_len);
-> +			skb->dev = ndev;
-> +			ndev->hard_header_len = ETH_HLEN;
-> +
-> +			skb->protocol = eth_type_trans(skb, ndev);
-> +
-> +			skb->ip_summed = CHECKSUM_NONE;
-> +
-> +			napi_gro_receive(&priv->napi, skb);
-> +
-> +			ndev->stats.rx_packets++;
-> +			ndev->stats.rx_bytes += skb_len;
-> +
-> +			memset(rx_desc, 0, sizeof(struct emac_desc));
-> +			rx_buf->skb = NULL;
-> +		}
-> +
-> +		if (++i == rx_ring->total_cnt)
-> +			i = 0;
-> +	}
-> +
-> +	rx_ring->tail = i;
-> +
-> +	emac_alloc_rx_desc_buffers(priv);
-> +
-> +	return got;
-> +}
-
-...
+properties:
+  compatible:
+    oneOf:
+      - enum:
+          - fsl,lx2160a-serdes1
+          - fsl,lx2160a-serdes2
+          - fsl,lx2160a-serdes3
+          - fsl,lx2162a-serdes1
+          - fsl,lx2162a-serdes2
+      - const: fsl,lynx-28g
+        deprecated: true
+      - items:
+          - const: fsl,lx2160a-serdes1
+          - const: fsl,lynx-28g
+        deprecated: true
+      - items:
+          - const: fsl,lx2160a-serdes2
+          - const: fsl,lynx-28g
+        deprecated: true
+      - items:
+          - const: fsl,lx2162a-serdes1
+          - const: fsl,lynx-28g
+        deprecated: true
+      - items:
+          - const: fsl,lx2162a-serdes2
+          - const: fsl,lynx-28g
+        deprecated: true
 
