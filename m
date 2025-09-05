@@ -1,64 +1,65 @@
-Return-Path: <devicetree+bounces-213665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id A48D1B4630F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:03:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBBCB46315
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:03:55 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6BFC416C189
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:03:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2E416D096
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:03:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDCB4315D50;
-	Fri,  5 Sep 2025 19:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E833315D47;
+	Fri,  5 Sep 2025 19:03:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+bOVARx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XRvttllv"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B693D315D22;
-	Fri,  5 Sep 2025 19:03:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27ED6315D22;
+	Fri,  5 Sep 2025 19:03:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757098984; cv=none; b=ot++Yq86wsnMrLups/hPy3q0qZnYJbqbgbx9R7y5q9bEdp5xNfv4KEzPaQZgZyRQHIoDQL42fqpGA0lxin5oOWX99865a0CHV/w9fV4q06L34mk+0Mm7yJUxsX1ahjzY9qnPBxL153Dw7vp5Ayc4CHwI23pqr4+af/kkzYN0tpk=
+	t=1757099032; cv=none; b=lySesHB1fL2aBH6j1Eweg6INo0nAmMBu2mrC/8Nt3u51WAx2AjB3NdNMAffO+ViBekG6uAbWzRejPmsf3Swt0GhXQAdpQW7jqi+POnn+EIJaqLrq5smpCbBmNbXiRzjewu5VNLzJHvkDe3OvEdRg4w/FmXETNQiepLchMlJCQ38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757098984; c=relaxed/simple;
-	bh=RnVOVM/uuNuDbILZAhvH4NRZDyKw6b856IwUxGZu7y8=;
+	s=arc-20240116; t=1757099032; c=relaxed/simple;
+	bh=qIzUbO/sBwBn9eM4w3lfY4+Ygc/NgXkLIDsWHrZsw7E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XDt3Jf5eeE6YEUMG/C2Cz36l49r5Zh7MG5of+nQDkuK5L8cO12hzKn2fUk1GY9QIr/5doxwba3eQ5bj8FuuO6ITTmEXEzhXKApccNRwwRAiYv2EVjKtcNUJ/cnNlCbzBXfI3M6p2XhOa9MdRqntrwGrJaaZGeKb2laiBe5C2m3g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+bOVARx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7A51C4CEF1;
-	Fri,  5 Sep 2025 19:03:01 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=hWjG5pMVJdD4BSs+cKQmKhgY5ncV0BEAmEqU7LdMbAUY/En047y2l+UFxnZ09fhFNYmX9YpZVcW+2ZQ5Evo3+gWv1MxZYIXCwmgbtvrnBnLkqOuscS0yUupx8JTTrpe1MfVfjCc9milT+RAgnMxCuW3gkBTvLtdxsBDUW0WMUpY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XRvttllv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B445C4CEF1;
+	Fri,  5 Sep 2025 19:03:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757098984;
-	bh=RnVOVM/uuNuDbILZAhvH4NRZDyKw6b856IwUxGZu7y8=;
+	s=k20201202; t=1757099031;
+	bh=qIzUbO/sBwBn9eM4w3lfY4+Ygc/NgXkLIDsWHrZsw7E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b+bOVARxitIxQ33KU0TqmSWbdqoVPPHWIpFZQ61dQdQE3J4cTCoTkNoFfWM7w5uWH
-	 wXIG2AgiV04mKBBou+gon/wis5v+4+cEjQu/pCdw7Vh8RpLhYY75tVTs0XTIaK6kwN
-	 H3PLy9ifhfEoz4aTT8vB4nD0Xlu7D3mru0xcqUjvZOYE6zM40KetDm3xm2kZsIvm2L
-	 0W9ih2Z+GoRebWX57CRmkZugiUUrXpdogP+cySYdQWcQjDlbd3O4wDVdwy6bE6YUj6
-	 ddhCKHTFcn0PkJAGD/Mv/VxO7F9s/n+QhPfp+abdI7vt/qa/U0ggXohoY5uK4JfoVU
-	 OBKzh8wpV7gvA==
-Date: Fri, 5 Sep 2025 20:02:59 +0100
+	b=XRvttllvXeb50lo2c6avwb4bRJQ+NCYyMwYgaFiVlwGx0Z7FeRc+xYt2XXQtMEe03
+	 8nHhvafQABC07nspDJXdU7tfIvVMbhV5mVcdmx29WGm8umdS5E1xTWqNwmFjcAWZXd
+	 46FjguhS7QFjidiygR8Iq6nDdGt3sgN0STzYk9Ovo7R9y12m4Pd3wbq24CJD1CM8pB
+	 XTncANdPUBTgfUcqpe4tbbioRUYdZSiNVvUpX1skP5X+sl89HzaRi1UBVN5s0zEg2W
+	 6hsJQe9v9xSlihdamw1et5v2LFUNB8WS4PVkEk1YU2BRq2GQkg3WnP2ZNFDeksjoQw
+	 eea5XLXldT2MA==
+Date: Fri, 5 Sep 2025 20:03:47 +0100
 From: Conor Dooley <conor@kernel.org>
-To: Vladimir Oltean <vladimir.oltean@nxp.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, linux-phy@lists.infradead.org,
-	Ioana Ciornei <ioana.ciornei@nxp.com>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+To: Marek Vasut <marek.vasut@mailbox.org>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Josua Mayer <josua@solid-run.com>
-Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
- strings per SerDes and instantiation
-Message-ID: <20250905-pamperer-segment-ab89f0e9cdf8@spud>
-References: <20250904154402.300032-1-vladimir.oltean@nxp.com>
- <20250904154402.300032-14-vladimir.oltean@nxp.com>
- <20250905-bulky-umber-jaguarundi-1bf81c@kuoka>
- <20250905154150.4tocaiqyumbiyxbh@skbuf>
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi
+ 720x1280 v2 binding
+Message-ID: <20250905-imaginary-crazy-a5734cb794fc@spud>
+References: <20250904200036.168222-1-marek.vasut+renesas@mailbox.org>
+ <20250905-humble-framing-3d9b786c87a2@spud>
+ <3ba2de63-4282-4b1e-a576-0b4501e56a7b@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,85 +67,56 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="3D4+jggI92W+mz5y"
+	protocol="application/pgp-signature"; boundary="usBmjWL10C9rXeNB"
 Content-Disposition: inline
-In-Reply-To: <20250905154150.4tocaiqyumbiyxbh@skbuf>
+In-Reply-To: <3ba2de63-4282-4b1e-a576-0b4501e56a7b@mailbox.org>
 
 
---3D4+jggI92W+mz5y
+--usBmjWL10C9rXeNB
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 05, 2025 at 06:41:50PM +0300, Vladimir Oltean wrote:
-> On Fri, Sep 05, 2025 at 10:29:33AM +0200, Krzysztof Kozlowski wrote:
-> > >  properties:
-> > >    compatible:
-> > > -    enum:
-> > > -      - fsl,lynx-28g
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: fsl,lynx-28g
+On Fri, Sep 05, 2025 at 08:55:16PM +0200, Marek Vasut wrote:
+> On 9/5/25 8:46 PM, Conor Dooley wrote:
+>=20
+> Hi,
+>=20
+> > > +examples:
+> > > +  - |
+> > > +    i2c {
+> > > +      #address-cells =3D <1>;
+> > > +      #size-cells =3D <0>;
+> > > +      gpio@45 {
 > >=20
-> > Don't change that part. Previous enum was correct. You want oneOf and
-> > enum.
+> > ngl, seems strange to classify the device as a regulator in directory
+> > and name, but use gpio as the node name in the example.
+> >=20
+> > Otherwise, this seems fine - if you feel that the hardware is
+> > substantively differentially to what's in the "v1" regulator then
+> > keeping them apart is valid.
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> I can rename it to "mcu@" or "mfd@" some such ?
+
+Sure.
+
 >=20
-> Combining the feedback from Conor and Josua, I should only be permitting
-> the use of "fsl,lynx-28g" as a fallback to "fsl,lx216{0,2}a-serdes{1,2}",
-> or standalone. The description below achieves just that. Does it look ok
-> to you?
->=20
-> properties:
->   compatible:
->     oneOf:
->       - enum:
->           - fsl,lx2160a-serdes1
->           - fsl,lx2160a-serdes2
->           - fsl,lx2160a-serdes3
->           - fsl,lx2162a-serdes1
->           - fsl,lx2162a-serdes2
->       - const: fsl,lynx-28g
->         deprecated: true
+> I originally thought it could be compatible with the V1, which is why I
+> tried to conflate them into single binding in 6d09c6e474bd ("regulator:
+> dt-bindings: rpi-panel: Add regulator for 7" Raspberry Pi 720x1280") , but
+> they are too different, so this undoes the change and creates separate
+> binding.
 
->       - items:
->           - const: fsl,lx2160a-serdes1
->           - const: fsl,lynx-28g
->         deprecated: true
->       - items:
->           - const: fsl,lx2160a-serdes2
->           - const: fsl,lynx-28g
->         deprecated: true
->       - items:
->           - const: fsl,lx2162a-serdes1
->           - const: fsl,lynx-28g
->         deprecated: true
->       - items:
->           - const: fsl,lx2162a-serdes2
->           - const: fsl,lynx-28g
->         deprecated: true
-
-This doesn't really make sense, none of these are currently in use
-right? Everything is just using fsl,lynx-28g right?
-Adding new stuff and immediately marking it deprecated is a
-contradiction, just don't add it at all if you don't want people using
-it. Any users of it would be something you're going to retrofit in now,
-so you may as well just retrofit to use what you want people to use
-going forward, which has no fallbacks.
-
-I didn't read the back and forth with Josua (sorry!) but is the fallback
-even valid? Do those devices have a common minimum set of features that
-they share?
-
---3D4+jggI92W+mz5y
+--usBmjWL10C9rXeNB
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLsz4wAKCRB4tDGHoIJi
-0r3AAP4k3M2Rfs96+5+KCmi6TXeQ9mYQHTo4X1jbmyL+SNNR5QD/d4ym1J0jM4Us
-aJvkVP5gvEEy0FxwEdh7BwhvQHfAqQs=
-=mIu7
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLs0EwAKCRB4tDGHoIJi
+0iY+APwLj1336PzN6WjULb9ViDkp1qnpKP4J2cicUnX08OB1iwD/XZpDBQy97xa3
+JXXKMGD3tzx/lj6Cmg6vuuX/kd/xCQY=
+=kAJA
 -----END PGP SIGNATURE-----
 
---3D4+jggI92W+mz5y--
+--usBmjWL10C9rXeNB--
 
