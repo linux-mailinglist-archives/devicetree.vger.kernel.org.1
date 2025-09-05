@@ -1,63 +1,81 @@
-Return-Path: <devicetree+bounces-213373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38723B45423
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:11:30 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 15530B45431
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:12:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05CCF1BC6BCA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:11:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 444E47A8B65
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:10:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E71D02C08A8;
-	Fri,  5 Sep 2025 10:11:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 893282C0F8A;
+	Fri,  5 Sep 2025 10:12:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lLsXw72F"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WloOaD9v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B672BE63F;
-	Fri,  5 Sep 2025 10:11:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA79C2C08D1;
+	Fri,  5 Sep 2025 10:12:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757067084; cv=none; b=avRLlnF0icqsPpwewWtueC7hhV/5xXjJQb8iXDU46xO6VmX8dhcRKl9zX8LCgTmOq+jC9ubWx8d+obNQXBNIcAUBfK5wo4W86ypBQG7nbkbF3w/REQmwWwUivXgyH7MMMsKFrdc5RTGM/+dz7J08nt8USc3xXSNDbYV8wZO6HGA=
+	t=1757067148; cv=none; b=aeefe5Wqwi8X6YNj8L+Wh7QJhtQ+bux0xL4x7HVwe68yyPGMRijufv7YmbBpDJjMkj0Vr1q2PCF+04CCw3U3nudqPeBe71gAFHhq5FYbnR+Ra9G6o2zamOsHAAJF2MS4Ef/WKErnJR1WeqvfZXNfHBt4HIf+1b9go5DUr+WrOtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757067084; c=relaxed/simple;
-	bh=ThBn18nAS7wJ7vMOdpeb1ZxEp1+peLlkusB0r1MRcuY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=B1lp7pbcZMs5BSSQvNH7fqdodgIzElKELqc86l5SsWRUrnZgkpzm+AxotPP8gUXKIPcabZoSmc6IKepryXc0FXQf27v4Rtww180VHi9zXndgcVRyiSz1lDDTZU1sPTPat1jTtSSnBIOHZAIPwAgLCS4M6Lp9mQllZbbaGDfYw8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lLsXw72F; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 585AAlq73690348;
-	Fri, 5 Sep 2025 05:10:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757067047;
-	bh=Pm6PWBRGwS3wo5s1g4KMnXdseJb2mzIZCAFL9ZdKaO8=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=lLsXw72FaEZsJs3ufzxwB2VJbL5/MMudEd8WBULnPSp9vVWBuas1kr3Q1rsclVPj5
-	 4QLyxviVKCdDue205V5jk2I4Ab00RiA40nGskneh4prg4Y2Qs53W6eKJg2++MScNSS
-	 fZUVQLl3LFNbY1Aj4oOhqeDRgisLYsygZYimMUXU=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 585AAlJ61569668
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Fri, 5 Sep 2025 05:10:47 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
- Sep 2025 05:10:47 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 5 Sep 2025 05:10:47 -0500
-Received: from [10.24.68.198] (abhilash-hp.dhcp.ti.com [10.24.68.198])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 585AAfTC284138;
-	Fri, 5 Sep 2025 05:10:42 -0500
-Message-ID: <3bb314a8-2ce0-4c54-bab0-e0af70bf22b9@ti.com>
-Date: Fri, 5 Sep 2025 15:40:40 +0530
+	s=arc-20240116; t=1757067148; c=relaxed/simple;
+	bh=514/S8NtgN7VIZATln+91Vi3RBJJexkN+LT4bNCs5TE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=YQLTs2OmHawcDe+GFd2LhCDezQYPWnfGMUJ+NTOdeL8G99/qnlgNvFBMO9WD4Oy4Fd2juJxcuKiGq+UIcpGZsbGbzNdEjqIabjPdRJ3coNn31GvxWR4qDvcgm50mrHtZHS/TNr5359pjxDpms/aEzt7byyn0DnuRnI2YwGbAwgo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WloOaD9v; arc=none smtp.client-ip=209.85.208.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-6188b5ad4f0so3334731a12.0;
+        Fri, 05 Sep 2025 03:12:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757067145; x=1757671945; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=514/S8NtgN7VIZATln+91Vi3RBJJexkN+LT4bNCs5TE=;
+        b=WloOaD9vphiFCOG6q3mv39z6QGagsTnWzBpTc9eD1v20fL0hSD1dbRiz35NIG79uqv
+         2PTajJ3mJm4SFu3KacjxHdXxEpejDswBUgtHvYrmTXIkGbTICniYkaXuKivmEH2MgPUo
+         JtlmeJqpZaXTz9kSoxUlE9OBU7bIJEO4iI/p3ToXOuTSdjDcGEWKRCoVPzA0LoscnTbF
+         yZQDSfaL4cPCj7yav5zmHLCkL2FBPIoqfHEQ3HNQuzYbwSQ7If6FnORutOxVTeLNlRqf
+         PcB7zEBp+jc9oCKO4mNbpMS2RxpNK2j8Xd8B1Sb90Q5DPVGkG/uRV7UAZRUFsYh6boki
+         6Agw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757067145; x=1757671945;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=514/S8NtgN7VIZATln+91Vi3RBJJexkN+LT4bNCs5TE=;
+        b=S5xAohPxa6AoaxJTm2G/UVJIKuXm9vMsBEFS79QLiccOkdKC3ZRA+VygBMDVUk2gpk
+         FtRsRnIaDXgP/dBWpVLfwlhNcToDOD33O3sfpw9vmRcUhXpdgEYfne35fPPe9cEhLRnL
+         81FfDNImL5S9MgN9H1jYy4FU5AZysodWC4AYuBKV6zv0KcJvZEAyEdqjFf88AGkvVJVR
+         WPVBZo2RiPCdbr/gjGd/ZoFE4kLLxJFFXHnKMdC5h/WpmZbDKlX0/PNii6EUBYenyW6p
+         ZIBYTCmNsnC6vNCJhbnkUvy+45M7F1jk8UssOiQ6IthXMDikZKnvoqNqxSMrHtTKpobu
+         h8Sw==
+X-Forwarded-Encrypted: i=1; AJvYcCU6wkwdVuJrAYprbQGV3Uf7Tv5P13BiZJ71trsAIculaYTZ/WXBGrdrev7z3lOjs4X8S8BgBPBNgn2w@vger.kernel.org, AJvYcCUhGnHPKRbHTfNG22w5sc5QGAIBL4mmgX/OlEDs6Yed5et7PEKdHshL3MehCAKFICHofJ5F8tm5L/O3@vger.kernel.org, AJvYcCVt+v4ED3+DZZNjdrI1DQY+Ya4i1chKpbkq62/SROe+AR7+X4Fr5AgUtPsSDkIGuiQSiLLb5SVHo9pchLwr@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxWldnF6eJafYozK/wxcPSx/yt+C8/jiDzf2YmaUki3PoYk7bj
+	nbf9TbiRlo/Din+vPDeHfzGFtikCyz8eJPlfqUBfOUsrVaQbRSefDIzc
+X-Gm-Gg: ASbGnct36kSzQtiRcCjBSeJHnELxIR0EKyyZsMzFmBGhrI5tZ+Qqzw4pLGAlp2F2mIu
+	hVqs7ILrptJp+ujSiXlSmMHvrMEe5Ouk2GSMMvl084+5bI+DwX0PAT92+hxy5RI0vUmea/xPOYA
+	H4WIHBZ+JD3c/0aWKDetnH+IdOf2Gz6cQhJ9IHXgY+ZGeyQg7VPlxBlxrIsdjaFZXb3icD1GUY8
+	ilnm+VpNnmXhZZZdasl5RulZuyrRgtZrWCKOWiJx11JI9/UvDluBHEcKsZvxCfYrF6d/W16oNvy
+	uQj7apflttdZ+RVcO7OUdw0mI1PrDK41V90lgLcMmJLzOKq4d8CDk5GXDiYQi9a5r+1ZZQn4yi6
+	xfuNg8Xjn4wJy4t0+Jhj4wx93qDc0440UCsUa3OD2dP53aS8jgAibYwfDrsmaAZTFgoZvP0DFWA
+	yflbunTfNT16SUxiL7igY1OQiXVG8=
+X-Google-Smtp-Source: AGHT+IFQFy40TldMYxWc1KLvo1JSVvPLQtczmXlHskEtz+9Wz5c9Lpok3O5e8O6f7WwNuansyMR/+Q==
+X-Received: by 2002:a05:6402:35d6:b0:61e:d34c:d1d3 with SMTP id 4fb4d7f45d1cf-61ed34cd400mr9926192a12.19.1757067144758;
+        Fri, 05 Sep 2025 03:12:24 -0700 (PDT)
+Received: from ?IPV6:2001:9e8:f10e:bc32:3042:6aaa:9b8:52f? ([2001:9e8:f10e:bc32:3042:6aaa:9b8:52f])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc4bbca5sm16132348a12.31.2025.09.05.03.12.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Sep 2025 03:12:24 -0700 (PDT)
+Message-ID: <56c6c0fa-e2a7-4493-99ef-128b8974dd0b@gmail.com>
+Date: Fri, 5 Sep 2025 12:12:23 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,87 +83,54 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 01/14] media: ti: j721e-csi2rx: Remove word size
- alignment on frame width
-To: Rishikesh Donadkar <r-donadkar@ti.com>, <jai.luthra@linux.dev>,
-        <laurent.pinchart@ideasonboard.com>, <mripard@kernel.org>
-CC: <devarsht@ti.com>, <vaishnav.a@ti.com>, <s-jain1@ti.com>,
-        <vigneshr@ti.com>, <mchehab@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <sakari.ailus@linux.intel.com>, <hverkuil-cisco@xs4all.nl>,
-        <tomi.valkeinen@ideasonboard.com>, <jai.luthra@ideasonboard.com>,
-        <changhuang.liang@starfivetech.com>, <jack.zhu@starfivetech.com>,
-        <linux-kernel@vger.kernel.org>, <linux-media@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20250825142522.1826188-1-r-donadkar@ti.com>
- <20250825142522.1826188-2-r-donadkar@ti.com>
+Subject: Re: [PATCH v7 03/12] i2c: rtl9300: remove broken SMBus Quick
+ operation support
 Content-Language: en-US
-From: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
-In-Reply-To: <20250825142522.1826188-2-r-donadkar@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+To: Andi Shyti <andi.shyti@kernel.org>
+Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-i2c@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Markus Stockhausen <markus.stockhausen@gmx.de>,
+ Sven Eckelmann <sven@narfation.org>, Harshal Gohel <hg@simonwunderlich.de>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250831100457.3114-1-jelonek.jonas@gmail.com>
+ <20250831100457.3114-4-jelonek.jonas@gmail.com>
+ <cfdleondrrpfyfts423cwdcsb5mmqovej5hwke7ndghzlnwci7@d6i7ltgoxbee>
+From: Jonas Jelonek <jelonek.jonas@gmail.com>
+In-Reply-To: <cfdleondrrpfyfts423cwdcsb5mmqovej5hwke7ndghzlnwci7@d6i7ltgoxbee>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Rishikesh,
+Hi Andi,
 
-Thanks for the patches.
+On 04.09.25 00:59, Andi Shyti wrote:
+> In the sense that I don't have this change in the fixes path, but
+> I have it in the non-fixes. For now, until Wolfram pulls the
+> fixes, I removed the patch and I will add it back next week to
+> avoid conflicts in the -next branch.
+>
+> Next week I will apply the rest of the patches in the series, as
+> well.
 
-On 25/08/25 19:55, Rishikesh Donadkar wrote:
-> j721e-csi2rx driver has a limitation of frame width being a multiple
-> word size. However, there is no such limitation imposed by the
-> hardware [1].
-> 
-> Remove this limitation from the driver.
-> 
-> Link: https://www.ti.com/lit/pdf/spruj16
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
+Thanks for taking care of this. 
 
-Reviewed-by: Yemike Abhilash Chandra <y-abhilashchandra@ti.com>
+I just got a new testing device with RTL9313 on my desk with which I could test
+the two-master functionality. Thanks to this, I noticed a bug in the last patch of
+my series before it is merged completely.
 
->   .../platform/ti/j721e-csi2rx/j721e-csi2rx.c     | 17 +++--------------
->   1 file changed, 3 insertions(+), 14 deletions(-)
-> 
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 3992f8b754b7..b3a27f4c3210 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -260,9 +260,6 @@ static void ti_csi2rx_fill_fmt(const struct ti_csi2rx_fmt *csi_fmt,
->   			     MAX_WIDTH_BYTES * 8 / csi_fmt->bpp);
->   	pix->height = clamp_t(unsigned int, pix->height, 1, MAX_HEIGHT_LINES);
->   
-> -	/* Width should be a multiple of transfer word-size */
-> -	pix->width = rounddown(pix->width, pixels_in_word);
-> -
->   	v4l2_fmt->type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
->   	pix->pixelformat = csi_fmt->fourcc;
->   	pix->bytesperline = pix->width * (csi_fmt->bpp / 8);
-> @@ -360,23 +357,15 @@ static int ti_csi2rx_enum_framesizes(struct file *file, void *fh,
->   				     struct v4l2_frmsizeenum *fsize)
->   {
->   	const struct ti_csi2rx_fmt *fmt;
-> -	unsigned int pixels_in_word;
->   
->   	fmt = find_format_by_fourcc(fsize->pixel_format);
->   	if (!fmt || fsize->index != 0)
->   		return -EINVAL;
->   
-> -	/*
-> -	 * Number of pixels in one PSI-L word. The transfer happens in multiples
-> -	 * of PSI-L word sizes.
-> -	 */
-> -	pixels_in_word = PSIL_WORD_SIZE_BYTES * 8 / fmt->bpp;
-> -
->   	fsize->type = V4L2_FRMSIZE_TYPE_STEPWISE;
-> -	fsize->stepwise.min_width = pixels_in_word;
-> -	fsize->stepwise.max_width = rounddown(MAX_WIDTH_BYTES * 8 / fmt->bpp,
-> -					      pixels_in_word);
-> -	fsize->stepwise.step_width = pixels_in_word;
-> +	fsize->stepwise.min_width = 1;
-> +	fsize->stepwise.max_width = MAX_WIDTH_BYTES * 8 / fmt->bpp;
-> +	fsize->stepwise.step_width = 1;
->   	fsize->stepwise.min_height = 1;
->   	fsize->stepwise.max_height = MAX_HEIGHT_LINES;
->   	fsize->stepwise.step_height = 1;
+Due to a misunderstanding of how 'device_property_read_u8' works and that it
+does not read '1' out of 'realtek,scl = <1>;' in the device tree, the second
+master didn't work.
 
+How is the usual way to proceed on this? Should I just resubmit my patchset,
+except the first 3 patches you already merged in your tree, to have that fix?
+
+> Thanks,
+> Andi
+>
+>
+
+Best,
+Jonas Jelonek
 
