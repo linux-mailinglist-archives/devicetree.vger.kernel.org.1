@@ -1,364 +1,315 @@
-Return-Path: <devicetree+bounces-213222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213226-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530BFB44DBE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 07:56:00 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7239B44DD4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:04:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id F27BC4E3978
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 05:55:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C8D3A7B17D1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:02:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 171BA279324;
-	Fri,  5 Sep 2025 05:55:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2898E21D011;
+	Fri,  5 Sep 2025 06:04:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b="oVt7UuR0"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="I4oQ3FHg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TYPPR03CU001.outbound.protection.outlook.com (mail-japaneastazon11022078.outbound.protection.outlook.com [52.101.126.78])
+Received: from AM0PR83CU005.outbound.protection.outlook.com (mail-westeuropeazon11010038.outbound.protection.outlook.com [52.101.69.38])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5105232369;
-	Fri,  5 Sep 2025 05:55:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.126.78
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05738276058
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 06:04:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.69.38
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757051756; cv=fail; b=G8D+aSY1N6YhXS8Xk/2W+pIgV0ic78VwFcWk4Wf0r2ReGaBMlBp0ysfd1SbkHc4U3Z1ZxHpLf+2ju8HsFNA5/WSi9lQCXudFUJ7xfkyDNseC5iH5i+CgqWBdLs4mZfy7OE0e+HF0n9G1pgXjKVB0iqhDdIPS+o+gREsYIRoZfuA=
+	t=1757052256; cv=fail; b=g9myrgYCB+4DbP69ASDWfQ+0hfRxqWIvDdozMKopeVswOjxQrHsV+y7Pn/NM9GrR3M3UA7yvxM9tjb0HGy1EILPOG7nvPOwAPV8D2lCCxpnlkpyrqwgW5ofGg9ReVCbncr8V3x/5aL8NEksRXd1ioMgsjEYPHQ2ioKYi37hIIQg=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757051756; c=relaxed/simple;
-	bh=i8j+kYwDRcG2m548RSljiQ8FZnD//cS/w96VWBSqnOY=;
-	h=From:To:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=BoBlHxnkBrxjWrTibG3mdcdF2yKXeukrQqccJ5R/uh5sJhH6pou2CujlZ4FWoqBN8QHkTIsRwpCyKKPT7ZtxVTYNekqaY6hTnC14LZk10BR0Na2nli9I5jhcKZIMiNMBvFhAHNh3Zs92oU7kAVd5zULHsHVdmWAVgxr+6oOahtA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; dkim=pass (2048-bit key) header.d=aspeedtech.com header.i=@aspeedtech.com header.b=oVt7UuR0; arc=fail smtp.client-ip=52.101.126.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
+	s=arc-20240116; t=1757052256; c=relaxed/simple;
+	bh=/0K4zDUPUjTr/cRG+jR9oJgCe76/mfL/1qRCBS17yeM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=V9OWhgbus7x1Is6uTc4Rdu9fBfaAzgF7LEHvm58icVoz3ExGwc7MFGgs+HniYeItTuDSsJe+KJ0b+AY2wLRsqOEJobmcvNh00ID6fA3WjWHR4JYv5fy3EN72fdroD8dj530lsZ7VC7MQxKjjhRNVF9yK0LyHZNnQ8WOtzIgjaHU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=I4oQ3FHg; arc=fail smtp.client-ip=52.101.69.38
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QC4T6msUm/EcbX7Io6e+9fp4awtCKc2stuPqa5TTpiQBAlgFUdO2oaSh3opH0A9HD11hIpCqaZnP45Ft7ABIJXYSkti2QRPNM8xpJZdh/xZLzllwQ2Bpue9dLDEUYSOQHpzQm+qqXARTa0iRu+lenF6YLNUzh0WaNa9wvkJkD1qYds31S6IbrMfDekww48meIxtpl5YJOBfr4SSyZKjzmik8stAnTrOu2rndAwWEQqbv5Hp4S9x6mF9eRtCkh1nlmcYfFyUEzcBFabrm2xkWPMiLQ1jTre3zxt/ecNbtmLxjlBiOmqvZZRTGBQG02zeu33deO0GNv/cbBkEMO1Q7XA==
+ b=Euz1h8gwwGXuu4rewAZ9Gko7J/rV7PAw7S1vB34ZhHIK94JhJBkkAGW0FGy2SH2WUcocZ78e8ZOvU0m9hLjc8meA6hxpO+v28+jj/mWaz8AGC9Irzis2DJ98GhKt5KrRvtD0bb6AjiT2VKubynKjmPrQilV9J8fGlNMDkm5+r7iv1IkSu2vdORQg9xoHiAndbSlsWWul2WtBj73bH3mEKR4Sgx4b9gjcu5Xj/zmy0+KMRVKrfFx9VkwbciPVetBvKBRqu29OgqBpcK26/43D2U6VfLzpojIPb1UB+hVq3W0TxTR9NOIYUAieIdlwIz2Pt6jcI/oHROsx9YHI/IHgfg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=K16rJq70k8N4iGe6InYmrZNs4ntaAMbO0Q5y4pW/zJ8=;
- b=Cr9ePfoFX1vR4vf0In3ZkYHUb1NKTjciMpj33YEkididMfFPubF1DWtU9JT6NQbRMK0jBPXLa0rh7eC+YCmPjksdrO7vlOuSQYa2vawlOsA9XoS5jAhjjMFdy7tDhIattX3QEQDUsXin6+XxPtDOy925LQXBM9FxFpJ09BY8JAPkxBTQdfYsSJAMQuIRXEnq/kllcPm7pQoWFWo3s/vdAVflr+lcOv/3CFzv67bpxxGvYnOgrOXaEhUP3AqIC0P3fplUooWKb9i1DnbEuDK1bMgoBosq/geyPyYRQji9Jpjo1YusNt0cEO0fdiZyNzESYPoOf6u8WlJk1hKesF3clQ==
+ bh=u15fF0p+5IrIJJMdCmJdH1BCrjjlAs1IAic2Uq1ECx4=;
+ b=dL3IT0cSLfI4SN5au0Pg/4CnNfAWxDAuIn6yZ+psxR46axAGYcJ1OvHhmb1qBnHpNVW1TfKO+6SjGnUoJBhpJ2WI77pfK5A51LBvU7orJD6MWxyMT/mf959t9gJtJX+YqVk6NTaP2DoLd+SGsAf0Vec6sn4hty0eu/G6B09+ANFuHGQd3bSuoIXuiDd36M/1j0OOomDf8YpHF0m22ucrg3nW1eFw01RH8nkMq+2QJHDw6/uxoT02BGjw4GoqBpOADAqBFJL8GF1l88aKxZtPo26WzKjjgxvXcnJfWbQj014aA5GZQERVRm0U8rZ9km1ZDrksOByCQ6nTNF6TUKdxdA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=K16rJq70k8N4iGe6InYmrZNs4ntaAMbO0Q5y4pW/zJ8=;
- b=oVt7UuR0Qj6KLS14YE86MZDs0PhqpxbuLnQgCcZTpVwyY+KuyRDQ3rN74wDdk39QS0XxayF8st+ViKodY+Awpi64pzBWm4lC5AZPhBra/Ri4hT8NvDIBFqfwo/+lCptjG/B8yb/nuu98VPwZKjcSZ0skG9rVUEwINBqWpBANAD2jLj9dOtvbi407REv6EmqvTbYjH1Q2YMw8+jMicpPtQMXbtt1DRadpp0TglfODJ1eTIJicPub8EwX0+TvhNYKdaEm6CrLPy+/lA+jFPmvkC9KpUJgAAKMZSFklPeoSSelhe50Kb5ia5pM+ukAnOuVhv+gN56pM4BWUrPYpgJ8fVw==
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com (2603:1096:604:2b1::11)
- by TYZPR06MB5507.apcprd06.prod.outlook.com (2603:1096:400:289::10) with
+ bh=u15fF0p+5IrIJJMdCmJdH1BCrjjlAs1IAic2Uq1ECx4=;
+ b=I4oQ3FHgK1yBBidPDa1BcDdK8llm4gWWFi4267qqk0R/0aLslDAodoDKl2DRcEw/TDHV/sUQR0hNtO3euoi5H6vc5WeCkvgbyDvxjPvkoYPkoLkGEaiiXfj30/YslxC1y2cUAJQVpiObvzB2/KxRk2h9gJAwXUS7KWjtdEVhG3jUELEHA5tfZeYEmLZGvZkdU/7GI/MwA3fg33c4IAe9/38IocbOPyYzwEDIfxrXhfjxNmdIYQGPt/XjcIrG4nVntN3ech66AeJA92Yu8AnQCNF2sjCAEhbTjS9YaicSWkt8Htbp/aexJV7A7qG0k8YBHlaq47zr6iTuikRLdna+LA==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by PR3PR04MB7292.eurprd04.prod.outlook.com (2603:10a6:102:85::10) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Fri, 5 Sep
- 2025 05:55:50 +0000
-Received: from OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11]) by OS8PR06MB7541.apcprd06.prod.outlook.com
- ([fe80::9f51:f68d:b2db:da11%5]) with mapi id 15.20.9094.016; Fri, 5 Sep 2025
- 05:55:50 +0000
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: Thomas Gleixner <tglx@linutronix.de>, Eddie James <eajames@linux.ibm.com>,
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>, Andrew
- Jeffery <andrew@codeconstruct.com.au>, Lee Jones <lee@kernel.org>,
-	"linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v2 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU
- interrupt controllers
-Thread-Topic: [PATCH v2 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU
- interrupt controllers
-Thread-Index: AQHcGh0GPU6Ub5O2HU61CmoAvkdS+LR/4M6AgAJX8wA=
-Date: Fri, 5 Sep 2025 05:55:49 +0000
-Message-ID:
- <OS8PR06MB7541CD16E659666868EAECB9F203A@OS8PR06MB7541.apcprd06.prod.outlook.com>
-References: <20250831021438.976893-1-ryan_chen@aspeedtech.com>
- <20250831021438.976893-5-ryan_chen@aspeedtech.com> <87y0qx0zqu.ffs@tglx>
-In-Reply-To: <87y0qx0zqu.ffs@tglx>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=aspeedtech.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OS8PR06MB7541:EE_|TYZPR06MB5507:EE_
-x-ms-office365-filtering-correlation-id: c9b83b17-b016-4d40-100b-08ddec40ddd5
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|376014|7416014|366016|921020|38070700018;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?e4AJKcVdiDpgRasa9pmoftdZ3KAFjt8bMD1zLOCRJvbdyCz+rsAxjm62+nNC?=
- =?us-ascii?Q?ndjcCfx6EDSZgAppuV8yEEOsm8AoDAqPBxikv0EwSGl3eBoS90j8yERYnhDV?=
- =?us-ascii?Q?7oK7XFtapHyF3dVTP2M0A9yKl8r/tc1be/ipQ2z+7eXYE9X4zAJ1zNCMxIUU?=
- =?us-ascii?Q?QoOwUxLn3KIeDGaL2CTGuZrv+aiFYT835GcyN9eCyfOmMCsPZmQMMXNH4NjV?=
- =?us-ascii?Q?o8fSTM7quiiwqZ1UkW7eTKRf1w2WmhbRu+Eh1DEkQtsVORUf9OmCdxAWZzEE?=
- =?us-ascii?Q?uHe6dfLz4XdmBODMPgaF4kOp9vXcfSE5tG6Ja0VS6yfhPXsTDrNoeJgLjqaZ?=
- =?us-ascii?Q?/GXGu4DPME68n8NR35namCJZVX4f9wyyp1gn5vK9Thho6g6PZm15SEENxti5?=
- =?us-ascii?Q?ZmJBH4kLyVH5Ly4SQEexzScp7WaVx0yI69DB67BkkmoWU/XK6WiTYhcbz3t2?=
- =?us-ascii?Q?RMnP5e6xJHB8Md41rnVatwpZbIprYgdJhm5+qFdhUWPnNxt2lkGIRW61oY24?=
- =?us-ascii?Q?biHcLOx+s5C9FTe+zcBv5Ef13Zb8tx0ClgWD7nRIbvbmk3GVv+PLcw/MFu99?=
- =?us-ascii?Q?/NV8HymoOeQSr6BtCs5dlCB+mD77Qh7/pG8her4dIG/Xzge2phR+svwAl/oZ?=
- =?us-ascii?Q?G6cpBXHL8Yzjovsv9QJzIdtpioJuFXo++fSRudfZ4Re1nSBctDdu96Zv1cN+?=
- =?us-ascii?Q?ngUqy2QWv7cGte/RfBjsd648CjfaHwEGz+FgSzRFiZTSaanS8Rlovx+R0iih?=
- =?us-ascii?Q?gJWsdqdL8+Eg65gJ117hxPEvFAtnReV9WlRAkpGZYJI8TxP7JpavkL85aumj?=
- =?us-ascii?Q?sL9kZ/TpI6gd8J9/vOSCb1DINp/UWohfFYh27aRYjT6UybTg/zztz5TgabRo?=
- =?us-ascii?Q?AECPf+O9A99Mxzj+KVsQN3SmfSmGoLNiKoWrigfqJiXQBk+gHonhieBoxoqQ?=
- =?us-ascii?Q?wiUGa07OE63CDnjGwuWyK7fkehUl3Q3v+pGxt4tKMoZC57mSK40Db8A8iekM?=
- =?us-ascii?Q?23I7mVlP2XQVYNGshEpCAgY0XXdSNUzw4QR4E7PcwybfN56M0Q29UtL/L7j3?=
- =?us-ascii?Q?oNBwDxIdYRSgShpCuRbRY9Iy+1CqVHPVhLcd4AIEthXbfBuAGU+pACAvgxzm?=
- =?us-ascii?Q?YbvZkbd25Quwy5+hbAyTvwhlrsukFd3qFGRSy0G0ghGyyEtQkxsCpsGsNG62?=
- =?us-ascii?Q?MyNTBq8+BMFjYsKNWG3VbjU77P0F5SvmKu9dTTznESJDjetfCigps724kPF2?=
- =?us-ascii?Q?Gh0fjrPkhYIqWK/tVjs+lTQCrVREa3PcDcKINYAeFSBp5X6tmOq8/Uqez72I?=
- =?us-ascii?Q?Un+drsDxBy7haIhtQI5XprUIZIk6z9JtMy63jLy0oV8B9akLV41jCi1CTIDe?=
- =?us-ascii?Q?fMLEOqHAOBybKN49ngt9VASEmhnZcifi9xcouhZStJNVg43N2mp+Txd5Z/Ab?=
- =?us-ascii?Q?VfO5V9SYR9u0UH6v/HmYWHpToAr2VIXsijDrouSXX61caaZX5RglMahQlwoa?=
- =?us-ascii?Q?C859468/Y6ew700=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OS8PR06MB7541.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(921020)(38070700018);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?5ryovjTy9IGrrsfArXqQkIir6gl9cp3Yfj9uf7hriWW/DPU5sG/dsEhrvx7e?=
- =?us-ascii?Q?ez2bIBzF8J8g2rrU5EAJSVf1ltd64W4BqVyqLf4smagkV67GodzEk+SqFAP/?=
- =?us-ascii?Q?ii4xJkGmS/+ceFR9es/ZhAhExT/wudIsIWW86i94fgocfVGSZQgIwkjGjx9e?=
- =?us-ascii?Q?CtDmlx5nQ0qVlubj+gGETLMwDImcunDVws5J8ANx6uuxF6bm87ACwazZKa3q?=
- =?us-ascii?Q?IY+FXH+/Lzi12BgvDsNtCU6wxrH8hms3w6S/RHm8aIdzyuR/2AN0/KcwuqX0?=
- =?us-ascii?Q?EQ/ISi1Hgcioeyy9sGgc4r2fOi21H0wNz+npL2FS2tb0ycJ56ToWXY00a4P0?=
- =?us-ascii?Q?wXodOhfKCxTgliP4RveqQ25N/9nOxgzFRRiQCeh3g3jS75OU1OkGxW6XdeuG?=
- =?us-ascii?Q?HMzLzilUcs1EYf179fg50xAFnSw/nhXDLSocTgJBf1ig6P83/T6qia5NkqfZ?=
- =?us-ascii?Q?nPAh8HnDPHFiswXVTZqx0tnjWGG9pT8oL8O8jHwSuo7tRSHhwNkxC0ZePSja?=
- =?us-ascii?Q?GuAL1JD3F8tJ8gZXkhlDNsfPQblv/NL0JNew+9GES0OKQ2ewnfvdlh7E/krp?=
- =?us-ascii?Q?1znoGdijoM9e8qViBM05pi8ZN+Rr/AfTDwvGhjaTWK8RBga3rUbRmqfrbVxO?=
- =?us-ascii?Q?fOFbZvyMnXX1CD3R/8EZ+/J1nfWxgkigU77dZstN9nnLVxMt/3HNyVBGeVDi?=
- =?us-ascii?Q?lX36Le1LSpbi00X2sNxafa83dX0E+wZeztLDWPw5eAwcmLHuy6JPAQfaOcJc?=
- =?us-ascii?Q?/PE41tioSCqbhkuz0N1G2ZCsDVtYlrVxEooaf1naGr9IS2YTBqMEOllFIsDJ?=
- =?us-ascii?Q?DkU7jhkYdJehTJTjFhB67WSLXIw0VNB4UfeCzL0VXIxP+/6eFtXSxkKJ82JP?=
- =?us-ascii?Q?3OafVMJD+gAIAUQuA+73ioMiBZwr+5Ehwjn6hZrl7E7pCZH3garCMnaUAz5B?=
- =?us-ascii?Q?7gHRcaMjbRpRdTi1ynQQvqL5rUxuHOmn+WcGV5FDSmMcTm/oZWurxR8FFKdo?=
- =?us-ascii?Q?FL2RKXnl1qu+zUpfJZH6Sre80mWyfREZJB2K5vctEZWBoqVpz14N4X+4/S7Y?=
- =?us-ascii?Q?S+Q74nJ2t63Z36D8Y+ytvylV/1+KkYn+K+0VClhq7oXCnrwYZwh0L04BVnHn?=
- =?us-ascii?Q?r27iv64c7fhQiJqgYgWNRiwpvDQ1y+hUYrsvbLI3gXkXIUey6UOQLJkQfrYT?=
- =?us-ascii?Q?Besx2GygRgUGb9B+lCZvPUZpngUP+CjUmalxJfrvlfVz3+HzHhU1/dCknqrU?=
- =?us-ascii?Q?DCnzb1r+GTdDGgHAcA/MqmLopvtdWZXT5Z1QLtN435wZ92QeSY5wIy58JG4w?=
- =?us-ascii?Q?d8KYOzsUYrB1nZ3UQm3qTSjVRqmQJoY0wrNpBKcEpNVMpQ7tzCvOT7nB1SEe?=
- =?us-ascii?Q?pyNz1vKIF5+EiF6k1D5hxbFjQe+llxGGzUwh1Y36lm+5covy6nH2az1MayI6?=
- =?us-ascii?Q?lE5tymIRVC46RF/uHi3rpXACU7NJIsPQ49f/HVlt91HTH6qz+hGDKsvrjCAF?=
- =?us-ascii?Q?MOAwfAm+KDuqK5hP4709br6yS9NS+xSdTk0JkZ04cf1idYnLuTilbTQqanIV?=
- =?us-ascii?Q?UCZe+ebqruy1Wz8s8DK9yX7bVjit0hPDtp39+DBg?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+ 2025 06:04:08 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::c67b:71cd:6338:9dce]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::c67b:71cd:6338:9dce%4]) with mapi id 15.20.9094.015; Fri, 5 Sep 2025
+ 06:04:08 +0000
+Date: Fri, 5 Sep 2025 13:58:17 +0800
+From: Xu Yang <xu.yang_2@nxp.com>
+To: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com, 
+	robh@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org
+Cc: swboyd@chromium.org, heikki.krogerus@linux.intel.com, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, jun.li@nxp.com
+Subject: Re: [patch v4 3/4] extcon: ptn5150: Add Type-C orientation switch
+ support
+Message-ID: <bjy5jxkfwcuhz46eeixmcwaleza6kftgshezbxth2gtzbcvemr@svrul6tyuxk2>
+References: <20250815094733.2353916-1-xu.yang_2@nxp.com>
+ <20250815094733.2353916-3-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250815094733.2353916-3-xu.yang_2@nxp.com>
+X-ClientProxiedBy: AS4P250CA0013.EURP250.PROD.OUTLOOK.COM
+ (2603:10a6:20b:5df::15) To DU2PR04MB8822.eurprd04.prod.outlook.com
+ (2603:10a6:10:2e1::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|PR3PR04MB7292:EE_
+X-MS-Office365-Filtering-Correlation-Id: 02236635-40af-4b68-9261-08ddec4206a7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|376014|7416014|52116014|1800799024|366016|19092799006|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?H+DPhYKwNdc0SFJI14b1LpmQ6kudGViXYVAK4LacVNg+QJDOhDtEL33o4nPB?=
+ =?us-ascii?Q?vniRU8Fh+UAo4uLy6Q1xr77TQ0bsN2jDMAsvwEgZ/8q5RnN0CZoRM1COK5XD?=
+ =?us-ascii?Q?vEHxtk+L5e3RsdxmZWM8UYBHHK/LpirUAvbArfJ2cDxXHVH2RvkBuyWah/ID?=
+ =?us-ascii?Q?vIiX5sGm5DS6b9CLea6+uJFm4QUqEsT3R+k/HFSuoPZrPjQ4y0urYeCvC2Bm?=
+ =?us-ascii?Q?GVz8t4GNMx/0Tm/LXuRyVW0KMGTo3f46oGM/HQZQDPX5LPGifGcnI7JCwOCU?=
+ =?us-ascii?Q?IKhCzLdZtUv5zVR2wLh7X27mjYfGYHF8fS614eOUw9UTTQ4XEBx0IGS7c/vg?=
+ =?us-ascii?Q?PUoPFgu6c40aCeEEXWn5WB9kkhmZO+jLmSM3LbEKXmthOMsUnVFmjcAfQ1YJ?=
+ =?us-ascii?Q?n5IOE8d2yXxxFFpMdoCoe6x6LNuwqWdefQ9gHCvMXi2zuhRXRvaE0xbbfHIw?=
+ =?us-ascii?Q?ua/HhPLaWkktlEaMrrdEho3D/4o+N89fmZnjD7GzSjgQunLIzNXa47IWJpW+?=
+ =?us-ascii?Q?UntZso5e5RtkbN+s9P4dee03r8EGw8+/bw+pzrbMm9eqwk1qG+lvRIqNWnep?=
+ =?us-ascii?Q?Jzq3wVw4warkLg+ugwrLvKYCosSR/y+CQFBC896v5PflhJAclJ3xg/DmTxw3?=
+ =?us-ascii?Q?llq/+Ak3mmp2ICGLPck2R+rpLu+mO+PEKS7NlhpTykGe1zIx5+6AAjyzneYq?=
+ =?us-ascii?Q?Ui2ftXX1iH+nqdBm0ERB8i3d+Hi8yeyzzNAOL5tONKfhZMQWcnmF5EUfIgpe?=
+ =?us-ascii?Q?KcH4pbOvtMdvVJUrEJYlPZzOScEgIFDtp20rO+JlGv6IvcKrtMpUPjzhTWEr?=
+ =?us-ascii?Q?O+91uN4vnclxjYzgFhO+AsI9gKGiysTwJag/WLIB03HWsgs3l4Fux3W2R++3?=
+ =?us-ascii?Q?L9fynh+3YxqJBvMykAne882E/EyX2r7SWD8vedPYBh6NlV+gXtvSZvLdmmja?=
+ =?us-ascii?Q?RtZYExLZRKSIMKQlSuLLz6IQj6ts9+/CHnv1iuoproT+ystgq8U7E/rblv3W?=
+ =?us-ascii?Q?csO9tv9DMND7PQiR8H3l/RbkYWisZv5rl25nSdBdcEMqRzUvP4O29Rt9/+e0?=
+ =?us-ascii?Q?rGmCBaJ3ajh2JVxzwGLsUNbGDlwxz6gfNbudylJQ1wod+lViRNl/gnst4UK1?=
+ =?us-ascii?Q?lTAAv1fd88ezcmbhOmwm2WQSaftGpFGrdnPRGPKIrHiXp2tAv8+SrR0O5j/n?=
+ =?us-ascii?Q?nYukh9RE/fwCnqDI74Nki3boXRr9FqxCBiIxe0sCv/1/swT+XKaGdRSsBD2/?=
+ =?us-ascii?Q?s8zaN4e6ExsS4doMkUizKkDzf6upHtNSmSrDbXD+z9SzD5fVvcFXrXytfCGA?=
+ =?us-ascii?Q?wV8FU2/ZM381vYbLUDiYpLFuPXdUGSSN5wBKgPdkZGhKkNe0YH/YYAhmy1uu?=
+ =?us-ascii?Q?p2fP3R6JymuYvzyUxbVf2Fz0i1UTaD35UAnsxosUkABPdLcn+DxuRP1F9Knx?=
+ =?us-ascii?Q?3NUhmIwW20tPpcgcnNwEisZOCAU81ysuFGfutCH8mwWxgk+G145PPw=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(7416014)(52116014)(1800799024)(366016)(19092799006)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?4krYvqF3AXZH2PBFiEKW3YGAjXsSKgdGtE2qMxqE4eJu41KvdYs91lwS+HsX?=
+ =?us-ascii?Q?3h4MJiRryBTSNoF/z9LaNmoVKUgL7Aiy16CLL+qNI59OCGE3cDSO9gFtCuMA?=
+ =?us-ascii?Q?+sIaAQNQjaxIWOkYWJ8bcOq2KgxjYSVKCbFSwMS0C8oSaIstxaQvB+V1WvaJ?=
+ =?us-ascii?Q?6JNE3L4RD9XH4ZpOeQshOL1O4cAkrMg7JYPOASDevc3PteU8UeBGGgAcnbW1?=
+ =?us-ascii?Q?Kbwyb7uiA52fES8Z+346nHVPQpHYwaEozZWFWLF2qYb2osapiZ2OyjbuLhs5?=
+ =?us-ascii?Q?QozjL8EitKtF6j5XD/EjT6A9+G7jFa9LzQbChL64sXOXhKHQEQmeVMaPPRcU?=
+ =?us-ascii?Q?JRyfLFogNlJ8tPVg2bOysMOK3TKkZaj3feUG0ajRmJNxa63Gplrt+j/d1iRM?=
+ =?us-ascii?Q?pdoPwnf99prHUBcOnws3/0yACS/wan75qwpt/9RCKRxF/SPPtJJ2vhpMfvYl?=
+ =?us-ascii?Q?J5Vl2VxKsBTHbu8a4OgOKBe6qyZKS+W8nVX204Gl9k8mjgM0wJZdfZP9u4Fz?=
+ =?us-ascii?Q?gGc3R1UnBWofz9a8NzbRDzvFNIiyyfW2yguNd1yQLO5RMreWU9S4nsG9UKNl?=
+ =?us-ascii?Q?Rf8REdx9F3+654s/tr9ylGg2iWzh2S5Kp6WhC3Wd7Ux9PQaEZNuYsf+lmbvb?=
+ =?us-ascii?Q?DaIUzOPAZWA1/w6NkEMwHXWqgXPZN6awDs/KurERM53y+aLdKoelV8Q8EyKw?=
+ =?us-ascii?Q?oPTMzPM6MoXO9oAGU2IryfSWgp/lNSOwGivFbhXKp8LS5ZYKg6xG7cJfW9Og?=
+ =?us-ascii?Q?Y5PPJKFCy7ugB46l5Z8Wj9c6I32FcRT2y3vkJbKDPg9Ln1KmjpsaTlP81e/R?=
+ =?us-ascii?Q?BUrMADXwmqMDi/A4dXe7D49+S3VUfm/QPyS/NXII8ldy2bZA0rrwwzBbcbbR?=
+ =?us-ascii?Q?mu+SAyZjY2Yzf3J2H9Oo3xh8O8J3ZfB+dPugwgE8XVuhFlutp3BSe7x2WV6O?=
+ =?us-ascii?Q?/6XKYbKb4b5ls1EsNLFQSYdSllkW8kPCn9ruYwf8XcuQ4YwVIMdPULB0YSpy?=
+ =?us-ascii?Q?EOz04hUTiuF8xyH8KUqMTfkdZQWSEa+HyqRSQr/GbsmT2Ss2g1I3rYyIueyr?=
+ =?us-ascii?Q?gB4zP9AcoQ+/hhJBVZP+W0AJy0r+KV+6Zfr0MQ1hCNOr50z8xCoLC3HWNblH?=
+ =?us-ascii?Q?UN6STtgde0NCLPRCwo0j8QgdWMCgUA8GItZzlpjnWX4H1BKeWLGPrnNQ/CDe?=
+ =?us-ascii?Q?q5q75j0t4oNgpc8TXuuEPW6UfcuNM34ipexhqJ2NB1k4CYLzTdh+cB8LEayN?=
+ =?us-ascii?Q?KFObjb4PntX3woY8AwIM5WACZrFlImigSxkUQ1WnVDZ5kKKnGN3ukWMYN/eT?=
+ =?us-ascii?Q?YkL/6EPvsDhkPDGVXONDTRsC1eT6lZxXBPUY6mGN2aCeQQlRjSKsWbKhLwvP?=
+ =?us-ascii?Q?N9JnXsf0MantmE4/KzU/1b7R5PbQLGdPpc1Oiakhr0uMyjtDe0adu3RtY13H?=
+ =?us-ascii?Q?zsW5rh3HxusEqK4gG9TQvmH0aZulFfWsV792zmHc3yPDMXW0pI2PAsU4DEvD?=
+ =?us-ascii?Q?GA1Vj1EKJGI9bBp6QAASXajX2gfhLJ3w1bVGzP4NfLtp+5QxEMc7fLnMnMNk?=
+ =?us-ascii?Q?nvzBQ97+r55v0b8nWsrNH3+yR+HG4Nbvtj3bSNX1?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 02236635-40af-4b68-9261-08ddec4206a7
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OS8PR06MB7541.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9b83b17-b016-4d40-100b-08ddec40ddd5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Sep 2025 05:55:49.9705
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 06:04:08.6982
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: XQ3KC2hdVDfnBJsUR3pbLvKSk8A/VoLiGP+SL1JL0R/ZN6b+q8tifDj24WT0G0K8df+Yqa9XQXcBSYsaOCcQjTIOfqe/JOZgmmEgPtk3cpY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5507
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 63js237LDoGwh34F6IQszDSRKEs/OlFKgH2QerZoiteoeBldBWBA3FZZAiW+y2ohgIeNAYi6g2stYrBAXUx5qA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PR3PR04MB7292
 
-> Subject: Re: [PATCH v2 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SC=
-U
-> interrupt controllers
->=20
-> On Sun, Aug 31 2025 at 10:14, Ryan Chen wrote:
->=20
-> > The AST2700 continues the multi-instance SCU interrupt controller
-> > model introduced in the AST2600, with four independent interrupt
-> > domains
-> > (scu-ic0 to 3).
-> >
-> > Unlike earlier generations that combine interrupt enable and status
-> > bits into a single register, the AST2700 separates these into distinct
-> > IER and ISR registers. Support for this layout is implemented by using
-> > register offsets and separate chained IRQ handlers.
-> >
-> > The variant table is extended to cover AST2700 IC instances, enabling
-> > shared initialization logic while preserving support for previous SoCs.
-> >
-> > Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-> > ---
-> >  drivers/irqchip/irq-aspeed-scu-ic.c | 123
-> > +++++++++++++++++++++-------
-> >  1 file changed, 95 insertions(+), 28 deletions(-)
-> >
-> > diff --git a/drivers/irqchip/irq-aspeed-scu-ic.c
-> > b/drivers/irqchip/irq-aspeed-scu-ic.c
-> > index cbfc35919281..ffdd9b4e44c1 100644
-> > --- a/drivers/irqchip/irq-aspeed-scu-ic.c
-> > +++ b/drivers/irqchip/irq-aspeed-scu-ic.c
-> > @@ -17,12 +17,16 @@
-> >
-> >  #define ASPEED_SCU_IC_STATUS		GENMASK(28, 16)
-> >  #define ASPEED_SCU_IC_STATUS_SHIFT	16
-> > +#define AST2700_SCU_IC_STATUS		GENMASK(15, 0)
-> >
-> >  struct aspeed_scu_ic_variant {
-> >  	const char		*compatible;
-> >  	unsigned long	irq_enable;
-> >  	unsigned long	irq_shift;
-> >  	unsigned int	num_irqs;
-> > +	bool			split_ier_isr;
->=20
-> How does that end up aligned?
+Hi Chanwoo,
 
-Will update with Tab.
->=20
-> > +	unsigned long	ier;
-> > +	unsigned long	isr;
-> >  };
-> >
-> >  #define SCU_VARIANT(_compat, _shift, _enable, _num) { \ @@ -30,13
-> > +34,20 @@ struct aspeed_scu_ic_variant {
-> >  	.irq_shift		=3D	_shift,		\
-> >  	.irq_enable		=3D	_enable,	\
-> >  	.num_irqs		=3D	_num,		\
-> > +	.split_ier_isr	=3D	_split,		\
->=20
-> Ditto.
-Will update
->=20
-> > +	.ier			=3D	_ier,		\
-> > +	.isr			=3D	_isr,		\
->=20
-> But what's worse is that '_split, _ier and _isr' come out of thin air as
-> SCU_VARIANT does not have corresponding arguments. So how is that
-> supposed to work?
+Could you please pick up this patchset?
 
-Mistake, will update.
->=20
-> >  }
-> >
-> >  struct aspeed_scu_ic {
-> > @@ -45,9 +56,12 @@ struct aspeed_scu_ic {
-> >  	unsigned int		num_irqs;
-> >  	void __iomem		*base;
-> >  	struct irq_domain	*irq_domain;
-> > +	bool				split_ier_isr;
->=20
-> Sigh...
-Will update.
->=20
-> > +	unsigned long		ier;
-> > +	unsigned long		isr;
-> >  };
-> >
-> > -static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
-> > +static void aspeed_scu_ic_irq_handler_combined(struct irq_desc *desc)
-> >  {
-> >  	struct aspeed_scu_ic *scu_ic =3D irq_desc_get_handler_data(desc);
-> >  	struct irq_chip *chip =3D irq_desc_get_chip(desc); @@ -84,33 +98,69 @=
-@
-> > static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
-> >  	chained_irq_exit(chip, desc);
-> >  }
-> >
-> > +static void aspeed_scu_ic_irq_handler_split(struct irq_desc *desc) {
->=20
-> ...
->=20
-> >  static void aspeed_scu_ic_irq_mask(struct irq_data *data)  {
-> >  	struct aspeed_scu_ic *scu_ic =3D irq_data_get_irq_chip_data(data);
-> > -	unsigned int mask =3D BIT(data->hwirq + scu_ic->irq_shift) |
-> > -		(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-> >
-> > -	/*
-> > -	 * Status bits are cleared by writing 1. In order to prevent the mask
-> > -	 * operation from clearing the status bits, they should be under the
-> > -	 * mask and written with 0.
-> > -	 */
-> > -	writel(readl(scu_ic->base) & ~mask, scu_ic->base);
-> > +	if (scu_ic->split_ier_isr) {
-> > +		writel(readl(scu_ic->base) & ~BIT(data->hwirq + scu_ic->irq_shift),
-> > +		       scu_ic->base + scu_ic->ier);
-> > +	} else {
-> > +		unsigned int mask =3D BIT(data->hwirq + scu_ic->irq_shift) |
-> > +			(scu_ic->irq_enable << ASPEED_SCU_IC_STATUS_SHIFT);
-> > +
-> > +		/*
-> > +		 * Status bits are cleared by writing 1. In order to prevent the mas=
-k
-> > +		 * operation from clearing the status bits, they should be under the
-> > +		 * mask and written with 0.
-> > +		 */
-> > +		writel(readl(scu_ic->base) & ~mask, scu_ic->base);
-> > +	}
->=20
-> So you have two different handlers. Why can't you provide two different
-> mask/unmask/ functions along with a seperate irq chip instead of clutteri=
-ng
-> the code with conditionals. Thes two variants share no code at all.
+Thanks,
+Xu Yang
 
-I will add irq_chip in SCU_VARIANT, like following.
-
-struct aspeed_scu_ic_variant {
-..
-+	struct irq_chip	*irq_chip;=09
-};
-
-#define SCU_VARIANT(_compat, _shift, _enable, _num,  +_irq_chip, _split, _i=
-er, _isr) { \
-+	.irq_chip		=3D	_irq_chip,	\
-.....
-}
-
-static const struct aspeed_scu_ic_variant scu_ic_variants[]	__initconst =3D=
- {
-	SCU_VARIANT("aspeed,ast2400-scu-ic",	0, GENMASK(15, 0),	7, &aspeed_scu_ic_=
-chip_combined,	false,	0,	0),
-	SCU_VARIANT("aspeed,ast2500-scu-ic",	0, GENMASK(15, 0),	7, &aspeed_scu_ic_=
-chip_combined,	false,	0,	0),
-	SCU_VARIANT("aspeed,ast2600-scu-ic0",	0, GENMASK(5, 0),	6, &aspeed_scu_ic_=
-chip_combined,	false,	0,	0),
-	SCU_VARIANT("aspeed,ast2600-scu-ic1",	4, GENMASK(5, 4),	2, &aspeed_scu_ic_=
-chip_combined,	false,	0,	0),
-	SCU_VARIANT("aspeed,ast2700-scu-ic0",	0, GENMASK(3, 0),	4, &aspeed_scu_ic_=
-chip_split,	true,	0x00, 0x04),
-	SCU_VARIANT("aspeed,ast2700-scu-ic1",	0, GENMASK(3, 0),	4, &aspeed_scu_ic_=
-chip_split,	true,	0x00, 0x04),
-	SCU_VARIANT("aspeed,ast2700-scu-ic2",	0, GENMASK(3, 0),	4, &aspeed_scu_ic_=
-chip_split,	true,	0x04, 0x00),
-	SCU_VARIANT("aspeed,ast2700-scu-ic3",	0, GENMASK(1, 0),	2, &aspeed_scu_ic_=
-chip_split,	true,	0x04, 0x00),
-};
-
-Is this ok?
-
->=20
-> > -	irq_set_chained_handler_and_data(irq, aspeed_scu_ic_irq_handler,
-> > -					 scu_ic);
-> > +	if (scu_ic->split_ier_isr)
-> > +		irq_set_chained_handler_and_data(irq,
-> aspeed_scu_ic_irq_handler_split,
-> > +						 scu_ic);
-> > +	else
-> > +		irq_set_chained_handler_and_data(irq,
-> aspeed_scu_ic_irq_handler_combined,
-> > +						 scu_ic);
-> >
->=20
-> Please get rid of the line break. You have 100 characters....
-
-I will update by following. Is it ok?
-       irq_set_chained_handler_and_data(irq, scu_ic->split_ier_isr ?
-                                         aspeed_scu_ic_irq_handler_split :
-                                         aspeed_scu_ic_irq_handler_combined=
-,
-                                         scu_ic);
-
-
->=20
-> Thanks,
->=20
->         tglx
-
+On Fri, Aug 15, 2025 at 05:47:32PM +0800, Xu Yang wrote:
+> PTN5150 is able to detect CC polarity. The field[1:0] of CC status
+> register (04H) will keep the result.
+> 
+>   00: Cable Not Attached
+>   01: CC1 is connected (normal orientation)
+>   10: CC2 is connected (reversed orientation)
+>   11: Reserved
+> 
+> Add orientation switch support to correctly set orientation of
+> multiplexer according to CC status.
+> 
+> Reviewed-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> Changes in v4:
+>  - add Rb tag
+> Changes in v3:
+>  - no changes
+> Changes in v2:
+>  - move "enum typec_orientation orient" ahead
+>  - improve commit message
+> ---
+>  drivers/extcon/Kconfig          |  1 +
+>  drivers/extcon/extcon-ptn5150.c | 40 +++++++++++++++++++++++++++++++++
+>  2 files changed, 41 insertions(+)
+> 
+> diff --git a/drivers/extcon/Kconfig b/drivers/extcon/Kconfig
+> index a6f6d467aacf..fd4ec5dda0b7 100644
+> --- a/drivers/extcon/Kconfig
+> +++ b/drivers/extcon/Kconfig
+> @@ -145,6 +145,7 @@ config EXTCON_PTN5150
+>  	tristate "NXP PTN5150 CC LOGIC USB EXTCON support"
+>  	depends on I2C && (GPIOLIB || COMPILE_TEST)
+>  	depends on USB_ROLE_SWITCH || !USB_ROLE_SWITCH
+> +	depends on TYPEC || !TYPEC
+>  	select REGMAP_I2C
+>  	help
+>  	  Say Y here to enable support for USB peripheral and USB host
+> diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5150.c
+> index 78ad86c4a3be..768428d306ce 100644
+> --- a/drivers/extcon/extcon-ptn5150.c
+> +++ b/drivers/extcon/extcon-ptn5150.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/extcon-provider.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/usb/role.h>
+> +#include <linux/usb/typec_mux.h>
+>  
+>  /* PTN5150 registers */
+>  #define PTN5150_REG_DEVICE_ID			0x01
+> @@ -38,7 +39,11 @@
+>  #define PTN5150_REG_DEVICE_ID_VERSION		GENMASK(7, 3)
+>  #define PTN5150_REG_DEVICE_ID_VENDOR		GENMASK(2, 0)
+>  
+> +#define PTN5150_POLARITY_CC1			0x1
+> +#define PTN5150_POLARITY_CC2			0x2
+> +
+>  #define PTN5150_REG_CC_PORT_ATTACHMENT		GENMASK(4, 2)
+> +#define PTN5150_REG_CC_POLARITY			GENMASK(1, 0)
+>  #define PTN5150_REG_CC_VBUS_DETECTION		BIT(7)
+>  #define PTN5150_REG_INT_CABLE_ATTACH_MASK	BIT(0)
+>  #define PTN5150_REG_INT_CABLE_DETACH_MASK	BIT(1)
+> @@ -53,6 +58,7 @@ struct ptn5150_info {
+>  	int irq;
+>  	struct work_struct irq_work;
+>  	struct mutex mutex;
+> +	struct typec_switch *orient_sw;
+>  	struct usb_role_switch *role_sw;
+>  };
+>  
+> @@ -71,6 +77,7 @@ static const struct regmap_config ptn5150_regmap_config = {
+>  
+>  static void ptn5150_check_state(struct ptn5150_info *info)
+>  {
+> +	enum typec_orientation orient = TYPEC_ORIENTATION_NONE;
+>  	unsigned int port_status, reg_data, vbus;
+>  	enum usb_role usb_role = USB_ROLE_NONE;
+>  	int ret;
+> @@ -81,6 +88,23 @@ static void ptn5150_check_state(struct ptn5150_info *info)
+>  		return;
+>  	}
+>  
+> +	orient = FIELD_GET(PTN5150_REG_CC_POLARITY, reg_data);
+> +	switch (orient) {
+> +	case PTN5150_POLARITY_CC1:
+> +		orient = TYPEC_ORIENTATION_NORMAL;
+> +		break;
+> +	case PTN5150_POLARITY_CC2:
+> +		orient = TYPEC_ORIENTATION_REVERSE;
+> +		break;
+> +	default:
+> +		orient = TYPEC_ORIENTATION_NONE;
+> +		break;
+> +	}
+> +
+> +	ret = typec_switch_set(info->orient_sw, orient);
+> +	if (ret)
+> +		dev_err(info->dev, "failed to set orientation: %d\n", ret);
+> +
+>  	port_status = FIELD_GET(PTN5150_REG_CC_PORT_ATTACHMENT, reg_data);
+>  
+>  	switch (port_status) {
+> @@ -152,6 +176,12 @@ static void ptn5150_irq_work(struct work_struct *work)
+>  				dev_err(info->dev,
+>  					"failed to set none role: %d\n",
+>  					ret);
+> +
+> +			ret = typec_switch_set(info->orient_sw,
+> +					       TYPEC_ORIENTATION_NONE);
+> +			if (ret)
+> +				dev_err(info->dev,
+> +					"failed to set orientation: %d\n", ret);
+>  		}
+>  	}
+>  
+> @@ -219,12 +249,14 @@ static void ptn5150_work_sync_and_put(void *data)
+>  
+>  	cancel_work_sync(&info->irq_work);
+>  	usb_role_switch_put(info->role_sw);
+> +	typec_switch_put(info->orient_sw);
+>  }
+>  
+>  static int ptn5150_i2c_probe(struct i2c_client *i2c)
+>  {
+>  	struct device *dev = &i2c->dev;
+>  	struct device_node *np = i2c->dev.of_node;
+> +	struct fwnode_handle *connector;
+>  	struct ptn5150_info *info;
+>  	int ret;
+>  
+> @@ -311,6 +343,14 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
+>  	if (ret)
+>  		return -EINVAL;
+>  
+> +	connector = device_get_named_child_node(dev, "connector");
+> +	if (connector) {
+> +		info->orient_sw = fwnode_typec_switch_get(connector);
+> +		if (IS_ERR(info->orient_sw))
+> +			return dev_err_probe(info->dev, PTR_ERR(info->orient_sw),
+> +					"failed to get orientation switch\n");
+> +	}
+> +
+>  	info->role_sw = usb_role_switch_get(info->dev);
+>  	if (IS_ERR(info->role_sw))
+>  		return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
+> -- 
+> 2.34.1
+> 
 
