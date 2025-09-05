@@ -1,244 +1,122 @@
-Return-Path: <devicetree+bounces-213694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8BEC5B464D5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:43:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 472DAB464B1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:41:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CA167B473A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:40:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 465FA7B44DD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:40:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5A7E2D837E;
-	Fri,  5 Sep 2025 20:42:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74D7E2C21CC;
+	Fri,  5 Sep 2025 20:41:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TnUqgvkR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6ZVxRSz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 339C52C21CB;
-	Fri,  5 Sep 2025 20:42:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4635929BD9C;
+	Fri,  5 Sep 2025 20:41:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757104932; cv=none; b=S5IWEEyUs2uoMdgGHmAH89pAIyj75EmzGIRQqyiGIgCZEyxmEuxXb6aJeK7IGTP4jdab3YrCNXhf51+3kjzErwRm2/kCZQKSQai82cZdPBuV5PaQQUwkok7TMm9FWe+Ne+AvxCNBYWfS79tlvMvggJ3XHxuSKQ7Oz3UyCMNR2V0=
+	t=1757104909; cv=none; b=f4+pH/fVR0fZd4q+bYqtshg5DC25Is4S83AGtFT+VQm5jyKfQjCBZm8Y4qt3Po4L+THk83sagoW9r4HgkU+531KcwSNiD+a6APyOSXva1yCMuHpUHobfUpn6YBiki18q2uiCCq/g40oXo+lO6eOjShqRvjgNwRNX0MbK3+dTh0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757104932; c=relaxed/simple;
-	bh=vNMAVBcOQEkLY7FHQtBaOO45nrS0Dp9HdXdB4gRw/Ec=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uji7cpKpzlqhuDKTrdxJiBbgBcOgasiCiHtvI44HfFl5ropZYn2TyMSjHxhM2pnhvIEOAdntoOnDLa/UV3zJZk25mGGO0LlyRT4ZeDlv5CGHbZ+OoSAOm4Ly7l/G5ig5KrHjuL+rnhX3tgz4Wu6W+wLgooSwI1OU1Wk+6lOrv5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TnUqgvkR; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-24cdd95c422so12797625ad.0;
-        Fri, 05 Sep 2025 13:42:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757104930; x=1757709730; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FUVx3Z9Dat9ipVoA2NYXPpF/py7T4wRVdUeiFbHJ+Xw=;
-        b=TnUqgvkRDVRk3pSCpRGuYUiRar9BWXGoCQTTQpjzZTIZATMAmXepObn4e7yRi+j+yw
-         65kWW+WhfRWor7XbMY5O767p/mLxYHfzw3f96NYzW5c/CoqiI439cDKhOdrqE1ZwjUsi
-         bOazxnM4NV8OrgzyuOGjCv4qSpw9Yb1PgpTvIuOya5RyAAvRJVkNwZT92abC7J++lzkX
-         p8PmjxkW7WL2SOnEPfK8ZLChL4Px42yUiPoRKx5h9njWwhYqvB4pJTCM9Zi0KMCbbS6o
-         btogaTNSLF72Q8H0M56e3rD9eUTG1msvsgKWS+mq2xdG4qjuOsGMTrIwn9/R9S7IWQzN
-         Z9/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757104930; x=1757709730;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:sender:x-gm-message-state:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=FUVx3Z9Dat9ipVoA2NYXPpF/py7T4wRVdUeiFbHJ+Xw=;
-        b=JNAl2S//9/4fyNVwIoak3YQLfOvMnIn4MyHVUD9TXvRyW72FBTqkeXEZNh7sVbgZ+3
-         JXu+HzUzAHDOVEJagohNH8Xi7zPtOc2YTpOXh8GIoS3gkzcE6gSY8CKPRR+lXu7BveBT
-         25NQfn1E7+A1YoyJmKgVF7XH+owZjWJtBQCRQpicIqlSr1m3vCXTHz9YtQNtJkPzIJNe
-         6tzgk9rwieNcmg3Hfi0JAAp1Ye6qRorI9Rr100rLiQ70vgpmWm/buwQo1AA1np51bGRO
-         RJNXQ/6ia50rtXJlMQPOVqcgNQ/tb57blmOq1H73XcWoGQWlH9+POJi59PGR2OM7cu7h
-         U89A==
-X-Forwarded-Encrypted: i=1; AJvYcCUoGdDWThRgPV+pqcdwK44SFNktzWQsClJDHmz8jt4isd/Y4xOTQOVFVEECi3xBAM5w3qk6PWJ+uRLi@vger.kernel.org
-X-Gm-Message-State: AOJu0YxC8rO9CUWXSTGmIH0xijQfr4fazXXK/MjUZaWSPAwzRLKLYdjX
-	0Op+xPzsi2PZvOh2NtmEtXz3tCqzJcbnX0q1PaVKi6rep2iireOlFl0pTDEq20dK
-X-Gm-Gg: ASbGncvl067+BEo+Pg1jyCOlO9wREOnMEuXml+dCkw3S2tujB75OSeBuTy7z6TjgAI+
-	f+zIVz+SaHPQZd77Wc2nMcpwZXnFOD+MmF1hjbJfuVQTBqKlsM0iT8ZtCWAT2SWi/pPzX3prE6Z
-	gBB+OnfWjJovrRSsK1JlNrsrAq1taHbRqzQZWnLLdNTdx/LhwUYWHVx+pDTbIC/4YFgrflgozVG
-	L9Q8ogahA+mT56CkEglckHNcx5DhqGgEqWW7Ojs9upjj3iCSUIkPCEnbXY1gyuf0kfrvazoWHq4
-	IvOvkDDdxe62EUJ3KNPgmpqrs3yQp4TfISd52XHueviUKK/a5OqbEUxvAvSNe+1bzHT6G0eLFkh
-	xBhIRmGwu6Hq2EOGuU+dB5H2QcYuovntQy6A=
-X-Google-Smtp-Source: AGHT+IHVVkDRfoYr8oPZ0TSeWO875eWQSnKA9pF4riEPL76mbImrouJQjuNhLEaiIZAfh4IsdN9exA==
-X-Received: by 2002:a17:902:d4cc:b0:24e:af92:70c2 with SMTP id d9443c01a7336-2516f240f23mr433875ad.24.1757104930169;
-        Fri, 05 Sep 2025 13:42:10 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-327da8e5ad5sm23934551a91.18.2025.09.05.13.42.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 13:42:09 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-From: Guenter Roeck <linux@roeck-us.net>
-To: linux-hwmon@vger.kernel.org
-Cc: Christian Kahr <christian.kahr@sie.at>,
-	devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Guenter Roeck <linux@roeck-us.net>
-Subject: [PATCH 05/17] hwmon: (ina238) Pre-calculate current, power, and energy LSB
-Date: Fri,  5 Sep 2025 13:41:47 -0700
-Message-ID: <20250905204159.2618403-6-linux@roeck-us.net>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20250905204159.2618403-1-linux@roeck-us.net>
-References: <20250905204159.2618403-1-linux@roeck-us.net>
+	s=arc-20240116; t=1757104909; c=relaxed/simple;
+	bh=VLzkKyFM7Xt7UD4CnLks47F9lLUSZ4SWSWQbrv3i+6M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=YxpTLiIRSDNuBQ1kxjWJKNhR/oMmOe5ala9z7n4ODtQrJ1WoaXo6Cu9gU7em9L0gTSjXYS/ltdZKAMyyXBk9A5cxH6XbLGbNI4/EA0kRI2fTA8anHvhPizAOitfS5i7feoZ8BtMkNLmOjJxwz62CpVualjqQfcu3WxTIlwagv5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6ZVxRSz; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3067C4CEF1;
+	Fri,  5 Sep 2025 20:41:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757104909;
+	bh=VLzkKyFM7Xt7UD4CnLks47F9lLUSZ4SWSWQbrv3i+6M=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W6ZVxRSzx/QOq57TzwXJ6Y8nr3DB+5DtiePP/+bliTZlFoFSI9KdPnK5KLnfelTm3
+	 VstRYxzCeY4P5ktAD6dPqqq5taKgq6yQaQNNzKVTSqIcy3fsTxjnaCKHBJgKwy3kG7
+	 XO6Mt0iBKTo4pjG4Wg9/bKcMkhlCU1YuoME/WDiUIUUX9jXVyFxZhUCkDN8G1XjtSg
+	 NBnWpusaWvNfZiqb/NtfPlZXAMBXSlttun0RDV4SfSHJUIow+okrtEfxxy1CCYnp5J
+	 CEhXYM4NG7/DFzX8C9ISTfB2ukRMRXPSwjmTk/rANGcsW+YJugH+p5AKfT+53M6D3h
+	 6hG1qMaXCsJpQ==
+Date: Fri, 5 Sep 2025 15:41:48 -0500
+From: Rob Herring <robh@kernel.org>
+To: Kendall Willis <k-willis@ti.com>
+Cc: gregkh@linuxfoundation.org, jirislaby@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, vigneshr@ti.com, linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+	d-gole@ti.com, vishalm@ti.com, sebin.francis@ti.com,
+	msp@baylibre.com, khilman@baylibre.com, a-kaur@ti.com,
+	john.ogness@linutronix.de, andriy.shevchenko@linux.intel.com,
+	yujiaoliang@vivo.com, b-liu@ti.com, u.kleine-koenig@baylibre.com
+Subject: Re: [PATCH 2/3] dt-bindings: serial: 8250_omap: Add wakeup pinctrl
+ state
+Message-ID: <20250905204148.GA1313142-robh@kernel.org>
+References: <20250904212455.3729029-1-k-willis@ti.com>
+ <20250904212455.3729029-3-k-willis@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904212455.3729029-3-k-willis@ti.com>
 
-Current, power, and energy LSB do not change during runtime, so we can
-pre-calculate the respective values. The power LSB can be derived from
-the current LSB using the equation in the datasheets. Similar, the
-energy LSB can be derived from the power LSB.
+On Thu, Sep 04, 2025 at 04:24:54PM -0500, Kendall Willis wrote:
+> From: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> Pins associated with the 8250 omap unit can be the source of a wakeup in
+> deep sleep states. To be able to wakeup, these pins have to be
+> configured in a special way. To support this configuration add the
+> default and wakeup pinctrl states. Add support for the sleep state as
+> well which is in use by some devicetrees.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Signed-off-by: Kendall Willis <k-willis@ti.com>
+> ---
+>  .../devicetree/bindings/serial/8250_omap.yaml   | 17 +++++++++++++++++
+>  1 file changed, 17 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> index 851a5291b4be4..1c4040a9f9d0b 100644
+> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> @@ -77,6 +77,23 @@ properties:
+>          description:
+>            List of phandles to system idle states in which UARTs can wakeup the system.
+>  
+> +  pinctrl-0:
+> +    description: Default pinctrl state
+> +
+> +  pinctrl-1:
+> +    description: Can be "sleep" or "wakeup" pinctrl state
+> +
+> +  pinctrl-names:
+> +    description:
+> +      When present should contain at least "default" describing the default pin
+> +      states. Other states are "sleep" which describes the pinstate when
+> +      sleeping and "wakeup" describing the pins if wakeup is enabled.
+> +    minItems: 1
+> +    items:
+> +      - const: default
+> +      - const: sleep
+> +      - const: wakeup
 
-Also add support for chips with built-in shunt resistor by providing
-a chip specific configuration parameter for the current LSB. The
-relationship of current -> power -> energy LSB values in those chips
-is the same as in chips with external shunt resistor, so configuration
-parameters for power and energy LSB are not needed.
+This doesn't match what 'pinctrl-1' says. Perhaps you want?:
 
-Use ROUND_CLOSEST functions instead of divide operations to reduce
-rounding errors.
+items:
+  - const: default
+  - enum: [ sleep, wakeup ]
 
-Signed-off-by: Guenter Roeck <linux@roeck-us.net>
----
- drivers/hwmon/ina238.c | 47 ++++++++++++++++++++++++------------------
- 1 file changed, 27 insertions(+), 20 deletions(-)
-
-diff --git a/drivers/hwmon/ina238.c b/drivers/hwmon/ina238.c
-index e386a0f83fbb..316a7dc720f5 100644
---- a/drivers/hwmon/ina238.c
-+++ b/drivers/hwmon/ina238.c
-@@ -118,9 +118,10 @@ struct ina238_config {
- 	bool has_power_highest;		/* chip detection power peak */
- 	bool has_energy;		/* chip detection energy */
- 	u8 temp_resolution;		/* temperature register resolution in bit */
--	u32 power_calculate_factor;	/* fixed parameters for power calculate */
-+	u32 power_calculate_factor;	/* fixed parameter for power calculation, from datasheet */
- 	u16 config_default;		/* Power-on default state */
- 	int bus_voltage_lsb;		/* use for temperature calculate, uV/lsb */
-+	int current_lsb;		/* current LSB, in uA */
- };
- 
- struct ina238_data {
-@@ -130,6 +131,9 @@ struct ina238_data {
- 	struct regmap *regmap;
- 	u32 rshunt;
- 	int gain;
-+	int current_lsb;		/* current LSB, in uA */
-+	int power_lsb;			/* power LSB, in uW */
-+	int energy_lsb;			/* energy LSB, in uJ */
- };
- 
- static const struct ina238_config ina238_config[] = {
-@@ -422,9 +426,8 @@ static int ina238_read_current(struct device *dev, u32 attr, long *val)
- 			regval = (s16)regval;
- 		}
- 
--		/* Signed register, fixed 1mA current lsb. result in mA */
--		*val = div_s64((s64)regval * INA238_FIXED_SHUNT * data->gain,
--			       data->rshunt * 4);
-+		/* Signed register. Result in mA */
-+		*val = DIV_S64_ROUND_CLOSEST((s64)regval * data->current_lsb, 1000);
- 
- 		/* Account for 4 bit offset */
- 		if (data->config->has_20bit_voltage_current)
-@@ -450,9 +453,7 @@ static int ina238_read_power(struct device *dev, u32 attr, long *val)
- 		if (err)
- 			return err;
- 
--		/* Fixed 1mA lsb, scaled by 1000000 to have result in uW */
--		power = div_u64(regval * 1000ULL * INA238_FIXED_SHUNT * data->gain *
--				data->config->power_calculate_factor, 4 * 100 * data->rshunt);
-+		power = (long long)regval * data->power_lsb;
- 		/* Clamp value to maximum value of long */
- 		*val = clamp_val(power, 0, LONG_MAX);
- 		break;
-@@ -461,9 +462,7 @@ static int ina238_read_power(struct device *dev, u32 attr, long *val)
- 		if (err)
- 			return err;
- 
--		/* Fixed 1mA lsb, scaled by 1000000 to have result in uW */
--		power = div_u64(regval * 1000ULL * INA238_FIXED_SHUNT * data->gain *
--				data->config->power_calculate_factor, 4 * 100 * data->rshunt);
-+		power = (long long)regval * data->power_lsb;
- 		/* Clamp value to maximum value of long */
- 		*val = clamp_val(power, 0, LONG_MAX);
- 		break;
-@@ -476,8 +475,7 @@ static int ina238_read_power(struct device *dev, u32 attr, long *val)
- 		 * Truncated 24-bit compare register, lower 8-bits are
- 		 * truncated. Same conversion to/from uW as POWER register.
- 		 */
--		power = div_u64((regval << 8) * 1000ULL * INA238_FIXED_SHUNT * data->gain *
--				data->config->power_calculate_factor, 4 * 100 * data->rshunt);
-+		power = ((long long)regval << 8) * data->power_lsb;
- 		/* Clamp value to maximum value of long */
- 		*val = clamp_val(power, 0, LONG_MAX);
- 		break;
-@@ -498,7 +496,6 @@ static int ina238_read_power(struct device *dev, u32 attr, long *val)
- static int ina238_write_power_max(struct device *dev, long val)
- {
- 	struct ina238_data *data = dev_get_drvdata(dev);
--	long regval;
- 
- 	/*
- 	 * Unsigned postive values. Compared against the 24-bit power register,
-@@ -506,12 +503,11 @@ static int ina238_write_power_max(struct device *dev, long val)
- 	 * register.
- 	 * The first clamp_val() is to establish a baseline to avoid overflows.
- 	 */
--	regval = clamp_val(val, 0, LONG_MAX / 2);
--	regval = div_u64(regval * 4 * 100 * data->rshunt, data->config->power_calculate_factor *
--			1000ULL * INA238_FIXED_SHUNT * data->gain);
--	regval = clamp_val(regval >> 8, 0, U16_MAX);
-+	val = clamp_val(val, 0, LONG_MAX / 2);
-+	val = DIV_ROUND_CLOSEST(val, data->power_lsb);
-+	val = clamp_val(val >> 8, 0, U16_MAX);
- 
--	return regmap_write(data->regmap, INA238_POWER_LIMIT, regval);
-+	return regmap_write(data->regmap, INA238_POWER_LIMIT, val);
- }
- 
- static int ina238_temp_from_reg(s16 regval, u8 resolution)
-@@ -584,8 +580,7 @@ static ssize_t energy1_input_show(struct device *dev,
- 		return ret;
- 
- 	/* result in uJ */
--	energy = div_u64(regval * INA238_FIXED_SHUNT * data->gain * 16 * 10 *
--			 data->config->power_calculate_factor, 4 * data->rshunt);
-+	energy = regval * data->energy_lsb;
- 
- 	return sysfs_emit(buf, "%llu\n", energy);
- }
-@@ -817,6 +812,18 @@ static int ina238_probe(struct i2c_client *client)
- 		return -ENODEV;
- 	}
- 
-+	if (data->config->current_lsb)
-+		data->current_lsb = data->config->current_lsb;
-+	else
-+		data->current_lsb = DIV_U64_ROUND_CLOSEST(250ULL * INA238_FIXED_SHUNT * data->gain,
-+							  data->rshunt);
-+
-+	data->power_lsb = DIV_ROUND_CLOSEST(data->current_lsb *
-+					    data->config->power_calculate_factor,
-+					    100);
-+
-+	data->energy_lsb = data->power_lsb * 16;
-+
- 	hwmon_dev = devm_hwmon_device_register_with_info(dev, client->name, data,
- 							 &ina238_chip_info,
- 							 data->config->has_energy ?
--- 
-2.45.2
-
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.34.1
+> 
 
