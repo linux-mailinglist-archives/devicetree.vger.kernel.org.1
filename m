@@ -1,61 +1,61 @@
-Return-Path: <devicetree+bounces-213326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE28B451CF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:42:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2A2EB451DE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:43:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 033B816A3D9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:42:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9AA4DB60262
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:41:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D93527D781;
-	Fri,  5 Sep 2025 08:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2928B27F727;
+	Fri,  5 Sep 2025 08:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="n8/Z0uFe"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Qj9HpBv3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2045.outbound.protection.outlook.com [40.107.92.45])
+Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2069.outbound.protection.outlook.com [40.107.237.69])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8848242D94;
-	Fri,  5 Sep 2025 08:42:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88D691A9FB3;
+	Fri,  5 Sep 2025 08:42:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.69
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757061746; cv=fail; b=ZKuSKXFltSaoUZ7B7vpapJqcFewDALs/BFSz486M5VtKekznByX1tAfCA3ZGsTiKhqY0Yr90rIe12Oz7f69Z7U5k05IB5jdDZgvW2bubKLv6fEnPM9+AXjkSJ3W4/1AQRnAY+5orsl71a6h8je8fp7AbM31m9m1uAC0xYiNWDgk=
+	t=1757061748; cv=fail; b=EsZklq/SrIhnbPA/0uqUqmKcUKNcFjY++IYyu6sj1XZ16YKx+JrgAnBslv9H084k7FLrIW3oNFr2GHkcrWYQtTUrsfW56EQz4ZSzHRoPXivKXrfTc+otGxNjBkyC8ciNEplD4wbGdJ4irbxTX5wGdBE6a1BEqPJtVUt89TVm9+0=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757061746; c=relaxed/simple;
-	bh=jYly6ZleG/OcBcmWMeY+/uWfdasUegqOOn7RTcs/Ftg=;
+	s=arc-20240116; t=1757061748; c=relaxed/simple;
+	bh=+2u6B+o2HjfZcf2ObJXQcFL6uumPIahdfbJ4ULfh1bo=;
 	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=pw48S+INPqkBxH9+YG4UK74G8KSh4CUV0J+tE8dpNgYyKGcKMjPAnenh78f3O8mEsOvqyUwXLmooC1o1SWmSE9R3T3lR62DUipwUFtbwiMmHDmCb/RtJP0VOZj0GJk8qPQo7fmIzWAQle7Jzl44hgRkMcPWfW8eIPMxy0UmdCj4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=n8/Z0uFe; arc=fail smtp.client-ip=40.107.92.45
+	 MIME-Version:Content-Type; b=amRF4u1GvLlEpFzXtngLaICvC0NsUOAT//IYRbJvQyQceaYutEHwTob8XqSzFRw+l1dG1bFWjruPkEyqJgZW1cyxHr0nyXhlUGP1WJEVsHaRKMTukgK1jEXjZR29qLL7y61z/4E76nPp/r3MPGyNQqFWKkLnA27oTjzacToMUoU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Qj9HpBv3; arc=fail smtp.client-ip=40.107.237.69
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LO4/edQqSD2Mgyqdl+L70sel2jFWMbpqUjhiWauc498O/VcTk6AB6dnu8YSHSZ+6W2lNO7Cr7zThgTkEW904qWuzzETbKASOVKUd2JNBCOlQUucvbkgi0RYG+eNWipQyyp7YXZ/x/6R415qm2t17OwAqgVdWYxSb70Kjb766ymxg7qosAYEejXdjTeXnWQJDbu9eyKbzdqpOnJY/SyvKl85e53pyvaWbe6mRKIXKTXzWHw8n19FNpoaxZZx22fjYNypcK/O4WPSVekm6jbwW1vwKQ5yNTuBryVAT/ABaYH+QJVkro3nqNJYShQ75RQlksDBM1QYonNu2KpAlgNkL8w==
+ b=nedcp1XL3hlFD9aa1KwYfVW/e4ome4MD9nA0TiCxc92hB/tdYe/kHujDk1xxTizV/WVxsHXOqfX7bxBtkYdYsFtJ1Wc5TiawW3ToBCT412ppX1IyIdBSteoXbNhwrhVTVesBZwKA1zD0TMyyBt7janMVveo13sycBcC6JCUaEVkePDtcGVPbs+PYSeYSHSbfKeE2pPodx3QXKZ0su+DBLzf7Mur/Udkgs8yDBoIfYCSaDZwmVuef39x0RzjRhmV8KNL1I6/IgejbyYPSvRSd3zU+GyuL+URcUpTPJrotOj1W1GPVs2Kl0JmjWPUmQqdV3rqInQCmUCmXY4bB4beuEQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=vddh5gddId5gR3KRmIpxOiG/9jAlua4VlomritJy708=;
- b=LhSlXne033FntnDcBRHwJYnCqMmRiLyV8Ye8QQpDtSqxl3vpSmfibOM6vjk+WYJIfpfrbfVXD1hBmwx/uOccyzz/zw2uLkVf+qOujlEvfVPk8aeAhFow1Zs/n0dEvmQON4dckTH8bUB/MMLgNcT5WN4KO9sYwr6kBzuYyLrymYidWYeVCr5Xn1yaHarJIY10emOmM9NAZqDDkpIeNWsj2ahHpYWfHCK/RjrWSFxdstPxVYa26iPQTouAOQMaERFY5+ybAWrufWtbi9feahKBfYr3vYMkZL+sVxSuspR1tJu3yGama4EGGOrKKNQwJsr/L0Bkso9vvD/tnPbk2pvvcA==
+ bh=vD7c7XGJ6/A752uiPnxtiGTYcKPl6rIY+JujYapuL/s=;
+ b=zDaEy89qzPz+JN6pz4FNw08fpD6h0Dy/jZA+q738LsMkFANt7fFDCqAlqrWpeIlaSewPNY2JaNdrtfYcZnep+tK6ue5Cj3YAThb9pm6RQ3yDNlAcQUYBEQx7sxqwdYkLkWa8pWlb67wGzAsEP1+KXsWfXxxdg49CTqFDi+ucS0SHZR3CfTe6m3v0xYBSeu7PlnWMAjZIByRAN67LfNoOrjjGVYO57FomhRgKBPzEE0k21C33l2xi7WeSi20GmG4PNDK0iTO6n1WcUIUYlVInlNUtjnRY2jySxg5E7jzwccXNFdzXrOnDVyKgu3SAWWLwPR/+tdup29o+1Byk2fvpCQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
  165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
  dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
  header.from=amd.com; dkim=none (message not signed); arc=none (0)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=vddh5gddId5gR3KRmIpxOiG/9jAlua4VlomritJy708=;
- b=n8/Z0uFe8sbuMcg/KeDsT7CfoLo4iMjaDVEO7i/PKqQQQHICwns6XZyj0okdj6AUt56uRDrj5IWYsbvoXgBJKxB42nx9NiadiNieKpkui61Qi9BLs7Z5HlsCtMKxK6m4KWwKjWBU6oTK00IEXRH0LcReymFliIkDjyHShS9QEJQ=
-Received: from SJ0PR05CA0052.namprd05.prod.outlook.com (2603:10b6:a03:33f::27)
- by SJ1PR12MB6123.namprd12.prod.outlook.com (2603:10b6:a03:45a::5) with
+ bh=vD7c7XGJ6/A752uiPnxtiGTYcKPl6rIY+JujYapuL/s=;
+ b=Qj9HpBv3zey7Mf523nMt1gEUB4CH5wI9E1iNVrSItbv5TgZAOMgdXIQgiENvlOlEO36Osnbs0oXVLcHg2APwCSudAYZcuVh9RrbEUCadE7mPoiQHs8YgmBgFA5B+l1XsRhEL1d0cZaXZ3ZhVt31JuYrLIaJsoJTINzU25MTmmlE=
+Received: from SJ0PR13CA0028.namprd13.prod.outlook.com (2603:10b6:a03:2c0::33)
+ by IA1PR12MB7613.namprd12.prod.outlook.com (2603:10b6:208:42a::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Fri, 5 Sep
- 2025 08:42:20 +0000
-Received: from CO1PEPF000075EE.namprd03.prod.outlook.com
- (2603:10b6:a03:33f:cafe::60) by SJ0PR05CA0052.outlook.office365.com
- (2603:10b6:a03:33f::27) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9094.16 via Frontend Transport; Fri,
- 5 Sep 2025 08:42:20 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.18; Fri, 5 Sep
+ 2025 08:42:21 +0000
+Received: from CO1PEPF000075EF.namprd03.prod.outlook.com
+ (2603:10b6:a03:2c0:cafe::77) by SJ0PR13CA0028.outlook.office365.com
+ (2603:10b6:a03:2c0::33) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.7 via Frontend Transport; Fri, 5
+ Sep 2025 08:42:20 +0000
 X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
  smtp.mailfrom=amd.com; dkim=none (message not signed)
  header.d=none;dmarc=pass action=none header.from=amd.com;
@@ -63,36 +63,35 @@ Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
  165.204.84.17 as permitted sender) receiver=protection.outlook.com;
  client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
 Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1PEPF000075EE.mail.protection.outlook.com (10.167.249.37) with Microsoft
+ CO1PEPF000075EF.mail.protection.outlook.com (10.167.249.38) with Microsoft
  SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
  15.20.9094.14 via Frontend Transport; Fri, 5 Sep 2025 08:42:20 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB03.amd.com
+Received: from satlexmb10.amd.com (10.181.42.219) by SATLEXMB03.amd.com
  (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 5 Sep
- 2025 03:42:05 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39; Fri, 5 Sep
- 2025 03:42:02 -0500
+ 2025 03:42:12 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by satlexmb10.amd.com
+ (10.181.42.219) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.2.1748.10; Fri, 5 Sep
+ 2025 01:42:11 -0700
 Received: from localhost (10.180.168.240) by SATLEXMB04.amd.com
  (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.39 via Frontend
- Transport; Fri, 5 Sep 2025 03:42:01 -0500
+ Transport; Fri, 5 Sep 2025 03:42:11 -0500
 From: Michal Simek <michal.simek@amd.com>
 To: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
 	<michal.simek@xilinx.com>, <git@xilinx.com>
-CC: Salih Erim <salih.erim@amd.com>, Anand Ashok Dumbre
-	<anand.ashok.dumbre@xilinx.com>, Anish Kadamathikuttiyil Karthikeyan Pillai
-	<anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>, Andy Shevchenko
-	<andy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, David Lechner
-	<dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, =?UTF-8?q?Nuno=20S=C3=A1?=
-	<nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
- AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open
- list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>
-Subject: [PATCH 1/6] dt-bindings: iio: xilinx: Add Documentation for Sysmon
-Date: Fri, 5 Sep 2025 10:41:44 +0200
-Message-ID: <610690b9cc4ab3854b56df550b688b4cc72a5653.1757061697.git.michal.simek@amd.com>
+CC: Salih Erim <salih.erim@amd.com>, "Anish Kadamathikuttiyil Karthikeyan
+ Pillai" <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>, Conor Dooley
+	<conor+dt@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Lukasz Luba <lukasz.luba@arm.com>, "Rafael
+ J. Wysocki" <rafael@kernel.org>, Rob Herring <robh@kernel.org>, Zhang Rui
+	<rui.zhang@intel.com>, "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE
+ BINDINGS" <devicetree@vger.kernel.org>, "open list:THERMAL"
+	<linux-pm@vger.kernel.org>
+Subject: [PATCH 4/6] dt-bindings: thermal: versal: Add description for Versal Thermal
+Date: Fri, 5 Sep 2025 10:41:47 +0200
+Message-ID: <c46889536b2555c25aa6f17facdf085956b648a4.1757061697.git.michal.simek@amd.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <cover.1757061697.git.michal.simek@amd.com>
 References: <cover.1757061697.git.michal.simek@amd.com>
@@ -102,316 +101,127 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7036; i=michal.simek@amd.com; h=from:subject:message-id; bh=oAK+tV50H6FxUNTxxyMRovdkHdQp5LFNhGxk7RtAZNM=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWTsWuRjInqBVWH9SluB/bGxs9mD393csonLwPpHrYNbh pNOZdipjlIWBjEOBlkxRZbpTDoOa75dWyq2PDIfZg4rE8gQBi5OAZiIxT2Gv1Lv0hJeHl/GfaPz 1d/tD3WyBFN/KexdcHOezN+JmxweK1cz/OFu3pxjendt2dI0pjV7K34dChTTnuecP3PTKiFzhlU 8k1kB
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2130; i=michal.simek@amd.com; h=from:subject:message-id; bh=kzf3zxCVMwBg6GlVmTOTrvwZyUlp+2MwNEb6Djv3yEE=; b=owGbwMvMwCG2mv3fB7+vgl8ZT6slMWTsWuRXlB1qe2vZkj6zd7+ty9fVnNjxovmRm+2ZKbfD1 13XkuXb3VHKwiDGwSArpsgynUnHYc23a0vFlkfmw8xhZQIZwsDFKQATiZvNyLD26/nF03+r6M8t eeH4fu3JH1NzkxWnuzdnhc1LfZI4z+o+w/9Ig47HScfl9Bxlzl/g93SYtL2Ib+IHOf9bSTMcmSc ECnIAAA==
 X-Developer-Key: i=michal.simek@amd.com; a=openpgp; fpr=67350C9BF5CCEE9B5364356A377C7F21FE3D1F91
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
 X-EOPAttributedMessage: 0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PEPF000075EE:EE_|SJ1PR12MB6123:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9f82d205-0114-49f7-f944-08ddec582082
+X-MS-TrafficTypeDiagnostic: CO1PEPF000075EF:EE_|IA1PR12MB7613:EE_
+X-MS-Office365-Filtering-Correlation-Id: ac478399-4c49-4c01-130a-08ddec5820a8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|7416014|82310400026|376014|36860700013|1800799024|13003099007;
+	BCL:0;ARA:13230040|36860700013|1800799024|82310400026|376014|7416014|13003099007;
 X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?gpO6to8T4i38S4QOXsIVKYhehiiV92FDnoMYE018AYda5GnB3IL43aV3CuR7?=
- =?us-ascii?Q?jpt7fQrDIgH4xbqAfcua9llZPcbIdthPJ2wDSFhINQzYCJK8t0q5tUSEY3M8?=
- =?us-ascii?Q?j9NG91EILAq46bEqGUjzdmrLw56n11R9F/NaDS4H99IKUn1GmPM+L4cLMUrW?=
- =?us-ascii?Q?4NllBM5O0qY5tJBez9GAU/cpf7ZRc3mSE8mpCMTS0MxnaiipLI+OtEhUWKei?=
- =?us-ascii?Q?/4I5FN/l8GkC87sZMZ844trQaN7Qw/hDVVGjzXzRGxuwYFq2HbJd1bn3HjH5?=
- =?us-ascii?Q?B6y6ohqA2EUUB0HlOHO/pUeT+ELk69ztdo3BDITwT7u1th2Uxjxd4qEVwPja?=
- =?us-ascii?Q?E7dsdGVZScAx+D1sKItsEsVt+jVn4Qwxo7UCNxLTeBOb2vYP846j8Gh+d0y8?=
- =?us-ascii?Q?2znuHZOuajM4XcNbZfns/aGE+9cLkcy55lbYbvSFOLBs8hu+tLtjAuKd8Y4j?=
- =?us-ascii?Q?vuRJwhWoeIhEPeJF13ckcH14sNHBcQRB6049uRGbfov3+I4SMRGkXNoTNK9Y?=
- =?us-ascii?Q?z4rDW1a5Znl4tcoSLOnhm0BuaHVO9HD2AISLP7XpIJH3Wc70+Z9LL3B37PtO?=
- =?us-ascii?Q?KpIuvtXvOrk2OFlld/MriDrr/jrtq0BDW7YQ4VE6rYtsyWbh3qmj7cLpmfmn?=
- =?us-ascii?Q?bfkt06SgfIdzrxlrGDTMYx/HfwPEFW7h+kHJ2RflYAHH8yhJS4/qVbprR5JS?=
- =?us-ascii?Q?GYkP0I3tx3mc9fOWjqNwt1vDBvUZJufxrhYfxTRFRc6EX35OFKacN6PNS0RP?=
- =?us-ascii?Q?cIKBumdzvnAEKY1HGdKeL0c/P01utGMp9h0IOjCO+3DWnTnh2SkU+imtWjiR?=
- =?us-ascii?Q?zjZjqYR7HMMSDKElRK/1p4aNLk007GRzSJ+6teUyfzf0oOoeXRvugc4rm+Xa?=
- =?us-ascii?Q?97BPtiHktkkPjHvXZcjaT1/YH4wP3Qomd3VhW4iiwir6Pm5hrlxAT2g7S9rH?=
- =?us-ascii?Q?c9ARfyI8b+N5t7QR6UHvbvPJox5uHjZyyDyrhJ5hGO19pIDJQfLIh1uJLf9Q?=
- =?us-ascii?Q?Z1GF6bOSsDIqV1dpa7qSKf6jmWWnfhB1VA7iTIEtqUnH4Acs1mLHjTa5pvda?=
- =?us-ascii?Q?a9eksTgZ0bK3fmk7yF9QSMqGxx34fH/Pak4l+s+ZpAejHbqp1NvyRnGSdxYx?=
- =?us-ascii?Q?h00cLZh4Aift9O4nmxVlsVipXWwgFKLfgHzQDrcTEolF+0IEjB5/u8Bxpg2B?=
- =?us-ascii?Q?qMtTZcikJJY9usBOSFEwCFl/M22AT358+ULu3uGGElDeXI4b8U3GP8oa/N8b?=
- =?us-ascii?Q?DVWf+KLJURvXhQkYexXU/0QF8A/FweqJb3sc0/37OnxIsG342V9sp1hOwj3t?=
- =?us-ascii?Q?//kclbsioRn/rZwj3Kr+mm34v59K8AK20a9/t7FlkBjAcDj9CiuDi/BEBzWa?=
- =?us-ascii?Q?lPgMV7FXHaJN94iNcd3VryB56IudtHuHBvjEksRe8gMd58/hxHt1NfiQ6m+Q?=
- =?us-ascii?Q?PCA6FQZEj8LhSIfasURNUOuGlk049k2Hqt6ZShUt9PPWuXq6kV8wSg=3D=3D?=
+	=?us-ascii?Q?ebgy0BuOhtvpOcl/M9Svwt5goLO6nhIIQEB1aaJ+OE0jmTzq0gJ/Ys/tdyBP?=
+ =?us-ascii?Q?A1bkOBWuqKM37BRODTYQAIlSaFat416ZTm4kt0Oc6eMkUBDVApuOprkAfcNi?=
+ =?us-ascii?Q?ycxrP5J1Szu5fzu1tYhmG5VEmFowfcWMD4jaBhHw485VLdrU1xY0nZhNNiu4?=
+ =?us-ascii?Q?q1gJwKxSGbFXNDEuDO5Wll2Nbe2mQ7NlEaQqzP5ewpRXwrmsBixcS7kiqf75?=
+ =?us-ascii?Q?NeP38/K+RVFgO8gzW+ithNaOQx6fQ777LGFLqRct1YA8hx91ChriMgXDR15S?=
+ =?us-ascii?Q?c3WdnmTOYEs9SFJAErr/xb1uFGCkgL6WErxS1OTSezAB6Tyx+QT73JtvK3Yc?=
+ =?us-ascii?Q?yBqxOXRzfcTeYoOf9DyujRAgyOXpFj6c/wAGPBRQeFpOYoXs7Io9JsriiqtJ?=
+ =?us-ascii?Q?4phuqTPeDXk7KtEHGDNYO5FqoapjxWBoqf6FTL11YVWq++NGySQvKSyaSJMV?=
+ =?us-ascii?Q?Vv8EAJ5r/2IiVXpXU7cjsWP9f33DqNDiNILTlq/fpEuGovBaWg9rxB9/j8dI?=
+ =?us-ascii?Q?i6BePp6/BX/iGIh0tCy1hSLY+TQOpdPHLhC8KBaweglh6cBQblmRnJe8XGC3?=
+ =?us-ascii?Q?9aVwMH8f3y6cJjrPnHkSxWq0DeFzVPPXaMyeyaDzg4UVpIi7aAxEfdLNVv8Y?=
+ =?us-ascii?Q?ECCMZUpWPFBETUNgdKV4IrBzaJm1p+yKE5c/9QP7i4EIlA6yje7dHd7kbniG?=
+ =?us-ascii?Q?IESckbz636iIiTRtq2NnxxU3uDv77TxpALI7kz0+taR9FanlTwH3l5Xl0X28?=
+ =?us-ascii?Q?rMtoUH0fI22nUMniMVALNBQaqjWmCZQ4CbvpDtz1ldFkT/MJf4BZ4MjMX6Dc?=
+ =?us-ascii?Q?WevxGZF7CS9J0EwZzavIlYLop/vPTnu/dZDCrAs7YRSBY8oIzoP6NvEOVasJ?=
+ =?us-ascii?Q?XfFUtIeeM+hZcQhOMGNx4tqjgMJX2dpT3uUr7ozZlULfisPCqQfpYoJeyzp9?=
+ =?us-ascii?Q?Wc0bO2beY7CUO1U65otxXpShZD5eWHcl6rmTy/c58wTKnIKF0kyKl5bkc44j?=
+ =?us-ascii?Q?ViIaaR9pLUyCI4iTN5tBx0otJwqUohQjccqSm5Wo28v3+H6MO1hv+CwTZbV3?=
+ =?us-ascii?Q?A9lNaRyFEv2KTtNOT+5P/VZ9bH+zKRsDjyqDJLBon+u6VDwLzZkZHmRAM8HS?=
+ =?us-ascii?Q?bhKchyVJbnoOiI8CmFQK6n1+iXCe4qR4VLlBmnk3R1LIP5Z8jaRwkV8PD7fM?=
+ =?us-ascii?Q?vZytNfDipa2LZtRu1A5LYK/AN+1MwwdzsETqHxIsW2MjsEloroQXtTFteEYV?=
+ =?us-ascii?Q?BAuItxJ/ZLhrt5ORbL+nIUTC4Ly8a0gwVXBIS8qCaKfCt0LM1Kmr0fuhCPZa?=
+ =?us-ascii?Q?d9dFhD3xd/B7UqtJ9Oh0/hNyYd+4Zw6TyVjQ5kMllDEmSxwLeGn0XI13JD8z?=
+ =?us-ascii?Q?YcIizvQq4FfjIAGzqPsYYSQLRluy5WfEEccE3qNsBt6m+deHKPCyH2eXjCQO?=
+ =?us-ascii?Q?8Hx52yMr7VksuZHlWFEMc6ZhjSLy/pPkrR3gT4RU4gxEpDn51COyWQ=3D=3D?=
 X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(7416014)(82310400026)(376014)(36860700013)(1800799024)(13003099007);DIR:OUT;SFP:1101;
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(82310400026)(376014)(7416014)(13003099007);DIR:OUT;SFP:1101;
 X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 08:42:20.1857
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 08:42:20.4280
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f82d205-0114-49f7-f944-08ddec582082
+X-MS-Exchange-CrossTenant-Network-Message-Id: ac478399-4c49-4c01-130a-08ddec5820a8
 X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
 X-MS-Exchange-CrossTenant-AuthSource:
-	CO1PEPF000075EE.namprd03.prod.outlook.com
+	CO1PEPF000075EF.namprd03.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Anonymous
 X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6123
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7613
 
 From: Salih Erim <salih.erim@amd.com>
 
-Add devicetree documentation for Xilinx Sysmon IP which is used for
-internal chip monitoring on Xilinx Versal SOCs.
+Add description of Versal Thermal which describes IO channels to
+be binded to thermal. Constant channel of "sysmon-temp-channel" used as
+mapped iio channel.
 
-Co-developed-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
-Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+One temperature zone is used for the AI Engine temperature monitoring.
+
+Signed-off-by: Salih Erim <salih.erim@amd.com>
 Co-developed-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
 Signed-off-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
-Signed-off-by: Salih Erim <salih.erim@amd.com>
 Signed-off-by: Michal Simek <michal.simek@amd.com>
 ---
 
- .../bindings/iio/adc/xlnx,versal-sysmon.yaml  | 235 ++++++++++++++++++
- 1 file changed, 235 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+ .../bindings/thermal/xlnx,versal-thermal.yaml | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml b/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+diff --git a/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml b/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
 new file mode 100644
-index 000000000000..a768395cade7
+index 000000000000..c374d7ae2d2a
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
-@@ -0,0 +1,235 @@
++++ b/Documentation/devicetree/bindings/thermal/xlnx,versal-thermal.yaml
+@@ -0,0 +1,45 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/iio/adc/xlnx,versal-sysmon.yaml#
++$id: http://devicetree.org/schemas/thermal/xlnx,versal-thermal.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Xilinx Versal Sysmon
++title: Xilinx Versal Thermal
 +
 +maintainers:
 +  - Salih Erim <salih.erim@amd.com>
 +
 +description:
-+  The Xilinx Sysmon provides on-chip monitoring and control for the supply
-+  voltages and temperatures across the chip. Since there are only 160 supply
-+  voltage registers and 184 measurement points, there is no constant mapping
-+  of supply voltage registers and the measurement points. User has to select
-+  the voltages to monitor in design tool. Depending on the selection, a voltage
-+  supply gets mapped to one of the supply registers. So, this mapping information
-+  is provided via description which contain the information of name of
-+   the supply enabled and the supply register it maps to.
++  Versal Thermal uses Versal Sysmon hardware for temperature reading.
++  It works as sensor interface to be defined in thermal zones.
 +
 +properties:
 +  compatible:
-+    items:
-+      - const: xlnx,versal-sysmon
++    const: xlnx,versal-thermal
 +
-+  reg:
-+    maxItems: 1
-+    description: Sysmon Registers.
-+
-+  interrupts:
-+    maxItems: 1
-+    description: Interrupt line for Sysmon.
-+
-+  '#address-cells':
++  '#thermal-sensor-cells':
 +    const: 1
 +
-+  '#size-cells':
-+    const: 0
++  io-channels:
++    maxItems: 1
 +
-+  '#io-channel-cells':
-+    const: 0
-+
-+  xlnx,hbm:
-+    type: boolean
-+    description:
-+      Exists if node refers to a HBM (High Bandwidth Memory) SLR (Super Logic Region).
-+
-+  xlnx,nodeid:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      PLM specified sysmon node id.
-+
-+  xlnx,numaiechannels:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 64
-+    description:
-+      Total number of sysmon satellites close to AI Engine exposed as channels.
-+
-+  xlnx,numchannels:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 160
-+    description:
-+      Number of supply channels enabled in the design.
-+
-+patternProperties:
-+  "^supply@([0-9]{1,2}|1[0-5][0-9])$":
-+    type: object
-+    description:
-+      Represents the supplies configured in the design.
-+
-+    properties:
-+      reg:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        minimum: 0
-+        maximum: 159
-+        description:
-+          The supply number associated with the voltage.
-+
-+      xlnx,name:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          Name of the supply enabled
-+
-+      xlnx,bipolar:
-+        $ref: /schemas/types.yaml#/definitions/flag
-+        description:
-+          If the supply has a bipolar type and the output will be signed.
-+
-+    required:
-+      - reg
-+      - xlnx,name
-+
-+    additionalProperties: false
-+
-+  "^temp@([1-9]|[1-5][0-9]|6[0-4])$":
-+    type: object
-+    description:
-+      Represents the sysmon temperature satellites.
-+
-+    properties:
-+      reg:
-+        minimum: 1
-+        maximum: 64
-+        description:
-+          The sysmon temperature satellite number.
-+
-+      xlnx,aie-temp:
-+        $ref: /schemas/types.yaml#/definitions/flag
-+        description:
-+          If present it indicates the temperature satellite is in
-+          close proximity with AI Engine
-+
-+      xlnx,name:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description:
-+          Name of temperature satellite exposed
-+
-+    required:
-+      - reg
-+      - xlnx,name
-+
-+    additionalProperties: false
++  io-channel-names:
++    const: sysmon-temp-channel
 +
 +required:
 +  - compatible
-+  - reg
-+  - xlnx,numchannels
++  - '#thermal-sensor-cells'
++  - io-channels
++  - io-channel-names
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    sysmon@f1270000 {
-+        compatible = "xlnx,versal-sysmon";
-+        reg = <0xf1270000 0x4000>;
-+        interrupts = <0 0x90 IRQ_TYPE_LEVEL_HIGH>;
-+        xlnx,numchannels = <8>;
-+        xlnx,numaiechannels = <8>;
-+        xlnx,nodeid = <0x18224055>;
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        supply@0 {
-+            reg = <0>;
-+            xlnx,name = "vccint";
-+        };
-+
-+        supply@31 {
-+            reg = <31>;
-+            xlnx,name = "vccsoc";
-+        };
-+
-+        supply@32 {
-+            reg = <32>;
-+            xlnx,bipolar;
-+            xlnx,name = "vccram";
-+        };
-+
-+        supply@63 {
-+            reg = <63>;
-+            xlnx,bipolar;
-+            xlnx,name = "vccaux";
-+        };
-+
-+        supply@64 {
-+            reg = <64>;
-+            xlnx,name = "vccbram";
-+        };
-+
-+        supply@95 {
-+            reg = <95>;
-+            xlnx,name = "gt_avaux";
-+        };
-+
-+        supply@96 {
-+            reg = <96>;
-+            xlnx,name = "gt_vccaux";
-+        };
-+
-+        supply@159 {
-+            reg = <159>;
-+            xlnx,name = "vccint_ir";
-+        };
-+
-+        temp@7 {
-+            reg = <7>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch0";
-+        };
-+
-+        temp@8 {
-+            reg = <8>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch1";
-+        };
-+
-+        temp@14 {
-+            reg = <14>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch2";
-+        };
-+
-+        temp@15 {
-+            reg = <15>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch3";
-+        };
-+
-+        temp@16 {
-+            reg = <16>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch4";
-+        };
-+
-+        temp@30 {
-+            reg = <30>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch5";
-+        };
-+
-+        temp@33 {
-+            reg = <33>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch6";
-+        };
-+
-+        temp@34 {
-+            reg = <34>;
-+            xlnx,aie-temp;
-+            xlnx,name = "aie-temp-ch7";
-+        };
++    versal-thermal-sensor {
++        compatible = "xlnx,versal-thermal";
++        #thermal-sensor-cells = <1>;
++        io-channels = <&sysmon0>;
++        io-channel-names = "sysmon-temp-channel";
 +    };
++...
 -- 
 2.43.0
 
