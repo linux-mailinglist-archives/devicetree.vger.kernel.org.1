@@ -1,298 +1,192 @@
-Return-Path: <devicetree+bounces-213338-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213341-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CF85B45227
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:54:39 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16565B45241
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:58:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 55B22A47054
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:54:35 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B9427B5D33
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:56:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FFA2304BB4;
-	Fri,  5 Sep 2025 08:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D931330507F;
+	Fri,  5 Sep 2025 08:58:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="TSfiqTAv"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="L65rLMzo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A130301008
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A367C3043D1;
+	Fri,  5 Sep 2025 08:58:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757062424; cv=none; b=mucBofHL9LJ/8dyYPJ8LfCB3MCSHYFHuCB1xQwTyYFj/oRRV8L34bJZlypxDNAe1O8tneKAKbM+4cOwbXukCuIt0iZLulKkX9XVgCbOKEsIck3QiMOsm6w+gOdwBAnMLVyJkjCvKp5QRHKPyXqyByNB1cZB08UDZW0bY6Vi4TQk=
+	t=1757062683; cv=none; b=jhHeXY6EESvxofwfni2qaz8cN/7Bj+BVmQbi85rb+Vd+I9m7KvEtHwgEPX1kAV8ydSGyNhlHeM+4eXvNxabzzZldato5YqPRgIms0PocJFRIO/Tqb7cDv+JwTqRYmP3IBrMQgvn3HIG310VCD5bmzR9xA/6F3bycg92g3q9IE2g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757062424; c=relaxed/simple;
-	bh=s1H95DzZ47/Gv87gSW5XfSmmnQ9iM2HST1opScL1BwI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=pTzUvnmqKEwG+SjVlt9q9Ipjf1uhh1WgaB6XsQ1IFm8ZjUYfLA4RrVFppmj/jG//aVmzFWjfdV8sj6Ml2lOd2tsdwRIAUfSoXPIl0KSPZszUKDYFna6pxWdTZvGdOCFNNggvb9ke0CBoaHWGfg0lHCZRw9VNgmSeA87uXAQAxno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=TSfiqTAv; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-55f6017004dso2046182e87.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 01:53:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1757062420; x=1757667220; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3vZ3W53+NBzM1/YoocDMpt9TAql3h7i1DOTAYBcde+k=;
-        b=TSfiqTAvn3TzZa11wBRPVN3tVHumyx5moTKZz9AkTpVlPAqyzCsvOqzO2Sf60N8xcR
-         HUm7VT2iTTrWO4PiO2AQBSsC+KKfpxvMiII/Px1H7BXd7aqHSm4tD2aB2uvySZraWudI
-         fjLe26pHFQbvDiTtSBCkUXN396CvwYgEngg7Y=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757062420; x=1757667220;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3vZ3W53+NBzM1/YoocDMpt9TAql3h7i1DOTAYBcde+k=;
-        b=OtsqyaOk+sbU3N3ImuvKLzwJ3oWYfkjqxFBj7x/BUTLAi72Cr7bEAn9r1u9DdBd8ZO
-         9WT7ICZhQXZ2/Md1rZEptNwu5lEab9s2grUve2XmOZ9/pkK4Uoftz8aJIl23g9qPBORa
-         YvHBFoWE1P/cVir1NoXFG+X3rGEi60ZrdcMs63XqSzK1pvIxi42TPmOX8KsPZpYxE/qU
-         oSJLdx6+xfp/zU9XcAcpc93vwyCTNCFvbBTsHVTW6VDw4qimddtqmesYtTeLWhNLRKlW
-         DDyC2+thJXuIRpQh1jkySqxjbN+WHyiatRUXukC9QBQ5zZe7uVM+F3T/lCb0Oo8xa4j7
-         p4yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUS6/ax9d4C0QlL9KteyotQ+E8IoJEW3f8e9fSOaWDxIykVdz2a691cte4uAQJIaVepGRZD/cP4YKYD@vger.kernel.org
-X-Gm-Message-State: AOJu0YzFz7+cWzPneRncTcpVyHc38MExhU3gYS8J/8lZwAqur5aFj1Rr
-	hmz/gj4OmCrEpMRz4Hgz93JcagbQpPb6rOT61199N4oOWZQvPzwY8CadpwcUNfY28uDesXgBrTj
-	aejcOJx93tMIZ0S5Vh/NQQBYxmCVfIZH3h8+cmcd9
-X-Gm-Gg: ASbGncslpNcUlP5U7TASwnNuZu0mqbGsxJfuRO7nt0ZkS5pz9EuU9+k8uxvEqGZFIj6
-	5gWCFYf5z2C3o/jUT2X6UBIz+uXWrzgeWfPanFis4JZGYlPBxv4iCulhl2ZZmxCjTzTlmgMU+7j
-	Ud3S4qxej6LCp1xISbvbtT4e6OOqZ3bx+7KpA+VrksA9WabWpYMM5fhAxu0R7IRXX0ZEit8S+Mc
-	EVAULPV4MH+5fpIzvgb8HbkYuz0iA1+zNK3dw==
-X-Google-Smtp-Source: AGHT+IEjHV/T1RYYsuzHLdjnxHEKIYfNZ8/LU3RE2sLPGxb+l+/MTplgH0fgFpzDm7aF6IX2eRbQMv8bMFW6xshxSss=
-X-Received: by 2002:a05:6512:3b10:b0:561:70f1:e3ec with SMTP id
- 2adb3069b0e04-56170f1e54amr557993e87.30.1757062420258; Fri, 05 Sep 2025
- 01:53:40 -0700 (PDT)
+	s=arc-20240116; t=1757062683; c=relaxed/simple;
+	bh=cMojpqJ27h2eTF7V8dVIvJWdJkl9UMHceULvamZ/QVE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=oO1N9Aka51+audDYtb8Xs3n4UbC6b5u3wBCaMCDAaJkB9veerqtv7YFSaQoJZ+lo/SmEdayl3F5AzjnInArQSSmwL0sFMBoD8CbEGAlDzBC+pGvpqC7LQsIR0c+xDiIKdWfA6CNShWcueyFHBpAuUqsnbjNzOygF74nOTCizNPA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=L65rLMzo; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5858v61n3285442;
+	Fri, 5 Sep 2025 03:57:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757062626;
+	bh=kSrPRCtXJQEhqr1BuGJ8W84oGetUB7hhLQoAxDn9OAw=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=L65rLMzogaTqWulEtRUm5v8L8NOgoTpdl2VCs2AYrRKilQ72FPlbbS3GQIILuT79Y
+	 +HhowBCxGclATIIb9zEmJzwbs4cL2wRCCANm+r1OxHHSE0YlUSiFdVsxieBdIpN/ND
+	 O2BGuMl/W6VM0yVHTMS7DjnOidnPad+rtM6mWf88=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5858v6k2251546
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 5 Sep 2025 03:57:06 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
+ Sep 2025 03:57:06 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 5 Sep 2025 03:57:06 -0500
+Received: from [172.24.231.152] (danish-tpc.dhcp.ti.com [172.24.231.152])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5858uuZp196351;
+	Fri, 5 Sep 2025 03:56:57 -0500
+Message-ID: <ebcf48cb-a988-423c-b6bb-9bdee75dcdae@ti.com>
+Date: Fri, 5 Sep 2025 14:26:55 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250829091913.131528-1-laura.nao@collabora.com>
- <20250829091913.131528-20-laura.nao@collabora.com> <0e6592b7-6f6d-4291-992c-ff321c920381@collabora.com>
-In-Reply-To: <0e6592b7-6f6d-4291-992c-ff321c920381@collabora.com>
-From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 5 Sep 2025 16:53:29 +0800
-X-Gm-Features: Ac12FXznPHud9uxEoezJCyg2AXmAKQakPZkEkl_DvIt-_2nZkd2YLz6bIWoFjWA
-Message-ID: <CAGXv+5GFaudGqm4C9CY-_spiXcyWk7OvWHTdkehsyrV4sO1Ndw@mail.gmail.com>
-Subject: Re: [PATCH v5 19/27] clk: mediatek: Add MT8196 mdpsys clock support
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Laura Nao <laura.nao@collabora.com>, mturquette@baylibre.com, sboyd@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	matthias.bgg@gmail.com, p.zabel@pengutronix.de, richardcochran@gmail.com, 
-	guangjie.song@mediatek.com, linux-clk@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
-	netdev@vger.kernel.org, kernel@collabora.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 2/8] dt-bindings: remoteproc: k3-r5f: Add
+ rpmsg-eth subnode
+To: Krzysztof Kozlowski <krzk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        "Anwar, Md Danish" <a0501179@ti.com>
+CC: Andrew Lunn <andrew+netdev@lunn.ch>,
+        "David S. Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mathieu
+ Poirier <mathieu.poirier@linaro.org>,
+        Simon Horman <horms@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+        Nishanth Menon <nm@ti.com>, Vignesh
+ Raghavendra <vigneshr@ti.com>,
+        Mengyuan Lou <mengyuanlou@net-swift.com>,
+        Xin
+ Guo <guoxin09@huawei.com>, Lei Wei <quic_leiwei@quicinc.com>,
+        Lee Trager
+	<lee@trager.us>, Michael Ellerman <mpe@ellerman.id.au>,
+        Fan Gong
+	<gongfan1@huawei.com>, Lorenzo Bianconi <lorenzo@kernel.org>,
+        Geert
+ Uytterhoeven <geert+renesas@glider.be>,
+        Lukas Bulwahn
+	<lukas.bulwahn@redhat.com>,
+        Parthiban Veerasooran
+	<Parthiban.Veerasooran@microchip.com>,
+        Suman Anna <s-anna@ti.com>, Tero
+ Kristo <kristo@kernel.org>,
+        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <srk@ti.com>, Roger Quadros
+	<rogerq@kernel.org>
+References: <20250902090746.3221225-1-danishanwar@ti.com>
+ <20250902090746.3221225-3-danishanwar@ti.com>
+ <20250903-peculiar-hot-monkey-4e7c36@kuoka>
+ <d994594f-7055-47c8-842f-938cf862ffb0@ti.com>
+ <f2550076-57b5-46f2-a90a-414e5f2cb8d7@kernel.org>
+ <38c054a3-1835-4f91-9f89-fbe90ddba4a9@ti.com>
+ <6e56f36f-70fd-4635-b83f-a221780237ba@lunn.ch>
+ <9c2a863c-0c8a-4563-a58d-d59112ac45a8@kernel.org>
+Content-Language: en-US
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <9c2a863c-0c8a-4563-a58d-d59112ac45a8@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Sep 5, 2025 at 4:39=E2=80=AFPM AngeloGioacchino Del Regno
-<angelogioacchino.delregno@collabora.com> wrote:
->
-> Il 29/08/25 11:19, Laura Nao ha scritto:
-> > Add support for the MT8196 mdpsys clock controller, which provides cloc=
-k
-> > gate control for MDP.
-> >
-> > Signed-off-by: Laura Nao <laura.nao@collabora.com>
-> > ---
-> >   drivers/clk/mediatek/Kconfig             |   7 +
-> >   drivers/clk/mediatek/Makefile            |   1 +
-> >   drivers/clk/mediatek/clk-mt8196-mdpsys.c | 186 ++++++++++++++++++++++=
-+
-> >   3 files changed, 194 insertions(+)
-> >   create mode 100644 drivers/clk/mediatek/clk-mt8196-mdpsys.c
-> >
-> > diff --git a/drivers/clk/mediatek/Kconfig b/drivers/clk/mediatek/Kconfi=
-g
-> > index 8e5cdae80748..68ac08cf8e82 100644
-> > --- a/drivers/clk/mediatek/Kconfig
-> > +++ b/drivers/clk/mediatek/Kconfig
-> > @@ -1024,6 +1024,13 @@ config COMMON_CLK_MT8196_MCUSYS
-> >       help
-> >         This driver supports MediaTek MT8196 mcusys clocks.
-> >
-> > +config COMMON_CLK_MT8196_MDPSYS
-> > +     tristate "Clock driver for MediaTek MT8196 mdpsys"
-> > +     depends on COMMON_CLK_MT8196
-> > +     default COMMON_CLK_MT8196
-> > +     help
-> > +       This driver supports MediaTek MT8196 mdpsys clocks.
-> > +
-> >   config COMMON_CLK_MT8196_PEXTPSYS
-> >       tristate "Clock driver for MediaTek MT8196 pextpsys"
-> >       depends on COMMON_CLK_MT8196
-> > diff --git a/drivers/clk/mediatek/Makefile b/drivers/clk/mediatek/Makef=
-ile
-> > index 46358623c3e5..d2d8bc43e45b 100644
-> > --- a/drivers/clk/mediatek/Makefile
-> > +++ b/drivers/clk/mediatek/Makefile
-> > @@ -155,6 +155,7 @@ obj-$(CONFIG_COMMON_CLK_MT8196) +=3D clk-mt8196-apm=
-ixedsys.o clk-mt8196-topckgen.o
-> >                                  clk-mt8196-peri_ao.o
-> >   obj-$(CONFIG_COMMON_CLK_MT8196_IMP_IIC_WRAP) +=3D clk-mt8196-imp_iic_=
-wrap.o
-> >   obj-$(CONFIG_COMMON_CLK_MT8196_MCUSYS) +=3D clk-mt8196-mcu.o
-> > +obj-$(CONFIG_COMMON_CLK_MT8196_MDPSYS) +=3D clk-mt8196-mdpsys.o
-> >   obj-$(CONFIG_COMMON_CLK_MT8196_PEXTPSYS) +=3D clk-mt8196-pextp.o
-> >   obj-$(CONFIG_COMMON_CLK_MT8196_UFSSYS) +=3D clk-mt8196-ufs_ao.o
-> >   obj-$(CONFIG_COMMON_CLK_MT8365) +=3D clk-mt8365-apmixedsys.o clk-mt83=
-65.o
-> > diff --git a/drivers/clk/mediatek/clk-mt8196-mdpsys.c b/drivers/clk/med=
-iatek/clk-mt8196-mdpsys.c
-> > new file mode 100644
-> > index 000000000000..a46b1627f1f3
-> > --- /dev/null
-> > +++ b/drivers/clk/mediatek/clk-mt8196-mdpsys.c
-> > @@ -0,0 +1,186 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * Copyright (c) 2025 MediaTek Inc.
-> > + *                    Guangjie Song <guangjie.song@mediatek.com>
-> > + * Copyright (c) 2025 Collabora Ltd.
-> > + *                    Laura Nao <laura.nao@collabora.com>
-> > + */
-> > +#include <dt-bindings/clock/mediatek,mt8196-clock.h>
-> > +
-> > +#include <linux/clk-provider.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of_device.h>
-> > +#include <linux/platform_device.h>
-> > +
-> > +#include "clk-gate.h"
-> > +#include "clk-mtk.h"
-> > +
-> > +static const struct mtk_gate_regs mdp0_cg_regs =3D {
-> > +     .set_ofs =3D 0x104,
-> > +     .clr_ofs =3D 0x108,
-> > +     .sta_ofs =3D 0x100,
-> > +};
-> > +
-> > +static const struct mtk_gate_regs mdp1_cg_regs =3D {
-> > +     .set_ofs =3D 0x114,
-> > +     .clr_ofs =3D 0x118,
-> > +     .sta_ofs =3D 0x110,
-> > +};
-> > +
-> > +static const struct mtk_gate_regs mdp2_cg_regs =3D {
-> > +     .set_ofs =3D 0x124,
-> > +     .clr_ofs =3D 0x128,
-> > +     .sta_ofs =3D 0x120,
-> > +};
-> > +
-> > +#define GATE_MDP0(_id, _name, _parent, _shift) {     \
-> > +             .id =3D _id,                              \
-> > +             .name =3D _name,                          \
-> > +             .parent_name =3D _parent,                 \
-> > +             .regs =3D &mdp0_cg_regs,                  \
-> > +             .shift =3D _shift,                        \
-> > +             .flags =3D CLK_OPS_PARENT_ENABLE,         \
->
-> Why would MDP0 and MDP2 be different, as in why would MDP1 be so special =
-to not
-> need CLK_OPS_PARENT_ENABLE while the others do?
->
-> Either they all do, or they all don't.
->
-> I guess they all don't, but I'm not sure how you tested that at all, sinc=
-e the
-> only way to test this is downstream (and upstream will very likely be dif=
-ferent
-> from that).
->
-> Even though I think they don't need that - please add back CLK_OPS_PARENT=
-_ENABLE
-> to GATE_MDP1 to be safe, as in (all) MediaTek SoCs the multimedia subsyst=
-em is
-> kinda separate from the rest.
 
-That kind of doesn't fly since the parent of mdp_f26m is clk26m, not the
-mdp clock. So either this block doesn't need a clock for register access
-or this clock is going to be broken.
 
-This is why I raised the question about the validity of the flag in the
-first place.
+On 03/09/25 7:53 pm, Krzysztof Kozlowski wrote:
+> On 03/09/2025 16:06, Andrew Lunn wrote:
+>>>>>  	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
+>>>>>  	memory-region = <&main_r5fss0_core0_dma_memory_region>,
+>>>>>  			<&main_r5fss0_core0_memory_region>;
+>>>>> +	rpmsg-eth-region = <&main_r5fss0_core0_memory_region_shm>;
+>>>>
+>>>> You already have here memory-region, so use that one.
+>>>>
+>>>
+>>> There is a problem with using memory-region. If I add
+>>> `main_r5fss0_core0_memory_region_shm` to memory region, to get this
+>>> phandle from driver I would have to use
+>>> 	
+>>> 	of_parse_phandle(np, "memory-region", 2)
+>>>
+>>> Where 2 is the index for this region. But the problem is how would the
+>>> driver know this index. This index can vary for different vendors and
+>>> their rproc device.
+>>>
+>>> If some other vendor tries to use this driver but their memory-region
+>>> has 3 existing entries. so this this entry will be the 4th one.
+>>
+>> Just adding to this, there is nothing really TI specific in this
+>> system. We want the design so that any vendor can use it, just by
+>> adding the needed nodes to their rpmsg node, indicating there is a
+>> compatible implementation on the other end, and an indication of where
+>> the shared memory is.
+> 
+> I don't know your drivers, but I still do not see here a problem with
+> 'memory-region'. You just need to tell this common code which
+> memory-region phandle by index or name is the one for rpmsg.
+> 
 
-> +       GATE_MDP1(CLK_MDP_F26M, "mdp_f26m", "clk26m", 27),
+I am able to pass this index as driver_data in the `rpmsg_device_id`.
 
-> Once MT8196 MDP support is upstreamed, we will be able to run a number of=
- tests
-> to evaluate whether this flag is really needed or not.
->
-> After all, if it turns out we can remove it, it's going to be a 3 lines p=
-atch,
-> not a big deal.
+I can work with just adding this reserved memory region to the
+'memory-region'. No need to create additional node in dt.
 
-That also works. Though IMO it makes the error harder to notice.
+This will be the code,
 
-ChenYu
+static const struct rpmsg_eth_data ti_rpmsg_eth_data = {
+	.shm_region_index = 2,
+};
 
-> > +             .ops =3D &mtk_clk_gate_ops_setclr,        \
-> > +     }
-> > +
-> > +#define GATE_MDP1(_id, _name, _parent, _shift) {     \
-> > +             .id =3D _id,                              \
-> > +             .name =3D _name,                          \
-> > +             .parent_name =3D _parent,                 \
-> > +             .regs =3D &mdp1_cg_regs,                  \
-> > +             .shift =3D _shift,                        \
-> > +             .ops =3D &mtk_clk_gate_ops_setclr,        \
-> > +     }
-> > +
-> > +#define GATE_MDP2(_id, _name, _parent, _shift) {     \
-> > +             .id =3D _id,                              \
-> > +             .name =3D _name,                          \
-> > +             .parent_name =3D _parent,                 \
-> > +             .regs =3D &mdp2_cg_regs,                  \
-> > +             .shift =3D _shift,                        \
-> > +             .flags =3D CLK_OPS_PARENT_ENABLE,         \
-> > +             .ops =3D &mtk_clk_gate_ops_setclr,        \
-> > +     }
-> > +
->
-> ..snip..
->
-> > +
-> > +static const struct mtk_clk_desc mdp_mcd =3D {
-> > +     .clks =3D mdp_clks,
-> > +     .num_clks =3D ARRAY_SIZE(mdp_clks),
-> > +     .need_runtime_pm =3D true,
-> > +};
-> > +
-> > +static const struct of_device_id of_match_clk_mt8196_mdpsys[] =3D {
-> > +     { .compatible =3D "mediatek,mt8196-mdpsys1", .data =3D &mdp1_mcd =
-},
-> > +     { .compatible =3D "mediatek,mt8196-mdpsys0", .data =3D &mdp_mcd }=
-,
->
-> 0 comes before 1, swap those entries please.
->
-> After applying the proposed fixes
->
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collab=
-ora.com>
->
-> > +     { /* sentinel */ }
-> > +};
-> > +MODULE_DEVICE_TABLE(of, of_match_clk_mt8196_mdpsys);
-> > +
-> > +static struct platform_driver clk_mt8196_mdpsys_drv =3D {
-> > +     .probe =3D mtk_clk_simple_probe,
-> > +     .remove =3D mtk_clk_simple_remove,
-> > +     .driver =3D {
-> > +             .name =3D "clk-mt8196-mdpsys",
-> > +             .of_match_table =3D of_match_clk_mt8196_mdpsys,
-> > +     },
-> > +};
-> > +module_platform_driver(clk_mt8196_mdpsys_drv);
-> > +
-> > +MODULE_DESCRIPTION("MediaTek MT8196 Multimedia Data Path clocks driver=
-");
-> > +MODULE_LICENSE("GPL");
->
+static struct rpmsg_device_id rpmsg_eth_rpmsg_id_table[] = {
+	{ .name = "ti.shm-eth", .driver_data =
+(kernel_ulong_t)&ti_rpmsg_eth_data },
+	{},
+};
+
+Other vendors can add separate entry to rpmsg_eth_rpmsg_id_table with
+their index based on their device tree.
+
+I am keeping the data name `ti_rpmsg_eth_data` vendor specific so that
+other vendors can create their data filed and add entry to
+`rpmsg_eth_rpmsg_id_table` with driver_data pointing to their data
+structure.
+
+Andrew, does this sound ok to you. I will send out a v3 once you confirm.
+
+Krzysztof, Andrew thanks for the feedback.
+
+-- 
+Thanks and Regards,
+Danish
+
 
