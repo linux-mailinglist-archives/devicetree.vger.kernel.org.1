@@ -1,218 +1,80 @@
-Return-Path: <devicetree+bounces-213676-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213677-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8959CB46372
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:18:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6E75B46373
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:18:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DB35BAA1667
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:17:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B97A9A42DE5
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:17:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABA69315D4E;
-	Fri,  5 Sep 2025 19:16:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 790F2271458;
+	Fri,  5 Sep 2025 19:17:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kVEnAGCP";
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="aQ8uQS4j"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HtHX8W3C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FDCA55;
-	Fri,  5 Sep 2025 19:16:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4530422F77E;
+	Fri,  5 Sep 2025 19:17:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757099817; cv=none; b=A93PJgIs4DinJJpYifToGMF62d2P+tY5e1R8buMFR5Rfs7TsgBHeH43vzB96JIa+ggTJYhlWfLdouATEjTsW3I3oeuNV6PfQVip4huUUBrisL4pQfXX3+FlqYHxBEgIcSB5c7LiGmPwdcpamkUwoRitFdtUw11/xRtXIHE2Uy08=
+	t=1757099827; cv=none; b=R76KaIQgvk9kKoNZwZwK3C5ejtyaNwb7s6i2YpmVzKmYfVQKJCJdGSemGlR1f3uuW8NORkK+dThKcYDZJlPlXvm/G5PA8hgX9rH92bjTUkLcFqiGWjItpFAw866PrGDDGQ1TDFaXCoNHhPoQydnriB+1hzPsAEaC8245bSpA+CA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757099817; c=relaxed/simple;
-	bh=S0G4DVVPhfl/gk2Z6JNs+/Nhk610SJfAbwYNBWesjGc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=CtfJDEKcmVygsFVCyzItVlv8gIURIB8/dgLyGbVdbYgzm4ugzqgtYrZz4arvYfF5vteWL2KqG89urgN3+pLV32atHmnUshR90+qJKhJfV09WxT2iEToZ3znKK8FCz0HMDKHh1QG1fFvaHkgv88ucwODtm/ok+OKfoAxhzinMIDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kVEnAGCP; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=aQ8uQS4j; arc=none smtp.client-ip=80.241.56.151
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cJR1154x6z9tDm;
-	Fri,  5 Sep 2025 21:16:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757099813;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=VyVXJQZw/VxE1DIAGqJZQM99zmZvXcM4HzMm4Zo+WyQ=;
-	b=kVEnAGCPCqb1Tf5Scjil0a+3APbhpksBBCVZB7hhSqaE55OMqOjdx/bw2GG9A9K9NSpeID
-	vzqbMU78fIZLxbm12z2XfpYcbTMPaEikUcX05i47Qwlmd5/t6u+LzryYmEAv3p/BpyiOES
-	Jeiq5JgxBWA3SwJtyPKLRj5IWxFsZPm+H0Zwz4J3w5BdNjjNz1fkMqz4tLswmxuE5/Ho/1
-	36Vw0BtNFCJTTOzJNldXOOSATiasC3K0F2Lsg1dVeROEMyP5WL5rQ6ntvAR/sCJEJQs3RY
-	RV4t2/pN1zQ1wvXPeqyVu/sFzfHvQLHy/sJFbcxAS1Q2/wboblGSSvADSSKyYw==
-Authentication-Results: outgoing_mbo_mout;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=aQ8uQS4j;
-	spf=pass (outgoing_mbo_mout: domain of marek.vasut+renesas@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut+renesas@mailbox.org
-From: Marek Vasut <marek.vasut+renesas@mailbox.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757099811;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=VyVXJQZw/VxE1DIAGqJZQM99zmZvXcM4HzMm4Zo+WyQ=;
-	b=aQ8uQS4j7CavxwEqoLXsRi9fGqOLE34OjJuqE/msGflAXd2yJnYsdW/i4yxMJN8kKiQStc
-	YmCFWL9Thgel3VwjYXiQR4J9Ah1wWYZaQ1pCS4J1QFO3alm1s6y1tUC6JP5Yk5UWP5UmDy
-	ooOf0CEPbpjrrR59lO6d9kHblab0iI1Z1AceOfgvaHzlu0L9gZYk9lHLggCOzjK/vz4TDA
-	FnhhOW8HJhHgjbR1uNxrNF4LW1vQ0+NenDbp6/r1gElC6VBoqmow4budlFeGZZeDNFOdiZ
-	WmV/D4+TZgqvegMrloQNXILDv5g5TrglN/k2nILjCg8vnUo9V+pptjZBBxufGA==
-To: linux-arm-kernel@lists.infradead.org
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-rpi-kernel@lists.infradead.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: [PATCH v2] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi 720x1280 v2 binding
-Date: Fri,  5 Sep 2025 21:16:30 +0200
-Message-ID: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1757099827; c=relaxed/simple;
+	bh=BvsMb/1wHuPKCShz/+mYa6IkInINhMn7sSgrBPdMWRQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WLbb3WudTecz2EoYyQQYjzPMzZFM/WW8Twuj09Ce1SLlFzwuzdHobrDOa+JVvOPpwBmGkOqFTlpA4UL+0s4NDHhBVoCTuogsSluUcoDgvV3EtetCwRg5cJ9bIu5hoVBF+XXI/ZQDhGcmbszbmWkr8oJDw5AnNg0bikoKI6+JDZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HtHX8W3C; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0AE9C4CEF1;
+	Fri,  5 Sep 2025 19:17:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757099826;
+	bh=BvsMb/1wHuPKCShz/+mYa6IkInINhMn7sSgrBPdMWRQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HtHX8W3ChEbLSy2+LbaxLxmPHMZtoYB/SNSuop3iHdhCmnpJSc9wxY57avUHu4KZE
+	 WbgYM9a3+/TFHynCqFBJnLqCYkKswXgESOpNKnGdF5xkoBWud4iVrXtrh9npnP7CUu
+	 nq5rvEvMb0YY57APY9ycFnCv1geYq/AUY+H/6+a9ZpXC62Zy3hpT9+oizRZbVwA+Vf
+	 py8vrBy7KS5591MhnPVNTNcOtH9AcsqFRgfN4cN7194uQulqE/1QvFkJJJ8GeIazbU
+	 SZLOkFhEMoBcMu+M4yW5X98BQG1eEUhqyDJKMozN2dM4apgRa/0/jwjAXw34CX/c+5
+	 pMYe84RZm+FDg==
+Date: Fri, 5 Sep 2025 14:17:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: devicetree@vger.kernel.org, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: input: convert semtech,sx8654 to yaml
+ format
+Message-ID: <175709982026.1062812.11610809394297867158.robh@kernel.org>
+References: <20250904191731.528145-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-ID: a809f2fb26ffded5227
-X-MBO-RS-META: chqjqj55drgqf9pmb1exbtomucpuoc3w
-X-Rspamd-Queue-Id: 4cJR1154x6z9tDm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250904191731.528145-1-Frank.Li@nxp.com>
 
-The 5" and 7" Raspberry Pi 720x1280 Display 2 MCU is a bit more
-complex than the original Display 1 ATTINY88 and the binding is
-also a bit more demanding. Split the binding into separate file
-and fill in required gpio-controller, #gpio-cells and #pwm-cells
-which must be present for the V2 MCU. Include mention of the 5"
-panel in the description of Display 2, as the 5" panel uses the
-same MCU.
 
-Fixes: 6d09c6e474bd ("regulator: dt-bindings: rpi-panel: Add regulator for 7" Raspberry Pi 720x1280")
-Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
----
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Florian Fainelli <florian.fainelli@broadcom.com>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>
-Cc: Mark Brown <broonie@kernel.org>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-rpi-kernel@lists.infradead.org
-Cc: linux-renesas-soc@vger.kernel.org
----
-V2: Replace node name from gpio@ to regulator@
----
- ...,7inch-touchscreen-panel-regulator-v2.yaml | 61 +++++++++++++++++++
- ...ypi,7inch-touchscreen-panel-regulator.yaml |  7 +--
- 2 files changed, 63 insertions(+), 5 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
+On Thu, 04 Sep 2025 15:17:28 -0400, Frank Li wrote:
+> Convert sx8654.txt to yaml format.
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../input/touchscreen/semtech,sx8654.yaml     | 52 +++++++++++++++++++
+>  .../bindings/input/touchscreen/sx8654.txt     | 23 --------
+>  2 files changed, 52 insertions(+), 23 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/semtech,sx8654.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/sx8654.txt
+> 
 
-diff --git a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
-new file mode 100644
-index 0000000000000..37b9ed371b67d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/raspberrypi,7inch-touchscreen-panel-regulator-v2.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: RaspberryPi 5" and 7" display V2 MCU-based regulator/backlight controller
-+
-+maintainers:
-+  - Marek Vasut <marek.vasut+renesas@mailbox.org>
-+
-+description: |
-+  The RaspberryPi 5" and 7" display 2 has an MCU-based regulator, PWM
-+  backlight and GPIO controller on the PCB, which is used to turn the
-+  display unit on/off and control the backlight.
-+
-+allOf:
-+  - $ref: regulator.yaml#
-+
-+properties:
-+  compatible:
-+    const: raspberrypi,touchscreen-panel-regulator-v2
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+  "#gpio-cells":
-+    const: 2
-+    description:
-+      The first cell is the pin number, and the second cell is used to
-+      specify the gpio polarity (GPIO_ACTIVE_HIGH or GPIO_ACTIVE_LOW).
-+
-+  "#pwm-cells":
-+    const: 3
-+    description: See ../../pwm/pwm.yaml for description of the cell formats.
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+  - "#pwm-cells"
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      regulator@45 {
-+        compatible = "raspberrypi,touchscreen-panel-regulator-v2";
-+        reg = <0x45>;
-+        gpio-controller;
-+        #gpio-cells = <2>;
-+        #pwm-cells = <3>;
-+      };
-+    };
-+
-+...
-diff --git a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
-index 18944d39d08fc..41678400e63fa 100644
---- a/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
-+++ b/Documentation/devicetree/bindings/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml
-@@ -12,17 +12,14 @@ maintainers:
- description: |
-   The RaspberryPi 7" display has an ATTINY88-based regulator/backlight
-   controller on the PCB, which is used to turn the display unit on/off
--  and control the backlight. The V2 supports 5" and 7" panels and also
--  offers PWM backlight control.
-+  and control the backlight.
- 
- allOf:
-   - $ref: regulator.yaml#
- 
- properties:
-   compatible:
--    enum:
--      - raspberrypi,7inch-touchscreen-panel-regulator
--      - raspberrypi,touchscreen-panel-regulator-v2
-+    const: raspberrypi,7inch-touchscreen-panel-regulator
- 
-   reg:
-     maxItems: 1
--- 
-2.50.1
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
 
