@@ -1,144 +1,210 @@
-Return-Path: <devicetree+bounces-213418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7DD32B455B9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:07:50 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59796B455D2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:12:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36CDD5C3295
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:07:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E2AA1178C95
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:11:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E7F29DB6E;
-	Fri,  5 Sep 2025 11:07:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="wazxqZos"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA77345758;
+	Fri,  5 Sep 2025 11:10:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41FE3179BD;
-	Fri,  5 Sep 2025 11:07:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459D4345745;
+	Fri,  5 Sep 2025 11:10:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757070465; cv=none; b=ppo9rhI4TuotqM/QjLMycS4KY/EUV25uFaIb5yrARSFM2UBZkcJ2bBIzf/tfj5anEHjpikwZsYkIX5oFrEthhqzb0DvzFcYGGNwulXd6w57RGb7j7vswlwOUb3cd8mXEuQg2Kvruw/JjPg1T5R/tx7rG9YCeYirzUaY8EJmHIYE=
+	t=1757070650; cv=none; b=d/UTlFPce180IS3PwUvTFQVVd4hRMygCY3Gk1bByaMxOfqt5ef5THcDOUMFhSjvTVTRCXvwARkZKnAM9KlnS7mj6X07RskfzeK82ibKLruFlKHCpU+ol+4FPxTBJixQp0+UvhDXp2dQXUgdoX47pAKZAvvX9rp/VtMDAAWsnlNE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757070465; c=relaxed/simple;
-	bh=PuxLCceEcWNaF0wlDR9k3nAjW6PvbIkpdu97KH9DeAw=;
-	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
-	 To:Date:Message-ID; b=fMm/CabmcNmXXLu4fpwjebFKbpNw96AV39W11VinJlOdX98tRJp4ub3YF86/u5Egj9kr0/9GZFN8kh6JiamSdsscA4+blvshfIJlT0uGqKQpXdZ8vynlt6UPr7ZNyACTBxF7vxjpsrbGa+zkYynlgk6getvvL7cOcUVx9/ugsSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=wazxqZos; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (unknown [IPv6:2401:4900:1c67:84a2:d86d:fcf7:24b4:e467])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3A6E47F0;
-	Fri,  5 Sep 2025 13:06:30 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1757070390;
-	bh=PuxLCceEcWNaF0wlDR9k3nAjW6PvbIkpdu97KH9DeAw=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=wazxqZosvmbXS0f2HZx9eriHBDT68T/ZV6Vogn+Ls8m0kB+01CMEmeJOOM2FwQmGX
-	 e2ZLPP+OS5+jsuY4LEOJN0EZmX/dwlObHYNglYO+alxSFtpBEDAqEDJocnFfOd5Fds
-	 XjGLwntzggrApIauDlAlwvpBSYzrBEBQZ2y4Sj14=
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1757070650; c=relaxed/simple;
+	bh=zD720it9Cl0qjj3VgVvm72Iet63yku/R94TspnSwR/o=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=NV8cz3AE/y+oK+W122XNSTyO9VcQIpZh1s1/vDA3DQAXvxpn1ZTLewII/d0msYJZzINgsX3Wsyndaxz+CrBLRmdb1CJRAGYEq9Aq2nPLvSDRbN71pPt9mddmEEdeWmfezLqy164jZaSC6iEGFrlf67DIilJoRiymVzVo9zNFW3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [127.0.0.2] (unknown [114.241.87.235])
+	by APP-03 (Coremail) with SMTP id rQCowACnu4X1xLpoFdfLAA--.1807S2;
+	Fri, 05 Sep 2025 19:09:43 +0800 (CST)
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+Subject: [PATCH net-next v9 0/5] Add Ethernet MAC support for SpacemiT K1
+Date: Fri, 05 Sep 2025 19:09:29 +0800
+Message-Id: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20250825142522.1826188-2-r-donadkar@ti.com>
-References: <20250825142522.1826188-1-r-donadkar@ti.com> <20250825142522.1826188-2-r-donadkar@ti.com>
-Subject: Re: [PATCH v5 01/14] media: ti: j721e-csi2rx: Remove word size alignment on frame width
-From: Jai Luthra <jai.luthra@ideasonboard.com>
-Cc: r-donadkar@ti.com, y-abhilashchandra@ti.com, devarsht@ti.com, vaishnav.a@ti.com, s-jain1@ti.com, vigneshr@ti.com, mchehab@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl, tomi.valkeinen@ideasonboard.com, changhuang.liang@starfivetech.com, jack.zhu@starfivetech.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org
-To: Rishikesh Donadkar <r-donadkar@ti.com>, jai.luthra@linux.dev, laurent.pinchart@ideasonboard.com, mripard@kernel.org
-Date: Fri, 05 Sep 2025 16:37:35 +0530
-Message-ID: <175707045529.8095.7424566069689990352@freya>
-User-Agent: alot/0.12.dev28+gd2c823fe
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOnEumgC/23RzW7CMAwH8FdBOS/ISfPJae8x7ZA6zogmCmu6i
+ gnx7gtlEi3d0bJ//kfOhRXqMxW221xYT2Mu+djVwr9sGO5D90E8x1ozCVKDAcM7Gvin4HQIyBs
+ STmhwFIxiVZx6Svk8bXtjt8GOzgN7v3d6+vqu64e/dhsKcTweDnnYbUazFZb3KKbhfS7Dsf+Z3
+ jSKafoeL5pF/Cg4cESTPGkBxtjXXDCUbcAtdtOmUc61W2pZtVdJJ7BS2uDWunloC3Kpm6qdkxG
+ 1VqBSs9Zqrp9erqo2zkTwqDD9l60f2omnbF11jMKi8qCT8mttZlrCUpvb1QRJl2TrWtJrbed6+
+ eWjrVq3KLSL4EygtXZz/XRzVzV5sDpGicHDUl+v118AYzWZkQIAAA==
+X-Change-ID: 20250606-net-k1-emac-3e181508ea64
+To: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
+ Vivian Wang <wangruikang@iscas.ac.cn>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Paul Walmsley <paul.walmsley@sifive.com>, 
+ Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
+ Alexandre Ghiti <alex@ghiti.fr>
+Cc: Vivian Wang <uwu@dram.page>, 
+ Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+ Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, 
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>, 
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, 
+ Hendrik Hamerlinck <hendrik.hamerlinck@hammernet.be>
+X-Mailer: b4 0.14.2
+X-CM-TRANSID:rQCowACnu4X1xLpoFdfLAA--.1807S2
+X-Coremail-Antispam: 1UD129KBjvJXoWxur4fCFykKF13Cw1xWFW7urg_yoW7JFWfpF
+	W8CrZI9wsrJrWIgFs7Cw47uF1fXan5J343WF17t3yrXa1DAFyUA39akw43Cr1UZrZ5J34j
+	ya1UuF1kuFyDA3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUU9j14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+	6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
+	0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
+	n2IY04v7MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
+	AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
+	17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
+	IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	IxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvf
+	C2KfnxnUUI43ZEXa7sRiuWl3UUUUU==
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi Rishikesh,
+SpacemiT K1 has two gigabit Ethernet MACs with RGMII and RMII support.
+Add devicetree bindings, driver, and DTS for it.
 
-Quoting Rishikesh Donadkar (2025-08-25 19:55:09)
-> j721e-csi2rx driver has a limitation of frame width being a multiple
-> word size. However, there is no such limitation imposed by the
-> hardware [1].
+Tested primarily on BananaPi BPI-F3. Basic TX/RX functionality also
+tested on Milk-V Jupiter.
 
-Is there no limitation for the step size, or also not limitation for the
-minimum size of transfer?
+I would like to note that even though some bit field names superficially
+resemble that of DesignWare MAC, all other differences point to it in
+fact being a custom design.
 
->=20
-> Remove this limitation from the driver.
->=20
-> Link: https://www.ti.com/lit/pdf/spruj16
-> Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
-> ---
->  .../platform/ti/j721e-csi2rx/j721e-csi2rx.c     | 17 +++--------------
->  1 file changed, 3 insertions(+), 14 deletions(-)
->=20
-> diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/driv=
-ers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> index 3992f8b754b7..b3a27f4c3210 100644
-> --- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> +++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-> @@ -260,9 +260,6 @@ static void ti_csi2rx_fill_fmt(const struct ti_csi2rx=
-_fmt *csi_fmt,
->                              MAX_WIDTH_BYTES * 8 / csi_fmt->bpp);
+Based on SpacemiT drivers [1]. These patches are also available at:
 
-Here the pix->width is restricted to be at minimum pixels_in_word.
-So TRY_FMT/S_FMT with a width =3D 1 will be clamped by the driver.
+https://github.com/dramforever/linux/tree/k1/ethernet/v9
 
->         pix->height =3D clamp_t(unsigned int, pix->height, 1, MAX_HEIGHT_=
-LINES);
-> =20
-> -       /* Width should be a multiple of transfer word-size */
-> -       pix->width =3D rounddown(pix->width, pixels_in_word);
-> -
->         v4l2_fmt->type =3D V4L2_BUF_TYPE_VIDEO_CAPTURE;
->         pix->pixelformat =3D csi_fmt->fourcc;
->         pix->bytesperline =3D pix->width * (csi_fmt->bpp / 8);
-> @@ -360,23 +357,15 @@ static int ti_csi2rx_enum_framesizes(struct file *f=
-ile, void *fh,
->                                      struct v4l2_frmsizeenum *fsize)
->  {
->         const struct ti_csi2rx_fmt *fmt;
-> -       unsigned int pixels_in_word;
-> =20
->         fmt =3D find_format_by_fourcc(fsize->pixel_format);
->         if (!fmt || fsize->index !=3D 0)
->                 return -EINVAL;
-> =20
-> -       /*
-> -        * Number of pixels in one PSI-L word. The transfer happens in mu=
-ltiples
-> -        * of PSI-L word sizes.
-> -        */
-> -       pixels_in_word =3D PSIL_WORD_SIZE_BYTES * 8 / fmt->bpp;
-> -
->         fsize->type =3D V4L2_FRMSIZE_TYPE_STEPWISE;
-> -       fsize->stepwise.min_width =3D pixels_in_word;
-> -       fsize->stepwise.max_width =3D rounddown(MAX_WIDTH_BYTES * 8 / fmt=
-->bpp,
-> -                                             pixels_in_word);
-> -       fsize->stepwise.step_width =3D pixels_in_word;
-> +       fsize->stepwise.min_width =3D 1;
+[1]: https://github.com/spacemit-com/linux-k1x
 
-But here, in ENUM_FRAMESIZES we allow width to go as low as 1.
+---
+Changes in v9:
+- Refactor to use phy_interface_mode_is_rgmii
+- Minor changes
+  - Use netdev_err in more places
+  - Print phy-mode by name on unsupported phy-mode
+- Link to v8: https://lore.kernel.org/r/20250828-net-k1-emac-v8-0-e9075dd2ca90@iscas.ac.cn
 
-Can you make sure both of them match whatever is correct (and possible by
-the hardware)?
+Changes in v8:
+- Use devres to do of_phy_deregister_fixed_link on probe failure or
+  remove
+- Simplified control flow in a few places with early return or continue
+- Minor changes
+  - Removed some unneeded parens in emac_configure_{tx,rx}
+- Link to v7: https://lore.kernel.org/r/20250826-net-k1-emac-v7-0-5bc158d086ae@iscas.ac.cn
 
-> +       fsize->stepwise.max_width =3D MAX_WIDTH_BYTES * 8 / fmt->bpp;
-> +       fsize->stepwise.step_width =3D 1;
->         fsize->stepwise.min_height =3D 1;
->         fsize->stepwise.max_height =3D MAX_HEIGHT_LINES;
->         fsize->stepwise.step_height =3D 1;
-> --=20
-> 2.34.1
->=20
+Changes in v7:
+- Removed scoped_guard usage
+- Renamed error handling path labels after destinations
+- Fix skb free error handling path in emac_start_xmit and emac_tx_mem_map
+- Cancel tx_timeout_task to prevent schedule_work lifetime problems
+- Minor changes:
+  - Remove unnecessary timer_delete_sync in emac_down
+  - Use dev_err_ratelimited in a few more places
+  - Cosmetic fixes in error messages
+- Link to v6: https://lore.kernel.org/r/20250820-net-k1-emac-v6-0-c1e28f2b8be5@iscas.ac.cn
 
-Thanks,
-    Jai
+Changes in v6:
+- Implement pause frame support
+- Minor changes:
+  - Convert comment for emac_stats_update() into assert_spin_locked()
+  - Cosmetic fixes for some comments and whitespace
+  - emac_set_mac_addr() is now refactored
+- Link to v5: https://lore.kernel.org/r/20250812-net-k1-emac-v5-0-dd17c4905f49@iscas.ac.cn
+
+Changes in v5:
+- Rebased on v6.17-rc1, add back DTS now that they apply cleanly
+- Use standard statistics interface, handle 32-bit statistics overflow
+- Minor changes:
+  - Fix clock resource handling in emac_resume
+  - Ratelimit the message in emac_rx_frame_status
+  - Add ndo_validate_addr = eth_validate_addr
+  - Remove unnecessary parens in emac_set_mac_addr
+  - Change some functions that never fail to return void instead of int
+  - Minor rewording
+- Link to v4: https://lore.kernel.org/r/20250703-net-k1-emac-v4-0-686d09c4cfa8@iscas.ac.cn
+
+Changes in v4:
+- Resource handling on probe and remove: timer_delete_sync and
+  of_phy_deregister_fixed_link
+- Drop DTS changes and dependencies (will send through SpacemiT tree)
+- Minor changes:
+  - Remove redundant phy_stop() and setting of ndev->phydev
+  - Fix error checking for emac_open in emac_resume
+  - Fix one missed dev_err -> dev_err_probe
+  - Fix type of emac_start_xmit
+  - Fix one missed reverse xmas tree formatting
+  - Rename some functions for consistency between emac_* and ndo_*
+- Link to v3: https://lore.kernel.org/r/20250702-net-k1-emac-v3-0-882dc55404f3@iscas.ac.cn
+
+Changes in v3:
+- Refactored and simplified emac_tx_mem_map
+- Addressed other minor v2 review comments
+- Removed what was patch 3 in v2, depend on DMA buses instead
+- DT nodes in alphabetical order where appropriate
+- Link to v2: https://lore.kernel.org/r/20250618-net-k1-emac-v2-0-94f5f07227a8@iscas.ac.cn
+
+Changes in v2:
+- dts: Put eth0 and eth1 nodes under a bus with dma-ranges
+- dts: Added Milk-V Jupiter
+- Fix typo in emac_init_hw() that broke the driver (Oops!)
+- Reformatted line lengths to under 80
+- Addressed other v1 review comments
+- Link to v1: https://lore.kernel.org/r/20250613-net-k1-emac-v1-0-cc6f9e510667@iscas.ac.cn
+
+---
+Vivian Wang (5):
+      dt-bindings: net: Add support for SpacemiT K1
+      net: spacemit: Add K1 Ethernet MAC
+      riscv: dts: spacemit: Add Ethernet support for K1
+      riscv: dts: spacemit: Add Ethernet support for BPI-F3
+      riscv: dts: spacemit: Add Ethernet support for Jupiter
+
+ .../devicetree/bindings/net/spacemit,k1-emac.yaml  |   81 +
+ arch/riscv/boot/dts/spacemit/k1-bananapi-f3.dts    |   46 +
+ arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts  |   46 +
+ arch/riscv/boot/dts/spacemit/k1-pinctrl.dtsi       |   48 +
+ arch/riscv/boot/dts/spacemit/k1.dtsi               |   22 +
+ drivers/net/ethernet/Kconfig                       |    1 +
+ drivers/net/ethernet/Makefile                      |    1 +
+ drivers/net/ethernet/spacemit/Kconfig              |   29 +
+ drivers/net/ethernet/spacemit/Makefile             |    6 +
+ drivers/net/ethernet/spacemit/k1_emac.c            | 2183 ++++++++++++++++++++
+ drivers/net/ethernet/spacemit/k1_emac.h            |  426 ++++
+ 11 files changed, 2889 insertions(+)
+---
+base-commit: 062b3e4a1f880f104a8d4b90b767788786aa7b78
+change-id: 20250606-net-k1-emac-3e181508ea64
+
+Best regards,
+-- 
+Vivian "dramforever" Wang
+
 
