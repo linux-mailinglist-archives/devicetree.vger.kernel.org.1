@@ -1,65 +1,57 @@
-Return-Path: <devicetree+bounces-213685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213686-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD87DB4644D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:06:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 173A7B46499
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:33:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43F181CC5CDD
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:06:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C78217C889C
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:33:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 857612D193B;
-	Fri,  5 Sep 2025 20:04:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D5162874EA;
+	Fri,  5 Sep 2025 20:33:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="cDgw8gAm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qci4YWjO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A5652C2ACE
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 20:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD6C1F4262;
+	Fri,  5 Sep 2025 20:33:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757102682; cv=none; b=VSxGkj0SeQcHW7FgGIoCxP1t0rb933KQ0s25CjssvLXaSamnU/eakDG8+fkA8cDjXVKLKrHudeoGqs1h1TUvBbzskKvaEX9q1jb4+jTWbdxbKe5Z9YPap5yankXP2fqXqQs/IYnfJCsOEKMgo5OW33XBM+g47asMiyeykaAkfnE=
+	t=1757104387; cv=none; b=RMFmL4RPux+NSX4xLZMY8UO4aALihe5rRxjnZKsvHO64UMsM+2a3saTslbrDvKW9dg4+nMJcKNpMYbwFulxBmzpLknaKfCUykMsfuYyk5dRuN3fKlcGg/U+07t2vw0Q8uVyWuIuVwTieaVJyJLbifqgSAvGIboDOXLFGoTeLGRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757102682; c=relaxed/simple;
-	bh=11GbqDXssApiU9y+vomJ1VHqHgmumr3HAlGd4PLdhNY=;
+	s=arc-20240116; t=1757104387; c=relaxed/simple;
+	bh=7+4tc2DX6Np4dUdLk0Zy6oOY1gQEUFikJpLNx0nxG+k=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RrqMuhBAYOOMNmixSchiUUMr4yuiuel2XDSWUuejgGwACVWj/I/Nzc4cJ7tYXSTk4Krsl7RnpH2YAs7rdj3RCjLuwgUkjYkOCpnPOCTFJW1Epl9r6+b/p0XvNAfws/jPovcDzk0E72yuH1Y4Ym4jhiuDbtvuPsHDWr8TnvlD7/M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=cDgw8gAm; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=xj+d
-	VF/YryccXvlypmfMjf5O3cBWAm2GjD0ww5V4SRc=; b=cDgw8gAm6HQuL4qnbhvl
-	3V6qT3ETttXViq6E5ZyRDIYxChs5GwPHsWTHbtNVW67zgU4/3k1pEKUYAbBNd3Qq
-	2scnAxM/L4uNOofMQ/qeBfxqRodiA710te/seFHfPtU6aB1QIN0JLhjmv4Mq+R5d
-	2dulOOJ4AqfWSoufO+bdRIAlHkTyladuFqFxktJdASuIs34AZ5vN8knCjGuqTXWh
-	DfBBI6YZr5tyWZy0UrbnqQjd/CbzM2F9btK69XrxlICIJR376sA2sVi00BXg4cw5
-	JIg5BO13UOlxoy2JROtFVUuTEsFR0BvKxFXGpu6SWvOLJcQb98ggG7Cf+/c7l+qL
-	eA==
-Received: (qmail 4158411 invoked from network); 5 Sep 2025 22:04:35 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 5 Sep 2025 22:04:35 +0200
-X-UD-Smtp-Session: l3s3148p1@CwbEWBM+JqsgAQnoAEvNAIPWyJz1dhzG
-Date: Fri, 5 Sep 2025 22:04:34 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-	linux-arm-kernel@lists.infradead.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>, Rob Herring <robh@kernel.org>,
-	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT
- DTO to Retronix R-Car V4H Sparrow Hawk
-Message-ID: <aLtCUoIPSFfYb-k7@shikoro>
-References: <20250905020149.257459-1-marek.vasut+renesas@mailbox.org>
- <aLrXzl38OUhTJgxP@shikoro>
- <273d5067-4c9d-4c8c-8633-7f2d7c708216@mailbox.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=buseqwcpY8+SMzNZYJTam6wNwvRe7RMY9DO4/nfEGsU/HMQ011mYzeD/5Gn11mf/lPNfJAtDV0MzSKp8iCFhVAbDaDi08Wx0n7PWY/FTJgIL0vHpcjkMb3kiPmd1OkBPDKp9KXLuyoG54j5pVfM4OhmKyMfXmK2pgaC5F9IhJac=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qci4YWjO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A0C53C4CEF1;
+	Fri,  5 Sep 2025 20:33:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757104386;
+	bh=7+4tc2DX6Np4dUdLk0Zy6oOY1gQEUFikJpLNx0nxG+k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qci4YWjOMckkPUqMCSj7Rfz/vQiLgNDyppbevOF5WgsBSYYOLOAqz/o/ypyWP57/q
+	 TvqgWRIOzxzA6B0PO16ZN6+9+EWHdK8vFLFkhJKiAbxo2ZCZT3fFMVZtm/GgG1e1Mf
+	 QLFuUM+JSIEvDeWWqc3XDO0g8iilrs+FOpqST+y7tyFknTmouW2uavqXrKgZJp9FMm
+	 sEpmT7NKe0CKqznLDessUxTNIgJHtEd5Cc1zHD1TUB16qknqnLmhCa9T6y9+CqZ6B8
+	 N0655fL7n8j8WqD7UR2wzhu0HlQdNj0uaa6xKU0vXMrzHtDPr0Yex+CUfvIDbgE3x2
+	 de1WpZvoxXpAQ==
+Date: Fri, 5 Sep 2025 15:33:05 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, imx@lists.linux.dev,
+	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: input: convert max11801-ts to yaml
+ format
+Message-ID: <175710438523.1268822.1694465252230993147.robh@kernel.org>
+References: <20250904200641.531897-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,55 +60,21 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <273d5067-4c9d-4c8c-8633-7f2d7c708216@mailbox.org>
+In-Reply-To: <20250904200641.531897-1-Frank.Li@nxp.com>
 
-Hi Marek,
 
-> > > + * r8a779g3-sparrow-hawk$ grep -H . /sys/class/hwmon/hwmon?/name
-> > > + * /sys/class/hwmon/hwmon0/name:sensor1_thermal
-> > > + * /sys/class/hwmon/hwmon1/name:sensor2_thermal
-> > > + * /sys/class/hwmon/hwmon2/name:sensor3_thermal
-> > > + * /sys/class/hwmon/hwmon3/name:sensor4_thermal
-> > > + * /sys/class/hwmon/hwmon4/name:pwmfan
-> > > + *                       ^      ^^^^^^
-> > 
-> > For me, the output looks different, though:
-> > 
-> > /sys/class/hwmon/hwmon0/name:pwmfan
-> > /sys/class/hwmon/hwmon1/name:sensor1_thermal
-> > /sys/class/hwmon/hwmon2/name:sensor2_thermal
-> > /sys/class/hwmon/hwmon3/name:sensor3_thermal
-> > /sys/class/hwmon/hwmon4/name:sensor4_thermal
-> > /sys/class/hwmon/hwmon5/name:pwmfan
-> > 
-> > hwmon0 is the Argon, hwmon5 the (unpopulated) on board connector.
-> > 
-> > I hope the naming is stable, but in any case, the docs need to be
-> > reworked a little, I guess?
+On Thu, 04 Sep 2025 16:06:37 -0400, Frank Li wrote:
+> Convert max11801-ts to yaml format.
 > 
-> The hwmon devices are allocated first come first served, so the list can
-> look different for you. You need to look up the fan you want to control, of
-> course. Look up by name is simplest, if there are more fans, it might be a
-> bit more involved to find the right one.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../input/touchscreen/max11801-ts.txt         | 17 -------
+>  .../input/touchscreen/maxim,max11801.yaml     | 46 +++++++++++++++++++
+>  2 files changed, 46 insertions(+), 17 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/touchscreen/max11801-ts.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/maxim,max11801.yaml
+> 
 
-Exactly. This is why I would suggest to drop the '^^^^^' line from
-above. We definitely have two pwmfans with the above dtso. So finding
-the right one needs a second look anyhow. And while I think it is quite
-likely that the list of hwmon devices will look the same (I don't see a
-race condition which would make hwmon0 and hwmon5 swap), I agree we
-shouldn't rely on it. I would also think that we then maybe should
-change
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-	echo 2 > /sys/class/hwmon/hwmon4/pwm1_enable
-
-to
-
-	echo 2 > /sys/class/hwmon/hwmon<X>/pwm1_enable
-
-or something? What do you think? Just suggestions, I am not really
-insisting. Well, maybe, about dropping the "^^^^" line ;)
-
-Happy hacking,
-
-   Wolfram
 
