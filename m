@@ -1,146 +1,175 @@
-Return-Path: <devicetree+bounces-213454-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213455-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C81B456EB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:52:34 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B365FB45705
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:58:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1675516C186
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:52:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A3945C2AAD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF27B34AB10;
-	Fri,  5 Sep 2025 11:52:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10AE28D8FD;
+	Fri,  5 Sep 2025 11:58:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="n/5wTmOJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="N9zkEjHr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f174.google.com (mail-pf1-f174.google.com [209.85.210.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8B53451C4;
-	Fri,  5 Sep 2025 11:52:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43B2B72615;
+	Fri,  5 Sep 2025 11:58:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757073130; cv=none; b=pyaqCYN2Sd4sVijMRk1Jvt5DJH5l83hG8WUrDYkHCtyfK5fRsv4jDK4crVq60ykmFymLmVLuqL++u5hzSsVyfdg2HLWGJ7YCVceySOZHYoun2PQz4NpN9o+XDsTdAA8ijZqNRmJnRD1OgTQzD8numOMzlhTRHsj5g3NFg0uYZ84=
+	t=1757073526; cv=none; b=LjB3V8J7MfnBTkndHsiHMyeR8ITTYf2jEADbFdAT9M3+MaaK0VYamHS50xDKJ6dcVeLR6RofN5acDna+FhkpvdJkOem1WqEhTYdybOQiBR7rEEdgXMH2WwTu7RReXAZokdvjPK/71BBBvY2fgV0kXixDTyotsQLhmhkrb37dQh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757073130; c=relaxed/simple;
-	bh=zIcPzz4+ZUV4cxLri5m6RzjiaeHPYd2Q0gnoN2653mA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=gsP4VTesYygaNog9KTEH8RenFsDnZGXgiBIDAcdQgv7iIPy+rZ6wv3V72cI1oQ7an9tmmmmPdCCvD8k75EgMFLIC152AJhpr7b19PY+m5i3Slps7KB3uGtAJKyGRp6jJHqU5VyF8XwlpxdSZc3T4dqo5kxnVT7l03LzWNr5+5no=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=n/5wTmOJ; arc=none smtp.client-ip=148.251.105.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1757073127;
-	bh=zIcPzz4+ZUV4cxLri5m6RzjiaeHPYd2Q0gnoN2653mA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=n/5wTmOJizcJeU4glq9D89n5nNLNFkbZpRFaDOEH34cQ50NB3U7c1CU0/O7JwaNTA
-	 3Tt+eCqbDpu5MR4mScsm9u8LtOv5L/G/8INm66hPFwxrp18SuBwA+BdeNhx2bIKJRo
-	 VV1EIuzzgtiQ6xmiHuutnDmFJ1TcHf7G1N9MBe+E0+qfRTB9tMNRo8uXIez0Mg0Slz
-	 0SUKxGqewoDknKev/GpFeDBSW2fsPpKhadKKBn0YIO/wRqhkc78QPzA9jiGd0ue0T9
-	 LGgxDyuSfyMbaHCd/k0Amvp0oE8PtmATzKMD7Wfm26Vjr5AyJNV/2Y+1Q4fwTvcWrx
-	 J1JXqIApbA5VQ==
-Received: from localhost-live.home (2a01cb0892F2D600c8F85cf092D4Af51.ipv6.abo.wanadoo.fr [IPv6:2a01:cb08:92f2:d600:c8f8:5cf0:92d4:af51])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: jmassot)
-	by bali.collaboradmins.com (Postfix) with ESMTPSA id 8FE6017E12BA;
-	Fri,  5 Sep 2025 13:52:06 +0200 (CEST)
-From: Julien Massot <julien.massot@collabora.com>
-Date: Fri, 05 Sep 2025 13:52:00 +0200
-Subject: [PATCH v3 3/3] arm64: dts: mediatek: mt8395-nio-12l: add support
- for blue and red LEDs
+	s=arc-20240116; t=1757073526; c=relaxed/simple;
+	bh=ncsLVatG2gU8Cn6EQVGjgzlpUBwb8hewdPM8dcwcU3E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=d9QHoSWtDOSnsBhjQQRuf1D8ECWTxtvJi3+c3wOc+3mLwBEchRtW4glJi7lXgi/75aR0F/6H1M0r4QuPxiyC/pfxym2kYx3AXK1U9JWnMRD2HmddtW34kTjuBJOkbDlk8idj9T2vRs0ZIE3gQkiaTQLSaZ79Ob0gO1i/iQxn7t8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=N9zkEjHr; arc=none smtp.client-ip=209.85.210.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f174.google.com with SMTP id d2e1a72fcca58-7725fb32e1bso2307178b3a.1;
+        Fri, 05 Sep 2025 04:58:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757073524; x=1757678324; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=j3bWvwmIfZ1QK2lN+pd29Nat7eqHMsah2RpM/tEgMvg=;
+        b=N9zkEjHr0F+ntyac+EyG6U7l6bJenL4GMdsgn4xaDdIAk16OWoea70cXAa2Ph1wjdT
+         FCh0h59akeo5QqZhCHFS+nv+gI15dxYuWFIvyBuD1qr8DrC6DWRMCscCvGDRs5vFsqpn
+         z80NemVDRszJedaq7QYPgwaZxtRJQTVpo6/mnxHYmzo9MYWQ0/BnLoFrP1I2+OK8jzOx
+         lT92d2tr+25SuHIGQA2IkSkiMjdB6HzUDIDvFc81Sjwdjg/TR57+ILcUZkye36d75ohd
+         v9wyO28niKFKI+uETRIXGMNn4NteJPM3XXWws38KJ4HHVvo3eE9S6VBD3Alvx47VQS1z
+         FnIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757073524; x=1757678324;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=j3bWvwmIfZ1QK2lN+pd29Nat7eqHMsah2RpM/tEgMvg=;
+        b=fXQ8oxrFhrdVF57dIyLEHaRUWzvNCs3Yq+ZSnKumxdoAgNaR6LpTVTIFB17hgRwH6d
+         fTfgI/cyM0fchzxw2To7eJq/Vsbs3xLttU7THFfKf9S1QEnx15dwjJ93uj2QPmD3QHWL
+         vjV4Cxnd3YRETiDwadD9b3g8W1WKBy+QjgDCOdkiGBEiIKqSJSv8FeF+bsFIFYVR7NT6
+         tryERX7Rw2BJ/UmaOTqGw5EBC+7OAirM6bLt4F0/SRYfbY0O04/uQEY7y0P5Ia4U66aK
+         zea1WwqBOtSoutZxyrLOmV5+W33ORmXk6qkY7OxmeNJrflhjMnWn4SSMsbjMf+GgSfuY
+         qJ2g==
+X-Forwarded-Encrypted: i=1; AJvYcCU8I/SlyAWXAsyPGwxS3R/hBmcmycsh0NCVmO3OjlAvfwDESbQidDetvQY8awLISaxGl9vKSmF7q4LXgUfD@vger.kernel.org, AJvYcCWtczFj/cMe8R/yNMUywLeS+mRM+CFSfRt/Ga0c9NpQ5vVV3k7wM/coaZ2PtY59Ajc+aektjyGl0XNM@vger.kernel.org
+X-Gm-Message-State: AOJu0Yywr5HmLkuRW5qQm7kfcCFBpxXIycIIV9razvWYOVCKSNuzi/5y
+	/aGWIeesOvBniYjepq2IuMDpDNAxGoiWH6qISlQZqtteGjpUrd+ho9n1
+X-Gm-Gg: ASbGncuhWQM7qr+XyRqn140GJdZnBwlnLDRnntS+YEUrH0vlrsiQ2yiObyk0yAdYE3e
+	so33GhmBw72qY3EU1mfJqukYTz9G7u8cTiOTKUS3OaZ1VTNqEDrIR9wtN6WI0AjAUJfPj6ucOao
+	UV8oh/vhSmBqszFrqZS6A1SQZ/YnsL9Z+jvyrwe7lMM58b5+7KYy2vsb7GlPplWxdp+cASjjrwJ
+	eiBG7yh/Dcyaifv+FpJN3vE1mVrFtxZEXIU7vDmNqqI5p8KGT7JW3kmAuT5QbiFtXAJsSwVqIgq
+	QDKpgxoFPcP5mdX3tS2Fuqdb2ti4gFMP+ZauH5Ms5CrK5nB/W5W3IWlfMsN01aZWJTowbaKBexq
+	W8U2Vj7u2Xh4lQ1G0ZH8Bq6bTA3skJd8=
+X-Google-Smtp-Source: AGHT+IFQen2mf5QG/q6Ic53cG1cbjqTJcglHGfWctLC+WYLJqugGhRSQG6HHJOMsIWHguIzFn2k88g==
+X-Received: by 2002:a05:6a00:21c9:b0:771:e179:343a with SMTP id d2e1a72fcca58-7723e3386afmr32227880b3a.17.1757073524442;
+        Fri, 05 Sep 2025 04:58:44 -0700 (PDT)
+Received: from rockpi-5b ([45.112.0.216])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-772396d2b97sm19633049b3a.67.2025.09.05.04.58.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Sep 2025 04:58:43 -0700 (PDT)
+From: Anand Moon <linux.amoon@gmail.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/Amlogic Meson SoC support),
+	linux-amlogic@lists.infradead.org (open list:ARM/Amlogic Meson SoC support),
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-kernel@vger.kernel.org (open list)
+Cc: Anand Moon <linux.amoon@gmail.com>
+Subject: [PATCH v3 00/11] Add cache information to Amlogic SoC
+Date: Fri,  5 Sep 2025 17:27:31 +0530
+Message-ID: <20250905115836.7549-1-linux.amoon@gmail.com>
+X-Mailer: git-send-email 2.50.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250905-radxa-nio-12-l-gpio-v3-3-40f11377fb55@collabora.com>
-References: <20250905-radxa-nio-12-l-gpio-v3-0-40f11377fb55@collabora.com>
-In-Reply-To: <20250905-radxa-nio-12-l-gpio-v3-0-40f11377fb55@collabora.com>
-To: kernel@collabora.com, Dmitry Torokhov <dmitry.torokhov@gmail.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, 
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
-Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- devicetree@vger.kernel.org, Julien Massot <julien.massot@collabora.com>
-X-Mailer: b4 0.14.2
+Content-Type: text/plain; charset=y
+Content-Transfer-Encoding: 8bit
 
-The Radxa NIO 12L board has an RGB LED, of which only red and blue
-are controllable.
+Most publicly available Amlogic datasheets mention that the CPU employs
+a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
+Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
+overall system performance.
 
-Red and blue LEDs: no need to choose, both are enabled.
+However, these documents typically omit details regarding the sizes of the
+L1 data cache, L1 instruction cache, and L2 cache.
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Julien Massot <julien.massot@collabora.com>
----
- .../boot/dts/mediatek/mt8395-radxa-nio-12l.dts     | 29 ++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+The patches in question align with the cache specifications provided by
+ARM TRM for the respective CPU cores.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-index fd596e2298285361ad7c2fb828feec598d75a73e..0ea36e7c960fc0b2607833d743c5e2e806864600 100644
---- a/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt8395-radxa-nio-12l.dts
-@@ -10,6 +10,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/input.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/leds/common.h>
- #include <dt-bindings/pinctrl/mt8195-pinfunc.h>
- #include <dt-bindings/regulator/mediatek,mt6360-regulator.h>
- #include <dt-bindings/spmi/spmi.h>
-@@ -73,6 +74,26 @@ button-volume-up {
- 		};
- 	};
- 
-+	gpio-leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&gpio_leds_pins>;
-+		pinctrl-names = "default";
-+
-+		/*
-+		 * This board has a RGB LED, of which only R and B
-+		 * are controllable.
-+		 */
-+		rgb-blue {
-+			color = <LED_COLOR_ID_BLUE>;
-+			gpios = <&pio 6 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			color = <LED_COLOR_ID_RED>;
-+			gpios = <&pio 7 GPIO_ACTIVE_HIGH>;
-+		};
-+	};
-+
- 	wifi_vreg: regulator-wifi-3v3-en {
- 		compatible = "regulator-fixed";
- 		regulator-name = "wifi_3v3_en";
-@@ -647,6 +668,14 @@ pins {
- 		};
- 	};
- 
-+	gpio_leds_pins: gpio-leds-pins {
-+		pins {
-+			pinmux = <PINMUX_GPIO6__FUNC_GPIO6>,
-+				 <PINMUX_GPIO7__FUNC_GPIO7>;
-+			output-low;
-+		};
-+	};
-+
- 	i2c2_pins: i2c2-pins {
- 		pins-bus {
- 			pinmux = <PINMUX_GPIO12__FUNC_SDA2>,
+ARM Cortex-A53
+L1: 32KB instruction + 32KB data cache
+L2: Unified 512KB cache
+L1 cache details, L2 cache details
 
+[1] https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System/About-the-L1-memory-system?lang=en
+[2] https://developer.arm.com/documentation/ddi0500/j/Level-2-Memory-System/About-the-L2-memory-system?lang=en
+
+ARM Cortex-A55
+Cache sizes are implementation-dependent; refer to ARM documentation for configuration options.
+
+[3] https://developer.arm.com/documentation/100442/0200/Functional-description/Introduction-to-the-Cortex-A55-core/Implementation-options
+
+ARM Cortex-A73 (as used in Amlogic S922X and T7)
+L1: Configurable, typically 64KB instruction + 64KB data
+L2: Unified cache, configurable up to 1MB or more
+L2 cache details,
+4× Cortex-A73 cores (up to 1.8GHz) with 1MB shared L2 cache
+2× Cortex-A53 cores with 256KB shared L2 cache
+
+[4] https://developer.arm.com/documentation/100048/0100/level-1-memory-system/about-the-l1-memory-system?lang=enL2
+[5] https://developer.arm.com/documentation/100048/0100/level-2-memory-system/about-the-l2-memory-system?lang=en
+[6] https://androidpctv.com/comparative-amlogic-s922x/
+
+Changes:
+v3: Drop the commit message as per Krzysztof feedback.
+v2: Modified the commit message and added cache information few more SoC.
+v1: https://lists.infradead.org/pipermail/linux-arm-kernel/2024-February/901497.html
+
+Thanks
+-Anand
+
+Anand Moon (11):
+  arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL
+    SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
+  arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
+  arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
+
+ arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi | 37 +++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 23 +++++++
+ arch/arm64/boot/dts/amlogic/amlogic-s7.dtsi | 36 ++++++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi | 74 +++++++++++++++++++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi   | 15 +++++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi  | 21 ++++++
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi | 27 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-g12b.dtsi | 62 +++++++++++++++--
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi   | 27 ++++++++
+ arch/arm64/boot/dts/amlogic/meson-gxm.dtsi  | 24 +++++++
+ arch/arm64/boot/dts/amlogic/meson-sm1.dtsi  | 27 ++++++++
+ 11 files changed, 366 insertions(+), 7 deletions(-)
+
+
+base-commit: d69eb204c255c35abd9e8cb621484e8074c75eaa
 -- 
-2.51.0
+2.50.1
 
 
