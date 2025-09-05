@@ -1,170 +1,183 @@
-Return-Path: <devicetree+bounces-213239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B989B44E3D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:50:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E8F2B44E53
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:55:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EBBD11C2096A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:50:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7CE88A00421
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:55:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 300C72D193B;
-	Fri,  5 Sep 2025 06:50:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A658F2D2485;
+	Fri,  5 Sep 2025 06:55:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="RN/Zhm1f"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BxoI3MXK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7DD1D9663
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 06:50:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D916A2C3250;
+	Fri,  5 Sep 2025 06:55:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757055027; cv=none; b=UopFDtpJ9hdL1sS2zMAb3GjD7k0j79/jkiTzhZ9PSqXrxVmI4P+SZxr7ig2y3Qu/20ixfSG9kuitOe7UzRGYmEAtSX6nNJtXam9hA0zVcjWc5JsqjYUwHGMfPWC/UNR4PFeo0xx535TMs+Q10vZJXw9zTx0zs9dzWnpZPUCUGZ4=
+	t=1757055328; cv=none; b=I+Sj/oDpjkrVsFyLCkUB+DfmhzI31Z1r1WPU3mZd7X4rNODYi9GCAQLXQEZV7/GJaGEZ8YUxoTjUc8QabgLzmqwFbRSPYX9zzx/K+5P58Jxd3iOypNWjVAMZ7HNUzTwz+WzjdhVCAryByOwj699Q/R/MfdAdXkIVfLvHb6EHX98=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757055027; c=relaxed/simple;
-	bh=Y3vaYaLxaSBtwlXphX5LeCK51R2e4El29Banad48jA0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gLuLC54cOoV7Cxz+oxn6k6rAw4pFL1zsCt7yqQODhvknFTnMc++GFxE+a9+vITIB4rh83DzLw0Vtc7E2e1ueq2CrPoZQZ0Sy4Z68r1SS25uITYMFtrcL7VL8kbcnmRPZHYW2C6I0MNFz8ADJB7pTWMmGDNfxShZvT2Ot3Rg1CEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=RN/Zhm1f; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1757055024;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=PzkSnPUjwi+M04mIJFUTah0Llj9pDwzPR0FvY23x6pY=;
-	b=RN/Zhm1f8ZZ3Jf9lHLW8m7j54mfP9QXFIpkR46fH40++iLs+lsaETpHNjpG06iKG4VOFWR
-	aT2UDmGIlBkvn3vaFR2S+dEq1AoHqCXncgByJYCW1sDXAgepU2BXJbnCunqrPdeeCFvX+C
-	GuDp2cmfFusLoW0kC+ZARGzMd0DxR3A=
-Received: from mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-54-186-198-63.us-west-2.compute.amazonaws.com [54.186.198.63]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-7-fN3M7AV3P9KsU3yFI72dPg-1; Fri,
- 05 Sep 2025 02:50:14 -0400
-X-MC-Unique: fN3M7AV3P9KsU3yFI72dPg-1
-X-Mimecast-MFC-AGG-ID: fN3M7AV3P9KsU3yFI72dPg_1757055012
-Received: from mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.93])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-04.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 520EA19560AE;
-	Fri,  5 Sep 2025 06:50:12 +0000 (UTC)
-Received: from [10.45.224.74] (unknown [10.45.224.74])
-	by mx-prod-int-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTP id 0E6A9180044F;
-	Fri,  5 Sep 2025 06:50:07 +0000 (UTC)
-Message-ID: <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
-Date: Fri, 5 Sep 2025 08:50:06 +0200
+	s=arc-20240116; t=1757055328; c=relaxed/simple;
+	bh=x7s9l/pbx86wShxLXuwb3Wn6Ba1g6VdMu2rOEHVva90=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=bXShy8n+nya4PJiOwNFtXYGavy+uNuz234zxFK+YA51vPTTSFhfI/K2KnWES3nGfS7MAMXlGHfu+RUstrr5ruW0+J9Pcz4IsnSDIPkhhBPPgb6pkCDQMuC76m9qpGh8kFFzOs8PzuJeHuhrYPIyj2OZVQymCUUlopINJOletZFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BxoI3MXK; arc=none smtp.client-ip=209.85.218.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-b04770a25f2so267645266b.2;
+        Thu, 04 Sep 2025 23:55:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757055325; x=1757660125; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ps2alm7Qst/CrQIQ4Z48mSSun508P/+rPslHtvt6Zw8=;
+        b=BxoI3MXKuLL6Cwwj31sgh05VArSmaAni0uBxYRPKFBlFxgphKZYQ0Lo2hoagPS70AF
+         J3C4e50IJB0QrAjiZL5y46XnAFc25nR0D63Gv4OU34KN9XcTUFmfO/Y656FAKV45tE9F
+         JWrF8cDJ+SAXM5JfqVFoMNNHxP90xbfgZfr0aPHHNZ+c6h35xszYNz2vrn/ww59WhncA
+         FCevY7p4xS+JhDQVRoqt6RGE0PbgigrdI7Ne3ecsc7rhiXMDiWpAjeOfq+/qqT1qOQVB
+         geCUc17dpMGWdvWKUtZRgDOZWgLLjLK+iwxuXHtwoxYFKwil7erP6lszMabxmyUJ8rnS
+         XUpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757055325; x=1757660125;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ps2alm7Qst/CrQIQ4Z48mSSun508P/+rPslHtvt6Zw8=;
+        b=uG+I4wHVd3EfkPkWUOA+z53sR7Y9lymSOZN20Ytv/VZx1pK8DWsdD/Q7EBs7w3oHve
+         g/Z+yc7jCMhBioy95Evxnd7TbEEmIQKdoxZ1jmAN0IOqLVQhvnspM4eYKBjHRezXjGYi
+         cmGLXBeNJQy77YbBHWZmKzAFNJV1/cbXG/J4WETdzy0UWXFIpfr5U/Ntd5SNvdak9MfS
+         iLMXlZhqU73Pv/UIsh35vwJGYV/lPfYoQQwO6ATSTA02pFimkWL0SB3J+1mrNxqIklE5
+         a3utExC9VSZno5/wu8TDtYKhKWZhcWnr8k1tww0q1x90jAK6jszI/gTriBXfRDA0jEpM
+         lP4w==
+X-Forwarded-Encrypted: i=1; AJvYcCU9B/FDIinWiT3XgvcnB6lHaCPNi7fXxJPZC9urL5XVn3E1MxyH9Pk5ofhT3FG7MgPyXTp4thM0c6PrX/nt@vger.kernel.org, AJvYcCV+CUjCXzaRlN/x40m4OMOpAXsELUIL0pKVHujPhKVrGiVrim4EdCu496d2Q7dIwAWRqTZcWkRYnyhN@vger.kernel.org, AJvYcCVgY5VnjV/HsgxdgEYKkbrzfBXRA0IWrkEgqadguFjkLM1CtRSp/jzisyoO9XnxXWAOy6SYeCYP+UcF4A==@vger.kernel.org, AJvYcCWMkvtaIFfekdpulYteIkkBQhfz2V+YROgT7OV9CjeebCpSACrVvw1nb9iAZ2Bm91tK+GkVcuQFLTPo@vger.kernel.org
+X-Gm-Message-State: AOJu0YzXRTYOMF1x+02EIBpdXzwszUAbS6K2UlbprcBSesjhlBZc6n8Z
+	ZRgHmhptt3I3soVTXT69WZteVhk/tmWN0+3pKmozzYm7EurZnci2SzmjNxdYoJB3UMvJ1I4e9A3
+	ZJRMWnp1JIXYbpCSRYm32/0t3Xyjypf4=
+X-Gm-Gg: ASbGnctvxoGlm1t/3nZDZCMm8fuYS8KKSXZ0TwxPvahgyFpG1H/zqHsgfR4rueOLtDn
+	Kqo95eXE9etJe6F7cPcbLbTAS8xpeEAtOolRTa6ok9o3rZK/YxvOGAKCuDKjNagFZj3GBBg2PQY
+	cPzI129LNLlnn5w0vo8FUigiXyzuOXemj78UvbLizHuhc0GXDGFYqlDT3QBNyorHrKVBJbpeCc7
+	9z02qM=
+X-Google-Smtp-Source: AGHT+IHBr0uSK+I1LWjUDNQt/UogN8+LrAe68oPCGVClcBJ8H1wuyAECDIC+LspA1jjMHznaIrllVQvaxS5IJ7LBgHM=
+X-Received: by 2002:a17:907:3d55:b0:afe:9e58:754d with SMTP id
+ a640c23a62f3a-b01dda8645fmr2093915266b.64.1757055324922; Thu, 04 Sep 2025
+ 23:55:24 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-To: Rob Herring <robh@kernel.org>
-Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com,
- Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>,
- Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>,
- Jiri Pirko <jiri@resnulli.us>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Prathosh Satish <Prathosh.Satish@microchip.com>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-References: <20250815144736.1438060-1-ivecera@redhat.com>
- <20250820211350.GA1072343-robh@kernel.org>
- <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com>
- <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
-Content-Language: en-US
-From: Ivan Vecera <ivecera@redhat.com>
-In-Reply-To: <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Scanned-By: MIMEDefang 3.4.1 on 10.30.177.93
+References: <cover.1757053456.git.mazziesaccount@gmail.com> <3cc1faffcb4f71f0755b6192f193acecd36bea67.1757053456.git.mazziesaccount@gmail.com>
+In-Reply-To: <3cc1faffcb4f71f0755b6192f193acecd36bea67.1757053456.git.mazziesaccount@gmail.com>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Fri, 5 Sep 2025 09:54:48 +0300
+X-Gm-Features: Ac12FXz_6fa_cskueRP-AtbVdH-3UvVwuIvc3IqszVtR5agTuNjCBuimOxdLEwg
+Message-ID: <CAHp75VdaAH+1mh16KWoYtYFMV+_ec8x9YipeD3K8g6yQr-2VjA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, Jonathan Cameron <jic23@kernel.org>, 
+	David Lechner <dlechner@baylibre.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
+	Marcelo Schmitt <marcelo.schmitt@analog.com>, 
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
+	Tobias Sperling <tobias.sperling@softing.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
+	Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>, 
+	Ramona Alexandra Nechita <ramona.nechita@analog.com>, Hans de Goede <hansg@kernel.org>, 
+	Herve Codina <herve.codina@bootlin.com>, Alisa-Dariana Roman <alisadariana@gmail.com>, 
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Fri, Sep 5, 2025 at 9:42=E2=80=AFAM Matti Vaittinen <mazziesaccount@gmai=
+l.com> wrote:
+>
+> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
+> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+>
+> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
+> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
+> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+>
+> The IC does also support CRC but it is not implemented in the driver.
 
+...
 
-On 05. 09. 25 12:06 dop., Rob Herring wrote:
-> On Fri, Aug 29, 2025 at 8:29 AM Ivan Vecera <ivecera@redhat.com> wrote:
->> ...
->>
->> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
->> net/network-class.yaml ? If so, yes, it would be possible, and the way
->> I look at it now, it would probably be better. The DPLL driver can
->> enumerate all devices across the system that has this specific property
->> and check its value.
-> 
-> Yes. Or into ethernet-controller.yaml. Is a DPLL used with wifi,
-> bluetooth, etc.?
+> +config ROHM_BD79112
+> +       tristate "Rohm BD79112 ADC driver"
+> +       depends on I2C && GPIOLIB
 
-AFAIK no... ethernet-controller makes sense.
+Still I2C?
 
->>
->> See the proposal below...
->>
->> Thanks,
->> Ivan
->>
->> ---
->>    Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
->>    Documentation/devicetree/bindings/net/network-class.yaml | 7 +++++++
->>    2 files changed, 13 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> index fb8d7a9a3693f..560351df1bec3 100644
->> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
->> @@ -27,6 +27,12 @@ properties:
->>      "#size-cells":
->>        const: 0
->>
->> +  "#dpll-cells":
->> +    description: |
->> +      Number of cells in a dpll specifier. The cell specifies the index
->> +      of the channel within the DPLL device.
->> +    const: 1
-> 
-> If it is 1 for everyone, then you don't need a property for it. The
-> question is whether it would need to vary. Perhaps some configuration
-> flags/info might be needed? Connection type or frequency looking at
-> the existing configuration setting?
+> +       select REGMAP_SPI
+> +       select IIO_ADC_HELPER
+> +       help
+> +         Say yes here to build support for the ROHM BD79112 ADC. The
+> +         ROHM BD79112 is a 12-bit, 32-channel, SAR ADC, which analog
 
-Connection type maybe... What I am trying to do is define a relationship
-between the network controller and the DPLL device, which together form
-a single entity from a use-case perspective (e.g., Ethernet uses an
-external DPLL device either to synchronize the recovered clock or to
-provide a SyncE signal synchronized with an external 1PPS source).
+which --> where
 
-Yesterday I was considering the implementation from the DPLL driver's
-perspective and encountered a problem when the relation is defined from
-the Ethernet controller's perspective. In that case, it would be
-necessary to enumerate all devices that contain a “dpll” property whose
-value references this DPLL device.
+> +         inputs can also be used for GPIO.
 
-This approach seems quite complicated, as it would require searching
-through all buses, all connected devices, and checking each fwnode for a
-“dpll” property containing the given reference. I don’t think this would
-be the right solution.
+...
 
-I then came across graph bindings and ACPI graph extensions, which are
-widely used in the media and DRM subsystems to define relations between
-devices. Would this be an appropriate way to define a binding between an
-Ethernet controller and a DPLL device?
+> +/*
+> + * The data-sheet explains register I/O communication as follows:
+> + *
+> + * Read, two 16-bit sequences separated by CSB:
+> + * MOSI:
+> + * SCK:        | 1 | 2 | 3   | 4      | 5 .. 8 | 9 .. 16 |
+> + * data:| 0 | 0 |IOSET| RW (1) | ADDR   | 8'b0    |
+> + *
+> + * MISO:
+> + * SCK:        | 1 .. 8 | 9 .. 16 |
+> + * data:| 8'b0   | data    |
+> + *
+> + * Note, CSB is shown to be released between writing the address (MOSI) =
+and
+> + * reading the register data (MISO).
+> + *
+> + * Write, single 16-bit sequence:
+> + * MOSI:
+> + * SCK:        | 1 | 2 | 3   | 4     | 5 .. 8 |
+> + * data:| 0 | 0 |IOSET| RW(0) | ADDR   |
+> + *
+> + * MISO:
+> + * SCK:        | 1 .. 8 |
+> + * data:| data   |
+> + */
 
-If so, what would such a binding roughly look like? I’m not very
-experienced in this area, so I would appreciate any guidance.
+What I meant in previous reviews is that the | are not aligned (in the
+same columns). Is it on purpose? If so, I can't read that as I don't
+understand the meaning of | in each case. For example, the data starts
+with 0, followed by 0, and the latter one is when SCL is #1? Okay, but
+how to read IOSET that overlaps 2 SCK cycles and is unaligned with
+times... I'm really quite confused by these charts.
 
-If not, wouldn’t it be better to define the relation from the DPLL
-device to the network controller, as originally proposed?
+...
 
-Thanks,
-Ivan
+> +        * Ouch. Seems the pin is ADC input - shouldn't happen as changin=
+g mux
+> +        * at runtime is not supported and non GPIO pins should be invali=
+dated
+> +        * by the valid_mask at probe. Maybe someone wrote register bypas=
+sing
 
+wrote a
+
+> +        * the driver?
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
