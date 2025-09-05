@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-213300-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213301-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23BCDB450D3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:04:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 77F11B450E2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:06:39 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BD89174DE5
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:04:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 115281896BB9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:05:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 490BB2FAC12;
-	Fri,  5 Sep 2025 08:04:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AEB2FFDFB;
+	Fri,  5 Sep 2025 08:04:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bGzL0syZ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Btp6hzfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f176.google.com (mail-lj1-f176.google.com [209.85.208.176])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D9D2FDC24
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:04:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 009BE2FD1DC
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 08:04:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757059453; cv=none; b=JW8oyno6NmvtaFqNELOv7Lx3yfIKGB4Ejbowg4i1ZOAU1fW+itRtJpW59z1rc16yRFcJ2P/yhgaOz3mP6JQTszD5YUyySQBOi2GRmLyZpWVW8CA9LXb56wR4jtW/tB3ma2923kxMZySEfiAXV1ZHCzO4tIkuRz1S2iTSVX/x0iI=
+	t=1757059486; cv=none; b=HdeMUOdodpx7X9WnjqJIfvHRxAhN05hfxwZFhooJOkcBK0RecP0AedCH0toh7XHZZFYasvzRNQQQVTBHKIkFBDFzxpNTgnteYkwWCghUcOFSmuYSYJ/HMop1JBu1UgVRaD5V+x6hSnXQEhm01erGBrrtgwHB6Y5r3Cs6cgAJ86A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757059453; c=relaxed/simple;
-	bh=gPfnz/o3iNaHytOqe7truOjcGer8WrwACGpoW942gks=;
+	s=arc-20240116; t=1757059486; c=relaxed/simple;
+	bh=3J4+g2V4sWrtHtemeApia0D1CwSCabpiECH2Gc7jqHs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=npTJng+uMB0TlBr69f2mR5NWWExlM9xuNOXGng86rFu/9LPNh3r7yj30tmfxtmL88ZD+juSv/GB4/EG/E8NhL/D074vUdtkIedujGvbwT0TfGHgrxppyPs3i0ZSOl8rZhn2084Sh3GtKejcpuNPvT+vZDrZzF2XQfBHX6pnORfw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bGzL0syZ; arc=none smtp.client-ip=209.85.208.176
+	 To:Cc:Content-Type; b=j0uuVpJX/QhPrzcUTpE+Drp1yK58LQjV5rHERap6A1RhkptjjUacEjsM3KBsDp68qdf3mbQNJafZeUbUipXreanKh6lHHHjuLePKhT+6ftjV/owoKqAYfX9ktnzNU371oCg8LnspbPawndFD0AknDEbOeYAUhg2hFI/086uBwIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Btp6hzfz; arc=none smtp.client-ip=209.85.208.175
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-lj1-f176.google.com with SMTP id 38308e7fff4ca-337f6cdaf2cso14391481fa.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 01:04:10 -0700 (PDT)
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-336c86796c0so15528041fa.2
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 01:04:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1757059449; x=1757664249; darn=vger.kernel.org;
+        d=chromium.org; s=google; t=1757059483; x=1757664283; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=gPfnz/o3iNaHytOqe7truOjcGer8WrwACGpoW942gks=;
-        b=bGzL0syZP9Tuw2/0AtF/bmdxZuSWwd+gXiqLXNd/9xOGMYNV9rMpUzhjtCVFNo2ZY3
-         l78vFVU1pG0AWRrg7iWPp+lGTzRO+dzfsweZ5ZBqPaCH8FYiXGO26yAh+lzo2QBqvwa0
-         ykCa59A+0TRJc6P+jYJO2uEWqA4ApH+alnp2U=
+        bh=3J4+g2V4sWrtHtemeApia0D1CwSCabpiECH2Gc7jqHs=;
+        b=Btp6hzfz4fIMQsarTFsMnLAfWVos9BkEPbBYhpuEYLDx26tordIN89lnk28EowcLDu
+         Q0jXZGTXpVQtlsKCOFau9WlFu41K8TSr21Z6X2DbsH/kUm65eyg4FxoMMUt5ZSwZDWfn
+         wns9vAoveW4954lfmyROdyO4NHh+xajzi7N+o=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757059449; x=1757664249;
+        d=1e100.net; s=20230601; t=1757059483; x=1757664283;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=gPfnz/o3iNaHytOqe7truOjcGer8WrwACGpoW942gks=;
-        b=ta5EGoC3YyHKFORKJ4m2iZfGd2MBR1Hho+BovjYHfAEq/3sjCn3TkJehqqfrEuwzi+
-         qx1KE4pgJd2mwXPRIJ8TmFClXL638CEZ6YGvmtu43grTFTf/ByxPS0dS2fTHCMd+/Tzj
-         zoiVobbixDTQgCIOVI9YDdY7RRBjSimq/IMo1eSjgtLoRljVKE0p4q9kP74X4eg4fSm9
-         yk/oYNyEw7VttdQpcUVOpuJJys1k4czUwc02pzrNtPwnvuqq9r5WdVHIEFy6ByjqQGjt
-         ZEsOpzsyfDJoZ3l0OE61IgBpy+Nm0gMSC3xGQleGLGIlTAB+mffwB/BaUccP5bfBf3Cc
-         sN9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWxORp+QBL/86p7Hf99+1LAdacME/hoC797Ptct8LhD5KJKtq0H7Wb0lpIT+zxc0zlT8/AqdUE0HJ8w@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4HyH2zOlZ6ZSij9UJ6LTkdPn2ta8r7sPD1zGGzIoR61nWqPUz
-	0UiC7BFtFpu6CmH8kMUgv5KOsjxjM9O9LwHLmKYYdKAVCa6Pai0IRk7RyVonrcVIOCgSkmEFYra
-	zRG82Ef5bNYJLvYylQLDWoBKWM5XDk4+E++LdYC8O
-X-Gm-Gg: ASbGncv4s9JF6WIbvMU/v/aqtPmcaIrwVNBiC6E/+mTHM81orncPVoSE6MqRGxk93o7
-	nr4xGnUsFJjwOfg9lkoWg+tgYtWyEbKUO/qugph/reN/8UvRaIvS6Qal+4xareRv0vVYDx2a0RA
-	14+685ByfI0d61EOW2A37re+BwEy1AuJ3VeNk3ftMwHmWq/0A0O6A3toWOlyWrxijPowfuV/LKB
-	W2v1mcPK2kwfMdK2U3pwB1149XRxfhGAgMlGQ==
-X-Google-Smtp-Source: AGHT+IHT043Y/TruREpGKZ+/QRl4lPJ5bvgN3xV40J/rToLhwUaxJ8c7vgtH50x+X4YlPrhw0jN/shKQPrGCvcazPsI=
-X-Received: by 2002:a05:651c:1a0c:b0:339:1b58:b199 with SMTP id
- 38308e7fff4ca-3391b58bbc2mr3260661fa.36.1757059449029; Fri, 05 Sep 2025
- 01:04:09 -0700 (PDT)
+        bh=3J4+g2V4sWrtHtemeApia0D1CwSCabpiECH2Gc7jqHs=;
+        b=fc2x/X0nSVg1V2PxhF/Vp0XhzQwg7P3bSwhpu/2MpcdePfQddPq1OpNlHlevQnmPf4
+         zc5GxdK/SmrS32X7qKIFQyELx0sxvvtV7Xr/AM5/NBztgm4oiCsW1uWbqHkiw4fJMMJ8
+         lapof27HrXgondIP0D5av0OmJTZrXRGhbgp+zp/zBhmV9/jwW6aCNwaX0KvvSajV07Tf
+         MwCqOP6rz3pr3eZq7rpalPycEFdx3JFSnom+LOmn0+l9RqfbtPGopETKHg4F30rfwdax
+         8FBk70kWmHTis7z/vHGOrCVKA1E7xFjGc3boEhTAfIm4NZOfBMGgWC1o79PU0bx31Ehg
+         TGnw==
+X-Forwarded-Encrypted: i=1; AJvYcCWW8t+dvo8rqW4vMMo7m2INfuiWOX3lc7x0woF6GT6STvV2i6ZgPhY7huAdtbNnn460vm9ZiIkQRdPX@vger.kernel.org
+X-Gm-Message-State: AOJu0YxLTzU5ubK0vQeDKFtWGkuCS+sNpKIX5ZWOYbuTDTmKkpl2lrG0
+	vnFvvtId5xGu2b2aBCzFhin1O2D78V5o2q+kbG570Rt4j6Daoz1fNywTidMOcL9HXZy72em4sSV
+	uAOM9qZWFuGdUaoXS7t6qJAePXFlg+sD2I9b1R0zo
+X-Gm-Gg: ASbGncuFUjrNzK30hYj70PM2MYIkFglV5WP+lnydLPdr5ORrQVFQWgpaHe1PfwL+55E
+	7zbQJgL7l94s6NwfilTXNM40NNyhtsuNzmmn/WLpX60Sqds44Shw7SJ6B1LQdDyL3j6lVU+LGKJ
+	m/jmmBnjyE69Is2qbCADk3+tZolbrfYvBs5M11Q+s7fitpOy4p71ZBAgKsoMM5UwGUYK+YraA9v
+	smhcJcVJFB1jgB7iMQJkweR8hat3Q3O6UTTPCYu3uqprYyZ
+X-Google-Smtp-Source: AGHT+IFYc+QgjrNQcnNX0OlLPGUtYQKqYiLrIJbM/loEuXaaE2NFn67DssV7d5/BEdo89ntnizvXLq3xRVbqrk9nj5U=
+X-Received: by 2002:a05:651c:2106:b0:336:e176:cd3c with SMTP id
+ 38308e7fff4ca-336e176d479mr52475301fa.38.1757059483084; Fri, 05 Sep 2025
+ 01:04:43 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250829091913.131528-1-laura.nao@collabora.com> <20250829091913.131528-23-laura.nao@collabora.com>
-In-Reply-To: <20250829091913.131528-23-laura.nao@collabora.com>
+References: <20250829091913.131528-1-laura.nao@collabora.com> <20250829091913.131528-20-laura.nao@collabora.com>
+In-Reply-To: <20250829091913.131528-20-laura.nao@collabora.com>
 From: Chen-Yu Tsai <wenst@chromium.org>
-Date: Fri, 5 Sep 2025 16:03:58 +0800
-X-Gm-Features: Ac12FXzqjLPg1snoakkIHpjZL3gjVDvpLkfu1BDJJWXmMZBGn3rIna_U1tSPpG8
-Message-ID: <CAGXv+5GreKJSz76EiHYzX-ByfyxuYNYB6OyBJk9ZhsKCapPjRA@mail.gmail.com>
-Subject: Re: [PATCH v5 22/27] clk: mediatek: Add MT8196 disp1 clock support
+Date: Fri, 5 Sep 2025 16:04:32 +0800
+X-Gm-Features: Ac12FXyKW6bhjZsI-yGgtsh7BXxxyLqh5BQG4iFyVSU7pOJ_sKap2vxzQ5qbqlw
+Message-ID: <CAGXv+5F0pWn5+iE+3pgpZ+GMoXDV-eoEx4zKTfsmV5cpa-WC5Q@mail.gmail.com>
+Subject: Re: [PATCH v5 19/27] clk: mediatek: Add MT8196 mdpsys clock support
 To: Laura Nao <laura.nao@collabora.com>
 Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
 	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
@@ -94,10 +94,8 @@ Content-Transfer-Encoding: quoted-printable
 On Fri, Aug 29, 2025 at 5:21=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
  wrote:
 >
-> Add support for the MT8196 disp1 clock controller, which provides clock
-> gate control for the display system. It is integrated with the mtk-mmsys
-> driver, which registers the disp1 clock driver via
-> platform_device_register_data().
+> Add support for the MT8196 mdpsys clock controller, which provides clock
+> gate control for MDP.
 >
 > Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
