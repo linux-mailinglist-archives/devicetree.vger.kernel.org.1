@@ -1,233 +1,174 @@
-Return-Path: <devicetree+bounces-213571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C692B45C5A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:22:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EE4BB45C6E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:24:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC408188CC1E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:20:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B017E18894C2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:24:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8952031B81B;
-	Fri,  5 Sep 2025 15:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB9523BF91;
+	Fri,  5 Sep 2025 15:24:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qjmV76Of"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cU1LdeyZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D3EA23D7F4;
-	Fri,  5 Sep 2025 15:19:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7B8E1F418F;
+	Fri,  5 Sep 2025 15:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757085591; cv=none; b=AzaQAkZOqLxScHXnF/iyaNt4MpvSdRlLs967sVQ5M9L8C5fLiuhj/3Th/NBv36wm9Aau2m5DBzhlZIZt+/83qGvcQuqIc3kBBjeuvARGQF1rfWKusS3mRFY25jHQcsqfmLJQqeBm3vfwWzCVo9f/W6uhWYa8VUS+e8Oju7mrK4I=
+	t=1757085846; cv=none; b=fs708CsDnWukVVLBC53GOuDzJe4yUMN+JZw9bzrMt+f04Q764tj5lv0TKcJgN5rJ8xiYATx5RtNfb8oaGw3qOS6T0uoe45ISgbuaYxEGR5/sltS/WNp3MmpOfY5fGrQMfSzprddxZFLa8xDk6mrtYgIxaSD/wuDogZrCtnXDB4o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757085591; c=relaxed/simple;
-	bh=y5FWRAJBx3f/xXiDDwXlkp5hhXm0zlSYbUucIyHKar4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=bwv2Pa74CAPYkbydtRY9so/2ZmPeF1W8hJfU8m2Ovz9F8nXtjighpEEsZXcMhbIpNSDSZReOJr4CSao0calxgNOYIhbHUnTZWMd3UKTBbmrjTKU3ydc1Cho5gEueJZRh81a5YdWpR3bT+kQcKeopbpeV3ho0G014EQFzPjUg+3w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qjmV76Of; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 002FCC4CEFA;
-	Fri,  5 Sep 2025 15:19:50 +0000 (UTC)
+	s=arc-20240116; t=1757085846; c=relaxed/simple;
+	bh=/sijmUFm8G1WuzkQRTlfJtp+FcF4TiggUXmpwxx+kZ4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Sx1LZqYqjtqAckN2B2Ch3OpjKiim3Xh7lnRhlC2Zyd1UJbyrmxIqDAu82nvn+0X3ulu3dSXJ+v515nCq5U96JrLIllk2N6y1wfiaIyvA/P7wHCE6m8IpJIePWYYK9vKhArsDGN3lRmx6LNPCbKjTRMJbPQNxp9z8qfhXhiIyZSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cU1LdeyZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53D72C4CEF1;
+	Fri,  5 Sep 2025 15:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757085591;
-	bh=y5FWRAJBx3f/xXiDDwXlkp5hhXm0zlSYbUucIyHKar4=;
-	h=References:In-Reply-To:Reply-To:From:Date:Subject:To:Cc:From;
-	b=qjmV76OfZ4aFiVBxWMcc28e9cu8DpRCFGWaTUiodlQ//bhKP2NpP8O0Tzl/+ehHti
-	 HN/v1y1hL0NQtYQF7jLa4leC1Mof5lL0SeAMqPyfqbk3eBiLc8ur9JxhIEMZl1RItX
-	 sHVJNKr2Krivkm+B/kvc3ILpCGPRVj52q2uB2UxBU7iTVQus2G1TNOH8iQtVM+Mw5p
-	 8wz12P04C0GeEW74/nNScQxjKHJbygQOZHGgo16bNoseCCZGefUSQ8ODGo7CGnnAoz
-	 dlBoYkatZqGqP2w4Clvgn3XZYSxYiUlAFG0CHWxPsroZEeVQ12tpFbFO75BiYO38uQ
-	 dlxfSDXBKx5qg==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-33730e1cda7so21639001fa.3;
-        Fri, 05 Sep 2025 08:19:50 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVoXOWPJLIh4IiCRURx6d0GUGlZZO9UtLdTEY9DdcLB+pFl6gYG3dC5kguBEwtwsp6/SFfVf9ieROYcXq5c@vger.kernel.org, AJvYcCWM/+m5S5OKA4567K3GU6fiO6qM7qCD6/8A6sNv8s3MSGLab2dA9SET1Evdp+kXz9QIryy8x9NT1k7E@vger.kernel.org, AJvYcCWouPurGDfGpHgzjgeQxArp4DbRejJNjWc9vT9QidUCup8MBauGVTBHyfpjQAhRIVU4WIPspG8zsZQi@vger.kernel.org
-X-Gm-Message-State: AOJu0Yws0YMszrLogTgKzkey2/Bd6u1RfFDWmJnXD5Osrp36Spqljc6J
-	6qu3SBjygkvbGM5KFuSlFb+Dixdn/HElnuiZrjqhHJ818/1IsMmwWs2TBBxhUSKpNycbWEZsYbk
-	NpqF8PQg5zP6SeG4EoVPxKmoYNONJi58=
-X-Google-Smtp-Source: AGHT+IGw5JL+ddMtdE3BQh71M7lhvXq9J8ApGrLUEWl3SKfWxfjfiN2RBYCBDlu9iDRVCU4h8u56mOEq1l3VDv70LW8=
-X-Received: by 2002:a2e:a7ca:0:b0:338:1286:bc77 with SMTP id
- 38308e7fff4ca-3381286c3cfmr19018051fa.42.1757085589283; Fri, 05 Sep 2025
- 08:19:49 -0700 (PDT)
+	s=k20201202; t=1757085845;
+	bh=/sijmUFm8G1WuzkQRTlfJtp+FcF4TiggUXmpwxx+kZ4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cU1LdeyZHfSl8xPbV0PfPKf2H6X03lfzr9p7BGn64aj3TO3vWSpgavdh0jZ0TYYcG
+	 7W8gTd9zWsGyUo+YnUjuqCLYHdEMzuvldIsOtHSqI9hK4RNUbDXBZBILkQqZmLs9ra
+	 LZDDogWSLKkB7CffL+LJE5IVzia1XjoSP36mbjB+rL7qd41CN34KZACl730DSxPeJ2
+	 BBPGQC/ZZGN8/J0o49JB6K/ogxFJjkbi4gCoNGulbwRuW2Zx7McAVD5/qZTtYaVIa2
+	 n4JnTnS6BxBlm1URVpSqFgAry6btlZSt8UhIZue/BewKUO4wKOGYwzEOjMhoco4ABy
+	 6enOQBwivzAiw==
+Date: Fri, 5 Sep 2025 10:24:04 -0500
+From: Rob Herring <robh@kernel.org>
+To: Aleksandrs Vinarskis <alex@vinarskis.com>
+Cc: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+	Pavel Machek <pavel@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+	Daniel Thompson <danielt@kernel.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+	Jacopo Mondi <jacopo@jmondi.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: leds: commonize leds property
+Message-ID: <20250905152404.GB953718-robh@kernel.org>
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com>
+ <20250905-leds-v2-2-ed8f66f56da8@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250830170901.1996227-1-wens@kernel.org> <20250830170901.1996227-5-wens@kernel.org>
- <20250905161418.30562637@donnerap>
-In-Reply-To: <20250905161418.30562637@donnerap>
-Reply-To: wens@kernel.org
-From: Chen-Yu Tsai <wens@kernel.org>
-Date: Fri, 5 Sep 2025 23:19:34 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64DmDXaduf7RrYynb+v7TCFA+ni6xPHfyCrwduYW0g=HA@mail.gmail.com>
-X-Gm-Features: Ac12FXz4TVFzN3HD-VOVeq3SjMBNL_nE1S2Xp7SCIBD9qEo_VYAnoswTc0k_Tws
-Message-ID: <CAGb2v64DmDXaduf7RrYynb+v7TCFA+ni6xPHfyCrwduYW0g=HA@mail.gmail.com>
-Subject: Re: [PATCH 4/8] clk: sunxi-ng: sun55i-a523-ccu: Add missing NPU
- module clock
-To: Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>, 
-	Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>, linux-sunxi@lists.linux.dev, 
-	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905-leds-v2-2-ed8f66f56da8@vinarskis.com>
 
-On Fri, Sep 5, 2025 at 11:14=E2=80=AFPM Andre Przywara <andre.przywara@arm.=
-com> wrote:
->
-> On Sun, 31 Aug 2025 01:08:57 +0800
-> Chen-Yu Tsai <wens@kernel.org> wrote:
->
-> Hi,
->
-> > From: Chen-Yu Tsai <wens@csie.org>
-> >
-> > The main clock controller on the A523/T527 has the NPU's module clock.
-> > It was missing from the original submission, likely because that was
-> > based on the A523 user manual; the A523 is marketed without the NPU.
->
-> Ah, sorry, I missed that one. I think I spotted writable bits in that
-> register, but didn't find a clue what this clock was about. Anyway, check=
-ed
-> the bits against the T527 manual, they match up.
->
-> > Also, merge the private header back into the driver code itself. The
-> > header only contains a macro containing the total number of clocks.
-> > This has to be updated every time a missing clock gets added. Having
-> > it in a separate file doesn't help the process. Instead just drop the
-> > macro, and thus the header no longer has any reason to exist.
->
-> Interesting, looks nice, and solves Krzysztof's complaint the other
-> day about the binding header inclusion missing from the driver as well.
-> Just one thought:
->
-> > Signed-off-by: Chen-Yu Tsai <wens@csie.org>
-> > ---
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.c | 21 ++++++++++++++++++---
-> >  drivers/clk/sunxi-ng/ccu-sun55i-a523.h | 14 --------------
-> >  2 files changed, 18 insertions(+), 17 deletions(-)
-> >  delete mode 100644 drivers/clk/sunxi-ng/ccu-sun55i-a523.h
-> >
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c b/drivers/clk/sunxi=
--ng/ccu-sun55i-a523.c
-> > index 1a9a1cb869e2..88405b624dc5 100644
-> > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > +++ b/drivers/clk/sunxi-ng/ccu-sun55i-a523.c
-> > @@ -11,6 +11,9 @@
-> >  #include <linux/module.h>
-> >  #include <linux/platform_device.h>
-> >
-> > +#include <dt-bindings/clock/sun55i-a523-ccu.h>
-> > +#include <dt-bindings/reset/sun55i-a523-ccu.h>
-> > +
->
-> Should we have the number #define here, at a more central location? Seems=
- a
-> bit buried down in there. And then use a plural name while at it:
->
-> #define NUM_CLOCKS      CLK_NPU + 1
->
-> Alternatively, put .num behind .hws below, so that the last clock and the
-> number definition are close together?
+On Fri, Sep 05, 2025 at 09:59:30AM +0200, Aleksandrs Vinarskis wrote:
+> A number of existing schemas use 'leds' property to provide
+> phandle-array of LED(s) to the consumer. Additionally, with the
+> upcoming privacy-led support in device-tree, v4l2 subnode could be a
+> LED consumer, meaning that all camera sensors should support 'leds'
+> and 'led-names' property via common 'video-interface-devices.yaml'.
+> 
+> To avoid dublication, commonize 'leds' property from existing schemas
+> to newly introduced 'led-consumer.yaml'.
+> 
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
+>  .../devicetree/bindings/leds/backlight/led-backlight.yaml          | 7 +------
+>  Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml  | 6 +-----
+>  .../devicetree/bindings/media/video-interface-devices.yaml         | 3 +++
+>  3 files changed, 5 insertions(+), 11 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> index f5554da6bc6c73e94c4a2c32b150b28351b25f16..5e19b4376715eeb05cb789255db209ed27f8822f 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> +++ b/Documentation/devicetree/bindings/leds/backlight/led-backlight.yaml
+> @@ -18,17 +18,12 @@ description:
+>  
+>  allOf:
+>    - $ref: common.yaml#
+> +  - $ref: /schemas/leds/leds-consumer.yaml#
 
-I think this works better. One less place to look at.
+Drop.
 
-ChenYu
+>  
+>  properties:
+>    compatible:
+>      const: led-backlight
+>  
+> -  leds:
+> -    description: A list of LED nodes
+> -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> -    items:
+> -      maxItems: 1
 
-> Cheers,
-> Andre
->
-> >  #include "../clk.h"
-> >
-> >  #include "ccu_common.h"
-> > @@ -25,8 +28,6 @@
-> >  #include "ccu_nkmp.h"
-> >  #include "ccu_nm.h"
-> >
-> > -#include "ccu-sun55i-a523.h"
-> > -
-> >  /*
-> >   * The 24 MHz oscillator, the root of most of the clock tree.
-> >   * .fw_name is the string used in the DT "clock-names" property, used =
-to
-> > @@ -486,6 +487,18 @@ static SUNXI_CCU_M_HW_WITH_MUX_GATE(ve_clk, "ve", =
-ve_parents, 0x690,
-> >
-> >  static SUNXI_CCU_GATE_HWS(bus_ve_clk, "bus-ve", ahb_hws, 0x69c, BIT(0)=
-, 0);
-> >
-> > +static const struct clk_hw *npu_parents[] =3D {
-> > +     &pll_periph0_480M_clk.common.hw,
-> > +     &pll_periph0_600M_clk.hw,
-> > +     &pll_periph0_800M_clk.common.hw,
-> > +     &pll_npu_2x_clk.hw,
-> > +};
-> > +static SUNXI_CCU_M_HW_WITH_MUX_GATE(npu_clk, "npu", npu_parents, 0x6e0=
-,
-> > +                                 0, 5,       /* M */
-> > +                                 24, 3,      /* mux */
-> > +                                 BIT(31),    /* gate */
-> > +                                 CLK_SET_RATE_PARENT);
-> > +
-> >  static SUNXI_CCU_GATE_HWS(bus_dma_clk, "bus-dma", ahb_hws, 0x70c, BIT(=
-0), 0);
-> >
-> >  static SUNXI_CCU_GATE_HWS(bus_msgbox_clk, "bus-msgbox", ahb_hws, 0x71c=
-,
-> > @@ -1217,6 +1230,7 @@ static struct ccu_common *sun55i_a523_ccu_clks[] =
-=3D {
-> >       &bus_ce_sys_clk.common,
-> >       &ve_clk.common,
-> >       &bus_ve_clk.common,
-> > +     &npu_clk.common,
-> >       &bus_dma_clk.common,
-> >       &bus_msgbox_clk.common,
-> >       &bus_spinlock_clk.common,
-> > @@ -1343,7 +1357,7 @@ static struct ccu_common *sun55i_a523_ccu_clks[] =
-=3D {
-> >  };
-> >
-> >  static struct clk_hw_onecell_data sun55i_a523_hw_clks =3D {
-> > -     .num    =3D CLK_NUMBER,
-> > +     .num    =3D CLK_NPU + 1,
-> >       .hws    =3D {
-> >               [CLK_PLL_DDR0]          =3D &pll_ddr_clk.common.hw,
-> >               [CLK_PLL_PERIPH0_4X]    =3D &pll_periph0_4x_clk.common.hw=
-,
-> > @@ -1524,6 +1538,7 @@ static struct clk_hw_onecell_data sun55i_a523_hw_=
-clks =3D {
-> >               [CLK_FANOUT0]           =3D &fanout0_clk.common.hw,
-> >               [CLK_FANOUT1]           =3D &fanout1_clk.common.hw,
-> >               [CLK_FANOUT2]           =3D &fanout2_clk.common.hw,
-> > +             [CLK_NPU]               =3D &npu_clk.common.hw,
-> >       },
-> >  };
-> >
-> > diff --git a/drivers/clk/sunxi-ng/ccu-sun55i-a523.h b/drivers/clk/sunxi=
--ng/ccu-sun55i-a523.h
-> > deleted file mode 100644
-> > index fc8dd42f1b47..000000000000
-> > --- a/drivers/clk/sunxi-ng/ccu-sun55i-a523.h
-> > +++ /dev/null
-> > @@ -1,14 +0,0 @@
-> > -/* SPDX-License-Identifier: GPL-2.0 */
-> > -/*
-> > - * Copyright 2024 Arm Ltd.
-> > - */
-> > -
-> > -#ifndef _CCU_SUN55I_A523_H
-> > -#define _CCU_SUN55I_A523_H
-> > -
-> > -#include <dt-bindings/clock/sun55i-a523-ccu.h>
-> > -#include <dt-bindings/reset/sun55i-a523-ccu.h>
-> > -
-> > -#define CLK_NUMBER   (CLK_FANOUT2 + 1)
-> > -
-> > -#endif /* _CCU_SUN55I_A523_H */
->
+You need to keep the property here:
+
+leds: true
+
+> -
+>  required:
+>    - compatible
+>    - leds
+> diff --git a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> index 8ed059a5a724f68389a1d0c4396c85b9ccb2d9af..b4f326e8822a3bf452b22f5b9fa7189696f760a4 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+> @@ -17,16 +17,12 @@ properties:
+>    compatible:
+>      const: leds-group-multicolor
+>  
+> -  leds:
+> -    description:
+> -      An aray of monochromatic leds
+> -    $ref: /schemas/types.yaml#/definitions/phandle-array
+> -
+>  required:
+>    - leds
+>  
+>  allOf:
+>    - $ref: leds-class-multicolor.yaml#
+> +  - $ref: /schemas/leds/leds-consumer.yaml#
+
+
+Same comments in this one.
+
+>  
+>  unevaluatedProperties: false
+>  
+> diff --git a/Documentation/devicetree/bindings/media/video-interface-devices.yaml b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> index cf7712ad297c01c946fa4dfdaf9a21646e125099..1e25cea0ff71da2cfd1c7c4642713199f3542c0a 100644
+> --- a/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> +++ b/Documentation/devicetree/bindings/media/video-interface-devices.yaml
+> @@ -10,6 +10,9 @@ maintainers:
+>    - Jacopo Mondi <jacopo@jmondi.org>
+>    - Sakari Ailus <sakari.ailus@linux.intel.com>
+>  
+> +allOf:
+> +  - $ref: /schemas/leds/leds-consumer.yaml#
+
+This can be dropped. The user still has to define how many entries and 
+what the values of led-names are.
+
+> +
+>  properties:
+>    flash-leds:
+>      $ref: /schemas/types.yaml#/definitions/phandle-array
+> 
+> -- 
+> 2.48.1
+> 
 
