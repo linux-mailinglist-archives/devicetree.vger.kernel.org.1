@@ -1,83 +1,88 @@
-Return-Path: <devicetree+bounces-213379-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5FCFB4546B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:21:22 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72F86B45471
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 12:21:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0E5D3A60898
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:21:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BBF51C868B9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 10:22:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891512D481C;
-	Fri,  5 Sep 2025 10:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E69E12D542B;
+	Fri,  5 Sep 2025 10:21:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GYj4I6st"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="hhf1vyfz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 884012D480D
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64C632BE02D
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 10:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757067659; cv=none; b=MMPtZhel4QucqrYhyB23SyKTyIQPuZbU7V2CCrqov0RLX+X8CtCRvGMhrT87iTC/3iCDO/zfQ7WtM1stW34NXVg35QGR9DYw2l3HeRp2BErH+AMptZwfW4bd10ukbpnJpV4KfvB/3jro0oL281w47ntj1U0y7QFVHa3guZKrnU4=
+	t=1757067699; cv=none; b=flj5VKYXTMojeLwESGdl0ASo/olSSzoaD838mSIe0LPCPqhH5QunlC767pq8YeEsO1GhblNyj1a+wEXLKrQr3uXtnMNYMbSVEP6e1zYfKYSQXboJaSFahUAeVuheqJOeGhme0yIQkdG5yJZrtMydkwuMSNnxxb+VLjH5avm+tus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757067659; c=relaxed/simple;
-	bh=9DaGRIMFa5wnuM+lDqhThXQvVMo96FKQFngkI10LSAY=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=aOjRl6WfbTgCaiz4ICkjlE20SyEKdHTHq2FJnA5fy7ShIjGC6GcgJ5Vk2Ed9X1QnrnsW+qo9KTf6jOrNzigebJqaSbNDaDTVo46y5GGlEshL/Ue5IcW/nKYHi9eEdkD5i6Dvaq4W1l1g3f+TrqGch4/G6PqQooth0rl1v5TwXv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GYj4I6st; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45cb5e1adf7so15763895e9.0
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 03:20:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757067656; x=1757672456; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=g5vez/qigeUN3N+Im1RmVn0JRRYgZnIjim3ZE3xXKic=;
-        b=GYj4I6stvYQARh2Phrm+3WG+YktUBi+XVQM672ZXMzS2SXdDDRknZsHenpj13mh8/7
-         bBuvzm87ancmFp25gs+60EJdex4YF3ZWLfoofkgbRbY58AuUo5y7GYSbFLPWZeN7jmrD
-         YhFfnLupO2wZV4OfX6dLBLfZNDUMHtFPoERdB6GAqU/oU+MYO0kPJiHmkLND8bKfqyLK
-         T2yC9ZQC34R/RX4r8Y0ScREcA8kHM4b7pTn9KYPd9KIVrmiHme2V8zVdOaxZTCnlFy7X
-         mtb6F5Z5JvNjEOkozkiItO5r4ojr+vkg7Jm6JLJRS07H0wVrYd1kk/bWpNptNA+sp2Uf
-         aOjw==
+	s=arc-20240116; t=1757067699; c=relaxed/simple;
+	bh=qCppbG+eQP46tSiZEY0crGxJVA1nNjzZ4wk6qR9CveA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cx8EPKB0a8EaMpfdFZvnl38O8Zi97b90xBn8lSqXQKdWiXvgxIs4sxa3vvp0VMfjnI3BKW8zoeOfVLTH6EEsBZOsYtLgjDa92C6i0gTy5V5czUtfmpuWlkmxxoP0LQ2p6OkPPySoI+dM/ScCOcUbprMJwmtn5pCM1KTZEQraJaA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=hhf1vyfz; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5857K1jG007609
+	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 10:21:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	YhX9I5xQxAo+v+fO6pOEhRjl3CA+K4fHzStrCxl2ggk=; b=hhf1vyfzR3s0A5fM
+	DAhvWijlnL9vn8hTAJrsAS/QJdRIOzhUHe4DNHvnBAM8c6AlYh6iIUH7pJtEFPQ8
+	0W8Qs4oByESPGxBuOwNPJhtOEGmpRK2+H5KNJf/n+NNGQBqGnz6ex49pvHYybjXH
+	kxSnv/O2nXS8q3iEocuDlNoyLETuVmh7SPehXjajgThSuYwgnk8O61mLDSz7CqQm
+	hkI71xkbjw9EObY1O7inRyc3U/U9yYF6yfqqFgu2yUATzP3N0/ZgjkdL8xOc8vOZ
+	c6D3WLQXrPYKgFRfHQ79XI5Pnt3JOGEOoFrLASo8OVKMl1/74j9dkudyDdA8hRzz
+	0pa5ew==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48ura92nkb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 10:21:37 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-721eb9fecdcso4430796d6.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 03:21:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757067656; x=1757672456;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=g5vez/qigeUN3N+Im1RmVn0JRRYgZnIjim3ZE3xXKic=;
-        b=l1HnUlz9om8OVD+fvQxTKdQRTMi2wkQo/W5g8Hr64Lf/USlK8dlZ1+TvBtyNomy3kY
-         iPztzbJNTVh6I0WILJbNJ/kIMWT4gEnmaIZ3jHVJJQAZDodJ1B90zCrRZoj9MoiDXuKu
-         NcTlQf8oNayq+yN729rE9RukDpbxPivarcj9v4K/PGWPl32lvIFN+9HOcr17eBlna2O/
-         RmyhrEOXNsJxrD8mmdS6+0/Be8psqxW7xJnKHowwmb8+arEG2xN0a+Zk0RzbCiiPeLUJ
-         tj7bLkI2Lwb603NrScimtMrZwQ/pdC7gM3MJRjE2NrLfJc6J5HubckhuesSVdlop9MLT
-         2ckQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVjlgYA2mijmV+j7Cbo7TCMuHT+pVeNwiFQD88pWlVWSLRj39n0+57r8RSGRJQNbWJ5ZASN1GkM3g9E@vger.kernel.org
-X-Gm-Message-State: AOJu0YwMAXDZGL7r25QlMpiWuoY68KnNdThww8Nc+zUezvFOj7Kawr36
-	XpI+TK16m9XQ+okAFUxXOVf9IGnK+WV5A9p5LoYqgA4eAzeCxtt6+QEvn5YZ5Py/Sxc=
-X-Gm-Gg: ASbGncs/faNCmXyb5p3xVRoSqg20Wy9f/J1fSNL+3DWyo3Ze4gOmW1d302fLSUMUYa0
-	HHLLJo+Ra5+8pn1297XRyuOFhTGoHAi196r7s4NTYFYGQCnPEXIjAUmadbP90k8bV9TBJCSrZ67
-	C+umGp6N7zijfpQTdIXvsIyWRh6KdB5yGbkGxYg4a4xSz20lgAdCj137t1l5qgrFDXtCbdFZDrE
-	+WW5PQ3gK75djpCV7e1E2fxlaEuO5XEZEmItMzX46asEl//EwqGuXNUHjjbQVvDkXQkSMWc8KpW
-	pKZFXfwImbMO2FhZduPMGLjWbdoPzw7HVWRq+aElgCmOiFm2Uy8Y7I1p5UE53pZMpBogRAZoR9D
-	QDJC9drrmsmY/C9G3ThFFNrEhmLoyvvSHKMEbikRvN8U5cAoGZMC+F+e8ogkm+igSItziRnsQGG
-	rNnAoYtErEANcOVcI0D9lY
-X-Google-Smtp-Source: AGHT+IGQiU+kRp+7oSBH2pZIbGwL4AQMXeMBFNpTuAKX09/3FoPn8L5rNkO2mZKlz4GakzCW+U30BA==
-X-Received: by 2002:a05:600c:1c88:b0:45c:b52d:8d30 with SMTP id 5b1f17b1804b1-45cb52d8f28mr86216625e9.26.1757067655677;
-        Fri, 05 Sep 2025 03:20:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:3d9:2080:ad6e:d9be:21dd:7b96? ([2a01:e0a:3d9:2080:ad6e:d9be:21dd:7b96])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45cb61377a7sm115282475e9.13.2025.09.05.03.20.54
+        d=1e100.net; s=20230601; t=1757067696; x=1757672496;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YhX9I5xQxAo+v+fO6pOEhRjl3CA+K4fHzStrCxl2ggk=;
+        b=XOxIywPdN0+tcMmogODWO54r9T6oRKfUvQdGGs+gLTYf37UUG80Ymr3Gb7Fzlfi/Pt
+         XzE7J+Nr2YPIaNy6d99OESwUEA0jMZyswW8OrO1YX8WbHiDZUb/VwEdK4OtxRNOfxzpE
+         093zkiaklq0IaQ+pqcMfRmP1odtJnTtyGUEWXr3NrmRhHAL+l7aBy0CqoPA3N1eZUY6W
+         4fj4a7lOADLdCde93MMc9oNZidfckYoCxRsDcCHgtu/NJg2i+HmN9awPOmqfZHkCFuwR
+         vtqBCNZHKG5oFs1rzg7S4KSk+mPkG+e7GedNVKC4LJMOxnTQIksKJrHuBnUcITQ7JSJD
+         tVEw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVH3mjU9+mPR1F8hLNtpO4YWB5EtAE8uqItOPo1Ez03F96QtcyAmikXaEexanunVuUW0qvvU3Y0XTV@vger.kernel.org
+X-Gm-Message-State: AOJu0YxMBFZ9MKvRd0SW0S90YZ766chigZPQgjEFDXCR23E5BtlVcTVY
+	09bfsVBIGw8qZWw6AcI+gMF6GHJBlFglIw0x/15xY7hjTVvUInxe+GF6xH7GUqGB0RLe/twYI6s
+	5Tfo6gqWXa/Y6qkFlczOGzxGC3Rc8kxQbjt8c7xUM2lBlVAKnz8aAtUdKypV5XEkr
+X-Gm-Gg: ASbGncsdkqIis05QT6YJ6ETnuJ5R6c38/7KhXnhOXd77a8weVfuPsAjWRxPtLWxX9zW
+	y0/w+R6ZPbNQgqOJC4PMEtgVQgRsF9UJ4eUYffsgl5fSV5pHj7LToOorf8DQHmvbjfJjBeSrOrT
+	pVPP8TWfh8f8rLXY8+vl3VWKeLaC/yw7Ec941rRez+sFz0KUBBlUpYBxYvnb2uQxwJRrGnd2u9q
+	5PdQNkUPkZmIcGh9gRfSz3M4isBdyl7ZP6LkjghZe8EeLuxJfXu3SFL3WZBkglm35yMi0hcW5s5
+	Zguw/TWOkQetkEUfTpqfYpUoEh+lV91EYiZOz+CndrjEP5vqEbMKtm60YHh/QS4YGUT/Ufw1mpm
+	em6JD6Yfw0Z+d/w2T3k4hFw==
+X-Received: by 2002:a05:622a:1a04:b0:4b4:95d0:ffd3 with SMTP id d75a77b69052e-4b495d11860mr62588811cf.1.1757067696157;
+        Fri, 05 Sep 2025 03:21:36 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGsI15M5gOFq5piSlzss18AHTX4GYCxGcCIZkv13DSKshZ+1CACZN6exOPR+BcJ3u0qTjcFRQ==
+X-Received: by 2002:a05:622a:1a04:b0:4b4:95d0:ffd3 with SMTP id d75a77b69052e-4b495d11860mr62588541cf.1.1757067695509;
+        Fri, 05 Sep 2025 03:21:35 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0424cc1698sm1249620566b.21.2025.09.05.03.21.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Sep 2025 03:20:55 -0700 (PDT)
-Message-ID: <32d93739-0ea9-4b75-ae73-c0c8b10f2c3b@linaro.org>
-Date: Fri, 5 Sep 2025 12:20:54 +0200
+        Fri, 05 Sep 2025 03:21:35 -0700 (PDT)
+Message-ID: <2408b467-f1b2-491f-a701-4e45e1a1e823@oss.qualcomm.com>
+Date: Fri, 5 Sep 2025 12:21:31 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -85,125 +90,93 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
-Subject: Re: [PATCH v2 00/11] Add cache information to Amlogic SoC
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Kevin Hilman <khilman@baylibre.com>, Jerome Brunet
- <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250825065240.22577-1-linux.amoon@gmail.com>
- <175699250964.3374853.16885676491827667777.b4-ty@linaro.org>
- <CANAwSgQGCTs46DVm3gt4PpdSTBTvVg5zga_oBt=rUJh2yhRLtw@mail.gmail.com>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro
-In-Reply-To: <CANAwSgQGCTs46DVm3gt4PpdSTBTvVg5zga_oBt=rUJh2yhRLtw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v2 4/4] arm64: dts: qcom: sc8280xp-x13s: enable camera
+ privacy indicator
+To: Aleksandrs Vinarskis <alex@vinarskis.com>,
+        Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Daniel Thompson <danielt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Sakari Ailus
+ <sakari.ailus@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20250905-leds-v2-0-ed8f66f56da8@vinarskis.com>
+ <20250905-leds-v2-4-ed8f66f56da8@vinarskis.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250905-leds-v2-4-ed8f66f56da8@vinarskis.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+X-Proofpoint-ORIG-GUID: LDBHupndToj80YhHtLbcvQIuClzM106M
+X-Proofpoint-GUID: LDBHupndToj80YhHtLbcvQIuClzM106M
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwODMwMDAyMCBTYWx0ZWRfX7K4gmaf5O7vS
+ SLVliz+ox+EvU+bvjGPV1xtxy1mHlIpWWmu6bs8FTADrEz5dyDlh01qBCpKdrYaguCOj8RH7mPC
+ 5rziiiERwsRlSttfWrchtUqRxGzpvpENBO1nV8L0M+VB+Y+3Hage9XzlyQEZv+CozlmehY0kjxq
+ R8gS3T3xGxEKfTzT+dCS7mWCxx1x5s0nhhfJTWVpMa43xO971vaCLDVIqDd8pJTJo0X5GyftlGl
+ E5cO2/EL8YONwydZZYp6SthUcC4amL+zAvaKn/NCl81tT5j+7K2YrjgTH4OILMWjQYRyCi6MW8Q
+ q0fZicvRiSzFVCZmlAJYttmreldMWrgfxBcf1ZsZAIcSbMXNK5OT5NRAsuCcKq2nrr/y/u8rry4
+ uiwGuXfA
+X-Authority-Analysis: v=2.4 cv=VNndn8PX c=1 sm=1 tr=0 ts=68bab9b1 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=I76Qk8w-AAAA:8 a=QE2y9RwVZUYpaLmqgykA:9
+ a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22 a=vUPM0Wvl0xcrLs4nqPIT:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-05_03,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2508300020
 
-On 05/09/2025 06:01, Anand Moon wrote:
-> Hi Neil,
+On 9/5/25 9:59 AM, Aleksandrs Vinarskis wrote:
+> Leverage newly introduced 'leds' and 'led-names' properties to pass
+> indicator's phandle and function to v4l2 subnode. The latter supports
+> privacy led since couple of years ago under 'privacy-led' designation.
+> Unlike initially proposed trigger-source based approach, this solution
+> cannot be easily bypassed from userspace, thus reducing privacy
+> concerns.
 > 
-> On Thu, 4 Sept 2025 at 18:58, Neil Armstrong <neil.armstrong@linaro.org> wrote:
->>
->> Hi,
->>
->> On Mon, 25 Aug 2025 12:21:40 +0530, Anand Moon wrote:
->>> Most publicly available Amlogic datasheets mention that the CPU employs
->>> a architecture, quad-core ARM Cortex-A53 and ARM Cortex A55 and
->>> Cortex-A73 and Cortex-A53 cluster, sharing a unified L2 cache to enhance
->>> overall system performance.
->>>
->>> However, these documents typically omit details regarding the sizes of the
->>> L1 data cache, L1 instruction cache, and L2 cache.
->>>
->>> [...]
->>
->> Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.18/arm64-dt)
->>
->> [01/11] arm64: dts: amlogic: Add cache information to the Amlogic GXBB and GXL SoC
->>          https://git.kernel.org/amlogic/c/d7fc05da8ba28d22fb9bd79d9308f928fcb81c19
->> [02/11] arm64: dts: amlogic: Add cache information to the Amlogic SM1 SoC
->>          https://git.kernel.org/amlogic/c/fd7b48b1f91e1830e22e73744e7525af24d8ae25
->> [03/11] arm64: dts: amlogic: Add cache information to the Amlogic G12A SoCS
->>          https://git.kernel.org/amlogic/c/a4428e52babdb682f47f99b0b816e227e51a3835
->> [04/11] arm64: dts: amlogic: Add cache information to the Amlogic AXG SoCS
->>          https://git.kernel.org/amlogic/c/3b6ad2a433672f4ed9e1c90e4ae6b94683d1f1a2
->> [05/11] arm64: dts: amlogic: Add cache information to the Amlogic GXM SoCS
->>          https://git.kernel.org/amlogic/c/fe2c12bc0a8f9e5db87bfbf231658eadef4cdd47
->> [06/11] arm64: dts: amlogic: Add cache information to the Amlogic A1 SoC
->>          https://git.kernel.org/amlogic/c/2d97773212f8516b2fe3177077b1ecf7b67a4e09
->> [07/11] arm64: dts: amlogic: Add cache information to the Amlogic A4 SoC
->>          https://git.kernel.org/amlogic/c/57273dc063d5a80e8cebc20878369099992be01a
->> [08/11] arm64: dts: amlogic: Add cache information to the Amlogic C3 SoC
->>          https://git.kernel.org/amlogic/c/6d4ab38a0a21c82076105e4cc37087ef92253c7b
->> [09/11] arm64: dts: amlogic: Add cache information to the Amlogic S7 SoC
->>          https://git.kernel.org/amlogic/c/494c362fa1633bba127045ace8f0eea0b277af28
->> [10/11] arm64: dts: amlogic: Add cache information to the Amlogic S922X SoC
->>          https://git.kernel.org/amlogic/c/e7f85e6c155aed3e10e698dd05bd04b2d52edb59
->> [11/11] arm64: dts: amlogic: Add cache information to the Amlogic T7 SoC
->>          https://git.kernel.org/amlogic/c/e97fdb9b8a0f8bd349de48815694f8a7200e3d62
->>
->> These changes has been applied on the intermediate git tree [1].
->>
->> The v6.18/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
->> for inclusion in their intermediate git branches in order to be sent to Linus during
->> the next merge window, or sooner if it's a set of fixes.
->>
->> In the cases of fixes, those will be merged in the current release candidate
->> kernel and as soon they appear on the Linux master branch they will be
->> backported to the previous Stable and Long-Stable kernels [2].
->>
->> The intermediate git branches are merged daily in the linux-next tree [3],
->> people are encouraged testing these pre-release kernels and report issues on the
->> relevant mailing-lists.
->>
->> If problems are discovered on those changes, please submit a signed-off-by revert
->> patch followed by a corrective changeset.
->>
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
->> [2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
->> [3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
->>
-> Received feedback from Krzysztof to omit the comments in the commit message.
-> Should I respin accordingly?
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 9 ++++-----
+>  1 file changed, 4 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index 637430719e6d7d3c0eeb4abf2b80eea1f8289530..03801b174713cb9962c10072a73e9516abc45930 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -83,15 +83,11 @@ leds {
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&cam_indicator_en>;
+>  
+> -		led-camera-indicator {
+> -			label = "white:camera-indicator";
+> +		privacy_led: privacy-led {
+>  			function = LED_FUNCTION_INDICATOR;
+>  			color = <LED_COLOR_ID_WHITE>;
+>  			gpios = <&tlmm 28 GPIO_ACTIVE_HIGH>;
+> -			linux,default-trigger = "none";
+>  			default-state = "off";
+> -			/* Reuse as a panic indicator until we get a "camera on" trigger */
+> -			panic-indicator;
 
-Sure, I'll re-apply the new version
+I think panic-indicator may stay, as it's useful and mostly mutually
+exclusive (bar some multi-OS use cases) with the camera being on,
+with the comment above it obviously being removed as you did
 
-Neil
-
->> --
->> Neil
->>
-> Thanks
-> -Anand
-
+Konrad
 
