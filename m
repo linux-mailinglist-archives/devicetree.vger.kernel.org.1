@@ -1,108 +1,185 @@
-Return-Path: <devicetree+bounces-213618-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213619-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E16FFB45F87
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:06:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id A69E9B45F8D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:07:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A36635C0E00
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:06:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 64F5C1CC6094
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:07:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2F472FB097;
-	Fri,  5 Sep 2025 17:06:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B08A3090E8;
+	Fri,  5 Sep 2025 17:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LlYG4nVV"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="KVM/5kj5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7519221FF46;
-	Fri,  5 Sep 2025 17:06:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F91B2FB097
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 17:06:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757091964; cv=none; b=F+h5v3KZbEfvwHH/bl1/G9wH3AAdhQoo+niJdesSXUYF4bAOe3jZsn4auC7zcUvhn7Pa77aQDmYV3x5tVN+sclv3Ff3l18KQPU8fTjThgi5BY2BKK7eoOdiiOD/ErtAoR96UYocKcwaWf7kPFC84q2mjvou47bSwRQ7vDI5gE7c=
+	t=1757092002; cv=none; b=riBpyZYwlPQeGfCMUkDgC82fuLrTx4D7TOlC8lDSnTQv8aYR8KWIe5d8av20EC2fLtev/TYS6kukX895JAGGRTT4FGbkQnmGWic5If8DwiIicfFsMRlRPv7sBoU6L7P0J4NpLOY/4I+MNpcKTRiy5Q+LvDYl89huICCei5XljFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757091964; c=relaxed/simple;
-	bh=ox1WUoyvjtTHuR2qBzI6u2/HwnXqXAQJglmbFA97so8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lPxfjbOHT6Vy86eew+F2IIYc4svOIiQ+EUTeMxDFQflhdtAQImMP35RNofZILb7y6mcssn5r+4hYBc5BHnvCUr0PDsiMHKhPGTsjwhznLvlmKUcXMFZL2W3tU6Jr9hfqQs8W7SWaLp0jIFPrgPITaNMwW0jwdf6Xdgz0o4kuoeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LlYG4nVV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F6A1C4CEF1;
-	Fri,  5 Sep 2025 17:06:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757091964;
-	bh=ox1WUoyvjtTHuR2qBzI6u2/HwnXqXAQJglmbFA97so8=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=LlYG4nVVaoqmUnZwtzzM5y/I5tjLHv1ObX60zTuoGSJpPzhJR+xIb7Wpkkt15QjKs
-	 2t3pSUY1nwVXSWZmmN3enM6/+lW/bFuSLKWhtXKVq2osRV2QdvOoHKQWNqBC5NgARo
-	 TXi/l1dj3Yf4KzZS7lbXwKU/vLTTMboSAFJSWeph/Zk/Wr08ehCvzzNVOS4srmBU6x
-	 q+D1pUr1LecrWAjrwlGH0IDyYMTzKUS750OSx077D4xdnOgkgCZ4hG6HeG73W47MJY
-	 YsSgGDWI/0Ah3lNpUDFBY8R2R+T5FYqFeONm9P0+O51g+CnSyzEcaDKs5qpmN1Bqlk
-	 zTta/SHC8IkLQ==
-From: Mark Brown <broonie@kernel.org>
-To: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Woodrow Douglass <wdouglass@carnegierobotics.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20250902-pf530x-v7-0-10eb2542f944@carnegierobotics.com>
-References: <20250902-pf530x-v7-0-10eb2542f944@carnegierobotics.com>
-Subject: Re: [PATCH v7 0/2] regulator: pf530x: NXP PF530x regulator driver
-Message-Id: <175709196201.166280.14844235200399964149.b4-ty@kernel.org>
-Date: Fri, 05 Sep 2025 18:06:02 +0100
+	s=arc-20240116; t=1757092002; c=relaxed/simple;
+	bh=QkflFLOyAsxpNTIsEZguoI9ZFg/E7isbqn/iXildXS4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=iRvKGg7R8xeaDx7wcO59ft5+AEsey6EbDxwW91mtF6IYlCL+bZVD876moNF9w1+OyPT2ZDPx6p9XA0YpAD1GKUlq+QqFEfxQHLFi+3Ev//bkE1dSrkWzgfIHPdDMxY23gwsXIW4n3WHeaez8SWL/L7l7cC7Ug672gw9T3Uosx3U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=KVM/5kj5; arc=none smtp.client-ip=209.85.210.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ot1-f52.google.com with SMTP id 46e09a7af769-74526ca79beso2027618a34.0
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 10:06:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757091998; x=1757696798; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=anFqxnxyI7swraoxgwxGeFgFBlwXlIQh106TWK0o5QM=;
+        b=KVM/5kj5+ItiYgoroUyJ+4HQYO/s4jPuEdhWYjiAUwJciP9vtsfgK1cpt6VoatWU4S
+         KKpV7icHjs2OVfnd6sSvleSMfbO7LRJjs//iGM+cg8389x+gHCFxnLbcUjKv9YqniaVA
+         Q2HpjmT38+qmJTU0g8lxtNzGCNxfQq5JPUTFzZMieeFdHV55dIfOV5bPwS2XRxp6tIwj
+         8uGgwYqR7JZEQpC5g+cW+tRzc5KxiMR7+hGy+czZYo3HUjzVy6VSJlPkjIAsXsWrm5OI
+         7yKWSUs8t9HGVsnT3okvBIISEhVNW9BTcE4eSQIU5bX309/19gcQ4Yoo3qXqGes3ZTZ6
+         eWxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757091998; x=1757696798;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=anFqxnxyI7swraoxgwxGeFgFBlwXlIQh106TWK0o5QM=;
+        b=SfAavUL96DqS4iN4lKH8ZkTBfW8cN3YEou8P9lcvwiuTvyrmN6wyTdPYAjUpiMLjzx
+         qO2wUr4+HMzZL/JOimRPSUi0TzWdwdqmJO5sb+Utsj8cKdIrWFsLahaxAZZVbIMlfo3b
+         z4GKnHiFa8K3ekKTS9eVdRsLbCLfv7ngYxW1sBamrEM2m3bFotSFw2DyMPSIIzlNL1rP
+         Wjviu7Q0R64JfeRcVtXqfXhu7xwfUXHcOETrJAQLA4EyD/35oQ3uUmzH2eVbA13IhN0K
+         n0EPV9EMnDytEfgXV8flK44xOaubV6AgYfBgppKGJ40DkvoDdpahaBbQqywBnMEleNzv
+         9rMw==
+X-Forwarded-Encrypted: i=1; AJvYcCWi74U42mJmvo5Y2Q/gs37hQ5sptJ8rIhK9zRqh0vzynWTVCCwp9FtKNx/SE0HZN15iAL+0uwv2smwI@vger.kernel.org
+X-Gm-Message-State: AOJu0YwhSwibzudDxYeMCr2Iz/sOnXBqxTO3TWl/X70RuEZHxp83UEGB
+	TTGTQkVK3mxd1wSPo1S2xRbs+i8CARZ7EpNxvgUQWWdblmYHxH8bj2WgMFOXjk1Zgnk=
+X-Gm-Gg: ASbGnct4lF9Y3a4kJ8Q8+b2zLeexGzrSpd8spj5cIFSnysMAtGVH6U35rbdI/mc1qkZ
+	aQ5zVXyTlr2Ok4FtEYHole+HiPiXPWljy4nUG1LYREI6eaa3UPep9u1n42vpeQLTaMEuMOMa/z+
+	NrFYl2zyEBOhxtFqpqfjo0wUpbcYuXByzDC+acH+P1RKjx6S3U0g0Qu0oToKAcGmAnYfT/2BtYM
+	YwUtXRcU3ahvX+zyV+6nEdgW9USLS5CqhK1oe207BolkRXs9Eph2Sv9dbZARfagzx67DcpCsNlk
+	0WiWayhOj/OFmnoNgxd886l+LWbzS7SMDMDr0SnkJorS892l1Wa//uWiNyQvsOMHg3qhK1BdltG
+	LQ41K/HHCmhiFXirgzyCu41NkCKAqUsUalgkFeMiIg9zVXSvPzeXwg0GqFcvvBGoUEzMItIX1dU
+	1JoxxJ444=
+X-Google-Smtp-Source: AGHT+IG7ghMIe2cxnj+pk3rXW2GvzmcdmR1NSgHSvJ5AtFFp4f+XYMewwsOhZYccj4QGq4HyHz8QTg==
+X-Received: by 2002:a05:6808:152a:b0:438:3ae6:d5ab with SMTP id 5614622812f47-4383ae6d6f3mr3823162b6e.41.1757091998124;
+        Fri, 05 Sep 2025 10:06:38 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:52e:cda3:16cc:72bb? ([2600:8803:e7e4:1d00:52e:cda3:16cc:72bb])
+        by smtp.gmail.com with ESMTPSA id 5614622812f47-437ffed9f15sm3544740b6e.10.2025.09.05.10.06.36
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Sep 2025 10:06:37 -0700 (PDT)
+Message-ID: <5d387011-7560-48ac-8f92-bfe0fda7e71e@baylibre.com>
+Date: Fri, 5 Sep 2025 12:06:36 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-dfb17
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: iio: adc: ad7768-1: add new supported
+ parts
+To: Jonathan Santos <Jonathan.Santos@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: lars@metafoo.de, jic23@kernel.org, nuno.sa@analog.com, andy@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ marcelo.schmitt1@gmail.com, jonath4nns@gmail.com
+References: <cover.1757001160.git.Jonathan.Santos@analog.com>
+ <46842d4cf2c1149bd64188f94c60ce5e4f3b2beb.1757001160.git.Jonathan.Santos@analog.com>
+From: David Lechner <dlechner@baylibre.com>
+Content-Language: en-US
+In-Reply-To: <46842d4cf2c1149bd64188f94c60ce5e4f3b2beb.1757001160.git.Jonathan.Santos@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Fri, 05 Sep 2025 08:39:41 -0400, Woodrow Douglass wrote:
-> I wrote this driver to read settings and state from the nxp pf530x
-> regulator. Please consider it for inclusion, any criticism is welcome.
+On 9/5/25 4:49 AM, Jonathan Santos wrote:
+> Add compatibles for supported parts in the ad7768-1 family:
+> 	ADAQ7767-1, ADAQ7768-1 and ADAQ7769-1
 > 
-> Thanks,
-> Woodrow Douglass
+> Add property and checks for AFF gain, supported by ADAQ7767-1
+> and ADAQ7769-1 parts:
+> 	adi,aaf-gain-bp
 > 
-> --
-> 2.39.5
+> Signed-off-by: Jonathan Santos <Jonathan.Santos@analog.com>
+> ---
+> v3 Changes:
+> * Renamed adi,gain-milli to adi,aaf-gain-bp. Now it represents basis points
+>   (one hundredth of a percent) as suggested by Krzysztof. Description was
+>   adjusted.
+>   Note: permille (1/1000) was also suggested as unit for this property.
 > 
-> [...]
+> v2 Changes:
+> * adi,aaf-gain property renamed to adi,gain-milli. Description was 
+>   simplified.
+> * default value add to adi,gain-milli.
+> ---
+>  .../bindings/iio/adc/adi,ad7768-1.yaml        | 44 +++++++++++++++++--
+>  1 file changed, 40 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> index c06d0fc791d3..c2ad8e585586 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> @@ -4,18 +4,26 @@
+>  $id: http://devicetree.org/schemas/iio/adc/adi,ad7768-1.yaml#
+>  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>  
+> -title: Analog Devices AD7768-1 ADC device driver
+> +title: Analog Devices AD7768-1 ADC family
+>  
+>  maintainers:
+>    - Michael Hennerich <michael.hennerich@analog.com>
+>  
+>  description: |
+> -  Datasheet at:
+> -    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
+> +  Analog Devices AD7768-1 24-Bit Single Channel Low Power sigma-delta ADC family
+> +
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/ad7768-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7767-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7768-1.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/adaq7769-1.pdf
 
-Applied to
+Only adding one property seems a bit incomplete give that the ADAQs have
+significantly more pins that the regular ADC.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+E.g different/more power supplies; gain-gpios, fda-gpios (or don't allow
+gpio-controller if we can assume GAINx and FAx are always wired to back to the
+ADC and not coming from somewhere else).
 
-Thanks!
-
-[1/2] regulator: dt-bindings: nxp,pf530x: Add NXP PF5300/PF5301/PF5302 PMICs
-      commit: f5d15ff664a32593e0152d21ea747fb77e32ce7e
-[2/2] regulator: pf530x: Add a driver for the NXP PF5300 Regulator
-      commit: b497e1a1a2b10c4ddb28064fba229365ae03311a
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
+>  
+>  properties:
+>    compatible:
+> -    const: adi,ad7768-1
+> +    enum:
+> +      - adi,ad7768-1
+> +      - adi,adaq7767-1
+> +      - adi,adaq7768-1
+> +      - adi,adaq7769-1
+>  
+>    reg:
+>      maxItems: 1
+> @@ -58,6 +66,19 @@ properties:
+>      description:
+>        ADC reference voltage supply
+>  
+> +  adi,aaf-gain-bp:
+> +    description: |
+> +       Specifies the gain applied by the Analog Anti-Aliasing Filter (AAF)
+> +       to the ADC input in basis points (one hundredth of a percent).
+> +       The hardware gain is determined by which input pin(s) the signal goes
+> +       through into the AAF. The possible connections are:
+> +       * For the ADAQ7767-1: Input connected to IN1±, IN2± or IN3±.
+> +       * For the ADAQ7769-1: OUT_PGA pin connected to IN1_AAF+, IN2_AAF+,
+> +         or IN3_AAF+.
+> +    $ref: /schemas/types.yaml#/definitions/uint16
+> +    enum: [1430, 3640, 10000]
+> +    default: 10000
+> +
 
