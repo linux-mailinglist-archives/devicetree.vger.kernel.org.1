@@ -1,166 +1,143 @@
-Return-Path: <devicetree+bounces-213713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7558DB46630
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:54:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD8DB46633
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:55:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 12DC13B9F5E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:54:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5D971D23ED9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC8E28BA95;
-	Fri,  5 Sep 2025 21:54:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 315742EA477;
+	Fri,  5 Sep 2025 21:55:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="wGIX+wDD"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ildhq7pX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f51.google.com (mail-oa1-f51.google.com [209.85.160.51])
+Received: from mail-qv1-f52.google.com (mail-qv1-f52.google.com [209.85.219.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 895A228642B
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 21:54:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AE432DCF5F;
+	Fri,  5 Sep 2025 21:55:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757109249; cv=none; b=uJvfmXoMiuYx8cvuQXqH66VLhZqE4qJS/ekSwJ7gfRev6tlYHPlmx4VI/Z3FkANhZ21QfF06oDgPPkYADTnWf+bPZLwvTgx9RY087AZffaglhZlSwly4k5hsNzo/Zfw7U0tVHm9nOx4Z1lsawwnBbBRgwtLYQYlT/LvaM79Bf0Y=
+	t=1757109336; cv=none; b=B+nZ4V0/QXkdMyNqRFjtLNQb2tQ0bovC+WUSkQxTpTde/aJI5cyJU00rj7pD82sd5PPo62KKf9TpDMzHkbpkgZBsC4io2oNyVKa1+NJI0Uiw40TZa0xEEBY5FSqM/xKr5gBfBhPzQKtg/Vwfi730SNtdqVHNWk6Fh3qygLtWm6Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757109249; c=relaxed/simple;
-	bh=j6tnYW71dNyHGysaY2hYHozv03AFzw5XgjK4LS781bE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kyfgc5807xgO335zHrpzPV35oQSxFvIFZv50n9tIdNdQsp0qRmD1B2gb1nlmc0R0myE55Q0zNQVm+5kbqZiegsoRK/cDQp+977D+jJXXylypQrRe2GiLbemGZIpnJ1eYXzIR7PZVxffAqTz/CHz9Fyt4tovEkSICQlMXfzArJfY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=wGIX+wDD; arc=none smtp.client-ip=209.85.160.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oa1-f51.google.com with SMTP id 586e51a60fabf-3197f534179so2260565fac.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 14:54:07 -0700 (PDT)
+	s=arc-20240116; t=1757109336; c=relaxed/simple;
+	bh=cYqPi1Z6IVaPvGjCa6IuqRllsGq/ootMKJ1Z3V1Jc/U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=m6cPIcnzRLZG6BqHphXkyiDgE0sd0TLTwF83NWMoCxKpzHtH6afkrX3swvDV0+AJbAizx51nrAlLc53co+K20Fy5Gy/DSoUQ4eldCIbi0VAMMWQXO90W9+VS22hKnATjh2iuw6tU+sf9Wy3Il/D0j/cUbSTi80YcEaAPR15JDzE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ildhq7pX; arc=none smtp.client-ip=209.85.219.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f52.google.com with SMTP id 6a1803df08f44-7240eb21ccaso27537296d6.0;
+        Fri, 05 Sep 2025 14:55:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757109246; x=1757714046; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=geUOZPIM1H0puFsovboYTPlTcH8IiFSVx5bKk2dh98U=;
-        b=wGIX+wDDzsdKFCHGb65u/lhrn0u1TNLsS1VY9/CQRAckXlYduc5Rs4tG1XPIxb1iDr
-         Efcx5FJD0KJ4piOY8j9vePaVcKVN4i9OTD7FZuYSjmR9X24VBJrj2xfZMER6IydpavjV
-         ZS4bVKMsemsjeE4zgNw7LC86QUgMMAh6iUbRm6x8NC/p2kAI5uJgYle/I67n6d9UIRjZ
-         iiAz5JAZaPuT+HV3KP5YhEQoS79Ez9pMQJL9mrVGZYoZCt2sisL3ryMVMN4YoaHi2Pb3
-         Tc5COqKIpAyPbguz45TiDQCTtBVX15y1bYhAMV2yAXbMYMzF43PWjLzeVqXn+vabebpt
-         SGFA==
+        d=gmail.com; s=20230601; t=1757109333; x=1757714133; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=by+8F+anZTxCA7oR1eWPQaNsp7sK68gCNn3HzHRj2Jg=;
+        b=ildhq7pX7nH8qS2gmkRdoHz6tdAYyiPhCfFZovqz9CgklVU194gdRqYKGjngfqelOO
+         8nSzPE1Cs6QQ4xi6eaJ4vsGemYcdqNWpmUITnsUN2iJyvBpqamNItcSsqY3m+EFLa3ge
+         fT+/lVE1qkFAHCo27olZGM+H5OBQyZuwoPzdMB8Xj/ImQJdjGJHRIFparvLgrnluy6hX
+         HmKrMS8wpvJGrsRE3L7WCHlDEGzIjdk0NAndCxKgwOVRkXRGzDrxpVQxAkkjRS5UpkSB
+         TDCHpQHqGaK5Qyiv3YtIUtIEulU6kbBjccdPQmXjmXTuKjQbo5Xbew1EcqJuKWoklg18
+         JrwA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757109246; x=1757714046;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=geUOZPIM1H0puFsovboYTPlTcH8IiFSVx5bKk2dh98U=;
-        b=o65IKh0zUwDnxgFAhY6KjIFei/96/YPdTeSQX2h8/sVptnamkyNZ4gI6UIbxX36mwf
-         ZVklyxlf3paYW0oGrikJYKWmqmkSZiAW5fqJBLlXYNWY6NGrbeb8rjn233AiOp46MUlJ
-         iPQaowze8Lr2+V/B5JAJA3nA/4Dfi+NUeAWDbtfFmpre0mHNY9XB+9jnUN0OUKxsFEpB
-         2R3MoJVooD0ECR6YHFbncxvJeeW4EXP92J99WECjHA/R7+evPNfrmGXPcduOMaaNdYJd
-         46K1UKoC2Vvokow6gjMlPBZvIIDUw9UZ6JTDspF6poLo8s4oU+4aqeBjJUVxPtjATJ4P
-         Zv4w==
-X-Forwarded-Encrypted: i=1; AJvYcCXwWnHpW5Oz5ILirwh1AyRjhERf7fk/7bv3RdEeR7aXl2nzpvIv6ptQ5bMlK/Y96uF0RaJyNzOhgp7W@vger.kernel.org
-X-Gm-Message-State: AOJu0YzPyY5Q/eSALwjIRxr/jat6ptD0GSo63XPE/cL7ILLar9M97w8K
-	vI9e+bUzK0psx48BgQ6uuzPtTvtgdBCdzepSvnepSAEg7EGyQ3G2uZkP6g0nE/SEzEE=
-X-Gm-Gg: ASbGncsNpOkHmxxsAnQ0X5JaWJ5NuSlR/mpaPE/A4eA0VbNz8WFTjgBWsKQFC6UyKHW
-	nnrI+m8LjyynmJl4q17FshK15zE5tg/UNxADZVC77XmdzOfDZGw/FGklL5qYe/WtPZyVUZ4WPqp
-	I70ALdF4c5tVRhnzyTJEmddRnriuDXdaqInqPTvwL7S99/a4J+xdIjR92jHg9wyXa97MuL7PDdG
-	dZGla5HhcYvj6b1nr4BN63hbJeoYEwuPO6bTdgLbLTDI/RXwk93CvyVoGRvs4a5puJVt+QipelO
-	+3BVclzUWbzEY6HpMj6P4HNiSlNI4fmiDZnkMhjt9pg1GQHr7jAh4DkWxWqo8ov4QJVqbguJ4Oy
-	O06lEJmsMuFDzKCP9VlNtWH0UEWjPmRXhUmYASisNRPNwZdHBea7gM6hPNZIe9LF7fa+MFZTB
-X-Google-Smtp-Source: AGHT+IGfk5K+s35XPShmflVbwVdAHvuZ3nG91RGSV8iFUqGTJlmmKaTQGR4sWgOGsMuN+p485ER7/g==
-X-Received: by 2002:a05:6808:6c88:b0:437:decf:ab53 with SMTP id 5614622812f47-43b29ad3d9bmr183404b6e.30.1757109246626;
-        Fri, 05 Sep 2025 14:54:06 -0700 (PDT)
-Received: from ?IPV6:2600:8803:e7e4:1d00:52e:cda3:16cc:72bb? ([2600:8803:e7e4:1d00:52e:cda3:16cc:72bb])
-        by smtp.gmail.com with ESMTPSA id 5614622812f47-43836abece4sm1977636b6e.28.2025.09.05.14.54.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Sep 2025 14:54:06 -0700 (PDT)
-Message-ID: <e5e76789-c8d9-463c-aa01-f2c6ae718f74@baylibre.com>
-Date: Fri, 5 Sep 2025 16:54:05 -0500
+        d=1e100.net; s=20230601; t=1757109333; x=1757714133;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=by+8F+anZTxCA7oR1eWPQaNsp7sK68gCNn3HzHRj2Jg=;
+        b=XxaqgFbmtKZyQBGYAMiA1VPtcKemn2SlwM+S06zfGEegNkdSNbqgXAl7LMN+hpBIbV
+         iXOLS5S910aG+FW0hZeHB49Piet5qbkZV4gldfO3ISzu5z1QEehL/6k6k4acs/ahqJl+
+         izeo2OMLxrfuAZH4kPNT1MTgQMhEyAc9nYEyPhkVXyOt4Pru6E/6pSCtoAm5lYDNYgCn
+         NFTAS2+/440lrL2+JTq9S54GXKQJIJx1WYyw0jUEGZSKlIWQMLsJb4f9nawA/36XkoV9
+         5dNbouvMwNgY65pAJgal95Umr1wrL0iGkImbZN2QulH8zyim29925WSiTq8MX4fSOgFh
+         Ikug==
+X-Forwarded-Encrypted: i=1; AJvYcCU7V7muUgV6VmMnxA7/O6Rw+3mJzuADBQXDCfQHBpLGxycy04Mc5AefgeA4gYpU3qDzRO/9I/uve1JJ@vger.kernel.org, AJvYcCWY0FZr+M2v3LFw4g06COSt49vIOtA3T6y74OzPEptXWTY2IQKNTDjaBr9rVwHqx6x/I0J5OLZyyKXulmGPfA==@vger.kernel.org, AJvYcCXx8Jt//iuE+lxqP1ADUpd7cKzklNpjHl9zfwpy0sID6QYuQx3u7PLjNKLStMiKxxbXAaItK3ufGKIRMJE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxM6zBaOryr859oU4Fr0fLSfo89sN4fam3N/5Ss5ZEsRAnxSj56
+	eZqnLQB0at76oBZ7Yi1ueuuAD/JsbK867DnTMUeW3wM9qHPVD2aFIlEe
+X-Gm-Gg: ASbGnctVq1TwNfsizCbbUTadYCukvrb7pMgtVXQpnGvsDP4ZU7ayDHoMjpN6+BOvcBc
+	BQWd9Lif89JdRxDEAagC2Ki1QjEmjVPc2wUWQZWTpj3IqX0LjHh7Gr3XilS2s2JZEIGyzFhsdff
+	N4XAe18yjjNmxu37+K7BoTp5jImKPAyerEVKlOttT42BNVofGwuh29FXKR46ClK2IzEkYd/YAup
+	Z3mavBPOWGwwKA9dq4WZqBb1qGvyUR1YmfZv/kQd/fMgw09wC2efETIQabCOTXSHd4BwDtcT6kW
+	MKJ/stzpPIbA77bK2i4deDgH3JJBPNCUVv3b++acfebfqQ4kp86QjU0DXlXN3CMxBXzIHbV1P4z
+	xnyS+yJ5UYVmvSb4yv6P5kJBuYw==
+X-Google-Smtp-Source: AGHT+IGegbV+ZSDfsNB2/X+BJ1NfsL20gwhrgoUVOJZT1GoyWZM5jwyKDs3DP8o4W18Gbr38NVBZBw==
+X-Received: by 2002:a05:6214:ca6:b0:70d:f55f:ef97 with SMTP id 6a1803df08f44-72bbdcead63mr58138406d6.1.1757109332115;
+        Fri, 05 Sep 2025 14:55:32 -0700 (PDT)
+Received: from localhost ([174.89.105.238])
+        by smtp.gmail.com with UTF8SMTPSA id 6a1803df08f44-727f26995desm43379716d6.48.2025.09.05.14.55.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 05 Sep 2025 14:55:31 -0700 (PDT)
+From: Richard Acayan <mailingradian@gmail.com>
+To: Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Tianshu Qiu <tian.shu.qiu@intel.com>,
+	linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org
+Cc: Robert Mader <robert.mader@collabora.com>,
+	Richard Acayan <mailingradian@gmail.com>
+Subject: [PATCH v3 0/4] media: i2c: IMX355 for the Pixel 3a
+Date: Fri,  5 Sep 2025 17:55:17 -0400
+Message-ID: <20250905215516.289998-6-mailingradian@gmail.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Daniel Lezcano <daniel.lezcano@linaro.org>,
- =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, jic23@kernel.org,
- nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, conor+dt@kernel.org,
- krzk+dt@kernel.org
-Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
- <20250903102756.1748596-3-daniel.lezcano@linaro.org>
- <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
- <0bfce1eb-69f1-4dae-b461-234eb98ffce1@linaro.org>
- <a3373804-08a4-4526-a432-c21a74ea3d6b@baylibre.com>
- <edc8e024-e425-49de-bfa2-44218fe72e26@linaro.org>
- <6b8cd005-b04c-4dd7-abf7-5a51319a5f0a@baylibre.com>
- <23b80d52-6149-483b-a159-276dd00d12cd@linaro.org>
-From: David Lechner <dlechner@baylibre.com>
-Content-Language: en-US
-In-Reply-To: <23b80d52-6149-483b-a159-276dd00d12cd@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/5/25 3:58 PM, Daniel Lezcano wrote:
-> On 05/09/2025 17:25, David Lechner wrote:
->> On 9/5/25 4:44 AM, Daniel Lezcano wrote:
->>> On 04/09/2025 19:49, David Lechner wrote:
->>>> On 9/4/25 12:40 PM, Daniel Lezcano wrote:
-> 
-> [ ... ]
-> 
->> Taking a step back, what sort of real-world uses cases do you need to support?
->> Or are you just trying to implement everything that the ADC can do? The latter
->> can be a bit risky because you might end making something where you can't do
->> a buffered read and a single channel read at the same time, but later find out
->> you have a real-world application that needs to do this.
->>
->> It looks like it would be possible to implement buffered reads in lots of ways.
->> IIO devices can have more than one buffer per device so we can add more in the
->> future if we need to. So I would just drop the DMA part of the implementation
->> for now and implement the basic triggered buffer using MCR[NSTART] and ECH
->> (End of Chain) interrupt request and just reading data from the ICDR registers.
->>
->> I would wait to have a real-world application that requires DMA to decide the
->> best way to implement that. There are lots of possibilities, like does it need
->> an external trigger or is continuous mode good enough? Does it need to be cyclic
->> (something the IIO subsystem doesn't really support yet) or not. Is exact sample
->> timing important or do we just need a big buffer? These questions we can't
->> really answer without a specific application to use it.
-> 
-> In the case of this IP, the use cases are in the automotive context. The system running on the APU is supposed to monitor at high rate (or not) the different channels which can be connected to any device the integrator choose to use.
-> 
-> For this reason, the driver should be able to support the different modes because the integrator of the car computer can decide to monitor the devices connected to the different channels differently.
-> 
-> Said differently, we need these modes because the capture depends on what the integrator decide to connect to the different channels.
-...
-> We just know all these use cases exist.
+This adds support for the IMX355 in devicetree and adds support for the
+Pixel 3a front camera.
 
-Changing the order here a bit:
+Changes since v2 (https://lore.kernel.org/r/20250714210227.714841-6-mailingradian@gmail.com):
+- use devm_v4l2_sensor_clk_get (2/4)
+- require supplies and clock-names (1/4)
+- move unevaluatedProperties down (1/4)
+- disable clocks as last power-off action (2/4)
+- use 0 in gpio pin power-supply (4/4)
 
-> or just read the value at a low rate.
+Changes since v1 (https://lore.kernel.org/r/20250630225944.320755-7-mailingradian@gmail.com):
+- too much to have a complete list (1-4/4)
+- squash camera orientation patch (4/4, previously 5/5)
+- squash driver changes (2/4, previously 3/5)
+- remove labelled endpoint node in sdm670.dtsi (3/4, 4/4)
+- change init sequence to match other similar drivers (2/4)
+- retrieve clock frequency from devicetree-defined clock (4/4)
+- remove clock-frequency from dt-bindings (1/4)
+- remove redundant descriptions of child nodes (1/4)
+- switch initial drive of the reset GPIO to low (2/4)
+- set mclk frequency to 19.2 MHz (4/4)
+- add vdda-pll supply for camss (4/4)
+- use common power on and off functions (2/4)
+- use devm_clk_get_optional (2/4)
+- remove extra layer when describing mclk pin (4/4)
+- rename regulators (1/4, 2/4, 4/4)
 
-For this, I think reading _raw attributes/in-kernel APIs/INDIO_BUFFER_TRIGGERED
-(no DMA) covers these use cases.
+Richard Acayan (4):
+  dt-bindings: media: i2c: Add Sony IMX355
+  media: i2c: imx355: Support devicetree and power management
+  arm64: dts: qcom: sdm670: remove camss endpoint nodes
+  arm64: dts: qcom: sdm670-google-sargo: add imx355 front camera
 
-> That could be a real high rate sampling, 
+ .../bindings/media/i2c/sony,imx355.yaml       | 112 +++++++++++++++
+ .../boot/dts/qcom/sdm670-google-sargo.dts     | 116 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sdm670.dtsi          |  12 --
+ drivers/media/i2c/imx355.c                    | 135 ++++++++++++++++--
+ 4 files changed, 350 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx355.yaml
 
-For this, devm_iio_dmaengine_buffer_setup() should work with continuous mode
-to sample as fast as possible.
+-- 
+2.51.0
 
-In both of the above a sampling_frequency attribute would control the prescalar
-of the ADC bus clock to give some control over the hardware sampling rate. There
-is no IIO trigger device in this case.
-
-> or triggered with a dedicated global timer on the system 
-
-For this one, we would want a `trigger-sources = <&timer>;` property in the
-devicetree to connect the timer trigger to the ADC. This would probably trigger
-a DMA transfer if precise timing is important. In this case, it might make
-sense to have a buffer/sampling_frequency attribute to control the timer. There
-wouldn't need to be a separate IIO trigger device in this case either.
 
