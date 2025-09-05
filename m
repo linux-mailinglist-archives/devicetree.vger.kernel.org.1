@@ -1,254 +1,232 @@
-Return-Path: <devicetree+bounces-213667-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213668-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88849B4632E
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:07:32 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 828EDB46335
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 21:08:51 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 36D8A1C24EEB
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:07:53 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E69507B6AAE
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 19:07:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0480626C39E;
-	Fri,  5 Sep 2025 19:07:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25526315D5C;
+	Fri,  5 Sep 2025 19:08:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="WaYhE4Bg"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A7N8h4My"
 X-Original-To: devicetree@vger.kernel.org
-Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013044.outbound.protection.outlook.com [40.107.162.44])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC7CD315D5E;
-	Fri,  5 Sep 2025 19:07:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757099225; cv=fail; b=WvLni4pYnuY+DKsM58YKK1XSFjz0IWpNILpdQ4isE0ppjeu2aGUqCJFahMT1J68KxmV9R+ZvGo5Ipyt3WVAjOy1Do4mvwylv5ghxlHxH6K9aRY+fGwp8IssPOPfQ+ESGEzHjOOcF7LqRxOUtMQ6kShhNNGdkWdzXzxwpMPYhbyg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757099225; c=relaxed/simple;
-	bh=sMymXuCsFpmPXTu3Mf5pjZbpDuczx6SxC1Nl3ZVQiV0=;
-	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=K1JZYP1LmTWuIdd4uwS7ao4hFEpocoZVn/UMG00/eQXdHonJwzSTPhOxadswhVzfmboqbuSKWhnkrHMnvqz0chxTg280IlSwcj7WMvqCaT383UFU/flnVR8tOHKReENZl/jWrS0DCBuG0YZVd2wzEp1kEw6IzBmnY6BB3LfqG3M=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=WaYhE4Bg; arc=fail smtp.client-ip=40.107.162.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=j7wOAHdyb5NIlIvEicnApyNyCj8vveMhRRT4HpcrgVPwYFLsilCkAuXsf+AL7cXUVcMcFrKVGwCD9dtbMrWmAmEMfXpttHQDvk+DPxQFDAz7ngYS+owotl/ZvjfGBldfclkvltBO642crcdl0/HEQedET05wG77NnU/B+t8NNbYw1RbgsJyzXScqs5lJcgRvTsYzv0bFmamHtdr2EM6I8h4mEA0T6UC8AGdKjxuqHiMXUECjb7cE0xAI1xlKWVg43754HOQDSWn7ExlgaG01f3pAyKRNUi0JdL5sx8FgA8vNOr6eZD1yzSqZoG3/jPTTONKvMylbkNZks/f2h9OX7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=POCFMh7wzF84hVnqVLE0Qvb7GFQQ853N7L7K8BI2YAs=;
- b=qGgfbyFchEIkG271aQNHcVTEULt/jsbccv9vjEhksPYokwkBxS3USBECAoznFwWxMaNrTfbQ/0LFqm/tGVZN/MerM8lwSYf+dSr3UBwqqYwN413YZBTgxRhFUmBr8/+DvLk95ZKioBI4f5RD+hlFUC7cwLBOd7loZ5FioXgYd0+Zmw6RdNA1q5ZRk3SL7NdrdykXUkB3x+w7akGgl8ALNC/4/6adNICCZxF0TWw3REeaxtupRdr5cjuP2YMBeV+RqdGt5FnGFUnwVgzyLrqKMJeRihwBevjNQxv4qQXWZdeYfvyrOd+0Z5asAi2+j1pJDR2LF9XBuxGtx2+T5075Ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=POCFMh7wzF84hVnqVLE0Qvb7GFQQ853N7L7K8BI2YAs=;
- b=WaYhE4Bgml4UuijcFw6B8EM9MLcQ4h+C+3iz0kfr1JXISPEjsYqHK/mn4Jx3/ulQ2EZMlrFiiFD80H9Q6ZxhiWuitHAYEwnEDEcnasfH+hVHZeuC9lDWWslRX7bshUQNMPJRqP5JCvHxEJf5aLrIF4GZ5OvJnEvtn6UkC51F2bQk8AmJr6p2gpDQYNTUdDTLgOUuJWLui4UJds0qJ88yvp/rJouZu5pjgOT++5BvgM9SKnLSI1a9lYoTf9TBqzep0jBnigvrP6CaEGXED8ag5OUxY1ygRD+pGXxqWfGWQegar4OzdJ/cueo4jC0oUGfzJLOaj2NDFCL9Ptm0YK4Ubg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
- by PAXPR04MB8958.eurprd04.prod.outlook.com (2603:10a6:102:20d::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.16; Fri, 5 Sep
- 2025 19:07:00 +0000
-Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
- ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9094.015; Fri, 5 Sep 2025
- 19:07:00 +0000
-From: Frank Li <Frank.Li@nxp.com>
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E63A4315D22;
+	Fri,  5 Sep 2025 19:08:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757099323; cv=none; b=FDCAaiau56RGY+5wAp53KmcOAW0E9b4I6wTj70aVvOicLpx0AX+qNDG7pZw4NIVmb8LJjdqPqqRcdYYbNzg5PNhs4tVdCfnDhl5UJ/f+x8cUoQpPoesT4WdchQL0FhmLCgtvQouRtFirnN73390fN2R93yvkLtINAAOieKs1PqE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757099323; c=relaxed/simple;
+	bh=2QZ1aUC6v2Bk9UWUc2KWtsBZRzERC1eNroBBEihneJ0=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=f4f2cLmCCo556GYnzneLUDPdRyIgCGCBiQ1aezokHFKEZ8YaXG1YySfdqBFn61Gy9h0eVp6e5/8UX6sTt4zy/C/CHRPAZ7zAvTB39Depm9U3TLZjkkiDbfqpjxcfMk/U/DN/vo4xfH+ilUj9+qeOz2nQh0DQcX36L16MKfyXpPM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A7N8h4My; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57832C4CEF1;
+	Fri,  5 Sep 2025 19:08:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757099322;
+	bh=2QZ1aUC6v2Bk9UWUc2KWtsBZRzERC1eNroBBEihneJ0=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=A7N8h4MyWl5boMQzfWQal2WavPKOWECLXTgPzm+rYkU3PBr19kBJ2zff/930/KJBR
+	 XzscaP9xYzCdRpF49RZhsfLIazZXyEQlsB4BBg204ir2LP8/k4VCjl+KhKyypXQazD
+	 rWjD7HYWUYAdUHLYsLinFbFQrPXm84tNi68CNZfxdWc5iMRfX+fmx3ini27g5q9xQA
+	 EYRNWXgj7r2sEZeQrSdBgbPL4ccx6tkSwgKklT6Aq2OoYxdB5wdzVPRNb1ekBT7udS
+	 o8hz4oIf4uuk2gjZM5amlgvijt1otc3vhYNYS0OxTWhBlSYR2axSTclGp5JnFWymQx
+	 Ljveg+wlXiYzA==
+Date: Fri, 5 Sep 2025 14:08:40 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	cros-qcom-dts-watchers@chromium.org,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-input@vger.kernel.org (open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)...),
-	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
-	linux-kernel@vger.kernel.org (open list)
-Cc: imx@lists.linux.dev
-Subject: [PATCH 1/1] dt-bindings: input: convert tca8418_keypad.txt to yaml format
-Date: Fri,  5 Sep 2025 15:06:44 -0400
-Message-Id: <20250905190645.609762-1-Frank.Li@nxp.com>
-X-Mailer: git-send-email 2.34.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SJ0PR13CA0065.namprd13.prod.outlook.com
- (2603:10b6:a03:2c4::10) To DB9PR04MB9626.eurprd04.prod.outlook.com
- (2603:10a6:10:309::18)
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org, quic_vbadigan@quicinc.com,
+	quic_mrana@quicinc.com, quic_vpernami@quicinc.com,
+	mmareddy@quicinc.com
+Subject: Re: [PATCH v8 5/5] PCI: qcom: Add support for ECAM feature
+Message-ID: <20250905190840.GA1318549@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|PAXPR04MB8958:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1eec471d-3948-4c9c-7154-08ddecaf6460
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|19092799006|376014|1800799024|52116014|921020|38350700014;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?hvfd2wN85bTK8Yiz+22TTy6FeuLr11Ur+YQ8WDEMCf7wXOUojPHxtJ2Js1u6?=
- =?us-ascii?Q?kw9rm+P+N9H+FZxqboODbmtFQjtlzsOrGYaYMRm7jKcBUPNBGmw21u6ylbjf?=
- =?us-ascii?Q?lPy4F1Tlfv4U/V2+GqsU/5RiCKyyuY6tWGVPfKM+wF8BBnvW2s9+1WbXHloS?=
- =?us-ascii?Q?8DyWctMIwF7fl+bFVzldhsso7Mb85RKXuc4Id7+iVZ6vFW6tlr0CdwWfgALH?=
- =?us-ascii?Q?5Q8WV8Bm6wIWFquMk6Lh1MrcjPPfbP8BljgnumZkv0Ndr4S+8+OFUiZoiGzv?=
- =?us-ascii?Q?tciPztY3/n7wker4B2mNrLuHrloA2+/NwgXCSjbU0JYAoG4pPEiHYEFyX11g?=
- =?us-ascii?Q?frCEdRYwAi4jcP80yfItNmP9xiNudbSNO5h9on9cUQj4dMxVOCraLaMCv1UW?=
- =?us-ascii?Q?wK96anFh9kSowEkLUcZG22DoUhMN7b9DpNETykSADeciEk1bmKsWsMf14HnX?=
- =?us-ascii?Q?LB4NA6NGZfWfIgZ5UZ12mR9xeWEt0YRS09J/wHeGD3Iiuwrwq7jTgruHNiV7?=
- =?us-ascii?Q?Q15vB4nrmvThNt2rCWEJPasXtVZ4rs+frpohHz++CoTfWT4lMtYiFJwgJGjG?=
- =?us-ascii?Q?Xzydl1zz4ALfx4imQ2sGqAsP9GGVETkOlOc19claLBh7aa6I1FL48bow+bjV?=
- =?us-ascii?Q?OqvSSHV1cCiKvED/qRB9hNQ6lwDQhYqEYx/+ArqSTpOUBjanl3Jxc5IQfY5v?=
- =?us-ascii?Q?F6rdl2Qv1790fY9xPQ6MHFQxKMs+m0u2+1nAu9E3Bk3ya0WFMmX7MYSzXRh2?=
- =?us-ascii?Q?00ltSHU08jGgN0pM6GucbK0e+Vce8lRbL83sLoACFpVA4gPTf11PX/GEP+p4?=
- =?us-ascii?Q?vpU72it3kw4QiM4PfEa9sFN1xNhuBS1ecbyTT2mQUNs4gevhjtpXh0qbmlKi?=
- =?us-ascii?Q?6+0PUp4rhXHADWJFz9jtLFvykohM2kqKxloggslPGw34Br0/ID6wTQFqpEFg?=
- =?us-ascii?Q?yoCrtZgqQRbLrcQYRuUPktb4maNyq6G8wW/VtFwMHsB16M/TennIn1zoyqYG?=
- =?us-ascii?Q?VzOwXY1UbG4A9fxeBBZ5nH0fys36G+wNzeb3rGGVAHOJBEiyI8ZrVAnESzZM?=
- =?us-ascii?Q?/FblfUs5PHjXCBrWIWoI5TToqmE5zq5XT2FBlHpMo/zxAOGfGb7hm7dg6Ucp?=
- =?us-ascii?Q?PYf+tzlzGcwNCTRqNCriu4pq3pT59bnKLcZP9oWRC1oVd9wGYWMqUZdLLrKr?=
- =?us-ascii?Q?+A8Zv+L+L4nTh6+AehHQDtsH2NsmOcfU3Ane7j79bsWu2yFUP4AoNMeY/5eu?=
- =?us-ascii?Q?iTxCTWnSBHTU/Ltqeb5BGjUVRStuhybDiRKlL0LaHUfwA0cgy1QFwHRnzVnA?=
- =?us-ascii?Q?UhOPqfv/1oRlVUEPjWUgIAdxXUNpu2y4WBjQKeqFEsxFEERoVK8MwPTCoe0h?=
- =?us-ascii?Q?JtjAWkVHWN8tYN55pPLU8L0zC43dnLaNapZKhS/MZaH/XrzzmMG88BDnO4V/?=
- =?us-ascii?Q?6oSN3guGH3+aJFcvt2ypSjPxKYD2Vk+v?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(376014)(1800799024)(52116014)(921020)(38350700014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?1qddpy08fel7dzk2JNlNS0XB/6Sw+iqIzMYncKZ87e8E8N2R/LzfBEmzVx+O?=
- =?us-ascii?Q?xAY1Db7XvmC7dJBb9GD79+7tRt8GhlBubWkzyJAegUjJo/LAP+yWtc+XsLZ4?=
- =?us-ascii?Q?nQ9+rfzRXSsTUVFVjUPT71qTxLRSfESo6UlJOhbmCfq67WlX7v1tLPjr+xjt?=
- =?us-ascii?Q?Kwm9Q7mAh5xZ1AM8Y+j9JSw5eCQV2XI8Uk5RSx0ohmdSpP15iMbINvd8MHnr?=
- =?us-ascii?Q?iYf/aRY9hW2Lnpm3vu1iLxxd7dZj1dPF3dP/X8JluESeoRVyTYtFFe+93sXO?=
- =?us-ascii?Q?Mk9obTwry9xxUkN8z41XU2fzyfSmSm3ZObxL1KCbvmsGUPCcqnU5QtDjeJv6?=
- =?us-ascii?Q?KFQD9BgN1ttWATjV4/9dKwNvQPzN+yV9y7QOOEVixdWn/zwaIRQtCV4GzEoL?=
- =?us-ascii?Q?SrhJ0dTSB7ggPHG9F9fFVMulnih2n7Qdcgqjjl9ZWSXtXBc/nCtpBXC+X9/h?=
- =?us-ascii?Q?gNlOXRsyOIkfgA3ytrhTiWvz6DmN+ssqYjMe4/kKmlaY7icmZyDXwmsfvXdk?=
- =?us-ascii?Q?kHO+8dwvke3NsZ1u+WN9JdIqT3Fpz2arDcMO5KfkJQHkOiS4SSJrGmoLFU+1?=
- =?us-ascii?Q?+mkxd6vCH6ScAOHFoyV1DheBoN9TsNChnhmcZIFrENVcCsaw/QgSxqifDfrv?=
- =?us-ascii?Q?Y9XBfa/BboxPvB1a/wWqUH3RkytH3Gi1gguiOOkkgaFkEh3SFqbSzAi+NZCf?=
- =?us-ascii?Q?S1dWN4ZGSJXMGT80nhZNJLWo/paKJZ6XVbdHm7DCt9hidKYXisjZk7h0MPoX?=
- =?us-ascii?Q?t0xNnh8B32QnmdAVGxFixPKbCKDDhf1Hlx0NwWmQkEK2Dz+4yiT6jq7fDvSf?=
- =?us-ascii?Q?aVAHKTbLwKmQHh3mRSkAIa0hX+jHONrSGIdCtKWIu/tHSeuB/RSgO2QH2IhY?=
- =?us-ascii?Q?UObdK+8+elZPGBujk3ANHf0HLaEFQAAIJ+PWhhhxiv5DKKAL9gKoYJ+46gsl?=
- =?us-ascii?Q?eSk4P+6qQ3cm+ZvlTs1wASbU2tiFMgG/AyTNb4dzLPnf3mcxPol1se2TZ7YV?=
- =?us-ascii?Q?rVk9MKMMyMimfg1b/0IrGVTocG4ZYqnU1Mn2fJWPWP4YCtwTUbPKm2Oqaakj?=
- =?us-ascii?Q?cFcAc/CdbO9iiOcoExvhfhqSIgUgVLHiSMwLPBPKUdDX4LfzeHl4V39ki32i?=
- =?us-ascii?Q?do1tGjhpoEa7soMyIIhKRKaYtYREo1tcVq6PXT96ygbhV70B6MvKMq9yspIP?=
- =?us-ascii?Q?2U6wlOKQA4jevKNZ9PFSxX5wRWcBTv9u1j1lO9TQCDGlQ5WYujF1UolTPRJP?=
- =?us-ascii?Q?Kp3QTt8B8yIbKiDlkHvLF1lmg1Ho2gejm1jJTVpLr9Vwyi2VkhbUl1fUbgEu?=
- =?us-ascii?Q?iodAhBQjwQ3cMxIThg8zbkiFhGQa74OI1ZmYBwnVptp9TH6AOhPDkTkQicw8?=
- =?us-ascii?Q?ZzE/l6jmOtD2vUhltCxTKaO7IIX1mvwDZwh1oN9SIUYOT+6Zctn26KfxYoHU?=
- =?us-ascii?Q?BKVxAk4qK4FTfqQfc22tQfBpgnov49T2slhqIgomT/gBY1buQKerz4+Lqtcs?=
- =?us-ascii?Q?R7JwOPK+i12I8l49OVxnVjTKSaCSGB30UZANflunG8MaMToIwXQpQaH/Od19?=
- =?us-ascii?Q?K0J7XqzMWkEx6bO5JHL1v5VCvxVvbGZcOKDiUwwJ?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1eec471d-3948-4c9c-7154-08ddecaf6460
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Sep 2025 19:07:00.6129
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Fh1AkR6r7PKEClfrVu7DKSOytSxXlSjkB5r4ed4m6fpKc9VNDZgYPNB3j+WFxUxxNUFEvoFkZWQRioDBdc2sVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8958
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <gwaz7563akxeai4gar7etf4jp3c775fphkipn37alzjcjy6t66@2pa3ykv6kejp>
 
-Convert tca8418_keypad.txt to yaml format.
+On Fri, Sep 05, 2025 at 10:08:54PM +0530, Manivannan Sadhasivam wrote:
+> On Fri, Sep 05, 2025 at 10:47:42AM GMT, Krishna Chaitanya Chundru wrote:
+> > On 9/4/2025 1:42 AM, Bjorn Helgaas wrote:
+> > > On Thu, Aug 28, 2025 at 01:04:26PM +0530, Krishna Chaitanya Chundru wrote:
+> > > > The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
+> > > > gives us the offset from which ELBI starts. So override ELBI with the
+> > > > offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
+> > > > 
+> > > > On root bus, we have only the root port. Any access other than that
+> > > > should not go out of the link and should return all F's. Since the iATU
+> > > > is configured for the buses which starts after root bus, block the
+> > > > transactions starting from function 1 of the root bus to the end of
+> > > > the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
+> > > > outside the link through ECAM blocker through PARF registers.
+> > > > 
+> > > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
+> > > > ---
+> > > >   drivers/pci/controller/dwc/pcie-qcom.c | 70 ++++++++++++++++++++++++++++++++++
+> > > >   1 file changed, 70 insertions(+)
+> > > > 
+> > > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > index 5092752de23866ef95036bb3f8fae9bb06e8ea1e..8f3c86c77e2604fd7826083f63b66b4cb62a341d 100644
+> > > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> > > > @@ -55,6 +55,7 @@
+> > > >   #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+> > > >   #define PARF_Q2A_FLUSH				0x1ac
+> > > >   #define PARF_LTSSM				0x1b0
+> > > > +#define PARF_SLV_DBI_ELBI			0x1b4
+> > > >   #define PARF_INT_ALL_STATUS			0x224
+> > > >   #define PARF_INT_ALL_CLEAR			0x228
+> > > >   #define PARF_INT_ALL_MASK			0x22c
+> > > > @@ -64,6 +65,16 @@
+> > > >   #define PARF_DBI_BASE_ADDR_V2_HI		0x354
+> > > >   #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
+> > > >   #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
+> > > > +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
+> > > > +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
+> > > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
+> > > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
+> > > > +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
+> > > > +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
+> > > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
+> > > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
+> > > > +#define PARF_ECAM_BASE				0x380
+> > > > +#define PARF_ECAM_BASE_HI			0x384
+> > > >   #define PARF_NO_SNOOP_OVERRIDE			0x3d4
+> > > >   #define PARF_ATU_BASE_ADDR			0x634
+> > > >   #define PARF_ATU_BASE_ADDR_HI			0x638
+> > > > @@ -87,6 +98,7 @@
+> > > >   /* PARF_SYS_CTRL register fields */
+> > > >   #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
+> > > > +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
+> > > >   #define MST_WAKEUP_EN				BIT(13)
+> > > >   #define SLV_WAKEUP_EN				BIT(12)
+> > > >   #define MSTR_ACLK_CGC_DIS			BIT(10)
+> > > > @@ -134,6 +146,9 @@
+> > > >   /* PARF_LTSSM register fields */
+> > > >   #define LTSSM_EN				BIT(8)
+> > > > +/* PARF_SLV_DBI_ELBI */
+> > > > +#define SLV_DBI_ELBI_ADDR_BASE			GENMASK(11, 0)
+> > > > +
+> > > >   /* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
+> > > >   #define PARF_INT_ALL_LINK_UP			BIT(13)
+> > > >   #define PARF_INT_MSI_DEV_0_7			GENMASK(30, 23)
+> > > > @@ -317,6 +332,48 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+> > > >   	qcom_perst_assert(pcie, false);
+> > > >   }
+> > > > +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
+> > > > +{
+> > > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > > > +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> > > > +	u64 addr, addr_end;
+> > > > +	u32 val;
+> > > > +
+> > > > +	/* Set the ECAM base */
+> > > > +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
+> > > > +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
+> > > > +
+> > > > +	/*
+> > > > +	 * The only device on root bus is the Root Port. Any access to the PCIe
+> > > > +	 * region will go outside the PCIe link. As part of enumeration the PCI
+> > > > +	 * sw can try to read to vendor ID & device ID with different device
+> > > > +	 * number and function number under root bus. As any access other than
+> > > > +	 * root bus, device 0, function 0, should not go out of the link and
+> > > > +	 * should return all F's. Since the iATU is configured for the buses
+> > > > +	 * which starts after root bus, block the transactions starting from
+> > > > +	 * function 1 of the root bus to the end of the root bus (i.e from
+> > > > +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
+> > > > +	 */
+> > > > +	addr = pci->dbi_phys_addr + SZ_4K;
+> > > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
+> > > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
+> > > > +
+> > > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
+> > > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
+> > > > +
+> > > > +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
+> > > > +
+> > > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
+> > > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
+> > > > +
+> > > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
+> > > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
+> > > > +
+> > > > +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
+> > > > +	val |= PCIE_ECAM_BLOCKER_EN;
+> > > > +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
+> > > > +}
+> > > > +
+> > > >   static int qcom_pcie_start_link(struct dw_pcie *pci)
+> > > >   {
+> > > >   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> > > > @@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
+> > > >   		qcom_pcie_common_set_16gt_lane_margining(pci);
+> > > >   	}
+> > > > +	if (pci->pp.ecam_enabled)
+> > > > +		qcom_pci_config_ecam(&pci->pp);
+> > > > +
+> > > >   	/* Enable Link Training state machine */
+> > > >   	if (pcie->cfg->ops->ltssm_enable)
+> > > >   		pcie->cfg->ops->ltssm_enable(pcie);
+> > > > @@ -1314,6 +1374,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+> > > >   {
+> > > >   	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> > > >   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
+> > > > +	u16 offset;
+> > > >   	int ret;
+> > > >   	qcom_ep_reset_assert(pcie);
+> > > > @@ -1322,6 +1383,15 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
+> > > >   	if (ret)
+> > > >   		return ret;
+> > > > +	if (pp->ecam_enabled) {
+> > > > +		/*
+> > > > +		 * Override ELBI when ECAM is enabled, as when ECAM
+> > > > +		 * is enabled ELBI moves along with the dbi config space.
+> > > > +		 */
+> > > > +		offset = FIELD_GET(SLV_DBI_ELBI_ADDR_BASE, readl(pcie->parf + PARF_SLV_DBI_ELBI));
+> > > > +		pci->elbi_base = pci->dbi_base + offset;
+> > > 
+> > > This looks like there might be a bisection hole between this
+> > > patch and the previous patch that enables ECAM in the DWC core?
+> > > Obviously I would want to avoid a bisection hole.
+> 
+> Theoretically there is a hole, but practically there isn't. ELBI
+> register is only used by legacy Qcom SoCs and they do not support
+> ECAM. So they will continue to use the valid ELBI register region
+> from DT.
 
-Signed-off-by: Frank Li <Frank.Li@nxp.com>
----
- .../bindings/input/tca8418_keypad.txt         | 10 ---
- .../devicetree/bindings/input/ti,tca8418.yaml | 61 +++++++++++++++++++
- 2 files changed, 61 insertions(+), 10 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/input/tca8418_keypad.txt
- create mode 100644 Documentation/devicetree/bindings/input/ti,tca8418.yaml
+That's a real pain to figure out from code analysis, so I would prefer
+to squash them to avoid even the appearance of a bisection hole.
 
-diff --git a/Documentation/devicetree/bindings/input/tca8418_keypad.txt b/Documentation/devicetree/bindings/input/tca8418_keypad.txt
-deleted file mode 100644
-index 2551850091678..0000000000000
---- a/Documentation/devicetree/bindings/input/tca8418_keypad.txt
-+++ /dev/null
-@@ -1,10 +0,0 @@
--This binding is based on the matrix-keymap binding with the following
--changes:
--
--keypad,num-rows and keypad,num-columns are required.
--
--Required properties:
--- compatible: "ti,tca8418"
--- reg: the I2C address
--- interrupts: IRQ line number, should trigger on falling edge
--- linux,keymap: Keys definitions, see keypad-matrix.
-diff --git a/Documentation/devicetree/bindings/input/ti,tca8418.yaml b/Documentation/devicetree/bindings/input/ti,tca8418.yaml
-new file mode 100644
-index 0000000000000..114de435b09d1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/ti,tca8418.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/input/ti,tca8418.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: I2C/SMBus keypad scanner
-+
-+maintainers:
-+  - Frank Li <Frank.Li@nxp.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tca8418
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+allOf:
-+  - $ref: matrix-keymap.yaml#
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/input/input.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        keypad@34 {
-+            compatible = "ti,tca8418";
-+            reg = <0x34>;
-+            interrupt-parent = <&gpio5>;
-+            interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+            keypad,num-rows = <4>;
-+            keypad,num-columns = <4>;
-+            linux,keymap = < MATRIX_KEY(0x00, 0x01, BTN_0)
-+                             MATRIX_KEY(0x00, 0x00, BTN_1)
-+                             MATRIX_KEY(0x01, 0x01, BTN_2)
-+                             MATRIX_KEY(0x01, 0x00, BTN_3)
-+                             MATRIX_KEY(0x02, 0x00, BTN_4)
-+                             MATRIX_KEY(0x00, 0x03, BTN_5)
-+                             MATRIX_KEY(0x00, 0x02, BTN_6)
-+                             MATRIX_KEY(0x01, 0x03, BTN_7)
-+                             MATRIX_KEY(0x01, 0x02, BTN_8)
-+                             MATRIX_KEY(0x02, 0x02, BTN_9)
-+            >;
-+        };
-+    };
--- 
-2.34.1
-
+> > > What happens to qcom ELBI accesses between these two patches?
+> > > It looks like they would go to the wrong address until this
+> > > elbi_base update.
+> 
+> Though there is no practical issue, it still makes sense to set
+> 'elbi_base' to a valid region before enabling ECAM.
 
