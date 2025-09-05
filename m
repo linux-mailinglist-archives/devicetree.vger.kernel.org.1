@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-213555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF38DB45BD3
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:11:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AF03B45BDA
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 17:11:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EA788188E2FC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:07:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E3F3176847
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DD21C226CFF;
-	Fri,  5 Sep 2025 15:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8F21309EFD;
+	Fri,  5 Sep 2025 15:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IwS+zBKi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+mNAYlk"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE8761C701F;
-	Fri,  5 Sep 2025 15:02:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32C0309EF7;
+	Fri,  5 Sep 2025 15:02:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757084575; cv=none; b=RHgZiQIEGtsAS6ufs1dweYtr0cbH5DKxo1Y68bTdsIPYHoygYrOFjZ1+ublzZmEt0ocgb/IZMkzXFeCAMs9381pWUyiI2hqEbKb8s2PxsaI3wzLLuD1n/CTpiNHzAoIVu/02mq7b8mTFKI521PGxUvvS9djLMAcDHk9mijmtIqY=
+	t=1757084576; cv=none; b=tiXbYq5iO4GOQmWQnwIN+oLOCzGiyu6r01LQB/wQFsQoB6vUCDKHh+YfhVuHBcNNigbzOSFWiYVoBrBaqx5+FiSieVyMesyggZZ0vdMdfCbnc1Pv2Z5UYr+WvjtS4N06frj0QcR56S+Cr+KFpC1j9jSA4SBqW2+4VhctpiJUSQ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757084575; c=relaxed/simple;
-	bh=ebSK5L00ENVHa6bUlXpVtE0ozImvuhAtZkPqI47++wI=;
+	s=arc-20240116; t=1757084576; c=relaxed/simple;
+	bh=tnO+F3IBSVwbXYSjQVLWxzL1kIaYxg8U7ngesJvaIDo=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=iC+dBLsVCdyVypMipaWsZmWcwaoExGgAqW2Zkv/PwRUyO32Qq1sS/79PdD5zqXjqnYGTN2ZoERO7ZVMBsB6Sp9ptaxPrWZ4gVnAb+w6o/0zHgt9dWWbViu5TaFPkZt8eRaRnm71TWIkd0lfEmp/OExSO111NMOTTeyy4BIYT6tE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IwS+zBKi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F021C4CEF1;
-	Fri,  5 Sep 2025 15:02:55 +0000 (UTC)
+	 Message-Id:Subject; b=eNNk3lzk0pguq0cqcXdRG7/JSBDTzSVHodFg+0whwhJEz4FS6T4sOxnSh1uOnbqrsRbg9Kj5oE6jLArHgNpItzcEoMZJLvGzvkmN+oVYjYvXDfHjB29u47IW0dzO5aPqRv+tNqqkyDs4hlDoGtQ5Hkc6BTEgohHaEH8DvXIZSIM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+mNAYlk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 175D3C4CEF1;
+	Fri,  5 Sep 2025 15:02:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757084575;
-	bh=ebSK5L00ENVHa6bUlXpVtE0ozImvuhAtZkPqI47++wI=;
+	s=k20201202; t=1757084576;
+	bh=tnO+F3IBSVwbXYSjQVLWxzL1kIaYxg8U7ngesJvaIDo=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=IwS+zBKioHzYtJFaft6zCEvJh10s3WE1qRdebkmWb3RB6ZgrzORUXwe7yRkcZDed0
-	 +BQGlz1cfucrA4cITUDRtWt894ks+Jiv+iNEF3w0iAAeqIDXN9HCHyYBeM3TMK5gaG
-	 boNRqHysKEcrNzoRGm0c2Y/HOmHzkcUrENkD4oUc6xqG59CztSCXj/K/95sXHEd6JU
-	 P/2v6fvehRByIrg4tnrphPUMfYbGAENoWtBO5FwI6HZw8qH/eqImwes+fd2wqM9WDk
-	 vG8FF7csDJHotP/gP+p8Y3eqGWLjeDnqH7Ax4kZPo4cK9kevuAU1BP6IIGZ8r1+Ezc
-	 LqIkgyd8kCC7Q==
-Date: Fri, 05 Sep 2025 10:02:54 -0500
+	b=F+mNAYlkWXMpVAsqml7L1PUzsImzpvQibt4omaA7EELO8S45YVPMZvPTG4MSQehsn
+	 21OdklACLTZlQwY5sDPmQQIVWsq1FUstjh6GTpBypRkEcDy2TUsn8kzm8CyJn1Mdwg
+	 CFC6zL7mngw2jBraxQm61HNczCI3GOFdXZ0Vllo6+18hGGF1I56APKlnfXfAlK5pUc
+	 h90EqEHZhErp1OiNhh76+bTkWOI8XY9nz6iiScwYvw4L40cDv1nbCGFMRVujhk2XQa
+	 SeLXAeV9yHncuR8am7XUoOAmj6fiqF5I+LDtDIfStqe9KAi3x+QAFTKoUnLpbV8+Sr
+	 7iBXOCveUOnsg==
+Date: Fri, 05 Sep 2025 10:02:55 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,27 +51,53 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>, devicetree@vger.kernel.org, 
- imx@lists.linux.dev, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org
-To: Frank Li <Frank.Li@nxp.com>
-In-Reply-To: <20250904195338.530618-1-Frank.Li@nxp.com>
-References: <20250904195338.530618-1-Frank.Li@nxp.com>
-Message-Id: <175708447771.930391.632007325677210221.robh@kernel.org>
-Subject: Re: [PATCH 1/1] bindings: siox: convert eckelmann,siox-gpio.txt to
- yaml format
+Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>, 
+ devicetree@vger.kernel.org, Geert Uytterhoeven <geert+renesas@glider.be>, 
+ dri-devel@lists.freedesktop.org, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>, 
+ Robert Foss <rfoss@kernel.org>, David Airlie <airlied@gmail.com>, 
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>, 
+ linux-renesas-soc@vger.kernel.org, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
+References: <20250904210147.186728-1-marek.vasut+renesas@mailbox.org>
+ <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
+Message-Id: <175708447882.930461.18275572084838852328.robh@kernel.org>
+Subject: Re: [PATCH v2 4/4] dt-bindings: display: bridge:
+ renesas,dsi-csi2-tx: Allow panel@ subnode
 
 
-On Thu, 04 Sep 2025 15:53:35 -0400, Frank Li wrote:
-> Convert eckelmann,siox-gpio.txt to yaml format.
+On Thu, 04 Sep 2025 23:01:21 +0200, Marek Vasut wrote:
+> This controller can have both bridges and panels connected to it. In
+> order to describe panels properly in DT, pull in dsi-controller.yaml
+> and disallow only unevaluatedProperties, because the panel node is
+> optional. Include example binding with panel.
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 > ---
->  .../bindings/siox/eckelmann,siox-gpio.txt     | 19 --------
->  .../bindings/siox/eckelmann,siox-gpio.yaml    | 46 +++++++++++++++++++
->  2 files changed, 46 insertions(+), 19 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/siox/eckelmann,siox-gpio.txt
->  create mode 100644 Documentation/devicetree/bindings/siox/eckelmann,siox-gpio.yaml
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> V2: Drop the dsi0: and dsi1: controller labels
+> ---
+>  .../display/bridge/renesas,dsi-csi2-tx.yaml   | 53 ++++++++++++++++++-
+>  1 file changed, 51 insertions(+), 2 deletions(-)
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -79,15 +105,16 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/siox/eckelmann,siox-gpio.yaml: 'oneOf' conditional failed, one must be fixed:
-	'unevaluatedProperties' is a required property
-	'additionalProperties' is a required property
-	hint: Either unevaluatedProperties or additionalProperties must be present
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.example.dtb: panel@0 (raspberrypi,dsi-7inch): 'port' does not match any of the regexes: '^pinctrl-[0-9]+$'
+	from schema $id: http://devicetree.org/schemas/display/panel/ilitek,ili9881c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.example.dtb: panel@0 (raspberrypi,dsi-7inch): compatible: ['raspberrypi,dsi-7inch'] is too short
+	from schema $id: http://devicetree.org/schemas/display/panel/ilitek,ili9881c.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.example.dtb: panel@0 (raspberrypi,dsi-7inch): 'power-supply' is a required property
+	from schema $id: http://devicetree.org/schemas/display/panel/ilitek,ili9881c.yaml#
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250904195338.530618-1-Frank.Li@nxp.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250904210147.186728-4-marek.vasut+renesas@mailbox.org
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
