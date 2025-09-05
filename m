@@ -1,234 +1,122 @@
-Return-Path: <devicetree+bounces-213132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 92DCEB44BA2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 04:32:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5924B44BAD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 04:40:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 47DD3587A89
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 02:32:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1EA4B7AAD2D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 02:38:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99EB822127E;
-	Fri,  5 Sep 2025 02:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58CCC207A3A;
+	Fri,  5 Sep 2025 02:39:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V3PJ6H8y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eMTvEqGX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FDF221D3D2;
-	Fri,  5 Sep 2025 02:32:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30BC83BB44;
+	Fri,  5 Sep 2025 02:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757039567; cv=none; b=ajzf3GnUfWtQuS5c8rSuTM6Y50s10lzFcEQ2ZJhX/+3p+tzT2BdNacJvkArlrQ/VAtFYYSgkkYIO3FMlGCXAZGRPIQxXb4PVhHQRCDndiMM5y/v8kI3dkwFOJx7/NKdzqh3NCLfj+8XkEWDhaR4A/fXej0mt15XzSIjVTu/KaCw=
+	t=1757039985; cv=none; b=TkunIchZx0EJHBZrO7USuX8CAdKck7dileUTw3zqMujfYc1coW2vybqAyUxCJhsuSqv3DQjwfykxypKKY/dAQsZvkYXT8i4ICyTx53BmdX8JhYUHDT0xyLynhc6CTeRiU2akWgG7BxTmqfdHva8+GwdXF1Xkm5sG+TN3jLctbkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757039567; c=relaxed/simple;
-	bh=GPaD+K1HwBec1AzBnycvX5KKxlacm+uHk4fgWkMm9ak=;
-	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=jl0yJH+n/mlJznGZJyNKICQrzPrn++zPBByABoBB/LkR6q2rQZ8838qndxu+3xuJU/mUCiQ4obMIAZw6PS+rAV4+Hd2fYAdHQTP3lD8Os4Z9NgyTv09ucjrL3jyZQD0o4v8VAhAhco5dHhGhPUKYdoBeJihKtg5Esk7mZ8PIdWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V3PJ6H8y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1A026C4CEF5;
-	Fri,  5 Sep 2025 02:32:47 +0000 (UTC)
+	s=arc-20240116; t=1757039985; c=relaxed/simple;
+	bh=vgB5QZkxWhbewoikjI6YlorQ3Jl1QsSR04mb3VV44V8=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=M73HMLcz71cxTZ927dcHRcK7i8C6x/rGAk9u/NWb0KXN41C2HgCci82QgEKmHEpeVsSKOLuMcTdTNxQPxG/Bh5c7W7TCi5CnDY/15W0DMMeLo8nclZTQkiN3/ZdPSRMwWgTBl6qn/SdGSxoQyI8qrCZswhF8Vuvvt47DNTo1TVM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eMTvEqGX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7BE59C4CEF1;
+	Fri,  5 Sep 2025 02:39:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757039567;
-	bh=GPaD+K1HwBec1AzBnycvX5KKxlacm+uHk4fgWkMm9ak=;
-	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=V3PJ6H8yna7ghufxtWVbzbsZYOFev3/I9T48P6ykKzw9xhLIdq9ThxyOJ1Ud+Z4Zk
-	 tDwixER9hZNANWU4G8F12wY7aFU60ZZH0kNxmiGp+KqmnKd8syD8lShiV1LIhdZHwW
-	 pVXrEAqM15OYPrqffl8MaDA2fIsGhgsp1ijRR4ry6cwop7AgcxCkqhZj4jVb/jdYBO
-	 5qqpZkUsi5zBemLcl8dTqJmY4uJjwScp/Kyd8iMOw1ttmzH/NzrkNhQzsWfJCf7LtE
-	 dkto+S4r4q+Ul/p5YFhMsbFIayNHIs3oPFnwWSvQQWBB9XOayRJ9wfuAqWqSbAwq6s
-	 pFGVYpre8tj5Q==
-Date: Thu, 04 Sep 2025 21:32:46 -0500
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1757039984;
+	bh=vgB5QZkxWhbewoikjI6YlorQ3Jl1QsSR04mb3VV44V8=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=eMTvEqGXGoR6YQrwZt+tkOQ0eQYZa9PoBZUU94Ay+9FkCcID/1LLUMe1d0msrC28T
+	 57RImBnbcWSHfZIJvuejCfGHoFzQ0WusuYqQ5nZMbmL3c7Lekb1KOVn60Mgy48UJ4e
+	 l5i72wzJ2PRooAx5kaiDhwTDDKoqi26Lg/txfRaqJQimmJUpNAGz0dCV5+Rc4WnPij
+	 5SmTtE6IUPBcIALXOdoQ4P6T5p+CgQsRCszAHu6CCxNlCX7FJ9QBWrtoiWyMWB+oIo
+	 EcznNPUehdmlfovq/CswdwOuwy3CzeX1MRp5OpWZTQuquL/GWyZnOQXhZhw/u0w9Li
+	 kRlXNz0iBJF1A==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 64D47CA1013;
+	Fri,  5 Sep 2025 02:39:44 +0000 (UTC)
+From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Date: Fri, 05 Sep 2025 10:39:40 +0800
+Subject: [PATCH] dt-bindings: power: keep alphabetical order
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: vishalm@ti.com, kristo@kernel.org, conor+dt@kernel.org, 
- linux-arm-kernel@lists.infradead.org, khilman@baylibre.com, d-gole@ti.com, 
- vigneshr@ti.com, a-kaur@ti.com, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, msp@baylibre.com, sebin.francis@ti.com, 
- krzk+dt@kernel.org, nm@ti.com
-To: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250904212827.3730314-1-k-willis@ti.com>
-References: <20250904212827.3730314-1-k-willis@ti.com>
-Message-Id: <175703941947.745257.14151418968229633072.robh@kernel.org>
-Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62: Support Main UART wakeup
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250905-pm-fix-order-v1-1-3596e03d66e6@amlogic.com>
+X-B4-Tracking: v=1; b=H4sIAGtNumgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSwNT3YJc3bTMCt38opTUIl3TRDPLpDQTM0MjE3MloJaColSgJNi46Nj
+ aWgA2dWuCXgAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Jianxin Pan <jianxin.pan@amlogic.com>, Ulf Hansson <ulf.hansson@linaro.org>, 
+ "hongyu.chen1" <hongyu.chen1@amlogic.com>
+Cc: Conor Dooley <conor.dooley@microchip.com>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, Xianwei Zhao <xianwei.zhao@amlogic.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757039980; l=1166;
+ i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
+ bh=v+dUEzn1Vq7pqlYwSYypI3RmFlt816zF2fbTkSK6CaI=;
+ b=0NIo6ncVhxzcSBYsUPwwNstjwwmTebpSb7P86Z3fS5sMjjo8uiUE2k4Q2oiWF1Ym+XQVj4maz
+ rorfr+gR0aNBFnqYjT9M3EUghIpXGKaFqKI+kHsytLqcqv892pudIQQ
+X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
+ pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
+X-Endpoint-Received: by B4 Relay for xianwei.zhao@amlogic.com/20231208 with
+ auth_id=107
+X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Reply-To: xianwei.zhao@amlogic.com
 
+From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 
-On Thu, 04 Sep 2025 16:28:24 -0500, Kendall Willis wrote:
-> This series adds wakeup support for the Main UART in the device tree of
-> the TI AM62 family of devices. It defines the specific pins and pinctrl
-> states needed to wakeup the system from the Main UART via I/O
-> daisy-chaining. The wakeup-source property is configured to describe the
-> low power modes the system can wakeup from using the Main UART.
-> 
-> Dependencies
-> ------------
-> This series is dependent on the following series [1] to be merged into
-> the kernel. The series adds the system idle states that are available on
-> the SoCs. The system idle states are used when configuring the
-> wakeup-source property.
-> 
-> This series is also dependent on the following patch [2] to be merged
-> into the kernel. The patch integrates the PIN_WKUP_EN macro which
-> enables the WKUP_EN bit.
-> 
-> Implementation
-> --------------
-> This series is intended to be implemented along with the following
-> series:
-> 
-> 1. "pmdomain: ti_sci: Handle wakeup constraint if device has pinctrl
->    wakeup state": Patch which skips setting constraints for wakeup sources
->    that use pinctrl state 'wakeup'.
-> 
-> 2. "serial: 8250: omap: Add wakeup support": Implements
->    wakeup from the UARTs for TI K3 SoCs
-> 
-> 3. "arm64: dts: ti: k3-am62: Support Main UART wakeup": (this series)
->    implements the functionality to wakeup the system from the Main UART
-> 
-> Testing
-> -------
-> Tested on a SK-AM62B-P1 board with all series and dependencies
-> implemented. Suspend/resume verified with the Main UART wakeup source
-> by entering a keypress on the console.
-> 
-> [1] https://lore.kernel.org/linux-arm-kernel/20250812-topic-am62-dt-partialio-v6-15-v2-2-25352364a0ac@baylibre.com/
-> [2] https://lore.kernel.org/all/20250904112538.529857-4-a-kaur@ti.com/
-> 
-> Kendall Willis (3):
->   arm64: dts: ti: k3-am62x-sk-common: Enable Main UART wakeup
->   arm64: dts: ti: k3-am62a7-sk: Enable Main UART wakeup
->   arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
-> 
->  arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 24 +++++++++++++++----
->  arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 24 +++++++++++++++----
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 24 +++++++++++++++----
->  3 files changed, 60 insertions(+), 12 deletions(-)
-> 
-> 
-> base-commit: 4ac65880ebca1b68495bd8704263b26c050ac010
-> --
-> 2.34.1
-> 
-> 
-> 
+Keep the order of compatible property for amlogic sec power.
 
+Fixes: 9428fff44f0c ("dt-bindings: power: add Amlogic S6 S7 S7D power domains")
+Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+---
+Keep alphabetical order.
+---
+ Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-My bot found new DTB warnings on the .dts files added or changed in this
-series.
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+index 12b71688dd34..7b843e9f51c7 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+@@ -23,10 +23,10 @@ properties:
+       - amlogic,a4-pwrc
+       - amlogic,a5-pwrc
+       - amlogic,c3-pwrc
+-      - amlogic,t7-pwrc
+       - amlogic,s6-pwrc
+       - amlogic,s7-pwrc
+       - amlogic,s7d-pwrc
++      - amlogic,t7-pwrc
+ 
+   "#power-domain-cells":
+     const: 1
 
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not. No need to reply
-unless the platform maintainer has comments.
+---
+base-commit: b283b70967c0553b66e924f40e1c35b68fa8a1f7
+change-id: 20250905-pm-fix-order-5a69bf461247
 
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-This patch series was applied (using b4) to base:
- Base: using specified base-commit 4ac65880ebca1b68495bd8704263b26c050ac010
-
-If this is not the correct base, please add 'base-commit' tag
-(or use b4 which does this automatically)
-
-New warnings running 'make CHECK_DTBS=y for arch/arm64/boot/dts/ti/' for 20250904212827.3730314-1-k-willis@ti.com:
-
-Lexical error: arch/arm64/boot/dts/ti/k3-am62a7-sk.dts:313.71-82 Unexpected 'PIN_WKUP_EN'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/ti] Error 2
-make[2]: Target 'arch/arm64/boot/dts/ti/k3-am62a7-sk.dtb' not remade because of errors.
-Lexical error: arch/arm64/boot/dts/ti/k3-am62p5-sk.dts:359.71-82 Unexpected 'PIN_WKUP_EN'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/ti/k3-am62p5-sk.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/ti] Error 2
-make[2]: Target 'arch/arm64/boot/dts/ti/k3-am62p5-sk.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: ti/k3-am62p5-sk.dtb] Error 2
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: ti/k3-am62a7-sk.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi:182.71-82 Unexpected 'PIN_WKUP_EN'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/ti] Error 2
-make[2]: Target 'arch/arm64/boot/dts/ti/k3-am62-lp-sk.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: ti/k3-am62-lp-sk.dtb] Error 2
-Lexical error: arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi:182.71-82 Unexpected 'PIN_WKUP_EN'
-FATAL ERROR: Syntax error parsing input tree
-make[3]: *** [scripts/Makefile.dtbs:132: arch/arm64/boot/dts/ti/k3-am625-sk.dtb] Error 1
-make[2]: *** [scripts/Makefile.build:556: arch/arm64/boot/dts/ti] Error 2
-make[2]: Target 'arch/arm64/boot/dts/ti/k3-am625-sk.dtb' not remade because of errors.
-make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1478: ti/k3-am625-sk.dtb] Error 2
-make: *** [Makefile:248: __sub-make] Error 2
-make: Target 'ti/k3-am625-verdin-wifi-ivy.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-wifi-ivy.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-wifi-dahlia.dtb' not remade because of errors.
-make: Target 'ti/k3-j721e-common-proc-board.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-wifi-dev.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-evm.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-wifi-mallow.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-nonwifi-dahlia.dtb' not remade because of errors.
-make: Target 'ti/k3-am62d2-evm.dtb' not remade because of errors.
-make: Target 'ti/k3-j742s2-evm.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-hummingboard-t.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-beagleplay.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-nonwifi-yavia.dtb' not remade because of errors.
-make: Target 'ti/k3-am6528-iot2050-basic-pg2.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-wifi-mallow.dtb' not remade because of errors.
-make: Target 'ti/k3-am68-sk-base-board.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am6528-iot2050-basic.dtb' not remade because of errors.
-make: Target 'ti/k3-am62-pocketbeagle2.dtb' not remade because of errors.
-make: Target 'ti/k3-am6548-iot2050-advanced-m2.dtb' not remade because of errors.
-make: Target 'ti/k3-am654-base-board.dtb' not remade because of errors.
-make: Target 'ti/k3-am6548-iot2050-advanced.dtb' not remade because of errors.
-make: Target 'ti/k3-am62a7-phyboard-lyra-rdk.dtb' not remade because of errors.
-make: Target 'ti/k3-am62a7-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-nonwifi-dev.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-nonwifi-mallow.dtb' not remade because of errors.
-make: Target 'ti/k3-j722s-evm.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-nonwifi-dahlia.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-nonwifi-ivy.dtb' not remade because of errors.
-make: Target 'ti/k3-j721e-beagleboneai64.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-nonwifi-dev.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-phyboard-electra-rdk.dtb' not remade because of errors.
-make: Target 'ti/k3-am69-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-wifi-dahlia.dtb' not remade because of errors.
-make: Target 'ti/k3-am6548-iot2050-advanced-pg2.dtb' not remade because of errors.
-make: Target 'ti/k3-am68-phyboard-izar.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-hummingboard-t-pcie.dtb' not remade because of errors.
-make: Target 'ti/k3-j7200-common-proc-board.dtb' not remade because of errors.
-make: Target 'ti/k3-am62-lp-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-wifi-yavia.dtb' not remade because of errors.
-make: Target 'ti/k3-j721s2-common-proc-board.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-tqma64xxl-mbax4xxl.dtb' not remade because of errors.
-make: Target 'ti/k3-am67a-beagley-ai.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-nonwifi-yavia.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-hummingboard-t-usb3.dtb' not remade because of errors.
-make: Target 'ti/k3-am642-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am6548-iot2050-advanced-sm.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-nonwifi-mallow.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-phyboard-lyra-rdk.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-wifi-yavia.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-verdin-nonwifi-ivy.dtb' not remade because of errors.
-make: Target 'ti/k3-j784s4-evm.dtb' not remade because of errors.
-make: Target 'ti/k3-am625-sk.dtb' not remade because of errors.
-make: Target 'ti/k3-am62p5-verdin-wifi-dev.dtb' not remade because of errors.
-make: Target 'ti/k3-j721e-sk.dtb' not remade because of errors.
-
-
-
+Best regards,
+-- 
+Xianwei Zhao <xianwei.zhao@amlogic.com>
 
 
 
