@@ -1,232 +1,302 @@
-Return-Path: <devicetree+bounces-213610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213611-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 317F0B45E53
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:39:13 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB83FB45E62
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:40:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DAA6217BE3D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:39:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B70A188B905
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:40:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71EF43090E8;
-	Fri,  5 Sep 2025 16:39:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Cyx6siAC"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A535306B09;
+	Fri,  5 Sep 2025 16:40:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E046306B17;
-	Fri,  5 Sep 2025 16:39:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A612D2FB0A2;
+	Fri,  5 Sep 2025 16:40:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757090346; cv=none; b=aobp78Zt0rEf2ugaJdvoUFT029iGPMGZz4jny1K69VHLLAdXwFb37gWJGdyNjBYYy9wsr6tjkpOPj1SRZ0o5+D5gyOXMraPczxD/GhdsCM8TW+vsGOX3asniRfDx3jrcawvwQa56/36TTPHuaWX05kwpI9FWHn+j47CWfP6O0xQ=
+	t=1757090416; cv=none; b=NoI58GLZ4LhjGm/9Mt448DCD5izN4SBAABYPnL3WPzGFhx3GQ/1b5fM1+oW/RpvfU7gCbzbuq6ln65BmhuLMH0z3mvhKK/WIeTg+rFm21E9KZD/5qrCeH5oA8P1rT3xOATh1tBnUzdd407Xw8mcxXzJWhv1MJF6P8Y4YdqPgKVI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757090346; c=relaxed/simple;
-	bh=ZTdnF+C/S88gBhkB6Pc82Wg6hlAE2konqqf80SckUek=;
+	s=arc-20240116; t=1757090416; c=relaxed/simple;
+	bh=DSlWZfq+GTaT2HBFBElFZUNxl3V/B62KVMzTdbqD38g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WXQCvp2n+1QFCHK91p3fj2M8jNlvriddpoNH5hYwJ4VRnEiWiCs9sZ/nWjLlDG99en4K0QZ4cSQcFtmMHnokjm4cctXe4ZP4BU3mRBru8KRtEKcRhO9qoV7gV/uM+MnhC36/cvDs6KyPu57HOcUxM2NHMUg6xn0DhxQof/8jXCs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Cyx6siAC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53622C4CEF1;
-	Fri,  5 Sep 2025 16:38:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757090345;
-	bh=ZTdnF+C/S88gBhkB6Pc82Wg6hlAE2konqqf80SckUek=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Cyx6siACrJv1UDhxtLvA5Dri3myVq5wdUJAaVm93147d0weeSC5PKxKkSfHilXkgL
-	 MgzvI+vwHhQQoVg7dgB4gPVA4rVVK1mlpjFhjqX1CIK3WTkaFamuBAttl0xV69+6Y9
-	 RvQppAjpLTt58Rpo2E1wvYU0CjCZWa6pX3/Y7KISyFbbfyM+jmytJch2RPbdqxf36D
-	 qpl3qLXvCBIR9NhPQC6bD1qktLRyMdosihguRSBTyN23ptgWnmhWJQr8GgM+r+Xf1q
-	 8z4DQ/csYXolvX6QpLh2FejVaxqSmNNw+yrsXADf4kq728y5Kczu89kQ23qQ5FcTup
-	 CXzYltoaqSDEw==
-Date: Fri, 5 Sep 2025 22:08:54 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-Cc: Bjorn Helgaas <helgaas@kernel.org>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, quic_vpernami@quicinc.com, 
-	mmareddy@quicinc.com
-Subject: Re: [PATCH v8 5/5] PCI: qcom: Add support for ECAM feature
-Message-ID: <gwaz7563akxeai4gar7etf4jp3c775fphkipn37alzjcjy6t66@2pa3ykv6kejp>
-References: <20250903201233.GA1216782@bhelgaas>
- <79d44c24-d853-4128-b966-8a25aaefad73@oss.qualcomm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=PIWBu403TZxXhmIglwYoRCyxlvfYtg6sbFDf+pmEQfK79uk0h7dtzEeCQtUoBT6RO0ClhnHW3iZjakeYYQeGBYiZG1Ar341SWsbL/lQwrve7r7MehsCCa5ZJfVovkU2y0U8slb+H7Sgxb4OI8/Zn6wLoiDiVZh8i4tKZYtfHUcU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E1970152B;
+	Fri,  5 Sep 2025 09:40:05 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6442A3F63F;
+	Fri,  5 Sep 2025 09:40:08 -0700 (PDT)
+Date: Fri, 5 Sep 2025 17:40:05 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Lecopzer Chen <lecopzerc@nvidia.com>
+Subject: Re: [PATCH 14/33] arm_mpam: Add cpuhp callbacks to probe MSC hardware
+Message-ID: <aLsSZWUlbrEzbx6O@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-15-james.morse@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <79d44c24-d853-4128-b966-8a25aaefad73@oss.qualcomm.com>
+In-Reply-To: <20250822153048.2287-15-james.morse@arm.com>
 
-On Fri, Sep 05, 2025 at 10:47:42AM GMT, Krishna Chaitanya Chundru wrote:
+Hi James,
+
+On Fri, Aug 22, 2025 at 03:29:55PM +0000, James Morse wrote:
+> Because an MSC can only by accessed from the CPUs in its cpu-affinity
+> set we need to be running on one of those CPUs to probe the MSC
+> hardware.
 > 
+> Do this work in the cpuhp callback. Probing the hardware will only
+> happen before MPAM is enabled, walk all the MSCs and probe those we can
+> reach that haven't already been probed.
+
+It may be worth mentioning that the low-level MSC register accessors
+are added by this patch.
+
+> Later once MPAM is enabled, this cpuhp callback will be replaced by
+> one that avoids the global list.
+
+I misread this is as meaning "later in the patch series" and got
+confused.
+
+Perhaps, something like the following? (though this got a bit verbose)
+
+--8<--
+
+Once all MSCs reported by the firmware have been probed from a CPU in
+their respective cpu-affinity set, the probe-time cpuhp callbacks are
+replaced.  The replacement callbacks will ultimately need to handle
+save/restore of the runtime MSC state across power transitions, but for
+now there is nothing to do in them: so do nothing.
+
+-->8--
+
+> Enabling a static key will also take the cpuhp lock, so can't be done
+
+What static key?
+
+None in this patch that I can see.
+
+> from the cpuhp callback. Whenever a new MSC has been probed schedule
+> work to test if all the MSCs have now been probed.
 > 
-> On 9/4/2025 1:42 AM, Bjorn Helgaas wrote:
-> > On Thu, Aug 28, 2025 at 01:04:26PM +0530, Krishna Chaitanya Chundru wrote:
-> > > The ELBI registers falls after the DBI space, PARF_SLV_DBI_ELBI register
-> > > gives us the offset from which ELBI starts. So override ELBI with the
-> > > offset from PARF_SLV_DBI_ELBI and cfg win to map these regions.
-> > > 
-> > > On root bus, we have only the root port. Any access other than that
-> > > should not go out of the link and should return all F's. Since the iATU
-> > > is configured for the buses which starts after root bus, block the
-> > > transactions starting from function 1 of the root bus to the end of
-> > > the root bus (i.e from dbi_base + 4kb to dbi_base + 1MB) from going
-> > > outside the link through ECAM blocker through PARF registers.
-> > > 
-> > > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> > > ---
-> > >   drivers/pci/controller/dwc/pcie-qcom.c | 70 ++++++++++++++++++++++++++++++++++
-> > >   1 file changed, 70 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > index 5092752de23866ef95036bb3f8fae9bb06e8ea1e..8f3c86c77e2604fd7826083f63b66b4cb62a341d 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > > @@ -55,6 +55,7 @@
-> > >   #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
-> > >   #define PARF_Q2A_FLUSH				0x1ac
-> > >   #define PARF_LTSSM				0x1b0
-> > > +#define PARF_SLV_DBI_ELBI			0x1b4
-> > >   #define PARF_INT_ALL_STATUS			0x224
-> > >   #define PARF_INT_ALL_CLEAR			0x228
-> > >   #define PARF_INT_ALL_MASK			0x22c
-> > > @@ -64,6 +65,16 @@
-> > >   #define PARF_DBI_BASE_ADDR_V2_HI		0x354
-> > >   #define PARF_SLV_ADDR_SPACE_SIZE_V2		0x358
-> > >   #define PARF_SLV_ADDR_SPACE_SIZE_V2_HI		0x35c
-> > > +#define PARF_BLOCK_SLV_AXI_WR_BASE		0x360
-> > > +#define PARF_BLOCK_SLV_AXI_WR_BASE_HI		0x364
-> > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT		0x368
-> > > +#define PARF_BLOCK_SLV_AXI_WR_LIMIT_HI		0x36c
-> > > +#define PARF_BLOCK_SLV_AXI_RD_BASE		0x370
-> > > +#define PARF_BLOCK_SLV_AXI_RD_BASE_HI		0x374
-> > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT		0x378
-> > > +#define PARF_BLOCK_SLV_AXI_RD_LIMIT_HI		0x37c
-> > > +#define PARF_ECAM_BASE				0x380
-> > > +#define PARF_ECAM_BASE_HI			0x384
-> > >   #define PARF_NO_SNOOP_OVERRIDE			0x3d4
-> > >   #define PARF_ATU_BASE_ADDR			0x634
-> > >   #define PARF_ATU_BASE_ADDR_HI			0x638
-> > > @@ -87,6 +98,7 @@
-> > >   /* PARF_SYS_CTRL register fields */
-> > >   #define MAC_PHY_POWERDOWN_IN_P2_D_MUX_EN	BIT(29)
-> > > +#define PCIE_ECAM_BLOCKER_EN			BIT(26)
-> > >   #define MST_WAKEUP_EN				BIT(13)
-> > >   #define SLV_WAKEUP_EN				BIT(12)
-> > >   #define MSTR_ACLK_CGC_DIS			BIT(10)
-> > > @@ -134,6 +146,9 @@
-> > >   /* PARF_LTSSM register fields */
-> > >   #define LTSSM_EN				BIT(8)
-> > > +/* PARF_SLV_DBI_ELBI */
-> > > +#define SLV_DBI_ELBI_ADDR_BASE			GENMASK(11, 0)
-> > > +
-> > >   /* PARF_INT_ALL_{STATUS/CLEAR/MASK} register fields */
-> > >   #define PARF_INT_ALL_LINK_UP			BIT(13)
-> > >   #define PARF_INT_MSI_DEV_0_7			GENMASK(30, 23)
-> > > @@ -317,6 +332,48 @@ static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
-> > >   	qcom_perst_assert(pcie, false);
-> > >   }
-> > > +static void qcom_pci_config_ecam(struct dw_pcie_rp *pp)
-> > > +{
-> > > +	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > > +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > +	u64 addr, addr_end;
-> > > +	u32 val;
-> > > +
-> > > +	/* Set the ECAM base */
-> > > +	writel_relaxed(lower_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE);
-> > > +	writel_relaxed(upper_32_bits(pci->dbi_phys_addr), pcie->parf + PARF_ECAM_BASE_HI);
-> > > +
-> > > +	/*
-> > > +	 * The only device on root bus is the Root Port. Any access to the PCIe
-> > > +	 * region will go outside the PCIe link. As part of enumeration the PCI
-> > > +	 * sw can try to read to vendor ID & device ID with different device
-> > > +	 * number and function number under root bus. As any access other than
-> > > +	 * root bus, device 0, function 0, should not go out of the link and
-> > > +	 * should return all F's. Since the iATU is configured for the buses
-> > > +	 * which starts after root bus, block the transactions starting from
-> > > +	 * function 1 of the root bus to the end of the root bus (i.e from
-> > > +	 * dbi_base + 4kb to dbi_base + 1MB) from going outside the link.
-> > > +	 */
-> > > +	addr = pci->dbi_phys_addr + SZ_4K;
-> > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE);
-> > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_WR_BASE_HI);
-> > > +
-> > > +	writel_relaxed(lower_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE);
-> > > +	writel_relaxed(upper_32_bits(addr), pcie->parf + PARF_BLOCK_SLV_AXI_RD_BASE_HI);
-> > > +
-> > > +	addr_end = pci->dbi_phys_addr + SZ_1M - 1;
-> > > +
-> > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT);
-> > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_WR_LIMIT_HI);
-> > > +
-> > > +	writel_relaxed(lower_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT);
-> > > +	writel_relaxed(upper_32_bits(addr_end), pcie->parf + PARF_BLOCK_SLV_AXI_RD_LIMIT_HI);
-> > > +
-> > > +	val = readl_relaxed(pcie->parf + PARF_SYS_CTRL);
-> > > +	val |= PCIE_ECAM_BLOCKER_EN;
-> > > +	writel_relaxed(val, pcie->parf + PARF_SYS_CTRL);
-> > > +}
-> > > +
-> > >   static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > >   {
-> > >   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > @@ -326,6 +383,9 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
-> > >   		qcom_pcie_common_set_16gt_lane_margining(pci);
-> > >   	}
-> > > +	if (pci->pp.ecam_enabled)
-> > > +		qcom_pci_config_ecam(&pci->pp);
-> > > +
-> > >   	/* Enable Link Training state machine */
-> > >   	if (pcie->cfg->ops->ltssm_enable)
-> > >   		pcie->cfg->ops->ltssm_enable(pcie);
-> > > @@ -1314,6 +1374,7 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > >   {
-> > >   	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
-> > >   	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> > > +	u16 offset;
-> > >   	int ret;
-> > >   	qcom_ep_reset_assert(pcie);
-> > > @@ -1322,6 +1383,15 @@ static int qcom_pcie_host_init(struct dw_pcie_rp *pp)
-> > >   	if (ret)
-> > >   		return ret;
-> > > +	if (pp->ecam_enabled) {
-> > > +		/*
-> > > +		 * Override ELBI when ECAM is enabled, as when ECAM
-> > > +		 * is enabled ELBI moves along with the dbi config space.
-> > > +		 */
-> > > +		offset = FIELD_GET(SLV_DBI_ELBI_ADDR_BASE, readl(pcie->parf + PARF_SLV_DBI_ELBI));
-> > > +		pci->elbi_base = pci->dbi_base + offset;
-> > 
-> > This looks like there might be a bisection hole between this patch and
-> > the previous patch that enables ECAM in the DWC core?  Obviously I
-> > would want to avoid a bisection hole.
-> > 
+> CC: Lecopzer Chen <lecopzerc@nvidia.com>
+> Signed-off-by: James Morse <james.morse@arm.com>
+> ---
+>  drivers/resctrl/mpam_devices.c  | 144 +++++++++++++++++++++++++++++++-
+>  drivers/resctrl/mpam_internal.h |   8 +-
+>  2 files changed, 147 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
 
-Theoretically there is a hole, but practically there isn't. ELBI register is
-only used by legacy Qcom SoCs and they do not support ECAM. So they will
-continue to use the valid ELBI register region from DT.
+[...]
 
-> > What happens to qcom ELBI accesses between these two patches?  It
-> > looks like they would go to the wrong address until this elbi_base
-> > update.
+> @@ -511,9 +539,84 @@ int mpam_ris_create(struct mpam_msc *msc, u8 ris_idx,
 
-Though there is no practical issue, it still makes sense to set 'elbi_base' to a
-valid region before enabling ECAM.
+[...]
 
-- Mani
+> +static int mpam_cpu_online(unsigned int cpu)
+>  {
+> -	pr_err("Discovered all MSC\n");
 
--- 
-மணிவண்ணன் சதாசிவம்
+I guess this disappears later?
+
+If we print anything, it feels like it should be in the
+mpam_enable_once() path, otherwise it looks like dmesg is going to get
+spammed on every hotplug.  I might have missed something, here.
+
+> +	return 0;
+> +}
+> +
+> +/* Before mpam is enabled, try to probe new MSC */
+> +static int mpam_discovery_cpu_online(unsigned int cpu)
+> +{
+> +	int err = 0;
+> +	struct mpam_msc *msc;
+> +	bool new_device_probed = false;
+> +
+> +	mutex_lock(&mpam_list_lock);
+
+I take it nothing breaks if we sleep here?
+
+Pending cpuhp callbacks for this CPU look to be blocked while we sleep,
+at the very least.
+
+Since this only happens during the probing phase, maybe that's not such
+a big deal.
+
+Is it likely that some late CPUs might be left offline indefinitely?
+
+If so, we might end up doing futile work here forever.
+
+
+> +	list_for_each_entry(msc, &mpam_all_msc, glbl_list) {
+> +		if (!cpumask_test_cpu(cpu, &msc->accessibility))
+> +			continue;
+> +
+> +		mutex_lock(&msc->probe_lock);
+> +		if (!msc->probed)
+> +			err = mpam_msc_hw_probe(msc);
+> +		mutex_unlock(&msc->probe_lock);
+> +
+> +		if (!err)
+> +			new_device_probed = true;
+> +		else
+> +			break; // mpam_broken
+
+What's the effect of returning a non-zero value to the CPU hotplug
+callback dispatcher here?
+
+Do we want to tear anything down if MPAM is unusable?
+
+> +	}
+> +	mutex_unlock(&mpam_list_lock);
+> +
+> +	if (new_device_probed && !err)
+> +		schedule_work(&mpam_enable_work);
+> +
+> +	return err;
+> +}
+> +
+> +static int mpam_cpu_offline(unsigned int cpu)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void mpam_register_cpuhp_callbacks(int (*online)(unsigned int online),
+> +					  int (*offline)(unsigned int offline))
+> +{
+> +	mutex_lock(&mpam_cpuhp_state_lock);
+> +	if (mpam_cpuhp_state) {
+> +		cpuhp_remove_state(mpam_cpuhp_state);
+> +		mpam_cpuhp_state = 0;
+> +	}
+> +
+> +	mpam_cpuhp_state = cpuhp_setup_state(CPUHP_AP_ONLINE_DYN, "mpam:online",
+> +					     online, offline);
+> +	if (mpam_cpuhp_state <= 0) {
+> +		pr_err("Failed to register cpuhp callbacks");
+
+Should an error code be returned to the caller if this fails?
+
+> +		mpam_cpuhp_state = 0;
+> +	}
+> +	mutex_unlock(&mpam_cpuhp_state_lock);
+>  }
+>  
+>  static int mpam_dt_count_msc(void)
+> @@ -772,7 +875,7 @@ static int mpam_msc_drv_probe(struct platform_device *pdev)
+>  	}
+>  
+>  	if (!err && fw_num_msc == mpam_num_msc)
+> -		mpam_discovery_complete();
+> +		mpam_register_cpuhp_callbacks(&mpam_discovery_cpu_online, NULL);
+
+Abandon probing the MSC if this fails?
+
+(However, the next phase of probing hangs off CPU hotplug, so it just
+won't happen if the callbacks can't be registered -- but it looks like
+MPAM may be left in a half-probed state.  I'm not entirely convinced
+that this matters if the MPAM driver is not unloadable anyway...)
+
+Nit: redundant &
+
+(You don't have it in the similar call in mpam_enable_once().)
+
+
+>  
+>  	if (err && msc)
+>  		mpam_msc_drv_remove(pdev);
+> @@ -795,6 +898,41 @@ static struct platform_driver mpam_msc_driver = {
+>  	.remove = mpam_msc_drv_remove,
+>  };
+>  
+> +static void mpam_enable_once(void)
+> +{
+> +	mpam_register_cpuhp_callbacks(mpam_cpu_online, mpam_cpu_offline);
+
+Should it be fatal if this fails?
+
+> +
+> +	pr_info("MPAM enabled\n");
+> +}
+> +
+> +/*
+> + * Enable mpam once all devices have been probed.
+> + * Scheduled by mpam_discovery_cpu_online() once all devices have been created.
+> + * Also scheduled when new devices are probed when new CPUs come online.
+> + */
+> +void mpam_enable(struct work_struct *work)
+> +{
+> +	static atomic_t once;
+
+Nit: possibly unnecessary atomic_t?  This is slow-path code, and we
+already have to take mpam_list_lock.  Harmless, though.
+
+> +	struct mpam_msc *msc;
+> +	bool all_devices_probed = true;
+> +
+> +	/* Have we probed all the hw devices? */
+> +	mutex_lock(&mpam_list_lock);
+> +	list_for_each_entry(msc, &mpam_all_msc, glbl_list) {
+> +		mutex_lock(&msc->probe_lock);
+> +		if (!msc->probed)
+> +			all_devices_probed = false;
+> +		mutex_unlock(&msc->probe_lock);
+> +
+> +		if (!all_devices_probed)
+> +			break;
+
+WARN()?
+
+We counted the MSCs in via the mpam_discovery_cpu_online(), so I think
+we shouldn't get in here if some failed to probe?
+
+> +	}
+> +	mutex_unlock(&mpam_list_lock);
+> +
+> +	if (all_devices_probed && !atomic_fetch_inc(&once))
+> +		mpam_enable_once();
+> +}
+
+[...]
+
+Cheers
+---Dave
 
