@@ -1,86 +1,126 @@
-Return-Path: <devicetree+bounces-213654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213656-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79CFBB46293
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:47:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3683EB462C8
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 20:52:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 35E81A617DE
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:47:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E98D517E270
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:52:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A8FC33987;
-	Fri,  5 Sep 2025 18:47:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2B831C56B;
+	Fri,  5 Sep 2025 18:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hVKzL03Q"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="LiePq/bb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F164305967;
-	Fri,  5 Sep 2025 18:47:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B1A43191D2;
+	Fri,  5 Sep 2025 18:48:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757098047; cv=none; b=dGPT4Li0Bbn9SmARUlCPgvsF4OCDTq4gS0Es400H2GyK+mAritCwmge1SPtEgph1D5uTknuEbQpgmN/i/8Jjed/+4wEGtTkPOMONU3sZAJ0Q7vJWsvujSFoznZ+KMqfnZOViHzWxAMiiFskAFLiOJE39QYiJn3JkKgmOkXI4sxA=
+	t=1757098138; cv=none; b=tw4B7s1r/kFZPF9OEsb3gNgKBC1F+MGAChZ/bNdWKnWQHiqsHeq1Ku9YS1e3PMFFkKpKR26pzd0b3u+TGJUCAHK5hACYc0OjJFUbha0WdLPi8TMHlKv1QAItCmTzz6OIEVuvuUJfFHmJfhQ1xeH2OCKFTXcAgET79eZMlB1jGlc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757098047; c=relaxed/simple;
-	bh=LXak4icoXUTmBEdN9vsGZghkWJN3uJNIOcaOt36cTOQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dDZ4bD64b+gmz4cL7pgGEles0gQ9K6VumwuwO1qqHQ1DK2q1kGs9KXk68fHcGlXkki8BlINTw52lg/dPphVL/0QXQtU68dsj81D7EuBGX+mIW17Vu2HkAp+U7RdUw+wp1N3kbe9dmT6+KkaWjaxCHig3/PpB2DShl0uTv0r6O/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hVKzL03Q; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1977BC4CEF1;
-	Fri,  5 Sep 2025 18:47:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757098046;
-	bh=LXak4icoXUTmBEdN9vsGZghkWJN3uJNIOcaOt36cTOQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hVKzL03Qdp4EbxjyRQpQ1jat1eCn3z/uutEy6fbmUB2D1O2x553mNTLeaj0HRzUs8
-	 eajgLwb1sHAwI/+cP9EhW/K8a82pqWTIipT7dkD0JaZM0JWqrrrwTClK7r8MEMnQjA
-	 sEe4EyyWG2m+ptQ0gf1uuUhzqWc531Coj12fgW/qwNNr3z18kP7mYoRjnynT1gqQOk
-	 mkVT89KPCDC/tWkvEGQrZEbVrjM5IQ1YfV3WX6i07Zk/7MK2Gmd3rY0i3cCxKHAUrS
-	 GcwMQL6k1dmC0hh3+Ei6D02NU58XQ9cur3AIK2gYmxwmIXxt5ZFaGUrdu0C3zn3unJ
-	 Qw0L+zbP2Q/iQ==
-Date: Fri, 5 Sep 2025 19:47:22 +0100
-From: Conor Dooley <conor@kernel.org>
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: linux-input@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: input: touchscreen: goodix: Drop
- 'interrupts' requirement
-Message-ID: <20250905-carton-ethics-f0fb9355b24f@spud>
-References: <20250904195727.168152-1-marek.vasut+renesas@mailbox.org>
+	s=arc-20240116; t=1757098138; c=relaxed/simple;
+	bh=gT6iLDzXkn2vkQT7GPoK0T33+aXJivk9xetjRQ9j+q4=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cvimoZuHhnDdKYxLZd6VpjhDtdv5oSE8NDSPxkAirfahj/nX3tvVgl5VDem8kegZlUWW0p7NsThNvbImxWX4NpBE8pxU5yC97m7NB5+8DpBLkLJ78BbdHE3MhUyPuLGFQDxcIjWD98zSWFku/cpo8V31vENfua4IxEPnUwYfWx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=LiePq/bb; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 585ImLAa3314373;
+	Fri, 5 Sep 2025 13:48:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757098101;
+	bh=i+QqUgGTAvZfE8MLyrDMwvyRy7EWTHhQeRZzEGO5LEc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=LiePq/bbxWeXOukzQDZq892+phfvJweZoPr8QlhPlAL4BttslQArumXvZmSqRt84k
+	 nYgTSMd3MgSlP3+uiGNMgc/gHmOdA53A3prPdYvBerdexJVvpacmIKpTLd5hvBuEvP
+	 pMTO6urG8neIMH9iG+dskSksKhy24zV1iNpmxYuU=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 585ImKu01090339
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Fri, 5 Sep 2025 13:48:20 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Fri, 5
+ Sep 2025 13:48:19 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Fri, 5 Sep 2025 13:48:19 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 585ImIE41165621;
+	Fri, 5 Sep 2025 13:48:19 -0500
+Date: Sat, 6 Sep 2025 00:18:17 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Conor Dooley <conor@kernel.org>
+CC: Kendall Willis <k-willis@ti.com>, <gregkh@linuxfoundation.org>,
+        <jirislaby@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+        <msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
+        <john.ogness@linutronix.de>, <andriy.shevchenko@linux.intel.com>,
+        <yujiaoliang@vivo.com>, <b-liu@ti.com>, <u.kleine-koenig@baylibre.com>
+Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250_omap: Update wakeup-source
+ type property
+Message-ID: <20250905184817.7kdhroadthzesnaj@lcpd911>
+References: <20250904212455.3729029-1-k-willis@ti.com>
+ <20250904212455.3729029-2-k-willis@ti.com>
+ <20250905-saloon-siesta-77da98d7ae02@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="SVYqlKTNw7ktgOkd"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250904195727.168152-1-marek.vasut+renesas@mailbox.org>
+In-Reply-To: <20250905-saloon-siesta-77da98d7ae02@spud>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+
+On Sep 05, 2025 at 19:38:00 +0100, Conor Dooley wrote:
+> On Thu, Sep 04, 2025 at 04:24:53PM -0500, Kendall Willis wrote:
+> > Allow the wakeup-source property to be either of type boolean or of a
+> > phandle array. The phandle array points to the system idle states that the
+> > UART can wakeup the system from.
+> > 
+> > Signed-off-by: Kendall Willis <k-willis@ti.com>
+> > ---
+> >  Documentation/devicetree/bindings/serial/8250_omap.yaml | 8 +++++++-
+> >  1 file changed, 7 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > index 1859f71297ff2..851a5291b4be4 100644
+> > --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+> > @@ -69,7 +69,13 @@ properties:
+> >    clock-frequency: true
+> >    current-speed: true
+> >    overrun-throttle-ms: true
+> > -  wakeup-source: true
+> > +
+> > +  wakeup-source:
+> > +    oneOf:
+> > +      - type: boolean
+> > +      - $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +        description:
+> > +          List of phandles to system idle states in which UARTs can wakeup the system.
+> 
+> Is there a single other instance of the wakeup-source property being
+> used like this?
+
+I think there's an ongoing thread here [1],
+[1] https://lore.kernel.org/all/20250820-topic-mcan-wakeup-source-v6-12-v9-1-0ac13f2ddd67@baylibre.com/
 
 
---SVYqlKTNw7ktgOkd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
---SVYqlKTNw7ktgOkd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaLswOgAKCRB4tDGHoIJi
-0mmWAQDXrL8dMMRPzybw95N7zmRgSDDpPsaQat9gamLA9oaA+gEAlbHTWXZqHvdz
-Mtm/rIpZipOBp7gZD3liZ+wcjYwEbQM=
-=vVEN
------END PGP SIGNATURE-----
-
---SVYqlKTNw7ktgOkd--
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
