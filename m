@@ -1,67 +1,88 @@
-Return-Path: <devicetree+bounces-213499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4654B458A4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:20:09 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71498B458A2
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 15:19:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E484189C497
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:20:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 74BA57C520F
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:19:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F1891D7995;
-	Fri,  5 Sep 2025 13:19:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A900D3451AF;
+	Fri,  5 Sep 2025 13:19:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="rX6EW+LJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="kSBe4BfI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85A3B34F49F;
-	Fri,  5 Sep 2025 13:19:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22BC52343BE
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 13:19:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757078381; cv=none; b=gKihr9+078DNAePvPeozids3JbVoVAKgi18mPlN4MyMainv27qhgppi6faZRJQxPiOkPC0YTVjEfBGAAsqm65MxzAJ6IntAjKOUNR4Jjzoh/DGWtQ9FUcp+C9XpcrrW/y3VwC5GFuBrupqXoDzhHNaNzRYJUCdgtcro+ceonGAU=
+	t=1757078375; cv=none; b=ClcA6SvbAijQFOzhZkoV1HZTyM3Y4yLThST48tKrAIhoR58y8rSuz0TGlx/yoZlEc8Hshq1jeUXsuv1YonTVrfMVzohpi61QKPlx9yapgybecw29Ll7narZ9onAdpoEgFauXOOpStHySPCPevFkAJXpuhCfQWiwlDYEIMFQgbB4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757078381; c=relaxed/simple;
-	bh=tL+V/X+rwITcARB9aRIvYEhuK0U38dkIgK3dK81nJ+o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=JiAt7CJreKAkL24WuetuucqfTnyNGdYQyuUq27LxJmfbJKgaaB0erin1Htw/mTGoU8rj6NwCeWqz601F/eUqoSsydRtGyqlr8KZsrmNdHs3F72Z48dVvzrL0V1pd35Tbm/tg5MVRv3WwqDjsL4Cdo7K2Z4zStEf6lrL41cTHdMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=rX6EW+LJ; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 585DIwcr3719256;
-	Fri, 5 Sep 2025 08:18:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757078338;
-	bh=Vjy5D3JgftIM3mq1lO2nAabFylrYZnZJc5kE8C4YKoQ=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=rX6EW+LJbrM7p3sbMr5EIJR1dm6j2ZX3zGezLmrJAqG0ziUlBk4/rxCdNfntX7zvT
-	 ru5PZc317Nne+HmzItcDiwrW8zMqnrZxheg1moewJb+sk3oDbmk+ixjBIpO51d6l2a
-	 sBmyTqpXynLDGq+Yb3FARrKU4ebEdy4fw8UJAIXE=
-Received: from DFLE20.ent.ti.com (dfle20.ent.ti.com [10.64.6.57])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 585DIw9Z940211
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Fri, 5 Sep 2025 08:18:58 -0500
-Received: from DFLE200.ent.ti.com (10.64.6.58) by DFLE20.ent.ti.com
- (10.64.6.57) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20; Fri, 5 Sep
- 2025 08:18:58 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE200.ent.ti.com
- (10.64.6.58) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.2.2562.20; Fri, 5 Sep
- 2025 08:18:58 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Fri, 5 Sep 2025 08:18:58 -0500
-Received: from [172.24.233.62] (devarsh-precision-tower-3620.dhcp.ti.com [172.24.233.62])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 585DIrwx490934;
-	Fri, 5 Sep 2025 08:18:54 -0500
-Message-ID: <c98e017d-5aa0-4b40-8ee1-5f58901b6c07@ti.com>
-Date: Fri, 5 Sep 2025 18:48:53 +0530
+	s=arc-20240116; t=1757078375; c=relaxed/simple;
+	bh=f9dg9f79cEQYwrNo5ZvWpn7K6mPR3qTgf9FIhmyJUKI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DDhtLm+kulp9htID2C7bcAE53p2KQTzWLSG/6IlIkWX5oTQOp+yhWgH2bGpUsnJ6XKlc2wtJz4yYl/WV+CIdCgkXsdF2id55scJbzyrtnpmqMaA2oIbvfGQnq9bb6X2QpQZYC8sNUoG8R9hO7buWKM+Mn6iBVG9IeE7NYILsBCY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=kSBe4BfI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58550Qv3018463
+	for <devicetree@vger.kernel.org>; Fri, 5 Sep 2025 13:19:33 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	U0Bhjhxk+tpvajQc7hWGH3X0z8vhyfUm5KLA3GKOkgE=; b=kSBe4BfIxrRDISVO
+	fFe1nqQ9zNjhlm6th8gyoWVyI7V85NuzBr3Vm5oSs7ci1nl/zp7b5t4tYmZFJDUL
+	a3K4lGv5PTGcaztAUitXrmzCXGVQXcFERsolprSG64IGIdwzjdx4f4ZlPA+q0gpN
+	m4Sf6SyfcUCG1dmW4os9pGizcTIcWDwthvm+8W7EAW+CKGIyLmb5GdIuu4ETcxJO
+	/tIlmoZv+U/vhOVBpHEM5TVsE03LxGC2sZQQFKK6qpT5OI6BfMOxSOk8pmKFPHej
+	aSAMk81jLkrNyekRvUCxSjZQiQXD2liJdo4FRBTOsQ2lfOzWWtdO6pASOUY9qwi2
+	uYoZTg==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 48yebuu40g-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 13:19:33 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b4bcb1e32dso9741801cf.1
+        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 06:19:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757078372; x=1757683172;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=U0Bhjhxk+tpvajQc7hWGH3X0z8vhyfUm5KLA3GKOkgE=;
+        b=UQSpo0Q9OUeugbUiYoAlh8lXxzksk8bG1D2vUEYQmOf4hiUzpai4aA4Uehe7AAq7tY
+         +5B8uHen+9OgyeLT4KemmPsuWhtueYZZ0AKFf/JID14j8RxcGX0zD1JJ4OUDCk3rc4Je
+         Wr6Pnmat1gFjKAUeghB4Xw2+uhxPQ7K+cDL6iAm/hEyVdQi1N//z5J4CKrWhhQkXdfLG
+         CqOQWgcR//aiwo/4C/g3TF5kdVDg6Ijfwsc3oq/0vNJt8V0wNaNQ2lYGg09/hHnoKAkr
+         QliP4QYwafwV6li4ZjETGYZwkHwU4oukARsj2Dqn/C0pGjR1V8LAx5YueEUSIMvRvWii
+         S6Zw==
+X-Forwarded-Encrypted: i=1; AJvYcCUAB5uPP5dqEeaCoWSu1QzqItGd7qNvTtG8LQ1IXn2GNwpn/+v0StAVFyYwGMJ9Zfc/YBqftr2exC8m@vger.kernel.org
+X-Gm-Message-State: AOJu0YymMAWymsPMFd6V18Jpp0qKFGHzMVOOIk6nVUbt8hSBW4qdsJ0D
+	I6YP75+aeqxN344aN45i4+ScC6tjlwGonLHtzpI8GgLvfAaD8J6eCCEf9UiHyVPUM6nqQ07VRXV
+	vjp7GcKWqXDnZRnRuZB4oPooUhB5tAkNXyGLM1nYGmv2BlCCB9Dv1rv/sImXlTqep
+X-Gm-Gg: ASbGncsIBAlSCePTiLiEd7R0rirSqu8x3l6IfUVXeJghjLBnE3ytn7cz+dQ0jlGPwi5
+	feucIBCEn/cmJgfB+HJUrCGgqnAs2M2scpZ/J40PPH4TH38LQeWrVan5N58KX4fTSkMuBYboRLJ
+	ARPz9uohMHKHRDfKz3tzlFO5ccVCrh1D3pB9HTmCbUSEC/phANROUqLmSwoCQMVMMm8FGtJaU4N
+	zys/w6l7QFiQA4KUxtMLIy1W1sgwdAX290mFBz+/oSVhtQvCIzOSaMHQPKxpUogkIT93pzw5huT
+	H5DV+Fa6PcnO2xeclUEVzOFoXKKWTRujLnLj/+oNgqusqm5qHPVeBKZRbtXZIDvaevKHXsk00Ty
+	fHEL669y5/XevPQu5EGe56Q==
+X-Received: by 2002:a05:622a:1a1e:b0:4b5:eb40:b1c4 with SMTP id d75a77b69052e-4b5eb40b475mr15321841cf.10.1757078371977;
+        Fri, 05 Sep 2025 06:19:31 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHuoHXh+KD08XcnAE/jgm1vEO0s+IDJTiD+07YDOxNry7G/om/NzxaG8um/RprAJT1rWU9rbA==
+X-Received: by 2002:a05:622a:1a1e:b0:4b5:eb40:b1c4 with SMTP id d75a77b69052e-4b5eb40b475mr15321611cf.10.1757078371453;
+        Fri, 05 Sep 2025 06:19:31 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc5306e6sm16320205a12.47.2025.09.05.06.19.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Sep 2025 06:19:30 -0700 (PDT)
+Message-ID: <91fd1e35-7e3c-44ca-9ffa-9393dc9e904e@oss.qualcomm.com>
+Date: Fri, 5 Sep 2025 15:19:28 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,323 +90,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] drm/panel: ilitek-ili9881c: Add configuration for
- 5" Raspberry Pi 720x1280
-To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
-        <dri-devel@lists.freedesktop.org>
-CC: Conor Dooley <conor+dt@kernel.org>,
-        Dave Stevenson
-	<dave.stevenson@raspberrypi.com>,
-        David Airlie <airlied@gmail.com>,
-        "Jessica
- Zhang" <jessica.zhang@oss.qualcomm.com>,
-        Krzysztof Kozlowski
-	<krzk+dt@kernel.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Neil Armstrong
-	<neil.armstrong@linaro.org>,
-        Rob Herring <robh@kernel.org>, Simona Vetter
-	<simona@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>, <devicetree@vger.kernel.org>,
-        <linux-renesas-soc@vger.kernel.org>
-References: <20250904205743.186177-1-marek.vasut+renesas@mailbox.org>
- <20250904205743.186177-2-marek.vasut+renesas@mailbox.org>
+Subject: Re: [PATCH v2] arm64: dts: qcom: msm8953-xiaomi-daisy: fix cd-gpios
+To: =?UTF-8?B?QmFybmFiw6FzIEN6w6ltw6Fu?= <barnabas.czeman@mainlining.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Alejandro Tafalla <atafalla@dnyon.com>, Luca Weiss <luca@lucaweiss.eu>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250903-daisy-sd-fix-v2-1-e08c50f3be57@mainlining.org>
 Content-Language: en-US
-From: Devarsh Thakkar <devarsht@ti.com>
-In-Reply-To: <20250904205743.186177-2-marek.vasut+renesas@mailbox.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250903-daisy-sd-fix-v2-1-e08c50f3be57@mainlining.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-GUID: DHJ3s3WgtXvdkqe5nFZk6nxsUUOjK7JX
+X-Authority-Analysis: v=2.4 cv=X+ZSKHTe c=1 sm=1 tr=0 ts=68bae365 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=OuZLqq7tAAAA:8 a=EUspDBNiAAAA:8
+ a=P2Z3rHzvZxtGOU_tVGkA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=kacYvNCVWA4VmyqE58fU:22 a=AKGiAy9iJ-JzxKVHQNES:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA0MDE2MyBTYWx0ZWRfX0f8e38FO0nA+
+ FTUjDar0flw2ihqkEsv5YBrbsvljlDA3fNrIdCjC6iZ0wfJPTCueRjNd1NlS6UVfYQhVHgm+y1o
+ DibAHHUXrKDpBmrJShjZbX8kE5PkZMkeOLeWkt4J9iTWHIfLdQDqgErdAK+R5p9rDNOxb9NLoSg
+ P0nVspuogbmS5H/B1LXSAvZPHfa+cNeBc37Cj4tCxzOwXek3EcJgZWyWCX57ErmEX4rfwc6yrF8
+ 7TbtyeTRhv0k8feilO8paFAiLaYuWR7QLxWQ3wv1NzOUOpRNZmBzHAbm9Jps8ZbElJppo28G3BI
+ 3e6tKxHMJ9QLSIPy7dI4FmLuAUIFen/eiVNylPDrJ+QYg4LhR9s2zJ7lGc1C2Kd0p0wXVi3KE5G
+ aCb6Cq/C
+X-Proofpoint-ORIG-GUID: DHJ3s3WgtXvdkqe5nFZk6nxsUUOjK7JX
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-05_04,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 bulkscore=0 clxscore=1015 impostorscore=0 phishscore=0
+ malwarescore=0 adultscore=0 priorityscore=1501 suspectscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509040163
 
-Hi Marek,
-
-Thanks for the patch.
-
-On 05/09/25 02:26, Marek Vasut wrote:
-> Add configuration for the 5" Raspberry Pi 720x1280 DSI panel
-> based on ili9881. This uses 10px longer horizontal sync pulse
-> and 10px shorter HBP to avoid very short hsync pulse.
-
-Is there a publicly available datasheet for the aforementioned ilitek 
-controller used in the panel, also does the same document also mention 
-the manufacturer specific DSC commands used in rpi_5inch_init[] ?
-
-Also is there a separate document mentioning timing parameters for porch 
-values and sync pulse widths that you are using here for Raspberry Pi 
-720x1280 DSI panel ?
-
-Regards
-Devarsh
-
+On 9/3/25 11:27 PM, Barnabás Czémán wrote:
+> SD detection was not working because cd-gpios flag
+> was wrongly configured, according to downstream sources
+> device is using GPIO_ACTIVE_HIGH.
+> Fix SD detection with change cd-gpios from GPIO_ACTIVE_LOW
+> to GPIO_ACTIVE_HIGH.
 > 
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> Fixes: 38d779c26395 ("arm64: dts: qcom: msm8953: Add device tree for Xiaomi Mi A2 Lite")
+> Signed-off-by: Barnabás Czémán <barnabas.czeman@mainlining.org>
 > ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Jessica Zhang <jessica.zhang@oss.qualcomm.com>
-> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Rob Herring <robh@kernel.org>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: devicetree@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-renesas-soc@vger.kernel.org
-> ---
-> V2: Turn ILI9881C_COMMAND_INSTR() params lowercase
-> ---
->   drivers/gpu/drm/panel/panel-ilitek-ili9881c.c | 214 ++++++++++++++++++
->   1 file changed, 214 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-> index fee10546c7c7f..7049e4d23f7f4 100644
-> --- a/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-> +++ b/drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
-> @@ -1224,6 +1224,194 @@ static const struct ili9881c_instr am8001280g_init[] = {
->   	ILI9881C_COMMAND_INSTR(MIPI_DCS_WRITE_POWER_SAVE, 0x00),
->   };
->   
-> +static const struct ili9881c_instr rpi_5inch_init[] = {
-> +	ILI9881C_SWITCH_PAGE_INSTR(3),
-> +	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x02, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x03, 0x73),
-> +	ILI9881C_COMMAND_INSTR(0x04, 0x73),
-> +	ILI9881C_COMMAND_INSTR(0x05, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x06, 0x06),
-> +	ILI9881C_COMMAND_INSTR(0x07, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x08, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x09, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0a, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0b, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0c, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0d, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0e, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x0f, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x10, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x11, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x12, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x13, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x14, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x15, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x16, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x17, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x18, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x19, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x1a, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x1b, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x1c, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x1d, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x1e, 0xc0),
-> +	ILI9881C_COMMAND_INSTR(0x1f, 0x80),
-> +	ILI9881C_COMMAND_INSTR(0x20, 0x04),
-> +	ILI9881C_COMMAND_INSTR(0x21, 0x03),
-> +	ILI9881C_COMMAND_INSTR(0x22, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x23, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x24, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x25, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x26, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x27, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x28, 0x33),
-> +	ILI9881C_COMMAND_INSTR(0x29, 0x03),
-> +	ILI9881C_COMMAND_INSTR(0x2a, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x2b, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x2c, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x2d, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x2e, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x2f, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x30, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x32, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x33, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x34, 0x03),
-> +	ILI9881C_COMMAND_INSTR(0x35, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x36, 0x03),
-> +	ILI9881C_COMMAND_INSTR(0x37, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x38, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x39, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3a, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3b, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3c, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3d, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3e, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x3f, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x40, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x41, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x42, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x43, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x44, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x50, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x51, 0x23),
-> +	ILI9881C_COMMAND_INSTR(0x52, 0x45),
-> +	ILI9881C_COMMAND_INSTR(0x53, 0x67),
-> +	ILI9881C_COMMAND_INSTR(0x54, 0x89),
-> +	ILI9881C_COMMAND_INSTR(0x55, 0xab),
-> +	ILI9881C_COMMAND_INSTR(0x56, 0x01),
-> +	ILI9881C_COMMAND_INSTR(0x57, 0x23),
-> +	ILI9881C_COMMAND_INSTR(0x58, 0x45),
-> +	ILI9881C_COMMAND_INSTR(0x59, 0x67),
-> +	ILI9881C_COMMAND_INSTR(0x5a, 0x89),
-> +	ILI9881C_COMMAND_INSTR(0x5b, 0xab),
-> +	ILI9881C_COMMAND_INSTR(0x5c, 0xcd),
-> +	ILI9881C_COMMAND_INSTR(0x5d, 0xef),
-> +	ILI9881C_COMMAND_INSTR(0x5e, 0x10),
-> +	ILI9881C_COMMAND_INSTR(0x5f, 0x09),
-> +	ILI9881C_COMMAND_INSTR(0x60, 0x08),
-> +	ILI9881C_COMMAND_INSTR(0x61, 0x0f),
-> +	ILI9881C_COMMAND_INSTR(0x62, 0x0e),
-> +	ILI9881C_COMMAND_INSTR(0x63, 0x0d),
-> +	ILI9881C_COMMAND_INSTR(0x64, 0x0c),
-> +	ILI9881C_COMMAND_INSTR(0x65, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x66, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x67, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x68, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x69, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6a, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6b, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6c, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6d, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6e, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x6f, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x70, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x71, 0x06),
-> +	ILI9881C_COMMAND_INSTR(0x72, 0x07),
-> +	ILI9881C_COMMAND_INSTR(0x73, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x74, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x75, 0x06),
-> +	ILI9881C_COMMAND_INSTR(0x76, 0x07),
-> +	ILI9881C_COMMAND_INSTR(0x77, 0x0e),
-> +	ILI9881C_COMMAND_INSTR(0x78, 0x0f),
-> +	ILI9881C_COMMAND_INSTR(0x79, 0x0c),
-> +	ILI9881C_COMMAND_INSTR(0x7a, 0x0d),
-> +	ILI9881C_COMMAND_INSTR(0x7b, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x7c, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x7d, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x7e, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x7f, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x80, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x81, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x82, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x83, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x84, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x85, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x86, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x87, 0x09),
-> +	ILI9881C_COMMAND_INSTR(0x88, 0x08),
-> +	ILI9881C_COMMAND_INSTR(0x89, 0x02),
-> +	ILI9881C_COMMAND_INSTR(0x8a, 0x02),
-> +	ILI9881C_SWITCH_PAGE_INSTR(4),
-> +	ILI9881C_COMMAND_INSTR(0x6c, 0x15),
-> +	ILI9881C_COMMAND_INSTR(0x6e, 0x2a),
-> +	ILI9881C_COMMAND_INSTR(0x6f, 0x57),
-> +	ILI9881C_COMMAND_INSTR(0x3a, 0xa4),
-> +	ILI9881C_COMMAND_INSTR(0x8d, 0x1a),
-> +	ILI9881C_COMMAND_INSTR(0x87, 0xba),
-> +	ILI9881C_COMMAND_INSTR(0x26, 0x76),
-> +	ILI9881C_COMMAND_INSTR(0xb2, 0xd1),
-> +	ILI9881C_SWITCH_PAGE_INSTR(1),
-> +	ILI9881C_COMMAND_INSTR(0x22, 0x0a),
-> +	ILI9881C_COMMAND_INSTR(0x31, 0x00),
-> +	ILI9881C_COMMAND_INSTR(0x53, 0x35),
-> +	ILI9881C_COMMAND_INSTR(0x55, 0x50),
-> +	ILI9881C_COMMAND_INSTR(0x50, 0xaf),
-> +	ILI9881C_COMMAND_INSTR(0x51, 0xaf),
-> +	ILI9881C_COMMAND_INSTR(0x60, 0x14),
-> +	ILI9881C_COMMAND_INSTR(0xa0, 0x08),
-> +	ILI9881C_COMMAND_INSTR(0xa1, 0x1d),
-> +	ILI9881C_COMMAND_INSTR(0xa2, 0x2c),
-> +	ILI9881C_COMMAND_INSTR(0xa3, 0x14),
-> +	ILI9881C_COMMAND_INSTR(0xa4, 0x19),
-> +	ILI9881C_COMMAND_INSTR(0xa5, 0x2e),
-> +	ILI9881C_COMMAND_INSTR(0xa6, 0x22),
-> +	ILI9881C_COMMAND_INSTR(0xa7, 0x23),
-> +	ILI9881C_COMMAND_INSTR(0xa8, 0x97),
-> +	ILI9881C_COMMAND_INSTR(0xa9, 0x1e),
-> +	ILI9881C_COMMAND_INSTR(0xaa, 0x29),
-> +	ILI9881C_COMMAND_INSTR(0xab, 0x7b),
-> +	ILI9881C_COMMAND_INSTR(0xac, 0x18),
-> +	ILI9881C_COMMAND_INSTR(0xad, 0x17),
-> +	ILI9881C_COMMAND_INSTR(0xae, 0x4b),
-> +	ILI9881C_COMMAND_INSTR(0xaf, 0x1f),
-> +	ILI9881C_COMMAND_INSTR(0xb0, 0x27),
-> +	ILI9881C_COMMAND_INSTR(0xb1, 0x52),
-> +	ILI9881C_COMMAND_INSTR(0xb2, 0x63),
-> +	ILI9881C_COMMAND_INSTR(0xb3, 0x39),
-> +	ILI9881C_COMMAND_INSTR(0xc0, 0x08),
-> +	ILI9881C_COMMAND_INSTR(0xc1, 0x1d),
-> +	ILI9881C_COMMAND_INSTR(0xc2, 0x2c),
-> +	ILI9881C_COMMAND_INSTR(0xc3, 0x14),
-> +	ILI9881C_COMMAND_INSTR(0xc4, 0x19),
-> +	ILI9881C_COMMAND_INSTR(0xc5, 0x2e),
-> +	ILI9881C_COMMAND_INSTR(0xc6, 0x22),
-> +	ILI9881C_COMMAND_INSTR(0xc7, 0x23),
-> +	ILI9881C_COMMAND_INSTR(0xc8, 0x97),
-> +	ILI9881C_COMMAND_INSTR(0xc9, 0x1e),
-> +	ILI9881C_COMMAND_INSTR(0xca, 0x29),
-> +	ILI9881C_COMMAND_INSTR(0xcb, 0x7b),
-> +	ILI9881C_COMMAND_INSTR(0xcc, 0x18),
-> +	ILI9881C_COMMAND_INSTR(0xcd, 0x17),
-> +	ILI9881C_COMMAND_INSTR(0xce, 0x4b),
-> +	ILI9881C_COMMAND_INSTR(0xcf, 0x1f),
-> +	ILI9881C_COMMAND_INSTR(0xd0, 0x27),
-> +	ILI9881C_COMMAND_INSTR(0xd1, 0x52),
-> +	ILI9881C_COMMAND_INSTR(0xd2, 0x63),
-> +	ILI9881C_COMMAND_INSTR(0xd3, 0x39),
-> +};
-> +
->   static const struct ili9881c_instr rpi_7inch_init[] = {
->   	ILI9881C_SWITCH_PAGE_INSTR(3),
->   	ILI9881C_COMMAND_INSTR(0x01, 0x00),
-> @@ -1806,6 +1994,23 @@ static const struct drm_display_mode am8001280g_default_mode = {
->   	.height_mm	= 151,
->   };
->   
-> +static const struct drm_display_mode rpi_5inch_default_mode = {
-> +	.clock		= 83333,
-> +
-> +	.hdisplay	= 720,
-> +	.hsync_start	= 720 + 110,
-> +	.hsync_end	= 720 + 110 + 12,
-> +	.htotal		= 720 + 110 + 12 + 95,
-> +
-> +	.vdisplay	= 1280,
-> +	.vsync_start	= 1280 + 100,
-> +	.vsync_end	= 1280 + 100 + 2,
-> +	.vtotal		= 1280 + 100 + 2 + 100,
-> +
-> +	.width_mm	= 62,
-> +	.height_mm	= 110,
-> +};
-> +
->   static const struct drm_display_mode rpi_7inch_default_mode = {
->   	.clock          = 83330,
->   
-> @@ -2000,6 +2205,14 @@ static const struct ili9881c_desc am8001280g_desc = {
->   		      MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM,
->   };
->   
-> +static const struct ili9881c_desc rpi_5inch_desc = {
-> +	.init = rpi_5inch_init,
-> +	.init_length = ARRAY_SIZE(rpi_5inch_init),
-> +	.mode = &rpi_5inch_default_mode,
-> +	.mode_flags =  MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_LPM,
-> +	.lanes = 2,
-> +};
-> +
->   static const struct ili9881c_desc rpi_7inch_desc = {
->   	.init = rpi_7inch_init,
->   	.init_length = ARRAY_SIZE(rpi_7inch_init),
-> @@ -2025,6 +2238,7 @@ static const struct of_device_id ili9881c_of_match[] = {
->   	{ .compatible = "tdo,tl050hdv35", .data = &tl050hdv35_desc },
->   	{ .compatible = "wanchanglong,w552946aba", .data = &w552946aba_desc },
->   	{ .compatible = "ampire,am8001280g", .data = &am8001280g_desc },
-> +	{ .compatible = "raspberrypi,dsi-5inch", &rpi_5inch_desc },
->   	{ .compatible = "raspberrypi,dsi-7inch", &rpi_7inch_desc },
->   	{ }
->   };
 
+That's better, one can now reason that the change actually works and
+is not only made to make the DT inline with downstream
+
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+
+Konrad
 
