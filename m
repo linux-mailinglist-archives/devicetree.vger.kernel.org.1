@@ -1,125 +1,116 @@
-Return-Path: <devicetree+bounces-213233-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43076B44E1D
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:42:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C1A6BB44E06
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 08:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 04D90A06614
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:42:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C5EA564B37
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 06:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B3322C11CF;
-	Fri,  5 Sep 2025 06:41:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC83B2C08BC;
+	Fri,  5 Sep 2025 06:36:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="MTr7dAou"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="IzulrF9u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F582C026F;
-	Fri,  5 Sep 2025 06:41:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43E9A27935C
+	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 06:36:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757054508; cv=none; b=ftSPHJtLfOVEFauZFZ3EvAEbn6wq7wv5oyZfQdXjwaqG0N/pz+eP9Wgv8WHmfhPGMSIkmsPDqq8DXIZSKFh9J+gkF9PH7sOixQP/DpXVQ/KAkDhtJDPkAkielauLW1yh4VDmP+fkGksooFr4dtkhjXK3H1YuRVRQN8zvYr+ufqA=
+	t=1757054210; cv=none; b=rMks4aNEtcJUIxSPKWXZG01Biz/pZtPSXgFaAO6GnMPD0HDO9IwCtvH5Z9GQwaTXXxgkX2/xyJVABkkz4Nuh5QoauERw3xgWPhqonxvwZza9nhQYWp4A/sUtAphlfxdDaIVEvv38Yo1zW46EjoKuracmxFuGRKj2ClShYwQ9sXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757054508; c=relaxed/simple;
-	bh=JLJZhNdjc/j8WwvSif7mZ8ejAMEds2XNLHR1rGzf4lY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iAT8hpcdqjdJBl2cwi8U0uHw7X+mdlEgLfGc3HV7xFFU1CUosHnhJPnK15VE5ZKAPTtX9IHOjk5rrlVkRz1QdAJHScDwYFqVR9m/zBGKb9AK7R05G42q/7/KCUfSNE+W4T37tiXSLL7MpwZRNOUuzKUgHdgQd6sF7cGPtUUaYto=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=MTr7dAou; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 732A7245EC;
-	Fri,  5 Sep 2025 08:34:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1757054094;
-	bh=m7eCumLJRVxXkVrrCzfdq48+hh6xilH+s0pYgrmlgbE=; h=From:To:Subject;
-	b=MTr7dAou1BzD/n5kZvgWpUlcsxUSShVIOKD577/anK6dZbyF1uWzkF/XNu7r3lr4C
-	 BCNDa7/CudLSQsB06MB72d19JQU7Rh2FFO9ju9yOphO0uKfUIVYnxrZwrHKaVCDs8z
-	 G2FgZHlb3f4fCDm4jhYEwblST1EqUkW72OWVvkzZ9RrB5dDJ0qH/lzvOtPDjb/CnRE
-	 3B00jxIi2imWCxG9CVCCS/971hgJbbvre+VrLLvZbnuu7v98OdSdmmpMGNPsfWH6pX
-	 /enfx1K6l2vtQ7n8CCKthU+xiOUC5N2Mz8UFmDq0Hc1H3FIbG83Nryb0qXZUI5OePn
-	 B/4PzjVqfLMbg==
-Date: Fri, 5 Sep 2025 08:34:49 +0200
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Beleswar Padhi <b-padhi@ti.com>
-Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, afd@ti.com,
-	u-kumar1@ti.com, hnagalla@ti.com, jm@ti.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Josua Mayer <josua@solid-run.com>,
-	Logan Bristol <logan.bristol@utexas.edu>,
-	Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-Subject: Re: [PATCH v3 17/33] arm64: dts: ti: k3-am642-sr-som: Add missing
- cfg for TI IPC Firmware
-Message-ID: <20250905063449.GA6194@francesco-nb>
-References: <20250905051846.1189612-1-b-padhi@ti.com>
- <20250905051846.1189612-18-b-padhi@ti.com>
+	s=arc-20240116; t=1757054210; c=relaxed/simple;
+	bh=wFJS1RHxYpPdjfElWjyoww5Tm6gmIS00MsIdtooweP0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=SAsyz6Xa9kRXuqKtqSSVRw36Y4liLjrCl3GW0De+O8tCdHB5Rb//Z6J6/Fz8kbmvgbqlv7AL+JbRb3CRCTpKqcK7QVacKOt937gj9iFLRsqmWHG+Q5agvzJWo+Vxve0vxoH0r/1cEq5wQ0tl/bzG9wtxwZXkBr+7XLo4kwIQgUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=IzulrF9u; arc=none smtp.client-ip=209.85.208.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-336e44ca0e4so15001361fa.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Sep 2025 23:36:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1757054206; x=1757659006; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wFJS1RHxYpPdjfElWjyoww5Tm6gmIS00MsIdtooweP0=;
+        b=IzulrF9u/DSrT3zqQPUsDOY21AVLbnTTjCEcARRgy+OT8PlJcHAQS2yebbq6X5XqAI
+         duf0IS7+JJA0PmNyMahxFhjyjto1zT3e/bruHK35GFkh4cfA2R3kdPC5QsbW3Vrvd55b
+         7kjrMqfl55s/CSa4u6ru9TyGum0qbFn4WRis0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757054206; x=1757659006;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=wFJS1RHxYpPdjfElWjyoww5Tm6gmIS00MsIdtooweP0=;
+        b=YL7KpM4mT/b6EAIGATYlMRqlDd62zKJcxBliqNp2VLS/baiR/6mQ5jluZ3WIjlw7k0
+         TPxU0EdEHY0b901lDwe7OztiGZ1BHqE5qJpkzKHVJ0k/KDeJuPn70gJyhzbcp50Du8AA
+         z45O96W12mlwBrFJwv1pM/xYGIpUl4E2a5G3RmUv1jV9fbM8+QIhdRfetgP84oHuAfM1
+         RQxpvnyPXSyrEsPL35wEpn1AQc8bcSt2UHI6TCjbl7mvKUGWy115SdYyNw+51PMPoMyZ
+         +Np0X+hR087kYhOtNkebWlx1OzCBsM6PbsnzHO+ugsrXqMhjzsZokBSNbNL12b6m8HZg
+         lt0w==
+X-Forwarded-Encrypted: i=1; AJvYcCU3B+6wYAA3XEkVWDiLxQ4Tq+7y72XsvgiNKqkVIZCi5ExCNsltwhNZ7NlK2zQntngYO9ax+VMD3/Mw@vger.kernel.org
+X-Gm-Message-State: AOJu0YyaG45sheEzN283MjTNaJyt6ZZN27O/PNuBmcviPk5JZY7gINT2
+	hfsrfvkYm6xf8BcHRjSt1BpVQhliuaSttJWlkU1gkwucYf48yYveTIeUxyw8JaVRyxQlIfxXvKe
+	Kw6EEHms2AQ8p9k9F51oXEz+KiWAVErb2ox68X8G4
+X-Gm-Gg: ASbGncsXbRhKppK1p685dHwnqLuxCDrKRfO+Zd2UduBDMMu8IKNUG/znmIVqEN2bkSD
+	ydZLCyhEmtLg162Ry11zZtzo5hXYYE8vLpWL7Q6OTkU0d2hRpfNRhyNZtt8VYXibzFfEjWsFtue
+	EqYgizLpUy4/bWryC7mlv4mEnCtFnmloKt0dJreWQP2i2WM4a3qUtz0RMZFNvZICIsbrP8JSddS
+	baxyTLOPVw3cSmM6A3oc0NO92BemGHejMAPWw==
+X-Google-Smtp-Source: AGHT+IEgVbxQy/DxXsDzvdrcOfC49jBWiMtOAGepTowcEVXECREwr9aIaRDx8B4CTbXxL/deN9wUH95NSxy3a5X8TKE=
+X-Received: by 2002:a05:651c:20cd:10b0:337:d2e2:d467 with SMTP id
+ 38308e7fff4ca-337d2e2dcfbmr42859621fa.43.1757054206408; Thu, 04 Sep 2025
+ 23:36:46 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250905051846.1189612-18-b-padhi@ti.com>
+References: <20250829091913.131528-1-laura.nao@collabora.com> <20250829091913.131528-16-laura.nao@collabora.com>
+In-Reply-To: <20250829091913.131528-16-laura.nao@collabora.com>
+From: Chen-Yu Tsai <wenst@chromium.org>
+Date: Fri, 5 Sep 2025 14:36:35 +0800
+X-Gm-Features: Ac12FXwXWypau4EdANuUrgXmxAn5bymNrHkP7HBNlw9rFp2Nbb7jmA3VYZ8UsYk
+Message-ID: <CAGXv+5GjZusKNCe+EshMktmyDcfjm6i5oD+h8LvObymvD9QXqg@mail.gmail.com>
+Subject: Re: [PATCH v5 15/27] clk: mediatek: Add MT8196 ufssys clock support
+To: Laura Nao <laura.nao@collabora.com>
+Cc: mturquette@baylibre.com, sboyd@kernel.org, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, matthias.bgg@gmail.com, 
+	angelogioacchino.delregno@collabora.com, p.zabel@pengutronix.de, 
+	richardcochran@gmail.com, guangjie.song@mediatek.com, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mediatek@lists.infradead.org, netdev@vger.kernel.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Sep 05, 2025 at 10:48:30AM +0530, Beleswar Padhi wrote:
-> Currently, only R5F remote processors are enabled for k3-am642-sr SoMs,
-> whereas the M4F in MCU domain is disabled. Enable the M4F remote
-> processor at board level by reserving memory carveouts and assigning
-> mailboxes.
-> 
-> While at it, reserve the MAIN domain timers that are used by R5F remote
-> processors for ticks to avoid rproc crashes. This config aligns with
-> other AM64 boards and can be refactored out later.
-> 
-> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> ---
-> Cc: Josua Mayer <josua@solid-run.com>
-> Cc: Logan Bristol <logan.bristol@utexas.edu>
-> Cc: Matthias Schiffer <matthias.schiffer@ew.tq-group.com>
-> Requesting for review/test of this patch.
-> 
-> v3: Changelog:
-> 1. None
-> 
-> Link to v2:
-> https://lore.kernel.org/all/20250823160901.2177841-18-b-padhi@ti.com/
-> 
-> v2: Changelog:
-> 1. Re-ordered patch from [PATCH 27/33] to [PATCH v2 17/33].
-> 
-> Link to v1:
-> https://lore.kernel.org/all/20250814223839.3256046-28-b-padhi@ti.com/
-> 
->  arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi | 54 +++++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-> index 81adae0a8e55..8cb61f831734 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am642-sr-som.dtsi
-> @@ -162,6 +162,24 @@ main_r5fss1_core1_memory_region: r5f-memory@a3100000 {
->  			reg = <0x00 0xa3100000 0x00 0xf00000>;
->  			no-map;
->  		};
-> +
-> +		mcu_m4fss_dma_memory_region: m4f-dma-memory@a4000000 {
+On Fri, Aug 29, 2025 at 5:21=E2=80=AFPM Laura Nao <laura.nao@collabora.com>=
+ wrote:
+>
+> Add support for the MT8196 ufssys clock controller, which provides clock
+> gate control for UFS.
+>
+> Co-developed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@co=
+llabora.com>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@coll=
+abora.com>
+> Signed-off-by: Laura Nao <laura.nao@collabora.com>
 
-this must be
+Assuming the previous reviews for the bits are correct, the removal
+of CLK_OPS_PARENT_ENABLE IMO is the right thing to do.
 
-mcu_m4fss_dma_memory_region: memory@a4000000
+However if the hardware ends up does having a requirement that _some_
+clock be enabled before touching the registers, then I think the
+MTK clock library needs to be refactored, so that a register access
+clock can be tied to the regmap. That might also require some work
+on the syscon API.
 
-the device tree specification requires generic node names, my comment [1]
-had nothing specific on verdin am62/am62p.
-
-Francesco
-
-[1] https://lore.kernel.org/all/20250821060629.GB7503@francesco-nb/
+Reviewed-by: Chen-Yu Tsai <wenst@chromium.org>
 
