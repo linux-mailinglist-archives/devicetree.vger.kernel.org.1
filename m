@@ -1,145 +1,106 @@
-Return-Path: <devicetree+bounces-213614-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213584-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81272B45E8F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:47:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23574B45D5B
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 18:02:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D6C4058810C
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:46:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C463B486A9E
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 16:02:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E001D306B35;
-	Fri,  5 Sep 2025 16:46:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DAAF2F7AAC;
+	Fri,  5 Sep 2025 16:02:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YLRK4UfD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qf19mXo8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mslow3.mail.gandi.net (mslow3.mail.gandi.net [217.70.178.249])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E855279780;
-	Fri,  5 Sep 2025 16:46:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.178.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FCC631D74A;
+	Fri,  5 Sep 2025 16:02:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757090804; cv=none; b=m+CFkGszWCpLxwhOb7Ebcf/aZvnlSloZNd41w43C8c2Ej5QUUah0i0EuEN5cAZDO4U1HI/xyJ2GRwsMcmNDIO26VWjpFcGtbOucg85T7joNohae0vC1r7pU683ila0Ug+NY7IVeYqCTI+WlqhtBwGZq8aqEVAD4Iv1hEYmmioCw=
+	t=1757088126; cv=none; b=MYE3DViQhik0yK9EegvPFJfAMSVE1vBEYNgd2QhbbvLgo1S08AcL16fab7i/NZYNNaEq/7o9dgWdRSK/SI6WeEDAriCIvXUBFf0VArFa6tFjw75bXayjVulECq7PuE+qU1xYeaBvAPKFUMldDo6i5oMtM+kWO4tu5m58hpvSfk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757090804; c=relaxed/simple;
-	bh=n7lgFTuAaHvirVe2HxCgamU69/Yv2hAYIZ80fnvRVso=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Yc2BC9w+ToX9rhUwRzP4yT/rk9r4B6FObwB79KP+zZa/zlH2gZ5al2i3Fn6JfCWxbD35VwWUQs7tXmRtygNp5TFc26VqZWFHdXCGSWxKAAdRQ5B1t3v3XTMv+kMyFnh3twlt4MFus0wvDb31uU3KHsK9qFlHUpC5pooiDeKelZM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YLRK4UfD; arc=none smtp.client-ip=217.70.178.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	by mslow3.mail.gandi.net (Postfix) with ESMTP id 2C87C585463;
-	Fri,  5 Sep 2025 15:59:28 +0000 (UTC)
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6310B1F74B;
-	Fri,  5 Sep 2025 15:59:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1757087961;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NFFOsoL+0XB5VITOYkkT3Ujt/8Fw5vWv70yMLAox1vw=;
-	b=YLRK4UfDca2Z1SERSnWpY/5xU/0+E26t3jjeluQS906xxdoUWfgaysjGz2IvnsSkjIGb4e
-	9gcLy0PkCLWkl31aI+PhbvcmWZjhFmcva1tHgwYHIIxNSU15ArMgkzKOGosXgDLZjMuimH
-	55R52ga5aHzQdcUIzCIim48qLCgGE9RAsAhsH1PCNO5C5h/MT1z4JA57tTEzgJJf225nCD
-	pY1Vp5T7Bdd28lQ+LSemVgjBMLR0I5goURkdCklfeb7aKUINAgHsVHxaCGpiWFj/Qagiun
-	FT3m/Smxy9CblMIttmXedXwC2jhzZmMA2GD502u1WSOQJkENXjXGnDvAqT1ePA==
-Date: Fri, 5 Sep 2025 17:59:15 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding
- <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Jonathan
- Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni
- <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter De
- Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad
- <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko
- <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>,
- linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-Subject: Re: [PATCH v1 09/19] staging: media: tegra-video: vi: add flip
- controls only if no source controls are provided
-Message-ID: <20250905175915.2d7e02a7@booty>
-In-Reply-To: <20250819121631.84280-10-clamor95@gmail.com>
-References: <20250819121631.84280-1-clamor95@gmail.com>
-	<20250819121631.84280-10-clamor95@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1757088126; c=relaxed/simple;
+	bh=XtZf11jbbBoilXsBT63MRb4g16CbjYXTUzh33VUyndQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=edUTDMyFRyaN1DsTkFkeEBpfxD4L41xgRF9xhwNNya9sG0eHqt7PZVT6jKAVrf+raN64Kb814Ziz36in91JnyblJM26kEE4bYEQ9hQf2qswSLHcrJaOhedt0s/zN0d4K9fgIrd7Prp+HJmiMD/c4shqW5QePjZxo0Si2RM1pciU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qf19mXo8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13389C4CEF1;
+	Fri,  5 Sep 2025 16:02:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757088126;
+	bh=XtZf11jbbBoilXsBT63MRb4g16CbjYXTUzh33VUyndQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Qf19mXo8p1IPKQFY0/UahTIRblVXtBICsSc3ebDDzITfYScFms3XLSzR4XT/AfBD1
+	 OySqhbWgBYAoQIPBm7WPAl1n8ItJ4IVZ7w32lKiBEOSAKlYAoJci+pSJYpRmfsSi+S
+	 2A3XDv2mWJhfeWexq7r+XRNFXiseFSMS/0Xjn9E1F1GwunHAuVWuE1YEbPUGOaSOgV
+	 BS4HYB46R7qujD8hm3bOvz3ki4e8bD4ZNWtYmnU6ro2b4OO6OBOCHVLvphT4el6TtF
+	 MnX+9ukJdOrtuZtElMAFMhCDHRVV/2HCvjYFYPuDpwfXB7OBg+cvAziKtB1RO6aPZc
+	 wMTMMngXUOpIw==
+Date: Fri, 5 Sep 2025 17:01:58 +0100
+From: Simon Horman <horms@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Vivian Wang <uwu@dram.page>
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250905160158.GI553991@horms.kernel.org>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+ <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+ <20250905153500.GH553991@horms.kernel.org>
+ <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-State: clean
-X-GND-Score: -100
-X-GND-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggdelfeduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuifetpfffkfdpucggtfgfnhhsuhgsshgtrhhisggvnecuuegrihhlohhuthemuceftddunecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjughrpeffhffvvefukfgjfhhoofggtgfgsehtjeertdertddvnecuhfhrohhmpefnuhgtrgcuvegvrhgvshholhhiuceolhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomheqnecuggftrfgrthhtvghrnhepgeelffefgfehhfdtvdefueefieevkefggfelkeeiudetkeektedvhedukefgvddvnecuffhomhgrihhnpegsohhothhlihhnrdgtohhmnecukfhppedvrgdtvdemieejtdemvddtvddtmegvrgdtudemsggvgedumeelhegvjeemfeegfeemledufegvnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehinhgvthepvdgrtddvmeeijedtmedvtddvtdemvggrtddumegsvgegudemleehvgejmeefgeefmeeludefvgdphhgvlhhopegsohhothihpdhmrghilhhfrhhomheplhhutggrrdgtvghrvghsohhlihessghoohhtlhhinhdrtghomhdpnhgspghrtghpthhtohepvdelpdhrtghpthhtoheptghlrghmohhrleehsehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhhihgvrhhrhidrrhgvughinhhgsehgmhgrihhlrdgtohhmpdhrtghpthhtohepthhrvgguihhnghesnhhvihguihgrrdgtohhmpdhrt
- ghpthhtohepmhhpvghrthhtuhhnvghnsehnvhhiughirgdrtghomhdprhgtphhtthhopehjohhnrghthhgrnhhhsehnvhhiughirgdrtghomhdprhgtphhtthhopehskhhomhgrthhinhgvnhhisehnvhhiughirgdrtghomhdprhgtphhtthhopegrihhrlhhivggusehgmhgrihhlrdgtohhmpdhrtghpthhtohepshhimhhonhgrsehffhiflhhlrdgthh
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
 
-Hello Svyatoslav,
+On Fri, Sep 05, 2025 at 11:45:29PM +0800, Vivian Wang wrote:
 
-On Tue, 19 Aug 2025 15:16:21 +0300
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+...
 
-> Add HFLIP and VFLIP from SoC only if camera sensor does not provide those
-> controls.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  drivers/staging/media/tegra-video/vi.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging/media/tegra-video/vi.c
-> index 4f67adc395ac..61b65a2c1436 100644
-> --- a/drivers/staging/media/tegra-video/vi.c
-> +++ b/drivers/staging/media/tegra-video/vi.c
-> @@ -961,6 +961,7 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
->  	}
->  #else
->  	struct v4l2_subdev *subdev;
-> +	struct v4l2_ctrl *hflip, *vflip;
->  
->  	/* custom control */
->  	v4l2_ctrl_new_custom(&chan->ctrl_handler, &syncpt_timeout_ctrl, NULL);
-> @@ -986,11 +987,13 @@ static int tegra_channel_setup_ctrl_handler(struct tegra_vi_channel *chan)
->  		return ret;
->  	}
->  
-> -	if (chan->vi->soc->has_h_v_flip) {
-> +	hflip = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_HFLIP);
-> +	if (chan->vi->soc->has_h_v_flip && !hflip)
->  		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_HFLIP, 0, 1, 1, 0);
-> -		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
-> -	}
->  
-> +	vflip = v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_VFLIP);
-> +	if (chan->vi->soc->has_h_v_flip && !vflip)
-> +		v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4L2_CID_VFLIP, 0, 1, 1, 0);
+Hi Vivian,
 
-Based on my understanding of V4L2, this should not be done.
-AFAIK subdevs should expose what the hardware block can do,
-independently from other subdevs. It is up to userspace (e.g.
-libcamera) to use the most appropriate control when there are redundant
-ones.
+> >> +		status = emac_rx_frame_status(priv, rx_desc);
+> >> +		if (unlikely(status == RX_FRAME_DISCARD)) {
+> >> +			ndev->stats.rx_dropped++;
+> > As per the comment in struct net-device,
+> > ndev->stats should not be used in modern drivers.
+> >
+> > Probably you want to implement NETDEV_PCPU_STAT_TSTATS.
+> >
+> > Sorry for not mentioning this in an earlier review of
+> > stats in this driver.
+> >
+> On a closer look, these counters in ndev->stats seems to be redundant
+> with the hardware-tracked statistics, so maybe I should just not bother
+> with updating ndev->stats. Does that make sense?
 
-Luca
+For rx/tx packets/bytes I think that makes sense.
+But what about rx/tx drops?
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+...
 
