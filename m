@@ -1,133 +1,92 @@
-Return-Path: <devicetree+bounces-213734-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213735-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6FB5B46743
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E9EB4675A
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:59:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F5F21C87691
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:41:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD11A1CC54E7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:59:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 677272701BD;
-	Fri,  5 Sep 2025 23:40:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BB3329D27A;
+	Fri,  5 Sep 2025 23:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jzHfgPr8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CPl+478J"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 395CD25A2A1;
-	Fri,  5 Sep 2025 23:40:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 498D454654;
+	Fri,  5 Sep 2025 23:59:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757115639; cv=none; b=naPd3b8srlnrtJIla3wwm+ZbfRrajGqh2wGY130+C//+o67qUCsZFo+0hmvUS6nmEUhbKLPKYEVWIHN9U6D6ohBqN5QpYfMbUnE11sFgAqI9xxdFU14YZ9KFhCQwdvS1DzQ1h9vfqCXhZvOlIpExw9+EBASC8Ww9rhnR0pJvd3s=
+	t=1757116750; cv=none; b=E/n1PPvFWDRejLKv8ldC54xlcJpb2/V0+h07vtn0BpY4D+7z8y3EO+310TzLdNKAYseqRL74OSlCXJi6JkELI+PTP0fJhLpJAwgkrzYFLNNU4L+emImjg6gdMz/6F0ao1lu0C/Y6qX01hGyNomHjKgsU2HjIV50fHBdAhbcaqiQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757115639; c=relaxed/simple;
-	bh=vxYzG+tFLchZIj9rrVbtGxvJOup9VkxSvC/g/VUhtwU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eCxf7BNsGNUU7AcZAX+6uQG62QYltKKlZBlvNzgBWsOdtKyleKtElYaXUJwcd32jInpS98tKmcwsIyQ35P1QFZlnIIrkZtxSboaXZpfO52QYpjJT2JVF/TSd76HYqQbkmuVJZOyw1aB3ZdRuCqzy2pCVTok28kgtaB/YKXuSy1w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jzHfgPr8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2962C4CEF1;
-	Fri,  5 Sep 2025 23:40:37 +0000 (UTC)
+	s=arc-20240116; t=1757116750; c=relaxed/simple;
+	bh=YvJhCsK13+5y12Tg8BXHiyPd4M1kZnLPFozMdNrGnmQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MW/hM97kWkLW+BlAaL7HzmdD1DaybeyEylajJijRDygMLcfQU4/qFq3nkS4Ao15Ic6p2y45I8GI9EUpNAfts3oxPEa/C9x8tl+F0IIcxCCnrjQInb/soBT5LuKsNB6K2NIALN0grjcgbVLvuNYI9773hzWFJ7Se415+uX4f/GH0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CPl+478J; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB80BC4CEF1;
+	Fri,  5 Sep 2025 23:59:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757115638;
-	bh=vxYzG+tFLchZIj9rrVbtGxvJOup9VkxSvC/g/VUhtwU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jzHfgPr8OJpeMDxSoZMMpg9Mc3C/PaBn+3rO4JAV0xviSHIoBnv97jHdnenX85p3x
-	 D3wdwaX1vEvoptJw2RYW6NObvWJBVxgcbA9DiJGZKUAVIPUZc4JaJjENtfLtp8lnAh
-	 UPOtGI2DnYD5oGE+MEB3afuk3wC+MEPiQ6TOnpo2ilFKUneWalFtDx+XLGYlDtCV0b
-	 WY3+/pIUO2UXzGIOh+QkWSOpt/FclzWtyvasmox5chvwJXHK7fCJDETQjBreMHLack
-	 c27Vb7kbA28oVJZevQGW/dRQ4KUZ589jo7aTMAlJsMqnCF9CKvQBaNoPFDffPLnZb3
-	 5b7zQUhNDpOOQ==
-Date: Fri, 5 Sep 2025 18:40:37 -0500
-From: Rob Herring <robh@kernel.org>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc: git@amd.com, michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, krzk+dt@kernel.org, conor+dt@kernel.org,
-	kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com,
-	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-	manion05gk@gmail.com
-Subject: Re: [PATCH V4 1/2] dt-bindings: i3c: Add AMD I3C master controller
- support
-Message-ID: <20250905234037.GA1512025-robh@kernel.org>
-References: <20250905113740.3841181-1-manikanta.guntupalli@amd.com>
- <20250905113740.3841181-2-manikanta.guntupalli@amd.com>
+	s=k20201202; t=1757116750;
+	bh=YvJhCsK13+5y12Tg8BXHiyPd4M1kZnLPFozMdNrGnmQ=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=CPl+478JhsxSlnKwEhJHHCRoBp5cR76ubXmiKStL5qIRsk1zGB6DxJ2jIo1A4czaK
+	 8X1090aw5/cPM0JXfhbWckAAziREaugxifYX2pRm5vWlKnLMmOW1hzC1l+qkQzLma+
+	 d1C+rJ0QncTjuWjoSf6NvbYzIXlAXHbhMgOfMJ7MNzK3CA3eOWuW+s2Qnk4rYBths0
+	 WNfBL47hnjihjV54KDAoviJ1Lg2a/TH1/S65gkDbU4Adn+Bg0YDnNApaFRXKeA1mve
+	 TnkUZLYD+lOSAixkdgpCGk688UMOjk6jlEiLUjUUzm+3luKjjKaEGIQcwYM+zpKbc5
+	 txiIHjJziZj/A==
+Date: Fri, 5 Sep 2025 16:59:08 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Simon Horman <horms@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vadim
+ Fedorenko <vadim.fedorenko@linux.dev>, Junhui Liu
+ <junhui.liu@pigmoral.tech>, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, Troy Mitchell
+ <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250905165908.69548ce0@kernel.org>
+In-Reply-To: <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+	<20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+	<20250905153500.GH553991@horms.kernel.org>
+	<0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
+	<20250905160158.GI553991@horms.kernel.org>
+	<45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250905113740.3841181-2-manikanta.guntupalli@amd.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Fri, Sep 05, 2025 at 05:07:39PM +0530, Manikanta Guntupalli wrote:
-> Add device tree binding documentation for the AMD I3C master controller.
+On Sat, 6 Sep 2025 00:35:37 +0800 Vivian Wang wrote:
+> >> On a closer look, these counters in ndev->stats seems to be redundant
+> >> with the hardware-tracked statistics, so maybe I should just not bother
+> >> with updating ndev->stats. Does that make sense?  
+> > For rx/tx packets/bytes I think that makes sense.
+> > But what about rx/tx drops?  
 > 
-> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> ---
-> Changes for V2:
-> Updated commit subject and description.
-> Moved allOf to after required.
-> Removed xlnx,num-targets property.
-> 
-> Changes for V3:
-> Updated commit description.
-> Corrected the order of properties and removed resets property.
-> Added compatible to required list.
-> Added interrupts to example.
-> 
-> Changes for V4:
-> Added h/w documentation details.
-> ---
->  .../devicetree/bindings/i3c/xlnx,axi-i3c.yaml | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
-> new file mode 100644
-> index 000000000000..1daeb20205ac
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i3c/xlnx,axi-i3c.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: AMD I3C master
-> +
-> +maintainers:
-> +  - Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> +
-> +description:
-> +  The AXI-I3C IP is an I3C Controller with an AXI4-Lite interface, compatible
-> +  with the MIPI I3C Specification v1.1.1. The design includes bidirectional I/O
-> +  buffers that implement open collector drivers for the SDA and SCL signals.
-> +  External pull-up resistors are required to properly hold the bus at a Logic-1
-> +  level when the drivers are released.
-> +
-> +  For more details, please see https://docs.amd.com/r/en-US/pg439-axi-i3c
-> +
-> +properties:
-> +  compatible:
-> +    const: xlnx,axi-i3c-1.0
+> Right... but tstats doesn't have *_dropped. It seems that tx_dropped and
+> rx_dropped are considered "slow path" for real devices. It makes sense
+> to me that those should be very rare.
 
-I'm still wondering where 1.0 comes from? From the link the only 
-versions I could see are Vivado tool versions which appear to be year 
-based. If the IP is bundled with the tool, then use the tool version 
-(oldest version you tested with) if there is no other versioning. A 1.0 
-version really just sounds like you made it up.
-
-Something like bindings/sifive/sifive,blocks-ip-versioning.yaml is what 
-I'm looking for.
-
-Rob
+Pretty sure Simon meant the per-cpu netdev stats in general.
+There are three types of them, if you need drops I think you
+probably want dstats. Take a look.
 
