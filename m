@@ -1,159 +1,120 @@
-Return-Path: <devicetree+bounces-213444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A548FB456B9
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:43:48 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EC025B456BD
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:44:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F6AB3A5F5F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:43:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BBA4216F389
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:44:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3A73345721;
-	Fri,  5 Sep 2025 11:43:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2C059345738;
+	Fri,  5 Sep 2025 11:44:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gVAAp2p5"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="hDtYt328";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="QRISs8Vq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E42334320C;
-	Fri,  5 Sep 2025 11:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7429E29B8F5;
+	Fri,  5 Sep 2025 11:44:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757072623; cv=none; b=l7FEe+mMZd8SiajPrMJWNL6Sgd98NEbkqzxm7mZG5NrqGVw0H3VkJkzLu1sSutC1AdajjeW9qZZw++KY3g3UOi5IcQ2DSMrmjp++A+ud+PQ/8DVqrycNDY409akGC3v72u3nNFMc2dzFyuOwj2+sYUwQRs5jmt1xTRYn6SK6Dzo=
+	t=1757072646; cv=none; b=WbHBsFhLEo86u9CW9kl6WiOE4Y5SJLvbQ4wuDoZO2ikHmgnvHeYWHzcBNQR6VgmtmG31eOorNA1n4bCPQssIiKVD4aC1IlxZ9+nLTwTZG9CqZaPwfEMXBT5Yw76BlFeR39RrMs6xEgN8ur/fU+BGpXeCMGLKTK0Qs0c1Jkq31lI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757072623; c=relaxed/simple;
-	bh=NLML2PKuwuj+OYNgyIRQX3jQ9i3GAYhKH/CptvLMsng=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=shs882tuPaKcNAorrmjVvvUHBk8AH4L5vFRLrATnPv+/1/bwq2JocrjQRU4xCPZauRulN/Krm3A2smRXUP30S9SVx/oMRRCR8/Gu8VFOw8qbu7bVJV/nYMaDbTo/CjCNRDrrUmnRqpacp3dVkAxFbVBX+DNKe6BnS2n4UCrDV/o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gVAAp2p5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F9BFC4CEF1;
-	Fri,  5 Sep 2025 11:43:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757072623;
-	bh=NLML2PKuwuj+OYNgyIRQX3jQ9i3GAYhKH/CptvLMsng=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=gVAAp2p5/E4CwAUtDQOLmC0Gc6y8NUeC9WK4IOPuAgfHEZGqaOwEdx5Ns+KcST7/F
-	 PEiLR4ES6kjCMJyP6JUoVYMTwauVS/C7EN+6JOLI8e72dxBRpxFsC670XT1tosCbIV
-	 +j2RxEFGc6BShuQ1ucZEqIo+44s6Kht+owFiJHJjxVDsCtrAa7o/EPQJr/P0ngV6p8
-	 CepXm6zV9tHmjLVHYf7uNmY7a1AB+gCUry6uzhfAh48NzCuj2RIyu3bpBa64JvnL5v
-	 4xNb3pI81ElcUK7Wg2+2tOA7IY5h/8L4hQrj8mjFDE6JML/QZG1ahsZRhqJGKGIU8k
-	 N0S/XtwEcZzZg==
-Date: Fri, 5 Sep 2025 17:13:31 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	cros-qcom-dts-watchers@chromium.org, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Jingoo Han <jingoohan1@gmail.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org, 
-	quic_vbadigan@quicinc.com, quic_mrana@quicinc.com, quic_vpernami@quicinc.com, 
-	mmareddy@quicinc.com, Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Subject: Re: [PATCH v8 3/5] PCI: dwc: qcom: Switch to dwc ELBI resource
- mapping
-Message-ID: <xzzyhcuwfva6vqzmxkdqt5x7f7vxpkkyqnml6vjclb75f4ozwa@gugsrqfsbuor>
-References: <20250828-ecam_v4-v8-3-92a30e0fa02d@oss.qualcomm.com>
- <20250903191459.GA1214624@bhelgaas>
+	s=arc-20240116; t=1757072646; c=relaxed/simple;
+	bh=YL6zKpPJxCVYaZ/oCgyC13gWf+2ueXc8Wnx9s5GwqNg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=W5J68/MbuyplUoJ3a9a2RzdZBg0Ak4WCQ3In0SAgklIyT2Wtd9c0YLv19GJLkHI4hqgvLnZvuZdVruxnd2eLrgkf3NYwsR6ek9RIkexc+zo/ipGT42hHNnRNNQzNHckQoV2kieLxg6vvxQ8OMT0WoGFCjc9XGmbpRZ1VQ36C08U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=hDtYt328; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=QRISs8Vq; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cJDyN5zBbz9ttf;
+	Fri,  5 Sep 2025 13:43:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757072636;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m2Dk4rL1vEqekVW1M8NvOkpFPyRNDxfwkBtohMi9iV8=;
+	b=hDtYt328Cp2I4nZ6kjdeQcmCPSRQZk2GSp2Shg7HuTdOGYNEvJVeoQCWf7py/A4e3QuGZS
+	95OW60JmBtsH5xGfLrX2FZaIrAYCJPFEKPZrUDb0ueWiScogsIozkUbAEzzpNAp4HSXasy
+	j3EGE1BfNFcOoZwsFlDjzNChwKqgsV3KonlWenVmlYtQYNDVoSj7ljy5v015MxeliJ7Nwt
+	GW5WsnvgNTpxXyjwk6soO5XuGsoefjJk4rhCtND+4oybSK8YyeT2Aym5qwx68YUS97s0Wc
+	5fSiBCVZeLrpR+z0iyjU9HMRKkrH+m08kpezA5vTb2RoagpOCNLcWlSfJTu21A==
+Message-ID: <0c45d71f-d187-47b7-bdc9-f146bf740330@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757072634;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=m2Dk4rL1vEqekVW1M8NvOkpFPyRNDxfwkBtohMi9iV8=;
+	b=QRISs8Vq+IWIeJEJsW4Gmc2+Qbi+/h03SBpcZWneJ5hvJaJN9STF1XVLavbEhRrgPHaAS2
+	ZKJnoFFi6HF68Gyrz6Lu4xD9AvESYdPmvz+dSE/iaeMsHt3wawqhu9kOXhexW2kzT/Whti
+	gY0xFKOD/Euj0b8S0cFLdwdDmnMpRQMHiND/3MLR1qdCgV97PLOBBxpD3ZwvCsce4DUFPe
+	pWU//LwHD5QPjY3YAO9uV82rvKOg7smle787kR33R5MUfedFjEA1MKxkc2KO/mtwwgc1CI
+	fgSCOxzkUfC971lQOSoGoTTXszSf3/kdgXz/8yLwj0z9qZaYrNtmq7zhMRWtzg==
+Date: Fri, 5 Sep 2025 13:43:52 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Subject: Re: [PATCH v5 0/4] arm64: dts: renesas: sparrow-hawk: Add overlays
+ for camera sensors
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
+ <niklas.soderlund+renesas@ragnatech.se>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250905084050.310651-1-niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250903191459.GA1214624@bhelgaas>
+X-MBO-RS-META: hnk6dy4otdj5woua96a87iusce94d3ik
+X-MBO-RS-ID: 24efc126920a7df24bc
 
-On Wed, Sep 03, 2025 at 02:14:59PM GMT, Bjorn Helgaas wrote:
-> On Thu, Aug 28, 2025 at 01:04:24PM +0530, Krishna Chaitanya Chundru wrote:
-> > Instead of using qcom ELBI resources mapping let the DWC core map it
-> > ELBI is DWC specific.
+On 9/5/25 10:40 AM, Niklas Söderlund wrote:
+> Hello,
 > 
-> This seems like basically the same change you (Mani) added to the
-> "[PATCH v8 2/5] PCI: dwc: Add support for ELBI resource mapping"
-> patch?  (The patch with Mani's additions is at
-> https://git.kernel.org/pub/scm/linux/kernel/git/pci/pci.git/commit/?h=controller/dwc-ecam&id=d39e0103e38f9889271a77a837b6179b42d6730d)
+> This series adds a couple of overlays to verify the two CSI-2 busses
+> exposed on the V4H Sparrow Hawk board. The two busses are exposed on two
+> connectors labeled J1 and J2 on the board.
 > 
-
-Doh! This should've been squashed to patch 2/5 as we cannot split the conversion
-patches. The reason is, we cannot ioremap() the same region twice.
-
-This is now taken care in the branch.
-
-- Mani
-
-> If this qcom change is separated out, why can't the exynos and qcom-ep
-> changes from patch 2/5 be separated out?  If we ever had to bisect
-> and/or revert parts of this, it seems like it would be simpler to do
-> them consistently like this:
+> The first set adds overlays for the IMX219 camera sensor, one for each
+> connector (patch 1/4 and 2/4). A Raspberry Pi Camera Module 2 have been
+> used to verify the proper operation of the overlays.
 > 
->   - PCI: dwc: Add ELBI resource mapping
->   - PCI: exynos: Switch to dwc ELBI resource mapping
->   - PCI: qcom: Switch to dwc ELBI resource mapping
->   - PCI: qcom-ep: Switch to dwc ELBI resource mapping
+> The second sets adds overlays for the IMX462 camera sensors, also one
+> for each connector (patch 4/5 and 4/4). A DFM 36SX462-ML camera module
+> have been used to verify the proper operation of the overlays.
 > 
-> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > Signed-off-by: Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>
-> > ---
-> >  drivers/pci/controller/dwc/pcie-qcom.c | 16 +++++++---------
-> >  1 file changed, 7 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> > index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..5092752de23866ef95036bb3f8fae9bb06e8ea1e 100644
-> > --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> > +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> > @@ -276,7 +276,6 @@ struct qcom_pcie_port {
-> >  struct qcom_pcie {
-> >  	struct dw_pcie *pci;
-> >  	void __iomem *parf;			/* DT parf */
-> > -	void __iomem *elbi;			/* DT elbi */
-> >  	void __iomem *mhi;
-> >  	union qcom_pcie_resources res;
-> >  	struct phy *phy;
-> > @@ -414,12 +413,17 @@ static void qcom_pcie_configure_dbi_atu_base(struct qcom_pcie *pcie)
-> >  
-> >  static void qcom_pcie_2_1_0_ltssm_enable(struct qcom_pcie *pcie)
-> >  {
-> > +	struct dw_pcie *pci = pcie->pci;
-> >  	u32 val;
-> >  
-> > +	if (!pci->elbi_base) {
-> > +		dev_err(pci->dev, "ELBI is not present\n");
-> > +		return;
-> > +	}
-> >  	/* enable link training */
-> > -	val = readl(pcie->elbi + ELBI_SYS_CTRL);
-> > +	val = readl(pci->elbi_base + ELBI_SYS_CTRL);
-> >  	val |= ELBI_SYS_CTRL_LT_ENABLE;
-> > -	writel(val, pcie->elbi + ELBI_SYS_CTRL);
-> > +	writel(val, pci->elbi_base + ELBI_SYS_CTRL);
-> >  }
-> >  
-> >  static int qcom_pcie_get_resources_2_1_0(struct qcom_pcie *pcie)
-> > @@ -1861,12 +1865,6 @@ static int qcom_pcie_probe(struct platform_device *pdev)
-> >  		goto err_pm_runtime_put;
-> >  	}
-> >  
-> > -	pcie->elbi = devm_platform_ioremap_resource_byname(pdev, "elbi");
-> > -	if (IS_ERR(pcie->elbi)) {
-> > -		ret = PTR_ERR(pcie->elbi);
-> > -		goto err_pm_runtime_put;
-> > -	}
-> > -
-> >  	/* MHI region is optional */
-> >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "mhi");
-> >  	if (res) {
-> > 
-> > -- 
-> > 2.34.1
-> > 
+> The reason two sets of overlays are needed is that the IMX219 uses
+> 2-lanes CSI-2 D-PHY bus, while the IMX462 uses a 4-lane CSI-2 D-PHY bus.
+> To be able to properly test both situations on the board each sensor
+> needs to be able to connected to each of the two external busses.
+> 
+> Obviously only one sensor can be connected to J1, and one to J2 at any
+> given time.
+> 
+> See individual patches for changelog.
+Series
 
--- 
-மணிவண்ணன் சதாசிவம்
+Reviewed-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+
+Thanks !
 
