@@ -1,115 +1,258 @@
-Return-Path: <devicetree+bounces-213435-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213436-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E509B45635
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:21:14 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B77DBB4565D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 13:30:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1FC453BB02F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:20:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E03D5A302D
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 11:30:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0CEA32BF3D;
-	Fri,  5 Sep 2025 11:20:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="YXwa8n18"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E385D27BF7E;
+	Fri,  5 Sep 2025 11:30:13 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FB272C158F;
-	Fri,  5 Sep 2025 11:20:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C72343D93;
+	Fri,  5 Sep 2025 11:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757071235; cv=none; b=B8seYhPjK+q9C4OMiFnbba1KDsKsXq42aG0wZik6n/5VMcwhyC1zj8Q5XJVmZgv4kyTXLtaJiKHr/KOs06QxRdI3OSW6q/AcaW+edTji3ar1nCFPme2QuB4nCES6cxebP7LqCwgQ/m5KI1+nMS7Y9HB3DyF5dS1431jNNFZNe54=
+	t=1757071813; cv=none; b=b71B1dsMkpGqAIqRDZUvtkuVAtkrkaArTRZ2FdEbBsK33n4vCl3NG5Rbqn4B/KkAzeIijYhAm+TE3gpEkShVKP0jR4e9gmr8QHXA5n9AAA0jh1lmP97UiurxWdttmbkgNOF1mJOWtwbWetoW8g8sa/qu92bnCuvazPsfjRF6img=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757071235; c=relaxed/simple;
-	bh=OGmWrJpLcXWxy4kOfWzDwFhNHI5GSrj775waIjsWVsQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PxwurExQJocprc8sgZmwcZ0orBqIBjQzKQbAcNgUnv4F1jVzqDY9rcmda7VgeAcNeXuVhpXHkN3Jqsy5ZU4htU8PT/li/BjbN2AmrqXsm/tDaj0wYk+TvkvooR8D9m5CHE7H2qMLqfQTHs27IFKUWApvz33gCJccEtgSktQlW60=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=YXwa8n18; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757071234; x=1788607234;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OGmWrJpLcXWxy4kOfWzDwFhNHI5GSrj775waIjsWVsQ=;
-  b=YXwa8n18lwQKIkjp28cdnWEEqMbWgheVcRLsc8fpRzdHt6pDYYjBk4Mc
-   xFeX2i1IlcaWiRTkYKch0V+yopcNEHz61JACiW6Um6S7ZqgJsmHTsQdzV
-   bufz9g1M3vofuUOe/f5aEJFNN6rSz7Y+KKE+lvkfa5ZTvQ7svhug/s1wf
-   1uRWI0AlAHgsXa939m0nGe4IajXvjYxfZxgIsoYNOMJfBawVsjKiKsCO0
-   swJQb2RMGolPv6EFUfjGGIBuxOpUbpZ43ARPGnx555PDyb51ASbvwKk0T
-   LyiOMTgv/z9zjwRRj+ZrN45TB9E5rC3Q3isPTshmfIsy6JeVC4R0icbtC
-   Q==;
-X-CSE-ConnectionGUID: tmq9lQyWQa256oVE4LKvqw==
-X-CSE-MsgGUID: rgAIsa9qQNmzWXkubt/kXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11543"; a="58633161"
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="58633161"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Sep 2025 04:20:33 -0700
-X-CSE-ConnectionGUID: cvFrgh+1Q/O8gYdxESH4AA==
-X-CSE-MsgGUID: EfmsnKDwRvajVzhRnqz99Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,241,1751266800"; 
-   d="scan'208";a="177380651"
-Received: from kuha.fi.intel.com ([10.237.72.152])
-  by orviesa005.jf.intel.com with SMTP; 05 Sep 2025 04:20:27 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Fri, 05 Sep 2025 14:20:26 +0300
-Date: Fri, 5 Sep 2025 14:20:26 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-phy@lists.infradead.org
-Subject: Re: [PATCH RFC 14/22] usb: typec: tipd: Register DisplayPort and
- Thunderbolt altmodes for cd321x
-Message-ID: <aLrHemVPCTjwI8dk@kuha.fi.intel.com>
-References: <20250821-atcphy-6-17-v1-0-172beda182b8@kernel.org>
- <20250821-atcphy-6-17-v1-14-172beda182b8@kernel.org>
+	s=arc-20240116; t=1757071813; c=relaxed/simple;
+	bh=zZUdFcHQdplrd87XGHnTotjQT+LmlMsdcMKJPBMo+7M=;
+	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=bfc5E4EqYPnNBqztvjyLGUh/XlupgwwmRkRWGTNg1uJStKlKyhrvxyDSwmZjiK5KGv0Zwi7rM7Dvo60YPQwnDT5dQEFx63WCaYz5bHjzA4s11cQG0yPSGgOXg1FtgA6hKkcymdQ+kJ42YYhV8E+Y3Otuw3paZG9TThGY2waLp68=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=huawei.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
+Received: from mail.maildlp.com (unknown [172.18.186.31])
+	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4cJDbY21trz6M4wc;
+	Fri,  5 Sep 2025 19:27:37 +0800 (CST)
+Received: from frapeml500008.china.huawei.com (unknown [7.182.85.71])
+	by mail.maildlp.com (Postfix) with ESMTPS id 6DDFF1402F1;
+	Fri,  5 Sep 2025 19:30:08 +0800 (CST)
+Received: from localhost (10.203.177.15) by frapeml500008.china.huawei.com
+ (7.182.85.71) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.39; Fri, 5 Sep
+ 2025 13:30:07 +0200
+Date: Fri, 5 Sep 2025 12:30:06 +0100
+From: Jonathan Cameron <jonathan.cameron@huawei.com>
+To: Michal Simek <michal.simek@amd.com>
+CC: <linux-kernel@vger.kernel.org>, <monstr@monstr.eu>,
+	<michal.simek@xilinx.com>, <git@xilinx.com>, Salih Erim <salih.erim@amd.com>,
+	Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>, Anish Kadamathikuttiyil
+ Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>, Andy
+ Shevchenko <andy@kernel.org>, Conor Dooley <conor+dt@kernel.org>, David
+ Lechner <dlechner@baylibre.com>, Jonathan Cameron <jic23@kernel.org>,
+	"Krzysztof Kozlowski" <krzk+dt@kernel.org>, Nuno =?ISO-8859-1?Q?S=E1?=
+	<nuno.sa@analog.com>, Rob Herring <robh@kernel.org>, "open list:OPEN FIRMWARE
+ AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, "open
+ list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH 1/6] dt-bindings: iio: xilinx: Add Documentation for
+ Sysmon
+Message-ID: <20250905123006.000031a9@huawei.com>
+In-Reply-To: <610690b9cc4ab3854b56df550b688b4cc72a5653.1757061697.git.michal.simek@amd.com>
+References: <cover.1757061697.git.michal.simek@amd.com>
+	<610690b9cc4ab3854b56df550b688b4cc72a5653.1757061697.git.michal.simek@amd.com>
+X-Mailer: Claws Mail 4.3.0 (GTK 3.24.42; x86_64-w64-mingw32)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250821-atcphy-6-17-v1-14-172beda182b8@kernel.org>
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
+ frapeml500008.china.huawei.com (7.182.85.71)
 
-> +static void
-> +cd321x_unregister_port(struct tps6598x *tps)
-> +{
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
+On Fri, 5 Sep 2025 10:41:44 +0200
+Michal Simek <michal.simek@amd.com> wrote:
+
+> From: Salih Erim <salih.erim@amd.com>
+> 
+> Add devicetree documentation for Xilinx Sysmon IP which is used for
+> internal chip monitoring on Xilinx Versal SOCs.
+> 
+> Co-developed-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> Signed-off-by: Anand Ashok Dumbre <anand.ashok.dumbre@xilinx.com>
+> Co-developed-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
+> Signed-off-by: Anish Kadamathikuttiyil Karthikeyan Pillai <anish.kadamathikuttiyil-karthikeyan-pillai@amd.com>
+> Signed-off-by: Salih Erim <salih.erim@amd.com>
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+>  .../bindings/iio/adc/xlnx,versal-sysmon.yaml  | 235 ++++++++++++++++++
+>  1 file changed, 235 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml b/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+> new file mode 100644
+> index 000000000000..a768395cade7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/xlnx,versal-sysmon.yaml
+> @@ -0,0 +1,235 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/xlnx,versal-sysmon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	if (cd321x->port_altmode_dp)
-> +		typec_unregister_altmode(cd321x->port_altmode_dp);
-> +	if (cd321x->port_altmode_tbt)
-> +		typec_unregister_altmode(cd321x->port_altmode_tbt);
+> +title: Xilinx Versal Sysmon
+> +
+> +maintainers:
+> +  - Salih Erim <salih.erim@amd.com>
+> +
+> +description:
+> +  The Xilinx Sysmon provides on-chip monitoring and control for the supply
+> +  voltages and temperatures across the chip. Since there are only 160 supply
+> +  voltage registers and 184 measurement points, there is no constant mapping
+> +  of supply voltage registers and the measurement points. User has to select
+> +  the voltages to monitor in design tool. Depending on the selection, a voltage
+> +  supply gets mapped to one of the supply registers. So, this mapping information
+> +  is provided via description which contain the information of name of
+> +   the supply enabled and the supply register it maps to.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: xlnx,versal-sysmon
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Sysmon Registers.
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +    description: Interrupt line for Sysmon.
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  '#io-channel-cells':
+> +    const: 0
+> +
+> +  xlnx,hbm:
+> +    type: boolean
+> +    description:
+> +      Exists if node refers to a HBM (High Bandwidth Memory) SLR (Super Logic Region).
+> +
+> +  xlnx,nodeid:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      PLM specified sysmon node id.
+> +
+> +  xlnx,numaiechannels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 64
+> +    description:
+> +      Total number of sysmon satellites close to AI Engine exposed as channels.
 
-You can call typec_unregister_altmode() unconditionally here - it's
-NULL safe.
+Feels like some use - would make this easier to parse.  xlnx,num-aie-channels.
+Similar to the next one. How is this related to the number of child nodes?
 
-thanks,
 
-> +	cd321x->port_altmode_dp = NULL;
-> +	cd321x->port_altmode_tbt = NULL;
-> +	typec_unregister_port(tps->port);
-> +}
+> +
+> +  xlnx,numchannels:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    maximum: 160
+> +    description:
+> +      Number of supply channels enabled in the design.
 
--- 
-heikki
+Given you have subnodes called supplyxxx why is a count
+of those needed or is this not counting those?
+
+> +
+> +patternProperties:
+> +  "^supply@([0-9]{1,2}|1[0-5][0-9])$":
+> +    type: object
+> +    description:
+> +      Represents the supplies configured in the design.
+> +
+> +    properties:
+> +      reg:
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 0
+> +        maximum: 159
+> +        description:
+> +          The supply number associated with the voltage.
+> +
+> +      xlnx,name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          Name of the supply enabled
+
+Would the generic property "label" be useable here?
+
+> +
+> +      xlnx,bipolar:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          If the supply has a bipolar type and the output will be signed.
+
+This is very generic.  We have it described for ADC channels already in
+bindings/iio/adc/adc.yaml.  Why can't we use that here?
+That binding does rely on matching against 'channel' for node names though.
+Where a 'type of channel' has been relevant IIRC we've always added
+a separate property rather than using the child node name.
+
+> +
+> +    required:
+> +      - reg
+> +      - xlnx,name
+> +
+> +    additionalProperties: false
+> +
+> +  "^temp@([1-9]|[1-5][0-9]|6[0-4])$":
+> +    type: object
+> +    description:
+> +      Represents the sysmon temperature satellites.
+> +
+> +    properties:
+> +      reg:
+> +        minimum: 1
+> +        maximum: 64
+> +        description:
+> +          The sysmon temperature satellite number.
+> +
+> +      xlnx,aie-temp:
+> +        $ref: /schemas/types.yaml#/definitions/flag
+> +        description:
+> +          If present it indicates the temperature satellite is in
+> +          close proximity with AI Engine
+
+This one seems unusual.  I guess it makes a configuration difference
+of some type.  I'll look at the code to see if that answers the question.
+
+> +
+> +      xlnx,name:
+> +        $ref: /schemas/types.yaml#/definitions/string
+> +        description:
+> +          Name of temperature satellite exposed
+
+As above. label tends to get used for things like this.
+
+> +
+> +    required:
+> +      - reg
+> +      - xlnx,name
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - xlnx,numchannels
+> +
+> +additionalProperties: false
+
 
