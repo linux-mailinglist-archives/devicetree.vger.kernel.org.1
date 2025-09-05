@@ -1,119 +1,203 @@
-Return-Path: <devicetree+bounces-213726-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213727-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 03A27B4669F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:23:12 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 49163B466C6
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:44:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA7C9584320
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:23:11 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 05EFA1B259E1
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 22:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9925927AC35;
-	Fri,  5 Sep 2025 22:22:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DBC22882A7;
+	Fri,  5 Sep 2025 22:44:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="VverU1BD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j91+qH+F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDD85295511
-	for <devicetree@vger.kernel.org>; Fri,  5 Sep 2025 22:22:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 084C5225761;
+	Fri,  5 Sep 2025 22:44:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757110940; cv=none; b=ILdQGcfu7Z0HYJ4aJa6EoVTpXXOc8U2laLGtd9l/6nOQGO7+uGruVt2jI1KSPy3W7kyGWsoQGbGTzXmOJyxBVdPi3G+gOdP94/RsBX7ezH/13D3Ya4J6XFaB/BpS5I1/9TiqKJ1gdugpfDjnpLiufhJf5b62cMHliNSgew5vWZM=
+	t=1757112274; cv=none; b=ic/157qgV2IVJ72Ge5bv44WVTpAmtQgjvsdx4VfJ/Ca6uEhd6+I1OaN8yt3xsITb0/H2tRsBrGm8j3iVD8P6l2oCDt8EnnoGgVsP3lLakPOG0dxtXYTNPItpINm/9cbXxYHXqGmGEkr9yOnKMNa0eEvgc46rbTTJQJ4hN/hJJFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757110940; c=relaxed/simple;
-	bh=4usknWEddfoi3Fas3Wgvr8wktFDBvKA4BChkoL+6ZII=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AjOKwgsgxI6ytFtS4zuWqPwUdVe9Y7fDK54/n7GntS1grFNYD0iPx7egOCK97hr/Wh06KMK2JS6ZgeVJ2ewNO04U+eZacQcrzKaj+b+MX2nw4ZA0WkRKgmswBj+yerSgq44ybwKbCb2oD7NYQeuz+51WFchSPGX/+BUxkgeB1K8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=VverU1BD; arc=none smtp.client-ip=209.85.215.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pg1-f179.google.com with SMTP id 41be03b00d2f7-b52047b3f19so1159996a12.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Sep 2025 15:22:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757110938; x=1757715738; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ajXrw2kXWcvaLXXTxcLJ0XN71Q9IM46eyqVaC58AnZw=;
-        b=VverU1BDJnvUX8bN3NHzQpdocZt2adzhSN+Nvj1kEQXpwEUoHb4s2Hk+f7B5dHQqS5
-         XoPbhSV21MPrHBEdHIM/V5iesW00YhsTgyw9MieXwtusEfh1olRTdulr5Hp4w73sXBcG
-         GF1AhUNx5hqhohVjD7cby+al96I1HI6Vhfnu9q7rSg9r7KOSGPl+G73lb1WGO9sTER14
-         c6TGeuRbmmnohho1kEj9+WQAzqgJWn4Ni9UUGOAVPRPzTkWGEEI558IErMThyfbMAOXe
-         HH3uxcSDX/L+nwx+q8O1WK1R+WC822ophD21v5O72qmlihLfPN9K3x4sqqL8i0XpKNIi
-         IuUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757110938; x=1757715738;
-        h=content-transfer-encoding:mime-version:date:message-id:subject
-         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ajXrw2kXWcvaLXXTxcLJ0XN71Q9IM46eyqVaC58AnZw=;
-        b=pduiUkkowZWoBwejW+hR1R1hoqN/1io1Zb93MEyktM15k1qLp8OUdxQyM3H26WC/8o
-         SN8P0LIeGnN+mCNMJM5TpSXvyd9DusEe5UJyTGyfYTsulolg4WI8CVASCdoxM/KRppJS
-         Aa94lO0pTEQTF7uwI2Vc/06FxRfPWSv6rMKkZuqqQlb6FxF7Zr2JQYe/9EI5/w9RUN10
-         C65C3C9hHyeuErqfe3L5Xu+GyuXS5yp0ZU0GNLqWvl9+odxFNXuZeyYMIl5dJdqa43ey
-         kwQtBRcFDg7i9ILp9J5mzh6g5vIkXsBWzVt9pZ68kpvhJW1YRFeBs+yGEQa0shIQPyqu
-         NalQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhXg7VLyDKFFpoM0kUMjB0VzHIK9qPH+jvVAUYwpbd7DHr65gejObTFVU1WbEGh0tFpKlw2XQ2hz1e@vger.kernel.org
-X-Gm-Message-State: AOJu0YzyIEn6WeQqQh0OB/+9VYKo9sbYozfJCuPR0KehcybJD3cRpNhX
-	DKqPkHokvgIvCGl0VWuckudb0m7WKqdb4SPqe8jQnn5/dZHsCLkSQcqJbPX98nueHGM=
-X-Gm-Gg: ASbGnctjExpT0auUXbSUYuXLmt25tmAdQ6hoURY8I+X6v1mPmua72G+QvEhn2O/AUmX
-	CorvlQHGXBMnG7QyD/wPC7EVhhXGZwRdAjh46pnb4Q3qbrFIF3mx6yf882/F19mwmQy9p0PSQqz
-	EJrzGMgyKowRjEBvPEuiqINE7r+A1gdqkHlbOuAu47Sk/dEcHLN+cBUMbFxT0D25pdgcTVEtrIx
-	xOdPgNyrMeBkReV0Xel/S+rohueajA+E5v4xGc6XbNR/X8JRCXFsTpmrtF9nVUKlWkKRKtYhnZA
-	qxJvrixfv9n/OOR2+Mqct2qUHYqXqlFQuaddLbzLNRmTKG+HiOPxF8V69mLqVlXC97SFuAG/abh
-	jax2Etb922pX6GOoagQmb
-X-Google-Smtp-Source: AGHT+IEvDKPFc4gicRV4XwsSMT0l8afEt7vdoanp91e0aTRQHmWzkYtjOcm3TMm9WB4qrIiHEdmjxA==
-X-Received: by 2002:a17:90b:3f8f:b0:32b:9d3c:13b3 with SMTP id 98e67ed59e1d1-32d43f60f43mr501790a91.18.1757110938006;
-        Fri, 05 Sep 2025 15:22:18 -0700 (PDT)
-Received: from localhost ([71.212.208.158])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7722a2af911sm22510696b3a.23.2025.09.05.15.22.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 05 Sep 2025 15:22:17 -0700 (PDT)
-From: Kevin Hilman <khilman@baylibre.com>
-To: tony@atomide.com, robh@kernel.org, 
- Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: uri.mashiach@compulab.co.il, krzk+dt@kernel.org, conor+dt@kernel.org, 
- linux-omap@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, shuah@kernel.org
-In-Reply-To: <20250830215957.285694-1-jihed.chaibi.dev@gmail.com>
-References: <20250830215957.285694-1-jihed.chaibi.dev@gmail.com>
-Subject: Re: [PATCH] ARM: dts: omap: am335x-cm-t335: Remove unused mcasp
- num-serializer property
-Message-Id: <175711093712.666031.7805837780140276251.b4-ty@baylibre.com>
-Date: Fri, 05 Sep 2025 15:22:17 -0700
+	s=arc-20240116; t=1757112274; c=relaxed/simple;
+	bh=ecdRr8yDz4LhdbWsw8D/b4SVpMQdJT71OK6gvoVHdrE=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=JGzBmzYiw1z7U7Gvmc2vkXfPWYO3Nq6iL+e1g2GQBiSNPC5yB1eQZpAG28rKV4mctZ/wVhZupj4C04g5TfHT07gTybvEbJuEfo+7QSTO11iMFE+Hs6NTNhqwPZlwuACW78YJxEjl2OUoVmHe2q9Ba4WyMh0o1XkTruPLzTpjq/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j91+qH+F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 479A1C4CEF1;
+	Fri,  5 Sep 2025 22:44:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757112272;
+	bh=ecdRr8yDz4LhdbWsw8D/b4SVpMQdJT71OK6gvoVHdrE=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=j91+qH+F+7zrhgPA7QmOREMjCCY9jtWORQ1GQgSLE3gNhaZ3EpcULfXyQskbKzPq7
+	 Bc79AGYEReaJ5iPsPpaUTcUE6bkoJnidMz/2KoE1upgmW73yrZpisxEtFHnGd5Mtq+
+	 O5cVz/EZOipDCa0Bt+O1SdlU8+6aeMbTxyALo7LZDo5dperTV9qRvAqc5041zQXgxI
+	 X9+xyXQgUyyfWGPNocJQp/IxBpzyq+8d3H+zzmP6dyR4lDh+C8KlMxxaWHdDXhA+et
+	 KxhhVX5wGOk/qLJhXRNS4y3Y5RPF4tO67RFV/RuIh+V5M8lKmJPfsxHJ/KY8+8G8OT
+	 nCzrZrxp/DyhQ==
+Date: Fri, 5 Sep 2025 17:44:30 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>,
+	stable+noautosel@kernel.org
+Subject: Re: [PATCH v2 1/5] PCI: qcom: Wait for PCIE_RESET_CONFIG_WAIT_MS
+ after PERST# deassert
+Message-ID: <20250905224430.GA1325412@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.3-dev-d7477
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20250903-pci-pwrctrl-perst-v2-1-2d461ed0e061@oss.qualcomm.com>
 
+On Wed, Sep 03, 2025 at 12:43:23PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> PCIe spec r6.0, sec 6.6.1 mandates waiting for 100ms before deasserting
+> PERST# if the downstream port does not support Link speeds greater than
+> 5.0 GT/s.
 
-On Sat, 30 Aug 2025 23:59:57 +0200, Jihed Chaibi wrote:
-> The dtbs_check validation for am335x-cm-t335.dtb flags an error
-> for an unevaluated 'num-serializer' property in the mcasp0 node.
+I guess you mean we need to wait 100ms *after* deasserting PERST#?
+
+I.e., this wait before sending config requests to a downstream device:
+
+  ◦ With a Downstream Port that does not support Link speeds greater
+    than 5.0 GT/s, software must wait a minimum of 100 ms following
+    exit from a Conventional Reset before sending a Configuration
+    Request to the device immediately below that Port.
+
+> But in practice, this delay seem to be required irrespective of
+> the supported link speed as it gives the endpoints enough time to
+> initialize.
+
+Saying "but in practice ... seems to be required" suggests that the
+spec requirement isn't actually enough.  But the spec does say the
+100ms delay before config requests is required for all link speeds.
+The difference is when we start that timer: for 5 GT/s or slower it
+starts at exit from Conventional Reset; for faster than 5 GT/s it
+starts when link training completes.
+
+> Hence, add the delay by reusing the PCIE_RESET_CONFIG_WAIT_MS definition if
+> the linkup_irq is not supported. If the linkup_irq is supported, the driver
+> already waits for 100ms in the IRQ handler post link up.
+
+I didn't look into this, but I wondered whether it's possible to miss
+the interrupt, especially the first time during probe.
+
+> Also, remove the redundant comment for PCIE_T_PVPERL_MS. Finally, the
+> PERST_DELAY_US sleep can be moved to PERST# assert where it should be.
+
+Unless this PERST_DELAY_US move is logically part of the
+PCIE_RESET_CONFIG_WAIT_MS change, putting it in a separate patch would
+make *this* patch easier to read.
+
+> Cc: stable+noautosel@kernel.org # non-trivial dependency
+> Fixes: 82a823833f4e ("PCI: qcom: Add Qualcomm PCIe controller driver")
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 8 +++++---
+>  1 file changed, 5 insertions(+), 3 deletions(-)
 > 
-> This property is obsolete; it is not defined in the davinci-mcasp-audio
-> schema and is not used by the corresponding (or any) driver.
-> 
-> Remove this unused property to fix the schema validation warning.
-> 
-> [...]
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 294babe1816e4d0c2b2343fe22d89af72afcd6cd..bcd080315d70e64eafdefd852740fe07df3dbe75 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -302,20 +302,22 @@ static void qcom_perst_assert(struct qcom_pcie *pcie, bool assert)
+>  	else
+>  		list_for_each_entry(port, &pcie->ports, list)
+>  			gpiod_set_value_cansleep(port->reset, val);
+> -
+> -	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
+>  }
+>  
+>  static void qcom_ep_reset_assert(struct qcom_pcie *pcie)
+>  {
+>  	qcom_perst_assert(pcie, true);
+> +	usleep_range(PERST_DELAY_US, PERST_DELAY_US + 500);
+>  }
+>  
+>  static void qcom_ep_reset_deassert(struct qcom_pcie *pcie)
+>  {
+> -	/* Ensure that PERST has been asserted for at least 100 ms */
+> +	struct dw_pcie_rp *pp = &pcie->pci->pp;
+> +
+>  	msleep(PCIE_T_PVPERL_MS);
+>  	qcom_perst_assert(pcie, false);
+> +	if (!pp->use_linkup_irq)
+> +		msleep(PCIE_RESET_CONFIG_WAIT_MS);
 
-Applied, thanks!
+I'm a little confused about why you test pp->use_linkup_irq here
+instead of testing the max supported link speed.  And I'm not positive
+that this is the right place, at least at this point in the series.
 
-[1/1] ARM: dts: omap: am335x-cm-t335: Remove unused mcasp num-serializer property
-      commit: 27322753c8b913fba05250e7b5abb1da31e6ed23
+At this point, qcom_ep_reset_deassert() is only used by
+qcom_pcie_host_init(), so the flow is like this:
 
-Best regards,
--- 
-Kevin Hilman <khilman@baylibre.com>
+  qcom_pcie_probe
+    irq = platform_get_irq_byname_optional(pdev, "global")
+    if (irq > 0)
+      pp->use_linkup_irq = true
+    dw_pcie_host_init
+      pp->ops->init
+        qcom_pcie_host_init                         # .init
+          qcom_ep_reset_deassert                    # <--
+ +          if (!pp->use_linkup_irq)
+ +            msleep(PCIE_RESET_CONFIG_WAIT_MS)     # 100ms
+      if (!dw_pcie_link_up(pci))
+        dw_pcie_start_link
+      if (!pp->use_linkup_irq)
+        dw_pcie_wait_for_link
+          for (retries = 0; retries < PCIE_LINK_WAIT_MAX_RETRIES; retries++)
+            if (dw_pcie_link_up(pci))
+              break
+            msleep(PCIE_LINK_WAIT_SLEEP_MS)         # 90ms
+          if (pci->max_link_speed > 2)              # > 5.0 GT/s
+            msleep(PCIE_RESET_CONFIG_WAIT_MS)       # 100ms
 
+For slow links (<= 5 GT/s), it's possible that the link comes up
+before we even call dw_pcie_link_up() the first time, which would mean
+we really don't wait at all.
+
+My guess is that most links wouldn't come up that fast but *would*
+come up within 90ms.  Even in that case, we wouldn't quite meet the
+spec 100ms requirement.
+
+I wonder if dw_pcie_wait_for_link() should look more like this:
+
+  dw_pcie_wait_for_link
+    if (pci->max_link_speed <= 2)                   # <= 5.0 GT/s
+      msleep(PCIE_RESET_CONFIG_WAIT_MS)             # 100ms
+
+    for (retries = 0; retries < PCIE_LINK_WAIT_MAX_RETRIES; retries++)
+      if (dw_pcie_link_up(pci))
+        break;
+      msleep(...)
+
+    if (pci->max_link_speed > 2)                    # > 5.0 GT/s
+      msleep(PCIE_RESET_CONFIG_WAIT_MS)             # 100ms
+
+Then we'd definitely wait the required 100ms even for the slow links.
+The retry loop could start with a much shorter interval and back off.
+
+I wish the max_link_speed checks used some kind of #define to make
+them readable.
+
+Bjorn
 
