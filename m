@@ -1,62 +1,76 @@
-Return-Path: <devicetree+bounces-213730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02AE6B46710
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:18:26 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA36FB4671E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:27:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BBB2A4577A
-	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:18:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FE927BFEC0
+	for <lists+devicetree@lfdr.de>; Fri,  5 Sep 2025 23:25:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B3FAA22258E;
-	Fri,  5 Sep 2025 23:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1CA728A72F;
+	Fri,  5 Sep 2025 23:27:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Sly972OZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dpcAwemY"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8711F4622;
-	Fri,  5 Sep 2025 23:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70546274FEF;
+	Fri,  5 Sep 2025 23:27:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757114300; cv=none; b=cndM3bATkV5kMpgUg1v76BSuowKrJxTq4Tq3SmhST17/g9r9tOdQy7oQ+yIPXGwen3I86dZrodMmIF30d4Si2Ngf+8GlyI9QY5dIVi24bpbXyKVxzUdGwhxOgQfDkrgKgoX4u4X+QYZu5AQXLQc3b8xEYNEbqTP16g/yLV0BOPA=
+	t=1757114824; cv=none; b=RydnQh9TYXQOAE5a/L2Ym8sw1m3kRrlMWPsGYdWi3wX3qorBRqTHCxrc+RysI9yRJAqJqnDqW7Iwt/JuqnyWbflL3o0eC9mCBvnl9NWnbI7W7sAtUXLj8L5fmZsIGbJH8e1K4CDfkOSdXoJlyCYGqLgb3A+W+3mquSX0VwV9VHA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757114300; c=relaxed/simple;
-	bh=J9WEIa+VV0+QVsnt8Ym5PX6MCPZuNTIbHrVfBa7z+wY=;
+	s=arc-20240116; t=1757114824; c=relaxed/simple;
+	bh=+q3cJLW4otQ2y4PEgtHdwQImmYWRyLrAZYTgi0FPf5E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y6k4eNtEGyuj5DXdj3QH1iEbTe3i4w4Zy3nrcjrHvOGiQ96F/t3pf0WRj4KzYtRbBn3acsAm9nAh+G7R/5khUvVJw80zX2q8yrhDoj4u/6WpK2/BmvI+XPPgMzqwLwjjDRKBT5fXK5PLantAEpVNCVoXLmGmltcjI4Dgt+DGCZU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Sly972OZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E38E6C4CEF1;
-	Fri,  5 Sep 2025 23:18:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=WHNzuLnEZBlYSeSrXVrmkHR70yFwatmCPuJIO7Y9J6aVwAPaDvCRiOnrl0cO5bctwnq4SDiQUaobBnl1OAaDZBgJy1OafNKemzpALBKwgl79qwjlSFEpiPi/BYZAhXXl3SFtxVoDdzy/L4BNlnXi7UdDDYvQqXJlX3A7aiuMp0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dpcAwemY; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9E0DC4CEF1;
+	Fri,  5 Sep 2025 23:27:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757114300;
-	bh=J9WEIa+VV0+QVsnt8Ym5PX6MCPZuNTIbHrVfBa7z+wY=;
+	s=k20201202; t=1757114823;
+	bh=+q3cJLW4otQ2y4PEgtHdwQImmYWRyLrAZYTgi0FPf5E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Sly972OZKjGVPtM0/0oy4e80y36ZqOj9wlbDQWxdlzl6I0e/OsuQd5q/ULITS8SLv
-	 +6CzeXIOFhWm5Jc4NrGuwofQx2+fVFlVKUZ0UB/lcR3VjxLWRhPT+IoeQ5hvV2k2om
-	 Wi2GQqnLE9OnMo2o0vnU/c0YTZOln7K1IC2sHqTR9LecmffgcUeu1LXaNySGkuIs1q
-	 dPLQ78Mp0VrIpk7inTNgfWvRWyqYzX0EMqJq9ikhftdDFa7Dwscl3ZKZwQc3jQ5Miv
-	 McNRvtIUQaWxYr4Hsee6wIPEOR3atfQ5+FSDTOmSV8YDtcvHhMz5gvnRW0j2V13Kxk
-	 hUTS4wWQSdttQ==
-Date: Fri, 5 Sep 2025 18:18:19 -0500
+	b=dpcAwemYtcEIHan3qBfZZopUwYOEZCyeLdssSnC7MNMQTp3F74FARA0sBcr2GAmvG
+	 CJoYl4PAMa9ce4p3o+nVor8SwrFhakyXa4ew02lwPn9wiY4DuLJx5l662TBEpJ/rSd
+	 3PshfvcwV8S3h8cZ9/kg2FbPNJYlfyI8pNj+TzzLoYi5sKcUyJWvnCQ4WgIdr0QKVd
+	 Ilr90JShPKByhPGI8Y5akagsIHMp85A03mB+t+QoCw2mCiSBwtCvQ3uGpXtAraytX0
+	 gU+zlYGLaJXMd807v532Zx2qL4HiUqyT2p7n8st6BRc6Vcdl/fNmy/TzjNdozNqqLw
+	 qspoXkHKK/Ikg==
+Date: Fri, 5 Sep 2025 18:26:57 -0500
 From: Rob Herring <robh@kernel.org>
-To: Luca Weiss <luca.weiss@fairphone.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Boris Brezillon <boris.brezillon@collabora.com>,
+	Steven Price <steven.price@arm.com>,
+	Liviu Dudau <liviu.dudau@arm.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <mani@kernel.org>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: remoteproc: qcom,milos-pas: Document
- remoteprocs
-Message-ID: <20250905231819.GA1484997-robh@kernel.org>
-References: <20250905-sm7635-remoteprocs-v4-0-9e24febcb246@fairphone.com>
- <20250905-sm7635-remoteprocs-v4-1-9e24febcb246@fairphone.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	MyungJoo Ham <myungjoo.ham@samsung.com>,
+	Kyungmin Park <kyungmin.park@samsung.com>,
+	Chanwoo Choi <cw00.choi@samsung.com>,
+	Jassi Brar <jassisinghbrar@gmail.com>, Kees Cook <kees@kernel.org>,
+	"Gustavo A. R. Silva" <gustavoars@kernel.org>,
+	Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+	kernel@collabora.com, dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+	linux-hardening@vger.kernel.org
+Subject: Re: [PATCH RFC 01/10] dt-bindings: gpu: mali-valhall-csf: add
+ mediatek,mt8196-mali variant
+Message-ID: <20250905232657.GA1497794-robh@kernel.org>
+References: <20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com>
+ <20250905-mt8196-gpufreq-v1-1-7b6c2d6be221@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,235 +79,54 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250905-sm7635-remoteprocs-v4-1-9e24febcb246@fairphone.com>
+In-Reply-To: <20250905-mt8196-gpufreq-v1-1-7b6c2d6be221@collabora.com>
 
-On Fri, Sep 05, 2025 at 11:37:04AM +0200, Luca Weiss wrote:
-> Document the bindings for the ADSP, CDSP, MPSS and WPSS PAS on the Milos
-> (e.g. SM7635) SoC.
+On Fri, Sep 05, 2025 at 12:22:57PM +0200, Nicolas Frattaroli wrote:
+> The Mali-based GPU on the MediaTek MT8196 SoC is shackled to its concept
+> of "MFlexGraphics", which in this iteration includes an embedded MCU
+> that needs to be poked to power on the GPU, and is in charge of
+> controlling all the clocks and regulators.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> In return, it lets us omit the OPP tables from the device tree, as those
+> can now be enumerated at runtime from the MCU.
+> 
+> Add the mediatek,mt8196-mali compatible, and a performance-controller
+> property which points to a node representing such setups. It's required
+> on mt8196 devices.
+> 
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  .../bindings/remoteproc/qcom,milos-pas.yaml        | 201 +++++++++++++++++++++
->  1 file changed, 201 insertions(+)
+>  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 36 +++++++++++++++++++++-
+>  1 file changed, 35 insertions(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,milos-pas.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,milos-pas.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..790ad38a0330bf81f6333e887522ddb97690edbc
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,milos-pas.yaml
-> @@ -0,0 +1,201 @@
-> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/remoteproc/qcom,milos-pas.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm Milos SoC Peripheral Authentication Service
-> +
-> +maintainers:
-> +  - Luca Weiss <luca.weiss@fairphone.com>
-> +
-> +description:
-> +  Qualcomm Milos SoC Peripheral Authentication Service loads and boots firmware
-> +  on the Qualcomm DSP Hexagon cores.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,milos-adsp-pas
-> +      - qcom,milos-cdsp-pas
-> +      - qcom,milos-mpss-pas
-> +      - qcom,milos-wpss-pas
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: XO clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: xo
-> +
-> +  interrupts:
-> +    minItems: 6
-> +    maxItems: 6
-> +
-> +  interrupt-names:
-> +    minItems: 6
-> +    maxItems: 6
-> +
-> +  qcom,qmp:
+> diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> index a5b4e00217587c5d1f889094e2fff7b76e6148eb..6df802e900b744d226395c29f8d87fb6d3282d26 100644
+> --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> @@ -19,6 +19,7 @@ properties:
+>        - items:
+>            - enum:
+>                - rockchip,rk3588-mali
+> +              - mediatek,mt8196-mali
+>            - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+>  
+>    reg:
+> @@ -53,6 +54,13 @@ properties:
+>    opp-table:
+>      type: object
+>  
+> +  performance-controller:
 > +    $ref: /schemas/types.yaml#/definitions/phandle
-> +    description: Reference to the AOSS side-channel message RAM.
-> +
-> +  smd-edge: false
-> +
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
+> +    description:
+> +      A phandle of a device that controls this GPU's power and frequency,
+> +      if any. If present, this is usually in the form of some specialised
+> +      embedded MCU.
 
-Drop. Already has a type.
+We already abuse power-domains binding with both power and performance. 
+There's a performance-domain binding too, but only used on one platform 
+for CPUs (Mediatek too IIRC). Or perhaps you could just point to an 
+empty OPP table. I don't think you have anything new here, so don't 
+invent something new.
 
-> +    minItems: 1
-> +    items:
-> +      - description: Firmware name of the Hexagon core
-> +      - description: Firmware name of the Hexagon Devicetree
-> +
-> +  memory-region:
-> +    minItems: 1
-> +    items:
-> +      - description: Memory region for core Firmware authentication
-> +      - description: Memory region for Devicetree Firmware authentication
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - memory-region
-> +
-> +allOf:
-> +  - $ref: /schemas/remoteproc/qcom,pas-common.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,milos-adsp-pas
-> +            - qcom,milos-cdsp-pas
-> +    then:
-> +      properties:
-> +        memory-region:
-> +          minItems: 2
-> +          maxItems: 2
-
-Max is already 2. Drop.
-
-> +        firmware-name:
-> +          minItems: 2
-> +          maxItems: 2
-
-Max is already 2. Drop.
-
-> +    else:
-> +      properties:
-> +        memory-region:
-> +          maxItems: 1
-> +        firmware-name:
-> +          maxItems: 1
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,milos-adsp-pas
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: LCX power domain
-> +            - description: LMX power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: lcx
-> +            - const: lmx
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,milos-cdsp-pas
-> +            - qcom,milos-wpss-pas
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: CX power domain
-> +            - description: MX power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
-> +            - const: mx
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          enum:
-> +            - qcom,milos-mpss-pas
-> +    then:
-> +      properties:
-> +        power-domains:
-> +          items:
-> +            - description: CX power domain
-> +            - description: MSS power domain
-> +        power-domain-names:
-> +          items:
-> +            - const: cx
-> +            - const: mss
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/qcom,rpmh.h>
-> +    #include <dt-bindings/interconnect/qcom,icc.h>
-> +    #include <dt-bindings/interconnect/qcom,milos-rpmh.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/mailbox/qcom-ipcc.h>
-> +    #include <dt-bindings/power/qcom,rpmhpd.h>
-> +
-> +    remoteproc@3000000 {
-> +        compatible = "qcom,milos-adsp-pas";
-> +        reg = <0x03000000 0x10000>;
-> +
-> +        interrupts-extended = <&pdc 6 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_adsp_in 0 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_adsp_in 1 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_adsp_in 2 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_adsp_in 3 IRQ_TYPE_EDGE_RISING>,
-> +                              <&smp2p_adsp_in 7 IRQ_TYPE_EDGE_RISING>;
-> +        interrupt-names = "wdog",
-> +                          "fatal",
-> +                          "ready",
-> +                          "handover",
-> +                          "stop-ack",
-> +                          "shutdown-ack";
-> +
-> +        clocks = <&rpmhcc RPMH_CXO_CLK>;
-> +        clock-names = "xo";
-> +
-> +        power-domains = <&rpmhpd RPMHPD_LCX>,
-> +                        <&rpmhpd RPMHPD_LMX>;
-> +        power-domain-names = "lcx",
-> +                             "lmx";
-> +
-> +        interconnects = <&lpass_ag_noc MASTER_LPASS_PROC QCOM_ICC_TAG_ALWAYS
-> +                         &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>;
-> +
-> +        memory-region = <&adspslpi_mem>, <&q6_adsp_dtb_mem>;
-> +
-> +        firmware-name = "qcom/milos/vendor/device/adsp.mbn",
-> +                        "qcom/milos/vendor/device/adsp_dtb.mbn";
-> +
-> +        qcom,qmp = <&aoss_qmp>;
-> +
-> +        qcom,smem-states = <&smp2p_adsp_out 0>;
-> +        qcom,smem-state-names = "stop";
-> +
-> +        glink-edge {
-> +            interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
-> +                                         IPCC_MPROC_SIGNAL_GLINK_QMP
-> +                                         IRQ_TYPE_EDGE_RISING>;
-> +            mboxes = <&ipcc IPCC_CLIENT_LPASS
-> +                            IPCC_MPROC_SIGNAL_GLINK_QMP>;
-> +
-> +            label = "lpass";
-> +            qcom,remote-pid = <2>;
-> +
-> +            /* ... */
-> +        };
-> +    };
-> 
-> -- 
-> 2.51.0
-> 
+Rob
 
