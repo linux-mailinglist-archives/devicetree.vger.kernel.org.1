@@ -1,161 +1,114 @@
-Return-Path: <devicetree+bounces-213838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 776ECB46E34
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 15:34:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CFCBB46F0D
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 15:53:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3084C7C708B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:34:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3345D1B2509B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9AFF29993F;
-	Sat,  6 Sep 2025 13:34:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0CCB2EDD59;
+	Sat,  6 Sep 2025 13:53:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="karuOkNi"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="O2oYry+i"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD575225A29;
-	Sat,  6 Sep 2025 13:34:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 338D016F265;
+	Sat,  6 Sep 2025 13:53:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757165685; cv=none; b=ecIESbCSxDwWE9CrfJf3ZepnZgejsy3g3GT/FqiFm0kW2wfBLdu8uv7HrmqGy1allnev2Vxs2Gpxy4hGZv3GhsiYnnM8sS3dyug9QyeCge3nEzJsdvP49aCrIx29OUfji+reSXrzxC0WfSXVRuuG++vXIDC3WKE7afJGZR9zXIU=
+	t=1757166789; cv=none; b=bNq0bN1an8kw5lUALhN6QLXmlIs/Ex0J8MWrhcX5EUlIyRZ2i3zJn7w7HfyKsYTQ+dIp4NKUpTmNeIbYcEnoX74sFCcEt6PLhH6PHJ4asYUE7QaL0pXeNOyI+rWBRa/DuM9MeEWRAhKcEo7nLza9TqtJ4Dweh4Ko2KaqcE9MrKc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757165685; c=relaxed/simple;
-	bh=A/O9bArQgchRCNE4YOOq/nXP7u364U1IIbj9QaZZDwg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oPdIbrl0gMPtNRRAFXS7FVfpwGUzmwxwIM9wa0/3ex+CDUZfSlXCV4LOcEla+ZVCJPelHwTntu6EKccKVDXf8kdmcGuGxs6tcw4BI+ZSKQeP1F3jQJGAS/vLqM7s7h83uI5xRpX33k/joKkyViOZGpP+I543CKNxSFSvVCLaTJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=karuOkNi; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62598fcf41aso488882a12.3;
-        Sat, 06 Sep 2025 06:34:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757165682; x=1757770482; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aJ6kAa7oShKc/lpiM+bPhxWta9HH3iqlBxnqLQNfAj0=;
-        b=karuOkNiwcNI8+X5MVYiz8+d5jix0m56PJDucveZsgZIERIg/Evh5lCis4thXgrHCd
-         Sjw1E2GQZ0xglXTntXPzKS8TXP/Qrk55WcvHAPAKRgjDPdxzINq2srn6vylzrAjyXBfy
-         RR7NSylPu2Agv18OU2LLETLSIZDjVZqYkuLl3tzPmy5mDDgG2APV7cP274a2h1zDPvss
-         4tznogsTuJo6NX0Yg2qbkr++spJzOTwY0fMavCnPyqDJU2HUhtbYWdGnhqF0ngP/4j0b
-         79AjveWxhRWNKLALF0J3Ib0q6i9zP+TD+TvFms39vvpo2fRz+cJeATKCbu5RMegmRC3P
-         KTfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757165682; x=1757770482;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aJ6kAa7oShKc/lpiM+bPhxWta9HH3iqlBxnqLQNfAj0=;
-        b=ZZmu6yzWX8rp0hivCdcavyvxN68GV/lo473+d0BcRSk4VyaxgGYVa0VTMf4i6AulhV
-         gTPthAr6LPKYHEaNzwA3jRUoWedQU72b0aQdzwsaCoH6XMXl7nC+AiSsD8FhOFeISIA/
-         AmfwV160dPtVKqMZ0au/LTD7ImVjI0gXCOD1KmbxKQrtw6oHHpzivrH5k/xRtwymv1t9
-         pGGMhS6IcPW6kEMR356cEA6CjT4VTTEifDc3tuYH9xnQ0qBq6IxSnFTqaCSUmwowMPXq
-         tzbBXaWnOesEiynh5QbJfbC4y6sh3DpbGwLtIOxz+14zKQEJ6qOMXlp3ZpuH2zUplmMT
-         c43Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUvLZrda18nSPMDEkBa/JhnTUKtPMtZFE3OypDmgOKGLq/eGSAdniuzF+RX4KVwvqaISe1tS7SoBOyzwFQV@vger.kernel.org, AJvYcCXSYxzvizK7dDMzie0EHAAIN1lm7gh+leRiSE7yI3UZZWOLAJ7FtaCtyCOGLJqU/V4KgZCWpsLKa4Lm@vger.kernel.org, AJvYcCXnogxRojYsJ0rPUi8RMcYw0Aga8lKmjaltb/9Y2QaSzYYO/f+3QarCGrOKPqRyJCjXK4vs4szsyegm@vger.kernel.org
-X-Gm-Message-State: AOJu0Yzmb4CcchjSos8sU/GeS0fU++iE58qFReXm+ap2wDmlAMye2C07
-	wfK+8TWxk2NbQpVMJ8LeM9yMtthYrGJUNfJpj9RJ1GM0nSvQQgnlSDP3QiuB+iQTAosUu10Ihaq
-	/iHQ2cdpAzeQmCfiwL4PBDPad44eHgFw=
-X-Gm-Gg: ASbGnctpTubDRA6u2w81gQ6btRPjs5LtnvfRobtx3r98WAv5BgSI1NRhmLki5Y8ykzA
-	iErZD1Q+8jdCfEvIgEdTwRYhnGSKDWseUr/SZqv8zEdMaOkrv6SOOh+G0WgW+jbyUBq1JZcBYUl
-	KW1PvNMrWS2q31laCfMF+3BMX/hjhKL0p0LWPsi3Dt/MUwmUAmOHQDVplvFcwSbnk2sc0mJzCdn
-	QktBAVKb7f0IJlGoA==
-X-Google-Smtp-Source: AGHT+IFG1phE+ZeZqgW1zMy+uFKSv2Qx1hsWmfAK05w/g8wdzyZKfVxtUYHEK5SPBjzsv/309PI16u5CYZdBDd/9NL0=
-X-Received: by 2002:a05:6402:909:b0:624:6ba9:52c0 with SMTP id
- 4fb4d7f45d1cf-6246ba9555fmr1617735a12.15.1757165681932; Sat, 06 Sep 2025
- 06:34:41 -0700 (PDT)
+	s=arc-20240116; t=1757166789; c=relaxed/simple;
+	bh=sbSOKYEZAbDsrQxHT2FLZ1m3Ipyvre5ODuB7BBRX+l0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BjMyo/e5KIGTCndWbypV7ya+sByz1mjI5FGaFv3O2Q8OlerJC4K+3S9rFq8Jip84b0x7ncAoPnpMcWWjZqNu/YKF8GH+3xfdH4tCu1GZyTYY+ysH6EHwJi8hy8My1ro8aCyxXsvdaR3FFSMWWaDXnBJderFUpxfRbp56pVps1tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=O2oYry+i; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id EB8DA251ED;
+	Sat,  6 Sep 2025 15:53:03 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id Qmvn1vWBqIBy; Sat,  6 Sep 2025 15:53:03 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757166783; bh=sbSOKYEZAbDsrQxHT2FLZ1m3Ipyvre5ODuB7BBRX+l0=;
+	h=From:To:Cc:Subject:Date;
+	b=O2oYry+iKtFFPltH0qtByVrCX+rYbXZiwAg4qSZ0EzcCsZu9yTLjYwPNtB2JgMlLf
+	 2AN+ZmO/k64owytMybq/ymMxVU7uRXrJu0A+pYlIkszCUdVes8+wN2kHoFAT023X+k
+	 QChQ9RTgyZYOV0cNY8y6gjusXNMUTy1ZAlSDjkqXXzU+7bPynaKhTnbJnSnrV6P/Pv
+	 CXUy2V2tcj/jup4FHOMQos2C70LzmciNKk9rZHPSdQ5rQ5Op2V09e0nbiPU/MLBUu7
+	 NRgUi1JYXjUYP9ZxIHUZdfAI/yyBWiUzijh03oEqfOZJdvxw3s8W7A1dsM+laWMhnD
+	 Ko3kweRT53T+Q==
+From: Yao Zi <ziyao@disroot.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Manivannan Sadhasivam <mani@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Shawn Lin <shawn.lin@rock-chips.com>,
+	Simon Xue <xxm@rock-chips.com>
+Cc: linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Chukun Pan <amadeus@jmu.edu.cn>,
+	Yao Zi <ziyao@disroot.org>
+Subject: [PATCH 0/3] Add PCIe Gen2x1 controller support for RK3528
+Date: Sat,  6 Sep 2025 13:52:43 +0000
+Message-ID: <20250906135246.19398-1-ziyao@disroot.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905132328.9859-1-cn.liweihao@gmail.com> <20250905132328.9859-3-cn.liweihao@gmail.com>
- <707aad1d-fcdb-4c66-8d96-41cf1a1b02ce@kernel.org> <CAPEOAkRTVtKBsmiGTbKOCar0oNS-C3dRXqdpuowroRPH1bFS7g@mail.gmail.com>
- <58b638c8-b27e-49a6-b79e-f078135c575b@kernel.org>
-In-Reply-To: <58b638c8-b27e-49a6-b79e-f078135c575b@kernel.org>
-From: =?UTF-8?B?5p2O57u06LGq?= <cn.liweihao@gmail.com>
-Date: Sat, 6 Sep 2025 21:34:25 +0800
-X-Gm-Features: AS18NWBAYmmcyxx9GhaGWWnfw6zHk7za_4uCKBVeQx-mNiFJOJIfxAZlKy9QaMc
-Message-ID: <CAPEOAkSpEzVtUqyUJQbDmbmPOjORnAfuehhvo1qqZgAAeY=ZVA@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: clock: rk3368: add CLK_I2S_8CH_PRE
- and CLK_I2S_8CH_FRAC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Rockchip RK3528 ships one PCIe Gen2x1 controller that operates in RC
+mode only. The SoC doesn't provide a separate MSI controller, thus the
+one integrated in designware PCIe IP must be used. This series documents
+the PCIe controller in dt-binding and describes it in the SoC devicetree.
 
-Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2025=E5=B9=B49=E6=9C=886=E6=
-=97=A5=E5=91=A8=E5=85=AD 15:21=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 06/09/2025 03:34, =E6=9D=8E=E7=BB=B4=E8=B1=AA wrote:
-> > Hi,
-> >
-> > Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2025=E5=B9=B49=E6=9C=885=
-=E6=97=A5=E5=91=A8=E4=BA=94 22:13=E5=86=99=E9=81=93=EF=BC=9A
-> >>
-> >> On 05/09/2025 15:23, WeiHao Li wrote:
-> >>> We need a clock id to assign clock parent when use i2s 8ch as audio
-> >>> device, CLK_I2S_8CH_FRAC should be CLK_I2S_8CH_PRE parent so we can g=
-et
-> >>> frequency we want.
-> >>>
-> >>> Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
-> >>> ---
-> >>>  include/dt-bindings/clock/rk3368-cru.h | 3 +++
-> >>>  1 file changed, 3 insertions(+)
-> >>>
-> >>> diff --git a/include/dt-bindings/clock/rk3368-cru.h b/include/dt-bind=
-ings/clock/rk3368-cru.h
-> >>> index b951e29069..795e721957 100644
-> >>> --- a/include/dt-bindings/clock/rk3368-cru.h
-> >>> +++ b/include/dt-bindings/clock/rk3368-cru.h
-> >>> @@ -183,6 +183,9 @@
-> >>>  #define HCLK_BUS             477
-> >>>  #define HCLK_PERI            478
-> >>>
-> >>> +#define CLK_I2S_8CH_PRE              500
-> >>
-> >> 479
-> >>
-> >>> +#define CLK_I2S_8CH_FRAC     501
-> >>
-> >> 480, no?
-> >>
-> >
-> > Neither of these clocks belong to the previous grouping in terms of
-> > type, so I chose to start with a new integer id here.
->
-> I don't know what is "previous grouping" here, but IDs are abstract and
-> are incremented by 1.
+Radxa E20C board is used for testing, whose LAN GbE port is provided
+through an RTL8111H chip connected to PCIe controller. Its devicetree
+is adjusted to enable the controller, and IPERF3 shows the interface
+runs at full-speed. A typical result looks like
 
-In the current kernel code, the RK3368 clock IDs are categorized by
-SCLK, ACLK, PCLK, and HCLK.
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-10.00  sec  1.09 GBytes   936 Mbits/sec    0            sender
+[  5]   0.00-10.00  sec  1.09 GBytes   934 Mbits/sec                  receiver
 
-However, for the I2S 8CH peripheral, the default MCLK output frequency
-depends on I2S_8CH_PRE, which has four possible clock sources:
-i2s_8ch_src, i2s_8ch_frac, ext_i2s, and xin12m.
+This series is based on next-20250905. It's worth noting that
+commit 727e914bbfbb ("PCI/MSI: Check MSI_FLAG_PCI_MSI_MASK_PARENT in
+cond_[startup|shutdown]_parent()") (already contained in next-20250905)
+is necessary for normal operation of designware PCIe IP's integrated MSI
+controller.
 
-The parent clock of i2s_8ch_frac is i2s_8ch_src, and the frequency of
-i2s_8ch_src comes from either the CPLL or GPLL.
+Thanks for your time and review.
 
-Due to the clock topology, CLK_I2S_8CH_PRE and CLK_I2S_8CH_FRAC cannot
-be simply categorized as SCLK, ACLK, PCLK, and HCLK mentioned above,
-so I choose to start counting from a new ID.
+Yao Zi (3):
+  dt-bindings: PCI: dwc: rockchip: Add RK3528 variant
+  arm64: dts: rockchip: Add PCIe Gen2x1 controller for RK3528
+  arm64: dts: rockchip: Enable PCIe controller on Radxa E20C
 
-If this way of assigning IDs is not appropriate, I can modify it to
-increment based on the previous one.
+ .../bindings/pci/rockchip-dw-pcie.yaml        |  3 +
+ .../boot/dts/rockchip/rk3528-radxa-e20c.dts   | 17 ++++++
+ arch/arm64/boot/dts/rockchip/rk3528.dtsi      | 56 ++++++++++++++++++-
+ 3 files changed, 75 insertions(+), 1 deletion(-)
 
-Besh wishes,
-WeiHao
+-- 
+2.50.1
+
 
