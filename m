@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-213816-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213817-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF763B46C2A
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 14:01:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6076B46C59
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 14:06:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B8DC7C5D89
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 12:01:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BCF171889F71
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 12:06:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74F4F221FB6;
-	Sat,  6 Sep 2025 12:01:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C08DB27780E;
+	Sat,  6 Sep 2025 12:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B/nh5H6c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RIpit8Sh"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467D7BA4A;
-	Sat,  6 Sep 2025 12:01:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D370BA4A;
+	Sat,  6 Sep 2025 12:05:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757160091; cv=none; b=tqK2eyURAxE0G4MmLdliKsnVZ58P1RFf/s/IDH+RENDh2wQgqyiSTSy9X4e6zV1tFWkSzs9iFdOw18nvqpU4IkCrDbbB/0WkC8R9QXA1U2gKVjkWepA0y42gY2Ef+4tyEuhcLZMaaxeYkH8p1TECaHtu3kUWwloVe04thy9/rfM=
+	t=1757160356; cv=none; b=StD60V24NkOd8/v3mcFIy/VwSWcUwDDvmE2REhn5K3pKPIfIbhxSs2TNx4jzTbiZ4Xec+zlp3WFWhbHRgfSE3kARTjdgAi2a0BD2VVsKmGqabphNJmfZ8R8C+mB7IaTcwGwu+P3q9iLflGEwI+rULLVXu8G5mHtvOYI8m9s5fYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757160091; c=relaxed/simple;
-	bh=H+js8WLuHfcNY6HqZd4U4ex2F4rnKaf6udYX1HgmcR8=;
+	s=arc-20240116; t=1757160356; c=relaxed/simple;
+	bh=MMBOJfs68xGaCYdH1zeRaD61flhQMDRGdp6pvXusXas=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=o9CQLyBYnSSeV3nr8tZDbk/wOR5w4nYVp48HClPEMIs8ZHgfnrDl6gvz8Aio0mL4a/O6bRfxjEVfO3JgtHGHYO4nAjrjmNxI7+FXmA4nd16snFOATkX4lKlt1UZ4R9SXgRa/s4TVXixMdayw3ogCTVv7o+0dyDpWhaAKjxsPVsQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B/nh5H6c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 398BAC4CEE7;
-	Sat,  6 Sep 2025 12:01:27 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=o9MU78nYEnzGCfsX1UpfVHiFdZWWfbrJYSWBymbdKBgOXyH1jGnh2ShHNwzAxRj86tDpmsoF+/xDwfeUWenWsB7dibSdS8clm4O+k0TaqTjim0Od0+8zUcT9s98ZFLG1G4cCAno8xbQrjCvMEcs8JfFYjsWt2/PZFP93WHXmQN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RIpit8Sh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 83B90C4CEE7;
+	Sat,  6 Sep 2025 12:05:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757160090;
-	bh=H+js8WLuHfcNY6HqZd4U4ex2F4rnKaf6udYX1HgmcR8=;
+	s=k20201202; t=1757160356;
+	bh=MMBOJfs68xGaCYdH1zeRaD61flhQMDRGdp6pvXusXas=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=B/nh5H6cH553rNiW29Irs3iF8FIzSwYwUTFzChtrFU844vMa4Blyo4p8yAY+paCSB
-	 mITb5bEq0L8PfbgltOq3dh/BvXfv9dNhtijWRKYn7VinqIQaEldSiHoTX2ndPwCOgj
-	 Xmlr5rkkt1sYRsIqYvnQU307H4qsYN5IjbIX6JbEwktOAhKtf88kQYpajVy4JdogAQ
-	 8v6gZF5lMKcedaoQw3lZtrpQLixX2P7vFgoUFCsw0Bckdw4kmiZJy1NF8hGxKLjVfq
-	 xRA1BPB9eZqVhAE77HqgscgvMr03L2qypXF+rWYvwf42bQj3TXBHDpxvfaf8WB7pb/
-	 SlRVgUQOplGFQ==
-Message-ID: <288f0cf1-1ee4-4eba-b059-641120bb93f3@kernel.org>
-Date: Sat, 6 Sep 2025 14:01:25 +0200
+	b=RIpit8ShleSdOcRjrgtbMXLoN+2MSg5APLeyBoh6uGM0YMxVfirKfOLtqwkt8dSAP
+	 pp0HNYYfEF+i/8hreGzgVMdyQOFqmcAEFN2qHpVB/mJ+eB9Ie0Q5QyPkxIH5+WB49j
+	 gEmeSfJMxVDUHN4ZDsnO55gAuaR2dcRY9lQhIV9zvxgrTYg+LVASzx2xeM2XwT4U7s
+	 s+UEwYQgsPgpDNuis2cplmpZDHiTiJ2tb+Ex03qOVQZBABXQ/ys2urCgj5/KKbuMdm
+	 1yiM5vM+RLsLmZBo/hnVCl/jnpoDNEyrlaP9We6UmaJQbZGsK/lDbTH4qodo2gozw3
+	 fhscmLlbBnGtw==
+Message-ID: <e71e6f3d-af02-4910-91ae-acf41692ac5b@kernel.org>
+Date: Sat, 6 Sep 2025 14:05:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/4] dt-bindings: mfd: sy7636a: Add missing gpio pins and
- supply
-To: Andreas Kemnade <akemnade@kernel.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Alistair Francis
- <alistair@alistair23.me>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-References: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
- <20250906-sy7636-rsrc-v1-1-e2886a9763a7@kernel.org>
+Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: samsung: Add tmu-name and
+ sensor-index-ranges properties
+To: Shin Son <shin.son@samsung.com>,
+ Bartlomiej Zolnierkiewicz <bzolnier@gmail.com>,
+ "Rafael J . Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>
+Cc: linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250903073634.1898865-1-shin.son@samsung.com>
+ <CGME20250903073653epcas2p4cb25058c97aab9a30c7e68ef5f10fb91@epcas2p4.samsung.com>
+ <20250903073634.1898865-2-shin.son@samsung.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,37 +109,27 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250906-sy7636-rsrc-v1-1-e2886a9763a7@kernel.org>
+In-Reply-To: <20250903073634.1898865-2-shin.son@samsung.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/09/2025 11:09, Andreas Kemnade wrote:
-> To be able to fully describe how the SY7636A is connected to the system,
-> add properties for the EN and VCOM_EN pins. To squeeze out every bit
-> of unused current, in many devices it is possible to power off the
-> complete chip. Add an input regulator to allow that.
-> 
-> Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/silergy,sy7636a.yaml         | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
-> index ee0be32ac0204..08ad593e237f1 100644
-> --- a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
-> @@ -32,6 +32,22 @@ properties:
->        Specifying the power good GPIOs.
->      maxItems: 1
->  
-> +  en-gpios:
+On 03/09/2025 09:36, Shin Son wrote:
+>  > +  samsung,hw-sensor-indices:
+> +    description: |
+> +      List of hardware sensor indices that are physically present and usable
+> +      in this TMU instance. Indices not listed are either unmapped or unused.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 1
+> +    maxItems: 16
+> +    uniqueItems: true
 
-enable-gpios, unless it is something else, but then please explain in
-the description.
 
-> +    description:
-> +      If EN pin is not hardwired, specify it here to have it set up.
-> +    maxItems: 1
+For v3 you also need:
+
+  items:
+    maximum: 16
+(or whatever values are actually correct)
+
 
 
 Best regards,
