@@ -1,239 +1,227 @@
-Return-Path: <devicetree+bounces-213933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B7F4B477C1
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 23:49:02 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B83DDB47842
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 01:03:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6036A0062D
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 21:49:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B4891BC1737
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 23:03:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 667E729ACC6;
-	Sat,  6 Sep 2025 21:48:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C921A284880;
+	Sat,  6 Sep 2025 23:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IqZD1af1"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CthncvNW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFEE6299AB3
-	for <devicetree@vger.kernel.org>; Sat,  6 Sep 2025 21:48:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 257E51C32FF
+	for <devicetree@vger.kernel.org>; Sat,  6 Sep 2025 23:02:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757195338; cv=none; b=SQ5tCSHNL+URRc4PJRB7zKZD567Ll8B8z0qHw8VZjPRhEb82ZHw1NJAQonthm3x7W1rWJclKLmFrD4SBMFe4g7FH/se6ALfxIZdvZISe9FBH7scVdR1occIgKF0NzmiHOwE2SYacC6+rlnGiMuGpmX9ejJpqxIEwVwsAvyWHKQ4=
+	t=1757199780; cv=none; b=Mu6i2Bc/I3XisN+968oPJV10f1n8+hf38WbodkuUQxPx3FrNnuSFrYll7ChAnV6iteBWZuyjG1zKSjDnyLljT35tIzTe/UyubSaV6S0gUacqh03jqiA/yMwtOB0RtMPcG1BGv/+yiXJTzgcxegCGpQFo2Y5t6684x7JHrZYfURI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757195338; c=relaxed/simple;
-	bh=zhvNXMGegR9yDlqQMy/XBI510R9HnhJWonOW2z5xNgY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=R8xojTbgQKiHhg84KUHeY/byA1riDF1z2bsth4davfLbzdHBnaPpJD+d7D7OpyQdZrVNI+o6cGvlo15dm8UZVPc2VfsfPMxl+HsEdjJZ31ACekaHyEMQdMZK+DGzkoE6oVR0O7Xh5FC7U1RnGg+L2IquSOYNEpJ6kD8K9V231zs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IqZD1af1; arc=none smtp.client-ip=205.220.168.131
+	s=arc-20240116; t=1757199780; c=relaxed/simple;
+	bh=bwiYXRNGcoiajeEM+Tw5uBkd8tBUcQ8HypuC39S0bi8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nbCx8KErbdx02AGZwWLD5VHwWFequ1+AhldYwc9qIScOCrq7du7XYCmfYXfc1Q4O7g9oemjWu0Le7clhRDZakUP/pHRxNrFcya7yKX8brY6fnuGpKJQcwRXjm4MKT1SnKNkViMMAw4omJmjftdUEEYqBPxuCs5sg1enCogQLZZg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CthncvNW; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 586ACu2b023193
-	for <devicetree@vger.kernel.org>; Sat, 6 Sep 2025 21:48:56 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 586N0rRC023911
+	for <devicetree@vger.kernel.org>; Sat, 6 Sep 2025 23:02:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:message-id
-	:mime-version:subject:to; s=qcppdkim1; bh=duMhnqfLjphXvSjGPmTHVE
-	iWVH5TfJsRlnBS37ltgSc=; b=IqZD1af11hEkr87hulsqTECR3UaKxSYelzyHG3
-	RwCshDicpENhAFMWWfxaWNfzXWEea9ECh+Rh2Jxn7t1vvrLzc49RqQQhD8s8SS/1
-	nBxymMmN8jwz+GBlipGsHeTiSzESi02jJYlYIv8saTTHu+Y84GRg7BY7Z3lC2XY2
-	jcLCfPZFnSgXllb9pug/cUztJu7W16YGlbVqYJ5u8sHkKyyjF6npuNxoy+FhU5y5
-	Q8HMf/rCMXZbG4UGdhXUvO5SRskojjbalI9aBLTFB6nikjS5RXCa39qO5xUzXgxW
-	x27YnA2TVK3EtdMU9+0BKKuuV28YvvCPJhgtf0lNOP/hg68Q==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com [209.85.160.197])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e8a14k9-1
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:reply-to:subject:to; s=
+	qcppdkim1; bh=7tSKwHt+Ek7jPABcGiy8/Q+CLwEcgRigyVjo1Zw5A58=; b=Ct
+	hncvNWlMgzrXgTeBlvJleX/TQnEv0gWDzpbuHTLcAP1F5iF8ered8rp+ZJNQgp+F
+	Wg8u1JXm2yYwCSiRygdMJWhVbHaOyQs6c3kq3nnKdxg4CdDx3b1uDk+tkzyjepdu
+	fYTk1kvJLA59Ndsb00fb2wiVn1yGPnNzZ5tsTw+/VXoE50Sp8TSBg/ca7g/J6tcw
+	HSyiYXWFfPyCCow+9xpdSEiQjeL+Gj+nyZ8YquEZf5NkQgUjNeYtU/iJ8U83ft3E
+	Ptolv2skC1Bx0R2eMs/+vKQlcKTYsZiYGvG9UhcpYhuGV8c8CyBa98fxiSS/xzyp
+	NntjyvLbZ6d96tmaxeUw==
+Received: from mail-oa1-f72.google.com (mail-oa1-f72.google.com [209.85.160.72])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db899dv-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 21:48:56 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id d75a77b69052e-4b5f112dafeso44119401cf.1
-        for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 14:48:55 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 23:02:57 +0000 (GMT)
+Received: by mail-oa1-f72.google.com with SMTP id 586e51a60fabf-31962614250so5548333fac.0
+        for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 16:02:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757195335; x=1757800135;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=duMhnqfLjphXvSjGPmTHVEiWVH5TfJsRlnBS37ltgSc=;
-        b=Pdq8y2cW28g/6+DVSkrcUaOH/diEIugaYPaFCUnauz9h+3XXFQz4NaWYoo/eL2FokW
-         w7vZTBVQM7rhhWblihPhd0FOeryPy1VCuA8IlkW8otlhO8nBxcSqsoQityStSESbfEFO
-         vigXn+5lya7MPZnEHVaVMjjfp6F5i353bwI4Cw6dnGSyQbkDPfIeNFk0K5KaZHfI7M85
-         zmEKiwq71eV4in8zlAyVSwOJEjIhoLFhmSBfcfGlboeDzcXqmwDmFAZmLPkvFeB5xp8l
-         kofGMIglcByRSd22jrKBqPdGjt1tk6tLQWE74PCVi2o7JBJJ9n8Vwr4/iON3mMTdpr22
-         wPIw==
-X-Forwarded-Encrypted: i=1; AJvYcCWLiGZr7ZfACcc2/Flzcbmj8jwlyxzhSJuMLVLhBa+N+oI/liNPY7Te+juKJzY4gZVrY0yfX9gV6+5v@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1y8aGYuDUrl/nOHl0uEtZIVA3pKRxQ3N5CG9uS3CiVsevCh1a
-	BAC41Qq7NSTr6AZexhbvFjGeyfuVcnNuwaaFzKIgh+PasPhh/OvtGvQyMtEFjy/Hf1AdxAxIdaa
-	QQNAyVXfCnH2Va7Cf0yP/HvhSr9lEkmCB+9j6mvPM2KlX9TIAeUw3L7Nf98j2pUUu
-X-Gm-Gg: ASbGncvoOJ18L5SXv4A3dXYGJAu7RMtBFn4GeTrCiErOwEwO0WvbhI8jm5wX1yU/Mog
-	/GLFL9kTZBTUpskKWqHNc0Avq73gk59rXWWxWRF1/D/MDGgohV+byhdVT4cQ07IeF+5aZckSBGr
-	nPkwtQfT4gNI8luaaImYKrP2Qwmn73srCqWmbGOiVGy/UXc3aWjkT1QZCfpKumAubFLhNnkpBAK
-	PL5DWbxK3GNbN8B1pQG9oAhz3f65vkutCRpdDyd8EY+0ENN03NcE2SOVb0wiA1lskOCec+fLbCz
-	YEfxnAd2sQuYHZo0lrq/onQCKMre5y7UlSH+hqXHdIXE2lZGqISnVcPw3zcpomCw+UCAwMI7L3N
-	BlFLlVqo9/Rajv106fX4PFxWySECJONhhUJzYmmxDYhCLG8ccPpnG
-X-Received: by 2002:a05:622a:15c8:b0:4b3:50b0:d80 with SMTP id d75a77b69052e-4b5f8569a7bmr33521231cf.57.1757195334715;
-        Sat, 06 Sep 2025 14:48:54 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGx9lboS5t/Woj+bBQjp+nx7XVjfxf9kWYu1057+otiUbzZVI1hnBUp93/r4IT74n7N+b88yA==
-X-Received: by 2002:a05:622a:15c8:b0:4b3:50b0:d80 with SMTP id d75a77b69052e-4b5f8569a7bmr33521021cf.57.1757195334306;
-        Sat, 06 Sep 2025 14:48:54 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608abc1798sm2561252e87.57.2025.09.06.14.48.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Sep 2025 14:48:53 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Sun, 07 Sep 2025 00:48:52 +0300
-Subject: [PATCH] dt-bindings: dp-connector: describe separate DP and AUX
- lines
+        d=1e100.net; s=20230601; t=1757199777; x=1757804577;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7tSKwHt+Ek7jPABcGiy8/Q+CLwEcgRigyVjo1Zw5A58=;
+        b=U+k9Yz4mxboVK68hYf0iM57gFnb1kjKS7Qb7SJylLRY4uVLhcLoen/eX4sWjvxnE4N
+         K0vh54cX6aAckMG1p5zM9wBdalpVF8CoNT6VKBjNEfR1pE+hniv4GqbTJoA2MlbWMknU
+         M7ULD9hfAh5BfACftxp/4IMtnutN8fFTJlw2QAx/JNX2M2w24u74lJKF+vMHBdn9NTGp
+         H7/5k9B1VgC4iUpcb73l1ekTJbVXPpIFH8Nw7DVS4z6ukFEKiGz49xjzTxEuSo/Y72aP
+         Ck70mzLC48ZSW9Gy3LCl/fb/JWhrK9huKzw3wKJgj4yvYFYqKoeVYXrBprZtaOS3MdZb
+         4YTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUgIfduSa3jQqH9h/+E9rLMAEMabr5wvFjJlxbM7q/MxiGpd/o+KHerHNsywZDGeeJPF4dI8hxu8+Fo@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx3bMIGRFBRD+7HK3ZuXyKKxNIaNAAR4kBlZGoDpB5LAgHBrz7E
+	KLX0roGu/hqeBx6Tykz+C3LuiZyTWdTI4JIIrTplHbrAW3JunlGR0muY2cK9RlBb4JFkcxvmqaQ
+	4K2RH6GPV7+U17Ps2hIC2ZC0JLftSLJwuXmrH5+4gi9aAoUcmzN51K8xSrAoQBGAN4WZZk8+AYp
+	zSaPz47LBqLIs7AT7B3iInS2/qEnkEBg98E377Dlk=
+X-Gm-Gg: ASbGncu2dobly778d48ZgeBNB/pByTaO7kQfRlLGFAQKaRDB5c50pVIDsDhhcR+ptCi
+	DG1mWyOovD0KI53zAyU5P6hB5UlzoDaECmtjihXnQP2pxtgLcoyVV7b0mBPHu8LCXWF40lz6xG5
+	vplOgoUDXBtlv1l+mupLMumXSNDSYORoq7FTZoNV0z7j7USoDazKQW
+X-Received: by 2002:a05:6871:e7c3:b0:315:b768:bd1d with SMTP id 586e51a60fabf-322627465d3mr1588943fac.6.1757199776943;
+        Sat, 06 Sep 2025 16:02:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFGNyPtWK7XLr6Z6Y8/0D04LJKsr8cN92FCpDHkSHR8k+zYD6ZV/6YLC5AI8gQTcKpJUSvoMi6UIajR6FAY6mg=
+X-Received: by 2002:a05:6871:e7c3:b0:315:b768:bd1d with SMTP id
+ 586e51a60fabf-322627465d3mr1588917fac.6.1757199776584; Sat, 06 Sep 2025
+ 16:02:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250907-dp-conenctor-sbu-v1-1-de79c0fcd64d@oss.qualcomm.com>
-X-B4-Tracking: v=1; b=H4sIAEOsvGgC/x3MQQqAIBBA0avErBsww6SuEi1qnGo2KloRRHdPW
- r7F/w9kTsIZhuqBxJdkCb6gqSugffYbo7hi0Eob1SuLLiIFz56OkDAvJ7ZMzijd2s4QlCwmXuX
- +l+P0vh/V9OMjYgAAAA==
-X-Change-ID: 20250907-dp-conenctor-sbu-3ecd5023765c
-To: David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+References: <20250822-a663-gpu-support-v4-0-97d26bb2144e@oss.qualcomm.com>
+ <20250822-a663-gpu-support-v4-3-97d26bb2144e@oss.qualcomm.com>
+ <f11b778d-eba1-4712-81c7-b83f2cb38b46@oss.qualcomm.com> <exkrgx6rdotfrrsnklsd7zk4ydehsk5vaoevibpqisyq2dwbd4@sa4kgnuexlna>
+ <f169be5a-faa5-4824-861e-27bd2083b9cf@oss.qualcomm.com> <t5pxum74q3fwf6wgcbaeaginjvtjfn357pkfswvafsggtmvxfv@jl5qjfhpmmow>
+ <c3de911c-e80a-429d-8a5c-c693546d4abf@oss.qualcomm.com> <14b5db9f-8b31-4baa-a03d-12112425fbbe@oss.qualcomm.com>
+In-Reply-To: <14b5db9f-8b31-4baa-a03d-12112425fbbe@oss.qualcomm.com>
+Reply-To: rob.clark@oss.qualcomm.com
+From: Rob Clark <rob.clark@oss.qualcomm.com>
+Date: Sat, 6 Sep 2025 16:02:45 -0700
+X-Gm-Features: Ac12FXyzTpMUMaTsNWSW0MM7Xxq1e9X2ZKWgxsNm2xNI9hIOPJ9JgBv0CoKpoCY
+Message-ID: <CACSVV02h8AUX8WtEuu5w-g2XnfBkfozHQQ15zGK6+LVX_w=d1g@mail.gmail.com>
+Subject: Re: [PATCH v4 3/6] arm64: dts: qcom: sa8775p: Add gpu and gmu nodes
+To: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+        Sean Paul <sean@poorly.run>, Konrad Dybcio <konradybcio@kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
         Maxime Ripard <mripard@kernel.org>,
         Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2782;
- i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=zhvNXMGegR9yDlqQMy/XBI510R9HnhJWonOW2z5xNgY=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBovKxFW1OreFn+SDGcBNbj5YDp1tiTmrYKC8QOh
- LRNOdYOP5qJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaLysRQAKCRCLPIo+Aiko
- 1YfFB/96xRXM190qb0+pTgJYpZsWQibT7naZGcx3Y3dPL+uoae2fdGjO3vswImhQjRo4bX2agkI
- xzfyKV3O7ZGqN8Ew12McEVJe0wWcvMPdk9jRgUN1smnGC0gPXhyhoQqsK6WW56KPRefdRhIWEd9
- Es5Wo+xLSsXY9jZpBpSaB8VkRsoCWU7qdOJ3Jxme2p4unncD9wrtvfAJpdzEsLql1RMKXcit0x/
- hdUioxI2WwhPZVTfm55CAE3eGQ1p0R5Me9C+yfMPa1IF5u4764Lp4118IJYrCzdLNX3mQLCalrs
- U6115TK1DU3V4QUgJbWFH6z0wea7AyhpUbLT+WHeM1yl8yB0
-X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Authority-Analysis: v=2.4 cv=H7Dbw/Yi c=1 sm=1 tr=0 ts=68bcac48 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=5inRAbP7wB7EHgTAESYA:9 a=QEXdDO2ut3YA:10
- a=a_PwQJl-kcHnX1M80qC6:22
-X-Proofpoint-GUID: G1zyuiGs0k2DKL9D6Wev0OmNqseGssVQ
-X-Proofpoint-ORIG-GUID: G1zyuiGs0k2DKL9D6Wev0OmNqseGssVQ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOSBTYWx0ZWRfX5ynya996yEOo
- hVOFo4q9SndQrqBovlLWOl44izb3EmPqp1Wp+iAO/xbAybQbe7CGZDmARIryM7jeAhm9u3o9TKQ
- 1RTo2cYCMSeNkW4deTirBOVgeWpItC2BkLk8h2yOb131LojuDIdtA8s1qf+TLG01qxjGafyt1HW
- tPYTbNVnJ/JKbbkMf8CFp0pTAmCG6d39MizhLZYn9kz3VYd8BOjb2Hm2BgDJKo1RzeEB5/JYKq2
- tw/Ss1DaCNov0hKMYbsB0cTNsKOGuxd0j+lHC22kFnOLcpAIUcW9JwPQVoUg6vfMCA1WkLQzHxY
- S+uJfnKvCb2AKTdVpzNHzM1c2F8w+xeAiCJzWeoDd3d+mZ9ko/GO21eorNfLD9KyxmTOZVvo7Fy
- T1vAJwMA
+        Bjorn Andersson <andersson@kernel.org>,
+        Connor Abbott <cwabbott0@gmail.com>,
+        Srinivas Kandagatla <srini@kernel.org>,
+        Dmitry Baryshkov <lumag@kernel.org>,
+        Gaurav Kohli <quic_gkohli@quicinc.com>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfXxhK9Qm8C4ekc
+ sJu6Tx8wNkSZYACt6K0k/GEQnUYiWUBAmfijJEtovj1twZyPyegN/QTD9zKjo6OBsw+qx9wxgn5
+ XpBSZ4i6AV0xh5X1IleUWxw58mDFFNmuLrjrTuyvHEL2wem28SiT2Xr6UQ1CdHjxSxdaqObeYpB
+ Rl0YGbeJDwGSsmwdAYkGBZ6uij0kGGr6lyxmZRwBgf5x3O3ebg+ksQ/iG3jhZdGqqCLNOMsbz7T
+ iCNdFjReZcmVSbRRMY50lFRmwSySHO+muqoRt2Pd9VNxQCOhU+PA2y/sJCL5z3LNPGQv4HJJuPG
+ zDBy3tGv9/DSXVnd2Ntf7Xknjpj/Ex5v9qK3KuiGBpaeSXnjAPqW9wMsbkz/8vQH27+jIKfO8/L
+ Ce6WvhT/
+X-Proofpoint-ORIG-GUID: -Q0qRrDfLipuFRUWChruVEuyFjh97JRu
+X-Proofpoint-GUID: -Q0qRrDfLipuFRUWChruVEuyFjh97JRu
+X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68bcbda1 cx=c_pps
+ a=Z3eh007fzM5o9awBa1HkYQ==:117 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10
+ a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8 a=M6CliHif6jTRLK_rbtEA:9
+ a=QEXdDO2ut3YA:10 a=eBU8X_Hb5SQ8N-bgNfv4:22 a=TjNXssC_j7lpFel5tvFf:22
+ a=cvBusfyB2V15izCimMoJ:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-06_08,2025-09-04_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 impostorscore=0 adultscore=0 phishscore=0
- clxscore=1015 suspectscore=0 priorityscore=1501 spamscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060039
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
 
-In some cases it's reasonable to describe DP lanes and AUX signal lines
-separately in the DT. One of the typical reasons is if the source of DP
-signals can support either USB-C or DP connections. In such a case the
-transmitter of DP signals have separate ports: one for SS lanes and
-another one for SBU / AUX signals.
+On Sat, Sep 6, 2025 at 1:56=E2=80=AFPM Akhil P Oommen <akhilpo@oss.qualcomm=
+.com> wrote:
+>
+> On 9/3/2025 8:44 PM, Konrad Dybcio wrote:
+> > On 9/3/25 4:00 PM, Dmitry Baryshkov wrote:
+> >> On Wed, Sep 03, 2025 at 03:36:34PM +0200, Konrad Dybcio wrote:
+> >>> On 9/3/25 2:39 PM, Dmitry Baryshkov wrote:
+> >>>> On Wed, Sep 03, 2025 at 02:26:30PM +0200, Konrad Dybcio wrote:
+> >>>>> On 8/21/25 8:55 PM, Akhil P Oommen wrote:
+> >>>>>> From: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> >>>>>>
+> >>>>>> Add gpu and gmu nodes for sa8775p chipset. As of now all
+> >>>>>> SKUs have the same GPU fmax, so there is no requirement of
+> >>>>>> speed bin support.
+> >>>>>>
+> >>>>>> Signed-off-by: Puranam V G Tejaswi <quic_pvgtejas@quicinc.com>
+> >>>>>> Signed-off-by: Akhil P Oommen <akhilpo@oss.qualcomm.com>
+> >>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>>>>> ---
+> >>>>>>  arch/arm64/boot/dts/qcom/lemans.dtsi | 116 ++++++++++++++++++++++=
++++++++++++++
+> >>>>>>  1 file changed, 116 insertions(+)
+> >>>>>>
+> >>>>>> diff --git a/arch/arm64/boot/dts/qcom/lemans.dtsi b/arch/arm64/boo=
+t/dts/qcom/lemans.dtsi
+> >>>>>> index 8ceb59742a9fc6562b2c38731ddabe3a549f7f35..8eac8d4719db923010=
+5ad93ac22287850b6b007c 100644
+> >>>>>> --- a/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>>> +++ b/arch/arm64/boot/dts/qcom/lemans.dtsi
+> >>>>>> @@ -1097,6 +1097,18 @@ ipcc: mailbox@408000 {
+> >>>>>>                          #mbox-cells =3D <2>;
+> >>>>>>                  };
+> >>>>>>
+> >>>>>> +                qfprom: efuse@784000 {
+> >>>>>> +                        compatible =3D "qcom,sa8775p-qfprom", "qc=
+om,qfprom";
+> >>>>>> +                        reg =3D <0x0 0x00784000 0x0 0x2410>;
+> >>>>>
+> >>>>> len =3D 0x3000
+> >>>>>
+> >>>>> [...]
+> >>>>>
+> >>>>>> +                gmu: gmu@3d6a000 {
+> >>>>>> +                        compatible =3D "qcom,adreno-gmu-663.0", "=
+qcom,adreno-gmu";
+> >>>>>> +                        reg =3D <0x0 0x03d6a000 0x0 0x34000>,
+> >>>>>
+> >>>>> This bleeds into GPU_CC, len should be 0x26000
+> >>>>
+> >>>> gpucc is in the middle of GMU, see other platforms.
+> >>>
+> >>> This is not the case here
+> >>
+> >> Why? I think GPU CC is a part of the GMU by design: GMU accesses GPU C=
+C
+> >> registers directly from the firmware.
+> >
+> > Correct, however this is only a similarly sounding argument - the DT
+> > describes the hardware from the main Arm cluster POV. The GMU Cortex-M
+> > core has its own address map etc.
 
-Instead of leaving AUX signals from the controller unconnected, add an
-option to the DT schema to AUX signal lines separately from the main
-link lanes.
+but the firmware is part of how the hardware appears to the main arm cluste=
+r
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
----
- .../bindings/display/connector/dp-connector.yaml   | 52 +++++++++++++++++++++-
- 1 file changed, 51 insertions(+), 1 deletion(-)
+> We have been keeping GPUCC region in the GMU's reg range in all chipsets
+> for the purpose of coredump.
+>
+> Can we leave this as is until we have a mechanism to dump these into gpu
+> coredump (via gpucc driver??)? I recall you proposed something similar
+> sometime back.
 
-diff --git a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-index 22792a79e7ce5177113f17ab472048c220dbb3c3..1f2b449dc9102c34ad015bbe7beae0d67a2df5c5 100644
---- a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-+++ b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-@@ -31,10 +31,32 @@ properties:
-     $ref: /schemas/graph.yaml#/properties/port
-     description: Connection to controller providing DP signals
- 
-+  ports:
-+    $ref: /schemas/graph.yaml#/properties/ports
-+    description: OF graph representation of signales routed to DP connector
-+
-+    properties:
-+      port@0:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Connection to controller providing DP signals
-+
-+      port@1:
-+        $ref: /schemas/graph.yaml#/properties/port
-+        description: Connection to controller providing AUX signals
-+
-+    required:
-+      - port@0
-+      - port@1
-+
- required:
-   - compatible
-   - type
--  - port
-+
-+oneOf:
-+  - required:
-+      - port
-+  - required:
-+      - ports
- 
- additionalProperties: false
- 
-@@ -52,4 +74,32 @@ examples:
-         };
-     };
- 
-+  - |
-+    /* DP connecttor being driven by the USB+DP combo PHY */
-+    connector {
-+        compatible = "dp-connector";
-+        label = "dp0";
-+        type = "full-size";
-+
-+        ports {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            port@0 {
-+                reg = <0>;
-+
-+                endpoint {
-+                    remote-endpoint = <&phy_ss_out>;
-+                };
-+            };
-+
-+            port@1 {
-+                reg = <1>;
-+
-+                endpoint {
-+                    remote-endpoint = <&phy_sbu_out>;
-+                };
-+            };
-+        };
-+    };
- ...
+IMO we should keep this in the GMU range.. if in the future we have
+some other mechanism to dump gpucc state, then for future platforms we
+can start using that (ie. new dt but old kernel should be a thing we
+at least pretend to try to keep working), but for current/past
+platforms we should stick with keeping this in the GMU's range
 
----
-base-commit: 8cd53fb40a304576fa86ba985f3045d5c55b0ae3
-change-id: 20250907-dp-conenctor-sbu-3ecd5023765c
+BR,
+-R
 
-Best regards,
--- 
-With best wishes
-Dmitry
-
+> -Akhil
+>
+> >
+> > Konrad
+>
 
