@@ -1,184 +1,144 @@
-Return-Path: <devicetree+bounces-213914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213916-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7EF4B476E4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 21:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 214BBB476F5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 22:17:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EA721B20B0B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 19:26:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA19D1B27984
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 20:18:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EC928851F;
-	Sat,  6 Sep 2025 19:26:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CB2C299927;
+	Sat,  6 Sep 2025 20:17:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="U+erZqKT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFDqry8n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 88BFF27E05A
-	for <devicetree@vger.kernel.org>; Sat,  6 Sep 2025 19:26:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D78572820CE;
+	Sat,  6 Sep 2025 20:17:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757186790; cv=none; b=RunS8XkXOQugqadblULZ6Fu4GzK1+JZc5OYhn8+gKCLDCD2UXRbFWu18ut3qhYymLZjotpgHstEGUhGaI/bqAs+sg/A/i+t8TxMPl2bvNJu1zzDdsaJv04jTv5eZ0k9kmIICDiM9S0P3RSXmCxUO8CM20Jmwoq1nzyS8fUvnfkk=
+	t=1757189856; cv=none; b=qPhl9mHo/LptYy59pZ0hQe5U8EuC3rgaR6GLFOEIvigjLxk2Y/BIdglnBBWe5agF+IbEV/7pSWxxWO5wilXRcElAGberhjCWvQdQq8U7Ffk2kiwUq9SeHZGQ4m9qAfOI3Qc00rKD4p0QIxFXMES5pSx/zPff1CnFlToYQEK9StI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757186790; c=relaxed/simple;
-	bh=IHMOXEjqSixhpDLaICEPJqievMBFyBTpM+jra29ECiY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eGo77IC3pP8IKHXhraaIKvIMCaiVKHbHXVV6b5cyIow7A7kbhGcHB2y0KFfXYlX4uDr/0O+UEFZDEpPjOaATO9DLRPTDZsAw8O/SPtEiWonUSJIa3BK6wkWygzsIpGNRscDjMrYo8xnyIxGJC8RL3UX+dU4RUma+U6Vh5wEPz0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=U+erZqKT; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 586JOQwj011596
-	for <devicetree@vger.kernel.org>; Sat, 6 Sep 2025 19:26:29 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=ILS4/z5vnuC+p1hrEpuyvRN3
-	HDybTR9q3aBLGYadh7k=; b=U+erZqKT2rqzlj0pOKK3+a53V6cAIfry+GjyRVnx
-	N4HcCVe/OVyAyA06kmOl41E/cFcOcP3tdl7mVcZxkP9C/LdZZ2G+/Knk5cMJ8cz/
-	yGq3iANEHMNACQTtm2UnpxwzAA1SjC1odMJdCmmZlrYsD79g3rltndLCcrEr/k6w
-	Fv5BH5yHvR/XOkNMSodD9b1A7XUy4p+jnZih+sLwCcrB2nl/gtPh3uIr7Wp3+IPb
-	do6yGniJOfGVOxbLKRvWo3DJt0EaHgz+VzkERyyYpNg0iOQ35ypcTlG2BDZSqNkF
-	kI3wPFz86GKFZ8QMpgcxilWKfkaN9KZ9qkvcucXrViaXvA==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490dqfs1a5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 19:26:28 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-7222232866aso80859616d6.0
-        for <devicetree@vger.kernel.org>; Sat, 06 Sep 2025 12:26:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757186787; x=1757791587;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ILS4/z5vnuC+p1hrEpuyvRN3HDybTR9q3aBLGYadh7k=;
-        b=k9UF3FRSAnE/SYbyqvcYLtRy+ZLsPZvLNKvnin66eNds5CAJSNTaBbt2+WaOunWgVb
-         he7ojh+qVly+n0yw1dEd5qjb/Di/xVXwWQ1PJQhnpAinjcaS+ccH++TshVmWZlYIMeYE
-         AfzwlxvFXzGN5W/00CQyA5TgVebXakhnYFNCwcFN/SRfH9gO/OBpZQMo2sWz375dmFbo
-         dqfVkZJkvux5vcn9RgCup+/flZK3KD1QbytzHPs7v/hSOrN8hT1RVhRZJhAKiAOA5dmm
-         YJb7LtE+yjeryAQE585Vr+5oX9CgClVMPVrOd1sgWc5Kpp3u/SVrmXLE8nb1xd+S+uq2
-         BePw==
-X-Forwarded-Encrypted: i=1; AJvYcCX0XFXUEdYGEQGXJm7K94L8jKQSoKRroUq+t+9Z7DPPf2n9shOXsBPmtaTdQ9drwP04iQTy/dO0WotT@vger.kernel.org
-X-Gm-Message-State: AOJu0Yz/AC52AXt9nrzHt5aXuLeowWZwA+j27pzk9RQinIh9GBvxzXGZ
-	VNiOtNE+EhKw27QFDeNdRPQ34Q+23kWirZp4IztspGW7b6f1B3skL18dkWhF29HkUtLDQOlKVka
-	4eEt2pYFOvmZCRFtEaJMTgEDD6fWPTg6+BwrSV3nkYfyFIIdYqgh5vOs7VAe95n2HSVkviZI5
-X-Gm-Gg: ASbGnctkCBCYn17hiqcboz015ml93UBWxLN/KxuJ1RcJULrdJh9cGI8Q/zMSM5NCpu5
-	ePpUB/FB83Ws2SA9jga41RR/XqNwwQzWmywYr/wXacmMaNMgBjxsA21Ycy6vElfmJ9TiFm+I7K3
-	2woSTEINOsTe7tl27/0rPJyTz2M6FImJyA4nfYtYRMCCAseKqQZ8lMjnpV1rgH+8l1UE7xzzXbr
-	T5LyCTZ8Hc+NBOiWwU8RlK2O36iZBVBFQs1bpA6blTXeY5jggaOPHanyv6RU2c8MSFA3OlXu2qy
-	CWI0BK5R3i1xIyIeDDIdtB82W4ROt5iTfGSiWPBUAxr/zmBG7Exa9b0/4J9Evz/Js8gxllbyHv6
-	QguXwrFfiMmBNJIVPeF7B8Wy1lNKMWGa/KQWorNdHjDNFDxV49W1T
-X-Received: by 2002:a05:6214:1c0a:b0:729:8394:706f with SMTP id 6a1803df08f44-72bbdceb1ccmr88352336d6.2.1757186787111;
-        Sat, 06 Sep 2025 12:26:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IE+DslGJnZJAU4p/sCwayK1mvD5P5ektTJ03hT8qtHIEvDCqtPanmGJlv7QtR75Xy66NIJyyA==
-X-Received: by 2002:a05:6214:1c0a:b0:729:8394:706f with SMTP id 6a1803df08f44-72bbdceb1ccmr88352106d6.2.1757186786684;
-        Sat, 06 Sep 2025 12:26:26 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ad11f25sm2435654e87.115.2025.09.06.12.26.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Sep 2025 12:26:25 -0700 (PDT)
-Date: Sat, 6 Sep 2025 22:26:23 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Umang Chheda <umang.chheda@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: monaco-evk: Add sound card
-Message-ID: <7bzlof2wyqqorhh4xck46wd43zlehm4vhej2oaxajo4dxn5p7p@oc3vikzxcwke>
-References: <20250905192350.1223812-1-umang.chheda@oss.qualcomm.com>
- <20250905192350.1223812-5-umang.chheda@oss.qualcomm.com>
+	s=arc-20240116; t=1757189856; c=relaxed/simple;
+	bh=h4FTk8uGgBle/y65Nq0TPLgDFPCw5v0+bcCx/Z5KdoY=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=OmG32ekVvUZu+o2+rN39rj8ka3SgN6L/6b6gfvKNIviIlyEk7wJYrOGyWhM9qp5LeIwwxwSjmfpSc6dG5PzBo/TwhaG3kvsL2WLecNXYYDi5ckzpkJbclFnbz/fsmlVypgTiqnkEqpsxRDPqK2KgsLWis69bQESdT5hHvhngYWY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFDqry8n; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 5FFA3C4CEE7;
+	Sat,  6 Sep 2025 20:17:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757189855;
+	bh=h4FTk8uGgBle/y65Nq0TPLgDFPCw5v0+bcCx/Z5KdoY=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=KFDqry8nwsK0GkLVAb0KUNBSfqDf4l5/sZSyOWmfnzDk13ZSKdf8q97uc6ZJT5+OI
+	 6WF8GJpPnT7yUJf9mQ7gxASCiKDrqXRiYAxmTR87ZL726piU81KYJnhwg13bQ8qDaV
+	 hAclzJ84L2ARRMiMDMa3jc0cN2ZxAfaIgDPy8g66jqolFwoARcf1XHvc1IXARoE5fX
+	 Rdu55q0jqjh/CdhNjVzCYCY3mNTwgZjMu3q4HjcaN3qYuXiC+zZEwWiUSmzPDOeWJf
+	 YCUsJjfuhM7IHBgx60fby7Xm/WCYcryVb960gi6eMFZTsqtsRvh5oo/FZN1yIYcEVb
+	 1wWIu0x7dCnkQ==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4DEC8CA0FED;
+	Sat,  6 Sep 2025 20:17:35 +0000 (UTC)
+From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
+Subject: [PATCH v3 0/9] Support Tegra210 actmon for dynamic EMC scaling
+Date: Sat, 06 Sep 2025 15:16:50 -0500
+Message-Id: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250905192350.1223812-5-umang.chheda@oss.qualcomm.com>
-X-Proofpoint-ORIG-GUID: LUIxYY6DUolaiziP1sFuCD2ge8loH_yW
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzNSBTYWx0ZWRfX/UxO4hzb8lIf
- rmcJZTlZ69mE3wqMHWYgFynqnCZj/maihWG8TD6adpuOSDPdf0YQfvZHq7GWcTAwg98euXpT7wK
- LADXB8J0Z88gItPJxLBnrEIF37Zi9IeffYkbAE5JBhykdcQaN+h3tMSFdKVksNbw/e41B6/rC1n
- wd1f0YFxCsniI3BBVJXGPnOGLPQtO5iNX7uryDkW2hD9uGR5aXXCgcERWN0PBVoRdWZM6KPw932
- nflvMr2YTOMmCM8jrwvh4Kp9rvmMkW1gw9/oR2zpEXQgv9IpYahNATR3A/0wFDfyRWKPNMQN/ik
- Y65kDtmdT5kXBbuo151f3YQ1PWfP1G0w+2qWyTqWpSHBKO2wcr1eQr4xd2daidd6oZrky+Ob4oW
- 4H7OlQHi
-X-Proofpoint-GUID: LUIxYY6DUolaiziP1sFuCD2ge8loH_yW
-X-Authority-Analysis: v=2.4 cv=N8UpF39B c=1 sm=1 tr=0 ts=68bc8ae4 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=3jghqQMflu6n8rLTHt0A:9 a=CjuIK1q_8ugA:10
- a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-06_07,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 spamscore=0 malwarescore=0 clxscore=1015 bulkscore=0
- suspectscore=0 priorityscore=1501 impostorscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060035
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIALKWvGgC/1WPy26DMBREfwV5XVd+BsOq/1F1YewxsVRwYlPUK
+ uLf60ClJrs7VzqjMzdSkCMK6ZsbyVhjiWmuQb40xJ3tPIJGXzMRTGhmhKCL4Ixat0xpplJ1TDm
+ 08MyRSlwyQvze294/jpxx/aqly/Ekgy2gLk1TXPrGBG0hmT91vtVKAmC+ZcxIb4PyMAFce200e
+ ZTpm0OFVxWM2d51ygXwiaqWnToOMxjn+lWSu8I5liXln33fyneHvynmacrKab0x8A6OB6HU2zj
+ Z+PlaXfeeVfyzHZPPrKhsdddSeRUM7CO7bdsvOGDbWWUBAAA=
+X-Change-ID: 20250822-t210-actmon-34904ce7ed0c
+To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ MyungJoo Ham <myungjoo.ham@samsung.com>, 
+ Kyungmin Park <kyungmin.park@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, Dmitry Osipenko <digetx@gmail.com>
+Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, 
+ Aaron Kling <webgeek1234@gmail.com>, Chanwoo Choi <cw00c.choi@samsung.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757189854; l=2455;
+ i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
+ bh=h4FTk8uGgBle/y65Nq0TPLgDFPCw5v0+bcCx/Z5KdoY=;
+ b=b9Y+H4bMc73RlGZcMc7ikgg9jzQGNldmcACy+D5eogJeLGBv7nbHnNZh1tC3mrIxMzNr56E7+
+ jyrYRKp1puRA5xQlYW2atZ9oJQII2zNLN4tCPC2rB7LR7lSZCB9/jiw
+X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
+ pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
+X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
+ auth_id=342
+X-Original-From: Aaron Kling <webgeek1234@gmail.com>
+Reply-To: webgeek1234@gmail.com
 
-On Sat, Sep 06, 2025 at 12:53:50AM +0530, Umang Chheda wrote:
-> From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> 
-> Add the sound card for monaco-evk board and verified playback
-> functionality using the max98357a I2S speaker amplifier and I2S
-> microphones. The max98357a speaker amplifier is connected via
-> High-Speed MI2S HS0 interface, while the microphones utilize the
-> Secondary MI2S interface and also enable required pin controller
-> gpios for audio.
-> 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
-> ---
->  arch/arm64/boot/dts/qcom/monaco-evk.dts | 52 +++++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/qcs8300.dtsi   | 37 ++++++++++++++++++
->  2 files changed, 89 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> index 93e9e5322a39..f3c5d363921e 100644
-> --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
-> @@ -6,6 +6,7 @@
->  /dts-v1/;
-> 
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/sound/qcom,q6afe.h>
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> 
->  #include "qcs8300.dtsi"
-> @@ -24,6 +25,57 @@ aliases {
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	dmic: audio-codec-0 {
-> +		compatible = "dmic-codec";
-> +		#sound-dai-cells = <0>;
-> +		num-channels = <1>;
-> +	};
-> +
-> +	max98357a: audio-codec-1 {
-> +		compatible = "maxim,max98357a";
-> +		#sound-dai-cells = <0>;
-> +	};
-> +
-> +	sound {
-> +		compatible = "qcom,qcs8275-sndcard";
+This series adds interconnect support to tegra210 MC and EMC, then
+enables actmon. This enables dynamic emc scaling.
 
-qcs8300
+There are no cross-subsystem hard dependencies, only logical relations.
+The subsystems can be merged in any order.
 
-> +		model = "MONACO-EVK";
-> +
+Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+---
+Changes in v3:
+- In patch 5, don't fail mc probe if opp tables are missing
+- Add more mc bindings to patch 1
+- Add patch to use tegra210-mc bindings in the mc driver
+- Re-order series to align patches within a subsystem to each other
+- Link to v2: https://lore.kernel.org/r/20250903-t210-actmon-v2-0-e0d534d4f8ea@gmail.com
 
+Changes in v2:
+- Assume 64-bit dram bus width in patch 4
+- Add dt-bindings patch to document the new properties on the
+  tegra210-emc node.
+- Link to v1: https://lore.kernel.org/r/20250828-t210-actmon-v1-0-aeb19ec1f244@gmail.com
+
+---
+Aaron Kling (9):
+      dt-bindings: devfreq: tegra30-actmon: Add Tegra124 fallback for Tegra210
+      dt-bindings: memory: tegra210: emc: Document OPP table and interconnect
+      dt-bindings: memory: tegra210: Add memory client IDs
+      memory: tegra210: Use bindings for client ids
+      memory: tegra210: Support interconnect framework
+      soc: tegra: fuse: speedo-tegra210: Add soc speedo 2
+      arm64: tegra: tegra210: Add actmon
+      arm64: tegra: Add interconnect properties to Tegra210 device-tree
+      arm64: tegra: Add OPP tables on Tegra210
+
+ .../bindings/devfreq/nvidia,tegra30-actmon.yaml    |  13 +-
+ .../memory-controllers/nvidia,tegra210-emc.yaml    |  11 +
+ .../boot/dts/nvidia/tegra210-peripherals-opp.dtsi  | 135 ++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210.dtsi           |  43 ++++
+ drivers/memory/tegra/Kconfig                       |   1 +
+ drivers/memory/tegra/tegra210-emc-core.c           | 272 ++++++++++++++++++++-
+ drivers/memory/tegra/tegra210-emc.h                |  23 ++
+ drivers/memory/tegra/tegra210.c                    | 227 +++++++++++------
+ drivers/soc/tegra/fuse/speedo-tegra210.c           |   1 +
+ include/dt-bindings/memory/tegra210-mc.h           |  74 ++++++
+ 10 files changed, 720 insertions(+), 80 deletions(-)
+---
+base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
+change-id: 20250822-t210-actmon-34904ce7ed0c
+prerequisite-change-id: 20250812-tegra210-speedo-470691e8b8cc:v3
+prerequisite-patch-id: f693f138b5d40cdc45d9066ce48cbcff782253f8
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Aaron Kling <webgeek1234@gmail.com>
+
+
 
