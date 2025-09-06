@@ -1,106 +1,225 @@
-Return-Path: <devicetree+bounces-213783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B08AAB46A15
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 10:10:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B18F2B46A1B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 10:20:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 940361CC5ECD
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 08:11:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 42EA61BC340E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 08:20:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04F412C0290;
-	Sat,  6 Sep 2025 08:10:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 891202C11D8;
+	Sat,  6 Sep 2025 08:20:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AKcXWMmj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lh31fXBl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC85023184A;
-	Sat,  6 Sep 2025 08:10:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE169279DC9;
+	Sat,  6 Sep 2025 08:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.11
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757146251; cv=none; b=sZDLEWKGVfWZfGFzkorUeqSpJw4A+t3Cai89S4g5MuEEvdxuWRgXxvCA/QkZ6iocFIg/BnR90hb71qgCYv57k/z8D8+cHKmciiE11DrPEX9F4dnxrAQ1UHVwcEv7gj0bj2NXhTwh0cO+xVCq8a70pzs9i8flweGDuz0O1nXV0ic=
+	t=1757146819; cv=none; b=pYUw0W0OhAAPya07nGWwp/dUhedck6Z7OlkbAzRYwjfpdTosygjgMnJnnJise0t6XnCrJ/aSEkmES69679tw3wM3raojYIXAeDgihfJ8ew1yKjT/rynEiPuiW/XCtufG3KzBbqDxBy0Zs3I49xVmHZ0uBnWITpy7zC0lmaclDIo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757146251; c=relaxed/simple;
-	bh=cwPk6T3fU2IyG+AYF8QYuidB4vOjI0tVcpBFG7S39rc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=C5vbsODN2lL1OXtuDNfdzAZAN3o7AzTe2axVqgZESm+HBA/02FHYX3nE6UcAJt3EULfrpvx/WVRIIHR/x4L5hVSJprNUyKGgsDBcffc2DIgsZGsdnFic5qp99eZK5yzJREMweNJ9f5YrY9dS4A8G3q53oufy2DQkkLdSIljzpUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AKcXWMmj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EBDFC4CEE7;
-	Sat,  6 Sep 2025 08:10:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757146251;
-	bh=cwPk6T3fU2IyG+AYF8QYuidB4vOjI0tVcpBFG7S39rc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=AKcXWMmj+SwlIU1GzFq8oGy5jgkkN17Uj4Hff5l9S2IVzbrPSPFYHuXjC5JuEo27j
-	 Y2B29lJ8waYDU63qj4rxD3ZGvwPFJL+wsuWuKva/z6fmmOY3izAgdYxQGymJ6nubwr
-	 QwsgF3t7rKBJE3i0+yp314MQ9Jw+fh69USW5yn3orTcbGVen/0szcZDM+Z9DhnoFPe
-	 c81VjlZ84X+7b1jVcrC4h2S24HKSq2u5nGodK9yC4x+NuvCJYrlC79BXRSzUfd6gJr
-	 aLmpCilGHesAV8kg406u0E/QMxzxM86UqXunzWFzSjV0eSdxGIAq1XHExGVuFtCiru
-	 IuJSvEmMbAUGQ==
-From: Sven Peter <sven@kernel.org>
-To: Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>,
+	s=arc-20240116; t=1757146819; c=relaxed/simple;
+	bh=65fgzL9aHcehB8e5Ro0jhg/HmeW0MW9yg6xKlGR8tkQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lBRqwrjOxmaqfIHp2ug8zTz1q6w4O7JYhcuftM+hihWToqAamBiQfhgDdO1fVpvIT6cXKmwk55297i1XAgm+VakasdbcSPwkHeg5wdsqAYdxsUMYspEsBIJ/YlffX1hoQwyING1gxJTJO5vXgbVEPFxVEJ6RMpn9ZjV9c3s6Zsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lh31fXBl; arc=none smtp.client-ip=198.175.65.11
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757146817; x=1788682817;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=65fgzL9aHcehB8e5Ro0jhg/HmeW0MW9yg6xKlGR8tkQ=;
+  b=lh31fXBlsZdsWDz3ySDJ6a2z77gZvg04GnjGPIC8Y1O10A79b7GdVCQN
+   xmDADsOnPvBmtLOyCLF+Idh92gkpvTTcWE/16ADz9r1yBO1YsCKnSRg6A
+   g7ffA/qY+Yr47W0KHcTLQPsj9/L6BSu+D48WEzmmbKA6BcK277rwVEcx8
+   9CnRka9SAEHroNPzRJMR5f41oon16SguTefe3xAISBiJKVehQM0YtAHXs
+   2MddytSFZCTsAH5erHaaAhdDgpN4yf4TqeghU4Y3FNFENnRrlMzn+CGj0
+   VbEnog0hspUHX5FByB79EPYOtbZqeTwQG1LbnTCQNeTfl3H5u5sySiiXR
+   w==;
+X-CSE-ConnectionGUID: rbaJTDt0SRSMxB8QpR1gYw==
+X-CSE-MsgGUID: 61VXh3izRNGJZH7yUK1uxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="69742522"
+X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; 
+   d="scan'208";a="69742522"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 01:20:16 -0700
+X-CSE-ConnectionGUID: qteZDaMqTdO2363FcPHQyg==
+X-CSE-MsgGUID: 3lvupHIER/qUGBAs2Rx60w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,243,1751266800"; 
+   d="scan'208";a="176671344"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+  by orviesa004.jf.intel.com with ESMTP; 06 Sep 2025 01:20:12 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uuo9a-0001J1-1Q;
+	Sat, 06 Sep 2025 08:20:10 +0000
+Date: Sat, 6 Sep 2025 16:19:34 +0800
+From: kernel test robot <lkp@intel.com>
+To: David Yang <mmyangfl@gmail.com>, netdev@vger.kernel.org
+Cc: oe-kbuild-all@lists.linux.dev, David Yang <mmyangfl@gmail.com>,
+	Andrew Lunn <andrew@lunn.ch>, Vladimir Oltean <olteanv@gmail.com>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Keith Busch <kbusch@kernel.org>,
-	Jens Axboe <axboe@kernel.dk>,
-	Christoph Hellwig <hch@lst.de>,
-	Sagi Grimberg <sagi@grimberg.me>,
-	Nick Chan <towinchenmi@gmail.com>
-Cc: Sven Peter <sven@kernel.org>,
-	asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-nvme@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v5 0/4] Add support ANS2 NVMe on Apple A11
-Date: Sat,  6 Sep 2025 10:10:43 +0200
-Message-Id: <175714604478.14736.9361483258492179321.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-In-Reply-To: <20250826-t8015-nvme-v5-0-caee6ab00144@gmail.com>
-References: <20250826-t8015-nvme-v5-0-caee6ab00144@gmail.com>
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Simon Horman <horms@kernel.org>,
+	Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v7 3/3] net: dsa: yt921x: Add support for
+ Motorcomm YT921x
+Message-ID: <202509061559.nSYmNbyV-lkp@intel.com>
+References: <20250905181728.3169479-4-mmyangfl@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905181728.3169479-4-mmyangfl@gmail.com>
 
-On Tue, 26 Aug 2025 20:09:11 +0800, Nick Chan wrote:
-> Apple A11 SoC comes with an NVMe controller that is similar to the
-> NVMe controller in M1, but less customized. Notably, it does not
-> have NVMMU or Linear SQ.
-> 
-> The controller is wired to an older variant of the SART address filter,
-> and uses an older variant of ASC mailbox, so add support for them too.
-> 
-> [...]
+Hi David,
 
-Applied to git@github.com:AsahiLinux/linux.git (apple-soc/drivers-6.18), thanks!
+kernel test robot noticed the following build warnings:
 
-[1/4] dt-bindings: nvme: apple,nvme-ans: Add Apple A11
-      https://github.com/AsahiLinux/linux/commit/1dd8daf1cd49
-[2/4] nvme: apple: Add Apple A11 support
-      https://github.com/AsahiLinux/linux/commit/04d8ecf37b5e
+[auto build test WARNING on net/main]
+[also build test WARNING on linus/master v6.17-rc4 next-20250905]
+[cannot apply to net-next/main horms-ipvs/master]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-Applied to git@github.com:AsahiLinux/linux.git (apple-soc/dt-6.18), thanks!
+url:    https://github.com/intel-lab-lkp/linux/commits/David-Yang/dt-bindings-net-dsa-yt921x-Add-Motorcomm-YT921x-switch-support/20250906-021942
+base:   net/main
+patch link:    https://lore.kernel.org/r/20250905181728.3169479-4-mmyangfl%40gmail.com
+patch subject: [PATCH net-next v7 3/3] net: dsa: yt921x: Add support for Motorcomm YT921x
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20250906/202509061559.nSYmNbyV-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 15.1.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250906/202509061559.nSYmNbyV-lkp@intel.com/reproduce)
 
-[3/4] arm64: dts: apple: t8015: Fix PCIE power domains dependencies
-      https://github.com/AsahiLinux/linux/commit/55a1ed25fa8b
-[4/4] arm64: dts: apple: t8015: Add NVMe nodes
-      https://github.com/AsahiLinux/linux/commit/eef7336dc6c1
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509061559.nSYmNbyV-lkp@intel.com/
 
-Best regards,
+All warnings (new ones prefixed by >>):
+
+   drivers/net/dsa/yt921x.c: In function 'yt921x_set_eee':
+>> drivers/net/dsa/yt921x.c:1045:24: warning: unused variable 'dev' [-Wunused-variable]
+    1045 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_change_mtu':
+   drivers/net/dsa/yt921x.c:1110:24: warning: unused variable 'dev' [-Wunused-variable]
+    1110 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_mirror_add':
+   drivers/net/dsa/yt921x.c:1161:24: warning: unused variable 'dev' [-Wunused-variable]
+    1161 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_fdb_dump':
+   drivers/net/dsa/yt921x.c:1579:24: warning: unused variable 'dev' [-Wunused-variable]
+    1579 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_set_ageing_time':
+   drivers/net/dsa/yt921x.c:1611:24: warning: unused variable 'dev' [-Wunused-variable]
+    1611 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_fdb_del':
+   drivers/net/dsa/yt921x.c:1636:24: warning: unused variable 'dev' [-Wunused-variable]
+    1636 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_fdb_add':
+   drivers/net/dsa/yt921x.c:1651:24: warning: unused variable 'dev' [-Wunused-variable]
+    1651 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_mdb_del':
+   drivers/net/dsa/yt921x.c:1668:24: warning: unused variable 'dev' [-Wunused-variable]
+    1668 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_mdb_add':
+   drivers/net/dsa/yt921x.c:1686:24: warning: unused variable 'dev' [-Wunused-variable]
+    1686 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_vlan_filtering':
+   drivers/net/dsa/yt921x.c:1849:24: warning: unused variable 'dev' [-Wunused-variable]
+    1849 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_vlan_del':
+   drivers/net/dsa/yt921x.c:1867:24: warning: unused variable 'dev' [-Wunused-variable]
+    1867 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_vlan_add':
+   drivers/net/dsa/yt921x.c:1900:24: warning: unused variable 'dev' [-Wunused-variable]
+    1900 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_bridge_flags':
+   drivers/net/dsa/yt921x.c:2148:24: warning: unused variable 'dev' [-Wunused-variable]
+    2148 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_bridge_join':
+   drivers/net/dsa/yt921x.c:2187:24: warning: unused variable 'dev' [-Wunused-variable]
+    2187 |         struct device *dev = to_device(priv);
+         |                        ^~~
+   drivers/net/dsa/yt921x.c: In function 'yt921x_dsa_port_setup':
+   drivers/net/dsa/yt921x.c:2557:24: warning: unused variable 'dev' [-Wunused-variable]
+    2557 |         struct device *dev = to_device(priv);
+         |                        ^~~
+
+
+vim +/dev +1045 drivers/net/dsa/yt921x.c
+
+  1041	
+  1042	static int
+  1043	yt921x_set_eee(struct yt921x_priv *priv, int port, struct ethtool_keee *e)
+  1044	{
+> 1045		struct device *dev = to_device(priv);
+  1046		bool enable = e->eee_enabled;
+  1047		u16 new_mask;
+  1048		int res;
+  1049	
+  1050		/* Enable / disable global EEE */
+  1051		new_mask = priv->eee_ports_mask;
+  1052		new_mask &= ~BIT(port);
+  1053		new_mask |= !enable ? 0 : BIT(port);
+  1054	
+  1055		if (!!new_mask != !!priv->eee_ports_mask) {
+  1056			res = yt921x_reg_toggle_bits(priv, YT921X_PON_STRAP_FUNC,
+  1057						     YT921X_PON_STRAP_EEE, !!new_mask);
+  1058			if (res)
+  1059				return res;
+  1060			res = yt921x_reg_toggle_bits(priv, YT921X_PON_STRAP_VAL,
+  1061						     YT921X_PON_STRAP_EEE, !!new_mask);
+  1062			if (res)
+  1063				return res;
+  1064		}
+  1065	
+  1066		priv->eee_ports_mask = new_mask;
+  1067	
+  1068		/* Enable / disable port EEE */
+  1069		res = yt921x_reg_toggle_bits(priv, YT921X_EEE_CTRL,
+  1070					     YT921X_EEE_CTRL_ENn(port), enable);
+  1071		if (res)
+  1072			return res;
+  1073		res = yt921x_reg_toggle_bits(priv, YT921X_EEEn_VAL(port),
+  1074					     YT921X_EEE_VAL_DATA, enable);
+  1075		if (res)
+  1076			return res;
+  1077	
+  1078		return 0;
+  1079	}
+  1080	
+
 -- 
-Sven Peter <sven@kernel.org>
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
