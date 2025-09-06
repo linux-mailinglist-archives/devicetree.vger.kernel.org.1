@@ -1,300 +1,205 @@
-Return-Path: <devicetree+bounces-213749-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213750-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47E03B46821
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 03:49:56 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA264B46828
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 03:50:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 71DBE7B9E60
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:48:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DC8A5C63F6
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:50:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64FED1D31B9;
-	Sat,  6 Sep 2025 01:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01A3F1ADFE4;
+	Sat,  6 Sep 2025 01:50:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SK9BoNxT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from TWMBX01.aspeed.com (mail.aspeedtech.com [211.20.114.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2CBD31DE8BF;
-	Sat,  6 Sep 2025 01:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=211.20.114.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 123511AF0A4;
+	Sat,  6 Sep 2025 01:50:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757123346; cv=none; b=Oj7zu/7FvJQZl+RgITUVnKaW0+HgT9PrcqK8H0V0HmBCFBioEK1OKalrXsB/MvgPcg3mxxxO6ozmFxXwjV7aM7p6LsRTmBFyIlDIgBa1ylf/3mCnodx9Qh/LQ3HtrMTSwJuhGA0ECaYoTyU1vVwJWm68hqGmW3kdPeHrEQ9N7SA=
+	t=1757123419; cv=none; b=Ps1ooC3Lsn5IW6o3v27scQMJbiCCCulcmEAh/Ku+4zdgj0Rnbmrd+nTl+83l255speRmwdh/SKXXA24nqwUUrBUqr1WnB0geaefMJmVkm/BYtNZQNVguUb3mv69zQ21caLnaAh07K8WcKWESCDjVHLrFs4lBWgU7iBfOSZkJD8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757123346; c=relaxed/simple;
-	bh=Dv8RWtAGXVai4jLnn5kg93giQ+Fw7LvlkApU1McGVMs=;
-	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=ipov6LjFEa4dVrvnjsB4Zlp9VLkhDGZecl1gswBKC64B5nVyKB3NGGK4cZuViHC5RVQ3cXOYZub9oOC7N1GCH9f8tnsChH44Liv1OkP93tzjhuZNw9Z6JvZSs2aeTbze9MFz4JXEOLx5bF7+GMZRB92I7/Umwwjh96lpbL4+VlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com; spf=pass smtp.mailfrom=aspeedtech.com; arc=none smtp.client-ip=211.20.114.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=aspeedtech.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=aspeedtech.com
-Received: from TWMBX01.aspeed.com (192.168.0.62) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1748.10; Sat, 6 Sep
- 2025 09:48:46 +0800
-Received: from twmbx02.aspeed.com (192.168.10.13) by TWMBX01.aspeed.com
- (192.168.0.62) with Microsoft SMTP Server id 15.2.1748.10 via Frontend
- Transport; Sat, 6 Sep 2025 09:48:46 +0800
-From: Ryan Chen <ryan_chen@aspeedtech.com>
-To: ryan_chen <ryan_chen@aspeedtech.com>, Eddie James <eajames@linux.ibm.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Lee Jones <lee@kernel.org>, <linux-aspeed@lists.ozlabs.org>,
-	<linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>
-Subject: [PATCH v3 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU interrupt controllers
-Date: Sat, 6 Sep 2025 09:48:46 +0800
-Message-ID: <20250906014846.861368-5-ryan_chen@aspeedtech.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250906014846.861368-1-ryan_chen@aspeedtech.com>
-References: <20250906014846.861368-1-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1757123419; c=relaxed/simple;
+	bh=iXRq99HWmzLJTx11IPN0Cm6k5Z1XvCKIC4V0rqrUCIs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=OHQLgZlPtXUuEjJe9nomekoRqKqH+r3AJRIc8rpvX/xGMWIMTd7Mq8vCkrcuWHiCBd7hYxq0qgHDVF0EkGn3GrKDG9Zasvfn6nO6W9pyb+SEtl+V4w2zlYofod5K+tYqDNRz0TBYMNmjzHKmE7KjkMoBw+rS953aluic2JcXXWQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SK9BoNxT; arc=none smtp.client-ip=209.85.221.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-3df15fdf0caso2181013f8f.0;
+        Fri, 05 Sep 2025 18:50:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757123416; x=1757728216; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9T8mhgY9nX4b1GTDoanzs4NGx5M5/HhR9wB18Kbszzk=;
+        b=SK9BoNxT/6eyFVJg4r0ka45qeXMyT4cbm08E0tW92dWRSO2F4oa7rhKOGCp5oVBNgR
+         Wh/cl+FIJ6M/KN56Hz58dlHZtVjaBLhS6iCDZ5hTqMBJioSrA7doUks9zB8vnC+0EdLO
+         MWLn+McM0r2eO8SAzpatTNCYrZ1bvIISbggir3jjj2Sj3E6qeYBL/pKABXPEsMxSocfn
+         rH8CdCSK9Z2CXah2eUPyzVfVirGeykU1AfRplVKb3tpUBz9hazGd8ac+UtJ7XRZeTldI
+         tyiUlTtZtckHkwkI51GAb0IYfeOCFcUS1Pbj/i2F8juqvMRw2VidCVSzcZZsYtyMkOH+
+         n9Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757123416; x=1757728216;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9T8mhgY9nX4b1GTDoanzs4NGx5M5/HhR9wB18Kbszzk=;
+        b=lrlIbYGBsnWygnAb2/SIWgSXhjBKxEOg6SKHopVnWYsL9uD2qjoUC1HWplbfKtMY8E
+         iaPBUCsT1GLhL3HruJOizB/0s854PfBqFo5P9+0rHzB6zGWY5iankVK8bjRRbIRixc/6
+         zGyWpn8ogNxCLTu2Tlaa0P9sXjb9qp7/3LyxgCNzFzRd1CqmoOHkR84DnectDUL1CgmH
+         pyaS8e9D4Pk0kOYiWckPjhMcZG8TD7Rnha8YJgWUXr2OIcWf0b7n5KNczKGR2+4Yq2gX
+         rFgjRRPGh7L9tSRxdtNuhken5jwUO3Dz7QUcJRK5rAawtjUhewC+Os+777MVQRYTTE4c
+         EDYg==
+X-Forwarded-Encrypted: i=1; AJvYcCUngxz2jZuyQub7q3/BHlZyFeV3jF6DE6YYCZB7Q1B4dSO6g/i2Ct3elxHRuNOSHsizxycLN5ug1vauM+R3@vger.kernel.org, AJvYcCVQPhOncL5jLYVqm7NX9lFof6CZeJUnjIWwmRb+Zn1QDM5Rzcw5aIfCFOBbOm3H//hAAgw7Y4bRoxCt@vger.kernel.org
+X-Gm-Message-State: AOJu0Yxexlo1EfLRk0oe1WJazinZhNrQTtHj7GCqfr+x1HaiJxpsNwYn
+	XYjlgtuKpR+84KMikj8Ze9pznPT/d3HFPpO/yzDSHfG9dlq3WkelCLH/Ih3oS2gEOeSnt3GX7PB
+	JYTeeV8EhQ0T9x/91oleVSs8sWBszStg=
+X-Gm-Gg: ASbGncsKbD22UkgreW6VpfC0J3ELWuXb41msZyJg/FRHod0UQ43NmHsmabUwXtspb1D
+	dKgBDiTKFalug5oQTo3puw+hreoB+c+TojP7wxzWXxvI4Uo/oaJUexAtp9dCooqi5CV1sqB1NSN
+	b2TWPPE6KN23GxeDYPzorBOvdxjx1puutlyrLoclBW8hpxrUfKE2VaAPvoS03uI/qCRuMV3Kk22
+	ZqnMVltHt8ddnWz8T7j8gf67sXcl3Vqan2NVSQpXcHQlFI=
+X-Google-Smtp-Source: AGHT+IG6oix8mLMZHDuSE3WNnpjGJG/3AhhOv3u2JxvodBrLWsljciM9kQJmzeRwfNEpuDP8Q7Dg/c797dvznUQWxEc=
+X-Received: by 2002:a05:6000:2883:b0:3e3:f332:73f0 with SMTP id
+ ffacd0b85a97d-3e64c693923mr284627f8f.49.1757123415784; Fri, 05 Sep 2025
+ 18:50:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+References: <20250905090115.718622-1-dkx@t-chip.com.cn>
+In-Reply-To: <20250905090115.718622-1-dkx@t-chip.com.cn>
+From: Jimmy Hon <honyuenkwun@gmail.com>
+Date: Fri, 5 Sep 2025 20:50:04 -0500
+X-Gm-Features: Ac12FXwbiLHfVMuDhY7SOkXke4RxqgSQCIhrk8FrjSiEnCfjNXAuJcrVNoPzTFc
+Message-ID: <CALWfF7+6dTqLRHYKHL1iBf9YknLQ5yTrwPur8VySmjiy3mzh0Q@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: rockchip: Add devicetree for the ROC-RK3588-RT
+To: Kaison Deng <dkx@t-chip.com.cn>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Wayne Chou <zxf@t-chip.com.cn>, 
+	Quentin Schulz <quentin.schulz@cherry.de>, Dragan Simic <dsimic@manjaro.org>, 
+	Jonas Karlman <jonas@kwiboo.se>, FUKAUMI Naoki <naoki@radxa.com>, Peter Robinson <pbrobinson@gmail.com>, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The AST2700 continues the multi-instance SCU interrupt controller model
-introduced in the AST2600, with four independent interrupt domains
-(scu-ic0 to 3).
+On Fri, Sep 5, 2025 at 9:32=E2=80=AFAM Kaison Deng <dkx@t-chip.com.cn> wrot=
+e:
+>
+> The Firefly ROC-RK3588-RT is RK3588 based SBC featuring:
+>
+> - TF card slot
+> - NVME 2242 socket
+Could you update the commit description to match device tree. It looks
+like the M.2 2242 socket is configured as a SATA (i.e. "sata2")
+instead of NVME.
 
-Unlike earlier generations that combine interrupt enable and status bits
-into a single register, the AST2700 separates these into distinct IER and
-ISR registers. Support for this layout is implemented by using register
-offsets and separate chained IRQ handlers.
+Is the M.2 slot also wired for NVME operation? If so, will you be
+providing a DT overlay to use it in that mode?
 
-The variant table is extended to cover AST2700 IC instances, enabling
-shared initialization logic while preserving support for previous SoCs.
+https://wiki.t-firefly.com/en/ROC-RK3588-RT/usage_sata.html#software-config=
+uration
 
-Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
----
- drivers/irqchip/irq-aspeed-scu-ic.c | 119 +++++++++++++++++++++++-----
- 1 file changed, 101 insertions(+), 18 deletions(-)
+> - 1x USB 3.0 Port, 1x USB 2.0 Port, 1x Typec Port
+> - 1x HDMI 2.1 out, 1x HDMI 2.0 out
+> - 2x Gigabit Ethernet, 1x 2.5G Ethernet
+> - M.2 E-KEY for Extended WiFI and Bluetoolh
+> - ES8388 on-board sound codec - jack in/out
+> - RTC
+> - LED: WORK, DIY
+> - BTB connector for PCie, UART, USB, CAN, SARADC, GPIO
+>
+> Signed-off-by: Kaison Deng <dkx@t-chip.com.cn>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+>  .../arm64/boot/dts/rockchip/rk3588-roc-rt.dts | 1120 +++++++++++++++++
+>  2 files changed, 1121 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
+>
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/=
+rockchip/Makefile
+> index 9d56d4146b20..ad684e3831bc 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -181,6 +181,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-orangepi-5-ma=
+x.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-orangepi-5-plus.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-orangepi-5-ultra.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-quartzpro64.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-roc-rt.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5-itx.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) +=3D rk3588-rock-5b-pcie-ep.dtbo
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts b/arch/arm64/=
+boot/dts/rockchip/rk3588-roc-rt.dts
+> new file mode 100644
+> index 000000000000..1d50009d3153
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
 
-diff --git a/drivers/irqchip/irq-aspeed-scu-ic.c b/drivers/irqchip/irq-aspeed-scu-ic.c
-index 24d3d3fa5c4b..8c2df72353be 100644
---- a/drivers/irqchip/irq-aspeed-scu-ic.c
-+++ b/drivers/irqchip/irq-aspeed-scu-ic.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0-or-later
- /*
-- * Aspeed AST24XX, AST25XX, and AST26XX SCU Interrupt Controller
-+ * Aspeed AST24XX, AST25XX, AST26XX, and AST27XX SCU Interrupt Controller
-  * Copyright 2019 IBM Corporation
-  *
-  * Eddie James <eajames@linux.ibm.com>
-@@ -17,26 +17,37 @@
- 
- #define ASPEED_SCU_IC_STATUS		GENMASK(28, 16)
- #define ASPEED_SCU_IC_STATUS_SHIFT	16
-+#define AST2700_SCU_IC_STATUS		GENMASK(15, 0)
- 
- struct aspeed_scu_ic_variant {
- 	const char		*compatible;
- 	unsigned long	irq_enable;
- 	unsigned long	irq_shift;
- 	unsigned int	num_irqs;
-+	bool		split_ier_isr;
-+	unsigned long	ier;
-+	unsigned long	isr;
- };
- 
--#define SCU_VARIANT(_compat, _shift, _enable, _num) { \
-+#define SCU_VARIANT(_compat, _shift, _enable, _num, _split, _ier, _isr) { \
- 	.compatible		=	_compat,	\
- 	.irq_shift		=	_shift,		\
- 	.irq_enable		=	_enable,	\
- 	.num_irqs		=	_num,		\
-+	.split_ier_isr		=	_split,		\
-+	.ier			=	_ier,		\
-+	.isr			=	_isr,		\
- }
- 
- static const struct aspeed_scu_ic_variant scu_ic_variants[]	__initconst = {
--	SCU_VARIANT("aspeed,ast2400-scu-ic",	0,	GENMASK(15, 0),	7),
--	SCU_VARIANT("aspeed,ast2500-scu-ic",	0,	GENMASK(15, 0), 7),
--	SCU_VARIANT("aspeed,ast2600-scu-ic0",	0,	GENMASK(5, 0),	6),
--	SCU_VARIANT("aspeed,ast2600-scu-ic1",	4,	GENMASK(5, 4),	2),
-+	SCU_VARIANT("aspeed,ast2400-scu-ic",	0, GENMASK(15, 0),	7, false,	0,	0),
-+	SCU_VARIANT("aspeed,ast2500-scu-ic",	0, GENMASK(15, 0),	7, false,	0,	0),
-+	SCU_VARIANT("aspeed,ast2600-scu-ic0",	0, GENMASK(5, 0),	6, false,	0,	0),
-+	SCU_VARIANT("aspeed,ast2600-scu-ic1",	4, GENMASK(5, 4),	2, false,	0,	0),
-+	SCU_VARIANT("aspeed,ast2700-scu-ic0",	0, GENMASK(3, 0),	4, true,	0x00, 0x04),
-+	SCU_VARIANT("aspeed,ast2700-scu-ic1",	0, GENMASK(3, 0),	4, true,	0x00, 0x04),
-+	SCU_VARIANT("aspeed,ast2700-scu-ic2",	0, GENMASK(3, 0),	4, true,	0x04, 0x00),
-+	SCU_VARIANT("aspeed,ast2700-scu-ic3",	0, GENMASK(1, 0),	2, true,	0x04, 0x00),
- };
- 
- struct aspeed_scu_ic {
-@@ -45,9 +56,12 @@ struct aspeed_scu_ic {
- 	unsigned int		num_irqs;
- 	void __iomem		*base;
- 	struct irq_domain	*irq_domain;
-+	bool			split_ier_isr;
-+	unsigned long		ier;
-+	unsigned long		isr;
- };
- 
--static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
-+static void aspeed_scu_ic_irq_handler_combined(struct irq_desc *desc)
- {
- 	struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
- 	struct irq_chip *chip = irq_desc_get_chip(desc);
-@@ -84,7 +98,33 @@ static void aspeed_scu_ic_irq_handler(struct irq_desc *desc)
- 	chained_irq_exit(chip, desc);
- }
- 
--static void aspeed_scu_ic_irq_mask(struct irq_data *data)
-+static void aspeed_scu_ic_irq_handler_split(struct irq_desc *desc)
-+{
-+	struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
-+	struct irq_chip *chip = irq_desc_get_chip(desc);
-+	unsigned long bit, enabled, max, status;
-+	unsigned int sts, mask;
-+
-+	chained_irq_enter(chip, desc);
-+
-+	mask = scu_ic->irq_enable;
-+	sts = readl(scu_ic->base + scu_ic->isr);
-+	enabled = sts & scu_ic->irq_enable;
-+	sts = readl(scu_ic->base + scu_ic->isr);
-+	status = sts & enabled;
-+
-+	bit = scu_ic->irq_shift;
-+	max = scu_ic->num_irqs + bit;
-+
-+	for_each_set_bit_from(bit, &status, max) {
-+		generic_handle_domain_irq(scu_ic->irq_domain, bit - scu_ic->irq_shift);
-+		writel(BIT(bit), scu_ic->base + scu_ic->isr); // clear interrupt
-+	}
-+
-+	chained_irq_exit(chip, desc);
-+}
-+
-+static void aspeed_scu_ic_irq_mask_combined(struct irq_data *data)
- {
- 	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
- 	unsigned int mask = BIT(data->hwirq + scu_ic->irq_shift) |
-@@ -98,7 +138,7 @@ static void aspeed_scu_ic_irq_mask(struct irq_data *data)
- 	writel(readl(scu_ic->base) & ~mask, scu_ic->base);
- }
- 
--static void aspeed_scu_ic_irq_unmask(struct irq_data *data)
-+static void aspeed_scu_ic_irq_unmask_combined(struct irq_data *data)
- {
- 	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
- 	unsigned int bit = BIT(data->hwirq + scu_ic->irq_shift);
-@@ -113,6 +153,22 @@ static void aspeed_scu_ic_irq_unmask(struct irq_data *data)
- 	writel((readl(scu_ic->base) & ~mask) | bit, scu_ic->base);
- }
- 
-+static void aspeed_scu_ic_irq_mask_split(struct irq_data *data)
-+{
-+	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
-+
-+	writel(readl(scu_ic->base) & ~BIT(data->hwirq + scu_ic->irq_shift),
-+	       scu_ic->base + scu_ic->ier);
-+}
-+
-+static void aspeed_scu_ic_irq_unmask_split(struct irq_data *data)
-+{
-+	struct aspeed_scu_ic *scu_ic = irq_data_get_irq_chip_data(data);
-+	unsigned int bit = BIT(data->hwirq + scu_ic->irq_shift);
-+
-+	writel(readl(scu_ic->base) | bit, scu_ic->base + scu_ic->ier);
-+}
-+
- static int aspeed_scu_ic_irq_set_affinity(struct irq_data *data,
- 					  const struct cpumask *dest,
- 					  bool force)
-@@ -120,17 +176,29 @@ static int aspeed_scu_ic_irq_set_affinity(struct irq_data *data,
- 	return -EINVAL;
- }
- 
--static struct irq_chip aspeed_scu_ic_chip = {
--	.name			= "aspeed-scu-ic",
--	.irq_mask		= aspeed_scu_ic_irq_mask,
--	.irq_unmask		= aspeed_scu_ic_irq_unmask,
--	.irq_set_affinity	= aspeed_scu_ic_irq_set_affinity,
-+static struct irq_chip aspeed_scu_ic_chip_combined = {
-+	.name                   = "aspeed-scu-ic",
-+	.irq_mask               = aspeed_scu_ic_irq_mask_combined,
-+	.irq_unmask             = aspeed_scu_ic_irq_unmask_combined,
-+	.irq_set_affinity       = aspeed_scu_ic_irq_set_affinity,
-+};
-+
-+static struct irq_chip aspeed_scu_ic_chip_split = {
-+	.name                   = "ast2700-scu-ic",
-+	.irq_mask               = aspeed_scu_ic_irq_mask_split,
-+	.irq_unmask             = aspeed_scu_ic_irq_unmask_split,
-+	.irq_set_affinity       = aspeed_scu_ic_irq_set_affinity,
- };
- 
- static int aspeed_scu_ic_map(struct irq_domain *domain, unsigned int irq,
- 			     irq_hw_number_t hwirq)
- {
--	irq_set_chip_and_handler(irq, &aspeed_scu_ic_chip, handle_level_irq);
-+	struct aspeed_scu_ic *scu_ic = domain->host_data;
-+
-+	if (scu_ic->split_ier_isr)
-+		irq_set_chip_and_handler(irq, &aspeed_scu_ic_chip_split, handle_level_irq);
-+	else
-+		irq_set_chip_and_handler(irq, &aspeed_scu_ic_chip_combined, handle_level_irq);
- 	irq_set_chip_data(irq, domain->host_data);
- 
- 	return 0;
-@@ -151,8 +219,14 @@ static int aspeed_scu_ic_of_init_common(struct aspeed_scu_ic *scu_ic,
- 		rc = PTR_ERR(scu_ic->base);
- 		goto err;
- 	}
--	writel(ASPEED_SCU_IC_STATUS, scu_ic->base);
--	writel(0, scu_ic->base);
-+
-+	if (scu_ic->split_ier_isr) {
-+		writel(AST2700_SCU_IC_STATUS, scu_ic->base + scu_ic->isr);
-+		writel(0, scu_ic->base + scu_ic->ier);
-+	} else {
-+		writel(ASPEED_SCU_IC_STATUS, scu_ic->base);
-+		writel(0, scu_ic->base);
-+	}
- 
- 	irq = irq_of_parse_and_map(node, 0);
- 	if (!irq) {
-@@ -167,7 +241,9 @@ static int aspeed_scu_ic_of_init_common(struct aspeed_scu_ic *scu_ic,
- 		goto err;
- 	}
- 
--	irq_set_chained_handler_and_data(irq, aspeed_scu_ic_irq_handler,
-+	irq_set_chained_handler_and_data(irq, scu_ic->split_ier_isr ?
-+					 aspeed_scu_ic_irq_handler_split :
-+					 aspeed_scu_ic_irq_handler_combined,
- 					 scu_ic);
- 
- 	return 0;
-@@ -205,6 +281,9 @@ static int __init aspeed_scu_ic_of_init(struct device_node *node, struct device_
- 	scu_ic->irq_enable	= variant->irq_enable;
- 	scu_ic->irq_shift	= variant->irq_shift;
- 	scu_ic->num_irqs	= variant->num_irqs;
-+	scu_ic->split_ier_isr	= variant->split_ier_isr;
-+	scu_ic->ier	= variant->ier;
-+	scu_ic->isr	= variant->isr;
- 
- 	return aspeed_scu_ic_of_init_common(scu_ic, node);
- }
-@@ -213,3 +292,7 @@ IRQCHIP_DECLARE(ast2400_scu_ic, "aspeed,ast2400-scu-ic", aspeed_scu_ic_of_init);
- IRQCHIP_DECLARE(ast2500_scu_ic, "aspeed,ast2500-scu-ic", aspeed_scu_ic_of_init);
- IRQCHIP_DECLARE(ast2600_scu_ic0, "aspeed,ast2600-scu-ic0", aspeed_scu_ic_of_init);
- IRQCHIP_DECLARE(ast2600_scu_ic1, "aspeed,ast2600-scu-ic1", aspeed_scu_ic_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic0, "aspeed,ast2700-scu-ic0", aspeed_scu_ic_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic1, "aspeed,ast2700-scu-ic1", aspeed_scu_ic_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic2, "aspeed,ast2700-scu-ic2", aspeed_scu_ic_of_init);
-+IRQCHIP_DECLARE(ast2700_scu_ic3, "aspeed,ast2700-scu-ic3", aspeed_scu_ic_of_init);
--- 
-2.34.1
+[snip]
 
+> +
+> +&hdmi0 {
+> +       status =3D "okay";
+> +};
+> +
+> +&hdmi0_in {
+> +       hdmi0_in_vp0: endpoint {
+> +               remote-endpoint =3D <&vp0_out_hdmi0>;
+> +       };
+> +};
+> +
+> +&hdmi0_out {
+> +       hdmi0_out_con: endpoint {
+> +               remote-endpoint =3D <&hdmi0_con_in>;
+> +       };
+> +};
+Does the board support hdmi0_sound and hdmi1_sound (and the
+corresponding i2s5_8ch and i2s6_8ch)?
+
+> +
+> +&hdmi1 {
+> +       status =3D "okay";
+> +};
+
+[snip]
+
+> +
+> +&sdhci {
+> +       bus-width =3D <8>;
+> +       no-sdio;
+> +       no-sd;
+> +       non-removable;
+> +       max-frequency =3D <200000000>;
+> +       mmc-hs400-1_8v;
+> +       mmc-hs400-enhanced-strobe;
+These properties should be in alphabetical order.
+
+> +       status =3D "okay";
+> +};
+> +
+> +&sdmmc {
+> +       bus-width =3D <4>;
+> +       cap-sd-highspeed;
+> +       disable-wp;
+> +       max-frequency =3D <150000000>;
+> +       no-sdio;
+> +       no-mmc;
+> +       sd-uhs-sdr104;
+> +       vmmc-supply =3D <&vcc3v3_sd_s0>;
+> +       vqmmc-supply =3D <&vccio_sd_s0>;
+> +       status =3D "okay";
+> +};
+
+Jimmy
 
