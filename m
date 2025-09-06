@@ -1,140 +1,142 @@
-Return-Path: <devicetree+bounces-213830-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10184B46D83
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 15:09:53 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD3AEB46DA9
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 15:17:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D9627ACB55
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:08:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A5E241780F0
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:17:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D42812ED16D;
-	Sat,  6 Sep 2025 13:09:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 46B1C2ECEAB;
+	Sat,  6 Sep 2025 13:17:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZuJHtlUb"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e/kI9R8o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B08C2EB85A;
-	Sat,  6 Sep 2025 13:09:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FD9D2877EA;
+	Sat,  6 Sep 2025 13:17:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757164179; cv=none; b=s1xEdOscbMYwdFIozEwhhauFMnl7WueTWQMVTSmtHYWUzhmmt16fkrMs6lIaKtJmMFDyzpBVHo/IfeudNnmU0oQVk8I+Us7vmprqzr/qHLUUgglAqlcC+M2iCI/w0jCjNoifjDU7OOH0Bs53n76ABeZ2flL9BspRFHjuD/oG15g=
+	t=1757164638; cv=none; b=q6NuLzASw0FER+NjATGSw/Z3XxWUeMQFkBRAV9oHAuMc6ETi+KMU/+j0tF0Gx9zc9kNf2LWfcdZN56bS5XwxWO1cTly706BKUf7nWee6Bu3U/hIm0q1SFq1OLB76VhEDjOXPBz7H04sYictqWQ6mogE3oTpLPtaEYcwT2UgL0gA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757164179; c=relaxed/simple;
-	bh=FqlNOawhiczNnMYgtV78WNwSk3WFr/Z1jReSPh5SzeI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=p+1cvftMQZe1lEwuRx8PTOMh1NrZyvsd1m7s2Ft0lZCrDszb/rJxsywZXVceW+AXctAuBH+gPE2bQta2rVmBWPCrHgdRfo26WGt9SQtWQspjeFV37ZQdLlb3cYMTQoop/ahyEf3phi6BlUcPpbCKVRpqyH1e1Y7+JpdipuA3d5M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZuJHtlUb; arc=none smtp.client-ip=209.85.210.51
+	s=arc-20240116; t=1757164638; c=relaxed/simple;
+	bh=o9IcrFnimv7ibOLrNRYV7WuA4rm8uS1dfW5VR+qdcDs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=PMToz+lSdmZ3LBeAX6d3V2ee5zOxYPSdskzVRC7SzIhuwOO2l4RwWDigkvx4VUT+pkulac9FN10pGTiqIyiAg3bn5VgUVBx1aQEWcyGy0o/X9Ew/+0V+jnEtTxi+++5BXF/d70XfoAIywXndgj2RjAHcZ4tWXYG3mIfWVMGJxiI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e/kI9R8o; arc=none smtp.client-ip=209.85.167.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f51.google.com with SMTP id 46e09a7af769-746da717f35so963752a34.1;
-        Sat, 06 Sep 2025 06:09:38 -0700 (PDT)
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5608bfae95eso3355361e87.1;
+        Sat, 06 Sep 2025 06:17:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757164177; x=1757768977; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FqlNOawhiczNnMYgtV78WNwSk3WFr/Z1jReSPh5SzeI=;
-        b=ZuJHtlUbj9QkBUBpiq4vnptYNc3rq0pAqRhPBftrJYj7LdWCsPrN3YJLsqDjVSL7pf
-         PCAJLGeZMOuU4yD8/bnm5XfNhMVXSJSxZlCABe1K4ZlaSyVUqfu8IXvJjaSiqRlpf1EG
-         bronEgSchkRGwnsKK5htrSRHcXF1KVXvDd8J3rftbB3FHK0zpHkxUhuw88TgVS1rpHlg
-         9NHUgqW0OaVytIa1eNbfHEjLLjKyvPufzrLTptMRIk9sd9kVQ4jXClGny9dfuAT5Am/o
-         aaWPYrL45rKOpdvImqrwTJsb85qzOQIhWy3xCZ8HZYc6a8xAZ+unRFOpC8w43tBpfsF5
-         Q+mw==
+        d=gmail.com; s=20230601; t=1757164634; x=1757769434; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=o5cPONIgu6mzYa/WMF+RelFJ2K/lRyJPaqEbFSvDOqU=;
+        b=e/kI9R8oBRSh2GAcbDQBRtuqa1ofI89Lb14GlNrfgTEQ1tL5zBU/Ts+t03ohPzMPkj
+         6dScjHsUhAQ+BHLt1tKak1ccTkbqo+Wis3T3OfBidXkfVjwqXTs8kiH0YDGZtHOFsyo1
+         cIL9BFyZmLuoy4Li2jVn1dHlNfZNR3fvWWZLIQ1Fr4Jy8kd0WdnP+EQYwi3hUEOASUtS
+         6PzTqrSl86CikswjcvOwPn5xyj5H4jKYl9eq05Mm5UWUyQAqLchGlBJgFBmd4dAjoGGJ
+         DTGnhWFEoCKVFcqoEUBeW7guDICC10kZshSNrpC+xtTqkj89LXkcjReK0GhGBk5KSMUv
+         a1xg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757164177; x=1757768977;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FqlNOawhiczNnMYgtV78WNwSk3WFr/Z1jReSPh5SzeI=;
-        b=UoeZWbdTkJG3uYoNmi1bqKYwM6y2OC94mnokZpOvvJS9JotTXxfjsS4A1WdHg50Ug/
-         1tX47x+0aJHyEV5Wz1WuhCVQBKmpAMmm97UaHOB7ac/lvxFMGMeGmHil+C54tC7I8Xgy
-         TIcViUoQ07cMjjbOTkO4ME2WKwGd6h07uYevfHn5Bt5GILaVCWYb/0SbOn+xF2L1xjNd
-         Lty7cnJiW1Y67wK1Qi/O5LOFIY+yVFqytL93ha7jqDIMFDCof8QrV4exUa5jKEqJIGmC
-         MN2ryiRApgZLjhxsbA4hih5Nlbwifybw+mGwXDlSxuBuvazBFLHFtGy7O/f/cp689EfE
-         mJzw==
-X-Forwarded-Encrypted: i=1; AJvYcCUsvgNcF/YaUy05VwKA6iqCSswNFdeJ1ev7K+xfQIzwnVF6/+LmumQd2Ovje3F2FXeQjFAaZktuNFsn9PSG@vger.kernel.org, AJvYcCWn3ChQJgNmJPU67YdeoCxwC1zxUx66NQGgPOikgHhccCs1vF8bxhIDimAsjAJdojm/JSySBknIupuT@vger.kernel.org
-X-Gm-Message-State: AOJu0YyVxno46UukzFJ1viYvodvRravvv6IzWI33iiZnM6AJfHRclIXv
-	T1lIgE7+HMl1QpDA1GwS1ZfolMDQ5DxXK5008iwWxAiEKBVLnnLZJ4Ovnu4uwvET1xPABKgSP8S
-	/+uth0vZ6UYBXTZqB3Uy3gAaXLii6Yzc=
-X-Gm-Gg: ASbGncswomvWbtwr03ZotSprwA8z7ZBf2ImT3ZiJM8x85dZCja+aeUUwlWfNQaQ2tN5
-	8rovRV8vpSdk3taoe+ekTpi3CKiF3/eoa8C3SoHz+nchzFw0+YjxpV7hrCekPBlLeubK6pK7G1o
-	G31HBiUce6XmWAnBXUCjO0AZLcXXbzP4YL+MfeFqHnFRMbcd4tZ8Gp/17+sKVti3SHyLbYDYs21
-	c/oo+OTzu1lF9UmKEvcLbWpo6tw
-X-Google-Smtp-Source: AGHT+IHEg3AUdpr9HZfCSunIoPawPsj+5zDP0vZEWNpUApCdkvhspa2BeDectYhc12P9JKqYJhzerVjfjFkrV2gkucQ=
-X-Received: by 2002:a05:6808:d50:b0:438:4117:a869 with SMTP id
- 5614622812f47-43b29a3db49mr717669b6e.3.1757164177102; Sat, 06 Sep 2025
- 06:09:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757164634; x=1757769434;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o5cPONIgu6mzYa/WMF+RelFJ2K/lRyJPaqEbFSvDOqU=;
+        b=Jr+5tnfujSuIQJzSOyfJMo72Xx5dJ3LWZHEBPMHATj8smzxg6GWTGDIYhgA1xvlYYL
+         O34KFDB2oKDhtGZYxq5nK10csSZgtwGo8/U4IMCo8HcGoIqclb712QXjrLxkMlQg1TYp
+         MneH2VQBmPoqyyj/JHWGk5dZjSDjp06x1JeltQu8itmDN7rWjqP6x2m8Y4Rsh59XqIaE
+         jQIA+8EbmvlL95efNxjGMzpIOK5GZWZe28YszUCyuJulFgJCO1TSw+87IsilUMtf5+P3
+         06OWHQw3uffDFyQojWzTkfKp/tppVctCmPgICQ67xESA0symyYidFYJvf543mafPZPyo
+         5e/A==
+X-Forwarded-Encrypted: i=1; AJvYcCVbAGXUUD873yToQVa2V4ZQMBzzLZP4JKx5S/lgXlzmYsEiw6gQI1rz2C00mhZyh/bebIqgQP5+H4w=@vger.kernel.org, AJvYcCXrKORT5jFKyazkPfPusz/RR42+7UmzgJpllJuGF28ti7aux0UaUBxUJh2EunZ/CLaNv3oZncCIOIvHhR/Q@vger.kernel.org, AJvYcCXuax2z6Gu2khUH/pwglMj0KHD19Ys+f2LZH7cbO90BGpF/Pz+lJ/jclP2w+Vt2YeneokK9Qf9kPIx2mTo=@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz6W0OORc0lr/pWj0TXR7ZE++EhpQUsWLQ//DAqn7ZU+pHybB/k
+	CR2RpS58o/ie35OqX8gcic3e/zCM5GTAv4cN3yLpIlwQ0RHs04arAvpI
+X-Gm-Gg: ASbGncsmKS/5Oj9ZKYjXV1DQktYovV4XzU13AzMQWSmm3q6RmuIjprp7B/mXEK4Xm3R
+	XZJ6FLxadJlH0x1QQvyBEpCZVRrgCpPTtJLEOCQqSF07lBqY+Y1W+yAbKCjPFqFdR/IiTC8S53h
+	/XnE5T6dLZo0QVygBqv3T+JuwYhjDf+RRFOSdR658bnyB+hP20UED3YfRq7jDC7eT5N3ZtgVl1w
+	n0a2TH0ZsveT2b+uXLpvfk/rvz2/lkVYCxwLPZC+bosvGUwGYVMnHL/XNrIIaUQLC0TQr3jTOlY
+	iE5kZupVXv6OgBo9CdwM9EhXApHKRqoTnvemMc0rwAznQBy7D7iXYxO8IxcDwNgSbTrKZYUacFg
+	8iDPJiqgaJSn+5zh5FE1FP9NH
+X-Google-Smtp-Source: AGHT+IGemkowJ9DUUuzY2mYnlqSwBPTYFfnUHammCbEHEEG+j0HPGbQknwWy53AHiTbfVkzNhph45A==
+X-Received: by 2002:ac2:51ca:0:b0:560:8b86:75ba with SMTP id 2adb3069b0e04-56261db5e31mr599542e87.52.1757164634145;
+        Sat, 06 Sep 2025 06:17:14 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ad44f8fsm2312647e87.137.2025.09.06.06.17.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Sep 2025 06:17:13 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Thierry Reding <treding@nvidia.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>,
+	Prashant Gaikwad <pgaikwad@nvidia.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Mikko Perttunen <mperttunen@nvidia.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Svyatoslav Ryhel <clamor95@gmail.com>,
+	Dmitry Osipenko <digetx@gmail.com>,
+	Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-clk@vger.kernel.org,
+	dri-devel@lists.freedesktop.org
+Subject: [PATCH v2 0/4] gpu/drm: tegra: add DSI support for Tegra20/Tegra30
+Date: Sat,  6 Sep 2025 16:16:51 +0300
+Message-ID: <20250906131655.239340-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
- <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org> <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
- <96e6578e-b21f-498e-82f6-eeee3ee81e20@kernel.org>
-In-Reply-To: <96e6578e-b21f-498e-82f6-eeee3ee81e20@kernel.org>
-From: Nick Huang <sef1548@gmail.com>
-Date: Sat, 6 Sep 2025 21:09:26 +0800
-X-Gm-Features: Ac12FXzTTU9OxWKAR_Al-DgJ1eaR96FG-JSCEoP1ITu-KcxZJya_I-zlzWyriRg
-Message-ID: <CABZAGRGof5e=mwpfmEgE7W+Pn5gS05ei7io8e7C4tPfkvz1=Gw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
- the documentation by replacing "abd" with the correct word "and". This
- improves readability and avoids confusion in the description.
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Johnsodn Huang <kusogame68@gmail.com>, Lee Jones <lee@kernel.org>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, weiyan huang <dory85109@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-Yes, I have read it. The subject and the content were mixed together,
-so I will reorganize and resend the patch.
+Tegra20/Tegra30 DSI is quite similar to Tegra114+ apart MIPI calibration
+logic and clocks. With a few minor tweaks, existing tegra DSI driver
+should work on Tegra20/Tegra30 devices just fine. Tested on
+Motorola Atrix 4G (T20) and ASUS VivoTab RT TF600T (T30).
 
-Best regards,
-Nick
+This patchset depends on Tegra20/Tegra30 CSI bringup since both share
+MIPI calibration logic. Ideally these patches should be picked after
+CSI bringup but they will not break anything even if picked before
+CSI patches.
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=886=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=888:00=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 06/09/2025 11:13, Nick Huang wrote:
-> > Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=88=
-6=E6=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=883:38=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> >>
-> >> On 03/09/2025 09:42, Lee Jones wrote:
-> >>> Looks like you corrupted the subject line with the commit message.
-> >>>
-> >>> Please resubmit.
-> >>>
-> >>>> From: Johnson Huang <kusogame68@gmail.com>
-> >>>
-> >>> Use `git format-patch` and `git send-email` instead.
-> >>>
-> >>>> Co-developed-by: Nick Huang <sef1548@gmail.com>
-> >>>> Signed-off-by: Nick Huang <sef1548@gmail.com>
-> >>>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
-> >>>
-> >>> It took two of you to correct the word "and"?
-> >>
-> >> Can you respond to the comment instead of ignoring it and sending the =
-same?
-> >>
-> >> Best regards,
-> >> Krzysztof
-> >
-> > Hi Krzysztof,
-> >
-> > Sure, at the moment this commit only addresses the typo in the word 'an=
-d'.
->
-> Did you read the question?
->
-> Best regards,
-> Krzysztof
+---
+Changes in v2:
+- removed all MIPI calibration, it is handled within CSI bringup
+- added per-soc structures into of_match
+- added fix for hang caused by register access with uninited hw
+---
+
+Svyatoslav Ryhel (4):
+  clk: tegra20: reparent dsi clock to pll_d_out0
+  gpu/drm: tegra: dsi: move prepare function at the top of encoder
+    enable
+  gpu/drm: tegra: dsi: add support for Tegra20/Tegra30
+  ARM: tegra: adjust DSI nodes for Tegra20/Tegra30
+
+ arch/arm/boot/dts/nvidia/tegra20.dtsi |   4 ++
+ arch/arm/boot/dts/nvidia/tegra30.dtsi |   8 +++
+ drivers/clk/tegra/clk-tegra20.c       |   6 +-
+ drivers/gpu/drm/tegra/drm.c           |   2 +
+ drivers/gpu/drm/tegra/dsi.c           | 100 ++++++++++++++++----------
+ drivers/gpu/drm/tegra/dsi.h           |  15 ++++
+ 6 files changed, 95 insertions(+), 40 deletions(-)
+
+-- 
+2.48.1
+
 
