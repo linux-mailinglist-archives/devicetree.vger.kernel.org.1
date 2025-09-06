@@ -1,165 +1,165 @@
-Return-Path: <devicetree+bounces-213809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BEC16B46AFC
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:20:49 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87302B46B32
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:27:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71AD85A5ACD
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 11:20:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DB603A9E98
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 11:27:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5ADEF28313D;
-	Sat,  6 Sep 2025 11:20:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D51D27BF7C;
+	Sat,  6 Sep 2025 11:27:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DOfs7rW3"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="nTOeL49+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BEE523C51D;
-	Sat,  6 Sep 2025 11:20:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C14725A326;
+	Sat,  6 Sep 2025 11:27:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757157639; cv=none; b=hADS5AB0kTYJkhHzMirHd7aUf+F1NDohQRJ7sbuWaCsH4rFlYvspSNzquTWi1KxTLUnfC1H26LTNgbgZwmokXEbUQdg+AvBmdMHuEth8obhM84utBx8rhW7JJbTi8DvP1zNBVqzaZzW4Ur4wQXQGML6G/D/LXdIcx1qS2IrhezA=
+	t=1757158057; cv=none; b=bPk29kbVdJdVUb+Vz0hFdm8mGO8WK2grSW/IjgenV3qEwrbiedm6gOoDyLM27thEi4OUbw6QqqBES0izDlLamNgiF5XpdSn9lzLW4nKl9d8a3kjp8a8Np7S2rPbf/ysCLnSnZhciNxdQRN4inHiRFbe439AGvhCX3x4Ign7z+4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757157639; c=relaxed/simple;
-	bh=NP25UIE0+x01UR7gmr+DnY3vcN0HGnNza7b3p0mgBVs=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=VbzEnRa24pIIevkI0lMh8aDIGtmw2VHgzUG6wFgzbQC9h2+DbdDsx3Y8QjoK476KQbYGjJH+0vCrbjj2g8eeTrGwFThWv+hQKZcwX4hZKQwnIKH+rBNZILNyKl/J9GchFVxlmuyq1OCL+5S5T9ntfcHSy7Rjjpa3ZPN9+KLtH2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DOfs7rW3; arc=none smtp.client-ip=209.85.128.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-45ddcf50e95so6088255e9.0;
-        Sat, 06 Sep 2025 04:20:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757157636; x=1757762436; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sKcui5kqlHLRoGonq2UNIvF4/eUOOrD4c41D8AoISsY=;
-        b=DOfs7rW3tZWnJhdqi1A+uexVJDeEjYbylFP9Atton2JwOGNkd49uChy2L4AeyxEKKz
-         s3ohuaMQDajEdEd3tVZPOP7nKYFXapWygwz+aUBpJREo9qfTKdj0qGsiXpvoYoseKUpq
-         ooI98j5VTWD9F5CfYUXK5DFQMFtvIhD7djImpy8gi4rti41PmHRFSG6p22NwdeNur6GC
-         Q3H0/C3qVPeXeEgbEy70vsmmwUYujeY23zBwCbQuusuLOVqx2ijtKAjaZxXN3V/PHsvQ
-         eZk4HKFeLcXyj7W92A+bGnneGVS3sRBtD8C8TP8xaKIp6EmWgK4HN1yMNKy6sPdE5E4z
-         4sIg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757157636; x=1757762436;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sKcui5kqlHLRoGonq2UNIvF4/eUOOrD4c41D8AoISsY=;
-        b=J/ubfkkUBXki4Cg+2cLKOLsry1JgZMSJmzerqDczkOk0kSjZJCO/Q/RJigXS/NUlX/
-         mxvr8JJcF5Xp/O9yWpjWaIrht8ZQ08o3Ulzn3I8kH9+M3OJaZAubgPxvNYzG9YLZjlYh
-         UR+OKDxeh14I9D/iPr1Yfuv2M23/kt4cdiBU0WsIMras+tsk7Ae+M4QwD4rIqOPpCpzC
-         +amMCwtrULrC9bj0HBm0XQR74n2SwB7Oqmb7qex8Fn+2RpMZgLktBEqzgDnUyUxu2YJP
-         A/27uZxZhEYYstTUOtmYdV70IlHsftZgI1J179oc4GfdnP78YKk4SOZ1cQCKROKAMwcN
-         Bx5A==
-X-Forwarded-Encrypted: i=1; AJvYcCVajQRsV/rON880ff3ad6bGpHKixMSdeZEA+/FfF9spyY+o8XPXBMZ0UrHJGELarXPqc6YuZDfT/r7S@vger.kernel.org, AJvYcCXAg3scMzlrHKSASsNODpw7BRXLa6/hbQ+1EADdE6WOZhbbfpAqqw3IMr3I17TTilrq3Rp9KjWGict0/VzB@vger.kernel.org
-X-Gm-Message-State: AOJu0YzK5bWMIRGNW2kflgKIW6u2WOiK4Q3re6bN3FzfSCevRtr8eD0u
-	LcWybqVmScuM2TXu570XWsDDCP3kbGHYGLosGdnaOb90yT3CTkN5TbXQ
-X-Gm-Gg: ASbGncvOtiW9ehTJCeI52KBKqhyGcuXV4uD+TIVUHJfMJk5m5bbGQr2uJCnlWSgyiEh
-	+wyqIM4HVY+mtC624cFvtCfJHSMnXh6+NiWPehCXnINovTmUr406fUt/WvOj6YBznxb+vDMD366
-	rB8rCvE02UvEq8Ign6kmrIpFKOsCOh5mbVrlRFq3eCHPqOf6mJYgPt1Z6+Y55CYtZLK6FnnP7iY
-	pjlCaGbmXssxhD+9oFKQPhsWUSUDa6Kd7YlK3eYQQ+TAAHj33+YKFd25hDDnUiZiXG7vL0iYMaH
-	LTmxHJa479i9HCzuTIjNiGINDi48xmokTZY8V4B6f1AfUOBuK9zYQdEHc49FGj52CwqXnU+Xs9t
-	Zpd6zy5yFelSaJ+BYiSVNIalGz2f5fW7wrHlEhQ==
-X-Google-Smtp-Source: AGHT+IFv8cE90LFD5yJ/sYFcSqb8G8+DIxE6PJiMga9p7H+75K2qsCzvml9epgjQGTdfAnAhHf5Ufg==
-X-Received: by 2002:a05:600c:1c0d:b0:45b:9961:9c01 with SMTP id 5b1f17b1804b1-45ddde832ebmr18317335e9.16.1757157635521;
-        Sat, 06 Sep 2025 04:20:35 -0700 (PDT)
-Received: from toolbox.. ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45de18f4824sm6646655e9.10.2025.09.06.04.20.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 06 Sep 2025 04:20:35 -0700 (PDT)
-From: Christian Hewitt <christianshewitt@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	s=arc-20240116; t=1757158057; c=relaxed/simple;
+	bh=gtt+QkW89qQ/xiE4F1ORAwE6JL5LfqecUfOhg9hp7B8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=WD4fDLflqa8sTUNIG/rHJqyC+fZRZKUgRu22giVUixo/6QkZop7cOH1X4ULzxChCGTaipflzPF7VlEkhLxKjmcU+T/Oe8euFVu3qOrXHdaqvzBUuMryAMF+FMXfvmks1ycH5tCdJ4O9Taqc9cx6NQI1F7LDfoEzS5Pq6jmkKorA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=nTOeL49+; arc=none smtp.client-ip=192.198.163.19
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757158055; x=1788694055;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=gtt+QkW89qQ/xiE4F1ORAwE6JL5LfqecUfOhg9hp7B8=;
+  b=nTOeL49+Hz1HWapD7r13kQOIgtMvYevFIGa2KDpHU2Jk5UW2TJUI2wiN
+   qQq0FvH+a6BXLBIGvdKChMfmnM6Wu3ABhmGinpV56tKaj9F86kB132L69
+   WQPnAxINJ5EfzmTfBn+AGuBygp/2X58NJ9B8xIv56he8jqlpr75WdTESK
+   cbAcXgt/rQT0F4XE2n7RL0AB4j3dDgMShmuR3K8WBn/TR+AKwXrMs3ljj
+   6sXub9bcjWm/VEu4DkjxAcxWgV3kF+GAkWsYWM4x1E5zdCtwW6j4PwAuw
+   rtAon/ieGcZdcJRsu6miPAJ3b196gOkQvNVuWA/GVQWHIZU86FCq7faEX
+   w==;
+X-CSE-ConnectionGUID: wNtMEyUEQoStd1rZOZhqXg==
+X-CSE-MsgGUID: OkKI3dZVRb2cC/I4jebSjQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11544"; a="58525537"
+X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
+   d="scan'208";a="58525537"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 04:27:34 -0700
+X-CSE-ConnectionGUID: OWRVGH4MTcqWp+tpytIhAw==
+X-CSE-MsgGUID: P4w+HXhvSIeDmXPIiyKcPw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
+   d="scan'208";a="177626327"
+Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
+  by orviesa005.jf.intel.com with ESMTP; 06 Sep 2025 04:27:30 -0700
+Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1uur4p-0001O3-18;
+	Sat, 06 Sep 2025 11:27:27 +0000
+Date: Sat, 6 Sep 2025 19:26:46 +0800
+From: kernel test robot <lkp@intel.com>
+To: Chuan Liu via B4 Relay <devnull+chuan.liu.amlogic.com@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>,
-	devicetree@vger.kernel.org,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Cc: Alex Bee <knaerzche@gmail.com>
-Subject: [PATCH v2 2/2] arm64: dts: rockchip: enable the Mali GPU on RK3328 boards
-Date: Sat,  6 Sep 2025 11:20:30 +0000
-Message-Id: <20250906112030.1829706-2-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250906112030.1829706-1-christianshewitt@gmail.com>
-References: <20250906112030.1829706-1-christianshewitt@gmail.com>
+	Chuan Liu <chuan.liu@amlogic.com>
+Subject: Re: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
+Message-ID: <202509061948.3VcIfqLx-lkp@intel.com>
+References: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250905-add_video_clk-v3-2-8304c91b8b94@amlogic.com>
 
-From: Alex Bee <knaerzche@gmail.com>
+Hi Chuan,
 
-Add a gpu node to the rock64 board to enable the Mali GPU and
-move the existing node from roc-pc to the shared roc dtsi to
-enable it also for the roc-cc board.
+kernel test robot noticed the following build errors:
 
-Signed-off-by: Alex Bee <knaerzche@gmail.com>
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
-Changes since v1:
-- No changes
+[auto build test ERROR on 01f3a6d1d59b8e25a6de243b0d73075cf0415eaf]
 
- arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dts | 4 ----
- arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi   | 4 ++++
- arch/arm64/boot/dts/rockchip/rk3328-rock64.dts | 4 ++++
- 3 files changed, 8 insertions(+), 4 deletions(-)
+url:    https://github.com/intel-lab-lkp/linux/commits/Chuan-Liu-via-B4-Relay/dt-bindings-clock-add-video-clock-indices-for-Amlogic-S4-SoC/20250905-171121
+base:   01f3a6d1d59b8e25a6de243b0d73075cf0415eaf
+patch link:    https://lore.kernel.org/r/20250905-add_video_clk-v3-2-8304c91b8b94%40amlogic.com
+patch subject: [PATCH v3 2/2] clk: amlogic: add video-related clocks for S4 SoC
+config: arm64-randconfig-002-20250906 (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/config)
+compiler: aarch64-linux-gcc (GCC) 12.5.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250906/202509061948.3VcIfqLx-lkp@intel.com/reproduce)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dts b/arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dts
-index 329d03172433..c0b7b98ff788 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc-pc.dts
-@@ -44,10 +44,6 @@ &codec {
- 	mute-gpios = <&grf_gpio 0 GPIO_ACTIVE_LOW>;
- };
- 
--&gpu {
--	mali-supply = <&vdd_logic>;
--};
--
- &pinctrl {
- 	ir {
- 		ir_int: ir-int {
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-index b5bd5e7d5748..7eef6f7f108f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-roc.dtsi
-@@ -160,6 +160,10 @@ &gmac2io {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_logic>;
-+};
-+
- &hdmi {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index 5367e5fa9232..592fd8ca21df 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-@@ -152,6 +152,10 @@ &gmac2io {
- 	status = "okay";
- };
- 
-+&gpu {
-+	mali-supply = <&vdd_logic>;
-+};
-+
- &hdmi {
- 	avdd-0v9-supply = <&vdd_10>;
- 	avdd-1v8-supply = <&vcc_18>;
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202509061948.3VcIfqLx-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+>> drivers/clk/meson/s4-peripherals.c:1135:26: error: 'mux_table_cts_sel' undeclared here (not in a function)
+    1135 |                 .table = mux_table_cts_sel,
+         |                          ^~~~~~~~~~~~~~~~~
+>> drivers/clk/meson/s4-peripherals.c:1140:31: error: 's4_cts_parent_hws' undeclared here (not in a function); did you mean 's4_cts_parents'?
+    1140 |                 .parent_hws = s4_cts_parent_hws,
+         |                               ^~~~~~~~~~~~~~~~~
+         |                               s4_cts_parents
+   In file included from include/linux/build_bug.h:5,
+                    from include/linux/bits.h:30,
+                    from include/linux/bitops.h:6,
+                    from include/linux/of.h:15,
+                    from include/linux/clk-provider.h:9,
+                    from drivers/clk/meson/s4-peripherals.c:9:
+   include/linux/compiler.h:197:82: error: expression in static assertion is not an integer
+     197 | #define __BUILD_BUG_ON_ZERO_MSG(e, msg, ...) ((int)sizeof(struct {_Static_assert(!(e), msg);}))
+         |                                                                                  ^
+   include/linux/compiler.h:202:33: note: in expansion of macro '__BUILD_BUG_ON_ZERO_MSG'
+     202 | #define __must_be_array(a)      __BUILD_BUG_ON_ZERO_MSG(!__is_array(a), \
+         |                                 ^~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/array_size.h:11:59: note: in expansion of macro '__must_be_array'
+      11 | #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof((arr)[0]) + __must_be_array(arr))
+         |                                                           ^~~~~~~~~~~~~~~
+   drivers/clk/meson/s4-peripherals.c:1141:32: note: in expansion of macro 'ARRAY_SIZE'
+    1141 |                 .num_parents = ARRAY_SIZE(s4_cts_parent_hws),
+         |                                ^~~~~~~~~~
+
+
+vim +/mux_table_cts_sel +1135 drivers/clk/meson/s4-peripherals.c
+
+  1129	
+  1130	static struct clk_regmap s4_cts_encl_sel = {
+  1131		.data = &(struct clk_regmap_mux_data){
+  1132			.offset = CLKCTRL_VIID_CLK_DIV,
+  1133			.mask = 0xf,
+  1134			.shift = 12,
+> 1135			.table = mux_table_cts_sel,
+  1136		},
+  1137		.hw.init = &(struct clk_init_data){
+  1138			.name = "cts_encl_sel",
+  1139			.ops = &clk_regmap_mux_ops,
+> 1140			.parent_hws = s4_cts_parent_hws,
+  1141			.num_parents = ARRAY_SIZE(s4_cts_parent_hws),
+  1142			.flags = CLK_SET_RATE_PARENT,
+  1143		},
+  1144	};
+  1145	
+
 -- 
-2.34.1
-
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
