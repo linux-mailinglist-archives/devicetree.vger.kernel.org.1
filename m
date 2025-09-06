@@ -1,168 +1,183 @@
-Return-Path: <devicetree+bounces-213736-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213738-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971D7B46787
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 02:27:26 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48F1AB467DF
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 03:12:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FC1B7BC563
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 00:25:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F346A3B444E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9F4313BC3F;
-	Sat,  6 Sep 2025 00:27:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41784194A59;
+	Sat,  6 Sep 2025 01:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WZih08Mi"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jc85nQdR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1390517E4;
-	Sat,  6 Sep 2025 00:27:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 121E6DF49;
+	Sat,  6 Sep 2025 01:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757118442; cv=none; b=d+ns5G8Wzq4/8/OIHVeQ7sKifxqjTSZEkUy2zPAyoNWMqeXEiHxRlRcajBp0c7THmTeqNOtox5OU6LpXQ30qYBmQRiR/rmoviTap/QN4Uu06F8quGgjg+NJdhlNDSivTQ15hmBvi3LNltL+2aM5sq5B1nz9JzzrqhBRKf9b2ZOM=
+	t=1757121149; cv=none; b=G60F/N3B3/O5nJaN/HBdNqa05uPRd23S4KkKwEbWnaGJT3gWkKTJZG/Z1DjR8A+6QUAK3rBeCMiI/j0RU2XRdNDgnFALIfRqe7EF5cEdvBUsN4eo7PTA9OwqOueBQaz1pbWz88picnU6bkM3b7vYfUUEWLNrvmFR3DXNe3ACeXg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757118442; c=relaxed/simple;
-	bh=bgAaODRJaaXL55cTVTD4Jc8f3pi5mNBqrRSo/rUn/SU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Da1lY7kerbZjVQphWyT/+JFaMSCFbznCh9UHQO50a0T1Mq216V7i0nemI15Rl9T7AKlNlhhS6r4nXR+x3CpuYFIaAGlmwHgYWhLRc6OKsgwPUyLxSj//nOiAuV50ldFkfaMMCEOsO1WtOey5/ZoEfVjGmCGK15b5GeWdx4d/mcU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WZih08Mi; arc=none smtp.client-ip=209.85.214.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-2518cf2fa90so607275ad.0;
-        Fri, 05 Sep 2025 17:27:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757118440; x=1757723240; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=flbI5AyyYDq8+HOWMfiIyMCtsOE/imNqv1g0RSYJbFA=;
-        b=WZih08MiiwD9y8Owz+7AE4+fJsT8Iq9hAnETEjsCMQIVdCUH6zy+vB2hyIDrnOucgC
-         aPK5SzfLIylyjmxWdjjF+cVHmTtRbmyskjTzrVaqoDrUfQjhIa6Mq+hfN69FASIGpZRU
-         2B5DgbhGAWiFsWY7jZZEGP9QYcxJsBsPtyYSHgL/tvoiFH8cvsh4S98lv5f+wKAvIaWO
-         E81sQPFGjibnruFGO/77m8zUTq3Nj5l2kxuHdGkShsW6M8pMcfYcRFZQU8t74KM1IxLI
-         glKoegCNyNmzmmvMK+wPJlGiRmENjn9mSwaDvYcHtPTRNZ0YPJqPaLoLPkNtTry4i62V
-         R2ZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757118440; x=1757723240;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=flbI5AyyYDq8+HOWMfiIyMCtsOE/imNqv1g0RSYJbFA=;
-        b=uO7HueAezzPBqkS43MT5bAjYZcYq7Hy8kfhfTun1vd9vc7z5QulC+SY6U0I8sLjR2F
-         J5grs9k+GM14PKGrtsrA/wnEb4wJWg0oGhI95zyS1kTJ8Vo9mhvcWKDGi/Kp4sv2iSCh
-         TRS04pcxHpIk4MAT3g8QFKVPPetYCYlgaztUh6CWgnF2zwIhsngLxXv9ROvW7Bx1lqcr
-         fEVBzrGOrk1lsAz4JX/MRChFdVMdkaQniuEiturg1VmgowRwtSVtbu3fopNXe5u0IQ2B
-         eFcHtz9WI0hTu0iYYlqrGuYlCkv12zd4s2GM22k0/xSSbkxvZppSguHUbWZVbwjPy6KQ
-         mnUg==
-X-Forwarded-Encrypted: i=1; AJvYcCU/b5E6Fex2M1N4jFgwdju9/dB/0zt2j/s/D0ZwlkLBJIjNkdBLCHhA8WIA+Y2yg3afc/UJJMAE9vMgl70=@vger.kernel.org, AJvYcCUOvzsQZaXuv8HuAqcjPpuI3LVhYJLzJNb4upYTSq32f4NRg4PMhRHTq74HosFgJZWCyPCzwgBmnnQp@vger.kernel.org, AJvYcCXJiTl9P2BszFWdxCCy+7bUOvmkecSGu//rHTZbp85PPUHTsau78gskyooB01342/341B3JYXsSoUciqA==@vger.kernel.org, AJvYcCXrYbUWkCbegzjXuO5SPL2ei4/q2of7QdIb92IVuPLoIZyL/dLxMtEaVzoV5TJjLxYugYTJ6aPrZnj3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzkS6+pc3XjS2b04biPJ1rKO1o6S/eAt0xzPoUYAl3El2OBLZTG
-	6r1AYBRVs/BWbXIAwHa5ZAZZHGMLrF53RwdRmvYQGyBvJMH3xqhxvHLN
-X-Gm-Gg: ASbGnctNtlZW3j14AHGuGndi9pWQDcwQBjjwZ+1BP5uQq8HenJw+bQ4yLOK21N0+T5H
-	VJmDEgR9cR1mLWlXqZbMvfzNXmy09OHxsPXYwD+elo9yZs79mR3RrH8XBhJQHrRZgrL1u95RF3/
-	LhdZp0mRp6q3uBahXhXixZMhcD6SEImKoCbVWZPf3ZuXjyO40Yqjh5sGM7S9sfobwBoqD7FE0qT
-	Yms61UdlDgA7oW1eo5QOg5n051ElQi4j7Mlpu4qDM7v/1zuV7nO+7lQBsNavUxBbrxSRIq6SMcD
-	1yfIkuzQPT3wIxB6cD3Yz3WDkrtbL2uYon5AgDv776epMCRT33Ineb3n4kZae0/HJTEwvFXoSX6
-	HYRcW8YlS2sddxFpjjXmwDSs143+jeAMTJ3zltY7U4cRDAhCSgCfwTquMSEGDD9A5w6tRTu/8sS
-	7cVJRjLA==
-X-Google-Smtp-Source: AGHT+IF60LsDgF5p3wdFbbdHualqSeKDgxKiGX27Si/RTh45rxYyY9jMYurFIZjhVu+qI2aZy9EDsw==
-X-Received: by 2002:a17:903:4b50:b0:24a:ab0f:e87e with SMTP id d9443c01a7336-2517301ce3cmr5668105ad.55.1757118440149;
-        Fri, 05 Sep 2025 17:27:20 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24c9304b790sm81095345ad.67.2025.09.05.17.27.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 05 Sep 2025 17:27:19 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <ef30521a-0b0b-4339-a7c5-dd4ee11ae30a@roeck-us.net>
-Date: Fri, 5 Sep 2025 17:27:18 -0700
+	s=arc-20240116; t=1757121149; c=relaxed/simple;
+	bh=hWDMBBurSQ1kFU0x8+MG6LMQbMWAEOJcNOkBoQiLmWw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=f38/Lu4+hLl+EusCJVLTa3WJlDS7kg14FDbJq2CUMONB6PHlhvLS7ZWvGnPDfs91YP1/wd3cNqQCiStBXY3kusDCd1LlIffQi21QzNCPoxTYTwrpjngSjD9Sp0rasMDWYeKpgnJkgO4ADDUWZdoltcWnyknJnibgv3pc3VQAZ7s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jc85nQdR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75F33C4AF0B;
+	Sat,  6 Sep 2025 01:12:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757121148;
+	bh=hWDMBBurSQ1kFU0x8+MG6LMQbMWAEOJcNOkBoQiLmWw=;
+	h=From:Subject:Date:To:Cc:From;
+	b=jc85nQdRTQIn73jG/WMycs8nt4O8pLhfsj8Y3jHGRGSj717lhwRw8CUgbmZZc3XMd
+	 jW+e/cjeQZSWidsO4Vs2KpEhQEZa1SdgeiHV1EOK1b+LEZIjfDPWHBx5ooRujq2cDX
+	 yLdFeg9GGkXmX7aeaUOKbXGyoh5UUBM7PloB6xaYON4620F5nnFZf3FZ/QwCiRbzY2
+	 GtOnc9OtUl9e2emUrRs1c4oVyUIJdYSRlolMSM1wG0PE7I9o678yFT13tJKi7I97Mh
+	 8e+08SunCPTmQ5XedYGRtirxnAhuxAVjsv/iunJa0cEcJieXpDf51g+7vmKOT3PjNw
+	 W/FoWVcYOm1wg==
+Received: by venus (Postfix, from userid 1000)
+	id 67162180B10; Sat, 06 Sep 2025 03:12:26 +0200 (CEST)
+From: Sebastian Reichel <sre@kernel.org>
+Subject: [PATCH v3 0/3] platform: arm64: thinkpad-t14s-ec: new driver
+Date: Sat, 06 Sep 2025 03:12:02 +0200
+Message-Id: <20250906-thinkpad-t14s-ec-v3-0-3ce6ec21ae89@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-binbings: hwmon: Document the LTC4283 Swap
- Controller
-To: nuno.sa@analog.com, linux-hwmon@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-doc@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>,
- Jonathan Corbet <corbet@lwn.net>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>
-References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
- <20250903-ltc4283-support-v2-1-6bce091510bf@analog.com>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250903-ltc4283-support-v2-1-6bce091510bf@analog.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAGOKu2gC/33NTQrCMBCG4auUrI2kSX/UlfcQF5PMxAZrU5ISl
+ NK7m3YjiLh8P5hnZhYpOIrsVMwsUHLR+SGH2hXMdDDciDvMzaSQtTiokk+dG+4jIJ/KKnIyHJG
+ 0VKgRrGb5bAxk3XMjL9fcnYuTD6/tQyrX9Q+WSi54Q6IB0YIlYc/G9z1oH2Bv/IOtYJIf5CjqH
+ 4jMSItQYysAKqm+kWVZ3krKjdP5AAAA
+X-Change-ID: 20250831-thinkpad-t14s-ec-ddeb23dbdafb
+To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
+ =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Mark Pearson <mpearson-lenovo@squebb.ca>
+Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>, 
+ Henrique de Moraes Holschuh <hmh@hmh.eng.br>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=4467;
+ i=sebastian.reichel@collabora.com; h=from:subject:message-id;
+ bh=hWDMBBurSQ1kFU0x8+MG6LMQbMWAEOJcNOkBoQiLmWw=;
+ b=owEBbQKS/ZANAwAKAdju1/PIO/qaAcsmYgBou4p4NEg2YI2IuvcxnfJMfcL1M7t21H2m5UjS4
+ jw2e+lUXCKJAjMEAAEKAB0WIQTvZg0HRj+Lcmp5VBPY7tfzyDv6mgUCaLuKeAAKCRDY7tfzyDv6
+ mseZEACkSPadcqjZefa9PQ5tx24NPdJZSCEjtFopiOCJLMCGiewVu5B03RVU9KsWdQZ5vVLoOMU
+ psg59eDy0vxZMzA+/6QTE1rXxpvw3yiWOjZV1FpJugVdqaWi8oTMf0cLCeFNSYnAD55Et7UbLKq
+ xWmEN0h23N81udDAh2s1dNg1uvrvELXqRo7mdsMVKTuVAn767ksRqzuf0B61SWo+tsUo3hJyh+G
+ Y40Q/DUq4i6eoSdsY6CE4oTkfalIVbG096b7PykkaCQEp8rL1yaCgq7znr5PKJrd/8iVAjijnu2
+ 8T1/+dW3QZ38JkP550GvwwfopkRFh9uluUtNjbLg13XU8wHMsy1wi1Zks7KxNOi2puGfFzXS8Yh
+ yj8oIyVt2J01K3fL2ba1eoz3T4uUgo73vR6qtTtQj3DIG48Qg6wcVkQ9EbqCp7s86ZIoCb3AMdR
+ xpWY8CpNqWWus613wfRbJLg6gFZ8ex7K061K+aoXRn5dZEt7CRurzzdL0Vx57li1rmpYNHGldTc
+ SLzojZusHJ+oaltvB11vX4Z8eN6LRtNljwYnW2kepJpbI8pOnZCzM2DSQlgJdal6JzRzXvlbkuc
+ fXUn472nwvhNNlF4uIfI15P33QJc6rsrjCjgVKrXipTcCglBbSiYXs8PsbjroYArjtV67ljCTRn
+ HettiJ12mp27Bmg==
+X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
+ fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
 
-On 9/3/25 03:04, Nuno Sá via B4 Relay wrote:
-> From: Nuno Sá <nuno.sa@analog.com>
-> 
-> The LTC4283 is a negative voltage hot swap controller that drives an
-> external N-channel MOSFET to allow a board to be safely inserted and
-> removed from a live backplane.
-> 
-> Special note for the "adi,vpower-drns-enable" property. It allows to choose
-> between the attenuated MOSFET drain voltage or the attenuated input
-> voltage at the RTNS pin (effectively choosing between input or output
-> power). This is a system level decision not really intended to change at
-> runtime and hence is being added as a Firmware property.
-> 
+Introduce driver for the ThinkPad T14s Gen6 Snapdragon EC. In theory
+it seems to be compatible with the ThinkPad ACPI driver, but these
+devices are booted with device tree. As the name implies, the existing
+ThinkPad ACPI driver only supports the ACPI interface. Looking at
+the implementation, the ACPI DSDT contains many mapping functions
+to translate the low level I2C messages into the interface used by
+the ThinkPad ACPI driver. Adding DT support to the ThinkPad ACPI driver
+would require adding all those translation functions, which would add
+more or less the same amount of code as writing a separate driver using
+the low level interface directly. I don't think it's sensible to make
+the existing ACPI driver even more complicated, so I went for a separate
+driver.
 
-In case no one mentioned/noticed it:
+I managed to get system LEDs, audio LEDs, extra keys and the keyboard
+backlight control working. The EC also seems to be used for some thermal
+bits, which I haven't looked into deeply. As far as I understand most
+thermal and fan control is handled by a different controller
+(0x36@i2c5) anyways.
 
-s/binbings/bindings/
+Apart from that the EC is involved in proper system suspend, which
+is something I do not yet understand (I don't have any documentation
+apart from the dis-assembled DSDT and existing ACPI driver). Right
+now I disabled wake capabilities for the IRQ, since it would wake
+up the system when closing the LID. Hopefully a way to mask specific
+events will be found in the future.
 
-in subject.
+Changes in v3:
+- Link to v2: https://lore.kernel.org/r/20250905-thinkpad-t14s-ec-v2-0-7da5d70aa423@collabora.com
+- Add <linux/container_of.h> include (Ilpo Järvinen)
+- Add <linux/dev_printk.h> include (Ilpo Järvinen)
+- Add <linux/interrupt.h> include (Ilpo Järvinen)
+- Align CMD defines (Ilpo Järvinen)
+- Rename thinkpad_t14s_led_set() to thinkpad_t14s_led_brightness_set() (Ilpo Järvinen)
+- Replace && with & in thinkpad_t14s_audio_led_get(); good catch! (Konrad Dybcio)
+- Use regmap_assign_bits in thinkpad_t14s_audio_led_set (Konrad Dybcio)
+- Directly return input_register_device() at the end of
+  thinkpad_t14s_input_probe (Konrad Dybcio)
+- Remove THINKPAD_ prefix (Konrad Dybcio)
+- Also use T14S_EC_ prefix for LEDs states (myself)
+- Collect Reviewed-by tags
+
+Changes in v2:
+- Link to v1: https://lore.kernel.org/r/20250831-thinkpad-t14s-ec-v1-0-6e06a07afe0f@collabora.com
+- Apply Reviewed-by tags from Bryan O'Donoghue
+- Apply Tested-by tags from Neil Armstrong
+- Update DT binding description, location and examples (Krzysztof Kozlowski)
+- Add missing wakeup-source to DT binding (Rob Herring Bot)
+- Update DTS newlines, pinctrl order, nodename (Konrad Dybcio)
+- Updates to EC driver
+  - Add bits.h and bitfield.h include (Ilpo Järvinen)
+  - Drop mutex.h (myself, leftover from development)
+  - Drop DEBUG define (Ilpo Järvinen)
+  - Add THINKPAD_T14S_EC_BLINK_RATE_ON_OFF_MS (Bryan O'Donoghue, Ilpo Järvinen)
+  - Add THINKPAD_T14S_EC_KEY_EVT_OFFSET (Ilpo Järvinen)
+  - Add THINKPAD_T14S_EC_KEY_ENTRY (myself, to keep line length sane
+    after THINKPAD_T14S_EC_KEY_EVT_OFFSET)
+  - Align values of thinkpad_t14s_ec_led_status_t (Ilpo Järvinen)
+  - Use u8 instead of char for I2C command buffers (Ilpo Järvinen)
+  - Add some more newlines after goto/return (Bryan O'Donoghue)
+  - Use FIELD_PREP/FIELD_GET instead of _SHIFT (Ilpo Järvinen)
+  - Explicitly map to LED_ON/LED_OFF in audio_led_get (Ilpo Järvinen)
+  - Add missing , after .driver.of_match_table (Ilpo Järvinen)
+  - Change from KEY_MODE to KEY_PERFORMANCE (myself after seeing a patch
+    for HID lenovo being sent to the list)
+
+Signed-off-by: Sebastian Reichel <sre@kernel.org>
+---
+Sebastian Reichel (3):
+      dt-bindings: platform: Add Lenovo Thinkpad T14s EC
+      platform: arm64: thinkpad-t14s-ec: new driver
+      arm64: dts: qcom: x1e80100-t14s: add EC
+
+ .../lenovo,thinkpad-t14s-ec.yaml                   |  50 ++
+ MAINTAINERS                                        |   6 +
+ .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    |  24 +
+ drivers/platform/arm64/Kconfig                     |  20 +
+ drivers/platform/arm64/Makefile                    |   1 +
+ drivers/platform/arm64/lenovo-thinkpad-t14s.c      | 607 +++++++++++++++++++++
+ 6 files changed, 708 insertions(+)
+---
+base-commit: b320789d6883cc00ac78ce83bccbfe7ed58afcf0
+change-id: 20250831-thinkpad-t14s-ec-ddeb23dbdafb
+
+Best regards,
+-- 
+Sebastian Reichel <sebastian.reichel@collabora.com>
 
 
