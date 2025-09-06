@@ -1,133 +1,107 @@
-Return-Path: <devicetree+bounces-213743-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213744-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FC10B46805
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 03:35:15 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F119B4680F
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 03:47:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F75A3BF237
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:35:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB6157B0C76
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 01:45:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B919318FC92;
-	Sat,  6 Sep 2025 01:35:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jeGEp8jM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6C4D986347;
+	Sat,  6 Sep 2025 01:47:07 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from cstnet.cn (smtp81.cstnet.cn [159.226.251.81])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E70A55;
-	Sat,  6 Sep 2025 01:35:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B5BB1DA23;
+	Sat,  6 Sep 2025 01:47:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757122510; cv=none; b=SvOQhs3T55XCjJRCcyRhBFWE/08Ym2IPS22KqRyWwcgUa+2Ca+F8GQuplpgJDO3ukiyhC7/rZ8B3Vm4OmJeyHtaIGbK4/r7DnYrMJ2hrfZOwXTdh7i3X69/g90P3w4xIHKnAPKK/fvT84l/y1ZA7C8Tlc/Ll7ui87G3I8xyOv9I=
+	t=1757123227; cv=none; b=Puefzu92+6fgCTjTGAn3sctU35abTWwauWNVg0UKfuY6D6u2IMOcvrGKLYUQ4p6ziaykKbwyJ4GFYqFhbDpsYJ9fK3eK4rSIszLKtMoxxQuffmLSto187DYDGTEFLzUy9XmzTQuAwYvzD6bFhTlBEAQFs2cissHCE+nSrZnl3wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757122510; c=relaxed/simple;
-	bh=yuxno6aCRHrUWvFqeYUtAlBYHeeI/Dg5Qu4SNRdlRG8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=elRdrBCKQmlP0NvK2PgmrnEYta8qXJ1UGV6yfauX2qF5HAR0tdnHyxlIReICqou04j0ZvnmmGx9c5o0pQ1q8S9J3gQ7ZXMPy0YhrEMBjdH1hDPajgLpzsh+g+85wL00mKWR0TUsotZdscOaNi+KbNZwTkniZirffoFkRCcwOuZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jeGEp8jM; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-61cebce2f78so3295808a12.1;
-        Fri, 05 Sep 2025 18:35:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757122507; x=1757727307; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CqNxXQ4nHpsF+qXR4Dx8odJeFWSsZU+70lFnX5QCDhY=;
-        b=jeGEp8jMxr/onFev5Fc6AmzIF/fLFNxmCkJgXbo5o4XdKkSZA5HMxTTLwYMAWuLvDH
-         PxqYd5VTSNAzwulzmLBkSFc2Q46JLg/+DPxh717qiBXLTrpMbX0mF3QlGXvbsOHg0o4/
-         7ZOO2zhOn42LYFCA+gxJw6+iKAguZmPsa/J9Fma4N2qo7TUUUfO5hTxTDSxt70oXl/CJ
-         m0ApOYioNVzsfBZADIL7fcPjJ8h8hQmJsIUnMeO4BLfkdsqjDHjjNH0PXeB8XwyP0piS
-         wrrBYzZaYqCDDZNHgxE5wD7mTbnhC7VQ3nNsFoBX+gp8F+yv1z9r+tsIq8B+O0ZT5RBh
-         gHAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757122507; x=1757727307;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CqNxXQ4nHpsF+qXR4Dx8odJeFWSsZU+70lFnX5QCDhY=;
-        b=O52ivj/4oZLbdVd6YIdyVJkVadzg77kfdrPi302wukxhz2nSCovJh/OjR2WB9y+RQx
-         UXehByEXmJeCUqETOJvLUVUvjsQqZzuwuYNRBD1XJz1F/7b5YOd0aIpK325MMZ17Zpaw
-         3etIksbhxpoyi8nkmMCPTNcc2NQhE0Hgnl73fKkupbhJjKfZ7zNJk+OyHtZW9lpnWlxz
-         aMuooSTDOVrA6ZzPVeLy9TYMkI1x2mT35diWbwqdqXkYj7MF1gJ7443HKx3ImDvP01Xf
-         D2XpF04SRIj8vOXSrwByEQ6Iv6ciK4tShYjJAjP8i0Vl3x302vqeyPOHASsM8a9gUyc/
-         2RrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVmCkZn/VHbRAeWvNu+W+kAvTvYX6AfrvtRYHVVJF8U/dVFKGxpM+hrKxfr2iHWDpyiBvPfsTLWdoMlYhBJ@vger.kernel.org, AJvYcCWNZFAbh0dX+ndzghR7ycrT2hrI7bokU6mxbSahd1fXQH3hLE1B90kq1Ui2s0qFACDRSRelbzHtK3DA@vger.kernel.org, AJvYcCX9bqhHwH4asXug3vulYII1rn1+IauhfmxOV+9o4UOaQ4i2eGPuBEPNToY8byErOioojyCi89Z+FHr3@vger.kernel.org
-X-Gm-Message-State: AOJu0YzwXqQ2YYY21M6YU5pYNS8TT7RZuhVP7FnZj/yxw17WG0sPXTGd
-	SiIKt0NHtvskCyDZwEYNuGHeFOLNaNNf6tsfyU6FsiIoz02Fch5/kfXy0MPJ+E2/UNJgz8z/YQH
-	H9MR8YwHY8O7R+vxljsSW0Eg8lIINF998xYqaPX5xWUqw
-X-Gm-Gg: ASbGncsXi3R+CHUOkXIu3TeLQ8qlHL9xkoLskPeFTiJWvmGAhtwgRJI8Q16j4U86Jlt
-	veqqNaapvE1kPSsQ7KXtJjf81GNaAMD+76fMj9fQnpieIimc/ELFb+e/YAn7ksmzSqFZuEtQlcF
-	VFst1u45MalIQz02wAy1pDM+tQvWA/9A2zjyrOix3ZcawNwrP2T00S2Ok6xoaGn8B1RUoWorG2u
-	0fwS+RVDxN6w9vXIg==
-X-Google-Smtp-Source: AGHT+IHUk2XfEP3oZ1qlnnJyiPfNm42Q4P5RUupaRScX2mRrTgQl+/WpyWfrV8JDjZaSVCFI462i2vBCUsBzJ3JREIg=
-X-Received: by 2002:a05:6402:370d:b0:61c:5cac:2963 with SMTP id
- 4fb4d7f45d1cf-6237f944ec1mr747810a12.29.1757122507114; Fri, 05 Sep 2025
- 18:35:07 -0700 (PDT)
+	s=arc-20240116; t=1757123227; c=relaxed/simple;
+	bh=jqOyWvf19hwcssGfnEv2R3bI3eGkV4DbfS3igJePDmI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JxpUDKogcrQO41zctnOpBcoRmucWPIt0K1SiTk46ej9ywffpS1b7osfIDur7LtP26T5QuHL2I75o5QAYPpsGkHzR4QgV82CcWjurZmKunoLj5/QFVwfj16mYMgz80sltCLvaAVGP3X2GadQEt9H5HNZztJHq9PAXPLtEWHZScuY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
+Received: from [192.168.0.105] (unknown [114.241.87.235])
+	by APP-03 (Coremail) with SMTP id rQCowAC3B4J2krtoUhLyAA--.63050S2;
+	Sat, 06 Sep 2025 09:46:31 +0800 (CST)
+Message-ID: <19279021-e89e-458a-8bf1-62ad2f76a0ba@iscas.ac.cn>
+Date: Sat, 6 Sep 2025 09:46:31 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905132328.9859-1-cn.liweihao@gmail.com> <20250905132328.9859-3-cn.liweihao@gmail.com>
- <707aad1d-fcdb-4c66-8d96-41cf1a1b02ce@kernel.org>
-In-Reply-To: <707aad1d-fcdb-4c66-8d96-41cf1a1b02ce@kernel.org>
-From: =?UTF-8?B?5p2O57u06LGq?= <cn.liweihao@gmail.com>
-Date: Sat, 6 Sep 2025 09:34:51 +0800
-X-Gm-Features: Ac12FXz_ebvQ7hvtXykd69gMxtD2syeHiyJATPrpJ61FnCFXWiMfi64X3YV7b4Q
-Message-ID: <CAPEOAkRTVtKBsmiGTbKOCar0oNS-C3dRXqdpuowroRPH1bFS7g@mail.gmail.com>
-Subject: Re: [PATCH v1 2/4] dt-bindings: clock: rk3368: add CLK_I2S_8CH_PRE
- and CLK_I2S_8CH_FRAC
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: heiko@sntech.de, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Simon Horman <horms@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexandre Ghiti <alex@ghiti.fr>, Vadim Fedorenko
+ <vadim.fedorenko@linux.dev>, Junhui Liu <junhui.liu@pigmoral.tech>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
+ Troy Mitchell <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+ <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+ <20250905153500.GH553991@horms.kernel.org>
+ <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
+ <20250905160158.GI553991@horms.kernel.org>
+ <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
+ <20250905165908.69548ce0@kernel.org>
+Content-Language: en-US
+From: Vivian Wang <wangruikang@iscas.ac.cn>
+In-Reply-To: <20250905165908.69548ce0@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:rQCowAC3B4J2krtoUhLyAA--.63050S2
+X-Coremail-Antispam: 1UD129KBjvdXoW7JFyDKF1DKr48Kr1UJF17trb_yoW3WFXEgr
+	Wq9Fs2krs8WF1qga13Ja1Ygr4DAa42gFyUXryS9w1qv3sxXFyFgF4DWr4qvw18W3yagrnI
+	qr4rZrn7u34jgjkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
+	9fnUUIcSsGvfJTRUUUbsAYjsxI4VWkCwAYFVCjjxCrM7AC8VAFwI0_Xr0_Wr1l1xkIjI8I
+	6I8E6xAIw20EY4v20xvaj40_Wr0E3s1l1IIY67AEw4v_Jr0_Jr4l8cAvFVAK0II2c7xJM2
+	8CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67AKxVW8JVW5JwA2z4x0Y4vE2Ix0
+	cI8IcVCY1x0267AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIE14v26r4UJVWxJr1l84ACjcxK6I
+	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
+	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
+	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
+	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
+	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
+	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
+	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
+	UI43ZEXa7IUn1v3UUUUUU==
+X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-Hi,
 
-Krzysztof Kozlowski <krzk@kernel.org> =E4=BA=8E2025=E5=B9=B49=E6=9C=885=E6=
-=97=A5=E5=91=A8=E4=BA=94 22:13=E5=86=99=E9=81=93=EF=BC=9A
->
-> On 05/09/2025 15:23, WeiHao Li wrote:
-> > We need a clock id to assign clock parent when use i2s 8ch as audio
-> > device, CLK_I2S_8CH_FRAC should be CLK_I2S_8CH_PRE parent so we can get
-> > frequency we want.
-> >
-> > Signed-off-by: WeiHao Li <cn.liweihao@gmail.com>
-> > ---
-> >  include/dt-bindings/clock/rk3368-cru.h | 3 +++
-> >  1 file changed, 3 insertions(+)
-> >
-> > diff --git a/include/dt-bindings/clock/rk3368-cru.h b/include/dt-bindin=
-gs/clock/rk3368-cru.h
-> > index b951e29069..795e721957 100644
-> > --- a/include/dt-bindings/clock/rk3368-cru.h
-> > +++ b/include/dt-bindings/clock/rk3368-cru.h
-> > @@ -183,6 +183,9 @@
-> >  #define HCLK_BUS             477
-> >  #define HCLK_PERI            478
-> >
-> > +#define CLK_I2S_8CH_PRE              500
->
-> 479
->
-> > +#define CLK_I2S_8CH_FRAC     501
->
-> 480, no?
->
+On 9/6/25 07:59, Jakub Kicinski wrote:
+> On Sat, 6 Sep 2025 00:35:37 +0800 Vivian Wang wrote:
+>>>> On a closer look, these counters in ndev->stats seems to be redundant
+>>>> with the hardware-tracked statistics, so maybe I should just not bother
+>>>> with updating ndev->stats. Does that make sense?  
+>>> For rx/tx packets/bytes I think that makes sense.
+>>> But what about rx/tx drops?  
+>> Right... but tstats doesn't have *_dropped. It seems that tx_dropped and
+>> rx_dropped are considered "slow path" for real devices. It makes sense
+>> to me that those should be very rare.
+> Pretty sure Simon meant the per-cpu netdev stats in general.
+> There are three types of them, if you need drops I think you
+> probably want dstats. Take a look.
 
-Neither of these clocks belong to the previous grouping in terms of
-type, so I chose to start with a new integer id here.
+Thank you, I will look into this.
 
-Yours,
-WeiHao
 
