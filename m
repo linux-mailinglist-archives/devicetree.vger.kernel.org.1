@@ -1,80 +1,88 @@
-Return-Path: <devicetree+bounces-213898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA277B4734C
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 18:00:27 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id DC8F1B47405
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 18:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C6F1189FDB2
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 16:00:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66AC37B3062
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 16:18:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 294002288EE;
-	Sat,  6 Sep 2025 16:00:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CC1D25393C;
+	Sat,  6 Sep 2025 16:20:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="I2ntx3js"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dPypL8pJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 230342264D6;
-	Sat,  6 Sep 2025 16:00:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B365124729D;
+	Sat,  6 Sep 2025 16:20:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757174406; cv=none; b=tbQ5MVcVUuFtq1JHKzDMYcwSpb3ljEUNWLmegQDq5dDr7mbKHnfcpE5b+cMuyEKW0Jcx9cg4rAqFeuBG9WBGPMLwkpgdXognJgcznK1ly8rX0vgopctTyxutTpI8mo/VMlcMSJbsX7Z6k635Eq+J4gsdCTH/9avlmf3UEmVggqM=
+	t=1757175615; cv=none; b=lfIAXBn6IAXKu5riI4/lup/RqS6P6o+N2sOQfZ5r7JguB3JRvzDKwgPdPN8T7nzRju0BFMPBZmJMi3zUhBU6hRQFjFK12kDXhJe66hVQ/gSoBXUsiKBqOJ98OC1M1CxkWcooAPZAnYsCefVDaZGFOJ1yzfDXCIB56JtshtYQTJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757174406; c=relaxed/simple;
-	bh=WUhsfst+t0XA7eALQAuAAQ1QqyE/1cJqSc+0vKr5M+8=;
+	s=arc-20240116; t=1757175615; c=relaxed/simple;
+	bh=Bn/jHYQx200PUbSrc1Z66yZsA5qTF4RnElG8e9gDuFE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Xm4lNKQh9K39WbgfA4FvPE+TnlmgWJ12aVfsI9nA+iHiOTy3FmhM1+llVrf5VMcln2Yjiehtteay0fua5N4C7Bqgk6c3ZbN/AZcVnl9O8hxC3yF60jT4RmukmVQ8TZPupOsAPScRnYUvFGmcYjCUkiE0yNWFhSonv4Vuijr4Pmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=I2ntx3js; arc=none smtp.client-ip=198.175.65.15
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757174404; x=1788710404;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=WUhsfst+t0XA7eALQAuAAQ1QqyE/1cJqSc+0vKr5M+8=;
-  b=I2ntx3js75/Qk1Bu41HaWodYEUpCoDemF71qRcx83bKErOkuePJkEE4Y
-   PNaTfvdWGuipcWMLgGKBj7As+SCMEkwLTwVQP506VsjbjtmdhJT5fmCmE
-   XIxKlF8Iv7YjPcPEEuDpEbFWtR2uhfFcLvZ9YwOCnqNyVm/MJDWHUzJ1Y
-   ujfYK25NXAJ30SKhwKhB9ABspkBFvk8lUQsL380Q2JjzZIBWvUqFXSOaI
-   kYvFsjyfW7+DzhYC1wewAP8Hfb/A3rjHokbA/0RSsE9oAEdok4R06oxvt
-   ajSMBTnByui3+dt9U6y91wt9IkfP0MIe+xp5NJCfucFv9Tn0Z2FLsrZPu
-   A==;
-X-CSE-ConnectionGUID: rMFKnipaQFWviunRXFMkzw==
-X-CSE-MsgGUID: 17WONNIgQwefNS4MOamrOw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11545"; a="63135057"
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
-   d="scan'208";a="63135057"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 09:00:04 -0700
-X-CSE-ConnectionGUID: /80grLjnS9W6VoqG2YW13A==
-X-CSE-MsgGUID: gvZKXpPfS72uzbhb/gOiQg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,244,1751266800"; 
-   d="scan'208";a="172513740"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 06 Sep 2025 08:59:59 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uuvKW-0001bD-0V;
-	Sat, 06 Sep 2025 15:59:56 +0000
-Date: Sat, 6 Sep 2025 23:59:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Billy Tsai <billy_tsai@aspeedtech.com>, lee@kernel.org, robh@kernel.org,
-	krzk+dt@kernel.org, conor+dt@kernel.org, joel@jms.id.au,
-	andrew@codeconstruct.com.au, linus.walleij@linaro.org,
-	brgl@bgdev.pl, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	linux-gpio@vger.kernel.org, BMC-SW@aspeedtech.com
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v2 3/4] pinctrl: aspeed: Add AST2700 pinmux support
-Message-ID: <202509062340.wX64fW0j-lkp@intel.com>
-References: <20250904103401.88287-4-billy_tsai@aspeedtech.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=RZSNb/ciTG60AgPsdgOUAicrtksvyW1pZFT+KMsStaWI9hKAfEKt2cmrrBPg7nkHqFmkdD67IJ/uJcxxAPf2xt15iNxgY2WsJ2WOn6QfFxL+n19Jk5TXNipnma7vMTqwaGHmJrsC3dSJbQCUiRxYPbOy862/oWHpUxR9xvLrd50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dPypL8pJ; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-7728815e639so1761075b3a.1;
+        Sat, 06 Sep 2025 09:20:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757175613; x=1757780413; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=qlAicO4VJuwjpI/abeEihOqBcsHKjK5GHV5eGSORL6E=;
+        b=dPypL8pJHsPQtop7/pjqBYD32TCLmPfQ/c6zwAc71D/QF6azLXV6IqMLa1cJ7nV4hy
+         Yeeqcdh4SMJ0UCDdJO4th+WfbIf1RHRMFfDw3HLlXKF85zFUa+9MAdDQZ7hgJ9LzgYca
+         XB3E7F4VFBaFYmf0LjLEcEmP5cZhkF3ln2bgnCXCTeMlNznCYavg3cOOQt2L8RPSpuNR
+         jKKz6GUDOKG4P1PWPAzHxjC5mv2Kbi8Nh8zAHVKV8SaF6Xi3vhhu/g8RYALNQoa23hHS
+         TFwA8Kxq4CYUyGPOV4kV589f9Srfz1qmkvh/DWq4YEFxSHQAOSJbA0TMxq6DCRKgyNDB
+         1hww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757175613; x=1757780413;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qlAicO4VJuwjpI/abeEihOqBcsHKjK5GHV5eGSORL6E=;
+        b=KOpcenwyQg8+ycDX5EIVLXSEXyD8Z6J0YpVFZK0SfM7xbeu4MJMy3Cz/CoClfVgzHh
+         UUq3/wQNtZntCzfN0ebV2P5SJOo0l6oQz3p2aJ8PQxkdYy6W87el+bnP3gvV7wJ9amJi
+         +KtTkC91wLj02ueIW2DQqV+bqn87Q1sOLicVL+UurPQrk9igeBS80QtsIyWj6B3hL9Zt
+         g7plP6e6qlZXojrtynHt00zxM79cVWiBLNBfFob0Ou7wWNzc1bZ6MIVdTJn43lOPFfzL
+         Qd1lnKONAWz1NdehewXdIOh1UQS4rnPie+fJsioHxNaI6EX+EsqIa5yX4CxwbY85O9IM
+         VoIg==
+X-Forwarded-Encrypted: i=1; AJvYcCW/8elXuBkgfcEioKiCGlHw3YxCsowIqtE6coHSc6t4u214NQmHHlwUGStdmewbL64K3j9q3nQO/kgFJ88=@vger.kernel.org, AJvYcCWUJ3gu/P7RLozsTeBoqslgIICBQfO2d3pq23zKM4P/JB7dwaFv1clzKyiXjHj14h3IYl3ME0NNHPXu@vger.kernel.org, AJvYcCXHqsIOpBqEPR59/9qv0ZpqHDjHRjYb1Uf7GXzl+wox87iRmjPuU4ZQCxMf8/2niMxAxIn8LpfYl+o1BwF9@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQ7TriCYigPFhaCREa7/a/6fmxtFkwhalvaGDvEs2c3kWLzWAZ
+	RsUpLVo0glNkUKlguzXsc9LVYjROsEOubnleGzQf2C2ZLz3l/Rrfv836
+X-Gm-Gg: ASbGnctPVlRegDAatVgGlgqjRCxVx0pSfzjdi43Edkc3v9Fq/w9tyTS70L09XSJm8PA
+	rXEVJ9VmGJCTa83nhuDvldqsPFuej8oOZPrKEBqfuLxydgOI+4c6GGzC5sZL2y8hl+Z6Q7Puu09
+	mNUnCnCc+CPAfEi9h//rXnW3Y7zuyrEizHEL5/FoTLGi+Y8uvICKJ+IQj0XYIZz8hVlOeY5+egn
+	pdAycdsRoknlMknRD9ZuPm6UOSSRFkFHnJxoPfo5zEHWPTLM+0ZqPBC+ZpysXBoH/RczHKL2NH7
+	85MQtAJPHIKngI6gMlGyuRaXNYG7MLZmyPUHIr5hvC6UOxkBaUOztiEvusLdlxDt92rmlUe1d4r
+	z/OvO2UyCVKDn8sdpYfDXmnE=
+X-Google-Smtp-Source: AGHT+IEswQp2znCUxy3aqeMwXMObMkOU3eyuAOWo7d7qI92Dc7qQl74XXiqhutZY570cVte/uEI5FA==
+X-Received: by 2002:a05:6a20:6a20:b0:243:a4de:d7f with SMTP id adf61e73a8af0-2533d6059a9mr3442665637.11.1757175612868;
+        Sat, 06 Sep 2025 09:20:12 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:e08d:5959:e7ec:1beb])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-b4cd006dd49sm22515784a12.5.2025.09.06.09.20.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Sep 2025 09:20:12 -0700 (PDT)
+Date: Sat, 6 Sep 2025 09:20:09 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"open list:INPUT (KEYBOARD, MOUSE, JOYSTICK, TOUCHSCREEN)..." <linux-input@vger.kernel.org>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>, imx@lists.linux.dev
+Subject: Re: [PATCH v2 1/1] dt-bindings: input: exc3000: move eeti,egalax_ts
+ from egalax-ts.txt to eeti,exc3000.yaml
+Message-ID: <ux4t56t2ec2gejy7hr2dpht6f7acda3gkm3edfshk75idgpzmd@g7d3bvrtxppk>
+References: <20250904171543.517650-1-Frank.Li@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,167 +91,28 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250904103401.88287-4-billy_tsai@aspeedtech.com>
+In-Reply-To: <20250904171543.517650-1-Frank.Li@nxp.com>
 
-Hi Billy,
+On Thu, Sep 04, 2025 at 01:15:41PM -0400, Frank Li wrote:
+> Remove legacy binding egalax-ts.txt file. And add compatible string
+> eeti,egalax_ts and wakeup-gpios to eeti,exc3000.yaml. "eeti,egalax_ts" is
+> general compatible string, which is not preferred. But it is compatible
+> with old devices (older than 10 years) and existing driver in
+> drivers/input/touchscreen/egalax_ts.c.
+> 
+> Allow address 0x4 for eeti,egalax_ts.
+> 
+> Don't require touchscreen-size-x(y) for eeti,egalax_ts.
+> 
+> Keep the same restriction for existing compatible string.
+> 
+> Fix below DTB_CHECKS warnings:
+> arch/arm/boot/dts/nxp/imx/imx6dl-gw52xx.dtb: /soc/bus@2100000/i2c@21a8000/egalax_ts@4: failed to match any schema with compatible: ['eeti,egalax_ts']
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on linusw-pinctrl/devel]
-[also build test WARNING on linusw-pinctrl/for-next robh/for-next lee-leds/for-leds-next linus/master v6.17-rc4 next-20250905]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Billy-Tsai/dt-bindings-mfd-aspeed-ast2x00-scu-Support-ast2700-pinctrl/20250904-184115
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-patch link:    https://lore.kernel.org/r/20250904103401.88287-4-billy_tsai%40aspeedtech.com
-patch subject: [PATCH v2 3/4] pinctrl: aspeed: Add AST2700 pinmux support
-config: arm-allyesconfig (https://download.01.org/0day-ci/archive/20250906/202509062340.wX64fW0j-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250906/202509062340.wX64fW0j-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509062340.wX64fW0j-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
-   In file included from drivers/pinctrl/aspeed/pinctrl-aspeed.h:15,
-                    from drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c:18:
->> drivers/pinctrl/aspeed/pinmux-aspeed.h:741:26: warning: 'group_pins_LTPI_I2C3' defined but not used [-Wunused-const-variable=]
-     741 | #define GROUP_SYM(group) group_pins_ ## group
-         |                          ^~~~~~~~~~~
-   drivers/pinctrl/aspeed/pinmux-aspeed.h:743:26: note: in expansion of macro 'GROUP_SYM'
-     743 |         static const int GROUP_SYM(group)[] = { __VA_ARGS__ }
-         |                          ^~~~~~~~~
-   drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c:479:1: note: in expansion of macro 'GROUP_DECL'
-     479 | GROUP_DECL(LTPI_I2C3, J9, J10);
-         | ^~~~~~~~~~
->> drivers/pinctrl/aspeed/pinmux-aspeed.h:741:26: warning: 'group_pins_LTPI_I2C2' defined but not used [-Wunused-const-variable=]
-     741 | #define GROUP_SYM(group) group_pins_ ## group
-         |                          ^~~~~~~~~~~
-   drivers/pinctrl/aspeed/pinmux-aspeed.h:743:26: note: in expansion of macro 'GROUP_SYM'
-     743 |         static const int GROUP_SYM(group)[] = { __VA_ARGS__ }
-         |                          ^~~~~~~~~
-   drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c:478:1: note: in expansion of macro 'GROUP_DECL'
-     478 | GROUP_DECL(LTPI_I2C2, H10, H11);
-         | ^~~~~~~~~~
->> drivers/pinctrl/aspeed/pinmux-aspeed.h:741:26: warning: 'group_pins_LTPI_I2C1' defined but not used [-Wunused-const-variable=]
-     741 | #define GROUP_SYM(group) group_pins_ ## group
-         |                          ^~~~~~~~~~~
-   drivers/pinctrl/aspeed/pinmux-aspeed.h:743:26: note: in expansion of macro 'GROUP_SYM'
-     743 |         static const int GROUP_SYM(group)[] = { __VA_ARGS__ }
-         |                          ^~~~~~~~~
-   drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c:477:1: note: in expansion of macro 'GROUP_DECL'
-     477 | GROUP_DECL(LTPI_I2C1, H8, H9);
-         | ^~~~~~~~~~
->> drivers/pinctrl/aspeed/pinmux-aspeed.h:741:26: warning: 'group_pins_LTPI_I2C0' defined but not used [-Wunused-const-variable=]
-     741 | #define GROUP_SYM(group) group_pins_ ## group
-         |                          ^~~~~~~~~~~
-   drivers/pinctrl/aspeed/pinmux-aspeed.h:743:26: note: in expansion of macro 'GROUP_SYM'
-     743 |         static const int GROUP_SYM(group)[] = { __VA_ARGS__ }
-         |                          ^~~~~~~~~
-   drivers/pinctrl/aspeed/pinctrl-aspeed-g7-soc1.c:476:1: note: in expansion of macro 'GROUP_DECL'
-     476 | GROUP_DECL(LTPI_I2C0, G11, H7);
-         | ^~~~~~~~~~
-
-
-vim +/group_pins_LTPI_I2C3 +741 drivers/pinctrl/aspeed/pinmux-aspeed.h
-
-efa5623981b72f Andrew Jeffery 2019-06-28  655  
-7b388970816665 Andrew Jeffery 2019-07-29  656  #define PIN_DECL_(pin, ...) \
-efa5623981b72f Andrew Jeffery 2019-06-28  657  	static const struct aspeed_sig_expr **PIN_EXPRS_SYM(pin)[] = \
-efa5623981b72f Andrew Jeffery 2019-06-28  658  		{ __VA_ARGS__, NULL }; \
-efa5623981b72f Andrew Jeffery 2019-06-28  659  	static const struct aspeed_pin_desc PIN_SYM(pin) = \
-efa5623981b72f Andrew Jeffery 2019-06-28  660  		{ #pin, PIN_EXPRS_PTR(pin) }
-efa5623981b72f Andrew Jeffery 2019-06-28  661  
-efa5623981b72f Andrew Jeffery 2019-06-28  662  /**
-efa5623981b72f Andrew Jeffery 2019-06-28  663   * Declare a single signal pin
-efa5623981b72f Andrew Jeffery 2019-06-28  664   *
-efa5623981b72f Andrew Jeffery 2019-06-28  665   * @pin: The pin number
-efa5623981b72f Andrew Jeffery 2019-06-28  666   * @other: Macro name for "other" functionality (subjected to stringification)
-efa5623981b72f Andrew Jeffery 2019-06-28  667   * @sig: Macro name for the signal (subjected to stringification)
-efa5623981b72f Andrew Jeffery 2019-06-28  668   *
-efa5623981b72f Andrew Jeffery 2019-06-28  669   * For example:
-efa5623981b72f Andrew Jeffery 2019-06-28  670   *
-efa5623981b72f Andrew Jeffery 2019-06-28  671   *     #define E3 80
-efa5623981b72f Andrew Jeffery 2019-06-28  672   *     SIG_EXPR_LIST_DECL_SINGLE(SCL5, I2C5, I2C5_DESC);
-7b388970816665 Andrew Jeffery 2019-07-29  673   *     PIN_DECL_1(E3, GPIOK0, SCL5);
-efa5623981b72f Andrew Jeffery 2019-06-28  674   */
-7b388970816665 Andrew Jeffery 2019-07-29  675  #define PIN_DECL_1(pin, other, sig) \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  676  	SIG_EXPR_LIST_DECL_SESG(pin, other, other); \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  677  	PIN_DECL_(pin, SIG_EXPR_LIST_PTR(pin, sig), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  678  		  SIG_EXPR_LIST_PTR(pin, other))
-efa5623981b72f Andrew Jeffery 2019-06-28  679  
-efa5623981b72f Andrew Jeffery 2019-06-28  680  /**
-efa5623981b72f Andrew Jeffery 2019-06-28  681   * Single signal, single function pin declaration
-efa5623981b72f Andrew Jeffery 2019-06-28  682   *
-efa5623981b72f Andrew Jeffery 2019-06-28  683   * @pin: The pin number
-efa5623981b72f Andrew Jeffery 2019-06-28  684   * @other: Macro name for "other" functionality (subjected to stringification)
-efa5623981b72f Andrew Jeffery 2019-06-28  685   * @sig: Macro name for the signal (subjected to stringification)
-efa5623981b72f Andrew Jeffery 2019-06-28  686   * @...: Signal descriptors that define the function expression
-efa5623981b72f Andrew Jeffery 2019-06-28  687   *
-efa5623981b72f Andrew Jeffery 2019-06-28  688   * For example:
-efa5623981b72f Andrew Jeffery 2019-06-28  689   *
-efa5623981b72f Andrew Jeffery 2019-06-28  690   *    SSSF_PIN_DECL(A4, GPIOA2, TIMER3, SIG_DESC_SET(SCU80, 2));
-efa5623981b72f Andrew Jeffery 2019-06-28  691   */
-efa5623981b72f Andrew Jeffery 2019-06-28  692  #define SSSF_PIN_DECL(pin, other, sig, ...) \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  693  	SIG_EXPR_LIST_DECL_SESG(pin, sig, sig, __VA_ARGS__); \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  694  	SIG_EXPR_LIST_DECL_SESG(pin, other, other); \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  695  	PIN_DECL_(pin, SIG_EXPR_LIST_PTR(pin, sig), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  696  		  SIG_EXPR_LIST_PTR(pin, other)); \
-efa5623981b72f Andrew Jeffery 2019-06-28  697  	FUNC_GROUP_DECL(sig, pin)
-27d1f73670774e Andrew Jeffery 2019-07-29  698  /**
-27d1f73670774e Andrew Jeffery 2019-07-29  699   * Declare a two-signal pin
-27d1f73670774e Andrew Jeffery 2019-07-29  700   *
-27d1f73670774e Andrew Jeffery 2019-07-29  701   * @pin: The pin number
-27d1f73670774e Andrew Jeffery 2019-07-29  702   * @other: Macro name for "other" functionality (subjected to stringification)
-27d1f73670774e Andrew Jeffery 2019-07-29  703   * @high: Macro name for the highest priority signal functions
-27d1f73670774e Andrew Jeffery 2019-07-29  704   * @low: Macro name for the low signal functions
-27d1f73670774e Andrew Jeffery 2019-07-29  705   *
-27d1f73670774e Andrew Jeffery 2019-07-29  706   * For example:
-27d1f73670774e Andrew Jeffery 2019-07-29  707   *
-27d1f73670774e Andrew Jeffery 2019-07-29  708   *     #define A8 56
-27d1f73670774e Andrew Jeffery 2019-07-29  709   *     SIG_EXPR_DECL(ROMD8, ROM16, SIG_DESC_SET(SCU90, 6));
-27d1f73670774e Andrew Jeffery 2019-07-29  710   *     SIG_EXPR_DECL(ROMD8, ROM16S, SIG_DESC_SET(HW_STRAP1, 4),
-27d1f73670774e Andrew Jeffery 2019-07-29  711   *              { HW_STRAP1, GENMASK(1, 0), 0, 0 });
-27d1f73670774e Andrew Jeffery 2019-07-29  712   *     SIG_EXPR_LIST_DECL(ROMD8, SIG_EXPR_PTR(ROMD8, ROM16),
-27d1f73670774e Andrew Jeffery 2019-07-29  713   *              SIG_EXPR_PTR(ROMD8, ROM16S));
-27d1f73670774e Andrew Jeffery 2019-07-29  714   *     SIG_EXPR_LIST_DECL_SINGLE(NCTS6, NCTS6, SIG_DESC_SET(SCU90, 7));
-27d1f73670774e Andrew Jeffery 2019-07-29  715   *     PIN_DECL_2(A8, GPIOH0, ROMD8, NCTS6);
-27d1f73670774e Andrew Jeffery 2019-07-29  716   */
-27d1f73670774e Andrew Jeffery 2019-07-29  717  #define PIN_DECL_2(pin, other, high, low) \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  718  	SIG_EXPR_LIST_DECL_SESG(pin, other, other); \
-27d1f73670774e Andrew Jeffery 2019-07-29  719  	PIN_DECL_(pin, \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  720  			SIG_EXPR_LIST_PTR(pin, high), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  721  			SIG_EXPR_LIST_PTR(pin, low), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  722  			SIG_EXPR_LIST_PTR(pin, other))
-27d1f73670774e Andrew Jeffery 2019-07-29  723  
-27d1f73670774e Andrew Jeffery 2019-07-29  724  #define PIN_DECL_3(pin, other, high, medium, low) \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  725  	SIG_EXPR_LIST_DECL_SESG(pin, other, other); \
-27d1f73670774e Andrew Jeffery 2019-07-29  726  	PIN_DECL_(pin, \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  727  			SIG_EXPR_LIST_PTR(pin, high), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  728  			SIG_EXPR_LIST_PTR(pin, medium), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  729  			SIG_EXPR_LIST_PTR(pin, low), \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  730  			SIG_EXPR_LIST_PTR(pin, other))
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  731  
-0b9714845935ae Steven Lee     2021-05-25  732  #define PIN_DECL_4(pin, other, prio1, prio2, prio3, prio4) \
-0b9714845935ae Steven Lee     2021-05-25  733  	SIG_EXPR_LIST_DECL_SESG(pin, other, other); \
-0b9714845935ae Steven Lee     2021-05-25  734  	PIN_DECL_(pin, \
-0b9714845935ae Steven Lee     2021-05-25  735  			SIG_EXPR_LIST_PTR(pin, prio1), \
-0b9714845935ae Steven Lee     2021-05-25  736  			SIG_EXPR_LIST_PTR(pin, prio2), \
-0b9714845935ae Steven Lee     2021-05-25  737  			SIG_EXPR_LIST_PTR(pin, prio3), \
-0b9714845935ae Steven Lee     2021-05-25  738  			SIG_EXPR_LIST_PTR(pin, prio4), \
-0b9714845935ae Steven Lee     2021-05-25  739  			SIG_EXPR_LIST_PTR(pin, other))
-0b9714845935ae Steven Lee     2021-05-25  740  
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29 @741  #define GROUP_SYM(group) group_pins_ ## group
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  742  #define GROUP_DECL(group, ...) \
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  743  	static const int GROUP_SYM(group)[] = { __VA_ARGS__ }
-e7a96b0b7d1669 Andrew Jeffery 2019-07-29  744  
+Applied, thank you.
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Dmitry
 
