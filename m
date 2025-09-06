@@ -1,147 +1,117 @@
-Return-Path: <devicetree+bounces-213761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 19EC9B468E4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 06:15:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DAAB468EE
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 06:17:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D17AC7BDADE
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 04:13:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8AFE81C82A32
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 04:17:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062B6272E48;
-	Sat,  6 Sep 2025 04:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VbR0ETCU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0715125BEF1;
+	Sat,  6 Sep 2025 04:16:16 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBB1B270EC5;
-	Sat,  6 Sep 2025 04:13:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87C893F9FB;
+	Sat,  6 Sep 2025 04:16:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757132024; cv=none; b=FP1901ioQyUUoITlJYImfXCrGn9MyIFKa6bGf18a1U/H6p50rRMJrMxNfgiLs8lQdc737fbxj0UM2yG66wJ3Jf4Xg95ImrmLdpFLOwzh1XRRGHO7ivlHTgCAwuCMs5Af1CNIylMXaZCHd/wxL4fr5lLEPBjxoPVlwivTs+dY1d0=
+	t=1757132175; cv=none; b=SC4nT8jXD82myG8gQHDPMIYdEoChoaZJH2CdAEu/90YPo3rnqesx1aT+Kc7VFDNlC1ZRbEQntkkOEo6U+bpKaBemVWtoP5lzycY3rWQBbCtlc++d+QUSFfc+C++laUGsOWv270ZJIjR9fBKTf0eZItqQkOCdOFdFM3+PkVta9S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757132024; c=relaxed/simple;
-	bh=zJ4rq1A7rDmdHeQfB8ynFE9503F7ovKFxfivFN/5hPw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=V7r1VIeXS0+AIACkIWadDw7e/1ooES/8ycyr1LF6exOkEk+EAY8pmk4Ob3fVkSwKsepk4nh52FfJLim/sDYJkpYEbT4TfnH2f8hNvPFeN4yN3frA6F8kutweE3BmkNIWL8cK6QAtbb8Ev0R0hWMOkwBXHDjMrqVcGmvkhhBL5Ko=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VbR0ETCU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5BD2BC4CEFA;
-	Sat,  6 Sep 2025 04:13:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757132024;
-	bh=zJ4rq1A7rDmdHeQfB8ynFE9503F7ovKFxfivFN/5hPw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=VbR0ETCUU5YXKOI/JSjxXA7DY30F2AY9PMf4cVATlrMDMmtUoZ/WgIbnTeXMrUcOc
-	 okbhJLTOmdIYaPITRU/ngiebOfcGVH4OoqAFihK+Aqa7dVwIysDt4q2nqkVSfjHq0s
-	 DXz5OzghxZ/Ry/xpjFhdiKnBG85PAfrIYSfTn8Gz1ES651wN4lgaqIrTphPpgfBzNU
-	 oRw/guM/hoSO8VS5sUC2WqAm0qAkikRLryt5pkLIB/4bCM6aAJHS2P417HK08LbZu1
-	 Jd2MdUQ4XVgNRy5fpRY09ighAACxqCV/2Ue4vfAtUWJzOfbLArRWiHJxV8JI9Vg6X+
-	 u+YT88w5EntvQ==
-Received: by wens.tw (Postfix, from userid 1000)
-	id 1B6A55FF0D; Sat, 06 Sep 2025 12:13:39 +0800 (CST)
-From: Chen-Yu Tsai <wens@kernel.org>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej@kernel.org>,
-	Samuel Holland <samuel@sholland.org>
-Cc: netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-sunxi@lists.linux.dev,
-	linux-kernel@vger.kernel.org,
-	Andre Przywara <andre.przywara@arm.com>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>
-Subject: [PATCH net-next v3 10/10] arm64: dts: allwinner: t527: orangepi-4a: Enable Ethernet port
-Date: Sat,  6 Sep 2025 12:13:33 +0800
-Message-Id: <20250906041333.642483-11-wens@kernel.org>
-X-Mailer: git-send-email 2.39.5
-In-Reply-To: <20250906041333.642483-1-wens@kernel.org>
-References: <20250906041333.642483-1-wens@kernel.org>
+	s=arc-20240116; t=1757132175; c=relaxed/simple;
+	bh=+AaGa4KY4O7VR1L+5lz7LhtoM1ACUjc5l1vLXnV94tY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=L7ZOkvh2AWfAvzqJo0w51NTzsBmPbjAZfaYpCJRPFdcZTwMUcZStIZPmlJhBwVxbu8YvRxIXe+K7nVK/ENN7pAGLV3pg/zamdGVt1/TwTpPUVr2E/EAzrc4ih2J1GnuVWboOWoUdXs0lH3Szbljs6f6LexaXGwPeBusMt2yl4yQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-55f76454f69so2638527e87.0;
+        Fri, 05 Sep 2025 21:16:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757132171; x=1757736971;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+AaGa4KY4O7VR1L+5lz7LhtoM1ACUjc5l1vLXnV94tY=;
+        b=HKK1ZBnPsz+GQOJ7s5W5QOJ6V8/QBKWvS54Ir9j3HudeXN1otxoV/f9ded+x68eT44
+         wPVTJG4oNsj11GOoGjdcfd+gG5biP/rsQknUiW0MDgsLfifnZ4lChpTpDHZmhuheIsVy
+         1v4zsNgLBCm4ZY/T1rAEJPZTsj12spL7YjxaCNhHLjB35xyRjxZ7ed9rFakgEIvI4Q2z
+         CnFtyjAILOT2iEBQs67mVFlg5Pswfgxpd1UmbhcNHONA8MktyCpzzxzxJrnfiVo1TXXL
+         MSVGZqk8RwobfUSBi0pg5mEggg3MuJGgXilA7SCkaoXVT71s60Fw2mMUYftkYhJGlJ+q
+         nL3w==
+X-Forwarded-Encrypted: i=1; AJvYcCUGyIhJ2hm9F6rJahfvekjn+/5iuBNcEtGZ99dd8lTBbGJY4jxoSIq5aHmBUwCZ2iNymhHo/l+i83a7@vger.kernel.org, AJvYcCUI3xhr+pO76G2UaUGZuAXtRyDMWy9pnk+DV5A5jmJDBJvNVTYvd3aA62WejAqFz2WWHq9SS/esTlQe@vger.kernel.org
+X-Gm-Message-State: AOJu0YzZxlNdLwkh0FQGMHeYtQMMDAPYkO7BW7ltHpp/8wiF79Pn4KsQ
+	29399RGZA9tukE3OVpHMn+bru8krj4yLqOBjuNXf7oy2GNrEMk4ayk3Ya9IupnSOniI=
+X-Gm-Gg: ASbGncvAh/ZJXomDNRZpJBIYi+26NjeQszqa+NgnwqYak7iPvSKhLz40NSSoNivsGQW
+	/ZCbiIcR3rI4a1UpT7mTtdeHSY/ApfBzmVgpTM8WehBLDQLeUj7aq5a420qNToBrnIFlDjMJ08J
+	SnYoHZhUFvXoaI3geBuHxi5EgJqZlx7ZNfA2MGr1fJG1jb+DN8aUQxM+ozVxh4WaW1Yl32I8rV7
+	fEhbjviUJhjxwPiqjRQzvr1cjj+/0OdeCv+6DTAHEqCPdbzgZ6HeSmEQIaxT4EUUeRV2ELB8Jwz
+	eqGdo0FfLzCf/kNrJdBXzoXuKevYgom9ELTzul7w0O8wnMLxW/kxGO4QZZndGmZ5RleVctHaYGn
+	b22gkKvVZrfGFmYREom6Ly/ARtpMpqN0sggFzHo9w191p0GGpL4y1TeI=
+X-Google-Smtp-Source: AGHT+IF3qwMn1nQcbUBPY8R4JeqWSjiErGgfTeBHoJ0E6TP6+8bpKtcu7s2KAiiMU/DhLfa/I5Wp/Q==
+X-Received: by 2002:a05:6512:3b1f:b0:55f:687f:d1a6 with SMTP id 2adb3069b0e04-5625eb95fe8mr375213e87.3.1757132170564;
+        Fri, 05 Sep 2025 21:16:10 -0700 (PDT)
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com. [209.85.208.171])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ab8e95bsm2109927e87.34.2025.09.05.21.16.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 05 Sep 2025 21:16:10 -0700 (PDT)
+Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-33ca74c62acso368791fa.1;
+        Fri, 05 Sep 2025 21:16:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCW04D02gFK3wUj7JJwaYi9BKOf2Dk+26t6+ChXqV/CV+rtA0INNQUfyqnkLL/+wCagKjxu7G13mnAX8@vger.kernel.org, AJvYcCXlyWmfigyHOl7NGRe0iunAIwaaouFffRjxH9iGW2GrKYsH37Ve5sx94zHF4MPis/rLgoFwQbL5Za/1@vger.kernel.org
+X-Received: by 2002:a2e:a547:0:b0:337:f786:2f4a with SMTP id
+ 38308e7fff4ca-33b4d8cb2bbmr3431571fa.18.1757132169950; Fri, 05 Sep 2025
+ 21:16:09 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-
+References: <20250903000910.4860-1-andre.przywara@arm.com> <20250903000910.4860-3-andre.przywara@arm.com>
+In-Reply-To: <20250903000910.4860-3-andre.przywara@arm.com>
+Reply-To: wens@csie.org
 From: Chen-Yu Tsai <wens@csie.org>
+Date: Sat, 6 Sep 2025 12:15:57 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65rRqTWvn2NR-OSeP-zVJzheJ=L0YeG5DOrCTPJ8Haiyg@mail.gmail.com>
+X-Gm-Features: Ac12FXxA73ZfGI4H5Rgtw7dq1dOBGNO-B8ktFeY3H3nm-PBpHd0UB2GulbKMsHM
+Message-ID: <CAGb2v65rRqTWvn2NR-OSeP-zVJzheJ=L0YeG5DOrCTPJ8Haiyg@mail.gmail.com>
+Subject: Re: [PATCH 2/5] clk: sunxi-ng: generalise update bit
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
+	Mikhail Kalashnikov <iuncuim@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On the Orangepi 4A board, the second Ethernet controller, aka the GMAC200,
-is connected to an external Motorcomm YT8531 PHY. The PHY uses an external
-25MHz crystal, has the SoC's PI15 pin connected to its reset pin, and
-the PI16 pin for its interrupt pin.
+On Wed, Sep 3, 2025 at 8:09=E2=80=AFAM Andre Przywara <andre.przywara@arm.c=
+om> wrote:
+>
+> A few of the Allwinner A523 CCU clock registers introduced an "update" bi=
+t,
+> which must be set for changes to the other bits to take effect.
+> Of the three clocks where this was used, it was always bit 27, so we just
+> encoded this as a single bit feature flag.
+>
+> Now the CPU PLL also features the update bit, but puts it at bit 26, so
+> this flag trick won't work anymore.
+>
+> Add an "update_bit" field to the common sunxi clock struct, which takes a
+> bitmask, so we can encode any bit to use, even potentially multiple of
+> them. As uninitialised fields are set to 0, we can use this as a default
+> bitmask to set, so can OR this in unconditionally.
+>
+> Change the existing update bit users to use this new encoding, and add
+> support for the ccu_nm clock on the way, since we will need it there
+> shortly.
+>
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Enable it.
-
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
----
-
-Changes since v1:
-- Switch to generic (tx|rx)-internal-delay-ps properties
----
- .../dts/allwinner/sun55i-t527-orangepi-4a.dts | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-index 38cd8c7e92da..7afd6e57fe86 100644
---- a/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun55i-t527-orangepi-4a.dts
-@@ -15,6 +15,7 @@ / {
- 	compatible = "xunlong,orangepi-4a", "allwinner,sun55i-t527";
- 
- 	aliases {
-+		ethernet0 = &gmac1;
- 		serial0 = &uart0;
- 	};
- 
-@@ -95,11 +96,33 @@ &ehci1 {
- 	status = "okay";
- };
- 
-+&gmac1 {
-+	phy-mode = "rgmii-id";
-+	phy-handle = <&ext_rgmii_phy>;
-+	phy-supply = <&reg_cldo4>;
-+
-+	tx-internal-delay-ps = <0>;
-+	rx-internal-delay-ps = <300>;
-+
-+	status = "okay";
-+};
-+
- &gpu {
- 	mali-supply = <&reg_dcdc2>;
- 	status = "okay";
- };
- 
-+&mdio1 {
-+	ext_rgmii_phy: ethernet-phy@1 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <1>;
-+		interrupts-extended = <&pio 8 16 IRQ_TYPE_LEVEL_LOW>; /* PI16 */
-+		reset-gpios = <&pio 8 15 GPIO_ACTIVE_LOW>; /* PI15 */
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <150000>;
-+	};
-+};
-+
- &mmc0 {
- 	vmmc-supply = <&reg_cldo3>;
- 	cd-gpios = <&pio 5 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; /* PF6 */
--- 
-2.39.5
-
+Reviewed-by: Chen-Yu Tsai <wens@csie.org>
 
