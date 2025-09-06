@@ -1,274 +1,202 @@
-Return-Path: <devicetree+bounces-213921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213926-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7727B4770B
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 22:18:07 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25259B47727
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 22:43:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 62D007C60FA
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 20:18:06 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D658F16F22B
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 20:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C79A2BEC2B;
-	Sat,  6 Sep 2025 20:17:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0515127EFE7;
+	Sat,  6 Sep 2025 20:42:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cWFCuawi"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="CMcAQhBB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FDF329BDBA;
-	Sat,  6 Sep 2025 20:17:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757189856; cv=none; b=ZlGTFX4RhO5z6UdF2hnE0R6xadFcvM+NnmeDBOAMwg+M2RBBMqlS/5QcE+12lHTxqVK1cQHdGtBKAjcDvCOYRa5t/WODiVsozpgtzPUo7pRSrB0TqaCaOcreZ9tPBUsyA/6XAFxbpEUrdnnCJUgfLsrVUOc8U9ETA4hoU5iWhvE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757189856; c=relaxed/simple;
-	bh=Xd0tRNw2ps86hJT24DbMzh+hXIm82G3Vlj9OA8R/33g=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=aefqzDMtMgl+NkiYYq/VtFS5C/Wl/aFyETKgANTb2zaehOr+68hlkw48jzkqQH3OpAWKzr6MgXFYo3ZCbu6n/ExL6h9SLhbbu/tk7xghK6WiSymTe3dfTNNGhCjpBEhp7eK7sgn6cr1OYIP60GEpQMFAnF0gmbeMyH6Fc6g0kR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cWFCuawi; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E1E6FC4CEFB;
-	Sat,  6 Sep 2025 20:17:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757189855;
-	bh=Xd0tRNw2ps86hJT24DbMzh+hXIm82G3Vlj9OA8R/33g=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=cWFCuawiwmQk8/U/EPLBLf4vuXJX5OkY3QbR7IigiT6ClvN950THAMmRcQ7A3Kwht
-	 XMkr4f18TEOW7jY6BK9c/bk6hy1ZaDoa52FI6wBgDQEeFCmRAcT939ppwy3FHcqJn8
-	 nER79AXdx/xe3BPjYobd3NA3YQJqBdtXI8fkgkz+QyU0VRCIcu3tn5lkU41a8/1SQS
-	 l3Iv5eVU+iISgI02Hsao55RMzo4fwJQapOtLzAQIWJ8iKTzEunLDhGV+L5ax/roAQX
-	 zsfnfqI3DLCeLnnHJe4Ckj2cczVB2AU4TkiKxqBFGgIj1gm45heKMsB1HkJcQJAsWu
-	 06nfreBkNZLig==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id DA3E0CA0FED;
-	Sat,  6 Sep 2025 20:17:35 +0000 (UTC)
-From: Aaron Kling via B4 Relay <devnull+webgeek1234.gmail.com@kernel.org>
-Date: Sat, 06 Sep 2025 15:16:59 -0500
-Subject: [PATCH v3 9/9] arm64: tegra: Add OPP tables on Tegra210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17A0E1DDE9;
+	Sat,  6 Sep 2025 20:42:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757191378; cv=pass; b=aLmUOj7z/RpXv7q270LSiXfFiVoIzxE63muzQ5wSxwnQOnNtJZC1JVs3xs+D9i6R6h103R0TvJG9N75NI2CCvuDaOuV0ux79JACO4aXba6NOV/CY/ulfuy0ncYKvdAGgQWMI3jg8d5MnjhWWkRq2nAzubIWmByAwl7Hgr+SQDYc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757191378; c=relaxed/simple;
+	bh=X6t1E2D0/6KHu5iBbeTZ1Y7NMderIv12Kx55z/B5+5g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o+x+4TDeiynMHAwig4vCUTikTUjOGzKbck2gDYQ0Ztowe6wWVBrOj1MTXbqQu52yjQ8YS3xtVVUCucniCwzoy3O/CD2Xdz/OL5YhBcub72GMU6R8S79KooWF/K7XJFUmkJdG3cAav0IEwa/uXGA/SCh30esWAlbbWtTJ4xFz3N8=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=CMcAQhBB; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757191350; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=Zbd9iwG6mTUDZ3DTU84xNdmxTThRitQtbxALstaaBg9oV93fT7Wbj35qSpvN3g7f3jTbx23pXoVbQcM3VEzvEFD2EFHcj44DIH+DcIx2dzSkoHv2hbKKii3nLntmSZAsN+fT8sSpIG/FAW4K2LQe67t1EwTnL8IOuTt1S7BV5IE=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757191350; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+oFXcBgyosrk9K4YUWT5K05A3DKE5mpt+Bn52MygQGQ=; 
+	b=PIHCe1+nkF/XtzXqI4f8NjMdux9t/OE7taqDrSHGTaM6Ho2SUfVwUxIcoUzkkAiEMM+E1ETW1hg6XCeAVzInM8UpEBiF6NHtw/5NnEKSm5/CN3kIWJ/EG12a8OHA8ym/8R5eywXQvoNnH92Ndhc1MjAK1DInTMh4xyNrhrQWhXE=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
+	dmarc=pass header.from=<sebastian.reichel@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757191350;
+	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
+	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
+	bh=+oFXcBgyosrk9K4YUWT5K05A3DKE5mpt+Bn52MygQGQ=;
+	b=CMcAQhBBoIxelRD/KecsQSv16a7q+RMB6cKDuICGl2QAYHiuboWYrY8tL6Xb6Zo0
+	CLMSevOne9pVsdB/wg4M0a0wlDwl5ElyMYXG4FCJ/bKU6lOKFrvmMn+7DwW0n6X8NGo
+	t9m6DzaOMf5fOtG3/BxNlDGPKh5uIHv5EmF4niF4=
+Received: by mx.zohomail.com with SMTPS id 1757191347397764.5469931961694;
+	Sat, 6 Sep 2025 13:42:27 -0700 (PDT)
+Received: by venus (Postfix, from userid 1000)
+	id 3B96E180B18; Sat, 06 Sep 2025 22:42:22 +0200 (CEST)
+Date: Sat, 6 Sep 2025 22:42:22 +0200
+From: Sebastian Reichel <sebastian.reichel@collabora.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
+	Zhang Yubing <yubing.zhang@rock-chips.com>, Andy Yan <andyshrk@163.com>, 
+	Maud Spierings <maud_spierings@hotmail.com>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFC 1/2] dt-bindings: phy: rockchip-usbdp: add improved
+ ports scheme
+Message-ID: <jzooq6qg3y7nee2nz6lujustdf4z7vtn6t2slikw43dann5sbk@2telraae26tl>
+References: <20250904-rock5b-dp-alt-mode-v1-0-23df726b31ce@collabora.com>
+ <20250904-rock5b-dp-alt-mode-v1-1-23df726b31ce@collabora.com>
+ <aLyKhngeksG2SKdq@umbar.lan>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250906-t210-actmon-v3-9-1403365d571e@gmail.com>
-References: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
-In-Reply-To: <20250906-t210-actmon-v3-0-1403365d571e@gmail.com>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thierry Reding <thierry.reding@gmail.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- MyungJoo Ham <myungjoo.ham@samsung.com>, 
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Chanwoo Choi <cw00.choi@samsung.com>, Dmitry Osipenko <digetx@gmail.com>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org, 
- Aaron Kling <webgeek1234@gmail.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757189854; l=4992;
- i=webgeek1234@gmail.com; s=20250217; h=from:subject:message-id;
- bh=BuMztMnAqa18LOpanMPfXZmvaUGQqA9O6CgvPF/UAwU=;
- b=eFekEBzfuYZIf1hLENyeEVVI0RDYPqtMvwfaX/vi62E9SVvKpTam39MEI9y+C+rFiqKSEsrLY
- xGPnyw0KE7LD34sZeDYucAIjzLZGZs2S9RNw/rRzkwoeSH4lmkGsSbd
-X-Developer-Key: i=webgeek1234@gmail.com; a=ed25519;
- pk=TQwd6q26txw7bkK7B8qtI/kcAohZc7bHHGSD7domdrU=
-X-Endpoint-Received: by B4 Relay for webgeek1234@gmail.com/20250217 with
- auth_id=342
-X-Original-From: Aaron Kling <webgeek1234@gmail.com>
-Reply-To: webgeek1234@gmail.com
-
-From: Aaron Kling <webgeek1234@gmail.com>
-
-This adds OPP tables for actmon and emc, enabling dynamic frequency
-scaling for ram.
-
-Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
----
- .../boot/dts/nvidia/tegra210-peripherals-opp.dtsi  | 135 +++++++++++++++++++++
- arch/arm64/boot/dts/nvidia/tegra210.dtsi           |   7 ++
- 2 files changed, 142 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi b/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi
-new file mode 100644
-index 0000000000000000000000000000000000000000..bf2527d737932a1f41aa83d61f44d87ba52b0519
---- /dev/null
-+++ b/arch/arm64/boot/dts/nvidia/tegra210-peripherals-opp.dtsi
-@@ -0,0 +1,135 @@
-+// SPDX-License-Identifier: GPL-2.0
-+
-+/ {
-+	/* EMC DVFS OPP table */
-+	emc_icc_dvfs_opp_table: opp-table-dvfs0 {
-+		compatible = "operating-points-v2";
-+
-+		opp-40800000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-68000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-102000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-204000000-800 {
-+			opp-microvolt = <800000 800000 1150000>;
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-suspend;
-+		};
-+
-+		opp-408000000-812 {
-+			opp-microvolt = <812000 812000 1150000>;
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-665600000-825 {
-+			opp-microvolt = <825000 825000 1150000>;
-+			opp-hz = /bits/ 64 <665600000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-800000000-825 {
-+			opp-microvolt = <825000 825000 1150000>;
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1065600000-837 {
-+			opp-microvolt = <837000 837000 1150000>;
-+			opp-hz = /bits/ 64 <1065600000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1331200000-850 {
-+			opp-microvolt = <850000 850000 1150000>;
-+			opp-hz = /bits/ 64 <1331200000>;
-+			opp-supported-hw = <0x0003>;
-+		};
-+
-+		opp-1600000000-887 {
-+			opp-microvolt = <887000 887000 1150000>;
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-supported-hw = <0x0007>;
-+		};
-+	};
-+
-+	/* EMC bandwidth OPP table */
-+	emc_bw_dfs_opp_table: opp-table-dvfs1 {
-+		compatible = "operating-points-v2";
-+
-+		opp-40800000 {
-+			opp-hz = /bits/ 64 <40800000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <652800>;
-+		};
-+
-+		opp-68000000 {
-+			opp-hz = /bits/ 64 <68000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <1088000>;
-+		};
-+
-+		opp-102000000 {
-+			opp-hz = /bits/ 64 <102000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <1632000>;
-+		};
-+
-+		opp-204000000 {
-+			opp-hz = /bits/ 64 <204000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-peak-kBps = <3264000>;
-+			opp-suspend;
-+		};
-+
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <6528000>;
-+		};
-+
-+		opp-665600000 {
-+			opp-hz = /bits/ 64 <665600000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <10649600>;
-+		};
-+
-+		opp-800000000 {
-+			opp-hz = /bits/ 64 <800000000>;
-+			opp-supported-hw = <0x001F>;
-+			opp-peak-kBps = <12800000>;
-+		};
-+
-+		opp-1065600000 {
-+			opp-hz = /bits/ 64 <1065600000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <17049600>;
-+		};
-+
-+		opp-1331200000 {
-+			opp-hz = /bits/ 64 <1331200000>;
-+			opp-supported-hw = <0x0003>;
-+			opp-peak-kBps = <21299200>;
-+		};
-+
-+		opp-1600000000 {
-+			opp-hz = /bits/ 64 <1600000000>;
-+			opp-supported-hw = <0x0007>;
-+			opp-peak-kBps = <25600000>;
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-index 2fcc7a28690f7100d49e8b93c4fb77de7947b002..f2961c9e12db1cf91254b75389779955f2a0956d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-@@ -9,6 +9,8 @@
- #include <dt-bindings/thermal/tegra124-soctherm.h>
- #include <dt-bindings/soc/tegra-pmc.h>
- 
-+#include "tegra210-peripherals-opp.dtsi"
-+
- / {
- 	compatible = "nvidia,tegra210";
- 	interrupt-parent = <&lic>;
-@@ -516,6 +518,9 @@ actmon@6000c800 {
- 		clock-names = "actmon", "emc";
- 		resets = <&tegra_car 119>;
- 		reset-names = "actmon";
-+		operating-points-v2 = <&emc_bw_dfs_opp_table>;
-+		interconnects = <&mc TEGRA210_MC_MPCORER &emc>;
-+		interconnect-names = "cpu-read";
- 		#cooling-cells = <2>;
- 	};
- 
-@@ -1024,6 +1029,8 @@ emc: external-memory-controller@7001b000 {
- 		clock-names = "emc";
- 		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
- 		nvidia,memory-controller = <&mc>;
-+		operating-points-v2 = <&emc_icc_dvfs_opp_table>;
-+
- 		#interconnect-cells = <0>;
- 		#cooling-cells = <2>;
- 	};
-
--- 
-2.50.1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bmdy2izrmfeuuc2r"
+Content-Disposition: inline
+In-Reply-To: <aLyKhngeksG2SKdq@umbar.lan>
+X-Zoho-Virus-Status: 1
+X-Zoho-Virus-Status: 1
+X-Zoho-AV-Stamp: zmail-av-1.4.3/257.176.7
+X-ZohoMailClient: External
 
 
+--bmdy2izrmfeuuc2r
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH RFC 1/2] dt-bindings: phy: rockchip-usbdp: add improved
+ ports scheme
+MIME-Version: 1.0
+
+Hi,
+
+On Sat, Sep 06, 2025 at 10:24:54PM +0300, Dmitry Baryshkov wrote:
+> On Thu, Sep 04, 2025 at 08:26:02PM +0200, Sebastian Reichel wrote:
+> > Currently the Rockchip USBDP PHY as a very simply port scheme: It just
+> > offers a single port, which is supposed to point towards the connector.
+> > Usually with 2 endpoints, one for the USB-C superspeed port and one for
+> > the USB-C SBU port.
+> >=20
+> > This scheme is not good enough to properly handle DP AltMode, so add
+> > a new scheme, which has separate ports for everything. This has been
+> > modelled after the Qualcomm QMP USB4-USB3-DP PHY controller binding
+> > with a slight difference that there is an additional port for the
+> > USB-C SBU port as the Rockchip USB-DP PHY also contains the mux.
+> >=20
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> > ---
+> >  .../bindings/phy/phy-rockchip-usbdp.yaml           | 23 ++++++++++++++=
+++++++++
+> >  1 file changed, 23 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.y=
+aml b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> > index 8b7059d5b1826fdec5170cf78d6e27f2bd6766bb..f728acf057e4046a4d254ee=
+687af3451f17bcd01 100644
+> > --- a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> > +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
+> > @@ -114,6 +114,29 @@ properties:
+> >        A port node to link the PHY to a TypeC controller for the purpos=
+e of
+> >        handling orientation switching.
+> > =20
+> > +  ports:
+> > +    $ref: /schemas/graph.yaml#/properties/ports
+> > +    properties:
+> > +      port@0:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Output endpoint of the PHY for USB (or DP when configured in=
+to 4 lane
+> > +          mode), which should point to the superspeed port of a USB co=
+nnector.
+>=20
+> What abourt USB+DP mode, where each one gets 2 lanes?
+
+Right, I guess we would need one port more and have one port for
+lane 0 + 1 and one port for 1 + 2. For USB-C both ports are
+connected to the USB-C superspeed port. For DP 4-lane mode the
+same is done for the input port of the connector. Last but not
+least for 2 lanes USB + 2 lanes DP, one port can be connected
+to the USB connector and one port can be connected to the DP
+connector.
+
+> > +      port@1:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Incoming endpoint from the USB controller
+> > +
+> > +      port@2:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description: Incoming endpoint from the DisplayPort controller
+> > +
+> > +      port@3:
+> > +        $ref: /schemas/graph.yaml#/properties/port
+> > +        description:
+> > +          Output endpoint of the PHY for DP, which should either point=
+ to the
+> > +          SBU port of a USB-C connector or a DisplayPort connector inp=
+ut port.
+>=20
+> I would suggest describing this port as 'DisplayPort AUX signals to be
+> connected to the SBU port of a USB-C connector (maybe through the
+> additinal mux, switch or retimer)'. It should not be confused with the
+> actual DisplayPort signals (as those go through the port@0).
+>=20
+> In the Qualcomm world we currently do not describe this link from the
+> PHY to the gpio-mux or retimer, but I think we will have to do that
+> soon.
+
+It does looks like no upstream platform does a proper description of
+USB-C setups :(
+
+Thanks for having a look,
+
+-- Sebastian
+
+--bmdy2izrmfeuuc2r
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmi8nKMACgkQ2O7X88g7
++ppvtBAAkju2QlVThUn/QreP/COXvVvECT9h6rv0jRB3ZdKfg79oPBzrQVuyCAxq
+f7M/ZeJcfD2ioqbs67rVJWB7Q5DRJxvoKjPqCoIW5Gc6yxxKdZ3OAe8b3u94Go48
+gBKVWjaeQtRspHln9v+ZEo5TFTl2QsKecOBh4cavkk6ZudydZfnm2vDD2FsFZU6Z
+PGFCm1XlDvuz09EVc9OqiLKQAgN7vyMctOelIC/euP5+7rITHP2Oc/toqjTZetCu
+hqdTs2Of5NxYF7kIlMxM0GKTQ9d2KEw0IrS2zq0fyNcxlIaRUzj72didiBONiVH7
+2JzMpqcua6OV2hpUWggNDpcV+OF3a/aHy2byoaN3KP2w4jXOIDNmpURjiOZy/juv
+iyWM0bJa/aows83PdjrRjyIg0/RnLPtqaknp9jYiVUIRN2lhJ+QSaLyY/azjLLhe
+av3RngWLeY2CNYZXRLGI52F/oKn1yScd+fw7oR+yUIEMEwOFgFom6w23BWFTcqIe
+V2M/FWe62ZzgMXrxt5ue7KH54WtuvQyHcdu7sMVZCbMAz+XIaskVWvGUhkVWi0/u
+3Hmw7n4GUEQQbJMn84IG2lXeHmAtkV9d7lmTTycQdCytwXRQRxrWMY16W0XLGBjM
+NTp/t4Ae4vNfEvSBXsaXlrT1VpSQYUHr3IqTpENU20LxnhDYEQ4=
+=gYv+
+-----END PGP SIGNATURE-----
+
+--bmdy2izrmfeuuc2r--
 
