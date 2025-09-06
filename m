@@ -1,151 +1,160 @@
-Return-Path: <devicetree+bounces-213905-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213906-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C735B475C4
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 19:22:23 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4299B475FD
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 19:55:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4754A1886584
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 17:22:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 951A83BF689
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 17:55:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AE5F266EE7;
-	Sat,  6 Sep 2025 17:22:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685DD2F1FDC;
+	Sat,  6 Sep 2025 17:55:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZcRTwoQe"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Vo8En1fH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA80B15D5B6;
-	Sat,  6 Sep 2025 17:22:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757179337; cv=none; b=uXqvMqJip1EgWAy7ZwlcPhj51Kh3e/Yt489K//k3+E2HsOZuL2gUckd5KZOohvf6R+RihmiujWOUvU+Q70rJwRHe4KBqTBJT9dvySiIdYgC96C9lLJ1+VtrddX6hNbEMx6CA8DEDtmFA5TyJkFg5NbfQo7dns/2Kmr+K/QjPqxk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757179337; c=relaxed/simple;
-	bh=GEjc/MZiSs5pA+NLyK1ocRIWX/r07ZJrV7YSReaHnLM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ucsc0Ln7sjDBjvb91x/SMl/aKISe7tYcAsn3aPtaiv/qEGwkRQXeHTD8mXPayNiL22knb4dJCizVFrrm9dkd60slDMpDa2Wp6O+7/5vzWlKusGfXt1+oT8z7044Nt0qld8ZIwdCsxSA6md1iqlPGtvV9l4PzlWX8RNumaqHc1GA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZcRTwoQe; arc=none smtp.client-ip=209.85.208.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-337cc414358so26404861fa.3;
-        Sat, 06 Sep 2025 10:22:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757179334; x=1757784134; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SLBswoadtY/Z1Rk6E4ozam6v04Xnc0YdjRNFILOtZyE=;
-        b=ZcRTwoQe3h+uBR4IR5TzfldISycKzJOIZgqn9QPBTPeHUogOwuJuYcNq9T/X57Guv+
-         gBrX8jHoGcHq1RpMO4W5iUWLsfZOglrqLKOwFPnvRzqBvmGJF64jU5lfmnjIlykfsM8o
-         e3kr2qTa2SVbts25JbI6ANFJA1DZWutwVFUx0I28zLqpeeumjBnFx1hhJGBwvVobg4Gv
-         QqjmuFaSl8WxwSujQM/1t/P2eAT6v+3SWhzsFLWWHM0t7EoLakayL0ef9JYoTVk+qyaV
-         aJ/kiHjjlwoXpyX0tlxDjb4C1Esd+bwSuNjeMr6EWczDgABXGSNcdrr3t4/YZ0reh2J/
-         ZuGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757179334; x=1757784134;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=SLBswoadtY/Z1Rk6E4ozam6v04Xnc0YdjRNFILOtZyE=;
-        b=PoMOHHVfbDd/g11JNV9ja+5lzbGF1PTykBl2C+THZs8x9Ac9/rNpAHtqcCXU565FBH
-         gNePl9EqUHGxjnHoI/rU6oAOMUnEKDsRhjNefHHPhJ9VuVrTcC0Zr5WVycuNW/E2Gb/S
-         FmLkT+6vQiwKiR3Vp7QfU2Yh8I7WGcEjZq+VM3/JyEnHHI5wASE5/9u8JwLV4PbWbhRf
-         3CvfEZtoVdST3Qf0ojkpEz9heT1FfGTA7xJety5rPHs3CIl6A3nvNLRLEd9tEJWRgu7x
-         IEilyqwszfXXkg1yLYMOC8mZhYZ7uNmGT1Y5/C+zkZaAQoPugXLrTaGTDNPUr6+iuCCo
-         LCuA==
-X-Forwarded-Encrypted: i=1; AJvYcCU41S8XL+nmzVfBgOZ9zEyw4DeV3NVrRCvSoTRt5DnaFAzL2SRtVa/fCS2JVzHv2VArptOdBjgBzbo8BKZD@vger.kernel.org, AJvYcCUdsyFSFVSa6g0M8z7FkTBaeNNETLqLzxg9pT2Wi9wWJzliJexHMnQun1Zu/yDCx6QFcqHqwfQDf9Y=@vger.kernel.org, AJvYcCUw6s/VuT7TGw+PnUNL42eYi4Iv0rdmq7/Lz2Iu1D/KDyObAb8Dcqd3dcw/w9Jqb5fvthSWvruPnpAx@vger.kernel.org, AJvYcCWWnkgwT5tgDEb7iPckkMWjTprgomop5LJATv7OmDvdrRRoSi4xy1UxiKK5mhhTeWgYznqsSj8yJ2G9N5g=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwCBOt/++rXcq4I9p2EnjeVmL0CZuIH8h/J/UdoWfQdxAVFfn4j
-	miAgANuK9rxZqhPkYBD3mhXS9n1xKFm7sNd/vOo/kGwI5mCDULMGknWANQz9DbPoyQ8zL5+szkp
-	AZ/7V28MZ+I49qVTETXGqHuF5wQAMQVw=
-X-Gm-Gg: ASbGncvbN+ujHR5+kJBXcU3/rwUeQ6s2RDIpJj0LEiaKCIc/hKtfKEgyT6RXLYEVKk9
-	iA/arEMXpYZMxy3pKaPqHqETPxWcVlOIVxIUhjWVpxkWrx8buOhWJgTN+aYc9s0WB6joNWjpg49
-	39SJtZp0dbV5Cxq0pxeupHonl0yx+RDLGNNckIZBT6ne0uiXBKW1Hj74XPAIqJUidYJGydAYhAn
-	iyQe1g7G8I08bx/vQ==
-X-Google-Smtp-Source: AGHT+IGUttnd6bDIZZjIggXw9ycYs2qWr2c6QGeJLhOasz1kEwDXyb69WjepMI4Phdw9wN75p2CmHZHYwxDU9qdmFR0=
-X-Received: by 2002:a2e:b8c9:0:b0:338:f:5ce9 with SMTP id 38308e7fff4ca-33b52891a56mr8562581fa.20.1757179333524;
- Sat, 06 Sep 2025 10:22:13 -0700 (PDT)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65CC24086A;
+	Sat,  6 Sep 2025 17:55:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757181333; cv=pass; b=GheWWSbPwCVVyanpohn8n+rZHFUe50plU1HVmsJYI5EW3xm46enKZQlbbvFByhknKjI4ZGDbkXvWtU+NLP/kM1W9VKgqzPAGf4z7IFt4yIymMQ1AVx5nZ1+k+At2peFPf0HtHQ83hemtryXKELD6ldMOqb3JZVHi4AanMSO83Rg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757181333; c=relaxed/simple;
+	bh=cxA/TjFCZsy3Ml7FHfxCzzBAUJu9FQFAXS6ZycQWykc=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=qkEsm0OUs74H+26/HJwMGWAAMOnuuS0xKkacbVzoHf7NsjBRdtu4sJy0sfi1VYasMqv5J3PWOIO4PBiN+4Gioy2qGqkQ/1MZwDqknjiDPo/qgY46BrxJ0XvByaT8ayi3YuoB7A/9ITjm7ULpzJCrl4AMyER6SemUy5lpGeE1ypI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b=Vo8En1fH; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757181295; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=WNxEioriaEs/u+KCseNI2dB68EOHRgf0F+l9UmkTxpaMjOTaqo7u92cu+ELDxOq6VauP91oW2ZnCuFdGdIQG226W+TRDWmCwA6K1lZfffMI7N5jNd0xsoKMeTVR1IK7VMxAMZB0evgvqsPZF3Nuz8Jix1RWyYjfVfQelO0JUG6g=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757181295; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=IP7rUBaz1mvKnSQijXZkfLhmJRgyKEeoaWImepnoHPM=; 
+	b=mM+byTotFb+OP9BafKuB5zHSQdFPMwb3RQYFI8+0FJmDjAyweLe7SNCFmWy+36m5UCxNSlRPRyu0GAm8QbEmAmilnIpWvS5mwtSI5Vs3PEYrSxv5JBfOOaVstU2l2TGJaQBFEzZvZOkP023kXkSiEAzAJ3ZZKPwVhvEWRN0EGdc=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+	dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757181295;
+	s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+	h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
+	bh=IP7rUBaz1mvKnSQijXZkfLhmJRgyKEeoaWImepnoHPM=;
+	b=Vo8En1fHBjlORqqr4nwH2t1Ko4oGKDiIZXye5dpPTJTXQ0z0uomJitKJBaxlGxz0
+	Hyf/qh7Sf5IUbhGDXsb0Bl7OJakZbjMGKA4FFAayKBvo3sM8/nDtjSqFD7NHQPPAjTa
+	lnvN1396nqMaHKXIkhA6srQFSndnyRG4BHZ+RY68=
+Received: by mx.zohomail.com with SMTPS id 1757181293913862.8978758635274;
+	Sat, 6 Sep 2025 10:54:53 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+To: Rob Herring <robh@kernel.org>
+Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Boris Brezillon <boris.brezillon@collabora.com>,
+ Steven Price <steven.price@arm.com>, Liviu Dudau <liviu.dudau@arm.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ MyungJoo Ham <myungjoo.ham@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>, Jassi Brar <jassisinghbrar@gmail.com>,
+ Kees Cook <kees@kernel.org>, "Gustavo A. R. Silva" <gustavoars@kernel.org>,
+ Chia-I Wu <olvaffe@gmail.com>, Chen-Yu Tsai <wenst@chromium.org>,
+ kernel@collabora.com, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ linux-pm@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject:
+ Re: [PATCH RFC 01/10] dt-bindings: gpu: mali-valhall-csf: add
+ mediatek,mt8196-mali variant
+Date: Sat, 06 Sep 2025 19:54:46 +0200
+Message-ID: <13801600.O9o76ZdvQC@workhorse>
+In-Reply-To: <20250905232657.GA1497794-robh@kernel.org>
+References:
+ <20250905-mt8196-gpufreq-v1-0-7b6c2d6be221@collabora.com>
+ <20250905-mt8196-gpufreq-v1-1-7b6c2d6be221@collabora.com>
+ <20250905232657.GA1497794-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250903-t210-actmon-v2-0-e0d534d4f8ea@gmail.com>
- <20250903-t210-actmon-v2-3-e0d534d4f8ea@gmail.com> <20250904-groovy-sheep-of-wizardry-ad0ae9@kuoka>
-In-Reply-To: <20250904-groovy-sheep-of-wizardry-ad0ae9@kuoka>
-From: Aaron Kling <webgeek1234@gmail.com>
-Date: Sat, 6 Sep 2025 12:22:02 -0500
-X-Gm-Features: Ac12FXzXqB-Wxx7_0jaBO62-jVTmudr9H9J1HjyTysGTyoh4yJxcTiHR8B2v-C0
-Message-ID: <CALHNRZ-3paF4jEVJCbaWt3S3BYLdDT2tHo9K6XrB-eiB6qSEHQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/8] dt-bindings: memory: tegra210: emc: Document OPP
- table and interconnect
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thierry Reding <thierry.reding@gmail.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, MyungJoo Ham <myungjoo.ham@samsung.com>, 
-	Kyungmin Park <kyungmin.park@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Dmitry Osipenko <digetx@gmail.com>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-On Thu, Sep 4, 2025 at 3:11=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.org=
-> wrote:
->
-> On Wed, Sep 03, 2025 at 02:50:09PM -0500, Aaron Kling wrote:
-> > These are needed for dynamic frequency scaling of the EMC controller.
-> >
-> > Signed-off-by: Aaron Kling <webgeek1234@gmail.com>
+Hi Rob,
+
+On Saturday, 6 September 2025 01:26:57 Central European Summer Time Rob Herring wrote:
+> On Fri, Sep 05, 2025 at 12:22:57PM +0200, Nicolas Frattaroli wrote:
+> > The Mali-based GPU on the MediaTek MT8196 SoC is shackled to its concept
+> > of "MFlexGraphics", which in this iteration includes an embedded MCU
+> > that needs to be poked to power on the GPU, and is in charge of
+> > controlling all the clocks and regulators.
+> > 
+> > In return, it lets us omit the OPP tables from the device tree, as those
+> > can now be enumerated at runtime from the MCU.
+> > 
+> > Add the mediatek,mt8196-mali compatible, and a performance-controller
+> > property which points to a node representing such setups. It's required
+> > on mt8196 devices.
+> > 
+> > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > > ---
-> >  .../bindings/memory-controllers/nvidia,tegra210-emc.yaml    | 13 +++++=
-++++++++
-> >  1 file changed, 13 insertions(+)
->
-> I asked to order patches within patchset in some logical way. First
-> patch was memory, second other, third again memory.
->
-> There are no dependencies explained, so this looks like groupping
-> unrelated patches, therefore SPLIT finally the patchset per subsystem.
->
-> >
-> > diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidi=
-a,tegra210-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/=
-nvidia,tegra210-emc.yaml
-> > index bc8477e7ab193b7880bb681037985f3fccebf02f..6cc1c7fc7a328bd18c7c0be=
-b535c1ff918bcdb2a 100644
-> > --- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-210-emc.yaml
-> > +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra=
-210-emc.yaml
-> > @@ -33,6 +33,9 @@ properties:
-> >      items:
-> >        - description: EMC general interrupt
-> >
-> > +  "#interconnect-cells":
-> > +    const: 0
-> > +
-> >    memory-region:
-> >      maxItems: 1
-> >      description:
-> > @@ -44,12 +47,19 @@ properties:
-> >      description:
-> >        phandle of the memory controller node
-> >
-> > +  operating-points-v2:
+> >  .../bindings/gpu/arm,mali-valhall-csf.yaml         | 36 +++++++++++++++++++++-
+> >  1 file changed, 35 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > index a5b4e00217587c5d1f889094e2fff7b76e6148eb..6df802e900b744d226395c29f8d87fb6d3282d26 100644
+> > --- a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > +++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+> > @@ -19,6 +19,7 @@ properties:
+> >        - items:
+> >            - enum:
+> >                - rockchip,rk3588-mali
+> > +              - mediatek,mt8196-mali
+> >            - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
+> >  
+> >    reg:
+> > @@ -53,6 +54,13 @@ properties:
+> >    opp-table:
+> >      type: object
+> >  
+> > +  performance-controller:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
 > > +    description:
-> > +      Should contain freqs and voltages and opp-supported-hw property,=
- which
-> > +      is a bitfield indicating SoC speedo ID mask.
-> > +
->
-> No opp-table?
+> > +      A phandle of a device that controls this GPU's power and frequency,
+> > +      if any. If present, this is usually in the form of some specialised
+> > +      embedded MCU.
+> 
+> We already abuse power-domains binding with both power and performance. 
+> There's a performance-domain binding too, but only used on one platform 
+> for CPUs (Mediatek too IIRC). Or perhaps you could just point to an 
+> empty OPP table. I don't think you have anything new here, so don't 
+> invent something new.
 
-All other tegra devices have the opp tables in standalone nodes, not
-as subnodes to their users. I followed that style here, see patch 8.
+Oops, yeah, I forgot about performance-domain already existing. I agree
+that it looks like a good fit; iirc I initially disregarded it because
+I thought it was an actual heterogenous core cpufreq-y thing I'd be
+overloading with new meaning, but I see now that this is not so, and
+aside from mediatek, Apple appears to be the only user.
 
-Aaron
+Thanks for the fast review.
+
+Kind regards,
+Nicolas Frattaroli
+
+> 
+> Rob
+> 
+
+
+
+
 
