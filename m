@@ -1,125 +1,133 @@
-Return-Path: <devicetree+bounces-213801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B956CB46A9F
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 11:13:58 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58D3DB46AA8
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 11:17:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 755D53A621E
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 09:13:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3E444188DADD
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 09:18:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAA152D739B;
-	Sat,  6 Sep 2025 09:13:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B92271447;
+	Sat,  6 Sep 2025 09:17:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JLamOT5N"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cXSaiG4b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f174.google.com (mail-oi1-f174.google.com [209.85.167.174])
+Received: from mail-pl1-f171.google.com (mail-pl1-f171.google.com [209.85.214.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D202D73A7;
-	Sat,  6 Sep 2025 09:13:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73F2E23FC66;
+	Sat,  6 Sep 2025 09:17:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757150033; cv=none; b=T4ajEg8kuvQp+eAXqMxNFDpk6pnMVZC6RuYXaSBBjOWyIzKxKsxuI8xErkdI3yI7Oa3OjF4DS/I1+D3f4/dT/it7r/nV5utco8nYG3CAAqVK4kGoF8kHvs3gj7F7JQpR5CLpfOnkAZHVZgsLHTPyxG2r1ldC4wxvBbBr/2x0hYI=
+	t=1757150273; cv=none; b=PzKFCAMqYIrfXwF+HAkYgYKz0U7Ouol9yxJnpM1RSoD/Zg5Qw4cdtsMoZs1kHCTWxRFUk2vAjm3D0cW2WlltRvA9nXMnf64zY89lIniP7WFFg41GHrxQp1UcS/3lAioa1o0dpym1fcHKDGPfz9Q4Mer+xQGjVscPdg+QVqeuVy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757150033; c=relaxed/simple;
-	bh=pEaxKZiGIzaKXy7ev8IeQNkQBCqan6oqOpgWyWdmFg8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=BW+OxlD3KpFvUDTZpUBfgxl3xgroLt4D4vCVQCMolRjl+RpWLrp9pXYvacp3LT73FeDBpBbs2JQ19B6dcCGhy7aZwjei8CVaA+ucTZpGHpySZjcKd3Q5JPTIloMr+7WIuQKO421T2wwbTpCmYMlIIDZRglyV5nqoKf4rjIWlYAI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JLamOT5N; arc=none smtp.client-ip=209.85.167.174
+	s=arc-20240116; t=1757150273; c=relaxed/simple;
+	bh=KngI5sX69UHl6zztwuTODeaqfXt/Wi1K6usTJRVh3Qw=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=ltDKHwWXhUmvWspxXi7jriWHSlvidovvaMdGPVO0ePtYn1wYBKc4vCEh/TsbR8l7Rqb17eqBziHiTO7ZagrRZ+IqhsvR2vZ/pZtDgT+a6AUN16pAyLHsbinifi1nsUFnVk+sXIBBMDUcIzffElP8SAwyHEBjAz3OWyFxdEg1i9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cXSaiG4b; arc=none smtp.client-ip=209.85.214.171
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f174.google.com with SMTP id 5614622812f47-4381cdb6100so313055b6e.0;
-        Sat, 06 Sep 2025 02:13:51 -0700 (PDT)
+Received: by mail-pl1-f171.google.com with SMTP id d9443c01a7336-24456ce0b96so30468055ad.0;
+        Sat, 06 Sep 2025 02:17:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757150031; x=1757754831; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=pEaxKZiGIzaKXy7ev8IeQNkQBCqan6oqOpgWyWdmFg8=;
-        b=JLamOT5NlLXvsEmWiWb4E4RXcBTO13/0ZNyH1UG1/Ig1ISfO4AzviwB1ps96+4xDbG
-         LGabqjhS8wKrZHHANw4h9a5sikOq39HMLqZqoB6JqfGpiY2dq6BkGCxfOiskr9H5KMRI
-         YGrZBYXf6GuzFUQUEM5vYJBYD9JYDPqKXpj04i7n9Ufdxb3iBiPOhEU6yUaW47ldgJ4c
-         D1DWK5x77c4zIZ6WQSsdSxjRZd6/Lzqed5rEwe6cyOuLaxc2Zje/bpt5qWYocbQycaKo
-         vVEjaIewiRHgHiQlIbJrj1xB8dCXEeYQ+iEOMELdF2KDPfQUlwCZVQIVwdfLX9ZDq91u
-         ATdA==
+        d=gmail.com; s=20230601; t=1757150271; x=1757755071; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ve8nBlpidfX7Xlj9Re0PkPjW3YfTqNWsYR7YDLtDimA=;
+        b=cXSaiG4b7Kjq/DEC5ZP3QAwiyvDdqMbFH2s3aPwRCemEqPwD2bBBR9A5nmkO/Vp/fy
+         HrxFXGrYuAOLBjKS8siVMRDYw+wVboJkcDtUnuOoeajQKgxvZirH4S8pSkQ5qctWcKfT
+         J/3UPfjqRydumDgk81EExLw7AitK/5NF5qcqryt9vs2gbFjFMGrguIRm3C2t0F4Apxrx
+         Yq68RT1vk/bXvASsYAfwm5+vDdezOjPyVQZkHqO08C+KhxGbIn60XWiqG54ELW5Y9N94
+         mdXQYgT1z2Xwgz4lBhlUdmuxo8hwIrZjCUlLwqghwZJiOGA8XBJN5OkguoRh2QGElYJR
+         RPHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757150031; x=1757754831;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=pEaxKZiGIzaKXy7ev8IeQNkQBCqan6oqOpgWyWdmFg8=;
-        b=WKHYagaMBM/D00czgNSEqgIorE9yhju1FCgsjmpJtLtZnTV8n5idxs2cNkBOSe9XGx
-         d9SgzfF7zD84NiUSfzfI2uIl0njesJA4tATzWAkBKthrnxZZ2ul8O3YDC4Gsc0kWZtSA
-         3+vxp9R3ZnwSBwy0FBEphLDVVbWTlNfgB/TkH18ynnod2LCgUS0hWj4j2NfZfuBvcRu0
-         SASgqXvlfw+2OIX6beQdMqcyV7iVsNqir8EYjFOWWFUVWarKZTYjxRM1je/3OH/aNltj
-         nt6JT9cpIpZBrp8iW5/vH3LkUdge9DZ1xIjsT/jm24AT0tu1rIHNBDI/ne5YAudputl+
-         fuXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUea15V8+2kTZcItJDNT+RSd+V2D2MVKtRhQdJUsmlPxfwWNUVZ9BuakbeSfCQ5E0cjJM4idxGvCiLj@vger.kernel.org, AJvYcCV2H9pZX5v/i5cg11u4o9Yd9wfSBiM4aTqdXDblNS+HN877LExJ0JxgO1VXpudlChCoVi8JnMHetcS4gfJj@vger.kernel.org
-X-Gm-Message-State: AOJu0YwhWIWyCqMA2ISI90YJmEO26ScQTawIoDUV4uH8XfOEhxR2w5mu
-	zeLQCHsU1USsLs56ZJrrQ3H4wbOHVcFbK8bZwl7uF1M4wLXu7mnhnxxpR4NBExRRiDOk25509eK
-	UVZEAytgXZSr/x66delpUCINpOF30gCs=
-X-Gm-Gg: ASbGncsEi8pUQcUcreZIAN8qYT13GCTAPW/JcK1JEHEpU+eQHaIsy2FoJv6596eHbwl
-	qHVpchBZ8ZOAjn+qr5lc805JhN1wMe/k6hYKomGDxatN6ww3Rs7KOYLMtKSYh2sXjMaQ1t0EI2a
-	ZEvAxYXFL1VPcDZ0yBiKpMeV2zXptkuWTZLr7MZFGx+JafnrVRlf2cASBBTd+ayCbVjvD2QOh48
-	ENahBvO8NNBsDGoaw==
-X-Google-Smtp-Source: AGHT+IFsF96eoSj4k+lbood33wsR+iAjs63neUVdknxMDm5hwOGW73MKSx+gNkoPB5kasZ0CDicLEFrEssaeogXJ/5k=
-X-Received: by 2002:a05:6808:1804:b0:433:fe80:5404 with SMTP id
- 5614622812f47-43b299dbd54mr801049b6e.5.1757150031169; Sat, 06 Sep 2025
- 02:13:51 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757150271; x=1757755071;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ve8nBlpidfX7Xlj9Re0PkPjW3YfTqNWsYR7YDLtDimA=;
+        b=SkFm7N/Me8/1E1H71j/q/QhrIvZPMYSvJtWsco4yEIrg7WvKmmxoObEgNYdZJdUihq
+         YHsOjb67S7fGd4VVXGfzI22cv3S2Ykgm23QA9d2zJy8xPwm6Se1jvzHaGt0lxC9fPEWB
+         Op9JLSTKHxGqLyvaPwerCREanPy0ap88ndlp4G7vAKX+QyDZJ7jqqQeRX6lAoRyR02lS
+         nWwpdldyb4HtckNUHg3ZFtjSD/ZqUVS5N0qPLphGrnJkMigkxQH+d3YLIu7Fbr824ukJ
+         oxSkgwe6Kxl1/iq+N1j454EiILD+JbmW4eGMBUxXtOWTnQW00TJvpdZl8gvnAkA0Vz/w
+         OaoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWjlkKnLYRQhzWeQG+kX0W5ZQnK+fC9nwjxqP/d/X0+a6+zdTqq8ODdBQrmPfwgtxdCj7U88WoIBumaKIY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPQ/BK2nJX29ZG+TUxZNOslL30HYQ5d7Ja/BjcpWzNUwWy1ddu
+	pRAaYrSOvugjv0ZUeBvSeAYNNX/EKb3Ym++s2BKgjKJ5SKPh3oKV9IQA
+X-Gm-Gg: ASbGncv/VfyfIO1LQ4pVU2fxW3Hwy6ptN1iClGusWm+pjwnK9TcqiPTC4aj6VpKUDsH
+	Mk4O7JApE9SkNlfUUwCqE4ZOSpkUaHYblyW3nreVyHIQwc1ocKPC36pJq0YvCi7awMMV0CmQCg9
+	otuL/+rR3dL3QK/vOixuMNCOo1pPI/dwXkIiBd1WVHNT6swL4jZ1cQs87nozokGDC8HSRN+qfZv
+	jW7VIJzO3laETmP9cPfgq+WSCSjI9k3K0SrWJ5jCvr6jzmAywld8WGKMz66dVEaFbvQB02PPzUU
+	VHwJiQHS3MFtWaT0y8ntWXM2i2QT6hJafMZz33owGHNtsUppkUKZUwx2serDqcOgf75nIDld4y9
+	AYxwlLvzLAE6NqDK8tTfrrGA6rqp4g4RxJGbsX//Dxg==
+X-Google-Smtp-Source: AGHT+IEkxVuvzarp/05AlrmO88wiQ2u5cuKTrx2x6qjWyE58uQQHAUI51bWekueB+rniwhuLeLNaqg==
+X-Received: by 2002:a17:902:e944:b0:24c:c013:5098 with SMTP id d9443c01a7336-251751e83e0mr17043815ad.8.1757150270830;
+        Sat, 06 Sep 2025 02:17:50 -0700 (PDT)
+Received: from [127.0.1.1] ([2401:4900:1c44:6dc9:9ee4:9664:de3c:82ef])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24cc55c4616sm63727555ad.137.2025.09.06.02.17.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 06 Sep 2025 02:17:50 -0700 (PDT)
+From: Dixit Parmar <dixitparmar19@gmail.com>
+Date: Sat, 06 Sep 2025 14:47:45 +0530
+Subject: [PATCH] docs: dt: submitting-patches: Fix typo
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
- <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org>
-In-Reply-To: <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org>
-From: Nick Huang <sef1548@gmail.com>
-Date: Sat, 6 Sep 2025 17:13:39 +0800
-X-Gm-Features: Ac12FXwdOyl87NwPd24rV5zrWXvoiMbEGwDue7ElzfeenKKWlvHLA41-lwqdGaY
-Message-ID: <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
- the documentation by replacing "abd" with the correct word "and". This
- improves readability and avoids confusion in the description.
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Johnsodn Huang <kusogame68@gmail.com>, Lee Jones <lee@kernel.org>, robh@kernel.org, 
-	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20250906-doc-typo-fix-v1-1-74a427d3386f@gmail.com>
+X-B4-Tracking: v=1; b=H4sIADn8u2gC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSwMz3ZT8ZN2SyoJ83bTMCt00E2MDCyMTEyPztCQloJaColSgMNi46Nj
+ aWgDy+G0vXgAAAA==
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dixit Parmar <dixitparmar19@gmail.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757150268; l=1337;
+ i=dixitparmar19@gmail.com; s=20250726; h=from:subject:message-id;
+ bh=KngI5sX69UHl6zztwuTODeaqfXt/Wi1K6usTJRVh3Qw=;
+ b=BubnzhP6ISTpTyPF+8TTu0b2Ou63lIsMqmD0yIC1l+/0Ve5Y5LpLd4ZRbWz6rUcO8XAd8+bfF
+ X+kcMnQdw3PDNY+sgdj4/jkAplTZs4xKQdB/QEjSZ7jGyyr98RVVsLa
+X-Developer-Key: i=dixitparmar19@gmail.com; a=ed25519;
+ pk=TI6k8pjTuLFcYiHazsate3W8rZGU2lbOrSJ4IWNoQhI=
 
-Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=886=E6=
-=97=A5 =E9=80=B1=E5=85=AD =E4=B8=8B=E5=8D=883:38=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On 03/09/2025 09:42, Lee Jones wrote:
-> > Looks like you corrupted the subject line with the commit message.
-> >
-> > Please resubmit.
-> >
-> >> From: Johnson Huang <kusogame68@gmail.com>
-> >
-> > Use `git format-patch` and `git send-email` instead.
-> >
-> >> Co-developed-by: Nick Huang <sef1548@gmail.com>
-> >> Signed-off-by: Nick Huang <sef1548@gmail.com>
-> >> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
-> >
-> > It took two of you to correct the word "and"?
->
-> Can you respond to the comment instead of ignoring it and sending the sam=
-e?
->
-> Best regards,
-> Krzysztof
+Fix trivial typo "serie" to "series".
 
-Hi Krzysztof,
+Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+---
+Fix trivial typo "serie" to "series" in submitting-patches.rst.
+---
+ Documentation/devicetree/bindings/submitting-patches.rst | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Sure, at the moment this commit only addresses the typo in the word 'and'.
+diff --git a/Documentation/devicetree/bindings/submitting-patches.rst b/Documentation/devicetree/bindings/submitting-patches.rst
+index f3e23e69a638..97ae4f92d3dd 100644
+--- a/Documentation/devicetree/bindings/submitting-patches.rst
++++ b/Documentation/devicetree/bindings/submitting-patches.rst
+@@ -58,7 +58,7 @@ I. For patch submitters
+      any DTS patches, regardless whether using existing or new bindings, should
+      be placed at the end of patchset to indicate no dependency of drivers on
+      the DTS.  DTS will be anyway applied through separate tree or branch, so
+-     different order would indicate the serie is non-bisectable.
++     different order would indicate the series is non-bisectable.
+ 
+      If a driver subsystem maintainer prefers to apply entire set, instead of
+      their relevant portion of patchset, please split the DTS patches into
+
+---
+base-commit: d7b8f8e20813f0179d8ef519541a3527e7661d3a
+change-id: 20250906-doc-typo-fix-f430824427fb
 
 Best regards,
-Nick
+-- 
+Dixit Parmar <dixitparmar19@gmail.com>
+
 
