@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-213772-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213773-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2DA0DB469D7
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 09:16:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0B80B469E0
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 09:20:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D1E91BC5431
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 07:16:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C250E7AD14E
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 07:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F781E51EF;
-	Sat,  6 Sep 2025 07:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1FAA29D27E;
+	Sat,  6 Sep 2025 07:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m3i8BBq8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q+TC99zl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A157C1CA84;
-	Sat,  6 Sep 2025 07:16:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9298B22B8B0;
+	Sat,  6 Sep 2025 07:19:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757142960; cv=none; b=LWo4q+rfUZfTCF4Lx6aQQIbi5qGcCMExP9i9K4g12AQNusykvmriQ+t11P2qjY43f1Q6C35j0uhnfJHN0gdZnq7Kd1IwWVb93e+m6T3F/Wp8DRT5QGSDLXf1ckznMCyvx6XRj1MMFypIV3rblHo5DR6ZlKI2BIgtAMsQrioSWC8=
+	t=1757143194; cv=none; b=dUVe04DeD8+iK4Vn549jE1zJjCk9vOVRLMQ2eervRl722L50ZLSkN4DnKxTqQS4dUYg8FOaTnMDx1Sh6qMKONUfVGSUz3Cy16Q+BwV6pjuZVUhHc7ayfIfhZ3mpHNWxgCAwcZtcuWBz25uSlpsU83NHWLhpjAcG+1KLkY5KN92k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757142960; c=relaxed/simple;
-	bh=48WfLyxBdPPFUaU6BIhe6s3CGo0PCs0tkHoG79/gQJs=;
+	s=arc-20240116; t=1757143194; c=relaxed/simple;
+	bh=HccljbpU2NVHcTWDgc09fwSCBkehFNV5TwHj8ILtago=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hzODq/2HPJPXDcf+keNVv+REt/HFpXWg86FvIl3BpMKCVDp9fJcKDRhv8dGAuQ0gJd8qS+rhRNqEmFhLmXhS8wGYhPXOEdrbtu7KwI9eC69CrGpyDHIaEFVJNGmQo5D3DK8IpOvkTQ1FApG6hxVvcHWPnXj/LPuI4XiBFHEC/jU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m3i8BBq8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D94FC4CEE7;
-	Sat,  6 Sep 2025 07:15:56 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=aqljUxy8UXQTFzVsb+OCju1oUmt3gSNx3OSPSlEHbLnBAv/S45Yy4zXjfk/1TkU0eTnGm4figY2ZhUbl99yNdekhHINkiVrLa0vgEadSpbsCs5oTfLQSB/SxkZwbfxvhAuDxO+McKp/G36ZGP9SbR1QxmDxLZX/aHEmlkRcRJhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q+TC99zl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7E0E8C4CEE7;
+	Sat,  6 Sep 2025 07:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757142960;
-	bh=48WfLyxBdPPFUaU6BIhe6s3CGo0PCs0tkHoG79/gQJs=;
+	s=k20201202; t=1757143194;
+	bh=HccljbpU2NVHcTWDgc09fwSCBkehFNV5TwHj8ILtago=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=m3i8BBq8I4ts5m9rIz8i55qkpsq58G++OTNRGZq0B92v0eHlma/mt7FpeKcTzSXyy
-	 knaFXDGC7xppE8dw35LEkZUPMWFg9FFCxSamFtWUkyaQ51BaPcW3XXM5CtiAKwr/cT
-	 uflS1OqCavMKXzYEZn/ZvbYLyJAHHfSsCo4x+lwdLEbIA0uFqE4HGQKanZhR2GiijI
-	 +gHkbFo9Yfy64AnEMuyjF4brs9coEi1fJnCXAwETLuOWKnOfRPqS8sE7d1hlr9ksmW
-	 jBggg/FHsZtwKEQR8dsOUG7dH0a7pDURobDKb2Eu+KNG+UIi2I7Z4X5s8doXTnGNfU
-	 51CzC5TJTMA+Q==
-Message-ID: <12269301-f7e1-4eb6-afa3-a301453c50f6@kernel.org>
-Date: Sat, 6 Sep 2025 09:15:54 +0200
+	b=q+TC99zlVzC80Oo+AtTyznQz/5lto9JjYOcbjgEfFjhV0Gf9wcJks0KD53RqaXD3w
+	 CNbRe4zo2rW0A4ZsVdpiJulN77hNpzdrGyTOnei+c/Bu5sfN8h0NytQPE4EqCdCgZc
+	 ZNQRg56vU4KkM/5157Il1vMffo8AFohQp1JTyLbdadUED/045uH10Mv+QyexFKP/jo
+	 0zAKhp71+zSIU4OaZ0m8XAjrHzM73yUn/LDAt6WBT7+jCRCHhHoFkaJWE4U7oLkYIr
+	 mn7x3vy5szW8bE6+bLlQKLsesp6FLQb64bnpRTU5tMaKmda5fvy80hjCFO2tRGtmhK
+	 zzDLVOSfifdOA==
+Message-ID: <9bd7beeb-0c11-4502-9d45-c85a0744ec82@kernel.org>
+Date: Sat, 6 Sep 2025 09:19:50 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,20 +50,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7] dt-bindings: net: mediatek,mt7925-bluetooth.yaml
-To: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>,
- Marcel Holtmann <marcel@holtmann.org>, Luiz Von Dentz
- <luiz.dentz@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: Sean Wang <sean.wang@mediatek.com>, Jiande Lu <jiande.lu@mediatek.com>,
- Deren Wu <deren.Wu@mediatek.com>, Chris Lu <chris.lu@mediatek.com>,
- Hao Qin <Hao.qin@mediatek.com>,
- linux-bluetooth <linux-bluetooth@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
- linux-mediatek <linux-mediatek@lists.infradead.org>,
- devicetree <devicetree@vger.kernel.org>
-References: <20250905084433.26999-1-ot_zhangchao.zhang@mediatek.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: update TI TPS23861 with
+ per-port schema
+To: Gregory Fuchedgi <gfuchedgi@gmail.com>
+Cc: Robert Marko <robert.marko@sartura.hr>,
+ Luka Perkov <luka.perkov@sartura.hr>, Jean Delvare <jdelvare@suse.com>,
+ Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+ linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20250904-hwmon-tps23861-add-class-restrictions-v3-0-b4e33e6d066c@gmail.com>
+ <20250904-hwmon-tps23861-add-class-restrictions-v3-1-b4e33e6d066c@gmail.com>
+ <20250905-deft-porcelain-teal-a3bdbf@kuoka>
+ <CAAcybutsMdXmqrA6kG9L5OTP9ZPyLzYrXTGUGLAkWs5+MH9ifA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -109,29 +109,19 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250905084433.26999-1-ot_zhangchao.zhang@mediatek.com>
+In-Reply-To: <CAAcybutsMdXmqrA6kG9L5OTP9ZPyLzYrXTGUGLAkWs5+MH9ifA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 05/09/2025 10:44, Zhangchao Zhang wrote:
-> Reset BT via BT_KILL_1V2_L hardware pin.
-> 
-> On the M.2 standard hardware pin interface, the MTK chip
-> has a pin called BT_KILL_1V2_L or W_DISABLE#2, it uses
-> function-level device reset (FLDR) to reset Bluetooth.
-> When it is pulled low, it can external shut down the BT
-> function, it is defined as 5 on the MT7925 chip, and is
-> defined as 248 on the device tree pio controller.
-> 
-> Signed-off-by: Zhangchao Zhang <ot_zhangchao.zhang@mediatek.com>
-> ---
->  .../bluetooth/mediatek,mt7925-bluetooth.yaml  | 47 +++++++++++++++++++
+On 05/09/2025 19:22, Gregory Fuchedgi wrote:
+> On Fri, Sep 5, 2025 at 1:10 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On Thu, Sep 04, 2025 at 10:33:44AM -0700, Gregory Fuchedgi wrote:
+>> What's the meaning of values? There are no other generic properties like
 
+Where is context here? To which part was I replying / commenting on?
 
-You need to finally read submitting patches document.
-
-You already got comments before, multiple times, but you still ignoring
-them.
+You are not making the process easy. I receive a lot of emails and have
+no clue what this refers to.
 
 Best regards,
 Krzysztof
