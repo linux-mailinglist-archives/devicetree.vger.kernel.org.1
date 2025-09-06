@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-213814-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213815-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00236B46C17
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 13:56:18 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91EB8B46C28
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 14:00:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 904E8586994
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 11:56:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 532DF3BD2E5
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 12:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C6F3F2868A2;
-	Sat,  6 Sep 2025 11:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4436E221FB6;
+	Sat,  6 Sep 2025 12:00:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r5F8UKWX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L/YZB6yG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91F70136E37;
-	Sat,  6 Sep 2025 11:56:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17B721EA7CF;
+	Sat,  6 Sep 2025 12:00:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757159774; cv=none; b=n12gEOYpmtiHhLL3dLQMISyi9tOk42oisBIfyp2eMSez4zRIWkeYUWPFdFjsRYsFzXCEkjPj+AVSkdQYI5isYH568xr4OTk0bN2DYI9yRXS+mxO+yN/AwtuskFPpMgvU6TZqi1nwAqSkaz4TjTkOdBNeQTG2eoIrS2jQZf2SRaE=
+	t=1757160032; cv=none; b=fIgIo2fJf5cldkIKdUxmInh+xNJ/nODwMQoZ5MXEWT1RwKWN3PedBWcBXoYj8T8ZzrR2NP6BvW3xAJdFN4QgBxoEnEDvW8Z45b5+5jhO6wqabop1JPWU8ymQ7SIds5kRJUM8nqAnZ31Q/21E1OzafpkAVvxDT1xYK6c1n1PCNY8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757159774; c=relaxed/simple;
-	bh=5H0FnTUpXgay5RaZ98TFWz+Q0IqPGG3KFahV2rwq76A=;
+	s=arc-20240116; t=1757160032; c=relaxed/simple;
+	bh=OzklBt5CTDlY1zRdiTWF6kN7WMM5C1PFN1ArN7TSWIU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BSRbompvxVu/ALTrD7bpPrlCd4XHSND8ZU+b7GZbh88cdB9ODXnf5ufQA7LhyRa+jVd4JvlKlfMiyoQepamqUgot0r0HnqxV493BHwL2ef2sfVUMKWBFdvSQAag8oeeQTZoQKnXV2BP63vVvpxFZvYeekkFNvzP0qqotJ1/12ow=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r5F8UKWX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DFE4C4CEE7;
-	Sat,  6 Sep 2025 11:56:11 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=eihbRyUrMLiCxfJWEjT0hfhliQliVMH3DNtThawRmjV2rX80jIXstje9RsK4dBllnEkLgvkkNEyliIjcT2RUepGr/4Es7pAPGM2E/1YQKZdgCEMLA+JpVUeAicw2aEuBXseJC21MSO6FDNbwLUbIW6D/C5W1UeTfesMMdy22ag0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L/YZB6yG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9BC75C4CEE7;
+	Sat,  6 Sep 2025 12:00:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757159774;
-	bh=5H0FnTUpXgay5RaZ98TFWz+Q0IqPGG3KFahV2rwq76A=;
+	s=k20201202; t=1757160031;
+	bh=OzklBt5CTDlY1zRdiTWF6kN7WMM5C1PFN1ArN7TSWIU=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=r5F8UKWX/fCbTlfQLD20hgrOXyHWQ5KYD0aL+P8UCk+0S/gSyQxZM9cEKUa5hvRxm
-	 e/qfgFqngyi9BtLU/sR6Rv1Wqn+/ir9meVTspKA+Kv1zHoxVVhiiFo0jPzJwZq25Q+
-	 e5vWLmfVi6LYe7t+8ckaJojWIDpUrQ63BFk51Tg2d+f6QHS8DfFpGfz+wjzBMs+11Y
-	 5wtGEcfmeduX9KtfJ820QsEhLIow7Sy5BR9Xp9vUH1aX4eXJuicDJSbaXT4t29C5F+
-	 0Cx8y/tKRODCZyYR6a6QuzyEPlYbJOVJl0j0ILvX9WQKJP9snsZDEdtWXZLA19vQbG
-	 +YIafbgaLKgHg==
-Message-ID: <9cb49957-274d-40c8-a74f-ca40152914da@kernel.org>
-Date: Sat, 6 Sep 2025 13:56:09 +0200
+	b=L/YZB6yGhatXPH0ADAS2DV/aJPRNbxIgd4iXjBf2hEI4V7ZIx5+u+sJ3yE08dzoLZ
+	 bHjKGK8LPCo46tffU/Sqv+Zk0w/CF3zyNqwKbcyiYPBG1Ab7tkjaaqODYPDp3wCIbP
+	 vak2DYG3f45URFnMC1/Ij6CHlleL7ww8tOQpnesyhSfgmcaOmwKFm0TDdlaiBCwjuB
+	 JwcStg7zWexrkTbZTbm+j6dLOI/xxW/pOs9TQ70t0a6YUz2l9o9OxkrHeyKVKkI/Yg
+	 gHX1SFXCtiobNQORMQp+Gz2K+LabiwKJdwbA0oVS4uxDZCnSnlR2LdUKbOuJDP3smk
+	 soFXjDqLebLNQ==
+Message-ID: <96e6578e-b21f-498e-82f6-eeee3ee81e20@kernel.org>
+Date: Sat, 6 Sep 2025 14:00:27 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,11 +50,17 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] docs: dt: submitting-patches: Fix typo
-To: Dixit Parmar <dixitparmar19@gmail.com>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250906-doc-typo-fix-v1-1-74a427d3386f@gmail.com>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Nick Huang <sef1548@gmail.com>
+Cc: Johnsodn Huang <kusogame68@gmail.com>, Lee Jones <lee@kernel.org>,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20250902142749.13724-1-kusogame68@gmail.com>
+ <20250903074205.GB2163762@google.com>
+ <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org>
+ <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -100,17 +106,38 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20250906-doc-typo-fix-v1-1-74a427d3386f@gmail.com>
+In-Reply-To: <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/09/2025 11:17, Dixit Parmar wrote:
-> Fix trivial typo "serie" to "series".
+On 06/09/2025 11:13, Nick Huang wrote:
+> Krzysztof Kozlowski <krzk@kernel.org> 於 2025年9月6日 週六 下午3:38寫道：
+>>
+>> On 03/09/2025 09:42, Lee Jones wrote:
+>>> Looks like you corrupted the subject line with the commit message.
+>>>
+>>> Please resubmit.
+>>>
+>>>> From: Johnson Huang <kusogame68@gmail.com>
+>>>
+>>> Use `git format-patch` and `git send-email` instead.
+>>>
+>>>> Co-developed-by: Nick Huang <sef1548@gmail.com>
+>>>> Signed-off-by: Nick Huang <sef1548@gmail.com>
+>>>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
+>>>
+>>> It took two of you to correct the word "and"?
+>>
+>> Can you respond to the comment instead of ignoring it and sending the same?
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
-This was fixed here:
-https://lore.kernel.org/all/20250902193822.6349-1-vnranganath.20@gmail.com/
+> Hi Krzysztof,
+> 
+> Sure, at the moment this commit only addresses the typo in the word 'and'.
 
+Did you read the question?
 
 Best regards,
 Krzysztof
