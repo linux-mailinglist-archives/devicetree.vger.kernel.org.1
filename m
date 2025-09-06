@@ -1,167 +1,133 @@
-Return-Path: <devicetree+bounces-213828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213829-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DB2AB46CF6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 14:41:46 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E88BB46D22
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 14:58:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43CB47ACA1D
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 12:40:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0B85C17C462
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 12:58:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4337B2E5B11;
-	Sat,  6 Sep 2025 12:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A6882EB85A;
+	Sat,  6 Sep 2025 12:58:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b="PBOyjgc7"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="XkpDbGiO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.ms.mff.cuni.cz (smtp-in1.ms.mff.cuni.cz [195.113.20.234])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C7F22E92CF
-	for <devicetree@vger.kernel.org>; Sat,  6 Sep 2025 12:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0490B27FD48;
+	Sat,  6 Sep 2025 12:57:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757162500; cv=none; b=owN2wcToAe2aXYqW8r3iDMKjNsBysx0FqlXz8WZnxoQ0yHCpBl2rgTBaSSTjSUBxYk7tA6iTd1dlJ6pKw5oMJjaHOhG3HLHDfxjneNuStRYC2GDz3T6rrvMcmvsUFYDudi6z6BV1T7q91n4y2OkSa4rj2+1Es+8Xxt+K6mlExpA=
+	t=1757163480; cv=none; b=NJoiexpI0mt2vnZCvmw+O/ta/0fOTHL7A7YN7BOBzKyxOHhaDW5OXBwrgIGLvb/R4yYswyvuBs5S8i/+mWuHvp9ndxOH1ULe1ZTzcjkgti+r6FXIGNJ+MPKHGoXg7oAKlMI4ksD3v7KVNNDhe38NwTq1vemEx+Mmhyf1LI70fRQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757162500; c=relaxed/simple;
-	bh=Hm+GKKIWpg7dScyTlBsTiigjsE8UtZG9+Pr/DPZd9D8=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=quXYZygw/E1w/7KR2ez63OCvQEMsLXYZm2Qn1tnwMKprPfEOgTFnGoCIkX1frkB5qTAEHpEWRGwXRJ4nqBKA3Y/7AJMzQSzcKVSHMJJlbVMGwTE7NFRtH5FRsJghS13QBGxjeTKpOadRIt+mYhirlabPObdwoe2f5UXwbiLwgmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz; spf=pass smtp.mailfrom=matfyz.cz; dkim=pass (2048-bit key) header.d=mff.cuni.cz header.i=@mff.cuni.cz header.b=PBOyjgc7; arc=none smtp.client-ip=195.113.20.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=matfyz.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=matfyz.cz
-X-SubmittedBy: id balejk@matfyz.cz subject /postalCode=110+2000/O=Univerzita+20Karlova/street=Ovocn+5CxC3+5CxBD+20trh+20560/5/ST=Praha,+20Hlavn+5CxC3+5CxAD+20m+5CxC4+5Cx9Bsto/C=CZ/CN=Karel+20Balej/emailAddress=balejk@matfyz.cz
-	serial F5FD910E8FE2121B897F7E55B84E351D
-	issued by /C=NL/O=GEANT+20Vereniging/CN=GEANT+20Personal+20CA+204
-	auth type TLS.CUNI
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mff.cuni.cz;
-	s=submission; t=1757162486; x=1758462486;
-	bh=v5ScnZ66jzFrHMw7Qn6lJeXlTaGjvDkyhTW+naUdbVU=; h=From;
-	b=PBOyjgc7eBDCwad7MZRGBSbnX5lnoC5TWsEecCuJ9TT5sxH9IR7WvZjA31Z6opVzk
-	 EwgbZkYodj21gps4eF62vqAXLDNnac4dvVAHjuh85dE0any8k8uFWZBmSoeVuilojA
-	 3WucvzgNqewIG3xZhRDwxS4/902OTn2yUNOgrXURk75bAk39PTkEuPyLVpucmxUD2B
-	 9RsbZP7XtS54/WzNBbkvy8exntCo963iGDCJz4tj9Ukp3IJGWd2g+gVHhh4UaCpBUL
-	 sFFlhumE4mHhjQ3alSa0ZkXJAhrNHZh5xl1Jv4+mmonQi0+BEzX+heHtN0qfmVaiMG
-	 WEwPP/ZxyA14Q==
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(authenticated)
-	by smtp1.ms.mff.cuni.cz (8.16.1/8.16.1) with ESMTPS id 586CfHUQ082029
-	(version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384 bits=256 verify=OK);
-	Sat, 6 Sep 2025 14:41:26 +0200 (CEST)
-	(envelope-from balejk@matfyz.cz)
+	s=arc-20240116; t=1757163480; c=relaxed/simple;
+	bh=CRBvtOSYXzdy6nOSB7JyFY0zI0ccnfFCwTfe18suORA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=WSdb+HrtbQ7Eik53sK9gq2ar3j8TL6OMN1yLxKHM/Ou/qe5/G4/NRloc7nj6mzrbHsWjrgJRRNKijy4rfU+igQA1VLvyVDjU21t/nGxjjAXVMvPzexTdPNFReoCmSSQpY5o9xycFoKucSIHF0ijxPfeFXlBYV26K6C7p7/cICe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=XkpDbGiO; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sat, 06 Sep 2025 14:41:17 +0200
-Message-Id: <DCLQ427JYUS9.3EKILJ8O80RU1@matfyz.cz>
-Cc: "David Wronek" <david@mainlining.org>, <phone-devel@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 2/3] iio: adc: Add driver for Marvell 88PM886 PMIC
- ADC
-To: =?utf-8?q?Duje_Mihanovi=C4=87?= <duje@dujemihanovic.xyz>,
-        "Jonathan
- Cameron" <jic23@kernel.org>,
-        "David Lechner" <dlechner@baylibre.com>,
-        =?utf-8?q?Nuno_S=C3=A1?= <nuno.sa@analog.com>,
-        "Andy Shevchenko"
- <andy@kernel.org>, "Lee Jones" <lee@kernel.org>,
-        "Rob Herring"
- <robh@kernel.org>,
-        "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
-        "Conor
- Dooley" <conor+dt@kernel.org>
-From: "Karel Balej" <balejk@matfyz.cz>
-References: <20250905-88pm886-gpadc-v3-0-4601ad9ccb51@dujemihanovic.xyz>
- <20250905-88pm886-gpadc-v3-2-4601ad9ccb51@dujemihanovic.xyz>
-In-Reply-To: <20250905-88pm886-gpadc-v3-2-4601ad9ccb51@dujemihanovic.xyz>
+MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1757163476;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=gBvknfRADrFTmcYESe6FCG/DDohCJeCBYoa6CBvKIBU=;
+	b=XkpDbGiOFHdQgB47WOPXPYIS3DTQy0c5jxkWEfob9EfgzYFSNRP9rSKd1v0AIi9ihAVPdx
+	aZjIX4ENRCw9Qb+7f9vDATzWkRvOPjT3RqdIZ9/LYiXqGBX7fl5d4aBQh7ANwssBHKcWkL
+	DzZQR3TYyHg0/PgBKf6mgXezWu2W4fPkYZlKZwbecZGYkWZEBi/NMhE8lcE1KAMN0f2M7W
+	DK8rTMFX8t0t3ZfY44BlmrlUwtBULe4ON2qDeWalDoKKQj4Hh1Lz2oshs8X0s1jEzHIyZA
+	KoMUppZZvNgrdQw9KCVfaqmHItrj6uqcIyPIBCSlTjgStWa0lLx0cKVZGml6kQ==
+Date: Sat, 06 Sep 2025 14:57:55 +0200
+From: Dragan Simic <dsimic@manjaro.org>
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
+Cc: Diederik de Haas <didi.debian@cknow.org>,
+ linux-rockchip@lists.infradead.org, robh@kernel.org, krzk+dt@kernel.org,
+ conor+dt@kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Make RK3588 GPU OPP table naming
+ uniform
+In-Reply-To: <3169011.CbtlEUcBR6@diego>
+References: <355c16ab070688fc6285e0d4419eb54a3f699eee.1757152740.git.dsimic@manjaro.org>
+ <DCLOTR9Y380M.22GZYL11XXZM2@cknow.org>
+ <47cf50f2f497108a923815c12b1f8c9b@manjaro.org> <3169011.CbtlEUcBR6@diego>
+Message-ID: <f34b6fad7768dd88b40284fa330af4f2@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Duje Mihanovi=C4=87, 2025-09-05T13:00:55+02:00:
-> diff --git a/include/linux/mfd/88pm886.h b/include/linux/mfd/88pm886.h
-> index 85eca44f39ab58ba4cb9ec4216118ee9604d021f..38892ba7b8a42bbecb53621a8=
-91a52a2fd70fd43 100644
-> --- a/include/linux/mfd/88pm886.h
-> +++ b/include/linux/mfd/88pm886.h
-> @@ -10,6 +10,7 @@
->  #define PM886_IRQ_ONKEY			0
-> =20
->  #define PM886_PAGE_OFFSET_REGULATORS	1
-> +#define PM886_PAGE_OFFSET_GPADC		2
-> =20
->  #define PM886_REG_ID			0x00
-> =20
-> @@ -70,6 +71,63 @@
->  #define PM886_LDO_VSEL_MASK		0x0f
->  #define PM886_BUCK_VSEL_MASK		0x7f
-> =20
-> +/* GPADC enable/disable registers */
-> +#define PM886_REG_GPADC_CONFIG(n)	(n)
-> +
-> +#define PM886_GPADC_VSC_EN		BIT(0)
-> +#define PM886_GPADC_VBAT_EN		BIT(1)
-> +#define PM886_GPADC_GNDDET1_EN		BIT(3)
-> +#define PM886_GPADC_VBUS_EN		BIT(4)
-> +#define PM886_GPADC_VCHG_PWR_EN		BIT(5)
-> +#define PM886_GPADC_VCF_OUT_EN		BIT(6)
-> +#define PM886_GPADC_CONFIG1_EN_ALL	\
-> +	(PM886_GPADC_VSC_EN |		\
-> +	 PM886_GPADC_VBAT_EN |		\
-> +	 PM886_GPADC_GNDDET1_EN |	\
-> +	 PM886_GPADC_VBUS_EN |		\
-> +	 PM886_GPADC_VCHG_PWR_EN |	\
-> +	 PM886_GPADC_VCF_OUT_EN)
-> +
-> +#define PM886_GPADC_TINT_EN		BIT(0)
-> +#define PM886_GPADC_PMODE_EN		BIT(1)
-> +#define PM886_GPADC_GPADC0_EN		BIT(2)
-> +#define PM886_GPADC_GPADC1_EN		BIT(3)
-> +#define PM886_GPADC_GPADC2_EN		BIT(4)
-> +#define PM886_GPADC_GPADC3_EN		BIT(5)
-> +#define PM886_GPADC_MIC_DET_EN		BIT(6)
-> +#define PM886_GPADC_CONFIG2_EN_ALL	\
-> +	(PM886_GPADC_TINT_EN |		\
-> +	 PM886_GPADC_GPADC0_EN |	\
-> +	 PM886_GPADC_GPADC1_EN |	\
-> +	 PM886_GPADC_GPADC2_EN |	\
-> +	 PM886_GPADC_GPADC3_EN |	\
-> +	 PM886_GPADC_MIC_DET_EN)
-> +
-> +/* No CONFIG3_EN_ALL because this is the only bit there. */
-> +#define PM886_GPADC_GND_DET2_EN		BIT(0)
-> +
-> +/* GPADC channel registers */
-> +#define PM886_REG_GPADC_VSC		0x40
-> +#define PM886_REG_GPADC_VCHG_PWR	0x4c
-> +#define PM886_REG_GPADC_VCF_OUT		0x4e
-> +#define PM886_REG_GPADC_TINT		0x50
-> +#define PM886_REG_GPADC_GPADC0		0x54
-> +#define PM886_REG_GPADC_GPADC1		0x56
-> +#define PM886_REG_GPADC_GPADC2		0x58
-> +#define PM886_REG_GPADC_VBAT		0xa0
-> +#define PM886_REG_GPADC_GND_DET1	0xa4
-> +#define PM886_REG_GPADC_GND_DET2	0xa6
-> +#define PM886_REG_GPADC_VBUS		0xa8
-> +#define PM886_REG_GPADC_GPADC3		0xaa
-> +#define PM886_REG_GPADC_MIC_DET		0xac
-> +#define PM886_REG_GPADC_VBAT_SLP	0xb0
-> +
-> +/* VBAT_SLP is the last register and is 2 bytes wide like other channels=
-. */
-> +#define PM886_GPADC_MAX_REGISTER	(PM886_REG_GPADC_VBAT_SLP + 1)
-> +
-> +#define PM886_GPADC_BIAS_LEVELS		16
-> +#define PM886_GPADC_INDEX_TO_BIAS_uA(i)	(1 + (i) * 5)
-> +
->  struct pm886_chip {
->  	struct i2c_client *client;
->  	unsigned int chip_id;
+Hello Heiko,
 
-Acked-by: Karel Balej <balejk@matfyz.cz> # for the PMIC
+On 2025-09-06 14:21, Heiko Stübner wrote:
+> Am Samstag, 6. September 2025, 14:10:22 Mitteleuropäische Sommerzeit
+> schrieb Dragan Simic:
+>> On 2025-09-06 13:40, Diederik de Haas wrote:
+>> > On Sat Sep 6, 2025 at 12:01 PM CEST, Dragan Simic wrote:
+>> >> Unify the naming of the existing GPU OPP table nodes found in the
+>> >> RK3588
+>> >> and RK3588J SoC dtsi files with the other SoC's GPU OPP nodes,
+>> >> following
+>> >> the more "modern" node naming scheme.
+>> >
+>> > Like we discussed in private (without an agreement), I think it would
+>> > be
+>> > beneficial if the (gpu) opp naming would be made consistent across SoC
+>> > series as right now there are several different naming schemes applied.
+>> > They're all valid, but inconsistent. And if consistency is improved,
+>> > which I like, then let's go 'all the way'?
+>> 
+>> As we discussed it already in private, I fully agree about performing
+>> the "opp-table-X => opp-table-{clusterX,gpu}" naming cleanup
+>> consistently
+>> for all Rockchip SoCs, but I'm afraid it would be seen as an 
+>> unnecessary
+>> "code churn" at this point, especially because my upcoming Rockchip 
+>> SoC
+>> binning patch series is a good candidate for such a cleanup.
+>> 
+>> On top of that, I'd be a bit weary about performing at least some of 
+>> the
+>> testing associated with such a platform-wide cleanup, despite actually
+>> performing no functional changes and being a safe change.  On the 
+>> other
+>> hand, "bundling" such a cleanup with the Rockchip SoC binning patches
+>> would get us detailed testing for free, so to speak.
+>> 
+>> Of course, if the maintainers see this as a good opportunity to 
+>> perform
+>> a platform-wide cleanup at this point, instead of seeing it as a "code
+>> churn", I'll still be happy to extend this small patch into a 
+>> platform-
+>> wide naming cleanup of the "opp-table-X" nodes.  On the other hand, if
+>> this patch remains as-is, it may hit a good balance between resolving
+>> the currently present naming ambiguity and the amount of introduced
+>> changes.
+> 
+> Personally I'm always for the "we strive to get there eventually" 
+> thing.
+> If there is an established goal to reach, steps can be incremental :-) 
+> .
+> 
+> And also short and scope-limited patches are easier to review anyway.
+
+I see.  After thinking a bit more about it, I'll turn this patch into
+a small series, in which this patch becomes the 1/2, and the 2/2 is
+a new, larger patch that extends the "opp-table-X" naming cleanup to
+the entire platform.  That way, the 1/2 kind of fixes something, while
+the 2/2 performs a cleanup, which may be helpful in the unlikely case
+that some regression is found down the road.
 
