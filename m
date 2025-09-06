@@ -1,162 +1,105 @@
-Return-Path: <devicetree+bounces-213930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69EEFB47770
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 23:26:45 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E9AE3B477A7
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 23:39:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B6C57C2DB6
-	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 21:26:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2B755A11A8
+	for <lists+devicetree@lfdr.de>; Sat,  6 Sep 2025 21:39:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E411E29BD90;
-	Sat,  6 Sep 2025 21:26:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3FE32848B4;
+	Sat,  6 Sep 2025 21:37:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="FHHLlguO"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="K2W/llDd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 321B4279DB2;
-	Sat,  6 Sep 2025 21:26:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7A882D0C76;
+	Sat,  6 Sep 2025 21:37:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757193993; cv=none; b=B3Jogy5Gz4SK68zu9WLd8fZu08gx1FSsvokBGr3b5lDo94ZO4yARd0ZmFzFq3jqh7xv2MM6b8Y5rWVslOLQod8ejn4FvXcHqYFBBBJOMjeXz5ZJeOMgdnW65E1woPFMeesQJDtEbR7Bd1HLTjpB2CVl0NdR994XaXESEnFolEQE=
+	t=1757194629; cv=none; b=NqqXrJgzMh4d3NJ0tzqbCb9ONUJgANZ+clOOcJUoXpWDp/k3qYLCgJDqgLSJ7StD2a0SDr7RuDkJ2iY4cRut49KyHC0+NBT0XjHL9rDb6/n0wxgrywplrSJdV+aXQQbNEjaOVXN5K9t1d9ZY3Bd55qYD0IPp5L79uHH1Ai2+UsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757193993; c=relaxed/simple;
-	bh=CMGs8i3Y8nSpfA6lMpvHldw8w4ip7mYjXqWISfeH/PM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IW7e5oQDwGxFMmULPtpXxjY9lnBShrYEe+b/c8jbIAHO40ZolXbrGHQX0DCgcOS9yKrRQIfShVw3vAdnkW6NmX04IEdqnt3kIx+DlYsQY+EZnxJYY2u1mZi814d43Pn0SNZu0t/d7CeBrtBp5H665ieHlcnzfd11F9zfmtOK5bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=FHHLlguO; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757193992; x=1788729992;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=CMGs8i3Y8nSpfA6lMpvHldw8w4ip7mYjXqWISfeH/PM=;
-  b=FHHLlguOvTUFaFEFxHHGj6zrRc9v7uDyNSvZRDDv3sPWNE3ua4cocI/2
-   VaNoPqSMw1xdVmP3d6Zs2t9Zj0UBIcx+EWeaxKkAFHDlsGgn7xXYhg5zY
-   EwMoE4lwixPVx5w33GojPVp+jSoZMMnzHK0uhCapv3Ul8bzNSF7ZeTUWz
-   htLfv8oy2m/6oEcdPHY4TMEpjGO4+3DOG3kViZsJCzQPFQXl5ZdjcGGUr
-   4OpcukyZgxjXGn0gHVq1PybbtM8DeofCn7eQPBO8lJUZyYnUpMtm3BZNG
-   MiizuJ8f2cISeP9RGqnTKVdNnIRvkMSB6BzdTqqD6ykAEX2qThy5tHRRP
-   A==;
-X-CSE-ConnectionGUID: zrORHN8sTo2EPmldWSOGtQ==
-X-CSE-MsgGUID: 7zj8z33HRT+2H3ddFzIkmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11545"; a="58715851"
-X-IronPort-AV: E=Sophos;i="6.18,245,1751266800"; 
-   d="scan'208";a="58715851"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 14:26:31 -0700
-X-CSE-ConnectionGUID: VbX9FkwRSrCKGheZZSUk1w==
-X-CSE-MsgGUID: XHIZwNXBQuyDKp8oVdJh6g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,245,1751266800"; 
-   d="scan'208";a="172009225"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by orviesa009.jf.intel.com with ESMTP; 06 Sep 2025 14:26:27 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uv0QT-0001np-1W;
-	Sat, 06 Sep 2025 21:26:25 +0000
-Date: Sun, 7 Sep 2025 05:26:13 +0800
-From: kernel test robot <lkp@intel.com>
-To: Ryan Chen <ryan_chen@aspeedtech.com>,
-	Eddie James <eajames@linux.ibm.com>,
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Lee Jones <lee@kernel.org>, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev
-Subject: Re: [PATCH v3 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU
- interrupt controllers
-Message-ID: <202509070538.5HcCJf2T-lkp@intel.com>
-References: <20250906014846.861368-5-ryan_chen@aspeedtech.com>
+	s=arc-20240116; t=1757194629; c=relaxed/simple;
+	bh=55uaeWV/aBUQtp9LkGlPTEcjHah/6AIZRIwqNC7DGV0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=H68HsXzvHqNnnRAPAtiMbwmcYt1bKd2Lzi2PGoYL+j7MVlzf8xHVbEb4sU9F66W6pnMdh8f50NDQTdY0VqQWL56nxGsXvmCRbdwuFa5alsFZSy55clmYPKsHwReAjsOPGGZyZyTqnCtS0Rca5DbWSWrOIVqghSBAuQTU2Q2SUVE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=K2W/llDd; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cK64B0917z9sm3;
+	Sat,  6 Sep 2025 23:36:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757194618;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p81LzOsOYNsdOTSUXvokaC8zBIJglqa1ttqhdnLPofE=;
+	b=K2W/llDdgZ6H8bXUb8m2FGz08OzeQWYqvyYRR4fh1i+JXw5nsM6MdsK01JhLztgOFTtviD
+	qmdlSmWwfjSjdiGvSRuJq8SH8/MBZH32y/8b/xOQSGqwYK0E8E+TObZohfwXV0SoNmghS5
+	CvFGUT4Rg/SDZAlhUUsjJ9MCelxBsOIiv8w46dfdquCpODsQvcdOyvLw+ALsNJpM4/aEUs
+	uqetv7SDjLzNZqtusbCTEuNiuMCyxieSA1ZvoKkH3Veux3MnL4xtlwEhMNFed5shnvG1Mx
+	rvc4yiFYejOSZ7gPNQe+xUZZkHsvUSTNJLEBN6IWjly2IZuztPCccqe4mv89bg==
+Message-ID: <6f476105-0091-4da8-8941-2794686cf45a@mailbox.org>
+Date: Sat, 6 Sep 2025 23:32:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250906014846.861368-5-ryan_chen@aspeedtech.com>
+Subject: Re: [PATCH v2 0/8] Add support for Wave6 video codec driver
+To: Nicolas Dufresne <nicolas@ndufresne.ca>,
+ Nas Chung <nas.chung@chipsnmedia.com>, mchehab@kernel.org,
+ hverkuil@xs4all.nl, sebastian.fricke@collabora.com, robh@kernel.org,
+ krzk+dt@kernel.org, conor+dt@kernel.org
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+ jackson.lee@chipsnmedia.com, lafley.kim@chipsnmedia.com
+References: <20250422093119.595-1-nas.chung@chipsnmedia.com>
+ <f03d0ae0-d28b-4b06-8f63-9d06f15c0522@mailbox.org>
+ <fcfa00b5ae102d76b02ce1667d27822e6d2c3c81.camel@ndufresne.ca>
+ <472aac3c-9d3e-4892-8d6c-665fa6793464@mailbox.org>
+ <59e87d8e346bb16b225382b9a4500e1b16bbf776.camel@ndufresne.ca>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <59e87d8e346bb16b225382b9a4500e1b16bbf776.camel@ndufresne.ca>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-META: cxe8848dpu17ughnqfsffthzmjiprqsj
+X-MBO-RS-ID: 67428cf859e6fa40881
 
-Hi Ryan,
+On 9/4/25 5:54 PM, Nicolas Dufresne wrote:
 
-kernel test robot noticed the following build warnings:
+Hi,
 
-[auto build test WARNING on tip/irq/core]
-[also build test WARNING on robh/for-next lee-mfd/for-mfd-next lee-mfd/for-mfd-fixes linus/master v6.17-rc4 next-20250905]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+[...]
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Ryan-Chen/irqchip-aspeed-scu-ic-Refactor-driver-to-support-variant-based-initialization/20250906-095043
-base:   tip/irq/core
-patch link:    https://lore.kernel.org/r/20250906014846.861368-5-ryan_chen%40aspeedtech.com
-patch subject: [PATCH v3 4/4] irqchip/aspeed-scu-ic: Add support AST2700 SCU interrupt controllers
-config: arm-randconfig-001-20250906 (https://download.01.org/0day-ci/archive/20250907/202509070538.5HcCJf2T-lkp@intel.com/config)
-compiler: clang version 22.0.0git (https://github.com/llvm/llvm-project 7fb1dc08d2f025aad5777bb779dfac1197e9ef87)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250907/202509070538.5HcCJf2T-lkp@intel.com/reproduce)
+>> gst-launch-1.0 -v filesrc location=/test.mp4 ! qtdemux ! h264parse !
+>> v4l2h264dec ! fpsdisplaysink text-overlay=false video-sink=waylandsink
+> 
+> Thanks for the detail. Since you have a running setup, perhaps consider testing
+> with the following, left/right keyboard arrow will let you jump around in the
+> media.
+> 
+>    gst-play-1.0 --audiosink=fakeaudiosink --videosink=waylandsink /test.mp4
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509070538.5HcCJf2T-lkp@intel.com/
+Seeking seems to be working fine.
 
-All warnings (new ones prefixed by >>):
+> That would at least cover seeking use cases. I provided Nas a stream that
+> aggressively do resolution changes to reproduce a Wave5 crash, I would expect
+> him to test and report against Wave6 too. If you'd like to have that sample, let
+> me know, its not very big, and free, but I'd rather not do attachements over the
+> mailing list.
 
-   drivers/irqchip/irq-aspeed-scu-ic.c:93:34: warning: variable 'mask' is uninitialized when used here [-Wuninitialized]
-      93 |                 writel((readl(scu_ic->base) & ~mask) |
-         |                                                ^~~~
-   drivers/irqchip/irq-aspeed-scu-ic.c:69:24: note: initialize the variable 'mask' to silence this warning
-      69 |         unsigned int sts, mask;
-         |                               ^
-         |                                = 0
->> drivers/irqchip/irq-aspeed-scu-ic.c:106:20: warning: variable 'mask' set but not used [-Wunused-but-set-variable]
-     106 |         unsigned int sts, mask;
-         |                           ^
-   2 warnings generated.
-
-
-vim +/mask +106 drivers/irqchip/irq-aspeed-scu-ic.c
-
-   100	
-   101	static void aspeed_scu_ic_irq_handler_split(struct irq_desc *desc)
-   102	{
-   103		struct aspeed_scu_ic *scu_ic = irq_desc_get_handler_data(desc);
-   104		struct irq_chip *chip = irq_desc_get_chip(desc);
-   105		unsigned long bit, enabled, max, status;
- > 106		unsigned int sts, mask;
-   107	
-   108		chained_irq_enter(chip, desc);
-   109	
-   110		mask = scu_ic->irq_enable;
-   111		sts = readl(scu_ic->base + scu_ic->isr);
-   112		enabled = sts & scu_ic->irq_enable;
-   113		sts = readl(scu_ic->base + scu_ic->isr);
-   114		status = sts & enabled;
-   115	
-   116		bit = scu_ic->irq_shift;
-   117		max = scu_ic->num_irqs + bit;
-   118	
-   119		for_each_set_bit_from(bit, &status, max) {
-   120			generic_handle_domain_irq(scu_ic->irq_domain, bit - scu_ic->irq_shift);
-   121			writel(BIT(bit), scu_ic->base + scu_ic->isr); // clear interrupt
-   122		}
-   123	
-   124		chained_irq_exit(chip, desc);
-   125	}
-   126	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+That one seems to be working fine too, thanks for sharing it off-list.
 
