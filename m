@@ -1,131 +1,111 @@
-Return-Path: <devicetree+bounces-214001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8442BB47BF3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 17:10:49 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 83AF5B47BF8
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 17:18:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 870A83BCBA3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:10:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E500189E91F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:19:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1506317A31E;
-	Sun,  7 Sep 2025 15:10:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69F1F277003;
+	Sun,  7 Sep 2025 15:18:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ebEl5PMs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UqH64FWO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f50.google.com (mail-pj1-f50.google.com [209.85.216.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4C2521B19D
-	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 15:10:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8011D2F84F;
+	Sun,  7 Sep 2025 15:18:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757257836; cv=none; b=OdohjER4wahhn6cex4F59VKAmnIA6KT6GycZX/WnWunurgsdVj/KItXEj8LHZrDyIWgnWBiC0mGtTsIRzHPkPeX4F0Z7d9/6dYZOkfUgG+v2R4ATAPintVLK9VviSLnum2RmlMX10a0RLYXJDrCe5wCWKU53xaXK8oWKxu7LmLw=
+	t=1757258321; cv=none; b=Bhb5H/xxur0Q37LHTK/Yr722oCeTtwGb5mKVFTPKVsXf1FfI/L7MRriQgiJBORkrjEL3hfcWfp91D6TEk51nNfrDb/NsijXlOvlski7bixvm4iSIGbDyPwBNs/SJlFCsQ6xZtX5/0B4cOFw5wA+iRCN1jw4oCBuR6/fOeKJIG50=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757257836; c=relaxed/simple;
-	bh=9KhSMZwuOUtEKu6wMi4L097HmKyLxln2rv/nSauFxcs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j0p0eshyFfWBdzsbGQlzBaaKGgPucSs23dH3ABJjj7sYOg4wJzyBcmAUEYfPTe6Cu2Y0CM7s0vsNObwTvlkcHa9tG4WhNIO2irsyk+XB0dYDGEAEzV70cfth/RyshRGEcbc6TfJRKKSQPGRw+CMkPgygcYx4y25xSscMVSMhxeQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ebEl5PMs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3562FC4CEF8;
-	Sun,  7 Sep 2025 15:10:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757257835;
-	bh=9KhSMZwuOUtEKu6wMi4L097HmKyLxln2rv/nSauFxcs=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=ebEl5PMswQAMEGSnXs/y/rAfXrCK1YvlCzO9n685+06r9PiFXV2Hw79RNjlExnMC4
-	 0PCKxIkTCPD0AcxuYS6p5rjbc+0VxaKF8mNmwANfT4pqkefi1l2aXS05LSQsxtnjbq
-	 Ue4Y0r/E/v0xeSzOgVYS8qhll+awwGvxkn2SyRFwduE+xyVMepVnvv3qNidmmmhnQq
-	 Ndht6k+Yx8Y8TIn84lltJOE5KHh+eZT3ahKkgW678A+Y+RqYjkWt3zjxyTFtJ8kGUa
-	 rrvnexICiJuf9o5qV3p9SpRvFOk8ByElGY1ZxMLRIfqImMsfv3yWF3drLqzX2Nm4db
-	 mpW1bm+82fQ7g==
-Message-ID: <8daf32f8-012f-498e-8087-1ffd87160016@kernel.org>
-Date: Sun, 7 Sep 2025 17:10:32 +0200
+	s=arc-20240116; t=1757258321; c=relaxed/simple;
+	bh=LYyDvq0GXrH2DKyUhF07XevDxFGTDVdVeG14S4KHIUk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KZky+y1OPcjq+Y6MZl0uUHXsEYZUY4/Y+kgpdgmdK/DKIuZWTA2sGBdJoxB+GmW79mjAzCogaPdp2GZOhBHo5djlegvKUaONGaNn0v2O2QPKTGeZfklza1OyMKFlhhmKB6QcJfDG566mx9Yq28pXX3M+16Y1Cf9DmA6rNwMm+UI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UqH64FWO; arc=none smtp.client-ip=209.85.216.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f50.google.com with SMTP id 98e67ed59e1d1-32b60a9aa4cso2241426a91.0;
+        Sun, 07 Sep 2025 08:18:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757258319; x=1757863119; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=r/E8J0+UDrFZVPW+XIBVI88qGmovgkSzjMGwttvN0GQ=;
+        b=UqH64FWOKzJXmEjSeIRpwwPCMkRPeKZknUgZkisk1yllWV8UygD5PTDeCrE+uAAMRy
+         sRxQZf/wixYUS6Jcj3JISvk5JRZZnHc5s4nWcXq7tY8xosr2mn8ihYT5YxFXm/vWk8m5
+         RXuh/ApK1CwSHAOPv5jGcoffongqyvZhd670OnXl8ktksC/mQbLz830MWPzM1xeps6Qg
+         dp+n9QiX9ae0I1eg/B6sTSiW5PjjCOqyhrgdygFXEiL8NkZaTBwlHHsOiZoYN8JEbDxT
+         IWGYM57FBBQNBwRdDtdma2PwPdYbopqzs4zMvYmp+PYqHhv+5iddwWe7xBQH+beCCQ0c
+         0C9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757258319; x=1757863119;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=r/E8J0+UDrFZVPW+XIBVI88qGmovgkSzjMGwttvN0GQ=;
+        b=mPAHG1dH3CLGuwyu+tqpz3KN992Y3fTj2XJ6abZ8Vq6jylGs4mRmBeUN0uORcnn7C+
+         SG9LhUKVsiSB9F2J1dmT0aoHUGVE0K4oRcAHblCK8S0xGv2ctZwqm1iJVX6q74a8pdQx
+         blSCyxeClMIQWXqAgoIl3qH0y3eEvY6+c6uhPep5fNB1NIbnyeVPATs4nLbqfRFb8DRX
+         z4FoQlVE5w7aQK8IhnQqkhezzSgjzjAc5N3OO85m8pxWg71+D2fWIl/6HZAPXrsNWI6+
+         G7PfZNAZsTNJl9/WaXAvnKnMnwAyEsymynY2eN+zeX14ing8TUYAmKJzBYaQPSAvVnCW
+         U2VA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIhwPN6hafI1bGXCYYeDiETG8b94qVFDuqOsfuYLimK08pdG8meFPlLuo1S7Vkrk/UcdBnjG61OlI0@vger.kernel.org, AJvYcCWUBAssIDTRlMHsFi+pjb3PRxfcEIVH3n3PRTqpb2z6oO7RtA/DW3mnS/nv4NFX0+xmrVR2GghCgOL3@vger.kernel.org, AJvYcCX7wisNEFjL8SwICpBfSMFDCgEhUnIb/JSTHuFpNTLcRQ8LMohT+oTkzdeMyI15aMq6SUPy/NHQSWhYOfMT@vger.kernel.org, AJvYcCXbAdagOnppR48kr/rYw5JAynN+EmOMqZIFfLSw03KsL0j0gbwNztLP+pc1klTChPaWImFEzkBFNDqtIGM=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyYE5Uot5SmNDkyYSZN0wTKYXFc8uscaYM9guLcUWXuwZXzchIH
+	rZV8EMkMBun5svmir2l6xbNnRzeCDZ5f2CVP1pgObhbFwuaF7VqQnNe6
+X-Gm-Gg: ASbGnctZlmpPuN2joEAk7/lhnPyog+4VBoNHZXd+NCOjD0CYKf2BSi9kVFVftlq5iR4
+	SFg2R3haSqjiD0m2y77FWyyC07DoFKH0G0/BAmOo4imgcCQZur2u//ypPoDyNOoS0DYDJXP+sAm
+	L3xbjvr0X0obbSYVALehn9HVDvzMkE199+jMWVVNh7+xB1rIDH6LMBpMz5r60G13Qwjak9P5P1S
+	/oLuJIXsbwAC4CX8qU7XFMzXAKbb0t+uNi65jU3C5450wPyxoV6rCCJwanmfBLPih0a+m6c1iRr
+	aRPb6LeyodcHnn6LYOJf+qX2bI+1om5leGuNkx+JAfWic0QxTIN3kr851S2U7TXGlvoTAPnfEEl
+	dqfNc/f7Ee/Qy7uHcKSZSjF3aXqvPrZZztRE=
+X-Google-Smtp-Source: AGHT+IH0NRfIjdXGmDg+4fUORjKshyxGPbn3RDkWC6+6ULZI5bE10kWEcroIGsW4+gnsEJgl1rqeig==
+X-Received: by 2002:a17:90b:3c0f:b0:329:f408:1070 with SMTP id 98e67ed59e1d1-32d43fcfd9emr7886971a91.33.1757258318677;
+        Sun, 07 Sep 2025 08:18:38 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3276f57b232sm33761531a91.2.2025.09.07.08.18.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Sep 2025 08:18:38 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Sun, 7 Sep 2025 08:18:36 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: wenswang@yeah.net
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	jdelvare@suse.com, corbet@lwn.net, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] dt-bindings: hwmon: Add MPS
+ mp2869,mp29608,mp29612,mp29816 and mp29502
+Message-ID: <28e779b7-43aa-4e82-87b4-e56c6cb0b7f1@roeck-us.net>
+References: <20250805101754.749492-1-wenswang@yeah.net>
+ <20250805102020.749850-1-wenswang@yeah.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: arm: cpus: Document pu-supply
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, Frank.Li@nxp.com
-References: <20250906231930.461022-1-festevam@gmail.com>
- <20250907-tactful-blazing-urchin-9f8bd9@kuoka>
- <CAOMZO5AaNGGXiy1gH2Z9OWs--t8kaUQ=odOcoUABMA8=CJ5E3Q@mail.gmail.com>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <CAOMZO5AaNGGXiy1gH2Z9OWs--t8kaUQ=odOcoUABMA8=CJ5E3Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250805102020.749850-1-wenswang@yeah.net>
 
-On 07/09/2025 14:08, Fabio Estevam wrote:
-> On Sun, Sep 7, 2025 at 6:57 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Aug 05, 2025 at 06:20:18PM +0800, wenswang@yeah.net wrote:
+> From: Wensheng Wang <wenswang@yeah.net>
 > 
->> This awfully looks like typo of cpu-supply, so I don't get why you just
->> cannot fix the DTS?
+> Add support for MPS mp2869/mp2869a,mp29608/mp29608a,mp29612/mp29612a,
+> mp29816/mp29816a/mp29816b/mp29816c and mp29502 controller.
 > 
-> It is not a typo.
-> 
-> The i.MX6Q Reference Manual does reference it as PU:
-> 
-> "10.4.1.1.1
-> Digital LDO Regulators
-> The integrated PMU includes three digital LDO regulators: LDO_ARM, LDO_PU, and
-> LDO_SOC. These regulators provide power to the ARM_Core power domain, the
-> combined VPU, IPU and GPU power domain, and the rest of the SoC logic (except
-> always-ON SNVS domain)."
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Wensheng Wang <wenswang@yeah.net>
 
+Applied.
 
-Then please mention this in the commit msg.
-
-Best regards,
-Krzysztof
+Guenter
 
