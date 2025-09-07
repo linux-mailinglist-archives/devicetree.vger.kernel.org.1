@@ -1,149 +1,174 @@
-Return-Path: <devicetree+bounces-213987-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213988-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 232D1B47B54
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 14:29:43 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AF41B47B5D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 14:37:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C124817AE15
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 12:29:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E9387AC244
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 12:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67E3426C3BF;
-	Sun,  7 Sep 2025 12:29:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1303226B77B;
+	Sun,  7 Sep 2025 12:37:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="B3MmJAWF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JCoQKlGB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F1D310E3;
-	Sun,  7 Sep 2025 12:29:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6082D1D6194;
+	Sun,  7 Sep 2025 12:37:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757248179; cv=none; b=dvsPMEsd4/rIBy2I3fZeWFDa5T5M5xUBUt3u4J5noehJXulb9a8TCpaYVMElrw0i9CD+5jgWkdzS4+am1xyRxXcEge4trlxXB0QIv/d8ww/kowO6YUtjus6erlNJMTjir6T+UtU6AqsjnbuNuYgKneBmozTlBqQUkN34mMVBkx8=
+	t=1757248666; cv=none; b=D+cLbjuFMzkOhmHDbBfpVCCWpjoSDOAM6WrlxiyEtY+aIXl9Ey3hm+tjmhQ1ih0s1PQgsWPrJ4+GIWFNrB9CUlxakrbmokO710BDWokiQcMrklMScK1WyQHEimXR6WHEN/lrap9egU5VndKpyg6x3RF7nFczDxtYUL8w/Hi1ROU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757248179; c=relaxed/simple;
-	bh=qDpX76/Rz1kCBhaI70kE6hYmSdNLUblzUjGz0/M4d0o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=piFvKaCmb5o/FF72iHuicr2YPo86y2lrmDmUDj5meB1mKYbYJ0LDj5egPGlDa8OPZJyk07AkOX/NhuDS2NVipH0nz7kk/CkADq4BTxqEtTBHSBT9czU0ED/k23XnlQHNd1SXu2GeoHD9igo8zKhD++InMlRJlDlQxdvOZ30moIA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=B3MmJAWF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id B09EEC4CEF0;
-	Sun,  7 Sep 2025 12:29:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757248178;
-	bh=qDpX76/Rz1kCBhaI70kE6hYmSdNLUblzUjGz0/M4d0o=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=B3MmJAWFs+3gyy0sUGgqX+Zi3uCoR9eHU8tjULNNucAHMIDieSQ4DBAobqY5gDsi3
-	 /WV8VrFmWhiY4XIwQXbPo3bjvS+cKmMuMABOBVWbEzr42+7OQYl6OT+AJ+R59h2AcZ
-	 x73JDkJnj8mfmi8fQt8dbx/JMSXMneIhvqnccFzktChkES+tf3pyrfSqn4UdUSUFOD
-	 M9Dj93EnIiVlZ06AATosjgfAf+Mbq+3wOZjWIGCY5/RVxZnR+H8c/HFveH+2vVVNxs
-	 xJjLZKS46kzd+XdSSTTS6Xr4Rpl/1eHjg1hnkX0hDA0bXzN+maPp8ByIHqtR2L36NG
-	 IkriQ8GHzzoYg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id A1729CAC581;
-	Sun,  7 Sep 2025 12:29:38 +0000 (UTC)
-From: Valerio Setti via B4 Relay <devnull+vsetti.baylibre.com@kernel.org>
-Date: Sun, 07 Sep 2025 14:29:21 +0200
-Subject: [PATCH] arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability
- for SD card
+	s=arc-20240116; t=1757248666; c=relaxed/simple;
+	bh=HycviNnl0QtTxKO5LyHKEb5J1lb5WD9r+MFVPuxbUmM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=I2H4x/dTpBLIT9mKABiiMSlMELytv0yKvzxw5n9MpxwUNz+nVNHl79ghKkCkQX+Kndh1wrqkJJeMBTKGkfNj2PA/RN1f+l307buqjgXFYXD5/DM8o1MxPOgjJLm7Ps+liMaNh9kPOprOS2iR86iyeNHQc4UIV99Dz189Azrf59g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JCoQKlGB; arc=none smtp.client-ip=209.85.167.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-55f7039a9fdso3715239e87.1;
+        Sun, 07 Sep 2025 05:37:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757248662; x=1757853462; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=+4s58Bk/KijXBqHJUWnOOmuKtTmconNejosOHDLYvGk=;
+        b=JCoQKlGB7o3hYV55IqpxwIXt8CSqt3j9eHKHoSfwVA/dUZqsIaMj9Esal0Y5LUFEqF
+         w5Q0WsNBfkJnsYqHsJQFEui7hnf0hjU4HIYuG981w0GEbuSr57OVyxfJCCtGVT5qmAtS
+         nGrb6OnLQz5CXtxynQT91eGTl54ouZTllwxXSPeCIvUA0DBY7YHMDNz/vTd+OcN10PlH
+         dWp4mKWiiSEcWX3iI5CVxlRm5+PeIw2GZpVGd/fk46GJl2h1wPK1jCRvuXa9ghSQxAP1
+         o1+iPtrUpEUbXot7f2KUHt0sNKuA8c0jCkx2asNAQcsxwUyKY6ncqYNhN+Nl6v+H8fuh
+         gslA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757248662; x=1757853462;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=+4s58Bk/KijXBqHJUWnOOmuKtTmconNejosOHDLYvGk=;
+        b=f28BihCHR/P2VPtlNRh+Se1pS+re976XUN3bnBxs7PIxSRK6DwmLfBsnhrRGnlFuIS
+         0k4ItzG8qsZUemz6S1wJNqx09fgrtt5xDXRRHtTPhcHV2FDdinpeiezLDBxkUXxZ2c5R
+         /Pcgl6TveYB3+81AX6pNI04axD7/gTf/6+YZ+KGsPBJVTfjmvMu75dFZT9qWTuh4Mwlr
+         CVrOGmKGAJJSGy2b3AvC63YBfMETXMGHoSRklA2CFakMJRb81OzpTzk4oTetEpWsQrB8
+         t9MzrmZXOWA/4g6rApI6d/BtPOvbivOn5Tp7F+9P837RWojqVOqeWtTWRHkGoFHCr35K
+         ihvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUMC1oqfveCZVup92VgonX3Jf8wDRfhaP77hx/jqTiIPBnX9RNZbEQ/k6Jpik8y5ZB/RtwVrhyy0WAX@vger.kernel.org, AJvYcCUaU0FTqD10a2S/k6DnsgDV78zmoeYWSErP41+B+gagv4kPf+VYVPeFzX1a0W+3enitPQBpO1ouyWXb+A==@vger.kernel.org, AJvYcCW9iQ6UUGr6nR8GteWp9izgVwfoe1NtfPLCYD4oJjcOtsFTqejknXFQjB0yxerNf7pfec9Iky89sswP@vger.kernel.org, AJvYcCXwGMhHImhRyZ9RJX6JhYJxjWUgHgxY/Yp1ExXVg6QHe7c8xBIVHho3/0Dy7Xv82Pj8uGcYEgw0bRZG3btZ@vger.kernel.org
+X-Gm-Message-State: AOJu0YyMynDPQpTtQUN3cTZRxzdlevtmNzXhIH/5qowgmuL9FZ8ZcA1+
+	4cJFurNfuGXH33WeJUCj4Z1bvYCTikAOhkW82UJVhcegD/97i3g9AXBJ
+X-Gm-Gg: ASbGncs3zQtULbawputcxTJMM1Ezd0S2q/NnpmGRLsuT5bI2Dhp/CSAZmE3EwcEqNWD
+	goNtTWIj2xmL9k+9eK8zq/BPkvgoTpVYap7m3o1cah0XMGM6xpESP52n0batNPWiTfsO/zHliJo
+	35m3k0iiYfVJrDPmtn3Kxxu2wttve9sq5c3k6DEe5fB0EzQuaRkndwe89tPwke82j6XOWz/2btc
+	AXrtATnym7bXIMQPR8LiVd4psEQmSMfzhTBIhL4KaNlTduSFdGmT4ZV16Pw2WZgThVorxaK3Izw
+	vqcK+GIn8xVrEZpdi7WbrDTzxDgIDktSCIaepq7k4NOA7139/4QJRamODuykx63EGbW7xNGtJMz
+	hWWWNuzSopih3pApVi+pxeBTxaZu6y5X8W8igA+w6TTtDl56P8plNAGbZRGI/W2ovvkmCd5O6gw
+	iO0NTk
+X-Google-Smtp-Source: AGHT+IE42icfVHU5uZzzNitKUaqMWOXWaxc/p/+9eZUGBW/kTuwbjFWBHpYx/5S/rCWX52lact97xw==
+X-Received: by 2002:ac2:5685:0:b0:55f:71ed:b0da with SMTP id 2adb3069b0e04-56263ba2acamr1434099e87.55.1757248662349;
+        Sun, 07 Sep 2025 05:37:42 -0700 (PDT)
+Received: from ?IPV6:2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703? ([2a10:a5c0:800d:dd00:8fdf:935a:2c85:d703])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5608ad11f25sm2815887e87.115.2025.09.07.05.37.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Sep 2025 05:37:41 -0700 (PDT)
+Message-ID: <69eb8aaf-2ab4-4e54-89cf-1be51a616258@gmail.com>
+Date: Sun, 7 Sep 2025 15:37:39 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/3] dt-bindings: iio: adc: ROHM BD79112 ADC/GPIO
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Linus Walleij
+ <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Marcelo Schmitt <marcelo.schmitt@analog.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Tobias Sperling <tobias.sperling@softing.com>,
+ Antoniu Miclaus <antoniu.miclaus@analog.com>,
+ Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>,
+ Ramona Alexandra Nechita <ramona.nechita@analog.com>,
+ Hans de Goede <hansg@kernel.org>, Herve Codina <herve.codina@bootlin.com>,
+ Alisa-Dariana Roman <alisadariana@gmail.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+References: <cover.1757053456.git.mazziesaccount@gmail.com>
+ <fc3cffa3b75d1fcd19df0ff794e6ad75c8c87373.1757053456.git.mazziesaccount@gmail.com>
+ <20250907121911.7c2fa1cb@jic23-huawei>
+Content-Language: en-US, en-AU, en-GB, en-BW
+From: Matti Vaittinen <mazziesaccount@gmail.com>
+In-Reply-To: <20250907121911.7c2fa1cb@jic23-huawei>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250907-fix-reboot-v1-1-7606fc91254e@baylibre.com>
-X-B4-Tracking: v=1; b=H4sIAKB6vWgC/x2MQQqAIBAAvyJ7bmGVIuwr0cFsrb1oaEQg/T3pO
- AwzFQpn4QKTqpD5liIpNtCdAn+4uDPK1hgMmYEsjRjkwcxrShdSzxS81dYxQQvOzM3+s3l53w+
- 6d6OLXAAAAA==
-X-Change-ID: 20250907-fix-reboot-04e0fc919ae0
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org, 
- Valerio Setti <vsetti@baylibre.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2226;
- i=vsetti@baylibre.com; h=from:subject:message-id;
- bh=8EBu8xBycRGsUBCELcsXSIlLy471WBn+C9oMzb171Ho=;
- b=owGbwMvMwCF2z3ty7kUrRgbG02pJDBl7qzZ+EotTzK5mWfxPQoD3/DQxnkX1aVs1a1Z1aVvlx
- HUkbd7ZUcrCIMbBICumyMIy/d7vglK1h8YJJwtg5rAygQxh4OIUgIkcFWD4X21T+C1i+zvvZQeO
- e5zqsmt76n9o+7IXy1Z+TO1bva5APYbhD4dH72EDe83XX45zHOD27/+wJdz7NJfMPtPW+jXLO05
- vYgIA
-X-Developer-Key: i=vsetti@baylibre.com; a=openpgp;
- fpr=0497DEFB707526E13360C970DE4B936DD13A0100
-X-Endpoint-Received: by B4 Relay for vsetti@baylibre.com/default with
- auth_id=515
-X-Original-From: Valerio Setti <vsetti@baylibre.com>
-Reply-To: vsetti@baylibre.com
 
-From: Valerio Setti <vsetti@baylibre.com>
+On 07/09/2025 14:19, Jonathan Cameron wrote:
+> On Fri, 5 Sep 2025 09:42:18 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+> 
+>> The ROHM BD79112 is an ADC/GPIO with 32 channels. The channel inputs can
+>> be used as ADC or GPIO. Using the GPIOs as IRQ sources isn't supported.
+>>
+>> The ADC is 12-bit, supporting input voltages up to 5.7V, and separate I/O
+>> voltage supply. Maximum SPI clock rate is 20 MHz (10 MHz with
+>> daisy-chain configuration) and maximum sampling rate is 1MSPS.
+>>
+>> Add a device tree binding document for the ROHM BD79112.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+>> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+> Trivial comment below.  If everything else is good on this version
+> it isn't worth a respin.
+> 
+>> +examples:
+>> +  - |
+>> +    spi {
+>> +        #address-cells = <1>;
+>> +        #size-cells = <0>;
+>> +        adc: adc@0 {
+>> +            compatible = "rohm,bd79112";
+>> +            reg = <0x0>;
+>> +
+>> +            spi-cpha;
+>> +            spi-cpol;
+>> +
+>> +            vdd-supply = <&dummyreg>;
+>> +            iovdd-supply = <&dummyreg>;
+>> +
+>> +            #address-cells = <1>;
+>> +            #size-cells = <0>;
+>> +
+>> +            gpio-controller;
+>> +            #gpio-cells = <2>;
+>> +
+>> +            channel@0 {
+>> +                reg = <0>;
+>> +            };
+>> +            channel@1 {
+>> +                reg = <1>;
+>> +            };
+>> +            channel@2 {
+>> +                reg = <2>;
+>> +            };
+>> +            channel@3 {
+>> +                reg = <3>;
+> Trivial point but I get bored scrolling.
+> Would a smaller set of channels allow you to provide same level
+> of testing / documentation?
 
-This is meant to resolve reboot not working on this board.
+I suppose yes. Trimming this to maybe 3 channels would be just fine. 
+I'll re-spin the series anyways so I'll crop this too.
 
-The problem is as follows. In order to be able to switch from HS to UHS
-mode the bus voltage needs to be reduced from 3.3V down to 1.8V and this
-is achieved by the "vqmmc-supply" regulator. The ROM bootloader is only
-able to manage the card in HS mode (3.3V) and the switch HS->UHS happen
-at boottime in the kernel. The problem appears when the reboot command
-is issued or watchdog expires because in this case the "vqmmc-supply"
-voltage is not returned back at 3.3V before rebooting the board so the
-ROM bootloader will be completely stuck.
-
-Therefore this commit removes both "vqmmc-supply" property, which is the
-one causing the reboot problem, as well as all the UHS modes which would
-now became unreachable due to this regulator control removal.
-
-In terms of performance the main drawback of this commit is limiting the
-SD card bus speed to HS (25 MB/s) instead of UHS DDR50 (50 MB/s). However
-this comes with the benefit of being able to reboot the board, so it
-sounds like a reasonable compromise.
-
-Signed-off-by: Valerio Setti <vsetti@baylibre.com>
----
- arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts | 9 ++++-----
- 1 file changed, 4 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-index 959bd8d77a82ebc78c5e0592d7613e692e4ede4e..331a0a62b884389b4e0d4d157fff7f9c8738c89d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-odroidc2.dts
-@@ -348,17 +348,16 @@ &sd_emmc_b {
- 
- 	bus-width = <4>;
- 	cap-sd-highspeed;
--	sd-uhs-sdr12;
--	sd-uhs-sdr25;
--	sd-uhs-sdr50;
--	sd-uhs-ddr50;
- 	max-frequency = <100000000>;
- 	disable-wp;
- 
- 	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
- 
- 	vmmc-supply = <&tflash_vdd>;
--	vqmmc-supply = <&tf_io>;
-+	/*
-+	 * Control of vqmmc-supply is intentionally omitted because it would
-+	 * prevent the board from rebooting properly.
-+	 */
- };
- 
- /* eMMC */
-
----
-base-commit: 8f5ae30d69d7543eee0d70083daf4de8fe15d585
-change-id: 20250907-fix-reboot-04e0fc919ae0
-
-Best regards,
--- 
-Valerio Setti <vsetti@baylibre.com>
-
+Yours,
+	-- Matti
 
 
