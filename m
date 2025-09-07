@@ -1,101 +1,94 @@
-Return-Path: <devicetree+bounces-214019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214021-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7875CB47C7C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 18:52:59 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87B1FB47C92
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 19:30:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F90D3B5CEB
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 16:52:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4112D3B2C88
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 17:30:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0BE73284B26;
-	Sun,  7 Sep 2025 16:52:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738BE27B320;
+	Sun,  7 Sep 2025 17:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="gPs9V00X"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m9KSs/W2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout-p-202.mailbox.org (mout-p-202.mailbox.org [80.241.56.172])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 831851C6A3;
-	Sun,  7 Sep 2025 16:52:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8901DE3DB;
+	Sun,  7 Sep 2025 17:30:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757263973; cv=none; b=bmfR2nbBx3RLRNmd3cR3Yn/XcVehvhX4ILv2cH8Ik/p4PUJn0LjQ7ObDtD51bZiAS0lT4xU95uYsicWOnlyPfPBHbPj1VfypRSdfpZh6KEbp8ROq0FJzXu9YWgkYK4KFLNIm5krJh90SrhB/Eflpnox3CTTaVqsCIADbhG3OWNo=
+	t=1757266233; cv=none; b=Xwb1DaP91ZKgnojxQ/37Sqx3VPiuxnTuA17/Vd2Y9TgSTcAHCUVoqTBneHmjBYljMBMiRSfKAwHIooHFxXwVSVceoS2s2JsmVkdca4Y92LZNC56dCePd8RIPb36ZtXFFUPkbSGoosRox8JFPrYTeBOHib5DvicUO+/fQOw9CGHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757263973; c=relaxed/simple;
-	bh=F/24ciM1j11ua/knGQhVWHQkxntL42B63VZvi0iR/Ww=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VI4GxhOo8Y70zjAS+Y6Cp+1fmca6QUEDLtD1PLA9nahxyy/c877oK/Jjls9E1Tsr5YPDvwAxopVbV8+vvlhfS9aUNZj+ih888+l6GcVNOnwr5k+p1F6GZeacOerPK30OMC3gE9OCUs3DXRo8Mjs9NDpF4a0S0GlPlQmQWuTsACU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=gPs9V00X; arc=none smtp.client-ip=80.241.56.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
-Received: from smtp202.mailbox.org (smtp202.mailbox.org [IPv6:2001:67c:2050:b231:465::202])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mout-p-202.mailbox.org (Postfix) with ESMTPS id 4cKbjs0S9dz9tHp;
-	Sun,  7 Sep 2025 18:52:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
-	t=1757263969;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=ZFIcbNvPEoCpucJAgPEBDI5ghiJH/mZZqi/qt+FRAtI=;
-	b=gPs9V00X0uyp27qkyqUpw2vp2emOp9nNNpJ2k6uT6pgZAMarP9kSnE4FLdYuOYmqHL7MbG
-	fuL16htgJImg3pXpwZMO5rRTCwqapalIt2zEkPkS6cs5f1a7QVgV8w9ajcjtluIrPh+Eqm
-	Uxv9oL77Oqu8SXDHaOradOiztXJMkx+Ym93dACPKDO8lvBDuRPc+xNkxLa7gn/GO7eg+6s
-	L+aJZzTzvkLsQ4l/i9uL7c48ojTK09HTDtXJ6mmX4z/RAn2dSh6zMrJlIhtOk1J+n7PPvq
-	P5yJctAE7l1Y7V13vGhrk9te6woEGdqWG3272x65q2AkuIBCK3ZvSCAn8gAspQ==
-Date: Sun, 7 Sep 2025 18:52:44 +0200
-From: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
-Subject: Re: [net-next v19 4/7] net: mtip: Add net_device_ops functions to
- the L2 switch driver
-Message-ID: <20250907185244.7eab9640@wsk>
-In-Reply-To: <20250827111651.022305f9@kernel.org>
-References: <20250824220736.1760482-1-lukasz.majewski@mailbox.org>
-	<20250824220736.1760482-5-lukasz.majewski@mailbox.org>
-	<20250827111651.022305f9@kernel.org>
-Organization: mailbox.org
+	s=arc-20240116; t=1757266233; c=relaxed/simple;
+	bh=fgLTMyaCQ0OcK8llm4szDxgZbA432B7hXXzTNC9FQ6E=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=McQgZp/2FH/GmazE1TXc+TTtEh8oKOFJwZrSEdlu7Ona7lOObXskGLcdR7V0/DPIa6WpNJKTrifvPeOTG6ZcwXNGxmMH0sv5rdish7zPf+GLGCp8+wFYyp1vizCdSFvPZAs8ZW5a40t7tjDuK+iR/aPCnsqK4tvB/YtZK8QcwLc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m9KSs/W2; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
+	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
+	bh=VFuG/8nZb4eVJ5UiKdHvsABqzXbNy5nmmF5KkQCHiw0=; b=m9KSs/W2ZV6YVhiXV1ECPX2vKD
+	+o2h8UUPBOWVMzKw2GAnPbEBfcduwFTekGW1MigwFNoLfpCVWSYS50tJEDGcD3VyJbEnmSYaPX/vq
+	pH4IgmXZ+DvmN/7+iyG/oYOvunyxtxONYXABQ8tBCOO2b3YxI6frJvBkyRn761u3LBUsKCpviyoMb
+	L7xoMdCbhOgSOsX4bQFfnIlVPozUaRDxOKXrQs7dGsmWg6HODDw2mQr3TYw9PWPaAbAny4r9+8FrV
+	DoRIcZYrp4K7yB7pOwGQCcKDpy0L3X7CYzVZO6MsNszer68gFbp9ja7PEhMNowPPNNHlEtKDq4xkV
+	EVyr/V7Q==;
+Received: from [61.8.147.163] (helo=localhost.localdomain)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1uvJDa-0004Ii-UM; Sun, 07 Sep 2025 19:30:23 +0200
+From: Heiko Stuebner <heiko@sntech.de>
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: Heiko Stuebner <heiko@sntech.de>,
+	Yao Zi <ziyao@disroot.org>,
+	Rob Herring <robh@kernel.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 0/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
+Date: Sun,  7 Sep 2025 19:30:09 +0200
+Message-ID: <175726620393.195224.5931454450160072348.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.47.2
+In-Reply-To: <20250801080025.558935-1-amadeus@jmu.edu.cn>
+References: <20250801080025.558935-1-amadeus@jmu.edu.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-MBO-RS-META: y5a5h3eezse9k4uczes6z1epofcg74go
-X-MBO-RS-ID: 4f2f62b6c2bc268ccba
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-Hi Jakub,
 
-> On Mon, 25 Aug 2025 00:07:33 +0200 Lukasz Majewski wrote:
-> > +
-> > +	/* On some FEC implementations data must be aligned on
-> > +	 * 4-byte boundaries. Use bounce buffers to copy data
-> > +	 * and get it aligned.spin
-> > +	 */ =20
->=20
-> Almost forgot, the word "spin" appears here rather out of place.
+On Fri, 01 Aug 2025 16:00:24 +0800, Chukun Pan wrote:
+> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
+> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
+> 
+> The OPP values come from downstream 5.10 kernel, using a voltage close to
+> the actual frequency. Frequencies below 1200MHz have been removed as they
+> currently use the same voltage.
+> 
+> [...]
 
-Thanks for pointing this out.
+Applied, thanks!
 
---=20
+[1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
+      commit: 42bbc32c7e9e974ae4eb830ae1381cb016133e5c
+
 Best regards,
-
-=C5=81ukasz Majewski
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
