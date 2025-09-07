@@ -1,105 +1,177 @@
-Return-Path: <devicetree+bounces-213949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F5DB47A16
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:34:31 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DDB5B47A21
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FF911B214C0
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 09:34:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3FB433BB182
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 09:37:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A736220F2A;
-	Sun,  7 Sep 2025 09:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24A58221FCF;
+	Sun,  7 Sep 2025 09:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K3f13eRG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iRyCbp/x"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 157F21E0E08;
-	Sun,  7 Sep 2025 09:34:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA2AC221FB1;
+	Sun,  7 Sep 2025 09:36:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757237666; cv=none; b=mTMUm1VuTlS9hY1mfeXIm4fnWNELqSYkZ4VbotHSZhIG3K4Y+e7rEWCdkS6PZcpzhDOuKgMUXY5YTQONOnZGgH932jlwfDR8ZXKWeVkvS5/Vi7+vSTRqPCe3GX5XdVpyDcZb6dA8LlmzRB4s8zxOAMITE3dr54yB8+zJd/6D9Mg=
+	t=1757237787; cv=none; b=eKCDhZhHPQalAn872Cl2BAeeb+ixf2pmAtxY5ujLpCP/qSJpYXjcimn+8Fxzs5Hgmu+pQQLWDJXmkegtM++XK8i1cJGro1xOE9lzw/s4RmxE35ZV9V9+U+xvn6ZVp7Rwa2YDJNWo1DleEQEoD5G7zuocYnKKjbhdkkyYPswLWhU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757237666; c=relaxed/simple;
-	bh=cTNJvTaQR5rsTZCwNQVxZGskkL+S1GYnFsvsI7XSLbo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ThVwJcZ4/O+sOwpX6vHBHYARgmZP3y8hJhJSJCcjGSUqSVREAbvu0Tp7v/6GyUn6DCHcKhx+fpj94ocqqRLdP65RcLzJboXMRt/GAYD/qdtzHBpu5dnWuNNTU2SF7DDN6xReCS3Cc1dlh21Wjq5oqmzvZw6VOsuJljiPCXICcMI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K3f13eRG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E01CCC4CEF0;
-	Sun,  7 Sep 2025 09:34:24 +0000 (UTC)
+	s=arc-20240116; t=1757237787; c=relaxed/simple;
+	bh=iLGBcFXDZOBbyHVcVJJlbKkvrBO0iFZ6GaMiwpV8uVI=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Zm+XYBwhe0C4P5olPAMQ0oyZEafnzkJKkpKUkXHS8QkQfWUKkDFvry4pfC2R869tGdABpk2hbUUl8j4Qd8wDVD1mSrdcGJlf1S88qlMY5SnRIm6wKrweEKYs+merdaX8VRPLOJ9APSWNXIEvh+IYUfEH1dL5D2s80gLAd3YTa78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iRyCbp/x; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A25BC4CEF0;
+	Sun,  7 Sep 2025 09:36:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757237665;
-	bh=cTNJvTaQR5rsTZCwNQVxZGskkL+S1GYnFsvsI7XSLbo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=K3f13eRG2O4rA8PbNf/SO+UCluTEqSyo948VS10WjA7Okpz2v4rK13blezNsXzfgR
-	 dHHbjP68SjFFDwWzayno8FDptVHwYUySS7RC1XhYQSZnkDRsZGvR8uO46vrjyJy49y
-	 DCAfrMG+XJTcOilz8o8ol+9YTEQrmru6ZTZihJ0thh7qEVVLUYpz1iA9Kuzqg8ONBI
-	 3pf232/YQ1Scc2pDzk9pmRvxsKONmN42Tth6W3EYjeXayMXANINWw9kfxD3ygcDlBI
-	 s/aLCpS35on2GYxoCw21l0nJehnntEaNh4GNPqMlNJbRYeW4J3XZrSzYAi303BRBaL
-	 QmFe203OTEobQ==
-Date: Sun, 7 Sep 2025 11:34:23 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, 
-	Thierry Reding <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, 
-	Jonathan Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni <skomatineni@nvidia.com>, 
-	Luca Ceresoli <luca.ceresoli@bootlin.com>, David Airlie <airlied@gmail.com>, 
-	Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Prashant Gaikwad <pgaikwad@nvidia.com>, 
-	Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
-	Mauro Carvalho Chehab <mchehab@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	Dmitry Osipenko <digetx@gmail.com>, Jonas =?utf-8?B?U2Nod8O2YmVs?= <jonasschwoebel@yahoo.de>, 
-	Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 02/23] dt-bindings: clock: tegra30: Add IDs for CSI
- pad clocks
-Message-ID: <20250907-arboreal-aquatic-gopher-686643@kuoka>
-References: <20250906135345.241229-1-clamor95@gmail.com>
- <20250906135345.241229-3-clamor95@gmail.com>
+	s=k20201202; t=1757237786;
+	bh=iLGBcFXDZOBbyHVcVJJlbKkvrBO0iFZ6GaMiwpV8uVI=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=iRyCbp/x00QIJfOHsl8x4t1yDVC5344JdJY6kBKjzLNGOLK/PboptE+FMxfcGxHsL
+	 +zD9uZ9GpUcO/WAGm0FnJdWgywu+Fkg3S7OeLfPc3sQXx6pwhZJa7C1KFhV49yRoN1
+	 z1l8T6/Sb7KtLK1FTeh6YKtUvGGO6W0k8iRI1xGL0rG1gu4kPh7Qz2Ygf1UHHNDQSc
+	 30NgBZerulmHou68w9nublm6v6taJeyPwLZVF+SOwhJyNROlAFOwMP5/57ozf8O2mc
+	 CE2cEUVjJ1s7MAZfvzhpInCH+5hI8fPI8icFWbdbunkhfFJM9RpU+jHUpZExzJMd2a
+	 F6ENY8oNlvIjA==
+Date: Sun, 7 Sep 2025 10:36:17 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dixit Parmar <dixitparmar19@gmail.com>
+Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 1/2] dt-bindings: iio: magnetometer: Infineon TLV493D
+ 3D Magnetic sensor
+Message-ID: <20250907103617.5400c1bb@jic23-huawei>
+In-Reply-To: <20250906-tlv493d-sensor-v6_16-rc5-v6-1-b1a62d968353@gmail.com>
+References: <20250906-tlv493d-sensor-v6_16-rc5-v6-0-b1a62d968353@gmail.com>
+	<20250906-tlv493d-sensor-v6_16-rc5-v6-1-b1a62d968353@gmail.com>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250906135345.241229-3-clamor95@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sat, Sep 06, 2025 at 04:53:23PM +0300, Svyatoslav Ryhel wrote:
-> Tegra30 has CSI pad clock enable bits embedded into PLLD/PLLD2 registers.
-> Add ids for these clocks. Additionally, move TEGRA30_CLK_CLK_MAX into
-> clk-tegra30 source.
+On Sat, 06 Sep 2025 14:07:56 +0530
+Dixit Parmar <dixitparmar19@gmail.com> wrote:
+
+> Document the bindings for Infineon TLV493D Low-Power 3D Magnetic Sensor
+> controlled by I2C interface. Main applications includes joysticks, control
+> elements (white goods, multifunction knops), or electric meters (anti-
+> tampering).
+> Drop duplicate entry for infineon,tlv493d from trivial-devices.yaml as
+> its documented in this separate dt-binding file now.
 > 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> Datasheet: https://www.infineon.com/assets/row/public/documents/24/49/infineon-tlv493d-a1b6-datasheet-en.pdf
+> Signed-off-by: Dixit Parmar <dixitparmar19@gmail.com>
+
+Krzysztof gave an RB on version 3.  Please make sure to pick up such tags.
+
+This time I'll apply it by hand if nothing else comes up.
+
+Jonathan
+
 > ---
->  drivers/clk/tegra/clk-tegra30.c         | 1 +
->  include/dt-bindings/clock/tegra30-car.h | 3 ++-
->  2 files changed, 3 insertions(+), 1 deletion(-)
+>  .../iio/magnetometer/infineon,tlv493d-a1b6.yaml    | 45 ++++++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml       |  2 -
+>  MAINTAINERS                                        |  7 ++++
+>  3 files changed, 52 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/clk/tegra/clk-tegra30.c b/drivers/clk/tegra/clk-tegra30.c
-> index ca367184e185..ca738bc64615 100644
-> --- a/drivers/clk/tegra/clk-tegra30.c
-> +++ b/drivers/clk/tegra/clk-tegra30.c
-> @@ -53,6 +53,7 @@
->  #define SYSTEM_CLK_RATE 0x030
+> diff --git a/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
+> new file mode 100644
+> index 000000000000..dd23a9370a71
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
+> @@ -0,0 +1,45 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/magnetometer/infineon,tlv493d-a1b6.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Infineon Technologies TLV493D Low-Power 3D Magnetic Sensor
+> +
+> +maintainers:
+> +  - Dixit Parmar <dixitparmar19@gmail.com>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^magnetometer@[0-9a-f]+$'
+> +
+> +  compatible:
+> +    const: infineon,tlv493d-a1b6
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  vdd-supply:
+> +    description: 2.8V to 3.5V VDD supply
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vdd-supply
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c {
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      magnetometer@5e {
+> +        compatible = "infineon,tlv493d-a1b6";
+> +        reg = <0x5e>;
+> +        vdd-supply = <&hall_vcc>;
+> +      };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+> index 27930708ccd5..9e0eb5c873d2 100644
+> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
+> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+> @@ -125,8 +125,6 @@ properties:
+>            - infineon,ir36021
+>              # Infineon IRPS5401 Voltage Regulator (PMIC)
+>            - infineon,irps5401
+> -            # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+> -          - infineon,tlv493d-a1b6
+>              # Infineon Hot-swap controller xdp710
+>            - infineon,xdp710
+>              # Infineon Multi-phase Digital VR Controller xdpe11280
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fad6cb025a19..35990c2701f6 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11843,6 +11843,13 @@ S:	Maintained
+>  F:	Documentation/devicetree/bindings/sound/infineon,peb2466.yaml
+>  F:	sound/soc/codecs/peb2466.c
 >  
->  #define TEGRA30_CLK_PERIPH_BANKS	5
-> +#define TEGRA30_CLK_CLK_MAX		311
-
-Unused define drop.
-
-Also, don't mix bindings and drivers. You cannot create such
-dependencies.
-
-Best regards,
-Krzysztof
+> +INFINEON TLV493D Driver
+> +M:	Dixit Parmar <dixitparmar19@gmail.com>
+> +L:	linux-iio@vger.kernel.org
+> +S:	Maintained
+> +W:	https://www.infineon.com/part/TLV493D-A1B6
+> +F:	Documentation/devicetree/bindings/iio/magnetometer/infineon,tlv493d-a1b6.yaml
+> +
+>  INFINIBAND SUBSYSTEM
+>  M:	Jason Gunthorpe <jgg@nvidia.com>
+>  M:	Leon Romanovsky <leonro@nvidia.com>
+> 
 
 
