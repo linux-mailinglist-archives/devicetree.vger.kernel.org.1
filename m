@@ -1,148 +1,82 @@
-Return-Path: <devicetree+bounces-213951-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213952-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB5CBB47A31
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:43:38 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CED5CB47A3B
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:45:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 81BE616276E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 09:43:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89C323ABCD4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 09:45:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDA35221DB1;
-	Sun,  7 Sep 2025 09:43:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6468220F34;
+	Sun,  7 Sep 2025 09:45:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ai+6Qnk6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="S3AL4c9P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141FC18859B;
-	Sun,  7 Sep 2025 09:43:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 811EA1C7013;
+	Sun,  7 Sep 2025 09:45:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757238215; cv=none; b=jAy2UQda0TU+6X1DAeM2sA/ggjy8/UZNUTqBHLZ2eyoHLHMQI8au0FKI41wq1IXbAKIEXvC9KYnlAZYKdnnNcTQCVvnChUjcQale0QJC/As3rgfV90qpdHxLsqomMuk9J1SU7r0y4Hborv2XHwpd1gUhLKpVs9ml5e3ms3vRxnw=
+	t=1757238326; cv=none; b=VOoCun4Uv92z+7PUbRtgUfcrnerSIaSKeWq14iG323ZS7jIjriSTyNo56OMbTRRX2HLakJw7G/KWwS1nXLAAN26dIzxK4QfiUC6wd/oaTSzw7A09pk2pDrVcCgjAHcclDgCAdAtyl7r+/xkvdYAE6iE91EW0kWryIqzwrY/xJWQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757238215; c=relaxed/simple;
-	bh=TDwoEokmsEniRL5mzV7C3NbddClADMi8vSACqfJXWVk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JfvoL7T+N5Am72/49hapkLyV8cc8ft8t+9Gm4Z2HdoTULHNrF4oz6R1lXqjx7wxc16PRXuPCMVeUYWBaCL+wu5Aj+qR/HBb7oQoQwYU4XdR1+YK52u8PdwJZsDx93V9f8EwLD2cl9Q5GYxzKyMbplkHvw6T1QSxF8VQlZ/zzqNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ai+6Qnk6; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45de56a042dso781585e9.3;
-        Sun, 07 Sep 2025 02:43:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757238212; x=1757843012; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GZ/X6GOEUsW9+IFkzRBAiysCMqpUBrDHjoEhck1HoOk=;
-        b=ai+6Qnk63Rp8rNYsCTVbWIM84CwcryJS89kXfWZwcqn2JWjTOUHCAREaNd+RUa1cua
-         IDaE/2Yki9/VbS5OGOz7nCgnRM+CGOBK33Ir3UcU//JrKNX/dklO92rZl8qlKevUV0bo
-         qVyvHB6Kmpf0EZSoxkz1WYzNmKGHJcDz6vkBcZZ/ZkyENEVEkM7JqTbVqVMbuqZKEuVU
-         KuAhm5z+gSQJTC8mjizfTw0/JwzAcSat6wShjL06XHZIf1g+MiPMsnm9dxiGENUK4NO6
-         iS98855/lL8wykV+LBkTuEBKsdDKaQjqNshuPaSD7lAaqdQYadAFO0d1gWI+/YZMcMFk
-         XJFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757238212; x=1757843012;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GZ/X6GOEUsW9+IFkzRBAiysCMqpUBrDHjoEhck1HoOk=;
-        b=BTZv3L1hr+Y889XSMcaOf3GkPCvJAAAbiOKbda6LHuSuDZonAy5u0aiNPBKnzRlr4b
-         3wP2obZrlBear7xq6AppY/udqAo7Dqbpsq6v0GYYeamsaomek6EDPwN0nv3626MyPqlc
-         y2AOJqbUS2EHuJuYKjRipkRoXCBU/+Gp/BI6rZyNL35FmzbC1MRQ41xW8t9OoYlZzlWR
-         xE28i564KisnA0wXivUYFIC4dyVlDqkHmybnyFJDGzoE8a7S9PcmeQJtAq/+xw6llQQG
-         fr39CHT4ZqZtrWdmWR5KoVmW1zGYTcAfciNyk0vN3BtjxBCXVKeml9ZV9f+sdu9GfttC
-         upog==
-X-Forwarded-Encrypted: i=1; AJvYcCVo4xVxV+XzxOOjpncfK2TVmjrxN8sydiXen26Igq4fF26wawDqE+W+WH+GzGWv1cdSaEozlThtgytorr/4@vger.kernel.org, AJvYcCWAf3v6wr6WAeT3Y5jFuBlAFvZtyMSOsPQhak5NsiWCC23v5yf9r6LdpNtl3EW5PX5xSGJovNougFB6@vger.kernel.org, AJvYcCXA+U1bZai8GrBEyx+WkG/eVJbE26n9+Qv39ZateYIW/kW56K3odM9vOLwTcpGgQHgoJB/koxN2PSgM@vger.kernel.org, AJvYcCXVTFVN3IXOwy4aTrNz895U8NHQi03nhxhzfislvT9WVNVgZrXUVg+9S2WCaHJ/I3OP750sKwxnx7I6dqo=@vger.kernel.org, AJvYcCXxKw1bzQF9yD3nmsZ/iqljp7/jCysDmFtzz2HrcAXWXruzkLaO+y2ZcHkOtGC9sBvzPVL3zuvKjBtrMck=@vger.kernel.org
-X-Gm-Message-State: AOJu0YwJPhBUjNoEn0IcXHZWcJs/GxxTZbVqXGlgfAT0e72iedk64Spy
-	LTDe4Uh9gv1psPhizSqaZgpga1Xvd1spouxxFypX7xg7a4d8zCsXTInoti3x0heSoPYWqEhZQbt
-	jh2Orr8Szw0079yzirLCIeDly5Z6PK90=
-X-Gm-Gg: ASbGnctVJG21w+jI9IA7rwU9PvGwvIuSmYTJrwlTvzFs421pM3xQnwUKjKKPY96K5TV
-	MilSZrLyXpk2RmfoUUL2rSOEyupcPYh4vWqK/s/CV3O240oKE1AW4PWXhuzVBCOMHt0XcwBQDze
-	aFtOwqqwkVuTSmH8cUlKv96+DAP6/gtmVSmuyu1dRiki02t4kQTNez3YQrYkjY98q6QnkQJ0lP4
-	QVO/wIi
-X-Google-Smtp-Source: AGHT+IFPqig/UhEDyt4I8/2ZJlpITCSmd+DYWg5033ITXHJTPMBD050/gyXsr+9sNyIaTUs7NwKlwoEiYgPtX0PKgHs=
-X-Received: by 2002:a05:600c:3b25:b0:45b:9a41:5d58 with SMTP id
- 5b1f17b1804b1-45dddea60cbmr35564895e9.4.1757238212151; Sun, 07 Sep 2025
- 02:43:32 -0700 (PDT)
+	s=arc-20240116; t=1757238326; c=relaxed/simple;
+	bh=Wj1dGLxR4qgsTZ0aZBldBZFaPGiNLGjozuSVRrz3bP0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PAB39w2CqFXpFtezkvq9tmayW6Vrc2xkPaOJfLQBNn6fiHa8Z4MIZ56ccqXCzvV8QgpJgkL+s1sRLNwQNbDxi6ml9qtuiGLJRG39EwyfPpJu54XpbTR79vcyey21X1yH5lXApauAoKa5VVVZw4XiTtpZjf0vJ9d57eQgmYKf/es=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=S3AL4c9P; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FE08C4CEF0;
+	Sun,  7 Sep 2025 09:45:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757238326;
+	bh=Wj1dGLxR4qgsTZ0aZBldBZFaPGiNLGjozuSVRrz3bP0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=S3AL4c9PHdg6Qii9YNc10lqtSsTHGRv9Qh51rLh2bXdntVpsumkK0cF/JYkj9SGSW
+	 rnb9xA4t2Sf9NolQlYvbOBhfl8HHB2m+N73yWXxmXbvOTsOIJXE2dDfgv94YkLP9bx
+	 naah1RuzOQEK6cpwV13Bt6yUG3ru8LiIDXKAHf50TgJ2MDwZ3lfu7SFXhapgvvIuEs
+	 Qo6nfN4Et7v5XXcAqT7+vCTx/RBqd8IbBHzs6uDHRvzdIfjw7yLYOibnV/D26ue1ku
+	 qU+6H1crWor1wPug98flICsKczSjibNsPBAKBiUpNDnvOz3RsGKKjY+WqARkmhAnFi
+	 9dpx61eOemTRQ==
+Date: Sun, 7 Sep 2025 11:45:23 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Sven Peter <sven@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>, Janne Grunau <j@jannau.net>, 
+	Alyssa Rosenzweig <alyssa@rosenzweig.io>, Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>, 
+	Kishon Vijay Abraham I <kishon@kernel.org>, Thinh Nguyen <Thinh.Nguyen@synopsys.com>, 
+	Heikki Krogerus <heikki.krogerus@linux.intel.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
+	Frank Li <Frank.Li@nxp.com>, Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>, 
+	linux-usb@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+	linux-phy@lists.infradead.org
+Subject: Re: [PATCH v2 01/22] dt-bindings: usb: Add Apple dwc3
+Message-ID: <20250907-benevolent-dogfish-from-wonderland-be2eac@kuoka>
+References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
+ <20250906-atcphy-6-17-v2-1-52c348623ef6@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250906135345.241229-1-clamor95@gmail.com> <20250906135345.241229-3-clamor95@gmail.com>
- <20250907-arboreal-aquatic-gopher-686643@kuoka>
-In-Reply-To: <20250907-arboreal-aquatic-gopher-686643@kuoka>
-From: Svyatoslav Ryhel <clamor95@gmail.com>
-Date: Sun, 7 Sep 2025 12:43:20 +0300
-X-Gm-Features: AS18NWARBXRzhLtN6n3ce6WfDFCnzLq5yKlMbMSeV1CuL4QdfN0Ud8kVvzMMu8Y
-Message-ID: <CAPVz0n0obwSFDup2n9R9SQNsOZw1Dm0G=2ifv=D7zyw=89+uYQ@mail.gmail.com>
-Subject: Re: [PATCH v2 02/23] dt-bindings: clock: tegra30: Add IDs for CSI pad clocks
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
-	Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter <jonathanh@nvidia.com>, 
-	Sowjanya Komatineni <skomatineni@nvidia.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prashant Gaikwad <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko <digetx@gmail.com>, 
-	=?UTF-8?Q?Jonas_Schw=C3=B6bel?= <jonasschwoebel@yahoo.de>, 
-	Charan Pedumuru <charan.pedumuru@gmail.com>, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
-	linux-clk@vger.kernel.org, linux-staging@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250906-atcphy-6-17-v2-1-52c348623ef6@kernel.org>
 
-=D0=BD=D0=B4, 7 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 12:34 Krzys=
-ztof Kozlowski <krzk@kernel.org> =D0=BF=D0=B8=D1=88=D0=B5:
->
-> On Sat, Sep 06, 2025 at 04:53:23PM +0300, Svyatoslav Ryhel wrote:
-> > Tegra30 has CSI pad clock enable bits embedded into PLLD/PLLD2 register=
-s.
-> > Add ids for these clocks. Additionally, move TEGRA30_CLK_CLK_MAX into
-> > clk-tegra30 source.
-> >
-> > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > ---
-> >  drivers/clk/tegra/clk-tegra30.c         | 1 +
-> >  include/dt-bindings/clock/tegra30-car.h | 3 ++-
-> >  2 files changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/clk/tegra/clk-tegra30.c b/drivers/clk/tegra/clk-te=
-gra30.c
-> > index ca367184e185..ca738bc64615 100644
-> > --- a/drivers/clk/tegra/clk-tegra30.c
-> > +++ b/drivers/clk/tegra/clk-tegra30.c
-> > @@ -53,6 +53,7 @@
-> >  #define SYSTEM_CLK_RATE 0x030
-> >
-> >  #define TEGRA30_CLK_PERIPH_BANKS     5
-> > +#define TEGRA30_CLK_CLK_MAX          311
->
-> Unused define drop.
->
+On Sat, Sep 06, 2025 at 03:43:14PM +0000, Sven Peter wrote:
+> Apple Silicon uses Synopsys DesignWare dwc3 based USB controllers for
+> their Type-C ports.
+> 
+> Signed-off-by: Sven Peter <sven@kernel.org>
 
-Specify, your comment is not clear.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> Also, don't mix bindings and drivers. You cannot create such
-> dependencies.
+Best regards,
+Krzysztof
 
-I literally did what you told me to do! TEGRA30_CLK_CLK_MAX was
-removed from binding, but it is used by the driver, so how you propose
-to handle this without redefining TEGRA30_CLK_CLK_MAX and breaking
-build with missing TEGRA30_CLK_CLK_MAX?
-
->
-> Best regards,
-> Krzysztof
->
 
