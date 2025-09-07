@@ -1,91 +1,132 @@
-Return-Path: <devicetree+bounces-213994-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213995-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79973B47B89
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:16:00 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D18A0B47B9D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:31:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 227CE3B7231
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:15:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8707B1661B6
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:31:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEA726B749;
-	Sun,  7 Sep 2025 13:15:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B5D156C40;
+	Sun,  7 Sep 2025 13:31:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="mFfJk3jP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qOUqygOo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5808F19DF5F
-	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 13:15:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5662147C9B;
+	Sun,  7 Sep 2025 13:31:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757250952; cv=none; b=K57WfqQ61CvZucEzzQPCGLdwjkVPGyHqw34bWE6yWSFhR5sQMiC18f2WkI7Y9R5wPNncvROovM7uskYGVF4iDH1Dc8HxbD69d71sNm/DMK/Q+GctN9RKxAgFaQLSbeHkHP/JjEBEgAIm1TR5FgDC9zRAanXTe13tqNWx77b0sbA=
+	t=1757251888; cv=none; b=Y78PTX1Xe98grWTFsltfppLH6i0K3857TfwXAMe4tFefctXfmaw+uM1cxyUaGQCpsORY8UBf1SWEvwYtE38LGwBuVfayLZZWJHfINr9rF3LnkZk/sorYHA/YYidxX8jIy7N8pcurFy7L52iLrcIDL1Wjut/LB61+56OHrR8yimk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757250952; c=relaxed/simple;
-	bh=S/KUq6pSTXq+6IeioXoPeuwVExsq2hrUKmGGJELtuVI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MdpLBCTd7cSL7NWLlROvEkiN9C+vhgSOmpGf7KkVb+9HnpCmW4l/D2fRVYu527nucp2F5j5wSaNMW9rbC9C7MSinv9qjDIBCKzkDe3RhDZI8PrHUq+8ndaTeiagiF1RLhRMNN94XY+Y1o38zNFxDDG5AYhrxxkf+Rk+JNi2dsW4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=mFfJk3jP; arc=none smtp.client-ip=91.218.175.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
-Date: Sun, 7 Sep 2025 09:15:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
-	s=key1; t=1757250938;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=S/KUq6pSTXq+6IeioXoPeuwVExsq2hrUKmGGJELtuVI=;
-	b=mFfJk3jPrq2PSVa5pryxIo9DqIP/tWcI51vlOz3BNmXJL/QW5ixV3gvPtQMTqLlhfFWoAj
-	VyJs++CEOPsdCfp+Eb3m7RmwPM9ep8GBaKxBeBskm0o6AEvLj6/xNXMvXmJECEKnr12NzL
-	8pd/TRi5r2iNaHU9W74lLCd9byKepNk0KGM1lRqaHRsJ2VuutCPFTYczDxhOJYBN/Otwhc
-	HPb8MEZXCVHbh1lmNiRCvjkhMC0OvoSThpecM++4MbfBhJJcBfsGBcP0mKMbq7LojgXwfk
-	Wq2OUStSnlP7T3L7CaEGPi4CLQgmIvIGgePoxVs1LRMbiKx9dmQCKnbjg7cINA==
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Alyssa Anne Rosenzweig <alyssa@rosenzweig.io>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Janne Grunau <j@jannau.net>, Neal Gompa <neal@gompa.dev>,
-	Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-	Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 18/22] phy: apple: Add Apple Type-C PHY
-Message-ID: <aL2Fdd2Ls26pksJN@fedora>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
+	s=arc-20240116; t=1757251888; c=relaxed/simple;
+	bh=pwO9wuGJs0EMkf7G9HGeMZB63Pi28XD1ZOIvmKiHt8w=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bba71UJaz+T4rsQSH/c0ktbMHK7wZDmxDO7M6yShX6aLwAFGuz7CgKupI0CM3Fa/y7lM8dmHty+sUKSolDWLaIrOm9K7kSj5h+qo+k2pf8KEMvy/UbLE4voKwWsf//JlvObMRPJcU8ReIeKqTBovD4vMAakz/AI4fV2dz1ZxAY4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qOUqygOo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C2D5C4CEF0;
+	Sun,  7 Sep 2025 13:31:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757251888;
+	bh=pwO9wuGJs0EMkf7G9HGeMZB63Pi28XD1ZOIvmKiHt8w=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=qOUqygOoGfkVJVGnzrPxXMYYgcqjQFYLNI57jD/8sU6Busze1F2bAxXOm5ceB0Wym
+	 NmP0VINbvGo+o5qQilG3MRSiXotP+DiNMLZJJoVSJI2HWEd/V+4CEjkqzIxH+sk62m
+	 owIlIVHJucGokpdtQzthcRuXYvLjqG2nXFRw8HO3qt2byC71Qsir8SOb5XONg02aQv
+	 DP0Y+j+ucXn7FiDpNUWeamUfvWViw1bY66kgsLBtZSctFLzzwUe+B+lIlx65YoqHIZ
+	 IN0JyFo39lyaG5R6aKpXOwhctI+jMxdb8JP/fws4DQ1gmy4Vuh1d9d0mzvnMgcKUWa
+	 x/yDI5inrze2A==
+Date: Sun, 7 Sep 2025 14:31:18 +0100
+From: Jonathan Cameron <jic23@kernel.org>
+To: Remi Buisson <Remi.Buisson@tdk.com>
+Cc: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
+ <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "linux-iio@vger.kernel.org"
+ <linux-iio@vger.kernel.org>, "devicetree@vger.kernel.org"
+ <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 2/9] iio: imu: inv_icm45600: add new inv_icm45600
+ driver
+Message-ID: <20250907143118.42612bd3@jic23-huawei>
+In-Reply-To: <FR2PPF4571F02BCED3AAC4DB4C6AB0D6FAD8C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+References: <20250820-add_newport_driver-v5-0-2fc9f13dddee@tdk.com>
+	<20250820-add_newport_driver-v5-2-2fc9f13dddee@tdk.com>
+	<20250825113445.005f815b@jic23-huawei>
+	<FR2PPF4571F02BCED3AAC4DB4C6AB0D6FAD8C00A@FR2PPF4571F02BC.DEUP281.PROD.OUTLOOK.COM>
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 
-In functions like atcphy_dp_configure_lane, I'm wondering if we want to
-pull out individual registers like `void __iomem *tx_shm_txa_ldoclk =
-tx_shm + LN_AUSPMA_TX_SHM_TXA_LDOCLK`, likewise for
-MAIN_REG0/1/IMP_REG0/etc, just to make the actual pokes below a lot less
-noisy.
+On Thu, 4 Sep 2025 13:04:37 +0000
+Remi Buisson <Remi.Buisson@tdk.com> wrote:
 
-Incidentally, the txa_ldoclk_bypass handling is another place where the
-cond_set32 helper would shine.
+> >
+> >
+> >From: Jonathan Cameron <jic23@kernel.org>=20
+> >Sent: Monday, August 25, 2025 12:35 PM
+> >To: Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org>
+> >Cc: Remi Buisson <Remi.Buisson@tdk.com>; David Lechner <dlechner@baylibr=
+e.com>; Nuno S=C3=A1 <nuno.sa@analog.com>; Andy Shevchenko <andy@kernel.org=
+>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski <krzk+dt@kernel.org>;=
+ Conor Dooley <conor+dt@kernel.org>; linux-kernel@vger.kernel.org; linux-ii=
+o@vger.kernel.org; devicetree@vger.kernel.org
+> >Subject: Re: [PATCH v5 2/9] iio: imu: inv_icm45600: add new inv_icm45600=
+ driver
+> >
+> >On Wed, 20 Aug 2025 14:24:20 +0000
+> >Remi Buisson via B4 Relay <devnull+remi.buisson.tdk.com@kernel.org> wrot=
+e:
+> > =20
+> >> From: Remi Buisson <remi.buisson@tdk.com>
+> >>=20
+> >> Core component of a new driver for InvenSense ICM-45600 devices.
+> >> It includes registers definition, main probe/setup, and device
+> >> utility functions.
+> >>=20
+> >> ICM-456xx devices are latest generation of 6-axis IMU,
+> >> gyroscope+accelerometer and temperature sensor. This device
+> >> includes a 8K FIFO, supports I2C/I3C/SPI, and provides
+> >> intelligent motion features like pedometer, tilt detection,
+> >> and tap detection.
+> >>=20
+> >> Signed-off-by: Remi Buisson <remi.buisson@tdk.com> =20
+> >Hi Remi,
+> >
+> >A few additional comments from me.  I tried to avoid duplicating
+> >anything Andy pointed out, but might have done so a few times.
+> >
+> >Main comment in here is to take a look at the inline comments
+> >and perhaps simplify or remove them if the code that follows
+> >is basically self documenting.  Sometimes the comment can be
+> >more confusing than the code!
+> >
+> >Jonathan
+> > =20
+> Warm thanks for the time you spent reviewing comments.
+> I tried to clean them following your advices.
+> I hope it will improve.
 
----
+One process comment.  If you agree with a review comment and there
+is nothing else to add, just crop it out of your reply.
 
-Also, do we know what _OV means?
+Focus on the places where more discussion is needed.
+If there is none of that don't reply to the review - just add the
+changes made to the changelog for the next version of the series.
+
+Jonathan
+
+
 
