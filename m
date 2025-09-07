@@ -1,133 +1,248 @@
-Return-Path: <devicetree+bounces-214076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90510B48148
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:19:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25679B48158
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:32:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFFFD189FABE
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:19:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93B5B7A3184
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:30:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9F3243964;
-	Sun,  7 Sep 2025 23:18:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE78374D1;
+	Sun,  7 Sep 2025 23:32:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="Q61wUY98"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5x08s3Z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-43170.protonmail.ch (mail-43170.protonmail.ch [185.70.43.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4750423C4F3;
-	Sun,  7 Sep 2025 23:18:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED5C182B7;
+	Sun,  7 Sep 2025 23:32:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757287112; cv=none; b=cEzCeNp82TWyA36mREQILnWuIAxYa8KI+t8Gk3+e/JAIM6J1MxV3MWP9yt3yuWW9+BETFLnusIGYv7x9uj3rXaVOzM8xd7TsXj2xpdp5gIC0ZNIEPnlrIO22xzXEiUH1wuQ28+R9T+gKOIQVTbgdVPbvomPWcgxqn12YQs3/aqo=
+	t=1757287937; cv=none; b=ARDoYbi3IeGad36kvtWzIR3HlPGwWekNJ+3vvd7QQJnOGR/ny2AWcC8a+2mbWT95gyfLiI4yOl2tVWlMD1KpNjXAq3hb841o4WdaOluCHAyditMzcwW9DHGC9CabXpjsFy9IAgt9QA+UcEoj3CbHALyp5UAo4MnyAqIm7N81ZN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757287112; c=relaxed/simple;
-	bh=FDaW+KMG0SfKYAHwpy7yJNT1x/XSMWz+beB/dGcZHo4=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=l6tWrH1eF+/gZmcE86zPBXjD5QrRimQh2rtfy5G67aWBJ3/9hlYv4jxlbf+LObQWQ8X9at63iO+ZB2myMnY4OJGdm2H/VqY3p+O/t/AvN86Bx2e9TgVedjlg6YCtjwfXfhdwVVlC0BFFqDFrOpDokBNkK/7299H6bmjm801/+VE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=Q61wUY98; arc=none smtp.client-ip=185.70.43.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
-	s=protonmail; t=1757287102; x=1757546302;
-	bh=PhhYtIqKN2PYzCqhs14PuKEhGXRgdAp3KlX4hxKM0TY=;
-	h=From:Date:Subject:Message-Id:References:In-Reply-To:To:Cc:From:To:
-	 Cc:Date:Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=Q61wUY98RVM/tluTfCJii2PQU//ploTQP86eib1eahsgwz0JwOMzsr7UKqiNB/EuS
-	 IQa2OuYjxTP1AltGHBufR4LGj0//vfH9bbezj8RlttH3ey6iwhqlHC8wI5YuYKba8/
-	 wDLUmAiPDC7d+BjApx3u/2VF3/QPgTIx8+mHsHDePudFeV5EOfw6FWcuNRAZy1kXJJ
-	 9LLEKycm5jbWpSJk2JDsegqF7AJdiUXDeViJU1TSbvXXngrAvqkXc/0uSOw6YnmxB0
-	 uLI76bxfK3oXskuH/7G6NWyhDDKyn8JttkyYBZgo+T91Q7Tyx9UzHMO30vizU1QOYp
-	 is4NngsO8SdJg==
-X-Pm-Submission-Id: 4cKmGj10tMz1DF4K
-From: Aleksandrs Vinarskis <alex@vinarskis.com>
-Date: Mon, 08 Sep 2025 01:18:06 +0200
-Subject: [PATCH v3 4/4] arm64: dts: qcom: sc8280xp-x13s: enable camera
- privacy indicator
+	s=arc-20240116; t=1757287937; c=relaxed/simple;
+	bh=NIqUnB0qn/wA9AT/gE6qImqJhcFRcDqatIbSf0iLHu8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ACUtOkA55aJxqw66pD6wqSJP2cTR/u5gGWbXmo2QmtFikCWzEwtp3y1VJygpz7kcCT7AU/yYTfv7IjeRSd8xUzalIz6ANExPUZp4sknYJWUVEfmvQYANi2PP5SdY68nLHqEUmXjFOkm4X4K/Z9mU1a/uf7uWpSKucMghkSvlJ34=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5x08s3Z; arc=none smtp.client-ip=209.85.215.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b4f8bf49aeaso3412084a12.1;
+        Sun, 07 Sep 2025 16:32:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757287934; x=1757892734; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=kULCfrFpUlXDLI6dVdic5Q9/aaLDo8BHSAjDzVuLn88=;
+        b=i5x08s3ZBQnlg2UlhDyrWnZllsllHeeZnOQWWb6xm8P1cbDwsVhelb//5nHNZ+ZL1y
+         rcGSlFgvyMNUIebv+bX+HLuaHpvrruSSoIHjvw//SQhlWxK4xqeL5hVB3QxsTcfB240g
+         YIR0IShH3eWh9u9oBriUketuD7uveWmnfPFRV6A1k5GAaD5GITIxYGSQ4dcTi3Y69bWd
+         8c8vyZWuELt6vf8MenZ33L3+1d9pLJfrfyKwmaOrCofJXYOaXt19oWZWs2JKpIOm7ZHH
+         gon+Aj3WaJ2euhcN7ehDwPSJ2/SDoGnQ5y/YBnzSpUIoJNyhGNpPJxgg1i5Tctk5Zd3p
+         J18w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757287934; x=1757892734;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=kULCfrFpUlXDLI6dVdic5Q9/aaLDo8BHSAjDzVuLn88=;
+        b=NW+NEvHE7FUfPojr2GBEPEKMwKn/+Vfdu60ZMDWhfjOX4aKuQJfzCn88OgnilFa14Y
+         7Du9xSWx4lvzDJ+bMVX8TkTHCVcWfLjJepQpwhHycXr6cS2jYaLtVRruaKbtyFimCoAI
+         Yotn8eeUc8FgUy0NBG2ZNGfgN2ypUEqS/ncLPTbeIQVa7/bdqtIYvboeuw0MjxdJxStk
+         xIq1DizLobLRUeZAKZnIrkFMXTVy2XQgO1bHHdAov8QuHrDf6ld9sLz19giS+boxIb9c
+         ASTREdzOj966bwx3IqHJLNfK+yEUKDBtBzfY/QA0zATp3KBhY/O0EdZTcMBAriiIX8uj
+         i0YQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVV6ktlcTSU1T2qd7RuvIUa1U6tOEwg3fisLwMObIi8OkwP2wEU7ZKcwJfND2tw74VPJ8MWsUt9n+W+@vger.kernel.org, AJvYcCWExHdPXQj6qCR5a9sjPdjhD3WawsPqH6gy4j9rCOKPwyVEF2VuKuD0+D+tNKN1vNcoI6hhMm8kC/JyoUE=@vger.kernel.org
+X-Gm-Message-State: AOJu0YxHFEYlctDLc04nl8h1E2FzCmwgLw1Z81zCo+EVkEh88ywF+7vU
+	UpNIxcNgeNyypbhdVs40izBA51x7J1GiF2YrZvPMX2PCKyP9b5zPGF1k
+X-Gm-Gg: ASbGnctv20uEf7LRMBJCNzCgRn5MO/4Wv55JG/3eB/eebav2X4kIjtGcBdyrf9MPwdz
+	6RDzrUrpok+1aOI+pjZtuf8qVK5n2qtds2egPhyPdhV2g0Su/iXfgcOP0jWfd6Ebm4MtYfyUDqS
+	GEsFu2aNWWc+ghJXVEyyGl/emoMbSM7qg+A0xOH4R0n5sFeB/+9G07c/ZbSphQS0+5e2ToWPceb
+	vspvD/QvdBN9f6aKr5qW3k/+/C7kAQaGFDWTb0t4hyGUEDubUJJPZy3ThuXu4Gc8+kanodcissd
+	dvIjQCiLXuOVfWxK5f8/AlVMvD4Nyj6HZNcEL9vzDIXt0KXFAg0a1kujmqoXyCAyPiNY/k0vgJg
+	mj2+5LzQAnreofc1Jq+1RYDxVqk3ThJdivTvbnOsfoD7W81zvrH4uSQ/ZtHWwp7xIC5jCGm2PBc
+	lIhJGVCA==
+X-Google-Smtp-Source: AGHT+IFPbDEHTRD4G57c7xjubCoXFTpqJ7HrqNLS6rkdbX2D29kgWX6eGvSEJkRIx4DgF7JbiPtWDw==
+X-Received: by 2002:a17:902:f641:b0:240:a889:554d with SMTP id d9443c01a7336-251731155a7mr76095915ad.45.1757287934141;
+        Sun, 07 Sep 2025 16:32:14 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25549ac1e1dsm18350615ad.24.2025.09.07.16.32.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 07 Sep 2025 16:32:13 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <2edbf532-f567-4807-b7e0-0063d8af0c33@roeck-us.net>
+Date: Sun, 7 Sep 2025 16:32:12 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/17] hwmon: (ina238) Various improvements and added chip
+ support
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+ "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Cc: Christian Kahr <christian.kahr@sie.at>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>
+References: <20250905204159.2618403-1-linux@roeck-us.net>
+ <62ad677d-ecca-4819-904a-7052675300cb@alliedtelesis.co.nz>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <62ad677d-ecca-4819-904a-7052675300cb@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250908-leds-v3-4-5944dc400668@vinarskis.com>
-References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
-In-Reply-To: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
-To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
- Jacopo Mondi <jacopo@jmondi.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, 
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1663; i=alex@vinarskis.com;
- h=from:subject:message-id; bh=FDaW+KMG0SfKYAHwpy7yJNT1x/XSMWz+beB/dGcZHo4=;
- b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBn7hLb9+dgp7HXtqfLjRxpBKx8+mnhdyDgiQN3pZWFd3
- jQu10c6HaUsDGJcDLJiiizdf76mdS2au5bhusY3mDmsTCBDGLg4BWAiezgZ/qee3bTk0c/GRDmt
- pd+yF3qlzFl+OMGgNmr78ZqJmwWeH3Bk+O87V27ypaiFPMyfZVVTfVZvDthmZJubOEE3a3KZSNR
- 0ZWYA
-X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
- fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
 
-Leverage newly introduced 'leds' and 'led-names' properties to pass
-indicator's phandle and function to v4l2 subnode. The latter supports
-privacy led since couple of years ago under 'privacy-led' designation.
-Unlike initially proposed trigger-source based approach, this solution
-cannot be easily bypassed from userspace, thus reducing privacy
-concerns.
+Hi Chris,
 
-Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
----
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+On 9/7/25 16:00, Chris Packham wrote:
+> Hi Guenter,
+> 
+> On 06/09/2025 08:41, Guenter Roeck wrote:
+>> Add support for INA700 and INA780 to the ina238 driver.
+>>
+>> To prepare for this, implement various improvements.
+>>
+>> - Update documention and Kconfig entry to list all supported chips.
+>>
+>> - Drop platform data support. The driver supports device properties,
+>>     and there are no in-tree platform data users.
+>>
+>> - Stop checking the attribute value when writing the power_max attribute
+>>     as unnecessary.
+>>
+>> - Simplify temperature calculations. Instead of shift and lsb, only
+>>     require the resulution and use it to calculate temperatures.
+>>
+>> - Pre-calculate voltage, current, power and energy LSB. The values don't
+>>     change during runtime and can therefore be pre-calculated. Also use the
+>>     equations provided in the dataasheets to calculate power and energy
+>>     LSB from the current LSB instead of calculating it from scratch.
+>>
+>> - Use ROUND_CLOSEST operations instead of divide operations to reduce
+>>     rounding errors.
+>>
+>> - Improve current dynamic range by matching shunt voltage and current
+>>     register values. With that, the dynamic range is always the full 16 bit
+>>     provided by the ADC.
+>>
+>> - Stop using the shunt voltage register. With shunt and current register
+>>     values now always matching, it is unnecessary to read both.
+>>
+>> - Provide current limits from shunt voltage limit registers. After all,
+>>     there is no difference for the ADC, so the shunt voltage limits translate
+>>     into current limits.
+>>
+>> - Order chip information alphabetically. No functional change, it just
+>>     simplifies adding support for new chips.
+>>
+>> - Add 64-bit energy attribute support to the hwmon core.
+>>
+>> - Use the hwmon core to report 64-bit energy values.
+>>
+>> - Add support for active-high alert polarity
+>>
+>> - Limit shunt and calibration register writes to chips requiring/supporting
+>>     it.
+>>
+>> - Add support for INA700 and INA780. Both chips have internal shunt
+>>     resistors and do not explicitly report the shunt voltage.
+>>
+>> This patch series was inspired by Chris Packham's initial patch set of a
+>> new INA780 driver, by his subsequent patch set adding support for that chip
+>> to the ina238 driver, and by Christian Kahr's submission of a new INA700
+>> driver.
+>>
+>> The series was tested with INA228, INA237, INA238, and INA780 evaluation
+>> boards as well as with unit test code.
+>>
+>> ----------------------------------------------------------------
+>> Guenter Roeck (17):
+>>         hwmon: (ina238) Drop platform data support
+>>         hwmon: (ina238) Update documentation and Kconfig entry
+>>         hwmon: (ina238) Drop pointless power attribute check on attribute writes
+>>         hwmon: (ina238) Rework and simplify temperature calculations
+>>         hwmon: (ina238) Pre-calculate current, power, and energy LSB
+>>         hwmon: (ina238) Simplify voltage register accesses
+>>         hwmon: (ina238) Improve current dynamic range
+>>         hwmon: (ina238) Stop using the shunt voltage register
+>>         hwmon: (ina238) Add support for current limits
+>>         hwmon: (ina238) Order chip information alphabetically
+>>         hwmon: Introduce 64-bit energy attribute support
+>>         hwmon: (ina238) Use the energy64 attribute type to report the energy
+>>         hwmon: (ina238) Support active-high alert polarity
+>>         hwmon: (ina238) Only configure calibration and shunt registers if needed
+>>         hwmon: (ina238) Add support for INA780
+>>         dt-bindings: hwmon: ti,ina2xx: Add INA700
+>>         hwmon: (ina238) Add support for INA700
+>>
+>>    .../devicetree/bindings/hwmon/ti,ina2xx.yaml       |   4 +
+>>    Documentation/hwmon/hwmon-kernel-api.rst           |   3 +
+>>    Documentation/hwmon/ina238.rst                     |  64 ++-
+>>    drivers/hwmon/Kconfig                              |   9 +-
+>>    drivers/hwmon/hwmon.c                              |  16 +-
+>>    drivers/hwmon/ina238.c                             | 583 +++++++++++----------
+>>    include/linux/hwmon.h                              |   1 +
+>>    include/trace/events/hwmon.h                       |  10 +-
+>>    8 files changed, 382 insertions(+), 308 deletions(-)
+> 
+> For the series
+> 
+> Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz> # INA780
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 637430719e6d7d3c0eeb4abf2b80eea1f8289530..ef5c7cbeda68c7eb4745cd2ec01eaacf9a83040a 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -83,14 +83,11 @@ leds {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cam_indicator_en>;
- 
--		led-camera-indicator {
--			label = "white:camera-indicator";
-+		privacy_led: privacy-led {
- 			function = LED_FUNCTION_INDICATOR;
- 			color = <LED_COLOR_ID_WHITE>;
- 			gpios = <&tlmm 28 GPIO_ACTIVE_HIGH>;
--			linux,default-trigger = "none";
- 			default-state = "off";
--			/* Reuse as a panic indicator until we get a "camera on" trigger */
- 			panic-indicator;
- 		};
- 	};
-@@ -685,6 +682,9 @@ camera@10 {
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&cam_rgb_default>;
- 
-+		leds = <&privacy_led>;
-+		led-names = "privacy-led";
-+
- 		clocks = <&camcc CAMCC_MCLK3_CLK>;
- 
- 		orientation = <0>;	/* Front facing */
+Thanks a lot, appreciate it!
 
--- 
-2.48.1
+Guenter
 
 
