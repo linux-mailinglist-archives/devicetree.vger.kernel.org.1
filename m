@@ -1,151 +1,137 @@
-Return-Path: <devicetree+bounces-214068-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214069-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48358B48117
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 00:48:39 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC0DB4811D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 00:54:03 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EED613BF8A9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 22:48:37 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 4F9034E1069
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 22:54:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C251621CC7B;
-	Sun,  7 Sep 2025 22:48:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 59E2B226861;
+	Sun,  7 Sep 2025 22:53:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Kyoba6Qi"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="sUXEcb5l";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="exHdnhb8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AF833597A;
-	Sun,  7 Sep 2025 22:48:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 238FB315D46;
+	Sun,  7 Sep 2025 22:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757285315; cv=none; b=DXOyiYwEITJO5/ZHAqkTwHGh7y5/4SiIzZJ/bcoHrnGhF/3ds/T1nsBn1mBnQi7qg2+tm8j+Ncf2bUqc877uRIS4oAJdvpEQlxl2tsWWrjcikvauuOHtudzX8a9ojL6Rzee1yzkvb2Mn1P1yrJ6J14lsXKP7rGQurtrDZ0+dscM=
+	t=1757285638; cv=none; b=GgPCoZy2BNXiph1j7cL2rSBTicamnqlNUeGJhwt0ZhTbb730b+5aEWQrM5BMo13g82bRshfFSX5XcDbDhv30tnJ27/tIsvS6AZp8Rvz7GSk8APcKPJpxi6TSvo6pkCrKq/WcHo7qEIukMMKZ7Xn7nnlwd5k9JliVYrjOkF1SY28=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757285315; c=relaxed/simple;
-	bh=TqYfXvj90KXhrbbCKTgXDPHHo3VvTStekL+APwRwQpM=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=SuL42p5RNwU2ILn23TEGNkIZgg5blk9nDP7wmoy8jE1i4CQ2+uqoQt2f2COGWDnFxziZCyelXhNJNP/cIR0LEVxqnrrybEEQSJqndqDU2+7n9qq72gyFaCX1/Wcwbkhm9ov3ugisifgzMdDySlAWxxECl2G3LRM5HpT4ri2RVg0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Kyoba6Qi; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-e9e137d69aaso1383846276.0;
-        Sun, 07 Sep 2025 15:48:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757285313; x=1757890113; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0WtoGi3B0zs9r3qRqqZcu48LoyQs2gPIq2RowLVeYzo=;
-        b=Kyoba6QiTNlHblN27xQ32iSSbexaADR3XGglMOUuoICMEanuik6WgIdnfM5ojWj3kA
-         9jofSJTT8oHvHfYcFwz9o+MjsnbI/1aLxv83gNDxYXfPQzJRjdWwXN+2KrHDN1fkgT/z
-         5MCW5bHwUFOpg+rXz/pZqAvMyfJK6MRP29zQdvzmbdAeWKqmMvTh2BzYcvaVejWiK11D
-         RT2TQ8WtUt1D+kBPn6PYScpQICYHeK0uMjg7DR4Cey0kvY9qr5+W4TC9YhixymtcWl6K
-         QuN9GcqbMw+RqWa/zF3hTsxaaKo2G2XjqaQWFOHcY21/woVr4uZJl5wp/Z6D9i0C7nE+
-         ebBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757285313; x=1757890113;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=0WtoGi3B0zs9r3qRqqZcu48LoyQs2gPIq2RowLVeYzo=;
-        b=HfbPxYGysgriJxJQIGlWAswWhR2iUMgOvHiUdD3aqgLFvtw9TkJntO5xbkjI2GTRLd
-         1FyZBht+x+Buua0ABIVc5Z/cRIWQBJkkXIOyfjg/2vY01QaKO9WS6e1W5IvkaO6bLdNX
-         yXaKa9YOthpsa37A9QuOfMoWJrU7xOeTBbid7a6Cn3l6TX5KR7IC9Md3usM0Ip+uD0bp
-         YVN9xZ6sAVDI/Bbmg0ECx0acNSN0UxETIZ4/h3tH+CbiwRYPD3XsuoT8DDMaxQ5gF6e7
-         U5CH+4psSykzB4W6qHIx7psTkr+gd0kcVqxjyb8o0+WaZ6zCCpPOjmaWFqGdbue4UPo6
-         64vA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ6LAL1KmM7bVBwAVxg7GebNejshFR2U9QIM3no+antp1imNMKd2cPtW9F5tJ1hQhq4/91z045fEAyo5M=@vger.kernel.org, AJvYcCUrmsoksxp+eCIDqHYm07DVGaGu4Qy+7279+rVdy0HvzKanPO0Ll9A8GV2lrpV+W9Zfns6OCnKReef0Wprl@vger.kernel.org, AJvYcCX6/YRD7ElxgF+xqjEQ0h0Bz8mU95LoXMioyFGfCfjK9RFihtDwcr5vO0FkY3kmWQn2fmbM5MF03b6b@vger.kernel.org, AJvYcCXWJF58V6WNUoJYmViU94uKGKs3F1bma2JmI0FXJ9gjEIO75aTsDIVZqteqpf5TiXgC5JMkgy4tnSEo@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsZrw4cVJ4FS1EQrdAvzreCX9SW5S+oQYf6IPEYRQLiqMMfApW
-	ue+0XxecQVJUe7oibcJ6DIDW4swGTIA7kFSuI4FArSXoiORnLvbOhtrr
-X-Gm-Gg: ASbGncvHCDB6JfkcY7jTai8+HRMYXlC7yP3hDdzdnNot2DTbDBG9wdRBRH12H85kzkd
-	HmcZqLbdbLuoHDHfmpJTz4YLstTadgIwNJ9V+OCh8Zv59QUoEA8AxSjccsgD56/g2FVkgkSoeBa
-	C+egbSgB8GcG1Qa+zv6r4fa/SGOe10vArBuK4JxdwjPSXqlpqbRVtCPeRZQJyP+qvmKVb+P/UL/
-	JZd2E1j0qCkxCXemU6g4EdyFUCjm9S4AwIBtPu7ejYBY1+0UskhtKh21epr5K90Je+FUm1sAfIu
-	yj3YRAKej4k28S/irzh3nhbQ9HUgtN3XxPHamxOtNuFot45ss3r092wVrWFfFNxwhYsQKx5FaS4
-	zLrjneEm33pH2eQpmzbjWbxcmKg==
-X-Google-Smtp-Source: AGHT+IGdrMfJ7toqSBXyRtY6+W+dUg3qtromyBT1OX82JyErk/tkK88ARYscetrW8kfYbyKHm2zdSw==
-X-Received: by 2002:a05:690e:4286:10b0:5fc:5017:8cee with SMTP id 956f58d0204a3-61034cd0addmr4672567d50.31.1757285312966;
-        Sun, 07 Sep 2025 15:48:32 -0700 (PDT)
-Received: from localhost ([186.65.53.118])
-        by smtp.gmail.com with ESMTPSA id 00721157ae682-723a82d58b8sm48097067b3.9.2025.09.07.15.48.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Sep 2025 15:48:32 -0700 (PDT)
+	s=arc-20240116; t=1757285638; c=relaxed/simple;
+	bh=Cm5YUZJ61VOI4bx0fqwwDflClgGmuNarWvEm18NLWFc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=C9Q/+IgjoXSnDGRwJtXWnFnByrpcxTZG1l1MQYTMCCGYHbydHnoqFcdKnpl2Nu92KFdsbCTvGzcVtRDMY6wfPMGnoRUPZF1ojUb9bob5DkYTwfDwuCiBcK03gaeh68TMPEv6fWyR965B9jNwkIGiGeVbjFMVi7nH0VXoIhvBZwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=sUXEcb5l; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=exHdnhb8; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cKlkV0Pbrz9tTZ;
+	Mon,  8 Sep 2025 00:53:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757285634;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=QMb8JXvN1Gdvqc6Udpf9z7oyPReqbmlnrTlxo92lbAc=;
+	b=sUXEcb5lQuNABUnIkG1XebMhxPIwO55Gy9U35fDxkj5mUIG+V+N5AfX+lqUqEl0BZmO25y
+	pE9A5WedcrqUCaw4KELsP92+b3oNDfiMir451+CiwAwLwkxqVmQgmBc/eCjgOk+oYOQN5G
+	bcXFVcI49FMgqEmg68Tn/w92ELTNAGCWaTE+FC/0dXc3mGNS6f/FHtI3xD6IT9NWrRvoOu
+	b7nbwmj2Oqm7p93O0K4pf+tcS71r7yHOAZVHN9tXW7JRNMlCw+uuHbXsakTWmASlvLXv5M
+	u4KElgR3o8hA+/cop5x7Opx3xRh30saz/9m7e54670Nh1uso8NPEOQmLQs/diQ==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757285632;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=QMb8JXvN1Gdvqc6Udpf9z7oyPReqbmlnrTlxo92lbAc=;
+	b=exHdnhb8Ksnxr/SkYq+zVO52c07GOs38DWAwlpMFObJqIBNvo/YY2Qc9UAA+26TvSKp6nr
+	81/x1Ck4vS8HnBX5qTcb+Vx1yb3HedmN4cxy/XVXoMxPovuB0aQ6GTqtq/LxvC90i3Oy6e
+	2vuTuqEQYP281fyrfV6O/Sw53/YsqrkzsNp0cWYNYy8o164e/LxP0DmHoyoaqO7JQGgkOM
+	1PcoP5tM5MvjvXHnWG/TNLwyHgzheOghWzIgz9QcfJLplPPfYA6E8Fg9TZwU1LJcfS76lD
+	UUMJUMZSO5+I4dRJFYhKJ7eTa74bMO1YhpeWBz4C+/iKX+oyQ/9iNp4j77nsgw==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH] arm64: dts: renesas: r8a779g3: Rework fan hwmon comment on Retronix R-Car V4H Sparrow Hawk fan DTO
+Date: Mon,  8 Sep 2025 00:53:05 +0200
+Message-ID: <20250907225338.426253-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Sun, 07 Sep 2025 17:48:28 -0500
-Message-Id: <DCMXNI2IG3BW.1O8848AF6CUOA@gmail.com>
-Cc: <stable@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
- <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 2/3] hwmon: (sht21) Add devicetree support
-From: "Kurt Borja" <kuurtb@gmail.com>
-To: "Guenter Roeck" <linux@roeck-us.net>, "Jean Delvare"
- <jdelvare@suse.com>, "Jonathan Corbet" <corbet@lwn.net>, "Andy Shevchenko"
- <andriy.shevchenko@linux.intel.com>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley"
- <conor+dt@kernel.org>
-X-Mailer: aerc 0.20.1-0-g2ecb8770224a-dirty
-References: <20250907-sht2x-v1-0-fd56843b1b43@gmail.com>
- <20250907-sht2x-v1-2-fd56843b1b43@gmail.com>
- <502a7a9d-3b5d-4bf9-9cd3-fc3d387ebe62@roeck-us.net>
-In-Reply-To: <502a7a9d-3b5d-4bf9-9cd3-fc3d387ebe62@roeck-us.net>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: 93710d2802da5fda573
+X-MBO-RS-META: hdrs11rhq5j3stnthun7gy6t4ngnf6kq
 
-On Sun Sep 7, 2025 at 5:19 PM -05, Guenter Roeck wrote:
-> On 9/7/25 15:06, Kurt Borja wrote:
->> Add DT support for sht2x chips.
->>=20
->> Cc: stable@vger.kernel.org
->> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
->> ---
->>   drivers/hwmon/sht21.c | 10 +++++++++-
->>   1 file changed, 9 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/drivers/hwmon/sht21.c b/drivers/hwmon/sht21.c
->> index a2748659edc262dac9d87771f849a4fc0a29d981..9813e04f60430f8e60f614d9=
-c68785428978c4a4 100644
->> --- a/drivers/hwmon/sht21.c
->> +++ b/drivers/hwmon/sht21.c
->> @@ -283,8 +283,16 @@ static const struct i2c_device_id sht21_id[] =3D {
->>   };
->>   MODULE_DEVICE_TABLE(i2c, sht21_id);
->>  =20
->> +static const struct of_device_id sht21_of_match[] =3D {
->> +	{ .compatible =3D "sensirion,sht2x" },
->
-> This should be individual entries, not a placeholder for multiple chips.
+Reword fan DT overlay hwmon comment to accurately locate the
+fan control sysfs hwmon node on Retronix R-Car V4H Sparrow Hawk.
+No functional change.
 
-Sure! I'll add an entry for each chip.
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+---
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+ .../dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso  | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
 
-FWIW sensirion also uses sht2x as a placeholder in datasheets.
-
-Thanks for your review!
-
->
->> +	{ }
->> +};
->> +
->>   static struct i2c_driver sht21_driver =3D {
->> -	.driver.name =3D "sht21",
->> +	.driver =3D {
->> +		.name =3D "sht21",
->> +		.of_match_table =3D sht21_of_match,
->> +	},
->>   	.probe       =3D sht21_probe,
->>   	.id_table    =3D sht21_id,
->>   };
->>=20
-
-
---=20
- ~ Kurt
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso
+index 50d53c8d76c5b..022374c5c8d07 100644
+--- a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-pwm.dtso
+@@ -9,21 +9,16 @@
+  *
+  * # Localize hwmon sysfs directory that matches the PWM fan,
+  * # enable the PWM fan, and configure the fan speed manually.
+- * r8a779g3-sparrow-hawk$ grep -H . /sys/class/hwmon/hwmon?/name
+- * /sys/class/hwmon/hwmon0/name:sensor1_thermal
+- * /sys/class/hwmon/hwmon1/name:sensor2_thermal
+- * /sys/class/hwmon/hwmon2/name:sensor3_thermal
+- * /sys/class/hwmon/hwmon3/name:sensor4_thermal
+- * /sys/class/hwmon/hwmon4/name:pwmfan
+- *                       ^      ^^^^^^
++ * r8a779g3-sparrow-hawk$ ls -1 /sys/devices/platform/pwm-fan/hwmon/hwmon?/pwm?_enable
++ * /sys/devices/platform/pwm-fan/hwmon/hwmon4/pwm1_enable
+  *
+  * # Select mode 2 , enable fan PWM and regulator and keep them enabled.
+  * # For details, see Linux Documentation/hwmon/pwm-fan.rst
+- * r8a779g3-sparrow-hawk$ echo 2 > /sys/class/hwmon/hwmon4/pwm1_enable
++ * r8a779g3-sparrow-hawk$ echo 2 > /sys/devices/platform/pwm-fan/hwmon/hwmon4/pwm1_enable
+  *
+  * # Configure PWM fan speed in range 0..255 , 0 is stopped , 255 is full speed .
+  * # Fan speed 101 is about 2/5 of the PWM fan speed:
+- * r8a779g3-sparrow-hawk$ echo 101 > /sys/class/hwmon/hwmon4/pwm1
++ * r8a779g3-sparrow-hawk$ echo 101 > /sys/devices/platform/pwm-fan/hwmon/hwmon4/pwm1
+  */
+ 
+ /dts-v1/;
+-- 
+2.51.0
 
 
