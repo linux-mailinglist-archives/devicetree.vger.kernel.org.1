@@ -1,166 +1,152 @@
-Return-Path: <devicetree+bounces-214071-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214072-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1443EB48126
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:00:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97265B48136
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:18:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD62C7A5A69
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 22:58:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A99117D377
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:18:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67A62221264;
-	Sun,  7 Sep 2025 23:00:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9501B0437;
+	Sun,  7 Sep 2025 23:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="i65mxZP/"
+	dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b="K8LcTonE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mail-244107.protonmail.ch (mail-244107.protonmail.ch [109.224.244.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1FB0315D25
-	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 23:00:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 742D4139D1B;
+	Sun,  7 Sep 2025 23:18:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=109.224.244.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757286024; cv=none; b=e5hSOFZ1lF/1wKKvemHK6Yw8NJ2kBz2AOiFQpxk+ypzll0iXcek1sj7Vl60HgkKqwe5FAx4liU2F2Erb4cg7zouE/Ufie7fs+vRMCYiKxdLDf/SAIhWJHsjtqXUrtkC4HhpaFMuUauyaoLwP5EaLYVX1Wi+jIbWJHkscTY34wnc=
+	t=1757287107; cv=none; b=faBwerMswXLBWGKwtimDqR4SmXWYHl51+RrDyj6xQxIogobNrb4bBgA4ORGnaUxqJcg6TgBWLXqYbymC7cZZUKV+ESrKYS6GdAG18xmQDgYV8+U6v7mt9YTWAhDe7ih+PhefYsNISKUTQrPbODJm+8njwMYggZf90miW670rOxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757286024; c=relaxed/simple;
-	bh=jIuAs4C+5vH0OyzHXAiNKNum3AggrKQR2ju7ykyCGO4=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=LdplmSzfiI7Q5099Nwtxma7mXUR9iMAlSXRbbeRLpFsgn8ot3zwcav5ad2DEiC67cGX67S8ERNaSl5rW9vDzTVydIKP1p5NS/sABtCgI4guuouuiuZCtB5g8g5yojIBIW0zEqhhenKtqSEAadpk7vSE5nTVuhlHl80XzjyHrKwQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=i65mxZP/; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 44F982C02FF;
-	Mon,  8 Sep 2025 11:00:12 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1757286012;
-	bh=jIuAs4C+5vH0OyzHXAiNKNum3AggrKQR2ju7ykyCGO4=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=i65mxZP/rPKSlSnaSygalWPV7qYPBgWNQGBCDj/ka/l8qIle4MwhPLN4d7PqaPIRD
-	 QoBEZc+ebM0Sq+nLQT2lm183PKvaZiR1wGX30aqUapvZ9B+DVwCHr2nbQsSmNmigJ7
-	 AuX/kxQ9d4YlkrQx8rwIbWT1Nk2NP8tUzT0rsHya5b6RksuV3CO01pIbXMjthr8ojX
-	 NzkF8sXzbiXMsW2Bo4gmmOyFt+G+CosV0eJXDMmK2MsPLFz4k1+PwzBpT/ueN+NNF/
-	 2O89uqUWXTwh6OyCmvr05VI9ppJlmtumMR9c251JGPnKekrjOnH3r1K17fAT0kNX38
-	 Lbpdu7Ipl74FQ==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B68be0e7c0001>; Mon, 08 Sep 2025 11:00:12 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1748.36; Mon, 8 Sep 2025 11:00:11 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1748.036; Mon, 8 Sep 2025 11:00:11 +1200
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Guenter Roeck <linux@roeck-us.net>, "linux-hwmon@vger.kernel.org"
-	<linux-hwmon@vger.kernel.org>
-CC: Christian Kahr <christian.kahr@sie.at>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 00/17] hwmon: (ina238) Various improvements and added chip
- support
-Thread-Topic: [PATCH 00/17] hwmon: (ina238) Various improvements and added
- chip support
-Thread-Index: AQHcHqWL84nxUfXTuE6xKtMCClV5VLSHj96A
-Date: Sun, 7 Sep 2025 23:00:11 +0000
-Message-ID: <62ad677d-ecca-4819-904a-7052675300cb@alliedtelesis.co.nz>
-References: <20250905204159.2618403-1-linux@roeck-us.net>
-In-Reply-To: <20250905204159.2618403-1-linux@roeck-us.net>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D36A7C0732D63A4A98FA8A221923ABEA@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1757287107; c=relaxed/simple;
+	bh=k8iX8f1s+IR8AvU1agIi/j65Y7bAoHiH3WV53x45EE4=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=tyOmXKqkRLTkSEQKrZ96em3iioJiBLy/gJIDRx0dXjv3zJzS2lq6ppWof4huGts793hx+Wc9LkYWmcuzDu4NNFovdnl3y7NUimIoknJvQBxOF0020CQzFcNSXP3VqHoM8+PXwC/HjcrZe0TTZ/TXkHfB1nSvpRlc2bbvlenj4jY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com; spf=pass smtp.mailfrom=vinarskis.com; dkim=pass (2048-bit key) header.d=vinarskis.com header.i=@vinarskis.com header.b=K8LcTonE; arc=none smtp.client-ip=109.224.244.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=vinarskis.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=vinarskis.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vinarskis.com;
+	s=protonmail; t=1757287096; x=1757546296;
+	bh=E8FRq9d04k6YYbAmL36bn60thwFzL/SsLK8ZOEggcFE=;
+	h=From:Subject:Date:Message-Id:To:Cc:From:To:Cc:Date:Subject:
+	 Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+	b=K8LcTonEyRrDL6rilzK5+auaZbIX+ZvrF/aZpkI22wFAWucu5YVFFTJpgfeF1sUE0
+	 jvD5ipo7+6negfyQKk7BrMNgWctMtq0icu8wAo3h9xFm4Kf58z6gEP84lX4qLp+az5
+	 lMQ6yVtkJl+QucVcAcvDnQneJW182pz072iMv6eFmPEixhFmq/UUbekFN6PNOCQDPT
+	 X0G2K6j/rzSgDX+qXPbi4HW66W6ZukDqNMf57xfXQZFTcXF7d/xo0R2eFPjoRfWYTu
+	 07ZZfKq62KXnEjBH9Vq64IpFvBBPv1/j6b3RBqvtcXQ4mpmgaQxivmnhcXyAe9+xiX
+	 dq98rf6EbziKQ==
+X-Pm-Submission-Id: 4cKmGZ61Bxz1DF4H
+From: Aleksandrs Vinarskis <alex@vinarskis.com>
+Subject: [PATCH v3 0/4] leds: privacy-led support for devicetree
+Date: Mon, 08 Sep 2025 01:18:02 +0200
+Message-Id: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=Yo+sRJYX c=1 sm=1 tr=0 ts=68be0e7c a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=YMzaRx0akvIA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=2iaE-kZxjnJvbpx23GEA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKoSvmgC/12MQQ7CIBBFr9LMWgxQoejKexgXCFM7UVvDGKJpe
+ ndp48J0+X7+eyMwJkKGQzVCwkxMQ1+g3lQQOt9fUVAsDFpqI/dSiztGFsGq4JrGx+gklOszYUv
+ vJXM6F+6IX0P6LNWs5nUVyEpIsfO1QqWNbuzlmKn3iW/E2zA8YI5k/S+an6iLiNG11rbGRu/W4
+ jRNX3fY3brVAAAA
+X-Change-ID: 20250902-leds-c61c877add80
+To: Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>, 
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, 
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>, 
+ Jacopo Mondi <jacopo@jmondi.org>, 
+ Sakari Ailus <sakari.ailus@linux.intel.com>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>, 
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org, 
+ linux-arm-msm@vger.kernel.org, Andy Shevchenko <andy.shevchenko@gmail.com>, 
+ Linus Walleij <linus.walleij@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2779; i=alex@vinarskis.com;
+ h=from:subject:message-id; bh=k8iX8f1s+IR8AvU1agIi/j65Y7bAoHiH3WV53x45EE4=;
+ b=owGbwMvMwCX2dl3hIv4AZgHG02pJDBn7hDboOuU/Y7Bm/5y71XeXBfdSc5V2Vi/Ow+FbL5qZv
+ e48qqneUcrCIMbFICumyNL952ta16K5axmua3yDmcPKBDKEgYtTACaytoXhn96TVc9UZy/TC2La
+ fNx82s47pzXi7plIH1RhO+Nycu+K52cYGeYbHT5ebGvptf1JsyOfAGNretiVtbK30qpnTL35MX6
+ eKw8A
+X-Developer-Key: i=alex@vinarskis.com; a=openpgp;
+ fpr=8E21FAE2D2967BB123303E8C684FD4BA28133815
 
-SGkgR3VlbnRlciwNCg0KT24gMDYvMDkvMjAyNSAwODo0MSwgR3VlbnRlciBSb2VjayB3cm90ZToN
-Cj4gQWRkIHN1cHBvcnQgZm9yIElOQTcwMCBhbmQgSU5BNzgwIHRvIHRoZSBpbmEyMzggZHJpdmVy
-Lg0KPg0KPiBUbyBwcmVwYXJlIGZvciB0aGlzLCBpbXBsZW1lbnQgdmFyaW91cyBpbXByb3ZlbWVu
-dHMuDQo+DQo+IC0gVXBkYXRlIGRvY3VtZW50aW9uIGFuZCBLY29uZmlnIGVudHJ5IHRvIGxpc3Qg
-YWxsIHN1cHBvcnRlZCBjaGlwcy4NCj4NCj4gLSBEcm9wIHBsYXRmb3JtIGRhdGEgc3VwcG9ydC4g
-VGhlIGRyaXZlciBzdXBwb3J0cyBkZXZpY2UgcHJvcGVydGllcywNCj4gICAgYW5kIHRoZXJlIGFy
-ZSBubyBpbi10cmVlIHBsYXRmb3JtIGRhdGEgdXNlcnMuDQo+DQo+IC0gU3RvcCBjaGVja2luZyB0
-aGUgYXR0cmlidXRlIHZhbHVlIHdoZW4gd3JpdGluZyB0aGUgcG93ZXJfbWF4IGF0dHJpYnV0ZQ0K
-PiAgICBhcyB1bm5lY2Vzc2FyeS4NCj4NCj4gLSBTaW1wbGlmeSB0ZW1wZXJhdHVyZSBjYWxjdWxh
-dGlvbnMuIEluc3RlYWQgb2Ygc2hpZnQgYW5kIGxzYiwgb25seQ0KPiAgICByZXF1aXJlIHRoZSBy
-ZXN1bHV0aW9uIGFuZCB1c2UgaXQgdG8gY2FsY3VsYXRlIHRlbXBlcmF0dXJlcy4NCj4NCj4gLSBQ
-cmUtY2FsY3VsYXRlIHZvbHRhZ2UsIGN1cnJlbnQsIHBvd2VyIGFuZCBlbmVyZ3kgTFNCLiBUaGUg
-dmFsdWVzIGRvbid0DQo+ICAgIGNoYW5nZSBkdXJpbmcgcnVudGltZSBhbmQgY2FuIHRoZXJlZm9y
-ZSBiZSBwcmUtY2FsY3VsYXRlZC4gQWxzbyB1c2UgdGhlDQo+ICAgIGVxdWF0aW9ucyBwcm92aWRl
-ZCBpbiB0aGUgZGF0YWFzaGVldHMgdG8gY2FsY3VsYXRlIHBvd2VyIGFuZCBlbmVyZ3kNCj4gICAg
-TFNCIGZyb20gdGhlIGN1cnJlbnQgTFNCIGluc3RlYWQgb2YgY2FsY3VsYXRpbmcgaXQgZnJvbSBz
-Y3JhdGNoLg0KPg0KPiAtIFVzZSBST1VORF9DTE9TRVNUIG9wZXJhdGlvbnMgaW5zdGVhZCBvZiBk
-aXZpZGUgb3BlcmF0aW9ucyB0byByZWR1Y2UNCj4gICAgcm91bmRpbmcgZXJyb3JzLg0KPg0KPiAt
-IEltcHJvdmUgY3VycmVudCBkeW5hbWljIHJhbmdlIGJ5IG1hdGNoaW5nIHNodW50IHZvbHRhZ2Ug
-YW5kIGN1cnJlbnQNCj4gICAgcmVnaXN0ZXIgdmFsdWVzLiBXaXRoIHRoYXQsIHRoZSBkeW5hbWlj
-IHJhbmdlIGlzIGFsd2F5cyB0aGUgZnVsbCAxNiBiaXQNCj4gICAgcHJvdmlkZWQgYnkgdGhlIEFE
-Qy4NCj4NCj4gLSBTdG9wIHVzaW5nIHRoZSBzaHVudCB2b2x0YWdlIHJlZ2lzdGVyLiBXaXRoIHNo
-dW50IGFuZCBjdXJyZW50IHJlZ2lzdGVyDQo+ICAgIHZhbHVlcyBub3cgYWx3YXlzIG1hdGNoaW5n
-LCBpdCBpcyB1bm5lY2Vzc2FyeSB0byByZWFkIGJvdGguDQo+DQo+IC0gUHJvdmlkZSBjdXJyZW50
-IGxpbWl0cyBmcm9tIHNodW50IHZvbHRhZ2UgbGltaXQgcmVnaXN0ZXJzLiBBZnRlciBhbGwsDQo+
-ICAgIHRoZXJlIGlzIG5vIGRpZmZlcmVuY2UgZm9yIHRoZSBBREMsIHNvIHRoZSBzaHVudCB2b2x0
-YWdlIGxpbWl0cyB0cmFuc2xhdGUNCj4gICAgaW50byBjdXJyZW50IGxpbWl0cy4NCj4NCj4gLSBP
-cmRlciBjaGlwIGluZm9ybWF0aW9uIGFscGhhYmV0aWNhbGx5LiBObyBmdW5jdGlvbmFsIGNoYW5n
-ZSwgaXQganVzdA0KPiAgICBzaW1wbGlmaWVzIGFkZGluZyBzdXBwb3J0IGZvciBuZXcgY2hpcHMu
-DQo+DQo+IC0gQWRkIDY0LWJpdCBlbmVyZ3kgYXR0cmlidXRlIHN1cHBvcnQgdG8gdGhlIGh3bW9u
-IGNvcmUuDQo+DQo+IC0gVXNlIHRoZSBod21vbiBjb3JlIHRvIHJlcG9ydCA2NC1iaXQgZW5lcmd5
-IHZhbHVlcy4NCj4NCj4gLSBBZGQgc3VwcG9ydCBmb3IgYWN0aXZlLWhpZ2ggYWxlcnQgcG9sYXJp
-dHkNCj4NCj4gLSBMaW1pdCBzaHVudCBhbmQgY2FsaWJyYXRpb24gcmVnaXN0ZXIgd3JpdGVzIHRv
-IGNoaXBzIHJlcXVpcmluZy9zdXBwb3J0aW5nDQo+ICAgIGl0Lg0KPg0KPiAtIEFkZCBzdXBwb3J0
-IGZvciBJTkE3MDAgYW5kIElOQTc4MC4gQm90aCBjaGlwcyBoYXZlIGludGVybmFsIHNodW50DQo+
-ICAgIHJlc2lzdG9ycyBhbmQgZG8gbm90IGV4cGxpY2l0bHkgcmVwb3J0IHRoZSBzaHVudCB2b2x0
-YWdlLg0KPg0KPiBUaGlzIHBhdGNoIHNlcmllcyB3YXMgaW5zcGlyZWQgYnkgQ2hyaXMgUGFja2hh
-bSdzIGluaXRpYWwgcGF0Y2ggc2V0IG9mIGENCj4gbmV3IElOQTc4MCBkcml2ZXIsIGJ5IGhpcyBz
-dWJzZXF1ZW50IHBhdGNoIHNldCBhZGRpbmcgc3VwcG9ydCBmb3IgdGhhdCBjaGlwDQo+IHRvIHRo
-ZSBpbmEyMzggZHJpdmVyLCBhbmQgYnkgQ2hyaXN0aWFuIEthaHIncyBzdWJtaXNzaW9uIG9mIGEg
-bmV3IElOQTcwMA0KPiBkcml2ZXIuDQo+DQo+IFRoZSBzZXJpZXMgd2FzIHRlc3RlZCB3aXRoIElO
-QTIyOCwgSU5BMjM3LCBJTkEyMzgsIGFuZCBJTkE3ODAgZXZhbHVhdGlvbg0KPiBib2FyZHMgYXMg
-d2VsbCBhcyB3aXRoIHVuaXQgdGVzdCBjb2RlLg0KPg0KPiAtLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+IEd1ZW50ZXIgUm9l
-Y2sgKDE3KToNCj4gICAgICAgIGh3bW9uOiAoaW5hMjM4KSBEcm9wIHBsYXRmb3JtIGRhdGEgc3Vw
-cG9ydA0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIFVwZGF0ZSBkb2N1bWVudGF0aW9uIGFuZCBL
-Y29uZmlnIGVudHJ5DQo+ICAgICAgICBod21vbjogKGluYTIzOCkgRHJvcCBwb2ludGxlc3MgcG93
-ZXIgYXR0cmlidXRlIGNoZWNrIG9uIGF0dHJpYnV0ZSB3cml0ZXMNCj4gICAgICAgIGh3bW9uOiAo
-aW5hMjM4KSBSZXdvcmsgYW5kIHNpbXBsaWZ5IHRlbXBlcmF0dXJlIGNhbGN1bGF0aW9ucw0KPiAg
-ICAgICAgaHdtb246IChpbmEyMzgpIFByZS1jYWxjdWxhdGUgY3VycmVudCwgcG93ZXIsIGFuZCBl
-bmVyZ3kgTFNCDQo+ICAgICAgICBod21vbjogKGluYTIzOCkgU2ltcGxpZnkgdm9sdGFnZSByZWdp
-c3RlciBhY2Nlc3Nlcw0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIEltcHJvdmUgY3VycmVudCBk
-eW5hbWljIHJhbmdlDQo+ICAgICAgICBod21vbjogKGluYTIzOCkgU3RvcCB1c2luZyB0aGUgc2h1
-bnQgdm9sdGFnZSByZWdpc3Rlcg0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIEFkZCBzdXBwb3J0
-IGZvciBjdXJyZW50IGxpbWl0cw0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIE9yZGVyIGNoaXAg
-aW5mb3JtYXRpb24gYWxwaGFiZXRpY2FsbHkNCj4gICAgICAgIGh3bW9uOiBJbnRyb2R1Y2UgNjQt
-Yml0IGVuZXJneSBhdHRyaWJ1dGUgc3VwcG9ydA0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIFVz
-ZSB0aGUgZW5lcmd5NjQgYXR0cmlidXRlIHR5cGUgdG8gcmVwb3J0IHRoZSBlbmVyZ3kNCj4gICAg
-ICAgIGh3bW9uOiAoaW5hMjM4KSBTdXBwb3J0IGFjdGl2ZS1oaWdoIGFsZXJ0IHBvbGFyaXR5DQo+
-ICAgICAgICBod21vbjogKGluYTIzOCkgT25seSBjb25maWd1cmUgY2FsaWJyYXRpb24gYW5kIHNo
-dW50IHJlZ2lzdGVycyBpZiBuZWVkZWQNCj4gICAgICAgIGh3bW9uOiAoaW5hMjM4KSBBZGQgc3Vw
-cG9ydCBmb3IgSU5BNzgwDQo+ICAgICAgICBkdC1iaW5kaW5nczogaHdtb246IHRpLGluYTJ4eDog
-QWRkIElOQTcwMA0KPiAgICAgICAgaHdtb246IChpbmEyMzgpIEFkZCBzdXBwb3J0IGZvciBJTkE3
-MDANCj4NCj4gICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9od21vbi90aSxpbmEyeHgueWFtbCAg
-ICAgICB8ICAgNCArDQo+ICAgRG9jdW1lbnRhdGlvbi9od21vbi9od21vbi1rZXJuZWwtYXBpLnJz
-dCAgICAgICAgICAgfCAgIDMgKw0KPiAgIERvY3VtZW50YXRpb24vaHdtb24vaW5hMjM4LnJzdCAg
-ICAgICAgICAgICAgICAgICAgIHwgIDY0ICsrLQ0KPiAgIGRyaXZlcnMvaHdtb24vS2NvbmZpZyAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA5ICstDQo+ICAgZHJpdmVycy9od21vbi9o
-d21vbi5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgMTYgKy0NCj4gICBkcml2ZXJz
-L2h3bW9uL2luYTIzOC5jICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8IDU4MyArKysrKysr
-KysrKy0tLS0tLS0tLS0NCj4gICBpbmNsdWRlL2xpbnV4L2h3bW9uLmggICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICB8ICAgMSArDQo+ICAgaW5jbHVkZS90cmFjZS9ldmVudHMvaHdtb24uaCAg
-ICAgICAgICAgICAgICAgICAgICAgfCAgMTAgKy0NCj4gICA4IGZpbGVzIGNoYW5nZWQsIDM4MiBp
-bnNlcnRpb25zKCspLCAzMDggZGVsZXRpb25zKC0pDQoNCkZvciB0aGUgc2VyaWVzDQoNClJldmll
-d2VkLWJ5OiBDaHJpcyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+
-DQpUZXN0ZWQtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5j
-by5uej4gIyBJTkE3ODANCg==
+Re-spin of RFC patch from ~2.5 years ago [1]. v4l2 controls for privacy
+LEDs has landed, but the DT part was left out. Introduce missing
+dt-bindings, and commonize 'leds' parameter. Finally, add a patch to
+enable privacy-led on Lenovo Thinkpad x13s.
+
+With recent inflow of arm64-power laptops (Snapdragon X1E/X1P) which
+mostly use MIPI cameras, this feature becomes more desired. Original
+rebased patch is still working as expected (with respective DT changes)
+on Dell XPS 9345.
+
+Changelog to original series:
+- Pick RFC patch, pick R-by, drop RFC-related commit message part
+- Add new DT binding to describe generic LED consumer properties
+- Rebase and test on X1E laptop
+
+[1] https://lore.kernel.org/all/20230120114524.408368-6-hdegoede@redhat.com/
+
+Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+---
+Changes in v3:
+- Drop unnecessary 'dev->of_node' check by Andy
+- Keep 'panic-indicator;' in DT by Konrad
+- Fix property/property-name order by Konrad
+- Add missing 'led-names' enum definition for video devices by Rob
+- Add oneOf to 'leds' to avoid conflict with nodes of same name by Rob
+- Link to v2: https://lore.kernel.org/r/20250905-leds-v2-0-ed8f66f56da8@vinarskis.com
+
+Changes in v2:
+- Fixed mailing issue
+- Fixed wrong R-by, add my missing sign-off
+- Elaborated cover letter/commits descriptions to better describe why
+  this is needed, and why trigger-source could not be used instead
+- dt-bindings: expanded schema description, fixed s/phandle/phandle-array/,
+  expanded the example
+- dt-bindings: added patch to commonize 'leds' from other schemas
+- leds: dropped wrapper, dropped exporting of private functions
+- dts: added patch to utilize privacy-led on Lenovo Thinkpad x13s
+- Link to v1: https://lore.kernel.org/all/010201990a1f5ad8-fc97fc84-9ef9-4a03-bf1c-2d54423c6497-000000@eu-west-1.amazonses.com/
+
+---
+Aleksandrs Vinarskis (3):
+      dt-bindings: leds: add generic LED consumer documentation
+      dt-bindings: leds: commonize leds property
+      arm64: dts: qcom: sc8280xp-x13s: enable camera privacy indicator
+
+Hans de Goede (1):
+      leds: led-class: Add devicetree support to led_get()
+
+ .../bindings/leds/backlight/led-backlight.yaml     |  6 +-
+ .../devicetree/bindings/leds/leds-consumer.yaml    | 89 ++++++++++++++++++++++
+ .../bindings/leds/leds-group-multicolor.yaml       |  5 +-
+ .../bindings/media/video-interface-devices.yaml    |  8 ++
+ .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |  8 +-
+ drivers/leds/led-class.c                           | 17 ++++-
+ 6 files changed, 118 insertions(+), 15 deletions(-)
+---
+base-commit: 3db46a82d467bd23d9ebc473d872a865785299d8
+change-id: 20250902-leds-c61c877add80
+
+Best regards,
+-- 
+Aleksandrs Vinarskis <alex@vinarskis.com>
+
 
