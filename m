@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-213940-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213941-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66AE6B4793D
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 08:53:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBF18B4798F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 10:17:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DFA961B2659C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 06:53:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A77861B20FDF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 08:18:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1B2C21E7C27;
-	Sun,  7 Sep 2025 06:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A4FC1E1DE7;
+	Sun,  7 Sep 2025 08:17:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="elV00ns+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Dy4Y2zHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f175.google.com (mail-pl1-f175.google.com [209.85.214.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A49DF1DB377;
-	Sun,  7 Sep 2025 06:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 383467483;
+	Sun,  7 Sep 2025 08:17:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757227992; cv=none; b=kVigXm7/27NbMjBwCCqFF3fiBOeE6zeuvPxTwVsh1kaj+E8BLGEIAXd4gGbR47yGYmIeeM4bixtvbZ6kgrN5egzxkY2Q/oC6GJijSuefS1BlBM5ru1Of7oEloeLRm87cHnO/lBodaa+QtC64gbVIUu8XSXWWg1nUH8AyGRB27fw=
+	t=1757233065; cv=none; b=ZL/1ZVoWqMuvTmxPyvg1EbisZvLST90VdjZF4hJU+6ial2o7zSqYlUqlxupje07PaMRHEgBSwV2JvhOoz0hYuM8/XfBZ7V66q5B2uAJpKTK/+X+9dfSUxkR7IZicTrvqxYOtvGfjYUqjmDLHQjbgA91wqJo6ThAiwGRKNEN/NCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757227992; c=relaxed/simple;
-	bh=svksw43izxx+5A2+J4leAUSiXS7AhpSutpwM9U9mSZQ=;
+	s=arc-20240116; t=1757233065; c=relaxed/simple;
+	bh=lqNio2Vhvxyex3VhCU03IMjYKkPPZUAVhtv/Fsvo/80=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Ybh3dLW++mFoI6o/ajkEOOD/TIvn+AlZl1ZaJMQfko7ChBA4enjrRipxZWdt5zIP+14qBJ+DO92eEdmF4v+ilFcFLpqFY3cW+3Oql1TSNmR1XgyUFzqiLFTFPtCseDd2+mWO0xr7oG62RrQhnnm9Yyaq1DYP7+L52rEOaWvcBes=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=elV00ns+; arc=none smtp.client-ip=209.85.214.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f175.google.com with SMTP id d9443c01a7336-24cd340377dso18878275ad.1;
-        Sat, 06 Sep 2025 23:53:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757227990; x=1757832790; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NOyGW3yOOAL+eege0XOWicEcKrCBOJ/yJv+n7inWSzU=;
-        b=elV00ns+YojRzt1VDqfsB8j5AnFPKKJKUHJpx0q57HeJ3WKaGJMjJWMw1bZsvsyc3l
-         HgkUj/wz2US+Fw+4UKV1Tl7rTdsjfbpmAiRCMlraEvq3wg1O+T6oQBAZxsAbLdwdAXh2
-         MbdpQ2x8msFafKMmTpAio8fvbpAg3FnJ7KDByXhtp4MzQz5gxb9Dd4IV7jUx6eeDqni6
-         ASprt04hdzgLWiaNxUPx8p5d5X0oWaonmdJ1UYCrqlXTWTE5ygolmK9sjnRJZWG6N9J4
-         womnGy8XYB6bHUizKdxQTSbmN+zwjVIcGUHLyVAgFY8193qzaEhoRc2ue7qBwi66qVKf
-         Xhzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757227990; x=1757832790;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NOyGW3yOOAL+eege0XOWicEcKrCBOJ/yJv+n7inWSzU=;
-        b=BDY/fRfG1ZYsktDBJVmvbd/GGTRvh6oZ8QGhzz3uP86C2A6c56mBpPlDSVfPZzuYFq
-         ACrpWl0thiVCOSRRkjx7lRgrai3lrLySoD0bge2F8M2FzMKK6tGfrYD0dscW3oQ3ZRPh
-         /Z92UPo70Y/ynhEx9Lk3CEvoYaSBFgE82o5YOqGyzoYm3gd95XgRpWNziozxBg907ORM
-         Qj24CjBiyNLWeqhxs3XUROc2IlxWa+bZu1eP9OsrPs00vdERGrl9TqfCrhGrb3LC+elA
-         rjzewczQfeoUk8urV1GD0BmkVNxda/fgyoEJNsyNkc1e4LWm/l6qgjf0gMUBwagVbR6J
-         YZgg==
-X-Forwarded-Encrypted: i=1; AJvYcCWT128xZ5CAKMgC66oxvSYz5XhIk0WyPsU729YOshna8jvChnPnp1sCHGVaay2gH9drJghkeaWBu+unvZ1u@vger.kernel.org, AJvYcCWuKJ/i8wJ35y5utPoDt5CGtOIkYT5VHCfBi+CEtU5YJtOxVmkydSGN82I+mSNwE1NKQStxCLHjtA2m@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4VkcNU9sNyAtMh/iKzYbSQ/8meWjBweSi9cfjS5M+bc3HSJxi
-	jmX6mDFEAtftWiA46Q18Vtc2w0KtiVbFp22Nx70RPN2L5/UzuuINKgHY
-X-Gm-Gg: ASbGncsYTivnfvkBGEUPizOuU3/wDmeAQ6YCEMR/HNI8jRWEQJS/A5xQdM+p6thDA15
-	ARTZL1ghOlGBaR6cUsA3DzBMQQb4n+OlFaI0wOAZp+LtVa6WId41WJqHjSLOr6N9apMVqk6NrDm
-	PExUkjOWELfCC2aK3vxxFkFlCgJRjQ9IqQYPq840Abl0PuA8+M0r9jViMzonlLkqk9mxWcmzKoa
-	XRH/kCSEJN+Mm75uA7+0fwB1RKJf1cD0a+0gl1ejiigt3BfDL8tGftxggANDGJzCK5eT+q8rade
-	CU25zplW6E2LjtMPiHlhAOYXGd3GETcECLqEzV3OTinWfvI56RPYvd2m7yBostmPbIGqSni8oD6
-	8oSrBp262LMY26qsqQgaCVksydr1JKL7qIdjri4nhF1o8wxz6AfM5b4h1uBZG
-X-Google-Smtp-Source: AGHT+IH9fUTIn1sDqo1bULibKfaXKESE84JfENot24hXA+Ko+2HbzH3bbh27x03Wpn+Bm8QT9oMIaw==
-X-Received: by 2002:a17:902:ef07:b0:24e:e5c9:ed0e with SMTP id d9443c01a7336-25172099d9bmr56116775ad.43.1757227989875;
-        Sat, 06 Sep 2025 23:53:09 -0700 (PDT)
-Received: from [192.168.1.17] ([223.181.116.138])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24c9304b7eesm111044255ad.102.2025.09.06.23.53.06
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 06 Sep 2025 23:53:09 -0700 (PDT)
-Message-ID: <048d1b86-1575-4e31-b5cf-b6f72b2843fa@gmail.com>
-Date: Sun, 7 Sep 2025 12:23:03 +0530
+	 In-Reply-To:Content-Type; b=fPpfQme2PQpv/YC2r/YDvJWQAD/CPy/lJb9CEub1+cymsE8h+fPZa9q4AdMMvhOoOpg6GjQhpK7MXSsZHMBuSUBPt8BBcjJ2Uot00zpLlSb992oMd0q+9zoNPFq/S1Rg62t7RmLPnJaVDvZCD9vQtUdBfvQoZpdNPQcj1ef2S5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Dy4Y2zHn; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8C89C4CEF0;
+	Sun,  7 Sep 2025 08:17:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757233064;
+	bh=lqNio2Vhvxyex3VhCU03IMjYKkPPZUAVhtv/Fsvo/80=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Dy4Y2zHn/wyZb8XG6ZyespBzVmH3eDEsW2DndDTLl5JBkH4SJR00GvTmliyE4WM6r
+	 D1LIK/6d+6zczt5TTofWI3tuq2wEa2u2xX7Ol77Pkg4OBHhlFjgakICSsLy54vG+Ih
+	 VN7O7qNkODnyZqghxdty7ou/k4bnzRbwLSMPs/y3MnL+DC4c/gcNF+2SjER9dDmUlz
+	 9PHC6qDpGPwertAqjACmDtu6fFvpv2GorAZwpQAcqdqxttEHzAtY2j3jDPg8l3lblR
+	 sXkNjkUrAJfJ8fp27KgZWYZzu/zGOYtGVXlywY4zNXwcN86LHfYTObBsGciWSMvCPB
+	 mCIRltHtbA6rQ==
+Message-ID: <ce631cd2-c00b-43b1-ac61-b38e1848b729@kernel.org>
+Date: Sun, 7 Sep 2025 10:17:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,81 +50,78 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: mmc: ti,da830-mmc: convert text based
- binding to json schema
-To: Krzysztof Kozlowski <krzk@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Cc: linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20250523-davinci-mmc-v1-1-ceebd8352d9c@gmail.com>
- <1c7e9077-c213-40a9-92f4-07e813a3d151@kernel.org>
- <5d746239-83d2-4316-82e9-4e7ae4f3422e@gmail.com>
- <93f7f1b7-8c04-4d0e-9e41-6127651bdca4@kernel.org>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Nick Huang <sef1548@gmail.com>
+Cc: Johnsodn Huang <kusogame68@gmail.com>, Lee Jones <lee@kernel.org>,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ weiyan huang <dory85109@gmail.com>
+References: <20250902142749.13724-1-kusogame68@gmail.com>
+ <20250903074205.GB2163762@google.com>
+ <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org>
+ <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
+ <96e6578e-b21f-498e-82f6-eeee3ee81e20@kernel.org>
+ <CABZAGRGof5e=mwpfmEgE7W+Pn5gS05ei7io8e7C4tPfkvz1=Gw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Charan Pedumuru <charan.pedumuru@gmail.com>
-In-Reply-To: <93f7f1b7-8c04-4d0e-9e41-6127651bdca4@kernel.org>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CABZAGRGof5e=mwpfmEgE7W+Pn5gS05ei7io8e7C4tPfkvz1=Gw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+On 06/09/2025 15:09, Nick Huang wrote:
+> Yes, I have read it. The subject and the content were mixed together,
+> so I will reorganize and resend the patch.
 
+Please do not top-post.
 
-On 12-07-2025 13:59, Krzysztof Kozlowski wrote:
-> On 12/07/2025 10:22, Charan Pedumuru wrote:
->>>> +
->>>> +allOf:
->>>> +  - $ref: mmc-controller.yaml
->>>> +
->>>> +maintainers:
->>>> +  - Rob Herring <robh@kernel.org>
->>>
->>> No, I really doubt Rob cares about this hardware.
->>
->> I will remove Rob from maintainers and add Ulf under the maintainers.
-> 
-> This should be someone responsible for this hardware, not subsystem
-> maintainer.
+The question was not about subject and content. I just don't believe the
+DCO chain here.
 
-
-Sure, I will search for subsystem maintainer from get_maintainer script.
-
-> 
->>
->>>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - ti,da830-mmc
->>>> +      - ti,dm355-mmc
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  clocks:
->>>> +    maxItems: 1
->>>> +
->>>> +  interrupts:
->>>> +    maxItems: 2
->>>> +
->>>
->>> This wasn't in original binding. You need to document this in the commit
->>> msg. Also, list the items.
->>
->> Sure, but what list of items for interrupts?
-> 
-> List as a verb. You need to list them.
-
-
-I searched for interrupt-names for mmc node in the DTS file, but there isn't any for davinci series.
-
-> 
-> 
-> Best regards,
-> Krzysztof
-
--- 
-Best Regards,
-Charan.
-
+Best regards,
+Krzysztof
 
