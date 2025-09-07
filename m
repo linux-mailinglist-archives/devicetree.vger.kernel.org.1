@@ -1,198 +1,189 @@
-Return-Path: <devicetree+bounces-214013-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214014-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3676BB47C45
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 18:11:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E47DB47C4F
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 18:12:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11A20189CEA8
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 16:11:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1193B189C8D2
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 16:13:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E735287262;
-	Sun,  7 Sep 2025 16:10:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B89B28153A;
+	Sun,  7 Sep 2025 16:12:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nP7Me94v"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="kkuqygMY";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="BB2erMoT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-101.mailbox.org (mout-p-101.mailbox.org [80.241.56.151])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FBFB286D5C;
-	Sun,  7 Sep 2025 16:10:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C98F280CC1;
+	Sun,  7 Sep 2025 16:11:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.151
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757261441; cv=none; b=phsKbBb8Mx7rGUI/V0GKSMUGfc0VRhjf5L1NrOicApnEulCpvhz5fiBAwKalFMDEwDAuKTuNnFYAIkBwjFXn5Dh2XTzPpcwRcbncslJH8Dt/k778YlFQDiIu/IDSw9dQf9vaP2hMuj9EQHtTip+XIGqeBi4kpsVh+zEK8HIlooc=
+	t=1757261521; cv=none; b=WEiqGlD+92Ep9z8wdi3gTSkICbSZEi9YQBWK+XtfeaSG+AIRVpcENIMgWS44FwylkxsqmrKicYUpGQMAVAzdB3ogWGgovNbh27yXkoVPjGawzbSHBtUUmle1Ax7K2BtjI1ONKEJ8qG2/nMDxoW/Bbri41Z6hxsWcNOyEQb7o5l0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757261441; c=relaxed/simple;
-	bh=fV6xlsutiwL37sLGH7NPPEApyi66umpnz1GhoiegY3Y=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uQTsVwaQjK3B+Qk/lDM3nEuA7mAPRhoZolgGA6ZST8jpRWUBk7I7AILreCMLJLNQBz8hnCE/xoq+pjzF1Epc5yJS8n4ssiPg7NcBod+BGOTWgMrqtAHQaiFXi6/bjCavTlIQ1yi9+R+LMUKubOTSQdziKQJjhMYrG8ESMfai4AM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nP7Me94v; arc=none smtp.client-ip=209.85.210.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-77251d7cca6so2917351b3a.3;
-        Sun, 07 Sep 2025 09:10:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757261440; x=1757866240; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+KC5QPt6XPsxxa5boGZqLiqeKzj4yDVyOcWFsMlsMJo=;
-        b=nP7Me94vrN6dan5ezD3mqenfFV39YVrLB7RIFUlESFTZO0AVR14M8lHbz3aiD9VwU3
-         x6vmLtmyWnGTtLVK6hlN7Dx/6giWthD47H2i5d0DgesSaDHAmqBlOFoiPGeMYqCwwFH9
-         WCnCb3oj+RyngzNvK2UjmuO917nvKcqildA3Fg7Al15rJ/yGYOwnUWc5gdF3RLSDPsB5
-         IoNnMEF8PP85o1UoUyKddhU7vDoL+OeBiE2R549QHKFLbI0mZ8KUK05RjzCVJ2QWvDw/
-         SjBHknCb38hmmx+wciT3KRvgLjYhwWm1NksuJoQ3FNcucffFKgMjqoye426V8MiwsgJv
-         19Gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757261440; x=1757866240;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+KC5QPt6XPsxxa5boGZqLiqeKzj4yDVyOcWFsMlsMJo=;
-        b=J4TXYv9cuhf5d2gmFSKa3ktkHa8a6lGbyqr77FnK/TiEqW53Iyo/+Wl+JFJfoDd8YE
-         oyUceY9AAG80vaAWwWX1NAjo+f+ATEnQAGN7oqQTeTtwZXx5ko82AU2ROWhsGJ8ExtZv
-         JXn7mSquOgoNlFTJqpAqLmQQZTkGVuFC1nuLgpaKAlzSR7J9bCzd+TlzfT1+HXzHdDRn
-         O1whyVHgeJmpsaVnaKJCi87N4ANAjszHDasTamQJnuUxlbehl4J11PMwpiXcjPdf7RrN
-         x3qvdE7rxXaTxtvdjXbiTPyXnplKtobugGCsZBtzmSbFqsYDZgnZDeE++yiOp87sBWdx
-         HHFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUOIuAub2+QcONgHM3DNN3tSoUDVeMGLw6m+zqD3vhLWTMEMpHy+x8gi6BzaJh+FZIn0Rt9wrHHhBsk@vger.kernel.org, AJvYcCUoYueKDdN4OtcDwMnueU7EIS3q2xpGOh8G9oUc/rqYDV0xdSqJAf9FS5CLKukO2f3yfQoib7URfI/LRLSB@vger.kernel.org, AJvYcCW9glIfv4TEN4YWVVS014+DEBJ04b8Wul43kGEypJaSPjR2ortlLOjdl4HyMxes55N+dB5lN235QlIn2Q==@vger.kernel.org, AJvYcCWlC+MR1mJwx5fyq2ds9VPpIXGKjUz/WaLN6T+k+XyAUtgqtwu7glPEzpFT77HWq8axxHgdWeIWcuLu@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy0W6wPSeiwadQFIyHQHBv7fx0GIrfT1OfYpsu0lL47L2vcq1PI
-	kGrzTp1TB4FRxk9+L9n6jjIUZsgck1Je/FLqJX+mJ1KXs/9a2p83rcyk
-X-Gm-Gg: ASbGnctPDQvEXHpUCpFygTDeFe1va5CUNsaJyy2MXw51x6lc38hUPxFcWUywWJ9TR+o
-	5/Ah/tdPurUOU+Zmv6TCqpboSr78ZPUdvO0qKCkSmKtT+StcuHq1xwiLbTA9Rmy/tea+gM9fU7M
-	7qHO+upaRqMH2scSK2J9duG3a+hL2WoyIE1HuyuQIgdtRaQxrg3h6+Mdp85DYTPkIHtqEcjXnAr
-	w3h+6M14wl9N8PxC6ay5msyo+41vq6sc9UiMk76PFn0kxm6fOPrJVgMzKmxDBqWOrQCjOA33Rm4
-	h2+WTv1+0SU/kYK15ZIFa1CZl3TRRYy83TnimURwF+roDWzZ2/dlDCcQFcb6z9Twgu3cC26e59j
-	mGF5QZoA8Sxpp2/TDR1e13asa2fs45aIjY3ebbCAwdPsOHY0=
-X-Google-Smtp-Source: AGHT+IHENQciT6K1N813HUMikOlXOAEV8TsDATIxDXoqPAnxY27QEFefRWYP51ipWGYRnKy+4SXawA==
-X-Received: by 2002:a05:6a00:138f:b0:771:e4b0:4641 with SMTP id d2e1a72fcca58-7742dca625dmr7245057b3a.1.1757261439686;
-        Sun, 07 Sep 2025 09:10:39 -0700 (PDT)
-Received: from localhost.localdomain ([113.177.224.50])
-        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7723534c0a8sm25352541b3a.79.2025.09.07.09.10.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Sep 2025 09:10:39 -0700 (PDT)
-From: Nam Tran <trannamatk@gmail.com>
-To: lee@kernel.org
-Cc: pavel@kernel.org,
-	rdunlap@infradead.org,
-	christophe.jaillet@wanadoo.fr,
-	krzk+dt@kernel.org,
-	robh@kernel.org,
-	conor+dt@kernel.org,
-	corbet@lwn.net,
-	linux-leds@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1757261521; c=relaxed/simple;
+	bh=DoWWulNoqgVogogYwz16ucNbHXDiJPeSY1/eY/QtXE0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=gqz0YJmyFJ5gno/wbiUUg9hxvqtBK+u5COAX5Zxdo8LQOg8/0+dAo3mTq1Jv2pFQFGBZdUSlUerouoGlwVBV1DAswypXPXWEQ3rpDOBq/nMOV3Q3YDLEYDcTeGcaN9Yo1VfSVTdDtAMMx4Uh4KIysSq51p7tD/AI4tW+BlvX6Ls=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=kkuqygMY; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=BB2erMoT; arc=none smtp.client-ip=80.241.56.151
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp2.mailbox.org (smtp2.mailbox.org [10.196.197.2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-101.mailbox.org (Postfix) with ESMTPS id 4cKZpZ51cCz9sX2;
+	Sun,  7 Sep 2025 18:11:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757261510;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=+9OHcP5c2ud1BeajMFK7r7Obvjia35QvFbBwFXTQrlk=;
+	b=kkuqygMYNmgjVN3haqWIDStKEDbVU5aPPL9P8nukAztbQGBg9YOC9zSrBZaic7Zp8B8IkD
+	auh9YiDbt9aPnZ46qWQ0T2LW728xVYs+Ns9ta2gKRkmKF4e84vVlBj+d5RNV+CydC5cvwk
+	HE5WPIjMmjmsttP8KiNSLtId9Jlyz0TX1HaKoWX0lJ7UWNIPOtqT3nDGuECWIZes9QLIrQ
+	oseAkEMk/F4eMkhHNUV+JA61MEEv4TExXBAow1AZtI/ekfwxOd20dMumWvb+z7iR+5XRWz
+	TLb1lGX5+FfHbXangXo3udS7R7RaUfOhf4E0EoNjZpByxG8barH38Fqu9XfNIA==
+From: Marek Vasut <marek.vasut+renesas@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757261508;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=+9OHcP5c2ud1BeajMFK7r7Obvjia35QvFbBwFXTQrlk=;
+	b=BB2erMoTH59jc62MvowZ6mQTqTLMw0w3u+Taqv4zobDAIW2jI3SAzyE1VAisQQwlRiHDtv
+	10bb6L0QXdqYsOXLOxhn1uWhX3GWuoSiqqUZyyozQ9ehaVKnJm8389ARATSv70P6y4H3Q4
+	J3wnWTXLAgTTPMlRY4ybsEElAh8Ls+FoEa9LwfjW4EbC1yHMA5Rb7+/WDnucIb4Dl8qi4N
+	vVxfOdelD7+/B4lqGrqn68TvgvHIbpPiDE+fX6hoFaR3MYMqEDtCQwiF/2S7wJi3cK3zPr
+	KaMmyxsSoyLp3sapd7UANqnWiuU1z1LV8K40CAwcXcSo7/F2UQ8yfsnhDaFnFA==
+To: linux-arm-kernel@lists.infradead.org
+Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Rob Herring <robh@kernel.org>,
 	devicetree@vger.kernel.org,
-	linux-doc@vger.kernel.org,
-	Nam Tran <trannamatk@gmail.com>
-Subject: [PATCH v14 4/4] docs: leds: Document TI LP5812 LED driver
-Date: Sun,  7 Sep 2025 23:09:44 +0700
-Message-Id: <20250907160944.149104-5-trannamatk@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20250907160944.149104-1-trannamatk@gmail.com>
-References: <20250907160944.149104-1-trannamatk@gmail.com>
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH v3] arm64: dts: renesas: r8a779g3: Add Argon40 fan HAT DTO to Retronix R-Car V4H Sparrow Hawk
+Date: Sun,  7 Sep 2025 18:10:53 +0200
+Message-ID: <20250907161130.218470-1-marek.vasut+renesas@mailbox.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: a95489918b13fec006e
+X-MBO-RS-META: aaxc9spkhtcm8t4pighj8ftjy8sri8if
 
-The driver provides sysfs interfaces to control and configure the
-LP5812 device and its LED channels.
+Add DT overlay to bind Argon40 fan HAT, on Retronix R-Car V4H
+Sparrow Hawk board. Fan RPM control and full RPM on reboot has
+been tested.
 
-The documetation describes the chip's capabilities, sysfs interface,
-and usage examples.
-
-Signed-off-by: Nam Tran <trannamatk@gmail.com>
+Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
 ---
- Documentation/leds/index.rst       |  1 +
- Documentation/leds/leds-lp5812.rst | 46 ++++++++++++++++++++++++++++++
- MAINTAINERS                        |  1 +
- 3 files changed, 48 insertions(+)
- create mode 100644 Documentation/leds/leds-lp5812.rst
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+Cc: Magnus Damm <magnus.damm@gmail.com>
+Cc: Rob Herring <robh@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-renesas-soc@vger.kernel.org
+---
+NOTE: Depends on series:
+      https://lore.kernel.org/linux-hwmon/20250904202157.170600-1-marek.vasut+renesas@mailbox.org/
+---
+V2: - Rename the pwm-fan node to pwm-fan-ext to avoid colission
+      with existing pwm-fan node in r8a779g3-sparrow-hawk.dts .
+      There can be two independent blower fans.
+V3: - Add TB from Wolfram
+    - Rework the list of hwmon devices in example
+---
+ arch/arm64/boot/dts/renesas/Makefile          |  3 ++
+ .../r8a779g3-sparrow-hawk-fan-argon40.dtso    | 51 +++++++++++++++++++
+ 2 files changed, 54 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
 
-diff --git a/Documentation/leds/index.rst b/Documentation/leds/index.rst
-index 76fae171039c..bebf44004278 100644
---- a/Documentation/leds/index.rst
-+++ b/Documentation/leds/index.rst
-@@ -25,6 +25,7 @@ LEDs
-    leds-lp5523
-    leds-lp5562
-    leds-lp55xx
-+   leds-lp5812
-    leds-mlxcpld
-    leds-mt6370-rgb
-    leds-sc27xx
-diff --git a/Documentation/leds/leds-lp5812.rst b/Documentation/leds/leds-lp5812.rst
+diff --git a/arch/arm64/boot/dts/renesas/Makefile b/arch/arm64/boot/dts/renesas/Makefile
+index bef624636d58b..b2325d1ddf9d3 100644
+--- a/arch/arm64/boot/dts/renesas/Makefile
++++ b/arch/arm64/boot/dts/renesas/Makefile
+@@ -96,6 +96,9 @@ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g2-white-hawk-single-ard-audio-da7212.dtb
+ 
+ DTC_FLAGS_r8a779g3-sparrow-hawk += -Wno-spi_bus_bridge
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk.dtb
++dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtbo
++r8a779g3-sparrow-hawk-fan-argon40-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-argon40.dtbo
++dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-argon40.dtb
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtbo
+ r8a779g3-sparrow-hawk-fan-pwm-dtbs := r8a779g3-sparrow-hawk.dtb r8a779g3-sparrow-hawk-fan-pwm.dtbo
+ dtb-$(CONFIG_ARCH_R8A779G0) += r8a779g3-sparrow-hawk-fan-pwm.dtb
+diff --git a/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
 new file mode 100644
-index 000000000000..7d464334557c
+index 0000000000000..c32bd665e50c4
 --- /dev/null
-+++ b/Documentation/leds/leds-lp5812.rst
-@@ -0,0 +1,46 @@
-+========================
-+Kernel driver for lp5812
-+========================
++++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-fan-argon40.dtso
+@@ -0,0 +1,51 @@
++// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++/*
++ * Device Tree Overlay for the Argon40 HAT blower fan in connector CN7
++ * on R-Car V4H ES3.0 Sparrow Hawk board
++ *
++ * Copyright (C) 2025 Marek Vasut <marek.vasut+renesas@mailbox.org>
++ *
++ * Example usage:
++ *
++ * # Localize hwmon sysfs directory that matches the PWM fan,
++ * # enable the PWM fan, and configure the fan speed manually.
++ * r8a779g3-sparrow-hawk$ ls -1 /sys/devices/platform/pwm-fan-ext/hwmon/hwmon?/pwm?_enable
++ * /sys/devices/platform/pwm-fan-ext/hwmon/hwmon0/pwm1_enable
++ *
++ * # Select mode 2 , enable fan PWM and regulator and keep them enabled.
++ * # For details, see Linux Documentation/hwmon/pwm-fan.rst
++ * r8a779g3-sparrow-hawk$ echo 2 > /sys/devices/platform/pwm-fan-ext/hwmon/hwmon0/pwm1_enable
++ *
++ * # Configure PWM fan speed in range 0..255 , 0 is stopped , 255 is full speed .
++ * # Fan speed 101 is about 2/5 of the PWM fan speed:
++ * r8a779g3-sparrow-hawk$ echo 101 > /sys/devices/platform/pwm-fan-ext/hwmon/hwmon0/pwm1
++ */
 +
-+* TI/National Semiconductor LP5812 LED Driver
-+* Datasheet: https://www.ti.com/product/LP5812#tech-docs
++/dts-v1/;
++/plugin/;
 +
-+Authors: Jared Zhou <jared-zhou@ti.com>
++&{/} {
++	pwm-fan-ext {
++		compatible = "pwm-fan";
++		#cooling-cells = <2>;
++		/* PWM period: 33us ~= 30 kHz */
++		pwms = <&pwmhat 0 33334 0>;
++		/* Available cooling levels */
++		cooling-levels = <0 50 100 150 200 255>;
++		fan-shutdown-percent = <100>;
++	};
++};
 +
-+Description
-+===========
++/* Page 31 / IO_CN */
++&i2c3 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	clock-frequency = <400000>;
++	status = "okay";
 +
-+The LP5812 is a 4x3 matrix LED driver with support for both manual and
-+autonomous animation control. This driver provides sysfs interfaces to
-+control and configure the LP5812 device and its LED channels.
-+
-+Sysfs Interface
-+===============
-+
-+LP5812 device exposes a chip-level sysfs group:
-+  /sys/bus/i2c/devices/<i2c-dev-addr>/lp5812_chip_setup/
-+
-+The following attributes are available at chip level:
-+  - dev_config: Configure drive mode and scan order (RW)
-+  - sw_reset: Reset the hardware (WO)
-+  - fault_clear: Clear any device faults (WO)
-+  - tsd_config_status: Read thermal shutdown config status (RO)
-+
-+Each LED channel is exposed as:
-+  /sys/class/leds/led_<id>/
-+
-+Each LED exposes the following attributes:
-+  - activate: Activate or deactivate the LED (WO)
-+  - led_current: DC current value (0–255) (WO)
-+  - max_current: maximum DC current bit setting (RO)
-+  - lod_lsd: lod and lsd fault detected status (RO)
-+
-+Example Usage
-+=============
-+
-+To control led_A in manual mode::
-+    echo "tcmscan:4:0:1:2:3" > /sys/bus/i2c/devices/.../lp5812_chip_setup/dev_config
-+    echo 1 1 1 > /sys/class/leds/LED_A/activate
-+    echo 100 100 100 > /sys/class/leds/LED_A/led_current
-+    echo 50 50 50 > /sys/class/leds/LED_A/multi_intensity
-+    echo 255 > /sys/class/leds/LED_A/brightness
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d0941561d4df..ed3df4f84b8d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -25000,6 +25000,7 @@ S:	Maintained
- F:	Documentation/ABI/testing/sysfs-bus-i2c-devices-lp5812
- F:	Documentation/ABI/testing/sysfs-class-led-lp5812
- F:	Documentation/devicetree/bindings/leds/ti,lp5812.yaml
-+F:	Documentation/leds/leds-lp5812.rst
- F:	drivers/leds/rgb/Kconfig
- F:	drivers/leds/rgb/Makefile
- F:	drivers/leds/rgb/leds-lp5812.c
++	pwmhat: pwm@1a {
++		compatible = "argon40,fan-hat";
++		reg = <0x1a>;
++		#pwm-cells = <3>;
++	};
++};
 -- 
-2.25.1
+2.51.0
 
 
