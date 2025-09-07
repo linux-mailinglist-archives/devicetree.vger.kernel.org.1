@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-213993-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213994-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88355B47B80
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:12:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79973B47B89
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 15:16:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4AD492002C5
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:12:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 227CE3B7231
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:15:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF7626F2AC;
-	Sun,  7 Sep 2025 13:12:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FEA726B749;
+	Sun,  7 Sep 2025 13:15:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="Xa1Qe31i"
+	dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b="mFfJk3jP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-171.mta0.migadu.com (out-171.mta0.migadu.com [91.218.175.171])
+Received: from out-179.mta0.migadu.com (out-179.mta0.migadu.com [91.218.175.179])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C96EC29A2
-	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 13:12:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5808F19DF5F
+	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 13:15:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757250760; cv=none; b=aVxGte+qEE50Dspphl1D4dbLpy4vvDVI/Ue+wHECrnvxJRlrfVf8YreXuHaTZ4kpzqMifKHksHvEtSov/2vGAHQCjIjwY+ie8QGVU+BB3QQ8si70CI3l1HDtbC2SBIIsp0hryYZufV3Ffvh0Q67Kj7BLc44J0J+e2Jdw0srr7bw=
+	t=1757250952; cv=none; b=K57WfqQ61CvZucEzzQPCGLdwjkVPGyHqw34bWE6yWSFhR5sQMiC18f2WkI7Y9R5wPNncvROovM7uskYGVF4iDH1Dc8HxbD69d71sNm/DMK/Q+GctN9RKxAgFaQLSbeHkHP/JjEBEgAIm1TR5FgDC9zRAanXTe13tqNWx77b0sbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757250760; c=relaxed/simple;
-	bh=nG5wetaJQPoFOgX2jI1XYan+GC+3MW+xi5ekXTnU0OM=;
+	s=arc-20240116; t=1757250952; c=relaxed/simple;
+	bh=S/KUq6pSTXq+6IeioXoPeuwVExsq2hrUKmGGJELtuVI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cBg1k5cuD0R4pydfEk6tbUWr3aOo1j2EbyRNEj/uJPoF0qceeL5xzhIxXnbb4ofBO12ODFVgKDFIo93jGDsqgbQiQ1jiiK7jIzBXTLPVV8w1HGhoRm/08/yUSFTMBp0OAjgHhGoDQA6Js/ftYE9xh+vaPsKXdU3XomIJPMO9pas=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=Xa1Qe31i; arc=none smtp.client-ip=91.218.175.171
+	 Content-Type:Content-Disposition:In-Reply-To; b=MdpLBCTd7cSL7NWLlROvEkiN9C+vhgSOmpGf7KkVb+9HnpCmW4l/D2fRVYu527nucp2F5j5wSaNMW9rbC9C7MSinv9qjDIBCKzkDe3RhDZI8PrHUq+8ndaTeiagiF1RLhRMNN94XY+Y1o38zNFxDDG5AYhrxxkf+Rk+JNi2dsW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io; spf=pass smtp.mailfrom=rosenzweig.io; dkim=pass (2048-bit key) header.d=rosenzweig.io header.i=@rosenzweig.io header.b=mFfJk3jP; arc=none smtp.client-ip=91.218.175.179
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=rosenzweig.io
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=rosenzweig.io
-Date: Sun, 7 Sep 2025 09:12:29 -0400
+Date: Sun, 7 Sep 2025 09:15:33 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=rosenzweig.io;
-	s=key1; t=1757250755;
+	s=key1; t=1757250938;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 in-reply-to:in-reply-to:references:references;
-	bh=c6m2JvKKQLislbG/lLsCQpWLwDoRY8Pnbo43WEoeMe4=;
-	b=Xa1Qe31ib2MbCn8EA7bchWhfdlA69tFg5z35UwJQfmd/Y+tD/PnIaII2ok+/cGbmnaygXG
-	cnw0y5r7Lms2YbuHpkXTnZCsUwBRzmNUq0k2vkecwSzbffFAP5DJB/cgPz2kYUDhWVQydd
-	MxpBtCD9cBLbhBTqvlClPvOT+OV0rOM3rCofbu3hXvPlLJDNFiPdeWMyrU+CCuBkmMtoaw
-	Gtga+xNV4nk42xOEzsnqV6FeJAZ86ROd+Y12UL15xy8xQYr4FlA62dk47mPE1AdKArv3Ag
-	aSPKmGr8VWm5B50+e1c/3HddNFZeSixDBFM38iHoz+QSwegkhGRdJDD4gc2PDQ==
+	bh=S/KUq6pSTXq+6IeioXoPeuwVExsq2hrUKmGGJELtuVI=;
+	b=mFfJk3jPrq2PSVa5pryxIo9DqIP/tWcI51vlOz3BNmXJL/QW5ixV3gvPtQMTqLlhfFWoAj
+	VyJs++CEOPsdCfp+Eb3m7RmwPM9ep8GBaKxBeBskm0o6AEvLj6/xNXMvXmJECEKnr12NzL
+	8pd/TRi5r2iNaHU9W74lLCd9byKepNk0KGM1lRqaHRsJ2VuutCPFTYczDxhOJYBN/Otwhc
+	HPb8MEZXCVHbh1lmNiRCvjkhMC0OvoSThpecM++4MbfBhJJcBfsGBcP0mKMbq7LojgXwfk
+	Wq2OUStSnlP7T3L7CaEGPi4CLQgmIvIGgePoxVs1LRMbiKx9dmQCKnbjg7cINA==
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
 From: Alyssa Anne Rosenzweig <alyssa@rosenzweig.io>
 To: Sven Peter <sven@kernel.org>
@@ -62,7 +62,7 @@ Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
 	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
 	Hector Martin <marcan@marcan.st>
 Subject: Re: [PATCH v2 18/22] phy: apple: Add Apple Type-C PHY
-Message-ID: <aL2EvQojjEv7z_y-@fedora>
+Message-ID: <aL2Fdd2Ls26pksJN@fedora>
 References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
  <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
 Precedence: bulk
@@ -76,66 +76,16 @@ Content-Disposition: inline
 In-Reply-To: <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
 X-Migadu-Flow: FLOW_OUT
 
-Looks a lot nicer than the initial version I looked at a few months ago,
-nice work Sven :-)
+In functions like atcphy_dp_configure_lane, I'm wondering if we want to
+pull out individual registers like `void __iomem *tx_shm_txa_ldoclk =
+tx_shm + LN_AUSPMA_TX_SHM_TXA_LDOCLK`, likewise for
+MAIN_REG0/1/IMP_REG0/etc, just to make the actual pokes below a lot less
+noisy.
 
-If we're going to define all those mask32/clear32/etc convenience
-helpers, there are a couple more we should probably add and use too:
-
-1.
-    void cond_set32(void __iomem *reg, bool cond, u32 mask) {
-        if (cond) {
-            set32(reg, mask);
-        } else {
-            clear32(reg, mask);
-        }
-    }
-
-Not sure on the name but this shows up a bunch of places and turns
-messy sequences into straight-line code at least.
-
-2.
-   #define bit_to_OV(reg, bit) \
-        clear32(reg, bit); \
-        set32(reg, bit ## _OV); \
-
-Also not sure on the name, but this would make a bunch of sequences
-more compact. For example
-
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_OV);
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_2R);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_2R_OV);
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_4R);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_4R_OV);
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_OV);
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_2R);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_2R_OV);
-> clear32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_4R);
-> set32(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_4R_OV);
-
-turns into
-
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST);
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_2R);
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_POST_4R);
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE);
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_2R);
-> bit_to_OV(tx_shm + LN_AUSPMA_TX_SHM_TXA_IMP_REG3, LN_TXA_MARGIN_PRE_4R);
-
-3. static inline const struct atcphy_mode_configuration
-*get_mode_cfg(struct apple_atcphy *atcphy, enum atcphy_mode) {
-	if (atcphy->swap_lanes)
-		return &atcphy_modes[mode].swapped;
-	else
-		return &atcphy_modes[mode].normal;
-   }
-
-This only shows up two places but both would be improved by its use.
+Incidentally, the txa_ldoclk_bypass handling is another place where the
+cond_set32 helper would shine.
 
 ---
 
-With those cleanups (or an explanation why they're silly), ttbomk this
-is r-b me, thank you!
+Also, do we know what _OV means?
 
