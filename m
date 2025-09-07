@@ -1,248 +1,166 @@
-Return-Path: <devicetree+bounces-214077-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214078-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25679B48158
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:32:24 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44245B4815F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:43:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93B5B7A3184
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:30:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E29C189BF3E
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:43:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CE78374D1;
-	Sun,  7 Sep 2025 23:32:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE373221F12;
+	Sun,  7 Sep 2025 23:43:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i5x08s3Z"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hXbvDrqR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f180.google.com (mail-pg1-f180.google.com [209.85.215.180])
+Received: from mail-oa1-f46.google.com (mail-oa1-f46.google.com [209.85.160.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1ED5C182B7;
-	Sun,  7 Sep 2025 23:32:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E29925771;
+	Sun,  7 Sep 2025 23:43:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757287937; cv=none; b=ARDoYbi3IeGad36kvtWzIR3HlPGwWekNJ+3vvd7QQJnOGR/ny2AWcC8a+2mbWT95gyfLiI4yOl2tVWlMD1KpNjXAq3hb841o4WdaOluCHAyditMzcwW9DHGC9CabXpjsFy9IAgt9QA+UcEoj3CbHALyp5UAo4MnyAqIm7N81ZN4=
+	t=1757288603; cv=none; b=IVlsdP4qlJ29CefeVT9k4Nvx2JNgv4pMNsfXWBKml12F79nFT25n8HGUYznnwgzMrbUpP8sCfyMma9LcdDolrwHfbNY1/mty4EB0lisHR5KD40xsH/TTH3UDl+RsZtMn+zORiURj+NZNLaABO+ZQQxnVu9SBBH5MJ9e7uA5Lvk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757287937; c=relaxed/simple;
-	bh=NIqUnB0qn/wA9AT/gE6qImqJhcFRcDqatIbSf0iLHu8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ACUtOkA55aJxqw66pD6wqSJP2cTR/u5gGWbXmo2QmtFikCWzEwtp3y1VJygpz7kcCT7AU/yYTfv7IjeRSd8xUzalIz6ANExPUZp4sknYJWUVEfmvQYANi2PP5SdY68nLHqEUmXjFOkm4X4K/Z9mU1a/uf7uWpSKucMghkSvlJ34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i5x08s3Z; arc=none smtp.client-ip=209.85.215.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1757288603; c=relaxed/simple;
+	bh=5WpCK9DWves0I2feGleCVQXP78pfs2xzAnpxxs/rNk4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ln7b9u+1nIkzQDo+CHbKB5O58HgUq+Lz81thf7hClwvze4ZfsMKefxaBD7lQTud7PDbAzIyCLhprco4pybBPtXHUTN2MCA0Pi+hv2uiYLHr8iWsLclPJbdcNYdmf4vVMRc3TVcdgPESx76Zj5ZXqrAnk7HR86jFwVJXxQlj8Wx8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hXbvDrqR; arc=none smtp.client-ip=209.85.160.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f180.google.com with SMTP id 41be03b00d2f7-b4f8bf49aeaso3412084a12.1;
-        Sun, 07 Sep 2025 16:32:14 -0700 (PDT)
+Received: by mail-oa1-f46.google.com with SMTP id 586e51a60fabf-32314296757so1068983fac.3;
+        Sun, 07 Sep 2025 16:43:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757287934; x=1757892734; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=kULCfrFpUlXDLI6dVdic5Q9/aaLDo8BHSAjDzVuLn88=;
-        b=i5x08s3ZBQnlg2UlhDyrWnZllsllHeeZnOQWWb6xm8P1cbDwsVhelb//5nHNZ+ZL1y
-         rcGSlFgvyMNUIebv+bX+HLuaHpvrruSSoIHjvw//SQhlWxK4xqeL5hVB3QxsTcfB240g
-         YIR0IShH3eWh9u9oBriUketuD7uveWmnfPFRV6A1k5GAaD5GITIxYGSQ4dcTi3Y69bWd
-         8c8vyZWuELt6vf8MenZ33L3+1d9pLJfrfyKwmaOrCofJXYOaXt19oWZWs2JKpIOm7ZHH
-         gon+Aj3WaJ2euhcN7ehDwPSJ2/SDoGnQ5y/YBnzSpUIoJNyhGNpPJxgg1i5Tctk5Zd3p
-         J18w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757287934; x=1757892734;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20230601; t=1757288601; x=1757893401; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kULCfrFpUlXDLI6dVdic5Q9/aaLDo8BHSAjDzVuLn88=;
-        b=NW+NEvHE7FUfPojr2GBEPEKMwKn/+Vfdu60ZMDWhfjOX4aKuQJfzCn88OgnilFa14Y
-         7Du9xSWx4lvzDJ+bMVX8TkTHCVcWfLjJepQpwhHycXr6cS2jYaLtVRruaKbtyFimCoAI
-         Yotn8eeUc8FgUy0NBG2ZNGfgN2ypUEqS/ncLPTbeIQVa7/bdqtIYvboeuw0MjxdJxStk
-         xIq1DizLobLRUeZAKZnIrkFMXTVy2XQgO1bHHdAov8QuHrDf6ld9sLz19giS+boxIb9c
-         ASTREdzOj966bwx3IqHJLNfK+yEUKDBtBzfY/QA0zATp3KBhY/O0EdZTcMBAriiIX8uj
-         i0YQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVV6ktlcTSU1T2qd7RuvIUa1U6tOEwg3fisLwMObIi8OkwP2wEU7ZKcwJfND2tw74VPJ8MWsUt9n+W+@vger.kernel.org, AJvYcCWExHdPXQj6qCR5a9sjPdjhD3WawsPqH6gy4j9rCOKPwyVEF2VuKuD0+D+tNKN1vNcoI6hhMm8kC/JyoUE=@vger.kernel.org
-X-Gm-Message-State: AOJu0YxHFEYlctDLc04nl8h1E2FzCmwgLw1Z81zCo+EVkEh88ywF+7vU
-	UpNIxcNgeNyypbhdVs40izBA51x7J1GiF2YrZvPMX2PCKyP9b5zPGF1k
-X-Gm-Gg: ASbGnctv20uEf7LRMBJCNzCgRn5MO/4Wv55JG/3eB/eebav2X4kIjtGcBdyrf9MPwdz
-	6RDzrUrpok+1aOI+pjZtuf8qVK5n2qtds2egPhyPdhV2g0Su/iXfgcOP0jWfd6Ebm4MtYfyUDqS
-	GEsFu2aNWWc+ghJXVEyyGl/emoMbSM7qg+A0xOH4R0n5sFeB/+9G07c/ZbSphQS0+5e2ToWPceb
-	vspvD/QvdBN9f6aKr5qW3k/+/C7kAQaGFDWTb0t4hyGUEDubUJJPZy3ThuXu4Gc8+kanodcissd
-	dvIjQCiLXuOVfWxK5f8/AlVMvD4Nyj6HZNcEL9vzDIXt0KXFAg0a1kujmqoXyCAyPiNY/k0vgJg
-	mj2+5LzQAnreofc1Jq+1RYDxVqk3ThJdivTvbnOsfoD7W81zvrH4uSQ/ZtHWwp7xIC5jCGm2PBc
-	lIhJGVCA==
-X-Google-Smtp-Source: AGHT+IFPbDEHTRD4G57c7xjubCoXFTpqJ7HrqNLS6rkdbX2D29kgWX6eGvSEJkRIx4DgF7JbiPtWDw==
-X-Received: by 2002:a17:902:f641:b0:240:a889:554d with SMTP id d9443c01a7336-251731155a7mr76095915ad.45.1757287934141;
-        Sun, 07 Sep 2025 16:32:14 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25549ac1e1dsm18350615ad.24.2025.09.07.16.32.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Sep 2025 16:32:13 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <2edbf532-f567-4807-b7e0-0063d8af0c33@roeck-us.net>
-Date: Sun, 7 Sep 2025 16:32:12 -0700
+        bh=F1R5m2ofcDqn5MZgtRWBTb5ZpZg0imfutMdx76rGnAA=;
+        b=hXbvDrqRl84w/BYld3S2RMruoWAZggzrEO+8mhz8akMgohP2+o4dPz/fdOSoidsnXv
+         DIk60UTisShkb+OR0Nvz5ex14j1kVEaf9cdaoDh0M/EwzCBNWpHarjUeGuzRDn/Ep3HI
+         lmYRqX3spbhWySbwDwfr6oc3i53w165Gl3gbX8xktxuAaLnGJRK5cNLZ7+5HdRBCJvuI
+         EsQedtukorcS0+/sF1/UVp7ludfpRNK5QD8DNviPvS3AtgEgN+BT/vz1JCL17yMVfgjt
+         5rACznZF916hQTe5SYpkbuUoSZKpxqNZMFrXVOAapuabpZRhles4fFunCG1BaaiwcrJY
+         aN1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757288601; x=1757893401;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=F1R5m2ofcDqn5MZgtRWBTb5ZpZg0imfutMdx76rGnAA=;
+        b=DFT4jPg0RKyadR7xZVDsA9BpL4uz2pYURiHHwkKr9SJaS/iDqYjocJy0O3co1vcKmz
+         CgxowW9FtOX2SXT3QvQTehAWxOlNitsYz4Int2RWViGTn3EBIC/26io28KLPkhjRm+Zb
+         IHG8+EYrRphqkwdj1BkLiVGd6HM+dvVc6qNq+owsi8WnlaWq9KFON5DzEWam6/1Atox0
+         FJZoSgGnZfdxQyTKNgDRugqcCe9sXhh486bSnu+Nfs5MLPuaVcq15i9un1xAQdU/YkHH
+         FbOqHkQsGiX21tEeegGrk6Zer+Qjn+J0TR3RAUAR3EbkMxWxhrIXAyovLjYa46QHsYVa
+         IuhA==
+X-Forwarded-Encrypted: i=1; AJvYcCUtz51fjmB/yFT28goR6+eAfh+lNBJo5D2stXSpnZxpTx0vBkaZnDdOhiW5HWH9mI9KT5VmMHSfLGN4@vger.kernel.org, AJvYcCWApyIIfNegu0iuwRrIETbks+W6JmzC7leSSEppTxfTvqUlgYRYOix+aWLLQTu9db7QvZ7X/Ru5BQhzTSWl@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyRts/slhu1+cCFLATH4i0UP0OuWIy+Kpc0AXDEnFSSIcupOjw
+	UqX9sMwVTAw0Q5POrzpjhnlGscI7e2Zi0lcvuzDdLpXfeAT09wBVxF9hHdTZNc9FT3SuE2lAC1U
+	R6wwuqYABchpQtwRGSNrfKO6JawtYFaQ=
+X-Gm-Gg: ASbGncs7uTN2LufR4zXPtGv6BR5IQtGpnS11kJAWQqVKFL52UWbcIUR/0WSrdVNWEIV
+	cYpNv+MZK/hGgCc3Ts5lBnc5Nmef4LayVMMyVKYNnTcwuPVeIu9d5SIJPeVjCAwiEVxO56dtLZa
+	9fOPH+FwMvFFRtdRA9aFuR2KxTdto6BOlW0ucGUtQ6qlytyd/UMfrpuPDNdanKcvxpcPLCpWENa
+	AzNeFdD
+X-Google-Smtp-Source: AGHT+IFN0qdS59XsIqM64KAQQGMLSbZHnMsFT6y4Ksbrai8YGYOI1NaBBm779temHUzjnHl6rmKtJ84jFBX02M41Mjg=
+X-Received: by 2002:a05:6808:1b08:b0:438:2199:6874 with SMTP id
+ 5614622812f47-43b29b26eb6mr3009468b6e.50.1757288601240; Sun, 07 Sep 2025
+ 16:43:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 00/17] hwmon: (ina238) Various improvements and added chip
- support
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
- "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
-Cc: Christian Kahr <christian.kahr@sie.at>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-References: <20250905204159.2618403-1-linux@roeck-us.net>
- <62ad677d-ecca-4819-904a-7052675300cb@alliedtelesis.co.nz>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <62ad677d-ecca-4819-904a-7052675300cb@alliedtelesis.co.nz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
+ <CABZAGRHSVY3uneK7qb2nwDrjjRsLXzsm0mwQncU1iRZac6tAkw@mail.gmail.com> <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org>
+In-Reply-To: <49db9339-b2a4-4be5-b0ba-005b3ed493a0@kernel.org>
+From: Nick Huang <sef1548@gmail.com>
+Date: Mon, 8 Sep 2025 07:43:09 +0800
+X-Gm-Features: Ac12FXwWUpJPGjF6PTjmn9l5Ph1ZMVOP4982juyA7Sf5FUNNuayb8VceQ41I1yw
+Message-ID: <CABZAGRH+B98nWGga7cVniwL-ev00nA2zZkLx9OhZDA2VVgMB6A@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Johnsodn Huang <kusogame68@gmail.com>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, weiyan huang <dory85109@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Chris,
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=887=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=8811:07=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> On 07/09/2025 15:38, Nick Huang wrote:
+> > Lee Jones <lee@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=883=E6=97=A5 =
+=E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:42=E5=AF=AB=E9=81=93=EF=BC=9A
+> >>
+> >> Looks like you corrupted the subject line with the commit message.
+> >>
+> >> Please resubmit.
+> >>
+> >>> From: Johnson Huang <kusogame68@gmail.com>
+> >>
+> >> Use `git format-patch` and `git send-email` instead.
+> >>
+> >>> Co-developed-by: Nick Huang <sef1548@gmail.com>
+> >>> Signed-off-by: Nick Huang <sef1548@gmail.com>
+> >>> Signed-off-by: Johnson Huang <kusogame68@gmail.com>
+> >>
+> >> It took two of you to correct the word "and"?
+> >>
+> >>> ---
+> >>>  Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml | 2 +-
+> >>>  1 file changed, 1 insertion(+), 1 deletion(-)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.=
+yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> >>> index d783cc4e4e..d16c82e398 100644
+> >>> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> >>> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71847-pmic.yaml
+> >>> @@ -41,7 +41,7 @@ properties:
+> >>>    clock-output-names:
+> >>>      maxItems: 1
+> >>>
+> >>> -# The BD71847 abd BD71850 support two different HW states as reset t=
+arget
+> >>> +# The BD71847 and BD71850 support two different HW states as reset t=
+arget
+> >>>  # states. States are called as SNVS and READY. At READY state all th=
+e PMIC
+> >>>  # power outputs go down and OTP is reload. At the SNVS state all oth=
+er logic
+> >>>  # and external devices apart from the SNVS power domain are shut off=
+. Please
+> >>> --
+> >>> 2.43.0
+> >>>
+> >>
+> >> --
+> >> Lee Jones [=E6=9D=8E=E7=90=BC=E6=96=AF]
+> >
+> >
+> > This patch was sent by Johnson Huang on my behalf.
+>
+> The From is malformed then. There is no single reason to change it.
+>
+> > If only one person should sign off, I have already discussed with him
+> > and will keep only my own Signed-off-by.
+>
+> For simple one letter typo? And then you sent three patches one-per-fix,
+> which is way too much churn.
+>
+> Best regards,
+> Krzysztof
+Currently, I sent one patch per file for fixing a single typo.
+In the next version, I will combine all the typo fixes into a single
+patch and resend it. Is that acceptable?
 
-On 9/7/25 16:00, Chris Packham wrote:
-> Hi Guenter,
-> 
-> On 06/09/2025 08:41, Guenter Roeck wrote:
->> Add support for INA700 and INA780 to the ina238 driver.
->>
->> To prepare for this, implement various improvements.
->>
->> - Update documention and Kconfig entry to list all supported chips.
->>
->> - Drop platform data support. The driver supports device properties,
->>     and there are no in-tree platform data users.
->>
->> - Stop checking the attribute value when writing the power_max attribute
->>     as unnecessary.
->>
->> - Simplify temperature calculations. Instead of shift and lsb, only
->>     require the resulution and use it to calculate temperatures.
->>
->> - Pre-calculate voltage, current, power and energy LSB. The values don't
->>     change during runtime and can therefore be pre-calculated. Also use the
->>     equations provided in the dataasheets to calculate power and energy
->>     LSB from the current LSB instead of calculating it from scratch.
->>
->> - Use ROUND_CLOSEST operations instead of divide operations to reduce
->>     rounding errors.
->>
->> - Improve current dynamic range by matching shunt voltage and current
->>     register values. With that, the dynamic range is always the full 16 bit
->>     provided by the ADC.
->>
->> - Stop using the shunt voltage register. With shunt and current register
->>     values now always matching, it is unnecessary to read both.
->>
->> - Provide current limits from shunt voltage limit registers. After all,
->>     there is no difference for the ADC, so the shunt voltage limits translate
->>     into current limits.
->>
->> - Order chip information alphabetically. No functional change, it just
->>     simplifies adding support for new chips.
->>
->> - Add 64-bit energy attribute support to the hwmon core.
->>
->> - Use the hwmon core to report 64-bit energy values.
->>
->> - Add support for active-high alert polarity
->>
->> - Limit shunt and calibration register writes to chips requiring/supporting
->>     it.
->>
->> - Add support for INA700 and INA780. Both chips have internal shunt
->>     resistors and do not explicitly report the shunt voltage.
->>
->> This patch series was inspired by Chris Packham's initial patch set of a
->> new INA780 driver, by his subsequent patch set adding support for that chip
->> to the ina238 driver, and by Christian Kahr's submission of a new INA700
->> driver.
->>
->> The series was tested with INA228, INA237, INA238, and INA780 evaluation
->> boards as well as with unit test code.
->>
->> ----------------------------------------------------------------
->> Guenter Roeck (17):
->>         hwmon: (ina238) Drop platform data support
->>         hwmon: (ina238) Update documentation and Kconfig entry
->>         hwmon: (ina238) Drop pointless power attribute check on attribute writes
->>         hwmon: (ina238) Rework and simplify temperature calculations
->>         hwmon: (ina238) Pre-calculate current, power, and energy LSB
->>         hwmon: (ina238) Simplify voltage register accesses
->>         hwmon: (ina238) Improve current dynamic range
->>         hwmon: (ina238) Stop using the shunt voltage register
->>         hwmon: (ina238) Add support for current limits
->>         hwmon: (ina238) Order chip information alphabetically
->>         hwmon: Introduce 64-bit energy attribute support
->>         hwmon: (ina238) Use the energy64 attribute type to report the energy
->>         hwmon: (ina238) Support active-high alert polarity
->>         hwmon: (ina238) Only configure calibration and shunt registers if needed
->>         hwmon: (ina238) Add support for INA780
->>         dt-bindings: hwmon: ti,ina2xx: Add INA700
->>         hwmon: (ina238) Add support for INA700
->>
->>    .../devicetree/bindings/hwmon/ti,ina2xx.yaml       |   4 +
->>    Documentation/hwmon/hwmon-kernel-api.rst           |   3 +
->>    Documentation/hwmon/ina238.rst                     |  64 ++-
->>    drivers/hwmon/Kconfig                              |   9 +-
->>    drivers/hwmon/hwmon.c                              |  16 +-
->>    drivers/hwmon/ina238.c                             | 583 +++++++++++----------
->>    include/linux/hwmon.h                              |   1 +
->>    include/trace/events/hwmon.h                       |  10 +-
->>    8 files changed, 382 insertions(+), 308 deletions(-)
-> 
-> For the series
-> 
-> Reviewed-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> Tested-by: Chris Packham <chris.packham@alliedtelesis.co.nz> # INA780
-
-Thanks a lot, appreciate it!
-
-Guenter
-
+Best regards,
+Nick Huang
 
