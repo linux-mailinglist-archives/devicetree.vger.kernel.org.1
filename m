@@ -1,127 +1,116 @@
-Return-Path: <devicetree+bounces-213942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C722B47995
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 10:23:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56FD3B47998
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 10:29:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D79C83C2AC3
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 08:23:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B3B13BAAC9
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 08:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA3E821578F;
-	Sun,  7 Sep 2025 08:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E0A21ABC1;
+	Sun,  7 Sep 2025 08:29:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BlSpBZB7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp84.cstnet.cn [159.226.251.84])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CD41E1DE7;
-	Sun,  7 Sep 2025 08:23:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4D743FC7;
+	Sun,  7 Sep 2025 08:29:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757233418; cv=none; b=pxI9sjvNbxrUbue3V+LSea8VczdgLdINFpVy0GioKSyqMG8BDUaYlz7uEbWx/B0Perhp/kzQteV2Z9RTXuLbEc/6ktRQqCu6hpmkyvpMSQv3v2zVSVsb+EE4sdYu3cugBDkYlXFNhJzx3QFevRCP7WJyQ4bWgmeYRpAN0rL5i70=
+	t=1757233757; cv=none; b=ftF1/rvUsB92eVFUf4g+tdPHdLQNmxbXOcvT9iP2e2/wk1S5fuJbNKAhUNOZgbFjA3CUqCLA0I58q/BAtGds5lpcrJSckKa28j59dG4rVerIHPXcj9NjV5HFci4ExxgTquC+k++gV83RZDksey/r3DPtAbuGcd+VgnmeubKmvOE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757233418; c=relaxed/simple;
-	bh=r0eJTebCt3MS2Xw6g6hfJ21wZgUkK/hVYw3MMLUbnxQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QdtVxD332/QQglH984EFE0Y0hiDmOdWQZ+FW2cQA8ayj0WBDG+AGoVlKQGE6zazRzZAfJR+Yst9ZmEx53Hfwc/mq06A3uHcYMB70+B913PReykVZy+VKMaRu4z0EBU+/HiEp58jgOxU97aTDpcmKEO1njKsrvMrjkyHNaA7mBcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [192.168.0.109] (unknown [114.241.87.235])
-	by APP-05 (Coremail) with SMTP id zQCowABX+hPUQL1oMWdTAQ--.2947S2;
-	Sun, 07 Sep 2025 16:22:44 +0800 (CST)
-Message-ID: <fbcc1ec3-7ff6-4891-97e3-9763355326f7@iscas.ac.cn>
-Date: Sun, 7 Sep 2025 16:22:44 +0800
+	s=arc-20240116; t=1757233757; c=relaxed/simple;
+	bh=zHL5OUhPXjp6SZHcCKZnrqqQKzlZOLlAcjYf8xWBt5o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hvWwcvLv0xzqGfwjTrL71++J7dZLwRvK5DE3QcsoI71y4t3SIrH6adqMdIvlS9apIQmbW/4djWWJh/Wlo4cMUCrw5Z+5Y8DVtitpR8LvC3LkEifCLivwQxXq9NRuN1YVQIBjxsm05kBHsSpQh74Z3n6F0468voarbejbZzgDFy4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BlSpBZB7; arc=none smtp.client-ip=209.85.210.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-7459d088020so1779979a34.3;
+        Sun, 07 Sep 2025 01:29:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757233755; x=1757838555; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zHL5OUhPXjp6SZHcCKZnrqqQKzlZOLlAcjYf8xWBt5o=;
+        b=BlSpBZB7aSMinDqBUHZibzhRj3Ar2GdnjpFwz3RKZOq6wSTpE0vsqiqde84iqxJt3Z
+         3DxgNBdaRAa6hOPptIbLaK0CXHmkrfGHjBCDfq/z8lf3t3eZ0CSTaazsPd1rmuBAnFR7
+         WoNBVtRJvBuX/EBVpqV3sfsk7Bgtrb7CJi4smoynGYnUcvxi7f8RZRU5eUNmSUAlqEYT
+         Mu/I5fim+OVk9Npf7eefebc4EssEhzYxNRvxYJZIsrtCUDSTJpANzFdoOT78N2MVTlXV
+         0Qu+YimjTPXn/wtuGFLILl6xsGVRXf8O4eRnH8BE0F3KdjXPFml8cUnkLrUGyLMQTXsf
+         CIbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757233755; x=1757838555;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=zHL5OUhPXjp6SZHcCKZnrqqQKzlZOLlAcjYf8xWBt5o=;
+        b=ZVRyKS3QV8dL1TeCHSg7gpgAI3XXqECkF317zrpkLLiQT2W62M+XSpWRgQd6EAza4X
+         37TgxHi6vAhmx3lcbCL2tR+d6vHg5MoM2oH5R96S+2Wxh/NonxnHEamTB+gXCsSCiwfg
+         l4Wi8Xq+gCXxsWKueLlwryMrFQ7yaADtRAL1yKyLlr+MaVRMO4ayZc3jvvunfLGjbFZD
+         DTkLvmiPPSztnYNIXddqkyozzUa/2gzwgUjD5PVCQlWA8NuzP3Yl/AdHmHb6qELmOshr
+         rEF5y3Q7ctQpjQ3UQ+EDkxydQNGnLatDkFj1z+0WSVorIyezjgxOjmS5ihZU2fLePEdo
+         +tGw==
+X-Forwarded-Encrypted: i=1; AJvYcCVB0TqVnRL1xp8OXUENvo378Xx8p07YewN9MkQ0NhmgA9+5gFrV9FV5mJidZIlWakI6GO56HQ12EnIwxI+9@vger.kernel.org, AJvYcCVQvbDhr+/yYPirVEEEQDGTcNuwF400uiRLQVeBDMoDhl4as0R4yq69wfl9yUzuzcJNtgSycdIE/HlO@vger.kernel.org
+X-Gm-Message-State: AOJu0YwPIg7/xXCvCgOaPWGOLxjhDfZJKf9ExoaGYDctjr/9UMrjFlXC
+	amaRVZb5yKygVmtKwTQk72yolAQC/tKyuG/k2icA9rxLboBqAEfW79Rnhed3XrNbEWVIy8bGx1b
+	EdUVg7XjRp5kaYZrbFcyfXtB1ntUnMMk=
+X-Gm-Gg: ASbGncuEZbYQd5iSMiV9M0Eh8MhIbRld1hgSHp+wuN+2RaMm1MtUE3jELKMdGtEZqDH
+	z8Z0gb6aN1aMKW0szpSvX85AwlsKqnSHgRgCLL65DYyedgUuxURovzU66RGVSRABRPf4q517NKH
+	sTsmxhoViWe0WWCUohmTVnw4IDTzJT4BHT4qhokW/vQdbH+LzF4pWlhACDknZ4hI2ELylSkX6uO
+	fpbjyA=
+X-Google-Smtp-Source: AGHT+IGyh8ld+6tQy/RCVtIqpvu3UGrTFhfuBz4MseUwlBWxJL0WjulAhzGeEX21wQaQ+OyTZiS6u29Qftewscegmms=
+X-Received: by 2002:a05:6808:4f27:b0:439:b9b4:2d86 with SMTP id
+ 5614622812f47-43b29b114abmr1874556b6e.11.1757233754995; Sun, 07 Sep 2025
+ 01:29:14 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
-To: Jakub Kicinski <kuba@kernel.org>
-Cc: Simon Horman <horms@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Alexandre Ghiti <alex@ghiti.fr>, Vadim Fedorenko
- <vadim.fedorenko@linux.dev>, Junhui Liu <junhui.liu@pigmoral.tech>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org,
- Troy Mitchell <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
-References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
- <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
- <20250905153500.GH553991@horms.kernel.org>
- <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
- <20250905160158.GI553991@horms.kernel.org>
- <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
- <20250905165908.69548ce0@kernel.org>
-Content-Language: en-US
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-In-Reply-To: <20250905165908.69548ce0@kernel.org>
-Content-Type: text/plain; charset=UTF-8
+References: <20250902142749.13724-1-kusogame68@gmail.com> <20250903074205.GB2163762@google.com>
+ <28c1ff61-8510-4fd4-9cd2-0e3ff4fe3a02@kernel.org> <CABZAGRE=6Dg1npRx-jmcycnGMkbtmY6A7E=upffeQ+KANTqcLA@mail.gmail.com>
+ <96e6578e-b21f-498e-82f6-eeee3ee81e20@kernel.org> <CABZAGRGof5e=mwpfmEgE7W+Pn5gS05ei7io8e7C4tPfkvz1=Gw@mail.gmail.com>
+ <ce631cd2-c00b-43b1-ac61-b38e1848b729@kernel.org>
+In-Reply-To: <ce631cd2-c00b-43b1-ac61-b38e1848b729@kernel.org>
+From: Nick Huang <sef1548@gmail.com>
+Date: Sun, 7 Sep 2025 16:29:04 +0800
+X-Gm-Features: Ac12FXzjWYhVSL6pLRke-nKO_o5nQ4XreN0pF_gxg52k8J1nJ-NqvWQoOORoo4o
+Message-ID: <CABZAGRGqWXgKWT5ReyK_tZXTfNWBn_hC4Ctx47gY5b2=K5YeUw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: fix typo in documentation Correct a typo in
+ the documentation by replacing "abd" with the correct word "and". This
+ improves readability and avoids confusion in the description.
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Johnsodn Huang <kusogame68@gmail.com>, Lee Jones <lee@kernel.org>, robh@kernel.org, 
+	krzk+dt@kernel.org, conor+dt@kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, weiyan huang <dory85109@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-CM-TRANSID:zQCowABX+hPUQL1oMWdTAQ--.2947S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7tw47JryDGw4rtry5Kw4rKrg_yoW8Gr4rpF
-	WrKFs2kFWvqw4xt3yvv3ykX343t3ZxZ3y5Gryqga47ta45Zryfu3yxKrWIyasrGrWkZ3y0
-	vry5JFyjkFZ8JrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUvmb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26ryj6rWUM7CY07I2
-	0VC2zVCF04k26cxKx2IYs7xG6rWj6s0DM7CIcVAFz4kK6r1j6r18M28lY4IEw2IIxxk0rw
-	A2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xII
-	jxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84ACjcxK6I
-	8E87Iv6xkF7I0E14v26F4UJVW0owAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC
-	0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr
-	1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcVAKI48JM4IIrI8v6xkF7I0E8cxan2IY04v7
-	MxkF7I0En4kS14v26r4a6rW5MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j6r
-	4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF
-	67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMIIF0xvE2I
-	x0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4lIxAIcVC2
-	z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcSsGvfC2KfnxnU
-	UI43ZEXa7IUYsSdPUUUUU==
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
 
-On 9/6/25 07:59, Jakub Kicinski wrote:
+Krzysztof Kozlowski <krzk@kernel.org> =E6=96=BC 2025=E5=B9=B49=E6=9C=887=E6=
+=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=884:17=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On 06/09/2025 15:09, Nick Huang wrote:
+> > Yes, I have read it. The subject and the content were mixed together,
+> > so I will reorganize and resend the patch.
+>
+> Please do not top-post.
+>
+> The question was not about subject and content. I just don't believe the
+> DCO chain here.
+>
+> Best regards,
+> Krzysztof
 
-> On Sat, 6 Sep 2025 00:35:37 +0800 Vivian Wang wrote:
->>>> On a closer look, these counters in ndev->stats seems to be redundan=
-t
->>>> with the hardware-tracked statistics, so maybe I should just not bot=
-her
->>>> with updating ndev->stats. Does that make sense? =20
->>> For rx/tx packets/bytes I think that makes sense.
->>> But what about rx/tx drops? =20
->> Right... but tstats doesn't have *_dropped. It seems that tx_dropped a=
-nd
->> rx_dropped are considered "slow path" for real devices. It makes sense=
+Can you tell me what=E2=80=99s wrong with the DCO chain?
 
->> to me that those should be very rare.
-> Pretty sure Simon meant the per-cpu netdev stats in general.
-> There are three types of them, if you need drops I think you
-> probably want dstats. Take a look.
-
-According to this comment in net/core/dev.c dev_get_stats():
-
-=C2=A0 =C2=A0 /*
-=C2=A0 =C2=A0 =C2=A0* IPv{4,6} and udp tunnels share common stat helpers =
-and use
-=C2=A0 =C2=A0 =C2=A0* different stat type (NETDEV_PCPU_STAT_TSTATS vs
-=C2=A0 =C2=A0 =C2=A0* NETDEV_PCPU_STAT_DSTATS). Ensure the accounting is =
-consistent.
-=C2=A0 =C2=A0 =C2=A0*/
-
-"dstats" is meant for tunnels. This doesn't look like the right thing to
-use, and no other pcpu_stat_type gives me tx_dropped. Do you think I
-should use dstats anyway?
-
-(And yes the only software-tracked one should be tx_dropped. Since we
-pre-allocate the RX buffers, there is no opportunity to drop on RX in
-software.)
-
+Best regards,
+Nick
 
