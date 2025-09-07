@@ -1,84 +1,84 @@
-Return-Path: <devicetree+bounces-213975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86F47B47AE4
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:22:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B453BB47AE5
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 13:22:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43CD83B58BA
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:22:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5519717DCEF
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 11:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2560E264A97;
-	Sun,  7 Sep 2025 11:22:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B493268C42;
+	Sun,  7 Sep 2025 11:22:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="KvTDF2ZJ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="dD+Jc1Vs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A30D261B86
-	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 11:22:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 289B1266EEA
+	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 11:22:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757244141; cv=none; b=KR/hKNJ019foRP4DHOVxkOCe0GID36BpmrsAdtG6RIeTKM3saCCyXJitugTmX6jtLyMjaSnia2Tq2yxudhUsS69/edML98uVtH2dNEqrs0qgsvdEC86IhdLZzILZ2DSPAWixn922JXWY+V7fD6autFy62Ko09Uooy0CKpyt0C5E=
+	t=1757244142; cv=none; b=iPk4ssovFWWOLk8I+ENd2f//0ktlW2zkAEyqqQgH+bBkCdcE9npfRwaGwu7iBoRFkTqTt226FTibGy5Q+a1WGm6b3hrxhWcHvWIV2C0zvDTyhGOX5T/1BH96ilgPgqWQBqUiw1xtl+CT+JveOZLeVnSMSQYsQhgBRL8zwK0G5RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757244141; c=relaxed/simple;
-	bh=3K5xmPHboti1L/ErBrejTcSDf/a3Rugqu21m6y+BMzA=;
+	s=arc-20240116; t=1757244142; c=relaxed/simple;
+	bh=2RdZuj2+bnEq4lFI1TvOAOQLbIHMBgnyjO4wWEhvPd0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=borRpSkvKxixYIlh5GMOMoAS3xjO53jP0WbnkZCzIrSRBJker2NOJRXHpF/7qlq0k180RrEcadqt0hH105KrJHzQKb8u8W6XgiiYXbilvFEWMqxPs/QfPHqh3rs4VeUD2e398eNlC2qYeD8jm+w2LITcfjoJd8B48jqlphEubhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=KvTDF2ZJ; arc=none smtp.client-ip=205.220.180.131
+	 MIME-Version; b=fgS6OSUbNm0XCye6PaoVHyMPpGIEvZu+R1NdK6N7+DFo4zHvxHng0oQF9s26lhVTDpUf67tix+0cU4qcqZ3e1PAsmA4zYZ90y1gyUHZCUaXnWviwf5uY/RRUf6gGrRsVje3ulAuV/maeO6xxQ/2ENt+u/ZWezFQfQJ6Uv1w8ZFI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=dD+Jc1Vs; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
 Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5878jNkT020641
-	for <devicetree@vger.kernel.org>; Sun, 7 Sep 2025 11:22:18 GMT
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5878jNLK020675
+	for <devicetree@vger.kernel.org>; Sun, 7 Sep 2025 11:22:20 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:date:from:in-reply-to:message-id
-	:mime-version:references:subject:to; s=qcppdkim1; bh=lB0PeZTreDY
-	Q4uFWa9S5tmFsvOqmEo73wcjiWz8cRXI=; b=KvTDF2ZJcLVrljw7rPebhZAiebp
-	nzFJmMMvWd3dc5kxBQG8RL8it8O5t4PaqetQlc2kx5LrRs81Sn/CifmDHNQZK+IZ
-	OfFTH+LkAlq5JOHp3eWF7yxGk92AUxIKebjSKu8v9OyiGuGZYPMK4SnXr/XunH89
-	67zt0DUxm90G7/ICahQ+pBRTmjKBN4kwFCqauptzq9vA+ST+XOHHURCjMoE8Ww2x
-	S72WoTHycHb761y6eiCPEqW7Ry+7GQX8Dt8bIifYn0/B4/vGSO1z7QvD4P4oOczy
-	9ohSu8wEbjNYm4c8wUHjy2HAW/WLDa3nmcO1xLn/B8+TKJKnQygb8WsMwiQ==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490by8t3f0-1
+	:mime-version:references:subject:to; s=qcppdkim1; bh=s7WquEsfgwY
+	isqBTd7oid9YlC00m48Huneeh+WYoicw=; b=dD+Jc1VsCLoNa0soEH6B/0K60YT
+	YVvS7HJODmLufuJqB7YN2Wf5mZF8+T+9hrmN9yPlScMHhCAXG2HHiZdpCuUgdFBr
+	DmBpAZVzIEJPjWhi92DXerYd3lPoGp8NP3vBrfrRQpaTqG+jnXCHVdZ9gap5laPS
+	OfMR5xWx5pPH1ItZm9nE1HHvFUrP8VdxrEX+k61uCVvQZLQkot/WJdEiWBa2S/Ct
+	wlqwbRoERiaVKaH2vYy7I4mO6DSiMbRYCuHDylmXIlaHKKygldeQO+wv3m3kebbo
+	mBUkzi0HV/jaL85p20sBcSRuVHPU+LO5ZqIpSOTT1qpdCoqOqP4wjCW22Ow==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490by8t3f3-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Sun, 07 Sep 2025 11:22:18 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-720408622e2so74851356d6.0
-        for <devicetree@vger.kernel.org>; Sun, 07 Sep 2025 04:22:18 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Sun, 07 Sep 2025 11:22:20 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b31ba1392fso111804371cf.2
+        for <devicetree@vger.kernel.org>; Sun, 07 Sep 2025 04:22:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757244138; x=1757848938;
+        d=1e100.net; s=20230601; t=1757244139; x=1757848939;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lB0PeZTreDYQ4uFWa9S5tmFsvOqmEo73wcjiWz8cRXI=;
-        b=dZltwfDFM0dX6PpGZ3rK8g2PatuzMvIrTCt0ZJ4Joq7++58Lo2d65WQeJeUF8Vb+t2
-         ff4+SCUrQDhK9mujTDEeVb9kG8JlHXbY/aMA79ngkaJpRQLYMt61BePrBZ99AP2VKtbV
-         9k9y+Gd98tbSaLqfTxqSaGcqI3O2gagUnb2pANXBQAvw+Fu+0crmxyF8QGdEw6mIIVpU
-         d9sssHIAOQkwnrriTAcjbOwpZCWWoJG4MQdfl1yV/iMRc/iWviI/VMe/SJ7if3/bnQnD
-         IGNUWJnj7RdWt9OhjxEuydvyPdzn4C2aH/SA3/e0bRY2MgfV1wMwRm2nPqY5wlF2ix87
-         ZHbw==
-X-Forwarded-Encrypted: i=1; AJvYcCXD24GZfu40BVYkhfCMQ6vPza2ngxm+7Ko4vLfS+wX3qvW9wYMjPXy+nOTZr0O/jgZ+1spFaTjA2Z1Q@vger.kernel.org
-X-Gm-Message-State: AOJu0YyNdrJE3An76ss0xYGyfDxk6HzIEjZhA5y6Y82nHcOezh7rhJva
-	OjrLJF/w3aVsj8wPHyjilIOQhELg7+QV7kUjwidcCoBMtLPSyTv4AtqrMG+CRcfhTUnOZa6vlnE
-	PiQMiJKveCeWUxXZRvF02MNSQUz8ZPSV2ingrjTGCK9Lnbq4c/2qjXMDxNDdxh19V
-X-Gm-Gg: ASbGncsEzCc5R/h1y1ErO6xpR8dKfv1e9joCnQDfZiNUJzDJPs4qaDYj8KoaPygXirH
-	BfkfXSe2WPKTbfwFUCpHnbK4OHEoyLi4Qc8z5T/Uce7AdZMqRXO6nORlkvYo+vmTDkry5j78GaU
-	k+vGKZQcNtaUd7GwVlFaxFZ6IObWzTOt42UST5xNMxQH0gD73gU6/sWGlXDgJIsHe6pvkDnQJYh
-	fF3/CFwHCbXY0Z/SXCmZ5buAaMvGmuH7eHWl10Y1l6tsjjmeHbjsBhh94SGSswNqKzEQLH8WnR6
-	4nxG8gCeehw7ZJQd5UY9k6E16oCdLh8/agKrr/wu84Isw6BfQ7tUXw==
-X-Received: by 2002:a05:6214:409:b0:705:16d9:16d8 with SMTP id 6a1803df08f44-73921a43c71mr54310386d6.6.1757244137736;
-        Sun, 07 Sep 2025 04:22:17 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH5eBODkSZVURMQjCWR3pl6xanbPUigNJP388aG1AvYCAc5ryRdK1uW5UH1WPpUVEq9eQbSMA==
-X-Received: by 2002:a05:6214:409:b0:705:16d9:16d8 with SMTP id 6a1803df08f44-73921a43c71mr54310126d6.6.1757244137322;
-        Sun, 07 Sep 2025 04:22:17 -0700 (PDT)
+        bh=s7WquEsfgwYisqBTd7oid9YlC00m48Huneeh+WYoicw=;
+        b=nQ6oZJlqw34s6CqjvgGr6CxE2nAISGI9Q4OQkb1/B4jYr1E/y7NRHuY2LpiY0GzdBJ
+         0OFk3CARjBAb/XkAMylQObF3Oc6CTR84W59QMtuOp9CLPSrK5y4ZxBbsmJT/o10CZQRF
+         meVOWR4Ifo8p0tgW3le8lSMRor2OH8uDlR9Of1XXvh4OqPrwSrJ0g4fhoHiazWmYywk1
+         Cjh1O2hfCGYM0/UH72hTytjJj0CMZ8vDBngSYFQVq3Kz+6jxRkupPJSrP3dJj0bmdJN+
+         HbwXhcP4w1MhZCkUoBnOpOU8xTHekgQGRrAi6XWpiA8xbxXKvk3rhX8gR87lXBRYU6Ue
+         jNnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVBAzr2mIN1bxQMlZmsQla7CRuBJ4BQprZKqxiLCEzGcEnIf64YZgXlV7jK2bd3+2A5E65DtXpRrVRR@vger.kernel.org
+X-Gm-Message-State: AOJu0YzjA1P6DEZ4npRTE5VXzxnfMnjAQwp9aPDuD7lu/zV1LgtKoxK1
+	Z+RzFAPG8Z8+G3rMYTcTIruKh/q7lmkUvVVHgVqx0Iy5ew0bkYbqSW3HmBOpHlyrxyAULR94ZTh
+	PJz+KcGtFc5N9o0WzCkJgSa7AuzUUNWcTlD0rEewCdqrsEY+eb9I4OZzyu2qV0Wtp
+X-Gm-Gg: ASbGncsG5mVINGQAReKpdv8Ovwxlc+QujaKrhJz2+XdRVxAc7/MbRaD9PhzbJeHyQ1t
+	VLjtl3UaIKaozF35wCkoKtKvyjmQglhc26188ddoDTZ/jwibNs+u3SbfLK1Moe9GbBrSiwplfFW
+	joI8zpmJ1QHZ9qrph6KNraGFLeGcbHjFZSrpLlJljJFVBMkCcld750O5N++R1bExuhGg6U5X34G
+	DUm82uEupFoaj2lIjOeqcba3wMuv6YFxA0Dl71M+ArXTWM7hloPzHN31INdfLDiNvJlfOKHCJzd
+	gw6SxqE5dNc/LqlBGg+CLGokCOlgaFBEgbq4OxpeU1OPsD98Q6frRQ==
+X-Received: by 2002:a05:6214:c64:b0:70d:7751:4309 with SMTP id 6a1803df08f44-73921b3a881mr43562376d6.8.1757244139120;
+        Sun, 07 Sep 2025 04:22:19 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHMFWegjMkjf+SpLg/jV7csKDJqY2/Q4u2f9F5Gx3h9fT6Lg+VfiBDl7XZXg9h9zLUpNv6/0g==
+X-Received: by 2002:a05:6214:c64:b0:70d:7751:4309 with SMTP id 6a1803df08f44-73921b3a881mr43562126d6.8.1757244138659;
+        Sun, 07 Sep 2025 04:22:18 -0700 (PDT)
 Received: from debian ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34494776sm37523289f8f.61.2025.09.07.04.22.15
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf34494776sm37523289f8f.61.2025.09.07.04.22.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Sep 2025 04:22:15 -0700 (PDT)
+        Sun, 07 Sep 2025 04:22:18 -0700 (PDT)
 From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 To: broonie@kernel.org
 Cc: lgirdwood@gmail.com, tiwai@suse.com, vkoul@kernel.org,
@@ -87,9 +87,9 @@ Cc: lgirdwood@gmail.com, tiwai@suse.com, vkoul@kernel.org,
         devicetree@vger.kernel.org, linux-sound@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
         Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Subject: [PATCH v4 10/13] ASoC: codecs: wcd939x: get regmap directly
-Date: Sun,  7 Sep 2025 12:21:57 +0100
-Message-ID: <20250907112201.259405-11-srinivas.kandagatla@oss.qualcomm.com>
+Subject: [PATCH v4 11/13] ASoC: codecs: wcd-common: move status_update callback to common
+Date: Sun,  7 Sep 2025 12:21:58 +0100
+Message-ID: <20250907112201.259405-12-srinivas.kandagatla@oss.qualcomm.com>
 X-Mailer: git-send-email 2.50.0
 In-Reply-To: <20250907112201.259405-1-srinivas.kandagatla@oss.qualcomm.com>
 References: <20250907112201.259405-1-srinivas.kandagatla@oss.qualcomm.com>
@@ -100,19 +100,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Yv8PR5YX c=1 sm=1 tr=0 ts=68bd6aea cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=jWMDT5uzmWzhJut3sAYA:9
- a=pJ04lnu7RYOZP9TFuWaZ:22
-X-Proofpoint-GUID: Ad8TUSTDHkknPg8Y0N6iTSE81WN5S-8O
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX6qxWRE9WU6dg
- eoB3X6lFlux+B4YlctYzd9nTT2OCs3kxVwOvNjI/PiAkafJV3qU4WzBpZCZZBi86n67LdmPJdYH
- Lqm/u0oVBapU+Wsd7XSQxUcU7D/Ph5uVypzrBnlj/3OVgv5J7R1aMfslR0iSmheF0L3BOlrznxF
- 5ZvFU+2vWy9E0pIqklGpER+JA8KuWdT/Q1voAmonw6Kn+umxDN6KfAtGzofa+49/44QNqpMnEol
- pUW9wa9i67zc0MSnrOXInLKhpW0aGHEdKJ0oXG0UftFALu+FG9xY1v0iAd/P1VVXd1iD//zZZIZ
- LsGbU0T0dpWOKc2cYLmRNpF4EaRoH94mOjL3gCfyvefUx04Z5dr7VNUEXNfy32LZSNl3+/jGFTS
- SinxZUWD
-X-Proofpoint-ORIG-GUID: Ad8TUSTDHkknPg8Y0N6iTSE81WN5S-8O
+X-Authority-Analysis: v=2.4 cv=Yv8PR5YX c=1 sm=1 tr=0 ts=68bd6aec cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
+ a=yJojWOMRYYMA:10 a=sWKEhP36mHoA:10 a=EUspDBNiAAAA:8 a=lLZ5r3BOYuU-AXZT-04A:9
+ a=uxP6HrT_eTzRwkO_Te1X:22
+X-Proofpoint-GUID: T-lEzV_1JKXnHLzUQxyio5H2tW_YRSpV
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfXw8zOJmTfuknU
+ LwYQVu/cHMToKarocmOrdEUWTsUOdO0RJ6Gmt8Klwf4arQc1+ug2mBRtDJHmM0xIQhWzfIJMEkV
+ wNjzdPjfqxgM9X084U0LJZ/8mvvMhIsRwRQkWUwgBIGK+gpM2fmD5iC4oacUb/EqFVqvSnQCgO7
+ KVKRxs1i7GmPWvZM3dyKucDQXfl+L8/H7DoE3o5eQi70mrQ/Z2UXL98aCMYC9V4YLjdqO6gsYQ2
+ QyGeGSqcdlizXtX7OO0m4nc/liVpEbjdxIvnoX4SMcnBtAtjAqWdTiNtJTMNfFDZECz8ytrb+6H
+ ESQ9i6qJOEce5gaC1L8ZhhhAFL6u78yilo3EV5NhZSg9PoCjxq7j6HYX220RVFFuAb2vhJ32ttF
+ NhAIMjV7
+X-Proofpoint-ORIG-GUID: T-lEzV_1JKXnHLzUQxyio5H2tW_YRSpV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-07_04,2025-09-04_01,2025-03-28_01
@@ -122,80 +122,307 @@ X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
 
-for some reason we ended up with a boiler plate for dev_get_regmap in
-wcd939x codec and started exporting a symbol for this. Remove this
-redundant wrapper and direclty get regmap.
+Soundwire update_status, bus_config and interrupt callbacks for wcd937x,
+wcd938x, wcd939x soundwire codecs are exactly identlical, move them to
+common driver to remove this duplicate code.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- sound/soc/codecs/wcd939x-sdw.c | 9 ---------
- sound/soc/codecs/wcd939x.c     | 6 +++---
- sound/soc/codecs/wcd939x.h     | 6 ------
- 3 files changed, 3 insertions(+), 18 deletions(-)
+ sound/soc/codecs/wcd-common.c  | 46 ++++++++++++++++++++++++++++++++++
+ sound/soc/codecs/wcd-common.h  |  5 ++++
+ sound/soc/codecs/wcd937x-sdw.c | 28 +++------------------
+ sound/soc/codecs/wcd938x-sdw.c | 41 +++---------------------------
+ sound/soc/codecs/wcd939x-sdw.c | 42 +++----------------------------
+ 5 files changed, 62 insertions(+), 100 deletions(-)
 
+diff --git a/sound/soc/codecs/wcd-common.c b/sound/soc/codecs/wcd-common.c
+index 585d3e036900..6aaa6e2c955a 100644
+--- a/sound/soc/codecs/wcd-common.c
++++ b/sound/soc/codecs/wcd-common.c
+@@ -9,6 +9,9 @@
+ #include <linux/printk.h>
+ #include <linux/component.h>
+ #include <linux/pm_runtime.h>
++#include <linux/soundwire/sdw.h>
++#include <linux/soundwire/sdw_type.h>
++#include <linux/regmap.h>
+ 
+ #include "wcd-common.h"
+ 
+@@ -16,6 +19,8 @@
+ #define WCD_DEF_MICBIAS_MV	1800
+ #define WCD_MAX_MICBIAS_MV	2850
+ 
++#define SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(m) (0xE0 + 0x10 * (m))
++
+ int wcd_get_micb_vout_ctl_val(struct device *dev, u32 micb_mv)
+ {
+ 	/* min micbias voltage is 1V and maximum is 2.85V */
+@@ -93,5 +98,46 @@ const struct component_ops wcd_sdw_component_ops = {
+ };
+ EXPORT_SYMBOL_GPL(wcd_sdw_component_ops);
+ 
++int wcd_update_status(struct sdw_slave *slave, enum sdw_slave_status status)
++{
++	struct regmap *regmap = dev_get_regmap(&slave->dev, NULL);
++
++	if (regmap && status == SDW_SLAVE_ATTACHED) {
++		/* Write out any cached changes that happened between probe and attach */
++		regcache_cache_only(regmap, false);
++		return regcache_sync(regmap);
++	}
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(wcd_update_status);
++
++int wcd_bus_config(struct sdw_slave *slave, struct sdw_bus_params *params)
++{
++	sdw_write(slave, SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(params->next_bank), 0x01);
++
++	return 0;
++}
++EXPORT_SYMBOL_GPL(wcd_bus_config);
++
++int wcd_interrupt_callback(struct sdw_slave *slave, struct irq_domain *slave_irq,
++		unsigned int wcd_intr_status0, unsigned int wcd_intr_status1,
++		unsigned int wcd_intr_status2)
++{
++	struct regmap *regmap = dev_get_regmap(&slave->dev, NULL);
++	u32 sts1, sts2, sts3;
++
++	do {
++		handle_nested_irq(irq_find_mapping(slave_irq, 0));
++		regmap_read(regmap, wcd_intr_status0, &sts1);
++		regmap_read(regmap, wcd_intr_status1, &sts2);
++		regmap_read(regmap, wcd_intr_status2, &sts3);
++
++	} while (sts1 || sts2 || sts3);
++
++	return IRQ_HANDLED;
++}
++EXPORT_SYMBOL_GPL(wcd_interrupt_callback);
++
+ MODULE_DESCRIPTION("Common Qualcomm WCD Codec helpers driver");
+ MODULE_LICENSE("GPL");
+diff --git a/sound/soc/codecs/wcd-common.h b/sound/soc/codecs/wcd-common.h
+index 0d4e9f8e39f2..d5c156e641fc 100644
+--- a/sound/soc/codecs/wcd-common.h
++++ b/sound/soc/codecs/wcd-common.h
+@@ -37,5 +37,10 @@ struct wcd_common {
+ extern const struct component_ops wcd_sdw_component_ops;
+ int wcd_get_micb_vout_ctl_val(struct device *dev, u32 micb_mv);
+ int wcd_dt_parse_micbias_info(struct wcd_common *common);
++int wcd_update_status(struct sdw_slave *slave, enum sdw_slave_status status);
++int wcd_bus_config(struct sdw_slave *slave, struct sdw_bus_params *params);
++int wcd_interrupt_callback(struct sdw_slave *slave, struct irq_domain *slave_irq,
++		unsigned int wcd_intr_status0, unsigned int wcd_intr_status1,
++		unsigned int wcd_intr_status2);
+ 
+ #endif /* __WCD_COMMON_H__  */
+diff --git a/sound/soc/codecs/wcd937x-sdw.c b/sound/soc/codecs/wcd937x-sdw.c
+index 59c353cafd31..1878d67e3fa1 100644
+--- a/sound/soc/codecs/wcd937x-sdw.c
++++ b/sound/soc/codecs/wcd937x-sdw.c
+@@ -112,19 +112,6 @@ int wcd937x_sdw_hw_params(struct wcd937x_sdw_priv *wcd,
+ }
+ EXPORT_SYMBOL_GPL(wcd937x_sdw_hw_params);
+ 
+-static int wcd9370_update_status(struct sdw_slave *slave, enum sdw_slave_status status)
+-{
+-	struct wcd937x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
+-
+-	if (wcd->regmap && status == SDW_SLAVE_ATTACHED) {
+-		/* Write out any cached changes that happened between probe and attach */
+-		regcache_cache_only(wcd->regmap, false);
+-		return regcache_sync(wcd->regmap);
+-	}
+-
+-	return 0;
+-}
+-
+ /*
+  * Handle Soundwire out-of-band interrupt event by triggering
+  * the first irq of the slave_irq irq domain, which then will
+@@ -135,18 +122,9 @@ static int wcd9370_interrupt_callback(struct sdw_slave *slave,
+ 				      struct sdw_slave_intr_status *status)
+ {
+ 	struct wcd937x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
+-	struct irq_domain *slave_irq = wcd->slave_irq;
+-	u32 sts1, sts2, sts3;
+-
+-	do {
+-		handle_nested_irq(irq_find_mapping(slave_irq, 0));
+-		regmap_read(wcd->regmap, WCD937X_DIGITAL_INTR_STATUS_0, &sts1);
+-		regmap_read(wcd->regmap, WCD937X_DIGITAL_INTR_STATUS_1, &sts2);
+-		regmap_read(wcd->regmap, WCD937X_DIGITAL_INTR_STATUS_2, &sts3);
+-
+-	} while (sts1 || sts2 || sts3);
+ 
+-	return IRQ_HANDLED;
++	return wcd_interrupt_callback(slave, wcd->slave_irq, WCD937X_DIGITAL_INTR_STATUS_0,
++				WCD937X_DIGITAL_INTR_STATUS_1, WCD937X_DIGITAL_INTR_STATUS_2);
+ }
+ 
+ static const struct reg_default wcd937x_defaults[] = {
+@@ -979,7 +957,7 @@ static const struct regmap_config wcd937x_regmap_config = {
+ };
+ 
+ static const struct sdw_slave_ops wcd9370_slave_ops = {
+-	.update_status = wcd9370_update_status,
++	.update_status = wcd_update_status,
+ 	.interrupt_callback = wcd9370_interrupt_callback,
+ };
+ 
+diff --git a/sound/soc/codecs/wcd938x-sdw.c b/sound/soc/codecs/wcd938x-sdw.c
+index 92714aef09d5..add907cb2706 100644
+--- a/sound/soc/codecs/wcd938x-sdw.c
++++ b/sound/soc/codecs/wcd938x-sdw.c
+@@ -20,8 +20,6 @@
+ #include "wcd938x.h"
+ #include "wcd-common.h"
+ 
+-#define SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(m) (0xE0 + 0x10 * (m))
+-
+ static const struct wcd_sdw_ch_info wcd938x_sdw_rx_ch_info[] = {
+ 	WCD_SDW_CH(WCD938X_HPH_L, WCD938X_HPH_PORT, BIT(0)),
+ 	WCD_SDW_CH(WCD938X_HPH_R, WCD938X_HPH_PORT, BIT(1)),
+@@ -142,44 +140,13 @@ int wcd938x_sdw_set_sdw_stream(struct wcd938x_sdw_priv *wcd,
+ }
+ EXPORT_SYMBOL_GPL(wcd938x_sdw_set_sdw_stream);
+ 
+-static int wcd9380_update_status(struct sdw_slave *slave,
+-				 enum sdw_slave_status status)
+-{
+-	struct wcd938x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
+-
+-	if (wcd->regmap && (status == SDW_SLAVE_ATTACHED)) {
+-		/* Write out any cached changes that happened between probe and attach */
+-		regcache_cache_only(wcd->regmap, false);
+-		return regcache_sync(wcd->regmap);
+-	}
+-
+-	return 0;
+-}
+-
+-static int wcd9380_bus_config(struct sdw_slave *slave,
+-			      struct sdw_bus_params *params)
+-{
+-	sdw_write(slave, SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(params->next_bank),  0x01);
+-
+-	return 0;
+-}
+-
+ static int wcd9380_interrupt_callback(struct sdw_slave *slave,
+ 				      struct sdw_slave_intr_status *status)
+ {
+ 	struct wcd938x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
+-	struct irq_domain *slave_irq = wcd->slave_irq;
+-	u32 sts1, sts2, sts3;
+-
+-	do {
+-		handle_nested_irq(irq_find_mapping(slave_irq, 0));
+-		regmap_read(wcd->regmap, WCD938X_DIGITAL_INTR_STATUS_0, &sts1);
+-		regmap_read(wcd->regmap, WCD938X_DIGITAL_INTR_STATUS_1, &sts2);
+-		regmap_read(wcd->regmap, WCD938X_DIGITAL_INTR_STATUS_2, &sts3);
+-
+-	} while (sts1 || sts2 || sts3);
+ 
+-	return IRQ_HANDLED;
++	return wcd_interrupt_callback(slave, wcd->slave_irq, WCD938X_DIGITAL_INTR_STATUS_0,
++				WCD938X_DIGITAL_INTR_STATUS_1, WCD938X_DIGITAL_INTR_STATUS_2);
+ }
+ 
+ static const struct reg_default wcd938x_defaults[] = {
+@@ -1177,9 +1144,9 @@ static const struct regmap_config wcd938x_regmap_config = {
+ };
+ 
+ static const struct sdw_slave_ops wcd9380_slave_ops = {
+-	.update_status = wcd9380_update_status,
++	.update_status = wcd_update_status,
+ 	.interrupt_callback = wcd9380_interrupt_callback,
+-	.bus_config = wcd9380_bus_config,
++	.bus_config = wcd_bus_config,
+ };
+ 
+ static int wcd9380_probe(struct sdw_slave *pdev,
 diff --git a/sound/soc/codecs/wcd939x-sdw.c b/sound/soc/codecs/wcd939x-sdw.c
-index 6aecad2a28aa..38da706d80be 100644
+index 38da706d80be..d369100a2457 100644
 --- a/sound/soc/codecs/wcd939x-sdw.c
 +++ b/sound/soc/codecs/wcd939x-sdw.c
-@@ -187,15 +187,6 @@ int wcd939x_sdw_set_sdw_stream(struct wcd939x_sdw_priv *wcd,
+@@ -22,8 +22,6 @@
+ #include "wcd939x.h"
+ #include "wcd-common.h"
+ 
+-#define SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(m) (0xE0 + 0x10 * (m))
+-
+ static const struct wcd_sdw_ch_info wcd939x_sdw_rx_ch_info[] = {
+ 	WCD_SDW_CH(WCD939X_HPH_L, WCD939X_HPH_PORT, BIT(0)),
+ 	WCD_SDW_CH(WCD939X_HPH_R, WCD939X_HPH_PORT, BIT(1)),
+@@ -187,29 +185,6 @@ int wcd939x_sdw_set_sdw_stream(struct wcd939x_sdw_priv *wcd,
  }
  EXPORT_SYMBOL_GPL(wcd939x_sdw_set_sdw_stream);
  
--struct regmap *wcd939x_swr_get_regmap(struct wcd939x_sdw_priv *wcd)
+-static int wcd9390_update_status(struct sdw_slave *slave,
+-				 enum sdw_slave_status status)
 -{
--	if (wcd->regmap)
--		return wcd->regmap;
+-	struct wcd939x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
 -
--	return ERR_PTR(-EINVAL);
+-	if (wcd->regmap && status == SDW_SLAVE_ATTACHED) {
+-		/* Write out any cached changes that happened between probe and attach */
+-		regcache_cache_only(wcd->regmap, false);
+-		return regcache_sync(wcd->regmap);
+-	}
+-
+-	return 0;
 -}
--EXPORT_SYMBOL_GPL(wcd939x_swr_get_regmap);
 -
- static int wcd9390_update_status(struct sdw_slave *slave,
- 				 enum sdw_slave_status status)
+-static int wcd9390_bus_config(struct sdw_slave *slave,
+-			      struct sdw_bus_params *params)
+-{
+-	sdw_write(slave, SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(params->next_bank),
+-		  0x01);
+-
+-	return 0;
+-}
+-
+ /*
+  * Handle Soundwire out-of-band interrupt event by triggering
+  * the first irq of the slave_irq irq domain, which then will
+@@ -220,18 +195,9 @@ static int wcd9390_interrupt_callback(struct sdw_slave *slave,
+ 				      struct sdw_slave_intr_status *status)
  {
-diff --git a/sound/soc/codecs/wcd939x.c b/sound/soc/codecs/wcd939x.c
-index a414cd99b946..e74e6f013131 100644
---- a/sound/soc/codecs/wcd939x.c
-+++ b/sound/soc/codecs/wcd939x.c
-@@ -3374,10 +3374,10 @@ static int wcd939x_bind(struct device *dev)
- 	}
- 
- 	/* Get regmap from TX SoundWire device */
--	wcd939x->regmap = wcd939x_swr_get_regmap(wcd939x->sdw_priv[AIF1_CAP]);
--	if (IS_ERR(wcd939x->regmap)) {
-+	wcd939x->regmap = wcd939x->sdw_priv[AIF1_CAP]->regmap;
-+	if (!wcd939x->regmap) {
- 		dev_err(dev, "could not get TX device regmap\n");
--		ret = PTR_ERR(wcd939x->regmap);
-+		ret = -ENODEV;
- 		goto err_remove_rx_link;
- 	}
- 
-diff --git a/sound/soc/codecs/wcd939x.h b/sound/soc/codecs/wcd939x.h
-index ca6353222ea0..6bd2366587a8 100644
---- a/sound/soc/codecs/wcd939x.h
-+++ b/sound/soc/codecs/wcd939x.h
-@@ -918,8 +918,6 @@ int wcd939x_sdw_hw_params(struct wcd939x_sdw_priv *wcd,
- 			  struct snd_pcm_substream *substream,
- 			  struct snd_pcm_hw_params *params,
- 			  struct snd_soc_dai *dai);
+ 	struct wcd939x_sdw_priv *wcd = dev_get_drvdata(&slave->dev);
+-	struct irq_domain *slave_irq = wcd->slave_irq;
+-	u32 sts1, sts2, sts3;
 -
--struct regmap *wcd939x_swr_get_regmap(struct wcd939x_sdw_priv *wcd);
- #else
+-	do {
+-		handle_nested_irq(irq_find_mapping(slave_irq, 0));
+-		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_0, &sts1);
+-		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_1, &sts2);
+-		regmap_read(wcd->regmap, WCD939X_DIGITAL_INTR_STATUS_2, &sts3);
+-
+-	} while (sts1 || sts2 || sts3);
  
- static inline int wcd939x_sdw_free(struct wcd939x_sdw_priv *wcd,
-@@ -944,10 +942,6 @@ static inline int wcd939x_sdw_hw_params(struct wcd939x_sdw_priv *wcd,
- 	return -EOPNOTSUPP;
+-	return IRQ_HANDLED;
++	return wcd_interrupt_callback(slave, wcd->slave_irq, WCD939X_DIGITAL_INTR_STATUS_0,
++			WCD939X_DIGITAL_INTR_STATUS_1, WCD939X_DIGITAL_INTR_STATUS_2);
  }
  
--struct regmap *wcd939x_swr_get_regmap(struct wcd939x_sdw_priv *wcd)
--{
--	return PTR_ERR(-EINVAL);
--}
- #endif /* CONFIG_SND_SOC_WCD939X_SDW */
+ static const struct reg_default wcd939x_defaults[] = {
+@@ -1364,9 +1330,9 @@ static const struct regmap_config wcd939x_regmap_config = {
+ };
  
- #endif /* __WCD939X_H__ */
+ static const struct sdw_slave_ops wcd9390_slave_ops = {
+-	.update_status = wcd9390_update_status,
++	.update_status = wcd_update_status,
+ 	.interrupt_callback = wcd9390_interrupt_callback,
+-	.bus_config = wcd9390_bus_config,
++	.bus_config = wcd_bus_config,
+ };
+ 
+ static int wcd9390_probe(struct sdw_slave *pdev, const struct sdw_device_id *id)
 -- 
 2.50.0
 
