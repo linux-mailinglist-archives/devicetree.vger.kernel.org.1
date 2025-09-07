@@ -1,97 +1,115 @@
-Return-Path: <devicetree+bounces-213938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC7EEB478C1
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 05:17:46 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id CEF32B478E0
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 06:24:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6BD833C6F93
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 03:17:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CE32D1881B18
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 04:25:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AF091A0728;
-	Sun,  7 Sep 2025 03:17:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E89D61B6CE9;
+	Sun,  7 Sep 2025 04:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="jrWfrwVv"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DaYVfPm+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E58F35950;
-	Sun,  7 Sep 2025 03:17:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D43E15B135;
+	Sun,  7 Sep 2025 04:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757215062; cv=none; b=NmrfWGf+Fa202kIjXeqbSMRv2mzbdc1XnyXDy3Sh5EPBHGqCVXGps4iaFfLFp52VrzXO0l98NSp71D01ecPZte5UkNYhe5M7bzos/dxPOC1ngjAahIL0WpNW92uBnJMGWOxJ5+JbRYh/GFbPSRPQF7IzcHZ2T19mySe/txWTdC8=
+	t=1757219093; cv=none; b=RPNJJ8n1QZvGJM/rOERY8HWAxdc4ZYLB/EwIkxpMlumZbR9Elvyu8ON1suiXFoCFCaIspS5jaavaj+2krwxPZ0AqFfxrZi6vdJG4p1x16iHIHxuiKnMjxcL5hnJ3EXY/kFMT5sASPEhwa8VWYWlLogAFWlaFylnyfRxKojQD+IU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757215062; c=relaxed/simple;
-	bh=LhDHTlcfR1jGlZto3p6JzzhQfbrunIuTuGNvuvqpJWo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VTpFUji+qbHe+WxbTpreuHRFdmi0V6BeNVsGm+oNb8Thxtdw7NFCp2QPDk6yeom+OxpJzgGHfniGJvOwVekknmI+ge/8TgKiCjF1JJXKyKgWu8UIGD8gRFbILjwDyEZrfb6QCBLhIvmLjO5oigQx6DortiBH0r/dWlgz2bYEToI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=jrWfrwVv; arc=none smtp.client-ip=178.21.23.139
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
-Received: from mail01.disroot.lan (localhost [127.0.0.1])
-	by disroot.org (Postfix) with ESMTP id 7772D20E83;
-	Sun,  7 Sep 2025 05:17:38 +0200 (CEST)
-X-Virus-Scanned: SPAM Filter at disroot.org
-Received: from layka.disroot.org ([127.0.0.1])
- by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
- id 8t3ZYEGffzYV; Sun,  7 Sep 2025 05:17:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
-	t=1757215057; bh=LhDHTlcfR1jGlZto3p6JzzhQfbrunIuTuGNvuvqpJWo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To;
-	b=jrWfrwVvsp5VR5ASaKQCO0jC+3CL6AoWx6zFsTPONS1ul+pILsdE6xQfe5oHrOgbg
-	 yNKw6gCy8+kBwGl9bVE+U6elHWFtNqJzjhtOrYeePFNhEK+oP2k8PgiY6ypUxAWnqL
-	 Eqbr7JmA89v3x1q0pS3inbCvfvHYKpA/jXN3nRRn7Ckmc9upfw+O5STwWo2sbLB1Ym
-	 FZ6IdAQZcCQHM/yYjLWtI12ugh2CJoLdVDsnHfXOhgVK+Vg5pVwdt9GYe3v/SiWyRw
-	 pZWZh2C+CuNlqz8Xbs4ZntgGi5S0EtHpuQsPrnrrIlA6flrLkblWWq+hfl3rlZxhT8
-	 WSKXzQqrsmMDQ==
-Date: Sun, 7 Sep 2025 03:17:26 +0000
-From: Yao Zi <ziyao@disroot.org>
-To: Xukai Wang <kingxukai@zohomail.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
-Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Troy Mitchell <TroyMitchell988@gmail.com>
-Subject: Re: [PATCH v8 2/3] clk: canaan: Add clock driver for Canaan K230
-Message-ID: <aLz5RsjBoi0KVGSJ@pie>
-References: <20250905-b4-k230-clk-v8-0-96caa02d5428@zohomail.com>
- <20250905-b4-k230-clk-v8-2-96caa02d5428@zohomail.com>
- <aLz4Q7LZFEfQQGUj@pie>
+	s=arc-20240116; t=1757219093; c=relaxed/simple;
+	bh=0N3eVpXC/D+64gQoRgXv87xuIkiqUUOVzPZ3VCpIvuY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Al6/+CctuPZirmGgo6VBhub0qgM9oQus590XDdnGE4VxoTQE2omeRdSs+uZ/A6vbyv2xcpjRbTYnfpPAh+rvkZc2r6+uyGAYh+TNiLYXuyxAprqn6VMgeDJ5hgfApKnnCYajvp1Kiog3OUfrMvspk919cjwBsI/D2nFVYGTkXXA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DaYVfPm+; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-6188b5ae1e8so4186115a12.0;
+        Sat, 06 Sep 2025 21:24:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757219090; x=1757823890; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0s9c0ZHAHeIpOChkyK+9eSA8/gCyG1mdkJBEoUW9B2w=;
+        b=DaYVfPm+D+/Q+8x43QR0bKiEOiQB47sZM9Ncy0bljmLRpjbw2QocZnJlFDnsxER24/
+         gvKoS0TYqVeT7DlIkc72cN+K2XknaoKEPmnTApHk6xvmgAJ/Aaqbs8aTYSO/vLZ88wc5
+         ttUvDFDHHnnHd2M/U7QJsUtWDhBq3FVhwiR6a4TqE/z5BUxR+F5jt3SGpVW/P9rJwWqc
+         1mXS2p4+wj3wckj62u6lw8a8ymEk05A63ONh6mvH14S6uUXut+qPumKMriZt8/Dff5E2
+         OMLynU7l4v6FQnxFGtyiWGa98NaqfcVkG/h6jUhzFdyMr7wZ83wxFK6ASgef5Jmy7V+V
+         A/yA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757219090; x=1757823890;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0s9c0ZHAHeIpOChkyK+9eSA8/gCyG1mdkJBEoUW9B2w=;
+        b=XxvXlhAU/RhuyaFQpqdfODTkfidxdgkMamLIJJpqVDHlgX8fXlF/KbtcmzsdPFrAxu
+         ESD0OWKhIG4yszIVJDXsRyA/se7X+RUAAqa6RYI5X/f0G4lnLfVircS3mF1WUZniW8ic
+         S7xTPe1IVpUFicPACDikK0E84OvivNII3zcbSDzxa9E1kboA++i7KIHQj1GaGyH4fNzX
+         Tw1hL7Wh6lIiLfg4wvNFwXbBf8WmMjS7GaT72y1ILb7FVd152loDHzE7UnYOKEi+tWA7
+         g7RzmhmGfqRuQnPqwH8FsDECFG8KmmeFLclXlhPnLdx5VsBlR4A7VPpxPoe4Vg7DYGrD
+         zX+g==
+X-Forwarded-Encrypted: i=1; AJvYcCUSRHLGnNezAPhBfPI9h0QQNcpXo0lusrSc2UZvwZUAhwyot4owLK3NKn3b+w/NfZ96Ln08CZyP2174kTU=@vger.kernel.org, AJvYcCVdRYbDQYaynYB1ygZa9BoqX77rs98BUvmZgUpBsPqqqaBH1XeXBYMFYKGNhmmaYIw53mP8ImBenGPEL2wL@vger.kernel.org, AJvYcCX/jpHHao6o9QbUjXHup8mEmjTRqAeE8/y9Sk68v8g7DjEIkvst1P6A6w49uQMbETBZMWwzLBP99BUA@vger.kernel.org, AJvYcCXiP3LI7iSI0fuCNGTyLMoeJsaiBzl/kifOkS+rIJctlaM082e1Ssfz880be6YZdVUGD9GjjFFSUasz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyOfLZpYRQfNgaKN2MR8bw7Trg6HyYF4Lwx/vTzURC9GTYvIYhl
+	hYI9IEFz2iR3qfZIxhDGc3tkn8lgCLbO37G1xIE19wehVQQI4PiCToq6s29YiJZ+4xoc51MJ+GE
+	ECbnTFWcvVVCyvHx9dkQhA3KRDFmYjg==
+X-Gm-Gg: ASbGnctvulmbS9QWNgUuso1TjffFhrixD/CY9qx/iPoLLYd4wxJ0lBAClcJp3G1Cjjq
+	dpralwlKOsSjBb/vgmT3XKrxj+y9YtXUe24kKELZhfFzgFcEZeQVUJj1T5nNNxO2Sa3gKcXTjAp
+	deTpncLMhuam05yQEkV0Nx0PicfLLxBM59gJObq629438JCgWHATOaT1znVp+ziumSMlbb5tp+H
+	MlDlh6AAjUcM6B86Q==
+X-Google-Smtp-Source: AGHT+IGHfzcKiP9Te6PV3++IHvHUNAnAgu1e+fJM2ndSNvGKC0p8DoYdOnCCeRjEh31MMs7uRSn5elSnp8Bv187xwik=
+X-Received: by 2002:a05:6402:5189:b0:618:afa:70f7 with SMTP id
+ 4fb4d7f45d1cf-623778cd7d6mr3269218a12.12.1757219090367; Sat, 06 Sep 2025
+ 21:24:50 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aLz4Q7LZFEfQQGUj@pie>
+References: <20250904-hwmon-tps23861-add-class-restrictions-v3-0-b4e33e6d066c@gmail.com>
+ <20250904-hwmon-tps23861-add-class-restrictions-v3-1-b4e33e6d066c@gmail.com>
+ <20250905-deft-porcelain-teal-a3bdbf@kuoka> <CAAcybutsMdXmqrA6kG9L5OTP9ZPyLzYrXTGUGLAkWs5+MH9ifA@mail.gmail.com>
+ <9bd7beeb-0c11-4502-9d45-c85a0744ec82@kernel.org>
+In-Reply-To: <9bd7beeb-0c11-4502-9d45-c85a0744ec82@kernel.org>
+From: Gregory Fuchedgi <gfuchedgi@gmail.com>
+Date: Sat, 6 Sep 2025 21:24:14 -0700
+X-Gm-Features: AS18NWDyPgLCv7A7pvEren2ZJOSldFGXKh0s7fPVFLju_aNfFwxB2N-5d-Af1ro
+Message-ID: <CAAcybusLMg+jCY5esvLgwkyRCu2Ma5Ph2+QFJsuCvTqJu0UssQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: hwmon: update TI TPS23861 with
+ per-port schema
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Robert Marko <robert.marko@sartura.hr>, Luka Perkov <luka.perkov@sartura.hr>, 
+	Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, Jonathan Corbet <corbet@lwn.net>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 07, 2025 at 03:13:07AM +0000, Yao Zi wrote:
-> > +struct k230_clk_rate_self {
-> > +	struct clk_hw	hw;
-> > +	void __iomem	*reg;
-> > +	bool		read_only;
-> 
-> Isn't a read-only multiplier, divider or something capable of both a
-> simple fixed-factor hardware? If so please switch to the existing clock
-> hardware, instead of introducing a field in description of rate clocks.
-> 
-> It's worth noting that you've already had at least one fixed-rate clock
-> (shrm_sram_div2).
-
-It should be "fixed-factor" clock instead of "fixed-rate" clock, sorry
-for the typo.
-
-Regards,
-Yao Zi
+On Sat, Sep 6, 2025 at 12:19=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel.or=
+g> wrote:
+> On 05/09/2025 19:22, Gregory Fuchedgi wrote:
+> > On Fri, Sep 5, 2025 at 1:10=E2=80=AFAM Krzysztof Kozlowski <krzk@kernel=
+.org> wrote:
+> >> On Thu, Sep 04, 2025 at 10:33:44AM -0700, Gregory Fuchedgi wrote:
+> >> What's the meaning of values? There are no other generic properties li=
+ke
+>
+> Where is context here? To which part was I replying / commenting on?
+>
+> You are not making the process easy. I receive a lot of emails and have
+> no clue what this refers to.
+You were asking about meaning of ti,class property values,
+commenting on this piece:
+> +      ti,class:
+> +        description: The maximum power class a port should accept.
 
