@@ -1,190 +1,144 @@
-Return-Path: <devicetree+bounces-214045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA69CB48078
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:49:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BE1EBB48098
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 00:04:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 905F23C1140
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 21:49:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C8E631B2117D
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 22:05:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F5E21DF75D;
-	Sun,  7 Sep 2025 21:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 021F41D31B9;
+	Sun,  7 Sep 2025 22:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fmeGUa4y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qJAy5heZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3A6E1C6A3;
-	Sun,  7 Sep 2025 21:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4CBC12B73;
+	Sun,  7 Sep 2025 22:04:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757281746; cv=none; b=OKJ7/KXnXSLHbAgHRR9fTAS1Rdw9ftvxW1hTC9KJr/WwrV5H0VyfVtCvqf/PuAa4Q8yxfC3S1bpdQpku6yY3g1Y7mTln6mpCL1swASqb1EAr4WQBcBDUIS7JDDZ3etV84mlI/RdQykwyDqf9gec1nNiHmoO/F+ngovpyVI0DD+I=
+	t=1757282675; cv=none; b=B/ObQi80/gyt3R4K4M7qeKwjGlWuHZLpt2I0Q5Y62W34Hdll0nSM4C3qHrXx8eLSHTr/BaPQmBQaugEUVXuWhf337B2VIXUn5o+fmWE01poWsW9Bf0VsyaVK5d0FX2pKubEJVo/bs32lWku0pMkJs8/P6cSAD3VAvhOIUumLzB8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757281746; c=relaxed/simple;
-	bh=sBpcJdvU4hr21gPuRrNNUuZM+z/vPr52Ok8sj+wwd/s=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tF57yisC2WDHGgwGOyszCC341e51ViC22+ly+jAvn3cNsKOyi6mCQJCOnvGnFVqehkjQ2CVVFCgzjk/DT6pLjEbftav4BET5swXT1Yl29chZ9het35/liDQW+m9lRQ62fSHin7BFkMxHs7eWb6AAxF1cR/XhnI9YBW6pSKrzkAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fmeGUa4y; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45de287cc11so2938415e9.1;
-        Sun, 07 Sep 2025 14:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757281743; x=1757886543; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/Ge3mYYvanFf7VDYY5E620z5tgjBKFtjXT61OFvHXIQ=;
-        b=fmeGUa4yRhAFWdZkAi1YILMNghvYj5lzQ/jkFZDX1Q4vRFXpXGzTAYZzVc+z3LFZZm
-         qY8XttrPagC4R1L9oqWIBla20UjySgfCWPEMm2Ce40Q3Voax4DYrmWg/+SMX+WuGNDUD
-         aJ3ErFuB4++IoUw2yu9aL0ip6y8+fvIs9QD+n4vgiFt0Yk9wpTcMmOZMF38tjjoJ8tZS
-         GuNOK4clGebptR5iNx66uIuOszcrRH22s+VmK1/s5F6bsbcHBZa6MQxappwOoO3MoqCf
-         blNkUjLijHQvaxYnkkepC+0ABfhmKICL2FAtEEqU+3N/4Gd+0oj22VfGDgViAVJCt4zY
-         rEDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757281743; x=1757886543;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/Ge3mYYvanFf7VDYY5E620z5tgjBKFtjXT61OFvHXIQ=;
-        b=cLDkw4YB5PDs6zj9TDt86VFQmzsXaSer6VXIJz5GpKnqEbvz0xm1OprUFCqCw5Jci7
-         M2A8PiYqDquQVQ2DCnCo4jTXxtZogFjB+BBbt36Tses86p1FC7TWTr6JatzCEA3YYJzs
-         DLMgyo+PiAhqMwDQ2aFuV+dRPTkKc7hYfqV1PgtOqPi78iUKdqHkwo/uQMYRMntS9Z1X
-         nbD+oRkU9NArfY2RZQ7NP8ZAbjXaQ1i7On4Sx0beOQedlXWsB+KKEn1BLrC2pzKeh+dV
-         9foQEqSv6bUudIQTte+Od03ntZFd75Z3Q5AqmvFRouZNb2nMRqDGIe1VEG5KDKvMCXxV
-         RdqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUmq2AUgJ4Kxlm97lQpNMZvPn7O1cRu6ylREyRDnj5MtHjUnzqQCvzBoUWPFbEN8f+unRPIkj9jbHeNXFc1@vger.kernel.org, AJvYcCV6C39yAhJM3l7LG+tmeEOh1t5VCUZvk5V/rXXMmyfHo/HYyXhUxCPgclPbTLgW/szdV1qDyjSL2Jje@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx2/HUmCgH/wIkP6k4kVSELMHVcU6+KVbnzoGio+ZbS/I44QhRa
-	RXPufqzFr4AWbloyvgR9J3gSvSrebBTzBUCP849VIG8IuVN2RWfv2860cV+Tig==
-X-Gm-Gg: ASbGncvRVry83blsS67b9JHXgFmS+z3+aKwpGiVzNe8GhUhfRo5fxedyGe4F8DdELjT
-	CP8CB9uDoJ2yGqvVMM/DEpAXUCIuYQsB7xiAUzEGxCnrbvTUWLTwjcjCEepedkjtXozksoPARao
-	RO/liKtFx5CI+Wcj9ZjtkE0hPOsrPR/KiaXGhlK07PsCFOQl1Gw6FmaCSieGTJPJ8RPx9UZ02Lw
-	7mqVztDDVukyUxqfrOhiP3uEbo2wHPKr9Qg7zJYxGD/wOlPfMNx9E8J1ITODoPnd+2vgYDmmqSx
-	jpQJxqqjgi9HydtFzy91w0r350RPzrMXTgkenYuU0PSOeQ+fQGA1n7Bo1PlwZn5Wj+plbyLxe2q
-	7Zw71a25nKsbTJz8yEQv2WIowDMe2UV/dR02jmqRU2EwWqYDzMOLOELcq0iiHfmRn8/COW3bpxI
-	hOWN8=
-X-Google-Smtp-Source: AGHT+IGART8ckw/rGELA8KyB0cRV6LrY2FgEDmT8Z5h84zUWqCDLhM/f15gaQqI7S91xWlrnlxLxAg==
-X-Received: by 2002:a05:6000:310f:b0:3e0:63dc:913c with SMTP id ffacd0b85a97d-3e2ffd7fb5emr8835207f8f.3.1757281742745;
-        Sun, 07 Sep 2025 14:49:02 -0700 (PDT)
-Received: from ?IPV6:2001:861:3385:e20:6384:4cf:52c5:3194? ([2001:861:3385:e20:6384:4cf:52c5:3194])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45ddf1765e8sm70766305e9.22.2025.09.07.14.49.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 07 Sep 2025 14:49:02 -0700 (PDT)
-Message-ID: <bdfef146-9daf-4f95-9314-f41e7352cbb3@gmail.com>
-Date: Sun, 7 Sep 2025 23:49:01 +0200
+	s=arc-20240116; t=1757282675; c=relaxed/simple;
+	bh=9+FmzHBVrcCtqXllvP6hTlSCZ5CvZZym/HB8c4kj5mE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nl+s1yWuJc6AeWgY3I8mRJxsvXFyBrQCXxbbccX+ly2d701WLx3pWXq/A8bS/52hEC7EclpML7qPoLerEbTfEFiaEOwizM/7VxDHDC2RRBp0h/wnFlxpbkimBhvZNH73HVjmZAxqMKIrxitExfLgVWBIX8UQAmX8KOPbolzJr/M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qJAy5heZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 613E4C4CEF1;
+	Sun,  7 Sep 2025 22:04:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757282675;
+	bh=9+FmzHBVrcCtqXllvP6hTlSCZ5CvZZym/HB8c4kj5mE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=qJAy5heZ+J2njbyzPp9qajGXEkOjrzO+tomqM6qu1/9IoCGa9j+fba7HJLiyn0iG+
+	 n03OXTnvLOftPuiLUXUhDO8BbL+hgNLEdsE/P4aLBX8kqRI5aZfh0R2vY5hFQxLxdm
+	 v4Yd5LwPNI5zwyODc1KX2AfMszTFmyd0Z43hO/wGZewk74i+iQ8fbcfQB7BzHEotiE
+	 UKhYfRmtim3NmPNtbNdXChu1HblICDvLrEyKvfOUKRQU83LMJuAJspRxaa554MNG8G
+	 XppQhnoSwiQWuk+KlSNmMgzeTCYP9oQyJr2/k6yjCeSNq6V6L7Y8kEOClghqtqZJ8N
+	 wKBj5Qcdaqq+w==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 4B03ECA1013;
+	Sun,  7 Sep 2025 22:04:35 +0000 (UTC)
+From: =?utf-8?q?Andr=C3=A9_Apitzsch_via_B4_Relay?= <devnull+git.apitzsch.eu@kernel.org>
+Subject: [PATCH 0/4] Add CAMSS support for MSM8939
+Date: Mon, 08 Sep 2025 00:04:14 +0200
+Message-Id: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] ARM: sti: drop B2120 board support
-To: Rob Herring <robh@kernel.org>
-Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Patrice Chotard <patrice.chotard@foss.st.com>,
- Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20250714-sti-rework-v2-0-f4274920858b@gmail.com>
- <20250714-sti-rework-v2-1-f4274920858b@gmail.com>
- <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
-Content-Language: en-US, fr
-From: =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
-In-Reply-To: <CAL_JsqJ0ckZ529gm781uF52yR3-gj2ctHR11hUK=4q8_Eq65EQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAF4BvmgC/23OSw7CIBCA4asY1mIYcLC48h7GBeVRSVQMGFLT9
+ O7SxkVNXf6TzDczkOxScJkcNwNJroQc4qMGbDfEXPWjczTY2oQzjgzhQI2+50ybXiha2uCpOqD
+ 32IAC1ZC69UzOh34Wz5fa15BfMb3nAwWm6dfibGUVoIxq4MZKxqT26nTX4RbjLqaOTFjhSwDXA
+ K+AtMKiQe33KFeAWADizweiAt4osIBti/YXGMfxA/StPzgxAQAA
+X-Change-ID: 20250517-camss-8x39-vbif-975ff5819198
+To: Robert Foss <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, 
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Vincent Knecht <vincent.knecht@mailoo.org>, 
+ =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757282673; l=2310;
+ i=git@apitzsch.eu; s=20240325; h=from:subject:message-id;
+ bh=9+FmzHBVrcCtqXllvP6hTlSCZ5CvZZym/HB8c4kj5mE=;
+ b=sdrcJ3hmiqBjErZCuxj8R0+8gYYznFsn/UaMWjBactkUePKhr9bgMpGrsog5PwVLNWYRdbi7M
+ D2RLjHQ5hEmBgr4AfURmHK3x+otqq8amfVKoreTakUBvC4GTqTLlrgI
+X-Developer-Key: i=git@apitzsch.eu; a=ed25519;
+ pk=wxovcZRfvNYBMcTw4QFFtNEP4qv39gnBfnfyImXZxiU=
+X-Endpoint-Received: by B4 Relay for git@apitzsch.eu/20240325 with
+ auth_id=142
+X-Original-From: =?utf-8?q?Andr=C3=A9_Apitzsch?= <git@apitzsch.eu>
+Reply-To: git@apitzsch.eu
 
+(This series resumes [1].)
 
+This series adds CAMSS support for MSM8939.  It's mostly identical to
+MSM8916, except for some clocks and an additional CSI.
 
-Le 05/09/2025 à 01:37, Rob Herring a écrit :
-> On Mon, Jul 14, 2025 at 8:54 AM Raphael Gallais-Pou
-> <rgallaispou@gmail.com> wrote:
->>
->> B2120 boards are internal boards which never were commercialised.
->>
->> Drop them.
->>
->> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
->> ---
->>   arch/arm/boot/dts/st/Makefile           |   2 -
->>   arch/arm/boot/dts/st/stih407-b2120.dts  |  27 -----
->>   arch/arm/boot/dts/st/stih407.dtsi       | 145 ----------------------
->>   arch/arm/boot/dts/st/stih410-b2120.dts  |  66 ----------
->>   arch/arm/boot/dts/st/stihxxx-b2120.dtsi | 206 --------------------------------
->>   5 files changed, 446 deletions(-)
->>
->> diff --git a/arch/arm/boot/dts/st/Makefile b/arch/arm/boot/dts/st/Makefile
->> index cc9948b9870f7f73629573149bfd342af75b07da..f57fc6dc48a00c9a9323b4508e5e4e161b197c47 100644
->> --- a/arch/arm/boot/dts/st/Makefile
->> +++ b/arch/arm/boot/dts/st/Makefile
->> @@ -13,8 +13,6 @@ dtb-$(CONFIG_ARCH_SPEAR3XX) += \
->>   dtb-$(CONFIG_ARCH_SPEAR6XX) += \
->>          spear600-evb.dtb
->>   dtb-$(CONFIG_ARCH_STI) += \
->> -       stih407-b2120.dtb \
->> -       stih410-b2120.dtb \
->>          stih410-b2260.dtb \
->>          stih418-b2199.dtb \
->>          stih418-b2264.dtb
->> diff --git a/arch/arm/boot/dts/st/stih407-b2120.dts b/arch/arm/boot/dts/st/stih407-b2120.dts
->> deleted file mode 100644
->> index 9c79982ee7ba8fadb1a2a92e732bf7f652b74c38..0000000000000000000000000000000000000000
->> --- a/arch/arm/boot/dts/st/stih407-b2120.dts
->> +++ /dev/null
->> @@ -1,27 +0,0 @@
->> -// SPDX-License-Identifier: GPL-2.0-only
->> -/*
->> - * Copyright (C) 2014 STMicroelectronics (R&D) Limited.
->> - * Author: Giuseppe Cavallaro <peppe.cavallaro@st.com>
->> - */
->> -/dts-v1/;
->> -#include "stih407.dtsi"
->> -#include "stihxxx-b2120.dtsi"
->> -/ {
->> -       model = "STiH407 B2120";
->> -       compatible = "st,stih407-b2120", "st,stih407";
->> -
->> -       chosen {
->> -               stdout-path = &sbc_serial0;
->> -       };
->> -
->> -       memory@40000000 {
->> -               device_type = "memory";
->> -               reg = <0x40000000 0x80000000>;
->> -       };
->> -
->> -       aliases {
->> -               serial0 = &sbc_serial0;
->> -               ethernet0 = &ethernet0;
->> -       };
->> -
->> -};
->> diff --git a/arch/arm/boot/dts/st/stih407.dtsi b/arch/arm/boot/dts/st/stih407.dtsi
->> deleted file mode 100644
->> index aca43d2bdaad44ef2a0e8a120c679c217709af44..0000000000000000000000000000000000000000
->> --- a/arch/arm/boot/dts/st/stih407.dtsi
->> +++ /dev/null
->> @@ -1,145 +0,0 @@
->> -// SPDX-License-Identifier: GPL-2.0-only
->> -/*
->> - * Copyright (C) 2015 STMicroelectronics Limited.
->> - * Author: Gabriel Fernandez <gabriel.fernandez@linaro.org>
->> - */
->> -#include "stih407-clock.dtsi"
-> 
-> Looks like this file is unused now too and can be removed.
-Good catch, I missed this one, and it seems also that several 
-compatibles within the file won't be used either.
+To fix black stripes across sensor output, and garbage in CSID TPG
+output, 2 VFE VBIF register settings are needed.  So the 2nd patch adds
+helper functions to do just that.
 
-I'll fix this promptly, thanks.
+Patch 1: documents qcom,msm8939-camss DT bindings
+Patch 2: adds helper for VFE VBIF settings
+Patch 3: adds CAMSS_8x39 version in CAMSS driver
+Patch 4: adds camss and cci in msm8939.dtsi
+
+Changes compared to [1]:
+- Move bindings patch to the beginning
+- Make the order of {reg, clock, interrupt} items the same as in 8916 +
+  append additional items
+- Drop R-b tags from bindings and dts patches as order of items was
+  changed
+
+[1] https://lore.kernel.org/all/20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org/
+
+Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+[André: Apply reviewer comments]
+Signed-off-by: André Apitzsch <git@apitzsch.eu>
+---
+Vincent Knecht (4):
+      media: dt-bindings: Add qcom,msm8939-camss
+      media: qcom: camss: vfe: Add VBIF setting support
+      media: qcom: camss: Add support for MSM8939
+      arm64: dts: qcom: msm8939: Add camss and cci
+
+ .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+ arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+ drivers/media/platform/qcom/camss/Makefile         |   1 +
+ drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+ drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+ drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
+ drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+ drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+ drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+ drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+ drivers/media/platform/qcom/camss/camss.h          |   1 +
+ 13 files changed, 645 insertions(+), 2 deletions(-)
+---
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+change-id: 20250517-camss-8x39-vbif-975ff5819198
 
 Best regards,
-Raphaël>
-> Rob
+-- 
+André Apitzsch <git@apitzsch.eu>
+
 
 
