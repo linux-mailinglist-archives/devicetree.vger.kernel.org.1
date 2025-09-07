@@ -1,144 +1,137 @@
-Return-Path: <devicetree+bounces-214034-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F04EDB48021
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 22:56:23 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B032AB48034
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:22:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 875A17AACCB
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 20:54:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690DF179B5C
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 21:22:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A885621579F;
-	Sun,  7 Sep 2025 20:56:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919451EB193;
+	Sun,  7 Sep 2025 21:22:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="VB6JSZ9e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEL+PdIo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA9D414D29B;
-	Sun,  7 Sep 2025 20:56:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC01315D34;
+	Sun,  7 Sep 2025 21:22:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757278575; cv=none; b=dDvz2tGosagUI2vk7G+pLZ9hXbR4yZXtm/if5vW4hlGsK4bQggxq45BRh4YRVFXmX6sTfo1Kk8sS+4gJkaWaoyL0G4hj1SVj0GNlhfl2hb5g7S12lLFikUhgCtPp/+eu2PJy9IuUIQfOemvFdZI2Cp20eEa58a7lUqLkMrGZWV0=
+	t=1757280164; cv=none; b=LWHRQAIoaWwZJwD7fgNxnOKAYmbxjcCc3YnQxwQmr9F493HXuuqbq+4QFyt62xvVnv7f17sQk0vXyHqsOWrZgXCpxZV1T4dVHpbBIzqCwe2YaWqIRAXq6i+hLEUGWW6ytrPTS1bVa4YOGjbFQXJHTtMcQPobdcHzbh3m3jx51wc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757278575; c=relaxed/simple;
-	bh=6P0HgZbw4HXtenDT6y2xs8u/qk5v4ufWtF4mxqooHm8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JlCDlxMWsKncELd1pC7QEy615FUKjwuoXyCxR0uLR8Qk00gJV4VP4tdPT4KM3Mb47rccc1l+QFUUI+KMcBznqNYZIOr6BS/7uo5UCaFT54LJSfEV2JJTFmtiE0YGOooOK93oM9XOf659dEZ6VGdznNPo1RgFJ/caB6O8zZNhPB4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=VB6JSZ9e; arc=none smtp.client-ip=209.85.208.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-625e1dfc43dso1875092a12.1;
-        Sun, 07 Sep 2025 13:56:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757278572; x=1757883372; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0zZEheeM1rUpP8ZGVFjjiK4EdwdbE8pDt0S3/UybYHU=;
-        b=VB6JSZ9eQ4t9WzvTZXBRS9rDNEJMY7IltFagPHwk7oCnHf8vekUpYJDwoJ8BRqSo/b
-         8INrWT73CFI4uoOZ13hUzNpenn86re4XIkNfkj9a4ioIKVKY7RqmWfdnJofaaggmTFzN
-         DqBWKpjDOqc1b8hE+ua0YjE0eTmJhtQGuaKX5+ZCRuBAdkhF/wQMzCNt8pt2uVvPZ5Bo
-         rgGfI9e9H8dzOMwYDV5T4oRZg3WPtOSTGS3Gb7kSi9mfyQ7/Zapt0ZnHV5RFaEAa/nnG
-         EEb0YA9IiXbAbmq+Tz3TRGV7XkI0Mljt0Sm7+hHK/0elHv5wTYAXrGhjtKU9xQ9r/Qmp
-         qt5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757278572; x=1757883372;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0zZEheeM1rUpP8ZGVFjjiK4EdwdbE8pDt0S3/UybYHU=;
-        b=HHDYgIA8ywBSyndyXzo7+MyGuLhrQtEL0ESerNLlXIvSuLJ/6Ibh6kl9P3MveDTp1M
-         J16bI6XT8nR4LgFylCgABk97D88pIOYsRdRvl2U5k3zFtwGvcp+Oo9hnudYpRKBTan0B
-         ZyTN8Lil9CYH+rwDQ9DZ7/JbxtxufVP3jALaRpsfoNpVGPSVs/M3ME1asYL+LmGbgoYE
-         KN6OHGE+YGplCkDBs+394t1KUMtOPqaEk3XWt9z+WveDjmoaJ33fCV5z/XAo9393X+eU
-         YE4+F0vzrt8s4z/n1Ffxy03WvpbJVhKGsOHPFofVuxtMbvX0voEBotzppvVQV57Zy/Ez
-         g38A==
-X-Forwarded-Encrypted: i=1; AJvYcCUyXq0uU/JaV6aHLLabbU+XQtkHAsrGlH7rLGIgKRFM0/+F6nP5BiEht+19YMCKlQ4kiZQ9xE5qu9Cr@vger.kernel.org, AJvYcCVYInka3IBUvSN1ZopzeaOSp2S0ckLOXE8HeJAyUKJ803cR7MYcJAYN01IrBfm2jPyXzk0JnBLBKG+4TC+V@vger.kernel.org, AJvYcCW4Lrdhvfa/Z70vDXzeC15+WK8ebxbD/QxPgHuK097Q+QE83LaeeUe5lTNq/vzqInQ1OW0SNx+2b9Dq@vger.kernel.org, AJvYcCXcdvv/qsZQwCDJEVcbV2YyWDX89DyzCJtQUEWfQYFcvwzhtNVxowazveXy2t4+mbjbq8yJw5sI6zMP8A==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxdrTK8ZjjoI5Igg+peEXyKqfuTNSFfaG4uoWcLHQYwJS3NsLCY
-	yFe5S/4IYYiVKeBwKO4clcND65ZsTKsQwNBoBjpmga/k1M/A7voHgK6DlwZ8WI/qVHaaFhGtN87
-	t0NBy7HEYrb1jMw45j2+WSmamgzhdNjc=
-X-Gm-Gg: ASbGncubwwC+cAFMnK06ypAiVC1LYXYUzDFeINX4m0du0liQiZ/0Zea6TT8djJ+wvpv
-	shQJGaGdoAYTXOw5MXhEvPjEesvyuCMCYFYqcwEDt5RCtzB6HuZMnSXPo8XS0Ow02KCoAYln8Ah
-	133R6ZZ0GnQ3r55N/IL2OHvbdD0TfIiuTSYBx0BztykE4gdTwYpmBb/8vC15iaAT5M/j/CTYb5y
-	jatsLE/dNMrADYL2Q==
-X-Google-Smtp-Source: AGHT+IG2cAHaNzeA2PPUEo6E90wAox3EQpXy6vAMOvdMI6HFpRD5lFQmKjzj246bI+rwMmB4f+CnhxohPl4jX9hXxGE=
-X-Received: by 2002:a17:907:d94:b0:afe:db34:d769 with SMTP id
- a640c23a62f3a-b04b140d092mr551593766b.18.1757278572085; Sun, 07 Sep 2025
- 13:56:12 -0700 (PDT)
+	s=arc-20240116; t=1757280164; c=relaxed/simple;
+	bh=t9HIVRPnwgJW2cubUjvw5PGKnZO96ShQ03t+AzJLGDg=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=m87HFGeIWLHp58qgZhTDdNsQgVNIdjmkUaRSKrGLnO/TMj3Ced3wwHKSfizSa6IV6KiRZMQRgOShEu0rBWqEYfVLJieJHMgDEySn5ZxxBH+nP5NGOqJaEm8whEcs6vOINNWxev2L2EKjVcOaF3aYqjeerZuRCm15CvZxucq2e10=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEL+PdIo; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3E9C4CEF0;
+	Sun,  7 Sep 2025 21:22:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757280163;
+	bh=t9HIVRPnwgJW2cubUjvw5PGKnZO96ShQ03t+AzJLGDg=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=oEL+PdIo2ehovjG6K6MjFoPtnNHxLOudO98iwpAaeQSV+TtWoXlwy+AZz4uL92/c/
+	 G1NMp6FEc66BopbtJuIClunNCnsJy48N7fJojMzjO4GxdOaO1aJ0+aL9GlPIyUxXig
+	 YWPR9/kfmdINrFvauBKjBRswhU43QckK8DTZMAFWt0Is2c/JMWXXPkYSHtNutAE/IU
+	 jdTE9xm9SdYHuXvwvSP7L9WqwBVKfjqSWtv+waQvjuBzXqLKq+kykmOYhacL3OD16g
+	 FS08JYob7byXo2NbR0BgZkOFJq3B4tiLFTZw9hJPVUU0ZNKQvwfp6kO7wHnGYhqSBn
+	 mZ7XS3TWVcYbw==
+Date: Sun, 7 Sep 2025 16:22:42 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: manivannan.sadhasivam@oss.qualcomm.com
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
+	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
+	Brian Norris <briannorris@chromium.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH v2 2/5] PCI/pwrctrl: Move pci_pwrctrl_init() before
+ turning ON the supplies
+Message-ID: <20250907212242.GA1398560@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <cover.1757053456.git.mazziesaccount@gmail.com>
- <3cc1faffcb4f71f0755b6192f193acecd36bea67.1757053456.git.mazziesaccount@gmail.com>
- <20250907124207.2fe64214@jic23-huawei>
-In-Reply-To: <20250907124207.2fe64214@jic23-huawei>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Sun, 7 Sep 2025 23:55:35 +0300
-X-Gm-Features: Ac12FXxb44-QyBlIfiDXLWTvbl0eO5yLXHfNVS4oRrwPF2pu7aYj4Q6saPNfw5E
-Message-ID: <CAHp75VeaHFDDZDmc9xsbUxZbRgkipRtcSdXN=ZXL2+V2OvL=Mw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] iio: adc: Support ROHM BD79112 ADC/GPIO
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Matti Vaittinen <mazziesaccount@gmail.com>, 
-	Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>, David Lechner <dlechner@baylibre.com>, 
-	=?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
-	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Linus Walleij <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
-	Marcelo Schmitt <marcelo.schmitt@analog.com>, 
-	Javier Carrasco <javier.carrasco.cruz@gmail.com>, 
-	Tobias Sperling <tobias.sperling@softing.com>, Antoniu Miclaus <antoniu.miclaus@analog.com>, 
-	Trevor Gamblin <tgamblin@baylibre.com>, Esteban Blanc <eblanc@baylibre.com>, 
-	Ramona Alexandra Nechita <ramona.nechita@analog.com>, Hans de Goede <hansg@kernel.org>, 
-	Herve Codina <herve.codina@bootlin.com>, Alisa-Dariana Roman <alisadariana@gmail.com>, 
-	linux-iio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250903-pci-pwrctrl-perst-v2-2-2d461ed0e061@oss.qualcomm.com>
 
-On Sun, Sep 7, 2025 at 2:42=E2=80=AFPM Jonathan Cameron <jic23@kernel.org> =
-wrote:
-> On Fri, 5 Sep 2025 09:42:31 +0300
-> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
+On Wed, Sep 03, 2025 at 12:43:24PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
+> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> 
+> To allow pwrctrl core to parse the generic resources such as PERST# GPIO
+> before turning on the supplies.
 
-...
+Can we expand this a little bit?  Which function does that parsing,
+for example?  pci_pwrctrl_init() itself doesn't do any of that, so the
+connection isn't obious.
 
-> > +/* ADC channels as named in the data-sheet */
-> > +static const char * const bd79112_chan_names[] =3D {
-> > +     "AGIO0A", "AGIO1A", "AGIO2A", "AGIO3A", "AGIO4A",       /* 0 - 4 =
-*/
-> > +     "AGIO5A", "AGIO6A", "AGIO7A", "AGIO8A", "AGIO9A",       /* 5 - 9 =
-*/
-> > +     "AGIO10A", "AGIO11A", "AGIO12A", "AGIO13A", "AGIO14A",  /* 10 - 1=
-4 */
-> > +     "AGIO15A", "AGIO0B", "AGIO1B", "AGIO2B", "AGIO3B",      /* 15 - 1=
-9 */
-> > +     "AGIO4B", "AGIO5B", "AGIO6B", "AGIO7B", "AGIO8B",       /* 20 - 2=
-4 */
-> > +     "AGIO9B", "AGIO10B", "AGIO11B", "AGIO12B", "AGIO13B",   /* 25 - 2=
-9 */
-> > +     "AGIO14B", "AGIO15B",                                   /* 30 - 3=
-1 */
-> > +};
->
-> > +     /* Let's assign data-sheet names to channels */
-> Not seeing any value in this comment given the code that follows.
-> Probably drop it
-
-It was my suggestion. I don't know if you noticed that the amount of
-the values is *not* power-of-two and it's harder to find a needed
-value in the list. Moreover, you can read the discussion back and find
-that actually it was a mistake in the list, which can be avoided (or
-chances of which will be minimized) in the first place if we see the
-comments.
-
---=20
-With Best Regards,
-Andy Shevchenko
+> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
+> ---
+>  drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c | 4 ++--
+>  drivers/pci/pwrctrl/slot.c               | 4 ++--
+>  2 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c b/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
+> index 4e664e7b8dd23f592c0392efbf6728fc5bf9093f..b65955adc7bd44030593e8c49d60db0f39b03d03 100644
+> --- a/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
+> +++ b/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
+> @@ -80,6 +80,8 @@ static int pci_pwrctrl_pwrseq_probe(struct platform_device *pdev)
+>  	if (!data)
+>  		return -ENOMEM;
+>  
+> +	pci_pwrctrl_init(&data->ctx, dev);
+> +
+>  	data->pwrseq = devm_pwrseq_get(dev, pdata->target);
+>  	if (IS_ERR(data->pwrseq))
+>  		return dev_err_probe(dev, PTR_ERR(data->pwrseq),
+> @@ -95,8 +97,6 @@ static int pci_pwrctrl_pwrseq_probe(struct platform_device *pdev)
+>  	if (ret)
+>  		return ret;
+>  
+> -	pci_pwrctrl_init(&data->ctx, dev);
+> -
+>  	ret = devm_pci_pwrctrl_device_set_ready(dev, &data->ctx);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret,
+> diff --git a/drivers/pci/pwrctrl/slot.c b/drivers/pci/pwrctrl/slot.c
+> index 6e138310b45b9f7e930b6814e0a24f7111d25fee..b68406a6b027e4d9f853e86d4340e0ab267b6126 100644
+> --- a/drivers/pci/pwrctrl/slot.c
+> +++ b/drivers/pci/pwrctrl/slot.c
+> @@ -38,6 +38,8 @@ static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
+>  	if (!slot)
+>  		return -ENOMEM;
+>  
+> +	pci_pwrctrl_init(&slot->ctx, dev);
+> +
+>  	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
+>  					&slot->supplies);
+>  	if (ret < 0) {
+> @@ -63,8 +65,6 @@ static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
+>  				     "Failed to enable slot clock\n");
+>  	}
+>  
+> -	pci_pwrctrl_init(&slot->ctx, dev);
+> -
+>  	ret = devm_pci_pwrctrl_device_set_ready(dev, &slot->ctx);
+>  	if (ret)
+>  		return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
+> 
+> -- 
+> 2.45.2
+> 
+> 
 
