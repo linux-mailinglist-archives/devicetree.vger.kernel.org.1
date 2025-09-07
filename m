@@ -1,68 +1,66 @@
-Return-Path: <devicetree+bounces-214021-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87B1FB47C92
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 19:30:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B81D1B47C91
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 19:30:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4112D3B2C88
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 17:30:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B84E81888B88
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 17:30:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738BE27B320;
-	Sun,  7 Sep 2025 17:30:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9978C1A23B1;
+	Sun,  7 Sep 2025 17:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="m9KSs/W2"
+	dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b="G0idjGkb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE8901DE3DB;
-	Sun,  7 Sep 2025 17:30:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B49EA1DE3DB
+	for <devicetree@vger.kernel.org>; Sun,  7 Sep 2025 17:30:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757266233; cv=none; b=Xwb1DaP91ZKgnojxQ/37Sqx3VPiuxnTuA17/Vd2Y9TgSTcAHCUVoqTBneHmjBYljMBMiRSfKAwHIooHFxXwVSVceoS2s2JsmVkdca4Y92LZNC56dCePd8RIPb36ZtXFFUPkbSGoosRox8JFPrYTeBOHib5DvicUO+/fQOw9CGHY=
+	t=1757266228; cv=none; b=FrLGwG7Z3RLihHV2R89g1TWqaFGyAPA4zm038qySOryzVBp2Zo6uGVcyXmHdnlAuWd1J9RCeOGM0MYlVQE9uAmiGf1X003y363IyrQaHQ02NC4sG/I26qyMZva+WLE0V5+fYbuJvNz6q8Tv03ZzN03KLnCFkEz3QBgVuyh3moDE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757266233; c=relaxed/simple;
-	bh=fgLTMyaCQ0OcK8llm4szDxgZbA432B7hXXzTNC9FQ6E=;
+	s=arc-20240116; t=1757266228; c=relaxed/simple;
+	bh=Kn07NaaFqaWAS5RVqwfZNL30c0L1m2i8tX1oVllroyg=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=McQgZp/2FH/GmazE1TXc+TTtEh8oKOFJwZrSEdlu7Ona7lOObXskGLcdR7V0/DPIa6WpNJKTrifvPeOTG6ZcwXNGxmMH0sv5rdish7zPf+GLGCp8+wFYyp1vizCdSFvPZAs8ZW5a40t7tjDuK+iR/aPCnsqK4tvB/YtZK8QcwLc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=m9KSs/W2; arc=none smtp.client-ip=185.11.138.130
+	 MIME-Version:Content-Type; b=pFcnIn5XKuD6CBPDF+FsSXV67BFJXvhwZeyrGAQI/br4dcaNec6qSRTUUF8fPFolP71tSc2q2v1FPdtHqE8SqZcVIP0tZ7CT5p7DUmJ+OReJikha7MFQ7LhQjNjy8FT96r9K9k6gl91dk8IPq78dYA4t/GOHVyxVOSdi8F55XjU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; dkim=pass (2048-bit key) header.d=sntech.de header.i=@sntech.de header.b=G0idjGkb; arc=none smtp.client-ip=185.11.138.130
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=sntech.de;
 	s=gloria202408; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
 	References:In-Reply-To:Message-ID:Date:Subject:Cc:To:From:Reply-To;
-	bh=VFuG/8nZb4eVJ5UiKdHvsABqzXbNy5nmmF5KkQCHiw0=; b=m9KSs/W2ZV6YVhiXV1ECPX2vKD
-	+o2h8UUPBOWVMzKw2GAnPbEBfcduwFTekGW1MigwFNoLfpCVWSYS50tJEDGcD3VyJbEnmSYaPX/vq
-	pH4IgmXZ+DvmN/7+iyG/oYOvunyxtxONYXABQ8tBCOO2b3YxI6frJvBkyRn761u3LBUsKCpviyoMb
-	L7xoMdCbhOgSOsX4bQFfnIlVPozUaRDxOKXrQs7dGsmWg6HODDw2mQr3TYw9PWPaAbAny4r9+8FrV
-	DoRIcZYrp4K7yB7pOwGQCcKDpy0L3X7CYzVZO6MsNszer68gFbp9ja7PEhMNowPPNNHlEtKDq4xkV
-	EVyr/V7Q==;
+	bh=nmQllN2pDw8NXAbKMZpYQ4Kj+bbL5tYdmA6gAXvP1Kw=; b=G0idjGkbwbq6im9iS0jIsINwRj
+	y30L1G7MTUyr5KSI5JzrP1ieKW3hs979GPPFohd4fGA9ROaNa7ZV9scjmBHoJd634Mo9oqrtTKuiH
+	J2tHF2A5lbRhaCgEi0essNw4XpHR8Ea4xWNxOQztjhKlgRHqtu4ybFDqk/NK5ooXVp5bk6poL7PvF
+	4gQNA1SSlKR1ou2Lhw2odab4GjazaSo/X9fMxBfxiwg+fw2vcqGw09C7nJfML1R60sViTViHBCsR1
+	e107BnMuJ03h5j+MGdfeO/RYGG+6DCqr+aiEqsVtNBwpjpnc4jg3ERSRfie8muGPP8G5QTnWsj76+
+	k46Z/1Xg==;
 Received: from [61.8.147.163] (helo=localhost.localdomain)
 	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
 	(envelope-from <heiko@sntech.de>)
-	id 1uvJDa-0004Ii-UM; Sun, 07 Sep 2025 19:30:23 +0200
+	id 1uvJDb-0004Ii-OF; Sun, 07 Sep 2025 19:30:23 +0200
 From: Heiko Stuebner <heiko@sntech.de>
-To: Chukun Pan <amadeus@jmu.edu.cn>
+To: Jimmy Hon <honyuenkwun@gmail.com>
 Cc: Heiko Stuebner <heiko@sntech.de>,
-	Yao Zi <ziyao@disroot.org>,
+	Cenk Uluisik <cenk.uluisik@googlemail.com>,
 	Rob Herring <robh@kernel.org>,
-	Jonas Karlman <jonas@kwiboo.se>,
-	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
-Date: Sun,  7 Sep 2025 19:30:09 +0200
-Message-ID: <175726620393.195224.5931454450160072348.b4-ty@sntech.de>
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Fix the headphone detection on the orangepi 5
+Date: Sun,  7 Sep 2025 19:30:10 +0200
+Message-ID: <175726620394.195224.4863527121598491124.b4-ty@sntech.de>
 X-Mailer: git-send-email 2.47.2
-In-Reply-To: <20250801080025.558935-1-amadeus@jmu.edu.cn>
-References: <20250801080025.558935-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20250904030150.986042-1-honyuenkwun@gmail.com>
+References: <20250904030150.986042-1-honyuenkwun@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,20 +71,20 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 01 Aug 2025 16:00:24 +0800, Chukun Pan wrote:
-> By default, the CPUs on RK3528 operates at 1.5GHz. Add CPU frequency and
-> voltage mapping to the device tree to enable dynamic scaling via cpufreq.
+On Thu, 04 Sep 2025 03:01:50 +0000, Jimmy Hon wrote:
+> The logic of the headphone detect pin seems to be inverted, with this
+> change headphones actually output sound when plugged in.
 > 
-> The OPP values come from downstream 5.10 kernel, using a voltage close to
-> the actual frequency. Frequencies below 1200MHz have been removed as they
-> currently use the same voltage.
+> Does not need workaround of using pin-switches to enable output.
+> 
+> Verified by checking /sys/kernel/debug/gpio.
 > 
 > [...]
 
 Applied, thanks!
 
-[1/1] arm64: dts: rockchip: rk3528: Add CPU frequency scaling support
-      commit: 42bbc32c7e9e974ae4eb830ae1381cb016133e5c
+[1/1] arm64: dts: rockchip: Fix the headphone detection on the orangepi 5
+      commit: 0f860eef417df93eb0ae70bbfa8d26cb7e29244d
 
 Best regards,
 -- 
