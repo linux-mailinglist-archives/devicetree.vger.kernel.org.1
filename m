@@ -1,137 +1,149 @@
-Return-Path: <devicetree+bounces-214035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214036-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B032AB48034
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:22:49 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C69BB48045
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 23:34:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 690DF179B5C
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 21:22:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3EFF57A3410
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 21:32:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 919451EB193;
-	Sun,  7 Sep 2025 21:22:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 64F1D21B196;
+	Sun,  7 Sep 2025 21:34:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oEL+PdIo"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ps4NRlwZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f42.google.com (mail-qv1-f42.google.com [209.85.219.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CC01315D34;
-	Sun,  7 Sep 2025 21:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7513315D34;
+	Sun,  7 Sep 2025 21:34:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757280164; cv=none; b=LWHRQAIoaWwZJwD7fgNxnOKAYmbxjcCc3YnQxwQmr9F493HXuuqbq+4QFyt62xvVnv7f17sQk0vXyHqsOWrZgXCpxZV1T4dVHpbBIzqCwe2YaWqIRAXq6i+hLEUGWW6ytrPTS1bVa4YOGjbFQXJHTtMcQPobdcHzbh3m3jx51wc=
+	t=1757280855; cv=none; b=TUEFaL8xAx2QLtoNuaVCK2rMj/YbJVB0cr/+9ZBqnTUmr8tGK3p0+ZPSl7tdKjSz2/jPHh+EC96uW73ozIPWGXaU5bX+376h/kuyGlRkGshfD6PVc4Cr6L76zUYRFJzGG511+e0VmNjCPN3GTMBfmVlpZjCzO4XwK02gRzcA9B4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757280164; c=relaxed/simple;
-	bh=t9HIVRPnwgJW2cubUjvw5PGKnZO96ShQ03t+AzJLGDg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=m87HFGeIWLHp58qgZhTDdNsQgVNIdjmkUaRSKrGLnO/TMj3Ced3wwHKSfizSa6IV6KiRZMQRgOShEu0rBWqEYfVLJieJHMgDEySn5ZxxBH+nP5NGOqJaEm8whEcs6vOINNWxev2L2EKjVcOaF3aYqjeerZuRCm15CvZxucq2e10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oEL+PdIo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9F3E9C4CEF0;
-	Sun,  7 Sep 2025 21:22:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757280163;
-	bh=t9HIVRPnwgJW2cubUjvw5PGKnZO96ShQ03t+AzJLGDg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=oEL+PdIo2ehovjG6K6MjFoPtnNHxLOudO98iwpAaeQSV+TtWoXlwy+AZz4uL92/c/
-	 G1NMp6FEc66BopbtJuIClunNCnsJy48N7fJojMzjO4GxdOaO1aJ0+aL9GlPIyUxXig
-	 YWPR9/kfmdINrFvauBKjBRswhU43QckK8DTZMAFWt0Is2c/JMWXXPkYSHtNutAE/IU
-	 jdTE9xm9SdYHuXvwvSP7L9WqwBVKfjqSWtv+waQvjuBzXqLKq+kykmOYhacL3OD16g
-	 FS08JYob7byXo2NbR0BgZkOFJq3B4tiLFTZw9hJPVUU0ZNKQvwfp6kO7wHnGYhqSBn
-	 mZ7XS3TWVcYbw==
-Date: Sun, 7 Sep 2025 16:22:42 -0500
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: manivannan.sadhasivam@oss.qualcomm.com
-Cc: Manivannan Sadhasivam <mani@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Saravana Kannan <saravanak@google.com>, linux-pci@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>,
-	Brian Norris <briannorris@chromium.org>,
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH v2 2/5] PCI/pwrctrl: Move pci_pwrctrl_init() before
- turning ON the supplies
-Message-ID: <20250907212242.GA1398560@bhelgaas>
+	s=arc-20240116; t=1757280855; c=relaxed/simple;
+	bh=qjSX1+MoG33BAIPxSwZgmmm9PAPIWHsGmHS5ZkL4/AI=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=nxEixvjCJOlSiSD/MihJ09DcV+3EiugIWMwCOdNT+0KsX/mjtMd6GMVDwO9E07f1MEmiq1VWVUg6p8ZxHjPY2ewPWt6mwIOUPeKIc+Iy9GBpFvHer4uPEeD3QWYbaCiOuQy41Ga3IwnkhRsEh4RvT160Bwur6pCymgK+QH8Qnns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ps4NRlwZ; arc=none smtp.client-ip=209.85.219.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qv1-f42.google.com with SMTP id 6a1803df08f44-7222f8f2b44so34003046d6.2;
+        Sun, 07 Sep 2025 14:34:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757280851; x=1757885651; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=uAYcMOHgP8dzrRCqSWqHz21ZqOya4M26f6YLrK42GGU=;
+        b=Ps4NRlwZhcHko9lxf8PZjOLGPaKyCMzhLDsRBpdffiDSz0+FDGUEhxxOqDL+PggIjl
+         DJzO5KmYcPuYiGb52c+GYU/55wOsI5ls5U4hi0v3r+K7vOVFdFq5eh7FT5G9W5iqu2ZZ
+         VjK2tTbNllN6pXrWrmK+nK53lCRlsy7upgMwHYd53VcHy8LW2CzCt2EQZQzt6xbiXEjB
+         n59/ZlV4P+ZurSsMRJTzyhY5bpLeMXN0hRQ5hAuvmBbc6+26VPQPDdc88rOwPE1wlLFf
+         StJS4dPoWRkKKrQ4Vs3UWauOBcAl3/C8F48ownNby28LwKs5e7E8fqcDN/iJyWCy+IK7
+         sSAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757280851; x=1757885651;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uAYcMOHgP8dzrRCqSWqHz21ZqOya4M26f6YLrK42GGU=;
+        b=R9gSw6QO+Z6+e9DZcshxZ4GljHpod78haKcsnWxoCNw/bdhlFu7IS39T8ScEEXC5HM
+         ijzcWpBAMnUvNTgLBrEFJvRcPA08qwZ0jP9VDfVP0n3IoVAnkSSMUbRqty9ChIwCCoav
+         ElL0BhgZqxcv3fHODiroK5kV6UPoLN6VIjV8E5UfEv+vR9LYriV2BvoP2Lp0D19gVHPt
+         37W5+38HQNPy2R6u7HeD9s2wVduP0VC7P3Siu8XsdlZ3XIM+m8K+71SmM5/bvCrzUH8A
+         iSqXdGoiWX1CVz6/pfyhwyiCQFfFc1qRPlofHEKdYwTIqxBORONKynUIQZr193USal6o
+         bwdQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVnE9nspIF22lsw/yxNZ+xQaKycchC3xHG8iCwm36QXOCwZwV/FjOVmie8AFqstCFE6qKu31XTMTWnXbHB7Ewj6JE0=@vger.kernel.org, AJvYcCW6jxfd0oaPqofNH3EN6a2teLmZ/DvlFVy1qsmEFIKfGqWuTBx2BqouQ8/4AIT5AkmTNUUxjBaAK6mKs9xz@vger.kernel.org, AJvYcCWU/xbwRBll7L1W5h+IW4e5kaOWl2cW1cIQkDQn/kHIEQgzIahJ25r0eYPRkogYJps6LTlXnzi1EwOk9ypO@vger.kernel.org, AJvYcCXROEM729xPCnq3EUzXIF6Zws6yPDo2iJA7dMcwQp1qr5b6B0pvnYxi1f10jckB3icysGorg57saTY=@vger.kernel.org
+X-Gm-Message-State: AOJu0YyWrZK5Roy4vAi0OwNWl5sIgtCPtS6onPaVumcBR2ZxdTAK8iSK
+	cueEqrGeIQ6uIYJbkbQ0RVwpwNZHVFF3o7BFrLLkfi3aupVLol/vx7i8XECgFpJE
+X-Gm-Gg: ASbGncvnDloP5I0RNJXXNRH00PzJhmH8qk4CDMzP9C02LiCnSm7lqE1Cor4nGZU1NSA
+	MClywE05dvZaA1DomBedL6Sod/Op6SVWn27wrbO1q4290CwyPO3Kpiv5ZqW2KlDK4Y/g5Ct3JJs
+	nNFZ8DcRh7WTB0MD+9n6MhvK2yXHAwfGe4N9jUsMvM1+whm7kPZxTmv+ydei4/CqayFKNiW4hRB
+	UmMg7p/NPwD+Q8mwnWlJuZwPVbgQaQ5IfwT0kSqNIXnEclN6Xchv0kkVZOZPCiXq8M/WmriTo5B
+	OoEe/g8G0/0svdpH/54Q5RPZwK9Qz55iP5jPnXseSgst76UbPNFjPHBEHMB+8tk8WkhpIQQXbeb
+	TjIlPOsMCjHIuaAqcwy7lUgA9Kfi3jAgiHrNHjl7wJw==
+X-Google-Smtp-Source: AGHT+IGuZkEOOo9P/4LuWTMMM8+83KFMkIZI+a8A8P22ll3sk7nlM2ZrZnCuedhaJdnefckXJka6DA==
+X-Received: by 2002:a05:6214:19ca:b0:70d:f76c:b218 with SMTP id 6a1803df08f44-7393950f865mr73376806d6.31.1757280851300;
+        Sun, 07 Sep 2025 14:34:11 -0700 (PDT)
+Received: from [127.0.0.1] ([135.237.130.226])
+        by smtp.gmail.com with ESMTPSA id 6a1803df08f44-720b46660e5sm108637486d6.45.2025.09.07.14.34.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 07 Sep 2025 14:34:10 -0700 (PDT)
+From: Denzeel Oliva <wachiturroxd150@gmail.com>
+Subject: [PATCH 0/8] arm64: dts: exynos990: Add PERIC0/1 USI, UART and
+ HSI2C support
+Date: Sun, 07 Sep 2025 21:33:56 +0000
+Message-Id: <20250907-perics-add-usinodes-v1-0-ae7600491a7f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250903-pci-pwrctrl-perst-v2-2-2d461ed0e061@oss.qualcomm.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAET6vWgC/x2MwQqAIBAFfyX23IJZEvUr0SHyVXuxcCkC8d+Tj
+ gMzk0gRBUpjlSjiEZUzFGjqitZjCTtYfGGyxjozmJ6v4q/Ki/d8q4TTQ9kB1g2d6Rq0VMorYpP
+ 3v05zzh/8QpkmZQAAAA==
+X-Change-ID: 20250907-perics-add-usinodes-5ee2594041e3
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sam Protsenko <semen.protsenko@linaro.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Jiri Slaby <jirislaby@kernel.org>, Andi Shyti <andi.shyti@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Krzysztof Kozlowski <krzk@kernel.org>, linux-serial@vger.kernel.org, 
+ linux-i2c@vger.kernel.org, Denzeel Oliva <wachiturroxd150@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757280850; l=1485;
+ i=wachiturroxd150@gmail.com; s=20250831; h=from:subject:message-id;
+ bh=qjSX1+MoG33BAIPxSwZgmmm9PAPIWHsGmHS5ZkL4/AI=;
+ b=FPmZCdmoS60rMwEKqLRYEvGn5axehswCuPXciOqsCp1swUWAOnYvUlk+fYTFsloLDowoOiMbW
+ Z4gcQYdsiKfDVZzrY8kvukSiaRpUFrHUsFqhTYgOSuuMP9/9ufpbGcG
+X-Developer-Key: i=wachiturroxd150@gmail.com; a=ed25519;
+ pk=3fZmF8+BzoNPhZuzL19/BkBXzCDwLBPlLqQYILU0U5k=
 
-On Wed, Sep 03, 2025 at 12:43:24PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> From: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> 
-> To allow pwrctrl core to parse the generic resources such as PERST# GPIO
-> before turning on the supplies.
+Hi,
 
-Can we expand this a little bit?  Which function does that parsing,
-for example?  pci_pwrctrl_init() itself doesn't do any of that, so the
-connection isn't obious.
+This series adds device tree support for PERIC0/1 blocks:
 
-> Reviewed-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@oss.qualcomm.com>
-> ---
->  drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c | 4 ++--
->  drivers/pci/pwrctrl/slot.c               | 4 ++--
->  2 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c b/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
-> index 4e664e7b8dd23f592c0392efbf6728fc5bf9093f..b65955adc7bd44030593e8c49d60db0f39b03d03 100644
-> --- a/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
-> +++ b/drivers/pci/pwrctrl/pci-pwrctrl-pwrseq.c
-> @@ -80,6 +80,8 @@ static int pci_pwrctrl_pwrseq_probe(struct platform_device *pdev)
->  	if (!data)
->  		return -ENOMEM;
->  
-> +	pci_pwrctrl_init(&data->ctx, dev);
-> +
->  	data->pwrseq = devm_pwrseq_get(dev, pdata->target);
->  	if (IS_ERR(data->pwrseq))
->  		return dev_err_probe(dev, PTR_ERR(data->pwrseq),
-> @@ -95,8 +97,6 @@ static int pci_pwrctrl_pwrseq_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	pci_pwrctrl_init(&data->ctx, dev);
-> -
->  	ret = devm_pci_pwrctrl_device_set_ready(dev, &data->ctx);
->  	if (ret)
->  		return dev_err_probe(dev, ret,
-> diff --git a/drivers/pci/pwrctrl/slot.c b/drivers/pci/pwrctrl/slot.c
-> index 6e138310b45b9f7e930b6814e0a24f7111d25fee..b68406a6b027e4d9f853e86d4340e0ab267b6126 100644
-> --- a/drivers/pci/pwrctrl/slot.c
-> +++ b/drivers/pci/pwrctrl/slot.c
-> @@ -38,6 +38,8 @@ static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
->  	if (!slot)
->  		return -ENOMEM;
->  
-> +	pci_pwrctrl_init(&slot->ctx, dev);
-> +
->  	ret = of_regulator_bulk_get_all(dev, dev_of_node(dev),
->  					&slot->supplies);
->  	if (ret < 0) {
-> @@ -63,8 +65,6 @@ static int pci_pwrctrl_slot_probe(struct platform_device *pdev)
->  				     "Failed to enable slot clock\n");
->  	}
->  
-> -	pci_pwrctrl_init(&slot->ctx, dev);
-> -
->  	ret = devm_pci_pwrctrl_device_set_ready(dev, &slot->ctx);
->  	if (ret)
->  		return dev_err_probe(dev, ret, "Failed to register pwrctrl driver\n");
-> 
-> -- 
-> 2.45.2
-> 
-> 
+- Add sysreg nodes required for peripheral configuration
+- Add USI, UART and HSI2C controller nodes
+- Update bindings with Exynos990 compatibles
+
+These changes enable serial communication interfaces
+(I2C, UART) for Exynos990 SoC.
+
+Denzeel Oliva
+
+Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
+---
+Denzeel Oliva (8):
+      dt-bindings: soc: samsung: exynos-sysreg: Add Exynos990 PERIC0/1 compatibles
+      arm64: dts: exynos990: Add sysreg nodes for PERIC0 and PERIC1
+      dt-bindings: soc: samsung: Add Exynos990 USI compatible
+      arm64: dts: exynos990: Add USI nodes for PERIC0 and PERIC1
+      dt-bindings: serial: samsung: Add Exynos990 UART compatible
+      arm64: dts: exynos990: Add UART nodes for PERIC0/1
+      dt-bindings: i2c: exynos5: Add exynos990-hsi2c compatible
+      arm64: dts: exynos990: Add HSI2C nodes for PERIC0/1
+
+ .../devicetree/bindings/i2c/i2c-exynos5.yaml       |    1 +
+ .../devicetree/bindings/serial/samsung_uart.yaml   |    1 +
+ .../bindings/soc/samsung/exynos-usi.yaml           |    1 +
+ .../soc/samsung/samsung,exynos-sysreg.yaml         |    4 +
+ arch/arm64/boot/dts/exynos/exynos990.dtsi          | 1423 ++++++++++++++++++++
+ 5 files changed, 1430 insertions(+)
+---
+base-commit: 98ee0e036cfedf543c4728a604fd7870d0000efd
+change-id: 20250907-perics-add-usinodes-5ee2594041e3
+
+Best regards,
+-- 
+Denzeel Oliva <wachiturroxd150@gmail.com>
+
 
