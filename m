@@ -1,83 +1,70 @@
-Return-Path: <devicetree+bounces-213936-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-213937-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DF69B47895
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 03:35:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFE3DB478BD
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 05:13:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id ECD9A188C10E
-	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 01:35:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7121E3C5CA9
+	for <lists+devicetree@lfdr.de>; Sun,  7 Sep 2025 03:13:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 867E818FDBD;
-	Sun,  7 Sep 2025 01:35:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 201EE1B0414;
+	Sun,  7 Sep 2025 03:13:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="dTc7vz3Y"
+	dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b="DthegXUY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from layka.disroot.org (layka.disroot.org [178.21.23.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 355731494A8;
-	Sun,  7 Sep 2025 01:35:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B7C7A1CD0C;
+	Sun,  7 Sep 2025 03:13:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.21.23.139
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757208903; cv=none; b=EuDRIiOS34x+eRG34ed8CWYpYdXpGdtiVtt+ng0dX8UvD0bAX19C7OCHlB4R1Sza/c79Kz+fKuYTpiKGYgCRqkBBoNpuYrBMWylPsZ71YCE4pllS0AOpuCcdc8GxKl2tYrsmGudiXr56k+Az573xXDC4KJNry5PPJ6IpcuXs0f8=
+	t=1757214810; cv=none; b=OahqpHpNGG3l+WBET/M16UxzINneaOpLepZ9Hk+CHN+oN1RmuGzQnVcSbX5Q3QwWyO+meuE3oGhHo2wVGm8fQ6VdO3N7xHWA4xaWHSj8X5kSvdyrzE0QIbxC8T5natpeXXH2+One3YpUhIC1jyWSB90+sDIjMa4mcNKhRzAIWkA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757208903; c=relaxed/simple;
-	bh=UxbxUc/VKm4HHhIR90lpehc8o/Q6VK8OV39QtNoLfwI=;
+	s=arc-20240116; t=1757214810; c=relaxed/simple;
+	bh=WGYsmq2i0xQOy0XvkGdIAuosUYWsc2M6BYcU65RZ73c=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QMkmlHj6GTlGltah8mtr9qIdOcb1FfxGJ6tsyV0Smjr0pwrIJC8p+6SDqXl+rgFsiuCeA70ntU5iB0Z3oHX7ziXqOxfZd0qleE6v09gbrQV/MSjGhAVPh1fcRbHsj2EafsnLF9O/dmA4MIdRvMJ2/je5wmUCcz2GKh19t3xIdc8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=dTc7vz3Y; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757208902; x=1788744902;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=UxbxUc/VKm4HHhIR90lpehc8o/Q6VK8OV39QtNoLfwI=;
-  b=dTc7vz3YSkQiPUiGVW7nHInNWIoQfWqtBdTSeyHrNfb8NJi3kIBl7uPL
-   QDpiYjV0aoj02kOx/MxXrs3AOjB483zXZlcR9V5mIlEEfqWPgQcTtE5p9
-   AjvAl/Fqacsoc5v7YNQIrutoTd0fz0my1FAd9t8RczAY+u/eC3HG7yNHg
-   ryr/ilWLn8ZRTBB2T1+w8KdzD0D6FeCIjHtLYMV7SFbR8vO9TH6vX+Bk1
-   +SeF1fni2GR5zVV6nKn8Jo/ChRtuOqW9OEjFbCn7MAnYW7jt/KTL5h59G
-   fvoxIX068WvIOjlogee6h2QvmFOyyS3avhESNvPTtv0ohVvXqZmoPkUiU
-   A==;
-X-CSE-ConnectionGUID: srYyCidsQLKaqmrHNnzSlg==
-X-CSE-MsgGUID: CL6MSwrrSLCQHPK2bvMmsw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11545"; a="70606768"
-X-IronPort-AV: E=Sophos;i="6.18,245,1751266800"; 
-   d="scan'208";a="70606768"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Sep 2025 18:35:01 -0700
-X-CSE-ConnectionGUID: NKkeqWiNRJC5fZlRCPLjzQ==
-X-CSE-MsgGUID: mfikFJyuTPWoUdUoHfPzeQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,245,1751266800"; 
-   d="scan'208";a="172578636"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by orviesa008.jf.intel.com with ESMTP; 06 Sep 2025 18:34:55 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uv4Iv-0001vP-1L;
-	Sun, 07 Sep 2025 01:34:53 +0000
-Date: Sun, 7 Sep 2025 09:34:05 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
-	michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
-	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-	manion05gk@gmail.com,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V4 2/2] i3c: master: Add AMD I3C bus controller driver
-Message-ID: <202509070943.sSXhFOJV-lkp@intel.com>
-References: <20250905113740.3841181-3-manikanta.guntupalli@amd.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=pUSvaSffNAWD6mktBCl27I8wqRqXiY0n/WqNlkqpwEBet1iwUg7VWY/JtEqAtEK19MJ15m/eCvway09MSASmuMAp5mvDoVE1ZWFtksASk47lIMLsnOMWoo9Ca3vNijB40IYero0axxPZLNf2HqkY/+MwJV5btedRi5L/9y5k24k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org; spf=pass smtp.mailfrom=disroot.org; dkim=pass (2048-bit key) header.d=disroot.org header.i=@disroot.org header.b=DthegXUY; arc=none smtp.client-ip=178.21.23.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=disroot.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=disroot.org
+Received: from mail01.disroot.lan (localhost [127.0.0.1])
+	by disroot.org (Postfix) with ESMTP id B6C4622B77;
+	Sun,  7 Sep 2025 05:13:23 +0200 (CEST)
+X-Virus-Scanned: SPAM Filter at disroot.org
+Received: from layka.disroot.org ([127.0.0.1])
+ by localhost (disroot.org [127.0.0.1]) (amavis, port 10024) with ESMTP
+ id 6xw19dj0dS1S; Sun,  7 Sep 2025 05:13:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=disroot.org; s=mail;
+	t=1757214802; bh=WGYsmq2i0xQOy0XvkGdIAuosUYWsc2M6BYcU65RZ73c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To;
+	b=DthegXUYNDDTki8ApBYAUa2vPhPwXv6SnfUh4XeV6DH+2c7F/Cn2o6Aye4bZbhp4v
+	 5QBsrYe8xKd2l2MQXFnkR+rP98uroXeGRYH65vG9STp7ar568sX4RRKgTPiTId2aw+
+	 YtGJjxWtsQCvRbD7NQLOOrUD/YSYdZHucij07vT+r5NUMz5rqRASBkmUNtX7DuBk98
+	 mP71dke9wy9ceg7WNk2iwbmGPWJtKjTf6sESdafQas9/w22TGVDyfPRw0S9D2vfJTV
+	 4Ird9s1XBEsxZI4iwcaeZK5K9nXgGwRVDlbRBkqoA9FVH1Kwv1YCdNoj9d/x8++K3o
+	 Hh37QYf3VL/yA==
+Date: Sun, 7 Sep 2025 03:13:07 +0000
+From: Yao Zi <ziyao@disroot.org>
+To: Xukai Wang <kingxukai@zohomail.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Conor Dooley <conor@kernel.org>
+Cc: linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+	Samuel Holland <samuel.holland@sifive.com>,
+	Troy Mitchell <TroyMitchell988@gmail.com>
+Subject: Re: [PATCH v8 2/3] clk: canaan: Add clock driver for Canaan K230
+Message-ID: <aLz4Q7LZFEfQQGUj@pie>
+References: <20250905-b4-k230-clk-v8-0-96caa02d5428@zohomail.com>
+ <20250905-b4-k230-clk-v8-2-96caa02d5428@zohomail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,298 +73,286 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250905113740.3841181-3-manikanta.guntupalli@amd.com>
+In-Reply-To: <20250905-b4-k230-clk-v8-2-96caa02d5428@zohomail.com>
 
-Hi Manikanta,
+> On Fri, Sep 05, 2025 at 11:10:23AM +0800, Xukai Wang wrote:
+> This patch provides basic support for the K230 clock, which covers
+> all clocks in K230 SoC.
+> 
+> The clock tree of the K230 SoC consists of a 24MHZ external crystal
+> oscillator, PLLs and an external pulse input for timerX, and their
+> derived clocks.
+> 
+> Co-developed-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> Signed-off-by: Troy Mitchell <TroyMitchell988@gmail.com>
+> Signed-off-by: Xukai Wang <kingxukai@zohomail.com>
+> ---
+>  drivers/clk/Kconfig    |    6 +
+>  drivers/clk/Makefile   |    1 +
+>  drivers/clk/clk-k230.c | 2456 ++++++++++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 2463 insertions(+)
+> 
+> diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
+> index 299bc678ed1b9fcd9110bb8c5937a1bd1ea60e23..b597912607a6cc8eabff459a890a1e7353ef9c1d 100644
+> --- a/drivers/clk/Kconfig
+> +++ b/drivers/clk/Kconfig
+> @@ -464,6 +464,12 @@ config COMMON_CLK_K210
+>  	help
+>  	  Support for the Canaan Kendryte K210 RISC-V SoC clocks.
+>  
+> +config COMMON_CLK_K230
+> +	bool "Clock driver for the Canaan Kendryte K230 SoC"
+> +	depends on ARCH_CANAAN || COMPILE_TEST
+> +	help
+> +	  Support for the Canaan Kendryte K230 RISC-V SoC clocks.
+> +
+>  config COMMON_CLK_SP7021
+>  	tristate "Clock driver for Sunplus SP7021 SoC"
+>  	depends on SOC_SP7021 || COMPILE_TEST
+> diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
+> index fb8878a5d7d93da6bec487460cdf63f1f764a431..5df50b1e14c701ed38397bfb257db26e8dd278b8 100644
+> --- a/drivers/clk/Makefile
+> +++ b/drivers/clk/Makefile
+> @@ -51,6 +51,7 @@ obj-$(CONFIG_MACH_ASPEED_G6)		+= clk-ast2600.o
+>  obj-$(CONFIG_ARCH_HIGHBANK)		+= clk-highbank.o
+>  obj-$(CONFIG_CLK_HSDK)			+= clk-hsdk-pll.o
+>  obj-$(CONFIG_COMMON_CLK_K210)		+= clk-k210.o
+> +obj-$(CONFIG_COMMON_CLK_K230)		+= clk-k230.o
+>  obj-$(CONFIG_LMK04832)			+= clk-lmk04832.o
+>  obj-$(CONFIG_COMMON_CLK_LAN966X)	+= clk-lan966x.o
+>  obj-$(CONFIG_COMMON_CLK_LOCHNAGAR)	+= clk-lochnagar.o
+> diff --git a/drivers/clk/clk-k230.c b/drivers/clk/clk-k230.c
+> new file mode 100644
+> index 0000000000000000000000000000000000000000..2ba74c008b30ae3400acbd8c08550e8315dfe205
+> --- /dev/null
+> +++ b/drivers/clk/clk-k230.c
+> @@ -0,0 +1,2456 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Kendryte Canaan K230 Clock Drivers
+> + *
+> + * Author: Xukai Wang <kingxukai@zohomail.com>
+> + * Author: Troy Mitchell <troymitchell988@gmail.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/clkdev.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/spinlock.h>
+> +
+> +#include <dt-bindings/clock/canaan,k230-clk.h>
+> +
+> +/* PLL control register bits. */
+> +#define K230_PLL_BYPASS_ENABLE			BIT(19)
+> +#define K230_PLL_GATE_ENABLE			BIT(2)
+> +#define K230_PLL_GATE_WRITE_ENABLE		BIT(18)
+> +#define K230_PLL_OD_SHIFT			24
+> +#define K230_PLL_OD_MASK			0xF
+> +#define K230_PLL_R_SHIFT			16
+> +#define K230_PLL_R_MASK				0x3F
+> +#define K230_PLL_F_SHIFT			0
+> +#define K230_PLL_F_MASK				0x1FFF
+> +#define K230_PLL_DIV_REG_OFFSET			0x00
+> +#define K230_PLL_BYPASS_REG_OFFSET		0x04
+> +#define K230_PLL_GATE_REG_OFFSET		0x08
+> +#define K230_PLL_LOCK_REG_OFFSET		0x0C
 
-kernel test robot noticed the following build errors:
+Maybe FIELD_PREP() and FIELD_GET() would help for the PLL-related
+rountines, and you could get avoid of writing shifts and masks by hand.
 
-[auto build test ERROR on robh/for-next]
-[also build test ERROR on linus/master v6.17-rc4 next-20250905]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+...
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250905-193904
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250905113740.3841181-3-manikanta.guntupalli%40amd.com
-patch subject: [PATCH V4 2/2] i3c: master: Add AMD I3C bus controller driver
-config: m68k-allmodconfig (https://download.01.org/0day-ci/archive/20250907/202509070943.sSXhFOJV-lkp@intel.com/config)
-compiler: m68k-linux-gcc (GCC) 15.1.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250907/202509070943.sSXhFOJV-lkp@intel.com/reproduce)
+> +struct k230_clk_rate_self {
+> +	struct clk_hw	hw;
+> +	void __iomem	*reg;
+> +	bool		read_only;
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509070943.sSXhFOJV-lkp@intel.com/
+Isn't a read-only multiplier, divider or something capable of both a
+simple fixed-factor hardware? If so please switch to the existing clock
+hardware, instead of introducing a field in description of rate clocks.
 
-All errors (new ones prefixed by >>):
+It's worth noting that you've already had at least one fixed-rate clock
+(shrm_sram_div2).
 
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
-      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
-         |         ^~~~~~~~~~~~
-   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
-      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/compiler_types.h:552:23: note: in definition of macro '__compiletime_assert'
-     552 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
-   include/linux/compiler_types.h:572:9: note: in expansion of macro '_compiletime_assert'
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ^~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
-      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
-         |         ^~~~~~~~~~~~
-   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
-      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:76:56: note: in expansion of macro '__bf_shf'
-      76 |                                               (1ULL << __bf_shf(_mask))); \
-         |                                                        ^~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   In file included from drivers/i3c/master/amd-i3c-master.c:8:
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/bitfield.h:156:44: note: in definition of macro 'FIELD_GET'
-     156 |                 (typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask)); \
-         |                                            ^~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/bitfield.h:45:38: note: in definition of macro '__bf_shf'
-      45 | #define __bf_shf(x) (__builtin_ffsll(x) - 1)
-         |                                      ^
-   drivers/i3c/master/amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c: In function 'xi3c_master_bus_init':
-   drivers/i3c/master/amd-i3c-master.c:926:62: warning: left shift count >= width of type [-Wshift-count-overflow]
-     926 |         info.pid = ((FIELD_GET(XI3C_PID1_MASK, pid1_bcr_dcr) << 32) |
-         |                                                              ^~
-   drivers/i3c/master/amd-i3c-master.c: In function 'xi3c_master_do_daa':
->> include/linux/compiler_types.h:572:45: error: call to '__compiletime_assert_400' declared with attribute error: FIELD_GET: mask is zero
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                                             ^
-   include/linux/compiler_types.h:553:25: note: in definition of macro '__compiletime_assert'
-     553 |                         prefix ## suffix();                             \
-         |                         ^~~~~~
-   include/linux/compiler_types.h:572:9: note: in expansion of macro '_compiletime_assert'
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ^~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:67:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-      67 |                 BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   drivers/i3c/master/amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
---
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
-      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
-         |         ^~~~~~~~~~~~
-   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
-      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/compiler_types.h:552:23: note: in definition of macro '__compiletime_assert'
-     552 |                 if (!(condition))                                       \
-         |                       ^~~~~~~~~
-   include/linux/compiler_types.h:572:9: note: in expansion of macro '_compiletime_assert'
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ^~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:50:9: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-      50 |         BUILD_BUG_ON_MSG(condition, "BUILD_BUG_ON failed: " #condition)
-         |         ^~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:21:9: note: in expansion of macro 'BUILD_BUG_ON'
-      21 |         BUILD_BUG_ON(((n) & ((n) - 1)) != 0)
-         |         ^~~~~~~~~~~~
-   include/linux/bitfield.h:75:17: note: in expansion of macro '__BUILD_BUG_ON_NOT_POWER_OF_2'
-      75 |                 __BUILD_BUG_ON_NOT_POWER_OF_2((_mask) +                 \
-         |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:76:56: note: in expansion of macro '__bf_shf'
-      76 |                                               (1ULL << __bf_shf(_mask))); \
-         |                                                        ^~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   In file included from amd-i3c-master.c:8:
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/bitfield.h:156:44: note: in definition of macro 'FIELD_GET'
-     156 |                 (typeof(_mask))(((_reg) & (_mask)) >> __bf_shf(_mask)); \
-         |                                            ^~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   include/linux/bits.h:49:27: warning: right shift count >= width of type [-Wshift-count-overflow]
-      49 |               type_max(t) >> (BITS_PER_TYPE(t) - 1 - (h)))))
-         |                           ^~
-   include/linux/bitfield.h:45:38: note: in definition of macro '__bf_shf'
-      45 | #define __bf_shf(x) (__builtin_ffsll(x) - 1)
-         |                                      ^
-   amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
-   include/linux/bits.h:51:33: note: in expansion of macro 'GENMASK_TYPE'
-      51 | #define GENMASK(h, l)           GENMASK_TYPE(unsigned long, h, l)
-         |                                 ^~~~~~~~~~~~
-   amd-i3c-master.c:54:49: note: in expansion of macro 'GENMASK'
-      54 | #define XI3C_PID_MASK                           GENMASK(63, 16)
-         |                                                 ^~~~~~~
-   amd-i3c-master.c:593:44: note: in expansion of macro 'XI3C_PID_MASK'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                            ^~~~~~~~~~~~~
-   amd-i3c-master.c: In function 'xi3c_master_bus_init':
-   amd-i3c-master.c:926:62: warning: left shift count >= width of type [-Wshift-count-overflow]
-     926 |         info.pid = ((FIELD_GET(XI3C_PID1_MASK, pid1_bcr_dcr) << 32) |
-         |                                                              ^~
-   amd-i3c-master.c: In function 'xi3c_master_do_daa':
->> include/linux/compiler_types.h:572:45: error: call to '__compiletime_assert_400' declared with attribute error: FIELD_GET: mask is zero
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |                                             ^
-   include/linux/compiler_types.h:553:25: note: in definition of macro '__compiletime_assert'
-     553 |                         prefix ## suffix();                             \
-         |                         ^~~~~~
-   include/linux/compiler_types.h:572:9: note: in expansion of macro '_compiletime_assert'
-     572 |         _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-         |         ^~~~~~~~~~~~~~~~~~~
-   include/linux/build_bug.h:39:37: note: in expansion of macro 'compiletime_assert'
-      39 | #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
-         |                                     ^~~~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:67:17: note: in expansion of macro 'BUILD_BUG_ON_MSG'
-      67 |                 BUILD_BUG_ON_MSG((_mask) == 0, _pfx "mask is zero");    \
-         |                 ^~~~~~~~~~~~~~~~
-   include/linux/bitfield.h:155:17: note: in expansion of macro '__BF_FIELD_CHECK'
-     155 |                 __BF_FIELD_CHECK(_mask, _reg, 0U, "FIELD_GET: ");       \
-         |                 ^~~~~~~~~~~~~~~~
-   amd-i3c-master.c:593:34: note: in expansion of macro 'FIELD_GET'
-     593 |                 pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-         |                                  ^~~~~~~~~
+> +	u32		write_enable_bit;
+> +	u32		mul_min;
+> +	u32		mul_max;
+> +	u32		mul_shift;
+> +	u32		mul_mask;
+> +	u32		div_min;
+> +	u32		div_max;
+> +	u32		div_shift;
+> +	u32		div_mask;
+> +	/* ensures mutual exclusion for concurrent register access. */
+> +	spinlock_t	*lock;
+> +};
 
+...
 
-vim +/__compiletime_assert_400 +572 include/linux/compiler_types.h
+> +static int k230_clk_find_approximate_mul_div(u32 mul_min, u32 mul_max,
+> +					     u32 div_min, u32 div_max,
+> +					     unsigned long rate,
+> +					     unsigned long parent_rate,
+> +					     u32 *div, u32 *mul)
+> +{
+> +	long abs_min;
+> +	long abs_current;
+> +	long perfect_divide;
+> +
+> +	if (!rate || !parent_rate || !mul_min)
+> +		return -EINVAL;
+> +
+> +	perfect_divide = (long)((parent_rate * 1000) / rate);
+> +	abs_min = abs(perfect_divide -
+> +		     (long)(((long)div_max * 1000) / (long)mul_min));
+> +
+> +	*div = div_max;
+> +	*mul = mul_min;
+> +
+> +	for (u32 i = div_max - 1; i >= div_min; i--) {
+> +		for (u32 j = mul_min + 1; j <= mul_max; j++) {
+> +			abs_current = abs(perfect_divide -
+> +					 (long)(((long)i * 1000) / (long)j));
+> +
+> +			if (abs_min > abs_current) {
+> +				abs_min = abs_current;
+> +				*div = i;
+> +				*mul = j;
+> +			}
+> +		}
+> +	}
+> +
+> +	return 0;
+> +}
 
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  558  
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  559  #define _compiletime_assert(condition, msg, prefix, suffix) \
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  560  	__compiletime_assert(condition, msg, prefix, suffix)
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  561  
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  562  /**
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  563   * compiletime_assert - break build and emit msg if condition is false
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  564   * @condition: a compile-time constant condition to check
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  565   * @msg:       a message to emit if condition is false
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  566   *
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  567   * In tradition of POSIX assert, this macro will break the build if the
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  568   * supplied condition is *false*, emitting the supplied error message if the
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  569   * compiler has support to do so.
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  570   */
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  571  #define compiletime_assert(condition, msg) \
-eb5c2d4b45e3d2 Will Deacon 2020-07-21 @572  	_compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
-eb5c2d4b45e3d2 Will Deacon 2020-07-21  573  
+This looks like a poor version of rational_best_approximation(). Could
+you please consider switching to it?
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+> +static int k230_clk_set_rate_mul(struct clk_hw *hw, unsigned long rate,
+> +				 unsigned long parent_rate)
+> +{
+> +	struct k230_clk_rate *clk = hw_to_k230_clk_rate(hw);
+> +	struct k230_clk_rate_self *rate_self = &clk->clk;
+> +	u32 div, mul, mul_reg;
+> +
+> +	if (rate > parent_rate)
+> +		return -EINVAL;
+> +
+> +	if (rate_self->read_only)
+> +		return 0;
+> +
+> +	if (k230_clk_find_approximate_mul(rate_self->mul_min, rate_self->mul_max,
+> +					  rate_self->div_min, rate_self->div_max,
+> +					  rate, parent_rate, &div, &mul))
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(rate_self->lock);
+> +
+> +	mul_reg = readl(rate_self->reg + clk->mul_reg_off);
+> +	mul_reg |= ((mul - 1) & rate_self->mul_mask) << (rate_self->mul_shift);
+> +	mul_reg |= BIT(rate_self->write_enable_bit);
+> +	writel(mul_reg, rate_self->reg + clk->mul_reg_off);
+> +
+> +	return 0;
+> +}
+> +
+> +static int k230_clk_set_rate_div(struct clk_hw *hw, unsigned long rate,
+> +				 unsigned long parent_rate)
+> +{
+> +	struct k230_clk_rate *clk = hw_to_k230_clk_rate(hw);
+> +	struct k230_clk_rate_self *rate_self = &clk->clk;
+> +	u32 div, mul, div_reg;
+> +
+> +	if (rate > parent_rate)
+> +		return -EINVAL;
+> +
+> +	if (rate_self->read_only)
+> +		return 0;
+> +
+> +	if (k230_clk_find_approximate_div(rate_self->mul_min, rate_self->mul_max,
+> +					  rate_self->div_min, rate_self->div_max,
+> +					  rate, parent_rate, &div, &mul))
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(rate_self->lock);
+> +
+> +	div_reg = readl(rate_self->reg + clk->div_reg_off);
+> +	div_reg |= ((div - 1) & rate_self->div_mask) << (rate_self->div_shift);
+> +	div_reg |= BIT(rate_self->write_enable_bit);
+> +	writel(div_reg, rate_self->reg + clk->div_reg_off);
+> +
+> +	return 0;
+> +}
+> +
+> +static int k230_clk_set_rate_mul_div(struct clk_hw *hw, unsigned long rate,
+> +				     unsigned long parent_rate)
+> +{
+> +	struct k230_clk_rate *clk = hw_to_k230_clk_rate(hw);
+> +	struct k230_clk_rate_self *rate_self = &clk->clk;
+> +	u32 div, mul, div_reg, mul_reg;
+> +
+> +	if (rate > parent_rate)
+> +		return -EINVAL;
+> +
+> +	if (rate_self->read_only)
+> +		return 0;
+> +
+> +	if (k230_clk_find_approximate_mul_div(rate_self->mul_min, rate_self->mul_max,
+> +					      rate_self->div_min, rate_self->div_max,
+> +					      rate, parent_rate, &div, &mul))
+> +		return -EINVAL;
+> +
+> +	guard(spinlock)(rate_self->lock);
+> +
+> +	div_reg = readl(rate_self->reg + clk->div_reg_off);
+> +	div_reg |= ((div - 1) & rate_self->div_mask) << (rate_self->div_shift);
+> +	div_reg |= BIT(rate_self->write_enable_bit);
+> +	writel(div_reg, rate_self->reg + clk->div_reg_off);
+> +
+> +	mul_reg = readl(rate_self->reg + clk->mul_reg_off);
+> +	mul_reg |= ((mul - 1) & rate_self->mul_mask) << (rate_self->mul_shift);
+> +	mul_reg |= BIT(rate_self->write_enable_bit);
+> +	writel(mul_reg, rate_self->reg + clk->mul_reg_off);
+> +
+> +	return 0;
+> +}
+
+There are three variants of rate clocks, mul-only, div-only and mul-div
+ones, which are similar to clk-multiplier, clk-divider,
+clk-fractional-divider.
+
+The only difference is to setup new parameters for K230's rate clocks,
+a register bit, described as k230_clk_rate_self.write_enable_bit, must
+be set first.
+
+What do you think of introducing support for such "write enable bit" to
+the generic implementation of multipler/divider/fractional? Then you
+could reuse the generic implementation in K230's driver, avoiding code
+duplication.
+
+...
+
+> +static const struct of_device_id k230_clk_ids[] = {
+> +	{ .compatible = "canaan,k230-clk" },
+> +	{ /* Sentinel */ }
+> +};
+> +MODULE_DEVICE_TABLE(of, k230_clk_ids);
+
+MODULE_DEVICE_TABLE is unnecessary if your driver couldn't be built as
+a module.
+
+> +static struct platform_driver k230_clk_driver = {
+> +	.driver = {
+> +		.name = "k230_clock_controller",
+> +		.of_match_table = k230_clk_ids,
+> +	},
+> +	.probe = k230_clk_probe,
+> +};
+> +builtin_platform_driver(k230_clk_driver);
+
+Best regards,
+Yao Zi
 
