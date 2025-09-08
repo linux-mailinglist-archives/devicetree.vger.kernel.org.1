@@ -1,374 +1,208 @@
-Return-Path: <devicetree+bounces-214317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC48AB48BF9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:21:16 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 670BBB48C0A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:24:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BEC2E1897A4D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:21:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E21B74409B0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07B7130496C;
-	Mon,  8 Sep 2025 11:17:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56F7B194A65;
+	Mon,  8 Sep 2025 11:21:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DxdeCVHU"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="iURzAVf7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2054.outbound.protection.outlook.com [40.107.100.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE8A3002C3;
-	Mon,  8 Sep 2025 11:17:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757330239; cv=none; b=clvjj1rVonPVog9Mdk3j7mh1vH+Yj4HgejGzyzIe1d3hgGbsaWmdomddWgsCzhUItD4veFdQzzv1Js+Bo4C+mHiTb2RGjxYpZMa7lZJV02w3nTf2g2iIeRZY/LnRgBta7qzD37l2ELN+Q6jbGPc4pG9si9sDgAhM67S/pNMbiEM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757330239; c=relaxed/simple;
-	bh=BRPB7Ykm6oGCuZ6wJfOAhlBd0jhGAFC2+uqaHq+hGio=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=XbvWM5P6Ig+FNZCvCbZPQxf9EKLamvG9LSZ47kXkyEzNkz3NN4YuqhSIgBPJUkwH7JTyJyy2B3CF/cjuyGgLy9NViVvqF3v9xct9fFxan9px3DTjDMZqTG7yNsJEjhEbKpeXeJcgZsAhS/j4J9WkR/fkb1/3oRRVAMF37QtuxHw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DxdeCVHU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8C39C4CEF1;
-	Mon,  8 Sep 2025 11:17:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757330239;
-	bh=BRPB7Ykm6oGCuZ6wJfOAhlBd0jhGAFC2+uqaHq+hGio=;
-	h=Date:From:Subject:To:Cc:References:In-Reply-To:From;
-	b=DxdeCVHUjg+g+4cxcYnBfVUPsfM1tozBuYA85B6kg3MQvKk302D2N4PoMrJBgLpvb
-	 OnjXG6x4CDMvLRRa21ZEvrOOD+Lbeq+tGLQFX3EXF8Wt1JK7KcCls0fDhcjbXiwZ4X
-	 8tdbJQrZoOoY4YlQ3UV7KJaj7LRAZz5sUeQ4fHoNFq9KX8GwFK/kn3JTywpkkC/PLD
-	 1inXpVJKcW2/RHnukoIk5bmaQSFRuSqBLvp/lJfvxoJ9rwcrA71VSvYdA1Zezfg/Kf
-	 yIB7PRsRblExRPhRZjPR8OAbfqfkzLDHhBkMOQYbb6MQx+RDhw2O0mDz3Gt45f5+wY
-	 rUKfRWrYoSdcQ==
-Message-ID: <23e3a116-7ba6-4e1a-8b02-4eafc22d7e40@kernel.org>
-Date: Mon, 8 Sep 2025 13:17:13 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42553594A;
+	Mon,  8 Sep 2025 11:21:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757330500; cv=fail; b=ICUzYJMD6v5y5bbdMxOGw14lp/9HizmyTkdGd3aOOrH5VXgWUqvjccdEN2lII0E5NgXrBFrDd+pi4MP6Cnkr7GTYYc3HnI4evN0cZPPb0h8FuhKltk51dMe3vSUU+RRp4xATYocy6vjSfoUl8RAhCH2Evg+4Vp2Nth11CPMSQEs=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757330500; c=relaxed/simple;
+	bh=YCMTav6lo3lnKrLMywrqUbo6zDCx2gQRCKRtHwdy8Ds=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=P29BWu0ymtv6JePVQ2zCokS3Ajk/TRDmwaq48WrcqlIa2n9OXByRGsk5voPBUGQdZO9yUihhirD0c3lP74ZBRSwDTGobebizho4W0/umPvewGgyyCyA/+QLo6MIm9iMuLF/DadEceYorNPQePKWiXel+QzID8oIliTysr1CiyLg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=iURzAVf7; arc=fail smtp.client-ip=40.107.100.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=OmcF6rO82GaxrB5UT5BZ4DP2EyQQH+hcNtYyLA8lIDF32yxLEC1LQHC6vvpGf8X/HQNhmmKCXJ96BVfhWbKtEGH6J+GrA7qlIOgxi6b6c2sNRHeogcLDRDWM3qpvOYafu5/GEd/pTW7vvY4oRMjgVuoh6zWGrPR/UkGf/gfXe0W7E/GoywvyQMIviayeZZvqNKTxzXE5pN1k2IPxUW5PsiYqyLW00amnDsowTttnwx9i2soQSLZX9YbY9XlpbMiDLD42NTGzfNpjmqhWdoKwpKeDnat8MVl9l1poHNopHKx7A4nJpuOXkFIv+nvM33tPXt2EFKKoK714lnG+tsBn7Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ZlzlJcyncipZ33Qg7z5m23BoO4A06Nfxh4zTmEMXnNU=;
+ b=m5qOhBNyH74cPAWKkLcWKnGt9kRIMTTTmSbXZOARLJx4Toi3l64IsncMIwvcemTG7nP3tSElklA+BxBRBF9mxL2gDVkOKTf6KJYVPrv3ntn7V0R8BP+X6QVbzd6O9vkRPAFCZ6orLjHIDbP0HFo0Mmc2rodhVr3iOFuiRBnyGYgHGaEuasn6j5VI7gRLKXm3VeIxTfuQTu4692wav9osYCW2+aWrresvSmVYz/WAklmBQXb27xSoQlpeEC4M68SVszeyG1SGjandFF/KHTEdG8bLmHYE4RtqolYiH52UW8emnoKNIIEPhcxIwQLVfpgt0nwBNsC9ihESTDKJGBUW5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=gmail.com smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZlzlJcyncipZ33Qg7z5m23BoO4A06Nfxh4zTmEMXnNU=;
+ b=iURzAVf71XEcFplif6U/FqRWnMRmFU0sXCSNKBVJn2J9q70WpBl5d1RTVl9Djd2BGqPJ9rF/G7vlFaNR74jEV+6e+SHT7zGaMKdlypQGi+p+Wjt3z78FBL2D8WfEoxt9b4EtNMn3ar61EyHQZpzhbBUhWgp6hqOxD1BSIU4/NYo=
+Received: from DS7PR06CA0020.namprd06.prod.outlook.com (2603:10b6:8:2a::21) by
+ LV2PR12MB5894.namprd12.prod.outlook.com (2603:10b6:408:174::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Mon, 8 Sep
+ 2025 11:21:34 +0000
+Received: from CY4PEPF0000FCC1.namprd03.prod.outlook.com
+ (2603:10b6:8:2a:cafe::18) by DS7PR06CA0020.outlook.office365.com
+ (2603:10b6:8:2a::21) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9094.22 via Frontend Transport; Mon,
+ 8 Sep 2025 11:21:34 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=satlexmb08.amd.com; pr=C
+Received: from satlexmb08.amd.com (165.204.84.17) by
+ CY4PEPF0000FCC1.mail.protection.outlook.com (10.167.242.103) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9115.13 via Frontend Transport; Mon, 8 Sep 2025 11:21:34 +0000
+Received: from satlexmb07.amd.com (10.181.42.216) by satlexmb08.amd.com
+ (10.181.42.217) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.17; Mon, 8 Sep
+ 2025 04:21:27 -0700
+Received: from xhdradheys41.xilinx.com (10.180.168.240) by satlexmb07.amd.com
+ (10.181.42.216) with Microsoft SMTP Server id 15.2.2562.17 via Frontend
+ Transport; Mon, 8 Sep 2025 04:21:21 -0700
+From: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+To: <git@amd.com>, <michal.simek@amd.com>, <alexandre.belloni@bootlin.com>,
+	<Frank.Li@nxp.com>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+	<conor+dt@kernel.org>, <kees@kernel.org>, <gustavoars@kernel.org>,
+	<jarkko.nikula@linux.intel.com>, <linux-i3c@lists.infradead.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-hardening@vger.kernel.org>
+CC: <radhey.shyam.pandey@amd.com>, <srinivas.goud@amd.com>,
+	<shubhrajyoti.datta@amd.com>, <manion05gk@gmail.com>, Manikanta Guntupalli
+	<manikanta.guntupalli@amd.com>
+Subject: [PATCH V5 0/2] Add AMD I3C master controller driver and bindings
+Date: Mon, 8 Sep 2025 16:51:15 +0530
+Message-ID: <20250908112117.205270-1-manikanta.guntupalli@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Hans Verkuil <hverkuil+cisco@kernel.org>
-Subject: Re: [PATCH v2 10/12] media: uvcvideo: Add get_* functions to
- uvc_entity
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Ricardo Ribalda <ribalda@chromium.org>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-acpi@vger.kernel.org
-References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
- <20250605-uvc-orientation-v2-10-5710f9d030aa@chromium.org>
- <20250629181246.GE6260@pendragon.ideasonboard.com>
- <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
- <20250714142926.GI8243@pendragon.ideasonboard.com>
- <CANiDSCvFe23xmrJ0-qbWWa6+vKGb+QdDFV8VSLkmWdAnfsFtzw@mail.gmail.com>
- <20250715193505.GB19299@pendragon.ideasonboard.com>
- <CANiDSCtvt6qnROQ0_-0iG5hqkU_uHZABujZPN7xuh7pUASSGyw@mail.gmail.com>
- <CANiDSCsNjBEWR5HA9bhFNnXB7Cazj7o0wBnn53gzpoBBcYFkFw@mail.gmail.com>
- <20250908101332.GB26062@pendragon.ideasonboard.com>
-Content-Language: en-US, nl
-In-Reply-To: <20250908101332.GB26062@pendragon.ideasonboard.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000FCC1:EE_|LV2PR12MB5894:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ab49449-60ca-4e29-c7d3-08ddeec9de5e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|82310400026|376014|7416014|36860700013|921020;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?ZDrAgNOvmC3JFi0leXQVH74uy9OA4b0p0D+nKxEJB3V2jQeLHwpk8tZ9mQBC?=
+ =?us-ascii?Q?xENe+XYJ3G8DhQKtYy6TnA5vj8jAkkhV4spOOhI5C/tHSzCy661vWBd9k6x2?=
+ =?us-ascii?Q?NtYxPUlqcLQ4++twTiPMy0A716dWTyirhY1M4p0rC4WLO4S9qGo+EQLFCo8q?=
+ =?us-ascii?Q?w9lECnyTqnlKN4l9iMOErlQq8IEI1aFv3LaDljzUbl7wehenX2khKx8OYJ56?=
+ =?us-ascii?Q?ESTX6K0t1BBKOKl+9Y76Cit8SuwYd5AaYiWkCr+720g9lPihqlNY8vk/UDfw?=
+ =?us-ascii?Q?ciuqEsKGxaRZYLRbVBouArmNC1k3S8JxBdHqCrgUh7t7/2IoPBCOd/8xKlks?=
+ =?us-ascii?Q?aGiEbQk2BTPyp+GzMkGUrM3cyDkkDLFC2okutnyrddv6QvjtJCn88jHEeQxa?=
+ =?us-ascii?Q?xTvGyAq7pLgpYxRR8XEqjzN1tcXanDHrn6i9pOjwdn4ZfTIsDxvR0f0wx8yQ?=
+ =?us-ascii?Q?0Ga55sd1qtsjzzcAxi+/vAigVuG22GuVobIFQhApzGPRimzw96O1lLA55/uV?=
+ =?us-ascii?Q?RC/KdY0wSBtXhZVZm/OYF2DsXzVO8YJzMUsRmpUrQjHjBLU7X4EhDldX422i?=
+ =?us-ascii?Q?VvmBi2NflezrfIqut/fqn4/glnXxqpqhg0JUsdn+cc4C9G3Y4KI9ImJIiNvt?=
+ =?us-ascii?Q?xBQrSs68ekByNLuTgvSR+eyN5o3s3TNKN5TlcYv7XEOz+sK+YFOhTtgAm5KV?=
+ =?us-ascii?Q?J0xEYx5WOrSo3DmKy66YRScdefgPW8w9RDxLDkDdJjSPPbCZHHLdqef7VmpA?=
+ =?us-ascii?Q?XWT70iLhSXzN3olyXkk4Aqyz3LLl/WnAtIPIjAxnFZAc4Xz0ZiDXpMM5hDS8?=
+ =?us-ascii?Q?xehAgws/Qbxk6M2d6+voiFOf893zsnYtUxo7XY5ifpN7RoOueW+3y+w3u0Jl?=
+ =?us-ascii?Q?i6jCnPKkjfJ212kNTl7+pcEVHXP5jLi5ADY2l3t1ANTxtlruXhumSEBP5w6R?=
+ =?us-ascii?Q?RBLQtkhZxACh1ryvLPkJHVEIQSo+XsSZn1zplJxtohTDmJ2YvtBDJ2jcZSoI?=
+ =?us-ascii?Q?d4JhkRlseqKQOQPfAryKmdHrHP1ydjceMg7Nf5XmhvPu7pjNirR+bgyfX0wj?=
+ =?us-ascii?Q?UJ03ESMpBOysHDnPueJqFHdKJhD9rbeba5/uUZkBKDzHVbMCuzqTMQJ/GjX5?=
+ =?us-ascii?Q?DgxZwtLxjq7vdKptMriQIRNG5ivZDCBznaRMl+G3iJ0Za6qk1NxEtOT3bdQ5?=
+ =?us-ascii?Q?TrRGxD2t7VmXLc966eohyvFJNogNh7++/czvYdTzBuhPHkDRX/CLhSIH+nMj?=
+ =?us-ascii?Q?3weA1obVfShUIx1bl1/sjHKpvRhiu07yT1q8nMOEE9gIQtySWTrVeAZyTq+N?=
+ =?us-ascii?Q?YV0lalaqIJVdApSaZYXegySobZwt+UDQLtXw2dSiXgXg6K/EVeW7h4CnMPDQ?=
+ =?us-ascii?Q?glQxL2cz1MgVTOdQ6BVb6fJsfhWfJkAvqwP9nXQvxjNURlDx1g6SSGA5b5Ei?=
+ =?us-ascii?Q?b6bUy5+5Yuhr+2Vwu3Wm+cLmsyDVzde0MPbSEy1ZX5MJi6A0cEBXEQfhQ0sD?=
+ =?us-ascii?Q?jpQr2vziabKMQwnqEp9kkpBDCSgmbQ2TzPblkBP5qzpOByZlbBiTnl5XhA?=
+ =?us-ascii?Q?=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:satlexmb08.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(1800799024)(82310400026)(376014)(7416014)(36860700013)(921020);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 11:21:34.2198
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ab49449-60ca-4e29-c7d3-08ddeec9de5e
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[satlexmb08.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000FCC1.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV2PR12MB5894
 
-On 08/09/2025 12:13, Laurent Pinchart wrote:
-> A question for Hans Verkuil below.
-> 
-> On Thu, Aug 07, 2025 at 09:35:14AM +0200, Ricardo Ribalda wrote:
->> On Wed, 16 Jul 2025 at 12:32, Ricardo Ribalda wrote:
->>> On Tue, 15 Jul 2025 at 21:35, Laurent Pinchart wrote:
->>>> On Mon, Jul 14, 2025 at 05:46:40PM +0200, Ricardo Ribalda wrote:
->>>>> On Mon, 14 Jul 2025 at 16:30, Laurent Pinchart wrote:
->>>>>> On Tue, Jul 01, 2025 at 01:13:10PM +0200, Ricardo Ribalda wrote:
->>>>>>> On Sun, 29 Jun 2025 at 20:13, Laurent Pinchart wrote:
->>>>>>>> On Thu, Jun 05, 2025 at 05:53:03PM +0000, Ricardo Ribalda wrote:
->>>>>>>>> Virtual entities need to provide more values than get_cur and get_cur
->>>>>>>>
->>>>>>>> I think you meant "get_info and get_cur".
->>>>>>>>
->>>>>>>>> for their controls. Add support for get_def, get_min, get_max and
->>>>>>>>> get_res.
->>>>>>>>
->>>>>>>> Do they ? The UVC specification defines controls that don't list
->>>>>>>> GET_DEF, GET_MIN, GET_MAX and GET_RES as mandatory requests. Can't we do
->>>>>>>> the same for the software controls ? This patch is meant to support the
->>>>>>>> UVC_SWENTITY_ORIENTATION and UVC_SWENTITY_ROTATION control in the next
->>>>>>>> patch, and those are read-only controls. Aren't GET_INFO and GET_CUR
->>>>>>>> enough ?
->>>>>>>
->>>>>>> V4L2_CID_CAMERA_ROTATION has the type UVC_CTRL_DATA_TYPE_UNSIGNED,
->>>>>>> that time requires get_min and get_max.
->>>>>>
->>>>>> Where does that requirement come from ? Is it because how the
->>>>>> corresponding V4L2 type (V4L2_CTRL_TYPE_INTEGER) is handled in
->>>>>> uvc_ctrl_clamp() ? uvc_ctrl_clamp() is only called when setting a
->>>>>> control, from uvc_ctrl_set(), and V4L2_CID_CAMERA_ROTATION should be
->>>>>> read-only.
->>>>>
->>>>> It its for VIDIOC_QUERY_EXT_CTRL
->>>>>
->>>>> uvc_query_v4l2_ctrl -> __uvc_query_v4l2_ctrl -> __uvc_queryctrl_boundaries
->>>>>
->>>>> We need to list the min, max, def and step for every control. They are
->>>>> fetched with uvc_ctrl_populate_cache()
->>>>
->>>> Ah, I see, thanks.
->>>>
->>>> For GET_RES, I think we can leave it unimplemented.
->>>> __uvc_queryctrl_boundaries() will set v4l2_ctrl->step = 0 which seems to
->>>> be the right behaviour for a read-only control whose value never
->>>> changes.
->>>
->>> That will break v4l2-compatiblity. Step needs to be != 0
->>> https://git.linuxtv.org/v4l-utils.git/tree/utils/v4l2-compliance/v4l2-test-controls.cpp#n77
->>>
->>> Control ioctls (Input 0):
->>>                 fail: v4l2-test-controls.cpp(77): step == 0
->>>                 fail: v4l2-test-controls.cpp(201): invalid control 009a0923
-> 
-> Is that an issue in v4l2-compliance ? For integer controls,
-> https://docs.kernel.org/userspace-api/media/v4l/vidioc-queryctrl.html#c.V4L.v4l2_ctrl_type
-> documents the step value as "any". For a read-only control whose value
-> is constant, do we want to enforce a non-zero value ? If so we should
-> update the specification.
-> 
-> Hans, what's your opinion ?
+This patch series introduces support for the AMD I3C master controller,
+including the device tree binding and driver implementation.
 
-The spec is not quite precise enough w.r.t. the step value. Whenever that table
-says 'any' for the step value, it really should read '>= 1'. It does that already
-for TYPE_STRING, but it is equally true for INTEGER(64) and U8/16/32.
+Changes for V2:
+Updated commit subject and description.
+Moved allOf to after required.
+Removed xlnx,num-targets property.
+Added mixed mode support with clock configuration.
+Converted smaller functions into inline functions.
+Used FIELD_GET() in xi3c_get_response().
+Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
+Used parity8() for address parity calculation.
+Added guards for locks.
+Dropped num_targets and updated xi3c_master_do_daa().
+Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
+Dropped PM runtime support.
+Updated xi3c_master_read() and xi3c_master_write() with
+xi3c_is_resp_available() check.
+Created separate functions: xi3c_master_init() and xi3c_master_reinit().
+Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
+in error paths.
+Added DAA structure to xi3c_master structure.
 
-If you create a control using the control framework, then that's actually checked.
-It's verified by the check_range() function in v4l2-ctrls-core.c.
+Changes for V3:
+Updated commit description.
+Corrected the order of properties and removed resets property.
+Added compatible to required list.
+Added interrupts to example.
+Resolved merge conflicts.
 
-Regards,
+Changes for V4:
+Added h/w documentation details.
+Updated timeout macros.
+Removed type casting for xi3c_is_resp_available() macro.
+Used ioread32() and iowrite32() instead of readl() and writel()
+to keep consistency.
+Read XI3C_RESET_OFFSET reg before udelay().
+Removed xi3c_master_free_xfer() and directly used kfree().
+Skipped checking return value of i3c_master_add_i3c_dev_locked().
+Used devm_mutex_init() instead of mutex_init().
 
-	Hans
+Changes for V5:
+Renamed the xlnx,axi-i3c.yaml file into xlnx,axi-i3c-1.0.yaml.
+Used GENMASK_ULL for PID mask as it's 64bit mask.
 
-> 
-> In any case, if GET_RES isn't implemented, we could update
-> __uvc_queryctrl_boundaries() to set step to 1 instead of 0. That would
-> fix v4l2-compliance for real controls that don't implement GET_RES.
-> 
->>>> As for the minimum and maximum, they are currently set to 0 if the
->>>> corresponding operations are not supported. I wonder if we should set
->>>> them to the current value instead for read-only controls (as in controls
->>>> whose flags report support for GET_CUR only)..
->>>
->>> I am not sure that I like that approach IMO the code looks worse...
->>> but if you prefer that, we can go that way
->>
->> I am almost ready to send a new version.
->>
->> What approach do you prefer?
-> 
-> I particularly like the change in __uvc_queryctrl_boundaries(). That
-> could probably be done without the rest of the changes though, as
-> ctrl->uvc_data is already allocated with kzalloc().
-> 
-> I also like the fact that the driver can rely on the min/max values to
-> always be populated in the control data. This could be useful for real
-> read-only UVC controls.
-> 
-> Thinking a bit more about this, for read-only controls whose value never
-> changes, min, max and step are meaningless. V4L2 requires their value to
-> be set, that's a decision we made in the V4L2 API, but I think a model
-> where min, max and step would be undefined (or 0) wouldn't be worse. So
-> maybe it makes sense to handle this in __uvc_queryctrl_boundaries(),
-> which is where the adaptation between UVC and V4L2 is handled, instead
-> of storing CUR in the ctrl->uvc_data DEF/MIN/MAX in
-> uvc_ctrl_populate_cache() ? I think the code could look cleaner.
-> 
->>> diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
-> u> > index ec472e111248..47224437018b 100644
->>> --- a/drivers/media/usb/uvc/uvc_ctrl.c
->>> +++ b/drivers/media/usb/uvc/uvc_ctrl.c
->>> @@ -35,6 +35,8 @@
->>>  /* ------------------------------------------------------------------------
->>>   * Controls
->>>   */
->>> +static int __uvc_ctrl_load_cur(struct uvc_video_chain *chain,
->>> +                              struct uvc_control *ctrl);
-> 
-> I think you can move the function up instead of adding a forward
-> declaration.
-> 
->>>
->>>  static const struct uvc_control_info uvc_ctrls[] = {
->>>         {
->>> @@ -1272,6 +1274,13 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
->>>                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
->>>                 if (ret < 0)
->>>                         return ret;
->>> +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
-> 
-> A comment (probably at the top of the function) to explain the fallback
-> would be useful.
-> 
->>> +               ret = __uvc_ctrl_load_cur(chain, ctrl);
->>> +               if (!ret) {
->>> +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF),
->>> +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
->>> +                              ctrl->info.size);
->>> +               }
->>>         }
->>>
->>>         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN) {
->>> @@ -1279,14 +1288,31 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
->>>                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
->>>                 if (ret < 0)
->>>                         return ret;
->>> +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
->>> +               ret = __uvc_ctrl_load_cur(chain, ctrl);
->>> +               if (!ret) {
->>> +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN),
->>> +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
->>> +                              ctrl->info.size);
->>> +               }
->>>         }
->>> +
->>>         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MAX) {
->>>                 ret = uvc_ctrl_query_entity(chain->dev, ctrl, UVC_GET_MAX,
->>>                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
->>>                 if (ret < 0)
->>>                         return ret;
->>> +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
->>> +               ret = __uvc_ctrl_load_cur(chain, ctrl);
->>> +               if (!ret) {
->>> +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX),
->>> +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
->>> +                              ctrl->info.size);
->>> +               }
->>>         }
->>> +
->>>         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
->>> +               u8 *res;
->>>                 ret = uvc_ctrl_query_entity(chain->dev, ctrl, UVC_GET_RES,
->>>                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
->>>                 if (ret < 0) {
->>> @@ -1304,7 +1330,13 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
->>>                                       "an XU control. Enabling workaround.\n");
->>>                         memset(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES), 0,
->>>                                ctrl->info.size);
->>> +                       res = uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES);
->>> +                       *res = 1
->>>                 }
->>> +       } else {
->>> +               memset(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES), 0, ctrl->info.size);
->>> +               res = uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES);
->>> +               *res = 1;
->>>         }
->>>
->>>         ctrl->cached = 1;
->>> @@ -1541,11 +1573,8 @@ static int __uvc_queryctrl_boundaries(struct uvc_video_chain *chain,
->>>                         return ret;
->>>         }
->>>
->>> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_DEF)
->>>                 v4l2_ctrl->default_value = uvc_mapping_get_s32(mapping,
->>>                                 UVC_GET_DEF, uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
-> 
-> You forgot to reduce the indentation here.
-> 
->>> -       else
->>> -               v4l2_ctrl->default_value = 0;
->>>
->>>         switch (mapping->v4l2_type) {
->>>         case V4L2_CTRL_TYPE_MENU:
->>> @@ -1576,23 +1605,14 @@ static int __uvc_queryctrl_boundaries(struct uvc_video_chain *chain,
->>>                 break;
->>>         }
->>>
->>> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN)
->>> -               v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
->>> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
->>> -       else
->>> -               v4l2_ctrl->minimum = 0;
->>> +       v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
->>> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
->>>
->>> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MAX)
->>> -               v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
->>> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
->>> -       else
->>> -               v4l2_ctrl->maximum = 0;
->>> +       v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
->>> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
->>>
->>> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES)
->>> -               v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
->>> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
->>> -       else
->>> -               v4l2_ctrl->step = 0;
->>> +       v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
->>> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
->>>
->>>         return 0;
->>>  }
->>>
->>>>>>> We can create a new type UVC_CTRL_DATA_TYPE_UNSIGNED_READ_ONLY that
->>>>>>> fakes min, max and res, but I think that it is cleaner this approach.
->>>>>>>
->>>>>>>>> This is a preparation patch.
->>>>>>>>>
->>>>>>>>> Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
->>>>>>>>> ---
->>>>>>>>>  drivers/media/usb/uvc/uvc_ctrl.c | 12 ++++++++++++
->>>>>>>>>  drivers/media/usb/uvc/uvcvideo.h |  8 ++++++++
->>>>>>>>>  2 files changed, 20 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
->>>>>>>>> index 21ec7b978bc7aca21db7cb8fd5d135d876f3330c..59be62ae24a4219fa9d7aacf2ae7382c95362178 100644
->>>>>>>>> --- a/drivers/media/usb/uvc/uvc_ctrl.c
->>>>>>>>> +++ b/drivers/media/usb/uvc/uvc_ctrl.c
->>>>>>>>> @@ -596,6 +596,18 @@ static int uvc_ctrl_query_entity(struct uvc_device *dev,
->>>>>>>>>       if (query == UVC_GET_CUR && ctrl->entity->get_cur)
->>>>>>>>>               return ctrl->entity->get_cur(dev, ctrl->entity,
->>>>>>>>>                                            ctrl->info.selector, data, len);
->>>>>>>>> +     if (query == UVC_GET_DEF && ctrl->entity->get_def)
->>>>>>>>> +             return ctrl->entity->get_def(dev, ctrl->entity,
->>>>>>>>> +                                          ctrl->info.selector, data, len);
->>>>>>>>> +     if (query == UVC_GET_MIN && ctrl->entity->get_min)
->>>>>>>>> +             return ctrl->entity->get_min(dev, ctrl->entity,
->>>>>>>>> +                                          ctrl->info.selector, data, len);
->>>>>>>>> +     if (query == UVC_GET_MAX && ctrl->entity->get_max)
->>>>>>>>> +             return ctrl->entity->get_max(dev, ctrl->entity,
->>>>>>>>> +                                          ctrl->info.selector, data, len);
->>>>>>>>> +     if (query == UVC_GET_RES && ctrl->entity->get_res)
->>>>>>>>> +             return ctrl->entity->get_res(dev, ctrl->entity,
->>>>>>>>> +                                          ctrl->info.selector, data, len);
->>>>>>>>>       if (query == UVC_GET_INFO && ctrl->entity->get_info)
->>>>>>>>>               return ctrl->entity->get_info(dev, ctrl->entity,
->>>>>>>>>                                             ctrl->info.selector, data);
->>>>>>>>> diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
->>>>>>>>> index a931750bdea25b9062dcc7644bf5f2ed89c1cb4c..d6da8ed3ad4cf3377df49923e051fe04d83d2e38 100644
->>>>>>>>> --- a/drivers/media/usb/uvc/uvcvideo.h
->>>>>>>>> +++ b/drivers/media/usb/uvc/uvcvideo.h
->>>>>>>>> @@ -261,6 +261,14 @@ struct uvc_entity {
->>>>>>>>>                       u8 cs, u8 *caps);
->>>>>>>>>       int (*get_cur)(struct uvc_device *dev, struct uvc_entity *entity,
->>>>>>>>>                      u8 cs, void *data, u16 size);
->>>>>>>>> +     int (*get_def)(struct uvc_device *dev, struct uvc_entity *entity,
->>>>>>>>> +                    u8 cs, void *data, u16 size);
->>>>>>>>> +     int (*get_min)(struct uvc_device *dev, struct uvc_entity *entity,
->>>>>>>>> +                    u8 cs, void *data, u16 size);
->>>>>>>>> +     int (*get_max)(struct uvc_device *dev, struct uvc_entity *entity,
->>>>>>>>> +                    u8 cs, void *data, u16 size);
->>>>>>>>> +     int (*get_res)(struct uvc_device *dev, struct uvc_entity *entity,
->>>>>>>>> +                    u8 cs, void *data, u16 size);
->>>>>>>>>
->>>>>>>>>       unsigned int ncontrols;
->>>>>>>>>       struct uvc_control *controls;
-> 
+Manikanta Guntupalli (2):
+  dt-bindings: i3c: Add AMD I3C master controller support
+  i3c: master: Add AMD I3C bus controller driver
+
+ .../bindings/i3c/xlnx,axi-i3c-1.0.yaml        |   55 +
+ MAINTAINERS                                   |    7 +
+ drivers/i3c/master/Kconfig                    |   16 +
+ drivers/i3c/master/Makefile                   |    1 +
+ drivers/i3c/master/amd-i3c-master.c           | 1014 +++++++++++++++++
+ 5 files changed, 1093 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
+ create mode 100644 drivers/i3c/master/amd-i3c-master.c
+
+-- 
+2.34.1
 
 
