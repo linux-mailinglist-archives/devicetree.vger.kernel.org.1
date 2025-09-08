@@ -1,218 +1,107 @@
-Return-Path: <devicetree+bounces-214299-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214300-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 74F88B48A97
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:54:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 36426B48A9E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:55:13 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 241DB3C6224
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:54:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E64313A7A94
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:55:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D85422256F;
-	Mon,  8 Sep 2025 10:54:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FD7223324;
+	Mon,  8 Sep 2025 10:55:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="7X7U2Xu2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2732C189;
-	Mon,  8 Sep 2025 10:54:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD17A189;
+	Mon,  8 Sep 2025 10:55:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757328877; cv=none; b=RAqG5f0RvAj84UVY08tmCmHaALC31LRsw/lePca2yl7c988PW4fBEXEGn6TnZqnK/7c03cfNO2LNnrK0tPOiteAtjgHMJCspr/yjkp+03NCl8dLAN69BFbNiNbXDt7zPc9wNcGYdd89ri9a8sJd5nsvTc7gR8uoP3CAkNHD/ny0=
+	t=1757328908; cv=none; b=L5ZQ9Pt0JAdJFrgpGIRdGnJguw3p5Rthk8Ixbo41ZRpOLzZVraHdQ+QK872LZDg4DKkOru4Z3qgsNOWzIJcFBFkp1gL8q51DvFtsNodS6mYrWUh4Empc0Cb/nKP67gzHKiX2RrqI1gtXrMon/fhXItAVQn/qF/nDwSEOjcDLMgQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757328877; c=relaxed/simple;
-	bh=sswkcXn8iJNBrz/gwNjG0PE3+x+V4y0KhneX0Mur+Cg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ok3MQYRuZAWtyZcZztJKC8SE6ztfMN/DMjKhasczEhkYN++IdFukGTl3BAymSCjdQ3E57c/YWFHBcHGt2DVmPap/ySREx9qmAG72qZ6k8DJr65jvZge84Sc+NyRZjW0EpMb1ECt0Lxd9U7mRVqmsuCdDLLpnxsPJ/bnBqMqYxBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1CD781692;
-	Mon,  8 Sep 2025 03:54:26 -0700 (PDT)
-Received: from [10.1.196.46] (e134344.arm.com [10.1.196.46])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 44D6F3F63F;
-	Mon,  8 Sep 2025 03:54:29 -0700 (PDT)
-Message-ID: <19ca6019-de69-4c5d-bf06-2e04a254f286@arm.com>
-Date: Mon, 8 Sep 2025 11:54:27 +0100
+	s=arc-20240116; t=1757328908; c=relaxed/simple;
+	bh=EqlZsQks+WW7jmnsAvVdsxSQzUjOCLYnk3kijMEKaYU=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Uq2xk3gSZanOxb1Yz3eylrs9/Kow69w8yVc++kq/4H3foCA8JE+Fg3SxAjHH5MF1V9L0RgPCHRgN5I6cEV0y9aZ8Q1KvHwmPGwKvAw+UvqH7RtvCs6plDKxKR34WCdfm8TKXWtT7WW6d+P8/L2TMWQNhMKgIh6hqffU8eFCo6Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=7X7U2Xu2; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=0LgwfZ9wkEAtJ94bNBrquAEb0mXoUgSOBRfwjUSoLhY=; b=7X7U2Xu2eOqFWTYsVy6vs1y2oY
+	0qG6OglqIbcf2y9/F6qWOOyWDeRwMGACXkuOBkf0KyklP4boGFnIgTIZ0mXik2Wcg4H8Hc2jVRPCb
+	vcr+fihtypb3Byy6CV8pu7S0bsd2tdMXI5UHzHfnP7XsC9y80TqZZWqgIsJYRB5wlj3Sgy3SlBA/W
+	J0LYtlK+vNe/iS3RKltZRnMAlhsR6qA50w/ZNqiwgOTe0a7MFEfHOSjA68xamZxSrICNHnJSQU5Hl
+	BkqPRnD2CHRWGcQB51w5qo3D/jWYnlckF46g+bG2mEEUwhMR6gdfse9oiZJ+ysc3yvpY5NxePkYay
+	KVA4IT3g==;
+Date: Mon, 8 Sep 2025 12:54:49 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andreas Kemnade <akemnade@kernel.org>, Lee Jones <lee@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor
+ Dooley <conor+dt@kernel.org>, Alistair Francis <alistair@alistair23.me>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Shawn
+ Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+ <festevam@gmail.com>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+ linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: sy7636a: Add missing gpio pins
+ and supply
+Message-ID: <20250908125449.0b1443cf@akair>
+In-Reply-To: <288f0cf1-1ee4-4eba-b059-641120bb93f3@kernel.org>
+References: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
+	<20250906-sy7636-rsrc-v1-1-e2886a9763a7@kernel.org>
+	<288f0cf1-1ee4-4eba-b059-641120bb93f3@kernel.org>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 10/33] arm_mpam: Add probe/remove for mpam msc driver and
- kbuild boiler plate
-To: James Morse <james.morse@arm.com>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-11-james.morse@arm.com>
- <120b4049-a28d-40ad-9def-c901e12c7a68@arm.com>
- <c129a5ca-066b-4a78-a1fe-be474b592022@arm.com>
-From: Ben Horgan <ben.horgan@arm.com>
-Content-Language: en-US
-In-Reply-To: <c129a5ca-066b-4a78-a1fe-be474b592022@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-Hi James,
+Am Sat, 6 Sep 2025 14:01:25 +0200
+schrieb Krzysztof Kozlowski <krzk@kernel.org>:
 
-On 9/5/25 19:48, James Morse wrote:
-> Hi Ben,
+> On 06/09/2025 11:09, Andreas Kemnade wrote:
+> > To be able to fully describe how the SY7636A is connected to the system,
+> > add properties for the EN and VCOM_EN pins. To squeeze out every bit
+> > of unused current, in many devices it is possible to power off the
+> > complete chip. Add an input regulator to allow that.
+> > 
+> > Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
+> > ---
+> >  .../devicetree/bindings/mfd/silergy,sy7636a.yaml         | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> > index ee0be32ac0204..08ad593e237f1 100644
+> > --- a/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> > +++ b/Documentation/devicetree/bindings/mfd/silergy,sy7636a.yaml
+> > @@ -32,6 +32,22 @@ properties:
+> >        Specifying the power good GPIOs.
+> >      maxItems: 1
+> >  
+> > +  en-gpios:  
 > 
-> On 27/08/2025 14:03, Ben Horgan wrote:
->> On 8/22/25 16:29, James Morse wrote:
->>> Probing MPAM is convoluted. MSCs that are integrated with a CPU may
->>> only be accessible from those CPUs, and they may not be online.
->>> Touching the hardware early is pointless as MPAM can't be used until
->>> the system-wide common values for num_partid and num_pmg have been
->>> discovered.
->>>
->>> Start with driver probe/remove and mapping the MSC.
-> 
->>> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
->>> new file mode 100644
->>> index 000000000000..a0d9a699a6e7
->>> --- /dev/null
->>> +++ b/drivers/resctrl/mpam_devices.c
->>> @@ -0,0 +1,336 @@
-> 
->>> +static int mpam_dt_parse_resource(struct mpam_msc *msc, struct device_node *np,
->>> +				  u32 ris_idx)
->>> +{
->>> +	int err = 0;
->>> +	u32 level = 0;
->>> +	unsigned long cache_id;
->>> +	struct device_node *cache;
->>> +
->>> +	do {
->>> +		if (of_device_is_compatible(np, "arm,mpam-cache")) {
->>> +			cache = of_parse_phandle(np, "arm,mpam-device", 0);
->>> +			if (!cache) {
->>> +				pr_err("Failed to read phandle\n");
->>> +				break;
->>> +			}
->> This looks like this allows "arm,mpam-cache" and "arm,mpam-device" to be
->> used on an msc node when there are no ris children. This usage could be
->> reasonable but doesn't match the schema in the previous patch. Should
->> this usage be rejected or the schema extended?
-> 
-> The DT/ACPI stuff is only going to describe the things that make sense at a high level,
-> e.g. the controls for the L3. There may be other controls for stuff that doesn't make
-> sense in the hardware - these get discovered, grouped as 'unknown' and left alone.
-> 
-> Another angle on this is where there is an MSC that the OS will never make use of, but
-> needs to know about to find the system wide minimum value. (there is a comment about
-> this in the ACPI spec...)
-> 
-> I don't think its a problem if the magic dt-binding machinery is overly restrictive, that
-> is about validating DTB files...
-
-I agree with your points. However, I was rather thinking that the code
-allows more ways to describe the same thing than the schema does. In
-that, you could write something like:
-
-
-msc@80000 {
-        compatible = "foo,a-standalone-msc";
-        reg = <0x80000 0x1000>;
-
-	...
-        msc@10000 {
-            compatible = "arm,mpam-msc arm,mpam-cache";
-            arm,mpam-device = <&mem>;
-            ...
-         }
-}
-
-Although, now I've written this out, it doesn't seem sensible to worry
-about this. Using ris compatibles on an msc, as in my example, is
-clearly an error.
-
-> 
+> enable-gpios, unless it is something else, but then please explain in
+> the description.
 >
-[snip]
->>> +		} else if (msc->iface == MPAM_IFACE_PCC) {
->>> +			msc->pcc_cl.dev = &pdev->dev;
->>> +			msc->pcc_cl.rx_callback = mpam_pcc_rx_callback;
->>> +			msc->pcc_cl.tx_block = false;
->>> +			msc->pcc_cl.tx_tout = 1000; /* 1s */
->>> +			msc->pcc_cl.knows_txdone = false;
->>> +
->>> +			msc->pcc_chan = pcc_mbox_request_channel(&msc->pcc_cl,
->>> +								 msc->pcc_subspace_id);
->>> +			if (IS_ERR(msc->pcc_chan)) {
->>> +				pr_err("Failed to request MSC PCC channel\n");
->>> +				err = PTR_ERR(msc->pcc_chan);
->>> +				break;
->>> +			}
->> I don't see pcc support added in this series. Should we fail the probe
->> if this interface is specified?
-> 
-> I've got patches from Andre P to support it on DT - but the platforms that need it keeping
-> popping in and out of existence. I'll pull these bits out - they were intended to check
-> the ACPI table wasn't totally rotten...
-> 
-> 
->> (If keeping, there is a missing pcc_mbox_free_channel() on the error path.)
-> 
-> When pcc_mbox_request_channel() fails? It already called mbox_free_channel() itself.
-Apologies, this was relating to if the *_parse_resources() call below
-failed.
+My idea here was to have it crystal clear which hw pin is meant since
+there are two pins which enable-like functions. But since you agree
+with the name for the other pin, I can live with enable-gpios here,
+as long as EN pin is mentioned in the description.
 
-> 
-> 
->>> +		}
->>> +
->>> +		list_add_rcu(&msc->glbl_list, &mpam_all_msc);
->>> +		platform_set_drvdata(pdev, msc);
->>> +	} while (0);
->>> +	mutex_unlock(&mpam_list_lock);
->>> +
->>> +	if (!err) {
->>> +		/* Create RIS entries described by firmware */
->>> +		if (!acpi_disabled)
->>> +			err = acpi_mpam_parse_resources(msc, plat_data);
->>> +		else
->>> +			err = mpam_dt_parse_resources(msc, plat_data);
->>> +	}
->>> +
->>> +	if (!err && fw_num_msc == mpam_num_msc)
->>> +		mpam_discovery_complete();
->>> +
->>> +	if (err && msc)
->>> +		mpam_msc_drv_remove(pdev);
->>> +
->>> +	return err;
->>> +}
-[snip]>
-> Thanks,
-> 
-> James
-Thanks,
-
-Ben
-
+Regards,
+Andreas
 
