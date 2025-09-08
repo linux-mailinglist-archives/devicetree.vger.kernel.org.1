@@ -1,166 +1,128 @@
-Return-Path: <devicetree+bounces-214584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E643DB49BEF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:29:14 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FDF8B49C4C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:43:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A37911BC6D2A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:29:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D73C24E3430
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CCAC2DE6E8;
-	Mon,  8 Sep 2025 21:28:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D522DF71C;
+	Mon,  8 Sep 2025 21:40:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="g8yC9GTP"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VG5JY9JK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0B42DC32A
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 21:28:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D3C2E9EA3;
+	Mon,  8 Sep 2025 21:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757366933; cv=none; b=dHSWCuA8PRA9YI39i4zmvSRXuqP5n8wr/6Idk3iLWtU6UrYB+FQPIC7wHXTDnbCSlDqCT2q0yhge74AOL81HNb0ehRdCYRUE33CIoFSmss5UvyVG/M1PTS6HOKxu6f+xRCqtIay5vOaSHlnl4e96+XPt6mCkNt9Xgtw3ZhbbDkQ=
+	t=1757367615; cv=none; b=U+AUMTXKLbyS2NHEQOhj2/5y+9YslT7Mxu6C1JS15r8sQc3M73ZUeXMePB4JtQmZNcNsFtBFLe7eatEJ3tWmD+z+SMPNmO4XcNgJ2jIzLxBA4eZVxFrm8SejegS06+AlQvz0Ve/2bs5Qt7RyGoLPNQ9ZHJmuoOwolOcVrimLqPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757366933; c=relaxed/simple;
-	bh=+ZoPjLjiNsqFmJXpuAMJ4g8JISQ38PkgMF8oH8CfkM8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=QpQUD5Ric8+KURuxUBhEdJP4URnsrbT+yCn10lYCoK4rEaHZ8BSn8yx4T+Q8mM6u77UDd2C/jxR7y2D/dj00XUftllTNbA3vVkDC17EOa5qKXxJIpApaJosWxjNls7nUzngKTidQlUy6oBavjCdAF+veJYxqr3+v2xeocHbkl5Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=g8yC9GTP; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 588HKPJx022735
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 21:28:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	ScGHARm0oECuOzEJcN01KKnFkQXnrnAhZVDiz2pnvYA=; b=g8yC9GTPjmhJQMGT
-	uUOy5evnTxnRCeX/AW3qA+wqtjLA3UcDTti6WGQhYyYVP3SjtYwOjdbw/jNwvRc8
-	z4J4KyuCwIf+ecjX4/jgHzZ8rq6hQi58KAhCGOACxwphsb9IpPX5J/ZG2QUGcwyZ
-	ejnw2RjRXmK5PKolDX7IPGKCx8+vip63cL1N6NVPi7Wceh10oGuFGWOptdX0NYmZ
-	lq3CXecrNQqcfhnrT3Dzoo5Stzy9IYRxSzbF4ZMR6tYANZ3q800QqFUX9KL+9YvG
-	pjiEl1FXmL8v5UG3vosFRGGazLaW+0Vx/vF7/iyW50dUTE9QyM2BJ6VeeozwF/kP
-	ZKTqNg==
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com [209.85.219.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e4kwveb-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 21:28:51 +0000 (GMT)
-Received: by mail-qv1-f70.google.com with SMTP id 6a1803df08f44-720408622c3so103187876d6.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 14:28:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757366930; x=1757971730;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ScGHARm0oECuOzEJcN01KKnFkQXnrnAhZVDiz2pnvYA=;
-        b=VQpSSq+9Lw61XD5OVihK3t0459w2ldN0dfdai39a0qimFR7LwdGBuZMec4bCaIOhhj
-         ZW6x6o3BZRTQg8iguHXAjrqhE/DMu2NO6V2rlmoC8ucpKvZsiDzOuhlzLQ/WgE0sETES
-         HMu0tlKuK0szn4g/N+A/mB4riffzOOYOO1zqAq8Ah5gXUu/9oDCbhbwNkdhl03utr+e6
-         EhxDo6IY7z8B8QyS7h6/8A4dUvpcDlwE1rou99G5i4tYSrOyg70yWRV8uOuKDhj5LZ1r
-         IoXLNHLXyfkMoy8XfCHYAPRT1NIroN30w0i3bufSJdi7DMMAr99JHguc7InmRUyeOGz6
-         UR9A==
-X-Forwarded-Encrypted: i=1; AJvYcCXbvpkne2D4G4eM3oADmd7IykZDlCq/LtCEVLnxUbGVIX/ggoYGuaAb34+lzqawevvw/IGrsrCyKY8J@vger.kernel.org
-X-Gm-Message-State: AOJu0YzRurmHQrcq8qi3CrhQE15SiTT9SxMueCI1kDkP+m/pHQD2nNmq
-	dd5wf78HRzFaN1IQd0/Bcv/GlFaD13yytkqp87BqqmiXyGVZ3c0OJMRWfjNJ1yuZdyRpugtzG/q
-	fQKIgc4E0GrIdKf+U73ZIjMY86FdAWkjDEMvdUEVnxKOE9E1ud3oLh3ihMouocEz0
-X-Gm-Gg: ASbGnctIkCmBrpmRDFfP23m9yQUhDEAkS+0GwAV5ewMvwEb+683DoJr6lxsRfK4swE9
-	B2FDkIyfpjk62jsIBBLVmuTewdftZbTXb1vTnLK0UvRA3WxdoJ93KWii1Evg5QtL8L8rm4ZvZfZ
-	YyvQvduFyzAZ+AhloiJNK6fIzvXwlqbiHxeToVWGnzlb/3UX7ty71AwhZ9A5bb1J2pFgw3kaIid
-	xN+dL+poq/bwMU+GkdM753NFXbwA4r9EEfLlyDfmRMDOYi8qQE2bU3RsA1uH9jgngZYcgK5bTgg
-	wj1BQ2uBp9IaIZQdqpMQg3vLM/tWwTlIJ701GuQ0i8K1hcWnnppxX0XD8QJsyAz/WjxLJKQW2dE
-	br6r687O5DJIAzZ1ohFW8pleELpVEpAHJf0eDWrpbfhOmXAPCwAK+
-X-Received: by 2002:a05:6214:496:b0:70d:fec6:494a with SMTP id 6a1803df08f44-739258aab01mr109442126d6.17.1757366929654;
-        Mon, 08 Sep 2025 14:28:49 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGFvWg9eRYub8/7m0Za7JpIIl4RD41FM6MBXJkA7gLyefolZO08FSmz7yplGf9/6bML7UCQDw==
-X-Received: by 2002:a05:6214:496:b0:70d:fec6:494a with SMTP id 6a1803df08f44-739258aab01mr109441656d6.17.1757366929103;
-        Mon, 08 Sep 2025 14:28:49 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5681795d445sm31486e87.71.2025.09.08.14.28.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 14:28:48 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: (subset) [PATCH v3 0/5] arm64: qcom: x1e78100-lenovo-thinkpad-t14s: add support for HDMI output
-Date: Tue,  9 Sep 2025 00:28:46 +0300
-Message-ID: <175736691957.998930.6661595469735181143.b4-ty@oss.qualcomm.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org>
-References: <20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org>
+	s=arc-20240116; t=1757367615; c=relaxed/simple;
+	bh=3DsTDs878uk2gOW7XGdvfuQ443cB/EwWbkkbr3wotVI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EkFVdPCcmE7gSbNmry4BiBYzKORG+Qkfyw68gSUe6JvDuQfsxU95K8g2a7yBBBJZUN0UX9pawe0mHeHBZ7te/ElbT4HbgpVyFFhow/OQkXZo30sKmeJ45UXtMomdWJlWiJ3WluBldNP5SJn+NauF+t6Z9nw1V4DUILqfj/69kqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VG5JY9JK; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Le7wl3878309;
+	Mon, 8 Sep 2025 16:40:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757367607;
+	bh=Mo2EFkzOaChPuvJidrt2tQqO/I5DDfDOd/qxOfVZ3Nk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=VG5JY9JKGvbSfigMkJ1Ng1EGEa0XjeiPKmqSGSrvSAQuPfDCTgemWX/1BmT4xwexn
+	 nSTuUn7Dv6IKX+XV/QVkZK1kq3SebifpKlTK/auVS/Uy6NL7glAU4r/TszA/p2/d8H
+	 QsEbhCf4DWvQrnfiBEk2dMSWO+3K9wSeFsl+0/eQ=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Le7L12683429
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 16:40:07 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 16:40:06 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 16:40:06 -0500
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588Le6T11545093;
+	Mon, 8 Sep 2025 16:40:06 -0500
+Message-ID: <aef2df4a-7266-4e81-add2-3e35a081f5b0@ti.com>
+Date: Mon, 8 Sep 2025 16:40:06 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOCBTYWx0ZWRfXxFid7D2XeGcs
- 3/jpzoOFYsNQU8z2xf0O4mIY9l/oXq8AsTUP73sLWPBu1vLcDGN+fhgRVYbzHVi+trA+qldwss4
- YuvsJojxXqRkTH4EbKOP2sxcyz2F7N8khuSqKWNQXMsPoGtXLGxXOqbl6KDj1BJzlzSERByzAjD
- jZmZm9T7MLPK8j/7voPX1MIYvncdm1V4VrOmTuUQmX1/KUK1aSovf7Nk/eu/URM3HGB6TE42CZB
- 9yMucXKAknfjWq0N+RxahgN3tin2Ockmtgwhgzpe5/WogR6VncLv88dO5vbAftx4Q89nRSljVXl
- U2ULly1JOSyw7mn5StExoD977WTW14/uQ4Nu2nemMGcxwVb3z4FIUk9TiP/qVJe60dVctVTsAg4
- /ReXf8IO
-X-Authority-Analysis: v=2.4 cv=J66q7BnS c=1 sm=1 tr=0 ts=68bf4a93 cx=c_pps
- a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
- a=yJojWOMRYYMA:10 a=mli57nIQh2RWQkMICy8A:9 a=QEXdDO2ut3YA:10
- a=iYH6xdkBrDN1Jqds4HTS:22
-X-Proofpoint-GUID: SxwCubVk_lpG4hJeRifcJBhIoRCYTqqA
-X-Proofpoint-ORIG-GUID: SxwCubVk_lpG4hJeRifcJBhIoRCYTqqA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_06,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 phishscore=0
- adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060038
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 2/4] arm64: dts: ti: k3-am62x-sk-common: Remove the
+ unused cfg in USB1_DRVVBUS
+To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <u-kumar1@ti.com>,
+        <sebin.francis@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <vishalm@ti.com>
+References: <20250905051448.2836237-1-a-kaur@ti.com>
+ <20250905051448.2836237-3-a-kaur@ti.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250905051448.2836237-3-a-kaur@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, 08 Sep 2025 15:04:17 +0200, Neil Armstrong wrote:
-> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
-> connected to the third QMP Combo PHY 4 lanes.
+On 9/5/25 00:14, Akashdeep Kaur wrote:
+> After the SoC has entered the DeepSleep low power mode, USB1 can be
+> used to wakeup the SoC based on USB events triggered by USB devices.
+> This requires that the pin corresponding to the Type-A connector
+> remains pulled up even after the SoC has entered the DeepSleep low power
+> mode.
+> For that, either DeepSleep pullup configuration can be selected or the pin
+> can have the same configuration that it had when SoC was in active mode.
+> But, in order for DeepSleep configuration to take effect, the DeepSleep
+> control bit has to be enabled.
+> Remove the unnecessary DeepSleep state configuration from USB1_DRVBUS pin,
+> as the DeepSleep control bit is not set and the active configuration is
+> sufficient to keep the pin pulled up. This simplifies the setup and removes
+> redundant configuration.
 > 
-> The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
-> of a combo glue to route either lanes to the 4 shared physical lanes.
+> This reverts commit 527f884d2d94981016e181dcbd4c4b5bf597c0ad.
 > 
-> The routing of the lanes can be:
-> - 2 DP + 2 USB3
-> - 4 DP
-> - 2 USB3
+> Reviewed-by: Dhruva Gole <d-gole@ti.com>
+> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
+
+Verified USB disconnect, USB connect, and USB remote wakeup on SK-AM62B-P1.
+
+Tested-by: Kendall Willis <k-willis@ti.com>
+
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> [...]
-
-Applied to drm-misc-next, thanks!
-
-[1/5] dt-bindings: display: bridge: simple: document the Realtek RTD2171 DP-to-HDMI bridge
-      commit: 2c4f536c75217476baabbd557a44e8d4c3a2a23a
-[2/5] drm/bridge: simple: add Realtek RTD2171 DP-to-HDMI bridge
-      commit: 7156602d56e5ad689ae11e03680ab6326238b5e3
-
-Best regards,
--- 
-With best wishes
-Dmitry
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 13e1d36123d5..d3bed23134ca 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -249,7 +249,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
+>   
+>   	main_usb1_pins_default: main-usb1-default-pins {
+>   		pinctrl-single,pins = <
+> -			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
+> +			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
+>   		>;
+>   	};
+>   
 
 
