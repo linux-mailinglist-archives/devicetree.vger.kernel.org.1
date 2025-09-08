@@ -1,219 +1,84 @@
-Return-Path: <devicetree+bounces-214536-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214537-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 045D2B4981D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:18:52 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F280B4984A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:28:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B07C23A3E6B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:18:50 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 24CB47B286F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:26:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 650A6314A63;
-	Mon,  8 Sep 2025 18:18:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BECB731B100;
+	Mon,  8 Sep 2025 18:27:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LCiO52Se"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SkbjJDGD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFA330DD2D
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 18:18:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EF5A3164BE;
+	Mon,  8 Sep 2025 18:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757355522; cv=none; b=VfmbhsW9NYxW3L+6Cf/wTQHuGtcOpnbvH8R9hYb2a9nqCuqVNc4H9m/qw8cQ0iFHwA/zWoXE2V8lKxlkwRErWj5tc804sdjoFB90j+0Gf1i4rYBo8ikRUYStW6+RoPkE6/wEhWA6Tlk06HcOXl6UIFnRjU/4zx0u55BB+xOTXzY=
+	t=1757356059; cv=none; b=HPulH4viNGa5yHBKgeH5dSeF4/TsP/0XxBj7eZNRyUUXJfVRvfI5jxdv1kC7sYR/kAhuFs1S3/ZlQdgJCBrEKCN35xp/FtMPe1BMFFPs8azgETlJpdHwxlbTDbsp6uxWf32kFrAMMQDF17bAvFCVJV0upqzRMHuFGmpZ3MtcfD4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757355522; c=relaxed/simple;
-	bh=4qtyyFkAqi/EXUnCgIjsBDS6e3kOLtoXVXi5nZvXX4A=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=iB5LknxMJtcHAdIzxkQV9oWD/GP8XjU+eRpnAsvds/J41ou2XwhaeBJle+n3esf21ZR1KbMEp8UIZt/G3k4tRNJMhX1V3hUnsf78lJN0NjsZRSezrqALQZE2YvLjErgGwiiSe1aPWDcXyDIJ/RAn4rkmeuWbUT+HOV0Du2r0aa0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LCiO52Se; arc=none smtp.client-ip=209.85.221.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3dae49b117bso4158045f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 11:18:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757355517; x=1757960317; darn=vger.kernel.org;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lb8SkQ+gt0WvvPJ4SzjGlb6HLfu8xf3EEt0ttO3omRo=;
-        b=LCiO52SexyXWWlSVyuolNT1J63bk+M3J0zJC/amCHsHl9KcVymvTUuYfe41t6dw6za
-         WK5hhcKR3GKhCTAzmq5XtbcL93tkswU+xTNzH24m1HOB0F6NatdtuFkpMniVibtpkS/9
-         x05mVI44Ls9aivDA/CajPlr3CXEg+djt1TB8o3xeDAKjgejDJwxIFpWHn/ggAXdDStAQ
-         iI0JMTlvZV3qcU73+1zL9SxgGaBA1BlGM26nOaYywrrclz+bG9VtMohyQKxVGZBS2VyW
-         uFRUxqkuJApOkxSnTMIF8l774tq+0j4KoAPKubvJd6nKIbhr009D1szKT4k12DZfFx/B
-         q2Pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757355517; x=1757960317;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=lb8SkQ+gt0WvvPJ4SzjGlb6HLfu8xf3EEt0ttO3omRo=;
-        b=gT3zUO/TSDPDeRvyyyR9nBjs8ZJCekscPFQPT+/YTrs1QAFtLrMcVQAiMm1Pg6w2gc
-         +lKUm6Bm3AIo2A+0RRha25hOtYLaexRog++fRWRK3NkLFC4F0wzbPv3wpf16Mu8XxNh6
-         KQZOEKCRbOnf7xJtCoLLPnAGx1k+fI66yILKcFUZdZ5pn0+m++FztjUT2pnFvZIkQEx3
-         kISIq2NUcLEq0PD4gPnFqQS7zHYau0kgpFikUYsS9MwjkIvycH4MZE2XEH8lEpzsNEJg
-         1tZ03vR2gwNEHlIIDTEimDzK6/oF1y6Mh8/8aOx53w4UtvZAnlVA9yui3GlqYetj5IIf
-         jwsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXYuaIVvJkz4ezcKiLfRtjqxb2QLKhELVniHKj7x9DgYFmeOwX+3yIEKBJTcSpBRVwRtWYwgaE1Oubx@vger.kernel.org
-X-Gm-Message-State: AOJu0YyjOLxvqK040YXDF/5CdVY3iwoPsu6n0sMNY0rBhSXG0n9RlCwm
-	UtpLofqUMEaIJIUjdcZvCasirQjlx6fRHBGKCNM2eOnWXWHui1zl4IvOU1U4u1bJJlw=
-X-Gm-Gg: ASbGncsDAlNkdhq1CBUmBH5SXjBQMn7zk2ntdwmNVZWqA4o3qAvF+WIbiftiAtBN62S
-	KCR/vj/pt6IwU+lTrc5l/2FsP3Q8Tn0kfv2G2SXuJf1IZANjQDyOdxDSRXJ8bh/goYGBrUQH2Er
-	JNQkYSuBzXhlzIoQ60fYsgtuFH6RQYQYaSWa3hmKBq82T08zlCC2T8e07NPDKGsBulSr7XB/G4/
-	tUzuqXa6MnSvPaomYuGX+t+9sUxmWpBl3ToCbUNxpjUog2TSz1k4E6/caK8vtxnl4vt+DAgQgj7
-	uZBUE4lstUbPW6xfADeXBjj5lzflottNhhvuN45JRhHyqaWWuOgt9CxzR3RCiG4ljFWHFrqAh59
-	HSFT9eXcw1wXmcq9nvUQGUz6amFY=
-X-Google-Smtp-Source: AGHT+IFOzTS8FVjEgH8Go18e2etfKEqg7OecFkUxP2xoc5+BHcVI+ILWLt3vxVvL+fS0RCc5g0yPVA==
-X-Received: by 2002:a05:6000:2486:b0:3e2:e079:86cf with SMTP id ffacd0b85a97d-3e64bde66d6mr9363317f8f.36.1757355516935;
-        Mon, 08 Sep 2025 11:18:36 -0700 (PDT)
-Received: from localhost ([2a02:c7c:7259:a00:1299:47dd:d3d7:b7cf])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dda597641sm65257275e9.11.2025.09.08.11.18.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 11:18:36 -0700 (PDT)
+	s=arc-20240116; t=1757356059; c=relaxed/simple;
+	bh=eHyvwJfyU389ryIw9y/fXvZZGhXTbqPRmEfdge7Hf/g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lJtJPmIzTM7ZXfDHHj39n/wYxxpKIszbIOVvnAeisU9+pnFyQn8r+bAYjvx5Jx8H5n5m4ElrInubY8HZFekEDO59r/j+orpGqIcVyyN+fP1oK0BxGSUO6Lod8yaU9EMm2YPxbmHqJgrzij0UHM1RA3r5AyTZsyQ6GJ7ozfWM8rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SkbjJDGD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 907EDC4CEF1;
+	Mon,  8 Sep 2025 18:27:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757356059;
+	bh=eHyvwJfyU389ryIw9y/fXvZZGhXTbqPRmEfdge7Hf/g=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=SkbjJDGDAOAwuIcxTiyeNcnMAibwJDmZDKdSAwoS6l0v4PlnvQRXLeFzqfmRZFPgq
+	 n5ZyVa1eYYCUYP9rtmUcIE5k+kyHRQVjBJ//KZpTd/m9y9rFpRoHEvbrpJ6GNY4jzo
+	 8NmGbh9jdHZty3P28rCvMtR6Dpuq9k7B8jPuWrI4t608Ilc0oISOHsjEtDwrviqNMj
+	 WGmbO/ONqt2L7LXskRlgkrQE0qKyzhZ+5aQqTFVq37g5NFm38QtuEdyIK7HRoADmjE
+	 HUGskPhWDPC7c8tIZTzF4BykhAQAttZJkkspBQhpIEaf7irdF2XGiRt8wLKrEyQwdA
+	 iv8lvdbx0B3ZA==
+Date: Mon, 8 Sep 2025 19:27:35 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Antoniu Miclaus <antoniu.miclaus@analog.com>
+Cc: jic23@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 3/6] dt-bindings: iio: adc: add ade9000
+Message-ID: <20250908-postcard-emerald-0f27e15d9c71@spud>
+References: <20250908073531.3639-1-antoniu.miclaus@analog.com>
+ <20250908073531.3639-4-antoniu.miclaus@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 08 Sep 2025 19:18:35 +0100
-Message-Id: <DCNMJEP0XW33.1AUMCTJU5UPBY@linaro.org>
-Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
- <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Stephen Boyd" <sboyd@kernel.org>, "Lee Jones" <lee@kernel.org>, "Jaroslav
- Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
- <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
- Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>,
- <christophe.jaillet@wanadoo.fr>
-Subject: Re: [PATCH v3 2/3] ASoC: codecs: add new pm4125 audio codec driver
-From: "Alexey Klimov" <alexey.klimov@linaro.org>
-To: "Srinivas Kandagatla" <srinivas.kandagatla@oss.qualcomm.com>, "Srinivas
- Kandagatla" <srini@kernel.org>
-X-Mailer: aerc 0.20.0
-References: <20250814-pm4125_audio_codec_v1-v3-0-31a6ea0b368b@linaro.org>
- <20250814-pm4125_audio_codec_v1-v3-2-31a6ea0b368b@linaro.org>
- <df884334-c850-4ae9-b5e8-63cb834ae259@kernel.org>
- <DCNIVW9XSSY3.3H7TSNFDH7TKT@linaro.org>
- <690423ac-4283-47a0-9250-4c740978ccac@oss.qualcomm.com>
-In-Reply-To: <690423ac-4283-47a0-9250-4c740978ccac@oss.qualcomm.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="q63LfRDEp4aXS8kd"
+Content-Disposition: inline
+In-Reply-To: <20250908073531.3639-4-antoniu.miclaus@analog.com>
 
-On Mon Sep 8, 2025 at 4:45 PM BST, Srinivas Kandagatla wrote:
-> On 9/8/25 4:26 PM, Alexey Klimov wrote:
->> Hi Srini,
->>=20
->> On Fri Aug 15, 2025 at 4:36 PM BST, Srinivas Kandagatla wrote:
->
->
->>>> +static int pm4125_codec_enable_rxclk(struct snd_soc_dapm_widget *w, s=
-truct snd_kcontrol *kcontrol,
->>>> +				     int event)
->>>> +{
->>>> +	struct snd_soc_component *component =3D snd_soc_dapm_to_component(w-=
->dapm);
->>>> +
->>>> +	switch (event) {
->>>> +	case SND_SOC_DAPM_PRE_PMU:
->>>>
->>>> +static const struct snd_kcontrol_new pm4125_snd_controls[] =3D {
->>>> +	SOC_SINGLE_EXT("HPHL_COMP Switch", SND_SOC_NOPM, 0, 1, 0,
->>>
->>>     SOC_SINGLE_EXT("HPHL_COMP Switch", PM4125_COMP_L, 0, 1, 0, ?
->>>
->>>> +		       pm4125_get_compander, pm4125_set_compander),
->>>> +	SOC_SINGLE_EXT("HPHR_COMP Switch", SND_SOC_NOPM, 1, 1, 0,
->>>
->>>        SOC_SINGLE_EXT("HPHR_COMP Switch", PM4125_COMP_R, 1, 1, 0,?
->>>
->>>> +		       pm4125_get_compander, pm4125_set_compander),
->>>
->>> This is same issue in one of the WCD codec, which am going to send fixe=
-s
->>> along with my original wcd fixes series.
->>=20
->> So this was in other codecs for years, right?
->
-> only in wcd937x since it was added.
->
->>=20
->>>> +
->>>> +	SOC_SINGLE_TLV("HPHL Volume", PM4125_ANA_HPHPA_L_GAIN, 0, 20, 1,
->>>> +		       line_gain),
->>>> +	SOC_SINGLE_TLV("HPHR Volume", PM4125_ANA_HPHPA_R_GAIN, 0, 20, 1,
->>>> +		       line_gain),
-> ...
->                           PM4125_ANA_HPHPA_FSM_DIV_RATIO_MASK,
->>>                                       PM4125_ANA_HPHPA_FSM_DIV_RATIO_68=
-);
->>> @@ -309,8 +307,6 @@ static int pm4125_rx_clk_disable(struct
->>> snd_soc_component *component)
->>>         snd_soc_component_write_field(component,
->>> PM4125_DIG_SWR_CDC_RX_CLK_CTL,
->>>                                       PM4125_DIG_SWR_ANA_RX_CLK_EN_MASK=
-,
->>>                                       PM4125_DIG_SWR_RX_CLK_DISABLE);
->>> -       pm4125_global_mbias_disable(component);
->>> -
->>>         return 0;
->>>  }
->>=20
->> This doesn't work. Playback has two issues: 1) volume is very low and pr=
-obably
->> not adjustable and 2) sound during playback dies after a couple of secon=
-ds.
->>=20
->> Returning these global_mbias() calls restores the good behaviour.
->
-> What is global micbias to do with rx playback? Maybe something is missing=
-.
 
-No idea. Spec that I can see doesn't say a lot about PM4125_ANA_MBIAS_EN re=
-gister.
-Just that these are main biases.
+--q63LfRDEp4aXS8kd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Which RX path are you testing?
->
-> I am testing this with Headphone and Lineout, it works for me.
->
->>=20
->> Maybe let's make a widget out of it? In such case I am not sure about
->> routing meaning that I not sure which paths do require mbias enable.
-> Not sure why RX would need mic bias?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-I am testing lineout that goes into wsa881x amplifier in analog mode (mono)=
-.
-I use the following amixers:
+--q63LfRDEp4aXS8kd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-amixer -c0 cset iface=3DMIXER,name=3D'RX_CODEC_DMA_RX_0 Audio Mixer MultiMe=
-dia1' 1
-amixer -c0 cset iface=3DMIXER,name=3D'RX_MACRO RX0 MUX' 1
-amixer -c0 cset iface=3DMIXER,name=3D'RX INT0 DEM MUX' 1
-amixer -c0 cset iface=3DMIXER,name=3D'RX INT0_1 MIX1 INP0' 'RX0'
-#merge two channels together (right channel goes into INT0_1 input1)
-amixer -c0 cset iface=3DMIXER,name=3D'RX INT0_1 MIX1 INP1' 'RX1'
-amixer -c0 cset iface=3DMIXER,name=3D'EAR_RDAC Switch' 0
-amixer -c0 cset iface=3DMIXER,name=3D'HPHL_RDAC Switch' 0
-amixer -c0 cset iface=3DMIXER,name=3D'HPHR_RDAC Switch' 0
-amixer -c0 cset iface=3DMIXER,name=3D'LO_RDAC Switch' 1
-amixer -c0 cset iface=3DMIXER,name=3D'HPHL Switch' 1
-amixer -c0 cset iface=3DMIXER,name=3D'RX_RX0 Digital Volume' 80
-amixer -c0 cset iface=3DMIXER,name=3D'SpkrMono WSA_RDAC' 1
+-----BEGIN PGP SIGNATURE-----
 
-and then aplay. With long .wav files the sound dies after few seconds of pl=
-ayback.
-But volume issue is present with any .wav files.
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaL8gFwAKCRB4tDGHoIJi
+0hTSAP0YebM3AhQ/e14L/VcDm43KjoYrVD75tOv8wYIt7CyxUwD+MMel4xlGVahT
+y/bsB7qjppN3Jzqi8Dbau1NZ3RXCjwo=
+=8jxI
+-----END PGP SIGNATURE-----
 
-After playing with pm4125_global_mbias_enable(), tt looks like
-both PM4125_ANA_MBIAS_EN_GLOBAL and PM4125_ANA_MBIAS_EN_V2I should be enabl=
-ed to avoid this problem.
-
-Thanks,
-Alexey
-
+--q63LfRDEp4aXS8kd--
 
