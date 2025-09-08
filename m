@@ -1,109 +1,129 @@
-Return-Path: <devicetree+bounces-214368-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214369-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135EBB48E55
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:57:03 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86BB1B48E68
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:59:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 11FC51B2595A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:57:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38ED51696B1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:59:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72F62305954;
-	Mon,  8 Sep 2025 12:56:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686CB305948;
+	Mon,  8 Sep 2025 12:59:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xdGfxyrL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dX1rQ/kI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B34E305043
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 12:56:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7423054FF;
+	Mon,  8 Sep 2025 12:59:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757336214; cv=none; b=Ud6Xc/4rujdastXBLgxLzBgFVQSK0rhS/pAT9XALmfEQLeFM5MBO4TNT5Vh2DufMJlYElWQo1n832pkF2/LtcWMdPTQZJzuaSzyi8oBukR4t6Mv37viJ9y/us0YJsQT5zlCac6RLqYOCHiGkGWjNjeDEnygBgYNem+tzeMtQwKU=
+	t=1757336386; cv=none; b=bivnB00ZfxoaAJdfFmGEvGw2TFTpjoPc45UPazs0Gzx30s2gBNM25UCmRVE3h9y3LUIiMTHzUUocJR7+39IQmZIPhNVyWrUS5vHYB3Sa+21nW2Oc1hdcq0mFGU+dVpATN4MCZr1dxFdXPnqudia0+y0hmd51ytbK2BnT8w73HL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757336214; c=relaxed/simple;
-	bh=i9NEs8V73/3LlyodLKStIRGRG21l4ViD+gJckmHEMhU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=J7YQGQfb8hPwTNPhp8MRC6Kncp5qcKjNs1nzwxgcflW27FYwngnOy4e8fPt8MciaC8OKFda/DZnmbG+1XySOu5G3I4egJkhjKL3avo8a8pw4w+d3CC9HjeWB4sAu/yxpzn/lrJS5dZ7vwcKLOOQlngeyDxQpD/SLJut7d5ZZGCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xdGfxyrL; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-336b071e806so38205101fa.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 05:56:52 -0700 (PDT)
+	s=arc-20240116; t=1757336386; c=relaxed/simple;
+	bh=8uEM4gdyv3Tgk8Rw6iN0DvfOwdlfYIhoy3AC0avu8TY=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=M/QuOT50oKzPJ8lF6ZhOiHw3441PuYHvCyYnk6JpW8If1dig3PVsyOlFaLCnmE62JWi0XVK70xNCzzX+AiRTSxRbIihhKoooUiVwjdasx3HKGF4AkIOodIyCx/fUKzkPI8GZKy8tBuReItfjk7EHy0Q9NsxGsldBno91H/XNVbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dX1rQ/kI; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3dea538b826so3724858f8f.2;
+        Mon, 08 Sep 2025 05:59:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757336211; x=1757941011; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=i9NEs8V73/3LlyodLKStIRGRG21l4ViD+gJckmHEMhU=;
-        b=xdGfxyrLeHAMO3z7zd0IRWxxO7G2ximE/EoZc3i3KhsEDt5xjzy4pII/exmEbaMo/a
-         Fcu8BXKB5vOv8xzlpFoIK4yA5efDEKRDV2YJbzOQM8HgQdtupq2vhIzgP10qRkIKc++o
-         lTL9tvpgM8jMZGYuQiTYLrx17XyuaXZ51bNK61vLul7JtHq/I5FdUVuXg/pgpDvRG4KN
-         ILPPfFaeurch6yEJN6qFGOtcwg8uD9pKUeh3keEW62knWkj4S/qKbCVpwlKEFO10ywdX
-         Ipp7THhob7GZzDXa0woyQc+EwqrnhvoJMZmdJX4ceAog8b0W81BHSEs4cOb10Q79QljR
-         I5sg==
+        d=gmail.com; s=20230601; t=1757336383; x=1757941183; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P9HAK++51pzatrkTcr67kHbvxEqiZA0dHLEsKJrNIuI=;
+        b=dX1rQ/kIQOI38Ndco5GR0Dc7oGdHp9cHi5K5Tpg3nmI0EGchY2zn80KXkkWHEah1ec
+         xTh6yYs/1JyDQ49oEMNLkglIeOOHfPHaxdHVkxA8TujUtTX9OvAYsnWQMkRSZGvbpl3a
+         7DoY3oN1hVWRMy6WEwM/C0eqwdTwprWGJiWml7gETnfDOZqJAIJ+/LXmKUgOjFgN7/zL
+         hWhQBNBTCIh+9+l5hhmpCf/XR/fXLoj802RR940pM1peIHOmHoZgdz2SMMLODPbMSOaC
+         oecpu85K+P6UtB0aJNc6nVM5oXdK3/aCOrAsslPTxnOMWQ9PTidxkFilvihWMd7qqa9W
+         UBLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757336211; x=1757941011;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=i9NEs8V73/3LlyodLKStIRGRG21l4ViD+gJckmHEMhU=;
-        b=Gzg9Md96MNSEGWBvnVwL1Wg0OIZTGUwO5vngMVWPeRhPlcMJ0ULQbZvzncwOVr2Ro7
-         wqVnnxcFo7DlQ/8DnYSw3DZi9eRNI0VF6UHFwmmgyvvyojCGEqlWeSCFkKPL58GEWkke
-         SN3pvzAa/t9uuFao39JGupq+1Y4Gaw+HUrP3czy28sBTSXdk63+i2Dva6QxNWT4+8tWO
-         FLlujhI58CzTX7FafKfp9RcsJTk7A6XIR1irZdB9gKyVS6fOPRgmCUxQVdT7kEltMuch
-         qi+7Js7e6sSQ1UVPalbTS0GToGUH8uDP70VxwBpW4URf/TolcUcGyUsRNdqjm3bMs70U
-         N5sQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXh/BgGUkL5naSPeFGgJF7BE9yrdy1dfV5tLdAR/bM6xT3mA4v3z95aK3XULpSooMuLplhdJ2owCwc8@vger.kernel.org
-X-Gm-Message-State: AOJu0YzDx4hWEOHMacAeogag91c5ALN8E+dLK+DZdkM39/VxJtyIefvT
-	dI5M5KaAIrOWRTnfx71+YCx/5BSO6gmAktLn/wM7ssU4LKF0NP92rf/mjKzS1jlf6202hPflAr7
-	5adonRblsrvMyvBFq7b+R1zk41nF10IeHMo2SgI2Bsw==
-X-Gm-Gg: ASbGncvDbuZI6hZRalxrzKahm8HsHPRmmhpAiDa/QfFB8me2D3so9ckjt9xUgkqhCB4
-	GGfDxcBv2rLoTPcXykOQR2FcspBjqQ2PaMlr0RyS1QgrUUfurHZG921gF2ADVwRVWyrdY8WAS6P
-	OaY1xuvqnyW9cDKGShoAdzmVi7Rw2NYlacaN1zakGZ9Tpj+7Eh2LxjmXeST82GpAHW8pqLYX4LX
-	fTfkFP4S0QiBCs9LP1O0ZMKSXRJ
-X-Google-Smtp-Source: AGHT+IEJ7fijUeRwcBqhdVkGDGPkBaqhhVLbChjEuCa3TFGud0bMeF8EqC3neCfnzC7X5VYOVF0X6+vHRwRYjqQlljM=
-X-Received: by 2002:a05:651c:1546:b0:336:c925:550a with SMTP id
- 38308e7fff4ca-33b4fe4ac95mr22086341fa.7.1757336210631; Mon, 08 Sep 2025
- 05:56:50 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757336383; x=1757941183;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P9HAK++51pzatrkTcr67kHbvxEqiZA0dHLEsKJrNIuI=;
+        b=hTsWLWZEaVH7tvAWL2GtOCHzA74wudamZqOUG0b3ABNJ/QI5rSO49xXIT3xFi7aUY9
+         n7U7Ga2XZjffJVi70Ba1Z6xc0GFsNO3GoKzrMgDS9FyUYuESatshT+vO+yBofSg8yP7o
+         DlY5L0Zen7qzjgP8crmMhyz+4K5NCjmjH6OM1HdCZ1mUmLtXS+ZTQQcSsd2XwYXzb9G8
+         3M3RYyD7CyKH7xDokauhMb+yP083fZVG7WnWywvXunnmLLzcfwe+31Ts7IZNFhgsf91Y
+         AzxCwFxigBjY9Md0tt+GeSCGSXAyatTIAwruYI+aS/82F9vCN2T6rEQKs8Lc4haTiuFa
+         94mQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUiaveFrhllA3+6TRwy0R4k258VjF/g00oBL0rSjfc5dWnj51e3YoIeNC9fIokwMIMSgEvVTcMb5mrB@vger.kernel.org, AJvYcCXlapYCstFnOGF0YEMvNaX/5/SCBX7uPofib8HC1Jib08sQSyrq4dAxYCzUd77Jtz1narn/MsETJ7rtDmiG@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxltURrNxngI0RubTwn6bXW7xa8Cy6TmPu+64Mtuce1BNG+Jtc
+	XeuqM+cR+xrQBUplsxZcZ4GGH00oo/j57EPbPDuWV/qQPv+uCVAVy5Wd
+X-Gm-Gg: ASbGncuC8t/24zTruNxsCUDV07rHHBiSbLxZOToF3UaqNyZbanF2fLWypM2HmPN5d52
+	BV8aYbDrgUT6SQRm01IZj/DTLZBdrTA8bN1uVWkYC2HzHetZRfNp4AbQ6GacxPwUSyjX4kIYm+I
+	1nlzaCJ+H6wEOt9n5aOpcnUv6Sc4/NWwsm0Zjemf9n8RVqQdCzNTxOxFlKbc7n6xMw4YQSHAYpB
+	sc7zSPaSLxhdtRWezyqo4wjdq1A1utr44LaHn4cEmEtvz0B6VSVfqfu3aMBaxsiFXRNDOSqAHKM
+	0zCtiu+lWw0LPhAG6+AJSKWVaUOzlauYHNmGEKxq6XUIKmWfBncyxvofPowhSqoAtJH65gRI2DW
+	S4EgTy8vCZoEB0r6eDwwGI7wAwvZ4gtIvRw==
+X-Google-Smtp-Source: AGHT+IH0t7fMV6CgMwj3Du7kf1S1PE57qtTFVRLfVYSND+U3dwSNX0b9nM0ZLF92ANClKZ2SLD0pQQ==
+X-Received: by 2002:a05:6000:2087:b0:3de:c5b3:dda3 with SMTP id ffacd0b85a97d-3e645c9d0fbmr6697379f8f.44.1757336382785;
+        Mon, 08 Sep 2025 05:59:42 -0700 (PDT)
+Received: from taln60.nuvoton.co.il ([212.199.177.18])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf276d5816sm41260581f8f.25.2025.09.08.05.59.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 05:59:42 -0700 (PDT)
+From: Tomer Maimon <tmaimon77@gmail.com>
+To: robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	avifishman70@gmail.com,
+	tali.perry1@gmail.com,
+	joel@jms.id.au,
+	venture@google.com,
+	yuenn@google.com,
+	benjaminfair@google.com
+Cc: openbmc@lists.ozlabs.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2 0/2] arm64: dts: nuvoton: Add NPCM845 SoC and EVB support
+Date: Mon,  8 Sep 2025 15:59:36 +0300
+Message-Id: <20250908125938.3584927-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905-v6_tlmm-v6-0-1720e5080415@oss.qualcomm.com>
-In-Reply-To: <20250905-v6_tlmm-v6-0-1720e5080415@oss.qualcomm.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Mon, 8 Sep 2025 14:56:39 +0200
-X-Gm-Features: Ac12FXxW5YwGL17gaiHO7OUXNyNZGzF4JRK0vQggGezgngIJlttln-n3I4WN2X4
-Message-ID: <CACRpkdZsBGejSXT0D69pvwJn8smS8BGDVp_BNaa7KhrHhUrYyg@mail.gmail.com>
-Subject: Re: [PATCH v6 0/2] pinctrl: qcom: Introduce Pinctrl for Glymur
-To: Pankaj Patil <pankaj.patil@oss.qualcomm.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	rajendra.nayak@oss.qualcomm.com, 
-	Bjorn Andersson <bjorn.andersson@oss.qualcomm.com>, linux-arm-msm@vger.kernel.org, 
-	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Sep 5, 2025 at 5:11=E2=80=AFPM Pankaj Patil
-<pankaj.patil@oss.qualcomm.com> wrote:
+This series adds device tree support for peripherals on the Nuvoton NPCM845 
+SoC and its Evaluation Board (EVB).
+The first patch introduces peripheral nodes for Ethernet, MMC, SPI, USB,
+RNG, ADC, PWM-FAN, I2C, and OP-TEE firmware in the NPCM845 SoC device tree.
+The second patch enables these peripherals for the NPCM845-EVB, adding
+MDIO nodes, reserved memory, aliases, and board-specific configurations
+like PHY modes and SPI flash partitions.
 
-> Introduce Top Level Mode Multiplexer dt-binding and driver for
-> Qualcomm's next gen compute SoC - Glymur.
-> Device tree changes aren't part of this series and will be posted
-> separately after the official announcement of the Glymur SoC
+The NPCM8XX device tree tested on NPCM845 evaluation board.
 
-Patches applied!
+Addressed comments from:
+	- Krzysztof Kozlowski: https://lkml.indiana.edu/2507.3/05464.html
+						   https://lkml.indiana.edu/2507.3/05465.html
+Changes since version 1:
+	- Fix commit message
+	- Fix dtbs_check warnings.
 
-Yours,
-Linus Walleij
+Tomer Maimon (2):
+  arm64: dts: nuvoton: npcm845: Add peripheral nodes
+  arm64: dts: nuvoton: npcm845-evb: Add peripheral nodes
+
+ .../dts/nuvoton/nuvoton-common-npcm8xx.dtsi   | 702 +++++++++++++++++-
+ .../boot/dts/nuvoton/nuvoton-npcm845-evb.dts  | 439 +++++++++++
+ .../boot/dts/nuvoton/nuvoton-npcm845.dtsi     |   7 +
+ 3 files changed, 1147 insertions(+), 1 deletion(-)
+
+-- 
+2.34.1
+
 
