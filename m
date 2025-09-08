@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-214428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D420B490FF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:15:41 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5380DB49100
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:15:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 33BF6173680
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:15:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D2662176B7A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:15:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9249630C621;
-	Mon,  8 Sep 2025 14:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 460CA30CD81;
+	Mon,  8 Sep 2025 14:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFSdKDSs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aBEMa3DL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4C930C34F;
-	Mon,  8 Sep 2025 14:15:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 174D77082A;
+	Mon,  8 Sep 2025 14:15:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757340926; cv=none; b=GZ725jcdLKMqoLzGxMrwJ4OXgRqkwxFJylir/EGFvS21mRXj9Av8r4vWFEJmoj7mrDAXbAPt3UvGZ4P6L/pY8NNs6qMXJEujqenC5z0ey7t5D112L/HXcZ5r6EmKVSzETmowrqO4LHSrDoggUs9wSEu+nVU3m2nqUD4Kl3kLDZo=
+	t=1757340927; cv=none; b=YQeBOk/KRN7daIrEIWLOSOYa/5o0QVZ0ey6afRJI8PmrYbrsqV+LGRHTi8vuu7SFmSkfrpiC8YILubUJMJN3U7Mqgzxa7LPg43wQeHDpB9yzlxKaQTbSHlZWM72YcZ3GNQ7RtAvqGjGUAaw04Mv8h42RdI1z9dki0h3Z1RS8l00=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757340926; c=relaxed/simple;
-	bh=h6Qry5FC98QS7Us6GZ3WJl94irnInyNVErTrv3usnxA=;
+	s=arc-20240116; t=1757340927; c=relaxed/simple;
+	bh=7YU1UeI4W5ZZgGKI5I9Pad1avQD9YJzn8mftLPPO940=;
 	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
-	 Message-Id:Subject; b=aZyhtvqxQbKE1CufIRZgz5Wiqft2ErfORmP5UooZn9fSg6WKi6tdLWVhFbuU392h6e0kigNDq39hUld9+fuBbmYNjNLanHiOEZsP4/SX902OEN+OvtApiV2FpXl+qShWaoeLV3ZQUjGIZIZvvtJsE5UeJ3ONnAyDJd+yQRvrwoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFSdKDSs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B28C4C4CEF1;
-	Mon,  8 Sep 2025 14:15:25 +0000 (UTC)
+	 Message-Id:Subject; b=apuwBYso+aAGmNL7AIQqjMRV8yrUkJFZpB4HJAGJgXkA9fe56PDyaaZxNSt6c/NpbSq50O4Tl/hXGv/P3VvuMdPX5P2dCBRmF4msPWURCB8s/eNQAuyw3hiuylYQNiISPByqJQ4cgBfT/Zhou3eX6birBJIO76uVBCcl/RL4FwA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aBEMa3DL; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1154C4CEFB;
+	Mon,  8 Sep 2025 14:15:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757340925;
-	bh=h6Qry5FC98QS7Us6GZ3WJl94irnInyNVErTrv3usnxA=;
+	s=k20201202; t=1757340926;
+	bh=7YU1UeI4W5ZZgGKI5I9Pad1avQD9YJzn8mftLPPO940=;
 	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
-	b=KFSdKDSseC+nvewrqp6aRmdLOAqtxbu5vDa/ojMk7gz2w3RgBcOeq+Mi5ibIXw75c
-	 B4jiwl/CjacSdJ71MywD3wUq9zdPXAz//JlKnG4ae/XIta6H4T+OcPp+gjHDgz03sf
-	 EJUr38/jpBv+mScdnONUNyYcS9WbMgwf9zhUgaYfnJ0BisU0fl0wRGf9WTLJ5bFlPx
-	 Fic4XoKLvzGMYgl5g+WmfvhflBKJ/ZRDt+O3RwB0wyTNj62F2F2/TZ0MqNSbNE0YOO
-	 bN2oskl4Vq+1qpJMj6IOcVh19Nmd97i//lBvx6da2J+x0TIN1/Wyv9CeBGLZpexm0p
-	 +iIxCh/mgF8LA==
-Date: Mon, 08 Sep 2025 09:15:25 -0500
+	b=aBEMa3DLnFEhYE5MM8rXin/IPrmqiJAruTHxw1YMdy1L8IKc6Vl9ySelCceSeNJTW
+	 TxPPJmu+AFBJXRNOodDcoGEkQchAqxW5lVzKMDUM1m5+gfp6ZfZaKMzBUgTj+ct8tt
+	 tcIgRZNynayEmViK8GQTzTNHXelqkwAWOQ9gjDV4UqVSlxzxQGu1tRAmVWenUBCWTZ
+	 XS/GCCnU2vPzxhFSDjdZCB8H6JM+Lh+c3JgcHluOyFm5Be9LHw52H1ak2yIpt1Jei9
+	 kFKN0+DYjUmbs5iNskMYMVmVvUqk/a0IREvZnQEmDPvVoG/YINVTqRlsqQ/QBMH9E8
+	 c6HwqyEHkryAw==
+Date: Mon, 08 Sep 2025 09:15:26 -0500
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -51,38 +51,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 From: "Rob Herring (Arm)" <robh@kernel.org>
-Cc: andrzej.hajda@intel.com, linux-kernel@vger.kernel.org, 
- neil.armstrong@linaro.org, rfoss@kernel.org, u-kumar1@ti.com, 
- devarsht@ti.com, krzk+dt@kernel.org, sjakhade@cadence.com, jonas@kwiboo.se, 
- tzimmermann@suse.de, jernej.skrabec@gmail.com, simona@ffwll.ch, 
- maarten.lankhorst@linux.intel.com, airlied@gmail.com, 
- dri-devel@lists.freedesktop.org, s-jain1@ti.com, yamonkar@cadence.com, 
- devicetree@vger.kernel.org, Laurent.pinchart@ideasonboard.com, 
- conor+dt@kernel.org, mripard@kernel.org
-To: Harikrishna Shenoy <h-shenoy@ti.com>
-In-Reply-To: <20250908054609.1113360-1-h-shenoy@ti.com>
-References: <20250908054609.1113360-1-h-shenoy@ti.com>
-Message-Id: <175734087919.1809101.10556288924860708163.robh@kernel.org>
-Subject: Re: [PATCH v3] dt-bindings: drm/bridge: MHDP8546 bridge binding
- changes for DSC
+Cc: manion05gk@gmail.com, conor+dt@kernel.org, 
+ linux-hardening@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ gustavoars@kernel.org, linux-i3c@lists.infradead.org, srinivas.goud@amd.com, 
+ alexandre.belloni@bootlin.com, devicetree@vger.kernel.org, kees@kernel.org, 
+ michal.simek@amd.com, shubhrajyoti.datta@amd.com, git@amd.com, 
+ jarkko.nikula@linux.intel.com, Frank.Li@nxp.com, 
+ radhey.shyam.pandey@amd.com, krzk+dt@kernel.org
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+In-Reply-To: <20250908112117.205270-2-manikanta.guntupalli@amd.com>
+References: <20250908112117.205270-1-manikanta.guntupalli@amd.com>
+ <20250908112117.205270-2-manikanta.guntupalli@amd.com>
+Message-Id: <175734087989.1809191.3813013625215736173.robh@kernel.org>
+Subject: Re: [PATCH V5 1/2] dt-bindings: i3c: Add AMD I3C master controller
+ support
 
 
-On Mon, 08 Sep 2025 11:16:09 +0530, Harikrishna Shenoy wrote:
-> From: Swapnil Jakhade <sjakhade@cadence.com>
+On Mon, 08 Sep 2025 16:51:16 +0530, Manikanta Guntupalli wrote:
+> Add device tree binding documentation for the AMD I3C master controller.
 > 
-> Add binding changes for DSC(Display Stream Compression) in the MHDP8546
-> DPI/DP bridge.
-> 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
 > ---
-> Changelog v2 --> v3:
-> -Update the name of dsc register block.
-> -Add the reg-name list in conditional based on compatible.
-> Link to v2- https://lore.kernel.org/all/20250903111357.2605199-1-h-shenoy@ti.com/
+> Changes for V2:
+> Updated commit subject and description.
+> Moved allOf to after required.
+> Removed xlnx,num-targets property.
 > 
->  .../display/bridge/cdns,mhdp8546.yaml         | 20 +++++++++++++++----
->  1 file changed, 16 insertions(+), 4 deletions(-)
+> Changes for V3:
+> Updated commit description.
+> Corrected the order of properties and removed resets property.
+> Added compatible to required list.
+> Added interrupts to example.
+> 
+> Changes for V4:
+> Added h/w documentation details.
+> 
+> Changes for V5:
+> Renamed the xlnx,axi-i3c.yaml file into xlnx,axi-i3c-1.0.yaml.
+> ---
+>  .../bindings/i3c/xlnx,axi-i3c-1.0.yaml        | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
 > 
 
 My bot found errors running 'make dt_binding_check' on your patch:
@@ -90,16 +99,13 @@ My bot found errors running 'make dt_binding_check' on your patch:
 yamllint warnings/errors:
 
 dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml: allOf:0:else:properties:reg-names: {'minItems': 1, 'maxItems': 3, 'items': [{'const': 'mhdptx'}, {'const': 'mhdptx-sapb'}, {'const': 'dsc'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml: allOf:0:then:properties:reg-names: {'minItems': 2, 'maxItems': 4, 'items': [{'const': 'mhdptx'}, {'const': 'j721e-intg'}, {'const': 'mhdptx-sapb'}, {'const': 'dsc'}]} should not be valid under {'required': ['maxItems']}
-	hint: "maxItems" is not needed with an "items" list
-	from schema $id: http://devicetree.org/meta-schemas/items.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/i3c/xlnx,axi-i3c.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c-1.0.yaml
 
 doc reference errors (make refcheckdocs):
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250908054609.1113360-1-h-shenoy@ti.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250908112117.205270-2-manikanta.guntupalli@amd.com
 
 The base for the series is generally the latest rc1. A different dependency
 should be noted in *this* patch.
