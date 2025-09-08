@@ -1,128 +1,131 @@
-Return-Path: <devicetree+bounces-214585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FDF8B49C4C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:43:18 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED2C1B49C73
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:55:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D73C24E3430
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:41:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ADDCB16618B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:55:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 66D522DF71C;
-	Mon,  8 Sep 2025 21:40:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A06C12E0B73;
+	Mon,  8 Sep 2025 21:55:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="VG5JY9JK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kiDbdfAu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63D3C2E9EA3;
-	Mon,  8 Sep 2025 21:40:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75A572367B3;
+	Mon,  8 Sep 2025 21:55:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757367615; cv=none; b=U+AUMTXKLbyS2NHEQOhj2/5y+9YslT7Mxu6C1JS15r8sQc3M73ZUeXMePB4JtQmZNcNsFtBFLe7eatEJ3tWmD+z+SMPNmO4XcNgJ2jIzLxBA4eZVxFrm8SejegS06+AlQvz0Ve/2bs5Qt7RyGoLPNQ9ZHJmuoOwolOcVrimLqPY=
+	t=1757368512; cv=none; b=QGcHzDRYu1GF6ftE8iQRV1l253keijRuioJ8nrdV+mq3VrWhet4PglV1oGXsVjm/kjmvoEiiFrEN8AHOqHxo/QFMD8pAsla4woxHSy3GehfRRLfK/bt7ow0LyVdY/Hy++uf04epXYawSWTm+oUBOKXlzHXzeHHjzWDeB1lDEWao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757367615; c=relaxed/simple;
-	bh=3DsTDs878uk2gOW7XGdvfuQ443cB/EwWbkkbr3wotVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=EkFVdPCcmE7gSbNmry4BiBYzKORG+Qkfyw68gSUe6JvDuQfsxU95K8g2a7yBBBJZUN0UX9pawe0mHeHBZ7te/ElbT4HbgpVyFFhow/OQkXZo30sKmeJ45UXtMomdWJlWiJ3WluBldNP5SJn+NauF+t6Z9nw1V4DUILqfj/69kqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=VG5JY9JK; arc=none smtp.client-ip=198.47.19.245
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Le7wl3878309;
-	Mon, 8 Sep 2025 16:40:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757367607;
-	bh=Mo2EFkzOaChPuvJidrt2tQqO/I5DDfDOd/qxOfVZ3Nk=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=VG5JY9JKGvbSfigMkJ1Ng1EGEa0XjeiPKmqSGSrvSAQuPfDCTgemWX/1BmT4xwexn
-	 nSTuUn7Dv6IKX+XV/QVkZK1kq3SebifpKlTK/auVS/Uy6NL7glAU4r/TszA/p2/d8H
-	 QsEbhCf4DWvQrnfiBEk2dMSWO+3K9wSeFsl+0/eQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Le7L12683429
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 16:40:07 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 16:40:06 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 16:40:06 -0500
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588Le6T11545093;
-	Mon, 8 Sep 2025 16:40:06 -0500
-Message-ID: <aef2df4a-7266-4e81-add2-3e35a081f5b0@ti.com>
-Date: Mon, 8 Sep 2025 16:40:06 -0500
+	s=arc-20240116; t=1757368512; c=relaxed/simple;
+	bh=+nYJPbuKlpnqlu3CLLJjdFbOtA1lzkZavy4yOLM+sGc=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=HnhiZa9DThU19QkwL6ioGnx+Tn6a6MWXc21ofa6AOhU61+2G3Bl8L+bhKrvOhbVNWZXX1AODUy0gZOycEeM0HvAWhZphtzNFC45DL/gYUcLkSmy4qvM/faIn2JT0yd9wfictuePGZDXgk4E4L/ipeQEG1SZP0p+WW41scw5zW+0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kiDbdfAu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6B7AC4CEF1;
+	Mon,  8 Sep 2025 21:55:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757368511;
+	bh=+nYJPbuKlpnqlu3CLLJjdFbOtA1lzkZavy4yOLM+sGc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=kiDbdfAuo9J++rxAYt2nbuOgNET0a6aGGKZyM1O70K6sKUOOBtjNGuP5/jiU0a2O7
+	 kgDOBgNSMfStFqgdYWCblaRMhdw7xF1V8/WBdswaXIMObwyEyCKJLFMb13dwZc07rt
+	 IjUSn7k/xbQQ3go5vh6EUy5WulEkff8YPQDzVBRI8kU5AuNWVfVPKUSSmrRtP1AYuR
+	 vx04Rru42xQY6+u2WSM0ZRr3xwOBqnxcctWQgasngIzjADGtKq7Iq4oQtMXlawR9kx
+	 yE3u9L6fsekFx4PQ4yK6olQo65pW1Ed4I3YxMTsa2Xwpa2lAJ+vPB3bRE/Tn/bCc2e
+	 nz5PYilemvA6Q==
+Date: Mon, 8 Sep 2025 16:55:10 -0500
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>
+Cc: Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
+	conor+dt@kernel.org, lpieralisi@kernel.org, kwilczynski@kernel.org,
+	mani@kernel.org, bhelgaas@google.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	yuji2.ishikawa@toshiba.co.jp
+Subject: Re: [PATCH v3 2/2] PCI: dwc: visconti: Remove cpu_addr_fix() after
+ DTS fix ranges
+Message-ID: <20250908215510.GA1467223@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/4] arm64: dts: ti: k3-am62x-sk-common: Remove the
- unused cfg in USB1_DRVVBUS
-To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <u-kumar1@ti.com>,
-        <sebin.francis@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <vishalm@ti.com>
-References: <20250905051448.2836237-1-a-kaur@ti.com>
- <20250905051448.2836237-3-a-kaur@ti.com>
-Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250905051448.2836237-3-a-kaur@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1757298848-15154-3-git-send-email-nobuhiro.iwamatsu.x90@mail.toshiba>
 
-On 9/5/25 00:14, Akashdeep Kaur wrote:
-> After the SoC has entered the DeepSleep low power mode, USB1 can be
-> used to wakeup the SoC based on USB events triggered by USB devices.
-> This requires that the pin corresponding to the Type-A connector
-> remains pulled up even after the SoC has entered the DeepSleep low power
-> mode.
-> For that, either DeepSleep pullup configuration can be selected or the pin
-> can have the same configuration that it had when SoC was in active mode.
-> But, in order for DeepSleep configuration to take effect, the DeepSleep
-> control bit has to be enabled.
-> Remove the unnecessary DeepSleep state configuration from USB1_DRVBUS pin,
-> as the DeepSleep control bit is not set and the active configuration is
-> sufficient to keep the pin pulled up. This simplifies the setup and removes
-> redundant configuration.
+In subject, s/PCI: dwc: visconti:/PCI: visconti:/ to match previous
+history.
+
+On Mon, Sep 08, 2025 at 11:34:08AM +0900, Nobuhiro Iwamatsu wrote:
+> From: Frank Li <Frank.Li@nxp.com>
 > 
-> This reverts commit 527f884d2d94981016e181dcbd4c4b5bf597c0ad.
+> Remove cpu_addr_fix() since it is no longer needed. The PCIe ranges
+> property has been corrected in the DTS, and the DesignWare common code now
+> handles address translation properly without requiring this workaround.
+
+As Mani pointed out, the driver has to continue working correctly with
+any old DTs in the field.
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro.iwamatsu.x90@mail.toshiba>
 > 
-> Reviewed-by: Dhruva Gole <d-gole@ti.com>
-> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
-
-Verified USB disconnect, USB connect, and USB remote wakeup on SK-AM62B-P1.
-
-Tested-by: Kendall Willis <k-willis@ti.com>
-
 > ---
->   arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 2 +-
->   1 file changed, 1 insertion(+), 1 deletion(-)
+> v3:
+>   Add pci->use_parent_dt_ranges fixes.
+>   Update Signed-off-by address, because my company email address haschanged.
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 13e1d36123d5..d3bed23134ca 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -249,7 +249,7 @@ AM62X_IOPAD(0x12c, PIN_OUTPUT, 0) /* (AD19/V15) RGMII1_TX_CTL */
->   
->   	main_usb1_pins_default: main-usb1-default-pins {
->   		pinctrl-single,pins = <
-> -			AM62X_IOPAD(0x0258, PIN_OUTPUT | PIN_DS_PULLUD_ENABLE | PIN_DS_PULL_UP, 0) /* (F18/E16) USB1_DRVVBUS */
-> +			AM62X_IOPAD(0x0258, PIN_OUTPUT, 0) /* (F18/E16) USB1_DRVVBUS */
->   		>;
->   	};
->   
-
+> v2:
+>   No Update.
+> ---
+>  drivers/pci/controller/dwc/pcie-visconti.c | 15 ++-------------
+>  1 file changed, 2 insertions(+), 13 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-visconti.c b/drivers/pci/controller/dwc/pcie-visconti.c
+> index cdeac6177143c..d8765e57147af 100644
+> --- a/drivers/pci/controller/dwc/pcie-visconti.c
+> +++ b/drivers/pci/controller/dwc/pcie-visconti.c
+> @@ -171,20 +171,7 @@ static void visconti_pcie_stop_link(struct dw_pcie *pci)
+>  	visconti_mpu_writel(pcie, val | MPU_MP_EN_DISABLE, PCIE_MPU_REG_MP_EN);
+>  }
+>  
+> -/*
+> - * In this SoC specification, the CPU bus outputs the offset value from
+> - * 0x40000000 to the PCIe bus, so 0x40000000 is subtracted from the CPU
+> - * bus address. This 0x40000000 is also based on io_base from DT.
+> - */
+> -static u64 visconti_pcie_cpu_addr_fixup(struct dw_pcie *pci, u64 cpu_addr)
+> -{
+> -	struct dw_pcie_rp *pp = &pci->pp;
+> -
+> -	return cpu_addr & ~pp->io_base;
+> -}
+> -
+>  static const struct dw_pcie_ops dw_pcie_ops = {
+> -	.cpu_addr_fixup = visconti_pcie_cpu_addr_fixup,
+>  	.link_up = visconti_pcie_link_up,
+>  	.start_link = visconti_pcie_start_link,
+>  	.stop_link = visconti_pcie_stop_link,
+> @@ -310,6 +297,8 @@ static int visconti_pcie_probe(struct platform_device *pdev)
+>  
+>  	platform_set_drvdata(pdev, pcie);
+>  
+> +	pci->use_parent_dt_ranges = true;
+> +
+>  	return visconti_add_pcie_port(pcie, pdev);
+>  }
+>  
+> -- 
+> 2.51.0
+> 
+> 
 
