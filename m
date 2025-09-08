@@ -1,62 +1,46 @@
-Return-Path: <devicetree+bounces-214548-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B22FBB498AF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:48:40 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6FB8B499B3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:19:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFD0E207687
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:48:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D1A0C1B285B6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:19:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45A6531DDBA;
-	Mon,  8 Sep 2025 18:48:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C3A13248881;
+	Mon,  8 Sep 2025 19:18:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M7SsXsoy"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="Tnu7FzlN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09C5731DD88;
-	Mon,  8 Sep 2025 18:48:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7C6B246BA9
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 19:18:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757357285; cv=none; b=TVQzdatjTj5vhpSV1D3GYVTsi10QQvw1MX+Xsx0BKWOg1f3WX5VT5PyqqWng0/thtbMHyBNa8SxvDgHUfgFBARUhtTBrmmEpX9eNCN4rL5x8jnI4BKNKvy2hDeiSQCjxKk9N4EL5d00yMPDW0TWBLKuTD/3II9tf5XaLep8HWdg=
+	t=1757359133; cv=none; b=fV5vA/cJsYYMNBvBak2VKL8Lpjbr800Hvj8nD926rxrjfF4kjlS0fz7fAdB3l20zywWHLb/LMPV6VXfkqPrg3w1+4LdmBjQCx6xpE0qy2dV1Q2lNtBg+F1meO4zWYNktS7q/i+Uc4gaMcRuJvKDL0gJChk7np/ZM6ssygrbcfxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757357285; c=relaxed/simple;
-	bh=GNDIaFzx7blIt0L7sWU1LM3+kRLV8VV7eJWlF+VVvhc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gaSMI30kmbrD8qeEDxIU5gF/uetQ/89AF7oNwqaYPAEsU0+OJ95MmYmdAF2MDwr4zxqvxLQ9cMN7vQOVWlcQPEH+rgngT0ULxK9gKPGeMBNSzAAThfRawH9Oa1PCCdAQCyXEMPqAHtb7d3iw5P2WRfwn8bV7bMv2aaG4t4h7Sks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M7SsXsoy; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 454D5C4CEF5;
-	Mon,  8 Sep 2025 18:48:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757357284;
-	bh=GNDIaFzx7blIt0L7sWU1LM3+kRLV8VV7eJWlF+VVvhc=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=M7SsXsoyR5qxyKmFLSqpPPfDgJmBiar5DD2HGduerTkpmvuhfsA71/pHFHHTwY/k0
-	 6RvsjGjDtbISv78SkreoHS5mHy/SAjnVfRjWrPkburL2yg+CM70mWj/y3zJyr94w/t
-	 X7UBU1yny206b34XNMStl0Oy8MZZjttf1ZEiORGK+LFWoO5uOIjI02bs2R1o5s9Fgp
-	 5q5z3NcxoW6NKwdjdN5Lp/1kg3jtdZsRuyuO5gJKxuPwVXWsSaocYNrJCgQHtRwKFp
-	 DX5JBDdRbuOWhMWQB6gBEPsW+9zSZXQeW/5brf6KfkV/bREQ/9At9jUCAJrhZY2eSi
-	 DfzKqMA3rLLtg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Umang Chheda <umang.chheda@oss.qualcomm.com>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Introduce support for Monaco Evaluation Kit
-Date: Mon,  8 Sep 2025 13:48:00 -0500
-Message-ID: <175735727830.2621347.7880458499216772171.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250905192350.1223812-1-umang.chheda@oss.qualcomm.com>
-References: <20250905192350.1223812-1-umang.chheda@oss.qualcomm.com>
+	s=arc-20240116; t=1757359133; c=relaxed/simple;
+	bh=9F2TNgdH1pNDHLwB0pIr1YxFZjkobiXp5n7/OLvFJn0=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=fbCtFk0pgYZ2nTKdBJwZSFXVPgqY5cKK/mCKSmTUCpu6jC4ci8k0tgNFxxecaEKXuBrAY2TsFPkJfwxhb/6Lz0Ex1y5bzy338/21HGbIFpMblRYh6ZVc66oPjH6kY35eVKw8MsX/cGYvNHrbU94jBo082VXGHr0UVIJDsGMOzdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=Tnu7FzlN; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=Tnu7FzlNRrvAkepIltGvjpu9EdsiMA10UkZXaZVXkcnFa1peLRj3E8wl6ynPkTwOwMxQEQSt7xTF+kh0S40yBzp5lJ/He13/W07ehhlM7oD5YrpbYqsSp4/gaVGa/4bBsnk5ODMI+3c2/OyI+Yq2MC9FiwbNfpAoYLOPr98MAj0ijI3Z9x25zkgg7YVn7F55kZHVOlUfQL86k9K0qWS5Vr02VvFjle7t0EHmSTjsvh4O0Dk9mwqK1xVE9lkEd5JgFllDbV9+uf/stStJkuebRcPYoXUZiyhVgyp/jHiOGwYawBbn68O53kZFbbtmH219JW8BczfN/dwfeaFnsul7sQ==; s=purelymail2; d=purelymail.com; v=1; bh=9F2TNgdH1pNDHLwB0pIr1YxFZjkobiXp5n7/OLvFJn0=; h=Feedback-ID:Received:From:Subject:Date:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 292196779;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Mon, 08 Sep 2025 19:18:08 +0000 (UTC)
+From: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+Subject: [PATCH 0/4] Add support for mt6878 pinctrl
+Date: Mon, 08 Sep 2025 21:17:54 +0200
+Message-Id: <20250908-mt6878-pinctrl-support-v1-0-3fb78c8ab4e8@mentallysanemainliners.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,33 +48,68 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAOIrv2gC/x3MywqEMAxA0V+RrA004qP6KzILH1EDM7WkHRHEf
+ 7e4PIt7LwiswgG67ALlQ4LsLoHyDKZtcCujzMlQmKIyrbH4i7VtLHpxU9Qvhr/3u0YcaCZqqDS
+ 8jJBir7zI+Y77z30/5GtqiWgAAAA=
+X-Change-ID: 20250908-mt6878-pinctrl-support-a1d117140efb
+To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
+ Sean Wang <sean.wang@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-mediatek@lists.infradead.org, 
+ Igor Belwon <igor.belwon@mentallysanemainliners.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757359086; l=1603;
+ i=igor.belwon@mentallysanemainliners.org; s=20250908;
+ h=from:subject:message-id; bh=9F2TNgdH1pNDHLwB0pIr1YxFZjkobiXp5n7/OLvFJn0=;
+ b=wI4YdYlwNvX69+y3MzJHzF6UO6pNEeWKFAjvc+aSn8WWJDIMJQsllOvMaB2EBg5KV3E3rULTy
+ L1mHuP3micEDVGsrwXEWOIfrNFSLazxHtZeK84LMp02aFUXnREqFYo8
+X-Developer-Key: i=igor.belwon@mentallysanemainliners.org; a=ed25519;
+ pk=t9Kz6B3jEwJD7YAKcp8XftfEz7SUSlGbrsfFlbrrFwA=
 
+Hi all,
 
-On Sat, 06 Sep 2025 00:53:46 +0530, Umang Chheda wrote:
-> Add support for Qualcomm's Monaco Evaluation Kit (EVK) without
-> safety monitoring feature of Safety Island(SAIL) subsystem.
-> This board is based on Qualcomm's QCS8300 SoC.
-> 
-> Monaco EVK board is a single board computer (SBC) that supports various
-> industrial applications, including factory automation, industrial
-> robots, drones, edge AI boxes, machine vision, autonomous mobile
-> robots (AMRs), and industrial gateways.
-> 
-> [...]
+This patchset adds support for the pin controller found in the MediaTek
+MT6878 SoC. This SoC has 9 pinctrl groups, and 4 EINT controller
+instances.
 
-Applied, thanks!
+This SoC also uses the new "eh" bit for controlling i2c driving, support
+for which is also added here.
 
-[1/4] dt-bindings: arm: qcom: Add Monaco EVK support
-      commit: 49e55bdbcbe0abf04d7c8c882d69755ecf43d878
-[2/4] arm64: dts: qcom: qcs8300: Add Monaco EVK board
-      commit: 117d6bc9326b1ff38591289f9677e273a9a467ae
-[3/4] arm64: dts: qcom: qcs8300: Add gpr node
-      commit: 89c85214735b633e846d8f6473fa57ba4cc11b81
-[4/4] arm64: dts: qcom: monaco-evk: Add sound card
-      commit: bb12da95a183253b619ca1691d6fd320b7e445e9
+Kind regards,
+Igor
+
+Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+---
+Igor Belwon (4):
+      dt-bindings: pinctrl: mediatek: Document MT6878 pin controller bindings
+      pinctrl: mediatek: Add support for eh bit
+      pinctrl: mediatek: Add debounce times for MT6878
+      pinctrl: mediatek: Add support for MT6878 pinctrl
+
+ .../bindings/pinctrl/mediatek,mt6878-pinctrl.yaml  |  209 ++
+ drivers/pinctrl/mediatek/Kconfig                   |   10 +
+ drivers/pinctrl/mediatek/Makefile                  |    1 +
+ drivers/pinctrl/mediatek/mtk-eint.c                |    5 +
+ drivers/pinctrl/mediatek/mtk-eint.h                |    1 +
+ drivers/pinctrl/mediatek/pinctrl-mt6878.c          | 1559 ++++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.c   |   60 +
+ drivers/pinctrl/mediatek/pinctrl-mtk-common-v2.h   |   24 +
+ drivers/pinctrl/mediatek/pinctrl-mtk-mt6878.h      | 2248 ++++++++++++++++++++
+ drivers/pinctrl/mediatek/pinctrl-paris.c           |   30 +-
+ include/dt-bindings/pinctrl/mt6878-pinfunc.h       | 1201 +++++++++++
+ 11 files changed, 5342 insertions(+), 6 deletions(-)
+---
+base-commit: 64074b8d93abdc35ae90e38ab5135f0b13ccdf68
+change-id: 20250908-mt6878-pinctrl-support-a1d117140efb
 
 Best regards,
 -- 
-Bjorn Andersson <andersson@kernel.org>
+Igor Belwon <igor.belwon@mentallysanemainliners.org>
+
 
