@@ -1,98 +1,158 @@
-Return-Path: <devicetree+bounces-214383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214380-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7713B48EB6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:08:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCA9B48EB5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:07:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5DEF91C2072D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:08:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03498441C4C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:06:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B6D5030B50B;
-	Mon,  8 Sep 2025 13:07:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 342B030AD1C;
+	Mon,  8 Sep 2025 13:05:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jw3Zj2o8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.grinn-global.com (mail.grinn-global.com [77.55.128.204])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA23F30AD0B;
-	Mon,  8 Sep 2025 13:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.55.128.204
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 911F630AD07
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:05:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757336835; cv=none; b=Fey+5GUojvFkHZPiFXp9exo1ng3AXY9kFacYEWu3V6z63pfASX/PJD4YCyIrk+vLop/z1WhNlR/C4bfZo1ArX/NI0NNzJBikIWYA+jgvk8PJC94Umk2hZAJ7VrSdpIBjOxN8HOjiBgtc8kNnJiMgsTyR1f93hUXr3dGPA+sTbtk=
+	t=1757336752; cv=none; b=t5OeqF+2EVGkOihnafN/IUH60qzdSVquBHi/8a+oEHY9a0wbYWghxBax+K6q8QMlct2nl21nleVX5/aV6nR5gRWYabgsefHcdwaBsmXeG0xy5bFBSnjl7LYA/qGyGzc0uKv+T+dQ2I6Qal4R3FOJTRkkZGNYmtcrMpk44fYe61s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757336835; c=relaxed/simple;
-	bh=/FbxD6PGi8gjSZleYHn/czXQ24LedLEZERt/RTij+ho=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=K7yhfA5+zDamTMwlNvHTcdRLcBBKqoehEdKSsYoD9gTW7HsO4b26HtPrE1gav9bAmASIAalmB10TpfUGQoubQMLJkErI17r0I0nybP7J4Y9VNxOXUrscjUSSYzzXysMBItgDoOj0b6zLocV+drtzICB/kdSimJpxzxyCQOLxvog=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com; spf=pass smtp.mailfrom=grinn-global.com; arc=none smtp.client-ip=77.55.128.204
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grinn-global.com
-X-Virus-Scanned: by amavisd-new using ClamAV (9)
-X-Spam-Flag: NO
-X-Spam-Score: -1
-X-Spam-Level: 
-Received: from mateusz.int.grinn-global.com (f90-187.icpnet.pl [46.228.90.187])
-	by server220076.nazwa.pl (Postfix) with ESMTP id 451411BE92E;
-	Mon, 08 Sep 2025 15:07:10 +0200 (CEST)
-From: Mateusz Koza <mateusz.koza@grinn-global.com>
-To: angelogioacchino.delregno@collabora.com,
-	robh@kernel.org
-Cc: krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	marcin.czarnecki@grinn-global.com,
-	b.bilas@grinn-global.com,
-	mateusz.koza@grinn-global.com,
-	andrew@lunn.ch,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v4 4/4] dt-bindings: arm: mediatek: Add grinn,genio-510-sbc
-Date: Mon,  8 Sep 2025 15:05:37 +0200
-Message-ID: <20250908130620.2309399-5-mateusz.koza@grinn-global.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250908130620.2309399-1-mateusz.koza@grinn-global.com>
-References: <20250908130620.2309399-1-mateusz.koza@grinn-global.com>
+	s=arc-20240116; t=1757336752; c=relaxed/simple;
+	bh=rNr1BuodeVHKFmMzhnNYGEA8GhwKg+g9c8Aplx4gw3A=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=lOVpKcH0zKXow+m+Atkifibzpg83bVYzC7iyvn5kvLjgWajYfmy6kjYuzhP34Bwz/RHs8jRFu+6dE8QesrHazG+PlrRExCgFHnkTDR8/PNLuwxAP09ekJYRs6Fo7y6reXQN0Z7ZlQP+MR+o0w7gTgCktnd2Iy38NfEA/gVfEFG0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jw3Zj2o8; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3da9ad0c1f4so3034495f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:05:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757336749; x=1757941549; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=u5chc44wHZ1zV1Y72wQqklmYPWfkYptX0wWGS8/7Iz8=;
+        b=jw3Zj2o82jspaxmNp4qF6gIjKxqkHewpj/TJUtsVn9alHkh/lx/ew5VAeWcWJaA4mB
+         1I6N6CgpoWaHZ8hhxrpsVeVIvI88gKbO4SagaQ7u9L4PixugBilBu1Wx6MNK65RL1zUf
+         PC6SCr4be62TUfGGnmSodBqmmX+YGdFYvhHcKGmXnAWH3s5hdPhV/+IRBiQGFrG8TPIm
+         UMEqy9BcfpEfYoa336anqzPH9/S5Q5GpbytfqSDNPOs2yfgbzxJghHq4zlDCOs2G6VvE
+         q/nUqNzdxH9J/3DKw1rYgftw2UVjGqhuYjJgJmAw+3Z+GuZtDfoN+zReb8gVl6lZZSFK
+         ituw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757336749; x=1757941549;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=u5chc44wHZ1zV1Y72wQqklmYPWfkYptX0wWGS8/7Iz8=;
+        b=VhLgmm7IQRHQLEUjO4bbQ6cR/C4R7oufQhq1qo7IQhd+yOPe8DdIjc61e5AaYbh+mQ
+         8qrPYLOBV3JizcvvnkFi7FYl1pbC8Bg0Q2YnwiX1KANLmCUJS13zNokP2PlNYX2n719v
+         Z6rNTmNVV2dSEVs9VITmmnvgcw2Ghw5QCsPq6wPQT0T7nQSSCXMgD8hfL2iwjfDgUCLb
+         xu5j9w3XeMFnyBFFDvVOoGjuL4GyUoQmJ4GglSaadWIkTZhhXFQBsbKCwmu4MG6WtSQD
+         Irug/Iy27g/19u0w6/87CLc0PInCaBEtFxg4+Wo5j9rKA09b+XLBssr73HjdZWbGK6v5
+         0Vyg==
+X-Forwarded-Encrypted: i=1; AJvYcCVBwJ0HrsUl6iFch75k4VcodzBVaA2ypNqgue4i83Ur5BRkvkgDSwGq+kvCGPKZ+E28kE9xWjwDVgdz@vger.kernel.org
+X-Gm-Message-State: AOJu0YxPdkC+8xKxm5JYD/2tA376x2O2JI1KsrshHrWH0kZhCDlwDQR+
+	V4xrG3ePuOxpivt7TVw19ww+t2CnjE4zoMChS2RGmvgT2zyGj4rzmk0i+96XcaYsyzg=
+X-Gm-Gg: ASbGncvjFVrU75/mrUG9NW/tcqpDJ6teOATajPHp+bcINBXny90bNNgtlQkSr20n5BO
+	rDs4Pl8yVBY5vo+DB0WNePA+7/kuyyYj55UGyzm2pAjPPQ6CxvQ4D9tX71UUogCobqHCBFF/YMy
+	j382z9ltuhBxPFHViJgTxbvJglNloXdBt3SGMnFE0MSC/aqvNemAnllvFo9hGcebmvOMenT5O6v
+	wkoUFp9Iuei0ITjYhFFNLJtKM2szj8fhqc/FHtPBmFoyGFyNQdMr731Rb6la+wFL6JqvktR2ej3
+	awHMwwIsu09hjtOm2IhMrYIosw3atCEwsxBUZogvAOiU+MKtg4H2SZlnP6/Mx5JYXf361dCqKmw
+	LsTypatKtpslxw10/eOaFeUmGoJUgHrACOtR2ujCihrXL2DWEvmdHUnN/gFzqgn+oMCBkcY6P/K
+	a3CJU36nsPNw==
+X-Google-Smtp-Source: AGHT+IEPgn/6M8XG6uNtkAHbgUnHhrF1VcVsINtk7OaZFicYzT9+CmrAjlGK+/IQepoHlqkM1JUPpg==
+X-Received: by 2002:a05:6000:43cc:20b0:3e7:404f:685 with SMTP id ffacd0b85a97d-3e7404f09a2mr4422330f8f.44.1757336748536;
+        Mon, 08 Sep 2025 06:05:48 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:61c1:5d31:4427:381b? ([2a01:e0a:3d9:2080:61c1:5d31:4427:381b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7483597ccsm4673380f8f.31.2025.09.08.06.05.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 06:05:48 -0700 (PDT)
+Message-ID: <eadb4276-e5c5-48f6-af50-e5c1df52479d@linaro.org>
+Date: Mon, 8 Sep 2025 15:05:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-NA-AI-Spam-Probability: 0.51
-X-NA-AI-Is-Spam: no
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC 0/3] phy: qcom: qmp-combo: set default qmpphy_mode
+ from DT for Thinkpad HDMI support
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
+ <fe92c4e7-6a1d-4cec-a3d1-c50adff9f7f5@oldschoolsolutions.biz>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <fe92c4e7-6a1d-4cec-a3d1-c50adff9f7f5@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Add device tree bindings support for the Grinn GenioSBC-510, a
-single-board computer based on the MediaTek Genio 510 SoC.
+Hi,
 
-More details about the hardware:
-- https://grinn-global.com/products/grinn-geniosom-510
-- https://grinn-global.com/products/grinn-genioboard-edge-ai-sbc
+On 06/09/2025 10:45, Jens Glathe wrote:
+> On 21.08.25 15:53, Neil Armstrong wrote:
+>> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+>> connected to the third QMP Combo PHY 4 lanes.
+> 
+> Hi Neil,
+> 
+> thank you for the patch. Integrated it on my tree and tested on the T14s, working very well. Also tested hotplug and suspend/resume.
+> 
+> Tested-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Mateusz Koza <mateusz.koza@grinn-global.com>
----
- Documentation/devicetree/bindings/arm/mediatek.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Thanks a lot for testing !
 
-diff --git a/Documentation/devicetree/bindings/arm/mediatek.yaml b/Documentation/devicetree/bindings/arm/mediatek.yaml
-index 448241939a75..f04277873694 100644
---- a/Documentation/devicetree/bindings/arm/mediatek.yaml
-+++ b/Documentation/devicetree/bindings/arm/mediatek.yaml
-@@ -431,6 +431,7 @@ properties:
-           - const: mediatek,mt8365
-       - items:
-           - enum:
-+              - grinn,genio-510-sbc
-               - mediatek,mt8370-evk
-           - const: mediatek,mt8370
-           - const: mediatek,mt8188
--- 
-2.43.0
+I've sent a new version, which is quite different due to different feedbacks so I didn't take your Tested-by.
+
+If you can re-test, it would be very welcome !
+
+Neil
+
+> 
+> with best regards
+> 
+> Jens
+> 
 
 
