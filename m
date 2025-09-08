@@ -1,528 +1,152 @@
-Return-Path: <devicetree+bounces-214366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2EEBB48E24
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:52:24 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EBA0B48E3C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:54:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6ABA917C216
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:52:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B624171FDA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:54:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56C592FFDE6;
-	Mon,  8 Sep 2025 12:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 37DDC2F3C28;
+	Mon,  8 Sep 2025 12:54:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NDtWmacT"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="IB3cle64";
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="cgOt7SeL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA739304BBF;
-	Mon,  8 Sep 2025 12:52:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08F642F546E;
+	Mon,  8 Sep 2025 12:54:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.152
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757335941; cv=none; b=snWox5JCTraXafWqR7Bm3K1gsLsFOITwUe6EqkKUxuDNNF/kMvKjUmkceM5kpgDBbRYMgjR7SkfuKG3FWiVyuIyjlBzuavXcTuhz/uYYZeVzwgvn1E9VVHLdh9EMWOZAP9HMXCsHfvnvIms2/PZBjW1U0xfYTLWwajT4WQvlsNw=
+	t=1757336072; cv=none; b=Z/XN/oz/MFUJOPo46Bo78M9p28y+sf2pVtHH3L2pUiYuHgFVB737SdgzFtHwWRMTwt2gkohdM7vR38GBLMSfddAcbMGuKBgK+6N+adCC4Y0F6UqfJwCGHhiAEODbhPu9rBg7/vqUa2mRLGG/uoIRiAqzp6tCOaqyueWnlN+lV/4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757335941; c=relaxed/simple;
-	bh=dWVxJxhUxncQk84A7irpjCAwbTL2ZXZPiLqCXAsCvPE=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cmrNUgY29AZJEBkwLh7ixy3BXaB6svOFkturq3lKTU1aCfgPrIc2QfJl5Hw3nmB2uXU/G74LRJhQ4aU+3hrsTnfm6KkyYRuMdwbRqYvUD1ytCVu3SqV63I4UoyKP/jt3SMZWkSqFhl2DEzBuZSUoBOUHyinVspQZCodUkR4S7aU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NDtWmacT; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 39B99C6B3A7;
-	Mon,  8 Sep 2025 12:51:58 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id C00066061A;
-	Mon,  8 Sep 2025 12:52:13 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id CA04E102F27D9;
-	Mon,  8 Sep 2025 14:51:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757335932; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=Wtwvoj1RLwznHuyr5PlQVH+9jEoJm5SyipXGk+MavYM=;
-	b=NDtWmacTT0cNGnzWNKswyYTctMqsWGdk7LvXo5PM6CCiGkkJtJJUQtgeRsHrjZ4YYp3hkP
-	Lx9y4o4igPeePqLGfNDzlZn6/vJD3g/gWclfk77sBIaYPgwmi0DRziZFrclg/cER7yXM9l
-	FiZees4mNH9AZzlEKSqJj6Y4XelUadm1ofAXjBWLp7XFJx4DgOPUtOn3OWtKE254DNE+hW
-	71Sk+M8H6PKcroi1nSDVrmPjRG89UDHFqaHPZ095OwGYMkoQOa6ZW8q4Tp9fDpkhW5Kjxj
-	RGlo7cBxssmr3B2hjXp9UAsgM8TzuBm9BIwWV+ZOuNgZjvBTbk96VyU+IUOiJA==
-Date: Mon, 8 Sep 2025 14:51:55 +0200
-From: Herve Codina <herve.codina@bootlin.com>
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Ayush Singh <ayush@beagleboard.org>, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Krzysztof Kozlowski <krzk@kernel.org>,
- devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, Jason Kridner
- <jkridner@gmail.com>, Geert Uytterhoeven <geert@linux-m68k.org>, Krzysztof
- Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
- devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>, Andrew Davis <afd@ti.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion
- at ELCE
-Message-ID: <20250908145155.4f130aec@bootlin.com>
-In-Reply-To: <aL5dNtzwiinq_geg@zatzit>
-References: <20250902105710.00512c6d@booty>
-	<aLkiNdGIXsogC6Rr@zatzit>
-	<337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
-	<aL5dNtzwiinq_geg@zatzit>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.43; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1757336072; c=relaxed/simple;
+	bh=sg7Nc1RzZVJnICruDF3lMThjEe7KCVXgFy+eJ7MfrVc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i60BZ2MBpp8iBpKxQr2tXG47XGd0cobmZLom2Zxf+oAailUp13HtHmRh6LcMP4mPkBfHDFQKR/4W+FCYT2kAsK6qPHoS9sFp2I4iMWr0FYuUuBwqxUPXHAoRiBDlbo987R1G+vuOKic9z+TiqUmP4nDioP1wZhnOhpxYe08200I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=IB3cle64; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=cgOt7SeL; arc=none smtp.client-ip=80.241.56.152
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [IPv6:2001:67c:2050:b231:465::102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4cL6NG0Z63z9tGX;
+	Mon,  8 Sep 2025 14:54:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757336062;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rLg9bh33bXVIKLGiohlmqJP0n8UW6cjhY+uJOZV8XrM=;
+	b=IB3cle64uqKld1NLaEF656hneXh+E2Oe89+Af8ZDIAQmAXGfYFb3Evukz8S7D/Xfit4OTs
+	UxBr6glYOrwbTxiFLtSdRlttYKMcMJ3EtKoTHtFEAtSw1I5lVpj/LM2OoD6/0fQJ9abqUf
+	EcWbbkvyWrqi0rSGUiV62HjfZf0nT5QPIVfu6/ovb9uokpZQBslKdhsODv5t7NknE8gGSc
+	vNFBVmF+EtnVZWEvTnKdywneFvHVhR64rp/p/trhlANrjFeewCIOrvmKWhDYhSXv1pvNV1
+	Gql4wOIdocIA8C9D3MB43rEGNWqwD2SNdh6GAsSYp3P0tTTtbJ/T+PyALUfSlQ==
+Authentication-Results: outgoing_mbo_mout;
+	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=cgOt7SeL;
+	spf=pass (outgoing_mbo_mout: domain of marek.vasut@mailbox.org designates 2001:67c:2050:b231:465::102 as permitted sender) smtp.mailfrom=marek.vasut@mailbox.org
+Message-ID: <d76ff19c-7b0f-4aa9-8ae2-d08c82d70410@mailbox.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757336060;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=rLg9bh33bXVIKLGiohlmqJP0n8UW6cjhY+uJOZV8XrM=;
+	b=cgOt7SeL07uK4bbfI4wSxfemhkBmH98e5h/kcTxUlWI/f9lWSFePcVqP6xDh92fuSBxMKy
+	aAhhMoZMrE0o3UWqNEZqUYG9KBCYFmItrAN3GAUeCr945OElSXIQtG2M3eNSxPIbr8N1eo
+	dUtcKCECxMmkZoIPMEHF65mOxSP0x42HylWyXEzT45AL0Iful0NoBQoIf79ytLBB/CUdYT
+	o4M5/YFVt09A7uqCOJeKwibPgm3ZOMcW5syS9ge21VoCWPL078nQ/GgBOtuFGCu9XqHcQZ
+	Y2GvZPG2AYxdm0K1jW9x1jiX6HzfvP4rs6ryHODDYk+2wxQW3j7JBR5eYSyy6A==
+Date: Mon, 8 Sep 2025 14:54:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: Re: [PATCH v2 4/4] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
+ Allow panel@ subnode
+To: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>,
+ Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20250904210147.186728-1-marek.vasut+renesas@mailbox.org>
+ <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
+ <4ffcf4fc-17a9-4669-af07-f81ddb46aee9@ideasonboard.com>
+Content-Language: en-US
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <4ffcf4fc-17a9-4669-af07-f81ddb46aee9@ideasonboard.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-MBO-RS-ID: 5b7806702f524cb8287
+X-MBO-RS-META: enummhz4zqtmsbae8u3fgxqa3gjahjpr
+X-Rspamd-Queue-Id: 4cL6NG0Z63z9tGX
 
-Hi David,
+On 9/8/25 9:43 AM, Tomi Valkeinen wrote:
+> Hi,
 
-On Mon, 8 Sep 2025 14:36:06 +1000
-David Gibson <david@gibson.dropbear.id.au> wrote:
+Hello Tomi,
 
-> On Thu, Sep 04, 2025 at 11:15:44AM +0530, Ayush Singh wrote:
-> > On 9/4/25 10:53, David Gibson wrote: =20
-> > > On Tue, Sep 02, 2025 at 10:57:10AM +0200, Luca Ceresoli wrote: =20
-> [snip]
-> > > 1) Connector local labels/symbols/aliases
-> > >=20
-> > > This is not a new idea - both the export-symbols proposal and my
-> > > ancient connector proposal had this in one form or another.  I think
-> > > something along these lines is almost essential.  Things that plug
-> > > into connectors almost always require references to several host board
-> > > resources (interrupt controller, gpio, ...).  In order to be pluggable
-> > > on multiple host boards you want to refer to those symbolically.  In
-> > > order to support multiple instances of the same connector type, you
-> > > need those symbols to refer to different things fordifferent connector
-> > > instances.
-
-Some of the resources can be "translated" using a nexus node.
-It works for interrupt, gpio, pwm, ...
-
-I fact, it should work for all references that use a phandle with a resource
-number. I mean any reference in the form 'ref =3D <&ctrl 123>' to reference=
- the
-resource 123 of the controller.
-
-=46rom the addon, &ctrl need to be resolved. Using a nexus node at connector =
-level
-this becomes "ref =3D <&connector 10>;" and considering the connector itsel=
-f in the
-base tree as a nexus node allows to perform the translation.
-   connector {
-      gpio-map =3D <10 &ctrl 123>;
-   };
-
-but this don't work for a reference that uses only a phandle without any
-number (pinctrl for instance) or for busses where devices need to be added.
-
-For busses where devices could be added by the add-on, bus extensions were
-introduced (i2c-bus-extension).
-
-In any cases, some symbols need to be referenced from the addon.
-
-> > >=20
-> > > Whhat I think is a mistake is trying to tie this too closely to the
-> > > existing __symbols__ structure.  Those have an ugly encoding that
-> > > requires tortured processing in a way that's not natural for dtb
-> > > handling.  Plus they already kinda-sorta duplicate old-school aliases
-> > > in an odd way.
-> > >=20
-> > > You want some sort of string =3D> node mapping on the connector side,
-> > > and a way to mark portions of properties on the plugin side as being
-> > > resolved to some string reference.  But we can take the opportunity to
-> > > design a better way of doing that than the ugly one we have now. =20
-> >=20
-> >=20
-> > Isn't export-symbols exactly this. We do take inspiration from __symbol=
-s__.
-> > However, in case of export-symbols, its string =3D> phandle mapping (as
-> > opposed to string =3D> string in __symbols__). =20
->=20
-> As far as the specific It kind of is, yes, and that aspect I like.
-> What I'm not convinced by is how export-symbols is proposed to fit in
-> with and be used by surrounding logic.  export-symbols has been
-> designed to fit in with the existing (ugly) overlay mechanism.  I
-> think that's putting the cart before the horse.  Instead work out how
-> to logically define connectors first - which will involve information
-> equivalent to export-symbols - then work out how to update or replace
-> the overlay mechanism to work with that.
-
-I think that a connector is something with a bunch of resources provided
-by the board where the connector is soldered. Those resources are wired
-to the connector and defined by the connector pinout.
-
-     3v3   ------- Pin 0
-  i2c_scl  ------- Pin 1
-  i2c_sda  ------- Pin 2
-    gpio A ------- Pin 3
-    gpio B ------- Pin 4
-     gnd   ------- Pin 5
-
-IMHO, this need to be described and defined in the base board and an addon =
-can
-only reference resources wired and described by the connector node.
-
-Now, questions are:
-  - 1) How to describe a connector?
-  - 2) How to reference resources provided at connector level from an add-o=
-n?
-
-Our current approach was:
----- base board DT ----
-  connector0 {
-	gpio-map =3D <0 &gpio0 12>, /* gpio A wired to gpio 12 of gpio0 controller=
- */
-                   <1 &gpio2 10;  /* gpio B wired to gpio 10 of gpio2 contr=
-oller */
-        i2c-one {
-		compatible =3D "i2c-bus-extension";
-		i2c-parent =3D <i2c5>; /* i2c-one wired to i2c5 controller */
-	};
-
-	i2c-two {
-		compatible =3D "i2c-bus-extension";
-		i2c-parent =3D <i2c6>; /* i2c-two wired to i2c6 controller */
-	};
-
-	/*
-         * From the addon we need to reference:
-         *    - The connector itself,
-         *    - Maybe some pinctrl related to signals wired to the connecto=
-r,
-         *    - In some cases the i2c bus (HDMI, ddc-i2c-bus =3D <&i2c-two>=
-;)
-         *=20
-         * This was solved introducing the controversial export-symbols nod=
-e.
-         */
-  };
-
----- addon board DT ----
-   {
-	some-node {
-		compatible =3D "foo,bar";
-		reset-gpios =3D <&connector 0>; /* gpio A used as a reset gpio */
-		ddc-i2c-bus =3D <&i2c-two>;
-        }
-
-        i2c-one {
-		eeprom@10 {
-			compatible =3D "baz,eeprom"
-			reg =3D 10;=20
-		};
-	};
-   };
-
-The addon board DT can only be applied at a connector node.
-It described the addon board connected to this connector.
-
->=20
-> > I suppose export-symbols could follow aliase conventions, but that stil=
-l is
-> > a string =3D> string mapping, which seems worse to me than a phandle (s=
-ince
-> > phandle size is constant).
-> >=20
-> >  =20
-> > >=20
-> > > 2) Extend dtb itself
-> > >=20
-> > > A maor thing that makes current symbols and fixups ugly is the fact
-> > > that they are encoded into properties in the device tree itself,
-> > > despite being logically at a different semantic level.  Obviously you
-> > > *can* do that, but it's not natural.  It would make more sense to add
-> > > fixup tags into the dtb format itself. =20
-> >=20
-> > Having something akin to fixup in dtb format itself would be nice. =20
->=20
-> Yes, it would.
-
-What could be the modification expected at dtb to support the connector
-use case?
-
-Also what could be the modification expected at dts to described the
-connector?
-
->=20
-> > > 3) bus-reg / bus-ranges
-> > >=20
-> > > One thing that makes connector plugins a bit awkward is that they
-> > > often need to add things to multiple buses on the host system (MMIO &
-> > > i2c for a simple case).  This means that once resolved the plugin
-> > > isn't neatly a single subtree.  That's one factor making removal
-
-It can be a single subtree if decoupling is present at connector node avail=
-able
-in the base device tree.
-
-All resources wired to the connector should be described in the connector n=
-ode
-A add-on board should only see resources provided and described at the conn=
-ector
-node or translated by something (nexus, export-symbols) present in the conn=
-ector
-node.
-
-> > > really awkward.  Here's an idea I had a while ago to allow plugins to
-> > > be a single subtree, by extending what's allowed in the tree content:
-> > >=20
-> > > Currently a node can only really have a presence on its immediate
-> > > parent bus, as encoded in the 'reg' and 'ranges' properties.
-> > > 'bus-reg' and 'bus-ranges' would extend that having a similar format
-> > > to 'reg' and 'ranges' but adding a phandle for each entry saying which
-> > > bus it lives on - somewhat similar to interrupt-map.
-> > >=20
-> > > For example, here's an MMIO bus bridge of some sort, which has control
-> > > registers on I2C:
-> > >=20
-> > > 	mmio-bus@... {
-> > > 		#address-cells =3D < 2 >;
-> > > 		#size-cells =3D < 2 >;
-> > > 		bridge@XXXX {
-> > > 			ranges =3D <...>;
-> > > 			bus-reg =3D <&i2c0 0x407>
-> > > 		}
-> > > 	}
-> > > 	i2c0: i2c@... {
-> > > 		#address-cells =3D < 1 >;
-> > > 		#size-cells =3D < 0 >;
-> > > 	}
-> > >=20
-> > > In a sense this extends the device tree to a device DAG.
-> > >=20
-> > > Obviously this does need changes at the OS device core level, but it
-> > > gives you a lot of flexibility having done so. =20
-> >=20
-> > There is an i2c-bus-extension [1] and spi-bus-extension proposal to do =
-the
-> > same. But, if we can figure out a common way for all buses, that would =
-be
-> > great.
-
-Exactly, this is the purpose of bus extensions.
-
-Also, I don't thing that the 'ranges' property should be used for that purp=
-ose.
-The 'ranges' property is used to translate addresses from child addresses s=
-pace
-to parent addresses space.
-
-For instance, in case of i2c, where is the address translation?
-
-The address of a child (device) is its I2C address. This address is
-device in its datasheet. There is no reason to have this address depending
-on the I2C bus this child is connected to.
-
-In your example, the bridge@XXXX is not related to any hardware components.
-If is allows to physically perform I2C transaction from a MMIO device
-connected to MMIO bus, this is a traduction I2C controller with a bunch of
-registers to configure an perform I2C transactions.
-In that case, this "bridge" looks like all I2C we already support in the
-kernel.
-Having the additional indirection with the "bridge" between the MMIO bus
-and the i2c@... node seems not a hardware representation of the system.
-
-Did I miss something?
- =20
->=20
-> Heh, right.  That reinforces my thought that this could be a good
-> idea.
->=20
-> [Btw, the theoretically correct IEEE1275 way to do this is change
->  addressing across the whole tree.  e.g. set #address-cells =3D <3>,
->  with the first cell being, say, 0 for mmio, 1 for i2c, 2 for SPI,
->  then the remaining cells are the address within that bus.  So, this
->  sort of thing is technically possible in old-school OF trees.  That
->  would become pretty unmanageable though.  The idea of bus-reg is to
->  encode the same information in a less awkward way]
->=20
-> > [1]:
-> > https://lore.kernel.org/all/20250618082313.549140-1-herve.codina@bootli=
-n.com/
-> >=20
-> > [2]: https://lore.kernel.org/all/20250729-spi-bus-extension-v1-0-b20c73=
-f2161a@beagleboard.org/
-> >=20
-> >  =20
-> > > 4) You don't necessarily need to build a "full" device tree
-> > >=20
-> > > Flattened device trees (as opposed to original IEEE1275 device trees)
-> > > - by design - allow certain information to be omitted.  The most
-> > > common example is that for introspectable buses, like PCI, it's normal
-> > > to have the DT only include a node for the host bridge, with devices
-> > > under it being discovered by their own bus specific methods.  That's
-> > > discovery is handled by the bus/bridge driver.
-> > >=20
-> > > Connectors usually aren't introspectable, but it's still possible to
-> > > use an approach like this where the connector driver's discovery
-> > > method is "look at a different device tree".  So, for example,
-> > >=20
-> > > Board device tree:
-> > >=20
-> > > / {
-> > > 	compatible =3D "board-with-foo-connector";
-> > > 	. . .
-> > > 	mmio@... {
-> > > 		foo-connector@... {
-> > > 			compatible =3D "foo-connector";
-> > > 			ranges =3D < ... >;
-> > > 		}
-> > > 	}
-> > > }
-
-I would expect a description of resources wired to the connector
-available at the foo-connector node.
-
-> > >=20
-> > > Foo device tree:
-> > >=20
-> > > / {
-> > > 	compatible =3D "foo-device";
-> > > 	foo-port-id =3D < 0x1234 >;
-> > > 	component@... {
-> > > 		reg =3D < ... >;
-> > > 	}
-> > > }
-> > >=20
-> > > Obviously a "foo device tree" would have different conventions than a
-> > > board device tree.  It wouldn't have /cpus, /memory, /chosen - but it
-> > > could have its own "magic" nodes that make sense for the properties of
-> > > the specific connector type.
-
-I agree with the fact that /cpus, /memory, ... wouldn't be present at this
-node.=20
-
-Can you provide an example of the "magic" node and what do you have in mind
-to store this information in DTB?
-
-> > >=20
-> > > Again, that would require work in the device core part of the OS.  The
-> > > bonus is that runtime addition and removal is now trivial.  No hacking
-> > > of the base device tree is needed, and so doesn't need to be reverted.
-> > > The connector driver just adds/removes the reference to its own
-> > > private tree.
-
-Here also, I don't see exactly what you have in mind. Can you provide some
-details and example?
-
-> > >=20
-> > > This would, of course, need some way to refer to board resources
-> > > (interrupt controller, gpio controller) etc.  I think that can be
-> > > assembled using some of the previous ideas, though. =20
-> >=20
-> > I would need to wrap my head around this a bit, specially in context of
-> > chaining connectors. It does seem like it will still require the points=
- you
-> > mentioned above to be present in one form or another, i.e. some way to
-> > extend busses to different nodes/trees and connector (even a chained on=
-e)
-> > local symbols/aliases. =20
->=20
-> Yes, it would still require those mappings.  I don't think chained
-> connectors introduce a lot of extra complication.  An intermediate
-> connector would need to be able to "re-export" things it got from its
-> parent connector to its child connector(s) - renaming them if
-> necessary.
->=20
-> I think those two elements would be enough to make something that's
-> useful in at least a few cases.  However, the pretty common case of a
-> connector with pins from multiple different parent buses would need
-> bus-reg or something similar.  Or else the nasty multiplexed encoding
-> described above.
->=20
-> I say, "nasty" and in many cases it would be, but I think there may be
-> some cases where that approach does make sense: e.g. a connector that
-> has several logically separate address spaces but which always travel
-> together and are typically handled by a common bridge device.  PCI is
-> a case of this, if you squint - a host bridge provides a config space
-> bus, and an MMIO bus and a PIO bus.  Also sometimes some sort of
-> interrupt controller / interrupt routing, complicated by the fact that
-> there are several different models for that across PCI and PCI-E.
->=20
-
-To move forward on the topic, some concrete example would help to
-understand how to describe link, how the information is stored in DTB.
-
-This would help us in moving in the right direction.
-
-
-If the issue with export-symbols is having it described as a DTS node, this
-could be changed with a new DTS keyword.
-
-/export/ <symbol_name_to_resolve> <resolved_symbol_name>
-  - <symbol_name_tp_resolved>: Symbol name seen by a user
-  - <resolved_symbol_name>: Symbol used once resolved.
-
-<resolved_symbol_name> can be restricted to phandle values.
-
-Mutiple /export/ can be available inside a node in order to give a list
-of exported symbols.
-
-
-For instance with the connector example I previously mentioned.
-We can replace the export-symbols node by the following:
-
----- base board DT ----
-  conn0: connector0 {
-	gpio-map =3D <0 &gpio0 12>, /* gpio A wired to gpio 12 of gpio0 controller=
- */
-                   <1 &gpio2 10;  /* gpio B wired to gpio 10 of gpio2 contr=
-oller */
-
-        i2c_one: i2c-one {
-		compatible =3D "i2c-bus-extension";
-		i2c-parent =3D <i2c5>; /* i2c wired to i2c5 controller */
-	};
-
-	i2c_two: i2c-two {
-		compatible =3D "i2c-bus-extension";
-		i2c-parent =3D <i2c6>; /* i2c wired to i2c6 controller */
-	};
-
-	/export/ connector &conn0
-	/export/ i2cA &i2c_one
-	/export/ i2cB &i2c_two
-  };
-
-A reference to connector (&connector) from the addon will be resolve
-to a reference to &conn0 (phandle of the connector0 node.
-
----- addon board DT, applied at connector0 node ----
-   {
-	some-node {
-		compatible =3D "foo,bar";
-		reset-gpios =3D <&connector 0>; /* gpioA used as a reset gpio */
-		ddc-i2c-bus =3D <&i2cB> /* Resolved thanks to /export/ */
-	=09
-        }
-
-        i2c-one {
-		/*
-                 * A device added on the i2c-one bus wire to the connector.
-                 * /export/ not involved. i2c-one is a node (bus extension)=
- available
-                 * in the DT node where this addon board DT is applied.
-                 *=20
-                 */
-		eeprom@10 {
-			compatible =3D "baz,eeprom"
-			reg =3D 10;=20
-		};
-	};
-   };
-
-
-Now, what is expected in term of DTB format?
-
-I think we need:
- - Base DT: List of exported symbols per nodes (/export/)
- - Addon DT: List of unresolved symbols and their location
- - Addon DT: A way to avoid collision in phandle values
-
-Best regards,
-Herv=C3=A9
+> On 05/09/2025 00:01, Marek Vasut wrote:
+>> This controller can have both bridges and panels connected to it. In
+>> order to describe panels properly in DT, pull in dsi-controller.yaml
+>> and disallow only unevaluatedProperties, because the panel node is
+>> optional. Include example binding with panel.
+>>
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+>> ---
+>> Cc: Conor Dooley <conor+dt@kernel.org>
+>> Cc: David Airlie <airlied@gmail.com>
+>> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+>> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+>> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+>> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+>> Cc: Rob Herring <robh@kernel.org>
+>> Cc: Robert Foss <rfoss@kernel.org>
+>> Cc: Simona Vetter <simona@ffwll.ch>
+>> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+>> Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+>> Cc: devicetree@vger.kernel.org
+>> Cc: dri-devel@lists.freedesktop.org
+>> Cc: linux-renesas-soc@vger.kernel.org
+>> ---
+>> V2: Drop the dsi0: and dsi1: controller labels
+>> ---
+>>   .../display/bridge/renesas,dsi-csi2-tx.yaml   | 53 ++++++++++++++++++-
+>>   1 file changed, 51 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> index c167795c63f64..51d685ed82891 100644
+>> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>> @@ -14,6 +14,9 @@ description: |
+>>     R-Car Gen4 SoCs. The encoder can operate in either DSI or CSI-2 mode, with up
+>>     to four data lanes.
+>>   
+>> +allOf:
+>> +  - $ref: /schemas/display/dsi-controller.yaml#
+>> +
+> 
+> Did you try with a bridge? dsi-controller.yaml only allows a panel. I
+> think I discussed this with someone not long ago, but I couldn't find
+> any patch sent for that.
+Nope, I only have these two 5" and 7" RPi Display 2 panels.
 
