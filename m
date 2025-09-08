@@ -1,111 +1,126 @@
-Return-Path: <devicetree+bounces-214177-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214178-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF116B4853D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:30:21 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D789B48554
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:34:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E21411890EDE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:30:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E7D0817C3BD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9662E7F0A;
-	Mon,  8 Sep 2025 07:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1F3D2DEA6A;
+	Mon,  8 Sep 2025 07:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Zj1L94fI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iEl4hAeH"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AEE82E1F11;
-	Mon,  8 Sep 2025 07:29:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D22A22157F;
+	Mon,  8 Sep 2025 07:33:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757316594; cv=none; b=aX45Ou4577kkn5lJT7MnRxDLUN5osnui9C3Apd2exQryYtOOGUzhA+jtEp664BTm78xwWBHaCVLOmepu73v135jiPyqok7wQo0jRdFcF4sLX2z2HMooaCjxFDWDcioy0/yPJN/lj6Yw5sRyTgxMvfyEPadFsYA6NhpaCX5LWm4k=
+	t=1757316830; cv=none; b=ZJse0xVIwn9Qfw4zgjRxsw/OOJcjaOY1/aoytJTzGWpYSJmc5uIgmFLSVJRcEhmkb3BBI3E2zOzwKIopBSMSOXbVPRk/5goVhTRFuz0tDwqgiHVCNt5B2erqXrYUOCrAOCSVy6S/fo2Y3rdym25mfYOi3IpmgIXiQqrioyPumVg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757316594; c=relaxed/simple;
-	bh=JKJZKG96bHSPUzS7MGEeMQmHm9d6eIOzuYNf3OQR2W8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8imTfTYg4e63cXxWB4hJstJlP+DD2zyR1gssq68DOac28O9ScaDox9VgUd1F9sgUSkZhIM0NsIJAap9IlFTVj6XVrCIoGvdq4VPD0PyI66FXMLSzVeuhlTfMidnlpuxJOa9Cjxe1EAtnILKwajSK1IPuTht6lA4kQUKZXEMB90=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Zj1L94fI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7EC4C4CEF5;
-	Mon,  8 Sep 2025 07:29:53 +0000 (UTC)
+	s=arc-20240116; t=1757316830; c=relaxed/simple;
+	bh=SwLGQXYjjILPZ6nHkE3A25BCSWlFkPdVwJFl10Fp3/U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hWE1Sl+2jRD5kssMDDraIl5YM0GUcHCfucqbrdHv3KqztEYI8PRk/mvQs9FAOVgzAw7T7eafz4n0oY8+d0eAcATVQ2rWEuLT9qJOAwwXorFwYvj4H9BBMsWxsjMoXDWxv0+nNHTKfnAeAytADlbldacgqSlrKbUEL9wGKXOlriY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iEl4hAeH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36255C4CEF8;
+	Mon,  8 Sep 2025 07:33:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757316594;
-	bh=JKJZKG96bHSPUzS7MGEeMQmHm9d6eIOzuYNf3OQR2W8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Zj1L94fIB/aOlkMqqjv69Dam63SxLkk0C4DDwQglT/fPJle2FUaGfmMgZQia2bXDo
-	 2I8e/CvsyB7aKr9XRbmmcHsenqLHKJyds+P0agPOmxMyX+MK3Qd9dj37iTzS5CcyKK
-	 nxP0mEH0SfJUUUS9McY482YbVI/CKoe0QwZMZ08aJpGMlnnWIw+afE6LLBacBJTKuh
-	 /hEqVQeOZfI+9kuxsrZMYqjPz2/bJoatSFjOOz9mie6qM0zKzqadkjSASj6gfK5FHR
-	 Iy25ZyH6ePD4fSg3GlxX52CcNJPvzi5RHxtoH4pjl3yIHzPyrUC7MommJIvBjqgBg6
-	 KNeevhZ+4q06A==
-Date: Mon, 8 Sep 2025 09:29:51 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mike Looijmans <mike.looijmans@topic.nl>
-Cc: dri-devel@lists.freedesktop.org, 
-	Andrzej Hajda <andrzej.hajda@intel.com>, Conor Dooley <conor+dt@kernel.org>, 
-	David Airlie <airlied@gmail.com>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
-	Jonas Karlman <jonas@kwiboo.se>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
-	Maxime Ripard <mripard@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>, 
-	Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: drm/bridge: ti-tmds181: Add TI
- TMDS181 and SN65DP159 bindings
-Message-ID: <20250908-azure-heron-of-experiment-9e4fcd@kuoka>
-References: <20250908061605.76787-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.de794bf7-6833-4973-a353-90f9e4a06895@emailsignatures365.codetwo.com>
- <20250908061605.76787-2-mike.looijmans@topic.nl>
+	s=k20201202; t=1757316830;
+	bh=SwLGQXYjjILPZ6nHkE3A25BCSWlFkPdVwJFl10Fp3/U=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=iEl4hAeHsDIWe/dUV09Y9leD6iq0jozKjh9cx1J5hplu+UsBTLeHjMK66m3maSgNl
+	 /uER1iv5P6eH55gj2kG2JcEaPjlesimmWIWs2aqCeoFtZd2CRBdKIHDSJKn08TnpCd
+	 rZpmnscakSK5SXWjmq3xI25uFaRcE10zS2jxU4kmUwVGHRMastU3uYHaz1ezKiQOUX
+	 RGDy53wp0P8lvA5B1zyzM5MWh6X2b+F6l6bBdKJ+LWY8pXmY3eLN16bosi4oC10AyC
+	 zxJahRAS1TwW96bc6sQdKKyhg8rLOfhdOwhhqxtUzvHvuPYcI1nJYDh781SQP2mCeC
+	 YpsLL59pV8iPw==
+Message-ID: <046b289d-b6a5-45f9-88b1-090e2ab7c95d@kernel.org>
+Date: Mon, 8 Sep 2025 09:33:42 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250908061605.76787-2-mike.looijmans@topic.nl>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+ Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
+ <20250908-leds-v3-2-5944dc400668@vinarskis.com>
+ <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
+Content-Language: en-US, nl
+From: Hans de Goede <hansg@kernel.org>
+In-Reply-To: <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Mon, Sep 08, 2025 at 08:15:57AM +0200, Mike Looijmans wrote:
-> Add DT binding document for TI TMDS181 and SN65DP159 HDMI retimers.
+Hi,
+
+On 8-Sep-25 09:20, Konrad Dybcio wrote:
+> On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
+>> A number of existing schemas use 'leds' property to provide
+>> phandle-array of LED(s) to the consumer. Additionally, with the
+>> upcoming privacy-led support in device-tree, v4l2 subnode could be a
+>> LED consumer, meaning that all camera sensors should support 'leds'
+>> and 'led-names' property via common 'video-interface-devices.yaml'.
+>>
+>> To avoid dublication, commonize 'leds' property from existing schemas
+>> to newly introduced 'led-consumer.yaml'.
+>>
+>> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+>> ---
 > 
-> The two chips have similar register maps, but different applications
-> (source vs. sink).
+> [...]
 > 
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+>>  
+>> +  leds:
+>> +    minItems: 1
+>> +    maxItems: 1
 > 
-> binding
-
-This does not belong here.
-
+> My brain compiler suggests this will throw a warning (minItems should
+> be redundant in this case)
+>> +
+>> +  led-names:
+>> +    enum:
+>> +      - privacy-led
 > 
-> ---
->
+> Nit: "privacy" makes more sense without the suffix, as we inherently
+> know this is supposed to be an LED
 
-...
+Note "privacy-led" as name is already used on the x86/ACPI side and
+the code consuming this will be shared.
 
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: Video port for HDMI output (panel or bridge)
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +    required:
-> +      - port@0
-> +      - port@1
-> +
-> +  ti,mode:
+With that said if there is a strong preference for going with just
+"privacy" the x86 side can be adjusted since the provider-info is
+generated through a LED lookup table on the x86/ACPI side. So we can
+just modify both the lookup table generation as well as the already
+existing led_get(dev, "privacy-led") call to use just "privacy"
+without problems.
 
-Conflicting type. There is already ti,mode as uint8. Anyway name is too
-generic, so maybe ti,retimer-mode
+Regards,
 
-Best regards,
-Krzysztof
+Hans
+
 
 
