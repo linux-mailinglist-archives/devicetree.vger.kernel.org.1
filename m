@@ -1,153 +1,109 @@
-Return-Path: <devicetree+bounces-214554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56AE7B499C4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:20:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95E48B499C8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:21:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 16EE8188F2A9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:20:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 59B8B3BF6C6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:20:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35376261B98;
-	Mon,  8 Sep 2025 19:20:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF8626E708;
+	Mon,  8 Sep 2025 19:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="MDQHe4Dq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FJcFm/tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D9B424A04D;
-	Mon,  8 Sep 2025 19:20:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757359221; cv=pass; b=aLhlpsQvCcqdw7OGsnbWd4GoL0nTO0ax6qzWZlSei2CRlMiUork4intDIiFjuXOgpga4tfYxysSyNvH8WN6mfdfGeOv4z5yRPJu0hxw6n3XGe+njua5u5pCCfYcpTpRp3EVXEhCHQJRlJcX8+NtULAPMgBOB6Kjb07L+FS/uTrg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757359221; c=relaxed/simple;
-	bh=N4KX4iYjQlsSAC7XbRdcqC2Wav7eEMkfZTLFXxOZ5mk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TzmWK6mwJVw73OJlutWSvfA+sKtd6hl90Lyh9zXRmfXZub0eQQPuL02ASUhV+yaVrGd8I4BAz/X2mkCHRXmJM3JaByub/pp03cZPumdINsa1pSMcjtszfv4j7+7l/WfFVxps7y5C7iKt6hTkrHyZ3+0yIxBeUg/iESrE1aUHRdQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=MDQHe4Dq; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757359161; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=SR21xJbjuheCmpRO47GHS8daLjO4bieeiZzmtZ1cpc55VPRfVg548p5JS7agjhBhxNyqLOj4aSq+sv4fBoBAFwinz+AErAYyDnm9dFMD1lYZFLK2nGxh32KU9UBpnwa4JOgAkGhXXZk1Ezt/EytGOrIDKz/fJ1yBYOqSVdPDvEQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757359161; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=WKomwiWRLnM4IVkNJXgsDxoTaoxCuRYCEVpcC0hexTc=; 
-	b=htmAjoNLy5CO05zAuH6G9LKsksKbRORMRlY2ga//3IUV8oR1JzNf+k84WVaUN8L2BLKsKIhlEp5YQ3KZB1vW4nlER4kFzE9gNteCx4wTgatNBcVznKJb5H1OLhHsmd7Rx2SXOPvHQ6Ssw5cfdqXuwJAAJJ/8DSbGxjiAwoM21VE=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
-	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757359161;
-	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=WKomwiWRLnM4IVkNJXgsDxoTaoxCuRYCEVpcC0hexTc=;
-	b=MDQHe4Dqfppv+jVMwZnyFuAG2uAH30HHHO82FejqVc2iciJuMenfzAvgyXzq4Uui
-	4cmxT8BC0FYcgwWgEs3oRnI/N4M6nE/u/LHyPhm0wpuYeXoPlqRJqe/erXnbU3QzXJ8
-	v3SChD6qsHNwSMzyTd0ri4Nf8MkPaF09mbhQTE+8=
-Received: by mx.zohomail.com with SMTPS id 175735915950243.97346092425232;
-	Mon, 8 Sep 2025 12:19:19 -0700 (PDT)
-Message-ID: <1cf0b296-adaa-4c80-864c-9b78f09cd3e3@collabora.com>
-Date: Mon, 8 Sep 2025 16:19:03 -0300
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E116026A0A7;
+	Mon,  8 Sep 2025 19:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757359223; cv=none; b=rpxwIqVAmM1sTtF1g2wCXSU+79MAQV/1SNd9dVhXkzlsfUGgHXI4fdKQwrXiRs8kFR0yb0m+pw1UokEe4l4ZhxFqsrETkmCuCVLbRbyKZJ7NGniis3IweGizkB/OqJc+tInvz7xN1lR5RYeCEkOPzi1e5ozgU7Im5kL1d3nYAKg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757359223; c=relaxed/simple;
+	bh=iZL/SxwpNaH/1QVXXY1HeCOjifUhnTnQ+Pr7jUijluc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=jVvRwcb5JJ3/3HvuoI2J0HYEfrKXcfMkNAW+OzufMQcbIqH7KDscmN0WetsAxsOjSWJCXz2w37rltTPHqsXWCq56g/Os16+sBMaPkC4bLeqWoVWp4qrOMSLTUaN7/LhkdN3ivcLOlEFjniR+I4P3huzR86dm0vp8NYzDkWhJXoQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FJcFm/tu; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-24b28de798cso31163875ad.0;
+        Mon, 08 Sep 2025 12:20:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757359221; x=1757964021; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AnUqqrBrwj8qokkm9aZA38r2ujXX7+bJc895yl2rkM4=;
+        b=FJcFm/tuIPA0vSJ3GD38cFNiGqbkJ2QDIM0Oh3pIOxDnQ9+dvt88Grjsx8vlJZqtOg
+         CNkWqhX3rkoEKjUeW+UUPwSwxPtkqW16YkbN9j/NhepIDKR0SyunV1bVfM4Cn6ytWvr4
+         QrxalRdl1AJbkPWgjmhddtMjNTLnlcwAxQ4AGv9NW7y7rtkOpbXeCj699kPe0Ziq91If
+         z2mDLbgY3d0njPD6fvzdQK4qwLISdzoBtqGtbtPTZvXENg7eylVZkEJwXFkKVyTRH01n
+         f1klFjAsfAV7Ct1f2xYsLRI9F4NPkW6mfkbMGb/4J4oJQVivf4h2oZ5d9Z80oLz/BrcZ
+         aBYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757359221; x=1757964021;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=AnUqqrBrwj8qokkm9aZA38r2ujXX7+bJc895yl2rkM4=;
+        b=HlT2S9BvnArhPVIWZAniOYpQQ2kOSWvEDy5QhohiOFzV45bzmpvByKi8ivnBaYHXKk
+         3cwuARBxJvSQkc4WR9/PmffvdgGxqaAlQasQVWTxFqgWoKL1wMPHUg0I/3HJhnQz9Mzl
+         6wDML3Ah8+hwn1UtJZYFG0yJ0cvtJfF27dKdXB2+gJ+4dJ6Jswlp1/dot2jXE5nGpNRU
+         xUPk+4jqXHD8KrmpjSwx5npif1efBPhgIbC5JTmWJZ2PZpqsRhoZyPG6trFw8SBuJJm4
+         sQw55axpuZbzQP4UMt35BCkSnzRf8QzT5mZeNRyQra8c/h9kK6FXytpKCTC6FpyVSb/y
+         RCGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+UkjW8iX5jPGsIjzKUsJHJJ3PR6l6WxhdoIb6gHR6Y8G60Yfc0KEMiIkL4JqK//tki+hLFbUGtJLxbnV/@vger.kernel.org, AJvYcCX1RMPmBqa18CX3c1cfkdCKGDcMUZM1xFQwRFKD1sOFNXoxODvJg3n5Fg+NXGQFCOQuy1DXuAVTNHR1J1E=@vger.kernel.org, AJvYcCXrTBMtmlmXwdb4dlcX83ofCAsZ8QgeKtr4XH1qWLbEsu1ZwsD8JOJBBHY2i9GYe3S7LmQexjbV+WUX@vger.kernel.org, AJvYcCXwzdxBVgDSio0eQA4MuLbcfiHyW67Pvc1kR/8Q1zRoN/o3dKS6a/d3e8bNHUoWVQ5pccalMbGYsOJz@vger.kernel.org
+X-Gm-Message-State: AOJu0YyvoqN/C3jPUtdC37r2EZBkGK4ytLZxJi6mIR98MYOXgRv86vbX
+	L60phjjQtYblMkQXbF/sMIW5W297JkfapvT7Vvd44LxodcvJhylPz1dC
+X-Gm-Gg: ASbGncv3OtOMBlcpx4jJrNWGU4E0R9e5s0jppN8UwQkduFBQcFYI/MkJLkoQe4chLVb
+	aeXxwMczITJSu1+TrxzErHjFr7o4z4HqkJdUcnSKLXR8XzGMyKXLnkx+JqE65SxiOFUo1IslGd9
+	0rv+VQeSmyTvErl/dmLc+w7jQYpknoMuJxykln13r/KyMb+t8MsHaHEeZF9l2RkBmYBwBQBXOYC
+	8/QOIp/3gXvh/Z0hKMj1cuhxObnAokHST1/mYHMEICLtr37IsMCSTNdoDujh4s34VxtVYE+XPWa
+	K+Nn5Y/t0mQzpmEc6CxcNQ6e5l68bolnVW+kfzVWkuauttXI4+On5tWwyB2LblXxUSF+HrSbqAP
+	rCREMX5ix1hK29E3AHhvNJjS0kin/uNCEuuDT3BBLLbtkzA==
+X-Google-Smtp-Source: AGHT+IHl2DugnBcc1u7OZ+/3vd9FW5CyYrLi1kqYZdS6Ldook2dLUsOkbI32nrvUGLYlIQYblKo0Hg==
+X-Received: by 2002:a17:903:2ec6:b0:24c:9309:586f with SMTP id d9443c01a7336-251703910c3mr127126105ad.24.1757359220993;
+        Mon, 08 Sep 2025 12:20:20 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24c9c2b1288sm147843745ad.106.2025.09.08.12.20.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 12:20:20 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Mon, 8 Sep 2025 12:20:19 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Kurt Borja <kuurtb@gmail.com>
+Cc: Jean Delvare <jdelvare@suse.com>, Jonathan Corbet <corbet@lwn.net>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-hwmon@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] hwmon: (sht21) Documentation cleanup
+Message-ID: <18918d99-46b6-4eab-af35-d39fb0c0d707@roeck-us.net>
+References: <20250908-sht2x-v4-0-bc15f68af7de@gmail.com>
+ <20250908-sht2x-v4-1-bc15f68af7de@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 03/14] dt-bindings: arm: mediatek: mmsys: Add
- assigned-clocks/rates properties
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch,
- andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
- broonie@kernel.org, chunkuang.hu@kernel.org, ck.hu@mediatek.com,
- conor+dt@kernel.org, davem@davemloft.net, dmitry.torokhov@gmail.com,
- edumazet@google.com, flora.fu@mediatek.com, houlong.wei@mediatek.com,
- jeesw@melfas.com, jmassot@collabora.com, kernel@collabora.com,
- krzk+dt@kernel.org, kuba@kernel.org,
- kyrie.wu@mediatek.corp-partner.google.com, lgirdwood@gmail.com,
- linus.walleij@linaro.org, louisalexis.eyraud@collabora.com,
- maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
- mchehab@kernel.org, minghsiu.tsai@mediatek.com, mripard@kernel.org,
- p.zabel@pengutronix.de, pabeni@redhat.com, robh@kernel.org,
- sean.wang@kernel.org, simona@ffwll.ch, support.opensource@diasemi.com,
- tiffany.lin@mediatek.com, tzimmermann@suse.de, yunfei.dong@mediatek.com,
- devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-input@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-sound@vger.kernel.org,
- netdev@vger.kernel.org
-References: <20250820171302.324142-1-ariel.dalessandro@collabora.com>
- <20250820171302.324142-4-ariel.dalessandro@collabora.com>
- <20250821-electric-kestrel-of-awe-cb89dc@kuoka>
-Content-Language: en-US
-From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-In-Reply-To: <20250821-electric-kestrel-of-awe-cb89dc@kuoka>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250908-sht2x-v4-1-bc15f68af7de@gmail.com>
 
-Krzysztof,
-
-On 8/21/25 3:43 AM, Krzysztof Kozlowski wrote:
-> On Wed, Aug 20, 2025 at 02:12:51PM -0300, Ariel D'Alessandro wrote:
->> Current, the DT bindings for MediaTek mmsys controller is missing the
->> assigned-clocks and assigned-clocks-rates properties. Add these and
+On Mon, Sep 08, 2025 at 10:54:49AM -0500, Kurt Borja wrote:
+> Drop extra empty lines and organize sysfs entries in a table.
 > 
-> No, they do not miss them. I don't understand why you are adding these.
+> Signed-off-by: Kurt Borja <kuurtb@gmail.com>
 
-The reason I added these is due to the following check error:
+Applied.
 
-$ make -j$(nproc) CHECK_DTBS=y mediatek/mt8173-elm.dtb
-   DTC [C] arch/arm64/boot/dts/mediatek/mt8173-elm.dtb
-[...]
-arch/arm64/boot/dts/mediatek/mt8173-elm.dtb: syscon@14000000 
-(mediatek,mt8173-mmsys): 'assigned-clock-rates', 'assigned-clocks' do 
-not match any of the regexes: '^pinctrl-[0-9]+$'
-	from schema $id: 
-http://devicetree.org/schemas/arm/mediatek/mediatek,mmsys.yaml#
-
-> 
->> update the example as well.
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> ---
->>   .../devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->> index 3f4262e93c789..d045d366eb8e2 100644
->> --- a/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->> +++ b/Documentation/devicetree/bindings/arm/mediatek/mediatek,mmsys.yaml
->> @@ -68,6 +68,12 @@ properties:
->>         of the power controller specified by phandle. See
->>         Documentation/devicetree/bindings/power/power-domain.yaml for details.
->>   
->> +  assigned-clocks:
->> +    maxItems: 1
->> +
->> +  assigned-clock-rates:
->> +    maxItems: 1
->> +
-> 
-> Drop both, completely redundant and not actually in the scope of the binding.
-
-Ack. Will fix accordingly in v2 based on the discussion above.
-
-Thanks!
-
--- 
-Ariel D'Alessandro
-Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
-Registered in England & Wales, no. 5513718
-
+Guenter
 
