@@ -1,48 +1,55 @@
-Return-Path: <devicetree+bounces-214323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214325-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CF16B48C37
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:31:58 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1674B48C50
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:37:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B533188927F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:32:19 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 81BEE4E1750
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:37:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 114802EACF3;
-	Mon,  8 Sep 2025 11:31:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ED2D62EAD16;
+	Mon,  8 Sep 2025 11:36:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mjkAqspg"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JNQqV+Vn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB51522FDE8;
-	Mon,  8 Sep 2025 11:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9010C2E9757;
+	Mon,  8 Sep 2025 11:36:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757331107; cv=none; b=WlZuS7NAXCLg9uP/Hk18OajY+r+S017j5j5Jt97OqTZ683IIpN1JlBLSkbS3H3Z1CVzXYUD5fUAzVABlWsCmt2I3YAk1m74srUmXAtJA5KBOfT27+Ai0y69raIdPMK8+NogFuFRMvGw7iVP76uVqUPZKdUqOwLtrB79i1RPSx0g=
+	t=1757331418; cv=none; b=HsQyE9gS54OeP6LG2x8+wakdhSlCWZuWL4+e1cGatPAixoNA4cjs9cx3G3/XBoDPoQOYEQDtdsrmNupwgjNJoMUtbeO0ShQIYf6Qe+J0ibu2SigHtcK1HGT2M4O1IsUC4QU7KdPKA5WPPh0vJQ0uHdk0pfxqHNEE9jZuhDSRr/c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757331107; c=relaxed/simple;
-	bh=/2NMAx7CdEyJz+oFeKiwwNv2fjn4p93tWohQc2Rt3qg=;
+	s=arc-20240116; t=1757331418; c=relaxed/simple;
+	bh=I6Ct7QSfsb2a9mw4d/2CXNoZn43ncDeWvUzisVJqmmQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=thD5pDP61vo4H6pim7315YJMeIHiewYBZ989ssp+7+aupYgjxpXcifJmhUXqebvEhQgHp3frfyVNeZKh2SZIF/UUUx4XrvEscg7pE4q7xIRLKxuDdwgnjY4lvit+tK3wMgime0Kcgjpas+Q/da16qOX4y3OnuU0qAYrKE5rGkxs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mjkAqspg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A102C4CEF8;
-	Mon,  8 Sep 2025 11:31:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757331107;
-	bh=/2NMAx7CdEyJz+oFeKiwwNv2fjn4p93tWohQc2Rt3qg=;
+	 In-Reply-To:Content-Type; b=IovWtYn+T/citni0sWLg0YwdcoyInNhFNY041LEAshgTG/F/YIo238LU6U+Ji+iwqVTuqdxZSTEih6dvNz5E+Rt8/TL/J4baNsJ8VMjGDbTmGag2DXY70T93lHMBqZa93Oci581VjT5gEvyPrCxTB4q9TOcgwO9reictCi9t7qk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JNQqV+Vn; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1757331414;
+	bh=I6Ct7QSfsb2a9mw4d/2CXNoZn43ncDeWvUzisVJqmmQ=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=mjkAqspghZDLdaGIS6dJG7QjOCNVTbhkmGhOXT5Re5HymFcK4wCRi7hD587x1HebB
-	 poX+aI3vVP4FVvvKfEflA0T7CAMbFfFl4MD8Z4v1hgKT2HkYRdcjl3fP3o6GVXpmdr
-	 SsxzGMvkxQTancm35B8yjws8XA6ZlJLCA2FzZQ5EvoPfk7BYilYAr3a/IeBlgu4ZWi
-	 /pZrij6pzAqwTcGXOqrnxoxHlUrDFNSoHpJytrOLyBQzjPhAe2QRlGWlzEpaeEulMo
-	 B+lftDXpCzQZYcTdYpaPQuNKQmKNjViLsRbzYbIZlzT9UJlYlrggnVVRwFX8KNkDk5
-	 VA9rsKVu+FQDg==
-Message-ID: <fe7bc889-9ba3-4621-8257-e81ba02db9d4@kernel.org>
-Date: Mon, 8 Sep 2025 13:31:41 +0200
+	b=JNQqV+Vnjs1Dxd1EtX4PPTlKmtQwxCDb/AQgr8shMEFalu8USKWWhlJsPwZsVd4tK
+	 gAiFpxVnuYm7yRt0XtVeHIbJAWTLopQRL2GYFWTHlJ8ouEriWtaZKvkR04T0QmCPBw
+	 CR1usZ2oOFpAfkxZOgJ+IDXpPg1+aqMbVEsnOk+WfDg/cnXIugkfalEh/Et4NRGmud
+	 rDuVIVRrxJtTdR1kBrS63nW2H/YRw7PNQOrF7xhCf5eMLPcwifMBAfLsmWEfaNaJ+T
+	 C0ZyXXat54wei7+pXSgw3VcLeSemvIfVVyv7JG3eeuBJwr/XcbPiPGuUi67C8ftwRm
+	 DPbUAegLYxVFw==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits))
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 4787517E0DD7;
+	Mon,  8 Sep 2025 13:36:54 +0200 (CEST)
+Message-ID: <104d8128-26fb-4eb6-ac3f-3abbb35245b2@collabora.com>
+Date: Mon, 8 Sep 2025 13:36:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,170 +57,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 10/12] media: uvcvideo: Add get_* functions to
- uvc_entity
-To: Ricardo Ribalda <ribalda@chromium.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Hans Verkuil
- <hverkuil@xs4all.nl>, Sakari Ailus <sakari.ailus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Linus Walleij
- <linus.walleij@linaro.org>, Bartosz Golaszewski <brgl@bgdev.pl>,
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-acpi@vger.kernel.org
-References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
- <20250605-uvc-orientation-v2-10-5710f9d030aa@chromium.org>
- <20250629181246.GE6260@pendragon.ideasonboard.com>
- <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
- <20250714142926.GI8243@pendragon.ideasonboard.com>
- <CANiDSCvFe23xmrJ0-qbWWa6+vKGb+QdDFV8VSLkmWdAnfsFtzw@mail.gmail.com>
- <20250715193505.GB19299@pendragon.ideasonboard.com>
- <CANiDSCtvt6qnROQ0_-0iG5hqkU_uHZABujZPN7xuh7pUASSGyw@mail.gmail.com>
-Content-Language: en-US, nl
-From: Hans de Goede <hansg@kernel.org>
-In-Reply-To: <CANiDSCtvt6qnROQ0_-0iG5hqkU_uHZABujZPN7xuh7pUASSGyw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v3 1/3] Input: mtk-pmic-keys - MT6359 has a specific
+ release irq
+To: Julien Massot <julien.massot@collabora.com>, kernel@collabora.com,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Louis-Alexis Eyraud <louisalexis.eyraud@collabora.com>
+Cc: linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ devicetree@vger.kernel.org
+References: <20250905-radxa-nio-12-l-gpio-v3-0-40f11377fb55@collabora.com>
+ <20250905-radxa-nio-12-l-gpio-v3-1-40f11377fb55@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250905-radxa-nio-12-l-gpio-v3-1-40f11377fb55@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On 16-Jul-25 12:32, Ricardo Ribalda wrote:
-> On Tue, 15 Jul 2025 at 21:35, Laurent Pinchart
-> <laurent.pinchart@ideasonboard.com> wrote:
-
-...
-
->> As for the minimum and maximum, they are currently set to 0 if the
->> corresponding operations are not supported. I wonder if we should set
->> them to the current value instead for read-only controls (as in controls
->> whose flags report support for GET_CUR only)..
+Il 05/09/25 13:51, Julien Massot ha scritto:
+> Support for MT6359 PMIC keys has been added recently.
+> However, the key release event is not properly handled:
+> only key press events are generated, leaving key states
+> stuck in "pressed".
 > 
-> I am not sure that I like that approach IMO the code looks worse...
-> but if you prefer that, we can go that way
+> This patch ensures that both key press and key release events
+> are properly emitted by handling the release logic correctly.
 > 
+> Introduce a 'key_release_irq' member to the 'mtk_pmic_regs',
+> to identify the devices that have a separate irq for the
+> release event.
 > 
-> diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
-> index ec472e111248..47224437018b 100644
-> --- a/drivers/media/usb/uvc/uvc_ctrl.c
-> +++ b/drivers/media/usb/uvc/uvc_ctrl.c
-> @@ -35,6 +35,8 @@
->  /* ------------------------------------------------------------------------
->   * Controls
->   */
-> +static int __uvc_ctrl_load_cur(struct uvc_video_chain *chain,
-> +                              struct uvc_control *ctrl);
-> 
->  static const struct uvc_control_info uvc_ctrls[] = {
->         {
-> @@ -1272,6 +1274,13 @@ static int uvc_ctrl_populate_cache(struct
-> uvc_video_chain *chain,
->                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
->                 if (ret < 0)
->                         return ret;
-> +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
-> +               ret = __uvc_ctrl_load_cur(chain, ctrl);
-> +               if (!ret) {
-> +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF),
-> +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-> +                              ctrl->info.size);
-> +               }
->         }
-> 
->         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN) {
+> Fixes: bc25e6bf032e ("Input: mtk-pmic-keys - add support for MT6359 PMIC keys")
+> Signed-off-by: Julien Massot <julien.massot@collabora.com>
 
-Interesting change. Note you also need to check for
-(ctrl->info.flags & UVC_CTRL_FLAG_GET_CUR) being true,
-__uvc_ctrl_load_cur() will return a 0 filled buffer
-and success if that is not set.
+Please clarify the commit title.
 
-I wonder why not do something like this instead though:
+Input: mtk-pmic-keys - Use platform data for release irq support
 
-        if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR) &&
-            (ctrl->info.flags & UVC_CTRL_FLAG_GET_CUR) &&
-            __uvc_ctrl_load_cur(chain, ctrl) == 0) {
-                /* Read-only control, set def / min / max to cur */
-                memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF),
-                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-                       ctrl->info.size);
-                memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN),
-                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-                       ctrl->info.size);
-                memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX),
-                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-                       ctrl->info.size);
-        }
+...or something like that.
 
-IOW why bother to make the GET_DEF, etc. calls at all for a
-read-only control (even if they are supported) ?
+After which:
 
-Generally speaking making less calls into the hw seems better?
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
-Although maybe replace the:
-
-        if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR) &&
-            (ctrl->info.flags & UVC_CTRL_FLAG_GET_CUR) &&
-
-part of the check with a flag in ctrl->info indicating to do
-this and do this for specific controls like the new
-rotation and orientation controls ?
-
-...
-
-> @@ -1541,11 +1573,8 @@ static int __uvc_queryctrl_boundaries(struct
-> uvc_video_chain *chain,
->                         return ret;
->         }
-> 
-> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_DEF)
->                 v4l2_ctrl->default_value = uvc_mapping_get_s32(mapping,
->                                 UVC_GET_DEF, uvc_ctrl_data(ctrl,
-> UVC_CTRL_DATA_DEF));
-> -       else
-> -               v4l2_ctrl->default_value = 0;
-> 
->         switch (mapping->v4l2_type) {
->         case V4L2_CTRL_TYPE_MENU:
-> @@ -1576,23 +1605,14 @@ static int __uvc_queryctrl_boundaries(struct
-> uvc_video_chain *chain,
->                 break;
->         }
-> 
-> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN)
-> -               v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
-> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
-> -       else
-> -               v4l2_ctrl->minimum = 0;
-> +       v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
-> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
-> 
-> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MAX)
-> -               v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
-> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
-> -       else
-> -               v4l2_ctrl->maximum = 0;
-> +       v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
-> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
-> 
-> -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES)
-> -               v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
-> -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
-> -       else
-> -               v4l2_ctrl->step = 0;
-> +       v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
-> +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
-> 
->         return 0;
->  }
-
-I agree with Laurent that thee changes are nice, but please split them into
-a separate patch.
-
-Regards,
-
-Hans
-
+Cheers,
+Angelo
 
