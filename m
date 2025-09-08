@@ -1,282 +1,212 @@
-Return-Path: <devicetree+bounces-214420-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214421-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 698FBB4905B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:53:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB0CB4906C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:55:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D87F91759E0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:53:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A6F217C126
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:54:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5832431158A;
-	Mon,  8 Sep 2025 13:49:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430A630CDA1;
+	Mon,  8 Sep 2025 13:53:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="A4SUy8RT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DYtp9zra"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A3C330DEA6;
-	Mon,  8 Sep 2025 13:49:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6363730C350;
+	Mon,  8 Sep 2025 13:53:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757339386; cv=none; b=A5jzvDQrkio3+7HMsAwMLQ+n94915Qj3u7PrFcjyAdCSxEzEWg9Q5DYS79GWryCVXiHDBsriidzIGCKAa7kIJH9scTUOZipL5Heu8Fl1Fs5T/BHDtGrfY4z2Bkd+0kzQ7xXgOUdvhdwPtfFi5y8mDm2SnAOr4fWOnwkZn/2O/Tk=
+	t=1757339596; cv=none; b=UxGQYWSJE3K4xGwSABy23SJ6p1tCS10FrjNgnTu1B7Qpz8C98cWuSM7Y3LiQgIjm9DCv0y4DtpMD8ha55HDQ6LiMdAmoVGaWmFE8WPf0nUpX9I3ile6pJdcJHpxk0kEALDVN+93hmXjJ2O+LaFWouy8IST3FxemeO1xqzi9pVKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757339386; c=relaxed/simple;
-	bh=74dxGks3wE+KmogYQEvEPeKv/CFolBQItJBrOe48W0Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=VfKm6P/mAj1xPE38/ynR0Bq8U5s2w9/V2b38gKKeZKGFfTki/KcqdAQJUQ1ugVSJc/4r4QNd+NybJNcYtF51VzGyoA0Q/BzmcBhlZpoKdJOJ17XpHhSwRhfl60tC9E9nAYEe2u+IogPmnLF49h4NLJGJpta0jtd74F1vKkPl+tM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=A4SUy8RT; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588DnUTS113421;
-	Mon, 8 Sep 2025 08:49:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757339370;
-	bh=V69zvBvOl3WhrSdfaqYSrNW1HzDyHIqg6hTSUqZqvqQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=A4SUy8RTvA9FwN+XMYcaWzZfifyJNVmcWvDFmbdavNaNyp3ufSsvJrtz1yv1SiBew
-	 yQMax4VlgiZPtNDWE91hPpB+UoFQzQiJRyQ7OlmwZqCN4jJQOT0L7+Vb86jKxyslio
-	 cHAuapa1iFBn59FSi5BQjBY/EZdwiXgw50xBMeA0=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588DnURH2443419
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 08:49:30 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 08:49:29 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 08:49:29 -0500
-Received: from ws.dhcp.ti.com (ws.dhcp.ti.com [172.24.233.149])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588DlU99689321;
-	Mon, 8 Sep 2025 08:49:23 -0500
-From: Rishikesh Donadkar <r-donadkar@ti.com>
-To: <jai.luthra@linux.dev>, <laurent.pinchart@ideasonboard.com>,
-        <mripard@kernel.org>
-CC: <r-donadkar@ti.com>, <y-abhilashchandra@ti.com>, <devarsht@ti.com>,
-        <s-jain1@ti.com>, <vigneshr@ti.com>, <mchehab@kernel.org>,
-        <robh@kernel.org>, <krzk+dt@kernel.org>, <p.zabel@pengutronix.de>,
-        <conor+dt@kernel.org>, <sakari.ailus@linux.intel.com>,
-        <hverkuil-cisco@xs4all.nl>, <tomi.valkeinen@ideasonboard.com>,
-        <jai.luthra@ideasonboard.com>, <changhuang.liang@starfivetech.com>,
-        <jack.zhu@starfivetech.com>, <sjoerd@collabora.com>,
-        <hverkuil+cisco@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v6 16/16] media: ti: j721e-csi2rx: Support system suspend using pm_notifier
-Date: Mon, 8 Sep 2025 19:17:29 +0530
-Message-ID: <20250908134729.3940366-17-r-donadkar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250908134729.3940366-1-r-donadkar@ti.com>
-References: <20250908134729.3940366-1-r-donadkar@ti.com>
+	s=arc-20240116; t=1757339596; c=relaxed/simple;
+	bh=XHCWMZvvdtWa1+WbwLMOHSGAMdRjcSr+YUaIUbFqFFI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=j/O2SxdA5Yp5mw/rXGtfLHNuvI0xb7gfwko1upPjudK4saL9DrPr5JcOkza1pi26CpwZrdlf9RcGtbLklCgnOuFkxAafpJuTvo2rP5YWv5qLhq85+gg3u77QgkfC3uc/AemV2q70cQA7VXScgeTU0+Kga0vgvyHCpwqTaou5Q2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DYtp9zra; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so26779745e9.0;
+        Mon, 08 Sep 2025 06:53:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757339593; x=1757944393; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Bi8yTXJoOBwCylt9q6MtHjP7YgyhzTMi3lxmixfzTvA=;
+        b=DYtp9zraeLsI/Dp7TPjQvnF0QADziHlPtV8XyQocfKuoXJnm8IJN/f1q46BMaio4FX
+         tYVRAceNUHwU1yUtgrCC62/GDQ9C4bA3iJWIkDrvUx2NhSo7XH/4hRm8Yr5uQ6rpU1Gw
+         XU56sBSSHba2itZO7EzkWOPWVvUh9YCPqzQa7bOvj62DZLaHeJTLcNs3aJFBopVsF5B4
+         ngqMjl0IJV6vOUzFhFkl5oa0js+3P7enR2CJ2WcTeriI7+42jQqGEnNlksXRbx+OKNtg
+         00qNUO4DXdhvB/b/8zmynz3WfRne7eIGN6JeuD7ZU2ETPQMT6U5udiMIbsak6EnWZooW
+         vHRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757339593; x=1757944393;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Bi8yTXJoOBwCylt9q6MtHjP7YgyhzTMi3lxmixfzTvA=;
+        b=cuaLlE4kTmdDE240/ZMw8xqftukWQtIlyBm2zG2GItFI6uUnVYt4jqXTSa4ZJ3aS4N
+         R+/oILybaL0hUhDu7qknUfd6wKHpVKSxEVBE7tXlHEKn4Uyn8AUwkqufNYLn3gDj+yF8
+         1j4Q3r9lP0qvxmHzhU5CACCARBHnG1yugFisMx5rVu8Qi97FwS2eMSsvbTH3hH8vQFAX
+         3MKQvrbvGGnOrT7UnfYoHdDbmv4rNeRhW3gtG8LlWcqsrHZRTbbJfVhxY9YleBxDatAn
+         +fO8THAQ+vrV/74d5f6tqCjuW9kz1cApYvN4nlGjQ0967TH067Q1NJt6nRa7ZJNIACv/
+         MjtQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUYQ2WJoxtiWpOhBLYTct18MkGJ/6ILTXTAldFg/F4o2sAwf9R1YYGiqqnv4ha/OTk818NY5zIcAHwZ@vger.kernel.org, AJvYcCW5ycFVn/SFOwbP5RGmJeIxG9p5nnyRER6bITMTgH9UU1CYc79wML8AOj6h3/wAN1Yu6tjZxD/lRN/+JA==@vger.kernel.org
+X-Gm-Message-State: AOJu0YxEAWGDgbMrBB02NqmtWRQR12gXoX/QCe1AprchnIAc6BqHOQ0W
+	Ro51D4MEswxAf9khEg2WtPi9fgbP69VFTr3czJpEsbWisfZJJh3TAGWs
+X-Gm-Gg: ASbGncs5bNHpqbdImLrfC94JLqSRlQxU5lMjkfLZ6J/tJLgx8q8MpoiFF5crQE9kdPL
+	0t6BPMWUW87m3Jlfn9c7dc9MvRLJPn40xIj4uaBXJzpOHWS8YQNIs/q/pS5miwfEMTRy8W19vk0
+	QxecZkVq1ndpIcTNyaJ5rTECWI6Va5PMPp+reg270GP1Y0Y8Ol2SMnCnw7xWtI0kZP98mO7p3ml
+	FDrxgOLNKcb2YBeLX2/jG8NnkpmaDMlwU96xNtiy23giFzkDFSmeX+mjrlByK//0uO2tLj+DnfF
+	Jipslyp5sAaWj15hE0xoD5+Rs7KZ6sVMV5rXJIDsxd5XVvxLVRgV05GLoTA4zpq4YJnR5l46Bl+
+	OyGdTs7FL/tgJactuzX9TG3sxHO1SFEh0YGIKCqC4PHI9OpqTfvF/5vhX9f+z7r9WAVM6UxyPeF
+	E=
+X-Google-Smtp-Source: AGHT+IFymJM5Q/838u4sNcO2o9XEJ5qNZ4BhV9dGgjKVBrrKdv1vk6q5UfzwHAK51v7oPTW2ilOY8A==
+X-Received: by 2002:a05:600c:3b8b:b0:45d:d356:c358 with SMTP id 5b1f17b1804b1-45dddec3b92mr84964785e9.16.1757339592629;
+        Mon, 08 Sep 2025 06:53:12 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45d468dbf48sm206620575e9.11.2025.09.08.06.53.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 06:53:12 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+ linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject:
+ Re: [RFC PATCH 1/9] pinctrl: sunxi: rename SUNXI_PINCTRL_NEW_REG_LAYOUT
+Date: Mon, 08 Sep 2025 15:53:11 +0200
+Message-ID: <5037008.31r3eYUQgx@jernej-laptop>
+In-Reply-To: <20250821004232.8134-2-andre.przywara@arm.com>
+References:
+ <20250821004232.8134-1-andre.przywara@arm.com>
+ <20250821004232.8134-2-andre.przywara@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-From: Jai Luthra <jai.luthra@ideasonboard.com>
+Dne =C4=8Detrtek, 21. avgust 2025 ob 02:42:24 Srednjeevropski poletni =C4=
+=8Das je Andre Przywara napisal(a):
+> After keeping the pinctrl IP mostly register compatible for almost a
+> decade, in 2021 Allwinner introduced some changes to the register
+> layout, which made us use a flag called SUNXI_PINCTRL_NEW_REG_LAYOUT.
+> Now with their latest SoC (A733), Allwinner changed the pinctrl IP
+> again, so "NEW" isn't really a fitting name anymore.
 
-As this device is the "orchestrator" for the rest of the media
-pipeline, we need to stop all on-going streams before system suspend and
-enable them back when the system wakes up from sleep.
+That was bound to happen.
 
-Using .suspend/.resume callbacks does not work, as the order of those
-callbacks amongst various devices in the camera pipeline like the sensor,
-FPD serdes, CSI bridge etc. is impossible to enforce, even with
-device links. For example, the Cadence CSI bridge is a child device of
-this device, thus we cannot create a device link with the CSI bridge as
-a provider and this device as consumer. This can lead to situations
-where all the dependencies for the bridge have not yet resumed when we
-request the subdev to start streaming again through the .resume callback
-defined in this device.
+>=20
+> Rename the symbol to SUNXI_PINCTRL_NCAT2_REG_LAYOUT, with "NCAT2" being
+> a name often used in vendor source code to signify this "new" generation
+> of SoCs.
+>=20
+> Just a rename of the symbol, no actual code changes.
+>=20
+> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 
-Instead here we register a notifier callback with the PM framework
-which is triggered when the system is fully functional. At this point we
-can cleanly stop or start the streams, because we know all other devices
-and their dependencies are functional. A downside of this approach is
-that the userspace is also alive (not frozen yet, or just thawed), so
-the suspend notifier might complete before the userspace has completed
-all ioctls, like QBUF/DQBUF/STREAMON/STREAMOFF.
+Reviwed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-Tested-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Reviewed-by: Rishikesh Donadkar <r-donadkar@ti.com>
-Signed-off-by: Jai Luthra <jai.luthra@ideasonboard.com>
-Signed-off-by: Rishikesh Donadkar <r-donadkar@ti.com>
----
- .../platform/ti/j721e-csi2rx/j721e-csi2rx.c   | 128 ++++++++++++++++++
- 1 file changed, 128 insertions(+)
+Best regards,
+Jernej
 
-diff --git a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-index 3405e68932dd..6e3838003857 100644
---- a/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-+++ b/drivers/media/platform/ti/j721e-csi2rx/j721e-csi2rx.c
-@@ -132,6 +132,7 @@ struct ti_csi2rx_dev {
- 	struct v4l2_subdev		*source;
- 	struct v4l2_subdev		subdev;
- 	struct ti_csi2rx_ctx		ctx[TI_CSI2RX_MAX_CTX];
-+	struct notifier_block		pm_notifier;
- 	u8				pix_per_clk;
- 	/* Buffer to drain stale data from PSI-L endpoint */
- 	struct {
-@@ -1557,6 +1558,124 @@ static int ti_csi2rx_runtime_resume(struct device *dev)
- 	return 0;
- }
- 
-+static int ti_csi2rx_suspend(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	enum ti_csi2rx_dma_state state;
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	unsigned long flags = 0;
-+	int i, ret = 0;
-+
-+	/* If device was not in use we can simply suspend */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/*
-+	 * If device is running, assert the pixel reset to cleanly stop any
-+	 * on-going streams before we suspend.
-+	 */
-+	writel(0, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+
-+		spin_lock_irqsave(&dma->lock, flags);
-+		state = dma->state;
-+		spin_unlock_irqrestore(&dma->lock, flags);
-+
-+		if (state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Disable source */
-+			ret = v4l2_subdev_disable_streams(&csi->subdev,
-+							  TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							  BIT(0));
-+			if (ret)
-+				dev_err(csi->dev, "Failed to stop subdev stream\n");
-+		}
-+
-+		/* Stop any on-going streams */
-+		writel(0, csi->shim + SHIM_DMACNTX(ctx->idx));
-+
-+		/* Drain DMA */
-+		ti_csi2rx_drain_dma(ctx);
-+
-+		/* Terminate DMA */
-+		ret = dmaengine_terminate_sync(ctx->dma.chan);
-+		if (ret)
-+			dev_err(csi->dev, "Failed to stop DMA\n");
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_resume(struct device *dev)
-+{
-+	struct ti_csi2rx_dev *csi = dev_get_drvdata(dev);
-+	struct ti_csi2rx_ctx *ctx;
-+	struct ti_csi2rx_dma *dma;
-+	struct ti_csi2rx_buffer *buf;
-+	unsigned long flags = 0;
-+	unsigned int reg;
-+	int i, ret = 0;
-+
-+	/* If device was not in use, we can simply wakeup */
-+	if (pm_runtime_status_suspended(dev))
-+		return 0;
-+
-+	/* If device was in use before, restore all the running streams */
-+	reg = SHIM_CNTL_PIX_RST;
-+	writel(reg, csi->shim + SHIM_CNTL);
-+
-+	for (i = 0; i < csi->num_ctx; i++) {
-+		ctx = &csi->ctx[i];
-+		dma = &ctx->dma;
-+		spin_lock_irqsave(&dma->lock, flags);
-+		if (dma->state != TI_CSI2RX_DMA_STOPPED) {
-+			/* Re-submit all previously submitted buffers to DMA */
-+			list_for_each_entry(buf, &ctx->dma.submitted, list) {
-+				ti_csi2rx_start_dma(ctx, buf);
-+			}
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+
-+			/* Restore stream config */
-+			ti_csi2rx_setup_shim(ctx);
-+
-+			ret = v4l2_subdev_enable_streams(&csi->subdev,
-+							 TI_CSI2RX_PAD_FIRST_SOURCE + ctx->idx,
-+							 BIT(0));
-+			if (ret)
-+				dev_err(ctx->csi->dev, "Failed to start subdev\n");
-+		} else {
-+			spin_unlock_irqrestore(&dma->lock, flags);
-+		}
-+	}
-+
-+	return ret;
-+}
-+
-+static int ti_csi2rx_pm_notifier(struct notifier_block *nb,
-+				 unsigned long action, void *data)
-+{
-+	struct ti_csi2rx_dev *csi =
-+		container_of(nb, struct ti_csi2rx_dev, pm_notifier);
-+
-+	switch (action) {
-+	case PM_HIBERNATION_PREPARE:
-+	case PM_SUSPEND_PREPARE:
-+	case PM_RESTORE_PREPARE:
-+		ti_csi2rx_suspend(csi->dev);
-+		break;
-+	case PM_POST_SUSPEND:
-+	case PM_POST_HIBERNATION:
-+	case PM_POST_RESTORE:
-+		ti_csi2rx_resume(csi->dev);
-+		break;
-+	}
-+
-+	return NOTIFY_DONE;
-+}
-+
- static const struct dev_pm_ops ti_csi2rx_pm_ops = {
- 	RUNTIME_PM_OPS(ti_csi2rx_runtime_suspend, ti_csi2rx_runtime_resume,
- 		       NULL)
-@@ -1628,6 +1747,13 @@ static int ti_csi2rx_probe(struct platform_device *pdev)
- 		goto err_notifier;
- 	}
- 
-+	csi->pm_notifier.notifier_call = ti_csi2rx_pm_notifier;
-+	ret = register_pm_notifier(&csi->pm_notifier);
-+	if (ret) {
-+		dev_err(csi->dev, "Failed to create PM notifier: %d\n", ret);
-+		goto err_notifier;
-+	}
-+
- 	pm_runtime_set_active(csi->dev);
- 	pm_runtime_enable(csi->dev);
- 	pm_request_idle(csi->dev);
-@@ -1658,6 +1784,8 @@ static void ti_csi2rx_remove(struct platform_device *pdev)
- 		ti_csi2rx_cleanup_ctx(&csi->ctx[i]);
- 
- 	ti_csi2rx_cleanup_notifier(csi);
-+	unregister_pm_notifier(&csi->pm_notifier);
-+
- 	ti_csi2rx_cleanup_v4l2(csi);
- 	mutex_destroy(&csi->mutex);
- 	dma_free_coherent(csi->dev, csi->drain.len, csi->drain.vaddr,
--- 
-2.34.1
+> ---
+>  drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c     | 2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c   | 2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.c         | 2 +-
+>  drivers/pinctrl/sunxi/pinctrl-sunxi.h         | 2 +-
+>  5 files changed, 5 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c b/drivers/pinctrl/=
+sunxi/pinctrl-sun20i-d1.c
+> index 8efe35b77af4d..37a60e5d1163b 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
+> @@ -821,7 +821,7 @@ static const struct sunxi_pinctrl_desc d1_pinctrl_dat=
+a =3D {
+>  static int d1_pinctrl_probe(struct platform_device *pdev)
+>  {
+>  	return sunxi_pinctrl_init_with_flags(pdev, &d1_pinctrl_data,
+> -					     SUNXI_PINCTRL_NEW_REG_LAYOUT);
+> +					     SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
+>  }
+> =20
+>  static const struct of_device_id d1_pinctrl_match[] =3D {
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinc=
+trl/sunxi/pinctrl-sun55i-a523-r.c
+> index 69cd2b4ebd7d7..86a12bce0e335 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
+> @@ -36,7 +36,7 @@ static int a523_r_pinctrl_probe(struct platform_device =
+*pdev)
+>  	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
+>  					   a523_r_irq_bank_muxes,
+>  					   &a523_r_pinctrl_data,
+> -					   SUNXI_PINCTRL_NEW_REG_LAYOUT);
+> +					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
+>  }
+> =20
+>  static const struct of_device_id a523_r_pinctrl_match[] =3D {
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctr=
+l/sunxi/pinctrl-sun55i-a523.c
+> index 7d2308c37d29e..0f703cacfe5e3 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
+> @@ -35,7 +35,7 @@ static int a523_pinctrl_probe(struct platform_device *p=
+dev)
+>  	return sunxi_pinctrl_dt_table_init(pdev, a523_nr_bank_pins,
+>  					   a523_irq_bank_muxes,
+>  					   &a523_pinctrl_data,
+> -					   SUNXI_PINCTRL_NEW_REG_LAYOUT |
+> +					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT |
+>  					   SUNXI_PINCTRL_ELEVEN_BANKS);
+>  }
+> =20
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunx=
+i/pinctrl-sunxi.c
+> index 0fb057a07dccb..0a5acbd978da9 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
+> @@ -1521,7 +1521,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
+evice *pdev,
+>  	pctl->dev =3D &pdev->dev;
+>  	pctl->desc =3D desc;
+>  	pctl->variant =3D flags & SUNXI_PINCTRL_VARIANT_MASK;
+> -	if (flags & SUNXI_PINCTRL_NEW_REG_LAYOUT) {
+> +	if (flags & SUNXI_PINCTRL_NCAT2_REG_LAYOUT) {
+>  		pctl->bank_mem_size =3D D1_BANK_MEM_SIZE;
+>  		pctl->pull_regs_offset =3D D1_PULL_REGS_OFFSET;
+>  		pctl->dlevel_field_width =3D D1_DLEVEL_FIELD_WIDTH;
+> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunx=
+i/pinctrl-sunxi.h
+> index ad26e4de16a85..fb17fae2dab69 100644
+> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
+> @@ -88,7 +88,7 @@
+>  #define SUN4I_FUNC_IRQ		6
+> =20
+>  #define SUNXI_PINCTRL_VARIANT_MASK	GENMASK(7, 0)
+> -#define SUNXI_PINCTRL_NEW_REG_LAYOUT	BIT(8)
+> +#define SUNXI_PINCTRL_NCAT2_REG_LAYOUT	BIT(8)
+>  #define SUNXI_PINCTRL_PORTF_SWITCH	BIT(9)
+>  #define SUNXI_PINCTRL_ELEVEN_BANKS	BIT(10)
+> =20
+>=20
+
+
+
 
 
