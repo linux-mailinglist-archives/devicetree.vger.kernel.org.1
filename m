@@ -1,294 +1,270 @@
-Return-Path: <devicetree+bounces-214210-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214212-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1582BB48666
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:07:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6810B48680
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:20:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C81593BB78F
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:07:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A2823A8472
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 239952E9757;
-	Mon,  8 Sep 2025 08:07:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 994A52EA72A;
+	Mon,  8 Sep 2025 08:20:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alistair23.me header.i=@alistair23.me header.b="r8mQNiWb";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="IKVsXk+d"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="CNSesp2B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fout-b4-smtp.messagingengine.com (fout-b4-smtp.messagingengine.com [202.12.124.147])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7702E974A;
-	Mon,  8 Sep 2025 08:07:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.12.124.147
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C17452EA47F
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 08:20:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757318845; cv=none; b=qE6mwlcri1cGPUqeOJF21+/c8aQXmz7qNGXfu0PYvJAL8zOBK2GdjOuuf+pUkeaWKuMLaKbDm1cKOCDA+Nl+/fLd6KacByxhrIiBkjGW2y2m8w8s2Y+NfetlvRMHs2Ehicv3oWRp88uSceOOPEE1EchJwDywNbSItNpEvGFO21o=
+	t=1757319618; cv=none; b=GX6v4U6TRcfvoWW9Fev6azm+rDH92YGEJUgTxpw7aF/gWpem+hGTxn9o8et8laNocFdsU+kNc1UnUdEpdBqAh3wb64VNTQpJr3OZZRiO1pT1Vig/5dndawfpFiqSh6R1HXcuCaewFOqhIkPM2sL0QKGWffhngYsLI0w2IYmucx4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757318845; c=relaxed/simple;
-	bh=HgCDeb6SE75bgZQO2Lzj+r0EYFcC3ywitIbaD2fyMXw=;
-	h=MIME-Version:Date:From:To:Cc:Message-Id:In-Reply-To:References:
-	 Subject:Content-Type; b=Z0hj6FPKkIEcj2AhewvJonuZ4UGjzwOMvC+CZd14JL/uQYf93fBEtD0nDJ6kviyIkLrrUDQUbZ+9JkN0ESwBhcMw+McbLy/ZQaZ7F31ik+GklKQPt4qUsP2UJLdZqWZRQh0BduYQsnMg7yOYwM22XUb393Klao2p8MjSLAMsPnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alistair23.me; spf=pass smtp.mailfrom=alistair23.me; dkim=pass (2048-bit key) header.d=alistair23.me header.i=@alistair23.me header.b=r8mQNiWb; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=IKVsXk+d; arc=none smtp.client-ip=202.12.124.147
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alistair23.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alistair23.me
-Received: from phl-compute-04.internal (phl-compute-04.internal [10.202.2.44])
-	by mailfout.stl.internal (Postfix) with ESMTP id 381231D000F9;
-	Mon,  8 Sep 2025 04:07:21 -0400 (EDT)
-Received: from phl-imap-06 ([10.202.2.83])
-  by phl-compute-04.internal (MEProxy); Mon, 08 Sep 2025 04:07:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alistair23.me;
-	 h=cc:cc:content-transfer-encoding:content-type:content-type
-	:date:date:from:from:in-reply-to:in-reply-to:message-id
-	:mime-version:references:reply-to:subject:subject:to:to; s=fm1;
-	 t=1757318841; x=1757405241; bh=8/KiIeOfWlwkq2YgY2/wAs61qLE1m4TR
-	L6dAU7ZZx34=; b=r8mQNiWbO3w82AkN+xjB7tULa0XYQETxf/Qinw8qpGRTMTSP
-	aP/PwDu5aEn13Vm5QJsTZEL2BUZqQs6+2W7u68XmObKMwqHTbrOn2er6nOjQKtKQ
-	I5wx4d4SqMnXGBdpYFUPnb8dAzbmgTvQcEbn6/EE/4UfI0bsOj5dtO+U0anZ3lDw
-	yToAtj1JoYgShdNKjZ6hNquCNOLRCS55hd/mgJHaP5EWhfT3M6a0K66JACCToQve
-	beED4muhk/wxpkXFpVxw7aPjvzeIdWCGvg3gy3Va3s1DhXwIIIV45Cqd4Ex3pHe0
-	S8aT/KFgDgUdWiPK6uci9X5q03i1sdT6n4Jlxw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-transfer-encoding
-	:content-type:content-type:date:date:feedback-id:feedback-id
-	:from:from:in-reply-to:in-reply-to:message-id:mime-version
-	:references:reply-to:subject:subject:to:to:x-me-proxy
-	:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=1757318841; x=
-	1757405241; bh=8/KiIeOfWlwkq2YgY2/wAs61qLE1m4TRL6dAU7ZZx34=; b=I
-	KVsXk+dt/ufVeuoh0t1y8HfdnPSS7SCpAMWue+EqOFP5LthB28su8PK6JtXNjo1K
-	RXhJIkOzvm1rKmuoEqXgISo01meyKdJR9DJ7JVXczu3p+DP5H6o+lxWFul16jlfw
-	rh5duRAD9hxqLNxhq9prN1pqNRmid//uyhDKCDrGuzRFJHvQ0Ya8eIK8RY8b2CWK
-	u9P+qzJRBxm+my7E/0Sa9XPlfKrZhtWnS46NJksJrmIjEQVldhjNF1Gr/9cQ0R0l
-	Qu31SL0+VN3IwjBF1vJjaa0ZcL/eUH6VdCXDTZwdAaW7BUWU51m7KMrF7sVS8IoF
-	Cuut32IOpYnSSkwdkz/DQ==
-X-ME-Sender: <xms:uI6-aLHqJBZw58D0QFEmOJW3CVCjquRrxkGwwQPlszJcj9m5aKoxMQ>
-    <xme:uI6-aIUPtbkEKExUHpUif0NVixo-RZsUKP4X-1t_z-23guuH0MhL28XtSfMqCICqR
-    zjN-tyRpBxjtWTqxjY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddujedttdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefoggffhffvvefkjghfufgtgfesthejredtredttdenucfhrhhomheptehlihhsthgr
-    ihhruceorghlihhsthgrihhrsegrlhhishhtrghirhdvfedrmhgvqeenucggtffrrghtth
-    gvrhhnpeehjeffgeellefgfffhteehvedvhfekfeefleeuvdehudeitdduveeggfeigfeg
-    ffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrlh
-    hishhtrghirhesrghlihhsthgrihhrvdefrdhmvgdpnhgspghrtghpthhtohepudehpdhm
-    ohguvgepshhmthhpohhuthdprhgtphhtthhopehfvghsthgvvhgrmhesghhmrghilhdrtg
-    homhdprhgtphhtthhopehlghhirhgufihoohgusehgmhgrihhlrdgtohhmpdhrtghpthht
-    oheprghkvghmnhgruggvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegsrhhoohhnih
-    gvsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegtohhnohhrodgutheskhgvrhhnvghl
-    rdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htoheplhgvvgeskhgvrhhnvghlrdhorhhgpdhrtghpthhtoheprhhosghhsehkvghrnhgv
-    lhdrohhrghdprhgtphhtthhopehshhgrfihnghhuoheskhgvrhhnvghlrdhorhhg
-X-ME-Proxy: <xmx:uI6-aKNzRcQv-eRS2ujwJGTvK4Epx8qKA1pRkjuG2DLA9Cl2U6wZfQ>
-    <xmx:uI6-aA25ZQZUWLM6IjKKJcXUhPCQtqan1FMiGbDG-C0Lge2XsmhhYQ>
-    <xmx:uI6-aArYQK-qESDCDtkLKK2Je3-LMSENVH4iR-v8Cmx4eMyUCXfKww>
-    <xmx:uI6-aCeAPsoZ0poy7mH6DhQIBa5oELDWaLCECAQSuQq6S3NLIyWdqg>
-    <xmx:uY6-aHfPBcb6BsgOV72jBy8FlBd9xqDRh8CR7txj0P1BdZJvH5r8VS8d>
-Feedback-ID: ifd214418:Fastmail
-Received: by mailuser.phl.internal (Postfix, from userid 501)
-	id A449B2400098; Mon,  8 Sep 2025 04:07:20 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
+	s=arc-20240116; t=1757319618; c=relaxed/simple;
+	bh=cEKPlNzxkTSt3zsN+KRunKsxcQSskZfknNDUgN0JKdc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=I7Zzy9JiFkVtCSfdFKlSjuEipElUKwJQpcg6ijb1pRlOEN7YMY8yle4OQPdM+AS17QFFEpqbDhGRV6WJrgzjxfYkDtSEzEHAGWVvBuu8bBsmB+XDCpfKIyY8U+4nI05YhtixT99EsTd99Y4kJQBkxAlWgvjKJDbTqKDhI9cICS8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=CNSesp2B; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 587LFwMn010941
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 08:20:15 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=2ZnZy56MeIzokdnX+SHMNH
+	c5aw/LndrUrClvuDaYfBY=; b=CNSesp2B8a5+n2WMlv1MRsiA+bfX0lOHNIEHxT
+	Ini9A+B4eawAXEYB3q0O0nhCTcSdec5kj0LHS7K8RMAi8xLRiO6IrOJWoz3QE4Us
+	pOcrCLy/oyhIFu3av5aj4HGZvWdrCZxpWjJyhdNiYR4v0+w8l/G5+5aLc+fDJg/H
+	YRKP3qYcdtH1Qg1wsGOdtamNRCQQk/cFXuXOUMQMOKkZQs4nAfOGvBfF/nebmx6J
+	jbpeiHAd00Dg2u9m/ELsNvGZnSfPJ3GNd1a2HluflotGxTsE8YTup0LoyFHb3Q+t
+	E37Tryy1X3jgAjmOvnfxsagkLyNup74P8BjFQo5BFoe+Zhsg==
+Received: from mail-pl1-f197.google.com (mail-pl1-f197.google.com [209.85.214.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490d1vbtkn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 08:20:15 +0000 (GMT)
+Received: by mail-pl1-f197.google.com with SMTP id d9443c01a7336-24b2336e513so64534885ad.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 01:20:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757319610; x=1757924410;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2ZnZy56MeIzokdnX+SHMNHc5aw/LndrUrClvuDaYfBY=;
+        b=h2fI9+zWgiYvxZF8XpNE6nDeIA67qfIpr3aoVKr8+hpZ1O51DSBPIfPni+gRbhQX34
+         lWTDD/voqpSSiy3y/+etKyjJzkWtyfXaTSfJ0bvbEUfN8184fL4a61EuIWsEMTXOqdgQ
+         9AeP6nQhqHWcb+ot5W/PiNNc+1MlCLulvKhK+DuQtp9P6d1bvyVBffle4ZIAsPVpr9Nd
+         XWKNZNgXuUGotw88kQ8UC0lAZ4kbhWJBpicoBcIOtP/smWCdqdIwquL8gpkjiHh9qwqM
+         oiDAqOIbABRrZfdzdDnKDeRvrTtx8w20hbEP8LrFkmR6LBhii3xYKsRmLSv0ranbvUoZ
+         sXyA==
+X-Forwarded-Encrypted: i=1; AJvYcCWcGhslZrEfILHb7ww1wmPqh0Ua2DaZ1CRByHLFCTaLXIyIJHOuMIiZFIb9fIXwcqpdb4lnmtHZLfrp@vger.kernel.org
+X-Gm-Message-State: AOJu0YxFE0uDUpD0rpTeuScBy25W9GLHEWCxw8tJyGgq1AJwTDOAZtka
+	6pV7M53t++TR0NJ42aia3qI/htSylSQtHq7yrBypZAhYj3otPL6fO7sNhsoktv5VVVMliJhk4Vq
+	linMy5Kixv1Qjf8emgUJkD8ajdeRJxTKBbuo+DMRzagucRUqcX5vXuNwJ+vHr2KfI
+X-Gm-Gg: ASbGncsWWD7PxQhA3ny3HzR0ivwvlaep0DBdyyUt6yqFvEzdbE2UWtC2BnbPZs4DY2d
+	bEsGXJyjkp6GbZtLrMRa7jyB5zwp+lNgIR2ic2CQtqQtS4OvGAWTtgm8EKEHpnVcSh7TJJNEB/Z
+	iE2Sm4rnsQ0OU8kKAwAoZ0lq1A4dpT/G54FbAnoKDgXiCSBCnpzdQX508x76PnCOwuxFwLSyEnb
+	l4TRrMSv65LEB1K/jPQi8N29NPdcxOV6tDLghq9is3J6mb8J7iIwW+udO5p0qfF3Mnm1eXLgKH0
+	SC9DQ8mv0GKbO7MvT8A4PQEVNLEKE3ssXrINFdUoVqYCcNhwDjDlhi/Encx36AmsCltW
+X-Received: by 2002:a17:902:cf04:b0:250:1ba5:b207 with SMTP id d9443c01a7336-25175f6e7c9mr104967455ad.59.1757319609889;
+        Mon, 08 Sep 2025 01:20:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEVYfEofhMnkcc8CT8Uiba9p7RWZ3HLBMVrTrxwZuh41wyHysBPEj2XbHo64cRm7pu088AJiA==
+X-Received: by 2002:a17:902:cf04:b0:250:1ba5:b207 with SMTP id d9443c01a7336-25175f6e7c9mr104966765ad.59.1757319609205;
+        Mon, 08 Sep 2025 01:20:09 -0700 (PDT)
+Received: from hu-wasimn-hyd.qualcomm.com ([202.46.22.19])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-24ccfc7f988sm104852845ad.144.2025.09.08.01.20.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 01:20:08 -0700 (PDT)
+From: Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+Subject: [PATCH v4 00/14] arm64: dts: qcom: lemans-evk: Extend board
+ support for additional peripherals
+Date: Mon, 08 Sep 2025 13:49:50 +0530
+Message-Id: <20250908-lemans-evk-bu-v4-0-5c319c696a7d@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-ThreadId: Aus85q1JlVYk
-Date: Mon, 08 Sep 2025 18:07:20 +1000
-From: Alistair <alistair@alistair23.me>
-To: "Andreas Kemnade" <akemnade@kernel.org>, "Lee Jones" <lee@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- "Conor Dooley" <conor+dt@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>,
- "Mark Brown" <broonie@kernel.org>, "Shawn Guo" <shawnguo@kernel.org>,
- "Sascha Hauer" <s.hauer@pengutronix.de>,
- "Pengutronix Kernel Team" <kernel@pengutronix.de>,
- "Fabio Estevam" <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org,
- "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-Message-Id: <d4589e3c-ebda-471d-8ddd-6c5dd45b918e@app.fastmail.com>
-In-Reply-To: <20250906-sy7636-rsrc-v1-4-e2886a9763a7@kernel.org>
-References: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
- <20250906-sy7636-rsrc-v1-4-e2886a9763a7@kernel.org>
-Subject: Re: [PATCH 4/4] ARM: dts: imx: e70k02: add sy7636
-Content-Type: text/plain
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKaRvmgC/3XPSwrCMBCA4auUrE3JoynRlfcQF0k6sUHbaGKDU
+ np30yIoRTcD/8B8MCOKEBxEtCtGFCC56Hyfo9oUyLSqPwF2TW7ECBNE0gpfoFN9xJDOWA8YDKH
+ CQEUkAZRvrgGseyze4Zi7dfHuw3PhE523b4nVKylRTHBmaA2k4QbE3sdY3gZ1Mb7ryjzQDCb2Q
+ baErxGWEW0Vl1RbqRX7g/BvZP1T4hmRWitlqGUC5A9kmqYX9bsxazsBAAA=
+X-Change-ID: 20250814-lemans-evk-bu-ec015ce4080e
+To: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>
+Cc: kernel@oss.qualcomm.com, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, netdev@vger.kernel.org,
+        linux-i2c@vger.kernel.org, Monish Chunara <quic_mchunara@quicinc.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Wasim Nazir <wasim.nazir@oss.qualcomm.com>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+        Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com>,
+        Nirmesh Kumar Singh <quic_nkumarsi@quicinc.com>,
+        Sushrut Shree Trivedi <quic_sushruts@quicinc.com>,
+        Vikash Garodia <quic_vgarodia@quicinc.com>,
+        Krishna Kurapati <krishna.kurapati@oss.qualcomm.com>,
+        Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com>,
+        Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+X-Mailer: b4 0.15-dev-e44bb
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757319602; l=4998;
+ i=wasim.nazir@oss.qualcomm.com; s=20250807; h=from:subject:message-id;
+ bh=cEKPlNzxkTSt3zsN+KRunKsxcQSskZfknNDUgN0JKdc=;
+ b=zuB8bPeEAtHh8eakwllfoTkmQ7gWzveF2HIZ6sYDzOvBd36O4tWdtAXHUgncosP99cajSCcbW
+ HaYYybfyd0yBpA/9NRR/01FwzBpMBfVYJI23xgMsB9NLs9AfvhOXajL
+X-Developer-Key: i=wasim.nazir@oss.qualcomm.com; a=ed25519;
+ pk=4ymqwKogZUOQnbcvSUHyO19kcEVTLEk3Qc4u795hiZM=
+X-Proofpoint-ORIG-GUID: 3bbL9GQ-64vqcIPVxKwB4_D_sibnqL2a
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyNyBTYWx0ZWRfXx1FSndbmNGQV
+ 5k0Zm1/nycF7+j/IeNd4UHuSDv5yyb2zaJM1d99NYQlkPTWWl1kBGfRH87kLLUKWb/DgRTAdoZh
+ TKyNhWEMu/vyEW1tkjj/29MHm10KJWmSN5x871FxVpFUfxRncnEctB9sWTMb5dPRO1c83exr3a8
+ ICh+jNIGbJd4h1kHgZ8fAzPn4kjoJxuMjOR25FH53PlhaxYhG8vY7mNyjWl9KgGXAYX4w7P/lVq
+ oKxhth8c7inGoELY2ds/+7m+tgJP6u+ym1SgDitl/10b2dzSH3meDEah67iO0uGxweG9GvA1aol
+ msBxzYvMvP0ZlucsSontow6WH2l4BinQ1CkeFdHrGZu0pfM5aM0tegLmoI+/z9w8NmUpgqngkiY
+ agzDo48J
+X-Authority-Analysis: v=2.4 cv=cYXSrmDM c=1 sm=1 tr=0 ts=68be91bf cx=c_pps
+ a=cmESyDAEBpBGqyK7t0alAg==:117 a=fChuTYTh2wq5r3m49p7fHw==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=UzDb-niT3-dnCAiDllkA:9 a=QEXdDO2ut3YA:10 a=1OuFwYUASf3TG4hYMiVC:22
+X-Proofpoint-GUID: 3bbL9GQ-64vqcIPVxKwB4_D_sibnqL2a
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_02,2025-09-08_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 clxscore=1015 malwarescore=0
+ phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060027
 
-On Sat, 6 Sep 2025, at 7:09 PM, Andreas Kemnade wrote:
-> Add the EPD PMIC for the e70k02 based devices as a step towards full EPD
-> support.
-> 
-> Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
+This series extend support for additional peripherals on the Qualcomm
+Lemans EVK board to enhance overall hardware functionality.
 
-Acked-by: Alistair Francis <alistair@alistair23.me>
+It includes:
+  - New peripherals like:
+    - I2C based devices like GPIO I/O expander and EEPROM.
+    - GPI (Generic Peripheral Interface) DMA controllers and QUPv3 controllers
+      for peripheral communication.
+    - PCIe HW with required regulators and PHYs.
+    - Remoteproc subsystems for supported DSPs.
+    - Iris video codec.
+    - First USB controller in device mode.
+    - SD card support on SDHC v5.
+    - Qca8081 2.5G Ethernet PHY.
+  - Audio change [1] to support capture and playback on I2S.
 
-Alistair
+Dependency:
+  - The ethernet PHY QCA8081 depends on CONFIG_QCA808X_PHY, without
+    which ethernet will not work.
 
-> ---
-> arch/arm/boot/dts/nxp/imx/e70k02.dtsi              | 25 +++++++++++++++++++++-
-> .../arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts | 24 +++++++++++++++++++++
-> .../arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts | 24 +++++++++++++++++++++
-> 3 files changed, 72 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-> index dcc3c9d488a88..5f6b7545a0c0c 100644
-> --- a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-> +++ b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-> @@ -69,6 +69,14 @@ memory@80000000 {
-> reg = <0x80000000 0x20000000>;
-> };
->  
-> + epd_pmic_supply: regulator-epd-pmic-in {
-> + compatible = "regulator-fixed";
-> + regulator-name = "epd_pmic_supply";
-> + gpio = <&gpio2 14 GPIO_ACTIVE_HIGH>;
-> + startup-delay-us = <20000>;
-> + enable-active-high;
-> + };
-> +
-> reg_wifi: regulator-wifi {
-> compatible = "regulator-fixed";
-> regulator-name = "SD3_SPWR";
-> @@ -133,7 +141,22 @@ touchscreen@24 {
-> vdd-supply = <&ldo5_reg>;
-> };
->  
-> - /* TODO: SY7636 PMIC for E Ink at 0x62 */
-> + sy7636: pmic@62 {
-> + compatible = "silergy,sy7636a";
-> + reg = <0x62>;
-> + en-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
-> + vcom-en-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-> + epd-pwr-good-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-> + vin-supply = <&epd_pmic_supply>;
-> +
-> + #thermal-sensor-cells = <0>;
-> +
-> + regulators {
-> + reg_epdpmic: vcom {
-> + regulator-name = "vcom";
-> + };
-> + };
-> + };
->  
-> };
->  
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-> index a2534c422a522..f8709a9524093 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-> @@ -26,6 +26,11 @@ / {
-> compatible = "kobo,tolino-vision5", "fsl,imx6sl";
-> };
->  
-> +&epd_pmic_supply {
-> + pinctrl-names = "default";
-> + pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-> +};
-> +
-> &gpio_keys {
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_gpio_keys>;
-> @@ -59,6 +64,12 @@ MX6SL_PAD_FEC_RXD1__GPIO4_IO18          0x10059 /* TP_RST */
-> >;
-> };
->  
-> + pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
-> + fsl,pins = <
-> + MX6SL_PAD_EPDC_PWRWAKEUP__GPIO2_IO14    0x40010059
-> + >;
-> + };
-> +
-> pinctrl_gpio_keys: gpio-keysgrp {
-> fsl,pins = <
-> MX6SL_PAD_FEC_CRS_DV__GPIO4_IO25 0x17059 /* PWR_SW */
-> @@ -159,6 +170,14 @@ MX6SL_PAD_KEY_COL2__GPIO3_IO28 0x1b8b1 /* ricoh619 bat_low_int */
-> >;
-> };
->  
-> + pinctrl_sy7636_gpio: sy7636-gpiogrp {
-> + fsl,pins = <
-> + MX6SL_PAD_EPDC_VCOM0__GPIO2_IO03        0x40010059 /* VCOM_CTRL */
-> + MX6SL_PAD_EPDC_PWRCTRL1__GPIO2_IO08     0x40010059 /* EN */
-> + MX6SL_PAD_EPDC_PWRSTAT__GPIO2_IO13      0x17059 /* PWR_GOOD */
-> + >;
-> + };
-> +
-> pinctrl_uart1: uart1grp {
-> fsl,pins = <
-> MX6SL_PAD_UART1_TXD__UART1_TX_DATA 0x1b0b1
-> @@ -329,6 +348,11 @@ &ricoh619 {
-> pinctrl-0 = <&pinctrl_ricoh_gpio>;
-> };
->  
-> +&sy7636 {
-> + pinctrl-names = "default";
-> + pinctrl-0 = <&pinctrl_sy7636_gpio>;
-> +};
-> +
-> &uart1 {
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_uart1>;
-> diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-> index 660620d226f71..19bbe60331b36 100644
-> --- a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-> +++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-> @@ -36,6 +36,11 @@ &cpu0 {
-> soc-supply = <&dcdc1_reg>;
-> };
->  
-> +&epd_pmic_supply {
-> + pinctrl-names = "default";
-> + pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-> +};
-> +
-> &gpio_keys {
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_gpio_keys>;
-> @@ -69,6 +74,12 @@ MX6SLL_PAD_GPIO4_IO18__GPIO4_IO18 0x10059 /* TP_RST */
-> >;
-> };
->  
-> + pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
-> + fsl,pins = <
-> + MX6SLL_PAD_EPDC_PWR_WAKE__GPIO2_IO14    0x40010059
-> + >;
-> + };
-> +
-> pinctrl_gpio_keys: gpio-keysgrp {
-> fsl,pins = <
-> MX6SLL_PAD_GPIO4_IO25__GPIO4_IO25 0x17059 /* PWR_SW */
-> @@ -169,6 +180,14 @@ MX6SLL_PAD_KEY_COL2__GPIO3_IO28 0x1b8b1 /* ricoh619 bat_low_int */
-> >;
-> };
->  
-> + pinctrl_sy7636_gpio: sy7636-gpiogrp {
-> + fsl,pins = <
-> + MX6SLL_PAD_EPDC_VCOM0__GPIO2_IO03       0x40010059 /* VCOM_CTRL */
-> + MX6SLL_PAD_EPDC_PWR_CTRL1__GPIO2_IO08   0x40010059 /* EN */
-> + MX6SLL_PAD_EPDC_PWR_STAT__GPIO2_IO13    0x17059 /* PWR_GOOD */
-> + >;
-> + };
-> +
-> pinctrl_uart1: uart1grp {
-> fsl,pins = <
-> MX6SLL_PAD_UART1_TXD__UART1_DCE_TX 0x1b0b1
-> @@ -319,6 +338,11 @@ &ricoh619 {
-> pinctrl-0 = <&pinctrl_ricoh_gpio>;
-> };
->  
-> +&sy7636 {
-> + pinctrl-names = "default";
-> + pinctrl-0 = <&pinctrl_sy7636_gpio>;
-> +};
-> +
-> &uart1 {
-> pinctrl-names = "default";
-> pinctrl-0 = <&pinctrl_uart1>;
-> 
-> -- 
-> 2.39.5
-> 
-> 
+[1] https://lore.kernel.org/linux-arm-msm/20250822131902.1848802-1-mohammad.rafi.shaik@oss.qualcomm.com/
+
+---
+Changes in v4:
+- Move 'bus-width' property of SDHC to Board DT and also keep the width
+  to 4 bits - Dmitry/Konrad.
+- Update commit text of eeprom bindings to describe the reason for the
+  change 05/14 (v3) - Dmitry.
+- Bring all tags from v3.
+- Link to v3: https://lore.kernel.org/r/20250904-lemans-evk-bu-v3-0-8bbaac1f25e8@oss.qualcomm.com
+
+Changes in v3:
+- Re-order QUP patch 05/13 (v2) to not break i2c node enablement in patch
+  03/13 (v2) - Dmitry.
+- Update commit text for QUP patch to highlight which all clients each
+  QUP is accessing.
+- Add dedicated compatible for Giantec EEPROM, because usage of generic
+  compatible "atmel,24c256" alone is not advised.
+- Update commit text for EEPROM patch 04/13 (v2) to emphasize on EEPROM
+  enablement - Konrad.
+- Put 'reg' property after 'compatible' in Expander - Konrad.
+- Put 'pinctrl-names' after 'pinctrl-n' in PCIe - Konrad.
+- SDHC:
+    - Update interconnect nodes with ICC_TAG macro - Konrad.
+    - Put new lines for each entry in interrupt-names, clock-names,
+      interconnect-names - Konrad.
+    - Put bias properties below drive-strength for consistency in
+      sdc-default-state - Konrad.
+    - Move 'bus-width' property to SOC DT - Konrad.
+    - Move 'no-mmc' and 'no-sdio' properties to board DT - Dmitry/Konrad.
+- Add 'Reviewed-by' tag from Konrad [2] on Audio patch 13/13 (v2),
+  although the commit text is changed now.
+- Link to v2: [3]
+
+[2] https://lore.kernel.org/linux-arm-msm/b4b6678b-46dd-4f57-9c26-ff0e4108bf79@oss.qualcomm.com/
+[3] https://lore.kernel.org/r/20250903-lemans-evk-bu-v2-0-bfa381bf8ba2@oss.qualcomm.com
+
+Changes in v2:
+- Split the patch 3/5 in v1 into separate patch per author - Bjorn.
+- Use generic node names for expander - Krzysztof.
+- Change video firmware to 16MB comapatible - Dmitry.
+- SDHC:
+    - Arrange SDHCI-compatible alphanumerically - Dmitry.
+    - Move OPP table and power-domains to lemans.dtsi as these are
+      part of SoC.
+    - Move bus-width to board file - Dmitry.
+    - Change 'states' property to array in vreg_sdc and also re-arrange
+      the other properties.
+- Remove the redundant snps,ps-speed property from the ethernet node as
+  the MAC is actually relying on PCS auto-negotiation to set its speed
+  (via ethqos_configure_sgmii called as part of mac_link_up).
+- Refine commit text for audio patch - Bjorn.
+- Link to v1: https://lore.kernel.org/r/20250826-lemans-evk-bu-v1-0-08016e0d3ce5@oss.qualcomm.com
+
+---
+Krishna Kurapati (1):
+      arm64: dts: qcom: lemans-evk: Enable first USB controller in device mode
+
+Mohammad Rafi Shaik (2):
+      arm64: dts: qcom: lemans: Add gpr node
+      arm64: dts: qcom: lemans-evk: Add sound card
+
+Mohd Ayaan Anwar (1):
+      arm64: dts: qcom: lemans-evk: Enable 2.5G Ethernet interface
+
+Monish Chunara (4):
+      dt-bindings: mmc: sdhci-msm: Document the Lemans compatible
+      arm64: dts: qcom: lemans: Add SDHC controller and SDC pin configuration
+      arm64: dts: qcom: lemans-evk: Add EEPROM and nvmem layout
+      arm64: dts: qcom: lemans-evk: Enable SDHCI for SD Card
+
+Nirmesh Kumar Singh (1):
+      arm64: dts: qcom: lemans-evk: Add TCA9534 I/O expander
+
+Sushrut Shree Trivedi (1):
+      arm64: dts: qcom: lemans-evk: Enable PCIe support
+
+Vikash Garodia (1):
+      arm64: dts: qcom: lemans-evk: Enable Iris video codec support
+
+Viken Dadhaniya (1):
+      arm64: dts: qcom: lemans-evk: Enable GPI DMA and QUPv3 controllers
+
+Wasim Nazir (2):
+      dt-bindings: eeprom: at24: Add compatible for Giantec GT24C256C
+      arm64: dts: qcom: lemans-evk: Enable remoteproc subsystems
+
+ Documentation/devicetree/bindings/eeprom/at24.yaml |   1 +
+ .../devicetree/bindings/mmc/sdhci-msm.yaml         |   1 +
+ arch/arm64/boot/dts/qcom/lemans-evk.dts            | 417 +++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/lemans.dtsi               | 146 ++++++++
+ 4 files changed, 565 insertions(+)
+---
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+change-id: 20250814-lemans-evk-bu-ec015ce4080e
+
+Best regards,
+--  
+Wasim Nazir <wasim.nazir@oss.qualcomm.com>
+
 
