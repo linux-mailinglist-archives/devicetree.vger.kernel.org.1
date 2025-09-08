@@ -1,144 +1,158 @@
-Return-Path: <devicetree+bounces-214232-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214233-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66AACB4876E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:47:05 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 586CCB48797
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:53:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48C417AB283
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:45:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F420F17F49F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:53:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68CFE2EBDFA;
-	Mon,  8 Sep 2025 08:46:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E60622EC548;
+	Mon,  8 Sep 2025 08:53:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FP0eevmp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="k4+vLVtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FEB32EBDD7
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 08:46:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03CD72EC0AA
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 08:53:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757321217; cv=none; b=Sw4jt1iOvZwvnz1SrYHk5iQ/N5j2aEzDlqRiVeQyqv8ciZNk7WCZ+XKF6pqpRxlnP50IgIWIPECGsg1Ud97VuHSBLVyroyxJjcpcSB9V/oRMfa3gCzAZmsv6e9I1n1RD5Vopn6jgKFwiQ9lJcIJs2mm5cAhkXoQYS5EWEkHKObA=
+	t=1757321620; cv=none; b=bO9+VQW/ArKplNoPgE5RGV5N1C+n75g3S6hVdhllCQfbQE26RmgRGwFVasycNgimCfwqwvjN48f5bbUqBDgGie9o+twRgl/5G3cG7Oc37ECmaDJcKR8WvApg4MGVvgPrseSJ6ZNvnU2gZtzlb9ofHwXQskH1Xh15ecJLaGHuq2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757321217; c=relaxed/simple;
-	bh=Bj4f5uRY244iHB4rE4uWa8vhW6auxFTmI1aaD09pYy4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ruq9orjjCOTZ/Q9STSZxIbcTFrBlao28Z+TbpLj9shRzbc3TL6kou6i3kUNFJgJuujhxFPhybx9x4JokhUlsyH72Jvb1tW5oyo4Xn930tiQDRKuwPrk1EGiHGFnl91EHvm+01rsYdj4fOuLsETxDT1GrcqYVTpMMQ8K6vvPIhX0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FP0eevmp; arc=none smtp.client-ip=209.85.208.48
+	s=arc-20240116; t=1757321620; c=relaxed/simple;
+	bh=rFiQ53vPgw9LsfydlaoBkRbkbX/pneng23PpWjHlu9E=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=SWi7BsftSvRY+XYV6w5Q4qm4y1AlkXxYTjEFT47vHVLZb4VRCZ6c0ME+jbBw0CwdNNo/5dQloBIyUbtZBcPBLoq4OUs0zgEeW0Dsv4s6UZ0AH5FyqyHtpIM78+U4TCxvdgyv0CKWlbdTzjyJIwmWwNAIPylILWYj1SjRCJsm9Mc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=k4+vLVtZ; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-61a8c134533so451199a12.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 01:46:55 -0700 (PDT)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-b046d1cd1fdso84717666b.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 01:53:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757321214; x=1757926014; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IUopr+FL50FcSWn7mytwl0gX5Rr+3JnwzdeTq9mrxQQ=;
-        b=FP0eevmpxMLL1QI9kUun0x+ZnATStLbZKIMV5RmbfA//BUKxCN46WaFPfXJklhEvWH
-         d3OqiuCPiFkCD/SmqFx1DUzBTxeSfsFhKIN7nBGjD5NiUKWgKuRT4MsLHQmjc0vtsmyE
-         iLbiIEeD3KiSfZmfCUOoE9RtkLVscQGxaG67yuRECdZrJYmeFn1o9VebwCRnaXhjFvMk
-         gHTNuzXFeFVhBoXHGYxDOI+U3ko3LRy2XWtJbsHZALcS5sWHX2MWtEEVLprBBt9F+MAJ
-         VfI1AjRxlIKZvrjhOgD8CO3gY2VGw7QMQ19oZRDnpe9G0yTMf2tsKWS65QarocXYULXR
-         /WxA==
+        d=linaro.org; s=google; t=1757321617; x=1757926417; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Mh/2mNyNIs048qxHgIr3EMTwfvoaMlWoIfYKvdUbm+w=;
+        b=k4+vLVtZnbZNLwcGLNNSsc5kt6DkopSF3PBV26Z1wli/ndEWkZ79ViYUOh09sdqGdP
+         qB2xwRkxjllyBn5CWxiYRTFhXZA2A8RO9mjHWEVdIrrbBRyEcj5/Yz8kCySEdwUf/3LB
+         JIekU4lFsRWB7xkzNc5RBntAOARu1tvyjlEngcVHfIfybTxN7UG10HYRQfrtK/GdxHXA
+         8QIWUeX9WJPOgsph14QgTXSL3CiXOv3UXHSMYagHUl2AFipEkgU+uXIEcQRzmW2GNQ9l
+         VE4RQ3HRXN+dZl/Ylf1+w25YkmselZG/28IgquIKVFVzbxvBqa6XioJYtezPE8oJzXvv
+         BPZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757321214; x=1757926014;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IUopr+FL50FcSWn7mytwl0gX5Rr+3JnwzdeTq9mrxQQ=;
-        b=az6axF17KbWaBQQSYbSb2EVOcdnuB6rPyaRxIiYN194diG3qiJXyB4ZSRIz5jMVcf2
-         c1vwdEWEZYsgVZTZDpz62xmz5FuGN0L/sq+AUCUfgWdLAR63TO0OuYZpcMvFJ9SkVrzk
-         WpEuZe60c6VS/5tql2eQutnSgs9KLrqbISpzLmsKMG7pRGsf2btAnUrpNDPsZbW4A2Mi
-         R2zX5adtjSKJy//tbp13fPwJQb9C2LcZkbgveKxplluSoYUeEyI231aC1HLk5YSp0wX5
-         lq1He96zDBE8wVmz3nthTq8yxd/E2JFI4HpyiRyT8jHys9O/C4xyt0zTrxeEqchWqZJq
-         N4AQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWhMhk3zOj4NJC66nFLRnNqJCcT3voT67/zPmu7iOCcdyzW+/7j6hBnd4lfT4VdFlVJqUI76hipYp0W@vger.kernel.org
-X-Gm-Message-State: AOJu0YyoiHQISKxGsQP6/LATa9XrJ1TiaIUOT/Pe9uCixBcYUh+90Npg
-	3jp3I4jH9eUyGYSlr0z1ab51Ga9SP6IgDD7k87DpC0Ri6146xySqBJY1wD/7i1n6r7Y=
-X-Gm-Gg: ASbGncsBrYEKJPQ8p9nvN1URBG8caNO5a9I/3A2ep4y87/vVhmhxH06axroe82uEqOf
-	iDagrS98r/zDzDT1tbUIm2tcMCrAsSeA8d1K12xw6J32t/f4hsKB47cntpXtVY8BjBuc6VKgNha
-	TgRdQ/RXY7l5Etam0h5e964hmDPhIz6y2gWfZOUKHE6Cc/B8WrIYyseRtiGtscx+uoGupOz47W8
-	I9GwSl4WFYcb9F7OPjF0SYe8Viz9/MT1DycbHje4IN1AOjUi9zh5mogqfa3X7jbM6sbrdeGt2Jc
-	6I1jfmozIjYrG7zZ7nLq8RVYsbw0c3OwEqX7ZBRzW4DfPVbKTUHzErw/Z9S0S4SI0sY3vPlfqfJ
-	GJ2oOhOczRCejR+MrtM2NonaN2xGG2p3yROqkDkWWuplxbTwQwyrqGQ==
-X-Google-Smtp-Source: AGHT+IGJq4/stKcb5/47RwYSY/9mKYvHfYIb+Y8TD1SuUTdb5c9q3HcwFqg/ndym+yPEqRaT8vxf8Q==
-X-Received: by 2002:a05:6402:52cb:b0:61a:967f:55f9 with SMTP id 4fb4d7f45d1cf-6237b972390mr6163555a12.10.1757321213876;
-        Mon, 08 Sep 2025 01:46:53 -0700 (PDT)
-Received: from linaro.org ([2a02:2454:ff21:30:1f60:42e1:1e1b:d240])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-62343271613sm5201516a12.23.2025.09.08.01.46.52
+        d=1e100.net; s=20230601; t=1757321617; x=1757926417;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Mh/2mNyNIs048qxHgIr3EMTwfvoaMlWoIfYKvdUbm+w=;
+        b=er2O0sRLGWNJjUgJMSliTbGYdj1kgO+ytu9luCfZsoONk7xXvk0t+UoNwZttM3E+Lg
+         u2enXzSnKKyM9xlURMtw1BAPBDT40MuB7ugAYDDBa6Rw6SxruRpqBpQ9vQHTPMlgk7iW
+         QRnIK1YCxBK7UQEEa+3bGLH23e4QP7RPOYY369aQgW/Ko8cOf4C0fR51pRHTcwCBH0AQ
+         Z5+RI5LAQKFrI0zO94+o0arP/Pe0sWgzZJXXEW7iwheuoSW8dDImfyqaDd5AW30D83Xj
+         FGPstJI7SjtrVdZFaGp7Y1AGNVhWdSE7EFYI+eRPiRgo0HadSdPgRoS4xs6LH6rOabwU
+         s0kA==
+X-Forwarded-Encrypted: i=1; AJvYcCWxfAVKFKHbAG7/5/4FW54yeMJs9tal3NRxu9G+NLxdZ0XDbg+5i/50Rlcm4TXoaUGLN5mHXUle77ea@vger.kernel.org
+X-Gm-Message-State: AOJu0Yx/54GVA7aRmx3nNGi6rWq7Wa4GZD7AsIXMmM0WphQDhmka5AgG
+	B1mfV7ieoJptnYrAp36PyIMulhEbVLiy+h5PeB7E9yp/YZFJfUK+6qKdLGkDNwHPj5E=
+X-Gm-Gg: ASbGnctgPoe4KEPd+mQsspGjtN46hpCFxU36SMpXOjRT2fZtZBSGWmrodShGq5w0rYc
+	i4vfP5yP+GW/v8bXI4Hm/KyO+J8NACvDmi3J3z8/kQM0fLTEiw7ZI7h0giBRYDNMPANXfTn1p2N
+	w21aKCZdrsm3mFtlEToRrBqxCptQVTnqwZpelZUnU0tXPzsBq3tgzyJA0NzevRgK92ElEJK6sTh
+	3+eIoqnqTL3NZ2up2+kgGR5bEskP+OinNFTaVUZ+5/hVbtk4h8zSLjkZH4V/2mjjJHkdyr3L40d
+	iUJdys5kO8q5dQ/sxwZabHul6WMiBRLBM9qG5dE5/4xus4ZMLJLmV9+YEEvmR36BMngSBEKNJ7A
+	YNTFuJfIaAD3U6106eEqSP1p/z+yg/y92OMTdPKDZbbub
+X-Google-Smtp-Source: AGHT+IFWDk444EgZYM118deL2xXTuL841H0p3nJmbYIqAe8gNeJ0X4sP3gxDEef/Q4Qcec7E3gNOtw==
+X-Received: by 2002:a17:907:3fa7:b0:b04:74c4:e203 with SMTP id a640c23a62f3a-b04b1443503mr370201566b.4.1757321617292;
+        Mon, 08 Sep 2025 01:53:37 -0700 (PDT)
+Received: from kuoka.. ([178.197.219.123])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0438102debsm1757817566b.66.2025.09.08.01.53.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 01:46:53 -0700 (PDT)
-Date: Mon, 8 Sep 2025 10:46:49 +0200
-From: Stephan Gerhold <stephan.gerhold@linaro.org>
-To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Cc: Konrad Dybcio <konradybcio@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+        Mon, 08 Sep 2025 01:53:36 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-	Loic Poulain <loic.poulain@oss.qualcomm.com>,
-	Robert Foss <rfoss@kernel.org>, Andi Shyti <andi.shyti@kernel.org>,
-	Marijn Suijten <marijn.suijten@somainline.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org
-Subject: Re: [PATCH 4/5] i2c: qcom-cci: Add OPP table support and enforce
- FAST_PLUS requirements
-Message-ID: <aL6X-RiCyPVbHlYN@linaro.org>
-References: <20250904-topic-cci_updates-v1-0-d38559692703@oss.qualcomm.com>
- <20250904-topic-cci_updates-v1-4-d38559692703@oss.qualcomm.com>
- <aL6Vp-3er71AJPJd@linaro.org>
- <f508bf92-a513-467a-a946-17c41e1d72d1@oss.qualcomm.com>
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8650: Drop redundant status from PMK8550 RTC
+Date: Mon,  8 Sep 2025 10:53:32 +0200
+Message-ID: <20250908085331.56478-2-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f508bf92-a513-467a-a946-17c41e1d72d1@oss.qualcomm.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1414; i=krzysztof.kozlowski@linaro.org;
+ h=from:subject; bh=rFiQ53vPgw9LsfydlaoBkRbkbX/pneng23PpWjHlu9E=;
+ b=owEBbQKS/ZANAwAKAcE3ZuaGi4PXAcsmYgBovpmMVUBQbciXZN2bet5YqZnH6Mu9ljC5CJxXs
+ bNMMXHOtaKJAjMEAAEKAB0WIQTd0mIoPREbIztuuKjBN2bmhouD1wUCaL6ZjAAKCRDBN2bmhouD
+ 19vyD/43OxTm0fqNIFCUSRjy37ByLLoTcFTFSUv8i5sWNa2ArKZjpp9U3dSJNgPwrLxsxjL1Kbi
+ sMEEVmWHczi12ZCGyFtAawoNpuAcbEPC6ja+erZLBSUW/hL7DILw3Jk1OVocSCNhx7AKE2fABig
+ 66805D6lDv80YN3NHuWMepcTMNz4E6MPkz0bIAjb7bnRbYaQEgQ9spaklgRnb+9WvKcr35MeH3U
+ 2OzoGvo7SBM+MDFihryIM2OHhYWDTKd8RzhH11mgNQVdxS9Hqjrvj0J+H0Hcf4omp6EkWo6unU/
+ 8cyzxIt9HMZFQB3fMyO8HTfLdl5zQlUjWPIfGMoCde3vhXwcAJ+4e/QAuJ4QspcGRxMvatOacrU
+ pYQWycd1Xz3Dj/Q/07RR7hMNGfbR9TnFTix9pYd5x9kcyIf/If3wS3dSAw5p6UEbCX/zraOZD0H
+ oCEbV4Luzz5RstNvxSrn2cX29V6O6aYtrg2kCFqFIOUQkoqrlwrIwim6Dbn5EMVeEUBjiE03HvD
+ S3ejIEgFLZmYop0W5VYu8p0T9bSUCRxEjYwyCaNgIb6cw45CikOeKF+Emwp9nk6othDSlvOORvu
+ QpbiXPGzAYFaSGtgmKebtIn1uiUAARBPdE+5WoOVvHs//qIs5dOrfQeYJ8THxsgJvMpmhCN/ihe gSN4lYJ58oTZ7mA==
+X-Developer-Key: i=krzysztof.kozlowski@linaro.org; a=openpgp; fpr=9BD07E0E0C51F8D59677B7541B93437D3B41629B
+Content-Transfer-Encoding: 8bit
 
-On Mon, Sep 08, 2025 at 10:43:50AM +0200, Konrad Dybcio wrote:
-> On 9/8/25 10:36 AM, Stephan Gerhold wrote:
-> > On Thu, Sep 04, 2025 at 04:31:23PM +0200, Konrad Dybcio wrote:
-> >> From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> >>
-> >> The CCI clock has voltage requirements, which need to be described
-> >> through an OPP table.
-> >>
-> >> The 1 MHz FAST_PLUS mode requires the CCI core clock runs at 37,5 MHz
-> >> (which is a value common across all SoCs), since it's not possible to
-> >> reach the required timings with the default 19.2 MHz rate.
-> >>
-> >> Address both issues by introducing an OPP table and using it to vote
-> >> for the faster rate.
-> >>
-> >> Signed-off-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-> > 
-> > Using an OPP table for a single static rate that remains the same over
-> > the whole lifetime of the driver feels like overkill to me. Couldn't you
-> > just put the "required-opps" directly into the device node so that it is
-> > automatically applied when the device goes in/out of runtime suspend?
-> > 
-> > And since you need to make DT additions anyway, couldn't you just use
-> > "assigned-clock-rates" to avoid the need for a driver patch entirely? We
-> > use that for e.g. USB clocks as well.
-> 
-> This is futureproofing, in case someone invents FastMode++ with a higher
-> dvfs requirement or for when the driver adds presets for a 19.2 MHz CCI
-> clock which would (marginally) decrease power consumption
-> 
+The PMK8550 RTC is always enabled in its DTSI file since
+commit a791fc19965e ("arm64: dts: qcom: pmk8550: always enable RTC PMIC
+device"), so drop redundant status=okay in SM8650 boards.
 
-If 19.2 MHz CCI clock is feasible and has lower voltage requirements,
-then I would expect a separate entry for 19.2 MHz in the OPP table of
-PATCH 5/5? The DT is unrelated to what functionality you implement in
-the driver, and that would make the OPP table look less useless. :-)
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Thanks,
-Stephan
+---
+
+Previous patch (not really v1...):
+https://lore.kernel.org/linux-arm-msm/b266b190-1c6b-4899-85bc-d3e4083410b5@linaro.org/T/#t
+---
+ arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 4 ----
+ arch/arm64/boot/dts/qcom/sm8650-qrd.dts | 4 ----
+ 2 files changed, 8 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+index a00da76a6062..dd5f63ef5f67 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
+@@ -1050,10 +1050,6 @@ &pm8550b_eusb2_repeater {
+ 	vdd3-supply = <&vreg_l5b_3p1>;
+ };
+ 
+-&pmk8550_rtc {
+-	status = "okay";
+-};
+-
+ &pon_pwrkey {
+ 	status = "okay";
+ };
+diff --git a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+index 081b7e40f574..0c5e9c22565a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
++++ b/arch/arm64/boot/dts/qcom/sm8650-qrd.dts
+@@ -1006,10 +1006,6 @@ &pm8550b_eusb2_repeater {
+ 	vdd3-supply = <&vreg_l5b_3p1>;
+ };
+ 
+-&pmk8550_rtc {
+-	status = "okay";
+-};
+-
+ &qup_i2c3_data_clk {
+ 	/* Use internal I2C pull-up */
+ 	bias-pull-up = <2200>;
+-- 
+2.48.1
+
 
