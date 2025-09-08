@@ -1,135 +1,114 @@
-Return-Path: <devicetree+bounces-214235-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214236-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 31445B487A0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:55:25 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ABE7B487B2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:02:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1A183B181A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:55:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A2987A333C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:00:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22F56223DC0;
-	Mon,  8 Sep 2025 08:55:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583D92EC0AA;
+	Mon,  8 Sep 2025 09:01:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05E59F510;
-	Mon,  8 Sep 2025 08:55:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E2B29AB1A;
+	Mon,  8 Sep 2025 09:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757321721; cv=none; b=ta3WScQG8j5FbMkLvtyxsrLBXGnEznxFjSJxnGzzuysdH5mF8T9H5xjg0rQYH13g8YqJHN837hEdPo8Chj5wSGfwHmxvvbeyOaQWghZizy25YQzNn/sbnmx5h5dPtc+iVcTPy8vCnNDItpJolOV5UVfSTO250kIGf6VsCXfVW0Y=
+	t=1757322118; cv=none; b=og1WhnikEmo9rbYIGv26T43b20as6ecg+nFkVhj77DX8xeJ/TE5Yhs2PTPuPymHLZtKNmFwl3DWbsSed/eo+Qkvg2hRroOVt1vIF3AFLA3swn+EtQS4FRiHO6u6aitfZA6VnedfWvjGXpFhWABp6OgNRh3iC8zdoc3jF7M/moL4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757321721; c=relaxed/simple;
-	bh=8G3OIm39+o/bYEOP4Oo9pc5m9/EoJdYKp/BzGkotJq8=;
+	s=arc-20240116; t=1757322118; c=relaxed/simple;
+	bh=q0BXJbWUGkpqpO4MDox2UFnW0f0cR4V3hBxgPDn8tuI=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=htzZbaLqPjqV76mD8AlsY2YmOObjszug3UVAUWTJEafYBYGyH6LYD6M+4XypVrEYev7AN1/rbqYyCCNVT8cnsqr63+nAENp1h+6AHWU9Ro24+5Imu7SnJez/zEK/BghRR/rWbW5PmeVDarJ6Yz9Iw4lrVNcKCE5gX4famBXnTJ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.50
+	 To:Cc:Content-Type; b=R0NwWZrVvf1d0Yrn2ZPj1BisSDmB3rT+Q6Hvt215g5ufzwaFihRuOIRNrMkMelmo0QUvXvkXy+O2OJameQp4GwqnH8ISjlyMgOLOq02C9QZStrf1Pqt2Fygiy5VNokMcF8/0gVB/LmNYPQ7MPAFgcWkLNgayo/cg696WWHmietk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-89a079e029bso1274219241.1;
-        Mon, 08 Sep 2025 01:55:18 -0700 (PDT)
+Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-89a079e01f2so1153416241.3;
+        Mon, 08 Sep 2025 02:01:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757321718; x=1757926518;
+        d=1e100.net; s=20230601; t=1757322115; x=1757926915;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=kntqtMNQTPE5WXx6NRncSYTTSp8VosSFmryh1S0y8rc=;
-        b=X/0W9ajphimp2S0amkTWnykk7TkLuFOe6APZX06HtMqgMgoK1a6zlwk+ur2dW5z36W
-         3W6n7ML5Z5ePqPZ3nggb4O2d0h6ZIqT6aSNNR3Ilfo+Bvp0NXzcnRFUWKpTcDLEJD6xh
-         yAhPP7Dg57UBZd1iQbP3AaonAC4HVS5TLK3uAcwL3wMTMZoZyjPgYwZ71Pw/s+TsSXEA
-         hUWK97+ndeeGMMInUy8JBbiFNJsq5hIJJKa7l2sXwX3hpw39TmHnoCeppS0glBxZtIpu
-         6isTBkRLjxT5ITMpjip0k7RjQiwug7IPdRymGBJMy+P6QRT1V/HfJyFkftmbsShqkXsE
-         hW3g==
-X-Forwarded-Encrypted: i=1; AJvYcCU6XiANfbKtd4KFQlVc7xHzopnwX3L0BjwX79q96l7gFx/iyrGP0AUu8FqCnHWiOqtQ9ya4Y9WesU1+bUqzy87lt7M=@vger.kernel.org, AJvYcCXPSBq3WXEB3G+RupK7B069Cjgm8baUw4ZvYeyR0ZhojL9qjeVqFkkWPRFvEBbsP7WQMIfLK1yjVBo2@vger.kernel.org
-X-Gm-Message-State: AOJu0YxAX39rV5Gmb0cJNaRdeZRQXrGjueD8SthmrcA/eFFqF9zfdWx5
-	4+TMkv0ATsIg+gAysjHWKvIXz7lNsEMp+0xF8gSu4UfC5NCBgqcOsoLlV/WATHkS
-X-Gm-Gg: ASbGncuuKF39Jo5iNU0Z6syBaRT3GgaSCHyll2xLo+ogVDe0/DY8QAUyCpsqnjIyZlb
-	bjiBdvj0G65l6Nak+AsDgUyQ6o0246/QpZiVzsR3EGega0BSiUTU+qymughQiKFmnDhHl9FbWoA
-	+XlYJFhB2u2eEFXs7yEfjjT47w3iUhMrt+SX0u+qwo7YN7d1FnN0gFmqAT6BnTAB738A7aO64ei
-	wcNWBSfbhfvYTajtcyBwlA+/ZtPB4y2Q0vS0OsDErJhmjmKnkHA6Md0RrZQKgtq5iVxAtWUUMcl
-	X8vi+1xcQTo3uftRGGXGai6DBwHv1r0F6BDdojZs+U6bseAIECQBWmPllMCr2McOmi1qmtG6fG1
-	Gc4WxQhJdNFC5RLn4+899WiEarcBUg3b0CP8+KYVa7b1IAWflhS4MYlVel9IfDL+IBAHIyuQcra
-	h4ZYqpRg==
-X-Google-Smtp-Source: AGHT+IESFikChON9z5kvJldYUAuhOQO2lw8PmX6g2Dncvez5ZtQMMEwHw1Q2FwcH2ioWhbeAfYvrgg==
-X-Received: by 2002:a05:6102:cce:b0:521:b9f2:a5cb with SMTP id ada2fe7eead31-53d16b67308mr1974876137.33.1757321717695;
-        Mon, 08 Sep 2025 01:55:17 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-52af257c3e8sm10594158137.18.2025.09.08.01.55.17
+        bh=YFwI6TqYVmu1hmFIIK6VMUwLQfySXRrPHHAhZT/pLGA=;
+        b=UKlIho1Sk3QgGAWeFn0h7h9PtgLg0bwxfugIVDVX+4UrfG9tYXlLe7tRS62n7/Q9oq
+         uoVVlbP27BtzBvjTo1LxNyKD7DtdAGFjGhuZbeewzUvWcKEpk6dXze8uMJ0hiRUw0YRy
+         5H+nQY6cE0PK4Y7ipjPEo07d5TCJTvTslYUAlqUWlNhjXmrE/giS3QLhFyIngza9Dfq5
+         pSjDjcU9VQBHwsyGtVQ9IoBHvpYE8Sta8w3RbgoPslHHQtEtBC2zSC4JGyMXJ6bg7zZy
+         n6wx4K9vLSXnrYXmvffLjgyiy/Ywdrb1ol79oKpb9gZE2EP4xwZ+Pcch/3wLbnskmsem
+         Havw==
+X-Forwarded-Encrypted: i=1; AJvYcCUUfcM41CjECYscxCycw9qbRPfYm4w84HJXGlE9n4EQ4nJHaD4pOaNNhrT0HzyMT2QSGWX3hVm307NMregU@vger.kernel.org, AJvYcCWi6DIIKo5+Qm9Y/GsPGBhyXmN0kWq3eHuD/SBCMf1zWro1a28baC78hvfXHuFiF2zqmR+AfoytCIXgBg8zPqkDGJsi@vger.kernel.org, AJvYcCXpWD2etypeI+w+NNZdl9KE/1HvvSb+PDCW4JoLt76Rshpqj0APM58cYhLkUeFp6UKCWS6hlhep4J00bw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YwV6gy3oZYCyLxFFzAESxdeaBrMI5j+RJWu1gGz7xHKMEE1Pr1g
+	qjmyicIef5xBhYEz8uXFU4C2Fmu+5+lC9f5Cd/6VTRjp56l9kN1RFiPKiIJAOqpA
+X-Gm-Gg: ASbGncurQlxbHLFW0BSApBf52feDHqhRfnjt4sutmniAUBvzZhDEYogzg4k5gLJYNtk
+	oikUMMO8S7mO899a3PgnjwYQHKyp9I9lmHFLJgf3Qf4UFPJIUHSlG31ucGxpOg8CAY6WPa+LrOM
+	ADGUpCy+x0N7He69No6lgYLyeNui/0Ldtwx430LSb7vAMAZ/WDlgq0P99qsHEpoQWbInD3/Zeio
+	3hqZe3MCKMVnGGsNhszkQOLP7XzMcdxL4u3Q80M+8+Vtb6wHtE+jU3di8VhiJaEuj1jtX9LApF/
+	nkJtQsvmLsZlWwG//y3kLEo7a/4tiEvorMKkmuN1ZGCyTW/P5gKWsw37kV3elZSk4lYTxWt/1gT
+	Dr9I3XQyHmqMMe6ZJr/QU2lVupgqFTGrMZlLPnOmit4dnnaAr5XOrxXAFX2lB
+X-Google-Smtp-Source: AGHT+IGpOLWKGfJeF7VhO4fNRiEU4yhsitsJCz3Mee8VqOhBDs92nyLp0mkVRJX0zDmN3uAhIQgoog==
+X-Received: by 2002:a05:6102:6882:b0:4e7:5f31:7443 with SMTP id ada2fe7eead31-53d1be13184mr1564684137.9.1757322115033;
+        Mon, 08 Sep 2025 02:01:55 -0700 (PDT)
+Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-89608759c3bsm7971724241.9.2025.09.08.02.01.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 01:55:17 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id ada2fe7eead31-52eb6872bd2so1862222137.3;
-        Mon, 08 Sep 2025 01:55:17 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCV39bznH7wNie0TKj7S4X3n8wX0OX24LMG/7aZ0MWigRsgXNCFeaTycnpi0agnUKXI4ayqOwF8tKJuR@vger.kernel.org, AJvYcCWpVU+7t9Pz0Wq2iY8bsSrVcaRbWTPxPyTJZMIsnxbcg4gO17vpa4XQwP0B/5WQ07QBSd7VhNvDJ36Tcu6XVDIe0a8=@vger.kernel.org
-X-Received: by 2002:a05:6102:944:b0:529:ee6c:6760 with SMTP id
- ada2fe7eead31-53d0d61de0dmr1869888137.7.1757321716959; Mon, 08 Sep 2025
- 01:55:16 -0700 (PDT)
+        Mon, 08 Sep 2025 02:01:54 -0700 (PDT)
+Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-89607b19f71so1304768241.1;
+        Mon, 08 Sep 2025 02:01:54 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUgvKlpP5DI+xzjcwlrLCPXK8OlFi087ixUQXV5KwPBEmavjuDnaWG8gFjl5i0x3c8Eu2r+kb6JYmplpNKZ@vger.kernel.org, AJvYcCVvod6HdNOQco4nktKzs/yu6AyO4xa3ZXqVwHGzyPjyIUGM5yyTRbMR+xi4SIH2KGTIMNc1Yh9YJ4i1EA==@vger.kernel.org, AJvYcCWKfCtpZa6o0jrAG3SVtcVGOqP1uUn3Q5UeofVajzWrnZa+aM/3iKRYE4CMEbx7f4AmIUnEnjV4OP0taiLFK3FQhHlQ@vger.kernel.org
+X-Received: by 2002:a05:6102:5f04:b0:4e7:db33:5725 with SMTP id
+ ada2fe7eead31-53d1aad7c23mr1460406137.3.1757322114633; Mon, 08 Sep 2025
+ 02:01:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250904202838.172579-1-marek.vasut+renesas@mailbox.org>
- <CAMuHMdWnusjKE8FNQWX-0arcdbV-18KTCHKZmhs5r5kRXn46ZA@mail.gmail.com> <82c9133b-050d-443f-afa5-31cb31c9e858@mailbox.org>
-In-Reply-To: <82c9133b-050d-443f-afa5-31cb31c9e858@mailbox.org>
+References: <20250902105710.00512c6d@booty> <aLkiNdGIXsogC6Rr@zatzit>
+ <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org> <aL5dNtzwiinq_geg@zatzit>
+In-Reply-To: <aL5dNtzwiinq_geg@zatzit>
 From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 8 Sep 2025 10:55:03 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdVJt7My-rbU=HGSQ=Fh8fs5DCZYJ-CGQFU+iWEYKEUL8A@mail.gmail.com>
-X-Gm-Features: AS18NWAKLUWdF2nbnVFEPQJMLyA0fOJUVEIjxGYDljAdId_DpkdilFusWria0ns
-Message-ID: <CAMuHMdVJt7My-rbU=HGSQ=Fh8fs5DCZYJ-CGQFU+iWEYKEUL8A@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: renesas: r8a779g3: Add RPi Display 2 DTO
- to Retronix R-Car V4H Sparrow Hawk
-To: Marek Vasut <marek.vasut@mailbox.org>
-Cc: Marek Vasut <marek.vasut+renesas@mailbox.org>, linux-arm-kernel@lists.infradead.org, 
-	Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
+Date: Mon, 8 Sep 2025 11:01:42 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdWmJcwy8YUqfeBT+B79a19YeW77Ms6KjNhKGY8935tTog@mail.gmail.com>
+X-Gm-Features: AS18NWDxOsfHISF-XemhyJHETyvAN38Dk8IqY_hqDYxyyU56PPJHY-UbH9peq8Y
+Message-ID: <CAMuHMdWmJcwy8YUqfeBT+B79a19YeW77Ms6KjNhKGY8935tTog@mail.gmail.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion at ELCE
+To: David Gibson <david@gibson.dropbear.id.au>
+Cc: Ayush Singh <ayush@beagleboard.org>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
+	Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	Herve Codina <herve.codina@bootlin.com>, Andrew Davis <afd@ti.com>
 Content-Type: text/plain; charset="UTF-8"
 
-On Fri, 5 Sept 2025 at 13:50, Marek Vasut <marek.vasut@mailbox.org> wrote:
->
-> On 9/5/25 11:25 AM, Geert Uytterhoeven wrote:
->
-> Hello Geert,
->
-> >> +++ b/arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-rpi-display-2-7in.dtso
-> >
-> >> +&i2c0_mux3 {
-> >> +       #address-cells = <1>;
-> >> +       #size-cells = <0>;
-> >> +
-> >> +       mcu: gpio@45 {
-> >> +               compatible = "raspberrypi,touchscreen-panel-regulator-v2";
-> >> +               reg = <0x45>;
-> >> +               gpio-controller;
-> >> +               #gpio-cells = <2>;
-> >> +               #pwm-cells = <3>;
-> >
-> > make dtbs_check:
-> >
-> >      arch/arm64/boot/dts/renesas/r8a779g3-sparrow-hawk-rpi-display-2-5in.dtb:
-> > gpio@45 (raspberrypi,touchscreen-panel-regulator-v2): '#gpio-cells',
-> > '#pwm-cells', 'gpio-controller' do not match any of the regexes:
-> > '^pinctrl-[0-9]+$'
-> >              from schema $id:
-> > http://devicetree.org/schemas/regulator/raspberrypi,7inch-touchscreen-panel-regulator.yaml#
-> >
-> > I noticed you posted patches to fix all other issues in DT bindings
-> > triggered by this series, so I assume you just forgot to post the
-> > fixes for this one (which you authored ;-)?
-> I think the following patch handles this:
->
-> [PATCH] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi
-> 720x1280 v2 binding
+Hi David,
 
-Thanks, "[PATCH v2] regulator: dt-bindings: rpi-panel: Split 7"
-Raspberry Pi 720x1280 v2 binding"[1] does.
+On Mon, 8 Sept 2025 at 06:36, David Gibson <david@gibson.dropbear.id.au> wrote:
+> On Thu, Sep 04, 2025 at 11:15:44AM +0530, Ayush Singh wrote:
+> > I would need to wrap my head around this a bit, specially in context of
+> > chaining connectors. It does seem like it will still require the points you
+> > mentioned above to be present in one form or another, i.e. some way to
+> > extend busses to different nodes/trees and connector (even a chained one)
+> > local symbols/aliases.
+>
+> Yes, it would still require those mappings.  I don't think chained
+> connectors introduce a lot of extra complication.  An intermediate
+> connector would need to be able to "re-export" things it got from its
+> parent connector to its child connector(s) - renaming them if
+> necessary.
 
-[1] https://lore.kernel.org/all/20250905191637.147141-1-marek.vasut+renesas@mailbox.org/
+I don't expect chained connectors to be complicated.
+Boards using multiple-connectors may be more difficult, e.g.
+https://1bitsquared.de/products/pmod-hyperram
+
 
 Gr{oetje,eeting}s,
 
