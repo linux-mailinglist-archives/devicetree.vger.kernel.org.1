@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-214598-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214599-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A57B49D84
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:34:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 868FEB49D88
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:36:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C060A7A31B9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:32:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D231BC4BF6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:36:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1ED22F39B;
-	Mon,  8 Sep 2025 23:34:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1B22ECD30;
+	Mon,  8 Sep 2025 23:36:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="tRH5Bmqr"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sGdBMbwg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6454319D093;
-	Mon,  8 Sep 2025 23:34:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2022DEA95;
+	Mon,  8 Sep 2025 23:35:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757374468; cv=none; b=Q8gfClmhKf2F/evuZF2/Y2b6K3tSJ+feJ2HRI7QyS/SNSA0akIuylc7ezYq78vaNbNvyFLPFNjsnkgLBeAVzqE+8mBD1D67r7agZlhtXW/2iFNCq8tGFHgymmmWvObmG5rZO4NnWLfUiCyz5HVhr392CMFzKifDNb0sbQrCkoqk=
+	t=1757374560; cv=none; b=bLNvCpmgLLpRk0pPFOvGcHNJ/dkHx9PpDbo19CV8SsAWQsJoyyd5aSWeGQewtJyBn1LYLkQWELj3VFkSyaI6eI8vxvtqwaZjYWQ/rR2K0MJTQXoEUH/K0Kk9jw48++Gk9mR4/j3biwJ4hTZD+Dro7zxR4/tOEtzj7ly+d9o9gYI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757374468; c=relaxed/simple;
-	bh=bPDZAO9oM8gIkI8gAFqygdI8EEH7PMlqHGDryBI42z4=;
+	s=arc-20240116; t=1757374560; c=relaxed/simple;
+	bh=EMM7E93s/ekUbTcRbj60Z72MQgUONxbUo/9aOqe7OOs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=W/hbja8ZmiuyYFayl0eVE//m/EBLK28Q+vO/VMnUN9FNdP3n1W77BGuyTDDV2t82bPqdJXc9Orndb2CB8wxRKQbWu7hUnvVUnYhzM7XiE3iyHpWoZZiIsziKQQV5qw7nyepRyZdTUaAoqCBJXtfwCPYwE0/gYGGYbeMqi4BP0G4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=tRH5Bmqr; arc=none smtp.client-ip=198.47.19.246
+	 In-Reply-To:Content-Type; b=V/h8wJXyl5MQbrbENmy1IPN0hVjDPdkvQf7iKr47J/vXR3MrjDdZ+g1VbMHlLPKU7P3CUuU2XK2TGUmyv0HO4T7/zPsYJxAv22rHZW56xb9xmPDBsKNKTWdlB7BMSPhuNqb99xdAYNpGasjjR107h24Hl9jxPoA60UPwb00lHS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sGdBMbwg; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588NYKXA155036;
-	Mon, 8 Sep 2025 18:34:20 -0500
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588NZrXj155383;
+	Mon, 8 Sep 2025 18:35:53 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757374460;
-	bh=f6jA0maJ2/cbrQIjQjmb6P8Q2JEEnLmcjnUmsx4PEvs=;
+	s=ti-com-17Q1; t=1757374553;
+	bh=C+es+k3ho11cQTKuzpC2vE3k0arMuciL1EOZEVF5ce0=;
 	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=tRH5BmqremEApuhcHphQXzGzMOlMusbJ9G5UFMNuS+NOVnkwZsj9lltL2Z7UgvSz6
-	 B8Vefl1L+hDK2V3JCL8C0SnhXuPttDwaI1T2E2X9G43eYXrfZBv8YhXvUNQsRaZytv
-	 v53AHuyZ5EcGlXzbac72dQ8xkUb6dMmiqflwcd8w=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588NYKmx3294758
+	b=sGdBMbwgBYMtC0S38l3sEFnz/BPdRdCPPTOrPomAeOg9FWe0jRDVlFsQHk/e+xuU0
+	 wzmMe8ubSb01a8GfmPc9xUa/GDGJqOvqNl47JmTSouUwXljw5Gp+9hr1/gJUbFFuOf
+	 BRRyLEaqPvpcZqk8412ajGrUoYbDOrqcPianv6ig=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588NZre64116798
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 18:34:20 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 8 Sep 2025 18:35:53 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 18:34:19 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 18:35:53 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 18:34:19 -0500
+ Frontend Transport; Mon, 8 Sep 2025 18:35:53 -0500
 Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NYJ5I1364923;
-	Mon, 8 Sep 2025 18:34:19 -0500
-Message-ID: <a89f9e4f-5306-4943-a70f-f6a60a4537d3@ti.com>
-Date: Mon, 8 Sep 2025 18:34:19 -0500
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NZrjg1662346;
+	Mon, 8 Sep 2025 18:35:53 -0500
+Message-ID: <fbbaf67a-8e59-44fa-8741-49cf53f4a31c@ti.com>
+Date: Mon, 8 Sep 2025 18:35:53 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,8 +65,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 3/4] arm64: dts: ti: k3-pinctrl: Add the remaining
- macros
+Subject: Re: [PATCH v5 4/4] arm64: dts: ti: k3-pinctrl: Fix the bug in
+ existing macros
 To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
         <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <u-kumar1@ti.com>,
         <sebin.francis@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
@@ -75,151 +75,40 @@ To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
         <linux-kernel@vger.kernel.org>
 CC: <vishalm@ti.com>
 References: <20250905051448.2836237-1-a-kaur@ti.com>
- <20250905051448.2836237-4-a-kaur@ti.com>
+ <20250905051448.2836237-5-a-kaur@ti.com>
 Content-Language: en-US
 From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250905051448.2836237-4-a-kaur@ti.com>
+In-Reply-To: <20250905051448.2836237-5-a-kaur@ti.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 On 9/5/25 00:14, Akashdeep Kaur wrote:
-> Add the drive strength, schmitt trigger enable macros to pinctrl file.
-> Add the missing macros for DeepSleep configuration control referenced
-> from "Table 14-6172. Description Of The Pad Configuration Register Bits"
-
-The Table number should be 14-8769 for the AM62P TRM.
-
-> in AM625 TRM[0].
-
-You should reference both the AM62X and AM62P TRMs because in the AM62P 
-TRM the ISO_OVERRIDE_EN bit is reserved, whereas in the AM62X TRM it is 
-defined.
-
-> Add some DeepSleep macros to provide combinations that can be used
-> directly in device tree files example PIN_DS_OUTPUT_LOW that
-> configures pin to be output and also sets its value to 0.
-> 
-> [0] https://www.ti.com/lit/pdf/SPRUJ83
+> Currently, DS_IO_OVERRIDE_EN_SHIFT macro is not defined anywhere but
+> used for defining other macro.
+> Replace this undefined macro with valid macro. Rename the existing macro
+> to reflect the actual behavior.
 > 
 > Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
 > ---
->   arch/arm64/boot/dts/ti/k3-pinctrl.h | 47 ++++++++++++++++++++++++++++-
->   1 file changed, 46 insertions(+), 1 deletion(-)
+>   arch/arm64/boot/dts/ti/k3-pinctrl.h | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> index c0f09be8d3f9..8ce37ace94c9 100644
+> index 8ce37ace94c9..e46f7bf52701 100644
 > --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
 > +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> @@ -3,15 +3,20 @@
->    * This header provides constants for pinctrl bindings for TI's K3 SoC
->    * family.
->    *
-> - * Copyright (C) 2018-2024 Texas Instruments Incorporated - https://www.ti.com/
-> + * Copyright (C) 2018-2025 Texas Instruments Incorporated - https://www.ti.com/
->    */
->   #ifndef DTS_ARM64_TI_K3_PINCTRL_H
->   #define DTS_ARM64_TI_K3_PINCTRL_H
+> @@ -88,8 +88,8 @@
 >   
-> +#define WKUP_LVL_EN_SHIFT       (7)
-> +#define WKUP_LVL_POL_SHIFT      (8)
->   #define ST_EN_SHIFT		(14)
->   #define PULLUDEN_SHIFT		(16)
->   #define PULLTYPESEL_SHIFT	(17)
->   #define RXACTIVE_SHIFT		(18)
-> +#define DRV_STR_SHIFT           (19)
-> +#define ISO_OVERRIDE_EN_SHIFT   (22)
-> +#define ISO_BYPASS_EN_SHIFT     (23)
->   #define DEBOUNCE_SHIFT		(11)
->   #define FORCE_DS_EN_SHIFT	(15)
->   #define DS_EN_SHIFT		(24)
-> @@ -19,6 +24,7 @@
->   #define DS_OUT_VAL_SHIFT	(26)
->   #define DS_PULLUD_EN_SHIFT	(27)
->   #define DS_PULLTYPE_SEL_SHIFT	(28)
-> +#define WKUP_EN_SHIFT           (29)
->   
->   /* Schmitt trigger configuration */
->   #define ST_DISABLE		(0 << ST_EN_SHIFT)
-> @@ -33,6 +39,29 @@
->   #define INPUT_EN		(1 << RXACTIVE_SHIFT)
->   #define INPUT_DISABLE		(0 << RXACTIVE_SHIFT)
->   
-> +#define DS_PULL_DISABLE         (1 << DS_PULLUD_EN_SHIFT)
-> +#define DS_PULL_ENABLE          (0 << DS_PULLUD_EN_SHIFT)
-
-nit: IMO either keep the format of these macros to ENABLE or EN unless 
-there is a good reason to change the format.
-
-> +
-> +#define DS_PULL_UP              (1 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-> +#define DS_PULL_DOWN            (0 << DS_PULLTYPE_SEL_SHIFT | DS_PULL_ENABLE)
-> +
-> +#define DS_STATE_EN             (1 << DS_EN_SHIFT)
-> +#define DS_STATE_DISABLE        (0 << DS_EN_SHIFT)
-
-nit: Is there anyway this could be more descriptive? Like 
-DS_IO_OVERRIDE_EN or DS_OVERRIDE_CTRL. It is hard to tell what these 
-bits do unless you look at the TRM, whereas the other macros are easier 
-to deduce their function.
-
-> +
-> +#define DS_INPUT_EN             (1 << DS_OUT_DIS_SHIFT | DS_STATE_EN)
-> +#define DS_INPUT_DISABLE        (0 << DS_OUT_DIS_SHIFT | DS_STATE_EN)
-
-By looking at the TRM it looks like this disables or enables output, not 
-input. Shifting a 1 to DS_OUT_DIS_SHIFT should disable output.
-
-> +
-> +#define DS_OUT_VALUE_ZERO       (0 << DS_OUT_VAL_SHIFT)
-> +#define DS_OUT_VALUE_ONE        (1 << DS_OUT_VAL_SHIFT)
-> +
-> +/* Configuration to enable wake-up on pin activity */
-> +#define WKUP_ENABLE             (1 << WKUP_EN_SHIFT)
-> +#define WKUP_DISABLE            (0 << WKUP_EN_SHIFT)
-> +#define WKUP_ON_LEVEL           (1 << WKUP_LVL_EN_SHIFT)
-> +#define WKUP_ON_EDGE            (0 << WKUP_LVL_EN_SHIFT)
-> +#define WKUP_LEVEL_LOW          (0 << WKUP_LVL_POL_SHIFT)
-> +#define WKUP_LEVEL_HIGH         (1 << WKUP_LVL_POL_SHIFT)
-> +
->   /* Only these macros are expected be used directly in device tree files */
->   #define PIN_OUTPUT		(INPUT_DISABLE | PULL_DISABLE)
->   #define PIN_OUTPUT_PULLUP	(INPUT_DISABLE | PULL_UP)
-> @@ -53,6 +82,10 @@
->   #define PIN_DEBOUNCE_CONF5	(5 << DEBOUNCE_SHIFT)
->   #define PIN_DEBOUNCE_CONF6	(6 << DEBOUNCE_SHIFT)
->   
-> +#define PIN_DRIVE_STRENGTH_NOMINAL      (0 << DRV_STR_SHIFT)
-> +#define PIN_DRIVE_STRENGTH_SLOW         (1 << DRV_STR_SHIFT)
-
-DRV_STR value of 1 is reserved in both AM62X and AM62P TRMs
-
-> +#define PIN_DRIVE_STRENGTH_FAST         (2 << DRV_STR_SHIFT)
-> +
 >   #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
 >   #define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
->   #define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
-> @@ -65,6 +98,18 @@
->   #define PIN_DS_PULLUD_DISABLE		(1 << DS_PULLUD_EN_SHIFT)
->   #define PIN_DS_PULL_DOWN		(0 << DS_PULLTYPE_SEL_SHIFT)
->   #define PIN_DS_PULL_UP			(1 << DS_PULLTYPE_SEL_SHIFT)
-> +#define PIN_DS_ISO_BYPASS               (1 << ISO_BYPASS_EN_SHIFT)
-> +#define PIN_DS_ISO_BYPASS_DISABLE       (0 << ISO_BYPASS_EN_SHIFT)
-> +
-> +#define PIN_DS_OUTPUT_LOW               (DS_INPUT_DISABLE | DS_OUT_VALUE_ZERO)
-> +#define PIN_DS_OUTPUT_HIGH              (DS_INPUT_DISABLE | DS_OUT_VALUE_ONE)
-> +#define PIN_DS_INPUT                    (DS_INPUT_EN | DS_PULL_DISABLE)
-> +#define PIN_DS_INPUT_PULLUP             (DS_INPUT_EN | DS_PULL_UP)
-> +#define PIN_DS_INPUT_PULLDOWN           (DS_INPUT_EN | DS_PULL_DOWN)
-> +
-> +#define PIN_WKUP_EN_LEVEL_LOW           (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_LOW)
-> +#define PIN_WKUP_EN_LEVEL_HIGH          (WKUP_ENABLE | WKUP_ON_LEVEL | WKUP_LEVEL_HIGH)
-> +#define PIN_WKUP_EN                     (WKUP_ENABLE | WKUP_ON_EDGE)
->   
->   /* Default mux configuration for gpio-ranges to use with pinctrl */
->   #define PIN_GPIO_RANGE_IOPAD	(PIN_INPUT | 7)
+> -#define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
+> -#define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
+> +#define PIN_DS_ISO_OVERRIDE_DISABLE     (0 << ISO_OVERRIDE_EN_SHIFT)
+> +#define PIN_DS_ISO_OVERRIDE_ENABLE      (1 << ISO_OVERRIDE_EN_SHIFT)
+>   #define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
+>   #define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
+>   #define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
 
-Best,
-Kendall
-
+Reviewed-by: Kendall Willis <k-willis@ti.com>
 
