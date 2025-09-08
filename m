@@ -1,62 +1,62 @@
-Return-Path: <devicetree+bounces-214251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8335B488E4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:45:23 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB4FB488F5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:46:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73D303A619B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:45:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 234D6189BE05
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B7F1DDC2A;
-	Mon,  8 Sep 2025 09:45:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C48652F49EF;
+	Mon,  8 Sep 2025 09:46:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dhbD+lWn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="s6/hAsOd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB5B1CDFAC;
-	Mon,  8 Sep 2025 09:45:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E632A211A28;
+	Mon,  8 Sep 2025 09:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757324720; cv=none; b=SGZZXeBmJL+5EWDxJR7akX3sNfJGJMkUPqllrRJSOhD1VnKkTYrfZoI8BWQG5YwR6p7aFGpmAWjH4QhlnfFP4/EM0/VYQRAfoNecI9MJ0+7rxDLZA+Po9HC1d+K2anzBinpM0/laiREyFFXbqDUPASLmJdltMlKcCkAZKzSiGow=
+	t=1757324773; cv=none; b=kNtIJMm5zMxyW6362tx1EEXF/Ctj5yjg3UlKnuKSdSHywIYSwtUI6c87TaxS3Pz1YPkBpoRdcPEEadthqTRzKq5DjMJgjE11TSAKZw2hPzPYb6Wp8CuFqZKrvidCadUwDJQqMATJkWAq66TiE0n0zn1VFnOHeclLcEft2kWKT5U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757324720; c=relaxed/simple;
-	bh=nDalhWDdRaKI0K8oFZEyuIzW1+9ZHDPR6MDrSzflp68=;
+	s=arc-20240116; t=1757324773; c=relaxed/simple;
+	bh=SdDLb4rz8Vglci8gKzP7Wg3CSUImNs4+4dWyYeX89bY=;
 	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/ZFH52TdqgqbUDlc2fOJD9mO+Yuy09EuUfz4waxjCbtuLHqkjfGbXhJnWosQ9d/Uaf4PQiqVRoPr717KSvh9Z2Cm1g+dKus6Oz0X9qv6OtLEnT2gYB/GVEYWitY1UnUvXCmcgrEb4Yif1z2RDLBt/QFY/ue/V4mGZHok4Z1jsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dhbD+lWn; arc=none smtp.client-ip=198.47.23.235
+	 Content-Type:Content-Disposition:In-Reply-To; b=a7AsmMrXOLcaZXNs6BUO8+AbHx62mSRR3rmA8M67Mf7Mk0FqBcKuMKL5UHQTSdYOdUjTby3iNzNU1K1Uu6DQqUjAL0lOMfQ6NOLcZr3NEdXt5ecQp4kDEghmkVPPDb+7FH6LFKiL6Gt3YHrT9o+5ECbc5EdBYUKIAgaXthk6yyI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=s6/hAsOd; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5889j7Bg077755;
-	Mon, 8 Sep 2025 04:45:07 -0500
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5889k7KJ028219;
+	Mon, 8 Sep 2025 04:46:07 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757324707;
-	bh=vSJqX1AAqYYY3cwD7+kPGOUDcEyMxKTWaZHJI25fkLc=;
+	s=ti-com-17Q1; t=1757324767;
+	bh=988qmRw0pd7ksa0f/YKPYnqvoYuM+kdxRHDT3HPftf0=;
 	h=Date:From:To:CC:Subject:References:In-Reply-To;
-	b=dhbD+lWnE6JwR2i9iy7Fi4ZjtgbhGvxq0IVdPw0x5ftpfLZo/PKlb5qjbBCca5l5M
-	 RRM7NLkEaGHmtoYrvZVsHiYTQ5FZFka+JbVwpiOpQdHs4qc+yEwa/qgYHbyCHwq+KQ
-	 uxCtbMJmzhioBnofioa4FbvxyzN5mpZ985Ouu5zA=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5889j7NU3685564
+	b=s6/hAsOd5B2SkiB8dnPhc52Z01PtqvB3cl0IzNnW/WjBL6A9m5rh+Zo+S1xKW2nvQ
+	 ykGL7sFe6POHyLIg7zXXnySN7GQA8aaTT70wE16Cbl9qFyDyuZ7V+79oDmAPkMGUfD
+	 +ft5bCUmavGyCKeMLXFR69GylEzslc0kdfXbi73A=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5889k7Em2916028
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 04:45:07 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 8 Sep 2025 04:46:07 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 04:45:07 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 04:46:06 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 04:45:07 -0500
+ Frontend Transport; Mon, 8 Sep 2025 04:46:06 -0500
 Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5889j5gl394282;
-	Mon, 8 Sep 2025 04:45:06 -0500
-Date: Mon, 8 Sep 2025 15:15:05 +0530
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5889k5DP691450;
+	Mon, 8 Sep 2025 04:46:06 -0500
+Date: Mon, 8 Sep 2025 15:16:04 +0530
 From: Dhruva Gole <d-gole@ti.com>
 To: Beleswar Padhi <b-padhi@ti.com>
 CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
@@ -64,11 +64,11 @@ CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
         <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
         <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 29/33] arm64: dts: ti: k3-am62p-ti-ipc-firmware:
+Subject: Re: [PATCH v3 31/33] arm64: dts: ti: k3-am62a-ti-ipc-firmware:
  Refactor IPC cfg into new dtsi
-Message-ID: <20250908094505.4dasmw6sv5bazd5z@lcpd911>
+Message-ID: <20250908094604.rsfilglo35likfzj@lcpd911>
 References: <20250905051846.1189612-1-b-padhi@ti.com>
- <20250905051846.1189612-30-b-padhi@ti.com>
+ <20250905051846.1189612-32-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +77,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250905051846.1189612-30-b-padhi@ti.com>
+In-Reply-To: <20250905051846.1189612-32-b-padhi@ti.com>
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Sep 05, 2025 at 10:48:42 +0530, Beleswar Padhi wrote:
-> The TI K3 AM62P SoCs have multiple programmable remote processors like
-> R5Fs. The TI SDKs for AM62P SoCs offer sample firmwares which could be
-> run on these cores to demonstrate an "echo" IPC test. Those firmware
-> require certain memory carveouts to be reserved from system memory,
-> timers to be reserved, and certain mailbox configurations for interrupt
-> based messaging. These configurations could be different for a different
-> firmware.
+On Sep 05, 2025 at 10:48:44 +0530, Beleswar Padhi wrote:
+> The TI K3 AM62A SoCs have multiple programmable remote processors like
+> R5F, C7x etc. The TI SDKs for AM62A SoCs offer sample firmwares which
+> could be run on these cores to demonstrate an "echo" IPC test. Those
+> firmware require certain memory carveouts to be reserved from system
+> memory, timers to be reserved, and certain mailbox configurations for
+> interrupt based messaging. These configurations could be different for a
+> different firmware.
 > 
 > While DT is not meant for system configurations, at least refactor these
 > configurations from board level DTS into a dtsi for now. This dtsi for
