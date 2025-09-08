@@ -1,110 +1,59 @@
-Return-Path: <devicetree+bounces-214287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C9FDB489E0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:17:52 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A09B48A0B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:23:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0191A7A00B2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:16:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 31B673B54CA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:23:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476DD2EC543;
-	Mon,  8 Sep 2025 10:17:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A1E2F3621;
+	Mon,  8 Sep 2025 10:23:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Rt9J+HC+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ntskpR69"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E520273F9
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 10:17:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6295D2192E3;
+	Mon,  8 Sep 2025 10:23:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757326664; cv=none; b=c8lcE8W8BedsvjfjiHR1TZRY7P99QDyQmAe4cXAKqkGCZ8fAbX/ntWBabIZjhHRbfHsY0qbu2EUyb1wOXlTLyYnLGhkNi/c7aaT4TOjlIIVcIRLiO0ZLyOQz1fFlVpuWoh7jKoi6QJ7EDRDeSmfv2Rq/DPTxmyAN+ZvH/pY0XmQ=
+	t=1757326990; cv=none; b=nfHZB70IEpE0ccmbipOK/G/sKbUcn0LAgTzRSursoS5pN3X+GzeZNcJ8vWE+cXHkEgLpYaOqdTHKQON41uA978sqzzvkhlVq8y0eLqWbdJCna+cb8uKH7auUAN9wGbcwxX8WWFPgdEiAJkKECUfSosmrkqbMz8FN+YlGc8pMP3A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757326664; c=relaxed/simple;
-	bh=2TJTDeZJKGx+SpfW+lrahJ5aBe4+mxSzwIgucxh9hsQ=;
+	s=arc-20240116; t=1757326990; c=relaxed/simple;
+	bh=f8m5FfX5nvzYBYadYzhg6DpSVTZtfx3kpLRtofn6+HY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hDo6Go99+AbOXNnTqE7L8oa0YRE0tdXq2d3sKcgFi98DNbewVLKDziJoktCWaKpWnRQsUQNigXdkUEgha40jigLastEWPQQud9hltt2X44I1rDDIyC8fJPC0ONHlEXNiHeaTrUtYcmPurbGfkXSdIxMmxO8CdYbgC/fOkHgHkJE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Rt9J+HC+; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58890jpw028663
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 10:17:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	vCjXnZfE2tyLur7FXPpdd2CNC2hDwBx1MMn09lIuguo=; b=Rt9J+HC+2/l2eMqf
-	4IUK2oNS682Q6nrpSmvdnMNpGjsizL+7vBLI98Gxe/CNdyBUlqxy7XWLfAqtQOfS
-	iDtk3qAYM5N7j+TIPUTdiogqCcNgIDGND/baDOXPbIWJ1BQ9dRhhJbMsyIlNyWey
-	c/wyp/QqpAPk/tJckm8MEM5JKywpLkN3hpZCjyui+7EwRMs0Hf7HkwSqmiJEtGts
-	dUNBWUWcd61VfxUHQ6A3hClkQbkptilRTDtrAyGD9GGpBsCR4DhiVycdx9r5f1Yr
-	L7J6DyrbomJu7MPDRPUUnAd4ZKIgNAPSh5Bw3TqTc5Oo9azPv00YzrzPAba/cKDs
-	hUGF9Q==
-Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490c9j4av4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 10:17:41 +0000 (GMT)
-Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-80382234104so842393685a.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 03:17:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757326660; x=1757931460;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vCjXnZfE2tyLur7FXPpdd2CNC2hDwBx1MMn09lIuguo=;
-        b=Vn24yXnhuKjsm28/STJ0D/vthWpYTeOXbjiZXwIfTe4QOGJxaaKBvGkyd4p+LrHfsZ
-         iimpw/Uis9ZxACkcmcMwpvudtWpP0qJbJfR4m2hBFD0w+j9I7qfQtSTAU9moOjOgrni5
-         ckNyG32umjSlaD9a3P6nEkkAQd1GKvllW1Djpe8t5KT2tJ6YnJozI4ovy0CPymqakx/E
-         VpudgxZyiueSy0nR8m7ld0cshzfaJk9Q61lthUstQdodJgHVAImsdQ5y3OXlxnl+Jt+1
-         ECW16Mls08pHxpsoksgDSzbnGYWrYGlJ/XT5GjiB8QNOK74b+4C4O9A0aD+pAVA30GTc
-         9Hhg==
-X-Forwarded-Encrypted: i=1; AJvYcCVW9y+ICaJdvgJ4VraLX8e+DWIDr8za9lhS1217nurHk27bt+klas2pyTA5hBMR4w+nTPYV0qUI6fhg@vger.kernel.org
-X-Gm-Message-State: AOJu0YzfiwzTo/QLTS+G4treO+44szXvQ2rrFqx+Waj7f88Op/h9+eVZ
-	tyCI0g0h5xDt9xgEVa189c61DG3qgeIDOwasfY82Sa8908u/dnEzs0ZvHMKJu6uLhg7Xkd4s9O6
-	67f7VMxAVPAxunXPQ9keRvkzXuiY69PZP0aVes0TMfCH35gv3mScKoqNgeztuLgxc
-X-Gm-Gg: ASbGncsppq00JQkELDNuNvS8ffaoX9EFBDDhrbqkkfF4PQOE/+yle2LwDwyuj+2XW7I
-	NbyqTcbXD2Y9g70S97ax+3pELfL7h/+es7dPiMI0uLvQwWWEhHGm1pdWiXFcuBiB6rlNBa5aJus
-	PsQqflyRJpjARqjAyrodTc3fiQUS1nMtxBVW25BrJTVhaSLo36SOFohyHOuAfuG8AbWz0iSHCnF
-	hcjsh/DSITVD2CklEGt3UvXfo/Cu6IZNZBUK5iBxOVRmAFIjppo/wbizUwYB700iVAa8jzWdnsr
-	uN5mE/VaLzCtpba6akmZB/EdaM32S7WlXtxyFLsHg5Ygj0zBzpd1E3cgaxIOkkpThEH3zEkC/mm
-	HTmiDoBXLC77u3wk752y5Vokfm5Vw6unitVEVXQ9VGpXTdZ330114
-X-Received: by 2002:a05:6214:268e:b0:71c:261e:54ba with SMTP id 6a1803df08f44-73921b4fd8fmr78452556d6.27.1757326660268;
-        Mon, 08 Sep 2025 03:17:40 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHXC4iVA1vMcsCtHF5DkIPqNh5JMkSdSnysesnslOPC68kcKK7iwzOJZg6GK+/J/kIv3DHUYA==
-X-Received: by 2002:a05:6214:268e:b0:71c:261e:54ba with SMTP id 6a1803df08f44-73921b4fd8fmr78452136d6.27.1757326659568;
-        Mon, 08 Sep 2025 03:17:39 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f50b0901sm31248111fa.59.2025.09.08.03.17.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 03:17:38 -0700 (PDT)
-Date: Mon, 8 Sep 2025 13:17:36 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: =?utf-8?B?5p2o5a2Z6L+Q?= <yangsunyun1993@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, syyang <syyang@lontium.com>,
-        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
-        andrzej.hajda@intel.com, rfoss@kernel.org,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        xmzhu@lontium.com, llzhang@lontium.com, rlyu@lontium.com,
-        xbpeng@lontium.com
-Subject: Re: [PATCH v1 2/2] This patch adds a new DRM bridge driver for the
- Lontium LT9611C chip.
-Message-ID: <x3g4qxksghteg4tcv6vmuaoie3c6lh3gkjsfwj2qn4lvim6o6t@hrjtunavnedj>
-References: <20250903123825.1721443-1-syyang@lontium.com>
- <20250903123825.1721443-3-syyang@lontium.com>
- <24rahlm4kkob7knapdxxnjixye3khx3nv2425y4kkirat4lmam@gjey7zqsnzks>
- <CAFQXuNZUfAJe4QEDfi+-1N99xO0_z5_Omnsn_-SXr2QPtvdL_g@mail.gmail.com>
- <7cyypk5j7o5fglmibshg45iysffpdl75m6rqvv4b5zntfevhiz@zlt7ybuzkvrg>
- <CAFQXuNb+Eq6KPFvsnmGvn7KKjn4WRtMy1x4pn4ZvZoQ-_S_fYQ@mail.gmail.com>
- <d3e3b838-26fa-491e-8c4f-63a1693f2391@linaro.org>
- <CAFQXuNbZfnySYmizY2=PJGLkk38WHOYbVcbPTRZvgY7bFdK8yg@mail.gmail.com>
- <zv7twvfxlira5wmg4zwk6kgkldgdiesgqzjky4733lp2us2hmx@tohls6czl3wz>
- <CAFQXuNa7z=RHtbx6zrtGGDK4dpa++m_BPxTNj8iemLkxYPP_zA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=MUoEFlyKebMiPE+H8f4FKkARDZY2gmFCqqrwW5AUdtle2kloqZ7F6MbWm68qkwrEQVE+EeUqpYO/VTdtESEj7ki2KJkz1a/DIVfK31KEnbs2gzz1dVHQ/vTYb+rKeWRHJVcuHlSIdy8EtUbEtYV2a+6zq7Eki1kyWvgGhNhZdYM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ntskpR69; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B00AC4CEF1;
+	Mon,  8 Sep 2025 10:23:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757326989;
+	bh=f8m5FfX5nvzYBYadYzhg6DpSVTZtfx3kpLRtofn6+HY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ntskpR698Lnx+sObvJo3AKoPnVViGQPUkxtQYL9ItfPqZHgB9VM9fncD1QX0MS4Hg
+	 hG/ly65UEdpLdEcFkGeWFUytkIxa7lGwm8XWuGisS4Z1m4qkQiZPBZBjqtX8dAstvo
+	 YJ2weM+/QdRDOrJRJhczp7z7Zk/g8wpTD+9Tfx0teyqnwq+W5d3bsevhV6LECWJmgZ
+	 J6nIQ7hSCEFwR+NK72QxW3v0LVxlGsOZkIZ2FhoSRCF84QhtxAbF/5i9n6pw21aaE1
+	 kqV4Hy19b6110g6qzh69wuoPnCPQKZ5d2aMJfM9Y2EXGsvtohOLgEWC2wo+C0pEOrt
+	 PWHYiyVEexi1Q==
+Date: Mon, 8 Sep 2025 15:52:59 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: hans.zhang@cixtech.com
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
+	robh@kernel.org, kwilczynski@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com, 
+	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 03/14] PCI: cadence: Add register definitions for High
+ Perf Architecture (HPA)
+Message-ID: <ilpurwleklzj5dskokypmepizwqixycyvk52qsocgwhpmyy2hz@2wvalkxquari>
+References: <20250901092052.4051018-1-hans.zhang@cixtech.com>
+ <20250901092052.4051018-4-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -114,144 +63,243 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAFQXuNa7z=RHtbx6zrtGGDK4dpa++m_BPxTNj8iemLkxYPP_zA@mail.gmail.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyMiBTYWx0ZWRfXy9aiy9PNNA7c
- xKYq6lV4craU0i16sPKAYjBZhvVy/6iFUTNztPJ5OGJFLcTXrSg2p5OTT7VLp/ga2qG4Hpo0SAC
- ZoJeq8RILqhhY/s/xrXHpQzlLZAhGtoNeKcyZmGMKlnPJUW+FiPxYJ+wS/hImoZaxxAN9/c94Qn
- agaIJRBqotHOwAf/e3idzUHN+vnlmkqPBoitE9aRPZ03gWzHEJ/7ucOIMKu0GlBnwk7kUR/qfbW
- MuzvrCcsShYH1dngUGCjZlmi3Luvh5ZkQjhwLh7BDw6UMPPC35nYvmQvQEdLHa4NJNY78W6BMzN
- 7UF4kY/Wf5znf6hK8PbeccEIYhyIagkHGG/GK9qyagmcMmdHOjMNtGBH5uHm33rm4Cnl1nI+gf4
- b7dKd8ne
-X-Proofpoint-ORIG-GUID: hNpqudjVO7WPi7dMfU24m6wLCo2oO-_u
-X-Authority-Analysis: v=2.4 cv=PpOTbxM3 c=1 sm=1 tr=0 ts=68bead45 cx=c_pps
- a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Fy06R7qyhczz9_k_:21 a=xqWC_Br6kY4A:10
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
- a=vWrx5uKgKmi_-Q7riJMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-GUID: hNpqudjVO7WPi7dMfU24m6wLCo2oO-_u
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_03,2025-09-08_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 spamscore=0 bulkscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060022
+In-Reply-To: <20250901092052.4051018-4-hans.zhang@cixtech.com>
 
-On Mon, Sep 08, 2025 at 09:14:51AM +0800, 杨孙运 wrote:
-> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月5日周五 22:24写道：
-> >
-> > On Fri, Sep 05, 2025 at 04:58:59PM +0800, 杨孙运 wrote:
-> > > HI，
-> > >
-> > > As a vendors , we have begun to attempt to contribute to the Linux,
-> > > and we are very willing to do so.
-> > > there are still many rules that we don't understand and need to learn.
-> >
-> > Not top-posting and trimming your emails would be nice things to learn
-> > too.
-> >
-> > > <neil.armstrong@linaro.org> 于2025年9月5日周五 16:10写道：
-> > > > On 05/09/2025 04:55, 杨孙运 wrote:
-> > > > > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月4日周四 22:39写道：
-> > > > >> On Thu, Sep 04, 2025 at 06:48:13PM +0800, 杨孙运 wrote:
-> > > > >>> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月4日周四 10:52写道：
-> > > > >>>> On Wed, Sep 03, 2025 at 05:38:25AM -0700, syyang wrote:
-> >
-> > > > >>>>> +     }
-> > > > >>>>> +
-> > > > >>>>> +     if (lt9611c->bridge_added) {
-> > > > >>>>> +             drm_bridge_remove(&lt9611c->bridge);
-> > > > >>>>> +             lt9611c->bridge_added = false;
-> > > > >>>>> +             dev_err(dev, "DRM bridge removed\n");
-> > > > >>>>> +     }
-> > > > >>>>> +
-> > > > >>>>> +     if (lt9611c->regulators_enabled) {
-> > > > >>>>> +             regulator_bulk_disable(ARRAY_SIZE(lt9611c->supplies), lt9611c->supplies);
-> > > > >>>>> +             lt9611c->regulators_enabled = false;
-> > > > >>>>> +             dev_err(dev, "regulators disabled\n");
-> > > > >>>>> +     }
-> > > > >>>>> +
-> > > > >>>>> +     if (lt9611c->audio_pdev)
-> > > > >>>>> +             lt9611c_audio_exit(lt9611c);
-> > > > >>>>> +
-> > > > >>>>> +     if (lt9611c->fw) {
-> > > > >>>>
-> > > > >>>> You definitely don't need firmware when the bridge is up and running.
-> > > > >>>>
-> > > > >>> The previous text has already described the working logic of the firmware.
-> > > > >>
-> > > > >> It's another topic: you are storing the firmware in memory while the
-> > > > >> driver is bound. It's not necessary. You can release it after updating
-> > > > >> it on the chip.
-> > > > >>
-> > > > > I understand what you mean.
-> > > > > Based on the above conversation, your intention is that when the
-> > > > > customer needs to upgrade the firmware, they should modify the
-> > > > > comparison conditions of the version, then compile and burn the
-> > > > > kernel, and then perform the firmware upgrade, just like the LT9611UXC
-> > > > > driver. Instead of loading the firmware every time.
-> > > > > My design intention is to avoid the need for recompiling the driver
-> > > > > when upgrading. Instead, a file named "LT9611C.bin" can be directly
-> > > > > sent to the "/lib/firmware" directory via scp. Then you can either
-> > > > > perform a reboot for the upgrade or execute the command manually for
-> > > > > the upgrade.
-> > > > > Perhaps you are suggesting that we could follow the design approach of
-> > > > > the LT9611UXC driver?
-> > > >
-> > > > Yes no need to rebuild, just use sysfs to trigger an update.
-> > > >
-> > > I think you haven't attempted to understand the intention behind my design.
-> > >
-> > > If during the debugging process, the customer discovers that a certain
-> > > parameter in the chip's firmware is not suitable for the current
-> > > situation, then he requests a perfect firmware from our company to be
-> > > updated onto the chip.
-> >
-> > That's fine.
-> >
-> > >
-> > > When there are hundreds or tens of thousands of devices that need to
-> > > be updated, simply use sysfs to trigger the update. It is a very bad
-> > > thing.
-> >
-> > Delivering updates to devices it off-topic here. You can use SWUpdate,
-> > Mender or any other system to deliver updates and to trigger the
-> > firmware reflash afterwards.
-> >
-> > > If you want to use version number comparison as the upgrade condition
-> > > like in lt9611uxc.c, then the customer will need to modify the version
-> > > number comparison condition and rebuild the driver. This method is not
-> > > as simple as the one I have designed.
-> >
-> > Well, no. If there is a firmware update, it should be shared to
-> > linux-firmware and then everybody can benefit from it.
-> >
-> > Think about one company using your chip in their SoM or compute module
-> > and then another company integrating that module into their design?
-> > Who will contact you? Or a company selling devkits with your chip.
-> >
-> > Having per-customer firmware is a nightmare for developers and for
-> > integrators.
-> >
+On Mon, Sep 01, 2025 at 05:20:41PM GMT, hans.zhang@cixtech.com wrote:
+> From: Manikandan K Pillai <mpillai@cadence.com>
 > 
-> We are a company that sells our own developed chips. After other
-> platform design companies purchase our chips, they will design their
-> platforms based on the hardware schematic of our chips. During this
-> process, they must contact us. We will communicate about the design
-> opinions of the platform, the configuration of parameters, and the use
-> of custom firmware. We cannot provide a common firmware. This is
-> determined by the characteristics of the chips.
+> Add the register offsets and register definitions for High Performance
+> Architecture (HPA) PCIe controllers from Cadence.
+> 
+> Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
+> Co-developed-by: Hans Zhang <hans.zhang@cixtech.com>
+> Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
 
-We are getting off-topic here, but this model has issues as the platform
-design company might be completely different from the company that ends
-up (re)using the platform in their products.
+No need to split this into a separate patch. Squash it with the patch that adds
+the code consuming these.
 
-Anyway, I'm looking forward to reviewing the next iteration of the
-driver. It is really appreciated when chip vendors work on the drivers
-for their chips.
+- Mani
+
+> ---
+>  .../cadence/pcie-cadence-hpa-regs.h           | 192 ++++++++++++++++++
+>  drivers/pci/controller/cadence/pcie-cadence.h |   1 +
+>  2 files changed, 193 insertions(+)
+>  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h
+> 
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h b/drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h
+> new file mode 100644
+> index 000000000000..7ef87cf96836
+> --- /dev/null
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-hpa-regs.h
+> @@ -0,0 +1,192 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Cadence PCIe controller driver.
+> + *
+> + * Copyright (c) 2019, Cadence Design Systems
+> + * Author: Manikandan K Pillai <mpillai@cadence.com>
+> + */
+> +#ifndef _PCIE_CADENCE_HPA_REGS_H
+> +#define _PCIE_CADENCE_HPA_REGS_H
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/pci.h>
+> +#include <linux/pci-epf.h>
+> +#include <linux/phy/phy.h>
+> +#include <linux/bitfield.h>
+> +
+> +/* High Performance Architecture (HPA) PCIe controller registers */
+> +#define CDNS_PCIE_HPA_IP_REG_BANK		0x01000000
+> +#define CDNS_PCIE_HPA_IP_CFG_CTRL_REG_BANK	0x01003C00
+> +#define CDNS_PCIE_HPA_IP_AXI_MASTER_COMMON	0x01020000
+> +
+> +/* Address Translation Registers */
+> +#define CDNS_PCIE_HPA_AXI_SLAVE                 0x03000000
+> +#define CDNS_PCIE_HPA_AXI_MASTER                0x03002000
+> +
+> +/* Root Port register base address */
+> +#define CDNS_PCIE_HPA_RP_BASE			0x0
+> +
+> +#define CDNS_PCIE_HPA_LM_ID			0x1420
+> +
+> +/* Endpoint Function BARs */
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG(bar, fn) \
+> +	(((bar) < BAR_3) ? CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG0(fn) : \
+> +			CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG1(fn))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG0(pfn) (0x4000 * (pfn))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG1(pfn) ((0x4000 * (pfn)) + 0x04)
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG(bar, fn) \
+> +	(((bar) < BAR_3) ? CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG0(fn) : \
+> +			CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG1(fn))
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG0(vfn) ((0x4000 * (vfn)) + 0x08)
+> +#define CDNS_PCIE_HPA_LM_EP_VFUNC_BAR_CFG1(vfn) ((0x4000 * (vfn)) + 0x0C)
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE_MASK(f) \
+> +	(GENMASK(9, 4) << ((f) * 10))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE(b, a) \
+> +	(((a) << (4 + ((b) * 10))) & (CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_APERTURE_MASK(b)))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL_MASK(f) \
+> +	(GENMASK(3, 0) << ((f) * 10))
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL(b, c) \
+> +	(((c) << ((b) * 10)) & (CDNS_PCIE_HPA_LM_EP_FUNC_BAR_CFG_BAR_CTRL_MASK(b)))
+> +
+> +/* Endpoint Function Configuration Register */
+> +#define CDNS_PCIE_HPA_LM_EP_FUNC_CFG		0x02C0
+> +
+> +/* Root Complex BAR Configuration Register */
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG                        0x14
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE_MASK     GENMASK(9, 4)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE(a) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_APERTURE_MASK, a)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL_MASK         GENMASK(3, 0)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL(c) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR0_CTRL_MASK, c)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE_MASK     GENMASK(19, 14)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE(a) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_APERTURE_MASK, a)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL_MASK         GENMASK(13, 10)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL(c) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_LM_RC_BAR_CFG_BAR1_CTRL_MASK, c)
+> +
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_ENABLE BIT(20)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_PREFETCH_MEM_64BITS BIT(21)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_ENABLE           BIT(22)
+> +#define CDNS_PCIE_HPA_LM_RC_BAR_CFG_IO_32BITS           BIT(23)
+> +
+> +/* BAR control values applicable to both Endpoint Function and Root Complex */
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_DISABLED              0x0
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_IO_32BITS             0x3
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_32BITS            0x1
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_32BITS   0x9
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_64BITS            0x5
+> +#define CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_64BITS   0xD
+> +
+> +#define HPA_LM_RC_BAR_CFG_CTRL_DISABLED(bar)                \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_DISABLED << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_IO_32BITS(bar)               \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_IO_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_MEM_32BITS(bar)              \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_32BITS(bar) \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_32BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_MEM_64BITS(bar)              \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_MEM_64BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_CTRL_PREF_MEM_64BITS(bar) \
+> +		(CDNS_PCIE_HPA_LM_BAR_CFG_CTRL_PREFETCH_MEM_64BITS << ((bar) * 10))
+> +#define HPA_LM_RC_BAR_CFG_APERTURE(bar, aperture)           \
+> +		(((aperture) - 7) << ((bar) * 10))
+> +
+> +#define CDNS_PCIE_HPA_LM_PTM_CTRL		0x0520
+> +#define CDNS_PCIE_HPA_LM_TPM_CTRL_PTMRSEN	BIT(17)
+> +
+> +/* Root Port Registers PCI config space for root port function */
+> +#define CDNS_PCIE_HPA_RP_CAP_OFFSET	0xC0
+> +
+> +/* Region r Outbound AXI to PCIe Address Translation Register 0 */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0(r)            (0x1010 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK    GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS(nbits) \
+> +	(((nbits) - 1) & CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_NBITS_MASK)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK    GENMASK(23, 16)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN(devfn) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_DEVFN_MASK, devfn)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK      GENMASK(31, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS(bus) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR0_BUS_MASK, bus)
+> +
+> +/* Region r Outbound AXI to PCIe Address Translation Register 1 */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_PCI_ADDR1(r)            (0x1014 + ((r) & 0x1F) * 0x0080)
+> +
+> +/* Region r Outbound PCIe Descriptor Register */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0(r)                (0x1008 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK         GENMASK(28, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MEM  \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_IO   \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x2)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE0  \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x4)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_CONF_TYPE1  \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x5)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_NORMAL_MSG  \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC0_TYPE_MASK, 0x10)
+> +
+> +/* Region r Outbound PCIe Descriptor Register */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1(r)        (0x100C + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS_MASK  GENMASK(31, 24)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS(bus) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_BUS_MASK, bus)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK    GENMASK(23, 16)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN(devfn) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_AT_OB_REGION_DESC1_DEVFN_MASK, devfn)
+> +
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0(r)         (0x1018 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_BUS BIT(26)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CTRL0_SUPPLY_DEV_FN BIT(25)
+> +
+> +/* Region r AXI Region Base Address Register 0 */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0(r)     (0x1000 + ((r) & 0x1F) * 0x0080)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS_MASK    GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS(nbits) \
+> +	(((nbits) - 1) & CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR0_NBITS_MASK)
+> +
+> +/* Region r AXI Region Base Address Register 1 */
+> +#define CDNS_PCIE_HPA_AT_OB_REGION_CPU_ADDR1(r)     (0x1004 + ((r) & 0x1F) * 0x0080)
+> +
+> +/* Root Port BAR Inbound PCIe to AXI Address Translation Register */
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0(bar)              (((bar) * 0x0008))
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS_MASK        GENMASK(5, 0)
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS(nbits) \
+> +	(((nbits) - 1) & CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR0_NBITS_MASK)
+> +#define CDNS_PCIE_HPA_AT_IB_RP_BAR_ADDR1(bar)              (0x04 + ((bar) * 0x0008))
+> +
+> +/* AXI link down register */
+> +#define CDNS_PCIE_HPA_AT_LINKDOWN 0x04
+> +
+> +/*
+> + * Physical Layer Configuration Register 0
+> + * This register contains the parameters required for functional setup
+> + * of Physical Layer.
+> + */
+> +#define CDNS_PCIE_HPA_PHY_LAYER_CFG0               0x0400
+> +#define CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY_MASK  GENMASK(26, 24)
+> +#define CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY(delay) \
+> +	FIELD_PREP(CDNS_PCIE_HPA_DETECT_QUIET_MIN_DELAY_MASK, delay)
+> +#define CDNS_PCIE_HPA_LINK_TRNG_EN_MASK  GENMASK(27, 27)
+> +
+> +#define CDNS_PCIE_HPA_PHY_DBG_STS_REG0             0x0420
+> +
+> +#define CDNS_PCIE_HPA_RP_MAX_IB     0x3
+> +#define CDNS_PCIE_HPA_MAX_OB        15
+> +
+> +/* Endpoint Function BAR Inbound PCIe to AXI Address Translation Register */
+> +#define CDNS_PCIE_HPA_AT_IB_EP_FUNC_BAR_ADDR0(fn, bar) (((fn) * 0x0040) + ((bar) * 0x0008))
+> +#define CDNS_PCIE_HPA_AT_IB_EP_FUNC_BAR_ADDR1(fn, bar) (0x4 + ((fn) * 0x0040) + ((bar) * 0x0008))
+> +
+> +/* Miscellaneous offsets definitions */
+> +#define CDNS_PCIE_HPA_TAG_MANAGEMENT        0x0
+> +#define CDNS_PCIE_HPA_SLAVE_RESP            0x100
+> +
+> +#define I_ROOT_PORT_REQ_ID_REG              0x141c
+> +#define LM_HAL_SBSA_CTRL                    0x1170
+> +
+> +#define I_PCIE_BUS_NUMBERS                  (CDNS_PCIE_HPA_RP_BASE + 0x18)
+> +#endif /* _PCIE_CADENCE_HPA_REGS_H */
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
+> index 79df86117fde..ddfc44f8d3ef 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence.h
+> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
+> @@ -11,6 +11,7 @@
+>  #include <linux/pci-epf.h>
+>  #include <linux/phy/phy.h>
+>  #include "pcie-cadence-lga-regs.h"
+> +#include "pcie-cadence-hpa-regs.h"
+>  
+>  enum cdns_pcie_rp_bar {
+>  	RP_BAR_UNDEFINED = -1,
+> -- 
+> 2.49.0
+> 
 
 -- 
-With best wishes
-Dmitry
+மணிவண்ணன் சதாசிவம்
 
