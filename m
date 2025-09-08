@@ -1,347 +1,169 @@
-Return-Path: <devicetree+bounces-214344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CFFD2B48D12
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:14:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10346B48D2A
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:16:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DECEA7AAD0E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:12:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BFF453BF0BD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:16:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A64EB2FD7CE;
-	Mon,  8 Sep 2025 12:14:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A8612FA0C7;
+	Mon,  8 Sep 2025 12:16:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="AvWnmmqZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jmKhRTm3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2084.outbound.protection.outlook.com [40.107.100.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA9462EBDE6;
-	Mon,  8 Sep 2025 12:14:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757333662; cv=fail; b=NvK08IIfSERSjNkbI35L3UBJCBm9eJpGl8vZmW1hipv4qog54jJEEBUP2gaCSj/unCXPECcALYMMftkaXdkMDX78dqh3ImXVzARIfyvAxluGHL7mqBNjlBsKH+m+jCv91LQSFWp4owCWw/ccYrP7KgM17LZXWi5qtFwpPvcj6xM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757333662; c=relaxed/simple;
-	bh=MBxCnS1PdnEQpZWDmajRp/b0xAC1vKxcJz3MKKhM3oA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=BOzBvKSi0azkA5lQyn/WB/euIUdi+JRhgpav2gy8Bo7MVBZ+XDR5OyMauxKtiR0Xgxxc1k1sUTLh/y2GBCDri1xo4tbUzg9HVxlieCCVYDp/PZ5qdbZ0KvsZ3D8N917TbwlKbC/gO5e7ZTKvarKeJQVUlXtmPIq2+reRFYR4nnk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=AvWnmmqZ; arc=fail smtp.client-ip=40.107.100.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Ux3MOjovrjHv3jKdQEMWF+ThWGux9aCVoqmm3JqAlMeWVqHrGSnFRZMlrOFGV5QRU5uwGOL/IH1tx1NFJC34wKjS8p+aXTjBusOxtyWJfbdmxMqZoyb5CyVI8C5blF/LqJKKxvU+u469kvNbh0Vc6QkaagmdXriDM4WPUVP4qjJf1QWq00ZNS2SApt0uwZJrcTCdxrtFi4KmPDOOrWoyDIiqLwYD6k67ewFvPzuoXNKRVSlxeFiIlr7Yhw2xSvyn1PtvJ7AwFfuOFtFN0yVf+CblIisqnyq3dBCHwarlvYlCF/BzRyLHzf1xV3+rS1lVmnGjLHuYCuxWElzZr1F2qQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6bW3yiB6m967I7ePADYab7nVLEpUeLhOJ18eFpB6Ixw=;
- b=NdnyfO60K1waNQZfpH0Ib0iZ8biJBq56mpDT9jUJ40yGkPU4pJBOhvDaxiyo+EvkhfGP633q7mUrjTpDPafqlUG2NT1sjdRnvE+fpJHy7odJ6k9jK9z1i4h7vYhEJfPjEXNXlfheWlHEACqn4Zen15jKRhZCKDhl+tdndPjDCq4nqm4MvDrnbWRGJ3Y0LTdS79aVJKznYj3PaSPDQeviSGz0gQmfN5d3eNk21IHbpbmXys4OKVpsCHYSPwVfr9DjU0KrTbtkL+Y1o7OQyl0440eBID6DkCtL3xZ67cFy5l1nrLQzQB8rWUFKCFMysn6q6XvoA5Vg+VdYGg+xF08biQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6bW3yiB6m967I7ePADYab7nVLEpUeLhOJ18eFpB6Ixw=;
- b=AvWnmmqZ6i4opentFHkrl2ZPJC+6EJA7RIqczHySws7dm/O92DTA53SxpwA0mrH+XVpyUAPKAixLRdMItUr/CwWaFvoUOPUy9zrQ7xFEXe1Ph4l601dTol4ChTVKfCdrBK7xWw5gawIa1ZQ9K8ky1/nb+g7KRip4X0kJ9/pkT+M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com (2603:10b6:a03:4f5::8)
- by DM6PR12MB4092.namprd12.prod.outlook.com (2603:10b6:5:214::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Mon, 8 Sep
- 2025 12:14:13 +0000
-Received: from SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30]) by SJ2PR12MB8109.namprd12.prod.outlook.com
- ([fe80::7f35:efe7:5e82:5e30%4]) with mapi id 15.20.9094.018; Mon, 8 Sep 2025
- 12:14:13 +0000
-Message-ID: <a0817722-50f5-44c6-b07e-a10a48e87239@amd.com>
-Date: Mon, 8 Sep 2025 14:13:56 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 1/2] dt-bindings: i3c: Add AMD I3C master controller
- support
-To: Rob Herring <robh@kernel.org>,
- Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Cc: git@amd.com, alexandre.belloni@bootlin.com, Frank.Li@nxp.com,
- krzk+dt@kernel.org, conor+dt@kernel.org, kees@kernel.org,
- gustavoars@kernel.org, jarkko.nikula@linux.intel.com,
- linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
- radhey.shyam.pandey@amd.com, srinivas.goud@amd.com,
- shubhrajyoti.datta@amd.com, manion05gk@gmail.com
-References: <20250905113740.3841181-1-manikanta.guntupalli@amd.com>
- <20250905113740.3841181-2-manikanta.guntupalli@amd.com>
- <20250905234037.GA1512025-robh@kernel.org>
-Content-Language: en-US
-From: Michal Simek <michal.simek@amd.com>
-Autocrypt: addr=michal.simek@amd.com; keydata=
- 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
- mpwx1d8=
-In-Reply-To: <20250905234037.GA1512025-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR07CA0226.eurprd07.prod.outlook.com
- (2603:10a6:802:58::29) To SJ2PR12MB8109.namprd12.prod.outlook.com
- (2603:10b6:a03:4f5::8)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A696226CE0
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 12:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757333782; cv=none; b=CKx2MsUl0XtXWU7xQCqYG4lMEhJ6UxggFcvazGTVkznmJsbPDg8al3G/nzK8PKPYIkOQ/EbOZLsTd5tocUse7Xf7L1fJyVk/PoyiG3cxcYNNtpd5IluT0tE6nbtUbVzBqYgEdkLZmnf6nkA7VITzIuT/ldqp9rCVAxhgycjlaaU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757333782; c=relaxed/simple;
+	bh=4MmMtxr9FWrYk3eV+BcA70HiaflcG4yNB+x6gFP8ABU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gHipuNG7SNAjbaz7ok4BQvm4hyPAOFIGhlkzQTNxiGYYAToo7C4giVpYQJHaUOs5tu+qvfrhk93HsTng+JIgC3m1OVK5zcVrcyJ0Ay+TQ/16CZHsIfv0J5rnUumxrNv6MUzriolTlybqMs2ujYL26+bs+CuYvR1prZpnNlJh6L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jmKhRTm3; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45de6490e74so8350945e9.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 05:16:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757333779; x=1757938579; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=YKwYvq6k8+ej97B1SVmOtFjmmFjJAHPbIxSDGQ7VhFc=;
+        b=jmKhRTm3JyllAyunYNX1/lFXzcBVzwzgiBxuYeQFOtU4Dwpjm9y+2GZZKhr6/a8eus
+         JehOBy/6si61qYlkh5X8MR5eVFVUjy50RaCxNfQ34KaIgVFMkkxPfiNSr6qErxCzVKRV
+         /r2/JvvGV31Ufv3PCm/hdncso/XXxwrmvKBtz+FkPV+7uql7RwljY3SVBJa/aq0UNvV0
+         9fkWySTd+vwSwCn8CKDtxxkeYy0ar+pfiLLL1UvIfyP5sFkhA0kPEors4nJMAhSifsTQ
+         8I2+tGLbOZw+uivKhj79Ai4BcSeegXFoR/BfvPFMTxN40CS5MPfnwR61jDixwp68rGE8
+         7viw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757333779; x=1757938579;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=YKwYvq6k8+ej97B1SVmOtFjmmFjJAHPbIxSDGQ7VhFc=;
+        b=Ruc9CvlFijQu8ZVhpqKuKz+4z7WBnD/sOTVRl64CiXr9FNfUvVADMlgZbQ6aBj2tim
+         fDuBarwKdsnajhKSxKM+PFTHVHLff90lY26xBlvJSWcbRqZaDY4wf6lwA5RFFr4uBTHN
+         6kzjTBT8bbwo88K58tCMndQltRhehJBhkFQR07iWQ2RXde5HFl+ptv8kCYNiQ3wj2ByO
+         lo8BPFEt27j9VnnBfJ4yngKjfUlca26S+IT2DIRw/KYLx1OOVQStjwDdW50MXRIZBvgt
+         bAXMzpvcjMFllBuyHSeaJKAldhJvCm07Wh4G6srkottXgwkDGCZkY7VFR+4zJPYQQkvf
+         InuA==
+X-Forwarded-Encrypted: i=1; AJvYcCXbS8R2q9GWJBebd+hQI/allhcCw5IExpEd8RnaOOJNfYGfQysUBUyJH7kTjz4ml5ft6GUKa7tYTO6D@vger.kernel.org
+X-Gm-Message-State: AOJu0YzyIj3XA4zALtNdcjI5GneDhmMHjVG0Mm9nyg4+YGt7mUN5WmV3
+	VoLFzm4G5gutSHVvaWLfF+PXI1T3RJrd60//t2xCB9VSrIEegjZpvpCTf6PMF/ghs8k=
+X-Gm-Gg: ASbGncvPvqlp3xBZAbz4KUOBPVJE6PlZ/H9vnNp35eRnifeXIQifHeF0TO2AGjhuynx
+	pnOOolPat5Nb3D4UM7/YIvVLGV1db9NBD7il+0bB6aBwOQl8Hva78kcEg/DEWY6Q/pgZ3hJZS0L
+	hv2iBXlQlK1Xrpdi/qOnIzhmpQfgmdpUC1IMwnPRmGpbieDaQgm3pR/0wSIkSCQuPcogEOoer/q
+	DtUB2GZvkXJwrGb9FNGmPxyIm64AHuuLz4mRRD/1SAbkruL58oweLg9VMqFUI0RG42833httYs7
+	9NIVoPeAE4Mez0aeIrKhR7snrE8VtnuP7qHW2Md9O8sSKW0vZ09lP2XpWlTumL69dvQQFcgfeVC
+	uNVjkqgTqfHxzHigX+XIWPaTiOZhNJ3tTqUtXDMlbu5Cd8AQrLK45CkjcNMz+054xLDHIks/kGq
+	7uvdUlYIH65C0P
+X-Google-Smtp-Source: AGHT+IHHaHG9f3JfZZVt+d1nycXZY2xvo779V3OBu/mIAiQ09/Gn1pehlQ1lC70/JTuVl0j5hESIAQ==
+X-Received: by 2002:a05:600c:474a:b0:45b:7d77:b592 with SMTP id 5b1f17b1804b1-45dddea4cccmr73119825e9.12.1757333778815;
+        Mon, 08 Sep 2025 05:16:18 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:9b6a:7b16:fb30:a294? ([2a05:6e02:1041:c10:9b6a:7b16:fb30:a294])
+        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45de15de318sm86864365e9.13.2025.09.08.05.16.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 05:16:18 -0700 (PDT)
+Message-ID: <fd4c81a5-3b99-448c-92d4-9465f0e76db3@linaro.org>
+Date: Mon, 8 Sep 2025 14:16:17 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ2PR12MB8109:EE_|DM6PR12MB4092:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1694e40b-7b0e-4ad6-c240-08ddeed13953
-X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|7416014|376014;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?K2FHSXAvblloNzl3cFAvakp0TndvRmhlRG1RaUdSeTBLSXNhWGVPRk5kQU8z?=
- =?utf-8?B?am42UDFudXhORXEwZSt4dEJHT0c2MnVPemF2eE9waWlyM1p2ZEUvNURoNk1Z?=
- =?utf-8?B?WTlGVHp6U0wrWjRPckI4NS9uOTVCcHJGR0YzcVZ3UENxamhSUVNtcmdmRlJR?=
- =?utf-8?B?ekNFeEx4WUV6M0duVmRLVnIxVDNKeGpzMTcyVDJnNW5TQVNIbkRjeVQ3LzNY?=
- =?utf-8?B?UElNaXkzSXcvU1NmY01BWnZFNXF4TkZKTW4vVmRwNit4a2ZCMGlCM2lPSEFO?=
- =?utf-8?B?UHJXdFN0b1RpdDRHRmxSWjNHYTJ3TkVYTy95dSthK3B2cDNBdkV2ZFM0eUxJ?=
- =?utf-8?B?cnRrbUVOdElXd1ZwQ2ZrUFVaaEZwNUNvWk13bzlDYlFaRU1ZV0liT0RwS3po?=
- =?utf-8?B?RnRFRjBxbGVaVmhLMmZsZG1EOXpadDgyL3gwRGtYZm54MTlaWWN3RkFpTGlq?=
- =?utf-8?B?RGhwbS84RGd2ZDBOMW1GQmJYc1ZFTDNucHdKN2Y0cjVhM25uQlJua2NkTG04?=
- =?utf-8?B?c1JnbldxV3hCOE44cnJMeUpnWkhrcmlDL203dzdkQ2cxeXVXMGhRRWVNTWxZ?=
- =?utf-8?B?TmEyU3F6NE8rUGRXclVSdjJkcWlvV0Y4aE9ob1N2OGxNNDhOUXppVmlrckVw?=
- =?utf-8?B?bjFwdWFCc2V1NUV5Yk1KN2pMekUzQlN2cFI1dG1XVm1wakRveFZyNHpEUUZo?=
- =?utf-8?B?b3hjbXN6WHRFd1JPTFliS1VJbjEzendNalpsbGYxQUZRVzhYOEJ3dFNPajdM?=
- =?utf-8?B?RCtRdEVVQkRjNUF6aFRJVytmTHJ5R01qc0ZsYWpSR0ZqcVY4ZmZHUWhnenVR?=
- =?utf-8?B?UFNPZHo3RGhPZmMyME01dmpOLzN6dDBVMjJ1S3VFSDNaVnJUS29GcnJjSVNB?=
- =?utf-8?B?WFMwR3JKUHdGV0tNOEllL2RMdDdHbVM0VU1vN1dUWURwWFZHQUc0ZWRSRmNs?=
- =?utf-8?B?bS9Ib2xjR3huN2ZldHI0NnRpV1EzNG9zZHhlOFQvS0V5VHR1OE9JNmwvNW11?=
- =?utf-8?B?M1BTNzlQeEFDMUVxSUxXZitNVkF5d3BkYW1uRG40bGtldUxXNFVQRi95bmNF?=
- =?utf-8?B?aUR1REtkb1l6dkhIOWhKQzNudXdvTG1DWUFpZWNXejFnSlM4SjJtNnNMOHVI?=
- =?utf-8?B?dE1EZFl2TUdoVnFGNmFBdENORktsUW9OOCsrendERUk2b3RqeWljUFVQTnI0?=
- =?utf-8?B?UGNhT250ZzZVZzN2N0QzQlVXV2JPVnpIVmtlQnRJeitiRW15dHNtQ3VGUHli?=
- =?utf-8?B?TGQ4dlIwMHlJdWxZQldYN25NV1Z3MVFBRGJWcUh2azhQSUdmdFlOSVpOUzR5?=
- =?utf-8?B?em9XeE45MXlnWktkUXRYUUJrbnRrdlpJS1FpWVBhRzZOVmVjY0UvNy9aMmVX?=
- =?utf-8?B?OVlBM3N4bWUwMzhqcnp3NWpzZ0gzYmJaSGFtUE9wSitiTE5hMzlqN3VRVWhx?=
- =?utf-8?B?SGVTekovdEV0STREZnUrTHlqTFNuVkpxVit0djJidGdkaXVjMGU0bXpaTkhC?=
- =?utf-8?B?akV5d1NlK2M0WjBXc0IwUTU3bU9ZVnB3cVZuVVlveHBmVWlCMmxkUk1VTHlu?=
- =?utf-8?B?VWF4d3lEQWtWdzJzQm50Qkg1b3M2Y2hsSUhPNFduRUxaQm9SRjNMQUFpZjNu?=
- =?utf-8?B?di9VTHZmdmlrQVpsb1ZBd3ZRVWNrRVJYYUxrSVh3NEhTSUxGMjh5clZJVVZs?=
- =?utf-8?B?WHpwUE9tck1QbVIxZ3QwNEpOOExIR3A4YVorbVRDdVBrVVNXbGlZbExZbHY5?=
- =?utf-8?B?VkNuSURxa3NXUExXWmJ1R2ZEZGVVaC9BemNDbWdRRkxPSlNsd09Fd3F2czNp?=
- =?utf-8?B?bXVPKytxSWc0SXp5MUFZRTF1RS9rYmJ1Z1Y1L1BaYk5NSUZML2NFaHV5VENK?=
- =?utf-8?Q?g0A/tVJcq0jdU?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ2PR12MB8109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(7416014)(376014);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?OUJiSlBkODRqemNTM0diSmVzaEpkUDVhL0U1OUZvZXcyd0VQS3lxOFVDRmtL?=
- =?utf-8?B?QmZ6WmFSUUlVWTBkbUM2c2JwbGhwSm9NTFhUTnlTbzhVY2NCMUJtNU9wRDh1?=
- =?utf-8?B?cUgvVFVpNnUzZ3RpcEFwTzVWbm9YV09SQzM4WlhYRkhndW51K1IrSXBId08x?=
- =?utf-8?B?Y2twV3lGOEJ2cDBDcDRQbHJ0bHl4UzlYTG1NY05iZ0c1NThPN0lyMjUzWXBr?=
- =?utf-8?B?T2lYM3VWMXhxL2QrSnRIL0ZLb253a0ErYkljbEJ4QlhRSlcvVForMW9kTVRB?=
- =?utf-8?B?RVAyUCtaYUFSWS9kMGVpQWtOMG5wL3E5RXhkTUJaNHNSKzRxNG0vZlYvc2V3?=
- =?utf-8?B?YklJYlZMdUhJZXJLK0Y1SjJUc0lRSmpaWTRNNERKQXpRdC80RmZseHdGckU1?=
- =?utf-8?B?dkY0UUp4N3FBWjVUR1lUK1JvbkF1Nm4wekhSYm1rb0R5MC9UQWRmL3JRakVs?=
- =?utf-8?B?YjRzb005L3lpdjlnai9Dd2NZWEZ0ZVc3M2pMS2hXMUgwZmVraG5oZ2JYeWU3?=
- =?utf-8?B?cU05aGx0eDFSZ1hkZkQ2bXl2S3hyTWphcitFajJTZ2VMQW95WkkxZ1hLcVpv?=
- =?utf-8?B?Wko1UmVpejRnSjhGRjZ4bGFQVUhIVklGZS81MEJ2TzNoZkJHQ1ZYdHY2RGFP?=
- =?utf-8?B?NGhjNEZlMityMFA0NWRGU2tnazhKemZTckQvOFFrRUFkWEl4NFdaZnF2UW44?=
- =?utf-8?B?VHpIWStyRjhyZ0E1bHBCb3BFV25xVWJGc2pYZUN1TFp6cC9qNE5JSE10UGJM?=
- =?utf-8?B?SUZiNm42aFVMdGx3YVBLcVNFYVVVSCtGSVVQYlY1YU53M2wzTEw3dEVMbDVk?=
- =?utf-8?B?UEpIOThaT2l1eS9oNjRZc3JZSDBBbnNzN3JnQUh2Wi92RDM3bktyRU5JWFJM?=
- =?utf-8?B?c1lMUVZsZGptM1NyS0xxa3ExMDVFaVEvcExScEtJWWFoZkM5andkTWZ3dDAw?=
- =?utf-8?B?SXNIVUhtSklrbGgrMldZTVdXKzFuNkJJWjQ3VWxiYlFEcmFXQnJEUHRYVUdK?=
- =?utf-8?B?ZHhQV0tiUjJKR3pTZDVBR3VYUDVTWUV2ZFQxcld6dGFLVW1XY3pYNzJMLzRl?=
- =?utf-8?B?RW9QQjJtSGZOSnZXMUE2WE9JV1J2S0ZsbVc3ZHViTWpRS2YwZDMxaXFvOVJz?=
- =?utf-8?B?VnJ5MEFUdjRTVUhBcUNZV2hScHpCUEgrSFprYkxwRk9xL1lIblBnM1lyeEhx?=
- =?utf-8?B?OFU4RjBLekJwR1RncXFMaTVLUUVHWlVNUS95UmI5MXVSdXljQWROLzliT0lW?=
- =?utf-8?B?S1EwNjJPV085OHdBeWJBMkpYNHZROHNGWFdRb0ZmT21KTk5mY0d0UTJISnp4?=
- =?utf-8?B?Z01VakhRMS9SS0U5RFU2UHY5czgrRzBiUGtmUnQvUVMwMDRsb3dsZXNGR2Fj?=
- =?utf-8?B?T0JzMVc2a2JpWWRvM2FHcUpPRVRzOU5IUDZRczdDc2Zmd0QyWCtKd1U1S1lI?=
- =?utf-8?B?cFVNTi9ITzVtTzhYUmNqSVBqRlFzcjdyYUNNVmlESGdBQjZkeCtaMTJnUjNS?=
- =?utf-8?B?VTBQZHlpczlVTFA4dHh3NWExU0VyTXp5Szk3ZVh2RUJmeVA0RzJwekhHOVNw?=
- =?utf-8?B?d3V3MWtJOVM5aXY1bGNqeE41THMyUXQ2R1VXVSs0TlU0S3RqQjJudjVMeEhq?=
- =?utf-8?B?bE5ZbTAwb3g4aktPRjEwRU41L2JSYWpPRW9GSDl3d2hucW10VWd6YUlyVnoy?=
- =?utf-8?B?Ly8yTjBVK2pldFpSbTIxaElQMkdRN3dTRGxvZjFMV1IrSFlCUVgzVXNQTXpH?=
- =?utf-8?B?SE1rTlhUS2laRWhEb2ZSVHVTaXo3UDdIMDVaMDIvenBFcEVoMmRDK3VqaGx5?=
- =?utf-8?B?bmxqUnRDWEpSSlgrM2F0MlF1VWRsVDlYL0I5SlJDbEdQNTBldkNFREVuQWxY?=
- =?utf-8?B?ZmswSWFST2tFR3JLcjNONXE1a1RYMkh4Z2NzMzJyZmRUQTZsSDZuVklEUzhI?=
- =?utf-8?B?ODRMUkdkSk50MDkvVmc3U0ZUN3ZEd2R3YTMwRTJCYThna3ZOY2NuVlg2cFgz?=
- =?utf-8?B?Wm8vU1dnMXNLbUhNSXFaaW1Ld3RGMDRaVHE2WTBXQlpIbXVGTm1TM3h1WUh6?=
- =?utf-8?B?VjRHK2lSc0hpWUVBeGsxZHlYWGtOLzdmSHIvOGJrVTRGc1lsTThuNXc1QWpI?=
- =?utf-8?Q?kP27P3hyuXEgrl5DrFQb3ztAZ?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1694e40b-7b0e-4ad6-c240-08ddeed13953
-X-MS-Exchange-CrossTenant-AuthSource: SJ2PR12MB8109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 12:14:13.6877
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fPZXMgE7sNX34T8kCxx8gx5y02+acboKVDkxy0w8BpCdAKljef9WUkWjFDaPdq6d
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4092
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: David Lechner <dlechner@baylibre.com>, =?UTF-8?Q?Nuno_S=C3=A1?=
+ <noname.nuno@gmail.com>, jic23@kernel.org, nuno.sa@analog.com,
+ andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+ <20250903102756.1748596-3-daniel.lezcano@linaro.org>
+ <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+ <0bfce1eb-69f1-4dae-b461-234eb98ffce1@linaro.org>
+ <a3373804-08a4-4526-a432-c21a74ea3d6b@baylibre.com>
+ <edc8e024-e425-49de-bfa2-44218fe72e26@linaro.org>
+ <6b8cd005-b04c-4dd7-abf7-5a51319a5f0a@baylibre.com>
+ <23b80d52-6149-483b-a159-276dd00d12cd@linaro.org>
+ <e5e76789-c8d9-463c-aa01-f2c6ae718f74@baylibre.com>
+Content-Language: en-US
+From: Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <e5e76789-c8d9-463c-aa01-f2c6ae718f74@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Rob,
-
-On 9/6/25 01:40, Rob Herring wrote:
-> On Fri, Sep 05, 2025 at 05:07:39PM +0530, Manikanta Guntupalli wrote:
->> Add device tree binding documentation for the AMD I3C master controller.
+On 05/09/2025 23:54, David Lechner wrote:
+> On 9/5/25 3:58 PM, Daniel Lezcano wrote:
+>> On 05/09/2025 17:25, David Lechner wrote:
+>>> On 9/5/25 4:44 AM, Daniel Lezcano wrote:
+>>>> On 04/09/2025 19:49, David Lechner wrote:
+>>>>> On 9/4/25 12:40 PM, Daniel Lezcano wrote:
 >>
->> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
->> ---
->> Changes for V2:
->> Updated commit subject and description.
->> Moved allOf to after required.
->> Removed xlnx,num-targets property.
+>> [ ... ]
 >>
->> Changes for V3:
->> Updated commit description.
->> Corrected the order of properties and removed resets property.
->> Added compatible to required list.
->> Added interrupts to example.
+>>> Taking a step back, what sort of real-world uses cases do you need to support?
+>>> Or are you just trying to implement everything that the ADC can do? The latter
+>>> can be a bit risky because you might end making something where you can't do
+>>> a buffered read and a single channel read at the same time, but later find out
+>>> you have a real-world application that needs to do this.
+>>>
+>>> It looks like it would be possible to implement buffered reads in lots of ways.
+>>> IIO devices can have more than one buffer per device so we can add more in the
+>>> future if we need to. So I would just drop the DMA part of the implementation
+>>> for now and implement the basic triggered buffer using MCR[NSTART] and ECH
+>>> (End of Chain) interrupt request and just reading data from the ICDR registers.
+>>>
+>>> I would wait to have a real-world application that requires DMA to decide the
+>>> best way to implement that. There are lots of possibilities, like does it need
+>>> an external trigger or is continuous mode good enough? Does it need to be cyclic
+>>> (something the IIO subsystem doesn't really support yet) or not. Is exact sample
+>>> timing important or do we just need a big buffer? These questions we can't
+>>> really answer without a specific application to use it.
 >>
->> Changes for V4:
->> Added h/w documentation details.
->> ---
->>   .../devicetree/bindings/i3c/xlnx,axi-i3c.yaml | 55 +++++++++++++++++++
->>   1 file changed, 55 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+>> In the case of this IP, the use cases are in the automotive context. The system running on the APU is supposed to monitor at high rate (or not) the different channels which can be connected to any device the integrator choose to use.
 >>
->> diff --git a/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
->> new file mode 100644
->> index 000000000000..1daeb20205ac
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
->> @@ -0,0 +1,55 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/i3c/xlnx,axi-i3c.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: AMD I3C master
->> +
->> +maintainers:
->> +  - Manikanta Guntupalli <manikanta.guntupalli@amd.com>
->> +
->> +description:
->> +  The AXI-I3C IP is an I3C Controller with an AXI4-Lite interface, compatible
->> +  with the MIPI I3C Specification v1.1.1. The design includes bidirectional I/O
->> +  buffers that implement open collector drivers for the SDA and SCL signals.
->> +  External pull-up resistors are required to properly hold the bus at a Logic-1
->> +  level when the drivers are released.
->> +
->> +  For more details, please see https://docs.amd.com/r/en-US/pg439-axi-i3c
->> +
->> +properties:
->> +  compatible:
->> +    const: xlnx,axi-i3c-1.0
-> 
-> I'm still wondering where 1.0 comes from? From the link the only
-> versions I could see are Vivado tool versions which appear to be year
-> based. If the IP is bundled with the tool, then use the tool version
-> (oldest version you tested with) if there is no other versioning. A 1.0
-> version really just sounds like you made it up.
-> 
-> Something like bindings/sifive/sifive,blocks-ip-versioning.yaml is what
-> I'm looking for.
-
-This is what I have found in public space talking about it.
-
-https://www.amd.com/en/products/adaptive-socs-and-fpgas/intellectual-property/vivado-ip-versioning.html
-
-https://docs.amd.com/r/en-US/ug1118-vivado-creating-packaging-custom-ip/Versioning-and-Revision-Control
-
-https://docs.amd.com/r/en-US/ug896-vivado-ip/Upgrading-IP
-
-In past structure was slightly different.
-There was also alphabet suffix.
-You can see it for example here
-Documentation/devicetree/bindings/timer/xlnx,xps-timer.yaml
+>> For this reason, the driver should be able to support the different modes because the integrator of the car computer can decide to monitor the devices connected to the different channels differently.
+>>
+>> Said differently, we need these modes because the capture depends on what the integrator decide to connect to the different channels.
+> ...
+>> We just know all these use cases exist.
 
 
-This is for example change log based on Vivado version to give you an idea how 
-it is tracked and described.
+The submitted driver supports the three modes.
 
-Thanks,
-Michal
+Nuno asked to use the IIO dma engine API.
 
+However there is few information and examples with the API and I failed 
+to use the devm_iio_dmaengine_buffer_setup_with_handle() function.
 
-2025.1:
-  * Version 1.0 (Rev. 4)
-  * New Feature: Dynamic addressing feature updated to handle dynamic address 
-register update within the IP.
-  * New Feature: Updated IP Catalog taxonomy structure. This change has no 
-impact to the IP.
-  * Revision change in one or more subcores
+AFAICT, devm_iio_dmaengine_buffer_setup_ext() can not be used because 
+dma_slave_config() is not called, thus the src_addr is not set.
 
-2024.2.2:
-  * Version 1.0 (Rev. 3)
-  * No changes
+Is there any example somewhere, documentation or guidance to use the API?
 
-2024.2.1:
-  * Version 1.0 (Rev. 3)
-  * Revision change in one or more subcores
+Thanks
 
-2024.2:
-  * Version 1.0 (Rev. 2)
-  * New Feature: Support for Target added
-  * Revision change in one or more subcores
-
-2024.1.2:
-  * Version 1.0 (Rev. 1)
-  * No changes
-
-2024.1.1:
-  * Version 1.0 (Rev. 1)
-  * Revision change in one or more subcores
-
-2024.1:
-  * Version 1.0
-  * General: Initial release
+   -- Daniel
 
 
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
