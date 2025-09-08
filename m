@@ -1,110 +1,86 @@
-Return-Path: <devicetree+bounces-214512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B6ADB49753
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:38:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F82AB49773
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:43:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 358904E1F68
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 17:38:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A8E5C188AE5D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 17:44:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB6F30EF8F;
-	Mon,  8 Sep 2025 17:38:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9EBA53126DB;
+	Mon,  8 Sep 2025 17:43:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="yqMzfXgS"
+	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="b05xsw9r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C3E411C07C4;
-	Mon,  8 Sep 2025 17:38:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9A001C07C4;
+	Mon,  8 Sep 2025 17:43:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757353119; cv=none; b=FIkOQZ8fw1noOVKB/2ocmtHGJALnYQB8ocOPT02ON6xPgRyuR2yzh2mbIWYCsnaaY/8WkFmNAwqCPjeaZTvLjAqW5j5LNTUZfAyRyAd60UamH2uU1uNEZ3gZ+mmh0ndYnuiZPRTgiIYvj7qeOPNAXiZfl4zrU6+A7Up8/ZhidUY=
+	t=1757353420; cv=none; b=fkq9x7DQaATdVmGsHGrU1+kwi/6XrCQVgF5qmXJDd1csZDlZtGvPahj4dwNNXBOeQdYGRGV7vq1dKnDhjioJUJlyW+0zEbfoO4+SG0XpKzSfMQ2IgnHK4a5EsWjEYbbBFp6w19EEhcWY6u/n0EBrcFPbvk2ApC5v0nLmjlFZ1ls=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757353119; c=relaxed/simple;
-	bh=BoIeC66onOFsw0HPcxliBVdwQXYRiHMW7ojCs/kgk9Q=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gOF23VHR8xScpIVtCGt7TXifcFxoju8UTv1tkFijctgl/XGmDwIsBQoNRDw283EdannzniYivrPurYqqGUETrvOwhd/f66QpZn2hdRAt1jEwxP0CfKoeDSiNQtyNuEeYaJ85408q2z+IouVMY0K3045Xp8Ao0fulSWi3aCigLp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=yqMzfXgS; arc=none smtp.client-ip=198.47.23.234
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588HcVCY3916323;
-	Mon, 8 Sep 2025 12:38:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757353111;
-	bh=P0oadEFhyKw8xNX02oSrKVOwP9QjJ5m1LgbJY0yE+Oo=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=yqMzfXgSQL6Y7ytZL5GytIt2q/pn8UtZfYV4IfkkSod4FR4sFf1ESDpC1JCfTY0wS
-	 hxPJ/tYXSC0ts85MoX28Vv5vAMRtNCkgxFl+TYg+P/Fal+HqQ3Mx+b0ijrno3ELU6r
-	 sfm6N82qg+D5H/yeU+gw37ycdEl9W6P2jG2c3kFk=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588HcVZW2565880
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 12:38:31 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 12:38:31 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 12:38:31 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588HcVVp1281123;
-	Mon, 8 Sep 2025 12:38:31 -0500
-From: Judith Mendez <jm@ti.com>
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] arm64: dts: ti: k3-am62p: Update eMMC HS400 STRB value
-Date: Mon, 8 Sep 2025 12:38:31 -0500
-Message-ID: <20250908173831.269039-3-jm@ti.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250908173831.269039-1-jm@ti.com>
-References: <20250908173831.269039-1-jm@ti.com>
+	s=arc-20240116; t=1757353420; c=relaxed/simple;
+	bh=f74QbRSsu1dbVhIZivsvztwsZbLNgy0Go7WHF+slRtY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=RCllCnGaBwYUfxZV/Og0YnLnt+3RysoEq4GLWRPVnX4qPf+8N/Zgs5bwnYjsN1MsiWqUMuXEaJS4m/X42C1T1wuDfcAS4KdIVC2+pnPnrAUn34efq6WE81FvZIQEMDMgiv0UyteQQMOIdkB3ia98HxbrCWqXIUFurCtjx1AnNmM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=b05xsw9r; arc=none smtp.client-ip=178.238.236.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
+	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+	Resent-To:Resent-Cc:Resent-Message-ID;
+	bh=7DxMFFEmYQJVM9egFKUYNFfua5OLnOklrmMhAPKnTXI=; b=b05xsw9rfQsjYMG19aZXF8tzZG
+	/20CStpvERO3aP+bvVk+s09xgiPy7s9jx8yt95sYkEBHlkF9thi/Ld2nmrJB3+kwLTgSngijqtVWR
+	yHNcweOwFzmqmducb8nkl6CouFGVYd7/GDFt5Qp5NgD1Ckl05BwQWajrRG9U3CO/EuJhmGA3wzzrK
+	3GsyRuEQjWbzjdbPYvcdaoO2ccWqzJJxnXq+fiP82O0VYEOCGITYoTYutzmsqVO0xFTZZ7EQ5Ro1u
+	Ut+F3YJ7VXBzsK8mt+RSls7XMHU8SoP334HJBMtAbGmZN48eV5gnuPQg3uC9kviC8A9oSoVHMPEFm
+	w0VoC9Nw==;
+Date: Mon, 8 Sep 2025 19:43:24 +0200
+From: Andreas Kemnade <andreas@kemnade.info>
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Paul Barker <paul.barker@sancloud.com>, Marc Murphy
+ <marc.murphy@sancloud.com>, Tony Lindgren <tony@atomide.com>, Kishon Vijay
+ Abraham I <kishon@kernel.org>, linux-mmc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-omap@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm: dts: ti: omap: Drop unnecessary or unused
+ properties
+Message-ID: <20250908194324.5d30155e@akair>
+In-Reply-To: <20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
+References: <20250908-ti-sdhci-omap-v2-0-72927890482f@gmail.com>
+	<20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-STRB setting for eMMC HS400 have been updated in device datasheet [0],
-so update for am62p in k3-am62p-main.
+Am Mon, 08 Sep 2025 16:17:12 +0000
+schrieb Charan Pedumuru <charan.pedumuru@gmail.com>:
 
-[0] https://www.ti.com/lit/gpn/am62p
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+> Remove unnecessary properties like ti,needs-special-reset,
+> ti,needs-special-hs-handling and cap-mmc-dual-data-rate from the DTS
+> files as there is no user of them.
+> 
+> Signed-off-by: Charan Pedumuru <charan.pedumuru@gmail.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-index 90afe21e972b..a1ce2fc8d947 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-@@ -34,7 +34,7 @@ usb1: usb@31100000 {
- 
- 	sdhci0: mmc@fa10000 {
- 		mmc-hs400-1_8v;
--		ti,strobe-sel = <0x77>;
-+		ti,strobe-sel = <0x66>;
- 		ti,otap-del-sel-hs400 = <0x5>;
- 	};
- };
--- 
-2.51.0
+Nack. At least ti,needs-special-reset and ti,needs-special-hs-handling
+are used by the drivers/mmc/host/omap_hsmmc.c and you remove it from
+nodes using compatibles of that driver. So at least restrict that to
+sdhci-omap stuff.
 
+Regards,
+Andreas
 
