@@ -1,87 +1,48 @@
-Return-Path: <devicetree+bounces-214198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 033D5B485FC
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:46:53 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 23903B485F4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:46:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9CECA34240E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:44:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 023A57A304E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:44:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB892E8E11;
-	Mon,  8 Sep 2025 07:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE06B26E71C;
+	Mon,  8 Sep 2025 07:45:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="azhN1hsC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nkHOFS9h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D5972E7BC2
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 07:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B01A1C07C3;
+	Mon,  8 Sep 2025 07:45:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757317391; cv=none; b=tfVngqooTnb3v7DCoXI+MLB0XQhskEgXF7CG7Jt5DIv9dZ6bx0GmhQTC5lw9qxgKB0twIEjnUJT8A1//gd+Pc8OkmdpTFLTXeF0AVF5kyD6R8nR6gbwojeNM081/x/QD+Mvam5TuX15m4g2Zw4i0fJ/1zHW3t0AjI9KavW7+2Qg=
+	t=1757317558; cv=none; b=qEaBq1ivGOT+lGi1XmruDIL5ktjBbwyf+bcrLd+tx3rMI6p4dh9TqeCkWwQD8Vx2P+fR7U6uFWatl2sJkQhP3f40TptgIYEi2v4BH1/sKobJfkVtzeZ61f2kxFicSBwvSWehgp2JCUoyJMoOX8UfVywVo7Mfw87cfAPPDUSZHy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757317391; c=relaxed/simple;
-	bh=WYg45bgT0XRN0euq4QCobxp8IotvXOVZG3lh3FUmcVA=;
+	s=arc-20240116; t=1757317558; c=relaxed/simple;
+	bh=HJ2U/p01RG3oRuFiFjUnDJ2F8saH8ZLtAypLdeEq8vE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=O0nQgmlFvn1WRp4mM3gxJCHTc43PYlvuKyGy7zhckucdiLWcjrS0YyPlWfIxar+FmnMXX30wxxl2uox7W375h5KS3dNQXPjs499GtOykoA273SQEdWeQyobf1bfuA9Pbc14YU+hYJjhN5Ap4mxhkBVze8XF67JJnoX3Y0dCU96w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=azhN1hsC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 587NXppS014458
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 07:43:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	1grmPgipKFGWJ92VbKgO7RBjzC/AoySVCE8pyMqTBpA=; b=azhN1hsCVGW3xN9R
-	qqm2DukADn+E924Sqz/YT4jdrwM1TmQWOMC5Ve3I9HKQUqnt4uZznMwbqIp9GEWC
-	A7ztNMDfXG2aR667ua+FQoVHEfwQ7TCwfalb85O3/KuGazvZXarDkIBXirZdMYw6
-	EhBpVPTY0+cemuOTQxwBgPNYm8x9TXwK9dARAbaw2dGO/DHjPpbUv7w6vK1GGsvw
-	ydQcZK8sgatnDoX1yCqNLOc0IjTMirkh2P8jjEp7ppwW2yS7L/ORf0GinaRrRFH7
-	it0nG1ontF3vliJnH68uU8TFtmWbxiUwzCxok5kR6QrScto3geAbvjxHC7X46p5K
-	GOXOTQ==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490aapbwrj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 07:43:08 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7507804a7f7so4724936d6.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 00:43:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757317387; x=1757922187;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1grmPgipKFGWJ92VbKgO7RBjzC/AoySVCE8pyMqTBpA=;
-        b=gFjdQpzyXkLx7Gu17MrR/w/naWWNqqC6GIZgquNdCKNBnLdEpP2eMxE2SvGxroXIiD
-         G7kXhsRrSI4LFKJ1MCkqsiMn3+I6dDTZPTxti0NGjnWRXWGtQNU6DsXMpKtO4Gckj6ae
-         q03PwB0p5tH15WZM/gNQqIFFCMmJMHzvH3OUv7Z44EI7rVc7ORQj6eAqU3IUshIZ51MG
-         2NZ2p84tEO0WYO/FuOEUgsw7TmnHHcwx3gDig/A/wZmsm+aYz1+hhKFbV7b4nbLItC0k
-         2h5JlKcLdixq+JqCKK+nfRMLZF0JYfydFwFtjB8BfK/KcvsJmfpPl0JDSW4dR/TpCFW0
-         4XNQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVAFDzoYnPACNTKj8EubhhJGIsWo/juQlzPQm1nPAXtnTchF/Euz/WkUVVanOQVa+mNSipXSE7ToEcB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yw26ums57Iz6PtQjNHy8kL7K5r0tWNxQxIIUGtwmPpiFAit27y2
-	04jl8lMdNY6wjJSy6eEAViyPXAQzSP0CFKRZjmse37E2PIpyehgoDOdNT9ow0Zwhc12IjhLnG2T
-	Wywf6+AO4WSD3ZLl80SRcnwvF5nn4nfldolC3pz/mXeDswYlCsM9SWTU2DIl3MV+A
-X-Gm-Gg: ASbGncseDi8rb6717KiTc5+2oWFzYOlwy/qBedC5NSi+kYfXliVvFrDQ+2J5r5Oy6g+
-	tRyKDXzVAIKYOjNRKJ/xS/EuYuIGkiWaYzRzplPHp+GUCol7+pKW8ou9hfnkwwEbNlPr9obJv4B
-	b4k6pZ6Jd/GbkVNl+C/rHqv7k4aBgr/TkA/2kVHlzLmTfGse/mDxDdu9qauFyxOLcjTx3ToL+Ty
-	K57HJcqLIX77AcvN+JjKCCzk0Cbe8AN7ELfg6D6+bsEDXIFU3aIXpJBzOWdSpmcnzGU/P54/Bk7
-	e8ydZfsEHcp5xQtMVVjD9QdBO1Swp5yYa4ypXQWWQ0yjYsbudBQhISVrf0t/GRaAukA=
-X-Received: by 2002:a05:6214:ca6:b0:70d:f55f:ef97 with SMTP id 6a1803df08f44-72bbdcead63mr126284856d6.1.1757317387165;
-        Mon, 08 Sep 2025 00:43:07 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHgAcdbDq5zNfyipOZBWdCcXswZ41a9jDEPvBfo2g42KlKJ6RgThA5OuAMoeYELmzFt39Z6Gg==
-X-Received: by 2002:a05:6214:ca6:b0:70d:f55f:ef97 with SMTP id 6a1803df08f44-72bbdcead63mr126284616d6.1.1757317386708;
-        Mon, 08 Sep 2025 00:43:06 -0700 (PDT)
-Received: from [192.168.68.119] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45cb61377a7sm225190345e9.13.2025.09.08.00.43.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 00:43:06 -0700 (PDT)
-Message-ID: <9842b149-0c39-4114-88dd-2fbd4423d077@oss.qualcomm.com>
-Date: Mon, 8 Sep 2025 08:43:05 +0100
+	 In-Reply-To:Content-Type; b=K76rwDqwCU6pWZnZJL9qcJMClFwyNJ4+DuD5qNJwru/Dojm1P8kjSOgmiOyjTKvs8E6idbjaqEWmSxJzEhIsS3hGG09cxcvoBUEtIIS3xzPjZJd5lQfLLJaz2HM6HxH4WizFGNXZuMgl8kPZZgylqqpeiETrEGW0XoPSra17BtU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nkHOFS9h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C780C4CEF1;
+	Mon,  8 Sep 2025 07:45:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757317558;
+	bh=HJ2U/p01RG3oRuFiFjUnDJ2F8saH8ZLtAypLdeEq8vE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=nkHOFS9hCZkM2NgeAZmnh9KwOIhsCj/oxveqxpuNcYgdNHkF3T9zVHTcrgfwiVybF
+	 ZQzw7IuhhXm3YJdldRNg7gaEH5kprZxDKJHz7NHZRQ7pKSbngbevubHAmVSq4UMGmm
+	 dBcxgJAwMXUXLo39MbzUjDHDaCvwkn3fAfLDThOeDGQbzFzY//SYfpjbdyYxqqQ9R+
+	 MsDJ1whP0kNZB57l6YVPt1TGO+07ad85HNgBl029VhNG+LzI4sjTTtXQsPj3a8N6mY
+	 wzBKkQr+mtqUVbNGgqu6rFCNEpkYRrkckON1go6cm9RQId5LM/BtvogBDvT2ohD2ws
+	 6AX4gSQs27rsA==
+Message-ID: <32a28a8c-2429-4d61-88f0-b7e3e866f85e@kernel.org>
+Date: Mon, 8 Sep 2025 09:45:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,75 +50,136 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] ASoC: qcom: sc8280xp: Add support for QCS8300
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
-        Srinivas Kandagatla <srini@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@oss.qualcomm.com, prasad.kumpatla@oss.qualcomm.com,
-        ajay.nandam@oss.qualcomm.com
-References: <20250905142647.2566951-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250905142647.2566951-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Subject: Re: [PATCH v3 3/5] clk: samsung: add Exynos ACPM clock driver
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
+ =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
+ Sylwester Nawrocki <s.nawrocki@samsung.com>,
+ Chanwoo Choi <cw00.choi@samsung.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
+References: <20250903-acpm-clk-v3-0-65ecd42d88c7@linaro.org>
+ <20250903-acpm-clk-v3-3-65ecd42d88c7@linaro.org>
+ <eafb409d-5b5f-4791-939a-5a3c1eb00b9b@kernel.org>
+ <91407377-f586-4fd2-b8e4-d1fd54c1a52a@linaro.org>
+From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <20250905142647.2566951-3-mohammad.rafi.shaik@oss.qualcomm.com>
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <91407377-f586-4fd2-b8e4-d1fd54c1a52a@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Authority-Analysis: v=2.4 cv=eMETjGp1 c=1 sm=1 tr=0 ts=68be890c cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=NPwD-xthdEbpHelLTGYA:9
- a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
-X-Proofpoint-GUID: 36cQ1tionecms1UDG9xU8uq4YcDOzpaG
-X-Proofpoint-ORIG-GUID: 36cQ1tionecms1UDG9xU8uq4YcDOzpaG
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAwMCBTYWx0ZWRfX69ctA05qWBTA
- Ad1mQWirtI0H2+hVVsrWQOfi26e9Z5DMq8Ax0drJKGCmON+Tb99Mxb9MPqU3Kw0J4V1ZjnXymBY
- pIi7dZ0KDs7QUy2vamitYiBzq9N5YmJd5ivootwuccZSIHLc0MCn0KrIoPwQttFggcMyo3OHjn0
- 1ng4ygwmwv5p4QrosghCk6I+jgDUj6OtYtzx3qzKs+/1SAakhVmPWniGfOCgGoUKi/7nSt5QhJs
- xk+QLMjccuKhI7DrHXXI0QYsDR/ePlFHFkFafsIz+0GAmD0IU1XTGpzfkpl2zpInWCABUuUzhP3
- T5W8qrjkRtpiKN+RJsvnBCoVYgjljG9U3J5geuSGC4dYlYsOF/LYOwIVmlX9L4DtU2dMzpR2nTD
- qdeoIatT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_02,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
- bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509060000
 
-
-
-On 9/5/25 3:26 PM, Mohammad Rafi Shaik wrote:
-> Add compatible for sound card on Qualcomm QCS8300 boards.
+On 08/09/2025 09:39, Tudor Ambarus wrote:
+>>> +
+>>> +	aclks = devm_kcalloc(dev, count, sizeof(*aclks), GFP_KERNEL);
+>>> +	if (!aclks)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	for (i = 0; i < count; i++) {
+>>> +		const struct acpm_clk_variant *variant = &drv_data->clks[i];
+>>> +		unsigned int id = variant->id;
+>>> +		struct acpm_clk *aclk;
+>>> +
+>>> +		if (id >= count)
+>>
+>> This is not possible. You control the IDs build time, so this must be
+>> either build time check or no check. I vote for no check, because I
 > 
-> Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
-> ---
-
-LGTM,
-Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-
-
---srini
->  sound/soc/qcom/sc8280xp.c | 1 +
->  1 file changed, 1 insertion(+)
+> using BUILD_BUG_ON_MSG? that would work, see below the why.
 > 
-> diff --git a/sound/soc/qcom/sc8280xp.c b/sound/soc/qcom/sc8280xp.c
-> index 73f9f82c4e25..c6aa62b1f66f 100644
-> --- a/sound/soc/qcom/sc8280xp.c
-> +++ b/sound/soc/qcom/sc8280xp.c
-> @@ -187,6 +187,7 @@ static const struct of_device_id snd_sc8280xp_dt_match[] = {
->  	{.compatible = "qcom,qcm6490-idp-sndcard", "qcm6490"},
->  	{.compatible = "qcom,qcs6490-rb3gen2-sndcard", "qcs6490"},
->  	{.compatible = "qcom,qcs8275-sndcard", "qcs8275"},
-> +	{.compatible = "qcom,qcs8300-sndcard", "qcs8300"},
->  	{.compatible = "qcom,qcs9075-sndcard", "qcs9075"},
->  	{.compatible = "qcom,qcs9100-sndcard", "qcs9100"},
->  	{.compatible = "qcom,sc8280xp-sndcard", "sc8280xp"},
+>> don't think the ID is anyhow related to number of clocks. What if (not
+>> recommended but what if) the IDs have a gap and next ID is 1000. I see
+>> your code using ID:
+>>
+>>
+>>> +			return dev_err_probe(dev, -EINVAL,
+>>> +					     "Invalid ACPM clock ID.\n");
+>>> +
+>>> +		aclk = &aclks[id];
+>>> +		aclk->id = id;
+>>> +		aclk->handle = acpm_handle;
+>>> +		aclk->mbox_chan_id = mbox_chan_id;
+>>> +
+>>> +		hws[id] = &aclk->hw;
+>>
+>> ^^^ here, but why do you need it? Why it cannot be hws[i]?
+> 
+> so that it works correctly with of_clk_hw_onecell_get() in case the clocks
 
+Ah true, hws[] has to be indexed by ID.
+
+> IDs are not starting from 0 or are reordered when defined. For example let's
+> consider clock ID 1 is wrongly defined at index 0 in the array. When someone
+> references clock ID 1 in the device tree, and we use of_clk_hw_onecell_get,
+> it would get the clock defined at index 1.
+> 
+> In my case the clocks start from index 0 and they are defined in ascending
+> order with no gaps, so the check is gratuitously made. I wanted to have some
+> sanity check. Do you still think I shall remove the check and use hws[i]?
+
+
+Look at some users of of_clk_hw_onecell_get() - they all don't care
+about this and do:
+
+441         for (idx = 0; idx < count; idx++) {
+442                 struct scmi_clk *sclk = &sclks[idx];
+
+without any checks.
+
+I just do not see why runtime check is necessary. This is purely build
+time relation and either we do not care, because the code should be
+synced between one and other place, or (if you care) then it must be
+build time check.
+
+
+
+Best regards,
+Krzysztof
 
