@@ -1,163 +1,126 @@
-Return-Path: <devicetree+bounces-214113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C54DB48312
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 06:03:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B84AB4831E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 06:14:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 15B2D174A91
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 04:03:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AA6D23BD5D3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 04:14:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 831361FBCA7;
-	Mon,  8 Sep 2025 04:02:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83DEB21C195;
+	Mon,  8 Sep 2025 04:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="tvyXn3ui"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Ee2aa3k0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B68DD16F0FE;
-	Mon,  8 Sep 2025 04:02:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E341D21B19D;
+	Mon,  8 Sep 2025 04:14:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757304176; cv=none; b=uSPqjGSYVs01kVzaCNHb+IErCniDUb7tyf8LDPRGYZGSKqb9Z745uizTTMFutzREJAY5bV0zge5Rg3m35ABLx7KYgHzS3JPDwyRtPjScX4utGiNnKtont2G/Cbq6grtwU/q/CRUVYUSpTts3JTg61PDg74sSAif1g/tjDE8JzKQ=
+	t=1757304893; cv=none; b=aLpICQxtNVWI5rkExzd4St0/CD816gy7xbd5YHuA53cvXtpm0Gsgmsy41Lv3sxlkyDo560BGlKFbWIkYCR1SsOtUP2LnKH+g3P6P1QEGMTUlDVLl5H/Yw5mJnEXAnOrYkAJkAjTuR14cu3R3MCQsX69/EMs+EYFB2U6R0t4NNQI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757304176; c=relaxed/simple;
-	bh=Mw7y5CKpjj1kCLIHq49+s1B3tHAv6to+LItwIXxncn4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=uTWCUBbVQNWKMVDA+y/UOoeqhg6HuUg8qBBZ4NzbgXABkHVWjecC/33j+tNhJLtIiRyf8ugZB8JSsd2FrqPwGc5Rd+CxIoTko3qGTnzIXLaHEW85Yb+ysssFlMvK/tx+BTMw3JD9lWlzG1xmRWhlEmInLnzY70TwkFASwEs7IJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=tvyXn3ui; arc=none smtp.client-ip=150.107.74.76
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=gibson.dropbear.id.au; s=202508; t=1757304169;
-	bh=+DVku2GpjSU8Pe98enb9DbHLBpEscK8lb8VBTFVwSS4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tvyXn3ui3/qGGNbGkyZvGREWFbduw3vm8b1i8Od1Yv+s+WAICJ1GktEsrGf9dbsMB
-	 X7+/vwj09HO+4z+LzInVma5oPjiu8DtvSCB5ILhAig8RZolxLCx5gtMh/KZ6x0unUA
-	 G1Cvasi/QzDqbSVVSWc5pjrqh5LslcsYDoUC35sO+9rqidXuMuzKWbseVrqwyjqgGn
-	 N2mA3MIxwd7UD49VaOnQ/yvVssNldTDLpNA0PZ2F8egist/9jGpXXEqrimveWwfooy
-	 rmB7qXXvo7Rt5Gky4dUtrZ0d+S3CD/uEl2CLB1QuU191XGUikg7Fp/JlYM2ReK4jrw
-	 +vEn5rlDSxBNw==
-Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
-	id 4cKtZx4RStz4w9y; Mon,  8 Sep 2025 14:02:49 +1000 (AEST)
-Date: Mon, 8 Sep 2025 14:02:45 +1000
-From: David Gibson <david@gibson.dropbear.id.au>
-To: Raymond Mao <raymond.mao@linaro.org>
-Cc: linux-doc@vger.kernel.org, devicetree-spec@vger.kernel.org,
-	devicetree@vger.kernel.org, ilias.apalodimas@linaro.org,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] docs: devicetree: overlay-notes: recommend top-level
- compatible in DTSO
-Message-ID: <aL5VZfOoy1g2uyAH@zatzit>
-References: <20250902174351.2457022-1-raymond.mao@linaro.org>
- <aLkAYitpWxWx131p@zatzit>
- <CAEfUkULwQxJ-EKT7bQ8+hkH+_xO8esThnL2P_Rc-32tHyMdA1A@mail.gmail.com>
+	s=arc-20240116; t=1757304893; c=relaxed/simple;
+	bh=y6SgL0SvA8lYYyF90rTpTwKWfC2+R7sLAcCo0vATj4w=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=SlFtM5MJJ39laLx0R3Rzg8LylTDVOUsaRGpuAOjiMwx62sdFAtv374GQDCyZ0WYKBdOsYisZzk/9QPRUShtB5CgLlUu8lkt7xsQ5jwk5nlOOtlJ4m1tjzdZAHOq54B5K7g+xgxafLhBYhEEMGBdD4tA8VMPsZg405yvG9Yu8+00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Ee2aa3k0; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1757304891; x=1788840891;
+  h=from:subject:date:message-id:mime-version:
+   content-transfer-encoding:to:cc;
+  bh=y6SgL0SvA8lYYyF90rTpTwKWfC2+R7sLAcCo0vATj4w=;
+  b=Ee2aa3k0TOOSXN/MOU1n7wskHt92aHadEVqelv3CihEq9PdanRAHSdhX
+   wAs7Ej9YPeF6PbZXNgWFl41T7RU/lgKSe3RiT1HnRw8kS+BPS9FqiQuH7
+   73WHN3IqvwfWOje6qleqBFLlrfYavpgyW4tKuS6sL7AFm8Lxu9ZaY4l2J
+   IrUTMei0GkLeCYxhtwGx3V5A5j2S9TKYmxSqV8HqtW9xZ1IsUR0Kv8KiD
+   wxZ+ON30xm2JWtCNMssRsBRpVjteUh7J/4y0KzOZB4c4ro/PQ6RGay8rW
+   nWQSPGTakP+QHIhlPHecLegbxB4EMRv9mMuUjMTOo+YuPuqdnoZM4ZhQF
+   w==;
+X-CSE-ConnectionGUID: YPpoJm/ATHeRsyPuBZAjnw==
+X-CSE-MsgGUID: 2h/b4mq/R1mRAd5Ns6IGCQ==
+X-IronPort-AV: E=Sophos;i="6.18,247,1751266800"; 
+   d="scan'208";a="213580662"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Sep 2025 21:14:43 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.58; Sun, 7 Sep 2025 21:14:24 -0700
+Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
+ Transport; Sun, 7 Sep 2025 21:14:19 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Subject: [PATCH v2 0/5] Add QSPI support for sam9x7 and sama7d65 SoCs
+Date: Mon, 8 Sep 2025 09:44:15 +0530
+Message-ID: <20250908-microchip-qspi-v2-0-8f3d69fdd5c9@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="XVQ/eLKMwcuqE7xj"
-Content-Disposition: inline
-In-Reply-To: <CAEfUkULwQxJ-EKT7bQ8+hkH+_xO8esThnL2P_Rc-32tHyMdA1A@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIABdYvmgC/3WMQQ7CIBBFr9LMWsxAiw2uvIfpAnEqs2hpwRBNw
+ 93FLty5fD//vQ0SRaYE52aDSJkTh7mCOjTgvJ0fJPheGRQqjQaVmNjF4DwvYk0LC7r1znRSS9c
+ SVGmJNPJrD16Hyp7TM8T33s/yu/5NZSlQtL0dtbHY4clefoejCxMMpZQPkppai7AAAAA=
+To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
+ Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Dharma Balasubiramani <dharma.b@microchip.com>, Varshini Rajendran
+	<varshini.rajendran@microchip.com>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757304860; l=1238;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=y6SgL0SvA8lYYyF90rTpTwKWfC2+R7sLAcCo0vATj4w=;
+ b=4pCMZOglzoprKTucas/IJXmT44MJpXJYol6/3hHpS0nGui4xFpvPjSPDGTnT8aYDaS1pgMwTv
+ wwLOyEqU7LoBxHT2D73t1pOgRMt0qlQg2ga5/lx5jfQuOKjSfO4jciT
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
+This patch series adds support for SAM9X7 and sama7d65 QSPI controller
+along with the SoC-specific capabilities.
 
---XVQ/eLKMwcuqE7xj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+Changes in v2:
+- Fix typo sam9x75 to sam9x7 in commit message.
+- Fix subject prefix for dt-bindings.
+- Retain original author for some commits that changed during squashing and
+  resolving merge conflicts from internal tree.
+- Link to v1: https://lore.kernel.org/r/20250902-microchip-qspi-v1-0-37af59a0406a@microchip.com
 
-On Thu, Sep 04, 2025 at 10:40:31AM -0400, Raymond Mao wrote:
-> Hi David,
->=20
-> On Wed, 3 Sept 2025 at 22:58, David Gibson <david@gibson.dropbear.id.au> =
-wrote:
-> >
-> > On Tue, Sep 02, 2025 at 10:43:50AM -0700, Raymond Mao wrote:
-> > > When managing multiple base device trees and overlays in a structured
-> > > way (e.g. bundled in firmware or tools), it is helpful to identify the
-> > > intended target base DT for each overlay, which can be done via a
-> > > top-level compatible string in the overlay.
-> > >
-> > > This provides a way to identify which overlays should be applied once=
- the
-> > > DT is selected for the case when a device have a common firmware bina=
-ry
-> > > which only differs on the DT and overlays.
-> > >
-> > > This patch updates the document with a note and example for this
-> > > practice.
-> > > For more information on this firmware requirement, please see [1].
-> > >
-> > > [1] https://github.com/FirmwareHandoff/firmware_handoff/pull/74
-> >
-> > I think this idea is probably useful enough to be a good idea anyway.
-> > However, note that it leans in to an existing ugliness of the overlay f=
-ormat:
-> >
-> > Overlay dtbs kind of mix "in band" information - the actual new
-> > content for the tree - with "out of band" information - how to apply
-> > the overlay itself.  Whether a given property is data or metadata is
-> > determined by it's place in the tree in a moderately complex and not
-> > super obvious way.
-> >
-> > About the clearest divide that exists is that generally the root and
-> > first-level subnodes are information only for overlay application,
-> > everything under that is data to be applied to the tree.  This all
-> > tends to have names that would be unlikely (though not strictly
-> > impossible) in a fully applied tree.
-> >
-> > Putting 'compatible' at the root of the overlay is putting something
-> > that looks very much like a regular device tree property in a place
-> > and with a function that's purely about applying / validating the
-> > overlay itself.
-> >
->=20
-> Since all information at the root of an overlay is considered as
-> metadata (out-of-band),
-> If you think 'compatible' is confused, I can change it to
-> 'overlay-compatible' - which should be 'unlikely' to exist in a full
-> tree.
+---
+Dharma Balasubiramani (2):
+      dt-bindings: spi: Document sam9x7 QSPI
+      dt-bindings: spi: Define sama7d65 QSPI
 
-No, as I said, I think the advantages of this proposal still outweigh
-the disadvantages.  Just pointing out that this is highlighting some
-of the ugliness in the current way overlays are designed, which is
-relevant in the context of concurrent discussions about connectors and
-the like.
+Varshini Rajendran (3):
+      spi: atmel-quadspi: add padcalib, 2xgclk, and dllon capabilities
+      spi: atmel-quadspi: add support for SAM9X7 QSPI controller
+      spi: atmel-quadspi: Add support for sama7d65 QSPI
 
---=20
-David Gibson (he or they)	| I'll have my music baroque, and my code
-david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
-				| around.
-http://www.ozlabs.org/~dgibson
+ .../devicetree/bindings/spi/atmel,quadspi.yaml     |   3 +
+ drivers/spi/atmel-quadspi.c                        | 134 ++++++++++++++++-----
+ 2 files changed, 105 insertions(+), 32 deletions(-)
+---
+base-commit: 33bcf93b9a6b028758105680f8b538a31bc563cf
+change-id: 20250902-microchip-qspi-eb7c94151c3e
 
---XVQ/eLKMwcuqE7xj
-Content-Type: application/pgp-signature; name=signature.asc
+Best regards,
+-- 
+Dharma Balasubiramani <dharma.b@microchip.com>
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmi+VWQACgkQzQJF27ox
-2Gco/g/8C3x3D3BQ8/L44GZMTfbxKC5NPMh/+kDZ6h5bE5MOuTi6mv6VffiQ96qG
-xMS4b/H0pLEKy9RtBfV2f1EZio88mUmDpe4Nv6w/LVQdaow6+loanMOdQ1+H26XX
-SoCTDUaJfzeAaV4GJ7A4RSup5mCdCkz7uNAdaGa9BQSgnFjfQt0QHtjNywpzltpE
-9XVSB+v8t9uSx7U+HqGDSvMx4TQ2iXQ1aiiAQ/+PFFsOk4j/EM/tVJrckxDkddfF
-INEK3XPdDoi1EbjYUugCMV8bm0KpzZbVOJgPp8Wlt4U1XWno1dsUNYaY0djTFLK4
-/RehLRKXe/E3AdS0wv9CundSw+Ag9/+8k93o3Mf020m5cusDBRwo+9I+HJFo1Hhc
-3vSQuhTLZFpXdpBNJsy3xVOqZTc4vGXJbv6jLvxCpqrPRobziksGJDTcRqsQ+Ut8
-C79j8vXUOu5oK1fmNihFJu1Mve55+9MiirTVyPl3zmepLRE59BeqJ+JLdjJ20sxy
-dm+dTeX5RHHlt+GIZMsqhaKLObC3THmm7CW4sdegHv+b72BOwQdKZ4CcfmiIp60k
-YNw89/qbGqS2z3NQ9UXg71n9KWfje8wkG0sXDtFhyuZewBK8MH+S9Y/uHBjvc2Hj
-tTaxLI9r5Y7Y2/qFFXgSkmBrRkVfpNtd4QVP8c9WcQjP/AzpWS8=
-=LWzd
------END PGP SIGNATURE-----
-
---XVQ/eLKMwcuqE7xj--
 
