@@ -1,102 +1,81 @@
-Return-Path: <devicetree+bounces-214208-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C8169B48651
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:04:13 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F94FB48659
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:06:22 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C4552189A389
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:04:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1584A175E84
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:06:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2784B2E62A4;
-	Mon,  8 Sep 2025 08:04:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 094ED2E7F1D;
+	Mon,  8 Sep 2025 08:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="TqFocPWl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oWL9z/U1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B434F1DF74F;
-	Mon,  8 Sep 2025 08:04:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFAC31D63EF;
+	Mon,  8 Sep 2025 08:06:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757318649; cv=none; b=bg96+QM34aPegdFJoDaQ+/GCyQsqJxDQUwgbUYqkI9I7B1Kv1rJsVL1QAv9FX2EtT5IJz7JcaNSrSe0A0HoRMhQ7vKWD0KArM2nPzvHU/nSCf+XbTSpfgUBwqzwXBCcfn/lRvbusFPbTTrioj8gALPnrWb31UZ4Sbgjn5CN1NT0=
+	t=1757318777; cv=none; b=X9Tpu0sfQkQUTI7iClBBaxnYQk+PNB2MwqYsetQY1r6oCig4KxkR06i7qc2wUB4MEwCPgFCDsXJdF7E9XlDtVsexDC7OhEYK4dY00U7Ys16xaPEEYSmBB9v+7FOcjEy87K2k/Mnw7aL9vhtnrSfu247v2m68ONqMJ0OclB+kqhw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757318649; c=relaxed/simple;
-	bh=kl7itNdixLb2ZkrgJQWmvlLExsb+N4rmlaosXBUykec=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZfyIuwAqXC58oXo78PbVfiifB1UzEl3VfrN7JCzt5cxt0ETMae60hTriXoLrGuJzPqycNy26u3sQtbja3n5/284e1s4PRXfp6XXv29W7UFBa00mZnFOd7Dp1FdCOZdcfZ1C+tprV02zVhaTv5cdTSUPtcnOq9mZ4CXcWDIPeSeM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=TqFocPWl; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id C0F33A0816;
-	Mon,  8 Sep 2025 10:03:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=vzIuQPf8yRRh32wjvtWM
-	h26ibdLGHtiKlRRwUvAoFVc=; b=TqFocPWlS658xcLrcQJpe7WV2ehoQ9oQtujh
-	OCoMl2FGVlYkymW9It5Qh1K4vJlXOIw3XLFuH2QcZNhUI0Dh/Md/RiKZEtMEJW1C
-	EoVqVkZBP+jCellOs65tUJtS57AkdURAizQSbZ8vHxnvYCEcw8x6C8mDOJ3g24E1
-	+GBENT/uV2Akmu1N5ey/FVaBKaIp/z4yjUz1hc1CNDaWTnAINq3nVr835bOatwt7
-	HmqQXbSh6hlAncgwnRY3cPGJMZ8k5rX965LlIrB2s70Iv6MUEeNQkZDlk81kR+iK
-	gT9i/OsjHW3frrPDi8ehwq3cbHBsJJIS16IpbBJBNImR7odNSwxgaS48d8qVNG4O
-	vT9D/SKL3ypputiUpjuQsc1mHyDZ48HnK0cPgFuH4ea24PFaMeFp+TtKBtLpOwS3
-	2aS1oCJ1j1CR0bX0pAQDnBfzuNE21LxoAyjlc4Fe/UQ41KA/y995xkMvA5oZaC9C
-	Vj3EonVM13eqWLAZcoRwTOigLQwdJbYMSmoneZ2c1AB31rd5B8k3KugRCHGDa9jg
-	TG8pmbmAH6Q3QT08MZbmVgFK2KwayLRfrizy8bYKWNsgIswWZN1pAWMYrN0i6QPM
-	0B+GJstOyg07SagmOlxwB4n3CnuCWQsBATIuHp2KtMCuzgvreLUw00bo1QNXpGWW
-	jTh7V+A=
-Message-ID: <0b94d62d-6cbb-411b-8bb6-6f23023c5001@prolan.hu>
-Date: Mon, 8 Sep 2025 10:03:55 +0200
+	s=arc-20240116; t=1757318777; c=relaxed/simple;
+	bh=/MaZlf3qg6WSWsFQF3K2Tns/uJau6BjYKOS9OyvSwkE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=D6jwu2baDBC288PTN4tJ3q3Oc45V4xDGf/k9onpsr+e4Fkw77LOP12/8B9DfypVJl2+54fdO1pYymii9hS/CHNoKMZkPyjhVVslPxOa1IWcf9dNgemCCcoz6llmleRPtY1xlVH2JJf87CHaRQbxtr7TlmSBJgXZxkq2DJ0rSdNg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oWL9z/U1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD47CC4CEF5;
+	Mon,  8 Sep 2025 08:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757318777;
+	bh=/MaZlf3qg6WSWsFQF3K2Tns/uJau6BjYKOS9OyvSwkE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=oWL9z/U15ehLSAxaBmNWnVzk1OPQD4IhVdOEhak+TyojgLqt4fwot4rWTkF1NbUoE
+	 P9f8tK1PaQeBFCQJPwBNn2maOUV3ya90m7RgDvuFF6lcNRlNZ9a8/wydUFTLzxM/lv
+	 z5cpoclsJdwiL951G6dSnwjrzZP4iscpoVWB74qW/h3VfEny1DtGI/Y7Z+U6WCAm8e
+	 4O2iozIl1cQUwhvQmmXLSFm5c7fDIQ94iGYxAJp77NjhruKM5NdHKmtCxD2xGvUerk
+	 KDPMjacrcolEFBd3USMsl2eQvm7XiI9dnrGvyH9b5s09TJ0ZhXB0Ucoo5HtwwRkM0w
+	 0wxiQ+iB/o2IQ==
+Date: Mon, 8 Sep 2025 10:06:14 +0200
+From: Krzysztof Kozlowski <krzk@kernel.org>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thierry Reding <thierry.reding@gmail.com>, Thierry Reding <treding@nvidia.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, Maxim Schwalm <maxim.schwalm@gmail.com>, 
+	Ion Agorria <ion@agorria.com>, devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 3/4] dt-bindings: arm: tegra: Add ASUS TF101G and SL101
+Message-ID: <20250908-clever-fierce-ibex-ebf0bd@kuoka>
+References: <20250906062934.6637-1-clamor95@gmail.com>
+ <20250906062934.6637-4-clamor95@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] ARM: dts: imx6-savageboard: Replace license text
- comment with SPDX identifier
-To: Milo Kim <woogyom.kim@gmail.com>, Milo Kim <milo.kim.w@mediatek.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>, "Rob
- Herring" <robh@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, "Conor
- Dooley" <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, "Pengutronix
- Kernel Team" <kernel@pengutronix.de>, Krzysztof Kozlowski
-	<krzk+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>
-References: <20250709-savage-dts-lic-v2-1-07e0f827bd18@prolan.hu>
-Content-Language: en-US
-From: =?UTF-8?B?Q3PDs2vDoXMgQmVuY2U=?= <csokas.bence@prolan.hu>
-In-Reply-To: <20250709-savage-dts-lic-v2-1-07e0f827bd18@prolan.hu>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: sinope.intranet.prolan.hu (10.254.0.237) To
- ATLAS.intranet.prolan.hu (10.254.0.229)
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155E627560
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20250906062934.6637-4-clamor95@gmail.com>
 
-Hi,
-
-On 2025. 07. 09. 9:30, Bence Csókás wrote:
-> Replace verbatim license text with a `SPDX-License-Identifier`.
+On Sat, Sep 06, 2025 at 09:29:33AM +0300, Svyatoslav Ryhel wrote:
+> Add a compatible for ASUS Eee Pad Transformer TF101G and ASUS Eee Pad
+> Slider SL101.
 > 
-> The comment header mis-attributes this license to be "X11", but the
-> license text does not include the last line "Except as contained in this
-> notice, the name of the X Consortium shall not be used in advertising or
-> otherwise to promote the sale, use or other dealings in this Software
-> without prior written authorization from the X Consortium.". Therefore,
-> this license is actually equivalent to the SPDX "MIT" license (confirmed
-> by text diffing).
-> 
-> Cc: Milo Kim <woogyom.kim@gmail.com>
-> Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  Documentation/devicetree/bindings/arm/tegra.yaml | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
 
-Milo, what do you think?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Bence
+Best regards,
+Krzysztof
 
 
