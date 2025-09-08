@@ -1,148 +1,181 @@
-Return-Path: <devicetree+bounces-214402-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9830CB48FF4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:45:11 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 680A1B49009
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:46:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A2537A5A60
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:43:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 848843C6EEB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:46:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C226030BBB3;
-	Mon,  8 Sep 2025 13:45:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F241630C34C;
+	Mon,  8 Sep 2025 13:45:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TuCDerxS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ZAYTtaB9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0983330BB92;
-	Mon,  8 Sep 2025 13:45:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D2FE30BBB3
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:45:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757339107; cv=none; b=eqQ9g0UfFXScMavacTKf9KAU54LZeMQkf6RuON/Lo0TKDJsbETStKveJj2zap5I/9isbKevHVT3AsgCQWXlhpAllqeSE/618kuBL+nGvcsdIpCwCZ49cnfkU9ZtYTXNLxiCfgwUg/FMR5w7lFdCmNRPztdJBLo09TH9y6v01qq4=
+	t=1757339131; cv=none; b=gqHSyakBR7B+dV9MUvUxmJ49CrVENKNiw3+lhU8ZFNlQm3j7d2sl5xKVrE41GTGJCTRqh0U+RQqfMQkiKKAlN83AP72W5cAS6dNRbxv+mepLLeRZb4HqNGLpYp5bbej779K5NDZdTpcrcH10EoOhMMjGvU0PeUt0tMUbYE7ZNsI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757339107; c=relaxed/simple;
-	bh=6Exa49x2tTun8/GdPZIClkbq/hZZCYAZWPs6tflMRhY=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qhrmnD1+ozBrSw88N/WVUaR1/qFntyBnk8n/dOABmft85QfT/R/6UfIi4IqSFyRzSMC+Uu8Ivl7SzBgadlNtEQm55wjL7+hC1NC9DbcaiKtGeXdfdV3osIW3nOH69mOttH7FSM0NwOQfKC3+uFyxdtPiaZq+D/tZIRJAn/LnXKw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TuCDerxS; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-3e3aafe06a7so1922673f8f.0;
-        Mon, 08 Sep 2025 06:45:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757339104; x=1757943904; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qa2FDEzfrHnj9/Bgif488Zx3zsoWnSpMm3bjoJ5kMkM=;
-        b=TuCDerxSxtZnl5PrnDzbFxaM5Wd5I5krD+QJ4QZWVGVehWdUJo4vDidWDdhypgcZuu
-         ozXT9EkK4vw8YiTy06bzuCd7/sDSQ7SB2dRCnQtBS+PkU6bZoZm8MaCR7zO6Erb+aNcn
-         COYvFuziCeNHg72LvgPw2golhu2FgBFvUrhGlI79T6oclvB/cQjB3Vy5Sioy9UCbobts
-         5Ma+XlalciiXyOQMZiDIfsZSyyEY8JTzYYgLC+BJzYqlvd9+N22YA5sOWnzUsNn7mZ8T
-         G+y++HX40bm/CLmi5iS+StRIcvzcyzJ0rj7opogCGwcdkwQCDr4GyJXlmSXQj55k18GS
-         xfeQ==
+	s=arc-20240116; t=1757339131; c=relaxed/simple;
+	bh=hIc4P2K07XlvYmHQkfI0woteLpw/ikjw7KN9mYvCRiI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=H/rtmSQ3e4giV4LD6XHTG1EYEer3rMSXuZCikkh7wcg1LUV5RzOkUv287E4IP/ba4Ybu0s3ZJcae3P8EMmn9PJveGkF7DeNlr6Q7ooZxKV+U3U6n02HGLIZ3C3/9aLOoJZip/zjorLKXoIgBH1PtW6STgux3s3o+fIc3BvG/els=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ZAYTtaB9; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 588DiwOX005565
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 13:45:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-type:date:from:in-reply-to:message-id:mime-version
+	:references:subject:to; s=qcppdkim1; bh=esqnV4GgtEbrquLS/zK5rW3W
+	tt7Z1gs3taNjcse55BA=; b=ZAYTtaB9Y7SMyW3MEsYa9Jw4FcBylLtuUJgggnT1
+	ggSBjKQSPM0bXafiZrmUzWnhTeDn/elXOFafxMai3AEAY/kDCKHX+MBKB8G3DTBX
+	6L3JeQM9UJFDd8i9sHQc5H5BnSv/a35X3UP8bEwN63u8E9Ci+V12IaNx3mmrhCNv
+	cM0IA7wrC+tWa/DrMDlLdScyBmtmsSlRQjLjNSMjc1GCmXrwxmM7uKbXVkuoVEbE
+	CxU30u7LffSpJh+V7iKVEVU0tZWX79nGews7Bfu4qQnMA04l4zl+P3SfICmk14uE
+	hv0GFp4UNlNkeuLjD5Ui40WyB+CPsZn+nTG1unjwpxj0jA==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491t37s7ep-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 13:45:28 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5f9673e56so64373411cf.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:45:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757339104; x=1757943904;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qa2FDEzfrHnj9/Bgif488Zx3zsoWnSpMm3bjoJ5kMkM=;
-        b=Ac3048jGuEesAV076kPAbq7zCTVB1mf7ZOiimTQd7bim0mqL35pIK0jbR3kL3aedEE
-         4nJDH/lOCrb3tHCt1eUXMIKHP3Zx0kte1jDF0rQh0hp8t0Od0Ti4ateCHZlxdwMr5nHW
-         B5RRCVBZ38dVb0QLftEgYTtAyq/0m8S6rN1umugU9nsnC04SW5og2+5QGWkCGdEB7xIS
-         e2PqUM5CHWaJWtCrM6/PaV+Q8y5zeKmACWHv7Cmqm78W8JHWfsHFxwOmHjMZoPGLwBWE
-         tGY0I6xv3wIgTjOuhNC3zQKyIBYLS4Mw5JpBam9F16Mt+tsYk8Fi9JbhxQHcZEWKF2AI
-         /TMg==
-X-Forwarded-Encrypted: i=1; AJvYcCV3aDQjJwvfjNUFbaigIA4wPseGmTjpznQ08M+FjDcaMkdpbiMTpXf2fnu/HjOckRU2dHcQDza3cXih0Slc@vger.kernel.org, AJvYcCX0LUvRfsH34chcq5Cacs6qOhgy/JHJceFCxWJQAiqAO7zjLRGInbF78xPX9HT6+H7e+YGcvQoeL39C@vger.kernel.org
-X-Gm-Message-State: AOJu0YzmlfxpvvsiY/R2vBf1fAsQfZJBTDdswEP2YhPfrjM6oDDt0mrQ
-	1076bKT/POouTGHpmQZdTMvojec/kJg8TE23broLOknwckswDM7wV/fd
-X-Gm-Gg: ASbGncshvzKnCnRHBK45n9y1zefLP9m1gSp83OYNslXWoQlx7/2jR7VvqHN17Z8esvy
-	XU/PW5cizz3Q/vHRKzYJ3p0d76c5fY6iDSRzA4daFEmNMa/tRYLUBfu+KvIeN65jMOr4pO0EgwD
-	7ssEp1V0pu/8RKjEjSKnxkjrJNxRMiT5+yIKx+AmbTCOguIpzqGzCK+5FT4NIoJk2rHkGyw1Gf5
-	KV+56eOsknTNaEiyasS+xpu+uYwNLjqcxSHmiHf3A0zEKTB3s9ojyJVPPpc2CoUzzoJ5mcwglmW
-	Th8BltqyZ9fHhLveaoMCkAxrRfGeJGgMoe3tHdFawodH8uOrFOqQz0z1heUxeql3p9lVBsPMWZE
-	XdYLUopACyY5k95OiHz4X6neZbCuCJawJemMz4RMFzzndJhFla1BK/Wn7nN4hoLcTekW9lHEcUp
-	qSWdUAd6lQqRZp29/CpyM=
-X-Google-Smtp-Source: AGHT+IF/bu6N4b17VGa4d32p6sVB8f7trrLvKQqSA5MvaDaYKtxhuslb1edIkbNaktRAD6ubBUZRfw==
-X-Received: by 2002:a05:6000:389:b0:3e6:fd4a:940d with SMTP id ffacd0b85a97d-3e6fd4a9c30mr6459105f8f.12.1757339104123;
-        Mon, 08 Sep 2025 06:45:04 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dcfc3e11esm96635905e9.0.2025.09.08.06.45.02
+        d=1e100.net; s=20230601; t=1757339127; x=1757943927;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=esqnV4GgtEbrquLS/zK5rW3Wtt7Z1gs3taNjcse55BA=;
+        b=MKhyZajjTL4orhe3knQnwk1OVKcde4eFCCmpsfmeBfoukOmCH7GIAZ2HspMJ1E+Dtw
+         yOsMFfRLGt1omgzIIP9st7goVJ6DFqlqqVTUK2p0KOgOOU96ykbqm/SLT/K45YHQAdiO
+         2/ksnSn4lJonbei1ubGlK5vMegx3NIQxplTzFg6RfPP+PNl8QbWGstMkJIsbX6VyYHrw
+         c7GCJiuNJi0R3DtSW2KCkUE0em9XVH3YIORA8/4sLhz5NS3czTqPhJWDWrnBAELcM+Ij
+         cZ6AQNF0xrXa3rLhpSl7OSlKIwJNyOAj4lKF9dnGxZ9s/4ggUhwHoswD0kEAgACneWl8
+         2v7A==
+X-Forwarded-Encrypted: i=1; AJvYcCXtcTpJTcZyLzklVqD531iYZyd2Hb0SAFhFCeMXCcbyCfk3jCp9EfJww+OXN65k8kR19uDs4cOZmObb@vger.kernel.org
+X-Gm-Message-State: AOJu0YwLR9K4ejVQtaUrK7y0C1gG03Hijlz8MZNl56LrgpX+bJ+HBYws
+	V87BPOIob5WgPEpjibyUwxTTRfsjR8d3Lob7bK4qVH8Zvcvt958NsKdVs8vqRcsaZ5aU0MbLnsC
+	hFsqfArU6Di3Ep3jSGO3CGgml0G7k9mPwaNPMg7cqEblfsbDkFfvDL3jim1t3dUe0
+X-Gm-Gg: ASbGncvoVFVhSU0Kxfd7Yv0z6qilf6DPSBPU4DUYss4YpQrASZ8CZO22i97hFY1cUYe
+	aYuda4slKX+AFBeoLP1T975c7hSf0Ri3Y6KP9bzVpC0IvdOLWD5p49WPmVZk/w/HD1+ePaOt5Br
+	8VzyoOZjIQsjZ4nNkE2JMULXFNLHd99F4XKIVnYVmC5gt4+9uhNvKeh3V8pyy43i55Qezv9rdmi
+	fEhImJfT2zyIhlhWFntct2it9W+oHjwCHkZn6qJaFkYJOU4oSjb47Da4P4IIgBLyMBoA/S0CUbX
+	O6shEde5vhCvQ7zPs7bNh5LObDhARD/SplUm5grCc+Pi5hYo1OuVw4Az1ofFYZPcxrzJl/JolqW
+	4GE88skJIL5vGxW/6EN3vGe+Qla2sHQzPS6bMUh9Ojn0jlU+AZQze
+X-Received: by 2002:a05:622a:289:b0:4b5:e9bb:846e with SMTP id d75a77b69052e-4b5f83a51d3mr96781681cf.21.1757339126995;
+        Mon, 08 Sep 2025 06:45:26 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH6pGd+MdXBZbW1TIlirM87MxAFCUjEO+5IJdJhKbmEgdqD6cBDX43lwroMqHuWkohubp2b/Q==
+X-Received: by 2002:a05:622a:289:b0:4b5:e9bb:846e with SMTP id d75a77b69052e-4b5f83a51d3mr96781021cf.21.1757339126299;
+        Mon, 08 Sep 2025 06:45:26 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f5032aaesm32757861fa.37.2025.09.08.06.45.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 06:45:03 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Andrew Lunn <andrew+netdev@lunn.ch>,
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej@kernel.org>, Samuel Holland <samuel@sholland.org>,
- Chen-Yu Tsai <wens@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org, Andre Przywara <andre.przywara@arm.com>
-Subject:
- Re: [PATCH net-next v3 06/10] arm64: dts: allwinner: a527: cubie-a5e: Add
- ethernet PHY reset setting
-Date: Mon, 08 Sep 2025 15:45:01 +0200
-Message-ID: <2795513.mvXUDI8C0e@jernej-laptop>
-In-Reply-To: <20250906041333.642483-7-wens@kernel.org>
-References:
- <20250906041333.642483-1-wens@kernel.org>
- <20250906041333.642483-7-wens@kernel.org>
+        Mon, 08 Sep 2025 06:45:25 -0700 (PDT)
+Date: Mon, 8 Sep 2025 16:45:23 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Maud Spierings <maud_spierings@hotmail.com>
+Cc: neil.armstrong@linaro.org, Laurent.pinchart@ideasonboard.com,
+        airlied@gmail.com, andersson@kernel.org, andrzej.hajda@intel.com,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, jernej.skrabec@gmail.com,
+        jonas@kwiboo.se, kishon@kernel.org, konradybcio@kernel.org,
+        krzk+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+        rfoss@kernel.org, robh@kernel.org, simona@ffwll.ch,
+        tzimmermann@suse.de, vkoul@kernel.org
+Subject: Re: [PATCH v3 2/5] drm/bridge: simple: add Realtek RTD2171
+ DP-to-HDMI bridge
+Message-ID: <u3qwrzwcr4knq7ueinws3siz2frugbkj75r5zp6i7qmkhnyauf@lrmiqhtbgzfj>
+References: <20250908-topic-x1e80100-hdmi-v3-2-c53b0f2bc2fb@linaro.org>
+ <AM7P189MB100924E3244B953F0EA6D462E30CA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <AM7P189MB100924E3244B953F0EA6D462E30CA@AM7P189MB1009.EURP189.PROD.OUTLOOK.COM>
+X-Proofpoint-ORIG-GUID: IzamHMgwnxUKo5zYXAArW2Nu-HfurIyc
+X-Proofpoint-GUID: IzamHMgwnxUKo5zYXAArW2Nu-HfurIyc
+X-Authority-Analysis: v=2.4 cv=NdLm13D4 c=1 sm=1 tr=0 ts=68beddf8 cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8 a=XwVbCjRl897ke_8r9AsA:9
+ a=CjuIK1q_8ugA:10 a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA2NiBTYWx0ZWRfX84QoL1sFJKjY
+ kjoyIJDRYma3GsiPd44O+kskyONAt4zxfVje+VSkuzlBGJoPAfbPPjk+HGG7XRrLUT9bYqjkbt3
+ 44ErozStNSYvk2l4Z+ByP6kcjkK3pOQuoJHcwqkUHZr0xt+HDxPD8nwzaGneM21iiI/4kiEWL4T
+ MukMZwcg1mLPojPb4D18G4xX/zNMTTvQVE4feRGBMsjNeTqb7hbxTqSfo8xeZAYHXUbshEcyfVQ
+ Sb8ZULdsadUfi4dgcI1dF2Ir3qKOeXPfLz3U34GRcJFWLdO/099mamOIcXEgd193dQCZ5C2ON+A
+ Tzo5cZe7WXLF9yAusv5Dw5Jw2wNJ1mPWDOUOTheENY1K5ClMyGuEy4wza1rvqh78b4si+VZ5Kw4
+ 6fA8a22F
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_04,2025-09-08_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080066
 
-Dne sobota, 6. september 2025 ob 06:13:29 Srednjeevropski poletni =C4=8Das =
-je Chen-Yu Tsai napisal(a):
-> From: Chen-Yu Tsai <wens@csie.org>
->=20
-> The external Ethernet PHY has a reset pin that is connected to the SoC.
-> It is missing from the original submission.
->=20
-> Add it to complete the description.
->=20
-> Fixes: acca163f3f51 ("arm64: dts: allwinner: a527: add EMAC0 to Radxa A5E=
- board")
-> Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+On Mon, Sep 08, 2025 at 03:35:23PM +0200, Maud Spierings wrote:
+> Hello Neil,
+> 
+> > Add support for the transparent Realtek RTD2171 DP-to-HDMI bridge.
+> > 
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  drivers/gpu/drm/bridge/simple-bridge.c | 5 +++++
+> >  1 file changed, 5 insertions(+)
+> > 
+> > diff --git a/drivers/gpu/drm/bridge/simple-bridge.c b/drivers/gpu/drm/bridge/simple-bridge.c
+> > index 1f16d568bcc4e0fb56c763244389e6fecbcb2231..e4d0bc2200f8632bcc883102c89c270a17c68d0c 100644
+> > --- a/drivers/gpu/drm/bridge/simple-bridge.c
+> > +++ b/drivers/gpu/drm/bridge/simple-bridge.c
+> > @@ -266,6 +266,11 @@ static const struct of_device_id simple_bridge_match[] = {
+> >  		.data = &(const struct simple_bridge_info) {
+> >  			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
+> >  		},
+> > +	}, {
+> > +		.compatible = "realtek,rtd2171",
+> > +		.data = &(const struct simple_bridge_info) {
+> > +			.connector_type = DRM_MODE_CONNECTOR_HDMIA,
+> > +		},
+> >  	}, {
+> >  		.compatible = "ti,opa362",
+> >  		.data = &(const struct simple_bridge_info) {
+> > 
+> > -- 
+> > 2.34.1
+> 
+> I would like to ask again if it may not be a better idea to introduce a
+> fallback compatible, once this patchseries lands I will be adding the
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+I'd say, that's not a good idea. We usually don't have fully datasheets
+for those bridges, so we can't be sure that there are no strapping pins
+/ other GPIO controls.
 
-Best regards,
-Jernej
+> parade,ps185hdm. I don't know how many other variants there are that are
+> just simple dp->hdmi bridges that don't require anything other than the
+> connector type set to HDMIA. The Thinkbook 16 and zenbook a14 both have HDMI
+> connectors, likely with simple bridges too.
+> 
+> Kind regards,
+> Maud
 
-> ---
->  arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> index 70d439bc845c..d4cee2222104 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun55i-a527-cubie-a5e.dts
-> @@ -94,6 +94,9 @@ &mdio0 {
->  	ext_rgmii_phy: ethernet-phy@1 {
->  		compatible =3D "ethernet-phy-ieee802.3-c22";
->  		reg =3D <1>;
-> +		reset-gpios =3D <&pio 7 8 GPIO_ACTIVE_LOW>; /* PH8 */
-> +		reset-assert-us =3D <10000>;
-> +		reset-deassert-us =3D <150000>;
->  	};
->  };
-> =20
->=20
-
-
-
-
+-- 
+With best wishes
+Dmitry
 
