@@ -1,205 +1,149 @@
-Return-Path: <devicetree+bounces-214596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214597-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 619F0B49D5A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:10:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF733B49D77
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:26:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 827E2444124
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:10:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BCC13C0D21
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:26:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3476D2F8BF7;
-	Mon,  8 Sep 2025 23:10:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58A712F7AC2;
+	Mon,  8 Sep 2025 23:26:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MWQdLabe"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="UoddI0GY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05C842F7475;
-	Mon,  8 Sep 2025 23:10:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2118B22422A;
+	Mon,  8 Sep 2025 23:25:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757373033; cv=none; b=t15qKzAk0U8BljHaTZOtaNPBbMeJU/6LEh7bOHKnTAuwjJHYiTEPFpmcvgcjKmfAmvBLXEa0nsdEDmQ8OJWAkslwfX7VBcnoTTpEfkLnzo1zHCrvKVP58gNN0j/WUItZ0l5Hx33/+vcnghHw1yi1XAGBsXyi9XTTFogzGttAHjs=
+	t=1757373960; cv=none; b=FgFbYNoXQ2WUd8qhjU72eg62/9ohdbUIALSMF5f6u90bcRC0iduX+ixnIMsm8z6IhnN0Fv9VFHKN9Elcm54jfEAMiJGiyxYeEE7/U7PtVlg+uXbRxHGYfmFqGfRX/BE0KC6EalWoH/pJJFrYFKPrSKE+x0OHCNK1m8c4MRiH+5M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757373033; c=relaxed/simple;
-	bh=kBQ1BZ7kGAdyqiHEixGCUXGg0bBphkU4OibNmwHdc8o=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YK2cMFMxqH99CICFFKImtPe3Yeb6Y2J8bGMVDHeC83JDHd1MkKvvsroFljPoF4+po23B1i6sJ/AJieAxmKagjBK0uEv768u2VArzWxvEuD9BsPr1UZDXgvdAqPmvYqgaSjBcwkqyYLVa2WpK58FPzqVT71KM9eHRqpccLz8sJJ0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MWQdLabe; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52742C4CEF1;
-	Mon,  8 Sep 2025 23:10:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757373032;
-	bh=kBQ1BZ7kGAdyqiHEixGCUXGg0bBphkU4OibNmwHdc8o=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=MWQdLabeArdPBJ9WSOqALwoNZ04TAD2VXWhKPbKo0Hua3+P8wg4fQ702RoCExN/3w
-	 peji19GIP7MJqcloBQU/27s7Whh86SQKZ49lFccTPoQeEbidxJIWv7iG/HsRDX+1CF
-	 QWp8U01QtIDzCbFgI7x9fsCyXcu7/V32tFUbc0Q9NelyuBfy6AvLW/47k8JOM/+WdE
-	 GQl9mwPwkpf3SXKC9oCQIpLIyNmLNFJ+1WtU4Ea1DBf8sB7Bs3EpZ+Kk2UW1XeftKa
-	 YyxldUNwd8pDdjXl0/MZrJSDVTGAzkqB0+EnLSD8FR/PlXQ1c7v6AaMYo5UonFEOda
-	 CuAwNltm/RgbQ==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Iyappan Subramanian <iyappan@os.amperecomputing.com>,
-	Keyur Chudgar <keyur@os.amperecomputing.com>,
-	Quan Nguyen <quan@os.amperecomputing.com>,
-	Andrew Lunn <andrew+netdev@lunn.ch>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Jacob Keller <jacob.e.keller@intel.com>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: net: Convert APM XGene MDIO to DT schema
-Date: Mon,  8 Sep 2025 18:10:14 -0500
-Message-ID: <20250908231016.2070305-2-robh@kernel.org>
-X-Mailer: git-send-email 2.50.1
-In-Reply-To: <20250908231016.2070305-1-robh@kernel.org>
-References: <20250908231016.2070305-1-robh@kernel.org>
+	s=arc-20240116; t=1757373960; c=relaxed/simple;
+	bh=0IXl2l3D+T2nhXGi4tQibdU53zosZMhElMuvaFdM3Ic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Di0H36clKqoHFbfq309oMjaEmfHGv954VrXbfQAo+TUQlHkjEpr+zK/G1gKJg3BHVPZaTlfcCL5jo0lzbsNltfsJhaMdBe6Hp0IweC58zt3W2djYw/CWd5lYdfbUGJ7eWE76ejgaAs6v01cdTOcCBzZJwIP2EArmSQOCE3TFJf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=UoddI0GY; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588NPpHu3892219;
+	Mon, 8 Sep 2025 18:25:51 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757373951;
+	bh=1JTskB/UCChEzoe+7IbsfNIUYnxNVPm3fPK+F6ahfQc=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=UoddI0GYQB+zGqKKbu3v8TmBLU93NKVHzqxnPThLX+Q6NHiRI+6jz985GqMjUB+M8
+	 US7nT49t11ITmspasIhoQy4dfhjRApD7E4ql+ptXI9SkljRDlyeCZn9xcYts5JOGMN
+	 VvjNbU0megVyekf3ZkPNrLebttChTI6KGKA4QVy8=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588NPpbC2731831
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 18:25:51 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 18:25:51 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 18:25:51 -0500
+Received: from [128.247.81.105] (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NPphW1651879;
+	Mon, 8 Sep 2025 18:25:51 -0500
+Message-ID: <f6c8abba-75f6-4a68-846a-780d37bb94fe@ti.com>
+Date: Mon, 8 Sep 2025 18:25:51 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-am62p/j722s: Remove HS400
+ support from common
+To: Andrew Davis <afd@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20250908173831.269039-1-jm@ti.com>
+ <20250908173831.269039-2-jm@ti.com>
+ <363878df-528b-4959-945f-3b531f156679@ti.com>
+Content-Language: en-US
+From: Judith Mendez <jm@ti.com>
+In-Reply-To: <363878df-528b-4959-945f-3b531f156679@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Convert the APM XGene MDIO bus binding to DT schema format. It's a
-straight-forward conversion.
+Hi,
 
-Reviewed-by: Jacob Keller <jacob.e.keller@intel.com>
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/net/apm,xgene-mdio-rgmii.yaml    | 54 +++++++++++++++++++
- .../bindings/net/apm-xgene-mdio.txt           | 37 -------------
- MAINTAINERS                                   |  2 +-
- 3 files changed, 55 insertions(+), 38 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/apm,xgene-mdio-rgmii.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/apm-xgene-mdio.txt
+On 9/8/25 3:44 PM, Andrew Davis wrote:
+> On 9/8/25 12:38 PM, Judith Mendez wrote:
+>> Since eMMC HS400 has been descoped for J722s due to errata i2478 [0]
+>> and is supported for AM62Px device, remove eMMC HS400 support from
+>> common-main.dtsi and include only in am62p-main.dtsi.
+>>
+>> [0] https://www.ti.com/lit/pdf/sprz575
+>> Signed-off-by: Judith Mendez <jm@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ---
+>>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi              | 6 ++++++
+>>   2 files changed, 6 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/ 
+>> arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> index 4427b12058a6..0c05bcf1d776 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+>> @@ -576,15 +576,12 @@ sdhci0: mmc@fa10000 {
+>>           bus-width = <8>;
+>>           mmc-ddr-1_8v;
+>>           mmc-hs200-1_8v;
+>> -        mmc-hs400-1_8v;
+>>           ti,clkbuf-sel = <0x7>;
+>> -        ti,strobe-sel = <0x77>;
+>>           ti,trm-icp = <0x8>;
+>>           ti,otap-del-sel-legacy = <0x1>;
+>>           ti,otap-del-sel-mmc-hs = <0x1>;
+>>           ti,otap-del-sel-ddr52 = <0x6>;
+>>           ti,otap-del-sel-hs200 = <0x8>;
+>> -        ti,otap-del-sel-hs400 = <0x5>;
+>>           ti,itap-del-sel-legacy = <0x10>;
+>>           ti,itap-del-sel-mmc-hs = <0xa>;
+>>           ti,itap-del-sel-ddr52 = <0x3>;
+>> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/ 
+>> boot/dts/ti/k3-am62p-main.dtsi
+>> index 6aea9d3f134e..90afe21e972b 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+>> @@ -31,6 +31,12 @@ usb1: usb@31100000 {
+>>               snps,usb2-lpm-disable;
+>>           };
+>>       };
+>> +
+>> +    sdhci0: mmc@fa10000 {
+> 
+> The node already has a label where it is defined, so you could just use:
+> 
+> &sdhci0 {
+>     ...
+> 
+> here at the base level, and not have it inside cbass_main.
+> 
 
-diff --git a/Documentation/devicetree/bindings/net/apm,xgene-mdio-rgmii.yaml b/Documentation/devicetree/bindings/net/apm,xgene-mdio-rgmii.yaml
-new file mode 100644
-index 000000000000..470fb5f7f7b5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/apm,xgene-mdio-rgmii.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/net/apm,xgene-mdio-rgmii.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: APM X-Gene SoC MDIO
-+
-+maintainers:
-+  - Iyappan Subramanian <iyappan@os.amperecomputing.com>
-+  - Keyur Chudgar <keyur@os.amperecomputing.com>
-+  - Quan Nguyen <quan@os.amperecomputing.com>
-+
-+allOf:
-+  - $ref: mdio.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - apm,xgene-mdio-rgmii
-+      - apm,xgene-mdio-xfi
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+
-+examples:
-+  - |
-+    mdio@17020000 {
-+        compatible = "apm,xgene-mdio-rgmii";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        reg = <0x17020000 0xd100>;
-+        clocks = <&menetclk 0>;
-+
-+        phy@3 {
-+            reg = <0x3>;
-+        };
-+        phy@4 {
-+            reg = <0x4>;
-+        };
-+        phy@5 {
-+            reg = <0x5>;
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/net/apm-xgene-mdio.txt b/Documentation/devicetree/bindings/net/apm-xgene-mdio.txt
-deleted file mode 100644
-index 78722d74cea8..000000000000
---- a/Documentation/devicetree/bindings/net/apm-xgene-mdio.txt
-+++ /dev/null
-@@ -1,37 +0,0 @@
--APM X-Gene SoC MDIO node
--
--MDIO node is defined to describe on-chip MDIO controller.
--
--Required properties:
--	- compatible: Must be "apm,xgene-mdio-rgmii" or "apm,xgene-mdio-xfi"
--	- #address-cells: Must be <1>.
--	- #size-cells: Must be <0>.
--	- reg: Address and length of the register set
--	- clocks: Reference to the clock entry
--
--For the phys on the mdio bus, there must be a node with the following fields:
--	- compatible: PHY identifier.  Please refer ./phy.txt for the format.
--	- reg: The ID number for the phy.
--
--Example:
--
--	mdio: mdio@17020000 {
--		compatible = "apm,xgene-mdio-rgmii";
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x0 0x17020000 0x0 0xd100>;
--		clocks = <&menetclk 0>;
--	};
--
--	/* Board-specific peripheral configurations */
--	&mdio {
--		menetphy: phy@3 {
--			reg = <0x3>;
--		};
--		sgenet0phy: phy@4 {
--			reg = <0x4>;
--		};
--		sgenet1phy: phy@5 {
--			reg = <0x5>;
--		};
--	};
-diff --git a/MAINTAINERS b/MAINTAINERS
-index c2a669258494..49edc6989684 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1894,7 +1894,7 @@ M:	Keyur Chudgar <keyur@os.amperecomputing.com>
- M:	Quan Nguyen <quan@os.amperecomputing.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/net/apm,xgene-enet.yaml
--F:	Documentation/devicetree/bindings/net/apm-xgene-mdio.txt
-+F:	Documentation/devicetree/bindings/net/apm,xgene-mdio-rgmii.yaml
- F:	drivers/net/ethernet/apm/xgene/
- F:	drivers/net/mdio/mdio-xgene.c
- 
--- 
-2.50.1
+Oops, missed that detail, thanks Andrew. Will fix for v3.
+
+~ Judith
 
 
