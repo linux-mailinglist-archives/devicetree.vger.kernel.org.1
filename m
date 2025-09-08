@@ -1,91 +1,176 @@
-Return-Path: <devicetree+bounces-214167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 845A1B484EB
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:18:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17DBDB484F8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:20:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 406FE3BE926
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:18:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9449177DA4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:20:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C0823815B;
-	Mon,  8 Sep 2025 07:18:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7524A2E427C;
+	Mon,  8 Sep 2025 07:20:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cJevj1Va"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IZfEPaaI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E678113B2A4;
-	Mon,  8 Sep 2025 07:18:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4771DF75C
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 07:20:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757315910; cv=none; b=UPLu+K7wWObTvNomWW7I28AY8sF1yQdSx3UkNjtxRaJoEb1XrnlSNRJTzdrLbM6lcROZKeNe2rFGKrMzulHMV7vmd7PMOawcg9sQSsqN+l6bKXjT27Kf3SZV8+jWDNH6l97trBnpBgTkUsp7Iffs+xDFOl/Aif9rcq21RDjvYFc=
+	t=1757316008; cv=none; b=mUcVBJ7sDaEB/yXeBmp8vLYzHYg12ti0H0M/7p1iBzvuVORbw2nCdMu4Quu0kFJRy2etc6S+pde/2h8D63KsFgZOtUoUiFwwTJcYktCar2iRFYlaklZ1JtJW4p7nMFCMPEr2l5HHse6bgBIhW3h0VTsKQNfih43r4576oBZBvQE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757315910; c=relaxed/simple;
-	bh=hYOzoWKEBM/BtWQa0qqsbJN76jL06X8FvYZBp7aOrlI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=HdNl+Uo5vcvxkjKy4/lncf7gytJpwLy+pT8NW0rVCu+9CCseClVxhQHlpaeLR/wh0brwYlT4p45/pMr8iVf8DJPIyhu7GgCB+tSeqRuEnRtkAQwCY9a7n7PNXHwK+DdTm1pCw/62nYIwohsnNIuI9aQVjo65yD03/G+DmLzAiU8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cJevj1Va; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC9F2C4CEF1;
-	Mon,  8 Sep 2025 07:18:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757315909;
-	bh=hYOzoWKEBM/BtWQa0qqsbJN76jL06X8FvYZBp7aOrlI=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=cJevj1VaI+ui3XH0g2sVKi9fAWl4Z+T5RSOgs0UGBP63obJv+6rSGyYFFNQ4NwYRQ
-	 FSuC1zx6Y4nYv8rxTTE6IWq9t7L7+8XX/OYyIqCLbpS9JMtZmYsj436dpRFf1TbCBo
-	 OmZTvJpIcg6UxTTvSISX6lM5K/tSrD+SlZr7NaR+rJiPl1OLtuIpJ6nvYnDvbFvhI3
-	 pl+OtcF7y1p5sVkBvwu9I6YDLKT8CHEc6pGau7RqwZqa09Q2hcUtI8ZUghkJQa+a8L
-	 0HZQUwfwvZMVrxbjkcjEuGVHvFL0Y5IJbzxgecH/ar/ZBFUH6NRA6P5t7+oI2IMkNO
-	 JbNLllH/+z/ZA==
-From: Srinivas Kandagatla <srini@kernel.org>
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Jean Delvare <jdelvare@suse.com>, 
- Guenter Roeck <linux@roeck-us.net>, Lee Jones <lee@kernel.org>, 
- Wim Van Sebroeck <wim@linux-watchdog.org>, 
- Michael Walle <mwalle@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org, 
- linux-watchdog@vger.kernel.org
-In-Reply-To: <20250822131531.1366437-1-mwalle@kernel.org>
-References: <20250822131531.1366437-1-mwalle@kernel.org>
-Subject: Re: (subset) [PATCH v1 0/7] Initial Kontron SMARC-sAM67 support
-Message-Id: <175731590658.4102.1088493924360430422.b4-ty@kernel.org>
-Date: Mon, 08 Sep 2025 08:18:26 +0100
+	s=arc-20240116; t=1757316008; c=relaxed/simple;
+	bh=PqMyOblKEfOraVWVRyMOSW5G4N5oZyOPcmEHnteK9jU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=j1W6WqVIQpoo0nAYdghq6KeQA41q6Br0FHYZFfgtuGHSEeAyC5OGLQdM2D03IFntsrEwbQKHk+W+h0TkaXkfPXdOKtZlA+nR6UhonuY6ASSnZlLI/tdjB7kbbHUwsx7p+tPJitqB4Ee3P/gnuCIIT9iZVgv3/gvhgkGTOnMEhf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IZfEPaaI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 587LVuiF006019
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 07:20:05 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	VWcKtvk8mFvfLmI00zGKSgzDw0tbzl3o6sU4GJfPEyg=; b=IZfEPaaIDN1l1x7T
+	TnF1MTF+bRDRHQxbUua0ygSd0wlAkRtC3j1WrZRPaExv+OwbqMdE64KkYmn+QCQs
+	RC8rVme6YhJB1Hsy68yssndvDzHpyAbOSHNpkcueZqfCvgAp1TCD6aebERni0Vez
+	zWkLr6RkuDPBvmWRSah/ywQzw+d8Q4/IXKDBhwuyan4zzz9L38g1ImRJNbFjJP0R
+	JdXCKEHEAxF0011/Igk+GEy0NopfLO5xRLSi+2te9Gk+E5pXGakkpxQVMkYaLuf4
+	4jjhtJ4wLrzgfXVQB26W8Ftgje8vJJ3UEpFTKgPRpKudOlUI31Skz60BoDTdUcho
+	ll7Dgw==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490d1vbmse-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 07:20:05 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5f76fe6f6so5936561cf.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 00:20:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757316004; x=1757920804;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=VWcKtvk8mFvfLmI00zGKSgzDw0tbzl3o6sU4GJfPEyg=;
+        b=XdKPskq3EgiPvseGDQzURr/KCZGemh+C4+qpkYFElB3Kv1NCgggSwLN0TBDLQKgPao
+         AHcHDIkurrrCE8z5T/T4Y3kogt4I6hC9LpgBQ9GjXA2ocKGBxWBTaIETVEJzmlzrimjU
+         vihPOv18o5sTspw1idwzblqx06WGe/TIae7VIWJM4QFWOPHg4G9/7k8hutZdsmIMXiAs
+         3hjMt5ZyV4Uo0OFu23KnZRin6lGT4PNRATtfhPwp/L+blXItkcDTMds7395lJ2qGobr8
+         OfEOniGg0swNhENGS/FugyQ6FKvuEM/aRo6eN1I+Si32JGnYLIuqu4p8Gz4DwJajMoB4
+         2eLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVTtwPK7/Y+GOKjDmEmWUqRYPByb7XPNluo1nwMSq9S+7gkT8Xz6kW6bpKEjAITB90aMNnEtFIWylZe@vger.kernel.org
+X-Gm-Message-State: AOJu0YynhV60ojpC85YU0+kiqoSTHhOOPeYBSOOmilsKV+Ti+2AzwB+T
+	fwOoQxFk/R4fH5GJnArm1+3anOqTueHy7skIftBUDzb9aTjEPe05Zz6x751HMAxKZgKRFXJ5agO
+	2NRCGkGFXbnkXn6usnyArZCywOPW4FJpj/4+LmE4YIQx4ymUmXdvricPD0SfEjV/k
+X-Gm-Gg: ASbGncuSTP745UCNzWJ8nNjCTS8MBGmh42o/wsT0sffcxH0urQg18QRFOjD4spx5JXO
+	L5jMya2vfW3I6ex3FYCbwgd6pR7Ar9//raYSL1IlvEqrXjAXoGKzHCXyeof6wiw31D8JPZxjK6T
+	RSlILHCIB7XMiUrJ1Aiz07LceLhYSsFu78RubgLv0v84M5iSl8hnZgIDeSKyiC1pKFlA3buLmqW
+	LsQAQs/60ZPN1ZWysu4y0L/S2Knmhgd7Zn8fg2K706idfUF7iHQy68zCQ05FXkJTT0Ziy3X4kkg
+	grkt8ERlh1ZP+i/M55cEIAOJp7GJE9JIrccBgKPLr19oS5Kz6sJFXZBDYUqN2g7H7+zp5J0tGgk
+	Tn8ak11e3izk4kYC9hsc9Og==
+X-Received: by 2002:ac8:5dd1:0:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b5f8445af1mr48142261cf.1.1757316004497;
+        Mon, 08 Sep 2025 00:20:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH4+QiJyueOpHGD01U7ZGb5pGulY2uWYz7NY7jH/9d6NejQbnMKqPQkDJBKht2O5pECh1Hjng==
+X-Received: by 2002:ac8:5dd1:0:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b5f8445af1mr48141961cf.1.1757316003978;
+        Mon, 08 Sep 2025 00:20:03 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0409bf055esm2172292466b.85.2025.09.08.00.20.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 00:20:03 -0700 (PDT)
+Message-ID: <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
+Date: Mon, 8 Sep 2025 09:20:00 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
+To: Aleksandrs Vinarskis <alex@vinarskis.com>,
+        Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
+        Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Daniel Thompson <danielt@kernel.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Sakari Ailus
+ <sakari.ailus@linux.intel.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
+ <20250908-leds-v3-2-5944dc400668@vinarskis.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250908-leds-v3-2-5944dc400668@vinarskis.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.14.2
+X-Proofpoint-ORIG-GUID: epO1nSVWaocTA3_bufkXfSmel8QVKyYZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyNyBTYWx0ZWRfX+J/7zMAPP1yP
+ R6l615NoQb9D9JEZkQiRD9kvDvByjgGRst0wBIfbjcIIvGCP/VmaLk0706R3Bizlxdv8rRVh/Ob
+ 69+ykQscR03K0Zg8Gv/ZPWSmWPPgeIBDsqgJ+ZqPr07/Xbv6+QyjADPIjbzNbsRu4I0tUM2GsqF
+ nga0HWkJaXJruDCsN09STzt/vVGUZ4lFpz27k9FmtqXLyqkxgnC5SMyNP5wEDTnGZsqj6TmQgko
+ LHgm7HMkbUK5YrhZ5wRDR++VTu/014ZCe6LWD0PMxCC4G/WSzBhpHLotu8yPldBts/dPPCkSQ6q
+ XSgjE54TprirFbUAheSD18E7v7IEvLE1U6CgjNrSEDURPtojsDt5h+ODnbQMIdYbRR3N9a3jE5W
+ jv9XLNn0
+X-Authority-Analysis: v=2.4 cv=cYXSrmDM c=1 sm=1 tr=0 ts=68be83a5 cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=I76Qk8w-AAAA:8 a=zDPauhyOtcwAXlC7rdQA:9
+ a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=dawVfQjAaf238kedN5IG:22
+ a=vUPM0Wvl0xcrLs4nqPIT:22
+X-Proofpoint-GUID: epO1nSVWaocTA3_bufkXfSmel8QVKyYZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_02,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ bulkscore=0 adultscore=0 impostorscore=0 clxscore=1015 malwarescore=0
+ phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060027
 
-
-On Fri, 22 Aug 2025 15:15:24 +0200, Michael Walle wrote:
-> Now that the PMIC support is there, we can finally, upstream the
-> support for this board. Besides the usual device tree, this
-> patchset contains the support for the on-board house keeping MCU. It
-> make extensive reuse of the drivers for the former SMARC-sAL28
-> board. Besides different hwmon sensors, all the dt binding patches
-> will just add a board specific compatible (in addition to the old
-> sl28 compatible) to make any future board specific quirks possible.
+On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
+> A number of existing schemas use 'leds' property to provide
+> phandle-array of LED(s) to the consumer. Additionally, with the
+> upcoming privacy-led support in device-tree, v4l2 subnode could be a
+> LED consumer, meaning that all camera sensors should support 'leds'
+> and 'led-names' property via common 'video-interface-devices.yaml'.
 > 
-> [...]
+> To avoid dublication, commonize 'leds' property from existing schemas
+> to newly introduced 'led-consumer.yaml'.
+> 
+> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+> ---
 
-Applied, thanks!
+[...]
 
-[5/7] dt-bindings: nvmem: sl28cpld: add sa67mcu compatible
-      commit: 530c7063f753e18a8c4b793cc9e96e3b529dc81d
+>  
+> +  leds:
+> +    minItems: 1
+> +    maxItems: 1
 
-Best regards,
--- 
-Srinivas Kandagatla <srini@kernel.org>
+My brain compiler suggests this will throw a warning (minItems should
+be redundant in this case)
+> +
+> +  led-names:
+> +    enum:
+> +      - privacy-led
 
+Nit: "privacy" makes more sense without the suffix, as we inherently
+know this is supposed to be an LED
+
+Konrad
 
