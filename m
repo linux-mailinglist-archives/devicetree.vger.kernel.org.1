@@ -1,47 +1,47 @@
-Return-Path: <devicetree+bounces-214289-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214290-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E243B48A11
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:23:54 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F06CB48A20
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:25:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDAD6341ED8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:23:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2947D3A53DD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:25:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 620D22F3C32;
-	Mon,  8 Sep 2025 10:23:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83E842F99A3;
+	Mon,  8 Sep 2025 10:25:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BnEc0ghm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lYezjpwZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 360722F3621;
-	Mon,  8 Sep 2025 10:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 509B42F3C32;
+	Mon,  8 Sep 2025 10:25:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757327029; cv=none; b=e6ALo2kd2a7AJux61tylut4KnwnF2O6NHrtH79ZyMhgVl6dBCMsBAjFUTfwgi1fhwHSexsyEBGEKk6yWKqe86Usa0xjImwGXGR9H4+gPJFrBWzIPOU/2IkRUBnHMC1gC9wIcYYL8IBWnlMEsLYzpu8Zyn0HX3N/DAB5Q3LOvmC8=
+	t=1757327105; cv=none; b=YjuqV9YGvR8TDuqGNkol9QF9IWchNr2oqP6aWTmbg/LUBtoMUuSO5wZicNuHA4dwqqatpc7MGpzIJzp3RUQTnYah/zJPT9UcJD98DYzMMNECo27jEIymPVIHsSOgH7iVpkQijThUjQyjzjO5P9fPTnPkMDxmlCH/eslmc514H+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757327029; c=relaxed/simple;
-	bh=qjITIwO/jDHVoXZ3gVg7mnbAYHFbHzgspnrskS7+5/w=;
+	s=arc-20240116; t=1757327105; c=relaxed/simple;
+	bh=tLGJeEl1Qfk4okWB+c27DSowZIiqr7hdwRezt+R4Sf0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=culg1Kb/A7qaO9n0bW54F2Uzjgz8hsLRgye15cnAkQWabdJ/jFqV9eLYSDLAGOnuz5yq2npoh26JY5MvtaiN3C4f43zQyr5pn7z1DH94gaXZoqCGWf2T4eCGuCsxjZqqI0OsQnmk6OtRuQpsIf5fW7l7Ri4IFo3dLFhx83LtFz0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BnEc0ghm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3DD12C4CEF1;
-	Mon,  8 Sep 2025 10:23:41 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=CBZFljjbIlQr4uSVlvpRGOLYZ5meRb17D8WKTqziZXk26aXyk/JO0KdwCOTmK3wm/N+nGRBkpRHmpwQ68Wsetbd2NVCYAaeCSDGrifCiwvn2akEB+McAuhFV2h6XKklAf2KcBpBtAaa0q2Et0fswPomVk397CmRZcMqLoMxTsfc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lYezjpwZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB2DCC4CEF1;
+	Mon,  8 Sep 2025 10:24:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757327026;
-	bh=qjITIwO/jDHVoXZ3gVg7mnbAYHFbHzgspnrskS7+5/w=;
+	s=k20201202; t=1757327103;
+	bh=tLGJeEl1Qfk4okWB+c27DSowZIiqr7hdwRezt+R4Sf0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=BnEc0ghmHEEYPpCdQMTjszVnNsLqBEGyBBQxxfY7MlDSRYKVWQhlkiNA1ofgOyTjp
-	 RpU++Oo3m2wwWpBByVRZJWrBS5QqoPzAhga/qh0GoIUk2Wdgce9DlQWIJQO1OfiBF/
-	 pM332FqW2D2ue+xHPy5EdC7WU1nxgBLaP+YHqnnQ3NNGJXJ/KpxgHxXe8coU8GCyg0
-	 37EUJBzRIKHUkfxQKZk/a/SR+5GJzubHNb5fZRlF/cbrzxGx8XkdlD+FP2PsCesFuk
-	 +UV1CbWz7JfeD7yb+ZhAP9KoU7WVNvseiCAb22+jIsIPj2CyWYJ+CBHHGdmMtR8G/v
-	 Kx11ZoyypywXQ==
-Date: Mon, 8 Sep 2025 15:53:38 +0530
+	b=lYezjpwZS+dI8jo9fGwzxt/K61AS9iJgYeAD4ZhJWPVE0YNxJ2Y1eg+O+e1GHesgx
+	 5VRu4yJgN7kkzmVvRKmT9tRhJw+FBwgGc3B2JpZU0kK3SiRx8afxDRyWXEWhcBiTeb
+	 H8FWSbCFQob+s4QU6BVcjkz1DXcpeKYQjIuPgfX35rToUA4+KrLlaBybzrmhiR/3B+
+	 qm30HNHvcqvF8zIzGS1K1KoNFjuWp/d0T6hNl9zbjFwWjf0dG0uIOOW99ajW2vEOm3
+	 tLajU3cIdgxOhB9k7BDsEiDpPGpFo1ciS6WBhDF0d5DI5yS9Fn633adNsFSm80IYkn
+	 MoEN5CaxCAigg==
+Date: Mon, 8 Sep 2025 15:54:52 +0530
 From: Manivannan Sadhasivam <mani@kernel.org>
 To: hans.zhang@cixtech.com
 Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com, 
@@ -49,11 +49,11 @@ Cc: bhelgaas@google.com, lpieralisi@kernel.org, kw@linux.com,
 	mpillai@cadence.com, fugang.duan@cixtech.com, guoyin.chen@cixtech.com, 
 	peter.chen@cixtech.com, cix-kernel-upstream@cixtech.com, linux-pci@vger.kernel.org, 
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 04/14] PCI: cadence: Add helper functions for
- supporting High Perf Architecture (HPA)
-Message-ID: <dyqe6bczkzfrd77ixwuydclak2tfvkno6def77omg6nfzod2lr@ykj6b7npzbxs>
+Subject: Re: [PATCH v9 05/14] PCI: cadence: Move PCIe EP common functions to
+ a separate file
+Message-ID: <rf2gdbe6mob6xq4la6k5wbng2r5xuteubshu74bwxj6h7lrixj@sosow2gmajqm>
 References: <20250901092052.4051018-1-hans.zhang@cixtech.com>
- <20250901092052.4051018-5-hans.zhang@cixtech.com>
+ <20250901092052.4051018-6-hans.zhang@cixtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,195 +63,612 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250901092052.4051018-5-hans.zhang@cixtech.com>
+In-Reply-To: <20250901092052.4051018-6-hans.zhang@cixtech.com>
 
-On Mon, Sep 01, 2025 at 05:20:42PM GMT, hans.zhang@cixtech.com wrote:
+On Mon, Sep 01, 2025 at 05:20:43PM GMT, hans.zhang@cixtech.com wrote:
 > From: Manikandan K Pillai <mpillai@cadence.com>
 > 
-> Add helper functions, register read, register write functions and update
-> platform data structures for supporting High Performance Architecture (HPA)
-> PCIe controllers from Cadence.
+> Move the Cadence PCIe controller EP common functions into a separate
+> file. The common library functions are split from legacy PCIe EP
+> controller functions.
 > 
 > Signed-off-by: Manikandan K Pillai <mpillai@cadence.com>
 > Co-developed-by: Hans Zhang <hans.zhang@cixtech.com>
 > Signed-off-by: Hans Zhang <hans.zhang@cixtech.com>
 
-Again, no need to split this into a separate patch.
+Since you are not adding the CIX EP controller driver, this split is not needed.
 
 - Mani
 
 > ---
->  .../controller/cadence/pcie-cadence-plat.c    |   4 -
->  drivers/pci/controller/cadence/pcie-cadence.h | 111 ++++++++++++++++--
->  2 files changed, 103 insertions(+), 12 deletions(-)
+>  drivers/pci/controller/cadence/Makefile       |   2 +-
+>  .../cadence/pcie-cadence-ep-common.c          | 253 ++++++++++++++++++
+>  .../cadence/pcie-cadence-ep-common.h          |  38 +++
+>  .../pci/controller/cadence/pcie-cadence-ep.c  | 233 +---------------
+>  4 files changed, 293 insertions(+), 233 deletions(-)
+>  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.c
+>  create mode 100644 drivers/pci/controller/cadence/pcie-cadence-ep-common.h
 > 
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence-plat.c b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> index ebd5c3afdfcd..b067a3296dd3 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> +++ b/drivers/pci/controller/cadence/pcie-cadence-plat.c
-> @@ -22,10 +22,6 @@ struct cdns_plat_pcie {
->  	struct cdns_pcie        *pcie;
->  };
->  
-> -struct cdns_plat_pcie_of_data {
-> -	bool is_rc;
-> -};
-> -
->  static const struct of_device_id cdns_plat_pcie_of_match[];
->  
->  static u64 cdns_plat_cpu_addr_fixup(struct cdns_pcie *pcie, u64 cpu_addr)
-> diff --git a/drivers/pci/controller/cadence/pcie-cadence.h b/drivers/pci/controller/cadence/pcie-cadence.h
-> index ddfc44f8d3ef..1174cf597bb0 100644
-> --- a/drivers/pci/controller/cadence/pcie-cadence.h
-> +++ b/drivers/pci/controller/cadence/pcie-cadence.h
-> @@ -26,6 +26,20 @@ struct cdns_pcie_rp_ib_bar {
->  };
->  
->  struct cdns_pcie;
-> +struct cdns_pcie_rc;
-> +
-> +enum cdns_pcie_reg_bank {
-> +	REG_BANK_RP,
-> +	REG_BANK_IP_REG,
-> +	REG_BANK_IP_CFG_CTRL_REG,
-> +	REG_BANK_AXI_MASTER_COMMON,
-> +	REG_BANK_AXI_MASTER,
-> +	REG_BANK_AXI_SLAVE,
-> +	REG_BANK_AXI_HLS,
-> +	REG_BANK_AXI_RAS,
-> +	REG_BANK_AXI_DTI,
-> +	REG_BANKS_MAX,
-> +};
->  
->  struct cdns_pcie_ops {
->  	int	(*start_link)(struct cdns_pcie *pcie);
-> @@ -34,6 +48,30 @@ struct cdns_pcie_ops {
->  	u64     (*cpu_addr_fixup)(struct cdns_pcie *pcie, u64 cpu_addr);
->  };
->  
-> +/**
-> + * struct cdns_plat_pcie_of_data - Register bank offset for a platform
-> + * @is_rc: controller is a RC
-> + * @ip_reg_bank_offset: ip register bank start offset
-> + * @ip_cfg_ctrl_reg_offset: ip config control register start offset
-> + * @axi_mstr_common_offset: AXI master common register start offset
-> + * @axi_slave_offset: AXI slave start offset
-> + * @axi_master_offset: AXI master start offset
-> + * @axi_hls_offset: AXI HLS offset start
-> + * @axi_ras_offset: AXI RAS offset
-> + * @axi_dti_offset: AXI DTI offset
+> diff --git a/drivers/pci/controller/cadence/Makefile b/drivers/pci/controller/cadence/Makefile
+> index 9bac5fb2f13d..80c1c4be7e80 100644
+> --- a/drivers/pci/controller/cadence/Makefile
+> +++ b/drivers/pci/controller/cadence/Makefile
+> @@ -1,6 +1,6 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  obj-$(CONFIG_PCIE_CADENCE) += pcie-cadence.o
+>  obj-$(CONFIG_PCIE_CADENCE_HOST) += pcie-cadence-host.o
+> -obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep.o
+> +obj-$(CONFIG_PCIE_CADENCE_EP) += pcie-cadence-ep-common.o pcie-cadence-ep.o
+>  obj-$(CONFIG_PCIE_CADENCE_PLAT) += pcie-cadence-plat.o
+>  obj-$(CONFIG_PCI_J721E) += pci-j721e.o
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep-common.c b/drivers/pci/controller/cadence/pcie-cadence-ep-common.c
+> new file mode 100644
+> index 000000000000..efdab21fd2b5
+> --- /dev/null
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep-common.c
+> @@ -0,0 +1,253 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Cadence PCIe endpoint controller driver common
+> + *
+> + * Copyright (c) 2017 Cadence
+> + * Author: Cyrille Pitchen <cyrille.pitchen@free-electrons.com>
 > + */
-> +struct cdns_plat_pcie_of_data {
-> +	u32 is_rc:1;
-> +	u32 ip_reg_bank_offset;
-> +	u32 ip_cfg_ctrl_reg_offset;
-> +	u32 axi_mstr_common_offset;
-> +	u32 axi_slave_offset;
-> +	u32 axi_master_offset;
-> +	u32 axi_hls_offset;
-> +	u32 axi_ras_offset;
-> +	u32 axi_dti_offset;
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/sizes.h>
+> +
+> +#include "pcie-cadence.h"
+> +#include "pcie-cadence-ep-common.h"
+> +
+> +u8 cdns_pcie_get_fn_from_vfn(struct cdns_pcie *pcie, u8 fn, u8 vfn)
+> +{
+> +	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
+> +	u32 first_vf_offset, stride;
+> +
+> +	if (vfn == 0)
+> +		return fn;
+> +
+> +	first_vf_offset = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_SRIOV_VF_OFFSET);
+> +	stride = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_SRIOV_VF_STRIDE);
+> +	fn = fn + first_vf_offset + ((vfn - 1) * stride);
+> +
+> +	return fn;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_get_fn_from_vfn);
+> +
+> +int cdns_pcie_ep_write_header(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			      struct pci_epf_header *hdr)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u32 reg;
+> +
+> +	if (vfn > 1) {
+> +		dev_err(&epc->dev, "Only Virtual Function #1 has deviceID\n");
+> +		return -EINVAL;
+> +	} else if (vfn == 1) {
+> +		reg = cap + PCI_SRIOV_VF_DID;
+> +		cdns_pcie_ep_fn_writew(pcie, fn, reg, hdr->deviceid);
+> +		return 0;
+> +	}
+> +
+> +	cdns_pcie_ep_fn_writew(pcie, fn, PCI_DEVICE_ID, hdr->deviceid);
+> +	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_REVISION_ID, hdr->revid);
+> +	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_CLASS_PROG, hdr->progif_code);
+> +	cdns_pcie_ep_fn_writew(pcie, fn, PCI_CLASS_DEVICE,
+> +			       hdr->subclass_code | hdr->baseclass_code << 8);
+> +	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_CACHE_LINE_SIZE,
+> +			       hdr->cache_line_size);
+> +	cdns_pcie_ep_fn_writew(pcie, fn, PCI_SUBSYSTEM_ID, hdr->subsys_id);
+> +	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_INTERRUPT_PIN, hdr->interrupt_pin);
+> +
+> +	/*
+> +	 * Vendor ID can only be modified from function 0, all other functions
+> +	 * use the same vendor ID as function 0.
+> +	 */
+> +	if (fn == 0) {
+> +		/* Update the vendor IDs. */
+> +		u32 id = CDNS_PCIE_LM_ID_VENDOR(hdr->vendorid) |
+> +			 CDNS_PCIE_LM_ID_SUBSYS(hdr->subsys_vendor_id);
+> +
+> +		cdns_pcie_writel(pcie, CDNS_PCIE_LM_ID, id);
+> +	}
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_write_header);
+> +
+> +int cdns_pcie_ep_set_msi(struct pci_epc *epc, u8 fn, u8 vfn, u8 mmc)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> +	u16 flags;
+> +
+> +	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> +
+> +	/*
+> +	 * Set the Multiple Message Capable bitfield into the Message Control
+> +	 * register.
+> +	 */
+> +	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> +	flags = (flags & ~PCI_MSI_FLAGS_QMASK) | (mmc << 1);
+> +	flags |= PCI_MSI_FLAGS_64BIT;
+> +	flags &= ~PCI_MSI_FLAGS_MASKBIT;
+> +	cdns_pcie_ep_fn_writew(pcie, fn, cap + PCI_MSI_FLAGS, flags);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_set_msi);
+> +
+> +int cdns_pcie_ep_get_msi(struct pci_epc *epc, u8 fn, u8 vfn)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> +	u16 flags, mme;
+> +
+> +	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> +
+> +	/* Validate that the MSI feature is actually enabled. */
+> +	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> +	if (!(flags & PCI_MSI_FLAGS_ENABLE))
+> +		return -EINVAL;
+> +
+> +	/*
+> +	 * Get the Multiple Message Enable bitfield from the Message Control
+> +	 * register.
+> +	 */
+> +	mme = FIELD_GET(PCI_MSI_FLAGS_QSIZE, flags);
+> +
+> +	return mme;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_get_msi);
+> +
+> +int cdns_pcie_ep_get_msix(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u32 cap = CDNS_PCIE_EP_FUNC_MSIX_CAP_OFFSET;
+> +	u32 val, reg;
+> +
+> +	func_no = cdns_pcie_get_fn_from_vfn(pcie, func_no, vfunc_no);
+> +
+> +	reg = cap + PCI_MSIX_FLAGS;
+> +	val = cdns_pcie_ep_fn_readw(pcie, func_no, reg);
+> +	if (!(val & PCI_MSIX_FLAGS_ENABLE))
+> +		return -EINVAL;
+> +
+> +	val &= PCI_MSIX_FLAGS_QSIZE;
+> +
+> +	return val;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_get_msix);
+> +
+> +int cdns_pcie_ep_set_msix(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			  u16 interrupts, enum pci_barno bir,
+> +			  u32 offset)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u32 cap = CDNS_PCIE_EP_FUNC_MSIX_CAP_OFFSET;
+> +	u32 val, reg;
+> +
+> +	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> +
+> +	reg = cap + PCI_MSIX_FLAGS;
+> +	val = cdns_pcie_ep_fn_readw(pcie, fn, reg);
+> +	val &= ~PCI_MSIX_FLAGS_QSIZE;
+> +	val |= interrupts;
+> +	cdns_pcie_ep_fn_writew(pcie, fn, reg, val);
+> +
+> +	/* Set MSI-X BAR and offset */
+> +	reg = cap + PCI_MSIX_TABLE;
+> +	val = offset | bir;
+> +	cdns_pcie_ep_fn_writel(pcie, fn, reg, val);
+> +
+> +	/* Set PBA BAR and offset.  BAR must match MSI-X BAR */
+> +	reg = cap + PCI_MSIX_PBA;
+> +	val = (offset + (interrupts * PCI_MSIX_ENTRY_SIZE)) | bir;
+> +	cdns_pcie_ep_fn_writel(pcie, fn, reg, val);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_set_msix);
+> +
+> +int cdns_pcie_ep_map_msi_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			     phys_addr_t addr, u8 interrupt_num,
+> +			     u32 entry_size, u32 *msi_data,
+> +			     u32 *msi_addr_offset)
+> +{
+> +	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> +	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> +	struct cdns_pcie *pcie = &ep->pcie;
+> +	u64 pci_addr, pci_addr_mask = 0xff;
+> +	u16 flags, mme, data, data_mask;
+> +	u8 msi_count;
+> +	int ret;
+> +	int i;
+> +
+> +	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> +
+> +	/* Check whether the MSI feature has been enabled by the PCI host. */
+> +	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> +	if (!(flags & PCI_MSI_FLAGS_ENABLE))
+> +		return -EINVAL;
+> +
+> +	/* Get the number of enabled MSIs */
+> +	mme = FIELD_GET(PCI_MSI_FLAGS_QSIZE, flags);
+> +	msi_count = 1 << mme;
+> +	if (!interrupt_num || interrupt_num > msi_count)
+> +		return -EINVAL;
+> +
+> +	/* Compute the data value to be written. */
+> +	data_mask = msi_count - 1;
+> +	data = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_DATA_64);
+> +	data = data & ~data_mask;
+> +
+> +	/* Get the PCI address where to write the data into. */
+> +	pci_addr = cdns_pcie_ep_fn_readl(pcie, fn, cap + PCI_MSI_ADDRESS_HI);
+> +	pci_addr <<= 32;
+> +	pci_addr |= cdns_pcie_ep_fn_readl(pcie, fn, cap + PCI_MSI_ADDRESS_LO);
+> +	pci_addr &= GENMASK_ULL(63, 2);
+> +
+> +	for (i = 0; i < interrupt_num; i++) {
+> +		ret = epc->ops->map_addr(epc, fn, vfn, addr,
+> +					 pci_addr & ~pci_addr_mask,
+> +					 entry_size);
+> +		if (ret)
+> +			return ret;
+> +		addr = addr + entry_size;
+> +	}
+> +
+> +	*msi_data = data;
+> +	*msi_addr_offset = pci_addr & pci_addr_mask;
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_map_msi_irq);
+> +
+> +static const struct pci_epc_features cdns_pcie_epc_vf_features = {
+> +	.linkup_notifier = false,
+> +	.msi_capable = true,
+> +	.msix_capable = true,
+> +	.align = 65536,
 > +};
 > +
->  /**
->   * struct cdns_pcie - private data for Cadence PCIe controller drivers
->   * @reg_base: IO mapped register base
-> @@ -45,16 +83,18 @@ struct cdns_pcie_ops {
->   * @link: list of pointers to corresponding device link representations
->   * @ops: Platform-specific ops to control various inputs from Cadence PCIe
->   *       wrapper
-> + * @cdns_pcie_reg_offsets: Register bank offsets for different SoC
->   */
->  struct cdns_pcie {
-> -	void __iomem		*reg_base;
-> -	struct resource		*mem_res;
-> -	struct device		*dev;
-> -	bool			is_rc;
-> -	int			phy_count;
-> -	struct phy		**phy;
-> -	struct device_link	**link;
-> -	const struct cdns_pcie_ops *ops;
-> +	void __iomem		             *reg_base;
-> +	struct resource		             *mem_res;
-> +	struct device		             *dev;
-> +	bool			             is_rc;
-> +	int			             phy_count;
-> +	struct phy		             **phy;
-> +	struct device_link	             **link;
-> +	const  struct cdns_pcie_ops          *ops;
-> +	const  struct cdns_plat_pcie_of_data *cdns_pcie_reg_offsets;
->  };
->  
->  /**
-> @@ -132,6 +172,40 @@ struct cdns_pcie_ep {
->  	unsigned int		quirk_disable_flr:1;
->  };
->  
-> +static inline u32 cdns_reg_bank_to_off(struct cdns_pcie *pcie, enum cdns_pcie_reg_bank bank)
-> +{
-> +	u32 offset = 0x0;
+> +static const struct pci_epc_features cdns_pcie_epc_features = {
+> +	.linkup_notifier = false,
+> +	.msi_capable = true,
+> +	.msix_capable = true,
+> +	.align = 256,
+> +};
 > +
-> +	switch (bank) {
-> +	case REG_BANK_IP_REG:
-> +		offset = pcie->cdns_pcie_reg_offsets->ip_reg_bank_offset;
-> +		break;
-> +	case REG_BANK_IP_CFG_CTRL_REG:
-> +		offset = pcie->cdns_pcie_reg_offsets->ip_cfg_ctrl_reg_offset;
-> +		break;
-> +	case REG_BANK_AXI_MASTER_COMMON:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_mstr_common_offset;
-> +		break;
-> +	case REG_BANK_AXI_MASTER:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_master_offset;
-> +		break;
-> +	case REG_BANK_AXI_SLAVE:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_slave_offset;
-> +		break;
-> +	case REG_BANK_AXI_HLS:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_hls_offset;
-> +		break;
-> +	case REG_BANK_AXI_RAS:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_ras_offset;
-> +		break;
-> +	case REG_BANK_AXI_DTI:
-> +		offset = pcie->cdns_pcie_reg_offsets->axi_dti_offset;
-> +		break;
-> +	default:
-> +		break;
-> +	};
-> +	return offset;
+> +const struct pci_epc_features*
+> +cdns_pcie_ep_get_features(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+> +{
+> +	if (!vfunc_no)
+> +		return &cdns_pcie_epc_features;
+> +
+> +	return &cdns_pcie_epc_vf_features;
 > +}
+> +EXPORT_SYMBOL_GPL(cdns_pcie_ep_get_features);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Cadence PCIe endpoint controller driver common");
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep-common.h b/drivers/pci/controller/cadence/pcie-cadence-ep-common.h
+> new file mode 100644
+> index 000000000000..7363031b5398
+> --- /dev/null
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep-common.h
+> @@ -0,0 +1,38 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Cadence PCIe Endpoint controller driver
+> + *
+> + * Copyright (c) 2017 Cadence
+> + * Author: Cyrille Pitchen <cyrille.pitchen@free-electrons.com>
+> + */
+> +#ifndef _PCIE_CADENCE_EP_COMMON_H
+> +#define _PCIE_CADENCE_EP_COMMON_H
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/pci.h>
+> +#include <linux/pci-epf.h>
+> +#include <linux/pci-epc.h>
+> +#include "../../pci.h"
+> +
+> +#define CDNS_PCIE_EP_MIN_APERTURE		128	/* 128 bytes */
+> +#define CDNS_PCIE_EP_IRQ_PCI_ADDR_NONE		0x1
+> +#define CDNS_PCIE_EP_IRQ_PCI_ADDR_LEGACY	0x3
+> +
+> +u8 cdns_pcie_get_fn_from_vfn(struct cdns_pcie *pcie, u8 fn, u8 vfn);
+> +int cdns_pcie_ep_write_header(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			      struct pci_epf_header *hdr);
+> +int cdns_pcie_ep_set_msi(struct pci_epc *epc, u8 fn, u8 vfn, u8 mmc);
+> +int cdns_pcie_ep_get_msi(struct pci_epc *epc, u8 fn, u8 vfn);
+> +int cdns_pcie_ep_get_msix(struct pci_epc *epc, u8 func_no, u8 vfunc_no);
+> +int cdns_pcie_ep_set_msix(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			  u16 interrupts, enum pci_barno bir,
+> +			  u32 offset);
+> +int cdns_pcie_ep_map_msi_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+> +			     phys_addr_t addr, u8 interrupt_num,
+> +			     u32 entry_size, u32 *msi_data,
+> +			     u32 *msi_addr_offset);
+> +const struct pci_epc_features *cdns_pcie_ep_get_features(struct pci_epc *epc,
+> +							 u8 func_no,
+> +							 u8 vfunc_no);
+> +
+> +#endif /* _PCIE_CADENCE_EP_COMMON_H */
+> diff --git a/drivers/pci/controller/cadence/pcie-cadence-ep.c b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> index 77c5a19b2ab1..747d83ed2ad3 100644
+> --- a/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> +++ b/drivers/pci/controller/cadence/pcie-cadence-ep.c
+> @@ -13,68 +13,7 @@
+>  #include <linux/sizes.h>
 >  
->  /* Register access */
->  static inline void cdns_pcie_writel(struct cdns_pcie *pcie, u32 reg, u32 value)
-> @@ -144,6 +218,27 @@ static inline u32 cdns_pcie_readl(struct cdns_pcie *pcie, u32 reg)
->  	return readl(pcie->reg_base + reg);
+>  #include "pcie-cadence.h"
+> -#include "../../pci.h"
+> -
+> -#define CDNS_PCIE_EP_MIN_APERTURE		128	/* 128 bytes */
+> -#define CDNS_PCIE_EP_IRQ_PCI_ADDR_NONE		0x1
+> -#define CDNS_PCIE_EP_IRQ_PCI_ADDR_LEGACY	0x3
+> -
+> -static u8 cdns_pcie_get_fn_from_vfn(struct cdns_pcie *pcie, u8 fn, u8 vfn)
+> -{
+> -	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
+> -	u32 first_vf_offset, stride;
+> -
+> -	if (vfn == 0)
+> -		return fn;
+> -
+> -	first_vf_offset = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_SRIOV_VF_OFFSET);
+> -	stride = cdns_pcie_ep_fn_readw(pcie, fn, cap +  PCI_SRIOV_VF_STRIDE);
+> -	fn = fn + first_vf_offset + ((vfn - 1) * stride);
+> -
+> -	return fn;
+> -}
+> -
+> -static int cdns_pcie_ep_write_header(struct pci_epc *epc, u8 fn, u8 vfn,
+> -				     struct pci_epf_header *hdr)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	u32 cap = CDNS_PCIE_EP_FUNC_SRIOV_CAP_OFFSET;
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u32 reg;
+> -
+> -	if (vfn > 1) {
+> -		dev_err(&epc->dev, "Only Virtual Function #1 has deviceID\n");
+> -		return -EINVAL;
+> -	} else if (vfn == 1) {
+> -		reg = cap + PCI_SRIOV_VF_DID;
+> -		cdns_pcie_ep_fn_writew(pcie, fn, reg, hdr->deviceid);
+> -		return 0;
+> -	}
+> -
+> -	cdns_pcie_ep_fn_writew(pcie, fn, PCI_DEVICE_ID, hdr->deviceid);
+> -	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_REVISION_ID, hdr->revid);
+> -	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_CLASS_PROG, hdr->progif_code);
+> -	cdns_pcie_ep_fn_writew(pcie, fn, PCI_CLASS_DEVICE,
+> -			       hdr->subclass_code | hdr->baseclass_code << 8);
+> -	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_CACHE_LINE_SIZE,
+> -			       hdr->cache_line_size);
+> -	cdns_pcie_ep_fn_writew(pcie, fn, PCI_SUBSYSTEM_ID, hdr->subsys_id);
+> -	cdns_pcie_ep_fn_writeb(pcie, fn, PCI_INTERRUPT_PIN, hdr->interrupt_pin);
+> -
+> -	/*
+> -	 * Vendor ID can only be modified from function 0, all other functions
+> -	 * use the same vendor ID as function 0.
+> -	 */
+> -	if (fn == 0) {
+> -		/* Update the vendor IDs. */
+> -		u32 id = CDNS_PCIE_LM_ID_VENDOR(hdr->vendorid) |
+> -			 CDNS_PCIE_LM_ID_SUBSYS(hdr->subsys_vendor_id);
+> -
+> -		cdns_pcie_writel(pcie, CDNS_PCIE_LM_ID, id);
+> -	}
+> -
+> -	return 0;
+> -}
+> +#include "pcie-cadence-ep-common.h"
+>  
+>  static int cdns_pcie_ep_set_bar(struct pci_epc *epc, u8 fn, u8 vfn,
+>  				struct pci_epf_bar *epf_bar)
+> @@ -222,100 +161,6 @@ static void cdns_pcie_ep_unmap_addr(struct pci_epc *epc, u8 fn, u8 vfn,
+>  	clear_bit(r, &ep->ob_region_map);
 >  }
 >  
-> +static inline void cdns_pcie_hpa_writel(struct cdns_pcie *pcie,
-> +					enum cdns_pcie_reg_bank bank,
-> +					u32 reg,
-> +					u32 value)
-> +{
-> +	u32 offset = cdns_reg_bank_to_off(pcie, bank);
-> +
-> +	reg += offset;
-> +	writel(value, pcie->reg_base + reg);
-> +}
-> +
-> +static inline u32 cdns_pcie_hpa_readl(struct cdns_pcie *pcie,
-> +				      enum cdns_pcie_reg_bank bank,
-> +				      u32 reg)
-> +{
-> +	u32 offset = cdns_reg_bank_to_off(pcie, bank);
-> +
-> +	reg += offset;
-> +	return readl(pcie->reg_base + reg);
-> +}
-> +
->  static inline u32 cdns_pcie_read_sz(void __iomem *addr, int size)
+> -static int cdns_pcie_ep_set_msi(struct pci_epc *epc, u8 fn, u8 vfn, u8 nr_irqs)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u8 mmc = order_base_2(nr_irqs);
+> -	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> -	u16 flags;
+> -
+> -	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> -
+> -	/*
+> -	 * Set the Multiple Message Capable bitfield into the Message Control
+> -	 * register.
+> -	 */
+> -	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> -	flags = (flags & ~PCI_MSI_FLAGS_QMASK) | (mmc << 1);
+> -	flags |= PCI_MSI_FLAGS_64BIT;
+> -	flags &= ~PCI_MSI_FLAGS_MASKBIT;
+> -	cdns_pcie_ep_fn_writew(pcie, fn, cap + PCI_MSI_FLAGS, flags);
+> -
+> -	return 0;
+> -}
+> -
+> -static int cdns_pcie_ep_get_msi(struct pci_epc *epc, u8 fn, u8 vfn)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> -	u16 flags, mme;
+> -
+> -	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> -
+> -	/* Validate that the MSI feature is actually enabled. */
+> -	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> -	if (!(flags & PCI_MSI_FLAGS_ENABLE))
+> -		return -EINVAL;
+> -
+> -	/*
+> -	 * Get the Multiple Message Enable bitfield from the Message Control
+> -	 * register.
+> -	 */
+> -	mme = FIELD_GET(PCI_MSI_FLAGS_QSIZE, flags);
+> -
+> -	return 1 << mme;
+> -}
+> -
+> -static int cdns_pcie_ep_get_msix(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u32 cap = CDNS_PCIE_EP_FUNC_MSIX_CAP_OFFSET;
+> -	u32 val, reg;
+> -
+> -	func_no = cdns_pcie_get_fn_from_vfn(pcie, func_no, vfunc_no);
+> -
+> -	reg = cap + PCI_MSIX_FLAGS;
+> -	val = cdns_pcie_ep_fn_readw(pcie, func_no, reg);
+> -	if (!(val & PCI_MSIX_FLAGS_ENABLE))
+> -		return -EINVAL;
+> -
+> -	val &= PCI_MSIX_FLAGS_QSIZE;
+> -
+> -	return val + 1;
+> -}
+> -
+> -static int cdns_pcie_ep_set_msix(struct pci_epc *epc, u8 fn, u8 vfn,
+> -				 u16 nr_irqs, enum pci_barno bir, u32 offset)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u32 cap = CDNS_PCIE_EP_FUNC_MSIX_CAP_OFFSET;
+> -	u32 val, reg;
+> -
+> -	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> -
+> -	reg = cap + PCI_MSIX_FLAGS;
+> -	val = cdns_pcie_ep_fn_readw(pcie, fn, reg);
+> -	val &= ~PCI_MSIX_FLAGS_QSIZE;
+> -	val |= nr_irqs - 1; /* encoded as N-1 */
+> -	cdns_pcie_ep_fn_writew(pcie, fn, reg, val);
+> -
+> -	/* Set MSI-X BAR and offset */
+> -	reg = cap + PCI_MSIX_TABLE;
+> -	val = offset | bir;
+> -	cdns_pcie_ep_fn_writel(pcie, fn, reg, val);
+> -
+> -	/* Set PBA BAR and offset.  BAR must match MSI-X BAR */
+> -	reg = cap + PCI_MSIX_PBA;
+> -	val = (offset + (nr_irqs * PCI_MSIX_ENTRY_SIZE)) | bir;
+> -	cdns_pcie_ep_fn_writel(pcie, fn, reg, val);
+> -
+> -	return 0;
+> -}
+> -
+>  static void cdns_pcie_ep_assert_intx(struct cdns_pcie_ep *ep, u8 fn, u8 intx,
+>  				     bool is_asserted)
 >  {
->  	void __iomem *aligned_addr = PTR_ALIGN_DOWN(addr, 0x4);
+> @@ -426,59 +271,6 @@ static int cdns_pcie_ep_send_msi_irq(struct cdns_pcie_ep *ep, u8 fn, u8 vfn,
+>  	return 0;
+>  }
+>  
+> -static int cdns_pcie_ep_map_msi_irq(struct pci_epc *epc, u8 fn, u8 vfn,
+> -				    phys_addr_t addr, u8 interrupt_num,
+> -				    u32 entry_size, u32 *msi_data,
+> -				    u32 *msi_addr_offset)
+> -{
+> -	struct cdns_pcie_ep *ep = epc_get_drvdata(epc);
+> -	u32 cap = CDNS_PCIE_EP_FUNC_MSI_CAP_OFFSET;
+> -	struct cdns_pcie *pcie = &ep->pcie;
+> -	u64 pci_addr, pci_addr_mask = 0xff;
+> -	u16 flags, mme, data, data_mask;
+> -	u8 msi_count;
+> -	int ret;
+> -	int i;
+> -
+> -	fn = cdns_pcie_get_fn_from_vfn(pcie, fn, vfn);
+> -
+> -	/* Check whether the MSI feature has been enabled by the PCI host. */
+> -	flags = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_FLAGS);
+> -	if (!(flags & PCI_MSI_FLAGS_ENABLE))
+> -		return -EINVAL;
+> -
+> -	/* Get the number of enabled MSIs */
+> -	mme = FIELD_GET(PCI_MSI_FLAGS_QSIZE, flags);
+> -	msi_count = 1 << mme;
+> -	if (!interrupt_num || interrupt_num > msi_count)
+> -		return -EINVAL;
+> -
+> -	/* Compute the data value to be written. */
+> -	data_mask = msi_count - 1;
+> -	data = cdns_pcie_ep_fn_readw(pcie, fn, cap + PCI_MSI_DATA_64);
+> -	data = data & ~data_mask;
+> -
+> -	/* Get the PCI address where to write the data into. */
+> -	pci_addr = cdns_pcie_ep_fn_readl(pcie, fn, cap + PCI_MSI_ADDRESS_HI);
+> -	pci_addr <<= 32;
+> -	pci_addr |= cdns_pcie_ep_fn_readl(pcie, fn, cap + PCI_MSI_ADDRESS_LO);
+> -	pci_addr &= GENMASK_ULL(63, 2);
+> -
+> -	for (i = 0; i < interrupt_num; i++) {
+> -		ret = cdns_pcie_ep_map_addr(epc, fn, vfn, addr,
+> -					    pci_addr & ~pci_addr_mask,
+> -					    entry_size);
+> -		if (ret)
+> -			return ret;
+> -		addr = addr + entry_size;
+> -	}
+> -
+> -	*msi_data = data;
+> -	*msi_addr_offset = pci_addr & pci_addr_mask;
+> -
+> -	return 0;
+> -}
+> -
+>  static int cdns_pcie_ep_send_msix_irq(struct cdns_pcie_ep *ep, u8 fn, u8 vfn,
+>  				      u16 interrupt_num)
+>  {
+> @@ -607,29 +399,6 @@ static int cdns_pcie_ep_start(struct pci_epc *epc)
+>  	return 0;
+>  }
+>  
+> -static const struct pci_epc_features cdns_pcie_epc_vf_features = {
+> -	.linkup_notifier = false,
+> -	.msi_capable = true,
+> -	.msix_capable = true,
+> -	.align = 65536,
+> -};
+> -
+> -static const struct pci_epc_features cdns_pcie_epc_features = {
+> -	.linkup_notifier = false,
+> -	.msi_capable = true,
+> -	.msix_capable = true,
+> -	.align = 256,
+> -};
+> -
+> -static const struct pci_epc_features*
+> -cdns_pcie_ep_get_features(struct pci_epc *epc, u8 func_no, u8 vfunc_no)
+> -{
+> -	if (!vfunc_no)
+> -		return &cdns_pcie_epc_features;
+> -
+> -	return &cdns_pcie_epc_vf_features;
+> -}
+> -
+>  static const struct pci_epc_ops cdns_pcie_epc_ops = {
+>  	.write_header	= cdns_pcie_ep_write_header,
+>  	.set_bar	= cdns_pcie_ep_set_bar,
 > -- 
 > 2.49.0
 > 
