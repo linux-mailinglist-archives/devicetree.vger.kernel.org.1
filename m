@@ -1,123 +1,176 @@
-Return-Path: <devicetree+bounces-214236-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214237-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABE7B487B2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:02:06 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 52C58B487D8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:09:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3A2987A333C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:00:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2E70F1B226F1
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:09:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583D92EC0AA;
-	Mon,  8 Sep 2025 09:01:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3C12EFD9E;
+	Mon,  8 Sep 2025 09:08:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QX6HnDSF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f45.google.com (mail-ua1-f45.google.com [209.85.222.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E2B29AB1A;
-	Mon,  8 Sep 2025 09:01:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78AF32ECD13;
+	Mon,  8 Sep 2025 09:08:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757322118; cv=none; b=og1WhnikEmo9rbYIGv26T43b20as6ecg+nFkVhj77DX8xeJ/TE5Yhs2PTPuPymHLZtKNmFwl3DWbsSed/eo+Qkvg2hRroOVt1vIF3AFLA3swn+EtQS4FRiHO6u6aitfZA6VnedfWvjGXpFhWABp6OgNRh3iC8zdoc3jF7M/moL4=
+	t=1757322525; cv=none; b=Wxn7Nx9BPtq0nK1KdhtlCDX8M7YiKA40LKrQnm60U39T/wkAMEj51yNjtcY1Bb0XSis1VVGwvYYzadfr9vwhSJUYD9kgLiiQQgm7LrythLGj2apfgtC/QbiMESqw6ycb4Omn5FA6GgkCWDbHn2cIVpKgXAQTkj+tKuzcusI6kHM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757322118; c=relaxed/simple;
-	bh=q0BXJbWUGkpqpO4MDox2UFnW0f0cR4V3hBxgPDn8tuI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=R0NwWZrVvf1d0Yrn2ZPj1BisSDmB3rT+Q6Hvt215g5ufzwaFihRuOIRNrMkMelmo0QUvXvkXy+O2OJameQp4GwqnH8ISjlyMgOLOq02C9QZStrf1Pqt2Fygiy5VNokMcF8/0gVB/LmNYPQ7MPAFgcWkLNgayo/cg696WWHmietk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f45.google.com with SMTP id a1e0cc1a2514c-89a079e01f2so1153416241.3;
-        Mon, 08 Sep 2025 02:01:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757322115; x=1757926915;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YFwI6TqYVmu1hmFIIK6VMUwLQfySXRrPHHAhZT/pLGA=;
-        b=UKlIho1Sk3QgGAWeFn0h7h9PtgLg0bwxfugIVDVX+4UrfG9tYXlLe7tRS62n7/Q9oq
-         uoVVlbP27BtzBvjTo1LxNyKD7DtdAGFjGhuZbeewzUvWcKEpk6dXze8uMJ0hiRUw0YRy
-         5H+nQY6cE0PK4Y7ipjPEo07d5TCJTvTslYUAlqUWlNhjXmrE/giS3QLhFyIngza9Dfq5
-         pSjDjcU9VQBHwsyGtVQ9IoBHvpYE8Sta8w3RbgoPslHHQtEtBC2zSC4JGyMXJ6bg7zZy
-         n6wx4K9vLSXnrYXmvffLjgyiy/Ywdrb1ol79oKpb9gZE2EP4xwZ+Pcch/3wLbnskmsem
-         Havw==
-X-Forwarded-Encrypted: i=1; AJvYcCUUfcM41CjECYscxCycw9qbRPfYm4w84HJXGlE9n4EQ4nJHaD4pOaNNhrT0HzyMT2QSGWX3hVm307NMregU@vger.kernel.org, AJvYcCWi6DIIKo5+Qm9Y/GsPGBhyXmN0kWq3eHuD/SBCMf1zWro1a28baC78hvfXHuFiF2zqmR+AfoytCIXgBg8zPqkDGJsi@vger.kernel.org, AJvYcCXpWD2etypeI+w+NNZdl9KE/1HvvSb+PDCW4JoLt76Rshpqj0APM58cYhLkUeFp6UKCWS6hlhep4J00bw==@vger.kernel.org
-X-Gm-Message-State: AOJu0YwV6gy3oZYCyLxFFzAESxdeaBrMI5j+RJWu1gGz7xHKMEE1Pr1g
-	qjmyicIef5xBhYEz8uXFU4C2Fmu+5+lC9f5Cd/6VTRjp56l9kN1RFiPKiIJAOqpA
-X-Gm-Gg: ASbGncurQlxbHLFW0BSApBf52feDHqhRfnjt4sutmniAUBvzZhDEYogzg4k5gLJYNtk
-	oikUMMO8S7mO899a3PgnjwYQHKyp9I9lmHFLJgf3Qf4UFPJIUHSlG31ucGxpOg8CAY6WPa+LrOM
-	ADGUpCy+x0N7He69No6lgYLyeNui/0Ldtwx430LSb7vAMAZ/WDlgq0P99qsHEpoQWbInD3/Zeio
-	3hqZe3MCKMVnGGsNhszkQOLP7XzMcdxL4u3Q80M+8+Vtb6wHtE+jU3di8VhiJaEuj1jtX9LApF/
-	nkJtQsvmLsZlWwG//y3kLEo7a/4tiEvorMKkmuN1ZGCyTW/P5gKWsw37kV3elZSk4lYTxWt/1gT
-	Dr9I3XQyHmqMMe6ZJr/QU2lVupgqFTGrMZlLPnOmit4dnnaAr5XOrxXAFX2lB
-X-Google-Smtp-Source: AGHT+IGpOLWKGfJeF7VhO4fNRiEU4yhsitsJCz3Mee8VqOhBDs92nyLp0mkVRJX0zDmN3uAhIQgoog==
-X-Received: by 2002:a05:6102:6882:b0:4e7:5f31:7443 with SMTP id ada2fe7eead31-53d1be13184mr1564684137.9.1757322115033;
-        Mon, 08 Sep 2025 02:01:55 -0700 (PDT)
-Received: from mail-ua1-f53.google.com (mail-ua1-f53.google.com. [209.85.222.53])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-89608759c3bsm7971724241.9.2025.09.08.02.01.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 02:01:54 -0700 (PDT)
-Received: by mail-ua1-f53.google.com with SMTP id a1e0cc1a2514c-89607b19f71so1304768241.1;
-        Mon, 08 Sep 2025 02:01:54 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUgvKlpP5DI+xzjcwlrLCPXK8OlFi087ixUQXV5KwPBEmavjuDnaWG8gFjl5i0x3c8Eu2r+kb6JYmplpNKZ@vger.kernel.org, AJvYcCVvod6HdNOQco4nktKzs/yu6AyO4xa3ZXqVwHGzyPjyIUGM5yyTRbMR+xi4SIH2KGTIMNc1Yh9YJ4i1EA==@vger.kernel.org, AJvYcCWKfCtpZa6o0jrAG3SVtcVGOqP1uUn3Q5UeofVajzWrnZa+aM/3iKRYE4CMEbx7f4AmIUnEnjV4OP0taiLFK3FQhHlQ@vger.kernel.org
-X-Received: by 2002:a05:6102:5f04:b0:4e7:db33:5725 with SMTP id
- ada2fe7eead31-53d1aad7c23mr1460406137.3.1757322114633; Mon, 08 Sep 2025
- 02:01:54 -0700 (PDT)
+	s=arc-20240116; t=1757322525; c=relaxed/simple;
+	bh=7JoeAhQFH8pNxURdTGSe/k8G1U9yl25jn2lVYW/PbXs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=KJBleoIRRNvmmpMIvTA7j3VyE74CTi1QcAqaU+mtS/Ww/DHd3D3glJUUMJRAiFDL7PN6ET8/VTPkj1PCmi87smwZLjkyyOLM1A20R2YQkYFk9LLq1mk1Pl8t+/DTH64Ug+YicKEu8Nqgx7XKH0HxOGy9LgI/vIFBKDGm+NYOSJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QX6HnDSF; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh02.itg.ti.com ([10.180.78.226])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 58897qN5071816;
+	Mon, 8 Sep 2025 04:07:52 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757322472;
+	bh=I+OEYV3P6RAdn9e+dnjp6V6LTEnzQUTTg6OwU4gAIao=;
+	h=From:To:CC:Subject:Date;
+	b=QX6HnDSFstWjhl3Na2VLK5e1msp0nT0IBOdbNL8iAp8VW5uZV6DmBaoiriOzjmoKo
+	 /PKypUrv28UApFjGZ7N5lP1yiKcwc4uqjbhq0GHCIORj5Fz+/T6tnWcuKiSr8KpPVf
+	 Sclh8z15/11XDoOhtS3JPoNZeM4H9qD4ZAd3GE6U=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+	by lelvem-sh02.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 58897q372856541
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 04:07:52 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 04:07:51 -0500
+Received: from fllvem-mr07.itg.ti.com (10.64.41.89) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 04:07:51 -0500
+Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
+	by fllvem-mr07.itg.ti.com (8.18.1/8.18.1) with ESMTP id 58897p2J2355770;
+	Mon, 8 Sep 2025 04:07:51 -0500
+Received: from localhost (danish-tpc.dhcp.ti.com [172.24.231.152])
+	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 58897o8E023014;
+	Mon, 8 Sep 2025 04:07:50 -0500
+From: MD Danish Anwar <danishanwar@ti.com>
+To: "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet
+	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni
+	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra
+	<vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Andrew Lunn <andrew+netdev@lunn.ch>,
+        MD Danish Anwar
+	<danishanwar@ti.com>,
+        Mengyuan Lou <mengyuanlou@net-swift.com>,
+        Luo Jie
+	<quic_luoj@quicinc.com>, Fan Gong <gongfan1@huawei.com>,
+        Lei Wei
+	<quic_leiwei@quicinc.com>,
+        Michael Ellerman <mpe@ellerman.id.au>, Lee Trager
+	<lee@trager.us>,
+        Lorenzo Bianconi <lorenzo@kernel.org>,
+        Parthiban Veerasooran
+	<Parthiban.Veerasooran@microchip.com>,
+        Geert Uytterhoeven
+	<geert+renesas@glider.be>,
+        Lukas Bulwahn <lukas.bulwahn@redhat.com>
+CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH net-next v3 0/7] Add RPMSG Ethernet Driver
+Date: Mon, 8 Sep 2025 14:37:39 +0530
+Message-ID: <20250908090746.862407-1-danishanwar@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250902105710.00512c6d@booty> <aLkiNdGIXsogC6Rr@zatzit>
- <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org> <aL5dNtzwiinq_geg@zatzit>
-In-Reply-To: <aL5dNtzwiinq_geg@zatzit>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 8 Sep 2025 11:01:42 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdWmJcwy8YUqfeBT+B79a19YeW77Ms6KjNhKGY8935tTog@mail.gmail.com>
-X-Gm-Features: AS18NWDxOsfHISF-XemhyJHETyvAN38Dk8IqY_hqDYxyyU56PPJHY-UbH9peq8Y
-Message-ID: <CAMuHMdWmJcwy8YUqfeBT+B79a19YeW77Ms6KjNhKGY8935tTog@mail.gmail.com>
-Subject: Re: Device tree representation of (hotplug) connectors: discussion at ELCE
-To: David Gibson <david@gibson.dropbear.id.au>
-Cc: Ayush Singh <ayush@beagleboard.org>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>, 
-	Jason Kridner <jkridner@gmail.com>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree-compiler@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Herve Codina <herve.codina@bootlin.com>, Andrew Davis <afd@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi David,
+This patch series introduces the RPMSG Ethernet driver, which provides a
+virtual Ethernet interface for communication between a host processor and
+a remote processor using the RPMSG framework. The driver enables
+Ethernet-like packet transmission and reception over shared memory,
+facilitating inter-core communication in systems with heterogeneous
+processors.
 
-On Mon, 8 Sept 2025 at 06:36, David Gibson <david@gibson.dropbear.id.au> wrote:
-> On Thu, Sep 04, 2025 at 11:15:44AM +0530, Ayush Singh wrote:
-> > I would need to wrap my head around this a bit, specially in context of
-> > chaining connectors. It does seem like it will still require the points you
-> > mentioned above to be present in one form or another, i.e. some way to
-> > extend busses to different nodes/trees and connector (even a chained one)
-> > local symbols/aliases.
->
-> Yes, it would still require those mappings.  I don't think chained
-> connectors introduce a lot of extra complication.  An intermediate
-> connector would need to be able to "re-export" things it got from its
-> parent connector to its child connector(s) - renaming them if
-> necessary.
+Key features of this driver:
 
-I don't expect chained connectors to be complicated.
-Boards using multiple-connectors may be more difficult, e.g.
-https://1bitsquared.de/products/pmod-hyperram
+1. Virtual Ethernet interface using RPMSG framework
+2. Shared memory-based packet transmission and reception
+3. Support for multicast address filtering
+4. Dynamic MAC address assignment
+5. NAPI support for efficient packet processing
+6. State machine for managing interface states
+
+This driver is designed to be generic and vendor-agnostic. Vendors can
+develop firmware for the remote processor to make it compatible with this
+driver by adhering to the shared memory layout and communication protocol
+described in the documentation.
+
+This patch series has been tested on a TI AM64xx platform with a
+compatible remote processor firmware. Feedback and suggestions for
+improvement are welcome.
+
+Changes from v2 to v3:
+- Removed the binding patches as suggested by Krzysztof Kozlowski <krzk@kernel.org>
+- Dropped the rpmsg-eth node. The shared memory region is directly added to the
+  "memory-region" in rproc device.
+- Added #include <linux/io.h> header for memory mapping operations
+- Added vendor-specific configuration through rpmsg_eth_data structure
+- Added shared memory region index support with shm_region_index parameter
+- Changed RPMSG channel name from generic "shm-eth" to vendor-specific "ti.shm-eth"
+- Fixed format string warning using %zu instead of %lu for size_t type
+- Updated Documentation to include shm_region_index
+- Added MAINTAINERS entry for the driver
+
+v2 https://lore.kernel.org/all/20250902090746.3221225-1-danishanwar@ti.com/
+v1 https://lore.kernel.org/all/20250723080322.3047826-1-danishanwar@ti.com/
+
+MD Danish Anwar (7):
+  net: rpmsg-eth: Add Documentation for RPMSG-ETH Driver
+  net: rpmsg-eth: Add basic rpmsg skeleton
+  net: rpmsg-eth: Register device as netdev
+  net: rpmsg-eth: Add netdev ops
+  net: rpmsg-eth: Add support for multicast filtering
+  MAINTAINERS: Add entry for RPMSG Ethernet driver
+  arch: arm64: dts: k3-am64*: Add rpmsg-eth node
+
+ .../device_drivers/ethernet/index.rst         |   1 +
+ .../device_drivers/ethernet/rpmsg_eth.rst     | 424 ++++++++++++
+ MAINTAINERS                                   |   6 +
+ arch/arm64/boot/dts/ti/k3-am642-evm.dts       |  11 +-
+ drivers/net/ethernet/Kconfig                  |  10 +
+ drivers/net/ethernet/Makefile                 |   1 +
+ drivers/net/ethernet/rpmsg_eth.c              | 639 ++++++++++++++++++
+ drivers/net/ethernet/rpmsg_eth.h              | 293 ++++++++
+ 8 files changed, 1383 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/networking/device_drivers/ethernet/rpmsg_eth.rst
+ create mode 100644 drivers/net/ethernet/rpmsg_eth.c
+ create mode 100644 drivers/net/ethernet/rpmsg_eth.h
 
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+base-commit: 16c610162d1f1c332209de1c91ffb09b659bb65d
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.34.1
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
 
