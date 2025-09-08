@@ -1,197 +1,219 @@
-Return-Path: <devicetree+bounces-214535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7E2B49803
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:15:03 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 045D2B4981D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:18:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1AB9134184E
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:15:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B07C23A3E6B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:18:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A21AB3176F2;
-	Mon,  8 Sep 2025 18:13:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 650A6314A63;
+	Mon,  8 Sep 2025 18:18:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b="W92hAt8z";
-	dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b="MIyhvqRj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LCiO52Se"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fhigh-a4-smtp.messagingengine.com (fhigh-a4-smtp.messagingengine.com [103.168.172.155])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 59D093164CD;
-	Mon,  8 Sep 2025 18:13:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.168.172.155
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAFA330DD2D
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 18:18:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757355186; cv=none; b=QBYS8YyuPxF09xCFHPo1jJ7H973ScJ+SzA+mHUatFfRfwIdFK9ztjXLzTga3h5uuvzkQr4htqLm3tui6lILhwfykZ/y4fcTipoa/b340stzM9PuIFVh41/9BBshavyLQKU3yijqsSfmkNsf4ACwmcaNyBUqSC4iJ4BX+j8aJRgo=
+	t=1757355522; cv=none; b=VfmbhsW9NYxW3L+6Cf/wTQHuGtcOpnbvH8R9hYb2a9nqCuqVNc4H9m/qw8cQ0iFHwA/zWoXE2V8lKxlkwRErWj5tc804sdjoFB90j+0Gf1i4rYBo8ikRUYStW6+RoPkE6/wEhWA6Tlk06HcOXl6UIFnRjU/4zx0u55BB+xOTXzY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757355186; c=relaxed/simple;
-	bh=S/qIFkbE6NWMThaebjnBbzrG7hfvN4q9LxfI84fWnS4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DPpZFDIoowuiqY6RCqWslTgvvcC7B/JxlJWnAw+5kcxrMmK0bFhBKL3o471kcvoqt2Z09dxZbymf0l4VyWNCBbGvZHTjHmaVdSBXreSPUqROZSmrskeGdpoo5OcViM2ffknuj/AgbslhtHBBkMJuLq8GsIEQnaywVYSzIlLjKMg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net; spf=pass smtp.mailfrom=jannau.net; dkim=pass (2048-bit key) header.d=jannau.net header.i=@jannau.net header.b=W92hAt8z; dkim=pass (2048-bit key) header.d=messagingengine.com header.i=@messagingengine.com header.b=MIyhvqRj; arc=none smtp.client-ip=103.168.172.155
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=jannau.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jannau.net
-Received: from phl-compute-06.internal (phl-compute-06.internal [10.202.2.46])
-	by mailfhigh.phl.internal (Postfix) with ESMTP id 952921400182;
-	Mon,  8 Sep 2025 14:13:03 -0400 (EDT)
-Received: from phl-mailfrontend-02 ([10.202.2.163])
-  by phl-compute-06.internal (MEProxy); Mon, 08 Sep 2025 14:13:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=jannau.net; h=cc
-	:cc:content-type:content-type:date:date:from:from:in-reply-to
-	:in-reply-to:message-id:mime-version:references:reply-to:subject
-	:subject:to:to; s=fm3; t=1757355183; x=1757441583; bh=2cuatXLabl
-	uJ3CkaEx442uHgntV1NQobYjc7F765Bzw=; b=W92hAt8zipaNUv9cn+SrTvTrzC
-	NJOgJzI0vFRPYjQC0AqqzSRUc5/lpz4lxaiMxA/lEUcwhlPM9GoPMWa6BSpysJbn
-	APX/lZB6GECks6Rvn+XTrq6ScDnqxa2tGkch66numKlCfbnJ4bLyMOM7IC+QvcCW
-	VNTbIeN7dHqbH/IS6L4zH6/bAI4FeMtzGGXapbDK8lzVFKGWz0vK70CtXNfomwaS
-	cd/IVW8nrJKxVV/fhaM1VcuWSPQQMWONR39/FJxOFVCEYL8sDdH2VYWSQSelV4xf
-	2/JxFf+NoFOq5Cgsci2Z01ulcAzSi0mI0HgfAIfnsriF3xOfmkP3+s1QC7Tg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	messagingengine.com; h=cc:cc:content-type:content-type:date:date
-	:feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-	:message-id:mime-version:references:reply-to:subject:subject:to
-	:to:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; t=
-	1757355183; x=1757441583; bh=2cuatXLabluJ3CkaEx442uHgntV1NQobYjc
-	7F765Bzw=; b=MIyhvqRjBUNSOm4wZlJKcDOjSu8kP13qHkI8HYpMx7iV24aUAkb
-	zMwQzv5dRQ7Pe5djmfH5doAFTRotxOKsbgDKYG7/MqU53yqb3E7rwhdlF25qNltE
-	cgMhiR+RZW6JlUfKDUOIwdcJmIeDVFObVxCd80nM2e3i6D0v5QB53i3U5SkytbOg
-	jzcyo+ngdUWAdaOxQiL2lzT7yosc8vd6M2HZJrksfnhNgY97+ViR630Pz9VLQMan
-	nnIGpLBmzob7B+dGiTpPZYiQ3RxtDSOUGhCt/xhBqxjMN5TknkTgH0FFLU+KYRS0
-	ML4f1Dv+l0mTQf+z3RI5E0GSDo6nbUbVvdg==
-X-ME-Sender: <xms:rRy_aCckTFKGj3UqR-_A4nAshhxmeBvKRrsXOKpXRzciK99eU_gihg>
-    <xme:rRy_aIGul-HuK25gId0D9zFT3dU6eJNh5MjwY6PkjdYV8_jgSnRq8WK4Qte5Dm5qn
-    5TA83p6nDA6afu0iu8>
-X-ME-Received: <xmr:rRy_aMVDJYMCXZ7F7u3T1dvxz20yYbiCdpGkr_GBmUKUU7JK3mOmqJGPPzJDFMWtEzF-AsdnrIpNX7nIvhGwthTB-t7JkqjhrJ0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeeffedrtdeggddukedvvdcutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpeffhffvvefukfhfgggtuggjsehttdertddttdejnecuhfhrohhmpeflrghnnhgvucfi
-    rhhunhgruhcuoehjsehjrghnnhgruhdrnhgvtheqnecuggftrfgrthhtvghrnhepgfdvff
-    evleegudejfeefheehkeehleehfefgjefffeetudegtefhuedufeehfeetnecuvehluhhs
-    thgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepjhesjhgrnhhnrghurd
-    hnvghtpdhnsggprhgtphhtthhopedvfedpmhhouggvpehsmhhtphhouhhtpdhrtghpthht
-    ohepshhvvghnsehkvghrnhgvlhdrohhrghdprhgtphhtthhopehgrhgvghhkhheslhhinh
-    hugihfohhunhgurghtihhonhdrohhrghdprhgtphhtthhopehrohgshheskhgvrhhnvghl
-    rdhorhhgpdhrtghpthhtohepkhhriihkodgutheskhgvrhhnvghlrdhorhhgpdhrtghpth
-    htoheptghonhhorhdoughtsehkvghrnhgvlhdrohhrghdprhgtphhtthhopegsrghlsghi
-    sehkvghrnhgvlhdrohhrghdprhgtphhtthhopegrlhihshhsrgesrhhoshgvnhiifigvih
-    hgrdhiohdprhgtphhtthhopehnvggrlhesghhomhhprgdruggvvhdprhgtphhtthhopehv
-    khhouhhlsehkvghrnhgvlhdrohhrgh
-X-ME-Proxy: <xmx:rRy_aIwrJXCWtJE7suPMpRh1ic3XAezkLHTPqNk5dVvUumuVHPHmog>
-    <xmx:rRy_aHtkTLHmEb9hd72tiUpEswVJ4suy93U5PZkJR-P98ZPkfM6B1Q>
-    <xmx:rRy_aJBwIruCU49cyHDLKYgdLGTOQwQAkxFBHX7_SEII8mCAbQf7dw>
-    <xmx:rRy_aDp8LZwOolKR9BCGZ5aeyU9LY80VikcIZTMyymJyBvXGLNdylA>
-    <xmx:rxy_aLzHpswtNQp2E782Qjvm7pd021tNXj-BRacdJ6CrKoRTtr8UsX05>
-Feedback-ID: i47b949f6:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 8 Sep 2025 14:13:01 -0400 (EDT)
-Date: Mon, 8 Sep 2025 20:12:59 +0200
-From: Janne Grunau <j@jannau.net>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-	Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 18/22] phy: apple: Add Apple Type-C PHY
-Message-ID: <20250908181259.GC89417@robin.jannau.net>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
+	s=arc-20240116; t=1757355522; c=relaxed/simple;
+	bh=4qtyyFkAqi/EXUnCgIjsBDS6e3kOLtoXVXi5nZvXX4A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=iB5LknxMJtcHAdIzxkQV9oWD/GP8XjU+eRpnAsvds/J41ou2XwhaeBJle+n3esf21ZR1KbMEp8UIZt/G3k4tRNJMhX1V3hUnsf78lJN0NjsZRSezrqALQZE2YvLjErgGwiiSe1aPWDcXyDIJ/RAn4rkmeuWbUT+HOV0Du2r0aa0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LCiO52Se; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-3dae49b117bso4158045f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 11:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757355517; x=1757960317; darn=vger.kernel.org;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lb8SkQ+gt0WvvPJ4SzjGlb6HLfu8xf3EEt0ttO3omRo=;
+        b=LCiO52SexyXWWlSVyuolNT1J63bk+M3J0zJC/amCHsHl9KcVymvTUuYfe41t6dw6za
+         WK5hhcKR3GKhCTAzmq5XtbcL93tkswU+xTNzH24m1HOB0F6NatdtuFkpMniVibtpkS/9
+         x05mVI44Ls9aivDA/CajPlr3CXEg+djt1TB8o3xeDAKjgejDJwxIFpWHn/ggAXdDStAQ
+         iI0JMTlvZV3qcU73+1zL9SxgGaBA1BlGM26nOaYywrrclz+bG9VtMohyQKxVGZBS2VyW
+         uFRUxqkuJApOkxSnTMIF8l774tq+0j4KoAPKubvJd6nKIbhr009D1szKT4k12DZfFx/B
+         q2Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757355517; x=1757960317;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=lb8SkQ+gt0WvvPJ4SzjGlb6HLfu8xf3EEt0ttO3omRo=;
+        b=gT3zUO/TSDPDeRvyyyR9nBjs8ZJCekscPFQPT+/YTrs1QAFtLrMcVQAiMm1Pg6w2gc
+         +lKUm6Bm3AIo2A+0RRha25hOtYLaexRog++fRWRK3NkLFC4F0wzbPv3wpf16Mu8XxNh6
+         KQZOEKCRbOnf7xJtCoLLPnAGx1k+fI66yILKcFUZdZ5pn0+m++FztjUT2pnFvZIkQEx3
+         kISIq2NUcLEq0PD4gPnFqQS7zHYau0kgpFikUYsS9MwjkIvycH4MZE2XEH8lEpzsNEJg
+         1tZ03vR2gwNEHlIIDTEimDzK6/oF1y6Mh8/8aOx53w4UtvZAnlVA9yui3GlqYetj5IIf
+         jwsQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXYuaIVvJkz4ezcKiLfRtjqxb2QLKhELVniHKj7x9DgYFmeOwX+3yIEKBJTcSpBRVwRtWYwgaE1Oubx@vger.kernel.org
+X-Gm-Message-State: AOJu0YyjOLxvqK040YXDF/5CdVY3iwoPsu6n0sMNY0rBhSXG0n9RlCwm
+	UtpLofqUMEaIJIUjdcZvCasirQjlx6fRHBGKCNM2eOnWXWHui1zl4IvOU1U4u1bJJlw=
+X-Gm-Gg: ASbGncsDAlNkdhq1CBUmBH5SXjBQMn7zk2ntdwmNVZWqA4o3qAvF+WIbiftiAtBN62S
+	KCR/vj/pt6IwU+lTrc5l/2FsP3Q8Tn0kfv2G2SXuJf1IZANjQDyOdxDSRXJ8bh/goYGBrUQH2Er
+	JNQkYSuBzXhlzIoQ60fYsgtuFH6RQYQYaSWa3hmKBq82T08zlCC2T8e07NPDKGsBulSr7XB/G4/
+	tUzuqXa6MnSvPaomYuGX+t+9sUxmWpBl3ToCbUNxpjUog2TSz1k4E6/caK8vtxnl4vt+DAgQgj7
+	uZBUE4lstUbPW6xfADeXBjj5lzflottNhhvuN45JRhHyqaWWuOgt9CxzR3RCiG4ljFWHFrqAh59
+	HSFT9eXcw1wXmcq9nvUQGUz6amFY=
+X-Google-Smtp-Source: AGHT+IFOzTS8FVjEgH8Go18e2etfKEqg7OecFkUxP2xoc5+BHcVI+ILWLt3vxVvL+fS0RCc5g0yPVA==
+X-Received: by 2002:a05:6000:2486:b0:3e2:e079:86cf with SMTP id ffacd0b85a97d-3e64bde66d6mr9363317f8f.36.1757355516935;
+        Mon, 08 Sep 2025 11:18:36 -0700 (PDT)
+Received: from localhost ([2a02:c7c:7259:a00:1299:47dd:d3d7:b7cf])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dda597641sm65257275e9.11.2025.09.08.11.18.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 11:18:36 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 08 Sep 2025 19:18:35 +0100
+Message-Id: <DCNMJEP0XW33.1AUMCTJU5UPBY@linaro.org>
+Cc: "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
+ <broonie@kernel.org>, "Rob Herring" <robh@kernel.org>, "Krzysztof
+ Kozlowski" <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Stephen Boyd" <sboyd@kernel.org>, "Lee Jones" <lee@kernel.org>, "Jaroslav
+ Kysela" <perex@perex.cz>, "Takashi Iwai" <tiwai@suse.com>,
+ <linux-arm-msm@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Dmitry
+ Baryshkov" <dmitry.baryshkov@oss.qualcomm.com>,
+ <christophe.jaillet@wanadoo.fr>
+Subject: Re: [PATCH v3 2/3] ASoC: codecs: add new pm4125 audio codec driver
+From: "Alexey Klimov" <alexey.klimov@linaro.org>
+To: "Srinivas Kandagatla" <srinivas.kandagatla@oss.qualcomm.com>, "Srinivas
+ Kandagatla" <srini@kernel.org>
+X-Mailer: aerc 0.20.0
+References: <20250814-pm4125_audio_codec_v1-v3-0-31a6ea0b368b@linaro.org>
+ <20250814-pm4125_audio_codec_v1-v3-2-31a6ea0b368b@linaro.org>
+ <df884334-c850-4ae9-b5e8-63cb834ae259@kernel.org>
+ <DCNIVW9XSSY3.3H7TSNFDH7TKT@linaro.org>
+ <690423ac-4283-47a0-9250-4c740978ccac@oss.qualcomm.com>
+In-Reply-To: <690423ac-4283-47a0-9250-4c740978ccac@oss.qualcomm.com>
 
-On Sat, Sep 06, 2025 at 03:43:31PM +0000, Sven Peter wrote:
-> The Apple Type-C PHY (ATCPHY) is a PHY for USB 2.0, USB 3.x,
-> USB4/Thunderbolt, and DisplayPort connectivity found in Apple Silicon SoCs.
-> The PHY handles muxing between these different protocols and also provides
-> the reset controller for the attached dwc3 USB controller.
-> 
-> There is no documentation available for this PHY and the entire sequence
-> of MMIO pokes has been figured out by tracing all MMIO access of Apple's
-> driver under a thin hypervisor and correlating the register reads/writes
-> to their kernel's debug output to find their names. Deviations from this
-> sequence generally results in the port not working or, especially when
-> the mode is switched to USB4 or Thunderbolt, to some watchdog resetting
-> the entire SoC.
-> 
-> This initial commit already introduces support for Display Port and
-> USB4/Thunderbolt but the drivers for these are not ready. We cannot
-> control the alternate mode negotiation and are stuck with whatever Apple's
-> firmware decides such that any DisplayPort or USB4/Thunderbolt device will
-> result in a correctly setup PHY but not be usable until the other drivers
-> are upstreamed as well.
-> 
-> Co-developed-by: Janne Grunau <j@jannau.net>
-> Signed-off-by: Janne Grunau <j@jannau.net>
-> Co-developed-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Signed-off-by: Sven Peter <sven@kernel.org>
-> ---
->  MAINTAINERS                |    1 +
->  drivers/phy/Kconfig        |    1 +
->  drivers/phy/Makefile       |    1 +
->  drivers/phy/apple/Kconfig  |   14 +
->  drivers/phy/apple/Makefile |    4 +
->  drivers/phy/apple/atc.c    | 2214 ++++++++++++++++++++++++++++++++++++++++++++
->  6 files changed, 2235 insertions(+)
+On Mon Sep 8, 2025 at 4:45 PM BST, Srinivas Kandagatla wrote:
+> On 9/8/25 4:26 PM, Alexey Klimov wrote:
+>> Hi Srini,
+>>=20
+>> On Fri Aug 15, 2025 at 4:36 PM BST, Srinivas Kandagatla wrote:
+>
+>
+>>>> +static int pm4125_codec_enable_rxclk(struct snd_soc_dapm_widget *w, s=
+truct snd_kcontrol *kcontrol,
+>>>> +				     int event)
+>>>> +{
+>>>> +	struct snd_soc_component *component =3D snd_soc_dapm_to_component(w-=
+>dapm);
+>>>> +
+>>>> +	switch (event) {
+>>>> +	case SND_SOC_DAPM_PRE_PMU:
+>>>>
+>>>> +static const struct snd_kcontrol_new pm4125_snd_controls[] =3D {
+>>>> +	SOC_SINGLE_EXT("HPHL_COMP Switch", SND_SOC_NOPM, 0, 1, 0,
+>>>
+>>>     SOC_SINGLE_EXT("HPHL_COMP Switch", PM4125_COMP_L, 0, 1, 0, ?
+>>>
+>>>> +		       pm4125_get_compander, pm4125_set_compander),
+>>>> +	SOC_SINGLE_EXT("HPHR_COMP Switch", SND_SOC_NOPM, 1, 1, 0,
+>>>
+>>>        SOC_SINGLE_EXT("HPHR_COMP Switch", PM4125_COMP_R, 1, 1, 0,?
+>>>
+>>>> +		       pm4125_get_compander, pm4125_set_compander),
+>>>
+>>> This is same issue in one of the WCD codec, which am going to send fixe=
+s
+>>> along with my original wcd fixes series.
+>>=20
+>> So this was in other codecs for years, right?
+>
+> only in wcd937x since it was added.
+>
+>>=20
+>>>> +
+>>>> +	SOC_SINGLE_TLV("HPHL Volume", PM4125_ANA_HPHPA_L_GAIN, 0, 20, 1,
+>>>> +		       line_gain),
+>>>> +	SOC_SINGLE_TLV("HPHR Volume", PM4125_ANA_HPHPA_R_GAIN, 0, 20, 1,
+>>>> +		       line_gain),
+> ...
+>                           PM4125_ANA_HPHPA_FSM_DIV_RATIO_MASK,
+>>>                                       PM4125_ANA_HPHPA_FSM_DIV_RATIO_68=
+);
+>>> @@ -309,8 +307,6 @@ static int pm4125_rx_clk_disable(struct
+>>> snd_soc_component *component)
+>>>         snd_soc_component_write_field(component,
+>>> PM4125_DIG_SWR_CDC_RX_CLK_CTL,
+>>>                                       PM4125_DIG_SWR_ANA_RX_CLK_EN_MASK=
+,
+>>>                                       PM4125_DIG_SWR_RX_CLK_DISABLE);
+>>> -       pm4125_global_mbias_disable(component);
+>>> -
+>>>         return 0;
+>>>  }
+>>=20
+>> This doesn't work. Playback has two issues: 1) volume is very low and pr=
+obably
+>> not adjustable and 2) sound during playback dies after a couple of secon=
+ds.
+>>=20
+>> Returning these global_mbias() calls restores the good behaviour.
+>
+> What is global micbias to do with rx playback? Maybe something is missing=
+.
 
-[...]
+No idea. Spec that I can see doesn't say a lot about PM4125_ANA_MBIAS_EN re=
+gister.
+Just that these are main biases.
 
-> diff --git a/drivers/phy/apple/atc.c b/drivers/phy/apple/atc.c
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..9213485234873fcaafeb1d1d9de3ddf07767d552
-> --- /dev/null
-> +++ b/drivers/phy/apple/atc.c
-> @@ -0,0 +1,2214 @@
+> Which RX path are you testing?
+>
+> I am testing this with Headphone and Lineout, it works for me.
+>
+>>=20
+>> Maybe let's make a widget out of it? In such case I am not sure about
+>> routing meaning that I not sure which paths do require mbias enable.
+> Not sure why RX would need mic bias?
 
-[...]
+I am testing lineout that goes into wsa881x amplifier in analog mode (mono)=
+.
+I use the following amixers:
 
-> +static int atcphy_load_tunables(struct apple_atcphy *atcphy)
-> +{
-> +	int ret;
-> +	struct {
-> +		const char *dt_name;
-> +		struct apple_tunable **tunable;
-> +	} tunables[] = {
-> +		{ "apple,tunable-fuses", &atcphy->tunables.fuses },
-> +		{ "apple,tunable-axi2af", &atcphy->tunables.axi2af },
-> +		{ "apple,tunable-common", &atcphy->tunables.common },
-> +		{ "apple,tunable-lane0-usb", &atcphy->tunables.lane_usb3[0] },
-> +		{ "apple,tunable-lane1-usb", &atcphy->tunables.lane_usb3[1] },
-> +		{ "apple,tunable-lane0-cio", &atcphy->tunables.lane_usb4[0] },
-> +		{ "apple,tunable-lane1-cio", &atcphy->tunables.lane_usb4[1] },
-> +		{ "apple,tunable-lane0-dp", &atcphy->tunables.lane_displayport[0] },
-> +		{ "apple,tunable-lane1-dp", &atcphy->tunables.lane_displayport[1] },
-> +	};
-> +
-> +	for (int i = 0; i < ARRAY_SIZE(tunables); i++) {
-> +		*tunables[i].tunable =
-> +			devm_apple_tunable_parse(atcphy->dev, atcphy->np, tunables[i].dt_name);
-> +		if (IS_ERR(tunables[i].tunable)) {
-> +			dev_err(atcphy->dev, "Failed to read tunable %s: %ld\n",
-> +				tunables[i].dt_name, PTR_ERR(tunables[i].tunable));
-> +			return ret;
+amixer -c0 cset iface=3DMIXER,name=3D'RX_CODEC_DMA_RX_0 Audio Mixer MultiMe=
+dia1' 1
+amixer -c0 cset iface=3DMIXER,name=3D'RX_MACRO RX0 MUX' 1
+amixer -c0 cset iface=3DMIXER,name=3D'RX INT0 DEM MUX' 1
+amixer -c0 cset iface=3DMIXER,name=3D'RX INT0_1 MIX1 INP0' 'RX0'
+#merge two channels together (right channel goes into INT0_1 input1)
+amixer -c0 cset iface=3DMIXER,name=3D'RX INT0_1 MIX1 INP1' 'RX1'
+amixer -c0 cset iface=3DMIXER,name=3D'EAR_RDAC Switch' 0
+amixer -c0 cset iface=3DMIXER,name=3D'HPHL_RDAC Switch' 0
+amixer -c0 cset iface=3DMIXER,name=3D'HPHR_RDAC Switch' 0
+amixer -c0 cset iface=3DMIXER,name=3D'LO_RDAC Switch' 1
+amixer -c0 cset iface=3DMIXER,name=3D'HPHL Switch' 1
+amixer -c0 cset iface=3DMIXER,name=3D'RX_RX0 Digital Volume' 80
+amixer -c0 cset iface=3DMIXER,name=3D'SpkrMono WSA_RDAC' 1
 
-ret is unitialized here, could be `return PTR_ERR(tunables[i].tunable);`
-instead
+and then aplay. With long .wav files the sound dies after few seconds of pl=
+ayback.
+But volume issue is present with any .wav files.
 
-Janne
+After playing with pm4125_global_mbias_enable(), tt looks like
+both PM4125_ANA_MBIAS_EN_GLOBAL and PM4125_ANA_MBIAS_EN_V2I should be enabl=
+ed to avoid this problem.
+
+Thanks,
+Alexey
+
 
