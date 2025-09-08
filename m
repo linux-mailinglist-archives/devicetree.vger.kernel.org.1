@@ -1,96 +1,110 @@
-Return-Path: <devicetree+bounces-214256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214251-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E7489B48904
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:48:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B8335B488E4
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:45:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A97E316491C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:48:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73D303A619B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF88E2EBB80;
-	Mon,  8 Sep 2025 09:48:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B7F1DDC2A;
+	Mon,  8 Sep 2025 09:45:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="PkcdiBC0"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="dhbD+lWn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5806C2EB5D1
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 09:48:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB5B1CDFAC;
+	Mon,  8 Sep 2025 09:45:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757324933; cv=none; b=L1mrVo7OoV4ilmK+BMEdI8hA5fR8nd0x0/J/lNIDyhMLcLgaefwZc8gjzqg7zcYMK9w8qeLWm9w93FvUZQN7KabA2zTlMhmnkkQzbBFhBliCC/KbB5mprnfJzW21OTGP8e6Z9C8TwDXrRXbdeC7QbRLvhG7iE2091a4JGLmQQYw=
+	t=1757324720; cv=none; b=SGZZXeBmJL+5EWDxJR7akX3sNfJGJMkUPqllrRJSOhD1VnKkTYrfZoI8BWQG5YwR6p7aFGpmAWjH4QhlnfFP4/EM0/VYQRAfoNecI9MJ0+7rxDLZA+Po9HC1d+K2anzBinpM0/laiREyFFXbqDUPASLmJdltMlKcCkAZKzSiGow=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757324933; c=relaxed/simple;
-	bh=viGQPeZMM9v7tCRE2AArWz0qJbEDnVio5sMx06Y5T5Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SIBaylIyQFrVZ+ReOFW8PXcpmBKZaoGDsfXJOrA3YZVE0/6XXESPZspyXm2Zw/X56PwbJyvg+XWAjIj38R62b/5xruSDF9JRYII9RpMO0Sgsw/9P/8hEiZmQejwoBc25YLD2wLaHCK3ccckdMrIy+SftWayNs2IFvk+Vlbp1o+Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=PkcdiBC0; arc=none smtp.client-ip=194.117.254.33
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-	sang-engineering.com; h=date:from:to:cc:subject:message-id
-	:references:mime-version:content-type:in-reply-to; s=k1; bh=W2is
-	/B86XOzKSq4WSKL4Bv/G+KLrAqqioep1TTWBCXU=; b=PkcdiBC01IbDmXEoUIWt
-	7wbjjEaPM3YICYaPuexAWAM/AsgzOJzSN8OraOH1otDoImid2phVc3+QeJgU7FZi
-	GiAR1X6IPQUUiHsWFnljx65mJdmCKyq/tU5bDR7OweIseEv8na0ZaiPkZDbA9tew
-	D7C2R12+W3eAHAsFQuLlQQtWT5hYscMWAIRad+BB6eAQ5ZZtqEImhtkDCF7HkHwX
-	uY60ptxtJgGqRlasnlxrvt6vsxF4lkgPCTaMITB/4YxrKCrwztCyaqm/fIhgERPR
-	P3gpafLQpXJJebX552ZMrfooksMXIx8GhiUqYbKPY3z8+qxVTgfUjYf0AzKfURbv
-	Ow==
-Received: (qmail 780016 invoked from network); 8 Sep 2025 11:42:08 +0200
-Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 8 Sep 2025 11:42:08 +0200
-X-UD-Smtp-Session: l3s3148p1@1fI+AEc+ls0gAwDPXyerAKQ7QDbxBzog
-Date: Mon, 8 Sep 2025 11:42:07 +0200
-From: Wolfram Sang <wsa+renesas@sang-engineering.com>
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>,
-	Frank Li <Frank.Li@nxp.com>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Biju Das <biju.das.jz@bp.renesas.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v2] dt-bindings: i3c: renesas,i3c: Add RZ/V2H(P) and
- RZ/V2N support
-Message-ID: <aL6k73TBfBcrW2J9@shikoro>
-References: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+	s=arc-20240116; t=1757324720; c=relaxed/simple;
+	bh=nDalhWDdRaKI0K8oFZEyuIzW1+9ZHDPR6MDrSzflp68=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o/ZFH52TdqgqbUDlc2fOJD9mO+Yuy09EuUfz4waxjCbtuLHqkjfGbXhJnWosQ9d/Uaf4PQiqVRoPr717KSvh9Z2Cm1g+dKus6Oz0X9qv6OtLEnT2gYB/GVEYWitY1UnUvXCmcgrEb4Yif1z2RDLBt/QFY/ue/V4mGZHok4Z1jsE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=dhbD+lWn; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5889j7Bg077755;
+	Mon, 8 Sep 2025 04:45:07 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757324707;
+	bh=vSJqX1AAqYYY3cwD7+kPGOUDcEyMxKTWaZHJI25fkLc=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=dhbD+lWnE6JwR2i9iy7Fi4ZjtgbhGvxq0IVdPw0x5ftpfLZo/PKlb5qjbBCca5l5M
+	 RRM7NLkEaGHmtoYrvZVsHiYTQ5FZFka+JbVwpiOpQdHs4qc+yEwa/qgYHbyCHwq+KQ
+	 uxCtbMJmzhioBnofioa4FbvxyzN5mpZ985Ouu5zA=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5889j7NU3685564
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 04:45:07 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 04:45:07 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 04:45:07 -0500
+Received: from localhost (lcpd911.dhcp.ti.com [172.24.233.130])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5889j5gl394282;
+	Mon, 8 Sep 2025 04:45:06 -0500
+Date: Mon, 8 Sep 2025 15:15:05 +0530
+From: Dhruva Gole <d-gole@ti.com>
+To: Beleswar Padhi <b-padhi@ti.com>
+CC: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <afd@ti.com>,
+        <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 29/33] arm64: dts: ti: k3-am62p-ti-ipc-firmware:
+ Refactor IPC cfg into new dtsi
+Message-ID: <20250908094505.4dasmw6sv5bazd5z@lcpd911>
+References: <20250905051846.1189612-1-b-padhi@ti.com>
+ <20250905051846.1189612-30-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20250908093930.12591-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20250905051846.1189612-30-b-padhi@ti.com>
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Sep 08, 2025 at 10:39:30AM +0100, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On Sep 05, 2025 at 10:48:42 +0530, Beleswar Padhi wrote:
+> The TI K3 AM62P SoCs have multiple programmable remote processors like
+> R5Fs. The TI SDKs for AM62P SoCs offer sample firmwares which could be
+> run on these cores to demonstrate an "echo" IPC test. Those firmware
+> require certain memory carveouts to be reserved from system memory,
+> timers to be reserved, and certain mailbox configurations for interrupt
+> based messaging. These configurations could be different for a different
+> firmware.
 > 
-> Add device tree binding support for the I3C Bus Interface on Renesas
-> RZ/V2H(P) and RZ/V2N SoCs. The I3C IP on these SoCs is identical to
-> that found on the RZ/G3E SoC.
+> While DT is not meant for system configurations, at least refactor these
+> configurations from board level DTS into a dtsi for now. This dtsi for
+> TI IPC firmware is board-independent and can be applied to all boards
+> from the same SoC Family. This gets rid of code duplication and allows
+> more freedom for users developing custom firmware (or no firmware) to
+> utilize system resources better; easily by swapping out this dtsi. To
+> maintain backward compatibility, the dtsi is included in all boards.
 > 
-> Add new compatible strings "renesas,r9a09g056-i3c" for RZ/V2N and
-> "renesas,r9a09g057-i3c" for RZ/V2H(P). Both variants use
-> "renesas,r9a09g047-i3c" as a fallback compatible to indicate hardware
-> compatibility with the RZ/G3E implementation.
-> 
-> Update the title to be more generic as it now covers multiple SoC
-> families beyond just RZ/G3S and RZ/G3E.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
+> Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
+> Tested-by: Judith Mendez <jm@ti.com>
+> ---
 
-Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Reviewed-by: Dhruva Gole <d-gole@ti.com>
 
+-- 
+Best regards,
+Dhruva Gole
+Texas Instruments Incorporated
 
