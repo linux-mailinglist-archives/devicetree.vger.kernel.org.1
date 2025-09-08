@@ -1,80 +1,48 @@
-Return-Path: <devicetree+bounces-214196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6EDCB485E1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:44:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91A3FB485FB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:46:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AC1BE163095
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:42:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F1C616BFB2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:44:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D14CE2E7F22;
-	Mon,  8 Sep 2025 07:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 216382E8DF4;
+	Mon,  8 Sep 2025 07:43:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="AsmaEZxt"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="PgMKbJo5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB96627B328
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 07:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493322E8B85;
+	Mon,  8 Sep 2025 07:43:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757317184; cv=none; b=IUgNFxdVldBJk2wc7sXXF/suF7BOACzjWGArQ/NT7yHbg0Tduq4JDGTUgtGW6Zvt4FSQGMYj7CnOzZKliqOg+hZBrTyjcW3KkOGsjXkl9nZgAu153QtrFs74r9wHoEVZDL2xIx+ERuXh6JQbXMPqunqizcfOcGXe5/j0+mdhyJM=
+	t=1757317391; cv=none; b=QzbX063JLSiYuuue+AS+YY79fWsRqu3JeOgtpEh0HuE9SPdU4YyevhoGw3TvuyueM6hpi0ewevCw/JHR4p1wFjSo5RSur2bwnFTrzKXffQIvnMgr9rvhu7Pp5D0xZoOVDvf+mvpndZjAJrPA/f7U+frhrsnuduI3Cs5MbYuuRlY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757317184; c=relaxed/simple;
-	bh=wq0AZVqJVXeupvwmG/HrcDN67x2rjEYrtQxIR3pw/jA=;
+	s=arc-20240116; t=1757317391; c=relaxed/simple;
+	bh=aq1GphbLDS1fcntK2JdbgxWD0wmRSOBaD+tKq0T0kQs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HKHXrxCE6MznxqAPsjaNQ+HS0sHloGr1xl3C+yd8v/VamoU4k4BYkqC+ynilxgaVkKVk0pnCDtjkhcI4tbePe4BAL2l8HzBtuPdxoxd9RskHVjm1Eo7gOZ58lHpqpLedPIhZxWUDTz5Qjmxd/RrUPOPBEfP9k0MbilZyHG56SYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=AsmaEZxt; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-45b9c35bc0aso35648635e9.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 00:39:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757317181; x=1757921981; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=xCyc7kQfoMfEL6TVndWCcMyXe6R2NRmKhQkJocZ5/1U=;
-        b=AsmaEZxt6upz9ZrQO6ZIRqvFJTLUwdraYFGgjugv60NzIWk6UCzrKVPe/lFj67LDEd
-         P6/FbIjfRhr/z414Psk1RrjqJsWBYcXjw+RMgya9srM6J6IJYDqJ+YJGD1WFTH6ncFku
-         rVs6/C55d1bsizWb+5YEXqYluvmjmn/2nShCYPIQ0zG6+bDZ9G0weXKtr0xpVR7uTC5w
-         saomTvUclw5ZmcZtfqJ3Fac5tAivGS9yQX7pK3INAgNxq8CNs/tcELRr4F4nHpkRvW1i
-         psUWwoj4pqLqGWb8h2bclefd+0aJXtbZKpP+csyZt/DMLw9ajWMAog7eMoLspc4NsAqu
-         ytEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757317181; x=1757921981;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xCyc7kQfoMfEL6TVndWCcMyXe6R2NRmKhQkJocZ5/1U=;
-        b=ICeBMxYyTj8O61S4p2Y6Yr6hhesY4/1Nj/mSfrFy3xrjoXPAyvkujFBasjpxQGZnQl
-         j4RWzAatC79C1sJ1hmQwVoqBmSRECqhA2611L2r6tVG8RbV4w0uzUsQye4DRCknBu6QD
-         Ku9ypQjUPaLQeOjHu76grLfGbUFmhaQLUF2CUFLktbo9TwvZeJhn5/UyppyAobXYACqZ
-         +kiSIASms67d8888K3mqgAzgYWMkXJmhNZoHapWC+EtUiL+Koafix/6/xYPuO9zIXJ6a
-         6q+yC6Sx62e2jRCG1ZO8Krs7O17UbyYv+BiEVAwFtdykTCuqMx8mO1IfZrhNqAKCkPJa
-         2/Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9uzTFx66zqFHH/gKGFiYqWoqh5JWURq6GwXGXasdJVyDCPuclRrUzhRp+mtYQ4IYoEp8XdivGt5nC@vger.kernel.org
-X-Gm-Message-State: AOJu0YyEJyvTeuRCHq8f37E/0Vbhw4YlgIX1Sr/Iaog/CH2ynDc0fsDI
-	y8+H7bRLWi6daIiR9YVn/S55avjDSkxH2n1nIAV9CmKupySdvUN7A8Je1g7iWPRZ+NM=
-X-Gm-Gg: ASbGncsog+y1rwfqZa61lSOT7odCUfsS9po+RCdPKEckpGYblbymAo9md+kA0IAmUDE
-	NF8Ym0Xtspnrjo38n7g5BT6T0p7QfsiGnSrDgS1ac2vz/IM6nraoMwe48e5Ay0SaMbccrlMmn+X
-	sUaUrf5uB+/bAWb7j/qdslEaHBA5d9hJluiMCHAgtWLZpoNouzpbGUX1yJ9404HVvpTI8E+y86Z
-	1fUjTcTNzUeBJzldmNi/rCRTZSH8T5GaaxUd6yLbZ+oykw9ea35Yad1KRYSz4KgY/ISsGeFJ/Bz
-	zMGQYEjwhEEtCE6yGHROJhqn+RmHKRHZcbc2KwB7vTGL0m/DChBnBQ8C7f1Hu3CGga7ZAo2D8lS
-	AiTGVX4T9LB5+xrJtWohCZRpMn1k9ImSJqBet5f3QKag=
-X-Google-Smtp-Source: AGHT+IH+1Dsv8foQbfZSX/5/VoAySl4UUdGzifJPzufIcH96xXLSdDwjQ9Qlk+2F227iYeAIAqIiUQ==
-X-Received: by 2002:a05:600c:1d16:b0:45c:b56c:4194 with SMTP id 5b1f17b1804b1-45ddde8984amr53951655e9.2.1757317180933;
-        Mon, 08 Sep 2025 00:39:40 -0700 (PDT)
-Received: from [192.168.0.251] ([79.115.63.103])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45ddd47b6easm97814895e9.18.2025.09.08.00.39.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 00:39:40 -0700 (PDT)
-Message-ID: <91407377-f586-4fd2-b8e4-d1fd54c1a52a@linaro.org>
-Date: Mon, 8 Sep 2025 08:39:38 +0100
+	 In-Reply-To:Content-Type; b=dSMHNIK0gJZuoSSMMLbENRZQ4cGetA3YEQCGCyIqlbD9xZ79g7YecnyuLc/KGWgIcyCw6S1fVg76MmJZHwL3uGjL/V684gCKwFW6WPqD4gfMWp0GSlWcjKbgfA7T6CstAZWzEIhizIkYYguHAjOREPQJa5xNEZqmZbjreFuoJFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=PgMKbJo5; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi [91.158.153.178])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 769BF10BE;
+	Mon,  8 Sep 2025 09:41:53 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1757317314;
+	bh=aq1GphbLDS1fcntK2JdbgxWD0wmRSOBaD+tKq0T0kQs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=PgMKbJo5LvUZ7g1akl7sJ2qkbhdmT35+8gPZL5wMY2UpwEiKXYHwCQP+EExQ6zxeQ
+	 z1/wXJtrgirSBOYQbaIV/XAAJX59ZMFfab+N9nLCKR2wxIb1vkeciAUhIW1Q2jwW4b
+	 FqROF0zKV2m1YJGjnV0X8owWywJPZKMGQWHa8enE=
+Message-ID: <4ffcf4fc-17a9-4669-af07-f81ddb46aee9@ideasonboard.com>
+Date: Mon, 8 Sep 2025 10:43:02 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,143 +50,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] clk: samsung: add Exynos ACPM clock driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20250903-acpm-clk-v3-0-65ecd42d88c7@linaro.org>
- <20250903-acpm-clk-v3-3-65ecd42d88c7@linaro.org>
- <eafb409d-5b5f-4791-939a-5a3c1eb00b9b@kernel.org>
+Subject: Re: [PATCH v2 4/4] dt-bindings: display: bridge: renesas,dsi-csi2-tx:
+ Allow panel@ subnode
+To: Marek Vasut <marek.vasut+renesas@mailbox.org>,
+ dri-devel@lists.freedesktop.org
+Cc: Conor Dooley <conor+dt@kernel.org>, David Airlie <airlied@gmail.com>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Rob Herring <robh@kernel.org>,
+ Robert Foss <rfoss@kernel.org>, Simona Vetter <simona@ffwll.ch>,
+ Thomas Zimmermann <tzimmermann@suse.de>, devicetree@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org
+References: <20250904210147.186728-1-marek.vasut+renesas@mailbox.org>
+ <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <eafb409d-5b5f-4791-939a-5a3c1eb00b9b@kernel.org>
+From: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+In-Reply-To: <20250904210147.186728-4-marek.vasut+renesas@mailbox.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
+Hi,
 
+On 05/09/2025 00:01, Marek Vasut wrote:
+> This controller can have both bridges and panels connected to it. In
+> order to describe panels properly in DT, pull in dsi-controller.yaml
+> and disallow only unevaluatedProperties, because the panel node is
+> optional. Include example binding with panel.
+> 
+> Signed-off-by: Marek Vasut <marek.vasut+renesas@mailbox.org>
+> ---
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: David Airlie <airlied@gmail.com>
+> Cc: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Cc: Krzysztof Kozlowski <krzk+dt@kernel.org>
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: Robert Foss <rfoss@kernel.org>
+> Cc: Simona Vetter <simona@ffwll.ch>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Tomi Valkeinen <tomi.valkeinen+renesas@ideasonboard.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-renesas-soc@vger.kernel.org
+> ---
+> V2: Drop the dsi0: and dsi1: controller labels
+> ---
+>  .../display/bridge/renesas,dsi-csi2-tx.yaml   | 53 ++++++++++++++++++-
+>  1 file changed, 51 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> index c167795c63f64..51d685ed82891 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> +++ b/Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+> @@ -14,6 +14,9 @@ description: |
+>    R-Car Gen4 SoCs. The encoder can operate in either DSI or CSI-2 mode, with up
+>    to four data lanes.
+>  
+> +allOf:
+> +  - $ref: /schemas/display/dsi-controller.yaml#
+> +
 
-On 9/6/25 1:19 PM, Krzysztof Kozlowski wrote:
-> On 03/09/2025 15:56, Tudor Ambarus wrote:
->> +
->> +static int acpm_clk_probe(struct platform_device *pdev)
->> +{
->> +	enum acpm_clk_dev_type type = platform_get_device_id(pdev)->driver_data;
->> +	const struct acpm_clk_driver_data *drv_data;
->> +	const struct acpm_handle *acpm_handle;
->> +	struct clk_hw_onecell_data *clk_data;
->> +	struct clk_hw **hws;
->> +	struct device *dev = &pdev->dev;
->> +	struct acpm_clk *aclks;
->> +	unsigned int mbox_chan_id;
->> +	int i, err, count;
->> +
->> +	switch (type) {
->> +	case GS101_ACPM_CLK_ID:
->> +		drv_data = &acpm_clk_gs101;
-> 
-> Just use acpm_clk_gs101 directly (see also further comment).
+Did you try with a bridge? dsi-controller.yaml only allows a panel. I
+think I discussed this with someone not long ago, but I couldn't find
+any patch sent for that.
 
-okay
+ Tomi
 
-> 
->> +		break;
->> +	default:
->> +		return dev_err_probe(dev, -EINVAL, "Invalid device type\n");
->> +	}
->> +
->> +	acpm_handle = devm_acpm_get_by_node(dev, dev->parent->of_node);
->> +	if (IS_ERR(acpm_handle))
->> +		return dev_err_probe(dev, PTR_ERR(acpm_handle),
->> +				     "Failed to get acpm handle.\n");
->> +
->> +	count = drv_data->nr_clks;
->> +	mbox_chan_id = drv_data->mbox_chan_id;
->> +
->> +	clk_data = devm_kzalloc(dev, struct_size(clk_data, hws, count),
->> +				GFP_KERNEL);
->> +	if (!clk_data)
->> +		return -ENOMEM;
->> +
->> +	clk_data->num = count;
->> +	hws = clk_data->hws;
->> +
->> +	aclks = devm_kcalloc(dev, count, sizeof(*aclks), GFP_KERNEL);
->> +	if (!aclks)
->> +		return -ENOMEM;
->> +
->> +	for (i = 0; i < count; i++) {
->> +		const struct acpm_clk_variant *variant = &drv_data->clks[i];
->> +		unsigned int id = variant->id;
->> +		struct acpm_clk *aclk;
->> +
->> +		if (id >= count)
-> 
-> This is not possible. You control the IDs build time, so this must be
-> either build time check or no check. I vote for no check, because I
-
-using BUILD_BUG_ON_MSG? that would work, see below the why.
-
-> don't think the ID is anyhow related to number of clocks. What if (not
-> recommended but what if) the IDs have a gap and next ID is 1000. I see
-> your code using ID:
-> 
-> 
->> +			return dev_err_probe(dev, -EINVAL,
->> +					     "Invalid ACPM clock ID.\n");
->> +
->> +		aclk = &aclks[id];
->> +		aclk->id = id;
->> +		aclk->handle = acpm_handle;
->> +		aclk->mbox_chan_id = mbox_chan_id;
->> +
->> +		hws[id] = &aclk->hw;
-> 
-> ^^^ here, but why do you need it? Why it cannot be hws[i]?
-
-so that it works correctly with of_clk_hw_onecell_get() in case the clocks
-IDs are not starting from 0 or are reordered when defined. For example let's
-consider clock ID 1 is wrongly defined at index 0 in the array. When someone
-references clock ID 1 in the device tree, and we use of_clk_hw_onecell_get,
-it would get the clock defined at index 1.
-
-In my case the clocks start from index 0 and they are defined in ascending
-order with no gaps, so the check is gratuitously made. I wanted to have some
-sanity check. Do you still think I shall remove the check and use hws[i]?
-> 
->> +
->> +		err = acpm_clk_ops_init(dev, aclk, variant->name);
->> +		if (err)
->> +			return dev_err_probe(dev, err,
->> +					     "Failed to register clock.\n");
->> +	}
->> +
->> +	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
->> +					   clk_data);
->> +}
->> +
->> +static const struct platform_device_id acpm_clk_id[] = {
->> +	{ "gs101-acpm-clk", GS101_ACPM_CLK_ID },
-> 
-> Please drop GS101_ACPM_CLK_ID here and in other places. It's dead code
-> now. It should be introduced with next users/devices.
-
-okay. Thanks for the review!
-
-> 
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(platform, acpm_clk_id);
-> 
-> Best regards,
-> Krzysztof
+>  properties:
+>    compatible:
+>      enum:
+> @@ -80,14 +83,14 @@ required:
+>    - resets
+>    - ports
+>  
+> -additionalProperties: false
+> +unevaluatedProperties: false
+>  
+>  examples:
+>    - |
+>      #include <dt-bindings/clock/r8a779a0-cpg-mssr.h>
+>      #include <dt-bindings/power/r8a779a0-sysc.h>
+>  
+> -    dsi0: dsi-encoder@fed80000 {
+> +    dsi@fed80000 {
+>          compatible = "renesas,r8a779a0-dsi-csi2-tx";
+>          reg = <0xfed80000 0x10000>;
+>          power-domains = <&sysc R8A779A0_PD_ALWAYS_ON>;
+> @@ -117,4 +120,50 @@ examples:
+>              };
+>          };
+>      };
+> +
+> +  - |
+> +    #include <dt-bindings/clock/r8a779g0-cpg-mssr.h>
+> +    #include <dt-bindings/power/r8a779g0-sysc.h>
+> +
+> +    dsi@fed80000 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +        compatible = "renesas,r8a779g0-dsi-csi2-tx";
+> +        reg = <0xfed80000 0x10000>;
+> +        clocks = <&cpg CPG_MOD 415>,
+> +                 <&cpg CPG_CORE R8A779G0_CLK_DSIEXT>,
+> +                 <&cpg CPG_CORE R8A779G0_CLK_DSIREF>;
+> +        clock-names = "fck", "dsi", "pll";
+> +        power-domains = <&sysc R8A779G0_PD_ALWAYS_ON>;
+> +        resets = <&cpg 415>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                dsi0port1_out: endpoint {
+> +                    remote-endpoint = <&panel_in>;
+> +                    data-lanes = <1 2>;
+> +                };
+> +            };
+> +        };
+> +
+> +        panel@0 {
+> +            reg = <0>;
+> +            compatible = "raspberrypi,dsi-7inch";
+> +
+> +            port {
+> +                panel_in: endpoint {
+> +                    remote-endpoint = <&dsi0port1_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+>  ...
 
 
