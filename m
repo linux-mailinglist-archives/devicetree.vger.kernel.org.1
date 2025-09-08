@@ -1,148 +1,489 @@
-Return-Path: <devicetree+bounces-214490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C97A9B494A1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:01:55 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22CF8B494BD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:06:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 224C144491D
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:01:07 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBAFE7B30DA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 89FDB30CDBA;
-	Mon,  8 Sep 2025 16:00:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4BC30E84B;
+	Mon,  8 Sep 2025 16:03:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IQXWo01P"
+	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ck8SgqKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from PA4PR04CU001.outbound.protection.outlook.com (mail-francecentralazon11013059.outbound.protection.outlook.com [40.107.162.59])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13143207A0B
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 16:00:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757347256; cv=none; b=e+9387WXt9VGD/iDr3RrefzrIzYez2MDEKXRstCrVC9YOdEjXlOPrkdnW3222IdhWrMDo4e1mE+8fJ55XfoqrdCH0NiWFgtYaTXqSxKxe745JDTu6HCT+cuHDdELR5TAek8j/LBa/UgpKeXhLqcjqiIWooD0L9gvnRvt5vjsoco=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757347256; c=relaxed/simple;
-	bh=7WVxX0wapGqwPj8BtXO/4XTyuaHzlAYZDJiR1LsZre0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Y8U8SRIMywmCFJfbsTovgPkmlFyRk2dlI+m8K4rMpeAeX5xIA91Rgvwpws+lsv5KSI9sZ+gNRs7H5GwbQs37NgciJilbDAzRyfnaniNg2b5uk9a51g77hGSAVyI6UDHHTokmjVa/Pm9yCNF7YKfytNWIDty/yE6m41xO63qy4q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IQXWo01P; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5888wttZ009916
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 16:00:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	UuxH857PCUf2XzeLyUN8XPnPOKSOMUPFIWEWl7nTGFo=; b=IQXWo01POvXIjhQi
-	j/7+6qsSGEg2G/Lqa64EyXCcesrKtOh3zbWeW++8VxDTs+hBTAuJriLpHrWIL27/
-	NEhRAtQEx2e2PzyzYbAWZDxMKtsr6xHWzlNhOlwVuHQnJo7RvSUaegg1kCT/H8Tp
-	+vJZlVHB/neB7Yf3YgMdR3bwDiVlJhDbusu6/mdVNB4c0eK6NfQfvbcqt5SigOMP
-	3x1wiawydijZXVeFajEN2FKpeD68ZMV2C2TkkuouQyYvbccW5Ios2Ai5Gfy4YNp8
-	g3SVFeEVAIB7Eng9eoHeqRckEVNO+Kf9iJH819TazVMNX2HND+qm1T09wAVWnS3/
-	EelQfA==
-Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490aapdcw3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 16:00:53 +0000 (GMT)
-Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b613a54072so1848381cf.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 09:00:53 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757347253; x=1757952053;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UuxH857PCUf2XzeLyUN8XPnPOKSOMUPFIWEWl7nTGFo=;
-        b=S/i8+UJaD+b3ppFVbICAML3CvqRSppSP4S66BigpVtv0NAczgZHE6r03DRRaKTB4/n
-         HJ1j96U0e6tF4im5abKmF3vkK8rxRnpLjBTooLl1mkAbkBrF2PstmChJGRkAmIars+P/
-         5YJUUdNt8MKWPlAp6XkGzSYeBhu/UBcXkUKvxgvAvYAJHdEgfZgOR0RL1wkout9nW7lE
-         dyMCy7cgkUJ8DTiE+R/9pmNr7srg8Ygtlr4RrRA9QOCSba2bGQ5g2astsZ6hfOOokZUa
-         2xiVTfCkn00oRwvGZ2gstsGXSipau3pJA2vHAZdIU4lAM+1YwM3NTHVRNdpMBhKPYXaa
-         6xfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVkfVe+55Rga+X4MkmHuJiIFm1ksagZnpYxQlzkA0Qiww9jPENTyVR38YgK0NdmvYadCycJp06h38An@vger.kernel.org
-X-Gm-Message-State: AOJu0YxJ/CCxjASgklpZSyuq6uREB5T8S60pJTnufkzjC4CVvWL1//8d
-	kriXxAiXfC64Z8m4JngrufbGD6QfBMyUqmhU4CYlQkgppMNqJ5nf6E2yW0CFf2ra914cheknxMd
-	slbcvvltcUzbifD5CAkVHm9z4QKDYLp5fxfw21iEv4AcGopfNECbjqDLSB7D/JBLj
-X-Gm-Gg: ASbGncvS1z0cPKQFYTp+E36myv+2716MQSDZJ0IrCEHZJQJaMg/zhCwy46HLgKQoC++
-	Uh6cyVd05tk7ituFo/A9E5GUosevVsopbnb1W2aezokMAfUTfn8pfvz8RMrwmDwDlPBHTi+qv8h
-	xbtzP9GclWXwHo+YaD8xXNwzH9hfi2PLEKb6fRcPlX+NaWD3/CqOIWCCIVjBGyhfddnzbhQskxk
-	2IAxjvJShMPWRWWb3NxE4itHcV+D916l4NTvg80cdO0SOBfvpPtYxjcuCYsBDPannGIvQCff1fC
-	OlCFxObc2mVpvgnfshSQm/HZ4U3ZRdfsC2K4qHLb2p4QzWwu5fnR6rQ9onbr1jFPUF4/kxRnA2F
-	deDBqHla4I1X1ILrK6/xKuw==
-X-Received: by 2002:ac8:578d:0:b0:4ab:63f8:ef30 with SMTP id d75a77b69052e-4b5f8376f33mr68087711cf.3.1757347252500;
-        Mon, 08 Sep 2025 09:00:52 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IG8zMue7mVLsV476ogTf1WxQvSyUzv/MogiVSN5i83GQvuAFdA+F/TY1A449LD64lrkaf3+Yw==
-X-Received: by 2002:ac8:578d:0:b0:4ab:63f8:ef30 with SMTP id d75a77b69052e-4b5f8376f33mr68085911cf.3.1757347250485;
-        Mon, 08 Sep 2025 09:00:50 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61edb0fdf1dsm12548489a12.18.2025.09.08.09.00.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 09:00:49 -0700 (PDT)
-Message-ID: <14a35ea6-0a93-4759-83f3-dcd7b6b35584@oss.qualcomm.com>
-Date: Mon, 8 Sep 2025 18:00:48 +0200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9496D1EF36C;
+	Mon,  8 Sep 2025 16:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.162.59
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757347425; cv=fail; b=Viag0+dQbEMqyJrdm1vhcamk8UYYJf78IidNxd7AvJN2K6MRKp1kWlYYGpcc5T4b1yPmhP8GLGT5CAN6xg+B/X5y+lGfXA+GdWg41fTlDRGINz9PIQUiW+riSu5f2eoJJLvAqh2MrdN973UksB+O+/Oj9DKVidX8Z+dacDQFGbQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757347425; c=relaxed/simple;
+	bh=v8lkqZYM2JhvJWq7dNrGlswF64lwe5bwUmN4WiWt8og=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=d0f0NP/xfbNbYmN/Rb0zY0uinif6eJy7N1R8xFerxIYBm6+ZFdtWRRwllcFbvPfICJ4gEVSuBn31qHHTRcUmWKA020h3mZQueWvqKK7ihNwQT8EyQG+bTxkBZA7oKCzW/neIYNAyQtrY2kYP72owkkGZg5m3HbhbwiOLDJTNnzI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ck8SgqKT; arc=fail smtp.client-ip=40.107.162.59
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tpefY43boaV6Nd3a0t87zn+xQwijIT4d+NWSydDCTUW8erW2qxaZMSbrVEkzT1As02zLZXDQlKBtt7EBbZiHP1jsBSGfjpy1Tsp3HM5eDCl0rL2xX+VT6XZP5I0LBmkxmnwY7UhfHGlCZMOLFWLQO7Mv1vOU3pkWM50btB74MahpwZXoxwB2SX3oLoLVZGUCUEqKd8qu1zjM+cydFPyE8S0VDPlkO8Em3+xG1s0QaWTk4S2UID1WJRQTxQAqdvIhBn34T/XbTM5IM6ayieIRe5DoQOLgSZ1yhrGoJmelFaJAR0g37pi7oFYX4SAhNqfyTcAWlbA07mE5fN9I55aESA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=CkG7/422jgq3TVaD6uXYj/Z7nCypY4LJlbK7nYatbPA=;
+ b=PJn0eNAXtjAIeQGSwVf6IEXLWg0+UNAAj/4/89DI827FR5K4SuYWRvECj5bCISE18V47yFJ1c99bO19xMufytrQFlPAMEJk2iiJNbOGKdtMlVqA4LDWkNp7hCrrCnvwUiLCxKL1LQdEZkuYCLDWu5VI4QZH3KL0J11+1Fw5+RTa1BPv4UuwSt4NUMPoxhR7J7zaSChLdWbQLpblbQaOM4oEpRtd+10Bxg/Ypa3qnkDA7Pio2zI3v9qLDFr9Cr+eBhfPzPisYpSd1/BFg3EwBTH5RT8aT4GF1zCHECZsDGlhKm5v23lpHsH1BzTY8pnOdvcrVzQnX7O65ENbGw/r6Gw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=CkG7/422jgq3TVaD6uXYj/Z7nCypY4LJlbK7nYatbPA=;
+ b=Ck8SgqKTUffOSRzs8mO1rrOqmNex2bn1UCKwcJb4PHb+XE1qMHpCWvNKoPn8+NSLE/x/LY5k7TskOMieFLhSziWoVhX7iexYxeJAnOhgdhxJPABYXkS1SLSH/sDHsW1mAsoRZXcDS/9pTLZ9CgLy9OqX02kJFaIzh4A53JZpMhp7PJ8zIybYmfvAHPo5cboUDKAnAobTGcKcZsdSXRTCW4KSWIAH/zO32HAE3PFe2IRtiIjuTx9D6c+bmr+RZAhswwyPBGEFsC+wPtcTF+EacMZTBdACD04jqZ8Tt2RRox1HjkhCmxJ6cfzywzebKMJcw9Zy5QzIkVdJH7LKHketlw==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com (2603:10a6:10:309::18)
+ by AS8PR04MB7669.eurprd04.prod.outlook.com (2603:10a6:20b:29b::22) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.14; Mon, 8 Sep
+ 2025 16:03:39 +0000
+Received: from DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd]) by DB9PR04MB9626.eurprd04.prod.outlook.com
+ ([fe80::55ef:fa41:b021:b5dd%5]) with mapi id 15.20.9115.010; Mon, 8 Sep 2025
+ 16:03:39 +0000
+Date: Mon, 8 Sep 2025 12:03:30 -0400
+From: Frank Li <Frank.li@nxp.com>
+To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+Cc: git@amd.com, michal.simek@amd.com, alexandre.belloni@bootlin.com,
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+	kees@kernel.org, gustavoars@kernel.org,
+	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-hardening@vger.kernel.org, radhey.shyam.pandey@amd.com,
+	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
+	manion05gk@gmail.com
+Subject: Re: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller driver
+Message-ID: <aL7+Urm4NB9kwOwQ@lizhi-Precision-Tower-5810>
+References: <20250908112117.205270-1-manikanta.guntupalli@amd.com>
+ <20250908112117.205270-3-manikanta.guntupalli@amd.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250908112117.205270-3-manikanta.guntupalli@amd.com>
+X-ClientProxiedBy: SJ0PR13CA0083.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c4::28) To DB9PR04MB9626.eurprd04.prod.outlook.com
+ (2603:10a6:10:309::18)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 3/3] arm64: dts: qcom: add initial support for Samsung
- Galaxy S20
-To: =?UTF-8?Q?Eric_Gon=C3=A7alves?= <ghatto404@gmail.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20250905190931.27481-1-ghatto404@gmail.com>
- <20250905190931.27481-4-ghatto404@gmail.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250905190931.27481-4-ghatto404@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=eMETjGp1 c=1 sm=1 tr=0 ts=68befdb5 cx=c_pps
- a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8
- a=O1J3YDS7JPEwnonmoL0A:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
- a=uxP6HrT_eTzRwkO_Te1X:22
-X-Proofpoint-GUID: mqogvdWq9BSGlVov29R-i3CzCCY8Nhzl
-X-Proofpoint-ORIG-GUID: mqogvdWq9BSGlVov29R-i3CzCCY8Nhzl
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAwMCBTYWx0ZWRfXxAlLeSVNVZWI
- /1Rhv/jSOn5WFxct5NMjyGSt0ugZxufyLN/YPZdKjPy9oLQ/N8Y/PB2XKZhCHEJW7VFXoATSfWK
- hwJeWuKkuzSExHKYAsgyKvuipc3oaoE5sV41xCEpHcW1hDSN2Vf8BaFykhiJUByiPBLEuxaAbOZ
- 597rnhlqEK4goLkoPFqpjZ/Ayg5di74EsmybP++b1jUmLYWMyM/dU3GPDSiBlfSXCWq8tm74RSp
- h0oA/np37SqCD3HitwJH2xqgqcHaOiktmKf3D4Kv9MPZ2C/wedSqk1SEgMG0dsVtcvqiENLuZGd
- BdlBFEZe+7dFxcGVFrH96orPGxvc879aJbBtpq64YGjY+J7KZLGHV2gYc64dnMWpEBYdwElSQMY
- WxNtMEgo
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_06,2025-09-08_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 priorityscore=1501 malwarescore=0 clxscore=1015 adultscore=0
- bulkscore=0 phishscore=0 spamscore=0 suspectscore=0 classifier=typeunknown
- authscore=0 authtc= authcc= route=outbound adjust=0 reason=mlx scancount=1
- engine=8.19.0-2507300000 definitions=main-2509060000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9626:EE_|AS8PR04MB7669:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5e3d6805-e2e2-442a-8d96-08ddeef1465d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|366016|19092799006|1800799024|52116014|7416014|376014|7053199007|38350700014;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?VsYjdIxXYQhXHnBcpyKR9TcJQgjEBv2OBIkFHSguCNsNzAuWxh9CzpGJozez?=
+ =?us-ascii?Q?LZEqCKhhMaCcc0n3fRVUMCingRO7bR0nsLUFccmparGG0410mauZlZubwyae?=
+ =?us-ascii?Q?MgpDrCVrk5lKlYVDSXr327WYLDF7eFrt2nTZVGHuFP4GC+gPXfmu3Sb43TtT?=
+ =?us-ascii?Q?M/S+OpF1aiTAuBaY6zJG2poZszVDdPgfAIuyg4pFOZKBUDgY88zT6iFGIk/X?=
+ =?us-ascii?Q?Er1hTtCupdadisI7AHMVQUze+OZo5vcOdQlFPyThnzhMFjCRYwSSl61gLapF?=
+ =?us-ascii?Q?zrFsSksIuWYQhKy8tAIeWEEQv63/Gk4yYKOXePjLft3UfsgqFnPqhsU1G1Ac?=
+ =?us-ascii?Q?LqJpVfXldYoXatKHjRPk/bOAHQQmBdqaR0/CXKwdRr+JKCst8CFLDEpz4EP7?=
+ =?us-ascii?Q?d7FurxxlrDCiEHZWT8ISj4AUHb6oeNvLjKKLnF4qG+6S4WP0HlTaF6p3OnYU?=
+ =?us-ascii?Q?LH1Dji12zoKXCqCR1DVGE02Av+stGAIXVZmIf5A6nNp2aU/xgeSEpddMhBjw?=
+ =?us-ascii?Q?pI2nm05bzTV3eNCIezmKLWMaWFeiHIShUvGgzKpF6Ai6UmWIAAXsgM0Hg4+u?=
+ =?us-ascii?Q?Tlx1lqd75WGO87odvX3f1KS+PXk//qNiJ2EtRqMBtkPWfSiGLtoPcnODnNgi?=
+ =?us-ascii?Q?SiNh+isHHasOMTuIqYsYzYvp+SO/YA/n/WMqwkGiSgZwymUwBrJptTqINQAU?=
+ =?us-ascii?Q?BmcTsBo2f7geOLGNeqyNe3GK9WQFwcoIGQFgDgUs17UdizkqWE40sintVqWS?=
+ =?us-ascii?Q?9DrsZHU7fWgvF251Nn3GT7V5Ma+o/L8EYNhAAc9vWYjUUAqf7g238Tuxr0qa?=
+ =?us-ascii?Q?I1e9+lcJ9Hz6qNHli2a2tQNu7bAjK93wJeixMc8VboceCgNO7oSz/xEBi8U/?=
+ =?us-ascii?Q?BBXw3KGuUujry+pBEe9MLO7N4R5++9yS3NyyG51efcbHqVbOSeO0r6fh9oIr?=
+ =?us-ascii?Q?GBWVXXhxjPERGQWCTaWLSh4UMm8vM8E6Bqk61FC8p60w/y7ZjEFkMdoqH5Uv?=
+ =?us-ascii?Q?IGSDyf5E5t8jY2fPZPcyJ4OQacLy24N/I5GVzty0gSgpYGSSVKrFEcYnOzRS?=
+ =?us-ascii?Q?3HzowiITp42B+6FigaeemxUZBFmSbqflRPfLQQfd0qBzSvDaquwl+fpmw4Sf?=
+ =?us-ascii?Q?MDPd/hc9pM8jPM/gYIurKoHCYpSIIHCAkAyPaGtSDr3Raam4QK+vz4M6WYBn?=
+ =?us-ascii?Q?MSTtAe6UgRRR+BBFfIPHFjbWsbrivXqmrn5dZy8Ey735h57IK5SkswnmmqSd?=
+ =?us-ascii?Q?vgSTSMFeUeQD/sxIWUYraIMNfD8i84q7rYgmBoX0+FHxewyfW3EjGB8iMHX2?=
+ =?us-ascii?Q?RpNpZ0Wd4qVYbj2E2n5qrugep4bzYHJT6/KeRz3EKZm2l4AIryAeSgSXzOKe?=
+ =?us-ascii?Q?r3PS3/FIfYPOioc0oX8Ynb2zyQCu+BUVqmrC70c3xr35BOrWtm8wqbEe2paM?=
+ =?us-ascii?Q?YSuMruvoen6uS+mn4uxi1h2CpwCVOdiBysRSscFfLdNk5UHr7xJ4GA=3D=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9626.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(19092799006)(1800799024)(52116014)(7416014)(376014)(7053199007)(38350700014);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ML1yZH0bevkFKm0I+VQrxavU02R3x+C0/K8jv4YqAz0gkO3Dw85tosjTR+lE?=
+ =?us-ascii?Q?9wwoqCGyX+sAcwU1Lj6nY7DTE5LyieHQz04XLs0lPzaHourO0azspg3vntoR?=
+ =?us-ascii?Q?Q+ITRR1HmjHNpAKxoAJmqzSajIcQ83is5g32CL4pe7jvvFkygItpJWvNY20n?=
+ =?us-ascii?Q?8KFum8I//lfKWvBmLuCMUXxF0RkHNr+o49g8c7ogxmE/6Ho55Ykw0oFgys6y?=
+ =?us-ascii?Q?dJO/mif/Y6CiGEdm9FQIN2w6fHGF8pRoWA2qdb36bs6ZygzWGuYv3zmEvnjR?=
+ =?us-ascii?Q?oq0Xpsa0gx9noWvwnEQiwFHoEehvHWgL+crlmojYi1VkK1AMWVhZxGRXEj2T?=
+ =?us-ascii?Q?SNySFlse0+upz1IyhYyPZBWLnu+mHX/xLurES9cX/kzpf0J9IgaNojnoOhLK?=
+ =?us-ascii?Q?5w52XKfywJQQKkoeZgqyuScheW+63aueQHfIUTzmFosEa+e0sdq/Jdr1p4e/?=
+ =?us-ascii?Q?MiV+XY/yYImIt2ej3XC2K50SwwcpzMlD2FtEMvQZ05hmGBUL9jpasaOxa58H?=
+ =?us-ascii?Q?n250Vi2kqi1GqrhF/XV2QGMSlbZBRIyeSJOh76Rq2SmDTQ1WYUPRps91eHKl?=
+ =?us-ascii?Q?4CApev3sP94+krXelludkK8YP6NyaOyFZ1ICW1mmILTTNDrSBAy06BpcopK8?=
+ =?us-ascii?Q?ud6H9FZ/dDPODuhy54efPkaXHsJ2happhdCKRAig+OuyiBAepKoio7eu6DAD?=
+ =?us-ascii?Q?vB4cGZVm047GRkPlBny82agFEBaDwAx/CPmQbz0ARtIBOnIWkbU9tg7zVmMy?=
+ =?us-ascii?Q?tEhibInprA2m/MLTW1+Z19L+JAe1gJ0RvmNG3tK51KU6dE9FCxe3PTwV8cey?=
+ =?us-ascii?Q?Rerr78NafD1J7fkQsGXn81eClMfq5sJ9yF8A4b6EHK2kIlQ8UCOdTKcee662?=
+ =?us-ascii?Q?b/v+JZR1OvbNAWiLOlKb8xWWb5vEKKhK0F7/aHeZ7CWwxN7kRB3VD8Q6729r?=
+ =?us-ascii?Q?4rr3AOWxg6nry5aOiqROKMpGPURFYpwQWtpw+MJcvmj0XvyD3SqoC9Ci6G/k?=
+ =?us-ascii?Q?Er9RUl34ykYp0t5tGeMGj5osjwkzHttFvl5ysGmEE91gpx1E0SwXEdAtuKwz?=
+ =?us-ascii?Q?kTCIBYgYqOT+ORd8GchF7GUXgMJfb0beWiVo4nQT+v9uY5CxfPjocNFATvKC?=
+ =?us-ascii?Q?GgoizCR3J8JmPqWM4SvHcKioP7cYA/YKzqpGqbNyP8hvYe3doaN+xJXomfQn?=
+ =?us-ascii?Q?qFzcPwOZtmAun4StbaX1F5rXQdJozDi78QRrnFIPEypH4cBZmCPqG3f+fTGD?=
+ =?us-ascii?Q?qmCW/98pgJV39Rc2btCzWqZDlpnQIBMGAdcj0wsGIvqnupkHzFokXqs0nFtl?=
+ =?us-ascii?Q?YMPbvafZIx756H9tFOMDRu5l6HOTXL8Ndm7EMKNrvOrq8M6leGgxiPBLUfRZ?=
+ =?us-ascii?Q?qX0ByUbAX4VTXKoBVq7/s8g/Z5jtHR58mJ47chucT3VUSo2FIUjoAoVR0RTx?=
+ =?us-ascii?Q?zfRtMNBNSKIraCdRwgjIrwOEeUF0hRaXkIRib9Q9PtK8xL6LAfFoG4WdmTPv?=
+ =?us-ascii?Q?4EURRYtPqwipgUE9wjo2lYepWoljufXNcJZZr6+pshdZ7KUwQcCNy6w/BJVG?=
+ =?us-ascii?Q?taN4brOVM2G6033Eyjo=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5e3d6805-e2e2-442a-8d96-08ddeef1465d
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9626.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Sep 2025 16:03:39.5776
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: g/uoxEptzk5+Myh6AlNYpgsTWtRpZWHS1UauhYoZgM/AWfOYXnai9Zb+4KFArPgQv3KrYhTwjdEMvoKzTKP4Qg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB7669
 
-On 9/5/25 9:09 PM, Eric Gonçalves wrote:
-> Add new device support for the Samsung Galaxy S20 phone
-> 
-> What works (common dtsi):
-> - SimpleFB
-> - Pstore/ramoops
-> - GPIO keys
-> - UFS
-> - USB
-> 
-> Signed-off-by: Eric Gonçalves <ghatto404@gmail.com>
+On Mon, Sep 08, 2025 at 04:51:17PM +0530, Manikanta Guntupalli wrote:
+> Add an I3C master driver and maintainers fragment for the AMD I3C bus
+> controller.
+>
+> The driver currently supports the I3C bus operating in SDR i3c mode,
+> with features including Dynamic Address Assignment, private data transfers,
+> and CCC transfers in both broadcast and direct modes. It also supports
+> operation in I2C mode.
+>
+> Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
 > ---
+> Changes for V2:
+> Updated commit description.
+> Added mixed mode support with clock configuration.
+> Converted smaller functions into inline functions.
+> Used FIELD_GET() in xi3c_get_response().
+> Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
+> Used parity8() for address parity calculation.
+> Added guards for locks.
+> Dropped num_targets and updated xi3c_master_do_daa().
+> Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
+> Dropped PM runtime support.
+> Updated xi3c_master_read() and xi3c_master_write() with
+> xi3c_is_resp_available() check.
+> Created separate functions: xi3c_master_init() and xi3c_master_reinit().
+> Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
+> in error paths.
+> Added DAA structure to xi3c_master structure.
+>
+> Changes for V3:
+> Resolved merge conflicts.
+>
+> Changes for V4:
+> Updated timeout macros.
+> Removed type casting for xi3c_is_resp_available() macro.
+> Used ioread32() and iowrite32() instead of readl() and writel()
+> to keep consistency.
+> Read XI3C_RESET_OFFSET reg before udelay().
+> Removed xi3c_master_free_xfer() and directly used kfree().
+> Skipped checking return value of i3c_master_add_i3c_dev_locked().
+> Used devm_mutex_init() instead of mutex_init().
+>
+> Changes for V5:
+> Used GENMASK_ULL for PID mask as it's 64bit mask.
+> ---
+>  MAINTAINERS                         |    7 +
+>  drivers/i3c/master/Kconfig          |   16 +
+>  drivers/i3c/master/Makefile         |    1 +
+>  drivers/i3c/master/amd-i3c-master.c | 1014 +++++++++++++++++++++++++++
+>  4 files changed, 1038 insertions(+)
+>  create mode 100644 drivers/i3c/master/amd-i3c-master.c
+>
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 1af81124bba3..ff603ce5e78d 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -11693,6 +11693,13 @@ L:	linux-i2c@vger.kernel.org
+>  S:	Maintained
+>  F:	drivers/i2c/i2c-stub.c
+>
+> +I3C DRIVER FOR AMD AXI I3C MASTER
+> +M:	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
+> +R:	Michal Simek <michal.simek@amd.com>
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
+> +F:	drivers/i3c/master/amd-i3c-master.c
+> +
+>  I3C DRIVER FOR ASPEED AST2600
+>  M:	Jeremy Kerr <jk@codeconstruct.com.au>
+>  S:	Maintained
+> diff --git a/drivers/i3c/master/Kconfig b/drivers/i3c/master/Kconfig
+> index 13df2944f2ec..4b884a678893 100644
+> --- a/drivers/i3c/master/Kconfig
+> +++ b/drivers/i3c/master/Kconfig
+> @@ -1,4 +1,20 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> +
+> +config AMD_I3C_MASTER
+> +	tristate "AMD I3C Master driver"
+> +	depends on I3C
+> +	depends on HAS_IOMEM
+> +	help
+> +	  Support for AMD I3C Master Controller.
+> +
+> +	  This driver allows communication with I3C devices using the AMD
+> +	  I3C master, currently supporting Standard Data Rate (SDR) mode.
+> +	  Features include Dynamic Address Assignment, private transfers,
+> +	  and CCC transfers in both broadcast and direct modes.
+> +
+> +	  This driver can also be built as a module.  If so, the module
+> +	  will be called amd-i3c-master.
+> +
+>  config CDNS_I3C_MASTER
+>  	tristate "Cadence I3C master driver"
+>  	depends on HAS_IOMEM
+> diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
+> index aac74f3e3851..109bd48cb159 100644
+> --- a/drivers/i3c/master/Makefile
+> +++ b/drivers/i3c/master/Makefile
+> @@ -1,4 +1,5 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+> +obj-$(CONFIG_AMD_I3C_MASTER)		+= amd-i3c-master.o
+>  obj-$(CONFIG_CDNS_I3C_MASTER)		+= i3c-master-cdns.o
+>  obj-$(CONFIG_DW_I3C_MASTER)		+= dw-i3c-master.o
+>  obj-$(CONFIG_AST2600_I3C_MASTER)	+= ast2600-i3c-master.o
+> diff --git a/drivers/i3c/master/amd-i3c-master.c b/drivers/i3c/master/amd-i3c-master.c
+> new file mode 100644
+> index 000000000000..fb768680df45
+> --- /dev/null
+> +++ b/drivers/i3c/master/amd-i3c-master.c
+...
+> +/* timeout waiting for the controller finish transfers */
+> +#define XI3C_XFER_TIMEOUT_MS			10000
+> +#define XI3C_XFER_TIMEOUT			(msecs_to_jiffies(XI3C_XFER_TIMEOUT_MS))
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+XI3C_XFER_TIMEOUT is not used.
 
-Konrad
+> +
+> +#define xi3c_getrevisionnumber(master)						\
+> +	((u8)(FIELD_GET(XI3C_REV_NUM_MASK,					\
+> +			ioread32((master)->membase + XI3C_VERSION_OFFSET))))
+> +
+> +#define xi3c_wrfifolevel(master)						\
+> +	((u16)(ioread32((master)->membase + XI3C_FIFO_LVL_STATUS_OFFSET) &	\
+> +	       XI3C_WR_FIFO_LEVEL_MASK))
+> +
+> +#define xi3c_rdfifolevel(master)						\
+> +	((u16)(ioread32((master)->membase + XI3C_FIFO_LVL_STATUS_1_OFFSET) &	\
+> +	       XI3C_WR_FIFO_LEVEL_MASK))
+
+Are you sure that these force type convert is neccesary?
+
+> +
+> +#define xi3c_is_resp_available(master)						\
+> +	(FIELD_GET(XI3C_SR_RESP_NOT_EMPTY_MASK,					\
+> +		   ioread32((master)->membase + XI3C_SR_OFFSET)))
+> +
+> +struct xi3c_cmd {
+> +	void *tx_buf;
+> +	void *rx_buf;
+> +	u16 tx_len;
+> +	u16 rx_len;
+> +	u8 addr;
+> +	u8 type;
+> +	u8 tid;
+> +	bool rnw;
+> +	bool is_daa;
+> +	bool continued;
+> +};
+> +
+> +struct xi3c_xfer {
+> +	struct list_head node;
+> +	struct completion comp;
+> +	int ret;
+> +	unsigned int ncmds;
+> +	struct xi3c_cmd cmds[] __counted_by(ncmds);
+> +};
+> +
+...
+> +
+> +static int xi3c_master_write(struct xi3c_master *master, struct xi3c_cmd *cmd)
+> +{
+> +	unsigned long timeout;
+> +	u16 wrfifo_space;
+> +	u16 space_index;
+> +	u16 len;
+> +
+> +	len = cmd->tx_len;
+> +	if (!cmd->tx_buf || cmd->tx_len > XI3C_MAXDATA_LENGTH)
+> +		return -EINVAL;
+> +
+> +	/* Fill Tx fifo */
+> +	wrfifo_space = xi3c_wrfifolevel(master);
+> +	for (space_index = 0; space_index < wrfifo_space && cmd->tx_len > 0;
+> +	     space_index++)
+> +		xi3c_master_wr_to_tx_fifo(master, cmd);
+
+Does common helper function i3c_writel_fifo() help this? look like logic
+is similar.
+
+> +
+> +	/* Write to command fifo */
+> +	xi3c_master_write_to_cmdfifo(master, cmd, len);
+> +
+> +	timeout = jiffies + XI3C_XFER_TIMEOUT;
+> +	/* Fill if any remaining data to tx fifo */
+> +	while (cmd->tx_len > 0 && !xi3c_is_resp_available(master)) {
+> +		if (time_after(jiffies, timeout)) {
+> +			dev_err(master->dev, "XI3C write timeout\n");
+> +			return -EIO;
+> +		}
+> +
+> +		wrfifo_space = xi3c_wrfifolevel(master);
+> +		for (space_index = 0; space_index < wrfifo_space && cmd->tx_len > 0;
+> +		     space_index++)
+> +			xi3c_master_wr_to_tx_fifo(master, cmd);
+> +	}
+> +	return 0;
+> +}
+> +
+...
+> +
+> +static int xi3c_master_do_daa(struct i3c_master_controller *m)
+> +{
+> +	struct xi3c_master *master = to_xi3c_master(m);
+> +	struct xi3c_cmd *daa_cmd;
+> +	struct xi3c_xfer *xfer;
+> +	u8 pid_bufs[XI3C_MAX_DEVS][8];
+> +	u8 data, last_addr = 0;
+> +	int addr, ret, i;
+> +	u8 *pid_buf;
+> +
+> +	u64 *pid_bcr_dcr __free(kfree) = kcalloc(XI3C_MAX_DEVS, sizeof(u64),
+> +						 GFP_KERNEL);
+> +	if (!pid_bcr_dcr)
+> +		return -ENOMEM;
+> +
+> +	xfer = xi3c_master_alloc_xfer(master, 1);
+> +	if (!xfer) {
+> +		ret = -ENOMEM;
+> +		goto err_daa_mem;
+> +	}
+> +
+> +	for (i = 0; i < XI3C_MAX_DEVS; i++) {
+> +		addr = i3c_master_get_free_addr(m, last_addr + 1);
+> +		if (addr < 0) {
+> +			ret = -ENOSPC;
+> +			goto err_daa;
+> +		}
+> +		master->daa.addrs[i] = (u8)addr;
+> +		last_addr = (u8)addr;
+> +	}
+> +
+> +	/* Fill ENTDAA CCC */
+> +	data = I3C_CCC_ENTDAA;
+> +	daa_cmd = &xfer->cmds[0];
+> +	daa_cmd->addr = I3C_BROADCAST_ADDR;
+> +	daa_cmd->rnw = 0;
+> +	daa_cmd->tx_buf = &data;
+> +	daa_cmd->tx_len = 1;
+> +	daa_cmd->type = XI3C_SDR_MODE;
+> +	daa_cmd->tid = XI3C_SDR_TID;
+> +	daa_cmd->continued = true;
+> +
+> +	ret = xi3c_master_common_xfer(master, xfer);
+> +	/* DAA always finishes with CE2_ERROR or NACK_RESP */
+> +	if (ret && ret != I3C_ERROR_M2) {
+> +		goto err_daa;
+> +	} else {
+> +		if (ret && ret == I3C_ERROR_M2) {
+> +			ret = 0;
+> +			goto err_daa;
+> +		}
+> +	}
+> +
+> +	master->daa.index = 0;
+> +
+> +	while (true) {
+> +		struct xi3c_cmd *cmd = &xfer->cmds[0];
+> +
+> +		pid_buf = pid_bufs[master->daa.index];
+> +		addr = (master->daa.addrs[master->daa.index] << 1) |
+> +		       (!parity8(master->daa.addrs[master->daa.index]));
+> +
+> +		cmd->tx_buf = (u8 *)&addr;
+> +		cmd->tx_len = 1;
+> +		cmd->addr = I3C_BROADCAST_ADDR;
+> +		cmd->rnw = 1;
+> +		cmd->rx_buf = pid_buf;
+> +		cmd->rx_len = XI3C_DAA_SLAVEINFO_READ_BYTECOUNT;
+> +		cmd->is_daa = true;
+> +		cmd->type = XI3C_SDR_MODE;
+> +		cmd->tid = XI3C_SDR_TID;
+> +		cmd->continued = true;
+> +
+> +		ret = xi3c_master_common_xfer(master, xfer);
+> +
+> +		/* DAA always finishes with CE2_ERROR or NACK_RESP */
+> +		if (ret && ret != I3C_ERROR_M2) {
+> +			goto err_daa;
+> +		} else {
+> +			if (ret && ret == I3C_ERROR_M2) {
+> +				xi3c_master_resume(master);
+> +				master->daa.index--;
+> +				ret = 0;
+> +				break;
+> +			}
+> +		}
+> +	}
+> +
+> +	kfree(xfer);
+> +
+> +	for (i = 0; i < master->daa.index; i++) {
+> +		i3c_master_add_i3c_dev_locked(m, master->daa.addrs[i]);
+> +
+> +		pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
+> +					   get_unaligned_be64(pid_bufs[i]));
+
+you only use pid_bcr_dcr here, needn't dymatic alloc at all.
+
+		u64 data = FIELD_GET(XI3C_PID_MASK, get_unaligned_be64(pid_bufs[i]));
+		dev_info(master->dev, "Client %d: PID: 0x%llx\n", i, data);
+
+Frank
+
+> +		dev_info(master->dev, "Client %d: PID: 0x%llx\n", i, pid_bcr_dcr[i]);
+> +	}
+> +
+> +	return 0;
+> +
+> +err_daa:
+> +	kfree(xfer);
+> +err_daa_mem:
+> +	xi3c_master_reinit(master);
+> +	return ret;
+> +}
+> +
+...
+> +};
+> +module_platform_driver(xi3c_master_driver);
+> +
+> +MODULE_AUTHOR("Manikanta Guntupalli <manikanta.guntupalli@amd.com>");
+> +MODULE_DESCRIPTION("AXI I3C master driver");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.34.1
+>
 
