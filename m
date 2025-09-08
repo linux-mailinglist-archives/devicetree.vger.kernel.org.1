@@ -1,157 +1,114 @@
-Return-Path: <devicetree+bounces-214239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214245-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A51EB487E8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:09:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CBA8B487FE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:12:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81E487A6F35
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:07:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82B8E3C3F54
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:12:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CFD92F49EF;
-	Mon,  8 Sep 2025 09:08:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04A85224B09;
+	Mon,  8 Sep 2025 09:11:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="fgy9AHse"
+	dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b="UxtBKidM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from mail.alien8.de (mail.alien8.de [65.109.113.108])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDEF1E1E1E;
-	Mon,  8 Sep 2025 09:08:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55351188713;
+	Mon,  8 Sep 2025 09:11:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=65.109.113.108
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757322526; cv=none; b=A2xmYHHZ4pOKvW6c8PZg+CWdd5HJ1ftPj2S1vUoVAq9tmG/Jxvq1VJ1mCfK+P8kOHs0cgaaMOosIydWyUsJKGwJxwlD6U3Hky6d4m4oflGmjw0gq9bHhuxnuVbt4skJxW3WUs8ToQEoBHjr6Smh84WNk8pJePykX4O/tzBkNuvU=
+	t=1757322693; cv=none; b=jviATK3bv9nqfb75Z52gnJkWQXU+LoVD+uQbDjO8xuEn5TmAj6cbT78kQjychXX3TU5xjAqeVuQYO9JGm9PQ5xRYTbUsPQbLIewibbw5LKkxZ2FNSBf1+tBPhOJlV/JTQUMcCm/h3UTW8EtaG5CsAVvs94rzWwRdQoiUOnFYJ5o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757322526; c=relaxed/simple;
-	bh=pxCk7XGN3L7r9ZczqLXHX57qOG+ulO27ydJJwfzrxKQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J/uis9g+8QlQyv9e5btPnrxrmDmFednTCNWhGn9RNowxnMflMthfzWG6UN4SwV3G5oq6QuOciQGrg1kxNnQdP47pxLh/sulJbcDq8woZZaHDe8c9t1DOy259RIKPCMOca1yPVuqFnoBaFhxphDVi1wXxsAB5CBK4CkOnB9UPeSU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=fgy9AHse; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588986dc071994;
-	Mon, 8 Sep 2025 04:08:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757322486;
-	bh=WibgegTqo+WJ+bFaRM+5vscvWKwWpKt986Uxz6u8MQQ=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=fgy9AHsekO02wFnSIM8AfzFYvbHCdXufrzVAIH9/VtA69wnE6SKvxLyvKZsIYOUYw
-	 T+ZIFlqFsIvJ2lJmBHvg42HXOqY9DjHl+5MjHkzo5yxMGNH+An5O8HA4kMfDGtS4cr
-	 J6Zmr/ggYy38l+lDG2M0FN2ZDjf9bNTPZHUe1CsI=
-Received: from DFLE101.ent.ti.com (dfle101.ent.ti.com [10.64.6.22])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588986043666698
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 04:08:06 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 04:08:05 -0500
-Received: from fllvem-mr08.itg.ti.com (10.64.41.88) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 04:08:05 -0500
-Received: from fllv0122.itg.ti.com (fllv0122.itg.ti.com [10.247.120.72])
-	by fllvem-mr08.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588985Eb2298756;
-	Mon, 8 Sep 2025 04:08:05 -0500
-Received: from localhost (danish-tpc.dhcp.ti.com [172.24.231.152])
-	by fllv0122.itg.ti.com (8.14.7/8.14.7) with ESMTP id 588985f7023054;
-	Mon, 8 Sep 2025 04:08:05 -0500
-From: MD Danish Anwar <danishanwar@ti.com>
-To: "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Simon Horman <horms@kernel.org>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>, Rob Herring
-	<robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Andrew Lunn <andrew+netdev@lunn.ch>,
-        MD Danish Anwar
-	<danishanwar@ti.com>,
-        Mengyuan Lou <mengyuanlou@net-swift.com>,
-        Luo Jie
-	<quic_luoj@quicinc.com>, Fan Gong <gongfan1@huawei.com>,
-        Lei Wei
-	<quic_leiwei@quicinc.com>,
-        Michael Ellerman <mpe@ellerman.id.au>, Lee Trager
-	<lee@trager.us>,
-        Lorenzo Bianconi <lorenzo@kernel.org>,
-        Parthiban Veerasooran
-	<Parthiban.Veerasooran@microchip.com>,
-        Geert Uytterhoeven
-	<geert+renesas@glider.be>,
-        Lukas Bulwahn <lukas.bulwahn@redhat.com>
-CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH net-next v3 7/7] arch: arm64: dts: k3-am64*: Add rpmsg-eth node
-Date: Mon, 8 Sep 2025 14:37:46 +0530
-Message-ID: <20250908090746.862407-8-danishanwar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250908090746.862407-1-danishanwar@ti.com>
-References: <20250908090746.862407-1-danishanwar@ti.com>
+	s=arc-20240116; t=1757322693; c=relaxed/simple;
+	bh=evM/rvxGMjDmULbW0k7e2tz9gZ0s8QBMQMepaWK796g=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SH6C/5+nJHvsHzo0gAQseozeYqr0NaYKN1x8JnQ8/nVg+Ryx7rp9F1oufXZTuEi1AOnuWndOkyByrJdPguDILkPhMC6uBQUbfc1EL51A06tU4+Wrf/AscCXV0hvz6K7FWbTZJZJmtSkUmmy8repkjqpgKZloaZ2whb08VQO8tZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de; spf=pass smtp.mailfrom=alien8.de; dkim=pass (4096-bit key) header.d=alien8.de header.i=@alien8.de header.b=UxtBKidM; arc=none smtp.client-ip=65.109.113.108
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=alien8.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alien8.de
+Received: from localhost (localhost.localdomain [127.0.0.1])
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with ESMTP id 8FAF140E01A2;
+	Mon,  8 Sep 2025 09:11:22 +0000 (UTC)
+X-Virus-Scanned: Debian amavisd-new at mail.alien8.de
+Authentication-Results: mail.alien8.de (amavisd-new); dkim=pass (4096-bit key)
+	header.d=alien8.de
+Received: from mail.alien8.de ([127.0.0.1])
+	by localhost (mail.alien8.de [127.0.0.1]) (amavisd-new, port 10026)
+	with ESMTP id 0T8FJY5P_F1g; Mon,  8 Sep 2025 09:11:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=alien8;
+	t=1757322675; bh=7XAfj3MYUgMXBT0TNh9lZ7tKmYbhfmf+pgp/Zi0Uqdg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=UxtBKidMGLDtd0UkOGsNpak8DBmn4lehaxMdjKy8Ge5buIQ6XHX+Kr8JrHwQlxTtZ
+	 cRbqBQ+Tg2l4iRNt/2FWoYcqxweGTga//xAPeT5pon+YZ++Lxr36I1/v+y0PZsl8L4
+	 7IcM7XDjoQN5DIqSfZjRYY1naEAItG2+7xN2ejf11C7VHsHYUpbPbkDIPpySq25siM
+	 6UCfnyH8gCRl+xZGmYoE3972M4pzx4Z27ZcKfqX0wgmX1qaivcGFNBUrXAQWVlaoO/
+	 mPXzBjepuyqNcBqcFYdNiNH36kt+rNu8t8Z/LaigwoamgoJnjy3SzKXLksd6QiAgqf
+	 AlVKfVMaiz+c21hfPQFbVUtldHXXIUtHZjemjoAQyVLy0RjiHjQ5RWMKAi1V0FlKcV
+	 5MHz83b2zr5P4XKfh6M38mTfxJOJ2DgPxr8THlNxyajAi+cCCgmT37kDXgzml+OW+b
+	 4GHiZihv6tPWpvLkt3b6oijySIoYIbLenEJeeBU6H77iokWZAJ7vrSZUWux7cCRuoz
+	 ukAu73MbdEy6hQNyFNPM76Dd+yrP40WDMdwlBXxrxlRuaKQtLBr2qxbASQPLZuE6B7
+	 neVhlUcot/tKgww+DjxKcI8mnPdbF9kVDX0NiJV0JJjBrKzVBGP8xU1ENhDQXZDsd2
+	 ZD3vnxS+2k7fLr63icgb4oig=
+Received: from zn.tnic (p5de8ed27.dip0.t-ipconnect.de [93.232.237.39])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (P-256) server-signature ECDSA (P-256) server-digest SHA256)
+	(No client certificate requested)
+	by mail.alien8.de (SuperMail on ZX Spectrum 128k) with UTF8SMTPSA id 8CF6940E01AC;
+	Mon,  8 Sep 2025 09:10:58 +0000 (UTC)
+Date: Mon, 8 Sep 2025 11:10:50 +0200
+From: Borislav Petkov <bp@alien8.de>
+To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>
+Cc: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>,
+	"git (AMD-Xilinx)" <git@amd.com>,
+	"ptsm@linux.microsoft.com" <ptsm@linux.microsoft.com>,
+	"srivatsa@csail.mit.edu" <srivatsa@csail.mit.edu>,
+	"shubhrajyoti.datta@gmail.com" <shubhrajyoti.datta@gmail.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Tony Luck <tony.luck@intel.com>, James Morse <james.morse@arm.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Robert Richter <rric@kernel.org>,
+	"Gupta, Nipun" <Nipun.Gupta@amd.com>,
+	"Agarwal, Nikhil" <nikhil.agarwal@amd.com>
+Subject: Re: [PATCH v8 5/5] EDAC/VersalNET: Add support for error notification
+Message-ID: <20250908091050.GAaL6dmop_0kjZSYWg@fat_crate.local>
+References: <20250826052914.2066884-1-shubhrajyoti.datta@amd.com>
+ <20250826052914.2066884-6-shubhrajyoti.datta@amd.com>
+ <20250907111948.GAaL1qVA_jL9F5piRR@fat_crate.local>
+ <SA1PR12MB8947C010FA7FF05F9980D983810CA@SA1PR12MB8947.namprd12.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <SA1PR12MB8947C010FA7FF05F9980D983810CA@SA1PR12MB8947.namprd12.prod.outlook.com>
 
-Add rpmsg-eth node to main_r5fss0_core0. This node describes the memory
-region to be used for rpmsg ethernet communication. The commit adds
-below changes,
+On Mon, Sep 08, 2025 at 06:41:02AM +0000, Datta, Shubhrajyoti wrote:
+> I have tested it on hardware it worked for me.
 
-- Adding new reserved memory region main_r5fss0_core0_memory_region_shm
-- Adding rpmsg-eth node to main_r5fss0_core0 with memory-region as
-  main_r5fss0_core0_memory_region_shm
+Thanks.
 
-Signed-off-by: MD Danish Anwar <danishanwar@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am642-evm.dts | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+> Also there was a suggestion to replace log_non_standard_event by
+> trace_non_standard_event directly.[1]
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index e01866372293..6e8e2c39146b 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -61,7 +61,13 @@ main_r5fss0_core0_dma_memory_region: r5f-dma-memory@a0000000 {
- 
- 		main_r5fss0_core0_memory_region: r5f-memory@a0100000 {
- 			compatible = "shared-dma-pool";
--			reg = <0x00 0xa0100000 0x00 0xf00000>;
-+			reg = <0x00 0xa0100000 0x00 0x300000>;
-+			no-map;
-+		};
-+
-+		main_r5fss0_core0_memory_region_shm: r5f-shm-memory@a0400000 {
-+			compatible = "shared-dma-pool";
-+			reg = <0x00 0xa0400000 0x00 0xc00000>;
- 			no-map;
- 		};
- 
-@@ -767,7 +773,8 @@ mbox_m4_0: mbox-m4-0 {
- &main_r5fss0_core0 {
- 	mboxes = <&mailbox0_cluster2 &mbox_main_r5fss0_core0>;
- 	memory-region = <&main_r5fss0_core0_dma_memory_region>,
--			<&main_r5fss0_core0_memory_region>;
-+			<&main_r5fss0_core0_memory_region>,
-+			<&main_r5fss0_core0_memory_region_shm>;
- };
- 
- &main_r5fss0_core1 {
+It is on the todo list.
+
+While waiting, you could try to ping your colleagues on an Ack for your other CDX
+patches.
+
 -- 
-2.34.1
+Regards/Gruss,
+    Boris.
 
+https://people.kernel.org/tglx/notes-about-netiquette
 
