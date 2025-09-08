@@ -1,375 +1,112 @@
-Return-Path: <devicetree+bounces-214465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6774FB491BE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:38:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 880D1B491B7
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:38:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D71A57AC4CF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:34:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 34EC14436CB
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:36:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E79BA30FC19;
-	Mon,  8 Sep 2025 14:31:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B61531F3BA4;
+	Mon,  8 Sep 2025 14:34:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="lYhdSKgD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HcFxI/a1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E8B30C603;
-	Mon,  8 Sep 2025 14:31:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 893F21E1A17;
+	Mon,  8 Sep 2025 14:34:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757341915; cv=none; b=lKTW5Xv5k2GeXTl7dxvGy4vQqtV0du0tBgNh47UnSNSjj1ldK+qAsNLtvPlBvtTYzb/JZCzHZeQaYaALiE/0ig4ZLClgB7AokCK0tWcayFmeeSEiSJ/QPw6KNGpGQJvoaZ4clIUmmgE+Y1BoIBYjT8AN3g70br0k7r+GLca+Egw=
+	t=1757342046; cv=none; b=fgx8b4VfslJDmBKUXGrF16AjDUrOQ7h075YiQqLcSASPoJSAQEFtyYJ0Ye10VQQ4KNV7jIUedv0IKuMfSxijuzTc/pYLpY8NxFpbVoyd4kn71sNGE2PIZ4O9UkXOXkuI1TRaYpHVz/kWJrnPNQ4X47prkUXwSNuDcXRP4BrmfDk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757341915; c=relaxed/simple;
-	bh=qqvLiOWphBmzKOVF2cjHpoDClBnWoaYIyM4jU5kOtRI=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=obeY2zoyZ0sHH1AMqAz46N79lsfvzTaehLrthFJ+nEduhpoztVb4X2PZu5vr5mmwiTAX4CB0Qy3MYlAh3ISdteHkxe7/xWGOW8NoR2GO4x4Nwhl02As9JNjGHfScpR9dZINgMuG0muYOjDOaUTlZ06NTiQcVnN+Hzz97em19ABE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=lYhdSKgD; arc=none smtp.client-ip=198.47.23.235
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588EVlZ3120887;
-	Mon, 8 Sep 2025 09:31:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757341907;
-	bh=sSuizfdlkq/bS4uuwNjXs5BlrTw0z8BBQfkjmr3VoWY=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=lYhdSKgDgWSuazb3nmFZktLOTfj03GUruJUkXlhzpuevvGr5oBCK2OVNTddu2LTMN
-	 DYjhbISji8sTdToSkklmgiIhnGQkjEGFUneEVslI5cqreY4OHBhTiGvYxTTa3vxb1G
-	 1vkc3JRpcb+xaU0nMixkIEcnv7f7P0STZbrdHWM4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588EVkRR2466743
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 09:31:47 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 09:31:46 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 09:31:46 -0500
-Received: from uda0510294.dhcp.ti.com (uda0510294.dhcp.ti.com [172.24.234.212])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588ESedC1037553;
-	Mon, 8 Sep 2025 09:31:41 -0500
-From: Beleswar Padhi <b-padhi@ti.com>
-To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>
-CC: <afd@ti.com>, <u-kumar1@ti.com>, <hnagalla@ti.com>, <jm@ti.com>,
-        <d-gole@ti.com>, <b-padhi@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-        Diogo
- Ivo <diogo.ivo@siemens.com>,
-        Li Hua Qian <huaqian.li@siemens.com>,
-        Jan Kiszka
-	<jan.kiszka@siemens.com>,
-        Baocheng Su <baocheng.su@siemens.com>,
-        Benedikt
- Niedermayr <benedikt.niedermayr@siemens.com>
-Subject: [PATCH v4 34/34] arm64: dts: ti: k3-am65-ti-ipc-firmware: Refactor IPC cfg into new dtsi
-Date: Mon, 8 Sep 2025 19:58:26 +0530
-Message-ID: <20250908142826.1828676-35-b-padhi@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250908142826.1828676-1-b-padhi@ti.com>
-References: <20250908142826.1828676-1-b-padhi@ti.com>
+	s=arc-20240116; t=1757342046; c=relaxed/simple;
+	bh=jmLh3PuSVlUt+g2PX4Ay2Hb0ur+5MEG8C0HwO0GRTe4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CosKvWgFUNOSn2wjlEWs2bwEfWcqwNlGPG/7ZDiZXFlnOW12DLRkZ2eClaxlap6sD5VqJkzXT3b06YAR9cft4iAHxtf16tj924wct1HAJ03trq672qyUZoF6RXw3KMMhABN7GRx258vDHf4/0isGJS6kJ6GBxGz/Lg19GB6vp1w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HcFxI/a1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40984C4CEF7;
+	Mon,  8 Sep 2025 14:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757342046;
+	bh=jmLh3PuSVlUt+g2PX4Ay2Hb0ur+5MEG8C0HwO0GRTe4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HcFxI/a131+8oDxawx1vgEO2l2fI8fhcgz372G5G5qWIrT4kEPDpQAfrvhcTrL70T
+	 A5LBVSpJyb1F3Uq8C9ZRjO9+azCb12DfJiwC30UYnSCsU7sTNabI3iQHeJKHqi6Yob
+	 B6saoMyHoeKyFs7FMuemIGzuWC4BHJDKLMIdObhMWGPGEWEQbwvVGgDzw/RU6aZW95
+	 iGAt2MZUDSGJodtPbk6NuvBX4oHCb7eKR9/P9o3tN0+EKnmqZxuRg6x8q+ycwkOamR
+	 WDSIBjNrWUA1QvyPubTjP5yyadNE4flz9Mylz/G2Mf8Vh1wCqjRhkOmMowmXK4c2QA
+	 iyyePEmruZgVQ==
+Date: Mon, 8 Sep 2025 15:34:00 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Andreas Kemnade <akemnade@kernel.org>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alistair Francis <alistair@alistair23.me>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: mfd: sy7636a: Add missing gpio pins and
+ supply
+Message-ID: <c879f3e1-f64c-4cbd-97ec-646d06488d8e@sirena.org.uk>
+References: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
+ <20250906-sy7636-rsrc-v1-1-e2886a9763a7@kernel.org>
+ <288f0cf1-1ee4-4eba-b059-641120bb93f3@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="1dMKtcdKROWDAugT"
+Content-Disposition: inline
+In-Reply-To: <288f0cf1-1ee4-4eba-b059-641120bb93f3@kernel.org>
+X-Cookie: Air is water with holes in it.
 
-The TI K3 AM65 SoCs have multiple programmable remote processors like
-R5Fs. The TI SDKs for AM65 SoCs offer sample firmwares which could be
-run on these cores to demonstrate an "echo" IPC test. Those firmware
-require certain memory carveouts to be reserved from system memory,
-timers to be reserved, and certain mailbox configurations for interrupt
-based messaging. These configurations could be different for a different
-firmware.
 
-While DT is not meant for system configurations, at least refactor these
-configurations from board level DTS into a dtsi for now. This dtsi for
-TI IPC firmware is board-independent and can be applied to all boards
-from the same SoC Family. This gets rid of code duplication and allows
-more freedom for users developing custom firmware (or no firmware) to
-utilize system resources better; easily by swapping out this dtsi. To
-maintain backward compatibility, the dtsi is included in all boards.
+--1dMKtcdKROWDAugT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
----
-Cc: Diogo Ivo <diogo.ivo@siemens.com>
-Cc: Li Hua Qian <huaqian.li@siemens.com>
-Cc: Jan Kiszka <jan.kiszka@siemens.com>
-Cc: Baocheng Su <baocheng.su@siemens.com>
-Cc: Benedikt Niedermayr <benedikt.niedermayr@siemens.com>
-Requesting for review/test of this patch.
+On Sat, Sep 06, 2025 at 02:01:25PM +0200, Krzysztof Kozlowski wrote:
+> On 06/09/2025 11:09, Andreas Kemnade wrote:
 
-v4: Changelog:
-1. Updated carveout node names to generic 'memory@addr'
+> > +  en-gpios:
 
-Link to v3:
-https://lore.kernel.org/all/20250905051846.1189612-34-b-padhi@ti.com/
+> enable-gpios, unless it is something else, but then please explain in
+> the description.
 
-v3: Changelog:
-1. None
+> > +    description:
+> > +      If EN pin is not hardwired, specify it here to have it set up.
+> > +    maxItems: 1
 
-Link to v2:
-https://lore.kernel.org/all/20250823160901.2177841-34-b-padhi@ti.com/
+It seems reasonable to name the property after the pin on the device?
 
-v2: Changelog:
-1. Re-ordered patch from [PATCH 32/33] to [PATCH v2 33/33].
+--1dMKtcdKROWDAugT
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Link to v1:
-https://lore.kernel.org/all/20250814223839.3256046-33-b-padhi@ti.com/
+-----BEGIN PGP SIGNATURE-----
 
- .../boot/dts/ti/k3-am65-iot2050-common.dtsi   | 62 ++----------------
- .../boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi  | 64 +++++++++++++++++++
- .../arm64/boot/dts/ti/k3-am654-base-board.dts | 58 +----------------
- 3 files changed, 72 insertions(+), 112 deletions(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi+6VcACgkQJNaLcl1U
+h9CLxwf7BQyHW20zqZG878E+egZPMLHOqAvNnwHpAnZh2j/C2o8dZP1Sutt2+VUa
+ClPzdsXzKZarDW9CCEktgoCyIrLV8k8pAE8sQuldBmxD6Mu3daLTB0wQVr2RpcBt
+K3p65WmmnAJERwUAxATQDdjJs+sRWWBgghOcdy6pIPIZmvdr5DUhyzBh5UfYFyCM
+C/JUDDPJtrnCmmVAsYP6p68+4fNHyWdnjnf5MM4xIbE/03ZmPVtZuOGLpyE9BqY2
+jM6WSKGu1NSf1BAd9+AjmGrjGLAwpNrerssP8ADjesrvhQkYR6ib71JScEjS0TaF
+z2sqtPhxcCdpn70FwcGyveIf6mwZBg==
+=ahy3
+-----END PGP SIGNATURE-----
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-index df2eed0b4048..42ba3dab2fc1 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-iot2050-common.dtsi
-@@ -59,24 +59,6 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
- 			no-map;
- 		};
- 
--		mcu_r5fss0_core1_dma_memory_region: memory@a1000000 {
--			compatible = "shared-dma-pool";
--			reg = <0 0xa1000000 0 0x100000>;
--			no-map;
--		};
--
--		mcu_r5fss0_core1_memory_region: memory@a1100000 {
--			compatible = "shared-dma-pool";
--			reg = <0 0xa1100000 0 0xf00000>;
--			no-map;
--		};
--
--		rtos_ipc_memory_region: memory@a2000000 {
--			reg = <0x00 0xa2000000 0x00 0x00200000>;
--			alignment = <0x1000>;
--			no-map;
--		};
--
- 		/* To reserve the power-on(PON) reason for watchdog reset */
- 		wdt_reset_memory_region: wdt-memory@a2200000 {
- 			reg = <0x00 0xa2200000 0x00 0x1000>;
-@@ -582,44 +564,6 @@ &pcie1_rc {
- 	reset-gpios = <&wkup_gpio0 27 GPIO_ACTIVE_HIGH>;
- };
- 
--&mailbox0_cluster0 {
--	status = "okay";
--	interrupts = <436>;
--
--	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
--		ti,mbox-tx = <1 0 0>;
--		ti,mbox-rx = <0 0 0>;
--	};
--};
--
--&mailbox0_cluster1 {
--	status = "okay";
--	interrupts = <432>;
--
--	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
--		ti,mbox-tx = <1 0 0>;
--		ti,mbox-rx = <0 0 0>;
--	};
--};
--
--&mcu_r5fss0 {
--	status = "okay";
--};
--
--&mcu_r5fss0_core0 {
--	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
--			<&mcu_r5fss0_core0_memory_region>;
--	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
--	status = "okay";
--};
--
--&mcu_r5fss0_core1 {
--	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
--			<&mcu_r5fss0_core1_memory_region>;
--	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5fss0_core1>;
--	status = "okay";
--};
--
- &mcu_rti1 {
- 	memory-region = <&wdt_reset_memory_region>;
- };
-@@ -692,3 +636,9 @@ &mcu_r5fss0 {
- 	/* lock-step mode not supported on iot2050 boards */
- 	ti,cluster-mode = <0>;
- };
-+
-+#include "k3-am65-ti-ipc-firmware.dtsi"
-+
-+&rtos_ipc_memory_region {
-+	reg = <0x00 0xa2000000 0x00 0x00200000>;
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi b/arch/arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi
-new file mode 100644
-index 000000000000..61ab0357fc0d
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am65-ti-ipc-firmware.dtsi
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * Device Tree Source for enabling IPC using TI SDK firmware on AM65 SoCs
-+ *
-+ * Copyright (C) 2016-2025 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+&reserved_memory {
-+	mcu_r5fss0_core1_dma_memory_region: memory@a1000000 {
-+		compatible = "shared-dma-pool";
-+		reg = <0 0xa1000000 0 0x100000>;
-+		no-map;
-+	};
-+
-+	mcu_r5fss0_core1_memory_region: memory@a1100000 {
-+		compatible = "shared-dma-pool";
-+		reg = <0 0xa1100000 0 0xf00000>;
-+		no-map;
-+	};
-+
-+	rtos_ipc_memory_region: memory@a2000000 {
-+		reg = <0x00 0xa2000000 0x00 0x00100000>;
-+		alignment = <0x1000>;
-+		no-map;
-+	};
-+};
-+
-+&mailbox0_cluster0 {
-+	status = "okay";
-+	interrupts = <436>;
-+
-+	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-+		ti,mbox-tx = <1 0 0>;
-+		ti,mbox-rx = <0 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	status = "okay";
-+	interrupts = <432>;
-+
-+	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-+		ti,mbox-tx = <1 0 0>;
-+		ti,mbox-rx = <0 0 0>;
-+	};
-+};
-+
-+&mcu_r5fss0 {
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core0 {
-+	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
-+			<&mcu_r5fss0_core0_memory_region>;
-+	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
-+	status = "okay";
-+};
-+
-+&mcu_r5fss0_core1 {
-+	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
-+			<&mcu_r5fss0_core1_memory_region>;
-+	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5fss0_core1>;
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-index 3ca771a4f9c7..0c42c486d83a 100644
---- a/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am654-base-board.dts
-@@ -61,24 +61,6 @@ mcu_r5fss0_core0_memory_region: memory@a0100000 {
- 			reg = <0 0xa0100000 0 0xf00000>;
- 			no-map;
- 		};
--
--		mcu_r5fss0_core1_dma_memory_region: memory@a1000000 {
--			compatible = "shared-dma-pool";
--			reg = <0 0xa1000000 0 0x100000>;
--			no-map;
--		};
--
--		mcu_r5fss0_core1_memory_region: memory@a1100000 {
--			compatible = "shared-dma-pool";
--			reg = <0 0xa1100000 0 0xf00000>;
--			no-map;
--		};
--
--		rtos_ipc_memory_region: memory@a2000000 {
--			reg = <0x00 0xa2000000 0x00 0x00100000>;
--			alignment = <0x1000>;
--			no-map;
--		};
- 	};
- 
- 	gpio-keys {
-@@ -521,44 +503,6 @@ &serdes1 {
- 	status = "disabled";
- };
- 
--&mailbox0_cluster0 {
--	status = "okay";
--	interrupts = <436>;
--
--	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
--		ti,mbox-tx = <1 0 0>;
--		ti,mbox-rx = <0 0 0>;
--	};
--};
--
--&mailbox0_cluster1 {
--	status = "okay";
--	interrupts = <432>;
--
--	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
--		ti,mbox-tx = <1 0 0>;
--		ti,mbox-rx = <0 0 0>;
--	};
--};
--
--&mcu_r5fss0 {
--	status = "okay";
--};
--
--&mcu_r5fss0_core0 {
--	memory-region = <&mcu_r5fss0_core0_dma_memory_region>,
--			<&mcu_r5fss0_core0_memory_region>;
--	mboxes = <&mailbox0_cluster0 &mbox_mcu_r5fss0_core0>;
--	status = "okay";
--};
--
--&mcu_r5fss0_core1 {
--	memory-region = <&mcu_r5fss0_core1_dma_memory_region>,
--			<&mcu_r5fss0_core1_memory_region>;
--	mboxes = <&mailbox0_cluster1 &mbox_mcu_r5fss0_core1>;
--	status = "okay";
--};
--
- &ospi0 {
- 	status = "okay";
- 	pinctrl-names = "default";
-@@ -653,3 +597,5 @@ &dss {
- &wkup_gpio0 {
- 	bootph-all;
- };
-+
-+#include "k3-am65-ti-ipc-firmware.dtsi"
--- 
-2.34.1
-
+--1dMKtcdKROWDAugT--
 
