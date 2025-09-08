@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-214311-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214312-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7C73B48B13
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:04:38 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32A25B48B20
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:07:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1F8F01899BF0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:04:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C5821883FA5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 11:08:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF4842FDC4F;
-	Mon,  8 Sep 2025 11:03:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23EB2F83AE;
+	Mon,  8 Sep 2025 11:07:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="LhF/1Tlk"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="hhpeDntA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618292FB08D;
-	Mon,  8 Sep 2025 11:03:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ECEB32E7BD0;
+	Mon,  8 Sep 2025 11:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757329436; cv=none; b=ImcheaLuyN1IejwW//nD39OSi2jSBTrpkt0O2JmTkCyQIPzwAngcQzkZF0Za/zIyELGTEOF2/lhFRDVPYsBT+bFGhaCyV+NNxpPDCb7T/BeLMWr7IBwQD0bL+lxOCMSe3WaejA9VdrE6jlA4oKYVLaoGVWoHa9OUxePqBXOZb9c=
+	t=1757329668; cv=none; b=b7KCgJmoEfFv5GYduCRjBmYpI1xGEyfFsB1U67tWqnqV+GwuySamz3Jc9gUULoahTfZV7sNK+TMo/wugv8YZc9cXRtgLdZnFEu4K96/YRH5sXrPAJ8On7Y/tubtWtu+uSDJRjnzZ2uX5D/1Gre9lOIrS1IrCKbXfNr6EX0futOI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757329436; c=relaxed/simple;
-	bh=3dqcemedClx68uAGeZQS7UWOgcFnTMM2pGWwRIX9XOY=;
+	s=arc-20240116; t=1757329668; c=relaxed/simple;
+	bh=1FslJBhOV4oLwBBRKYVHO5hLWyRrnGhIX3Sjj2LP/A0=;
 	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=PFLuiW/jjiWA7RPJ4C8V2w7N46D1y4yvMpYI/ynJGGOTEpNEu5j76/m2colsPmSOnOXODC394EINw0nR1ujsyXHqgMvcq/Rf0ceB81N5+lkGhdr7UXvOSkUfZASjzu1E9+lqfNgPFPWB5hyWuX77BhhvfKSE0/kTAmdEEWpJQCQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=LhF/1Tlk; arc=none smtp.client-ip=192.198.163.10
+	 MIME-Version:Content-Type; b=D9N874HE/BzxNZ9UFwwtCDg6TARYff8+6gjWrUNcsX50PPSp6T/ou31l3O7+Ofgeyptf63V2bnvk+kMKe7xhbUkzQDj7ih6F2weMbGojVVpgoVdnXupdExM/q+drkBkKGAvZFo9bDDeIqF7TmSjAhth17kc+VdPJBkZIStpIHl4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=hhpeDntA; arc=none smtp.client-ip=198.175.65.18
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
   d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757329435; x=1788865435;
+  t=1757329667; x=1788865667;
   h=from:to:cc:subject:in-reply-to:references:date:
    message-id:mime-version;
-  bh=3dqcemedClx68uAGeZQS7UWOgcFnTMM2pGWwRIX9XOY=;
-  b=LhF/1TlkKgAjdhHX+dTwzbVv7rpWZIIymrq5ZoHTgdjJHrKuPgXsTlE0
-   sMohcIlnVv3g0NSW0pp7CFdcpQ+Dmw/1FipLZ25UlCcchdt8KVl1BR7M7
-   C1VUPt4Po7tAzEXWGp9uyKONQXbryhC5bCm2yc3irTLMW/UtjUhNRcG2t
-   QdSLzarqVfi0Dhel69XGCQbi19iDtTALe980J/oKFvMrkn/9yORSKsHGN
-   J+FzMIj2yz+XKrWLsoiH6F89bvdkvrar7iJKTDiOLipKXumUgSQEFABPc
-   SKF43+0QWTrj6jXifQTNaCBETcZABi6u3VmqEoPuu5Noz3sf1e3TdbzZp
-   A==;
-X-CSE-ConnectionGUID: Sk09mvNETvaZMuYUA4Tlbw==
-X-CSE-MsgGUID: zrLyB7tQThuq3r5vk1+TcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11546"; a="70960712"
-X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; 
-   d="scan'208";a="70960712"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
-  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2025 04:03:54 -0700
-X-CSE-ConnectionGUID: t2zGP7lPTUGzuyMfHSqnTQ==
-X-CSE-MsgGUID: re4nqNyiQPG37gmTOTCDPQ==
+  bh=1FslJBhOV4oLwBBRKYVHO5hLWyRrnGhIX3Sjj2LP/A0=;
+  b=hhpeDntApiBesqkM6MQ35aAvW69Jrrbb07K6DOKm4XRMa88cQQMlHgVi
+   PqVmcA49oAv0onJBarfKZufzy4RFKAe2aUF8x23fNSh76WWrwv4qRnr3G
+   qhOrmNh7J3KqxmKOy/QGY1sB2GKlh3nDUjMO4ZGa76lXd1f224elNNyFE
+   giWoutV9gFqwyDVn449H6w/OFadm2u7iO5H998c6o1oPPwdBD9R4E4fCr
+   Pi6CjcA23L35CuMhtoKqkFpSXZjIrPZacj67yzurm55YFEgnGBVNTym3t
+   C93utALyQAn0MiOStDeotL9DH8FZjrcsKLmqPZlYOwkDFkF1I9inpjwhD
+   Q==;
+X-CSE-ConnectionGUID: aes1/SAXRkmlUdd+XAGeuw==
+X-CSE-MsgGUID: vbfmdkmQTL6PQOulc348jg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11531"; a="59652801"
+X-IronPort-AV: E=Sophos;i="6.17,312,1747724400"; 
+   d="scan'208";a="59652801"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2025 04:07:46 -0700
+X-CSE-ConnectionGUID: slWKUjoPSwi6xW6amKTnKw==
+X-CSE-MsgGUID: 4mtX+1hdQsSvW6PGnq5dHQ==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="6.18,248,1751266800"; 
-   d="scan'208";a="172349127"
+   d="scan'208";a="177121172"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost) ([10.245.246.204])
-  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2025 04:03:48 -0700
+  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Sep 2025 04:07:41 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: syyang <syyang@lontium.com>, robh@kernel.org, krzk+dt@kernel.org,
  conor+dt@kernel.org, andrzej.hajda@intel.com, neil.armstrong@linaro.org,
@@ -72,8 +72,8 @@ In-Reply-To: <20250903123825.1721443-3-syyang@lontium.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 References: <20250903123825.1721443-1-syyang@lontium.com>
  <20250903123825.1721443-3-syyang@lontium.com>
-Date: Mon, 08 Sep 2025 14:03:45 +0300
-Message-ID: <52330c2afbf6bab7c06fbdd2b5cb9b2a4e24319b@intel.com>
+Date: Mon, 08 Sep 2025 14:07:38 +0300
+Message-ID: <a38fac371861f8651079d56f703826651f1568e1@intel.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,118 +83,23 @@ MIME-Version: 1.0
 Content-Type: text/plain
 
 On Wed, 03 Sep 2025, syyang <syyang@lontium.com> wrote:
-> +static int lt9611c_read_edid(struct lt9611c *lt9611c)
-> +{
-> +	struct device *dev = lt9611c->dev;
-> +	int ret, i, bytes_to_copy, offset = 0;
-> +	u8 packets_num;
-> +	u8 read_edid_data_cmd[5] = {0x52, 0x48, 0x33, 0x3A, 0x00};
-> +	u8 return_edid_data[37];
-> +	u8 read_edid_byte_num_cmd[5] = {0x52, 0x48, 0x32, 0x3A, 0x00};
-> +	u8 return_edid_byte_num[6];
-> +
-> +	ret = i2c_read_write_flow(lt9611c, read_edid_byte_num_cmd, 5, return_edid_byte_num, 6);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to read EDID byte number\n");
-> +		lt9611c->edid_valid = false;
-> +		return ret;
-> +	}
-> +
-> +	lt9611c->edid_len = (return_edid_byte_num[4] << 8) | return_edid_byte_num[5];
-> +
-> +	if (!lt9611c->edid_buf || lt9611c->edid_len > (lt9611c->edid_valid ?
-> +				lt9611c->edid_len : 0)) {
-> +		kfree(lt9611c->edid_buf);
-> +		lt9611c->edid_buf = kzalloc(lt9611c->edid_len, GFP_KERNEL);
-> +		if (!lt9611c->edid_buf) {
-> +			dev_err(dev, "Failed to allocate EDID buffer\n");
-> +			lt9611c->edid_len = 0;
-> +			lt9611c->edid_valid = false;
-> +			return -ENOMEM;
-> +		}
-> +	}
+> +static int i2c_write_byte(struct lt9611c *lt9611c, u8 reg, u8 val)
 
-If you want to do caching, store a struct drm_edid pointer at a higher
-level, not dumb buffers at the low level. Might be easier to start off
-without any caching.
+> +static int i2c_read_byte(struct lt9611c *lt9611c, u8 reg, u8 *val)
 
-> +
-> +	packets_num = (lt9611c->edid_len % 32) ? (lt9611c->edid_len / 32 + 1) :
-> +		(lt9611c->edid_len / 32);
-> +	for (i = 0; i < packets_num; i++) {
-> +		read_edid_data_cmd[4] = (u8)i;
-> +		ret = i2c_read_write_flow(lt9611c, read_edid_data_cmd, 5, return_edid_data, 37);
-> +		if (ret) {
-> +			dev_err(dev, "Failed to read EDID packet %d\n", i);
-> +			lt9611c->edid_valid = false;
-> +			return -EIO;
-> +		}
-> +		offset = i * 32;
-> +		bytes_to_copy = min(32, lt9611c->edid_len - offset);
-> +		memcpy(lt9611c->edid_buf + offset, &return_edid_data[5], bytes_to_copy);
-> +		}
+> +static int i2c_read_write_flow(struct lt9611c *lt9611c, u8 *params,
+> +			       unsigned int param_count, u8 *return_buffer,
+> +			       unsigned int return_count)
 
-And really, you wouldn't have to implement the custom get edid block at
-all, if you added a proper i2c adapter implementation and passed that to
-drm_edid_read_ddc().
+include/linux/i2c.h provides a plethora of i2c_ prefixed functions and
+types. I think it's bad practice to reuse the prefix of a very common
+kernel interface, even if in static functions.
 
-> +
-> +	lt9611c->edid_valid = true;
-> +
-> +	return ret;
-> +}
-> +
-> +static int lt9611c_get_edid_block(void *data, u8 *buf, unsigned int block, size_t len)
-> +{
-> +	struct lt9611c *lt9611c = data;
-> +	struct device *dev = lt9611c->dev;
-> +	unsigned int total_blocks;
-> +	int ret;
-> +
-> +	if (len > 128)
-> +		return -EINVAL;
-> +
-> +	guard(mutex)(&lt9611c->ocm_lock);
-> +	if (block == 0 || !lt9611c->edid_valid) {
-> +		ret = lt9611c_read_edid(lt9611c);
-> +		if (ret) {
-> +			dev_err(dev, "EDID read failed\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	total_blocks = lt9611c->edid_len / 128;
-> +	if (!total_blocks) {
-> +		dev_err(dev, "No valid EDID blocks\n");
-> +		return -EIO;
-> +	}
-> +
-> +	if (block >= total_blocks) {
-> +		dev_err(dev,  "Requested block %u exceeds total blocks %u\n",
-> +			block, total_blocks);
-> +		return -EINVAL;
-> +	}
-> +
-> +	memcpy(buf, lt9611c->edid_buf + block * 128, len);
+You might get collisions later, but the reader of the code is mislead to
+believe this is something in i2c.h.
 
-The get edid block hook is supposed to read *one* block. Can't you
-implement reading one block? This now reads the entire edid for every
-block.
-
-Again, better yet, i2c adapter implementation.
-
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct drm_edid *lt9611c_bridge_edid_read(struct drm_bridge *bridge,
-> +						       struct drm_connector *connector)
-> +{
-> +	struct lt9611c *lt9611c = bridge_to_lt9611c(bridge);
-> +
-> +	usleep_range(10000, 20000);
-> +	return drm_edid_read_custom(connector, lt9611c_get_edid_block, lt9611c);
-> +}
+BR,
+Jani.
 
 -- 
 Jani Nikula, Intel
