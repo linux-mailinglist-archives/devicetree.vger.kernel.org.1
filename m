@@ -1,156 +1,173 @@
-Return-Path: <devicetree+bounces-214358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214362-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D60EB48DAE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:37:11 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 21CC0B48DBC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:38:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7D4FB3A5143
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:36:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6D8C016AEE8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 322323002D4;
-	Mon,  8 Sep 2025 12:36:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0C46301000;
+	Mon,  8 Sep 2025 12:37:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lKeU024B"
 X-Original-To: devicetree@vger.kernel.org
-Received: from cstnet.cn (smtp21.cstnet.cn [159.226.251.21])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCCE52F3C1A;
-	Mon,  8 Sep 2025 12:36:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=159.226.251.21
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E62C23002D2
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 12:37:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757334993; cv=none; b=pU4M0AmJHG7ITy4cgpl70Ajfv1H3n46hGpZwuEDeWvHb0b6oplgV0DOQt/qg8vl04ht6rN/b+lC4aGjSsQw/m6ev12yqICBwX+X8fV2R7T8t0jNq9jKQKl1MSp7b0lD/wcRLrvGg4rmuRH7Xv2phCLUSG8S2EOdQHdV+dOlrfHw=
+	t=1757335044; cv=none; b=gbj2rJbTdNr6E4IICnCZRY3sXA9HW7WRzxCWH1Cv/z3FkIS4qgE6q5gwdseUi69SkgTmAwI+uFnnSrrrjY12hTUsikicy+9yU9V4Gzijhb0tiNcRitR67sZXM/rV1WThwpTdnv2wlAto2F0wrfXcyiWFXyKQuo7jj/xag7Ku+yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757334993; c=relaxed/simple;
-	bh=5uErrrV3rp6pA/pHEkzJKprTkfL5j3WOFyZrL2Ec1jM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=rpbjEUWtlGUmIv/wdilPDsSLrYlWkyvhkPfjhiZ85DK9MH3c1zWkwFLw5Gs5zeqHmn9SjJfrwYG4EjBU6MqaG9irWGkZ4elbaEr2fEkDhdrpxcwtX+SiooCXtWnPWK+ow2m+RKMjYj7bZISJ7Ckz5NsqoL9qxJT9ekTsMIV4cGI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn; spf=pass smtp.mailfrom=iscas.ac.cn; arc=none smtp.client-ip=159.226.251.21
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iscas.ac.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iscas.ac.cn
-Received: from [127.0.0.2] (unknown [114.241.87.235])
-	by APP-01 (Coremail) with SMTP id qwCowAAXbqCAzb5oCP2nAQ--.48996S7;
-	Mon, 08 Sep 2025 20:35:14 +0800 (CST)
-From: Vivian Wang <wangruikang@iscas.ac.cn>
-Date: Mon, 08 Sep 2025 20:34:29 +0800
-Subject: [PATCH net-next v10 5/5] riscv: dts: spacemit: Add Ethernet
- support for Jupiter
+	s=arc-20240116; t=1757335044; c=relaxed/simple;
+	bh=Qy1XMDJ6lgYtKZeqEsXcyBftJcPIoZvk7qPmU1fod9Y=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=m4nMXdYxsokNRbC0OBpiju+5IyEAQFkhfjytuse7coorI4QCOLzDD86sRnc0hoAJUhM1SVk/f+WibG9oUfIoSKXdUqpS00feURaXN1SsUFgFjSfkrrbI5P7COBMGkEDn8sH4ySD4RipUWTZ6g5YG5owFj7l2/KrL8TtAuqKhj/E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lKeU024B; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-45de2b517a3so12685745e9.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 05:37:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757335041; x=1757939841; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6NFJOGdTOAIrWSGSI9q3EKjG6ufco2aZBuT9TNv9EzI=;
+        b=lKeU024BY1+cT+HOnsCGP0lxTcAYzwJPau65RT95+V1wnJY8W9F3uK+2FkDoBAUT1t
+         fl92JDPfWOrlrRmnlQcY/GswomYpsrdMcP+jBOxNFpMP8OlZVmxBM+NFC6PWSwnieoj8
+         5yohmeGd8KuS3wmuqMWWwrBmWeCivXa489EbuKQao5wKATtgGsmJKGVMzbJwnRVznM6F
+         JUuc9fHYFxZAzcp9e13NEXGpnrpF8Eb+xTLvK5WKbhK23UOGqIBcJoL+5SK8+Y4G50C8
+         3OKJF2iH7MxYOa3rdLiUtesqCyPnWq7KhAyvwDgEUPoDNDD4xjm0MLOUbLIaClR7wNjP
+         KGWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757335041; x=1757939841;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6NFJOGdTOAIrWSGSI9q3EKjG6ufco2aZBuT9TNv9EzI=;
+        b=JuuQKfZxoJSljPIyPi48dU4YubrWzVErTj32cltA0OUeOqM/db0jNmsjKMZm5Ba+pM
+         mQ/LHSYK4L2pCItCcSnSenmaGPe8O6Znm0MvVEATEaJ3q9tU6hrbyRDhQETOa363pdYS
+         dAR4VuhYxUU4WrEGiCvbGZbl1cvI12UuuQ05HIkFiROJpmBrqI9gVgRms4QnRiEdcQTa
+         sq8jRHI6J8aVl9hbxIxnO5JrUdxM3DSxO7I1JZ89LLv5Jy+UWEEgPbRbDjcKF4/X9H9g
+         pizNErEhI8OQoRt6DEspZlnw8TLWFc2dxrPYv1yBzFPnifEmhS/u2s2CTY7zTepzZUUQ
+         BsAg==
+X-Forwarded-Encrypted: i=1; AJvYcCV4KUh4k6qJzWZAVPdCq1czhAU45LdbHynXwVEwP4JspaXSFfut4g+kmpOPIPkAPP4IIoJgJwPi0FB+@vger.kernel.org
+X-Gm-Message-State: AOJu0YzQBZ8cxrv+2hDx4VGt67E7kBC5yKSCm/zyFhCSyIj5t9SjErvv
+	N9HetUFi0vc9NuV4cyEbkGw62WUib3cNRHN0k63a0sfxpCbQAUUA+JVlccQPZB8zDUE=
+X-Gm-Gg: ASbGncuNYmeNRKiHJj29GYUtNp6QCGYOXfWy0SvZ4sLn6U9+PtNNSwNVQIjY1yLG5aP
+	kdt7nSxLPSBzOOFpZrctW2qVnvaMxqreq2VDs5Hl2qrMS22fWfS/Qy5U8vibAKWLEDFt38RB50H
+	e4CgrPIavzdNwU/6oWt+497REWoPr8BgWvrMjAEOHwaBJYUTMJ4fAnQ0klRJaCuD8NLSOVb370M
+	emcAl6/FO76YLSAUTcRJ6hKDBQLjBvZvwlr3A3kdHrSRzUNjVbnTl2az91fJmjcLR9t2ZrjlSGY
+	kpLIl88bGGwANipWTb4Vx5fzwztZdGgOCte9+E8MwLQmwUxE58hz7E3AL4r5yuxZJaR7Ep7nuyI
+	L+kCxeFSrByVe3goP8EK7NwGahN1DZRVwCkZC2yJA+3l5LXxJwMIQpSBHlCUjFp4QGCCP8gdSE1
+	ZV9IoZj6TLSA==
+X-Google-Smtp-Source: AGHT+IFCx8qWLzEWowJjY2uRE93rwEETbujkQqV4hxx0CGnBG1GMQzaFpRPAyUPxe8RBB4Sd+qTUdw==
+X-Received: by 2002:a05:600c:a43:b0:45b:81ad:336 with SMTP id 5b1f17b1804b1-45dddea520dmr85902925e9.16.1757335040676;
+        Mon, 08 Sep 2025 05:37:20 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:3d9:2080:61c1:5d31:4427:381b? ([2a01:e0a:3d9:2080:61c1:5d31:4427:381b])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3dedea839c1sm19912772f8f.63.2025.09.08.05.37.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 05:37:20 -0700 (PDT)
+Message-ID: <7462e29c-7602-45fc-b8f6-31e881ef3fc4@linaro.org>
+Date: Mon, 8 Sep 2025 14:37:19 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250908-net-k1-emac-v10-5-90d807ccd469@iscas.ac.cn>
-References: <20250908-net-k1-emac-v10-0-90d807ccd469@iscas.ac.cn>
-In-Reply-To: <20250908-net-k1-emac-v10-0-90d807ccd469@iscas.ac.cn>
-To: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, 
- Vivian Wang <wangruikang@iscas.ac.cn>, 
- "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
- Paolo Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, 
- Paul Walmsley <paul.walmsley@sifive.com>, 
- Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, 
- Alexandre Ghiti <alex@ghiti.fr>
-Cc: Vivian Wang <uwu@dram.page>, 
- Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
- Junhui Liu <junhui.liu@pigmoral.tech>, Simon Horman <horms@kernel.org>, 
- Maxime Chevallier <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-riscv@lists.infradead.org, 
- spacemit@lists.linux.dev, linux-kernel@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-CM-TRANSID:qwCowAAXbqCAzb5oCP2nAQ--.48996S7
-X-Coremail-Antispam: 1UD129KBjvJXoW7Kw43Gw1ftrWfAF43Cr45Jrb_yoW8WFW8pa
-	y3CFsaqFZ7Cr1fKw43Zr9F9F13Ga95GrWkC3y3uF1rJ3yIvFZ0vw1ftw1xtr1DGrW5X34Y
-	vr1IyFyxurnFkw7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDU0xBIdaVrnRJUUUmS14x267AKxVWrJVCq3wAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-	rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2048vs2IY020E87I2jVAFwI0_JF0E3s1l82xGYI
-	kIc2x26xkF7I0E14v26ryj6s0DM28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2
-	z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F
-	4UJwA2z4x0Y4vEx4A2jsIE14v26rxl6s0DM28EF7xvwVC2z280aVCY1x0267AKxVW0oVCq
-	3wAS0I0E0xvYzxvE52x082IY62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7
-	IYx2IY67AKxVWUJVWUGwAv7VC2z280aVAFwI0_Jr0_Gr1lOx8S6xCaFVCjc4AY6r1j6r4U
-	M4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwACI402YVCY1x02628vn2
-	kIc2xKxwCY1x0262kKe7AKxVW8ZVWrXwCF04k20xvY0x0EwIxGrwCFx2IqxVCFs4IE7xkE
-	bVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67
-	AF67kF1VAFwI0_GFv_WrylIxkGc2Ij64vIr41lIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCI
-	42IY6xIIjxv20xvEc7CjxVAFwI0_Gr1j6F4UJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF
-	4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8Jr0_Cr1UYxBI
-	daVFxhVjvjDU0xZFpf9x0pRQJ5wUUUUU=
-X-CM-SenderInfo: pzdqw2pxlnt03j6l2u1dvotugofq/
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: Neil Armstrong <neil.armstrong@linaro.org>
+Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
+ add HDMI nodes
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+ Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
+ <20250821-topic-x1e80100-hdmi-v1-3-f14ad9430e88@linaro.org>
+ <a38df652-54c0-4216-9aa5-c8d32599c8f7@oldschoolsolutions.biz>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro
+In-Reply-To: <a38df652-54c0-4216-9aa5-c8d32599c8f7@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Milk-V Jupiter uses an RGMII PHY for each port and uses GPIO for PHY
-reset.
+On 06/09/2025 10:41, Jens Glathe wrote:
+> On 21.08.25 15:53, Neil Armstrong wrote:
+>> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+>> connected to the third QMP Combo PHY 4 lanes.
+>>
+> [...]
+>>   .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 44 ++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+> [...]
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+>> index 4cf61c2a34e31233b1adc93332bcabef22de3f86..5b62b8c3123633360f249e3ecdc8ea23f44e8e09 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+> [...]
+>> +&mdss_dp2 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&mdss_dp2_out {
+>> +    data-lanes = <0 1 2 3>;
+>> +};
+>> +
+> 
+> Hi Neil,
+> 
+> shouldn't mdss_dp2_out also have the link-frequencies property?
+> 
+> +    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
+> 
+> Or is it something the bridge already negotiates?
 
-Signed-off-by: Vivian Wang <wangruikang@iscas.ac.cn>
-Reviewed-by: Yixun Lan <dlan@gentoo.org>
----
- arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts | 46 +++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+No, indeed I'll add it, it will fall back to HBR2 anyway (as actually) if the link quality is low.
 
-diff --git a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-index 4483192141049caa201c093fb206b6134a064f42..c5933555c06b66f40e61fe2b9c159ba0770c2fa1 100644
---- a/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-+++ b/arch/riscv/boot/dts/spacemit/k1-milkv-jupiter.dts
-@@ -20,6 +20,52 @@ chosen {
- 	};
- };
- 
-+&eth0 {
-+	phy-handle = <&rgmii0>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac0_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <0>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(110) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii0: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
-+&eth1 {
-+	phy-handle = <&rgmii1>;
-+	phy-mode = "rgmii-id";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gmac1_cfg>;
-+	rx-internal-delay-ps = <0>;
-+	tx-internal-delay-ps = <250>;
-+	status = "okay";
-+
-+	mdio-bus {
-+		#address-cells = <0x1>;
-+		#size-cells = <0x0>;
-+
-+		reset-gpios = <&gpio K1_GPIO(115) GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <10000>;
-+		reset-post-delay-us = <100000>;
-+
-+		rgmii1: phy@1 {
-+			reg = <0x1>;
-+		};
-+	};
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_2_cfg>;
+Neil
 
--- 
-2.50.1
+> 
+> with best regards
+> 
+> Jens
+> 
 
 
