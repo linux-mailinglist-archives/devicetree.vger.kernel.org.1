@@ -1,144 +1,155 @@
-Return-Path: <devicetree+bounces-214141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214139-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1548B483D9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 08:05:35 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FD89B483BE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:46:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3D131885F90
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 06:05:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0C4723A4EEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 05:46:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E39311F30A4;
-	Mon,  8 Sep 2025 06:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B95991DFE26;
+	Mon,  8 Sep 2025 05:46:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b="ZSggGL9x"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="HZIZUfgx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from www637.your-server.de (www637.your-server.de [168.119.26.117])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6476E258A;
-	Mon,  8 Sep 2025 06:05:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.26.117
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97A3E36B;
+	Mon,  8 Sep 2025 05:46:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757311530; cv=none; b=H/1muxZdA6gX9C30XqsU8DXBYtU6eiFnv+c8fk4HhbiOzLlSuEyBvPrnP3SMb8Kz3OSvppfg/cmzzBpa6z+FHU6B4LjgBoy8JD6mXfcu/W6xWRSw1vm/2f9ay9ikTjEf1pC5l5KkjRjHOzmfk21JyY0e57PyiDkvMWyXN0Y/LGs=
+	t=1757310402; cv=none; b=TRk5zcAEpXZ4VEJY4H/RJRMxlb0edeGUGli/S4AJYayIIis4RUu6uvAsVaMLEPiH1aSyN9bCWee3xItcnZbHcLDGZJ6dAQ7XioFTSBP+Qmqukf7mDKihaBeJEc9Od0tIpNFFPj1/8ulDILzEeRSrQo66H8gnBpokkSZYn8QDKs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757311530; c=relaxed/simple;
-	bh=VEj+FcIjH8vMApuTrrOGRDhfsgKnPwgJ+AclFliyyyI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=kCIwhxg1PhJgNB/XnCco/KDUtf4PkDu11LOueo9ScWkhXTx1j8az5WWhhFaFUnjmpwPZd/TXCOk9R5buAVsem8YmXyZTFKi2L/Dpj9BqdHrfYZxwDV/+4qdMdtVLnyY8WZhkVVos0LldVmsqpAjCpwU8tuZc9Ob5etOSingPLps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu; spf=pass smtp.mailfrom=apitzsch.eu; dkim=pass (2048-bit key) header.d=apitzsch.eu header.i=@apitzsch.eu header.b=ZSggGL9x; arc=none smtp.client-ip=168.119.26.117
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=apitzsch.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=apitzsch.eu
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=apitzsch.eu
-	; s=default2410; h=MIME-Version:Content-Transfer-Encoding:Content-Type:
-	References:In-Reply-To:Date:Cc:To:From:Subject:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=CfsdsKfiWnNioTv736ibRPWjiInLASEhVaU5adm2kiY=; b=ZSggGL9x2fLao5yLUtulafVKEw
-	h2NETSUQYUi9xVEGccBOKY5ciDpfyeg585vJ96Dp3uDiYMvMlmKK1NJ3DaJtTEKyV8uTzKitJ4oRq
-	yCxj/32EsoD9A3Seir6AXttsrv1Gw262ZQTD0menkt1+AkZ1cPweBvFgJz2RxozcTK50Dd82b0aIV
-	jvKWKbv+a5QvpRtXCuU+ogeGTTh/oNBgULCi3U6N7Sl7Njc5nI/H97/0UQlHvhC5awKOeQhihQ95u
-	juAeP9+rBj5jEmc4SDqpmAe9q83bcYTRNco+whefTqD4OVfuk5HRN5oTJH2duaTuT6jRWPVbwTbL7
-	bwgQg0QQ==;
-Received: from sslproxy07.your-server.de ([78.47.199.104])
-	by www637.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uvUfb-000Ed4-28;
-	Mon, 08 Sep 2025 07:44:03 +0200
-Received: from localhost ([127.0.0.1])
-	by sslproxy07.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <git@apitzsch.eu>)
-	id 1uvUfa-00088z-25;
-	Mon, 08 Sep 2025 07:44:03 +0200
-Message-ID: <6d875165ae2867fb0a49c19bdf18c0d948c783d3.camel@apitzsch.eu>
-Subject: Re: [PATCH 0/4] Add CAMSS support for MSM8939
-From: =?ISO-8859-1?Q?Andr=E9?= Apitzsch <git@apitzsch.eu>
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>, Robert Foss	
- <rfoss@kernel.org>, Todor Tomov <todor.too@gmail.com>, Vladimir Zapolskiy	
- <vladimir.zapolskiy@linaro.org>, Mauro Carvalho Chehab
- <mchehab@kernel.org>,  Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,  Bjorn Andersson
- <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
-	linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Vincent Knecht
-	 <vincent.knecht@mailoo.org>
-Date: Mon, 08 Sep 2025 07:44:01 +0200
-In-Reply-To: <e0e1827f-aa8b-4337-b26c-dc2ac43e0e2a@linaro.org>
-References: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
-	 <e0e1827f-aa8b-4337-b26c-dc2ac43e0e2a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2 
+	s=arc-20240116; t=1757310402; c=relaxed/simple;
+	bh=IhlDzU8v4sxj9kgiVqNqdxcAcjHWZWp+A0k2p7rweT4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=hJVvI0u2Hqp3bknc2fpkguBRnWt/pNf3e6DtQf85nh4ZKNgbm5mJ13lbyn09SX17Ms8X1Wtfd+xCaw8TbjoZ6dcDnxWvUUOAhMO8dCEp9FuQ+DKgeoZpVJ8gM9TuXAJEggMnwQZFHMlStc3gS5TLOgy5NkJfBGYwrmN08YLQZ3w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=HZIZUfgx; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5885kIoT4177018;
+	Mon, 8 Sep 2025 00:46:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757310378;
+	bh=6JUrHOaCwdFcfKI+71eVuDBjCs4fIIRwLXH05PdzWro=;
+	h=From:To:CC:Subject:Date;
+	b=HZIZUfgx9/+2hXStkyI1e5YjwCa3Gs5R5Uyn2z5QugAWvNVK76VxdUpFjA12cA9Cn
+	 wUI326LFYvARVpLuJ185dmmI8GXWZWoHwCs98vqx3AjmJmrx7IQ6/PAO//kCtSd+cX
+	 AiQCOqBGt83MauU2GQ8PoowVNtDS1Gfwe756ZnkY=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5885kHCb2775068
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 00:46:17 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 00:46:16 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 00:46:16 -0500
+Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5885k960075469;
+	Mon, 8 Sep 2025 00:46:10 -0500
+From: Harikrishna Shenoy <h-shenoy@ti.com>
+To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
+        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
+        <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
+        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
+        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
+        <s-jain1@ti.com>
+CC: <h-shenoy@ti.com>
+Subject: [PATCH v3] dt-bindings: drm/bridge: MHDP8546 bridge binding changes for DSC
+Date: Mon, 8 Sep 2025 11:16:09 +0530
+Message-ID: <20250908054609.1113360-1-h-shenoy@ti.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Virus-Scanned: Clear (ClamAV 1.0.9/27756/Sun Sep  7 10:26:39 2025)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi Bryan,
+From: Swapnil Jakhade <sjakhade@cadence.com>
 
-Am Montag, dem 08.09.2025 um 05:51 +0100 schrieb Bryan O'Donoghue:
-> On 07/09/2025 23:04, Andr=C3=A9 Apitzsch via B4 Relay wrote:
-> > (This series resumes [1].)
->=20
-> Thank you for following up on this.
->=20
-> Could you give a brief synopsis what changed between this series and
-> the previous series ?
+Add binding changes for DSC(Display Stream Compression) in the MHDP8546
+DPI/DP bridge.
 
-As Vincent seems currently quite busy I took over the series. Because
-of that I assumed I had to reset the revision number.
+Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+---
+Changelog v2 --> v3:
+-Update the name of dsc register block.
+-Add the reg-name list in conditional based on compatible.
+Link to v2- https://lore.kernel.org/all/20250903111357.2605199-1-h-shenoy@ti.com/
 
-At the end of the cover letter you can find what changed since the
-previous submission (v5 by Vincent), but I will add it here again in
-more details.
+ .../display/bridge/cdns,mhdp8546.yaml         | 20 +++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
 
-- Patch 1 (bindings) (previously patch 3):
-  - Make the order of {reg, clock, interrupt} items the same as in 8916
-    + append additional items
-  - update isp node unit address
-  - Drop R-b tag
-- Patch 2 (previously patch 1): no change
-- Patch 3 (previously patch 2): no change
-- Patch 4 (dts):
-  - Make the order of {reg, clock, interrupt} items the same as in 8916
-    + append additional items
-  - update isp node unit address
-  - Drop R-b tag
+diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+index c2b369456e4e..eb51f9595da8 100644
+--- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
++++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
+@@ -27,6 +27,8 @@ properties:
+           Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
+       - description:
+           Register block of mhdptx sapb registers.
++      - description:
++          Register block for mhdptx DSC encoder registers.
+ 
+   reg-names:
+     minItems: 1
+@@ -34,6 +36,7 @@ properties:
+       - const: mhdptx
+       - const: j721e-intg
+       - const: mhdptx-sapb
++      - const: dsc
+ 
+   clocks:
+     maxItems: 1
+@@ -100,18 +103,27 @@ allOf:
+       properties:
+         reg:
+           minItems: 2
+-          maxItems: 3
++          maxItems: 4
+         reg-names:
+           minItems: 2
+-          maxItems: 3
++          maxItems: 4
++          items:
++            - const: mhdptx
++            - const: j721e-intg
++            - const: mhdptx-sapb
++            - const: dsc
+     else:
+       properties:
+         reg:
+           minItems: 1
+-          maxItems: 2
++          maxItems: 3
+         reg-names:
+           minItems: 1
+-          maxItems: 2
++          maxItems: 3
++          items:
++            - const: mhdptx
++            - const: mhdptx-sapb
++            - const: dsc
+ 
+ required:
+   - compatible
+-- 
+2.34.1
 
-Best regards,
-Andr=C3=A9
-
->=20
-> > [1]
-> > https://lore.kernel.org/all/20250613-camss-8x39-vbif-v5-0-a002301a7730@=
-mailoo.org/
-> Good series submission style would have something in the coverletter
-> like.
->=20
-> "Here is my awesome series of patches which do X
->=20
-> v2:
-> - Fixed everything wise and benevolent kernel community asked for
->=20
-> v1:
-> - Enabled cool stuff
-> "
->=20
-> I recall we were pretty close to picking these patches up previously
-> so thank you for re-upping your effort.
->=20
-> A brief bit of guidance on what if anything changed from your last=20
-> submission is appreciated and good practice so that we can review and
-> apply quicker.
->=20
-> ---
-> bod
 
