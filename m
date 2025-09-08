@@ -1,142 +1,134 @@
-Return-Path: <devicetree+bounces-214468-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214469-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F25B49213
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:50:49 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 331ADB49222
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:55:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 138911BC1672
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:51:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D134A17B3DE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:55:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9156730ACF5;
-	Mon,  8 Sep 2025 14:50:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02DE30B505;
+	Mon,  8 Sep 2025 14:55:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b="FWdgS11t"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uAgBzREe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from server.couthit.com (server.couthit.com [162.240.164.96])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E04D22F7453;
-	Mon,  8 Sep 2025 14:50:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.240.164.96
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B34081A08A3;
+	Mon,  8 Sep 2025 14:55:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757343045; cv=none; b=HO30hozlmeEakMlKy/C242ksKRbg0E+2YCTKO4jO2cRe1/cgFdKyoFhWOB1eWDPesazIL1E6ValtH0ra1cnM6c865opmpkyIs9AFZch3cQCy8ZxcZEitoyf8bplvedx7L5nR7HktMAUw9UPry9rCQ4M/1xZ6MTu9uBL4hkSvDbE=
+	t=1757343340; cv=none; b=i1LuVhDTzU4X4sF0pRo7okyYqo/moxz08DmOyri86WZh+P/WivAOxe3xM2oixHON0lNxj96FShypHDd1vdnCLdEAQUYE0MLxFEiIE9H79F7pEB9miAnvT3/W5H2hoc2yYoYEkRQMhEoiEAGJChm0yAtWlBXPx5ffJ3XLnAMuea8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757343045; c=relaxed/simple;
-	bh=5hG0q3nSRd7Hm9Dup++wc1r+pDFpdLZ2tgV/HNS7bO8=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=H9DlvQR7PJXHA80iC91LLfi9SsFF0rlGk8p+ixfc7l4HcloVy0JiaU/IW/k1trQTOJU6RRtANRxg769LQeGcAkd9CFiFNarO19Znbe6TP+8a+1j0BuIgZepPMK2baM6/LcbnKCoFAA7aVtAYphKFemEI2N9wnRsNagL+SrBG3dE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com; spf=pass smtp.mailfrom=couthit.com; dkim=pass (2048-bit key) header.d=couthit.com header.i=@couthit.com header.b=FWdgS11t; arc=none smtp.client-ip=162.240.164.96
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=couthit.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=couthit.com
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=couthit.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Subject:
-	References:In-Reply-To:Message-ID:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=RwHTVi+PZizs+OV4gI3ySDrmg4AiYXrmj6y0oc0TQk0=; b=FWdgS11tTW2FrsBTA33kGxMseO
-	2hxuaDQJNQX0m+psQxLqNUbQ80jTTeH5FtQGcZKYp3oubAx8OI2NGrRvoIsFkk/ST+WciC1t5Nwip
-	DU2rbZbrkpTUvzV8VzecBb6z2DbY1c8VWLCqb5uS3d/hx4aLSgVXZSMDXuw3JrqvhksdRZKd6OgEa
-	UpYPkd0z9iBZ7PsqtdzYHPNv1fPipuVELxLOWnbz2wAFna2ULbdohzG6tndYfND8tlSKFMpBDdY+B
-	eflnKZ8oaUlPtWpO9G5xFyU6gsMxAcB6T7QImo/1TEk1d6m6dW1I+9XW9BKmjzeAuJKhBLIib9BSS
-	ov0asiIA==;
-Received: from [122.175.9.182] (port=63034 helo=zimbra.couthit.local)
-	by server.couthit.com with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.98.1)
-	(envelope-from <parvathi@couthit.com>)
-	id 1uvdCP-0000000G7f7-2Izr;
-	Mon, 08 Sep 2025 10:50:30 -0400
-Received: from zimbra.couthit.local (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTPS id C652D1781F3C;
-	Mon,  8 Sep 2025 20:20:20 +0530 (IST)
-Received: from localhost (localhost [127.0.0.1])
-	by zimbra.couthit.local (Postfix) with ESMTP id 968B41783FF8;
-	Mon,  8 Sep 2025 20:20:20 +0530 (IST)
-Received: from zimbra.couthit.local ([127.0.0.1])
-	by localhost (zimbra.couthit.local [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id oaVUIR3lcc0B; Mon,  8 Sep 2025 20:20:20 +0530 (IST)
-Received: from zimbra.couthit.local (zimbra.couthit.local [10.10.10.103])
-	by zimbra.couthit.local (Postfix) with ESMTP id 44B6B1781F3C;
-	Mon,  8 Sep 2025 20:20:20 +0530 (IST)
-Date: Mon, 8 Sep 2025 20:20:20 +0530 (IST)
-From: Parvathi Pudi <parvathi@couthit.com>
-To: kuba <kuba@kernel.org>
-Cc: parvathi <parvathi@couthit.com>, danishanwar <danishanwar@ti.com>, 
-	rogerq <rogerq@kernel.org>, andrew+netdev <andrew+netdev@lunn.ch>, 
-	davem <davem@davemloft.net>, edumazet <edumazet@google.com>, 
-	pabeni <pabeni@redhat.com>, robh <robh@kernel.org>, 
-	krzk+dt <krzk+dt@kernel.org>, conor+dt <conor+dt@kernel.org>, 
-	ssantosh <ssantosh@kernel.org>, 
-	richardcochran <richardcochran@gmail.com>, 
-	m-malladi <m-malladi@ti.com>, s hauer <s.hauer@pengutronix.de>, 
-	afd <afd@ti.com>, 
-	michal swiatkowski <michal.swiatkowski@linux.intel.com>, 
-	jacob e keller <jacob.e.keller@intel.com>, horms <horms@kernel.org>, 
-	johan <johan@kernel.org>, ALOK TIWARI <alok.a.tiwari@oracle.com>, 
-	m-karicheri2 <m-karicheri2@ti.com>, s-anna <s-anna@ti.com>, 
-	glaroque <glaroque@baylibre.com>, 
-	saikrishnag <saikrishnag@marvell.com>, 
-	kory maincent <kory.maincent@bootlin.com>, 
-	diogo ivo <diogo.ivo@siemens.com>, 
-	javier carrasco cruz <javier.carrasco.cruz@gmail.com>, 
-	basharath <basharath@couthit.com>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>, 
-	netdev <netdev@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Bastien Curutchet <bastien.curutchet@bootlin.com>, 
-	pratheesh <pratheesh@ti.com>, Prajith Jayarajan <prajith@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, praneeth <praneeth@ti.com>, 
-	srk <srk@ti.com>, rogerq <rogerq@ti.com>, 
-	krishna <krishna@couthit.com>, pmohan <pmohan@couthit.com>, 
-	mohan <mohan@couthit.com>
-Message-ID: <974157264.314549.1757343020136.JavaMail.zimbra@couthit.local>
-In-Reply-To: <20250905183151.6a0d832a@kernel.org>
-References: <20250904101729.693330-1-parvathi@couthit.com> <20250905183151.6a0d832a@kernel.org>
-Subject: Re: [PATCH net-next v15 0/5] PRU-ICSSM Ethernet Driver
+	s=arc-20240116; t=1757343340; c=relaxed/simple;
+	bh=t/WnijEqWrI7lfQgdyWMtL7p6iChFqa0atlW2OUfWcQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JrMgZgY2JVWcihZ0EGrGP3Cq2OCVax0SvicAJF2bFy7ZKeV0iLX7B9iWm7lz81EKV6tpxTJPNLs5tuiILmcBkBvcRWxb6/vVGjkP0QdAHJABM7SMPiehit8uPP0uppEwKSnk21oa0jvaNSQ7K1gkYWhsevyfwv72WrI05rWfR8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uAgBzREe; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7FCC1C4CEF1;
+	Mon,  8 Sep 2025 14:55:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757343340;
+	bh=t/WnijEqWrI7lfQgdyWMtL7p6iChFqa0atlW2OUfWcQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=uAgBzREerh2gt3Dz9L0qIj4PrKiUZ/tIkjtJVRc1+AVYn+dH0KMrKsvBOI/a/pku+
+	 raufjerkOA5V7+l1mzV5gKxm+Iz0KSRUFPrSkRNHb3gJQznwTF5SNCbCR3Bb55+qsJ
+	 tbM6tuNyYHQE3rtXcuIDbCkuAA1krB0mvDrFg7OKjM3hQiLAZDoVbQIbrWvYK6UERa
+	 JrXZAsIBW6tWKWzkjeygFykD8StkWRR18J75UaCdXuBz8HvtEPDPw6nQdDabJUz8Ea
+	 uL3SR07pgrGCakj74XQlweg2pEsHiYDw35cSH9MD3QsIB9qthv8BgANe7v3yV4f5we
+	 /uRbXR3IHwHfg==
+Date: Mon, 8 Sep 2025 09:55:37 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Umang Chheda <umang.chheda@oss.qualcomm.com>, 
+	Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Richard Cochran <richardcochran@gmail.com>, linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] arm64: dts: qcom: monaco-evk: Add sound card
+Message-ID: <nphea3rtl3z2tgpyn4g4hf7ticbg4kyhgv4ht25etfxspsgkv6@dm67wp7x4mdt>
+References: <20250905192350.1223812-1-umang.chheda@oss.qualcomm.com>
+ <20250905192350.1223812-5-umang.chheda@oss.qualcomm.com>
+ <7bzlof2wyqqorhh4xck46wd43zlehm4vhej2oaxajo4dxn5p7p@oc3vikzxcwke>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_3968 (ZimbraWebClient - GC138 (Linux)/8.8.15_GA_3968)
-Thread-Topic: PRU-ICSSM Ethernet Driver
-Thread-Index: lBuvfkt+lp1JesCVjb5URBl/aXb/jg==
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - server.couthit.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - couthit.com
-X-Get-Message-Sender-Via: server.couthit.com: authenticated_id: smtp@couthit.com
-X-Authenticated-Sender: server.couthit.com: smtp@couthit.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7bzlof2wyqqorhh4xck46wd43zlehm4vhej2oaxajo4dxn5p7p@oc3vikzxcwke>
 
-Hi,
-
-> On Thu,  4 Sep 2025 15:45:37 +0530 Parvathi Pudi wrote:
->> The Programmable Real-Time Unit Industrial Communication Sub-system (PRU-ICSS)
->> is available on the TI SOCs in two flavors: Gigabit ICSS (ICSSG) and the older
->> Megabit ICSS (ICSSM).
+On Sat, Sep 06, 2025 at 10:26:23PM +0300, Dmitry Baryshkov wrote:
+> On Sat, Sep 06, 2025 at 12:53:50AM +0530, Umang Chheda wrote:
+> > From: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+> > 
+> > Add the sound card for monaco-evk board and verified playback
+> > functionality using the max98357a I2S speaker amplifier and I2S
+> > microphones. The max98357a speaker amplifier is connected via
+> > High-Speed MI2S HS0 interface, while the microphones utilize the
+> > Secondary MI2S interface and also enable required pin controller
+> > gpios for audio.
+> > 
+> > Signed-off-by: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>
+> > Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/monaco-evk.dts | 52 +++++++++++++++++++++++++
+> >  arch/arm64/boot/dts/qcom/qcs8300.dtsi   | 37 ++++++++++++++++++
+> >  2 files changed, 89 insertions(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/monaco-evk.dts b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> > index 93e9e5322a39..f3c5d363921e 100644
+> > --- a/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> > +++ b/arch/arm64/boot/dts/qcom/monaco-evk.dts
+> > @@ -6,6 +6,7 @@
+> >  /dts-v1/;
+> > 
+> >  #include <dt-bindings/gpio/gpio.h>
+> > +#include <dt-bindings/sound/qcom,q6afe.h>
+> >  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+> > 
+> >  #include "qcs8300.dtsi"
+> > @@ -24,6 +25,57 @@ aliases {
+> >  	chosen {
+> >  		stdout-path = "serial0:115200n8";
+> >  	};
+> > +
+> > +	dmic: audio-codec-0 {
+> > +		compatible = "dmic-codec";
+> > +		#sound-dai-cells = <0>;
+> > +		num-channels = <1>;
+> > +	};
+> > +
+> > +	max98357a: audio-codec-1 {
+> > +		compatible = "maxim,max98357a";
+> > +		#sound-dai-cells = <0>;
+> > +	};
+> > +
+> > +	sound {
+> > +		compatible = "qcom,qcs8275-sndcard";
 > 
-> Looks like the new code is not covered by the existing MAINTAINERS
-> entries. Who is expected to be maintaining the new driver?
-> Please consult:
-> https://docs.kernel.org/next/maintainer/feature-and-driver-maintainers.html
+> qcs8300
+> 
 
+If the Monaco EVK actually is QCS8300... But, I presume qcs8275 and
+qcs8300 are identical when it comes to sound?
 
-We will update the MAINTAINERS information in a separate patch to this series and share
-the next version soon.
+@Mohammad, if this is the case can't we just support the
+qcom,monaco-sndcard instead to avoid this confusion?
 
+Regards,
+Bjorn
 
-Thanks and Regards,
-Parvathi.
+> > +		model = "MONACO-EVK";
+> > +
+> 
+> -- 
+> With best wishes
+> Dmitry
 
