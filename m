@@ -1,62 +1,72 @@
-Return-Path: <devicetree+bounces-214603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C0C4B49D9E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:52:32 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A54BB49DA5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:54:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53A194E6BC2
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:52:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A0471B2730C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:54:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B7A73126DD;
-	Mon,  8 Sep 2025 23:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A88830DD30;
+	Mon,  8 Sep 2025 23:54:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="a9PVXZAu"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vl/TitJ1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00CA130F80D;
-	Mon,  8 Sep 2025 23:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AF61CAB3;
+	Mon,  8 Sep 2025 23:54:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757375538; cv=none; b=Z1FBqx7uKD0s/ZfkY3zP6paqLcs+TJnKaevCv+8Nk8glDmnFE2+57fozTHISjHd5H6iDtp1BUzIsuz3mufok56pMQRO2K3qTggbr+X3oR4HgADzsVhAS0SJP1hYvokaM4xQpYHiRPc2fcISqOmnOUzan2msI+q44R7cQ7kSk6Zg=
+	t=1757375652; cv=none; b=ZEz043fonwaMqUrQhFASGM4UctQ1InO5e87tmppMHwTpN9kHUi5uEggQNKD2B0+vrHWJJpyr7gjv4/Jd+72c0/B739Zgjhppb4cMShhvEDuP4+Wj/HR7MfnoAQjaycu88RK6lg0rEYCROh7KzUXt6vAJMvJmk0KHhMJIAi7lYBw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757375538; c=relaxed/simple;
-	bh=X29ZkybJes6t+SiyocWpw6oP+wTxFCNltMPuHThXAIQ=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Z1xpr9/BPTN6JtdoloYXi1hzcLftQQgoqjrqtR3+M/ABQyvpga3Y10gvvnf2yNbSw2QkC5wNB7kDhI/aurN3AfIK9hwK7YEwTeQbgjndMoqMqmeQzLj4PRx/1RnjUMPkB2hmZ2uFriB3YBjBFHnRXxM/PNsKacGbEq36oftmNOg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=a9PVXZAu; arc=none smtp.client-ip=198.47.19.246
+	s=arc-20240116; t=1757375652; c=relaxed/simple;
+	bh=ly7CTMr4mIx5AaQeK4649clssh8IeOW+xSDP7sfrrgc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=mD5zf04vbo9tSO7adZwV0VReiwezr/FOITCbmUmKWCfPBTT33qLU8TZTdkgmKzs8hPp3q8vuvvgM7M3N8rUvufLV+xOYi1iKqF9MpfOo776V7J9KYxzh2OdDjib0H8Gh3q0JRDgJVBqwPdKbGbjtA/2CBNlWR8YZm0ZJK/e0ayw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vl/TitJ1; arc=none smtp.client-ip=198.47.19.246
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
 Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Nq8eB157299;
-	Mon, 8 Sep 2025 18:52:08 -0500
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Nrwco157409;
+	Mon, 8 Sep 2025 18:53:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757375528;
-	bh=USBrv5EHEUsjzK+ezZaEzKEkFuiYZYhIWSYji8XWS/Q=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=a9PVXZAukI+9i+PCbeKbfmZfYXG0E0dfTqMueu4IWQEKgZS/g4dWABm0TeuMg4Jfz
-	 ZLZ0KNXzdaI+I7VFmjy+dX4+FDE7BN7hRN8nFOUU486Vo+RflKR64nHOQ32tn3nSo1
-	 PNJqBCSMJEWnPS3mBkR1AamiPb1mlGW4Q3gAMsMk=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Nq8uF2742941
+	s=ti-com-17Q1; t=1757375638;
+	bh=FA0eYhlR2xlodyIPW1bPxXyYyCye7Q6E/s6/N3iUc0Q=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=Vl/TitJ1udI6uYa9KYx7mu/72yKTH3zGa6OSpbIxeYyxzm3fDe/X9XwYFObpZ0J2e
+	 rGVkOBs31rsCt2Kb/DugcBvGgl0VX147+MjAA/4uAKL36d3y4ENcZO2HAhVQlrgEPY
+	 ZzMlltj9CtczQd0UVbz0MAiDtXvWfrvHzL8ryiDw=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Nrw912743428
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 18:52:08 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+	Mon, 8 Sep 2025 18:53:58 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 18:52:08 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2025 18:53:57 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 18:52:07 -0500
-Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588Nq7WX1677746;
-	Mon, 8 Sep 2025 18:52:07 -0500
-From: Judith Mendez <jm@ti.com>
+ Frontend Transport; Mon, 8 Sep 2025 18:53:57 -0500
+Received: from [10.247.30.162] (ula0226330.dhcp.ti.com [10.247.30.162])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NrvkO1382580;
+	Mon, 8 Sep 2025 18:53:57 -0500
+Message-ID: <ce6f03fe-8d97-4146-964f-c2ba58a350c7@ti.com>
+Date: Mon, 8 Sep 2025 18:53:57 -0500
+Precedence: bulk
+X-Mailing-List: devicetree@vger.kernel.org
+List-Id: <devicetree.vger.kernel.org>
+List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
+List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am62p/j722s: Remove HS400
+ support from common
 To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
 CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
         Tero
@@ -65,46 +75,64 @@ CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
  Kozlowski <krzk+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Andrew
- Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 2/2] arm64: dts: ti: k3-am62p: Update eMMC HS400 STRB value
-Date: Mon, 8 Sep 2025 18:52:07 -0500
-Message-ID: <20250908235207.473628-3-jm@ti.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250908235207.473628-1-jm@ti.com>
+        <linux-kernel@vger.kernel.org>
 References: <20250908235207.473628-1-jm@ti.com>
-Precedence: bulk
-X-Mailing-List: devicetree@vger.kernel.org
-List-Id: <devicetree.vger.kernel.org>
-List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
-List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+ <20250908235207.473628-2-jm@ti.com>
+Content-Language: en-US
+From: Andrew Davis <afd@ti.com>
+In-Reply-To: <20250908235207.473628-2-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
 X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-STRB setting for eMMC HS400 have been updated in device datasheet [0],
-so update for am62p in k3-am62p-main.
+On 9/8/25 6:52 PM, Judith Mendez wrote:
+> Since eMMC HS400 has been descoped for J722s due to errata i2478 [0]
+> and is supported for AM62Px device, remove eMMC HS400 support from
+> common-main.dtsi and include only in am62p-main.dtsi.
+> 
+> [0] https://www.ti.com/lit/pdf/sprz575
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
 
-[0] https://www.ti.com/lit/gpn/am62p
-Signed-off-by: Judith Mendez <jm@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62p-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Reviewed-by: Andrew Davis <afd@ti.com>
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-index 020bd121a6a3..908cc0760e7d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-@@ -77,6 +77,6 @@ &main_gpio1 {
- 
- &sdhci0 {
- 	mmc-hs400-1_8v;
--	ti,strobe-sel = <0x77>;
-+	ti,strobe-sel = <0x66>;
- 	ti,otap-del-sel-hs400 = <0x5>;
- };
--- 
-2.51.0
+>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ---
+>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi              | 6 ++++++
+>   2 files changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 4427b12058a6..0c05bcf1d776 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -576,15 +576,12 @@ sdhci0: mmc@fa10000 {
+>   		bus-width = <8>;
+>   		mmc-ddr-1_8v;
+>   		mmc-hs200-1_8v;
+> -		mmc-hs400-1_8v;
+>   		ti,clkbuf-sel = <0x7>;
+> -		ti,strobe-sel = <0x77>;
+>   		ti,trm-icp = <0x8>;
+>   		ti,otap-del-sel-legacy = <0x1>;
+>   		ti,otap-del-sel-mmc-hs = <0x1>;
+>   		ti,otap-del-sel-ddr52 = <0x6>;
+>   		ti,otap-del-sel-hs200 = <0x8>;
+> -		ti,otap-del-sel-hs400 = <0x5>;
+>   		ti,itap-del-sel-legacy = <0x10>;
+>   		ti,itap-del-sel-mmc-hs = <0xa>;
+>   		ti,itap-del-sel-ddr52 = <0x3>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> index 6aea9d3f134e..020bd121a6a3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> @@ -74,3 +74,9 @@ &main_gpio1 {
+>   	gpio-reserved-ranges = <32 10>;
+>   	ti,ngpio = <52>;
+>   };
+> +
+> +&sdhci0 {
+> +	mmc-hs400-1_8v;
+> +	ti,strobe-sel = <0x77>;
+> +	ti,otap-del-sel-hs400 = <0x5>;
+> +};
 
 
