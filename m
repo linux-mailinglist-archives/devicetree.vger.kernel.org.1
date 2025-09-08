@@ -1,150 +1,183 @@
-Return-Path: <devicetree+bounces-214589-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214593-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6237BB49CE8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:36:41 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 28E25B49D17
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:49:47 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9C881171B42
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:36:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84BF440133
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:49:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBA12ECE91;
-	Mon,  8 Sep 2025 22:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C112E9EC1;
+	Mon,  8 Sep 2025 22:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jTA4gPp+"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qzV25RQW"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEA7F2E7F3A;
-	Mon,  8 Sep 2025 22:35:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71EEE1EB5CE;
+	Mon,  8 Sep 2025 22:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757370960; cv=none; b=udK2mB0dbWj+Eup7bfVTveEkpCI3YTJCOTbdEEzAbi03lfyE1d7lVE9nkqpLFhs5p486rT58D1EIXb7cRNXZDgax36gMT+3gSA92bNhO9GebzMv90dhw9vZG5N/CLxStMpq3KKyRwQxSTmySiIQ1fsZKxxx8ZJTgrKb90yE4HjU=
+	t=1757371782; cv=none; b=fsDn4p+Sk0vl/ar14XhZ+Kq2GWU/OtzvtQvRrqPSSDGq6lQNwz+QVbcoLvHHd4C4sH5KsO6QpAafU9DdSuorieIvwCS3Bjv2LiDemGwHcEt+rnDIbU7Tbt96d1n+F5zykfvrKqSt9Wacu7ZRKCGE8UhCIfe9OhBl6wyDQ4v7Vhk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757370960; c=relaxed/simple;
-	bh=dSo8PyCv5W3wiR8ABae/XBucYd73xpUbLl7qWfh1KCs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=E/0gpl2OZmD4GQ0RAsEmoTaC1+BEqOV+G2i3VUCMLOxmFBvQZ9Ai4UsvGc14aJLA/5EHdfvCL+egXnpDQqA5uRAjU7LEZiSYjhZ3JQe3LngIIs3n9l1GusyhJ7OpIvIbDb87ahXWMHIx24ZUJBbpZSGgzDnXSHRlHtDPKJl6MH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jTA4gPp+; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76309C4CEF9;
-	Mon,  8 Sep 2025 22:35:59 +0000 (UTC)
+	s=arc-20240116; t=1757371782; c=relaxed/simple;
+	bh=lnwnrrjuGfO0mxaFVDsCYUrjF7eAtqYJcIxxxfw8O5s=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=lgX9NZA2O7yuCNy9nrHXXqkkg3Iox1K9VBc+eNUzNe3ADiZnNRlscgyzuvt0wPjnhsGyw5BGCIL5oKn53MpCvTKimBIxdC0Rdn0hTNgQksUhZPkBryOSh0kKOw9uUj26Fh3+r8dUxVtamqhaegYPUDhUpfDVIPtpyvs9ne+3jYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qzV25RQW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F26F8C4CEF8;
+	Mon,  8 Sep 2025 22:49:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757370959;
-	bh=dSo8PyCv5W3wiR8ABae/XBucYd73xpUbLl7qWfh1KCs=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=jTA4gPp+ocKNmBDCeGmINDHmBHy+lIHT3uhGbvYbyaNA0SGZXpZSvSwzGiJka5o/a
-	 G6Gt0NwUQCqKj8iC311VexXJ9MrDU7jafO0ZEoZd0zEQhibJzVUNmBVMt93pZj3JlC
-	 IKN351YNKJJvBv9ENA57y3/mgXaE8O6D85Ig/hzxlxLz85vUaLbgHOD27nXaZmspFO
-	 iYL6qKaAeQRI4MNyAI4uLYNDYpAI3ACQFgkTrQdfi4sJAHD/WZQ5pNz92qYdIIZoLc
-	 6wbn9w8yOdT26Rf9ChWBGcpJ4dWu5UJ83FYPVCpp6JraSKFBSOtVyA90UUDXRXaSSn
-	 7UcD3Hj32LNiQ==
-Received: by venus (Postfix, from userid 1000)
-	id 930A5180B28; Tue, 09 Sep 2025 00:35:57 +0200 (CEST)
-From: Sebastian Reichel <sre@kernel.org>
-Date: Tue, 09 Sep 2025 00:35:52 +0200
-Subject: [PATCH v4 3/3] arm64: dts: qcom: x1e80100-t14s: add EC
+	s=k20201202; t=1757371782;
+	bh=lnwnrrjuGfO0mxaFVDsCYUrjF7eAtqYJcIxxxfw8O5s=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=qzV25RQW+MgDi/hpupASciblnRwvwak6iSKey3VOtSYLukUwHI7fR+zUx1QST/x2Q
+	 6Em65Qfmn9/B4CzRdBo4+nd087sFEkJ5vfUGT4P2m+dbzUkPa8YxqP7boAFnn7uXt3
+	 gTVEUZiV8K3eTb/9xPfhX4fJK+mAbHPXs5CvfpNnFKONpFSW6Pd59zpCNXJoxekD2F
+	 hHDw5zXZe8hbKbKOu4Tu6MF4LvuhP7Xdr57eX8HWZOJNUeOSx/f5AjqufnoLeTt0UY
+	 Caev8zFMYNQo3OPQSgsaNYEib6Q/FIu7A+t68dAgynSZVLzRLAoaiXJ5mbl91LGTw9
+	 s61gtcduRHBBA==
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-62105d21297so7256013a12.0;
+        Mon, 08 Sep 2025 15:49:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUaSooCDTOU1zVGzpWGZLPmWlbDTyDInf/52pHzr4TOutLBVsYrIWvv08omtK8M1777NGJSBKO6IY92VPcO@vger.kernel.org, AJvYcCWymyU//5CocjfYWdwKiLuPlnOxqU3z4SMIb8eUmQl9DKnvuJfDLPu5OSxTEDwp+N2Mwz/cblm5Y8o5@vger.kernel.org
+X-Gm-Message-State: AOJu0YzsCfkuE2MDNRTpMGVVLwBimx7E9CZqvY2r3vPSbXbZDf+0rl/z
+	pDV6zr7H0PrgcuDlfvWvGgoxBd3+l/iDpqEp2uH/9tgwVZ4IwbqKKY1gQBRielxAobXjy8Hc1Lx
+	gK8kYWR2bsxRzispl3hfo+1oDWDNWSQ==
+X-Google-Smtp-Source: AGHT+IGHw+8G7L+ArmhFoRRdE1FV4g1i7ErMbY/OfAAY/uLB+PGTF8jRNyhPKgW/7xBDt1d7qcOsXVSoBcTc1Gd368Q=
+X-Received: by 2002:a05:6402:3484:b0:61e:8f70:ee26 with SMTP id
+ 4fb4d7f45d1cf-62379b825a1mr8384508a12.38.1757371780463; Mon, 08 Sep 2025
+ 15:49:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-thinkpad-t14s-ec-v4-3-caf6159daaee@collabora.com>
-References: <20250909-thinkpad-t14s-ec-v4-0-caf6159daaee@collabora.com>
-In-Reply-To: <20250909-thinkpad-t14s-ec-v4-0-caf6159daaee@collabora.com>
-To: Sebastian Reichel <sre@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Hans de Goede <hansg@kernel.org>, 
- =?utf-8?q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Mark Pearson <mpearson-lenovo@squebb.ca>
-Cc: "Derek J. Clark" <derekjohn.clark@gmail.com>, 
- Henrique de Moraes Holschuh <hmh@hmh.eng.br>, 
- Neil Armstrong <neil.armstrong@linaro.org>, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, platform-driver-x86@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1616;
- i=sebastian.reichel@collabora.com; h=from:subject:message-id;
- bh=dSo8PyCv5W3wiR8ABae/XBucYd73xpUbLl7qWfh1KCs=;
- b=owEBbQKS/ZANAwAKAdju1/PIO/qaAcsmYgBov1pN4xXXWqqAUYl/XplCfBRpZhO0iboVVnUyH
- 84Ht5jLde2JAjMEAAEKAB0WIQTvZg0HRj+Lcmp5VBPY7tfzyDv6mgUCaL9aTQAKCRDY7tfzyDv6
- mieND/98CMoNikOQp2nJAi1uy5oRMwdxN+n/3m9Mp+qzQ3gPZtsIHOWQEGQrrqHFW4mbmqIEipY
- yraXvOEjkJFzFNWGoX8z/p3pnFzICyThSAddkTq84jXjWCwSKmRfx14QXtVHXsahGN2HVmXXVVx
- 7DdSEUUyTW37BygroH05SZnaiyjzf5nY/AFYvQbED0lo4FIK7q1nasq4S073B+qJyYKuUMFbMko
- 2obFwFvQZLc5Nc1s88tb0aP+ptjX0nb+67aEeYIwMJhylm7SujjUEWe5r3mYUtlFuCGTAwl0ONA
- me8jYmP6a4jY/svOkl2WSSbfMsodP9jacuOchKz94TYNCtccbeZyHcla5bt67t9GwLcgxKGerQr
- gnfbElfQ01aNnkz9utwHp+pYoveLBkDI4rNItKHc9/0hyBj8SH6ipgXE0g+UFBjyV3b5wT2wx7u
- 8VEt3crPBZRLo2K7UavqTGCPSAojLjS+W5shGY01Bk1p59ydUlHW/ncFJlJcLfyB0ajwjyVD+ge
- CFqSAvPQB06fI0ic3LIQ80dZUGLTnVtuPUC0CRKWPnm08Fpm5UejClf/eNOVicPc/lvs2abjyt+
- OWq5yGClv4Wa2G1momMKTL3h2clzsYlU2skmvSu4F8V6npaCKUVBl/ofZQJZsW4Sw5Cr5YyV/8f
- rnrnLt7I81l1PgA==
-X-Developer-Key: i=sebastian.reichel@collabora.com; a=openpgp;
- fpr=EF660D07463F8B726A795413D8EED7F3C83BFA9A
+References: <20250815144736.1438060-1-ivecera@redhat.com> <20250820211350.GA1072343-robh@kernel.org>
+ <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com> <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
+ <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
+In-Reply-To: <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 8 Sep 2025 17:49:28 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
+X-Gm-Features: AS18NWAxhYNwJ56vsQfUczkl_R9TNuNktlxc2midcWQWDd56JDmUw5T0m2c6T2w
+Message-ID: <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
+Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
+ reference property
+To: Ivan Vecera <ivecera@redhat.com>
+Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com, 
+	Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
+	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Prathosh Satish <Prathosh.Satish@microchip.com>, 
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Describe ThinkPad Embedded Controller in the T14s device tree,
-which adds LED and special key support.
+On Fri, Sep 5, 2025 at 1:50=E2=80=AFAM Ivan Vecera <ivecera@redhat.com> wro=
+te:
+>
+>
+>
+> On 05. 09. 25 12:06 dop., Rob Herring wrote:
+> > On Fri, Aug 29, 2025 at 8:29=E2=80=AFAM Ivan Vecera <ivecera@redhat.com=
+> wrote:
+> >> ...
+> >>
+> >> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
+> >> net/network-class.yaml ? If so, yes, it would be possible, and the way
+> >> I look at it now, it would probably be better. The DPLL driver can
+> >> enumerate all devices across the system that has this specific propert=
+y
+> >> and check its value.
+> >
+> > Yes. Or into ethernet-controller.yaml. Is a DPLL used with wifi,
+> > bluetooth, etc.?
+>
+> AFAIK no... ethernet-controller makes sense.
+>
+> >>
+> >> See the proposal below...
+> >>
+> >> Thanks,
+> >> Ivan
+> >>
+> >> ---
+> >>    Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
+> >>    Documentation/devicetree/bindings/net/network-class.yaml | 7 ++++++=
++
+> >>    2 files changed, 13 insertions(+)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> >> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> >> index fb8d7a9a3693f..560351df1bec3 100644
+> >> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> >> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
+> >> @@ -27,6 +27,12 @@ properties:
+> >>      "#size-cells":
+> >>        const: 0
+> >>
+> >> +  "#dpll-cells":
+> >> +    description: |
+> >> +      Number of cells in a dpll specifier. The cell specifies the ind=
+ex
+> >> +      of the channel within the DPLL device.
+> >> +    const: 1
+> >
+> > If it is 1 for everyone, then you don't need a property for it. The
+> > question is whether it would need to vary. Perhaps some configuration
+> > flags/info might be needed? Connection type or frequency looking at
+> > the existing configuration setting?
+>
+> Connection type maybe... What I am trying to do is define a relationship
+> between the network controller and the DPLL device, which together form
+> a single entity from a use-case perspective (e.g., Ethernet uses an
+> external DPLL device either to synchronize the recovered clock or to
+> provide a SyncE signal synchronized with an external 1PPS source).
+>
+> Yesterday I was considering the implementation from the DPLL driver's
+> perspective and encountered a problem when the relation is defined from
+> the Ethernet controller's perspective. In that case, it would be
+> necessary to enumerate all devices that contain a =E2=80=9Cdpll=E2=80=9D =
+property whose
+> value references this DPLL device.
 
-Tested-by: Neil Armstrong <neil.armstrong@linaro.org> # on Thinkpad T14S OLED
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-Signed-off-by: Sebastian Reichel <sre@kernel.org>
----
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 24 ++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+Why is that?
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index ac1dddf27da30e6a9f7e1d1ecbd5192bf2d0671e..f70489aba870289edbcf84ec22fdb004e010868b 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -887,6 +887,24 @@ eusb6_repeater: redriver@4f {
- 	};
- };
- 
-+&i2c6 {
-+	clock-frequency = <400000>;
-+
-+	status = "okay";
-+
-+	embedded-controller@28 {
-+		compatible = "lenovo,thinkpad-t14s-ec";
-+		reg = <0x28>;
-+
-+		interrupts-extended = <&tlmm 66 IRQ_TYPE_LEVEL_LOW>;
-+
-+		pinctrl-0 = <&ec_int_n_default>;
-+		pinctrl-names = "default";
-+
-+		wakeup-source;
-+	};
-+};
-+
- &i2c7 {
- 	clock-frequency = <400000>;
- 
-@@ -1267,6 +1285,12 @@ &tlmm {
- 			       <72 2>, /* Secure EC I2C connection (?) */
- 			       <238 1>; /* UFS Reset */
- 
-+	ec_int_n_default: ec-int-n-state {
-+		pins = "gpio66";
-+		function = "gpio";
-+		bias-disable;
-+	};
-+
- 	eusb3_reset_n: eusb3-reset-n-state {
- 		pins = "gpio6";
- 		function = "gpio";
+>
+> This approach seems quite complicated, as it would require searching
+> through all buses, all connected devices, and checking each fwnode for a
+> =E2=80=9Cdpll=E2=80=9D property containing the given reference. I don=E2=
+=80=99t think this would
+> be the right solution.
 
--- 
-2.51.0
+for_each_node_with_property() provides that. No, it's not efficient,
+but I doubt it needs to be. As you'd only need to do it once.
 
+> I then came across graph bindings and ACPI graph extensions, which are
+> widely used in the media and DRM subsystems to define relations between
+> devices. Would this be an appropriate way to define a binding between an
+> Ethernet controller and a DPLL device?
+
+Usually the graph is used to handle complex chains of devices and how
+the data flows. I'm not sure that applies here.
+
+> If so, what would such a binding roughly look like? I=E2=80=99m not very
+> experienced in this area, so I would appreciate any guidance.
+>
+> If not, wouldn=E2=80=99t it be better to define the relation from the DPL=
+L
+> device to the network controller, as originally proposed?
+
+I have no idea really. I would think the DPLL is the provider and an
+ethernet device is the consumer. And if the ethernet device is unused
+(or disabled), then the DPLL connection associated with it is unused.
+If that's the case, then I think the property belongs in the ethernet
+node.
+
+Rob
 
