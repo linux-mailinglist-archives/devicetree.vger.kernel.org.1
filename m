@@ -1,150 +1,142 @@
-Return-Path: <devicetree+bounces-214347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214351-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 620DAB48D4A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:24:01 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B14C5B48D8D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 14:32:07 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 21A223B7246
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:24:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 999F73C7EF9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:32:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A7AE2264B6;
-	Mon,  8 Sep 2025 12:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 205622EACF8;
+	Mon,  8 Sep 2025 12:32:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ryPUQ1x/"
+	dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="sADQX9bT";
+	dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b="cNzAORJ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.mainlining.org (mail.mainlining.org [5.75.144.95])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81AF222FE15
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 12:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FBBA1E489;
+	Mon,  8 Sep 2025 12:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=5.75.144.95
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757334237; cv=none; b=BQ/VqxNpsqRrzE9CvGaDA1cCISRDyq3tsM6IlPy2QYdysvYHZDWEN4IgpmLyue8cjFI1XlUzVdut09gmK8/Sz7pi90ARmK1QPKlmHc9Zq8o5bWNDHjY7+r44wmfw4Qih1hgPVE04wPFLU2wjrqRC44Rk88UNOvYkWID4iFXTyKY=
+	t=1757334721; cv=none; b=nUxAANe0iNZ3Xg0/15FGIgMG3aVLYL97h2/UZLBuyZLthuc+KnKbn0LTS1Hbs3iiMyZGn2I8Q+ifaRQ0+b5tnSVlEgJQYAG7KCe1xrP6ITsIDKjTrr5W6tlKlkkccZzqPaIkLXIcJKs715oee1e6M+HmY89HwM8iiD8Sqhve4ys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757334237; c=relaxed/simple;
-	bh=MEo2UMTG1DHQ9doDRWriJeo0VPUl239DwxNNYlZ42y4=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=aB56sHgSLxQjQnlZcJeH/0DLKwTGTG0YfedqUveuGnhSPxJGYh0dC5gc21zdgUNYM0w5vrtzQuBlk/en9cQ+xv0cKyimj3ea1m2W0uNTZM9fLJ3rhZ6CkTm6m2AK7qK2HED60VEAZEpETnh73Z980EfG0L041ruwizE+mz3FOXM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ryPUQ1x/; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3e3aafe06a7so1857907f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 05:23:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757334234; x=1757939034; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=MEo2UMTG1DHQ9doDRWriJeo0VPUl239DwxNNYlZ42y4=;
-        b=ryPUQ1x/cqtCiPdOoHM5u5Fw0rJ9jT+sv6lBq2XZ1ZCaOfafWVWWUycQs8oZDv/vo7
-         59EmbGuRIWTGqEPqLllLj91Xd48bn5UYWRO5rlnJCSHlnApNHJayMFCWT9v4qE3adCXg
-         hxC9PVxu3bX9gXX/a3mz95C4VEQU39PP8XOxgMTWkZHO7izEOxSi+3jVJ63MA6V5hVcV
-         rdAESCRg2noF048z3W9r3tkY39ZFaE3KGGhkx9zJi5GfYs7zJPgMMGnNk6DnRoih2jNT
-         gvD/iiK5MueAx+hS5pi4CgwiUrzQG8qdHsMptqDGRyME1oVzcVw9GABjOZgyWUhx5SAa
-         37Kg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757334234; x=1757939034;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MEo2UMTG1DHQ9doDRWriJeo0VPUl239DwxNNYlZ42y4=;
-        b=OTQc9URLtu3xM9a29h/UmOxdzmIKDJYKFg6105SgDhAWkENZD1EcaOyDKZFKduRl0G
-         XuXulFcmXYU51A1gMav1UjppnwmeckWyb3UVQV6MCxz8etKE+WUW7bgOpkhanynSG+ZQ
-         SGQn7tpmStY+pElNR41iOf+wDUsgh0mDtGHL/X+1WrKTcSzW0NQrfOI7zdl09l+nO24k
-         sVuw3ZNuSswUvwYdW28ZlVh9NaPBNO1U33UW6fOyUd4RVyPhVZLpijEc5SCZkyj4S9Ap
-         BOOy9pQqAA4RC+cL6MFhN2eoiUuuD1jpliL9BQIipbmc9jk09jzn0CPhgJI/42e0gpD6
-         gmKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUe611qx1h9KKqfS+nWREXdoHQiALMrlsNUJB0HHi+9UlX5wmG7puGGqeyjQL2sC2GTlMhXABFzt947@vger.kernel.org
-X-Gm-Message-State: AOJu0YxKXbiTZ0dfXa5FjqdXTgb2hpQEIdEKXof8dJEg/Tz9CVrK2PEP
-	0lSdc38VzDJok1mvx5ssX9/NkAUtahC0r6CWVgYjqQlp0LfBhHOGo/LohWFQx99Pffo=
-X-Gm-Gg: ASbGnctVetT21QG27rqQ2ikH2ue5kT0IhNZvNPNTOpRYOHyXgEd/bcwPfvLzB8GK+Vh
-	ZKriATfhoWlrRpa5suBtHtzPLTi+zR8VsmfAf7gGq/kN7o7eQ5YpQkBorVUo4HEb1jQfIURkpCX
-	nZFULypa3lb6G7lKbwIVQqVFNOxZLYV9NZpHit+CmQ1V01hkNKkRPKavxmbwF2l+F7aC1uZ+pn+
-	4LN0LrpvB/lnYlIMogh3NF6C221eNaEzn2zXvvIq6tMsItxW867/zGxMX8TFxbkN29QIUEavLIL
-	Ho8ocbA5uDcEhPG9SE+e2TcrMVU5+yyrNgeQpcJ/z3pjqgMGLZJpfkLtgkKSS+cNgmBN69/D1V+
-	aXzVyDHLsTyVLWpzQ7fowkzBSlA==
-X-Google-Smtp-Source: AGHT+IEvdnxT8KmvlyrKaJbNer5T3dfHeAMIhWoCV/LtrGm/Qs4KGg5Ij/jKkb1ZiM1wDinTCtyDQQ==
-X-Received: by 2002:a05:6000:2302:b0:3e5:5822:ec9e with SMTP id ffacd0b85a97d-3e643a24592mr5641636f8f.41.1757334233888;
-        Mon, 08 Sep 2025 05:23:53 -0700 (PDT)
-Received: from [10.1.1.59] ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf270fbd01sm41989069f8f.13.2025.09.08.05.23.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 05:23:53 -0700 (PDT)
-Message-ID: <33b7a0cdf62a7f980c362459963e243ba78de540.camel@linaro.org>
-Subject: Re: [PATCH v5 0/2] Samsung S2MPG10 PMIC MFD-based drivers
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Sylwester Nawrocki
- <s.nawrocki@samsung.com>, Chanwoo Choi	 <cw00.choi@samsung.com>, Alim
- Akhtar <alim.akhtar@samsung.com>, Michael Turquette
- <mturquette@baylibre.com>, Russell King <linux@armlinux.org.uk>, Catalin
- Marinas	 <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- Alexandre Belloni	 <alexandre.belloni@bootlin.com>, Peter Griffin
- <peter.griffin@linaro.org>,  Tudor Ambarus <tudor.ambarus@linaro.org>, Will
- McVicker <willmcvicker@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rtc@vger.kernel.org, Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>, Lee Jones <lee@kernel.org>
-Date: Mon, 08 Sep 2025 13:23:50 +0100
-In-Reply-To: <175398041189.3513.13629420060562627196@lazor>
-References: <20250730-s2mpg10-v5-0-cd133963626c@linaro.org>
-	 <20250730145100.GA6782@google.com>
-	 <1a72e672995ef6cd186f8ff18a91bb8b72d86554.camel@linaro.org>
-	 <175398041189.3513.13629420060562627196@lazor>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.1-1+build2 
+	s=arc-20240116; t=1757334721; c=relaxed/simple;
+	bh=sQt1nFjjL/JDJ+BrO/n+fAOCSOgjWhKflB1AA8PgDRs=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jZaw/9s6tRzmyFR8NviMBpt1ZOflFLDgw13ByuO9Dz2nWGhLPBKLBBywFYco/PLxQrS8g+YedWmLCYWMxwlL3sv4RurUy5SfEhyeiRppMk2Cl41WbDPgimHkgPiuoeo3ZrhEKC5BqmKfS1doUmRrZ5/fMwQJo51jnlpjsl2JHqs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org; spf=pass smtp.mailfrom=mainlining.org; dkim=pass (2048-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=sADQX9bT; dkim=permerror (0-bit key) header.d=mainlining.org header.i=@mainlining.org header.b=cNzAORJ9; arc=none smtp.client-ip=5.75.144.95
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mainlining.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mainlining.org
+DKIM-Signature: v=1; a=rsa-sha256; s=202507r; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1757334526; bh=eQPeLiEAhdjsqCN6eMr2hYW
+	y9nrryrJhtYPyQ3bnKgI=; b=sADQX9bT/tWhSPQe4PgDJGLjKpNob7W8eVveg4i5hMOk4WUhdm
+	Ag07EehC4/J3eyRttL8LgRiSt4Q8/TV2olrVh32Fxf8gWI58VxCr7GC7/zheLugeuxxb5OJBb46
+	VDN1b8lezfsyynQYLkvn5wOGhFOVzjp4EJ+LFJGB9n3DrK6fHP84m6Sc0o258iUD5T1LqrGKi5u
+	Utyt5LfoiAgPklUKlguhz+Hhrw3dhyZAYTbjw9k21JaY2uqif8vdqVSmUfbH5Sb1/V3ZhajYS15
+	Vv+1qVpP4slOBof1djTCczYnUx5iFlhD5OHMauDMnSZQqjNYSYwhKmU0vkn7/TQhXTw==;
+DKIM-Signature: v=1; a=ed25519-sha256; s=202507e; d=mainlining.org; c=relaxed/relaxed;
+	h=To:Message-Id:Date:Subject:From; t=1757334526; bh=eQPeLiEAhdjsqCN6eMr2hYW
+	y9nrryrJhtYPyQ3bnKgI=; b=cNzAORJ9KTFjOmizsItK7ARR7LdwrBvnGkGODr3xc26OpPXhTJ
+	akD2UK+BRCYN3YXBN0iMaaubaBPHResoDJAg==;
+From: Nickolay Goppen <setotau@mainlining.org>
+Subject: [PATCH v6 0/3] Add SDM660 LPASS LPI TLMM
+Date: Mon, 08 Sep 2025 15:28:43 +0300
+Message-Id: <20250908-sdm660-lpass-lpi-v6-0-e0a2e2ffff3a@mainlining.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPvLvmgC/4XOTW7CMBAF4Ksgr2tkj3/idMU9KhaT2A4jgYPsN
+ gKh3B2TDYhG7WakN9L7Zm6shEyhsM/NjeUwUaEx1WA/Nqw/YBoCJ18zAwFGONC8+JO1gh/PWEq
+ dxNF1AhCUsxJZrZ1ziHRZyK99zQcq32O+Lhcm+dj+gU2SCy6E8qbvwYHSuysmHy7b/MMe2ASvg
+ FkBoAIYm0a10fTQhHdA/QeoCljjNWrfQet+AfoVcCuAXj7QGL030FrzDpgn0Aq1ApgKxCAbKVr
+ XWZS7E1I6UqI0bMc8sP08z3ddEAp0uQEAAA==
+X-Change-ID: 20250824-sdm660-lpass-lpi-a8b02a23861a
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Nickolay Goppen <setotau@mainlining.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
+ ~postmarketos/upstreaming@lists.sr.ht, linux@mainlining.org, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Richard Acayan <mailingradian@gmail.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757334525; l=2795;
+ i=setotau@mainlining.org; s=20250815; h=from:subject:message-id;
+ bh=sQt1nFjjL/JDJ+BrO/n+fAOCSOgjWhKflB1AA8PgDRs=;
+ b=hqzfikXF4QCTc5JcFG5LBPz3rRpbry8pWlN7D/xCvhFK38kQJNMNWg5UYQOMPnJBzSGel+rwB
+ ZCimlXlhZN+BnZ4isEI4I5uDXbvoLG74xj/JnF7Owho0izKQ35UPa3Y
+X-Developer-Key: i=setotau@mainlining.org; a=ed25519;
+ pk=Og7YO6LfW+M2QfcJfjaUaXc8oOr5zoK8+4AtX5ICr4o=
 
-Hi Stephen,
+This patch series adds SDM660 LPASS LPI TLMM pinctrl driver and
+introduces pin_offset field for LPI pinctrl drivers to support
+SDM660's quirky pin_offsets taken from an array with 
+predefined offsets from downstream [1].
 
-On Thu, 2025-07-31 at 09:46 -0700, Stephen Boyd wrote:
-> Quoting Andr=C3=A9 Draszik (2025-07-31 03:20:56)
-> > On Wed, 2025-07-30 at 15:51 +0100, Lee Jones wrote:
-> > > On Wed, 30 Jul 2025, Andr=C3=A9 Draszik wrote:
-> > >=20
-> > > > Original cover letter further down.
-> > > >=20
-> > > > This is a resend of two patches from the original series that haven=
-'t
-> > > > been merged yet. That series was merged except for the attached two
-> > > > patches here. Other than rebasing against next-20250729 there are n=
-o
-> > > > changes to them.
-> > > >=20
-> > > > Lee, I think Stephen's intention was to get these two merged via th=
-e
-> > > > MFD tree please.
-> > >=20
-> > > Although I have no issue with this, it does seem a little odd now tha=
-t
-> > > the set consists of only Clk patches.=C2=A0 Let me know what you / St=
-ephen
-> > > decide.
-> >=20
-> > Thanks Lee.
-> >=20
-> > I simply went by Stephen's ACK, which to me implies he wanted it merged
-> > via a different tree (mfd). I guess at this stage it doesn't matter any=
-more,
-> > since all the core changes are in already.
-> >=20
->=20
-> I'll pick it up after the merge window closes.
+[1] https://git.codelinaro.org/clo/la/kernel/msm-4.4/-/blob/LA.UM.7.2.c27-07400-sdm660.0/drivers/pinctrl/qcom/pinctrl-lpi.c#L107
 
-Kind reminder on this.
+Signed-off-by: Nickolay Goppen <setotau@mainlining.org>
+---
+Changes in v6:
+- Fixed indentation in dt-binding
+- Remove a comment about functions derived from sdm670
+- Added Reviewed-by's in corresponding commits
+- Link to v5: https://lore.kernel.org/r/20250903-sdm660-lpass-lpi-v5-0-fe171098b6a1@mainlining.org
 
+Changes in v5:
+- As suggested by Konrad Dybcio Renamed pdm_2_gpios to pdm_tx, dmic12 and dmic34 to dmic1_[clk, data] and dmic2_[clk, data].
+- As suggested by Krzysztof Kozlowski Added pinmux nodes to dt-binding example.
+- Link to v4: https://lore.kernel.org/r/20250828-sdm660-lpass-lpi-v4-0-af4afdd52965@yandex.ru
 
-Thanks,
-Andre
+Changes in v4:
+- Replaced pin_offset callback with a pin_offset field in lpi_pingroup struct.
+- Introduced LPI_PINGROUP_OFFSET macro with additional pin_offset field handling.
+- Introduced LPI_FLAG_USE_PREDEFINED_PIN_OFFSET flag for indicating use of predefined pin_offsets.
+- Replaced an array with offsets in SDM660 LPASS LPI TLMM driver with pin_offset defined for each pin in the new pin_offset field.
+- Link to v3: https://lore.kernel.org/r/20250825-sdm660-lpass-lpi-v3-0-65d4a4db298e@yandex.ru
+
+Changes in v3:
+- Fixed compilation of LPI drivers as modules by changing pin_offset function determination logic.
+- Link to v2: https://lore.kernel.org/r/20250825-sdm660-lpass-lpi-v2-0-af7739f5c27e@yandex.ru
+
+Changes in v2:
+- Extended description of "pinctrl: qcom: Add SDM660 LPASS LPI TLMM" patch.
+- Resent using b4 relay
+- Link to v1: https://lore.kernel.org/r/20250824-sdm660-lpass-lpi-v1-0-003d5cc28234@yandex.ru
+
+---
+Nickolay Goppen (2):
+      pinctrl: qcom: lpass-lpi: Add ability to use custom pin offsets
+      dt-bindings: pinctrl: qcom: Add SDM660 LPI pinctrl
+
+Richard Acayan (1):
+      pinctrl: qcom: Add SDM660 LPASS LPI TLMM
+
+ .../pinctrl/qcom,sdm660-lpass-lpi-pinctrl.yaml     | 109 ++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |  10 ++
+ drivers/pinctrl/qcom/Makefile                      |   1 +
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.c           |  18 ++-
+ drivers/pinctrl/qcom/pinctrl-lpass-lpi.h           |  18 +++
+ drivers/pinctrl/qcom/pinctrl-sdm660-lpass-lpi.c    | 160 +++++++++++++++++++++
+ 6 files changed, 314 insertions(+), 2 deletions(-)
+---
+base-commit: ef67c54a170cee962b09c638514d55790b68bdf5
+change-id: 20250824-sdm660-lpass-lpi-a8b02a23861a
+
+Best regards,
+-- 
+Nickolay Goppen <setotau@mainlining.org>
+
 
