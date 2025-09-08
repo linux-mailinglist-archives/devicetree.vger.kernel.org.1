@@ -1,280 +1,183 @@
-Return-Path: <devicetree+bounces-214164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71B61B484DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:16:12 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F51B484E3
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:16:45 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F747179399
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:16:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0208175130
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:16:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE9D2E426B;
-	Mon,  8 Sep 2025 07:16:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B86852E54D3;
+	Mon,  8 Sep 2025 07:16:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nxAC9hDG"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="E0BQAb9m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6349B13B2A4;
-	Mon,  8 Sep 2025 07:16:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D97623815B
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 07:16:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757315769; cv=none; b=JEq5eX2BCzSDzD9OhbWC3rkfSTxtUTb3hRzGcVju2q9iJpxgv5WsyzseOuMyW8jBahW1212PycHTzDwkMnX0H2HlbL4u88CPVTjLRnMRqiNSKqe6OylwCpQsdBXWszkxQ8Iu/TolNKjT17WNTHdDE6hxZo+M6vzbJ7cmiQ+k9KE=
+	t=1757315797; cv=none; b=MT19iDFj14LDzzWDLChnQumCI078tWkTazuBBclsRLzYL3/G8mL5M1+Jttx2zf2EBZ01YbKtnr7z1unf7pVT/UuZaH96lUQT3U9IsMnemUkrFGRoSiYv80xFfI4J0toT3Wk3FjyLsEx96rE0AOKW7R+EwGMvLog/hCDiqUL2PCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757315769; c=relaxed/simple;
-	bh=o/X8+JMmZpV94bYmVuVJVdlmLSO/1vPISj70P8f4jik=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oyidKMzTv/lcQTIvYZUqyMR2kqyRLMJPZ6WpyADeab1UPYEsqPAboABhDrIaslkFol/Cnrx4n3aOY4QADE83cnf6uu2Pap8i1YBkTI8zw7ve9Is/FAep5NJ7oHHYBGEdokzWAxsP1kk5GvxS0pgGFSQ5CFzGoEgaNBSPC63fPJI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nxAC9hDG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555BDC4CEF5;
-	Mon,  8 Sep 2025 07:16:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757315768;
-	bh=o/X8+JMmZpV94bYmVuVJVdlmLSO/1vPISj70P8f4jik=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nxAC9hDGUBNxyibzkldViVQqNA7Ne11OQjw+RsA4iZl5y9KtSvH3wawfkS7Pm9iLK
-	 092lO79HND56OmopKwuTqujybgF+d6d/46aIA+rQwEoLYFdvC8U+VgntWHhEQsJdBS
-	 8dGC61YLIOkbWnLWtuHrkTZVhxIV5ZPakJzBkH7Fmmy9zNhZdTJOPqzZRcEG+nENhl
-	 2KBHYTXlR2dAXaMJ1kXaqm8iD+zLikxOhj0v2hTXz+NmHVYoa1pE+EvsBHkP5FLzzD
-	 y9zgaTdSO3AOKqwxWqgUA2FR5QkQ51NfZZdN2GbB+eTEEioTS0wN4jP0WI8PlYQPa5
-	 OCwZrh3F4ApdA==
-Date: Mon, 8 Sep 2025 12:45:59 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
-Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
-	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, 
-	shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, 
-	mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
-	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
- host controller
-Message-ID: <o27wqsjza3rueqhrs3bcf6xevhflgoncjlwzzlnciehjclrq5a@akwpey4jnpbs>
-References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
- <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
- <nq3xoih7kbjdaxnwoduz3o2nxt2ikahbogqdraibznrlqwqw5r@ovjarka5eagm>
- <9cb374f.cc7.19913c6dd06.Coremail.zhangsenchuan@eswincomputing.com>
+	s=arc-20240116; t=1757315797; c=relaxed/simple;
+	bh=0jZlyef1yvCqYyJvmMqZtF1i7wr8h7b7GqLpH86XQvA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=o01seI2Z5bqB1dIGZVFGJFhJNtPkOZjBo+/UAFRr54WH2ItWNLEFt5RRAMlP3GuyCNTajdi8zep6qsF+LhZ3Whwfvu7LjONxoEhSabeQujzTnLbBT6BnglEGj/CW0uWzw/2IjY2cgjXQ+TWlC78iH7Lt9ZrRHGzh6ozcy2yXfww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=E0BQAb9m; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5883kJUs011910
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 07:16:35 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	ZaKwF3uTvV0qt8pO//IeFHi+qzIUMNGv1KFMfckt8OE=; b=E0BQAb9mPmuozXUc
+	MZp6LbIFfcTrzbktlYQW0oNLK8BLL8KI2MvRVU0YCJtbe129HTqEYXKukEnXFeYY
+	Z9AvQym7Y7G+HdSCWYqX8ybqUHztR6Af3q7nhZCrJUhkuhMyX5m8vxsGYm05QYgG
+	tpuRvSvqEMo3lnOvY2DZ9r/5/uvIVoUYJmkzhor1rPdaNZL2yMTBdnmARetqLoD3
+	RzbUOsVqDItmNWvoFwpRD4b4AnnGC70+r/EvSo999YHbXox4o6yvSD08BXGGL3qH
+	OQ9peWMvvQ+aZkFq51+x95T5W26XMF1k6kn2R93slZIAroLRoTwUa6IjSVo/L847
+	1JjhVg==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com [209.85.160.200])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491qhdrerv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 07:16:35 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id d75a77b69052e-4b5f92a6936so8490381cf.3
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 00:16:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757315793; x=1757920593;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZaKwF3uTvV0qt8pO//IeFHi+qzIUMNGv1KFMfckt8OE=;
+        b=KQ0FECl/4ACEXVd87daxSDFbYjILNgzOk3nb6mrduKtvw548S8hcax8RbxvGz0CClJ
+         ZoKG75q5zbnTog3aODb1844jXhhzeBPKmPrJln7FKLJt5HRTXouF/oGGqk3QG81NzZCk
+         X9K0CJ01k5N6AH/4wz6DCe4ax441cknu8uuXIRoN0qnLxFlaIIOc1tfm6TmNzo1iULXa
+         m0UMMwr0ajfENoPAng/1Sym8VgOZ5F8BrVYE5A9/qEJzoRmDs6aiOQVmKGIkO+50H6tV
+         jXE+RVFqTdaKKhQAYTmLC4zoKt8xlcvJim5mw78zY/jxZNRJuxNDN4pflxDkXiKavAT/
+         xVmA==
+X-Forwarded-Encrypted: i=1; AJvYcCX5H5i6rWhcn5RD6hGA7vBsm/I/ShWszpntmIC+i2VmnaUHE6VeMwx/vzs0/SgZpPZ3XKw7pvm44Aij@vger.kernel.org
+X-Gm-Message-State: AOJu0YwmmAe539EPjYWsqI7D2khtedOb6XGrkkxQRYfgUbXxqEQAJ6eq
+	yk+SPaZ2NMJxbp9Xlh6IDXNmS2+LQ5XokMc4a78eBh9PszbHgLFAIkh58uJjA5c9KvNwATbbB9y
+	4XYT3XNZr7tTNpR0HVw9Om8LTHE7A/75Cd4L02rsmOperK9IFlxF5kRyia711uWB3
+X-Gm-Gg: ASbGncvji352y+CSjv3PPDM6UqdvSggTvhXgsHstXmY9ANq9U8OMlikVJjYX9+2xbDR
+	MG7Nkc3pnxqQSseX8WT7IlBRabkPqaDHpI6tz3+Bw0b+2zE528G8NN4rtFNYsmj8JWauZW+5o0s
+	pQFbRrl9vPZmkKvq3rigQObda7735fH6J09Nr0lm3jx3WcY2nMJIkaORE/uEnD1ocQVrlHP0YSg
+	+rPCWFwevFpgYyBi/MzZl3EV39mmEIKX2VsNOhbcJgevY/YNTaWXB8Iu5lLT0aoDh/kudu6Lf7v
+	DZsfXgHGPorzuY+eU/AOjELw41f72SvcV3e4ZQNf2capZj2vF66Bd6oSjMzPSHKt7/AIP5Xv6jg
+	oukiWsrjRCCAyNQnOjaJazg==
+X-Received: by 2002:ac8:5981:0:b0:4b3:4d20:2f9 with SMTP id d75a77b69052e-4b5f83a513fmr52719151cf.4.1757315793087;
+        Mon, 08 Sep 2025 00:16:33 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGleczMa2Q7omIjZHxAPAoUdrSH+RT9RzFZmldfPTQGN+mYVhUoCTb0CBLPp6B4wg1HrxnQCw==
+X-Received: by 2002:ac8:5981:0:b0:4b3:4d20:2f9 with SMTP id d75a77b69052e-4b5f83a513fmr52718941cf.4.1757315792535;
+        Mon, 08 Sep 2025 00:16:32 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-aff12a6b404sm2323810866b.88.2025.09.08.00.16.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 00:16:31 -0700 (PDT)
+Message-ID: <c66fe361-74c9-4471-b371-353ca582bb3b@oss.qualcomm.com>
+Date: Mon, 8 Sep 2025 09:16:29 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 3/3] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
+ add HDMI nodes
+To: Jens Glathe <jens.glathe@oldschoolsolutions.biz>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250821-topic-x1e80100-hdmi-v1-0-f14ad9430e88@linaro.org>
+ <20250821-topic-x1e80100-hdmi-v1-3-f14ad9430e88@linaro.org>
+ <a38df652-54c0-4216-9aa5-c8d32599c8f7@oldschoolsolutions.biz>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <a38df652-54c0-4216-9aa5-c8d32599c8f7@oldschoolsolutions.biz>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <9cb374f.cc7.19913c6dd06.Coremail.zhangsenchuan@eswincomputing.com>
+X-Proofpoint-GUID: PJc0ojcCW325l67h-htPvKX7ntareATZ
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDAzNCBTYWx0ZWRfX/pP3af9bzeGR
+ Zu47elRk/SbpUacwnReiPEjMvRCXZX5OSIfV8e02txV+5RE2bE56+LFpjUBHUb7+kwU4Il5Blx5
+ 4+SU4ns8ZunLgVYmV9W1B/hCOm/GIVXcjEoEs6NyzBm5hDQK555XngdJpxO6WKOfb5+hGnH6SpN
+ 3PAZBZcSQaowOOU5ioMT5eiODojGHBgn1AXO6+etHi2EPkm/lIEHnKx2q18YJ0FAM8bULgKpQvq
+ H9D1O4EUy6qoG9i0FtaZdDXBIL8Ex/EMN+wFvM3Y9W82S5lAXtB6fBsa3PtlNAGgOUE9l9It2yv
+ Xq+frspO9G1GccliosWHHsMRpnHX15w4YINdC1EgIY4kuOqjCHqQ8sulSH+Eb/IQbtx44L7sD6l
+ muQlHX33
+X-Authority-Analysis: v=2.4 cv=YOCfyQGx c=1 sm=1 tr=0 ts=68be82d3 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=COk6AnOGAAAA:8 a=kc4OFxI6wrfgCCI0QPcA:9
+ a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-ORIG-GUID: PJc0ojcCW325l67h-htPvKX7ntareATZ
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_02,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ malwarescore=0 phishscore=0 clxscore=1015 adultscore=0 impostorscore=0
+ suspectscore=0 priorityscore=1501 spamscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080034
 
-On Thu, Sep 04, 2025 at 04:10:23PM GMT, zhangsenchuan wrote:
+On 9/6/25 10:41 AM, Jens Glathe wrote:
+> On 21.08.25 15:53, Neil Armstrong wrote:
+>> The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
+>> connected to the third QMP Combo PHY 4 lanes.
+>>
+> [...]
+>>   .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 44 ++++++++++++++++++++++
+>>   1 file changed, 44 insertions(+)
+> [...]
+>> diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+>> index 4cf61c2a34e31233b1adc93332bcabef22de3f86..5b62b8c3123633360f249e3ecdc8ea23f44e8e09 100644
+>> --- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
+> [...]
+>> +&mdss_dp2 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&mdss_dp2_out {
+>> +    data-lanes = <0 1 2 3>;
+>> +};
+>> +
 > 
+> Hi Neil,
 > 
+> shouldn't mdss_dp2_out also have the link-frequencies property?
 > 
-> > -----Original Messages-----
-> > From: "Manivannan Sadhasivam" <mani@kernel.org>
-> > Send time:Monday, 01/09/2025 14:04:50
-> > To: zhangsenchuan@eswincomputing.com
-> > Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
-> > Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe host controller
-> > 
-> > On Fri, Aug 29, 2025 at 04:22:37PM GMT, zhangsenchuan@eswincomputing.com wrote:
-> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > 
-> > > Add Device Tree binding documentation for the ESWIN EIC7700
-> > > PCIe controller module,the PCIe controller enables the core
-> > > to correctly initialize and manage the PCIe bus and connected
-> > > devices.
-> > > 
-> > > Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
-> > > Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > ---
-> > >  .../bindings/pci/eswin,eic7700-pcie.yaml      | 142 ++++++++++++++++++
-> > >  1 file changed, 142 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> > > new file mode 100644
-> > > index 000000000000..65f640902b11
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
-> > > @@ -0,0 +1,142 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Eswin EIC7700 PCIe host controller
-> > > +
-> > > +maintainers:
-> > > +  - Yu Ning <ningyu@eswincomputing.com>
-> > > +  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
-> > > +
-> > > +description:
-> > > +  The PCIe controller on EIC7700 SoC.
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: eswin,eic7700-pcie
-> > > +
-> > > +  reg:
-> > > +    maxItems: 3
-> > > +
-> > > +  reg-names:
-> > > +    items:
-> > > +      - const: dbi
-> > > +      - const: config
-> > > +      - const: mgmt
-> > > +
-> > > +  ranges:
-> > > +    maxItems: 3
-> > > +
-> > > +  num-lanes:
-> > > +    const: 4
-> > > +
-> > > +  '#interrupt-cells':
-> > > +    const: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 9
-> > > +
-> > > +  interrupt-names:
-> > > +    items:
-> > > +      - const: msi
-> > > +      - const: inta
-> > > +      - const: intb
-> > > +      - const: intc
-> > > +      - const: intd
-> > > +      - const: inte
-> > > +      - const: intf
-> > > +      - const: intg
-> > > +      - const: inth
-> > 
-> > What? Are these standard INTx or something elese? PCI(e) spec defines only
-> > INT{A-D}.
-> > 
+> +    link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
 > 
-> Dear Manivannan
-> 
-> Thank you for your thorough review .
-> You are right, the PCI(e) spec defines only four legacy INTx interrupts (INTA#, INTB#, INTC#,  INTD#). 
-> PCI(e) spec defines also mentions that INTX interrupts have two control states (Assert_INTx/Deassert_INTx Message).
-> In our yaml, inta~intd corresponds to Assert_INTA~Assert_INTD, and inte~inth corresponds to Deassert_INTA~Deassert_INTD. 
-> May I ask if inte~inth needs to be removed or if the naming needs to be standardized? 
-> I saw that in "sifive,fu740-pcie.yaml", interrupt-names only retain inta to intd.
-> 
+> Or is it something the bridge already negotiates?
 
-If these are actual interrupts and these names align with the interrupt names in
-the hardware IP, then you can keep it as it is and should add a comment for
-inte-inth:
-		- const: inte /* INTA_Deassert */
-		...
+No, it seems like our driver falls back to HBR2 (54xx) ever since the
+driver has been made aware of this property:
 
-If not, then you should remove inte-inth.
+commit 381518a1677c49742a85f51e8f0e89f4b9b7d297
+Author: Kuogee Hsieh <quic_khsieh@quicinc.com>
+Date:   Tue Dec 27 09:45:02 2022 -0800
 
-> > > +
-> > > +  interrupt-map:
-> > > +    maxItems: 4
-> > > +
-> > > +  interrupt-map-mask:
-> > > +    items:
-> > > +      - const: 0
-> > > +      - const: 0
-> > > +      - const: 0
-> > > +      - const: 7
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 4
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: mstr
-> > > +      - const: dbi
-> > > +      - const: pclk
-> > > +      - const: aux
-> > > +
-> > > +  resets:
-> > > +    maxItems: 3
-> > > +
-> > > +  reset-names:
-> > > +    items:
-> > > +      - const: cfg
-> > > +      - const: powerup
-> > > +      - const: pwren
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - ranges
-> > > +  - num-lanes
-> > > +  - interrupts
-> > > +  - interrupt-names
-> > > +  - interrupt-map-mask
-> > > +  - interrupt-map
-> > > +  - '#interrupt-cells'
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - resets
-> > > +  - reset-names
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    soc {
-> > > +        #address-cells = <2>;
-> > > +        #size-cells = <2>;
-> > > +
-> > > +        pcie@54000000 {
-> > > +            compatible = "eswin,eic7700-pcie";
-> > > +            reg = <0x0 0x54000000 0x0 0x4000000>,
-> > > +                  <0x0 0x40000000 0x0 0x800000>,
-> > > +                  <0x0 0x50000000 0x0 0x100000>;
-> > > +            reg-names = "dbi", "config", "mgmt";
-> > > +            #address-cells = <3>;
-> > > +            #size-cells = <2>;
-> > > +            #interrupt-cells = <1>;
-> > > +            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
-> > 
-> > I/O CPU range starts from 0x0
-> > 
-> > Also, I don't think you need to set the relocatable flag (bit 31) for any
-> > regions.
-> 
-> if cannot set the relocatable flag (bit 31) for any regions.Is it appropriate to write it this way：
-> ranges = <0x01000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
->          <0x02000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
->          <0x43000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
-> 
+    drm/msm/dp: Add capability to parser and retrieve max DP link supported rate from link-frequencies property of dp_out endpoint
 
-Yes.
+Dmitry, is there any reason not to allow HBR3 by default? Is our dp
+controller/driver not smart enough not to advertise rates it can't
+support, during negotiation?
 
-> > 
-> > > +                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
-> > > +                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
-> > > +            bus-range = <0x0 0xff>;
-> > > +            clocks = <&clock 562>,
-> > > +                     <&clock 563>,
-> > > +                     <&clock 564>,
-> > > +                     <&clock 565>;
-> > 
-> > Don't you have clock definitions for these values?
-> > 
-> 
-> Our clock and reset drivers have the definitions of these values, but the clock and reset drivers are under review. 
-> Currently, these values can only be replaced by constants.
-> 
-
-Ok, you should also mention this in description or cover letter.
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
+Konrad
 
