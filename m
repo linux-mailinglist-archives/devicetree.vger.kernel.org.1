@@ -1,260 +1,344 @@
-Return-Path: <devicetree+bounces-214378-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214379-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0B30B48EA4
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EA32B48EA3
 	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:06:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8288E3B4216
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:05:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 135711B26F97
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:06:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2180730C36A;
-	Mon,  8 Sep 2025 13:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACA1730C639;
+	Mon,  8 Sep 2025 13:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UHtPC0Bw"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="CARTHGcf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2E6530B520
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7DE0D30BB98
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:04:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757336674; cv=none; b=U1LzZeXIH35VnzSaOnpzrhzLSMRCGo8atqyVdy1UuREpK4LhZRLEE18oVsqApXi7rw6i12lCGh6iY4X23qq7DB6yWBY5mmbSgdTiTUB0gvcET7WfvZu874myKQXLAIUK/yBO5sTsyZvKBO2i+k22b3fO3Kjg129MKGqsgkc/pP0=
+	t=1757336676; cv=none; b=g6ilX20CjZSyvgno0Yl3XhgB6L2Sva0cZCMbgSscGSVkkkb4ixilB7wlFOS8tZI7xWWpTSGQ64wNLxuNBommg7pWZwrZvEB8s0VuRs8tqnCZrUWcdmOlD5ugcBsoDey7CJNTrM5QTBlROxuxqTxCrcy8lTsr9nyYFz2lsxyJ+hI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757336674; c=relaxed/simple;
-	bh=HrSq9QX+rRZZn6/cR+hy9Izp3f7Ikd1Wm8zLBwjaDxk=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FVlTJ3FKXn+Uf7wbAEkn5/cXL1IMoFd+nQ259MHJF2N5YpKYwLbF2ympmgdyvefdOf+h2dpoW5JzueclKQYrST1TmuPg1TS8M1/clXf0kElQTFYv2uvwLVpkqSvgeSLHVCmW4Dv0Oyfug+gqwCLtrf7MM+KmT4PXeqzJ17uLDOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UHtPC0Bw; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-45dec268f2aso503655e9.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:04:31 -0700 (PDT)
+	s=arc-20240116; t=1757336676; c=relaxed/simple;
+	bh=9eSNNMYWl6Ezk00Y7GbdoLIlm1gW9gBEiyXh++DBIfc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QJqnriFDSmd1T7culZOjs21SYrt1VR0oJvyho9/N3MhXJt3HarqhAuafrwzeBMzxzqdoD5O6jFWAiJ2SQ/qH56I26gKd8DSvWVx3RzxZe6dlWk+BWb19TRhMita9idna+PPY2kZ3e5OV1UdolVRL5O1lHIcaSwiLJXYzxQPdG48=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=CARTHGcf; arc=none smtp.client-ip=209.85.208.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-61cb4374d2fso6690360a12.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:04:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757336670; x=1757941470; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=BDyuAKF3Y98UqjyyRF0OYRaWszlGNwULvWxPJjSxWt0=;
-        b=UHtPC0BwYM7hRxQlKUQrw9P48f+wFx0vSsuVjrWigwQZZHLTjsRcO3cW32ctey9aM+
-         nquTvx5mTtoOeG6RkwsWFmmcBhMgIyIeHDN9hU837OGskuLOLIHJpkwPk17fyKRwwXYn
-         geNXBBbV2AJKlo0rEYzjRWFj5tmpMTYHZLpaayMFfy/iOZXjMUMvGe7KQRXQn/bjsVvE
-         y2yytVtlFSIDDAam+s3uYCHDRdsaTWZws+ebpryycR0Mqb324U8cC/b3t/ALh9fINjSS
-         xzjAb3+dtR4EZAfTi+aKmaJ1mCAUomm+In/mtlLqMym8krC2MPNk1o7PhX8CXnqV9lIF
-         8DYg==
+        d=tuxon.dev; s=google; t=1757336671; x=1757941471; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Yd7mLJQDkHllxwujkPQ/7Z9ByYCiL7cm7yP3I7t4tTI=;
+        b=CARTHGcfpuGQRiCFTvZM4NXt95YK/DQTgVoX3DMJTajOq6Oj7RTiw5vh7z503RGPgF
+         TaV7XiFZ834FIBdWLYDSF8+AFd3EvqsSnkmfz17PXDBSvAk0T75ghFtq1xTiDuOpG9+q
+         WX0IbyGkLYJYqrrbg7Fox8TcKqbwOA1cmR7Tbem/HCm7vi8fHp7DP/LdD6JgI7NSAMoR
+         HQSgGPPOb6VOtCwoS5VCXDbB7ypfBS1zn+9I1S2pKDWLdDZYfOzsmW+KN0mqsxJuGeL5
+         BhsJ+Igv4tLs1XqCgjVxIXffGsBAVGpMBGYUpeY+w6Yv4L5/IDDRvB2+lrKA0pvMsFpw
+         RLYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757336670; x=1757941470;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=BDyuAKF3Y98UqjyyRF0OYRaWszlGNwULvWxPJjSxWt0=;
-        b=O0L+DQ5z6Ul7c8JnW6hIkkUGK4tfHJIpuBKjs5oz0aLwMDsGJo3+ykELfg5//TYRK7
-         6BfZXrcFKWbsu8HRwcfu5n1cYK39FH44NO8TB3AB30BmkuOydPxplev+xbVkVthT7F+W
-         2NxD3In4frkIhamVpZ159nGkPwedllMACwhFVVlkX4VgRjdMJ/bZ/O90iwAnAxz2ceoH
-         fQKG4X+OmSmR2mCbwLrkH4S8N9nfIooWfGePW375L+HAtwy1IDOfy0Ru3bd2HQIhAmP0
-         ZSIxr/1bjFrUTCalJRSlxaF54mceFof6Jakj7/3sRBOPkgWCKMD7+bsUmtGG0MDBIgo5
-         IcfQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUhH7lJ1Gq3ChVhbsdBihW0rmeDk6s8C0Lo4C21nWA/X14XRlYZo6lwqd+Shyr2fjV+qhisipGnHx6j@vger.kernel.org
-X-Gm-Message-State: AOJu0YywuD2sCFTeHcCIk8mkw6qxIVRIJ61P04pYNV2UoeMS895MnokY
-	yGKPw6igZr/9yHNfnkyMErM7So12fYk4fB7ihBoPw0OU+7kSWi0QwckYqoXGMY2zT+E=
-X-Gm-Gg: ASbGncuIY9HT2UyUQTOeUKvO0bKn4EuWQ6NPWKXfZ8Q+6mqgTtedhY6LoyYOcdNsH1e
-	JdFDGM6Q8Q7Cb9JwFzvagrrxPt4BTiQ6yQELHcFZgjpX0ir7KCaHV5xo30XMDGYYt2+FDY1dJx8
-	8EBLwmFR1vtUMifCruvbVHYBMGuEBRpsjW6SNK85l8fwSMIJNC3j5ZPQ6SOe57eO34c2o9D6UyT
-	fM+EeLV6+LDphawxiL6FZn0sP2qSLAfblg1rR5Tavcf1i5R0Vg0kIjDTJqNBKmq4AjBpEqBkveh
-	/ErGQY8W1jd3Wn35sFrruyWVD4eSITaOxzxofdZeJ/FznWYnqQnBSYG9WY3qfM9YKUeak7v2Qvh
-	d2ag+VMsUbR+v4AHXgmydNKW+F13dcZumfumW/eKT5N3pqxP3116hTg==
-X-Google-Smtp-Source: AGHT+IG0ZjbfMijZhAL81qHoPX21zRJo3pFZjpyCCWzSjGWv7KwJCCXF42mhC1fWc6KxMzh5zfhfmg==
-X-Received: by 2002:a05:600c:4f0f:b0:45d:e211:da8f with SMTP id 5b1f17b1804b1-45de936287amr17504015e9.36.1757336669870;
+        d=1e100.net; s=20230601; t=1757336671; x=1757941471;
+        h=content-transfer-encoding:in-reply-to:content-language:from
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Yd7mLJQDkHllxwujkPQ/7Z9ByYCiL7cm7yP3I7t4tTI=;
+        b=CbR7ct2DWTGOJmly2lcTf2bpepsgb7nujj+NSa7og5bc3TTEwfNJmmkYWjQnrtEo06
+         fzE2SG5FSgT1+9ZYhts9FKcJKQ7xW6l6cYMQu6awGny/STRh9YSNdkNyD2FaO/VHUdZ7
+         uOdomMV80A2X4njfK7uD4MPt2i5GStYQ+K0LXFaK9H85+tDWqN53ZC9yiW31idm7avs3
+         p+VwHMW2jPUsreVaRXlTW/Q8yfmh/vWdygsTP2KyLIJIXc1/3Zwd5u9TigpCvY8VPx0F
+         PIzamhgBZhiRx5zt4KTYqcBSJVFObA9OiJBwoq20zgy/R4CbR5aLja1OrgMKiRZ72q6W
+         qJ7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUQsN+wTSaEAScBMAM+utCMLMVAH0xGPjSUFOdOsOMGaBEGJwCtdqV8Hh34XesiBxw0dVHPx9I2WDO2@vger.kernel.org
+X-Gm-Message-State: AOJu0YzG2SPnrHSt3DV1CET0Sl6MTsm3polRfE/pFEYoM2lAMrnxcRR9
+	T+v9CWphzN2E91HoQJ8+iX0jTQo23C8P0TrN8yfUvs3E4aHLzKO7TErPGPyDIpvACsY=
+X-Gm-Gg: ASbGncsyatCn2RmtqW0g9wscpJ5aNGNUW/j1xKZ08e+SA6+fAUVGsp3o4SgzQ+Vb6Ce
+	7dipOitV6qH22rqngZLJ94Eit1pmVRv3dS5GOIbEjWkPmUJUe2NlCE7UhIcsSD857N1sb5l8M8O
+	kqo9AdQVpJo8hdMjYyNr2KyoNBBuZo6bRWefj0qlXlA+SkHQq+i4I3/626GuJgYOCO7VbC7Y/nJ
+	1JSppLXw9o7vm7CCauQXCpmW5GclQxViG/NbwkXrbNTifpupnBT6IEOSB0K3MGZ8q9Lg3XIBnxV
+	dGGF5XaTJpKYd0KXgDVO0OE3xULjrO29BcTNeFl2qtnSf2669WVovKF55egE0skPbNhdTwwtezn
+	YyyUCcBxxDql1BPhDPRz5hSnghHKNOl0=
+X-Google-Smtp-Source: AGHT+IEmhgCH3sUPlRQKMy5XutR0hjOQQ3uuBSZbxPWNovm+H+RQwCI0Zz7MCSmSQKcPnEjwUEs0SA==
+X-Received: by 2002:a05:6402:2348:b0:61c:8fe9:9423 with SMTP id 4fb4d7f45d1cf-6237edb2f15mr8247367a12.17.1757336670479;
+        Mon, 08 Sep 2025 06:04:30 -0700 (PDT)
+Received: from [192.168.50.4] ([82.78.167.139])
+        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-61cfc575b94sm21301716a12.53.2025.09.08.06.04.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
         Mon, 08 Sep 2025 06:04:29 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:3d9:2080:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45dd6891d23sm145632475e9.4.2025.09.08.06.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 06:04:29 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Mon, 08 Sep 2025 15:04:22 +0200
-Subject: [PATCH v3 5/5] arm64: dts: qcom: x1e78100-lenovo-thinkpad-t14s:
- add HDMI nodes
+Message-ID: <83301c1e-9e6d-4bbe-ac76-db6ce7ec670e@tuxon.dev>
+Date: Mon, 8 Sep 2025 16:04:28 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/9] PCI: rzg3s-host: Add Initial PCIe Host Driver for
+ Renesas RZ/G3S SoC
+To: Manivannan Sadhasivam <mani@kernel.org>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org,
+ robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+ geert+renesas@glider.be, magnus.damm@gmail.com, catalin.marinas@arm.com,
+ will@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+ p.zabel@pengutronix.de, lizhi.hou@amd.com, linux-pci@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-clk@vger.kernel.org, Claudiu Beznea
+ <claudiu.beznea.uj@bp.renesas.com>,
+ Wolfram Sang <wsa+renesas@sang-engineering.com>
+References: <20250704161410.3931884-1-claudiu.beznea.uj@bp.renesas.com>
+ <20250704161410.3931884-6-claudiu.beznea.uj@bp.renesas.com>
+ <ddxayjj5wcuuish4kvyluzrujkes5seo7zlusmomyjfjcgzcyj@xe3zzzmy2zaj>
+ <8ef466aa-b470-4dcb-9024-0a9c36eb9a6a@tuxon.dev>
+ <zsgncwvhykw4ja3bbqaxwupppjsqq4pcrdgrsduahokmt72xsm@twekpse6uzzh>
+From: Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Content-Language: en-US
+In-Reply-To: <zsgncwvhykw4ja3bbqaxwupppjsqq4pcrdgrsduahokmt72xsm@twekpse6uzzh>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250908-topic-x1e80100-hdmi-v3-5-c53b0f2bc2fb@linaro.org>
-References: <20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org>
-In-Reply-To: <20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org>
-To: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
- linux-phy@lists.infradead.org, Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3297;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=HrSq9QX+rRZZn6/cR+hy9Izp3f7Ikd1Wm8zLBwjaDxk=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBovtRXCAk1A5GYFI4lxepbD+HCSVr8CgQQq0D8xcF8
- d7k3yNyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCaL7UVwAKCRB33NvayMhJ0ZhND/
- 9lclVjyWMFDPeiGeKHHbcI/xMBqTcupaELGi1+5gFDGmiPkp8eH6QbIIJ1DPYYTItWggZzNNuly0KB
- 8Ckq16igtfaJ5uoR9hBVOedkbGSKSiAu7Nb3YyPtoOQl54qhHGbHd52ASn+Y8RhSOzlHS2CfIAkMyN
- unEnHLMqqAa0VFgl3ozr3LHnXfxadl6MVzWEyy5anAjGdEkjaXGlYQC57tMrytmh5AYHpFVm6juUTf
- +sDJ72wrulwWLk1A5wGa6Fe8m+afxHNlcIjnXQVTDRiOL/sag4vIgoA/5Smi5p8vne01OwzP28CHsC
- bIa5GHL2z6xNLILOB/Z+NFJAsTa58hU/ZksNn6Sfcer3c8zEyK3NVVWbgiwUyJoTy2MweOJuYSgB7u
- OdgyxMNC5T5VyjdNuMqdAvAAAD+AJyPRTk+fLJA8B8iSkaF/ZPXRCHH0JYi9cRlV8wy43jm2n27ua9
- Vf3xlxoQ2VxvLg5shxJTMBTvTdah6X6iSBeKyoCrXDLEUYOrwxr+t0Vv0M4LkWECuqtdDf7pnVgYDp
- VmDOE/Fp74Ehyw1XsUtSXPyqzm+P2THYGrSrsmM66wpRVVjA9B8CAigmjMLqIvJOaKIPiMW+KAP3bj
- FMItlozn2k37M726g5Gh6rF9TzxG+0mUKCmQynfFpwxgld+0E8Gft0j+J+WA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-The Thinkpad T14s embeds a transparent 4lanes DP->HDMI transceiver
-connected to the third QMP Combo PHY 4 lanes.
+Hi, Manivannan,
 
-Add all the data routing, disable mode switching and specify the
-QMP Combo PHY should be in DP-Only mode to route the 4 lanes to
-the underlying DP phy.
+Apologies for the late reply, I've been off for a while.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi    | 82 ++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+On 8/31/25 07:07, Manivannan Sadhasivam wrote:
+> On Sat, Aug 30, 2025 at 02:22:45PM GMT, Claudiu Beznea wrote:
+>>
+>>
+>> On 30.08.2025 09:59, Manivannan Sadhasivam wrote:
+>>> On Fri, Jul 04, 2025 at 07:14:05PM GMT, Claudiu wrote:
+>>>> From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>>
+>>>> The Renesas RZ/G3S features a PCIe IP that complies with the PCI Express
+>>>> Base Specification 4.0 and supports speeds of up to 5 GT/s. It functions
+>>>> only as a root complex, with a single-lane (x1) configuration. The
+>>>> controller includes Type 1 configuration registers, as well as IP
+>>>> specific registers (called AXI registers) required for various adjustments.
+>>>>
+>>>> Hardware manual can be downloaded from the address in the "Link" section.
+>>>> The following steps should be followed to access the manual:
+>>>> 1/ Click the "User Manual" button
+>>>> 2/ Click "Confirm"; this will start downloading an archive
+>>>> 3/ Open the downloaded archive
+>>>> 4/ Navigate to r01uh1014ej*-rzg3s-users-manual-hardware -> Deliverables
+>>>> 5/ Open the file r01uh1014ej*-rzg3s.pdf
+>>>>
+>>>> Link: https://www.renesas.com/en/products/rz-g3s?queryID=695cc067c2d89e3f271d43656ede4d12
+>>>> Tested-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+>>>> Signed-off-by: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+>>>> ---
+>>>>
+>>>
+>>> [...]
+>>>
+>>>> +static bool rzg3s_pcie_child_issue_request(struct rzg3s_pcie_host *host)
+>>>> +{
+>>>> +	u32 val;
+>>>> +	int ret;
+>>>> +
+>>>> +	rzg3s_pcie_update_bits(host->axi, RZG3S_PCI_REQISS,
+>>>> +			       RZG3S_PCI_REQISS_REQ_ISSUE,
+>>>> +			       RZG3S_PCI_REQISS_REQ_ISSUE);
+>>>> +	ret = readl_poll_timeout_atomic(host->axi + RZG3S_PCI_REQISS, val,
+>>>> +					!(val & RZG3S_PCI_REQISS_REQ_ISSUE),
+>>>> +					5, RZG3S_REQ_ISSUE_TIMEOUT_US);
+>>>> +
+>>>> +	return !!ret || (val & RZG3S_PCI_REQISS_MOR_STATUS);
+>>>
+>>> You don't need to do !!ret as the C11 standard guarantees that any scalar type
+>>> stored as bool will have the value of 0 or 1.
+>>
+>> OK, will drop it anyway as suggested in another thread.
+>>
+>>>
+>>>> +}
+>>>> +
+>>>
+>>> [...]
+>>>
+>>>> +static void __iomem *rzg3s_pcie_root_map_bus(struct pci_bus *bus,
+>>>> +					     unsigned int devfn,
+>>>> +					     int where)
+>>>> +{
+>>>> +	struct rzg3s_pcie_host *host = bus->sysdata;
+>>>> +
+>>>> +	if (devfn)
+>>>> +		return NULL;
+>>>
+>>> Is it really possible to have devfn as non-zero for a root bus?
+>>
+>> I will drop it.
+>>
+>>>
+>>>> +
+>>>> +	return host->pcie + where;
+>>>> +}
+>>>> +
+>>>
+>>> [...]
+>>>
+>>>> +static int rzg3s_pcie_msi_setup(struct rzg3s_pcie_host *host)
+>>>> +{
+>>>> +	size_t size = RZG3S_PCI_MSI_INT_NR * sizeof(u32);
+>>>> +	struct rzg3s_pcie_msi *msi = &host->msi;
+>>>> +	struct device *dev = host->dev;
+>>>> +	int id, ret;
+>>>> +
+>>>> +	msi->pages = __get_free_pages(GFP_KERNEL | GFP_DMA, 0);
+>>>> +	if (!msi->pages)
+>>>> +		return -ENOMEM;
+>>>> +
+>>>> +	msi->dma_addr = dma_map_single(dev, (void *)msi->pages, size * 2,
+>>>> +				       DMA_BIDIRECTIONAL);
+>>>> +	if (dma_mapping_error(dev, msi->dma_addr)) {
+>>>> +		ret = -ENOMEM;
+>>>> +		goto free_pages;
+>>>> +	}
+>>>> +
+>>>> +	/*
+>>>> +	 * According to the RZ/G3S HW manual (Rev.1.10, section 34.4.5.2 Setting
+>>>> +	 * the MSI Window) the MSI window need to be within any AXI window. Find
+>>>> +	 * an AXI window to setup the MSI window.
+>>>
+>>> Are you really finding the AXI window or just making sure that the MSI window
+>>> falls into one of the AXI window?
+>>
+>> I'm making sure the MSI windows falls into one of the enabled AXI windows.
+>>
+> 
+> Then you need to reword the comment as such. Currently, it is not clear.
 
-diff --git a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-index 23213b0d9582822e9503e4acf18c62d5c8c7867d..077aa71e79b548cb1f7c76d297a6afae717f7663 100644
---- a/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-+++ b/arch/arm64/boot/dts/qcom/x1e78100-lenovo-thinkpad-t14s.dtsi
-@@ -9,6 +9,7 @@
- #include <dt-bindings/gpio/gpio.h>
- #include <dt-bindings/input/gpio-keys.h>
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/phy/phy.h>
- #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
- #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
- 
-@@ -62,6 +63,45 @@ switch-lid {
- 		};
- 	};
- 
-+	hdmi-bridge {
-+		compatible = "realtek,rtd2171";
-+
-+		pinctrl-0 = <&hdmi_hpd_default>;
-+		pinctrl-names = "default";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+
-+				hdmi_bridge_dp_in: endpoint {
-+					remote-endpoint = <&usb_1_ss2_qmpphy_out_dp>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+
-+				hdmi_bridge_tmds_out: endpoint {
-+					remote-endpoint = <&hdmi_con>;
-+				};
-+			};
-+		};
-+	};
-+
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con: endpoint {
-+				remote-endpoint = <&hdmi_bridge_tmds_out>;
-+			};
-+		};
-+	};
-+
- 	pmic-glink {
- 		compatible = "qcom,x1e80100-pmic-glink",
- 			     "qcom,sm8550-pmic-glink",
-@@ -1005,6 +1045,14 @@ &mdss_dp1_out {
- 	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
- };
- 
-+&mdss_dp2 {
-+	status = "okay";
-+};
-+
-+&mdss_dp2_out {
-+	link-frequencies = /bits/ 64 <1620000000 2700000000 5400000000 8100000000>;
-+};
-+
- &mdss_dp3 {
- 	/delete-property/ #sound-dai-cells;
- 
-@@ -1264,6 +1312,12 @@ &tlmm {
- 			       <72 2>, /* Secure EC I2C connection (?) */
- 			       <238 1>; /* UFS Reset */
- 
-+	hdmi_hpd_default: hdmi-hpd-default-state {
-+		pins = "gpio126";
-+		function = "usb2_dp";
-+		bias-disable;
-+	};
-+
- 	eusb3_reset_n: eusb3-reset-n-state {
- 		pins = "gpio6";
- 		function = "gpio";
-@@ -1487,6 +1541,34 @@ &usb_1_ss0_qmpphy_out {
- 	remote-endpoint = <&retimer_ss0_ss_in>;
- };
- 
-+&usb_1_ss2_qmpphy {
-+	vdda-phy-supply = <&vreg_l2j_1p2>;
-+	vdda-pll-supply = <&vreg_l2d_0p9>;
-+
-+	/delete-property/ mode-switch;
-+	/delete-property/ orientation-switch;
-+
-+	status = "okay";
-+
-+	ports {
-+		port@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			/delete-node/ endpoint;
-+
-+			usb_1_ss2_qmpphy_out_dp: endpoint@0 {
-+				reg = <0>;
-+
-+				data-lanes = <0 1 2 3>;
-+				remote-endpoint = <&hdmi_bridge_dp_in>;
-+			};
-+
-+			/* No USB3 lanes connected */
-+		};
-+	};
-+};
-+
- &usb_1_ss1_hsphy {
- 	vdd-supply = <&vreg_l3j_0p8>;
- 	vdda12-supply = <&vreg_l2j_1p2>;
+OK
 
--- 
-2.34.1
+> 
+>>>
+>>> And I believe it is OK to have more than one MSI window within an AXI window.
+>>
+>> This IP supports a single MSI window that need to fit into one of the
+>> enabled AXI windows.
+>>
+> 
+> [...]
+> 
+>>>> +
+>>>> +	/* Update vendor ID and device ID */
+>>>
+>>> Are you really updating it or setting it? If you are updating it, are the
+>>> default IDs invalid?
+>>
+>> Default IDs are valid (at least on RZ/G3S) but Renesas specific. Renesas
+>> wants to let individual users to set their own IDs.
+>>
+> 
+> So they are optional then? But the binding treats them as required, which should
+> be changed if the default IDs are valid.
 
+On RZ/G3S the default IDs are valid. On other SoCs that will be using this
+driver (e.g. RZ/G3E) the default IDs are not valid.
+
+These were marked as required as Renesas wants them to be set by the
+company that manufactures the end product itself.
+
+
+> 
+>>>
+>>>> +	writew(host->vendor_id, host->pcie + PCI_VENDOR_ID);
+>>>> +	writew(host->device_id, host->pcie + PCI_DEVICE_ID);
+>>>> +
+>>>> +	/* HW manual recommends to write 0xffffffff on initialization */
+>>>> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00L);
+>>>> +	writel(0xffffffff, host->pcie + RZG3S_PCI_CFG_BARMSK00U);
+>>>> +
+>>>> +	/* Update bus info. */
+>>>> +	writeb(primary_bus, host->pcie + PCI_PRIMARY_BUS);
+>>>> +	writeb(secondary_bus, host->pcie + PCI_SECONDARY_BUS);
+>>>> +	writeb(subordinate_bus, host->pcie + PCI_SUBORDINATE_BUS);
+>>>> +
+>>>> +	/* Disable access control to the CFGU */
+>>>> +	writel(0, host->axi + RZG3S_PCI_PERM);
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>
+>>> [...]
+>>>
+>>>> +static int rzg3s_pcie_host_init(struct rzg3s_pcie_host *host, bool probe)
+>>>> +{
+>>>> +	u32 val;
+>>>> +	int ret;
+>>>> +
+>>>> +	/* Initialize the PCIe related registers */
+>>>> +	ret = rzg3s_pcie_config_init(host);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	/* Initialize the interrupts */
+>>>> +	rzg3s_pcie_irq_init(host);
+>>>> +
+>>>> +	ret = reset_control_bulk_deassert(host->data->num_cfg_resets,
+>>>> +					  host->cfg_resets);
+>>>> +	if (ret)
+>>>> +		return ret;
+>>>> +
+>>>> +	/* Wait for link up */
+>>>> +	ret = readl_poll_timeout(host->axi + RZG3S_PCI_PCSTAT1, val,
+>>>> +				 !(val & RZG3S_PCI_PCSTAT1_DL_DOWN_STS),
+>>>> +				 PCIE_LINK_WAIT_SLEEP_MS,
+>>>> +				 PCIE_LINK_WAIT_SLEEP_MS *
+>>>> +				 PCIE_LINK_WAIT_MAX_RETRIES * MILLI);
+>>>> +	if (ret) {
+>>>> +		reset_control_bulk_assert(host->data->num_cfg_resets,
+>>>> +					  host->cfg_resets);
+>>>> +		return ret;
+>>>> +	}
+>>>> +
+>>>> +	val = readl(host->axi + RZG3S_PCI_PCSTAT2);
+>>>> +	dev_info(host->dev, "PCIe link status [0x%x]\n", val);
+>>>> +
+>>>> +	val = FIELD_GET(RZG3S_PCI_PCSTAT2_STATE_RX_DETECT, val);
+>>>> +	dev_info(host->dev, "PCIe x%d: link up\n", hweight32(val));
+>>>> +
+>>>> +	if (probe) {
+>>>> +		ret = devm_add_action_or_reset(host->dev,
+>>>> +					       rzg3s_pcie_cfg_resets_action,
+>>>> +					       host);
+>>>
+>>> Oh well, this gets ugly. Now the devm_add_action_or_reset() is sprinkled
+>>> throughout the driver :/
+>>>
+>>> As I said earlier, there are concerns in unloading the driver if it implements
+>>> an irqchip. So if you change the module_platform_driver() to
+>>> builtin_platform_driver() for this driver, these devm_add_action_or_reset()
+>>> calls become unused.
+>>
+>> They can still be useful in case the probe fails. As the initialization
+>> path is complicated, having actions or resets looks to me that makes the
+>> code cleaner as the rest of devm_* helpers.
+>>
+>> I can drop it and replace with gotos and dedicated functions but this will
+>> complicate the code, AFAICT.
+>>
+>> Please let me know how would you like me to proceed.
+>>
+> 
+> It is generally preferred to cleanup the resources in err path using goto
+> labels.
+
+Just to be sure I'll prepare the next version with something that was
+requested: would you like to have goto lables on this driver?
+
+I kept it like this as I considered the code is simpler.
+
+Thank you,
+Claudiu
 
