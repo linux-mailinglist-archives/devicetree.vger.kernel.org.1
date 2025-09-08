@@ -1,151 +1,119 @@
-Return-Path: <devicetree+bounces-214120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 614F5B48333
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 06:15:54 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 160DAB48345
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 06:35:43 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1C14717B905
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 04:15:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CF8967A8C6B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 04:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3ADF022128A;
-	Mon,  8 Sep 2025 04:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD86A1FFC59;
+	Mon,  8 Sep 2025 04:35:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="sDinFn7a"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ppx4sh1c"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F59A21B19D;
-	Mon,  8 Sep 2025 04:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB7A189F5C;
+	Mon,  8 Sep 2025 04:35:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757304929; cv=none; b=Z7tKcLYkbuaXtD2WQcslB6RBKph7uHSFLJLSSSoTzSOGHE7kB/BVsN4gKyvi9wbKN88xDFcMV6QJ3j0E7ja/TFefuVcj5osNZddmUE7q4b3eivH/gyAF5orXrLyy+1iV7d6ldjBt76KoHFNwBbbfOAiz8LMDJu+QxNH2yGwJ14w=
+	t=1757306135; cv=none; b=ooWFIbrOcrg1YzijVIF8vAUoc6uzh5TrfZRkeIF8Qukb703q3MvhjfwfnS2kaLEfW0pcUG8eREZaz2b1oc42rspQB8TPPwDWb56xpUJnrUsCcLec5kaxrRaNalAsKd4WZUzR5BM8hQcDVdU0hAiqEgOgeKnjqmPyCIsGoxI1P7A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757304929; c=relaxed/simple;
-	bh=vx2kNy0+HhAu9oJXF7h1H6iRH7NO2rPLGfr4zC9bQyA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=uTgFYXU2/pctYXaPiXzABkJsOccppY33jUIDAG9KN6nJ0zTXqLMSjx1xVgYfUHW8CJfDN4vqGcFWm1OKMKkw/qWOysB65hgOaW2uFHjJl+lDsswrCe3A4VH6GkyKDEmSSxDd0gLrcnygwCH0p6SXAl1ShP3423OcfgcypLJh6xA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=sDinFn7a; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1757304927; x=1788840927;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:references:in-reply-to:to:cc;
-  bh=vx2kNy0+HhAu9oJXF7h1H6iRH7NO2rPLGfr4zC9bQyA=;
-  b=sDinFn7aWVSSXiFbA2iG+fne536vUhAZtTy2w/JnOnS7Ul2wiScF+uHL
-   PQ3b2Y/fcWeowFys/HVv0VRmMrd/8SFgUrduWhx7aIVTGq+5rr4ZHjfkw
-   8lywOpxj8Codi/qvbJXf/6BPaH1IJtUaAZ1kHD4y66vtIIW+bY+7oHvii
-   lL61g/eQ9qAIxgrppsvMjfzG5bgGp4pq+4Jr73h8R6EVl+gDkbtX/yRFw
-   hlXmT9s1ebrt8hBPAZBpYUvEMRZkk7mDVcE9Iuo46Tus079UJColoCYJT
-   6JT/s1ynhUW98TkmVcyxlwfhmdxprdtM0GOr/IAKErGiAR/iJGH+dN6oQ
-   w==;
-X-CSE-ConnectionGUID: q/SJvp4uQvCY0cG18DoX1w==
-X-CSE-MsgGUID: ZJVDMuJtRJitEtb3JxJQeA==
-X-IronPort-AV: E=Sophos;i="6.18,247,1751266800"; 
-   d="scan'208";a="46742463"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 07 Sep 2025 21:15:26 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Sun, 7 Sep 2025 21:14:58 -0700
-Received: from [127.0.0.1] (10.10.85.11) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.58 via Frontend
- Transport; Sun, 7 Sep 2025 21:14:52 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Mon, 8 Sep 2025 09:44:20 +0530
-Subject: [PATCH v2 5/5] spi: atmel-quadspi: Add support for sama7d65 QSPI
+	s=arc-20240116; t=1757306135; c=relaxed/simple;
+	bh=KD6adBTFCL84uVZev8LAQHjO2sEuuUmzzbMy5N3cxc8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LqonFT6Kcqxl52a4RhuHU5FLo3IcC2ITXLAdJr6F+Qh4XcjUbL7tPY8jlX+gE+jWjgdTSesD2Z0zB/PUy48bAubpoo63Qj1FqxIFf/p374norZeg4c6EuZWHH1TYfCT2sjHvwgwFbM8LfX4lXWCECFADmEHDCBQ+Z15y7ZGbn/A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ppx4sh1c; arc=none smtp.client-ip=198.47.19.246
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5884Z5gA4164023;
+	Sun, 7 Sep 2025 23:35:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757306105;
+	bh=Fg9Q9+LRNIuQPV6XLANO6XaefOgzFhSoYBg7PINwgjE=;
+	h=Date:Subject:To:References:From:In-Reply-To;
+	b=ppx4sh1cXZ10ATftKwMmvzQj18X+ePsrioIZAJstQ2KOXcNSFh3jeV1vVV3h09r4C
+	 7ZklrMGgBrPHoFxG+SQdkXRnlea1eK5RaVjB/Z9KNKCk40Tgl1BCGtpACVsBykNfX2
+	 c6D2wRKZTOlWO4CTURC9Mqwtj4F38SW0w5803lYs=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5884Z5LF3499992
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Sun, 7 Sep 2025 23:35:05 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Sun, 7
+ Sep 2025 23:35:05 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Sun, 7 Sep 2025 23:35:05 -0500
+Received: from [172.24.234.212] (uda0510294.dhcp.ti.com [172.24.234.212])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5884Yxp0265890;
+	Sun, 7 Sep 2025 23:35:00 -0500
+Message-ID: <9769c59d-dd5e-495e-8056-0f513a78e1b3@ti.com>
+Date: Mon, 8 Sep 2025 10:04:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] arm64: dts: ti: k3-j721e-main: Update DSS EDP
+ integration configuration register
+To: Harikrishna Shenoy <h-shenoy@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+        <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+        <conor+dt@kernel.org>, <r-ravikumar@ti.com>, <m-chawdhry@ti.com>,
+        <u-kumar1@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <tomi.valkeinen@ideasonboard.com>, <aradhya.bhatia@linux.dev>,
+        <devarsht@ti.com>, <s-jain1@ti.com>
+References: <20250907182806.1031544-1-h-shenoy@ti.com>
+ <20250907182806.1031544-2-h-shenoy@ti.com>
+Content-Language: en-US
+From: Beleswar Prasad Padhi <b-padhi@ti.com>
+In-Reply-To: <20250907182806.1031544-2-h-shenoy@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Message-ID: <20250908-microchip-qspi-v2-5-8f3d69fdd5c9@microchip.com>
-References: <20250908-microchip-qspi-v2-0-8f3d69fdd5c9@microchip.com>
-In-Reply-To: <20250908-microchip-qspi-v2-0-8f3d69fdd5c9@microchip.com>
-To: Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, "Krzysztof
- Kozlowski" <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, "Nicolas
- Ferre" <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>,
-	Tudor Ambarus <tudor.ambarus@linaro.org>
-CC: <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Dharma Balasubiramani <dharma.b@microchip.com>, Varshini Rajendran
-	<varshini.rajendran@microchip.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757304860; l=1545;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=f0BEjRg0ecgW3mbWEOamZAvt1r/7v97MsNFu6rAL6n8=;
- b=00YL9K3Oot2eHMDWKTvLcLPGPfmcIclFGVvDwqZ2I+XnJFnXS2UbKtOsqxFGJmo9H+6F6i3TO
- rGVpcQg7n+0C48LlkIsVwYrLigv/DAIZ+NKDIiZnA4Itk2gfbvheFqX
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-From: Varshini Rajendran <varshini.rajendran@microchip.com>
 
-Add support for sama7d65 QSPI controller and define its caps.
+On 07/09/25 23:58, Harikrishna Shenoy wrote:
+> Fix size of DSS_EDP0_INT_CFG_VP to 256B as stated in
+> TRM Table 2-1 MAIN Domain Memory Map.
+> Link: https://www.ti.com/lit/zip/spruil1/SPRUIL_DRA829_TDA4VM
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
----
- drivers/spi/atmel-quadspi.c | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
 
-diff --git a/drivers/spi/atmel-quadspi.c b/drivers/spi/atmel-quadspi.c
-index 342cdd6e8d64..d7a3d85d00c2 100644
---- a/drivers/spi/atmel-quadspi.c
-+++ b/drivers/spi/atmel-quadspi.c
-@@ -1638,6 +1638,24 @@ static const struct atmel_qspi_caps atmel_sam9x7_ospi_caps = {
- 	.has_dllon = false,
- };
- 
-+static const struct atmel_qspi_caps atmel_sama7d65_ospi_caps = {
-+	.max_speed_hz = SAMA7G5_QSPI0_MAX_SPEED_HZ,
-+	.has_gclk = true,
-+	.octal = true,
-+	.has_dma = true,
-+	.has_2xgclk = true,
-+	.has_padcalib = true,
-+	.has_dllon = false,
-+};
-+
-+static const struct atmel_qspi_caps atmel_sama7d65_qspi_caps = {
-+	.max_speed_hz = SAMA7G5_QSPI1_SDR_MAX_SPEED_HZ,
-+	.has_gclk = true,
-+	.has_dma = true,
-+	.has_2xgclk = true,
-+	.has_dllon = false,
-+};
-+
- static const struct atmel_qspi_caps atmel_sama7g5_ospi_caps = {
- 	.max_speed_hz = SAMA7G5_QSPI0_MAX_SPEED_HZ,
- 	.has_gclk = true,
-@@ -1675,6 +1693,15 @@ static const struct of_device_id atmel_qspi_dt_ids[] = {
- 		.compatible = "microchip,sam9x7-ospi",
- 		.data = &atmel_sam9x7_ospi_caps,
- 	},
-+	{
-+		.compatible = "microchip,sama7d65-ospi",
-+		.data = &atmel_sama7d65_ospi_caps,
-+	},
-+	{
-+		.compatible = "microchip,sama7d65-qspi",
-+		.data = &atmel_sama7d65_qspi_caps,
-+	},
-+
- 
- 	{ /* sentinel */ }
- };
+Gives a 404 on the above link?
 
--- 
-2.43.0
+Thanks,
+Beleswar
 
+>
+> Fixes: 92c996f4ceab ("arm64: dts: ti: k3-j721e-*: add DP & DP PHY")
+> Reviewed-by: Devarsh Thakkar <devarsht@ti.com>
+> Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index ab3666ff4297..3fa7537d5414 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -1863,7 +1863,7 @@ mhdp: dp-bridge@a000000 {
+>  		 * the PHY driver.
+>  		 */
+>  		reg = <0x00 0x0a000000 0x00 0x030a00>, /* DSS_EDP0_V2A_CORE_VP_REGS_APB */
+> -		      <0x00 0x04f40000 0x00 0x20>;    /* DSS_EDP0_INTG_CFG_VP */
+> +		      <0x00 0x04f40000 0x00 0x100>;    /* DSS_EDP0_INTG_CFG_VP */
+>  		reg-names = "mhdptx", "j721e-intg";
+>  
+>  		clocks = <&k3_clks 151 36>;
 
