@@ -1,212 +1,183 @@
-Return-Path: <devicetree+bounces-214421-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214422-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AB0CB4906C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:55:00 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51E2CB4908E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:59:28 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7A6F217C126
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:54:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0452518884F6
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:59:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 430A630CDA1;
-	Mon,  8 Sep 2025 13:53:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36A2E30C350;
+	Mon,  8 Sep 2025 13:58:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DYtp9zra"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="q2/deTxr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+Received: from mail-oa1-f41.google.com (mail-oa1-f41.google.com [209.85.160.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6363730C350;
-	Mon,  8 Sep 2025 13:53:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 119762FF153
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:58:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757339596; cv=none; b=UxGQYWSJE3K4xGwSABy23SJ6p1tCS10FrjNgnTu1B7Qpz8C98cWuSM7Y3LiQgIjm9DCv0y4DtpMD8ha55HDQ6LiMdAmoVGaWmFE8WPf0nUpX9I3ile6pJdcJHpxk0kEALDVN+93hmXjJ2O+LaFWouy8IST3FxemeO1xqzi9pVKg=
+	t=1757339934; cv=none; b=q8qnJ0NdpZy27j4VOc9ONTMy5Y3xA8elpkihweqAVpppMlCn1HOSV1nrcSMLI57owVsiN+2PGfuTRUPfAeRFpsD0lxbB0FED/FD3xpe+9neLk8eQtJFO7W5cmA7UOpkgMFx8bRZB/eEueocovTGaky048TJlboQJEQ50zPaCG+c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757339596; c=relaxed/simple;
-	bh=XHCWMZvvdtWa1+WbwLMOHSGAMdRjcSr+YUaIUbFqFFI=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=j/O2SxdA5Yp5mw/rXGtfLHNuvI0xb7gfwko1upPjudK4saL9DrPr5JcOkza1pi26CpwZrdlf9RcGtbLklCgnOuFkxAafpJuTvo2rP5YWv5qLhq85+gg3u77QgkfC3uc/AemV2q70cQA7VXScgeTU0+Kga0vgvyHCpwqTaou5Q2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DYtp9zra; arc=none smtp.client-ip=209.85.128.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45dcff2f313so26779745e9.0;
-        Mon, 08 Sep 2025 06:53:14 -0700 (PDT)
+	s=arc-20240116; t=1757339934; c=relaxed/simple;
+	bh=nnUQdXDtc1/htbgItUKvh9KzsFDQchaQnV43ZN8NEFE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZXYQvCJ4Cp1eTtm+JP/7psd3lzqBSdjiRd3ixOYxXrzA+0XbEzBZwBay8hbrZhk+GgDwpEaqkwkgG6Y6f0ExxP1UOJHkGxe6utDVvBdny5ur68aQg4vj0Ok8Acf3XJaqtbd4NP3IHp9PGLl+cqaJBs723JGn5flUhUtZ+ff4SYk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=q2/deTxr; arc=none smtp.client-ip=209.85.160.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-oa1-f41.google.com with SMTP id 586e51a60fabf-315a0b68314so3899042fac.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:58:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757339593; x=1757944393; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Bi8yTXJoOBwCylt9q6MtHjP7YgyhzTMi3lxmixfzTvA=;
-        b=DYtp9zraeLsI/Dp7TPjQvnF0QADziHlPtV8XyQocfKuoXJnm8IJN/f1q46BMaio4FX
-         tYVRAceNUHwU1yUtgrCC62/GDQ9C4bA3iJWIkDrvUx2NhSo7XH/4hRm8Yr5uQ6rpU1Gw
-         XU56sBSSHba2itZO7EzkWOPWVvUh9YCPqzQa7bOvj62DZLaHeJTLcNs3aJFBopVsF5B4
-         ngqMjl0IJV6vOUzFhFkl5oa0js+3P7enR2CJ2WcTeriI7+42jQqGEnNlksXRbx+OKNtg
-         00qNUO4DXdhvB/b/8zmynz3WfRne7eIGN6JeuD7ZU2ETPQMT6U5udiMIbsak6EnWZooW
-         vHRg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757339931; x=1757944731; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gDFNaThuo0PvZZYSMHlfPbpR/XX95Jknj6NoGboj6lg=;
+        b=q2/deTxruJLnCgYvrDadBbSQ4dWNB6Pih+1tRxrzRAsYjwQik+Y//fkJmPjMSi9c6b
+         S3PE46hLU19OYqlSjxAYSe+zwpzc9R/+SQoCenUG94ijuFT7fDgMq+aArwl0mCASgMAO
+         XqgZSriEKfrF1fJa3+mCPQC85AomlPtCS59jdGPzEXmIHOhohDsNH0YBMtOu4HLLRmbV
+         3+KyMz+xCeNHcsYdPHUJBriJD+cwsRh2c1cXsywml+Unaut2bY6lYIEDhKU2Kwoku2NM
+         rZSbXxiKzVe54OaMDAPhPPWXEQAQYVcNS8d5WqMOfeUS5SnbPd08olIX63X1SVhqIl2h
+         A1Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757339593; x=1757944393;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Bi8yTXJoOBwCylt9q6MtHjP7YgyhzTMi3lxmixfzTvA=;
-        b=cuaLlE4kTmdDE240/ZMw8xqftukWQtIlyBm2zG2GItFI6uUnVYt4jqXTSa4ZJ3aS4N
-         R+/oILybaL0hUhDu7qknUfd6wKHpVKSxEVBE7tXlHEKn4Uyn8AUwkqufNYLn3gDj+yF8
-         1j4Q3r9lP0qvxmHzhU5CACCARBHnG1yugFisMx5rVu8Qi97FwS2eMSsvbTH3hH8vQFAX
-         3MKQvrbvGGnOrT7UnfYoHdDbmv4rNeRhW3gtG8LlWcqsrHZRTbbJfVhxY9YleBxDatAn
-         +fO8THAQ+vrV/74d5f6tqCjuW9kz1cApYvN4nlGjQ0967TH067Q1NJt6nRa7ZJNIACv/
-         MjtQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUYQ2WJoxtiWpOhBLYTct18MkGJ/6ILTXTAldFg/F4o2sAwf9R1YYGiqqnv4ha/OTk818NY5zIcAHwZ@vger.kernel.org, AJvYcCW5ycFVn/SFOwbP5RGmJeIxG9p5nnyRER6bITMTgH9UU1CYc79wML8AOj6h3/wAN1Yu6tjZxD/lRN/+JA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YxEAWGDgbMrBB02NqmtWRQR12gXoX/QCe1AprchnIAc6BqHOQ0W
-	Ro51D4MEswxAf9khEg2WtPi9fgbP69VFTr3czJpEsbWisfZJJh3TAGWs
-X-Gm-Gg: ASbGncs5bNHpqbdImLrfC94JLqSRlQxU5lMjkfLZ6J/tJLgx8q8MpoiFF5crQE9kdPL
-	0t6BPMWUW87m3Jlfn9c7dc9MvRLJPn40xIj4uaBXJzpOHWS8YQNIs/q/pS5miwfEMTRy8W19vk0
-	QxecZkVq1ndpIcTNyaJ5rTECWI6Va5PMPp+reg270GP1Y0Y8Ol2SMnCnw7xWtI0kZP98mO7p3ml
-	FDrxgOLNKcb2YBeLX2/jG8NnkpmaDMlwU96xNtiy23giFzkDFSmeX+mjrlByK//0uO2tLj+DnfF
-	Jipslyp5sAaWj15hE0xoD5+Rs7KZ6sVMV5rXJIDsxd5XVvxLVRgV05GLoTA4zpq4YJnR5l46Bl+
-	OyGdTs7FL/tgJactuzX9TG3sxHO1SFEh0YGIKCqC4PHI9OpqTfvF/5vhX9f+z7r9WAVM6UxyPeF
-	E=
-X-Google-Smtp-Source: AGHT+IFymJM5Q/838u4sNcO2o9XEJ5qNZ4BhV9dGgjKVBrrKdv1vk6q5UfzwHAK51v7oPTW2ilOY8A==
-X-Received: by 2002:a05:600c:3b8b:b0:45d:d356:c358 with SMTP id 5b1f17b1804b1-45dddec3b92mr84964785e9.16.1757339592629;
-        Mon, 08 Sep 2025 06:53:12 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45d468dbf48sm206620575e9.11.2025.09.08.06.53.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 06:53:12 -0700 (PDT)
-From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Linus Walleij <linus.walleij@linaro.org>, Chen-Yu Tsai <wens@csie.org>,
- Samuel Holland <samuel@sholland.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject:
- Re: [RFC PATCH 1/9] pinctrl: sunxi: rename SUNXI_PINCTRL_NEW_REG_LAYOUT
-Date: Mon, 08 Sep 2025 15:53:11 +0200
-Message-ID: <5037008.31r3eYUQgx@jernej-laptop>
-In-Reply-To: <20250821004232.8134-2-andre.przywara@arm.com>
-References:
- <20250821004232.8134-1-andre.przywara@arm.com>
- <20250821004232.8134-2-andre.przywara@arm.com>
+        d=1e100.net; s=20230601; t=1757339931; x=1757944731;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gDFNaThuo0PvZZYSMHlfPbpR/XX95Jknj6NoGboj6lg=;
+        b=OhYQ6RIG34Ylt1wPAL4Sy2p+rH0zLbisicekVXkQmL8eMEuobDW96R0q7Pv0gfs9Di
+         unHcpzVswZqjM67crwQCwLZt0QdIQaG7JRId51JtSUJomONqKukIDmlEPkEpm5CdMlHv
+         CIJhvYAEBEkRr1rP1qEK2CtNAS7OtJZlR0y2/Yi2ZSIPEzSFqY3cAcQwpGtlNDpWM1lY
+         GQxNfebwrNgk6HNMnMyXiKDWiW6D3D/4m+edN70OMSPZvxsqjouLNyq3ORvcje8lAjZT
+         4yUNISDmXHVNXRvaeMVNmRMXRBnkcSlSbpG5Mk8RD6oZp6/RG6fLEBZwSp1chLyQFlJq
+         ltmA==
+X-Forwarded-Encrypted: i=1; AJvYcCVfdQI5ScAQPfl9faOdLMYl11qCf8soRKBqsHe9KYWI3RVxpT1KMA2NsQkJ733kv8d+qnn9PPgj4q2U@vger.kernel.org
+X-Gm-Message-State: AOJu0YyyTkqlRfpmOSK0hluVJ7ShfJWnHALtHC2SXFOxgXBknCtJEeAS
+	xt5rKJiQNExvdU3VkKBaE4D7j63L4YNRQ//A0awIlnzeueoREVMzZ/oECN+UtJFVQ2E=
+X-Gm-Gg: ASbGncvGGeah1O8QPSqTDjsJCokuwV5lfE05wut/aw7CMdXoJIXj5YsdCa3l1V/NzTD
+	J5YCUYZZ4phTGSmS7nEgluM5rwb2ZO9T55udWulp+2ffrFm7HfeqkMOCnoC0uvWejGml/doEEfO
+	v45l4PLqv+Ntu8cpLMVyg6PpCuXe1+Ws8Gmrddy0h/RkLRtWjvNlBPUh4Tvy9/vNoi21/6CmFWK
+	DWAz9rvSVVd2QdKLT3Mw6HsaoDPqBjs6jtvM6rCnWROOLxqBxvIqp3YhoWNy2rMQajEJLIvQchQ
+	j5fyQgu336hkg3rgXF7Ny4sHq0YARRL3CI8TE2AeZPTnGhlzh8taxXNXymL8kJKhXYkT2yEuqSG
+	cBo3SpSxr1PMsKj4jzrda9AFmjSEJQldJ+a+waOPK6ELyQd4S6rahO56nsfU3GOfvHls3Eu+CTf
+	SmwsoM52+qBA==
+X-Google-Smtp-Source: AGHT+IEPQYSTXuY8KKXgCvExJN+PZ1J2AcW9uGwlCK03wEeWUxvan6qwMKW9MKZUGeyFqcFqjVGwrw==
+X-Received: by 2002:a05:6871:6a5:b0:321:80a7:a1ae with SMTP id 586e51a60fabf-32262a7d5c4mr4189811fac.14.1757339931066;
+        Mon, 08 Sep 2025 06:58:51 -0700 (PDT)
+Received: from ?IPV6:2600:8803:e7e4:1d00:c856:f3d3:de1a:6f93? ([2600:8803:e7e4:1d00:c856:f3d3:de1a:6f93])
+        by smtp.gmail.com with ESMTPSA id 586e51a60fabf-3282d63b5fcsm1037740fac.4.2025.09.08.06.58.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 06:58:50 -0700 (PDT)
+Message-ID: <c23ed0cf-8188-49ac-b310-57bbfb54f337@baylibre.com>
+Date: Mon, 8 Sep 2025 08:58:49 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
+ s32g2/3 platforms
+To: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ =?UTF-8?Q?Nuno_S=C3=A1?= <noname.nuno@gmail.com>, jic23@kernel.org,
+ nuno.sa@analog.com, andy@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+ krzk+dt@kernel.org
+Cc: linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
+ ghennadi.procopciuc@oss.nxp.com
+References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
+ <20250903102756.1748596-3-daniel.lezcano@linaro.org>
+ <eedbfbfd1ba625b6750eb3ae20a69301b8bc3ef9.camel@gmail.com>
+ <0bfce1eb-69f1-4dae-b461-234eb98ffce1@linaro.org>
+ <a3373804-08a4-4526-a432-c21a74ea3d6b@baylibre.com>
+ <edc8e024-e425-49de-bfa2-44218fe72e26@linaro.org>
+ <6b8cd005-b04c-4dd7-abf7-5a51319a5f0a@baylibre.com>
+ <23b80d52-6149-483b-a159-276dd00d12cd@linaro.org>
+ <e5e76789-c8d9-463c-aa01-f2c6ae718f74@baylibre.com>
+ <fd4c81a5-3b99-448c-92d4-9465f0e76db3@linaro.org>
+Content-Language: en-US
+From: David Lechner <dlechner@baylibre.com>
+In-Reply-To: <fd4c81a5-3b99-448c-92d4-9465f0e76db3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Dne =C4=8Detrtek, 21. avgust 2025 ob 02:42:24 Srednjeevropski poletni =C4=
-=8Das je Andre Przywara napisal(a):
-> After keeping the pinctrl IP mostly register compatible for almost a
-> decade, in 2021 Allwinner introduced some changes to the register
-> layout, which made us use a flag called SUNXI_PINCTRL_NEW_REG_LAYOUT.
-> Now with their latest SoC (A733), Allwinner changed the pinctrl IP
-> again, so "NEW" isn't really a fitting name anymore.
+On 9/8/25 7:16 AM, Daniel Lezcano wrote:
+> On 05/09/2025 23:54, David Lechner wrote:
+>> On 9/5/25 3:58 PM, Daniel Lezcano wrote:
+>>> On 05/09/2025 17:25, David Lechner wrote:
+>>>> On 9/5/25 4:44 AM, Daniel Lezcano wrote:
+>>>>> On 04/09/2025 19:49, David Lechner wrote:
+>>>>>> On 9/4/25 12:40 PM, Daniel Lezcano wrote:
+>>>
+>>> [ ... ]
+>>>
+>>>> Taking a step back, what sort of real-world uses cases do you need to support?
+>>>> Or are you just trying to implement everything that the ADC can do? The latter
+>>>> can be a bit risky because you might end making something where you can't do
+>>>> a buffered read and a single channel read at the same time, but later find out
+>>>> you have a real-world application that needs to do this.
+>>>>
+>>>> It looks like it would be possible to implement buffered reads in lots of ways.
+>>>> IIO devices can have more than one buffer per device so we can add more in the
+>>>> future if we need to. So I would just drop the DMA part of the implementation
+>>>> for now and implement the basic triggered buffer using MCR[NSTART] and ECH
+>>>> (End of Chain) interrupt request and just reading data from the ICDR registers.
+>>>>
+>>>> I would wait to have a real-world application that requires DMA to decide the
+>>>> best way to implement that. There are lots of possibilities, like does it need
+>>>> an external trigger or is continuous mode good enough? Does it need to be cyclic
+>>>> (something the IIO subsystem doesn't really support yet) or not. Is exact sample
+>>>> timing important or do we just need a big buffer? These questions we can't
+>>>> really answer without a specific application to use it.
+>>>
+>>> In the case of this IP, the use cases are in the automotive context. The system running on the APU is supposed to monitor at high rate (or not) the different channels which can be connected to any device the integrator choose to use.
+>>>
+>>> For this reason, the driver should be able to support the different modes because the integrator of the car computer can decide to monitor the devices connected to the different channels differently.
+>>>
+>>> Said differently, we need these modes because the capture depends on what the integrator decide to connect to the different channels.
+>> ...
+>>> We just know all these use cases exist.
+> 
+> 
+> The submitted driver supports the three modes.
+> 
+> Nuno asked to use the IIO dma engine API.
+> 
+> However there is few information and examples with the API and I failed to use the devm_iio_dmaengine_buffer_setup_with_handle() function.
+> 
+> AFAICT, devm_iio_dmaengine_buffer_setup_ext() can not be used because dma_slave_config() is not called, thus the src_addr is not set.
+> 
+> Is there any example somewhere, documentation or guidance to use the API?
+> 
+> Thanks
+> 
+>   -- Daniel
+> 
+> 
 
-That was bound to happen.
+Unfortunately, not really. Until the last few years, there wasn't really
+any users of these APIs. I added devm_iio_dmaengine_buffer_setup_with_handle()
+for the SPI offloading work I did recently. The only reason it had to be
+added is because we needed to get the DMA handle from a different devicetree
+node from the ADC's node. Since this device has dmas and dma-names in
+the devicetree, then if devm_iio_dmaengine_buffer_setup[_ext]() doesn't work
+with that, then it might have other problems (assumptions made for a specific
+use case) than just not calling dma_slave_config().
 
->=20
-> Rename the symbol to SUNXI_PINCTRL_NCAT2_REG_LAYOUT, with "NCAT2" being
-> a name often used in vendor source code to signify this "new" generation
-> of SoCs.
->=20
-> Just a rename of the symbol, no actual code changes.
->=20
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+I think maybe Nuno and certainly I are guilty of trying to offer you advice
+without looking deeply enough into what you already submitted. :-/
 
-Reviwed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
-
-Best regards,
-Jernej
-
-> ---
->  drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c     | 2 +-
->  drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c | 2 +-
->  drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c   | 2 +-
->  drivers/pinctrl/sunxi/pinctrl-sunxi.c         | 2 +-
->  drivers/pinctrl/sunxi/pinctrl-sunxi.h         | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
->=20
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c b/drivers/pinctrl/=
-sunxi/pinctrl-sun20i-d1.c
-> index 8efe35b77af4d..37a60e5d1163b 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun20i-d1.c
-> @@ -821,7 +821,7 @@ static const struct sunxi_pinctrl_desc d1_pinctrl_dat=
-a =3D {
->  static int d1_pinctrl_probe(struct platform_device *pdev)
->  {
->  	return sunxi_pinctrl_init_with_flags(pdev, &d1_pinctrl_data,
-> -					     SUNXI_PINCTRL_NEW_REG_LAYOUT);
-> +					     SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
->  }
-> =20
->  static const struct of_device_id d1_pinctrl_match[] =3D {
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c b/drivers/pinc=
-trl/sunxi/pinctrl-sun55i-a523-r.c
-> index 69cd2b4ebd7d7..86a12bce0e335 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523-r.c
-> @@ -36,7 +36,7 @@ static int a523_r_pinctrl_probe(struct platform_device =
-*pdev)
->  	return sunxi_pinctrl_dt_table_init(pdev, a523_r_nr_bank_pins,
->  					   a523_r_irq_bank_muxes,
->  					   &a523_r_pinctrl_data,
-> -					   SUNXI_PINCTRL_NEW_REG_LAYOUT);
-> +					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT);
->  }
-> =20
->  static const struct of_device_id a523_r_pinctrl_match[] =3D {
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c b/drivers/pinctr=
-l/sunxi/pinctrl-sun55i-a523.c
-> index 7d2308c37d29e..0f703cacfe5e3 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sun55i-a523.c
-> @@ -35,7 +35,7 @@ static int a523_pinctrl_probe(struct platform_device *p=
-dev)
->  	return sunxi_pinctrl_dt_table_init(pdev, a523_nr_bank_pins,
->  					   a523_irq_bank_muxes,
->  					   &a523_pinctrl_data,
-> -					   SUNXI_PINCTRL_NEW_REG_LAYOUT |
-> +					   SUNXI_PINCTRL_NCAT2_REG_LAYOUT |
->  					   SUNXI_PINCTRL_ELEVEN_BANKS);
->  }
-> =20
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.c b/drivers/pinctrl/sunx=
-i/pinctrl-sunxi.c
-> index 0fb057a07dccb..0a5acbd978da9 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.c
-> @@ -1521,7 +1521,7 @@ int sunxi_pinctrl_init_with_flags(struct platform_d=
-evice *pdev,
->  	pctl->dev =3D &pdev->dev;
->  	pctl->desc =3D desc;
->  	pctl->variant =3D flags & SUNXI_PINCTRL_VARIANT_MASK;
-> -	if (flags & SUNXI_PINCTRL_NEW_REG_LAYOUT) {
-> +	if (flags & SUNXI_PINCTRL_NCAT2_REG_LAYOUT) {
->  		pctl->bank_mem_size =3D D1_BANK_MEM_SIZE;
->  		pctl->pull_regs_offset =3D D1_PULL_REGS_OFFSET;
->  		pctl->dlevel_field_width =3D D1_DLEVEL_FIELD_WIDTH;
-> diff --git a/drivers/pinctrl/sunxi/pinctrl-sunxi.h b/drivers/pinctrl/sunx=
-i/pinctrl-sunxi.h
-> index ad26e4de16a85..fb17fae2dab69 100644
-> --- a/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> +++ b/drivers/pinctrl/sunxi/pinctrl-sunxi.h
-> @@ -88,7 +88,7 @@
->  #define SUN4I_FUNC_IRQ		6
-> =20
->  #define SUNXI_PINCTRL_VARIANT_MASK	GENMASK(7, 0)
-> -#define SUNXI_PINCTRL_NEW_REG_LAYOUT	BIT(8)
-> +#define SUNXI_PINCTRL_NCAT2_REG_LAYOUT	BIT(8)
->  #define SUNXI_PINCTRL_PORTF_SWITCH	BIT(9)
->  #define SUNXI_PINCTRL_ELEVEN_BANKS	BIT(10)
-> =20
->=20
-
-
-
+I see now that what you are doing with the DMA looks more like other SoC ADCs
+(AT91/STM32/AM335x) which is quite different from how the iio_dmaengine_buffer
+stuff works, e.g. cyclic vs. not. So unless you are interested in evolving
+the iio_dmaengine_buffer code to be more general to handle this case as well,
+it might not be the right tool for the job currently.
 
 
