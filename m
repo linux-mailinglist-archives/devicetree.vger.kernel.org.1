@@ -1,58 +1,80 @@
-Return-Path: <devicetree+bounces-214574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214575-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E589B49AA4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:06:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 882BCB49ACA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:15:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1308C206017
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:06:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4882F3B1D7E
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 20:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CABA42D77F5;
-	Mon,  8 Sep 2025 20:05:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E41BE2D9EF4;
+	Mon,  8 Sep 2025 20:15:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b="hM5q/qJM"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="tjo6IIur"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A44A9219A86;
-	Mon,  8 Sep 2025 20:05:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757361955; cv=pass; b=hmTX3CcDHzVBHIID1R+iVappo1etwt+EUarRflfZDtymSWJHlTlP4S8SbS2nxYoX3IGw3Dox1MdO+5xCSv2p/7Ie4PEiRzkGZ4Uqu5j7bwy6WKiaISGB8mLWTvVrNchWu4x800Isu0rb9C0DFc85DmBydx0JQQxOLXz5uo99foY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757361955; c=relaxed/simple;
-	bh=erTUly9Qg9X6cog7y18GcAb2e51Bg9D6zVP2Ld+yegU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B1CA2D979D
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 20:15:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757362513; cv=none; b=pjUNIEBWVBZHrRoXpvxVAng1sbhxH91HYMSEk62onPgVIIXIQxBYjZKmz+nxNXfllIAM3fK5LMyfhWIBNwfH2vqWymZ83JMeWMIx5z/YUo0s9VQyxZVhaMdePAp7Fdd240tn2F7lNN7+14cVZ8bkQ6oBgAlyodMMnZIM21BS5xw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757362513; c=relaxed/simple;
+	bh=wh/dd7Jdte+PbRR35ECUmzuAI6uCWTfbMFdZ01umIwc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=f3F5oM1el+YgBvHLUZhBx6ltCucQuKoFjn94yRuWd0qFE37Xfx57ZAULiqcW8vkZ8pzyMb/UCPsVjImjFO5uHbj4hF/fjf7MdyYEtsvcrKiEj47wV8mKEthN6L2v/YgQp9NlxOB4OY7VDo+asKP4y4OrNEXyqM3jr6WPyZgx/4E=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=ariel.dalessandro@collabora.com header.b=hM5q/qJM; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757361899; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=FBqZoto3NaNrr+QEk2kOlolOBw3muYFVoz92mSEsCqHEHx9bRDQVMBbpJvXLiEZn1Q7eNia7ROlo6ioobMA+XLoysc8dYZF2eB4bzoY2q4Mvdb1w+fUxt8QL5vlTMVEHXiU9sJF53nbHrsyPV3UhZpUZZNyk0Y2P5HGhidk7fn0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757361899; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=8Qmtq2CeP5Jx7vZXKA2CMOipGElDjnWELU/7DNqKtTE=; 
-	b=MxHttsUDp1O7iL94CxpC4azMxrqzbdHtZMwsjWmfVfDp8Kmnr2njcXzIJ9sg+185/H7MVUIhbYTGKo2AvEKkeCrHmqcY0aJmhVSm9dlrtrpjzhe6/gvFYThXkLahFKnJupZ127Pgmdll3zTjB/HE7cv6WeXprzWlrH1t6Cdaqrk=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=ariel.dalessandro@collabora.com;
-	dmarc=pass header.from=<ariel.dalessandro@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757361899;
-	s=zohomail; d=collabora.com; i=ariel.dalessandro@collabora.com;
-	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
-	bh=8Qmtq2CeP5Jx7vZXKA2CMOipGElDjnWELU/7DNqKtTE=;
-	b=hM5q/qJMILxUA2nOZg1Nvj3qrcEKZCqnn9aoxyH8Z6+lErg0o9Y5rGzh7VrQQh5j
-	/Vq82lI51wz8mQvigoFmbhZv+IZco6nfWCamUyuuMcf08vsBx+PYt5RNWhKIKHVhwpk
-	R/LDv7vzYP2AP5Oo+otV7uUA0uLne4OUJJM8R37A=
-Received: by mx.zohomail.com with SMTPS id 1757361898233170.25250327031745;
-	Mon, 8 Sep 2025 13:04:58 -0700 (PDT)
-Message-ID: <d32af8e4-0771-4674-8317-78dd1e24c95b@collabora.com>
-Date: Mon, 8 Sep 2025 17:04:41 -0300
+	 In-Reply-To:Content-Type; b=Bhu4hPJKPZIuJGEf0DDLqKsTafwyAJPfTVGPK2Je0/0f0xSkc8TkNxpvMYgx/yR9P6Hqa6mqSJCR0JoZ8T4cRgHouVg6SveG6N6vSewjfq/Tn8yoXry1oncZGb2ahsS1nUwMyUbEvepy2fC9CVsrz3B2izWnn3DzCyDy73yVNhs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=tjo6IIur; arc=none smtp.client-ip=209.85.128.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-45de6490e74so13303955e9.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 13:15:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757362510; x=1757967310; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=jjQ5+oMfNA1z8X7OxHRV6oMq0vnVY8/Ms0Vhwhb2pfo=;
+        b=tjo6IIurFIbys5VsS5hON1eX7rorrj7wDmCV2UaXXk6vc8T/sv7L+ma8KBW5vLj3gH
+         llFKg7kXpF85QMtMObnRqoL44kIgck6ZLihe8nHd5rnByuoZ2yCpZxFaRbGgwl4UTG7t
+         jzRw08YdAOoIsXbFxtFnh7F6/oPM3mN6TbFrO1gNES29UOb03xrkNQz3csIf843WO3yR
+         Bg+TxUpaS1wQqc5XHsvvSnCARcre0M3UYqZ1YLaFfak4HVkIHRIdzq12NCK4IQn5RiuD
+         Fh/7EE3s9guLh4mOja12ptg9fISyzAeN/nGYRqXbOolq80OHeib/X4OFvwcXPN9R+2mR
+         Wztw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757362510; x=1757967310;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jjQ5+oMfNA1z8X7OxHRV6oMq0vnVY8/Ms0Vhwhb2pfo=;
+        b=PXPxwRN+D6w96ncvZ2Fl3TmVs4kguv1Zyx/B0vah9AF3MQtA4cDzora6qyIRS4fHGx
+         zxECn4O4kDpo21IY4l13EXwj+aTkpHndk8S5Hr8W3r4zKD7RkZA5glA9QoJbHxOIHjIb
+         r7geJ5jR4TuXrUm552+qN0bjbHI/SeYG6T/td51vGb5smv7sD91rv8588jCGUy9kMVSp
+         s17dIB8ingjy+DUdeOh0JXX1tO/yiPMf4CtGZwDjktWjn0KZKPBjbOMuFvBQuBUHvAiJ
+         /bGxNtqyl/MevBNY4xp4DBNJe9ZT4LzNFOooCqPFDXjQgNRpn0wx8vuz7DEhaXNl5aBS
+         8c6g==
+X-Forwarded-Encrypted: i=1; AJvYcCUxCvNEAifWH4lGSjnHT2xqn5OXPeKw/Sfts4gsrnwE36SiXck7wuAq3Sfug88yOMS/iwhEBszy/IDV@vger.kernel.org
+X-Gm-Message-State: AOJu0YwqzHxwUSKu4pY49eD+vyFCScBMfA7HTbD4UKhIuyLfldv79jfQ
+	qmbFimTVVr3JkzbrZCT4sfUbu01CXhKHA5icIzJ9paUdXF63pde5K0BCF+23DiVRspU=
+X-Gm-Gg: ASbGncvWXKDMNL9J4M6JFfHEPgjZ/HIb8Ddp7ze5ydTM6+eR9rhkWmi5vG6az7SjMC/
+	Dj8hpdfNhqj91VYrMDtGaTSs9A/sHB5bDkHh7tQODBLNsLNB85nkG39qmkJJshG617F6TJJhB7J
+	4aqJS0JdP5+oe1SkX6XhfWGZxRBflk6Hwqk3/fq/3E4s6m0PMV5q7CO4eP05shOdMCvU+Ufu513
+	SaD9UzBkNZzcl2KmVMisU6jaXn3o/S0i4syuceubbkAz+dy5L/0G0i1LD7UdKWfjBc4chJV2aZl
+	kDjPvkj1GWKGqU33l4wCDydede6vTkCgndfYzTUu+gLM6pCRL1fDJTOmzUWvF8FN4d2EBT+EobF
+	uPfjAltkH680h6FmHQVIHAZ81fw==
+X-Google-Smtp-Source: AGHT+IEUXK+5uzEYEeWM2C4ugYvoTxY9jWpw3+DQwWpEwD7U8BI+a4nggbRKv+GtES+a6PSycdGhyA==
+X-Received: by 2002:a5d:5f87:0:b0:3e2:804b:bfed with SMTP id ffacd0b85a97d-3e64c1c2183mr8374205f8f.42.1757362509754;
+        Mon, 08 Sep 2025 13:15:09 -0700 (PDT)
+Received: from [192.168.3.100] ([151.42.66.169])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e411219ddfsm13631814f8f.57.2025.09.08.13.15.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 08 Sep 2025 13:15:09 -0700 (PDT)
+Message-ID: <29a776da-cd28-46e4-8b64-400f462d8670@baylibre.com>
+Date: Mon, 8 Sep 2025 22:15:08 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,138 +82,51 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 05/14] sound: dt-bindings: Convert MediaTek RT5650
- codecs bindings to YAML
-To: Rob Herring <robh@kernel.org>
-Cc: airlied@gmail.com, amergnat@baylibre.com, andrew+netdev@lunn.ch,
- andrew-ct.chen@mediatek.com, angelogioacchino.delregno@collabora.com,
- broonie@kernel.org, chunkuang.hu@kernel.org, ck.hu@mediatek.com,
- conor+dt@kernel.org, davem@davemloft.net, dmitry.torokhov@gmail.com,
- edumazet@google.com, flora.fu@mediatek.com, houlong.wei@mediatek.com,
- jeesw@melfas.com, jmassot@collabora.com, kernel@collabora.com,
- krzk+dt@kernel.org, kuba@kernel.org,
- kyrie.wu@mediatek.corp-partner.google.com, lgirdwood@gmail.com,
- linus.walleij@linaro.org, louisalexis.eyraud@collabora.com,
- maarten.lankhorst@linux.intel.com, matthias.bgg@gmail.com,
- mchehab@kernel.org, minghsiu.tsai@mediatek.com, mripard@kernel.org,
- p.zabel@pengutronix.de, pabeni@redhat.com, sean.wang@kernel.org,
- simona@ffwll.ch, support.opensource@diasemi.com, tiffany.lin@mediatek.com,
- tzimmermann@suse.de, yunfei.dong@mediatek.com, devicetree@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
- linux-sound@vger.kernel.org, netdev@vger.kernel.org
-References: <20250820171302.324142-1-ariel.dalessandro@collabora.com>
- <20250820171302.324142-6-ariel.dalessandro@collabora.com>
- <20250822151415.GA3819434-robh@kernel.org>
+Subject: Re: [PATCH] arm64: dts: amlogic: gxbb-odroidc2: remove UHS capability
+ for SD card
 Content-Language: en-US
-From: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
-In-Reply-To: <20250822151415.GA3819434-robh@kernel.org>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20250907-fix-reboot-v1-1-7606fc91254e@baylibre.com>
+ <1jecsi3ywb.fsf@starbuckisacylon.baylibre.com>
+From: Valerio Setti <vsetti@baylibre.com>
+In-Reply-To: <1jecsi3ywb.fsf@starbuckisacylon.baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ZohoMailClient: External
 
-Rob,
+Thanks a lot for the review!
 
-On 8/22/25 12:14 PM, Rob Herring wrote:
-> On Wed, Aug 20, 2025 at 02:12:53PM -0300, Ariel D'Alessandro wrote:
->> Convert the existing text-based DT bindings for Mediatek MT8173 RT5650
->> codecs to a YAML schema.
->>
->> Signed-off-by: Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> ---
->>   .../sound/mediatek,mt8173-rt5650.yaml         | 73 +++++++++++++++++++
->>   .../bindings/sound/mt8173-rt5650.txt          | 31 --------
->>   2 files changed, 73 insertions(+), 31 deletions(-)
->>   create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
->>   delete mode 100644 Documentation/devicetree/bindings/sound/mt8173-rt5650.txt
->>
->> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
->> new file mode 100644
->> index 0000000000000..36e4f9c4c3d62
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt8173-rt5650.yaml
->> @@ -0,0 +1,73 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/sound/mediatek,mt8173-rt5650.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Mediatek MT8173 with RT5650 codecs and HDMI via I2S
->> +
->> +maintainers:
->> +  - Ariel D'Alessandro <ariel.dalessandro@collabora.com>
->> +
->> +properties:
->> +  compatible:
->> +    const: "mediatek,mt8173-rt5650"
+> The above should be enough.
 > 
-> Drop quotes.
-
-Ack.
-
+>>   	max-frequency = <100000000>;
+>>   	disable-wp;
+>>   
+>>   	cd-gpios = <&gpio CARD_6 GPIO_ACTIVE_LOW>;
+>>   
+>>   	vmmc-supply = <&tflash_vdd>;
+>> -	vqmmc-supply = <&tf_io>;
 > 
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  mediatek,audio-codec:
->> +    $ref: /schemas/types.yaml#/definitions/phandle-array
->> +    description:
->> +      The phandles of rt5650 codecs and of the HDMI encoder node.
->> +    minItems: 2
->> +
->> +  mediatek,platform:
->> +    $ref: /schemas/types.yaml#/definitions/phandle
->> +    description:
->> +      The phandle of MT8173 ASoC platform.
->> +
->> +  mediatek,mclk:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: |
->> +      The MCLK source.
->> +      0: external oscillator, MCLK = 12.288M
->> +      1: internal source from mt8173, MCLK = sampling rate * 256
->> +
->> +  codec-capture:
->> +    description: Subnode of rt5650 codec capture.
->> +    type: object
->> +
->> +    properties:
->> +      sound-dai:
->> +        maxItems: 1
->> +        description: phandle of the CPU DAI
->> +
->> +    additionalProperties: false
->> +
->> +required:
->> +  - compatible
->> +  - mediatek,audio-codec
->> +  - mediatek,platform
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    sound: sound {
+> ... but do not remove that.
 > 
-> Drop unused label.
+> That way the description is complete and the kernel is able to verify
+> the regulator is properly configured.
 
-Ack.
+Thanks for the hint! I didn't thought about this while working on it, 
+but I tried it today and it worked perfectly.
 
-Thanks!
+> It is also easier for a bootloader to alter DT to add the UHS modes back
+> (it is safe to do so if booting from another device that SD, such as
+> eMMC)
+
+This sounds like a nice improvement as well.
 
 -- 
-Ariel D'Alessandro
-Software Engineer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK 
-Registered in England & Wales, no. 5513718
+Valerio
 
 
