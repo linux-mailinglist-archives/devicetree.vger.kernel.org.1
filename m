@@ -1,176 +1,347 @@
-Return-Path: <devicetree+bounces-214168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17DBDB484F8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:20:24 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C5F0EB484FE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:21:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B9449177DA4
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:20:23 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 808133C0B13
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:21:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7524A2E427C;
-	Mon,  8 Sep 2025 07:20:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B719C2E2EF8;
+	Mon,  8 Sep 2025 07:21:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="IZfEPaaI"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MdalncAM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com [209.85.221.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9F4771DF75C
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 07:20:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D899C1CAA65;
+	Mon,  8 Sep 2025 07:21:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757316008; cv=none; b=mUcVBJ7sDaEB/yXeBmp8vLYzHYg12ti0H0M/7p1iBzvuVORbw2nCdMu4Quu0kFJRy2etc6S+pde/2h8D63KsFgZOtUoUiFwwTJcYktCar2iRFYlaklZ1JtJW4p7nMFCMPEr2l5HHse6bgBIhW3h0VTsKQNfih43r4576oBZBvQE=
+	t=1757316102; cv=none; b=K4QYr7bBqazU/YrDQIqp++KFrtVTFHZAdP503V/dlasbtGsVPqJjcO2ILsUcAvdD7fhct5pqe2TudC0GpWDxcyPrOST02Up3pRgTHemXlTmViTnL60wX5loNXn/SQIovry5LncgmrtfH9hND92+S6/0dV2kBZ1FjXKnD3BlvJFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757316008; c=relaxed/simple;
-	bh=PqMyOblKEfOraVWVRyMOSW5G4N5oZyOPcmEHnteK9jU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=j1W6WqVIQpoo0nAYdghq6KeQA41q6Br0FHYZFfgtuGHSEeAyC5OGLQdM2D03IFntsrEwbQKHk+W+h0TkaXkfPXdOKtZlA+nR6UhonuY6ASSnZlLI/tdjB7kbbHUwsx7p+tPJitqB4Ee3P/gnuCIIT9iZVgv3/gvhgkGTOnMEhf4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=IZfEPaaI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 587LVuiF006019
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 07:20:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	VWcKtvk8mFvfLmI00zGKSgzDw0tbzl3o6sU4GJfPEyg=; b=IZfEPaaIDN1l1x7T
-	TnF1MTF+bRDRHQxbUua0ygSd0wlAkRtC3j1WrZRPaExv+OwbqMdE64KkYmn+QCQs
-	RC8rVme6YhJB1Hsy68yssndvDzHpyAbOSHNpkcueZqfCvgAp1TCD6aebERni0Vez
-	zWkLr6RkuDPBvmWRSah/ywQzw+d8Q4/IXKDBhwuyan4zzz9L38g1ImRJNbFjJP0R
-	JdXCKEHEAxF0011/Igk+GEy0NopfLO5xRLSi+2te9Gk+E5pXGakkpxQVMkYaLuf4
-	4jjhtJ4wLrzgfXVQB26W8Ftgje8vJJ3UEpFTKgPRpKudOlUI31Skz60BoDTdUcho
-	ll7Dgw==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490d1vbmse-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 07:20:05 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b5f76fe6f6so5936561cf.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 00:20:05 -0700 (PDT)
+	s=arc-20240116; t=1757316102; c=relaxed/simple;
+	bh=Xak1Cuq9EVFZC01eU03q61FejiUCiI7T4pcMfA4/wnI=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=Zv89VkuSSFcvDQ4ABo0rnnN/vFylajk+25cZHcCLbrIQrWtv6EwEtzMd4ZR7eWClKqRrMUN51BaDSsIzGqo88UJiaWVVBiEMy9tfbks+phWvn9TvKxQCyjPB82/nx44VdZetGgp5vIcbz4TB93TYTLYuIZ5iGIBQ4Vehb8yAbCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MdalncAM; arc=none smtp.client-ip=209.85.221.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f49.google.com with SMTP id ffacd0b85a97d-3e2055ce973so2064969f8f.0;
+        Mon, 08 Sep 2025 00:21:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757316099; x=1757920899; darn=vger.kernel.org;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8vGETqveoBt5cMEam5jsZwP+S/bgV2oFw9uuaDskBWE=;
+        b=MdalncAMH/b1MzmRc9NcS6Johxwy48Eqepjuuf96mjVnKt8DtkRNRPL8Hy7kLc41fV
+         YR8aa1OHvR0/iWDxPyvVxs3Y45htyHx4zuQFrj70Cq3ZcYXJu+hn6jbeNjVcX/KKR+yb
+         y6iBEZtQfiwAEfSTKaP90PWw5Q6v49t6w1aShoH8GZ/LjHnClEILQ9WzgoaEa5jNcAkX
+         Tl+pJiLBdJ+j4WxEz69BCCFBkNyPWKrNEYf1z5lob/swtiKrTtAMr+iQZNsFhvYE2zvx
+         KYrb/h/c5vZmGvliJaSWNPG7/wnDLZzcbrwHtMH9nCZyQr89iTdhIiwitKpHry6nYWwN
+         Vs3w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757316004; x=1757920804;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VWcKtvk8mFvfLmI00zGKSgzDw0tbzl3o6sU4GJfPEyg=;
-        b=XdKPskq3EgiPvseGDQzURr/KCZGemh+C4+qpkYFElB3Kv1NCgggSwLN0TBDLQKgPao
-         AHcHDIkurrrCE8z5T/T4Y3kogt4I6hC9LpgBQ9GjXA2ocKGBxWBTaIETVEJzmlzrimjU
-         vihPOv18o5sTspw1idwzblqx06WGe/TIae7VIWJM4QFWOPHg4G9/7k8hutZdsmIMXiAs
-         3hjMt5ZyV4Uo0OFu23KnZRin6lGT4PNRATtfhPwp/L+blXItkcDTMds7395lJ2qGobr8
-         OfEOniGg0swNhENGS/FugyQ6FKvuEM/aRo6eN1I+Si32JGnYLIuqu4p8Gz4DwJajMoB4
-         2eLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVTtwPK7/Y+GOKjDmEmWUqRYPByb7XPNluo1nwMSq9S+7gkT8Xz6kW6bpKEjAITB90aMNnEtFIWylZe@vger.kernel.org
-X-Gm-Message-State: AOJu0YynhV60ojpC85YU0+kiqoSTHhOOPeYBSOOmilsKV+Ti+2AzwB+T
-	fwOoQxFk/R4fH5GJnArm1+3anOqTueHy7skIftBUDzb9aTjEPe05Zz6x751HMAxKZgKRFXJ5agO
-	2NRCGkGFXbnkXn6usnyArZCywOPW4FJpj/4+LmE4YIQx4ymUmXdvricPD0SfEjV/k
-X-Gm-Gg: ASbGncuSTP745UCNzWJ8nNjCTS8MBGmh42o/wsT0sffcxH0urQg18QRFOjD4spx5JXO
-	L5jMya2vfW3I6ex3FYCbwgd6pR7Ar9//raYSL1IlvEqrXjAXoGKzHCXyeof6wiw31D8JPZxjK6T
-	RSlILHCIB7XMiUrJ1Aiz07LceLhYSsFu78RubgLv0v84M5iSl8hnZgIDeSKyiC1pKFlA3buLmqW
-	LsQAQs/60ZPN1ZWysu4y0L/S2Knmhgd7Zn8fg2K706idfUF7iHQy68zCQ05FXkJTT0Ziy3X4kkg
-	grkt8ERlh1ZP+i/M55cEIAOJp7GJE9JIrccBgKPLr19oS5Kz6sJFXZBDYUqN2g7H7+zp5J0tGgk
-	Tn8ak11e3izk4kYC9hsc9Og==
-X-Received: by 2002:ac8:5dd1:0:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b5f8445af1mr48142261cf.1.1757316004497;
-        Mon, 08 Sep 2025 00:20:04 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IH4+QiJyueOpHGD01U7ZGb5pGulY2uWYz7NY7jH/9d6NejQbnMKqPQkDJBKht2O5pECh1Hjng==
-X-Received: by 2002:ac8:5dd1:0:b0:4b2:d8e5:b6e3 with SMTP id d75a77b69052e-4b5f8445af1mr48141961cf.1.1757316003978;
-        Mon, 08 Sep 2025 00:20:03 -0700 (PDT)
-Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0409bf055esm2172292466b.85.2025.09.08.00.20.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 00:20:03 -0700 (PDT)
-Message-ID: <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
-Date: Mon, 8 Sep 2025 09:20:00 +0200
+        d=1e100.net; s=20230601; t=1757316099; x=1757920899;
+        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
+         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8vGETqveoBt5cMEam5jsZwP+S/bgV2oFw9uuaDskBWE=;
+        b=QP/rRFbNMGteX07NnkpPVDoj+Z0khE+/NeuSR0Kbv7dGYkcgRy+bbdfxfF4NnEGqU/
+         MWJgDamOcjRDHpzXhuDcPzzw7Pv3ai8bDeV1qeBvlTLJCLLbvSundGVi3/DqA0HionBy
+         JWGVJKj2U4S75iq7ddfY3TUN8hWxW37BfCmbjJ3GJYgpHg4HJ671OC7I1XPcdLRwSApG
+         K76ZoE11+E38KfOJ0P2+WmFQuOmR/28pIpiZtqO27vVDu7Br7HJmV2KeNDssJX+4N6T6
+         L+D5sQfv9qQ4XIpgr1Zz3sQccehThGbjjoVRLaFhrLYW3UmEpy1TADc9rmKlSG3KqQsb
+         UB1Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUwiJM1L/BZYMH44cCYFRIkVIu5Humf1Kf6yyjaa7q908NDncbjFjNIPZrERkQs6fHwUFSumRKsvu2S@vger.kernel.org, AJvYcCXcm/R3hnO6WS0wSUABFMHemBudspN2qXw/4KF5fdZeysQu3Sy6g/ZZFaxOijbTzYR48/vxt/kc5V5RjWOg@vger.kernel.org
+X-Gm-Message-State: AOJu0YwIIIbh5LYXvgR43dxYXmlAtEwkiDyuJDlJGe5ZLOMoJYe5J3m+
+	DMGHx8vCoqVXKvMLaKix3Q/oUY8wM4vBVHpjDdyzsxDy68qjCmakXpsT
+X-Gm-Gg: ASbGncsMx8hnEzdbAxY2XSPaCSgt0wGWOSW3jJ5WlTLwaWA0FhQ9o3vOK5Zg7w7cx7a
+	BrYPbo8KK1p2f/RpobGv2/Jqrm3uRMalsNKozfEOY1nKBvFwdtgk+d7VMU90gymROnBqyZj5QOX
+	2SXxBHq7cq0+jc+a3QCxXhHzP6gGmWxbcFNh/GG9vyX9jqUtnnIyPKn1hGHZnur7/LqettQCZ/C
+	ITFonE1WcfVFwYlIP1hajgwLCZpKE/zUWNvFzIqctBCY6/FgspUEK5s0xUv1SXlPqpNvjUkja8t
+	9NK+Lh2WzpbKd4Glc+7j2VPcCX9/NOT5NG2YmyG7/4pp+rSKRR7jKwOYZThAY+CR9N/6wO9F9zQ
+	CzVBxIXwJuOEoPbV4PA9vVb/XRRQYZIbGto4=
+X-Google-Smtp-Source: AGHT+IHHRvnjLjaP0w5j76MN8JSMdM4W9ZQKfUq+NI60zYTqiD7a5mNtTsbJQOEUbeQ7e6wq3tHcfg==
+X-Received: by 2002:a05:6000:26d2:b0:3df:b9e7:35ba with SMTP id ffacd0b85a97d-3e6440f0674mr4452980f8f.57.1757316098881;
+        Mon, 08 Sep 2025 00:21:38 -0700 (PDT)
+Received: from localhost ([2001:861:3385:e20:2acd:89a8:83d9:4be5])
+        by smtp.gmail.com with UTF8SMTPSA id ffacd0b85a97d-3e21e4c0e6fsm13952247f8f.17.2025.09.08.00.21.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 00:21:38 -0700 (PDT)
+From: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Date: Mon, 08 Sep 2025 09:21:25 +0200
+Subject: [PATCH] ARM: dts: sti: remove dangling stih407-clock file
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
-To: Aleksandrs Vinarskis <alex@vinarskis.com>,
-        Hans de Goede <hansg@kernel.org>, Lee Jones <lee@kernel.org>,
-        Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley
- <conor+dt@kernel.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Daniel Thompson <danielt@kernel.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Sakari Ailus
- <sakari.ailus@linux.intel.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
- <20250908-leds-v3-2-5944dc400668@vinarskis.com>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
-In-Reply-To: <20250908-leds-v3-2-5944dc400668@vinarskis.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: epO1nSVWaocTA3_bufkXfSmel8QVKyYZ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyNyBTYWx0ZWRfX+J/7zMAPP1yP
- R6l615NoQb9D9JEZkQiRD9kvDvByjgGRst0wBIfbjcIIvGCP/VmaLk0706R3Bizlxdv8rRVh/Ob
- 69+ykQscR03K0Zg8Gv/ZPWSmWPPgeIBDsqgJ+ZqPr07/Xbv6+QyjADPIjbzNbsRu4I0tUM2GsqF
- nga0HWkJaXJruDCsN09STzt/vVGUZ4lFpz27k9FmtqXLyqkxgnC5SMyNP5wEDTnGZsqj6TmQgko
- LHgm7HMkbUK5YrhZ5wRDR++VTu/014ZCe6LWD0PMxCC4G/WSzBhpHLotu8yPldBts/dPPCkSQ6q
- XSgjE54TprirFbUAheSD18E7v7IEvLE1U6CgjNrSEDURPtojsDt5h+ODnbQMIdYbRR3N9a3jE5W
- jv9XLNn0
-X-Authority-Analysis: v=2.4 cv=cYXSrmDM c=1 sm=1 tr=0 ts=68be83a5 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=I76Qk8w-AAAA:8 a=zDPauhyOtcwAXlC7rdQA:9
- a=QEXdDO2ut3YA:10 a=zZCYzV9kfG8A:10 a=dawVfQjAaf238kedN5IG:22
- a=vUPM0Wvl0xcrLs4nqPIT:22
-X-Proofpoint-GUID: epO1nSVWaocTA3_bufkXfSmel8QVKyYZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_02,2025-09-04_01,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 adultscore=0 impostorscore=0 clxscore=1015 malwarescore=0
- phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060027
+Message-Id: <20250908-master-v1-1-98efab52f143@gmail.com>
+X-B4-Tracking: v=1; b=H4sIAPSDvmgC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDI1MDSwNz3dzE4pLUIt2kJEND0zTTJDPzxBQloOKCotS0zAqwQdGxtbUA90i
+ DWlgAAAA=
+X-Change-ID: 20250907-master-bb115f5b67ad
+To: Patrice Chotard <patrice.chotard@foss.st.com>, 
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5504; i=rgallaispou@gmail.com;
+ h=from:subject:message-id; bh=Xak1Cuq9EVFZC01eU03q61FejiUCiI7T4pcMfA4/wnI=;
+ b=owEBbQKS/ZANAwAKAechimjUEsK1AcsmYgBovoP3xxOfavO5iVXwjoyBYGWLe0mSLtrJfqT9q
+ vQI1AU2blKJAjMEAAEKAB0WIQQgmXv2E+fvbV/9ui/nIYpo1BLCtQUCaL6D9wAKCRDnIYpo1BLC
+ tX+LD/44ev/qY+hr+l2mbBLGFLqE1Nm4ebIao4amZ8Mmj8wYGMW3x25uQGKqRxe0r4rHpcIox+5
+ bPHdDs2RZ8Ni46dS+9KkG94t31RZRzGdYKiZDKmce6Y9FIBBs56xw9pJSv/C+A+iE1HJXoNjJWY
+ xOvv9Kth8hZlJ9zSfExbRYE25PEi8TcfnvSdCIF4NqYUWCqD0DVNll35vvlNjCwjUzGR3m7u8Po
+ SyB9q8cHk+Ah1xkPYiFyWt3tRPRs2Ww7T+ByiD3HFvchDbUyr9vSpX8PSrJC74LxPb7ialJ7/Wp
+ f8nMcK9jpXTDYxX7/t7NiiKAVI6WqgLIDaJ+n+NbACJ6B+pccvcC9V4EopvOQW4PKx/7kg8Qvvf
+ ET8hztDfrnaWBCIet3xzzo/OqeIFOHFOhwTWJ7VWU1/y1LyMbTcmwnIp/h//oh5YHFoosRTWjDr
+ lyISAGZZkm0cMmccpyqB/aGGJ30uiaU6hKQa00AVdiC30FOmnGz1nXewMpkyCssKIQhBjAVmB86
+ UK/nwx1VT4kH292C8Ci9OpoGbYNdV6eQmIP+4sjN7C7mgSMGKgfuXTYSz/hu0812XHWaUejEBBr
+ iQ/VGHcOVa5W8NFTjkz3SoMIbVfbhm+XW8j5LmWZn+Ml4T/m5g85qMIQ/enxFwHuY5eS1tvBfJM
+ mDOr5TnExcThxpg==
+X-Developer-Key: i=rgallaispou@gmail.com; a=openpgp;
+ fpr=20997BF613E7EF6D5FFDBA2FE7218A68D412C2B5
 
-On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
-> A number of existing schemas use 'leds' property to provide
-> phandle-array of LED(s) to the consumer. Additionally, with the
-> upcoming privacy-led support in device-tree, v4l2 subnode could be a
-> LED consumer, meaning that all camera sensors should support 'leds'
-> and 'led-names' property via common 'video-interface-devices.yaml'.
-> 
-> To avoid dublication, commonize 'leds' property from existing schemas
-> to newly introduced 'led-consumer.yaml'.
-> 
-> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
-> ---
+Following the removal of B2120 board support, the st/stih407-clock.dtsi
+file has been left unused.  Remove it.
 
-[...]
+Fixes: dee546e1adef ("ARM: sti: drop B2120 board support")
+Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+---
+ arch/arm/boot/dts/st/stih407-clock.dtsi | 210 --------------------------------
+ 1 file changed, 210 deletions(-)
 
->  
-> +  leds:
-> +    minItems: 1
-> +    maxItems: 1
+diff --git a/arch/arm/boot/dts/st/stih407-clock.dtsi b/arch/arm/boot/dts/st/stih407-clock.dtsi
+deleted file mode 100644
+index 350bcfcf498bc410ebdb4fd00f2e1ea496a9c8be..0000000000000000000000000000000000000000
+--- a/arch/arm/boot/dts/st/stih407-clock.dtsi
++++ /dev/null
+@@ -1,210 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-only
+-/*
+- * Copyright (C) 2014 STMicroelectronics R&D Limited
+- */
+-#include <dt-bindings/clock/stih407-clks.h>
+-/ {
+-	/*
+-	 * Fixed 30MHz oscillator inputs to SoC
+-	 */
+-	clk_sysin: clk-sysin {
+-		#clock-cells = <0>;
+-		compatible = "fixed-clock";
+-		clock-frequency = <30000000>;
+-	};
+-
+-	clk_tmdsout_hdmi: clk-tmdsout-hdmi {
+-		#clock-cells = <0>;
+-		compatible = "fixed-clock";
+-		clock-frequency = <0>;
+-	};
+-
+-	clocks {
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges;
+-
+-		/*
+-		 * A9 PLL.
+-		 */
+-		clockgen-a9@92b0000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x92b0000 0x10000>;
+-
+-			clockgen_a9_pll: clockgen-a9-pll {
+-				#clock-cells = <1>;
+-				compatible = "st,stih407-clkgen-plla9";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_m_a9: clk-m-a9 {
+-				#clock-cells = <0>;
+-				compatible = "st,stih407-clkgen-a9-mux";
+-
+-				clocks = <&clockgen_a9_pll 0>,
+-					 <&clockgen_a9_pll 0>,
+-					 <&clk_s_c0_flexgen 13>,
+-					 <&clk_m_a9_ext2f_div2>;
+-
+-				/*
+-				 * ARM Peripheral clock for timers
+-				 */
+-				arm_periph_clk: clk-m-a9-periphs {
+-					#clock-cells = <0>;
+-					compatible = "fixed-factor-clock";
+-
+-					clocks = <&clk_m_a9>;
+-					clock-div = <2>;
+-					clock-mult = <1>;
+-				};
+-			};
+-		};
+-
+-		clockgen-a@90ff000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x90ff000 0x1000>;
+-
+-			clk_s_a0_pll: clk-s-a0-pll {
+-				#clock-cells = <1>;
+-				compatible = "st,clkgen-pll0-a0";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_a0_flexgen: clk-s-a0-flexgen {
+-				compatible = "st,flexgen", "st,flexgen-stih407-a0";
+-
+-				#clock-cells = <1>;
+-
+-				clocks = <&clk_s_a0_pll 0>,
+-					 <&clk_sysin>;
+-			};
+-		};
+-
+-		clk_s_c0: clockgen-c@9103000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x9103000 0x1000>;
+-
+-			clk_s_c0_pll0: clk-s-c0-pll0 {
+-				#clock-cells = <1>;
+-				compatible = "st,clkgen-pll0-c0";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_c0_pll1: clk-s-c0-pll1 {
+-				#clock-cells = <1>;
+-				compatible = "st,clkgen-pll1-c0";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_c0_quadfs: clk-s-c0-quadfs {
+-				#clock-cells = <1>;
+-				compatible = "st,quadfs-pll";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_c0_flexgen: clk-s-c0-flexgen {
+-				#clock-cells = <1>;
+-				compatible = "st,flexgen", "st,flexgen-stih407-c0";
+-
+-				clocks = <&clk_s_c0_pll0 0>,
+-					 <&clk_s_c0_pll1 0>,
+-					 <&clk_s_c0_quadfs 0>,
+-					 <&clk_s_c0_quadfs 1>,
+-					 <&clk_s_c0_quadfs 2>,
+-					 <&clk_s_c0_quadfs 3>,
+-					 <&clk_sysin>;
+-
+-				/*
+-				 * ARM Peripheral clock for timers
+-				 */
+-				clk_m_a9_ext2f_div2: clk-m-a9-ext2f-div2s {
+-					#clock-cells = <0>;
+-					compatible = "fixed-factor-clock";
+-
+-					clocks = <&clk_s_c0_flexgen 13>;
+-
+-					clock-output-names = "clk-m-a9-ext2f-div2";
+-
+-					clock-div = <2>;
+-					clock-mult = <1>;
+-				};
+-			};
+-		};
+-
+-		clockgen-d0@9104000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x9104000 0x1000>;
+-
+-			clk_s_d0_quadfs: clk-s-d0-quadfs {
+-				#clock-cells = <1>;
+-				compatible = "st,quadfs-d0";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_d0_flexgen: clk-s-d0-flexgen {
+-				#clock-cells = <1>;
+-				compatible = "st,flexgen", "st,flexgen-stih407-d0";
+-
+-				clocks = <&clk_s_d0_quadfs 0>,
+-					 <&clk_s_d0_quadfs 1>,
+-					 <&clk_s_d0_quadfs 2>,
+-					 <&clk_s_d0_quadfs 3>,
+-					 <&clk_sysin>;
+-			};
+-		};
+-
+-		clockgen-d2@9106000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x9106000 0x1000>;
+-
+-			clk_s_d2_quadfs: clk-s-d2-quadfs {
+-				#clock-cells = <1>;
+-				compatible = "st,quadfs-d2";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_d2_flexgen: clk-s-d2-flexgen {
+-				#clock-cells = <1>;
+-				compatible = "st,flexgen", "st,flexgen-stih407-d2";
+-
+-				clocks = <&clk_s_d2_quadfs 0>,
+-					 <&clk_s_d2_quadfs 1>,
+-					 <&clk_s_d2_quadfs 2>,
+-					 <&clk_s_d2_quadfs 3>,
+-					 <&clk_sysin>,
+-					 <&clk_sysin>,
+-					 <&clk_tmdsout_hdmi>;
+-			};
+-		};
+-
+-		clockgen-d3@9107000 {
+-			compatible = "st,clkgen-c32";
+-			reg = <0x9107000 0x1000>;
+-
+-			clk_s_d3_quadfs: clk-s-d3-quadfs {
+-				#clock-cells = <1>;
+-				compatible = "st,quadfs-d3";
+-
+-				clocks = <&clk_sysin>;
+-			};
+-
+-			clk_s_d3_flexgen: clk-s-d3-flexgen {
+-				#clock-cells = <1>;
+-				compatible = "st,flexgen", "st,flexgen-stih407-d3";
+-
+-				clocks = <&clk_s_d3_quadfs 0>,
+-					 <&clk_s_d3_quadfs 1>,
+-					 <&clk_s_d3_quadfs 2>,
+-					 <&clk_s_d3_quadfs 3>,
+-					 <&clk_sysin>;
+-			};
+-		};
+-	};
+-};
 
-My brain compiler suggests this will throw a warning (minItems should
-be redundant in this case)
-> +
-> +  led-names:
-> +    enum:
-> +      - privacy-led
+---
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+change-id: 20250907-master-bb115f5b67ad
 
-Nit: "privacy" makes more sense without the suffix, as we inherently
-know this is supposed to be an LED
+Best regards,
+-- 
+Raphael Gallais-Pou <rgallaispou@gmail.com>
 
-Konrad
 
