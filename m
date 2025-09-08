@@ -1,165 +1,217 @@
-Return-Path: <devicetree+bounces-214385-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214386-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21BD9B48EF5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:12:59 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C224B48F0F
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:15:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 238213B24E8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:11:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10B1934385B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 13:13:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82484309F15;
-	Mon,  8 Sep 2025 13:11:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05B9F30AD18;
+	Mon,  8 Sep 2025 13:13:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BZL4dTVY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SfxK/VBK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C58E306D4D;
-	Mon,  8 Sep 2025 13:11:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F1530ACE6
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 13:13:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757337079; cv=none; b=oG2/MpND0dxNcVnH0Ovu/GCHW8fQFEDcSR/xKc0l2m28bTjuOeTVxJVWwD1dBBK5+NYql3tNIOIG9T5UtVIygebgw9UeNsQbBZB6oRNY/n2awghUcxgqyFOtaIECgNUnUoVSUGr2YXtF9IMspyUs2geOdlz9+PHPtTAQlnMsCbM=
+	t=1757337182; cv=none; b=A5QmaGIWKeCAaZSlhcffmQcQeH9Wt1J8c/AzS0gbFlpxarS0KcPF5+efzTtVTQKYKA8+NO1qUzoMD7nmOrxcf2u2QRhbhl4xDAM2tcLj2DHRyG/fJGVa3h2K/6pB6fw/ju3+I0UxWEe+8iKu8CGaaoBkX/6ZMmtF2SGW8zMVlkQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757337079; c=relaxed/simple;
-	bh=WZrrah9aMuAKLUBdsSI5zIoal5HgbHYywFN5Z3v6fSw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Lz0JJvuzJJOA3EgCAma4EBc7TBkhErVmR9uDXIgGBLhK8zHvKpJQKdbYBKxv0kAOVlAgYEjIByqESKo/n5bbF4GCP4xrcCBAUiGt4l5L5t5uk2XD0PRLHJcndPnpjPySW7FbPmwL3KiVsY8/btBjIgTL6r6dIYDfG1eV3VohTns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BZL4dTVY; arc=none smtp.client-ip=209.85.216.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-32d6c194134so1885623a91.0;
-        Mon, 08 Sep 2025 06:11:15 -0700 (PDT)
+	s=arc-20240116; t=1757337182; c=relaxed/simple;
+	bh=k/rYEqvoUHmQsSFnRWJthGrqkooxPs75rw/T6s9nl2c=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=EVyRrERR833S/c7T79BZWk2pCdFNUshkg3NYftU0VSjwKpDw6O7Wz708aSb8AZrFWMQX342M2lnLls8GaYh2o74bjzaLMoiG8K+OUuy4BOU2mSalxWrQl4WYoDnASiKsRFpS9WRjTQLFgMaa69NFYdLemK0oTzLhW3b2DQ0bU9E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SfxK/VBK; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-3e07ffffb87so2023185f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 06:13:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757337075; x=1757941875; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UxsScnhFRAfh8hoa8tdrt0Ueycuw3d3wWZbO1YmoHbE=;
-        b=BZL4dTVYGiun4k4phPtxOF0W3m5VQO5VfEkya5D4aKuG6XxEm5PMyYp5h3riXylR++
-         m4UKSwb9tH7BjLuoqiFGM5LJMYVTgKQU72Cc6lxhq1d2SDZei2Hgf+evto8D+DHQhwFS
-         4hEUo613B4tohO+0iUWBlFhK87y9kcUxkCvcu5iLLNH493SfxEdTQpulL4yy/2W/IK/f
-         WNGORyGWUMCWqpdHaWW3/6ZKfbdHxcoyqXinthWCwjEBNDEHDKJ6BjvfMIEzxXk3G/j7
-         4Rar06OcQRFoLJRL97hV+NSkYB1qRJtI9SqxUuzqVhrVtY2ddrMnnkEOovn+stEls0PX
-         XI/Q==
+        d=linaro.org; s=google; t=1757337179; x=1757941979; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=euNzNi2+8hGcblKlx8oKoI+4PgNfizE50VEjZnuwFB4=;
+        b=SfxK/VBK52yTBIPVmbLDgxebshnhN44UPTUIxChmJxcVX0XCINwhwbGbTpcff3jmX6
+         lKC6x8Vx+7fI/IUH/8dBA83Bf+4bORjnNLgnNHOSNwPkQj67LGRbN9fJJ3nyxlJkAMGV
+         /qG1eqpIgE4jqVbggdo0H/PZ66eFnpcFRa2FIeWGkVSdCLTEjvD6JIoqaqn9qKduAmZQ
+         dRHXt/l0A4xPzb6NPAAw+o81Zo8g7O7th46H6SyXIT+bllMn/VrMITIyTEOwKEQBjdUa
+         5BAnt5KFezhQP8HVqxkDsgwOayVxTW9gw+mWbreEHmpEeUpYT0rrgJzY/wmP8MvWU/Pr
+         opXw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757337075; x=1757941875;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UxsScnhFRAfh8hoa8tdrt0Ueycuw3d3wWZbO1YmoHbE=;
-        b=bef1/i/pWfmJIxXkIeQQnkRzEM7x/SwGjToKYbBegjDLh2+Ujbkc8GlCHJS8H1p5TH
-         t/s1URKIkJA3ouJ2oH+NxD/NRGLTDdEZ20zZq8WprONeHFpzjykN/puIyUVo0rqt23XY
-         aTw7MuCrxVcxSKeaNQhjukLKmAOF/8qDRY1dlNvNj9lMN7lvc/ACFulr9r8Yc0eLaKfi
-         vPbtUKpTOZkkgZtPZJgxotWFc2gYc454RH2u3qr/ab8I7fQXeFEc65V8xtK4Cfb+DGru
-         2v6zuBpx99tLqK8EqpjiB5Yhj/dtV7K1oqkC6kxI0yhpO1FdKtsFilgvwpNw1gMPsqBG
-         EL7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCU3LuXUUVXQZeO5Vb3JRTvmTv0r4GnGDJ9O9u7WSgR9UeUaHAanTUNCsetpq0g3H5ZEwHkeMu2ltse5@vger.kernel.org, AJvYcCWEv/QrsvnVecxZFWUSFATxAy8YK29moxGmRd+5sX6qS9YoPyUeCEsH9piN/azTYmpHr5wbPLYUzzHv0eXB@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx4l02jPvtgjoltQHtjMCmEnZ9u0LMCiRd5YBf79AfSTsr/iLW3
-	NTCWLIjRteC6EMvNLxlZ3S7XBdgvvB4WKtau2aoDvztelm8EVVzZUTxszq9g58OMQ311L1knFAN
-	Q6zjnxnW2hMusYP6n3roa9DDMhtJW+vc=
-X-Gm-Gg: ASbGncvHmhD7DntnolZY92jY0w4wS+Rzphv2aKGk6JGdyUUr9+rKjlEY4+YtZKnp2sM
-	OD1J1fFPFPji1o1TBKOBDonPYFuQVJkAJn54pjZDF82yJJxhTaJW/+hX0TZyHYGFHXxvACjkcAr
-	Xk/00nRLHDx0KSl202+TgohURs91Iz3ZoTwfeT8r+oxGDOMyPbxrJJrY5rkS8Q3j93Yqxs9S9zn
-	EHfINiWhxgXRC4sMMnhLl6tOuQ01+AwcVx1OVZgWAn964CMY80=
-X-Google-Smtp-Source: AGHT+IGbLlVMZwR3Xd5bA8lydi1jXvnwqkqz37RYXSTBmdLQ+adIm0oo1k46F32RaHp6p8hS4ztBFZQdjdRwQV1B2js=
-X-Received: by 2002:a17:90b:3c08:b0:32d:3895:656b with SMTP id
- 98e67ed59e1d1-32d43f19072mr11640817a91.12.1757337074967; Mon, 08 Sep 2025
- 06:11:14 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1757337179; x=1757941979;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=euNzNi2+8hGcblKlx8oKoI+4PgNfizE50VEjZnuwFB4=;
+        b=TLxUYoCqibRQestd5xG0D7MfXB8VD5DcltFdPYb1QiHJAjrR3ig/3/DxfgIlhpwR8c
+         +Hjd7OI5MZZdnmnVvILxmjKvK/GjdnMToTUZWEOfBxOeCLGeHLD1/rEIl9PeoWAqZBiw
+         d+4WO6i8ENzBKgRSwbAhwfzfL+NYP28WOTBGvq2Is/XHley0xQM6cBEa1VKnzibgA/+Z
+         x/mqc6waMNjI1lhhqs6dYAI8S8TeFxcxw8Mvji6638Jb/RNA+jugkKfo/04Y4kc/OTeL
+         pd1xiFPDiCanVQIcGuNeTxuTVX7nwgJzecgIeoOn9DhEw3yzcTqaY+H+NMpcoqdUpIIQ
+         DjNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVIp8N03lY0MLAQay7KPzVpooEyPG2DW1G9xi2S32tuL4nng6H/6bVwZgNsSAhUdJi0BdoI2RyI812Q@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy+cOzN8GMlZQbuqJ7U7lPnFMGrQGAm/3bTfIsNmUDkSM4TJTAB
+	Kbl2NJaf0EINQRpOXsQA0WX3a9T4uxLpFQf8bZKKbeU69lSRD+DP7VV5y8oXclwX69c=
+X-Gm-Gg: ASbGncs161e1EmST3OSmUhDwiY6wDntT1hz5fceR+tfJImdt97sqchLBIQnQNf+n480
+	72c1Y/XoqN0FhjbtiE+8BOYzu2gxiIJAtb94FFdYvwOCcRi4W+7PvtC0Bc2eRE9eLj8G4nMsCXC
+	AjJohmLtvXEVf/pY1wvMsoiFuCTa7mNy53HXUiBcRJ8FcykTKsOmTkJqyPvB3x8/3nDDHx+PjRV
+	fmd3L7UWOfdCxI+rfE4f8L9FdkTnwBh9bifL10lwOZkTXoKq5sUStjDpm0S6JF+4q6owrD384d8
+	YplZUEyuImLH1xK1EZW5VASLTo40rq/xyKTyKY2v1vuF0LswOTSPyEpyL3Mm9ho7L1wKV+bHsah
+	hFboOb1OCdBkAeAccyC7IRXvgDY7DXWIptrpn0N69xPPfqaOTD0nFTOEasTfwej+xndC3HQFSFQ
+	FcBwAobytYkHZZYTfCTRQarek=
+X-Google-Smtp-Source: AGHT+IHYOeXJ7kL2S1pO2C07X8d64bw/OMH9vgtjnahGnxt7HgXXYrfjcsnaLr8FftHR7cKUZ3vsRg==
+X-Received: by 2002:a05:6000:200c:b0:3e2:2dd3:f9d6 with SMTP id ffacd0b85a97d-3e64ca780d5mr6256069f8f.55.1757337179163;
+        Mon, 08 Sep 2025 06:12:59 -0700 (PDT)
+Received: from ta2.c.googlers.com (219.43.233.35.bc.googleusercontent.com. [35.233.43.219])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3cf33fb9dbfsm41650181f8f.43.2025.09.08.06.12.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 06:12:58 -0700 (PDT)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH v4 0/5] exynos-acpm: add DVFS protocol and clock driver
+Date: Mon, 08 Sep 2025 13:12:41 +0000
+Message-Id: <20250908-acpm-clk-v4-0-633350c0c0b1@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250905181728.3169479-1-mmyangfl@gmail.com> <20250905181728.3169479-4-mmyangfl@gmail.com>
- <4ef60411-a3f8-4bb6-b1d9-ab61576f0baf@lunn.ch>
-In-Reply-To: <4ef60411-a3f8-4bb6-b1d9-ab61576f0baf@lunn.ch>
-From: Yangfl <mmyangfl@gmail.com>
-Date: Mon, 8 Sep 2025 21:10:36 +0800
-X-Gm-Features: Ac12FXyghJGVt3ImgN51reDi_6wofgrvtuGDMUG92T-V2Vo85gQbM0bsPcGJDLQ
-Message-ID: <CAAXyoMMEUeqxJaAYb8fbeACp7N=hFOQrPbtk4LDJM4CZw7n6mA@mail.gmail.com>
-Subject: Re: [PATCH net-next v7 3/3] net: dsa: yt921x: Add support for
- Motorcomm YT921x
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, Vladimir Oltean <olteanv@gmail.com>, 
-	"David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Simon Horman <horms@kernel.org>, Russell King <linux@armlinux.org.uk>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEnWvmgC/23NSQ7CIBiG4as0rMUwlcGV9zAumGyJWhowRNP07
+ tJurNHl94fnZQLZp+AzODQTSL6EHOJQB9s1wPZ66DwMrm5AEGmRxApqO96hvV0hkY5oIT2iSID
+ 6fEz+Ep5r6nSuuw/5EdNrLRe8XP9ECoYIcmOcEkwwLvDxFgad4j6mDiyVQjaSiI0kVTrfWskNU
+ 4azH0k/UiG6kXT5s/XWMeKktOJLzvP8BlhmPf8VAQAA
+X-Change-ID: 20250819-acpm-clk-28d2a78e0307
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Peter Griffin <peter.griffin@linaro.org>, 
+ =?utf-8?q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Krzysztof Kozlowski <krzk@kernel.org>, 
+ Alim Akhtar <alim.akhtar@samsung.com>, 
+ Sylwester Nawrocki <s.nawrocki@samsung.com>, 
+ Chanwoo Choi <cw00.choi@samsung.com>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757337178; l=4646;
+ i=tudor.ambarus@linaro.org; s=20241212; h=from:subject:message-id;
+ bh=k/rYEqvoUHmQsSFnRWJthGrqkooxPs75rw/T6s9nl2c=;
+ b=MBibO8bOauSF0KxVN1B/clJFWfdF+BQrGCfYfDTCMuR36/9gpDIQ6z5kikA8VEdpKxlYF/Uj3
+ dvJ6kP/+SsuAEDD9ACTWR6NVwsGr5VVhx6/RvgiYGs/oe2cYiPwc380
+X-Developer-Key: i=tudor.ambarus@linaro.org; a=ed25519;
+ pk=uQzE0NXo3dIjeowMTOPCpIiPHEz12IA/MbyzrZVh9WI=
 
-On Mon, Sep 8, 2025 at 9:00=E2=80=AFPM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> > +/* Prepare for read/write operations. Not a lock primitive despite und=
-erlying
-> > + * implementations may perform a lock (could be a no-op if the bus sup=
-ports
-> > + * native atomic operations on internal ASIC registers).
->
-> It is more than atomic operations. Look at how long you hold the
-> lock. It is not a simple read/modify/write, you hold it over multiple
-> reads and writes. If the ASIC provided some sort of locking, it would
-> be available for MDIO, I2C, and SPI, and probably mean additional bus
-> transactions.
->
-> > + *
-> > + * To serialize register operations, use yt921x_lock() instead.
-> > + */
-> > +static void yt921x_reg_acquire(struct yt921x_priv *priv)
-> > +{
-> > +     if (priv->smi_ops->acquire)
-> > +             priv->smi_ops->acquire(priv->smi_ctx);
-> > +}
->
-> So, as i said in my review to previous versions, skip the if and just
-> take the mutex. KISS. I would not even call mutex_lock(priv->lock);
-> Don't over engineer the solution, this will probably work for I2C and
-> SPI as well.
->
-> > +/* You should manage the bus ownership yourself and use yt921x_reg_rea=
-d()
-> > + * directly, except for register polling with read_poll_timeout(); see=
- examples
-> > + * below.
-> > + */
-> > +static int yt921x_reg_read_managed(struct yt921x_priv *priv, u32 reg, =
-u32 *valp)
-> > +{
-> > +     int res;
-> > +
-> > +     yt921x_reg_acquire(priv);
-> > +     res =3D yt921x_reg_read(priv, reg, valp);
-> > +     yt921x_reg_release(priv);
-> > +
-> > +     return res;
-> > +}
->
-> Sorry, i missed your reply to my comment to the previous version. You
-> said:
->
-> > The driver itself does not need an explicit lock (so long as dsa
-> > framework does not call two conflicting methods on the same port),
->
-> The DSA framework makes no such guarantees. The DSA framework is also
-> not the only entry point into the driver, phylink will directly call
-> into the driver, and if you implement things like LEDs, they will have
-> direct access to the driver.
->
-> So i suggest only having a high level lock, acquired on entry,
-> released on exit, e.g. as mv88e6xxx does. KISS.
->
->     Andrew
->
-> ---
-> pw-bot: cr
+Dependencies description:
+All patches should go through the Samsung SoC tree.
+The acpm-clk driver (#4) depends on the ACPM DVFS ops (#2).
+If the clock subsystem needs to merge the new clock driver, it will
+need an immutable tag with the 2 patches.
+No dependecies for #1, #3, #5.
 
-So you mean holding bus->mdio_lock during any operations instead of
-implementing driver's own lock? Wouldn't other bus participants starve
-if I want to poll a register for like 100ms?
+The Alive CLock and Power Manager (ACPM) firmware exposes clocks that
+are variable and index based. These clocks don't provide an entire range
+of values between the limits but only discrete points within the range.
+The firmware also manages the voltage scaling appropriately with the
+clock scaling. Make the ACPM node a clock provider.
+
+Add support for the ACPM DVFS protocol. It translates clock frequency
+requests to messages that can be interpreted by the ACPM firmware.
+Add an ACPM clock driver to model the clocks exposed by the ACPM firmware.
+
+Thanks,
+ta
+
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+Changes in v4:
+- clk-acpm:
+  - remove GS101_ACPM_CLK_ID type handling. Dead code, it should be
+    introduced with next devices.
+  - remove runtime check on clock IDs. Instead add a comment about the
+    assumptions the code is making: the clock IDs start from zero, are
+    sequential and do not have gaps. Slight changes based on this
+    assumption: s/hws[id]/hws[i], remove the inclusion of
+    dt-bindings/clock/google,gs101-acpm.h and the use of the clock IDs.
+    The clocks are defined solely by name in the driver.
+- move firmware patches close to each other, in between the bindings and
+  the clock driver
+- update the description of dependencies in the cover letter.
+- Link to v3: https://lore.kernel.org/r/20250903-acpm-clk-v3-0-65ecd42d88c7@linaro.org
+
+Changes in v3:
+- dt-bindings:
+  - move clock bindings to a new bindings header
+  - update commit's subject, s/add #clock-cells/add ACPM clocks.
+    It also suggests that the bindings are added.
+  - prepend "GS101_" on clocks binding name. The bindings name are the
+    same for GS201 and the acpm-clk driver will likely include both.
+  - collect Rob's R-b
+- clk-acpm:
+  - move clock definitions here instead of keeping them into the
+    ACPM protocol driver
+  - use platform_driver.id_table to differentiate device type
+  - fix Kconfig dependency, || (COMPILE_TEST && !EXYNOS_ACPM_PROTOCOL)
+  - update commit subject, s/dev/pdev
+- exynos-acpm:
+  - move clock definitions to clk-acpm
+  - use devm-action to unregister clk-acpm platform device
+- Link to v2: https://lore.kernel.org/r/20250827-acpm-clk-v2-0-de5c86b49b64@linaro.org
+
+Changes in v2:
+- dt-bindings: clocks are not longer a child of ACPM protocol. Instead
+  make Alive Clock and Power Manager (ACPM) node a clock provider.
+  Update commit message.
+- firmware: exynos-acpm: register by hand the ACPM clocks dev (new
+  patch)
+- firmware: exynos-acpm: use defines intead of enum
+- acpm-clk:
+  - switch to determine_rate
+  - drop __init, __refdata, __initconst, this is a module, we need those
+    methods and data, after boot as well.
+  - fix the assumption that the clocks are defined by ID in ascending order.
+    There's still an assumption that the clk_id < nr_clks, but this is
+    now covered by a sanity check in the clock driver.
+- arm64: defconfig: enable Exynos ACPM clocks (add patch together with
+  this patch set) 
+- Link to v1: https://lore.kernel.org/r/20250819-acpm-clk-v1-0-6bbd97474671@linaro.org
+
+---
+Tudor Ambarus (5):
+      dt-bindings: firmware: google,gs101-acpm-ipc: add ACPM clocks
+      firmware: exynos-acpm: add DVFS protocol
+      firmware: exynos-acpm: register ACPM clocks pdev
+      clk: samsung: add Exynos ACPM clock driver
+      arm64: defconfig: enable Exynos ACPM clocks
+
+ .../bindings/firmware/google,gs101-acpm-ipc.yaml   |  11 ++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/clk/samsung/Kconfig                        |  10 ++
+ drivers/clk/samsung/Makefile                       |   1 +
+ drivers/clk/samsung/clk-acpm.c                     | 184 +++++++++++++++++++++
+ drivers/firmware/samsung/Makefile                  |   4 +-
+ drivers/firmware/samsung/exynos-acpm-dvfs.c        |  83 ++++++++++
+ drivers/firmware/samsung/exynos-acpm-dvfs.h        |  21 +++
+ drivers/firmware/samsung/exynos-acpm.c             |  26 +++
+ include/dt-bindings/clock/google,gs101-acpm.h      |  26 +++
+ .../linux/firmware/samsung/exynos-acpm-protocol.h  |  10 ++
+ 11 files changed, 376 insertions(+), 1 deletion(-)
+---
+base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
+change-id: 20250819-acpm-clk-28d2a78e0307
+
+Best regards,
+-- 
+Tudor Ambarus <tudor.ambarus@linaro.org>
+
 
