@@ -1,161 +1,178 @@
-Return-Path: <devicetree+bounces-214302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA55CB48AB0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:57:10 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 22DE4B48AC8
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:59:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ABC53A8004
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:57:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 071581891BCE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:59:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C20226D1F;
-	Mon,  8 Sep 2025 10:57:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 045A9223DD4;
+	Mon,  8 Sep 2025 10:59:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TVzGj2vO"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FhPm/EQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4442264B6
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 10:57:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39F86189;
+	Mon,  8 Sep 2025 10:59:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757329028; cv=none; b=cRIlzcr7YOdb07ZtrJHe5yLOzj/xlie62o8aqgEPmFIlnTxPZ+t11nyr/75whg9AoYQh2DvNNLTiEuCoGQTuM0Nc2ekL0Zf4/BdIysrIOrGqRw9NcSSF6PEZW19r7HsMx5i4jjUBXkhoSC/qhcnkcaUT1ZEMi0Koai1I28RZAbA=
+	t=1757329155; cv=none; b=SPmqSo/33mbWkgJGgz5YSvI/u5bT9+OGGvum1nKB9UfkX9hebffAKpKwslO2Snd+20Xmw8Rzb5a3LVdH7tKfJnYG0rvzHZK0AtyhwwV7Z+GJGRboyB3lBGvEkmF4UwsqWv1n2NbtVw22PgGZMtLeUSiZ5GMzBwEWQ8Np5teRn4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757329028; c=relaxed/simple;
-	bh=H4GKqV9vKQYnuJ8t0TV9btzVLh6ocsYYvcT3DTkijw4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=etFPv1Q9ZSDUyyBPzTCbn0stq7dyBQq5sEc5/Z/q/gDS55G3sUETIbH44O+01tACHcrekjq1dFiUMWpjcDlJrWdWZgRnq9/9C0w9sEOuu8SFtlEkMN3GDbEf1GBCCcIo9ci2dSt73FJYZpJnW0P3dap1d3bH1/nVxXpK/sfcET4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TVzGj2vO; arc=none smtp.client-ip=209.85.221.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3e2fdddd01dso572382f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 03:57:05 -0700 (PDT)
+	s=arc-20240116; t=1757329155; c=relaxed/simple;
+	bh=CNhxILeWIROJtkzjuwOixsLIs5eaP6mYdGrzHbxJbXM=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=eqYCSVw+TggHc2hMPDrQABHRjpjwAW1jCOFSuzQ1wb7+InPqPkc6mjREg4mp4SQblOEGZUtMBto1XX6zOWpytCeug1Zxm2t3zenMUudFKQOriRO+NUkm4aN3znc1/3xV/rSHCQoELlT+4crn8DkxzyY9gXuT6gWmcgzp/vu6LEo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FhPm/EQp; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-45ddc7d5731so14333795e9.1;
+        Mon, 08 Sep 2025 03:59:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757329024; x=1757933824; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lXcNKb7eAeUSAOD3P9kbauHvQhJ/T5mYxvtqvBukuQM=;
-        b=TVzGj2vOOi0iJTRHBf+JjlEVlcLFofPEc0ysXPC92iHoIMR3ld7KIeIkcnxAY1lSI5
-         EUle7uLJIyN1lJ+Bor89QzHObAQ3/zf1ibdu4FrEqn5ZeSZx4KCcQO31SdIc26BpxZVD
-         2/mludSs1DYd4YtOfamP3vkfZRyoS1D/gGaD8tiprRyKvXzbtKK7TlPMcFOsmUn7hfB0
-         QAK8eqhADN19p1opLcJMzpuUOwRkaaIiJb+dXK6SlN6MMDiB53Kfz3Ck53fjRaeOfr6X
-         5KwR80sHC1NtRDiuuMHkiLbY+AQnvBEXAEnuwdoHUcVqGmLP8DXWerS5h2R/DOe1HC/5
-         mmkA==
+        d=gmail.com; s=20230601; t=1757329152; x=1757933952; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=M/o3gVX4A+pC8uV/C9zqtdbM1sj81BgITs/nnRizczU=;
+        b=FhPm/EQpfyq9zEdoGKJx3Jb9D8/l//dqtbJaskajRNM9+WhTOPTUhH3ttFqbMDOvwN
+         WDdh3mKnTLaN6o2XsVwvBx6GUzRxjGwgY5lpLCXJUmTTclZxDgBaKK91MNgnQoTYTbU1
+         eKqs3M6pUAlobXjB+QVg0pKK8ahgMP8x9QxJzPhRc3ZrOyWZbvibBD0RtLKjozZ5OrOG
+         tiS0Y4YtEhbohlIwNE7nQmD1jdrUzldwNvKxHX/DdEbNzqZ/m19BfxQH+e8OnIist8DS
+         fZZnF9AnDLELa8bbSfYDscZvCmbfJ61L234yJgW3+63hASFRDKKrLNK9jYgyjAzo5HCE
+         qrag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757329024; x=1757933824;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lXcNKb7eAeUSAOD3P9kbauHvQhJ/T5mYxvtqvBukuQM=;
-        b=CUsm0RprU96zm7se6RpJJdAvjJcplv73rIWDMnjrtsxu2zKgkkJfFS5uyFMXbmJ30a
-         EN81mdh3g7wzm8AWRhxPcxyefUn6BPBNaLVkosImQi99UMKdxHvnAlkrvZhHxxAXU6ue
-         klleH7G53a+DjgCQ1mlx2Rcw8BdxdLPV0qs74OHYdlfVUf8eA5gNpd8YfRI0ZcdBmUg6
-         GRTilmtFb8CGU7HOhtsaCf8Ft0Ex5z1kToYHUSGVg1GwWKh+rM+097HOEVNgnYTN2fZi
-         mVijzIhU9cMoBWYZ8C7Q8AVnKWoxf7gh+PXBgnDAI2+IOcTogpzXDuc11yrcJ6ab0A/c
-         RVdA==
-X-Forwarded-Encrypted: i=1; AJvYcCVu3jDL7L7lOyef5GvGQ8jHZQqYi0B6xNXYr1mMKZCO3ZolRnyB9bl4lgTWxHba4QXEdGrSXru3iehP@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy5PVKg99fHzTWwquALMwNo/H4NAcWTgC5zwuC6cuxRi2xgEMEd
-	kHmW6r6aDvqLjJpjsMfLJMesRvqM5gashVqPpKlFKm5K5zLSusuNycV9X6wZZSnEm20=
-X-Gm-Gg: ASbGnctyfqXwPOzZ8CEjBNE5dsgbc8KhQdde5zcAurqHX8022N408Jtwb67MPckeKOO
-	oW0QQlomF8fi/0sOE4dQEIhAuvKNGnzWU4GM0T71VOKU0oZZ3DsYiTPT6Dhv7miAMGpgCZE1Q3v
-	NkJ2EKaJo1/6N6OL8wrSe9HG/IwGzO6QKJCJf5GmP8xT1exY8A91BG8ZPGOZN73r10KoFHQ1+CN
-	nvh9Xn0hcSUlO+z507fI9B/QfOj9cM5yKFKBa0MZOlqAU/U2Zp2YGbmBdtadSWdWN7wEqUPmpNW
-	SuPPfzHNjyYi3MoRFzjgCe8MHEdnJhouEsePCwlymWhAcg3TCCaUgrMy+4xxCW1GZu4bfmGXijX
-	SngmJQS3ZicLl+7tRQMLoQArDE622WFPRYhgAbXfXxULo8BDWPb3AQd6mCXHUjoSywTzJNSosr3
-	P8Mx8iAvQ9A0MGVxuPAuM=
-X-Google-Smtp-Source: AGHT+IHJenZkBnBqX5JJGGi8QCqzH35vWp8fn9f5als83N3CMmj4jtZhM8xY4+BhMYtweIKXzuwxjA==
-X-Received: by 2002:a05:6000:24c9:b0:3e2:4a3e:d3ee with SMTP id ffacd0b85a97d-3e64ca75db9mr5387379f8f.58.1757329024396;
-        Mon, 08 Sep 2025 03:57:04 -0700 (PDT)
-Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm440740795e9.12.2025.09.08.03.57.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 03:57:03 -0700 (PDT)
-Message-ID: <bfc3838c-b2fe-40c9-a1bf-f5269b48dca9@linaro.org>
-Date: Mon, 8 Sep 2025 11:56:59 +0100
+        d=1e100.net; s=20230601; t=1757329152; x=1757933952;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=M/o3gVX4A+pC8uV/C9zqtdbM1sj81BgITs/nnRizczU=;
+        b=n5pQQ8g40FfKLP1KYNMhuCnhfiwttOrouhQvItjMqJF5VtQtbVSq06JBZTDy9N2hKv
+         MwYZVnJ9QQ4CY/bb/9R5XSzUmFAzVdifYhUhlAhZ4NeI0/3DHiMwaBoQwX3DJyZlwYY0
+         fopGLPxPwwsYjCHgIAwwQ/h+x3zWch1hB9OLTgCX9xtQ/KaHMft1M6tpcwU0yj7VCMYl
+         6iaNa7fuj5U1QS0KCtwcAuMY1kyVBnxhWtMHEql19sutU1sHS6QBn18cwq/T07WLGTLv
+         QJ4zHJ2tk+Blkx4mPqDCVwFNqFA2I/CRb0UMvKS5nihMfpBr/bW+4AwM+ub4TBODMaqi
+         IDUw==
+X-Forwarded-Encrypted: i=1; AJvYcCVH48vXUPtud+cbCJK2fUhyv+4/W24zoEc2LXnqhGu18x37ZVyiimHjDfuoZzLQso4KjsGhty0Z0OwgvLIlL2PMtJw=@vger.kernel.org, AJvYcCVJKDGXb9gPX4v8RiXnEAkMUjXS1VZvRt8V4d+HzfsIWdpcyM0Bus+soyquvMGA7VKVnRWrs3zj9q8V9wix@vger.kernel.org, AJvYcCVwll05yxQ+dn3uPDWM7amEKimunz2UNgctToqWzy5KlXz7f/Kp0aWsm5sH9kllMI2bEkaxoyB1AwsN@vger.kernel.org
+X-Gm-Message-State: AOJu0YxOf7Z0M02DpdnJ6NqrjZKBzIvcWNJ+klaIuQ1cJe8md5PzyvlJ
+	NNZg2GLiR1dkD7+7p9Sbc+qIyPaC+zU03UJ4+rtGJnA/0aqtdRMto3JO
+X-Gm-Gg: ASbGncsgb4DA10+VRJdcrguTV+it2FyRJ0SesHg1HcdzbSFgUXnkr42HyLNRqCitjiu
+	Bw/Is5Uk/pCIK+tdSQVOwdq1W6x5X1pPLNirgf4r2eaLlHWyPALKeup/EkmUNu4XfSRVrom+A6D
+	2JWK8VGROYJHzqTJMA9bVz4A6GOdMmv+Y9fKtFbke5xe7Zu0jsmIPhs50yUqL/zGRJ1LlvNrcn6
+	eNijHCTjaw3jBKUqr2JGBEEN8MErktaasZvv0qcJ6eIsMLXX19IM/r6LhB+UO7jslj1lojsH7ui
+	3z0ok48SET2spBhsrjj24kKA7Ha8+ZM/ScGKKUYVav7/cU/H35j4+7QXeRA89i50IYqZgXjIjOw
+	+omBrt9wyljdgDwPbEUv1YC5llIq6RoUE3wAha/Cbv/lgFj01PFvlbrAKVA==
+X-Google-Smtp-Source: AGHT+IG6IGAiVacXOQNaZCh79TsdsAnmzFtfGBHM8HXzbwbzvmmNbEzbLXTJmKcec+tTtlvN5FexMg==
+X-Received: by 2002:a05:600c:468f:b0:45d:dbf4:888a with SMTP id 5b1f17b1804b1-45de6da472cmr20141115e9.25.1757329151701;
+        Mon, 08 Sep 2025 03:59:11 -0700 (PDT)
+Received: from iku.Home ([2a06:5906:61b:2d00:393b:4605:1f6c:eea1])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45ddfe0b654sm91063195e9.3.2025.09.08.03.59.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 03:59:11 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Andrew Lunn <andrew+netdev@lunn.ch>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+	Alexandre Torgue <alexandre.torgue@foss.st.com>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Russell King <linux@armlinux.org.uk>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Vladimir Oltean <vladimir.oltean@nxp.com>,
+	Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+	Jose Abreu <joabreu@synopsys.com>
+Cc: netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-stm32@st-md-mailman.stormreply.com,
+	linux-arm-kernel@lists.infradead.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH net-next v3 0/3] Add GMAC support for Renesas RZ/{T2H, N2H} SoCs
+Date: Mon,  8 Sep 2025 11:58:58 +0100
+Message-ID: <20250908105901.3198975-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/4] Add CAMSS support for MSM8939
-To: git@apitzsch.eu, Robert Foss <rfoss@kernel.org>,
- Todor Tomov <todor.too@gmail.com>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Vincent Knecht <vincent.knecht@mailoo.org>
-References: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Content-Language: en-US
-In-Reply-To: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-On 07/09/2025 23:04, André Apitzsch via B4 Relay wrote:
-> (This series resumes [1].)
-> 
-> This series adds CAMSS support for MSM8939.  It's mostly identical to
-> MSM8916, except for some clocks and an additional CSI.
-> 
-> To fix black stripes across sensor output, and garbage in CSID TPG
-> output, 2 VFE VBIF register settings are needed.  So the 2nd patch adds
-> helper functions to do just that.
-> 
-> Patch 1: documents qcom,msm8939-camss DT bindings
-> Patch 2: adds helper for VFE VBIF settings
-> Patch 3: adds CAMSS_8x39 version in CAMSS driver
-> Patch 4: adds camss and cci in msm8939.dtsi
-> 
-> Changes compared to [1]:
-> - Move bindings patch to the beginning
-> - Make the order of {reg, clock, interrupt} items the same as in 8916 +
->    append additional items
-> - Drop R-b tags from bindings and dts patches as order of items was
->    changed
-> 
-> [1] https://lore.kernel.org/all/20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org/
-> 
-> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
-> [André: Apply reviewer comments]
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> ---
-> Vincent Knecht (4):
->        media: dt-bindings: Add qcom,msm8939-camss
->        media: qcom: camss: vfe: Add VBIF setting support
->        media: qcom: camss: Add support for MSM8939
->        arm64: dts: qcom: msm8939: Add camss and cci
-> 
->   .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
->   arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
->   arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
->   drivers/media/platform/qcom/camss/Makefile         |   1 +
->   drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
->   drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
->   drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
->   drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
->   drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
->   drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
->   drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
->   drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
->   drivers/media/platform/qcom/camss/camss.h          |   1 +
->   13 files changed, 645 insertions(+), 2 deletions(-)
-> ---
-> base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
-> change-id: 20250517-camss-8x39-vbif-975ff5819198
-> 
-> Best regards,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Hi All,
+
+This series adds support for the Ethernet MAC (GMAC) IP present on
+the Renesas RZ/T2H and RZ/N2H SoCs.
+
+While these SoCs use the same Synopsys DesignWare MAC IP (version 5.20) as
+the existing RZ/V2H(P), the hardware is synthesized with different options
+that require driver and binding updates:
+- 8 RX/TX queue pairs instead of 4 (requiring 19 interrupts vs 11)
+- Different clock requirements (3 clocks vs 7)
+- Different reset handling (2 named resets vs 1 unnamed)
+- Split header feature enabled
+- GMAC connected through a MIIC PCS on RZ/T2H
+
+The series first updates the generic dwmac binding to accommodate the
+higher interrupt count, then extends the Renesas-specific binding with
+a to document both SoCs.
+
+The driver changes prepare for multi-SoC support by introducing OF match
+data for per-SoC configuration, then add RZ/T2H support including PCS
+integration through the existing RZN1 MIIC driver.
+
+Note this patch series is dependent on the PCS driver [0]
+(not a build dependency).
+[0] https://lore.kernel.org/all/20250904114204.4148520-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+
+v2->v3:
+- Rebased on top next-20250908.
+- Made sure STMMAC_FLAG_EN_TX_LPI_CLK_PHY_CAP flag is
+  always set for all the SoCs.
+- Updated Kconfig to include RZ/T2H and RZ/N2H.
+
+- Fixed commit message typos.
+v1->v2:
+- Squshed incerasing interrupt count changes to snps,dwmac.yaml into this patch.
+- Dropped un-necessary blank lines.
+- Switched using "renesas,r9a09g077-gbeth" compatible string for RZ/T2H
+  instead of "renesas,rzt2h-gbeth" and used it as a fallback for RZ/N2H.
+- Updated description for reset property.
+- Added pcs-handle property required for RZ/T2H.
+- Updated commit message to reflect changes for patch 1/3.
+
+Cheers,
+Prabhakar
+
+Lad Prabhakar (3):
+  dt-bindings: net: renesas,rzv2h-gbeth: Document Renesas RZ/T2H and
+    RZ/N2H SoCs
+  net: stmmac: dwmac-renesas-gbeth: Use OF data for configuration
+  net: stmmac: dwmac-renesas-gbeth: Add support for RZ/T2H SoC
+
+ .../bindings/net/renesas,rzv2h-gbeth.yaml     | 178 ++++++++++++++----
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   9 +-
+ drivers/net/ethernet/stmicro/stmmac/Kconfig   |  12 +-
+ .../stmicro/stmmac/dwmac-renesas-gbeth.c      | 108 ++++++++++-
+ 4 files changed, 248 insertions(+), 59 deletions(-)
+
+-- 
+2.51.0
 
 
