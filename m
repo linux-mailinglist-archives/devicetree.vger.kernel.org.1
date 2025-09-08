@@ -1,81 +1,89 @@
-Return-Path: <devicetree+bounces-214094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 235D5B48234
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 03:34:51 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0FCEEB48255
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 04:02:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A7A43C08CF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 01:34:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCA5F3BD61D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 02:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63A1A205AB6;
-	Mon,  8 Sep 2025 01:34:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85C6D13A86C;
+	Mon,  8 Sep 2025 02:02:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PRKmmKCM"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Nk4C1CQp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com [209.85.217.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCABC1F790F;
-	Mon,  8 Sep 2025 01:34:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB66D3C38
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 02:02:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757295243; cv=none; b=BBF8aPLNIIx/GQY/9Izdk2GYUcGyGgar3mDr8InC6gFQzEq/W+XFmkGl7yI06Zmge1AEtjGVyux/9HraxrY/ZJxe7GBi5XXDbtpQ2neskg3QOrdMbhdZoZIr31pZ75o+mZTCOjZlp3N0YdsmDMc0mqrRHl4aeW2MpevxAWPxWis=
+	t=1757296951; cv=none; b=dPC7uuxUb/4MFzLbEtfexF+AWOYw8ASodFvRto4mS73OV8Jcz4Bc08GDKyPZQlyftAJBf7C0SeargaPA+VY03PW1hFSsvgP+37b9LtDmbjYg0vNuYwJusUJlDHO6FWuNjUdCLcr17CMdc1IC0zmCjeBD191XGen+5mY1J4vh85E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757295243; c=relaxed/simple;
-	bh=2c/B+jVJU+eMT1REUyPuXAvy9saBACnvLnSQGlmXcaM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=Xjf6dmwxLYq+DYBj4oWo33O+7RnljQULzHVDeMCnKMushMz9Tnh2NLHVPdfprkabIPurdE/8WepMCSIatYbTpwfC30iwpB6/1yutWOeAiXkN92ZHZI1Ud2VL4Cz7y/Q+BrwbVP7sUez6Lspflt0CXQZUiD62LHo80Z+NNJvDgE0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PRKmmKCM; arc=none smtp.client-ip=209.85.217.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f48.google.com with SMTP id ada2fe7eead31-52a8b815a8aso2070600137.3;
-        Sun, 07 Sep 2025 18:34:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757295241; x=1757900041; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=1dGtV+MjNh+y4+MbTmaKA4kHO3anKPg6NBgz3rdrNSY=;
-        b=PRKmmKCMaNDYI6x3V8pGDHzKBsXEg14A/07tWj/BnaX0/39S4Xkzv1y4RU53l+suoQ
-         2Dt/vcQ0ZuWib+r1TqcM7S8xCNVlHswqjHBkZ/oHkWYA2/770oI3pMS0J+P8lDpmQxCK
-         T8xfha4nqnVJHbUda8rmUoilSa4cqAMd+o0yQaIXIEyNjBiBQR76EpyhBTPM8mnTQO+W
-         yFfjLkS8DZX08FvcYhqnmqGOEXR+gyVp5LUpefjlifMlaP064q+7R83jsJ2rcIfG8kjD
-         Pa+86tYdkBNI4D2QR8OOfr7xltT4VKzeXtG+Xm4wpWXYCn7Y0eYBX0ik+jJ6cd7r7X54
-         GEJg==
+	s=arc-20240116; t=1757296951; c=relaxed/simple;
+	bh=dyqo7JudljblWc6HLE7pKuUumHsM5eHxacl7uIaGJ04=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=LN008nNI1QXTOntsRahb41u8GfpkcXSzZYDZoJN/sG0BSSmSY5NkR86yyAP+SoU6MaTqTYcERXmJNFdn4z4SC8EO3ukACnmBDZQkVornWifw8HF8GHYNSLx/y3ac2MZN8pgHWCw7l8uh085TQjmnYIYta9yZ+jYUYEDN8ifI9Xs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Nk4C1CQp; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 587MvC2E011099
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 02:02:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=yoV1214w9m4MdRhFcbUnI+
+	7YO3fgfW36gurgCqQNvzA=; b=Nk4C1CQpXlsn7EqrlSsnFIywu1uWXKqKlGqVAq
+	rE+Rl1kf/N1JHtkzdYEXYjwDI960Lmil/UjXhP393OmbhxSCnqbFitu4uakV/iBU
+	qBJ8E0cRhkxchODp++5KU2cxKCzgJ5yictWxf+jKSdB4nboB1nHvdSP6ToB/5v9n
+	xQxfRFwIXIKrjTW4H+DQ0Ui69BfU1cnzfG4Gcir4eV9lZhZpspJ+Qf0Tr4Z8xwUT
+	9U2jZbd+GJEuPuQIf1qmzi6+ucSVL6oU5pS7l8zHdNccN+tzzxaXdg3t5J/RzoZh
+	SZHfKuwD/xX16+nWeZKNvu2j3OSxEghbEjpxiJkFOA0ZUQEg==
+Received: from mail-pf1-f197.google.com (mail-pf1-f197.google.com [209.85.210.197])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bws30gc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 02:02:28 +0000 (GMT)
+Received: by mail-pf1-f197.google.com with SMTP id d2e1a72fcca58-7724ff1200eso3454239b3a.0
+        for <devicetree@vger.kernel.org>; Sun, 07 Sep 2025 19:02:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757295241; x=1757900041;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1dGtV+MjNh+y4+MbTmaKA4kHO3anKPg6NBgz3rdrNSY=;
-        b=Qzt/Ojau5ABZS/4h9HpmQZnUw8IM4Bd6f5WpB/BcYeoxiV4mllLExHHv0v4U2Ddfe6
-         VqkF9J9UYW31ywG8+E8p2M47IUmlJI524v6gPqxAdUgdtzUStjIUQqABFf6YEU5mmLEt
-         qFW3usd/SyvOuv96mwTzCkGg+VO3zwUPAUDkzf3PFaekCa2znYGQhJx/nokvbq36IC2F
-         G1agMnoQVf8/Qp6ONr9ZTGRpch8nhE3eoQH11Hb7PsoQ+d99yvsN1SHnYQx1toS0BzX5
-         WUzpAww+bPVLmAZhyC8YcnTF3JZVs2XxgdKEhbm8xw35H9iWCOfBiUn21I72qzAUDktZ
-         vr5A==
-X-Forwarded-Encrypted: i=1; AJvYcCWDrNO7HetqJV/+us+Y/o9ki6S6YDOoGZL8jYGVL9/Js0Tjzwl1ZUSKOaIfdffUKxR9uCNWQg+aBcTTZRpi@vger.kernel.org, AJvYcCWUXT3hjPisY0OY1dj5naLagEkqzbv7oMnEZ6hbtEw+bVE21sPdixYePf3kcOI7Wjmif5U8uyG6BuD0@vger.kernel.org, AJvYcCWjK4mmNx8p8z1JXhuApMJ7nPK2vkTERBcdX+QeTeEps103QIcQKMj8HAgfeuONVtwKhUaT6PFboq8R@vger.kernel.org, AJvYcCWlO5mDHxQmmEbXxBwSVasaAuDw2Nal2YWNCMrtIw+dPA3iKQnob5R8lUzHhAjPoRGk2S+AeE64@vger.kernel.org
-X-Gm-Message-State: AOJu0YyyDuwBo+uezid0nGCxZXl5Y/Gs5JiVe/1XF2V4PdKdofZku8Cy
-	UKvoDzNIw7v2s9ak1IYmkCIUajYj+Y1BusVKMflPB7zgFTOo3Wj9LRfFItadPg==
-X-Gm-Gg: ASbGncvvkUIOQDwkNdPb2UA81C2FtHjoukDtkrLZgW3M06FpGMHi4ka1EDRXlgJj+SX
-	QE9SJVtIYaj7zV6PcoWD/nYZmRs6xva/y8mdio3AtrBJ3eqrcs/LGOzkCRnhSxmobRkG8ojh6hj
-	oL/oD4ZpOo2oqepiSimLFKW5STu/v51CodMVKsSbPmCn3hie77pThzYKBUjpsnGa3g2atzzBLAd
-	tmcRf/5LqH9TVw8Y4tBnMzrjS6PyRl7LgWTc20+VLwBdA5uI2oomBTgEE5U2oQWgzzDlTjMwUG3
-	XgqguMNUOk5J+YWsJ5lzYqLC4cpY+sWhvI7Umx3APN/Crdgr51NytLYFIPJhSQvFhABC8C40VcY
-	Av57memy67TuE5Cy5FIkOLuw3z9PjjCl5DpI=
-X-Google-Smtp-Source: AGHT+IG1/Zjn4wzk0rEPN2NMHavM+UsB3Ymsn52h6u1H7ECAKTvwzXSagwM5V0EjgzZP/2+UdxTCyQ==
-X-Received: by 2002:a05:6102:50a1:b0:523:da8c:eda2 with SMTP id ada2fe7eead31-53d128e60a8mr1264610137.18.1757295240589;
-        Sun, 07 Sep 2025 18:34:00 -0700 (PDT)
-Received: from [192.168.100.70] ([2800:bf0:82:3d2:875c:6c76:e06b:3095])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-899c47af508sm5857494241.11.2025.09.07.18.33.59
+        d=1e100.net; s=20230601; t=1757296948; x=1757901748;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yoV1214w9m4MdRhFcbUnI+7YO3fgfW36gurgCqQNvzA=;
+        b=W5Y8d4kJsQWFrCp3zgIy/HZpcFDjo8/VXrYE8Rign6KLu1wZFWj2ZsUzdjEhL+f9/q
+         GG9Hs9GA7vxxZaSv/PsOqUpWuikQBT2PqKjnTBSfyVboqaD/GK0uTHRM5JftFRMR8u4y
+         G3gyqAAlaoefnRz0kZy4YSs9ddmrJAOg+dLCUtRx3yrjFybToJ1f8k24aTYjiMMOPTiC
+         ut5TKmHqPMHpgz7NYUpYveyrCLsL5j8q5U3W6JFpEClH5NaHMzSohbG3Rjoy0cEG5h7T
+         vI4R2P7RilrRlMTaGOS1El0GV7Z6+MhIf16bw1xKxeL52vtgJ3wbfnVmXD5d0cId6zoL
+         bMLw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxUFdvKdIOgnaqZz141ZWD3I7eczu4VUYE5djYLInXsiKMv2Z6xMg/uLZXBHiez/A2ACFIoDbBV46A@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywegz8bTu1NXiFiLv8dwKrJ2mBL9jF/jmGD46mb6pkVqKnE722b
+	m+BG+2YnSC/6+oU1hQx5FUHn524bGC/f4U+4O9ZSrTVAq3ESs8rXPr0IjMg0ZfUtnnS8TZKeMIM
+	V1AKxXl4yPjxdfbcAOdS/dcZFGm5+twPNORncM0CyC7u7Bha0NDlvmE9/xrv7ZZQO
+X-Gm-Gg: ASbGncuKmXwU/7RlVWAg0jZgKDn/xPOnhEa01N47IJviAqZZJGRimvEahTak8eTjqxe
+	0QEHoKBLRWNnR8c4k5NSPhwSpwj4YgTJ/i0an7wdvYxGjuH/vhfSVtIvW1gNH6y04N85yS5p+as
+	eTjQlzrWxI6/o3sWmrhJx750XxJJUeXEeUHQ+6OXeNIVJOIDZn0YH0CZk3JrJpOq9eq9GGaJADK
+	UYHP4tEA1GckQ4SKut892DDSwQ374RxcPhXycpOV3JhIbrGo49LtP9Ct0igyOee6ilEtNkgI9oh
+	4EVfEGcDiTKWvUBrt7T+20+cl+l+0sdJAQKb6rruOMabbIHhugNBU+OpAuuBvZiun2jSZdxAIwE
+	Ephf8jFyoNgkOj1ek2qvyLehFD/4=
+X-Received: by 2002:a05:6a00:1996:b0:772:638e:5f61 with SMTP id d2e1a72fcca58-7742de6fdcdmr7012192b3a.30.1757296947009;
+        Sun, 07 Sep 2025 19:02:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEc+g3yuUbloYGNpECYFQ5mpX5NmX4kSQdUKemXIAqYso/plZARjLfRT+z1zpo9pZgH+Ci6Pw==
+X-Received: by 2002:a05:6a00:1996:b0:772:638e:5f61 with SMTP id d2e1a72fcca58-7742de6fdcdmr7012155b3a.30.1757296946428;
+        Sun, 07 Sep 2025 19:02:26 -0700 (PDT)
+Received: from jiegan-gv.ap.qualcomm.com (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
+        by smtp.gmail.com with ESMTPSA id d2e1a72fcca58-7723f4858e6sm24285076b3a.4.2025.09.07.19.02.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 07 Sep 2025 18:34:00 -0700 (PDT)
-From: Kurt Borja <kuurtb@gmail.com>
-Date: Sun, 07 Sep 2025 20:33:51 -0500
-Subject: [PATCH v3 4/4] dt-bindings: trivial-devices: Add sht2x sensors
+        Sun, 07 Sep 2025 19:02:25 -0700 (PDT)
+From: Jie Gan <jie.gan@oss.qualcomm.com>
+Subject: [PATCH v6 0/9] coresight: ctcu: Enable byte-cntr function for TMC
+ ETR
+Date: Mon, 08 Sep 2025 10:01:52 +0800
+Message-Id: <20250908-enable-byte-cntr-for-tmc-v6-0-1db9e621441a@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -84,51 +92,173 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250907-sht2x-v3-4-bf846bd1534b@gmail.com>
-References: <20250907-sht2x-v3-0-bf846bd1534b@gmail.com>
-In-Reply-To: <20250907-sht2x-v3-0-bf846bd1534b@gmail.com>
-To: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
- Jonathan Corbet <corbet@lwn.net>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-hwmon@vger.kernel.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- Kurt Borja <kuurtb@gmail.com>, stable@vger.kernel.org
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=997; i=kuurtb@gmail.com;
- h=from:subject:message-id; bh=2c/B+jVJU+eMT1REUyPuXAvy9saBACnvLnSQGlmXcaM=;
- b=owGbwMvMwCUmluBs8WX+lTTG02pJDBn7jOrN5z2SdZhXZ5krrszUZm5mZphvc89PqYCrVP5hZ
- eGt69c7SlkYxLgYZMUUWdoTFn17FJX31u9A6H2YOaxMIEMYuDgFYCLcXowMnetvzmExuTTxg/eG
- A5tK78kXvtJ4+npu6omkFtunEiJHljD8d/N92qfH/ufJLTHVtUsUv0488zNY7a7uWZU3PW6Ml8W
- tWAE=
-X-Developer-Key: i=kuurtb@gmail.com; a=openpgp;
- fpr=54D3BE170AEF777983C3C63B57E3B6585920A69A
+X-B4-Tracking: v=1; b=H4sIABI5vmgC/x3MQQqDMBBG4avIrDswKIr2KqWLGP/ogI1lEkpFv
+ LvB5bd476AEUyR6VgcZfpp0iwXdoyK/uDiDdSqmWupWBukY0Y0reNwz2MdsHDbj/PEs3onrG/R
+ haKjkX0PQ/71+vc/zAtbObEBqAAAA
+To: Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        James Clark <james.clark@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Tingwei Zhang <tingwei.zhang@oss.qualcomm.com>,
+        Jinlong Mao <jinlong.mao@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc: coresight@lists.linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Jie Gan <jie.gan@oss.qualcomm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757296939; l=5486;
+ i=jie.gan@oss.qualcomm.com; s=20240927; h=from:subject:message-id;
+ bh=dyqo7JudljblWc6HLE7pKuUumHsM5eHxacl7uIaGJ04=;
+ b=/yeUaHpdizTMW9GOyBdOjn5ZVmJ8Y1/KvDNh7jwUI4URuGBXwisiLFz69WlpuOe8Zo0NKc+ew
+ YzxMZWKc1yxC8hwW6JuxFHxVmLdQ2IdAyJpeGQghs+CWvhTjbdqy6NT
+X-Developer-Key: i=jie.gan@oss.qualcomm.com; a=ed25519;
+ pk=OZh7JyRifqJh4xmrcGgmwa8/LCS8O11Q+mtx4aZGmi4=
+X-Proofpoint-ORIG-GUID: 6SPDJKlShhFv7_8zgYiTUiOMAnoREBlz
+X-Proofpoint-GUID: 6SPDJKlShhFv7_8zgYiTUiOMAnoREBlz
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX33EgJ5pXgmdl
+ xjNU3VNvDIMX50VfoJewHD5nhDYCN35LDU+LMRkiMQ8CsihxsBniR+XLURU6gzGEmUXHYPm0A11
+ YfWuHWycpv1/MY4gxMxP5rJfMk7Z49HEaah+JseX2WcbXnmnVHQsg0ufs8aMC6K2Ydta/EGCa92
+ 5z767daBDFuDGF5o7uKmQxtZNT/7EdF4D6+b7HedMPfE2e4dz9AsjVIHcsL2RC7Jr69h8AMQbXv
+ 03Xh7GwzcZycn3YYberyvi4brqhRNNc+VAW1Hab1NXCOYq3i3XyzdNqY8SC/Wl+BJp/fxpU1E+9
+ YrtVWIm+xSDXnx0o5BwvFCqrqRgCRDTY6exagHfbLCazizNPjg9b81KX8to5mJ9hGcZ4sIN2yF+
+ U8HSh8yY
+X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68be3935 cx=c_pps
+ a=rEQLjTOiSrHUhVqRoksmgQ==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8
+ a=COk6AnOGAAAA:8 a=4JJaRIKzVo7dG1xzKtwA:9 a=QEXdDO2ut3YA:10
+ a=2VI0MkxyNR6bbpdq8BZq:22 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-07_10,2025-09-04_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
 
-Add sensirion,sht2x trivial sensors.
+The byte-cntr function provided by the CTCU device is used to count the
+trace data entering the ETR. An interrupt is triggered if the data size
+exceeds the threshold set in the BYTECNTRVAL register. The interrupt
+handler counts the number of triggered interruptions.
 
-Cc: stable@vger.kernel.org
-Signed-off-by: Kurt Borja <kuurtb@gmail.com>
+Based on this concept, the irq_cnt can be used to determine whether
+the etr_buf is full. The ETR device will be disabled when the active
+etr_buf is nearly full or a timeout occurs. The nearly full buffer will
+be switched to background after synced. A new buffer will be picked from
+the etr_buf_list, then restart the ETR device.
+
+The byte-cntr reading functions can access data from the synced and
+deactivated buffer, transferring trace data from the etr_buf to userspace
+without stopping the ETR device.
+
+The byte-cntr read operation has integrated with the file node tmc_etr,
+for example:
+/dev/tmc_etr0
+/dev/tmc_etr1
+
+There are two scenarios for the tmc_etr file node with byte-cntr function:
+1. BYTECNTRVAL register is configured and byte-cntr is enabled -> byte-cntr read
+2. BYTECNTRVAL register is reset or byte-cntr is disabled -> original behavior
+
+Shell commands to enable byte-cntr reading for etr0:
+echo 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+echo 1 > /sys/bus/coresight/devices/tmc_etr0/enable_sink
+echo 1 > /sys/bus/coresight/devices/etm0/enable_source
+cat /dev/tmc_etr0
+
+Enable both ETR0 and ETR1:
+echo 0x10000 0x10000 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+
+Reset the BYTECNTR register for etr0:
+echo 0 > /sys/bus/coresight/devices/ctcu0/irq_threshold
+
+Changes in V6:
+1. rebased on next-20250905.
+2. fixed the issue that the dtsi file has re-named from sa8775p.dtsi to
+   lemans.dtsi.
+3. fixed some minor issues about comments.
+
+Changes in V5:
+1. Add Mike's reviewed-by tag for patchset 1,2,5.
+2. Remove the function pointer added to helper_ops according to Mike's
+   comment, it also results the patchset has been removed.
+3. Optimizing the paired create/clean functions for etr_buf_list.
+4. Remove the unneeded parameter "reading" from the etr_buf_node.
+Link to V4 - https://lore.kernel.org/all/20250725100806.1157-1-jie.gan@oss.qualcomm.com/
+
+Changes in V4:
+1. Rename the function to coresight_get_in_port_dest regarding to Mike's
+comment (patch 1/10).
+2. Add lock to protect the connections regarding to Mike's comment
+(patch 2/10).
+3. Move all byte-cntr functions to coresight-ctcu-byte-cntr file.
+4. Add tmc_read_ops to wrap all read operations for TMC device.
+5. Add a function in helper_ops to check whether the byte-cntr is
+enabkled.
+6. Call byte-cntr's read_ops if byte-cntr is enabled when reading data
+from the sysfs node.
+Link to V3 resend - https://lore.kernel.org/all/20250714063109.591-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3 resend:
+1. rebased on next-20250711.
+Link to V3 - https://lore.kernel.org/all/20250624060438.7469-1-jie.gan@oss.qualcomm.com/
+
+Changes in V3:
+1. The previous solution has been deprecated.
+2. Add a etr_buf_list to manage allcated etr buffers.
+3. Add a logic to switch buffer for ETR.
+4. Add read functions to read trace data from synced etr buffer.
+Link to V2 - https://lore.kernel.org/all/20250410013330.3609482-1-jie.gan@oss.qualcomm.com/
+
+Changes in V2:
+1. Removed the independent file node /dev/byte_cntr.
+2. Integrated the byte-cntr's file operations with current ETR file
+   node.
+3. Optimized the driver code of the CTCU that associated with byte-cntr.
+4. Add kernel document for the export API tmc_etr_get_rwp_offset.
+5. Optimized the way to read the rwp_offset according to Mike's
+   suggestion.
+6. Removed the dependency of the dts patch.
+Link to V1 - https://lore.kernel.org/all/20250310090407.2069489-1-quic_jiegan@quicinc.com/
+
+Signed-off-by: Jie Gan <jie.gan@oss.qualcomm.com>
 ---
- Documentation/devicetree/bindings/trivial-devices.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Jie Gan (9):
+      coresight: core: Refactoring ctcu_get_active_port and make it generic
+      coresight: core: add a new API to retrieve the helper device
+      coresight: tmc: add etr_buf_list to store allocated etr_buf
+      coresight: tmc: add create/clean functions for etr_buf_list
+      coresight: tmc: Introduce sysfs_read_ops to wrap sysfs read operations
+      dt-bindings: arm: add an interrupt property for Coresight CTCU
+      coresight: ctcu: enable byte-cntr for TMC ETR devices
+      coresight: tmc: integrate byte-cntr's read_ops with sysfs file_ops
+      arm64: dts: qcom: lemans: Add interrupts to CTCU device
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index f3dd18681aa6f81255141bdda6daf8e45369a2c2..952244a7105591a0095b1ae57da7cb7345bdfc61 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -362,6 +362,9 @@ properties:
-             # Sensirion low power multi-pixel gas sensor with I2C interface
-           - sensirion,sgpc3
-             # Sensirion temperature & humidity sensor with I2C interface
-+          - sensirion,sht20
-+          - sensirion,sht21
-+          - sensirion,sht25
-           - sensirion,sht4x
-             # Sensortek 3 axis accelerometer
-           - sensortek,stk8312
+ .../ABI/testing/sysfs-bus-coresight-devices-ctcu   |   6 +
+ .../bindings/arm/qcom,coresight-ctcu.yaml          |  17 +
+ arch/arm64/boot/dts/qcom/lemans.dtsi               |   5 +
+ drivers/hwtracing/coresight/Makefile               |   2 +-
+ drivers/hwtracing/coresight/coresight-core.c       |  59 ++++
+ .../hwtracing/coresight/coresight-ctcu-byte-cntr.c | 368 +++++++++++++++++++++
+ drivers/hwtracing/coresight/coresight-ctcu-core.c  | 108 ++++--
+ drivers/hwtracing/coresight/coresight-ctcu.h       |  62 +++-
+ drivers/hwtracing/coresight/coresight-priv.h       |   4 +
+ drivers/hwtracing/coresight/coresight-tmc-core.c   | 104 ++++--
+ drivers/hwtracing/coresight/coresight-tmc-etr.c    | 112 +++++++
+ drivers/hwtracing/coresight/coresight-tmc.h        |  38 +++
+ 12 files changed, 826 insertions(+), 59 deletions(-)
+---
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+change-id: 20250906-enable-byte-cntr-for-tmc-0ca0a83e8f93
 
+Best regards,
 -- 
-2.51.0
+Jie Gan <jie.gan@oss.qualcomm.com>
 
 
