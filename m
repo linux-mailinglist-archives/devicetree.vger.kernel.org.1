@@ -1,166 +1,113 @@
-Return-Path: <devicetree+bounces-214601-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214602-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 982A9B49D91
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:43:44 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6677CB49D9C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:52:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 476E83C42DF
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:43:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 82B701B264DC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:52:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 458422FAC0B;
-	Mon,  8 Sep 2025 23:43:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CADBB30AD1A;
+	Mon,  8 Sep 2025 23:52:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b="dGMNdmrd"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IwGXjTOV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelvem-ot02.ext.ti.com (lelvem-ot02.ext.ti.com [198.47.23.235])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F6B7181CFA
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 23:43:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1292E1CAB3;
+	Mon,  8 Sep 2025 23:52:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.235
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757375020; cv=none; b=Z0pwHdtaf6pV4j6riJkMElQRVfoSJPHmMx2lruo2wMKqfsEl0BrL9ivW5UcgOfHEr3UnyedfGBU/4Zjw984tjpCUfFArKfslhPKYAffQSd7UkF2DH1+DR3GUVTCBej9xebryE0OyZbHy2fpm0ec9hZR9Cge02d81QNTTgvThg4Y=
+	t=1757375535; cv=none; b=DmUCrYEY3gdAThWJi1BwWajq9Xcobq76FAJW8Ict31TIACfhI6VmaL5b6hePCOfgkWLSqn2vkcTC2eHmdJGeaHJt924vh9MnvP3OMMQrsPjTNsja/GuSJ4rbQa9bxIqGAr9D4z4i0AEy6VI7pKwmKLTlrPbnSsj95LA+7Iud8Yc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757375020; c=relaxed/simple;
-	bh=Xf+o5luAHatCq/dTDCApLoFgBaeG3YyqdSkFJuMacwE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=AsFTkE/7zOGbF87V4GPcgTTbL9d62bTlPRHStJApm0xoB9CxSlmgFJOCOpWUslDj2fvUwKqhdDebE6EOk6hEabzUJzRR18mpK/8M9UzgaEQXGBQxi0wnvnJ1eBWiGTpgwnSvUqu1Y2LAQB7kDgnG+H+0PjY0ohuN+uoSS7bFB64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com; spf=pass smtp.mailfrom=gateworks.com; dkim=pass (2048-bit key) header.d=gateworks.com header.i=@gateworks.com header.b=dGMNdmrd; arc=none smtp.client-ip=209.85.210.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gateworks.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gateworks.com
-Received: by mail-ot1-f46.google.com with SMTP id 46e09a7af769-7459fa1ef2aso4903267a34.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 16:43:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks.com; s=google; t=1757375016; x=1757979816; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TZ31nFbpBywr5LWV7R5R4cpzaC/84WhWlclxZ1iDl8w=;
-        b=dGMNdmrdxj74AMlG0q0iDTOmERjw+ac28EpGKG+MSLspaGJQ0vEWC3wTe9Jnx96xeU
-         e2DJ1dGjxfKLQtcX1cSWlsL5p4nBPcOKlkjmBggzzhf2T954jKw5rrtrvjcGTd0ajkcD
-         H445lwk9Q07hsowbK8NGP1KZaYWX8OVULc5czaJAPnieVpXY4QNUZ5Qz5y1VrWH3WtUQ
-         iwUe0QisOlw0pXJ1Z6TI3PTp0KO+34i32oCCP8KbRi7fvcg23hQRC0stzEblh0qE7uUx
-         DWfDSiECuzmO2iJEbq15JHO/f6QbVtq3HFYDG9DKKh+EfPX3Px9mLtP8UW3rgfMPMo1P
-         A4Yg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757375016; x=1757979816;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TZ31nFbpBywr5LWV7R5R4cpzaC/84WhWlclxZ1iDl8w=;
-        b=HBFdg4xhxAclz+prDbOJESEAK2lWNeq5HnEJwhKbW1SW2XlOXB9oZSzEjOx2+gBQTQ
-         4JDmwm7IDpLx98tMo8bn0AfL7ayzByn7ahQ0H1m44kZKcBSxp3O5ndkQ2KZMOGxr3XPe
-         kD7vgqJrsUSWbid9Y/fBQVUYcdgyGcgxHT4GOgplIVNckGz3d2PJ0tL3KbYusykX/7d4
-         F4z1W5e8KQavezwkHxH8aJ/Af2snz/u5MVXk1BgSPQB3hvnQ5/jVYoh24TMDQgLSTjkd
-         aIa5JIDnfR0AebLWOxe/M7cYLq2ncekX1R3ZnezYU+Z/54c68QTBeqFXQNcmJMhzSjk1
-         VuDA==
-X-Forwarded-Encrypted: i=1; AJvYcCVkMzUs6zml6eTe1C1ACznjpmx7YBSAvEoJ0Yg1j143PaxwksQzacWc7KqsXtQCKymRM+6urpdLFz1g@vger.kernel.org
-X-Gm-Message-State: AOJu0YwE2X/Uv97srn8z/tVs9BPf7cTVuJrXHEbWiY5mdJvcz9f74ZWU
-	OeOlFqW2MjmNT2QgRMbG9jpAutTEVZO2zWcUxfzok2Ogfri4MBOmc/8X76RzhUDhrQfb0qCWC3T
-	g3W7PlGuAs/Uq1UnDCesqKtPdSM59dhXdVD2Qia992w==
-X-Gm-Gg: ASbGncvPIb+LYOX0JnNZQdyeJRY7R+BvmfLsoVm29ktU8BnXoKPTSOcYPc1pPf55vLR
-	7WXJEQsk8IOwZI2menMzS+1xpT8lNzHQHLHV73rcDVuQJHFiivHNw0x4OCELBa8b5C7hYnTiflo
-	kQoNwZmnXrrtsa0pGt7gcdYy4bB6YBWYM6RIu96O0sweGEGn5zsWcYPY4Cmv44G7xYACiufb39F
-	02yREpaXWdRfApznA==
-X-Google-Smtp-Source: AGHT+IFz9G3l1NgBkuI646j9EnzDEEYlshmM1HaRnKUWjXTHPYCEEDbgvsYhJH8t3TMOXGnJoUgXdZIdCebMwUfCQhE=
-X-Received: by 2002:a05:6830:4885:b0:745:52d3:947c with SMTP id
- 46e09a7af769-74c71eff9demr5731156a34.11.1757375016543; Mon, 08 Sep 2025
- 16:43:36 -0700 (PDT)
+	s=arc-20240116; t=1757375535; c=relaxed/simple;
+	bh=3yP4nzGk9w6dUUzzw1bxb/LMtFO1kGKrqpHMEe5gY/U=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ncat01HCAtS8yJZTjnhrk3VUbSn/2b2cPZKurG8fX2XKtWvXwyzf5mX4E9MJjRNjvhZ2v2ezDfZecVmvdRxIXd6RXWTcU+1JszwSvL6w6NK0lUXAicdlbrpjknENETg0Z7flQj9BCRXZRJeLd0Gt259e0mHGTYcFsW0+U18ocVA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IwGXjTOV; arc=none smtp.client-ip=198.47.23.235
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot02.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Nq8B3206302;
+	Mon, 8 Sep 2025 18:52:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757375528;
+	bh=j2ng9DUqdr4CLxKOm/kc3SrqkIr3wZE5PfGAce4rCjQ=;
+	h=From:To:CC:Subject:Date;
+	b=IwGXjTOVsjtR0ANWp9TJLUPRJPuiCfchBT1yeyGn+7xgUasqouH3pHaj94npTsUH0
+	 Hv7dwJ9kMbcalgbT2/ecBRZsA7z3NL351aZx2MJycFNCw+FTTA44Qow3IkIctIbp3b
+	 f4OCasxR+lVh4sy4OHFAtfqSKDkgDMakEU0Ln/6o=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Nq8Sk4122895
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Mon, 8 Sep 2025 18:52:08 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
+ Sep 2025 18:52:07 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Mon, 8 Sep 2025 18:52:07 -0500
+Received: from judy-hp.dhcp.ti.com (judy-hp.dhcp.ti.com [128.247.81.105])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588Nq7WV1677746;
+	Mon, 8 Sep 2025 18:52:07 -0500
+From: Judith Mendez <jm@ti.com>
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero
+ Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Andrew
+ Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v3 0/2] Remove HS400 support from common
+Date: Mon, 8 Sep 2025 18:52:05 -0500
+Message-ID: <20250908235207.473628-1-jm@ti.com>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815-imx9-dts-v1-0-e609eb4e3105@nxp.com> <20250815-imx9-dts-v1-8-e609eb4e3105@nxp.com>
-In-Reply-To: <20250815-imx9-dts-v1-8-e609eb4e3105@nxp.com>
-From: Tim Harvey <tharvey@gateworks.com>
-Date: Mon, 8 Sep 2025 16:43:25 -0700
-X-Gm-Features: Ac12FXzVP_2vJkdlY1v1O3gS6w0Yd5KqydILTTKyUiWG6S13pVl8pRj4kS7eaz0
-Message-ID: <CAJ+vNU2hro_ZoRvmQ9yowKsX25AnrgZdGMn2D-RCkyJA02CEhA@mail.gmail.com>
-Subject: Re: [PATCH 08/13] arm64: dts: imx95-19x19-evk: Add phy supply for netc
-To: Peng Fan <peng.fan@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
-	Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, 
-	Fabio Estevam <festevam@gmail.com>, Frank Li <Frank.Li@nxp.com>, devicetree@vger.kernel.org, 
-	imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Fri, Aug 15, 2025 at 4:50=E2=80=AFAM Peng Fan <peng.fan@nxp.com> wrote:
->
-> Add phy supply for netc emdio on board.
->
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts | 20 +++++++++++++++++=
-+++
->  1 file changed, 20 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts b/arch/arm=
-64/boot/dts/freescale/imx95-19x19-evk.dts
-> index 39815b21d235d2f8cfa49720d3be49d056ea039a..feee6da65d37cae7413b09216=
-014d6fe2b76b032 100644
-> --- a/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx95-19x19-evk.dts
-> @@ -226,6 +226,25 @@ sound-wm8962 {
->                                 "IN3R", "AMIC",
->                                 "IN1R", "AMIC";
->         };
-> +
-> +       reg_aqr_stby: regulator-aqr-stby {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "aqr-stby";
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               gpio =3D <&i2c5_pcal6408 1 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
-> +
-> +       reg_aqr_en: regulator-aqr-en {
-> +               compatible =3D "regulator-fixed";
-> +               regulator-name =3D "aqr-en";
-> +               regulator-min-microvolt =3D <3300000>;
-> +               regulator-max-microvolt =3D <3300000>;
-> +               vin-supply =3D <&reg_aqr_stby>;
-> +               gpio =3D <&i2c5_pcal6408 0 GPIO_ACTIVE_HIGH>;
-> +               enable-active-high;
-> +       };
->  };
->
->  &adc1 {
-> @@ -502,6 +521,7 @@ &netc_blk_ctrl {
->  &netc_emdio {
->         pinctrl-names =3D "default";
->         pinctrl-0 =3D <&pinctrl_emdio>;
-> +       phy-supply =3D <&reg_aqr_en>;
->         status =3D "okay";
->
->         ethphy0: ethernet-phy@1 {
->
-> --
-> 2.37.1
->
->
+Since eMMC HS400 has been descoped for j722s due to errata i2478 [0]
+and is supported by default for AM62Px device, remove sdhci0 node from
+common-main.dtsi and include instead only for AM62Px in am62p-main.dtsi.
 
-Hi Peng,
+Also, update the STRB value for am62p eMMC sdhci0 node.
 
-I'm not sure where you are with regards to this patch but it indicates
-to me that you may have the enetc_port2 10G port with the AQR113 PHY
-working on the imx95-19x19-evk with upstream Linux. If so I would be
-interested in knowing what other patches you have for that. I'm seeing
-the interface fail to register with:
-nxp_enetc4 0002:00:10.0 eth2: PHY has no common interfaces
+Tested on am62p SK board.
 
-I'm wondering if there is some support missing from enetc or the
-aquantia phy required to work with 10gbase-r.
+[0] https://www.ti.com/lit/pdf/sprz575
 
-Best Regards,
+Link to v2:
+https://lore.kernel.org/linux-devicetree/20250908173831.269039-1-jm@ti.com
+Link to v1:
+https://lore.kernel.org/linux-arm-kernel/20250904004723.2856005-1-jm@ti.com/
 
-Tim
+Changes since v2:
+- Switch sdhci0: mmc@fa10000 in cbass_main to &sdhci0 at the
+  base level
+
+Judith Mendez (2):
+  arm64: dts: ti: k3-am62p/j722s: Remove HS400 support from common
+  arm64: dts: ti: k3-am62p: Update eMMC HS400 STRB value
+
+ arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ---
+ arch/arm64/boot/dts/ti/k3-am62p-main.dtsi              | 6 ++++++
+ 2 files changed, 6 insertions(+), 3 deletions(-)
+
+-- 
+2.51.0
+
 
