@@ -1,87 +1,88 @@
-Return-Path: <devicetree+bounces-214480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49886B49436
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 17:50:22 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 216B8B4944B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 17:52:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 820D63BF3C5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:47:57 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id ACD8D4E026D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 15:52:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD26311948;
-	Mon,  8 Sep 2025 15:45:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9962E8E12;
+	Mon,  8 Sep 2025 15:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="m3T5nNp0"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="QSA8mY1/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44AC9202C30
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 15:45:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D146B2AE78
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 15:52:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757346332; cv=none; b=ZfdxgKODFf+pr6evl2qP/S7pORgz+6U6Ic7y3iwgf4wuyXeWCvxJYEL0pqD3gGdEQfFWHGiiO1eQxVE9Etd3xGlGV2eKPP+3AzYEtAen0Xkx3TYi3ouFhmzf1w8lxRWNdrBKT3q42BFSZF5POf8ogI6GyCNVKYyOVE2fdPyZDdY=
+	t=1757346751; cv=none; b=F4nBKxSYhJQpNViTpiFJ82UdB8pJBBspFj5qpv210qZNlJVqB12Cc7BL7bHKCW0v+eEeS2cmpRyAkvM9J94dFXIFjDfUx43v68zx5wuHjer6Sti/Jrl3eF3rsLilAYeySMYANnI03sPxxN4Krlq6haErOpF522XZzn8zhLX7nBM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757346332; c=relaxed/simple;
-	bh=nJIebvcyngyJZ2+UfsCZceP9yS7NAjwxq6xcYNWN6dg=;
+	s=arc-20240116; t=1757346751; c=relaxed/simple;
+	bh=crak8uVuJijqzBSbLNMkfylAoCRgXBqUf7/pqgvGjC0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=r5QGbFeKt+5AoHrAxQzlfKLAak7Ly0kMNcGBKL0qqQXWQ4foNJOHm7vCSrd82vk7e5ZfPNsb0kyjhfoovm2xMuVGVv0HCcUsutdqZFHxVL73YG7d6YXUcgnRSux+pyWFynPWgp7RAskBHczKY7uToZdQ2c9/9iuCZZJ4KYWTQxU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=m3T5nNp0; arc=none smtp.client-ip=205.220.168.131
+	 In-Reply-To:Content-Type; b=OusdylCvctDvDWe5+7wkWLhNk74g3mhIKGViZzHvHXcsyzZ8yuSKT3y5NH9Me9QafUhPLT8d6ydKUa7lVzJI6f088ZZoP9SlQsNQOid75sTtesqnJU0J+zANI4jERYYa7K2g+bJyF2ySuZRLjeuYaSJVloc8/PjaUTVNe0ZTKg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=QSA8mY1/; arc=none smtp.client-ip=205.220.180.131
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58891O1m014776
-	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 15:45:29 GMT
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5888w94C006866
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 15:52:28 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
 	cc:content-transfer-encoding:content-type:date:from:in-reply-to
 	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	fMNRlKzBZ3IefkcX/KGz68yVL5VtqThtJH2q7iGmDA8=; b=m3T5nNp0HlxJj0Qv
-	VkssrGVMFG/7TTFyE+uhTBdcNcA+x+0gG+bRZ+Hh8fZHQK9mUlH3T8L3hGBDowZ2
-	p0LOg2aTbD00H6MgE7vQh06CR23yaAVHHtknSrsuNRapFfG6qjZIBKosM+n93kUC
-	ozSkzuyrR4wq2kOzuPbjxxSxaot8DJfArcsI/OvXRBkHZeRabn0f9k8X+i6ZfT8x
-	yKJ4FD0J4yzUWmeM/+61jW3hwKeF9ceIOSPB4R/nFLdj03vCSEY/WXBZHS3AlkNe
-	Ctd7eaW0liAmqp6T2VJiNlQa1j9sdwJKRB0uoFxuW/tGNyBF97oWyuaWqQu05vEV
-	aX7JNA==
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com [209.85.219.72])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490bws56q5-1
+	KvaveUZbWaKcPRnxcGEAhJIh2ZBs/hd5bj37QGB+6Sw=; b=QSA8mY1/fZDwh5os
+	D4nFX3Tfy1FUurMgL1xsobRGqE6524+y2KwumrwfDgBRQiwDTHpKlKJAtcQ4LD2c
+	rbu0k7n7XdV5lBBKmGYNAcdWYdOaOTfTALLXzO9Kz7kTn3b9LMUql+6WRiPqvTLI
+	pthLIi3qo1YJpn8+lzmta/HubOdprMBqDOizVP2jhBEu34Kn8UuF3Z+EU5snSW3t
+	o5vHEPGSHY2A5N3DJ8c72Rbu8ehOH7sI5n3gViAMsOOkhm7YkgE7xLvLbaLpUY65
+	QupRCWN66bXpHxSwnYHpiDzILLtn+PE4DPykUhZvoP67bv/GukosgpH73s2m5AYd
+	+nmRQg==
+Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com [209.85.160.198])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490db8d3wx-1
 	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 15:45:29 +0000 (GMT)
-Received: by mail-qv1-f72.google.com with SMTP id 6a1803df08f44-70fa9206690so96896096d6.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 08:45:29 -0700 (PDT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 15:52:28 +0000 (GMT)
+Received: by mail-qt1-f198.google.com with SMTP id d75a77b69052e-4b612061144so2666971cf.1
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 08:52:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757346328; x=1757951128;
+        d=1e100.net; s=20230601; t=1757346748; x=1757951548;
         h=content-transfer-encoding:in-reply-to:from:content-language
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fMNRlKzBZ3IefkcX/KGz68yVL5VtqThtJH2q7iGmDA8=;
-        b=D+iGPqWt/5851Dt6qKgYlI9aD3rDqPW2wE/H3y/aMFunUhweiQbfQkDH+arziWOvUR
-         bdbmwCwEpBMSTsfC+BJOqHO7snrDntcjnTJq5vumna6KlcdnGPtFNaF9lszcN8KrAXGB
-         AuiZQLT6DJrgB91Iy8rA4RDsQN0/PnZtRCxmMX/7MwEvBf+nBoG69LOf5hxG0a55MeML
-         ZSq0uXr+00n+6Sk0KKBup6g0Z/OGs4grG0aH+rWrUqfHpP7RXe1Haf78yzWObjYlUH5w
-         +y9Q5wlAn7mTUs7kUyPssZtk3Ylqqy23GV0Q4IwGd2dekAhjHe1N6cwhn0cq6HnDnpee
-         COpA==
-X-Forwarded-Encrypted: i=1; AJvYcCXghwYcHHr/Ud5iG+HnamDPXTrY0+JGWiz0R+rt7FpWRVQoxaG8MjbhJNQw7irNhUJ5x/gVWcK7sE6E@vger.kernel.org
-X-Gm-Message-State: AOJu0Ywda3vQNX9ISflBgcR06kcWBnNVWJdLCR2Q2UbZheWGDPIuChZl
-	Lt5Aq+NdfJg60A/qLzwxsKW+RVvSshrhUUZQZmz/k100RqOC+g16Zdvgg1nbXv3MCqn5uXhqYD2
-	PvN0r6xwjFSAIDFTs8ndwB//iLclP82VWb7/0LDYm0CKwLKPjmXZ/jXUi9qyFNhog
-X-Gm-Gg: ASbGnctAzKSb3PNWM4Hmyfs1ltm9TGeF0N1UUjAT5QO+Yn2mNXyuMzyXtaXCKpFftn/
-	VaONd/gqN3gQwLIC8W/ppGqh8vk1sbVgT8Dwk1OB+Pu81ioqu+Jglhp9QbHnl2adjjB0CTAdSYg
-	pWndGAZRI0LShCbWbuk9BdRkzTeBPXinSAr1CyoWxxvDNQeaHjq8+yUPymnBxyi+tzDCByYX2Hd
-	KB6u18Hjfwxu4pjijuQwlB91NhT9+3E66f7Zz19KdKsHqA6MWapEEifWnkzrmWps12cXQ8OXeL6
-	Cb1g9oAj4Z0V9Xri3LaUQAxzUJ5ueWxapxiZ/ChRV0C1DKRUt0G5he826oHullKXSAk=
-X-Received: by 2002:a05:6214:1d24:b0:72a:2e5b:af2f with SMTP id 6a1803df08f44-72bc5746fd8mr136887636d6.30.1757346327867;
-        Mon, 08 Sep 2025 08:45:27 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFtI2W+SVe5jgIkKVJegNqUo/KHDwuBa+slvMvbAKTs7rlFU/MUiVUjxng1HuQHTtLbnh2XdA==
-X-Received: by 2002:a05:6214:1d24:b0:72a:2e5b:af2f with SMTP id 6a1803df08f44-72bc5746fd8mr136887186d6.30.1757346327206;
-        Mon, 08 Sep 2025 08:45:27 -0700 (PDT)
-Received: from [192.168.68.119] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45b7e92a42asm447523425e9.20.2025.09.08.08.45.26
+        bh=KvaveUZbWaKcPRnxcGEAhJIh2ZBs/hd5bj37QGB+6Sw=;
+        b=r9xuVTevbWquFIkd3WywO2kwosiX1zYpRlcdzoYZZDTfRGNPVaswbtCMmI1xbVzf/t
+         YcYifkrMMBGR/n0rvumIiRWNlXcRug4YdLS3w8esdwC/kMOoJPBulcvPXaz/3dHRyXgw
+         uLWxGlE1OldTESNFzqH6pJMZIGJA9wlvhKS3cT2uXua0gv5W64J8E4H6ZWFpvKKgCkeQ
+         PGGgKPq8nHfuvEfAahT3YOmAxTkJAHGA9MtlAG7p7DpTFD9LGTpjRtnMbe/cuejTiwl8
+         oiiPhpsFSgQwQlRMWl+eGeCndQu9fTRfHv925c1QDuhAxV5N5FWPcvS5bR7fiP8z4Wy0
+         3m/w==
+X-Forwarded-Encrypted: i=1; AJvYcCVp8y3WTyg0eVQvn28GAFF2czCWbP4Ms+KHx8XTCTe0qX6XmsYRVVTY2puMHECCBFu6JQXosdgt0Crl@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywobi8ueoDewuj1dJm9IGCNaXdNUXC+OKmNQxZRF4YFQbhzaRnB
+	5UqwkaKqPIoCmfZ18CQIdXzyZQDrumne+SbfLUlQRUoLOGDNts9JJFSvJsYv5FY4W/eRsmsZ7m/
+	iuI9P50ovbnj7z/Fj1abrtPVIzn28o+NIjdD3o4RYgJsvSlrhHfJeB0n1QGn6ZPjC
+X-Gm-Gg: ASbGncs0tRjrYVj9e1m0S59yMmJnP8V46CRQfmMUEaFa/FGBNhe2+cbG9Oalprp3i3s
+	TZgMbSMOG6Zqy/Q+q5KiXsAbpsFdGDUk2RkFcO9KE4hSVu7YGbjr6EC7XD5q9z54Mwjn0qTlfW9
+	xPbV7oBSn1iyvI+dJWVS8N71h2uurjEbGKRevPkjaYAL+usJd7PVVVYQp89KcgODKL4W96vHTF1
+	LN81OroQoUTg6ryLTacER3OOzI60FmgLsJqU9bQraxWkWV7jryZYomy1Lmc5Z3WEQjk7GfGU5B0
+	uYcP8fyI5pAB2kNwvvbx8aNqO4FbJEhPH15glBcSkFUR7urOhZsI0syvgcNsiPdQ+tJNGPE7zTl
+	1LaAkEC+AyIOCsiMbacL32Q==
+X-Received: by 2002:ac8:5f14:0:b0:4b4:9175:fd48 with SMTP id d75a77b69052e-4b5f830417amr59537141cf.0.1757346747667;
+        Mon, 08 Sep 2025 08:52:27 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IEK3tOhFb+I2RxDjGGDb5CGgqX9S5kfnJ1nlfonzI8GnlObtYu5ssVSg4l6gyQ2GQhEeZUzCA==
+X-Received: by 2002:ac8:5f14:0:b0:4b4:9175:fd48 with SMTP id d75a77b69052e-4b5f830417amr59536681cf.0.1757346746893;
+        Mon, 08 Sep 2025 08:52:26 -0700 (PDT)
+Received: from [192.168.149.223] (078088045245.garwolin.vectranet.pl. [78.88.45.245])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b0416842ffasm2093150366b.38.2025.09.08.08.52.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 08:45:26 -0700 (PDT)
-Message-ID: <690423ac-4283-47a0-9250-4c740978ccac@oss.qualcomm.com>
-Date: Mon, 8 Sep 2025 16:45:25 +0100
+        Mon, 08 Sep 2025 08:52:26 -0700 (PDT)
+Message-ID: <e0924039-285e-49c6-8929-0e62b3513147@oss.qualcomm.com>
+Date: Mon, 8 Sep 2025 17:52:24 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,123 +90,91 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] ASoC: codecs: add new pm4125 audio codec driver
-To: Alexey Klimov <alexey.klimov@linaro.org>,
-        Srinivas Kandagatla <srini@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH v4 2/4] arm64: dts: qcom: qcs8300: Add Monaco EVK board
+To: Umang Chheda <umang.chheda@oss.qualcomm.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        Lee Jones <lee@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, linux-arm-msm@vger.kernel.org,
-        linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
-        christophe.jaillet@wanadoo.fr
-References: <20250814-pm4125_audio_codec_v1-v3-0-31a6ea0b368b@linaro.org>
- <20250814-pm4125_audio_codec_v1-v3-2-31a6ea0b368b@linaro.org>
- <df884334-c850-4ae9-b5e8-63cb834ae259@kernel.org>
- <DCNIVW9XSSY3.3H7TSNFDH7TKT@linaro.org>
+        Conor Dooley
+ <conor+dt@kernel.org>,
+        Richard Cochran <richardcochran@gmail.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20250905192350.1223812-1-umang.chheda@oss.qualcomm.com>
+ <20250905192350.1223812-3-umang.chheda@oss.qualcomm.com>
 Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <DCNIVW9XSSY3.3H7TSNFDH7TKT@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+In-Reply-To: <20250905192350.1223812-3-umang.chheda@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-ORIG-GUID: D67Jq_4vBKqQ7Fm32V6TuSAJfJnr1xYJ
-X-Proofpoint-GUID: D67Jq_4vBKqQ7Fm32V6TuSAJfJnr1xYJ
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfXz2Wd0keknl9i
- XE6xAMqIeT3GkchRTFDmQUHNcbqraY/LVYwAYyFIE5ws8SEA7Iwm5ttwm8ITRQE+uwrN53Wx04T
- QSIAUSBXqWmvtjxCxKHu//+lbToDweFTPpclfkT3dx2N6rXGBcxKTy4OThoXaPsfWVjsftix9ci
- I+QeiCMUkxvEa6tNsyUvBuCOPNYy32B9XbYZoKD7qBTi9n0NZguixiAqSUpb+ljDyLxuDyMYg/T
- xBmdIemjSpHulaFZmSWJuAX9zgGPPyUxsIKiLUWugQFN35+qIZdc8SpMo+1qIz2uIShzBxxxFxr
- krhOaGGPErnALgpdjc5eaZMhCR0R0J7fhDgkMMIh/XbMYXYlr9CXl+36GiIbhpG8gpxrO4oGaAm
- nGWdEhIy
-X-Authority-Analysis: v=2.4 cv=G4kcE8k5 c=1 sm=1 tr=0 ts=68befa19 cx=c_pps
- a=7E5Bxpl4vBhpaufnMqZlrw==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=ENUQA5pCW4QF4dO5OUwA:9
- a=QEXdDO2ut3YA:10 a=pJ04lnu7RYOZP9TFuWaZ:22
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzMSBTYWx0ZWRfX4oiuFqy22MxS
+ 6cpalRZPAVC1ehW055O6DqEgEnm3nJb5SxxCDEYFaB/yTUnM5nV364t5Oo9YSgn3H2gr7e9u5F/
+ ZcD4q/4DlKLQSpBOJSVZe/WDs45uMQ9Sw+XHkr0jBsUoLxbZ+sdIxeuw8slnYAIgX9yUG4BY9CZ
+ 7+cuyF+DuQ22+umlG0KIEybtQr6VuEBjcNtSkb0Ab4JxAJdpONrRUf6XyLwP/HipiTCfrYlwEVX
+ xe6v2ywM2nQOZBHX1DV71iryYqcwKSfWE8n20F0J8KE8+tfmuwFVb6tGiHasEkGn1ffijxHkZxk
+ hhhizVNAVgJSrwd/czXbf6e/0SHCFWfN0hvZaSMpYUivcPLH6+/kyHgJDMifXjv+X0t6h436WpM
+ OJXAOMX4
+X-Proofpoint-ORIG-GUID: G7gwvfZyCJfKKwoG8_e7YT1gLiLmhvPo
+X-Proofpoint-GUID: G7gwvfZyCJfKKwoG8_e7YT1gLiLmhvPo
+X-Authority-Analysis: v=2.4 cv=VIDdn8PX c=1 sm=1 tr=0 ts=68befbbc cx=c_pps
+ a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=FpWmc02/iXfjRdCD7H54yg==:17
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=COk6AnOGAAAA:8
+ a=IVo3xAofRzk1BSpusREA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=dawVfQjAaf238kedN5IG:22 a=TjNXssC_j7lpFel5tvFf:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
  definitions=2025-09-08_05,2025-09-08_01,2025-03-28_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 phishscore=0 bulkscore=0 suspectscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 spamscore=0
+ priorityscore=1501 malwarescore=0 spamscore=0 suspectscore=0 bulkscore=0
+ phishscore=0 adultscore=0 clxscore=1015 impostorscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060031
 
-On 9/8/25 4:26 PM, Alexey Klimov wrote:
-> Hi Srini,
+On 9/5/25 9:23 PM, Umang Chheda wrote:
+> Monaco EVK is a single board computer, based on the Qualcomm
+> QCS8300 SoC, with the following features :
+>   - Storage: 1 × 128 GB UFS, micro-SD card, EEPROMs for MACs,
+>     and eMMC.
+>   - Audio/Video, Camera & Display ports.
+>   - Connectivity: RJ45 2.5GbE, WLAN/Bluetooth, CAN/CAN-FD.
+>   - PCIe ports.
+>   - USB & UART ports.
 > 
-> On Fri Aug 15, 2025 at 4:36 PM BST, Srinivas Kandagatla wrote:
-
-
->>> +static int pm4125_codec_enable_rxclk(struct snd_soc_dapm_widget *w, struct snd_kcontrol *kcontrol,
->>> +				     int event)
->>> +{
->>> +	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
->>> +
->>> +	switch (event) {
->>> +	case SND_SOC_DAPM_PRE_PMU:
->>>
->>> +static const struct snd_kcontrol_new pm4125_snd_controls[] = {
->>> +	SOC_SINGLE_EXT("HPHL_COMP Switch", SND_SOC_NOPM, 0, 1, 0,
->>
->>     SOC_SINGLE_EXT("HPHL_COMP Switch", PM4125_COMP_L, 0, 1, 0, ?
->>
->>> +		       pm4125_get_compander, pm4125_set_compander),
->>> +	SOC_SINGLE_EXT("HPHR_COMP Switch", SND_SOC_NOPM, 1, 1, 0,
->>
->>        SOC_SINGLE_EXT("HPHR_COMP Switch", PM4125_COMP_R, 1, 1, 0,?
->>
->>> +		       pm4125_get_compander, pm4125_set_compander),
->>
->> This is same issue in one of the WCD codec, which am going to send fixes
->> along with my original wcd fixes series.
+> On top of Monaco EVK board additional mezzanine boards can be
+> stacked in future.
 > 
-> So this was in other codecs for years, right?
-
-only in wcd937x since it was added.
-
+> Add support for the following components :
+>   - GPI (Generic Peripheral Interface) and QUPv3-0/1
+>     controllers to facilitate DMA and peripheral communication.
+>   - TCA9534 I/O expander via I2C to provide 8 additional GPIO
+>     lines for extended I/O functionality.
+>   - USB1 controller in device mode to support USB peripheral
+>     operations. USB OTG mode will be enabled for USB1 controller
+>     once the VBUS control based on ID pin is implemented in
+>     hd3ss3220.c.
+>   - Remoteproc subsystems for supported DSPs such as Audio DSP,
+>     Compute DSP and Generic DSP, along with their corresponding
+>     firmware.
+>   - Configure nvmem-layout on the I2C EEPROM to store data for Ethernet
+>     and other consumers.
+>   - QCA8081 2.5G Ethernet PHY on port-0 and expose the
+>     Ethernet MAC address via nvmem for network configuration.
+>     It depends on CONFIG_QCA808X_PHY to use QCA8081 PHY.
+>   - Support for the Iris video codec.
 > 
->>> +
->>> +	SOC_SINGLE_TLV("HPHL Volume", PM4125_ANA_HPHPA_L_GAIN, 0, 20, 1,
->>> +		       line_gain),
->>> +	SOC_SINGLE_TLV("HPHR Volume", PM4125_ANA_HPHPA_R_GAIN, 0, 20, 1,
->>> +		       line_gain),
-...
-                          PM4125_ANA_HPHPA_FSM_DIV_RATIO_MASK,
->>                                       PM4125_ANA_HPHPA_FSM_DIV_RATIO_68);
->> @@ -309,8 +307,6 @@ static int pm4125_rx_clk_disable(struct
->> snd_soc_component *component)
->>         snd_soc_component_write_field(component,
->> PM4125_DIG_SWR_CDC_RX_CLK_CTL,
->>                                       PM4125_DIG_SWR_ANA_RX_CLK_EN_MASK,
->>                                       PM4125_DIG_SWR_RX_CLK_DISABLE);
->> -       pm4125_global_mbias_disable(component);
->> -
->>         return 0;
->>  }
+> Written with inputs from :
+> Rakesh Kota <rakesh.kota@oss.qualcomm.com> - Regulators.
+> Nirmesh Kumar Singh <nirmesh.Singh@oss.qualcomm.com> - GPIO expander.
+> Viken Dadhaniya <viken.dadhaniya@oss.qualcomm.com> - GPI/QUP.
+> Mohd Ayaan Anwar <quic_mohdayaa@quicinc.com> - Ethernet.
+> Monish Chunara <quic_mchunara@quicinc.com> - EEPROM.
+> Vikash Garodia <quic_vgarodia@quicinc.com> - Iris Video codec.
+> Swati Agarwal <swati.agarwal@oss.qualcomm.com> - USB.
 > 
-> This doesn't work. Playback has two issues: 1) volume is very low and probably
-> not adjustable and 2) sound during playback dies after a couple of seconds.
-> 
-> Returning these global_mbias() calls restores the good behaviour.
+> Signed-off-by: Umang Chheda <umang.chheda@oss.qualcomm.com>
+> ---
 
-What is global micbias to do with rx playback? Maybe something is missing.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
 
-Which RX path are you testing?
-
-I am testing this with Headphone and Lineout, it works for me.
-
-> 
-> Maybe let's make a widget out of it? In such case I am not sure about
-> routing meaning that I not sure which paths do require mbias enable.
-Not sure why RX would need mic bias?
-
-
---srini
-> 
-> Best regards,
-> Alexey
-
+Konrad
 
