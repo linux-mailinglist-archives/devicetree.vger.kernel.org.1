@@ -1,80 +1,81 @@
-Return-Path: <devicetree+bounces-214301-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214302-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FB09B48AA6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:55:33 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA55CB48AB0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:57:10 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0A1021896562
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:55:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ABC53A8004
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E142264B6;
-	Mon,  8 Sep 2025 10:55:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20C20226D1F;
+	Mon,  8 Sep 2025 10:57:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="S3AFd//Q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TVzGj2vO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9540D189
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 10:55:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C4442264B6
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 10:57:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757328922; cv=none; b=TamzjaKTtdZ9dIM0Gi95i3jdQ89hbP4dSZJqShjPoYUiZZKBZm5FJGc/smpCFMFmYA9PrxBPKTZc0w4TIy/Tqg0zVc5mKMmEndmxitGV6vaJ0vjy/+iUC0ia+V++2GTcON2t99inf7GNc5VfVD7BNNsz9ZpRL+mOTHsdJpbENLI=
+	t=1757329028; cv=none; b=cRIlzcr7YOdb07ZtrJHe5yLOzj/xlie62o8aqgEPmFIlnTxPZ+t11nyr/75whg9AoYQh2DvNNLTiEuCoGQTuM0Nc2ekL0Zf4/BdIysrIOrGqRw9NcSSF6PEZW19r7HsMx5i4jjUBXkhoSC/qhcnkcaUT1ZEMi0Koai1I28RZAbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757328922; c=relaxed/simple;
-	bh=zaNZRCRJ0Ys2b4J7IL/W4rFyxEh0uCxRutFrfyHwGtI=;
+	s=arc-20240116; t=1757329028; c=relaxed/simple;
+	bh=H4GKqV9vKQYnuJ8t0TV9btzVLh6ocsYYvcT3DTkijw4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=E2odMH2tMf2RHjfquKCmSlXSLEM/FSLlRZBXj1zdEoGWnO4FP2wrA+QvLDuXHJGtX7Gd2NIKFY2YVYlk8xC2V3CePfHD0EmX2UbHygIBVOVTpuG+1WpgoRLr/xanzTOUUO6Qtvekw0k/L8Z6qauWJ1X34Sl286xaC3PW8vt2RQk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=S3AFd//Q; arc=none smtp.client-ip=209.85.208.47
+	 In-Reply-To:Content-Type; b=etFPv1Q9ZSDUyyBPzTCbn0stq7dyBQq5sEc5/Z/q/gDS55G3sUETIbH44O+01tACHcrekjq1dFiUMWpjcDlJrWdWZgRnq9/9C0w9sEOuu8SFtlEkMN3GDbEf1GBCCcIo9ci2dSt73FJYZpJnW0P3dap1d3bH1/nVxXpK/sfcET4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TVzGj2vO; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-625e1dfc43dso2790035a12.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 03:55:19 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-3e2fdddd01dso572382f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 03:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757328918; x=1757933718; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=linaro.org; s=google; t=1757329024; x=1757933824; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=D15WYqEqCtCB7v610GJBwva3MsN/FcT88sDyZBQLmFU=;
-        b=S3AFd//QyLUH6ONLkSRL6J9cOfAh5PI5ZDetDHZTHnHXYIHNBbDGtbleNMPY4KxvLj
-         aWJIKG2BOcC6d0Nue/6oFzhIkFRO7kaIt2jVVdyNCvTcWkTyfsNFzocs6hEALhon9Cx4
-         IgmR6rqd7Vb/tTd2MqL8bBSeMHBmxUfiKUiU0vAZN9UAjbO1gVxjLK6GLLz90eUn86Mo
-         m5EYU9BEdebDQhctN1CpyIJv3y6tB8Svz1Rp7JtKJ7HxASrDG1INkCV9EkbO78OWUEXy
-         fpVZP+rguypnfyNiGmxekF47YM+dNlO+CJnvqX9YmCsiYhXyGBuqV9lz9ncCvvSQGozm
-         nKvA==
+        bh=lXcNKb7eAeUSAOD3P9kbauHvQhJ/T5mYxvtqvBukuQM=;
+        b=TVzGj2vOOi0iJTRHBf+JjlEVlcLFofPEc0ysXPC92iHoIMR3ld7KIeIkcnxAY1lSI5
+         EUle7uLJIyN1lJ+Bor89QzHObAQ3/zf1ibdu4FrEqn5ZeSZx4KCcQO31SdIc26BpxZVD
+         2/mludSs1DYd4YtOfamP3vkfZRyoS1D/gGaD8tiprRyKvXzbtKK7TlPMcFOsmUn7hfB0
+         QAK8eqhADN19p1opLcJMzpuUOwRkaaIiJb+dXK6SlN6MMDiB53Kfz3Ck53fjRaeOfr6X
+         5KwR80sHC1NtRDiuuMHkiLbY+AQnvBEXAEnuwdoHUcVqGmLP8DXWerS5h2R/DOe1HC/5
+         mmkA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757328918; x=1757933718;
-        h=content-transfer-encoding:in-reply-to:from:content-language
+        d=1e100.net; s=20230601; t=1757329024; x=1757933824;
+        h=content-transfer-encoding:in-reply-to:content-language:from
          :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D15WYqEqCtCB7v610GJBwva3MsN/FcT88sDyZBQLmFU=;
-        b=k67/UnefWi7pYmNC97V66D4T0cnJ0e5pQj3fvl+klCnn8Vw9pmiu7bSIvvqQHaejIg
-         z2Fj5J0oVYdH8rVNIAn7GMkNx/FrergaF0vtwdrnGgLiOHGGBDilpqGemuVWoBh91o7C
-         T4emLp53zwRNJVnhTZByKE2AlI6MHgC1eW6T898ndmLimRvCoM/xSBlu2heLRjGK360s
-         6toEu0uNLB98Y3mYXdgU4kD0tHAcVnw/FC34vXkzvQV+0B5YouKU7Fw67oLVDp4nGn+C
-         DbznNJBWNgUflgqZFuB9CtLZ63KUQqHnCnFuJSMEjx6Kv7rfdzAxPH36ZDRtFOEbb4Jz
-         IfmA==
-X-Forwarded-Encrypted: i=1; AJvYcCWLHDCK415hHW7Nkx5woEjy+yE1kA0nPbf5X3imDWpyK2izoQAGeI3yMPOTauP8DQHUmzt9RrJ+09zS@vger.kernel.org
-X-Gm-Message-State: AOJu0YwXZ3FABYmTacWFyJNfpJDV8Vbh2rf1wgbStcu34iuqrPboBZ8y
-	9LBn9cJIwD1GbDupIZm2Fd4mTunnrduieoa+Vn4YzGP/mHJgtyVp9Kgc9T00byrPkUY=
-X-Gm-Gg: ASbGncvXzjENa+bvdfLjHiihkfeQc1zOMjq3fzj/CRnPPonoMEjfX7Zsn5hnK0ig23C
-	TDsN9k+51aQGEg6R9yfnCpcxty4qsGfuMsKgpECfgdaoAMs8N41SQVew9iRn0K3IqngP0HRkYNy
-	Dks9GspidJGtToe8ydwBPKTOzXiW9zl6wo6RXbGJW30L6WbMU41hqCMr5zIrkVYEBR6fxbBNidi
-	OdOv0nviqXSmwD1U7107Q5PeqNS2ibBKUe1LZfs/wPzTv/aYMIPnZ+8L/EcsYQo5UjAjI7HB2yl
-	jx+Tm4g8gB8z2D0NCY78ljrI623foDqPT3VQln/ZA0VEMVcBoQFrRYMshtXKcNUr8jCxSdeB1cz
-	OsjSVAg+U4bx0lpOQJt/Sf3CxOLkRlv+e
-X-Google-Smtp-Source: AGHT+IH10y9VESvsaHZG3UuRMxdkRiSrai95h1SgmUQXtpdxF6A/nnAVrY3x0CbvcZ5YJbcxhlzjXA==
-X-Received: by 2002:a05:6402:278d:b0:627:d1af:8c66 with SMTP id 4fb4d7f45d1cf-627d1af8dccmr3858818a12.5.1757328917870;
-        Mon, 08 Sep 2025 03:55:17 -0700 (PDT)
-Received: from [192.168.0.251] ([79.115.63.103])
-        by smtp.gmail.com with ESMTPSA id 4fb4d7f45d1cf-626c8d8693esm3539727a12.48.2025.09.08.03.55.16
+        bh=lXcNKb7eAeUSAOD3P9kbauHvQhJ/T5mYxvtqvBukuQM=;
+        b=CUsm0RprU96zm7se6RpJJdAvjJcplv73rIWDMnjrtsxu2zKgkkJfFS5uyFMXbmJ30a
+         EN81mdh3g7wzm8AWRhxPcxyefUn6BPBNaLVkosImQi99UMKdxHvnAlkrvZhHxxAXU6ue
+         klleH7G53a+DjgCQ1mlx2Rcw8BdxdLPV0qs74OHYdlfVUf8eA5gNpd8YfRI0ZcdBmUg6
+         GRTilmtFb8CGU7HOhtsaCf8Ft0Ex5z1kToYHUSGVg1GwWKh+rM+097HOEVNgnYTN2fZi
+         mVijzIhU9cMoBWYZ8C7Q8AVnKWoxf7gh+PXBgnDAI2+IOcTogpzXDuc11yrcJ6ab0A/c
+         RVdA==
+X-Forwarded-Encrypted: i=1; AJvYcCVu3jDL7L7lOyef5GvGQ8jHZQqYi0B6xNXYr1mMKZCO3ZolRnyB9bl4lgTWxHba4QXEdGrSXru3iehP@vger.kernel.org
+X-Gm-Message-State: AOJu0Yy5PVKg99fHzTWwquALMwNo/H4NAcWTgC5zwuC6cuxRi2xgEMEd
+	kHmW6r6aDvqLjJpjsMfLJMesRvqM5gashVqPpKlFKm5K5zLSusuNycV9X6wZZSnEm20=
+X-Gm-Gg: ASbGnctyfqXwPOzZ8CEjBNE5dsgbc8KhQdde5zcAurqHX8022N408Jtwb67MPckeKOO
+	oW0QQlomF8fi/0sOE4dQEIhAuvKNGnzWU4GM0T71VOKU0oZZ3DsYiTPT6Dhv7miAMGpgCZE1Q3v
+	NkJ2EKaJo1/6N6OL8wrSe9HG/IwGzO6QKJCJf5GmP8xT1exY8A91BG8ZPGOZN73r10KoFHQ1+CN
+	nvh9Xn0hcSUlO+z507fI9B/QfOj9cM5yKFKBa0MZOlqAU/U2Zp2YGbmBdtadSWdWN7wEqUPmpNW
+	SuPPfzHNjyYi3MoRFzjgCe8MHEdnJhouEsePCwlymWhAcg3TCCaUgrMy+4xxCW1GZu4bfmGXijX
+	SngmJQS3ZicLl+7tRQMLoQArDE622WFPRYhgAbXfXxULo8BDWPb3AQd6mCXHUjoSywTzJNSosr3
+	P8Mx8iAvQ9A0MGVxuPAuM=
+X-Google-Smtp-Source: AGHT+IHJenZkBnBqX5JJGGi8QCqzH35vWp8fn9f5als83N3CMmj4jtZhM8xY4+BhMYtweIKXzuwxjA==
+X-Received: by 2002:a05:6000:24c9:b0:3e2:4a3e:d3ee with SMTP id ffacd0b85a97d-3e64ca75db9mr5387379f8f.58.1757329024396;
+        Mon, 08 Sep 2025 03:57:04 -0700 (PDT)
+Received: from [192.168.0.19] (188-141-3-146.dynamic.upc.ie. [188.141.3.146])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8879cesm440740795e9.12.2025.09.08.03.57.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 08 Sep 2025 03:55:17 -0700 (PDT)
-Message-ID: <8eb616f2-32bc-4715-8775-b1e896cee908@linaro.org>
-Date: Mon, 8 Sep 2025 11:55:15 +0100
+        Mon, 08 Sep 2025 03:57:03 -0700 (PDT)
+Message-ID: <bfc3838c-b2fe-40c9-a1bf-f5269b48dca9@linaro.org>
+Date: Mon, 8 Sep 2025 11:56:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,124 +83,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/5] clk: samsung: add Exynos ACPM clock driver
-To: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 0/4] Add CAMSS support for MSM8939
+To: git@apitzsch.eu, Robert Foss <rfoss@kernel.org>,
+ Todor Tomov <todor.too@gmail.com>,
+ Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Chanwoo Choi <cw00.choi@samsung.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-clk@vger.kernel.org, willmcvicker@google.com, kernel-team@android.com
-References: <20250903-acpm-clk-v3-0-65ecd42d88c7@linaro.org>
- <20250903-acpm-clk-v3-3-65ecd42d88c7@linaro.org>
- <eafb409d-5b5f-4791-939a-5a3c1eb00b9b@kernel.org>
- <91407377-f586-4fd2-b8e4-d1fd54c1a52a@linaro.org>
- <32a28a8c-2429-4d61-88f0-b7e3e866f85e@kernel.org>
+ <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Vincent Knecht <vincent.knecht@mailoo.org>
+References: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 Content-Language: en-US
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <32a28a8c-2429-4d61-88f0-b7e3e866f85e@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+In-Reply-To: <20250908-camss-8x39-vbif-v1-0-f198c9fd0d4d@apitzsch.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-
-
-On 9/8/25 8:45 AM, Krzysztof Kozlowski wrote:
-> On 08/09/2025 09:39, Tudor Ambarus wrote:
->>>> +
->>>> +	aclks = devm_kcalloc(dev, count, sizeof(*aclks), GFP_KERNEL);
->>>> +	if (!aclks)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	for (i = 0; i < count; i++) {
->>>> +		const struct acpm_clk_variant *variant = &drv_data->clks[i];
->>>> +		unsigned int id = variant->id;
->>>> +		struct acpm_clk *aclk;
->>>> +
->>>> +		if (id >= count)
->>>
->>> This is not possible. You control the IDs build time, so this must be
->>> either build time check or no check. I vote for no check, because I
->>
->> using BUILD_BUG_ON_MSG? that would work, see below the why.
->>
->>> don't think the ID is anyhow related to number of clocks. What if (not
->>> recommended but what if) the IDs have a gap and next ID is 1000. I see
->>> your code using ID:
->>>
->>>
->>>> +			return dev_err_probe(dev, -EINVAL,
->>>> +					     "Invalid ACPM clock ID.\n");
->>>> +
->>>> +		aclk = &aclks[id];
->>>> +		aclk->id = id;
->>>> +		aclk->handle = acpm_handle;
->>>> +		aclk->mbox_chan_id = mbox_chan_id;
->>>> +
->>>> +		hws[id] = &aclk->hw;
->>>
->>> ^^^ here, but why do you need it? Why it cannot be hws[i]?
->>
->> so that it works correctly with of_clk_hw_onecell_get() in case the clocks
+On 07/09/2025 23:04, André Apitzsch via B4 Relay wrote:
+> (This series resumes [1].)
 > 
-> Ah true, hws[] has to be indexed by ID.
+> This series adds CAMSS support for MSM8939.  It's mostly identical to
+> MSM8916, except for some clocks and an additional CSI.
 > 
->> IDs are not starting from 0 or are reordered when defined. For example let's
->> consider clock ID 1 is wrongly defined at index 0 in the array. When someone
->> references clock ID 1 in the device tree, and we use of_clk_hw_onecell_get,
->> it would get the clock defined at index 1.
->>
->> In my case the clocks start from index 0 and they are defined in ascending
->> order with no gaps, so the check is gratuitously made. I wanted to have some
->> sanity check. Do you still think I shall remove the check and use hws[i]?
+> To fix black stripes across sensor output, and garbage in CSID TPG
+> output, 2 VFE VBIF register settings are needed.  So the 2nd patch adds
+> helper functions to do just that.
 > 
+> Patch 1: documents qcom,msm8939-camss DT bindings
+> Patch 2: adds helper for VFE VBIF settings
+> Patch 3: adds CAMSS_8x39 version in CAMSS driver
+> Patch 4: adds camss and cci in msm8939.dtsi
 > 
-> Look at some users of of_clk_hw_onecell_get() - they all don't care
-> about this and do:
+> Changes compared to [1]:
+> - Move bindings patch to the beginning
+> - Make the order of {reg, clock, interrupt} items the same as in 8916 +
+>    append additional items
+> - Drop R-b tags from bindings and dts patches as order of items was
+>    changed
 > 
-> 441         for (idx = 0; idx < count; idx++) {
-> 442                 struct scmi_clk *sclk = &sclks[idx];
+> [1] https://lore.kernel.org/all/20250613-camss-8x39-vbif-v5-0-a002301a7730@mailoo.org/
 > 
-> without any checks.
-
-I saw, it felt a bit rugged at first when reading it, but not so more now,
-see below why.
-
+> Signed-off-by: Vincent Knecht <vincent.knecht@mailoo.org>
+> [André: Apply reviewer comments]
+> Signed-off-by: André Apitzsch <git@apitzsch.eu>
+> ---
+> Vincent Knecht (4):
+>        media: dt-bindings: Add qcom,msm8939-camss
+>        media: qcom: camss: vfe: Add VBIF setting support
+>        media: qcom: camss: Add support for MSM8939
+>        arm64: dts: qcom: msm8939: Add camss and cci
 > 
-> I just do not see why runtime check is necessary. This is purely build
-> time relation and either we do not care, because the code should be
-> synced between one and other place, or (if you care) then it must be
-> build time check.
+>   .../bindings/media/qcom,msm8939-camss.yaml         | 254 +++++++++++++++++++++
+>   arch/arm64/boot/dts/qcom/msm8939-pm8916.dtsi       |   4 +
+>   arch/arm64/boot/dts/qcom/msm8939.dtsi              | 146 ++++++++++++
+>   drivers/media/platform/qcom/camss/Makefile         |   1 +
+>   drivers/media/platform/qcom/camss/camss-csiphy.c   |   1 +
+>   drivers/media/platform/qcom/camss/camss-ispif.c    |   8 +-
+>   drivers/media/platform/qcom/camss/camss-vfe-4-1.c  |  12 +
+>   drivers/media/platform/qcom/camss/camss-vfe-vbif.c |  31 +++
+>   drivers/media/platform/qcom/camss/camss-vfe-vbif.h |  19 ++
+>   drivers/media/platform/qcom/camss/camss-vfe.c      |  10 +
+>   drivers/media/platform/qcom/camss/camss-vfe.h      |   3 +
+>   drivers/media/platform/qcom/camss/camss.c          | 157 +++++++++++++
+>   drivers/media/platform/qcom/camss/camss.h          |   1 +
+>   13 files changed, 645 insertions(+), 2 deletions(-)
+> ---
+> base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
+> change-id: 20250517-camss-8x39-vbif-975ff5819198
 > 
+> Best regards,
 
-I tried the following:
-+/*
-+ * Use a static assertion to check that the clock IDs are sequential
-+ * and do not have gaps. This check is performed at compile-time.
-+ */
-+static void acpm_clk_build_check(void)
-+{
-+       BUILD_BUG_ON_MSG(gs101_acpm_clks[ARRAY_SIZE(gs101_acpm_clks) - 1].id !=
-+                        (ARRAY_SIZE(gs101_acpm_clks) - 1),
-+                        "ACPM clock IDs are not sequential or have gaps.");
-+}
+Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-and then in probe() called it. It works in a few cases, but it leaves the
-possibility open for the intermediate clocks to have unrestricted values,
-even if last-clk-id == nr-clks - 1;
-
-So to be comprehensive I'd have to combine a build time check with a run-time
-check. Which feels like over engineering. The assumptions scmi and other do
-don't look that bad now :).
-
-I'll drop the sanity checks and use hws[i] instead of hws[id] so that at
-least there's no out of array accesses in case the writer really mangles
-the clock definitions.
-
-Thanks,
-ta
 
