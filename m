@@ -1,76 +1,110 @@
-Return-Path: <devicetree+bounces-214286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D681B489BD
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:14:23 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C9FDB489E0
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 12:17:52 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2113429EA
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:14:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0191A7A00B2
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 10:16:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C62062F90C9;
-	Mon,  8 Sep 2025 10:13:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476DD2EC543;
+	Mon,  8 Sep 2025 10:17:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TUbpeHYS"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="Rt9J+HC+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 271582F83C3;
-	Mon,  8 Sep 2025 10:13:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E520273F9
+	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 10:17:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757326438; cv=none; b=bpIEmRA0j7qFSq71BQH8FA0Zi5uQ7Y7lU8tf+t5IjmiP/58t1wy07r7sIQcvcwwM+AERzlcpucYDzbrZAUQSVyUa6/jQ4MAnGW2V4d/1pPEWRzpvGpGr7R7o6FwkcdcyvulFztiK1PA+CS1tmUfTdZn1DPYY0b1bWm0JV4QPp6s=
+	t=1757326664; cv=none; b=c8lcE8W8BedsvjfjiHR1TZRY7P99QDyQmAe4cXAKqkGCZ8fAbX/ntWBabIZjhHRbfHsY0qbu2EUyb1wOXlTLyYnLGhkNi/c7aaT4TOjlIIVcIRLiO0ZLyOQz1fFlVpuWoh7jKoi6QJ7EDRDeSmfv2Rq/DPTxmyAN+ZvH/pY0XmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757326438; c=relaxed/simple;
-	bh=Gb1ubu2ZH+sJL4BUrJTTK5x/BmpDb5gljBQqUFz29r8=;
+	s=arc-20240116; t=1757326664; c=relaxed/simple;
+	bh=2TJTDeZJKGx+SpfW+lrahJ5aBe4+mxSzwIgucxh9hsQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B1+iTDM11zinqoOtZYxEBfupKhbdubvwPZyNYadEB8DG4bK+FzmSvQQcEZV71JUfzkw6ZjYrpYspNEqg2SVx+/tow7UhcKD/t3u5RAebDLnFf1RoVV5sSm7nMLV4jykvw8Pyez3NDKyrWBQhTi0XYlS1z9xl1DDSX1zGIBG2jaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=TUbpeHYS; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (230.215-178-91.adsl-dyn.isp.belgacom.be [91.178.215.230])
-	by perceval.ideasonboard.com (Postfix) with UTF8SMTPSA id B7E6099F;
-	Mon,  8 Sep 2025 12:12:41 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1757326361;
-	bh=Gb1ubu2ZH+sJL4BUrJTTK5x/BmpDb5gljBQqUFz29r8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TUbpeHYSJTUxSChj3hDuZ8T+PW7d/Cx9u823Es8r2kEohxUaJVJyOkqKx0hFHUb00
-	 sk8CkznjcI8JK9SafLTjEmiJ89Vc7s95Zw5ogJiuDcqDVq68i2KVt3Boy3aJujYxYr
-	 0CcBDvhCCejQBq4E6M9VPNkc3vHELe+GcgD6eX1c=
-Date: Mon, 8 Sep 2025 12:13:32 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Ricardo Ribalda <ribalda@chromium.org>
-Cc: Hans de Goede <hdegoede@redhat.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Hans Verkuil <hverkuil@xs4all.nl>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Len Brown <lenb@kernel.org>, linux-media@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v2 10/12] media: uvcvideo: Add get_* functions to
- uvc_entity
-Message-ID: <20250908101332.GB26062@pendragon.ideasonboard.com>
-References: <20250605-uvc-orientation-v2-0-5710f9d030aa@chromium.org>
- <20250605-uvc-orientation-v2-10-5710f9d030aa@chromium.org>
- <20250629181246.GE6260@pendragon.ideasonboard.com>
- <CANiDSCsu0RT4dcGyBJRutP=9HTe+niUoohxTZE=qJ8O_9ez=+A@mail.gmail.com>
- <20250714142926.GI8243@pendragon.ideasonboard.com>
- <CANiDSCvFe23xmrJ0-qbWWa6+vKGb+QdDFV8VSLkmWdAnfsFtzw@mail.gmail.com>
- <20250715193505.GB19299@pendragon.ideasonboard.com>
- <CANiDSCtvt6qnROQ0_-0iG5hqkU_uHZABujZPN7xuh7pUASSGyw@mail.gmail.com>
- <CANiDSCsNjBEWR5HA9bhFNnXB7Cazj7o0wBnn53gzpoBBcYFkFw@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=hDo6Go99+AbOXNnTqE7L8oa0YRE0tdXq2d3sKcgFi98DNbewVLKDziJoktCWaKpWnRQsUQNigXdkUEgha40jigLastEWPQQud9hltt2X44I1rDDIyC8fJPC0ONHlEXNiHeaTrUtYcmPurbGfkXSdIxMmxO8CdYbgC/fOkHgHkJE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=Rt9J+HC+; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58890jpw028663
+	for <devicetree@vger.kernel.org>; Mon, 8 Sep 2025 10:17:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	cc:content-transfer-encoding:content-type:date:from:in-reply-to
+	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+	vCjXnZfE2tyLur7FXPpdd2CNC2hDwBx1MMn09lIuguo=; b=Rt9J+HC+2/l2eMqf
+	4IUK2oNS682Q6nrpSmvdnMNpGjsizL+7vBLI98Gxe/CNdyBUlqxy7XWLfAqtQOfS
+	iDtk3qAYM5N7j+TIPUTdiogqCcNgIDGND/baDOXPbIWJ1BQ9dRhhJbMsyIlNyWey
+	c/wyp/QqpAPk/tJckm8MEM5JKywpLkN3hpZCjyui+7EwRMs0Hf7HkwSqmiJEtGts
+	dUNBWUWcd61VfxUHQ6A3hClkQbkptilRTDtrAyGD9GGpBsCR4DhiVycdx9r5f1Yr
+	L7J6DyrbomJu7MPDRPUUnAd4ZKIgNAPSh5Bw3TqTc5Oo9azPv00YzrzPAba/cKDs
+	hUGF9Q==
+Received: from mail-qk1-f199.google.com (mail-qk1-f199.google.com [209.85.222.199])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490c9j4av4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+	for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 10:17:41 +0000 (GMT)
+Received: by mail-qk1-f199.google.com with SMTP id af79cd13be357-80382234104so842393685a.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 03:17:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757326660; x=1757931460;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vCjXnZfE2tyLur7FXPpdd2CNC2hDwBx1MMn09lIuguo=;
+        b=Vn24yXnhuKjsm28/STJ0D/vthWpYTeOXbjiZXwIfTe4QOGJxaaKBvGkyd4p+LrHfsZ
+         iimpw/Uis9ZxACkcmcMwpvudtWpP0qJbJfR4m2hBFD0w+j9I7qfQtSTAU9moOjOgrni5
+         ckNyG32umjSlaD9a3P6nEkkAQd1GKvllW1Djpe8t5KT2tJ6YnJozI4ovy0CPymqakx/E
+         VpudgxZyiueSy0nR8m7ld0cshzfaJk9Q61lthUstQdodJgHVAImsdQ5y3OXlxnl+Jt+1
+         ECW16Mls08pHxpsoksgDSzbnGYWrYGlJ/XT5GjiB8QNOK74b+4C4O9A0aD+pAVA30GTc
+         9Hhg==
+X-Forwarded-Encrypted: i=1; AJvYcCVW9y+ICaJdvgJ4VraLX8e+DWIDr8za9lhS1217nurHk27bt+klas2pyTA5hBMR4w+nTPYV0qUI6fhg@vger.kernel.org
+X-Gm-Message-State: AOJu0YzfiwzTo/QLTS+G4treO+44szXvQ2rrFqx+Waj7f88Op/h9+eVZ
+	tyCI0g0h5xDt9xgEVa189c61DG3qgeIDOwasfY82Sa8908u/dnEzs0ZvHMKJu6uLhg7Xkd4s9O6
+	67f7VMxAVPAxunXPQ9keRvkzXuiY69PZP0aVes0TMfCH35gv3mScKoqNgeztuLgxc
+X-Gm-Gg: ASbGncsppq00JQkELDNuNvS8ffaoX9EFBDDhrbqkkfF4PQOE/+yle2LwDwyuj+2XW7I
+	NbyqTcbXD2Y9g70S97ax+3pELfL7h/+es7dPiMI0uLvQwWWEhHGm1pdWiXFcuBiB6rlNBa5aJus
+	PsQqflyRJpjARqjAyrodTc3fiQUS1nMtxBVW25BrJTVhaSLo36SOFohyHOuAfuG8AbWz0iSHCnF
+	hcjsh/DSITVD2CklEGt3UvXfo/Cu6IZNZBUK5iBxOVRmAFIjppo/wbizUwYB700iVAa8jzWdnsr
+	uN5mE/VaLzCtpba6akmZB/EdaM32S7WlXtxyFLsHg5Ygj0zBzpd1E3cgaxIOkkpThEH3zEkC/mm
+	HTmiDoBXLC77u3wk752y5Vokfm5Vw6unitVEVXQ9VGpXTdZ330114
+X-Received: by 2002:a05:6214:268e:b0:71c:261e:54ba with SMTP id 6a1803df08f44-73921b4fd8fmr78452556d6.27.1757326660268;
+        Mon, 08 Sep 2025 03:17:40 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHXC4iVA1vMcsCtHF5DkIPqNh5JMkSdSnysesnslOPC68kcKK7iwzOJZg6GK+/J/kIv3DHUYA==
+X-Received: by 2002:a05:6214:268e:b0:71c:261e:54ba with SMTP id 6a1803df08f44-73921b4fd8fmr78452136d6.27.1757326659568;
+        Mon, 08 Sep 2025 03:17:39 -0700 (PDT)
+Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f50b0901sm31248111fa.59.2025.09.08.03.17.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 03:17:38 -0700 (PDT)
+Date: Mon, 8 Sep 2025 13:17:36 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: =?utf-8?B?5p2o5a2Z6L+Q?= <yangsunyun1993@gmail.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, syyang <syyang@lontium.com>,
+        robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
+        andrzej.hajda@intel.com, rfoss@kernel.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        xmzhu@lontium.com, llzhang@lontium.com, rlyu@lontium.com,
+        xbpeng@lontium.com
+Subject: Re: [PATCH v1 2/2] This patch adds a new DRM bridge driver for the
+ Lontium LT9611C chip.
+Message-ID: <x3g4qxksghteg4tcv6vmuaoie3c6lh3gkjsfwj2qn4lvim6o6t@hrjtunavnedj>
+References: <20250903123825.1721443-1-syyang@lontium.com>
+ <20250903123825.1721443-3-syyang@lontium.com>
+ <24rahlm4kkob7knapdxxnjixye3khx3nv2425y4kkirat4lmam@gjey7zqsnzks>
+ <CAFQXuNZUfAJe4QEDfi+-1N99xO0_z5_Omnsn_-SXr2QPtvdL_g@mail.gmail.com>
+ <7cyypk5j7o5fglmibshg45iysffpdl75m6rqvv4b5zntfevhiz@zlt7ybuzkvrg>
+ <CAFQXuNb+Eq6KPFvsnmGvn7KKjn4WRtMy1x4pn4ZvZoQ-_S_fYQ@mail.gmail.com>
+ <d3e3b838-26fa-491e-8c4f-63a1693f2391@linaro.org>
+ <CAFQXuNbZfnySYmizY2=PJGLkk38WHOYbVcbPTRZvgY7bFdK8yg@mail.gmail.com>
+ <zv7twvfxlira5wmg4zwk6kgkldgdiesgqzjky4733lp2us2hmx@tohls6czl3wz>
+ <CAFQXuNa7z=RHtbx6zrtGGDK4dpa++m_BPxTNj8iemLkxYPP_zA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,286 +113,145 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CANiDSCsNjBEWR5HA9bhFNnXB7Cazj7o0wBnn53gzpoBBcYFkFw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFQXuNa7z=RHtbx6zrtGGDK4dpa++m_BPxTNj8iemLkxYPP_zA@mail.gmail.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyMiBTYWx0ZWRfXy9aiy9PNNA7c
+ xKYq6lV4craU0i16sPKAYjBZhvVy/6iFUTNztPJ5OGJFLcTXrSg2p5OTT7VLp/ga2qG4Hpo0SAC
+ ZoJeq8RILqhhY/s/xrXHpQzlLZAhGtoNeKcyZmGMKlnPJUW+FiPxYJ+wS/hImoZaxxAN9/c94Qn
+ agaIJRBqotHOwAf/e3idzUHN+vnlmkqPBoitE9aRPZ03gWzHEJ/7ucOIMKu0GlBnwk7kUR/qfbW
+ MuzvrCcsShYH1dngUGCjZlmi3Luvh5ZkQjhwLh7BDw6UMPPC35nYvmQvQEdLHa4NJNY78W6BMzN
+ 7UF4kY/Wf5znf6hK8PbeccEIYhyIagkHGG/GK9qyagmcMmdHOjMNtGBH5uHm33rm4Cnl1nI+gf4
+ b7dKd8ne
+X-Proofpoint-ORIG-GUID: hNpqudjVO7WPi7dMfU24m6wLCo2oO-_u
+X-Authority-Analysis: v=2.4 cv=PpOTbxM3 c=1 sm=1 tr=0 ts=68bead45 cx=c_pps
+ a=HLyN3IcIa5EE8TELMZ618Q==:117 a=Fy06R7qyhczz9_k_:21 a=xqWC_Br6kY4A:10
+ a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=KKAkSRfTAAAA:8
+ a=vWrx5uKgKmi_-Q7riJMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
+ a=bTQJ7kPSJx9SKPbeHEYW:22 a=cvBusfyB2V15izCimMoJ:22
+X-Proofpoint-GUID: hNpqudjVO7WPi7dMfU24m6wLCo2oO-_u
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_03,2025-09-08_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ suspectscore=0 phishscore=0 spamscore=0 bulkscore=0 clxscore=1015
+ malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060022
 
-A question for Hans Verkuil below.
-
-On Thu, Aug 07, 2025 at 09:35:14AM +0200, Ricardo Ribalda wrote:
-> On Wed, 16 Jul 2025 at 12:32, Ricardo Ribalda wrote:
-> > On Tue, 15 Jul 2025 at 21:35, Laurent Pinchart wrote:
-> > > On Mon, Jul 14, 2025 at 05:46:40PM +0200, Ricardo Ribalda wrote:
-> > > > On Mon, 14 Jul 2025 at 16:30, Laurent Pinchart wrote:
-> > > > > On Tue, Jul 01, 2025 at 01:13:10PM +0200, Ricardo Ribalda wrote:
-> > > > > > On Sun, 29 Jun 2025 at 20:13, Laurent Pinchart wrote:
-> > > > > > > On Thu, Jun 05, 2025 at 05:53:03PM +0000, Ricardo Ribalda wrote:
-> > > > > > > > Virtual entities need to provide more values than get_cur and get_cur
-> > > > > > >
-> > > > > > > I think you meant "get_info and get_cur".
-> > > > > > >
-> > > > > > > > for their controls. Add support for get_def, get_min, get_max and
-> > > > > > > > get_res.
-> > > > > > >
-> > > > > > > Do they ? The UVC specification defines controls that don't list
-> > > > > > > GET_DEF, GET_MIN, GET_MAX and GET_RES as mandatory requests. Can't we do
-> > > > > > > the same for the software controls ? This patch is meant to support the
-> > > > > > > UVC_SWENTITY_ORIENTATION and UVC_SWENTITY_ROTATION control in the next
-> > > > > > > patch, and those are read-only controls. Aren't GET_INFO and GET_CUR
-> > > > > > > enough ?
-> > > > > >
-> > > > > > V4L2_CID_CAMERA_ROTATION has the type UVC_CTRL_DATA_TYPE_UNSIGNED,
-> > > > > > that time requires get_min and get_max.
-> > > > >
-> > > > > Where does that requirement come from ? Is it because how the
-> > > > > corresponding V4L2 type (V4L2_CTRL_TYPE_INTEGER) is handled in
-> > > > > uvc_ctrl_clamp() ? uvc_ctrl_clamp() is only called when setting a
-> > > > > control, from uvc_ctrl_set(), and V4L2_CID_CAMERA_ROTATION should be
-> > > > > read-only.
-> > > >
-> > > > It its for VIDIOC_QUERY_EXT_CTRL
-> > > >
-> > > > uvc_query_v4l2_ctrl -> __uvc_query_v4l2_ctrl -> __uvc_queryctrl_boundaries
-> > > >
-> > > > We need to list the min, max, def and step for every control. They are
-> > > > fetched with uvc_ctrl_populate_cache()
+On Mon, Sep 08, 2025 at 09:14:51AM +0800, 杨孙运 wrote:
+> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月5日周五 22:24写道：
+> >
+> > On Fri, Sep 05, 2025 at 04:58:59PM +0800, 杨孙运 wrote:
+> > > HI，
 > > >
-> > > Ah, I see, thanks.
+> > > As a vendors , we have begun to attempt to contribute to the Linux,
+> > > and we are very willing to do so.
+> > > there are still many rules that we don't understand and need to learn.
+> >
+> > Not top-posting and trimming your emails would be nice things to learn
+> > too.
+> >
+> > > <neil.armstrong@linaro.org> 于2025年9月5日周五 16:10写道：
+> > > > On 05/09/2025 04:55, 杨孙运 wrote:
+> > > > > Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月4日周四 22:39写道：
+> > > > >> On Thu, Sep 04, 2025 at 06:48:13PM +0800, 杨孙运 wrote:
+> > > > >>> Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> 于2025年9月4日周四 10:52写道：
+> > > > >>>> On Wed, Sep 03, 2025 at 05:38:25AM -0700, syyang wrote:
+> >
+> > > > >>>>> +     }
+> > > > >>>>> +
+> > > > >>>>> +     if (lt9611c->bridge_added) {
+> > > > >>>>> +             drm_bridge_remove(&lt9611c->bridge);
+> > > > >>>>> +             lt9611c->bridge_added = false;
+> > > > >>>>> +             dev_err(dev, "DRM bridge removed\n");
+> > > > >>>>> +     }
+> > > > >>>>> +
+> > > > >>>>> +     if (lt9611c->regulators_enabled) {
+> > > > >>>>> +             regulator_bulk_disable(ARRAY_SIZE(lt9611c->supplies), lt9611c->supplies);
+> > > > >>>>> +             lt9611c->regulators_enabled = false;
+> > > > >>>>> +             dev_err(dev, "regulators disabled\n");
+> > > > >>>>> +     }
+> > > > >>>>> +
+> > > > >>>>> +     if (lt9611c->audio_pdev)
+> > > > >>>>> +             lt9611c_audio_exit(lt9611c);
+> > > > >>>>> +
+> > > > >>>>> +     if (lt9611c->fw) {
+> > > > >>>>
+> > > > >>>> You definitely don't need firmware when the bridge is up and running.
+> > > > >>>>
+> > > > >>> The previous text has already described the working logic of the firmware.
+> > > > >>
+> > > > >> It's another topic: you are storing the firmware in memory while the
+> > > > >> driver is bound. It's not necessary. You can release it after updating
+> > > > >> it on the chip.
+> > > > >>
+> > > > > I understand what you mean.
+> > > > > Based on the above conversation, your intention is that when the
+> > > > > customer needs to upgrade the firmware, they should modify the
+> > > > > comparison conditions of the version, then compile and burn the
+> > > > > kernel, and then perform the firmware upgrade, just like the LT9611UXC
+> > > > > driver. Instead of loading the firmware every time.
+> > > > > My design intention is to avoid the need for recompiling the driver
+> > > > > when upgrading. Instead, a file named "LT9611C.bin" can be directly
+> > > > > sent to the "/lib/firmware" directory via scp. Then you can either
+> > > > > perform a reboot for the upgrade or execute the command manually for
+> > > > > the upgrade.
+> > > > > Perhaps you are suggesting that we could follow the design approach of
+> > > > > the LT9611UXC driver?
+> > > >
+> > > > Yes no need to rebuild, just use sysfs to trigger an update.
+> > > >
+> > > I think you haven't attempted to understand the intention behind my design.
 > > >
-> > > For GET_RES, I think we can leave it unimplemented.
-> > > __uvc_queryctrl_boundaries() will set v4l2_ctrl->step = 0 which seems to
-> > > be the right behaviour for a read-only control whose value never
-> > > changes.
+> > > If during the debugging process, the customer discovers that a certain
+> > > parameter in the chip's firmware is not suitable for the current
+> > > situation, then he requests a perfect firmware from our company to be
+> > > updated onto the chip.
 > >
-> > That will break v4l2-compatiblity. Step needs to be != 0
-> > https://git.linuxtv.org/v4l-utils.git/tree/utils/v4l2-compliance/v4l2-test-controls.cpp#n77
+> > That's fine.
 > >
-> > Control ioctls (Input 0):
-> >                 fail: v4l2-test-controls.cpp(77): step == 0
-> >                 fail: v4l2-test-controls.cpp(201): invalid control 009a0923
-
-Is that an issue in v4l2-compliance ? For integer controls,
-https://docs.kernel.org/userspace-api/media/v4l/vidioc-queryctrl.html#c.V4L.v4l2_ctrl_type
-documents the step value as "any". For a read-only control whose value
-is constant, do we want to enforce a non-zero value ? If so we should
-update the specification.
-
-Hans, what's your opinion ?
-
-In any case, if GET_RES isn't implemented, we could update
-__uvc_queryctrl_boundaries() to set step to 1 instead of 0. That would
-fix v4l2-compliance for real controls that don't implement GET_RES.
-
-> > > As for the minimum and maximum, they are currently set to 0 if the
-> > > corresponding operations are not supported. I wonder if we should set
-> > > them to the current value instead for read-only controls (as in controls
-> > > whose flags report support for GET_CUR only)..
+> > >
+> > > When there are hundreds or tens of thousands of devices that need to
+> > > be updated, simply use sysfs to trigger the update. It is a very bad
+> > > thing.
 > >
-> > I am not sure that I like that approach IMO the code looks worse...
-> > but if you prefer that, we can go that way
+> > Delivering updates to devices it off-topic here. You can use SWUpdate,
+> > Mender or any other system to deliver updates and to trigger the
+> > firmware reflash afterwards.
+> >
+> > > If you want to use version number comparison as the upgrade condition
+> > > like in lt9611uxc.c, then the customer will need to modify the version
+> > > number comparison condition and rebuild the driver. This method is not
+> > > as simple as the one I have designed.
+> >
+> > Well, no. If there is a firmware update, it should be shared to
+> > linux-firmware and then everybody can benefit from it.
+> >
+> > Think about one company using your chip in their SoM or compute module
+> > and then another company integrating that module into their design?
+> > Who will contact you? Or a company selling devkits with your chip.
+> >
+> > Having per-customer firmware is a nightmare for developers and for
+> > integrators.
+> >
 > 
-> I am almost ready to send a new version.
-> 
-> What approach do you prefer?
+> We are a company that sells our own developed chips. After other
+> platform design companies purchase our chips, they will design their
+> platforms based on the hardware schematic of our chips. During this
+> process, they must contact us. We will communicate about the design
+> opinions of the platform, the configuration of parameters, and the use
+> of custom firmware. We cannot provide a common firmware. This is
+> determined by the characteristics of the chips.
 
-I particularly like the change in __uvc_queryctrl_boundaries(). That
-could probably be done without the rest of the changes though, as
-ctrl->uvc_data is already allocated with kzalloc().
+We are getting off-topic here, but this model has issues as the platform
+design company might be completely different from the company that ends
+up (re)using the platform in their products.
 
-I also like the fact that the driver can rely on the min/max values to
-always be populated in the control data. This could be useful for real
-read-only UVC controls.
-
-Thinking a bit more about this, for read-only controls whose value never
-changes, min, max and step are meaningless. V4L2 requires their value to
-be set, that's a decision we made in the V4L2 API, but I think a model
-where min, max and step would be undefined (or 0) wouldn't be worse. So
-maybe it makes sense to handle this in __uvc_queryctrl_boundaries(),
-which is where the adaptation between UVC and V4L2 is handled, instead
-of storing CUR in the ctrl->uvc_data DEF/MIN/MAX in
-uvc_ctrl_populate_cache() ? I think the code could look cleaner.
-
-> > diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
-u> > index ec472e111248..47224437018b 100644
-> > --- a/drivers/media/usb/uvc/uvc_ctrl.c
-> > +++ b/drivers/media/usb/uvc/uvc_ctrl.c
-> > @@ -35,6 +35,8 @@
-> >  /* ------------------------------------------------------------------------
-> >   * Controls
-> >   */
-> > +static int __uvc_ctrl_load_cur(struct uvc_video_chain *chain,
-> > +                              struct uvc_control *ctrl);
-
-I think you can move the function up instead of adding a forward
-declaration.
-
-> >
-> >  static const struct uvc_control_info uvc_ctrls[] = {
-> >         {
-> > @@ -1272,6 +1274,13 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
-> >                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
-> >                 if (ret < 0)
-> >                         return ret;
-> > +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
-
-A comment (probably at the top of the function) to explain the fallback
-would be useful.
-
-> > +               ret = __uvc_ctrl_load_cur(chain, ctrl);
-> > +               if (!ret) {
-> > +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF),
-> > +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-> > +                              ctrl->info.size);
-> > +               }
-> >         }
-> >
-> >         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN) {
-> > @@ -1279,14 +1288,31 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
-> >                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
-> >                 if (ret < 0)
-> >                         return ret;
-> > +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
-> > +               ret = __uvc_ctrl_load_cur(chain, ctrl);
-> > +               if (!ret) {
-> > +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN),
-> > +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-> > +                              ctrl->info.size);
-> > +               }
-> >         }
-> > +
-> >         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MAX) {
-> >                 ret = uvc_ctrl_query_entity(chain->dev, ctrl, UVC_GET_MAX,
-> >                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
-> >                 if (ret < 0)
-> >                         return ret;
-> > +       } else if (!(ctrl->info.flags & UVC_CTRL_FLAG_SET_CUR)) {
-> > +               ret = __uvc_ctrl_load_cur(chain, ctrl);
-> > +               if (!ret) {
-> > +                       memcpy(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX),
-> > +                              uvc_ctrl_data(ctrl, UVC_CTRL_DATA_CURRENT),
-> > +                              ctrl->info.size);
-> > +               }
-> >         }
-> > +
-> >         if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES) {
-> > +               u8 *res;
-> >                 ret = uvc_ctrl_query_entity(chain->dev, ctrl, UVC_GET_RES,
-> >                                         uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
-> >                 if (ret < 0) {
-> > @@ -1304,7 +1330,13 @@ static int uvc_ctrl_populate_cache(struct uvc_video_chain *chain,
-> >                                       "an XU control. Enabling workaround.\n");
-> >                         memset(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES), 0,
-> >                                ctrl->info.size);
-> > +                       res = uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES);
-> > +                       *res = 1
-> >                 }
-> > +       } else {
-> > +               memset(uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES), 0, ctrl->info.size);
-> > +               res = uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES);
-> > +               *res = 1;
-> >         }
-> >
-> >         ctrl->cached = 1;
-> > @@ -1541,11 +1573,8 @@ static int __uvc_queryctrl_boundaries(struct uvc_video_chain *chain,
-> >                         return ret;
-> >         }
-> >
-> > -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_DEF)
-> >                 v4l2_ctrl->default_value = uvc_mapping_get_s32(mapping,
-> >                                 UVC_GET_DEF, uvc_ctrl_data(ctrl, UVC_CTRL_DATA_DEF));
-
-You forgot to reduce the indentation here.
-
-> > -       else
-> > -               v4l2_ctrl->default_value = 0;
-> >
-> >         switch (mapping->v4l2_type) {
-> >         case V4L2_CTRL_TYPE_MENU:
-> > @@ -1576,23 +1605,14 @@ static int __uvc_queryctrl_boundaries(struct uvc_video_chain *chain,
-> >                 break;
-> >         }
-> >
-> > -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MIN)
-> > -               v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
-> > -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
-> > -       else
-> > -               v4l2_ctrl->minimum = 0;
-> > +       v4l2_ctrl->minimum = uvc_mapping_get_s32(mapping, UVC_GET_MIN,
-> > +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MIN));
-> >
-> > -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_MAX)
-> > -               v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
-> > -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
-> > -       else
-> > -               v4l2_ctrl->maximum = 0;
-> > +       v4l2_ctrl->maximum = uvc_mapping_get_s32(mapping, UVC_GET_MAX,
-> > +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_MAX));
-> >
-> > -       if (ctrl->info.flags & UVC_CTRL_FLAG_GET_RES)
-> > -               v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
-> > -                               uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
-> > -       else
-> > -               v4l2_ctrl->step = 0;
-> > +       v4l2_ctrl->step = uvc_mapping_get_s32(mapping, UVC_GET_RES,
-> > +                                       uvc_ctrl_data(ctrl, UVC_CTRL_DATA_RES));
-> >
-> >         return 0;
-> >  }
-> >
-> > > > > > We can create a new type UVC_CTRL_DATA_TYPE_UNSIGNED_READ_ONLY that
-> > > > > > fakes min, max and res, but I think that it is cleaner this approach.
-> > > > > >
-> > > > > > > > This is a preparation patch.
-> > > > > > > >
-> > > > > > > > Signed-off-by: Ricardo Ribalda <ribalda@chromium.org>
-> > > > > > > > ---
-> > > > > > > >  drivers/media/usb/uvc/uvc_ctrl.c | 12 ++++++++++++
-> > > > > > > >  drivers/media/usb/uvc/uvcvideo.h |  8 ++++++++
-> > > > > > > >  2 files changed, 20 insertions(+)
-> > > > > > > >
-> > > > > > > > diff --git a/drivers/media/usb/uvc/uvc_ctrl.c b/drivers/media/usb/uvc/uvc_ctrl.c
-> > > > > > > > index 21ec7b978bc7aca21db7cb8fd5d135d876f3330c..59be62ae24a4219fa9d7aacf2ae7382c95362178 100644
-> > > > > > > > --- a/drivers/media/usb/uvc/uvc_ctrl.c
-> > > > > > > > +++ b/drivers/media/usb/uvc/uvc_ctrl.c
-> > > > > > > > @@ -596,6 +596,18 @@ static int uvc_ctrl_query_entity(struct uvc_device *dev,
-> > > > > > > >       if (query == UVC_GET_CUR && ctrl->entity->get_cur)
-> > > > > > > >               return ctrl->entity->get_cur(dev, ctrl->entity,
-> > > > > > > >                                            ctrl->info.selector, data, len);
-> > > > > > > > +     if (query == UVC_GET_DEF && ctrl->entity->get_def)
-> > > > > > > > +             return ctrl->entity->get_def(dev, ctrl->entity,
-> > > > > > > > +                                          ctrl->info.selector, data, len);
-> > > > > > > > +     if (query == UVC_GET_MIN && ctrl->entity->get_min)
-> > > > > > > > +             return ctrl->entity->get_min(dev, ctrl->entity,
-> > > > > > > > +                                          ctrl->info.selector, data, len);
-> > > > > > > > +     if (query == UVC_GET_MAX && ctrl->entity->get_max)
-> > > > > > > > +             return ctrl->entity->get_max(dev, ctrl->entity,
-> > > > > > > > +                                          ctrl->info.selector, data, len);
-> > > > > > > > +     if (query == UVC_GET_RES && ctrl->entity->get_res)
-> > > > > > > > +             return ctrl->entity->get_res(dev, ctrl->entity,
-> > > > > > > > +                                          ctrl->info.selector, data, len);
-> > > > > > > >       if (query == UVC_GET_INFO && ctrl->entity->get_info)
-> > > > > > > >               return ctrl->entity->get_info(dev, ctrl->entity,
-> > > > > > > >                                             ctrl->info.selector, data);
-> > > > > > > > diff --git a/drivers/media/usb/uvc/uvcvideo.h b/drivers/media/usb/uvc/uvcvideo.h
-> > > > > > > > index a931750bdea25b9062dcc7644bf5f2ed89c1cb4c..d6da8ed3ad4cf3377df49923e051fe04d83d2e38 100644
-> > > > > > > > --- a/drivers/media/usb/uvc/uvcvideo.h
-> > > > > > > > +++ b/drivers/media/usb/uvc/uvcvideo.h
-> > > > > > > > @@ -261,6 +261,14 @@ struct uvc_entity {
-> > > > > > > >                       u8 cs, u8 *caps);
-> > > > > > > >       int (*get_cur)(struct uvc_device *dev, struct uvc_entity *entity,
-> > > > > > > >                      u8 cs, void *data, u16 size);
-> > > > > > > > +     int (*get_def)(struct uvc_device *dev, struct uvc_entity *entity,
-> > > > > > > > +                    u8 cs, void *data, u16 size);
-> > > > > > > > +     int (*get_min)(struct uvc_device *dev, struct uvc_entity *entity,
-> > > > > > > > +                    u8 cs, void *data, u16 size);
-> > > > > > > > +     int (*get_max)(struct uvc_device *dev, struct uvc_entity *entity,
-> > > > > > > > +                    u8 cs, void *data, u16 size);
-> > > > > > > > +     int (*get_res)(struct uvc_device *dev, struct uvc_entity *entity,
-> > > > > > > > +                    u8 cs, void *data, u16 size);
-> > > > > > > >
-> > > > > > > >       unsigned int ncontrols;
-> > > > > > > >       struct uvc_control *controls;
+Anyway, I'm looking forward to reviewing the next iteration of the
+driver. It is really appreciated when chip vendors work on the drivers
+for their chips.
 
 -- 
-Regards,
-
-Laurent Pinchart
+With best wishes
+Dmitry
 
