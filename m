@@ -1,481 +1,207 @@
-Return-Path: <devicetree+bounces-214501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F900B49542
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:29:58 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A282B4954D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:31:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2CB33445A79
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:29:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCE223B62F9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:31:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8627930EF88;
-	Mon,  8 Sep 2025 16:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31F2C292918;
+	Mon,  8 Sep 2025 16:31:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="cdY2oRr3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D7CF306B08;
-	Mon,  8 Sep 2025 16:29:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757348988; cv=none; b=LNheHpoNQPZWUISyRKGR+2oSlSX8549Dfow/hep3aGfpM3CFbcLnuRCWTdLnsAczkIp+js5y3IeSS89iphghQWMVNzjXzwbvjGysikmjpUKN6aYkJxxgeYVu+642WRSCiJys0S6zco+wog3aBX2bMwO0Fni8HK55Sgxs+piCZKA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757348988; c=relaxed/simple;
-	bh=C0QQo2i1TMNiM50NyXjLTr5N+HzHnMhwUf38J7FnwKU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=J5rBxMZgXzOU8EV1scwjli3AbQ0N5FTAoi75ZtlCeOckmOZVD1Xqk2UbyucsKCgmi5uaV0LQft3KGhYtMt5OTxm2icSG+qQxXyeBPsekv1KvVitXQ1y+DjdcjDfcejeBp6qqOPdmaGjIZwloyzTos+hsNCeTnB3RdAZtiPrM7VQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B14711692;
-	Mon,  8 Sep 2025 09:29:35 -0700 (PDT)
-Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 56E633F694;
-	Mon,  8 Sep 2025 09:29:38 -0700 (PDT)
-Date: Mon, 8 Sep 2025 17:29:35 +0100
-From: Dave Martin <Dave.Martin@arm.com>
-To: James Morse <james.morse@arm.com>
-Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-	shameerali.kolothum.thodi@huawei.com,
-	D Scott Phillips OS <scott@os.amperecomputing.com>,
-	carl@os.amperecomputing.com, lcherian@marvell.com,
-	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
-	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
-	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
-	dfustini@baylibre.com, amitsinght@marvell.com,
-	David Hildenbrand <david@redhat.com>,
-	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
-	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
-	baisheng.gao@unisoc.com,
-	Jonathan Cameron <jonathan.cameron@huawei.com>,
-	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
-	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Danilo Krummrich <dakr@kernel.org>
-Subject: Re: [PATCH 15/33] arm_mpam: Probe MSCs to find the supported
- partid/pmg values
-Message-ID: <aL8Eb3EDhJaalPc5@e133380.arm.com>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-16-james.morse@arm.com>
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2086.outbound.protection.outlook.com [40.107.220.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 717AE53A7;
+	Mon,  8 Sep 2025 16:31:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.86
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757349073; cv=fail; b=CX87SFQyTqTb4ZxaAApFeT5MfcS8glnQNlPV3vj0xMscNnhWe2Meac90nweJPRVlhRTPRXAQpqcmLXYdq8iytgOdlHbISNFxwLh9WV6B1sND4A0A9vDXpwGvfLtZXjTFyKgRXPpPogPtvglou4MIHzawXd0szwbk3dSwbAaJ48k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757349073; c=relaxed/simple;
+	bh=0TZQOW27He12XPNZAaeuE7Afre6aC8jBvbkBxbR9r+Q=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=ujg6yK9gvGhzcZQq2W0fip51j7WcHAAkb0/kxb/rFJFcbX5+b0GZtGhz1Q3ff4hEAlqrm6OSxmbHkPppMMMBjjQqOMBP3agZuu+ai4KUKc5Dwr46lPEJZzf7o+NfA4DPhQ/IFR6iS929WmoLJKvnG/vwmbqy00NnHOCd922DFCM=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=cdY2oRr3; arc=fail smtp.client-ip=40.107.220.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FHdN8RECtgh2BWYqDz92MVmOqXxSIcKDT2eaN6dPplrp0g9XGKOH743c4fstloK1i2Q1lm0KxArTTnVgiwIxHSO2STecVPUBRcM6v5vyHp7WyEWho5S4eyawLgyYDGHwJ/Ege4M/OCdaiP6MHE2FFfD2aAHXzBqJ3FdN9kg9Uam8Rw2T2GH5JpSADENB5/H94Y2MlUBhaipnn6uVUA0bhLr2Uzrr0hxMOYlalx0oGSpvsSHL7TYo4H3ynlUxQo3djRSDI/8SEfzh89lOxRCR9VLjqfZY8v2bJ4OuccI6tNJskf22OqtMn8tlWpEELY5A5K+NAcTPXajBlxtUobPvWw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=0TZQOW27He12XPNZAaeuE7Afre6aC8jBvbkBxbR9r+Q=;
+ b=jtURyX7BfR3DrG40jtJO9yO5Fqp0OfYG56ly1eIYm0dvCM0vXStZtpv5TEk/mxxrc39pZTivbDVkmwjo+m0BCSXxu220b8U+ySnCuzA8RBoFiXBjbkjGEJNLJRuly395S20X99Nxo4F7W8BULE3i266gDMIHa8kavXi06IlcNEuB6qqOLI+WbrxOIWI6NuDbUtGZWwRlkslxDKqJF4I6rh/Fn4GrI3YZfehl8Xd9xckdHPj+7eudLp9AQPxz2yOvmsOKzBLNgsnmnVqaI7Lmk1BwaU8zYn4ws4gdmencirG4J4GjmfIWvVCHCUeo4lqf48sfHtdEAtHSHjBzKEuXiQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=0TZQOW27He12XPNZAaeuE7Afre6aC8jBvbkBxbR9r+Q=;
+ b=cdY2oRr3hW595IOLVSLI0lInOBfZwzOabVCwh7AuaxQM4kdt5sBa+xUpyhp2FfXLz3EPVY4aT9uiz5AFi7r8WOJdnVhC9ja5HtJ/b/2Fxk1HW4bVZZtAgekqOrnq0cMybcd2i9zNF/Qu/o/NBZl9TGUEFRYdF8mQVOjqxJHAybk=
+Received: from BL1PR12MB5333.namprd12.prod.outlook.com (2603:10b6:208:31f::11)
+ by IA1PR12MB6116.namprd12.prod.outlook.com (2603:10b6:208:3e8::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.19; Mon, 8 Sep
+ 2025 16:31:05 +0000
+Received: from BL1PR12MB5333.namprd12.prod.outlook.com
+ ([fe80::d4a:9dd1:afd9:1c70]) by BL1PR12MB5333.namprd12.prod.outlook.com
+ ([fe80::d4a:9dd1:afd9:1c70%4]) with mapi id 15.20.9094.021; Mon, 8 Sep 2025
+ 16:31:04 +0000
+From: "Agarwal, Nikhil" <nikhil.agarwal@amd.com>
+To: "Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-edac@vger.kernel.org" <linux-edac@vger.kernel.org>
+CC: "git (AMD-Xilinx)" <git@amd.com>, "ptsm@linux.microsoft.com"
+	<ptsm@linux.microsoft.com>, "srivatsa@csail.mit.edu"
+	<srivatsa@csail.mit.edu>, "shubhrajyoti.datta@gmail.com"
+	<shubhrajyoti.datta@gmail.com>, "Datta, Shubhrajyoti"
+	<shubhrajyoti.datta@amd.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob
+ Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Borislav
+ Petkov <bp@alien8.de>, Tony Luck <tony.luck@intel.com>, James Morse
+	<james.morse@arm.com>, Mauro Carvalho Chehab <mchehab@kernel.org>, Robert
+ Richter <rric@kernel.org>, "Gupta, Nipun" <Nipun.Gupta@amd.com>
+Subject: RE: [PATCH v9 1/5] cdx: Split mcdi.h and reorganize headers
+Thread-Topic: [PATCH v9 1/5] cdx: Split mcdi.h and reorganize headers
+Thread-Index: AQHcILfHorbN6/kVaECE5en6JW1+QbSJeg3A
+Date: Mon, 8 Sep 2025 16:31:04 +0000
+Message-ID:
+ <BL1PR12MB53331B36CE94649FC17140C59D0CA@BL1PR12MB5333.namprd12.prod.outlook.com>
+References: <20250908115649.22903-1-shubhrajyoti.datta@amd.com>
+ <20250908115649.22903-2-shubhrajyoti.datta@amd.com>
+In-Reply-To: <20250908115649.22903-2-shubhrajyoti.datta@amd.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+ MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_ActionId=bd5ff838-eb97-4f41-84aa-7561673c15ad;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_ContentBits=0;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_Enabled=true;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_Method=Privileged;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_Name=Non-Business_New;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_SetDate=2025-09-08T16:29:43Z;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_94523dde-f9d1-4aa7-80a9-c0900420d3c3_Tag=10,
+ 0, 1, 1;
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR12MB5333:EE_|IA1PR12MB6116:EE_
+x-ms-office365-filtering-correlation-id: b9413c20-1b52-4a2d-c600-08ddeef51b35
+x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|7416014|366016|7053199007|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?Qj5pYcOFx4IfGUSvYuIztAVi+H3VGnQTcoya2FpPyPtRIXHTi6gjG3kENXOy?=
+ =?us-ascii?Q?90OZfLO/maEv5Fhhuco5oDktKrfqARK8jIMOPqwTN0EMbzWwVQS/xTfKVyB1?=
+ =?us-ascii?Q?LL7H8oyNbnCqd/lajW6SNvkbVtgAni1ByhjqDxB4aYheobeAku5+OX1rK3c1?=
+ =?us-ascii?Q?9wRIp8EyAca8Si3JRcqIIEJCY9fY90MYcDxe8+06sN55t3QwMnMfB+is5nDU?=
+ =?us-ascii?Q?d7y6mDu+LjydXNe7gCZRiecwn5Syu8Q2oBwQM8cv8ZmFBJf6Rzc6SEJL+CN6?=
+ =?us-ascii?Q?WkFVGQzLox8ruFOqwZXMupr0taCP+tcXCxruk9dK4eqpGHnsH8oUp2whUtm0?=
+ =?us-ascii?Q?VFSoVPQnaLgCe5hqR6zwt6n0huOp1fa4yxLi/lRGX3AibmsJWsLKnQjJ1vks?=
+ =?us-ascii?Q?LEcDxMh3T0RcWO+DAVKia8LIlxE02ibunpsaUCOQRHynEU45/stHHvsZXlFN?=
+ =?us-ascii?Q?F7L5eWREXsPSI6g1CemfCCXuoipeRs1utSqJ1GIpwIfBOzjH02ibWNHNOkBR?=
+ =?us-ascii?Q?aBl12w1CplMjUgecZLZsPfVqSOyYb19Tqkg1IkIGg8QAJTd8raEJmNqC1AUe?=
+ =?us-ascii?Q?IIU4hzPadxuayZ6faTqYsIl+gLZBcMKeQO7sP2ViQYutHQ1NqZoyjEc3HKY9?=
+ =?us-ascii?Q?rxh/euRpMsmBywae6jrdjgTKXm7AF+xGiuIue9X7GdYXreb0TeDer1TU59SC?=
+ =?us-ascii?Q?QN6vXEV/0GVlUsVm7QfTSDxrmT8Mo8XSOZTdLdaGvIUvPyYgwFysaKrGoFoH?=
+ =?us-ascii?Q?OWQVYJt6Q5zfcwoeqa/KtwCUbQ3kbhjQ9eUcjZ3j7/vLnN5QTvUhTLnah1bf?=
+ =?us-ascii?Q?jSPqZlvnKwuAWV6dn0Vu0+9Bg/e3QHq/RxHsNPJQMMZQOPTg+aIEORJ27g8Y?=
+ =?us-ascii?Q?yPoiO17qgyY5xYOcGBIk4oMggGlZSe4yDbke8zpJfgqi7zBBQmZFvuCdt28N?=
+ =?us-ascii?Q?iGeyoB8CuSXkAs2UVzdunHi5zuhcOur5rdtOZluraq8xzjBxQhEhTlukqcDW?=
+ =?us-ascii?Q?LcI2aJcdV2ZOSGdw7lXOsbqIVADZXrzV0cfRyQWQjqcvbNH85mXIOreYfV+H?=
+ =?us-ascii?Q?aHbi9qj41gsT3ynTF0ukQ531IG9Kapi5ccv5i9CJpB2WmFh8XI+Ab3Qc4Jev?=
+ =?us-ascii?Q?hN58VC/WCB+n8P1E3/ZfGX4tHXqLdj9lTyVo22mNtzK/DWMiKRfmmZw9Cj7O?=
+ =?us-ascii?Q?jYBuemqc6hpLDyVqxLnIswj1WjpfFsqeN1hnKW0HN2g71UQ9IhhwigtLKjdO?=
+ =?us-ascii?Q?xgYFiKY9GIXwNdPcwGajYzEnS0JkngrGl1Rs6PGRuLt+yBvNvix6IXys1G5F?=
+ =?us-ascii?Q?9bx82lvS+dXkhz0nflmuQBXt/reOws8xM2jL/uDNIfJ9DlvQnT3VbTsVo1kh?=
+ =?us-ascii?Q?fiku+ylCnN2IOo35CVLBrYA+5DhUJYmwrLB8Uan3yKVIw/atB1zF/XTc+MxX?=
+ =?us-ascii?Q?GU1XftNRcvD77ap1ntbsy2LLh0EzAWEakHC5Cnry+/w7cVfgFT/6QQ=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5333.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(7416014)(366016)(7053199007)(38070700018);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?I+0+uWH2XheiQZoRIyLEmdbuyyq4PA7hZmnoM3Ca2KGGLjM04Dy8hb3w0qyF?=
+ =?us-ascii?Q?yogSrksfqrZUzLWmT/5N6P5Mo41gLk9LExD2s0zhFy241FNd16dq7+LIZhw/?=
+ =?us-ascii?Q?bhkPv+QihteQwCO1wH/NZ4v8SLZBPunnwNqHPH+628joAB2xwUvNfPR1znAs?=
+ =?us-ascii?Q?ap6UZApV3DFlagLBSSu4rbPiFiYyC39GHromegFyYGHj07qkMSHqsrfw0Llf?=
+ =?us-ascii?Q?3ZQ8Pa+sMNka1IjQu/YDhu+5k7B1pLxEvCw2dYtQY/Yn5PRbpG9UGFdWyncg?=
+ =?us-ascii?Q?FvBU2DJWkrEr5Euz8ClSFD7ZjS84SRvSz7gbn/738ztZzwFyjZeKyrlpHzz1?=
+ =?us-ascii?Q?RD6sfzLt5to45vx/gm5R5/bINVow37ul99pCUpevzm9EbNqeX/SGsZtSE/6b?=
+ =?us-ascii?Q?hBFucyAcfHGjRys4Z68qhulYDe1cPAYHbC3hfvTCgKCHIhTVVrMOsuKJZgzW?=
+ =?us-ascii?Q?doZDeYtv+F+iK0dSaFR5EJmaWsy+c063S5H7oHzjRRJwrd1ACTtpXt0jMs2P?=
+ =?us-ascii?Q?KLMTZZljdD62Qtwv9osg9bglrJMj+yHFcfJuMCecAUiSnL2GEQQoRPm82tlE?=
+ =?us-ascii?Q?qzO6oF33DRH1/5dtQad4urDwqfSA5oDmpI4ALSQYe+0rACtatPT4Aog+haVq?=
+ =?us-ascii?Q?WdAotYnKAa3yo/2IySjiR3YDJTdcQk+cYaNcvEsr7+jDjDJ/AZPD80hp4qfP?=
+ =?us-ascii?Q?r13+KNxt4DPu1yuPlWHWvXNGIYYcVDWcM3qVLJrzmghJrEGsBlwrFhjcx4oR?=
+ =?us-ascii?Q?GDSuupqzd6+rm1pEOM4pulcm3PJYtVnJ2Jm8Q8Qpxwh/Nss+FkwHSv3P5tbJ?=
+ =?us-ascii?Q?2tEzXBAQwI8ZV7lEvcPs6CJT1ksb/zVsTOXhgtA6WHO2M+Tk4pTh/TGIA80M?=
+ =?us-ascii?Q?4SWDPMblw4MODOFylhqzEHuutBfbp7LFDCLWg6WYE0wiGSNinnslKbgIVF0Q?=
+ =?us-ascii?Q?KIDCHLiEZDoL71DkL/XelXsaPLuLEwGoFt9NFfypOfaIDscGI0BDunI4CMFN?=
+ =?us-ascii?Q?ErSMfIBPppHfwOU/HCd14kWHQCCi4VqvH27Z355T5JXcR2917DXGIuczVgDr?=
+ =?us-ascii?Q?UNIlLzvZsMkqjDM6duO+ABmpBk5PkJMiro/Lmg/RAucN4tqeWGWSgYePbk6D?=
+ =?us-ascii?Q?CWPMDrywdG0/lBypfK/iHK6t3WBS/6jfTGJQJyZvpDVNCARVrsB5KZm6fcto?=
+ =?us-ascii?Q?dg5f92D5HpIMrJZeRMkNlHYgb0lijrIo3W/3jKaY3iq2tKBtKVFZHP1FlPbq?=
+ =?us-ascii?Q?TzMSUx2qkU2war66mPJCd4SRZ2/TRdPh2UBTN7aWHPkxqHU8Qzy9PPHM7UvZ?=
+ =?us-ascii?Q?MyaAvQQXR9Ie7UX6hEmc4HFfNGSTyC7GaLOZN+OHxuwgAqubm2QjvTbpyQxB?=
+ =?us-ascii?Q?fjrdGhMi6ZWanrmgzHMc75vWKv1ed3NQkIu0iXDk62n+XNeG4RDxwSLFBPPK?=
+ =?us-ascii?Q?cwH0OYB4amWEmlu5Lmr6rNLJaVo9Or1K/BGAY1NHV3hyO8KkNMqHyd/Y5ZVo?=
+ =?us-ascii?Q?bk3aAr38Gl8qx82zu0DLpPCvbTVei1R52pGqd+pLjWTMBHHutG1F09/C36Nh?=
+ =?us-ascii?Q?E6CXAVluILBBoTrnApE=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250822153048.2287-16-james.morse@arm.com>
-
-Hi,
-
-On Fri, Aug 22, 2025 at 03:29:56PM +0000, James Morse wrote:
-
-> Subject: Re: [PATCH 15/33] arm_mpam: Probe MSCs to find the supported partid/pmg values
-
-Summary line does not describe the patch (i.e., the requestor
-registration interface is something different... and the probing of RIS
-properties has nothing architecturally to do with determining the max
-PARTID and PMG values.)
-
-Even regarding the MSC probing, there is considerably more in this
-patch than just the determination of the ID limits.
-
-> CPUs can generate traffic with a range of PARTID and PMG values,
-> but each MSC may have its own maximum size for these fields.
-> Before MPAM can be used, the driver needs to probe each RIS on
-> each MSC, to find the system-wide smallest value that can be used.
-> 
-> While doing this, RIS entries that firmware didn't describe are create
-
-Nit: created
-
-> under MPAM_CLASS_UNKNOWN.
-
-What are the effects / implications of this?
-
-> While we're here, implement the mpam_register_requestor() call
-> for the arch code to register the CPU limits. Future callers of this
-> will tell us about the SMMU and ITS.
-
-This function seems to be dead in this series; registration of CPUs is
-"future" too. Does it make sense to boot this into the next series?
-
-> Signed-off-by: James Morse <james.morse@arm.com>
-> ---
->  drivers/resctrl/mpam_devices.c  | 158 ++++++++++++++++++++++++++++++--
->  drivers/resctrl/mpam_internal.h |   6 ++
->  include/linux/arm_mpam.h        |  14 +++
->  3 files changed, 171 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 9d6516f98acf..012e09e80300 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
-> @@ -6,6 +6,7 @@
->  #include <linux/acpi.h>
->  #include <linux/atomic.h>
->  #include <linux/arm_mpam.h>
-> +#include <linux/bitfield.h>
->  #include <linux/cacheinfo.h>
->  #include <linux/cpu.h>
->  #include <linux/cpumask.h>
-> @@ -44,6 +45,15 @@ static u32 mpam_num_msc;
->  static int mpam_cpuhp_state;
->  static DEFINE_MUTEX(mpam_cpuhp_state_lock);
->  
-> +/*
-> + * The smallest common values for any CPU or MSC in the system.
-> + * Generating traffic outside this range will result in screaming interrupts.
-> + */
-> +u16 mpam_partid_max;
-> +u8 mpam_pmg_max;
-> +static bool partid_max_init, partid_max_published;
-> +static DEFINE_SPINLOCK(partid_max_lock);
-> +
-
-Can partid_max and pmg_max simply be statically initialised with the
-max value of the respective type instead? -1 or ~0 would be adequate
-initialisers.
-
-This would allow us to get rid of partid_max_init and the associated
-logic.
-
-This assumes that we don't enable MPAM (and start using nonzero values
-in MPAM[10]_EL1) unless at least one usable MSC was found, so that the
-initialiser is not left behing.
-
-I think that's true by construction -- if the firmware reports no MSCs,
-we probe nothing.  Otherwise, we require every MSC reported by the
-firmware to probe before enabling MPAM.
-
->  /*
->   * mpam is enabled once all devices have been probed from CPU online callbacks,
->   * scheduled via this work_struct. If access to an MSC depends on a CPU that
-> @@ -106,6 +116,74 @@ static inline u32 _mpam_read_partsel_reg(struct mpam_msc *msc, u16 reg)
->  
->  #define mpam_read_partsel_reg(msc, reg)        _mpam_read_partsel_reg(msc, MPAMF_##reg)
->  
-> +static void __mpam_write_reg(struct mpam_msc *msc, u16 reg, u32 val)
-> +{
-> +	WARN_ON_ONCE(reg + sizeof(u32) > msc->mapped_hwpage_sz);
-> +	WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(), &msc->accessibility));
-> +
-> +	writel_relaxed(val, msc->mapped_hwpage + reg);
-> +}
-> +
-> +static inline void _mpam_write_partsel_reg(struct mpam_msc *msc, u16 reg, u32 val)
-> +{
-> +	lockdep_assert_held_once(&msc->part_sel_lock);
-> +	__mpam_write_reg(msc, reg, val);
-> +}
-> +#define mpam_write_partsel_reg(msc, reg, val)  _mpam_write_partsel_reg(msc, MPAMCFG_##reg, val)
-> +
-> +static u64 mpam_msc_read_idr(struct mpam_msc *msc)
-> +{
-> +	u64 idr_high = 0, idr_low;
-> +
-> +	lockdep_assert_held(&msc->part_sel_lock);
-> +
-> +	idr_low = mpam_read_partsel_reg(msc, IDR);
-> +	if (FIELD_GET(MPAMF_IDR_EXT, idr_low))
-> +		idr_high = mpam_read_partsel_reg(msc, IDR + 4);
-> +
-> +	return (idr_high << 32) | idr_low;
-> +}
-> +
-> +static void __mpam_part_sel_raw(u32 partsel, struct mpam_msc *msc)
-> +{
-> +	lockdep_assert_held(&msc->part_sel_lock);
-> +
-> +	mpam_write_partsel_reg(msc, PART_SEL, partsel);
-> +}
-> +
-> +static void __mpam_part_sel(u8 ris_idx, u16 partid, struct mpam_msc *msc)
-> +{
-> +	u32 partsel = FIELD_PREP(MPAMCFG_PART_SEL_RIS, ris_idx) |
-> +		      FIELD_PREP(MPAMCFG_PART_SEL_PARTID_SEL, partid);
-> +
-> +	__mpam_part_sel_raw(partsel, msc);
-> +}
-> +
-> +int mpam_register_requestor(u16 partid_max, u8 pmg_max)
-> +{
-> +	int err = 0;
-> +
-> +	lockdep_assert_irqs_enabled();
-
-This is just because we don't use spin_lock_irqsave(), right?
-
-(Just checking my understanding.)
-
-> +
-> +	spin_lock(&partid_max_lock);
-> +	if (!partid_max_init) {
-> +		mpam_partid_max = partid_max;
-> +		mpam_pmg_max = pmg_max;
-> +		partid_max_init = true;
-> +	} else if (!partid_max_published) {
-> +		mpam_partid_max = min(mpam_partid_max, partid_max);
-> +		mpam_pmg_max = min(mpam_pmg_max, pmg_max);
-> +	} else {
-> +		/* New requestors can't lower the values */
-> +		if (partid_max < mpam_partid_max || pmg_max < mpam_pmg_max)
-> +			err = -EBUSY;
-
-What will actually happen here?  Will the arch code reject the
-offending late secondary?
-
-It feels a bit like we're reinventing part of cpufeatures here --
-though I suppose the split between early and late CPUs is not the same
-as for the kernel proper: the "MPAM early CPUs" are those that have
-appeared by the time the last MSC probes, which can be a different
-set than the kernel's early CPUs.  So I guess there is no choice but
-to have some special logic here.
-
-> +	}
-> +	spin_unlock(&partid_max_lock);
-> +
-> +	return err;
-> +}
-> +EXPORT_SYMBOL(mpam_register_requestor);
-
-As noted above, dead function (in this series)?
-
-Also, would it be better to split out the common core shared by this and
-the last stanza of mpam_msc_hw_probe()?
-
-(This common core would make sense in this series even if
-mpam_register_requestor() is deferred.)
-
-> +
->  #define init_garbage(x)	init_llist_node(&(x)->garbage.llist)
->  
->  static struct mpam_vmsc *
-> @@ -520,6 +598,7 @@ static int mpam_ris_create_locked(struct mpam_msc *msc, u8 ris_idx,
->  	cpumask_or(&comp->affinity, &comp->affinity, &ris->affinity);
->  	cpumask_or(&class->affinity, &class->affinity, &ris->affinity);
->  	list_add_rcu(&ris->vmsc_list, &vmsc->ris);
-> +	list_add_rcu(&ris->msc_list, &msc->ris);
->  
->  	return 0;
->  }
-> @@ -539,10 +618,37 @@ int mpam_ris_create(struct mpam_msc *msc, u8 ris_idx,
->  	return err;
->  }
->  
-> +static struct mpam_msc_ris *mpam_get_or_create_ris(struct mpam_msc *msc,
-> +						   u8 ris_idx)
-> +{
-> +	int err;
-> +	struct mpam_msc_ris *ris, *found = ERR_PTR(-ENOENT);
-> +
-> +	lockdep_assert_held(&mpam_list_lock);
-> +
-> +	if (!test_bit(ris_idx, msc->ris_idxs)) {
-
-I was a bit puzzled by this.
-
-A comment somewhere might help: if ris_idx wasn't already seen while
-parsing firmware tables, then there is nothing to tell us what it
-controls in the hardware: mark it as MPAM_CLASS_UNKNOWN.
-
-(If I understood correctly, that is.)
-
-> +		err = mpam_ris_create_locked(msc, ris_idx, MPAM_CLASS_UNKNOWN,
-> +					     0, 0, GFP_ATOMIC);
-
-It's mildly unfortunate that these allocations are from the GFP_ATOMIC pool.
-I think we were in regular thread context until we started taking MPAM
-locks?
-
-But it's a finite amount of memory and not under userspace control, so
-not a huge deal.
-
-This could possibly be improved later; it doesn't feel critical right
-now.
-
-> +		if (err)
-> +			return ERR_PTR(err);
-> +	}
-> +
-> +	list_for_each_entry(ris, &msc->ris, msc_list) {
-> +		if (ris->ris_idx == ris_idx) {
-> +			found = ris;
-
-return ris; (?)
-
-(You could then also delete all the curlies.)
-
-> +			break;
-> +		}
-> +	}
-> +
-> +	return found;
-> +}
-> +
->  static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  {
->  	u64 idr;
-> -	int err;
-
-Churn?  (See patch 14.)
-
-> +	u16 partid_max;
-> +	u8 ris_idx, pmg_max;
-> +	struct mpam_msc_ris *ris;
->  
->  	lockdep_assert_held(&msc->probe_lock);
->  
-> @@ -551,14 +657,42 @@ static int mpam_msc_hw_probe(struct mpam_msc *msc)
->  	if ((idr & MPAMF_AIDR_ARCH_MAJOR_REV) != MPAM_ARCHITECTURE_V1) {
->  		pr_err_once("%s does not match MPAM architecture v1.x\n",
->  			    dev_name(&msc->pdev->dev));
-> -		err = -EIO;
-> -	} else {
-> -		msc->probed = true;
-> -		err = 0;
-> +		mutex_unlock(&msc->part_sel_lock);
-> +		return -EIO;
->  	}
-> +
-> +	idr = mpam_msc_read_idr(msc);
->  	mutex_unlock(&msc->part_sel_lock);
-> +	msc->ris_max = FIELD_GET(MPAMF_IDR_RIS_MAX, idr);
-> +
-> +	/* Use these values so partid/pmg always starts with a valid value */
-> +	msc->partid_max = FIELD_GET(MPAMF_IDR_PARTID_MAX, idr);
-> +	msc->pmg_max = FIELD_GET(MPAMF_IDR_PMG_MAX, idr);
-> +
-> +	for (ris_idx = 0; ris_idx <= msc->ris_max; ris_idx++) {
-> +		mutex_lock(&msc->part_sel_lock);
-> +		__mpam_part_sel(ris_idx, 0, msc);
-> +		idr = mpam_msc_read_idr(msc);
-> +		mutex_unlock(&msc->part_sel_lock);
-> +
-> +		partid_max = FIELD_GET(MPAMF_IDR_PARTID_MAX, idr);
-> +		pmg_max = FIELD_GET(MPAMF_IDR_PMG_MAX, idr);
-> +		msc->partid_max = min(msc->partid_max, partid_max);
-> +		msc->pmg_max = min(msc->pmg_max, pmg_max);
-> +
-> +		ris = mpam_get_or_create_ris(msc, ris_idx);
-> +		if (IS_ERR(ris))
-> +			return PTR_ERR(ris);
-> +	}
->  
-> -	return err;
-> +	spin_lock(&partid_max_lock);
-
-Can we get in here with partid_max_init = false?  Do we need to check /
-set it?  Or, maybe get rid of it; see mpam_partid_max etc.
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5333.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b9413c20-1b52-4a2d-c600-08ddeef51b35
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Sep 2025 16:31:04.7054
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /ObisDZTnyaK3X6Nh7XrxH56rd77JXj9sb95sldtQOKr2ZGndP4GqP5tCnw8KsjB
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB6116
 
 
-> +	mpam_partid_max = min(mpam_partid_max, msc->partid_max);
-> +	mpam_pmg_max = min(mpam_pmg_max, msc->pmg_max);
-> +	spin_unlock(&partid_max_lock);
-> +
-> +	msc->probed = true;
-> +
-> +	return 0;
->  }
->  
->  static int mpam_cpu_online(unsigned int cpu)
-> @@ -900,9 +1034,18 @@ static struct platform_driver mpam_msc_driver = {
->  
->  static void mpam_enable_once(void)
->  {
-> +	/*
-> +	 * Once the cpuhp callbacks have been changed, mpam_partid_max can no
-> +	 * longer change.
-> +	 */
-> +	spin_lock(&partid_max_lock);
-> +	partid_max_published = true;
-> +	spin_unlock(&partid_max_lock);
-> +
->  	mpam_register_cpuhp_callbacks(mpam_cpu_online, mpam_cpu_offline);
->  
-> -	pr_info("MPAM enabled\n");
-> +	printk(KERN_INFO "MPAM enabled with %u partid and %u pmg\n",
-> +	       mpam_partid_max + 1, mpam_pmg_max + 1);
 
-Nit: Since this is the main advertisement in dmesg that MPAM has been
-successfully probed, maybe use the formal architectural terms here,
-e.g.:
+> -----Original Message-----
+> From: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+> Sent: Monday, September 8, 2025 5:27 PM
+> To: devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
+> edac@vger.kernel.org
+> Cc: git (AMD-Xilinx) <git@amd.com>; ptsm@linux.microsoft.com;
+> srivatsa@csail.mit.edu; shubhrajyoti.datta@gmail.com; Datta, Shubhrajyoti
+> <shubhrajyoti.datta@amd.com>; Krzysztof Kozlowski <krzk@kernel.org>; Rob
+> Herring <robh@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Borislav P=
+etkov
+> <bp@alien8.de>; Tony Luck <tony.luck@intel.com>; James Morse
+> <james.morse@arm.com>; Mauro Carvalho Chehab <mchehab@kernel.org>;
+> Robert Richter <rric@kernel.org>; Gupta, Nipun <Nipun.Gupta@amd.com>;
+> Agarwal, Nikhil <nikhil.agarwal@amd.com>
+> Subject: [PATCH v9 1/5] cdx: Split mcdi.h and reorganize headers
+>=20
+> Move `bitfield.h` from the CDX controller directory to `include/linux/cdx=
+` to make
+> them accessible to other drivers.
+>=20
+> As part of this refactoring, `mcdi.h` has been split into two headers:
+> - `mcdi.h`: retains interface-level declarations
+> - `mcdid.h`: contains internal definitions and macros
+>=20
+> This is in preparation for VersalNET EDAC driver that relies on it.
+>=20
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-	printk(KERN_INFO "MPAM enabled with %u PARTIDs and %u PMGs\n",
+For the CDX related changes in series=20
+Acked-by: Nikhil Agarwal <nikhil.agarwal@amd.com>
 
-(Largely cosmetic, though.)
-
->  }
->  
->  /*
-> @@ -972,4 +1115,5 @@ static int __init mpam_msc_driver_init(void)
->  
->  	return platform_driver_register(&mpam_msc_driver);
->  }
-> +/* Must occur after arm64_mpam_register_cpus() from arch_initcall() */
->  subsys_initcall(mpam_msc_driver_init);
-> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
-> index a98cca08a2ef..a623f405ddd8 100644
-> --- a/drivers/resctrl/mpam_internal.h
-> +++ b/drivers/resctrl/mpam_internal.h
-> @@ -50,6 +50,8 @@ struct mpam_msc {
->  	 */
->  	struct mutex		probe_lock;
->  	bool			probed;
-> +	u16			partid_max;
-> +	u8			pmg_max;
-
-Are these actually used for anything?
-
-mpam_msc_hw_probe() already merges these into mpam_partid_max etc., so
-we just leave the hardware-reported values here -- which we can't ever
-use, for fear of triggering error interrupts.
-
-(Keeping them would make it easier to migrate to merging these max
-values through the mpam_enable_merge_features() logic introduced in
-patch 18.  That's a possibly simplification, but it inessential to do
-that right now.
-
->  	unsigned long		ris_idxs[128 / BITS_PER_LONG];
->  	u32			ris_max;
-
-[...]
-
-> diff --git a/include/linux/arm_mpam.h b/include/linux/arm_mpam.h
-> index 406a77be68cb..8af93794c7a2 100644
-> --- a/include/linux/arm_mpam.h
-> +++ b/include/linux/arm_mpam.h
-> @@ -39,4 +39,18 @@ static inline int acpi_mpam_count_msc(void) { return -EINVAL; }
->  int mpam_ris_create(struct mpam_msc *msc, u8 ris_idx,
->  		    enum mpam_class_types type, u8 class_id, int component_id);
->  
-> +/**
-> + * mpam_register_requestor() - Register a requestor with the MPAM driver
-> + * @partid_max:		The maximum PARTID value the requestor can generate.
-> + * @pmg_max:		The maximum PMG value the requestor can generate.
-> + *
-> + * Registers a requestor with the MPAM driver to ensure the chosen system-wide
-> + * minimum PARTID and PMG values will allow the requestors features to be used.
-> + *
-> + * Returns an error if the registration is too late, and a larger PARTID/PMG
-> + * value has been advertised to user-space. In this case the requestor should
-> + * not use its MPAM features. Returns 0 on success.
-> + */
-> +int mpam_register_requestor(u16 partid_max, u8 pmg_max);
-> +
-
-Remove if the declared function is punted from this series.
-
-Cheers
----Dave
 
