@@ -1,183 +1,180 @@
-Return-Path: <devicetree+bounces-214593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 28E25B49D17
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:49:47 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303F0B49D24
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:57:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D84BF440133
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:49:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E6061B27A85
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 22:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2C112E9EC1;
-	Mon,  8 Sep 2025 22:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F135C2EE616;
+	Mon,  8 Sep 2025 22:57:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qzV25RQW"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ky42+IFu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71EEE1EB5CE;
-	Mon,  8 Sep 2025 22:49:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1C04C47F4A;
+	Mon,  8 Sep 2025 22:57:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757371782; cv=none; b=fsDn4p+Sk0vl/ar14XhZ+Kq2GWU/OtzvtQvRrqPSSDGq6lQNwz+QVbcoLvHHd4C4sH5KsO6QpAafU9DdSuorieIvwCS3Bjv2LiDemGwHcEt+rnDIbU7Tbt96d1n+F5zykfvrKqSt9Wacu7ZRKCGE8UhCIfe9OhBl6wyDQ4v7Vhk=
+	t=1757372274; cv=none; b=cSkW4oZBx48e3tdPreKRwP92M2u6XOPFCcx5QugFUU8s97B4PA/OlswavHXHIV94bkNWK28l7wWeyE5u0Y3r4B8xXXg8z9bCcQB8SmKobBPB2qtJu9DFQiGDithw5teJigul7xj9pobfJMbFjiOjgdoungZJToCAugxzlO4HgIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757371782; c=relaxed/simple;
-	bh=lnwnrrjuGfO0mxaFVDsCYUrjF7eAtqYJcIxxxfw8O5s=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lgX9NZA2O7yuCNy9nrHXXqkkg3Iox1K9VBc+eNUzNe3ADiZnNRlscgyzuvt0wPjnhsGyw5BGCIL5oKn53MpCvTKimBIxdC0Rdn0hTNgQksUhZPkBryOSh0kKOw9uUj26Fh3+r8dUxVtamqhaegYPUDhUpfDVIPtpyvs9ne+3jYQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qzV25RQW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F26F8C4CEF8;
-	Mon,  8 Sep 2025 22:49:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757371782;
-	bh=lnwnrrjuGfO0mxaFVDsCYUrjF7eAtqYJcIxxxfw8O5s=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=qzV25RQW+MgDi/hpupASciblnRwvwak6iSKey3VOtSYLukUwHI7fR+zUx1QST/x2Q
-	 6Em65Qfmn9/B4CzRdBo4+nd087sFEkJ5vfUGT4P2m+dbzUkPa8YxqP7boAFnn7uXt3
-	 gTVEUZiV8K3eTb/9xPfhX4fJK+mAbHPXs5CvfpNnFKONpFSW6Pd59zpCNXJoxekD2F
-	 hHDw5zXZe8hbKbKOu4Tu6MF4LvuhP7Xdr57eX8HWZOJNUeOSx/f5AjqufnoLeTt0UY
-	 Caev8zFMYNQo3OPQSgsaNYEib6Q/FIu7A+t68dAgynSZVLzRLAoaiXJ5mbl91LGTw9
-	 s61gtcduRHBBA==
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-62105d21297so7256013a12.0;
-        Mon, 08 Sep 2025 15:49:41 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUaSooCDTOU1zVGzpWGZLPmWlbDTyDInf/52pHzr4TOutLBVsYrIWvv08omtK8M1777NGJSBKO6IY92VPcO@vger.kernel.org, AJvYcCWymyU//5CocjfYWdwKiLuPlnOxqU3z4SMIb8eUmQl9DKnvuJfDLPu5OSxTEDwp+N2Mwz/cblm5Y8o5@vger.kernel.org
-X-Gm-Message-State: AOJu0YzsCfkuE2MDNRTpMGVVLwBimx7E9CZqvY2r3vPSbXbZDf+0rl/z
-	pDV6zr7H0PrgcuDlfvWvGgoxBd3+l/iDpqEp2uH/9tgwVZ4IwbqKKY1gQBRielxAobXjy8Hc1Lx
-	gK8kYWR2bsxRzispl3hfo+1oDWDNWSQ==
-X-Google-Smtp-Source: AGHT+IGHw+8G7L+ArmhFoRRdE1FV4g1i7ErMbY/OfAAY/uLB+PGTF8jRNyhPKgW/7xBDt1d7qcOsXVSoBcTc1Gd368Q=
-X-Received: by 2002:a05:6402:3484:b0:61e:8f70:ee26 with SMTP id
- 4fb4d7f45d1cf-62379b825a1mr8384508a12.38.1757371780463; Mon, 08 Sep 2025
- 15:49:40 -0700 (PDT)
+	s=arc-20240116; t=1757372274; c=relaxed/simple;
+	bh=1jo1Vv0Vs8hahvZP85nSL0Whq/0i4fskm9cB+6S7Sb0=;
+	h=From:To:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=NU7sCocnJzze9bynX4k7vEeNKkvrTha4nLebDTUDfcjJaBVTeBR78TowDgXXwNeidTqqIkLtasRS6JymK8unI/lfpPtUKvznoE5QYKrduJc7g2Kg2KelLPvagdjgHTPHFTvEZy+m4YwnR9Q1V/urlmotGl2gdUkXNj1rxtGsYeg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ky42+IFu; arc=none smtp.client-ip=209.85.221.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-3e34dbc38easo2046418f8f.1;
+        Mon, 08 Sep 2025 15:57:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757372268; x=1757977068; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cUvupcsRCkQfs+P8J05KpMp2C799/IJHD4VTsiVCzQU=;
+        b=Ky42+IFuok586UuDQgRhm64bmOx4S+21llvAnCi6OCewr3FWNW6gVBWLw0c+mzXi7i
+         YZUTo9USFa5yFSWQGIShg/BYrUpJpu1nnOXmU8Pgcjxf8+CysZAGv29HX9v1++N+P+Z/
+         5wSfwIahNXXCA/AiyBjuxUpcvB56s29c45WyNBSAESTAvXSt0C0UnQjUUjmczdOBuQKc
+         6YG/6CyZ6wnTHS7jztrKtEQkejQ108Wep3tCSuFZT7rufJRLYZIOIdXUnazofPlTk0fu
+         6D6JvPJW8XlMqwMPqayzX6NeSV0Ny3TagGvvCWh5+rw70RlQXVof0nML+vWliQKCepe6
+         ZwSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757372268; x=1757977068;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cUvupcsRCkQfs+P8J05KpMp2C799/IJHD4VTsiVCzQU=;
+        b=C/mLf7bYvocpEj7uSmgNPNucbccrIzE7i5ENLJMnFcZenwZ5d+M5voEnnt2ase1cCg
+         j6tamdByhW7kc2Ah5mpnVxYwxLSsDLoi+1ayuR1H71dSFBgkfdMS+neIeA/WthvGN+Do
+         LFQVgHlaexjcjdL0vZZeF7QMz3AFbKAbRxNLizC0517mpMm4BzkLP46dYYWejLocDyPL
+         FvASCcszVNw/HQcWgGWK2oa13OCifVMQw7j8YZe8CYUvoDpT84diDssdh7lKokJ4RbeN
+         MP4HEhSLZxxQy6ArrkMypMh4/IyG72P7G5HyMmf6mVqSmyyl4d9A44UfV489YdRA5yWN
+         /8nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUMOTydAkymiSSBQu3SEBBLMO1mEhWpqIaRYbyyfx+V0u1sYWu6gE+yZNHCxrSB5MIduqAxHNTzGp45+XRQ@vger.kernel.org, AJvYcCUbECzmCd0qty8dXmsbAzC3+mJTiEXwVSvDggSibQQT5Ge9ypEgnx7PURkbGTP7z6T5yQiW+RwffRqj@vger.kernel.org
+X-Gm-Message-State: AOJu0YyRILrI/f2yC0wdo6LB8ACUHbL1ax5d2pOaLR7pPfUiXPZjepqE
+	7HFHRXGqwmlpN0mczAiPOlEL6Uur0sKyRVZ1MFrx6kEorZbZCno7pEi5
+X-Gm-Gg: ASbGncsUGgfGR2HXexryFfaE95qu1DDAnxXYODlruc3+69l8gtVQ9e3TGsUeIikaQxb
+	mGsrFKyWVTqxu+KFVD/eZkXMdXZoH0U/DeShtYaAs+B5KShq8v7P1KbYEk6l+WuZ892B0Qw+wqN
+	fRI4uhaPy23yCoJx7XAo93LHDnvq+isSqDm25mqYTktMX8ff7mYCX4xOW17ncPG02g1RnUM3GK4
+	0zPG2mEdh3WMJO/7/Q3RZ6ctyT0rFKgI4JNRu/hqs2M32FtFoJpPDM1UaT3DEE8r4PvXPjxxW7o
+	R+A/pk0SjW8cdm5jWbJddXQ9w/IMPcHDAbA6+vEkzryuPMD7VXtulaGtqc9oTWHsxcfLSV9pRLe
+	645ETMgwUWZpQFvA2HokNFlnTm7/h5nJqeObXkaRQmB4ynoRUadLl7OJeIMPumXmT2LXoVCV9zp
+	u4fPDnYeCh
+X-Google-Smtp-Source: AGHT+IHNyN6qy4Z/EdCypF+HkDEY2JT93OD46/zVWVzUsfkBn/dv6BYtFe56OQfZXkQXUnUBziSXtw==
+X-Received: by 2002:a05:6000:2f87:b0:3d9:2fa8:1009 with SMTP id ffacd0b85a97d-3e64c3acf34mr7435111f8f.45.1757372268165;
+        Mon, 08 Sep 2025 15:57:48 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7521ca2aesm56321f8f.26.2025.09.08.15.57.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 08 Sep 2025 15:57:47 -0700 (PDT)
+From: Jernej =?UTF-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
+ samuel@sholland.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org, Aleksander Jan Bajkowski <olek2@wp.pl>
+Subject: Re: [PATCH] arm64: dts: allwiner: h5: OrangePi PC2: add ethernet LEDs
+Date: Tue, 09 Sep 2025 00:57:46 +0200
+Message-ID: <12736197.O9o76ZdvQC@jernej-laptop>
+In-Reply-To: <5617fd78-32aa-44f4-9f9c-16349b3f8450@wp.pl>
+References:
+ <20250818163520.1004528-1-olek2@wp.pl> <2012341.PYKUYFuaPT@jernej-laptop>
+ <5617fd78-32aa-44f4-9f9c-16349b3f8450@wp.pl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250815144736.1438060-1-ivecera@redhat.com> <20250820211350.GA1072343-robh@kernel.org>
- <5e38e1b7-9589-49a9-8f26-3b186f54c7d5@redhat.com> <CAL_JsqKui29O_8xGBVx9T2e85Dy0onyAp4mGqChSuuwABOhDqA@mail.gmail.com>
- <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
-In-Reply-To: <bc39cdc9-c354-416d-896f-c2b3c3b64858@redhat.com>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 8 Sep 2025 17:49:28 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
-X-Gm-Features: AS18NWAxhYNwJ56vsQfUczkl_R9TNuNktlxc2midcWQWDd56JDmUw5T0m2c6T2w
-Message-ID: <CAL_JsqL5wQ+0Xcdo5T3FTyoa2csQ9aW8ZxxMxVOhRJpzc7fGhA@mail.gmail.com>
-Subject: Re: [RFC PATCH net-next] dt-bindings: dpll: Add per-channel Ethernet
- reference property
-To: Ivan Vecera <ivecera@redhat.com>
-Cc: netdev@vger.kernel.org, mschmidt@redhat.com, poros@redhat.com, 
-	Andrew Lunn <andrew@lunn.ch>, Vadim Fedorenko <vadim.fedorenko@linux.dev>, 
-	Arkadiusz Kubalewski <arkadiusz.kubalewski@intel.com>, Jiri Pirko <jiri@resnulli.us>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Prathosh Satish <Prathosh.Satish@microchip.com>, 
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>, open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
 
-On Fri, Sep 5, 2025 at 1:50=E2=80=AFAM Ivan Vecera <ivecera@redhat.com> wro=
-te:
->
->
->
-> On 05. 09. 25 12:06 dop., Rob Herring wrote:
-> > On Fri, Aug 29, 2025 at 8:29=E2=80=AFAM Ivan Vecera <ivecera@redhat.com=
-> wrote:
-> >> ...
-> >>
-> >> Do you mean to add a property (e.g. dpll-channel or dpll-device) into
-> >> net/network-class.yaml ? If so, yes, it would be possible, and the way
-> >> I look at it now, it would probably be better. The DPLL driver can
-> >> enumerate all devices across the system that has this specific propert=
-y
-> >> and check its value.
+Dne torek, 9. september 2025 ob 00:11:46 Srednjeevropski poletni =C4=8Das j=
+e Aleksander Jan Bajkowski napisal(a):
+> Hi Jernej,
+>=20
+> On 9/8/25 16:45, Jernej =C5=A0krabec wrote:
+> > Dne ponedeljek, 18. avgust 2025 ob 18:35:13 Srednjeevropski poletni =C4=
+=8Das je Aleksander Jan Bajkowski napisal(a):
+> >> This patch adds support for Ethernet LEDs.
+> > How did you tested this? According to linux-sunxi wiki, this board has
+> > RTL8211E, while LED control is supported only with RTL8211F driver.
+>=20
+>=20
+> For testing, I used OpenWRT snapshot with kernel 6.12. OpenWRT backported
+> patches from kernel 6.16 that add LED control support. Realtek RTL8211E
+> supports LED control since commit:
+> 708686132ba02659267c0cebcc414348ece389a5 ("net: phy: realtek: Add=20
+> support for PHY LEDs on RTL8211E")
+
+Ah, I haven't checked the latest code. Alright.
+
+>=20
 > >
-> > Yes. Or into ethernet-controller.yaml. Is a DPLL used with wifi,
-> > bluetooth, etc.?
->
-> AFAIK no... ethernet-controller makes sense.
->
-> >>
-> >> See the proposal below...
-> >>
-> >> Thanks,
-> >> Ivan
-> >>
+> >> Signed-off-by: Aleksander Jan Bajkowski<olek2@wp.pl>
 > >> ---
-> >>    Documentation/devicetree/bindings/dpll/dpll-device.yaml  | 6 ++++++
-> >>    Documentation/devicetree/bindings/net/network-class.yaml | 7 ++++++=
-+
-> >>    2 files changed, 13 insertions(+)
+> >>   .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 20 +++++++++++++++++=
+++
+> >>   1 file changed, 20 insertions(+)
 > >>
-> >> diff --git a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> index fb8d7a9a3693f..560351df1bec3 100644
-> >> --- a/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> +++ b/Documentation/devicetree/bindings/dpll/dpll-device.yaml
-> >> @@ -27,6 +27,12 @@ properties:
-> >>      "#size-cells":
-> >>        const: 0
-> >>
-> >> +  "#dpll-cells":
-> >> +    description: |
-> >> +      Number of cells in a dpll specifier. The cell specifies the ind=
-ex
-> >> +      of the channel within the DPLL device.
-> >> +    const: 1
+> >> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts =
+b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+> >> index 0f29da7d51e6..7688f565ec9b 100644
+> >> --- a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+> >> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+> >> @@ -7,6 +7,7 @@
+> >>  =20
+> >>   #include <dt-bindings/gpio/gpio.h>
+> >>   #include <dt-bindings/input/input.h>
+> >> +#include <dt-bindings/leds/common.h>
+> >>   #include <dt-bindings/pinctrl/sun4i-a10.h>
+> >>  =20
+> >>   / {
+> >> @@ -132,6 +133,25 @@ &external_mdio {
+> >>   	ext_rgmii_phy: ethernet-phy@1 {
+> >>   		compatible =3D "ethernet-phy-ieee802.3-c22";
+> >>   		reg =3D <1>;
+> >> +
+> >> +		leds {
+> >> +			#address-cells =3D <1>;
+> >> +			#size-cells =3D <0>;
+> >> +
+> >> +			led@0 {
+> >> +				reg =3D <0>;
+> >> +				color =3D <LED_COLOR_ID_GREEN>;
+> >> +				function =3D LED_FUNCTION_LAN;
+> >> +				linux,default-trigger =3D "netdev";
+> >> +			};
+> >> +
+> >> +			led@1 {
+> >> +				reg =3D <1>;
+> >> +				color =3D <LED_COLOR_ID_AMBER>;
+> >> +				function =3D LED_FUNCTION_LAN;
+> >> +				linux,default-trigger =3D "netdev";
+> >> +			};
+> > Schematic says LED0 is "Yellow" or Amber in this DT. So LED1 should be =
+green.
 > >
-> > If it is 1 for everyone, then you don't need a property for it. The
-> > question is whether it would need to vary. Perhaps some configuration
-> > flags/info might be needed? Connection type or frequency looking at
-> > the existing configuration setting?
->
-> Connection type maybe... What I am trying to do is define a relationship
-> between the network controller and the DPLL device, which together form
-> a single entity from a use-case perspective (e.g., Ethernet uses an
-> external DPLL device either to synchronize the recovered clock or to
-> provide a SyncE signal synchronized with an external 1PPS source).
->
-> Yesterday I was considering the implementation from the DPLL driver's
-> perspective and encountered a problem when the relation is defined from
-> the Ethernet controller's perspective. In that case, it would be
-> necessary to enumerate all devices that contain a =E2=80=9Cdpll=E2=80=9D =
-property whose
-> value references this DPLL device.
+> > Also, I'm not sure if trigger really needs to be added, since PHY netwo=
+rk
+> > will set it as such.
+>=20
+> I think there is a mistake in the schematic. Setting the trigger on LED0
+> illuminates the green LED. My tests found that the netdev trigger isn't
+> set by default.
 
-Why is that?
+Ok.
 
->
-> This approach seems quite complicated, as it would require searching
-> through all buses, all connected devices, and checking each fwnode for a
-> =E2=80=9Cdpll=E2=80=9D property containing the given reference. I don=E2=
-=80=99t think this would
-> be the right solution.
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
 
-for_each_node_with_property() provides that. No, it's not efficient,
-but I doubt it needs to be. As you'd only need to do it once.
+Best regards,
+Jernej
 
-> I then came across graph bindings and ACPI graph extensions, which are
-> widely used in the media and DRM subsystems to define relations between
-> devices. Would this be an appropriate way to define a binding between an
-> Ethernet controller and a DPLL device?
 
-Usually the graph is used to handle complex chains of devices and how
-the data flows. I'm not sure that applies here.
-
-> If so, what would such a binding roughly look like? I=E2=80=99m not very
-> experienced in this area, so I would appreciate any guidance.
->
-> If not, wouldn=E2=80=99t it be better to define the relation from the DPL=
-L
-> device to the network controller, as originally proposed?
-
-I have no idea really. I would think the DPLL is the provider and an
-ethernet device is the consumer. And if the ethernet device is unused
-(or disabled), then the DPLL connection associated with it is unused.
-If that's the case, then I think the property belongs in the ethernet
-node.
-
-Rob
 
