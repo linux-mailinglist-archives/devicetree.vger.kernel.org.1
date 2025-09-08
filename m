@@ -1,114 +1,119 @@
-Return-Path: <devicetree+bounces-214599-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 868FEB49D88
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:36:05 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 68FE2B49D8E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:39:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2D231BC4BF6
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:36:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 124167A6347
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:37:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F1B22ECD30;
-	Mon,  8 Sep 2025 23:36:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 209AE2F0C45;
+	Mon,  8 Sep 2025 23:39:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="sGdBMbwg"
+	dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b="VXVBtK6m"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B2022DEA95;
-	Mon,  8 Sep 2025 23:35:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 85E841B87E8;
+	Mon,  8 Sep 2025 23:39:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757374560; cv=none; b=bLNvCpmgLLpRk0pPFOvGcHNJ/dkHx9PpDbo19CV8SsAWQsJoyyd5aSWeGQewtJyBn1LYLkQWELj3VFkSyaI6eI8vxvtqwaZjYWQ/rR2K0MJTQXoEUH/K0Kk9jw48++Gk9mR4/j3biwJ4hTZD+Dro7zxR4/tOEtzj7ly+d9o9gYI=
+	t=1757374763; cv=none; b=QTkELTmBIlTxo0j36i95CdGoU0q6Y1iE4OBnYPO2saEM7GrAAGw+2Mjr4Aww7bsiaX+5X2DH3gMu0NlF7lU9+E/HUO/n7NU4HMlJI1nSqXFTHmd6cGc26Dg98kJc+QnhgnrchL2M8QKztFPaIxjCbmiyTkt3/2USFcHQsMU69Yw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757374560; c=relaxed/simple;
-	bh=EMM7E93s/ekUbTcRbj60Z72MQgUONxbUo/9aOqe7OOs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=V/h8wJXyl5MQbrbENmy1IPN0hVjDPdkvQf7iKr47J/vXR3MrjDdZ+g1VbMHlLPKU7P3CUuU2XK2TGUmyv0HO4T7/zPsYJxAv22rHZW56xb9xmPDBsKNKTWdlB7BMSPhuNqb99xdAYNpGasjjR107h24Hl9jxPoA60UPwb00lHS0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=sGdBMbwg; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588NZrXj155383;
-	Mon, 8 Sep 2025 18:35:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757374553;
-	bh=C+es+k3ho11cQTKuzpC2vE3k0arMuciL1EOZEVF5ce0=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=sGdBMbwgBYMtC0S38l3sEFnz/BPdRdCPPTOrPomAeOg9FWe0jRDVlFsQHk/e+xuU0
-	 wzmMe8ubSb01a8GfmPc9xUa/GDGJqOvqNl47JmTSouUwXljw5Gp+9hr1/gJUbFFuOf
-	 BRRyLEaqPvpcZqk8412ajGrUoYbDOrqcPianv6ig=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588NZre64116798
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 18:35:53 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 18:35:53 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 18:35:53 -0500
-Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NZrjg1662346;
-	Mon, 8 Sep 2025 18:35:53 -0500
-Message-ID: <fbbaf67a-8e59-44fa-8741-49cf53f4a31c@ti.com>
-Date: Mon, 8 Sep 2025 18:35:53 -0500
+	s=arc-20240116; t=1757374763; c=relaxed/simple;
+	bh=Q03Q1QdCh+FVjubFdk49psMRgmBtn6TP8GD5Q0vmpcY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=RDTY5D3TUiU32EDGlECwK+O/pG/8BGEXmQLE8uYd8m/bYvC3eNaaufarxb804jA8UwbBAWxdscftQlNkfMhPQeSZQnQv/6XQFo+QkhzvuuVMb8mze+Pzd+ttq+9hGsMEPbgiEaJmyGjIyIHlH5Nr4W9AxPf1c2XhRqr0+Ez+eoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org; spf=pass smtp.mailfrom=mailbox.org; dkim=pass (2048-bit key) header.d=mailbox.org header.i=@mailbox.org header.b=VXVBtK6m; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=mailbox.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mailbox.org
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4cLNhP5g1xz9stK;
+	Tue,  9 Sep 2025 01:39:17 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org; s=mail20150812;
+	t=1757374757;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=S6loKHnERR6UQJlGUtEQ3+3fogYBwTr8txF5Ji+qXuY=;
+	b=VXVBtK6mXUfaVqVUbAwXZk4vf3gBlosdFyQkADIFM7YPJD0BuXmyZtLP/gWnX49fLxLWmS
+	TvYWCqgevy3ANpxrGU1FuxPOfB02fv2PcckuuSfUtHsLqy9xmmdMFbY2v1e2Y98GOYUcGk
+	FbBB/kiOVrj+Jre+jYhGFch8aPLgcRrNCtjGRIsS8zWOzLYfw+RXT/fR+Z2rPBB3LZgcCC
+	S5QjAAzduh1mysaLLq6zphP+oa8kVMEVSASePJ+YwGA6tHUG2Qso8V+KUEMHf4/fQ1VLE1
+	N6sG0fUjP+5898B4FVmylOx1Jm6DnKBsCiFnCRkwZyEz8ZUrVap7cZC/z8lbOA==
+Message-ID: <afe58aa6-0c3e-4508-8133-8e7621a0484a@mailbox.org>
+Date: Tue, 9 Sep 2025 01:39:13 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 4/4] arm64: dts: ti: k3-pinctrl: Fix the bug in
- existing macros
-To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
-        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <u-kumar1@ti.com>,
-        <sebin.francis@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
-        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC: <vishalm@ti.com>
-References: <20250905051448.2836237-1-a-kaur@ti.com>
- <20250905051448.2836237-5-a-kaur@ti.com>
+Subject: Re: [PATCH v1] dts: arm64: freescale: move imx9*-clock.h
+ imx9*-power.h into dt-bindings
+To: Peng Fan <peng.fan@oss.nxp.com>
+Cc: Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, Abel Vesa <abelvesa@kernel.org>,
+ Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ E Shattow <e@freeshell.de>
+References: <20250831200516.522179-1-e@freeshell.de>
+ <20250901032203.GA393@nxa18884-linux.ap.freescale.net>
+ <3a165d77-3e36-4c0d-a193-aa9b27e0d523@mailbox.org>
+ <05f7d69a-9c05-4b47-ab04-594c37e975eb@kernel.org>
+ <51daddc4-1b86-4688-98cb-ef0f041d4126@mailbox.org>
+ <8920d24b-e796-4b02-b43b-8a5deed3e8fb@kernel.org>
+ <be2fc937-b7a6-49a7-b57d-6e3f16f4ccc3@mailbox.org>
+ <20250904093442.GA13411@nxa18884-linux.ap.freescale.net>
 Content-Language: en-US
-From: Kendall Willis <k-willis@ti.com>
-In-Reply-To: <20250905051448.2836237-5-a-kaur@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+From: Marek Vasut <marek.vasut@mailbox.org>
+In-Reply-To: <20250904093442.GA13411@nxa18884-linux.ap.freescale.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-MBO-RS-META: 6pky7gdj4zuqu4e5ou56mtyfkp7ssjjh
+X-MBO-RS-ID: fbc66ab64366b5ef5dd
 
-On 9/5/25 00:14, Akashdeep Kaur wrote:
-> Currently, DS_IO_OVERRIDE_EN_SHIFT macro is not defined anywhere but
-> used for defining other macro.
-> Replace this undefined macro with valid macro. Rename the existing macro
-> to reflect the actual behavior.
-> 
-> Signed-off-by: Akashdeep Kaur <a-kaur@ti.com>
-> ---
->   arch/arm64/boot/dts/ti/k3-pinctrl.h | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-pinctrl.h b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> index 8ce37ace94c9..e46f7bf52701 100644
-> --- a/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> +++ b/arch/arm64/boot/dts/ti/k3-pinctrl.h
-> @@ -88,8 +88,8 @@
->   
->   #define PIN_DS_FORCE_DISABLE		(0 << FORCE_DS_EN_SHIFT)
->   #define PIN_DS_FORCE_ENABLE		(1 << FORCE_DS_EN_SHIFT)
-> -#define PIN_DS_IO_OVERRIDE_DISABLE	(0 << DS_IO_OVERRIDE_EN_SHIFT)
-> -#define PIN_DS_IO_OVERRIDE_ENABLE	(1 << DS_IO_OVERRIDE_EN_SHIFT)
-> +#define PIN_DS_ISO_OVERRIDE_DISABLE     (0 << ISO_OVERRIDE_EN_SHIFT)
-> +#define PIN_DS_ISO_OVERRIDE_ENABLE      (1 << ISO_OVERRIDE_EN_SHIFT)
->   #define PIN_DS_OUT_ENABLE		(0 << DS_OUT_DIS_SHIFT)
->   #define PIN_DS_OUT_DISABLE		(1 << DS_OUT_DIS_SHIFT)
->   #define PIN_DS_OUT_VALUE_ZERO		(0 << DS_OUT_VAL_SHIFT)
+On 9/4/25 11:34 AM, Peng Fan wrote:
 
-Reviewed-by: Kendall Willis <k-willis@ti.com>
+Hi,
+
+sorry for my late reply.
+
+>> Instead of playing this "I found this code somewhere, so I can do
+>>> whatever the same" answer the first implied question - why these are
+>>> bindings? Provide arguments what do they bind.
+>>
+>> I am not sure how to answer this, but what I can write is, that if I scramble
+>> these IDs in either the DT or the firmware (which provides the SCMI clock
+>> service), then the system cannot work. I am not sure if this is the answer
+>> you are looking for.
+> 
+> Marek,
+>    Some U-Boot code indeed directly use the IDs to configure the clock without
+>    relying on any drivers. Since the SCMI IDs could not be moved to dt-bindings,
+
+Why can they not be moved to DT bindings ?
+
+They are part of the ABI.
+
+This is the part I do not understand, the SCMI IDs are no different than 
+any other clock IDs used in DT, is that not so ?
+
+>    the possible method to do in U-Boot is to duplicate a copy of the file,
+
+No.
 
