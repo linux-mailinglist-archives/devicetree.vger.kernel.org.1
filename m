@@ -1,123 +1,158 @@
-Return-Path: <devicetree+bounces-214506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA770B495DE
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:45:36 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AEAD0B4963C
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 18:55:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D99671B22FF0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:45:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 693553B6BEE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 16:55:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A11522EF669;
-	Mon,  8 Sep 2025 16:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D14830F545;
+	Mon,  8 Sep 2025 16:55:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="JnRI1xnq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="M2ynJhaj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f54.google.com (mail-vs1-f54.google.com [209.85.217.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11D72211A14
-	for <devicetree@vger.kernel.org>; Mon,  8 Sep 2025 16:44:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 710442FF65D;
+	Mon,  8 Sep 2025 16:55:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757349898; cv=none; b=NfIRGJ+BhWQAclonV2uk6lS1VPGrxFnblugv9Srh/n8hOrQc51wpj78suP1Cz8dZXsXjP1LARMADBUZ0XoqXOLA4okgvxU5GV2qpnZNBxhj4t6weFDql3XP/diqafpAjstahDH8lwZMmVnfTwAo+kX6LAVv4uVKceY0O3q5Ud/M=
+	t=1757350521; cv=none; b=pliEeYdcL7tSCO1wXI7SzsbVm4AIEMzXbP93IaJOO+qYgOeJ49Xiex3EW0Ux5cjMuzH5nWOHPGFBNDqmnOaQGgNJWaC0MxluLH5AnLHy/ELlss9aPhABNTzdpOGUZ51+GT2CwDWWNETJFyRMgYRt/pfDH39XsI7vj7pBbwQVLtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757349898; c=relaxed/simple;
-	bh=eNMOk6yX33mnpYcf2JxGWNrXNRaPQCRWV/mLtQ3MjA0=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Y+eSaHVKDKcpGt5X5ijYdVRRVU+Ia6gZ6ueNqJ9+rfnZCaejlD9EpPXny3E3vAOgbEcYD9dArKqsToPYR2pC2R/zMPlbqC+jkhy6nfR0btCo9BNRHq/lCEbZajrPccav8Al7l4PXHZPbX5HN/Yhne5f1kFhlu+DbacFOCNtjB/k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=JnRI1xnq; arc=none smtp.client-ip=209.85.217.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vs1-f54.google.com with SMTP id ada2fe7eead31-52a80b778e7so1410625137.1
-        for <devicetree@vger.kernel.org>; Mon, 08 Sep 2025 09:44:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757349896; x=1757954696; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FTDiYUkL2CUr9l6jV622a3f8KP7BPruwWZ5gte8PmvI=;
-        b=JnRI1xnq9CdKS9r7vOI2MB5hrKm/dYMbYeDLPoaMJCa21uNhSKkOQOsus6yMOxHjaK
-         1YG46jCKusvopEHv+VZRwLJvwAp4RgDZVPYzKvE8dfue8maoK0UcaRIO8CI24mDr3L6z
-         wFiOnBMTM+Xo9N43osyZtJ4m48YY63xzfEr1OcSPtD2QkLcYYFRKv3XIZ5Tzz8f0n5NU
-         J3I7kerCeSMMSgOuuHg6krrM5MyY7G2Y19PbxNOf4tJjX/O6cH4wLJOECeUOC/im+8Kj
-         87b3ZpTz2O+Hd5kwk2eNI8tWLBQSq7q+xGxWtjWuvNkwLNV/iMLe00gdFVQG5fvhPO6J
-         FF7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757349896; x=1757954696;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FTDiYUkL2CUr9l6jV622a3f8KP7BPruwWZ5gte8PmvI=;
-        b=duLHOYnpxh3lrJE2SJJ+H0d2OUOPJEPsud7JNj6B5IZ1sKG1aKqwZFaaREsuOz5uDm
-         D/DJLitYv36znB2yDAtsn40a+Cw6XIsDOwwMjPepbL0N2kUUTpH+74R9n28ISrP1xd02
-         PpTyK1knxOflYJ5/eHNeFsPQtwWd9SSO9VUXjt4N+AE75NoSkvuWMlr4uYDeTpv6Xti5
-         HJxWIwFLodksJTSi2QAzERQ3QgFdtx1iVwFB4rlvlQyGs0yaAVMm0nYU7FjV+w6lVf/r
-         1Yha4tVibQkX2MAa17zGHJfDvMUU6ffaez3ygcupzDTEmrq/U8oaT0xxh5PqwqB8C7NU
-         56Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCVNtNJsqY1Y/Z5askqs1ViUj9xmKLsfHEUHgqiUgzBWUidtneycygvgP6pMs4wqKmCHgH8jcRmK7Xd9@vger.kernel.org
-X-Gm-Message-State: AOJu0YzAdbc9pM6TAC5of6rzl8h47bzdTuMy2IptfNZWnRcPLaaWJ53N
-	3IPmRDUAcYgkYj/mOOC1ml1MC/jiMxbBmGpnUK4emP+U77BNTbkKM4s+
-X-Gm-Gg: ASbGncsgy0Yt4GuHn5SAF2UZG8GI64xprtgMDj0eFZchB9V95vSyR770ho4cwhBwMAJ
-	DHM/vU9zA5EC82MaLawaoh363mmlRAAs8YRgRogvFPQ/SgWxDM4IcHHkP8gr6szbfPvAn/Q+wlW
-	1njCg3wYXkv6CFDS6vA/fj1U5W0OnSXzWyEHjSlyc8w/Fa3cbMtIBuyWUcuVzaA0z1kB4ifdfFa
-	qgoP4DOoLOh2qFdj3WB3f1KqiA21HoQJKRpnTNlaWUBbl8VwAFBy0TLJTUhNng0MxATnpCIStCJ
-	JsGKVCBVvrScrk/fkzxDd+2Q7d3M296ZmeswvZMOdq1tHEoeQFSixpR/rdkW1oQIkGV0R8BHdQs
-	pUdp9MbZoYNUywrr1D/wI7sZaw0ky2QXn7EgV
-X-Google-Smtp-Source: AGHT+IEaTNiP+f9nKLoXBeh5yoJCXM8uvjtKSeIiQ7v3ifbHJ4bT4AcLveiBFitDVMsUfEgSA1p9QQ==
-X-Received: by 2002:a05:6102:ccf:b0:51e:92cc:6e6a with SMTP id ada2fe7eead31-53d160d3f9cmr2416721137.33.1757349895788;
-        Mon, 08 Sep 2025 09:44:55 -0700 (PDT)
-Received: from fabio-Precision-3551.. ([2804:14c:485:4b61:c727:aee6:b2e8:7953])
-        by smtp.gmail.com with ESMTPSA id ada2fe7eead31-52aef458d62sm10689214137.3.2025.09.08.09.44.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 08 Sep 2025 09:44:55 -0700 (PDT)
-From: Fabio Estevam <festevam@gmail.com>
-To: shawnguo@kernel.org
-Cc: robh@kernel.org,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	imx@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Fabio Estevam <festevam@gmail.com>
-Subject: [PATCH] ARM: dts: imx6sll: Use 'dma-names'
-Date: Mon,  8 Sep 2025 13:44:31 -0300
-Message-Id: <20250908164431.67052-1-festevam@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1757350521; c=relaxed/simple;
+	bh=N7pBRflNbpZRPZMuii9nwONjoWuvr1R3Jr0vP87Whsg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=o62HtfbHCm/7pnuFuyr1TdjJLvqRPQ70g1uU+OXMlS9G0AvNnE48fSngUVZ2dBFQqIYbbTioy1TCCUFknPpfqE1pemMSFzwOWRON2S7WFkfrX6udkWGNC4o5SA2pbFoqVugcRPJ08uEX944fqIWPOf1XxK5/CEe5vZU2ENQQLqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=M2ynJhaj; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47313C4CEF1;
+	Mon,  8 Sep 2025 16:55:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757350521;
+	bh=N7pBRflNbpZRPZMuii9nwONjoWuvr1R3Jr0vP87Whsg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=M2ynJhajh0iJUzWLvuY8fgkhCn//kD7ghrkUA87oVkxkpijFJ66cSd6cYFl3bGqlE
+	 JeRDnK9TfGjmRtQh40EXtr5iKATQRpsqjK7MvFN4I9Oa6utDu8QTEqyDUOxdbGsBbD
+	 uL0ZDDVwoYOlHYock+ZQd524f+ngfg5Cc6Fr9B8aHDn8/9H1aGBJetlJx0MlDiSV3Q
+	 eoUnQ4mBe/v7UkSdYQg74i2k+n4PKfoJczGhwzsLydxxTR/lsphDmshMEMAtD+E4mN
+	 zfYllwth+GGOdRZ8QYuUZWCqrR02rCLNCtzWQE7skpwkM094pPOQsrZ5U/TNNvPuJR
+	 Awr3dhXofwYsQ==
+Date: Mon, 8 Sep 2025 17:55:16 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liang Yang <liang.yang@amlogic.com>,
+	Feng Chen <feng.chen@amlogic.com>, linux-spi@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v4 2/3] spi: amlogic: add driver for Amlogic SPI Flash
+ Controller
+Message-ID: <e010ff93-574a-45d9-a5dc-0942b3fc90f2@sirena.org.uk>
+References: <20250829-spifc-v4-0-1e57fd39f584@amlogic.com>
+ <20250829-spifc-v4-2-1e57fd39f584@amlogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PLQf2sl8yZV7v94v"
+Content-Disposition: inline
+In-Reply-To: <20250829-spifc-v4-2-1e57fd39f584@amlogic.com>
+X-Cookie: Parsley
 
-'dma-name' is not a valid property and causes the following dt-schema
-warning:
 
-dma-name: b'rx\x00tx\x00' is not of type 'object', 'integer', 'array', 'boolean', 'null'
+--PLQf2sl8yZV7v94v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Fix it by using 'dma-names' instead.
+On Fri, Aug 29, 2025 at 01:16:14PM +0800, Xianwei Zhao wrote:
+> From: Feng Chen <feng.chen@amlogic.com>
+>=20
+> This driver provides support for the SPI mode of the Amlogic
+> Flash Controller. It supports both SPI NOR flash and SPI NAND
+> flash. For SPI NAND, the Host ECC hardware engine can be enabled.
 
-Signed-off-by: Fabio Estevam <festevam@gmail.com>
----
- arch/arm/boot/dts/nxp/imx/imx6sll.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This breaks an x86 allmodconfig build with clang-19 for me:
 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-index 8c5ca4f9b87f..704870e8c10c 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll.dtsi
-@@ -309,7 +309,7 @@ uart3: serial@2034000 {
- 					reg = <0x02034000 0x4000>;
- 					interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH>;
- 					dmas = <&sdma 29 4 0>, <&sdma 30 4 0>;
--					dma-name = "rx", "tx";
-+					dma-names = "rx", "tx";
- 					clocks = <&clks IMX6SLL_CLK_UART3_IPG>,
- 						 <&clks IMX6SLL_CLK_UART3_SERIAL>;
- 					clock-names = "ipg", "per";
--- 
-2.34.1
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:592:7: error: variabl=
+e 'is
+_datain' is used uninitialized whenever 'if' condition is false [-Werror,-W=
+somet
+imes-uninitialized]
+  592 |                 if (!buf) {
+      |                     ^~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:601:12: note: uniniti=
+alize
+d use occurs here
+  601 |                                        is_datain ? sfc->info_buf : =
+NULL,
+      |                                        ^~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:592:3: note: remove t=
+he 'i
+f' if its condition is always true
+  592 |                 if (!buf) {
+      |                 ^~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:590:13: error: variab=
+le 'is_datain' is used uninitialized whenever 'if' condition is false [-Wer=
+ror,-Wsometimes-uninitialized]
+  590 |         } else if (op->data.dir =3D=3D SPI_MEM_DATA_OUT) {
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:601:12: note: uniniti=
+alized use occurs here
+  601 |                                        is_datain ? sfc->info_buf : =
+NULL,
+      |                                        ^~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:590:9: note: remove t=
+he 'if' if its condition is always true
+  590 |         } else if (op->data.dir =3D=3D SPI_MEM_DATA_OUT) {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:568:16: note: initial=
+ize the variable 'is_datain' to silence this warning
+  568 |         bool is_datain;
+      |                       ^
+      |                        =3D 0
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:590:13: error: variab=
+le 'buf' is used uninitialized whenever 'if' condition is false [-Werror,-W=
+sometimes-uninitialized]
+  590 |         } else if (op->data.dir =3D=3D SPI_MEM_DATA_OUT) {
+      |                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:600:38: note: uniniti=
+alized use occurs here
+  600 |         ret =3D aml_sfc_dma_buffer_setup(sfc, buf, op->data.nbytes,
+      |                                             ^~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:590:9: note: remove t=
+he 'if' if its condition is always true
+  590 |         } else if (op->data.dir =3D=3D SPI_MEM_DATA_OUT) {
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/build/stage/linux/drivers/spi/spi-amlogic-spifc-a4.c:566:11: note: initial=
+ize the variable 'buf' to silence this warning
+  566 |         void *buf;
+      |                  ^
+      |                   =3D NULL
+3 errors generated.
 
+--PLQf2sl8yZV7v94v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmi/CnMACgkQJNaLcl1U
+h9AFIQf/f76yjg7V+ltEyf/0nt8AgNdYiP6VUdfMQJowsncIUdiTKd13aXljtg9n
+d4uzj9vpTGUZaE9CXSKzYoEySvqalTaZ3XvrCYzK1JpMXcvZB1Mk3xVhSCTOlVje
+t7o0Iy5enTcG9jN4yuuTxSxA2MOKA/wD+w9HPRL8gWVVa+YKW9vjOv3e0da2pkXC
+7ydiS8/kpdAhoaW0Z1ziRwwDr16yeh/9XKSFOd6VDJDEOwL5yVdId9EozmY/SP/L
+0TTHSrOf7i5stNtdgnvRd+pyUuw3WTjMc6t2p0JPk44vhnnBD5W6IkLvhVlCqFLz
+mI021XiGLDP6F+IorwAhjYyrANfWqA==
+=qXe/
+-----END PGP SIGNATURE-----
+
+--PLQf2sl8yZV7v94v--
 
