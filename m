@@ -1,111 +1,280 @@
-Return-Path: <devicetree+bounces-214163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24E4EB484C5
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:04:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B61B484DE
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 09:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A36371B20639
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:04:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1F747179399
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 07:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450602E613A;
-	Mon,  8 Sep 2025 07:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE9D2E426B;
+	Mon,  8 Sep 2025 07:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qo5ioNbD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nxAC9hDG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 101C62E5437;
-	Mon,  8 Sep 2025 07:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6349B13B2A4;
+	Mon,  8 Sep 2025 07:16:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757315045; cv=none; b=u8YCOef5e/zVv1IgfI2b32YotMjm71iPf5ARmNPLzY3bUMNWj7QFnzTKBupzLteud/TSongrZOCf+AYq3A54ZPXdL9cw2tt077FsXTSCkCIYMbXSdeXpSSzPwSy9BZUpY00DE424AJjO7oVU5/q7vplR4JDOIMMrUpgmC/Jp2Qg=
+	t=1757315769; cv=none; b=JEq5eX2BCzSDzD9OhbWC3rkfSTxtUTb3hRzGcVju2q9iJpxgv5WsyzseOuMyW8jBahW1212PycHTzDwkMnX0H2HlbL4u88CPVTjLRnMRqiNSKqe6OylwCpQsdBXWszkxQ8Iu/TolNKjT17WNTHdDE6hxZo+M6vzbJ7cmiQ+k9KE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757315045; c=relaxed/simple;
-	bh=AeCZC4Xp7UU/zbofHlE39ClcIKd0OAOo2hV/opiz/HI=;
-	h=Content-Type:Date:Message-Id:To:Subject:Cc:From:References:
-	 In-Reply-To; b=pBi0J85CtEBtr/R18G3JlIfTGzytk4GG8KJYBcaO3ObXdw3D72Jim8SSjr8YQ9lexczjvZ8Eb+yyElmyh8/xeHz7FYNYmIeTjNmviT0hPAFPM4MuOVMo5ajnP77VdV5x8Mmbbv6RYi9g8K/iGJIKaK6T9iJ6x6TKI/vyXZ/HrpY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qo5ioNbD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A62FC4CEF5;
-	Mon,  8 Sep 2025 07:04:04 +0000 (UTC)
+	s=arc-20240116; t=1757315769; c=relaxed/simple;
+	bh=o/X8+JMmZpV94bYmVuVJVdlmLSO/1vPISj70P8f4jik=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=oyidKMzTv/lcQTIvYZUqyMR2kqyRLMJPZ6WpyADeab1UPYEsqPAboABhDrIaslkFol/Cnrx4n3aOY4QADE83cnf6uu2Pap8i1YBkTI8zw7ve9Is/FAep5NJ7oHHYBGEdokzWAxsP1kk5GvxS0pgGFSQ5CFzGoEgaNBSPC63fPJI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nxAC9hDG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 555BDC4CEF5;
+	Mon,  8 Sep 2025 07:16:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757315044;
-	bh=AeCZC4Xp7UU/zbofHlE39ClcIKd0OAOo2hV/opiz/HI=;
-	h=Date:To:Subject:Cc:From:References:In-Reply-To:From;
-	b=Qo5ioNbDYXLZBOcfB57TuPhIDmEBPVgxU0Nt4F4XuDcuG7MJXGTsh3G5SkwVktuS2
-	 ClFLPN5pRdpmQJtbA+htpWImcAwVWKnbc08VdnDfmIBVO1pn6m6YemHavpRauO/t6R
-	 ojCTOSumLfYsGxSJrJyvrSBvvDEyRH9NMSEeSapbX+UnWOlqrJcUK1im5M2IecVL4V
-	 9nL24j1BMPdFjFRTbuWpqXkeLagxUfs+8QBR1mTP0UJSrE6obyuQuP9EEcAFpkq/RW
-	 txZ4NWhKDg3mx6fJA0QGdnbEq5qPKel3nBgWK428IM15JDP948dw/c2F9FmV3in2Rd
-	 cfjNdTE3+lYlw==
-Content-Type: multipart/signed;
- boundary=6c29f15d4f86f34b14080c43bd193c1b897e82398560c3d529c55b51afa7;
- micalg=pgp-sha384; protocol="application/pgp-signature"
-Date: Mon, 08 Sep 2025 09:04:00 +0200
-Message-Id: <DCN86WR0CPF1.38V3X1O08VYJG@kernel.org>
-To: "Guenter Roeck" <linux@roeck-us.net>, "Nishanth Menon" <nm@ti.com>,
- "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>,
- "Rob Herring" <robh@kernel.org>, "Krzysztof Kozlowski"
- <krzk+dt@kernel.org>, "Conor Dooley" <conor+dt@kernel.org>, "Jean Delvare"
- <jdelvare@suse.com>, "Lee Jones" <lee@kernel.org>, "Srinivas Kandagatla"
- <srini@kernel.org>, "Wim Van Sebroeck" <wim@linux-watchdog.org>
-Subject: Re: [PATCH v1 6/7] hwmon: sl28cpld: add SMARC-sAM67 support
-Cc: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-hwmon@vger.kernel.org>,
- <linux-watchdog@vger.kernel.org>
-From: "Michael Walle" <mwalle@kernel.org>
-X-Mailer: aerc 0.16.0
-References: <20250822131531.1366437-1-mwalle@kernel.org>
- <20250822131531.1366437-7-mwalle@kernel.org>
- <83189bf7-6831-4373-a352-2a3a05526e08@roeck-us.net>
-In-Reply-To: <83189bf7-6831-4373-a352-2a3a05526e08@roeck-us.net>
+	s=k20201202; t=1757315768;
+	bh=o/X8+JMmZpV94bYmVuVJVdlmLSO/1vPISj70P8f4jik=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=nxAC9hDGUBNxyibzkldViVQqNA7Ne11OQjw+RsA4iZl5y9KtSvH3wawfkS7Pm9iLK
+	 092lO79HND56OmopKwuTqujybgF+d6d/46aIA+rQwEoLYFdvC8U+VgntWHhEQsJdBS
+	 8dGC61YLIOkbWnLWtuHrkTZVhxIV5ZPakJzBkH7Fmmy9zNhZdTJOPqzZRcEG+nENhl
+	 2KBHYTXlR2dAXaMJ1kXaqm8iD+zLikxOhj0v2hTXz+NmHVYoa1pE+EvsBHkP5FLzzD
+	 y9zgaTdSO3AOKqwxWqgUA2FR5QkQ51NfZZdN2GbB+eTEEioTS0wN4jP0WI8PlYQPa5
+	 OCwZrh3F4ApdA==
+Date: Mon, 8 Sep 2025 12:45:59 +0530
+From: Manivannan Sadhasivam <mani@kernel.org>
+To: zhangsenchuan <zhangsenchuan@eswincomputing.com>
+Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, 
+	robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, 
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, 
+	shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, 
+	mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, 
+	linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe
+ host controller
+Message-ID: <o27wqsjza3rueqhrs3bcf6xevhflgoncjlwzzlnciehjclrq5a@akwpey4jnpbs>
+References: <20250829082021.49-1-zhangsenchuan@eswincomputing.com>
+ <20250829082237.1064-1-zhangsenchuan@eswincomputing.com>
+ <nq3xoih7kbjdaxnwoduz3o2nxt2ikahbogqdraibznrlqwqw5r@ovjarka5eagm>
+ <9cb374f.cc7.19913c6dd06.Coremail.zhangsenchuan@eswincomputing.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9cb374f.cc7.19913c6dd06.Coremail.zhangsenchuan@eswincomputing.com>
 
---6c29f15d4f86f34b14080c43bd193c1b897e82398560c3d529c55b51afa7
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+On Thu, Sep 04, 2025 at 04:10:23PM GMT, zhangsenchuan wrote:
+> 
+> 
+> 
+> > -----Original Messages-----
+> > From: "Manivannan Sadhasivam" <mani@kernel.org>
+> > Send time:Monday, 01/09/2025 14:04:50
+> > To: zhangsenchuan@eswincomputing.com
+> > Cc: bhelgaas@google.com, lpieralisi@kernel.org, kwilczynski@kernel.org, robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, linux-pci@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, p.zabel@pengutronix.de, johan+linaro@kernel.org, quic_schintav@quicinc.com, shradha.t@samsung.com, cassel@kernel.org, thippeswamy.havalige@amd.com, mayank.rana@oss.qualcomm.com, inochiama@gmail.com, ningyu@eswincomputing.com, linmin@eswincomputing.com, pinkesh.vaghela@einfochips.com
+> > Subject: Re: [PATCH v2 1/2] dt-bindings: PCI: eic7700: Add Eswin eic7700 PCIe host controller
+> > 
+> > On Fri, Aug 29, 2025 at 04:22:37PM GMT, zhangsenchuan@eswincomputing.com wrote:
+> > > From: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > 
+> > > Add Device Tree binding documentation for the ESWIN EIC7700
+> > > PCIe controller module,the PCIe controller enables the core
+> > > to correctly initialize and manage the PCIe bus and connected
+> > > devices.
+> > > 
+> > > Signed-off-by: Yu Ning <ningyu@eswincomputing.com>
+> > > Signed-off-by: Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > ---
+> > >  .../bindings/pci/eswin,eic7700-pcie.yaml      | 142 ++++++++++++++++++
+> > >  1 file changed, 142 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+> > > new file mode 100644
+> > > index 000000000000..65f640902b11
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pci/eswin,eic7700-pcie.yaml
+> > > @@ -0,0 +1,142 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pci/eswin,eic7700-pcie.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Eswin EIC7700 PCIe host controller
+> > > +
+> > > +maintainers:
+> > > +  - Yu Ning <ningyu@eswincomputing.com>
+> > > +  - Senchuan Zhang <zhangsenchuan@eswincomputing.com>
+> > > +
+> > > +description:
+> > > +  The PCIe controller on EIC7700 SoC.
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/pci/pci-host-bridge.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: eswin,eic7700-pcie
+> > > +
+> > > +  reg:
+> > > +    maxItems: 3
+> > > +
+> > > +  reg-names:
+> > > +    items:
+> > > +      - const: dbi
+> > > +      - const: config
+> > > +      - const: mgmt
+> > > +
+> > > +  ranges:
+> > > +    maxItems: 3
+> > > +
+> > > +  num-lanes:
+> > > +    const: 4
+> > > +
+> > > +  '#interrupt-cells':
+> > > +    const: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 9
+> > > +
+> > > +  interrupt-names:
+> > > +    items:
+> > > +      - const: msi
+> > > +      - const: inta
+> > > +      - const: intb
+> > > +      - const: intc
+> > > +      - const: intd
+> > > +      - const: inte
+> > > +      - const: intf
+> > > +      - const: intg
+> > > +      - const: inth
+> > 
+> > What? Are these standard INTx or something elese? PCI(e) spec defines only
+> > INT{A-D}.
+> > 
+> 
+> Dear Manivannan
+> 
+> Thank you for your thorough review .
+> You are right, the PCI(e) spec defines only four legacy INTx interrupts (INTA#, INTB#, INTC#,  INTD#). 
+> PCI(e) spec defines also mentions that INTX interrupts have two control states (Assert_INTx/Deassert_INTx Message).
+> In our yaml, inta~intd corresponds to Assert_INTA~Assert_INTD, and inte~inth corresponds to Deassert_INTA~Deassert_INTD. 
+> May I ask if inte~inth needs to be removed or if the naming needs to be standardized? 
+> I saw that in "sifive,fu740-pcie.yaml", interrupt-names only retain inta to intd.
+> 
 
-Hi Guenter,
+If these are actual interrupts and these names align with the interrupt names in
+the hardware IP, then you can keep it as it is and should add a comment for
+inte-inth:
+		- const: inte /* INTA_Deassert */
+		...
 
-> >   static const struct of_device_id sl28cpld_hwmon_of_match[] =3D {
-> > -	{ .compatible =3D "kontron,sl28cpld-fan" },
-> > +	{ .compatible =3D "kontron,sl28cpld-fan", .data =3D &sl28cpld_hwmon_c=
-hip_info },
-> > +	{ .compatible =3D "kontron,sa67mcu-hwmon", .data =3D &sa67mcu_hwmon_c=
-hip_info },
->
-> Effectively this means that the two chips have completely different funct=
-ionality.
-> One reports fan speeds, the other reports voltages and current.
-> This should be a separate driver.
+If not, then you should remove inte-inth.
 
-Fair enough. I wasn't sure, the reason why I've chosen to add it to
-the sl28cpld driver was that I don't want to clutter the directory
-with many small board specific drivers. They all have the simple-mfd
-parent driver in common. In the end it's up to you of course, so
-separate driver?
+> > > +
+> > > +  interrupt-map:
+> > > +    maxItems: 4
+> > > +
+> > > +  interrupt-map-mask:
+> > > +    items:
+> > > +      - const: 0
+> > > +      - const: 0
+> > > +      - const: 0
+> > > +      - const: 7
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 4
+> > > +
+> > > +  clock-names:
+> > > +    items:
+> > > +      - const: mstr
+> > > +      - const: dbi
+> > > +      - const: pclk
+> > > +      - const: aux
+> > > +
+> > > +  resets:
+> > > +    maxItems: 3
+> > > +
+> > > +  reset-names:
+> > > +    items:
+> > > +      - const: cfg
+> > > +      - const: powerup
+> > > +      - const: pwren
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - ranges
+> > > +  - num-lanes
+> > > +  - interrupts
+> > > +  - interrupt-names
+> > > +  - interrupt-map-mask
+> > > +  - interrupt-map
+> > > +  - '#interrupt-cells'
+> > > +  - clocks
+> > > +  - clock-names
+> > > +  - resets
+> > > +  - reset-names
+> > > +
+> > > +unevaluatedProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    soc {
+> > > +        #address-cells = <2>;
+> > > +        #size-cells = <2>;
+> > > +
+> > > +        pcie@54000000 {
+> > > +            compatible = "eswin,eic7700-pcie";
+> > > +            reg = <0x0 0x54000000 0x0 0x4000000>,
+> > > +                  <0x0 0x40000000 0x0 0x800000>,
+> > > +                  <0x0 0x50000000 0x0 0x100000>;
+> > > +            reg-names = "dbi", "config", "mgmt";
+> > > +            #address-cells = <3>;
+> > > +            #size-cells = <2>;
+> > > +            #interrupt-cells = <1>;
+> > > +            ranges = <0x81000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
+> > 
+> > I/O CPU range starts from 0x0
+> > 
+> > Also, I don't think you need to set the relocatable flag (bit 31) for any
+> > regions.
+> 
+> if cannot set the relocatable flag (bit 31) for any regions.Is it appropriate to write it this way：
+> ranges = <0x01000000 0x0 0x40800000 0x0 0x40800000 0x0 0x800000>,
+>          <0x02000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
+>          <0x43000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
+> 
 
--michael
+Yes.
 
---6c29f15d4f86f34b14080c43bd193c1b897e82398560c3d529c55b51afa7
-Content-Type: application/pgp-signature; name="signature.asc"
+> > 
+> > > +                     <0x82000000 0x0 0x41000000 0x0 0x41000000 0x0 0xf000000>,
+> > > +                     <0xc3000000 0x80 0x00000000 0x80 0x00000000 0x2 0x00000000>;
+> > > +            bus-range = <0x0 0xff>;
+> > > +            clocks = <&clock 562>,
+> > > +                     <&clock 563>,
+> > > +                     <&clock 564>,
+> > > +                     <&clock 565>;
+> > 
+> > Don't you have clock definitions for these values?
+> > 
+> 
+> Our clock and reset drivers have the definitions of these values, but the clock and reset drivers are under review. 
+> Currently, these values can only be replaced by constants.
+> 
 
------BEGIN PGP SIGNATURE-----
+Ok, you should also mention this in description or cover letter.
 
-iKgEABMJADAWIQTIVZIcOo5wfU/AngkSJzzuPgIf+AUCaL5/4RIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQEic87j4CH/iHHAF/SN8mk4/c9/7qoNU/dYaz4jj027g2vf2/
-pv7+yMMwRPbtPffTZM2Eh0NvFRSzQidQAYC/Bh8oKn1Xd+dtXLuRsnqvhWFxlUV5
-u8IrsKk3DiMbCQ283oy2lbs60sRh1CNZlTI=
-=W+tq
------END PGP SIGNATURE-----
+- Mani
 
---6c29f15d4f86f34b14080c43bd193c1b897e82398560c3d529c55b51afa7--
+-- 
+மணிவண்ணன் சதாசிவம்
 
