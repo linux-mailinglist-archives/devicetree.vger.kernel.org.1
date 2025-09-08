@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-214556-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214558-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27BE1B499D0
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:21:52 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AFBBB499D5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 21:22:14 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4D0101BC2882
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:21:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B77E11BC75D9
+	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 19:21:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11D6626B2DA;
-	Mon,  8 Sep 2025 19:20:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E41727816B;
+	Mon,  8 Sep 2025 19:21:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="m1EbeoYy"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="AEva1hBP"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E540236435;
-	Mon,  8 Sep 2025 19:20:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 201CF17A2EA;
+	Mon,  8 Sep 2025 19:21:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757359247; cv=none; b=sKslOBOKg9Eh4ljt0U5jpIWRX8pkksoM28oZDhyIIk8QWdNXacf2KlCb9Igug2PHijsWP9a6+FOxYQrZ+OgmvH5accgZQ2Zvl+qdxUZfv9ZoYLozwNwxTvc+wxALLGZtDmpyXHVneG+WgWS93l9J13GGX5jMKnqXBPkO94/uNOE=
+	t=1757359282; cv=none; b=lfpYLj0AgSBm6oOb5ET9wgFdMVemropvLqgfZKla5mwXPqTFqixbK3TaL5MexPpkKeTsiJ2XBz+10RgeKJQAS474jefay9yAEqiTVpWe+kRTbPqVJn5vSZIyYsubAMogJlgsFncdSMn33F/BCP+iq8TXqLKzuZF2XuAofPUzB30=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757359247; c=relaxed/simple;
-	bh=k7MgYVyUEIosceGm7Ovc7O5+H9yQCLAGqN73gKKtZEc=;
+	s=arc-20240116; t=1757359282; c=relaxed/simple;
+	bh=eGNGo9UmbpcgmCGZTBYS1wzSgvq07uLAlDB4ZzlkLuA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LgEmWa+WjZgB4h3bD/o8frnlNO1rdq8SltPoTR3btXFp2pQ2WGOvVeyANmbOOOtkTKfcu8zBuRi+10HhyngHYcSfiXbDvIieAgo7GvrpQH/0GTA2pXXR/pODKfS08BQzYPs23ywzEgXuutuj2Fpji7G0M8kT2nvV4/hRlDP5bv0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=m1EbeoYy; arc=none smtp.client-ip=217.194.8.81
+	 Content-Type:Content-Disposition:In-Reply-To; b=icgDu3Tcqqr3N3vUFIK4mWhLy1HrcGw3g+DdgsObGUoBVOgdlCs1ENKq2em2giXyNm+9/L7PKsteI+XdpPfxcmOcjvIVJ6oUjawAdXQI8Avui/+E6Z8Cezv+0CcfwGn72CIY9id24w5qYcCGeuBVf7IEgHlfY1xqTY6vKk6oljg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=AEva1hBP; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb (xdsl-188-155-97-38.adslplus.ch [188.155.97.38])
-	by mail11.truemail.it (Postfix) with ESMTPA id 656A2233EF;
-	Mon,  8 Sep 2025 21:20:40 +0200 (CEST)
+	by mail11.truemail.it (Postfix) with ESMTPA id 6037A233EF;
+	Mon,  8 Sep 2025 21:21:17 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1757359241;
-	bh=bliwDgKbSpIP0SQAFOalQgK//vCgDNXhRwj9jFqniM4=; h=From:To:Subject;
-	b=m1EbeoYy4+s3xyw7uU3sTOqfaPwbEnJNsJ7lj1GREHwujDCcBEec7zpb8I7wsHYIn
-	 cJpeYLy6zzabWZR6eEBVql5DU83zDTaJSsQXvaND6Wt3szmdmoYc5My9SozACQwV/z
-	 5OLX4+LIfigtIZLchdqChYdaJHYsXxBbS21wUl3UPXLhGvWPNXSZzj22HKuI2T0SOM
-	 qm64EOA9lOtH1ny8RoMZoO1vQWW0HsYd0yjniTDbjJWOGockwQXFwiF6twK6K4wa2Z
-	 Tu+QbMl959thRqJwBiNpJ5H3fhzXw4dhjxK0FviOiYx2DLga/sNHW9TpEzAYCSv5tk
-	 egN8VNWQxwFxQ==
-Date: Mon, 8 Sep 2025 21:20:35 +0200
+	s=default; t=1757359278;
+	bh=vNiJoZ4QWly/KKvQRA2zpDh1zo/FXO7FdLLjYNaY9w0=; h=From:To:Subject;
+	b=AEva1hBP1OMIUEQmEmbb/BEeW/1N3lzEYFQ/yHSmH1NCRGcDJ61jbFBXYb9p8Qe8P
+	 pcGpKwQB7OIC5vh5Wh2NdODeFMQUjo9y8HvNQ6XqTvnO3kDinHoD25KEwtpctoviHC
+	 oO/5AgJC5Kx91lZ9EohwAOdl1OdAlgUuDOgeKUTOMMZkQvzQSTedfu0AODGaAiGBX5
+	 k6H/SPoZFyFVPnpT23pA2dXYf8vIv+B3M7CqDUf0M6QVAFCu0RB8VI/cAuw7Roq4SX
+	 JGFawAW+pTiQdOqII2v9cOFqMzwdnF1EgDe5YVq/zFurwvq1897567PewOk3CbmlZH
+	 03xTFxkjNLyaw==
+Date: Mon, 8 Sep 2025 21:21:16 +0200
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Beleswar Padhi <b-padhi@ti.com>
 Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
@@ -53,14 +53,15 @@ Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh@kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Hiago De Franco <hiago.franco@toradex.com>,
 	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Emanuele Ghidoli <emanuele.ghidoli@toradex.com>,
-	Parth Pancholi <parth.pancholi@toradex.com>,
-	Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>
-Subject: Re: [PATCH v4 15/34] arm64: dts: ti: k3-am62p-verdin: Add missing
- cfg for TI IPC Firmware
-Message-ID: <20250908192035.GA4217@francesco-nb>
+	Jo_o Paulo Gon_alves <joao.goncalves@toradex.com>,
+	Stefan Eichenberger <stefan.eichenberger@toradex.com>,
+	Max Krummenacher <max.krummenacher@toradex.com>,
+	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Subject: Re: [PATCH v4 16/34] arm64: dts: ti: k3-am62-verdin: Add missing cfg
+ for TI IPC Firmware
+Message-ID: <20250908192116.GB4217@francesco-nb>
 References: <20250908142826.1828676-1-b-padhi@ti.com>
- <20250908142826.1828676-16-b-padhi@ti.com>
+ <20250908142826.1828676-17-b-padhi@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,24 +70,25 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250908142826.1828676-16-b-padhi@ti.com>
+In-Reply-To: <20250908142826.1828676-17-b-padhi@ti.com>
 
-On Mon, Sep 08, 2025 at 07:58:07PM +0530, Beleswar Padhi wrote:
+On Mon, Sep 08, 2025 at 07:58:08PM +0530, Beleswar Padhi wrote:
 > The wkup_r5fss0_core0_memory_region is used to store the text/data
 > sections of the Device Manager (DM) firmware itself and is necessary for
 > platform boot. Whereas the wkup_r5fss0_core0_dma_memory_region is used
 > for allocating the Virtio buffers needed for IPC with the DM core which
 > could be optional. The labels were incorrectly used in the
-> k3-am62p-verdin.dtsi file. Correct the firmware memory region label.
+> k3-am62-verdin.dtsi file. Correct the firmware memory region label.
 > 
-> Currently, only mailbox node is enabled with FIFO assignment. However,
-> there are no users of the enabled mailboxes. Add the missing carveouts
-> for WKUP and MCU R5F remote processors, and enable those by associating
-> to the above carveout and mailboxes. This config aligns with other AM62P
-> boards and can be refactored out later.
+> Currently, only mailbox node is enabled with FIFO assignment for a
+> single M4F remote core. However, there are no users of the enabled
+> mailboxes. Add the missing carveouts for WKUP R5F and MCU M4F remote
+> processors, and enable those by associating to the above carveout and
+> mailboxes. This config aligns with other AM62 boards and can be
+> refactored out later.
 > 
 > Signed-off-by: Beleswar Padhi <b-padhi@ti.com>
-> Tested-by: Hiago De Franco <hiago.franco@toradex.com> # Verdin AM62P
+> Tested-by: Hiago De Franco <hiago.franco@toradex.com> # Verdin AM62
 
 Acked-by: Francesco Dolcini <francesco.dolcini@toradex.com>
 
