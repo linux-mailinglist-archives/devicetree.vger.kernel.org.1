@@ -1,137 +1,110 @@
-Return-Path: <devicetree+bounces-214995-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214996-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15180B4FF7A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:33:12 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57A72B4FF86
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:35:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CACB63B3761
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:33:10 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0FE883B21C8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:34:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76B2C3469FA;
-	Tue,  9 Sep 2025 14:33:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A70CE34AAE6;
+	Tue,  9 Sep 2025 14:34:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qyP3yMol"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gTAcSIlF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45A957081E;
-	Tue,  9 Sep 2025 14:33:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCE7C322DBD;
+	Tue,  9 Sep 2025 14:34:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757428387; cv=none; b=A8mZYga0BOb088hoDYp32Y/uBMup2MdFu6DTSgGoFeqdSWblRYH2EI64D5P0zP/ys0dXAxAOTyTCywDCkvtVD604vUzTzA0jRzu1nw/C2GXpF6Iw0riizOrxDuLLFDEYcW+eACnPsi7X++XGiZ1J7knSspu1SoygCR2ESjGeu98=
+	t=1757428496; cv=none; b=u5ia+tOtrISTeFXmsfNg9zvS+WjRg3+E4tp9opLjLrVXx9jRJdwiHwGSvLR0h9wKdQ/6yXmsvnCo+SHQzhE7S4xlW3b2eCNBwn0uz1jHEr4c1+5kRyKxe0kzt6w1DJD4jjKeKqQOtWxfGZsi7+bSVJwtSE6X0cx3VWcutF/Zjyw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757428387; c=relaxed/simple;
-	bh=/kGPxwkVLDkpt7Ify6seFX+v933lZCK1sEibaNa1vGg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=k09MZ97ifJqc24JOhPCWEBi1qAy90GZx6jHa17xOZI8z8CGTrkDtNcj3j5G7xWB5chTgOIgUx7eWTdYXK27NhcG2td4VaBbyZMpf/5WNO+RzUDOLQnWJKS/Qbjnb5XMr9D9oIHmbzNnh7hiRf8ae2JpZsl+eKIxFxUlvDCe6xx8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qyP3yMol; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A06BFC4CEF4;
-	Tue,  9 Sep 2025 14:33:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757428386;
-	bh=/kGPxwkVLDkpt7Ify6seFX+v933lZCK1sEibaNa1vGg=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=qyP3yMolHiwaFFCcZSZQR/+0aYr+0+888CmeaYC6UNOUYiG0qfvyYGq1moY9ZT+IA
-	 l+ZOz/UlBKGyo3HEY+x5RXjAcvP3whYopDfgtp06YSUET4fBP2P0BQa56Dlf5PNymy
-	 Z3oTmXfxgcQkslXJF+WOlNM549Rss7skaKiP2fEXEUlhI99Bo7+uJ0EGAgw3P4Ru8o
-	 TBfaQqxhP6UVvW9NaiHwPvvmX5y/IQbFb1VrthpPB97QffagBFZA+LSyK9e91MWe6j
-	 TAnvZVoQCubGOmALg84L33G08Yp7QXZeT/gIjvTb6EV/pKIZAM9dZcXw0vaLZqJ7ZW
-	 KANRyiaulyWlA==
-Message-ID: <9e39f1b4-63b2-4c6a-8b31-6360be1952e6@kernel.org>
-Date: Tue, 9 Sep 2025 16:33:01 +0200
+	s=arc-20240116; t=1757428496; c=relaxed/simple;
+	bh=GiVIbpaX8rrEcgYdm96ysaMs+dQh7eC9dHOO+IlMA8A=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=UNS7ot8Y/NZ0l6zKKORzBoV4NFac1891QO8nWBKfnqkgbrEtnsfggi6szQDTJZkkfJV5J0LK0SbVUNaV38C7WqtpLgNTkHzuVyC0Hgo0UxlDWutp4Gmrd/09SrJcWr4ePmrWgDlFW3i3MSo9iB3crNxavgvOW4ROJTq049FXRGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gTAcSIlF; arc=none smtp.client-ip=209.85.167.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5679dbcf9d8so845628e87.0;
+        Tue, 09 Sep 2025 07:34:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757428493; x=1758033293; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VbuaXeNkGwQa+h8NzoCuHlvm6G8MYoOuPmg2q0e83yc=;
+        b=gTAcSIlFqVIYvQtVnXuFYPElDflHT9UzYm83mM5iE5XwLkDNk7fT6i/lwIUDOIDa+e
+         hbzioqoWWrxE6DUBYBX/zo8NdlH4cbuDkWzyY2JYAsmzZTvIBSS90mAE8fdhEtsw46lc
+         whR0pWzonDnnAGz0hpOn/9ta/W0lN84l4CFDa8mUmGGGMTQGHE6mPK1aia5qAUeqvAeh
+         /jMNa+wyokHqgwAmnUYxNtu6uMyGn6SwBzzuZRkF1oT4vr4YPHmXi32lN5Z3ncHeaaRC
+         5az6vMQ1blxgG0mpqXZfaV9cgbHgaxCcbqm8c/LPhtvn0G203GP3vfruoM6+6iPYq9px
+         Qekw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757428493; x=1758033293;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VbuaXeNkGwQa+h8NzoCuHlvm6G8MYoOuPmg2q0e83yc=;
+        b=J0aUNULl05NmXGeqq12uSb7xR81GDa6UZ0wli4m2eRD5639yELl+66MzKXnLylajNJ
+         rsYjpLZK8IdN7yW2KrvX6I459QuWNu5TvH+wnu5xpHnjrqCwAy2xpGY+CEh8APtFZkHW
+         1QoiQHc177sMCvV7Jx8hiTDZkWlGKN3d8AGMnFlCtMjvovD9EWkl99S3oa2HS+w5gBNC
+         g8QbQWdM8uoMrMPgeXIAGvo6LejSK3CKRIU/42fj1ioYNX/C5y28QPWPojPwKGve3m6b
+         8hU8pvKLqA8zL33t1/LqOZl1sF+RlnbHFPzs3X+Fi7gUj0Do0jayDxALqF4ONNzIgNJw
+         rmuA==
+X-Forwarded-Encrypted: i=1; AJvYcCVzoO1OPlLjl6rx2mt1JZHr0EdeZYtXU/L37HGOkZUMUI8jyIvWh115rX4GowtE5LsBzzDUgceB64cSxepq@vger.kernel.org, AJvYcCXA+7CEa5hD8WhfbIHwqo3z/M8Yi7InJhGrUpAyO6dWPN40TDeft8VUux7hcAGTW7OdCdqY+iuY4/Yl@vger.kernel.org
+X-Gm-Message-State: AOJu0YyQDmEYJKInfNgp4GG8oNoO7Q2MnoBjFRYsIApZsMsiDf3NsD0D
+	TEcgveEj9qXHZ2vOUJdYmv0+7SUZRagJVD9sXMNhnMv+vRuTUHnsT+eM
+X-Gm-Gg: ASbGncuKMyokdcPSjrF342nxpbC+cV5Wwu6+sk7QqUkCNxYBOaEweYbHRl4oK251F97
+	5pVrvJRn4GhsgTvd9Mj4JM1i6xCz3W4HMsHohwCe452i1weTYb8O/cX28ILDpy7Ks5y58v7Agep
+	AOGK34nOe24IfFYagx2aoLuVW7djCbHhB7ocDCxDqYf0zVw6Bu+hmlwxbeJNzNBbXrf7ytkR/nv
+	c1ANc34HA0xBXgfdA/9s/0T1lce115L4sJ04TlDpivykeoS3t7K+79j+rr3ED2HBltL8mWKtdvz
+	bAGYdZi0AoJ6/eGapF1p5Ilr7aulcjnWRgVNgFbj1HINjtrGM98PYdmQkcSIKExqgdAAlngpRnI
+	pInZ8bYaTyJYSDg==
+X-Google-Smtp-Source: AGHT+IElf0HtryMtRvfQW8UHZGgXa3yk96abG2SQfqxBMM6P6MM9P8reG7tyc0Ev6ID7pDQXbdKXkg==
+X-Received: by 2002:a05:6512:2346:b0:55f:4fac:3f2b with SMTP id 2adb3069b0e04-5625ee79cb9mr4815371e87.5.1757428492616;
+        Tue, 09 Sep 2025 07:34:52 -0700 (PDT)
+Received: from xeon.. ([188.163.112.70])
+        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-56818bfc96esm548136e87.132.2025.09.09.07.34.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 07:34:51 -0700 (PDT)
+From: Svyatoslav Ryhel <clamor95@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	=?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+	"Andrew F. Davis" <afd@ti.com>,
+	Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/1] dt-bindings: power: supply: bq27xxx: document optional interrupt
+Date: Tue,  9 Sep 2025 17:34:31 +0300
+Message-ID: <20250909143432.121323-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.48.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: input: pm8941-pwrkey: Document
- wakeup-source property
-To: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc: Luca Weiss <luca@lucaweiss.eu>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Courtney Cavin <courtney.cavin@sonymobile.com>,
- Vinod Koul <vkoul@kernel.org>, Bhushan Shah <bshah@kde.org>,
- ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250909-resin-wakeup-v1-0-46159940e02b@lucaweiss.eu>
- <20250909-resin-wakeup-v1-1-46159940e02b@lucaweiss.eu>
- <efb03993-0481-45ed-8f7e-8b65519a55cb@kernel.org>
- <phctwoxml7hscwcgaipl233lotnrkgcpe7rxvhm5syoiadu3lv@ibgeib4kjyhs>
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=krzk@kernel.org; keydata=
- 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 a/A=
-In-Reply-To: <phctwoxml7hscwcgaipl233lotnrkgcpe7rxvhm5syoiadu3lv@ibgeib4kjyhs>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 09/09/2025 16:08, Dmitry Torokhov wrote:
->>>    compatible:
->>>      enum:
->>> @@ -36,6 +33,11 @@ properties:
->>>             pin should be configured for pull up.
->>>      $ref: /schemas/types.yaml#/definitions/flag
->>>  
->>> +  wakeup-source:
->>> +    description: |
->>> +           Button can wake-up the system. Only applicable for 'resin',
->>> +           'pwrkey' always wakes the system by default.
->>
->>
->> I'll fix existing code, so don't repeat that style.
-> 
-> If you ack I can reformat on my side to match the patch you just sent.
+Document an optional interrupt found in some controllers of BQ27xxx
+series. The pin to which the interrupt is connected is called SOC_INT or
+GPOUT.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Svyatoslav Ryhel (1):
+  dt-bindings: power: supply: bq27xxx: document optional interrupt
 
-Best regards,
-Krzysztof
+ .../bindings/power/supply/bq27xxx.yaml        | 37 +++++++++++++++++--
+ 1 file changed, 34 insertions(+), 3 deletions(-)
+
+-- 
+2.48.1
+
 
