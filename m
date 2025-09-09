@@ -1,249 +1,155 @@
-Return-Path: <devicetree+bounces-215125-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215126-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B225AB5072C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:34:44 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF2FB50731
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:39:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE84E1C26F52
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:35:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95CA34E4789
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:39:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5264D36206A;
-	Tue,  9 Sep 2025 20:34:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3996826A08F;
+	Tue,  9 Sep 2025 20:39:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eQv2U/Ue"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kK8b6bs0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 274D2362068;
-	Tue,  9 Sep 2025 20:34:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04549199931;
+	Tue,  9 Sep 2025 20:39:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757450058; cv=none; b=kAfquH3WWl+s3r73DgkBpoZo4Woz+c3zifO2xITd7tGdoqm1hVUqHm0F795WCXAjIxmv8ijmnN1LA7wTsLau5d8IEHOfM+TX3UddJvqgXivJZ4F5lW/NietjsLNGczK5EnJbI3MDUw7YP7LriA26AfysxQDy5zQ+/kb4x5ckcVU=
+	t=1757450353; cv=none; b=Eg3JCgOnUkReyNKbK3NDrupZJ/JyhNzNx/Zpp1L8UcJZf8yPM5j+VHUDAiITpjgeyp+1MvZ7dSnBnTiTKz+epzi8mCqaz1IaoQFLqJOoM52mOJqqFrITvR2rKuI6yXn/bnhigNGQoBCBKQCXNQCVI8WA+bAikkWslc2+pkPlwR4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757450058; c=relaxed/simple;
-	bh=hdwNKGl7lx7063eJ2yiIHblOsSgC/pR1LbJ6lLkBads=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=qIC2I14rD7wuVhR3z9VvB3T7oaerfp4GqUZuZ0VtGoeJt++qC08uDx206nzGGEjeQstrIqkK9xerrsuM4Gvw2VlpjnJd/L2S/1A/qjbOs2VQxvA0q98d+ZI1VNqsfQfM1UBJ7E9HHZhJL71gTOX+f+Ekx+KGH1q+0T+g5PeUV08=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eQv2U/Ue; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 903FDC4CEF8;
-	Tue,  9 Sep 2025 20:34:14 +0000 (UTC)
+	s=arc-20240116; t=1757450353; c=relaxed/simple;
+	bh=9fZASMuZCalLaTWw9GiE1aMw67wsX4JeH92/taONPEA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=EivVbpDzAayaOEM0g+q8+dFEh2YupFb1nE8v9JcMDzcJuKouDwTohFCHL7CvqKWozK7Y1rH7oYK365JrVonxnHUVC5F0Y1kLza5r/S3lHhC9/Nk7js/lcgm5IjfVgnIUydaXoEJjTpbVif+eYg8el1+oVCmyKR4tNiIL1rwVPbU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kK8b6bs0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D207C4CEF4;
+	Tue,  9 Sep 2025 20:39:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757450057;
-	bh=hdwNKGl7lx7063eJ2yiIHblOsSgC/pR1LbJ6lLkBads=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=eQv2U/UeE/bjEFK3vU+6qVQEwjGD5nim1L/4Ln1UhO1QwHC6X1buEhiHGQchxU4y7
-	 B3pWVa7H4Xw/8YeAB9G9qACjvy7X/VYIb7F+OfJG4cy71yeVK57Zl8DVCLaCOD8FYF
-	 vg/p0hKqAm4WJs0JIVZUVO4MvDGwqtSPtnEPcikDkFUrNfSajUas1M3FP196j/4/XQ
-	 oc5UdPl7n80sfgL1HzFMh1I/E/OZOAHn7TaZubs9ncVz7vF7Ns3XBbfqaDrEw/llvp
-	 9NxwRtann1qA6WN9hyEfVCjJO1gj4jBxH9dsTt0rG5D48Ck0PtPdY4m000YycaJRUt
-	 p2xCh4D8CEvwQ==
-From: Andreas Kemnade <akemnade@kernel.org>
-Date: Tue, 09 Sep 2025 22:33:04 +0200
-Subject: [PATCH v2 3/3] ARM: dts: imx: e70k02: add sy7636
+	s=k20201202; t=1757450352;
+	bh=9fZASMuZCalLaTWw9GiE1aMw67wsX4JeH92/taONPEA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=kK8b6bs03H/HrsGZkhmji6GFU23uAvnkWuGs3iMNI6mU9LC9P19HW1YqFl+hibA/7
+	 2bFaZof7z8D2hFJsElDe3EfSgu1s5QiIFlEpzf0zuwPg0X9gAy8pqbl1NjROpQpUCM
+	 zq0yn+VlP9c7+SP4TlBypCLW4nDrY/N/UYOZf9TP+q2PBbxd4qGY4rdGS+OyHDhQ8k
+	 b3TNCDRXZoruVUKHGVP85Y8tz6NV3xKOHsdDTSj5IbJ/73Ytk50SJaLGZ0Qu46jKEC
+	 6bhbQIknvkdT0M/VstjD4+ve6S8x5WYlHsH60396KedSQU7IIVTbkegQ7zI3ckB8lM
+	 L0Kd6oty3hW6w==
+Message-ID: <d957d16f-d206-4f7d-b52e-a2cad9e4abfc@kernel.org>
+Date: Tue, 9 Sep 2025 22:39:06 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] dt-bindings: leds: add generic LED consumer
+ documentation
+To: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+ Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>
+Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
+ <20250908-leds-v3-1-5944dc400668@vinarskis.com>
+ <MOj2NUVAdyu9bvVkEON8rhAlGJ9FRRh9gJABkrOR_6gKhE8rmeZ5Isbj9noA1bDZ12gY4dlDpEtmEjxlRTucCssKwTo4f5nCowMOin85IKk=@vinarskis.com>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <MOj2NUVAdyu9bvVkEON8rhAlGJ9FRRh9gJABkrOR_6gKhE8rmeZ5Isbj9noA1bDZ12gY4dlDpEtmEjxlRTucCssKwTo4f5nCowMOin85IKk=@vinarskis.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-sy7636-rsrc-v2-3-cfd9f44fd259@kernel.org>
-References: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
-In-Reply-To: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alistair Francis <alistair@alistair23.me>, 
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Andreas Kemnade <akemnade@kernel.org>
-X-Mailer: b4 0.15-dev-50721
-X-Developer-Signature: v=1; a=openpgp-sha256; l=4885; i=akemnade@kernel.org;
- h=from:subject:message-id; bh=hdwNKGl7lx7063eJ2yiIHblOsSgC/pR1LbJ6lLkBads=;
- b=owGbwMvMwCEm/rzkS6lq2x3G02pJDBkH+q1PF74+IVA/1cjcZWn60ncPOTUqjoRejfhrtHhnl
- tOXn7uOdJSyMIhxMMiKKbL8slZw+6TyLDd4aoQ9zBxWJpAhDFycAjCR/jxGhikzDa5xJmX66kwK
- cNzEUVnkebjgiZvS1/4lqtuUz5nxz2b475O0zmqpflyX5n7LTn2uZ9/X70/acE2iLk5V/9utHdm
- qnAA=
-X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
- fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-Add the EPD PMIC for the e70k02 based devices as a step towards full EPD
-support.
+Hi,
 
-Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
-Acked-by: Alistair Francis <alistair@alistair23.me>
----
- arch/arm/boot/dts/nxp/imx/e70k02.dtsi              | 25 +++++++++++++++++++++-
- .../arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts | 24 +++++++++++++++++++++
- .../arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts | 24 +++++++++++++++++++++
- 3 files changed, 72 insertions(+), 1 deletion(-)
+On 9-Sep-25 6:57 PM, Aleksandrs Vinarskis wrote:
+> 
+> 
+> 
+> 
+> 
+> On Monday, September 8th, 2025 at 01:18, Aleksandrs Vinarskis <alex@vinarskis.com> wrote:
+> 
+>>
+>>
+>> Introduce common generic led consumer binding, where consumer defines
+>> led(s) by phandle, as opposed to trigger-source binding where the
+>> trigger source is defined in led itself.
+>>
+>> Add already used in some schemas 'leds' parameter which expects
+>> phandle-array. Additionally, introduce 'led-names' which could be used
+>> by consumers to map LED devices to their respective functions.
+>>
+>> Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
+>>
+>> ---
+>> .../devicetree/bindings/leds/leds-consumer.yaml | 89 ++++++++++++++++++++++
+>> 1 file changed, 89 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..d50a3850f6336e9e3a52eb1374e36ea50de27f47
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
+>> @@ -0,0 +1,89 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Common leds consumer
+>> +
+>> +maintainers:
+>> + - Aleksandrs Vinarskis alex@vinarskis.com
+>>
+>> +
+>> +description:
+>> + Some LED defined in DT are required by other DT consumers, for example
+>> + v4l2 subnode may require privacy or flash LED. Unlike trigger-source
+>> + approach which is typically used as 'soft' binding, referencing LED
+>> + devices by phandle makes things simpler when 'hard' binding is desired.
+>> +
+>> + Document LED properties that its consumers may define.
+>> +
+>> +select: true
+>> +
+>> +properties:
+>> + leds:
+>> + oneOf:
+>> + - type: object
+>> + - $ref: /schemas/types.yaml#/definitions/phandle-array
+>> + description:
+>> + A list of LED device(s) required by a particular consumer.
+>> + items:
+>> + maxItems: 1
+>> +
+>> + led-names:
+> 
+> While going over the feedback I realized `leds` and `led-names` do
+> not follow `property`, `property-names` convention. Any objections
+> if I rename `led-names` to `leds-names` for consistency?
 
-diff --git a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-index dcc3c9d488a88..b4f42f71c6c49 100644
---- a/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-+++ b/arch/arm/boot/dts/nxp/imx/e70k02.dtsi
-@@ -69,6 +69,14 @@ memory@80000000 {
- 		reg = <0x80000000 0x20000000>;
- 	};
- 
-+	epd_pmic_supply: regulator-epd-pmic-in {
-+		compatible = "regulator-fixed";
-+		regulator-name = "epd_pmic_supply";
-+		gpio = <&gpio2 14 GPIO_ACTIVE_HIGH>;
-+		startup-delay-us = <20000>;
-+		enable-active-high;
-+	};
-+
- 	reg_wifi: regulator-wifi {
- 		compatible = "regulator-fixed";
- 		regulator-name = "SD3_SPWR";
-@@ -133,7 +141,22 @@ touchscreen@24 {
- 		vdd-supply = <&ldo5_reg>;
- 	};
- 
--	/* TODO: SY7636 PMIC for E Ink at 0x62 */
-+	sy7636: pmic@62 {
-+		compatible = "silergy,sy7636a";
-+		reg = <0x62>;
-+		enable-gpios = <&gpio2 8 GPIO_ACTIVE_HIGH>;
-+		vcom-en-gpios = <&gpio2 3 GPIO_ACTIVE_HIGH>;
-+		epd-pwr-good-gpios = <&gpio2 13 GPIO_ACTIVE_HIGH>;
-+		vin-supply = <&epd_pmic_supply>;
-+
-+		#thermal-sensor-cells = <0>;
-+
-+		regulators {
-+			reg_epdpmic: vcom {
-+				regulator-name = "vcom";
-+			};
-+		};
-+	};
- 
- };
- 
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-index a2534c422a522..f8709a9524093 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts
-@@ -26,6 +26,11 @@ / {
- 	compatible = "kobo,tolino-vision5", "fsl,imx6sl";
- };
- 
-+&epd_pmic_supply {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-+};
-+
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_gpio_keys>;
-@@ -59,6 +64,12 @@ MX6SL_PAD_FEC_RXD1__GPIO4_IO18          0x10059 /* TP_RST */
- 		>;
- 	};
- 
-+	pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
-+		fsl,pins = <
-+			MX6SL_PAD_EPDC_PWRWAKEUP__GPIO2_IO14    0x40010059
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SL_PAD_FEC_CRS_DV__GPIO4_IO25	0x17059	/* PWR_SW */
-@@ -159,6 +170,14 @@ MX6SL_PAD_KEY_COL2__GPIO3_IO28		0x1b8b1 /* ricoh619 bat_low_int */
- 		>;
- 	};
- 
-+	pinctrl_sy7636_gpio: sy7636-gpiogrp {
-+		fsl,pins = <
-+			MX6SL_PAD_EPDC_VCOM0__GPIO2_IO03        0x40010059 /* VCOM_CTRL */
-+			MX6SL_PAD_EPDC_PWRCTRL1__GPIO2_IO08     0x40010059 /* EN */
-+			MX6SL_PAD_EPDC_PWRSTAT__GPIO2_IO13      0x17059 /* PWR_GOOD */
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6SL_PAD_UART1_TXD__UART1_TX_DATA 0x1b0b1
-@@ -329,6 +348,11 @@ &ricoh619 {
- 	pinctrl-0 = <&pinctrl_ricoh_gpio>;
- };
- 
-+&sy7636 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sy7636_gpio>;
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-index 660620d226f71..19bbe60331b36 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts
-@@ -36,6 +36,11 @@ &cpu0 {
- 	soc-supply = <&dcdc1_reg>;
- };
- 
-+&epd_pmic_supply {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_epd_pmic_supply>;
-+};
-+
- &gpio_keys {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_gpio_keys>;
-@@ -69,6 +74,12 @@ MX6SLL_PAD_GPIO4_IO18__GPIO4_IO18	0x10059 /* TP_RST */
- 		>;
- 	};
- 
-+	pinctrl_epd_pmic_supply: epd-pmic-supplygrp {
-+		fsl,pins = <
-+			MX6SLL_PAD_EPDC_PWR_WAKE__GPIO2_IO14    0x40010059
-+		>;
-+	};
-+
- 	pinctrl_gpio_keys: gpio-keysgrp {
- 		fsl,pins = <
- 			MX6SLL_PAD_GPIO4_IO25__GPIO4_IO25	0x17059	/* PWR_SW */
-@@ -169,6 +180,14 @@ MX6SLL_PAD_KEY_COL2__GPIO3_IO28		0x1b8b1 /* ricoh619 bat_low_int */
- 		>;
- 	};
- 
-+	pinctrl_sy7636_gpio: sy7636-gpiogrp {
-+		fsl,pins = <
-+			MX6SLL_PAD_EPDC_VCOM0__GPIO2_IO03       0x40010059 /* VCOM_CTRL */
-+			MX6SLL_PAD_EPDC_PWR_CTRL1__GPIO2_IO08   0x40010059 /* EN */
-+			MX6SLL_PAD_EPDC_PWR_STAT__GPIO2_IO13    0x17059 /* PWR_GOOD */
-+		>;
-+	};
-+
- 	pinctrl_uart1: uart1grp {
- 		fsl,pins = <
- 			MX6SLL_PAD_UART1_TXD__UART1_DCE_TX 0x1b0b1
-@@ -319,6 +338,11 @@ &ricoh619 {
- 	pinctrl-0 = <&pinctrl_ricoh_gpio>;
- };
- 
-+&sy7636 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sy7636_gpio>;
-+};
-+
- &uart1 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_uart1>;
+No objections from me, `leds-names` indeed is better.
 
--- 
-2.39.5
+Regards,
+
+Hans
+
 
 
