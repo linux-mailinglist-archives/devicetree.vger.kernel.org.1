@@ -1,120 +1,99 @@
-Return-Path: <devicetree+bounces-214607-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214606-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E6E7B49DF5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 02:25:31 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF9C5B49DF4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 02:24:59 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 451624E3542
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:25:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0AAF1897900
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:25:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722991DB125;
-	Tue,  9 Sep 2025 00:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FFE1D799D;
+	Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6r6GHpl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F0F1D799D;
-	Tue,  9 Sep 2025 00:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7E11D61BB
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757377527; cv=none; b=eOIWhLGB3PbEy6pBTa+4rB6jGcFwVGEYX3Kcm0L/YEBB1UFElEEdefDXnoZLBYRnne5oXPj3HxnZ00lNJGdWW4mrOKYIpD8bJv/SUu7nZ0W+SQv9ZUpS4Bcra9jDh4mU2fhXC172F5E3pZUDHyQH81jwnL8X1XPGmxep05Zv19c=
+	t=1757377494; cv=none; b=EQRMBKzuWUTQHQ9E2alK6IkaNog9GUca5qQVK8d3+2jYRqJ8OGKXEhZbOrneaxKeBfIdBgXFFUCMuvqbWDEi3SBU1c7MA+DBce8IpL8ydwnwL8eSGrKHPwCk7rOo+fOh94aSwu6vjkkyuvV+/GLuEDYho8GBzUk98dWW7fLFkk0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757377527; c=relaxed/simple;
-	bh=wYHaiOgv0c3CrrngmkGXy1RIZbf87Ynod0lCMxWdIZs=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=V8bcHC4t6j/y7iO7NbRvsTqNLtDq3RG0E/LPKC0Rmlrm4oKwbOlrL4FS371mcX/nrnLdwFg24twMHRplMKYBJfVD5CASji4o/HMGplxO3IT/AOdm87FrhICEOovpTiH8HDjZNQtq73KMxQbUMU5n6Ajeb6DjgvQTQ3VKC9W6Vf0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4225C1691;
-	Mon,  8 Sep 2025 17:25:16 -0700 (PDT)
-Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DBCBE3F66E;
-	Mon,  8 Sep 2025 17:25:22 -0700 (PDT)
-Date: Tue, 9 Sep 2025 01:24:22 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Aleksander Jan Bajkowski <olek2@wp.pl>
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
- jernej.skrabec@gmail.com, samuel@sholland.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwiner: h5: OrangePi PC2: add ethernet
- LEDs
-Message-ID: <20250909012422.43b755a4@minigeek.lan>
-In-Reply-To: <20250818163520.1004528-1-olek2@wp.pl>
-References: <20250818163520.1004528-1-olek2@wp.pl>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+	s=arc-20240116; t=1757377494; c=relaxed/simple;
+	bh=OAI3wB7fRkkjN6xzn305cPyDIxM1Aq2sDcGeaeZ326o=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRdejhRwG8YrAsyQfjfinAr3S0d9WUbeJ4JXkwaKfqopi5Vy3gqudfcBKXl/z5qs2Z81LOatydQisG8TMh+rovVM31XNByPIR69/yk7mi0sdp5IGLBiLqbNQzaRqqq5tTS5Oxj6ko+zAswRmpnUzAJZ2nink03KSPM3btp5qAYo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6r6GHpl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DCFEC4CEF1;
+	Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757377494;
+	bh=OAI3wB7fRkkjN6xzn305cPyDIxM1Aq2sDcGeaeZ326o=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b6r6GHpl5Fw4ZCdm/TP1iJUWfLuWmg/SbP+7eR2lOlXUas1DdgsbJy8a9DpLAq1Uj
+	 YT48nJ5nVmBGUNrcRLO4XeOru8gQaFwTpWzl2vs97VBnbEROQtptgXkH1/PVSByOoR
+	 9K/9naBXmqAVtGNQqKRaFKazaQFjX4RjcKnV/4R2yuxqq9srKDuqHbDk0XK+4FH5n6
+	 K5JhM3TiIh57B/Id2PuVLNpG4/gnWVvVCSqoZVkjKqjTBdUgieJFKWfYb6QBGWcobw
+	 2foHpFjoTMU124gD4C+Y0z4hXX19F0M5uLwBcH9GGw4P7CBLt0pPXYqbC79YuslRXT
+	 nnmsFAklabTNg==
+Date: Mon, 8 Sep 2025 19:24:53 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Fabio Estevam <festevam@gmail.com>
+Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@nxp.com,
+	conor+dt@kernel.org
+Subject: Re: [PATCH v2] dt-bindings: arm: cpus: Document pu-supply
+Message-ID: <175737746236.2245195.5498632260057616443.robh@kernel.org>
+References: <20250907152513.590218-1-festevam@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250907152513.590218-1-festevam@gmail.com>
 
-On Mon, 18 Aug 2025 18:35:13 +0200
-Aleksander Jan Bajkowski <olek2@wp.pl> wrote:
 
-> This patch adds support for Ethernet LEDs.
-
-So I tried this on my OPi-PC2, but I cannot influence the LEDs. I have
-CONFIG_LED_TRIGGER_PHY and CONFIG_LEDS_TRIGGER_NETDEV built in, and I
-see mdio_mux-0.2:01:amber:lan and mdio_mux-0.2:01:green:lan in
-/sys/class/leds, but anything I write into trigger does not seem to
-change the output: it always stays on the network functionality, I
-guess because it's still configured to the PHY hardware wired function?
-
-What am I missing?
-
-Cheers,
-Andre
-
-> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
-> ---
->  .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 20
-> +++++++++++++++++++ 1 file changed, 20 insertions(+)
+On Sun, 07 Sep 2025 12:25:13 -0300, Fabio Estevam wrote:
+> The i.MX6Q Reference Manual describes the three digital LDO regulators
+> as follows:
 > 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts index
-> 0f29da7d51e6..7688f565ec9b 100644 ---
-> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts +++
-> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts @@ -7,6
-> +7,7 @@ 
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/leds/common.h>
->  #include <dt-bindings/pinctrl/sun4i-a10.h>
->  
->  / {
-> @@ -132,6 +133,25 @@ &external_mdio {
->  	ext_rgmii_phy: ethernet-phy@1 {
->  		compatible = "ethernet-phy-ieee802.3-c22";
->  		reg = <1>;
-> +
-> +		leds {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			led@0 {
-> +				reg = <0>;
-> +				color = <LED_COLOR_ID_GREEN>;
-> +				function = LED_FUNCTION_LAN;
-> +				linux,default-trigger = "netdev";
-> +			};
-> +
-> +			led@1 {
-> +				reg = <1>;
-> +				color = <LED_COLOR_ID_AMBER>;
-> +				function = LED_FUNCTION_LAN;
-> +				linux,default-trigger = "netdev";
-> +			};
-> +		};
->  	};
->  };
->  
+> "10.4.1.1.1
+> Digital LDO Regulators
+> The integrated PMU includes three digital LDO regulators: LDO_ARM, LDO_PU, and
+> LDO_SOC. These regulators provide power to the ARM_Core power domain, the
+> combined VPU, IPU and GPU power domain, and the rest of the SoC logic (except
+> always-ON SNVS domain)."
+> 
+> imx6dl.dtsi uses the correct names to describe these supplies:
+> 
+> arm-supply = <&reg_arm>;
+> pu-supply = <&reg_pu>;
+> soc-supply = <&reg_soc>;
+> 
+> 'arm-supply' and 'soc-supply' are already documented, but 'pu-supply' is not.
+> 
+> Document the 'pu-supply' property and set it to deprecated.
+> 
+> This fixes the following dt-schema warning:
+> 
+> cpu@1 (arm,cortex-a9): Unevaluated properties are not allowed ('pu-supply' was unexpected)
+> 
+> Signed-off-by: Fabio Estevam <festevam@gmail.com>
+> ---
+> Changes since v1:
+> - Explain that PU is a valid name. (Krzysztof)
+> 
+>  Documentation/devicetree/bindings/arm/cpus.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+
+Applied, thanks!
 
 
