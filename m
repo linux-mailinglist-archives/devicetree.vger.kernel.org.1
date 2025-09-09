@@ -1,133 +1,105 @@
-Return-Path: <devicetree+bounces-215090-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215091-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0B1B5042F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:15:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F7BCB5043F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:17:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 79D104E1DAA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:15:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D305B160992
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E36B32BF2F;
-	Tue,  9 Sep 2025 17:13:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9F6482EA72A;
+	Tue,  9 Sep 2025 17:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b="KhR2BACu"
+	dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b="lPrrdE/n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [178.238.236.174])
+Received: from mail.zeus03.de (zeus03.de [194.117.254.33])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7EFA47F4A;
-	Tue,  9 Sep 2025 17:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.238.236.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E155031D381
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 17:16:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.117.254.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757437996; cv=none; b=GL+WMp+MnNYCgjzugDR32Lr4TNToB+Hcrh5aDOQu6Sd0R6CoMIHHeK6lGMjglUQTQ4QHWCwpIsmLKj0bjuF/leS9PmUB9D7XEqJ7Jv+8P+Jx0V10CvaOpbJV3SBE4W78kNphDDcBkxcA+Jm+IynyUUGoc1xWaRuO8gW9hnqajNs=
+	t=1757438180; cv=none; b=jnahG5/We+OIcZ2Kb5V2Cfy82sXmds2MHFO1FzWzuGfPoHKpum5uLnEVwHUJgmYjrEQVQvvHvSO2grmtzJWuqZP+iv/tqmikgqVyM5uj11+wGJilHhfyXBaw6qN7LwClddJ1KYp1QY/ZwHYreFruvCb5CnyI3pTk+4oc75K9DHY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757437996; c=relaxed/simple;
-	bh=UIgroxwjNsocefzYeNXpv+P4J1BDISPEayenqAM7f/Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jXmhSA+Gt4zSwviEEKkxDOgx3Z3KKEJv/+XKMU2ltDEbI9NZT0LIBHck7oOncUf7Ln9Qs98m1XSsz7LBD3tDwvMJl5MHB9NY+mriJPrsUrxdVTnpAK2Rj/XrqJ0yl8HDaPeGfKvTIFybinLS+u9OwuPXc/vTEM9QHpcdZbKhKmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info; spf=pass smtp.mailfrom=kemnade.info; dkim=pass (2048-bit key) header.d=kemnade.info header.i=@kemnade.info header.b=KhR2BACu; arc=none smtp.client-ip=178.238.236.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kemnade.info
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=kemnade.info
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=kemnade.info; s=20220719; h=References:In-Reply-To:Cc:From:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID;
-	bh=335qG6TxRl+OaXa5gJMcONmejIM97kcMNo8NqCzOKpo=; b=KhR2BACuTnjsU1aJ7leroQpr14
-	uOgcLojVTTh3/vWBHuxm15W8iGiqIKUQbvKsQlCq7IDv3TWu/bl7wNhJvSaNAjV2SI8/z8rQrVDMT
-	2A0zBBfeH7gEPaM0aM9arGNF1m6FyqdVegpW784TOU5FLq8cG0ip5hGWq0ip4Dlt9KleTbaAhIXtT
-	Ymnddl/IwFhex8NwI2r2JRlL20ZrRxZkFjSyKNWb7OqU2zNRFA6xBCFAfCB28a74w3XqwXK8qoy6q
-	EHppKSVraLWwg1ckI9DYl288Z8dxaPDMlyQqTTHlbFQ7BxtdCeeLka5Z0DBz96VN/ZPQtMITuqQPn
-	dgOMPE5A==;
-Date: Tue, 9 Sep 2025 19:13:00 +0200
-From: Andreas Kemnade <andreas@kemnade.info>
-To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
-Cc: robh@kernel.org, lee@kernel.org, krzk+dt@kernel.org, tony@atomide.com,
- conor+dt@kernel.org, ukleinek@kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
- linux-omap@vger.kernel.org
-Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: twl: Add missing sub-nodes for
- TWL4030 & TWL603x
-Message-ID: <20250909191300.03ba06e0@akair>
-In-Reply-To: <20250906145905.93845-2-jihed.chaibi.dev@gmail.com>
-References: <20250906145905.93845-1-jihed.chaibi.dev@gmail.com>
-	<20250906145905.93845-2-jihed.chaibi.dev@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1757438180; c=relaxed/simple;
+	bh=Cr3VUDRxrErEN4ZdqPip4ljEVYh/iLQwpOpwK8H1np8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pCEx4TRL2ObEfm+y2SkNNQmwVB2Iv5OAMX8JgAGAWhHxnAR8ExqiZ+NVtHFqS5s/CBwKrKN24C38hoKSY4r70dFLNZDHL9TVaeIeG7MIn24Q4PZcSu3B1TuyNKhi9XqLKy0eyhuAjHsJ1igOf/EeRAUQddMEZz7qMfYcmSHfD+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com; spf=pass smtp.mailfrom=sang-engineering.com; dkim=pass (2048-bit key) header.d=sang-engineering.com header.i=@sang-engineering.com header.b=lPrrdE/n; arc=none smtp.client-ip=194.117.254.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sang-engineering.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sang-engineering.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+	sang-engineering.com; h=date:from:to:cc:subject:message-id
+	:references:mime-version:content-type:in-reply-to; s=k1; bh=Cr3V
+	UDRxrErEN4ZdqPip4ljEVYh/iLQwpOpwK8H1np8=; b=lPrrdE/nkKoUvnFtOn5l
+	aybOg+HuCaYz8HqNq5gFj1XMygHjo1qeD+k+6CPTKqXWAdsKRj7IbJ5dmBuufuFO
+	Ka4o2mT2bcXvoyv9WdJUOizJ7au8fN/J4kk2C2PO4nf0IiwimDSqw2XnrguxLXFW
+	UZfhzuC8pqglpxtBcEWGz28jmBQBjMIBbJ9xU7uxhEH9+t1Ry66F3ZSZ5WYtN/Hy
+	VmthwFfftvBB9SJ+NYrf6WPGYkPJN4iA+mMnBP3mf/m9iaprZFrdVC19/GDa3exC
+	CkZdXiB4rnczNDSzaOl3SaQDvD0Of+XyZ2F7m976WWI+2uS7aepVi/NiTHPICVIx
+	rw==
+Received: (qmail 316713 invoked from network); 9 Sep 2025 19:16:14 +0200
+Received: by mail.zeus03.de with UTF8SMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Sep 2025 19:16:14 +0200
+X-UD-Smtp-Session: l3s3148p1@mDQSdmE+mLAujnu/
+Date: Tue, 9 Sep 2025 19:16:13 +0200
+From: Wolfram Sang <wsa+renesas@sang-engineering.com>
+To: Thierry Reding <thierry.reding@gmail.com>
+Cc: Andi Shyti <andi.shyti@kernel.org>, Akhil R <akhilrajeev@nvidia.com>,
+	conor+dt@kernel.org, devicetree@vger.kernel.org, digetx@gmail.com,
+	jonathanh@nvidia.com, krzk+dt@kernel.org, linux-i2c@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-tegra@vger.kernel.org,
+	ldewangan@nvidia.com, robh@kernel.org
+Subject: Re: [PATCH RESEND 0/2] i2c: tegra: Add Tegra256 I2C controller
+ support
+Message-ID: <aMBg3Z2OHkn2xWZ6@ninjato>
+References: <20250818043345.65899-1-akhilrajeev@nvidia.com>
+ <22ucj42wvcqr5trsv75hbb6uj4y5zhjigs46w7mxtckisodcr5@77pgwttvycpl>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="hCGEKm6dXyof0vs+"
+Content-Disposition: inline
+In-Reply-To: <22ucj42wvcqr5trsv75hbb6uj4y5zhjigs46w7mxtckisodcr5@77pgwttvycpl>
 
-Am Sat,  6 Sep 2025 16:59:03 +0200
-schrieb Jihed Chaibi <jihed.chaibi.dev@gmail.com>:
 
-[...]
-> @@ -181,28 +194,189 @@ properties:
->    "#clock-cells":
->      const: 1
->  
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    const: fck
-> +
->    charger:
->      type: object
->      additionalProperties: true
-> +
->      properties:
->        compatible: true
-> +
->      required:
->        - compatible
->  
->    rtc:
->      type: object
->      additionalProperties: false
-> +
->      properties:
->        compatible:
->          const: ti,twl4030-rtc
->        interrupts:
->          maxItems: 1
->  
-> +  audio:
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,twl4030-audio
-> +
-> +    required:
-> +      - compatible
-> +
-hmm, twl6030/32 have no audio, but it is in the common part with no
-false in the if: part
+--hCGEKm6dXyof0vs+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> +  keypad:
-> +    type: object
-> +    additionalProperties: true
-> +
-> +    properties:
-> +      compatible:
-> +        const: ti,twl4030-keypad
-> +
-> +    required:
-> +      - compatible
-> +
 
-same here and in more places. So if we do not want this old stuff to be
-that precise and just have dtbs_check clean and this nightmare of a
-conversion finished, then it might be fine.
+> Do you want me to pick up the DT bindings patch? There's currently no DT
+> files that require this, so taking both through the I2C tree is fine,
+> but either way works for me.
 
-Regards,
-Andreas
+Agreed, this should be I2C material.
+
+
+--hCGEKm6dXyof0vs+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmjAYNkACgkQFA3kzBSg
+KbZfWw/+OFcdKEDLYEIbJaFpyb2G3Fy3GGhcPV2GdiL35QSR8wU40SV6jcCQwpbZ
+qlnT4EIwwLSdb9w7G3wVYELN67q5+OIIhzbF4WUc4HSuBSlYtTyqPZgaSq+l+JTi
+WY/ZaJGsyofd3TJWfElL3smLe75JyVh+Vo7+7m53OzanuFr45SV5n60G9oH7sTyS
+s4K9zv/0CVq/8fZFLvJHtLl3vi7FOnKxGqVsCMZaWVG0CiP1bUSWxS6bF9za7roD
+Zmu/fh+laPifJloMpo1UjzKcARISFvGfqj8SSz0jaMuAHHhRXo8B50ROJSoQFKa4
+v/YslD35DNKrKQ0Mh/JO2Pf/hDI6WH4TLJ6uwqz6VkrJQzrvBJ8vEs/P4/bMWMC6
+PMFG5ce3uvG9KLCj4A4JUtXoEkBvYPs9z5tIWJdL3UMFhY008zetas1TLBU5QeRm
+GotFUyJ8C1GkxRaOWXnpfgUy5/uhA5MEctJ6jhVVZB/IK+bvU3+mEAAXs42X4ues
+15HGZoDW6f0Uy+a6MMXIqCjk7MJSdzgEa+NhBnbZKBgfRovN0esmxbfThFSxyWlo
+0qqYT6xPcucekcAf5rp8MtQpbF+e/YBK2LxxzsHrZPejRcvRdoQgDK/QXrJBhRY3
+wPTQxEobr634Ztrjigw9tgUAo9mjgujjqVkx26pJs1v858YxNVY=
+=PzYH
+-----END PGP SIGNATURE-----
+
+--hCGEKm6dXyof0vs+--
 
