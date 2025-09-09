@@ -1,114 +1,335 @@
-Return-Path: <devicetree+bounces-215118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 987F1B506A5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 21:58:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CEDEB506D2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:16:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7A854753F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:58:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080AC5E50AF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA833570C0;
-	Tue,  9 Sep 2025 19:58:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6A835E4FC;
+	Tue,  9 Sep 2025 20:15:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEpAQBFa"
+	dkim=pass (1024-bit key) header.d=yandex-team.com header.i=@yandex-team.com header.b="uEzS3uie"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from forwardcorp1a.mail.yandex.net (forwardcorp1a.mail.yandex.net [178.154.239.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13AC225415;
-	Tue,  9 Sep 2025 19:58:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3B335E4E1;
+	Tue,  9 Sep 2025 20:15:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757447906; cv=none; b=cyAc6PyumReXC5Y7xTnEyn4aFx69z3fY6tt7og14FN/Ws69a4MlAKQ0fhC9oe0ZRgdVWzQqjPnHX5TwinXwoZLvmAhT/56mJ+jJTGzzasf9RRyPD8EglOXyVAPH6hYhNI9pCz4jfvU3rH7EKo5fay8tB90VdMNIZTjrh/h0f33I=
+	t=1757448945; cv=none; b=Bm6aq2X5bfV4gJrmfLjaY1GuSK+vygd+dOCzpGDCZvTUYszC3w40Zi7M/r93+jRtZ2HB/U07CmsRfUzebsSn/fD/xXDlUTiozIwCRbVMCgqj1a95WSd6OCxbo/G6BkdeRrNNDX4nSiO42BDs2+uX4unfuidKGPR6THqTbrSpQSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757447906; c=relaxed/simple;
-	bh=coVjTOw4sLHDfBakjSlveG2TDtwJq/PpPGElv5zd+KY=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GEAo5rTQhoVwFOkyU10LsMxx3r0N63PWwhSCfwBpOFihmyA7bTIH5yVsGMaAtvqz4MOssWsuFNwCfnMMN+kW71FWF8Cu0YSwSmTyMskSnQc3JPLEBZmNUN4rl5kFgDh2S5Mrl5p70UF/CUlEcwdYdkXOk8MYFPP/8hwtlG7uJfk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEpAQBFa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D6AC4CEF4;
-	Tue,  9 Sep 2025 19:58:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757447905;
-	bh=coVjTOw4sLHDfBakjSlveG2TDtwJq/PpPGElv5zd+KY=;
-	h=From:To:Cc:Subject:Date:From;
-	b=OEpAQBFaCqld1Z/XsKuXeu0kO0sa+Eh9Qoysb/M5+3/BBWMKwbB6dN/6XEyN+Tc7V
-	 mCcOr4FjmzLrd5hbcMs8JkBlA0S6hO+cHQ2Q3XHJ2HT4G//LKnXw4gL7gmOT2o5Dpg
-	 XIchr89SnWuwewzlGUMjNqsARy7RBFlt4pcD+MDFDX5QkpHXpEtsJhlTBLUswGF9lU
-	 DPtgAkIx6bexUGwQtxEucONXZLmk+I/WAn75kVbdnTEl/wol/mn1U6lp/FRYp/mM+G
-	 BhAhJkEBkhJasqwGrkLMl5embSN6vDd/s6+27NPTpwiZljwxnHtDlc0EMgmtCw7feV
-	 zU0K+hiOdaTwg==
-From: Conor Dooley <conor@kernel.org>
-To: linux-sunxi@lists.linux.dev
-Cc: conor@kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>,
+	s=arc-20240116; t=1757448945; c=relaxed/simple;
+	bh=VvhyADt438BmE4NVshaXV0a6MM/XloFgZ/1b2JkQT5I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=IbugUg9vnWRwkHCafS/lFD1N6ITyMxUHXAFIzq6SPjb1hm1ZpeHhpyhsSiOPhU5DPedZFb7STEPDcLak4M6gs49hzwKSkV2wsr5+K2MstXSRV9Qw0ijAj/rqy3Om2Bmkq6AoGGFYuvkyNPniTeKycOlIhokj/vfF9d+hSwIt2Ss=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex-team.com; spf=pass smtp.mailfrom=yandex-team.com; dkim=pass (1024-bit key) header.d=yandex-team.com header.i=@yandex-team.com header.b=uEzS3uie; arc=none smtp.client-ip=178.154.239.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex-team.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex-team.com
+Received: from mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net (mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:3a87:0:640:845c:0])
+	by forwardcorp1a.mail.yandex.net (Yandex) with ESMTPS id 7FC46C01A1;
+	Tue, 09 Sep 2025 23:15:41 +0300 (MSK)
+Received: from localhost.localdomain (172.31.115.73-vpn.dhcp.yndx.net [172.31.115.73])
+	by mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net (smtpcorp/Yandex) with ESMTPSA id IFQqlX5GteA0-KRuqVmhs;
+	Tue, 09 Sep 2025 23:15:40 +0300
+X-Yandex-Fwd: 1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex-team.com;
+	s=default; t=1757448940;
+	bh=zCmAQ9E1zzf2oww3L+0ScmydA57h//TWKN5Ptw1aNtc=;
+	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
+	b=uEzS3uievKUGgVzVo0XM3CO7O2ofI0YqYncCVzgEakehhvnc4qFhCFRVQGZevHwi7
+	 CsQOMPEcV3YUF+z629p8DXGKYRKMBn5aPJVuffYv3pT3WEedSZtyRhs7RNlM2tFIQO
+	 Rai9V/CC6os2Ibdv73XbRLEYv8Q0/+Dnk2oRckgk=
+Authentication-Results: mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net; dkim=pass header.i=@yandex-team.com
+From: Andrey Ryabinin <arbn@yandex-team.com>
+To: linux-kernel@vger.kernel.org
+Cc: Alexander Graf <graf@amazon.com>,
+	Mike Rapoport <rppt@kernel.org>,
+	James Gowans <jgowans@amazon.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-mm@kvack.org,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Ingo Molnar <mingo@redhat.com>,
+	Borislav Petkov <bp@alien8.de>,
+	Dave Hansen <dave.hansen@linux.intel.com>,
+	x86@kernel.org,
+	"H. Peter Anvin" <hpa@zytor.com>,
+	Baoquan He <bhe@redhat.com>,
+	kexec@lists.infradead.org,
+	Pratyush Yadav <ptyadav@amazon.de>,
+	Jason Gunthorpe <jgg@nvidia.com>,
+	Pasha Tatashin <pasha.tatashin@soleen.com>,
+	David Rientjes <rientjes@google.com>,
+	Pratyush Yadav <pratyush@kernel.org>,
+	Changyuan Lyu <changyuanl@google.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	linux-doc@vger.kernel.org,
+	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
+	Chris Li <chrisl@kernel.org>,
+	Ashish.Kalra@amd.com,
+	William Tu <witu@nvidia.com>,
+	David Matlack <dmatlack@google.com>,
+	Andrey Ryabinin <arbn@yandex-team.com>,
 	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Chen-Yu Tsai <wens@csie.org>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Samuel Holland <samuel@sholland.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v1] riscv: dts: allwinner: rename devterm i2c-gpio node to comply with binding
-Date: Tue,  9 Sep 2025 20:58:17 +0100
-Message-ID: <20250909-frown-wrinkle-f16df243a970@spud>
-X-Mailer: git-send-email 2.47.2
+	Saravana Kannan <saravanak@google.com>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 4/7] kho: replace KHO FDT with kstate metadata
+Date: Tue,  9 Sep 2025 22:14:39 +0200
+Message-ID: <20250909201446.13138-5-arbn@yandex-team.com>
+X-Mailer: git-send-email 2.49.1
+In-Reply-To: <20250909201446.13138-1-arbn@yandex-team.com>
+References: <20250909201446.13138-1-arbn@yandex-team.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1568; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=5nDAh3oXDhRSMzBY7Xh2+riGNHudXRKLDRxiREafnqA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBkH2m4UsH88fsjnefHviMCq9wUFX3/bNdvdm5BXeKxyw 5I75Yn3OkpZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCR1uuMDEe5C7KOJ+xJ4XiU vXnG7Ddz7p/8zshouSTBp3D1VZuEZZEM/9OONv9zyDQr5W6R0cwXudnEXRMhUfl5mors35MzD27 azgAA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Store KSTATE physical address & size instead of FDT in kho_data.
+and initialize KSTATE from kho_populate().
+To be able to use FDT in parallel with KSTATE place FDT
+address&size into 'struct kho_fdt' and save/restore it using KSTATE.
 
-The i2c controller binding does not permit permit the node name to
-contain "gpio", resulting in two warnings:
+This finishes wiring KSTATE with KHO, making it fully functional.
 
-i2c-gpio-0 (i2c-gpio): $nodename:0: 'i2c-gpio-0' does not match '^i2c(@.+|-[a-z0-9]+)?$'
-i2c-gpio-0 (i2c-gpio): Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'adc@54' were unexpected)
-
-Drop it to satisfy dtbs_check.
-
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Andrey Ryabinin <arbn@yandex-team.com>
 ---
-CC: Rob Herring <robh@kernel.org>
-CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
-CC: Conor Dooley <conor+dt@kernel.org>
-CC: Chen-Yu Tsai <wens@csie.org>
-CC: Jernej Skrabec <jernej.skrabec@gmail.com>
-CC: Samuel Holland <samuel@sholland.org>
-CC: devicetree@vger.kernel.org
-CC: linux-arm-kernel@lists.infradead.org
-CC: linux-sunxi@lists.linux.dev
-CC: linux-riscv@lists.infradead.org
-CC: linux-kernel@vger.kernel.org
----
- arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/x86/include/uapi/asm/setup_data.h |  4 +-
+ arch/x86/kernel/kexec-bzimage64.c      |  6 +--
+ arch/x86/kernel/setup.c                |  3 +-
+ drivers/of/fdt.c                       |  6 +--
+ include/linux/kexec.h                  |  2 +-
+ include/linux/kstate.h                 |  1 +
+ kernel/liveupdate/kexec_handover.c     | 60 +++++++++++++++++++++-----
+ 7 files changed, 61 insertions(+), 21 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
-index bc5c84f227622..5f2e5cc3e3d55 100644
---- a/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
-+++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
-@@ -17,7 +17,7 @@ fan {
- 		#cooling-cells = <2>;
- 	};
+diff --git a/arch/x86/include/uapi/asm/setup_data.h b/arch/x86/include/uapi/asm/setup_data.h
+index 2671c4e1b3a0..844f5b93473f 100644
+--- a/arch/x86/include/uapi/asm/setup_data.h
++++ b/arch/x86/include/uapi/asm/setup_data.h
+@@ -83,8 +83,8 @@ struct ima_setup_data {
+  * Locations of kexec handover metadata
+  */
+ struct kho_data {
+-	__u64 fdt_addr;
+-	__u64 fdt_size;
++	__u64 kstate_addr;
++	__u64 kstate_size;
+ 	__u64 scratch_addr;
+ 	__u64 scratch_size;
+ } __attribute__((packed));
+diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
+index 24a41f0e0cf1..1bf9474d4286 100644
+--- a/arch/x86/kernel/kexec-bzimage64.c
++++ b/arch/x86/kernel/kexec-bzimage64.c
+@@ -253,12 +253,12 @@ static void setup_kho(const struct kimage *image, struct boot_params *params,
+ 	sd->len = sizeof(struct kho_data);
  
--	i2c-gpio-0 {
-+	i2c-0 {
- 		compatible = "i2c-gpio";
- 		sda-gpios = <&pio 3 14 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PD14/GPIO44 */
- 		scl-gpios = <&pio 3 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PD15/GPIO45 */
+ 	/* Only add if we have all KHO images in place */
+-	if (!image->kho.fdt || !image->kho.scratch)
++	if (!image->kho.kstate || !image->kho.scratch)
+ 		return;
+ 
+ 	/* Add setup data */
+-	kho->fdt_addr = image->kho.fdt;
+-	kho->fdt_size = PAGE_SIZE;
++	kho->kstate_addr = image->kho.kstate;
++	kho->kstate_size = PAGE_SIZE;
+ 	kho->scratch_addr = image->kho.scratch->mem;
+ 	kho->scratch_size = image->kho.scratch->bufsz;
+ 	sd->next = params->hdr.setup_data;
+diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
+index 1b2edd07a3e1..eedcf4be8985 100644
+--- a/arch/x86/kernel/setup.c
++++ b/arch/x86/kernel/setup.c
+@@ -467,7 +467,8 @@ static void __init add_kho(u64 phys_addr, u32 data_len)
+ 		return;
+ 	}
+ 
+-	kho_populate(kho->fdt_addr, kho->fdt_size, kho->scratch_addr, kho->scratch_size);
++	kho_populate(kho->kstate_addr, kho->kstate_size, kho->scratch_addr,
++		kho->scratch_size);
+ 
+ 	early_memunmap(kho, size);
+ }
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 0edd639898a6..f682ef6a1187 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -893,8 +893,8 @@ static void __init early_init_dt_check_kho(void)
+ 	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
+ 		return;
+ 
+-	fdt_start = dt_mem_next_cell(dt_root_addr_cells, &p);
+-	fdt_size = dt_mem_next_cell(dt_root_addr_cells, &p);
++	kstate_start = dt_mem_next_cell(dt_root_addr_cells, &p);
++	kstate_size = dt_mem_next_cell(dt_root_addr_cells, &p);
+ 
+ 	p = of_get_flat_dt_prop(node, "linux,kho-scratch", &l);
+ 	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
+@@ -903,7 +903,7 @@ static void __init early_init_dt_check_kho(void)
+ 	scratch_start = dt_mem_next_cell(dt_root_addr_cells, &p);
+ 	scratch_size = dt_mem_next_cell(dt_root_addr_cells, &p);
+ 
+-	kho_populate(fdt_start, fdt_size, scratch_start, scratch_size);
++	kho_populate(kstate_addr, kstate_size, scratch_start, scratch_size);
+ }
+ 
+ #ifdef CONFIG_SERIAL_EARLYCON
+diff --git a/include/linux/kexec.h b/include/linux/kexec.h
+index 39fe3e6cd282..ebf70361269f 100644
+--- a/include/linux/kexec.h
++++ b/include/linux/kexec.h
+@@ -416,7 +416,7 @@ struct kimage {
+ 
+ 	struct {
+ 		struct kexec_segment *scratch;
+-		phys_addr_t fdt;
++		phys_addr_t kstate;
+ 	} kho;
+ 
+ 	/* Core ELF header buffer */
+diff --git a/include/linux/kstate.h b/include/linux/kstate.h
+index 53992593cb19..5a95960e5b03 100644
+--- a/include/linux/kstate.h
++++ b/include/linux/kstate.h
+@@ -94,6 +94,7 @@ struct kstate_field {
+ 
+ enum kstate_ids {
+ 	KSTATE_FOLIO_ID = 1,
++	KSTATE_KHO_FDT_ID,
+ 	KSTATE_LAST_ID = -1,
+ };
+ 
+diff --git a/kernel/liveupdate/kexec_handover.c b/kernel/liveupdate/kexec_handover.c
+index f1c6378b2657..216cb58553d6 100644
+--- a/kernel/liveupdate/kexec_handover.c
++++ b/kernel/liveupdate/kexec_handover.c
+@@ -806,6 +806,10 @@ int kho_abort(void)
+ 		goto unlock;
+ 	}
+ 
++	ret = kstate_abort();
++	if (ret)
++		goto unlock;
++
+ 	ret = __kho_abort();
+ 	if (ret)
+ 		goto unlock;
+@@ -984,6 +988,25 @@ int kho_retrieve_subtree(const char *name, phys_addr_t *phys)
+ }
+ EXPORT_SYMBOL_GPL(kho_retrieve_subtree);
+ 
++
++#define KHO_FDT_INSTANCE_ID 1
++
++static struct kho_fdt {
++	phys_addr_t fdt_phys;
++	u64 fdt_len;
++} kho_fdt;
++
++struct kstate_description kho_fdt_state = {
++	.name = "kho_fdt",
++	.version_id = 1,
++	.id = KSTATE_KHO_FDT_ID,
++	.fields = (const struct kstate_field[]) {
++		KSTATE_BASE_TYPE(fdt_phys, struct kho_fdt, phys_addr_t),
++		KSTATE_BASE_TYPE(fdt_len, struct kho_fdt, u64),
++		KSTATE_END_OF_LIST()
++	},
++};
++
+ static __init int kho_init(void)
+ {
+ 	int err = 0;
+@@ -1000,13 +1023,20 @@ static __init int kho_init(void)
+ 	}
+ 	kho_out.fdt = page_to_virt(fdt_page);
+ 
+-	err = kho_debugfs_init();
++	err = kstate_register(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
+ 	if (err)
+ 		goto err_free_fdt;
+ 
++	kho_fdt.fdt_phys = page_to_phys(fdt_page);
++	kho_fdt.fdt_len = PAGE_SIZE;
++
++	err = kho_debugfs_init();
++	if (err)
++		goto err_free_kstate;
++
+ 	err = kho_out_debugfs_init(&kho_out.dbg);
+ 	if (err)
+-		goto err_free_fdt;
++		goto err_free_kstate;
+ 
+ 	if (fdt) {
+ 		kho_in_debugfs_init(&kho_in.dbg, fdt);
+@@ -1025,6 +1055,8 @@ static __init int kho_init(void)
+ 
+ 	return 0;
+ 
++err_free_kstate:
++	kstate_unregister(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
+ err_free_fdt:
+ 	put_page(fdt_page);
+ 	kho_out.fdt = NULL;
+@@ -1165,24 +1197,30 @@ static int __init kho_scratch_init(phys_addr_t scratch_phys, u64 scratch_len)
+ 	return err;
+ }
+ 
+-void __init kho_populate(phys_addr_t fdt_phys, u64 fdt_len,
+-			 phys_addr_t scratch_phys, u64 scratch_len)
++void __init kho_populate(phys_addr_t kstate_phys, u64 kstate_len,
++			phys_addr_t scratch_phys, u64 scratch_len)
+ {
+-
+ 	int err = 0;
+-	unsigned int scratch_cnt = scratch_len / sizeof(*kho_scratch);
+ 
+-	err = kho_fdt_init(fdt_phys, fdt_len);
++	err = kho_scratch_init(scratch_phys, scratch_len);
+ 	if (err)
+ 		goto out;
+ 
+-	err = kho_scratch_init(scratch_phys, scratch_len);
++	err = kstate_early_init(kstate_phys, kstate_len);
++	if (err)
++		goto out;
++
++	err = kstate_restore(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
++	if (err)
++		goto out;
++
++	err = kho_fdt_init(kho_fdt.fdt_phys, kho_fdt.fdt_len);
+ 	if (err)
+ 		goto out;
+ 
+-	kho_in.fdt_phys = fdt_phys;
++	kho_in.fdt_phys = kho_fdt.fdt_phys;
+ 	kho_in.scratch_phys = scratch_phys;
+-	kho_scratch_cnt = scratch_cnt;
++	kho_scratch_cnt = scratch_len / sizeof(*kho_scratch);
+ 	pr_info("found kexec handover data. Will skip init for some devices\n");
+ 
+ out:
+@@ -1201,7 +1239,7 @@ int kho_fill_kimage(struct kimage *image)
+ 	if (!kho_enable)
+ 		return 0;
+ 
+-	image->kho.fdt = virt_to_phys(kho_out.fdt);
++	image->kho.kstate = kstate_out_paddr;
+ 
+ 	scratch_size = sizeof(*kho_scratch) * kho_scratch_cnt;
+ 	scratch = (struct kexec_buf){
 -- 
-2.47.2
+2.49.1
 
 
