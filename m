@@ -1,61 +1,60 @@
-Return-Path: <devicetree+bounces-214721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214722-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41730B4A34E
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:18:15 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 31A3EB4A359
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:20:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB3713A2ABB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:18:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1D41717B999
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56BF7220687;
-	Tue,  9 Sep 2025 07:18:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D214B2FE053;
+	Tue,  9 Sep 2025 07:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qsnBOfzH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hzUfhKoG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 255621BDCF;
-	Tue,  9 Sep 2025 07:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2FB9256C76;
+	Tue,  9 Sep 2025 07:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757402291; cv=none; b=iMtJNmMD0ACjgzAvDKPyQAn1tLGjtAGW2rCkVYMQQYuyv/aA1fwqcN+yc6goEiNME9HE3ingq72x1vM7zgn/mmln/P/pw/at8e0uu0CmUo7GhDBpZE9V3svJTqn0E1wvxQZWSDtSdUWBYgxlyP3fa6BnMC5oaWZiN9JiTLdU9F8=
+	t=1757402423; cv=none; b=goXW+6INyLN+YdzgP4+IYTC0alhvuOFqdIAfz58/wksdEEsJ+6VlrF2TEKO6QFuIav86GdXY+W93264qD6FCgFHSfnQJuFP+m47+LgESg/gKYnQBZSuKrECZSi029E4H/uMXlcJG88vameiWUuQYgsmqSxVhIFTTO0qFPHiD/gg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757402291; c=relaxed/simple;
-	bh=eoG0JvxQp/KV0F0KtC0hcRUu86Whu+2DoUruzb6EW50=;
+	s=arc-20240116; t=1757402423; c=relaxed/simple;
+	bh=rJIPYrjDUWAPVFJhg8IR2N2TLTeJ2YBveAY2HJgHK2w=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kMmLYBL1emdb5UHxAQDfykBQPljUtBTs4u6fd/BYGj1bZGj4g8V9OSWuRItm4U1IHvAYrSz8PprrznU04GSiO/95xeZ5JbqJ9M0/fCqXNq/UFIi+d5kY8hcGOy+MeDObppiNYwuurTsZhud2jDPr0iiqeSiBaRxkbPQg3NEW7a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qsnBOfzH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0DB84C4CEF4;
-	Tue,  9 Sep 2025 07:18:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=heBicDI5JB6U5aJxh95yog8QO4/MSsNOCtm+FeAruorCoGwLsUTVvV59rCAHPjTAU74pA3J7Iy5zBWyFe/K38xqHPRjP4vr/yD7hogv9pSAqKQbAcCI0114Gt/FE5RQq5aOPeCCp9iJVNG6VJBbHvtUu8kRcpMKDBYb49w867Oo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hzUfhKoG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A9D7C4CEF4;
+	Tue,  9 Sep 2025 07:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757402290;
-	bh=eoG0JvxQp/KV0F0KtC0hcRUu86Whu+2DoUruzb6EW50=;
+	s=k20201202; t=1757402423;
+	bh=rJIPYrjDUWAPVFJhg8IR2N2TLTeJ2YBveAY2HJgHK2w=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qsnBOfzHqqyo/mfM/vPx5i2NCelOlLzFkiRfORokrOnVNXhbOdDchOM4jSkFmenph
-	 1IRcb10DaTszVCHuDL/wI5znKTXQnCZzMYOjnwJdFt9ta3c5VnxrfSFV6fseExHYbE
-	 Hh2JFaz/egM42Xbsw7h8/omrZuTaWQgvwJMwLQUuZ6HXBEe7filTIEDaVB2gYClzyA
-	 KZHf1xz9X1TXmf9Sy8Jo+N9oI282nNUcWYdT+cv8cpVHkc+y9cKAcAtjcmmHSQxeiN
-	 gNBPfvnH7IP1dcxZZOac6OqQa5d20dw5fD6ER9Ua48eJus8HyGm7rq9j1i9pq4T6Ik
-	 O8N/0A0L/4XAQ==
-Date: Tue, 9 Sep 2025 09:18:08 +0200
+	b=hzUfhKoGT4E9fhtttkXp5Hvw7tj1Tqw/kd1F/8YMnrMGlrvc8QXk2VUnTO/KLs/NJ
+	 0iXPFD/Tg4N7+1wGSfxRS5dfRAwhs9BNNvCqTqT/wA0w03K9+nYqcqwm8baOSoZ9AQ
+	 kPfyXSWoyAVUtivlpwliyUsVwjP3EKiRLXJkz56crQkvmqRAgc1BfnwmyQjb3/N8EZ
+	 70pMzrvBztg2nx5cyxydIhXVZ1sgy6BKUxxvJwt3S+gT6aGOoesMrmzSIfIkpd5XLi
+	 Oe2CIq1ZNFxWYY1iL+P1ldbqWhi4Lr+vXR2Y3CQO23CopN9Vxlgarn1EqTxN4ot0Nv
+	 99wsNtQQceTNw==
+Date: Tue, 9 Sep 2025 09:20:20 +0200
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Denzeel Oliva <wachiturroxd150@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
+To: Charan Pedumuru <charan.pedumuru@gmail.com>
+Cc: Ulf Hansson <ulf.hansson@linaro.org>, Rob Herring <robh@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Sam Protsenko <semen.protsenko@linaro.org>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, 
-	linux-i2c@vger.kernel.org
-Subject: Re: [PATCH v2 5/8] dt-bindings: serial: samsung: Add Exynos990 UART
- compatible
-Message-ID: <20250909-sophisticated-urban-goshawk-fc11fb@kuoka>
-References: <20250907-perics-add-usinodes-v2-0-58f41796d2d3@gmail.com>
- <20250907-perics-add-usinodes-v2-5-58f41796d2d3@gmail.com>
+	Paul Barker <paul.barker@sancloud.com>, Marc Murphy <marc.murphy@sancloud.com>, 
+	Tony Lindgren <tony@atomide.com>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-omap@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] arm: dts: ti: omap: Drop unnecessary or unused
+ properties
+Message-ID: <20250909-uptight-fluorescent-markhor-4639db@kuoka>
+References: <20250908-ti-sdhci-omap-v2-0-72927890482f@gmail.com>
+ <20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,17 +63,16 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20250907-perics-add-usinodes-v2-5-58f41796d2d3@gmail.com>
+In-Reply-To: <20250908-ti-sdhci-omap-v2-1-72927890482f@gmail.com>
 
-On Sun, Sep 07, 2025 at 10:13:36PM +0000, Denzeel Oliva wrote:
-> Add samsung,exynos990-uart compatible string to the Samsung UART bindings.
-> 
-> Signed-off-by: Denzeel Oliva <wachiturroxd150@gmail.com>
-> ---
->  Documentation/devicetree/bindings/serial/samsung_uart.yaml | 1 +
->  1 file changed, 1 insertion(+)
+On Mon, Sep 08, 2025 at 04:17:12PM +0000, Charan Pedumuru wrote:
+> Remove unnecessary properties like ti,needs-special-reset,
+> ti,needs-special-hs-handling and cap-mmc-dual-data-rate from the DTS
+> files as there is no user of them.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+No user? That's not true:
+
+git grep ti,needs-special-reset
 
 Best regards,
 Krzysztof
