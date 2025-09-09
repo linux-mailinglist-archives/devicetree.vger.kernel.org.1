@@ -1,74 +1,71 @@
-Return-Path: <devicetree+bounces-214675-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214676-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57B6FB4A174
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:47:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B8CDB4A178
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:48:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FFDB1B2576A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 05:47:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AE87B1B25881
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 05:48:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8815C2EBDF0;
-	Tue,  9 Sep 2025 05:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E5E2F1FDC;
+	Tue,  9 Sep 2025 05:48:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="ClG7FGkY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cb+wjxKD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73B4DF9C1;
-	Tue,  9 Sep 2025 05:46:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A1B579DA;
+	Tue,  9 Sep 2025 05:48:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757396816; cv=none; b=jK9cyeA3AInU5V3gUnNItZtfh8wYdxo4+s81VLpnVZiwfF44su0wDTwvczzJK3tHVlLu+yKJnIXOA3rjDd6uKAFhVoKFLDJEGLNDoitgJoXtssXvuPBwV6jUO/anwTbAf3XzvOXZUi9pM9J/2ufLWZvVbYn89tKq8OfVrru/a1g=
+	t=1757396909; cv=none; b=MfsBpmqK8Ev/8sccse2QNWQmLIKiA9j3VXK8uLCYqqUPkAZ6KmegvcGrXUDoWdj3QLkFAkAdIMnCaRI8KRAgClq3fmCw8+o9/IR9WTTT6c1QXaxim8jnjwVV6skwuFt4fBtFRF50zNeS95SYmEHLlXMJdZISCEdRuY6F5WFUt8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757396816; c=relaxed/simple;
-	bh=Jz3M6If6dytU/qgoG3Aqg4qIxo2nPl0Sg5nSVHm09vI=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dkzs2zi626/iBg2DbtLEMjxI1D0V9Uw+hthkb/a1F/2yNNuok3688aCYngTrlryPYa9LfyIIiir0AF1iR5zIjQREPW3MKrqA9IfWP2IWY0mkBEG1gaWg6/9uw3iKjpTFey5fqeka2xArXwN5gJ1Eov3b69x5RAVzaVJ3pMbwYpk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=ClG7FGkY; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5895kVxH217479;
-	Tue, 9 Sep 2025 00:46:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757396791;
-	bh=yjJby7j9yt/5+ggjhTawrBW65UMydPYpCjdJvSOfSss=;
-	h=From:To:CC:Subject:Date;
-	b=ClG7FGkYrrZ+zYbEBaa27ZHWY53bSj6x0WAKPrKB+OqR6v3IKWTbAEww1RcLTzc79
-	 SZ8zgidrlJtYLfNYTM2RTb0sGuBzDTdwOvy6OzgMUsxOIsbZXub8W0xhNVjP2IPjm1
-	 gqowYtuBss3nCqdJ179D1rq4NFzAHX4pICsg2A44=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5895kU4E3553049
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Tue, 9 Sep 2025 00:46:30 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 9
- Sep 2025 00:46:29 -0500
-Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Tue, 9 Sep 2025 00:46:30 -0500
-Received: from hkshenoy.dhcp.ti.com (hkshenoy.dhcp.ti.com [172.24.235.208])
-	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 5895kMi32114917;
-	Tue, 9 Sep 2025 00:46:23 -0500
-From: Harikrishna Shenoy <h-shenoy@ti.com>
-To: <andrzej.hajda@intel.com>, <neil.armstrong@linaro.org>, <rfoss@kernel.org>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@gmail.com>, <airlied@gmail.com>, <simona@ffwll.ch>,
-        <maarten.lankhorst@linux.intel.com>, <mripard@kernel.org>,
-        <tzimmermann@suse.de>, <robh@kernel.org>, <krzk+dt@kernel.org>,
-        <conor+dt@kernel.org>, <sjakhade@cadence.com>, <yamonkar@cadence.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devarsht@ti.com>, <u-kumar1@ti.com>,
-        <s-jain1@ti.com>
-CC: <h-shenoy@ti.com>
-Subject: [PATCH v4] dt-bindings: drm/bridge: MHDP8546 bridge binding changes for DSC
-Date: Tue, 9 Sep 2025 11:16:22 +0530
-Message-ID: <20250909054622.1439487-1-h-shenoy@ti.com>
+	s=arc-20240116; t=1757396909; c=relaxed/simple;
+	bh=WINNx3eWJz8cAlfPPoawH5Z0jYMwElQz4sl1NcoH8P4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZNqpc7uxlyfb43K/Ai/ahJC+FjEvaNti9ijDJ3UOJbkSmotkL4LmyYddmnxf5FAi4FFYVqVBp37wO4A920bJ+SqH0Ur40REWnFvHhl+BjK7OhjPTyar2/Pmcd6llw53WdC+MyNJhSPmDbvTO4gIdlliFU32ttr+3An97SKQOoSk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cb+wjxKD; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5895aOam022902;
+	Tue, 9 Sep 2025 05:48:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=qcppdkim1; bh=wWfrwIlqmFX5w8P4Z6jsOp
+	gi0ADB2gY1JtPF4LC/2TU=; b=cb+wjxKDW4fCmpGoSfzJqbsi5SsxdaU8XaUPUv
+	yvY6+ZlGKLdkZFn6abQxIzVKLGJg1AYakagyr1Rtmv8nAcIXOSSDlfiv/aCBCSaP
+	b4OZZafTHKO7xqMlFGjDS5j0R5zEL4AUXT8pWzEMycK6rKaJQL5/IY5fAJW6uL4C
+	KWR3IrBhm3ae0FjTaCVFDWHz8rqjLSQCMiUCqq8lsUjMH7crA5TtRV0LiWzgi14m
+	M76tfpJGW4gimdBkG7mEVkCWKcNK7H9Q6z18XsYAhrFbM0Abtf1Xnw2J2cmojNSF
+	tvUpQGWM2vI5T3OTGqnK52P8SFQKYyHP2RV6V0/pvPdh2y1A==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490e4kxx25-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 09 Sep 2025 05:48:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.18.1.2/8.18.1.2) with ESMTPS id 5895mONM003358
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 9 Sep 2025 05:48:24 GMT
+Received: from hu-mmanikan-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1748.24; Mon, 8 Sep 2025 22:48:20 -0700
+From: Manikanta Mylavarapu <quic_mmanikan@quicinc.com>
+To: <andersson@kernel.org>, <konradybcio@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <quic_msavaliy@quicinc.com>, <quic_vdadhani@quicinc.com>,
+        <andi.shyti@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>
+CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>,
+        <kathiravan.thirumoorthy@oss.qualcomm.com>
+Subject: [PATCH v3 0/2] Add I2C support for IPQ5424
+Date: Tue, 9 Sep 2025 11:18:09 +0530
+Message-ID: <20250909054811.3991901-1-quic_mmanikan@quicinc.com>
 X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -78,76 +75,55 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAzOCBTYWx0ZWRfXxT9eC3YfEAPf
+ QzfMhddvfV2d9AEErTEqcC03p3qCJtDpg0AKGWplh3bKC226xRuqkdq/OUxtetKVfrGmQHA7F8Q
+ 3S40gOglnKn8BKJBxcvhVw+62LJwRYiLhwh3K2IPBVshWjkDuugP2znS1tyiZPGEETzRbSGVsZz
+ iZES8afQ17XK+ry+YLzrvf8skPVt21RqTP7brtbgWAiQ9OGnDh2uTMrburM2GxuZnD+sw9UPOVS
+ ma3NUTRjHRzz5x7kPARIqz3rMLahZcgdUfFLFWmzAIiP8a00YKA5d9zpclViql+NfEMDcr3kEQS
+ +7T7z9ol2j/57LQ7SFWhbv2yWgc/8N7Ii/ajjJ7YCw6bqaeD1GwvzA72api1x4cY5c35Ra6PMJM
+ OB/n0EJE
+X-Authority-Analysis: v=2.4 cv=J66q7BnS c=1 sm=1 tr=0 ts=68bfbfa9 cx=c_pps
+ a=ouPCqIW2jiPt+lZRy3xVPw==:117 a=ouPCqIW2jiPt+lZRy3xVPw==:17
+ a=GEpy-HfZoHoA:10 a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8
+ a=6LalJhrV3jZtuP9h-eEA:9 a=TjNXssC_j7lpFel5tvFf:22
+X-Proofpoint-GUID: W289eeaIT9b1nHekKwVMLXu27yRqmK9K
+X-Proofpoint-ORIG-GUID: W289eeaIT9b1nHekKwVMLXu27yRqmK9K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-08_06,2025-09-08_02,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ impostorscore=0 malwarescore=0 clxscore=1015 spamscore=0 phishscore=0
+ adultscore=0 priorityscore=1501 suspectscore=0 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060038
 
-From: Swapnil Jakhade <sjakhade@cadence.com>
+Serial engines 2 and 3 on the IPQ5424 support I2C. The I2C instance
+operates on serial engine 2, designated as i2c0, and on serial engine 3,
+designated as i2c1. Add both the i2c nodes.
 
-Add binding changes for DSC(Display Stream Compression) in the MHDP8546
-DPI/DP bridge.
+v3: * Pick up R-b tag.
+    * Fix the format-specifier to correctly display the clock rate and change
+      '&pdev->dev' to 'dev' as per suggestions from Andi Shyti.
 
-Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-Signed-off-by: Harikrishna Shenoy <h-shenoy@ti.com>
----
-Changelog v3 -> v4:
--Remove maxItems as item list is mentioned for reg-names, resolves 
-dt_bindings_check warning.
-Log link- <https://gist.github.com/h-shenoy/5391ea514bb58a6cba3f39248d20916b>
-Link to v3- https://lore.kernel.org/all/20250908054609.1113360-1-h-shenoy@ti.com/
+v2: https://lore.kernel.org/linux-arm-msm/20250903080948.3898671-1-quic_mmanikan@quicinc.com/
 
- .../bindings/display/bridge/cdns,mhdp8546.yaml | 18 ++++++++++++++----
- 1 file changed, 14 insertions(+), 4 deletions(-)
+v1: https://lore.kernel.org/linux-arm-msm/20250711111418.3980520-1-quic_mmanikan@quicinc.com/
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-index c2b369456e4e..b40630de6d89 100644
---- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-@@ -27,6 +27,8 @@ properties:
-           Register block for DSS_EDP0_INTG_CFG_VP registers in case of TI J7 SoCs.
-       - description:
-           Register block of mhdptx sapb registers.
-+      - description:
-+          Register block for mhdptx DSC encoder registers.
- 
-   reg-names:
-     minItems: 1
-@@ -34,6 +36,7 @@ properties:
-       - const: mhdptx
-       - const: j721e-intg
-       - const: mhdptx-sapb
-+      - const: dsc
- 
-   clocks:
-     maxItems: 1
-@@ -100,18 +103,25 @@ allOf:
-       properties:
-         reg:
-           minItems: 2
--          maxItems: 3
-+          maxItems: 4
-         reg-names:
-           minItems: 2
--          maxItems: 3
-+          items:
-+            - const: mhdptx
-+            - const: j721e-intg
-+            - const: mhdptx-sapb
-+            - const: dsc
-     else:
-       properties:
-         reg:
-           minItems: 1
--          maxItems: 2
-+          maxItems: 3
-         reg-names:
-           minItems: 1
--          maxItems: 2
-+          items:
-+            - const: mhdptx
-+            - const: mhdptx-sapb
-+            - const: dsc
- 
- required:
-   - compatible
+
+Manikanta Mylavarapu (2):
+  i2c: qcom-geni: add OPP table support
+  arm64: dts: qcom: ipq5424: add i2c nodes
+
+ arch/arm64/boot/dts/qcom/ipq5424.dtsi | 28 +++++++++++++++++++++++++++
+ drivers/i2c/busses/i2c-qcom-geni.c    | 27 +++++++++++++++++++++++---
+ 2 files changed, 52 insertions(+), 3 deletions(-)
+
+
+base-commit: be5d4872e528796df9d7425f2bd9b3893eb3a42c
 -- 
 2.34.1
 
