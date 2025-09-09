@@ -1,99 +1,86 @@
-Return-Path: <devicetree+bounces-214606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214608-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF9C5B49DF4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 02:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FD3CB49E0C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 02:34:17 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0AAF1897900
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:25:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 94B621BC386F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82FFE1D799D;
-	Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D935B1F4606;
+	Tue,  9 Sep 2025 00:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b6r6GHpl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OhlXHeuQ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D7E11D61BB
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A95D81F12E0;
+	Tue,  9 Sep 2025 00:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757377494; cv=none; b=EQRMBKzuWUTQHQ9E2alK6IkaNog9GUca5qQVK8d3+2jYRqJ8OGKXEhZbOrneaxKeBfIdBgXFFUCMuvqbWDEi3SBU1c7MA+DBce8IpL8ydwnwL8eSGrKHPwCk7rOo+fOh94aSwu6vjkkyuvV+/GLuEDYho8GBzUk98dWW7fLFkk0=
+	t=1757378047; cv=none; b=gmf0kJJrwI03r74vpjvxcQSyexVIGosLIPmFDGe1iWYZAMzNjxeMgIwV2ErhXhSF33rS8L5pIPCbWrroymO4xHIW9BO4D4JkX5yj7DEtQP+L8EiIx80mWfN9tUOr12Vv71Zdsdv0huz9EwgQvANIrVDX/zhrhuDwd8eURpr6eWE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757377494; c=relaxed/simple;
-	bh=OAI3wB7fRkkjN6xzn305cPyDIxM1Aq2sDcGeaeZ326o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LRdejhRwG8YrAsyQfjfinAr3S0d9WUbeJ4JXkwaKfqopi5Vy3gqudfcBKXl/z5qs2Z81LOatydQisG8TMh+rovVM31XNByPIR69/yk7mi0sdp5IGLBiLqbNQzaRqqq5tTS5Oxj6ko+zAswRmpnUzAJZ2nink03KSPM3btp5qAYo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b6r6GHpl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1DCFEC4CEF1;
-	Tue,  9 Sep 2025 00:24:54 +0000 (UTC)
+	s=arc-20240116; t=1757378047; c=relaxed/simple;
+	bh=kIlv7QbzYjMgSwCBteRli8sNX4QzCCtBptBcgT5oOPY=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Bo3SzonhBQdLmRcWlgrFK2hpSHYF9SYeqWGMdeyRI3hqWbqAIyXvowLY1XwqBAZdA5vAAbWnszr7JeuDkHn18OTqLLdMfwe080ANADVdYMkiyQzlaW95N+/1LTEIcXGyOoYSQTBv7UQXXcUB3OSdNPlO7ELkqwhWshxBiHSZcBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OhlXHeuQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 76D48C4CEF1;
+	Tue,  9 Sep 2025 00:34:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757377494;
-	bh=OAI3wB7fRkkjN6xzn305cPyDIxM1Aq2sDcGeaeZ326o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=b6r6GHpl5Fw4ZCdm/TP1iJUWfLuWmg/SbP+7eR2lOlXUas1DdgsbJy8a9DpLAq1Uj
-	 YT48nJ5nVmBGUNrcRLO4XeOru8gQaFwTpWzl2vs97VBnbEROQtptgXkH1/PVSByOoR
-	 9K/9naBXmqAVtGNQqKRaFKazaQFjX4RjcKnV/4R2yuxqq9srKDuqHbDk0XK+4FH5n6
-	 K5JhM3TiIh57B/Id2PuVLNpG4/gnWVvVCSqoZVkjKqjTBdUgieJFKWfYb6QBGWcobw
-	 2foHpFjoTMU124gD4C+Y0z4hXX19F0M5uLwBcH9GGw4P7CBLt0pPXYqbC79YuslRXT
-	 nnmsFAklabTNg==
-Date: Mon, 8 Sep 2025 19:24:53 -0500
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Fabio Estevam <festevam@gmail.com>
-Cc: krzk+dt@kernel.org, devicetree@vger.kernel.org, Frank.Li@nxp.com,
-	conor+dt@kernel.org
-Subject: Re: [PATCH v2] dt-bindings: arm: cpus: Document pu-supply
-Message-ID: <175737746236.2245195.5498632260057616443.robh@kernel.org>
-References: <20250907152513.590218-1-festevam@gmail.com>
+	s=k20201202; t=1757378047;
+	bh=kIlv7QbzYjMgSwCBteRli8sNX4QzCCtBptBcgT5oOPY=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=OhlXHeuQg/FbLmSazvb/q+WT5wZq0bM/SbOFD0i9lLCn5AjwlpMg4hSG57YM1QTpE
+	 EDNivgEg9GxQNuAae4aNPp/l2oI5inaOXK3c7ktYmAeYQaweAvTxtPcHNnGWi/BtWL
+	 4a68szBvMjRlKjemWt4JONgSNgSf62Z8SQvrl/YTKourv7S3ryguvWISptRNrfLq6U
+	 YW0ZUYif/g+X2Ltxx4F8RxgjBSwujkjhwIemWoLxh8lLPvE3upk5ylgc3IBzk1nLqm
+	 4fMFRh2STmgQZppQOhCcI4EMvvDXrufDso0gKJ4IuNtoKZTFhZlO8+t/NmUObEsi8s
+	 2gIuU7LYZlV5A==
+Date: Mon, 8 Sep 2025 17:34:05 -0700
+From: Jakub Kicinski <kuba@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Simon Horman <horms@kernel.org>, Andrew Lunn <andrew+netdev@lunn.ch>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>, "David S.
+ Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Paolo
+ Abeni <pabeni@redhat.com>, Philipp Zabel <p.zabel@pengutronix.de>, Paul
+ Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>, Vadim
+ Fedorenko <vadim.fedorenko@linux.dev>, Junhui Liu
+ <junhui.liu@pigmoral.tech>, Maxime Chevallier
+ <maxime.chevallier@bootlin.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+ spacemit@lists.linux.dev, linux-kernel@vger.kernel.org, Troy Mitchell
+ <troy.mitchell@linux.spacemit.com>, Vivian Wang <uwu@dram.page>
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250908173405.08aec56d@kernel.org>
+In-Reply-To: <fbcc1ec3-7ff6-4891-97e3-9763355326f7@iscas.ac.cn>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+	<20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+	<20250905153500.GH553991@horms.kernel.org>
+	<0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
+	<20250905160158.GI553991@horms.kernel.org>
+	<45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
+	<20250905165908.69548ce0@kernel.org>
+	<fbcc1ec3-7ff6-4891-97e3-9763355326f7@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250907152513.590218-1-festevam@gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
+On Sun, 7 Sep 2025 16:22:44 +0800 Vivian Wang wrote:
+> "dstats" is meant for tunnels. This doesn't look like the right thing to
+> use, and no other pcpu_stat_type gives me tx_dropped. Do you think I
+> should use dstats anyway?
 
-On Sun, 07 Sep 2025 12:25:13 -0300, Fabio Estevam wrote:
-> The i.MX6Q Reference Manual describes the three digital LDO regulators
-> as follows:
-> 
-> "10.4.1.1.1
-> Digital LDO Regulators
-> The integrated PMU includes three digital LDO regulators: LDO_ARM, LDO_PU, and
-> LDO_SOC. These regulators provide power to the ARM_Core power domain, the
-> combined VPU, IPU and GPU power domain, and the rest of the SoC logic (except
-> always-ON SNVS domain)."
-> 
-> imx6dl.dtsi uses the correct names to describe these supplies:
-> 
-> arm-supply = <&reg_arm>;
-> pu-supply = <&reg_pu>;
-> soc-supply = <&reg_soc>;
-> 
-> 'arm-supply' and 'soc-supply' are already documented, but 'pu-supply' is not.
-> 
-> Document the 'pu-supply' property and set it to deprecated.
-> 
-> This fixes the following dt-schema warning:
-> 
-> cpu@1 (arm,cortex-a9): Unevaluated properties are not allowed ('pu-supply' was unexpected)
-> 
-> Signed-off-by: Fabio Estevam <festevam@gmail.com>
-> ---
-> Changes since v1:
-> - Explain that PU is a valid name. (Krzysztof)
-> 
->  Documentation/devicetree/bindings/arm/cpus.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-
-Applied, thanks!
-
+You can use dstats
 
