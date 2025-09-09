@@ -1,172 +1,181 @@
-Return-Path: <devicetree+bounces-214845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84AF9B4AA1F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:17:37 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 71FB3B4AA2C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:18:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9558E7A6AB6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:15:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D38231C254D5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:18:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D94E731C560;
-	Tue,  9 Sep 2025 10:13:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TSlW3BhB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 280C931CA54;
+	Tue,  9 Sep 2025 10:14:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C25C43191C6;
-	Tue,  9 Sep 2025 10:13:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 716BA31A573;
+	Tue,  9 Sep 2025 10:14:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757412827; cv=none; b=icqsW6sfeMnPsQy20qRDCXG+ydsyPsYNWyeMmCXAQcmoyCzGcn1RTNTIijsZtFNJcV38GOwHknGT1d6fRZdREs3Skpn4KQtZKu5388zyqCLShYZ0Bwh1/Nz6irIFucBIZ2W/colhQ3O/IuYt1H7blWZ3ocXmBXlgLbC74w9LeAY=
+	t=1757412872; cv=none; b=TQttMfR0rY9FBjEXKvThbbHODQScO1A+d5PHWr0153tRYBjS6z1jQYFD9rv/vzZz7OpV5jX38w2Y9GCMFF5KjH4dN88gm7ZLGqOPeQffS3OeTqxX7rxy8M7p5O9EOfPST6XCmgEDs5EIYiv/ZXL06UfzjV48X+c6/ND1JE7GG7U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757412827; c=relaxed/simple;
-	bh=mcfC+h1eStW2uUhSrWJrqUQ4K9R4hrohvIKBqKE5M9I=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kzlI7vGWewrGJUMTQRYL+rPhaJ4ketb50CS6Ovg2vufEzZBqBYuVqOqjn1KhRry8GmHELWIDubyh+4C/TOLqZNdE4KF/ySxANwBkjksLBQSP/uHwi8KZBbWjhVFify/YJK/IIo4syYLWtb9xYHFpwj49l1QtBnszphOTJViQNPE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TSlW3BhB; arc=none smtp.client-ip=185.246.84.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-02.galae.net (Postfix) with ESMTPS id EC3361A0E1B;
-	Tue,  9 Sep 2025 10:13:41 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id BD17360630;
-	Tue,  9 Sep 2025 10:13:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 73E5D102F2894;
-	Tue,  9 Sep 2025 12:13:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757412820; h=from:subject:date:message-id:to:cc:mime-version:content-type:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ncdmf1jhLSIzFX+n3bWuOq0zu5sbccap6rdFTbTyrp4=;
-	b=TSlW3BhBfGVHzv475bNiMhL8Bw8Af3XCJJTHeL2j78xMN8yMp46G3obLq8qYawvTQ+Z8O/
-	6qzCYGbzQEw4iyUDCgRjdPeepGT+ksqfZ2l0FwtHikXZcix/OsxLr1Rg2wLHg70jilqdlO
-	5rOAmGcIyiz4VYuU36vecgaQ+lvkfX6ApdRXwREj2aFFzfdOT/hW+BQpe7H5mYrYGSZ4Zq
-	XPvT/PKdMkxw+20IuhZprIRd1cmd0Z2uv5nhGSHYthrbUJSf7ZAShC9QKaNQuN9f15CKBm
-	6ArHqVKmlB6kCpf8WrEEY45YAgcNExhUyH1uqIBIWMCLEuQUzndLSoe7/1Px1w==
-Date: Tue, 9 Sep 2025 12:13:17 +0200
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding
- <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Jonathan
- Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni
- <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
- <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter De
- Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad
- <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
- Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko
- <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>,
- linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-staging@lists.linux.dev
-Subject: Re: [PATCH v1 09/19] staging: media: tegra-video: vi: add flip
- controls only if no source controls are provided
-Message-ID: <20250909121317.6f34e2f3@booty>
-In-Reply-To: <CAPVz0n0_DJh9M-h5a0bcBA8b6_7vzgOYSktGxAhFzuVncoJhmw@mail.gmail.com>
-References: <20250819121631.84280-1-clamor95@gmail.com>
-	<20250819121631.84280-10-clamor95@gmail.com>
-	<20250905175915.2d7e02a7@booty>
-	<CAPVz0n0_DJh9M-h5a0bcBA8b6_7vzgOYSktGxAhFzuVncoJhmw@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1757412872; c=relaxed/simple;
+	bh=ym80XdqDh0Lyk6nkO25aoerkSsuVfLPsaJi31FE8O70=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W5SAFiHxoJbeURjU75th6b7ZrGXbwtO7Ju6sE/PpkU5p13LeC5/2pkI86zCA2ReSd7xAAo/qyAMtDVGWlaUUInQy1eBFmM5Jk7Zkr3LHnfE2N75udE+5t7Ym6TtevqQqQlxa/6BTL8LJ899P7xjbupobAUlaflCnT7T2j8RoBog=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5BEA6113E;
+	Tue,  9 Sep 2025 03:14:21 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 013613F66E;
+	Tue,  9 Sep 2025 03:14:23 -0700 (PDT)
+Date: Tue, 9 Sep 2025 11:14:20 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 06/33] ACPI / PPTT: Add a helper to fill a cpumask from a
+ cache_id
+Message-ID: <aL/9/KSH35ou8Mgj@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-7-james.morse@arm.com>
+ <aK7ju2caTjqf1+VN@e133380.arm.com>
+ <2e4c3c00-b248-421e-8ff1-d24b7b03be1a@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Last-TLS-Session-Version: TLSv1.3
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e4c3c00-b248-421e-8ff1-d24b7b03be1a@arm.com>
 
-Hello Svyatoslav,
+Hi,
 
-On Fri, 5 Sep 2025 19:05:16 +0300
-Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+On Thu, Aug 28, 2025 at 04:58:16PM +0100, James Morse wrote:
+> Hi Dave,
+> 
+> On 27/08/2025 11:53, Dave Martin wrote:
+> > On Fri, Aug 22, 2025 at 03:29:47PM +0000, James Morse wrote:
+> >> MPAM identifies CPUs by the cache_id in the PPTT cache structure.
+> >>
+> >> The driver needs to know which CPUs are associated with the cache,
+> >> the CPUs may not all be online, so cacheinfo does not have the
+> >> information.
+> > 
+> > Nit: cacheinfo lacking the information is not a consequence of the
+> > driver needing it.
+> > 
+> > Maybe split the sentence:
+> > 
+> > -> "[...] associated with the cache. The CPUs may not [...]"
+> 
+> Sure,
 
-> =D0=BF=D1=82, 5 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 18:59 Luc=
-a Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
-> >
-> > Hello Svyatoslav,
-> >
-> > On Tue, 19 Aug 2025 15:16:21 +0300
-> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
-> > =20
-> > > Add HFLIP and VFLIP from SoC only if camera sensor does not provide t=
-hose
-> > > controls.
-> > >
-> > > Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> > > ---
-> > >  drivers/staging/media/tegra-video/vi.c | 9 ++++++---
-> > >  1 file changed, 6 insertions(+), 3 deletions(-)
-> > >
-> > > diff --git a/drivers/staging/media/tegra-video/vi.c b/drivers/staging=
-/media/tegra-video/vi.c
-> > > index 4f67adc395ac..61b65a2c1436 100644
-> > > --- a/drivers/staging/media/tegra-video/vi.c
-> > > +++ b/drivers/staging/media/tegra-video/vi.c
-> > > @@ -961,6 +961,7 @@ static int tegra_channel_setup_ctrl_handler(struc=
-t tegra_vi_channel *chan)
-> > >       }
-> > >  #else
-> > >       struct v4l2_subdev *subdev;
-> > > +     struct v4l2_ctrl *hflip, *vflip;
-> > >
-> > >       /* custom control */
-> > >       v4l2_ctrl_new_custom(&chan->ctrl_handler, &syncpt_timeout_ctrl,=
- NULL);
-> > > @@ -986,11 +987,13 @@ static int tegra_channel_setup_ctrl_handler(str=
-uct tegra_vi_channel *chan)
-> > >               return ret;
-> > >       }
-> > >
-> > > -     if (chan->vi->soc->has_h_v_flip) {
-> > > +     hflip =3D v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_HFLIP);
-> > > +     if (chan->vi->soc->has_h_v_flip && !hflip)
-> > >               v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4=
-L2_CID_HFLIP, 0, 1, 1, 0);
-> > > -             v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4=
-L2_CID_VFLIP, 0, 1, 1, 0);
-> > > -     }
-> > >
-> > > +     vflip =3D v4l2_ctrl_find(subdev->ctrl_handler, V4L2_CID_VFLIP);
-> > > +     if (chan->vi->soc->has_h_v_flip && !vflip)
-> > > +             v4l2_ctrl_new_std(&chan->ctrl_handler, &vi_ctrl_ops, V4=
-L2_CID_VFLIP, 0, 1, 1, 0); =20
-> >
-> > Based on my understanding of V4L2, this should not be done.
-> > AFAIK subdevs should expose what the hardware block can do,
-> > independently from other subdevs. It is up to userspace (e.g.
-> > libcamera) to use the most appropriate control when there are redundant
-> > ones.
-> > =20
->=20
-> This driver is video-centric, interactions are done via /dev/videoX
-> not subdevices like media-centric derivers do. Conversion is possible
-> but it is not scope of this patchset and in case such conversion takes
-> place, one who will do that, will definitely know what to do.
-> Video-centric drivers expose all controls within single video device
-> and it cannot hold duplicates of controls, this causes error. So this
-> solution exposes camera flip controls and if camera has none, SoC
-> controls are exposed.
+OK
 
-Sorry, forgot to think in the past. :-)
-Thanks for the clarification, it makes sense now!
+> >> diff --git a/drivers/acpi/pptt.c b/drivers/acpi/pptt.c
+> >> index 660457644a5b..cb93a9a7f9b6 100644
+> >> --- a/drivers/acpi/pptt.c
+> >> +++ b/drivers/acpi/pptt.c
+> >> @@ -971,3 +971,65 @@ int find_acpi_cache_level_from_id(u32 cache_id)
 
-Luca
+[...]
 
---=20
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> >> + * acpi_pptt_get_cpumask_from_cache_id() - Get the cpus associated with the
+> >> + *					   specified cache
+> >> + * @cache_id: The id field of the unified cache
+> >> + * @cpus: Where to build the cpumask
+> >> + *
+> >> + * Determine which CPUs are below this cache in the PPTT. This allows the property
+> >> + * to be found even if the CPUs are offline.
+> >> + *
+> >> + * The PPTT table must be rev 3 or later,
+> >> + *
+> >> + * Return: -ENOENT if the PPTT doesn't exist, or the cache cannot be found.
+> >> + * Otherwise returns 0 and sets the cpus in the provided cpumask.
+> >> + */
+> >> +int acpi_pptt_get_cpumask_from_cache_id(u32 cache_id, cpumask_t *cpus)
+> >> +{
+
+[...]
+
+> >> +	/*
+> >> +	 * If we found the cache first, we'd still need to walk from each cpu.
+> >> +	 */
+> >> +	for_each_possible_cpu(cpu) {
+
+[...]
+
+> > Again, it feels like we are repeating the same walk multiple times to
+> > determine how deep the table is (on which point the table is self-
+> > describing anyway), and then again to derive some static property, and
+> > then we are then doing all of that work multiple times to derive
+> > different static properties, etc.
+> > 
+> > Can we not just walk over the tables once and stash the derived
+> > properties somewhere?
+> 
+> That is possible - but its a more invasive change to the PPTT parsing code.
+> Before the introduction of the leaf flag, the search for a processor also included a
+> search to check if the discovered node was a leaf.
+> 
+> I think this is trading time - walking over the table multiple times, against the memory
+> you'd need to de-serialise the tree to find the necessary properties quickly. I think the
+> reason Jeremy L went this way was because there may never be another request into this
+> code, so being ready with a quick answer was a waste of memory.
+> 
+> MPAM doesn't change this - all these things are done up front during driver probing, and
+> the values are cached by the driver.
+
+I guess that's true.
+
+> > I'm still getting my head around this parsing code, so I'm not saying
+> > that the approach is incorrect here -- just wondering whether there is
+> > a way to make it simpler.
+> 
+> It's walked at boot, and on cpu-hotplug. Neither are particularly performance critical.
+
+Do we do this only for unknown late secondaries (e.g., that haven't
+previously come online?)  I haven't gone to track this down but, if not,
+this cuts across the assertion that "there may never be another request
+into this code".
+
+cpu hotlug is slow in practice, but gratuitous cost on this path should
+still be avoided where feasible.
+
+> I agree that as platforms get bigger, there will be a tipping point ... I don't think
+> anyone has complained yet!
+
+Ack -- when in ACPI, do as the ACPI folks do, I guess.
+
+Cheers
+---Dave
 
