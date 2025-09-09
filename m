@@ -1,217 +1,119 @@
-Return-Path: <devicetree+bounces-215141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB625B50961
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 01:52:54 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 90317B50966
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 01:56:09 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5BD124E809C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 23:52:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4B9B15465B3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 23:56:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 911EA28C860;
-	Tue,  9 Sep 2025 23:52:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D4B2228D8ED;
+	Tue,  9 Sep 2025 23:56:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b="JGoQv4PP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RDbYYtC9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com [209.85.208.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A869825A35E;
-	Tue,  9 Sep 2025 23:52:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757461970; cv=pass; b=B//f1MMk4Z20z9nb19muc5RcSn4U8buESErvadRDFqPey9LUddprm02XYXvwtoV321fb+vo5J0/IVpiIRYg5gI6BzU9T0OhppNBuJgnERkSLjYuaEDktI3AOV1COBgTibJTys5TtHohfVEicKpZ3K/q+KUsKriGBph1f/jCLvME=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757461970; c=relaxed/simple;
-	bh=oFSzGKh+jE9fG2st9bP5s0hopFkG7LsaFjWbH97Jv1Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=brbagbz6F1u1A86S1NngeKBDTAjohsD9ObD+uVot9gVNsv56xKg++A6ADzyE93VJddmFb7xLU2QQznbtXOz1rHli3X+c8afK2QxcBtbGBxVck5gPv69Mq1HpBqvjXVeYB/JLB0apRs3Ga/A7ONfpSyr3B66eiGbRG9jcLE1IajU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=sebastian.reichel@collabora.com header.b=JGoQv4PP; arc=pass smtp.client-ip=136.143.188.112
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-ARC-Seal: i=1; a=rsa-sha256; t=1757461939; cv=none; 
-	d=zohomail.com; s=zohoarc; 
-	b=XG9o0VLGNJfUWI+6pEk36Bc8hw4exL79D4RsD2GisQ9/SrD8gWHRRSSFD3GNBE+x/GskFMGZ6aeSylumWUn/u/7hDU9IQhtREu7OXqIwCw7oYW9gh0rlhFA7+C+9WjLY8PqmSa9jgr3EpP+wNId651CtSCYz6Uyb8g/D7yUmkn4=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
-	t=1757461939; h=Content-Type:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
-	bh=MRosrKVQq7sn22Es6+VF8OMf7pwPJJ2RSe2u88w3Gr4=; 
-	b=BIad/jg0ogPaNYBam7CZq0O1RQPh40DoJSFI89lvlgVsk96NmZfgG9kmAFcnkvAvGs6z1vDLYMTIocOSU2IvDjv/xxdV5yo1vHifyUXCQe4Sv0Oq5m4sFVrUdpZ96aScM2CoE2HBajI+BLfIlRIBwHQyPVO+Tuf1Pt3zgyvrYK0=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
-	dkim=pass  header.i=collabora.com;
-	spf=pass  smtp.mailfrom=sebastian.reichel@collabora.com;
-	dmarc=pass header.from=<sebastian.reichel@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757461939;
-	s=zohomail; d=collabora.com; i=sebastian.reichel@collabora.com;
-	h=Date:Date:From:From:To:To:Cc:Cc:Subject:Subject:Message-ID:References:MIME-Version:Content-Type:In-Reply-To:Message-Id:Reply-To;
-	bh=MRosrKVQq7sn22Es6+VF8OMf7pwPJJ2RSe2u88w3Gr4=;
-	b=JGoQv4PPa1GJOklEFDrtKWlq5uNnrhnjp8ZV50+7u9/R0qTCWZlE2liNFeCr+2YU
-	FKbzH+jcvuQshgrJUr4AaLqJSN6mSTL9zh2hbdQdGpXAX3tjKZVd+l7j57Xh9sxVNy8
-	4PNTyM2ycox2LM7a5xfw2BSZgO1fLx7LLY0uAgfI=
-Received: by mx.zohomail.com with SMTPS id 1757461937134492.1287969959642;
-	Tue, 9 Sep 2025 16:52:17 -0700 (PDT)
-Received: by venus (Postfix, from userid 1000)
-	id 4D0E418031F; Wed, 10 Sep 2025 01:52:12 +0200 (CEST)
-Date: Wed, 10 Sep 2025 01:52:12 +0200
-From: Sebastian Reichel <sebastian.reichel@collabora.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Vinod Koul <vkoul@kernel.org>, 
-	Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Frank Wang <frank.wang@rock-chips.com>, 
-	Zhang Yubing <yubing.zhang@rock-chips.com>, Andy Yan <andyshrk@163.com>, 
-	Maud Spierings <maud_spierings@hotmail.com>, linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH RFC 1/2] dt-bindings: phy: rockchip-usbdp: add improved
- ports scheme
-Message-ID: <xyya5zy52mx4o76s6rr5h7lrfkhbri6bvmp7a5mn7cifpbpqlc@ca3zhclu6u3y>
-References: <20250904-rock5b-dp-alt-mode-v1-0-23df726b31ce@collabora.com>
- <20250904-rock5b-dp-alt-mode-v1-1-23df726b31ce@collabora.com>
- <aLyKhngeksG2SKdq@umbar.lan>
- <jzooq6qg3y7nee2nz6lujustdf4z7vtn6t2slikw43dann5sbk@2telraae26tl>
- <aLyo4N59o4CIYm-6@umbar.lan>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04E1A28CF6F
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 23:56:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757462165; cv=none; b=lsGRMEKwcNWdSRIpCluFN+DrUNTu9S8Ul9p/YegJQw9pnyrTWbSMyOG250UgtDsw2ffLYkY1SggbHqbUVaBgo4Biz2zzpwK81XUNJpMRXcZWf7XRlMqBuruo9W0b37L928ciQEeI5wmxLYRmBMNEOe2LZhtu34vRer3ROnhiLF0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757462165; c=relaxed/simple;
+	bh=V/4bySwnQHyMs3ISIH9yIpaRt7bcIxL4U2GAC/rhWHs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=OyPz5xG9I6qgzbM2KXhDN68+NDoDWApVRjaPpQrbZLFUxNykjdbT+195AO7Vgvwb2RKtntefXMp1qzGebtCLeH++RWEEyj8lK3BTPo7PiaKDzqH9+yXfYf3aFRPzwr2SqrggawEp/0y5r6dUfmAddccRAt1iS2oYvOFSLVqubJA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RDbYYtC9; arc=none smtp.client-ip=209.85.208.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-337e43f9c20so5040081fa.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 16:56:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1757462161; x=1758066961; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7wut2N6v7MXaS7iMDatzIHHoOrLQhmLH2PYx5ZEyzN4=;
+        b=RDbYYtC9MgYN+9CBqpEq3e0f6wHM5brpundGbvY3sT6Tyd/x+nfJzfdaagnkUDSWw3
+         qpuyldzO1ewP/+XEga2fVWCwoSX0uw7i5E4N1nNLqHnxDzgMkbu9yPq+AlNVVUBCK3LL
+         7xQ7cUgIC8PsJlg/Cv6UZ0omn3ALn1xLfuYFLcuTgSygVFEkh1Iht0jBksuTc69P3gHv
+         Ecz8eEQ6j7prON5Zl0R6BPYj9RBVQR5ey7J1MyV31JAK8afBBOu80gY66RJIXjhsX/5s
+         x3IkJavdpuRVbN66PwOElhiRZW5v3oBhkY/iNLub2LEDsEL/KMlJ6gdPD/QykBelVMtp
+         GtMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757462161; x=1758066961;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7wut2N6v7MXaS7iMDatzIHHoOrLQhmLH2PYx5ZEyzN4=;
+        b=IlBWXdR7C7C/Vhb5x8Xq6FebuLDdvza+6xP14X4T7YwZr7VA8mwQOmX46/MhXVxIn6
+         jgizm2cYej48M6IYISvEOeXu8dIAyGvTe05NyULON2n80QsX/kzWemV6KXZ/8q9IAp/E
+         Symuo/oe3GPSwmBPKu0sI9uyuLjfvc9fTxNSqev6CjXJncFFzHSvzuJ6zNlQRMcBG8/K
+         14DYW/eaqlb1bR4BtJMYmLzOSY5Bkv+l1ELR5FcOj281VHG/dmy8M9pP4cgpt/gJmhAh
+         YGCPHMrmHF7yg/H2Drw1xbWU5jC10tqcF7z9s5iNcork6pmAfZwq3+xr9LA9/zbvdNDX
+         IAPg==
+X-Forwarded-Encrypted: i=1; AJvYcCWdJuxzDbx/97JJysjvnTsuKhSGyoSj82d3C97PP5JmgA0L83JZra5/yPCkgGg0UCviYL8uM8v4n+Il@vger.kernel.org
+X-Gm-Message-State: AOJu0YxrT4CX+1ttHGR94KQu1dOGKm7y3XYlL3/Z7uHHUbBblUA2Cc5r
+	ym+cQ0Jc+Z52WgEb0d2sreNzYSWlfjaXb666vESPCALwbO1//Xg+OKPE8eOyazYpbJM=
+X-Gm-Gg: ASbGncu7X8LN5mHnD1Z+OfGSXAuvoLMboaBluTGL5BGo96mLrMTNPj7eNUBii8A94Tg
+	x0TN4F4M8/SVmxVTGOA7fa/IgsFMTUDQCfkrvgnJ24IFiE5oI1KvYJeEKZceKJ3X3CdF4guDfwl
+	PgQ65kcDt7+s8Nd50Eq1Sk3JB91eF+eJekbqiHEXSsoX/h0Px+TUz/0d7qQaFEb652/U178Mt3u
+	kUB85tYdCoTNr0JFpmx9W7nSrvBR+7dgHAgJOeIYs89lzq1lnOcW1vDCrqHshpmRGXoHWTXF76U
+	RsEFTT3j3GcMrqTPsVQ418Cr8714I6MGQDfUOGPWTn6JsWv3dG65uyPdnhUq+KzNor2Kj5xMByq
+	bZaa0lFDeANjSi5oY4+qy0+km7lSs8iFeoTgvARBSPtz+f9gw4MF1IiceP95S3Wxpp8G68bk=
+X-Google-Smtp-Source: AGHT+IGbUmd3BnTOAfvqhxqaxM6jeYhQvHJR1zvOluF6st0Se5DPt6WufPTIfT4AHhc7z45LT5rx+w==
+X-Received: by 2002:a2e:a9a0:0:b0:336:d8e5:8dd2 with SMTP id 38308e7fff4ca-33b4b230a64mr18040141fa.2.1757462161060;
+        Tue, 09 Sep 2025 16:56:01 -0700 (PDT)
+Received: from thyme.local (91-159-24-186.elisa-laajakaista.fi. [91.159.24.186])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-337f4c905d6sm44112571fa.20.2025.09.09.16.55.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 16:55:59 -0700 (PDT)
+From: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konradybcio@kernel.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: sm8450: enable camera clock controller by default
+Date: Wed, 10 Sep 2025 02:55:47 +0300
+Message-ID: <20250909235547.787396-1-vladimir.zapolskiy@linaro.org>
+X-Mailer: git-send-email 2.49.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <aLyo4N59o4CIYm-6@umbar.lan>
-X-ZohoMailClient: External
+Content-Transfer-Encoding: 8bit
 
-Hi,
+Enable camera clock controller on Qualcomm SM8450 boards by default
+due to a reasonable agreement of having all clock controllers enabled.
 
-On Sun, Sep 07, 2025 at 12:34:24AM +0300, Dmitry Baryshkov wrote:
-> On Sat, Sep 06, 2025 at 10:42:22PM +0200, Sebastian Reichel wrote:
-> > On Sat, Sep 06, 2025 at 10:24:54PM +0300, Dmitry Baryshkov wrote:
-> > > On Thu, Sep 04, 2025 at 08:26:02PM +0200, Sebastian Reichel wrote:
-> > > > Currently the Rockchip USBDP PHY as a very simply port scheme: It just
-> > > > offers a single port, which is supposed to point towards the connector.
-> > > > Usually with 2 endpoints, one for the USB-C superspeed port and one for
-> > > > the USB-C SBU port.
-> > > > 
-> > > > This scheme is not good enough to properly handle DP AltMode, so add
-> > > > a new scheme, which has separate ports for everything. This has been
-> > > > modelled after the Qualcomm QMP USB4-USB3-DP PHY controller binding
-> > > > with a slight difference that there is an additional port for the
-> > > > USB-C SBU port as the Rockchip USB-DP PHY also contains the mux.
-> > > > 
-> > > > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > > > ---
-> > > >  .../bindings/phy/phy-rockchip-usbdp.yaml           | 23 ++++++++++++++++++++++
-> > > >  1 file changed, 23 insertions(+)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-> > > > index 8b7059d5b1826fdec5170cf78d6e27f2bd6766bb..f728acf057e4046a4d254ee687af3451f17bcd01 100644
-> > > > --- a/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-> > > > +++ b/Documentation/devicetree/bindings/phy/phy-rockchip-usbdp.yaml
-> > > > @@ -114,6 +114,29 @@ properties:
-> > > >        A port node to link the PHY to a TypeC controller for the purpose of
-> > > >        handling orientation switching.
-> > > >  
-> > > > +  ports:
-> > > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > > +    properties:
-> > > > +      port@0:
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > +        description:
-> > > > +          Output endpoint of the PHY for USB (or DP when configured into 4 lane
-> > > > +          mode), which should point to the superspeed port of a USB connector.
-> > > 
-> > > What abourt USB+DP mode, where each one gets 2 lanes?
-> > 
-> > Right, I guess we would need one port more and have one port for
-> > lane 0 + 1 and one port for 1 + 2. For USB-C both ports are
-> > connected to the USB-C superspeed port. For DP 4-lane mode the
-> > same is done for the input port of the connector. Last but not
-> > least for 2 lanes USB + 2 lanes DP, one port can be connected
-> > to the USB connector and one port can be connected to the DP
-> > connector.
-> 
-> Hmm. I'm not sure what do you mean here. Basically, it should be:
-> 
-> - Normal USB-C case with DP AltMode:
->   + port@0 routed to connector's port@1 (through mux or retimer if any)
->   + port@4 routed to connector's port@2 (through mux or retimer if any)
-> 
-> - Actual DP or mini-DP connector:
->   + port@0 routed to connector's sole port (most likely direcrly)
->   + port@4 most likely unconnected (at least for now, dp-connector
->     doesn't have AUX lines described)
-> 
-> - Weird mode of having both USB-A or -C and actual DisplayPort
->   + port@0 should get two endpoints, each having data-lines properties,
->     one endpoint being connected to the USB port, another endpoint being
->     connected to DP connector.
->   + port@4 unconnected (yep, we should extend DP properties, maybe I'll
->     send a patch)
+Signed-off-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
+---
+The change is based on Bjorn's qcom/arm64-for-6.18 branch.
 
-That's a bit different from what I described, but sounds more
-sensible. Effectively the Rockchip USBDP PHY binding would need
-to deprecate rockchip,dp-lane-mux and switch to using data-lines
-on the endpoint instead, just like it is currently proposed for
-Qualcomm (I follow the T14S HDMI thread).
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-AFAIK the Rockchip PHY hardware does not support 1-lane DP, so the
-binding will have to forbid that. Shouldn't be a problem, though :)
+diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+index 9ebf2b8700d2..e9ffa0af3cb3 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+@@ -3300,7 +3300,6 @@ camcc: clock-controller@ade0000 {
+ 			#clock-cells = <1>;
+ 			#reset-cells = <1>;
+ 			#power-domain-cells = <1>;
+-			status = "disabled";
+ 		};
+ 
+ 		mdss: display-subsystem@ae00000 {
+-- 
+2.49.0
 
-> I'd say, the first two options are the most important ones. Unless you
-> have actual hardware that uses the USB + separate DP, I'd say, we can
-> ignore that part.
-
-The RK3588 evaluation board routes the first two lanes to a USB-A
-connector and the second two lanes + AUX to a RTD2166 bridge, which
-converts it to VGA and then terminates on a VGA connector. I have
-that on my desk and can do some tests. But I don't have enough time
-for preparing patches right now - especially since the RTD2166 is
-not yet supported upstream.
-
-Greetings,
-
--- Sebastian
-
-> > > > +      port@1:
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > +        description: Incoming endpoint from the USB controller
-> > > > +
-> > > > +      port@2:
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > +        description: Incoming endpoint from the DisplayPort controller
-> > > > +
-> > > > +      port@3:
-> > > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > > +        description:
-> > > > +          Output endpoint of the PHY for DP, which should either point to the
-> > > > +          SBU port of a USB-C connector or a DisplayPort connector input port.
-> > > 
-> > > I would suggest describing this port as 'DisplayPort AUX signals to be
-> > > connected to the SBU port of a USB-C connector (maybe through the
-> > > additinal mux, switch or retimer)'. It should not be confused with the
-> > > actual DisplayPort signals (as those go through the port@0).
-> > > 
-> > > In the Qualcomm world we currently do not describe this link from the
-> > > PHY to the gpio-mux or retimer, but I think we will have to do that
-> > > soon.
-> > 
-> > It does looks like no upstream platform does a proper description of
-> > USB-C setups :(
-> > 
-> > Thanks for having a look,
-> > 
-> > -- Sebastian
-> 
-> 
-> 
-> > _______________________________________________
-> > Linux-rockchip mailing list
-> > Linux-rockchip@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-rockchip
-> 
-> 
-> -- 
-> With best wishes
-> Dmitry
 
