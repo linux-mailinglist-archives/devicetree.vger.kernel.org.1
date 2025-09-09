@@ -1,272 +1,142 @@
-Return-Path: <devicetree+bounces-214776-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214777-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 416DCB4A582
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:38:26 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B02BB4A586
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:38:33 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EB4863A6E8C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:38:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A588D163242
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:38:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A8F251795;
-	Tue,  9 Sep 2025 08:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 309E8253B56;
+	Tue,  9 Sep 2025 08:38:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="TM6Aozzh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UARw4Z1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A115924EF76;
-	Tue,  9 Sep 2025 08:38:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757407100; cv=pass; b=EWIp4BcCAnWpBJmeK6WNhOAIU2/HrM3MQ5kQUEExVgghJNcxHOPOHJ1xbf7R5lxmoHLSiqIASEEWrJWlD/sMafQjG7V2roMeQvM2404wcqezMzgd23XiCL1iIQdhTs9hpwiz15Dm5cug4qvAPzkzh1qUqomoM2zCXpf1vSHnzh0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757407100; c=relaxed/simple;
-	bh=UAlbRau57FLa95xbSqzEkELi2fP5jfjN/IV0/0N6Dd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cPUfqh7oNJRSzTrvKg5lpygvq4O/MsnuaKXrg2HQ+zZJFKB/xxyTzgDRMaL82BBEunSARfAbMqcqw0gJbPBnvkxGSdi8NcCgbRgdSzXITJ+tBmTM8R6BqaOZ/q005cx/XtRvkbQrj/5pHVpWW3B3Hgms+AW0pS0sNqXh4gfnBv0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=TM6Aozzh; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (91-158-51-183.elisa-laajakaista.fi [91.158.51.183])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4cLcf85BxtzyQ5;
-	Tue,  9 Sep 2025 11:38:08 +0300 (EEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1757407088;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cafJFHXmLgV2tuyOB5uga2YykmlqWipvwJGhaBu2g+4=;
-	b=TM6AozzhGcIXM7Ah1cx0qibrl2Wh4WPYFqdUpG23dHy/Q88hobRWnOv0q2k3z7gbXw1T4b
-	2B60+QHJot6DUiwDS+p1qHX86bhggrFQ0brMoc/lalcJNmCs7tlUW82glaMW3A0NfMtXqL
-	vY/PpjnGP7PFJ4N4VMdnZNMVauN0LDU=
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1757407088; a=rsa-sha256; cv=none;
-	b=PfxDC7zdqKa/iVpQzeaVlgMVy+tnNAKPifWAYpYWPR9ZexhprWwebkQZpHc38IedhZX4r+
-	hqByaTfWH8D3h1yPTS+CnW+F4aLegSvpxYHrs02YXSxUAVNeMEdb67b5mYbauGq2j5fPz/
-	wr3Ke/lXPh+JmyNcPlV5Qwf1cgz9aKA=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1757407088;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=cafJFHXmLgV2tuyOB5uga2YykmlqWipvwJGhaBu2g+4=;
-	b=QalqDfF/ivRbEssOms8x4jVTq4smrnuuLJjPWZ+nHDrz7o5VtSHkoKUrOF1HDO9g6Idqi8
-	38LmXE68rngFger8vtceBB7JvXk7CEfUugXl9v95EZB3F9HDoAUZYLox3N0awJrrgRpEVT
-	56DjRUyfKk/TtAC+gk28WK9bwQ3F4u4=
-Received: from valkosipuli.retiisi.eu (valkosipuli.local [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id E7C67634C93;
-	Tue,  9 Sep 2025 11:38:07 +0300 (EEST)
-Date: Tue, 9 Sep 2025 11:38:07 +0300
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Matthias Fend <matthias.fend@emfend.at>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	bsp-development.geo@leica-geosystems.com
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: i2c: add Himax HM1246 image
- sensor
-Message-ID: <aL_nb8J1JNYxLG36@valkosipuli.retiisi.eu>
-References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
- <20250526-hm1246-v2-1-6b882827a3a5@emfend.at>
- <aLq0jJtdaxIpN9CT@valkosipuli.retiisi.eu>
- <b2826079-7db5-4adf-9e2a-e372e977acf3@emfend.at>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08886253950;
+	Tue,  9 Sep 2025 08:38:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757407102; cv=none; b=pmJrkUkRvngrmF2ca7ZgDi8atROKQF2tFg2GGO+2nF0Yker0MAcawt9Dik/u8DvDbr6NB5jTGVPmuC6hz3CaYangdC3SOYHqvl322KY3QO3yvYPDdgoVgJhLqfNfMX5ML++C8C+HZ8xR1wsNUTIjSj2X+MghVXZ1huU4M2i5Gh8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757407102; c=relaxed/simple;
+	bh=uB+IEtx25LHxWXI7ahs311VclinzFGUMpGguGTX3quc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uLJAgxPvKyS2O1hZDDfGCfSCI8Pk0heCowrcl/xmQfntYU7PNoUGUILsj0aDShvjP0GTZXo2enMl3wIK1KamL1QQZ5uCY5aNPbwnMDwuGvArsmYIKW79mZnq6W1Ngo7mu9S6z8mdsrElvpryi566TNbxQepfad6ktc/okczNcq8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UARw4Z1v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FE06C4CEF5;
+	Tue,  9 Sep 2025 08:38:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757407100;
+	bh=uB+IEtx25LHxWXI7ahs311VclinzFGUMpGguGTX3quc=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=UARw4Z1vtYhTMk6kbJdenfdkjaYGlv/GBJuf9leQ9bV/z4qaKqoQQ73eNY84aAoDT
+	 FyLt86TS1jK/4wkKvnQIC06jKsa/9YsoaKEcJNS/rsamsMmHNwyF9giB180cIo7Tsu
+	 aW6+YNlKNsGWZJFPQgk3ZCr3jUob5LPrUvkc7ygDKCIHduEmHvhoEYyUU0wOYoz/Oa
+	 qlIdixGfuX4qsyd38sj6R4ccPzFnL3J2Gg92hwmz5F7j2tPYQXZTg+4C/w9LEqMPLJ
+	 BW7OYtdQjsbaSqURWNq9DdhDx9rZ7TFiKVtm8jSNw8/+n3Qe4yHuZHQGE84G39gRwN
+	 sBTSO3REfuzwg==
+Message-ID: <df2dcd5d-bafc-483a-8ef5-f58ff225fc91@kernel.org>
+Date: Tue, 9 Sep 2025 10:38:16 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b2826079-7db5-4adf-9e2a-e372e977acf3@emfend.at>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
+ <87plc09z6j.wl-kuninori.morimoto.gx@renesas.com>
+ <20250909-woodlouse-of-authentic-fertility-1cea2c@kuoka>
+ <CAMuHMdXd6yhi2SBHBvq+0LF4kBnjm3igVb21TYaKoWSvjPGcEg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <CAMuHMdXd6yhi2SBHBvq+0LF4kBnjm3igVb21TYaKoWSvjPGcEg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Matthias,
+On 09/09/2025 09:51, Geert Uytterhoeven wrote:
+> Hi Krzysztof,
+> 
+> Thanks for your quick review!
+> 
+> On Tue, 9 Sept 2025 at 09:46, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>> On Tue, Sep 09, 2025 at 01:45:09AM +0000, Kuninori Morimoto wrote:
+> 
+>>> +     extal_clk: extal {
+>>
+>> Use some sane prefix.
+>>
+>> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+>>
+>>> +             compatible = "fixed-clock";
+>>> +             #clock-cells = <0>;
+>>> +             /* This value must be overridden by the board */
+>>> +             clock-frequency = <0>;
+>>
+>> Drop instead
+> 
+> clock-frequency is a required property?
 
-On Tue, Sep 09, 2025 at 10:32:21AM +0200, Matthias Fend wrote:
-> Hi Sakari,
-> 
-> Thanks for you feedback!
-> 
-> Am 05.09.2025 um 11:59 schrieb Sakari Ailus:
-> > Hi Matthias,
-> > 
-> > Thanks for the set.
-> > 
-> > On Mon, May 26, 2025 at 08:59:27AM +0200, Matthias Fend wrote:
-> > > Add YAML device tree binding for Himax HM1246 image sensor.
-> > > 
-> > > Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> > > Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
-> > > ---
-> > >   .../bindings/media/i2c/himax,hm1246.yaml           | 111 +++++++++++++++++++++
-> > >   1 file changed, 111 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> > > new file mode 100644
-> > > index 0000000000000000000000000000000000000000..8a67de7e3ffcaa9f1acfe443b1e36fffb79dbacf
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
-> > > @@ -0,0 +1,111 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +# Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/himax,hm1246.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Himax HM1246-AWD 1/3.7-Inch megapixel SoC image sensor
-> > > +
-> > > +maintainers:
-> > > +  - Matthias Fend <matthias.fend@emfend.at>
-> > > +
-> > > +description:
-> > > +  The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
-> > > +  array size of 1296 x 976. It is programmable through an I2C interface and
-> > > +  connected via parallel bus.
-> > > +
-> > > +allOf:
-> > > +  - $ref: /schemas/media/video-interface-devices.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: himax,hm1246
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    description: Input reference clock (6 - 27 MHz)
-> > > +    maxItems: 1
-> > > +
-> > > +  reset-gpios:
-> > > +    description: Active low XSHUTDOWN pin
-> > > +    maxItems: 1
-> > > +
-> > > +  avdd-supply:
-> > > +    description: Power for analog circuit (3.0 - 3.6 V)
-> > > +
-> > > +  iovdd-supply:
-> > > +    description: Power for I/O circuit (1.7 - 3.6 V)
-> > > +
-> > > +  dvdd-supply:
-> > > +    description: Power for digital circuit (1.5 / 1.8 V)
-> > > +
-> > > +  port:
-> > > +    $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +    additionalProperties: false
-> > > +    description: Parallel video output port
-> > > +
-> > > +    properties:
-> > > +      endpoint:
-> > > +        $ref: /schemas/media/video-interfaces.yaml#
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +        properties:
-> > > +          bus-type:
-> > > +            const: 5
-> > 
-> > Does the device also support e.g. Bt.656? If not, you can drop this.
-> 
-> It is always a parallel interface. Okay, will remove it.
-> > 
-> > If the rest of the parallel interface parameter properties aren't
-> > mandatory, what are their default values?
-> 
-> The defaults are:
-> hsync-active: 1 (high)
-> vsync-active: 1 (high)
-> pclk-sample: 0 (falling)
-> 
-> Should I add the default values? The properties section of the endpoint
-> would then look like this:
-> 
-> properties:
->   hsync-active:
->     default: 1
-> 
->   vsync-active:
->     default: 1
-> 
->   pclk-sample:
->     default: 0
+And it should be provided by the board or fail the DTS. I think now it
+hides the dtbs_check warnings for no real gain/reason.
 
-If these indeed are the typical values, using the defaults makes sense. The
-other option is indeed to make them required.
 
-> 
-> > 
-> > > +
-> > > +        required:
-> > > +          - bus-type
-> 
-> Then I should probably remove that too?
-> 
-> > > +
-> > > +    required:
-> > > +      - endpoint
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - clocks
-> > > +  - avdd-supply
-> > > +  - iovdd-supply
-> > > +  - dvdd-supply
-> > > +  - port
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/gpio/gpio.h>
-> > > +    #include <dt-bindings/media/video-interfaces.h>
-> > > +
-> > > +    i2c {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        sensor@24 {
-> > > +            compatible =  "himax,hm1246";
-> > > +            reg = <0x24>;
-> > > +
-> > > +            clocks = <&hm1246_clk>;
-> > > +
-> > > +            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
-> > > +
-> > > +            avdd-supply = <&hm1246_avdd>;
-> > > +            iovdd-supply = <&hm1246_iovdd>;
-> > > +            dvdd-supply = <&hm1246_dvdd>;
-> > > +
-> > > +            orientation = <2>;
-> > 
-> > It'd be nice to add macros for these in
-> > include/dt-bindings/media/video-interfaces.h .
-> 
-> True. However, since this is not specific to this sensor, I think it's
-> something for a separate series.
-> Should I omit these properties in this example?
-
-Feel free to keep them.
-
-Such definitions should go to another patch (or even series) in any case.
-
--- 
-Kind regards,
-
-Sakari Ailus
+Best regards,
+Krzysztof
 
