@@ -1,114 +1,124 @@
-Return-Path: <devicetree+bounces-214797-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214798-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA4CCB4A6E5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:11:36 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A60B4A714
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:14:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 122287B64EB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:09:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 141C31C273D1
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:12:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0156D27E7EB;
-	Tue,  9 Sep 2025 09:10:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B102279DDB;
+	Tue,  9 Sep 2025 09:12:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sqnTK/cQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="w2YD8++8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5FA1279DDB;
-	Tue,  9 Sep 2025 09:10:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 881A5259CB2
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 09:12:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757409026; cv=none; b=XWrf+efwoAnPoekz2Ujqcs1toObbzgwNCfLKCLFRAOnWPZY6Kw9Z5Ye+Hyh7hCXDv7j4yVFzuzx4/V53lKnyOQ+l4r8kbNJxTOfdJQBJVgL7D41AyCgiGUi1Aa0M6eAQGu4SAFf9ZO6Y1XTNdUsIpV5bMUW/vwlDp9En0JHUHnk=
+	t=1757409125; cv=none; b=K8yyvsXB3jaT8E+TYRb0EKMSerGzY8nnQIfhZlum7qSDCR7SYHwgMbypPIt67zgt7YuVXzmjHlNTS0teTGPh2/1kfCJa1siryZb1TzUoOsbhNnwRH2uEl71f5RHvSsWNGKHIX8YnTCl17O2/fW2fiQMHHo6OXaMASpEA2fyXuKg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757409026; c=relaxed/simple;
-	bh=lT+TBUjr1IEMc1JW6nEbwDuFgBshtFR0gCTlV9HCcAA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=RlDlNC3nUG5rHncDt2n9cklVJvu8NJJ9my7rd8YNhpflSoVa8PFCZrzxyJKHL2frqxP7Lk8XrL3DCq2ARw8dYfIlHNZLtmTFgzFvPjkqObeUh1bNBc8mDq0N7fx0C+wN+kTq+scBfUjgRz4zUgIyMJZWq9Tg6de9g01Vk3wxrUs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sqnTK/cQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43510C4CEF4;
-	Tue,  9 Sep 2025 09:10:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757409026;
-	bh=lT+TBUjr1IEMc1JW6nEbwDuFgBshtFR0gCTlV9HCcAA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sqnTK/cQWndHfSbaZ2pd+a8nhIRu+tbohS1rrIgk8ZqUso4jSwt+Q6kgDxI3V0Cax
-	 a+tAVcn1i3O7VoeQJTEEKjI3K1RHY5XVe5LhHSNWeYzkG/Dizq57kSOjbA0vM22gmX
-	 DK24Tv47CPb0Ft0wzPzByQbEFRyGBKvB7JPOt9+xjJ9mj9eGVVXHQLbXrG+YSPzT91
-	 RcjvjQYkaEpz2Sr9HVOrCGUbvmJIV9xaN5On4vBHLsHKzBjFZdrbRxovF8eA/VVeXL
-	 13S8LxoWwanJQ0QzCs7PBuWp9zy/n89K+beE1y7d9P7UWSz+D9QNTdWuvTq1eDJ5fT
-	 y5J9ebFR0BbXw==
-Date: Tue, 9 Sep 2025 14:40:18 +0530
-From: Manivannan Sadhasivam <mani@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: manivannan.sadhasivam@oss.qualcomm.com, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kwilczynski@kernel.org>, 
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>, 
-	Bartosz Golaszewski <brgl@bgdev.pl>, Saravana Kannan <saravanak@google.com>, 
-	linux-pci@vger.kernel.org, linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Krishna Chaitanya Chundru <krishna.chundru@oss.qualcomm.com>, 
-	Brian Norris <briannorris@chromium.org>
-Subject: Re: [PATCH v2 3/5] PCI/pwrctrl: Add support for toggling PERST#
-Message-ID: <ijb6xnd5cl6v4cw5lfx5srjtzionx3iyxxg32xhljyylmplciz@dgizpuhv3c4u>
-References: <20250903-pci-pwrctrl-perst-v2-3-2d461ed0e061@oss.qualcomm.com>
- <20250908193529.GA1439341@bhelgaas>
+	s=arc-20240116; t=1757409125; c=relaxed/simple;
+	bh=2e83reysY5H5m6nmYmalJnlN7Al1n9K+XBXCcduWVMI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=k1locKq3JH5WybspQj2ODOK4D9WGv49/sdF41ZkQ1zNdU7J56d0yZctaq0sdDMd+xXrZ9+C8oPLgJecSYvrLlOeNYPr9kD274mQSRgfba087q3cXK1Dkajl+A/THkG2tJ3MeYfFLepIn60oOs4pjgJuoFOTSLQkFGxdNYvhkIjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=w2YD8++8; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 49AF14E40C0E
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 09:11:54 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0A4F460630;
+	Tue,  9 Sep 2025 09:11:54 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 5D070102F27D2;
+	Tue,  9 Sep 2025 11:11:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757409113; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:content-language:in-reply-to:references;
+	bh=YyeFSv8G8VagVLbPZr7Jz9cHj6+OjDL5VXZ6S6Zjn4M=;
+	b=w2YD8++8nnm1tP/wIanutigjiur6Mjwhvnyc4ddj9jKMkjcLvS3U8FmCSmazKypDlcfN1g
+	tLYeD1aFrKF5oLM76zkM0iSkGvx0ffgKNyhiSqtk/eu1aQBGBVIxFxIYt6gB7kzIs5lT9S
+	EH/8sGIAEfGsx6A8FB39bPj9bTBgMbSFOH+SdK1QFM/LGRCLgZ0KPSf5eCQ5rOQxGL4Qs7
+	KxTTV2lAITO1Sgyc6Bgv2U4E9EJCjPU/KgO8AFxAxRncyEamCuvrw+nXQmDDnwKu/YSO68
+	hVt9mkMcOMWRtA9TfGorsArgxvCf83PAQE/oCS0q45DKBmuOogv88s4ISjAGqg==
+Message-ID: <464f5995-be7d-41f6-8e95-7d724e2b5308@bootlin.com>
+Date: Tue, 9 Sep 2025 11:11:40 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: usb/ti,am62-usb.yaml: Add
+ ti,lane-reverse property
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thinh Nguyen
+ <Thinh.Nguyen@synopsys.com>, Aswath Govindraju <a-govindraju@ti.com>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+References: <20250908162052.355341-1-richard.genoud@bootlin.com>
+ <20250908162052.355341-2-richard.genoud@bootlin.com>
+ <20250909-curvy-happy-pug-eeffda@kuoka>
+From: Richard GENOUD <richard.genoud@bootlin.com>
+Content-Language: en-US, fr
+Organization: Bootlin
+In-Reply-To: <20250909-curvy-happy-pug-eeffda@kuoka>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20250908193529.GA1439341@bhelgaas>
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Sep 08, 2025 at 02:35:29PM GMT, Bjorn Helgaas wrote:
-> On Wed, Sep 03, 2025 at 12:43:25PM +0530, Manivannan Sadhasivam via B4 Relay wrote:
-> > As per PCIe spec r6.0, sec 6.6.1, PERST# is an auxiliary signal provided by
-> > the system to a component as a Fundamental Reset. This signal if available,
-> > should conform to the rules defined by the electromechanical form factor
-> > specifications like PCIe CEM spec r4.0, sec 2.2.
-> > 
-> > Since pwrctrl driver is meant to control the power supplies, it should also
-> > control the PERST# signal if available.
+Le 09/09/2025 à 09:32, Krzysztof Kozlowski a écrit :
+> On Mon, Sep 08, 2025 at 06:20:51PM +0200, Richard Genoud wrote:
+>> On some designs, the D+ and D- lines are swapped (on purpose or not).
+>> The PHY can handle that with the LANE_REVERSE bit.
+>>
+>> Signed-off-by: Richard Genoud <richard.genoud@bootlin.com>
+>> ---
+>>   Documentation/devicetree/bindings/usb/ti,am62-usb.yaml | 5 +++++
+>>   1 file changed, 5 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>> index f6e6d084d1c5..ba894d610af0 100644
+>> --- a/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>> +++ b/Documentation/devicetree/bindings/usb/ti,am62-usb.yaml
+>> @@ -36,6 +36,11 @@ properties:
+>>       items:
+>>         - const: ref
+>>   
+>> +  ti,lane-reverse:
+>> +    description:
+>> +      Should be present if D+ and D- lanes have to be swapped.
+>> +    type: boolean
 > 
-> Why?  Probably obvious to hardware folks, but a sentence about the
-> necessary connection between power supply and reset would help me.
+> What is not working with existing data-lanes property?
+Hum, indeed. data-lanes could definitely be used here.
+
 > 
-> > But traditionally, the host bridge
-> > (controller) drivers are the ones parsing and controlling the PERST#
-> > signal. They also sometimes need to assert PERST# during their own hardware
-> > initialization. So it is not possible to move the PERST# control away from
-> > the controller drivers and it must be shared logically.
-> > 
-> > Hence, add a new callback 'pci_host_bridge::toggle_perst', that allows the
-> > pwrctrl core to toggle PERST# with the help of the controller drivers. But
-> > care must be taken care by the controller drivers to not deassert the
-> > PERST# signal if this callback is populated.
-> > 
-> > This callback if available, will be called by the pwrctrl core during the
-> > device power up and power down scenarios. Controller drivers should
-> > identify the device using the 'struct device_node' passed during the
-> > callback and toggle PERST# accordingly.
+> Plus, lanes are swapped per port, not for entire device, no?
+I'm not sure to get what you mean here.
+The use case I'm trying to address is:
+pin AD10(USB1_DM) of the AM625 is routed to USB_DP pin of an USB connector.
+And pin AE9(USB1_DP) of the AM625 is routed to USB_DM pin of an USB 
+connector.
+And using LANE_REVERSE bit of MMR_USB2SS_CFG_PHY_CONFIG swaps the DM/DP 
+lines of the corresponding USB instance.
+
+Regards,
+Richard
+
 > 
-> "Toggle" isn't my favorite description because it implies that you
-> don't need to supply the new state; you're just switching from the
-> current state to the other state, and you wouldn't need to pass a
-> state.  Maybe something like "set_perst" or "set_perst_state" like we
-> do for set_cpu_online(), *_set_power_state(), etc?
+> Best regards,
+> Krzysztof
 > 
 
-Since the spec mentions the state change as 'assertion' and 'deassertion', how
-about:
-
-	 pci_host_bridge::perst_assert(struct pci_pwrctrl *pwrctrl, bool assert)
-
-- Mani
-
--- 
-மணிவண்ணன் சதாசிவம்
 
