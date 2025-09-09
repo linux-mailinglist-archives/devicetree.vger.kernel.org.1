@@ -1,335 +1,125 @@
-Return-Path: <devicetree+bounces-215119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CEDEB506D2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:16:25 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 272A1B506E4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:22:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 080AC5E50AF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:16:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 248051C22856
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:22:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6A835E4FC;
-	Tue,  9 Sep 2025 20:15:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD90E302CD0;
+	Tue,  9 Sep 2025 20:22:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yandex-team.com header.i=@yandex-team.com header.b="uEzS3uie"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="PvlNrdGE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forwardcorp1a.mail.yandex.net (forwardcorp1a.mail.yandex.net [178.154.239.72])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f42.google.com (mail-vs1-f42.google.com [209.85.217.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A3B335E4E1;
-	Tue,  9 Sep 2025 20:15:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.72
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 275F91FE44A;
+	Tue,  9 Sep 2025 20:22:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757448945; cv=none; b=Bm6aq2X5bfV4gJrmfLjaY1GuSK+vygd+dOCzpGDCZvTUYszC3w40Zi7M/r93+jRtZ2HB/U07CmsRfUzebsSn/fD/xXDlUTiozIwCRbVMCgqj1a95WSd6OCxbo/G6BkdeRrNNDX4nSiO42BDs2+uX4unfuidKGPR6THqTbrSpQSo=
+	t=1757449345; cv=none; b=qbdwFiQqxBWopsvQstym85nnBR7etSILnPmpEpMw69EWsWCRaJBl7c0NfBP2fP07H9BU+1TeNDzLYBPispdK2CPnDj7QxfuFdlO1Lai+b5rlCcGWPdJMpVSmNa1dRpRxaKJuWhOYobiRfkilo7hv8jo4lnxfZcAXxJ/gv03XE+s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757448945; c=relaxed/simple;
-	bh=VvhyADt438BmE4NVshaXV0a6MM/XloFgZ/1b2JkQT5I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=IbugUg9vnWRwkHCafS/lFD1N6ITyMxUHXAFIzq6SPjb1hm1ZpeHhpyhsSiOPhU5DPedZFb7STEPDcLak4M6gs49hzwKSkV2wsr5+K2MstXSRV9Qw0ijAj/rqy3Om2Bmkq6AoGGFYuvkyNPniTeKycOlIhokj/vfF9d+hSwIt2Ss=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex-team.com; spf=pass smtp.mailfrom=yandex-team.com; dkim=pass (1024-bit key) header.d=yandex-team.com header.i=@yandex-team.com header.b=uEzS3uie; arc=none smtp.client-ip=178.154.239.72
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yandex-team.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yandex-team.com
-Received: from mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net (mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net [IPv6:2a02:6b8:c1f:3a87:0:640:845c:0])
-	by forwardcorp1a.mail.yandex.net (Yandex) with ESMTPS id 7FC46C01A1;
-	Tue, 09 Sep 2025 23:15:41 +0300 (MSK)
-Received: from localhost.localdomain (172.31.115.73-vpn.dhcp.yndx.net [172.31.115.73])
-	by mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net (smtpcorp/Yandex) with ESMTPSA id IFQqlX5GteA0-KRuqVmhs;
-	Tue, 09 Sep 2025 23:15:40 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yandex-team.com;
-	s=default; t=1757448940;
-	bh=zCmAQ9E1zzf2oww3L+0ScmydA57h//TWKN5Ptw1aNtc=;
-	h=Message-ID:Date:In-Reply-To:Cc:Subject:References:To:From;
-	b=uEzS3uievKUGgVzVo0XM3CO7O2ofI0YqYncCVzgEakehhvnc4qFhCFRVQGZevHwi7
-	 CsQOMPEcV3YUF+z629p8DXGKYRKMBn5aPJVuffYv3pT3WEedSZtyRhs7RNlM2tFIQO
-	 Rai9V/CC6os2Ibdv73XbRLEYv8Q0/+Dnk2oRckgk=
-Authentication-Results: mail-nwsmtp-smtp-corp-main-69.vla.yp-c.yandex.net; dkim=pass header.i=@yandex-team.com
-From: Andrey Ryabinin <arbn@yandex-team.com>
-To: linux-kernel@vger.kernel.org
-Cc: Alexander Graf <graf@amazon.com>,
-	Mike Rapoport <rppt@kernel.org>,
-	James Gowans <jgowans@amazon.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	linux-mm@kvack.org,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>,
-	Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	x86@kernel.org,
-	"H. Peter Anvin" <hpa@zytor.com>,
-	Baoquan He <bhe@redhat.com>,
-	kexec@lists.infradead.org,
-	Pratyush Yadav <ptyadav@amazon.de>,
-	Jason Gunthorpe <jgg@nvidia.com>,
-	Pasha Tatashin <pasha.tatashin@soleen.com>,
-	David Rientjes <rientjes@google.com>,
-	Pratyush Yadav <pratyush@kernel.org>,
-	Changyuan Lyu <changyuanl@google.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	linux-doc@vger.kernel.org,
-	Andrey Ryabinin <ryabinin.a.a@gmail.com>,
-	Chris Li <chrisl@kernel.org>,
-	Ashish.Kalra@amd.com,
-	William Tu <witu@nvidia.com>,
-	David Matlack <dmatlack@google.com>,
-	Andrey Ryabinin <arbn@yandex-team.com>,
-	Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v3 4/7] kho: replace KHO FDT with kstate metadata
-Date: Tue,  9 Sep 2025 22:14:39 +0200
-Message-ID: <20250909201446.13138-5-arbn@yandex-team.com>
-X-Mailer: git-send-email 2.49.1
-In-Reply-To: <20250909201446.13138-1-arbn@yandex-team.com>
-References: <20250909201446.13138-1-arbn@yandex-team.com>
+	s=arc-20240116; t=1757449345; c=relaxed/simple;
+	bh=ID6pc4ieMZRwL9bHUbpq0RM92o7os70kNlOhQTkWy1o=;
+	h=Date:From:To:CC:Subject:In-Reply-To:References:Message-ID:
+	 MIME-Version:Content-Type; b=AlcgdQPEOiQmxj5mft/JnbRSmCXWyJ+bV/3FPkq1cVWfHXBPIAymbho+qQ3Ct1kvDFpp/lmo7qO3JDH2MHcbB9RvGVONePryvOlVEbU7V/+02CIDzyUfJz+xr3n7NrkHqJ+RBrdKUSVSkHztOPZS70eKD9GF9S2ktXJ9MnYj/HY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=PvlNrdGE; arc=none smtp.client-ip=209.85.217.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vs1-f42.google.com with SMTP id ada2fe7eead31-52eb6872bd2so2671251137.3;
+        Tue, 09 Sep 2025 13:22:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757449343; x=1758054143; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ID6pc4ieMZRwL9bHUbpq0RM92o7os70kNlOhQTkWy1o=;
+        b=PvlNrdGEYdSQn0pu9fbcgf2ReYuMsEsvIoSdtdvZoVf7KmpIaQYBybGMOjhmYamuFs
+         X6uJn2fanbtGP/VwChwHa50GC/LVC6gDpJtvmkLg9+bYI9OwPo1DisYuZ1FhPdMvk8GR
+         2QZjuN91tEjytinDW7H7z8ZRXsWvWF17AIUPEp8AwS4im7wMQfOxbvR4497WLuhj9eqZ
+         L8YXCSPRmN2puBK5u1sGM63oRzITThB4dniHvCD6sjlcxtQzNXuM/917w8lprL35Xzt2
+         ZTquaYWoCwHdtNjjr3S2VjycO1gHArR0qhDzSo5+mFjJQwjNClJx/Kpg7lpFdg99iUdh
+         DLXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757449343; x=1758054143;
+        h=content-transfer-encoding:mime-version:message-id:references
+         :in-reply-to:user-agent:subject:cc:to:from:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ID6pc4ieMZRwL9bHUbpq0RM92o7os70kNlOhQTkWy1o=;
+        b=ibrvGQ/2m3BcEwx92xl5P3N4rwh+lXpscYGI/KaidgwR8F5/pvjGifxFcgdHFiez0W
+         WfE8E6MNdigZZlU+ocTx9QIT7qwrnot9IIZ/foPe+sZSGcoS0jSAoiGzUINRkGd8K6H4
+         ieXU1i/P5jLSzkEsYChcbUnbEe4UE9vEKmTfAUL6BprAbHQTVvKYuU4A7hO2GmOuwmC9
+         k5GCEzn0HOxB1+e3CvVPOaKGRayVrkS2gHVYlklDGHtlahhlLJrlIEKqG22qYKinfH2b
+         lxa/lb0SPlFyjRFLfQnt/Fwt3rmiYyqYMR5d6KK94/zTVLAvKJtXHf7C1ItEoKvHU5dx
+         St7A==
+X-Forwarded-Encrypted: i=1; AJvYcCW3iXbyNU7MFWHMj8ZtyjlTmM7cVOC7Wfu8tbzwYEJp7sM/gaPoWiWjC4TRMS8IjRkEEWc9rumHK3X2A51D@vger.kernel.org, AJvYcCX5IIv1GJsh3X7w4Qtr4wlPKJaoexQ7lleRc1DS8p4bJFV6ZB0Fw95dqijTnSWd2BuTpptNQGDCNeRt@vger.kernel.org
+X-Gm-Message-State: AOJu0YzxbWDGor2xMKTjquMLgcPQLF+br5jAsICg2tYL+fZ0SyEY2hoR
+	K5LkJjsYxG1ICn1w0/MJ28tu4l8s5jRtI1XTL5RgT4lwgZ0SmyzxrORCbr45nTSn
+X-Gm-Gg: ASbGnctY5rQzZ5TuXre78g4toD2fUcKM+2h9kHbGru3vYfI6U8dJQ/k7coRb2hqfvGs
+	usociNnPGkRl9jdP7+xTycCEaBszEYJHra+ONpgknFPehzNzalAnn64loBx5ebzcCaXxOfQQcnD
+	ADMlmuXj7/s5hXKHsVPAZdqS+MijAVOILSCqJOmG4fKi43Xct87m+jJ+ciDLRjT7iYv1YVkGEV9
+	JIuqwfxOg2S47JYHQx7CqpCo1zGsLmZgRaAJJOsUwe9HARoA5mW0KRHBsiR4Sq5BCldyrk5qlOU
+	rR98tIxC42ZPKrwtKAo6XoPE6KGvt7SazByzohYG4NxObBCOp3IPg+YfCjTAh7duLLmj0wb6GPB
+	ntgq0fTT9HCtXLN3puiNpaaTFDPp9hL5Cb6rbltMODTE=
+X-Google-Smtp-Source: AGHT+IET0cEihoPzYDrli9hVnvOSOkquH6jtJx5NYH/GU0N8fQUT9tj3olQPNw7rngs0uDi4EVYuzQ==
+X-Received: by 2002:a05:6102:3586:b0:537:f1db:7694 with SMTP id ada2fe7eead31-53d100706d0mr3965895137.15.1757449342913;
+        Tue, 09 Sep 2025 13:22:22 -0700 (PDT)
+Received: from ehlo.thunderbird.net ([2804:18:93c:9509:7066:6bc:183f:9270])
+        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-8982751bf54sm8612711241.21.2025.09.09.13.22.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Sep 2025 13:22:22 -0700 (PDT)
+Date: Tue, 09 Sep 2025 17:22:17 -0300
+From: =?ISO-8859-1?Q?Eric_Gon=E7alves?= <ghatto404@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>
+CC: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_v1_1/3=5D_arm64=3A_dts=3A_qcom=3A_sm82?=
+ =?US-ASCII?Q?50-samsung-r8q=3A_Move_common_parts_to_dtsi?=
+User-Agent: Thunderbird for Android
+In-Reply-To: <9e1e68e9-8bf1-4529-a2c0-3ecb2474d8d1@oss.qualcomm.com>
+References: <20250905190931.27481-1-ghatto404@gmail.com> <20250905190931.27481-2-ghatto404@gmail.com> <9e1e68e9-8bf1-4529-a2c0-3ecb2474d8d1@oss.qualcomm.com>
+Message-ID: <8155F2C9-1E99-457E-B4C8-9C9081D679B1@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Store KSTATE physical address & size instead of FDT in kho_data.
-and initialize KSTATE from kho_populate().
-To be able to use FDT in parallel with KSTATE place FDT
-address&size into 'struct kho_fdt' and save/restore it using KSTATE.
 
-This finishes wiring KSTATE with KHO, making it fully functional.
 
-Signed-off-by: Andrey Ryabinin <arbn@yandex-team.com>
----
- arch/x86/include/uapi/asm/setup_data.h |  4 +-
- arch/x86/kernel/kexec-bzimage64.c      |  6 +--
- arch/x86/kernel/setup.c                |  3 +-
- drivers/of/fdt.c                       |  6 +--
- include/linux/kexec.h                  |  2 +-
- include/linux/kstate.h                 |  1 +
- kernel/liveupdate/kexec_handover.c     | 60 +++++++++++++++++++++-----
- 7 files changed, 61 insertions(+), 21 deletions(-)
-
-diff --git a/arch/x86/include/uapi/asm/setup_data.h b/arch/x86/include/uapi/asm/setup_data.h
-index 2671c4e1b3a0..844f5b93473f 100644
---- a/arch/x86/include/uapi/asm/setup_data.h
-+++ b/arch/x86/include/uapi/asm/setup_data.h
-@@ -83,8 +83,8 @@ struct ima_setup_data {
-  * Locations of kexec handover metadata
-  */
- struct kho_data {
--	__u64 fdt_addr;
--	__u64 fdt_size;
-+	__u64 kstate_addr;
-+	__u64 kstate_size;
- 	__u64 scratch_addr;
- 	__u64 scratch_size;
- } __attribute__((packed));
-diff --git a/arch/x86/kernel/kexec-bzimage64.c b/arch/x86/kernel/kexec-bzimage64.c
-index 24a41f0e0cf1..1bf9474d4286 100644
---- a/arch/x86/kernel/kexec-bzimage64.c
-+++ b/arch/x86/kernel/kexec-bzimage64.c
-@@ -253,12 +253,12 @@ static void setup_kho(const struct kimage *image, struct boot_params *params,
- 	sd->len = sizeof(struct kho_data);
- 
- 	/* Only add if we have all KHO images in place */
--	if (!image->kho.fdt || !image->kho.scratch)
-+	if (!image->kho.kstate || !image->kho.scratch)
- 		return;
- 
- 	/* Add setup data */
--	kho->fdt_addr = image->kho.fdt;
--	kho->fdt_size = PAGE_SIZE;
-+	kho->kstate_addr = image->kho.kstate;
-+	kho->kstate_size = PAGE_SIZE;
- 	kho->scratch_addr = image->kho.scratch->mem;
- 	kho->scratch_size = image->kho.scratch->bufsz;
- 	sd->next = params->hdr.setup_data;
-diff --git a/arch/x86/kernel/setup.c b/arch/x86/kernel/setup.c
-index 1b2edd07a3e1..eedcf4be8985 100644
---- a/arch/x86/kernel/setup.c
-+++ b/arch/x86/kernel/setup.c
-@@ -467,7 +467,8 @@ static void __init add_kho(u64 phys_addr, u32 data_len)
- 		return;
- 	}
- 
--	kho_populate(kho->fdt_addr, kho->fdt_size, kho->scratch_addr, kho->scratch_size);
-+	kho_populate(kho->kstate_addr, kho->kstate_size, kho->scratch_addr,
-+		kho->scratch_size);
- 
- 	early_memunmap(kho, size);
- }
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 0edd639898a6..f682ef6a1187 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -893,8 +893,8 @@ static void __init early_init_dt_check_kho(void)
- 	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
- 		return;
- 
--	fdt_start = dt_mem_next_cell(dt_root_addr_cells, &p);
--	fdt_size = dt_mem_next_cell(dt_root_addr_cells, &p);
-+	kstate_start = dt_mem_next_cell(dt_root_addr_cells, &p);
-+	kstate_size = dt_mem_next_cell(dt_root_addr_cells, &p);
- 
- 	p = of_get_flat_dt_prop(node, "linux,kho-scratch", &l);
- 	if (l != (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32))
-@@ -903,7 +903,7 @@ static void __init early_init_dt_check_kho(void)
- 	scratch_start = dt_mem_next_cell(dt_root_addr_cells, &p);
- 	scratch_size = dt_mem_next_cell(dt_root_addr_cells, &p);
- 
--	kho_populate(fdt_start, fdt_size, scratch_start, scratch_size);
-+	kho_populate(kstate_addr, kstate_size, scratch_start, scratch_size);
- }
- 
- #ifdef CONFIG_SERIAL_EARLYCON
-diff --git a/include/linux/kexec.h b/include/linux/kexec.h
-index 39fe3e6cd282..ebf70361269f 100644
---- a/include/linux/kexec.h
-+++ b/include/linux/kexec.h
-@@ -416,7 +416,7 @@ struct kimage {
- 
- 	struct {
- 		struct kexec_segment *scratch;
--		phys_addr_t fdt;
-+		phys_addr_t kstate;
- 	} kho;
- 
- 	/* Core ELF header buffer */
-diff --git a/include/linux/kstate.h b/include/linux/kstate.h
-index 53992593cb19..5a95960e5b03 100644
---- a/include/linux/kstate.h
-+++ b/include/linux/kstate.h
-@@ -94,6 +94,7 @@ struct kstate_field {
- 
- enum kstate_ids {
- 	KSTATE_FOLIO_ID = 1,
-+	KSTATE_KHO_FDT_ID,
- 	KSTATE_LAST_ID = -1,
- };
- 
-diff --git a/kernel/liveupdate/kexec_handover.c b/kernel/liveupdate/kexec_handover.c
-index f1c6378b2657..216cb58553d6 100644
---- a/kernel/liveupdate/kexec_handover.c
-+++ b/kernel/liveupdate/kexec_handover.c
-@@ -806,6 +806,10 @@ int kho_abort(void)
- 		goto unlock;
- 	}
- 
-+	ret = kstate_abort();
-+	if (ret)
-+		goto unlock;
-+
- 	ret = __kho_abort();
- 	if (ret)
- 		goto unlock;
-@@ -984,6 +988,25 @@ int kho_retrieve_subtree(const char *name, phys_addr_t *phys)
- }
- EXPORT_SYMBOL_GPL(kho_retrieve_subtree);
- 
-+
-+#define KHO_FDT_INSTANCE_ID 1
-+
-+static struct kho_fdt {
-+	phys_addr_t fdt_phys;
-+	u64 fdt_len;
-+} kho_fdt;
-+
-+struct kstate_description kho_fdt_state = {
-+	.name = "kho_fdt",
-+	.version_id = 1,
-+	.id = KSTATE_KHO_FDT_ID,
-+	.fields = (const struct kstate_field[]) {
-+		KSTATE_BASE_TYPE(fdt_phys, struct kho_fdt, phys_addr_t),
-+		KSTATE_BASE_TYPE(fdt_len, struct kho_fdt, u64),
-+		KSTATE_END_OF_LIST()
-+	},
-+};
-+
- static __init int kho_init(void)
- {
- 	int err = 0;
-@@ -1000,13 +1023,20 @@ static __init int kho_init(void)
- 	}
- 	kho_out.fdt = page_to_virt(fdt_page);
- 
--	err = kho_debugfs_init();
-+	err = kstate_register(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
- 	if (err)
- 		goto err_free_fdt;
- 
-+	kho_fdt.fdt_phys = page_to_phys(fdt_page);
-+	kho_fdt.fdt_len = PAGE_SIZE;
-+
-+	err = kho_debugfs_init();
-+	if (err)
-+		goto err_free_kstate;
-+
- 	err = kho_out_debugfs_init(&kho_out.dbg);
- 	if (err)
--		goto err_free_fdt;
-+		goto err_free_kstate;
- 
- 	if (fdt) {
- 		kho_in_debugfs_init(&kho_in.dbg, fdt);
-@@ -1025,6 +1055,8 @@ static __init int kho_init(void)
- 
- 	return 0;
- 
-+err_free_kstate:
-+	kstate_unregister(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
- err_free_fdt:
- 	put_page(fdt_page);
- 	kho_out.fdt = NULL;
-@@ -1165,24 +1197,30 @@ static int __init kho_scratch_init(phys_addr_t scratch_phys, u64 scratch_len)
- 	return err;
- }
- 
--void __init kho_populate(phys_addr_t fdt_phys, u64 fdt_len,
--			 phys_addr_t scratch_phys, u64 scratch_len)
-+void __init kho_populate(phys_addr_t kstate_phys, u64 kstate_len,
-+			phys_addr_t scratch_phys, u64 scratch_len)
- {
--
- 	int err = 0;
--	unsigned int scratch_cnt = scratch_len / sizeof(*kho_scratch);
- 
--	err = kho_fdt_init(fdt_phys, fdt_len);
-+	err = kho_scratch_init(scratch_phys, scratch_len);
- 	if (err)
- 		goto out;
- 
--	err = kho_scratch_init(scratch_phys, scratch_len);
-+	err = kstate_early_init(kstate_phys, kstate_len);
-+	if (err)
-+		goto out;
-+
-+	err = kstate_restore(&kho_fdt_state, &kho_fdt, KHO_FDT_INSTANCE_ID);
-+	if (err)
-+		goto out;
-+
-+	err = kho_fdt_init(kho_fdt.fdt_phys, kho_fdt.fdt_len);
- 	if (err)
- 		goto out;
- 
--	kho_in.fdt_phys = fdt_phys;
-+	kho_in.fdt_phys = kho_fdt.fdt_phys;
- 	kho_in.scratch_phys = scratch_phys;
--	kho_scratch_cnt = scratch_cnt;
-+	kho_scratch_cnt = scratch_len / sizeof(*kho_scratch);
- 	pr_info("found kexec handover data. Will skip init for some devices\n");
- 
- out:
-@@ -1201,7 +1239,7 @@ int kho_fill_kimage(struct kimage *image)
- 	if (!kho_enable)
- 		return 0;
- 
--	image->kho.fdt = virt_to_phys(kho_out.fdt);
-+	image->kho.kstate = kstate_out_paddr;
- 
- 	scratch_size = sizeof(*kho_scratch) * kho_scratch_cnt;
- 	scratch = (struct kexec_buf){
--- 
-2.49.1
-
+On September 8, 2025 1:00:29 PM GMT-03:00, Konrad Dybcio <konrad=2Edybcio@=
+oss=2Equalcomm=2Ecom> wrote:
+>On 9/5/25 9:09 PM, Eric Gon=C3=A7alves wrote:
+>> Move common parts of the device tree to a separate dtsi in preparation =
+for
+>> adding other Samsung devices from the S20, Tab S7 or Note 20 families,
+>> creating sm8250-samsung-common=2Edtsi=2E Also add support for UFS, USB =
+and
+>> GPIO keys=2E
+>>=20
+>> Signed-off-by: Eric Gon=C3=A7alves <ghatto404@gmail=2Ecom>
+>> ---
+>
+>FWIW next time try:
+>
+>git config diff=2ErenameLimit 999999
+>
+>so that moving code around will hopefully generate a smaller diff
+>
+>Reviewed-by: Konrad Dybcio <konrad=2Edybcio@oss=2Equalcomm=2Ecom>
+>
+>Konrad
+will do, thanks!
 
