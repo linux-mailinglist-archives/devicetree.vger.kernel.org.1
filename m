@@ -1,166 +1,119 @@
-Return-Path: <devicetree+bounces-215047-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215048-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 84872B50227
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:08:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E46B4B50242
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:16:04 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3EC654E80CA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:08:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83DD1540E6D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:16:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB52732BF3D;
-	Tue,  9 Sep 2025 16:08:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0B5E34F495;
+	Tue,  9 Sep 2025 16:15:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="0mtn3BHD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TNBQ2ujQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3F9F02EDD52;
-	Tue,  9 Sep 2025 16:08:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B8C363451B6;
+	Tue,  9 Sep 2025 16:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757434107; cv=none; b=VRxec2n+5uFonT6w3S6BtoGRKIJNY3ybfLh7voD3Z4aPB5pEmEdBKIPH88CHjpaGDtGECHCJG3fv0v3c4UZoy9zLD5xWIqEHIpppMCUSsvxF5E0HUiTaAEx69hkqMM2/UD2b26uBukrT1YveasYlAvLmqRD5TJ9fdyf2YZgryVU=
+	t=1757434556; cv=none; b=JXiexaevLkK3kSHPvGyc6asDswe/YTL+Pe+kbRla2ZfZG7rH+rZkY6x7b+yvTekhc3Rqc6UUSaCTl/M2Q2vTR0fr2UFDAQ1aO44p2iAbjn89VE7BqcpMWRf5ArHHZOStu78Vov0x4uRjR0oe4m3rD4hX6wKAyXnvOz1PRbzaoFI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757434107; c=relaxed/simple;
-	bh=cA9M2c+NwIj2R5SNaIYS+Uj81/D0soHwTzFXUWCg/9c=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fYzjAxih5Ni3xUIN1BGmwjzG+MnYRtxf4U+recS0/yeYJ3EQERuyS6M0PccPpiCI//jBWbTLvOSpS1RzkqHdY5SyOX3CN+1SeoHkURtJDKVdxXqlj8SdpVsqvH6c3giskLv7b1uIJZDigMLCNqwKLlfOT3Fc/sdU2GW5/60/dZg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=0mtn3BHD; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1757434106; x=1788970106;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=cA9M2c+NwIj2R5SNaIYS+Uj81/D0soHwTzFXUWCg/9c=;
-  b=0mtn3BHDvXBdLSoHILRObME1FvConHbfJpLX5Iz0yr1lNS9qtSBZpGXf
-   fZ/iqNU16yCS0DKy1JVQrzZWldCKbw3NDxrH6eV6OLRLnzIF9Ed2g+OTS
-   L1BK2RY8OT29qG2UtnEqRYlVTun3Q/bwzKWgu5ZcFCwwT02lsZQR4bgHn
-   fPQWSHLYAdATiu5jKHhx+BVL1Vv0q7LcDE1ncL1ocFnfqRZONW7qgYWuM
-   3p4Vg5peFTY2Zq6Er1X+CgW+WP4xqgRvm6kTVtmjnp0k/C4QvfXRKPCs9
-   kBPDv9PK7iIzB8Ifku2Hu7ybQrf7OwPPVAv2avR6L9y4mRpfmQJqILMRM
-   A==;
-X-CSE-ConnectionGUID: U3r+KmqaRGWFfKqUCS3uWA==
-X-CSE-MsgGUID: IXZNLDIGTJK36sEJeagksA==
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="277647069"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 09 Sep 2025 09:08:25 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.58; Tue, 9 Sep 2025 09:07:55 -0700
-Received: from ryan-Precision-3630-Tower.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.58 via Frontend Transport; Tue, 9 Sep 2025 09:07:55 -0700
-From: <Ryan.Wanner@microchip.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<nicolas.ferre@microchip.com>, <alexandre.belloni@bootlin.com>,
-	<claudiu.beznea@tuxon.dev>
-CC: <devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-kernel@vger.kernel.org>, Ryan Wanner <Ryan.Wanner@microchip.com>
-Subject: [PATCH] ARM: dts: microchip: sama7d65: Add GPIO buttons and LEDs
-Date: Tue, 9 Sep 2025 09:08:38 -0700
-Message-ID: <20250909160842.392075-1-Ryan.Wanner@microchip.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1757434556; c=relaxed/simple;
+	bh=3JFS7qi/WCdnUSTSsAZiAZWQwu8b4HEGLmE7L2yCBWY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=taeLAgz2qBoDAT8RtYn6ttzqY6BHvE8MINgQHb/2zjRknQCKg/2oyKRaP9mOL05D3ZpdVmbUDqnX7jbG4UBWksnqi5fCHGCHa18nBLQ1uFiAj6Kv0L2/ApquUNKdTjdSUobh8HKAksllTBRUVLNy6hyg44wOsppIVRqtInVgFKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TNBQ2ujQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C884FC4CEF4;
+	Tue,  9 Sep 2025 16:15:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757434556;
+	bh=3JFS7qi/WCdnUSTSsAZiAZWQwu8b4HEGLmE7L2yCBWY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TNBQ2ujQO7daaI51CSxSqryEWfCnP8QIQ6ZJ8Q6nOBNjh3MfsR1I4Ho8NbNrwtL7h
+	 B5rCaUjqyrDzGVjo1+r5SfzSpXg2LDLp6GLicEPf2LdN23akLMMdL6cJT15RCCdb6P
+	 5GjNUeMEeActlZVS6zzpj21MNi4H1rWYfHaC8E2QdYNbS8c/uDDlV/lPJ6uzQi6o2Z
+	 zg0TzKH+u5IAUQYxbmkel2UOdoWn6etcS33xqX0L3OLtwTkZXeb9uXxq9wTXJSiyoz
+	 wOrdovN+CGvAfAwIKWy13kkjzOqCeWQjJnOvoTxEanxov+XptqWrmctmatAxrZWQOt
+	 qaS7DM9b+e22g==
+Date: Tue, 9 Sep 2025 17:15:49 +0100
+From: Simon Horman <horms@kernel.org>
+To: Vivian Wang <wangruikang@iscas.ac.cn>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Yixun Lan <dlan@gentoo.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Alexandre Ghiti <alex@ghiti.fr>,
+	Vadim Fedorenko <vadim.fedorenko@linux.dev>,
+	Junhui Liu <junhui.liu@pigmoral.tech>,
+	Maxime Chevallier <maxime.chevallier@bootlin.com>,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org, spacemit@lists.linux.dev,
+	linux-kernel@vger.kernel.org,
+	Troy Mitchell <troy.mitchell@linux.spacemit.com>,
+	Vivian Wang <uwu@dram.page>
+Subject: Re: [PATCH net-next v9 2/5] net: spacemit: Add K1 Ethernet MAC
+Message-ID: <20250909161549.GC20205@horms.kernel.org>
+References: <20250905-net-k1-emac-v9-0-f1649b98a19c@iscas.ac.cn>
+ <20250905-net-k1-emac-v9-2-f1649b98a19c@iscas.ac.cn>
+ <20250905153500.GH553991@horms.kernel.org>
+ <0605f176-5cdb-4f5b-9a6b-afa139c96732@iscas.ac.cn>
+ <20250905160158.GI553991@horms.kernel.org>
+ <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <45053235-3b01-42d8-98aa-042681104d11@iscas.ac.cn>
 
-From: Ryan Wanner <Ryan.Wanner@microchip.com>
+On Sat, Sep 06, 2025 at 12:35:37AM +0800, Vivian Wang wrote:
+> On 9/6/25 00:01, Simon Horman wrote:
+> 
+> > On Fri, Sep 05, 2025 at 11:45:29PM +0800, Vivian Wang wrote:
+> >
+> > ...
+> >
+> > Hi Vivian,
+> >
+> >>>> +		status = emac_rx_frame_status(priv, rx_desc);
+> >>>> +		if (unlikely(status == RX_FRAME_DISCARD)) {
+> >>>> +			ndev->stats.rx_dropped++;
+> >>> As per the comment in struct net-device,
+> >>> ndev->stats should not be used in modern drivers.
+> >>>
+> >>> Probably you want to implement NETDEV_PCPU_STAT_TSTATS.
+> >>>
+> >>> Sorry for not mentioning this in an earlier review of
+> >>> stats in this driver.
+> >>>
+> >> On a closer look, these counters in ndev->stats seems to be redundant
+> >> with the hardware-tracked statistics, so maybe I should just not bother
+> >> with updating ndev->stats. Does that make sense?
+> > For rx/tx packets/bytes I think that makes sense.
+> > But what about rx/tx drops?
+> 
+> Right... but tstats doesn't have *_dropped. It seems that tx_dropped and
+> rx_dropped are considered "slow path" for real devices. It makes sense
+> to me that those should be very rare.
+> 
+> So it seems that what I should do is to just track tx_dropped and
+> rx_dropped myself in a member in emac_priv and report in the
+> ndo_get_stats64 callback, and use the hardware stuff for the rest, as
+> implemented now.
 
-Add the USER button as a GPIO input as well as add the LEDs and enable
-the blue LED as a heartbeat.
-
-Signed-off-by: Ryan Wanner <Ryan.Wanner@microchip.com>
----
- .../dts/microchip/at91-sama7d65_curiosity.dts | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
-
-diff --git a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-index f091cc40a9f0..2fe34c59d942 100644
---- a/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-+++ b/arch/arm/boot/dts/microchip/at91-sama7d65_curiosity.dts
-@@ -11,6 +11,7 @@
- #include "sama7d65-pinfunc.h"
- #include "sama7d65.dtsi"
- #include <dt-bindings/mfd/atmel-flexcom.h>
-+#include <dt-bindings/input/input.h>
- #include <dt-bindings/pinctrl/at91.h>
- 
- / {
-@@ -26,6 +27,42 @@ chosen {
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+
-+		button {
-+			label = "PB_USER";
-+			gpios = <&pioa PIN_PC10 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_led_gpio_default>;
-+
-+		led-red {
-+			label = "red";
-+			gpios = <&pioa PIN_PB17 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
-+		};
-+
-+		led-green {
-+			label = "green";
-+			gpios = <&pioa PIN_PB15 GPIO_ACTIVE_HIGH>; /* Conflict with pwm. */
-+		};
-+
-+		led-blue {
-+			label = "blue";
-+			gpios = <&pioa PIN_PA21 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
- 	memory@60000000 {
- 		device_type = "memory";
- 		reg = <0x60000000 0x40000000>;
-@@ -352,6 +389,18 @@ pinctrl_i2c10_default: i2c10-default {
- 		bias-pull-up;
- 	};
- 
-+	pinctrl_key_gpio_default: key-gpio-default {
-+		pinmux = <PIN_PC10__GPIO>;
-+		bias-pull-up;
-+	};
-+
-+	pinctrl_led_gpio_default: led-gpio-default {
-+		pinmux = <PIN_PB15__GPIO>,
-+			 <PIN_PB17__GPIO>,
-+			 <PIN_PA21__GPIO>;
-+		bias-pull-up;
-+	};
-+
- 	pinctrl_sdmmc1_default: sdmmc1-default {
- 		cmd-data {
- 			pinmux = <PIN_PB22__SDMMC1_CMD>,
--- 
-2.43.0
-
+Thanks, that makes sense to me.
 
