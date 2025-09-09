@@ -1,126 +1,143 @@
-Return-Path: <devicetree+bounces-215137-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6554B508DA
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 00:25:56 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79557B508F4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 00:41:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A131F4E7507
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:25:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 242925E2CC6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:41:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3D026CE2B;
-	Tue,  9 Sep 2025 22:25:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5AD226C3AE;
+	Tue,  9 Sep 2025 22:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eDguUCwp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="RQRMKuW5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from lelvem-ot01.ext.ti.com (lelvem-ot01.ext.ti.com [198.47.23.234])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A8762571A5;
-	Tue,  9 Sep 2025 22:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B19BB24BD04;
+	Tue,  9 Sep 2025 22:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.234
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757456752; cv=none; b=NP8XoJnKNKhJvs2nm2yk+nDWUGT7ypYNMeVY60Md2FhS9T/eBKYw1meBpSD3XZpwSch0XLY++xjNBtowRlVkYBdI1OkqS2lEB9DgQhYTX6bj+JyCrEJ6EuDjg9TJ0kWtNejaDlTCqxwWg1cJhsq3+O/xg4HSwLuCHWoOdauBq3c=
+	t=1757457702; cv=none; b=qZLK+cXN/1fscb9JPlgqGNah71jKx+O1ovIQsK55jV/sOXwKjHrMt23Ox/wTGNtwZRg8Tg3Q3jxlGHSIKzXynWxInpIXncl+QD+5gwIicrwfnEfkjSL+zss5IS5kcyvsT1kZn3/0D5dDORczl9z2pC7QI/CXac/8AygJDWMJUNI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757456752; c=relaxed/simple;
-	bh=645iNWZvifz2eZ9NwLWXL2PDwmHsJ84rWYVLdtzlJcw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U0fUWnFfhu005lVoXPZgjtAPyHLINZcp1r54C0IH4hTL2ACAU6zsFU4KJL/tOmWfP1soX0aLPhEKaSOjX07Y+zuLL9ejAwyPqn3+OIC0FifMgnVSOyf0RHFAGSEgF+A+8zt2tw4XWAD1gVELyDhiseTrPfTq5dPBqNH5Pv52flg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eDguUCwp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0B288C4CEF4;
-	Tue,  9 Sep 2025 22:25:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757456752;
-	bh=645iNWZvifz2eZ9NwLWXL2PDwmHsJ84rWYVLdtzlJcw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eDguUCwpP9DVZVJwqqXIS/8y+jxOr7scjJ9bBrqVu1QLkosCL1Q5bmmUweG86WMZs
-	 WapvOtaFO0Fw14T0KpYJewJLFCHA76Ab0TaFT7asDgviu5k/H8ADlWe9OrPy8Kw1Vp
-	 +GlOVH0potqCtmkT7JGk8dRFFMFi67AP5up6zC90pM/j5RP4YTw9OQ1M3YgOvazV+q
-	 JUzlNqx+918BupWoYts7eeW05nAvLSc5m6AGmD06XxqXT1k4DmI5DycUEKNORgm+mj
-	 xD6tAQjEYLbpYjI2BRfhJLZnOKAyFsoiUeHZEb85mVW8JJY7RBnmMWpsZMie+iIIoB
-	 fXsdel/5IWekQ==
-Date: Tue, 9 Sep 2025 15:25:44 -0700
-From: Nathan Chancellor <nathan@kernel.org>
-To: Janne Grunau <j@jannau.net>
-Cc: Sven Peter <sven@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-	Ran Wang <ran.wang_1@nxp.com>, Peter Chen <peter.chen@nxp.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 18/22] phy: apple: Add Apple Type-C PHY
-Message-ID: <20250909222544.GA3282617@ax162>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-18-52c348623ef6@kernel.org>
- <20250908181259.GC89417@robin.jannau.net>
+	s=arc-20240116; t=1757457702; c=relaxed/simple;
+	bh=H6LomDyj+J3yxYD5h5TBecfKUq9QqHn/h5WlZa7yhJo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Y325JfN23LqpCizgZVUcO0ZBykWKMjCghZaDHTBzYLNXlADVFfr5alwXsVWKOju6ITZXClVmEquGCkzOURm+jYegwD0N2jKV5gjAi+zBAHAHi4k3iV4D6HpitKOIvG5rzGwjGv5IvYGujmHThzU2LZIz20/9n5fbFjOVWZnXswU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=RQRMKuW5; arc=none smtp.client-ip=198.47.23.234
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh04.itg.ti.com ([10.64.41.54])
+	by lelvem-ot01.ext.ti.com (8.15.2/8.15.2) with ESMTP id 589MfWwZ006957;
+	Tue, 9 Sep 2025 17:41:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757457692;
+	bh=WbwmokaiQsTOA7B8SevyBawIpYDSQ2xVw9i3NB7U0TY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=RQRMKuW53IAl6gwVfRHjJpiVC2x7WLzRuZlbOppN46g7Rvqibe02AAfRmue/nyofm
+	 Vr+59yamY19i/i3S8voot2fKW9wEPjFwtumgioGfOQBG1GS0qgmSTqEVu3+i6Ujrvt
+	 gy5k3O05OcIdW4ao6kv600Gj1/QiVmt6m6RMscRw=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+	by fllvem-sh04.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 589MfWfn689483
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 9 Sep 2025 17:41:32 -0500
+Received: from DLEE204.ent.ti.com (157.170.170.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 9
+ Sep 2025 17:41:31 -0500
+Received: from lelvem-mr05.itg.ti.com (10.180.75.9) by DLEE204.ent.ti.com
+ (157.170.170.84) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.20 via Frontend
+ Transport; Tue, 9 Sep 2025 17:41:31 -0500
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr05.itg.ti.com (8.18.1/8.18.1) with ESMTP id 589MfVHJ3725550;
+	Tue, 9 Sep 2025 17:41:31 -0500
+Message-ID: <433c4594-8081-45cf-bbc8-a4816e8559f4@ti.com>
+Date: Tue, 9 Sep 2025 17:41:31 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250908181259.GC89417@robin.jannau.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/3] arm64: dts: ti: k3-am62: Support Main UART wakeup
+To: <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+        <msp@baylibre.com>, <khilman@baylibre.com>, <a-kaur@ti.com>
+References: <20250904212827.3730314-1-k-willis@ti.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250904212827.3730314-1-k-willis@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On Mon, Sep 08, 2025 at 08:12:59PM +0200, Janne Grunau wrote:
-> On Sat, Sep 06, 2025 at 03:43:31PM +0000, Sven Peter wrote:
-> > diff --git a/drivers/phy/apple/atc.c b/drivers/phy/apple/atc.c
-> > new file mode 100644
-> > index 0000000000000000000000000000000000000000..9213485234873fcaafeb1d1d9de3ddf07767d552
-> > --- /dev/null
-> > +++ b/drivers/phy/apple/atc.c
-> > @@ -0,0 +1,2214 @@
+On 9/4/25 16:28, Kendall Willis wrote:
+> This series adds wakeup support for the Main UART in the device tree of
+> the TI AM62 family of devices. It defines the specific pins and pinctrl
+> states needed to wakeup the system from the Main UART via I/O
+> daisy-chaining. The wakeup-source property is configured to describe the
+> low power modes the system can wakeup from using the Main UART.
 > 
-> [...]
+> Dependencies
+> ------------
+> This series is dependent on the following series [1] to be merged into
+> the kernel. The series adds the system idle states that are available on
+> the SoCs. The system idle states are used when configuring the
+> wakeup-source property.
 > 
-> > +static int atcphy_load_tunables(struct apple_atcphy *atcphy)
-> > +{
-> > +	int ret;
-> > +	struct {
-> > +		const char *dt_name;
-> > +		struct apple_tunable **tunable;
-> > +	} tunables[] = {
-> > +		{ "apple,tunable-fuses", &atcphy->tunables.fuses },
-> > +		{ "apple,tunable-axi2af", &atcphy->tunables.axi2af },
-> > +		{ "apple,tunable-common", &atcphy->tunables.common },
-> > +		{ "apple,tunable-lane0-usb", &atcphy->tunables.lane_usb3[0] },
-> > +		{ "apple,tunable-lane1-usb", &atcphy->tunables.lane_usb3[1] },
-> > +		{ "apple,tunable-lane0-cio", &atcphy->tunables.lane_usb4[0] },
-> > +		{ "apple,tunable-lane1-cio", &atcphy->tunables.lane_usb4[1] },
-> > +		{ "apple,tunable-lane0-dp", &atcphy->tunables.lane_displayport[0] },
-> > +		{ "apple,tunable-lane1-dp", &atcphy->tunables.lane_displayport[1] },
-> > +	};
-> > +
-> > +	for (int i = 0; i < ARRAY_SIZE(tunables); i++) {
-> > +		*tunables[i].tunable =
-> > +			devm_apple_tunable_parse(atcphy->dev, atcphy->np, tunables[i].dt_name);
-> > +		if (IS_ERR(tunables[i].tunable)) {
-> > +			dev_err(atcphy->dev, "Failed to read tunable %s: %ld\n",
-> > +				tunables[i].dt_name, PTR_ERR(tunables[i].tunable));
-> > +			return ret;
+> This series is also dependent on the following patch [2] to be merged
+> into the kernel. The patch integrates the PIN_WKUP_EN macro which
+> enables the WKUP_EN bit.
+
+Series also depends on this series [1] for DT bindings of pinctrl.
+
+[1] https://lore.kernel.org/all/20250904212455.3729029-1-k-willis@ti.com/
+
 > 
-> ret is unitialized here, could be `return PTR_ERR(tunables[i].tunable);`
-> instead
+> Implementation
+> --------------
+> This series is intended to be implemented along with the following
+> series:
+> 
+> 1. "pmdomain: ti_sci: Handle wakeup constraint if device has pinctrl
+>     wakeup state": Patch which skips setting constraints for wakeup sources
+>     that use pinctrl state 'wakeup'.
+> 
+> 2. "serial: 8250: omap: Add wakeup support": Implements
+>     wakeup from the UARTs for TI K3 SoCs
+> 
+> 3. "arm64: dts: ti: k3-am62: Support Main UART wakeup": (this series)
+>     implements the functionality to wakeup the system from the Main UART
+> 
+> Testing
+> -------
+> Tested on a SK-AM62B-P1 board with all series and dependencies
+> implemented. Suspend/resume verified with the Main UART wakeup source
+> by entering a keypress on the console.
+> 
+> [1] https://lore.kernel.org/linux-arm-kernel/20250812-topic-am62-dt-partialio-v6-15-v2-2-25352364a0ac@baylibre.com/
+> [2] https://lore.kernel.org/all/20250904112538.529857-4-a-kaur@ti.com/
+> 
+> Kendall Willis (3):
+>    arm64: dts: ti: k3-am62x-sk-common: Enable Main UART wakeup
+>    arm64: dts: ti: k3-am62a7-sk: Enable Main UART wakeup
+>    arm64: dts: ti: k3-am62p5-sk: Enable Main UART wakeup
+> 
+>   arch/arm64/boot/dts/ti/k3-am62a7-sk.dts       | 24 +++++++++++++++----
+>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       | 24 +++++++++++++++----
+>   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 24 +++++++++++++++----
+>   3 files changed, 60 insertions(+), 12 deletions(-)
+> 
+> 
+> base-commit: 4ac65880ebca1b68495bd8704263b26c050ac010
 
-This could also use '%pe' to symbolically print the error name instead
-of the integer value.
-
-    dev_err(atcphy->dev, "Failed to read tunable %s: %pe\n",
-            tunables[i].dt_name, tunables[i].tunable);
-
-Cheers,
-Nathan
 
