@@ -1,198 +1,110 @@
-Return-Path: <devicetree+bounces-214890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D96EBB4ACA4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:46:38 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B9DA5B4ACC2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:49:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 186321C24807
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:46:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8924C164FDE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A09563314AD;
-	Tue,  9 Sep 2025 11:44:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0922F7449;
+	Tue,  9 Sep 2025 11:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="n5MxqwKS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldAjTkig"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 983B7322A0E
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 11:44:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930A21F30A9;
+	Tue,  9 Sep 2025 11:49:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757418268; cv=none; b=GvrbAwBBQxxf4vzx8GP1n99HjSPUxxJoKKkjb45jkJ0u9294yRsuZ503gJxGRcVsiMfkgM1Gtt2FYQZViAX6KUEwCCrp6kOOqz+cLmmdRi/v8dllIIxLBqZawDRaglfKogipVSAWzFCOTNlPtE/ThUp+q0ONIOLiTRcd7iznPTo=
+	t=1757418583; cv=none; b=WcmzEHaDSmwkE0MkPMnK+XNNcU0a5Wq0qoObumoIbTVtndtPgp2If62APh+UVPEYIZFiVwIwHMBw+84fTNFqYC50HH2zsh5/BIdBKmua6hwYxwY4opNEpCntGx0FawiSMUeXNvz+b+bAASseykvNE6E34Op3IY1lj02gPUm4FxM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757418268; c=relaxed/simple;
-	bh=Plv+TqDFQzCl2SwwnJurnJxS/oJj+NUjYOYCMKqmMW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=G93uss0XAP51dphgNW1yna9HgfeNrKTcKsNsSbYpIl9FCI5tFLypPk2rDsZyQxyPLTC4ZVVAbycEJFDmsGAxhkQdvtCnLuCUxBre4CvXnLfH2KeN/g5UU14fRzKpxqGM5chs0nTaMFpS9SV/sWFlbqwqY87PGerMPUlIrhXjBUw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=n5MxqwKS; arc=none smtp.client-ip=103.21.126.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id 7D9D91010F66
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 17:14:14 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 7D9D91010F66
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1757418254; bh=Plv+TqDFQzCl2SwwnJurnJxS/oJj+NUjYOYCMKqmMW8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=n5MxqwKSW5ntnYjmkB/eUkHEuo4R8JxYJkPFO1i8GvjAKUIXrg4Mlhq6+t9rycIfa
-	 sKIVPbamgLHFBCVBfi8z0bZJoRmQj1oVWzciihwqLIeva+tFtFC+OYSBmK8XDdgTx3
-	 u7GmKq7e158dv59qnwryGpGpsXIk0OPvfdfKyz6Q=
-Received: (qmail 26567 invoked by uid 510); 9 Sep 2025 17:14:14 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 5.542875 secs; 09 Sep 2025 17:14:14 +0530
-X-Spam-Level: 
-X-Spam-Pyzor: Reported 0 times.
-X-Envelope-From: akhilesh@ee.iitb.ac.in
-X-Qmail-Scanner-Mime-Attachments: |
-X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
-  by ldns2.iitb.ac.in with SMTP; 9 Sep 2025 17:14:08 +0530
-Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns2.iitb.ac.in (Postfix) with ESMTP id 46C473414E8;
-	Tue,  9 Sep 2025 17:14:08 +0530 (IST)
-Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 939C41E8138A;
-	Tue,  9 Sep 2025 17:14:05 +0530 (IST)
-Date: Tue, 9 Sep 2025 17:14:00 +0530
-From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
-	conor+dt@kernel.org, skhan@linuxfoundation.org,
-	linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, akhileshpatilvnit@gmail.com
-Subject: Re: [PATCH 2/7] dt-bindings: rtc: add bindings for m41t93
-Message-ID: <20250909114400.GA2065465@bhairav-test.ee.iitb.ac.in>
-References: <cover.1756908788.git.akhilesh@ee.iitb.ac.in>
- <40c91cbb07140ecdf4f91afc118c2518e85041c3.1756908788.git.akhilesh@ee.iitb.ac.in>
- <9094d792-c20a-48fa-b769-5824e1f451eb@kernel.org>
+	s=arc-20240116; t=1757418583; c=relaxed/simple;
+	bh=qtgl0WB8EJm3ib0J2lPSGz7+ZZElKH5cZ7NY4HbJvas=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=AZb+ehqlf2fCn9Edk51Lyahbw20wNv1fktsfbm+JdtGzzPVkzJVKFO0+I5+Waq+IB/BXbhG0iYOPRr9q/0YNujPV9lHdOyuGJvVYJN3UgLaF4SBIXni++EwTxX6I1RIWYhmUSM66xMjmVMcpT7jmeIwNZx2A2ne8+yuBL4LRRIc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldAjTkig; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8181C4CEF5;
+	Tue,  9 Sep 2025 11:49:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757418583;
+	bh=qtgl0WB8EJm3ib0J2lPSGz7+ZZElKH5cZ7NY4HbJvas=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=ldAjTkigURj+pvmZUqWLCe4cQLu6qDacWQhvyjv2k6nBvIAQtMG5tU4DmCLzPOm49
+	 crYrcYAMROO8/kjqa2ABm2TF3G6M55o4Bq8+0SzXyI3bjoIjX2QWEPh8iD9qrMKYjA
+	 G9aVY3tp3bioYPwvwDYKDj0vlw8xABIzZRr3TsoOxTC4P3QKJUDOgB2MP4GVpL25ZN
+	 OEwIeprIDC2p7yaqQyQwWuHgwPv+y3K9Vz+RYY0KtHZgKM1Gon7Ypduic6SVdQVvS5
+	 7pIoch5KXCjwRU3qX2pPaRvTlz7IE3H5VuG7rNIzwyrsblzM9GqYMd7Ali13jT2orT
+	 DgeCQoPcPamoA==
+From: Mark Brown <broonie@kernel.org>
+To: linux-arm-kernel@lists.infradead.org, 
+ Marek Vasut <marek.vasut+renesas@mailbox.org>
+Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+ Florian Fainelli <florian.fainelli@broadcom.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
+ devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
+ linux-renesas-soc@vger.kernel.org
+In-Reply-To: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
+References: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
+Subject: Re: [PATCH v2] regulator: dt-bindings: rpi-panel: Split 7"
+ Raspberry Pi 720x1280 v2 binding
+Message-Id: <175741858068.53877.8850228769612193229.b4-ty@kernel.org>
+Date: Tue, 09 Sep 2025 12:49:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9094d792-c20a-48fa-b769-5824e1f451eb@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.15-dev-94e36
 
-On Wed, Sep 03, 2025 at 04:30:53PM +0200, Krzysztof Kozlowski wrote:
-> On 03/09/2025 16:25, Akhilesh Patil wrote:
-> > add DT bindings for m41t93 rtc in YAML format.
+On Fri, 05 Sep 2025 21:16:30 +0200, Marek Vasut wrote:
+> The 5" and 7" Raspberry Pi 720x1280 Display 2 MCU is a bit more
+> complex than the original Display 1 ATTINY88 and the binding is
+> also a bit more demanding. Split the binding into separate file
+> and fill in required gpio-controller, #gpio-cells and #pwm-cells
+> which must be present for the V2 MCU. Include mention of the 5"
+> panel in the description of Display 2, as the 5" panel uses the
+> same MCU.
 > 
-> A nit, subject: drop second/last, redundant "bindings". The
-> "dt-bindings" prefix is already stating that these are bindings.
-> See also:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-> 
-> 
-> Please organize the patch documenting compatible (DT bindings) before
-> their user.
-> See also:
-> https://elixir.bootlin.com/linux/v6.14-rc6/source/Documentation/devicetree/bindings/submitting-patches.rst#L46
-> 
+> [...]
 
-Hi Krzysztof, Thanks for the review and pointng out to these resources.
-I will fix those as per the guidelines and share v2 of the series.
+Applied to
 
-> > 
-> > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
-> > ---
-> >  .../devicetree/bindings/rtc/st,m41t93.yaml    | 43 +++++++++++++++++++
-> >  1 file changed, 43 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/rtc/st,m41t93.yaml b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
-> > new file mode 100644
-> > index 000000000000..03673adc79db
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
-> > @@ -0,0 +1,43 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/rtc/st,m41t93.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: ST M41T93 RTC and compatible
-> > +
-> > +maintainers:
-> > +  - Alexandre Belloni <alexandre.belloni@bootlin.com>
-> 
-> This should not be subsystem maintainer.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
-okay.
+Thanks!
 
-> 
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - st,m41t93
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  "#clock-cells":
-> 
-> Hm? Are you sure? Nothing in the driver nor commit msg suggests that.
+[1/1] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi 720x1280 v2 binding
+      commit: 5bad16482c2a7e788c042d98f3e97d3b2bbc8cc5
 
-This RTC chip has square wave output generation which can generate
-clocks from 1Hz to 32KHz. Hence, this device can be clock provider and
-other devices can be clock consumer via DT.
-I will add this in the description.
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-> 
-> > +    const: 1
-> > +
-> > +allOf:
-> > +  - $ref: rtc.yaml
-> > +
-> > +unevaluatedProperties: false
-> 
-> This goes after required. See example schema.
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-sure.
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-> 
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +
-> > +examples:
-> > +  - |
-> > +    spi {
-> > +      #address-cells = <1>;
-> > +      #size-cells = <0>;
-> > +      rtc@0 {
-> > +        spi-max-frequency = <2000000>;
-> 
-> Does not look tested.
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Will run $ make dt_binding_check , retest on my board and add actual
-node I test as an example here.
+Thanks,
+Mark
 
-> 
-> > +        compatible = "st,m41t93";
-> > +        reg = <0>;
-> 
-> Please follow DTS coding style. Which property is the first in the
-> coding style?
-
-sure, will fix in v2 as much as understand referring resources you
-shared and your DTS 101 talk from OSS 25 Europe.
-Still, if I miss something do let me know on v2 series. 
-
-Regards,
-Akhilesh
-
-> 
-> Best regards,
-> Krzysztof
 
