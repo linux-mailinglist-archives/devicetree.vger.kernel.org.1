@@ -1,151 +1,187 @@
-Return-Path: <devicetree+bounces-214989-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214990-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 090B4B4FF2A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:19:27 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B228B4FF37
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:22:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AFBF216C059
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:19:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5BF0365E45
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51AA62C0297;
-	Tue,  9 Sep 2025 14:19:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17528343D9E;
+	Tue,  9 Sep 2025 14:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="FHfDzJzF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lijg5Xxh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0F371553A3
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 14:19:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF46F32252E;
+	Tue,  9 Sep 2025 14:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757427563; cv=none; b=c2wS+mD7OpdDpoPFw80DraNnTigHcTbeeu9qAp6GoFq3YAttklzAzKyxAA7iTDegMV8/sEjDn7YDwaj8UTprgmBSnaTL9+pPPI15InKXbusEtYwPFVeUWkNCLHldtiK1Ub1X7Ln6KGHBmCov4RiN1pwXtRUTz43aIJix56Tt+d4=
+	t=1757427727; cv=none; b=BMlG3H2hi0kP/Ys2n41LVnx5GUw3+lGGoff92drqbJPcnTgKHU/a+B1u9C/eHyuMFj9P7hBYQsiQUfXbH6BtkJZRqSYF8T0YIIWjL2dV6ccplN/RRoLS6SuORksJpw8K83ITrFPThKehMJF4rL4OmnklVo81zqPy3UpKNxpyBXk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757427563; c=relaxed/simple;
-	bh=s9hJ+BVBz6d6wFfh5Nj/mV5nUoATxWWP2RUxcEkU5sU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=mszKOzqbRHcTHm3xnkpJGcRvStltKtTGl1RYqOXJip6koFDmbaNn4kDyQ057qxtcrPLpdz+nsp49pnpnrLREpb/DLIxrkNZt1Jwo7hrEtsAgBhWbBRMmruIercnEYuB4z7zv5u5zxbdbio6U+O6zYnsNquRuc8IorMDf6PEE2gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=FHfDzJzF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5899LRZl029821
-	for <devicetree@vger.kernel.org>; Tue, 9 Sep 2025 14:19:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=YeTPR1k+vZU309IbiC+EpuyW
-	WbQULc9ECz+ibWI8mA0=; b=FHfDzJzFEl8h7G9RZyps3VseA37OKrkpWMIL4s1q
-	/WTgfpefcoHBPxIiJSBEYyCl3Qb01pR2D4oeCRHXN4tTqdjJ0TTUQwFI9AJ+H96S
-	Lujkogr4D/m3Lrx/C4sohlt6QZKV32dD7uouqLjmFpvx6glOYIyCcX4nM15rzXzR
-	bDy2YfJuEjngqe7j0uQXECGxyQDYS5eatpJEVNnsBAnQnS9gJiRg1YYrjp/M40M+
-	Qc0vks98ad5HkYGURUCGgMRnZJMVyOxpDADR30qG4xHwiTMIrDhnW/rhDrtPSzAS
-	k/YGkJlFKcm601EIN+q+zpisT097dS5bSnQV1/bhPtYBGw==
-Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com [209.85.219.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491t37vy67-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 14:19:21 +0000 (GMT)
-Received: by mail-qv1-f71.google.com with SMTP id 6a1803df08f44-729751964dcso110669476d6.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 07:19:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757427560; x=1758032360;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YeTPR1k+vZU309IbiC+EpuyWWbQULc9ECz+ibWI8mA0=;
-        b=scOoUCMof5hWiG7nrri6Uv9zC7aEtIyfmWJoQq5Yf/7+VGL6Agu0X4SxkPo9DQJDLG
-         SUdKrCEfm+/Fic2yKx356Lf/LbXZrgWXnETyUgBJCDeu7ek6G4GYXiN7x65TFX63qlqU
-         aE8LwXalzWJlpGmbMcGAwrMVMDc6serLyHmPDRNzpb7gq/3Gb78Rt1k3AhwUTomnGhNC
-         0t9nA/uYHKSv3qior/d4p5Qh7Hoghd61ygFaignJvmYM88DCPdCGMy3L8vm/M5r//0ah
-         R7FrweHVC9A6Y/jHgIS3MzJik9xV1DThgcWjvJp0lGHzJ0outulAXM6cXAY4W9TJGhZm
-         dBjA==
-X-Forwarded-Encrypted: i=1; AJvYcCUp6srT0j4lsomo93+gNJlgkbG56c+t4/eZf8gjtCkcNLF1FGRHoNYM7Ptifj9dSkWUl+dDEILhR7pO@vger.kernel.org
-X-Gm-Message-State: AOJu0YxcgnwmXhoSMO9XZAhbJWoCfCmfEV14VyISk3HCSMRbjyU0d2Vf
-	1QGHAUlMV4ZnDpKaGiBuS3Vi5XOnsU6J5XaIIWUNbxDQ8v3cZmNzO35/wsJgRngauQpM6UwQVGf
-	vUUh3TUo9ipwgFV+Ai/6jej82dQxPQumkRI4ZAYKatzG7IgiOIH0tTevFomU+t1HD
-X-Gm-Gg: ASbGnctKdR8TUAWIhWfsWYSoUxmypdOoy/H2uCfkLQM/OxDZfEe+l/OUArP8CVK6mbG
-	4C6bqIO9J7i/02bT5aGeX7rmVE7gNbbmcC8nMsdHwJLiKGF4rtmeG8NW9qNWJ5E4AWlfcitSoCW
-	3MucU8GrQr+kImE3tHXToSIx+j3hy6d5EiLsPSDoYsYqcGDDbnmFy4aY7/T4gsiz14OcfyR96dC
-	rI6sdztIhzFBTMLofobXEZdK11ha91nLr1F8Z+WA5f+WQbSeJdy/DLwz2SAK4lVHR1n+2MNDieu
-	waKbELD49PAAEmzEsQMf6SFDK/656ZEYmLMD2E3lm/llLCif7+6kGYiDFEUQnEVB/ls2/gdFNlG
-	f8zDFQjPhm3mUkS9UYbMLsjZ9HRolCGj7arFiFSr67LA3k/ggYdaH
-X-Received: by 2002:a05:6214:4c8a:b0:741:52cf:a104 with SMTP id 6a1803df08f44-74152deead4mr117448596d6.5.1757427559526;
-        Tue, 09 Sep 2025 07:19:19 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHMDQ+c0Z+2OHKURnsCRqbskK4wF5XETdbqofGHwdn68wRh2A/5/TcMfO4/wpV2hv1CVSa5Gg==
-X-Received: by 2002:a05:6214:4c8a:b0:741:52cf:a104 with SMTP id 6a1803df08f44-74152deead4mr117448126d6.5.1757427559011;
-        Tue, 09 Sep 2025 07:19:19 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5680cce88dcsm561199e87.47.2025.09.09.07.19.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 07:19:18 -0700 (PDT)
-Date: Tue, 9 Sep 2025 17:19:16 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] drm/panel: Add Sharp LQ079L1SX01 support
-Message-ID: <varcinx2i3jtuu4jfsnfpyuh66mdvqe3caolddpsnw23ummpjf@yji57dunb22t>
-References: <20250909073831.91881-1-clamor95@gmail.com>
- <20250909073831.91881-3-clamor95@gmail.com>
+	s=arc-20240116; t=1757427727; c=relaxed/simple;
+	bh=hcsO+0CDu8ebk5l7xQEiuvFomx6Jn3bzyePgBxbYNfA=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Jk/CPiZn7G5spLERyV7Y5xl7EwDBsksApbYKbco6kiy/iSMIBxDBHLzOrhHlN6/bQSCEvJZVYj/TaC+lO6Qsv8lvw3ehNHzkV6IcOGXnXoUWGjsD1qhvfXI5BhlZoJfAmzbH5jRy3nN0jNER6YtWltnkq7skM0VIgNHvZRfor+s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lijg5Xxh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A6D0C4CEF4;
+	Tue,  9 Sep 2025 14:22:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757427726;
+	bh=hcsO+0CDu8ebk5l7xQEiuvFomx6Jn3bzyePgBxbYNfA=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Lijg5Xxhk1ndqA8YsuTfBeLqkWzIrQloB4O6QQHsC7UOsWD/DnAW4cfZ7CSNrBgPh
+	 TMjyuG7AKDCV/XwzIBXauLf1RDk7g34JLK03efmZyFBF6l5Jm5af+1T1+L2cHUWd9q
+	 EtcGOys1wz0Mmb0pB3f9HTm5hXixAl/55644e0PTGR+/yLdlZi45KFBzhdKRF04ZNt
+	 0jmryVkcm2SPC63DgbVuPwzOCw84RPbvcBHTIDL2l793Tdtwv+gZsihhlzKwCZxEHL
+	 8hvA7ydUlWyRYf0v2Dc5rpBtH/A64D/ESUQCjZo5VIooHXPh6DL9hz3F6sfbmQ2NWj
+	 ra68COBXtoOxg==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Avi Fishman <avifishman70@gmail.com>,
+	Tomer Maimon <tmaimon77@gmail.com>,
+	Tali Perry <tali.perry1@gmail.com>,
+	Patrick Venture <venture@google.com>,
+	Nancy Yuen <yuenn@google.com>,
+	Benjamin Fair <benjaminfair@google.com>,
+	Wim Van Sebroeck <wim@linux-watchdog.org>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>
+Cc: openbmc@lists.ozlabs.org,
+	linux-watchdog@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: watchdog: Convert nuvoton,npcm-wdt to DT schema
+Date: Tue,  9 Sep 2025 09:21:59 -0500
+Message-ID: <20250909142201.3209482-1-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250909073831.91881-3-clamor95@gmail.com>
-X-Proofpoint-ORIG-GUID: eY_QiGsMbxJd0Zs3-5sLN__eKdPpLpPg
-X-Proofpoint-GUID: eY_QiGsMbxJd0Zs3-5sLN__eKdPpLpPg
-X-Authority-Analysis: v=2.4 cv=NdLm13D4 c=1 sm=1 tr=0 ts=68c03769 cx=c_pps
- a=UgVkIMxJMSkC9lv97toC5g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=pGLkceISAAAA:8 a=EUspDBNiAAAA:8 a=qYIr1XgVyKI1DLWvbXsA:9
- a=CjuIK1q_8ugA:10 a=1HOtulTD9v-eNWfpl4qZ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA2NiBTYWx0ZWRfX48s25D6hqZHc
- 3ZjpFBrdi9BzafCu5wy/d0Vcitj+d+RXP8TzJHV0DR6J9hIpMJsiLX/o7Kf0b3zPNgS6UVSU38f
- YnbjnsAh6rT47cIJLgSCdbv+1Hp5Yb0Mhi43KNqASnxXsMWQbgJU2g0tozmBZP3+bFdm13xXF2S
- /RW61Z2XcB5eEYALr4nXxn31m7rZO7U7adpRpaC9D58fPacXIPJRKg8UULr7yXjWT8HgE3PRA2g
- /WmeMz6+CDXC3Pyz6yVWtxMXYuTfB+0fvZFIlwjm0Avp5MB0xq2Kh2eHeO3yPsfJmEdpUb+yLx7
- V964JDh7giU89QI2zXSLuXr18rOLFK/CKW3jmH7hEkmIyJNVin/UxFPQZJ/bicgZxvQP9AMuF49
- dIC+92iy
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_02,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
- clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080066
+Content-Transfer-Encoding: 8bit
 
-On Tue, Sep 09, 2025 at 10:38:31AM +0300, Svyatoslav Ryhel wrote:
-> This panel requires dual-channel mode. The device accepts video-mode data
-> on 8 lanes and will therefore need a dual-channel DSI controller. The two
-> interfaces that make up this device need to be instantiated in the
-> controllers that gang up to provide the dual-channel DSI host.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  drivers/gpu/drm/panel/Kconfig                 |  15 ++
->  drivers/gpu/drm/panel/Makefile                |   1 +
->  .../gpu/drm/panel/panel-sharp-lq079l1sx01.c   | 232 ++++++++++++++++++
->  3 files changed, 248 insertions(+)
->  create mode 100644 drivers/gpu/drm/panel/panel-sharp-lq079l1sx01.c
-> 
+Convert the Nuvoton watchdog binding to DT schema format. It's a
+straight-forward conversion.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+ .../bindings/watchdog/nuvoton,npcm-wdt.txt    | 30 ----------
+ .../watchdog/nuvoton,npcm750-wdt.yaml         | 60 +++++++++++++++++++
+ 2 files changed, 60 insertions(+), 30 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
 
-
+diff --git a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
+deleted file mode 100644
+index 866a958b8a2b..000000000000
+--- a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
++++ /dev/null
+@@ -1,30 +0,0 @@
+-Nuvoton NPCM Watchdog
+-
+-Nuvoton NPCM timer module provides five 24-bit timer counters, and a watchdog.
+-The watchdog supports a pre-timeout interrupt that fires 10ms before the
+-expiry.
+-
+-Required properties:
+-- compatible      : "nuvoton,npcm750-wdt" for NPCM750 (Poleg), or
+-                    "nuvoton,wpcm450-wdt" for WPCM450 (Hermon), or
+-                    "nuvoton,npcm845-wdt" for NPCM845 (Arbel).
+-- reg             : Offset and length of the register set for the device.
+-- interrupts      : Contain the timer interrupt with flags for
+-                    falling edge.
+-
+-Required clocking property, have to be one of:
+-- clocks          : phandle of timer reference clock.
+-- clock-frequency : The frequency in Hz of the clock that drives the NPCM7xx
+-                    timer (usually 25000000).
+-
+-Optional properties:
+-- timeout-sec : Contains the watchdog timeout in seconds
+-
+-Example:
+-
+-timer@f000801c {
+-    compatible = "nuvoton,npcm750-wdt";
+-    interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
+-    reg = <0xf000801c 0x4>;
+-    clocks = <&clk NPCM7XX_CLK_TIMER>;
+-};
+diff --git a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
+new file mode 100644
+index 000000000000..7aa30f5b5c49
+--- /dev/null
++++ b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
+@@ -0,0 +1,60 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/watchdog/nuvoton,npcm750-wdt.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Nuvoton NPCM Watchdog
++
++maintainers:
++  - Joel Stanley <joel@jms.id.au>
++
++description:
++  Nuvoton NPCM timer module provides five 24-bit timer counters, and a watchdog.
++  The watchdog supports a pre-timeout interrupt that fires 10ms before the
++  expiry.
++
++allOf:
++  - $ref: watchdog.yaml#
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nuvoton,npcm750-wdt
++          - nuvoton,wpcm450-wdt
++      - items:
++          - enum:
++              - nuvoton,npcm845-wdt
++          - const: nuvoton,npcm750-wdt
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-frequency:
++    description: Frequency in Hz of the clock that drives the NPCM timer.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
++
++    watchdog@f000801c {
++        compatible = "nuvoton,npcm750-wdt";
++        interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
++        reg = <0xf000801c 0x4>;
++        clocks = <&clk NPCM7XX_CLK_TIMER>;
++    };
 -- 
-With best wishes
-Dmitry
+2.51.0
+
 
