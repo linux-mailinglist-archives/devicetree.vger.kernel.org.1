@@ -1,209 +1,358 @@
-Return-Path: <devicetree+bounces-214909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214911-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34BD2B4FA0B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:14:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C222B4FA15
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:14:44 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5FAE3444ADD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:12:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 99E061C266A0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:15:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F18E332BF3D;
-	Tue,  9 Sep 2025 12:12:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 815123375BF;
+	Tue,  9 Sep 2025 12:14:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="EcQg1awf"
+	dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b="j8qY2/7a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from sendmail.purelymail.com (sendmail.purelymail.com [34.202.193.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F14432CF97
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 12:12:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E66F3375B7
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 12:14:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=34.202.193.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757419967; cv=none; b=GciW3JVi3/h+3lfI2DpsNhdGjqQvyvl52eKXMWstCiPrOsflt2CrBQJOh40U6nS6mSEZDVIB8gRjEgfpwQSe4gR7oSW3S9OmIZOOz1gzKplqiv1lMEE9Bd9cuuenKK1FSuLZssDWJ6Aa7CXh6fWm22/LA/EVRq8NUbo80rOByiM=
+	t=1757420073; cv=none; b=KKwXzcMihQ/chzcF74dittRwuJaWyAMuwx9sx5C5PwdIPioPixO1V9g7YEFOKqT9fIcNF+0zLXEI72/bukgidjkv1EOHkwVnxocdwmI7TDrrHBPmU6jLHE2qacK7mnWb04VvghMw9qGf/AQc/qa8Gy2UYnIt4BcKxMCsrWtoGTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757419967; c=relaxed/simple;
-	bh=J5/QpCDoFJoufpcMOKJW/ktR4sR0JsuMqYsFq7c/gik=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Iyedw1wZjdeJ8Voz8lpNqgguJRPLxEloIqRvRBqwlWhVzR2Sl8vCvFX9KJXcnfuN05XaJOx5FZ1/PjDTUw7G5fI2nFwl3xN2g0s6yJMOsiFD8T/+NeoTfcFTREHdFAs/TNbula8LHhWegIZ/yhBiP5bdXijIA1/q2iM4rfPheA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=EcQg1awf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5899LgZd030651
-	for <devicetree@vger.kernel.org>; Tue, 9 Sep 2025 12:12:43 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	F3/gI7HiWsKdqwPQvxhHv/oAU3laA8pk38dutfqDJT8=; b=EcQg1awfXKL0VuxZ
-	0RjlKjTot8QqUrjeO0y1JrKA5gPbJjCPzORbwtQizjqBoGuidn6DkZDjoKS1hfhl
-	uspNX/wZJedIeZHzuLJNSf5V+5tadAbhC8DUvlc9YJ5NFEnhgLXnpt3uuPGWVqr3
-	MuUnNNh3xX5WiPCbOdJ12TnNLm8hhxxsNO0PfKt2+g1sRRIIL7bvQiajAOAhjfRc
-	TfcG9CgpxPlmeMPr9rQK0J7/zaXfwxDnvhyO1OcfzJPfTJs53cuwqqXrAzNMvddP
-	xWy2mlOGHI8n9BzOByuGpf8Sc/My+1yuv9CJvmv+Z5u9HOOSZ9kY4rLZ878ttV/M
-	HdCiKg==
-Received: from mail-qv1-f69.google.com (mail-qv1-f69.google.com [209.85.219.69])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490c9j886g-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 12:12:43 +0000 (GMT)
-Received: by mail-qv1-f69.google.com with SMTP id 6a1803df08f44-7507804a7f7so33023456d6.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 05:12:43 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757419962; x=1758024762;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F3/gI7HiWsKdqwPQvxhHv/oAU3laA8pk38dutfqDJT8=;
-        b=nEYo3Oq2PxInql4uPFhtMz1Lqr92nXxsqWgHoTsnoa1/5jjEpG0lqdXYwwROJv+Ukq
-         mM1DRMhlB/v7jKK77hmk4KqeT3rEGb5g7d7kHtZgmDOGYx7kXm2/s3H3dFcFvSKiIch2
-         iNlsD5C0anJ8ZNzb7kiQggOLrimAcceNCqF1E6LxhGWNnb8YlpxRD+ATQPJFvvDrEkOv
-         WDhg0SxCCBb+gmChhi+4NAg97y1LensnFHnXyMd5bkCE+380oaWVztzi/n0uHXd20wVH
-         9FPxJqqnkTZMKJ8CkVYjYeaY9U3G2NxZ2nCca9jrF0OPxGBNfEDTyYGNLhgYmQD3xYNY
-         MF7w==
-X-Forwarded-Encrypted: i=1; AJvYcCU3CBLLP+oEtXpikcg2znqPok6xN7FN1NJFSN8CgmncnHT2EJShRetPhTADUkAfdpdi9812yUMcGo2D@vger.kernel.org
-X-Gm-Message-State: AOJu0YyWQwFsdfQ45UhY88rbh6jLWByzA9ZiXcu5/we085IjvZdBJm4u
-	TbiDi3fc4Ef5RvdS3Gm0FtBitMngInO4QktXaEq4rhp1ebpNQMlLn+K9jbe/GlwqyCnKVwJ2/8m
-	KPfPisaj1VPr8TrJ8uwNjAt1N8/ctyiTdtUlOfKKu3dR9kwWqY8rFCRUkdL64gHx+
-X-Gm-Gg: ASbGncvH3vAOfGtOdaOb/4ZsL2LAfcYS2ACbYUFkL8u6gAmREVFuZeOHWdR2GkIA9Mr
-	EjnGUWfc2s4F73+NuBoko/lo0FkGcg/whXSPu/EwI2wLuFpCrBQqqODm8fqDMt+erWONThQcVWz
-	ijdWzX7PuuWiVyWAw1xJGMNHN267pr1qXyVwBuTGILSjY4Uzn4lgPWNPWWzxzyDbu2f9TliBC/v
-	jFt5kxqbsKt6fqXR1buIj3yE1+dX00IhUkPGKhz1VtbUTLOx+qkN2k3crHZbnqCMbUPxUEVnfQO
-	y4FjoAt1S5iHl9poDA9VkHC/pLMmRxVKzwOuc4piMByGz8aeIfHvIgVWD94N2d8j1zg=
-X-Received: by 2002:a05:6214:29e2:b0:70d:cabf:470d with SMTP id 6a1803df08f44-72bc4f8b897mr161480676d6.27.1757419962214;
-        Tue, 09 Sep 2025 05:12:42 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHH3Cw+Od0RoE8Fp9uL5sJELsFA0jgOTA/af0ZY80i6HBU94bkP8p/VVPDuABUvl27r4rhPnw==
-X-Received: by 2002:a05:6214:29e2:b0:70d:cabf:470d with SMTP id 6a1803df08f44-72bc4f8b897mr161480206d6.27.1757419961635;
-        Tue, 09 Sep 2025 05:12:41 -0700 (PDT)
-Received: from [192.168.68.119] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id ffacd0b85a97d-3e75223ea3csm2441106f8f.49.2025.09.09.05.12.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Sep 2025 05:12:41 -0700 (PDT)
-Message-ID: <afba70e3-8cf8-4b77-8c7e-65e1ddc3a8ad@oss.qualcomm.com>
-Date: Tue, 9 Sep 2025 13:12:40 +0100
+	s=arc-20240116; t=1757420073; c=relaxed/simple;
+	bh=IsdM/3F1Q6gkhhBr0tu3r8LDY45Dp22k/hV+pt0fo2M=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=aWdHZwe/u0MH0hyNmNafxcmXyw08HEkfbWtC/Hd9aEbW0fTRbZZG/ivTlMCgeV3vxqaDJ0XRRQxp+pFtbqPEcCTxZEdtLVIzjlvmB7x2BwAPnsco3bShml4Lqw6JxWUuX8bevP7r9TO+g11XGBLVmur5P1m3LcuPGrty9/ZTX88=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org; spf=pass smtp.mailfrom=mentallysanemainliners.org; dkim=pass (2048-bit key) header.d=purelymail.com header.i=@purelymail.com header.b=j8qY2/7a; arc=none smtp.client-ip=34.202.193.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=mentallysanemainliners.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mentallysanemainliners.org
+Authentication-Results: purelymail.com; auth=pass
+DKIM-Signature: a=rsa-sha256; b=j8qY2/7a8ePIxrqZQXvrBmH0RKrjQLpb5akUZKSCAGk4EvB2bmcXG21rNMv52eQrtguTCUVHjyeQLMhjpcNqCU84f2G/+z4nlfLW2GW0qVAIwCzUS3/FLMuEIe3JG2MYmAMZaoiz6ztxfmVXcWmFrmn48S9fSwCF3+ZV6eNzYyk9a13n2GdR5d9Amz8DjJnMWfSv71o3w6agMPE5bsrC4ohM5ALnASOaQs5LmOKfgDs6+/OxidJvnD65EoM5LaUx/S8pnqbRND7urnx/PmzS+PgQC2+eh9ZEcrHdwdz/WMbNWh9lraIyUFcGvAdSkLbOXEOolZ3s+MfP7LfUPoblhQ==; s=purelymail2; d=purelymail.com; v=1; bh=IsdM/3F1Q6gkhhBr0tu3r8LDY45Dp22k/hV+pt0fo2M=; h=Feedback-ID:Received:Date:Subject:From:To;
+Feedback-ID: 68247:10037:null:purelymail
+X-Pm-Original-To: devicetree@vger.kernel.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id -824743633;
+          (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+          Tue, 09 Sep 2025 12:14:11 +0000 (UTC)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 07/13] ASoC: codecs: wcd: add common helper for wcd
- codecs
-To: kernel test robot <lkp@intel.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>,
-        broonie@kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, lgirdwood@gmail.com, tiwai@suse.com,
-        vkoul@kernel.org, yung-chuan.liao@linux.intel.com,
-        pierre-louis.bossart@linux.dev, srini@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-sound@vger.kernel.org, Dmitry Baryshkov <lumag@kernel.org>
-References: <20250907112201.259405-8-srinivas.kandagatla@oss.qualcomm.com>
- <202509081839.R4vv3FST-lkp@intel.com>
-Content-Language: en-US
-From: Srinivas Kandagatla <srinivas.kandagatla@oss.qualcomm.com>
-In-Reply-To: <202509081839.R4vv3FST-lkp@intel.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAyMiBTYWx0ZWRfXxj7kIf9fUqRS
- EaDapqqzHXDngMznXCs6E8fvT8V+gFdLqpVfJYMumEF/UJSQDC9js2EJEcbmSvD30QVPDaRboGx
- atvSCZCKzssnbrejlDYdMttlEolCXSZVO0cddCCW8sCtsEKBqWDYBMxpHfGK4EANyJdukxlfEnW
- v/HFBUOS61Q2fHAyvzohgTdjzVJ1hnciU753eIOQI+er8WCDyN/2msJIo/qUFeAtn5PxlBxjGZ5
- u9fRlApxSIeHI9vVvbeRUYHdrGzzip3Uw8RE482zImZGxaDVcCR7WDl0KYew5GZ8TpPpMEDYI90
- TaadJzUijmf1mUVqcCEwAGpqKA6CJUGZj4h0t5p6TRBKc8GhpI3MRN13Phe8aSYwwaNTvcKTsE/
- 2m4P0KYW
-X-Proofpoint-ORIG-GUID: 6scW9SV-A5_apzLFcYc_RpbjvnFejPrk
-X-Authority-Analysis: v=2.4 cv=PpOTbxM3 c=1 sm=1 tr=0 ts=68c019bb cx=c_pps
- a=wEM5vcRIz55oU/E2lInRtA==:117 a=ZsC4DHZuhs/kKio7QBcDoQ==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=anyJmfQTAAAA:8 a=NEAV23lmAAAA:8
- a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=i3X5FwGiAAAA:8 a=QyXUC8HyAAAA:8
- a=EN0wAbmSeUWIRxCTcSEA:9 a=QEXdDO2ut3YA:10 a=OIgjcC2v60KrkQgK7BGD:22
- a=mmqRlSCDY2ywfjPLJ4af:22
-X-Proofpoint-GUID: 6scW9SV-A5_apzLFcYc_RpbjvnFejPrk
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_01,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- suspectscore=0 phishscore=0 spamscore=0 bulkscore=0 clxscore=1015
- malwarescore=0 adultscore=0 impostorscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060022
+Date: Tue, 09 Sep 2025 14:14:08 +0200
+Message-Id: <DCO9EWX469HR.2R09YSL967MSV@mentallysanemainliners.org>
+Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: mediatek: Document MT6878 pin
+ controller bindings
+From: "Igor Belwon" <igor.belwon@mentallysanemainliners.org>
+To: "Krzysztof Kozlowski" <krzk@kernel.org>, "Igor Belwon"
+ <igor.belwon@mentallysanemainliners.org>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
+ <robh@kernel.org>, "Krzysztof Kozlowski" <krzk+dt@kernel.org>, "Conor
+ Dooley" <conor+dt@kernel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>,
+ "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>,
+ "Sean Wang" <sean.wang@kernel.org>, <linux-gpio@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>,
+ <linux-mediatek@lists.infradead.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20250908-mt6878-pinctrl-support-v1-0-3fb78c8ab4e8@mentallysanemainliners.org> <20250908-mt6878-pinctrl-support-v1-1-3fb78c8ab4e8@mentallysanemainliners.org> <20250909-mellow-eminent-duck-4c4619@kuoka>
+In-Reply-To: <20250909-mellow-eminent-duck-4c4619@kuoka>
 
+On Tue Sep 9, 2025 at 9:37 AM CEST, Krzysztof Kozlowski wrote:
+> On Mon, Sep 08, 2025 at 09:17:55PM +0200, Igor Belwon wrote:
+>> Add device-tree bindings for the pin controller and the EINT controller
+>> found in the MediaTek MT6878 SoC.
+>>=20
+>> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
+>> ---
+>>  .../bindings/pinctrl/mediatek,mt6878-pinctrl.yaml  |  209 ++++
+>>  include/dt-bindings/pinctrl/mt6878-pinfunc.h       | 1201 +++++++++++++=
++++++++
+>>  2 files changed, 1410 insertions(+)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/pinctrl/mediatek,mt6878-p=
+inctrl.yaml b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6878-pin=
+ctrl.yaml
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..ecd24ab23a0c41810828ddb8=
+827ab39c4cd3d2fc
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/pinctrl/mediatek,mt6878-pinctrl.=
+yaml
+>> @@ -0,0 +1,209 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/pinctrl/mediatek,mt6878-pinctrl.yaml=
+#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: MediaTek MT6878 Pin Controller
+>> +
+>> +maintainers:
+>> +  - Igor Belwon <igor.belwon@mentallysanemainliners.org>
+>> +
+>> +description:
+>> +  The MediaTek MT6878 Pin controller is used to control SoC pins.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: mediatek,mt6878-pinctrl
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: pin controller base
+>> +      - description: bl group IO
+>> +      - description: bm group IO
+>> +      - description: br group IO
+>> +      - description: bl1 group IO
+>> +      - description: br1 group IO
+>> +      - description: lm group IO
+>> +      - description: lt group IO
+>> +      - description: rm group IO
+>> +      - description: rt group IO
+>> +      - description: EINT controller E block
+>> +      - description: EINT controller S block
+>> +      - description: EINT controller W block
+>> +      - description: EINT controller C block
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: base
+>> +      - const: bl
+>> +      - const: bm
+>> +      - const: br
+>> +      - const: bl1
+>> +      - const: br1
+>> +      - const: lm
+>> +      - const: lt
+>> +      - const: rm
+>> +      - const: rt
+>> +      - const: eint-e
+>> +      - const: eint-s
+>> +      - const: eint-w
+>> +      - const: eint-c
+>> +
+>> +  gpio-controller: true
+>> +
+>> +  '#gpio-cells':
+>> +    description:
+>> +      Number of cells in GPIO specifier. Since the generic GPIO binding=
+ is used,
+>> +      the amount of cells must be specified as 2. See the below mention=
+ed gpio
+>> +      binding representation for description of particular cells.
+>> +    const: 2
+>> +
+>> +  gpio-ranges:
+>> +    maxItems: 1
+>> +
+>> +  gpio-line-names: true
+>
+> How many GPIOs do you have? No limit?
+>
 
+How shall I limit the GPIOs?
+The maximum amount that this SoC supports is 216, looking into
+dt-bindings for pinctrl, I haven't seen a SoC that limits them in
+bindings. Maybe I missed it though...
 
-On 9/8/25 11:40 AM, kernel test robot wrote:
-> Hi Srinivas,
-> 
-> kernel test robot noticed the following build warnings:
-> 
-> [auto build test WARNING on broonie-sound/for-next]
-> [also build test WARNING on linus/master v6.17-rc5 next-20250905]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Srinivas-Kandagatla/ASoC-codecs-wcd937x-set-the-comp-soundwire-port-correctly/20250907-192533
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-> patch link:    https://lore.kernel.org/r/20250907112201.259405-8-srinivas.kandagatla%40oss.qualcomm.com
-> patch subject: [PATCH v4 07/13] ASoC: codecs: wcd: add common helper for wcd codecs
-> config: openrisc-allyesconfig (https://download.01.org/0day-ci/archive/20250908/202509081839.R4vv3FST-lkp@intel.com/config)
-> compiler: or1k-linux-gcc (GCC) 15.1.0
-> reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250908/202509081839.R4vv3FST-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202509081839.R4vv3FST-lkp@intel.com/
-> 
-> All warnings (new ones prefixed by >>):
-> 
->    sound/soc/codecs/wcd-common.c: In function 'wcd_dt_parse_micbias_info':
->>> sound/soc/codecs/wcd-common.c:34:51: warning: 'sprintf' may write a terminating nul past the end of the destination [-Wformat-overflow=]
->       34 |         sprintf(micbias, "qcom,micbias%d-microvolt", micb_num);
->          |                                                   ^
->    In function 'wcd_get_micbias_val',
->        inlined from 'wcd_dt_parse_micbias_info' at sound/soc/codecs/wcd-common.c:61:26:
->    sound/soc/codecs/wcd-common.c:34:9: note: 'sprintf' output between 24 and 33 bytes into a destination of size 32
+>> +
+>> +  interrupts:
+>> +    description: The interrupt outputs to sysirq
+>> +    maxItems: 1
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  '#interrupt-cells':
+>> +    const: 2
+>> +
+>> +# PIN CONFIGURATION NODES
+>> +patternProperties:
+>> +  '-pins$':
+>> +    type: object
+>> +    additionalProperties: false
+>> +
+>> +    patternProperties:
+>> +      '^pins':
+>> +        type: object
+>> +        allOf:
+>> +          - $ref: /schemas/pinctrl/pincfg-node.yaml
+>> +          - $ref: /schemas/pinctrl/pinmux-node.yaml
+>> +        description:
+>> +          A pinctrl node should contain at least one subnodes represent=
+ing the
+>> +          pinctrl groups available on the machine. Each subnode will li=
+st the
+>> +          pins it needs, and how they should be configured, with regard=
+ to muxer
+>> +          configuration, pullups, drive strength, input enable/disable =
+and input
+>> +          schmitt.
+>> +
+>> +        properties:
+>> +          pinmux:
+>> +            description:
+>> +              Integer array, represents gpio pin number and mux setting=
+.
+>> +              Supported pin number and mux are defined as macros in
+>> +              arch/arm64/boot/dts/mediatek/mt8196-pinfunc.h for this So=
+C.
+>> +
+>> +          drive-strength:
+>> +            enum: [2, 4, 6, 8, 10, 12, 14, 16]
+>> +
+>> +          drive-strength-microamp:
+>> +            enum: [125, 250, 500, 1000]
+>> +
+>> +          bias-pull-down:
+>> +            oneOf:
+>> +              - type: boolean
+>> +              - enum: [75000, 5000]
+>> +                description: Pull down RSEL type resistance values (in =
+ohms)
+>> +            description:
+>> +              For normal pull down type there is no need to specify a r=
+esistance
+>> +              value, hence this can be specified as a boolean property.
+>> +              For RSEL pull down type a resistance value (in ohms) can =
+be added.
+>> +
+>> +          bias-pull-up:
+>> +            oneOf:
+>> +              - type: boolean
+>> +              - enum: [10000, 5000, 4000, 3000]
+>> +                description: Pull up RSEL type resistance values (in oh=
+ms)
+>> +            description:
+>> +              For normal pull up type there is no need to specify a res=
+istance
+>> +              value, hence this can be specified as a boolean property.
+>> +              For RSEL pull up type a resistance value (in ohms) can be=
+ added.
+>> +
+>> +          bias-disable: true
+>> +
+>> +          output-high: true
+>> +
+>> +          output-low: true
+>> +
+>> +          input-enable: true
+>> +
+>> +          input-disable: true
+>> +
+>> +          input-schmitt-enable: true
+>> +
+>> +          input-schmitt-disable: true
+>> +
+>> +        required:
+>> +          - pinmux
+>> +
+>> +        additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupts
+>> +  - interrupt-controller
+>> +  - '#interrupt-cells'
+>> +  - gpio-controller
+>> +  - '#gpio-cells'
+>> +  - gpio-ranges
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/pinctrl/mt65xx.h>
+>
+> Why including mt65xx?
+>
+>> +    #define PINMUX_GPIO0__FUNC_GPIO0 (MTK_PIN_NO(0) | 0)
+>
+> I don't understand why do you need it? Didn't you have header for that?
+> Or you prepared for header removal (see my further comment), but then it
+> is just confusing.
+>
 
-thanks, this is really nice static analysis,
-fixed in v5.
+Will use the new header in V2.
 
---srini
->       34 |         sprintf(micbias, "qcom,micbias%d-microvolt", micb_num);
->          |         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-> 
-> 
-> vim +/sprintf +34 sound/soc/codecs/wcd-common.c
-> 
->     28	
->     29	static int wcd_get_micbias_val(struct device *dev, int micb_num, u32 *micb_mv)
->     30	{
->     31		char micbias[32];
->     32		int mv;
->     33	
->   > 34		sprintf(micbias, "qcom,micbias%d-microvolt", micb_num);
->     35	
->     36		if (of_property_read_u32(dev->of_node, micbias, &mv)) {
->     37			dev_err(dev, "%s value not found, using default\n", micbias);
->     38			mv = WCD_DEF_MICBIAS_MV;
->     39		} else {
->     40			/* convert it to milli volts */
->     41			mv = mv/1000;
->     42		}
->     43		if (micb_mv)
->     44			*micb_mv = mv;
->     45	
->     46		mv = wcd_get_micb_vout_ctl_val(dev, mv);
->     47		if (mv < 0) {
->     48			dev_err(dev, "Unsupported %s voltage (%d mV), falling back to default (%d mV)\n",
->     49					micbias, mv, WCD_DEF_MICBIAS_MV);
->     50			return wcd_get_micb_vout_ctl_val(dev, WCD_DEF_MICBIAS_MV);
->     51		}
->     52	
->     53		return mv;
->     54	}
->     55	
-> 
+>> +    #define PINMUX_GPIO99__FUNC_SCL0 (MTK_PIN_NO(99) | 1)
+>> +    #define PINMUX_GPIO100__FUNC_SDA0 (MTK_PIN_NO(100) | 1)
+>> +
+>> +    pio: pinctrl@10005000 {
+>> +        compatible =3D "mediatek,mt6878-pinctrl";
+>> +        reg =3D <0x10005000 0x1000>,
+>> +              <0x11d10000 0x1000>,
+>> +              <0x11d30000 0x1000>,
+>> +              <0x11d40000 0x1000>,
+>> +              <0x11d50000 0x1000>,
+>> +              <0x11d60000 0x1000>,
+>> +              <0x11e20000 0x1000>,
+>> +              <0x11e30000 0x1000>,
+>> +              <0x11eb0000 0x1000>,
+>> +              <0x11ec0000 0x1000>,
+>> +              <0x11ce0000 0x1000>,
+>> +              <0x11de0000 0x1000>,
+>> +              <0x11e60000 0x1000>,
+>> +              <0x1c01e000 0x1000>;
+>> +        reg-names =3D "base", "bl", "bm", "br", "bl1", "br1",
+>> +                    "lm", "lt", "rm", "rt", "eint-e", "eint-s",
+>> +                    "eint-w", "eint-c";
+>> +        gpio-controller;
+>> +        #gpio-cells =3D <2>;
+>> +        gpio-ranges =3D <&pio 0 0 220>;
+>> +        interrupt-controller;
+>> +        interrupts =3D <GIC_SPI 239 IRQ_TYPE_LEVEL_HIGH 0>;
+>> +        #interrupt-cells =3D <2>;
+>> +
+>> +        gpio-pins {
+>> +            pins {
+>> +                pinmux =3D <PINMUX_GPIO0__FUNC_GPIO0>;
+>> +                bias-pull-up =3D <4000>;
+>> +                drive-strength =3D <6>;
+>> +            };
+>> +        };
+>> +
+>> +        i2c0-pins {
+>> +            pins-bus {
+>> +                pinmux =3D <PINMUX_GPIO99__FUNC_SCL0>,
+>> +                         <PINMUX_GPIO100__FUNC_SDA0>;
+>> +                bias-pull-down =3D <75000>;
+>> +                drive-strength-microamp =3D <1000>;
+>> +            };
+>> +        };
+>> +    };
+>> diff --git a/include/dt-bindings/pinctrl/mt6878-pinfunc.h b/include/dt-b=
+indings/pinctrl/mt6878-pinfunc.h
+>> new file mode 100644
+>> index 0000000000000000000000000000000000000000..4e8e475a74549b513ac7075a=
+c2ef0fe6f7f1d097
+>> --- /dev/null
+>> +++ b/include/dt-bindings/pinctrl/mt6878-pinfunc.h
+>
+> This is now in DTS.
 
+Will move over in V2.
+
+>
+>> @@ -0,0 +1,1201 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>
+> Otherwise wrong license and wrong filename (vendor prefix, filename
+> matching binding).
+>
+> Best regards,
+> Krzysztof
+
+Thanks,
+Igor
 
