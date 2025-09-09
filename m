@@ -1,295 +1,227 @@
-Return-Path: <devicetree+bounces-214701-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214702-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B947B4A257
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:34:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE0B7B4A274
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:39:05 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88F624E7C27
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:34:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AA3A445767
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:39:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2408F303A08;
-	Tue,  9 Sep 2025 06:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32F8C303A11;
+	Tue,  9 Sep 2025 06:39:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="PlhFbDHv"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="3z0gqWqt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2079.outbound.protection.outlook.com [40.107.94.79])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D6C1302CD9
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 06:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.133.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757399650; cv=none; b=G5vCEPu4AoGMfdpW6aRivdbxIDH2hkyzxQo5FDpPXilwd1rpNyM11hEztmCLxEkstDCwVidK5i3PLFfjZXaP7wtEzRkNj3qKlOa1P6HCGCL+MMRNxwySi8YNpcHMlh/GXz7z2IWyuhdvHKA7kR98TKPP9VLDo2WOrXet0hguo3E=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757399650; c=relaxed/simple;
-	bh=OkLV7V7U2RfHYgYd0F2dW2sdQXZStfFXTBTuBIwJJA0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Cw6SlBWRJYYMx4CdmzJFKjSleYxtHwGDT8oLaTGNSlbpwgtqTLdo2Ka84oa2VBuNwYjX7dHIqDtdfQydf3uSNpJUz8MIu9msT7C2qPQQ9+Mp2MY2WK96JqGTwuKk31h+h5OvQB0SJ02K+a9G9Z3rIME/gKR6QJXW5Hwzt59QBhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=PlhFbDHv; arc=none smtp.client-ip=170.10.133.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1757399645;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=xwLN7sp3nt0WNSBYWuTDH2EXHW+WyUruHUDROM7d8dw=;
-	b=PlhFbDHvl5F/tleTIyCQJ8R1RT7AXn5cV+p+20SjPS8hI/ywRLM7dzjeU9fqrZJYNHpA2E
-	c+xU9CQPYro/OMlsu9YYeTzOwr3GlA+jexB4xRxpqTBluTfOrehOYBbcpPMFxyXmVZbNVj
-	swiCRbSSuqzUHMgyQw3RTC7kddEeDvo=
-Received: from mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com
- (ec2-35-165-154-97.us-west-2.compute.amazonaws.com [35.165.154.97]) by
- relay.mimecast.com with ESMTP with STARTTLS (version=TLSv1.3,
- cipher=TLS_AES_256_GCM_SHA384) id us-mta-88-T3q0jQu5MNuHVv3PGQeseA-1; Tue,
- 09 Sep 2025 02:34:02 -0400
-X-MC-Unique: T3q0jQu5MNuHVv3PGQeseA-1
-X-Mimecast-MFC-AGG-ID: T3q0jQu5MNuHVv3PGQeseA_1757399640
-Received: from mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com [10.30.177.17])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by mx-prod-mc-06.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id 3A5EB1800288;
-	Tue,  9 Sep 2025 06:33:59 +0000 (UTC)
-Received: from localhost (unknown [10.72.112.14])
-	by mx-prod-int-05.mail-002.prod.us-west-2.aws.redhat.com (Postfix) with ESMTPS id A8F921956095;
-	Tue,  9 Sep 2025 06:33:56 +0000 (UTC)
-Date: Tue, 9 Sep 2025 14:33:52 +0800
-From: Baoquan He <bhe@redhat.com>
-To: Brian Mak <makb@juniper.net>
-Cc: Andrew Morton <akpm@linux-foundation.org>,
-	Alexander Graf <graf@amazon.com>, Dave Young <dyoung@redhat.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
-	Dave Hansen <dave.hansen@linux.intel.com>,
-	"H. Peter Anvin" <hpa@zytor.com>, Rob Herring <robh@kernel.org>,
-	Saravana Kannan <saravanak@google.com>,
-	"x86@kernel.org" <x86@kernel.org>,
-	"kexec@lists.infradead.org" <kexec@lists.infradead.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] kexec: Add KEXEC_FILE_NO_CMA as a legal flag
-Message-ID: <aL/KUFaJF/PnVisu@MiWiFi-R3L-srv>
-References: <20250805211527.122367-1-makb@juniper.net>
- <20250805211527.122367-2-makb@juniper.net>
- <20250820214756.5c7b551e4723d9f0b5dd55e3@linux-foundation.org>
- <aKbZ1h5mjtfoFMh8@MiWiFi-R3L-srv>
- <20250821045319.72e81f40e021e54e2131ac44@linux-foundation.org>
- <aKflAV8XNjqeu1Dj@MiWiFi-R3L-srv>
- <9F68DBD7-8A67-4FF4-AC99-5D485D9F9313@juniper.net>
- <1683D348-3A7C-484F-B21E-7828B96AA263@juniper.net>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7374D2E0B48;
+	Tue,  9 Sep 2025 06:38:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.79
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757399941; cv=fail; b=YEsjNfCQlrV1prjPxW72JxKsqaB4YnTaB2eng+wg519yXsiy7KiWUtXGtZ6z4LWFUdRViRlhUUlI/k+dYTzR+l1qTOqgk7k/ZgjTHTwA1vCoPrDdW5vOrPCruG3cmtIIPqwh3LPwXYFkKlen6EvwTEWiU0Q1WGDwuviDBJKbHBc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757399941; c=relaxed/simple;
+	bh=oAaaG936d1mat4I1yLx2MrGygeo1Z/284nFBT9bxDOo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=k569FYWYZ+7PPbCdrGKjbjNW3/yaoC1ji3+oZXsnuiK/6J/fZl1xlyz9HZDLddZMXETwIZWeD89kS0pY077CQeZQBTwnXrjJtARtH3Y0xD39O4ia9PuCX+YXOpLQAC2Td0s53UWJ+r3w81gOu8F9KjzJTFYsHzEVo1RiMivXPC0=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=3z0gqWqt; arc=fail smtp.client-ip=40.107.94.79
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=qgyy1p/W+3KS2z87xL4V90Wpa8gsXT4HEbzvBmFfNqxrvHvwYS5jLMEr6p9D8azbXh/VNLZlm1MUiFrsRtn468ucMSATsjP7Xf044wA/ZaDC0XfZbzWDL9OTrGuu91x/XlVPhF544AIMzZIMQH4MCnvAgkUha6zYh5XOiZ8LuvghjCYgat1XNyGD8PUBM8kL8x/9w6Jea1X7af5aHbgulbhUAbAQnJLcprdS4NgtqI2HcCuVzBoxy9LlaQsaS9TZaALTCaZBl/pJXZRLO9jp9WwkK0QXcM+OHwsb1pUS+ut0XsLmYtxOUIZTlfVcinQo1F+oiJusV2Q7GYkHtnNM9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=oAaaG936d1mat4I1yLx2MrGygeo1Z/284nFBT9bxDOo=;
+ b=bs0GSX6jW9QJXcX5i3799Hg/Fc6y/4P24BCEVHELMaB5GaVl1tYfCLS89W74Kxr4Be5mxFIIZznmJeiwefIKYiEEAQ0lUkBBeZyWxvQKPTZb+xCZnPdkY7cAKg1aLBvephq4KveaNCL1VE5MlSyUJ+7YGaonXIqQsm4lL+EXMkn2ZCBIGIFUw+ApU9wswhb7bbHZ10DIDzBewMSKcWl7hIL20z+zzdStU5aCqcHigiJTjUWWIOd1Uw14km4x3z5q06hn8CIiJ7rTLXdj9V7TOOUgDFOZSz7s/Lw3mAnB4tNO2CJGOi0VimsvZT6pLGCCtkntl/IWeYXqt4RxbgvJ7Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=microchip.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oAaaG936d1mat4I1yLx2MrGygeo1Z/284nFBT9bxDOo=;
+ b=3z0gqWqtbxx3lVSPiTyWjOE5cPz0aWPv1Fq+cvFMRU+MbZBV8vM1Bc7neIWRy9lvMvJ1g8psQiw4mL0J5ga409TRh4/Jbjex1d7P2EToqvXQOWm5bfjIVj+pGipG6lM8kc9H85Nhk8e4+2gEgVE2cDZeYXakXP0DJvwDsGud5ioopl01XtT0/dspaIYpxGq0/dwVKJdTR3l+tCDrwEbhrs1wJD8u7D1F7GEYovOXQIKEwOKSLBMSsWcKUHEIM6jvZE1jMaqWWwXbOBR2H8psJkPHFJjx0ClmYtnzmuxy5UtW7OhWextxZ0sEDVooLBNDQoCFToApOrerMHARJZjtuQ==
+Received: from SA1PR11MB8278.namprd11.prod.outlook.com (2603:10b6:806:25b::19)
+ by CY8PR11MB6987.namprd11.prod.outlook.com (2603:10b6:930:55::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
+ 2025 06:38:56 +0000
+Received: from SA1PR11MB8278.namprd11.prod.outlook.com
+ ([fe80::84fa:e267:e389:fa9]) by SA1PR11MB8278.namprd11.prod.outlook.com
+ ([fe80::84fa:e267:e389:fa9%5]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
+ 06:38:56 +0000
+From: <Parthiban.Veerasooran@microchip.com>
+To: <danishanwar@ti.com>, <davem@davemloft.net>, <edumazet@google.com>,
+	<kuba@kernel.org>, <pabeni@redhat.com>, <horms@kernel.org>, <corbet@lwn.net>,
+	<nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+	<krzk+dt@kernel.org>, <conor+dt@kernel.org>, <andrew+netdev@lunn.ch>,
+	<mengyuanlou@net-swift.com>, <quic_luoj@quicinc.com>, <gongfan1@huawei.com>,
+	<quic_leiwei@quicinc.com>, <mpe@ellerman.id.au>, <lee@trager.us>,
+	<lorenzo@kernel.org>, <geert+renesas@glider.be>, <lukas.bulwahn@redhat.com>
+CC: <netdev@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<devicetree@vger.kernel.org>
+Subject: Re: [PATCH net-next v3 4/7] net: rpmsg-eth: Add netdev ops
+Thread-Topic: [PATCH net-next v3 4/7] net: rpmsg-eth: Add netdev ops
+Thread-Index: AQHcIKApBK9kCbFYTkCCOXsVz6s5OLSKZ5QA
+Date: Tue, 9 Sep 2025 06:38:56 +0000
+Message-ID: <4a69e4f1-06b1-49a1-aab6-baef6c613f0b@microchip.com>
+References: <20250908090746.862407-1-danishanwar@ti.com>
+ <20250908090746.862407-5-danishanwar@ti.com>
+In-Reply-To: <20250908090746.862407-5-danishanwar@ti.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+user-agent: Mozilla Thunderbird
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=microchip.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SA1PR11MB8278:EE_|CY8PR11MB6987:EE_
+x-ms-office365-filtering-correlation-id: b2258fdc-62da-45a2-cad9-08ddef6b8d33
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|7416014|376014|366016|38070700021|921020;
+x-microsoft-antispam-message-info:
+ =?utf-8?B?R3M1LzB6Y2FCVGNPRUJnb1VhTHM2d1B5UXZaR1drZW92VzZBRENTK0FqWFJN?=
+ =?utf-8?B?UmVuUml5Ly9tME9GOVhFVk91NzVYaEsrVEZDdUhKMmtPa1NmOVlpeTFkaC9k?=
+ =?utf-8?B?QUJGWVhLZlVlODJzOTY1TG81R2VhZkdtd203SHZUWU11aDFRVE9xZ0hibzE4?=
+ =?utf-8?B?akpsSFVqTXowTkkxZHN0VkNnY0pGZElpNThKZGdBSjRJbktWZmdNUkY5UzRv?=
+ =?utf-8?B?UWZMZ2IzdDZxT29KcmN4b2xjWldaL2dmOEQ5bm1XT2psWEcxeXFERGRSR3Q2?=
+ =?utf-8?B?QVNLZ2R1akd4Yk9SNUhNeTFIdkEvNGM1T09LYjdsQzBPdUlNS1dMSjF4cGRo?=
+ =?utf-8?B?K3ErSnEvMjlEQUZRY256MHpBbXBWRjBzNVNwQXIzblc5anM1QmxxT2svOGVp?=
+ =?utf-8?B?cCtCaGhocXl0ZGFZNjYvcGhobXh1T2trWVpYK1pEMVpQV3VTbFcvcHNYNmo5?=
+ =?utf-8?B?bWlmbWhjNTc0b3VUR1ZDZzBBRm41Vkh1a25NRWl3dUZTc3FTay9JaER6MFBX?=
+ =?utf-8?B?dGNFVExJRU1pbzg3SDlncG1ORWNiemlLdmNVSEMrR0RPd0wzcmpxY29qU010?=
+ =?utf-8?B?ZS80bi9SajVDejI5STNxVGQ2eEV6bXhkQjRWUmlBbGFRNUU2TjN1UERhS2dn?=
+ =?utf-8?B?OGkxTUFjbEVnQkdmN0I5TGxxYmhFWGR5bUlLeXFmZTJLR3ZTS0lLWFJzSkpB?=
+ =?utf-8?B?MTJrZDZzTGhIdUw4bm1PVFpEKzhicit4cGk1dlVxT1VlWkxoekhzUGdMVWVH?=
+ =?utf-8?B?MlEyZTFYL2g2bkFTNFY4bVorSllZVW5RdThyMXViOUE0MkxIZnpGazJ2bjE3?=
+ =?utf-8?B?em5VenJJMHRpSEY0eUFINGtOUENYMGc2ZDU0UzBEc1JZVUkxVWZ3NFE0R2w5?=
+ =?utf-8?B?SHFyM1Z0dFM1aDA1L2hPQlV2aVJydWVNWUNrVC9Wc0VDMG4wNFdRd2MzYnh5?=
+ =?utf-8?B?UUlNeDQ1cTA1VzhLUXU3K09JVU9vRVZLSERkM2dqWmdQK0J0Y1RvUkN2bTZ3?=
+ =?utf-8?B?ZFd1R2tuZEJXaXZWWXZ2Y0xoa2FYNkx1b0NEaTZnN0lwS0NUdWE1M242Q212?=
+ =?utf-8?B?L3dLQ2diNW40dTAzOVJ4RkRpeUNjREhpQVlzdHJjdk81OHhQVjFKWHdod1Vs?=
+ =?utf-8?B?Uk1TNVdLeTk2ZFdvNUZrQWFra2g0L3g1OE9CYmlOY3V3UXZ2bGpxMVlJMXdt?=
+ =?utf-8?B?RDFUdjNPSENPb2d2NlROYytyOVF4eGtQL3NqdkgyZkdOclJCMy94R3Znc21I?=
+ =?utf-8?B?SENhNGdqZ21HU2ZpSWtHeFlaRExUYmU4UDAzdHVtbVBEOHRsdVhmbjV4MnZS?=
+ =?utf-8?B?Nlhjd1RONit2QWVIKzhreTRCQ2loU2p3bGdaL0J1WGU5NFVJUThWcklnNHNX?=
+ =?utf-8?B?VnUwWE1QMkRDQVhNWkxsZDdLdDFUVmdNRkdMN3ZmeFlVaFRIeWg0MnFNd3dI?=
+ =?utf-8?B?b3RRS3ZtUGJLMWVCalc5bHRmOWN2Vk9iR0QyamM0WEg3clpSL3dIejVOVHh2?=
+ =?utf-8?B?dFBqUWFjM240ektzdUFMK1RMS3djdENzaFVlMjhmNWJxUldSeHNJWDZ0VG96?=
+ =?utf-8?B?bFBWam4yenBTdCsvaG5sQmltb1hMMEVDK3lBNjFVUENBN05pTExlYXFyQzNC?=
+ =?utf-8?B?WWx6a3hTeXlhYStFdkJYaEtMSVlyQjJiUWxYRjF3eHlyZjNVRThjZEgvM0NE?=
+ =?utf-8?B?Z21oOVE2MDNuK05HdEJRamlBQ0hONzlmcnJLaE5nMzFOU2JkYlJabnFlU21L?=
+ =?utf-8?B?NVR3SE9GZDhYdENHbVpPY3BjbFlJbnVVbk52UFJCMHBLcFlOR0VmWVhuZU9a?=
+ =?utf-8?B?ZlBGNzJVcmFONXE3YjZMM2xENGYyWEpoQ1BNdGNVaTkyOU1ndGNBOXJPTW9l?=
+ =?utf-8?B?S0xIcTJRdWF4a00xWnBEWWNNVnkrdjdrNHlHcUZLQkxRdlBtejViQlMrREFl?=
+ =?utf-8?B?WGFpdlhIcG1BTEFHc3VzeGFtVGJKYVBacFg1UDNxUlM0MzZJZ0NTcXk5OTRr?=
+ =?utf-8?Q?vtUEFI9Zmi06bFxziIijq5AHYkddF4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SA1PR11MB8278.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(376014)(366016)(38070700021)(921020);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?K1VBOXc2TkkzVDUxQkpXdS9NbHNtb3FncExCQUJydEZEZmtHUFlqM2ZLUjJo?=
+ =?utf-8?B?Yk1TM2tldTFlMUJZdVkvc0hpcGd0R0FXU1oxbTk5NlFIVEFqZVBGLzFBTFNU?=
+ =?utf-8?B?d0xjNnN0NnowN21aaWZ0MERsZUZOZHBBcXJ0bXdESmJDUjVabnQ0WGRqZEhC?=
+ =?utf-8?B?elJBR2pXZFY3YS9sTTdpUmZSOWRpdjlHRXF4eEFSK2NKRVVBMUx0WmoxY0s4?=
+ =?utf-8?B?QXJSNmJyUm1rdGJURXV2SGpqdHIrLzZBU3JoNDYvM2NNZzh6dnZtT3BSbGtC?=
+ =?utf-8?B?aExJUHZ6SEpWZWQzcUNjTkcrTi9ROVJ3QkpXNDJzeWhhWmxKaFhZcGNYb05X?=
+ =?utf-8?B?QVEvcFNUc211NWhUREk2TW5Vd25vZ0F1SVRIdHdmWVJzTUVBYUsvVE1wZWNF?=
+ =?utf-8?B?SHBnc0tueE9ab0JhVllVVXVFTm82TEE4c1BVbm9CNG50Sk1YMnBldjQ4NDdr?=
+ =?utf-8?B?eEtHeFZyaXlaNjNKYkRhc3NLTDlwMVprUEhGS2xFYU9iSTdQQzRMcXNSNlZF?=
+ =?utf-8?B?NnZwcmNIajJMeUZxZ1ZGVHN3aHFjaTVrY3J4aWFDYzZYZlk0cVowekNrcUVv?=
+ =?utf-8?B?N2ZQODhlL2Zkc3BaUHZqL2tyNGFTdDEzelppaVNvdjZReDBaZFJjWS85RzdB?=
+ =?utf-8?B?WGZGOU5JdEc3NjRxaWx6Y0NicmhuU2g2N2puV1ZOV2E3UGVTN01vaVBObXI3?=
+ =?utf-8?B?QWZHeEttVDNjZjU5Sk04TWhEN0QxRitVSW1JTkRsWlVlU2tDRWM5QTFPWHM5?=
+ =?utf-8?B?SmdhVldIeGUvTUdNdk1hK1l2VU5kSGdZSjY4ek4zSjRMTWczZkdZakoxOWlR?=
+ =?utf-8?B?UlJyNU96S1FzaEZwOTNhMkk2dDhXSU81RkoxQW4yY2NKV3pKam1idXFjZWFn?=
+ =?utf-8?B?NytiN0djcVhBNm95VkQ1T29YMHR1T3JTV1lDVUlhVmM3bEp3cFpvMjVseEFQ?=
+ =?utf-8?B?T1RQTFpUbWtIbTlTTUhPSEZPd0VvS0hhaGVUb3F0L0VGWE9DRVdtOVRxK3pU?=
+ =?utf-8?B?QmJuTkMxUkw1dHZXaWpObTlITXBCYzFVcVZBbHhvSEx2b1hWRjl0eHVCeitL?=
+ =?utf-8?B?ZWhPeDZBSCttOHd3Wk9tUEV1OE05S0RhRHhlM1hEYW9yMmZsa3EyTVpLYU40?=
+ =?utf-8?B?WG52Qk5uMUFneVJzZmVDQXJWMUlQcmpNaFI4dWJ3cStXSFlHSUtOVFJLUUhZ?=
+ =?utf-8?B?UTMzbU04UHp5QUZ2bUVYNEs4ZUZ1cVdBUnRER2lBSFRCbVhjRVVySDFKRitp?=
+ =?utf-8?B?eGlLcEFYemVGcHhMZHdGQnQyNmdqbG1yTkY5R1NFMitFSzNnbFlxMmMvaEkr?=
+ =?utf-8?B?SURYMXJJQ0FCOUlGWjE3RmhGMFJlL3JtbEh6V1p2bUZZTkk3enVmL3pKY3ZC?=
+ =?utf-8?B?VXIwTkJ3VW1DeGdtYytId1pQcTIyTUk3UXVHeVJQM2JZdnV5eWZkdTd2NVBk?=
+ =?utf-8?B?VXV3Mi8rdmZwdHZCbk1xTmhmV2ZOR1Z0VEVpanYwNlBRcmdwRVpWaWw5ekxM?=
+ =?utf-8?B?T0src21YT1hXSmYxRWpwM2l2bkNoYWlRc08rUnZOdWM5OGtvcThySTRFa0Q1?=
+ =?utf-8?B?cHZEVWNnSDB4cDJDaUlGQzJvSi9GQThzNTRkMksvNlVLdnpCaWNHVEZ3Nlg2?=
+ =?utf-8?B?aGhEMk5NZ2oyQ01XZTR6WDlUKzNlRS9SczJ6bEtqd1JBUy9JcDM2enVDZWxu?=
+ =?utf-8?B?SW1wMisvUUlhUEVYQ04wYzI4K1RjWUVHaG11T0J2bkZYcGtNWThyVW9sKzNF?=
+ =?utf-8?B?OERRTllHNHJHNDVWYmtzZy8weTdxM3FxSmhZb1RZT01wWVMwbGUydWJNUnhp?=
+ =?utf-8?B?SnZNWExObmlzcTBSelVqUFZYYUNjQ2dSenhYejc0QjFTWTAzS2t1dDZtZGhU?=
+ =?utf-8?B?cmRLTUozU0FDcnNPVFJ6V1V1cmhrWGdVZG5lc281Zk1WMWw1M1ZLbWFZNENF?=
+ =?utf-8?B?dWJVSGpESnpPRkxTTXRkTnJCSzFzeXFZdDB6WG9pNk0xNXhya1h3dGNucXQ1?=
+ =?utf-8?B?eEREUXFRQ09mVWxONEh1clU2ZmhNU1phWngweWdadVVheHJ2WXlpUnJzMVBH?=
+ =?utf-8?B?UTRiOVdNcEtERTJVNTBLajNBYnA5T2RoMzZzKzF3UFpwWDdpcWJXUjBhQ0tG?=
+ =?utf-8?B?S0M2clloQXRYTW0xNHF0NVdnSjdBSm9KQnRhM254QzBULy9kSTlpZkVZOTNl?=
+ =?utf-8?B?OXc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9295D91D90416C4A9B609A6DE2B336E3@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1683D348-3A7C-484F-B21E-7828B96AA263@juniper.net>
-X-Scanned-By: MIMEDefang 3.0 on 10.30.177.17
+X-OriginatorOrg: microchip.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SA1PR11MB8278.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2258fdc-62da-45a2-cad9-08ddef6b8d33
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2025 06:38:56.5793
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dbJDZZjjUHuYuYQcFcNFDfoSAqW3v0EYpCk47xtprSXIf77ZxCQ6RdggZ9yTXVrYfCjDO0saUiRjKRJhSKTzMzhmOdDih1m58Tu1nuSUaS5lrvSiZA5WvIisUn2LQRdg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6987
 
-On 09/04/25 at 07:58pm, Brian Mak wrote:
-> On Aug 25, 2025, at 11:49 AM, Brian Mak <makb@juniper.net> wrote:
-> 
-> > On Aug 21, 2025, at 8:33 PM, Baoquan He <bhe@redhat.com> wrote:
-> > 
-> >> Yeah, this is a good catch and great fix. Without this fix,
-> >> kexec_file_load syscall will failed and return '-EINVAL' when
-> >> KEXEC_FILE_NO_CMA is specified just as below code shows. So, for this
-> >> patch,
-> >> 
-> >> Acked-by: Baoquan He <bhe@redhat.com>
-> > 
-> > Hi Baoquan,
-> > 
-> > Thanks for the ACK!
-> > 
-> >> And, by the way, has the user space kexec-tools got the change merged
-> >> to allow KEXEC_FILE_NO_CMA specified?
-> > 
-> > I don't see any recent commits to kexec-tools to support
-> > KEXEC_FILE_NO_CMA.
-> > 
-> >>> From: Brian Mak <makb@juniper.net>
-> >>> Subject: x86/kexec: carry forward the boot DTB on kexec
-> >>> Date: Tue, 5 Aug 2025 14:15:27 -0700
-> >>> 
-> >>> Currently, the kexec_file_load syscall on x86 does not support passing a
-> >>> device tree blob to the new kernel.  Some embedded x86 systems use device
-> >>> trees.  On these systems, failing to pass a device tree to the new kernel
-> >>> causes a boot failure.
-> >>> 
-> >>> To add support for this, we copy the behavior of ARM64 and PowerPC and
-> >>> copy the current boot's device tree blob for use in the new kernel.  We do
-> >>> this on x86 by passing the device tree blob as a setup_data entry in
-> >>> accordance with the x86 boot protocol.
-> >>> 
-> >>> This behavior is gated behind the KEXEC_FILE_FORCE_DTB flag.
-> >>> 
-> >>> Link: https://urldefense.com/v3/__https://lkml.kernel.org/r/20250805211527.122367-3-makb@juniper.net__;!!NEt6yMaO-gk!EbJyF8xO2E51MyYdN3_zqCBBMj0JKoiKoPuG_8vEctQMk9uCyjX0LdSEH_FGkPDV8egxzc7w$
-> >>> Signed-off-by: Brian Mak <makb@juniper.net>
-> >>> Cc: Alexander Graf <graf@amazon.com>
-> >>> Cc: Baoquan He <bhe@redhat.com>
-> >>> Cc: Borislav Betkov <bp@alien8.de>
-> >>> Cc: Dave Young <dyoung@redhat.com>
-> >>> Cc: "H. Peter Anvin" <hpa@zytor.com>
-> >>> Cc: Ingo Molnar <mingo@redhat.com>
-> >>> Cc: Rob Herring <robh@kernel.org>
-> >>> Cc: Saravana Kannan <saravanak@google.com>
-> >>> Cc: Thomas Gleinxer <tglx@linutronix.de>
-> >>> Signed-off-by: Andrew Morton <akpm@linux-foundation.org>
-> >>> ---
-> >>> 
-> >>> arch/x86/kernel/kexec-bzimage64.c |   47 ++++++++++++++++++++++++++--
-> >>> include/linux/kexec.h             |    5 ++
-> >>> include/uapi/linux/kexec.h        |    4 ++
-> >>> kernel/kexec_file.c               |    1
-> >>> 4 files changed, 53 insertions(+), 4 deletions(-)
-> >>> 
-> >>> --- a/arch/x86/kernel/kexec-bzimage64.c~x86-kexec-carry-forward-the-boot-dtb-on-kexec
-> >>> +++ a/arch/x86/kernel/kexec-bzimage64.c
-> >>> @@ -16,6 +16,8 @@
-> >>> #include <linux/kexec.h>
-> >>> #include <linux/kernel.h>
-> >>> #include <linux/mm.h>
-> >>> +#include <linux/libfdt.h>
-> >>> +#include <linux/of_fdt.h>
-> >>> #include <linux/efi.h>
-> >>> #include <linux/random.h>
-> >>> 
-> >>> @@ -212,6 +214,28 @@ setup_efi_state(struct boot_params *para
-> >>> }
-> >>> #endif /* CONFIG_EFI */
-> >>> 
-> >>> +#ifdef CONFIG_OF_FLATTREE
-> >>> +static void setup_dtb(struct boot_params *params,
-> >>> +                   unsigned long params_load_addr,
-> >>> +                   unsigned int dtb_setup_data_offset)
-> >>> +{
-> >>> +     struct setup_data *sd = (void *)params + dtb_setup_data_offset;
-> >>> +     unsigned long setup_data_phys, dtb_len;
-> >>> +
-> >>> +     dtb_len = fdt_totalsize(initial_boot_params);
-> >>> +     sd->type = SETUP_DTB;
-> >>> +     sd->len = dtb_len;
-> >>> +
-> >>> +     /* Carry over current boot DTB with setup_data */
-> >>> +     memcpy(sd->data, initial_boot_params, dtb_len);
-> >>> +
-> >>> +     /* Add setup data */
-> >>> +     setup_data_phys = params_load_addr + dtb_setup_data_offset;
-> >>> +     sd->next = params->hdr.setup_data;
-> >>> +     params->hdr.setup_data = setup_data_phys;
-> >>> +}
-> >>> +#endif /* CONFIG_OF_FLATTREE */
-> >>> +
-> >>> static void
-> >>> setup_ima_state(const struct kimage *image, struct boot_params *params,
-> >>>             unsigned long params_load_addr,
-> >>> @@ -336,6 +360,17 @@ setup_boot_parameters(struct kimage *ima
-> >>>                     sizeof(struct efi_setup_data);
-> >>> #endif
-> >>> 
-> >>> +#ifdef CONFIG_OF_FLATTREE
-> >>> +     if (image->force_dtb && initial_boot_params) {
-> >>> +             setup_dtb(params, params_load_addr, setup_data_offset);
-> >>> +             setup_data_offset += sizeof(struct setup_data) +
-> >>> +                                  fdt_totalsize(initial_boot_params);
-> >>> +     } else {
-> >>> +             pr_debug("Not carrying over DTB, force_dtb = %d\n",
-> >>> +                      image->force_dtb);
-> >>> +     }
-> >>> +#endif
-> >>> +
-> >>>     if (IS_ENABLED(CONFIG_IMA_KEXEC)) {
-> >>>             /* Setup IMA log buffer state */
-> >>>             setup_ima_state(image, params, params_load_addr,
-> >>> @@ -529,6 +564,12 @@ static void *bzImage64_load(struct kimag
-> >>>                             sizeof(struct setup_data) +
-> >>>                             RNG_SEED_LENGTH;
-> >>> 
-> >>> +#ifdef CONFIG_OF_FLATTREE
-> >>> +     if (image->force_dtb && initial_boot_params)
-> >>> +             kbuf.bufsz += sizeof(struct setup_data) +
-> >>> +                           fdt_totalsize(initial_boot_params);
-> >>> +#endif
-> >>> +
-> >>>     if (IS_ENABLED(CONFIG_IMA_KEXEC))
-> >>>             kbuf.bufsz += sizeof(struct setup_data) +
-> >>>                           sizeof(struct ima_setup_data);
-> >>> @@ -537,7 +578,7 @@ static void *bzImage64_load(struct kimag
-> >>>             kbuf.bufsz += sizeof(struct setup_data) +
-> >>>                           sizeof(struct kho_data);
-> >>> 
-> >>> -     params = kzalloc(kbuf.bufsz, GFP_KERNEL);
-> >>> +     params = kvzalloc(kbuf.bufsz, GFP_KERNEL);
-> >> 
-> >> Wondering how big the dtb blob is, can you explain a little bit about
-> >> the kvzalloc usage here?
-> >> 
-> >> Except of this, I have no other concern about this patch.
-> >> 
-> >> And what's your plan about the user space kexec-tool change?
-> > 
-> > When I tested this earlier on x86, the DTB was allowed to be up to just
-> > under 64 pages large before the DTB failed to load. This is because it
-> > has to fit into an early_memremap() mapping (relevant code snippet at
-> > the bottom). Since the allocation can be many pages, I changed the
-> > kzalloc to a kvzalloc.
-> > 
-> > For the kexec-tools change, I have a draft change that I've already
-> > shared on this thread for testing purposes. I believe you said you were
-> > going to test it, but I haven't heard anything back from that yet. I'll
-> > raise that change for review properly once this kernel commit is in
-> > mainline.
-> > 
-> > ---------
-> > 
-> > void __init x86_flattree_get_config(void)
-> > {
-> > #ifdef CONFIG_OF_EARLY_FLATTREE
-> > u32 size, map_len;
-> > void *dt;
-> > 
-> > if (initial_dtb) {
-> > map_len = max(PAGE_SIZE - (initial_dtb & ~PAGE_MASK), (u64)128);
-> > 
-> > dt = early_memremap(initial_dtb, map_len);
-> > size = fdt_totalsize(dt);
-> > if (map_len < size) {
-> > early_memunmap(dt, map_len);
-> > dt = early_memremap(initial_dtb, size);
-> > map_len = size;
-> > }
-> > 
-> > early_init_dt_verify(dt, __pa(dt));
-> > }
-> > 
-> > unflatten_and_copy_device_tree();
-> > 
-> > if (initial_dtb)
-> > early_memunmap(dt, map_len);
-> > #endif
-> > if (acpi_disabled && of_have_populated_dt())
-> > x86_init.mpparse.parse_smp_cfg = x86_dtb_parse_smp_config;
-> > }
-> > 
-> > ---------
-> > 
-> > Thanks,
-> > Brian
-> 
-> Hi Baoquan,
-> 
-> Just wanted to check back on this. Did you have any further concerns? If
-> not, would you be able to provide an ACK?
-
-I thought I have acked it, seems I only ack-ed the 1st one, then ack the
-2nd patch:
-
-Acked-by: Baoquan He <bhe@redhat.com>
-
+SGksDQoNCk9uIDA4LzA5LzI1IDI6MzcgcG0sIE1EIERhbmlzaCBBbndhciB3cm90ZToNCg0KPiAr
+c3RhdGljIGludCBjcmVhdGVfcmVxdWVzdChzdHJ1Y3QgcnBtc2dfZXRoX2NvbW1vbiAqY29tbW9u
+LA0KPiArICAgICAgICAgICAgICAgICAgICAgICAgIGVudW0gcnBtc2dfZXRoX3JwbXNnX3R5cGUg
+cnBtc2dfdHlwZSkNCj4gK3sNCj4gKyAgICAgICBzdHJ1Y3QgbWVzc2FnZSAqbXNnID0gJmNvbW1v
+bi0+c2VuZF9tc2c7DQo+ICsgICAgICAgaW50IHJldCA9IDA7DQo+ICsNCj4gKyAgICAgICBtc2ct
+Pm1zZ19oZHIuc3JjX2lkID0gY29tbW9uLT5wb3J0LT5wb3J0X2lkOw0KPiArICAgICAgIG1zZy0+
+cmVxX21zZy50eXBlID0gcnBtc2dfdHlwZTsNCj4gKw0KPiArICAgICAgIHN3aXRjaCAocnBtc2df
+dHlwZSkgew0KPiArICAgICAgIGNhc2UgUlBNU0dfRVRIX1JFUV9TSE1fSU5GTzoNCj4gKyAgICAg
+ICAgICAgICAgIG1zZy0+bXNnX2hkci5tc2dfdHlwZSA9IFJQTVNHX0VUSF9SRVFVRVNUX01TRzsN
+Cj4gKyAgICAgICAgICAgICAgIGJyZWFrOw0KPiArICAgICAgIGNhc2UgUlBNU0dfRVRIX1JFUV9T
+RVRfTUFDX0FERFI6DQo+ICsgICAgICAgICAgICAgICBtc2ctPm1zZ19oZHIubXNnX3R5cGUgPSBS
+UE1TR19FVEhfUkVRVUVTVF9NU0c7DQo+ICsgICAgICAgICAgICAgICBldGhlcl9hZGRyX2NvcHko
+bXNnLT5yZXFfbXNnLm1hY19hZGRyLmFkZHIsDQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgY29tbW9uLT5wb3J0LT5uZGV2LT5kZXZfYWRkcik7DQo+ICsgICAgICAgICAgICAgICBi
+cmVhazsNCj4gKyAgICAgICBjYXNlIFJQTVNHX0VUSF9OT1RJRllfUE9SVF9VUDoNCj4gKyAgICAg
+ICBjYXNlIFJQTVNHX0VUSF9OT1RJRllfUE9SVF9ET1dOOg0KPiArICAgICAgICAgICAgICAgbXNn
+LT5tc2dfaGRyLm1zZ190eXBlID0gUlBNU0dfRVRIX05PVElGWV9NU0c7DQo+ICsgICAgICAgICAg
+ICAgICBicmVhazsNCj4gKyAgICAgICBkZWZhdWx0Og0KPiArICAgICAgICAgICAgICAgcmV0ID0g
+LUVJTlZBTDsNCj4gKyAgICAgICAgICAgICAgIGRldl9lcnIoY29tbW9uLT5kZXYsICJJbnZhbGlk
+IFJQTVNHIHJlcXVlc3RcbiIpOw0KSSBkb24ndCB0aGluayB5b3UgbmVlZCAncmV0JyBoZXJlIGlu
+c3RlYWQgZGlyZWN0bHkgcmV0dXJuIC1FSU5WQUwgYW5kIA0KYWJvdmUgJ3JldCcgZGVjbGFyYXRp
+b24gY2FuIGJlIHJlbW92ZWQuDQo+ICsgICAgICAgfQ0KPiArICAgICAgIHJldHVybiByZXQ7DQpj
+YW4gYmUgcmV0dXJuIDA7DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBpbnQgcnBtc2dfZXRoX2NyZWF0
+ZV9zZW5kX3JlcXVlc3Qoc3RydWN0IHJwbXNnX2V0aF9jb21tb24gKmNvbW1vbiwNCj4gKyAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBlbnVtIHJwbXNnX2V0aF9ycG1zZ190
+eXBlIHJwbXNnX3R5cGUsDQo+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgYm9vbCB3YWl0KQ0KPiArew0KPiArICAgICAgIHVuc2lnbmVkIGxvbmcgZmxhZ3M7DQo+ICsg
+ICAgICAgaW50IHJldCA9IDA7DQpObyBuZWVkIHRvIGluaXRpYWxpemUuDQo+ICsNCj4gKyAgICAg
+ICBpZiAod2FpdCkNCj4gKyAgICAgICAgICAgICAgIHJlaW5pdF9jb21wbGV0aW9uKCZjb21tb24t
+PnN5bmNfbXNnKTsNCj4gKw0KPiArICAgICAgIHNwaW5fbG9ja19pcnFzYXZlKCZjb21tb24tPnNl
+bmRfbXNnX2xvY2ssIGZsYWdzKTsNCj4gKw0KPiArc3RhdGljIGludCBycG1zZ19ldGhfc2V0X21h
+Y19hZGRyZXNzKHN0cnVjdCBuZXRfZGV2aWNlICpuZGV2LCB2b2lkICphZGRyKQ0KPiArew0KPiAr
+ICAgICAgIHN0cnVjdCBycG1zZ19ldGhfY29tbW9uICpjb21tb24gPSBycG1zZ19ldGhfbmRldl90
+b19jb21tb24obmRldik7DQo+ICsgICAgICAgaW50IHJldDsNCj4gKw0KPiArICAgICAgIHJldCA9
+IGV0aF9tYWNfYWRkcihuZGV2LCBhZGRyKTsNCj4gKw0KPiArICAgICAgIGlmIChyZXQgPCAwKQ0K
+PiArICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gKyAgICAgICByZXQgPSBycG1zZ19ldGhf
+Y3JlYXRlX3NlbmRfcmVxdWVzdChjb21tb24sIFJQTVNHX0VUSF9SRVFfU0VUX01BQ19BRERSLCBm
+YWxzZSk7DQpZb3UgY2FuIGRpcmVjdGx5IHJldHVybiBmcm9tIGhlcmUuDQo+ICsgICAgICAgcmV0
+dXJuIHJldDsNCj4gK30NCj4gKw0KQmVzdCByZWdhcmRzLA0KUGFydGhpYmFuIFYNCg==
 
