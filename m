@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-215067-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215068-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 824CDB50362
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:57:32 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9F157B50369
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:58:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69C5C367C0B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:57:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 568A14E6F41
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:57:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661E435E4F1;
-	Tue,  9 Sep 2025 16:56:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99A7F362075;
+	Tue,  9 Sep 2025 16:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o+u3e99Y"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cjs/xV6G"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C54E35E4E6;
-	Tue,  9 Sep 2025 16:56:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6943735E4E7;
+	Tue,  9 Sep 2025 16:56:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757437004; cv=none; b=Boe+1FRNukTZjWbGPkzscPx6uzsU4BGlSicVxjv5umQQvDp7MEFLJwCtE82KW7PrFCyyKfVKBH9aqv9Y7RRNArwS9fyEUFRmGl8gPPPd56l2bZGri6YR/Pt2kTaEcK0tLRH4H5tJKH9bTQxQlRtRBcHwlB0y7vv4vt53t5sSZz0=
+	t=1757437006; cv=none; b=gs12KDEUyHo0Vsgm+8yHU0PXAuhvD6h+xEnfp3foYiN2/7PhtVprmvty1+LQyajcxO5RQxY0oWCsSpEshlUA45+lVEaBWwCJgjDnecME6UwKmGt2dGcvZl9iDCxu/3JU6offV2iRcbAEI2A6I6cPtcq9mhC6pMe2CqC8lsIp05Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757437004; c=relaxed/simple;
-	bh=GmbK4WifRYitvIq2cQLRaKk4+9RHj7d1KLEj/MIpZX4=;
+	s=arc-20240116; t=1757437006; c=relaxed/simple;
+	bh=RiKOVFGpK1szfWEAtc7JbhdCdxn05Y3EsK1eMenFX2g=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=i7X67UD91tELozBV9H2AYQTOuuNnPO/BdAQoIIlrWYkH6DSExZ2xZqq6caQ7fnBWKLHesEBYJ2OO3GSoV7Uc3XTUrYDX+gHBhyCnw2H1RwmCfsYFyVXHbPp6VJzjSGfvzwdVYbVP2Brq7HVfx+Fj5dn+1c3rNONTvjQRNSooLDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o+u3e99Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 40CA7C4CEFA;
-	Tue,  9 Sep 2025 16:56:43 +0000 (UTC)
+	 MIME-Version:Content-Type; b=mUikxN8Xog/lGUgyJnLPgiwy1Oa1EMPF603jPPd3dxgjSsmscOv0U9cwoWbP+o/ngKzqgPdfQiryUsqkTM0QPgAvLSbGYchVhvjdBFVpoS+KgjHJjeabc7xcvDavjnFNq6CK72oRoyumgC8PAbaXzZnmIxJ6v6lwWRlHD5vzjg4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cjs/xV6G; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 084D9C4CEF9;
+	Tue,  9 Sep 2025 16:56:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757437003;
-	bh=GmbK4WifRYitvIq2cQLRaKk4+9RHj7d1KLEj/MIpZX4=;
+	s=k20201202; t=1757437005;
+	bh=RiKOVFGpK1szfWEAtc7JbhdCdxn05Y3EsK1eMenFX2g=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=o+u3e99Y/1coTgz5EdbN7rbjqdMdZ2ipxWVQimN8nIkzvBBioriHJHDHmwzpqPUSt
-	 TyQoAsPulYQgqnBY6vQe0a0B9UgRb0e2nlSt6A5F9T9rurKu9FA2t2hsifMeIsmT6I
-	 d51s+d7jpubBGCdm6eTfUfCdF7g/lWYUr7ZdSvthCsdWyL9YZmJLBP2TQvVc/SkhdJ
-	 s8tYb7oqcwK7j2eb8Udf/ZkbNmplBP5IJNV50tXUUD+MQ29thXHNN6s6zVnsABwExy
-	 7tRgCUVbn2TTARA7Yiilfrbm2HI0D3kyPspnyyFxdaZpQUVCzqyuPvYTZm5X+GMe5l
-	 /rbA987bMPNOg==
+	b=cjs/xV6G6lX45VZaokOrrb7EpYoAi7FuMKEAMrQNfaGm40vnyYkFt+q+zhhKYSTRu
+	 u2woFL4A3V2Cvh1VOdzcJNl32uo/UgHlz9REfhft04/kmpq2uaZpuEfbRAgefi3DBw
+	 nyYkaMtiplAVeI0RTIieGTR/iFCF7Ly96yDItiour2BDwGsXg/8vUklwRu0z2fhBD5
+	 AY7oidfIPaF9APt7zabfSDanXzYwX1q2VBq+1K5OTw5pNIGYbbZ0gOsFjtDQfoFshz
+	 ELPQ/vQC3TcewTNsGYvUPNaQq+RLmXhMXoy9gaOXvEHMhHbcUO5eZC/WKimBEQPrPQ
+	 ShU/FCdCYkVXw==
 From: Bjorn Andersson <andersson@kernel.org>
-To: Konrad Dybcio <konradybcio@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Eric=20Gon=C3=A7alves?= <ghatto404@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org,
+To: quic_vgarodia@quicinc.com,
+	quic_dikshita@quicinc.com,
+	bryan.odonoghue@linaro.org,
+	mchehab@kernel.org,
+	robh@kernel.org,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	konradybcio@kernel.org,
+	Jorge Ramirez-Ortiz <jorge.ramirez@oss.qualcomm.com>
+Cc: linux-media@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 0/3] arm64: dts: qcom: add initial support for Samsung Galaxy S20
-Date: Tue,  9 Sep 2025 11:56:31 -0500
-Message-ID: <175743699548.2735486.7815045530548192137.b4-ty@kernel.org>
+Subject: Re: (subset) [PATCH v10 0/8] media: venus: Add QCM2290 support with AR50_LITE core
+Date: Tue,  9 Sep 2025 11:56:33 -0500
+Message-ID: <175743699534.2735486.2572380919626505786.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250905190931.27481-1-ghatto404@gmail.com>
-References: <20250905190931.27481-1-ghatto404@gmail.com>
+In-Reply-To: <20250814085248.2371130-1-jorge.ramirez@oss.qualcomm.com>
+References: <20250814085248.2371130-1-jorge.ramirez@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,25 +71,34 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Fri, 05 Sep 2025 19:09:28 +0000, Eric Gonçalves wrote:
-> This patchset splits sm8250-samsung-r8q.dts and adds
-> sm8250-samsung-common.dtsi, which contains common definitions for Samsung
-> devices that use the same SoC - the S20, Tab S7 and Note 20 series. With
-> that, also add a DTS for x1q board, which is the Samsung Galaxy S20.
+On Thu, 14 Aug 2025 10:52:40 +0200, Jorge Ramirez-Ortiz wrote:
+> Changes since v9:
+>   v9: https://lore.kernel.org/all/20250808085300.1403570-2-jorge.ramirez@oss.qualcomm.com/#r
 > 
-> Thanks,
-> Eric
+> - Note: rebased and tested on RB1 using media-commmiters/next:
+>   078f1a7eb48e ("media: staging: Rename second ioctl  handlers argument to 'void *priv'")
+> - patch 2/8: media: venus: Define minimum valid firmware version
+>   core_init only synchronizes on sys_init response. If the firmware version needs to be validated
+>   initialization should complete on version retrieved instead (also removed reviewed-by from the
+>   previous patch).
+> - patch 3/8: Add framework to support for AR50 LITE video core
+>   - Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> - patch 4/8: HFI platform V4 capabilities
+>   - Reviewed by Dikshita Agarwal <quic_dikshita@quicinc.com>
+> - patch 5/8: Sort dt_match alphabetically
+>   - Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>   - Reviewed by Dikshita Agarwal <quic_dikshita@quicinc.com>
+> - patch 8/8: Enable Venus on 2210 RB1 board
+>   - Reviewed by Dikshita Agarwal <quic_dikshita@quicinc.com>
 > 
 > [...]
 
 Applied, thanks!
 
-[1/3] arm64: dts: qcom: sm8250-samsung-r8q: Move common parts to dtsi
-      commit: 194c7636faf8bab8deea3800e168b23319a9c198
-[2/3] dt-bindings: arm: qcom: document x1q board binding
-      commit: 818045d1658fd4ceec06fb6efa62ed9c5b7f23cf
-[3/3] arm64: dts: qcom: add initial support for Samsung Galaxy S20
-      commit: af7bf2a2bf8fe01b6e2f68af19517a4eec48bdbb
+[7/8] arm64: dts: qcom: qcm2290: Add Venus video node
+      commit: 7a37bf31e3a736d86c3c801ec2116fde4fb395ce
+[8/8] arm64: dts: qcom: qrb2210-rb1: Enable Venus
+      commit: 9a45e985d4e8dae4226af5a8eddea4c48c62e2ea
 
 Best regards,
 -- 
