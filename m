@@ -1,247 +1,284 @@
-Return-Path: <devicetree+bounces-214672-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214673-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BF0BB4A165
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:43:01 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DFEBB4A16D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:43:38 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6254A7B491F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 05:41:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B9EB31B286D6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 05:43:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4C2442FFDFB;
-	Tue,  9 Sep 2025 05:41:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 424232F7AD7;
+	Tue,  9 Sep 2025 05:43:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b="Y4H1o6Jg"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dD0f0QVu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from GVXPR05CU001.outbound.protection.outlook.com (mail-swedencentralazon11013029.outbound.protection.outlook.com [52.101.83.29])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F2AC2FDC4F;
-	Tue,  9 Sep 2025 05:41:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.83.29
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757396497; cv=fail; b=KBoDkM0svAeXbWWRzB1gT6wIEQ7rT3TxiZfhap3X9X9Eknff6a2/ri4CQ+eUY/mZU9EX+qehmKhR1iQ6xU4rI0nfy5kuVErz1fNpJ39jWNtaU8arZFUBdkbuSsz2uYqhs4nmTuYtxmWG4ol2bSAcSEfeDHWoQo9cwIVbaTmn0aE=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757396497; c=relaxed/simple;
-	bh=7EzhB0LnPGip71YTTGnvX9hHZzkv/sdm8MVGPlZrRHY=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=TQKfx41XjhqDvPDXe8Zl+Q6gAPd5+g8WLYbBzxXbfV59aZ0gBluxxfWOFlSiSyApput12I+U4//kCE7Ro3TLsgcOtH4B1+ta8sKuKKxMRd9GdK7eySv606yZo4MtiUEBt5KYPC7JyxS+RU8b0hTp1t4gBGQfyL7LQCnhiXjQKWU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (2048-bit key) header.d=nxp.com header.i=@nxp.com header.b=Y4H1o6Jg; arc=fail smtp.client-ip=52.101.83.29
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=I21FEbwttMfPpHg1fhrQ+iUwUKCYeWwXeR+n4E85N45d+ku20tt2hDYGvMMU9ZvZCFbGpUvR+zjd81EH6uoOl2dWvc5JDIFOPQ41QkKrZRV85bwzPDWBYCzSE9n279VBykyj6QjMM/YZWWTVLXwCOspSp7Im3sNcERkCyOSGVqKSdDyPRwiSzGSO2Aj2SmoUfk6s2kBx0WaYAs9bluMkFuBqDouoFnM0KDpCCfWLlQpmF4vkmlEqQlamiImg/7oozwmIn+VMnhIDlF5jTQe9d3TrVdhn4MRwMcU9ZZiMjfzWEbTZ6fB9aAZNw68aj1QgyNYfBiUn+WEz7AukYlnGiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0gcfSIV7MALdS9CCv3HPcM2vbeSjmjYNNdAIysx2LAU=;
- b=J9AJkeb1WbkN3Oh3UWtI4BncjeLnyedpDyjYrXf/cibmB20wpkECvQePKvgi9Kk3P/roaIYKL4V1ZPBrgBw7AndrJAymVmzThRpYdSA5W5XDZvf1cbWr5c3ma7S0ulCukCl/j9ex00ql1GyqQqAvcHC6Qujrab2hTy9oqq6sxsyey4GyjYr5V4oJmdensPJDbBEePuPe24V6UHO3HFEB3p+3zOuEoTscVS0vOr2k8gNaekghM+PHxZjni9Ao0R8zjZw6OTXkyoVZKfMDmVGuRZ3gTBDbzQmjbDDJdkK8ub3hjY9pgjOkxg9g4ws3jD6WLkKOFxu567cLrvtP0TFQ1Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0gcfSIV7MALdS9CCv3HPcM2vbeSjmjYNNdAIysx2LAU=;
- b=Y4H1o6JgxBQ6ES5SeDJBE+izgS8FaQ9rwem6+l/LbUH6RGZ+eXAI+sItJ9dNxBnX5sSW2g9joFt5v7ZTwXywwC3ODT/n5dnWIUhHDBPA83cY4C7qou4CVE9XSaRQCkApQxdu0C21k7NznFpEqMohhRf+Kff9urf0UKz/RBSDrKsvziSSguC+8TBLjPDUHBerlIxFG7zaas68DgNu/b+XjsHRfda6pQA8UqlKN5+yKbMtus2smoAAc/LzsAd+P93nnLjPqPNxBeeUgo4HqEf2ElsDsBwJRl49mEMk2VP1vT5dvYlEVvH4qjMJQwcxFK+VOo9nxBx0+THayLP6jeqBSA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
- by AMDPR04MB11583.eurprd04.prod.outlook.com (2603:10a6:20b:718::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.14; Tue, 9 Sep
- 2025 05:41:32 +0000
-Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
- ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9115.010; Tue, 9 Sep 2025
- 05:41:32 +0000
-From: Peng Fan <peng.fan@nxp.com>
-Date: Tue, 09 Sep 2025 13:40:19 +0800
-Subject: [PATCH v6 9/9] arm64: dts: imx93-11x11-evk: Use phys to replace
- xceiver-supply
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-can-v6-9-1cc30715224c@nxp.com>
-References: <20250909-can-v6-0-1cc30715224c@nxp.com>
-In-Reply-To: <20250909-can-v6-0-1cc30715224c@nxp.com>
-To: Marc Kleine-Budde <mkl@pengutronix.de>, 
- Vincent Mailhol <mailhol.vincent@wanadoo.fr>, Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Aswath Govindraju <a-govindraju@ti.com>, 
- Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Frank Li <frank.li@nxp.com>, 
- Haibo Chen <haibo.chen@nxp.com>
-Cc: linux-can@vger.kernel.org, linux-phy@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
- Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757396425; l=1695;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=7EzhB0LnPGip71YTTGnvX9hHZzkv/sdm8MVGPlZrRHY=;
- b=eHDC0a0xYnac2uCVVh2P5OkGo5FvXPc+mr9fBHtDQucI3/86G0SbZoaaMOOwmPo6lMS3NcuOo
- TkRIRmHtdKbBVRIU5Seha3Bs4muDXb4oaS7K68yBai9koNI4Xy8jUbD
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI2PR01CA0007.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::11) To PAXPR04MB8459.eurprd04.prod.outlook.com
- (2603:10a6:102:1da::15)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2835D2264A3;
+	Tue,  9 Sep 2025 05:43:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757396607; cv=none; b=MmDj47+rBolCKGESlTjKdMtqeKO1OJxW7J1FnmiqOqB5a5HqEGnY70Dqk97bmCVGRwdhanAQRAS/sdiI/9FdrjZbcQSKfLRiNWEagjl0FobE4E69bIDUIw9/PFFBy+U3CH+y35px1dCbZxlj7lCZn1sbvM/PVuFPdV2z+B8VDaU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757396607; c=relaxed/simple;
+	bh=1JLWB9NxHUYB0N6l6hiWHN/rHGZX8pA98KRFRV3h72Q=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=BnK/y7+WK0HFsjrfvspZiWsSzUZGQo5WwpUX3cYQavjb58REXcNtUHS1NKSfY/1Mc5L4aa5w1dlRSILharBRZfQiextWXn6oIUTsE3wSgPb1CeiucoL6jUcq+fEsWyRSoaE5JFFtosuf4iVgl/WmSOkpN10zxEKEl8oyDX+QPjE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dD0f0QVu; arc=none smtp.client-ip=209.85.208.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-336ce4a894cso39182451fa.1;
+        Mon, 08 Sep 2025 22:43:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757396603; x=1758001403; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=1G6Fm4HNrV/bD2bs71ctmqkCh2KbDqFBUWnpt06ckp8=;
+        b=dD0f0QVu+U2TUvR2HlvPKN28OTip5jypb4FQsReRkc+vu7jR7Xma+gmriEnOkjAXsz
+         sYzE9+AvHYT1vVkzG3D62rV0xM21drBwrfO78mc96dzkiqY3bJScMfiYTYY0KE4rKEbN
+         CE37Aqz8eJDJYrHq7hS6ziVA51r3FbLPFzn9VdsXueCw64YKRoPXwcrxVr4OFXGExMEk
+         21bfoEQ+rkrU2HyDkFZw73XyfW3wCIobhFUKsIxlmbs1LqchM5i7bYjAvXUgVJMzU3Jk
+         2g9sQ0wMspD3ysl9TPqxcP3FncDgq9iV0nbXEi7k6bkMA8lTQgOThdvmN3yum5lKX1tG
+         9bYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757396603; x=1758001403;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=1G6Fm4HNrV/bD2bs71ctmqkCh2KbDqFBUWnpt06ckp8=;
+        b=Qnxq5nbm5sR5TrmiHLBw1HW/woV7Wa2qPHAQKsLmr55v+RVz/4MrICCasZc8oekyLx
+         17UYedrJX2UIowfbFKF/9PHG0jDesL5qlIbSZTX/PyLUmmecubpfAUvfcfykxBDYBX8i
+         XZHD2kwsGZonDhsavA5i0jxFnzJHhrdB+nDBWjtKkG/+26sJQcShqOYZwsFvRyQfYM3/
+         s0PgEAjQ+JZiwXbQq+j1RJVbKsmRVSBvo9HGXn+My2xo4eIclmIaXT5bYkHAUNaqooU4
+         c2k8YRa6Kf6yGIKGnOeVkzzYLgxsCSBjOnOkXZVdRnN+D3qDQJZUV3CF/cdZTac2w1yK
+         mACQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVCMueoYooEoDlCynrcGFBrhAeiPlswMDvmcxl//sGNzZRwbBZ4YVRjUH7mzCW5hiVEuZxTxjLt7kQ=@vger.kernel.org, AJvYcCXH1Jsn6p83EfFzz1Q5fGBImRtI1ma0ZkLbGm2Oi0qps0SylfQnvErWbamtDxvPqhaq/Y4PiMb4aZEF@vger.kernel.org, AJvYcCXJ5Kg+DlYI7HbguHsAJSAFKlvmUJixaqxQtmQSwiPztmxWMRekNlz0EmrSWD3cdTD3tgSoN4yXcGSqZFhd@vger.kernel.org, AJvYcCXQqSfm8NiNSg5uEeu68XeWDL2j1eVfnzhwD/8GGPf5K57IieN60OPGfCCljACeTs4jCKs0PvkDIQNSxCs=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywv3ACKzqjFUHNUgOSSuE60nkJBmn933VuQQ0auw1Cp2mahME7P
+	PXe2gkuJlGckJci0iQk8rTXQzeoRuEsfLxx66i6wFbtoMcLjsf23YDtt1+3Klqb9I8v2Pi9VeLP
+	+adJPhutb1vesM1RgVvFy/NNJORScd4EcI/Tx4io=
+X-Gm-Gg: ASbGncspXHrqxldgqooC43lDjhI3YSrTom24WjTA1gRak29xvW88gr5GLbEcqgH8pp5
+	IxrC34gg8xjFzkPUpHRDexrej2R9FxMFjmcHO//JvSY++O+wYRkqxIp2a/q0XTpz5Gx4SAcYAxb
+	KVDbLEnlbdbbApdT0iLjEx+xlHFa4DItHkIfMHDOY7fo2bhI9BtlgWGyaNhmgBBbZt90NI2DZN1
+	mCl7iAC7G/6SCyanA==
+X-Google-Smtp-Source: AGHT+IFnQAtfbNXUxujuvpaZBVeXodUsf4RXFRUXQ8ktfLXToDvcxeXnGxXIgaFmJAGt6UaM90HbCfaGi6DB9sgP+uA=
+X-Received: by 2002:a2e:be9e:0:b0:337:e190:6814 with SMTP id
+ 38308e7fff4ca-33b5cfd0d57mr33329871fa.20.1757396602983; Mon, 08 Sep 2025
+ 22:43:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AMDPR04MB11583:EE_
-X-MS-Office365-Filtering-Correlation-Id: f80ab484-7e1b-4480-245f-08ddef638601
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|366016|1800799024|376014|7416014|52116014|19092799006|38350700014|921020;
-X-Microsoft-Antispam-Message-Info:
-	=?utf-8?B?NU05V3dIdmJVUlRuQXpkUUhicFFNaGw1S2J5RWIrOGwvMEJ4dDBSZGF1Z0FE?=
- =?utf-8?B?WmxMbUMxZis0ck1oWlBFbjlHQzB0eGNRWjI1WW10TERMVDIveUF2bUY3c0Mx?=
- =?utf-8?B?d2J4VHphL2pmdE1PaFdVd09QdHlxQU05c3h1SEpQditvbDdud0NOTjk0aXNG?=
- =?utf-8?B?VUJNZnRjYUVYUm50bXhHOXBpY2YwZFJlandheXc5NGZGNWxsWVhYZVNSSVBl?=
- =?utf-8?B?akJWSEpJcitGaTYvY0FwMEdXL2psL0NwaS9PaW4wQkNuYlFDZmpZa3NYa0E1?=
- =?utf-8?B?OGJoWnltK1hmSWFQVFMxUXhTaHJBa0o1bjRyeDJwOUU4bllLZWxFZ3NUTEdx?=
- =?utf-8?B?U2JFU2Qyd1NwbnhiM0doN0RUNEJRR2F5VHF4VVJnSkduZXFXbzlhWUZrWVZs?=
- =?utf-8?B?S1lXVWdpUVFLR1oxdkZjeU96V1RyUEdPS21HOUJSSnFQVHo0aDN1WGwxN1V0?=
- =?utf-8?B?dzArcFhhV1VON2JScnR4aUd3MW9ZRVZYNGhqR2lob3VabHdzbUlGN0ZBSHNa?=
- =?utf-8?B?aXpOTWtmNWZ5eTVSYVoxOTNyOG9QUlBRcUpqcUE0WVZKTXJFQW1PZHg5dEVL?=
- =?utf-8?B?UVNya1N5a1pHZ0ZBRU5LUVdJUGd3K1F4UFJBSG1FbmhTSlowdjBqS2VGMk9O?=
- =?utf-8?B?R3NyMGltQzMrelpoSG9GQ0s1MjVLUkJONjVDdTR6djJSQTAvUEFJZ1FyR2hD?=
- =?utf-8?B?dTZ3ZWpUdzJEdy83eWFJS25FNzhtUHJ6UFV1Mi9ZN0t5UGpZOWM4N1I1ZlRM?=
- =?utf-8?B?SnFsZkZ4Yml1L1VTc0RESFNMdEtqYlZydDJuSTlrQStmVlNyWXBXZm9kQllL?=
- =?utf-8?B?bnh4aTFvaTRpSWxWaDZOdEhtNlpoWVZRNG5KYU9CRDhUTkRkbmNMdHRjcVNR?=
- =?utf-8?B?cytGaHZxZFdUaTdDaW1vOFBZMXlFc2s2R2tNQ1VJMnRaUEFycnVURzM3ZllH?=
- =?utf-8?B?NDlxTjliMWx0eFdET3UrUm5VY0JBZ0d5Mlh2YzY1Y1pFYitNTnVYYlkvZm5Y?=
- =?utf-8?B?ejFGcW9teWFXYzU1OWdCNU15Z29VSzFQbTdFUTNYMGxiQlFFRmZGSEk2cXRF?=
- =?utf-8?B?RTdjdnQyaFpabXluSnBLUi9Rczk5eCtvM1ZyR0cwS0JtT3F5UlFveUpkcU03?=
- =?utf-8?B?UzcxNVpkdDVRVXdHdFZHcFRMZ3M4ZG02eTRlRHN1MVhJQ01CN1R2QW9XRHkv?=
- =?utf-8?B?TGxZWWp1YkVVd0xxV1I1OVdUSE13TStiMndvSmpMd1NOdStDbm9kazg5L3NS?=
- =?utf-8?B?TzMrTjRkdGl4MTNFNXpKU1hmakxUeTZ3eUJlNHU4ZmRZZDZwbnpZYnlmeTNI?=
- =?utf-8?B?YmxsRE94WFpvNDJ0UVY5ZXRnckJWbFFWQTRKNER0VTZMcS9wd3hBN0NBK1JK?=
- =?utf-8?B?VnpVaU1TQm5mTTM0TE1xQUdHRFA4SThkcFVldmNDZEU5WlJQT1dtV01BWEI5?=
- =?utf-8?B?eWpNbnk2Wlp2djdsQ2hUdDZPQUY1Wm13alhrWGo1Z3FhWVlycmQ3eStZYXhD?=
- =?utf-8?B?Rmt0aE5YZjJpSDBHZE91UDFqcWdYUUlGRGIvamhONzJBck9wSUROVkpodVUx?=
- =?utf-8?B?WmFlR1RHL3hlbk9MNW8vc0VKNUxucDl4dlBTL2Iydk5OUzNJOW1adzZXTXNO?=
- =?utf-8?B?QWtjYUxwTUc2U2FXSlhBWEJGbEFQNU92M1VvZU5MUDhJWVBhVWh6YnJid0Na?=
- =?utf-8?B?TkEyemNPaEtuTTVlbmx0Q1dQSy9FZGJhTkpwcUVNK2REbmNFZW9GbmcyNTJJ?=
- =?utf-8?B?Q1NuTmFieVAvZzlVNzdpS09qOHhUSjljbHFRR3R0TFZ2OHkrZWpXeEkzUG4v?=
- =?utf-8?B?VFN1TjVTOGJSaEJFUG5qbGRtR1ROTkZUVkJObzFmZEVJaERqN2ZLMEhDMzdP?=
- =?utf-8?B?V01UazJoNE5jVU1rZzkweUtWcTlPTDVpc0J6eEU2V0lUVHplM1Z5eDRNQmdI?=
- =?utf-8?B?c08rQWgvMTFHdjVEM2VtVGd5TG1ZYjZPN0R4YTZIRUtRbFlqSm5DakJ4SWtE?=
- =?utf-8?Q?SyLsMDDzhwE7eWY1klMoQtdcYF+8qg=3D?=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(7416014)(52116014)(19092799006)(38350700014)(921020);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?THFlNEVUaDA2V085K3lOL2haV1V2SVQyNXU5Mm5KeUhMZjZxVmxzeEwrdWZM?=
- =?utf-8?B?clZzUkJWSDJmSkhENVlGeGYxRk03b0VEL0xCZThRREhuVEFDZmZSMm1LTGxj?=
- =?utf-8?B?TlM5UU9pUkVnNTZvSFRQMlhWdmRHZnQ5eXQ2ZStNMWQ4K2l2aUZHZTRrQ3pH?=
- =?utf-8?B?SmtOREVJUnQxSEsvcVUyQnppZzdRQXdUaUdDdmlLMlhnQkQ5ZFlXQWl1Y0xH?=
- =?utf-8?B?cmN6VUoxMjlScFdMN0ZjUnhldE0wNEhaSEE2azRqTU0ybklPVmlEc1dtS0xk?=
- =?utf-8?B?UXA0WjAza3RQL00yOUlnekU1Q0FDeVVnTktGNVoyMGxpOG0vV0hQa1o5Y0Fj?=
- =?utf-8?B?WCtDa2NIMlR0TEVRelRsdk93cU9TaUQwVm1GRDZ2WmZQTHE4T0xmSEZnZEFj?=
- =?utf-8?B?d3RkTGRuaHMybnBkT3FkeGptMzFkQzNkOUUvREpJOVQwRGpPb2piSS9EUFkx?=
- =?utf-8?B?UWppUFUwQ1NiOTNzcGJiaEtBNlNaQWVNNVVkRXpoa0pTQ0VtcVdlall2ekla?=
- =?utf-8?B?dWxTMDA5VjFiMG1xa0tmdytubzdRdTFibHhJcUpDUnNWMFJPUUxVRnRtcXhM?=
- =?utf-8?B?YmFFQ0JrdEd0MktwUlRFZ0VxMmFSeDVxVWViQjhCRGRXVDlGWEV3VVN3bGVx?=
- =?utf-8?B?MG5JQitneEY0VGVRTE04V3FRa3dTSmV2MnI0V0p5L21WVmUxbVBTcERISnNv?=
- =?utf-8?B?aGpXYWxRWFFndVBEWTkydDBBblI1ZTRsaENiemE3NTRoS21uVllFQ25zUlRZ?=
- =?utf-8?B?SEtSWjVPbGhOT0xZaXgyakoyanFSbjBxL05QdlZZU2ZxbmNtNjMxZTVMRXc1?=
- =?utf-8?B?RGxEeFU3cjBJNVZLWmxrb3BCVHVMcmdIZk9qWVZZcVpwZVloQjVJU1FhOUFK?=
- =?utf-8?B?dkovVVMvRGVBM1ExQjNoM3VidzY5MjNNc0ZJd3N1SXU5N1FnendwYmkzdnZ4?=
- =?utf-8?B?VVYzbjFYU0cvN2VJRUswaG1lSVRUY3IyMnZIY0h6Sk9zZ2pYQXE2b2ZHRU9H?=
- =?utf-8?B?a1F6ZWpGVWxmU290ZEhzWVdxRGtOS3RzdG1ETVJoZnFsQllJL1hVZVEwQTlx?=
- =?utf-8?B?cjJxbUlYaVFMb1VSeU5NQ0U2ODAwUmtMVS9VeStTYlE2VlQzaHgweTJ1NXlo?=
- =?utf-8?B?U1dIZTBLbUVUVGd4WkRSelc4V1pzRnZBN1Q1cThCbG5ZT3Vlb3Z1cU1ZeHRM?=
- =?utf-8?B?K2w3Q2xKMWN2N3JMTjlYSWZ4RTJFUCszbnNETVp2THhqVVpxNjBDSEtEWE4r?=
- =?utf-8?B?WFJtNG8yYmQ3K3ZKVndTZnV3RTNHWnJta0NZYkYva3VzYXo5Qm5ZK3dJZVVD?=
- =?utf-8?B?d3dzR3A1Qk9jOXBkQVowT1ovQVVHME9WSkc5ZHFqbGNHbUJPZ2dRZXkzOEZh?=
- =?utf-8?B?QVZXTEpZVFY1bzhmb3preU9SMTVSOE1sSk53RDJITkRjTnQxSjNBeEpuTDhn?=
- =?utf-8?B?V3NLU1BwS1l6aksvRVVqRm5WcUNkeHZJUW0yQWx4NUFkclBTOFZKdXZVQzN1?=
- =?utf-8?B?cHdDOC8wblZJamZVK1VXOHJYM21pdmJ5Q3R0OXlnVDBkZGo5THdLZ1VBd092?=
- =?utf-8?B?OUo3Zm10S05ndlJxRzZvbHNrVURvWW5MQW5zQTlDeld3bjliV3BObTFEcVAz?=
- =?utf-8?B?d3E1SVNSK1VVaW1aaUdIeHdUelc5ckptWTEzNFIwZkNONUQzNlJIeUEvN2N5?=
- =?utf-8?B?dWhzNWFob3BUVzBOVGMycUNEdzdIdjJhWnQ4aDhxWlUramtIMThqZThSSmFk?=
- =?utf-8?B?ZE1MZXc5WmNadmV5ZEk4Q1k4WW9xNFd3QTE2S25CN2FWL0FzUmI0K3J0aDlB?=
- =?utf-8?B?WTNHcWlmejR4RVFKam5LOFhRMk1VNEdvcElVbkxQZ0dDZTd1ODM0Q3hLcitE?=
- =?utf-8?B?dzVWN1p5cTJuL281NHFWWGZibEsxeXIzR2p0aVZpY0tRRmhJOWFvM3BxN2ww?=
- =?utf-8?B?ZTl1b09hbFl0TlFlaUFiUldLTXEvWXRoTUd6RGJzVmw0RjZkMURFeEJjQnBz?=
- =?utf-8?B?akY2TFowcXpXZUFseXVsRkQ2cGsrRy9ZUVRxOExJbDRNTUhwUHFSTjFSV0d1?=
- =?utf-8?B?UHBxVGtjTWRDMGU1Y05NZDB4eXFmNGUrb0M5YlVHMU5VcExBcHNiMVdqYmoy?=
- =?utf-8?Q?6EMmQFjUIH3jNV4qjUyKg00u4?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f80ab484-7e1b-4480-245f-08ddef638601
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2025 05:41:32.2960
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aggbXX0ObSFk7BJCY3PyvISFmNLplCkijDPfv5CSLM4UGuybPaC9ufxvgrkQSsikRrhv/Bz4CoecfgzIX3j57Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AMDPR04MB11583
+References: <20250831-tegra186-icc-v1-0-607ddc53b507@gmail.com>
+ <20250831-tegra186-icc-v1-3-607ddc53b507@gmail.com> <20250901055322.eorgaa3sycydjrrj@vireshk-i7>
+ <CALHNRZ_EbtHSXaDQ+1gGf3HjdyW5Q54EDN901-r8A_aXLbDJkw@mail.gmail.com> <20250903050107.sbri6snqrzq4hale@vireshk-i7>
+In-Reply-To: <20250903050107.sbri6snqrzq4hale@vireshk-i7>
+From: Aaron Kling <webgeek1234@gmail.com>
+Date: Tue, 9 Sep 2025 00:43:11 -0500
+X-Gm-Features: Ac12FXzAJuPe-CvFuYuufxqv80GNsivKH6j8HchajG_Xb4CMnT3WaKxDxqCkLXs
+Message-ID: <CALHNRZ-qkhDc5uO8g18T97RgHZCQ59Zh2Vn+yEX-W3+GSfj_sA@mail.gmail.com>
+Subject: Re: [PATCH 3/8] cpufreq: tegra186: add OPP support and set bandwidth
+To: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Sumit Gupta <sumitg@nvidia.com>, Krzysztof Kozlowski <krzk@kernel.org>, Rob Herring <robh@kernel.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
+	Jonathan Hunter <jonathanh@nvidia.com>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, 
+	linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The TJA1057 used on i.MX93 EVK is actually high-speed CAN
-transceiver, not a regulator supply. So use phys to reflect the truth.
+On Wed, Sep 3, 2025 at 12:01=E2=80=AFAM Viresh Kumar <viresh.kumar@linaro.o=
+rg> wrote:
+>
+> +Sumit
+>
+> On 02-09-25, 12:21, Aaron Kling wrote:
+> > On Mon, Sep 1, 2025 at 12:53=E2=80=AFAM Viresh Kumar <viresh.kumar@lina=
+ro.org> wrote:
+> > > On 31-08-25, 22:33, Aaron Kling via B4 Relay wrote:
+> > > > +static int tegra_cpufreq_set_bw(struct cpufreq_policy *policy, uns=
+igned long freq_khz)
+> > > > +{
+> > > > +     struct tegra186_cpufreq_data *data =3D cpufreq_get_driver_dat=
+a();
+> > > > +     struct dev_pm_opp *opp;
+> > > > +     struct device *dev;
+> > > > +     int ret;
+> > > > +
+> > > > +     dev =3D get_cpu_device(policy->cpu);
+> > > > +     if (!dev)
+> > > > +             return -ENODEV;
+> > > > +
+> > > > +     opp =3D dev_pm_opp_find_freq_exact(dev, freq_khz * KHZ, true)=
+;
+> > > > +     if (IS_ERR(opp))
+> > > > +             return PTR_ERR(opp);
+> > > > +
+> > > > +     ret =3D dev_pm_opp_set_opp(dev, opp);
+> > >
+> > > Won't it be easier to use dev_pm_opp_set_rate() instead ?
+> >
+> > I'm not very familiar with the opp system. If I read correctly,
+> > dev_pm_opp_set_rate() will round to the closest rate while this code
+> > will fail if the exact rate isn't found. This code is based on the
+> > existing tegra194-cpufreq driver. And I'm unsure if this was done for
+> > a reason.
+>
+> Sumit, any explanation for this ?
+>
+> > I have seen unexpected rates returned from clk_round_rate in
+> > the development of this topic, so that could be related.
+>
+> Right, but we should end up configuring a valid rate from the OPP
+> table.
+>
+> > > > +static int tegra_cpufreq_init_cpufreq_table(struct cpufreq_policy =
+*policy,
+> > > > +                                         struct cpufreq_frequency_=
+table *bpmp_lut,
+> > > > +                                         struct cpufreq_frequency_=
+table **opp_table)
+> > > > +{
+> > > > +     struct tegra186_cpufreq_data *data =3D cpufreq_get_driver_dat=
+a();
+> > > > +     struct cpufreq_frequency_table *freq_table =3D NULL;
+> > > > +     struct cpufreq_frequency_table *pos;
+> > > > +     struct device *cpu_dev;
+> > > > +     struct dev_pm_opp *opp;
+> > > > +     unsigned long rate;
+> > > > +     int ret, max_opps;
+> > > > +     int j =3D 0;
+> > > > +
+> > > > +     cpu_dev =3D get_cpu_device(policy->cpu);
+> > > > +     if (!cpu_dev) {
+> > > > +             pr_err("%s: failed to get cpu%d device\n", __func__, =
+policy->cpu);
+> > > > +             return -ENODEV;
+> > > > +     }
+> > > > +
+> > > > +     /* Initialize OPP table mentioned in operating-points-v2 prop=
+erty in DT */
+> > > > +     ret =3D dev_pm_opp_of_add_table_indexed(cpu_dev, 0);
+> > > > +     if (!ret) {
+> > >
+> > > If you handle the error case here, then the below can move out of the
+> > > if/else block.
+> >
+> > I'd prefer not to deviate too much from the tegra194-cpufreq code this
+> > is based on, so the drivers can be more easily kept in parity to each
+> > other.
+>
+> I am not sure if that is really important here. The kernel normally
+> contains code in this format:
+>
+> if (err)
+>         return;
+>
+> keep-working;
+>
+> If you want both the drivers to have similar code, then maybe that
+> code should be moved to another file and used by both. But we
+> shouldn't keep them same when we feel that we can do better.
+>
+> > But I will look at making this a bit cleaner as per this and
+> > the next comment.
+>
+> Thanks.
+>
+> > > > +             max_opps =3D dev_pm_opp_get_opp_count(cpu_dev);
+> > > > +             if (max_opps <=3D 0) {
+> > > > +                     dev_err(cpu_dev, "Failed to add OPPs\n");
+> > > > +                     return max_opps;
+> > > > +             }
+> > > > +
+> > > > +             /* Disable all opps and cross-validate against LUT la=
+ter */
+> > > > +             for (rate =3D 0; ; rate++) {
+> > >
+> > > Maybe using while(1) would be more readable ?
+> > >
+> > > > +                     opp =3D dev_pm_opp_find_freq_ceil(cpu_dev, &r=
+ate);
+> > > > +                     if (IS_ERR(opp))
+> > > > +                             break;
+> > > > +
+> > > > +                     dev_pm_opp_put(opp);
+> > > > +                     dev_pm_opp_disable(cpu_dev, rate);
+> > > > +             }
+> > > > +     } else {
+> > > > +             dev_err(cpu_dev, "Invalid or empty opp table in devic=
+e tree\n");
+> > > > +             data->icc_dram_bw_scaling =3D false;
+> > > > +             return ret;
+> > > > +     }
+> > > > +
+> > > > +     freq_table =3D kcalloc((max_opps + 1), sizeof(*freq_table), G=
+FP_KERNEL);
+> > > > +     if (!freq_table)
+> > > > +             return -ENOMEM;
+> > > > +
+> > > > +     /*
+> > > > +      * Cross check the frequencies from BPMP-FW LUT against the O=
+PP's present in DT.
+> > > > +      * Enable only those DT OPP's which are present in LUT also.
+> > > > +      */
+> > > > +     cpufreq_for_each_valid_entry(pos, bpmp_lut) {
+> > > > +             opp =3D dev_pm_opp_find_freq_exact(cpu_dev, pos->freq=
+uency * KHZ, false);
+> > > > +             if (IS_ERR(opp))
+> > > > +                     continue;
+> > > > +
+> > > > +             dev_pm_opp_put(opp);
+> > > > +
+> > > > +             ret =3D dev_pm_opp_enable(cpu_dev, pos->frequency * K=
+HZ);
+> > > > +             if (ret < 0)
+> > > > +                     return ret;
+> > > > +
+> > > > +             freq_table[j].driver_data =3D pos->driver_data;
+> > > > +             freq_table[j].frequency =3D pos->frequency;
+> > > > +             j++;
+> > > > +     }
+> > > > +
+> > > > +     freq_table[j].driver_data =3D pos->driver_data;
+> > > > +     freq_table[j].frequency =3D CPUFREQ_TABLE_END;
+> > > > +
+> > > > +     *opp_table =3D &freq_table[0];
+> > > > +
+> > > > +     dev_pm_opp_set_sharing_cpus(cpu_dev, policy->cpus);
+> > > > +
+> > > > +     tegra_cpufreq_set_bw(policy, freq_table[j - 1].frequency);
+> > >
+> > > Maybe a comment on why exactly you are changing the freq here ?
+>
+> I meant bandwidth here.
+>
+> > To my knowledge, this does not change any clocks. The intent here is
+> > to prime the interconnect data. In the pre-req series, there's a
+> > change that sets all clocks to max frequency during probe. Then my use
+> > case involves setting performance governor by default on some boots.
+> > During testing, I noticed that the interconnect data provided by this
+> > driver was all zeroes. Which led me to notice that set_bw is only
+> > called when the target frequency changes. Which wasn't happening
+> > because clocks were already set to max. If my understanding here is
+> > wrong or there's a better way to handle this, I will fix it.
+>
+> There are a lot of synchronization issues here because we are trying
+> to set clk and bw separately. I guess other variables, like regulator,
+> level, etc. (if used) will also be out of sync here.
+>
+> I think the right way to fix this would be to call set-opp for the
+> device, so all the variables are configured properly.
 
-Reviewed-by: Frank Li <Frank.Li@nxp.com>
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts | 17 ++++++++---------
- 1 file changed, 8 insertions(+), 9 deletions(-)
+That's what the tegra_cpufreq_set_bw function does. Matches the passed
+frequency in the opp table and calls dev_pm_opp_set_opp.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index e24e12f04526c3a08c0bdc6134297fb010e6e926..19d63f7efdc51bb097c6e51bbe7bfaa533218ecc 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -62,6 +62,13 @@ vdevbuffer: vdevbuffer@a4020000 {
- 
- 	};
- 
-+	flexcan_phy: can-phy {
-+		compatible = "nxp,tja1057";
-+		#phy-cells = <0>;
-+		max-bitrate = <5000000>;
-+		silent-gpios = <&adp5585 6 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	reg_vdd_12v: regulator-vdd-12v {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VDD_12V";
-@@ -87,14 +94,6 @@ reg_audio_pwr: regulator-audio-pwr {
- 		enable-active-high;
- 	};
- 
--	reg_can2_standby: regulator-can2-standby {
--		compatible = "regulator-fixed";
--		regulator-name = "can2-stby";
--		regulator-min-microvolt = <3300000>;
--		regulator-max-microvolt = <3300000>;
--		gpio = <&adp5585 6 GPIO_ACTIVE_LOW>;
--	};
--
- 	reg_m2_pwr: regulator-m2-pwr {
- 		compatible = "regulator-fixed";
- 		regulator-name = "M.2-power";
-@@ -284,7 +283,7 @@ ethphy2: ethernet-phy@2 {
- &flexcan2 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_flexcan2>;
--	xceiver-supply = <&reg_can2_standby>;
-+	phys = <&flexcan_phy>;
- 	status = "okay";
- };
- 
-
--- 
-2.37.1
-
+Aaron
 
