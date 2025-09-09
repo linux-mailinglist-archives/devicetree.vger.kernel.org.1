@@ -1,109 +1,145 @@
-Return-Path: <devicetree+bounces-215058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C12ACB502D1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 013E3B502E8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:43:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 819905E3084
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:39:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B09A63B05BE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:43:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 320AD352FCB;
-	Tue,  9 Sep 2025 16:39:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7B1333EB14;
+	Tue,  9 Sep 2025 16:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="naRpJOsN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7D7F33CEBE;
-	Tue,  9 Sep 2025 16:39:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97B83304BBA;
+	Tue,  9 Sep 2025 16:43:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757435950; cv=none; b=p90fYoGjvdZeVQ1/NZWDNyXkVp5Px4mKfJqPg5pfb4WNM3+JUOoWZMl2b3hI3sz8wanFbfGtiJLS5tIfhBARjSbCG/Ew/SZmXyzIryAwrMIA4P9jbDbiyE46P+DG7judHkqeeDfJwPGNI0qUhkRkYBm4MicbfZA+6hjadkQVNmQ=
+	t=1757436198; cv=none; b=qW9tdR4a923B5tkhpcZn1VhvalvoQtttkmX7XXT3+fEwWV5nAJf/niiaktSSOOm/F15+GlTiYItTVHeAUL1HzeTErgx2TMTjUh/6Fwl8bhDUD72be8PWdYcJdpKmhKNVdyIecI07SYGEwLsZJjMhtVAi69FRkZIvalnQ0/ziGXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757435950; c=relaxed/simple;
-	bh=sa+YtCD3kLuoHOYbn1YCfWKsVdW9XBp8FtQkfySgPZQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sd6nkBECYEg8r3dsI2zMyS9leCgehW4ssggSUymJBDX2KfF+lRI1bvo36qSZXQpdtgPGhZ5/DT/iuS1A6QQvY1or8RhKVvoU9UoJR37/I1cHaNRZ1+1Qusg+9/jqyzj7Obwh4bhECcYI5ruOg3ebOk5V3cGdwKM0fBkUx1ECrUg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AC05515A1;
-	Tue,  9 Sep 2025 09:38:59 -0700 (PDT)
-Received: from donnerap (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0C6853F66E;
-	Tue,  9 Sep 2025 09:39:05 -0700 (PDT)
-Date: Tue, 9 Sep 2025 17:39:02 +0100
-From: Andre Przywara <andre.przywara@arm.com>
-To: Chen-Yu Tsai <wens@csie.org>
-Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Jernej Skrabec
- <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>,
- <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
- <linux-arm-kernel@lists.infradead.org>, <linux-sunxi@lists.linux.dev>,
- Mikhail Kalashnikov <iuncuim@gmail.com>
-Subject: Re: [PATCH 2/5] clk: sunxi-ng: generalise update bit
-Message-ID: <20250909173903.6b78cd9c@donnerap>
-In-Reply-To: <CAGb2v66DEh3ZGTsBkX6RELRs+0ZPbMq7bsNQhdUcpxHHMxDhhQ@mail.gmail.com>
-References: <20250903000910.4860-1-andre.przywara@arm.com>
-	<20250903000910.4860-3-andre.przywara@arm.com>
-	<CAGb2v65rRqTWvn2NR-OSeP-zVJzheJ=L0YeG5DOrCTPJ8Haiyg@mail.gmail.com>
-	<CAGb2v66DEh3ZGTsBkX6RELRs+0ZPbMq7bsNQhdUcpxHHMxDhhQ@mail.gmail.com>
-Organization: ARM
-X-Mailer: Claws Mail 3.18.0 (GTK+ 2.24.32; aarch64-unknown-linux-gnu)
+	s=arc-20240116; t=1757436198; c=relaxed/simple;
+	bh=86oIetmqc9J7WTCewXKydBYkVuOv54+Q2w6j4lVDCVs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LNM95MAnaSmBXoV68LE7YvuN1SE5RghiEkUoqTBPhvKy0EvBn7t70YCfhmCI96S7Vvda1I53jfwQuOdWjToK8C8NhGeAb9OriYaTQckvwOaFcIrd6z71KF6TsE3ket68zQ+ty/28mjMY8H1pnnF735GW8ThhhobfjsLV3Q2QKIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=naRpJOsN; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 056B8C4CEF4;
+	Tue,  9 Sep 2025 16:43:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757436198;
+	bh=86oIetmqc9J7WTCewXKydBYkVuOv54+Q2w6j4lVDCVs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=naRpJOsNlBoCwSEz/sX6N5hdTeUgwBJdc/pijvitIj/TfigQfjtyRiktNnNs7URGm
+	 1kvMgd0K9MMqV8kdy3CfUvnwdB/yob8NtZpBlZRnPd2E21r9mfcl2VB+GQdHFKapfK
+	 6Mx+Z5+Q1qzLT4inOW21eiXQ05rSe4o6hisQQNf+sP8BbShdXOmS4U1/hJowT8e1AO
+	 PIxubXVMnOOKuJV9VbXymSCNA8jsFhS4qhwtCYzoFVVxL2PATE1TgS0/lLPCIGBo7R
+	 tAcG6GrI2UuFhCP7943ocyRWP7Qw1WOaBEsmYEwgwb1FnZcyfkFn/f6SfHiO6fVRzp
+	 m0fuxxOy0JAbA==
+Date: Tue, 9 Sep 2025 11:43:17 -0500
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+Cc: tony@atomide.com, linux-omap@vger.kernel.org, andreas@kemnade.info,
+	lee@kernel.org, ukleinek@kernel.org, linux-kernel@vger.kernel.org,
+	linux-pwm@vger.kernel.org, krzk+dt@kernel.org,
+	devicetree@vger.kernel.org, conor+dt@kernel.org
+Subject: Re: [PATCH v6 1/3] dt-bindings: mfd: twl: Add missing sub-nodes for
+ TWL4030 & TWL603x
+Message-ID: <175743619670.3343063.17627964858670802403.robh@kernel.org>
+References: <20250906145905.93845-1-jihed.chaibi.dev@gmail.com>
+ <20250906145905.93845-2-jihed.chaibi.dev@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250906145905.93845-2-jihed.chaibi.dev@gmail.com>
 
-On Wed, 10 Sep 2025 00:06:07 +0800
-Chen-Yu Tsai <wens@csie.org> wrote:
 
-> On Sat, Sep 6, 2025 at 12:15=E2=80=AFPM Chen-Yu Tsai <wens@csie.org> wrot=
-e:
-> >
-> > On Wed, Sep 3, 2025 at 8:09=E2=80=AFAM Andre Przywara <andre.przywara@a=
-rm.com> wrote: =20
-> > >
-> > > A few of the Allwinner A523 CCU clock registers introduced an "update=
-" bit,
-> > > which must be set for changes to the other bits to take effect.
-> > > Of the three clocks where this was used, it was always bit 27, so we =
-just
-> > > encoded this as a single bit feature flag.
-> > >
-> > > Now the CPU PLL also features the update bit, but puts it at bit 26, =
-so
-> > > this flag trick won't work anymore.
-> > >
-> > > Add an "update_bit" field to the common sunxi clock struct, which tak=
-es a
-> > > bitmask, so we can encode any bit to use, even potentially multiple of
-> > > them. As uninitialised fields are set to 0, we can use this as a defa=
-ult
-> > > bitmask to set, so can OR this in unconditionally.
-> > >
-> > > Change the existing update bit users to use this new encoding, and add
-> > > support for the ccu_nm clock on the way, since we will need it there
-> > > shortly.
-> > >
-> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com> =20
-> >
-> > Reviewed-by: Chen-Yu Tsai <wens@csie.org> =20
->=20
-> Hmm, actually, we also have the "key field" feature. Maybe we should
-> generalize that one and merge the two?
+On Sat, 06 Sep 2025 16:59:03 +0200, Jihed Chaibi wrote:
+> Update the main TI TWL-family binding to be self-contained and to fix
+> pre-existing validation errors.
+> 
+> Following maintainer feedback, the simple power and PWM bindings are
+> now defined directly within this file, and their legacy .txt files
+> are removed.
+> 
+> To ensure future patches are bisectable, child nodes whose bindings
+> are in other patches (audio, keypad, usb, etc.) are now defined using
+> a flexible 'additionalProperties: true' pattern. This removes hard
+> dependencies between the MFD and subsystem bindings.
+> 
+> The complete dtbs_check for this binding is clean except for two
+> warnings originating from pre-existing bugs in the OMAP DTS files,
+> for which fixes have already been submitted separately [1][2].
+> 
+> Signed-off-by: Jihed Chaibi <jihed.chaibi.dev@gmail.com>
+> 
+> ---
+> Changes in v6:
+>   - Refactored the ti,twl4030-power compatible schema to be much stricter,
+>     removing obsolete board-specific compatibles (-n900, -beagleboard-xm),
+>     that were added in v5. The schema now only permits specific, valid
+>     fallback combinations. This change is supported by subsequent patches
+>     in the same series (2/3) & (3/3), which update the affected DTS files.
+>   - Enforced the presence of the compatible property on all relevant
+>     sub-nodes by adding 'required: - compatible', closing a key validation
+>     loophole.
+>   - Applied various formatting cleanups for readability and correctness.
+> 
+> Changes in v5:
+>   - Restructured the entire binding to define properties at the top
+>     level instead of if/then blocks, per maintainer feedback.
+>   - Added specific compatible enums for new child nodes instead of a
+>     generic 'compatible: true'.
+>   - Set 'unevaluatedProperties: false' for 'pwm' and 'pwmled' nodes to
+>     enforce strict validation.
+>   - Expanded 'power' node compatible enum to include all board-specific
+>     compatible strings (used in existing device trees, e.g. OMAP3-based
+>     boards) for more complete coverage.
+>   - Corrected the schema for the 'power' node compatible to properly
+>     handle single and fallback entries.
+> 
+> Changes in v4:
+>   - Reworked binding to be independent and bisectable per maintainer
+>     feedback by using 'additionalProperties: true' for child nodes.
+>   - Added board-specific compatibles to the 'power' node enum.
+>   - Added definitions for 'clocks' and 'clock-names' properties.
+>   - Renamed 'twl6030-usb' child node to 'usb-comparator' to match
+>     existing Device Tree usage (twl6030.dtsi).
+>   - Fixed some spelling/grammar erros in the description.
+> 
+> Changes in v3:
+>   - New patch to consolidate simple bindings (power, pwm) and add
+>     definitions for all child nodes to fix dtbs_check validation
+>     errors found in v2.
+> 
+> Changes in v2:
+>   - This patch is split from larger series [3] per maintainer feedback.
+>   - Added missing sub-node definitions, resolving dtbs_check errors.
+> 
+> [1] https://lore.kernel.org/all/20250822222530.113520-1-jihed.chaibi.dev@gmail.com/
+> [2] https://lore.kernel.org/all/20250822225052.136919-1-jihed.chaibi.dev@gmail.com/
+> [3] https://lore.kernel.org/all/20250816021523.167049-1-jihed.chaibi.dev@gmail.com/
+> ---
+>  .../devicetree/bindings/mfd/ti,twl.yaml       | 221 +++++++++++++++++-
+>  .../devicetree/bindings/mfd/twl4030-power.txt |  48 ----
+>  .../devicetree/bindings/pwm/ti,twl-pwm.txt    |  17 --
+>  .../devicetree/bindings/pwm/ti,twl-pwmled.txt |  17 --
+>  4 files changed, 210 insertions(+), 93 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mfd/twl4030-power.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwm.txt
+>  delete mode 100644 Documentation/devicetree/bindings/pwm/ti,twl-pwmled.txt
+> 
 
-Ah, that's a good idea! Somewhat obvious now when looking at the code in
-ccu_mux.c, where there are two "reg |=3D MAGIC_VALUE;" lines next to each o=
-ther.
-Will hack something up for this.
+Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
 
-Thanks,
-Andre
 
