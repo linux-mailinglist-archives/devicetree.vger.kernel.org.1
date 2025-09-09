@@ -1,126 +1,92 @@
-Return-Path: <devicetree+bounces-214747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9E6BB4A438
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:51:30 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59203B4A45B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:58:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E7CE1673CC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:51:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 10D3B161691
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:58:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7434238D32;
-	Tue,  9 Sep 2025 07:51:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E23DB23D7EA;
+	Tue,  9 Sep 2025 07:58:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Z8Sau7pd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f49.google.com (mail-ua1-f49.google.com [209.85.222.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from bali.collaboradmins.com (bali.collaboradmins.com [148.251.105.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD550522F;
-	Tue,  9 Sep 2025 07:51:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD7AE23D7EC;
+	Tue,  9 Sep 2025 07:58:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.251.105.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757404286; cv=none; b=JWBg9I4jc14l48m5vgayNGGM75XiCYwd7vB0Dqlr53KPZ8wHcWA2TwQ2B7sYhoFatAuak92bPzsycZ5f8jB/gfAlQylhACo8SlCUvL6WgujZvdRgkBnR+ocM1+Cw493YhWluCcfU+R/7F/RQNbEWzGVc16wZVIo3fL8mZp2R0KE=
+	t=1757404684; cv=none; b=WE2Fb7Yyf6Kzylw4Im3lBOGlq1xX8/HfMH27+CL2sV6GO5OJFm+XfruBJHoRZnB9uI0UXgtHYPXpFh3IN4xLidOLbbOJCodct7XwoU2l/WbKRXIB2fRsoa/Dh0opfpsMNMYokvlesHs1iKZYPkh1Qv2y1FTcMipMvu/L7fdZb0c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757404286; c=relaxed/simple;
-	bh=LbdVI6Slt38Ir7cYm0efEYzLuDhlztlQKtA9nVk/uWA=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YXAPgZyuOot+bUOeDtLAB91wCDzFJAj4tNy5yILEhbXRYmtRqK+GriBkZvsiJHW71prwjl13NFfS51L4TnItVvx5rVlg2QyBSEq+8s2JMJaKEL8f1aIy0CTcblBLWRYhcw8F5fVfjjXeVQSm2wAyKl95KYc65TR/bM0+i5nzyvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.222.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ua1-f49.google.com with SMTP id a1e0cc1a2514c-89607b19f71so1640644241.1;
-        Tue, 09 Sep 2025 00:51:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757404284; x=1758009084;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0JIrSDKvo9ZR7TqGGDnw5XTvCh2zdcwH8+YMgz0j0MA=;
-        b=XK2l3XgoawbRNT94xuxyQq/O5IAa/DNp7HXDgdKI/IDbaeLK5a0Ww/v+C1ADyyYqrv
-         NaYhb9TP5pSADVma52CDKX9sTYDUcSntgBsEi6Hg6yQ2mJQ8+S1AZHf9Nwj8VBeJY3Gd
-         gDMuU17sO6LqvD5CaOaPq9TOMmpS6wgzY5x6gtZbtUvxhDaLK8+OKTndxBGo4UmGiOaG
-         uUBtXVBreLVjMWSSka/95IuEZcH+3X8N2xVsWAeijKi0TX+iRTFphuUgDKtZ7FRo2agz
-         bnX4KMD3qI+iFq6ll+9hXoj8u6qnpZzQ9DcgkVUlFvU1YCLHhrA/zhhuR+G8cjsB/5D3
-         rfyA==
-X-Forwarded-Encrypted: i=1; AJvYcCWakJJdkhyUTRC3hLsT1MO/cvTtR+L70WdHyUwjvnn3WqTrqv2cD6j0QinsQv7llupeR2959MGcgZ15TvKvbpWVjz8=@vger.kernel.org, AJvYcCWj9P8KDh2GuRIuQH7M5iLAYvgE+oO1BBI2aztF+7n+nXeYGoTM3Akzt/eQiWbmPoPC/yPzAgpH88SS@vger.kernel.org
-X-Gm-Message-State: AOJu0YxzY6ssA9Os0oBxOU+eKRVrju7934PI2c9rieU+YtGBt4pNIqET
-	BODqAYqTqQLxOF/+IEvUX4c4uVxKrrBqOSFfIrSdVWm7j/nbC3LzsLefsBSJFhAq
-X-Gm-Gg: ASbGncu6Pqu+vcG6+bT+MqOUutkqBOYDnD7ZebfR85S5E74AIP7GYCZknCjozJ7ocpb
-	/17v9lYw5sSZWSmrmhU0lmAuFCdHwNcsmJuR1s+ukOz/aU7ZpXy6LyDWeNR2JwBPZr7hBjMf5TD
-	hsg4D5GLUu/ZhnY8fPMVdo39Bd7yWz/Xf/wnaU/CUd4lwmmCJa0IdKdhv0Ff9DeNKKFfk8npV/a
-	94jajSC/l1rTgudrmj1ZWEcj0icUbMKHC9Zd/uznaFKK3QVBh7eGL6ra+RXmjotfWCR9w+Ekq/m
-	3uaixrVwk7QnLZ2L76FUcWjspBpaRYqNJu3VGaAVvZy8a3alLgiPYFh5T8m0XrTCtlaxSB958Aw
-	oUMFEfNs7vxQz1cXO0IZFBM8xd3yFH6O9jpn23v02K0ALUYz8Rt2jWYC/TlVrztGsNUk/S/9lMN
-	Q=
-X-Google-Smtp-Source: AGHT+IG6wKIhY9a6rNEKRWSk8In1Tbtr/DkzSsSfHfWIv5Hv1BEE4hgGndKiBaT5v0e4P0jKy3xdlA==
-X-Received: by 2002:a05:6102:d88:b0:52a:b8b:f0cd with SMTP id ada2fe7eead31-53d231f904cmr2799153137.29.1757404283588;
-        Tue, 09 Sep 2025 00:51:23 -0700 (PDT)
-Received: from mail-vk1-f173.google.com (mail-vk1-f173.google.com. [209.85.221.173])
-        by smtp.gmail.com with ESMTPSA id a1e0cc1a2514c-899d7986b82sm6381046241.17.2025.09.09.00.51.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Sep 2025 00:51:22 -0700 (PDT)
-Received: by mail-vk1-f173.google.com with SMTP id 71dfb90a1353d-544c796daa1so1923193e0c.1;
-        Tue, 09 Sep 2025 00:51:22 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCU2n6qHoCwHXv1avXXOQEG2zbKr2KH3i/U1kgZc4/NTyo/BZgQIUudkFjMfauJjPc7CAESq7EVrWGlb3NsdnAFW2Xk=@vger.kernel.org, AJvYcCWUO6cpBa1Xl0e3NDEyc9EC21H7bMwWhWTII2u4IefGhfg8XT5EIYiwYVIouB5C2Pty8inwDpypEFRR@vger.kernel.org
-X-Received: by 2002:a05:6122:a1d:b0:543:a319:7394 with SMTP id
- 71dfb90a1353d-5473803d00fmr3100624e0c.16.1757404282613; Tue, 09 Sep 2025
- 00:51:22 -0700 (PDT)
+	s=arc-20240116; t=1757404684; c=relaxed/simple;
+	bh=WfhVUdTdqrhQTMxkXedHVqfe26PZFY7f2SaOORN+FwM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WXUIFVXYhF5zY66qQiJ9CJRSWr8UR4wssEjsAn05sPTb8s6nDxRjJX6it7fpDQtsa9Kh2Gz11tND3WXCicxNxiWl34FRJnpzkmkhjado4tBj3veomGELyDE9Ft2qtQgWQhqTA+J2g3LbdeWKSjloz1h61+PvmqoNig8Ci8OiCjM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Z8Sau7pd; arc=none smtp.client-ip=148.251.105.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1757404675;
+	bh=WfhVUdTdqrhQTMxkXedHVqfe26PZFY7f2SaOORN+FwM=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Z8Sau7pdiFyrn5ibuoTSKtq0nezhdLxN2tk/mizBYLiNWQQnzfZEOyxuaQovbBwMo
+	 K3wp+6avbUyzj8BtFCaH2R5ZSOQ0aXTIbVNqamO4dCAAEXf4o8xMzrD46maJb6Q87p
+	 MGarU/7byzuNX4V/be1OPSeN4R4HNCEbQs9omDj/Rr7/DGBRFkdrixgYcjOi2fDrAT
+	 UisPxWjsb0Bdg54c108LjDQcE5kwJFbwWIshKJnZc8bSVDQ/EGXcgGU3CY54B9ckNH
+	 FrA9J6EIRuQUDFLpSc5jBd5868Rl+J4qXQDpwsJWKjY1vJgVnbG92JHfg0gS9KKagE
+	 YAB1LsG9RQpAA==
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by bali.collaboradmins.com (Postfix) with ESMTPSA id 89A3117E04D6;
+	Tue,  9 Sep 2025 09:57:54 +0200 (CEST)
+Message-ID: <80a7339c-4742-45c1-b474-347a916b2db6@collabora.com>
+Date: Tue, 9 Sep 2025 09:57:53 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
- <87plc09z6j.wl-kuninori.morimoto.gx@renesas.com> <20250909-woodlouse-of-authentic-fertility-1cea2c@kuoka>
-In-Reply-To: <20250909-woodlouse-of-authentic-fertility-1cea2c@kuoka>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 9 Sep 2025 09:51:10 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXd6yhi2SBHBvq+0LF4kBnjm3igVb21TYaKoWSvjPGcEg@mail.gmail.com>
-X-Gm-Features: AS18NWCqrYWMcqkCjrtTcTjJES8TRBWo_VLUGDGC4w91TdcQouLAXKvc2ETcjyo
-Message-ID: <CAMuHMdXd6yhi2SBHBvq+0LF4kBnjm3igVb21TYaKoWSvjPGcEg@mail.gmail.com>
-Subject: Re: [PATCH 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
-To: Krzysztof Kozlowski <krzk@kernel.org>
-Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/4] pinctrl: mediatek: Add support for eh bit
+To: Igor Belwon <igor.belwon@mentallysanemainliners.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Sean Wang <sean.wang@kernel.org>
+Cc: linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20250908-mt6878-pinctrl-support-v1-0-3fb78c8ab4e8@mentallysanemainliners.org>
+ <20250908-mt6878-pinctrl-support-v1-2-3fb78c8ab4e8@mentallysanemainliners.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Content-Language: en-US
+In-Reply-To: <20250908-mt6878-pinctrl-support-v1-2-3fb78c8ab4e8@mentallysanemainliners.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+Il 08/09/25 21:17, Igor Belwon ha scritto:
+> The eh bit is used for setting drive mode for i2c pins on recent SoCs.
+> Add support for it.
+> 
+> Signed-off-by: Igor Belwon <igor.belwon@mentallysanemainliners.org>
 
-Thanks for your quick review!
+Noupe, this commit is not needed at all.
 
-On Tue, 9 Sept 2025 at 09:46, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> On Tue, Sep 09, 2025 at 01:45:09AM +0000, Kuninori Morimoto wrote:
+I get that this may be tricky to understand... but summarizing, what the
+downstream calls "EH" in upstream is "DRV_ADV" :-)
 
-> > +     extal_clk: extal {
->
-> Use some sane prefix.
->
-> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
->
-> > +             compatible = "fixed-clock";
-> > +             #clock-cells = <0>;
-> > +             /* This value must be overridden by the board */
-> > +             clock-frequency = <0>;
->
-> Drop instead
+Check the comments on patch [4/4] about how to change EH to DRV_ADV.
 
-clock-frequency is a required property?
-
->
-> > +     };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Cheers,
+Angelo
 
