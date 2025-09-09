@@ -1,188 +1,122 @@
-Return-Path: <devicetree+bounces-214771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3392BB4A569
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:35:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 16591B4A573
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:36:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF2FD7AD603
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:34:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2DF9218831C9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:36:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAE32522A1;
-	Tue,  9 Sep 2025 08:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16140256C7E;
+	Tue,  9 Sep 2025 08:35:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="X5IGy0zM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n7Am5K2s"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424F4244665
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 08:35:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBCF72566D2;
+	Tue,  9 Sep 2025 08:35:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757406939; cv=none; b=n6ujwNQk49ND8W1XNIVnDZtIViQRPT3fiOZj6DqhEYNEUD7Gkv2owL9TnSZD2i89j96lyUuBuOd5Uyizym+oOipE2CB7sAyTzHQmSmh2xoMVCdM+Z6BbVsrb8sq97uBegSZZOTPSpgRvmZSqBii/LA5CN6j8j5n7lMH+ZKP2lCc=
+	t=1757406953; cv=none; b=tmMK7tO41mskeC/QGcWJ/jSgHO/PCTGKkZy8igPUDR9OhfPr/e1Qtf+nWqvqf6k/utLydbJnCGRCtJlt8Nc1+sZVTBZFRYH1CaLT6vJbt9Gu9O5NwSPEQk9sJSehkEu4uK+59AtIVRPLCknV81QTeX0E3ZAsrIK9V340NIwNSsU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757406939; c=relaxed/simple;
-	bh=qEFFsG3JJ6Gj1Avf/fY6gQYPV57m4kz86xl84hx39eA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=o+XXLAZyB+W/sbP9uvl7tdBuE7yS8q/Ouz00ldsZZIiK2g064yh72YNXUibJKByfJt5kT3fhzKx+ST5GteCdSNEB5jHyaJBDtebm5PAnD13BH3eDPEIbsp/+MzDsLiLF7m+N3/wOzlBbyGCzwKRGtVvyKVxy4992BNkV0sh5fOM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=X5IGy0zM; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b9814efbcso41435075e9.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 01:35:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757406935; x=1758011735; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6N+5/nHLfNzpH0boX8DeOhGOdzLAP79fhn+X+phaP9A=;
-        b=X5IGy0zMNsAgU5R+b6dO3NtxasTBJqGHtgt3BZgtFz3e45f4Kwx10bojcPffFUkc1k
-         gLOKfYyGtuR+84rlR6hVwWYWc65N1ZDEwH3AfL3QxPAzKAdtDfSHdBonrJAj4lSEQnFM
-         gARXENuWpM4KYTvvLxEzpp2yACAtEu1sOoefWYHnrYdGPgFIryL0TsW0Edgj24OdkmL+
-         2cFi6puviguGeWkXbdL9/2lqJ3cR0bzrsa9b1ILmbWxxiXGHRPrKNL2+q+Rpe43Jzrff
-         eHD7OHYaCoxazYuNF01mTfDCu1JovqAbpACkIxpmfFey4qgRP/WXYiT+O4PEc5yV2R3H
-         CusQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757406935; x=1758011735;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6N+5/nHLfNzpH0boX8DeOhGOdzLAP79fhn+X+phaP9A=;
-        b=tlurezQ4x0SAcGczutV+kTdVxUdWtPsqEOKOqkh776aUKA2JUZQ8gUMYuPjCBMt3n2
-         AOm0jqyoiikj8eUSEgYkOeArCDwNH6dTqDUjD9jrYP51if/C8dLDrfbdbU6pT5TfvV67
-         ahGdMYud0WjzHU1xMdV1xiyaAzOkarXlIPMQu2LIPVxRVdVlMaatNL9QZ1BYbpBkRk+g
-         gMB2uNcbLn1CBExL7uZjcyDYxKfZn6ABw+j/PhdDlShpJEbgx8MypSIdLol6rME2nVyL
-         Zr+8pPqOViozfSkGdOknQaUW2ynwpLWfSiGq4ovdIm11G8VZVljhMmaky1dMZLUG6/YX
-         tlPw==
-X-Forwarded-Encrypted: i=1; AJvYcCW0NDGI2MePzHo2d8/FGh50Bba0ECyHCeNVrtuJR78U3unGqP6J8sXuDsN75/bj7s/PMLQRbl2tryYr@vger.kernel.org
-X-Gm-Message-State: AOJu0YybN1DVrMbztnUwjU91Tgu4rSlN9iwncSIXe5R/T/sXMx8M/+4A
-	mYby3hkjsSOCdYWVHJhkI+h+LvkNt5bW0XsPtdnTj0nAwleekmF2x1XvFb/FMf0ME3E=
-X-Gm-Gg: ASbGnctgSWbaO0qS23JTNoiTf8T+teYGDiw9Ip/Ox4RfRiAU+dzh72P9VGmLWY+dQb8
-	PgMahi30hglLYArCKQ3tdu8/04Vww/sKUeTIqq5tPQVRNuV+m6i1ZhvR4YzLXAfvhgxWKPD5fNf
-	dDVTc7ecCf+U71vxpQPXkPiEqSyeEjZgU5NCeWt8Vn76T497sTm7qWrdPMuTn4GM2EYVE9yvASv
-	fqKG0EhvpWJCA/Vd8aH63JqB9bIWHV+K/JlwGC/kxZTRp8C+StwxqctbHDR3slrhiOjrIhHFY0R
-	jiNnCj6N/aePWnu53ZAAYLAd0ozwMO4BAV/WoksxEepS8RpGy3wEHkkskdzx+dXLWukFu44ujOk
-	7xSVdbIGDwtHo8giZ4IrfgpxWtA==
-X-Google-Smtp-Source: AGHT+IFBJ3Z0uXfcWdYuPkWDAS7urMN/Se5ouLEUwPSzoQV8nlN7XUEIwwIC+Zikwt2F+t1XNTI3SQ==
-X-Received: by 2002:a05:6000:2311:b0:3b9:14f2:7edf with SMTP id ffacd0b85a97d-3e2ffd7f634mr11493663f8f.1.1757406935303;
-        Tue, 09 Sep 2025 01:35:35 -0700 (PDT)
-Received: from localhost ([195.52.61.108])
-        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45decf8759esm27587495e9.23.2025.09.09.01.35.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 01:35:34 -0700 (PDT)
+	s=arc-20240116; t=1757406953; c=relaxed/simple;
+	bh=wz0UHmZkyV0Vbp6rUO0Hwq4qZc9k9fz9jblD2E/udtk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=PipKKUmDndgAn97zF4grxKcE1+KjU+7r9UVzMIwbnpPGnV/XqyLZ6o0vTpvU6iu2IvGOuiSDurQCTsxVjMDUnSFcpE2UhdIG2/YKHxRRmaXWg1WgXNGZzo2Q7Y3YN6aX8ymKiV8lfnHdYn7/VmYTL2zIAzBVQ5ev0j5Z6BaBzw4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n7Am5K2s; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12690C4CEF4;
+	Tue,  9 Sep 2025 08:35:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757406951;
+	bh=wz0UHmZkyV0Vbp6rUO0Hwq4qZc9k9fz9jblD2E/udtk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=n7Am5K2sWCsKvH3sK7JjAxAmM4Ho9ll9VGlBR2qNYGfpc5LuQVZr9sBlkE474DL0h
+	 KyQLjavEICKkr49s4AN1SlvCjY8U5KHRXIK29F5qfP8azaStVhx18V17iOgnFSOada
+	 ukfefVuMlGq+RkU+jIo39oGutPwZaPT7sbxT/ksUSdOtHZ9znMpt6XLC9X+UL1y+QT
+	 K81sGcgRv8zW4yneISzMgN35vca0omHxiOHIAIlVhUzcL1j/DLALAzR4xSEdLsJiT9
+	 7DFdIUKlxpcyBmX//FRxxXCERIbufdsR6lCFiXG5osH8nF5ta+TDWI4mFSJMETvMK1
+	 orjQR/S1vaVYA==
+Date: Tue, 9 Sep 2025 09:35:46 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Valentina Fernandez <valentina.fernandezalanis@microchip.com>,
+	conor.dooley@microchip.com, daire.mcnamara@microchip.com,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, robh@kernel.org,
+	krzk+dt@kernel.org, aou@eecs.berkeley.edu, alex@ghiti.fr,
+	linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/6] dt-bindings: riscv: microchip: document icicle
+ kit with production device
+Message-ID: <20250909-division-fetch-01bf5027f6d9@spud>
+References: <20250908115732.31092-1-valentina.fernandezalanis@microchip.com>
+ <20250908115732.31092-3-valentina.fernandezalanis@microchip.com>
+ <20250909-accurate-wisteria-spider-222341@kuoka>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Tue, 09 Sep 2025 10:35:26 +0200
-Message-Id: <DCO4RGJBMTRM.1XNHG5EHBPS24@baylibre.com>
-Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62x-sk-common: Enable Main
- UART wakeup
-From: "Markus Schneider-Pargmann" <msp@baylibre.com>
-To: "Kendall Willis" <k-willis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
- <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
- <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Cc: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
- <khilman@baylibre.com>, <a-kaur@ti.com>
-X-Mailer: aerc 0.20.1
-References: <20250904212827.3730314-1-k-willis@ti.com>
- <20250904212827.3730314-2-k-willis@ti.com>
-In-Reply-To: <20250904212827.3730314-2-k-willis@ti.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="xnYwVAd+w3ZrbIcG"
+Content-Disposition: inline
+In-Reply-To: <20250909-accurate-wisteria-spider-222341@kuoka>
 
---a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969
+
+--xnYwVAd+w3ZrbIcG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
 
-On Thu Sep 4, 2025 at 11:28 PM CEST, Kendall Willis wrote:
-> The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
-> is enabled. Add the necessary pins needed to wakeup the system. Add the
-> system idle states that the Main UART can wakeup the system from.
->
-> Signed-off-by: Kendall Willis <k-willis@ti.com>
-> ---
->  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 24 +++++++++++++++----
->  1 file changed, 20 insertions(+), 4 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/=
-boot/dts/ti/k3-am62x-sk-common.dtsi
-> index 13e1d36123d51..72801cf890d20 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
-> @@ -163,14 +163,26 @@ &phy_gmii_sel {
-> =20
->  &main_pmx0 {
->  	/* First pad number is ALW package and second is AMC package */
-> -	main_uart0_pins_default: main-uart0-default-pins {
-> +	main_uart0_tx_pins_default: main-uart0-tx-default-pins {
->  		bootph-all;
->  		pinctrl-single,pins =3D <
-> -			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14/A13) UART0_RXD */
->  			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
->  		>;
->  	};
-> =20
-> +	main_uart0_rx_pins_default: main-uart0-rx-default-pins {
-> +		bootph-all;
-> +		pinctrl-single,pins =3D <
-> +			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14/A13) UART0_RXD */
-> +		>;
-> +	};
-> +
-> +	main_uart0_rx_pins_wakeup: main-uart0-rx-wakeup-pins {
-> +		pinctrl-single,pins =3D <
-> +			AM62X_IOPAD(0x1c8, PIN_INPUT | PIN_WKUP_EN, 0) /* (D14/A13) UART0_RXD=
- */
-> +		>;
-> +	};
-> +
->  	main_uart1_pins_default: main-uart1-default-pins {
->  		bootph-pre-ram;
->  		pinctrl-single,pins =3D <
-> @@ -342,8 +354,12 @@ &wkup_uart0 {
->  &main_uart0 {
->  	bootph-all;
->  	status =3D "okay";
-> -	pinctrl-names =3D "default";
-> -	pinctrl-0 =3D <&main_uart0_pins_default>;
-> +	pinctrl-names =3D "default", "wakeup";
+On Tue, Sep 09, 2025 at 08:53:05AM +0200, Krzysztof Kozlowski wrote:
+> On Mon, Sep 08, 2025 at 12:57:28PM +0100, Valentina Fernandez wrote:
+> > With the introduction of the Icicle Kit using the production MPFS250T
+> > device, it's necessary to distinguish it from the engineering sample
+> > (-es) variant. Engineering samples cannot write to flash from the MSS,
+> > as noted in the PolarFire SoC FPGA ES errata.
+> >=20
+> > Add specific compatibles for the Icicle Kit with Production device
+> > (MPFS250T) and Icicle Kit with Engineering Sample (MPFS250T_ES).
+> >=20
+> > The icicle kit reference designs in the v2025.07 release include the
+> > Mi-V IHC IP v2, used to send/receive data between clusters when
+> > using Asymmetric Multiprocessing (AMP) mode.
+> >=20
+> > In reference design releases prior to v2025.07, the MI-V IHC subsystem
+> > was included as a proof of concept in the design prior to becoming an
+> > IP available in the Libero catalog.
+> >=20
+> > Among other improvements, the new Mi-V IHC IP v2 includes some
+> > changes to the register map. For this reason, make use of a new
+> > reference design compatible to denote that v2025.07 reference design
+> > releases are not backwards compatible.
+> >=20
+> > Signed-off-by: Valentina Fernandez <valentina.fernandezalanis@microchip=
+=2Ecom>
+> > ---
+> >  Documentation/devicetree/bindings/riscv/microchip.yaml | 8 ++++++++
+> >  1 file changed, 8 insertions(+)
+>=20
+> Why are you sending patches which are already applied? For two weeks?
 
-I think you may need to add this to the DT binding of the uart device
-as well.
+That's probably my bad, I dropped the series when you had complaints
+about the version that I applied and forgot to mention it.
 
-Best
-Markus
-
-> +	pinctrl-0 =3D <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_defau=
-lt>;
-> +	pinctrl-1 =3D <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_wakeu=
-p>;
-> +	wakeup-source =3D <&system_deep_sleep>,
-> +			<&system_mcu_only>,
-> +			<&system_standby>;
->  };
-> =20
->  &main_uart1 {
-
-
---a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969
+--xnYwVAd+w3ZrbIcG
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaL/mzhsUgAAAAAAEAA5t
-YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlNd
-gQEA/hNMsUFW+UdVLmVgndckJZ2RHI3dvWGZDIfL72MfMQoA/2/x9L5Jzg9n5J48
-Fc4ax/6ykv5Jx18pJrptLgYJLloP
-=LJUi
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaL/m4gAKCRB4tDGHoIJi
+0mR3AP97FGlnUbQYSGCOJbP/F4fIUOtaxL8XQBiJqV80n/g4pgD9EJ0WkjjcrSzE
+QXVSt2O+TY+hK9UkHkQof+bWrew1/gg=
+=5rHi
 -----END PGP SIGNATURE-----
 
---a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969--
+--xnYwVAd+w3ZrbIcG--
 
