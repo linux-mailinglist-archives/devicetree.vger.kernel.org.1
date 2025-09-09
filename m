@@ -1,81 +1,72 @@
-Return-Path: <devicetree+bounces-215064-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215065-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5961B50341
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:53:40 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 178A2B5035D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:57:20 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F27981C64723
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:54:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CB3824E6C8E
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99C2D35E4D3;
-	Tue,  9 Sep 2025 16:53:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9AE9F3568E1;
+	Tue,  9 Sep 2025 16:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gCne//a5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tJwIUKQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0CA35A29B;
-	Tue,  9 Sep 2025 16:53:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CCE5340DB3;
+	Tue,  9 Sep 2025 16:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757436801; cv=none; b=s4Kx1/GRa5tCmfXfGWit2GJx+fWwu5mFgrcq0QkRVJlRZJfX9p7McWy4JIrXPW286fNLOV6eg9PSaHLMd/Bf1wrKPDFNRWZrpDxWPNF4+P4D3svdVdX+x02z2SfPZSn1TQ8QHnelRWyS1vdjrMG5GD4KoZtO8k7MFK1Gy1uKUHA=
+	t=1757437001; cv=none; b=LG1z3ZmZSyPbNBGwM1uz6WM8pAC5EU6WyDW8rivMbw3b98xXFmwtT69kI2wByldjQARv6Odt8HL68rwZvLMjlY6x8taTuzeCb4sg+h7tkHjrRfNHwmjNGqPhX3WgicH2cpmvq+6pLG7QPI731h1eHmOgWwwozzQm9Bop257fGy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757436801; c=relaxed/simple;
-	bh=3ngI3i1BG0C9azbqBN/4q7nJ2yCSJxmqD7ABvsTPKbo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=PEQeyJ7M15UoSGbUTveEjPt+FezeANq1MquK3MyyNvOoAq1t/Qogk0dtPyuWaV2jELuQfjjzct8j2vHw+A4EaqXFq5j+3hUe8drxZFUtti6ftygBPv2wDPv3R9SgSFLX2f+1bnmQP4m8FJp1g/BMK5d1JtJdfzdgiyWS/ivw3UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gCne//a5; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-45cb5492350so38355555e9.1;
-        Tue, 09 Sep 2025 09:53:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757436797; x=1758041597; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=gCne//a52umQfl2IhSEp9Ub/EuZXvWGbCx89sxNQXS5gqwWCkJNt0sRKHAN5i5YpaW
-         z2WMD+5laz6VAT+kLM3UXDyng0AbUutETNAdOQ3vYSnneTzniLNwaMR8ZH2gbuQgFU3X
-         NHbziM05Si4elmBkufG399UfqWQfPC88Schu98Qhu7KQnf82aWLE0p3jJXqAtPFIS6Qc
-         cKeziDHH8F+JF/2L68doqbNB4eibFh1HEdh/DyBwg6HuOThvNv2uMxOY+frLuQ6vlGy7
-         4w++SIDysdaJA2MsnkH4MyW1VGovYFWiC9y0gV9s/IlhyPPmC3w4/M5PaQy4wVtVxRO2
-         LN5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757436797; x=1758041597;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=m97kyP3HTS70kAnw3EPRct0ZUapkHpzYxU+r81cO+AM=;
-        b=wbdVvycSH8ntaqVjg+DzFVrcddbEgrRTI+jarB8bM5Kd93QXjQjWgoTtGBODAhLguz
-         yFNcIkEi2JF0hf2UnIdXj5UaMkNvgfNB3gHU30LmdVZvjylerywbPAqL9lbhypiuGq3E
-         MJTaLXDUKu0//NS4ufqmi4/zX6wIRdgtKMs3CrjqhnpqK8q/Xa809X1cfHBZ4aLuta6v
-         UPsYEca+nOTVXKgAHnb8KJz8Q6QdurkSaIGwlkqx7bUB9EeDCLtWvHTe0SPZ6HwMG/0E
-         OAfBCA4f36FUY97hj5pi3syPxzCPO6p+yT0EQajih+xOufhRD4hEn9TbqobMX9nknMmx
-         Krlg==
-X-Forwarded-Encrypted: i=1; AJvYcCViMkOczbVkLk5xdvEWS3CLobDKbpZ6LEWme05E6xRXdqRnkPbYQrotT+PE8WAAzWacKSg23UuZ0Egb@vger.kernel.org
-X-Gm-Message-State: AOJu0Yy1WykScCAuTO5hlaYp35l+JZuWhiTGHGs0L21XvHP66+9IvMbi
-	nI91weo7EQQug8FpurPTDE+uIGU3wHUsvQ6duKWoRQgqP+/MjcBnJ/PK
-X-Gm-Gg: ASbGncuo/46BUvpSjADatvhOgmIMJGiTPwNf1NVRmBGuksh0/1hfU3rkHecobzxwFfJ
-	7SgIAm8KhzUqXio0nNTaed2bOLgiRxqRCg9eMw8f0CEm3tiW1yfB9juk5ws9GFJWroXIMNaRYw1
-	yEVMpyWWIFIM/C4/4BQKyyDv+bu2VcPpuwHjh+7/ii99tjfmKk4n5ChH0Tnpxe4U1oBkuNIYRB2
-	hxfK/Q4Lgvu5yNP+mjc4tSEwSQfAxoRp/TNoZS6lFAFU3TwkMNi42Boh5AWkT31WlstPfdGbAZl
-	F8q1yDcL2H1FkdtyUyZReIRIMz4AZNRKOSGMYDUV6A8tFECUbCshM7fkYDzOk0c4h3Xy2tv+PYE
-	t3hTiYjmQzrqCpSo9HsHCrJWrcbIpQmqHm2ON1hsLW1fFg6h6ZWKMBkg+qUCHdmjY
-X-Google-Smtp-Source: AGHT+IEqBRl9J8D3sxXoUKww47Xb7qU0+nNIVTgF1/LB1fSoYc69LlXxBvnR0fTOpf1FSeIqKxSZEQ==
-X-Received: by 2002:a05:600c:a08c:b0:45b:8a0e:cda9 with SMTP id 5b1f17b1804b1-45dddf22ecdmr100621285e9.2.1757436796956;
-        Tue, 09 Sep 2025 09:53:16 -0700 (PDT)
-Received: from ipedrosa-thinkpadx1carbongen12.rmtes.csb ([5.225.138.131])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b9ab7c7dbsm314379085e9.11.2025.09.09.09.53.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 09:53:16 -0700 (PDT)
-From: Iker Pedrosa <ikerpedrosam@gmail.com>
-Date: Tue, 09 Sep 2025 18:52:45 +0200
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entry for Sitronix ST7920 driver
+	s=arc-20240116; t=1757437001; c=relaxed/simple;
+	bh=SHZRdBfB+U++Xz+OoSe5NzvGgCUOwZHF1QKzN2t6TZw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=SWNkiBT5VNUZb5I4reJu/M+OYvoYMCYcUSJltb96vxjilPBhfqMWWqPSQddd5wlqsoCy4XceXyIq50nP+7Iriq3hIGoTLJFvXi2m19keGOcMYR2mwWOC/aS+nyH0E7CQK7YRaOZU7Hj4RrAxfeQwjQWg4LJWi1INVtSXmYbNb0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tJwIUKQ5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E485C4CEF4;
+	Tue,  9 Sep 2025 16:56:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757437000;
+	bh=SHZRdBfB+U++Xz+OoSe5NzvGgCUOwZHF1QKzN2t6TZw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=tJwIUKQ5XOXwLhu1BqktKXk6rqS5JXwnK2H6RJJrHZWDqCoH8v89Y3ok1y/4uasTQ
+	 8Z2+PtGOh4UdETFi4qgR5r5+s/L67R2Z6AEtWa+8B1ySKW4CdEJZPKDTIqnJnJVqr/
+	 kZ+Lb8jAJxUIQrF5ZUbtxzjuVkqzm/u2dHM64lK5KDipHwAsLok7TrvwOGYCf4G+J2
+	 RBso9JD8kNjGma51M9iHeJioxR+LcSzUlVqaBtGLn0JbL9M+pOMRy8x5SyMhO9mC8M
+	 3M3dNOdTLhWjOKgY5fs4zxCeigDSKvCBxkd+ZmYlya1BYjuR32Aut32ln8cEkqZrQA
+	 OJ8CFrzZesLgw==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Rob Clark <robin.clark@oss.qualcomm.com>,
+	Sean Paul <sean@poorly.run>,
+	Konrad Dybcio <konradybcio@kernel.org>,
+	Dmitry Baryshkov <lumag@kernel.org>,
+	Abhinav Kumar <abhinav.kumar@linux.dev>,
+	Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Akhil P Oommen <akhilpo@oss.qualcomm.com>
+Cc: linux-arm-msm@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	freedreno@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: (subset) [PATCH v2 0/3] Support for Adreno X1-85 Speedbin along with new OPP levels
+Date: Tue,  9 Sep 2025 11:56:29 -0500
+Message-ID: <175743699552.2735486.15514580662913662588.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.49.0
+In-Reply-To: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
+References: <20250701-x1e-speedbin-b4-v2-0-a8a7e06d39fb@oss.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,48 +74,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-st7920-v2-3-409f4890fb5f@gmail.com>
-References: <20250909-st7920-v2-0-409f4890fb5f@gmail.com>
-In-Reply-To: <20250909-st7920-v2-0-409f4890fb5f@gmail.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Javier Martinez Canillas <javierm@redhat.com>, 
- Iker Pedrosa <ikerpedrosam@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- devicetree@vger.kernel.org
-X-Mailer: b4 0.14.2
+Content-Transfer-Encoding: 8bit
 
-Add Iker as ST7920 driver maintainer.
 
-Signed-off-by: Iker Pedrosa <ikerpedrosam@gmail.com>
----
- MAINTAINERS | 7 +++++++
- 1 file changed, 7 insertions(+)
+On Tue, 01 Jul 2025 21:50:43 +0530, Akhil P Oommen wrote:
+> This series adds gpu speedbin support for Adreno X1-85 GPU along with
+> additional OPP levels. Because the higher OPPs require GPU ACD feature,
+> this series has dependency on the GPU ACD support series [1] which is
+> now available in v6.16-rc1.
+> 
+> The device tree change has a dependency on both driver and the
+> dt-bindings update. So those 2 should be picked before the DT change.
+> 
+> [...]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ddf37f0acc960039422ef988cadfa7176972fc5..79b8a277e38b55ebcff05450d6c565c0d87c6b51 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -7861,6 +7861,13 @@ T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
- F:	Documentation/devicetree/bindings/display/sitronix,st7735r.yaml
- F:	drivers/gpu/drm/sitronix/st7735r.c
- 
-+DRM DRIVER FOR SITRONIX ST7920 LCD DISPLAYS
-+M:	Iker Pedrosa <ikerpedrosam@gmail.com>
-+S:	Maintained
-+T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
-+F:	Documentation/devicetree/bindings/display/sitronix,st7920.yaml
-+F:	drivers/gpu/drm/sitronix/st7920.c
-+
- DRM DRIVER FOR SOLOMON SSD130X OLED DISPLAYS
- M:	Javier Martinez Canillas <javierm@redhat.com>
- S:	Maintained
+Applied, thanks!
 
+[3/3] arm64: dts: qcom: x1e80100: Update GPU OPP table
+      commit: be6f43c64ca0f7929904f31c2a034c81093eb5c0
+
+Best regards,
 -- 
-2.51.0
-
+Bjorn Andersson <andersson@kernel.org>
 
