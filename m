@@ -1,254 +1,126 @@
-Return-Path: <devicetree+bounces-215029-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215030-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 338FFB5016C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:34:57 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43FADB50186
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:37:56 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E35283AB20B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:34:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F2DEF3A9F7C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:37:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6A9B371E87;
-	Tue,  9 Sep 2025 15:28:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0E035A296;
+	Tue,  9 Sep 2025 15:34:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UyQ3/5EG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fzIa7Kh8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F01036CE04
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 15:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B620435A291;
+	Tue,  9 Sep 2025 15:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757431705; cv=none; b=cmdVXA1j3QPr1hEk99L16SIeLzM1QRXP02xW+Q7jT2Dc8WRceKu8TrH/WMTcVTx5VOw8Ua3PizgQVGUCFppWeLPRYPi2h7iCaa0i4R7BBi4W7IFSLyF83lBWOxizzYjEDkz8jsWEAA8vpLa/qLcLmlkQDnBkQZqcS84zzX90ZO8=
+	t=1757432076; cv=none; b=GBbmLd1b/mkvuvc/QsxlMiqFQFriDcYUiYVocOFYg7NqbrZ7hDGeISrIpzY9+zTHvWUOnB/EXM2g2CymstlapvBwQ5DrNKUpg+imq89twU+dKRzIHakrbgRlnfNgp3bzUQcnUcFJDB1wDYtYe+CceTzBYDqeipGAOB6B2hy40A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757431705; c=relaxed/simple;
-	bh=iEge4bjlYp9qPy7RxJWOkif1xtGCW23M7V+rOHM4rgc=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eZJjns8IEXGXdQ0xZ6oqi4/kuZvuJIr8G/lKkVr9+e6J8PhxYARYuZNulux6K4EdqcJM5w+QUDRCfacdKD+RJyYFfS0nLFtWRs3XKjvAcdv8NTd4TesQsDujbFu6b3yWMdf+lH1bnhOl3Cnghr68Dfsd8FEFkvuj0fGshgYYY/w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UyQ3/5EG; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id A6021C6B394;
-	Tue,  9 Sep 2025 15:28:06 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 5B10D60630;
-	Tue,  9 Sep 2025 15:28:22 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 84E57102F26A4;
-	Tue,  9 Sep 2025 17:28:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757431701; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=+olRoEgX3HlrRX56jjhR0fg9dg8bH9fKzbpKGiLV6HI=;
-	b=UyQ3/5EGbJPvok/KuWOAR6wQ+gA5rOYHZWr5CJ3PrDYJsSfXH90fUwuQ3K4a9ACNquiIDI
-	GZxjUaTPeD0b476KRfeTWQ0vi2URXRDKAbX9Nw2ud85atFOSMIzRglgQf0vJ5m0RSaEdIl
-	Xwvw51u16rkUfdrB89r+oojGLLRQ195QpjVpFY3fdKGToWdH94QHkKLtOtvhXskFBfVx4U
-	+Ecz9Y9i4eASx/S7aUHFpCUmMsVR+d2efYX6bLJmA+Ne5hYl8q3NbIT55ImIWTx87El/xi
-	1TKXXcT0bv0NNiIkXb5vU4Hx4AWwhX42fWTaeG6JYKA7g2cEUELUY1vuTfwarA==
-From: Maxime Chevallier <maxime.chevallier@bootlin.com>
-To: davem@davemloft.net
-Cc: Maxime Chevallier <maxime.chevallier@bootlin.com>,
-	netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org,
-	thomas.petazzoni@bootlin.com,
-	Andrew Lunn <andrew@lunn.ch>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Eric Dumazet <edumazet@google.com>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Russell King <linux@armlinux.org.uk>,
-	linux-arm-kernel@lists.infradead.org,
-	Christophe Leroy <christophe.leroy@csgroup.eu>,
-	Herve Codina <herve.codina@bootlin.com>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Vladimir Oltean <vladimir.oltean@nxp.com>,
-	=?UTF-8?q?K=C3=B6ry=20Maincent?= <kory.maincent@bootlin.com>,
-	=?UTF-8?q?Marek=20Beh=C3=BAn?= <kabel@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	=?UTF-8?q?Nicol=C3=B2=20Veronese?= <nicveronese@gmail.com>,
-	Simon Horman <horms@kernel.org>,
-	mwojtas@chromium.org,
-	Antoine Tenart <atenart@kernel.org>,
-	devicetree@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Romain Gantois <romain.gantois@bootlin.com>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-Subject: [PATCH net-next v12 18/18] Documentation: networking: Document the phy_port infrastructure
-Date: Tue,  9 Sep 2025 17:26:14 +0200
-Message-ID: <20250909152617.119554-19-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.49.0
-In-Reply-To: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
-References: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
+	s=arc-20240116; t=1757432076; c=relaxed/simple;
+	bh=8qTa9xeWxgzia/87N+H0CPE3siON5KYKzADDzEoot48=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E8cfrJ1SL3P/Sl6NYKVPjXU/szfGS/o0vZoJFx4zBXJ1Lzz/f1NubfhVfII+LLavQujtCT9iNuCeQf50E01518MaOfCUiaEIFMw0meKMH/xofdHvSUWvXbuGkYEWvd403wsVpQBhpj6zP1GyCOrHb1BAoep7PXbjmXMQTa3LbRw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fzIa7Kh8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5073FC4CEFB;
+	Tue,  9 Sep 2025 15:34:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757432076;
+	bh=8qTa9xeWxgzia/87N+H0CPE3siON5KYKzADDzEoot48=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=fzIa7Kh8A+c4euikmlUP8hLomx5oWx3DBAZ6jCnnIagemusOCdrxQi+2KaoWh7TMZ
+	 +MBpoROERj82RLZTPYdtuJgmmggYqlwvNIvQ/O1S73WoMPpMxauUMKTp8RR98ti9VI
+	 ZFq/XjW3+lKnz9kl0F2gnCBxkUPJpOrXyBEtlDtEt1kItt8TIk9xDp5gIieCD+Vyhy
+	 Yv739grGcrfZ4042PoTWTfnAnT3j4cWC+JPaN6TjwMt9IzyWf1kLRxv+rFtCdKjs2g
+	 uu0wbaC1EtIMudDV43mbstoOiQy+H+0dEqMgTDqpYVVetuoqNoINgsS9OMipNkb5+b
+	 ehhNxx3sXZAbQ==
+Received: by mail-ot1-f42.google.com with SMTP id 46e09a7af769-746d3b0f7e5so4329064a34.2;
+        Tue, 09 Sep 2025 08:34:36 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCV0odrrSJNYxr2OIK8VXO7cUwBa/3ZcNlXD1qZugZn2UJOVc/hVPxJw7OQ/jgOw/dlf0zlv2IGepAcdg2iZ@vger.kernel.org, AJvYcCWI1xmzb/JXbwEwQ/GIBMKmIx+Z5jxk8xWU5+/nbkYS/aqNjkwREfQDEWGkxJ0epzNNBNqXV1ctCwj+@vger.kernel.org
+X-Gm-Message-State: AOJu0Yz9/XdlfVCFTqe3d9w3bRZLaFLQvARQF2mXiNoZU9pcCjF4081c
+	e+unYK+l+3hYNtNr2qP3gOxopjO+tSzOgCfW7DB7FtqAOQW4igSGPm7kHv/nBlr4B8bYRPUAFEr
+	013SuLWb+yLbGezBVvd4tzeRw8EZce1s=
+X-Google-Smtp-Source: AGHT+IHWaK8rYsvG12LJ1v+wQd3FH4Ew6lJ7hajdwsT4NMXGUbcx+CA4lOF7uu7KaVTgx45qL5upgAToWfN8TS73sR4=
+X-Received: by 2002:a05:6830:3692:b0:745:98e8:d7cb with SMTP id
+ 46e09a7af769-74c7192d474mr7456377a34.12.1757432075741; Tue, 09 Sep 2025
+ 08:34:35 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+References: <20250908053335.36685-1-xu.yang_2@nxp.com> <20250908053335.36685-2-xu.yang_2@nxp.com>
+In-Reply-To: <20250908053335.36685-2-xu.yang_2@nxp.com>
+From: Chanwoo Choi <chanwoo@kernel.org>
+Date: Wed, 10 Sep 2025 00:33:58 +0900
+X-Gmail-Original-Message-ID: <CAGTfZH1ts4_qO4L9X1ZoYtr0SGLW+3EBCqSybntQLGQztALKSA@mail.gmail.com>
+X-Gm-Features: Ac12FXyorylKhwqGw0HT9IiTuqn3a-WrKEI_gkRmAKNLzi4HndmDxi15M7mbjSM
+Message-ID: <CAGTfZH1ts4_qO4L9X1ZoYtr0SGLW+3EBCqSybntQLGQztALKSA@mail.gmail.com>
+Subject: Re: [RESEND v4 2/4] dt-bindings: extcon: ptn5150: Allow "connector"
+ node to present
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com, 
+	robh@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org, 
+	swboyd@chromium.org, heikki.krogerus@linux.intel.com, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
+	jun.li@nxp.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-This documentation aims at describing the main goal of the phy_port
-infrastructure.
+Hi,
 
-Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
- Documentation/networking/index.rst    |   1 +
- Documentation/networking/phy-port.rst | 111 ++++++++++++++++++++++++++
- MAINTAINERS                           |   1 +
- 3 files changed, 113 insertions(+)
- create mode 100644 Documentation/networking/phy-port.rst
+Applied it .Thanks.
 
-diff --git a/Documentation/networking/index.rst b/Documentation/networking/index.rst
-index b7a4969e9bc9..84d88607ee7d 100644
---- a/Documentation/networking/index.rst
-+++ b/Documentation/networking/index.rst
-@@ -96,6 +96,7 @@ Contents:
-    packet_mmap
-    phonet
-    phy-link-topology
-+   phy-port
-    pktgen
-    plip
-    ppp_generic
-diff --git a/Documentation/networking/phy-port.rst b/Documentation/networking/phy-port.rst
-new file mode 100644
-index 000000000000..6d9d46ebe438
---- /dev/null
-+++ b/Documentation/networking/phy-port.rst
-@@ -0,0 +1,111 @@
-+.. SPDX-License-Identifier: GPL-2.0
-+.. _phy_port:
-+
-+=================
-+Ethernet ports
-+=================
-+
-+This document is a basic description of the phy_port infrastructure,
-+introduced to represent physical interfaces of Ethernet devices.
-+
-+Without phy_port, we already have quite a lot of information about what the
-+media-facing interface of a NIC can do and looks like, through the
-+:c:type:`struct ethtool_link_ksettings <ethtool_link_ksettings>` attributes,
-+which includes :
-+
-+ - What the NIC can do through the :c:member:`supported` field
-+ - What the Link Partner advertises through :c:member:`lp_advertising`
-+ - Which features we're advertising through :c:member:`advertising`
-+
-+We also have info about the number of lanes and the PORT type. These settings
-+are built by aggregating together information reported by various devices that
-+are sitting on the link :
-+
-+  - The NIC itself, through the :c:member:`get_link_ksettings` callback
-+  - Precise information from the MAC and PCS by using phylink in the MAC driver
-+  - Information reported by the PHY device
-+  - Information reported by an SFP module (which can itself include a PHY)
-+
-+This model however starts showing its limitations when we consider devices that
-+have more than one media interface. In such a case, only information about the
-+actively used interface is reported, and it's not possible to know what the
-+other interfaces can do. In fact, we have very few information about whether or
-+not there are any other media interfaces.
-+
-+The goal of the phy_port representation is to provide a way of representing a
-+physical interface of a NIC, regardless of what is driving the port (NIC through
-+a firmware, SFP module, Ethernet PHY).
-+
-+Multi-port interfaces examples
-+==============================
-+
-+Several cases of multi-interface NICs have been observed so far :
-+
-+Internal MII Mux::
-+
-+  +------------------+
-+  | SoC              |
-+  |          +-----+ |           +-----+
-+  | +-----+  |     |-------------| PHY |
-+  | | MAC |--| Mux | |   +-----+ +-----+
-+  | +-----+  |     |-----| SFP |
-+  |          +-----+ |   +-----+
-+  +------------------+
-+
-+Internal Mux with internal PHY::
-+
-+  +------------------------+
-+  | SoC                    |
-+  |          +-----+ +-----+
-+  | +-----+  |     |-| PHY |
-+  | | MAC |--| Mux | +-----+   +-----+
-+  | +-----+  |     |-----------| SFP |
-+  |          +-----+       |   +-----+
-+  +------------------------+
-+
-+External Mux::
-+
-+  +---------+
-+  | SoC     |  +-----+  +-----+
-+  |         |  |     |--| PHY |
-+  | +-----+ |  |     |  +-----+
-+  | | MAC |----| Mux |  +-----+
-+  | +-----+ |  |     |--| PHY |
-+  |         |  +-----+  +-----+
-+  |         |     |
-+  |    GPIO-------+
-+  +---------+
-+
-+Double-port PHY::
-+
-+  +---------+
-+  | SoC     | +-----+
-+  |         | |     |--- RJ45
-+  | +-----+ | |     |
-+  | | MAC |---| PHY |   +-----+
-+  | +-----+ | |     |---| SFP |
-+  +---------+ +-----+   +-----+
-+
-+phy_port aims at providing a path to support all the above topologies, by
-+representing the media interfaces in a way that's agnostic to what's driving
-+the interface. the struct phy_port object has its own set of callback ops, and
-+will eventually be able to report its own ksettings::
-+
-+             _____      +------+
-+            (     )-----| Port |
-+ +-----+   (       )    +------+
-+ | MAC |--(   ???   )
-+ +-----+   (       )    +------+
-+            (_____)-----| Port |
-+                        +------+
-+
-+Next steps
-+==========
-+
-+As of writing this documentation, only ports controlled by PHY devices are
-+supported. The next steps will be to add the Netlink API to expose these
-+to userspace and add support for raw ports (controlled by some firmware, and directly
-+managed by the NIC driver).
-+
-+Another parallel task is the introduction of a MII muxing framework to allow the
-+control of non-PHY driver multi-port setups.
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 31e5293df595..9680dced1d02 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9111,6 +9111,7 @@ F:	Documentation/devicetree/bindings/net/ethernet-connector.yaml
- F:	Documentation/devicetree/bindings/net/ethernet-phy.yaml
- F:	Documentation/devicetree/bindings/net/mdio*
- F:	Documentation/devicetree/bindings/net/qca,ar803x.yaml
-+F:	Documentation/networking/phy-port.rst
- F:	Documentation/networking/phy.rst
- F:	drivers/net/mdio/
- F:	drivers/net/mdio/acpi_mdio.c
--- 
-2.49.0
+On Mon, Sep 8, 2025 at 2:34=E2=80=AFPM Xu Yang <xu.yang_2@nxp.com> wrote:
+>
+> PTN5150 is usually used with a Type-C connector, so allow a "connector"
+> node to be defined under it.
+>
+> Acked-by: Rob Herring (Arm) <robh@kernel.org>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>
+> ---
+> Changes in v4:
+>  - no changes
+> Changes in v3:
+>  - add Acked-by tag
+> Changes in v2:
+>  - improve commit message
+> ---
+>  Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml=
+ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> index 072b3c0c5fd0..79f88b5f4e5c 100644
+> --- a/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> +++ b/Documentation/devicetree/bindings/extcon/extcon-ptn5150.yaml
+> @@ -42,6 +42,9 @@ properties:
+>      description:
+>        A port node to link the usb controller for the dual role switch.
+>
+> +  connector:
+> +    $ref: /schemas/connector/usb-connector.yaml#
+> +
+>  required:
+>    - compatible
+>    - interrupts
+> --
+> 2.34.1
+>
+>
 
+
+--=20
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
 
