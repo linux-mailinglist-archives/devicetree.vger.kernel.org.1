@@ -1,109 +1,125 @@
-Return-Path: <devicetree+bounces-214959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A61CB4FD72
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:39:10 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80801B4FD9A
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:42:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B1E64E3A70
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:36:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 920D0440C03
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:38:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C949342C9A;
-	Tue,  9 Sep 2025 13:34:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2E734575B;
+	Tue,  9 Sep 2025 13:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="olO9ywJG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BXVF3yf9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42DD1342C91;
-	Tue,  9 Sep 2025 13:34:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551B9341ABD;
+	Tue,  9 Sep 2025 13:37:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757424850; cv=none; b=VYtWXNvFryDKmvzkFjnhAQwZVQUIFvsfJLeogqw/bCgiAG6Czc7OT17eqanUOA5JMAqCjE4pIh9tROzHqm2mOOzirqC20aL6fnjUYwflxm1DITWf6zGqb3wapiC3O6XHkJ/wXvd7re76P/mZsQ2Hbpi7uNMW9p7ZdkprDz89mrI=
+	t=1757425036; cv=none; b=tUQlMlNX68aTVRecr/47rTVksrQTnpuukELzKodtZU8NgHsnFT4KcthaeYfK/uLylTqWhNBsQLjZ2l9Yoo5k7ekhu3NWVo5tYTOOQzWsX/QWYAoncBZEAanZ2mJEC3eDI6KPEk3sDEsahYQJQKG4/jpOIIy8eBxpI3y84udopng=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757424850; c=relaxed/simple;
-	bh=uDWe5i323HRkm1ttJ/vmDkJ/q2zljilys34SereqCRs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=LM58vxJxCZsUNftKY1M939V/o3rm6Nef8HmVbhgGJStyCK2p1WY25s7C2i4T8gp7RphF5eE52LmMdEitt4sdJyWnaZ5Lc+T3D2tjsMhuEeajPq7F56KNTEPWvBcVdCPEUOIPnqwRpraYN5Vu9+iRXIyY6RQZMtp8r6RMWZn1zNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=olO9ywJG; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 350AAC4CEF4;
-	Tue,  9 Sep 2025 13:34:07 +0000 (UTC)
+	s=arc-20240116; t=1757425036; c=relaxed/simple;
+	bh=31mOWd8+i/1YkiYaOgcvUkmjuR7GoBD5Ed0MeKEuOFo=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=uJixg82tKDwnW55ZMmN11jQRif2ydEO8esVava4wEZdScSBonpF3Sv/aOKlABv1dfZzlcMk+Qn1/hLk6Dqg7NG0je3YFyd2ZFrkxoIe7h7kd8d0QAgS/0GmypZ/1dDwm93SeWkdSyUFe8OabmdUmMzSMOXkcbU3eOnA12/XnYE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BXVF3yf9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABEE4C4CEF4;
+	Tue,  9 Sep 2025 13:37:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757424849;
-	bh=uDWe5i323HRkm1ttJ/vmDkJ/q2zljilys34SereqCRs=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=olO9ywJGFDBKFMTZaxoqfg70ObRIDdTVWze2NHxc25zyL9zp6NSxt4IslxEy8akZH
-	 SEEIO01nvfNttmmTC6eRSdVD3vstBVWIxjsSeMzM/v+wGNgOvyuIKLC6v6bt8Qtw4v
-	 AxGcNU0dhksVjqcvJ/YOTHcP9XLZQ74A0QcUSZB6rVEqL2aTH6c5enwCJSnmbfd6Px
-	 itNRE8LUb8j3PO0nqty5tvdWrrhL5J6sVIig3iS48YBMl+iz5KIYR5gHmSx7HxLBAL
-	 9HgbG7SPl5kP3B3kzDuApasXFsRHiXs4LwO1refUNAgZaYjlaze+ET/RuOSWsUe8HJ
-	 hYSOuwGCgsXYA==
-From: Mark Brown <broonie@kernel.org>
-To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Alistair Francis <alistair@alistair23.me>, 
- Liam Girdwood <lgirdwood@gmail.com>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>, Andreas Kemnade <akemnade@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org
-In-Reply-To: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
-References: <20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org>
-Subject: Re: (subset) [PATCH 0/4] regulator: sy7636a: define and init all
- resources needed
-Message-Id: <175742484696.195386.11497376161041416392.b4-ty@kernel.org>
-Date: Tue, 09 Sep 2025 14:34:06 +0100
+	s=k20201202; t=1757425035;
+	bh=31mOWd8+i/1YkiYaOgcvUkmjuR7GoBD5Ed0MeKEuOFo=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=BXVF3yf9YngGzwiQotWaE4Rx6byZFIleDiFn32GZnBJJycd+usgkvBcEjrfraU96O
+	 OLTqsYuQ/7Ml956/i1KRFTRDv3ny65maB8g2Qe9iG1w94gWkJpNT2tofdbPoe2tXH7
+	 opsMO0H97xnzvR7WoO7CbjNuFHu4L7lYCDl0vQEf4fIFRrRX5pXgXj6qyMEvJi35rf
+	 DF9JVkUOLuzzd4k1pKuBWFVkqfOQpB4frNdfuxprHgWoaLw3EH4vIWgZC9Vp9SjlhZ
+	 PV/YJisDuvITkYhqnPjVVPk0BAnO3xPs8gzW5kLJnw74J8pKUJwjCAajxeYcZSXdz0
+	 HpfFO1hkpa2pg==
+Date: Tue, 09 Sep 2025 08:37:15 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.15-dev-94e36
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Russell King <linux@armlinux.org.uk>, 
+ "Chester A. Unal" <chester.a.unal@arinc9.com>, devicetree@vger.kernel.org, 
+ Sean Wang <sean.wang@mediatek.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Srinivas Kandagatla <srini@kernel.org>, linux-mediatek@lists.infradead.org, 
+ "David S. Miller" <davem@davemloft.net>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, Simon Horman <horms@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>, 
+ DENG Qingfang <dqfext@gmail.com>, linux-arm-kernel@lists.infradead.org, 
+ netdev@vger.kernel.org, Daniel Golle <daniel@makrotopia.org>, 
+ Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org, 
+ Vladimir Oltean <olteanv@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Matthias Brugger <matthias.bgg@gmail.com>, 
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+To: Christian Marangi <ansuelsmth@gmail.com>
+In-Reply-To: <20250909004343.18790-5-ansuelsmth@gmail.com>
+References: <20250909004343.18790-1-ansuelsmth@gmail.com>
+ <20250909004343.18790-5-ansuelsmth@gmail.com>
+Message-Id: <175742464480.3063209.323009363144312411.robh@kernel.org>
+Subject: Re: [net-next PATCH v16 04/10] dt-bindings: mfd: Document support
+ for Airoha AN8855 Switch SoC
 
-On Sat, 06 Sep 2025 11:09:11 +0200, Andreas Kemnade wrote:
-> The SY7636A has some pins which can be hardwired or used to have more
-> more advanced power management available. As several devices containing
-> this regulator have these pins not hardwired, but instead connected to some
-> GPIO, enhance the driver to have them defined and initialized.
-> Also add the ability to power off the chip completely by defining some
-> input power supply.
+
+On Tue, 09 Sep 2025 02:43:35 +0200, Christian Marangi wrote:
+> Document support for Airoha AN8855 Switch SoC. This SoC expose various
+> peripherals like an Ethernet Switch, a NVMEM provider and Ethernet PHYs.
 > 
-> [...]
+> It does also support i2c and timers but those are not currently
+> supported/used.
+> 
+> Signed-off-by: Christian Marangi <ansuelsmth@gmail.com>
+> ---
+>  .../bindings/mfd/airoha,an8855.yaml           | 175 ++++++++++++++++++
+>  1 file changed, 175 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/airoha,an8855.yaml
+> 
 
-Applied to
+My bot found errors running 'make dt_binding_check' on your patch:
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+yamllint warnings/errors:
 
-Thanks!
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.yaml:
+	Error in referenced schema matching $id: http://devicetree.org/schemas/net/airoha,an8855-mdio.yaml
+	Tried these paths (check schema $id if path is wrong):
+	/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/airoha,an8855-mdio.yaml
+	/usr/local/lib/python3.13/dist-packages/dtschema/schemas/net/airoha,an8855-mdio.yaml
 
-[2/4] regulator: sy7636a: fix lifecycle of power good gpio
-      commit: c05d0b32eebadc8be6e53196e99c64cf2bed1d99
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: soc@1 (airoha,an8855): mdio: {'compatible': ['airoha,an8855-mdio'], '#address-cells': 1, '#size-cells': 0, 'ethernet-phy@1': {'compatible': ['ethernet-phy-idc0ff.0410', 'ethernet-phy-ieee802.3-c22'], 'reg': [[1]], 'nvmem-cells': [[3], [4], [5], [6]], 'nvmem-cell-names': ['tx_a', 'tx_b', 'tx_c', 'tx_d'], 'phandle': 1}, 'ethernet-phy@2': {'compatible': ['ethernet-phy-idc0ff.0410', 'ethernet-phy-ieee802.3-c22'], 'reg': [[2]], 'nvmem-cells': [[7], [8], [9], [10]], 'nvmem-cell-names': ['tx_a', 'tx_b', 'tx_c', 'tx_d'], 'phandle': 2}} should not be valid under {'description': "Can't find referenced schema: http://devicetree.org/schemas/net/airoha,an8855-mdio.yaml#"}
+	from schema $id: http://devicetree.org/schemas/mfd/airoha,an8855.yaml#
+Documentation/devicetree/bindings/mfd/airoha,an8855.example.dtb: /example-0/mdio/soc@1/mdio: failed to match any schema with compatible: ['airoha,an8855-mdio']
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+doc reference errors (make refcheckdocs):
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250909004343.18790-5-ansuelsmth@gmail.com
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-Thanks,
-Mark
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
