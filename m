@@ -1,152 +1,138 @@
-Return-Path: <devicetree+bounces-214685-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214687-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B600B4A1BA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:03:42 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7E8B4A1C9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:07:25 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6EC997A23B9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:02:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A2699161685
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:07:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B8053002C1;
-	Tue,  9 Sep 2025 06:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BB672F3C30;
+	Tue,  9 Sep 2025 06:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="StZn9836"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="eul3I6/3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BA712F3C30;
-	Tue,  9 Sep 2025 06:03:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3745A1A262A;
+	Tue,  9 Sep 2025 06:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757397805; cv=none; b=k/ROEE2ixW5B5kv2LL4QSa3ZuP4rIwRmNe3brcmZqsSWXwqS+tKoq+EPZL6ARH9n6Jhcwdwx2YzFx/mtytCArvDSacUeGva5UUMrtNT9RZqZI4cWUP+n16Ulf1Fo73KfkHENWuCeTaU74nwI58xXkHPyUhyQLnFxv17Tr/iAwfA=
+	t=1757398041; cv=none; b=DNRfyRBZKyR24RJPM90EQmnG41v7YFldqIBlQ9exTtGjUnSRNuPKUyNR2Ul525EfRUEeTKnOj72pKz/WxgUfvtOqKGxVitv0dMaNDoYHBd3Jq6/p1+CG49UQQNsuQXSWofP4RXUWarb4ePmsmXYFHi5959VeMKGlhcCVu5Bb/+U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757397805; c=relaxed/simple;
-	bh=H5k8uPZvJMzYH8U4tK6rrXQNNgQdzSg6be4wefv7iRc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=f/NaBm08quxYrnG7jMPuu94INaJXk3UBzStUXwZznA6iaQJxLFDSTOc2eqFi76gmwsBBjCajmK/2b+HO3iJyzUkTwQh/YkHnHIcl5S8gtjChTHiXECjgjFPzSffZZ2fBqDH6mujGNSrqEO7q3HIT10ft6eRs1+aYEjks2cYsHlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=StZn9836; arc=none smtp.client-ip=193.68.50.107
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
-Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
-	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 47FAAA0B10;
-	Tue,  9 Sep 2025 08:03:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
-	:cc:content-transfer-encoding:content-type:content-type:date
-	:from:from:in-reply-to:message-id:mime-version:references
-	:reply-to:subject:subject:to:to; s=mail; bh=j3hayuDfHkSiaf21en8K
-	8f18jrvM/67ABIR7N++0snw=; b=StZn9836bpGmTgRW/uCNuPgevJ7Qautq0os1
-	/tLNoFtb9Ps7d3mDuQR0dWWakYzAHUzoIaM1QTCrwTAdjt3yK3/HsVHebJgd5Zs4
-	CTuuoF5273HUXpV7wgiLNgKt/Rh5Sa7dEuxoUr6Gi1g+m7nuVIDcRkTh8pkTqZjO
-	ivNLMnb0QsoCcttN+o/F0BTyva3k7LGZJ/1JCNhfc2aH5GKHlQ2D4Egpm3qGsR8I
-	Ew/pvyUhX7kAK4XIX5RitvmnQjUvfkPayuJZ2RfqtVEfEHx13wY2y+Fj/WqwHYq6
-	eKcu0RMB0FWfbwl4KJu4T07jE81GX0Gq8eFFE6Yj0+BjtlMlFq/rcrFt/OZr3TDD
-	3hRzbi7HClNiU0DlC5Krza95LK8gBn+za018pDZNflXsc0Mnmn8FsGGAMe91FvFF
-	eyAWJryoOtQCM2JXtNbKKZ8EsEVgNd5ifGCzT19tkg+eakMnqCHjIry4CLNHxNCa
-	SQd8vnQbYC314mtuzDwjNXWh6fBmrFblsF/QBdGv2GomvPlfCiTGwE7f93P/suwV
-	VzHa2V12071Rbt33jO04FIE15uI9wPsS3OOyjjJKkhfdhJQg/w5M/8Aipyvz++7L
-	F05XA1yKHlZ9KGa66cKBr86+hqdp8EqOcu8q70skXre7nrdzuyUFz8POmlY5GdAi
-	ibxwMec=
-From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
-Date: Tue, 9 Sep 2025 08:03:12 +0200
-Subject: [PATCH v4 3/3] ARM: dts: imx6q-h100: Replace license text comment
- with SPDX identifier
+	s=arc-20240116; t=1757398041; c=relaxed/simple;
+	bh=yQYB6tSzoM/2rg3u/ZJ/YWLsBv0NJOUt2NRXgu/Hoo0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=r7xODkb0FBVnz6FJro2QSCWMvgijYjsi1HUx4HHxZmmH8yU0OJPB9iUItJtwrvJBKnJWkVD+kro9qAG4bBd/ooMxsw1fu407JRzcUSyaMht34lpQ5BYiXK/9AhC1rsPAgmjkL1TE3B6NXx2vJ1aT0mzyZ/1xcKRgZJ2kgAKlWGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=eul3I6/3; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllvem-sh03.itg.ti.com ([10.64.41.86])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 5896758U3959728;
+	Tue, 9 Sep 2025 01:07:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757398025;
+	bh=zuFLBnhVlG9Xe0rzmQ2aQ8puxTjfyso14EEKYx0T/lQ=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=eul3I6/3uBR2bsColcBThyV824YZxzZhC6yvqUfw6QU6V/swPN1gDl6Xb78ti+UwV
+	 rViCSO9WQngKkou0AtcHBLr2dDAieLBiKGmqDZ/W2ypskC1C6oz7X1DZcPyAoqeMrU
+	 9vjJX0tnQk6IobTih9eCUt9BJ7laV9ebrudm6Hls=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllvem-sh03.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 5896759i3563479
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 9 Sep 2025 01:07:05 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 9
+ Sep 2025 01:07:05 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 9 Sep 2025 01:07:05 -0500
+Received: from [10.24.72.162] (moteen-ubuntu-desk.dhcp.ti.com [10.24.72.162])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 589671DH1840294;
+	Tue, 9 Sep 2025 01:07:02 -0500
+Message-ID: <c4de581a-906c-4f0f-a881-6725f27499e6@ti.com>
+Date: Tue, 9 Sep 2025 11:37:00 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-ID: <20250909-sr-som-dts-lic-v4-3-02f4e0e440fb@prolan.hu>
-References: <20250909-sr-som-dts-lic-v4-0-02f4e0e440fb@prolan.hu>
-In-Reply-To: <20250909-sr-som-dts-lic-v4-0-02f4e0e440fb@prolan.hu>
-To: Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
-	<festevam@gmail.com>
-CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Rabeeh Khoury <rabeeh@solid-run.com>, =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?=
-	<csokas.bence@prolan.hu>
-X-Mailer: b4 0.14.2
-X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1757397799;VERSION=7998;MC=2184406358;ID=61061;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
-X-ESET-Antispam: OK
-X-EsetResult: clean, is OK
-X-EsetId: 37303A296767155E627462
-
-Replace verbatim license text with a `SPDX-License-Identifier`.
-
-The comment header mis-attributes this license to be "X11", but the
-license text does not include the last line "Except as contained in this
-notice, the name of the X Consortium shall not be used in advertising or
-otherwise to promote the sale, use or other dealings in this Software
-without prior written authorization from the X Consortium.". Therefore,
-this license is actually equivalent to the SPDX "MIT" license (confirmed
-by text diffing).
-
-Cc: Lucas Stach <kernel@pengutronix.de>
-Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
----
- arch/arm/boot/dts/nxp/imx/imx6q-h100.dts | 38 +-------------------------------
- 1 file changed, 1 insertion(+), 37 deletions(-)
-
-diff --git a/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts b/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-index 46e011a363e8827e84008dead0390a5e9548ffd0..c6161546a34e16cc9cdc9fe08a569c8c1d8ceb11 100644
---- a/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-+++ b/arch/arm/boot/dts/nxp/imx/imx6q-h100.dts
-@@ -1,42 +1,6 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR MIT)
- /*
-  * Copyright (C) 2015 Lucas Stach <kernel@pengutronix.de>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License
-- *     version 2 as published by the Free Software Foundation.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- /dts-v1/;
-
--- 
-2.43.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am62p/j722s: Remove HS400
+ support from common
+To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Andrew Davis <afd@ti.com>, <linux-kernel@vger.kernel.org>
+References: <20250908235207.473628-1-jm@ti.com>
+ <20250908235207.473628-2-jm@ti.com>
+Content-Language: en-US
+From: Moteen Shah <m-shah@ti.com>
+In-Reply-To: <20250908235207.473628-2-jm@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
 
+On 09/09/25 05:22, Judith Mendez wrote:
+> Since eMMC HS400 has been descoped for J722s due to errata i2478 [0]
+> and is supported for AM62Px device, remove eMMC HS400 support from
+> common-main.dtsi and include only in am62p-main.dtsi.
+>
+> [0] https://www.ti.com/lit/pdf/sprz575
+> Signed-off-by: Judith Mendez <jm@ti.com>
+> ---
+>   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ---
+>   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi              | 6 ++++++
+>   2 files changed, 6 insertions(+), 3 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> index 4427b12058a6..0c05bcf1d776 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
+> @@ -576,15 +576,12 @@ sdhci0: mmc@fa10000 {
+>   		bus-width = <8>;
+>   		mmc-ddr-1_8v;
+>   		mmc-hs200-1_8v;
+> -		mmc-hs400-1_8v;
+>   		ti,clkbuf-sel = <0x7>;
+> -		ti,strobe-sel = <0x77>;
+>   		ti,trm-icp = <0x8>;
+>   		ti,otap-del-sel-legacy = <0x1>;
+>   		ti,otap-del-sel-mmc-hs = <0x1>;
+>   		ti,otap-del-sel-ddr52 = <0x6>;
+>   		ti,otap-del-sel-hs200 = <0x8>;
+> -		ti,otap-del-sel-hs400 = <0x5>;
+>   		ti,itap-del-sel-legacy = <0x10>;
+>   		ti,itap-del-sel-mmc-hs = <0xa>;
+>   		ti,itap-del-sel-ddr52 = <0x3>;
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> index 6aea9d3f134e..020bd121a6a3 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
+> @@ -74,3 +74,9 @@ &main_gpio1 {
+>   	gpio-reserved-ranges = <32 10>;
+>   	ti,ngpio = <52>;
+>   };
+> +
+> +&sdhci0 {
+> +	mmc-hs400-1_8v;
+> +	ti,strobe-sel = <0x77>;
+> +	ti,otap-del-sel-hs400 = <0x5>;
+> +};
+
+Reviewed-by: Moteen Shah <m-shah@ti.com>
+
+Regards,
+Moteen
 
