@@ -1,137 +1,187 @@
-Return-Path: <devicetree+bounces-214907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED12CB4FA04
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:13:35 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB90EB4F9F2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:12:57 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 029BF174AF5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:12:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF2371884489
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:13:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61B7132C322;
-	Tue,  9 Sep 2025 12:11:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3C67F32C31B;
+	Tue,  9 Sep 2025 12:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="l504Y8J+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BE253203A3;
-	Tue,  9 Sep 2025 12:11:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
+Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA51D32C326
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 12:12:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757419913; cv=none; b=NPclJEcL47lSXEpu1p1kMRtTt0byjavvvx3362CWlTaEuZYwgq61kQXf9FIb4e86n/OUNFlNTKADzRCi9U4WK9s5GR/iKqmKyjnYfLTf9oVYYTMnSG+QDKOFvE+x2AA7GXAQq8KNLUXmNYNx3hsQYxqHSh3oexJ/zAvRtXgIOOI=
+	t=1757419972; cv=none; b=GHLj+RCkEhkwIofNH9s1gA3YV1sXirbvfZVx0AfYbBQ/ZDegc7UIjj1Htu7Tvg+7FHocJBuSyUpS77Xh29BVL9tWM5gm90SRPFHk2YVMwL2DLQgWMxC2kt8Ppgd3uPYwDgmSETAzzBeWUt8TLv57l7ZPh3BHsFbXtZl4D1gG5z8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757419913; c=relaxed/simple;
-	bh=Bqcfq/5hvvyukGL3kkXiQQnws5gX06F+lhFQbamJsBA=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=FEPsgGSiQDNcqlsjn8oL+Vo592VNgVuwM/+8L0GSFmCKJiO1EgAS6SzPm1VgjU/s+v4vcm5fGanjRKbHUnw/Z5Dd+hy4zygPQZgrQ/gB6ZiFOqt2Tbif50847YHxeiiX6RmkIUvAb1GD96C1u+g9oQ+Pb8FpBCV+zWoyZf0tcmE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
-Received: from loongson.cn (unknown [223.64.68.89])
-	by gateway (Coremail) with SMTP id _____8Dxfb+CGcBohF0IAA--.16595S3;
-	Tue, 09 Sep 2025 20:11:46 +0800 (CST)
-Received: from localhost.localdomain (unknown [223.64.68.89])
-	by front1 (Coremail) with SMTP id qMiowJCxH8JzGcBoOzSKAA--.57626S5;
-	Tue, 09 Sep 2025 20:11:45 +0800 (CST)
-From: Binbin Zhou <zhoubinbin@loongson.cn>
-To: Binbin Zhou <zhoubb.aaron@gmail.com>,
-	Huacai Chen <chenhuacai@loongson.cn>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Haowei Zheng <zhenghaowei@loongson.cn>
-Cc: Huacai Chen <chenhuacai@kernel.org>,
-	Xuerui Wang <kernel@xen0n.name>,
-	loongarch@lists.linux.dev,
-	devicetree@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	Binbin Zhou <zhoubinbin@loongson.cn>
-Subject: [PATCH v4 3/3] LoongArch: dts: Add uart new compatible string
-Date: Tue,  9 Sep 2025 20:11:20 +0800
-Message-ID: <2f93b8f20c6e93a15258888998e926814bfd0adf.1757318368.git.zhoubinbin@loongson.cn>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1757318368.git.zhoubinbin@loongson.cn>
-References: <cover.1757318368.git.zhoubinbin@loongson.cn>
+	s=arc-20240116; t=1757419972; c=relaxed/simple;
+	bh=XavOBPWoiohB/KH7IvM7lBCug9BbrbJbY6t4BbKWmTE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lGSWuUSxVR7wsutiunrHIYCGZ2ntqpBcTmA5qc/TXr9KLoP4hdSQZ+phq5SPC4wWdtSB9ayA3U/oQujOynYyZHfg+LwFapMFLzWKMsgMWBMPP02tltOKOXug5WCoHR8/q/hgofaGnhOnwVPCI0H/jNBV5ooA6tSWn26TKYYmbuU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=l504Y8J+; arc=none smtp.client-ip=103.21.126.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
+Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id D0D451010F78
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 17:42:45 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in D0D451010F78
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
+	t=1757419965; bh=XavOBPWoiohB/KH7IvM7lBCug9BbrbJbY6t4BbKWmTE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=l504Y8J+oTgcJ/mahb1ga8FRsGlshm+DRiCzJhK0A3aOELk2re+wMUvs8AeOnt45y
+	 jDSNipkHX1f/HEWeD9/GT7NvUvIj9pqmbEepcxGUQR80Xgf88qz6QW0ATaGACq+HGr
+	 ZAB8YZHjvKhO4lyNh1AIhSKsB4hw9WUVT6lzskKo=
+Received: (qmail 1161 invoked by uid 510); 9 Sep 2025 17:42:45 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
+ Clear:RC:1(10.200.1.25):SA:0(0.2/7.0):. Processed in 5.151824 secs; 09 Sep 2025 17:42:45 +0530
+X-Spam-Level: 
+X-Spam-Pyzor: Reported 0 times.
+X-Envelope-From: akhilesh@ee.iitb.ac.in
+X-Qmail-Scanner-Mime-Attachments: |
+X-Qmail-Scanner-Zip-Files: |
+Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
+  by ldns1.iitb.ac.in with SMTP; 9 Sep 2025 17:42:40 +0530
+Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	by ldns1.iitb.ac.in (Postfix) with ESMTP id 229F7360047;
+	Tue,  9 Sep 2025 17:42:40 +0530 (IST)
+Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
+	(Authenticated sender: akhilesh)
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id EDD751E8138D;
+	Tue,  9 Sep 2025 17:42:39 +0530 (IST)
+Date: Tue, 9 Sep 2025 17:42:35 +0530
+From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+To: Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc: krzk+dt@kernel.org, robh@kernel.org, conor+dt@kernel.org,
+	skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	akhileshpatilvnit@gmail.com
+Subject: Re: [PATCH 5/7] rtc: m41t93: fix device connection/detection logic
+ during probe
+Message-ID: <20250909121235.GA2071423@bhairav-test.ee.iitb.ac.in>
+References: <cover.1756908788.git.akhilesh@ee.iitb.ac.in>
+ <c3deec9e679cd4e4a49a2cc1cba340c552faefdc.1756908788.git.akhilesh@ee.iitb.ac.in>
+ <2025090314472377b79cdf@mail.local>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID:qMiowJCxH8JzGcBoOzSKAA--.57626S5
-X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
-X-Coremail-Antispam: 1Uk129KBj93XoW7urW5KFWkZw4kKFy8ArW7ZFc_yoW8tr45p3
-	sI939rKr4Igr1fCryDJFWUJr4kZF98GFnFga13CFyUGrsIqa4jvr1rJF9IqF1rXw4Fq3y0
-	grnYgrWa9F4UZabCm3ZEXasCq-sJn29KB7ZKAUJUUUUr529EdanIXcx71UUUUU7KY7ZEXa
-	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
-	0xBIdaVrnRJUUUBYb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
-	IYs7xG6rWj6s0DM7CIcVAFz4kK6r126r13M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
-	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Xr0_Ar1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
-	0_Cr0_Gr1UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v2
-	6rxl6s0DM2kKe7AKxVWUXVWUAwAS0I0E0xvYzxvE52x082IY62kv0487Mc804VCY07AIYI
-	kI8VC2zVCFFI0UMc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUtVWr
-	XwAv7VC2z280aVAFwI0_Gr0_Cr1lOx8S6xCaFVCjc4AY6r1j6r4UM4x0Y48IcxkI7VAKI4
-	8JMxkF7I0En4kS14v26r126r1DMxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4AY6r1j
-	6r4UMxCIbckI1I0E14v26r1Y6r17MI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwV
-	AFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv2
-	0xvE14v26ryj6F1UMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4
-	v20xvaj40_Jr0_JF4lIxAIcVC2z280aVAFwI0_Gr0_Cr1lIxAIcVC2z280aVCY1x0267AK
-	xVW8JVW8JrUvcSsGvfC2KfnxnUUI43ZEXa7IU8EoGPUUUUU==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2025090314472377b79cdf@mail.local>
 
-Add loongson,ls2k*-uart compatible string on uarts.
+On Wed, Sep 03, 2025 at 04:47:23PM +0200, Alexandre Belloni wrote:
+> On 03/09/2025 19:57:21+0530, Akhilesh Patil wrote:
+> > Fix the incorrect assumption about WDAY register (0x4) bits 3 to 7
+> > being 0 after initial power-on to test response from device during probe
+> > 
+> > Do not expect these bits to be 0 after power on as datasheet does not
+> > explicitly mention these power on defaults but recommends software to
+> > clear these bits during operation. Refer section 3.15 for initial
+> > power-on default bits.
+> > 
+> > Fix the random probe failures after power on by removing this condition
+> > check. Add alternate response check logic which performs write, read,
+> > compare check on device SRAM register to check device connection.
+> > 
+> > Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
+> > ---
+> >  drivers/rtc/rtc-m41t93.c | 17 +++++++++++++----
+> >  1 file changed, 13 insertions(+), 4 deletions(-)
+> > 
+> > diff --git a/drivers/rtc/rtc-m41t93.c b/drivers/rtc/rtc-m41t93.c
+> > index 8cc179e08a4a..902797070246 100644
+> > --- a/drivers/rtc/rtc-m41t93.c
+> > +++ b/drivers/rtc/rtc-m41t93.c
+> > @@ -30,6 +30,7 @@
+> >  #define M41T93_BIT_A1IE                 BIT(7)
+> >  #define M41T93_BIT_ABE			BIT(5)
+> >  #define M41T93_FLAG_AF1                 BIT(6)
+> > +#define M41T93_SRAM_BASE		0x19
+> >  
+> >  
+> >  #define M41T93_REG_ALM_HOUR_HT		0xc
+> > @@ -290,17 +291,25 @@ static int m41t93_probe(struct spi_device *spi)
+> >  		return PTR_ERR(m41t93->regmap);
+> >  	}
+> >  
+> > -	ret = regmap_read(m41t93->regmap, M41T93_REG_WDAY, &res);
+> > -	if (ret < 0) {
+> > +	ret = regmap_write(m41t93->regmap, M41T93_SRAM_BASE, 0xA5);
+> 
+> Nope, probe is not called at RTC power on but when linux starts. The
+> whole point of the RTC is to survive Linux. Writing to this register is
+> breaking functionnality.
 
-Co-developed-by: Haowei Zheng <zhenghaowei@loongson.cn>
-Signed-off-by: Haowei Zheng <zhenghaowei@loongson.cn>
-Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
----
- arch/loongarch/boot/dts/loongson-2k0500.dtsi | 2 +-
- arch/loongarch/boot/dts/loongson-2k1000.dtsi | 2 +-
- arch/loongarch/boot/dts/loongson-2k2000.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Okay. 
+I did not get the intent of original author to read WDAY register
+and check bits 3 to 7 to be 0 (as per datasheet, these are reserved bits
+and it does not explicitly say these are 0). I assume it is checking if
+device is connected, but IMO this check can be skipped altogether.
+Anaways, I would like to take this seperately and focus this series only
+on features, hence will skip this patch in v2.
 
-diff --git a/arch/loongarch/boot/dts/loongson-2k0500.dtsi b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-index 588ebc3bded4..357de4ca7555 100644
---- a/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k0500.dtsi
-@@ -380,7 +380,7 @@ tsensor: thermal-sensor@1fe11500 {
- 		};
- 
- 		uart0: serial@1ff40800 {
--			compatible = "ns16550a";
-+			compatible = "loongson,ls2k0500-uart", "ns16550a";
- 			reg = <0x0 0x1ff40800 0x0 0x10>;
- 			clock-frequency = <100000000>;
- 			interrupt-parent = <&eiointc>;
-diff --git a/arch/loongarch/boot/dts/loongson-2k1000.dtsi b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-index d8e01e2534dd..60ab425f793f 100644
---- a/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k1000.dtsi
-@@ -297,7 +297,7 @@ dma-controller@1fe00c40 {
- 		};
- 
- 		uart0: serial@1fe20000 {
--			compatible = "ns16550a";
-+			compatible = "loongson,ls2k1000-uart", "loongson,ls2k0500-uart", "ns16550a";
- 			reg = <0x0 0x1fe20000 0x0 0x10>;
- 			clock-frequency = <125000000>;
- 			interrupt-parent = <&liointc0>;
-diff --git a/arch/loongarch/boot/dts/loongson-2k2000.dtsi b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-index 00cc485b753b..6c77b86ee06c 100644
---- a/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-+++ b/arch/loongarch/boot/dts/loongson-2k2000.dtsi
-@@ -250,7 +250,7 @@ i2c@1fe00130 {
- 		};
- 
- 		uart0: serial@1fe001e0 {
--			compatible = "ns16550a";
-+			compatible = "loongson,ls2k2000-uart", "loongson,ls2k1500-uart", "ns16550a";
- 			reg = <0x0 0x1fe001e0 0x0 0x10>;
- 			clock-frequency = <100000000>;
- 			interrupt-parent = <&liointc>;
--- 
-2.47.3
+> 
+> > +	if (ret) {
+> >  		dev_err(&spi->dev, "IO error\n");
+> >  		return -EIO;
+> >  	}
+> >  
+> > -	if (res < 0 || (res & 0xf8) != 0) {
+> > -		dev_err(&spi->dev, "not found 0x%x.\n", res);
+
+motivation for this change was - I was hitting this with res = 0x77
+ocassionally after soft reboot on my setup (am62x SK + m41t93 chip on spi0).
+I will confirm if it is any setup issue before taking up this code fix
+seperately.
+
+> > +	ret = regmap_read(m41t93->regmap, M41T93_SRAM_BASE, &res);
+> > +	if (ret) {
+> > +		dev_err(&spi->dev, "IO error\n");
+> > +		return -EIO;
+> > +	}
+> > +
+> > +	if (res != 0xA5) {
+> > +		dev_err(&spi->dev, "No valid response from device 0x%x.\n", res);
+> >  		return -ENODEV;
+> >  	}
+> >  
+> > +	dev_notice(&spi->dev, "m41t93 device response success\n");
+> > +
+> 
+> This is too verbose.
+
+Sure. will remove this.
+
+> 
+> >  	spi_set_drvdata(spi, m41t93);
+> >  
+> >  	m41t93->rtc = devm_rtc_device_register(&spi->dev, m41t93_driver.driver.name,
+> > -- 
+> > 2.34.1
+> > 
+> 
+> -- 
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+
+Thanks for the review, 
+
+Regards,
+Akhilesh
+
 
 
