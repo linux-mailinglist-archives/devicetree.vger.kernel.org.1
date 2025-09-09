@@ -1,112 +1,71 @@
-Return-Path: <devicetree+bounces-214870-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214871-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 244FBB4ABBA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:26:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A6A9DB4ABDC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:28:42 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A331167494
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:24:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D52217ED6F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:28:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 947DA31D732;
-	Tue,  9 Sep 2025 11:24:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="ocZKxBmq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 780C73218B8;
+	Tue,  9 Sep 2025 11:28:25 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE10E256C7E
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 11:24:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 476FD321451;
+	Tue,  9 Sep 2025 11:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757417058; cv=none; b=lc6TC1RGDG7HfRJugRHJQpm+hvX+wjAlco18zhwdeYw1qRKO2OO2RocGvFiOXY7SqY11wXhJEj4dGXfITvCoQ6blprrwKambHkI9psfAwdx/v7Mu9zbAxRGx4TFpRTYQlfnYESDl9McTk3H/ASr90v5fKLKA/AtS6Y9AaAh7Fbk=
+	t=1757417305; cv=none; b=RdlqHUfa56qi1Soe1+1zus+O2HeSIRslh9B5nTy89xgsZrtyPurZWtQO4wLGCSVLZtZd0xic+4O1ApbAbUzWOVRtcjsZfdf1X/fKqARd+m5nY6w5EDewbQkHYdMunzczXwn7V71AeLg2iPtfAtyjF3BHNBzV6vOver/say33cHw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757417058; c=relaxed/simple;
-	bh=E+fiPsn0tG39c3qNxx8sOEVY4RKa86dHNXFiHTec0m0=;
+	s=arc-20240116; t=1757417305; c=relaxed/simple;
+	bh=MQtrL/WDOT0WLzpfj3x32II2tAb8KVwAoJTkQ47pHdo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ha/men0hdR7mbuG1X6aSlrAHRg9p8MLit004ublnc1jhp355CAvKQE1VIm3aWBVVJGHPAXgtWYmBJbWVDbP06MhG1f2n/V43NJeNToWNO/3GE4Bcu+k6OmPNgzx9JR1MHcMgT5/NqaxKdEe2DSkQLYbabFaADMQwEknZGUtHCho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=ocZKxBmq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5899LheK029929
-	for <devicetree@vger.kernel.org>; Tue, 9 Sep 2025 11:24:16 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=KRjLROUBK5GNMNTT3bqbN9Gw
-	tJh3/RE+/25tzLkEzd4=; b=ocZKxBmqiKmvw6Je/NWnjH48liN++RNyJ9wA43xV
-	bnpm0pmhorsTk5HRgFSWPp1+laYU4FarMjvSIRJvEmctbN70tbPJWCRlwI6r8b3P
-	8Apqi7+3w2HAjS7fNcuhnEBqTsdHzcKs/FajsJLrfGSaiLXt3A6WbaaYG24QoLEW
-	vwyU1AMMW5XD5697kW5VuaXHM0f6JurzSd1tpxBETh9lw1TNcTwON1BSTlqlQ5jm
-	rzFjoThNh4ueyIA84rzfeT1uUxHGyqmGcLJxQTgmC9MXTuWjrDXEDi6m2dnz88mn
-	JY7ddj0YsDcQsIiXiBpmOeTLnEAVUR+3+GQ6LnEAvF8OCg==
-Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com [209.85.160.199])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491t37vghv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 11:24:16 +0000 (GMT)
-Received: by mail-qt1-f199.google.com with SMTP id d75a77b69052e-4b5f818eea9so73483021cf.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 04:24:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757417055; x=1758021855;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KRjLROUBK5GNMNTT3bqbN9GwtJh3/RE+/25tzLkEzd4=;
-        b=SjdRFpw0WbgQALj1yIW9erBl9itLQJGQVhzEr6fK1hmYdVN1PdeTSss9lcrTKOZMMy
-         DZdlMjiTI9i9M/GdpgM0XGo4KXRsWpzPy3x8hhwoUb9KFmH1Q6WyShUbjDaeN6auW8GS
-         BhhLBYvaz0w6z8hVj94W+VQ6zrtEY7IlHWRcelvjmXzvsBn8O6kYMSZWOOuIim5htlYj
-         pr6qZoaESkgeNVX0R3eBF1+V0HbQSDzJ/1XsKus474WYAYU5I6WvCRk5PagfQJHshxP+
-         A+OenzJtrn5qrsm5vr1mBYOiUB4A1Favf0rzDL2DrJ93p3Lvt6hh3i2gg3MXlXkNcmtd
-         R/lw==
-X-Forwarded-Encrypted: i=1; AJvYcCUxkXuYmImgQ/9lNrdI4GBFXjXyTCubsFyTdJQMQWaD0HMazpZw/K031yNz3mWSctxUXmCPBaILz7md@vger.kernel.org
-X-Gm-Message-State: AOJu0YwvsIelmYlAyTVsdf5K4ql4Wovqr/YfJjz6eoQGLJhIVQNPic8U
-	KA5KMvgiL47cD3LVqw0ec9GZ3X8mFvzvCOqziSqtDXtklgk6/64wErqbLMlsLkBBH3cRbknypPs
-	sKuT+BAiTTo5PJDn6oUL3Yy0TsZ4JpDw9aaZ75eNB0HHvSFAdGmyYZm56tHM0qZGU
-X-Gm-Gg: ASbGncv9BrFgyNiGRQJhClqXMqc0cWIMfog3Jj2EeBKgyHiK/4s6uk1B3Rr4wsrUzQ/
-	kVY4uwFZFoOdwBbl60IAdaninoY7G58XjDO8Ix4jbK3IcSvyflqisIKfVj6Cr8l4PJjQjUSfr3r
-	DdQl5RVGtXT+vigJr906ZHsFaJAcncwPkpP2MaVkcrMPhKFPrPSu2rOtEvuYxiJkk9FNWnnWsPL
-	BMtuz34pQTyZqmhWpsmv2IILfCzQgm1PLZ/Ac6tudGMdfuaV+jo4ns6ikCY8vXqyCmzXDhb1DNM
-	/s7m9ZA7uSGcw1bULM2Z67uV2scMUBclbwNnjX5ScQuv4F2kV6vU0OFGMrjyHzvkIvowEvyMWJV
-	YEFuTYx/V/GHD65rXopz25/7zS3fSvSXuCE7L02912PPitukZMLTZ
-X-Received: by 2002:a05:622a:4ccb:b0:4b2:8ac4:ef64 with SMTP id d75a77b69052e-4b617ab79a6mr53468041cf.71.1757417054556;
-        Tue, 09 Sep 2025 04:24:14 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IHwyKidHOZHQUdMHjuNAtLDDa/IAQun/33WbLv7lhyDBwjJicuH8c4C2tkyAmG306W39xJ2pQ==
-X-Received: by 2002:a05:622a:4ccb:b0:4b2:8ac4:ef64 with SMTP id d75a77b69052e-4b617ab79a6mr53467261cf.71.1757417053656;
-        Tue, 09 Sep 2025 04:24:13 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5680c424dafsm469142e87.28.2025.09.09.04.24.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 04:24:12 -0700 (PDT)
-Date: Tue, 9 Sep 2025 14:24:11 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>
-Cc: Andrzej Hajda <andrzej.hajda@intel.com>, Robert Foss <rfoss@kernel.org>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Subject: Re: [PATCH v3 4/5] phy: qcom: qmp-combo: get the USB3 & DisplayPort
- lanes mapping from DT
-Message-ID: <77itzcvk23emlsoem2xcs7wswic7a2nj52i3m74kmkmo3xp65s@lsh7vmu2aqjb>
-References: <20250908-topic-x1e80100-hdmi-v3-0-c53b0f2bc2fb@linaro.org>
- <20250908-topic-x1e80100-hdmi-v3-4-c53b0f2bc2fb@linaro.org>
- <dfhvmeo3pnjubgiwvakpzhzgl6uwlopyrkwuqyhfqw6jfh4mty@t4lhuh4jh6af>
- <b8156d1e-a4a5-46dd-8b78-4f2528a177c3@linaro.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DcbtgMkGj2WK9Fe1XS7kthGbvuXDYVZG++Hpwq7Hpi30fcd8ihkfO7w7v6bKn/LqDv+LFSyl79xYK/uYoWm9L86IQmp38zirDzvrcSxU0pLFsv/cMwj9angTPK+K8hgl8A9lGY08+TOao9erZhCkW3E24vMlGfJNsrR9lSP7L1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 19BAC1424;
+	Tue,  9 Sep 2025 04:28:14 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id CF5683F694;
+	Tue,  9 Sep 2025 04:28:16 -0700 (PDT)
+Date: Tue, 9 Sep 2025 12:28:13 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>, Ben Horgan <ben.horgan@arm.com>
+Subject: Re: [PATCH 12/33] arm_mpam: Add the class and component structures
+ for ris firmware described
+Message-ID: <aMAPTVqb7fLfFH6R@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-13-james.morse@arm.com>
+ <aLV++1PELhKBeKR7@e133380.arm.com>
+ <ff73df9c-8e77-471d-b0fb-205701b4d6d3@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -115,255 +74,253 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <b8156d1e-a4a5-46dd-8b78-4f2528a177c3@linaro.org>
-X-Proofpoint-ORIG-GUID: BDMuWDdJGbvo_wYq1QH75VH-gZOKn-Pa
-X-Proofpoint-GUID: BDMuWDdJGbvo_wYq1QH75VH-gZOKn-Pa
-X-Authority-Analysis: v=2.4 cv=NdLm13D4 c=1 sm=1 tr=0 ts=68c00e60 cx=c_pps
- a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=KKAkSRfTAAAA:8 a=bPd9SfhoXQ6rEPgJaLYA:9 a=CjuIK1q_8ugA:10
- a=kacYvNCVWA4VmyqE58fU:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA2NiBTYWx0ZWRfX2CFnl/vMZSIm
- 62YJQd7ekGmxFmeMdy4O+gfM0Rli0aZFCz/zKCDYHGYwFySJP+MNwHD5DYa1L2zVVSMeHUVEkzT
- aoj2gnAv6wDcor7d83FoOM6dKmSkw8uod0x6hBZ4OKtVIYszh2aYhKZkZB3htWGN8eDiyc7SS64
- waiyxVVGCjw3mcxpdAH27tJlzcEWivHEuMQtpSCa1S7AMOqnWUTuIwuzve3pOUr66Z+bVyXH05T
- ga+pK7BaQNaf9DLvfgRquU/u5/aFIKFtQMBtidE8i4OWXpMgiJgQHCLvB7Fs41v6VWDtVPKgwiQ
- yM0LTMVdbYpaqlyHFKysZmRh7TVk3qyj9V9eFQwSIH87MEiu54nD/HvZ0Mx6OlW8zDHWvQpfzLw
- 2V1tpS0Z
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_01,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- malwarescore=0 bulkscore=0 adultscore=0 suspectscore=0 phishscore=0
- clxscore=1015 impostorscore=0 spamscore=0 priorityscore=1501
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080066
+In-Reply-To: <ff73df9c-8e77-471d-b0fb-205701b4d6d3@arm.com>
 
-On Tue, Sep 09, 2025 at 09:21:33AM +0200, Neil Armstrong wrote:
-> On 08/09/2025 23:24, Dmitry Baryshkov wrote:
-> > On Mon, Sep 08, 2025 at 03:04:21PM +0200, Neil Armstrong wrote:
-> > > The QMP USB3/DP Combo PHY hosts an USB3 phy and a DP PHY on top
-> > > of a combo glue to route either lanes to the 4 shared physical lanes.
-> > > 
-> > > The routing of the lanes can be:
-> > > - 2 DP + 2 USB3
-> > > - 4 DP
-> > > - 2 USB3
-> > > 
-> > > Get the lanes mapping from DT and stop registering the USB-C
-> > > muxes in favor of a static mode and orientation detemined
-> > > by the lanes mapping.
-> > > 
-> > > This allows supporting boards with direct connection of USB3 and
-> > > DisplayPort lanes to the QMP Combo PHY lanes, not using the
-> > > USB-C Altmode feature.
-> > > 
-> > > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> > > ---
-> > >   drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 132 ++++++++++++++++++++++++++++--
-> > >   1 file changed, 124 insertions(+), 8 deletions(-)
+Hi,
+
+On Mon, Sep 08, 2025 at 06:57:41PM +0100, James Morse wrote:
+> Hi Dave,
+> 
+> On 01/09/2025 12:09, Dave Martin wrote:
+> >> Subject: arm_mpam: Add the class and component structures for ris firmware described
 > > 
-> > Looking at the patch... Would it be possible to make it more generic? I
-> > think some of the RockChips also have similar combo USB+DP PHY (and
-> > similar issues). I believe, Mediatek might also have the same issue.
+> > Mangled subject line?
 > 
-> Since they don't use the data-lanes property, it's hard to make it generic and I would
-> avoid migrating their DT to data-lanes just to solve HDMI on the Thinkpas T14s...
-
-I'm waiting for Sebastian to respond regarding the RockChip USBPD PHY.
-In the bindings he mentioned having separate USB and DP connectors, so
-it might be relevant.
-
+> order words hard is.
 > 
-> Let's solve this first, and code can be aggregated afterwards if the DT representation is correct.
-
-Yep.
-
 > 
+> > There is a fair intersection between the commit message and what the
+> > patch does, but they don't quite seem to match up.
 > > 
-> > > diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > > index 7b5af30f1d028c592500e723ecd27b54ed554709..f3f91a69dc8b81e049cd06f7ab4f04baf57776cd 100644
-> > > --- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > > +++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
-> > > @@ -13,6 +13,7 @@
-> > >   #include <linux/module.h>
-> > >   #include <linux/of.h>
-> > >   #include <linux/of_address.h>
-> > > +#include <linux/of_graph.h>
-> > >   #include <linux/phy/phy.h>
-> > >   #include <linux/platform_device.h>
-> > >   #include <linux/regulator/consumer.h>
-> > > @@ -1744,6 +1745,21 @@ static const u8 qmp_dp_v6_pre_emphasis_hbr_rbr[4][4] = {
-> > >   	{ 0x22, 0xff, 0xff, 0xff }
-> > >   };
-> > > +static const u32 usb3_data_lane_mapping[][2] = {
-> > > +	[TYPEC_ORIENTATION_NORMAL] = { 1, 0 },
-> > > +	[TYPEC_ORIENTATION_REVERSE] = { 2, 3 },
-> > > +};
-> > > +
-> > > +static const u32 dp_2_data_lanes_mapping[][2] = {
-> > > +	[TYPEC_ORIENTATION_NORMAL] = { 0, 1 },
-> > > +	[TYPEC_ORIENTATION_REVERSE] = { 3, 2 },
-> > > +};
-> > > +
-> > > +static const u32 dp_4_data_lanes_mapping[][4] = {
-> > > +	[TYPEC_ORIENTATION_NORMAL] = { 0, 1, 2, 3 },
-> > > +	[TYPEC_ORIENTATION_REVERSE] = { 3, 2, 1, 0 },
-> > > +};
-> > > +
-> > >   struct qmp_combo;
-> > >   struct qmp_combo_offsets {
-> > > @@ -4167,9 +4183,114 @@ static int qmp_combo_probe(struct platform_device *pdev)
-> > >   	if (ret)
-> > >   		goto err_node_put;
-> > > -	ret = qmp_combo_typec_register(qmp);
-> > > -	if (ret)
-> > > -		goto err_node_put;
-> > > +	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > > +
-> > > +	if (of_find_property(dev->of_node, "mode-switch", NULL) ||
-> > > +	    of_find_property(dev->of_node, "orientation-switch", NULL)) {
-> > > +		ret = qmp_combo_typec_register(qmp);
-> > > +		if (ret)
-> > > +			goto err_node_put;
-> > > +	} else {
-> > 
-> > At least this needs to be extracted to a function (or set of functions).
+> > Some key issues like locking / object lifecycle management
+> > and DT parsing (a bit of which, it appears, lives here too) are not
+> > mentioned at all.
 > 
-> Yes I was not sure about how to split, and overall I'm not supeer happy about the design.
+> I don't think everything needs mentioning - you have the diff for that.This should capture
+> the motivation, what you have and what you need to find, the grouping etc.
 > 
-> > 
-> > > +		enum typec_orientation usb3_orientation = TYPEC_ORIENTATION_NONE;
-> > > +		enum typec_orientation dp_orientation = TYPEC_ORIENTATION_NONE;
-> > > +		struct device_node *usb3_ep, *dp_ep;
-> > > +		u32 data_lanes[4];
-> > > +		int count, i;
-> > > +
-> > > +		usb3_ep = of_graph_get_endpoint_by_regs(dev->of_node, 0, 0);
-> > > +		dp_ep = of_graph_get_endpoint_by_regs(dev->of_node, 0, 1);
-> > > +
-> > > +		if (usb3_ep) {
-> > > +			ret = of_property_count_u32_elems(usb3_ep, "data-lanes");
-> > > +			if (ret == -EINVAL)
-> > > +				/* Property isn't here, ignore property */
-> > 
-> > In all thsese error cases we are leaking a ref count on usb3_ep and
-> > dp_ep.
 > 
-> It would be much simpler to solve in a separate function.
+> > In lieu of a complete rewrite, it might be best to discard the
+> > explanation of the various object types.  The comment in the code
+> > speaks for itself, and looks clearer.
+> 
+> Fair enough,
 
-I'd suggest having one function which gets USB3 EP and parses it (and
-then puts it), another function which gets DP EP and parses it (and
-puts). This way you won't have to worry about reference leaks.
+OK
 
-> 
-> > 
-> > > +				goto usb3_mapping_done;
-> > > +			if (ret < 0)
-> > > +				goto err_node_put;
-> > > +
-> > > +			count = ret;
-> > > +			if (count != 2)
-> > > +				/* Property size is invalid, ignore property */
-> > > +				goto usb3_mapping_done;
-> > > +
-> > > +			ret = of_property_read_u32_array(usb3_ep, "data-lanes", data_lanes, count);
-> > > +			if (ret)
-> > > +				goto err_node_put;
-> > > +
-> > > +			for (i = TYPEC_ORIENTATION_NORMAL; i <= TYPEC_ORIENTATION_REVERSE; i++)
-> > > +				if (!memcmp(data_lanes, usb3_data_lane_mapping[i], sizeof(u32) * 2))
-> > > +					break;
-> > > +
-> > > +			if (i >= TYPEC_ORIENTATION_REVERSE)
-> > > +				/* Property value is invalid, ignore property */
-> > > +				goto usb3_mapping_done;
-> > > +
-> > > +			usb3_orientation = i;
-> > > +		}
-> > > +
-> > > +usb3_mapping_done:
-> > > +		of_node_put(usb3_ep);
-> > > +
-> > > +		if (dp_ep) {
-> > > +			ret = of_property_count_u32_elems(dp_ep, "data-lanes");
-> > > +			if (ret == -EINVAL)
-> > > +				/* Property isn't here, ignore property */
-> > > +				goto dp_mapping_done;
-> > > +			if (ret < 0)
-> > > +				goto err_node_put;
-> > > +
-> > > +			count = ret;
-> > > +			if (count != 2 && count != 4)
-> > > +				/* Property size is invalid, ignore property */
-> > > +				goto dp_mapping_done;
-> > > +
-> > > +			ret = of_property_read_u32_array(dp_ep, "data-lanes", data_lanes, count);
-> > > +
-> > > +			if (ret)
-> > > +				goto err_node_put;
-> > > +
-> > > +			for (i = TYPEC_ORIENTATION_NORMAL; i <= TYPEC_ORIENTATION_REVERSE; i++) {
-> > > +				switch (count) {
-> > > +				case 2:
-> > > +					ret = memcmp(data_lanes, dp_2_data_lanes_mapping[i],
-> > > +						      sizeof(u32) * count);
-> > > +					break;
-> > > +				case 4:
-> > > +					ret = memcmp(data_lanes, dp_4_data_lanes_mapping[i],
-> > > +						     sizeof(u32) * count);
-> > > +					break;
-> > > +				}
-> > > +
-> > > +				if (!ret)
-> > > +					break;
-> > > +			}
-> > > +
-> > > +			if (i >= TYPEC_ORIENTATION_REVERSE)
-> > > +				/* Property value is invalid, ignore property */
-> > > +				goto dp_mapping_done;
-> > > +
-> > > +			dp_orientation = i;
-> > > +		}
-> > > +
-> > > +dp_mapping_done:
-> > > +		of_node_put(dp_ep);
-> > > +
-> > > +		if (dp_orientation == TYPEC_ORIENTATION_NONE &&
-> > > +		    usb3_orientation != TYPEC_ORIENTATION_NONE) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_USB3_ONLY;
-> > > +			qmp->orientation = usb3_orientation;
-> > > +		} else if (usb3_orientation == TYPEC_ORIENTATION_NONE &&
-> > > +			 dp_orientation != TYPEC_ORIENTATION_NONE) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_DP_ONLY;
-> > > +			qmp->orientation = dp_orientation;
-> > > +		} else if (dp_orientation != TYPEC_ORIENTATION_NONE &&
-> > > +			 dp_orientation == usb3_orientation) {
-> > > +			qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > > +			qmp->orientation = dp_orientation;
-> > > +		} else {
-> > > +			dev_warn(dev, "unable to determine orientation & mode from data-lanes");
-> > > +		}
-> > > +	}
-> > >   	ret = drm_aux_bridge_register(dev);
-> > >   	if (ret)
-> > > @@ -4189,11 +4310,6 @@ static int qmp_combo_probe(struct platform_device *pdev)
-> > >   	if (ret)
-> > >   		goto err_node_put;
-> > > -	/*
-> > > -	 * The hw default is USB3_ONLY, but USB3+DP mode lets us more easily
-> > > -	 * check both sub-blocks' init tables for blunders at probe time.
-> > > -	 */
-> > > -	qmp->qmpphy_mode = QMPPHY_MODE_USB3DP;
-> > >   	qmp->usb_phy = devm_phy_create(dev, usb_np, &qmp_combo_usb_phy_ops);
-> > >   	if (IS_ERR(qmp->usb_phy)) {
-> > > 
-> > > -- 
-> > > 2.34.1
-> > > 
-> > 
-> 
+[...]
 
--- 
-With best wishes
-Dmitry
+> >> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+> >> index 71a1fb1a9c75..5baf2a8786fb 100644
+> >> --- a/drivers/resctrl/mpam_devices.c
+> >> +++ b/drivers/resctrl/mpam_devices.c
+> >> @@ -20,7 +20,6 @@
+> > 
+> > [...]
+> > 
+> >> @@ -35,11 +34,483 @@
+> >>  static DEFINE_MUTEX(mpam_list_lock);
+> >>  static LIST_HEAD(mpam_all_msc);
+> >>  
+> >> -static struct srcu_struct mpam_srcu;
+> >> +struct srcu_struct mpam_srcu;
+> 
+> > Why expose this here?  This patch makes no use of the exposed symbol.
+> 
+> The mpam_resctrl code needs to take it when it walks these lists. I don't want to change
+> it then because its just additional churn.
+
+I guess this is harmless, but it's no help to the kernel, or to
+reviewers...
+
+[...]
+
+> >> +/*
+> >> + * An MSC is a physical container for controls and monitors, each identified by
+
+[...]
+
+> >> + * The same MSC may exist under different class->component->vmsc paths, but the
+> >> + * RIS index will be unique.
+> >> + */
+> > 
+> > This description of the structures and how they relate to each other
+> > seems OK (bearing in mind that I am already familiar with this stuff --
+> > I can't speak for other people).
+> 
+> Great!
+
+OK
+
+[...]
+
+> >> +static void mpam_ris_destroy(struct mpam_msc_ris *ris)
+> >> +{
+> >> +	struct mpam_vmsc *vmsc = ris->vmsc;
+> >> +	struct mpam_msc *msc = vmsc->msc;
+> >> +	struct platform_device *pdev = msc->pdev;
+> >> +	struct mpam_component *comp = vmsc->comp;
+> >> +	struct mpam_class *class = comp->class;
+> >> +
+> >> +	lockdep_assert_held(&mpam_list_lock);
+> >> +
+> >> +	cpumask_andnot(&comp->affinity, &comp->affinity, &ris->affinity);
+> >> +	cpumask_andnot(&class->affinity, &class->affinity, &ris->affinity);
+> > 
+> > This is not the inverse of the cpumask_or()s in mpam_ris_create_locked(),
+> > unless the the ris associated with each class and each component have
+> > strictly disjoint affinity masks.  Is that checked anywhere, or should
+> > it be impossible by construction?
+> 
+> They should be disjoint. These bitmaps are built from firmware description of the cache
+> hierarchy. I don't think its possible to describe a situation where there are overlaps.
+> 
+> You can build a nonsense cache hierarchy, e.g. where CPU-0's L3 is CPU-6's L2, but if you
+> do the scheduler is going to complain when it tries to chose the scheduler domains. I
+> think this should be filed under "you've got bigger problems".  There is a check that
+> catches this in mpam_resctrl_pick_caches(), to see that all the CPUs are accounted for,
+> which is to avoid tasks that get lucky with task-placement managing to escape their
+> resource limit.
+
+I guess that makes sense.
+
+If the firmware description is formally a tree structure then it should
+be impossible to end up with overlapping affinity masks.
+
+Since this doesn't bite us until teardown-time in any case, I think
+this probably doesn't need to be checked explicitly, unless we observe
+actual problems.
+
+A comment documenting this assumption may be worth having.
+
+
+> > But, thinking about it:
+> > 
+> > I wonder why we ever really need to do the teardown.  If we get an
+> > error interrupt then we can just go into a sulk, spam dmesg a bit, put
+> > the hardware into the most vanilla state that we can, and refuse to
+> > manipulate it further.  But this only happens in the case of a software
+> > or hardware *bug* (or, in a future world where we might implement
+> > virtualisation, an uncontainable MPAM error triggered by a guest -- for
+> > which tearing down the host MPAM would be an overreaction).
+> 
+> The good news is guests can't escape the PARTID virtualisation that the CPU does, so any
+> mess a guest manages to make is confined to that guest's PARTID range.
+> 
+> 
+> > Trying to cleanly tear the MPAM driver down after such an error seems a
+> > bit futile.
+> > 
+> > The MPAM resctrl glue could eventually be made into a module (though
+> > not needed from day 1) -- which would allow for unloading resctrlfs if
+> > that is eventually module-ised.  I think this wouldn't require the MPAM
+> > devices backend to be torn down at any point, though (?)
+> 
+> It would certainly be optional. kernfs->resctrl->mpam is the reason all this has to be
+> built-in. If that changes I'd aim for this to be a module.
+> 
+> All this free()ing was added so that the driver doesn't end up sitting on memory when it
+> isn't providing any usable feature. I have seen a platform where the error interrupt goes
+
+I guess that's reasonable, but this is only applies to hardware that
+has MPAM but where it is either broken, or where it is unsuitable for
+running Linux but Linux has been deployed on it anyway while still
+leaving the ACPI tables intact.  This does not violate any
+specification, but it seems of marginal benefit to introduce a load of
+complexity just to safe a few K in this situation.  (Or do we get stuck,
+unable to free the config and mbwu_state arrays?  Those don't count as
+large on a server-class system, but they are about the "a few K"
+magnitude.)
+
+(Not that I'm not saying that teardown is something we shouldn't do --
+rather, my point is: do we really need to do it now if it is subtle and
+complex to make it work, or can this be a later addition?)
+
+> off during boot, (I suspect firmware configures an out-of-range PARTID). On such a
+> platform any memory that isn't free()d is a waste.
+> 
+> But I agree its a small amount of memory.
+> 
+> 
+> > If we can simplify or eliminate the teardown, does it simplify the
+> > locking at all?  The garbage collection logic can also be dispensed
+> > with if there is never any garbage.
+> 
+> It wouldn't simplify the locking, only remove that deferred free()ing which is needed
+> because of SRCU.
+
+My point was that there is no need to defend against concurrent removal
+if list entries if list entries are never removed.
+
+> > Since MSCs etc. never disappear from the hardware, it feels like it
+> > ought not to be necessary ever to remove items from any of these lists
+> > except when trying to do a teardown (?)
+> 
+> Unbinding the driver from an MSC is another case where this may be triggered via
+> mpam_msc_drv_remove(). If you look at the whole thing, mpam_ris_destroy() pokes
+> mpam_resctrl_teardown_class() to see if resctrl needs to be torn down.
+> 
+> I don't anticipate folk actually needing to do that. One Reasons is for VFIO - but this
+> kind of stuff has a performance impact on the hypervisor, so its unlikely to ever allow a
+> guest direct access to this kind of thing. Another reason is to load a more specific
+> driver, which sounds unlikely.
+> 
+> 
+> Ultimately this memory free-ing code is here because its the right thing to do.
+> I'd prefer to keep it as making this a loadable module would mean we have to do this.
+
+I don't disagree with that: it is messy to retrofit teardown if it was
+never considered in the initial design.
+
+I guess that this all comes from my uncertainty about the object
+lifecycles and locking behaviour.
+
+I would still prefer to see this documented.  If the the documentation
+would be too unwieldy or infrasible to write, this would suggest that
+the code would benefit from simplification...
+
+
+For the probe phase, or for teardown, I'm really not sure why it would
+break anything to have a single Big MPAM Lock (however inelegant).
+
+For the run phase (when resctrl and other clients of the driver are
+able to use the driver), the discovered system properties and the
+mappings onto resctrl resources are all static, and we don't seem to
+need all this RCU stuff.
+
+> > (Putting the hardware into a quiecent state is not the same thing as
+> > tearing down the data structures -- we do want to quiesce MPAM when
+> > shutting down the kernel, as least for the kexec scenario.)
+> 
+> > [...]
+> > 
+> >> +static int mpam_ris_create_locked(struct mpam_msc *msc, u8 ris_idx,
+> >> +				  enum mpam_class_types type, u8 class_id,
+> >> +				  int component_id, gfp_t gfp)
+> >> +{
+> >> +	int err;
+> >> +	struct mpam_vmsc *vmsc;
+> >> +	struct mpam_msc_ris *ris;
+> >> +	struct mpam_class *class;
+> >> +	struct mpam_component *comp;
+> >> +.
+> >> +	lockdep_assert_held(&mpam_list_lock);
+> >> +
+> >> +	if (test_and_set_bit(ris_idx, msc->ris_idxs))
+> >> +		return -EBUSY;
+> > 
+> > Is it impossible by construction to get in here with an out-of-range
+> > ris_idx?
+> > 
+> > To avoid the callers (i.e., ACPI) needing to understand the internal
+> > limitations of this code, maybe it is worth having a check here (even
+> > if technically redundant).
+> 
+> It's possible - but only if you mess up the firmware tables.
+> I'll add a check for this as its easy enough.
+
+OK, suits me.
+
+Cheers
+---Dave
 
