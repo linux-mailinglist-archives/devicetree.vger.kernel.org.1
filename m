@@ -1,157 +1,139 @@
-Return-Path: <devicetree+bounces-215035-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215038-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607F5B501C5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:46:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F64B501D3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:47:21 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC23717F152
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:46:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6CC04E3212
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AFE278761;
-	Tue,  9 Sep 2025 15:46:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6800E345743;
+	Tue,  9 Sep 2025 15:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lDnnIUAO"
+	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="iVyAPeeS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5CD274B29
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 15:46:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
+Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFCF1273D92
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 15:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757432763; cv=none; b=sUilzWROI5M/21eYyZaEngCO7VpRFhOlEHbHtKKpSmFMbo2Ew+J0qA1m2K0s3qo+kkaaxPjeIGwCHH8PAUhgE8Og355GsIoKVo4jXwXCRWA18RLJoe9T12oIthTpzrvOZUX3CvxtwPBYBpqtnjFpxrZhas3bpSj+JRZl4Cl52iM=
+	t=1757432778; cv=none; b=m7ublv3ipQbB1UZidOQip6wWizbYhCy/6FV2gBWzpPk98og+XYsZjz3teI57dQzzNIPIJ7ldw4vgPgEHLA4AfDlp4vUH6yXl4AO/WQil69MqJnGhXmxHpTPb9FL/L0I2mLfCOnr/OuQgEibAOG1riPNZAIGfiLEvCoiXBoiavFY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757432763; c=relaxed/simple;
-	bh=eFTweerjZKoxxZ9uYEQWOOFH2mTOPUrpeBxfdknONn0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VyhYYu6Z49SYjWy0FLoTFOOczUm/MTymwt3il+DBja00HoWO6ytWFhA/bI47xxIw6eGOKQIOXbJIJdUtTscuU1+D5daZkrGJPsA41M9N3Yy9j+yNP/lds5Dr6CXwFLMzuP2uNDdvTdeCWdNSFgZU8es7bfmaoYbXcjgf8dvH/nM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lDnnIUAO; arc=none smtp.client-ip=209.85.214.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-24cd340377dso36629895ad.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 08:46:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757432761; x=1758037561; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=uNQdE5yOZswVE6LCOBdtsDcL2XOY1LZAHNkE5x3LHnI=;
-        b=lDnnIUAOtFgMexvNa+Ivr5YnQets4hc5S31jsEvw6+cEA5R2DNLzm9CfX/kGJk4kj6
-         LU6idXKFRy1wnNX4nQrmDJoOdBAy9Sn6RYi03lrWSJRqv15cODL6rtLXZYiItjEPCgft
-         g4d86WvO9foxPyddhqczIgbvevvxls6HmIjysXDuPZF4UuLYekJwUKjKK08LJ37sKD7g
-         Lj6CbqTGiGhpwkAdNQgyb8QYF56O79fWUIrix2W5StybQuKEmhlcwSX0rORNuFftWSPx
-         gQr+lIt9wi7vzbd7ZmPppyYyqzxIHbBWvlO911Hc0MSLvDry25GUkROuE2pHi9hcujYO
-         rPdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757432761; x=1758037561;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uNQdE5yOZswVE6LCOBdtsDcL2XOY1LZAHNkE5x3LHnI=;
-        b=fz1T7oOwkYGkzK7JeOPw4egcQa6xW1KttK01tVQqUPT9h1LHFTrycZx9tcaPZO1/m9
-         dscOAsWnAi+TX6UzNfzSI2qyd+peaaXTuHzMKhzbhdMf7RTeuHj6UMUXgVbuuNCVMhw+
-         5iaQ49NtMEj9/VopS5CFz6Y9u8D2I+Qqi7dH8qCOsEWquHX67c/XM1AlCTLg/stODArq
-         rhfzMJU7lTFvT0mxD+2qbHiDlsyQaL+IOarlKsjdf6A0agi+VEXEgzK1LllZAPR/cXdp
-         dJ5B2TOcf9wIYRevGZpwEh6C5ZkDMrqpgWb39gY2flYljMW9hVhhN2/H8SXTepUdpuhV
-         iMUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGkTKT8U7XkQV/iJlVQIDg/jzb67Y+FZwoPfrOBVLH0p5lZqEzZ9+SZPGXL5TB65VqCvP4ckC4ul77@vger.kernel.org
-X-Gm-Message-State: AOJu0YzOeYeDSgwxFLwwzFid4P1qJdJAPQdFfg9TbQf6nNQp8kRaeWUg
-	Pz5unGqk0nTSwkGQsDohj2Ov8vPxY/2n7cvAP6H0GD9Q5Z9Dx6QDvp6q
-X-Gm-Gg: ASbGncuhfVfVeYBV/bM/NvxNr4FzR8bAJOjedtg+3ueFAfdaEkNJmgoZcgh9U5zuFA0
-	nJw+HK1n9xcFiguVUd9Ueb37YX0XMxH9yz7O1wvATaABsZ9TCO3nSLab6HEWFFyE3zGGCX9dXPj
-	l6U6Mv57mT1cfClotThQqY5kt4FdWzZ7pqYz6RmmsckWhOSzsL2KjmMbJWPXn3hbAtbo0eUwply
-	4AfGrVuy7QM4s9aITZYfoYliFJpixo3AB/Iewnf0GNDEE2OjyHPbdhWFXeX0oGF3aTKQRmXc4xy
-	GUCLF3qP9k5vpzoJGNEr/Z6/j7quX0fRng2CJtpjFSQaw52JEIKKVCvhqLTZVwi/MtPLL+RoXk0
-	1P6D7F97kQMLvmNYPohU298nFPwhHCCGYCPyFjmZ/fz8OGNRaBSR8sFtGdPx8OLHlyF3zW9ZsBF
-	JRN6qoWg==
-X-Google-Smtp-Source: AGHT+IHEDLcvBUxgy4It5qzR9ySfj35Jxho02ojFfBjGPyU0POXrSQw6ivP4uGSFnQuh/rPMRMmzJw==
-X-Received: by 2002:a17:902:d2c2:b0:24d:3ae4:1175 with SMTP id d9443c01a7336-2516c895b06mr197733895ad.5.1757432761326;
-        Tue, 09 Sep 2025 08:46:01 -0700 (PDT)
-Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
-        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25a2ab0d88asm1270235ad.111.2025.09.09.08.45.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Sep 2025 08:46:00 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <f03fead0-39c4-4d06-8934-bbc388d614fc@roeck-us.net>
-Date: Tue, 9 Sep 2025 08:45:58 -0700
+	s=arc-20240116; t=1757432778; c=relaxed/simple;
+	bh=K3CttPAPrnMMK990SipxOoBAj8OkU40HmHUqqsla42k=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=hFm/ojd9KTChgUNj9rvJvzSAelaorEAQwCe6WEHpoNcqd4xc34vCmKdjjEANgq0hDMAHVogBzeHUydpIowdbINjNOjg7BZGenxxYqRuAyNOPX1BvoLCl5h2vpjwTHU6XeniCeuy3/CWnYdKdxT1ZTurCd0vqCxbHdR5rnJWqoxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=iVyAPeeS; arc=none smtp.client-ip=13.77.154.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
+Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.11.102])
+	by linux.microsoft.com (Postfix) with ESMTPSA id CB75D211AA17;
+	Tue,  9 Sep 2025 08:46:15 -0700 (PDT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CB75D211AA17
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
+	s=default; t=1757432776;
+	bh=MLeivrLEOZek6SMLKDE33++Zkcd6skvIc2fWGH65W+s=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=iVyAPeeSOfKpX05GKFZdZL3wkxv+aDuAGLDWRbTaOjJpdWaMk1hIUqMR1JWSpeZV2
+	 gMkBclSjmSwji717PqcvZLnJByOiWj+2uSqlJyoHSH0/k5I/7GbOvE9pw0N1g0rMNO
+	 oIKw4LH3nas2sbqnSaRRlAx29ue0TWSiRiObca5s=
+From: Shyam Saini <shyamsaini@linux.microsoft.com>
+To: thierry.reding@gmail.com,
+	robin.murphy@arm.com,
+	robh@kernel.org,
+	joro@8bytes.org,
+	jgg@ziepe.ca
+Cc: iommu@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	virtualization@lists.linux.dev,
+	will@kernel.org,
+	jacob.pan@linux.microsoft.com,
+	eric.auger@redhat.com,
+	code@tyhicks.com,
+	eahariha@linux.microsoft.com,
+	vijayb@linux.microsoft.com,
+	bboscaccy@linux.microsoft.com,
+	saravanak@google.com,
+	krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	lizhi.hou@amd.com,
+	clement.leger@bootlin.com
+Subject: [PATCH v4 2/4] iommu/of: fix device tree configuration for PCI devices
+Date: Tue,  9 Sep 2025 08:45:58 -0700
+Message-Id: <20250909154600.910110-3-shyamsaini@linux.microsoft.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
+References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: watchdog: Convert nuvoton,npcm-wdt to DT
- schema
-To: "Rob Herring (Arm)" <robh@kernel.org>,
- Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
- Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
- Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
- Wim Van Sebroeck <wim@linux-watchdog.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
-Cc: openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250909142201.3209482-1-robh@kernel.org>
-Content-Language: en-US
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
-In-Reply-To: <20250909142201.3209482-1-robh@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 9/9/25 07:21, Rob Herring (Arm) wrote:
-> Convert the Nuvoton watchdog binding to DT schema format. It's a
-> straight-forward conversion.
-> 
-> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+Individual PCI devices lack dedicated device tree nodes, but
+their IOMMU configuration (including reserved IOVA regions) is often
+defined at the PCI host controller level in the device tree. The
+"iommu-addresses" property in reserved-memory nodes specifies IOVA
+ranges that should be reserved for specific devices.
 
-Acked-by: Guenter Roeck <linux@roeck-us.net>
+Currently, PCI devices cannot access these configurations because their
+dev->of_node is NULL, preventing of_iommu_get_resv_regions() from
+discovering reserved regions defined in the device tree.
+
+There are at least 3 ways to reserve iommu-addresses for individual PCI
+devices,
+ - 1) By dynamically adding DTS nodes for individual PCI devices using
+   [2] CONFIG_PCI_DYNAMIC_OF_NODES, this requires hardcoding PCI device
+   IDs in DECLARE_PCI_FIXUP_FINAL
+
+ - 2) By adding PCI devices nodes either in DTS or by modifying FDT at
+   boot time in the firmware, eg [3] However, of_iommu driver doesn't
+   seem to handle individual PCI devices, additionally this approach
+   doesn't seem to much scalable for the complex PCI hierarchy
+
+ - 3) By configuring PCI host controller DTS node for PCI device so
+   that it can inherit iommu-addresses defined in the parent node.
+
+This commit addresses the problem using approach 3) by assigning the
+PCI host controller's device tree node to PCI devices during IOMMU
+configuration, enabling them to inherit the host controller's device
+tree properties. This allows PCI devices to properly discover and
+reserve IOVA regions specified in the device tree.
+
+Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
+---
+ drivers/iommu/of_iommu.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/drivers/iommu/of_iommu.c b/drivers/iommu/of_iommu.c
+index 6b989a62def20..077482917e3e8 100644
+--- a/drivers/iommu/of_iommu.c
++++ b/drivers/iommu/of_iommu.c
+@@ -145,6 +145,17 @@ int of_iommu_configure(struct device *dev, struct device_node *master_np,
+ 		err = pci_for_each_dma_alias(to_pci_dev(dev),
+ 					     of_pci_iommu_init, &info);
+ 		of_pci_check_device_ats(dev, master_np);
++
++		/*
++		 * For PCI devices, ensure the device's of_node points to the
++		 * PCI host controller's device tree node so that reserved regions
++		 * and other DT-specific IOMMU configuration can be found.
++		 * PCI devices typically don't have individual DT nodes, but
++		 * their configuration (including reserved regions) is defined
++		 * at the PCI host controller level.
++		 */
++		if (!err && master_np && !dev->of_node)
++			dev->of_node = of_node_get(master_np);
+ 	} else {
+ 		err = of_iommu_configure_device(master_np, dev, id);
+ 	}
+-- 
+2.34.1
 
 
