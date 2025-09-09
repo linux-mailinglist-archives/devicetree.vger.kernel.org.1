@@ -1,125 +1,119 @@
-Return-Path: <devicetree+bounces-214874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2C80B4AC29
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:34:04 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A5BB9B4AC30
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:34:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EE3201B242E8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:34:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F263D1B25357
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C380322C9D;
-	Tue,  9 Sep 2025 11:32:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38699326D6F;
+	Tue,  9 Sep 2025 11:32:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TOn8im7y"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="OjZAaN7z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56AD1322A0E;
-	Tue,  9 Sep 2025 11:32:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5FE2532253D;
+	Tue,  9 Sep 2025 11:32:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757417547; cv=none; b=ibeffLM+0kNyup4QVCd2iWJftpNmYM+nj10K3vmkdMg+PAEF4gfq5i4JLRGKtajcCms3ECC5+Xd9veclXfYTwFGtpsgj2bNkqSi4TuTP4kzb0EwatJrNgyaU6vx55hg2uk7dQSzQMaPllaGNgAr8AE/mPH43ONMEvAu4DmRujP0=
+	t=1757417563; cv=none; b=af6pKhfmp9GEhHtLDjg6hGJ3GF7MRkv8KKULX/BzlgzuYtWPb/r81fIYGxdMTyZDzu7VVWshBKtq6Tn/2CECcNhsAUD8JeQ2dwdteCMO/ABKSde38XAHeJxZMRDd5tGsTT5tIr7mKFQ4PodObADQxEv39XvTKgAEm8IRN8CCuZg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757417547; c=relaxed/simple;
-	bh=I/zaQuiydOnPj3WHLpsr9AQZAAZHX0ydNtE3jmZgP4M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Ve+vtD6BkEgcbyw/jNxB1/dTVzWiFfee8gG+2Wqg367RsdO7NeAh5xycumkwsB+OZVbZcLzeLCkBOZBOO/BwngjN6M9FfuhfxeSuCCphKxO3Lajd2D86jhnhKoP/0Ir71I5XthcWE/XvYyQ8L6YrYUo7FDQ2ls30ZeXRz80gSPs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TOn8im7y; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-b046f6fb2a9so816706966b.2;
-        Tue, 09 Sep 2025 04:32:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757417543; x=1758022343; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=jUfOzEVUIAt9xbGJYoEDPOS8APbEF1/hSIJ/+d4b0B0=;
-        b=TOn8im7yFu6NpGWeH0aYJE21oTs1UYRC+OPGjXF/YuebOVNRNsrSFEiz35J7bSxlTN
-         QKdTMu8bA/IgTudypFSYwJHY0ZPaDNuI7zXbStDSPqA05lFOCosYJOgPsm6uKClsIScv
-         mjwYkoRdqanYxrjEsN3te+afx0ODV7RWSzZqT1VeSHcJXw+fxkqfqqXZD/fvobJLaiRE
-         2qLmckBrsRN05Xfq9oAvi6Vw26aMv0EhhZoMRHQJGoxe0Z5eovC6b5kHuE0r4633qfXl
-         td+LKSwFAIr3BqInqmsx4sDE1Q5hbu4G8P8mCtCmSBSIPn4LXhqxp1tsYM37bXNx4w0/
-         36cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757417543; x=1758022343;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jUfOzEVUIAt9xbGJYoEDPOS8APbEF1/hSIJ/+d4b0B0=;
-        b=FBI0L0pk07JDuOtUpGTnEILjvg/6QMUiFL63dbgFHQB2zEBWl9O/PM+l5CGbFt+8Qm
-         NKLoVXmtA2KeF/TjFnwGWJlZU1A4sz5yJRWfeL8sMJDrUw80V2USzvtdgVsFV3fMiLEc
-         aT4VsBGm0bDec8p8fh9+gr0LAu3FYEmX+SJQXJV9uSU+dAXmmFc5knuN/aLQmwxaHCvv
-         cdx37/bez7u4XpmaYR2WS2Ndiz9uLwjrYsK6fNfk8ug/dy/3VkK92qB1YazoKw2Dabzz
-         CM8fwtMF56IVagGwQ/kz1rtmvtOT7shXM4uKCIGUsBpEVbsVeGx1Kfw7ORPfDvCNn4ae
-         EpQA==
-X-Forwarded-Encrypted: i=1; AJvYcCVYDdvFzqjJrtzhQ/o8AM8DLjdEYMi6Gy5gwUSMpkrdPwtBBAkVHQiyOEzN6C7h60WKhS0qPgR+0w4GRf8t@vger.kernel.org, AJvYcCXei2f6jo/AS8KoM/kymYgjfcKzqJCpeD7qmxzi0cYT5ZjVCLBFppjhT8RKhKj/cHenXUKn9E1EpXpM@vger.kernel.org
-X-Gm-Message-State: AOJu0Yx/PWVonG68cd1cfRCJFTnCrF9itOoJmqcBwP4EOlAdx6uYpQaL
-	peCxVyObeJBp6qvb4pOnHa84HD2COBIWl8elcK9pBHtcRPWA+O76V1jsbZV+Mn8A
-X-Gm-Gg: ASbGnctZiBqCKltW4WB9HGLc3/5m81edw557Mw8/7jMXaSfNXcORTv5gQTijOpVMIDb
-	nKxZMPLaF6pK8EKVSo2q49xMrm4nvKWYSNaDxCsk96iLEcmBW3FnLpJxm5gv5djNPheFw+BGUdE
-	5PruwiPhuO3yPqEHZkM1i9IgFM7D1qG4iayfixChKwVLVeBJwFV8Ss1VjpA/GGNLqNOxllCJagq
-	BiLLGAXzkTOz5T2+Wa2fSdMeQ3HoKvtx9sRJ7HY/EB7qt1WDd79Kh2g9f2Fl+UdrIXe/CAShce6
-	pCpIxDZExRtzoV9K5E9QuTVGmP8d6NkdoZIJ4bK0EoXeXvrVX+wPzYfn4Tq6QLkF31jHy6ijnWx
-	RjfEqpvUjaDGII9UpXIBABGXXriaQ0Iwwm7c71wXY2z8=
-X-Google-Smtp-Source: AGHT+IEZEVYUZIrd8kcwOJQp7VFDJjt6ne7OWGJAgr7nMsPpkxhuRiUyRJAL9Nqh2iAijr+UwTKkpg==
-X-Received: by 2002:a17:906:c10c:b0:b04:6d98:cbbd with SMTP id a640c23a62f3a-b04b17a2303mr943027266b.65.1757417543436;
-        Tue, 09 Sep 2025 04:32:23 -0700 (PDT)
-Received: from avt74j0.fritz.box ([2a02:8109:8617:d700:4bd8:5793:1d49:8ea3])
-        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-b040f1cf4b9sm2289497066b.29.2025.09.09.04.32.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 04:32:23 -0700 (PDT)
-From: Martin Hecht <mhecht73@gmail.com>
-To: linux-media@vger.kernel.org
-Cc: sakari.ailus@linux.intel.com,
-	michael.roeder@avnet.eu,
-	martin.hecht@avnet.eu,
-	Martin Hecht <mhecht73@gmail.com>,
-	Tommaso Merciai <tomm.merciai@gmail.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1757417563; c=relaxed/simple;
+	bh=DskNimhErckgqKJIOEd74jaeB9pesORcOsQFq2LivMo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pLM6AspXW/EqEWX3/oas5vJXIjOK/OBfHHI2aLAW64cczKdCuJwIDFn5D48/6lHK3C7oMnz8j7s9qZdi58nggkpqCI6W88Lr/JJyRJo3TOfMgPIXrrTtjsWa7wmiT4YH/DNX+XaLdF6hL8R7vbvEiZ0SHK1DsbVPtXy+nBhd+/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=OjZAaN7z; arc=none smtp.client-ip=192.198.163.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1757417562; x=1788953562;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=DskNimhErckgqKJIOEd74jaeB9pesORcOsQFq2LivMo=;
+  b=OjZAaN7z/Rq2G0atAcO+s/RCa8KeogEk+ne3VtHvx4+KuW10Je8rhVRM
+   jhVkzvKFA0wVxMJBUnV7c9ArXXTEJuVItbk6nEd134FZlsVDQj/5k41Wh
+   6tmLG5Yw2xxobgVqiY1STV2tZik1jlR5hMgUkZqRQuVBZ4gBKyMXfP37D
+   BWUFLsoJEvaEW6ja8yebT6n3nLllCb7P+9kNjTxYwdCEUTjYx8zKWJUdQ
+   4bDfkBotHzZGQ0SYLFivN6ywrS0UMq+hsLaKk6tKFj6cyeNE48PF0md/Q
+   Te2/bfeBULfrJDxm3to69ZKOQ6/YgxzdpNJmViVyuz1nDHMI0GrBWSPlg
+   A==;
+X-CSE-ConnectionGUID: UbuHgjFPQmauGo/Mo1kMhQ==
+X-CSE-MsgGUID: L6wm8rxSSRi0sN4KWyZwNg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="59769635"
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
+   d="scan'208";a="59769635"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 04:32:41 -0700
+X-CSE-ConnectionGUID: 3D8SgYoeQnqGeA79nXWd7w==
+X-CSE-MsgGUID: gsOSROqPRsOWaIXTHWJcbw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
+   d="scan'208";a="172330535"
+Received: from smile.fi.intel.com ([10.237.72.51])
+  by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 04:32:37 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.98.2)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1uvwaQ-00000001QN2-0Lqh;
+	Tue, 09 Sep 2025 14:32:34 +0300
+Date: Tue, 9 Sep 2025 14:32:33 +0300
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: Nuno =?iso-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+Cc: Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	linux-hwmon@vger.kernel.org, linux-gpio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] media: i2c: alvium-csi2
-Date: Tue,  9 Sep 2025 13:32:16 +0200
-Message-ID: <20250909113218.2595516-3-mhecht73@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250909113218.2595516-1-mhecht73@gmail.com>
-References: <20250909113218.2595516-1-mhecht73@gmail.com>
+	Jean Delvare <jdelvare@suse.com>,
+	Guenter Roeck <linux@roeck-us.net>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>
+Subject: Re: [PATCH v2 3/3] gpio: gpio-ltc4283: Add support for the LTC4283
+ Swap Controller
+Message-ID: <aMAQUS0wFakYoB0N@smile.fi.intel.com>
+References: <20250903-ltc4283-support-v2-0-6bce091510bf@analog.com>
+ <20250903-ltc4283-support-v2-3-6bce091510bf@analog.com>
+ <aLgl_9X0_2082SkH@black.igk.intel.com>
+ <4123c67509c54e78b5a24d2704e4bb2b0a07d585.camel@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <4123c67509c54e78b5a24d2704e4bb2b0a07d585.camel@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 
-Change from my company email address to gmail.com.
+On Tue, Sep 09, 2025 at 11:27:09AM +0100, Nuno Sá wrote:
+> On Wed, 2025-09-03 at 13:26 +0200, Andy Shevchenko wrote:
+> > On Wed, Sep 03, 2025 at 11:05:01AM +0100, Nuno Sá wrote:
 
-Signed-off-by: Martin Hecht <mhecht73@gmail.com>
----
- drivers/media/i2c/alvium-csi2.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+...
 
-diff --git a/drivers/media/i2c/alvium-csi2.c b/drivers/media/i2c/alvium-csi2.c
-index 05b708bd0a64..5c1bab574394 100644
---- a/drivers/media/i2c/alvium-csi2.c
-+++ b/drivers/media/i2c/alvium-csi2.c
-@@ -2542,6 +2542,6 @@ module_i2c_driver(alvium_i2c_driver);
- 
- MODULE_DESCRIPTION("Allied Vision's Alvium Camera Driver");
- MODULE_AUTHOR("Tommaso Merciai <tomm.merciai@gmail.com>");
--MODULE_AUTHOR("Martin Hecht <martin.hecht@avnet.eu>");
-+MODULE_AUTHOR("Martin Hecht <mhecht73@gmail.com>");
- MODULE_AUTHOR("Avnet Silica Software & Services EMEA");
- MODULE_LICENSE("GPL");
+> > > +/* Non-constant mask variant of FIELD_GET() and FIELD_PREP() */
+> > > +#define field_get(_mask, _reg)	(((_reg) & (_mask)) >> (ffs(_mask) - 1))
+> > > +#define field_prep(_mask, _val)	(((_val) << (ffs(_mask) - 1)) &
+> > > (_mask))
+> 
+> Kind of agree and I remember to see some work some time ago regarding this but
+> it seems it did not get anywhere. 
+
+Just include a patch in your series. Let's see if CI and build bots blown from this.
+
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
 
