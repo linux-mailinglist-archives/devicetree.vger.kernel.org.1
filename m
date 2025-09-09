@@ -1,126 +1,118 @@
-Return-Path: <devicetree+bounces-214715-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D75EB4A2F6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:07:14 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E239EB4A340
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:16:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 33685188E43D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:07:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 77EB61BC78AD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:16:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D70D30594E;
-	Tue,  9 Sep 2025 07:07:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77660278771;
+	Tue,  9 Sep 2025 07:15:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tmz/QTdt"
+	dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b="XzZSHQbc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail-m1973172.qiye.163.com (mail-m1973172.qiye.163.com [220.197.31.72])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD6AC30505E;
-	Tue,  9 Sep 2025 07:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63B821BDCF;
+	Tue,  9 Sep 2025 07:15:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.31.72
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757401628; cv=none; b=qjOOhudOBbdnQXo5lR/PUkV6gTAIXKcAFSTXBxt3MTKRFR+xPQJsIiZ9ELAYK9UeWqqz6pVW5nlNYnKLg+NJNczWDbeA2r34btv6kVoNvB269HsIYD7ZAVJ4bBPFMOlIzz5/Mh57Ajr1MaUoesf8iRjB2GkkaNH4KdNVwrcPdHQ=
+	t=1757402122; cv=none; b=VMwuLQgWrqxHdMZ4RaIuAGKDuppYB3rkodLyvDXaMX2p6J+TfmwkT2tvNiJKHanVKgAITmwFmOJA31Tv9zleYHsR+jhstAevUsQW28ziwePSWUoxz6OuDCo449pUuh0/KNQpPl7qFTdDn+HReFZ/27FlgxYi/G2RAufpNGNLKTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757401628; c=relaxed/simple;
-	bh=UB3ymBhPiyxYf8wquSpd7gpdKSVsLTb8dRTn8loC64w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y1B3MTN9eObhSz4o17Aj3cjwb1L707d/Yhu5DdhXQOf7APpBeWPkFBXjGbHG1on+l/g/uGv5YYZOn3axo14f9w2EB9rNZLW/YFMIZ2308K6M/M+kKzmsLprwC6wHKEXuiEgm7tTmgxKTmfDQwOVRMr+hQ5nNqQmmVyyuPLOlE4s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tmz/QTdt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1F7B5C4CEF4;
-	Tue,  9 Sep 2025 07:07:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757401627;
-	bh=UB3ymBhPiyxYf8wquSpd7gpdKSVsLTb8dRTn8loC64w=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tmz/QTdtMP6cfWNhmgodQagq9C+kpRUVxjnuj3fVroqKyctPvbwjlKjHc2GR9K4zf
-	 rr8oVcTbsq0gPgr2qxIPaRLSbRTQ7JLN3FMugcSTIt+bUxu/ADctBhdHVbPDJHYlz7
-	 EK9KsTl1h9eU22NJGM/LwI1ljt07bpVViHYaXiMsHAy4xZ2QG4mc+p4cd/ciwlFOrm
-	 Wn+M6/ytU43kkHOO1lRfR6w7Lm1SVP2o/6FzlMr7/++qAE+n1aVKM+e0YHKdiF5qPx
-	 Qj0W5NCKWtFiq/toeQurMEFWCpMShhkr1UEe10i54KdYAse6PAHPz+4/CN549ceywM
-	 gM4urmQsBMI7g==
-Date: Tue, 9 Sep 2025 09:07:05 +0200
-From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: "Rob Herring (Arm)" <robh@kernel.org>, 
-	Konrad Dybcio <konradybcio@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Krzysztof Kozlowski <krzk+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>, 
-	Daniel Thompson <daniel.thompson@linaro.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
-	Pavel Machek <pavel@kernel.org>, devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org, 
-	Jacopo Mondi <jacopo@jmondi.org>, Hans de Goede <hansg@kernel.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>, linux-kernel@vger.kernel.org, 
-	Jingoo Han <jingoohan1@gmail.com>, dri-devel@lists.freedesktop.org, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, linux-media@vger.kernel.org, linux-leds@vger.kernel.org, 
-	Jean-Jacques Hiblot <jjhiblot@traphandler.com>, Daniel Thompson <danielt@kernel.org>
-Subject: Re: [PATCH v3 1/4] dt-bindings: leds: add generic LED consumer
- documentation
-Message-ID: <20250909-vague-fantastic-bettong-5f40ee@kuoka>
-References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
- <20250908-leds-v3-1-5944dc400668@vinarskis.com>
- <175734087835.1809005.14330068317471966084.robh@kernel.org>
- <COW1cS_CD75b8_MjT5gZA2c8oVf7iAbYPP7RR0TfJwPCqyhpf7LJn8YRjePaJHKnqE4TQZq4UTvmHGlSiv6rVJjdQSmp70FAjg5zkPbEeh0=@vinarskis.com>
+	s=arc-20240116; t=1757402122; c=relaxed/simple;
+	bh=wC2YdjaoJqa6I6tZoopLuKkVfIOaaVL5SZDexHzOil0=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=i6BLchrkCFxPtXj/UUwiK9KEBUVRhsXd75E6RrUFTJSU38Xyffhwxl90BJ1gR58VgP9zD3B84Q3sPLZdCmPFxFXYw9TQWMfAo1U72bqOddG6zM/Hvp+iT85DPdWY9Z+Ys2xxMKkR71iQ6luvLqCvgPTrI53OobvHoJEO+VmOnoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com; spf=pass smtp.mailfrom=thundersoft.com; dkim=pass (1024-bit key) header.d=thundersoft.com header.i=@thundersoft.com header.b=XzZSHQbc; arc=none smtp.client-ip=220.197.31.72
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=thundersoft.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thundersoft.com
+Received: from albert-OptiPlex-7080.. (unknown [117.184.129.134])
+	by smtp.qiye.163.com (Hmail) with ESMTP id 222bd6686;
+	Tue, 9 Sep 2025 15:09:59 +0800 (GMT+08:00)
+From: Albert Yang <yangzh0906@thundersoft.com>
+To: krzk@kernel.org
+Cc: adrian.hunter@intel.com,
+	arnd@arndb.de,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	gordon.ge@bst.ai,
+	krzk+dt@kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org,
+	yangzh0906@thundersoft.com
+Subject: Re: [PATCH v3 6/8] arm64: dts: bst: add support for Black Sesame Technologies C1200 CDCU1.0 board
+Date: Tue,  9 Sep 2025 15:09:58 +0800
+Message-ID: <20250909070958.2254093-1-yangzh0906@thundersoft.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <179f19c0-d9fc-4efb-bc78-8dc1e7505b13@kernel.org>
+References: <179f19c0-d9fc-4efb-bc78-8dc1e7505b13@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <COW1cS_CD75b8_MjT5gZA2c8oVf7iAbYPP7RR0TfJwPCqyhpf7LJn8YRjePaJHKnqE4TQZq4UTvmHGlSiv6rVJjdQSmp70FAjg5zkPbEeh0=@vinarskis.com>
+Content-Transfer-Encoding: 8bit
+X-HM-Tid: 0a992d4f5a6d09cckunm2b88969717a32b
+X-HM-MType: 1
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDQhlLVh1LHxlOH00fSRhKHlYVFAkWGhdVEwETFh
+	oSFyQUDg9ZV1kYEgtZQVlKSkxVSkNPVUpJQlVKSE9ZV1kWGg8SFR0UWUFZT0tIVUpLSU9PT0hVSk
+	tLVUpCS0tZBg++
+DKIM-Signature: a=rsa-sha256;
+	b=XzZSHQbcF9ZJs+G5NZSq2VaVBGuGZYoNSGiWDlxe8Cwqf+CB5cB9YWCziVpWDskPmAZ7avSRJpKDGQAub291cHtmX+BNY9y9tl4tSvuYymgslhONcgfaZ+7aMbdSqqKHJmO8fzENUjWKvd5TVhRNK0vAxvCq8C67L5Qo4+hT4q4=; s=default; c=relaxed/relaxed; d=thundersoft.com; v=1;
+	bh=WrtxNVHwTJ4oyryUvdf8ihpCH/wC7AM/4lz7xfEKLZY=;
+	h=date:mime-version:subject:message-id:from;
 
-On Mon, Sep 08, 2025 at 03:43:22PM +0000, Aleksandrs Vinarskis wrote:
-> 
-> 
-> 
-> 
-> 
-> On Monday, September 8th, 2025 at 16:15, Rob Herring (Arm) <robh@kernel.org> wrote:
-> 
-> > 
-> > 
-> > 
-> > On Mon, 08 Sep 2025 01:18:03 +0200, Aleksandrs Vinarskis wrote:
-> > 
-> > > Introduce common generic led consumer binding, where consumer defines
-> > > led(s) by phandle, as opposed to trigger-source binding where the
-> > > trigger source is defined in led itself.
-> > > 
-> > > Add already used in some schemas 'leds' parameter which expects
-> > > phandle-array. Additionally, introduce 'led-names' which could be used
-> > > by consumers to map LED devices to their respective functions.
-> > > 
-> > > Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
-> > > ---
-> > > .../devicetree/bindings/leds/leds-consumer.yaml | 89 ++++++++++++++++++++++
-> > > 1 file changed, 89 insertions(+)
-> > 
-> > 
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> > 
-> > yamllint warnings/errors:
-> > 
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/leds/leds-consumer.example.dtb: camera@36 (ovti,ov02c10): Unevaluated properties are not allowed ('led-names', 'leds' were unexpected)
-> > from schema $id: http://devicetree.org/schemas/media/i2c/ovti,ov02e10.yaml#
-> 
-> Rob: this is because the 1st patch that adds `led-consumer.yaml` uses
-> ov02e10 in its example, while the property is added to
-> `video-interface-devices.yaml` (which is used by ov02e10 and other
-> cameras) only in the 2nd patch. As I see it, reversing the order of 1st
-> and 2nd patch would likewise cause 'error' when 1st patch is checked
-> without the 2nd one. I don't think that 1st and 2nd patches should be
-> combined, but if you prefer to do that so the warning goes away - please
-> let me know.
-> 
+On Fri, Sep 05, 2025 at 09:23:48AM +0200, Krzysztof Kozlowski wrote:
+> On 03/09/2025 09:06, Albert Yang wrote:
+> >>
 
-Just drop the compatible (and most of the properties) from the example.
-That's a common binding, so adding there some other device DTS only
-complicates things. See access-controllers, for example.
+> > However, I'm uncertain about how to order properties that start with "#".
+> > I have treated them as standard/common properties and updated the node as follows.
+> > Could you please confirm if this approach is correct?
+>
+> They go as standard common properties. Whether you group all '#'
+> together or sort by name skipping '#' is up to you, because common style
+> does not define that.
+>
+> >
+> >
+> >             gic: interrupt-controller@32800000 {
+> >                     compatible = "arm,gic-v3";
+> >                     reg = <0x0 0x32800000 0x0 0x10000>,
+> >                           <0x0 0x32880000 0x0 0x100000>;
+> >                     ranges;
+> >                     #address-cells = <2>;
+> >                     #interrupt-cells = <3>;
+> >                     interrupt-controller;
+> >                     interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+> >                     #size-cells = <2>;
+>
+> I would keep #size-cells after #address-cells, because they describe
+> same thing - addressing of children.
 
-Best regards,
-Krzysztof
+Thank you for your feedback and confirmation. I will update the node 
+according to your suggestions as follows:
 
+        gic: interrupt-controller@32800000 {
+            compatible = "arm,gic-v3";
+            reg = <0x0 0x32800000 0x0 0x10000>,
+                  <0x0 0x32880000 0x0 0x100000>;
+            ranges;
+            #address-cells = <2>;
+            #size-cells = <2>;
+            #interrupt-cells = <3>;
+            interrupt-controller;
+            interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_LOW>;
+        };
+
+Best Regards,
+Albert
 
