@@ -1,80 +1,56 @@
-Return-Path: <devicetree+bounces-214904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBDCDB4AD41
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:04:08 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B6C4B4FA01
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:13:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 56D70188A6DF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:04:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EFB5170D77
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:12:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55BDD335BC8;
-	Tue,  9 Sep 2025 12:01:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="kMI9tQQk"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C175F32F74D;
+	Tue,  9 Sep 2025 12:11:43 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9455B2ECEAC
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 12:01:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.171.202.116
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC2BA32C324;
+	Tue,  9 Sep 2025 12:11:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.242.206.163
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757419304; cv=none; b=hTNvaZJkY/Q7w7O3bAh9283yWwU0OqHLp7T99qaVEhkzfBLmFZjEv2iJ7gHNeowsTbgL+VX2VhOZ93qwDgEWVXI/+QFZ7Cw+q2Y23ewVbRDBFiCqymvBI6YbXZ97+atHndMbR68J8PQwxeoKjgIiHqYboY89OdOi84DQ0qKxzVs=
+	t=1757419902; cv=none; b=Yk6FQGpgXLNtpuMEoRoF+e6JuinA8LT0rFNg9wffbYptRytV1GntCJ7wBEDu6KVN0u/6bRGZ0Ci5zZ+2alitTo6divePZeQAZ95s7MvFX1SORssiaNu2mWANvYMBl+6PVWYx06PrKKwtQ4vd2SgyGQNHB7n3ye9y39Rk6UEPj80=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757419304; c=relaxed/simple;
-	bh=+WJqQHU+nIQgBo0Zz0TjudEqKyicGjZv7sGjdPPKqDE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=bJJ4zDflUJjxz+c7aZyI/SDTGNG/nF2FGZBdfixjgxpZ2SLbPhw1I8N4LTMaTaOlCjgAWWKRmrPKT39p31lBGCcmeGmxsE5Ng3iz1B8tGPJH5/cBVY+kIwwt1IGlTtQV2PNnVT6XulaQWc5ga4usSAuKkkXafNKuHqbnxtBPlT4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=kMI9tQQk; arc=none smtp.client-ip=185.171.202.116
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
-	by smtpout-04.galae.net (Postfix) with ESMTPS id 87C94C6B39A;
-	Tue,  9 Sep 2025 12:01:25 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
-	by smtpout-01.galae.net (Postfix) with ESMTPS id 3BD1660630;
-	Tue,  9 Sep 2025 12:01:41 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id B460D102F29F4;
-	Tue,  9 Sep 2025 14:01:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
-	t=1757419300; h=from:subject:date:message-id:to:cc:mime-version:
-	 content-transfer-encoding:in-reply-to:references;
-	bh=ioi2JebbHDsN+5FlqVwYbemd6/RDAm9gDaAPNluL0IM=;
-	b=kMI9tQQkR8chOiUXxpeJAZDdvc/OVAntA2YhK3RrZbf3WkkjoDiCmlbwN0bFndfYHbiePl
-	UP2Fj8hbXHzb7DwVs/bYJPhg9gXVZzzkoZlHd0Blyz8c10DEe4B/RBdwZ/5A2i7uBssEFg
-	MRxtYxINtWWWWUJaW845VpWs5Z4AbY5eC7hwULYJ2JPmcH0iFX1/rclxBQzM1FNsv5FEVK
-	Cak2uFggqadfbiUut0p5wyc+sAbNPPmZKaoHc331emiz+6UIgfG/eYa04+7bCANBKJuU12
-	yZDDh5S0IxH8kBE58ZFZ/1nwEZyG1BZ9rcXXvLttqPmnaJgpwSuZGIZuDS/tPA==
-From: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-	Hoan Tran <hoan@os.amperecomputing.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Bartosz Golaszewski <brgl@bgdev.pl>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1757419902; c=relaxed/simple;
+	bh=BSfoKghzggAOe5VKxkV1dMqaczces8DHHG+dxc5P3Y0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HO5qAu+2RSdu0i8//sH+qos/xmZT5+iKIn8yaJIf7+vTdvNym3ME1deDoq/98AqUv2IyCT54aRfG5asAlgOIsrpPOg1psDW5uOifBVbC/g/cmGD09ClNn4li0UteAqwwIFz3v5skeU2zEeCIagtIO8d//GbbEC7XaInraE558MM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn; spf=pass smtp.mailfrom=loongson.cn; arc=none smtp.client-ip=114.242.206.163
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=loongson.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=loongson.cn
+Received: from loongson.cn (unknown [223.64.68.89])
+	by gateway (Coremail) with SMTP id _____8BxWNF4GcBoa10IAA--.17847S3;
+	Tue, 09 Sep 2025 20:11:36 +0800 (CST)
+Received: from localhost.localdomain (unknown [223.64.68.89])
+	by front1 (Coremail) with SMTP id qMiowJCxH8JzGcBoOzSKAA--.57626S2;
+	Tue, 09 Sep 2025 20:11:35 +0800 (CST)
+From: Binbin Zhou <zhoubinbin@loongson.cn>
+To: Binbin Zhou <zhoubb.aaron@gmail.com>,
+	Huacai Chen <chenhuacai@loongson.cn>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Serge Semin <fancer.lancer@gmail.com>,
-	Herve Codina <herve.codina@bootlin.com>
-Cc: Phil Edworthy <phil.edworthy@renesas.com>,
-	linux-gpio@vger.kernel.org,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Haowei Zheng <zhenghaowei@loongson.cn>
+Cc: Huacai Chen <chenhuacai@kernel.org>,
+	Xuerui Wang <kernel@xen0n.name>,
+	loongarch@lists.linux.dev,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Pascal Eberhard <pascal.eberhard@se.com>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v2 8/8] ARM: dts: r9a06g032: Add support for GPIO interrupts
-Date: Tue,  9 Sep 2025 14:00:39 +0200
-Message-ID: <20250909120041.154459-9-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.51.0
-In-Reply-To: <20250909120041.154459-1-herve.codina@bootlin.com>
-References: <20250909120041.154459-1-herve.codina@bootlin.com>
+	linux-serial@vger.kernel.org,
+	Binbin Zhou <zhoubinbin@loongson.cn>
+Subject: [PATCH v4 0/3] uart: Introduce uart driver for the Loongson family
+Date: Tue,  9 Sep 2025 20:11:17 +0800
+Message-ID: <cover.1757318368.git.zhoubinbin@loongson.cn>
+X-Mailer: git-send-email 2.47.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,108 +58,83 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Last-TLS-Session-Version: TLSv1.3
+X-CM-TRANSID:qMiowJCxH8JzGcBoOzSKAA--.57626S2
+X-CM-SenderInfo: p2kr3uplqex0o6or00hjvr0hdfq/
+X-Coremail-Antispam: 1Uk129KBj93XoW7KF1xtFy3tw1rtFW7Gr1UXFc_yoW8ZryxpF
+	sIk39Ikr4jqF17AwsxAFyrCF4rZr95JF9rWanxGwn5Gr9Yva4UXr1ftFn0yF13Zr4rXFW2
+	vF1rCrWUKa4jy3cCm3ZEXasCq-sJn29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7KY7ZEXa
+	sCq-sGcSsGvfJ3Ic02F40EFcxC0VAKzVAqx4xG6I80ebIjqfuFe4nvWSU5nxnvy29KBjDU
+	0xBIdaVrnRJUUUyEb4IE77IF4wAFF20E14v26r1j6r4UM7CY07I20VC2zVCF04k26cxKx2
+	IYs7xG6rWj6s0DM7CIcVAFz4kK6r1Y6r17M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48v
+	e4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI
+	0_Gr0_Cr1l84ACjcxK6I8E87Iv67AKxVW0oVCq3wA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_
+	GcCE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqjxCEc2xF0cIa020Ex4CE44I27wAqx4
+	xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_JF1lYx0Ex4A2jsIE14v2
+	6r4j6F4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwCF04k20xvY0x0EwI
+	xGrwCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c02F40E14v26r1j6r18MI8I3I0E7480
+	Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVC0I7
+	IYx2IY67AKxVWUJVWUCwCI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lIxAIcVCF04k2
+	6cxKx2IYs7xG6r1j6r1xMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF0xvEx4A2jsIEc7CjxV
+	AFwI0_Jr0_GrUvcSsGvfC2KfnxnUUI43ZEXa7IU8vApUUUUUU==
 
-In the RZ/N1 SoC, the GPIO interrupts are multiplexed using the GPIO
-Interrupt Multiplexer.
+Hi all:
 
-Add the multiplexer node and connect GPIO interrupt lines to the
-multiplexer.
+For various reasons, I will be taking over from Haowei and continuing to
+push forward with this patch set. Thanks to Haowei for his efforts so
+far.
 
-The interrupt-map available in the multiplexer node has to be updated in
-dts files depending on the GPIO usage. Indeed, the usage of an interrupt
-for a GPIO is board dependent.
+This patchset introduce a generic UART framework driver for Loongson family.
+It can be found on Loongson3 series cpus, Loongson-2K series cpus and Loongson 
+LS7A bridge chips.
 
-Up to 8 GPIOs can be used as an interrupt line (one per multiplexer
-output interrupt).
+Thanks.
 
-Signed-off-by: Herve Codina (Schneider Electric) <herve.codina@bootlin.com>
----
- arch/arm/boot/dts/renesas/r9a06g032.dtsi | 49 ++++++++++++++++++++++++
- 1 file changed, 49 insertions(+)
+------
+V4:
+Patch 1:
+  - Rename binding name from loongson,uart.yaml to
+    loongson,ls2k0500-uart.yaml;
+  - Drop ls7a compatible;
+  - According to the manual, ls3a and ls2k uart are the same, so merge their
+    compatible.
 
-diff --git a/arch/arm/boot/dts/renesas/r9a06g032.dtsi b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-index da977cdd8487..3cd7ac38eb7a 100644
---- a/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-+++ b/arch/arm/boot/dts/renesas/r9a06g032.dtsi
-@@ -534,6 +534,14 @@ gpio0a: gpio-port@0 {
- 				#gpio-cells = <2>;
- 				snps,nr-gpios = <32>;
- 				reg = <0>;
-+
-+				interrupt-controller;
-+				interrupt-parent = <&gpioirqmux>;
-+				interrupts = < 0  1  2  3  4  5  6  7
-+					       8  9 10 11 12 13 14 15
-+					      16 17 18 19 20 21 22 23
-+					      24 25 26 27 28 29 30 31 >;
-+				#interrupt-cells = <2>;
- 			};
- 
- 			/* GPIO0b[0..1]   connected to pins GPIO1..2   */
-@@ -576,6 +584,14 @@ gpio1a: gpio-port@0 {
- 				#gpio-cells = <2>;
- 				snps,nr-gpios = <32>;
- 				reg = <0>;
-+
-+				interrupt-controller;
-+				interrupt-parent = <&gpioirqmux>;
-+				interrupts = < 32 33 34 35 36 37 38 39
-+					       40 41 42 43 44 45 46 47
-+					       48 49 50 51 52 53 54 55
-+					       56 57 58 59 60 61 62 63 >;
-+				#interrupt-cells = <2>;
- 			};
- 
- 			/* GPIO1b[0..1]   connected to pins GPIO55..56 */
-@@ -608,6 +624,14 @@ gpio2a: gpio-port@0 {
- 				#gpio-cells = <2>;
- 				snps,nr-gpios = <32>;
- 				reg = <0>;
-+
-+				interrupt-controller;
-+				interrupt-parent = <&gpioirqmux>;
-+				interrupts = < 64 65 66 67 68 69 70 71
-+					       72 73 74 75 76 77 78 79
-+					       80 81 82 83 84 85 86 87
-+					       88 89 90 91 92 93 94 95 >;
-+				#interrupt-cells = <2>;
- 			};
- 
- 			/* GPIO2b[0..9] connected to pins GPIO160..169 */
-@@ -620,6 +644,31 @@ gpio2b: gpio-port@1 {
- 			};
- 		};
- 
-+		gpioirqmux: interrupt-controller@51000480 {
-+			compatible = "renesas,r9a06g032-gpioirqmux", "renesas,rzn1-gpioirqmux";
-+			reg = <0x51000480 0x20>;
-+			#interrupt-cells = <1>;
-+			#address-cells = <0>;
-+			interrupt-map-mask = <0x7f>;
-+
-+			/*
-+			 * interrupt-map has to be updated according to GPIO
-+			 * usage. The order has to be kept. Only the src irq
-+			 * (0 field) has to be updated with the needed GPIO
-+			 * interrupt number.
-+			 */
-+			interrupt-map = <0 &gic GIC_SPI 103 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 104 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 105 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 107 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 109 IRQ_TYPE_LEVEL_HIGH>,
-+					<0 &gic GIC_SPI 110 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			status = "disabled";
-+		};
-+
- 		can0: can@52104000 {
- 			compatible = "renesas,r9a06g032-sja1000", "renesas,rzn1-sja1000";
- 			reg = <0x52104000 0x800>;
+Patch 2:
+  - Format code;
+  - Add the LOONGSON_UART_DLF macro definition to avoid magic numbers;
+  - Simplify the code, merge flags and quirks, and remove struct
+    loongson_uart_config;
+  - Use DEFINE_SIMPLE_DEV_PM_OPS;
+  - Drop loongson,ls7a-uart compatible.
+
+Patch 3:
+  - Add ls2k* compatible string, and ns16550a as the fallback
+    compatible.
+
+Link to V3:
+https://lore.kernel.org/all/20240826024705.55474-1-zhenghaowei@loongson.cn/
+
+Binbin Zhou (3):
+  dt-bindings: serial: Add Loongson UART controller
+  serial: 8250: Add Loongson uart driver support
+  LoongArch: dts: Add uart new compatible string
+
+ .../serial/loongson,ls2k0500-uart.yaml        |  60 ++++++
+ MAINTAINERS                                   |   8 +
+ arch/loongarch/boot/dts/loongson-2k0500.dtsi  |   2 +-
+ arch/loongarch/boot/dts/loongson-2k1000.dtsi  |   2 +-
+ arch/loongarch/boot/dts/loongson-2k2000.dtsi  |   2 +-
+ drivers/tty/serial/8250/8250_loongson.c       | 200 ++++++++++++++++++
+ drivers/tty/serial/8250/8250_port.c           |   8 +
+ drivers/tty/serial/8250/Kconfig               |  10 +
+ drivers/tty/serial/8250/Makefile              |   1 +
+ include/uapi/linux/serial_core.h              |   1 +
+ 10 files changed, 291 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/serial/loongson,ls2k0500-uart.yaml
+ create mode 100644 drivers/tty/serial/8250/8250_loongson.c
+
+
+base-commit: b601e1f41edd4667062aa7cccb4e5199814979a3
 -- 
-2.51.0
+2.47.3
 
 
