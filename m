@@ -1,353 +1,131 @@
-Return-Path: <devicetree+bounces-214786-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7A4B4A5FB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:51:59 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 811F4B4A5F4
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:51:08 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43CAD3A2BC1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:51:58 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 515B24E2625
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:51:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 127CF274FF1;
-	Tue,  9 Sep 2025 08:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b="ltDOABSV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31DE42737E7;
+	Tue,  9 Sep 2025 08:51:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0585C273D66
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 08:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1671C27144A;
+	Tue,  9 Sep 2025 08:51:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757407912; cv=none; b=lNZBz5Eec+QT+JDjfqsVhDrcjFfktqSo7dsQ7hUjydiieU6VrHsbUBy7nz3r5DcK/eAhrzp39n1UaxasfsXuDf9tvav0xVfdGmeVFDaPyicrgFKLQSGYpaxdrCevEqeJlD12SBPmVJ0vRG8kP5k+/5+1WJYFMAR/mNVXljp8l6c=
+	t=1757407863; cv=none; b=kvulyknuxRdSuNRURdQxnSLFRH0cODBAWXQwLRIx8VixBSxAq2oYVigX5r98oYQT5BHf89NrcokQhOSoLFEs5iAG0vXpXhNOGklWmEC1PLf0bOq/rQvfYAJSz37v/HG+flQxsv7KLD5vsBdNM+UX4FMYck15O6kVxvmTeoTQXUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757407912; c=relaxed/simple;
-	bh=V2LD4c2YqvvZsVb5vESU9/gd6wD8GomVEn03Q1TEoGs=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=BszzMzrhzX2epx6M3x1jdiyJdFAN5V9SPep/q1MBab6s3tWAaA0sN2zH08DdUmP/Zfw8D4RN9SIRWri7A760vDLKHVBaDceRv9EWZ+8Bgw43TGJrGlgzbGZUjRM3xt7v9iau5fX31NcMHn3/63R8apl4FjQysRi1qCC/Yt4asBM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk; spf=pass smtp.mailfrom=thegoodpenguin.co.uk; dkim=pass (2048-bit key) header.d=thegoodpenguin-co-uk.20230601.gappssmtp.com header.i=@thegoodpenguin-co-uk.20230601.gappssmtp.com header.b=ltDOABSV; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=thegoodpenguin.co.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=thegoodpenguin.co.uk
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45df0cde41bso2026185e9.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 01:51:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=thegoodpenguin-co-uk.20230601.gappssmtp.com; s=20230601; t=1757407908; x=1758012708; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tHOTfsWdn/6gtCaqm3kyodB2aISE9a8blixZBCDKEC0=;
-        b=ltDOABSVqTsGV825nIpTAAJaEfXwjAihqfxwt+ds5dPG2f7IcAXwblMDzYza4tVg7n
-         cuFVFYQFg913RoAqnOxsEXVioHGHwcW98bduwLB7xJyqjQQW+yxS7W41kKxXBL+7E7E+
-         XVZeCXnQcH4+TwFNmvVsnUaAHVM/A5D5/7z0Dos8AEkf9XkkCkUZFbtMNXp3dpjlebnG
-         uzQinEK+Y3JM+3Ant/c1t5wophlzUbUgtSlbJ5FBBLvaJDoRXYVOoJ7elEd9+aofWESG
-         uMyQ5QYcKVLo/aoYeTeta42vhnnLYhhqdfihh2/O9fWAqNiJo3rrGAx65Kb8LirUTdWx
-         PKDQ==
+	s=arc-20240116; t=1757407863; c=relaxed/simple;
+	bh=oXI5NNqZkYQCm/u7n/ukm4R+mLuIcKnlQhoACRUnzBc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Uec7DEEKE3yJtQythqVABz0dsoYT0XBz/8aL+J5OwhR5j99IY0/7prWicSXaSkDYRzpUVsL9wVYe7j022PbifYaoSqsmqMhYjqSL0uW8ZDrzR4pYDXKzCLbcYWyvaG34fvO79YSQhr4T00nIbQoE6KmV2+1PHZchIaVBBSuN8UY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.221.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-544c620d486so3547124e0c.1;
+        Tue, 09 Sep 2025 01:51:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757407908; x=1758012708;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1757407860; x=1758012660;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=tHOTfsWdn/6gtCaqm3kyodB2aISE9a8blixZBCDKEC0=;
-        b=sRrkb/hnTfp6rFuTazHSBMgzWCnSuo7ySxipaC+ry/dAgv3o7EhqzyiaslxU9bQhxr
-         o26WwRzW/j/G0Gf696gDNyS/8nFCH5Obc6H76yAmlhF21Rec+7B1lYoWPkzx0djfY3Fc
-         99+tS0mKzUX+LyIphKihcWtQ9/TbJYCGI3hQu9RMcJYn01UW3JiMaeKvEMaWVyiBJEz9
-         QUI09TdrBYej9SQ80rbAXC7IlwOnR7VTvimG2+r4nRcQbIf5Za9YwjZeWm0IA/wzyg6I
-         7XdfqDscEM5rJv2QQDHh2Mb+c2X8oR0ICRufAt+ubizQ0x9COrbxd0O0L3SaKI3/HED6
-         UkKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpsVHgHi4lnFp1Jeeqw7MhI0KnBJz3tVbX/oI7ms+2sMVQbGf/b/f0K7Xl3ph9XttwPNHKuPNV+l/X@vger.kernel.org
-X-Gm-Message-State: AOJu0YzeVK56IvyodXuimPfBSRjIWxjOHYRUTwW0zCV6HXsF9s/enOkg
-	BzJXxaT5s7CQG/DNZEdULEY++lrQFS6zjx5+V8LY6PhxAfJs4nazSuFzNzgFTWxpygfsFLJwKwD
-	NVGdLH5k=
-X-Gm-Gg: ASbGncs+/5SHRtQzvZUKUj4ih5wnfHc1NvVlQzhMOvtakk8g/Y5Y6SHZXzGGLeFIaKq
-	sw6F0Po8Htfb169qeMjmv5Fezn9/temOazpHfpkf0fWyX96ZRLDiLuxXWrUb3uEv3h5ajNqkkuX
-	Nc7N7mLqj8xyc/j1dhyKOiLCSObpVlmcjS6/Xv+GlIX0qvY+hjyZpiTowhELNmIXpZYHukDP1lH
-	mdoW8/JfXB569N5Pmr2QGS5tg9+rQfCwSG2wTy1ncEeJGkkMu+AB7GwD6QhKNFeJfx/jkVEAxuo
-	50s6OjrPRk/X78FFEdqgK20YfClG92DYUaUGDWOQVILX/KaSyLnADL7z2sNYjqG+BXPuc1Psyu3
-	bN6DjtlElE8p6zPyxbU4IW6xG4FRLf7AGBW1WLvET5/NiY07/9Uu4T2RsNw==
-X-Google-Smtp-Source: AGHT+IEPSBuO9Gho/ytg2wOmIg3pXkxG0F3RZPO+7vrq2Q8pxjaaLAsoZ56SGlT+JonILgddvkWrgA==
-X-Received: by 2002:a05:600c:4fcd:b0:45d:dae8:b137 with SMTP id 5b1f17b1804b1-45dddec8468mr90281295e9.22.1757407908240;
-        Tue, 09 Sep 2025 01:51:48 -0700 (PDT)
-Received: from [127.0.1.1] ([2a02:c7c:8a3e:8c00:8286:d205:8f5a:7f5e])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45b7e8ab14esm518120955e9.21.2025.09.09.01.51.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 01:51:47 -0700 (PDT)
-From: Harrison Carter <hcarter@thegoodpenguin.co.uk>
-Date: Tue, 09 Sep 2025 09:50:04 +0100
-Subject: [PATCH] dt-bindings: leds: as3645: Convert to DT schema
+        bh=cdcfZqS9iB3O/iqg68OVppVJ6FUG/QnpVMsyxDD3tY8=;
+        b=maM3KB0bvT+hMaq5BuwYLdh6qZ/bAtaTiun6J73a07hQF47ahooXa756QxSZ2o6nZ4
+         CVIhsJBuRBO0zzc6ObBgT4h8W5wqd5O0FzzrZQm+tJKKtUaorQD2VuyImFLtfvB7EFZc
+         DM4SCcPv13Ch4kRb6QsFz2kQ+7UDme9PFefyDzil11A5sHvlwSA58LogK5+aoMMTfmib
+         JworOJ3WunXd/U802mAwmJrRpg5JyrxcXW/fNFvp/t5rfk8O4zCzrpAipPnfF/sx133S
+         96RPEQjAr7IL1nMD0xazL6OIUwpm6NtcPKfdRoVzywlDdNyjYCie2HxRh0daIWunj0Zk
+         JkfA==
+X-Forwarded-Encrypted: i=1; AJvYcCWhAmD+WTBajNSA7MPf8iATkLwIX1M0VVu8/6D5V/VmLy8Zrl4S5QeFlQApCNL0B+9p9zZNb+stEBs0@vger.kernel.org, AJvYcCX+Nr6OBptICAUYiHYW1fXR8ZRbYD7ZI4Ye2MPgDiYzDfwPtolckkt8kasUa0mvA4K+gbbq/RT6tDN/UIAYuZ4WNqw=@vger.kernel.org
+X-Gm-Message-State: AOJu0Ywe8uNKcHgb6SSOZgZLGZXab3v07U0Yo1uQCD7hOTyr7XsOgOkw
+	Bgdaw09k5cmtwe+22/EtLePhSgwFDQ+glxhaSjrifSU2dcQHMnqgKTOt8i6JA9yx
+X-Gm-Gg: ASbGnctjAmC0YZdMNZ9SnrWtKnYcdwyXtV95gRmo+6bixCqG2Jt+bdqyBAlcYW/zumj
+	UJ+40pOil/ok860cjW4gjB8QS2rQtcfr/4833SFVC/uyca4uoqBN2Qfukmni+aPdcngSH6bXaIh
+	H//JwXMckMgQrLftJqpHKtBVi+Yl1xXlWLwmzeIiMQXjVWVJubeUPefMPCQ455CEJzKVFmRvvSF
+	eTP1w2jUAdhXhpJcMxLogW4exRe19S4hOXOlEXLCjQ01AvHAbep2Xyif5sJvKnq1HsA6jTMppW+
+	X9i7+1oS5QrU+8InElOJ8m0snwBnDcZf/Uo2wejgbWXJBuW3esFhtFViCO4J8Ose9Q9qPyi/eDV
+	9KPlSQyKQlgK6fazS965Bzf3h1CitVI4eW5LxXhUrOSEJGKRJGUcowgkS19uqizLZ/WNP/1g=
+X-Google-Smtp-Source: AGHT+IGHaym5+aIiq1Fwb1M837wbKIr5FGzqK/gLH+6xHWignnltM3TjUaleSBSMasx0g8ALPitdeg==
+X-Received: by 2002:a05:6122:e44:b0:549:f04a:6eb3 with SMTP id 71dfb90a1353d-549f04a706emr357437e0c.9.1757407859873;
+        Tue, 09 Sep 2025 01:50:59 -0700 (PDT)
+Received: from mail-ua1-f42.google.com (mail-ua1-f42.google.com. [209.85.222.42])
+        by smtp.gmail.com with ESMTPSA id 71dfb90a1353d-54491464b0csm12818311e0c.18.2025.09.09.01.50.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Sep 2025 01:50:59 -0700 (PDT)
+Received: by mail-ua1-f42.google.com with SMTP id a1e0cc1a2514c-89018e9f902so3063069241.0;
+        Tue, 09 Sep 2025 01:50:59 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUK/vN4EogS31+xY7Zh8hn/l/VgdVZyAL4t3z0yb2u2Y9epKldsHgRlKH3QkjR7fnwx7wSSpLAZ11XyKFeAsr+ZcQA=@vger.kernel.org, AJvYcCVhdTBqDZezytaJKTDMOy+tE4dQc+5Fs4JL0v3Y/CO/bvjxzC35xX3NRyedzD3mfiy4L4kOVPCNXAww@vger.kernel.org
+X-Received: by 2002:a05:6102:5803:b0:519:f3b6:a1ae with SMTP id
+ ada2fe7eead31-53d13579b34mr3248861137.22.1757407859410; Tue, 09 Sep 2025
+ 01:50:59 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-ams-txt-to-dt-schema-v1-1-8a30c25c8295@thegoodpenguin.co.uk>
-X-B4-Tracking: v=1; b=H4sIADvqv2gC/x3MPQqAMAxA4atIZgOxalGvIg6lRpvBH5oignh3i
- +M3vPeAchRWGIoHIl+icuwZVVmAD25fGWXOBkOmpZ4suk0x3QnTgXNC9YE3h64zFRNT7RsLOT0
- jL3L/23F63w8xQxsIZgAAAA==
-X-Change-ID: 20250906-ams-txt-to-dt-schema-a821e0e03c46
-To: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>, 
- Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, 
- Harrison Carter <hcarter@thegoodpenguin.co.uk>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757407907; l=6995;
- i=hcarter@thegoodpenguin.co.uk; s=20250904; h=from:subject:message-id;
- bh=V2LD4c2YqvvZsVb5vESU9/gd6wD8GomVEn03Q1TEoGs=;
- b=rBNQmeJz2PGwDsJGqsOXX1epHswRma8CnJWbRuPlFCb/5p6jTQoQIf6sw7hPS2IOHOXk5e2xF
- vO8j5IPQsetDeZKfN9rMtlGcGk8POnv+7EMXTif4JMkRYPWHczIEqIu
-X-Developer-Key: i=hcarter@thegoodpenguin.co.uk; a=ed25519;
- pk=xn5ghTMMWQniDtZih4xwKCTAaBHDozflTmqNKtaKo6s=
+References: <87tt1c9z7h.wl-kuninori.morimoto.gx@renesas.com>
+ <87plc09z6j.wl-kuninori.morimoto.gx@renesas.com> <20250909-woodlouse-of-authentic-fertility-1cea2c@kuoka>
+ <CAMuHMdXd6yhi2SBHBvq+0LF4kBnjm3igVb21TYaKoWSvjPGcEg@mail.gmail.com> <df2dcd5d-bafc-483a-8ef5-f58ff225fc91@kernel.org>
+In-Reply-To: <df2dcd5d-bafc-483a-8ef5-f58ff225fc91@kernel.org>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 9 Sep 2025 10:50:48 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVM64FD_ObmkUpzWrr3eerM1w9hBZpsVde6Jf27xjuHOA@mail.gmail.com>
+X-Gm-Features: AS18NWAsmqbNH3OvseZ4z41pwnjf0gMcu1uQ0RCtMahnSEq1S-8F43CpMV9PuL4
+Message-ID: <CAMuHMdVM64FD_ObmkUpzWrr3eerM1w9hBZpsVde6Jf27xjuHOA@mail.gmail.com>
+Subject: Re: [PATCH 3/4] arm64: dts: renesas: Add R8A78000 X5H DTs
+To: Krzysztof Kozlowski <krzk@kernel.org>
+Cc: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>, Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Convert the ams,as3645a.txt to DT Schema format.
+Hi Krzysztof,
 
-maintainer: set to what I found in MAINTAINERS
+On Tue, 9 Sept 2025 at 10:38, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> On 09/09/2025 09:51, Geert Uytterhoeven wrote:
+> > On Tue, 9 Sept 2025 at 09:46, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> >> On Tue, Sep 09, 2025 at 01:45:09AM +0000, Kuninori Morimoto wrote:
+> >
+> >>> +     extal_clk: extal {
+> >>
+> >> Use some sane prefix.
+> >>
+> >> https://web.git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/clock/fixed-clock.yaml
+> >>
+> >>> +             compatible = "fixed-clock";
+> >>> +             #clock-cells = <0>;
+> >>> +             /* This value must be overridden by the board */
+> >>> +             clock-frequency = <0>;
+> >>
+> >> Drop instead
+> >
+> > clock-frequency is a required property?
+>
+> And it should be provided by the board or fail the DTS. I think now it
+> hides the dtbs_check warnings for no real gain/reason.
 
-Signed-off-by: Harrison Carter <hcarter@thegoodpenguin.co.uk>
----
- .../devicetree/bindings/leds/ams,as3645a.txt       |  85 --------------
- .../devicetree/bindings/leds/ams,as3645a.yaml      | 130 +++++++++++++++++++++
- 2 files changed, 130 insertions(+), 85 deletions(-)
+In this particular case, the clock-frequency could indeed be omitted
+n the .dtsi, as the extal clock is mandatory, thus must always be
+augmented in board .dts.
+In case of optional clocks (e.g. serial, PCIe, or CAN external clock
+oscillators may not be populated on all boards), it is different.
 
-diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.txt b/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-deleted file mode 100644
-index 4af2987b25e92394ebd46456e30002d3ae3a6101..0000000000000000000000000000000000000000
---- a/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-+++ /dev/null
-@@ -1,85 +0,0 @@
--Analog devices AS3645A device tree bindings
--
--The AS3645A flash LED controller can drive two LEDs, one high current
--flash LED and one indicator LED. The high current flash LED can be
--used in torch mode as well.
--
--Ranges below noted as [a, b] are closed ranges between a and b, i.e. a
--and b are included in the range.
--
--Please also see common.txt in the same directory.
--
--
--Required properties
--===================
--
--compatible	: Must be "ams,as3645a".
--reg		: The I2C address of the device. Typically 0x30.
--#address-cells	: 1
--#size-cells	: 0
--
--
--Required properties of the flash child node (0)
--===============================================
--
--reg: 0
--flash-timeout-us: Flash timeout in microseconds. The value must be in
--		  the range [100000, 850000] and divisible by 50000.
--flash-max-microamp: Maximum flash current in microamperes. Has to be
--		    in the range between [200000, 500000] and
--		    divisible by 20000.
--led-max-microamp: Maximum torch (assist) current in microamperes. The
--		  value must be in the range between [20000, 160000] and
--		  divisible by 20000.
--ams,input-max-microamp: Maximum flash controller input current. The
--			value must be in the range [1250000, 2000000]
--			and divisible by 50000.
--
--
--Optional properties of the flash child node
--===========================================
--
--function	:  See Documentation/devicetree/bindings/leds/common.txt.
--color		:  See Documentation/devicetree/bindings/leds/common.txt.
--label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
--
--
--Required properties of the indicator child node (1)
--===================================================
--
--reg: 1
--led-max-microamp: Maximum indicator current. The allowed values are
--		  2500, 5000, 7500 and 10000.
--
--Optional properties of the indicator child node
--===============================================
--
--function	:  See Documentation/devicetree/bindings/leds/common.txt.
--color		:  See Documentation/devicetree/bindings/leds/common.txt.
--label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
--
--
--Example
--=======
--
--#include <dt-bindings/leds/common.h>
--
--	as3645a@30 {
--		#address-cells = <1>;
--		#size-cells = <0>;
--		reg = <0x30>;
--		compatible = "ams,as3645a";
--		led@0 {
--			reg = <0x0>;
--			flash-timeout-us = <150000>;
--			flash-max-microamp = <320000>;
--			led-max-microamp = <60000>;
--			ams,input-max-microamp = <1750000>;
--			function = LED_FUNCTION_FLASH;
--		};
--		led@1 {
--			reg = <0x1>;
--			led-max-microamp = <10000>;
--			function = LED_FUNCTION_INDICATOR;
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.yaml b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-new file mode 100644
-index 0000000000000000000000000000000000000000..f956c20cc8fb379f370ad785a3d75f27d0cfa032
---- /dev/null
-+++ b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-@@ -0,0 +1,130 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/leds/ams,as3645a.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AS3645A LED Controller
-+
-+maintainers:
-+  - Sakari Ailus <sakari.ailus@iki.fi>
-+
-+description: |
-+  The AS3645A flash LED controller can drive two LEDs, one high current
-+  flash LED and one indicator LED. The high current flash LED can be
-+  used in torch mode as well.
-+
-+properties:
-+  compatible:
-+    const: ams,as3645a
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+  reg:
-+    maxItems: 1
-+
-+  led@0:
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        const: 0
-+
-+      flash-timeout-us:
-+        minimum: 100000
-+        maximum: 850000
-+        description: |
-+          Flash timeout in microseconds. Must be divisible by 50000
-+
-+      flash-max-microamp:
-+        minimum: 200000
-+        maximum: 500000
-+        description: |
-+          Maximum flash current in microamperes. Must be divisible by 20000
-+
-+      led-max-microamp:
-+        minimum: 20000
-+        maximum: 160000
-+        description: |
-+          Maximum torch (assist) current in microamperes Must be divisible by 20000
-+
-+      ams,input-max-microamp:
-+        minimum: 1250000
-+        maximum: 2000000
-+        description: |
-+          Maximum flash controller input current. Must be divisible by 50000
-+
-+    required:
-+      - reg
-+      - flash-timeout-us
-+      - flash-max-microamp
-+      - led-max-microamp
-+      - ams,input-max-microamp
-+
-+  led@1:
-+    type: object
-+    $ref: common.yaml#
-+    unevaluatedProperties: false
-+
-+    properties:
-+      reg:
-+        const: 1
-+
-+      led-max-microamp:
-+        enum:
-+          - 2500
-+          - 5000
-+          - 7500
-+          - 10000
-+        description: |
-+          Maximum indicator current. The allowed values are 2500, 5000, 7500 and 10000.
-+
-+    required:
-+      - reg
-+      - led-max-microamp
-+
-+required:
-+  - compatible
-+  - reg
-+  - "#size-cells"
-+  - "#address-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/leds/common.h>
-+
-+    i2c{
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        as3645a@30 {
-+            compatible = "ams,as3645a";
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+            reg = <0x30>;
-+
-+            led@0 {
-+                reg = <0>;
-+                flash-timeout-us = <150000>;
-+                flash-max-microamp = <320000>;
-+                led-max-microamp = <60000>;
-+                ams,input-max-microamp = <1750000>;
-+                function = LED_FUNCTION_FLASH;
-+            };
-+
-+            led@1 {
-+                reg = <1>;
-+                led-max-microamp = <10000>;
-+                function = LED_FUNCTION_INDICATOR;
-+            };
-+        };
-+    };
-+...
+Gr{oetje,eeting}s,
 
----
-base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-change-id: 20250906-ams-txt-to-dt-schema-a821e0e03c46
+                        Geert
 
-Best regards,
 -- 
-Harrison Carter <hcarter@thegoodpenguin.co.uk>
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
 
