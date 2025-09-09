@@ -1,153 +1,115 @@
-Return-Path: <devicetree+bounces-214625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26EB7B49E85
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 03:05:42 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DD9DB49EBE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 03:34:32 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4E8041B25CE8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:06:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F36BC3AB53B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:34:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B28AC21E0BE;
-	Tue,  9 Sep 2025 01:05:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QQbBUUZO"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFAAF22D785;
+	Tue,  9 Sep 2025 01:34:28 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from bg5.exmail.qq.com (bg5.exmail.qq.com [43.155.80.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8020F209F43;
-	Tue,  9 Sep 2025 01:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2355221C9E5;
+	Tue,  9 Sep 2025 01:34:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=43.155.80.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757379937; cv=none; b=axHL4MF/PhbfLnH8CRu9g289yxqLtkf9qv9Fg8H2vgY+t1DOuAxLeq51tmBrrzp6M/aX19PnpjaEFKD7PDzbJTLK5JrBzwPw74OWya2ejNh+43f8D3wRaPOUeIJc9LAdotulLZOP5svGVvylMmABTSOwkjphCwxla1cYOZfi1IE=
+	t=1757381668; cv=none; b=AEwL1DstT+aobFkFdVK0NGrA0FGQCwe6ZitWj+N2J4W77/PvngsmhmNzkn7LwsCY8hbKTNK1R+KiBzRPJpLnca5mGDh2aFsUCo1sjDngMJG1ZZ57QAjxq+Vh9/sDy43fjyltPXREr/o+SkCv+gJF71CzAuyS89BkLGvjOArDrIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757379937; c=relaxed/simple;
-	bh=lOMpq9HD8ZJq2w0ihl+zDHfmveKIJThydH7VNjKRaeo=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=F17gbTWAu0TROt2f7nxLcAmnxtiGHY9zrShBPFIPceUQMnCYpG1ol3aY6w+TWNPFl7aFNocNxc2XEMiF1dViaMb7cpI/Bh24JbuVTasp1KsEijXJWsSptsfGqZhqMVWVDdq9EaeR8H8UvWPAfNoZW49G4nLoR0swjJDenuKtCgU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QQbBUUZO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F907C4CEF1;
-	Tue,  9 Sep 2025 01:05:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757379936;
-	bh=lOMpq9HD8ZJq2w0ihl+zDHfmveKIJThydH7VNjKRaeo=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=QQbBUUZOEKmgcyR1PIp+AIKCcwn8fPT8bMELctKOeIciHM8ykBO4tFcJ3NYKG2ylm
-	 M1jxFnADvYk6FZIvi6lSOKzJL0YiuJkMMFKSXZshklN94Uy9IOvXD9dcPop+KGwwvm
-	 P1kzpVbIka7Cg/zuycgcpr91a3iXXncT16Iwd2YCsKS++LsFuOv6NhHNFxewmBt0t0
-	 C1fB1BHQ/z2a/UxdxfLOzMkR0gioVk5kfbUcD9q2/2DTFHImi8s0xncgbEDz6umetX
-	 0R+SgapDsxKYnG8EmRean8vT6oZfwIGm8el7SfSu17WZjVBR7Szo31squJU28nW0dl
-	 Se2KrausOUZkQ==
-Date: Mon, 8 Sep 2025 18:05:35 -0700
-From: Jakub Kicinski <kuba@kernel.org>
-To: =?UTF-8?B?xYF1a2Fzeg==?= Majewski <lukasz.majewski@mailbox.org>
-Cc: Andrew Lunn <andrew+netdev@lunn.ch>, davem@davemloft.net, Eric Dumazet
- <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, Richard Cochran
- <richardcochran@gmail.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, Stefan Wahren
- <wahrenst@gmx.net>, Simon Horman <horms@kernel.org>
-Subject: Re: [net-next v19 4/7] net: mtip: Add net_device_ops functions to
- the L2 switch driver
-Message-ID: <20250908180535.4a6490bf@kernel.org>
-In-Reply-To: <20250907183854.06771a13@wsk>
-References: <20250824220736.1760482-1-lukasz.majewski@mailbox.org>
-	<20250824220736.1760482-5-lukasz.majewski@mailbox.org>
-	<20250827082512.438fd68a@kernel.org>
-	<20250907183854.06771a13@wsk>
+	s=arc-20240116; t=1757381668; c=relaxed/simple;
+	bh=GR5EMTRphhCH44tJC9xw/gzcmFFoMIZVZOMaa4839k0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=CYB0AwyUatzw91V6rVEl7ztW44CiLzUIQ11xJtf06FKfsyIobrpQpTmkslzHCO2UA2GF1uAvxC/IfjXnYhxaNY4jB2uCtqWBaBC0g5HcCyhrf3avJAcGv0BOA8c8m1DHaX12VjOT2kSt4+A57XDZ1SuksGMOId/8pi3AJ55hXSU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn; spf=pass smtp.mailfrom=t-chip.com.cn; arc=none smtp.client-ip=43.155.80.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=t-chip.com.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=t-chip.com.cn
+X-QQ-mid: esmtpsz16t1757381621taf35abd6
+X-QQ-Originating-IP: GkvDGhRfvU5f3ziOtpKn3TX27MEXcp6MDTyVpMjXBxk=
+Received: from localhost.localdomain ( [183.51.121.90])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Tue, 09 Sep 2025 09:33:39 +0800 (CST)
+X-QQ-SSF: 0000000000000000000000000000000
+X-QQ-GoodBg: 0
+X-BIZMAIL-ID: 15890518757870112891
+EX-QQ-RecipientCnt: 16
+From: Kaison Deng <dkx@t-chip.com.cn>
+To: Rob Herring <robh@kernel.org>,
+	Jimmy Hon <honyuenkwun@gmail.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>
+Cc: Wayne Chou <zxf@t-chip.com.cn>,
+	Quentin Schulz <quentin.schulz@cherry.de>,
+	Dragan Simic <dsimic@manjaro.org>,
+	Jonas Karlman <jonas@kwiboo.se>,
+	FUKAUMI Naoki <naoki@radxa.com>,
+	Peter Robinson <pbrobinson@gmail.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Kaison Deng <dkx@t-chip.com.cn>
+Subject: [PATCH v2 0/2] Add support for Firefly ROC-RK3588-RT
+Date: Tue,  9 Sep 2025 09:31:46 +0800
+Message-Id: <cover.1757322046.git.dkx@t-chip.com.cn>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-QQ-SENDSIZE: 520
+Feedback-ID: esmtpsz:t-chip.com.cn:qybglogicsvrsz:qybglogicsvrsz4a-0
+X-QQ-XMAILINFO: M/5qe47GLMYO7J3VNDqF1neGr/2SGH9GQfI+Yb+JBzt0PyeyHldPYxhu
+	nTNscmx8DcEdnlZmVGHoe2HT2d754bxzchs3y3qGSjzkADBgTf3g3jCC3TCnFTSqZYH1H59
+	UJ4Gqj+Hz7gsB9Jq87pzkHGi8vktb2y3YAgITx+wOrv6lTIqq7JBBld8X/oBBmnx9v4zgQZ
+	RTMAtY7gmAjszFLLIBG0rbbUV0DyL99+01Wnt7UYB+irVi9ub+OOob/1LnT0Qe8S1HcL1Vx
+	YYQwKXnDrZIO2/kX+QC+rPwXomU8T1BHkfc+P7kf10xhB+pn+cg9/TTCGxxX3g6ezRMG7sr
+	pcc1xxq4QxjAd8mSfcbvjY2m+voS4vQC7n5dSjOf7JWKo6NLmd3IIfvyvklT1G8zgQD+4Si
+	gV9dQQmMAb92S7JAMpkLKKH3CLv23TBkeOxz0yZ20+R4Y3jLS1vHvJHo5ydrYXBU+Y5Q+cW
+	LGTagn8Bg1QxkP88DQ9ZeBJIPVxfgC7nFVHjaBEQQlwwjB+iKrfEVmmQJWvyoM0OjdofNrM
+	aQwhF0xD5WJiOFZ7hwwjXFmkDMafrNm3UHZnxf36YeFUwS3q0sQmr0xsVyQu/62/ukF32g9
+	3U/qTS1Cg4bCsnT0/c5fvrFt5ok7HX0iPIg+3Tsjww8BLV+5hfOZdzG0/vT/McXN2X5KHg+
+	HTNbLfdjMwdmY/kaDSkDDutl4a9c7zMM1C5jguwMQF61Vp2IE1yEl+zz1FsGdN0816ZLG4B
+	vQ11YDrBCRzE+EpdEH7MY9SOOcMnapdQ82CCrOoNkrQjC5Lx6cE8uwTNb0W0nTWpfUt8BCl
+	lUbNugkDuCaVG3hrwPAYxDPQVH0uqcGiGOFma5ZGOhlJ8bTNPaHbdFxswNbjVXhFzwetZDI
+	CuntXKsSghck7RxKYM/4KScB9O7+TFIkGF4ntq9jPiZXTgNw+RoXSo2V5O999DSK3WBs8jC
+	LWbNSt4Ogaay/qux/75GaABhv022FWhmJopsGjVAhZKcuc9aPAh51D393R5f9JfquyG8OdY
+	tpupLAZn6XFAuKvv2TsSCLBzRiDZFtwmaYv3HfT/3mQcfOCdx4GD9JBqYuLXvLOQ/i4GPhf
+	JTe7MgfffV0CN9d+SuzUxOLayoaQ7WD8svBYIzCxfp4PCJj2Vx6bQTDg/3d0ShFLA==
+X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+X-QQ-RECHKSPAM: 0
 
-On Sun, 7 Sep 2025 18:38:54 +0200 =C5=81ukasz Majewski wrote:
-> > On Mon, 25 Aug 2025 00:07:33 +0200 Lukasz Majewski wrote: =20
-> > > +	/* Set buffer length and buffer pointer */
-> > > +	bufaddr =3D skb->data;   =20
-> >=20
-> > You can't write (swap) skb->data if the skb is a clone.. =20
->=20
-> I do use skb =3D buld_skb() which, "builds" the SKB around the memory
-> page (from pool).
->=20
-> Then, I "pass" this data (and swap it) to upper layer of the network
-> stack.
->=20
-> The same approach is used in the fec_main.c driver:
-> https://elixir.bootlin.com/linux/v6.17-rc3/source/drivers/net/ethernet/fr=
-eescale/fec_main.c#L1853
+This series add support for Firefly ROC-RK3588-RT.
 
-I probably cut out too much context. I think I was quoting from Tx,
-indeed on Rx this is not an issue.
+Info of device can be found at:
+https://en.t-firefly.com/product/industry/rocrk3588rt
 
-> What I'm trying to do - is to model the HW which I do have...
->=20
-> When switch is enabled I do have ONE uDMA0 which works for both eth
-> ports (lan0 and lan1).
->=20
-> That is why I do have only one NAPI queue.
->=20
-> > What makes my head spin is that you seem to record which
-> > netdev/port was doing Rx _last_ and then pass that netdev to
-> > mtip_switch_tx(). Why? =20
->=20
-> You may have port =3D=3D 1 || port =3D=3D 2 when you receive packet from =
-ingres
-> ports.
-> You may also have port =3D=3D 0xFF when you first time encounter the SA on
-> the port and port =3D=3D 0 when you send/receive data from the "host"
-> interface.
->=20
-> When port 1/2 is "detected" then the net dev for this particular port
-> is used. In other cases the one for NAPI is used (which is one of those
-> two - please see comment above).
->=20
-> This was the approach from original NXP (Freescale) driver. It in some
-> way prevents from "starvation" from net devices when L2 switch is
-> disabled and I need to provide port separation.
->=20
-> (port separation in fact is achieved by programming L2 switch registers
-> and is realized in HW).
+Changes in v2:
+- Add devicetree binding documentation for the Firefly ROC-RK3588-RT
+- Update the description to match the device tree
+- Adjust the descriptions of the model and compatible properties
+- Add audio support for hdmi0 and hdmi1
+- Adjust the attributes of sdhci in alphabetical order
 
-But what if we have mixed traffic from port 1 and 2?
-Does the current code correctly Rx the packets from port 1 on the
-netdev from port 1 and packets from port 2 on the netdev from port 2?
+Kaison Deng (2):
+  dt-bindings: arm: rockchip: Add Firefly ROC-RK3588-RT
+  arm64: dts: rockchip: Add devicetree for the ROC-RK3588-RT
 
-> > Isn't the dev that we're completing Tx for is
-> > best read from skb->dev packet by packet? =20
->=20
-> It may be worth to try.... I think that the code, which we do have now,
-> tries to reuse some kind of "locality".
->=20
-> > Also this wake up logic
-> > looks like it will wake up _one_ netdev's queue and then set tx_full
-> > =3D 0, so presumably it will not wake the other port if both ports
-> > queues were stopped. Why keep tx_full state in the first place? Just
-> > check if the queues is stopped..? =20
->=20
-> As I said - we do have only ONE queue, which corresponds to uDMA0 when
-> the switch is enabled. This single queue is responsible for handling
-> transmission for both ports (this is how the HW is designed).
+ .../devicetree/bindings/arm/rockchip.yaml     |    5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+ .../arm64/boot/dts/rockchip/rk3588-roc-rt.dts | 1136 +++++++++++++++++
+ 3 files changed, 1142 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3588-roc-rt.dts
 
-Right but kernel has two SW queues. Which can be independently stopped.
-So my concerns is that for example port 1 is very busy so the queue is
-full of packets for port 1, port 1's netdev's queue gets stopped.
-Then port 2 tries to Tx, queue is shared, and is full, so netdev 2's
-SW queue is also stopped. Then we complete the packets, because packets
-were for port 1 we wake the queue for port 1. But port 2 also got
-stopped, even tho it never put a packet on the ring..
+-- 
+2.25.1
 
-Long story short I think you need to always stop and start queues from
-both netdevs.. There's just 2 so not too bad of a hack.
 
