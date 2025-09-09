@@ -1,552 +1,347 @@
-Return-Path: <devicetree+bounces-214856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FA92B4AAE8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:50:19 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BA5EB4AB09
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:02:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C94FB3A766F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:50:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B65904E4E36
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5390A31B819;
-	Tue,  9 Sep 2025 10:50:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Qzr0bxKB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2AA6A3019CD;
+	Tue,  9 Sep 2025 11:02:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2056.outbound.protection.outlook.com [40.107.212.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD7131B806;
-	Tue,  9 Sep 2025 10:50:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757415013; cv=fail; b=XUB+Dkm6PYeNz9wF44qyalfK5h+5ztGAaJf1A0R5TnVwIKXzXSFptYfB8cnsV/LKBp7CT0MqWLkhqcrOR0wtfv+rvoFk0/UYCQVq7yosTgmuYHw3qGBdL9J3ysSnAH3VxQkoM/mU4MdikYyTrFkj9zN9vDWVrYs4Q8XlqL0ouy8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757415013; c=relaxed/simple;
-	bh=ytke2R4le/YNNRp98hgypGDkJY9iNUnjYWT+xNCSRO8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=P3ScCHHQj9oL7555EcXUQ0QWbhmTXSOci7smjyAIgZB0pS0pZZyH9oTkPJGelr4EUGAq7sEHv4K5h71K9qZA2+wTY+WksPc5gUfIw5WEgnplbfGCvNNwrsT2LfCq/TdUIzxR/g2TdgR8D16ojdQXBORrn1dC2L/pSDTMvFWLfa0=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Qzr0bxKB; arc=fail smtp.client-ip=40.107.212.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=kk3xdtAr63u/3X5fiNFJLcthhoSDBn2FW0Q7YfMvRBUaSl7NUubsBO1/FA9kY16lPTkHcVWj7tW7qWL9t8rolenVD/c1rl8xqj/m4tl2k6/u+JT2gCzvMOm4DGBa2zMrxb8MDm2mAG9G/XYwpZ+EkzCbz5gK5uDK7NNFxWEzGWAc+n0g/owMwqmJl3wVWYj4NYUWef2RLuDWMyLRmR5gDUI31+f/ITWTggNgz1TCi4XWKqe7a34MslfTiqmYYv7J4moLWLC6ULnFteDKel0dY67jldY/4uMHIyhvZXSlicLEK1Y9ivl1Xu6GcgUlIAIWCrJWcEp/Ty/0afjdkVW7eA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nE4GTf6NnJ/P5WXIMpSjGUxeR6ZfY7R09jg1BC8SBsY=;
- b=sgOlaMZmjmNvGRtY7Kael+8UvHQObbxl/DEPciZef8UnC/lty8Bilu/oWSfp6Ft6PbN6w4raLn8930Ef+70ahQ4Uz4g6aXL130W3XrmvPQAc0Z3p+hoZ/o7werS9WYkVpp1K18ZdF0Dpc2vzxgZA2E1N6a7VRJ9uaWQZekKNjR8+bcn7cXWdnEhNDWQT8FhktqPaRf3AyGqXiJ/jQzK6fXojvXHrKLhd0/cjQR7qqr34llmCsoJ3dd3wN+/OupCp4NGkaS7QNnUBGP7zUK8+wChdReWZ6ztnxP+X+e4bhINxQpc8dB0kTJFCEan8GMmwXKtKrUeGMEZYu2P6TwAIXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nE4GTf6NnJ/P5WXIMpSjGUxeR6ZfY7R09jg1BC8SBsY=;
- b=Qzr0bxKBfUuhH8v/y7h5jojJNV1JohXbQiaCYAgqBU4tFgUqaq59d96N61BMyfCkftgGuZsUMs0JF0xxWr5wNfGrybZC8nxpakGnN3bPsWONR1zu3nwpV4pttQdiL1WFJ2n9JEsv8zc28/24WSCy9S6/Uf7u4Loxek/69NgA8a8=
-Received: from DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) by
- PH7PR12MB5902.namprd12.prod.outlook.com (2603:10b6:510:1d6::8) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9094.22; Tue, 9 Sep 2025 10:50:02 +0000
-Received: from DM4PR12MB6109.namprd12.prod.outlook.com
- ([fe80::680c:3105:babe:b7e1]) by DM4PR12MB6109.namprd12.prod.outlook.com
- ([fe80::680c:3105:babe:b7e1%4]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
- 10:50:02 +0000
-From: "Guntupalli, Manikanta" <manikanta.guntupalli@amd.com>
-To: Frank Li <Frank.li@nxp.com>
-CC: "git (AMD-Xilinx)" <git@amd.com>, "Simek, Michal" <michal.simek@amd.com>,
-	"alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-	"robh@kernel.org" <robh@kernel.org>, "krzk+dt@kernel.org"
-	<krzk+dt@kernel.org>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"kees@kernel.org" <kees@kernel.org>, "gustavoars@kernel.org"
-	<gustavoars@kernel.org>, "jarkko.nikula@linux.intel.com"
-	<jarkko.nikula@linux.intel.com>, "linux-i3c@lists.infradead.org"
-	<linux-i3c@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-hardening@vger.kernel.org"
-	<linux-hardening@vger.kernel.org>, "Pandey, Radhey Shyam"
-	<radhey.shyam.pandey@amd.com>, "Goud, Srinivas" <srinivas.goud@amd.com>,
-	"Datta, Shubhrajyoti" <shubhrajyoti.datta@amd.com>, "manion05gk@gmail.com"
-	<manion05gk@gmail.com>
-Subject: RE: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller driver
-Thread-Topic: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller driver
-Thread-Index: AQHcILLYmOX0ONeXB06A2TueGw6CyLSJctcAgAD0bfA=
-Date: Tue, 9 Sep 2025 10:50:02 +0000
-Message-ID:
- <DM4PR12MB6109F6D5D032723C675472448C0FA@DM4PR12MB6109.namprd12.prod.outlook.com>
-References: <20250908112117.205270-1-manikanta.guntupalli@amd.com>
- <20250908112117.205270-3-manikanta.guntupalli@amd.com>
- <aL7+Urm4NB9kwOwQ@lizhi-Precision-Tower-5810>
-In-Reply-To: <aL7+Urm4NB9kwOwQ@lizhi-Precision-Tower-5810>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-msip_labels:
- MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Enabled=True;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SiteId=3dd8961f-e488-4e60-8e11-a82d994e183d;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_SetDate=2025-09-09T06:39:09.0000000Z;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Name=Open
- Source;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_ContentBits=3;MSIP_Label_f265efc6-e181-49d6-80f4-fae95cf838a0_Method=Privileged
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR12MB6109:EE_|PH7PR12MB5902:EE_
-x-ms-office365-filtering-correlation-id: 2a1e7abc-c1ff-484b-4ed5-08ddef8ea0f7
-x-ld-processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam:
- BCL:0;ARA:13230040|1800799024|7416014|366016|376014|38070700021;
-x-microsoft-antispam-message-info:
- =?us-ascii?Q?dn846sZSdgCOtD5tHtKS5BQRv8sCjcaGGr3MtICL6NexW7WeKG5xIul+S5P/?=
- =?us-ascii?Q?On/rg66B+cexf3O1rrXqS7MbIOASdcHgGVAj3s2V1tDwET72g0N/Cb1UOcjZ?=
- =?us-ascii?Q?3mEb00H9V3zBL7KV39M3ik1kWTtEmpQ0REbU93cnEI/uOz51KpJeAm5thwWJ?=
- =?us-ascii?Q?atPK1hkVfG2z5fhr7/hV2uRuLVVPZ2Z4mBTP/uY1XYNlyVuM03iIaVnhpk5f?=
- =?us-ascii?Q?8FhvLCuGog32y3Bf4iM1d9K1rW6zne+R8rE13FpWmwGhnX5KkosV+5c0ik8O?=
- =?us-ascii?Q?jm0/XKkTyp3eSLxdlbx+KgBx06IRvH9kIYKHSwdKtz9dMzJwFefUsVeuoUz/?=
- =?us-ascii?Q?WZlYDvAqhleMbSaiadhot0OROH9YPIZ6MQEy1hivUqGQARE9tQmr5m0YxHgK?=
- =?us-ascii?Q?rxCgtr/wGfwdMkByJrXORMqopsXGsri1Qn+LztVmV6zRUfPoVOouNMQh1Dpz?=
- =?us-ascii?Q?NfzM2xPTOeUUkItx69GDiK8ZZZXTDxwdWU+6APcjDRvHP/kVfoefJXQUPEmB?=
- =?us-ascii?Q?aa1VUnadsiaMDi3qkOfquHgcfGH5TXX0qRbQm/A2AYbuIi2du6luv0+wQsRA?=
- =?us-ascii?Q?MHgLOdNeM1/2HQpPWaV784S4yYIlTtiCSmRxOFaY4/NkpsIaHtAfIruO3Xdz?=
- =?us-ascii?Q?yBo/EwO98pXhew78Cs778yI0kH+ffVkiC9ByeWGvhH/CU3kP0heoPuerbF3a?=
- =?us-ascii?Q?rL6Urjayf8/KdShc8ipa/v2vFzpVzsjBlRuT0vunXcB6udhE5zIeco03WZ/3?=
- =?us-ascii?Q?LqeN2sr2XvXechN3a3XmpCrW3MaqW7gRbfQiRVBSP/R5fc+62rjk0TZ1PdQO?=
- =?us-ascii?Q?v+6S2jshR+xWea24FAIAHgKoshJPemDkGB265Jpu/UeRtYF+8jzsgkw0fZiF?=
- =?us-ascii?Q?zFgoCMInUnytAhzy91wxSvBZ1f86tXev6TotJJH1tJ9Pu1SqU1JjLR8K4ADx?=
- =?us-ascii?Q?At15b1dBlr/pO2tp/lbGa6glJpqdzORS6rYvSUxMp/XO6/NBelnjq4zGXaTU?=
- =?us-ascii?Q?treOiTHXH0OTaiV1Woqzh4l6J3a61Y3wOAmaFELc0oRzsNh5uBaaUIcnzeRf?=
- =?us-ascii?Q?SZ2UrkORMvwPZWMIne3D2GRkm80FsmSoezx1M3LE5zJGOdj5rcWAFG37jEl2?=
- =?us-ascii?Q?9XfTZx28K9QSwaP7mzxHJaVKxty1r9MZTn5bN9AWtA0HOzTAWFcHoqhHN9op?=
- =?us-ascii?Q?/45WAavLelH0ATw9et81/szh5n/sOcC+4kh6TI5PiT1QgcI89ISNAfg+jB+l?=
- =?us-ascii?Q?rNCJ8gx2j2qM19JNNL279JfCThtgEO+ue4xo4zI5NtH8BRcNFUJnHATDYaho?=
- =?us-ascii?Q?wT+tHVeKyI1qUl3nH1sg8OiWPrSQE5xrPVjJp4jmgkXrweecRNtwbMlIffqE?=
- =?us-ascii?Q?S/hcbaxWXHgVebkryXXu6tk3uEFOqDf9kJIlveVrxV22KNtEugSq0hCT0Bur?=
- =?us-ascii?Q?HQLjk595CvzvQoSO27VvX6O0obhWsVJMSSHihWyAgt6WYwKHeGKpig=3D=3D?=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR12MB6109.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(7416014)(366016)(376014)(38070700021);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?Gs4SFhCwiRBPB3wrPiui4hUUX7QkZqka+B94JtHnmV2ji/UFhDdZeGv9OLgv?=
- =?us-ascii?Q?wfcoUfETSmJJYSFrF1KrTrnL7CMyNNbkPTfRnPhfL2VH0gsE/SfjQvRZWG0Z?=
- =?us-ascii?Q?vChu0NZ9YxAw4flxPuPIEuzejmusOkG3aL3hnLhGVnM9eMo/lwzl5RefEX07?=
- =?us-ascii?Q?HLJUxfglIHihV+5b+Y11TWBQUDh7EkRRcWlp+6RtURaqCH0VfWDh+9w3VOOb?=
- =?us-ascii?Q?b85OlK0qC2UFhy2280csjTNxBKbLuUv7e8o/7vNPYyhE36mI7QWlG8qNSXSl?=
- =?us-ascii?Q?jeZVv4VKxojztXEAoDpc+WlUdDpS+vdXQKh0gVcqdGt2LTnI9+PMALgeEyuu?=
- =?us-ascii?Q?Sj/AJDUkcnxLB3wuqJbqz9dmCmqhRdkJBIZoZXzkM4d5JT5qdfT+lFtYGiDq?=
- =?us-ascii?Q?qG33K63R7VNllsWs/KJ//fb6zUBOaxGO0Np+pBQDSplEsQRNCix1BrzwiXcu?=
- =?us-ascii?Q?vBqTrOBsiMwaNU6FWWi0BmDOLBOPuQEVqlGy4cg15wJBIuCStr3BG3TwW08W?=
- =?us-ascii?Q?Jxdti/9YhFsu2+ePLoOsDxPN7GWrDt2YwsRpWF5Fdiv7UAzjrxq8lRqNMB4f?=
- =?us-ascii?Q?nUDOmaaM1ssiBIkkdeI/hkZOnl/Dc4FqKIAR6H1AjflNWUZUeOPJDO8WxZrM?=
- =?us-ascii?Q?jqZ5QZIHGYEogjOWeuCRCMA77MSEHrKx1i5jKouHWjoUPd5URANPm/fSm8w/?=
- =?us-ascii?Q?lq1iIiOFJVV9edDjxN1MkkvGdM1TgQFx6dckgiA7HbzEgNyZHfHw5KaXunRB?=
- =?us-ascii?Q?+eJr1i/KbtOAd8iI1PrmojYMa4FTSVP5e7sM81nUq7tCUocW4IPVPHHs6IW2?=
- =?us-ascii?Q?SJv8mRRL/AuSfz6YyKWKjOuqlWAS944kM54nOBqQmissbtZIpSklPxKd6oRt?=
- =?us-ascii?Q?Z2HfP7Q2ljGQND8T0RqFADsXLm3DzPlGV+CzmxcL2XELtcGNYVJpWY9jXvhE?=
- =?us-ascii?Q?Id5q7LGnUHVtlvKIwE8XYSu7DMK8BFZbkdW6yiX3MJPdw8IL+OVkBj8nCouo?=
- =?us-ascii?Q?KmmlBpS8m1ddCnTbvw9wXApCaAKPgMDy8q2uuplvMzORBgjvEVcddhRGRBtb?=
- =?us-ascii?Q?3K9I2FdUTwsYbCKmpHhjrOn/XF16gZi8xgOo+ZqT3J3R1uR4MaxovLCl+Rn9?=
- =?us-ascii?Q?USu7zNxRJXQoOW6NP9pP04wufRh0NTN/KfAxhg33QF0lkku/1tflU6rjZW4j?=
- =?us-ascii?Q?uqiRtpjUy+vgLar9iSYmgawVjMKrZQDPNVY3HFQQKlkaQjtbmUedEME8w3Gf?=
- =?us-ascii?Q?kqXJ5K9gX/Qd6p4zSzEAL79dudZZBHkHBJeoBt7Q0FKQq4duQqs0P5Qln5Mi?=
- =?us-ascii?Q?k1aES9kuMZAjz2ytblTc+M/4m+Sig1ZFwmYOPM9vQPoSD8FtNdzd5b2Ccp7L?=
- =?us-ascii?Q?KkEznB4H2P3gVSw2HsF7ohQgpFv1TzBDYBx2yit8NJ52s4bM9+Ys6EFZa/5S?=
- =?us-ascii?Q?XdRGdZOS5igNhvsSLKCH5cbW0RnsiwCYrwo770Iezqbctj1UVzT6iqv8/6cN?=
- =?us-ascii?Q?GtZTh5wr7MLq+4xRas/2+84rLQgApTi4CSOJc/WqjIEIkizxCn2wVfXFIgYq?=
- =?us-ascii?Q?FQShYPMuqPAHwnrDIiA=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F1D8366;
+	Tue,  9 Sep 2025 11:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757415750; cv=none; b=PEsc7fnbca5tw/G1elLOd7xBG8JmRnxCQtwFZwCgws8mMKllkdagx6IxCNeQQGyGEHYbYURTn1+xiL7XVDK5ZflHHLYmgb3+t0YtUvtXwj1R9tQEtFicseGHXfIr39fXBm9wPRUs0jQJ4fRYZ1dFZQrYMdtZ5JHij++yRzbruvA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757415750; c=relaxed/simple;
+	bh=WtAfe/jd/YqfqJ7tJAnEy1Mmd8laQThPeKclnfCzHzw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OjG1/iiYZ6fUDEsV1dhH8ng9D0p2IyeE7ZX7yQP5UAUiZnUwa2Oj2H7pX0DDxMNC/E/UcD2rV2Evfpbpw+Lfqd6uQYhjUit3jVf+ENgAxqg+4gXxEfgT/oHjidyTyJRHNryTL94dr/eDkeLpG4CsJBQvHtb/9PSAG4CD7uahl50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 906F712FC;
+	Tue,  9 Sep 2025 04:02:18 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 548A13F63F;
+	Tue,  9 Sep 2025 04:02:21 -0700 (PDT)
+Date: Tue, 9 Sep 2025 12:02:18 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 09/33] dt-bindings: arm: Add MPAM MSC binding
+Message-ID: <aMAJOghPhaKu1hO+@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-10-james.morse@arm.com>
+ <aK8w1L3gHBk2Fz1k@e133380.arm.com>
+ <96827d9f-cea8-4ca3-b709-1ae09e3d901c@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB6109.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2a1e7abc-c1ff-484b-4ed5-08ddef8ea0f7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2025 10:50:02.1221
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3XWi//d9Ey0Dy2ZzInkSck6oqev7danD5laJh0/VJ6OTVCfN/DZ4RQCcIS7M5edLeYVraP6LWTaqzwkPKe6Rjw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB5902
-
-[Public]
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <96827d9f-cea8-4ca3-b709-1ae09e3d901c@arm.com>
 
 Hi,
 
-> -----Original Message-----
-> From: Frank Li <Frank.li@nxp.com>
-> Sent: Monday, September 8, 2025 9:34 PM
-> To: Guntupalli, Manikanta <manikanta.guntupalli@amd.com>
-> Cc: git (AMD-Xilinx) <git@amd.com>; Simek, Michal <michal.simek@amd.com>;
-> alexandre.belloni@bootlin.com; robh@kernel.org; krzk+dt@kernel.org;
-> conor+dt@kernel.org; kees@kernel.org; gustavoars@kernel.org;
-> jarkko.nikula@linux.intel.com; linux-i3c@lists.infradead.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linux-
-> hardening@vger.kernel.org; Pandey, Radhey Shyam
-> <radhey.shyam.pandey@amd.com>; Goud, Srinivas <srinivas.goud@amd.com>;
-> Datta, Shubhrajyoti <shubhrajyoti.datta@amd.com>; manion05gk@gmail.com
-> Subject: Re: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller drive=
-r
->
-> On Mon, Sep 08, 2025 at 04:51:17PM +0530, Manikanta Guntupalli wrote:
-> > Add an I3C master driver and maintainers fragment for the AMD I3C bus
-> > controller.
-> >
-> > The driver currently supports the I3C bus operating in SDR i3c mode,
-> > with features including Dynamic Address Assignment, private data
-> > transfers, and CCC transfers in both broadcast and direct modes. It
-> > also supports operation in I2C mode.
-> >
-> > Signed-off-by: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> > ---
-> > Changes for V2:
-> > Updated commit description.
-> > Added mixed mode support with clock configuration.
-> > Converted smaller functions into inline functions.
-> > Used FIELD_GET() in xi3c_get_response().
-> > Updated xi3c_master_rd_from_rx_fifo() to use cmd->rx_buf.
-> > Used parity8() for address parity calculation.
-> > Added guards for locks.
-> > Dropped num_targets and updated xi3c_master_do_daa().
-> > Used __free(kfree) in xi3c_master_send_bdcast_ccc_cmd().
-> > Dropped PM runtime support.
-> > Updated xi3c_master_read() and xi3c_master_write() with
-> > xi3c_is_resp_available() check.
-> > Created separate functions: xi3c_master_init() and xi3c_master_reinit()=
-.
-> > Used xi3c_master_init() in bus initialization and xi3c_master_reinit()
-> > in error paths.
-> > Added DAA structure to xi3c_master structure.
-> >
-> > Changes for V3:
-> > Resolved merge conflicts.
-> >
-> > Changes for V4:
-> > Updated timeout macros.
-> > Removed type casting for xi3c_is_resp_available() macro.
-> > Used ioread32() and iowrite32() instead of readl() and writel() to
-> > keep consistency.
-> > Read XI3C_RESET_OFFSET reg before udelay().
-> > Removed xi3c_master_free_xfer() and directly used kfree().
-> > Skipped checking return value of i3c_master_add_i3c_dev_locked().
-> > Used devm_mutex_init() instead of mutex_init().
-> >
-> > Changes for V5:
-> > Used GENMASK_ULL for PID mask as it's 64bit mask.
-> > ---
-> >  MAINTAINERS                         |    7 +
-> >  drivers/i3c/master/Kconfig          |   16 +
-> >  drivers/i3c/master/Makefile         |    1 +
-> >  drivers/i3c/master/amd-i3c-master.c | 1014
-> > +++++++++++++++++++++++++++
-> >  4 files changed, 1038 insertions(+)
-> >  create mode 100644 drivers/i3c/master/amd-i3c-master.c
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS index
-> > 1af81124bba3..ff603ce5e78d 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -11693,6 +11693,13 @@ L: linux-i2c@vger.kernel.org
-> >  S: Maintained
-> >  F: drivers/i2c/i2c-stub.c
-> >
-> > +I3C DRIVER FOR AMD AXI I3C MASTER
-> > +M: Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-> > +R: Michal Simek <michal.simek@amd.com>
-> > +S: Maintained
-> > +F: Documentation/devicetree/bindings/i3c/xlnx,axi-i3c.yaml
-> > +F: drivers/i3c/master/amd-i3c-master.c
-> > +
-> >  I3C DRIVER FOR ASPEED AST2600
-> >  M: Jeremy Kerr <jk@codeconstruct.com.au>
-> >  S: Maintained
-> > diff --git a/drivers/i3c/master/Kconfig b/drivers/i3c/master/Kconfig
-> > index 13df2944f2ec..4b884a678893 100644
-> > --- a/drivers/i3c/master/Kconfig
-> > +++ b/drivers/i3c/master/Kconfig
-> > @@ -1,4 +1,20 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> > +
-> > +config AMD_I3C_MASTER
-> > +   tristate "AMD I3C Master driver"
-> > +   depends on I3C
-> > +   depends on HAS_IOMEM
-> > +   help
-> > +     Support for AMD I3C Master Controller.
-> > +
-> > +     This driver allows communication with I3C devices using the AMD
-> > +     I3C master, currently supporting Standard Data Rate (SDR) mode.
-> > +     Features include Dynamic Address Assignment, private transfers,
-> > +     and CCC transfers in both broadcast and direct modes.
-> > +
-> > +     This driver can also be built as a module.  If so, the module
-> > +     will be called amd-i3c-master.
-> > +
-> >  config CDNS_I3C_MASTER
-> >     tristate "Cadence I3C master driver"
-> >     depends on HAS_IOMEM
-> > diff --git a/drivers/i3c/master/Makefile b/drivers/i3c/master/Makefile
-> > index aac74f3e3851..109bd48cb159 100644
-> > --- a/drivers/i3c/master/Makefile
-> > +++ b/drivers/i3c/master/Makefile
-> > @@ -1,4 +1,5 @@
-> >  # SPDX-License-Identifier: GPL-2.0-only
-> > +obj-$(CONFIG_AMD_I3C_MASTER)               +=3D amd-i3c-master.o
-> >  obj-$(CONFIG_CDNS_I3C_MASTER)              +=3D i3c-master-cdns.o
-> >  obj-$(CONFIG_DW_I3C_MASTER)                +=3D dw-i3c-master.o
-> >  obj-$(CONFIG_AST2600_I3C_MASTER)   +=3D ast2600-i3c-master.o
-> > diff --git a/drivers/i3c/master/amd-i3c-master.c
-> > b/drivers/i3c/master/amd-i3c-master.c
-> > new file mode 100644
-> > index 000000000000..fb768680df45
-> > --- /dev/null
-> > +++ b/drivers/i3c/master/amd-i3c-master.c
-> ...
-> > +/* timeout waiting for the controller finish transfers */
-> > +#define XI3C_XFER_TIMEOUT_MS                       10000
-> > +#define XI3C_XFER_TIMEOUT
->       (msecs_to_jiffies(XI3C_XFER_TIMEOUT_MS))
->
-> XI3C_XFER_TIMEOUT is not used.
-XI3C_XFER_TIMEOUT is used in xi3c_master_read() and xi3c_master_write().
-Please check.
->
-> > +
-> > +#define xi3c_getrevisionnumber(master)                                =
-             \
-> > +   ((u8)(FIELD_GET(XI3C_REV_NUM_MASK,                                 =
-     \
-> > +                   ioread32((master)->membase + XI3C_VERSION_OFFSET)))=
-)
-> > +
-> > +#define xi3c_wrfifolevel(master)                                      =
-     \
-> > +   ((u16)(ioread32((master)->membase + XI3C_FIFO_LVL_STATUS_OFFSET)
-> &     \
-> > +          XI3C_WR_FIFO_LEVEL_MASK))
-> > +
-> > +#define xi3c_rdfifolevel(master)                                      =
-     \
-> > +   ((u16)(ioread32((master)->membase +
-> XI3C_FIFO_LVL_STATUS_1_OFFSET) &      \
-> > +          XI3C_WR_FIFO_LEVEL_MASK))
->
-> Are you sure that these force type convert is neccesary?
-We will fix.
->
-> > +
-> > +#define xi3c_is_resp_available(master)                                =
-             \
-> > +   (FIELD_GET(XI3C_SR_RESP_NOT_EMPTY_MASK,
->               \
-> > +              ioread32((master)->membase + XI3C_SR_OFFSET)))
-> > +
-> > +struct xi3c_cmd {
-> > +   void *tx_buf;
-> > +   void *rx_buf;
-> > +   u16 tx_len;
-> > +   u16 rx_len;
-> > +   u8 addr;
-> > +   u8 type;
-> > +   u8 tid;
-> > +   bool rnw;
-> > +   bool is_daa;
-> > +   bool continued;
-> > +};
-> > +
-> > +struct xi3c_xfer {
-> > +   struct list_head node;
-> > +   struct completion comp;
-> > +   int ret;
-> > +   unsigned int ncmds;
-> > +   struct xi3c_cmd cmds[] __counted_by(ncmds); };
-> > +
-> ...
-> > +
-> > +static int xi3c_master_write(struct xi3c_master *master, struct
-> > +xi3c_cmd *cmd) {
-> > +   unsigned long timeout;
-> > +   u16 wrfifo_space;
-> > +   u16 space_index;
-> > +   u16 len;
-> > +
-> > +   len =3D cmd->tx_len;
-> > +   if (!cmd->tx_buf || cmd->tx_len > XI3C_MAXDATA_LENGTH)
-> > +           return -EINVAL;
-> > +
-> > +   /* Fill Tx fifo */
-> > +   wrfifo_space =3D xi3c_wrfifolevel(master);
-> > +   for (space_index =3D 0; space_index < wrfifo_space && cmd->tx_len >=
- 0;
-> > +        space_index++)
-> > +           xi3c_master_wr_to_tx_fifo(master, cmd);
->
-> Does common helper function i3c_writel_fifo() help this? look like logic =
-is similar.
-No. The functions i3c_writel_fifo() and i3c_readl_fifo() operate using the =
-CPU's native endianness.
-In this case, the FIFO should always be accessed in big-endian format.
-Therefore, we cannot use these common helpers directly.
->
-> > +
-> > +   /* Write to command fifo */
-> > +   xi3c_master_write_to_cmdfifo(master, cmd, len);
-> > +
-> > +   timeout =3D jiffies + XI3C_XFER_TIMEOUT;
-> > +   /* Fill if any remaining data to tx fifo */
-> > +   while (cmd->tx_len > 0 && !xi3c_is_resp_available(master)) {
-> > +           if (time_after(jiffies, timeout)) {
-> > +                   dev_err(master->dev, "XI3C write timeout\n");
-> > +                   return -EIO;
-> > +           }
-> > +
-> > +           wrfifo_space =3D xi3c_wrfifolevel(master);
-> > +           for (space_index =3D 0; space_index < wrfifo_space && cmd->=
-tx_len >
-> 0;
-> > +                space_index++)
-> > +                   xi3c_master_wr_to_tx_fifo(master, cmd);
-> > +   }
-> > +   return 0;
-> > +}
-> > +
-> ...
-> > +
-> > +static int xi3c_master_do_daa(struct i3c_master_controller *m) {
-> > +   struct xi3c_master *master =3D to_xi3c_master(m);
-> > +   struct xi3c_cmd *daa_cmd;
-> > +   struct xi3c_xfer *xfer;
-> > +   u8 pid_bufs[XI3C_MAX_DEVS][8];
-> > +   u8 data, last_addr =3D 0;
-> > +   int addr, ret, i;
-> > +   u8 *pid_buf;
-> > +
-> > +   u64 *pid_bcr_dcr __free(kfree) =3D kcalloc(XI3C_MAX_DEVS, sizeof(u6=
-4),
-> > +                                            GFP_KERNEL);
-> > +   if (!pid_bcr_dcr)
-> > +           return -ENOMEM;
-> > +
-> > +   xfer =3D xi3c_master_alloc_xfer(master, 1);
-> > +   if (!xfer) {
-> > +           ret =3D -ENOMEM;
-> > +           goto err_daa_mem;
-> > +   }
-> > +
-> > +   for (i =3D 0; i < XI3C_MAX_DEVS; i++) {
-> > +           addr =3D i3c_master_get_free_addr(m, last_addr + 1);
-> > +           if (addr < 0) {
-> > +                   ret =3D -ENOSPC;
-> > +                   goto err_daa;
-> > +           }
-> > +           master->daa.addrs[i] =3D (u8)addr;
-> > +           last_addr =3D (u8)addr;
-> > +   }
-> > +
-> > +   /* Fill ENTDAA CCC */
-> > +   data =3D I3C_CCC_ENTDAA;
-> > +   daa_cmd =3D &xfer->cmds[0];
-> > +   daa_cmd->addr =3D I3C_BROADCAST_ADDR;
-> > +   daa_cmd->rnw =3D 0;
-> > +   daa_cmd->tx_buf =3D &data;
-> > +   daa_cmd->tx_len =3D 1;
-> > +   daa_cmd->type =3D XI3C_SDR_MODE;
-> > +   daa_cmd->tid =3D XI3C_SDR_TID;
-> > +   daa_cmd->continued =3D true;
-> > +
-> > +   ret =3D xi3c_master_common_xfer(master, xfer);
-> > +   /* DAA always finishes with CE2_ERROR or NACK_RESP */
-> > +   if (ret && ret !=3D I3C_ERROR_M2) {
-> > +           goto err_daa;
-> > +   } else {
-> > +           if (ret && ret =3D=3D I3C_ERROR_M2) {
-> > +                   ret =3D 0;
-> > +                   goto err_daa;
-> > +           }
-> > +   }
-> > +
-> > +   master->daa.index =3D 0;
-> > +
-> > +   while (true) {
-> > +           struct xi3c_cmd *cmd =3D &xfer->cmds[0];
-> > +
-> > +           pid_buf =3D pid_bufs[master->daa.index];
-> > +           addr =3D (master->daa.addrs[master->daa.index] << 1) |
-> > +                  (!parity8(master->daa.addrs[master->daa.index]));
-> > +
-> > +           cmd->tx_buf =3D (u8 *)&addr;
-> > +           cmd->tx_len =3D 1;
-> > +           cmd->addr =3D I3C_BROADCAST_ADDR;
-> > +           cmd->rnw =3D 1;
-> > +           cmd->rx_buf =3D pid_buf;
-> > +           cmd->rx_len =3D XI3C_DAA_SLAVEINFO_READ_BYTECOUNT;
-> > +           cmd->is_daa =3D true;
-> > +           cmd->type =3D XI3C_SDR_MODE;
-> > +           cmd->tid =3D XI3C_SDR_TID;
-> > +           cmd->continued =3D true;
-> > +
-> > +           ret =3D xi3c_master_common_xfer(master, xfer);
-> > +
-> > +           /* DAA always finishes with CE2_ERROR or NACK_RESP */
-> > +           if (ret && ret !=3D I3C_ERROR_M2) {
-> > +                   goto err_daa;
-> > +           } else {
-> > +                   if (ret && ret =3D=3D I3C_ERROR_M2) {
-> > +                           xi3c_master_resume(master);
-> > +                           master->daa.index--;
-> > +                           ret =3D 0;
-> > +                           break;
-> > +                   }
-> > +           }
-> > +   }
-> > +
-> > +   kfree(xfer);
-> > +
-> > +   for (i =3D 0; i < master->daa.index; i++) {
-> > +           i3c_master_add_i3c_dev_locked(m, master->daa.addrs[i]);
-> > +
-> > +           pid_bcr_dcr[i] =3D FIELD_GET(XI3C_PID_MASK,
-> > +                                      get_unaligned_be64(pid_bufs[i]))=
-;
->
-> you only use pid_bcr_dcr here, needn't dymatic alloc at all.
->
->               u64 data =3D FIELD_GET(XI3C_PID_MASK,
-> get_unaligned_be64(pid_bufs[i]));
->               dev_info(master->dev, "Client %d: PID: 0x%llx\n", i, data);
-We will fix.
->
-> Frank
->
-> > +           dev_info(master->dev, "Client %d: PID: 0x%llx\n", i, pid_bc=
-r_dcr[i]);
-> > +   }
-> > +
-> > +   return 0;
-> > +
-> > +err_daa:
-> > +   kfree(xfer);
-> > +err_daa_mem:
-> > +   xi3c_master_reinit(master);
-> > +   return ret;
-> > +}
-> > +
-> ...
-> > +};
-> > +module_platform_driver(xi3c_master_driver);
-> > +
-> > +MODULE_AUTHOR("Manikanta Guntupalli <manikanta.guntupalli@amd.com>");
-> > +MODULE_DESCRIPTION("AXI I3C master driver");
-> MODULE_LICENSE("GPL");
-> > --
-> > 2.34.1
-> >
+On Fri, Sep 05, 2025 at 10:11:03AM +0100, James Morse wrote:
+> Hi Dave,
+> 
+> On 27/08/2025 17:22, Dave Martin wrote:
+> > On Fri, Aug 22, 2025 at 03:29:50PM +0000, James Morse wrote:
+> >> From: Rob Herring <robh@kernel.org>
+> >>
+> >> The binding is designed around the assumption that an MSC will be a
+> >> sub-block of something else such as a memory controller, cache controller,
+> >> or IOMMU. However, it's certainly possible a design does not have that
+> >> association or has a mixture of both, so the binding illustrates how we can
+> >> support that with RIS child nodes.
+> >>
+> >> A key part of MPAM is we need to know about all of the MSCs in the system
+> >> before it can be enabled. This drives the need for the genericish
+> >> 'arm,mpam-msc' compatible. Though we can't assume an MSC is accessible
+> >> until a h/w specific driver potentially enables the h/w.
+> 
+> > I'll leave detailed review to other people for now, since I'm not so up
+> > to speed on all things DT.
+> 
+> Me neither!
+> 
+> 
+> >> diff --git a/Documentation/devicetree/bindings/arm/arm,mpam-msc.yaml b/Documentation/devicetree/bindings/arm/arm,mpam-msc.yaml
+> > 
+> > [...]
+> > 
+> >> @@ -0,0 +1,200 @@
+> > 
+> > [...]
+> > 
+> >> +title: Arm Memory System Resource Partitioning and Monitoring (MPAM)
+> >> +
+> >> +description: |
+> >> +  The Arm MPAM specification can be found here:
+> >> +
+> >> +  https://developer.arm.com/documentation/ddi0598/latest
+> >> +
+> >> +maintainers:
+> >> +  - Rob Herring <robh@kernel.org>
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    items:
+> >> +      - const: arm,mpam-msc                   # Further details are discoverable
+> >> +      - const: arm,mpam-memory-controller-msc
+> > 
+> > There seems to be no clear statement about how these differ.
+> 
+> It's a more-specific compatible, I think these are usually things like:
+> | compatible = "acme,mega-cache-9000", "arm,mpam-msc"
+> 
+> Where the driver can key errata-workaround on the vendor specific bit when needed.
+> 
+> In this case - I think they're examples, but Rob said they were supposed to be in some
+> other list of compatible. (not sure what/where that is)
 
+I guess I'll defer to the DT folks about how this ought to be presented.
 
-Thanks,
-Manikanta.
+The DT bindings are a weird hybrid of informal and formal that I'm not
+really used to.
+
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +    description: A memory region containing registers as defined in the MPAM
+> >> +      specification.
+> 
+> > There seems to be no handling of PCC-based MSCs here.  Should there be?
+> 
+> That is newer than this document. On DT platforms PCC is spelled SCMI, and is
+> discoverable. Andre P prototyped this, (patches in the extras branch) but no-one
+> has come out of the woodwork to say they actually need it yet.
+> 
+> ACPI PCC is a definite maybe.
+>
+> > If this can be added later in a backwards-compatible way, I guess
+> > that's not a problem (and this is what compatible strings are for, if
+> > all else fails.)
+> > 
+> > An explicit statement that PCC is not supported here might be helpful,
+> > though.
+> 
+> I'm pretty sure its discoverable on DT/SCMI platforms.
+
+OK.  If this may not be needed, is discoverable and/or can be bolted on
+in a compatible way later, I guess we wouldn't need to panic about it
+just now.
+
+(At least we can do that much more easily than promulgating an update
+to the ACPI tables.)
+
+> >> +  interrupts:
+> >> +    minItems: 1
+> >> +    items:
+> >> +      - description: error (optional)
+> >> +      - description: overflow (optional, only for monitoring)
+> >> +
+> >> +  interrupt-names:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - enum: [ error, overflow ]
+> >> +      - items:
+> >> +          - const: error
+> >> +          - const: overflow
+> > 
+> > Yeugh.  Is this really the only way to say "one or both of foo"?
+> > 
+> > (I don't know the answer to this -- though I can believe that it's
+> > true.  Perhaps just not describing this property is another option.
+> > Many bindings seem not to bother.)
+> > 
+> >> +
+> >> +  arm,not-ready-us:
+> >> +    description: The maximum time in microseconds for monitoring data to be
+> >> +      accurate after a settings change. For more information, see the
+> >> +      Not-Ready (NRDY) bit description in the MPAM specification.
+> >> +
+> >> +  numa-node-id: true # see NUMA binding
+> >> +
+> >> +  '#address-cells':
+> >> +    const: 1
+> >> +
+> >> +  '#size-cells':
+> >> +    const: 0
+> >> +
+> >> +patternProperties:
+> >> +  '^ris@[0-9a-f]$':
+> > 
+> > It this supposed to be '^ris@[0-9a-f]+$' ?
+> 
+> Looks like yes. Fixed.
+
+OK
+
+> > Currently MPAMF_IDR.RIS_MAX is only 4 bits in size and so cannot be
+> > greater than 0xf.  But it is not inconceivable that a future revision
+> > of the architecture might enable more -- and the are 4 RES0 bits
+> > looming over the RIS_MAX field, just waiting to be used...
+> > 
+> > (In any case, it feels wrong to try to enforce numeric bounds with a
+> > regex, even in the cases where it happens to work straightforwardly.)
+> > 
+> >> +    type: object
+> >> +    additionalProperties: false
+> >> +    description:
+> >> +      RIS nodes for each RIS in an MSC. These nodes are required for each RIS
+> > 
+> > The architectural term is "resource instance", not "RIS".
+> > 
+> > But "RIS nodes" is fine for describing the DT nodes, since we can call
+> > them what we like, and "ris" is widely used inside the MPAM driver.
+> 
+> 
+> > People writing DTs should not need to be familiar with the driver's
+> > internal naming conventions, though.
+> 
+> What about the architecture's name for fields?
+> This number goes in MPAMCFG_PART_SEL.RIS.
+
+That's the identifier for the resource instance (= "Resource Instance
+Selector", see e.g., ARM IHI 0099A.a Section 9.4.14 "MPAMCFG_PART_SEL,
+MPAM Partition Configuration Selection Register").  The way I read this,
+the contents of MPAMCFG_PART_SEL.RIS is just a numeric identifier
+identifier, rather than the thing being identified.
+
+(I guess I am bikeshedding, here.  The chance for actual confusion
+remains low.  I just find this use of "RIS" a bit dissonant.)
+
+> > (There are other instances, but I won't comment on them all
+> > individually.)
+> > 
+
+> >> +      implementing known MPAM controls
+> >> +
+> >> +    properties:
+> >> +      compatible:
+> >> +        enum:
+> >> +            # Bulk storage for cache
+> > 
+> > Nit: What is "bulk storage"?
+> 
+> Probably to distinguish it from other storage a cache may have, such as tag-ram.
+> 
+> > The MPAM spec just refers to "cache" or "cache memory".
+> 
+> I figure these are comments, I'll remove them...
+> 
+> 
+> >> +          - arm,mpam-cache
+> >> +            # Memory bandwidth
+> >> +          - arm,mpam-memory
+
+I think that the meaning of "mpam-cache" is pretty obvious without
+benefiting from a comment, but "mpam-memory" is not an obvious name for
+memory _bandwidth_.  That probably still wants clarification.
+
+> >> +
+> >> +      reg:
+> >> +        minimum: 0
+> >> +        maximum: 0xf
+> >> +
+> >> +      cpus:
+> >> +        description:
+> >> +          Phandle(s) to the CPU node(s) this RIS belongs to. By default, the parent
+> >> +          device's affinity is used.
+> >> +
+> >> +      arm,mpam-device:
+> >> +        $ref: /schemas/types.yaml#/definitions/phandle
+> >> +        description:
+> >> +          By default, the MPAM enabled device associated with a RIS is the MSC's
+> > 
+> > Associated how?
+> 
+> By the phandle this is a description for.
+> 
+> 
+> > Is this the device where the physical resources managed by the MSC are located?
+> 
+> Yes,
+
+OK, that's not "associated by the phandle".  It's a physical hardware
+property.
+
+[...]
+
+> >> +examples:
+> >> +  - |
+> >> +    L3: cache-controller@30000000 {
+> >> +        compatible = "arm,dsu-l3-cache", "cache";
+> >> +        cache-level = <3>;
+> >> +        cache-unified;
+> >> +
+> >> +        ranges = <0x0 0x30000000 0x800000>;
+> >> +        #address-cells = <1>;
+> >> +        #size-cells = <1>;
+> >> +
+> >> +        msc@10000 {
+> >> +            compatible = "arm,mpam-msc";
+> >> +
+> >> +            /* CPU affinity implied by parent cache node's  */
+> > 
+> > "node's" -> "nodes".
+> > 
+> > (or it this supposed to be in the singular -- i.e., the immediately
+> > parent cache node only?)
+> 
+> The MSC's parent cache node can be used to find the affinity.
+> I'll make it singular and drop the 's
+
+OK
+
+> > Anyway, it looks like this is commenting on the "reg" property, which
+> > doesn't seem right.
+> > 
+> > Is this commnent supposed instead to explain the omission of the "cpus"
+> > property?  If so, that should be made clearer.
+> 
+> 
+> I'll move it to the end of the list of properties so it doesn't look like it belongs to
+> the one below it.
+
+Ack, that works.
+
+Cheers
+---Dave
 
