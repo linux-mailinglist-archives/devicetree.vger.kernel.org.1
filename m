@@ -1,570 +1,289 @@
-Return-Path: <devicetree+bounces-214823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BA39B4A9A7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:10:35 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAAFCB4A9B7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:12:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B44C236421A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:10:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E887A3647C9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:12:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78C2E30ACF5;
-	Tue,  9 Sep 2025 10:10:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE45D3148A2;
+	Tue,  9 Sep 2025 10:12:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="miO1SnoU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="asgwzWwn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6826029993A;
-	Tue,  9 Sep 2025 10:10:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 963F92F3C30;
+	Tue,  9 Sep 2025 10:12:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757412630; cv=none; b=Tm1opm3kPowjNOHyGj869PRPXnXGI+RDDTILfCnzJ2pdO9h9LWSslT82VccsfhjhDDjF5wOkaJ1WIUJD4ONhw4YhLD7DGzr2CJY4oU+CiCFZqn2FnMnisubnA5kMqmVohF3w1D33RYi9O33gxn+W9nwpoX9uQjeXFPkaFv7jI2s=
+	t=1757412743; cv=none; b=lrSOu81pd1BJvWjrEP+hBE4rqfH2SnnjrY6rDNAs+Xu00pM16kyo+uSdY7186lmjnhoUXBZVyuQQmx6TkskxT/i7GscCpi3lM1iS96EWLKxoOvK9rFa45m21EqCNAHoKD4cBIfDDchJNnGf6rQDSLkfAN/uaVuE09QCZs9IVDoY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757412630; c=relaxed/simple;
-	bh=gMNjfjMRgGdXnedqzeagPwQAloyWCSOeznRWmXJbD5c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jmYsqJETqs03yBw511zD0SlinoJitc+1QopDqGcE466VBsTS6w1OsrVz026vDtVGPYyN3qeM4n/L6k24bHIfqYXemvwvJh5pfnycuCqw/S2tpMjdZG7ta6K4TtX+JMtgNsbFpz6VFRqWD0XJhjA6/JX9+euefLymz6OpQ2eI2bU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=miO1SnoU; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757412629; x=1788948629;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gMNjfjMRgGdXnedqzeagPwQAloyWCSOeznRWmXJbD5c=;
-  b=miO1SnoU/Bnyf+PszBtPyEKjJ6H5W77fTY8vujUZK0MMNs1rhJSmL9RX
-   EQXemSQUgsp7RDYZn4ez9Bvx8m/CYbtpk3KC4gyOhUuy9ZdT02zHbbHqq
-   ZE6sywm6Mik0kFwWTMEYMf2j3mFPhVJnfyPcmjyvvEM47C3g24XXxcNCq
-   5rlRZpbvNmNK79xhNRg1901xchuSLXjXZmHIJcKcMNnzWXXBeI1EiJicT
-   q4YYwyo5aef33bvUDFDDkLeOx0CFFsZvHvtBGNIMZKFoLb7KQIbJZ8VDU
-   Dr54VI5ZMsry3vv3Da+SbZHvmW1ePoMFINKiHR7msCTHHowjUfUGC2Rla
-   Q==;
-X-CSE-ConnectionGUID: 7YFiW3AVRmermgR1UPZYSA==
-X-CSE-MsgGUID: EZ876tXATVSjv8yvK232Sw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="70790808"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="70790808"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 03:10:28 -0700
-X-CSE-ConnectionGUID: s0J5BQaFSXm+vy5L4YS1Fw==
-X-CSE-MsgGUID: yKHGTP2uTp2Gxeds2WxM2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="172314372"
-Received: from kuha.fi.intel.com ([10.237.72.152])
-  by orviesa010.jf.intel.com with SMTP; 09 Sep 2025 03:10:22 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 09 Sep 2025 13:10:21 +0300
-Date: Tue, 9 Sep 2025 13:10:21 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 15/22] usb: typec: tipd: Handle mode transitions for
- CD321x
-Message-ID: <aL_9DShYiN1GZKgm@kuha.fi.intel.com>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-15-52c348623ef6@kernel.org>
+	s=arc-20240116; t=1757412743; c=relaxed/simple;
+	bh=f+p6Hi8Bq/0XParmq+GNXSTJ8BCIU7MW/q9t0C9h1mM=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=ggAeBmS9bumrouXr+QBBuPTc+9HQRTHKyQuF/HkvwCSM5LCic6WQhVlMafu0gmLg7v8qW04D8DezstiBqwuOZ2K7rgZALiiOwYazEWp8hKxkf+vYUwYBi9+s4B4FclgnZOGvUm0bPefwEyjtCGv+y+kU+EcgGr1CGWiNFr5UcZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=asgwzWwn; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-3e4b5aee522so1772492f8f.1;
+        Tue, 09 Sep 2025 03:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757412740; x=1758017540; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=2DVZjA2xzBpsspRxmBhscCQ8qNTTD3WeHWSgLWWar2Y=;
+        b=asgwzWwnvSxIwEY7f7A7efk/p50ZzoJk8c+C6P8YSNZLqgoZUj3WDFCDFWYW8TwDYn
+         VSz7PqlKKkoha7Bu31m/7FH0Vg6ewF99L29+Driu4kqQ+zRKwD9y57XIEoydVZ4M8D68
+         JFQNQD3H/y1Xz4Z8fIwsRb/0G3V6OWnIN9+YZoGGQbZQPX9t83uw0C8fVCPl9ti3399H
+         TWmpYEuSm2dbOoAHkRF5As3Wf9dJedfmKKzw2uyb2WAxcU6+ckQ55jDSiFzeg8Gxe5r1
+         CcWb8tT+9epX2W3InbTyaByIb+6Zyjr+Sufblk80uQS90dLmhgsEK9oYVkJBQcAasSlI
+         5hBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757412740; x=1758017540;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=2DVZjA2xzBpsspRxmBhscCQ8qNTTD3WeHWSgLWWar2Y=;
+        b=Hel0c9NB7f3/NO70THebtEA6zGn6JClBKQJMU125nO4ck1g5Du/c5zgnNDZisUWjOy
+         /+ZbgoF5NvXXr1tFPkmh3I8lL1jk/oyQP59cau8MJCpwU/90XJvZsR4b9CAxkDm+cDBb
+         MGtYVdsvm+D6Xh6NQ1yVvhFyz+eIyJvb6IudmcOJESlb/qbYjuM64GmVovwa6lCSXneP
+         DXqkeXAo+5kP043OYxBGcj7Yxm+J2pvATf5agkgc+SW8rTTG5QOQk7EX2eWf9XW0lwXS
+         4oIFsuwZDL59/jucCzMRMI9y+g/cFOzLG4bJMBLQvnP6yQn5oKBbMZiolY/5dwojk5KE
+         VmoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUpTFuLn9UeDtXvw6j12e1+An9FBIV4n7QMdoGw7H6HHstldDVS4ptCiTmyTHLM75kEEmTw0uhrOcEr@vger.kernel.org, AJvYcCVCT7VBD96/SpUZOqP0o4HGy0RAAGUguoFrCUJ98fOJCXGR99KGbaJ8CP3oi3XfFCnJuTOEofr7igClTrJ1@vger.kernel.org, AJvYcCW9Qwzrj5lLXKzd7tA0sE53SYYg4YRUi84zO1WppMGCLRkrYphkb4ytUBYR4Eieiuk/j9I3lZDPH482@vger.kernel.org, AJvYcCX16vhQdJoT65eIzX2TzjbCghsv0siAmdDO7CQPTsLosJJQTbeM55nwaNS/l/hCyb2szUnai1S6VGgH@vger.kernel.org, AJvYcCXlFemWpn855YLL5BZ6ul2pvcH8CCTor37elrqJEgEjCONgmxUIUoxkZ0nCeyx6KzDylnaTDmFm4VhzLZVHy+EkHw==@vger.kernel.org
+X-Gm-Message-State: AOJu0YzMKZh1a7IrTxMD4dQ0YBYudPWwZ7QOxIqHaV9fHSgbDPyNiES+
+	Nzghr4z0qeC6yKLUrPAfITG76Xi1F6ht+JiBSslK5mCUO7neGFC3niJn
+X-Gm-Gg: ASbGncvPtcYVGPBu7QkYira6nv4b8ABcd0yFnimq1IbmIAJjUFhj6HBdtwfbc0XJyTX
+	OyoLGAVQ9g7DqXdGtM6fgIKlWn8xaiXjPxb7jfU1DtfLHJ1rhkO973Oh9v5Svr41it9vaSBsmdO
+	63ay1Q8mZEh+5nisVG4a50iYnsLEqsGSlYlRDzZKHvLA9RpW0fJyY+UzMjqZd8iSUAmLPhIzX0A
+	+Kzhq56Ew2h2jLi47Ctzj21ER+hTQ7+W1+qXdmy368om5YdEMBnCFd5yhkQu/bnS+valiglrFqK
+	BsxIbeF7b2Oa3NJfEhshQfzVki/wXvPn71RcEdxM0NgUfxuRvTXAzkcb9IMiOEhoUtEStTMCLry
+	d9GNSbju9eHtVaEn1rOJGNyk6zHb8C0xK2Dp0MYTlYECNdYROFEEtbt2RBim3QXD0JzSLlDF2M1
+	/BxNtuT5h6KsmbpV2lNV+GBLh1eg==
+X-Google-Smtp-Source: AGHT+IHWtrZ9/XJ8g8wPILz5HBJiKdiHip6k2Y7nAmAFrkuZKlueXTzkqAL0OsGQ2MntX2372cUV3g==
+X-Received: by 2002:a05:6000:1846:b0:3e7:441e:ca19 with SMTP id ffacd0b85a97d-3e7441ecdcemr7240561f8f.43.1757412739533;
+        Tue, 09 Sep 2025 03:12:19 -0700 (PDT)
+Received: from localhost (2a02-8440-7136-74e7-5ebf-4282-0e1a-b885.rev.sfr.net. [2a02:8440:7136:74e7:5ebf:4282:e1a:b885])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-3e7521bf610sm2035518f8f.9.2025.09.09.03.12.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 03:12:19 -0700 (PDT)
+From: =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+Subject: [PATCH v6 00/20] Introduce STM32 DDR PMU for STM32MP platforms
+Date: Tue, 09 Sep 2025 12:12:07 +0200
+Message-Id: <20250909-b4-ddrperfm-upstream-v6-0-ce082cc801b5@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250906-atcphy-6-17-v2-15-52c348623ef6@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAHj9v2gC/x3MQQ5AMBBA0avIrE1ClZSriEW1g1mgmSIScXeN5
+ Vv8/0AkYYrQZQ8IXRx53xKaPAO32G0mZJ8MqlB1YcoKR43eSyCZVjxDPITsimS0VqNzpmobSGk
+ Qmvj+t/3wvh94tKr2ZgAAAA==
+X-Change-ID: 20250813-b4-ddrperfm-upstream-e8442bcc8396
+To: Gatien Chevallier <gatien.chevallier@foss.st.com>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Gabriel Fernandez <gabriel.fernandez@foss.st.com>, 
+ Krzysztof Kozlowski <krzk@kernel.org>, Julius Werner <jwerner@chromium.org>, 
+ Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>, 
+ Philipp Zabel <p.zabel@pengutronix.de>, Jonathan Corbet <corbet@lwn.net>
+Cc: linux-stm32@st-md-mailman.stormreply.com, 
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-perf-users@vger.kernel.org, linux-doc@vger.kernel.org, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <clement.legoffic@foss.st.com>, 
+ =?utf-8?q?Cl=C3=A9ment_Le_Goffic?= <legoffic.clement@gmail.com>
+X-Mailer: b4 0.15-dev-dfb17
 
-On Sat, Sep 06, 2025 at 03:43:28PM +0000, Sven Peter wrote:
-> From: Hector Martin <marcan@marcan.st>
-> 
-> On Apple Silicon machines there is no control over which alt mode is
-> chosen. The CD321x' firmware negotiates the target mode on its own and
-> only lets the main CPU know after the mode has already been chosen.
-> Especially after plugging a new cable in this can result to quick mode
-> changes from e.g. power only -> USB3 only -> USB3+DisplayPort in a short
-> time. It is not possile to influence this in any way and we also do not
-> get direct access to the PDOs or VDOs exchanged via USB PD.
-> 
-> Additionally, mode changes must be tightly synchronized between DWC3 and
-> the Type C PHY and most mode changes require a full reset of DWC3 to
-> make the port work correctly.
-> On the machines the usb role change is used to reset the controller.
-> The role change is additionally done synchronously from the callback
-> instead of relying on a workqueue as usual in order to avoid any races
-> which can, in the worst case, result in resetting the entire SoC if
-> Type-C PHY and DWC3 are out of sync.
-> 
-> To be able to control all this we trigger the entire process in the
-> correct order directly from the TIPD driver and de-bounce any mode
-> changes to avoid tearing down and re-setting DWC3 back up multiple times
-> any time a new connection is made.
-> 
-> Signed-off-by: Hector Martin <marcan@marcan.st>
-> Co-developed-by: Sven Peter <sven@kernel.org>
-> Signed-off-by: Sven Peter <sven@kernel.org>
+This patch series introduces the DDR Performance Monitor (DDRPERFM) support
+for STM32MP platforms.
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+The series improves the STM32MP25 RCC driver to make it usable
+as an access controller, needed for driver probe.
 
-> ---
->  drivers/usb/typec/tipd/core.c | 297 +++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 293 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> index b558fc5ecbc35a9dabbf33c444f38173740af7c3..95218e8be65dbbb594465961b1fda76eed1e266c 100644
-> --- a/drivers/usb/typec/tipd/core.c
-> +++ b/drivers/usb/typec/tipd/core.c
-> @@ -17,6 +17,7 @@
->  #include <linux/usb/typec.h>
->  #include <linux/usb/typec_altmode.h>
->  #include <linux/usb/typec_dp.h>
-> +#include <linux/usb/typec_mux.h>
->  #include <linux/usb/typec_tbt.h>
->  #include <linux/usb/role.h>
->  #include <linux/workqueue.h>
-> @@ -120,6 +121,9 @@ struct tps6598x_intel_vid_status_reg {
->  #define TPS_TASK_TIMEOUT		1
->  #define TPS_TASK_REJECTED		3
->  
-> +/* Debounce delay for mode changes, in milliseconds */
-> +#define CD321X_DEBOUNCE_DELAY_MS 500
-> +
->  enum {
->  	TPS_MODE_APP,
->  	TPS_MODE_BOOT,
-> @@ -145,6 +149,7 @@ struct tipd_data {
->  	irq_handler_t irq_handler;
->  	u64 irq_mask1;
->  	size_t tps_struct_size;
-> +	void (*remove)(struct tps6598x *tps);
->  	int (*register_port)(struct tps6598x *tps, struct fwnode_handle *node);
->  	void (*unregister_port)(struct tps6598x *tps);
->  	void (*trace_data_status)(u32 status);
-> @@ -155,6 +160,7 @@ struct tipd_data {
->  	int (*switch_power_state)(struct tps6598x *tps, u8 target_state);
->  	bool (*read_data_status)(struct tps6598x *tps);
->  	int (*reset)(struct tps6598x *tps);
-> +	int (*connect)(struct tps6598x *tps, u32 status);
->  };
->  
->  struct tps6598x {
-> @@ -183,6 +189,17 @@ struct tps6598x {
->  	const struct tipd_data *data;
->  };
->  
-> +struct cd321x_status {
-> +	u32 status;
-> +	u32 pwr_status;
-> +	u32 data_status;
-> +	u32 status_changed;
-> +	struct usb_pd_identity partner_identity;
-> +	struct tps6598x_dp_sid_status_reg dp_sid_status;
-> +	struct tps6598x_intel_vid_status_reg intel_vid_status;
-> +	struct tps6598x_usb4_status_reg usb4_status;
-> +};
-> +
->  struct cd321x {
->  	struct tps6598x tps;
->  
-> @@ -192,6 +209,13 @@ struct cd321x {
->  
->  	struct typec_altmode *port_altmode_dp;
->  	struct typec_altmode *port_altmode_tbt;
-> +
-> +	struct typec_mux *mux;
-> +	struct typec_mux_state state;
-> +
-> +	struct cd321x_status update_status;
-> +	struct delayed_work update_work;
-> +	struct usb_pd_identity cur_partner_identity;
->  };
->  
->  static enum power_supply_property tps6598x_psy_props[] = {
-> @@ -613,9 +637,229 @@ static void tps6598x_handle_plug_event(struct tps6598x *tps, u32 status)
->  	}
->  }
->  
-> +static void cd321x_typec_update_mode(struct tps6598x *tps, struct cd321x_status *st)
-> +{
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
-> +
-> +	if (!(st->data_status & TPS_DATA_STATUS_DATA_CONNECTION)) {
-> +		if (cd321x->state.mode == TYPEC_STATE_SAFE)
-> +			return;
-> +		cd321x->state.alt = NULL;
-> +		cd321x->state.mode = TYPEC_STATE_SAFE;
-> +		cd321x->state.data = NULL;
-> +		typec_mux_set(cd321x->mux, &cd321x->state);
-> +	} else if (st->data_status & TPS_DATA_STATUS_DP_CONNECTION) {
-> +		struct typec_displayport_data dp_data;
-> +		unsigned long mode;
-> +
-> +		switch (TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT(st->data_status)) {
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_A:
-> +			mode = TYPEC_DP_STATE_A;
-> +			break;
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_B:
-> +			mode = TYPEC_DP_STATE_B;
-> +			break;
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_C:
-> +			mode = TYPEC_DP_STATE_C;
-> +			break;
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_D:
-> +			mode = TYPEC_DP_STATE_D;
-> +			break;
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_E:
-> +			mode = TYPEC_DP_STATE_E;
-> +			break;
-> +		case TPS_DATA_STATUS_DP_SPEC_PIN_ASSIGNMENT_F:
-> +			mode = TYPEC_DP_STATE_F;
-> +			break;
-> +		default:
-> +			dev_err(tps->dev, "Invalid DP pin assignment\n");
-> +			return;
-> +		}
-> +
-> +		if (cd321x->state.alt == cd321x->port_altmode_dp &&
-> +		   cd321x->state.mode == mode) {
-> +			return;
-> +		}
-> +
-> +		dp_data.status = le32_to_cpu(st->dp_sid_status.status_rx);
-> +		dp_data.conf = le32_to_cpu(st->dp_sid_status.configure);
-> +		cd321x->state.alt = cd321x->port_altmode_dp;
-> +		cd321x->state.data = &dp_data;
-> +		cd321x->state.mode = mode;
-> +		typec_mux_set(cd321x->mux, &cd321x->state);
-> +	} else if (st->data_status & TPS_DATA_STATUS_TBT_CONNECTION) {
-> +		struct typec_thunderbolt_data tbt_data;
-> +
-> +		if (cd321x->state.alt == cd321x->port_altmode_tbt &&
-> +		   cd321x->state.mode == TYPEC_TBT_MODE)
-> +			return;
-> +
-> +		tbt_data.cable_mode = le16_to_cpu(st->intel_vid_status.cable_mode);
-> +		tbt_data.device_mode = le16_to_cpu(st->intel_vid_status.device_mode);
-> +		tbt_data.enter_vdo = le16_to_cpu(st->intel_vid_status.enter_vdo);
-> +		cd321x->state.alt = cd321x->port_altmode_tbt;
-> +		cd321x->state.mode = TYPEC_TBT_MODE;
-> +		cd321x->state.data = &tbt_data;
-> +		typec_mux_set(cd321x->mux, &cd321x->state);
-> +	} else if (st->data_status & CD321X_DATA_STATUS_USB4_CONNECTION) {
-> +		struct enter_usb_data eusb_data;
-> +
-> +		if (cd321x->state.alt == NULL && cd321x->state.mode == TYPEC_MODE_USB4)
-> +			return;
-> +
-> +		eusb_data.eudo = le32_to_cpu(st->usb4_status.eudo);
-> +		eusb_data.active_link_training =
-> +			!!(st->data_status & TPS_DATA_STATUS_ACTIVE_LINK_TRAIN);
-> +
-> +		cd321x->state.alt = NULL;
-> +		cd321x->state.data = &eusb_data;
-> +		cd321x->state.mode = TYPEC_MODE_USB4;
-> +		typec_mux_set(cd321x->mux, &cd321x->state);
-> +	} else {
-> +		if (cd321x->state.alt == NULL && cd321x->state.mode == TYPEC_STATE_USB)
-> +			return;
-> +		cd321x->state.alt = NULL;
-> +		cd321x->state.mode = TYPEC_STATE_USB;
-> +		cd321x->state.data = NULL;
-> +		typec_mux_set(cd321x->mux, &cd321x->state);
-> +	}
-> +}
-> +
-> +static void cd321x_update_work(struct work_struct *work)
-> +{
-> +	struct cd321x *cd321x = container_of(to_delayed_work(work),
-> +					    struct cd321x, update_work);
-> +	struct tps6598x *tps = &cd321x->tps;
-> +	struct cd321x_status st;
-> +
-> +	guard(mutex)(&tps->lock);
-> +
-> +	st = cd321x->update_status;
-> +	cd321x->update_status.status_changed = 0;
-> +
-> +	bool old_connected = !!tps->partner;
-> +	bool new_connected = st.status & TPS_STATUS_PLUG_PRESENT;
-> +	bool was_disconnected = st.status_changed & TPS_STATUS_PLUG_PRESENT;
-> +
-> +	bool usb_connection = st.data_status &
-> +			      (TPS_DATA_STATUS_USB2_CONNECTION | TPS_DATA_STATUS_USB3_CONNECTION);
-> +
-> +	enum usb_role old_role = usb_role_switch_get_role(tps->role_sw);
-> +	enum usb_role new_role = USB_ROLE_NONE;
-> +	enum typec_pwr_opmode pwr_opmode = TYPEC_PWR_MODE_USB;
-> +	enum typec_orientation orientation = TYPEC_ORIENTATION_NONE;
-> +
-> +	if (usb_connection) {
-> +		if (tps->data_status & TPS_DATA_STATUS_USB_DATA_ROLE)
-> +			new_role = USB_ROLE_DEVICE;
-> +		else
-> +			new_role = USB_ROLE_HOST;
-> +	}
-> +
-> +	if (new_connected) {
-> +		pwr_opmode = TPS_POWER_STATUS_PWROPMODE(st.pwr_status);
-> +		orientation = TPS_STATUS_TO_UPSIDE_DOWN(st.status) ?
-> +			TYPEC_ORIENTATION_REVERSE : TYPEC_ORIENTATION_NORMAL;
-> +	}
-> +
-> +	bool is_pd = pwr_opmode == TYPEC_PWR_MODE_PD;
-> +	bool partner_changed = old_connected && new_connected &&
-> +		(was_disconnected ||
-> +		 (is_pd && memcmp(&st.partner_identity,
-> +				  &cd321x->cur_partner_identity, sizeof(struct usb_pd_identity))));
-> +
-> +	/* If we are switching from an active role, transition to USB_ROLE_NONE first */
-> +	if (old_role != USB_ROLE_NONE && (new_role != old_role || was_disconnected))
-> +		usb_role_switch_set_role(tps->role_sw, USB_ROLE_NONE);
-> +
-> +	/* Process partner disconnection or change */
-> +	if (!new_connected || partner_changed) {
-> +		if (!IS_ERR(tps->partner))
-> +			typec_unregister_partner(tps->partner);
-> +		tps->partner = NULL;
-> +	}
-> +
-> +	/* If there was a disconnection, set PHY to off */
-> +	if (!new_connected || was_disconnected) {
-> +		cd321x->state.alt = NULL;
-> +		cd321x->state.mode = TYPEC_STATE_SAFE;
-> +		cd321x->state.data = NULL;
-> +		typec_set_mode(tps->port, TYPEC_STATE_SAFE);
-> +	}
-> +
-> +	/* Update Type-C properties */
-> +	typec_set_pwr_opmode(tps->port, pwr_opmode);
-> +	typec_set_pwr_role(tps->port, TPS_STATUS_TO_TYPEC_PORTROLE(st.status));
-> +	typec_set_vconn_role(tps->port, TPS_STATUS_TO_TYPEC_VCONN(st.status));
-> +	typec_set_orientation(tps->port, orientation);
-> +	typec_set_data_role(tps->port, TPS_STATUS_TO_TYPEC_DATAROLE(st.status));
-> +	power_supply_changed(tps->psy);
-> +
-> +	/* If the plug is disconnected, we are done */
-> +	if (!new_connected)
-> +		return;
-> +
-> +	/* Set up partner if we were previously disconnected (or changed). */
-> +	if (!tps->partner) {
-> +		struct typec_partner_desc desc;
-> +
-> +		desc.usb_pd = is_pd;
-> +		desc.accessory = TYPEC_ACCESSORY_NONE; /* XXX: handle accessories */
-> +		desc.identity = NULL;
-> +
-> +		if (desc.usb_pd)
-> +			desc.identity = &st.partner_identity;
-> +
-> +		tps->partner = typec_register_partner(tps->port, &desc);
-> +		if (IS_ERR(tps->partner))
-> +			dev_warn(tps->dev, "%s: failed to register partnet\n", __func__);
-> +
-> +		if (desc.identity) {
-> +			typec_partner_set_identity(tps->partner);
-> +			cd321x->cur_partner_identity = st.partner_identity;
-> +		}
-> +	}
-> +
-> +	/* Update the TypeC MUX/PHY state */
-> +	cd321x_typec_update_mode(tps, &st);
-> +
-> +	/* Launch the USB role switch */
-> +	usb_role_switch_set_role(tps->role_sw, new_role);
-> +
-> +	power_supply_changed(tps->psy);
-> +}
-> +
-> +static void cd321x_queue_status(struct tps6598x *tps)
-> +{
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
-> +
-> +	cd321x->update_status.status_changed |= cd321x->update_status.status ^ tps->status;
-> +
-> +	cd321x->update_status.status = tps->status;
-> +	cd321x->update_status.pwr_status = tps->pwr_status;
-> +	cd321x->update_status.data_status = tps->data_status;
-> +
-> +	cd321x->update_status.partner_identity = tps->partner_identity;
-> +	cd321x->update_status.dp_sid_status = cd321x->dp_sid_status;
-> +	cd321x->update_status.intel_vid_status = cd321x->intel_vid_status;
-> +	cd321x->update_status.usb4_status = cd321x->usb4_status;
-> +}
-> +
-> +static int cd321x_connect(struct tps6598x *tps, u32 status)
-> +{
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
-> +
-> +	tps->status = status;
-> +	cd321x_queue_status(tps);
-> +	schedule_delayed_work(&cd321x->update_work, msecs_to_jiffies(CD321X_DEBOUNCE_DELAY_MS));
-> +
-> +	return 0;
-> +}
-> +
->  static irqreturn_t cd321x_interrupt(int irq, void *data)
->  {
->  	struct tps6598x *tps = data;
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
->  	u64 event = 0;
->  	u32 status;
->  	int ret;
-> @@ -652,9 +896,15 @@ static irqreturn_t cd321x_interrupt(int irq, void *data)
->  		if (!tps->data->read_data_status(tps))
->  			goto err_unlock;
->  
-> -	/* Handle plug insert or removal */
-> -	if (event & APPLE_CD_REG_INT_PLUG_EVENT)
-> -		tps6598x_handle_plug_event(tps, status);
-> +	tps->status = status;
-> +	cd321x_queue_status(tps);
-> +
-> +	/*
-> +	 * Cancel pending work if not already running.
-> +	 * We will requeue the work after CD321X_DEBOUNCE_DELAY_MS regardless.
-> +	 */
-> +	cancel_delayed_work(&cd321x->update_work);
-> +	schedule_delayed_work(&cd321x->update_work, msecs_to_jiffies(CD321X_DEBOUNCE_DELAY_MS));
->  
->  err_unlock:
->  	mutex_unlock(&tps->lock);
-> @@ -1014,6 +1264,13 @@ cd321x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
->  	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
->  	int ret;
->  
-> +	/*
-> +	 * This is only called from _probe such that update_work can be
-> +	 * initialized and then scheduled for the first time to handle
-> +	 * plugs already connected at boot time.
-> +	 */
-> +	INIT_DELAYED_WORK(&cd321x->update_work, cd321x_update_work);
-> +
->  	ret = tps6598x_register_port(tps, fwnode);
->  	if (ret)
->  		return ret;
-> @@ -1022,10 +1279,26 @@ cd321x_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
->  	if (ret)
->  		goto err_unregister_port;
->  
-> +	cd321x->mux = fwnode_typec_mux_get(fwnode);
-> +	if (IS_ERR(cd321x->mux)) {
-> +		ret = PTR_ERR(cd321x->mux);
-> +		goto err_unregister_altmodes;
-> +	}
-> +
-> +	cd321x->state.alt = NULL;
-> +	cd321x->state.mode = TYPEC_STATE_SAFE;
-> +	cd321x->state.data = NULL;
->  	typec_set_mode(tps->port, TYPEC_STATE_SAFE);
->  
->  	return 0;
->  
-> +err_unregister_altmodes:
-> +	if (cd321x->port_altmode_dp)
-> +		typec_unregister_altmode(cd321x->port_altmode_dp);
-> +	if (cd321x->port_altmode_tbt)
-> +		typec_unregister_altmode(cd321x->port_altmode_tbt);
-> +	cd321x->port_altmode_dp = NULL;
-> +	cd321x->port_altmode_tbt = NULL;
->  err_unregister_port:
->  	typec_unregister_port(tps->port);
->  	return ret;
-> @@ -1042,6 +1315,8 @@ cd321x_unregister_port(struct tps6598x *tps)
->  {
->  	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
->  
-> +	if (cd321x->mux)
-> +		typec_mux_put(cd321x->mux);
->  	typec_unregister_altmode(cd321x->port_altmode_dp);
->  	cd321x->port_altmode_dp = NULL;
->  	typec_unregister_altmode(cd321x->port_altmode_tbt);
-> @@ -1454,6 +1729,13 @@ tps25750_register_port(struct tps6598x *tps, struct fwnode_handle *fwnode)
->  	return 0;
->  }
->  
-> +static void cd321x_remove(struct tps6598x *tps)
-> +{
-> +	struct cd321x *cd321x = container_of(tps, struct cd321x, tps);
-> +
-> +	cancel_delayed_work_sync(&cd321x->update_work);
-> +}
-> +
->  static int tps6598x_probe(struct i2c_client *client)
->  {
->  	const struct tipd_data *data;
-> @@ -1555,7 +1837,7 @@ static int tps6598x_probe(struct i2c_client *client)
->  			goto err_unregister_port;
->  		if (!tps->data->read_data_status(tps))
->  			goto err_unregister_port;
-> -		ret = tps6598x_connect(tps, status);
-> +		ret = tps->data->connect(tps, status);
->  		if (ret)
->  			dev_err(&client->dev, "failed to register partner\n");
->  	}
-> @@ -1612,6 +1894,9 @@ static void tps6598x_remove(struct i2c_client *client)
->  	else
->  		devm_free_irq(tps->dev, client->irq, tps);
->  
-> +	if (tps->data->remove)
-> +		tps->data->remove(tps);
-> +
->  	tps6598x_disconnect(tps, 0);
->  	tps->data->unregister_port(tps);
->  	usb_role_switch_put(tps->role_sw);
-> @@ -1682,6 +1967,7 @@ static const struct tipd_data cd321x_data = {
->  		     APPLE_CD_REG_INT_DATA_STATUS_UPDATE |
->  		     APPLE_CD_REG_INT_PLUG_EVENT,
->  	.tps_struct_size = sizeof(struct cd321x),
-> +	.remove = cd321x_remove,
->  	.register_port = cd321x_register_port,
->  	.unregister_port = cd321x_unregister_port,
->  	.trace_data_status = trace_cd321x_data_status,
-> @@ -1691,6 +1977,7 @@ static const struct tipd_data cd321x_data = {
->  	.read_data_status = cd321x_read_data_status,
->  	.reset = cd321x_reset,
->  	.switch_power_state = cd321x_switch_power_state,
-> +	.connect = cd321x_connect,
->  };
->  
->  static const struct tipd_data tps6598x_data = {
-> @@ -1708,6 +1995,7 @@ static const struct tipd_data tps6598x_data = {
->  	.init = tps6598x_init,
->  	.read_data_status = tps6598x_read_data_status,
->  	.reset = tps6598x_reset,
-> +	.connect = tps6598x_connect,
->  };
->  
->  static const struct tipd_data tps25750_data = {
-> @@ -1725,6 +2013,7 @@ static const struct tipd_data tps25750_data = {
->  	.init = tps25750_init,
->  	.read_data_status = tps6598x_read_data_status,
->  	.reset = tps25750_reset,
-> +	.connect = tps6598x_connect,
->  };
->  
->  static const struct of_device_id tps6598x_of_match[] = {
-> 
-> -- 
-> 2.34.1
-> 
+The series introduces support of DDR channel through dt-binding and
+devicetree entries.
 
--- 
-heikki
+It also includes the addition of DDRPERFM device tree bindings,
+the DDRPERFM driver, the documentation and updates to the device tree files
+for STM32MP13, STM32MP15, STM32MP25 SoCs and stm32mp257f-dk and
+stm32mp257f-ev1 boards.
+The series also updates the MAINTAINERS file to include myself as the
+maintainer for the STM32 DDR PMU driver.
+
+Signed-off-by: Clément Le Goffic <clement.legoffic@foss.st.com>
+Signed-off-by: Clément Le Goffic <legoffic.clement@gmail.com>
+---
+Changes in v6:
+Use personnal mail account
+dt_bindings:
+  - Improve sdram-props's compatible and revision ID description
+  - Fix DDR4 compatible regex pattern and remove a DDR3 string
+driver:
+  - Add io.h include for writel_relaxed and readl_relaxed symbols
+- Link to v5: https://lore.kernel.org/r/20250728-ddrperfm-upstream-v5-0-03f1be8ad396@foss.st.com
+
+Changes in v5:
+driver:
+  - Remove one more trailing comma
+  - Include right includes and not more than needed.
+  - Fix the counter deletion for loop exit condition
+  - Fix a dev_err_probe error log
+dt_bindings:
+  - rcc:
+    - Fix commit message:
+      's/access_controller_cell/#access_controller_cells/g'
+  - sdram props
+    - Few fixes properties description (compatible, io-width and
+      density):
+      - fix SPD bytes number for density
+      - add manufacturer part number in compatible for DDR SDRAM
+      - improve description sentences
+- Link to v4: https://lore.kernel.org/r/20250723-ddrperfm-upstream-v4-0-1aa53ca319f4@foss.st.com
+
+Changes in v4:
+- Fix DDRPERFM dt-binding example with a DDR4 channel instead of DDR3
+- s/memory/sdram/ for factorising patches.
+- Improve properties description for the new SDRAM props binding by
+  adding information on compatible generation, revision-id, density and
+  io-width for DDR that comes with an SPD module.
+- Add a patch to standardise sdram channel node name.
+- Improve DDR4 compatible pattern.
+- Link to v3: https://lore.kernel.org/r/20250722-ddrperfm-upstream-v3-0-7b7a4f3dc8a0@foss.st.com
+
+Changes in v3:
+- dt-bindings:
+  - perf:
+    - fix compatible conditions and dtbs_check/dt_binding_check errors
+  - memory:
+    - Remove ddr-channel binding added in v2
+    - Generalise lpddr-props binding into memory-props binding
+    - Add ddr4 binding
+    - Generalise lpddr-channel binding into memory-channel-binding
+- devicetree:
+    - update stm32mp257f-ev1 board devicetree as per new ddr4-channel
+      binding
+- driver:
+    - Remove unneeded pmu and event pointer tests in
+      `stm32_ddr_pmu_get_counter()` as it would break before if they are
+      NULL
+    - Rename macro to be more driver specific
+    - Fix few trailing commas in array and enum last entries
+    - Stick to the use of `pmu->dev` in the probe instead of
+      `&pdev->dev`
+    - s/devm_clk_get_optional_prepared/devm_clk_get_optional_enabled/ to
+      fix unwinding issue and remove the `clk_enable()` of the probe.
+    - Move the `perf_pmu_register()` at the end of the probe
+    - Add lacking spaces in regspec structs
+    - Use DEFINE_SIMPLE_DEV_PM_OPS instead of SET_SYSTEM_SLEEP_PM_OPS
+- Link to v2: https://lore.kernel.org/r/20250711-ddrperfm-upstream-v2-0-cdece720348f@foss.st.com
+
+Changes in v2:
+- MAINTAINERS:
+    Due to reorganisation, my contract with ST ends at the end of this month
+    and I will no longer have access to this mailbox.
+    Therefore, I will be available for any mission related to embedded and
+    kernel linux.
+    Change email address in MAINTAINERS file for STM32 DDR PMU driver.
+- devicetrees:
+  -stm32mp257f-dk: add LPDDR4 channel
+  -stm32mp257f-ev1: add DDR4 channel
+- dt-bindings:
+  - perf:
+    - Change Maintainer email address
+    - Drop obvious descriptions (clocks and reset property)
+    - Drop redundant "bindings" in commit message
+    - Drop unneedded "stm32mp151-ddr-pmu" compatible
+    - s/st,dram-type/memory-channel/, memory-channel property is not in
+      dtschema library so it will produce an error in the v2.
+  - rcc:
+    - Add required "access-controller-cells" property in example
+  - ddr-channel:
+    - Add bindings as per jedec,lpddrX-channel bindings
+- driver:
+  - Substitute the parsing of the 'st,dram-type' vendor devicetree
+    property value with the parsing of the [lp]ddr channel compatible
+  - Remove unneeded "stm32mp151-ddr-pmu" compatible
+  - Use dev_err_probe when possible
+  - Assert and deassert reset line unconditionnaly
+  - Use `devm_reset_control_get_optional_exclusive` instead of
+    `of_property_present` then `devm_reset_control_get`
+  - Use `devm_clk_get_optional_prepared` instead of `of_property_present`
+    then `devm_clk_get_prepared`
+  - Disable and unprepare the clock at end of probe
+  - Add io.h include as per LKP test report
+  - Removed `of_match_ptr` reference in `platform_driver` struct
+  - Add `pm_sleep_ptr` macro for `platform_driver` struct's `pm` field
+  - Link to v1: https://lore.kernel.org/r/20250623-ddrperfm-upstream-v1-0-7dffff168090@foss.st.com
+
+---
+Clément Le Goffic (20):
+      bus: firewall: move stm32_firewall header file in include folder
+      dt-bindings: stm32: stm32mp25: add `#access-controller-cells` property
+      clk: stm32mp25: add firewall grant_access ops
+      arm64: dts: st: set rcc as an access-controller
+      dt-bindings: memory: factorise LPDDR props into SDRAM props
+      dt-bindings: memory: introduce DDR4
+      dt-bindings: memory: factorise LPDDR channel binding into SDRAM channel
+      dt-binding: memory: add DDR4 channel compatible
+      dt-bindings: memory: SDRAM channel: standardise node name
+      arm64: dts: st: add LPDDR channel to stm32mp257f-dk board
+      arm64: dts: st: add DDR channel to stm32mp257f-ev1 board
+      dt-bindings: perf: stm32: introduce DDRPERFM dt-bindings
+      perf: stm32: introduce DDRPERFM driver
+      Documentation: perf: stm32: add ddrperfm support
+      MAINTAINERS: add myself as STM32 DDR PMU maintainer
+      ARM: dts: stm32: add ddrperfm on stm32mp131
+      ARM: dts: stm32: add ddrperfm on stm32mp151
+      arm64: dts: st: add ddrperfm on stm32mp251
+      arm64: dts: st: support ddrperfm on stm32mp257f-dk
+      arm64: dts: st: support ddrperfm on stm32mp257f-ev1
+
+ Documentation/admin-guide/perf/index.rst           |   1 +
+ Documentation/admin-guide/perf/stm32-ddr-pmu.rst   |  86 ++
+ .../bindings/clock/st,stm32mp25-rcc.yaml           |   7 +
+ .../memory-controllers/ddr/jedec,ddr4.yaml         |  34 +
+ .../memory-controllers/ddr/jedec,lpddr-props.yaml  |  74 --
+ .../memory-controllers/ddr/jedec,lpddr2.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr3.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr4.yaml       |   2 +-
+ .../memory-controllers/ddr/jedec,lpddr5.yaml       |   2 +-
+ ...lpddr-channel.yaml => jedec,sdram-channel.yaml} |  40 +-
+ .../memory-controllers/ddr/jedec,sdram-props.yaml  |  94 +++
+ .../devicetree/bindings/perf/st,stm32-ddr-pmu.yaml |  94 +++
+ MAINTAINERS                                        |   7 +
+ arch/arm/boot/dts/st/stm32mp131.dtsi               |   7 +
+ arch/arm/boot/dts/st/stm32mp151.dtsi               |   7 +
+ arch/arm64/boot/dts/st/stm32mp251.dtsi             |   8 +
+ arch/arm64/boot/dts/st/stm32mp257f-dk.dts          |  12 +
+ arch/arm64/boot/dts/st/stm32mp257f-ev1.dts         |  12 +
+ drivers/bus/stm32_etzpc.c                          |   3 +-
+ drivers/bus/stm32_firewall.c                       |   3 +-
+ drivers/bus/stm32_rifsc.c                          |   3 +-
+ drivers/clk/stm32/clk-stm32mp25.c                  |  40 +-
+ drivers/perf/Kconfig                               |  11 +
+ drivers/perf/Makefile                              |   1 +
+ drivers/perf/stm32_ddr_pmu.c                       | 897 +++++++++++++++++++++
+ {drivers => include/linux}/bus/stm32_firewall.h    |   0
+ 26 files changed, 1351 insertions(+), 98 deletions(-)
+---
+base-commit: f777d1112ee597d7f7dd3ca232220873a34ad0c8
+change-id: 20250813-b4-ddrperfm-upstream-e8442bcc8396
+
+Best regards,
+--  
+Clément Le Goffic <legoffic.clement@gmail.com>
+
 
