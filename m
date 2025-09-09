@@ -1,173 +1,200 @@
-Return-Path: <devicetree+bounces-215115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75633B5065D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 21:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0201FB50675
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 21:36:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 652101BC8968
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:23:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAC8D1BC5C1C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F75A36207B;
-	Tue,  9 Sep 2025 19:22:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B88430597A;
+	Tue,  9 Sep 2025 19:36:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HwHXtEpJ"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="OFfmGFf+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66B33352FDC;
-	Tue,  9 Sep 2025 19:22:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 323B0303A22
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 19:36:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757445734; cv=none; b=AeyucgOxtaiqGfPNpaUy35O08Rz/6RbgwbDMM6kLegXNPfWEHRokbDkeD3/iGSUL2qHwC/YMdyPERZ8wIJkodoP11TlOW5KoFHfH3U81Whuhg9G+tHrQwJ1ApVtgDcx5dc+kiNB48MurPt1bcur/xuSnxknLZS+wyqLMSMqf9YQ=
+	t=1757446612; cv=none; b=Sdiqi6ag7Ey7+yOVvqJa2oL84detkLQYcX3uRlgrm2gBb6+9BQkPSxDdO6SF18v7jb8ubJpQmMR6cvJO5klknvWosP8itVwViUxw1qd+TSMG4A7zTuw0EDORIGwShUMZwNJY6aB9fUYiSjfB2W0GlIL+RxA32I+J/AhjS/LKUEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757445734; c=relaxed/simple;
-	bh=qdLV6/3+/lrDARwwF4gML3gh+ae10lFxH70/A3U06Tw=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=oo2mnEyBh27PS3obWL17bRuza9uLpSr8nHZ/aP7rozm27NzsGZYuJB9Y4XP5luiIA64i9X2PqY9gCjhmzsg6mcCzRcGa6IhnnwP0hVFJXv4y/I48WqWxqcyId0nJGKkDBTUkR/0mitv1JAdvca0NDUsCQQsnbTY0ILWiyuAdW9o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HwHXtEpJ; arc=none smtp.client-ip=209.85.208.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-62bec18abe6so2425016a12.3;
-        Tue, 09 Sep 2025 12:22:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757445731; x=1758050531; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aV7GXnC31a6+Cg+cxmDgtlX37//JD5ZC5/oqghxN6v4=;
-        b=HwHXtEpJPSY4EOQHoRnD1nybjUnx5C3hRRt2rRyXwk45vEhExol2K0DvU3dhYmotoZ
-         edHdwuXkR7T5GNDsspmoiNxB5NoSXFgRbAodxZ4CJzULF0b2V1vqPbyDLTr6YHSN2O7Z
-         Q3V5ZgWBWC2g7TiPZeu+xKygLMrnyiayvFQ59HKVfhjZamdi/n8EuF8mCWnD+pC4AxON
-         R3lNHXmm2As9XnJuejAQGPKAZyNr8pWE/xrARlNd6JmRYbaosjCFCNY4AZv+hYrl5TRK
-         DRf4QcJ8od9Lz95B8KRZUgcxLNjho5J4TktK89MYdiVUnfz12K6mi5yfimKd94KYExDL
-         1q8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757445731; x=1758050531;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aV7GXnC31a6+Cg+cxmDgtlX37//JD5ZC5/oqghxN6v4=;
-        b=gf2G9OvwhcqAILIkSiUSBJTvoIsCGbhWCLKaMxBX7qYjKNKIM9t2c8bUjFPp4d9DFJ
-         xbZCWKQ6wilMMBubP2o2F/0FiBn9wuSdJ+Wy1+dnM6FiJqmbjvMS8f9S7i8/8eSjtI/Q
-         6S6Z2cw23ZUDJI8/sT9iNiQeokB+oHESh6bW3g0VgM8LO5QN7GnnmZlBza+EOMHHMh9p
-         N1r2DF+Yyim1iCVp0Ph5f5bjUHfHL4wE4LncArmjnv2OmbKl09jRDguVRdoU6yDjD7Jz
-         24XcRNjaQ5PPEbEkTVtZpXo+WJ+We4vtMgzeoJleExb8xyaytyeiv4SNIHVBfEOLnvEg
-         owJw==
-X-Forwarded-Encrypted: i=1; AJvYcCVesJi4+UmKTDgnea8Hctx+B4yYVceIGybL3d/lQjCYqMi6Mxx4fyAiH1D4xA0tznvTXYns2n7jwkKD@vger.kernel.org, AJvYcCWu6BWwsGNalxi9d6tKkhgG13AqQLMke99MUljVAOVuyJFG2eu+MXsBh0ZyIeC4ipdzWaGDkM9bBQhmCCVQDA==@vger.kernel.org
-X-Gm-Message-State: AOJu0YyRdMQF9XS4PaEty5BGs6eVkw0p2gQev3PV520yQrDNeuwyNF72
-	1jBhxk4Z0G417YwnDS6MLQDGmWiHjwUZC17aK5xnofIorTYzQN82dnI2
-X-Gm-Gg: ASbGncugfcS8a+65fyvbY+3qllFmxtH0X1NXAYhNKCSV5ZhQ406qfrppRnNp7JE4sJv
-	xqcrobhXfKWppv3US161gBfPotw1G4wNW4vU1ekk4HompYOL3YXH1bI9roUYJLEjJqTyILY81Mc
-	CCBv0UZekgLtJBtJaw0XT996yN4si9t3T/jUk0jr8o40u1IZVMX3GUwOrUCzlzaGpeu1gIT0C+W
-	Vusird3O/2nkk8kd1/9ruvHw/Hajbau26Qbh2I/9CZwCsqgitCiGjPRdfUcUWZN3aIncwYqng8T
-	6DoNIi7ZsdNV2KrbmpHptZ9wNpe4eRimoJ5veaXFZq1Y/An2VGZVDtqlUVwU1UJeHzsxY1vUkZJ
-	aPJMv2IGV3shMmoSHfegr
-X-Google-Smtp-Source: AGHT+IHrwxd77+1kRRdC9c95ipF2nTEJD6C6mWuCBmBnUTAJkbFqzDSJGw7t//aVeZcq2XkrSAq53A==
-X-Received: by 2002:a05:6402:26cb:b0:627:c107:842d with SMTP id 4fb4d7f45d1cf-627c1080d8emr8345248a12.4.1757445730676;
-        Tue, 09 Sep 2025 12:22:10 -0700 (PDT)
-Received: from [127.0.1.1] ([46.53.240.27])
-        by smtp.googlemail.com with ESMTPSA id 4fb4d7f45d1cf-62c01ae5f75sm1847142a12.46.2025.09.09.12.22.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 12:22:10 -0700 (PDT)
-From: Dzmitry Sankouski <dsankouski@gmail.com>
-Date: Tue, 09 Sep 2025 22:22:05 +0300
-Subject: [PATCH v2 3/3] arch: arm64: dts: qcom: sdm845-starqltechn: fix
- max77705 interrupts
+	s=arc-20240116; t=1757446612; c=relaxed/simple;
+	bh=pW3yj6IzHWgOnjOMnUjUMtReo7OZoZL42xmhdCthF+8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MdXUORWuIf+P7vEvhuiIiRhvIT4zp/8J9T+FgZQTAo7Dh0MbXSID2YrL87llbJ5DlLp6Bm7kdzK8n0YrvtC5dKlM+lfwuoHFyCQyUIROzeqcdOlwI2Hi35DushdER0O0JXrNRKgrPi7AwpGxmVwJv9AXP4beqCwLfJnz3/+cGbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=OFfmGFf+; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1757446609;
+ bh=rwqoGtXjB1J++h8Zyy8TQBXX6o5DAsVUE4Q8MuslRI0=;
+ b=OFfmGFf+DSTaRnQtHRgyhcVPO+nRMO7nfBbG+pII6Sw0EaIkfgIAKrI0FB01Wbx+LL+bn3C90
+ 7efzAcM30OwFoH2pRh8qzMeYmvdk8go9Qw7jCK2G4DS/NlAYpniiuv5TJRVnsQfo3BFsd3Ow6gN
+ XxxJSm4tn60nbrExecYzl7KL7bdV0WNL7abTXCC3yvZd+x9enZxOY5L+lw4MqdgBfqGx5Vzg+pB
+ YGsZ8KuRN+LHsiMI3fBoOq51WKOlTpBlZiRWuRuD1MG5VyWvJD9XnKaGR+OCuzixHWEQra94HwW
+ h/1B6mMaouwM6ezXF80QN414zHsu7ARVJNJj5BrDWYfg==
+X-Forward-Email-ID: 68c081cdd4f0dc47f6d79244
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.2.14
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <a443fca9-e660-4a7a-b637-ec840ac8ed1e@kwiboo.se>
+Date: Tue, 9 Sep 2025 21:36:39 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20250909-starqltechn-correct_max77705_nodes-v2-3-e4174d374074@gmail.com>
-References: <20250909-starqltechn-correct_max77705_nodes-v2-0-e4174d374074@gmail.com>
-In-Reply-To: <20250909-starqltechn-correct_max77705_nodes-v2-0-e4174d374074@gmail.com>
-To: Chanwoo Choi <cw00.choi@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Lee Jones <lee@kernel.org>, 
- Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, 
- Krzysztof Kozlowski <krzk+dt@kernel.org>
-Cc: linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-msm@vger.kernel.org, 
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, 
- Dzmitry Sankouski <dsankouski@gmail.com>
-X-Mailer: b4 0.14.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1757445725; l=1935;
- i=dsankouski@gmail.com; s=20240619; h=from:subject:message-id;
- bh=qdLV6/3+/lrDARwwF4gML3gh+ae10lFxH70/A3U06Tw=;
- b=OhmJ8WCY0i8ipcbuRaw8IQURN7oYyvqeB9f5BsKdQd8TqvmpZ8O3eDcVib3zPb0KWOVe51/jg
- IJWs1c9x1QzC8agpQnu7sGDSpYLGrOAWVz7ABpXbCsucQ6/joNZbJQt
-X-Developer-Key: i=dsankouski@gmail.com; a=ed25519;
- pk=YJcXFcN1EWrzBYuiE2yi5Mn6WLn6L1H71J+f7X8fMag=
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
+To: =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+ FUKAUMI Naoki <naoki@radxa.com>
+Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250727144409.327740-1-jonas@kwiboo.se>
+ <B055BC95C67D129C+d7a2ff39-8367-48cf-8697-f12fd9f885a4@radxa.com>
+ <7d3c3b29-f89f-4801-8fd7-d6d0645095af@kwiboo.se> <17232684.geO5KgaWL5@diego>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <17232684.geO5KgaWL5@diego>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Since max77705 has a register, which indicates interrupt source, it acts
-as an interrupt controller.
+On 9/9/2025 5:39 PM, Heiko Stübner wrote:
+> Am Dienstag, 9. September 2025, 16:48:25 Mitteleuropäische Sommerzeit schrieb Jonas Karlman:
+>> On 9/9/2025 2:28 PM, FUKAUMI Naoki wrote:
+>>> Hi Jonas,
+>>>
+>>> On 7/27/25 23:44, Jonas Karlman wrote:
+>>>> The Radxa E24C is a compact, high-performance network computer
+>>>> developed by Radxa, based on the Rockchip RK3528A SoC.
+>>>>
+>>>> Add initial device tree for the Radxa E24C.
+>>>>
+>>>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>>>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>>>> ---
+>>>> Schematics: https://dl.radxa.com/e/e24c/docs/radxa_e24c_v1200_schematic.pdf
+>>>> ---
+>>>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>>>   .../boot/dts/rockchip/rk3528-radxa-e24c.dts   | 519 ++++++++++++++++++
+>>>>   2 files changed, 520 insertions(+)
+>>>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>>>> index 0662fcf00628..dc62fd5305be 100644
+>>>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>>>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>>>> @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-armsom-sige1.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-nanopi-zero2.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e20c.dtb
+>>>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e24c.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2a.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2f.dtb
+>>>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3562-evb2-v10.dtb
+>>>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>>>> new file mode 100644
+>>>> index 000000000000..225f2b0c5339
+>>>> --- /dev/null
+>>>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>>>> @@ -0,0 +1,519 @@
+>>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>>> +
+>>>> +/dts-v1/;
+>>>> +
+>>>> +#include <dt-bindings/input/input.h>
+>>>> +#include <dt-bindings/leds/common.h>
+>>>> +#include "rk3528.dtsi"
+>>>> +
+>>>> +/ {
+>>>> +	model = "Radxa E24C";
+>>>> +	compatible = "radxa,e24c", "rockchip,rk3528";
+>>>> +
+>>>> +	aliases {
+>>>> +		ethernet0 = &gmac1;
+>>>> +		i2c0 = &i2c0;
+>>>> +		i2c1 = &i2c1;
+>>>> +		i2c5 = &i2c5;
+>>>> +		mmc0 = &sdhci;
+>>>> +		mmc1 = &sdmmc;
+>>>> +		rtc0 = &hym8563;
+>>>> +		rtc1 = &rk805;
+>>>> +		serial0 = &uart0;
+>>>> +	};
+>>>> +
+>>>> +	chosen {
+>>>> +		stdout-path = "serial0:1500000n8";
+>>>> +	};
+>>>> +
+>>>> +	adc-keys {
+>>>> +		compatible = "adc-keys";
+>>>> +		io-channels = <&saradc 0>;
+>>>> +		io-channel-names = "buttons";
+>>>> +		keyup-threshold-microvolt = <1800000>;
+>>>> +		poll-interval = <100>;
+>>>> +
+>>>> +		button-maskrom {
+>>>> +			label = "MASKROM";
+>>>> +			linux,code = <KEY_SETUP>;
+>>>> +			press-threshold-microvolt = <0>;
+>>>> +		};
+>>>> +	};
+>>>> +
+>>>> +	gpio-keys {
+>>>> +		compatible = "gpio-keys";
+>>>> +		pinctrl-names = "default";
+>>>> +		pinctrl-0 = <&gpio0_a0_user>;
+>>>> +
+>>>> +		button-user {
+>>>> +			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
+>>>> +			label = "USER";
+>>>> +			linux,code = <BTN_1>;
+>>>
+>>> I prefer to assign BTN_0 to the 1st button :)
+>>
+>> The E20C (and other RK boards) already use BTN_1 for user button, it
+>> only seem to be the recently added E54C that is using BTN_0.
+>>
+>> For consistency I suggest we keep using BTN_1 for this user button and
+>> possible fixup E54C, if you want to use same button for all variants.
+> 
+> Yep, that would also keep the amount of userspace-facing changes
+> minimal.
 
-Use max77705 as an interrupt controller for charger and fuelgauge
-subdevices.
+I mixed up e54c and e52c so my statement was not fully correct above,
+however there is a mixed use of BTN_1 and BTN_0 for user button:
 
-Signed-off-by: Dzmitry Sankouski <dsankouski@gmail.com>
----
-Changes for v2:
-- fix commit msg header prefix to 'arm64: dts: qcom: sdm845-starqltechn:'
-- remove binding header for interrupt numbers
-- make interrupt-cells 1, because irq trigger type is not used
----
- arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+- rk3588s-nanopi-r6c/r6s uses BTN_1, added in v6.9-rc1
+- rk3588-friendlyelec-cm3588-nas uses BTN_1, added in v6.11-rc1
+- rk3582-radxa-e52c uses BTN_0, added in v6.14-rc1
+- rk3528-radxa-e20c uses BTN_1, added in v6.15-rc1
+- rk3576-nanopi-m5 uses BTN_1, added in v6.17-rc1
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-index 8a1e4c76914c..597e25d27d76 100644
---- a/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm845-samsung-starqltechn.dts
-@@ -584,13 +584,15 @@ &uart9 {
- &i2c14 {
- 	status = "okay";
- 
--	pmic@66 {
-+	max77705: pmic@66 {
- 		compatible = "maxim,max77705";
- 		reg = <0x66>;
- 		interrupt-parent = <&pm8998_gpios>;
- 		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-controller;
- 		pinctrl-0 = <&pmic_int_default>;
- 		pinctrl-names = "default";
-+		#interrupt-cells = <1>;
- 
- 		leds {
- 			compatible = "maxim,max77705-rgb";
-@@ -629,8 +631,8 @@ max77705_charger: charger@69 {
- 		reg = <0x69>;
- 		compatible = "maxim,max77705-charger";
- 		monitored-battery = <&battery>;
--		interrupt-parent = <&pm8998_gpios>;
--		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&max77705>;
-+		interrupts = <0>;
- 	};
- 
- 	fuel-gauge@36 {
-@@ -638,8 +640,8 @@ fuel-gauge@36 {
- 		compatible = "maxim,max77705-battery";
- 		power-supplies = <&max77705_charger>;
- 		maxim,rsns-microohm = <5000>;
--		interrupt-parent = <&pm8998_gpios>;
--		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		interrupt-parent = <&max77705>;
-+		interrupts = <2>;
- 	};
- };
- 
+Majority seem to be using BTN_1 for a user button.
 
--- 
-2.39.5
+Regards,
+Jonas
+
+> 
+> Heiko
+> 
+> 
+> 
 
 
