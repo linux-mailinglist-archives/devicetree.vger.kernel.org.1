@@ -1,257 +1,188 @@
-Return-Path: <devicetree+bounces-214770-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214771-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9200B4A559
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:33:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3392BB4A569
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:35:48 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 444AA7AB274
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:31:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF2FD7AD603
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:34:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCD4C248F75;
-	Tue,  9 Sep 2025 08:32:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DFAE32522A1;
+	Tue,  9 Sep 2025 08:35:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b="ZMO1eSXg"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="X5IGy0zM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lx20.hoststar.hosting (lx20.hoststar.hosting [168.119.41.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8490A24728E;
-	Tue,  9 Sep 2025 08:32:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=168.119.41.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 424F4244665
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 08:35:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757406765; cv=none; b=IF53w+A9aNInl2yWLGHzWIxgUwdnG6fJYXHU0pDOK8QAjD4UaB49RAgoafUADHv8S03mv3Wvo1I49MFVsHk1sPY2aGNoNManVBPMNjqJhvYLn6ufQHiLhI91plcGV6z2KiPxP8nHE7fdYn0/6JcXJSZeitHhv+Gfy6aE4tvAKyU=
+	t=1757406939; cv=none; b=n6ujwNQk49ND8W1XNIVnDZtIViQRPT3fiOZj6DqhEYNEUD7Gkv2owL9TnSZD2i89j96lyUuBuOd5Uyizym+oOipE2CB7sAyTzHQmSmh2xoMVCdM+Z6BbVsrb8sq97uBegSZZOTPSpgRvmZSqBii/LA5CN6j8j5n7lMH+ZKP2lCc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757406765; c=relaxed/simple;
-	bh=pM5dpLJ68zvYdmgTFMYPesYP2UfuiYQOL3U5MABggOs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DpFKST2eR65ZqFSlwYGSQulwXUThiJEkUaxU021aPwUlggMeRgAiZfCTjhLPsrKEXbRSYKLcFDHrs6SHW/JR25H5USbCsl7Locb5iE3mWoPDBhIkY3H7E32+8i1JLZiicGAN960dV1GJyb8GuavO/NsDC0EFbD9PoqkFuHRJNc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at; spf=pass smtp.mailfrom=emfend.at; dkim=pass (1024-bit key) header.d=emfend.at header.i=@emfend.at header.b=ZMO1eSXg; arc=none smtp.client-ip=168.119.41.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=emfend.at
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=emfend.at
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=emfend.at;
-	 s=mail; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:References
-	:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:Content-ID:
-	Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-	:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-	List-Post:List-Owner:List-Archive;
-	bh=ymhLTOmvsj60mhAT0jeL59s88QrzoIS8036CDrPEKRA=; b=ZMO1eSXgPNZsMERT5izBCx132y
-	geilEU1EYgEC3dEJXfd9hY/crVdb097qrtCedZNTWSiwirJ7Obbc6VQrVGBf0DOtj/DQIvJQ6lQE2
-	g7jYeas+2cb2tAtSmKhtxbK7O9hHl/FDxfOqxjQ1sK2WfjjjXk9r4sRZsNl+xoDJ6MVM=;
-Received: from 194-208-208-245.tele.net ([194.208.208.245]:59814 helo=[192.168.0.207])
-	by lx20.hoststar.hosting with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256
-	(Exim 4.93)
-	(envelope-from <matthias.fend@emfend.at>)
-	id 1uvtm2-004XPb-Nj; Tue, 09 Sep 2025 10:32:23 +0200
-Message-ID: <b2826079-7db5-4adf-9e2a-e372e977acf3@emfend.at>
-Date: Tue, 9 Sep 2025 10:32:21 +0200
+	s=arc-20240116; t=1757406939; c=relaxed/simple;
+	bh=qEFFsG3JJ6Gj1Avf/fY6gQYPV57m4kz86xl84hx39eA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=o+XXLAZyB+W/sbP9uvl7tdBuE7yS8q/Ouz00ldsZZIiK2g064yh72YNXUibJKByfJt5kT3fhzKx+ST5GteCdSNEB5jHyaJBDtebm5PAnD13BH3eDPEIbsp/+MzDsLiLF7m+N3/wOzlBbyGCzwKRGtVvyKVxy4992BNkV0sh5fOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=X5IGy0zM; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45b9814efbcso41435075e9.0
+        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 01:35:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757406935; x=1758011735; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6N+5/nHLfNzpH0boX8DeOhGOdzLAP79fhn+X+phaP9A=;
+        b=X5IGy0zMNsAgU5R+b6dO3NtxasTBJqGHtgt3BZgtFz3e45f4Kwx10bojcPffFUkc1k
+         gLOKfYyGtuR+84rlR6hVwWYWc65N1ZDEwH3AfL3QxPAzKAdtDfSHdBonrJAj4lSEQnFM
+         gARXENuWpM4KYTvvLxEzpp2yACAtEu1sOoefWYHnrYdGPgFIryL0TsW0Edgj24OdkmL+
+         2cFi6puviguGeWkXbdL9/2lqJ3cR0bzrsa9b1ILmbWxxiXGHRPrKNL2+q+Rpe43Jzrff
+         eHD7OHYaCoxazYuNF01mTfDCu1JovqAbpACkIxpmfFey4qgRP/WXYiT+O4PEc5yV2R3H
+         CusQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757406935; x=1758011735;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6N+5/nHLfNzpH0boX8DeOhGOdzLAP79fhn+X+phaP9A=;
+        b=tlurezQ4x0SAcGczutV+kTdVxUdWtPsqEOKOqkh776aUKA2JUZQ8gUMYuPjCBMt3n2
+         AOm0jqyoiikj8eUSEgYkOeArCDwNH6dTqDUjD9jrYP51if/C8dLDrfbdbU6pT5TfvV67
+         ahGdMYud0WjzHU1xMdV1xiyaAzOkarXlIPMQu2LIPVxRVdVlMaatNL9QZ1BYbpBkRk+g
+         gMB2uNcbLn1CBExL7uZjcyDYxKfZn6ABw+j/PhdDlShpJEbgx8MypSIdLol6rME2nVyL
+         Zr+8pPqOViozfSkGdOknQaUW2ynwpLWfSiGq4ovdIm11G8VZVljhMmaky1dMZLUG6/YX
+         tlPw==
+X-Forwarded-Encrypted: i=1; AJvYcCW0NDGI2MePzHo2d8/FGh50Bba0ECyHCeNVrtuJR78U3unGqP6J8sXuDsN75/bj7s/PMLQRbl2tryYr@vger.kernel.org
+X-Gm-Message-State: AOJu0YybN1DVrMbztnUwjU91Tgu4rSlN9iwncSIXe5R/T/sXMx8M/+4A
+	mYby3hkjsSOCdYWVHJhkI+h+LvkNt5bW0XsPtdnTj0nAwleekmF2x1XvFb/FMf0ME3E=
+X-Gm-Gg: ASbGnctgSWbaO0qS23JTNoiTf8T+teYGDiw9Ip/Ox4RfRiAU+dzh72P9VGmLWY+dQb8
+	PgMahi30hglLYArCKQ3tdu8/04Vww/sKUeTIqq5tPQVRNuV+m6i1ZhvR4YzLXAfvhgxWKPD5fNf
+	dDVTc7ecCf+U71vxpQPXkPiEqSyeEjZgU5NCeWt8Vn76T497sTm7qWrdPMuTn4GM2EYVE9yvASv
+	fqKG0EhvpWJCA/Vd8aH63JqB9bIWHV+K/JlwGC/kxZTRp8C+StwxqctbHDR3slrhiOjrIhHFY0R
+	jiNnCj6N/aePWnu53ZAAYLAd0ozwMO4BAV/WoksxEepS8RpGy3wEHkkskdzx+dXLWukFu44ujOk
+	7xSVdbIGDwtHo8giZ4IrfgpxWtA==
+X-Google-Smtp-Source: AGHT+IFBJ3Z0uXfcWdYuPkWDAS7urMN/Se5ouLEUwPSzoQV8nlN7XUEIwwIC+Zikwt2F+t1XNTI3SQ==
+X-Received: by 2002:a05:6000:2311:b0:3b9:14f2:7edf with SMTP id ffacd0b85a97d-3e2ffd7f634mr11493663f8f.1.1757406935303;
+        Tue, 09 Sep 2025 01:35:35 -0700 (PDT)
+Received: from localhost ([195.52.61.108])
+        by smtp.gmail.com with UTF8SMTPSA id 5b1f17b1804b1-45decf8759esm27587495e9.23.2025.09.09.01.35.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 01:35:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] media: dt-bindings: i2c: add Himax HM1246 image
- sensor
-To: Sakari Ailus <sakari.ailus@iki.fi>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-media@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- bsp-development.geo@leica-geosystems.com
-References: <20250526-hm1246-v2-0-6b882827a3a5@emfend.at>
- <20250526-hm1246-v2-1-6b882827a3a5@emfend.at>
- <aLq0jJtdaxIpN9CT@valkosipuli.retiisi.eu>
-Content-Language: de-DE
-From: Matthias Fend <matthias.fend@emfend.at>
-In-Reply-To: <aLq0jJtdaxIpN9CT@valkosipuli.retiisi.eu>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: 
-X-Spam-Bar: 
-X-Spam-Report: 
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 09 Sep 2025 10:35:26 +0200
+Message-Id: <DCO4RGJBMTRM.1XNHG5EHBPS24@baylibre.com>
+Subject: Re: [PATCH 1/3] arm64: dts: ti: k3-am62x-sk-common: Enable Main
+ UART wakeup
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Kendall Willis" <k-willis@ti.com>, <nm@ti.com>, <vigneshr@ti.com>,
+ <kristo@kernel.org>, <robh@kernel.org>, <krzk+dt@kernel.org>,
+ <conor+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Cc: <d-gole@ti.com>, <vishalm@ti.com>, <sebin.francis@ti.com>,
+ <khilman@baylibre.com>, <a-kaur@ti.com>
+X-Mailer: aerc 0.20.1
+References: <20250904212827.3730314-1-k-willis@ti.com>
+ <20250904212827.3730314-2-k-willis@ti.com>
+In-Reply-To: <20250904212827.3730314-2-k-willis@ti.com>
 
-Hi Sakari,
+--a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-Thanks for you feedback!
+On Thu Sep 4, 2025 at 11:28 PM CEST, Kendall Willis wrote:
+> The Main UART can resume from suspend to RAM states when PIN_WKUP_EN
+> is enabled. Add the necessary pins needed to wakeup the system. Add the
+> system idle states that the Main UART can wakeup the system from.
+>
+> Signed-off-by: Kendall Willis <k-willis@ti.com>
+> ---
+>  .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi | 24 +++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi b/arch/arm64/=
+boot/dts/ti/k3-am62x-sk-common.dtsi
+> index 13e1d36123d51..72801cf890d20 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62x-sk-common.dtsi
+> @@ -163,14 +163,26 @@ &phy_gmii_sel {
+> =20
+>  &main_pmx0 {
+>  	/* First pad number is ALW package and second is AMC package */
+> -	main_uart0_pins_default: main-uart0-default-pins {
+> +	main_uart0_tx_pins_default: main-uart0-tx-default-pins {
+>  		bootph-all;
+>  		pinctrl-single,pins =3D <
+> -			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14/A13) UART0_RXD */
+>  			AM62X_IOPAD(0x1cc, PIN_OUTPUT, 0) /* (E14/E11) UART0_TXD */
+>  		>;
+>  	};
+> =20
+> +	main_uart0_rx_pins_default: main-uart0-rx-default-pins {
+> +		bootph-all;
+> +		pinctrl-single,pins =3D <
+> +			AM62X_IOPAD(0x1c8, PIN_INPUT, 0) /* (D14/A13) UART0_RXD */
+> +		>;
+> +	};
+> +
+> +	main_uart0_rx_pins_wakeup: main-uart0-rx-wakeup-pins {
+> +		pinctrl-single,pins =3D <
+> +			AM62X_IOPAD(0x1c8, PIN_INPUT | PIN_WKUP_EN, 0) /* (D14/A13) UART0_RXD=
+ */
+> +		>;
+> +	};
+> +
+>  	main_uart1_pins_default: main-uart1-default-pins {
+>  		bootph-pre-ram;
+>  		pinctrl-single,pins =3D <
+> @@ -342,8 +354,12 @@ &wkup_uart0 {
+>  &main_uart0 {
+>  	bootph-all;
+>  	status =3D "okay";
+> -	pinctrl-names =3D "default";
+> -	pinctrl-0 =3D <&main_uart0_pins_default>;
+> +	pinctrl-names =3D "default", "wakeup";
 
-Am 05.09.2025 um 11:59 schrieb Sakari Ailus:
-> Hi Matthias,
-> 
-> Thanks for the set.
-> 
-> On Mon, May 26, 2025 at 08:59:27AM +0200, Matthias Fend wrote:
->> Add YAML device tree binding for Himax HM1246 image sensor.
->>
->> Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
->> Signed-off-by: Matthias Fend <matthias.fend@emfend.at>
->> ---
->>   .../bindings/media/i2c/himax,hm1246.yaml           | 111 +++++++++++++++++++++
->>   1 file changed, 111 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..8a67de7e3ffcaa9f1acfe443b1e36fffb79dbacf
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/media/i2c/himax,hm1246.yaml
->> @@ -0,0 +1,111 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +# Copyright 2025 Matthias Fend <matthias.fend@emfend.at>
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/media/i2c/himax,hm1246.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Himax HM1246-AWD 1/3.7-Inch megapixel SoC image sensor
->> +
->> +maintainers:
->> +  - Matthias Fend <matthias.fend@emfend.at>
->> +
->> +description:
->> +  The Himax HM1246-AWD is a 1/3.7-Inch CMOS image sensor SoC with an active
->> +  array size of 1296 x 976. It is programmable through an I2C interface and
->> +  connected via parallel bus.
->> +
->> +allOf:
->> +  - $ref: /schemas/media/video-interface-devices.yaml#
->> +
->> +properties:
->> +  compatible:
->> +    const: himax,hm1246
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  clocks:
->> +    description: Input reference clock (6 - 27 MHz)
->> +    maxItems: 1
->> +
->> +  reset-gpios:
->> +    description: Active low XSHUTDOWN pin
->> +    maxItems: 1
->> +
->> +  avdd-supply:
->> +    description: Power for analog circuit (3.0 - 3.6 V)
->> +
->> +  iovdd-supply:
->> +    description: Power for I/O circuit (1.7 - 3.6 V)
->> +
->> +  dvdd-supply:
->> +    description: Power for digital circuit (1.5 / 1.8 V)
->> +
->> +  port:
->> +    $ref: /schemas/graph.yaml#/$defs/port-base
->> +    additionalProperties: false
->> +    description: Parallel video output port
->> +
->> +    properties:
->> +      endpoint:
->> +        $ref: /schemas/media/video-interfaces.yaml#
->> +        unevaluatedProperties: false
->> +
->> +        properties:
->> +          bus-type:
->> +            const: 5
-> 
-> Does the device also support e.g. Bt.656? If not, you can drop this.
+I think you may need to add this to the DT binding of the uart device
+as well.
 
-It is always a parallel interface. Okay, will remove it.
-> 
-> If the rest of the parallel interface parameter properties aren't
-> mandatory, what are their default values?
+Best
+Markus
 
-The defaults are:
-hsync-active: 1 (high)
-vsync-active: 1 (high)
-pclk-sample: 0 (falling)
+> +	pinctrl-0 =3D <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_defau=
+lt>;
+> +	pinctrl-1 =3D <&main_uart0_tx_pins_default>, <&main_uart0_rx_pins_wakeu=
+p>;
+> +	wakeup-source =3D <&system_deep_sleep>,
+> +			<&system_mcu_only>,
+> +			<&system_standby>;
+>  };
+> =20
+>  &main_uart1 {
 
-Should I add the default values? The properties section of the endpoint 
-would then look like this:
 
-properties:
-   hsync-active:
-     default: 1
+--a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969
+Content-Type: application/pgp-signature; name="signature.asc"
 
-   vsync-active:
-     default: 1
+-----BEGIN PGP SIGNATURE-----
 
-   pclk-sample:
-     default: 0
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaL/mzhsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlNd
+gQEA/hNMsUFW+UdVLmVgndckJZ2RHI3dvWGZDIfL72MfMQoA/2/x9L5Jzg9n5J48
+Fc4ax/6ykv5Jx18pJrptLgYJLloP
+=LJUi
+-----END PGP SIGNATURE-----
 
-> 
->> +
->> +        required:
->> +          - bus-type
-
-Then I should probably remove that too?
-
->> +
->> +    required:
->> +      - endpoint
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - clocks
->> +  - avdd-supply
->> +  - iovdd-supply
->> +  - dvdd-supply
->> +  - port
->> +
->> +unevaluatedProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    #include <dt-bindings/media/video-interfaces.h>
->> +
->> +    i2c {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        sensor@24 {
->> +            compatible =  "himax,hm1246";
->> +            reg = <0x24>;
->> +
->> +            clocks = <&hm1246_clk>;
->> +
->> +            reset-gpios = <&gpio0 0 GPIO_ACTIVE_LOW>;
->> +
->> +            avdd-supply = <&hm1246_avdd>;
->> +            iovdd-supply = <&hm1246_iovdd>;
->> +            dvdd-supply = <&hm1246_dvdd>;
->> +
->> +            orientation = <2>;
-> 
-> It'd be nice to add macros for these in
-> include/dt-bindings/media/video-interfaces.h .
-
-True. However, since this is not specific to this sensor, I think it's 
-something for a separate series.
-Should I omit these properties in this example?
-
-Thanks
-  ~Matthias
-
-> 
->> +            rotation = <0>;
->> +
->> +            port {
->> +                endpoint {
->> +                    remote-endpoint = <&isp_par_in>;
->> +                    bus-type = <MEDIA_BUS_TYPE_PARALLEL>;
->> +                    bus-width = <10>;
->> +                    hsync-active = <1>; /* active high */
->> +                    vsync-active = <1>; /* active high */
->> +                    pclk-sample = <1>; /* sample on rising edge */
->> +                };
->> +            };
->> +        };
->> +    };
->>
-> 
-
+--a707a77f03150ec3fb16fcc412142aea8aa18ba4074642abf5aac27f6969--
 
