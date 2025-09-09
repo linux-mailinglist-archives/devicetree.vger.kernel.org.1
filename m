@@ -1,154 +1,226 @@
-Return-Path: <devicetree+bounces-214803-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214805-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 90790B4A731
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:15:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1D8FB4A818
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:34:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9B0AD188C274
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:13:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C3CEB3B6C91
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:30:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 738AF2877DC;
-	Tue,  9 Sep 2025 09:12:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DF6F2BFC73;
+	Tue,  9 Sep 2025 09:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TZhnDyue"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hooskbmT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3994C285C9F;
-	Tue,  9 Sep 2025 09:12:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED40D2BF3CC;
+	Tue,  9 Sep 2025 09:21:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757409156; cv=none; b=OQvq3DCN0fBQRK01Qo7r29evtMqrpXt7bAfVRVPvKqwgpK9Cc0KrPu+WwQF2jcBo6YvI5rgyqYk7/1G2zxkrm9ZPs4JWay8tytsQGT10wKVgr2XQGqx0Gglwf+W9gtjvuJfMEd1P4TbwtAM/gUqya61yX2dwRLU5o5fSo5QQ3ho=
+	t=1757409676; cv=none; b=f/kjCjXcn5+R92EGm87ZB8TF3XFmWfx9L3vxb8mGMZsQM5RUqNlMt29Ds0eHbgw8cCNSag2qYXe0TYyeBReQZh3tLJLQ6C84vhHR8jQ5YSvLs8BXOsro4q2xSVlz3JrrG0Xybk9eeFE+PEg3OohbA2WNSw8yOT1QxsykqTcmEhc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757409156; c=relaxed/simple;
-	bh=m7ZZU9h5JvGnkZ8Ir264p71bTvlUeQhh0klKyWcPma8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=Guv2DvgMi8nfRb8TMK75w0Hdvzhqdd+Nmhsb/mubPkOJ8YPzXfaRVf41tz2/RaqGbLPXD4oBwnA13Fhx7Ia9UCQDbv8eL32ITYS724aShN8d6OxAJIw4EZgseH2AYbaQeiZ9vc/8s5QyQJ5puQygMuHovE99jq+syGA3vxZ9Yy0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TZhnDyue; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-45cb6180b60so33789005e9.0;
-        Tue, 09 Sep 2025 02:12:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757409152; x=1758013952; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UjwRHCbUSAxI/MIr5daqIRr+6lfMsaDKyPmMi+Nun2Y=;
-        b=TZhnDyue1SwoOKUJuovzX/SBAhRJ6j5vdzGLwnKg3gU/XrWzwUEmY9IpRxOist4bPh
-         PZJXl6qmS42S+M6rpbs+YmJEdKZWi6xI+EvKGqpE/Svx8rPaQrCGw/Ndc+kSUqtUpLCb
-         4iY2cHvvQhl+xpkOwm8zAnOs6vRd/XlPnSPNiKW/tNI6XKEn8sfJ0cIe/thLgSzZcMwV
-         HwfH2/eAfxobrFb9Lb7M+bKfSMJ31QabfBoHEKrfETVspel7SmYIphbm9kafZLSdRzk4
-         +CbETUFtLHs8k2Z3zGYPRnrSs42PtSVNxqyp8vHdXimtGDhG3SuQnMwb8lUhx4fEoc5o
-         C3aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757409152; x=1758013952;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UjwRHCbUSAxI/MIr5daqIRr+6lfMsaDKyPmMi+Nun2Y=;
-        b=taiD0OKaKMn3yVsT6kPmz49KJyOea2JX0pSWcWYtXO29bRETcxeBaIboPmPm+80ZNg
-         RI874eStKXUD+kSWWNxUkkf5RrpMDwm8M9Xz685LwZWki3CUTXrjg6MVZSHACI0IwaNa
-         w6STXNcsfr1bC0seceXlBZ9JTbDPp8FMMHQ+xL5saX/7ljVCDm0UQqmBj7MZjGJjeF3v
-         IZd9R8HAjFsIJdTh7z6s1GGZKESvmNkJ7xhmqJED04kNHGVTBKwjrxKQwj77jih+aviJ
-         vB1/lc1Ljs+QIm+TVXvP3RP81CXo7IgJLHopFZVKyRblQ+SWUjhd44iZ/bnEme8rVJPH
-         zc1A==
-X-Forwarded-Encrypted: i=1; AJvYcCVChq67eKIpXpy6YdgHmxki2bMgxgi4vVZ7AUmCgN+XKPxJCFu6JY/L8UsmDYdLJ4YhAUdOT/3jSulfJy8AYNz+BNA=@vger.kernel.org, AJvYcCX6/2eojtPydKMhWI/N0zryUk96MNdxTaXw1YH7aM/ZdfK5m+JeT586PGIM/0s40aiHKIX8OxoqwaoI@vger.kernel.org, AJvYcCXqZ2Vef3eJISunnPc+12yI6zvqIk4u0F/CqtSsw4q6JSGYAmxjgxe/wWUJUi1dUSuoqpBtYBySDnCbzDcq@vger.kernel.org
-X-Gm-Message-State: AOJu0YyOMSjNr8du4qxgs8qTfrN7yDO3Z8QXpj2UwU56VLZKMKatE2il
-	AfN4VnMpB6HBntQA32VXcjMn4INFWCEQdj4wqHeHNP9IKx4zeS8BCe6f
-X-Gm-Gg: ASbGncuG7nKGOZf5cz63sFAqPj6bP+RKhsBNRbqX2amXu4uFYYxuNQ1+OIJ20mOzbea
-	GPEgIj6SBZMX5O13APr31wdJ8UiqFmgE4zLOf6CVHYEBAysDryvxBcvIda1h5Qrd9dxbTKsSA3G
-	QP940fygws5psjs3bBIgvAUMdG2sgM3Ic3Q9LkrcX0R0W1koksiKJjZHy2m22DmT7aFZbgZTCWl
-	lbC3JGHUINmBdIFg2fcthXEVKWFtK+Bg+aE8Ar3dUVyBYhWMYE/F4YCMD+VxARAU9eB9KXwYKki
-	Fj537hnR8H+fPuFqJNYvHDObWgmFiIxd8/SOMZtBDZhQysajMB0C21HoJz4s9ZMKpfpzkGC/9G0
-	qHwAnqGNq2z8+h1+QzS8IJ8G/FD8v3fNneWol5gy0ZcntwHMlNddI65w0LCN3h29WunWdaDlwER
-	Ea6pDYEajOyDBk
-X-Google-Smtp-Source: AGHT+IFfWk/Eze8IwCj+UaGpMYdyJt+r13ZaXzuakT3YZOumtGt4NsFrm/H5zq5jPnHuMVDrmNs0eg==
-X-Received: by 2002:a05:6000:1a8c:b0:3d7:f363:2f0d with SMTP id ffacd0b85a97d-3e643274b76mr8993948f8f.28.1757409152424;
-        Tue, 09 Sep 2025 02:12:32 -0700 (PDT)
-Received: from biju.lan (host86-139-30-37.range86-139.btcentralplus.com. [86.139.30.37])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45deff68b43sm6975685e9.2.2025.09.09.02.12.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 02:12:32 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>,
-	Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Subject: [PATCH v2 8/8] arm64: dts: renesas: r9a09g047e57-smarc: Enable GPT on carrier board
-Date: Tue,  9 Sep 2025 10:12:18 +0100
-Message-ID: <20250909091225.128658-9-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250909091225.128658-1-biju.das.jz@bp.renesas.com>
-References: <20250909091225.128658-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1757409676; c=relaxed/simple;
+	bh=+fjZF0QJCtGrNgwDrzLzgfzno6BjOTwzlpPUW4bFHxA=;
+	h=Content-Type:Message-ID:Date:MIME-Version:Subject:To:Cc:
+	 References:From:In-Reply-To; b=pqysnz9NoQC2GC4zkNa7Y2p56OejGXE7/bwpH8JRnYU4QfkT8y5LbP5VreZbGXoadv2igtLXMFhF0JFIbT+e0O5f4+C5vS4MyXJXxavgwvMVYHucdEuZqxBBrzZ0VqlvOBTQoEd0eZ0A+ZZNpzOU6l5324mDzmuQVZ+Jp8dgycs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hooskbmT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12F1AC4CEF4;
+	Tue,  9 Sep 2025 09:21:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757409675;
+	bh=+fjZF0QJCtGrNgwDrzLzgfzno6BjOTwzlpPUW4bFHxA=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=hooskbmT9NXIM5er/vkbZ83teoaLKRtTVsqQOdgZs2T0MtkdmKAvFQfoqCdOR4NrT
+	 y29cBS7c00Rzf6Qfuz3M5UWgvmW5Qk+0EfonnR250/WuKcvWw2RnSWEg9MRmnyvHFs
+	 OorBYvXmKyzBWno52fsSddvh/fJVaWpKzR8qPEE8nhz1bBFe+E7c9GptiJyTMxw84k
+	 wQOH6qzBDX0gn2Yay0gfebf7+IPDEu3AuNBCiOoHhlEdLhdo+jn8GLrGyjkmczKEkx
+	 tdc9xfJTnyxaY+GoxM2zOX9Tyl9KYi4iLo9xYADnQaMwsxgsVTg0vwUAbZQ/NqMABg
+	 +8bq+ocHLxQug==
+Content-Type: multipart/mixed; boundary="------------Ks5pXm1R52GZGS5sYHOnm0Kr"
+Message-ID: <bde582df-9522-48ae-9d84-fa3751c4a06d@kernel.org>
+Date: Tue, 9 Sep 2025 11:21:09 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
+To: Rob Herring <robh@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+ Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
+ <20250908-leds-v3-2-5944dc400668@vinarskis.com>
+ <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
+ <046b289d-b6a5-45f9-88b1-090e2ab7c95d@kernel.org>
+ <39b955b9-a152-458a-8e09-908efebaaccd@oss.qualcomm.com>
+ <20250908222247.GA1943768-robh@kernel.org>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20250908222247.GA1943768-robh@kernel.org>
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+This is a multi-part message in MIME format.
+--------------Ks5pXm1R52GZGS5sYHOnm0Kr
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The GTIOC4{A,B} IOs are available on the carrier board's PMOD1_6A
-connector. Enable the GPT on the carrier board by adding the GPT pinmux
-and node on the carrier board dtsi file.
+Hi All,
 
-Reviewed-by: Tommaso Merciai <tommaso.merciai.xr@bp.renesas.com>
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Collected tags.
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+On 9-Sep-25 12:22 AM, Rob Herring wrote:
+> On Mon, Sep 08, 2025 at 09:36:39AM +0200, Konrad Dybcio wrote:
+>> On 9/8/25 9:33 AM, Hans de Goede wrote:
+>>> Hi,
+>>>
+>>> On 8-Sep-25 09:20, Konrad Dybcio wrote:
+>>>> On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
+>>>>> A number of existing schemas use 'leds' property to provide
+>>>>> phandle-array of LED(s) to the consumer. Additionally, with the
+>>>>> upcoming privacy-led support in device-tree, v4l2 subnode could be a
+>>>>> LED consumer, meaning that all camera sensors should support 'leds'
+>>>>> and 'led-names' property via common 'video-interface-devices.yaml'.
+>>>>>
+>>>>> To avoid dublication, commonize 'leds' property from existing schemas
+>>>>> to newly introduced 'led-consumer.yaml'.
+>>>>>
+>>>>> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>
+>>>>>  
+>>>>> +  leds:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 1
+>>>>
+>>>> My brain compiler suggests this will throw a warning (minItems should
+>>>> be redundant in this case)
+>>>>> +
+>>>>> +  led-names:
+>>>>> +    enum:
+>>>>> +      - privacy-led
+>>>>
+>>>> Nit: "privacy" makes more sense without the suffix, as we inherently
+>>>> know this is supposed to be an LED
+>>>
+>>> Note "privacy-led" as name is already used on the x86/ACPI side and
+>>> the code consuming this will be shared.
+>>>
+>>> With that said if there is a strong preference for going with just
+>>> "privacy" the x86 side can be adjusted since the provider-info is
+>>> generated through a LED lookup table on the x86/ACPI side. So we can
+>>> just modify both the lookup table generation as well as the already
+>>> existing led_get(dev, "privacy-led") call to use just "privacy"
+>>> without problems.
+>>
+>> In that case, it may be cleaner to just go with what we have today
+>> (unless the dt maintainers have stronger opinions)
+> 
+> Well, I do, but I guess it's fine. Please don't add the suffix on the 
+> rest and add a comment for why it's there.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 08e814c03fa8..86df67e9230d 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -84,6 +84,14 @@ &can_transceiver1 {
- };
- #endif
- 
-+#if (!SW_LCD_EN) && (!SW_GPIO8_CAN0_STB)
-+&gpt0 {
-+	pinctrl-0 = <&gpt0_pins>;
-+	pinctrl-names = "default";
-+	status = "okay";
-+};
-+#endif
-+
- &i2c0 {
- 	pinctrl-0 = <&i2c0_pins>;
- 	pinctrl-names = "default";
-@@ -125,6 +133,11 @@ can4_pins: can4 {
- 		};
- 	};
- 
-+	gpt0_pins: gpt0 {
-+		pinmux = <RZG3E_PORT_PINMUX(5, 4, 10)>, /* GTIOC4A */
-+			 <RZG3E_PORT_PINMUX(5, 5, 10)>; /* GTIOC4B */
-+	};
-+
- 	i2c0_pins: i2c0 {
- 		pinmux = <RZG3E_PORT_PINMUX(D, 4, 4)>, /* SCL0 */
- 			 <RZG3E_PORT_PINMUX(D, 5, 4)>; /* SDA0 */
--- 
-2.43.0
+As mentioned dropping the "-led" suffix is no big deal for the ACPI
+side and if we don't want the suffix then IMHO we should just drop
+it rather then making an exception here.
 
+Attached are 2 patches which drop the suffix on the ACPI side.
+
+If people agree with dropping the suffix I'll officially submit these
+upstream.
+
+Regards,
+
+Hans
+
+--------------Ks5pXm1R52GZGS5sYHOnm0Kr
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0001-platform-x86-int3472-Use-privacy-as-con_id-for-the-L.patch"
+Content-Disposition: attachment;
+ filename*0="0001-platform-x86-int3472-Use-privacy-as-con_id-for-the-L.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSBkOThkNjBiMGI4YzEzZmMzZWE2NTE1OTI2NWMyMWM3YmIzNTllNjA1IE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBIYW5zIGRlIEdvZWRlIDxoYW5zZ0BrZXJuZWwub3Jn
+PgpEYXRlOiBUdWUsIDkgU2VwIDIwMjUgMTE6MDk6MzcgKzAyMDAKU3ViamVjdDogW1BBVENI
+IDEvMl0gcGxhdGZvcm0veDg2OiBpbnQzNDcyOiBVc2UgInByaXZhY3kiIGFzIGNvbl9pZCBm
+b3IgdGhlCiBMRUQgbG9va3VwCgpEdXJpbmcgRFQtYmluZGluZyByZXZpZXcgZm9yIGV4dGVu
+ZGluZyB0aGUgVjRMMiBjYW1lcmEgc2Vuc29yIHByaXZhY3kgTEVECnN1cHBvcnQgdG8gc3lz
+dGVtcyB1c2luZyBkZXZpY2V0cmVlLCBpdCBoYXMgY29tZSB1cCB0aGF0IGhhdmluZyBhICIt
+bGVkIgpzdWZmaXggZm9yIHRoZSBMRUQgbmFtZSAvIGNvbl9pZCBpcyB1bmRlc2lyYWJsZSBz
+aW5jZSBpdCBhbHJlYWR5IGlzIGNsZWFyCnRoYXQgaXQgaXMgYSBMRUQuCgpEcm9wIHRoZSAi
+LWxlZCIgc3VmZml4IGZyb20gdGhlIHByaXZhY3kgTEVEJ3MgbG9va3VwIHRhYmxlIGNvbl9p
+ZC4KClNpZ25lZC1vZmYtYnk6IEhhbnMgZGUgR29lZGUgPGhhbnNnQGtlcm5lbC5vcmc+Ci0t
+LQpOb3RlIHRoaXMgbmVlZHMgdG8gYmUgbWVyZ2VkIGluIHRoZSBzYW1lIGtlcm5lbCBjeWNs
+ZSBhcyB0aGUgbWF0Y2hpbmcKIm1lZGlhOiB2NGwyLXN1YmRldjogVXNlICJwcml2YWN5IiBh
+cyBjb25faWQgd2hlbiBnZXR0aW5nIHRoZSBwcml2YWN5IExFRCIKcGF0Y2guCi0tLQogZHJp
+dmVycy9wbGF0Zm9ybS94ODYvaW50ZWwvaW50MzQ3Mi9sZWQuYyB8IDIgKy0KIDEgZmlsZSBj
+aGFuZ2VkLCAxIGluc2VydGlvbigrKSwgMSBkZWxldGlvbigtKQoKZGlmZiAtLWdpdCBhL2Ry
+aXZlcnMvcGxhdGZvcm0veDg2L2ludGVsL2ludDM0NzIvbGVkLmMgYi9kcml2ZXJzL3BsYXRm
+b3JtL3g4Ni9pbnRlbC9pbnQzNDcyL2xlZC5jCmluZGV4IGYxZDZkN2IwY2I3NS4uYjFkODRi
+OTY4MTEyIDEwMDY0NAotLS0gYS9kcml2ZXJzL3BsYXRmb3JtL3g4Ni9pbnRlbC9pbnQzNDcy
+L2xlZC5jCisrKyBiL2RyaXZlcnMvcGxhdGZvcm0veDg2L2ludGVsL2ludDM0NzIvbGVkLmMK
+QEAgLTQzLDcgKzQzLDcgQEAgaW50IHNrbF9pbnQzNDcyX3JlZ2lzdGVyX3BsZWQoc3RydWN0
+IGludDM0NzJfZGlzY3JldGVfZGV2aWNlICppbnQzNDcyLCBzdHJ1Y3QgZ3AKIAogCWludDM0
+NzItPnBsZWQubG9va3VwLnByb3ZpZGVyID0gaW50MzQ3Mi0+cGxlZC5uYW1lOwogCWludDM0
+NzItPnBsZWQubG9va3VwLmRldl9pZCA9IGludDM0NzItPnNlbnNvcl9uYW1lOwotCWludDM0
+NzItPnBsZWQubG9va3VwLmNvbl9pZCA9ICJwcml2YWN5LWxlZCI7CisJaW50MzQ3Mi0+cGxl
+ZC5sb29rdXAuY29uX2lkID0gInByaXZhY3kiOwogCWxlZF9hZGRfbG9va3VwKCZpbnQzNDcy
+LT5wbGVkLmxvb2t1cCk7CiAKIAlyZXR1cm4gMDsKLS0gCjIuNTEuMAoK
+--------------Ks5pXm1R52GZGS5sYHOnm0Kr
+Content-Type: text/x-patch; charset=UTF-8;
+ name="0002-media-v4l2-subdev-Use-privacy-as-con_id-when-getting.patch"
+Content-Disposition: attachment;
+ filename*0="0002-media-v4l2-subdev-Use-privacy-as-con_id-when-getting.pa";
+ filename*1="tch"
+Content-Transfer-Encoding: base64
+
+RnJvbSAwMmRjZTNlZWMzNGNkOGI4OTRmYzVmZWYwMDlhNmUzMDJmNThjMmYzIE1vbiBTZXAg
+MTcgMDA6MDA6MDAgMjAwMQpGcm9tOiBIYW5zIGRlIEdvZWRlIDxoYW5zZ0BrZXJuZWwub3Jn
+PgpEYXRlOiBUdWUsIDkgU2VwIDIwMjUgMTE6MTQ6MzQgKzAyMDAKU3ViamVjdDogW1BBVENI
+IDIvMl0gbWVkaWE6IHY0bDItc3ViZGV2OiBVc2UgInByaXZhY3kiIGFzIGNvbl9pZCB3aGVu
+IGdldHRpbmcKIHRoZSBwcml2YWN5IExFRAoKRHVyaW5nIERULWJpbmRpbmcgcmV2aWV3IGZv
+ciBleHRlbmRpbmcgdGhlIFY0TDIgY2FtZXJhIHNlbnNvciBwcml2YWN5IExFRApzdXBwb3J0
+IHRvIHN5c3RlbXMgdXNpbmcgZGV2aWNldHJlZSwgaXQgaGFzIGNvbWUgdXAgdGhhdCBoYXZp
+bmcgYSAiLWxlZCIKc3VmZml4IGZvciB0aGUgTEVEIG5hbWUgLyBjb25faWQgaXMgdW5kZXNp
+cmFibGUgc2luY2UgaXQgYWxyZWFkeSBpcyBjbGVhcgp0aGF0IGl0IGlzIGEgTEVELgoKRHJv
+cCB0aGUgIi1sZWQiIHN1ZmZpeCBmcm9tIHRoZSBjb25faWQgYXJndW1lbnQgdG8gbGVkX2dl
+dCgpLgoKU2lnbmVkLW9mZi1ieTogSGFucyBkZSBHb2VkZSA8aGFuc2dAa2VybmVsLm9yZz4K
+LS0tCk5vdGUgdGhpcyBuZWVkcyB0byBiZSBtZXJnZWQgaW4gdGhlIHNhbWUga2VybmVsIGN5
+Y2xlIGFzIHRoZSBtYXRjaGluZwoicGxhdGZvcm0veDg2OiBpbnQzNDcyOiBVc2UgInByaXZh
+Y3kiIGFzIGNvbl9pZCBmb3IgdGhlIExFRCBsb29rdXAiCnBhdGNoLgotLS0KIGRyaXZlcnMv
+bWVkaWEvdjRsMi1jb3JlL3Y0bDItc3ViZGV2LmMgfCAyICstCiAxIGZpbGUgY2hhbmdlZCwg
+MSBpbnNlcnRpb24oKyksIDEgZGVsZXRpb24oLSkKCmRpZmYgLS1naXQgYS9kcml2ZXJzL21l
+ZGlhL3Y0bDItY29yZS92NGwyLXN1YmRldi5jIGIvZHJpdmVycy9tZWRpYS92NGwyLWNvcmUv
+djRsMi1zdWJkZXYuYwppbmRleCAxMTNlYjc0ZWI3YzEuLmJhYmNjMTEyMDM1NCAxMDA2NDQK
+LS0tIGEvZHJpdmVycy9tZWRpYS92NGwyLWNvcmUvdjRsMi1zdWJkZXYuYworKysgYi9kcml2
+ZXJzL21lZGlhL3Y0bDItY29yZS92NGwyLXN1YmRldi5jCkBAIC0yNjAyLDcgKzI2MDIsNyBA
+QCBFWFBPUlRfU1lNQk9MX0dQTCh2NGwyX3N1YmRldl9pc19zdHJlYW1pbmcpOwogaW50IHY0
+bDJfc3ViZGV2X2dldF9wcml2YWN5X2xlZChzdHJ1Y3QgdjRsMl9zdWJkZXYgKnNkKQogewog
+I2lmIElTX1JFQUNIQUJMRShDT05GSUdfTEVEU19DTEFTUykKLQlzZC0+cHJpdmFjeV9sZWQg
+PSBsZWRfZ2V0KHNkLT5kZXYsICJwcml2YWN5LWxlZCIpOworCXNkLT5wcml2YWN5X2xlZCA9
+IGxlZF9nZXQoc2QtPmRldiwgInByaXZhY3kiKTsKIAlpZiAoSVNfRVJSKHNkLT5wcml2YWN5
+X2xlZCkgJiYgUFRSX0VSUihzZC0+cHJpdmFjeV9sZWQpICE9IC1FTk9FTlQpCiAJCXJldHVy
+biBkZXZfZXJyX3Byb2JlKHNkLT5kZXYsIFBUUl9FUlIoc2QtPnByaXZhY3lfbGVkKSwKIAkJ
+CQkgICAgICJnZXR0aW5nIHByaXZhY3kgTEVEXG4iKTsKLS0gCjIuNTEuMAoK
+
+--------------Ks5pXm1R52GZGS5sYHOnm0Kr--
 
