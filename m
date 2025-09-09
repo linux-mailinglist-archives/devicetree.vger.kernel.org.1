@@ -1,63 +1,60 @@
-Return-Path: <devicetree+bounces-214891-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214892-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9DA5B4ACC2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:49:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3182B4ACD2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 13:51:46 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8924C164FDE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:49:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D81263B8D28
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:49:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD0922F7449;
-	Tue,  9 Sep 2025 11:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA1E82F7449;
+	Tue,  9 Sep 2025 11:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ldAjTkig"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JCpS4aJs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 930A21F30A9;
-	Tue,  9 Sep 2025 11:49:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81FB41F30A9;
+	Tue,  9 Sep 2025 11:49:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757418583; cv=none; b=WcmzEHaDSmwkE0MkPMnK+XNNcU0a5Wq0qoObumoIbTVtndtPgp2If62APh+UVPEYIZFiVwIwHMBw+84fTNFqYC50HH2zsh5/BIdBKmua6hwYxwY4opNEpCntGx0FawiSMUeXNvz+b+bAASseykvNE6E34Op3IY1lj02gPUm4FxM=
+	t=1757418596; cv=none; b=MfYMCAC8EXPZ/2MfUi3nQX0Le8+hoDDNzkbSjJe6/DnABaon81Lw0e6FKQR8ehIPTo5wDrDnu+wV7WfZVgBHxHIblAS3saKmRpt6ZNGzvjRys955SyKdwOjBgy1rslkBu+pAdTXuvAQApPpd7OmILfwzZe5F+2czUjgWIlTUC6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757418583; c=relaxed/simple;
-	bh=qtgl0WB8EJm3ib0J2lPSGz7+ZZElKH5cZ7NY4HbJvas=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=AZb+ehqlf2fCn9Edk51Lyahbw20wNv1fktsfbm+JdtGzzPVkzJVKFO0+I5+Waq+IB/BXbhG0iYOPRr9q/0YNujPV9lHdOyuGJvVYJN3UgLaF4SBIXni++EwTxX6I1RIWYhmUSM66xMjmVMcpT7jmeIwNZx2A2ne8+yuBL4LRRIc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ldAjTkig; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8181C4CEF5;
-	Tue,  9 Sep 2025 11:49:40 +0000 (UTC)
+	s=arc-20240116; t=1757418596; c=relaxed/simple;
+	bh=LI39LAQ8Ktx5D3nswcyvz1qCla+Io/CVwyEtyAFHRXo=;
+	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=ulgXefjVr6Xwr8lMZNuV+T9hqSj8OoXx8Bfb+3QXETzJZMFYXu4nxH4ld6CNopaNsweabQonSISrzfv/YxITRgRLa+yRHa7RIeUbU98QTUUmSZAvHlCl3KrvAG04qneMiWQMhmt2zC03ikOGBtPZmNS6bZLHacWR0J/0ARJv4FU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JCpS4aJs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DE5E6C4CEF7;
+	Tue,  9 Sep 2025 11:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757418583;
-	bh=qtgl0WB8EJm3ib0J2lPSGz7+ZZElKH5cZ7NY4HbJvas=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=ldAjTkigURj+pvmZUqWLCe4cQLu6qDacWQhvyjv2k6nBvIAQtMG5tU4DmCLzPOm49
-	 crYrcYAMROO8/kjqa2ABm2TF3G6M55o4Bq8+0SzXyI3bjoIjX2QWEPh8iD9qrMKYjA
-	 G9aVY3tp3bioYPwvwDYKDj0vlw8xABIzZRr3TsoOxTC4P3QKJUDOgB2MP4GVpL25ZN
-	 OEwIeprIDC2p7yaqQyQwWuHgwPv+y3K9Vz+RYY0KtHZgKM1Gon7Ypduic6SVdQVvS5
-	 7pIoch5KXCjwRU3qX2pPaRvTlz7IE3H5VuG7rNIzwyrsblzM9GqYMd7Ali13jT2orT
-	 DgeCQoPcPamoA==
+	s=k20201202; t=1757418596;
+	bh=LI39LAQ8Ktx5D3nswcyvz1qCla+Io/CVwyEtyAFHRXo=;
+	h=From:To:In-Reply-To:References:Subject:Date:From;
+	b=JCpS4aJsIXfsqn5K5LoVLB9V9NNur1ySxm3n1yn14KwZTBDaugJ/HVfPk8eUQV84+
+	 do/7U/vksqDGR95TpfFU/HlH6bU4ugS7D7yIl7Pss0Q4SLdLUSAFLl4qapqxdzPhjD
+	 nz+rY/z1Sd+DARjDCyr9gXZSE95wMfYrs928joZxDsudRDYWkSvUqdQQgu36nU8+Ky
+	 swJx1QZkYj2GDTXH3aehVfN6r1bjb7J+mqQZIPpgYX4xK9dXacQn8rjhGO/T9WWTCz
+	 SBo2+9DGs3kJvvdHIyF7iLS/Z95X2P6Z1vbnG31UzCv0vWg+pzwYtd9mLtuTIo+1b+
+	 YGaamxkN7aM/w==
 From: Mark Brown <broonie@kernel.org>
-To: linux-arm-kernel@lists.infradead.org, 
- Marek Vasut <marek.vasut+renesas@mailbox.org>
-Cc: Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- Florian Fainelli <florian.fainelli@broadcom.com>, 
+To: Andi Shyti <andi.shyti@kernel.org>, 
+ Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzk+dt@kernel.org>, 
- Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh@kernel.org>, 
- devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org, 
- linux-renesas-soc@vger.kernel.org
-In-Reply-To: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
-References: <20250905191637.147141-1-marek.vasut+renesas@mailbox.org>
-Subject: Re: [PATCH v2] regulator: dt-bindings: rpi-panel: Split 7"
- Raspberry Pi 720x1280 v2 binding
-Message-Id: <175741858068.53877.8850228769612193229.b4-ty@kernel.org>
-Date: Tue, 09 Sep 2025 12:49:40 +0100
+ Conor Dooley <conor+dt@kernel.org>, Alim Akhtar <alim.akhtar@samsung.com>, 
+ linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20250830132605.311115-3-krzysztof.kozlowski@linaro.org>
+References: <20250830132605.311115-3-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 1/2] spi: s3c64xx: Drop S3C2443
+Message-Id: <175741859364.56807.5691660197683706591.b4-ty@kernel.org>
+Date: Tue, 09 Sep 2025 12:49:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,25 +65,24 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.15-dev-94e36
 
-On Fri, 05 Sep 2025 21:16:30 +0200, Marek Vasut wrote:
-> The 5" and 7" Raspberry Pi 720x1280 Display 2 MCU is a bit more
-> complex than the original Display 1 ATTINY88 and the binding is
-> also a bit more demanding. Split the binding into separate file
-> and fill in required gpio-controller, #gpio-cells and #pwm-cells
-> which must be present for the V2 MCU. Include mention of the 5"
-> panel in the description of Display 2, as the 5" panel uses the
-> same MCU.
+On Sat, 30 Aug 2025 15:26:06 +0200, Krzysztof Kozlowski wrote:
+> Samsung S3C24xx family of SoCs was removed the Linux kernel in the
+> commit 61b7f8920b17 ("ARM: s3c: remove all s3c24xx support"), in January
+> 2023.  There are no in-kernel users of remaining S3C24xx compatibles or
+> platform data ID.
 > 
-> [...]
+> 
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/1] regulator: dt-bindings: rpi-panel: Split 7" Raspberry Pi 720x1280 v2 binding
-      commit: 5bad16482c2a7e788c042d98f3e97d3b2bbc8cc5
+[1/2] spi: s3c64xx: Drop S3C2443
+      commit: 6248c95eef941bcf987bdd7c62f5e47275b0dbba
+[2/2] spi: dt-bindings: samsung: Drop S3C2443
+      commit: 2c625f0fe2db4e6a58877ce2318df3aa312eb791
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
