@@ -1,354 +1,131 @@
-Return-Path: <devicetree+bounces-215052-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215053-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B5D2B50287
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F93B502AC
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:31:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B70B1894897
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:26:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DB3C1BC04B0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:31:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C62B352FC6;
-	Tue,  9 Sep 2025 16:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Gj/NCaLx"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6731E2E2DD4;
+	Tue,  9 Sep 2025 16:31:23 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.grinn-global.com (mail.grinn-global.com [77.55.128.204])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41613223337;
-	Tue,  9 Sep 2025 16:26:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 32759350D61;
+	Tue,  9 Sep 2025 16:31:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=77.55.128.204
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757435162; cv=none; b=D/aBkx+zoLI1Nx7D9oKNSxrDueuEu4AYB6QeE7qimYCDkufzFyI4yKYs6PHkmgvTw+/ER20MU9oaFqi291esV4NE6QPVhZsnL3GlvwHrzpeG9t3/fz7IMZ3hkYQDlttdPLpLnUTTyEm4WOXacPummaF0sXS2hagRNkA17I6ITww=
+	t=1757435483; cv=none; b=YxSDCvsiyQ1tP+SvcOPA6dR+UlI2/lksf9IRBvbSkYWvkjVoPdNaQ/Umm5UH6ofbwDaPcShhB1aYsN39kQhtd5iZV8oSAnr9mGz2cr31nGSsbU/4V3i/nRLDf+cedsQ3NbwgwypyxUulzFLXrnQ0joet3bZrllHpjpPJx00gp3M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757435162; c=relaxed/simple;
-	bh=vfzDmUMBXFEXny9F+Q1BKzqeDg/juItm7mo3ihXETqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=esYC6Yfu3RKT8qugdSj3lwdL65Qx3jOelZr7Cfv3jKUClFqPgwTcXS1IQbH0Ug33qUEdLeX5wNbUTYeXf9HEwX0zvynLftrs64Rjl1dQbP9todViFSJkI0xlQOlmMc4OAHY+7hT8/RDy7h8VwosjT8EdqIIeCV0fNalTJ3C6rfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Gj/NCaLx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF8ABC4CEF8;
-	Tue,  9 Sep 2025 16:26:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757435161;
-	bh=vfzDmUMBXFEXny9F+Q1BKzqeDg/juItm7mo3ihXETqk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Gj/NCaLx7Ci5Nrx3m8Qf0cGJZZp75UjNxcnZIoP8nSRYWwPJOvqRotzfOsP9OKj6f
-	 60pNDV648NMVSJ51qbitr7AfgNT022kvjT0C05+NAoI+JRDzpmL8Z/1H0xKMLPPaLr
-	 qBDyEA6I3r36yIAYFGs8e61NuttAp/FG+mxwEUwe1oqS5hH3KO6fHXBUUNYmvaeOcD
-	 lhDe9F7Flz6XNeMQUy/dHv8B+NZRH1X6dQycKZQZyjh7q3KJPrX8OBl7oEtQsNSOgE
-	 epjVKtUJy2LNDGUTbSzyJacqQqJhNSRM3CybLPgLExFHy4/BG56vhj2Dqbpzj4xLIs
-	 31Zg4kW986h4g==
-Date: Tue, 9 Sep 2025 11:26:00 -0500
-From: Rob Herring <robh@kernel.org>
-To: Svyatoslav Ryhel <clamor95@gmail.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>,
-	Thierry Reding <treding@nvidia.com>,
-	Mikko Perttunen <mperttunen@nvidia.com>,
-	Jonathan Hunter <jonathanh@nvidia.com>,
-	Sowjanya Komatineni <skomatineni@nvidia.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Prashant Gaikwad <pgaikwad@nvidia.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Dmitry Osipenko <digetx@gmail.com>,
-	Jonas =?iso-8859-1?Q?Schw=F6bel?= <jonasschwoebel@yahoo.de>,
-	Charan Pedumuru <charan.pedumuru@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-staging@lists.linux.dev
-Subject: Re: [PATCH v2 21/23] dt-bindings: display: tegra: document Tegra20
- and Tegra30 CSI
-Message-ID: <20250909162600.GA3311232-robh@kernel.org>
-References: <20250906135345.241229-1-clamor95@gmail.com>
- <20250906135345.241229-22-clamor95@gmail.com>
+	s=arc-20240116; t=1757435483; c=relaxed/simple;
+	bh=TCDnKd9DCiMLEbSdfqNQKUb6fm7P/YatrEwFLvPXHhU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=YB4gn2F7YmQ3FXA4l+BVxdyT1/TQv4yIgeReJ49k6DHJwkCxctNgwix443c54EdtSpmDo0Y0kvFgvFbPCd+uqwl9Rz5nMfO0UU0WUvvzdVRoAChjYTTt8VKR3H8C04Xc+qrsDAzXHQ/92h6IdOGslPnv5S9CKHQR9cygmRQfT9s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com; spf=pass smtp.mailfrom=grinn-global.com; arc=none smtp.client-ip=77.55.128.204
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=grinn-global.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grinn-global.com
+X-Virus-Scanned: by amavisd-new using ClamAV (10)
+X-Spam-Flag: NO
+X-Spam-Score: 0
+X-Spam-Level: 
+Received: from mateusz.int.grinn-global.com (f90-187.icpnet.pl [46.228.90.187])
+	by server220076.nazwa.pl (Postfix) with ESMTP id BDE451BC2C3;
+	Tue, 09 Sep 2025 18:31:10 +0200 (CEST)
+From: Mateusz Koza <mateusz.koza@grinn-global.com>
+To: angelogioacchino.delregno@collabora.com,
+	robh@kernel.org
+Cc: krzk+dt@kernel.org,
+	conor+dt@kernel.org,
+	matthias.bgg@gmail.com,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	marcin.czarnecki@grinn-global.com,
+	b.bilas@grinn-global.com,
+	mateusz.koza@grinn-global.com,
+	andrew@lunn.ch
+Subject: [PATCH v5 0/4] Add support for Grinn GenioSBC-510/700 boards
+Date: Tue,  9 Sep 2025 18:30:46 +0200
+Message-ID: <20250909163052.446723-1-mateusz.koza@grinn-global.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250906135345.241229-22-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-NA-AI-Spam-Probability: 0.47
+X-NA-AI-Is-Spam: no
 
-On Sat, Sep 06, 2025 at 04:53:42PM +0300, Svyatoslav Ryhel wrote:
-> Document CSI HW block found in Tegra20 and Tegra30 SoC.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
-> ---
->  .../display/tegra/nvidia,tegra20-csi.yaml     | 104 ++++++++++++++++
->  .../display/tegra/nvidia,tegra30-csi.yaml     | 115 ++++++++++++++++++
->  2 files changed, 219 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml
->  create mode 100644 Documentation/devicetree/bindings/display/tegra/nvidia,tegra30-csi.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml
-> new file mode 100644
-> index 000000000000..1a2858a5893c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra20-csi.yaml
-> @@ -0,0 +1,104 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra20-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra20 CSI controller
-> +
-> +maintainers:
-> +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra20-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  avdd-dsi-csi-supply:
-> +    description: DSI/CSI power supply. Must supply 1.2 V.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#nvidia,mipi-calibrate-cells":
-> +    description: The number of cells in a MIPI calibration specifier.
-> +      Should be 1. The single cell specifies an id of the pads that
-> +      need to be calibrated for a given device.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    const: 1
+This patch series adds support for Grinn GenioSBC-510 and GenioSBC-700
+boards based on MediaTek MT8370 and MT8390 SoCs, respectively. It
+includes device tree files for both boards, updates to the device tree
+bindings, and necessary modifications to the Makefile.
 
-This property goes in the provider. Is the parent node the provider? You 
-don't really need any of it if it's all one block.
+As far as I know, <angelogioacchino.delregno@collabora.com> has access
+to the schematics for these boards, as we've shared them under NDA with
+Collabora.
 
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-1]$":
-> +    type: object
-> +    description: channel 0 represents CSI-A and 1 represents CSI-B
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
+Signed-off-by: Mateusz Koza <mateusz.koza@grinn-global.com>
+---
+v2:	Fixed the subject prefixes,
+	Fixed alignment in dts files,
+	Added missing SPDX-License-Identifier,
+	Fixed the ordering in dt-bindings,
+	Dropped redundant info from commit messages,
+	Run checkpatch.pl on the patchset and fixed the issues,
+	as suggested by Krzysztof Kozlowski <krzk@kernel.org>.
 
-Instead:
+v3:	Changed eth phy-mode to 'rgmii-id',
+	Changed eth mediatek,tx-delay-ps to 30,
+	as suggested by Andrew Lunn <andrew@lunn.ch>.
 
-maximum: 1
+v4:	Removed the nodes that are not present in upstream,
+	as suggested by Louis-Alexis <angelogioacchino.delregno@collabora.com>.
 
+	Added default pinctrl to ssusb0,
+	Enabled the scp_cluster node,
+	as suggested by Bartosz Biłas <b.bilas@grinn-global.com>.
 
-> +
-> +      nvidia,mipi-calibrate:
-> +        description: Should contain a phandle and a specifier specifying
-> +          which pads are used by this DSI output and need to be
-> +          calibrated. 0 is for CSI-A, 1 is for CSI-B, 2 is for DSI.
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
+v5:	Did NOT move the chasis-type - Error: Properties must precede subnodes,
+	Swapped underscores to commas in regulator names,
+	Reordered properties (generic -> vendor -> status),
+	Dropped the firmware property from the scp_c0 node,
+	Added interrupts-extended to the pmic node,
+	Dropped the mt6359key handle,
+	Added blank spaces before the memory nodes,
+	as suggested by AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> 
+---
 
-Is DSI applicable here?
+Bartosz Bilas (1):
+  arm64: dts: mediatek: mt8370-grinn-genio-510-sbc: Add Grinn
+    GenioSBC-510
 
-> +
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: port receiving the video stream from the sensor
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes: true
+Mateusz Koza (3):
+  arm64: dts: mediatek: mt8390-genio-700-evk: Add Grinn GenioSBC-700
+  dt-bindings: arm: mediatek: Add grinn,genio-700-sbc
+  dt-bindings: arm: mediatek: Add grinn,genio-510-sbc
 
-Drop. No need unless you have some constraints like number of lanes?
+ .../devicetree/bindings/arm/mediatek.yaml     |   2 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   2 +
+ .../mediatek/mt8370-grinn-genio-510-sbc.dts   |  20 +
+ .../mediatek/mt8390-grinn-genio-700-sbc.dts   |  20 +
+ .../dts/mediatek/mt8390-grinn-genio-sbc.dtsi  | 538 ++++++++++++++++++
+ .../dts/mediatek/mt8390-grinn-genio-som.dtsi  | 210 +++++++
+ 6 files changed, 792 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8370-grinn-genio-510-sbc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-700-sbc.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-sbc.dtsi
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt8390-grinn-genio-som.dtsi
 
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
+-- 
+2.43.0
 
-Drop.
-
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: port sending the video stream to the VI
-> +
-> +    required:
-> +      - reg
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - port@0
-> +      - port@1
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - power-domains
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +# see nvidia,tegra20-vi.yaml for an example
-> diff --git a/Documentation/devicetree/bindings/display/tegra/nvidia,tegra30-csi.yaml b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra30-csi.yaml
-> new file mode 100644
-> index 000000000000..ea5ebd2f3c65
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/tegra/nvidia,tegra30-csi.yaml
-> @@ -0,0 +1,115 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/tegra/nvidia,tegra30-csi.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NVIDIA Tegra30 CSI controller
-> +
-> +maintainers:
-> +  - Svyatoslav Ryhel <clamor95@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nvidia,tegra30-csi
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: module clock
-> +      - description: PAD A clock
-> +      - description: PAD B clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: csi
-> +      - const: csia-pad
-> +      - const: csib-pad
-
-Looks like clocks are the only difference? I think these 2 schemas can 
-be merged.
-
-> +
-> +  avdd-dsi-csi-supply:
-> +    description: DSI/CSI power supply. Must supply 1.2 V.
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  "#nvidia,mipi-calibrate-cells":
-> +    description: The number of cells in a MIPI calibration specifier.
-> +      Should be 1. The single cell specifies an id of the pads that
-> +      need to be calibrated for a given device.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    const: 1
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^channel@[0-1]$":
-> +    type: object
-> +    description: channel 0 represents CSI-A and 1 represents CSI-B
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        maxItems: 1
-> +
-> +      nvidia,mipi-calibrate:
-> +        description: Should contain a phandle and a specifier specifying
-> +          which pads are used by this DSI output and need to be
-> +          calibrated. 0 is for CSI-A, 1 is for CSI-B, 2 is for DSI-A and
-> +          3 is for DSI-B
-> +        $ref: /schemas/types.yaml#/definitions/phandle-array
-> +
-> +      "#address-cells":
-> +        const: 1
-> +
-> +      "#size-cells":
-> +        const: 0
-> +
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/$defs/port-base
-> +        unevaluatedProperties: false
-> +        description: port receiving the video stream from the sensor
-> +
-> +        properties:
-> +          endpoint:
-> +            $ref: /schemas/media/video-interfaces.yaml#
-> +            unevaluatedProperties: false
-> +
-> +            properties:
-> +              data-lanes: true
-> +
-> +            required:
-> +              - data-lanes
-> +
-> +        required:
-> +          - endpoint
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: port sending the video stream to the VI
-> +
-> +    required:
-> +      - reg
-> +      - "#address-cells"
-> +      - "#size-cells"
-> +      - port@0
-> +      - port@1
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +# see nvidia,tegra20-vi.yaml for an example
-> -- 
-> 2.48.1
-> 
 
