@@ -1,253 +1,143 @@
-Return-Path: <devicetree+bounces-214682-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214683-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C6BBB4A197
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 07:51:11 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B168BB4A1B6
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:03:23 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3736B188A127
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 05:51:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C9B6C1893ABF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F30E2FABE0;
-	Tue,  9 Sep 2025 05:51:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6E24259CB9;
+	Tue,  9 Sep 2025 06:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fPhkyUoY"
+	dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b="F2pFR8ln"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fw2.prolan.hu (fw2.prolan.hu [193.68.50.107])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E92AF2F0689;
-	Tue,  9 Sep 2025 05:51:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D689F2E888F;
+	Tue,  9 Sep 2025 06:03:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.68.50.107
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757397067; cv=none; b=IAsy4af60Fhoq+yhbZRbE4FP5s7qn0ZgFkukIA1aPx+dRfWIJ8wKov1cYH8u6UuWK/28r9AeIdF7qk99JaqQnJZTOk2bH5Jswl3FrWJx1Rr1vT5jfG0veS0OqON8syicQJWRapK5a4juF4E0ky1SVVhFVu/KAqnDRtkjO60JJA0=
+	t=1757397801; cv=none; b=G/+J4JLJl1iHvMwJxc0XBlyKg64vDaA8iKDpyIViWZW2WKVJJNAsiC/o2YIM591JT/pN2CXWD2iXFIuBjL5Vc6cFcsW3W66oQZcfoIkBw0LfSrUjJsxYrQUYEOAt408YmTRF9fC4ee9mZFENPtTCHY4DAV77NfhbtFhXnx7UAeM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757397067; c=relaxed/simple;
-	bh=4ClH8r7bC0JOKGCMPRcDPYFFBIvvSZRrJbhpcBSDmIA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Arp+Hz9oIl3B8y6tEZ6ROxs4+RKfalXYmCGJODvDaoCHE/zOqjWdzZ8fzcZwmiGQ+vUQBYKY1R4/DsdzysRVbLZ8jXj2XiaGXkc4DfSJ6vRH3muR88nMsd5ovCY+C4Ofqc7cdw5tCUGUNt1S+/To0lwhVEYQepWcGyIS+QouRhw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fPhkyUoY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1FF43C4CEF4;
-	Tue,  9 Sep 2025 05:51:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757397066;
-	bh=4ClH8r7bC0JOKGCMPRcDPYFFBIvvSZRrJbhpcBSDmIA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=fPhkyUoYXYXREgVUkbNdwoB7wXj2kqFLL9Z60nVajeNDUZ9QUNhjoDyITL9sRBipI
-	 l0jlMiLP4awsvUs2tgLqxSjZJmTmyQXoiauOs9490BYHIdkUuqAR9QqDZwFNnfh0fE
-	 OvwGSIdxco8JTdIE4STwjsFkS9Mq+MncEUOTIUxY5TL+ao9cKH3i0vDEhlDhjyYJoE
-	 Qc6te6V0hTvi6TwT+2+rnUd1JpewAwC9YaZ1q7oAi55iTH0ZQLluVwCOM2ePYFa/5J
-	 /SsMc3M/pGWP74slzV7NSWxzB/LZTveZoZionoef9h40zxHzRmLpI0zpQS23U49gO7
-	 jPDFyGRiTMcWA==
-Message-ID: <8721df1d-d8db-4b05-b450-107d936d8715@kernel.org>
-Date: Tue, 9 Sep 2025 06:51:03 +0100
+	s=arc-20240116; t=1757397801; c=relaxed/simple;
+	bh=yJuvRHhnIWChKRRVR+i2PvOkR8rwSGjePC/rXWxMRws=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=F+8NUpW25zC6iCQAcsQSAwkmlmb3AJigZcsOFFJh9WiyI3rD1dsBJNRbNLqLeCGmyX7QjH7f7rfV/IeZMBQTivWcyLIRx4HmtXhoUL3fEOUXoVtE1nRYy5/kJsflK8A6NTt73YyPi2S8/VVlq/3jq3v7tmsLGBqBgMfpuEkmcj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu; spf=pass smtp.mailfrom=prolan.hu; dkim=pass (4096-bit key) header.d=prolan.hu header.i=@prolan.hu header.b=F2pFR8ln; arc=none smtp.client-ip=193.68.50.107
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=prolan.hu
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=prolan.hu
+Received: from proxmox-mailgw.intranet.prolan.hu (localhost.localdomain [127.0.0.1])
+	by proxmox-mailgw.intranet.prolan.hu (Proxmox) with ESMTP id 5DD76A09C2;
+	Tue,  9 Sep 2025 08:03:15 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=prolan.hu; h=cc
+	:cc:content-transfer-encoding:content-type:content-type:date
+	:from:from:message-id:mime-version:reply-to:subject:subject:to
+	:to; s=mail; bh=3/vNO0y7ZvfBYbA6q8Xew1TMw4aI4q8qx+4g80bgv70=; b=
+	F2pFR8lnY+T6sNQFVZxa0iieNlFwIryh9wfckzXZXTY3HxTmQeqlL1zAWUXQMZAA
+	jk7GbckDS98hyVI6BOgRa4xcwpqaG14KFVsJS0P/KIudNdqdEddFgUOMown/ar02
+	9Fw7qkAJ6C35nLt25vV8rTF3KhrBI0Tnu235L7j6Q74AuQbitbvwob7r7k/RVvTv
+	tJMcVf5bxDvg/YqLmUteF5JYIqVIy6sh09Xv2ovJYPyuK7Y7FIE27IWQZ5BrKyTp
+	nh76rycXnZ/R+huXIsQVFpTuQzvY33AdZLBfEsuf/hDLZbrecJjvSXjY81knhysC
+	kqoThezm6VNWPRePGSYQ6tEKmiFKruF8Uieb65SXp+BtlVHCyEEq41jaLPcEcCA5
+	e+2qaGTAzA+2fLjMElit/BniupYPGN+5e0GjQnZ+2KKjVVslJXS39Th1jtveEjs/
+	EhzuOLlUzW0+YRK1EyJewhx4UKk7cu5GopAI7HpohPb9LI+SO7r6p2mzELu36qhW
+	m8Qn/6Fjm/OMnm2NRLOOyPSpzidkSK9OlTw+FlPpQb2kWkTO2nHVIcrmldjE8qjd
+	Dyz+pYjk0Lp49TdPtHSmd/BZ1L9RJpTYwt74a/dhYWCb8yiyOeHd2wgjGW5ifYvb
+	Gs7WuBi51H+h8VGOYF/eIz6EzgPg8DVxa1SrWoU5T9Q=
+From: =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?= <csokas.bence@prolan.hu>
+Subject: [PATCH v4 0/3] Replace verbatim license text with a
+ `SPDX-License-Identifier`.
+Date: Tue, 9 Sep 2025 08:03:09 +0200
+Message-ID: <20250909-sr-som-dts-lic-v4-0-02f4e0e440fb@prolan.hu>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] nvmem: add driver for the eeprom in qnap-mcu
- controllers
-To: Heiko Stuebner <heiko@sntech.de>, lee@kernel.org, srini@kernel.org
-Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20250730172248.1875122-1-heiko@sntech.de>
- <20250730172248.1875122-3-heiko@sntech.de>
-Content-Language: en-US
-From: Srinivas Kandagatla <srini@kernel.org>
-In-Reply-To: <20250730172248.1875122-3-heiko@sntech.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAB7Dv2gC/3XNzQ6CMBAE4FcxPbumP7YFT76H8dCWRZookC4Sj
+ eHdLZyIxOMk8818GGGKSOy0+7CEY6TYtTkc9zsWGtfeEGKVM5Ncam65BEpA3QOqgeAeA3hh6mA
+ N18FLllGfsI6vZfByzdk7QvDJtaGZZx6OBkxzsYk0dOm9HI9irv/9GAUIkFjo4ogmFMqe+9TdX
+ Xtonmz+GOWaqw2XmXNV6lB6a01V/nK15uWGK+CgRR18ZYTDWqz5NE1f2zDk+0MBAAA=
+X-Change-ID: 20250702-sr-som-dts-lic-b16fc7605cb2
+To: Russell King <linux@armlinux.org.uk>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam
+	<festevam@gmail.com>
+CC: <devicetree@vger.kernel.org>, <imx@lists.linux.dev>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Rabeeh Khoury <rabeeh@solid-run.com>, =?utf-8?q?Bence_Cs=C3=B3k=C3=A1s?=
+	<csokas.bence@prolan.hu>
+X-Mailer: b4 0.14.2
+X-ESET-AS: R=OK;S=0;OP=CALC;TIME=1757397794;VERSION=7998;MC=2887821443;ID=61058;TRN=0;CRV=0;IPC=;SP=0;SIPS=0;PI=3;F=0
+X-ESET-Antispam: OK
+X-EsetResult: clean, is OK
+X-EsetId: 37303A296767155E627462
 
+Fix up Device Tree files by replacing the license text in comment blocks
+by a `SPDX-License-Identifier`.
 
+Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
+---
+Changes in v4:
+- Merge HummingBoard changes into this series
+  - Link: https://lore.kernel.org/r/20250709-hb-dts-lic-v2-1-a168bd9d24bd@prolan.hu
+- Fix typos in msg
+- Link to v3: https://lore.kernel.org/r/20250709-sr-som-dts-lic-v3-0-51fcbd61aef1@prolan.hu
 
-On 7/30/25 6:22 PM, Heiko Stuebner wrote:
-> The qnap-mcu also has an eeprom connected to it, that contains some
-> specific product-information like the mac addresses for the network
-> interfaces.
-> 
-> Add a nvmem driver for it.
-> 
-> Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-> ---
->  drivers/mfd/qnap-mcu.c          |   1 +
->  drivers/nvmem/Kconfig           |   9 +++
->  drivers/nvmem/Makefile          |   2 +
->  drivers/nvmem/qnap-mcu-eeprom.c | 110 ++++++++++++++++++++++++++++++++
->  4 files changed, 122 insertions(+)
->  create mode 100644 drivers/nvmem/qnap-mcu-eeprom.c
-> 
-In case Lee you want to take this via MFD,
+Changes in v3:
+- Also patch imx6q-h100.dts
+- Link to v2: https://lore.kernel.org/r/20250703-sr-som-dts-lic-v2-1-0395c9b776d9@prolan.hu
 
-Acked-by: Srinivas Kandagatla <srini@kernel.org>
+Changes in v2:
+- Fix message tags
+- Also patch solidsense files
+- Link to v1: https://lore.kernel.org/r/20250702-sr-som-dts-lic-v1-1-2e8584e6c837@prolan.hu
 
+---
+Bence Csókás (3):
+      ARM: dts: imx6-sr-som: Replace license text comment with SPDX identifier
+      ARM: dts: imx6-hummingboard: Replace license text comment with SPDX identifier
+      ARM: dts: imx6q-h100: Replace license text comment with SPDX identifier
 
---srini
+ .../nxp/imx/imx6dl-hummingboard-emmc-som-v15.dts   | 38 +--------------------
+ .../dts/nxp/imx/imx6dl-hummingboard-som-v15.dts    | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-hummingboard.dts  | 38 +--------------------
+ .../nxp/imx/imx6dl-hummingboard2-emmc-som-v15.dts  | 39 +---------------------
+ .../dts/nxp/imx/imx6dl-hummingboard2-som-v15.dts   | 39 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-hummingboard2.dts | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6dl-solidsense.dts    | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-h100.dts           | 38 +--------------------
+ .../nxp/imx/imx6q-hummingboard-emmc-som-v15.dts    | 38 +--------------------
+ .../dts/nxp/imx/imx6q-hummingboard-som-v15.dts     | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-hummingboard.dts   | 38 +--------------------
+ .../nxp/imx/imx6q-hummingboard2-emmc-som-v15.dts   | 39 +---------------------
+ .../dts/nxp/imx/imx6q-hummingboard2-som-v15.dts    | 39 +---------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-hummingboard2.dts  | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6q-solidsense.dts     | 38 +--------------------
+ .../arm/boot/dts/nxp/imx/imx6qdl-hummingboard.dtsi | 38 +--------------------
+ .../dts/nxp/imx/imx6qdl-hummingboard2-emmc.dtsi    | 39 +---------------------
+ .../boot/dts/nxp/imx/imx6qdl-hummingboard2.dtsi    | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-solidsense.dtsi  | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sr-som-brcm.dtsi | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sr-som-emmc.dtsi | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sr-som-ti.dtsi   | 38 +--------------------
+ arch/arm/boot/dts/nxp/imx/imx6qdl-sr-som.dtsi      | 38 +--------------------
+ 23 files changed, 23 insertions(+), 856 deletions(-)
+---
+base-commit: 76eeb9b8de9880ca38696b2fb56ac45ac0a25c6c
+change-id: 20250702-sr-som-dts-lic-b16fc7605cb2
 
-> diff --git a/drivers/mfd/qnap-mcu.c b/drivers/mfd/qnap-mcu.c
-> index 6ed020206e55..e942ead9e515 100644
-> --- a/drivers/mfd/qnap-mcu.c
-> +++ b/drivers/mfd/qnap-mcu.c
-> @@ -346,6 +346,7 @@ static const struct qnap_mcu_variant qnap_ts433_mcu = {
->  };
->  
->  static struct mfd_cell qnap_mcu_cells[] = {
-> +	{ .name = "qnap-mcu-eeprom", },
->  	{ .name = "qnap-mcu-input", },
->  	{ .name = "qnap-mcu-leds", },
->  	{ .name = "qnap-mcu-hwmon", }
-> diff --git a/drivers/nvmem/Kconfig b/drivers/nvmem/Kconfig
-> index d370b2ad11e7..b3975488a5aa 100644
-> --- a/drivers/nvmem/Kconfig
-> +++ b/drivers/nvmem/Kconfig
-> @@ -265,6 +265,15 @@ config NVMEM_QCOM_SEC_QFPROM
->            This driver can also be built as a module. If so, the module will be called
->            nvmem_sec_qfprom.
->  
-> +config NVMEM_QNAP_MCU_EEPROM
-> +	tristate "QNAP MCU EEPROM Support"
-> +	depends on MFD_QNAP_MCU
-> +	help
-> +	  Say y here to enable support for accessing the EEPROM attached to
-> +	  QNAP MCU devices. This EEPROM contains additional runtime device
-> +	  information, like MAC addresses for ethernet devices that do not
-> +	  contain their own mac storage.
-> +
->  config NVMEM_RAVE_SP_EEPROM
->  	tristate "Rave SP EEPROM Support"
->  	depends on RAVE_SP_CORE
-> diff --git a/drivers/nvmem/Makefile b/drivers/nvmem/Makefile
-> index 2021d59688db..21b3ae1c57e8 100644
-> --- a/drivers/nvmem/Makefile
-> +++ b/drivers/nvmem/Makefile
-> @@ -54,6 +54,8 @@ obj-$(CONFIG_NVMEM_QCOM_QFPROM)		+= nvmem_qfprom.o
->  nvmem_qfprom-y				:= qfprom.o
->  obj-$(CONFIG_NVMEM_QCOM_SEC_QFPROM)	+= nvmem_sec_qfprom.o
->  nvmem_sec_qfprom-y			:= sec-qfprom.o
-> +obj-$(CONFIG_NVMEM_QNAP_MCU_EEPROM)	+= nvmem-qnap-mcu-eeprom.o
-> +nvmem-qnap-mcu-eeprom-y			:= qnap-mcu-eeprom.o
->  obj-$(CONFIG_NVMEM_RAVE_SP_EEPROM)	+= nvmem-rave-sp-eeprom.o
->  nvmem-rave-sp-eeprom-y			:= rave-sp-eeprom.o
->  obj-$(CONFIG_NVMEM_RCAR_EFUSE)		+= nvmem-rcar-efuse.o
-> diff --git a/drivers/nvmem/qnap-mcu-eeprom.c b/drivers/nvmem/qnap-mcu-eeprom.c
-> new file mode 100644
-> index 000000000000..fea1e7b91764
-> --- /dev/null
-> +++ b/drivers/nvmem/qnap-mcu-eeprom.c
-> @@ -0,0 +1,110 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * ee1004 - driver for DDR4 SPD EEPROMs
-> + *
-> + * Copyright (C) 2017-2019 Jean Delvare
-> + *
-> + * Based on the at24 driver:
-> + * Copyright (C) 2005-2007 David Brownell
-> + * Copyright (C) 2008 Wolfram Sang, Pengutronix
-> + */
-> +
-> +#include <linux/mfd/qnap-mcu.h>
-> +#include <linux/module.h>
-> +#include <linux/nvmem-provider.h>
-> +#include <linux/platform_device.h>
-> +
-> +/* Determined by trial and error until read anomalies appeared */
-> +#define QNAP_MCU_EEPROM_SIZE		256
-> +#define QNAP_MCU_EEPROM_BLOCK_SIZE	32
-> +
-> +static int qnap_mcu_eeprom_read_block(struct qnap_mcu *mcu, unsigned int offset,
-> +				      void *val, size_t bytes)
-> +{
-> +	const u8 cmd[] = { 0xf7, 0xa1, offset, bytes };
-> +	u8 *reply;
-> +	int ret = 0;
-> +
-> +	reply = kzalloc(bytes + sizeof(cmd), GFP_KERNEL);
-> +	if (!reply)
-> +		return -ENOMEM;
-> +
-> +	ret = qnap_mcu_exec(mcu, cmd, sizeof(cmd), reply, bytes + sizeof(cmd));
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* First bytes must mirror the sent command */
-> +	if (memcmp(cmd, reply, sizeof(cmd))) {
-> +		ret = -EIO;
-> +		goto out;
-> +	}
-> +
-> +	memcpy(val, reply + sizeof(cmd), bytes);
-> +
-> +out:
-> +	kfree(reply);
-> +	return ret;
-> +}
-> +
-> +static int qnap_mcu_eeprom_read(void *priv, unsigned int offset, void *val, size_t bytes)
-> +{
-> +	struct qnap_mcu *mcu = priv;
-> +	int pos = 0, ret;
-> +	u8 *buf = val;
-> +
-> +	if (unlikely(!bytes))
-> +		return 0;
-> +
-> +	while (bytes > 0) {
-> +		size_t to_read = (bytes > QNAP_MCU_EEPROM_BLOCK_SIZE) ?
-> +						QNAP_MCU_EEPROM_BLOCK_SIZE : bytes;
-> +
-> +		ret = qnap_mcu_eeprom_read_block(mcu, offset + pos, &buf[pos], to_read);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		pos += to_read;
-> +		bytes -= to_read;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int qnap_mcu_eeprom_probe(struct platform_device *pdev)
-> +{
-> +	struct qnap_mcu *mcu = dev_get_drvdata(pdev->dev.parent);
-> +	struct nvmem_config nvcfg = {};
-> +	struct nvmem_device *ndev;
-> +
-> +	nvcfg.dev = &pdev->dev;
-> +	nvcfg.of_node = pdev->dev.parent->of_node;
-> +	nvcfg.name = dev_name(&pdev->dev);
-> +	nvcfg.id = NVMEM_DEVID_NONE;
-> +	nvcfg.owner = THIS_MODULE;
-> +	nvcfg.type = NVMEM_TYPE_EEPROM;
-> +	nvcfg.read_only = true;
-> +	nvcfg.root_only = false;
-> +	nvcfg.reg_read = qnap_mcu_eeprom_read;
-> +	nvcfg.size = QNAP_MCU_EEPROM_SIZE,
-> +	nvcfg.word_size = 1,
-> +	nvcfg.stride = 1,
-> +	nvcfg.priv = mcu,
-> +
-> +	ndev = devm_nvmem_register(&pdev->dev, &nvcfg);
-> +	if (IS_ERR(ndev))
-> +		return PTR_ERR(ndev);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver qnap_mcu_eeprom_driver = {
-> +	.probe = qnap_mcu_eeprom_probe,
-> +	.driver = {
-> +		.name = "qnap-mcu-eeprom",
-> +	},
-> +};
-> +module_platform_driver(qnap_mcu_eeprom_driver);
-> +
-> +MODULE_AUTHOR("Heiko Stuebner <heiko@sntech.de>");
-> +MODULE_DESCRIPTION("QNAP MCU EEPROM driver");
-> +MODULE_LICENSE("GPL");
+Best regards,
+-- 
+Bence Csókás <csokas.bence@prolan.hu>
+
 
 
