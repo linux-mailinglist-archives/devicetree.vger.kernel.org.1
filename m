@@ -1,227 +1,178 @@
-Return-Path: <devicetree+bounces-215084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215087-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9905EB503B7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:02:48 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [142.0.200.124])
+	by mail.lfdr.de (Postfix) with ESMTPS id 72473B503E2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:06:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D936C4E7A13
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:02:05 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 562B54E3345
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:06:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D50436932A;
-	Tue,  9 Sep 2025 16:58:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D602362094;
+	Tue,  9 Sep 2025 17:02:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pOk8Nvc9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6428368081;
-	Tue,  9 Sep 2025 16:58:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F46F258EFB;
+	Tue,  9 Sep 2025 17:02:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757437114; cv=none; b=tRSfpcqwQyabXPvK2DDOI5u8ViZoHBF6nI3k77WeHGnLTqucW24h4MP99BBDX84dmi8fgui3Wt2rUp7uukze+x+VJX4VwInO32uPrddlAq8d8mwgkPKaWYF9UJT7qul2rlDk/2fEjsqzUomLo37uCfSqbFd+XfdJ9FsYPr3cnlI=
+	t=1757437361; cv=none; b=ehMRGBnkF52pWOTE4ySdkhbwgpRY7Lp5djONigoU7iJg65ShRCAw3lWsFK8fAuaJZVagYUW0PJHgS1yz5aVaLhVnBjSNPOQA9GSks5B/qH5eDdRDCUndbMdnrZTgMNe3Cj4+HYcPZb25uJbxah5/iZbUwT2PdYopMpxV5juys38=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757437114; c=relaxed/simple;
-	bh=IqljfTNr5/AjfJedD9vYce/uXEQHCRJ0qupJ1vCHB+M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=RpOLNdXLxLgosHzpBvUQbwiT6rnI50wl/R544Vh2H0fkab7llqsNlk0kft7GLXBLfB8jomJC/LaNCISD7GyNcEM9a9VcsS6W7eYzImsMuasydZKHUX2q4i7HZ6LxX9J+bQxHBofx1ZzTb8zbG6j/wAu12eOTs4k1llzqHXejSA8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A50C915A1;
-	Tue,  9 Sep 2025 09:58:23 -0700 (PDT)
-Received: from [10.1.197.69] (eglon.cambridge.arm.com [10.1.197.69])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 67EE63F694;
-	Tue,  9 Sep 2025 09:58:21 -0700 (PDT)
-Message-ID: <6844fbe7-5b23-431d-879f-ec03ad78b190@arm.com>
-Date: Tue, 9 Sep 2025 17:58:19 +0100
+	s=arc-20240116; t=1757437361; c=relaxed/simple;
+	bh=DtoJG7abkzsETSxv7OldiFAld+o5s9NMo3AjMGSPYiU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=p/8PhKHdf36UcZ1Xlwtd/pPdUUXE7nxAPlaaeBSefYdqDpLfE2/ztLD6z/XDsguN3odIQVnB9VH8MH0yp7k2qAy1C7jFKJtlxP9WcBanZ2qZ32xqR/i1eIHsclMaOBMa4GVoheAmhqTxBV+qhR00f/3GNDWR3Vg25TuOcYjji+g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pOk8Nvc9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 9C1B6C4CEF4;
+	Tue,  9 Sep 2025 17:02:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757437360;
+	bh=DtoJG7abkzsETSxv7OldiFAld+o5s9NMo3AjMGSPYiU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=pOk8Nvc9eKTxgpzYthousH3T1n2zp7kP4xPq5cE8CDt7gqAg6rWFfZO0Q2bXBL2Gz
+	 P0xKzhAIrOxf4y1/u18OARMiOBdy7Cup6ing0p1MyfADxQwnYL1Q5JL3SEzhSNiodh
+	 Of5Y+HnYDqyDCsBJeIpwcd3PRuWdHldyfOSMYAm8U3VVsYgw7Flk/Fu9VQOMMcbZIk
+	 6VfnnyxFKZzT2VGDkpSu+62TcLrMTUgwY8HWozyparVjIpkvmRfzmDpQwoNrso/kWt
+	 OipFBKBpU8IyPTVE3YpH3OcJX8JUwwjUfYR7Y43u+bgCcDVHTJJl0ZGCCju6ZtVz2B
+	 apmbP/1wkqLHw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7FB4ACAC582;
+	Tue,  9 Sep 2025 17:02:40 +0000 (UTC)
+From: Jens Glathe via B4 Relay <devnull+jens.glathe.oldschoolsolutions.biz@kernel.org>
+Subject: [PATCH v8 0/3] arm64: dts: qcom: x1-hp-x14: Add support for
+ X1P42100 HP Omnibook X14
+Date: Tue, 09 Sep 2025 19:02:32 +0200
+Message-Id: <20250909-hp-x14-x1p-v8-0-8082ab069911@oldschoolsolutions.biz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 22/33] arm_mpam: Register and enable IRQs
-To: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
-Cc: shameerali.kolothum.thodi@huawei.com,
- D Scott Phillips OS <scott@os.amperecomputing.com>,
- carl@os.amperecomputing.com, lcherian@marvell.com,
- bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
- baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
- Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
- dfustini@baylibre.com, amitsinght@marvell.com,
- David Hildenbrand <david@redhat.com>, Rex Nie <rex.nie@jaguarmicro.com>,
- Dave Martin <dave.martin@arm.com>, Koba Ko <kobak@nvidia.com>,
- Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
- baisheng.gao@unisoc.com, Jonathan Cameron <jonathan.cameron@huawei.com>,
- Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
- Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
- <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>,
- Will Deacon <will@kernel.org>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Danilo Krummrich <dakr@kernel.org>
-References: <20250822153048.2287-1-james.morse@arm.com>
- <20250822153048.2287-23-james.morse@arm.com>
-Content-Language: en-GB
-From: James Morse <james.morse@arm.com>
-In-Reply-To: <20250822153048.2287-23-james.morse@arm.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKpdwGgC/33Py2rEMAwF0F8ZvK6L5be76n+ULhw/GkMYh3gap
+ h3y71WySqCThRZXoMPVg7Q0ldTI2+VBpjSXVuoVg325kND761eiJWImnHHFDOO0H+kdJM5IUyd
+ 4ltrp6DTBg3FKudw37OMTc1/arU4/mz3Duv2XmYEyysEJpZMVnJn3OsQW+lqHVofvGzZqr135J
+ as58+cOR8dn1SlrIzjjTh2xd8TBEZuTEzDRSWx16si9ow6ORAeCUBC75DPYU0ftHXtwFDpSBgc
+ 6Ze+MOHX03nEHR6OTpQoBrPaax1PH7BxgB8esf7kALFgwIPxTZ1mWP0lsjNhhAgAA
+X-Change-ID: 20250702-hp-x14-x1p-eb32f4696d96
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, 
+ Jens Glathe <jens.glathe@oldschoolsolutions.biz>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+X-Mailer: b4 0.14.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1757437358; l=3619;
+ i=jens.glathe@oldschoolsolutions.biz; s=20240919;
+ h=from:subject:message-id;
+ bh=DtoJG7abkzsETSxv7OldiFAld+o5s9NMo3AjMGSPYiU=;
+ b=tpfJB7ah+j3pZkJKGYYIYfOfiV9l2YhBGKfAP2IE5W/bfLFmbX99IRk9NhmrMlnkbF1JcDzHC
+ TdxjL12fQ2rAtPuc8S+bvydp3msSv2vs4q/0zhqeyGkxvUrDKsS0mJN
+X-Developer-Key: i=jens.glathe@oldschoolsolutions.biz; a=ed25519;
+ pk=JcRJqJc/y8LsxOlPakALD3juGfOKmFBWtO+GfELMJVg=
+X-Endpoint-Received: by B4 Relay for
+ jens.glathe@oldschoolsolutions.biz/20240919 with auth_id=216
+X-Original-From: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+Reply-To: jens.glathe@oldschoolsolutions.biz
 
-Hi James, (:p)
+This patch series adds support for the HP Omnibook X Laptop 14-fe1xxx. [1]
 
-On 22/08/2025 16:30, James Morse wrote:
-> Register and enable error IRQs. All the MPAM error interrupts indicate a
-> software bug, e.g. out of range partid. If the error interrupt is ever
-> signalled, attempt to disable MPAM.
-> 
-> Only the irq handler accesses the ESR register, so no locking is needed.
-> The work to disable MPAM after an error needs to happen at process
-> context, use a threaded interrupt.
-> 
-> There is no support for percpu threaded interrupts, for now schedule
-> the work to be done from the irq handler.
-> 
-> Enabling the IRQs in the MSC may involve cross calling to a CPU that
-> can access the MSC.
-> 
-> Once the IRQ is requested, the mpam_disable() path can be called
-> asynchronously, which will walk structures sized by max_partid. Ensure
-> this size is fixed before the interrupt is requested.
+Since this is actually the same model as the 14-fe0xxx, but with an
+X1P-42-100 SoC (Purwa), it needs a slightly different device tree.
+To have as minimal duplicate definition as possible, the hp X14 gets 
+commonalized into a dtsi (and it stays compatible to the derived 
+device trees, like the Ultrabook G1q). 
 
-> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
-> index 3516cbe8623e..210d64fad0b1 100644
-> --- a/drivers/resctrl/mpam_devices.c
-> +++ b/drivers/resctrl/mpam_devices.c
+The supported features are the same as for the original Omnibook X14:
 
-> @@ -1547,11 +1640,171 @@ static void mpam_enable_merge_features(struct list_head *all_classes_list)
+- Keyboard (no function keys though)
+- Display
+- PWM brightness control
+- Touchpad
+- Touchscreen
+- PCIe ports (pcie4, pcie6a)
+- USB type-c, type-a
+- WCN6855 Wifi-6E
+- WCN6855 Bluetooth
+- ADSP and CDSP
+- X1 GPU
+- GPIO Keys (Lid switch)
+- Audio definition (works via USB and with internal speakers)
 
-> +static irqreturn_t __mpam_irq_handler(int irq, struct mpam_msc *msc)
-> +{
-> +	u64 reg;
-> +	u16 partid;
-> +	u8 errcode, pmg, ris;
-> +
-> +	if (WARN_ON_ONCE(!msc) ||
-> +	    WARN_ON_ONCE(!cpumask_test_cpu(smp_processor_id(),
-> +					   &msc->accessibility)))
-> +		return IRQ_NONE;
-> +
-> +	reg = mpam_msc_read_esr(msc);
-> +
-> +	errcode = FIELD_GET(MPAMF_ESR_ERRCODE, reg);
-> +	if (!errcode)
-> +		return IRQ_NONE;
-> +
-> +	/* Clear level triggered irq */
-> +	mpam_msc_zero_esr(msc);
-> +
-> +	partid = FIELD_GET(MPAMF_ESR_PARTID_MON, reg);
-> +	pmg = FIELD_GET(MPAMF_ESR_PMG, reg);
-> +	ris = FIELD_GET(MPAMF_ESR_RIS, reg);
-> +
-> +	pr_err("error irq from msc:%u '%s', partid:%u, pmg: %u, ris: %u\n",
-> +	       msc->id, mpam_errcode_names[errcode], partid, pmg, ris);
-> +
-> +	if (irq_is_percpu(irq)) {
-> +		mpam_disable_msc_ecr(msc);
-> +		schedule_work(&mpam_broken_work);
-> +		return IRQ_HANDLED;
-> +	}
-> +
-> +	return IRQ_WAKE_THREAD;
-> +}
+[1]: https://www.hp.com/us-en/shop/pdp/hp-omnibook-x-laptop-next-gen-ai-pc-14-fe100-14-a4nd1av-1#techSpecs
 
-> +static void mpam_unregister_irqs(void)
-> +{
-> +	int irq, idx;
-> +	struct mpam_msc *msc;
-> +
-> +	cpus_read_lock();
-> +	/* take the lock as free_irq() can sleep */
-> +	idx = srcu_read_lock(&mpam_srcu);
-> +	list_for_each_entry_srcu(msc, &mpam_all_msc, glbl_list, srcu_read_lock_held(&mpam_srcu)) {
-> +		irq = platform_get_irq_byname_optional(msc->pdev, "error");
-> +		if (irq <= 0)
-> +			continue;
-> +
-> +		if (msc->error_irq_hw_enabled) {
-> +			mpam_touch_msc(msc, mpam_disable_msc_ecr, msc);
-> +			msc->error_irq_hw_enabled = false;
-> +		}
-> +
-> +		if (msc->error_irq_requested) {
-> +			if (irq_is_percpu(irq)) {
-> +				msc->reenable_error_ppi = 0;
-> +				free_percpu_irq(irq, msc->error_dev_id);
-> +			} else {
-> +				devm_free_irq(&msc->pdev->dev, irq, msc);
-> +			}
-> +			msc->error_irq_requested = false;
-> +		}
-> +	}
-> +	srcu_read_unlock(&mpam_srcu, idx);
-> +	cpus_read_unlock();
-> +}
+Signed-off-by: Jens Glathe <jens.glathe@oldschoolsolutions.biz>
+---
+Changes in v8:
+- rebased to next-20250909.
+- picked up reviewed-by from Konrad (Thanks!)
+- Link to v7: https://lore.kernel.org/r/20250710-hp-x14-x1p-v7-0-19c10c81713a@oldschoolsolutions.biz
 
+Changes in v7:
+- rebased to next-20250710.
+- reworded commit message for patch #2
+- picked up reviewed-by for patch #3 (thanks)
+- fixed link ref in patch #3
+- Link to v6: https://lore.kernel.org/r/20250709-hp-x14-x1p-v6-0-f45cc186a62d@oldschoolsolutions.biz
 
-> @@ -1615,16 +1889,39 @@ static void mpam_reset_class(struct mpam_class *class)
->   * All of MPAMs errors indicate a software bug, restore any modified
->   * controls to their reset values.
->   */
-> -void mpam_disable(void)
-> +static irqreturn_t mpam_disable_thread(int irq, void *dev_id)
->  {
->  	int idx;
->  	struct mpam_class *class;
-> +	struct mpam_msc *msc, *tmp;
-> +
-> +	mutex_lock(&mpam_cpuhp_state_lock);
-> +	if (mpam_cpuhp_state) {
-> +		cpuhp_remove_state(mpam_cpuhp_state);
-> +		mpam_cpuhp_state = 0;
-> +	}
-> +	mutex_unlock(&mpam_cpuhp_state_lock);
+Changes in v6:
+- rebased to next-20250709.
+- picked up reviewed-by for patch #1 (thanks)
+- corrected typo in patch #1
+- removed model, compatible, chassis nodes from x1-hp-omnibook-x14.dtsi
+- amended copyright strings as discussed
+- Link to v5: https://lore.kernel.org/r/20250708-hp-x14-x1p-v5-0-44c916efa973@oldschoolsolutions.biz
 
+Changes in v5:
+- rebased to next-20250708.
+- changed commit message for patch #1 to reflect what happens
+- moved gpu node into the common dtsi part (always supported now)
+- switched over to gpu_zap_shader definition in the individual parts
+- Link to v4: https://lore.kernel.org/r/20250705-hp-x14-x1p-v4-0-1c351dbeaf18@oldschoolsolutions.biz
 
-> +	mpam_unregister_irqs();
+Changes in v4:
+- leave the qcom,jp-omnibook-x14 ABI unchanged, reuse it for the -fe0 variant
+- hacked b4 to create an easier reviewable patch: https://lore.kernel.org/all/20250705-format-harder-v1-1-55c5342be55c@oldschoolsolutions.biz
+- Link to v3: https://lore.kernel.org/r/20250703-hp-x14-x1p-v3-0-affe103b4356@oldschoolsolutions.biz
 
-When out-of-range PARTID get used, all the MSC go off at once - which means the interrupts
-can be delivered to multiple CPUs at the same time. This unregister call is outside any
-lock, and the msc->error_irq_* flags aren't atomic - leading to hilarity as this races
-with itself.
+Changes in v3:
+- removed copyright strings
+- amended changed commit message  
+- Link to v2: https://lore.kernel.org/r/20250702-hp-x14-x1p-v2-0-af5b588d1979@oldschoolsolutions.biz
 
-Also turns out you can't devm_free_irq() from a threaded irq as it blocks forever in
-syncrhonise_irq().
+Changes in v2:
+- remove pm8010 handling
+- Link to v1: https://lore.kernel.org/r/20250702-hp-x14-x1p-v1-0-219356e83207@oldschoolsolutions.biz
 
-Naturally I didn't hit either of these issues when scheduling the thread from debugfs.
+---
+Jens Glathe (3):
+      dt-bindings: arm: qcom: Add HP Omnibook X14 AI X1P4200 variant
+      arm64: dts: qcom: x1-hp-x14: Unify HP Omnibook X14 device tree structure
+      arm64: dts: qcom: x1-hp-x14: Add support for X1P42100 HP Omnibook X14
 
-I've made the flags atomic, and thrown the threaded-irq away - instead the work always
-gets scheduled.
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    1 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    2 +
+ arch/arm64/boot/dts/qcom/x1-hp-omnibook-x14.dtsi   | 1549 ++++++++++++++++++++
+ .../boot/dts/qcom/x1e80100-hp-omnibook-x14.dts     | 1544 +------------------
+ .../boot/dts/qcom/x1p42100-hp-omnibook-x14.dts     |   33 +
+ 5 files changed, 1589 insertions(+), 1540 deletions(-)
+---
+base-commit: 65dd046ef55861190ecde44c6d9fcde54b9fb77d
+change-id: 20250702-hp-x14-x1p-eb32f4696d96
+
+Best regards,
+-- 
+Jens Glathe <jens.glathe@oldschoolsolutions.biz>
 
 
-Thanks,
-
-James
-
->  	idx = srcu_read_lock(&mpam_srcu);
->  	list_for_each_entry_srcu(class, &mpam_classes, classes_list,
->  				 srcu_read_lock_held(&mpam_srcu))
->  		mpam_reset_class(class);
->  	srcu_read_unlock(&mpam_srcu, idx);
-> +
-> +	mutex_lock(&mpam_list_lock);
-> +	list_for_each_entry_safe(msc, tmp, &mpam_all_msc, glbl_list)
-> +		mpam_msc_destroy(msc);
-> +	mutex_unlock(&mpam_list_lock);
-> +	mpam_free_garbage();
-> +
-> +	return IRQ_HANDLED;
-> +}
-/*error_irq_requested
 
