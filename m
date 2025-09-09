@@ -1,155 +1,98 @@
-Return-Path: <devicetree+bounces-215126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAF2FB50731
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:39:17 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7488AB50779
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:51:27 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 95CA34E4789
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:39:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 265F97AF17C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:49:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3996826A08F;
-	Tue,  9 Sep 2025 20:39:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BFF0342C93;
+	Tue,  9 Sep 2025 20:51:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kK8b6bs0"
+	dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="EQVWFM/P";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="xox5oHEC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04549199931;
-	Tue,  9 Sep 2025 20:39:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA85731D360;
+	Tue,  9 Sep 2025 20:51:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.142.43.55
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757450353; cv=none; b=Eg3JCgOnUkReyNKbK3NDrupZJ/JyhNzNx/Zpp1L8UcJZf8yPM5j+VHUDAiITpjgeyp+1MvZ7dSnBnTiTKz+epzi8mCqaz1IaoQFLqJOoM52mOJqqFrITvR2rKuI6yXn/bnhigNGQoBCBKQCXNQCVI8WA+bAikkWslc2+pkPlwR4=
+	t=1757451081; cv=none; b=LG+7SrTIufMWfxSlIVbBq7fto2urlKX2X12JmGQ+J+lv+QQKWfCbP6OfqtZbUQqp8EErh7e7rTJkeVKQbKmiTCGLxtISjkhuPZSZyIf+QTc9pqv3a8fy9D0aRKeNDrxfYDWBheIbHikzHraQL1zd54N8iMJ/0Eh1zDMDfrmAVzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757450353; c=relaxed/simple;
-	bh=9fZASMuZCalLaTWw9GiE1aMw67wsX4JeH92/taONPEA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EivVbpDzAayaOEM0g+q8+dFEh2YupFb1nE8v9JcMDzcJuKouDwTohFCHL7CvqKWozK7Y1rH7oYK365JrVonxnHUVC5F0Y1kLza5r/S3lHhC9/Nk7js/lcgm5IjfVgnIUydaXoEJjTpbVif+eYg8el1+oVCmyKR4tNiIL1rwVPbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kK8b6bs0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3D207C4CEF4;
-	Tue,  9 Sep 2025 20:39:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757450352;
-	bh=9fZASMuZCalLaTWw9GiE1aMw67wsX4JeH92/taONPEA=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=kK8b6bs03H/HrsGZkhmji6GFU23uAvnkWuGs3iMNI6mU9LC9P19HW1YqFl+hibA/7
-	 2bFaZof7z8D2hFJsElDe3EfSgu1s5QiIFlEpzf0zuwPg0X9gAy8pqbl1NjROpQpUCM
-	 zq0yn+VlP9c7+SP4TlBypCLW4nDrY/N/UYOZf9TP+q2PBbxd4qGY4rdGS+OyHDhQ8k
-	 b3TNCDRXZoruVUKHGVP85Y8tz6NV3xKOHsdDTSj5IbJ/73Ytk50SJaLGZ0Qu46jKEC
-	 6bhbQIknvkdT0M/VstjD4+ve6S8x5WYlHsH60396KedSQU7IIVTbkegQ7zI3ckB8lM
-	 L0Kd6oty3hW6w==
-Message-ID: <d957d16f-d206-4f7d-b52e-a2cad9e4abfc@kernel.org>
-Date: Tue, 9 Sep 2025 22:39:06 +0200
+	s=arc-20240116; t=1757451081; c=relaxed/simple;
+	bh=xUEK4jzi4Vz4eWm4g+qhOIKAE5TwzpnPITRSNh8X3kU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=jUsxmu0lwNb35JQhseddXi/qaNuDEc45+TrcsdJtfognesZ2IsY7+l/UqIBDThR+0bXKQYHTuHP031TRsSv+K8C1T+rcgnFHImCVq8JWNRpEusXOydsngqtx7XUjcFhJL0g/8n1khCYeaJ8ebaPH1ATDyUUWgcYj7KGF/8lnL2I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de; spf=pass smtp.mailfrom=linutronix.de; dkim=pass (2048-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=EQVWFM/P; dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b=xox5oHEC; arc=none smtp.client-ip=193.142.43.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linutronix.de
+From: Thomas Gleixner <tglx@linutronix.de>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020; t=1757451077;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p8QUBgQ3WJF+KMNYhEdzp9jwBsMUpUyniiH5ZXHVhO0=;
+	b=EQVWFM/P+NynyZKIFzI7567v418vGpUh6F28b5/kN8FxyDuOF7YFYw8y91RRroWl3X4GEo
+	bZ/UO4qDysBgUw4q8P+HPfQiyBbIPShhSF31g4NYIh3EEWiDhmGg79LamHIVLdDgelBDAd
+	0A+U+F2sE5Kwb+0Rxa6MTW8x+xeEmNyfnHJNIk3AYXaK4b4zu5PQoUsgIBlu6P7PZjMpsh
+	jxIZN4S2zx5TNV8Pkq3VKBdB2cC5/R5bDkpCfeopUlcfybVU138/QtmhEYlQwTCZR+NyCG
+	mJZ4CRwv0XJfJ/kDP+3NcsvQqd2/mau9LtohjKadD722Ol1pxkbZuYeyCByBRg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
+	s=2020e; t=1757451077;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=p8QUBgQ3WJF+KMNYhEdzp9jwBsMUpUyniiH5ZXHVhO0=;
+	b=xox5oHECkG96HqLQ8D9/vnmywIxK6L3jV5OCTFaq1ik9/c1Dmh/tmLsocg4k+eKzRiKuu7
+	zZkeWK0FJBOk7GCA==
+To: "Herve Codina (Schneider Electric)" <herve.codina@bootlin.com>, Wolfram
+ Sang <wsa+renesas@sang-engineering.com>, Hoan Tran
+ <hoan@os.amperecomputing.com>, Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>, Saravana Kannan
+ <saravanak@google.com>, Serge Semin <fancer.lancer@gmail.com>, Herve
+ Codina <herve.codina@bootlin.com>
+Cc: Phil Edworthy <phil.edworthy@renesas.com>, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, Pascal Eberhard
+ <pascal.eberhard@se.com>, Miquel Raynal <miquel.raynal@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 0/8] gpio: renesas: Add support for GPIO and related
+ interrupts in RZ/N1 SoC
+In-Reply-To: <20250909120041.154459-1-herve.codina@bootlin.com>
+References: <20250909120041.154459-1-herve.codina@bootlin.com>
+Date: Tue, 09 Sep 2025 22:51:17 +0200
+Message-ID: <87y0qntkmy.ffs@tglx>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/4] dt-bindings: leds: add generic LED consumer
- documentation
-To: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
- Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Thompson <daniel.thompson@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
- <20250908-leds-v3-1-5944dc400668@vinarskis.com>
- <MOj2NUVAdyu9bvVkEON8rhAlGJ9FRRh9gJABkrOR_6gKhE8rmeZ5Isbj9noA1bDZ12gY4dlDpEtmEjxlRTucCssKwTo4f5nCowMOin85IKk=@vinarskis.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <MOj2NUVAdyu9bvVkEON8rhAlGJ9FRRh9gJABkrOR_6gKhE8rmeZ5Isbj9noA1bDZ12gY4dlDpEtmEjxlRTucCssKwTo4f5nCowMOin85IKk=@vinarskis.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 
-Hi,
+On Tue, Sep 09 2025 at 14:00, Herve Codina wrote:
+>   Patch 5 (new in v2)
+>    - Convert irqchip/ls-extirq to use for_each_of_imap_item
+>
+>   Patch 6 (new in v2)
+>    - Convert irqchip/renesas-rza1 to use for_each_of_imap_item
 
-On 9-Sep-25 6:57 PM, Aleksandrs Vinarskis wrote:
-> 
-> 
-> 
-> 
-> 
-> On Monday, September 8th, 2025 at 01:18, Aleksandrs Vinarskis <alex@vinarskis.com> wrote:
-> 
->>
->>
->> Introduce common generic led consumer binding, where consumer defines
->> led(s) by phandle, as opposed to trigger-source binding where the
->> trigger source is defined in led itself.
->>
->> Add already used in some schemas 'leds' parameter which expects
->> phandle-array. Additionally, introduce 'led-names' which could be used
->> by consumers to map LED devices to their respective functions.
->>
->> Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
->>
->> ---
->> .../devicetree/bindings/leds/leds-consumer.yaml | 89 ++++++++++++++++++++++
->> 1 file changed, 89 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/leds/leds-consumer.yaml b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
->> new file mode 100644
->> index 0000000000000000000000000000000000000000..d50a3850f6336e9e3a52eb1374e36ea50de27f47
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/leds/leds-consumer.yaml
->> @@ -0,0 +1,89 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/leds/leds-consumer.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Common leds consumer
->> +
->> +maintainers:
->> + - Aleksandrs Vinarskis alex@vinarskis.com
->>
->> +
->> +description:
->> + Some LED defined in DT are required by other DT consumers, for example
->> + v4l2 subnode may require privacy or flash LED. Unlike trigger-source
->> + approach which is typically used as 'soft' binding, referencing LED
->> + devices by phandle makes things simpler when 'hard' binding is desired.
->> +
->> + Document LED properties that its consumers may define.
->> +
->> +select: true
->> +
->> +properties:
->> + leds:
->> + oneOf:
->> + - type: object
->> + - $ref: /schemas/types.yaml#/definitions/phandle-array
->> + description:
->> + A list of LED device(s) required by a particular consumer.
->> + items:
->> + maxItems: 1
->> +
->> + led-names:
-> 
-> While going over the feedback I realized `leds` and `led-names` do
-> not follow `property`, `property-names` convention. Any objections
-> if I rename `led-names` to `leds-names` for consistency?
+How are those two patches related to adding GPIO support?
 
-No objections from me, `leds-names` indeed is better.
+AFAICT, they are completely unrelated and just randomly sprinkled into
+this series, but I might be missing something.
 
-Regards,
+Thanks,
 
-Hans
-
-
+        tglx
 
