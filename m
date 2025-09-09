@@ -1,196 +1,157 @@
-Return-Path: <devicetree+bounces-214981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E567AB4FE9A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:03:37 +0200 (CEST)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AA91B4FEA7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:04:37 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3BD70363908
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:02:56 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 153F37B9BBE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:01:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B1AF23278D;
-	Tue,  9 Sep 2025 14:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 033EB2367BA;
+	Tue,  9 Sep 2025 14:02:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="VPx1l0T9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="itM5weoH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 938CF21ABC9
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 14:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F8F178372;
+	Tue,  9 Sep 2025 14:02:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757426571; cv=none; b=sMEMvLyzF7CKC7Dj5fAMC1fE1P7GTAtIgIBIbqguMgG41+RCkDDTyI1zCBhvUBWnYrETIayKdwRygsLVGZ/2S8cXh7UxRTPyFHCybI4KJ1m2Y4z/4VWRHXKMxvDOitWOkcnt0KbwYedtklRFfX1oK5PcLj9Cdaaeda/T93xU4WE=
+	t=1757426572; cv=none; b=arQOYt9A1yWAxONeMc9fth8Fr9mIRnjsiwlyWJiaTSCT+0lIds3qAncDDlOD606tWcYTVfHC07UPMSHFXhgPH7Wk2B6gOUvKlYAsRJlyxltVA9H8+DU2o1PAG1+4NZEl3WUAQbCYgk3sKMW7MQfym/Pp/co8d0up8UekVarPHbA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757426571; c=relaxed/simple;
-	bh=bJDPOaYhrJgnzTxZIu8POOipEZb0RjnC1CgvuoSxu2c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o/kuLYUO/AsfLMaa70ADmj7TnZUAoqDr6tuE3kPsYhcoHJNRH3mDFZfFJYbKGZh3T+BZBCuKrno9E0Pto5VJrkUHMYu2UnL1m4x4UQPQB1aXTefYSPwYM5o/FveUX93ENxMbxItnowcdgXKDOIe7WU2vRozgwD42xt4VVObgDoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=VPx1l0T9; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5899LRwx020091
-	for <devicetree@vger.kernel.org>; Tue, 9 Sep 2025 14:02:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-type:date:from:in-reply-to:message-id:mime-version
-	:references:subject:to; s=qcppdkim1; bh=JOw1z5sVNtTfRj+xa1tk7uDf
-	0N4y0ILLz8O38jaB7uA=; b=VPx1l0T9twFG4Y6p7RRugzzpYWBNQvZ6uEzklj0o
-	1uXohYCkqo6UcclKrJUJGfsFq7n9Cd4ILY2cA5oxMAJS6jka1WvZG7qJ8tSJUsIH
-	V/uV1ctoA1tsXSOcpbBR4UFVqQTGiOjz5e7MLdcLILHDwOt6VVVmOLUS5v4TL/Lc
-	xAvwNKuHN1kRr/wvoTvJYSZGf2n1Q/9kmCmWxnfC1bzsZwbBYopIFJwyQyclsGg9
-	OheTG48O8tJircTj2wlOSz40jrdtHfp0Gga9YauaFjQ/+dcQ0tA6x3/YrDQxsHS7
-	/hFS5kWPhfMbjidsN1yDsceOiRd67eIsUm6fvhw0f7MTpA==
-Received: from mail-ua1-f71.google.com (mail-ua1-f71.google.com [209.85.222.71])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 491vc24exw-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 14:02:48 +0000 (GMT)
-Received: by mail-ua1-f71.google.com with SMTP id a1e0cc1a2514c-8a1b6d9d440so7987907241.1
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 07:02:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757426567; x=1758031367;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JOw1z5sVNtTfRj+xa1tk7uDf0N4y0ILLz8O38jaB7uA=;
-        b=O5/csyyAJ8dyOVhND+33AuT8xpb66MM7KchVE1FsLEb72dgFsNynRHwRhyKXu0Fkdr
-         IameR7gfD9g9mrv3bLcaSLgj2BoQolws97MLuncRxAzvmItJa7JqFwPWgJaGJI2UuL4+
-         nblDEImLWVQmqiODsgaeoUenJsMj+HDQYqIShd/3/BeeGVAQvD5tx9v+0OtsceA1OLx3
-         vHowmn0BWx0c382OIeskSxz5av8XJMhF3aBz4EZPyrSOI1hQWbaTGChnMIOTuXo7x/AE
-         7hCVFE6G8qAaBXx7Q41y8VgqhCwxlEdTFV8OnFfoAv3wN9eNIJkQGbyo6nt8NhopcsT7
-         XPzg==
-X-Forwarded-Encrypted: i=1; AJvYcCUAx9ioAqqvtKzAeWkbimDZ+2EvcnqTFjYcqz7ZnnupXYTxWBqkp4WNgRpcO5CQusgwB+yTxHpFwRfB@vger.kernel.org
-X-Gm-Message-State: AOJu0YyMTW5kfOOIPSOat24OaW0/6efIx059BrP9vdRGSRz/QrAPpoHA
-	vv9nzNWdIJ5E/yQeWsir+8ykizHUyF9GnqAIGn3e0ZgI8GeR0gsBDzBzXuMeER0szGKhiwupsNY
-	ziUlWZN/8HX91Yjp11TZeRq8N1d7coSqqAkA66vgmxXjNnI1BymyAKvpC7Q+ICiXk
-X-Gm-Gg: ASbGncuN1ORvkGT2B+gS2PWvnF6+ClDKwtqkS3sdQZMGRDEVSCJWIrJf8R/6itEth4S
-	cTauwlKLRQzjImuuSurjH95ucHMFw3wc+N+35Bth5v+FdyyONMFZuqBJmlFg2jGZ1LTMoZFMVbI
-	LPrMXoTzaHD0hwk6ZvlNgP6SM8skuD+I39pBFM/jFQN9ClPkyDlCi2a5/HRLNR8RMBfCEhct6vi
-	QAz6+vrLxYSZrIb7taSal/p67Tyc6aEDeGyNP32TO4kydzFq7h2U0pzeP+jI7wY7Azfi9giOHnp
-	1iyfb7OFsizYRqeB5vVnsxfRCbTmkkUHPCaobhH9D++JuWekg4qayQxoRrE7e5LlE8LaGobGNvo
-	HtB63g4dhD+VnsSM4kNW3/DISZ0IgiB6IyneOwweubNqiDoMqA6vT
-X-Received: by 2002:a05:6102:1449:10b0:535:2921:ff3c with SMTP id ada2fe7eead31-538eeea6e2emr5482423137.17.1757426565690;
-        Tue, 09 Sep 2025 07:02:45 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGTiBB9xu/gj4kgce3Wxm4mFaVVVWJ31EwOjxvkEQXaamlM/G2KCDUh9c7HFp4BRfs2Sui4Rw==
-X-Received: by 2002:a05:6102:1449:10b0:535:2921:ff3c with SMTP id ada2fe7eead31-538eeea6e2emr5482310137.17.1757426564621;
-        Tue, 09 Sep 2025 07:02:44 -0700 (PDT)
-Received: from umbar.lan (2001-14ba-a0c3-3a00-264b-feff-fe8b-be8a.rev.dnainternet.fi. [2001:14ba:a0c3:3a00:264b:feff:fe8b:be8a])
-        by smtp.gmail.com with ESMTPSA id 2adb3069b0e04-5681795d63esm546273e87.66.2025.09.09.07.02.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 07:02:42 -0700 (PDT)
-Date: Tue, 9 Sep 2025 17:02:40 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Sudarshan Shetty <tessolveupstream@gmail.com>
-Cc: konradybcio@kernel.org, andersson@kernel.org, robh@kernel.org,
-        krzk+dt@kernel.org, conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        tingweiz@qti.qualcomm.com
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: Add support for QCS615 talos evk
- board
-Message-ID: <5oytapnerwmttc62q7s2vxlrtmcfg3bhiycpw4enak6zyaioyh@s4drz5x7hoi4>
-References: <20250909125255.1124824-1-tessolveupstream@gmail.com>
- <20250909125255.1124824-2-tessolveupstream@gmail.com>
+	s=arc-20240116; t=1757426572; c=relaxed/simple;
+	bh=pBU7jH62C2atBXLeaW2/l4lqD789Nv3gmafXTSS6Sik=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LalJfsconXg3PcUFxsMJl+8xgMVeiuaj4g+UDGOg2sIHSGsS5E0hSiiqzH0TX988ajxnRxJ87c/fcFBiaNpChTXOzegkuKMR6uMZZz4D0KnUJpmas8U3a6zMb3Ky6OlM1wtkavrZHm11m9mI3yDqP7MOatnohxTlUZsougptGzc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=itM5weoH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28D27C4CEF4;
+	Tue,  9 Sep 2025 14:02:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757426572;
+	bh=pBU7jH62C2atBXLeaW2/l4lqD789Nv3gmafXTSS6Sik=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=itM5weoHVj04B3V3WiqmzaG7I0ol2d1tgjfVlW8/SBG0EMd9zwrfAg1aoFTp0S8CV
+	 hq/QrxJY6kH1uABKysE+WXQzU1ZDLanvQ+uA3+YgVgOCSixqpJVFSEweiQ7ZI0kaLt
+	 vUUFO4NzZN2copGXwG3FH4VUcqC/yS4FCwACQjYM296+gPyFdfJbkOYGSn37ghQtbD
+	 LcP3v4/akS44QfbHcvrravvtjqkNRpD05gKnMMg12pgblSAbA7K/gSU0xwlx7CmWMy
+	 Esal668pzNJlL3pGb1ZHtx/hNTydXdl+f0MUZo2SXX/4MgINegENaFZz0H7SznYPcT
+	 ThU+Dfj8LjS0A==
+Message-ID: <efb03993-0481-45ed-8f7e-8b65519a55cb@kernel.org>
+Date: Tue, 9 Sep 2025 16:02:47 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250909125255.1124824-2-tessolveupstream@gmail.com>
-X-Authority-Analysis: v=2.4 cv=FN4bx/os c=1 sm=1 tr=0 ts=68c03388 cx=c_pps
- a=KB4UBwrhAZV1kjiGHFQexw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=yJojWOMRYYMA:10 a=VwQbUJbxAAAA:8 a=COk6AnOGAAAA:8 a=KKAkSRfTAAAA:8
- a=EUspDBNiAAAA:8 a=pGLkceISAAAA:8 a=kIIBkZXHDdBR5UhwVmkA:9 a=CjuIK1q_8ugA:10
- a=o1xkdb1NAhiiM49bd1HK:22 a=TjNXssC_j7lpFel5tvFf:22 a=cvBusfyB2V15izCimMoJ:22
-X-Proofpoint-ORIG-GUID: Jn_GnUDgYcpgeVvbkD9bZ1oSDsxKXsx5
-X-Proofpoint-GUID: Jn_GnUDgYcpgeVvbkD9bZ1oSDsxKXsx5
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA4MDA5NCBTYWx0ZWRfXxMIxDFgxb2G2
- cPrnFnb63QOn8W9BFQLY6DQ1tAczyZZkJ+6eH9xsXrLALLjah5fPM1Q6e1GS7SJ+igmC0ab9dTh
- AxN507j+oGyZgKVfwDTD7yxQawUqkNY6vgT0t6EY2D8afbKLMTXgoVSnz9R/7SN3pGERFP0CVYZ
- QaYMZ6E8C5s61K8trM7IsXlk1/FEZmzHkdms2mbpbq9jQpyY39WbVbMgCN2rnGxXE+UrVWS1iI4
- MnDnFZ92hlKQi/HDkd/Bmr7z1Ls9/I5HtUvbZDHeTBb0z7LxFKBsnznZAIkbAbast1/bW1i5b3Q
- t5R9iRl6v7u2fKDT1J1B41MMm146TaEqxJ8DcvNH712G1nvAstNeLCD2BdSlTeXgVy4rTum6VC6
- g/5eyX5k
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-09_02,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 priorityscore=1501 clxscore=1015 phishscore=0 adultscore=0
- bulkscore=0 impostorscore=0 malwarescore=0 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509080094
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: input: pm8941-pwrkey: Document
+ wakeup-source property
+To: Luca Weiss <luca@lucaweiss.eu>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Courtney Cavin <courtney.cavin@sonymobile.com>,
+ Vinod Koul <vkoul@kernel.org>
+Cc: Bhushan Shah <bshah@kde.org>, ~postmarketos/upstreaming@lists.sr.ht,
+ phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20250909-resin-wakeup-v1-0-46159940e02b@lucaweiss.eu>
+ <20250909-resin-wakeup-v1-1-46159940e02b@lucaweiss.eu>
+From: Krzysztof Kozlowski <krzk@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=krzk@kernel.org; keydata=
+ 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 a/A=
+In-Reply-To: <20250909-resin-wakeup-v1-1-46159940e02b@lucaweiss.eu>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Sep 09, 2025 at 06:22:55PM +0530, Sudarshan Shetty wrote:
-> Introduce the device tree support for the QCS615-based talos-evk
-> platform, which follows the SMARC (Smart Mobility ARChitecture)
-> standard. The platform is composed of two main hardware
-> components: the IQ-QCS615-SOM and the talos-evk carrier board.
+On 09/09/2025 15:23, Luca Weiss wrote:
+> The 'resin' keys (usually connected to a volume-down button) are
+> generally not supposed to wake up the device from suspend, so explicitly
+> document a wakeup-source property to enable this wakeup behavior.
 > 
-> The IQ-QCS615-SOM is a compact System on Module that integrates the
-> QCS615 SoC, PMIC, and essential GPIO connectivity. It follows the
-> SMARC standard, which defines a modular form factor allowing the SoM
-> to be paired with different carrier boards for varied applications.
+> For 'pwrkey' the default stays that pressing the button does wake up the
+> device from suspend.
 > 
-> The talos-evk is one such carrier board, designed for evaluation
-> and development purposes. It provides additional peripherals
-> such as UART, USB, and other interfaces to enable rapid
-> prototyping and hardware bring-up.
-> 
-> This initial device tree provides the basic configuration needed
-> to boot the platform to a UART shell. Further patches will extend
-> support for additional peripherals and subsystems.
-> 
-> The initial device tree includes basic support for:
-> 
-> - CPU and memory
-> 
-> - UART
-> 
-> - GPIOs
-> 
-> - Regulators
-> 
-> - PMIC
-> 
-> - Early console
-> 
-> - AT24MAC602 EEPROM
-> 
-> - MCP2515 SPI to CAN
-> 
-> Signed-off-by: Sudarshan Shetty <tessolveupstream@gmail.com>
+> Signed-off-by: Luca Weiss <luca@lucaweiss.eu>
 > ---
+>  .../bindings/input/qcom,pm8941-pwrkey.yaml          | 21 ++++++++++++++++++---
+>  1 file changed, 18 insertions(+), 3 deletions(-)
 > 
-> This series depend on the below patch changes
-> https://lore.kernel.org/linux-arm-msm/20250625063213.1416442-1-quic_ziyuzhan@quicinc.com/T/#t
-> https://lore.kernel.org/all/20241224-fix-board-clocks-v3-0-e9b08fbeadd3@linaro.org/
-> https://lore.kernel.org/linux-arm-msm/20250604-qcs615-sm6150-v1-0-2f01fd46c365@oss.qualcomm.com/T/#t
-> ---
->  arch/arm64/boot/dts/qcom/Makefile        |   1 +
->  arch/arm64/boot/dts/qcom/qcs615-som.dtsi | 414 +++++++++++++++++++++++
->  arch/arm64/boot/dts/qcom/talos-evk.dts   |  42 +++
->  3 files changed, 457 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/qcs615-som.dtsi
->  create mode 100644 arch/arm64/boot/dts/qcom/talos-evk.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 4bfa926b6a08..588dc55995c5 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -117,6 +117,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= qcm6490-shift-otter.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-4000.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs615-ride.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= talos-evk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= qcs6490-rb3gen2.dtb
+> diff --git a/Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml b/Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml
+> index 62314a5fdce59bb00d1e8b86d6a29a091128aa50..62a08e675ef9511e0ae9ed9fbab5694ab7242c35 100644
+> --- a/Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml
+> +++ b/Documentation/devicetree/bindings/input/qcom,pm8941-pwrkey.yaml
+> @@ -10,9 +10,6 @@ maintainers:
+>    - Courtney Cavin <courtney.cavin@sonymobile.com>
+>    - Vinod Koul <vkoul@kernel.org>
+>  
+> -allOf:
+> -  - $ref: input.yaml#
+> -
+>  properties:
+>    compatible:
+>      enum:
+> @@ -36,6 +33,11 @@ properties:
+>             pin should be configured for pull up.
+>      $ref: /schemas/types.yaml#/definitions/flag
+>  
+> +  wakeup-source:
+> +    description: |
+> +           Button can wake-up the system. Only applicable for 'resin',
+> +           'pwrkey' always wakes the system by default.
 
-BTW, 'talos' > 'qsc6490'. I think the list is expected to be sorted.
 
--- 
-With best wishes
-Dmitry
+I'll fix existing code, so don't repeat that style.
+
+
+Best regards,
+Krzysztof
 
