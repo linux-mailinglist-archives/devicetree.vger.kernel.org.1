@@ -1,121 +1,131 @@
-Return-Path: <devicetree+bounces-215101-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215102-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7148EB50528
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:25:37 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D076B50570
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:36:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A4EB1BC849F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:25:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C6AC93BD352
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:35:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86C8E35CED5;
-	Tue,  9 Sep 2025 18:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4A392FFDF5;
+	Tue,  9 Sep 2025 18:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Q7WUnC/Q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="J+pi9q6h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 720DE35CED4;
-	Tue,  9 Sep 2025 18:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.12
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA5692FFDD3;
+	Tue,  9 Sep 2025 18:35:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757442327; cv=none; b=S0/b7QAnQPrOkRZi/vmL+mdyp23PMDN41tjY1c7SxtNFvOkIc5TPN4w5jDBoZNx3JCH0YsaqD/xaW0mZGDdXd0sJVWAsv4AWIDFj+1RE0oyVFIovwfxLo2uGFEwFw2ejr0xQeSV5omRYfYAgdIGvu184aVdA3gmj7MrByq/KXNk=
+	t=1757442948; cv=none; b=sDFbya9c40qHnwtgvR5psmtfjg5P/EbRQkaRqjBEYLtsXBI3Qc6+0yGJCyHbIHmPmFdUP52n0LyQbrVG0Kd5L0sj49cqy5h0tCscX1cy18J9iR5GT5WTPvPjTYyCAsGk/Ar7vnCNUDuIbWGRUSCGBLPNsnhiVnTHrb59+JNicxY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757442327; c=relaxed/simple;
-	bh=jP+QEcU702l7EMgJt/L66MErc+79C+UsveNcHCtgkgk=;
+	s=arc-20240116; t=1757442948; c=relaxed/simple;
+	bh=zCimBEEsW+SFcQwuUGAUgCl9LrL92q1g3x95hB4wno0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=tBd3RpUhcRg6Q+/ZnDxAx8eibmnjHF1Q/U6ee+jz7gy+bqmeWHA1L8x4fruVreHUBXiz5iZ+pT7a3in5/P+iiNt7r5xduI4IgNPjrONgBpsKdI9vh5R9mjqnzohHhB7/RU/j9pXaH3x49B+Vw/zRPmOLW7Iir0wnW/BSW8yMjOw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Q7WUnC/Q; arc=none smtp.client-ip=192.198.163.12
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757442325; x=1788978325;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=jP+QEcU702l7EMgJt/L66MErc+79C+UsveNcHCtgkgk=;
-  b=Q7WUnC/QMWkxekBzCVOLmB3aYyLNeu5bDbDNaDXdZW0FF6Fp6Pg2SbrE
-   8vl8PPJnv4/Jrd3G6t9FxcOEh0j87RCPIV3ZQWAmcscqrPMDGCB6/sM8s
-   qaYYaA7jS8qIKCscg3yBDc+/DtmiZGSB2/8fvQE4nrEJxU6t5AR/Ea1z7
-   HRY3T28bScLUsynLWQ4QRg0ETj94dgMdFz65qqTFf2h6qrYWk+LU+XNby
-   /byNQB7K/XnqL7oPcwWDn1SjDIYvUEo6uOJgkGGhpJARYmWgb1i2n4v8g
-   das2T6treSh9aDO2/YQq0KOYeOD588NtCkPhSVe4mq+cTnI03N9BD/Cwa
-   A==;
-X-CSE-ConnectionGUID: XX6w4LNGTTSUpitmHHx9kQ==
-X-CSE-MsgGUID: VbxkQ4axRj2L91EI5MMSSA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="63569054"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="63569054"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 11:25:24 -0700
-X-CSE-ConnectionGUID: ABg3IuvfQsWOZJ/S88AArw==
-X-CSE-MsgGUID: aTfHsRBlTh+Cedlmx8R+9g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="173552913"
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 09 Sep 2025 11:25:21 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uw31r-0005Al-0r;
-	Tue, 09 Sep 2025 18:25:19 +0000
-Date: Wed, 10 Sep 2025 02:24:20 +0800
-From: kernel test robot <lkp@intel.com>
-To: Denzeel Oliva <wachiturroxd150@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=uD5IqIbcIbhkU6RuEjGD2/6TYAA83NZw7aITmO8uOLsAgYMBbv1JzkZtXWJrYNn+e3oSkLpq6oQVrWdXggAiCcrRl4vT/CcchXT8a/1yDjAB/7i4g8e0FNPKpzvRDgKke3nb0qw4VyQchv9NHiOCsZBzvNggQrrZUw+mA824M8E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=J+pi9q6h; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D79CDC4CEF4;
+	Tue,  9 Sep 2025 18:35:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757442948;
+	bh=zCimBEEsW+SFcQwuUGAUgCl9LrL92q1g3x95hB4wno0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=J+pi9q6hBYDz9dZm8Tsp21PbpCnT6vybJVHLcbDQvEb1DAy1rrmn6zYM+5hRsEez4
+	 K9LRTKLQRSDC09Zs0ErZ+2HLDuG851XcxIeNPxuU/EEuuBLqekUDkpqAYeeK6kZSV5
+	 M8uoSMt4XOzk+RWwE2ScKJ8rxiTj0RFP2d4DVTQbiKENh+ftzDmDLYkKuJei74VyB+
+	 I41ObBBH5llZtYq/2sBQtXz8lGJBqIHqlcNqY2Yr/5HDYquzEqO7Oelvvax5MTegbt
+	 jpvlszHQPIuAxd3p+mDAawoIkDox6rTrCzGVuCdi5UWYDnWY+FhR0FcSXzLmMtNq65
+	 GypedVo+G5ggg==
+Date: Tue, 9 Sep 2025 19:35:43 +0100
+From: Conor Dooley <conor@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Josua Mayer <josua@solid-run.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Sam Protsenko <semen.protsenko@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Andi Shyti <andi.shyti@kernel.org>
-Cc: oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
-	Denzeel Oliva <wachiturroxd150@gmail.com>
-Subject: Re: [PATCH v2 6/8] arm64: dts: exynos990: Add UART nodes for PERIC0/1
-Message-ID: <202509100100.bccnVSbn-lkp@intel.com>
-References: <20250907-perics-add-usinodes-v2-6-58f41796d2d3@gmail.com>
+	"linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+	Ioana Ciornei <ioana.ciornei@nxp.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH phy 13/14] dt-bindings: phy: lynx-28g: add compatible
+ strings per SerDes and instantiation
+Message-ID: <20250909-cork-tyke-9b460c1a6f44@spud>
+References: <20250904154402.300032-14-vladimir.oltean@nxp.com>
+ <20250905-bulky-umber-jaguarundi-1bf81c@kuoka>
+ <20250905154150.4tocaiqyumbiyxbh@skbuf>
+ <20250905-pamperer-segment-ab89f0e9cdf8@spud>
+ <20250908093709.owcha6ypm5lqqdwz@skbuf>
+ <2b1f112e-d533-46ae-a9a0-e5874c35c1fc@solid-run.com>
+ <20250908153746.7mfobudenttdi4qd@skbuf>
+ <fcfbea96-7978-49f6-88c6-f78fe52edb7c@solid-run.com>
+ <fcfbea96-7978-49f6-88c6-f78fe52edb7c@solid-run.com>
+ <20250909113543.q7zazfy5slrgnhtc@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rgKk0EMXYsQjaFjK"
+Content-Disposition: inline
+In-Reply-To: <20250909113543.q7zazfy5slrgnhtc@skbuf>
+
+
+--rgKk0EMXYsQjaFjK
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250907-perics-add-usinodes-v2-6-58f41796d2d3@gmail.com>
+Content-Transfer-Encoding: quoted-printable
 
-Hi Denzeel,
+On Tue, Sep 09, 2025 at 02:35:43PM +0300, Vladimir Oltean wrote:
+> On Mon, Sep 08, 2025 at 04:04:45PM +0000, Josua Mayer wrote:
+> > Am 08.09.25 um 17:37 schrieb Vladimir Oltean:
+> > > On Mon, Sep 08, 2025 at 02:02:35PM +0000, Josua Mayer wrote:
+> > >>> My updated plan is to describe the schema rules for the compatible =
+as
+> > >>> follows. Is that ok with everyone?
+> > >>>
+> > >>> properties:
+> > >>>   compatible:
+> > >>>     oneOf:
+> > >>>       - const: fsl,lynx-28g
+> > >>>         deprecated: true
+> > >>>       - items:
+> > >>>           - const: fsl,lx2160a-serdes1
+> > >>>           - const: fsl,lynx-28g
+> > >>>       - enum:
+> > missed fsl,lx2160a-serdes1
+>=20
+> I didn't miss anything. "fsl,lx2160a-serdes1" is deliberately not in
+> "enum" because there's no point specifying this compatible as
+> standalone, if for backwards compatibility reasons it will always have
+> to be "fsl,lx2160a-serdes1", "fsl,lynx-28g" (it was described as
+> "fsl,lynx-28g" before), which is already covered by "items".
 
-kernel test robot noticed the following build errors:
+I think Josua was pointing out their own omission here.
 
-[auto build test ERROR on 98ee0e036cfedf543c4728a604fd7870d0000efd]
+> > >>>           - fsl,lx2160a-serdes2
+> > >>>           - fsl,lx2160a-serdes3
+> > >>>           - fsl,lx2162a-serdes1
+> > >>>           - fsl,lx2162a-serdes2
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Denzeel-Oliva/dt-bindings-soc-samsung-exynos-sysreg-Add-Exynos990-PERIC0-1-compatibles/20250908-061748
-base:   98ee0e036cfedf543c4728a604fd7870d0000efd
-patch link:    https://lore.kernel.org/r/20250907-perics-add-usinodes-v2-6-58f41796d2d3%40gmail.com
-patch subject: [PATCH v2 6/8] arm64: dts: exynos990: Add UART nodes for PERIC0/1
-config: arm64-randconfig-003-20250909 (https://download.01.org/0day-ci/archive/20250910/202509100100.bccnVSbn-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 11.5.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20250910/202509100100.bccnVSbn-lkp@intel.com/reproduce)
+--rgKk0EMXYsQjaFjK
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509100100.bccnVSbn-lkp@intel.com/
+-----BEGIN PGP SIGNATURE-----
 
-All errors (new ones prefixed by >>):
+iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMBzfwAKCRB4tDGHoIJi
+0uImAP4iSyFG0dBJjo95uX9m0Tmx93AaThmecCO8jIfuKbVbrQD+Jji3Uu3mPaRx
+UHP7rBa5RARB+qAIa/QDdFDUDGKfUQY=
+=KrBe
+-----END PGP SIGNATURE-----
 
-   Error: arch/arm64/boot/dts/exynos/exynos990.dtsi:517.4-5 syntax error
->> FATAL ERROR: Unable to parse input tree
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--rgKk0EMXYsQjaFjK--
 
