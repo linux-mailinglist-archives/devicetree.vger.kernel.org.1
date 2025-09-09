@@ -1,217 +1,122 @@
-Return-Path: <devicetree+bounces-215121-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215122-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DAEBB506E7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:22:43 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F350B50725
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 22:34:12 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 073241665EF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:22:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 199B23AA2B2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A53730215F;
-	Tue,  9 Sep 2025 20:22:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FFC32A3C3;
+	Tue,  9 Sep 2025 20:34:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b="IkyrOxuq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pi/6Fm4a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com [91.218.175.182])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DBF23570C0
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 20:22:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=91.218.175.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 549C32FD1B6;
+	Tue,  9 Sep 2025 20:34:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757449354; cv=none; b=STPUxz3ibmKZdUHaBTh4sDoyMwLeegw8IKQu+ubZBnRKKkGb7uqWDRKL7qpmfh7AMrob3D6mMhrMqmd/VvOSYCKBCTRYZYiYaLTxWszcCAKAiQUVsilOKM1h4+kDZUESh/K54tPScYbSAmy6xCdnkrGkWgSs5W8KF0i4E5f5HdA=
+	t=1757450047; cv=none; b=SKTAsnS1xse1cDn5stVLnwFhuHiCMcbTiP5X0rq+uoVoRDarT7iIeNR5MMg+lv3DUMx6QtpQl34vs7Y0XoY1yjC2Sg7sfErNRShYaB2Lc2DSp0viqss/NGVAYuapSw5LquQIzub2KXpY4o88sDgx9mAxrAdWJe8pVFQnqpYr2lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757449354; c=relaxed/simple;
-	bh=j/6fyTntaQ6oHvCPqHXXtCXsIY2tT3B17DcVLU+R5RY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zoi4jpzvPHzQE32sDji3/90G1C3VftbC8T8yI1hVbMffbvgPJyUytXwUiire4pzb6epAbeOC5Cinq0cYZn3mUJKtQiv41ge4q9fetCyACzuMLZdadhzRBYxHkXdGqf1FGi4SusSAZPeg2/3/6oTH5kFHGEQucuzTFMvPVR38gHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se; spf=pass smtp.mailfrom=grimler.se; dkim=pass (1024-bit key) header.d=grimler.se header.i=@grimler.se header.b=IkyrOxuq; arc=none smtp.client-ip=91.218.175.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=grimler.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=grimler.se
-Date: Tue, 9 Sep 2025 22:22:18 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=grimler.se; s=key1;
-	t=1757449345;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=jYE/ue6mADXQrf7ouwlsqqjbpynWqExFMHTfxRWVhAg=;
-	b=IkyrOxuqH8EDnr5p1a+FjxAvbR039kgBV4FDoQo1wJcLHFjIx35XQOOMgc3T0zKys1K9D+
-	ihpu6/AfUfJEPZpDZoseBrdlgmjNfWrPSkB0GhT/dGNXLfH7/EtLJijRrQIdl7UCi52Txb
-	rQecZgCu1beEGaeMYBvVqep2it3D8oE=
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Henrik Grimler <henrik@grimler.se>
-To: Anand Moon <linux.amoon@gmail.com>
-Cc: Krzysztof Kozlowski <krzk@kernel.org>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/2] ARM: dts: samsung: Add cache information to the
- Exynos542x SoC
-Message-ID: <20250909202035.GA10879@localhost>
-References: <20240730091322.5741-1-linux.amoon@gmail.com>
- <CGME20240730091412eucas1p18feced3968a5f87dc8fe05f78d5c7659@eucas1p1.samsung.com>
- <20240730091322.5741-2-linux.amoon@gmail.com>
- <09e9cf0b-27fd-46b8-8631-87d798afd19e@samsung.com>
- <CANAwSgT_TOFwP80+H8-CdXDLLu+u2XZMr2dnxcsSDe8S5yeYCw@mail.gmail.com>
- <a41a6143-ef2e-4d86-b102-eaf442985173@kernel.org>
- <CANAwSgSbSgXwOQLrVrHD7jpDe0=Bq7r2K8p0JjvZJMPpVNq4XQ@mail.gmail.com>
- <d72d7927-079a-4a82-a298-db9ed70a816f@kernel.org>
- <CANAwSgSgK5hmcLg7sChAs7QL0x7wufHpWDZJFyw6tMiiOuDZeg@mail.gmail.com>
- <CANAwSgRTM4OSnXKZWWzxi2cW8QwWLKJz2xmUThyLkdkq71rH1g@mail.gmail.com>
+	s=arc-20240116; t=1757450047; c=relaxed/simple;
+	bh=IsCF+MUxVzd13pKkvlXlP/Ccmh25UQn/2DMZZUacACQ=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Q3hHPOBXgryf3u2wIJ3qjJCxSZOlcoKFYOwi+YIMn0lOgQsJVs/lu65y5a1xyd0wvRvJM5ab6leAeUlBISkJMdvoJL1eOnCwE6jr5k6qCWdYkEyUGO8V+HqTudyPp3xFddrCTLhI/J6fGevApzpI0fwjZeWUxdzo4CnKeIq4cdU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pi/6Fm4a; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CE8C4CEF4;
+	Tue,  9 Sep 2025 20:34:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757450046;
+	bh=IsCF+MUxVzd13pKkvlXlP/Ccmh25UQn/2DMZZUacACQ=;
+	h=From:Subject:Date:To:Cc:From;
+	b=Pi/6Fm4aKrtyZmoD47MIk+2XEaNGEKSGvzDAEn7BW6R3SWBk1tfYPJQ207A+ukqIH
+	 efbIfEZ3JJAOkF/ySBMoMAyOBPQFM/rw1nm0DvlStfj5EYoCTMhbHLxssuOoiL7B5G
+	 fiPDeZjvxrgusL+VBIMP3ENfrl1tODwDB7ua0e4z5g99rsMjtSQdQwtzWoGVVgh7Gm
+	 G0jhyoEaZWrE+LXt+63xAYwWJQHD0uvVIBfcH+skb6uIJbFquHPWVV8/8PNVJXDBP2
+	 t7OikkrH0xFC+rS5B2rqNWT/aAw4lLZBptJbcly63rI2pE0XvJNNpFfE3gBSZP3SA4
+	 jR48JpShhwd4g==
+From: Andreas Kemnade <akemnade@kernel.org>
+Subject: [PATCH v2 0/3] regulator: sy7636a: define and init all resources
+ needed
+Date: Tue, 09 Sep 2025 22:33:01 +0200
+Message-Id: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANAwSgRTM4OSnXKZWWzxi2cW8QwWLKJz2xmUThyLkdkq71rH1g@mail.gmail.com>
-X-Migadu-Flow: FLOW_OUT
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAP6OwGgC/22MQQ6CMBAAv0L27JqyagFP/sNwWOsKjaYlW0Mkp
+ H+3cvY4k8yskES9JDhXK6jMPvkYCtCuAjdyGAT9vTCQoZPpjMW0NPZgUZM6dGSY7Y2Z3BFKMak
+ 8/Ge7XfvCo0/vqMs2n+uf/f+ZazQo1LaWu2K5uTxFg7z2UQfoc85fHj9F1qcAAAA=
+X-Change-ID: 20250906-sy7636-rsrc-c20aa6baa2c4
+To: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Alistair Francis <alistair@alistair23.me>, 
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, 
+ Andreas Kemnade <akemnade@kernel.org>
+X-Mailer: b4 0.15-dev-50721
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1791; i=akemnade@kernel.org;
+ h=from:subject:message-id; bh=IsCF+MUxVzd13pKkvlXlP/Ccmh25UQn/2DMZZUacACQ=;
+ b=owGbwMvMwCEm/rzkS6lq2x3G02pJDBkH+vnPTTxzUXRhTfqE6mvGl+aE77f6I6JQGK0QmHhN4
+ Zf4rbc7O0pZGMQ4GGTFFFl+WSu4fVJ5lhs8NcIeZg4rE8gQBi5OAZjIl2aGf4pvBO/b9M6u6vkd
+ Y/8qc1GWt7Hm7ZkdLDMeCF62+vkkZwsjw8lGzbfLLI4ZO95qO3I0TEjZZo67WB4PU8qeOUsadJz
+ 3cQIA
+X-Developer-Key: i=akemnade@kernel.org; a=openpgp;
+ fpr=EEC0DB858E66C0DA70620AC07DBD6AC74DE29324
 
-Hi Anand,
+The SY7636A has some pins which can be hardwired or used to have more
+more advanced power management available. As several devices containing
+this regulator have these pins not hardwired, but instead connected to some
+GPIO, enhance the driver to have them defined and initialized.
+Also add the ability to power off the chip completely by defining some
+input power supply.
 
-Thanks for working on this!
+Actually implementing better power management is planned to be
+implemented as a second step. The regulators in the SY7636A should only
+be on for a short time during display refresh, but currently they are
+unconditionally forcefully enabled by the hwmon part of this chip.
 
-On Tue, Sep 09, 2025 at 07:29:31PM +0530, Anand Moon wrote:
-[ ... ]
-> > > >>>> On 30.07.2024 11:13, Anand Moon wrote:
-> > > >>>>> As per the Exynos 5422 user manual add missing cache information to
-> > > >>>>> the Exynos542x SoC.
-> > > >>>>>
-> > > >>>>> - Each Cortex-A7 core has 32 KB of instruction cache and
-> > > >>>>>       32 KB of L1 data cache available.
-> > > >>>>> - Each Cortex-A15 core has 32 KB of L1 instruction cache and
-> > > >>>>>       32 KB of L1 data cache available.
-> > > >>>>> - The little (A7) cluster has 512 KB of unified L2 cache available.
-> > > >>>>> - The big (A15) cluster has 2 MB of unified L2 cache available.
-> > > >>>>>
-> > > >>>>> Features:
-> > > >>>>> - Exynos 5422 support cache coherency interconnect (CCI) bus with
-> > > >>>>>    L2 cache snooping capability. This hardware automatic L2 cache
-> > > >>>>>    snooping removes the efforts of synchronizing the contents of the
-> > > >>>>>    two L2 caches in core switching event.
-> > > >>>>>
-> > > >>>>> Signed-off-by: Anand Moon <linux.amoon@gmail.com>
-> > > >>>>
-> > > >>>>
-> > > >>>> The provided values are not correct. Please refer to commit 5f41f9198f29
-> > > >>>> ("ARM: 8864/1: Add workaround for I-Cache line size mismatch between CPU
-> > > >>>> cores"), which adds workaround for different l1 icache line size between
-> > > >>>> big and little CPUs. This workaround gets enabled on all Exynos542x/5800
-> > > >>>> boards.
-> > > >>>>
-> > > >>> Ok, I have just referred to the Exynos 5422 user manual for this patch,
-> > > >>> This patch is just updating the cache size for CPU for big.litle architecture..
+Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
+---
+Changes in v2:
+- en[-gpios] -> enable[-gpios] in yaml/dts/driver
+- fix en vs vcom_en in error handling
+- comment delay
+- drop applied commit (rebased to regulator/for-linus)
+- Link to v1: https://lore.kernel.org/r/20250906-sy7636-rsrc-v1-0-e2886a9763a7@kernel.org
 
-I do not have access to the 5422 manual unfortunately, but if I add
-some prints in the code from the commit Marek referenced:
+---
+Andreas Kemnade (3):
+      dt-bindings: mfd: sy7636a: Add missing gpio pins and supply
+      regulator: sy7636a: add gpios and input regulator
+      ARM: dts: imx: e70k02: add sy7636
 
-```diff
---- a/arch/arm/mm/init.c
-+++ b/arch/arm/mm/init.c
-@@ -173,6 +173,7 @@ void check_cpu_icache_size(int cpuid)
-        asm("mrc p15, 0, %0, c0, c0, 1" : "=r" (ctr));
- 
-        size = 1 << ((ctr & 0xf) + 2);
-+       pr_warn("CPU%u: icache line size: %u, size %u\n", cpuid, icache_size, size);
-        if (cpuid != 0 && icache_size != size)
-                pr_info("CPU%u: detected I-Cache line size mismatch, workaround enabled\n",
-                        cpuid);
-```
-
-Then we get in dmesg:
-
-CPU0: icache line size: 64, size 32
-CPU1: icache line size: 32, size 32
-CPU2: icache line size: 32, size 32
-CPU3: icache line size: 32, size 32
-CPU4: icache line size: 32, size 64
-CPU5: icache line size: 32, size 64
-CPU6: icache line size: 32, size 64
-CPU7: icache line size: 32, size 64
-
-I interpret this as that the i-cache-line-size property of CPU4, 5, 6
-and 7 (i.e. cpu@0, cpu@1, cpu@2 and cpu@4) should be 64 instead of 32.
-
-Not sure about the other properties..
-
-> Here's an article that provides detailed insights into the cache feature.
-> [0] http://jake.dothome.co.kr/cache4/
-> 
-> The values associated with L1 and L2 caches indicate their respective sizes,
-> as specified in the ARM Technical Reference Manual (TRM) below.
-> 
-> Cortex-A15 L2 cache controller
-> [0] https://developer.arm.com/documentation/ddi0503/i/programmers-model/programmable-peripherals-and-interfaces/cortex-a15-l2-cache-controller
-> 
-> Cortex-A7 L2 cache controller
-> [1] https://developer.arm.com/documentation/ddi0503/i/programmers-model/programmable-peripherals-and-interfaces/cortex-a7-l2-cache-controller
-> 
-> These changes help define a fixed cache size, ensuring that active pages
-> are mapped correctly within the expected cache boundaries.
-> 
-> Here is the small test case using perf
-> Before
-> 
-> $ sudo perf stat -e L1-dcache-loads,L1-dcache-load-misses ./fact
-> 
-> Simulated Cache Miss Time (avg): 4766632 ns
-> Factorial(10) = 3628800
-> 
->  Performance counter stats for './fact':
-> 
->             926328      armv7_cortex_a15/L1-dcache-loads/
->      <not counted>      armv7_cortex_a7/L1-dcache-loads/
->                          (0.00%)
->              16510      armv7_cortex_a15/L1-dcache-load-misses/ #
-> 1.78% of all L1-dcache accesses
->      <not counted>      armv7_cortex_a7/L1-dcache-load-misses/
->                                (0.00%)
-> 
->        0.008970031 seconds time elapsed
-> 
->        0.000000000 seconds user
->        0.009673000 seconds sys
-> 
-> After
-> $ sudo perf stat -e L1-dcache-loads,L1-dcache-load-misses ./fact
-> Simulated Cache Miss Time (avg): 4623272 ns
-> Factorial(10) = 3628800
-> 
->  Performance counter stats for './fact':
-> 
->             930570      armv7_cortex_a15/L1-dcache-loads/
->      <not counted>      armv7_cortex_a7/L1-dcache-loads/
->                          (0.00%)
->               4755      armv7_cortex_a15/L1-dcache-load-misses/ #
-> 0.51% of all L1-dcache accesses
->      <not counted>      armv7_cortex_a7/L1-dcache-load-misses/
->                                (0.00%)
-> 
->        0.011068250 seconds time elapsed
-> 
->        0.000000000 seconds user
->        0.010793000 seconds sys
-
-I tried out the same test on my odroid-xu4, but was not able to
-reliably get the same improvement. Cache misses varied between around
-0.8 % to around 2.8 %. This was with a desktop UI installed and
-though, will try it out in a headless installation in the next few
-days, and perhaps try it on exynos5800 as well.
-
-Might be worth also testing on both small and big cores, like:
-
-$ sudo taskset -c 0,1,2,3 perf stat -e L1-dcache-loads,L1-dcache-load-misses ./fact
-$ sudo taskset -c 4,5,6,7 perf stat -e L1-dcache-loads,L1-dcache-load-misses ./fact
+ .../devicetree/bindings/mfd/silergy,sy7636a.yaml   | 16 +++++++++++++
+ arch/arm/boot/dts/nxp/imx/e70k02.dtsi              | 25 +++++++++++++++++++-
+ .../arm/boot/dts/nxp/imx/imx6sl-tolino-vision5.dts | 24 +++++++++++++++++++
+ .../arm/boot/dts/nxp/imx/imx6sll-kobo-librah2o.dts | 24 +++++++++++++++++++
+ drivers/regulator/sy7636a-regulator.c              | 27 ++++++++++++++++++++++
+ 5 files changed, 115 insertions(+), 1 deletion(-)
+---
+base-commit: c05d0b32eebadc8be6e53196e99c64cf2bed1d99
+change-id: 20250906-sy7636-rsrc-c20aa6baa2c4
 
 Best regards,
-Henrik Grimler
+--  
+Andreas Kemnade <akemnade@kernel.org>
+
 
