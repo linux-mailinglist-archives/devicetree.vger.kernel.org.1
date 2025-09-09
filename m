@@ -1,162 +1,208 @@
-Return-Path: <devicetree+bounces-215099-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215100-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13A04B504FE
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:10:10 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4FAB50508
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 20:12:35 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 054E71C2390C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:10:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 88EF54E829F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 18:12:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 338CC36C081;
-	Tue,  9 Sep 2025 18:08:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3982C32CF75;
+	Tue,  9 Sep 2025 18:12:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZrN/Uk+W"
+	dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b="OHLp3LY4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com [136.143.188.112])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52443369326;
-	Tue,  9 Sep 2025 18:08:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757441297; cv=none; b=PqCad9wOlhba2t9k8ye1YJDBk5aK8LnyNUBHVzOQQ79XERT7Y8CZ5WnJmkJIr0G+XKxgo9kP/r2XwN2QOiWNbNLKP5r4RSKfKM2LDAI8QRQLdPB6FJwCl00p4KzT4NKX5oYZyRqGd47/8ddpJ4I/hkaHod41ywHtTtWtMpMuYK0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757441297; c=relaxed/simple;
-	bh=vtrWkI+M/eJfmlWbPiRKOvUFAEXyVqoNTvKuBoAG09s=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=DhWv1phsU7L3dhrLHD3w3oDher/a9UUYwgxIKqX1FpP5X+lA3SYDzh0ndzNI25wHFjgWAo3MpL9qpo3Bx7Vl4g36ZO8Je18bYk/kZiW64I6V/mQkFJ6ONnKOMA1RxGBrCQBGl1az2WhCVuyZsXaNAMPW1NMy/aeEUZP4qRyqtJc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZrN/Uk+W; arc=none smtp.client-ip=209.85.128.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-45cb659e858so41399785e9.2;
-        Tue, 09 Sep 2025 11:08:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1757441293; x=1758046093; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xdKg4szl5Te8BvPOWQxR6OjytHckbCnR5FJxWcAlRuM=;
-        b=ZrN/Uk+WjdecyoAq/lUpw07efL8uEekFI/sY6pVIXFQ+O/RI5HBiC9um0b/UNRdxOp
-         e/SGKRtYPbIn3tPgTTzF9GMHxq5zxbkGZ9IMg8pc54BQagC9S7UK1f0WXNKrfs6bpf1B
-         TKDwtpqyL8Y2itZoofrju285XwJIihDrQV35IWa8y6em/xga67HvSkN0VXY/E2i8/XLK
-         iF85THlTJvBOUwm0fCXlDv2OxTu40KER0i8/6wKq4dDfHojQ2qaU+Oj8KgCeORhhQvVq
-         jxaFM6chXBpVC1/WrFjIjZxXdn2mPbx0EKrQ6+J+oeNnGJEU7qSkxPc9/+uyxjbTcede
-         qHAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757441293; x=1758046093;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xdKg4szl5Te8BvPOWQxR6OjytHckbCnR5FJxWcAlRuM=;
-        b=oZRVSSEWISFneS2HzplO6ER/syx3+KlR81sgTonukxS5IQR4ZCJfLdifW58yfhim0/
-         kQM2In1OGMlnZphlmDR/r8hJ0hqwj+MZryC0Rhqls9vOvtMfRC7f/0ldF+6J1g+dT5os
-         1Asu9zGliO0dQVXiL+42VQMijk1sv7SNrho7zDu25wgVKDDGa6KzbnxPtF74VYKHPUUq
-         VxcQ6ccjlPeT/Bf+PbaJi96BNMRA0dk6MCszxsCDZiY5TyASqJhetEv17Gn5kHGCjjtQ
-         PpcoI2UW9Dk1xQd9gWOQEEGLCsuWDrBS1anfy9c+XjugJ/BzcZPaaOAPr17GDdsI6Rdw
-         8tQQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW5Zsyx1cQLWI+khtCniftFT2Q88QELoMqhHnXmcrh+4qOjPKjyrnGqFX+R0HqhT9pYNapglQMKJWKa6shY8BPyc0A=@vger.kernel.org, AJvYcCWiIowYVp3YRF6lzPIPXWePSyp6Q55Wu0Hw21O8U/LEOOVNEFWptAwG0Jl+M2QHTuw2SpAWeFIXFNK8t2fr@vger.kernel.org, AJvYcCXieMrZKx198fg1yVVl3jtIIRFV2+JfNBS2EcIyIlGhniC3IcY5dIfe+BdtsXt4rqcCmq/NCC/rux0c@vger.kernel.org
-X-Gm-Message-State: AOJu0YyxoljI2zj6eOdgRqHaoNW2LXxap1rhXsvjn7ZC4ZhUCS9/Tp5V
-	jEAHPykUS9omtP6Uyt8AVHoapG8dT+injO8QViq7vBG/3Q6mmYHrbgipUoxOT6NE5O4=
-X-Gm-Gg: ASbGncuLGEiGziHP6bdT7yT9wO1pn2HwWxTjUbQDTz1JgJ8iSqVXmKy8n3qAVP195/1
-	8KGto7beNU/x9CsIi46heERccvKrDuBdnKvt0rUveT8+vXEkp4VOroVvd73BpC3IjfMTAUcNQcy
-	nma4ad/n65C5iL4fUXRzjSRUFXFVnh0SeCrwiTxXlLAZ0T/eCqWk8G2JYJzLtiaTN1YkIZwcpG4
-	oR35FYDBnNjTkIg6veeCJSWAtmFpwBTm4n7HQpimZdGX62JZDLtsXgOnIF+ZpF9C3e6lRu/7vG1
-	wG8Stbc/1Lh9J9I28ocKXmDdGHeWSHJJH7Y0PgQg996t9So89GEqbhIYwXr469ScA6MnaztlaQL
-	JyOT7REX5BTwNWUqu56mKJAUaRk71MeI0o9Q0sDp45TyUu8hPkORX7R5mO73Zdj/cngmuNWd6vo
-	trFaUeJVW5cEDj
-X-Google-Smtp-Source: AGHT+IFJBGB/kgj0IdxOsPde1cmLlLagJGRaYCT/r7sd2TTjzyHG4K1Bk9pr53n1TK3LinysTRV3rw==
-X-Received: by 2002:a05:600c:1e8c:b0:455:f187:6203 with SMTP id 5b1f17b1804b1-45dddef01e4mr95011025e9.27.1757441293333;
-        Tue, 09 Sep 2025 11:08:13 -0700 (PDT)
-Received: from biju.lan (host86-139-30-37.range86-139.btcentralplus.com. [86.139.30.37])
-        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-45df679a4c9sm4174015e9.3.2025.09.09.11.08.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 11:08:12 -0700 (PDT)
-From: Biju <biju.das.au@gmail.com>
-X-Google-Original-From: Biju <biju.das.jz@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 10/11] arm64: dts: renesas: r9a09g047e57-smarc: Enable USB3HOST
-Date: Tue,  9 Sep 2025 19:07:55 +0100
-Message-ID: <20250909180803.140939-11-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250909180803.140939-1-biju.das.jz@bp.renesas.com>
-References: <20250909180803.140939-1-biju.das.jz@bp.renesas.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A50E2F4A;
+	Tue,  9 Sep 2025 18:12:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=136.143.188.112
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757441551; cv=pass; b=JpDNnL0SY7w3p5yyIbKYySU0A40ko5+6PpCpClBdU/njTM8t4wrqGjiRYMQTFgvtlv1G9lyKNs7O9pICNekDdnx7y0Dts6PaunzNmuxjBGf9O7O/lNrBFzh5eWXmWCBecVelcgXIv5rDIWO46Bzr/v6+7CV+ca/WetnkKCFs40A=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757441551; c=relaxed/simple;
+	bh=xw1VozNTXZeKHQ32RyTRNg3FJMwm5JzEWF0aJ3O7dpI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VrdXyS3k3vi1O5IRvVPYgfwHFO3/EdjJD6g9NpGfSa09BYA8fywM3DTghZ1ZzteVrea53/R4BEv4X44x3K0xnRibXmGjFeYKbJk/k2evW1iBPDvA9j2tLuPrO/g83xeOFJhmu679YpoMbm3Kqd8vMDtyGQ0wgdSJdWREBDQh2C4=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (1024-bit key) header.d=collabora.com header.i=detlev.casanova@collabora.com header.b=OHLp3LY4; arc=pass smtp.client-ip=136.143.188.112
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+ARC-Seal: i=1; a=rsa-sha256; t=1757441534; cv=none; 
+	d=zohomail.com; s=zohoarc; 
+	b=dpWZIOl8dyjvJh9h0GaO1SAsHbFVE+aSzW4HKscO1Itt2Z9O7+WZJ9CU8lLCmYduzHBUkP0hbslavy8KZnSb1sqGXc3DNEkxV5XFSl5b+M2ywb7d7zKoJKjdHyqQqbvlaxOm3rETlR31BrrJ7tERg1EVVzqkM7NNYWb4ho1FgjI=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com; s=zohoarc; 
+	t=1757441534; h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To; 
+	bh=+bs1oCfGjUtq4+1LMDaU5y3FUODLG1LyIqxGrH1KllA=; 
+	b=f1eLvuAju5hiW6BdKolKA4RxmHePTZcYtoadgrtlpDiTwcE0MGUbHCQJHTiJYYwzK3I1gm1d0PIyexC6zbTb6v4/ReT4x5/HTLmEbGYD+ciS5MjN7s7zaScn7baFv0VU84En6jjL49nsmMpqewUdCFSNEYFM0gYAsEIWVQP9su8=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+	dkim=pass  header.i=collabora.com;
+	spf=pass  smtp.mailfrom=detlev.casanova@collabora.com;
+	dmarc=pass header.from=<detlev.casanova@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1757441534;
+	s=zohomail; d=collabora.com; i=detlev.casanova@collabora.com;
+	h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+	bh=+bs1oCfGjUtq4+1LMDaU5y3FUODLG1LyIqxGrH1KllA=;
+	b=OHLp3LY4YgktcbFiB2HD/QgV7NIaVWPaqI7FsKeSEZcMRf7QnX8SH+CYEsE1yTKb
+	kdkF2iqIUafDk2Yvijwof3AEUGZMtu5EuOZ7WLI6NDjtHRzdrGgIdCiOkjQZrqIl08Y
+	QV5V4p7TB0wnDhDHQo6mClBPnSVXlO5Xz7v3EoIE=
+Received: by mx.zohomail.com with SMTPS id 17574415308701019.2683300901098;
+	Tue, 9 Sep 2025 11:12:10 -0700 (PDT)
+Message-ID: <b1d79707-59b2-4dc0-9d15-49b5ec43364d@collabora.com>
+Date: Tue, 9 Sep 2025 14:12:09 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/7] media: rkvdec: Add HEVC backend
+To: Jonas Karlman <jonas@kwiboo.se>,
+ Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+Cc: Alex Bee <knaerzche@gmail.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250905161942.3759717-1-jonas@kwiboo.se>
+Content-Language: en-US
+From: Detlev Casanova <detlev.casanova@collabora.com>
+In-Reply-To: <20250905161942.3759717-1-jonas@kwiboo.se>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ZohoMailClient: External
 
-From: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Jonas,
 
-Enable USB3.2 Gen2 Host controller(a.k.a USB3HOST) on the RZ/G3E SMARC EVK
-platform.
+On 9/5/25 12:19, Jonas Karlman wrote:
+> This series add a HEVC backend to the Rockchip Video Decoder driver.
+>
+> With the dependent H.264 High 10 and 4:2:2 profile support series
+> finally merged there is finally time to send a v2 with minor changes and
+> a suggested code style fix of this series. v1 of this series has been
+> fully functional up until recent unstaging of the rkvdec driver.
+>
+> A version of this HEVC backend has been in use by the LibreELEC distro
+> for the past 5+ years [1]. It was initially created based on a copy of
+> the H264 backend, unstable HEVC uAPI controls and a cabac table + scaling
+> matrix functions shamelessly copied 1:1 from the Rockchip mpp library.
+>
+> It has since then been extended to use the stable HEVC uAPI controls and
+> improved opon e.g. to include support for rk3288 and fix decoding issues
+> by Alex Bee and Nicolas Dufresne.
+>
+> The version submitted in this series is based on the code currently used
+> by the LibreELEC distro, excluding hard/soft reset, and with cabac table
+> and scaling matrix functions picked from Sebastian Fricke prior series
+> to add a HEVC backend [2].
+>
+> Big thanks to Alex Bee, Nicolas Dufresne and Sebastian Fricke for making
+> this series possible!
+>
+> Patch 1 add the new HEVC backend.
+> Patch 2-3 add variants support to the driver.
+> Patch 4 add support for a rk3288 variant.
+> Patch 5 add a rk3328 variant to work around hw quirks.
+> Patch 6-7 add device tree node for rk3288.
+>
+> This was tested on a ROCK Pi 4 (RK3399) and Rock64 (RK3328):
+>
+>    v4l2-compliance 1.30.1, 64 bits, 64-bit time_t
+>    ...
+>    Total for rkvdec device /dev/video1: 49, Succeeded: 49, Failed: 0, Warnings: 0
+>
+>    Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2request
+>    ...
+>    Ran 137/147 tests successfully
+>
+>    Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2request
+>    ...
+>    Ran 9/9 tests successfully
+>
+> And on a TinkerBoard (RK3288):
+>
+>    v4l2-compliance 1.30.1, 32 bits, 32-bit time_t
+>    ...
+>    Total for rkvdec device /dev/video3: 49, Succeeded: 49, Failed: 0, Warnings: 0
+>
+>    Running test suite JCT-VC-HEVC_V1 with decoder FFmpeg-H.265-v4l2request
+>    ...
+>    Ran 137/147 tests successfully
+>
+>    Running test suite JCT-VC-MV-HEVC with decoder FFmpeg-H.265-v4l2request
+>    ...
+>    Ran 9/9 tests successfully
+>
+> The WPP_x_ericsson tests from test suite JCT-VC-HEVC_V1 has been showing
+> a mix of both Success and/or Fail result for FFmpeg-H.265-v4l2request.
+>
+> Full summary of fluster run can be found at [3].
+>
+> Please note that there is a known issue with concurrent decoding,
+> decoding errors in one decode session may affect a separate session.
+> The only known mitigation to this is to pause decoding for some time
+> and/or do a full HW reset, something to handle in future series.
+I also tested on Rock Pi 4 SE (but with Gstreamer instead of FFmpeg) and 
+can
+confirm the same results, so, for the whole series:
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * No change.
----
- arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts | 10 ++++++++++
- arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi    |  8 ++++++++
- 2 files changed, 18 insertions(+)
+Tested-by: Detlev Casanova <detlev.casanova@collabora.com> # RK3399
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-index 08e814c03fa8..0fd90d79b020 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g047e57-smarc.dts
-@@ -164,6 +164,11 @@ sd1-data {
- 				 <RZG3E_PORT_PINMUX(G, 5, 1)>; /* SD1DAT3 */
- 		};
- 	};
-+
-+	usb3_pins: usb3 {
-+		pinmux = <RZG3E_PORT_PINMUX(4, 1, 12)>, /* USB30_VBUSEN */
-+			 <RZG3E_PORT_PINMUX(4, 0, 12)>; /* USB30_OVRCURN */
-+	};
- };
- 
- &scif0 {
-@@ -179,3 +184,8 @@ &sdhi1 {
- 	vmmc-supply = <&reg_3p3v>;
- 	vqmmc-supply = <&vqmmc_sd1_pvdd>;
- };
-+
-+&xhci {
-+	pinctrl-0 = <&usb3_pins>;
-+	pinctrl-names = "default";
-+};
-diff --git a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-index 58561da3007a..8b3765b8267d 100644
---- a/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-+++ b/arch/arm64/boot/dts/renesas/renesas-smarc2.dtsi
-@@ -106,3 +106,11 @@ &sdhi1 {
- 
- 	status = "okay";
- };
-+
-+&usb3_phy {
-+	status = "okay";
-+};
-+
-+&xhci {
-+	status = "okay";
-+};
--- 
-2.43.0
+Best regards,
 
+Detlev
+
+> Changes in v3:
+> - Change to use file_to_rkvdec_ctx()
+> - Rename assemble_hw_rps to assemble_sw_rps
+> - Use a reference to rkvdec_variant instead of copying capabilities and
+>    quirks to rkvdec_dev
+> - Add num_regs field to rkvdec_variant, currently not used for anything
+> - Add and use rkvdec_quirks_disable_qos() helper to apply qos quirk
+> - Collect t-b and r-b tags
+> Link to v2: https://lore.kernel.org/linux-media/20250810212454.3237486-1-jonas@kwiboo.se
+>
+> Changes in v2:
+> - Rabase after h264 high10/422 merge and unstaging of rkvdec driver
+> - Use new_value in transpose_and_flatten_matrices()
+> - Add NULL check for ctrl->new_elems in rkvdec_hevc_run_preamble()
+> - Set RKVDEC_WR_DDR_ALIGN_EN for RK3328
+> - Adjust code style in rkvdec_enum_coded_fmt_desc()
+> - Collect a-b tag
+> - Drop merged vdec node reg size patches
+> Link to v1: https://lore.kernel.org/linux-media/20231105233630.3927502-1-jonas@kwiboo.se
+>
+> [1] https://github.com/LibreELEC/LibreELEC.tv/blob/master/projects/Rockchip/patches/linux/default/linux-2000-v4l2-wip-rkvdec-hevc.patch
+> [2] https://lore.kernel.org/linux-media/20230101-patch-series-v2-6-2-rc1-v2-0-fa1897efac14@collabora.com/
+> [3] https://gist.github.com/Kwiboo/0ea22df1c9c3f3a48479d3f7ec28169d
+>
+> Alex Bee (4):
+>    media: rkvdec: Add variants support
+>    media: rkvdec: Add RK3288 variant
+>    media: rkvdec: Disable QoS for HEVC and VP9 on RK3328
+>    ARM: dts: rockchip: Add vdec node for RK3288
+>
+> Jonas Karlman (3):
+>    media: rkvdec: Add HEVC backend
+>    media: rkvdec: Implement capability filtering
+>    media: dt-bindings: rockchip,vdec: Add RK3288 compatible
+>
+>   .../bindings/media/rockchip,vdec.yaml         |    1 +
+>   arch/arm/boot/dts/rockchip/rk3288.dtsi        |   17 +-
+>   .../media/platform/rockchip/rkvdec/Makefile   |    2 +-
+>   .../rockchip/rkvdec/rkvdec-hevc-data.c        | 1848 +++++++++++++++++
+>   .../platform/rockchip/rkvdec/rkvdec-hevc.c    |  820 ++++++++
+>   .../platform/rockchip/rkvdec/rkvdec-regs.h    |    4 +
+>   .../platform/rockchip/rkvdec/rkvdec-vp9.c     |    4 +
+>   .../media/platform/rockchip/rkvdec/rkvdec.c   |  198 +-
+>   .../media/platform/rockchip/rkvdec/rkvdec.h   |   17 +
+>   9 files changed, 2890 insertions(+), 21 deletions(-)
+>   create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc-data.c
+>   create mode 100644 drivers/media/platform/rockchip/rkvdec/rkvdec-hevc.c
+>
 
