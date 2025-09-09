@@ -1,130 +1,231 @@
-Return-Path: <devicetree+bounces-215032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215033-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD804B501B1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:43:16 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 59758B5019D
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:40:16 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43DD87BF1B7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:36:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C315165CA9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:40:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DFD135AACA;
-	Tue,  9 Sep 2025 15:35:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nUBYwksb"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDE425EF87;
+	Tue,  9 Sep 2025 15:39:58 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16E5335A291;
-	Tue,  9 Sep 2025 15:35:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B431146A66;
+	Tue,  9 Sep 2025 15:39:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757432113; cv=none; b=nbK9T+wnkVf3soNXtPSqr7/93gsBkynARDi+4keyGwLwk91HysP+EVHA0NCwkFglniPaymb23YcRK/wHtprSqwcf0G6M9kkHEuriLRLl/XtlVTwXNz8nxVPQPn3HD1NvwhJQvCskkL5ulrpHfX53gS/hnaRzEDL5WlpNMy5fFKw=
+	t=1757432398; cv=none; b=djs9ZgdGbL7ywYaZziPrQd24uWgq5Z+1jNWBNZbtY3nQQK5yS8jRPyh1J6Y1Ytf0AtGkDc/eaK8Iwy465zjDAt+w4p4pGs3SV8OInfZ2V+gP8bXiavdlUXhFxs7FAbb8P6blmd9O/9R4FiXfmuPtwIwAGouLR04XndGQj2YcQmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757432113; c=relaxed/simple;
-	bh=r10iZ7zeg/sR/nZIwbyfdzbIVMfWHdFFer/db8R+TlY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RdZ0ounaGeBuFDegGT33njtZbq7GcOz209akfRZeP7rhAL7dCfmYRN5xJsVHII8M9nEmTK3e0Xa4O4glZXnkV3x9ZAWI2ZV8rq1cvEB7two1uzLITUMrX2BN+ieYosWVEb4U5rRAqKqOGkii6MO5cp2pXuLa+yZQPC58vtnU6UQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nUBYwksb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B82D1C4CEFC;
-	Tue,  9 Sep 2025 15:35:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757432112;
-	bh=r10iZ7zeg/sR/nZIwbyfdzbIVMfWHdFFer/db8R+TlY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=nUBYwksbxZTX850YqvKjGd7Pdwnngqp+BqCfASPo3dfXxvAwOIyJrgHoIhC234V2A
-	 cJIzfqrlrDgeFbHX6SzkNsdccoAoehtMcavuuANykp1OSfYPUJjZ1oB2uVH0+I9NVT
-	 lx7I4qXxbo8boBXZfEQBz0TLQ2EHbVqXQ1ZTCirBgDfR9egR1YTYh0a3Ne2yR6PriF
-	 YD8oxCzl9At7UZyA7UN5QnpyOUqNEVwituxVHj3kFLIWloq4O/1tFy9bB4O5PDXF1M
-	 fw0QwgF/0XHCg6kfCoV96dHRVngQITRX33+JxRKdEL7YxaYVin0Ym1zy19WN/diHXr
-	 J6cYssdEUceRA==
-Received: by mail-ot1-f53.google.com with SMTP id 46e09a7af769-74526ca79beso4940799a34.0;
-        Tue, 09 Sep 2025 08:35:12 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX29UMbOsd6OoYMCdW/Ubn3wqBymN26bjlAGnqRf78C+OUQtMDqYrAOeYqmn9C1CAy2F9itRJWR6G7iPFyh@vger.kernel.org, AJvYcCXBWwLig5DcZZr7FHPpkitSAJ9CihtV5xxemoVk4BclsmvF1Nvm9F5E2H70MlWIpvP4fRYhEQI15YFQ@vger.kernel.org
-X-Gm-Message-State: AOJu0YxB5/lJ1cBMVzzZfYw0VnCMGBySs3LJBZUj/qNxeFpbIHVQMlH2
-	45wfJRvUEyQxF80ctdHRendbV/T58XHfjoltGAZNOzF5+YA2I7ewMN7VOcMZe0GXorgFo163ZeQ
-	AWY8VqgD0ZKRK4+eP1cn81o9Y2AUxx6c=
-X-Google-Smtp-Source: AGHT+IFY52ypMIAoRlEjnBako5mUfNmKO1ctM4His3e3+VHyOFYstPxSUTPJe7B/elUpaHufT8qYmM79UMa2SAn9RL4=
-X-Received: by 2002:a05:6830:25d3:b0:741:a5f0:bc82 with SMTP id
- 46e09a7af769-74c74fb9225mr6102217a34.17.1757432112096; Tue, 09 Sep 2025
- 08:35:12 -0700 (PDT)
+	s=arc-20240116; t=1757432398; c=relaxed/simple;
+	bh=KVxnNrDNWPhiX/C/NZEinpqVpNyhXe811sOPzcm/4E0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cBGJI1snEWhQJSsXX0mhCplw/tHz8bHW+G2B/mXSh2RnC1KmKd321pPH6eWh3F6d+huRz6sAM73GYnERS3EjURZtqIx4EhIECF+jItQOcnGaCbpGfb3O/qpSn0yynUXls3yZLTQ6C7yin9oN/g7NhLLU3R1mKfCEk1AGKVIBcS0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 54B771424;
+	Tue,  9 Sep 2025 08:39:44 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DE7F43F694;
+	Tue,  9 Sep 2025 08:39:46 -0700 (PDT)
+Date: Tue, 9 Sep 2025 16:39:44 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	shameerali.kolothum.thodi@huawei.com,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 16/33] arm_mpam: Add helpers for managing the locking
+ around the mon_sel registers
+Message-ID: <aMBKQCmlj0Ne56/M@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-17-james.morse@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20250908053335.36685-1-xu.yang_2@nxp.com> <20250908053335.36685-4-xu.yang_2@nxp.com>
-In-Reply-To: <20250908053335.36685-4-xu.yang_2@nxp.com>
-From: Chanwoo Choi <chanwoo@kernel.org>
-Date: Wed, 10 Sep 2025 00:34:35 +0900
-X-Gmail-Original-Message-ID: <CAGTfZH1Mt3cYenBSHG9Uz0j6pr0Na_E6aPfrn7pKV0ah22k+WA@mail.gmail.com>
-X-Gm-Features: Ac12FXyNrhC_JrxpQlWIyq0hZrbQBd7StcRc7qJeExZMgjdtwvNrB_wOUgpGcQM
-Message-ID: <CAGTfZH1Mt3cYenBSHG9Uz0j6pr0Na_E6aPfrn7pKV0ah22k+WA@mail.gmail.com>
-Subject: Re: [RESEND v4 4/4] extcon: ptn5150: Support USB role switch via
- connector fwnode
-To: Xu Yang <xu.yang_2@nxp.com>
-Cc: krzk@kernel.org, myungjoo.ham@samsung.com, cw00.choi@samsung.com, 
-	robh@kernel.org, conor+dt@kernel.org, gregkh@linuxfoundation.org, 
-	swboyd@chromium.org, heikki.krogerus@linux.intel.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, imx@lists.linux.dev, 
-	jun.li@nxp.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822153048.2287-17-james.morse@arm.com>
 
 Hi,
 
-Applied it. Thanks.
+On Fri, Aug 22, 2025 at 03:29:57PM +0000, James Morse wrote:
+> The MSC MON_SEL register needs to be accessed from hardirq context by the
+> PMU drivers, making an irqsave spinlock the obvious lock to protect these
 
-On Mon, Sep 8, 2025 at 2:34=E2=80=AFPM Xu Yang <xu.yang_2@nxp.com> wrote:
->
-> Since the PTN5150 is a Type-C chip, it's common to describe related
-> properties under the connector node. To align with this, the port
-> node will be located under the connector node in the future.
->
-> To support this layout, retrieve the USB role switch using the
-> connector's fwnode. For compatibility with existing device trees,
-> keep the usb_role_switch_get() function.
->
-> Reviewed-by: Frank Li <Frank.Li@nxp.com>
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
->
+What PMU drivers?  MPAM itself doesn't define its monitors as PMUs, and
+(as of this series) there is no intergration with perf.
+
+> registers. On systems with SCMI mailboxes it must be able to sleep, meaning
+> a mutex must be used.
+> 
+> Clearly these two can't exist at the same time.
+
+The locks obvisouly do exist at the same time.  Do you mean that an
+individual MSC must be either MMIO or SCMI/PCC?
+
+(I don't think anything prevents both kinds of MSC from existing in the
+same system?)
+
+Above, you seem to imply that each kind of MSC interface requires a
+different kind of lock, but below, you imply that the locks must be
+used together, with holding the outer lock being a precondition for
+taking the inner lock. 
+
+Because these functions are introduced with no user, the code doesn't
+offer much in the way of clues.  In particular, there is no indication
+of what the outer lock is supposed to protect.
+
+> Add helpers for the MON_SEL locking. The outer lock must be taken in a
+> pre-emptible context before the inner lock can be taken. On systems with
+> SCMI mailboxes where the MON_SEL accesses must sleep - the inner lock
+> will fail to be 'taken' if the caller is unable to sleep. This will allow
+> the PMU driver to fail without having to check the interface type of
+
+Why is it acceptable to fail (i.e., don't the counts need to be read on
+non-MMIO MSCs?)
+
+> each MSC.
+> 
+> Signed-off-by: James Morse <james.morse@arm.com>
 > ---
-> Changes in v4:
->  - add Rb tag
-> Changes in v3:
->  - no changes
-> Changes in v2:
->  - improve commit message
-> ---
->  drivers/extcon/extcon-ptn5150.c | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/drivers/extcon/extcon-ptn5150.c b/drivers/extcon/extcon-ptn5=
-150.c
-> index 768428d306ce..f33f80e103c2 100644
-> --- a/drivers/extcon/extcon-ptn5150.c
-> +++ b/drivers/extcon/extcon-ptn5150.c
-> @@ -352,6 +352,8 @@ static int ptn5150_i2c_probe(struct i2c_client *i2c)
->         }
->
->         info->role_sw =3D usb_role_switch_get(info->dev);
-> +       if (!info->role_sw && connector)
-> +               info->role_sw =3D fwnode_usb_role_switch_get(connector);
->         if (IS_ERR(info->role_sw))
->                 return dev_err_probe(info->dev, PTR_ERR(info->role_sw),
->                                      "failed to get role switch\n");
-> --
-> 2.34.1
->
->
+>  drivers/resctrl/mpam_internal.h | 57 ++++++++++++++++++++++++++++++++-
+>  1 file changed, 56 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/resctrl/mpam_internal.h b/drivers/resctrl/mpam_internal.h
+> index a623f405ddd8..c6f087f9fa7d 100644
+> --- a/drivers/resctrl/mpam_internal.h
+> +++ b/drivers/resctrl/mpam_internal.h
+> @@ -68,10 +68,19 @@ struct mpam_msc {
+>  
+>  	/*
+>  	 * mon_sel_lock protects access to the MSC hardware registers that are
+> -	 * affeted by MPAMCFG_MON_SEL.
+> +	 * affected by MPAMCFG_MON_SEL, and the mbwu_state.
+> +	 * Both the 'inner' and 'outer' must be taken.
+> +	 * For real MMIO MSC, the outer lock is unnecessary - but keeps the
+> +	 * code common with:
+> +	 * Firmware backed MSC need to sleep when accessing the MSC, which
+> +	 * means some code-paths will always fail. For these MSC the outer
+> +	 * lock is providing the protection, and the inner lock fails to
+> +	 * be taken if the task is unable to sleep.
+> +	 *
+>  	 * If needed, take msc->probe_lock first.
+>  	 */
+>  	struct mutex		outer_mon_sel_lock;
+> +	bool			outer_lock_held;
 
+Why not use mutex_is_locked()?
 
---=20
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+>  	raw_spinlock_t		inner_mon_sel_lock;
+
+Why raw?  The commit message makes no mention of it.
+
+(We really to need to sit on a specific CPU while holding this lock, so
+"raw" makes sense.  But we're always doing this in a cross-call,
+presumably with the hotplug lock held -- so I think we can't be
+migrated anyway?)
+
+>  	unsigned long		inner_mon_sel_flags;
+>  
+> @@ -81,6 +90,52 @@ struct mpam_msc {
+>  	struct mpam_garbage	garbage;
+>  };
+>  
+> +static inline bool __must_check mpam_mon_sel_inner_lock(struct mpam_msc *msc)
+> +{
+> +	/*
+> +	 * The outer lock may be taken by a CPU that then issues an IPI to run
+> +	 * a helper that takes the inner lock. lockdep can't help us here.
+> +	 */
+> +	WARN_ON_ONCE(!msc->outer_lock_held);
+> +
+> +	if (msc->iface == MPAM_IFACE_MMIO) {
+> +		raw_spin_lock_irqsave(&msc->inner_mon_sel_lock, msc->inner_mon_sel_flags);
+> +		return true;
+> +	}
+> +
+> +	/* Accesses must fail if we are not pre-emptible */
+> +	return !!preemptible();
+
+What accesses?
+
+In the MPAM_IFACE_MMIO case, this returns true even though non-
+preemptible (because of getting the lock).
+
+So, what is the semantics of the return value?
+
+A comment would probably help.
+
+> +}
+> +
+> +static inline void mpam_mon_sel_inner_unlock(struct mpam_msc *msc)
+> +{
+> +	WARN_ON_ONCE(!msc->outer_lock_held);
+> +
+> +	if (msc->iface == MPAM_IFACE_MMIO)
+> +		raw_spin_unlock_irqrestore(&msc->inner_mon_sel_lock, msc->inner_mon_sel_flags);
+> +}
+> +
+> +static inline void mpam_mon_sel_outer_lock(struct mpam_msc *msc)
+> +{
+> +	mutex_lock(&msc->outer_mon_sel_lock);
+> +	msc->outer_lock_held = true;
+> +}
+> +
+
+> +static inline void mpam_mon_sel_outer_unlock(struct mpam_msc *msc)
+> +{
+> +	msc->outer_lock_held = false;
+> +	mutex_unlock(&msc->outer_mon_sel_lock);
+> +}
+> +
+> +static inline void mpam_mon_sel_lock_held(struct mpam_msc *msc)
+> +{
+> +	WARN_ON_ONCE(!msc->outer_lock_held);
+> +	if (msc->iface == MPAM_IFACE_MMIO)
+> +		lockdep_assert_held_once(&msc->inner_mon_sel_lock);
+> +	else
+> +		lockdep_assert_preemption_enabled();
+> +}
+> +
+
+Except that monitors may need to be accessed in interrupt context,
+I don't see an obvious difference between controls and monitors that
+motivates this locking model.
+
+Is the outer lock ever needfully held for extended periods of time,
+making a (raw) spinlock unsuitable?
+
+Cheers
+---Dave
 
