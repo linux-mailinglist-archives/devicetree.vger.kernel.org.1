@@ -1,187 +1,146 @@
-Return-Path: <devicetree+bounces-214990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B228B4FF37
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:22:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA0F3B4FF40
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:23:41 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D5BF0365E45
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:22:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E79516A600
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:23:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17528343D9E;
-	Tue,  9 Sep 2025 14:22:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Lijg5Xxh"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76E403451D8;
+	Tue,  9 Sep 2025 14:23:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF46F32252E;
-	Tue,  9 Sep 2025 14:22:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD423451B4;
+	Tue,  9 Sep 2025 14:23:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757427727; cv=none; b=BMlG3H2hi0kP/Ys2n41LVnx5GUw3+lGGoff92drqbJPcnTgKHU/a+B1u9C/eHyuMFj9P7hBYQsiQUfXbH6BtkJZRqSYF8T0YIIWjL2dV6ccplN/RRoLS6SuORksJpw8K83ITrFPThKehMJF4rL4OmnklVo81zqPy3UpKNxpyBXk=
+	t=1757427814; cv=none; b=f/LCvqsIagk2A/17h/vNQzHtoTQ3pNtZc/FBsabCNtots9k00KIKfPOvkcgbgFWgGzP6Gjfi0DngUeX7B4WcQDohvPAUkp60v095+tNC4TexrdE4KG+QtucDD+sTXm7yXYDRfXv2O+0kK8ge/+c1jlinB9RvBTgBU9mZiBlz8ks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757427727; c=relaxed/simple;
-	bh=hcsO+0CDu8ebk5l7xQEiuvFomx6Jn3bzyePgBxbYNfA=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Jk/CPiZn7G5spLERyV7Y5xl7EwDBsksApbYKbco6kiy/iSMIBxDBHLzOrhHlN6/bQSCEvJZVYj/TaC+lO6Qsv8lvw3ehNHzkV6IcOGXnXoUWGjsD1qhvfXI5BhlZoJfAmzbH5jRy3nN0jNER6YtWltnkq7skM0VIgNHvZRfor+s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Lijg5Xxh; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A6D0C4CEF4;
-	Tue,  9 Sep 2025 14:22:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757427726;
-	bh=hcsO+0CDu8ebk5l7xQEiuvFomx6Jn3bzyePgBxbYNfA=;
-	h=From:To:Cc:Subject:Date:From;
-	b=Lijg5Xxhk1ndqA8YsuTfBeLqkWzIrQloB4O6QQHsC7UOsWD/DnAW4cfZ7CSNrBgPh
-	 TMjyuG7AKDCV/XwzIBXauLf1RDk7g34JLK03efmZyFBF6l5Jm5af+1T1+L2cHUWd9q
-	 EtcGOys1wz0Mmb0pB3f9HTm5hXixAl/55644e0PTGR+/yLdlZi45KFBzhdKRF04ZNt
-	 0jmryVkcm2SPC63DgbVuPwzOCw84RPbvcBHTIDL2l793Tdtwv+gZsihhlzKwCZxEHL
-	 8hvA7ydUlWyRYf0v2Dc5rpBtH/A64D/ESUQCjZo5VIooHXPh6DL9hz3F6sfbmQ2NWj
-	 ra68COBXtoOxg==
-From: "Rob Herring (Arm)" <robh@kernel.org>
-To: Avi Fishman <avifishman70@gmail.com>,
-	Tomer Maimon <tmaimon77@gmail.com>,
-	Tali Perry <tali.perry1@gmail.com>,
-	Patrick Venture <venture@google.com>,
-	Nancy Yuen <yuenn@google.com>,
-	Benjamin Fair <benjaminfair@google.com>,
-	Wim Van Sebroeck <wim@linux-watchdog.org>,
-	Guenter Roeck <linux@roeck-us.net>,
+	s=arc-20240116; t=1757427814; c=relaxed/simple;
+	bh=lfKJwavK2NEanN+cL6edfbgdRn0pD99g6SQzNtIfe2U=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=eWdj9EdP0x6SHGKe6vxtn+7t1kB/GSGyNBJQu1KRsa9vrK3too8rUN5OZBZ0ARNvF7wTHcSW4GuYqbc7q0FhFW4KPaJTuqiEGVMeqHG0LLw2z6KWgn7A+5zQIxYmmTK6A8nmsO9PonsM9azmGq/8liy+TaTl6oAxLXTxA2uukMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 906B91424;
+	Tue,  9 Sep 2025 07:23:23 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2519D3F66E;
+	Tue,  9 Sep 2025 07:23:26 -0700 (PDT)
+Date: Tue, 9 Sep 2025 15:23:23 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Joel Stanley <joel@jms.id.au>
-Cc: openbmc@lists.ozlabs.org,
-	linux-watchdog@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: watchdog: Convert nuvoton,npcm-wdt to DT schema
-Date: Tue,  9 Sep 2025 09:21:59 -0500
-Message-ID: <20250909142201.3209482-1-robh@kernel.org>
-X-Mailer: git-send-email 2.51.0
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>,
+	Lecopzer Chen <lecopzerc@nvidia.com>
+Subject: Re: [PATCH 14/33] arm_mpam: Add cpuhp callbacks to probe MSC hardware
+Message-ID: <aMA4Wz2j0Ozv0BNZ@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-15-james.morse@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250822153048.2287-15-james.morse@arm.com>
 
-Convert the Nuvoton watchdog binding to DT schema format. It's a
-straight-forward conversion.
+Hi James,
 
-Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
----
- .../bindings/watchdog/nuvoton,npcm-wdt.txt    | 30 ----------
- .../watchdog/nuvoton,npcm750-wdt.yaml         | 60 +++++++++++++++++++
- 2 files changed, 60 insertions(+), 30 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
+While I'm here:
 
-diff --git a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
-deleted file mode 100644
-index 866a958b8a2b..000000000000
---- a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm-wdt.txt
-+++ /dev/null
-@@ -1,30 +0,0 @@
--Nuvoton NPCM Watchdog
--
--Nuvoton NPCM timer module provides five 24-bit timer counters, and a watchdog.
--The watchdog supports a pre-timeout interrupt that fires 10ms before the
--expiry.
--
--Required properties:
--- compatible      : "nuvoton,npcm750-wdt" for NPCM750 (Poleg), or
--                    "nuvoton,wpcm450-wdt" for WPCM450 (Hermon), or
--                    "nuvoton,npcm845-wdt" for NPCM845 (Arbel).
--- reg             : Offset and length of the register set for the device.
--- interrupts      : Contain the timer interrupt with flags for
--                    falling edge.
--
--Required clocking property, have to be one of:
--- clocks          : phandle of timer reference clock.
--- clock-frequency : The frequency in Hz of the clock that drives the NPCM7xx
--                    timer (usually 25000000).
--
--Optional properties:
--- timeout-sec : Contains the watchdog timeout in seconds
--
--Example:
--
--timer@f000801c {
--    compatible = "nuvoton,npcm750-wdt";
--    interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
--    reg = <0xf000801c 0x4>;
--    clocks = <&clk NPCM7XX_CLK_TIMER>;
--};
-diff --git a/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
-new file mode 100644
-index 000000000000..7aa30f5b5c49
---- /dev/null
-+++ b/Documentation/devicetree/bindings/watchdog/nuvoton,npcm750-wdt.yaml
-@@ -0,0 +1,60 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/watchdog/nuvoton,npcm750-wdt.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Nuvoton NPCM Watchdog
-+
-+maintainers:
-+  - Joel Stanley <joel@jms.id.au>
-+
-+description:
-+  Nuvoton NPCM timer module provides five 24-bit timer counters, and a watchdog.
-+  The watchdog supports a pre-timeout interrupt that fires 10ms before the
-+  expiry.
-+
-+allOf:
-+  - $ref: watchdog.yaml#
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - enum:
-+          - nuvoton,npcm750-wdt
-+          - nuvoton,wpcm450-wdt
-+      - items:
-+          - enum:
-+              - nuvoton,npcm845-wdt
-+          - const: nuvoton,npcm750-wdt
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  clock-frequency:
-+    description: Frequency in Hz of the clock that drives the NPCM timer.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/nuvoton,npcm7xx-clock.h>
-+
-+    watchdog@f000801c {
-+        compatible = "nuvoton,npcm750-wdt";
-+        interrupts = <GIC_SPI 47 IRQ_TYPE_LEVEL_HIGH>;
-+        reg = <0xf000801c 0x4>;
-+        clocks = <&clk NPCM7XX_CLK_TIMER>;
-+    };
--- 
-2.51.0
+On Fri, Aug 22, 2025 at 03:29:55PM +0000, James Morse wrote:
+> Because an MSC can only by accessed from the CPUs in its cpu-affinity
+> set we need to be running on one of those CPUs to probe the MSC
+> hardware.
+> 
+> Do this work in the cpuhp callback. Probing the hardware will only
+> happen before MPAM is enabled, walk all the MSCs and probe those we can
+> reach that haven't already been probed.
+> 
+> Later once MPAM is enabled, this cpuhp callback will be replaced by
+> one that avoids the global list.
+> 
+> Enabling a static key will also take the cpuhp lock, so can't be done
+> from the cpuhp callback. Whenever a new MSC has been probed schedule
+> work to test if all the MSCs have now been probed.
+> 
+> CC: Lecopzer Chen <lecopzerc@nvidia.com>
+> Signed-off-by: James Morse <james.morse@arm.com>
+> ---
+>  drivers/resctrl/mpam_devices.c  | 144 +++++++++++++++++++++++++++++++-
+>  drivers/resctrl/mpam_internal.h |   8 +-
+>  2 files changed, 147 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/resctrl/mpam_devices.c b/drivers/resctrl/mpam_devices.c
+> index 5baf2a8786fb..9d6516f98acf 100644
+> --- a/drivers/resctrl/mpam_devices.c
+> +++ b/drivers/resctrl/mpam_devices.c
 
+[...]
+
+> @@ -511,9 +539,84 @@ int mpam_ris_create(struct mpam_msc *msc, u8 ris_idx,
+>  	return err;
+>  }
+>  
+> -static void mpam_discovery_complete(void)
+> +static int mpam_msc_hw_probe(struct mpam_msc *msc)
+> +{
+> +	u64 idr;
+> +	int err;
+
+Redundant variable which gets removed again in the next patch?
+ 
+> +
+> +	lockdep_assert_held(&msc->probe_lock);
+> +
+> +	mutex_lock(&msc->part_sel_lock);
+> +	idr = mpam_read_partsel_reg(msc, AIDR);
+> +	if ((idr & MPAMF_AIDR_ARCH_MAJOR_REV) != MPAM_ARCHITECTURE_V1) {
+> +		pr_err_once("%s does not match MPAM architecture v1.x\n",
+> +			    dev_name(&msc->pdev->dev));
+> +		err = -EIO;
+> +	} else {
+> +		msc->probed = true;
+> +		err = 0;
+> +	}
+> +	mutex_unlock(&msc->part_sel_lock);
+> +
+> +	return err;
+> +}
+
+[...]
+
+Cheers
+---Dave
 
