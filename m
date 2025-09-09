@@ -1,144 +1,164 @@
-Return-Path: <devicetree+bounces-214791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D931AB4A697
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:06:19 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 87085B4A690
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:05:53 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A7563A2E80
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:05:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36B6817038F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:05:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E907279DDB;
-	Tue,  9 Sep 2025 09:04:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B25276051;
+	Tue,  9 Sep 2025 09:05:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JCVUCu/f"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rxogbAOX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3EE8B27F183
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 09:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D826275AFB
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 09:05:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757408671; cv=none; b=TxFtBn0kONjG6/sBOTK8Ny9M7yMBVZdl8qtHlq1JmzSNTNJmmOrKfkli+gp+0nbEUW1IDeuvuUwsZstwKCNObafI0/Z30j7nMHkQp8riiiHtyyoSGvSgCOSFEyPlZYhpGorUUC+TtsItTCjtTuHrD5Wsdfd3tRXwVsXpzuwW3YQ=
+	t=1757408727; cv=none; b=E6CxzQpr8UwMXSzJO56VoEbxFlPRX9q8cdZu3Mhm2wdVDxiYdMP3wTtZ5OMKDZ2j0bA3ooords1A1ChqFLf9BV/lfoyujnU4/ym3/Pzk46WNcd83SYLCVPyEbmegpVfLbhzA/bDAkAPI/eqFK90nJPfvuUTAZ9HQTpK/sVJihig=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757408671; c=relaxed/simple;
-	bh=npAdt2MXok2VEU//pTwTqp9KnuJyLtKd07PIs+LRgEU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eu+kcYXfNYzY0mWhxWYubvs232sU/85X4L7Y618I/Az0WRXb6WQhQghtU3cjzfLVdzBkaM45u0fIY6pjAxqemhvVKndPPziAIavxeNMBHj9zMRC1q+Bf3HgNIlgbDGihsKgpYRYMwJnCRn/QlkW55EkRaKZepetDRk7120/YZCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JCVUCu/f; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-3dea538b826so4562892f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 02:04:29 -0700 (PDT)
+	s=arc-20240116; t=1757408727; c=relaxed/simple;
+	bh=oKt+5SuE9mqrDfjDXh6mBMRn1amqw6YNu8oG74Kyjxg=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=Ro0W5NF0O8iM4l/v/p3HiuAulFJyRBuifPyGdT/OyqfoPN+OhVbncPgO47hWLir4ueRyG3CvLfOZJ6HRtk1g4YCELHkcUFXlKY4yiiKD0eS8FHsQwtelNumL1LFjsK3YeMAdho9JoVJoZ/uxt9dMGXgUxj6gWvommjklrPQCVis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rxogbAOX; arc=none smtp.client-ip=209.85.218.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b0473327e70so866925566b.3
+        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 02:05:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1757408667; x=1758013467; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hDNp+09RRMXcmw2av/GSmihaAI/fIen6tu2gvQNcAWI=;
-        b=JCVUCu/fp6yR1IrNYsHraxRSYx9kTcKv9QiB25AKcJham0grvNt1q7QMn6cjAjNCL3
-         XwtH4dUd04XzItNNWYeU+SfSFWn8U2WTmyjrHj8imOiaIO8rYpS4NFN6cLIxtOj37PKv
-         UBDKfnZ9KI2NmMqT+8OnGvxSll/pMIQDQqZ7/WV2fDoUzcYNntuxyUDVfrOVEr8PuB9G
-         nSRUwsvzosB6RsPMPNe5JGljEXJUJsCeOuf3ReXB5MztxQ1AtQ9YJRdGH1yj98EJlt61
-         TYyRAe7JRXTvRTKU86UNA1Eas1wxf0P4kNKKTOTvB5c+9XuY+yiGaOC0jIusngmAh05g
-         9jAw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757408723; x=1758013523; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=NLqPkG/6OItE3LNH6o7MdT1z3Tt1LqmCkBoUP1DPapY=;
+        b=rxogbAOXxGWNGch+EPV8UCqdt1kRTPuQ3BJsSAHf3fM1YmJEkTJEjKrC52AN4SHDUm
+         VW/Hf2WNgVInFDQxPTfSJFu8ajqI3isia0VL1OmXHWHhh4MCZo+xKaBpi/iWi5jkeHUK
+         cTBEExHWNo19qcm/cVo6Uj7Y0B1sPCK71zewnskTDtt/3zFkCdTvT2j1mL63RiO7gaYS
+         GnHouhA1R1kcGk0HCgs5uk0URURlONS8N1esYWuqLLMZZ6P8LAEsulDSKRntZtrPfFFh
+         PHcU6whp9kOearMd6ezzJS4us5O+XzuZyfjIJV8yq3yelh42+P1BntKdpdXfXOxIxxEt
+         TL+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757408667; x=1758013467;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hDNp+09RRMXcmw2av/GSmihaAI/fIen6tu2gvQNcAWI=;
-        b=LPy1TzuzjBtl1bJOsJSvzJ5sP/RvYjOGAKGjubiZp7Ps5sNg3WUhJCL8LtQjQY0FEu
-         fj2IKoarrUdY5rMusO8eYOerOYdIFnmuKxxNco8C1EY2+xT7+oQY2LC41uAKK5iyJmto
-         plP5jKNiZeXUSrKw8q8I59xgxX0emPByTEcVB6FSud0W+VMPTpmen19GpHujuwz8UUee
-         2dT9t0XQrEmWE/fqmF11z3zCFcNPxIq+BInBaNvz2x8wJY7nP630VGxN2oaaCeSW9Sg+
-         jMONvDTte6rwNLIXNOL2jLsZwd8lOuX4kLZb2Kxh2NJt8u9AD+uTfL+jA7qqKztqAkzs
-         X4rg==
-X-Forwarded-Encrypted: i=1; AJvYcCXvx3kwzRp8SU+4qwSX/Ec+gxdggq3mAB/ca7Aw7KatlVxWrTxHCNNhoUPBvuDAj+mbzT+9H8XZXANh@vger.kernel.org
-X-Gm-Message-State: AOJu0YxaLjhHL+/ye9ZUtMaNkI7XBBwrIO77NfN/lWwa+o7uMgUxmVQd
-	bTW6FRe0AxX+uIQ4rfz5my9DyAdbU2Tm22r4gpLiXTIqcKGPKvHepQEwvU0T0l3IJc8=
-X-Gm-Gg: ASbGncvBma7EKAdckogsO9jsKBOUtcMETIqLAtnRuvAGQw1gEmrdm/WwSZosj8F1R0w
-	2xGx596tfNVcDwEqpnynUZj8qAQXwXc6XkRdQwnVml8CrTNkmxmaK6yPxCsAftxhd2tyqui/Kqv
-	+VF90nTGQN8+DEmwCaGJv07r65glfnab2gWmSnaAEN9mn7xyKttOZ5OfYPpiNOqLpzCOtAufjjf
-	doojQzLNfS7k14tqN+F97IuMOOX7OB//GWzNsbTKInDQw7+b7vy9Bc4+7H8zsYD/fvM0ocufT4L
-	9nFnoQineLJVw3OIHY1aqlJ4ewLP/C/LPjBrbgTsKMyLsNnZQK8LvJEpPFTHq47HW3DNgllm05t
-	8ElDnb9jFyT6fKCKsaO4ufxd5bTV6DoisEmG7x362dxES7eUCx16VbrH5WoTomfJ5o0gKSYQv1r
-	hSxLDgVhMLM6wh
-X-Google-Smtp-Source: AGHT+IGpok2rbe+PM/m3BufdeCo188/KOxQEw562uyqXa+yKjY0Jrvcfkxzp0puKcXaQ7WzgbjFXkQ==
-X-Received: by 2002:a05:6000:420f:b0:3d1:5869:d4c5 with SMTP id ffacd0b85a97d-3e641e3b134mr10268242f8f.17.1757408667499;
-        Tue, 09 Sep 2025 02:04:27 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:545e:637a:28a6:9ede? ([2a05:6e02:1041:c10:545e:637a:28a6:9ede])
-        by smtp.googlemail.com with ESMTPSA id 5b1f17b1804b1-45b9bcda91dsm315163425e9.6.2025.09.09.02.04.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Sep 2025 02:04:27 -0700 (PDT)
-Message-ID: <47d31043-f25c-487d-9676-928f391516ff@linaro.org>
-Date: Tue, 9 Sep 2025 11:04:26 +0200
+        d=1e100.net; s=20230601; t=1757408723; x=1758013523;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NLqPkG/6OItE3LNH6o7MdT1z3Tt1LqmCkBoUP1DPapY=;
+        b=FUT7kdgLdIBrhg1NJwDY2K6gd+5ZwLulyNL4gp3yirX4s19D159E4/YlniYvBa2qT9
+         LBJFaDvFTExrcQ8Z7tYcbBAKijls7kE3cEfVL2x3zkpPC9eLZtWiKXohxB89tneho1ag
+         /WLuyJxhShA/M2g4/Oq9v/S+6RnwUi3wrqTI0T+hoCG1SAAUvlv89YN4ESojq1f1UVfL
+         l1lzz+jFk+BqNRdXBc17/zhE2RrtwDh3NcZ4v15cqzLJlrmw9Lw4xBC2icNS0rf4mbBX
+         2sGzdHw3CsDYJfj623VsaPl7hiaY0nIMzrjbPCsyQyzSpFLJ8XwFWU+TVsB3Or7rV1vs
+         fg2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXKQ2jcBNL2m+1ljAGbbbMcob6jTizs7hz8Z5+6q+msvFyWDxXNCBGuueur7hdhuPfmeab/gvTsmfv0@vger.kernel.org
+X-Gm-Message-State: AOJu0YyKf2QJY6Z43Ba3YguCmcFE7JOXH87bgcek0yDreABQZVSsEvN0
+	azNyumByPlQa+pS9nUxS3VqjBMwPME5vhsFL/zysD/sXMP68XIdQXgwnCTYISQexHoM=
+X-Gm-Gg: ASbGncvDV+cW+qJ/IfmC1uTphKRTsu+sJuFABKN9SiRmIe/vK6Vb1LsOzT1GThNlgOT
+	HuIcjddXeNP8cc3gEl1sbIyOXq8ugt+gqv8/aPByEBvHzg/1zmyWivsHn532VWdj5gWZfXzJLaN
+	fjwLde4Rzjv2/LkatPS7DYghaPF7rIuUHfNLLBcx5GejbZeLtUmxdKNCPsvvdUBHNryXhhNHYad
+	IFdq6sGRj8oH6BT/BajEZ06WwUSHlAEamwmHQQtcCVzAUyBudu1QGaTyCTRjkOd8WXi+Jssyaw+
+	Qocm/D1k05lI+/LN1HbkYeGRqSIeGOOutj9PiY8jnfCVOmAp+DtF6qdYQLlf1D2ZuBnppYBbTl9
+	qWG49zwnSf3LkPNJ+pWyvu6mnvg==
+X-Google-Smtp-Source: AGHT+IGtGald5QrfplS4Quy+YJGLLien3U7oYcfVEvokQ+pid2O27coZ/lipvsj1OLSEf2foHdFxnw==
+X-Received: by 2002:a17:907:86aa:b0:b04:33a1:7f1b with SMTP id a640c23a62f3a-b04b1446e50mr1014087266b.19.1757408723315;
+        Tue, 09 Sep 2025 02:05:23 -0700 (PDT)
+Received: from localhost ([195.52.61.108])
+        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-b041565ca98sm2278271866b.86.2025.09.09.02.05.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 09 Sep 2025 02:05:22 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 2/2] iio: adc: Add the NXP SAR ADC support for the
- s32g2/3 platforms
-To: Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc: jic23@kernel.org, dlechner@baylibre.com, nuno.sa@analog.com,
- andy@kernel.org, robh@kernel.org, conor+dt@kernel.org, krzk+dt@kernel.org,
- linux-iio@vger.kernel.org, s32@nxp.com, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, chester62515@gmail.com, mbrugger@suse.com,
- ghennadi.procopciuc@oss.nxp.com
-References: <20250903102756.1748596-1-daniel.lezcano@linaro.org>
- <20250903102756.1748596-3-daniel.lezcano@linaro.org>
- <aLgrGlpNrDTC5LAd@smile.fi.intel.com>
- <a34efc36-0100-4a7f-b131-566413ab88ae@linaro.org>
- <aLlAugdr-hwMNIje@smile.fi.intel.com>
-Content-Language: en-US
-From: Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <aLlAugdr-hwMNIje@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Type: multipart/signed;
+ boundary=d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90;
+ micalg=pgp-sha512; protocol="application/pgp-signature"
+Date: Tue, 09 Sep 2025 11:05:17 +0200
+Message-Id: <DCO5EBFY39Q7.1AUMHXZPJF96S@baylibre.com>
+Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250_omap: Update
+ wakeup-source type property
+From: "Markus Schneider-Pargmann" <msp@baylibre.com>
+To: "Conor Dooley" <conor@kernel.org>, "Kendall Willis" <k-willis@ti.com>
+Cc: <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
+ <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
+ <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <d-gole@ti.com>, <vishalm@ti.com>,
+ <sebin.francis@ti.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
+ <john.ogness@linutronix.de>, <andriy.shevchenko@linux.intel.com>,
+ <yujiaoliang@vivo.com>, <b-liu@ti.com>, <u.kleine-koenig@baylibre.com>
+X-Mailer: aerc 0.20.1
+References: <20250904212455.3729029-1-k-willis@ti.com>
+ <20250904212455.3729029-2-k-willis@ti.com>
+ <20250905-saloon-siesta-77da98d7ae02@spud>
+In-Reply-To: <20250905-saloon-siesta-77da98d7ae02@spud>
 
-On 04/09/2025 09:33, Andy Shevchenko wrote:
-> On Wed, Sep 03, 2025 at 05:28:09PM +0200, Daniel Lezcano wrote:
->> On 03/09/2025 13:48, Andy Shevchenko wrote:
->>> On Wed, Sep 03, 2025 at 12:27:56PM +0200, Daniel Lezcano wrote:
+--d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
 
-[ ... ]
+On Fri Sep 5, 2025 at 8:38 PM CEST, Conor Dooley wrote:
+> On Thu, Sep 04, 2025 at 04:24:53PM -0500, Kendall Willis wrote:
+>> Allow the wakeup-source property to be either of type boolean or of a
+>> phandle array. The phandle array points to the system idle states that t=
+he
+>> UART can wakeup the system from.
+>>=20
+>> Signed-off-by: Kendall Willis <k-willis@ti.com>
+>> ---
+>>  Documentation/devicetree/bindings/serial/8250_omap.yaml | 8 +++++++-
+>>  1 file changed, 7 insertions(+), 1 deletion(-)
+>>=20
+>> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/D=
+ocumentation/devicetree/bindings/serial/8250_omap.yaml
+>> index 1859f71297ff2..851a5291b4be4 100644
+>> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
+>> @@ -69,7 +69,13 @@ properties:
+>>    clock-frequency: true
+>>    current-speed: true
+>>    overrun-throttle-ms: true
+>> -  wakeup-source: true
+>> +
+>> +  wakeup-source:
+>> +    oneOf:
+>> +      - type: boolean
+>> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
+>> +        description:
+>> +          List of phandles to system idle states in which UARTs can wak=
+eup the system.
+>
+> Is there a single other instance of the wakeup-source property being
+> used like this?
 
->>>> +		nxp_sar_adc_channels_enable(info, 1 >> chan->channel);
->>>
->>> 1 >> ?!? Did you want BIT(channel)? Or simply channel != 0?
->>
->> Yeah, BIT(chan->channel) is better
-> 
-> But is the above a bug in the original proposal or not? I mean one wanted left
-> instead of right shift.
+This was added to the dt-schema repository:
+  https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/wa=
+keup-source.yaml
 
-It is actually a bug, you are right it should have been left shift
+I don't think this needs to be repeated in every binding, so I think you
+can just drop this unless there are specifics for this device.
 
->>>> +	dmaengine_tx_status(info->dma_chan,
->>>> +			    info->cookie, &state);
->>>
->>> Perfectly one line. No return check?
->>
->> Ok, will see if the IIO DMA API has an impact on this portion of code before
->> checking the return code. However, the status is often ignored in the other
->> drivers.
-> 
-> ...which doesn't mean it's a good example to follow.
+Best
+Markus
 
+--d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaL/tzRsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlOf
+fAD8DAQ97AbJ+p0LGAn2867WJ1+6lsRnR/L8zCEhhVRShSIA/RLlcsesqmk0jRon
+0iZUkj/uUh+7HeN8p0ojfkQuG9cD
+=WEOi
+-----END PGP SIGNATURE-----
 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+--d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90--
 
