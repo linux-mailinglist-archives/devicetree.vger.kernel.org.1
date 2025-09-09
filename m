@@ -1,164 +1,146 @@
-Return-Path: <devicetree+bounces-214792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87085B4A690
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:05:53 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A1371B4A6AF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 11:07:54 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 36B6817038F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:05:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A261A442B8B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 09:06:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B25276051;
-	Tue,  9 Sep 2025 09:05:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F148827511E;
+	Tue,  9 Sep 2025 09:06:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="rxogbAOX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YgpIdyA/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D826275AFB
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 09:05:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BA7951A4E70;
+	Tue,  9 Sep 2025 09:06:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757408727; cv=none; b=E6CxzQpr8UwMXSzJO56VoEbxFlPRX9q8cdZu3Mhm2wdVDxiYdMP3wTtZ5OMKDZ2j0bA3ooords1A1ChqFLf9BV/lfoyujnU4/ym3/Pzk46WNcd83SYLCVPyEbmegpVfLbhzA/bDAkAPI/eqFK90nJPfvuUTAZ9HQTpK/sVJihig=
+	t=1757408789; cv=none; b=VOsVJL1qR+8Z4/BvV0CMY7gRUOKUzgL75A9uW19W+qMi66Do3+/PoZn4l91+kSQAQ79rNDDRP19eFiFR1iA6PG6aq8f6f3PJwQzFbIRXlnG47K9nO+SvujdMA37LKzakQfwLv1b4WHSqKyKy7aj7rTvR2xTif6iADCrEwlPlAY4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757408727; c=relaxed/simple;
-	bh=oKt+5SuE9mqrDfjDXh6mBMRn1amqw6YNu8oG74Kyjxg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
-	 References:In-Reply-To; b=Ro0W5NF0O8iM4l/v/p3HiuAulFJyRBuifPyGdT/OyqfoPN+OhVbncPgO47hWLir4ueRyG3CvLfOZJ6HRtk1g4YCELHkcUFXlKY4yiiKD0eS8FHsQwtelNumL1LFjsK3YeMAdho9JoVJoZ/uxt9dMGXgUxj6gWvommjklrPQCVis=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=rxogbAOX; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-b0473327e70so866925566b.3
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 02:05:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1757408723; x=1758013523; darn=vger.kernel.org;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=NLqPkG/6OItE3LNH6o7MdT1z3Tt1LqmCkBoUP1DPapY=;
-        b=rxogbAOXxGWNGch+EPV8UCqdt1kRTPuQ3BJsSAHf3fM1YmJEkTJEjKrC52AN4SHDUm
-         VW/Hf2WNgVInFDQxPTfSJFu8ajqI3isia0VL1OmXHWHhh4MCZo+xKaBpi/iWi5jkeHUK
-         cTBEExHWNo19qcm/cVo6Uj7Y0B1sPCK71zewnskTDtt/3zFkCdTvT2j1mL63RiO7gaYS
-         GnHouhA1R1kcGk0HCgs5uk0URURlONS8N1esYWuqLLMZZ6P8LAEsulDSKRntZtrPfFFh
-         PHcU6whp9kOearMd6ezzJS4us5O+XzuZyfjIJV8yq3yelh42+P1BntKdpdXfXOxIxxEt
-         TL+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757408723; x=1758013523;
-        h=in-reply-to:references:cc:to:from:subject:message-id:date
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NLqPkG/6OItE3LNH6o7MdT1z3Tt1LqmCkBoUP1DPapY=;
-        b=FUT7kdgLdIBrhg1NJwDY2K6gd+5ZwLulyNL4gp3yirX4s19D159E4/YlniYvBa2qT9
-         LBJFaDvFTExrcQ8Z7tYcbBAKijls7kE3cEfVL2x3zkpPC9eLZtWiKXohxB89tneho1ag
-         /WLuyJxhShA/M2g4/Oq9v/S+6RnwUi3wrqTI0T+hoCG1SAAUvlv89YN4ESojq1f1UVfL
-         l1lzz+jFk+BqNRdXBc17/zhE2RrtwDh3NcZ4v15cqzLJlrmw9Lw4xBC2icNS0rf4mbBX
-         2sGzdHw3CsDYJfj623VsaPl7hiaY0nIMzrjbPCsyQyzSpFLJ8XwFWU+TVsB3Or7rV1vs
-         fg2Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXKQ2jcBNL2m+1ljAGbbbMcob6jTizs7hz8Z5+6q+msvFyWDxXNCBGuueur7hdhuPfmeab/gvTsmfv0@vger.kernel.org
-X-Gm-Message-State: AOJu0YyKf2QJY6Z43Ba3YguCmcFE7JOXH87bgcek0yDreABQZVSsEvN0
-	azNyumByPlQa+pS9nUxS3VqjBMwPME5vhsFL/zysD/sXMP68XIdQXgwnCTYISQexHoM=
-X-Gm-Gg: ASbGncvDV+cW+qJ/IfmC1uTphKRTsu+sJuFABKN9SiRmIe/vK6Vb1LsOzT1GThNlgOT
-	HuIcjddXeNP8cc3gEl1sbIyOXq8ugt+gqv8/aPByEBvHzg/1zmyWivsHn532VWdj5gWZfXzJLaN
-	fjwLde4Rzjv2/LkatPS7DYghaPF7rIuUHfNLLBcx5GejbZeLtUmxdKNCPsvvdUBHNryXhhNHYad
-	IFdq6sGRj8oH6BT/BajEZ06WwUSHlAEamwmHQQtcCVzAUyBudu1QGaTyCTRjkOd8WXi+Jssyaw+
-	Qocm/D1k05lI+/LN1HbkYeGRqSIeGOOutj9PiY8jnfCVOmAp+DtF6qdYQLlf1D2ZuBnppYBbTl9
-	qWG49zwnSf3LkPNJ+pWyvu6mnvg==
-X-Google-Smtp-Source: AGHT+IGtGald5QrfplS4Quy+YJGLLien3U7oYcfVEvokQ+pid2O27coZ/lipvsj1OLSEf2foHdFxnw==
-X-Received: by 2002:a17:907:86aa:b0:b04:33a1:7f1b with SMTP id a640c23a62f3a-b04b1446e50mr1014087266b.19.1757408723315;
-        Tue, 09 Sep 2025 02:05:23 -0700 (PDT)
-Received: from localhost ([195.52.61.108])
-        by smtp.gmail.com with UTF8SMTPSA id a640c23a62f3a-b041565ca98sm2278271866b.86.2025.09.09.02.05.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 09 Sep 2025 02:05:22 -0700 (PDT)
+	s=arc-20240116; t=1757408789; c=relaxed/simple;
+	bh=7KHRyNXulEzV5xfA0DTLR93wZhedtS6U0W/OgCRxzTo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WTHeZrTL9rsbHgW3joBwov/tyAWHVvCpQQvcmHjkwv+WI3kvMA2qxfQsErKogAPG7HGRLmwk17wr4v5fgJXQ/i9IySiv7Giaf2Asi0/5xsRrRxaOdbdFmimzZ1duteiGyxrL2onl5hszwst9fKl1CV2YNmz0u9xBUWEWHYD084I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YgpIdyA/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0263CC4CEF5;
+	Tue,  9 Sep 2025 09:06:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757408788;
+	bh=7KHRyNXulEzV5xfA0DTLR93wZhedtS6U0W/OgCRxzTo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=YgpIdyA/7SeKJXe88JKdL+8cKRhcsDkqKgcop6CyNabiQH1IoGUGWwnhISrzq+ATK
+	 iw+a1kLwmrkdfoCl+Y3T4dFzQ8PiQC7YrA26Lp4HvdqoN2LU+n3Yoi0MtMBGjkeea2
+	 ohKhJtF5gy9ML01DyQtxo78OqfDTX/OtsszEzisC5gbN6zhA4mh5be1PK6inzH7n/n
+	 rmL1ylDc4WnEFZK9RumjHEvr/qFuHAbGJLE5xzf+fbRiKWYGDO4XzmzyUrtIezcjJc
+	 1Iv9IyF4uuYyhVUnsSMAOlvNmC0VKCUpivKwootXbR+ghdD42K7rqLJ4UQPM4rTMvI
+	 LhJpZ1LEvqxdw==
+Message-ID: <98871c1b-7183-4a08-a5ea-9fa5c91c6777@kernel.org>
+Date: Tue, 9 Sep 2025 11:06:21 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Type: multipart/signed;
- boundary=d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90;
- micalg=pgp-sha512; protocol="application/pgp-signature"
-Date: Tue, 09 Sep 2025 11:05:17 +0200
-Message-Id: <DCO5EBFY39Q7.1AUMHXZPJF96S@baylibre.com>
-Subject: Re: [PATCH 1/3] dt-bindings: serial: 8250_omap: Update
- wakeup-source type property
-From: "Markus Schneider-Pargmann" <msp@baylibre.com>
-To: "Conor Dooley" <conor@kernel.org>, "Kendall Willis" <k-willis@ti.com>
-Cc: <gregkh@linuxfoundation.org>, <jirislaby@kernel.org>, <robh@kernel.org>,
- <krzk+dt@kernel.org>, <conor+dt@kernel.org>, <vigneshr@ti.com>,
- <linux-kernel@vger.kernel.org>, <linux-serial@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <d-gole@ti.com>, <vishalm@ti.com>,
- <sebin.francis@ti.com>, <khilman@baylibre.com>, <a-kaur@ti.com>,
- <john.ogness@linutronix.de>, <andriy.shevchenko@linux.intel.com>,
- <yujiaoliang@vivo.com>, <b-liu@ti.com>, <u.kleine-koenig@baylibre.com>
-X-Mailer: aerc 0.20.1
-References: <20250904212455.3729029-1-k-willis@ti.com>
- <20250904212455.3729029-2-k-willis@ti.com>
- <20250905-saloon-siesta-77da98d7ae02@spud>
-In-Reply-To: <20250905-saloon-siesta-77da98d7ae02@spud>
-
---d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90
-Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
+To: Rob Herring <robh@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>
+Cc: Aleksandrs Vinarskis <alex@vinarskis.com>, Lee Jones <lee@kernel.org>,
+ Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+ Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
+ Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
+ <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Daniel Thompson <daniel.thompson@linaro.org>,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org
+References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
+ <20250908-leds-v3-2-5944dc400668@vinarskis.com>
+ <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
+ <046b289d-b6a5-45f9-88b1-090e2ab7c95d@kernel.org>
+ <39b955b9-a152-458a-8e09-908efebaaccd@oss.qualcomm.com>
+ <20250908222247.GA1943768-robh@kernel.org>
+From: Hans de Goede <hansg@kernel.org>
+Content-Language: en-US, nl
+In-Reply-To: <20250908222247.GA1943768-robh@kernel.org>
 Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Fri Sep 5, 2025 at 8:38 PM CEST, Conor Dooley wrote:
-> On Thu, Sep 04, 2025 at 04:24:53PM -0500, Kendall Willis wrote:
->> Allow the wakeup-source property to be either of type boolean or of a
->> phandle array. The phandle array points to the system idle states that t=
-he
->> UART can wakeup the system from.
->>=20
->> Signed-off-by: Kendall Willis <k-willis@ti.com>
->> ---
->>  Documentation/devicetree/bindings/serial/8250_omap.yaml | 8 +++++++-
->>  1 file changed, 7 insertions(+), 1 deletion(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/serial/8250_omap.yaml b/D=
-ocumentation/devicetree/bindings/serial/8250_omap.yaml
->> index 1859f71297ff2..851a5291b4be4 100644
->> --- a/Documentation/devicetree/bindings/serial/8250_omap.yaml
->> +++ b/Documentation/devicetree/bindings/serial/8250_omap.yaml
->> @@ -69,7 +69,13 @@ properties:
->>    clock-frequency: true
->>    current-speed: true
->>    overrun-throttle-ms: true
->> -  wakeup-source: true
->> +
->> +  wakeup-source:
->> +    oneOf:
->> +      - type: boolean
->> +      - $ref: /schemas/types.yaml#/definitions/phandle-array
->> +        description:
->> +          List of phandles to system idle states in which UARTs can wak=
-eup the system.
->
-> Is there a single other instance of the wakeup-source property being
-> used like this?
+Hi,
 
-This was added to the dt-schema repository:
-  https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/wa=
-keup-source.yaml
+On 9-Sep-25 12:22 AM, Rob Herring wrote:
+> On Mon, Sep 08, 2025 at 09:36:39AM +0200, Konrad Dybcio wrote:
+>> On 9/8/25 9:33 AM, Hans de Goede wrote:
+>>> Hi,
+>>>
+>>> On 8-Sep-25 09:20, Konrad Dybcio wrote:
+>>>> On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
+>>>>> A number of existing schemas use 'leds' property to provide
+>>>>> phandle-array of LED(s) to the consumer. Additionally, with the
+>>>>> upcoming privacy-led support in device-tree, v4l2 subnode could be a
+>>>>> LED consumer, meaning that all camera sensors should support 'leds'
+>>>>> and 'led-names' property via common 'video-interface-devices.yaml'.
+>>>>>
+>>>>> To avoid dublication, commonize 'leds' property from existing schemas
+>>>>> to newly introduced 'led-consumer.yaml'.
+>>>>>
+>>>>> Signed-off-by: Aleksandrs Vinarskis <alex@vinarskis.com>
+>>>>> ---
+>>>>
+>>>> [...]
+>>>>
+>>>>>  
+>>>>> +  leds:
+>>>>> +    minItems: 1
+>>>>> +    maxItems: 1
+>>>>
+>>>> My brain compiler suggests this will throw a warning (minItems should
+>>>> be redundant in this case)
+>>>>> +
+>>>>> +  led-names:
+>>>>> +    enum:
+>>>>> +      - privacy-led
+>>>>
+>>>> Nit: "privacy" makes more sense without the suffix, as we inherently
+>>>> know this is supposed to be an LED
+>>>
+>>> Note "privacy-led" as name is already used on the x86/ACPI side and
+>>> the code consuming this will be shared.
+>>>
+>>> With that said if there is a strong preference for going with just
+>>> "privacy" the x86 side can be adjusted since the provider-info is
+>>> generated through a LED lookup table on the x86/ACPI side. So we can
+>>> just modify both the lookup table generation as well as the already
+>>> existing led_get(dev, "privacy-led") call to use just "privacy"
+>>> without problems.
+>>
+>> In that case, it may be cleaner to just go with what we have today
+>> (unless the dt maintainers have stronger opinions)
+> 
+> Well, I do, but I guess it's fine. Please don't add the suffix on the 
+> rest and add a comment for why it's there.
 
-I don't think this needs to be repeated in every binding, so I think you
-can just drop this unless there are specifics for this device.
+Dropping the "-led" suffix on the ACPI side really is no big deal,
+so if we don't want the suffix it is probably best to also drop
+it for "privacy-led" rather then setting a bad example to be
+copy and pasted.
 
-Best
-Markus
+Regards,
 
---d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90
-Content-Type: application/pgp-signature; name="signature.asc"
+Hans
 
------BEGIN PGP SIGNATURE-----
 
-iKMEABYKAEsWIQSJYVVm/x+5xmOiprOFwVZpkBVKUwUCaL/tzRsUgAAAAAAEAA5t
-YW51MiwyLjUrMS4xMSwyLDIRHG1zcEBiYXlsaWJyZS5jb20ACgkQhcFWaZAVSlOf
-fAD8DAQ97AbJ+p0LGAn2867WJ1+6lsRnR/L8zCEhhVRShSIA/RLlcsesqmk0jRon
-0iZUkj/uUh+7HeN8p0ojfkQuG9cD
-=WEOi
------END PGP SIGNATURE-----
-
---d7ea47f27b94c7fe0e2fcfb85371fcda0229f4569d05d02422f5fc70ce90--
 
