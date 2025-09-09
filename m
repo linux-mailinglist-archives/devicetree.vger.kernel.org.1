@@ -1,88 +1,56 @@
-Return-Path: <devicetree+bounces-214779-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
-	by mail.lfdr.de (Postfix) with ESMTPS id B98B6B4A594
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:39:57 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 05C0AB4A5AA
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:42:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 9ABB94E1484
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:39:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D4034188C869
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:42:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0C00255240;
-	Tue,  9 Sep 2025 08:39:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F2B5255F2C;
+	Tue,  9 Sep 2025 08:41:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="SamWdDe4"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="XjXJFZo1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 49F00253356
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 08:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CB6E253F1D
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 08:41:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757407183; cv=none; b=rAeZHubmF7D/x2QHUJSAkhImEySZKWo1OYMpMSyJDmUpYJ2t/cNB2RnZ7l9Z8tYqRkUWsfsGfDXTbVqtlZxpwqi9byCpcaLxVdP4C7VZFKCZ8kkB9KlqqkyGLYPVBCkd+8ILUwnmJhpSSkhdVgOK9C10cpTSFGeD6ncWbOwkR7E=
+	t=1757407296; cv=none; b=AY7xQ6aBQMvuiY+EfZO6fx6E/fiT5sXPothy5i5zEWDLy/X18P+yxbqK38vLQK+Lj++hCSPhyFhXTXOR1AgYiMbhceNx0X25TuGHSK4+51XSxx5XnoA5ZATloX3p0GrDU97GJfMEsul6Owlg7jPVTxHTjO3pX+bkc+8RT2sZ5vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757407183; c=relaxed/simple;
-	bh=CEpRgykXgmcUp1jg8eyRMU+1agl/A+ACDsCB9TJ+jLg=;
+	s=arc-20240116; t=1757407296; c=relaxed/simple;
+	bh=Ip46ot/9O4pNIM/Ny61T7ztTm2iML4XIOp1LKYVRsy0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=kwf2HHcGnW0+78nRDnU4MM9A78F/mGerV3xcvpg85kCRamhXlzAiqHUl9qJNGFcsA5CAJDOsw1UNGlO/NuKPObdDejYrV9zqmJiPtZtej6cJk0Sg03gYA7qJDzvWz8Xtrwk6bESeuyjxLC7288dl8b+lxn4YNJQ4waGS3tl5Lp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com; spf=pass smtp.mailfrom=oss.qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=SamWdDe4; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=oss.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.qualcomm.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 5896T8Uj021764
-	for <devicetree@vger.kernel.org>; Tue, 9 Sep 2025 08:39:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	cc:content-transfer-encoding:content-type:date:from:in-reply-to
-	:message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
-	TDpymrykwq2D9vEJfSPg+EEbvFuEeU+GWf9UCfxacp4=; b=SamWdDe4fTtbgA9R
-	SvvGuYQtNjyLflZYkoug3yceJxrIesUeSQEEtWJrQJpvjQfSWzSIBlPsD5h6IQXx
-	0IrbpslAYVraUSdlu828cic2BkGX0/LrZpbvFAFQ1tcaVYm1F4x9fGNo1xxcCOZy
-	BCc5vCmrgUgOCn0uVBtO4YWExFS9Zist3V6gRtOnX8paRmBWFV1ToqtlAM3opInu
-	eO4xORvJRD+ZsGS0bDSiWfSbwTzRI5zlNamN17RzZyD0D7CHI1tSq+UARJ7qVmqV
-	M7L6upjLJifW3ToswczWfx+DxFTyrCZSaCzUozoELgOFR6xrKT+K/I5P5GNxCyQV
-	IS2jfg==
-Received: from mail-pj1-f70.google.com (mail-pj1-f70.google.com [209.85.216.70])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 490by8ykwu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-	for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 08:39:41 +0000 (GMT)
-Received: by mail-pj1-f70.google.com with SMTP id 98e67ed59e1d1-32bc6306d47so1189441a91.0
-        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 01:39:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757407180; x=1758011980;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to:subject
-         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=TDpymrykwq2D9vEJfSPg+EEbvFuEeU+GWf9UCfxacp4=;
-        b=dxbXPGDd+e9p40b0zC6cPfc0XaMzhq022CbcXT7DRCvUK42XsRktJ4V+MRAwjjtWRm
-         5ae/YScwokknNQPxoRvChuYbVp/LmgJI/+7/rmsQvFcFNqHiLWYF+jvwEDsFqHICvN9z
-         mUdMghAlLkVP2hbPXRM7VdE6ruziwCvfiG6qGevPilEEwwtHjtokYTKyhQmEAZzornUb
-         Hgk5W4dZldvNE6kg9Jxw42D6+GBUxhpox1tRRYZ7KBtJcgYTzHYKZzODAO0KJ4DNqfKS
-         vEPQFE/FAjIHxTRNqOHNz5+ouEe6ch5WNG82endrHSOD3fEgllREBq/pHXkHjV0+UZUZ
-         0r/w==
-X-Forwarded-Encrypted: i=1; AJvYcCVFYOdTJP5YnZzk6VMW2GdXgLlwirXclQTeLsmElU3EWfTWWw0q6pMxs88l/5+zEB8+hbeIxYXdSMax@vger.kernel.org
-X-Gm-Message-State: AOJu0YwYUQwpOxwvJU7Q5SW29nvScjBenjv7RMR1Fb7/tW/QFgirYb6B
-	UjZir5dQq/WDezh8t5Qoek8GXzuDbUrrB/8pVBPGAxGACKVBejQgLhrdUr/0WkoPek6nXqP9sB+
-	qHD0jJ+ROpIyd8jTdQXWsll15SrH91B3eI8pQiBHtan89Be4VCYmqBe44hiDz34oQ
-X-Gm-Gg: ASbGnctNirfCF2YY9qP656XVnxJRJTy6NUFDnWFDgBtDpDIVJeypAzXIDM33WGhpYNS
-	12+wF4hBv3gIciPl8ulmioUbRRgEqxVrEwSRjH85bZ1SGqg4O00dxR/HaO8z5CECwUkiCBwlh8d
-	w/x7Id5FkqnJLF+vynphZ55+ctEzBG9qsW/ppd2nplht6nJXQynHILclRtMJ2Ny6ER1EApo17Ws
-	tRNtZFOFlwyHLfr14vUzCIfQV53MX5tYrTWJ4dujBj1HUOb42hnow1CI+9LfjqqjFurAScJIk3K
-	g8ujj2uvlRh3xoZlSPz5u+pQB0C3D8Fx+WAPDuwHzckdQC8kGVyiu9jhGcrwcWFfvKr6dkyFDSk
-	DHpHJPOts67y95xH3O/D386fK/m6bUg==
-X-Received: by 2002:a17:90b:4a92:b0:32b:87ef:5faa with SMTP id 98e67ed59e1d1-32d43f91aadmr7805314a91.4.1757407178404;
-        Tue, 09 Sep 2025 01:39:38 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IF7QbVcmVO7aZqm/k5QXoWRXC9zn0nVpx+dXw+04HHeABOWQ0WWeFhtm+A8ZDuAd6zzUqgtWw==
-X-Received: by 2002:a17:90b:4a92:b0:32b:87ef:5faa with SMTP id 98e67ed59e1d1-32d43f91aadmr7805263a91.4.1757407177787;
-        Tue, 09 Sep 2025 01:39:37 -0700 (PDT)
-Received: from [10.133.33.137] (tpe-colo-wan-fw-bordernet.qualcomm.com. [103.229.16.4])
-        by smtp.gmail.com with ESMTPSA id 98e67ed59e1d1-3276f57b227sm39403466a91.6.2025.09.09.01.39.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 09 Sep 2025 01:39:37 -0700 (PDT)
-Message-ID: <c4eeb8a8-2819-4ac5-8dc1-cce209d7cbc4@oss.qualcomm.com>
-Date: Tue, 9 Sep 2025 16:39:26 +0800
+	 In-Reply-To:Content-Type; b=AEC3Cw4l4PsNlnwFg6EWtzW5mGw4jmUvLXho3y6pi1ATPJGnSfWx6E9hGY1haKNxKq3loqj758rd88tKJm/k/YiAKW0ujh4dPX1lCxoPIU5ZYsnUj833Qg7d+C4uBmef1OozHPEaQf+lYRJwPAVmf1WafBuLmGOGWH6Uof8ZW2c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=XjXJFZo1; arc=none smtp.client-ip=149.28.215.223
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1757407289;
+ bh=DEI8j5MLwQIMmp/tto4y5edHY0QtHqsLOROzDCJAx8I=;
+ b=XjXJFZo1ZQwYYELSIC2uIJynPb5QO470RFITErHfgCPmbbn/6zwHxBkyrNcqeG29FqxueNifT
+ 9+x7WVm9kjT+d3Tgm+u0xc5VO5TobO765Mad/Gs5o7lletDjj7KD9xjJYlfiDZ3Ejx5IWWS8Erz
+ bKnhpuqd3tL4D6IHMIrgu881zTbmk0Iyl7DME/WYZzgJUIcRUagoDrMbraYoy+t1Ltq8XODpUKe
+ 80sXNPP23qfyuS8+mc/5ZOXwabMUfspeV+X1ZfJbZ5H4IsyaRq2ywlu48cFjhabdjPXZZAGvPKU
+ dl1tbb3/vFDgAISiVgCxWc83WAeytpriTk/+B7v+zZWg==
+X-Forward-Email-ID: 68bfe832381b9a7fa9093c07
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 149.28.215.223
+X-Forward-Email-Version: 1.2.14
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <baaf6f27-aac1-4567-b69f-84945de45a44@kwiboo.se>
+Date: Tue, 9 Sep 2025 10:41:15 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,106 +58,220 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/14] dt-bindings: display/msm: dp-controller: Add
- sm6150
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Rob Clark <robin.clark@oss.qualcomm.com>,
-        Dmitry Baryshkov <lumag@kernel.org>,
-        Abhinav Kumar
- <abhinav.kumar@linux.dev>,
-        Jessica Zhang <jessica.zhang@oss.qualcomm.com>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, fange.zhang@oss.qualcomm.com,
-        yongxing.mou@oss.qualcomm.com, tingwei.zhang@oss.qualcomm.com,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>, quic_lliu6@quicinc.com
-References: <20250820-add-displayport-support-for-qcs615-platform-v3-0-a43bd25ec39c@oss.qualcomm.com>
- <20250820-add-displayport-support-for-qcs615-platform-v3-1-a43bd25ec39c@oss.qualcomm.com>
- <xurpc3mk5kksx7lfpsdqgasov5gc4dpsmz6iv2hjhsp5tewbue@dvrupbjzgxle>
-From: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
-In-Reply-To: <xurpc3mk5kksx7lfpsdqgasov5gc4dpsmz6iv2hjhsp5tewbue@dvrupbjzgxle>
+Subject: Re: [PATCH v3 2/7] media: rkvdec: Add variants support
+To: Detlev Casanova <detlev.casanova@collabora.com>
+Cc: Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Heiko Stuebner
+ <heiko@sntech.de>, Alex Bee <knaerzche@gmail.com>,
+ Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+ linux-media@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+References: <20250905161942.3759717-1-jonas@kwiboo.se>
+ <20250905161942.3759717-3-jonas@kwiboo.se>
+ <c05ea992-b0d8-4ea4-8a11-660b9cae4820@collabora.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <c05ea992-b0d8-4ea4-8a11-660b9cae4820@collabora.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Authority-Analysis: v=2.4 cv=Yv8PR5YX c=1 sm=1 tr=0 ts=68bfe7cd cx=c_pps
- a=0uOsjrqzRL749jD1oC5vDA==:117 a=nuhDOHQX5FNHPW3J6Bj6AA==:17
- a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=EUspDBNiAAAA:8 a=tCOpKogST-nIjDDcSvwA:9
- a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=mQ_c8vxmzFEMiUWkPHU9:22
-X-Proofpoint-GUID: QWdDxPlRK7ThSEUdbtiQa_YlZineKvtc
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA2MDAxOCBTYWx0ZWRfX8bWjypSCupn9
- zjeTma3j/Ms9JzL+fNGt7wGl1QrO893W/uR4l4b53L8ue319o6RcIq3ydk16rgRKfTJoGV7adHe
- vG1wfz8Ri91LAQZlrS0FLNFxjxeENWhP4U4OTelQIH3uRJMKq8UVBQaBWVP401mhZIF4ZCr+WzQ
- sTDyz08qZWU0bno83A8t3yEN1hMPsDibRstTsGY8rqkXFTMqgJSYxVlTkkvjDHAiWUL7+9lazQo
- AdOiIm7PONefdoU1lezx4YoeCQNSWPWO1AFA6xn/87+IyB7ext84Pb4pEwHgnSAQn8wtQAfLwgq
- 3SQT6vULGRIWiA4Ajpw3dvMvM7gxb6Oe86MR8sgTOCpTpnZ0nuHfZtl53Z/bI0ocTgcfrYvakWE
- VwtFZ0HG
-X-Proofpoint-ORIG-GUID: QWdDxPlRK7ThSEUdbtiQa_YlZineKvtc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
- definitions=2025-09-08_06,2025-09-08_02,2025-03-28_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- bulkscore=0 malwarescore=0 suspectscore=0 phishscore=0 clxscore=1015
- spamscore=0 priorityscore=1501 impostorscore=0 adultscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.19.0-2507300000 definitions=main-2509060018
+Content-Transfer-Encoding: 7bit
 
+Hi Detlev,
 
-On 9/4/2025 8:34 AM, Dmitry Baryshkov wrote:
-> On Wed, Aug 20, 2025 at 05:34:43PM +0800, Xiangxu Yin wrote:
->> Add DisplayPort controller for Qualcomm SM6150 SoC.
->> While SM6150 currently shares the same configuration as SC7180,
->> its hardware capabilities differ. Explicitly listing it ensures clarity
->> and avoids potential issues if SC7180 support evolves in the future.
+On 9/8/2025 8:32 PM, Detlev Casanova wrote:
+> Hi Jonas,
+> 
+> On 9/5/25 12:19, Jonas Karlman wrote:
+>> From: Alex Bee <knaerzche@gmail.com>
 >>
->> Signed-off-by: Xiangxu Yin <xiangxu.yin@oss.qualcomm.com>
+>> Different versions of the Rockchip VDEC IP exists and one way they can
+>> differ is what decoding formats are supported.
+>>
+>> Add a variant implementation in order to support flagging different
+>> capabilities.
+>>
+>> Signed-off-by: Alex Bee <knaerzche@gmail.com>
+>> Reviewed-by: Nicolas Dufresne <nicolas.dufresne@collabora.com>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
 >> ---
->>  Documentation/devicetree/bindings/display/msm/dp-controller.yaml | 1 +
->>  1 file changed, 1 insertion(+)
+>> Changes in v3:
+>> - Use a reference to rkvdec_variant
+>> - Add num_regs field
+> 
+> Why are you adding this field ? I don't see it being used in a later patch.
+
+Correct, this was briefly mentioned in the cover letter change log for v3:
+
+  Add num_regs field to rkvdec_variant, currently not used for anything
+
+This addition was mostly to make us aware that there are different
+number of swregs for the different variants of "rkvdev1".
+
+> 
+> Would that be useful for writing the right amount of registers later 
+> when switching to structs and memcpy ?
+
+Correct, to my knowledge there are 3 different register configurations
+for "rkvdec1", all are mostly extended with more registers at the end.
+
+  68 (rk3288) -> 78 (rk3399) -> 109 (rk3328)
+
+Currently there are writel() that are blindly written to regs >68 and
+>78 regardless of variant. If we are to move to use io memcpy we should
+probably ensure to write to the regs that exists for each variant.
+
+> 
+> I haven't checked how different the register maps are between those 
+> different variants.
+
+As mentioned above they mostly differ at the end (more swregs), or use
+additional previously unused bits of existing swregs. E.g. rk3328 has
+sw_wr_ddr_align_en, sw_scl_down_en and sw_allow_not_wr_unref_bframe
+added to swreg1.
+
+The added num_regs can be dropped or replaced with proper structs (or
+something different) if you think that is a better way to signal how the
+variants regs differs.
+
+Regards,
+Jonas
+
+> 
+>> - Collect r-b tag
 >>
->> diff --git a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> index 9923b065323bbab99de5079b674a0317f3074373..996d0132e084d401db85014a1a4e445d00d62ed8 100644
->> --- a/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/dp-controller.yaml
->> @@ -27,6 +27,7 @@ properties:
->>            - qcom,sc8280xp-dp
->>            - qcom,sc8280xp-edp
->>            - qcom,sdm845-dp
->> +          - qcom,sm6150-dp
-> The DP MST bindings were A-b'ed and R-b'ed by Rob, so I picked them up
-> into msm-next-lumag. Please rebase your patchset on top of it and
-> resend. At this point I'm interested in DP bindings and DP driver
-> patches, the PHY part can come up separately.
->
-> As for the compatibilities, I think DP on SM6150 should be compatible
-> with either DP on SDM845 or DP on SM8350. Please choose one which suits
-> better.
-
-
-Sure, I’ll split out the DP binding and controller compatible parts into a 
-separate patch series.
-
-SDM845 seems not support wide_bus, while SM8350 looks closer to SM6150.
-But I noticed SM8350 is still configured as SC7180 under dp_display in
-msm-next-lumag’s top, so this change will mainly about the binding, right?
-
-
->>            - qcom,sm8350-dp
->>            - qcom,sm8650-dp
->>        - items:
+>> Changes in v2:
+>> - No change
+>> ---
+>>   .../media/platform/rockchip/rkvdec/rkvdec.c   | 22 ++++++++++++++++++-
+>>   .../media/platform/rockchip/rkvdec/rkvdec.h   | 11 ++++++++++
+>>   2 files changed, 32 insertions(+), 1 deletion(-)
 >>
->> -- 
->> 2.34.1
->>
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.c b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> index c15fc238d6af..daf6d9ab2d1d 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.c
+>> @@ -14,6 +14,7 @@
+>>   #include <linux/iommu.h>
+>>   #include <linux/module.h>
+>>   #include <linux/of.h>
+>> +#include <linux/of_device.h>
+>>   #include <linux/platform_device.h>
+>>   #include <linux/pm.h>
+>>   #include <linux/pm_runtime.h>
+>> @@ -327,6 +328,7 @@ static const struct rkvdec_coded_fmt_desc rkvdec_coded_fmts[] = {
+>>   		.ops = &rkvdec_hevc_fmt_ops,
+>>   		.num_decoded_fmts = ARRAY_SIZE(rkvdec_hevc_decoded_fmts),
+>>   		.decoded_fmts = rkvdec_hevc_decoded_fmts,
+>> +		.capability = RKVDEC_CAPABILITY_HEVC,
+>>   	},
+>>   	{
+>>   		.fourcc = V4L2_PIX_FMT_H264_SLICE,
+>> @@ -343,6 +345,7 @@ static const struct rkvdec_coded_fmt_desc rkvdec_coded_fmts[] = {
+>>   		.num_decoded_fmts = ARRAY_SIZE(rkvdec_h264_decoded_fmts),
+>>   		.decoded_fmts = rkvdec_h264_decoded_fmts,
+>>   		.subsystem_flags = VB2_V4L2_FL_SUPPORTS_M2M_HOLD_CAPTURE_BUF,
+>> +		.capability = RKVDEC_CAPABILITY_H264,
+>>   	},
+>>   	{
+>>   		.fourcc = V4L2_PIX_FMT_VP9_FRAME,
+>> @@ -358,6 +361,7 @@ static const struct rkvdec_coded_fmt_desc rkvdec_coded_fmts[] = {
+>>   		.ops = &rkvdec_vp9_fmt_ops,
+>>   		.num_decoded_fmts = ARRAY_SIZE(rkvdec_vp9_decoded_fmts),
+>>   		.decoded_fmts = rkvdec_vp9_decoded_fmts,
+>> +		.capability = RKVDEC_CAPABILITY_VP9,
+>>   	}
+>>   };
+>>   
+>> @@ -1186,8 +1190,18 @@ static void rkvdec_watchdog_func(struct work_struct *work)
+>>   	}
+>>   }
+>>   
+>> +static const struct rkvdec_variant rk3399_rkvdec_variant = {
+>> +	.num_regs = 78,
+>> +	.capabilities = RKVDEC_CAPABILITY_HEVC |
+>> +			RKVDEC_CAPABILITY_H264 |
+>> +			RKVDEC_CAPABILITY_VP9,
+>> +};
+>> +
+>>   static const struct of_device_id of_rkvdec_match[] = {
+>> -	{ .compatible = "rockchip,rk3399-vdec" },
+>> +	{
+>> +		.compatible = "rockchip,rk3399-vdec",
+>> +		.data = &rk3399_rkvdec_variant,
+>> +	},
+>>   	{ /* sentinel */ }
+>>   };
+>>   MODULE_DEVICE_TABLE(of, of_rkvdec_match);
+>> @@ -1198,16 +1212,22 @@ static const char * const rkvdec_clk_names[] = {
+>>   
+>>   static int rkvdec_probe(struct platform_device *pdev)
+>>   {
+>> +	const struct rkvdec_variant *variant;
+>>   	struct rkvdec_dev *rkvdec;
+>>   	unsigned int i;
+>>   	int ret, irq;
+>>   
+>> +	variant = of_device_get_match_data(&pdev->dev);
+>> +	if (!variant)
+>> +		return -EINVAL;
+>> +
+>>   	rkvdec = devm_kzalloc(&pdev->dev, sizeof(*rkvdec), GFP_KERNEL);
+>>   	if (!rkvdec)
+>>   		return -ENOMEM;
+>>   
+>>   	platform_set_drvdata(pdev, rkvdec);
+>>   	rkvdec->dev = &pdev->dev;
+>> +	rkvdec->variant = variant;
+>>   	mutex_init(&rkvdec->vdev_lock);
+>>   	INIT_DELAYED_WORK(&rkvdec->watchdog_work, rkvdec_watchdog_func);
+>>   
+>> diff --git a/drivers/media/platform/rockchip/rkvdec/rkvdec.h b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+>> index 209dd79ce9bd..c47457c954e5 100644
+>> --- a/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+>> +++ b/drivers/media/platform/rockchip/rkvdec/rkvdec.h
+>> @@ -22,6 +22,10 @@
+>>   #include <media/videobuf2-core.h>
+>>   #include <media/videobuf2-dma-contig.h>
+>>   
+>> +#define RKVDEC_CAPABILITY_HEVC		BIT(0)
+>> +#define RKVDEC_CAPABILITY_H264		BIT(1)
+>> +#define RKVDEC_CAPABILITY_VP9		BIT(2)
+>> +
+>>   struct rkvdec_ctx;
+>>   
+>>   struct rkvdec_ctrl_desc {
+>> @@ -63,6 +67,11 @@ vb2_to_rkvdec_decoded_buf(struct vb2_buffer *buf)
+>>   			    base.vb.vb2_buf);
+>>   }
+>>   
+>> +struct rkvdec_variant {
+>> +	unsigned int num_regs;
+>> +	unsigned int capabilities;
+>> +};
+>> +
+>>   struct rkvdec_coded_fmt_ops {
+>>   	int (*adjust_fmt)(struct rkvdec_ctx *ctx,
+>>   			  struct v4l2_format *f);
+>> @@ -98,6 +107,7 @@ struct rkvdec_coded_fmt_desc {
+>>   	unsigned int num_decoded_fmts;
+>>   	const struct rkvdec_decoded_fmt_desc *decoded_fmts;
+>>   	u32 subsystem_flags;
+>> +	unsigned int capability;
+>>   };
+>>   
+>>   struct rkvdec_dev {
+>> @@ -111,6 +121,7 @@ struct rkvdec_dev {
+>>   	struct mutex vdev_lock; /* serializes ioctls */
+>>   	struct delayed_work watchdog_work;
+>>   	struct iommu_domain *empty_domain;
+>> +	const struct rkvdec_variant *variant;
+>>   };
+>>   
+>>   struct rkvdec_ctx {
+> 
+> Regards,
+> 
+> Detlev
+> 
+
 
