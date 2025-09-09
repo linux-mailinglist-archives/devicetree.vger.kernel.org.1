@@ -1,149 +1,157 @@
-Return-Path: <devicetree+bounces-215037-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88DB9B501D5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:47:29 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 607F5B501C5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 17:46:19 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E7EE8189A81A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:47:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EC23717F152
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 15:46:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CD74263F49;
-	Tue,  9 Sep 2025 15:46:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9AFE278761;
+	Tue,  9 Sep 2025 15:46:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b="rUgCjrMF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lDnnIUAO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from linux.microsoft.com (linux.microsoft.com [13.77.154.182])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F39BF32CF95
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 15:46:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=13.77.154.182
+Received: from mail-pl1-f169.google.com (mail-pl1-f169.google.com [209.85.214.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5CD274B29
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 15:46:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.169
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757432777; cv=none; b=fhg/cTJbr37YhmNHGZLrrhFjdNIZcNTtl/iLDNsT4qNwOFxcO/T+QWb9YKxQZoDYdPb8bHV1BJsxFKmgakM5mMloiZs8iD320Uyyr/0KtlwfiF8aJIm/ZhZQlMShOHgyo2jNTkQchq4iL0Y7DFrf7UNIbVWZNri/Zca9qa/NmCk=
+	t=1757432763; cv=none; b=sUilzWROI5M/21eYyZaEngCO7VpRFhOlEHbHtKKpSmFMbo2Ew+J0qA1m2K0s3qo+kkaaxPjeIGwCHH8PAUhgE8Og355GsIoKVo4jXwXCRWA18RLJoe9T12oIthTpzrvOZUX3CvxtwPBYBpqtnjFpxrZhas3bpSj+JRZl4Cl52iM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757432777; c=relaxed/simple;
-	bh=jNxhQkc8hdtX4Jxr3ptiuzqe4gtZW9tZDz33fXOfPPw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=rzyicJ/ssdl3hSynRPnk9dmlaPTCZj8d5tCKF+cygk0BtuCx023/j7ivG8tz9j0VVGpmtJ6jGamEKMnnr/790+dL+m46fv/efNTH4z3cuyweClFPQZPTJnIUsbaLtOUScEfr6PYNFNn45S/iaUkVnMNc80CjGYGrZi+De8Bd2uc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com; spf=pass smtp.mailfrom=linux.microsoft.com; dkim=pass (1024-bit key) header.d=linux.microsoft.com header.i=@linux.microsoft.com header.b=rUgCjrMF; arc=none smtp.client-ip=13.77.154.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.microsoft.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.microsoft.com
-Received: from thinkpad-p16sg1.corp.microsoft.com (unknown [20.236.11.102])
-	by linux.microsoft.com (Postfix) with ESMTPSA id CB25E211AA0F;
-	Tue,  9 Sep 2025 08:46:07 -0700 (PDT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 linux.microsoft.com CB25E211AA0F
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.microsoft.com;
-	s=default; t=1757432768;
-	bh=jtzDzkUv14rqdip4Y1gi77GlegBrcKG8mB/h5fAG9DI=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=rUgCjrMF9QQlMdbYFk8S6HEJ9YMMidqyd1MpKeSq2t53CdTLY9CXIIBtxDUa0nxIL
-	 N0FwYY9UQxX8NllwXScpVYsyfL6NneVprceN7kbS9/DpmKZHZdeozj0DGUGpWhiMcN
-	 dF1aNlaRRlwpqflEAX2VO5aAKQsBjgEBOuW7Nsgg=
-From: Shyam Saini <shyamsaini@linux.microsoft.com>
-To: thierry.reding@gmail.com,
-	robin.murphy@arm.com,
-	robh@kernel.org,
-	joro@8bytes.org,
-	jgg@ziepe.ca
-Cc: iommu@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	virtualization@lists.linux.dev,
-	will@kernel.org,
-	jacob.pan@linux.microsoft.com,
-	eric.auger@redhat.com,
-	code@tyhicks.com,
-	eahariha@linux.microsoft.com,
-	vijayb@linux.microsoft.com,
-	bboscaccy@linux.microsoft.com,
-	saravanak@google.com,
-	krzk+dt@kernel.org,
-	conor+dt@kernel.org,
-	lizhi.hou@amd.com,
-	clement.leger@bootlin.com
-Subject: [PATCH v4 1/4] arm-smmu: move MSI_IOVA macro definitions
-Date: Tue,  9 Sep 2025 08:45:57 -0700
-Message-Id: <20250909154600.910110-2-shyamsaini@linux.microsoft.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
-References: <20250909154600.910110-1-shyamsaini@linux.microsoft.com>
+	s=arc-20240116; t=1757432763; c=relaxed/simple;
+	bh=eFTweerjZKoxxZ9uYEQWOOFH2mTOPUrpeBxfdknONn0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VyhYYu6Z49SYjWy0FLoTFOOczUm/MTymwt3il+DBja00HoWO6ytWFhA/bI47xxIw6eGOKQIOXbJIJdUtTscuU1+D5daZkrGJPsA41M9N3Yy9j+yNP/lds5Dr6CXwFLMzuP2uNDdvTdeCWdNSFgZU8es7bfmaoYbXcjgf8dvH/nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lDnnIUAO; arc=none smtp.client-ip=209.85.214.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f169.google.com with SMTP id d9443c01a7336-24cd340377dso36629895ad.1
+        for <devicetree@vger.kernel.org>; Tue, 09 Sep 2025 08:46:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1757432761; x=1758037561; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:from:to:cc:subject:date:message-id:reply-to;
+        bh=uNQdE5yOZswVE6LCOBdtsDcL2XOY1LZAHNkE5x3LHnI=;
+        b=lDnnIUAOtFgMexvNa+Ivr5YnQets4hc5S31jsEvw6+cEA5R2DNLzm9CfX/kGJk4kj6
+         LU6idXKFRy1wnNX4nQrmDJoOdBAy9Sn6RYi03lrWSJRqv15cODL6rtLXZYiItjEPCgft
+         g4d86WvO9foxPyddhqczIgbvevvxls6HmIjysXDuPZF4UuLYekJwUKjKK08LJ37sKD7g
+         Lj6CbqTGiGhpwkAdNQgyb8QYF56O79fWUIrix2W5StybQuKEmhlcwSX0rORNuFftWSPx
+         gQr+lIt9wi7vzbd7ZmPppyYyqzxIHbBWvlO911Hc0MSLvDry25GUkROuE2pHi9hcujYO
+         rPdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1757432761; x=1758037561;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:sender:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uNQdE5yOZswVE6LCOBdtsDcL2XOY1LZAHNkE5x3LHnI=;
+        b=fz1T7oOwkYGkzK7JeOPw4egcQa6xW1KttK01tVQqUPT9h1LHFTrycZx9tcaPZO1/m9
+         dscOAsWnAi+TX6UzNfzSI2qyd+peaaXTuHzMKhzbhdMf7RTeuHj6UMUXgVbuuNCVMhw+
+         5iaQ49NtMEj9/VopS5CFz6Y9u8D2I+Qqi7dH8qCOsEWquHX67c/XM1AlCTLg/stODArq
+         rhfzMJU7lTFvT0mxD+2qbHiDlsyQaL+IOarlKsjdf6A0agi+VEXEgzK1LllZAPR/cXdp
+         dJ5B2TOcf9wIYRevGZpwEh6C5ZkDMrqpgWb39gY2flYljMW9hVhhN2/H8SXTepUdpuhV
+         iMUQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGkTKT8U7XkQV/iJlVQIDg/jzb67Y+FZwoPfrOBVLH0p5lZqEzZ9+SZPGXL5TB65VqCvP4ckC4ul77@vger.kernel.org
+X-Gm-Message-State: AOJu0YzOeYeDSgwxFLwwzFid4P1qJdJAPQdFfg9TbQf6nNQp8kRaeWUg
+	Pz5unGqk0nTSwkGQsDohj2Ov8vPxY/2n7cvAP6H0GD9Q5Z9Dx6QDvp6q
+X-Gm-Gg: ASbGncuhfVfVeYBV/bM/NvxNr4FzR8bAJOjedtg+3ueFAfdaEkNJmgoZcgh9U5zuFA0
+	nJw+HK1n9xcFiguVUd9Ueb37YX0XMxH9yz7O1wvATaABsZ9TCO3nSLab6HEWFFyE3zGGCX9dXPj
+	l6U6Mv57mT1cfClotThQqY5kt4FdWzZ7pqYz6RmmsckWhOSzsL2KjmMbJWPXn3hbAtbo0eUwply
+	4AfGrVuy7QM4s9aITZYfoYliFJpixo3AB/Iewnf0GNDEE2OjyHPbdhWFXeX0oGF3aTKQRmXc4xy
+	GUCLF3qP9k5vpzoJGNEr/Z6/j7quX0fRng2CJtpjFSQaw52JEIKKVCvhqLTZVwi/MtPLL+RoXk0
+	1P6D7F97kQMLvmNYPohU298nFPwhHCCGYCPyFjmZ/fz8OGNRaBSR8sFtGdPx8OLHlyF3zW9ZsBF
+	JRN6qoWg==
+X-Google-Smtp-Source: AGHT+IHEDLcvBUxgy4It5qzR9ySfj35Jxho02ojFfBjGPyU0POXrSQw6ivP4uGSFnQuh/rPMRMmzJw==
+X-Received: by 2002:a17:902:d2c2:b0:24d:3ae4:1175 with SMTP id d9443c01a7336-2516c895b06mr197733895ad.5.1757432761326;
+        Tue, 09 Sep 2025 08:46:01 -0700 (PDT)
+Received: from ?IPV6:2600:1700:e321:62f0:da43:aeff:fecc:bfd5? ([2600:1700:e321:62f0:da43:aeff:fecc:bfd5])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-25a2ab0d88asm1270235ad.111.2025.09.09.08.45.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 09 Sep 2025 08:46:00 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Message-ID: <f03fead0-39c4-4d06-8934-bbc388d614fc@roeck-us.net>
+Date: Tue, 9 Sep 2025 08:45:58 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] dt-bindings: watchdog: Convert nuvoton,npcm-wdt to DT
+ schema
+To: "Rob Herring (Arm)" <robh@kernel.org>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Joel Stanley <joel@jms.id.au>
+Cc: openbmc@lists.ozlabs.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20250909142201.3209482-1-robh@kernel.org>
+Content-Language: en-US
+From: Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ np3900V20aS7eD9K8GTU0TGC1pyz6IVJwIE=
+In-Reply-To: <20250909142201.3209482-1-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-MSI_IOVA* are common among different iommu/smu drivers,
-so move them to common iommu.h header file.
+On 9/9/25 07:21, Rob Herring (Arm) wrote:
+> Convert the Nuvoton watchdog binding to DT schema format. It's a
+> straight-forward conversion.
+> 
+> Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
 
-Suggested-by: Jacob Pan <jacob.pan@linux.microsoft.com>
-Signed-off-by: Shyam Saini <shyamsaini@linux.microsoft.com>
----
- drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h | 3 ---
- drivers/iommu/arm/arm-smmu/arm-smmu.c       | 3 ---
- drivers/iommu/virtio-iommu.c                | 2 --
- include/linux/iommu.h                       | 3 +++
- 4 files changed, 3 insertions(+), 8 deletions(-)
-
-diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index ae23aacc38402..16f5856b4c0e2 100644
---- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-+++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-@@ -505,9 +505,6 @@ static inline unsigned int arm_smmu_cdtab_l2_idx(unsigned int ssid)
- #define ARM_SMMU_POLL_TIMEOUT_US	1000000 /* 1s! */
- #define ARM_SMMU_POLL_SPIN_COUNT	10
- 
--#define MSI_IOVA_BASE			0x8000000
--#define MSI_IOVA_LENGTH			0x100000
--
- enum pri_resp {
- 	PRI_RESP_DENY = 0,
- 	PRI_RESP_FAIL = 1,
-diff --git a/drivers/iommu/arm/arm-smmu/arm-smmu.c b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-index 4ced4b5bee4df..4a07650911991 100644
---- a/drivers/iommu/arm/arm-smmu/arm-smmu.c
-+++ b/drivers/iommu/arm/arm-smmu/arm-smmu.c
-@@ -50,9 +50,6 @@
-  */
- #define QCOM_DUMMY_VAL -1
- 
--#define MSI_IOVA_BASE			0x8000000
--#define MSI_IOVA_LENGTH			0x100000
--
- static int force_stage;
- module_param(force_stage, int, S_IRUGO);
- MODULE_PARM_DESC(force_stage,
-diff --git a/drivers/iommu/virtio-iommu.c b/drivers/iommu/virtio-iommu.c
-index b39d6f134ab28..f3d830656cf29 100644
---- a/drivers/iommu/virtio-iommu.c
-+++ b/drivers/iommu/virtio-iommu.c
-@@ -24,8 +24,6 @@
- 
- #include "dma-iommu.h"
- 
--#define MSI_IOVA_BASE			0x8000000
--#define MSI_IOVA_LENGTH			0x100000
- 
- #define VIOMMU_REQUEST_VQ		0
- #define VIOMMU_EVENT_VQ			1
-diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-index c30d12e16473d..09a35af5a545d 100644
---- a/include/linux/iommu.h
-+++ b/include/linux/iommu.h
-@@ -1554,6 +1554,9 @@ static inline void iommu_debugfs_setup(void) {}
- #endif
- 
- #ifdef CONFIG_IOMMU_DMA
-+#define MSI_IOVA_BASE        0x8000000
-+#define MSI_IOVA_LENGTH      0x100000
-+
- int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base);
- #else /* CONFIG_IOMMU_DMA */
- static inline int iommu_get_msi_cookie(struct iommu_domain *domain, dma_addr_t base)
--- 
-2.34.1
+Acked-by: Guenter Roeck <linux@roeck-us.net>
 
 
