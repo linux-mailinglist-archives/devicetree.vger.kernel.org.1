@@ -1,87 +1,72 @@
-Return-Path: <devicetree+bounces-214817-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214818-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98F2FB4A944
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:03:15 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D7B07B4A956
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 12:07:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2DB6C7A0732
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:01:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0773F1891DEB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 10:07:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B1173164CA;
-	Tue,  9 Sep 2025 10:03:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="lpZ8IkwH"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56FB62DD5F6;
+	Tue,  9 Sep 2025 10:07:11 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CF228C03E;
-	Tue,  9 Sep 2025 10:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.16
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709D82D46BC;
+	Tue,  9 Sep 2025 10:07:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757412189; cv=none; b=V2UfMhcCfi/P0bvwkOKLQQRdZhU6LP8byaGhwhAiO/KKz1A0GrbuRVE8io0qTNrlxIz/eNDCMTWsLzuhqSYGfS8M+MRPMY+X2sZDHManKkpJTo80ywb/hUPKBTd2rwKTsAfp7ivSlMg6O9mq54VcN5INKDa8OH/DOdc9pON8xV8=
+	t=1757412431; cv=none; b=L/ZqVJP1LV/GHub81gvfd3jRSleVAaI0MvVwLm3ziZjbEdeS4MowajtFKPjGUZpEyCCZJb2aJdZM4iPWUJbHgr/eryw6Jck/o8Q0vxENom6pRILYW43cuNyW+BYlO61f57fuGrjkhcFlZDhmJTRq+4hAJZkCEgTqbWKObQjOmDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757412189; c=relaxed/simple;
-	bh=buaBwp5Yv75D60lIF0FzrJYG01n3Ms/EaLejxbELWnU=;
+	s=arc-20240116; t=1757412431; c=relaxed/simple;
+	bh=/KbbwvQvwoDDtcfJnQaWn3NiqCRJWQONsBAd5RtWH88=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eSL1zmKISTvGw2TgFb1ZC+mlBeAHDH2C2o7YfkEHQMOnuK+XNbmlsi3P9EUMb9vg7Fd3i45i+oQjzpwyyjoReKqp2ANLKhKAwZHtFa55baYGjUQGTvKiCGTt7jKktGq6qrFFvmmEI98vVR7Wyk+YNADwvrrgVQFCM6S/d+O9Rfo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=lpZ8IkwH; arc=none smtp.client-ip=192.198.163.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757412188; x=1788948188;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=buaBwp5Yv75D60lIF0FzrJYG01n3Ms/EaLejxbELWnU=;
-  b=lpZ8IkwH/aqJhpyFWLI3v/JmBUMXDlZbsJnrr1lllsFYoNSeZ/4F/ueX
-   mf/0dFuJfgH0YDMTutQ5LO8HcwYEdrH5v7IK4yB1Q354zccP+bwjiGJPH
-   lbCWGNyTP5vMxqHXzCpe11wsXjOKcQZggjFCYwqxiI3c4RhWdPE3gM4F5
-   f04m3A+tRnYO3B8BleFSYwqVbCtYwZBPvSmO9GFMEgVM6gOWRmMwxIIGP
-   VIOKf/wOapBrD9yH+1c7M6BspAQx3eB8SzG2LQ+XDUAkoVP+f7ygC40Mc
-   aUHHssDUtQztHsD3o/FPs5U5Jc1a2qV9VliWne55MrI6aoxDenjUgQfEh
-   g==;
-X-CSE-ConnectionGUID: eeES2d8FQQma5S2gRJddIg==
-X-CSE-MsgGUID: PbbVW0aQSIeFdmT5GJhkIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11547"; a="47264685"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="47264685"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
-  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 03:03:07 -0700
-X-CSE-ConnectionGUID: CSYsodW6R+KHLu/MzD4Mog==
-X-CSE-MsgGUID: vbDkhzclQ7+yM2+ZtHM31Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="173837261"
-Received: from kuha.fi.intel.com ([10.237.72.152])
-  by fmviesa010.fm.intel.com with SMTP; 09 Sep 2025 03:03:01 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Tue, 09 Sep 2025 13:03:00 +0300
-Date: Tue, 9 Sep 2025 13:03:00 +0300
-From: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To: Sven Peter <sven@kernel.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Rob Herring <robh@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=WM7pl55cwm8HwDomgt/uHJ3xZiDJZzxDsPIj/l/C3TRd9/l+cgOI4GlwUkF90M9ltgCZ3ljvecLfxNkaNv38zd8ep5hikESsGI4zR9qKuLKndkNbO2m3sTjvS1H89q7knhhsjS1hVGp/++rBQnlIDXQ8phW3AopzjtN+7PRNQUs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E4797113E;
+	Tue,  9 Sep 2025 03:06:58 -0700 (PDT)
+Received: from e133380.arm.com (e133380.arm.com [10.1.197.68])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 36B533F66E;
+	Tue,  9 Sep 2025 03:07:01 -0700 (PDT)
+Date: Tue, 9 Sep 2025 11:06:52 +0100
+From: Dave Martin <Dave.Martin@arm.com>
+To: James Morse <james.morse@arm.com>
+Cc: linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+	D Scott Phillips OS <scott@os.amperecomputing.com>,
+	carl@os.amperecomputing.com, lcherian@marvell.com,
+	bobo.shaobowang@huawei.com, tan.shaopeng@fujitsu.com,
+	baolin.wang@linux.alibaba.com, Jamie Iles <quic_jiles@quicinc.com>,
+	Xin Hao <xhao@linux.alibaba.com>, peternewman@google.com,
+	dfustini@baylibre.com, amitsinght@marvell.com,
+	David Hildenbrand <david@redhat.com>,
+	Rex Nie <rex.nie@jaguarmicro.com>, Koba Ko <kobak@nvidia.com>,
+	Shanker Donthineni <sdonthineni@nvidia.com>, fenghuay@nvidia.com,
+	baisheng.gao@unisoc.com,
+	Jonathan Cameron <jonathan.cameron@huawei.com>,
+	Rob Herring <robh@kernel.org>, Rohit Mathew <rohit.mathew@arm.com>,
+	Rafael Wysocki <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Hanjun Guo <guohanjun@huawei.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Felipe Balbi <balbi@kernel.org>,
-	Janne Grunau <j@jannau.net>,
-	Alyssa Rosenzweig <alyssa@rosenzweig.io>,
-	Neal Gompa <neal@gompa.dev>, Vinod Koul <vkoul@kernel.org>,
-	Kishon Vijay Abraham I <kishon@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Philipp Zabel <p.zabel@pengutronix.de>, Frank Li <Frank.Li@nxp.com>,
-	linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, asahi@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-phy@lists.infradead.org,
-	Hector Martin <marcan@marcan.st>
-Subject: Re: [PATCH v2 14/22] usb: typec: tipd: Read data status in probe and
- cache its value
-Message-ID: <aL_7VOraIKMKkPwe@kuha.fi.intel.com>
-References: <20250906-atcphy-6-17-v2-0-52c348623ef6@kernel.org>
- <20250906-atcphy-6-17-v2-14-52c348623ef6@kernel.org>
- <aL_7Hklraq2ff_YA@kuha.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Danilo Krummrich <dakr@kernel.org>
+Subject: Re: [PATCH 04/33] ACPI / PPTT: Stop acpi_count_levels() expecting
+ callers to clear levels
+Message-ID: <aL/8PIcebYGoB/g6@e133380.arm.com>
+References: <20250822153048.2287-1-james.morse@arm.com>
+ <20250822153048.2287-5-james.morse@arm.com>
+ <aK7iyf/6iVOuVhTr@e133380.arm.com>
+ <1914b7f0-10e6-4cf4-ad53-5ae03c69964d@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -90,62 +75,77 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <aL_7Hklraq2ff_YA@kuha.fi.intel.com>
+In-Reply-To: <1914b7f0-10e6-4cf4-ad53-5ae03c69964d@arm.com>
 
-On Tue, Sep 09, 2025 at 01:02:13PM +0300, Heikki Krogerus wrote:
-> On Sat, Sep 06, 2025 at 03:43:27PM +0000, Sven Peter wrote:
-> > From: Hector Martin <marcan@marcan.st>
-> > 
-> > Just like for power status we also need to keep track of data status to
-> > be able to detect mode changes once we introduce de-bouncing for CD321x.
-> > Read it during probe and keep a cached copy of its value.
-> > 
-> > Signed-off-by: Hector Martin <marcan@marcan.st>
-> > Signed-off-by: Sven Peter <sven@kernel.org>
+Hi James,
 
-Reviewed-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
-
-> > ---
-> >  drivers/usb/typec/tipd/core.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/drivers/usb/typec/tipd/core.c b/drivers/usb/typec/tipd/core.c
-> > index e6e9730ee6dacd8c1271b1d52a02da49ff248d3e..b558fc5ecbc35a9dabbf33c444f38173740af7c3 100644
-> > --- a/drivers/usb/typec/tipd/core.c
-> > +++ b/drivers/usb/typec/tipd/core.c
-> > @@ -176,6 +176,7 @@ struct tps6598x {
-> >  
-> >  	int wakeup;
-> >  	u32 status; /* status reg */
-> > +	u32 data_status;
-> >  	u16 pwr_status;
-> >  	struct delayed_work	wq_poll;
-> >  
-> > @@ -538,6 +539,7 @@ static bool tps6598x_read_data_status(struct tps6598x *tps)
-> >  		dev_err(tps->dev, "failed to read data status: %d\n", ret);
-> >  		return false;
-> >  	}
-> > +	tps->data_status = data_status;
-> >  
-> >  	if (tps->data->trace_data_status)
-> >  		tps->data->trace_data_status(data_status);
-> > @@ -1551,6 +1553,8 @@ static int tps6598x_probe(struct i2c_client *client)
-> >  	if (status & TPS_STATUS_PLUG_PRESENT) {
-> >  		if (!tps6598x_read_power_status(tps))
-> >  			goto err_unregister_port;
-> > +		if (!tps->data->read_data_status(tps))
-> > +			goto err_unregister_port;
-> >  		ret = tps6598x_connect(tps, status);
-> >  		if (ret)
-> >  			dev_err(&client->dev, "failed to register partner\n");
-> > 
-> > -- 
-> > 2.34.1
-> > 
+On Thu, Aug 28, 2025 at 04:57:15PM +0100, James Morse wrote:
+> Hi Dave,
 > 
-> -- 
-> heikki
+> On 27/08/2025 11:49, Dave Martin wrote:
+> > On Fri, Aug 22, 2025 at 03:29:45PM +0000, James Morse wrote:
+> >> acpi_count_levels() passes the number of levels back via a pointer argument.
+> >> It also passes this to acpi_find_cache_level() as the starting_level, and
+> >> preserves this value as it walks up the cpu_node tree counting the levels.
+> >>
+> >> This means the caller must initialise 'levels' due to acpi_count_levels()
+> >> internals. The only caller acpi_get_cache_info() happens to have already
+> >> initialised levels to zero, which acpi_count_levels() depends on to get the
+> >> correct result.
+> >>
+> >> Two results are passed back from acpi_count_levels(), unlike split_levels,
+> >> levels is not optional.
+> >>
+> >> Split these two results up. The mandatory 'levels' is always returned,
+> >> which hides the internal details from the caller, and avoids having
+> >> duplicated initialisation in all callers. split_levels remains an
+> >> optional argument passed back.
+> > 
+> > Nit: I found all this a bit hard to follow.
+> > 
+> > This seems to boil down to:
+> > 
+> > --8<--
+> > 
+> > In acpi_count_levels(), the initial value of *levels passed by the
+> > caller is really an implementation detail of acpi_count_levels(), so it
+> > is unreasonable to expect the callers of this function to know what to
+> > pass in for this parameter.  The only sensible initial value is 0,
+> > which is what the only upstream caller (acpi_get_cache_info()) passes.
+> > 
+> > Use a local variable for the starting cache level in acpi_count_levels(),
+> > and pass the result back to the caller via the function return value.
+> > 
+> > Gid rid of the levels parameter, which has no remaining purpose.
+> > 
+> > Fix acpi_get_cache_info() to match.
+> > 
+> > -->8--
+> 
+> I've taken this instead,
 
--- 
-heikki
+OK
+
+[...]
+
+> >> @@ -731,7 +735,7 @@ int acpi_get_cache_info(unsigned int cpu, unsigned int *levels,
+> >>  	if (!cpu_node)
+> >>  		return -ENOENT;
+> >>  
+> >> -	acpi_count_levels(table, cpu_node, levels, split_levels);
+> >> +	*levels = acpi_count_levels(table, cpu_node, split_levels);
+> >>  
+> >>  	pr_debug("Cache Setup: last_level=%d split_levels=%d\n",
+> >>  		 *levels, split_levels ? *split_levels : -1);
+> > 
+> > Otherwise, looks reasonable to me.
+> > 
+> > (But see my comments on the next patches re whether we really need this.)
+> 
+> It was enough fun to debug that I'd like to save anyone else the trouble!
+
+Fair enough.
+
+Cheers
+---Dave
 
