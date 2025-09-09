@@ -1,108 +1,190 @@
-Return-Path: <devicetree+bounces-214998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87695B4FFB2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:41:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3440CB4FFFE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:49:06 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 411173683A4
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:41:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EA5345E3285
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6613034321F;
-	Tue,  9 Sep 2025 14:41:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034DB350840;
+	Tue,  9 Sep 2025 14:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b="G+TRLIk/"
+	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="PCwmCMC/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from smtp.forwardemail.net (smtp.forwardemail.net [121.127.44.73])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6828D322DBA;
-	Tue,  9 Sep 2025 14:41:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C58252512D8
+	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 14:48:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=121.127.44.73
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757428890; cv=none; b=at5PBucH/nvCAsqJgS6P6R3CkOufX+RPOU81cW+cxH0IoUoHytBTy8a2tLC0RFXuws0u+vzgr2pvcg0Ch67zxm1pPRJp3v0DUxxARG6MxLejEMt7mk5bcmtqKRBXnF+ELP7AzN3KIxu0aqgJwAvtTioXjdRfBtOmWCH6F/ABY9U=
+	t=1757429322; cv=none; b=f7QouEbU98SfonoE0tpSt55ZfCXZlIZvdhS4u8i+JZEUE851C+eRZmpZV8PR2pXk4ueUnLrCNA9B4OooR4b6IrXyRqvMuMnKRXKyk8dmcOp1mVWJYaPKQl+zOMoVuspGDa7jl3+UNAEhkzM50URs3fUuEnlOwY+JfGEl5p29/bw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757428890; c=relaxed/simple;
-	bh=d7Pz/yjrt/tNNpQPMW+9CxclgrWORNrhLXdA1kRna+A=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=HI7dYd76AMorPcFJU2XuFJUuYDCOXyb7eMWff+uXsuCa0IiEpBsmQz9BVM+4kykzPK8RMKYxVkVRtlJXSamgjWTFOc959znZn4JwGAofYzpLF/IbX+KVjU/aQnE4UpgEUMHTX8fUIKSlhWtnKr3aDT6nQlqiuFlc86Z3q/Vi4kQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu; spf=pass smtp.mailfrom=lucaweiss.eu; dkim=pass (1024-bit key) header.d=lucaweiss.eu header.i=@lucaweiss.eu header.b=G+TRLIk/; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=lucaweiss.eu
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lucaweiss.eu
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lucaweiss.eu; s=s1;
-	t=1757428886; bh=d7Pz/yjrt/tNNpQPMW+9CxclgrWORNrhLXdA1kRna+A=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References;
-	b=G+TRLIk/nPV0lXA8LXXdLf0O+/zIfOnYlz9qkda0YylidJIm4TFtz2ziFg4079FMn
-	 W+51shb8OkjPZnW9l/VARK6xuTAzae1TiIqBhJh1t4XCcYCFxFSVAurDn1UXxJkUir
-	 714d8AVYEc/MzIzUiEpot6VJnWHxpyH8bLvmqv7k=
+	s=arc-20240116; t=1757429322; c=relaxed/simple;
+	bh=P7x9255MnfuiYafmjHNbXRip9GN7mHNwfnJnWg28lP8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fV3OKA9NDzydBzxwR3WhrzmAEGmQTCBurdgvdMmhPIv8it/cspaqbYVEjmbHWTeY0WArpi6L6XCwv7MNmH9y7tob5JobWTyLgY5SLv+7kw4a17sFKI4RYiTTOW2R4yUaCXvrfu3QENAAqE6CazFGBHYG0CBwXwJDLLRFyonOh4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=PCwmCMC/; arc=none smtp.client-ip=121.127.44.73
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
+ h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
+ Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
+ s=fe-e1b5cab7be; t=1757429315;
+ bh=n77eKdHmtRFhvCg5KGI+mU9uC0njog5zrjYXHjKe4bc=;
+ b=PCwmCMC/0U5vPcfCf2Hpk9ZcKRtETlcYpM33uzLOHF73clp9zNhNzEtzDB8T+UBgZMXxjWiP9
+ 7SQiHm/pWDAqPrzkInnTMx85DjwVIhxZEbsn0im5CW2bfxRwwohSaBaAF80hcYDXZ1paw3GfCiZ
+ ZkMfmunqCao8O7ZmxIXzmNzUJ7vm8Fi/YA6ErfN7OXFcEFcd2FPWq0aeu077b2+k7fpS6fld6YX
+ HdUlvO2F5D2qLLmHN/tZik96iavynIQu6KpKeYfwCtq2116wTnj6U8P2QJKohofOc6qtIG0hc3Q
+ bfTPkUmZV+/HPQFbnQwesoAaRhqO5h/TkXI7mIH+b7Sw==
+X-Forward-Email-ID: 68c03e3e13ca9ca995732310
+X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
+ 121.127.44.73
+X-Forward-Email-Version: 1.2.14
+X-Forward-Email-Website: https://forwardemail.net
+X-Complaints-To: abuse@forwardemail.net
+X-Report-Abuse: abuse@forwardemail.net
+X-Report-Abuse-To: abuse@forwardemail.net
+Message-ID: <7d3c3b29-f89f-4801-8fd7-d6d0645095af@kwiboo.se>
+Date: Tue, 9 Sep 2025 16:48:25 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Date: Tue, 09 Sep 2025 16:41:26 +0200
-From: Luca Weiss <luca@lucaweiss.eu>
-To: Krzysztof Kozlowski <krzk@kernel.org>, Dmitry Torokhov
- <dmitry.torokhov@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>, Courtney Cavin
- <courtney.cavin@sonymobile.com>, Vinod Koul <vkoul@kernel.org>, Bhushan Shah
- <bshah@kde.org>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
- linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: Add Radxa E24C
+To: FUKAUMI Naoki <naoki@radxa.com>
+Cc: Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
+ <conor+dt@kernel.org>, Yao Zi <ziyao@disroot.org>,
+ Chukun Pan <amadeus@jmu.edu.cn>, devicetree@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: input: pm8941-pwrkey: Document
- wakeup-source property
-In-Reply-To: <9e39f1b4-63b2-4c6a-8b31-6360be1952e6@kernel.org>
-References: <20250909-resin-wakeup-v1-0-46159940e02b@lucaweiss.eu>
- <20250909-resin-wakeup-v1-1-46159940e02b@lucaweiss.eu>
- <efb03993-0481-45ed-8f7e-8b65519a55cb@kernel.org>
- <phctwoxml7hscwcgaipl233lotnrkgcpe7rxvhm5syoiadu3lv@ibgeib4kjyhs>
- <9e39f1b4-63b2-4c6a-8b31-6360be1952e6@kernel.org>
-Message-ID: <dcdbc6424db6953dfc39fc05e0e050ab@lucaweiss.eu>
-X-Sender: luca@lucaweiss.eu
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+References: <20250727144409.327740-1-jonas@kwiboo.se>
+ <20250727144409.327740-4-jonas@kwiboo.se>
+ <B055BC95C67D129C+d7a2ff39-8367-48cf-8697-f12fd9f885a4@radxa.com>
+Content-Language: en-US
+From: Jonas Karlman <jonas@kwiboo.se>
+In-Reply-To: <B055BC95C67D129C+d7a2ff39-8367-48cf-8697-f12fd9f885a4@radxa.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 2025-09-09 16:33, Krzysztof Kozlowski wrote:
-> On 09/09/2025 16:08, Dmitry Torokhov wrote:
->>>>    compatible:
->>>>      enum:
->>>> @@ -36,6 +33,11 @@ properties:
->>>>             pin should be configured for pull up.
->>>>      $ref: /schemas/types.yaml#/definitions/flag
->>>> 
->>>> +  wakeup-source:
->>>> +    description: |
->>>> +           Button can wake-up the system. Only applicable for 
->>>> 'resin',
->>>> +           'pwrkey' always wakes the system by default.
->>> 
->>> 
->>> I'll fix existing code, so don't repeat that style.
->> 
->> If you ack I can reformat on my side to match the patch you just sent.
+On 9/9/2025 2:28 PM, FUKAUMI Naoki wrote:
+> Hi Jonas,
 > 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> On 7/27/25 23:44, Jonas Karlman wrote:
+>> The Radxa E24C is a compact, high-performance network computer
+>> developed by Radxa, based on the Rockchip RK3528A SoC.
+>>
+>> Add initial device tree for the Radxa E24C.
+>>
+>> Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
+>> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>> ---
+>> Schematics: https://dl.radxa.com/e/e24c/docs/radxa_e24c_v1200_schematic.pdf
+>> ---
+>>   arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+>>   .../boot/dts/rockchip/rk3528-radxa-e24c.dts   | 519 ++++++++++++++++++
+>>   2 files changed, 520 insertions(+)
+>>   create mode 100644 arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>>
+>> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+>> index 0662fcf00628..dc62fd5305be 100644
+>> --- a/arch/arm64/boot/dts/rockchip/Makefile
+>> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+>> @@ -92,6 +92,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399pro-rock-pi-n10.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-armsom-sige1.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-nanopi-zero2.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e20c.dtb
+>> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-radxa-e24c.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2a.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3528-rock-2f.dtb
+>>   dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3562-evb2-v10.dtb
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>> new file mode 100644
+>> index 000000000000..225f2b0c5339
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3528-radxa-e24c.dts
+>> @@ -0,0 +1,519 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include <dt-bindings/input/input.h>
+>> +#include <dt-bindings/leds/common.h>
+>> +#include "rk3528.dtsi"
+>> +
+>> +/ {
+>> +	model = "Radxa E24C";
+>> +	compatible = "radxa,e24c", "rockchip,rk3528";
+>> +
+>> +	aliases {
+>> +		ethernet0 = &gmac1;
+>> +		i2c0 = &i2c0;
+>> +		i2c1 = &i2c1;
+>> +		i2c5 = &i2c5;
+>> +		mmc0 = &sdhci;
+>> +		mmc1 = &sdmmc;
+>> +		rtc0 = &hym8563;
+>> +		rtc1 = &rk805;
+>> +		serial0 = &uart0;
+>> +	};
+>> +
+>> +	chosen {
+>> +		stdout-path = "serial0:1500000n8";
+>> +	};
+>> +
+>> +	adc-keys {
+>> +		compatible = "adc-keys";
+>> +		io-channels = <&saradc 0>;
+>> +		io-channel-names = "buttons";
+>> +		keyup-threshold-microvolt = <1800000>;
+>> +		poll-interval = <100>;
+>> +
+>> +		button-maskrom {
+>> +			label = "MASKROM";
+>> +			linux,code = <KEY_SETUP>;
+>> +			press-threshold-microvolt = <0>;
+>> +		};
+>> +	};
+>> +
+>> +	gpio-keys {
+>> +		compatible = "gpio-keys";
+>> +		pinctrl-names = "default";
+>> +		pinctrl-0 = <&gpio0_a0_user>;
+>> +
+>> +		button-user {
+>> +			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
+>> +			label = "USER";
+>> +			linux,code = <BTN_1>;
+> 
+> I prefer to assign BTN_0 to the 1st button :)
 
-Thanks for fixing that up Krzysztof! I noticed but didn't want to 
-deviate
-from the style just for this description. Of course better to fix the
-formatting in the first place.
+The E20C (and other RK boards) already use BTN_1 for user button, it
+only seem to be the recently added E54C that is using BTN_0.
 
-@Dmitry: Maybe give this patch some time (1-2 weeks?) to gather more 
-feedback,
-given the reasons outlined in the cover letter. Also on the driver 
-patch.
+For consistency I suggest we keep using BTN_1 for this user button and
+possible fixup E54C, if you want to use same button for all variants.
 
-Regards
-Luca
+Regards,
+Jonas
 
 > 
 > Best regards,
-> Krzysztof
+> 
+> --
+> FUKAUMI Naoki
+> Radxa Computer (Shenzhen) Co., Ltd.
+> 
+>> +			wakeup-source;
+>> +		};
+>> +	};
+
+[snip]
 
