@@ -1,138 +1,120 @@
-Return-Path: <devicetree+bounces-214605-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A54BB49DA5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 01:54:17 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E6E7B49DF5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 02:25:31 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4A0471B2730C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Sep 2025 23:54:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 451624E3542
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 00:25:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A88830DD30;
-	Mon,  8 Sep 2025 23:54:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="Vl/TitJ1"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 722991DB125;
+	Tue,  9 Sep 2025 00:25:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllvem-ot04.ext.ti.com (fllvem-ot04.ext.ti.com [198.47.19.246])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60AF61CAB3;
-	Mon,  8 Sep 2025 23:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.246
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 71F0F1D799D;
+	Tue,  9 Sep 2025 00:25:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757375652; cv=none; b=ZEz043fonwaMqUrQhFASGM4UctQ1InO5e87tmppMHwTpN9kHUi5uEggQNKD2B0+vrHWJJpyr7gjv4/Jd+72c0/B739Zgjhppb4cMShhvEDuP4+Wj/HR7MfnoAQjaycu88RK6lg0rEYCROh7KzUXt6vAJMvJmk0KHhMJIAi7lYBw=
+	t=1757377527; cv=none; b=eOIWhLGB3PbEy6pBTa+4rB6jGcFwVGEYX3Kcm0L/YEBB1UFElEEdefDXnoZLBYRnne5oXPj3HxnZ00lNJGdWW4mrOKYIpD8bJv/SUu7nZ0W+SQv9ZUpS4Bcra9jDh4mU2fhXC172F5E3pZUDHyQH81jwnL8X1XPGmxep05Zv19c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757375652; c=relaxed/simple;
-	bh=ly7CTMr4mIx5AaQeK4649clssh8IeOW+xSDP7sfrrgc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=mD5zf04vbo9tSO7adZwV0VReiwezr/FOITCbmUmKWCfPBTT33qLU8TZTdkgmKzs8hPp3q8vuvvgM7M3N8rUvufLV+xOYi1iKqF9MpfOo776V7J9KYxzh2OdDjib0H8Gh3q0JRDgJVBqwPdKbGbjtA/2CBNlWR8YZm0ZJK/e0ayw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=Vl/TitJ1; arc=none smtp.client-ip=198.47.19.246
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
-	by fllvem-ot04.ext.ti.com (8.15.2/8.15.2) with ESMTP id 588Nrwco157409;
-	Mon, 8 Sep 2025 18:53:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1757375638;
-	bh=FA0eYhlR2xlodyIPW1bPxXyYyCye7Q6E/s6/N3iUc0Q=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=Vl/TitJ1udI6uYa9KYx7mu/72yKTH3zGa6OSpbIxeYyxzm3fDe/X9XwYFObpZ0J2e
-	 rGVkOBs31rsCt2Kb/DugcBvGgl0VX147+MjAA/4uAKL36d3y4ENcZO2HAhVQlrgEPY
-	 ZzMlltj9CtczQd0UVbz0MAiDtXvWfrvHzL8ryiDw=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 588Nrw912743428
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
-	Mon, 8 Sep 2025 18:53:58 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Mon, 8
- Sep 2025 18:53:57 -0500
-Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
- Frontend Transport; Mon, 8 Sep 2025 18:53:57 -0500
-Received: from [10.247.30.162] (ula0226330.dhcp.ti.com [10.247.30.162])
-	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 588NrvkO1382580;
-	Mon, 8 Sep 2025 18:53:57 -0500
-Message-ID: <ce6f03fe-8d97-4146-964f-c2ba58a350c7@ti.com>
-Date: Mon, 8 Sep 2025 18:53:57 -0500
+	s=arc-20240116; t=1757377527; c=relaxed/simple;
+	bh=wYHaiOgv0c3CrrngmkGXy1RIZbf87Ynod0lCMxWdIZs=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=V8bcHC4t6j/y7iO7NbRvsTqNLtDq3RG0E/LPKC0Rmlrm4oKwbOlrL4FS371mcX/nrnLdwFg24twMHRplMKYBJfVD5CASji4o/HMGplxO3IT/AOdm87FrhICEOovpTiH8HDjZNQtq73KMxQbUMU5n6Ajeb6DjgvQTQ3VKC9W6Vf0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4225C1691;
+	Mon,  8 Sep 2025 17:25:16 -0700 (PDT)
+Received: from minigeek.lan (usa-sjc-mx-foss1.foss.arm.com [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id DBCBE3F66E;
+	Mon,  8 Sep 2025 17:25:22 -0700 (PDT)
+Date: Tue, 9 Sep 2025 01:24:22 +0100
+From: Andre Przywara <andre.przywara@arm.com>
+To: Aleksander Jan Bajkowski <olek2@wp.pl>
+Cc: robh@kernel.org, krzk+dt@kernel.org, conor+dt@kernel.org, wens@csie.org,
+ jernej.skrabec@gmail.com, samuel@sholland.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwiner: h5: OrangePi PC2: add ethernet
+ LEDs
+Message-ID: <20250909012422.43b755a4@minigeek.lan>
+In-Reply-To: <20250818163520.1004528-1-olek2@wp.pl>
+References: <20250818163520.1004528-1-olek2@wp.pl>
+Organization: Arm Ltd.
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.31; x86_64-slackware-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] arm64: dts: ti: k3-am62p/j722s: Remove HS400
- support from common
-To: Judith Mendez <jm@ti.com>, Nishanth Menon <nm@ti.com>
-CC: Moteen Shah <m-shah@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh@kernel.org>,
-        Krzysztof
- Kozlowski <krzk+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20250908235207.473628-1-jm@ti.com>
- <20250908235207.473628-2-jm@ti.com>
-Content-Language: en-US
-From: Andrew Davis <afd@ti.com>
-In-Reply-To: <20250908235207.473628-2-jm@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-On 9/8/25 6:52 PM, Judith Mendez wrote:
-> Since eMMC HS400 has been descoped for J722s due to errata i2478 [0]
-> and is supported for AM62Px device, remove eMMC HS400 support from
-> common-main.dtsi and include only in am62p-main.dtsi.
-> 
-> [0] https://www.ti.com/lit/pdf/sprz575
-> Signed-off-by: Judith Mendez <jm@ti.com>
+On Mon, 18 Aug 2025 18:35:13 +0200
+Aleksander Jan Bajkowski <olek2@wp.pl> wrote:
+
+> This patch adds support for Ethernet LEDs.
+
+So I tried this on my OPi-PC2, but I cannot influence the LEDs. I have
+CONFIG_LED_TRIGGER_PHY and CONFIG_LEDS_TRIGGER_NETDEV built in, and I
+see mdio_mux-0.2:01:amber:lan and mdio_mux-0.2:01:green:lan in
+/sys/class/leds, but anything I write into trigger does not seem to
+change the output: it always stays on the network functionality, I
+guess because it's still configured to the PHY hardware wired function?
+
+What am I missing?
+
+Cheers,
+Andre
+
+> Signed-off-by: Aleksander Jan Bajkowski <olek2@wp.pl>
 > ---
-
-Reviewed-by: Andrew Davis <afd@ti.com>
-
->   arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi | 3 ---
->   arch/arm64/boot/dts/ti/k3-am62p-main.dtsi              | 6 ++++++
->   2 files changed, 6 insertions(+), 3 deletions(-)
+>  .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 20
+> +++++++++++++++++++ 1 file changed, 20 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> index 4427b12058a6..0c05bcf1d776 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-j722s-common-main.dtsi
-> @@ -576,15 +576,12 @@ sdhci0: mmc@fa10000 {
->   		bus-width = <8>;
->   		mmc-ddr-1_8v;
->   		mmc-hs200-1_8v;
-> -		mmc-hs400-1_8v;
->   		ti,clkbuf-sel = <0x7>;
-> -		ti,strobe-sel = <0x77>;
->   		ti,trm-icp = <0x8>;
->   		ti,otap-del-sel-legacy = <0x1>;
->   		ti,otap-del-sel-mmc-hs = <0x1>;
->   		ti,otap-del-sel-ddr52 = <0x6>;
->   		ti,otap-del-sel-hs200 = <0x8>;
-> -		ti,otap-del-sel-hs400 = <0x5>;
->   		ti,itap-del-sel-legacy = <0x10>;
->   		ti,itap-del-sel-mmc-hs = <0xa>;
->   		ti,itap-del-sel-ddr52 = <0x3>;
-> diff --git a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> index 6aea9d3f134e..020bd121a6a3 100644
-> --- a/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-am62p-main.dtsi
-> @@ -74,3 +74,9 @@ &main_gpio1 {
->   	gpio-reserved-ranges = <32 10>;
->   	ti,ngpio = <52>;
->   };
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts
+> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts index
+> 0f29da7d51e6..7688f565ec9b 100644 ---
+> a/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts +++
+> b/arch/arm64/boot/dts/allwinner/sun50i-h5-orangepi-pc2.dts @@ -7,6
+> +7,7 @@ 
+>  #include <dt-bindings/gpio/gpio.h>
+>  #include <dt-bindings/input/input.h>
+> +#include <dt-bindings/leds/common.h>
+>  #include <dt-bindings/pinctrl/sun4i-a10.h>
+>  
+>  / {
+> @@ -132,6 +133,25 @@ &external_mdio {
+>  	ext_rgmii_phy: ethernet-phy@1 {
+>  		compatible = "ethernet-phy-ieee802.3-c22";
+>  		reg = <1>;
 > +
-> +&sdhci0 {
-> +	mmc-hs400-1_8v;
-> +	ti,strobe-sel = <0x77>;
-> +	ti,otap-del-sel-hs400 = <0x5>;
-> +};
+> +		leds {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			led@0 {
+> +				reg = <0>;
+> +				color = <LED_COLOR_ID_GREEN>;
+> +				function = LED_FUNCTION_LAN;
+> +				linux,default-trigger = "netdev";
+> +			};
+> +
+> +			led@1 {
+> +				reg = <1>;
+> +				color = <LED_COLOR_ID_AMBER>;
+> +				function = LED_FUNCTION_LAN;
+> +				linux,default-trigger = "netdev";
+> +			};
+> +		};
+>  	};
+>  };
+>  
 
 
