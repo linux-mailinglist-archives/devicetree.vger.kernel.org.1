@@ -1,124 +1,114 @@
-Return-Path: <devicetree+bounces-215117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A696DB5068D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 21:46:58 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 987F1B506A5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 21:58:34 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67E0744370A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:46:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4D7A854753F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 19:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FC4522541B;
-	Tue,  9 Sep 2025 19:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA833570C0;
+	Tue,  9 Sep 2025 19:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="MgING1j8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="OEpAQBFa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6665A217F24;
-	Tue,  9 Sep 2025 19:46:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E13AC225415;
+	Tue,  9 Sep 2025 19:58:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757447216; cv=none; b=stlb3Mp+P9PsyYRlNkCEePC3U0pnxgSd0osNlRw5bWuJYdDks7ttslFuThR4KU+eFbhbvhB3giijnfNqS7dYZ5rtF42iKxN3BLtoMe9JlXUyTkCuoMXtLLpv/qm34J1V4Ab7XKJ552EVAWxmhf1cuOxqgF840IkwrgOZuxrXQT4=
+	t=1757447906; cv=none; b=cyAc6PyumReXC5Y7xTnEyn4aFx69z3fY6tt7og14FN/Ws69a4MlAKQ0fhC9oe0ZRgdVWzQqjPnHX5TwinXwoZLvmAhT/56mJ+jJTGzzasf9RRyPD8EglOXyVAPH6hYhNI9pCz4jfvU3rH7EKo5fay8tB90VdMNIZTjrh/h0f33I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757447216; c=relaxed/simple;
-	bh=7ScPPDBLqgTRfpZVYiWUNROBp2LC930SYUNUqIVvSGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sMPg3Smz6CLTJE6j6EzFeDY1M70pwjAR414e1T6yRQWlW9JUz4i4BluEF+qgZlzMJ0S4W64ITw1GZ6llFZ5M7CzQm0S6nN3zoElXlL0SPo/sBu/L+d4yMeMNbVohywZ4Cxx3Z0dYCrv63DavNACWxG4s//6LANonU3GYhPpJ62Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=MgING1j8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C9B51C4CEF4;
-	Tue,  9 Sep 2025 19:46:53 +0000 (UTC)
+	s=arc-20240116; t=1757447906; c=relaxed/simple;
+	bh=coVjTOw4sLHDfBakjSlveG2TDtwJq/PpPGElv5zd+KY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=GEAo5rTQhoVwFOkyU10LsMxx3r0N63PWwhSCfwBpOFihmyA7bTIH5yVsGMaAtvqz4MOssWsuFNwCfnMMN+kW71FWF8Cu0YSwSmTyMskSnQc3JPLEBZmNUN4rl5kFgDh2S5Mrl5p70UF/CUlEcwdYdkXOk8MYFPP/8hwtlG7uJfk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=OEpAQBFa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D5D6AC4CEF4;
+	Tue,  9 Sep 2025 19:58:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757447216;
-	bh=7ScPPDBLqgTRfpZVYiWUNROBp2LC930SYUNUqIVvSGY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MgING1j8ITYqo+w+ZE720yT1uAvmfUiHE3V835LRWXenuJ1lk/4/mRRscnat2bsar
-	 2cJRK4/rXdd54ryhLk1TaqD1uKJhI+HK36zHCBsEKTRarkMXAsAncGIyiArq0M05gE
-	 A0qQYCH8do+8onOr3WJq48phZKCxajOy89tLOFZ7F8Q0QRZEnjH0z4rR4AMkIUR/vz
-	 kTmIuZIngv7gtu91Br8aF6t68tFQfsdIed9ePNDTInAW/OYBJvn2uCk6YeuhZeCK1d
-	 5lmJGCNX372lzDMeiS2JFtR74kSJTpCVgTp960djrpNQ24RnykxgrfnFftjXzqCAtb
-	 pG4nnSeGFao4Q==
-Date: Tue, 9 Sep 2025 20:46:51 +0100
+	s=k20201202; t=1757447905;
+	bh=coVjTOw4sLHDfBakjSlveG2TDtwJq/PpPGElv5zd+KY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=OEpAQBFaCqld1Z/XsKuXeu0kO0sa+Eh9Qoysb/M5+3/BBWMKwbB6dN/6XEyN+Tc7V
+	 mCcOr4FjmzLrd5hbcMs8JkBlA0S6hO+cHQ2Q3XHJ2HT4G//LKnXw4gL7gmOT2o5Dpg
+	 XIchr89SnWuwewzlGUMjNqsARy7RBFlt4pcD+MDFDX5QkpHXpEtsJhlTBLUswGF9lU
+	 DPtgAkIx6bexUGwQtxEucONXZLmk+I/WAn75kVbdnTEl/wol/mn1U6lp/FRYp/mM+G
+	 BhAhJkEBkhJasqwGrkLMl5embSN6vDd/s6+27NPTpwiZljwxnHtDlc0EMgmtCw7feV
+	 zU0K+hiOdaTwg==
 From: Conor Dooley <conor@kernel.org>
-To: Durai Manickam KR <durai.manickamkr@microchip.com>
-Cc: linux-i3c@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, balamanikandan.gunasundar@microchip.com,
-	nicolas.ferre@microchip.com
-Subject: Re: [PATCH 0/4] Add Microchip I3C controller
-Message-ID: <20250909-pointy-tanning-8e7b4320979d@spud>
-References: <20250909111333.170016-1-durai.manickamkr@microchip.com>
+To: linux-sunxi@lists.linux.dev
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v1] riscv: dts: allwinner: rename devterm i2c-gpio node to comply with binding
+Date: Tue,  9 Sep 2025 20:58:17 +0100
+Message-ID: <20250909-frown-wrinkle-f16df243a970@spud>
+X-Mailer: git-send-email 2.47.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="bccwR6h2lKhRSsYP"
-Content-Disposition: inline
-In-Reply-To: <20250909111333.170016-1-durai.manickamkr@microchip.com>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1568; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=5nDAh3oXDhRSMzBY7Xh2+riGNHudXRKLDRxiREafnqA=; b=owGbwMvMwCVWscWwfUFT0iXG02pJDBkH2m4UsH88fsjnefHviMCq9wUFX3/bNdvdm5BXeKxyw 5I75Yn3OkpZGMS4GGTFFFkSb/e1SK3/47LDuectzBxWJpAhDFycAjCR1uuMDEe5C7KOJ+xJ4XiU vXnG7Ddz7p/8zshouSTBp3D1VZuEZZEM/9OONv9zyDQr5W6R0cwXudnEXRMhUfl5mors35MzD27 azgAA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
+From: Conor Dooley <conor.dooley@microchip.com>
 
---bccwR6h2lKhRSsYP
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The i2c controller binding does not permit permit the node name to
+contain "gpio", resulting in two warnings:
 
-On Tue, Sep 09, 2025 at 04:43:29PM +0530, Durai Manickam KR wrote:
-> Add support for microchip SAMA7D65 I3C HCI master only IP. This
-> hardware is an instance of the MIPI I3C HCI Controller implementing
-> version 1.0 specification. This driver adds platform-specific
-> support for SAMA7D65 SoC.
->=20
-> I3C in master mode supports up to 12.5MHz, SDR mode data transfer in
-> mixed bus mode (I2C and I3C target devices on same i3c bus). It also
-> supports IBI mechanism.
->    =20
-> Features tested and supported :
-> 	Standard CCC commands.
->        	I3C SDR mode private transfers in PIO mode.
->        	I2C transfers in PIO mode.
->        	Pure bus mode and mixed bus mode.
->=20
-> Testing done:
-> With this patch we are able to fully configure the lsm6dso I3C slave
-> device. Unlike I2C, I hope there is no linux utility to check the
-> various transactions supported in the host controller. These features
-> will be added later on this driver after testing (probably with I3C
-> analyser KIT).
->=20
-> Durai Manickam KR (4):
->   clk: at91: sama7d65: add peripheral clock for I3C
->   i3c: master: add Microchip SAMA7D65 I3C HCI master driver
->   ARM: configs: at91: sama7: Add SAMA7D65 I3C HCI master
->   ARM: dts: microchip: add I3C controller
->=20
->  arch/arm/boot/dts/microchip/sama7d65.dtsi    |   12 +
->  arch/arm/configs/sama7_defconfig             |    2 +
->  drivers/clk/at91/sama7d65.c                  |    5 +-
->  drivers/i3c/master/Kconfig                   |   14 +
->  drivers/i3c/master/Makefile                  |    1 +
->  drivers/i3c/master/sama7d65-i3c-hci-master.c | 2705 ++++++++++++++++++
->  6 files changed, 2737 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/i3c/master/sama7d65-i3c-hci-master.c
+i2c-gpio-0 (i2c-gpio): $nodename:0: 'i2c-gpio-0' does not match '^i2c(@.+|-[a-z0-9]+)?$'
+i2c-gpio-0 (i2c-gpio): Unevaluated properties are not allowed ('#address-cells', '#size-cells', 'adc@54' were unexpected)
 
-Where is your dt-binding?
+Drop it to satisfy dtbs_check.
 
---bccwR6h2lKhRSsYP
-Content-Type: application/pgp-signature; name="signature.asc"
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+---
+CC: Rob Herring <robh@kernel.org>
+CC: Krzysztof Kozlowski <krzk+dt@kernel.org>
+CC: Conor Dooley <conor+dt@kernel.org>
+CC: Chen-Yu Tsai <wens@csie.org>
+CC: Jernej Skrabec <jernej.skrabec@gmail.com>
+CC: Samuel Holland <samuel@sholland.org>
+CC: devicetree@vger.kernel.org
+CC: linux-arm-kernel@lists.infradead.org
+CC: linux-sunxi@lists.linux.dev
+CC: linux-riscv@lists.infradead.org
+CC: linux-kernel@vger.kernel.org
+---
+ arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
------BEGIN PGP SIGNATURE-----
+diff --git a/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts b/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
+index bc5c84f227622..5f2e5cc3e3d55 100644
+--- a/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
++++ b/arch/riscv/boot/dts/allwinner/sun20i-d1-devterm-v3.14.dts
+@@ -17,7 +17,7 @@ fan {
+ 		#cooling-cells = <2>;
+ 	};
+ 
+-	i2c-gpio-0 {
++	i2c-0 {
+ 		compatible = "i2c-gpio";
+ 		sda-gpios = <&pio 3 14 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PD14/GPIO44 */
+ 		scl-gpios = <&pio 3 15 (GPIO_ACTIVE_HIGH|GPIO_OPEN_DRAIN)>; /* PD15/GPIO45 */
+-- 
+2.47.2
 
-iHUEABYKAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCaMCEKwAKCRB4tDGHoIJi
-0r7ZAQCTBnAV4Wn+pTN3+wCIOYGS0jYhZs+X+llJ2HIcWkKVdgD/SvAvKvYbuKH+
-hwqxPztZvWI/Ee+rfQJb8gQQ0XPEDgA=
-=Eui4
------END PGP SIGNATURE-----
-
---bccwR6h2lKhRSsYP--
 
