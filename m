@@ -1,236 +1,234 @@
-Return-Path: <devicetree+bounces-215004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2973AB5005C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:56:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C3FBB5005F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:57:01 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAFA03A1179
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:56:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48B853BD969
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:57:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35998350D5D;
-	Tue,  9 Sep 2025 14:56:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55E88302175;
+	Tue,  9 Sep 2025 14:56:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="kyL/Ba7s"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="EfDT2f3t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+Received: from TY3P286CU002.outbound.protection.outlook.com (mail-japaneastazon11010047.outbound.protection.outlook.com [52.101.229.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0075226D1D;
-	Tue,  9 Sep 2025 14:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757429779; cv=none; b=CXKFKoe6CHtqn/wg9+r5mQNMz0LQtqTgcQ5nK1RrRAWtqeUOlP3ZXDaCjajuKiBicLps2agN47CnZYotHzD+TcM+89hOFotjwxxxab9UmLU6d77zeIe/iu808Vol78GP+uFWrqEzCGsq/cpLWK+IebYgdMafALIFutbzTIJiY40=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757429779; c=relaxed/simple;
-	bh=OUiEyXGSue/Qc0yE11k9Ns0FoQt2oacvNvUxDFL/e5E=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TwFlyNAHBBk0IsdOlVfFYVpS6B7aZV286IBETqyO7Qiny6xnSBh6cTfLeBjZAWZA7uabG6JkR/vLUXd976BAUQvw/2FnQRjSKWkb47W1KxCLKWXDPec5MeQIi/5VJeXAECvgOmh3ICTvh7IucywTeQQID6GvY6R516N2HtYz6y8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=kyL/Ba7s; arc=none smtp.client-ip=198.175.65.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1757429777; x=1788965777;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=OUiEyXGSue/Qc0yE11k9Ns0FoQt2oacvNvUxDFL/e5E=;
-  b=kyL/Ba7sAXwbe87nnDQBqrD4uSkzTxanwn0ppyRpvKlvE8OmWJ+xkR2u
-   EBS18BafGCCxxLrp3ZvpGY89t3d9pK2edQ+BX/0nBoKOwUyjGi90CyIGe
-   oomDpsSvwdw4VIztO+2++iYtbVqIThyjY/wN17a03dM8/MyGwy1fF02a0
-   MNyY01G+qqvhmGwetd7jqfhY9UdWVHEXjkcMLX4rBlEjLl3aSCT5k57kG
-   TS5crmnX6SA38w7vXKsc78OVicn0yJYh/Eg8fTNUouMVFjLTvegyOvm6z
-   5OdHWDu9ohqNx3eOmYl4mWUSkOUsCvthl8JGYYXnNP0y5OnyHp3MWwbJy
-   Q==;
-X-CSE-ConnectionGUID: btvsHT8HT9ieNgHUUGjdvA==
-X-CSE-MsgGUID: lQLdIQ6nTIamWIOS2ZjF+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11548"; a="59862601"
-X-IronPort-AV: E=Sophos;i="6.18,251,1751266800"; 
-   d="scan'208";a="59862601"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
-  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2025 07:56:16 -0700
-X-CSE-ConnectionGUID: MZ6qQ+1FTt+tZ2SdU+KwyQ==
-X-CSE-MsgGUID: LchPTtfYR7WBuVhwCI8EuA==
-X-ExtLoop1: 1
-Received: from lkp-server01.sh.intel.com (HELO 114d98da2b6c) ([10.239.97.150])
-  by fmviesa003.fm.intel.com with ESMTP; 09 Sep 2025 07:56:12 -0700
-Received: from kbuild by 114d98da2b6c with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1uvzlR-0004xT-2N;
-	Tue, 09 Sep 2025 14:56:09 +0000
-Date: Tue, 9 Sep 2025 22:55:38 +0800
-From: kernel test robot <lkp@intel.com>
-To: Manikanta Guntupalli <manikanta.guntupalli@amd.com>, git@amd.com,
-	michal.simek@amd.com, alexandre.belloni@bootlin.com,
-	Frank.Li@nxp.com, robh@kernel.org, krzk+dt@kernel.org,
-	conor+dt@kernel.org, kees@kernel.org, gustavoars@kernel.org,
-	jarkko.nikula@linux.intel.com, linux-i3c@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-hardening@vger.kernel.org
-Cc: oe-kbuild-all@lists.linux.dev, radhey.shyam.pandey@amd.com,
-	srinivas.goud@amd.com, shubhrajyoti.datta@amd.com,
-	manion05gk@gmail.com,
-	Manikanta Guntupalli <manikanta.guntupalli@amd.com>
-Subject: Re: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller driver
-Message-ID: <202509092248.xJvRASTq-lkp@intel.com>
-References: <20250908112117.205270-3-manikanta.guntupalli@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EF13338F32;
+	Tue,  9 Sep 2025 14:56:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.229.47
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757429818; cv=fail; b=lmTqDknDAf/Df8VlhLmgrWMGt7JlRbwXloPgbIAYFRWD5WHaMjXO0Fe0LLRfdioOK4PPl6JVUaaM9WFVSa1YvfgeGEyyAk6vGHOyAE2OU+jnvlLlK0XLIF91h+dNFsH2YFon5Rktgw6IgK5E307OyBUXw2pXZzR5ydGRw36FRqI=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757429818; c=relaxed/simple;
+	bh=ziqGvB3cqKxEIQrBom4o90lL0NZBEOBZqtQX5Bf+3Dg=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=pEBKjXIVGW0U94zhU9M+ct/H8HT6ttRs7kC8ECGwsGZ2DZvkCjNLUVBWCPQYO9Fn3N1rPxlnMkavJB1UO2reaN7nbYcAeiT+PEhIqk45B3HSo0MpNZPMkLMqCWiLlKDl+z3NNsCVnRYxUDYIw6zG1hmllohYFgHnlt3pijexC1s=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=EfDT2f3t; arc=fail smtp.client-ip=52.101.229.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=s53dzDngFMHj5TD8Vq4CMgyru4kxEJEx8Vpq3HoBwaUR1ByO3DTIodN62LutGGdMnYkx2mAmqSIBfqboRTHGnqU8zS7TU1CxKl0RZOcPRld8JGW8KRDVgfRdg+iOdwl8paXDboiY6PuDT6ivRiMjW7Z4v2HQvTWT465QftY8kcs/OV5C8ORTDsJZkILEiAXj5i7xSov2K98WxYbCe739TgDLB03nT5suPadvG5Q/TBbEn/V4SlJ0b4AfGUbo0QjMhN62pRO/mMVTKj/ex+KpOKjSFGMSE3xBO2b7hfb8QE846YEgwTD54nqU04U5/k3mnCUqskNCmyP84ir8BQ8o3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9xD/fnPIqCGKTifniqeP2xiRxvVg1nSSaW6ITu2R0Yc=;
+ b=xqfdwauJu9hyZuMsytHgdPFjLowFzpuzLQohErJfjDqlUtOplsQiUN4nZBxrhDGY2EfDXgQ2tDmAM4zAY1ihBiPghj+7LODQ1Oov01Lr8Vj+dUxTHjEkfeiD7zEp5blfL8EvxMfiG7gIWNU3tNXItqQ6MhoclDWj1tZp4tgrn/W3neBpcoFjs8Hhe7rAd11rroDM2ZbuJThgAzkLPcqgSWyB2JMZciUCEYkszwIxo501iwy6qRFhgCZVq+FSJRX7qZhMGKxEjvRwFCFoDlp98tqq+ItQVWWijactyClsZiJCs63QLFBKBNkTvjCf4rbDYlrzrNSMyw/deWCARGoo9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9xD/fnPIqCGKTifniqeP2xiRxvVg1nSSaW6ITu2R0Yc=;
+ b=EfDT2f3th6UoNTAFp28WR06ArMtE/afQrLQ0KmF3xNbAcVUCMtQw/LI8lDjQoVfhmr8c1d4KnWF7s3+wfZJ0sZkk6qav9vZj79KogNdsHMaX0fCCEKlZdw1ommOsoHTtnMYTXsDZLRivW1kRyrVGVeLOpK1g4uZWjtlr4ONmTzY=
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com (2603:1096:400:3d0::7)
+ by TYYPR01MB12778.jpnprd01.prod.outlook.com (2603:1096:405:160::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Tue, 9 Sep
+ 2025 14:56:51 +0000
+Received: from TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1]) by TY3PR01MB11346.jpnprd01.prod.outlook.com
+ ([fe80::86ef:ca98:234d:60e1%3]) with mapi id 15.20.9094.021; Tue, 9 Sep 2025
+ 14:56:51 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Rob Herring <robh@kernel.org>, biju.das.au <biju.das.au@gmail.com>
+CC: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Krzysztof Kozlowski
+	<krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Geert Uytterhoeven
+	<geert+renesas@glider.be>, magnus.damm <magnus.damm@gmail.com>,
+	"linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: RE: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Thread-Topic: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3HOST
+Thread-Index: AQHcEfZvZDRnta0l60q2xS4yxsPDG7Ru3X2AgBwyLeA=
+Date: Tue, 9 Sep 2025 14:56:51 +0000
+Message-ID:
+ <TY3PR01MB11346FF949FAC9635F8374BE3860FA@TY3PR01MB11346.jpnprd01.prod.outlook.com>
+References: <20250820171812.402519-1-biju.das.jz@bp.renesas.com>
+ <20250820171812.402519-7-biju.das.jz@bp.renesas.com>
+ <20250822162043.GA3920949-robh@kernel.org>
+In-Reply-To: <20250822162043.GA3920949-robh@kernel.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TY3PR01MB11346:EE_|TYYPR01MB12778:EE_
+x-ms-office365-filtering-correlation-id: 86641415-12e7-40d3-47e0-08ddefb11bd1
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|366016|7416014|376014|38070700021;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?jFjzxBBl0zo77s/IkNcYcy50gaKsIg/8C+1qWXUjfkonCIHuSJDKdf7Nll6k?=
+ =?us-ascii?Q?jrvc5njUOLfcU8cgHPUUL9b1++G2zsHzBwBOIBE9BZ3Zk4P3s0fF6EndMalY?=
+ =?us-ascii?Q?nbXT+cZDRi25ULphTw6/8Sk0woINRRbKEsjfVUge8y3BiwSzRPzR51DxjNeh?=
+ =?us-ascii?Q?WZkj6aMujMOoqfzW+sGNtELlAV8mZB8C16WSxhscNavixuQ8+RtXwSFNBFrs?=
+ =?us-ascii?Q?N/ecltWZnTEuHBadnRdlMLGyRCOQm8sKw8EcBgfW9jDjz7bdvC5FvGt6ByVN?=
+ =?us-ascii?Q?8jStchg6F7GbUJQlDsZ1dEAisS93J4milAtIo7V+auhKSF/eI07VaNXAy+ME?=
+ =?us-ascii?Q?cz+xSc1HU8qrkl6lwCtLSUe786MKEK/rhBuK4nVzCQOAzUSu3y9vHXmlsPsx?=
+ =?us-ascii?Q?pwPm50fjVd0peP2nEDlSF/hmUh/vUHih+mBYsGJuru2y/1T2268iqSwhP1vd?=
+ =?us-ascii?Q?btnuOVO4PRYE4dCnAjG+GUaEwpyCbIcYcZBsV9tRIx1ABa6Q5LEQrkE3hYHO?=
+ =?us-ascii?Q?xAwf6Fa7ofBQsFhqxrUfqsVTiPwPRuriP71Cu1Suok2n5UBOj6nNSG01IGuB?=
+ =?us-ascii?Q?bi0TOhMRP5EsZluX313iq1jFkQf2KbCm04YfXCl5JuqoLdzVosnM00C+LIP8?=
+ =?us-ascii?Q?59WG0nCbEwx4qtk9++Tm2HFu9pc17AsrNaLnQvYacvZisDCDbxxDxUwGRbzn?=
+ =?us-ascii?Q?IyoXdS8Q3kGUABhzuXNRSvxAuURQOrAsckDi/ED6TrRYnHm3GB/xTfgsA+yR?=
+ =?us-ascii?Q?xjaK6LGetPJ7QblPY+cjxkO3DLhCuk9qwdcdPvY9DP0n+BP8bW5O8bXlWO2N?=
+ =?us-ascii?Q?fyYjyHOJdGlmWWhDRDo0PkEw0gLgTFDW3IEp4nppDAvjbv4swmwctKhvZ4zo?=
+ =?us-ascii?Q?oddLVcqLOykKd8MwApu2zygCbCD+oHZFvN6jAzOo/cEuoTmwxcBVBIK3EDvA?=
+ =?us-ascii?Q?MovHTcOb4XWcjVzV59O51YVBgAv4ncN44eDrydATl3miX250f+i5Tiwh+c+u?=
+ =?us-ascii?Q?u1hVp5nYDBssMxYeHsza7njRxzo7kjvT4XToDC0mLrwIOT4blSJqZN0rDdWA?=
+ =?us-ascii?Q?j8RLAgWK57vTuwguUbwgXeEZ7dN/76c6abw6AMZceiFhuGoJbdWLA3XOt7QQ?=
+ =?us-ascii?Q?QHzHo9RePzu+nRJdGI5g0Wp0y+SeS1o9hySOdtgmR94FBToDd5HCT3/V1c3h?=
+ =?us-ascii?Q?BBfQo9PDjWnc2QErmvx7yxoGAoKrSY4n5UJ+ZrEsGaAwFZnaVuken1PAsGqi?=
+ =?us-ascii?Q?LDbxJOWqpV/HNacJ437zE1JNGE0rJS5JH4X6g7b734orBjFTGU5ozORmx1aL?=
+ =?us-ascii?Q?Qn8L4mWNnbOSog/X1EVrNDDlsVTELinvgtOwXyagGkGP87VofuPXqcp1fQpY?=
+ =?us-ascii?Q?m3OdMcHCW9J5sAteTo5V2yNER3yoY579Go7Qu0QR2UaHGlXWmQa1jpMVNWcY?=
+ =?us-ascii?Q?UyvbQ7j5KQ8=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY3PR01MB11346.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(7416014)(376014)(38070700021);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?A8iFc6LGxoOqUShjBQsfUCwT83e9dyk1O+eErtIDG4zBuSgDzHjO6UMq4OFf?=
+ =?us-ascii?Q?TOw32c8sd0gQOvFpvmp36a2iFlWw9y2y4HVcxI3SwZcDAY8rsvrgyx7EBbwY?=
+ =?us-ascii?Q?YMGZe2UDJH9+Cm/17Nj18Z+d1Q8Y++VTYlO58Z79IdLgwLSF7+TJAerPRaGp?=
+ =?us-ascii?Q?6/wpuc0/LHV/llI4Gt0c6aph15vsSwJYsoVBNk7sKl455os6WYXovpM2zvsB?=
+ =?us-ascii?Q?ctC2IAn4WKqk4ygYNUj5JXaNjN+il0ZInaE6oAznLy7OLJwrQxClC5nfiOwz?=
+ =?us-ascii?Q?pNytDwWbBKUzohg0UTg8dI4xHY6q4hhrN7e/VBH7UOxv8GxrzvP7QZ4bslTW?=
+ =?us-ascii?Q?zFv6R/AErUq5wsyJUyhT7QS0y1snzFMtIwWkbPd8Z0zPGS3nwG21AjX9N4bW?=
+ =?us-ascii?Q?LYhIB7dnb7ZNEwokrZk/lK1995NS4dNYzwFkUIt2jdYSB2IR6pEg6841WWIY?=
+ =?us-ascii?Q?JtcByEnjEgjjrgch3bvBR5AUAVSjNi6oRDurQjrjURvtX52E+deVeARp+s1q?=
+ =?us-ascii?Q?5RP59wfj9BpxBOkK6UTWMFtvOHfgnCm7Z6TqjC5hLOTSwatardW7104cWz4P?=
+ =?us-ascii?Q?5AIOcpm2R2qKx9qV821moOD4mX9KqMl+yjjE3G3jShvxrSfBmG1TiT/h8QSD?=
+ =?us-ascii?Q?1H/I4hSoGr+UbwfFO0ShB8BKBt+hGa+sTls9+HIzD3Mm8UWN/WPJPH3a3lJb?=
+ =?us-ascii?Q?m2crTXQlRB8dseYG+33z1VTNtbiORGAQVcuffSI2Xcwex+mJcoPuJejgZAIX?=
+ =?us-ascii?Q?STmJgpPoZkk1liD2eq0RrCllwThczSs5EwHAPLAV/bKfbZxwctxKxGOaOWQZ?=
+ =?us-ascii?Q?i+5Z4ynoU+VDx5WfS9OIs7ZcNxUUjF+YnLreJQAcY/8AJ46LtjxvkftE5JJG?=
+ =?us-ascii?Q?sTjFa0QEr/jjb2N3VqNp5mLlk43kImYFyqOBdh9z7RMVbp46bbOScBB04w/5?=
+ =?us-ascii?Q?zj/mK95/xw0b5D+3ZjQj5Bmo0HmbRo24JFxOEprqiW3wR0nGJ8encT8ViqIq?=
+ =?us-ascii?Q?4ZiuY5TAFeInwYxWVuvOHNc/4r++IhjcRWoHXUufvVk5DXPgt+oxP5YJ8us7?=
+ =?us-ascii?Q?ocExrIbsiGm/PzJ8jWV3NwkuoNhW+5eh76x0VUIyswZE6aogdtDUp3bhE4VT?=
+ =?us-ascii?Q?024HmQUw/cywY+GnGBmUHvkaekLyGNeJQQq+tF5NLt1wEUHZOS+T5Ufn40iU?=
+ =?us-ascii?Q?2o4xz8+LjXxXa5Wmxo2REtrcNhinlm62EI7HWPEXVuuwnhmo53iLJVMWQJVt?=
+ =?us-ascii?Q?+V8bvXvF8JGs3hs043/Vf+JxlyTESn5cze/nW6Max0ES+J4DCeBGzjPYVue/?=
+ =?us-ascii?Q?+HhIM6SqWKF8X1LvaO6IDxZST5QLvvZ6Anq0PBWwchZ5SjmzCwOEaS0L42ef?=
+ =?us-ascii?Q?iqbC3bgC4HZHY/T5z9u6jc7sxU+jwjihLGyhW0Q1y84+CyFdMYzk/Zs+6Cpu?=
+ =?us-ascii?Q?mApUsXbLMFKgkve3kHrjlaAEiLgkpdYKBcZFz8lcfhNLeaDIrjV6wTB7XTCw?=
+ =?us-ascii?Q?u6YOItgJHx20OyDd8BFZlUWalPV9agPYmviGXsFVdr3S+5Pvy9/Aa34eaqtD?=
+ =?us-ascii?Q?OrUWUXGhrAKn0yAaFqrOY/62fXohsN1ANk5SvJqoakcZAzY/6wkJV37rG1Zu?=
+ =?us-ascii?Q?RA=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250908112117.205270-3-manikanta.guntupalli@amd.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TY3PR01MB11346.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 86641415-12e7-40d3-47e0-08ddefb11bd1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Sep 2025 14:56:51.1069
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: qcBVgE/12rQA1nS+p8OOUxp8c5l7K1X1FRxdWxnUmjhtElkjxX7Ag7HjPB10OuvEoLKiObCM8rkPu/H8iiI9jNYi6zO4sJVAFnzi3t4Vt/g=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYYPR01MB12778
 
-Hi Manikanta,
+Hi Rob,
 
-kernel test robot noticed the following build warnings:
+Thanks for the feedback.
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on linus/master v6.17-rc5 next-20250909]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> -----Original Message-----
+> From: Rob Herring <robh@kernel.org>
+> Sent: 22 August 2025 17:21
+> Subject: Re: [PATCH 06/11] dt-bindings: usb: Document Renesas RZ/G3E USB3=
+HOST
+>=20
+> On Wed, Aug 20, 2025 at 06:17:53PM +0100, Biju wrote:
+> > From: Biju Das <biju.das.jz@bp.renesas.com>
+> >
+> > Document the Renesas RZ/G3E USB3.2 Gen2 Host Controller (a.k.a USB3HOST=
+).
+> > The USB3HOST is compliant with the Universal Serial Bus 3.2
+> > Specification Revision 1.0.
+> >  - Supports 1 downstream USB receptacles
+> >      - Number of SSP Gen2 or SS ports: 1
+> >      - Number of HS or FS or LS ports: 1
+> >  - Supports Super Speed Plus Gen2x1 (10 Gbps), Super Speed (5 Gbps),
+> >    High Speed (480 Mbps), Full Speed (12Mbps), and Low Speed (1.5 Mbps)=
+.
+> >  - Supports all transfer-types: Control, Bulk, Interrupt, Isochronous, =
+and
+> >    these split-transactions.
+> >  - Supports Power Control and Over Current Detection.
+> >
+> > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  .../bindings/usb/renesas,rzg3e-xhci.yaml      | 84 +++++++++++++++++++
+> >  1 file changed, 84 insertions(+)
+> >  create mode 100644
+> > Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> >
+> > diff --git
+> > a/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> > b/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> > new file mode 100644
+> > index 000000000000..2f73ea2e1e78
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/usb/renesas,rzg3e-xhci.yaml
+> > @@ -0,0 +1,84 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/usb/renesas,rzg3e-xhci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Renesas RZ/G3E USB 3.2 Gen2 Host controller
+> > +
+> > +maintainers:
+> > +  - Biju Das <biju.das.jz@bp.renesas.com>
+> > +
+>=20
+> Common USB and XHCI properties don't apply?
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Manikanta-Guntupalli/dt-bindings-i3c-Add-AMD-I3C-master-controller-support/20250908-192455
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20250908112117.205270-3-manikanta.guntupalli%40amd.com
-patch subject: [PATCH V5 2/2] i3c: master: Add AMD I3C bus controller driver
-config: sh-randconfig-r113-20250909 (https://download.01.org/0day-ci/archive/20250909/202509092248.xJvRASTq-lkp@intel.com/config)
-compiler: sh4-linux-gcc (GCC) 10.5.0
-reproduce: (https://download.01.org/0day-ci/archive/20250909/202509092248.xJvRASTq-lkp@intel.com/reproduce)
+OK, will add
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202509092248.xJvRASTq-lkp@intel.com/
+allOf:
+  - $ref: usb-xhci.yaml
 
-sparse warnings: (new ones prefixed by >>)
->> drivers/i3c/master/amd-i3c-master.c:559:68: sparse: sparse: dubious: x | !y
-   drivers/i3c/master/amd-i3c-master.c:427:13: sparse: sparse: context imbalance in 'xi3c_master_dequeue_xfer' - wrong count at exit
-   drivers/i3c/master/amd-i3c-master.c:601:9: sparse: sparse: context imbalance in 'xi3c_master_do_daa' - different lock contexts for basic block
-   drivers/i3c/master/amd-i3c-master.c:644:12: sparse: sparse: context imbalance in 'xi3c_master_send_bdcast_ccc_cmd' - wrong count at exit
-   drivers/i3c/master/amd-i3c-master.c:680:12: sparse: sparse: context imbalance in 'xi3c_master_send_direct_ccc_cmd' - wrong count at exit
-   drivers/i3c/master/amd-i3c-master.c:733:12: sparse: sparse: context imbalance in 'xi3c_master_priv_xfers' - wrong count at exit
-   drivers/i3c/master/amd-i3c-master.c:773:12: sparse: sparse: context imbalance in 'xi3c_master_i2c_xfers' - wrong count at exit
-   drivers/i3c/master/amd-i3c-master.c:926:65: sparse: sparse: shift too big (32) for type unsigned long
-
-vim +559 drivers/i3c/master/amd-i3c-master.c
-
-   499	
-   500	static int xi3c_master_do_daa(struct i3c_master_controller *m)
-   501	{
-   502		struct xi3c_master *master = to_xi3c_master(m);
-   503		struct xi3c_cmd *daa_cmd;
-   504		struct xi3c_xfer *xfer;
-   505		u8 pid_bufs[XI3C_MAX_DEVS][8];
-   506		u8 data, last_addr = 0;
-   507		int addr, ret, i;
-   508		u8 *pid_buf;
-   509	
-   510		u64 *pid_bcr_dcr __free(kfree) = kcalloc(XI3C_MAX_DEVS, sizeof(u64),
-   511							 GFP_KERNEL);
-   512		if (!pid_bcr_dcr)
-   513			return -ENOMEM;
-   514	
-   515		xfer = xi3c_master_alloc_xfer(master, 1);
-   516		if (!xfer) {
-   517			ret = -ENOMEM;
-   518			goto err_daa_mem;
-   519		}
-   520	
-   521		for (i = 0; i < XI3C_MAX_DEVS; i++) {
-   522			addr = i3c_master_get_free_addr(m, last_addr + 1);
-   523			if (addr < 0) {
-   524				ret = -ENOSPC;
-   525				goto err_daa;
-   526			}
-   527			master->daa.addrs[i] = (u8)addr;
-   528			last_addr = (u8)addr;
-   529		}
-   530	
-   531		/* Fill ENTDAA CCC */
-   532		data = I3C_CCC_ENTDAA;
-   533		daa_cmd = &xfer->cmds[0];
-   534		daa_cmd->addr = I3C_BROADCAST_ADDR;
-   535		daa_cmd->rnw = 0;
-   536		daa_cmd->tx_buf = &data;
-   537		daa_cmd->tx_len = 1;
-   538		daa_cmd->type = XI3C_SDR_MODE;
-   539		daa_cmd->tid = XI3C_SDR_TID;
-   540		daa_cmd->continued = true;
-   541	
-   542		ret = xi3c_master_common_xfer(master, xfer);
-   543		/* DAA always finishes with CE2_ERROR or NACK_RESP */
-   544		if (ret && ret != I3C_ERROR_M2) {
-   545			goto err_daa;
-   546		} else {
-   547			if (ret && ret == I3C_ERROR_M2) {
-   548				ret = 0;
-   549				goto err_daa;
-   550			}
-   551		}
-   552	
-   553		master->daa.index = 0;
-   554	
-   555		while (true) {
-   556			struct xi3c_cmd *cmd = &xfer->cmds[0];
-   557	
-   558			pid_buf = pid_bufs[master->daa.index];
- > 559			addr = (master->daa.addrs[master->daa.index] << 1) |
-   560			       (!parity8(master->daa.addrs[master->daa.index]));
-   561	
-   562			cmd->tx_buf = (u8 *)&addr;
-   563			cmd->tx_len = 1;
-   564			cmd->addr = I3C_BROADCAST_ADDR;
-   565			cmd->rnw = 1;
-   566			cmd->rx_buf = pid_buf;
-   567			cmd->rx_len = XI3C_DAA_SLAVEINFO_READ_BYTECOUNT;
-   568			cmd->is_daa = true;
-   569			cmd->type = XI3C_SDR_MODE;
-   570			cmd->tid = XI3C_SDR_TID;
-   571			cmd->continued = true;
-   572	
-   573			ret = xi3c_master_common_xfer(master, xfer);
-   574	
-   575			/* DAA always finishes with CE2_ERROR or NACK_RESP */
-   576			if (ret && ret != I3C_ERROR_M2) {
-   577				goto err_daa;
-   578			} else {
-   579				if (ret && ret == I3C_ERROR_M2) {
-   580					xi3c_master_resume(master);
-   581					master->daa.index--;
-   582					ret = 0;
-   583					break;
-   584				}
-   585			}
-   586		}
-   587	
-   588		kfree(xfer);
-   589	
-   590		for (i = 0; i < master->daa.index; i++) {
-   591			i3c_master_add_i3c_dev_locked(m, master->daa.addrs[i]);
-   592	
-   593			pid_bcr_dcr[i] = FIELD_GET(XI3C_PID_MASK,
-   594						   get_unaligned_be64(pid_bufs[i]));
-   595			dev_info(master->dev, "Client %d: PID: 0x%llx\n", i, pid_bcr_dcr[i]);
-   596		}
-   597	
-   598		return 0;
-   599	
-   600	err_daa:
-   601		kfree(xfer);
-   602	err_daa_mem:
-   603		xi3c_master_reinit(master);
-   604		return ret;
-   605	}
-   606	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Cheers,
+Biju
 
