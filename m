@@ -1,48 +1,63 @@
-Return-Path: <devicetree+bounces-215000-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215001-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11181B50009
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:49:43 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A34AB50013
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 16:51:18 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 90D514E51C9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:49:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 929741C27FF9
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 14:51:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7335B33EAF7;
-	Tue,  9 Sep 2025 14:48:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D403322A1D;
+	Tue,  9 Sep 2025 14:51:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n/G8ON7X"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="QBTIYhWx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from fllvem-ot03.ext.ti.com (fllvem-ot03.ext.ti.com [198.47.19.245])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40FB02DA75F;
-	Tue,  9 Sep 2025 14:48:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FF25226D1D;
+	Tue,  9 Sep 2025 14:51:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.245
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757429334; cv=none; b=jGY+JLdFP0uhXo8xBdv4S86IZOqHkp4984rF19yPx7s8TqBcvDa/kHuPxax+WswDfWioGQIpDLDecNI2ksk8Cra9fIz/YgRDcVmrfR6ee05MmInRiLRVj/9FUmd65H11Y78zc7hzzhxa4S6SvrfYKlDfndRIET+r3BkyXfc+9Bs=
+	t=1757429473; cv=none; b=Iu7fW858mrirVJ196+VFslv4xOeDb6RSUhLDAI5Dn400oB2c2hFCjX5Jq/58nMpoAn3pfp4gF9oFDgJjTqeQ8FGQYaKdeH0O/YWle6Y1eQ6WEJBV9nEMLsn63XN5HEdDOE/E+XTnsnDUWduMGTpoJXpwc3zWep7Dw5IlU1rcgrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757429334; c=relaxed/simple;
-	bh=1he5lMmIOrXZENUj3C6Qi6jYmJXZHpJnlEqP8eH+yPI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=h3qf4D+ITn6wFOWXt7FQYkaCTBlfuEHmOzdKd2/LEsFQ0kGIH2wd1rmvIQEYhqnwTjpAT8tpnWX5rdwP2jQ5vNqiM9cYEwAr17MTe53pTrdFvxDCbwANOkrtkjB/7ARdNjKwpK57nFr73ihHzaP0ZxiDT4bARtGkUOxnSpqwefI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n/G8ON7X; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6EDF0C4CEF4;
-	Tue,  9 Sep 2025 14:48:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757429333;
-	bh=1he5lMmIOrXZENUj3C6Qi6jYmJXZHpJnlEqP8eH+yPI=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=n/G8ON7Xphogw9Re/idOK/s7hKXy6Pccbg6YNNRt+QtGRjfXXXk0Xngr6n4kJe/1r
-	 roN4gY1rMKWn9abC8c+f0Us4jfY6cs53mlYujoCVvyr/SH8GAE1thsM8BttdEEQ83K
-	 aA/Hk4YVZQJGoNIvTmWv8O2HqnxZZLN0EXD+cygdRam3NQ71n0dJU06igHIHL5aMW5
-	 UdQGMGRWDvN6u09WZXmRlLEl0NTI4w7vhbwb3Q5hc6gJ1dISYU6st0kivhUbbONaZG
-	 tVdfN7kMrVGJtO7azs7MeVWqGmuZFAqfKoROgLifrg9xsdMcipYtV0Fhwb4XP2VvOu
-	 2npaUWmc+U3oQ==
-Message-ID: <bcdeb20c-3f4c-4eec-8f92-a098c4529778@kernel.org>
-Date: Tue, 9 Sep 2025 16:48:47 +0200
+	s=arc-20240116; t=1757429473; c=relaxed/simple;
+	bh=4MYSLavW/QsTWxpPcXCnHdNSh0e72egCuabSZeM8SKk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TA8bFtSNgMSGcYzNUQFGeOqNzY7ppPoCAAv9XpPd8u02pyB1r2ozZa0g+7wYUSTuBKb4Co8tcRz4Q3iGEVgXUeGcGrptY1GkHidCMl653Z6DVIIr9rK8AvZm2wcFaeVq6vmxqFTXbCe8QaDq3g3OgBA07sUnTItE7J9NPGxbOzI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=QBTIYhWx; arc=none smtp.client-ip=198.47.19.245
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelvem-sh01.itg.ti.com ([10.180.77.71])
+	by fllvem-ot03.ext.ti.com (8.15.2/8.15.2) with ESMTP id 589Ep5q04047902;
+	Tue, 9 Sep 2025 09:51:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1757429465;
+	bh=M6UYJC51NYe1UdxgpY6BB6KX3ic2M6p4On67tOl2V/M=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=QBTIYhWxYSMBBv7d8KyYZZKQA5eJVVkMPfb/4aguj9UzOhzkLk9A3nOzF7LzOb27M
+	 QpZYJ37hqpiS6lGCJQWZX4l42NNzZSudlyZBcuEc4JkRWNDZBh5h+wxccrqEqw/oTb
+	 YdbJKQ0TQWTrS8GKXleQip/KUfFoGGmXgVpIboSk=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+	by lelvem-sh01.itg.ti.com (8.18.1/8.18.1) with ESMTPS id 589Ep5t73226481
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-SHA256 bits=128 verify=FAIL);
+	Tue, 9 Sep 2025 09:51:05 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55; Tue, 9
+ Sep 2025 09:51:04 -0500
+Received: from lelvem-mr06.itg.ti.com (10.180.75.8) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.55 via
+ Frontend Transport; Tue, 9 Sep 2025 09:51:04 -0500
+Received: from [128.247.81.19] (uda0506412.dhcp.ti.com [128.247.81.19])
+	by lelvem-mr06.itg.ti.com (8.18.1/8.18.1) with ESMTP id 589Ep4TC2499642;
+	Tue, 9 Sep 2025 09:51:04 -0500
+Message-ID: <13dcf814-a790-43ec-8e90-32225acb2367@ti.com>
+Date: Tue, 9 Sep 2025 09:51:04 -0500
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,126 +65,73 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] dt-bindings: leds: commonize leds property
-To: Aleksandrs Vinarskis <alex@vinarskis.com>
-Cc: Rob Herring <robh@kernel.org>,
- Konrad Dybcio <konrad.dybcio@oss.qualcomm.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Daniel Thompson <danielt@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jean-Jacques Hiblot <jjhiblot@traphandler.com>,
- Jacopo Mondi <jacopo@jmondi.org>, Sakari Ailus
- <sakari.ailus@linux.intel.com>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, linux-leds@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Daniel Thompson <daniel.thompson@linaro.org>,
- dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
- linux-arm-msm@vger.kernel.org
-References: <20250908-leds-v3-0-5944dc400668@vinarskis.com>
- <20250908-leds-v3-2-5944dc400668@vinarskis.com>
- <0e030e7d-0a1a-4a00-ba18-ed26107d07fa@oss.qualcomm.com>
- <046b289d-b6a5-45f9-88b1-090e2ab7c95d@kernel.org>
- <39b955b9-a152-458a-8e09-908efebaaccd@oss.qualcomm.com>
- <20250908222247.GA1943768-robh@kernel.org>
- <bde582df-9522-48ae-9d84-fa3751c4a06d@kernel.org>
- <FVT6YHf1Lshr9lndhkSNVDowe3ZXPE31ULuotmmZ-brY_kmVRVj8oONZfWqE41lBIJyx4joIVRoqxdv1B_xvfGByECvOtQVS0G8xXQuDrwY=@vinarskis.com>
-From: Hans de Goede <hansg@kernel.org>
-Content-Language: en-US, nl
-In-Reply-To: <FVT6YHf1Lshr9lndhkSNVDowe3ZXPE31ULuotmmZ-brY_kmVRVj8oONZfWqE41lBIJyx4joIVRoqxdv1B_xvfGByECvOtQVS0G8xXQuDrwY=@vinarskis.com>
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH v6 0/4] Remove unused bits from dts and add support for
+ remaining pinctrl macros
+To: Akashdeep Kaur <a-kaur@ti.com>, <praneeth@ti.com>, <nm@ti.com>,
+        <afd@ti.com>, <vigneshr@ti.com>, <d-gole@ti.com>, <u-kumar1@ti.com>,
+        <sebin.francis@ti.com>, <kristo@kernel.org>, <robh@kernel.org>,
+        <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC: <vishalm@ti.com>
+References: <20250909044108.2541534-1-a-kaur@ti.com>
+Content-Language: en-US
+From: Kendall Willis <k-willis@ti.com>
+In-Reply-To: <20250909044108.2541534-1-a-kaur@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-C2ProcessedOrg: 333ef613-75bf-4e12-a4b1-8e3623f5dcea
 
-Hi,
+On 9/8/25 23:41, Akashdeep Kaur wrote:
+> This patch series cleans up the dts files to remove the pin control
+> DeepSleep configuration that does not take effect in hardware.
+> This series also adds the remaining macros in the pin control file
+> supported by SoC so that any configuration can be used as per requirement
+> in dts files.
+> 
+> Link to Previous Versions:
+>    -V1: https://lore.kernel.org/linux-arm-kernel/20250731115631.3263798-1-a-kaur@ti.com/
+>    -V2: https://lore.kernel.org/linux-arm-kernel/20250901122835.3022850-1-a-kaur@ti.com/
+>    -V3: https://lore.kernel.org/linux-arm-kernel/20250902071917.1616729-1-a-kaur@ti.com/
+>    -V4: https://lore.kernel.org/linux-arm-kernel/20250904112538.529857-1-a-kaur@ti.com/
+>    -V5: https://lore.kernel.org/linux-arm-kernel/20250905051448.2836237-1-a-kaur@ti.com/
+> 
+> Change Log:
+> V1-> V2:
+>    -Added the macros that were removed earlier for backward compatibility
+>    -Fixed the indentation
+>    -Added documentation references in commit message
+> 
+> V2-> V3:
+>    -Updated the commit message to be more descriptive and Clear
+>    -Fixed errors introduced in previous version
+> 
+> V3-> V4:
+>    -Rearranged pinctrl macros so that all macros of same type are at same place
+>    -Removed any redundant macros added in previous versions of the series
+>    -Added new commit to fix the missing existing macro definition
+> 
+> V4-> V5:
+>    -Updated documentation reference in commit message
+> 
+> V5-> V6:
+>    -Updated commit message to add "Fixes" tag and update reference information
+>    
+> 
+> Akashdeep Kaur (4):
+>    arm64: dts: ti: k3-am62p5-sk: Remove the unused cfg in USB1_DRVVBUS
+>    arm64: dts: ti: k3-am62x-sk-common: Remove the unused cfg in
+>      USB1_DRVVBUS
+>    arm64: dts: ti: k3-pinctrl: Add the remaining macros
+>    arm64: dts: ti: k3-pinctrl: Fix the bug in existing macros
+> 
+>   arch/arm64/boot/dts/ti/k3-am62p5-sk.dts       |  2 +-
+>   .../arm64/boot/dts/ti/k3-am62x-sk-common.dtsi |  2 +-
+>   arch/arm64/boot/dts/ti/k3-pinctrl.h           | 51 +++++++++++++++++--
+>   3 files changed, 50 insertions(+), 5 deletions(-)
+> 
 
-On 9-Sep-25 11:28 AM, Aleksandrs Vinarskis wrote:
-> 
-> 
-> 
-> 
-> 
-> On Tuesday, September 9th, 2025 at 11:21, Hans de Goede <hansg@kernel.org> wrote:
-> 
->>
->>
->> Hi All,
->>
->> On 9-Sep-25 12:22 AM, Rob Herring wrote:
->>
->>> On Mon, Sep 08, 2025 at 09:36:39AM +0200, Konrad Dybcio wrote:
->>>
->>>> On 9/8/25 9:33 AM, Hans de Goede wrote:
->>>>
->>>>> Hi,
->>>>>
->>>>> On 8-Sep-25 09:20, Konrad Dybcio wrote:
->>>>>
->>>>>> On 9/8/25 1:18 AM, Aleksandrs Vinarskis wrote:
->>>>>>
->>>>>>> A number of existing schemas use 'leds' property to provide
->>>>>>> phandle-array of LED(s) to the consumer. Additionally, with the
->>>>>>> upcoming privacy-led support in device-tree, v4l2 subnode could be a
->>>>>>> LED consumer, meaning that all camera sensors should support 'leds'
->>>>>>> and 'led-names' property via common 'video-interface-devices.yaml'.
->>>>>>>
->>>>>>> To avoid dublication, commonize 'leds' property from existing schemas
->>>>>>> to newly introduced 'led-consumer.yaml'.
->>>>>>>
->>>>>>> Signed-off-by: Aleksandrs Vinarskis alex@vinarskis.com
->>>>>>> ---
->>>>>>
->>>>>> [...]
->>>>>>
->>>>>>> + leds:
->>>>>>> + minItems: 1
->>>>>>> + maxItems: 1
->>>>>>
->>>>>> My brain compiler suggests this will throw a warning (minItems should
->>>>>> be redundant in this case)
->>>>>>
->>>>>>> +
->>>>>>> + led-names:
->>>>>>> + enum:
->>>>>>> + - privacy-led
->>>>>>
->>>>>> Nit: "privacy" makes more sense without the suffix, as we inherently
->>>>>> know this is supposed to be an LED
->>>>>
->>>>> Note "privacy-led" as name is already used on the x86/ACPI side and
->>>>> the code consuming this will be shared.
->>>>>
->>>>> With that said if there is a strong preference for going with just
->>>>> "privacy" the x86 side can be adjusted since the provider-info is
->>>>> generated through a LED lookup table on the x86/ACPI side. So we can
->>>>> just modify both the lookup table generation as well as the already
->>>>> existing led_get(dev, "privacy-led") call to use just "privacy"
->>>>> without problems.
->>>>
->>>> In that case, it may be cleaner to just go with what we have today
->>>> (unless the dt maintainers have stronger opinions)
->>>
->>> Well, I do, but I guess it's fine. Please don't add the suffix on the
->>> rest and add a comment for why it's there.
->>
->>
->> As mentioned dropping the "-led" suffix is no big deal for the ACPI
->> side and if we don't want the suffix then IMHO we should just drop
->> it rather then making an exception here.
->>
->> Attached are 2 patches which drop the suffix on the ACPI side.
->>
->> If people agree with dropping the suffix I'll officially submit these
->> upstream.
-> 
-> Sounds like this is the preferred way. Could you please CC me when you
-> submit it? I will then respin this series and indicate yours as
-> dependency.
+For series,
 
-Done, including adding you to the Cc.
-
-Regards,
-
-Hans
-
+Reviewed-by: Kendall Willis <k-willis@ti.com>
 
