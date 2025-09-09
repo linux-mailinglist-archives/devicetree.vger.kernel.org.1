@@ -1,180 +1,130 @@
-Return-Path: <devicetree+bounces-214704-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-214705-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA53B4A286
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:43:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4366CB4A290
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 08:45:49 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 89EC444630B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:43:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7DBB44E2CD3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Sep 2025 06:45:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81D27303CBD;
-	Tue,  9 Sep 2025 06:43:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 026283043AD;
+	Tue,  9 Sep 2025 06:45:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cfo+f3oe";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="fOu2OQhD";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="zKJkMxhV";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="G9SrgBRr"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="M8+l34Mo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723AB303CA8
-	for <devicetree@vger.kernel.org>; Tue,  9 Sep 2025 06:43:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.135.223.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76511DE8BF;
+	Tue,  9 Sep 2025 06:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.85.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757400233; cv=none; b=fOWLR/Y/0FiPVLlL7SDCBj9JL/oHxFBEuWv0Q2Vmp/xr1VqQxsRz3eSl8ylZirG65trrmS8LMaveUgCwLbzwnMTF6jkxiPxjhapordKq5WWJ+KIToGI38l4spCUpuo0s88MsA2K/MNT/OdVbrxF2IYvbbiwxNg1dftHke9OfXgM=
+	t=1757400343; cv=none; b=g393ivAK25bDZOisfNt7IuS4wfrWHMbbYJc14KhajwzvCe5MoFuBG8fjub4GkoPm4C/TxjWloisO2C6k7q5hJOyRIfcp/PC5FXXDS3I3jX6FARDMubYuBrlfziBxWSa//T+rhi3LOkRIyzw3w4OObU0W12ECCr1xdIKom16Zmp0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757400233; c=relaxed/simple;
-	bh=RCW5GgCArVSwPic7glqYC7RlTKSqQK8WdmS+A/Xg6rk=;
-	h=Date:Message-ID:From:To:Cc:Subject:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sZxLURuAGhRzzT8UIRN7fj7qnBGCI5ryyaxpWuGYM1qpGBi7C7nibVpVFjpq0C7Bu5SWuyFwXibxlpxTq9NZZIOq/L01gV1hCmS1x2Q/WHZSTiuHud7qvaYpz0BsEiFK7zUMhXjAJNiF6Hw1Vo+Dhk6ytWXir+8zDRQ5YNHFCEU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de; spf=pass smtp.mailfrom=suse.de; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=cfo+f3oe; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=fOu2OQhD; dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b=zKJkMxhV; dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b=G9SrgBRr; arc=none smtp.client-ip=195.135.223.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=suse.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.de
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by smtp-out2.suse.de (Postfix) with ESMTPS id B636E20395;
-	Tue,  9 Sep 2025 06:43:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1757400222; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mv9rmhdL0uNXK3cxzdO4tHRw+ROK7mOEB36x9Me9aq8=;
-	b=cfo+f3oecUouQ0KpQpEYlBA+qvvM+4RXBYZWKAMcl5dVBnthBqad3LiltENna7TfHyAi9t
-	23npTRN621x0COFSDVQYZ5d4Hvm2BFVgLtgXqHCJKBW8VNdcJn2SxpcNVAJXEiXlHRqr3I
-	nglpNrhZqbQR8OPVCsZfs7fVQ4HjFTY=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1757400222;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mv9rmhdL0uNXK3cxzdO4tHRw+ROK7mOEB36x9Me9aq8=;
-	b=fOu2OQhDBImqqKc3sWvwXYtWxuDYmQfFKBmwY1QQV+fKw9AwXatlCLMmC8c5iBl8+UUpYC
-	stnfGGTjixrm21Bg==
-Authentication-Results: smtp-out2.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-	t=1757400221; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mv9rmhdL0uNXK3cxzdO4tHRw+ROK7mOEB36x9Me9aq8=;
-	b=zKJkMxhVPb/f5q4ETbALAoFXWY39YJkcaulAOOAGinGnNHonPCiGtr4+GGSAxiNvVNEZ9d
-	PcbraGBKU56lthg1FnAk8kqd8pAvpeF6nz5zVwTmZs2XPvGsOE/4R+UwQ/FEt1ghopn+8U
-	Mfg8Ut98YtGpmIl+tf19Wr0hldnS1Js=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-	s=susede2_ed25519; t=1757400221;
-	h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-	 mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Mv9rmhdL0uNXK3cxzdO4tHRw+ROK7mOEB36x9Me9aq8=;
-	b=G9SrgBRrpo48ggyq2wAOhnOLmwjJivBbHWSOnmmLOyEWMCfH/bDyeIWpvaoreRdSnHagZT
-	wFk+g/rPpGUiqPBQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 304431388C;
-	Tue,  9 Sep 2025 06:43:41 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
-	by imap1.dmz-prg2.suse.org with ESMTPSA
-	id /nTWCZ3Mv2jjVQAAD6G6ig
-	(envelope-from <tiwai@suse.de>); Tue, 09 Sep 2025 06:43:41 +0000
-Date: Tue, 09 Sep 2025 08:43:40 +0200
-Message-ID: <87ecsgxh0j.wl-tiwai@suse.de>
-From: Takashi Iwai <tiwai@suse.de>
-To: Mark Brown <broonie@kernel.org>
-Cc: "Xu, Baojun" <baojun.xu@ti.com>,
-	"andriy.shevchenko@linux.intel.com" <andriy.shevchenko@linux.intel.com>,
-	"13916275206@139.com" <13916275206@139.com>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"Ding, Shenghao" <shenghao-ding@ti.com>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-	"robh@kernel.org" <robh@kernel.org>,
-	"krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"Yi, Ken" <k-yi@ti.com>,
-	"Lo, Henry" <henry.lo@ti.com>,
-	"Chen, Robin" <robinchen@ti.com>,
-	"Ji, Jesse" <jesse-ji@ti.com>,
-	"Wang, Will" <will-wang@ti.com>,
-	"jim.shil@goertek.com" <jim.shil@goertek.com>,
-	"toastcheng@google.com" <toastcheng@google.com>,
-	"chinkaiting@google.com" <chinkaiting@google.com>
-Subject: Re: [EXTERNAL] Re: [PATCH v4 1/2] ASoC: tas2781: Add tas2118, tas2x20, tas5825 support
-In-Reply-To: <071e0e04-e2cb-480d-8207-f6ba87cb56b5@sirena.org.uk>
-References: <20250830061459.24371-1-baojun.xu@ti.com>
-	<993d7fe7-5206-45a9-acb6-0d610a3a2136@sirena.org.uk>
-	<12aa63e694c94213aeb6b48959d02b45@ti.com>
-	<b70314db-357f-4c39-a9b4-088d8ebed2b0@sirena.org.uk>
-	<67fafc23d16d4790821321643a87385f@ti.com>
-	<071e0e04-e2cb-480d-8207-f6ba87cb56b5@sirena.org.uk>
-User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+	s=arc-20240116; t=1757400343; c=relaxed/simple;
+	bh=c+1ehdd+8N66l95N/Q+fuTsgvbjN0WNAF1sdZEAjwYE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZvhKx1s/hpF9iy84rtcor0jf9UuDCgzJfm9cA8g2hOSRP+uvCFcndgBtFaZwbP8EdeOXobXdXwaKUkoUPpOcEUUS4dqRyMwNdtsP4OR4Kr/PM2NUGVS8dz7UAQxxey1uIieTFdADJB9veaZlw3Ts2FuFPUagcgOn5dbbjdsLITk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=M8+l34Mo; arc=none smtp.client-ip=185.246.85.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-03.galae.net (Postfix) with ESMTPS id 000194E408F2;
+	Tue,  9 Sep 2025 06:45:38 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id BFE3C60630;
+	Tue,  9 Sep 2025 06:45:38 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 7BCA0102F278B;
+	Tue,  9 Sep 2025 08:45:22 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757400337; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=c+1ehdd+8N66l95N/Q+fuTsgvbjN0WNAF1sdZEAjwYE=;
+	b=M8+l34MoEkgGknKQan9JbXuLxsAHbbfLMrX9lhOin7732JbDPvwFas8RcRnigWEcn2wuQw
+	VtKlcK8WjnbfNnhepYUSd2Cae0MTX94OUkkO4SrYMfn+W7yC2F/d3pAQBniLY5NqTVz1fB
+	6RrPUwnRaSP+HFQkoWMDCF17o7cf4yCmnS7nUOpTZJegrB2KnK1R7FwiF0MCjergD/HL8x
+	IczudxJeJ4Mhw8oTBJsn0oVyjBsSvX/dtHwbppYm/+09mDTv8Gk65wEtN9FGZFw1P7xAkK
+	RAlUjnfzpNbjqyLxLPi0pZEhR5Cjfc2ajOtiY62DIMsr+OhczBfp2mBOUsK3Nw==
+Date: Tue, 9 Sep 2025 08:45:21 +0200
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Svyatoslav Ryhel <clamor95@gmail.com>
+Cc: Thierry Reding <thierry.reding@gmail.com>, Thierry Reding
+ <treding@nvidia.com>, Mikko Perttunen <mperttunen@nvidia.com>, Jonathan
+ Hunter <jonathanh@nvidia.com>, Sowjanya Komatineni
+ <skomatineni@nvidia.com>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+ <krzk+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Peter De
+ Schrijver <pdeschrijver@nvidia.com>, Prashant Gaikwad
+ <pgaikwad@nvidia.com>, Michael Turquette <mturquette@baylibre.com>, Stephen
+ Boyd <sboyd@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>, Dmitry Osipenko
+ <digetx@gmail.com>, Charan Pedumuru <charan.pedumuru@gmail.com>,
+ linux-media@vger.kernel.org, linux-tegra@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-staging@lists.linux.dev
+Subject: Re: [PATCH v1 13/19] staging: media: tegra-video: tegra20: set VI
+ HW revision
+Message-ID: <20250909084103.60de1cd6@booty>
+In-Reply-To: <CAPVz0n2m4U-7G14Jhnsm41qsj0FVo39bdJ=f8kAm=+uxZyM0xw@mail.gmail.com>
+References: <20250819121631.84280-1-clamor95@gmail.com>
+ <20250819121631.84280-14-clamor95@gmail.com>
+ <20250905180837.35547304@booty>
+ <CAPVz0n2m4U-7G14Jhnsm41qsj0FVo39bdJ=f8kAm=+uxZyM0xw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
-Content-Type: text/plain; charset=US-ASCII
-X-Spamd-Result: default: False [-1.80 / 50.00];
-	BAYES_HAM(-3.00)[99.99%];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	NEURAL_HAM_LONG(-1.00)[-1.000];
-	NEURAL_HAM_SHORT(-0.20)[-1.000];
-	MIME_GOOD(-0.10)[text/plain];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FREEMAIL_ENVRCPT(0.00)[139.com,gmail.com];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	TAGGED_RCPT(0.00)[dt];
-	RCVD_TLS_ALL(0.00)[];
-	DKIM_SIGNED(0.00)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[ti.com,linux.intel.com,139.com,alsa-project.org,vger.kernel.org,gmail.com,kernel.org,goertek.com,google.com];
-	TO_DN_SOME(0.00)[];
-	FROM_EQ_ENVFROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	TO_MATCH_ENVRCPT_ALL(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:mid,imap1.dmz-prg2.suse.org:helo]
-X-Spam-Flag: NO
-X-Spam-Level: 
-X-Spam-Score: -1.80
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, 08 Sep 2025 19:10:28 +0200,
-Mark Brown wrote:
-> 
-> On Mon, Sep 08, 2025 at 06:22:51AM +0000, Xu, Baojun wrote:
-> 
-> > > > Or need to create patches on tree broonie/linux.git?
-> 
-> > >   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-6.18
-> 
-> > This patch is also relative (shares the same include/sound/tas5825-tlv.h)
-> > with another commit on next/linux-next.git:
-> > https://patch.msgid.link/20250810122358.1575-1-baojun.xu@ti.com (ALSA: hda: Add TAS5825 support)
-> > However, it was not merged into broonie/sound.git yet, should I wait for it?
-> 
-> OK, it's probably easiest to just apply these directly to Takashi's
-> tree:
-> 
-> Acked-by: Mark Brown <broonie@kernel.org>
+Hello Svyatoslav,
 
-OK, applied both patches now to for-next branch.
+On Fri, 5 Sep 2025 19:11:06 +0300
+Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+
+> =D0=BF=D1=82, 5 =D0=B2=D0=B5=D1=80. 2025=E2=80=AF=D1=80. =D0=BE 19:08 Luc=
+a Ceresoli <luca.ceresoli@bootlin.com> =D0=BF=D0=B8=D1=88=D0=B5:
+> >
+> > On Tue, 19 Aug 2025 15:16:25 +0300
+> > Svyatoslav Ryhel <clamor95@gmail.com> wrote:
+> > =20
+> > > Tegra20, Tegra30 and Tegra114 have VI revision 1. =20
+> >
+> > Why? You should mention the reason in the commit message.
+> > =20
+>=20
+> Because TRM states that Tegra20, Tegra30 and Tegra114 have VI revision
+> 1, Tegra124 has VI revision 2 and Tegra210 has VI revision 3 (which is
+> set in tegra210.c btw).
+>=20
+> > But I don't see hw_revision used in the series, so unless I missed
+> > something you should drop this patch.
+
+My point was rather that the hw revision is not used in the series, not
+quite about the value itself. I was missing it is exposed by MC, so
+this is fine.
+
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
 
-thanks,
-
-Takashi
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
