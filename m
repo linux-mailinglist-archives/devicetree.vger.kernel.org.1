@@ -1,123 +1,129 @@
-Return-Path: <devicetree+bounces-215460-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215461-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F9DCB517F9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:32:34 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6294B5180E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:38:40 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A5B927BAF7D
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:30:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BC495E3572
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6B731A9F8C;
-	Wed, 10 Sep 2025 13:30:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 742F63112C7;
+	Wed, 10 Sep 2025 13:38:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="ZIAzvfhu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HPtWYkdO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [1.95.21.14])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E128A31079B;
-	Wed, 10 Sep 2025 13:30:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=1.95.21.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4315F1494CC;
+	Wed, 10 Sep 2025 13:38:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757511051; cv=none; b=fSjd4FYHRdQJfR5q0elfFjeLFJO7loJOrt1kB7LDzWsjGGAIvJulw7N7lhquwveoXpf+009lj2Ll1hPrQHtIX2f961fvSjpJ9DgcM4LflgGxolCnIrxzs10/bYIwpOoI7ab/BSlFvOMjRkcB4JkZY2G8QUUVesfS3uc3SvGoW/I=
+	t=1757511515; cv=none; b=dCvzRHYdTuMR0ZhA1cYL0uAEw1Bba/BVk3EdTUkbLrF1q85oQJPulABdOXRg5K7xURsVXHbFqYI5QvsSj3pVoJ3tHg7aF3LNGKDv77AVjRuAEHagNdFe+Z2gkbOq7deFMnTcamWT7fwjhRSG3bNrh72ClyJE2K2P2GzaE4muLbo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757511051; c=relaxed/simple;
-	bh=x7ddNJB4PbEZlaZxFw8Q4jEczKtBC3VpbHxRUgvDWr0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SqZDr0mR4zooGuquhkkk14iTYTIWJ9QEvCtIrw0ac1o0zCDcQOHnzC9KezjVHJivQ7pG24eZu3fLoDCg3pViZFZrrf65SQ9JHEvv8dpHY/SoZC7iG+o+MNzU9tYmK323FLDn9g7WmaYPTxrX43uoYJnwGTT4i08eJCXWuqRRXe4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=ZIAzvfhu; arc=none smtp.client-ip=1.95.21.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=gYMy2/LLnu2KAOtRSTu6UdjE6ow6Rx7TsQICVL6w6ak=;
-	b=ZIAzvfhuS9W0YBFZsT9WvS6RE8IPbvsze8s+ZRyqDugfH9xf7UFC8g+knCJUnG
-	aF/2I6Gzh/IJMhoVX9d5cY6KRJd4KSiVnvWgUIeuKTiPnuH/u3sLM6cZZtLUbZ8N
-	wmxbLczxBZoPFGR3ICF7zumWrkip+kq6psJO069//eR9w=
-Received: from dragon (unknown [])
-	by gzsmtp2 (Coremail) with SMTP id Ms8vCgBHddlIfcFo5a5YBA--.43536S3;
-	Wed, 10 Sep 2025 21:29:46 +0800 (CST)
-Date: Wed, 10 Sep 2025 21:29:44 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Andrej Rosano <andrej.rosano@reversec.com>
-Cc: =?iso-8859-1?B?Q3Pza+Fz?= Bence <csokas.bence@prolan.hu>,
-	Andrea Barisani <andrea@inversepath.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"imx@lists.linux.dev" <imx@lists.linux.dev>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>
-Subject: Re: [PATCH v2 2/8] ARM: dts: imx53-usbarmory: Replace license text
- comment with SPDX identifier
-Message-ID: <aMF9SKDEu4dlq_Xe@dragon>
-References: <20250814-imx-misc-dts-lic-v2-0-faff7db49a5f@prolan.hu>
- <20250814-imx-misc-dts-lic-v2-2-faff7db49a5f@prolan.hu>
- <b48844bc-07f3-4fc1-8486-8968bf6d2362@prolan.hu>
- <aMFofaIczqElAsLY@stjenka.localdomain>
+	s=arc-20240116; t=1757511515; c=relaxed/simple;
+	bh=a040r4eM2yhSWfXdg58fzda5OZ7oGB0lS6HGqRV+5gQ=;
+	h=Date:Content-Type:MIME-Version:From:Cc:To:In-Reply-To:References:
+	 Message-Id:Subject; b=odj3APKAuKgbUr4JgDaIuolluAO+nIzG/+/K3H2vxKUFqcjGEdB4djZu3u3PsCYyPiEIwFKWT1IGWGKIEtohR++SRTFJ//dVXXqYkan61EEfQfaTNL2ygUu4gZdV/wSoh2k0gKPqU+Lav1h5Yv7Pj78y01LD/Za/mIjtpX9yaNA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HPtWYkdO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8CFEC4CEF0;
+	Wed, 10 Sep 2025 13:38:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757511514;
+	bh=a040r4eM2yhSWfXdg58fzda5OZ7oGB0lS6HGqRV+5gQ=;
+	h=Date:From:Cc:To:In-Reply-To:References:Subject:From;
+	b=HPtWYkdOO487YPncRRA10m+CcLPt0C/2M4I2IfM/F1LoV9p4Y8+e3F53OFIrEtm5A
+	 uM2We3Zb9Gnr9/gicHy/kKJ1gBkfBDyaUfEmxugkONkn0XFDdSUwvULqtP4PcFjW15
+	 7d3NweIe78LkdubkgleqTHGnGCtw11S+/vR4d5YB/OaoRBjsApNJNHG15ZOtU6NT2d
+	 Le/7x0gAo5DMzMNtgyh/vhIZzcVVGpEgKwgSDfSJyoPmUDQuzi4fseAda+XHDC4Bpq
+	 zy4ylspGlOINlNJLyaSHpAxAVtj2oijUQSOcHMSE44GPKzQlygoDVhLjt9+nxwPOv6
+	 dLcaeOUn5K4pQ==
+Date: Wed, 10 Sep 2025 08:38:34 -0500
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aMFofaIczqElAsLY@stjenka.localdomain>
-X-CM-TRANSID:Ms8vCgBHddlIfcFo5a5YBA--.43536S3
-X-Coremail-Antispam: 1Uf129KBjvJXoW7tr13Kry5Zry8tF1rtrWfAFb_yoW8Gr4xpF
-	W8KF4YyF4UJ3yrGa1j9a1DZ3saqw4fKFy5AryDW347Zrn8Xr1FqF4xKry5KFy29r1DCF4j
-	ya1aqFWSqay5AaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07jYpBfUUUUU=
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiIgz8YmjBfUyqYQAA3j
+From: "Rob Herring (Arm)" <robh@kernel.org>
+Cc: Giuseppe Cavallaro <peppe.cavallaro@st.com>, 
+ Krzysztof Kozlowski <krzk+dt@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, Eric Dumazet <edumazet@google.com>, 
+ linux-kernel@vger.kernel.org, Andrew Lunn <andrew+netdev@lunn.ch>, 
+ Vinod Koul <vkoul@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ devicetree@vger.kernel.org, Jose Abreu <joabreu@synopsys.com>, 
+ netdev@vger.kernel.org, "David S. Miller" <davem@davemloft.net>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Bjorn Andersson <andersson@kernel.org>, 
+ Richard Cochran <richardcochran@gmail.com>, 
+ Jakub Kicinski <kuba@kernel.org>, 
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>, 
+ Alexandre Torgue <alexandre.torgue@foss.st.com>, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-arm-msm@vger.kernel.org
+To: Bartosz Golaszewski <brgl@bgdev.pl>
+In-Reply-To: <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org>
+References: <20250910-qcom-sa8255p-emac-v1-0-32a79cf1e668@linaro.org>
+ <20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org>
+Message-Id: <175751081352.3667912.274641295097354228.robh@kernel.org>
+Subject: Re: [PATCH 2/9] dt-bindings: net: qcom: document the ethqos device
+ for SCMI-based systems
 
-On Wed, Sep 10, 2025 at 12:01:02PM +0000, Andrej Rosano wrote:
-> Hi Bence,
+
+On Wed, 10 Sep 2025 10:07:39 +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> yes, we agree.
-
-Andrej, could you give an explicit Acked-by tag for this patch?
-
-Shawn
-
-> On 2025-09-09 Tue, Csókás Bence wrote:
-> > [You don't often get email from csokas.bence@prolan.hu. Learn why this is important at https://aka.ms/LearnAboutSenderIdentification ]
-> > 
-> > Hi,
-> > 
-> > On 2025. 08. 14. 9:47, Bence Csókás wrote:
-> > > Replace verbatim license text with a `SPDX-License-Identifier`.
-> > > 
-> > > The comment header mis-attributes this license to be "X11", but the
-> > > license text does not include the last line "Except as contained in this
-> > > notice, the name of the X Consortium shall not be used in advertising or
-> > > otherwise to promote the sale, use or other dealings in this Software
-> > > without prior written authorization from the X Consortium.". Therefore,
-> > > this license is actually equivalent to the SPDX "MIT" license (confirmed
-> > > by text diffing).
-> > > 
-> > > Cc: Andrej Rosano <andrej@inversepath.com>
-> > > Signed-off-by: Bence Csókás <csokas.bence@prolan.hu>
-> > 
-> > +To: Andrea Barisani <andrea@inversepath.com>
-> > 
-> > Andrej, Andrea, do you agree with this?
-> > 
-> > Thanks,
-> > Bence
-> > 
+> Describe the firmware-managed variant of the QCom DesignWare MAC. As the
+> properties here differ a lot from the HLOS-managed variant, lets put it
+> in a separate file.
 > 
-> -- 
-> Andrej Rosano | Hardware Security | Reversec Foundry
-> www.reversec.com/foundry
-> BDE1 62F4 7020 1588 8046 AE02 EA17 8C32 AB56 54CE
+> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+> ---
+>  .../devicetree/bindings/net/qcom,ethqos-scmi.yaml  | 101 +++++++++++++++++++++
+>  .../devicetree/bindings/net/snps,dwmac.yaml        |   4 +-
+>  MAINTAINERS                                        |   1 +
+>  3 files changed, 105 insertions(+), 1 deletion(-)
+> 
+
+My bot found errors running 'make dt_binding_check' on your patch:
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): power-domains: [[4294967295]] is too short
+	from schema $id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): Unevaluated properties are not allowed ('clock-names', 'clocks', 'interrupt-names', 'interrupts', 'phy-mode', 'power-domains', 'reg', 'rx-fifo-depth', 'snps,multicast-filter-bins', 'snps,perfect-filter-entries', 'tx-fifo-depth' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/renesas,rzn1-gmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/renesas,rzn1-gmac.example.dtb: ethernet@44000000 (renesas,r9a06g032-gmac): power-domains: [[4294967295]] is too short
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): power-domains: [[4294967295, 4]] is too short
+	from schema $id: http://devicetree.org/schemas/net/mediatek-dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): Unevaluated properties are not allowed ('mac-address', 'phy-mode', 'reg', 'snps,reset-delays-us', 'snps,reset-gpio', 'snps,rxpbl', 'snps,txpbl' were unexpected)
+	from schema $id: http://devicetree.org/schemas/net/mediatek-dwmac.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/net/mediatek-dwmac.example.dtb: ethernet@1101c000 (mediatek,mt2712-gmac): power-domains: [[4294967295, 4]] is too short
+	from schema $id: http://devicetree.org/schemas/net/snps,dwmac.yaml#
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20250910-qcom-sa8255p-emac-v1-2-32a79cf1e668@linaro.org
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
