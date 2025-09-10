@@ -1,202 +1,113 @@
-Return-Path: <devicetree+bounces-215650-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215651-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F9E3B52378
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 23:29:30 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2116B523D9
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 23:49:26 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B3171BC3217
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:29:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BF1BA020E3
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 21:49:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5131A24C068;
-	Wed, 10 Sep 2025 21:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A319D3002C0;
+	Wed, 10 Sep 2025 21:49:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b="CYbGwQML"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hmjl4Xs8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.forwardemail.net (smtp.forwardemail.net [149.28.215.223])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F32A330BBA4
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 21:29:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=149.28.215.223
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7872E2D77EF;
+	Wed, 10 Sep 2025 21:49:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757539764; cv=none; b=FIn8DW6SS3DYfC8QH/YalgpwFke7IcGA/tr7eQkGLCghAf3fRSEVhHUdca92YYh3Y5Q2JCkOfocVH4MWAWA9qnwBQ7X7uor3Ikbftle6zu+1cZ6b4ekdCEQFSeN4peO0xb9ksr2nKyBUGqegOTtY01caw4aFxOHhtahBojzr2Es=
+	t=1757540962; cv=none; b=nIZUhaoxdEmipJjKpuy3nOkNeFSWJ807rH20hFvICEPqRl6HhThpvRdioI21OJe27iIKcqoUJshgYwyMTUP7fNHTSIbzRMsFadw/c20X1E8ULU/85vMDgFuvm3PJl9OxoiVh3FqL64Yiovz4EGzJlq1/oVh7iMCslyj1VYOyZ2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757539764; c=relaxed/simple;
-	bh=aCgUYgywrm/2h1KX190TpAXxadjFS7iwP5A6Tamnbcg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GPm1/LL5UPKeEdjl9QuucCEHTzzfaU7ZYqlffTUROEkSXqixgaTVr5aNdA9t8P9ju3Sli9pIcSthMcPfPrk0eK7jqivcSjU0AZjTjSshV6bJaTRLeADFCS0w6nm56r/5wvJ+XdPxaEpvmWiGq8nSrdmmoE+y3oHQYdrkngf3IvY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se; dkim=pass (2048-bit key) header.d=kwiboo.se header.i=@kwiboo.se header.b=CYbGwQML; arc=none smtp.client-ip=149.28.215.223
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=kwiboo.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=fe-bounces.kwiboo.se
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kwiboo.se;
- h=Content-Transfer-Encoding: Content-Type: In-Reply-To: From: References:
- Cc: To: Subject: MIME-Version: Date: Message-ID; q=dns/txt;
- s=fe-e1b5cab7be; t=1757539755;
- bh=Z1MeHN/FAuAOkxz9iJEKMCLiQPrMJjTHwVbwSN9mvp8=;
- b=CYbGwQMLTFunSmaFklc2ZRemAoFT5+vyEMyJ9zhM0U1np/MVRgis6FEqG+zEyR1BkffozC41M
- J66h7cmCVzR0E9/1gVGxH5f7zLEzEYm28RVG21O1WBUfi5qE7LJfgTg28rNbLtsc1grgzVBwVWF
- QfGxYqCnZ4hPYOiTmlHXdHoPT+mrsICQSU2fKie3tjFwkDIk7ewfkkNeLeif6N61lSubK7qVIRa
- cvahGADbXqe65TwllzKynoStcmupkIHATU0AD7ShRPoZRNZDcuaZGeNJXaZorCBUO1bTMVc80Vt
- qsyhIc77L2QvphVXP8CgziSMm31YcFbDit7NLgiEyFBw==
-X-Forward-Email-ID: 68c1eda3343e597491a9aa4c
-X-Forward-Email-Sender: rfc822; jonas@kwiboo.se, smtp.forwardemail.net,
- 149.28.215.223
-X-Forward-Email-Version: 1.2.14
-X-Forward-Email-Website: https://forwardemail.net
-X-Complaints-To: abuse@forwardemail.net
-X-Report-Abuse: abuse@forwardemail.net
-X-Report-Abuse-To: abuse@forwardemail.net
-Message-ID: <38e80b6d-1dc9-47a8-8b23-e875c2848e6e@kwiboo.se>
-Date: Wed, 10 Sep 2025 23:29:00 +0200
+	s=arc-20240116; t=1757540962; c=relaxed/simple;
+	bh=tstdZvGhhnxkrhQe0/MNomiRRM/2Ww6Fg3HjnJoTm+M=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=IywTzLpLyXDK/iT7hg1othS0K515zxFwLs+8N3osXO+afgUw4ttN+I9YqiuurcPknaihefUq4BsW1CymZ5zYwZXR60vhE4fboSUxv0R+0553j0QS1vPDYe4peezdJ0YYbZysIs+0oAhbatFL9z+fzRYTTKcmqezloZ17FaihGtQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hmjl4Xs8; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01617C4CEEB;
+	Wed, 10 Sep 2025 21:49:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757540962;
+	bh=tstdZvGhhnxkrhQe0/MNomiRRM/2Ww6Fg3HjnJoTm+M=;
+	h=From:To:Cc:Subject:Date:From;
+	b=hmjl4Xs8iHcNeiLzA7GdrqFWuP0f7AxsdBnXJAaWA2bO3GOBEpD+3o9fTN38dNVr0
+	 6FMVIujJXYDm0O7tqAkfkq3Oy0Qq50vtNXFLxOL0fHg7ucIwdip4Ou4HpWFbKIsTbt
+	 7GuEAxdOuNgiN3oNGZ/3ZmUXh2RXnlKDD5J5a3qWd9ZUrn+Tz/F/AfZ5AUV9pK8nrk
+	 CUhrAUgDEvZy+Nyx6U/aosy8oCYKctK3fwHAhSlWxN6IrBz5k2s9aPtfnqiDv5Koxw
+	 fT8ZKFKuLqzOMyDJ1gawNA0YtXECST85SF6xWyadvEySwwlSJ3DvulkAajkABfFved
+	 eYlTN+JUJ7xaQ==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: apm: Move slimpro nodes out of "simple-bus" node
+Date: Wed, 10 Sep 2025 16:48:23 -0500
+Message-ID: <20250910214822.508317-2-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] arm64: dts: rockchip: Add PCIe Gen2x1 controller for
- RK3528
-To: Yao Zi <ziyao@disroot.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kwilczynski@kernel.org>,
- Manivannan Sadhasivam <mani@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Shawn Lin <shawn.lin@rock-chips.com>, Simon Xue <xxm@rock-chips.com>,
- linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org, Chukun Pan <amadeus@jmu.edu.cn>
-References: <20250906135246.19398-1-ziyao@disroot.org>
- <20250906135246.19398-3-ziyao@disroot.org>
-Content-Language: en-US
-From: Jonas Karlman <jonas@kwiboo.se>
-In-Reply-To: <20250906135246.19398-3-ziyao@disroot.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Hi Yao Zi,
+The slimpro nodes are not MMIO devices, so they don't belong under a
+"simple-bus" node. Move them to the top level.
 
-On 9/6/2025 3:52 PM, Yao Zi wrote:
-> Describes the PCIe Gen2x1 controller integrated in RK3528 SoC. The SoC
-> doesn't provide a separate MSI controller, thus the one integrated in
-> designware PCIe IP must be used.
-> 
-> Signed-off-by: Yao Zi <ziyao@disroot.org>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3528.dtsi | 56 +++++++++++++++++++++++-
->  1 file changed, 55 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3528.dtsi b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> index db5dbcac7756..2d2af467e5ab 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3528.dtsi
-> @@ -7,6 +7,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/phy/phy.h>
->  #include <dt-bindings/pinctrl/rockchip.h>
->  #include <dt-bindings/clock/rockchip,rk3528-cru.h>
->  #include <dt-bindings/power/rockchip,rk3528-power.h>
-> @@ -239,7 +240,7 @@ gmac0_clk: clock-gmac50m {
->  
->  	soc {
->  		compatible = "simple-bus";
-> -		ranges = <0x0 0xfe000000 0x0 0xfe000000 0x0 0x2000000>;
-> +		ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x44400000>;
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Arnd, Please take this directly.
 
-We should use the dbi reg area in the 32-bit address space, please use:
+ arch/arm64/boot/dts/apm/apm-storm.dtsi | 20 ++++++++++----------
+ 1 file changed, 10 insertions(+), 10 deletions(-)
 
-  ranges = <0x0 0xfc000000 0x0 0xfc000000 0x0 0x4000000>;
-
->  		#address-cells = <2>;
->  		#size-cells = <2>;
->  
-> @@ -1133,6 +1134,59 @@ combphy: phy@ffdc0000 {
->  			rockchip,pipe-phy-grf = <&pipe_phy_grf>;
->  			status = "disabled";
->  		};
-> +
-> +		pcie: pcie@fe4f0000 {
-
-With the dbi reg area changed below, please update the node name and
-move this node to top of the soc node.
-
-  pcie@fe000000
-
-> +			compatible = "rockchip,rk3528-pcie",
-> +				     "rockchip,rk3568-pcie";
-> +			reg = <0x1 0x40000000 0x0 0x400000>,
-
-We should use the dbi reg area in the 32-bit address space, please use:
-
-  reg = <0x0 0xfe000000 0x0 0x400000>,
-
-> +			      <0x0 0xfe4f0000 0x0 0x10000>,
-> +			      <0x0 0xfc000000 0x0 0x100000>;
-> +			reg-names = "dbi", "apb", "config";
-> +			bus-range = <0x0 0xff>;
-> +			clocks = <&cru ACLK_PCIE>, <&cru HCLK_PCIE_SLV>,
-> +				 <&cru HCLK_PCIE_DBI>, <&cru PCLK_PCIE>,
-> +				 <&cru CLK_PCIE_AUX>, <&cru PCLK_PCIE_PHY>;
-> +			clock-names = "aclk_mst", "aclk_slv",
-> +				      "aclk_dbi", "pclk",
-> +				      "aux", "pipe";
-
-In my U-Boot test I did not have the pipe/phy clock here, do we need it?
-
-With above fixed this more or less matches my U-Boot testing, and is:
-
-Reviewed-by: Jonas Karlman <jonas@kwiboo.se>
-
-Regards,
-Jonas
-
-> +			device_type = "pci";
-> +			interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-> +				     <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "sys", "pmc", "msg", "legacy", "err",
-> +					  "msi";
-> +			#interrupt-cells = <1>;
-> +			interrupt-map-mask = <0 0 0 7>;
-> +			interrupt-map = <0 0 0 1 &pcie_intc 0>,
-> +					<0 0 0 2 &pcie_intc 1>,
-> +					<0 0 0 3 &pcie_intc 2>,
-> +					<0 0 0 4 &pcie_intc 3>;
-> +			linux,pci-domain = <0>;
-> +			max-link-speed = <2>;
-> +			num-lanes = <1>;
-> +			phys = <&combphy PHY_TYPE_PCIE>;
-> +			phy-names = "pcie-phy";
-> +			power-domains = <&power RK3528_PD_VPU>;
-> +			ranges = <0x01000000 0x0 0xfc100000 0x0 0xfc100000 0x0 0x100000>,
-> +				 <0x02000000 0x0 0xfc200000 0x0 0xfc200000 0x0 0x1e00000>,
-> +				 <0x03000000 0x1 0x00000000 0x1 0x00000000 0x0 0x40000000>;
-> +			resets = <&cru SRST_PCIE_POWER_UP>, <&cru SRST_P_PCIE>;
-> +			reset-names = "pwr", "pipe";
-> +			#address-cells = <3>;
-> +			#size-cells = <2>;
-> +			status = "disabled";
-> +
-> +			pcie_intc: legacy-interrupt-controller {
-> +				interrupt-controller;
-> +				interrupt-parent = <&gic>;
-> +				interrupts = <GIC_SPI 155 IRQ_TYPE_EDGE_RISING>;
-> +				#address-cells = <0>;
-> +				#interrupt-cells = <1>;
-> +			};
-> +		};
->  	};
->  };
->  
+diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+index 5feb561c75c5..6a6877845ae5 100644
+--- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+@@ -133,6 +133,16 @@ pmu {
+ 		interrupts = <1 12 0xff04>;
+ 	};
+ 
++	i2cslimpro {
++		compatible = "apm,xgene-slimpro-i2c";
++		mboxes = <&mailbox 0>;
++	};
++
++	hwmonslimpro {
++		compatible = "apm,xgene-slimpro-hwmon";
++		mboxes = <&mailbox 7>;
++	};
++
+ 	soc {
+ 		compatible = "simple-bus";
+ 		#address-cells = <2>;
+@@ -757,16 +767,6 @@ mailbox: mailbox@10540000 {
+ 					<0x0 0x7 0x4>;
+ 		};
+ 
+-		i2cslimpro {
+-			compatible = "apm,xgene-slimpro-i2c";
+-			mboxes = <&mailbox 0>;
+-		};
+-
+-		hwmonslimpro {
+-			compatible = "apm,xgene-slimpro-hwmon";
+-			mboxes = <&mailbox 7>;
+-		};
+-
+ 		serial0: serial@1c020000 {
+ 			status = "disabled";
+ 			compatible = "ns16550a";
+-- 
+2.51.0
 
 
