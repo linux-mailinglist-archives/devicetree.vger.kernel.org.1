@@ -1,263 +1,417 @@
-Return-Path: <devicetree+bounces-215654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB25BB5242A
-	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 00:20:09 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D484AB52438
+	for <lists+devicetree@lfdr.de>; Thu, 11 Sep 2025 00:30:36 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EDC65188662E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 22:20:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 78DDB467D09
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 22:30:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A74F430FF3F;
-	Wed, 10 Sep 2025 22:19:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FD81FFC7B;
+	Wed, 10 Sep 2025 22:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="hYBgkz/q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWZX3ZPO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f225.google.com (mail-il1-f225.google.com [209.85.166.225])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEB0E2F3C35
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 22:19:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.225
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28EB54A21;
+	Wed, 10 Sep 2025 22:30:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757542777; cv=none; b=BRZ2JvJGlPTbNlZRDa119gC8ZE6x5+rc2XYmUURrpjjQiln2eo6f/D6IwEg9khFBQeUa5kVqduTAhoV7hVMLuCSTLovuV5Vtu3Ak0YEKb9TduvKLdUbXvvskYXPLx/8dat2qDgH2Iw80w7U6geMwGV6+cyd/qc5/N1O3uxxfJFI=
+	t=1757543434; cv=none; b=SAEPBfQZRBULSthkqN6yEw3jH8fWl+rKGQXattQMdjU0/ZnxJSKmR5CYYDsmBndkZOyPe4kKk1MtfDget/qdKLd65Nl8LrZXjX0lQKngCON3QTCCSavwt0Lj4pNsXXtaJyPyYNW7Jn0Ivo8bvaHFq7P781S6f83Mz52MxiGhdGI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757542777; c=relaxed/simple;
-	bh=qryd9d3EcpC0AlezfGs+ybYlxKIarlPyMa63kBcjQPg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TASXfJzDxdAMzQ8bQ4z5MaUrb4MI1/mt2ptbMbAW5lUu1wy9/tVhUMPBfyUb+XvLJWoTBWJpcje51x2ORcqPiF6z0mPdoxiv+c3+MlcCNhth6nXX1kBjuHtv8n+fMRxlymouZsLSSsCJcjntBJ7Bn6rzOUDM69qdUa/JV6oa65M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=hYBgkz/q; arc=none smtp.client-ip=209.85.166.225
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-il1-f225.google.com with SMTP id e9e14a558f8ab-41310b1ebc5so7578415ab.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 15:19:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757542775; x=1758147575;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:dkim-signature:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DYkMluAXoUU9ziRsn/K2ST3c55WCNeely9VEl19vgTc=;
-        b=HszQkgcLScwXPFcdsVkmj+E0HUIHkjVt6nG1vsnUEQ+io/Z9MRi1sr3GxFyufNjmky
-         wculPjzsn+XwPZudmYq+zVbARscBGuxgE3fkbXzKCbZyyPuruYDB0tuWvw84mGw2ZOEp
-         uVteGh9ioZ1fnR1gtrkOzsfqXin9/wyXuzjPIHVLndJJPTcL/ujeOc3swzJVLxSwML+a
-         ZE0txeSOvdsAehjiHpBztear9NZ5PRyZrml47Z1lCcqTLLEaL9/zTqjexEud8BOmNHED
-         PV1LAJfGovD1nuqoiChRH9eCJ0VTUHTfQE+wXY2xl/RvEwk6OT7oPhxezTyg1kJcoKuZ
-         zISQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUy5xeI2MvyoUi21r3WiYEEuI0rWYWwvsKGKgI0/Ajs7X0b7vFvvRUMACpRGndPS9wdmaF9mSqCnC5D@vger.kernel.org
-X-Gm-Message-State: AOJu0Yyc0xzpQ4CqD8PyZEqaqzLwQmd3hDJCjj4BBq2wRb7CAeM0TzuP
-	WnfjQanJusgh0du/rVtKIpDo5SNv5ouIdAuIuOocq9YBxlJGz2t9NFO58m+CkDZtT4FrhqoUdZh
-	f7ICGxFV9oH500NXV3nNJQElUDYRM6te5jXRchA3t1+tVZKt+y2vYslSNsPq3axYiNjqVLxtEtX
-	o2joI3nJuKmtyCd7ntCHeXTZ1M/CifSOX45LOYOByJvjGj3BnU8zsL3aCjpu6c5bGaAJvj/DGYw
-	jp88gKjg/oD2zf6qNUstA==
-X-Gm-Gg: ASbGnctoXexHMj51KxIP7BuciQ+jHv0xrT0g/nAISg22vNycqZmd9xV0YPAYprTVK2n
-	PJAhBhHw7+FSjM/KaIkRDZogKhqtBbeZeQsKLzpiAERrN6RimfIOFxklVTIvexN3nmCA7ZmbxnR
-	yiYMzcc78BhYokTL1UuxYC/uWCnFsirwM5M0kvog0bD+VC/R0HTcM7DI4zF3H2gmS25kiWPzwlz
-	sUxob6z4jxV+86Ge6PYoCmZvC+92gWQWH8LauIeJW+k3hwNIZc6x1qWWqLZI2Wfe20YYfNGhtHw
-	tyO6cD+6dq4mg9ZMK2Jgz5rRicNXumUCLLQiZqffT0wCpTxnVOCpXZgSGO9TW3dfBMqmNqWt86Z
-	Sh7DSCimryEeaI5fLFWkuBBEoDV7Df4ZJK1aWlll1u1VrlteXCURLJceAjBBDjSqLMCj1HHHYFX
-	clFW14
-X-Google-Smtp-Source: AGHT+IHuYQ8ZMoYb8t/mX+2ypYsCu2/vWUBouGrghXWpAUXMfjDXAo+zowiIcK462tQpUgt0PfgQJEbiFYAT
-X-Received: by 2002:a05:6e02:551:b0:40c:e0c9:18ab with SMTP id e9e14a558f8ab-41bed872acemr19341205ab.9.1757542774817;
-        Wed, 10 Sep 2025 15:19:34 -0700 (PDT)
-Received: from smtp-us-east1-p01-i01-si01.dlp.protect.broadcom.com (address-144-49-247-25.dlp.protect.broadcom.com. [144.49.247.25])
-        by smtp-relay.gmail.com with ESMTPS id 8926c6da1cb9f-511ee942edasm39108173.13.2025.09.10.15.19.34
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Sep 2025 15:19:34 -0700 (PDT)
-X-Relaying-Domain: broadcom.com
-X-CFilter-Loop: Reflected
-Received: by mail-qk1-f197.google.com with SMTP id af79cd13be357-814370a9f58so224683685a.1
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 15:19:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1757542774; x=1758147574; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=DYkMluAXoUU9ziRsn/K2ST3c55WCNeely9VEl19vgTc=;
-        b=hYBgkz/qJ4SVNEXbhuTCeoahZ303YQomicntRSwuzndbwenlnScgpsJ04SIg2Tyx7h
-         DnWUmNhxzOR7UCZyXjBp1Rmg1Lplfncc9X8ti3cYfUotaoY5ABW4VXroUnraRuuJKPQ3
-         oLtww6njyvqCM3RTg3XC6EGyspx2xukWZTbMY=
-X-Forwarded-Encrypted: i=1; AJvYcCUItjnvnJ+kDp3TSSUHPkA5NQlXWu6HA8vXcVfgi1hMAD4wEg1RxCim9gP7uRYyEbqkt9pVBTbmH+Kf@vger.kernel.org
-X-Received: by 2002:a05:620a:1984:b0:804:4a23:38e0 with SMTP id af79cd13be357-81ff3a4feefmr183983185a.4.1757542773839;
-        Wed, 10 Sep 2025 15:19:33 -0700 (PDT)
-X-Received: by 2002:a05:620a:1984:b0:804:4a23:38e0 with SMTP id af79cd13be357-81ff3a4feefmr183977285a.4.1757542773297;
-        Wed, 10 Sep 2025 15:19:33 -0700 (PDT)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-81b59f8786fsm364672285a.29.2025.09.10.15.19.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 10 Sep 2025 15:19:32 -0700 (PDT)
-Message-ID: <8015ec3f-778f-43e9-b91d-fe76b814157f@broadcom.com>
-Date: Wed, 10 Sep 2025 15:19:28 -0700
+	s=arc-20240116; t=1757543434; c=relaxed/simple;
+	bh=+sFCyLUko/I+0H19xOuT5uQSZYsJ9HpBVhlRtBhUaek=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=M7KhUxQw5QESrFPLBt7s7jqmJ9Lb0+1Nql7X0ITRoxM5SwulFMHlF2cX2lnGjSk5sHhK7B9KvJj+KPKAFNzt+Tz72YFryCsCbV4LOgKojbxUytW2zFoT6EPyh7peJY9cwXCUMVjjQTk1oo4kqMtw0kWRzVBxQKH7T8pGI7es0rQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWZX3ZPO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF7BC4CEEB;
+	Wed, 10 Sep 2025 22:30:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1757543432;
+	bh=+sFCyLUko/I+0H19xOuT5uQSZYsJ9HpBVhlRtBhUaek=;
+	h=From:To:Cc:Subject:Date:From;
+	b=pWZX3ZPOPObMnaHgtTUxB4uf+aa4pO4KO3aVu6AwrcQKALleg5pSLZ/+aHfbUHF66
+	 1whgDSdt950Y4rZ9Ai8VzScaRE/jek6xA8YqEUWkJtFbQlPvySVnwJN8d+QQQPShKB
+	 DHZM6Kfq79VlYu/BWxeTIIm5qKODUm39HtjxShJ5SffUFss6ZrMA2T+L0Zl/O32K1o
+	 0j0qjsN7BoMdbtFDaVxAYJancn8MQcZiBFKWPqhrtbd9zH2Cz/zu84oS0FMhH4HrSy
+	 EBgce3jW4wy5Jc1SLydmGwa2MpS0IFXnI608qfclPuP/UtfizBLH+5CnMv0HCpLAvv
+	 8K62awcDM2Ucw==
+From: "Rob Herring (Arm)" <robh@kernel.org>
+To: soc@kernel.org,
+	Khuong Dinh <khuong@os.amperecomputing.com>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: apm: Clean-up clock bindings
+Date: Wed, 10 Sep 2025 17:30:19 -0500
+Message-ID: <20250910223020.612244-2-robh@kernel.org>
+X-Mailer: git-send-email 2.51.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH net-next v12 00/18] net: phy: Introduce PHY ports
- representation
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>, davem@davemloft.net
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, thomas.petazzoni@bootlin.com,
- Andrew Lunn <andrew@lunn.ch>, Jakub Kicinski <kuba@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Paolo Abeni <pabeni@redhat.com>,
- Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Herve Codina <herve.codina@bootlin.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Vladimir Oltean <vladimir.oltean@nxp.com>,
- =?UTF-8?Q?K=C3=B6ry_Maincent?= <kory.maincent@bootlin.com>,
- =?UTF-8?Q?Marek_Beh=C3=BAn?= <kabel@kernel.org>,
- Oleksij Rempel <o.rempel@pengutronix.de>,
- =?UTF-8?Q?Nicol=C3=B2_Veronese?= <nicveronese@gmail.com>,
- Simon Horman <horms@kernel.org>, mwojtas@chromium.org,
- Antoine Tenart <atenart@kernel.org>, devicetree@vger.kernel.org,
- Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzk+dt@kernel.org>, Rob Herring <robh@kernel.org>,
- Romain Gantois <romain.gantois@bootlin.com>,
- Daniel Golle <daniel@makrotopia.org>,
- Dimitri Fedrau <dimitri.fedrau@liebherr.com>
-References: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
-Content-Language: en-US, fr-FR
-From: Florian Fainelli <florian.fainelli@broadcom.com>
-Autocrypt: addr=florian.fainelli@broadcom.com; keydata=
- xsBNBFPAG8ABCAC3EO02urEwipgbUNJ1r6oI2Vr/+uE389lSEShN2PmL3MVnzhViSAtrYxeT
- M0Txqn1tOWoIc4QUl6Ggqf5KP6FoRkCrgMMTnUAINsINYXK+3OLe7HjP10h2jDRX4Ajs4Ghs
- JrZOBru6rH0YrgAhr6O5gG7NE1jhly+EsOa2MpwOiXO4DE/YKZGuVe6Bh87WqmILs9KvnNrQ
- PcycQnYKTVpqE95d4M824M5cuRB6D1GrYovCsjA9uxo22kPdOoQRAu5gBBn3AdtALFyQj9DQ
- KQuc39/i/Kt6XLZ/RsBc6qLs+p+JnEuPJngTSfWvzGjpx0nkwCMi4yBb+xk7Hki4kEslABEB
- AAHNMEZsb3JpYW4gRmFpbmVsbGkgPGZsb3JpYW4uZmFpbmVsbGlAYnJvYWRjb20uY29tPsLB
- IQQQAQgAywUCZWl41AUJI+Jo+hcKAAG/SMv+fS3xUQWa0NryPuoRGjsA3SAUAAAAAAAWAAFr
- ZXktdXNhZ2UtbWFza0BwZ3AuY29tjDAUgAAAAAAgAAdwcmVmZXJyZWQtZW1haWwtZW5jb2Rp
- bmdAcGdwLmNvbXBncG1pbWUICwkIBwMCAQoFF4AAAAAZGGxkYXA6Ly9rZXlzLmJyb2FkY29t
- Lm5ldAUbAwAAAAMWAgEFHgEAAAAEFQgJChYhBNXZKpfnkVze1+R8aIExtcQpvGagAAoJEIEx
- tcQpvGagWPEH/2l0DNr9QkTwJUxOoP9wgHfmVhqc0ZlDsBFv91I3BbhGKI5UATbipKNqG13Z
- TsBrJHcrnCqnTRS+8n9/myOF0ng2A4YT0EJnayzHugXm+hrkO5O9UEPJ8a+0553VqyoFhHqA
- zjxj8fUu1px5cbb4R9G4UAySqyeLLeqnYLCKb4+GklGSBGsLMYvLmIDNYlkhMdnnzsSUAS61
- WJYW6jjnzMwuKJ0ZHv7xZvSHyhIsFRiYiEs44kiYjbUUMcXor/uLEuTIazGrE3MahuGdjpT2
- IOjoMiTsbMc0yfhHp6G/2E769oDXMVxCCbMVpA+LUtVIQEA+8Zr6mX0Yk4nDS7OiBlvOwE0E
- U8AbwQEIAKxr71oqe+0+MYCc7WafWEcpQHFUwvYLcdBoOnmJPxDwDRpvU5LhqSPvk/yJdh9k
- 4xUDQu3rm1qIW2I9Puk5n/Jz/lZsqGw8T13DKyu8eMcvaA/irm9lX9El27DPHy/0qsxmxVmU
- pu9y9S+BmaMb2CM9IuyxMWEl9ruWFS2jAWh/R8CrdnL6+zLk60R7XGzmSJqF09vYNlJ6Bdbs
- MWDXkYWWP5Ub1ZJGNJQ4qT7g8IN0qXxzLQsmz6tbgLMEHYBGx80bBF8AkdThd6SLhreCN7Uh
- IR/5NXGqotAZao2xlDpJLuOMQtoH9WVNuuxQQZHVd8if+yp6yRJ5DAmIUt5CCPcAEQEAAcLB
- gQQYAQIBKwUCU8AbwgUbDAAAAMBdIAQZAQgABgUCU8AbwQAKCRCTYAaomC8PVQ0VCACWk3n+
- obFABEp5Rg6Qvspi9kWXcwCcfZV41OIYWhXMoc57ssjCand5noZi8bKg0bxw4qsg+9cNgZ3P
- N/DFWcNKcAT3Z2/4fTnJqdJS//YcEhlr8uGs+ZWFcqAPbteFCM4dGDRruo69IrHfyyQGx16s
- CcFlrN8vD066RKevFepb/ml7eYEdN5SRALyEdQMKeCSf3mectdoECEqdF/MWpfWIYQ1hEfdm
- C2Kztm+h3Nkt9ZQLqc3wsPJZmbD9T0c9Rphfypgw/SfTf2/CHoYVkKqwUIzI59itl5Lze+R5
- wDByhWHx2Ud2R7SudmT9XK1e0x7W7a5z11Q6vrzuED5nQvkhAAoJEIExtcQpvGagugcIAJd5
- EYe6KM6Y6RvI6TvHp+QgbU5dxvjqSiSvam0Ms3QrLidCtantcGT2Wz/2PlbZqkoJxMQc40rb
- fXa4xQSvJYj0GWpadrDJUvUu3LEsunDCxdWrmbmwGRKqZraV2oG7YEddmDqOe0Xm/NxeSobc
- MIlnaE6V0U8f5zNHB7Y46yJjjYT/Ds1TJo3pvwevDWPvv6rdBeV07D9s43frUS6xYd1uFxHC
- 7dZYWJjZmyUf5evr1W1gCgwLXG0PEi9n3qmz1lelQ8lSocmvxBKtMbX/OKhAfuP/iIwnTsww
- 95A2SaPiQZA51NywV8OFgsN0ITl2PlZ4Tp9hHERDe6nQCsNI/Us=
-In-Reply-To: <20250909152617.119554-1-maxime.chevallier@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-DetectorID-Processed: b00c1d49-9d2e-4205-b15f-d015386d3d5e
+Content-Transfer-Encoding: 8bit
 
-On 9/9/25 08:25, Maxime Chevallier wrote:
-> Hi everyone,
-> 
-> Here is a V12 for the phy_port work, aiming at representing the
-> connectors and outputs of PHY devices.
-> 
-> Last round was 16 patches, and now 18, if needed I can split some
-> patches out such as the 2 phylink ones.
-> 
-> this V12 address the SFP interface selection for PHY driver SFPs, as
-> commented by Russell on v10.
-> 
-> This and Rob's review on the dp83822 patch are the only changes.
-> 
-> As a remainder, a few important notes :
-> 
->   - This is only a first phase. It instantiates the port, and leverage
->     that to make the MAC <-> PHY <-> SFP usecase simpler.
-> 
->   - Next phase will deal with controlling the port state, as well as the
->     netlink uAPI for that.
-> 
->   - The end-goal is to enable support for complex port MUX. This
->     preliminary work focuses on PHY-driven ports, but this will be
->     extended to support muxing at the MII level (Multi-phy, or compo PHY
->     + SFP as found on Turris Omnia for example).
-> 
->   - The naming is definitely not set in stone. I named that "phy_port",
->     but this may convey the false sense that this is phylib-specific.
->     Even the word "port" is not that great, as it already has several
->     different meanings in the net world (switch port, devlink port,
->     etc.). I used the term "connector" in the binding.
-> 
-> A bit of history on that work :
-> 
-> The end goal that I personnaly want to achieve is :
-> 
->              + PHY - RJ45
->              |
->   MAC - MUX -+ PHY - RJ45
-> 
-> After many discussions here on netdev@, but also at netdevconf[1] and
-> LPC[2], there appears to be several analoguous designs that exist out
-> there.
-> 
-> [1] : https://netdevconf.info/0x17/sessions/talk/improving-multi-phy-and-multi-port-interfaces.html
-> [2] : https://lpc.events/event/18/contributions/1964/ (video isn't the
-> right one)
-> 
-> Take the MAchiatobin, it has 2 interfaces that looks like this :
-> 
->   MAC - PHY -+ RJ45
->              |
-> 	    + SFP - Whatever the module does
-> 
-> Now, looking at the Turris Omnia, we have :
-> 
-> 
->   MAC - MUX -+ PHY - RJ45
->              |
-> 	    + SFP - Whatever the module does
-> 
-> We can find more example of this kind of designs, the common part is
-> that we expose multiple front-facing media ports. This is what this
-> current work aims at supporting. As of right now, it does'nt add any
-> support for muxing, but this will come later on.
-> 
-> This first phase focuses on phy-driven ports only, but there are already
-> quite some challenges already. For one, we can't really autodetect how
-> many ports are sitting behind a PHY. That's why this series introduces a
-> new binding. Describing ports in DT should however be a last-resort
-> thing when we need to clear some ambiguity about the PHY media-side.
-> 
-> The only use-cases that we have today for multi-port PHYs are combo PHYs
-> that drive both a Copper port and an SFP (the Macchiatobin case). This
-> in itself is challenging and this series only addresses part of this
-> support, by registering a phy_port for the PHY <-> SFP connection. The
-> SFP module should in the end be considered as a port as well, but that's
-> not yet the case.
-> 
-> However, because now PHYs can register phy_ports for every media-side
-> interface they have, they can register the capabilities of their ports,
-> which allows making the PHY-driver SFP case much more generic.
-> 
-> Let me know what you think, I'm all in for discussions :)
-> 
-> Regards,
+Clean-up a couple of clock binding related issues in the the X-Gene DTS.
 
-Tested-by: Florian Fainelli <florian.fainelli@broadcom.com>
+CPU and I2C nodes aren't clock providers and shouldn't have
+"#clock-cells" properties.
 
-Tested with bcmgenet which is single MAC + PHY using phylib.
+A fixed-clock only provides 1 clock, so "#clock-cells" must be 0. The
+preferred node name is "clock-<freq>" as well.
 
-Tested with bcm_sf2 which uses phylink and has a combination of internal 
-and external PHYs.
---
-Florian
+The "type" property is undocumented and unused, so drop it.
+
+Signed-off-by: Rob Herring (Arm) <robh@kernel.org>
+---
+Arnd, Please take this directly.
+
+ arch/arm64/boot/dts/apm/apm-shadowcat.dtsi | 16 ++-----
+ arch/arm64/boot/dts/apm/apm-storm.dtsi     | 54 ++++++++++------------
+ 2 files changed, 29 insertions(+), 41 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+index 5a64239b4708..b98fd434b7d6 100644
+--- a/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-shadowcat.dtsi
+@@ -22,7 +22,6 @@ cpu@0 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_0>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd0clk 0>;
+ 		};
+ 		cpu@1 {
+@@ -32,7 +31,6 @@ cpu@1 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_0>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd0clk 0>;
+ 		};
+ 		cpu@100 {
+@@ -42,7 +40,6 @@ cpu@100 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_1>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd1clk 0>;
+ 		};
+ 		cpu@101 {
+@@ -52,7 +49,6 @@ cpu@101 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_1>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd1clk 0>;
+ 		};
+ 		cpu@200 {
+@@ -62,7 +58,6 @@ cpu@200 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_2>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd2clk 0>;
+ 		};
+ 		cpu@201 {
+@@ -72,7 +67,6 @@ cpu@201 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_2>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd2clk 0>;
+ 		};
+ 		cpu@300 {
+@@ -82,7 +76,6 @@ cpu@300 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_3>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd3clk 0>;
+ 		};
+ 		cpu@301 {
+@@ -92,7 +85,6 @@ cpu@301 {
+ 			enable-method = "spin-table";
+ 			cpu-release-addr = <0x1 0x0000fff8>;
+ 			next-level-cache = <&xgene_L2_3>;
+-			#clock-cells = <1>;
+ 			clocks = <&pmd3clk 0>;
+ 		};
+ 		xgene_L2_0: l2-cache-0 {
+@@ -211,9 +203,9 @@ v2m15: v2m@f0000 {
+ 		};
+ 	};
+ 
+-	refclk: refclk {
++	refclk: clock-100000000 {
+ 		compatible = "fixed-clock";
+-		#clock-cells = <1>;
++		#clock-cells = <0>;
+ 		clock-frequency = <100000000>;
+ 		clock-output-names = "refclk";
+ 	};
+@@ -246,7 +238,7 @@ clocks {
+ 			pmdpll: pmdpll@170000f0 {
+ 				compatible = "apm,xgene-pcppll-v2-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&refclk 0>;
++				clocks = <&refclk>;
+ 				reg = <0x0 0x170000f0 0x0 0x10>;
+ 				clock-output-names = "pmdpll";
+ 			};
+@@ -286,7 +278,7 @@ pmd3clk: pmd3clk@7e200230 {
+ 			socpll: socpll@17000120 {
+ 				compatible = "apm,xgene-socpll-v2-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&refclk 0>;
++				clocks = <&refclk>;
+ 				reg = <0x0 0x17000120 0x0 0x1000>;
+ 				clock-output-names = "socpll";
+ 			};
+diff --git a/arch/arm64/boot/dts/apm/apm-storm.dtsi b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+index 872093b05ce1..5feb561c75c5 100644
+--- a/arch/arm64/boot/dts/apm/apm-storm.dtsi
++++ b/arch/arm64/boot/dts/apm/apm-storm.dtsi
+@@ -112,9 +112,9 @@ gic: interrupt-controller@78010000 {
+ 		interrupts = <1 9 0xf04>;	/* GIC Maintenence IRQ */
+ 	};
+ 
+-	refclk: refclk {
++	refclk: clock-100000000 {
+ 		compatible = "fixed-clock";
+-		#clock-cells = <1>;
++		#clock-cells = <0>;
+ 		clock-frequency = <100000000>;
+ 		clock-output-names = "refclk";
+ 	};
+@@ -148,28 +148,25 @@ clocks {
+ 			pcppll: pcppll@17000100 {
+ 				compatible = "apm,xgene-pcppll-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&refclk 0>;
++				clocks = <&refclk>;
+ 				clock-names = "pcppll";
+ 				reg = <0x0 0x17000100 0x0 0x1000>;
+ 				clock-output-names = "pcppll";
+-				type = <0>;
+ 			};
+ 
+ 			socpll: socpll@17000120 {
+ 				compatible = "apm,xgene-socpll-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&refclk 0>;
++				clocks = <&refclk>;
+ 				clock-names = "socpll";
+ 				reg = <0x0 0x17000120 0x0 0x1000>;
+ 				clock-output-names = "socpll";
+-				type = <1>;
+ 			};
+ 
+ 			socplldiv2: socplldiv2  {
+ 				compatible = "fixed-factor-clock";
+-				#clock-cells = <1>;
++				#clock-cells = <0>;
+ 				clocks = <&socpll 0>;
+-				clock-names = "socplldiv2";
+ 				clock-mult = <1>;
+ 				clock-div = <2>;
+ 				clock-output-names = "socplldiv2";
+@@ -178,7 +175,7 @@ socplldiv2: socplldiv2  {
+ 			ahbclk: ahbclk@17000000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x17000000 0x0 0x2000>;
+ 				reg-names = "div-reg";
+ 				divider-offset = <0x164>;
+@@ -190,7 +187,7 @@ ahbclk: ahbclk@17000000 {
+ 			sdioclk: sdioclk@1f2ac000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f2ac000 0x0 0x1000
+ 					0x0 0x17000000 0x0 0x2000>;
+ 				reg-names = "csr-reg", "div-reg";
+@@ -207,7 +204,7 @@ sdioclk: sdioclk@1f2ac000 {
+ 			ethclk: ethclk {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				clock-names = "ethclk";
+ 				reg = <0x0 0x17000000 0x0 0x1000>;
+ 				reg-names = "div-reg";
+@@ -229,7 +226,7 @@ menetclk: menetclk {
+ 			sge0clk: sge0clk@1f21c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f21c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				csr-mask = <0xa>;
+@@ -240,7 +237,7 @@ sge0clk: sge0clk@1f21c000 {
+ 			xge0clk: xge0clk@1f61c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f61c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				csr-mask = <0x3>;
+@@ -251,7 +248,7 @@ xge1clk: xge1clk@1f62c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				status = "disabled";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f62c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				csr-mask = <0x3>;
+@@ -261,7 +258,7 @@ xge1clk: xge1clk@1f62c000 {
+ 			sataphy1clk: sataphy1clk@1f21c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f21c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sataphy1clk";
+@@ -275,7 +272,7 @@ sataphy1clk: sataphy1clk@1f21c000 {
+ 			sataphy2clk: sataphy1clk@1f22c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f22c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sataphy2clk";
+@@ -289,7 +286,7 @@ sataphy2clk: sataphy1clk@1f22c000 {
+ 			sataphy3clk: sataphy1clk@1f23c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f23c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sataphy3clk";
+@@ -303,7 +300,7 @@ sataphy3clk: sataphy1clk@1f23c000 {
+ 			sata01clk: sata01clk@1f21c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f21c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sata01clk";
+@@ -316,7 +313,7 @@ sata01clk: sata01clk@1f21c000 {
+ 			sata23clk: sata23clk@1f22c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f22c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sata23clk";
+@@ -329,7 +326,7 @@ sata23clk: sata23clk@1f22c000 {
+ 			sata45clk: sata45clk@1f23c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f23c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "sata45clk";
+@@ -342,7 +339,7 @@ sata45clk: sata45clk@1f23c000 {
+ 			rtcclk: rtcclk@17000000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x17000000 0x0 0x2000>;
+ 				reg-names = "csr-reg";
+ 				csr-offset = <0xc>;
+@@ -355,7 +352,7 @@ rtcclk: rtcclk@17000000 {
+ 			rngpkaclk: rngpkaclk@17000000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x17000000 0x0 0x2000>;
+ 				reg-names = "csr-reg";
+ 				csr-offset = <0xc>;
+@@ -369,7 +366,7 @@ pcie0clk: pcie0clk@1f2bc000 {
+ 				status = "disabled";
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f2bc000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "pcie0clk";
+@@ -379,7 +376,7 @@ pcie1clk: pcie1clk@1f2cc000 {
+ 				status = "disabled";
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f2cc000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "pcie1clk";
+@@ -389,7 +386,7 @@ pcie2clk: pcie2clk@1f2dc000 {
+ 				status = "disabled";
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f2dc000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "pcie2clk";
+@@ -399,7 +396,7 @@ pcie3clk: pcie3clk@1f50c000 {
+ 				status = "disabled";
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f50c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "pcie3clk";
+@@ -409,7 +406,7 @@ pcie4clk: pcie4clk@1f51c000 {
+ 				status = "disabled";
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f51c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "pcie4clk";
+@@ -418,7 +415,7 @@ pcie4clk: pcie4clk@1f51c000 {
+ 			dmaclk: dmaclk@1f27c000 {
+ 				compatible = "apm,xgene-device-clock";
+ 				#clock-cells = <1>;
+-				clocks = <&socplldiv2 0>;
++				clocks = <&socplldiv2>;
+ 				reg = <0x0 0x1f27c000 0x0 0x1000>;
+ 				reg-names = "csr-reg";
+ 				clock-output-names = "dmaclk";
+@@ -849,7 +846,6 @@ i2c0: i2c@10512000 {
+ 			compatible = "snps,designware-i2c";
+ 			reg = <0x0 0x10512000 0x0 0x1000>;
+ 			interrupts = <0 0x44 0x4>;
+-			#clock-cells = <1>;
+ 			clocks = <&ahbclk 0>;
+ 		};
+ 
 -- 
-Florian
+2.51.0
 
 
