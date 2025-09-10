@@ -1,336 +1,148 @@
-Return-Path: <devicetree+bounces-215512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58528B51B0B
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:11:46 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 800FCB51B29
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 17:14:50 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3817B7B9BEE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:03:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B43AD3A4BC0
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:09:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 583DF23DEB6;
-	Wed, 10 Sep 2025 15:05:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E85A3289358;
+	Wed, 10 Sep 2025 15:09:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="opz+Ac1a"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Qjg1XiVy"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F56B329F21;
-	Wed, 10 Sep 2025 15:05:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B25DF1E8320;
+	Wed, 10 Sep 2025 15:09:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757516730; cv=none; b=bnr6dxMIYQon0OJqbYMFpVLv3lRzM55C+AwfnGN3pQJBkA5Skf09EXbHycqawhiW9SZtpq/ScqVHNDpGPolH8hvCh0edBU1edYrD8pvRL4IL4kU7PnL0fdCRHTprBZV0GAy/ZUhZ9eovLnSAbxwJDJqoMqbcSKpHiszqwJIPsU0=
+	t=1757516956; cv=none; b=N/Vx0PlWppFLjwW7AHqVSxO6fKyg4EOuynA72UU47bWf+BfUtfMXbtry0KEBEt04n/7EAtHnS/EmnOnpHn7c4pybekYRz+mi0AaGE7GePjc9bxRegx7b6JW67xWY7FjaNRm5mbnKchFFaKPvfQVFBHl+Y6RiS33HpWe5+vtR6O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757516730; c=relaxed/simple;
-	bh=Jy9QNB52XR6hS3A2FDoP6tUYvbRB0ENiuehcstyLthQ=;
+	s=arc-20240116; t=1757516956; c=relaxed/simple;
+	bh=ydn2xtFjAjaReC6GWq0B2HXB/HbN5g3KL/JJeEAI6Tw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Y71qOYLYIVBLcEVPxtdxK510fAltYp/DsXjMOUu5KT/vkYVc9FqCPqYe6KCyjwMEIDdr59o7DFpyu3EMgBBoT6PNdZUABQuGuEC3/P8ci0lZ3XPhr/JXsTuKosdxwCwAf1DZQ0lga+FKhY0Y+hk29bkkuboKiqdr3HvlbjZ4KkA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=opz+Ac1a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82964C4CEEB;
-	Wed, 10 Sep 2025 15:05:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ceXk+qiI241Ii3O3ZXcf01m7LgVyjno62DpIlXTHpHa/f9XAuR842iuTvtR3u4mYU0Po3/cf8uaQ117mI++HWlFc3ITDg5kC2qXms08rJ8AQL1jILym4Kqyt8u1PIJ6FAcQtDUkQsDbHNahTHrSe2SbRTFE6/Xhp1vRJ/OQfZQs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Qjg1XiVy; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A96D0C4CEEB;
+	Wed, 10 Sep 2025 15:09:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757516728;
-	bh=Jy9QNB52XR6hS3A2FDoP6tUYvbRB0ENiuehcstyLthQ=;
+	s=k20201202; t=1757516954;
+	bh=ydn2xtFjAjaReC6GWq0B2HXB/HbN5g3KL/JJeEAI6Tw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=opz+Ac1ab593W7VTuHtAQfinpRyxFM6oSX88PeCJVQ3GdPoUkl+HkN7phJ8lCwgOa
-	 WWzYwjriG6fLwKbIEHfHGkVbR3IkSPF4ps75HixAkwy8Z9xrebkWTLpDiqo9Akn9bN
-	 XOoCoEnoD3moygzmJa1/3w9JxAKi4OeMNcpocezFBTvxxdGUbpRnNEsPXiituwV/gg
-	 9960oKuIVvnrb0o2Swz+tIkhYJs7zbqEnaLTXtOzj5RkSARltEtD4nPQzziL5berJE
-	 499vjPrdqKVKEoW2W4YT64pshcHZ0GbPMYz78iKV41QPrcYLG702FdzaONiXfilU79
-	 oogll5GkGI+yw==
-Date: Wed, 10 Sep 2025 10:05:27 -0500
-From: Rob Herring <robh@kernel.org>
-To: Harrison Carter <hcarter@thegoodpenguin.co.uk>
-Cc: Lee Jones <lee@kernel.org>, Pavel Machek <pavel@kernel.org>,
+	b=Qjg1XiVygkBuHfd07CGmzSo/BBZXDsGklMV0teiRj9Z8OCLNdQBIS6DOn6KlS5iAF
+	 YrMK97cedrPJ+ls5/8RGkg+kMzekHGsJoZNal3m+g9MMIkxKeJCvlEuwD0AajJyVyT
+	 nVVgaq8HdtMZ+kaQYTmwo3o7W9/lsWczG/Jd/89uasTo+qK3R3qYNi0zjmm9+qfnp7
+	 HcznSK765Tg/LeGyQZKu/6bqp01nzTsg/hgsCaQGwpqGFES+HIlh/jP+1pUnvj7WM5
+	 m04NWxyYbHAfuG2S1vrxIHSpSmqrlq0m6PDAL10LSWZJdGlwSDWmjA5B2zlSh5ye+y
+	 90Ey/7zxBol8w==
+Date: Wed, 10 Sep 2025 16:09:05 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Vladimir Oltean <vladimir.oltean@nxp.com>
+Cc: Marco Felsch <m.felsch@pengutronix.de>,
+	Jonas Rebmann <jre@pengutronix.de>, Andrew Lunn <andrew@lunn.ch>,
+	imx@lists.linux.dev, linux-kernel@vger.kernel.org,
+	Eric Dumazet <edumazet@google.com>,
+	Fabio Estevam <festevam@gmail.com>, Rob Herring <robh@kernel.org>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>, linux-sound@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+	Shengjiu Wang <shengjiu.wang@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: leds: as3645: Convert to DT schema
-Message-ID: <20250910150527.GA54174-robh@kernel.org>
-References: <20250909-ams-txt-to-dt-schema-v1-1-8a30c25c8295@thegoodpenguin.co.uk>
+	Vladimir Oltean <olteanv@gmail.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>
+Subject: Re: [PATCH 1/4] dt-bindings: net: dsa: nxp,sja1105: Add reset-gpios
+ property
+Message-ID: <693c3d1e-a65b-47ea-9b21-ce1d4a772066@sirena.org.uk>
+References: <20250910-imx8mp-prt8ml-v1-0-fd04aed15670@pengutronix.de>
+ <20250910-imx8mp-prt8ml-v1-1-fd04aed15670@pengutronix.de>
+ <20250910125611.wmyw2b4jjtxlhsqw@skbuf>
+ <20250910143044.jfq5fsv2rlsrr5ku@pengutronix.de>
+ <20250910144328.do6t5ilfeclm2xa4@skbuf>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="7Lh4wxWc22jPqJvF"
+Content-Disposition: inline
+In-Reply-To: <20250910144328.do6t5ilfeclm2xa4@skbuf>
+X-Cookie: I think my career is ruined!
+
+
+--7Lh4wxWc22jPqJvF
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20250909-ams-txt-to-dt-schema-v1-1-8a30c25c8295@thegoodpenguin.co.uk>
 
-On Tue, Sep 09, 2025 at 09:50:04AM +0100, Harrison Carter wrote:
-> Convert the ams,as3645a.txt to DT Schema format.
-> 
-> maintainer: set to what I found in MAINTAINERS
-> 
-> Signed-off-by: Harrison Carter <hcarter@thegoodpenguin.co.uk>
-> ---
->  .../devicetree/bindings/leds/ams,as3645a.txt       |  85 --------------
->  .../devicetree/bindings/leds/ams,as3645a.yaml      | 130 +++++++++++++++++++++
->  2 files changed, 130 insertions(+), 85 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.txt b/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-> deleted file mode 100644
-> index 4af2987b25e92394ebd46456e30002d3ae3a6101..0000000000000000000000000000000000000000
-> --- a/Documentation/devicetree/bindings/leds/ams,as3645a.txt
-> +++ /dev/null
-> @@ -1,85 +0,0 @@
-> -Analog devices AS3645A device tree bindings
-> -
-> -The AS3645A flash LED controller can drive two LEDs, one high current
-> -flash LED and one indicator LED. The high current flash LED can be
-> -used in torch mode as well.
-> -
-> -Ranges below noted as [a, b] are closed ranges between a and b, i.e. a
-> -and b are included in the range.
-> -
-> -Please also see common.txt in the same directory.
-> -
-> -
-> -Required properties
-> -===================
-> -
-> -compatible	: Must be "ams,as3645a".
-> -reg		: The I2C address of the device. Typically 0x30.
-> -#address-cells	: 1
-> -#size-cells	: 0
-> -
-> -
-> -Required properties of the flash child node (0)
-> -===============================================
-> -
-> -reg: 0
-> -flash-timeout-us: Flash timeout in microseconds. The value must be in
-> -		  the range [100000, 850000] and divisible by 50000.
-> -flash-max-microamp: Maximum flash current in microamperes. Has to be
-> -		    in the range between [200000, 500000] and
-> -		    divisible by 20000.
-> -led-max-microamp: Maximum torch (assist) current in microamperes. The
-> -		  value must be in the range between [20000, 160000] and
-> -		  divisible by 20000.
-> -ams,input-max-microamp: Maximum flash controller input current. The
-> -			value must be in the range [1250000, 2000000]
-> -			and divisible by 50000.
-> -
-> -
-> -Optional properties of the flash child node
-> -===========================================
-> -
-> -function	:  See Documentation/devicetree/bindings/leds/common.txt.
-> -color		:  See Documentation/devicetree/bindings/leds/common.txt.
-> -label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
-> -
-> -
-> -Required properties of the indicator child node (1)
-> -===================================================
-> -
-> -reg: 1
-> -led-max-microamp: Maximum indicator current. The allowed values are
-> -		  2500, 5000, 7500 and 10000.
-> -
-> -Optional properties of the indicator child node
-> -===============================================
-> -
-> -function	:  See Documentation/devicetree/bindings/leds/common.txt.
-> -color		:  See Documentation/devicetree/bindings/leds/common.txt.
-> -label		:  See Documentation/devicetree/bindings/leds/common.txt (deprecated).
-> -
-> -
-> -Example
-> -=======
-> -
-> -#include <dt-bindings/leds/common.h>
-> -
-> -	as3645a@30 {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -		reg = <0x30>;
-> -		compatible = "ams,as3645a";
-> -		led@0 {
-> -			reg = <0x0>;
-> -			flash-timeout-us = <150000>;
-> -			flash-max-microamp = <320000>;
-> -			led-max-microamp = <60000>;
-> -			ams,input-max-microamp = <1750000>;
-> -			function = LED_FUNCTION_FLASH;
-> -		};
-> -		led@1 {
-> -			reg = <0x1>;
-> -			led-max-microamp = <10000>;
-> -			function = LED_FUNCTION_INDICATOR;
-> -		};
-> -	};
-> diff --git a/Documentation/devicetree/bindings/leds/ams,as3645a.yaml b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-> new file mode 100644
-> index 0000000000000000000000000000000000000000..f956c20cc8fb379f370ad785a3d75f27d0cfa032
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/ams,as3645a.yaml
-> @@ -0,0 +1,130 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/ams,as3645a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Analog Devices AS3645A LED Controller
-> +
-> +maintainers:
-> +  - Sakari Ailus <sakari.ailus@iki.fi>
-> +
-> +description: |
+On Wed, Sep 10, 2025 at 05:43:28PM +0300, Vladimir Oltean wrote:
+> On Wed, Sep 10, 2025 at 04:30:44PM +0200, Marco Felsch wrote:
 
-Don't need '|'.
+> > Can you please elaborate a bit more? I was curious and checked the
+> > AH1704, it says:
 
-> +  The AS3645A flash LED controller can drive two LEDs, one high current
-> +  flash LED and one indicator LED. The high current flash LED can be
-> +  used in torch mode as well.
-> +
-> +properties:
-> +  compatible:
-> +    const: ams,as3645a
-> +
-> +  "#address-cells":
-> +    const: 1
-> +
-> +  "#size-cells":
-> +    const: 0
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  led@0:
-> +    type: object
-> +    $ref: common.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 0
-> +
-> +      flash-timeout-us:
-> +        minimum: 100000
-> +        maximum: 850000
+> > "The RST_N signal must be kept low for at least 5 us after all power
+> > supplies and reference clock signals become stable."
 
-	   multipleOf: 50000
+> > This is very common, so the driver only needs to ensure that the pin was
+> > pulled low for at least 5us but not exact 5us.
 
-> +        description: |
-> +          Flash timeout in microseconds. Must be divisible by 50000
+> The statement says that during power-up, when the supply voltages and
+> clocks rise in order to become within spec, the reset signal must be
+> held low. This requirement lasts for up to 5 us more after the other
+> signals are in spec.
 
-Drop description. 
+...
 
-> +
-> +      flash-max-microamp:
-> +        minimum: 200000
-> +        maximum: 500000
-> +        description: |
-> +          Maximum flash current in microamperes. Must be divisible by 20000
-> +
-> +      led-max-microamp:
-> +        minimum: 20000
-> +        maximum: 160000
-> +        description: |
-> +          Maximum torch (assist) current in microamperes Must be divisible by 20000
+> I said that _while the supplies and clocks aren't in spec and 5 us after
+> they become in spec_, RST_N has to be kept low.
 
-Same on these 2.
+> And if you plan to do that from the GPIO function of your SoC, the SoC
+> might be busy doing other stuff, like booting, and no one might be
+> driving the RST_N voltage to a defined state.
 
-> +
-> +      ams,input-max-microamp:
-> +        minimum: 1250000
-> +        maximum: 2000000
-> +        description: |
+I suspect you're reading too much into the datasheet there.  I suspect
+that what it's trying to say is that the reset signal only works with
+stable power and clocks, that it must be held low for the 5us while
+those conditions hold and that you have to do at least one cold reset
+after power on.  The above wording is pretty common in datasheets and I
+know in a bunch of cases it was carried forward kind of blindly rather
+than looking at the actual device requirements.
 
-Don't need '|'.
+> It really depends on a lot of factors including the reset timing and
+> supply voltage distribution of the PCB, but RST_N has essentially 2
+> purposes. One is ensuring proper POR sequencing, the other is cold
+> resetting at runtime. You can do the latter over SPI with identical
+> outcome, which leaves proper POR sequencing, which is not best served by
+> a GPIO in my experience.
 
-> +          Maximum flash controller input current. Must be divisible by 50000
-> +
-> +    required:
-> +      - reg
-> +      - flash-timeout-us
-> +      - flash-max-microamp
-> +      - led-max-microamp
-> +      - ams,input-max-microamp
-> +
-> +  led@1:
-> +    type: object
-> +    $ref: common.yaml#
-> +    unevaluatedProperties: false
-> +
-> +    properties:
-> +      reg:
-> +        const: 1
-> +
-> +      led-max-microamp:
-> +        enum:
-> +          - 2500
-> +          - 5000
-> +          - 7500
-> +          - 10000
-> +        description: |
-> +          Maximum indicator current. The allowed values are 2500, 5000, 7500 and 10000.
+I'm not sure not including the signal in the DT bindings is going to
+influence board designers much either way TBH.
 
-No need to repeat constraints in free-form text. Drop the description 
-here, but I would add description under the nodes to say they are for 
-flash and indicator.
+--7Lh4wxWc22jPqJvF
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +
-> +    required:
-> +      - reg
-> +      - led-max-microamp
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#size-cells"
-> +  - "#address-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/leds/common.h>
-> +
-> +    i2c{
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        as3645a@30 {
+-----BEGIN PGP SIGNATURE-----
 
-led-controller@30
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmjBlJEACgkQJNaLcl1U
+h9DAVQf/bV9pJbE/mcsitFrWvPTWQA9z8+bhcyfQvq0Gkx7sHsDEmqtDTZwoRHt0
+l9vaWvTC9naNGIpZ12Qi03nJGcQlGzXAnoWmccXlXwBn6MvMPFBlMsgKNyz+gTNz
+catYyQNIJN6FIQm9deSbtUx8L7B7pe+4SAPw86OtEJZnnehm2O41+jzb4tEyUCKP
+WkmYb5kn9Lvn6zHZb/7b1B7s8wSq+6Ztn1Bveyiu+qdA82H6K+Arwau1Dx3eVffA
+JFfvrMeyRcB5Uw075C0YvBBtvaJycYewBMYMp4rIPrN6L8LzDXyvIxDo2bKOsy7m
+YY6fHqSe2ib/4su6ne2AZDPFBN2Qew==
+=Xxyx
+-----END PGP SIGNATURE-----
 
-> +            compatible = "ams,as3645a";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            reg = <0x30>;
-> +
-> +            led@0 {
-> +                reg = <0>;
-> +                flash-timeout-us = <150000>;
-> +                flash-max-microamp = <320000>;
-> +                led-max-microamp = <60000>;
-> +                ams,input-max-microamp = <1750000>;
-> +                function = LED_FUNCTION_FLASH;
-> +            };
-> +
-> +            led@1 {
-> +                reg = <1>;
-> +                led-max-microamp = <10000>;
-> +                function = LED_FUNCTION_INDICATOR;
-> +            };
-> +        };
-> +    };
-> +...
-> 
-> ---
-> base-commit: c17b750b3ad9f45f2b6f7e6f7f4679844244f0b9
-> change-id: 20250906-ams-txt-to-dt-schema-a821e0e03c46
-> 
-> Best regards,
-> -- 
-> Harrison Carter <hcarter@thegoodpenguin.co.uk>
-> 
+--7Lh4wxWc22jPqJvF--
 
