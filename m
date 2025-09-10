@@ -1,104 +1,132 @@
-Return-Path: <devicetree+bounces-215312-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215313-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E993B511BC
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:44:45 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA16B511BF
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:46:11 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913DF7A69C2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:43:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 76FD03BA023
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:46:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 719983090CD;
-	Wed, 10 Sep 2025 08:44:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 304A72D6410;
+	Wed, 10 Sep 2025 08:46:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b="gEF7w8yg"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="1LUwjBGf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-m16.yeah.net (mail-m16.yeah.net [220.197.32.17])
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4734C2AE99;
-	Wed, 10 Sep 2025 08:44:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=220.197.32.17
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB36530E846
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:46:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.246.84.56
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757493878; cv=none; b=FeiqWMDZbZEjDmz48w+ZjQ9bJYW498EL6hd7PmB8XRqK8GdpC9OYLSzMghQnjTMwYjCEbh81lu5yAMEuxlY5hQY2zFpiRezfdddzOZQx1J0oE0gE/0W4TJcjGNtEc5R8ZIjLCDMasb8cPu7N+H5fUWgdDKKbgIRER8fcCyMDQrc=
+	t=1757493968; cv=none; b=WNMLDDxX4F1esLN0E8hWwyjnwZMW3CKwpuPzLO7ilveh2xobwP3t5oCVaoIdKelIC5VRophMrW6WL4RhR/NtDEps8M2MDccRN6fxHDSh595IwEZ/wTzrHbNwsultZhF0/MumxWP6n4EHpoR9yrBprE6+Bz+7+ut2C2fJGSBT5x0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757493878; c=relaxed/simple;
-	bh=hpz41grSZgUpOdZSDvGHF3rBgqGglK7gcLfkEeaB+OU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=u7a0AHhQ3a2zyOMz+LlPBhkk2C2RJK8lsWb49wo/02ZaIb9Jq779NCMR/29CKR8cXKrBNcn6FESmWS8hqtaoXFwdbJT/J7eaHC/1fuY6ZA7Cp4wxeqbvQ1YKsYGJM4bQCspMlFDmP4c7saj6QMYU9ccweD9Ep9QJiP/YAZdXoAA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net; spf=pass smtp.mailfrom=yeah.net; dkim=pass (1024-bit key) header.d=yeah.net header.i=@yeah.net header.b=gEF7w8yg; arc=none smtp.client-ip=220.197.32.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=yeah.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=yeah.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yeah.net;
-	s=s110527; h=Date:From:To:Subject:Message-ID:MIME-Version:
-	Content-Type; bh=jupNrTs3JMwOvq+fnMPXFS8hLrrLD5lrJLhDJBoxSEs=;
-	b=gEF7w8yg+1iuLMmCraMdsagAWxzGsodzN3SjBWGYTGKuazSL3IiqlmafGSKxv2
-	U04fsQYvnREEFhAy67GKLLdbYWIAIKqTwYpMuNzO9sK8C/wpK7/DiNu7eRkl0OVh
-	Onuc4N9A7sHAluvCbYd4gNNnsgrIdrKZBvVoxugTjtQgI=
-Received: from dragon (unknown [])
-	by gzsmtp1 (Coremail) with SMTP id Mc8vCgD3P987OsFoZf5EBA--.43160S3;
-	Wed, 10 Sep 2025 16:43:41 +0800 (CST)
-Date: Wed, 10 Sep 2025 16:43:39 +0800
-From: Shawn Guo <shawnguo2@yeah.net>
-To: Peng Fan <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Shawn Guo <shawnguo@kernel.org>,
-	mathieu.poirier@linaro.org, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	"open list:SYSTEM CONTROL MANAGEMENT INTERFACE (SCMI) i.MX..." <arm-scmi@vger.kernel.org>,
-	"open list:SYSTEM CONTROL MANAGEMENT INTERFACE (SCMI) i.MX..." <imx@lists.linux.dev>,
-	"moderated list:SYSTEM CONTROL MANAGEMENT INTERFACE (SCMI) i.MX..." <linux-arm-kernel@lists.infradead.org>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	open list <linux-kernel@vger.kernel.org>,
-	Alexander Stein <alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH V2 RESEND] dt-bindings: firmware: imx95-scmi: Allow
- linux,code for protocol@81
-Message-ID: <aME6O29QxvU_PcRx@dragon>
-References: <20250718094723.3680482-1-peng.fan@nxp.com>
- <20250825082154.GA26152@nxa18884-linux.ap.freescale.net>
+	s=arc-20240116; t=1757493968; c=relaxed/simple;
+	bh=hrjgWOakje8KP9TNFq7zfcv73GdO9QXDxFuW4dqfAw0=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=XK190JG2sazqdjnFyJcPwYI+ebHUoO16JhD5ms0UV2aZEExRGmufO8xQc7CspiIuqV4YV/rpF5hPu3KrgXIWv4Y5UIP6k7oM8YgOSclLwOI5KdmDVvQZGae904uUdXlp5Ov7xHJtiWYgG9sX4OAGJM6Zz4z0W759Cymmldok6GU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=1LUwjBGf; arc=none smtp.client-ip=185.246.84.56
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+	by smtpout-02.galae.net (Postfix) with ESMTPS id 338CE1A0BFB;
+	Wed, 10 Sep 2025 08:46:04 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+	by smtpout-01.galae.net (Postfix) with ESMTPS id 0908E606D4;
+	Wed, 10 Sep 2025 08:46:04 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon) with ESMTPSA id 31678102F1D2E;
+	Wed, 10 Sep 2025 10:45:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+	t=1757493962; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+	 content-transfer-encoding:in-reply-to:references;
+	bh=TPF1Bh4jbgWSz3Ya/QMY1CLpfbe8kFIPeV0OQ/ZQFPs=;
+	b=1LUwjBGfthERBPEwQRZv1wyeH3VVBT/H0oaflADJOBabryaFTC9Dvi4CH2QtKFLGCp4JvU
+	bWCgGfCQgpx5vjkro7hvy+X1A9NH6umQVVNXdpOXIW126F0N4KuBIz5lK2fWqfD1/piezr
+	GjqGVAqmbGjVctV3cwJgpIoI/pm0qD1TQKdyFOmuILKAL3e24V4XL+TMKNKJ6e5lgDa8ra
+	KD+Lc00GN+YR+fXWYXLQlqidVvPrjzPeJo4tQzu3vbvBcygW6TTJCkuFbVuTRS12hCMeU9
+	pQE3JR5m2F+RADa6NOnbn4G8Z+s3nHQ6IMNo+7njjQwBOZqa7uf07lhym/f3VA==
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Markus Stockhausen <markus.stockhausen@gmx.de>
+Cc: richard@nod.at,  vigneshr@ti.com,  robh@kernel.org,  krzk+dt@kernel.org,
+  conor+dt@kernel.org,  linux-mtd@lists.infradead.org,
+  devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: Add realtek,rtl9301-ecc
+In-Reply-To: <20250828143408.2511086-2-markus.stockhausen@gmx.de> (Markus
+	Stockhausen's message of "Thu, 28 Aug 2025 10:34:07 -0400")
+References: <20250828143408.2511086-1-markus.stockhausen@gmx.de>
+	<20250828143408.2511086-2-markus.stockhausen@gmx.de>
+User-Agent: mu4e 1.12.7; emacs 30.1
+Date: Wed, 10 Sep 2025 10:45:56 +0200
+Message-ID: <87h5xaelvf.fsf@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250825082154.GA26152@nxa18884-linux.ap.freescale.net>
-X-CM-TRANSID:Mc8vCgD3P987OsFoZf5EBA--.43160S3
-X-Coremail-Antispam: 1Uf129KBjvdXoWrKw45GF1UZrWrGr47CrykXwb_yoWfJrc_CF
-	WxJr9ruw4agw4Ik3WrtrW3urnrK3y8XF1DXr1Ygr1fXFnxArZ8Z3ZxA34rAw17ZaykXFZ7
-	W3Z0qF409FyDujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAUDa7-sFnT
-	9fnUUvcSsGvfC2KfnxnUUI43ZEXa7IUUfMaUUUUUU==
-X-CM-SenderInfo: pvkd40hjxrjqh1hdxhhqhw/1tbiCwLEZWjBF1101wAAso
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
 
-On Mon, Aug 25, 2025 at 04:21:54PM +0800, Peng Fan wrote:
-> Hi Sudeep, Shawn
-> 
-> On Fri, Jul 18, 2025 at 05:47:22PM +0800, Peng Fan wrote:
-> >From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >
-> >BBM protocol supports a single power button, supported by driver
-> >imx-sm-bbm-key.c. By default this is KEY_POWER, but can also be overwritten
-> >using linux,code. Add a reference to this schema and add linux,code as a
-> >supported property.
-> >
-> >Reviewed-by: Rob Herring (Arm) <robh@kernel.org>
-> >Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> >Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> >---
-> 
-> Not sure which tree this patch should be landed in. But would you please
-> pick it up?
+Hello,
 
-I do not see the patch in next-20250910, nor reply from Sudeep
-indicating it's been applied, so I just picked it up.
+On 28/08/2025 at 10:34:07 -04, Markus Stockhausen <markus.stockhausen@gmx.d=
+e> wrote:
 
-Shawn
+> Add a dtschema for the ECC engine on the Realtek RTL93xx SoCs.
+> The engine supports BCH6 and BCH12 parity for 512 byte blocks.
+>
+> Signed-off-by: Markus Stockhausen <markus.stockhausen@gmx.de>
+> ---
+> Changes in v2:
+> - change cells from 2 to 1 (only 32 bit hardware)
+> ---
+>  .../bindings/mtd/realtek,rtl9301-ecc.yaml     | 35 +++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/realtek,rtl9301=
+-ecc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mtd/realtek,rtl9301-ecc.ya=
+ml b/Documentation/devicetree/bindings/mtd/realtek,rtl9301-ecc.yaml
+> new file mode 100644
+> index 000000000000..1b34d79007a4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/realtek,rtl9301-ecc.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/realtek,rtl9301-ecc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek SoCs NAND ECC engine
+> +
+> +maintainers:
+> +  - Markus Stockhausen <markus.stockhausen@gmx.de>
+> +
+> +properties:
+> +  compatible:
+> +    const: realtek,rtl9301-ecc
+> +
+> +  reg:
+> +    maxItems: 1
 
+This controller has an interrupt which must be described. It does not
+matter if you use it or not for performance reasons in the driver. Just
+don't mark it required below.
+
+Also, no clocks seems suspicious. But maybe they are "hidden".
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+Thanks,
+Miqu=C3=A8l
 
