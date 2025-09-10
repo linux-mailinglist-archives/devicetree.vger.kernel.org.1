@@ -1,244 +1,178 @@
-Return-Path: <devicetree+bounces-215491-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70746B51910
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 16:14:42 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5331EB5178C
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:05:00 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D118217908A
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 14:14:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 49090188E9DD
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C12C3322C70;
-	Wed, 10 Sep 2025 14:14:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57F192264B2;
+	Wed, 10 Sep 2025 13:04:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b="Lz0fEuih"
+	dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="mGEcBX4y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+Received: from DUZPR83CU001.outbound.protection.outlook.com (mail-northeuropeazon11012052.outbound.protection.outlook.com [52.101.66.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFD43322A1A
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 14:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=170.10.129.124
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757513669; cv=none; b=EwnC+vYkP4kC19AoRQ1wnKGIR6hBc/S+G2x3dBqGWgOaIvfqYbo6eoOVrVKu6Vl4l/jqy+56YtNTKFcO23Xp19Gcdtj2IRzQkzdMo9GRk9FQeYlnnVt1wUJschPlpdTZBEHi+WTonW536dvTbnMIuZGjq4nueGkO6UB+VRN7ZbU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757513669; c=relaxed/simple;
-	bh=r+AaCInzdkxBbx9W02sgOISt/s07Hcu0+abKHIJ1GWc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nFBUkSDizOqB4t1991tMxtyXHBw0VwpCHEgR4ipUg5AeC0Vj6+/iqloGY331P4eDiGYdxvHcW9Gzcc+XDNjzQQj7whEMXEYSX5BYGrN7qGnHGr+HRP06MSBLXMM8B6b9Li8fXqcBtZTWwmy6hP5ci8vATAgIAFUzmVnuJx425oQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com; spf=pass smtp.mailfrom=redhat.com; dkim=pass (1024-bit key) header.d=redhat.com header.i=@redhat.com header.b=Lz0fEuih; arc=none smtp.client-ip=170.10.129.124
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=redhat.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=redhat.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-	s=mimecast20190719; t=1757513666;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=4AKBrsHYyZy6NVWerxVC8iAlV9/6fvAVIrP6ESd120U=;
-	b=Lz0fEuihSDksJa8ORAcwsySuw97OHAJMZhjK+AW5cRNNpuwBeGDwncW4q+HaHN2tNRLku6
-	nNB5RAbWCL50VugxJlHww/KXNg8eXq/RzsvRPXgpte3Qj2rywAjtYZSTob4PCS9s4YbvnE
-	DIuf56ASPuej8uEUvSPAd1Jl46g/vq4=
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-107-9A93xoyvOoOhrbMCHKv4cg-1; Wed, 10 Sep 2025 10:14:25 -0400
-X-MC-Unique: 9A93xoyvOoOhrbMCHKv4cg-1
-X-Mimecast-MFC-AGG-ID: 9A93xoyvOoOhrbMCHKv4cg_1757513665
-Received: by mail-qk1-f198.google.com with SMTP id af79cd13be357-81b8d38504fso727429885a.3
-        for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 07:14:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1757513665; x=1758118465;
-        h=user-agent:in-reply-to:content-disposition:mime-version:references
-         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4AKBrsHYyZy6NVWerxVC8iAlV9/6fvAVIrP6ESd120U=;
-        b=f9A5SmVpnAb4Y5qWDISywHRCIZy7023RhR5DPODFTlbbeodMyaxeVSF5e2iJ7k2f8F
-         11p7QAxGj25hP0oEIaImvesHWkLN4f1Nwly4ONa7cxIk1auDkol+D8XPQiS+CJxlp8Gs
-         +W06D5eEek2BMekTg59yHDHeOXsVWKH2j0QlwVj4BiBS6miBBHYuRtPkq0yWsrEiC90x
-         kq+CjeHb9qfi3cF6QyWcBN3XbO0UXBp/fXI1WQL1d24ZZ6kNgvfyUYB+zkwXt/wxasvF
-         vnFysieL0FAuuKY0VFCnrX/2AIt5+Rcjyb27Y5t1BdUyIWlZJml96OY6ZvwoIjtALd+F
-         wwKg==
-X-Forwarded-Encrypted: i=1; AJvYcCXRTvAimGN+EHswc6hqPDYBde+DmaN90qnRcQ7cSH7Qj+iIvmW7J99xg3pXC0jMNMu7kDXPq4I69Ips@vger.kernel.org
-X-Gm-Message-State: AOJu0YysNcLApCBV0Q6NRM/vsLKHgKf1rAUPPqaciWxHEbWz9xYAG5yM
-	lwoU4QILvyaSTOjbP0YWiBjGEz21Y3alSrw671ilL1oWY2dyeTjpg1QbrhBZwMg56Kjh24INyyd
-	loyNP5TANfWuo7jNpMb7JC6NKpc0u1j4nJcxblp9ObO9m44X1QttULHxPE/MwSZA=
-X-Gm-Gg: ASbGncsM5VfMMyFsOQw2oF4miOZSpDHdWXrQZ0fdaMc5GQ270aHda/2RoG4UFz5L6sR
-	ZV/C4BvB03Qu39VLqxWZxcf3WKBlR5snYUDsFpQxB8i5PGvLU25ex1+MmNyg5vdBFnAjfs/TgTP
-	yu1MfoJSWSd2FTn4RMuVLuRnb7M0tUQhaL24kk+TKxYabn7LHQ2j+eAFCPPIagQcZqS0EtL09CA
-	roaug8/EY+Pe3jIryoXWdpLwKjL3oM1OS7LLDaFeSP1/v0pFjIFDf/RiUcbY5jnqNfSm5FfdvWm
-	BSzO7IhriXAmK/UcZbhEH2etbzF9l1DggTEaHGOvE4l/opXYyMPwiXCwpOGl/6MctrRwuKESs4W
-	09Vi976D0uPmXEBQBjsM=
-X-Received: by 2002:a05:620a:1997:b0:7e8:922:f02b with SMTP id af79cd13be357-813bed042c0mr1615331685a.25.1757513664995;
-        Wed, 10 Sep 2025 07:14:24 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IFkFeL3wPJOKIe3shUG9pzAQKQjdBD+pGyVy/83wrA05r4tPdXbaw2hUPMEXQ3KZIEvXGTTLQ==
-X-Received: by 2002:a05:620a:1997:b0:7e8:922:f02b with SMTP id af79cd13be357-813bed042c0mr1615324385a.25.1757513664239;
-        Wed, 10 Sep 2025 07:14:24 -0700 (PDT)
-Received: from x1 (c-73-183-52-120.hsd1.pa.comcast.net. [73.183.52.120])
-        by smtp.gmail.com with ESMTPSA id af79cd13be357-81b58b5d7fesm299937185a.8.2025.09.10.07.14.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 10 Sep 2025 07:14:23 -0700 (PDT)
-Date: Wed, 10 Sep 2025 10:14:20 -0400
-From: Brian Masney <bmasney@redhat.com>
-To: Ryan Chen <ryan_chen@aspeedtech.com>
-Cc: Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Joel Stanley <joel@jms.id.au>,
-	Andrew Jeffery <andrew@codeconstruct.com.au>,
-	Rob Herring <robh@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0321BBBE5;
+	Wed, 10 Sep 2025 13:04:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.66.52
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757509496; cv=fail; b=f+clWZQkGywvnHhgmobgKY7mwG6PXiTg+Xli40O3oEBlhzvhanYFwdNdQDk5UV0TE5izC8JxQKdpzti8HRSKLVUs06olTddBlo1DOmMJ+ug/+SRNTDL9C8nZHFuDLOarp9tbP0Ul5YSe3pN0bnHGTOcBLn8t8OE+nQoQOlRGtns=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757509496; c=relaxed/simple;
+	bh=1M9/50AxjWW+7CLcPCoMosiwElEOVGNmhXVTf0J2QzU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=lyLRwKI+P2VP6NvBeKR6sQWMQOr3KyVXiYyG8CsbJVL2GJHeYpigLuWbL6nDHC3Ba4WaXTmHIsUq1POcGvCFWMAs96E13A51y+FOy7yA9THyVJU2d3dwtttZWoDnjRHkyVA+BcUC7LKYdGD+CM850+oTsNLQFqy/UMs+6PQzjDI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (2048-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=mGEcBX4y; arc=fail smtp.client-ip=52.101.66.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=fIcMCxU5LfJoEPvPrWe4UPJDlqqxhYP36OsaiXaMocAheQdUg+v8PXuGWNqSCaUrkEpaIHx0R20Zrxh5de+vz5hFwr5xiUh0m0WU+833QPaH5grc9sOgFeQKaA06FnlRRWl6rdgtHVBbSlyZR3ZrV9Vfuyc1XkVL/0TlRfokMho0Tmae7sxN1KtAMQj5eujRq/9SoIwDwdcb8MJC0gMiga8XzzXhNTjePtIk0UInMrw+mY7FISQRSpqLw83EIBQbe0VGVRaoLnE6VPRpKhL0phlLcywojIIjbBmgMvkmnRuqr7PxLxdIqBQtXLO0ehJcxfpK3iMw7JDEjXJAuZAsbw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=1M9/50AxjWW+7CLcPCoMosiwElEOVGNmhXVTf0J2QzU=;
+ b=f9j9g1PvAefSA/ascleDivO0YQRYJT1h5QcLq8e8r4QdJBPwmXFfCCXvVPHSWnQA9k/LBonAKMmCodbesz3G3Wk54itDWbhpI5jEE1ilnyWa0TYYnRdGaudsHQsbsHP4wY/0fc03XdvD3TFZpZ98Qj9qm9vFHFIMyFvhg4XyvFZIlfUJ8zwnNTK+q9d7olr2GkyxVBXX4KUFFFPkzOEXdRKedkTozKq8VuPhGJLAFKhbqW0sY2eCPQ+4JJYjtXUqmY8n6JLCAlxcBF0CU8+s3543CWHE04wo21MbRkNcMHxAa+V7onD25FbrCSHY41q0Qi5oBEuxUy00mGrbSTupHg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector1-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1M9/50AxjWW+7CLcPCoMosiwElEOVGNmhXVTf0J2QzU=;
+ b=mGEcBX4yvFgkZvIoY3TI9e2fyQsdtrQ/e3fYvi0BWNpQ8zWSatlY3hnBCHwg1qhajvZ1H49usyeyTMOAHSFa4CsHwmOVPvK7kk9u5fy7uoJ+WgHcArpVMrmHXUwRYt4BusMok99d0AoeeTlt3SZGeuAE1a7diHcL4LlwdAZYWF/7er0q1zcLH+FRqJOnbOcB+LUk+GYIfM/HDqrjsXq1rq/hMTwtjnM0/Uod1sHgMPoSVEV3AmPZOxTJQyjUeRjDGKqcN11xIPrk3Wc2CgucSBQtXA7To0QWFNEL3iQA35acZyefo35VsIEmWsz5aAfP5+n+2agvRFr5RxRRy+wv9A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com (2603:10a6:102:1da::15)
+ by AM9PR04MB8569.eurprd04.prod.outlook.com (2603:10a6:20b:434::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9115.15; Wed, 10 Sep
+ 2025 13:04:48 +0000
+Received: from PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630]) by PAXPR04MB8459.eurprd04.prod.outlook.com
+ ([fe80::165a:30a2:5835:9630%4]) with mapi id 15.20.9115.010; Wed, 10 Sep 2025
+ 13:04:48 +0000
+Date: Wed, 10 Sep 2025 22:16:14 +0800
+From: Peng Fan <peng.fan@oss.nxp.com>
+To: Andreas Kemnade <akemnade@kernel.org>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzk+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Mo Elbadry <elbadrym@google.com>,
-	Rom Lemarchand <romlem@google.com>,
-	William Kennington <wak@google.com>,
-	Yuxiao Zhang <yuxiaozhang@google.com>, wthai@nvidia.com,
-	leohu@nvidia.com, dkodihalli@nvidia.com, spuranik@nvidia.com
-Subject: Re: [PATCH v12 3/3] clk: aspeed: add AST2700 clock driver
-Message-ID: <aMGHvHf6BPrJD1pC@x1>
-References: <20250708052909.4145983-1-ryan_chen@aspeedtech.com>
- <20250708052909.4145983-4-ryan_chen@aspeedtech.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Alistair Francis <alistair@alistair23.me>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/3] regulator: sy7636a: add gpios and input regulator
+Message-ID: <20250910141614.GA29628@nxa18884-linux.ap.freescale.net>
+References: <20250909-sy7636-rsrc-v2-0-cfd9f44fd259@kernel.org>
+ <20250909-sy7636-rsrc-v2-2-cfd9f44fd259@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250909-sy7636-rsrc-v2-2-cfd9f44fd259@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: SI1PR02CA0001.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::15) To PAXPR04MB8459.eurprd04.prod.outlook.com
+ (2603:10a6:102:1da::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20250708052909.4145983-4-ryan_chen@aspeedtech.com>
-User-Agent: Mutt/2.2.14 (2025-02-20)
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB8459:EE_|AM9PR04MB8569:EE_
+X-MS-Office365-Filtering-Correlation-Id: 20629dc5-cacd-4aca-2158-08ddf06a9f0d
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|1800799024|366016|19092799006|376014|52116014|7416014|38350700014|7053199007;
+X-Microsoft-Antispam-Message-Info:
+	=?us-ascii?Q?VytlR5b+KAAX5cSHR5gwHcSuFPagT1QtkA4v9qtAKS86xP9KMtX9+2vEONnz?=
+ =?us-ascii?Q?CKGYgC3u2JDybq/AW1B+T3fjYcpVa78j0RM8kbI7DlrcBkU0XpLmSjGsBUaK?=
+ =?us-ascii?Q?lVmdyutyq3W2ObomSJYhQg0NocJi8xCCu4ZkLEpbU4YMYuBuAbnMQreweuf6?=
+ =?us-ascii?Q?NAJDcXcLe+4fg5x4Lsb9yV77yjJvm44N8cntTwI6nLeeuS7UO8vouQh2n9Tb?=
+ =?us-ascii?Q?NwkEvIocRSV3YO6Gpaix5g7YTmTeaYOhYR5FG+zxTKfKOJG49LuS03PyUgJ3?=
+ =?us-ascii?Q?YMZwyNfnmCQS/kJGOzrI6d8xVopD3LzPQqq14PakRgsDWmwrCrOAsiPJAEw8?=
+ =?us-ascii?Q?54Qq9lNP0IO7ZSWFVE2GTUDP43h76jJSD+m/R1VGIY0fUzs2WMq8Y/HX0EgD?=
+ =?us-ascii?Q?RLWvi0KYQBJX8VN/4aBa4W27hR6W4ztCruUKyqtN9DqH8rr9UK+YfHMYWVWw?=
+ =?us-ascii?Q?oPw9wSLBkT6uPtQabvzY0mgZLy7pvSf69FuvjNmcouTbYvV+ZW4TggYmn+wk?=
+ =?us-ascii?Q?jS61lxIEvaFa/5dw+XOtgsXNeQpBCzM0upT9aGNX92Ml7nXtwvoyp4KVMNCl?=
+ =?us-ascii?Q?bcLihIsrAsjyulR03dwj+afkU+6ij3lHtpMI4fFPSFsnnTlHdmlIKbMtSeaA?=
+ =?us-ascii?Q?AlcJvrkKcvJ0W7E7umVRf+wY/Rx1TIMS4Iw1Gq7fvP3KPSwktujNUfVoFAYf?=
+ =?us-ascii?Q?0XZfmToy0WPZJsMro1T2noDhnxdHeKh6O4rHrUrZ7G/MjNb9SZ13+9DRY/OO?=
+ =?us-ascii?Q?1AtNM/RUB0CYdnRitBC0vbL6MhMqRdE8wVCWKPOJVDkdord54FxLVesSzfFb?=
+ =?us-ascii?Q?fA7e3nVAjPO/a6Gd9QDmHCzYENqLprupHK9zIaq0obmdB3ZJFPBkFkhii2W3?=
+ =?us-ascii?Q?b8OrrqK9RlZaVFP5UdhYFskjRM1dimj7iZXyCgPHK/H1IMDQAf557MjqsHBR?=
+ =?us-ascii?Q?fiFhBGShKf7TR80deVFArPY4QS4scYRnXimhCEU9pTkQ+BWQWWiXIy4+bfjF?=
+ =?us-ascii?Q?gKFhCwD49uNRLnUA/CLWRZBsWHc6aitRnYof+4ap5nez9VqMDg8q4Bp9MSG/?=
+ =?us-ascii?Q?MQCHJ7scG1rwRyFQjR0+s2smFqZxx7ot9i40TlYQV0cWTLFYtum3y+illCvm?=
+ =?us-ascii?Q?xqcfl+nAnUiG+LBAoNitmjC7Y+sk+fK9EUqP2EW+RlRvSbiEKD6vUhpW109X?=
+ =?us-ascii?Q?LS+jpMhyCMx5smfcad3ABRDWVohL7togdODWu9/8OFrm244qkqvK6x9kO+6Z?=
+ =?us-ascii?Q?Cm7SebGfx+rE/fOOtcNgppRroghroitMpUnSXPi9Z/1uiVRK2ypDjijozUMI?=
+ =?us-ascii?Q?h3vVGHvc0tyHB/WSgarWX9wWLlEq1GO+07mXc6eAV5kzk4pr2TFjk3Jx2wPD?=
+ =?us-ascii?Q?sixNSNVlRgi/+CTKlvakvZlfPQBU4p0kSCF+jF8y44OSeELjessyo/N1c+kv?=
+ =?us-ascii?Q?18rn0XJAqKPM2ct/jvD+n0octuC96iNYZI9uzN5SPMExAIZ+ZM4cZAv9eCan?=
+ =?us-ascii?Q?wwl8mQLOiuezIL4=3D?=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB8459.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(366016)(19092799006)(376014)(52116014)(7416014)(38350700014)(7053199007);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?VEK3X+GyBmEDzhS4YJnNk0XMlpVRQGbkd+YDTl72Po2dwuIZZ6z0l+yyAYh6?=
+ =?us-ascii?Q?H7/aSrBlXwi39LnOE+gXsvbvO3kENPPaqff+LmoJqxLrmyqceqql8WwD4jp+?=
+ =?us-ascii?Q?6eIqd/DlvNpJoxq+ePp21zukzIyCqJjsi3WPbtk6mq2ffAddD3dOlFadMVCu?=
+ =?us-ascii?Q?6OV3aTVpdMKqbDKydEICQbgnuZGgT6+HLIR19mY2TEYQfWSidmeKaN2WFnJq?=
+ =?us-ascii?Q?FwA0nIFqT1YkK3cbGJcavW8Bap1IY6UuTt03xk4Ga8Ud70Hg+37tx2aQ36u7?=
+ =?us-ascii?Q?b081AJXMCzBjmeyDDxVwh/vNPRD5XT/P1X6Gan2vc3oxevti4i34JsdO7hEq?=
+ =?us-ascii?Q?v62WnT96zwMCrPHxmcKN5102uEEmtr/ELLnT4O8iX1uzBfsnxi1Ha+4byTwV?=
+ =?us-ascii?Q?PmEqewRTLoACJ7ahUk8pW5pdvJh04uMpXIZBF/7Y4wPEthRkBKxlfHwgEAgb?=
+ =?us-ascii?Q?9Upb35SGGiYYoPPAfcyuN7GzhVHFtCwVz9NwK6oerW6QARptolMVty3LSJY8?=
+ =?us-ascii?Q?83R1JS0vQTnmA4nACVghBDsioE356r7cAL4SCFvwNXipBdctnBtkj49b7VHi?=
+ =?us-ascii?Q?Y/3Dtnp+gr1UACF0t2BAfNpFaGuEcQc073WKUY6PKrhnFVb/is7yCn6aiNDJ?=
+ =?us-ascii?Q?2RdJTffU2+7oGEWIswdO/Wkb69XbOWlQagkzVPELzH6kTEKkLko3wVzvRr1N?=
+ =?us-ascii?Q?cMcwMuyr7OBwvLIJP8/aAX0yI60Drs+234I5MTQ9LQ0gr2SHgZgNMvrY7rDR?=
+ =?us-ascii?Q?49IXkXO0AQvt+Z4OcrjFIur/e+WYqaxrz1UgS2F5SO/dGb0TmKdItKjSNXx3?=
+ =?us-ascii?Q?PMdC77e9A4JIwusrAaeR67S5XX14+1nqAnASmkqqiDmKmJ0Tj8VLoOv5rWjb?=
+ =?us-ascii?Q?WyEJzcapaA58NWaHD1JH2eg8haS6Mv2jWZ24lr0rA+qeGV9A9yziqHICxuH9?=
+ =?us-ascii?Q?1+mgBtFj9am2O4b9ZxuNtuE0jUn/OMlzixOb3u0SzgyQo75PmGMWVhq/40Y0?=
+ =?us-ascii?Q?7j6+yxrkLuDVfoRBeA4bSh9U6+VPNv3yHlG0r77We5JW97gyfs58vrLN2pLk?=
+ =?us-ascii?Q?U5I8SGgeTHB5dMFL69XDOcokQ0WtZygzIM14w6l3uLVfl5hsy/AlMSZNO22d?=
+ =?us-ascii?Q?mjeInX4ebjXKUZ0OnJBWcsLWRBlZY/XFk0qPdbkumRGu+B3m9oY/6EDQup9q?=
+ =?us-ascii?Q?5wAMSj3gSIp60zGUnl4DeDSAVkxJj+je6tT6gKNEcBl6L19yUQ1hc+dhUzLk?=
+ =?us-ascii?Q?wHv0lLHsd1N/HyhpIXD/bvCdJqo9/Wt10se6U5QZN3A2hAsNMG7r7tlz1Ur5?=
+ =?us-ascii?Q?Hr+icdTKEpbKMorQJGQXCpwj+YMwTgbKn5jy3Iavl4BoC3GJ19bSIJoC4vFM?=
+ =?us-ascii?Q?wuvy7qdKbN3VMrf+xqZ292oqzrkR7avL0XRjGzct7d45u+EjneKJMr2mNNHt?=
+ =?us-ascii?Q?gxcU5gtgFxx50IOuCkLXyRq9NbtiwRZvYI6So7IVRP4tYuoQeFpfxHe2j585?=
+ =?us-ascii?Q?tYHQAEmge1aR3ga3Lzhrxx4mbw5OuZLeEkF0TQMX0PL+tJHdBFJlUq9i/yc3?=
+ =?us-ascii?Q?gnY4GV/JZOkwZUHPI1Lo/LvRTbP67vXOHF59z3BI?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20629dc5-cacd-4aca-2158-08ddf06a9f0d
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB8459.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 13:04:48.5252
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: mSn2gTWBd0nxUE/816b9NLCDi/5MaIpECR1Kl5ilqQMzjLyz9uibtp8p6czwWMEhvJwc3tzFLGyuaDqsEARzWA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8569
 
-Hi Ryan,
+On Tue, Sep 09, 2025 at 10:33:03PM +0200, Andreas Kemnade wrote:
+>Initialize input regulator and gpios to proper values to have things
+>basically working as well as in the case when these things are
+>hardwired.
+>
+>Signed-off-by: Andreas Kemnade <akemnade@kernel.org>
 
-On Tue, Jul 08, 2025 at 01:29:09PM +0800, Ryan Chen wrote:
-> Add AST2700 clock controller driver and also use axiliary
-> device framework register the reset controller driver.
-> Due to clock and reset using the same register region.
-> 
-> Signed-off-by: Ryan Chen <ryan_chen@aspeedtech.com>
-
-I just have a few very minor style comments below. Otherwise the driver
-looks good to me.
-
-> +static struct clk_hw *ast2700_clk_hw_register_hpll(void __iomem *reg,
-> +						   const char *name, const char *parent_name,
-> +						   struct ast2700_clk_ctrl *clk_ctrl)
-> +{
-> +	unsigned int mult, div;
-> +	u32 val;
-> +
-> +	val = readl(clk_ctrl->base + SCU0_HWSTRAP1);
-> +	if ((readl(clk_ctrl->base) & REVISION_ID) && (val & BIT(3))) {
-> +		switch ((val & GENMASK(4, 2)) >> 2) {
-> +		case 2:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1800 * HZ_PER_MHZ);
-> +		case 3:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1700 * HZ_PER_MHZ);
-> +		case 6:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1200 * HZ_PER_MHZ);
-> +		case 7:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 800 * HZ_PER_MHZ);
-> +		default:
-> +			return ERR_PTR(-EINVAL);
-> +		}
-> +	} else if ((val & GENMASK(3, 2)) != 0) {
-> +		switch ((val & GENMASK(3, 2)) >> 2) {
-> +		case 1:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1900 * HZ_PER_MHZ);
-> +		case 2:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1800 * HZ_PER_MHZ);
-> +		case 3:
-> +			return devm_clk_hw_register_fixed_rate(clk_ctrl->dev, name, NULL,
-> +							       0, 1700 * HZ_PER_MHZ);
-> +		default:
-> +			return ERR_PTR(-EINVAL);
-> +		}
-> +	} else {
-> +		val = readl(reg);
-> +
-> +		if (val & BIT(24)) {
-> +			/* Pass through mode */
-> +			mult = 1;
-> +			div = 1;
-> +		} else {
-> +			u32 m = val & 0x1fff;
-> +			u32 n = (val >> 13) & 0x3f;
-> +			u32 p = (val >> 19) & 0xf;
-> +
-> +			mult = (m + 1) / (2 * (n + 1));
-> +			div = (p + 1);
-
-The ( ) is unnecessary here.
-
-> +		}
-> +	}
-> +
-> +	return devm_clk_hw_register_fixed_factor(clk_ctrl->dev, name, parent_name, 0, mult, div);
-> +}
-> +
-> +static struct clk_hw *ast2700_clk_hw_register_pll(int clk_idx, void __iomem *reg,
-> +						  const char *name, const char *parent_name,
-> +						  struct ast2700_clk_ctrl *clk_ctrl)
-> +{
-> +	int scu = clk_ctrl->clk_data->scu;
-> +	unsigned int mult, div;
-> +	u32 val = readl(reg);
-> +
-> +	if (val & BIT(24)) {
-> +		/* Pass through mode */
-> +		mult = 1;
-> +		div = 1;
-> +	} else {
-> +		u32 m = val & 0x1fff;
-> +		u32 n = (val >> 13) & 0x3f;
-> +		u32 p = (val >> 19) & 0xf;
-> +
-> +		if (scu) {
-> +			mult = (m + 1) / (n + 1);
-> +			div = (p + 1);
-> +		} else {
-> +			if (clk_idx == SCU0_CLK_MPLL) {
-> +				mult = m / (n + 1);
-> +				div = (p + 1);
-> +			} else {
-> +				mult = (m + 1) / (2 * (n + 1));
-> +				div = (p + 1);
-
-The ( ) is unnecessary on div on the three places above.
-
-> +static void ast2700_soc1_configure_i3c_clk(struct ast2700_clk_ctrl *clk_ctrl)
-> +{
-> +	if (readl(clk_ctrl->base + SCU1_REVISION_ID) & REVISION_ID)
-> +		/* I3C 250MHz = HPLL/4 */
-> +		writel((readl(clk_ctrl->base + SCU1_CLK_SEL2) &
-> +			~SCU1_CLK_I3C_DIV_MASK) |
-> +			       FIELD_PREP(SCU1_CLK_I3C_DIV_MASK,
-> +					  SCU1_CLK_I3C_DIV(4)),
-> +		       clk_ctrl->base + SCU1_CLK_SEL2);
-
-This block is hard to read. What do you think about this instead?
-
-        if (readl(clk_ctrl->base + SCU1_REVISION_ID) & REVISION_ID) {
-        	u32 val;
-
-                /* I3C 250MHz = HPLL/4 */
-                val = readl(clk_ctrl->base + SCU1_CLK_SEL2) & ~SCU1_CLK_I3C_DIV_MASK;
-                val |= FIELD_PREP(SCU1_CLK_I3C_DIV_MASK, SCU1_CLK_I3C_DIV(4));
-                writel(val, clk_ctrl->base + SCU1_CLK_SEL2);
-        }
-
-With those addressed:
-
-Reviewed-by: Brian Masney <bmasney@redhat.com>
-
+Reviewed-by: Peng Fan <peng.fan@nxp.com>
 
