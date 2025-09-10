@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-215243-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215244-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C6DCB50FA1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:39:31 +0200 (CEST)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0E9B50FB4
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 09:40:24 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 280EC1765C2
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:39:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEAB017CE16
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 07:40:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D44430BB96;
-	Wed, 10 Sep 2025 07:39:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A1E30BB96;
+	Wed, 10 Sep 2025 07:40:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uBVrLRSO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SNsZS7sa"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17D7F35961;
-	Wed, 10 Sep 2025 07:39:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA0A53064A9;
+	Wed, 10 Sep 2025 07:40:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757489968; cv=none; b=PjxCyXK/YihKokd/A7m3kZN5vQka76/5xELn4zUcNia0kr7OleedezObcYlpOPVSuiRpMMyqvSBNQPLSLPcmKr/oF+xY33XDA/kyxLN9i/c0k8woY2twsmR6EC6bssrjcDnXvCXxVe0uPD1dTgBJjM/yAyWm/zFI9kAy5u2tOCs=
+	t=1757490020; cv=none; b=iImteoa53wfwFiSMtL5at8spmxC+niEfstUWbQJhy/akPHU8qI2k2J5UjO1EqYDIa9me3Sdo1tXuVLUvsPAAf8Rqj4mHIr322+I7wwH4RLl/8c6g6yPSCwqGLsWhZfxf8W46BixWSTPQT1y+pcna+8gfFgq7EHhViuvxEqWffy8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757489968; c=relaxed/simple;
-	bh=qcFOMwBPivb9litkeo7VOk61nrVY3bbAuM8EK+eTT5Y=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=uqoSh4Pgg6fAUr+SCWLSjKFZPxRxLTLRjLJ1In5hKArwDAnjWeY5odb12hSJ8dFjiRpMV0AeBQWfH7yUwAoAjkpEx2QAbQsnng6EQZHZYXbaaWHZ/coV8bH1tS5hWmA4ql+lyfd94URAe6T1VbbRhxwqWG4Kq+WkBY628YS6QSo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uBVrLRSO; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AF29C4CEF5;
-	Wed, 10 Sep 2025 07:39:23 +0000 (UTC)
+	s=arc-20240116; t=1757490020; c=relaxed/simple;
+	bh=l9gbLcOw34CjnvmzL1eZV7Qw70Siz0YwsCoVPZZyPrU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DlA4yu+WkGEMQxEyKso4yt2qMPOeN/a7RvdcL+4xqj+DGAtPOKOYq2zVGrEXpLtRC+2DlgNrHXEy5uvOmWtdQN1xnnmQpGT+SSdUgn72v8puVri2w0otMhRUq8/zHK8SUyCjMofPvbNzSI2NX3XL9NmPNp9pzbPzqLtHKqyrENk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SNsZS7sa; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35B4DC4CEF9;
+	Wed, 10 Sep 2025 07:40:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757489967;
-	bh=qcFOMwBPivb9litkeo7VOk61nrVY3bbAuM8EK+eTT5Y=;
-	h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
-	b=uBVrLRSOZk2/da0u0ZDRVe0IQc1frxeDju3x7zwFE59Omx0J/LpuKjh//yznqG2eb
-	 UAqkYFENtSVAxofheMp8ZXSvos/ngXvEz25IoISB54fHP/t/+PG2A/QlOKWW+m9Nkq
-	 lTeL0ekkuOF8HZo9VWzidohMdOxA4/9Elz9GUsKs9NTVYMGQbp0uO5YQABUoPS3hyw
-	 TfxsBcj0FWw++nmsA+fGolMsI09OzXRVkE22iLj1iK6eZL6jBp+5eOO3Yxzl2xxD42
-	 YMd0kBqYHqkNzTnpDcxtQLHkiEQAUBkhOr24jWi5E7nleRe2LXsRZ0QE+vpDpZGi+O
-	 N4EnbMGiGn6iw==
-Message-ID: <a9507045-b900-49ee-8841-0f8fd30816ba@kernel.org>
-Date: Wed, 10 Sep 2025 09:39:21 +0200
+	s=k20201202; t=1757490019;
+	bh=l9gbLcOw34CjnvmzL1eZV7Qw70Siz0YwsCoVPZZyPrU=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=SNsZS7saVQNVGMNirRFJcAN71OF3mnIquqPetH462uEpnuG9vmT70FQhM+9+vp8jy
+	 9RCYCNQJNci/6wqzs39YmIEBtfnHetfFh5fiFWXSB1PrPTu0HcZIN8Rx88ThdSmAX0
+	 kJ5apzpWxAjNmpWahxRoOJ56Wg2Y2qi5WNZ6YZ63IP5UScO1Q2aoqlkXNiTQ2ldwje
+	 74S+2wvR2iu1KnhortPp/kHwkRh2eld8m6frliS1pBI581SuitL6d8HZOL6Ve3LVtE
+	 6LS1u0OqMVlbBTN7X39Uu3zjvYt8BiB5RET3koSmBMWKc3qjquXaU8nc049ZDgSKur
+	 QJsVvxqkP+aoQ==
+Message-ID: <8484af14-63f3-4dd9-91d8-6bd79b736819@kernel.org>
+Date: Wed, 10 Sep 2025 09:40:12 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,22 +50,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] ASoC: dt-bindings: qcom,sm8250: Add QCS8300 sound
- card
+Subject: Re: [PATCH] dt-bindings: bridge: lt9211c: Add bindings
+To: Nilesh Laad <nilesh.laad@oss.qualcomm.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, venkata.valluru@oss.qualcomm.com,
+ jessica.zhang@oss.qualcomm.com, Yi Zhang <zhanyi@qti.qualcomm.com>
+References: <20250910-add-lt9211c-bridge-v1-1-4f23740fe101@oss.qualcomm.com>
 From: Krzysztof Kozlowski <krzk@kernel.org>
-To: Mohammad Rafi Shaik <mohammad.rafi.shaik@oss.qualcomm.com>,
- Srinivas Kandagatla <srini@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- kernel@oss.qualcomm.com, prasad.kumpatla@oss.qualcomm.com,
- ajay.nandam@oss.qualcomm.com
-References: <20250905142647.2566951-1-mohammad.rafi.shaik@oss.qualcomm.com>
- <20250905142647.2566951-2-mohammad.rafi.shaik@oss.qualcomm.com>
- <43090acb-ea36-4015-b14f-78d44d789d42@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -110,33 +110,18 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <43090acb-ea36-4015-b14f-78d44d789d42@kernel.org>
+In-Reply-To: <20250910-add-lt9211c-bridge-v1-1-4f23740fe101@oss.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/09/2025 09:26, Krzysztof Kozlowski wrote:
->> diff --git a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> index 8ac91625dce5..eebf80c1d79a 100644
->> --- a/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> +++ b/Documentation/devicetree/bindings/sound/qcom,sm8250.yaml
->> @@ -35,6 +35,7 @@ properties:
->>            - qcom,qcm6490-idp-sndcard
->>            - qcom,qcs6490-rb3gen2-sndcard
->>            - qcom,qcs8275-sndcard
+On 10/09/2025 09:37, Nilesh Laad wrote:
+> From: Yi Zhang <zhanyi@qti.qualcomm.com>
 > 
-> So what is the point of this compatible? There is no user of it and I
-> think you added QCS8275 for this case exactly...
-> 
-> Shall I start reverting commits from Qualcomm because you post patches
-> "just in case" and turns out they are completely not needed? No single
-> user of such code?
+> Add bindings for lt9211c.
 
+Why? There is no user of it. We do not need bindings without users.
 
-@Mark,
-
-In case it wasn't obvious, please do not merge the patch till we get
-some clarification. For sure it is wrong one way or another: either
-incomplete or just duplicated.
+I am not reviewing the rest.
 
 Best regards,
 Krzysztof
