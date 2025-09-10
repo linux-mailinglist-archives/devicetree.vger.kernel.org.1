@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-215464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD98B51855
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:52:43 +0200 (CEST)
+Received: from dfw.mirrors.kernel.org (dfw.mirrors.kernel.org [IPv6:2605:f480:58:1:0:1994:3:14])
+	by mail.lfdr.de (Postfix) with ESMTPS id 46D51B51857
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 15:52:58 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC4541BC191C
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:53:04 +0000 (UTC)
+	by dfw.mirrors.kernel.org (Postfix) with ESMTPS id 2EE284E2931
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 13:52:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C336B245031;
-	Wed, 10 Sep 2025 13:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8990B260563;
+	Wed, 10 Sep 2025 13:52:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="RNP6Tu6K"
+	dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b="FE0OBX8p"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp1.iitb.ac.in (smtpd9.iitb.ac.in [103.21.126.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4A71218AAF
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 13:52:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E44AD21B192
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 13:52:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=103.21.126.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757512352; cv=none; b=f0yWBwiVz3Y2q5nwqPP7ecV6TCVBoqxn2D3FQaL+MCwOBI+eDaMJWuWltbiimq6i9kS3GctnnZQGz24aWLv3gwbPn9J/xq2Srio2CSKCWS1FK8VNu/xZPDPSakthQ8aEQKKwjWSW/fBkveuqAtxsPmKgUbadZSgtYuqlnMagjc8=
+	t=1757512369; cv=none; b=iYDHit0KlQf6ff6gqevzBAZVNX1SX+LZdXDJ9YEa9HqYyfwuWFxLkld1qmY1UzbL6e50tOkFn6Wev28XAsOLxcXvvI3fkL3MHx2y4soQ2rSrHoF8YQVQgMvEIW0+LC6/NXAA1BQTnxPkgOcZFwg92nheNHNg1/MMyPIIgj7qKGg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757512352; c=relaxed/simple;
-	bh=2dbjA/3olzd+QMHYz4UiuHRdvT0/b5KhrTMMWsmdV6M=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition; b=s/ehXs6A9P+EEt37G2191ectrJtSNWRiR5a7L1/I1nEe87SKS8bIYHjYayGn723LAaOthSo54awV/shisCausQosWfYXzsrAI4Xf7NgaUAR1GPPYR4bQsxmr3eis/4GodwI7xCy0DNp5Mhwc5qmfB+asj52L++Q3SjuEMj7VX9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=RNP6Tu6K; arc=none smtp.client-ip=103.21.126.64
+	s=arc-20240116; t=1757512369; c=relaxed/simple;
+	bh=d57C21XYFc8gAypgPRhZ314Ib9xcXEDWIWM5LHoC1Gg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nS1ixwlJ72DahQg6+j+akWLe2u5THbOpcPTSur9/cegEPK6hUEdQ4toPFPLA129DF35pE3mdWs5SDV4r0Y4PVfq67fU8+Ta5APG9kPK6SjOeiUey44ILUvU/JawAGF833m+oNMuyfYQPCZUd5A7WVEaQHaNT+3aG2zmaCCnKGdA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in; spf=pass smtp.mailfrom=ee.iitb.ac.in; dkim=pass (1024-bit key) header.d=iitb.ac.in header.i=@iitb.ac.in header.b=FE0OBX8p; arc=none smtp.client-ip=103.21.126.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=ee.iitb.ac.in
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ee.iitb.ac.in
-Received: from ldns1.iitb.ac.in (ldns1.iitb.ac.in [10.200.12.1])
-	by smtp1.iitb.ac.in (Postfix) with SMTP id AECE1101622F
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 19:22:16 +0530 (IST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in AECE1101622F
+Received: from ldns2.iitb.ac.in (ldns2.iitb.ac.in [10.200.12.2])
+	by smtp1.iitb.ac.in (Postfix) with SMTP id 61DA7101622F
+	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 19:22:44 +0530 (IST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 smtp1.iitb.ac.in 61DA7101622F
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=iitb.ac.in; s=mail;
-	t=1757512336; bh=2dbjA/3olzd+QMHYz4UiuHRdvT0/b5KhrTMMWsmdV6M=;
-	h=Date:From:To:Cc:Subject:From;
-	b=RNP6Tu6KZhzMC3LmubXRzsf7BAqMiNV956srT8YGgAiwoUSIVBTWgmvfDeIHzmRR9
-	 ch5bgI0chLUlkdxrUMKMiZ3cHVYdx3A5WTt1PV9w7QR5nojZF5ySxWX4fCs/vZJWr9
-	 iP13WbknkfCxcZGVSqwSadWbZDdrwJTPcyUsDeu0=
-Received: (qmail 31463 invoked by uid 510); 10 Sep 2025 19:22:16 +0530
-X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns1 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
- spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.101.4/26439} 
- Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 5.204798 secs; 10 Sep 2025 19:22:16 +0530
+	t=1757512364; bh=d57C21XYFc8gAypgPRhZ314Ib9xcXEDWIWM5LHoC1Gg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=FE0OBX8pGN/Mkd3rLRUBhT9iIBQAGKOiwrQMfgF2xKxqHfc8ZUHF8dvib4+ma6P26
+	 /GitBKPXfVZ/s7h63ATZxbfB+RVfN5K+0QD41PuvJrsjV2jyFnuZDHOCqmgK44TBiw
+	 U2NeW/fPrGKyGhbW5HF1vjSRwj4MJs09CBPb7t2M=
+Received: (qmail 6477 invoked by uid 510); 10 Sep 2025 19:22:44 +0530
+X-Qmail-Scanner-Diagnostics: from 10.200.1.25 by ldns2 (envelope-from <akhilesh@ee.iitb.ac.in>, uid 501) with qmail-scanner-2.11
+ spamassassin: 3.4.1. mhr: 1.0. {clamdscan: 0.100.0/26337} 
+ Clear:RC:1(10.200.1.25):SA:0(0.0/7.0):. Processed in 4.850564 secs; 10 Sep 2025 19:22:44 +0530
 X-Spam-Level: 
 X-Spam-Pyzor: Reported 0 times.
 X-Envelope-From: akhilesh@ee.iitb.ac.in
 X-Qmail-Scanner-Mime-Attachments: |
 X-Qmail-Scanner-Zip-Files: |
-Received: from unknown (HELO ldns1.iitb.ac.in) (10.200.1.25)
-  by ldns1.iitb.ac.in with SMTP; 10 Sep 2025 19:22:11 +0530
+Received: from unknown (HELO ldns2.iitb.ac.in) (10.200.1.25)
+  by ldns2.iitb.ac.in with SMTP; 10 Sep 2025 19:22:39 +0530
 Received: from bhairav.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
-	by ldns1.iitb.ac.in (Postfix) with ESMTP id B5281360036;
-	Wed, 10 Sep 2025 19:22:10 +0530 (IST)
+	by ldns2.iitb.ac.in (Postfix) with ESMTP id ED35F3414DE;
+	Wed, 10 Sep 2025 19:22:38 +0530 (IST)
 Received: from bhairav-test.ee.iitb.ac.in (bhairav.ee.iitb.ac.in [10.107.1.1])
 	(Authenticated sender: akhilesh)
-	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id 836041E813E1;
-	Wed, 10 Sep 2025 19:22:09 +0530 (IST)
-Date: Wed, 10 Sep 2025 19:22:04 +0530
+	by bhairav.ee.iitb.ac.in (Postfix) with ESMTPSA id CDF571E813E1;
+	Wed, 10 Sep 2025 19:22:38 +0530 (IST)
+Date: Wed, 10 Sep 2025 19:22:33 +0530
 From: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
 To: alexandre.belloni@bootlin.com, krzk+dt@kernel.org, robh@kernel.org,
 	conor+dt@kernel.org
 Cc: skhan@linuxfoundation.org, linux-rtc@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
 	akhileshpatilvnit@gmail.com
-Subject: [PATCH v2 0/6] rtc: m41t93: add new features alarm, clock out,
- watchdog
-Message-ID: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
+Subject: [PATCH v2 1/6] dt-bindings: rtc: Add ST m41t93
+Message-ID: <3aed714163abc86a18a62f039b285643d9504e64.1757510157.git.akhilesh@ee.iitb.ac.in>
+References: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,58 +77,74 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+In-Reply-To: <cover.1757510157.git.akhilesh@ee.iitb.ac.in>
 
-This patch series adds following to m41t93 rtc driver.
-
-Functionalities: 
-- Alarm support (support to configure alarm 1)
-- Square wave output support
-- Watchdog support
-
-Code improvements:
-this series migrates existing driver to use standard regmap interface
-for spi instead of direct spi calls and uses regmap for new features.
-
-Device tree support:
-Adds device tree support to the driver along with binding documentation.
-
-Testing:
-This patch series is validated on TI am62x board with m41t93 rtc chip
-connected to spi0 bus.
-regmap migration is additionally tested by observing spi transfers
-with the help of logic analyzer. Short summary of test flow is added in
-commit message of respective features.
-
-Datasheet:
-https://www.st.com/resource/en/datasheet/m41t93.pdf
-
-patch 4 to 6 depend on patch 3 (regmap patch)
+Document DT bindings for m41t93 rtc which supports time, date,
+alarm, watchdog, square wave clock output provider, user sram
+and 8 bit timer.
 
 Signed-off-by: Akhilesh Patil <akhilesh@ee.iitb.ac.in>
 ---
-Changes in v2:
-- Address DTS and bindings coding style feedback from Krzysztof
-- Verify bindings using $ make dt_binding_check 
-- Update example in binding documentation after testing.
-- Analyze and Fix build warnings as suggested by kernel test robot.
-- Drop patch 5 from series (device detect logic change).
-  This will be taken separately. Focus on functionalities in this series.
-- Update commit messages with short test steps for each feature.
-- Link to v1: https://lore.kernel.org/lkml/cover.1756908788.git.akhilesh@ee.iitb.ac.in/
----
-Akhilesh Patil (6):
-  dt-bindings: rtc: Add ST m41t93
-  rtc: m41t93: add device tree support
-  rtc: m41t93: migrate to regmap api for register access
-  rtc: m41t93: Add alarm support
-  rtc: m41t93: Add square wave clock provider support
-  rtc: m41t93: Add watchdog support
-
- .../devicetree/bindings/rtc/st,m41t93.yaml    |  50 ++
- drivers/rtc/rtc-m41t93.c                      | 488 ++++++++++++++++--
- 2 files changed, 486 insertions(+), 52 deletions(-)
+ .../devicetree/bindings/rtc/st,m41t93.yaml    | 50 +++++++++++++++++++
+ 1 file changed, 50 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/rtc/st,m41t93.yaml
 
+diff --git a/Documentation/devicetree/bindings/rtc/st,m41t93.yaml b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+new file mode 100644
+index 000000000000..bd593669cfa2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/st,m41t93.yaml
+@@ -0,0 +1,50 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/st,m41t93.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ST M41T93 RTC and compatible
++
++maintainers:
++  - linux-rtc@vger.kernel.org
++
++description: |
++  ST M41T93 is spi based Real Time Clock (RTC) with time, date,
++  alarm, watchdog, square wave clock output, 8 bit timer and
++  7 bytes of user SRAM.
++
++properties:
++  compatible:
++    enum:
++      - st,m41t93
++
++  reg:
++    maxItems: 1
++
++  "#clock-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: rtc.yaml
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++      #address-cells = <1>;
++      #size-cells = <0>;
++      rtc@0 {
++        compatible = "st,m41t93";
++        reg = <0>;
++        #clock-cells = <0>;
++        spi-max-frequency = <2000000>;
++      };
++    };
++
 -- 
 2.34.1
 
