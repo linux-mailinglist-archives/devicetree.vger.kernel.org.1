@@ -1,1223 +1,896 @@
-Return-Path: <devicetree+bounces-215205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215207-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38AC7B50CC5
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:18:48 +0200 (CEST)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29F49B50CDB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 06:37:02 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0E024E5EA9
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:18:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06C5A1BC5177
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 04:37:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025FB28F935;
-	Wed, 10 Sep 2025 04:18:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 077662BD02A;
+	Wed, 10 Sep 2025 04:36:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="k9ASOcpP"
+	dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b="e7Fa9+l+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2077.outbound.protection.outlook.com [40.107.237.77])
+Received: from mail.ozlabs.org (gandalf.ozlabs.org [150.107.74.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 813AF28CF6D;
-	Wed, 10 Sep 2025 04:18:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.237.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757477905; cv=fail; b=sxuCjgjla3KrM5utskedw7emJQ2sLxbXAot5W7qkOvTPLI4gQrsPHvZ0BC7TUXDTFLccGdjYZo/7KNn1hXnGMSkbLDBXwC9i98ClVJRIr1n4vjBFl2JA1WmdzK6WXUwtZcaZLmwGcu0mJR8EkVjGEMyU2wsH16BUIIJ4/IphTAo=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757477905; c=relaxed/simple;
-	bh=BeHZiZ+kgyJLPEcPpMAHF9513BCv8w6v7hR7EZ6w72k=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=MbvfbOjd1sQX1YDCLQnhADyBrW5rEzuiKuAe8jqgROM0wNtcLS3wgWrYz/5VWqRgbJt4p7sWKUyWmg39VB3Vf1R94c6kYos5lkHPw3gX2jDBmgLnPJrI3mtluGn9zFUjVabo9LjsJp04519n8JBF5No27k2YlcKmlCIWPRNnEcc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=k9ASOcpP; arc=fail smtp.client-ip=40.107.237.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yJzMgCtoib5zcmjDa8f+sDcWITOsD7B58TgRLJVzNvb3y5+xsIM7LXsvMCVIHNMqigDaOCdWRGD0oEtlzdSPy2GXjZQ38Cy097Gp81uSwf/0pHOz8Rh44+OGwFoTGPdXTe0IAGyn4/0VJDrW9cw5z0CpmDNuB64malONR2s9zDPqak4H6cIhtMrT4CHhFtKyr4PFgof8Q03RGMvoaSNtMf/qU5PoNo5wCmSB7SUcbhVy9GT1WvYrUMizorLFdgWLEligQfVDjdNC2bhP0HB40kZSuKbtvLar5GiXK1neH8TvvkShbbnxrL4/cdMbSZFPsz1nnzYCytg0nzcaSmJqTQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=YPUkDo9p7X7Etdv3h6V2veRrpNteKkiDX/acVlEBdks=;
- b=No0uV3bGoHEXIMVaQyVRCrc6wdJH89buqig2Fcqz7HJwqUcmqU5HKafhNRXdvNh8xxe2VcBfHYKIDSMqnhTSy7CAy0+VZ4fT/FP/CZ80dX5G9qoGYcWdEwx0mCI/4SsfmQzBe9S6J9OxHwxMNsPIYnvLOrv0F2mdKUVoDig8Bio6ipkishYn1eJ0myvGgVmgS2kUsCX9G3PiQaFJBV4mOG2BzT8bh4mvt5VQTiDfoFNayfDjg4ZeITnucRWpf4btWszWjKC1SfBAXUruD5qIrosBjjBTNK8cjGC/IqP9C5NRXKwgVDKalb181cQ4eCPRS7fJszDHgbbbhEmrR9udnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=YPUkDo9p7X7Etdv3h6V2veRrpNteKkiDX/acVlEBdks=;
- b=k9ASOcpP/g5JGfL9T0HZLHNTdJuvU0VrRlkvOGCZk7ZkEMNl3NQgBVc8kd1clgmGaDT3rhmK18lxvQ761p5vlPZNOSzZTAUqIuLp22yKNNvdxLn1zNHw3EYg/jIVm/8a5zZqF3JwyA8V7MJ4SjU2YKUuG7Sjm8fUTtYStCpqSzT++Q3tS1v/x4CTqXpMHxDF/YC5JQCQuARnHDfW7n7YFqvU77/an1cGOCwSVyZ4NvjQK5YSVEZBuffWBYaK/CCDQ5KiryJJGRUxaF9r0QV8cP7laenhob3LMykIm2Bthlru9zYWdQYr0W4l7H/NiGtg1lmHaqcOlZMh2I7v/mSwVQ==
-Received: from PH7P220CA0002.NAMP220.PROD.OUTLOOK.COM (2603:10b6:510:326::34)
- by SA3PR12MB9228.namprd12.prod.outlook.com (2603:10b6:806:39c::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
- 2025 04:18:10 +0000
-Received: from SN1PEPF00036F3D.namprd05.prod.outlook.com
- (2603:10b6:510:326:cafe::67) by PH7P220CA0002.outlook.office365.com
- (2603:10b6:510:326::34) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.15 via Frontend Transport; Wed,
- 10 Sep 2025 04:18:10 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- SN1PEPF00036F3D.mail.protection.outlook.com (10.167.248.21) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9115.13 via Frontend Transport; Wed, 10 Sep 2025 04:18:09 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 9 Sep
- 2025 21:17:41 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.14; Tue, 9 Sep
- 2025 21:17:40 -0700
-Received: from dondevbox.nvidia.com (10.127.8.13) by mail.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server id 15.2.1544.14 via Frontend
- Transport; Tue, 9 Sep 2025 21:17:40 -0700
-From: Donald Shannon <donalds@nvidia.com>
-To: <robh@kernel.org>, <krzk+dt@kernel.org>, <conor+dt@kernel.org>,
-	<donalds@nvidia.com>
-CC: <joel@jms.id.au>, <andrew@codeconstruct.com.au>,
-	<devicetree@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-	<openbmc@lists.ozlabs.org>, <etanous@nvidia.com>
-Subject: [PATCH v9 2/2] ARM: dts: aspeed: Add NVIDIA GB200 UT3.0b board
-Date: Tue, 9 Sep 2025 21:17:36 -0700
-Message-ID: <20250910041736.245451-3-donalds@nvidia.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20250910041736.245451-1-donalds@nvidia.com>
-References: <20250910041736.245451-1-donalds@nvidia.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B169F28935A;
+	Wed, 10 Sep 2025 04:36:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=150.107.74.76
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757479015; cv=none; b=lVVGtFrQhOkbAhV3fqsih3aRSjOPwZSw2lZvAUF50mrqQG/SNIC0JAFAs8NNQOo92ovf3fi0h6wFWPB6UOr5S02csf2d7pVERzl2S/qY1aKK8hkEkCDWEMFwwUGuIFuvwqEuv0tKw5K1vMLXhhK+jKLK6TeqGHVulFnXkx3pmV0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757479015; c=relaxed/simple;
+	bh=QxFca0B6zy/RhnuCoo+cLySG8+mfSS3UOAL38NLIBZI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tT2Wu5x1ff1gABJL0K0D3+FMyr9k3Z1JnY8vP23vH+kpVcwnwoesCS3x/f96wXp1H/BtNSD9sjZbO768oVIDFQ4SMhbB3G77lmRULGTJwP6A5zVfawkfp4+lIuvyLVH1wcF+lLNzE7k4dxbmisa0IpH6tfVjcIhsrmvquhToUTk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au; spf=pass smtp.mailfrom=gandalf.ozlabs.org; dkim=pass (2048-bit key) header.d=gibson.dropbear.id.au header.i=@gibson.dropbear.id.au header.b=e7Fa9+l+; arc=none smtp.client-ip=150.107.74.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gibson.dropbear.id.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gandalf.ozlabs.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=gibson.dropbear.id.au; s=202508; t=1757479009;
+	bh=3LBxkxVlO/DH83L5i6u3Ve5QQtrpcojj+5LOPzxl5Dc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=e7Fa9+l+j5+WnsDAwsImkNSRn1lkX0/61KQUujIlsCjAb9u9ut/KFLejZVCpqzBjS
+	 0zbgfr5Zz9T57dsM89dOg6JbkFhBmdqd1ZPEXHuFst1Y27aG2f550EKlH+uW+GCl1E
+	 azpi8AB+12/fux+02E3Y21OL21uGhORdwjBUicYAuMFRxkJMrJORqlPxgb8XUwHVRB
+	 LPBsYNpcgv5knblAeuOt35skut++4B240hOZhu3Zh4taJ0dz8VKg+QD/y2Vpcudeat
+	 9oVna/WAqz1bEQpXhPpVed5/HMIgfuJ3lx1j+cQLrXuCwYOA6l5eGdfZWQWzLRler1
+	 lak8RV2Hgi6Ow==
+Received: by gandalf.ozlabs.org (Postfix, from userid 1007)
+	id 4cM7FF5bppz4w23; Wed, 10 Sep 2025 14:36:49 +1000 (AEST)
+Date: Wed, 10 Sep 2025 14:33:45 +1000
+From: David Gibson <david@gibson.dropbear.id.au>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Ayush Singh <ayush@beagleboard.org>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+	Rob Herring <robh@kernel.org>, Jason Kridner <jkridner@gmail.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	devicetree-compiler@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Andrew Davis <afd@ti.com>
+Subject: Re: Device tree representation of (hotplug) connectors: discussion
+ at ELCE
+Message-ID: <aMD_qYx4ZEASD9A1@zatzit>
+References: <20250902105710.00512c6d@booty>
+ <aLkiNdGIXsogC6Rr@zatzit>
+ <337281a8-77f9-4158-beef-ae0eda5000e4@beagleboard.org>
+ <aL5dNtzwiinq_geg@zatzit>
+ <20250908145155.4f130aec@bootlin.com>
+ <aL-2fmYsbexEtpNp@zatzit>
+ <20250909114126.219c57b8@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF00036F3D:EE_|SA3PR12MB9228:EE_
-X-MS-Office365-Filtering-Correlation-Id: 558fd5b3-5b27-47dd-48d0-08ddf0210d12
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam:
-	BCL:0;ARA:13230040|36860700013|1800799024|376014|7416014|82310400026|13003099007;
-X-Microsoft-Antispam-Message-Info:
-	=?us-ascii?Q?pPYLxI/NIZ0kYNcpQ01i9zsYnFwUvmjI6DE5fwZ8Bo0SDu3lWKw0Jsjz30xl?=
- =?us-ascii?Q?WlIl8RkHr3hNtreS97NjVtpDDdTq6SO+oaSSwfDjYK/5FvpU/bKl+52Tat3V?=
- =?us-ascii?Q?p/3DKVwsK6n8Fljqpu2xQBJ8eiYuiWh42SogqI8pAHKjKwGZ7BW0X7M2WHog?=
- =?us-ascii?Q?bTHVGbEZpKVmLF4fIlGsgdirz36R3p7VVwArUN3/NJpir7MgN3OymqrBvgPU?=
- =?us-ascii?Q?JU+WnYoyTGAm4yfBN71hKfqx9Nz4JvE5rstwqbkK8fGOOUhEa/7a18+JisL+?=
- =?us-ascii?Q?mI9HKzKBkVvHmYxqIfaSlZfkzMYMVelgmw8NbZLt2x4dzvagp3HGD6np1HSF?=
- =?us-ascii?Q?u/szgyrFNXd6JYkOJ08Hg3QGWBkMUjwSHv5zegjPlvQd0j0j3HlmNuHpnHns?=
- =?us-ascii?Q?V8mK0gS/MVOwDq3S7lGPq7QYC1O395EPRysa3JZvrWyiPxhSJTriGrZIZmd4?=
- =?us-ascii?Q?VNp3C5+YFxa4Z6hlXUUUq1hy9U/k8daW7WIRN3Olko/JdoRgKM31Cirtpbak?=
- =?us-ascii?Q?wuM8bS7inwOFarMf0n0Tu7Nb6hbZi0sq7SDNb1dDV9aF+DVIY5hQoDHHGDz+?=
- =?us-ascii?Q?gqDxmD2aVss6S5VtR/oVoGH02yQ/YVd/vNzzAISVPnznCv+VhdzzXH5PSS6y?=
- =?us-ascii?Q?XbkU7LuOLiJJHNvIfOki7AGPLYNbkWCg4nHc8kxNp85IKl+6Q5y9FkVEKdtL?=
- =?us-ascii?Q?DPazFJcu5pl65mfl6laq0A3jfAb27ZTUQWrwNZtmMcskogZFB0iBymPatQEZ?=
- =?us-ascii?Q?YWm8GfvBRkrfwJZ9h2exvpuo+XBeVVgFbzTATAAA375G2rg2xTngt+MbZb3e?=
- =?us-ascii?Q?SEOTyZtb7znjp8fylE1wtvwE59Tx7DyToMh6JZ+3SGUY8wvbT92S5v+8uRBa?=
- =?us-ascii?Q?diZkBgihFsM1NGjRjFiN/pXuHUtLEtKGodqSXrtLNPPaWYSVKJwWim3SgdaV?=
- =?us-ascii?Q?p732+gSO5EaVGi1noRJiWJ4+peojKcQ0PSW/r6cfqU34n8RMwV3i+Fe8v9iP?=
- =?us-ascii?Q?2LTdTsSum8nuuA1QLI1riWstjP6vmmrV9SKyYSYrOF+ch8dXR1Xfp3troSW8?=
- =?us-ascii?Q?Wibvif9vW83LQK8GeYjXXF/4RgFTtRtqXWZuWLUXyUp6ti20+P7PuqLrVshw?=
- =?us-ascii?Q?rRVKc5RiYZXvCqTQ/5pJzjXxxz/i8V45vvaLhKFPrx4RdGjK1UaXbdq6th6A?=
- =?us-ascii?Q?vVR+O2BbCbL8oZ/BzwoOObSUFD0Tiv4HU2EZ5jFB6t2KDE2olQfDeSrqN6fv?=
- =?us-ascii?Q?E6gcZWxf6Ds+SmA3MN1ArgHXO6BbE5UdMLcpy+jQlRLAJdnlqLJIFDtVtLgs?=
- =?us-ascii?Q?lB38ZRqbQXReLhgXQpcuOS0V2jxJ1AEKO6Q4dvKbop/Mxtt+R9A6tyWgc580?=
- =?us-ascii?Q?2rBwLgpv4nXnyefTXRgNmNt9v/pd4gYzOShfJcULuirGxuTUmEqqIHPnVKXJ?=
- =?us-ascii?Q?wMPr7SD+m0GN0yPwySEcVb7TUn1faFIYawj/9AuwWibZV9eh0VpCj3vCH7Pe?=
- =?us-ascii?Q?DHpSh+oF4F6EkSQJP4FzCqd9sI1aeElyCi8EwDOm3TP6NkbZxJIFxQeJJQ?=
- =?us-ascii?Q?=3D=3D?=
-X-Forefront-Antispam-Report:
-	CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230040)(36860700013)(1800799024)(376014)(7416014)(82310400026)(13003099007);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 04:18:09.7444
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 558fd5b3-5b27-47dd-48d0-08ddf0210d12
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	SN1PEPF00036F3D.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA3PR12MB9228
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="9cCcRp5xFl45gxT9"
+Content-Disposition: inline
+In-Reply-To: <20250909114126.219c57b8@bootlin.com>
 
-This is an Aspeed AST2600 based unit testing platform for GB200.
-UT3.0b is different than nvidia-gb200nvl-bmc due to networking topology
-differences, additional gpio expanders, and voltage regulator gating
-some devices.
 
-Reference to Ast2600 SOC [1].
-Reference to Blackwell GB200NVL Platform [2].
+--9cCcRp5xFl45gxT9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Link: https://www.aspeedtech.com/server_ast2600/ [1]
-Link: https://nvdam.widen.net/s/wwnsxrhm2w/blackwell-datasheet-3384703 [2]
-Signed-off-by: Donald Shannon <donalds@nvidia.com>
----
- arch/arm/boot/dts/aspeed/Makefile             |    1 +
- .../aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts  | 1032 +++++++++++++++++
- 2 files changed, 1033 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
+On Tue, Sep 09, 2025 at 11:41:26AM +0200, Herve Codina wrote:
+> Hi David,
+>=20
+> On Tue, 9 Sep 2025 15:09:18 +1000
+> David Gibson <david@gibson.dropbear.id.au> wrote:
+>=20
+> ...
+>=20
+> > > I think that a connector is something with a bunch of resources provi=
+ded
+> > > by the board where the connector is soldered. Those resources are wir=
+ed
+> > > to the connector and defined by the connector pinout.
+> > >=20
+> > >      3v3   ------- Pin 0
+> > >   i2c_scl  ------- Pin 1
+> > >   i2c_sda  ------- Pin 2
+> > >     gpio A ------- Pin 3
+> > >     gpio B ------- Pin 4
+> > >      gnd   ------- Pin 5
+> > >=20
+> > > IMHO, this need to be described and defined in the base board and an =
+addon can
+> > > only reference resources wired and described by the connector node. =
+=20
+> >=20
+> > Yes, that's exactly what I'm proposing too.
+> >=20
+> > > Now, questions are:
+> > >   - 1) How to describe a connector?
+> > >   - 2) How to reference resources provided at connector level from an=
+ add-on? =20
+> >=20
+> > Right.
+> >=20
+> > > Our current approach was:
+> > > ---- base board DT ----
+> > >   connector0 {
+> > > 	gpio-map =3D <0 &gpio0 12>, /* gpio A wired to gpio 12 of gpio0 cont=
+roller */
+> > >                    <1 &gpio2 10;  /* gpio B wired to gpio 10 of gpio2=
+ controller */
+> > >         i2c-one {
+> > > 		compatible =3D "i2c-bus-extension";
+> > > 		i2c-parent =3D <i2c5>; /* i2c-one wired to i2c5 controller */
+> > > 	};
+> > >=20
+> > > 	i2c-two {
+> > > 		compatible =3D "i2c-bus-extension";
+> > > 		i2c-parent =3D <i2c6>; /* i2c-two wired to i2c6 controller */
+> > > 	};
+> > >=20
+> > > 	/*
+> > >          * From the addon we need to reference:
+> > >          *    - The connector itself,
+> > >          *    - Maybe some pinctrl related to signals wired to the co=
+nnector,
+> > >          *    - In some cases the i2c bus (HDMI, ddc-i2c-bus =3D <&i2=
+c-two>;)
+> > >          *=20
+> > >          * This was solved introducing the controversial export-symbo=
+ls node.
+> > >          */ =20
+> >=20
+> > I think the type of connector should also be named on both sides (with
+> > 'compatible' or something like it).
+>=20
+> It makes sense.
+>=20
+> >=20
+> > >   };
+> > >=20
+> > > ---- addon board DT ----
+> > >    {
+> > > 	some-node {
+> > > 		compatible =3D "foo,bar";
+> > > 		reset-gpios =3D <&connector 0>; /* gpio A used as a reset gpio */
+> > > 		ddc-i2c-bus =3D <&i2c-two>;
+> > >         }
+> > >=20
+> > >         i2c-one {
+> > > 		eeprom@10 {
+> > > 			compatible =3D "baz,eeprom"
+> > > 			reg =3D 10;=20
+> > > 		};
+> > > 	};
+> > >    };
+> > >=20
+> > > The addon board DT can only be applied at a connector node. =20
+> >=20
+> > Right.  This is not how overlays work now.  By the nature of how
+> > they're built they apply global updates to the base tree.  That means
+> > we need to spec a new way of describing addons that *is* restricted to
+> > a particular connector slot (or slots, as Geert points out).  Since we
+> > have that opportunity, we should _not_ try to make it a minimal
+> > extension to existing overlay format, but define a new and better
+> > encoding, designed to meet the problems you're looking to address.
+>=20
+> On the kernel side, overlays can be applied at a specific node.
+> The node is chosen when the overlay is apply.
+>   https://elixir.bootlin.com/linux/v6.16/source/drivers/of/overlay.c#L970
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index aba7451ab749..37edc4625a9f 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-lenovo-hr630.dtb \
- 	aspeed-bmc-lenovo-hr855xg2.dtb \
- 	aspeed-bmc-microsoft-olympus.dtb \
-+	aspeed-bmc-nvidia-gb200-ut30b.dtb \
- 	aspeed-bmc-nvidia-gb200nvl-bmc.dtb \
- 	aspeed-bmc-opp-lanyang.dtb \
- 	aspeed-bmc-opp-mowgli.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-new file mode 100644
-index 000000000000..3707e8f7bf79
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-nvidia-gb200-ut30b.dts
-@@ -0,0 +1,1032 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/ {
-+	model = "AST2600 GB200 UT3.0b BMC";
-+	compatible = "nvidia,gb200-ut30b", "aspeed,ast2600";
-+
-+	aliases {
-+		serial2 = &uart3;
-+		serial4 = &uart5;
-+		i2c16   = &imux16;
-+		i2c17   = &imux17;
-+		i2c18   = &imux18;
-+		i2c19   = &imux19;
-+		i2c20   = &imux20;
-+		i2c21   = &imux21;
-+		i2c22   = &imux22;
-+		i2c23   = &imux23;
-+		i2c24   = &imux24;
-+		i2c25   = &imux25;
-+		i2c26   = &imux26;
-+		i2c27   = &imux27;
-+		i2c28   = &imux28;
-+		i2c29   = &imux29;
-+		i2c30   = &imux30;
-+		i2c31   = &imux31;
-+		i2c32   = &imux32;
-+		i2c33   = &imux33;
-+		i2c34   = &imux34;
-+		i2c35   = &imux35;
-+		i2c36   = &imux36;
-+		i2c37   = &imux37;
-+		i2c38   = &imux38;
-+		i2c39   = &imux39;
-+		i2c40	= &e1si2c0;
-+		i2c41	= &e1si2c1;
-+		i2c42	= &e1si2c2;
-+		i2c43	= &e1si2c3;
-+		i2c48	= &i2c17mux0;
-+		i2c49	= &i2c17mux1;
-+		i2c50	= &i2c17mux2;
-+		i2c51	= &i2c17mux3;
-+		i2c52	= &i2c25mux0;
-+		i2c53	= &i2c25mux1;
-+		i2c54	= &i2c25mux2;
-+		i2c55	= &i2c25mux3;
-+		i2c56	= &i2c29mux0;
-+		i2c57	= &i2c29mux1;
-+		i2c58	= &i2c29mux2;
-+		i2c59	= &i2c29mux3;
-+	};
-+
-+	buttons {
-+		compatible = "gpio-keys";
-+		button-power {
-+			label = "power_btn";
-+			linux,code = <116>;
-+			gpios = <&sgpiom0 156 GPIO_ACTIVE_LOW>;
-+		};
-+		button-uid {
-+			label = "uid_btn";
-+			linux,code = <478>;
-+			gpios = <&sgpiom0 154 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	chosen {
-+		stdout-path = &uart5;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		led-0 {
-+			label = "uid_led";
-+			gpios = <&sgpiom0 27 GPIO_ACTIVE_LOW>;
-+		};
-+		led-1 {
-+			label = "fault_led";
-+			gpios = <&sgpiom0 29 GPIO_ACTIVE_LOW>;
-+		};
-+		led-2 {
-+			label = "power_led";
-+			gpios = <&sgpiom0 31 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x80000000>;
-+	};
-+
-+	reg_3v3_stby: regulator-3v3-standby {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3-standby";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		gpio = <&gpio0 ASPEED_GPIO(M, 3) GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-always-on;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		gfx_memory: framebuffer {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x01000000>;
-+			alignment = <0x01000000>;
-+		};
-+
-+		ramoops@a0000000 {
-+			compatible = "ramoops";
-+			reg = <0xa0000000 0x100000>; /* 1MB */
-+			record-size = <0x10000>; /* 64KB */
-+			max-reason = <2>; /* KMSG_DUMP_OOPS */
-+		};
-+
-+		vga_memory: framebuffer@9f000000 {
-+			no-map;
-+			reg = <0x9f000000 0x01000000>; /* 16M */
-+		};
-+
-+		video_engine_memory: jpegbuffer {
-+			compatible = "shared-dma-pool";
-+			reusable;
-+			size = <0x02000000>;	/* 32M */
-+			alignment = <0x01000000>;
-+		};
-+	};
-+};
-+
-+// USB Port B Controller
-+&ehci1 {
-+	status = "okay";
-+};
-+
-+// Need custom layout for Root of Trust
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+		status = "okay";
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			u-boot@0 {
-+				// 896KB
-+				reg = <0x0 0xe0000>;
-+				label = "u-boot";
-+			};
-+
-+			kernel@100000 {
-+				// 9MB
-+				reg = <0x100000 0x900000>;
-+				label = "kernel";
-+			};
-+
-+			rofs@a00000 {
-+				// 55292KB (extends to end of 64MB SPI - 4KB)
-+				reg = <0xa00000 0x35FF000>;
-+				label = "rofs";
-+			};
-+		};
-+	};
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+		/*A0-A7*/ "", "", "", "", "", "", "", "",
-+		/*B0-B7*/ "", "", "", "", "", "", "", "",
-+		/*C0-C7*/ "SGPIO_I2C_MUX_SEL-O", "", "", "", "", "", "", "",
-+		/*D0-D7*/ "", "", "", "UART1_MUX_SEL-O", "", "FPGA_PEX_RST_L-O", "", "",
-+		/*E0-E7*/ "RTL8221_PHY_RST_L-O", "RTL8211_PHY_INT_L-I",	"", "UART3_MUX_SEL-O",
-+					"", "", "", "SGPIO_BMC_EN-O",
-+		/*F0-F7*/ "", "", "", "", "", "", "", "",
-+		/*G0-G7*/ "", "", "", "", "", "", "", "",
-+		/*H0-H7*/ "", "", "", "", "", "", "", "",
-+		/*I0-I7*/ "", "", "", "", "", "QSPI2_RST_L-O", "GLOBAL_WP_BMC-O", "BMC_DDR4_TEN-O",
-+		/*J0-J7*/ "", "", "", "", "", "", "", "",
-+		/*K0-K7*/ "", "", "", "", "", "", "", "",
-+		/*L0-L7*/ "", "", "", "", "", "", "", "",
-+		/*M0-M7*/ "PCIE_EP_RST_EN-O", "BMC_FRU_WP-O", "FPGA_RST_L-O", "STBY_POWER_EN-O",
-+					"STBY_POWER_PG-I", "PCIE_EP_RST_L-O", "", "",
-+		/*N0-N7*/ "", "", "", "", "", "", "", "",
-+		/*O0-O7*/ "", "", "", "", "", "", "", "",
-+		/*P0-P7*/ "", "", "", "", "", "", "", "",
-+		/*Q0-Q7*/ "", "", "", "", "", "", "", "",
-+		/*R0-R7*/ "", "", "", "", "", "", "", "",
-+		/*S0-S7*/ "", "", "", "", "", "", "", "",
-+		/*T0-T7*/ "", "", "", "", "", "", "", "",
-+		/*U0-U7*/ "", "", "", "", "", "", "", "",
-+		/*V0-V7*/ "AP_EROT_REQ-O", "EROT_AP_GNT-I", "", "","PCB_TEMP_ALERT-I", "","", "",
-+		/*W0-W7*/ "", "", "", "", "", "", "", "",
-+		/*X0-X7*/ "", "", "TPM_MUX_SEL-O", "", "", "", "", "",
-+		/*Y0-Y7*/ "", "", "", "EMMC_RST-O", "","", "", "",
-+		/*Z0-Z7*/ "BMC_READY-O","", "", "", "", "", "", "";
-+};
-+
-+&gpio1 {
-+	/* 36 1.8V GPIOs */
-+	gpio-line-names =
-+		/*A0-A7*/ "", "", "", "", "", "", "", "",
-+		/*B0-B7*/ "", "", "", "", "", "", "IO_EXPANDER_INT_L-I","",
-+		/*C0-C7*/ "", "", "", "", "", "", "", "",
-+		/*D0-D7*/ "", "", "", "", "", "", "SPI_HOST_TPM_RST_L-O", "SPI_BMC_FPGA_INT_L-I",
-+		/*E0-E7*/ "", "", "", "", "", "", "", "";
-+};
-+
-+// I2C1, SSIF IPMI interface
-+&i2c0 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+	ssif-bmc@10 {
-+		compatible = "ssif-bmc";
-+		reg = <0x10>;
-+	};
-+};
-+
-+// I2C3
-+// BMC_I2C0_FPGA - Primary FPGA
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	multi-master;
-+	status = "okay";
-+};
-+
-+// I2C5
-+// RTC Driver
-+// IO Expander
-+&i2c4 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+	// Module 0, Expander @0x21
-+	exp4: gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&reg_3v3_stby>;
-+		gpio-line-names =
-+			"RTC_MUX_SEL-O",
-+			"PCI_MUX_SEL-O",
-+			"TPM_MUX_SEL-O",
-+			"FAN_MUX-SEL-O",
-+			"SGMII_MUX_SEL-O",
-+			"DP_MUX_SEL-O",
-+			"UPHY3_USB_SEL-O",
-+			"NCSI_MUX_SEL-O",
-+			"BMC_PHY_RST-O",
-+			"RTC_CLR_L-O",
-+			"BMC_12V_CTRL-O",
-+			"PS_RUN_IO0_PG-I",
-+			"",
-+			"",
-+			"",
-+			"";
-+	};
-+};
-+
-+// I2C6
-+// Module 0/1 I2C MUX x3
-+&i2c5 {
-+	clock-frequency = <400000>;
-+	multi-master;
-+	status = "okay";
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x71>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux16: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		imux17: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			i2c-mux@74 {
-+				compatible = "nxp,pca9546";
-+				reg = <0x74>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				i2c-mux-idle-disconnect;
-+				vdd-supply = <&reg_3v3_stby>;
-+
-+				i2c17mux0: i2c@0 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <0>;
-+				};
-+
-+				i2c17mux1: i2c@1 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <1>;
-+				};
-+
-+				i2c17mux2: i2c@2 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <2>;
-+				};
-+
-+				i2c17mux3: i2c@3 {
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					reg = <3>;
-+				};
-+			};
-+		};
-+
-+		imux18: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		imux19: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+
-+	i2c-mux@72 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x72>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux20: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux21: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			gpio@20 {
-+				compatible = "nxp,pca9555";
-+				reg = <0x20>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				vcc-supply = <&reg_3v3_stby>;
-+				gpio-line-names =
-+					"RST_CX_0_L-O",
-+					"RST_CX_1_L-O",
-+					"CX0_SSD0_PRSNT_L-I",
-+					"CX1_SSD1_PRSNT_L-I",
-+					"CX_BOOT_CMPLT_CX0-I",
-+					"CX_BOOT_CMPLT_CX1-I",
-+					"CX_TWARN_CX0_L-I",
-+					"CX_TWARN_CX1_L-I",
-+					"CX_OVT_SHDN_CX0-I",
-+					"CX_OVT_SHDN_CX1-I",
-+					"FNP_L_CX0-O",
-+					"FNP_L_CX1-O",
-+					"",
-+					"MCU_GPIO-I",
-+					"MCU_RST_N-O",
-+					"MCU_RECOVERY_N-O";
-+			};
-+		};
-+
-+		imux22: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux23: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	i2c-mux@73 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x73>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux24: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux25: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			i2c-mux@70 {
-+				compatible = "nxp,pca9546";
-+				reg = <0x70>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				i2c-mux-idle-disconnect;
-+				vdd-supply = <&reg_3v3_stby>;
-+
-+				i2c25mux0: i2c@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c25mux1: i2c@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c25mux2: i2c@2 {
-+					reg = <2>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c25mux3: i2c@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
-+		};
-+
-+		imux26: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux27: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	i2c-mux@75 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x75>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux28: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux29: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			i2c-mux@74 {
-+				compatible = "nxp,pca9546";
-+				reg = <0x74>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				i2c-mux-idle-disconnect;
-+				vdd-supply = <&reg_3v3_stby>;
-+
-+				i2c29mux0: i2c@0 {
-+					reg = <0>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c29mux1: i2c@1 {
-+					reg = <1>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c29mux2: i2c@2 {
-+					reg = <2>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+
-+				i2c29mux3: i2c@3 {
-+					reg = <3>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+				};
-+			};
-+		};
-+
-+		imux30: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux31: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	i2c-mux@76 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x76>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux32: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux33: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux34: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux35: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	i2c-mux@77 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x77>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		imux36: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux37: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux38: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		imux39: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+// I2C7
-+// Module 0/1 Leak Sensors
-+// Module 0/1 Fan Controllers
-+&i2c6 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	pmic@12 {
-+		compatible = "ti,lm5066i";
-+		reg = <0x12>;
-+		shunt-resistor-micro-ohms = <190>;
-+	};
-+
-+	pmic@14 {
-+		compatible = "ti,lm5066i";
-+		reg = <0x14>;
-+		shunt-resistor-micro-ohms = <190>;
-+	};
-+
-+	pwm@20 {
-+		compatible = "maxim,max31790";
-+		reg = <0x20>;
-+	};
-+
-+	pwm@23 {
-+		compatible = "maxim,max31790";
-+		reg = <0x23>;
-+	};
-+
-+	pwm@2c {
-+		compatible = "maxim,max31790";
-+		reg = <0x2c>;
-+	};
-+
-+	pwm@2f {
-+		compatible = "maxim,max31790";
-+		reg = <0x2f>;
-+	};
-+};
-+
-+// I2C9
-+// M.2
-+&i2c8 {
-+	clock-frequency = <400000>;
-+	multi-master;
-+	status = "okay";
-+};
-+
-+// I2C10
-+// Module 0/1 IO Expanders
-+&i2c9 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	// Module 0, Expander @0x20
-+	exp0: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&reg_3v3_stby>;
-+		gpio-line-names =
-+			"FPGA_THERM_OVERT_L-I",
-+			"FPGA_READY_BMC-I",
-+			"HMC_BMC_DETECT-O",
-+			"HMC_PGOOD-O",
-+			"",
-+			"BMC_STBY_CYCLE-O",
-+			"FPGA_EROT_FATAL_ERROR_L-I",
-+			"WP_HW_EXT_CTRL_L-O",
-+			"EROT_FPGA_RST_L-O",
-+			"FPGA_EROT_RECOVERY_L-O",
-+			"BMC_EROT_FPGA_SPI_MUX_SEL-O",
-+			"USB_HUB_RESET_L-O",
-+			"NCSI_CS1_SEL-O",
-+			"SGPIO_EN_L-O",
-+			"B2B_IOEXP_INT_L-I",
-+			"I2C_BUS_MUX_RESET_L-O";
-+	};
-+
-+	// UT3.0b Expander @0x22
-+	exp2: gpio@22 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&reg_3v3_stby>;
-+		gpio-line-names =
-+			"BMC1_FANCTRL_FAIL_L-I",
-+			"IOEXP_BMC_RST_12V-O",
-+			"NODE_RST_STBY_H-O",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"",
-+			"";
-+	};
-+
-+	// UT3.0b Expander @0x23
-+	exp3: gpio@23 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x23>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <ASPEED_GPIO(B, 6) IRQ_TYPE_LEVEL_LOW>;
-+		vcc-supply = <&reg_3v3_stby>;
-+		gpio-line-names =
-+			"PEXSW_FL_SPI_MUX_SEL-O",
-+			"PEX_SW_FATAL_ERROR_3V3_L-I",
-+			"IOEXP_PDB_NODE_EN_L-O",
-+			"NODE_PWOK_ISO-I",
-+			"BMC_FAN_PWR_EN-O",
-+			"BMC_ETHERNET_INT-I",
-+			"BMC_ENET_RST-O",
-+			"IOEXP_BMC_RST_SENSE-O",
-+			"BMC_ID-I",
-+			"TPM_MUX_3V3_SEL_N-O",
-+			"IOEXP_TPM_RST_N-O",
-+			"TPM_DOWN_SPI_INT_L-I",
-+			"PS_BRD_PGOOD-I",
-+			"FP_BUTTON_POWER_N-I",
-+			"FP_BUTTON_RESET_N-I",
-+			"FP_LED_POWER_GPIOEXP_N-O";
-+	};
-+};
-+
-+// I2C11
-+// BMC FRU EEPROM
-+// BMC Temp Sensor
-+&i2c10 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+
-+	// BMC FRU EEPROM - 256 bytes
-+	eeprom@50 {
-+		compatible = "atmel,24c02";
-+		reg = <0x50>;
-+		pagesize = <8>;
-+	};
-+
-+	temp-sensor@48 {
-+		compatible = "ti,tmp1075";
-+		reg = <0x48>;
-+	};
-+};
-+
-+// I2C12
-+&i2c11 {
-+	clock-frequency = <400000>;
-+	status = "okay";
-+};
-+
-+// I2C15
-+// Module 1 UPHY3 SMBus
-+&i2c14 {
-+	clock-frequency = <100000>;
-+	multi-master;
-+	status = "okay";
-+
-+	//E1.S drive slot 0-3
-+	i2c-mux@77 {
-+		compatible = "nxp,pca9546";
-+		reg = <0x77>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+		vdd-supply = <&reg_3v3_stby>;
-+
-+		e1si2c0: i2c@0 {
-+			reg = <0>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		e1si2c1: i2c@1 {
-+			reg = <1>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		e1si2c2: i2c@2 {
-+			reg = <2>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		e1si2c3: i2c@3 {
-+			reg = <3>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+&mac0 {
-+	pinctrl-names = "default";
-+	phy-handle = <&ethphy0>;
-+	pinctrl-0 = <&pinctrl_rgmii1_default>;
-+	status = "okay";
-+};
-+
-+&mdio0 {
-+	status = "okay";
-+	ethphy0: ethernet-phy@0 {
-+		compatible = "ethernet-phy-ieee802.3-c22";
-+		reg = <0>;
-+	};
-+};
-+
-+&rng {
-+	status = "okay";
-+};
-+
-+&sgpiom0 {
-+	ngpios = <128>;
-+	status = "okay";
-+	gpio-line-names =
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"RUN_POWER_FAULT_L-I","SYS_RST_IN_L-O",
-+		"RUN_POWER_PG-I","PWR_BRAKE_L-O",
-+		"SYS_RST_OUT_L-I","RUN_POWER_EN-O",
-+		"L0L1_RST_REQ_OUT_L-I","SHDN_FORCE_L-O",
-+		"L2_RST_REQ_OUT_L-I","SHDN_REQ_L-O",
-+		"SHDN_OK_L-I","UID_LED_N-O",
-+		"BMC_I2C1_FPGA_ALERT_L-I","SYS_FAULT_LED_N-O",
-+		"BMC_I2C0_FPGA_ALERT_L-I","PWR_LED_N-O",
-+		"FPGA_RSVD_FFU3-I","",
-+		"FPGA_RSVD_FFU2-I","",
-+		"FPGA_RSVD_FFU1-I","",
-+		"FPGA_RSVD_FFU0-I","BMC_I2C_SSIF_ALERT_L-O",
-+		"CPU_BOOT_DONE-I","JTAG_MUX_SELECT-O",
-+		"SPI_BMC_FPGA_INT_L-I","RTC_CLR_L-O",
-+		"THERM_BB_WARN_L-I","UART_MUX_SEL-O",
-+		"THERM_BB_OVERT_L-I","",
-+		"CPU0_UPHY3_PRSNT1_L-I","IOBRD0_RUN_POWER_EN-O",
-+		"CPU0_UPHY3_PRSNT0_L-I","IOBRD1_RUN_POWER_EN-O",
-+		"CPU0_UPHY2_PRSNT1_L-I","FPGA_RSVD_FFU4-O",
-+		"CPU0_UPHY2_PRSNT0_L-I","FPGA_RSVD_FFU5-O",
-+		"CPU0_UPHY1_PRSNT1_L-I","FPGA_RSVD_FFU6-O",
-+		"CPU0_UPHY1_PRSNT0_L-I","FPGA_RSVD_FFU7-O",
-+		"CPU0_UPHY0_PRSNT1_L-I","RSVD_NV_PLT_DETECT-O",
-+		"CPU0_UPHY0_PRSNT0_L-I","SPI1_INT_L-O",
-+		"CPU1_UPHY3_PRSNT1_L-I","",
-+		"CPU1_UPHY3_PRSNT0_L-I","HMC_EROT_MUX_STATUS",
-+		"CPU1_UPHY2_PRSNT1_L-I","",
-+		"CPU1_UPHY2_PRSNT0_L-I","",
-+		"CPU1_UPHY1_PRSNT1_L-I","",
-+		"CPU1_UPHY1_PRSNT0_L-I","",
-+		"CPU1_UPHY0_PRSNT1_L-I","",
-+		"CPU1_UPHY0_PRSNT0_L-I","",
-+		"FAN1_PRESENT_L-I","",
-+		"FAN0_PRESENT_L-I","",
-+		"","",
-+		"IPEX_CABLE_PRSNT_L-I","",
-+		"M2_1_PRSNT_L-I","",
-+		"M2_0_PRSNT_L-I","",
-+		"CPU1_UPHY4_PRSNT1_L-I","",
-+		"CPU0_UPHY4_PRSNT0_L-I","",
-+		"","",
-+		"I2C_RTC_ALERT_L-I","",
-+		"FAN7_PRESENT_L-I","",
-+		"FAN6_PRESENT_L-I","",
-+		"FAN5_PRESENT_L-I","",
-+		"FAN4_PRESENT_L-I","",
-+		"FAN3_PRESENT_L-I","",
-+		"FAN2_PRESENT_L-I","",
-+		"IOBRD0_IOX_INT_L-I","",
-+		"IOBRD1_PRSNT_L-I","",
-+		"IOBRD0_PRSNT_L-I","",
-+		"IOBRD1_PWR_GOOD-I","",
-+		"IOBRD0_PWR_GOOD-I","",
-+		"","",
-+		"","",
-+		"FAN_FAIL_IN_L-I","",
-+		"","",
-+		"","",
-+		"","",
-+		"PDB_CABLE_PRESENT_L-I","",
-+		"","",
-+		"CHASSIS_PWR_BRK_L-I","",
-+		"","",
-+		"IOBRD1_IOX_INT_L-I","",
-+		"10GBE_SMBALRT_L-I","",
-+		"PCIE_WAKE_L-I","",
-+		"I2C_M21_ALERT_L-I","",
-+		"I2C_M20_ALERT_L-I","",
-+		"TRAY_FAST_SHDN_L-I","",
-+		"UID_BTN_N-I","",
-+		"PWR_BTN_L-I","",
-+		"PSU_SMB_ALERT_L-I","",
-+		"","",
-+		"","",
-+		"NODE_LOC_ID[0]-I","",
-+		"NODE_LOC_ID[1]-I","",
-+		"NODE_LOC_ID[2]-I","",
-+		"NODE_LOC_ID[3]-I","",
-+		"NODE_LOC_ID[4]-I","",
-+		"NODE_LOC_ID[5]-I","",
-+		"FAN10_PRESENT_L-I","",
-+		"FAN9_PRESENT_L-I","",
-+		"FAN8_PRESENT_L-I","",
-+		"FPGA1_READY_HMC-I","",
-+		"DP_HPD-I","",
-+		"HMC_I2C3_FPGA_ALERT_L-I","",
-+		"HMC_I2C2_FPGA_ALERT_L-I","",
-+		"FPGA0_READY_HMC-I","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"LEAK_DETECT_ALERT_L-I","",
-+		"MOD1_B2B_CABLE_PRESENT_L-I","",
-+		"MOD1_CLINK_CABLE_PRESENT_L-I","",
-+		"FAN11_PRESENT_L-I","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"","",
-+		"RSVD_SGPIO_IN_CRC[0]","RSVD_SGPIO_O_CRC[7]",
-+		"RSVD_SGPIO_IN_CRC[1]","RSVD_SGPIO_O_CRC[6]",
-+		"RSVD_SGPIO_IN_CRC[2]","RSVD_SGPIO_O_CRC[5]",
-+		"RSVD_SGPIO_IN_CRC[3]","RSVD_SGPIO_O_CRC[4]",
-+		"RSVD_SGPIO_IN_CRC[4]","RSVD_SGPIO_O_CRC[3]",
-+		"RSVD_SGPIO_IN_CRC[5]","RSVD_SGPIO_O_CRC[2]",
-+		"RSVD_SGPIO_IN_CRC[6]","RSVD_SGPIO_O_CRC[1]",
-+		"RSVD_SGPIO_IN_CRC[7]","RSVD_SGPIO_O_CRC[0]";
-+};
-+
-+&spi2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi2_default>;
-+	status = "okay";
-+	// Data SPI is 64MB in size
-+	flash@0 {
-+		label = "config";
-+		spi-max-frequency = <50000000>;
-+		status = "okay";
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			u-boot-env@0 {
-+				// 256KB
-+				reg = <0x0 0x40000>;
-+				label = "u-boot-env";
-+			};
-+
-+			rwfs@40000 {
-+				// 16MB
-+				reg = <0x40000 0x1000000>;
-+				label = "rwfs";
-+			};
-+
-+			log@1040000 {
-+				// 40MB
-+				reg = <0x1040000 0x2800000>;
-+				label = "log";
-+			};
-+		};
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+// Enabling SOL
-+&uart3 {
-+	status = "okay";
-+};
-+
-+// BMC Debug Console
-+&uart5 {
-+	status = "okay";
-+};
-+
-+// USB Port B Controller
-+&uhci {
-+	status = "okay";
-+};
-+
-+// USB port A vhub
-+&vhub {
-+	status = "okay";
-+};
-+
-+&video {
-+	memory-region = <&video_engine_memory>;
-+	status = "okay";
-+};
--- 
-2.43.0
+Huh, I wasn't aware that had already been merged.
 
+> This allows to apply an overlay to a specific node without any modificati=
+on
+> of the overlay dtb (dtbo).
+>=20
+> Ajush proposed an update to support this feature in fdtoverlay
+>   https://lore.kernel.org/all/20250313-fdtoverlay-target-v1-0-dd5924e12bd=
+3@beagleboard.org/
+
+Yes, and I've been disinclined to merge it because I think extending
+overlays in this way, without a more wide-ranging redesign, is not a
+great idea.
+
+> ...
+> >=20
+> > > > > > 3) bus-reg / bus-ranges
+> > > > > >=20
+> > > > > > One thing that makes connector plugins a bit awkward is that th=
+ey
+> > > > > > often need to add things to multiple buses on the host system (=
+MMIO &
+> > > > > > i2c for a simple case).  This means that once resolved the plug=
+in
+> > > > > > isn't neatly a single subtree.  That's one factor making remova=
+l =20
+> > >=20
+> > > It can be a single subtree if decoupling is present at connector node=
+ available
+> > > in the base device tree. =20
+> >=20
+> > Right - allowing that decoupling is exactly what I'm proposing bus-reg
+> > for.  Note that the case of an addon that plugs into multiple
+> > connectors that Geert pointed out complicates this again.
+>=20
+> Geert's use case needs to be clarified.
+>=20
+> Suppose a base board with 2 connectors:
+>  - connA
+>  - connB
+>=20
+> Case 1: Addons are independant
+>                +--------+
+>   connA <----> | AddonA |
+>                +--------+
+>                           +--------+
+>   connB <---------------->| AddonB |
+>                           +--------+
+>=20
+> With addonA and B two addon board each connected at one connector without=
+ any
+> relationship between addon A and B
+>=20
+> Case 2: Only one Addons using ressources from both connector
+>=20
+>                 +------+
+>   connA <-----> |Addon |
+>                 |      |
+>   connB <-----> |      |
+>                 +------+
+
+Case 2 is what I'm talking about.  Case 1 is the easy one.
+
+> The addon is connected to both connector and uses ressources from connA a=
+nd
+> connB in a dependent manner.
+>=20
+>=20
+> The Case 2 can be solved using a connector that described both connA and =
+connB.
+> Having the split connA and connB is a mechanical point of view.
+
+I don't think that's a good solution, because it means you have to
+make that decision at the board layer.  If I understand his case
+correctly, you have a board where you could do either case 1 or case 2
+at runtime.  We'd want the differences between these cases to only be
+reflected on the addon device tree, not the base board device tree.
+
+> Also adding and Addon on only one part (connA for instance) should not be=
+ an issue
+> if the connector describe both parts.
+>=20
+> but well, here again I can miss something.
+> Geert, can you provide details?
+>=20
+> ...
+>=20
+> > > > >=20
+> > > > > There is an i2c-bus-extension [1] and spi-bus-extension proposal =
+to do the
+> > > > > same. But, if we can figure out a common way for all buses, that =
+would be
+> > > > > great. =20
+> > >=20
+> > > Exactly, this is the purpose of bus extensions. =20
+> >=20
+> > Right, but redefining it for each bus type seems silly.
+>=20
+> Nexus node properties are re-defined for each kind of resources (interrup=
+t,
+> gpio, pwm, ...).
+
+Yes, for historical reasons.  In IEE1275 days, interrupts was
+basically the only thing that worked this way.  gpio and pwm were
+added much later using interrupts as a model.  If we were designing
+=66rom scratch having a common way of defining a nexus would make sense
+too.
+
+> Why not for bus extensions.
+
+So that we don't need to keep defining new bindings for it.
+
+> Also I am pretty sure that some bus extension will need to define some
+> properties specific to the bus related to the extension.
+
+Maybe, but then only those buses that specifically need it need the
+extra binding.
+
+> > > Also, I don't thing that the 'ranges' property should be used for tha=
+t purpose.
+> > > The 'ranges' property is used to translate addresses from child addre=
+sses space
+> > > to parent addresses space. =20
+> >=20
+> > The rationale for bus-ranges is that the add-on board could re-expose
+> > one of the buses on the connector (say MMIO for simplicity) to several
+> > chips physically included on the addon board.  We don't want those
+> > sub-chips to need different device nodes depending on whether they're
+> > on an addon board or wired directly onto a main board.  bus-ranges
+> > would allow the root of the connector to create a subtree in which
+> > regular MMIO (or whatever) devices can be described, and then routed
+> > via the connector onto the bus on the main board.
+>=20
+> bus extensions supports this feature without bus-regs nor bus-ranges.
+
+bus-reg & bus-ranges allow it for any bus without having to create a
+new binding.
+
+> A bus extension ended by a sub node in the connector node.
+> Applying the addon DT at the connector node allow the addon to had
+> subnode to the extension node.
+
+I don't really understand what point you're making here.
+
+>=20
+> >=20
+> > > For instance, in case of i2c, where is the address translation? =20
+> >=20
+> > I think i2c multiplexers can sometimes do that.  But in any case,
+> > ranges can be used for 1:1 translation as well.
+>=20
+> i2c multiplexers are physical devices performing some internal logic.
+> They are real bridges and route an upstream i2c bus to downstream
+> i2c busses.
+
+Yes... and bus-ranges could encode exactly that.  It just means that
+the downstream bus doesn't have to be physically located in the tree
+below the upstream bus.
+
+Or, you can use a node with an identity mapping bus-ranges to allow
+bus extension without translation - just as as sometimes done for
+transparent MMIO bridges.
+
+> They are handled by a specific driver.
+>=20
+> >=20
+> > > The address of a child (device) is its I2C address. This address is
+> > > device in its datasheet. There is no reason to have this address depe=
+nding
+> > > on the I2C bus this child is connected to. =20
+> >=20
+> > Maybe not for I2C, but other buses can certainly allow translation, so
+> > the flexibility is needed.
+> >=20
+> > > In your example, the bridge@XXXX is not related to any hardware compo=
+nents. =20
+> >=20
+> > I'm not sure what you mean by that.
+>=20
+> We have just wires from a controller to a connector. No bridges
+> nor other devices between the controller and the connector.
+
+Wires are a hardware component.  Not a very interesting one, but a
+device tree node doesn't have to represent active logic.
+
+> The controller is described in the base device tree, the connector is
+> described in the base device tree and the physical links between the cont=
+roller
+> and the connector are wires on PCB.
+>=20
+> If a physical device is present between the controller and the connector
+> such as a i2c mux, this physical device is allready described in the base=
+ DT.
+>=20
+> In that case, your "bridge" will be betweeh the i2c mux and the connector.
+>=20
+> In the extension bus case, the extension bus is between the i2c mux and t=
+he
+> connector.
+
+Yes... and, so?
+
+> > > If is allows to physically perform I2C transaction from a MMIO device
+> > > connected to MMIO bus, this is a traduction I2C controller with a bun=
+ch of
+> > > registers to configure an perform I2C transactions. =20
+> >=20
+> > Yes, absolutely.  The i2c in bus-reg there is not supposed to indicate
+> > that the bridge is used to access i2c devices.  Rather it's saying
+> > that the bridge itself has configuration registers accessible via i2c.
+> >=20
+> > If a device does have its own i2c bus hanging off, then as you say
+> > there should not be a 'ranges' property.  It would have its own i2c
+> > controller driver.
+> >=20
+> > bus-ranges could be used when a connector has pins on multiple MMIO
+> > buses, and an addon could have sub-devices on either one of them.
+> >=20
+> > Note that bus-ranges translated between i2c buses isn't theoretically
+> > impossible: that would represent a case with some sort of I2C "relay"
+> > device that forwards I2C commands from one side to the other altering
+> > the address on the way.  I don't know if such devices exist in
+> > practice, but they're certainly theoretically possible (and could be
+> > used, e.g. for allowing 10-bit I2C devices to be accessed from an old
+> > 7-bit I2C bus).
+> >=20
+> > > In that case, this "bridge" looks like all I2C we already support in =
+the
+> > > kernel.
+> > > Having the additional indirection with the "bridge" between the MMIO =
+bus
+> > > and the i2c@... node seems not a hardware representation of the syste=
+m.
+> > >=20
+> > > Did I miss something? =20
+> >=20
+> > I think so.  That's representing the bridge itself being configured
+> > via I2C, not allowing I2C access to devices _on_ the bus.
+>=20
+> If I understand correctly the addon board can configure the bridge availa=
+ble on
+> the base board.
+
+In this particular example there isn't (necessarily) an addon in play.
+I'm just giving an example of a plausible device that has a presence
+on two upstream buses - MMIO for the data path, and I2C for the
+control path.  There's not a natural way to represent that with
+regular 'reg' and 'ranges'.
+
+I'm saying that the *OS* can configure the bridge via I2C, nothing
+about the hardware (addon or otherwise) configuring the bridge.
+
+> How do you describe that when you have everything soldered on a base board
+> and described in a base DT?
+>=20
+> I think that the description should be the same with when some devices
+> are soldered on an addon board connected to a connector.
+>=20
+> The only difference should be the location of the nodes. Indeed, those
+> devices, on the addon board, behid the connector, should be described
+> as subnodes of the connector.
+>=20
+> Extension bus is exactly for that purpose.
+>=20
+> ...
+>=20
+> > > > > > 4) You don't necessarily need to build a "full" device tree
+> > > > > >=20
+> > > > > > Flattened device trees (as opposed to original IEEE1275 device =
+trees)
+> > > > > > - by design - allow certain information to be omitted.  The most
+> > > > > > common example is that for introspectable buses, like PCI, it's=
+ normal
+> > > > > > to have the DT only include a node for the host bridge, with de=
+vices
+> > > > > > under it being discovered by their own bus specific methods.  T=
+hat's
+> > > > > > discovery is handled by the bus/bridge driver.
+> > > > > >=20
+> > > > > > Connectors usually aren't introspectable, but it's still possib=
+le to
+> > > > > > use an approach like this where the connector driver's discovery
+> > > > > > method is "look at a different device tree".  So, for example,
+> > > > > >=20
+> > > > > > Board device tree:
+> > > > > >=20
+> > > > > > / {
+> > > > > > 	compatible =3D "board-with-foo-connector";
+> > > > > > 	. . .
+> > > > > > 	mmio@... {
+> > > > > > 		foo-connector@... {
+> > > > > > 			compatible =3D "foo-connector";
+> > > > > > 			ranges =3D < ... >;
+> > > > > > 		}
+> > > > > > 	}
+> > > > > > } =20
+> > >=20
+> > > I would expect a description of resources wired to the connector
+> > > available at the foo-connector node. =20
+> >=20
+> > Possibly yes.  Here I was assuming a case where the resources
+> > presented by a "foo-connector" are fixed and described in a
+> > foo-connector binding.  But an approach which explicitly describes the
+> > exposed resources could certainly have advantages.
+> >=20
+> > > > > >=20
+> > > > > > Foo device tree:
+> > > > > >=20
+> > > > > > / {
+> > > > > > 	compatible =3D "foo-device";
+> > > > > > 	foo-port-id =3D < 0x1234 >;
+> > > > > > 	component@... {
+> > > > > > 		reg =3D < ... >;
+> > > > > > 	}
+> > > > > > }
+> > > > > >=20
+> > > > > > Obviously a "foo device tree" would have different conventions =
+than a
+> > > > > > board device tree.  It wouldn't have /cpus, /memory, /chosen - =
+but it
+> > > > > > could have its own "magic" nodes that make sense for the proper=
+ties of
+> > > > > > the specific connector type. =20
+> > >=20
+> > > I agree with the fact that /cpus, /memory, ... wouldn't be present at=
+ this
+> > > node.=20
+> > >=20
+> > > Can you provide an example of the "magic" node and what do you have i=
+n mind
+> > > to store this information in DTB? =20
+> >=20
+> > One obvious one is somewhere to store a mapping / renaming of
+> > resources for local use on the connector.  Another might be for
+> > metadata, like an ID code, if this connector type supports it.
+> >=20
+> > > > > > Again, that would require work in the device core part of the O=
+S.  The
+> > > > > > bonus is that runtime addition and removal is now trivial.  No =
+hacking
+> > > > > > of the base device tree is needed, and so doesn't need to be re=
+verted.
+> > > > > > The connector driver just adds/removes the reference to its own
+> > > > > > private tree. =20
+> > >=20
+> > > Here also, I don't see exactly what you have in mind. Can you provide=
+ some
+> > > details and example? =20
+> >=20
+> > What I'm suggesting is that the "main" DT managed by the kernel would
+> > never include devices from the addon board.  Instead the connector
+> > driver would locally a store a different device tree representing just
+> > the things under the connector.  It would present a bus to the kernel
+> > device core that would "discover" devices on the bus based on that
+> > local device tree.
+>=20
+> We agree with that and this is what we have proposed with our connector
+> binding.
+> The main DT has to provide (describe) busses that can be used by the addon
+> (adding devices to those busses).
+>=20
+> Our binding with bus extension fulfills this requirement.
+
+Right, but I'm saying even for the OS's runtime copy of the device
+tree the addon device would not be (directly) included.  I'm not
+saying that's the only way or the best way to do it, just that I think
+it should be considered.  It makes runtime device discovery more
+complex - not just one DT must be traversed, but possibly several
+depending on connector drivers.  However, the plus side is that the
+core DT management doesn't ever need to deal with hotplug or hot
+remove.
+
+> > > > > > This would, of course, need some way to refer to board resources
+> > > > > > (interrupt controller, gpio controller) etc.  I think that can =
+be
+> > > > > > assembled using some of the previous ideas, though.   =20
+> > > > >=20
+> > > > > I would need to wrap my head around this a bit, specially in cont=
+ext of
+> > > > > chaining connectors. It does seem like it will still require the =
+points you
+> > > > > mentioned above to be present in one form or another, i.e. some w=
+ay to
+> > > > > extend busses to different nodes/trees and connector (even a chai=
+ned one)
+> > > > > local symbols/aliases.   =20
+> > > >=20
+> > > > Yes, it would still require those mappings.  I don't think chained
+> > > > connectors introduce a lot of extra complication.  An intermediate
+> > > > connector would need to be able to "re-export" things it got from i=
+ts
+> > > > parent connector to its child connector(s) - renaming them if
+> > > > necessary.
+> > > >=20
+> > > > I think those two elements would be enough to make something that's
+> > > > useful in at least a few cases.  However, the pretty common case of=
+ a
+> > > > connector with pins from multiple different parent buses would need
+> > > > bus-reg or something similar.  Or else the nasty multiplexed encodi=
+ng
+> > > > described above.
+> > > >=20
+> > > > I say, "nasty" and in many cases it would be, but I think there may=
+ be
+> > > > some cases where that approach does make sense: e.g. a connector th=
+at
+> > > > has several logically separate address spaces but which always trav=
+el
+> > > > together and are typically handled by a common bridge device.  PCI =
+is
+> > > > a case of this, if you squint - a host bridge provides a config spa=
+ce
+> > > > bus, and an MMIO bus and a PIO bus.  Also sometimes some sort of
+> > > > interrupt controller / interrupt routing, complicated by the fact t=
+hat
+> > > > there are several different models for that across PCI and PCI-E. =
+=20
+> > >=20
+> > > To move forward on the topic, some concrete example would help to
+> > > understand how to describe link, how the information is stored in DTB.
+> > >=20
+> > > This would help us in moving in the right direction.
+> > >=20
+> > >=20
+> > > If the issue with export-symbols is having it described as a DTS node=
+, this
+> > > could be changed with a new DTS keyword.
+> > >=20
+> > > /export/ <symbol_name_to_resolve> <resolved_symbol_name>
+> > >   - <symbol_name_tp_resolved>: Symbol name seen by a user
+> > >   - <resolved_symbol_name>: Symbol used once resolved. =20
+> >=20
+> > I might have some quibbles with the details, but I'd be open to
+> > something like that.
+>=20
+> Ok
+>=20
+> >=20
+> > > <resolved_symbol_name> can be restricted to phandle values. =20
+> >=20
+> > Because we're operating at the dts level here, whether it's a phandle
+> > is not actually relevant.  We can treat this as a dts label name (or
+> > optionally path) - how that's encoded in the dtb we get to choose. A
+> > phandle is the most obvious approach.
+> >=20
+> > > Mutiple /export/ can be available inside a node in order to give a li=
+st
+> > > of exported symbols. =20
+> >=20
+> > Sure.
+> >=20
+> > > For instance with the connector example I previously mentioned.
+> > > We can replace the export-symbols node by the following:
+> > >=20
+> > > ---- base board DT ----
+> > >   conn0: connector0 {
+> > > 	gpio-map =3D <0 &gpio0 12>, /* gpio A wired to gpio 12 of gpio0 cont=
+roller */
+> > >                    <1 &gpio2 10;  /* gpio B wired to gpio 10 of gpio2=
+ controller */
+> > >=20
+> > >         i2c_one: i2c-one {
+> > > 		compatible =3D "i2c-bus-extension";
+> > > 		i2c-parent =3D <i2c5>; /* i2c wired to i2c5 controller */ =20
+> >=20
+> > I think bus-reg or bus-ranges is a more natural way to do this than
+> > per-bus bindings, but that's not particularly relevant to the rest of
+> > the proposal.
+> >=20
+> > > 	};
+> > >=20
+> > > 	i2c_two: i2c-two {
+> > > 		compatible =3D "i2c-bus-extension";
+> > > 		i2c-parent =3D <i2c6>; /* i2c wired to i2c6 controller */
+> > > 	};
+> > >=20
+> > > 	/export/ connector &conn0
+> > > 	/export/ i2cA &i2c_one
+> > > 	/export/ i2cB &i2c_two =20
+> >=20
+> > Since dtc is explicitly aware of this, we could even allow relative
+> > paths here, say
+> > 	/export/ connector &.;
+>=20
+> Indeed, good point.
+>=20
+> >=20
+> >=20
+> > >   };
+> > >=20
+> > > A reference to connector (&connector) from the addon will be resolve
+> > > to a reference to &conn0 (phandle of the connector0 node. =20
+> >=20
+> > To handle the addon with multiple connectors we might want an
+> > (optional) remapping / renaming on the addon side as well.  Or maybe
+> > simpler, we could allow namespacing the references on the addon side.
+>=20
+> I think you talk about the Geert use case.
+> Geert, an example should be welcome.
+>=20
+> The plan was to apply the DT related to an addon at a connector node.
+> Maybe this will not fit well with Geert's use case but to know if it
+> fits or not and to find the best way to handle this use case, an
+> example is needed.
+>=20
+> >=20
+> > >=20
+> > > ---- addon board DT, applied at connector0 node ----
+> > >    {
+> > > 	some-node {
+> > > 		compatible =3D "foo,bar";
+> > > 		reset-gpios =3D <&connector 0>; /* gpioA used as a reset gpio */
+> > > 		ddc-i2c-bus =3D <&i2cB> /* Resolved thanks to /export/ */
+> > > 	=09
+> > >         }
+> > >=20
+> > >         i2c-one {
+> > > 		/*
+> > >                  * A device added on the i2c-one bus wire to the conn=
+ector.
+> > >                  * /export/ not involved. i2c-one is a node (bus exte=
+nsion) available
+> > >                  * in the DT node where this addon board DT is applie=
+d.
+> > >                  *=20
+> > >                  */
+> > > 		eeprom@10 {
+> > > 			compatible =3D "baz,eeprom"
+> > > 			reg =3D 10;=20
+> > > 		};
+> > > 	};
+> > >    };
+> > >=20
+> > >=20
+> > > Now, what is expected in term of DTB format?
+> > >=20
+> > > I think we need: =20
+> >=20
+> > >  - Base DT: List of exported symbols per nodes (/export/) =20
+> >=20
+> > Yes.  I'm not necessarily opposed to encoding this as a regular
+> > property (basically, 'exported-symbols').  It's more the fixup
+> > information that is horrible as regular properties.  Connectors should
+> > also probably have a property marking them *as* a connector and giving
+> > the type.
+>=20
+> I thought that exported-symbols (or export-symbols) node was a no go.
+
+I'm not against 'export-symbols' itself.  I'm just against
+implementing it purely to stretch existing overlay mechanisms to do
+things they were never really meant to, without considering the end to
+end design.
+
+> With our proposal, nothing change in current __symbols__, __fixup__ and
+> __local_fixup__ implementation.
+>=20
+> We just add the export-symbols item in current resolution process.
+>=20
+> Even if a new DTB format landed, we should support already existing forma=
+t.
+
+"Support" in what sense?  Still allow, obviously, but I don't think
+it's necessary to squeeze new features into an old format.
+
+> > If we didn't want a regular property we could encode this as an
+> > FDT_EXPORT tag.  These would go after FDT_BEGIN_NODE, before FDT_PROP
+> > and each include a (local-name, phandle) tuple.  local-name could be a
+> > string table reference.
+> >=20
+> > >  - Addon DT: List of unresolved symbols and their location =20
+> >=20
+> > Not sure we need this as a singular list, see below.
+> >=20
+> > >  - Addon DT: A way to avoid collision in phandle values =20
+> >=20
+> > I'd suggest maybe three new tags for this, these would appear
+> > immediately after the FDT_PROP tag to which they're relevant.
+> >=20
+> > 	FDT_REF_PHANDLE		(offset, name)
+> >=20
+> > This would replace the 4 bytes at `offset` in the previous property
+> > with the phandle of the node referred to by `name` (which must match
+> > something in the connector's exported list).
+> >=20
+> > 	FDT_REF_PATH		(offset, name)
+> >=20
+> > Similar but would insert the full path name of the referenced node in
+> > the property.
+> >=20
+> > 	FDT_REF_LOCAL		(offset)
+> >=20
+> > This indicates that that offset in the property contains a phandle
+> > value pointing to something within the addon - when we adjust addon
+> > phandles to avoid collisions, it needs to be updated too.
+>=20
+> Ok for FDT_REF_PHANDLE(), FDT_REF_PATH() and FDT_REF_LOCAL().
+>=20
+> They replace __fixups__ and __local_fixups__ but we need also
+> something to replace __symbols__ and the "export-symbols"
+>=20
+> Solution 1:=20
+>=20
+>   A new section is needed.
+>   we have dt_struct and dt_strings. dt_symbols could be this new section.
+
+I think we want to heavily discourage / deprecate use of global
+symbols like we have now, in favour of local symbols (export-symbols
+or something like it).  So I don't think adding a new section for
+global symbols is a good idea.
+
+>   In this section we have table(s) of exported symbols. In term of
+>   information, I think we need:
+>    - The symbol name
+>    - The node exporting the symbol (path)
+>    - The symbol source:
+>        - node referenced by the symbol (path)
+>        - phandle referenced by the symbol
+>        - original name for symbol remapping
+>=20
+>=20
+> Solution 2:
+>   At nodes exporting symbols we could had:
+>      - FDT_EXPORT_PHANDLE(name, phandle)
+>        with name, the exported symbol name and phandle, the phandle value.
+>=20
+>      - FDT_EXPORT_PATH(name, path)
+>        with name, the exported symbol name and path, the path to exported
+>        object
+>=20
+>      - FDT_EXPORT_REMAP(name, orig_name)
+>        with name, the exported symbol name and orig_name, the original sy=
+mbol
+>        name remapped to the exported symbol name.
+
+I think we only need one of these (probably _PHANDLE).  We could allow
+the other variants in source, but it should be strightforward to
+compile them all to the same thing.
+
+> > The addon should also include information on the type of connector(s)
+> > it wants to plug into.  That should be a stringlist, like
+> > 'compatible', to allow for backwards compatible future extensions.
+>=20
+> This information (if needed) is used by the driver applying the connector.
+> I don't think if should be involved in the symbol resolution mechanism.
+
+Maybe, but it's still information that should be there.
+
+> From the symbol resolution point of view, we have:
+> - A base DT,
+> - A specific node in the base DT where the addon should be added
+
+Not necessarily just one for Case 2 above.
+
+> - The addon DT.
+>=20
+> With this 3 inputs, the symbol resolution should do its work.
+> It should not check any compatible strings values.
+
+Hmm.  Why not?  It's not strictly necessary to the process, I agree,
+but seems like it could be a useful sanity check.
+
+>=20
+> >=20
+> >=20
+> > Or... allowing for addons plugging into multiple connectors, possibly
+> > each of those `name`s needs to be extended to (connector, name).
+> > `connector` would be either a name or index saying which connector
+> > we're referring to (numbering/naming controlled by the addon) with
+> > name being the name of the symbol within that connector (naming
+> > controlled by the base board / connector type).
+> >=20
+>=20
+> Best regards,
+> Herv=E9
+>=20
+> --=20
+> Herv=E9 Codina, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
+>=20
+
+--=20
+David Gibson (he or they)	| I'll have my music baroque, and my code
+david AT gibson.dropbear.id.au	| minimalist, thank you, not the other way
+				| around.
+http://www.ozlabs.org/~dgibson
+
+--9cCcRp5xFl45gxT9
+Content-Type: application/pgp-signature; name=signature.asc
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEO+dNsU4E3yXUXRK2zQJF27ox2GcFAmjA/6gACgkQzQJF27ox
+2GeojhAApw+BtPPJ1oumJmwI4v0CoWCEHumh3HYeAL/WHNNhHioRnQr8nH8T6tYz
+zKw+c64yvIuZsXxxoyczqodwfZsk0E3BawraN1k6VVoxESTIBIMN2E+Nhyv3pHmr
+Q7LK9oOYSWXOeLs9+wwc6zToqZoYskETIkDoSsFyigcU9z6jD73tGyy5h9JthiB9
+oSGb1YlhpGRbDYMg4jvCimb26Y+prYR6gS7l5Xjrplfc9dVsXDqAGxj2y8s8+iq6
+GJn61fAFXEYl+Uh0tUO1RJ31L8L2ZhgaUzmTzGIp5gcYycXCOtKF37/GGSl6OdyT
+fU+Fy06Z/+FKWzF/MHppihoZd/2Cg1Qu/rclEgdHjCtbVOamBYIpJwRThqDsnvuE
+V38mY44foDD0w+myOjs9J7maSxXNFcTzCTXVF4Sxx8hV8JxTlx3X6ukaZw51kClV
+/is445RqpROw9DO0kOs4L1v0m2ISa5M1+gJlK18A3fccnfXqW3OwWIzFodeA8TbE
+5zFrt4PWU9pcfP0OVlf4jqNe5DUvJz2UKIjgKqE16CRz/FEZc/dqsPDgbCmJ9sRU
+ghStV4UauPIeJ+tstlH8GJ52xDNwmvzHErJhwF/Dd52mzsZ/Y5b9J0FW1Old6/b9
+RoacPAlBD3J+Mz/VZyJ+7QonB2YNLKj+slCJQ7bfTPZypLvUCFU=
+=EPkt
+-----END PGP SIGNATURE-----
+
+--9cCcRp5xFl45gxT9--
 
