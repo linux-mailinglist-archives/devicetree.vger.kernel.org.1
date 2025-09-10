@@ -1,125 +1,113 @@
-Return-Path: <devicetree+bounces-215593-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43AF6B52028
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 20:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58709B5206D
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 20:52:15 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFF6517C6A1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:18:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E9E217FE2F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 18:52:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B7424264A9D;
-	Wed, 10 Sep 2025 18:18:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBE582D23A3;
+	Wed, 10 Sep 2025 18:52:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jod+0eqH"
+	dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b="AlZKCx5w"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.subdimension.ro (nalicastle.subdimension.ro [172.105.74.154])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 880DC19E97A;
-	Wed, 10 Sep 2025 18:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0E572D130C;
+	Wed, 10 Sep 2025 18:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=172.105.74.154
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757528323; cv=none; b=uq+6b77JcwWSy6PSDkDAn7/wkuIqNFi8wocRrlSzkTLZux/VLb0tNP6UcWK95kwgCMl8oWJHN80kmQ0mTIS4ICLtEa0I/OjvsFVEYDc5zdGYTEx0AXsdENR/subfOZgn5ljucl4eW7WQSVdxjHT8rKcAWOTkLr6PlZy1X/N0OvI=
+	t=1757530330; cv=none; b=Pzm9SO9kbcbt5fpPQBLmMFkETQ9NWdDgFBCnLILfeZqvAEY6vFQLrw7ggsW+i6W3QOyv8ES6cTz2lFrsGeHtyR4Amv9qQ0c4eUtxQmK8ekMZY4ee3LkaD5ukvCIziVPuJ2Pc8fXnRHfi733H5z4Dg94ueXt1/4ZIsoVRj7SKdRE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757528323; c=relaxed/simple;
-	bh=O/tH+Gn/02Eni4fXZFe3weLi71ZVLKbDdQuvcMp3yeU=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sFlfbgGtvJOg8v6v0TQXICI4j5KvF1zRfTb7ZHjWXOADO3fIpNx8n0blhvpWPDlxY5sWguOawhh5U693IQ8bjhFTCGxATT7rm5+Wjsp1dejc2gv19LCsKAK7j1yRri2v7QekRzmxeejxC2tVwO+T2aOOD69Jn4LnBUlnIJNMQfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jod+0eqH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 818D5C4CEEB;
-	Wed, 10 Sep 2025 18:18:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1757528323;
-	bh=O/tH+Gn/02Eni4fXZFe3weLi71ZVLKbDdQuvcMp3yeU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=jod+0eqHrjgTZN4vEvGL6mPtJHBXCRJexVWIyNqy0l0bTMFrT1pnfZP9o7mlR+6uB
-	 qRwhgX8ynm2NXemq8DwasOI/kajxf4QRgn4eBRwtlVqdcmxelK8rGTLzHXwQB9qVWI
-	 6NDcy+GNjp56PVLHQ0ZAbG0ZF4WYHWeQj6J3u6mbENoaQPf0+fstHvW8JIW2FQt47D
-	 Syw1+NQMVghcCfoXjniHgyHZ1RvK3MRaZySDEzWSPrPm/VWiNktfQpMILqVzKnNbEt
-	 VzCjpqF9FaTsekdUyb5pVT0dpEiRNpNQP2dtkEBh1li2oRdZw3hP3Fxc1EQICNVH58
-	 PYOV9V+1+Hyhw==
-Date: Wed, 10 Sep 2025 19:18:33 +0100
-From: Jonathan Cameron <jic23@kernel.org>
-To: Petre Rodan <petre.rodan@subdimension.ro>
-Cc: David Lechner <dlechner@baylibre.com>, Nuno =?UTF-8?B?U8Oh?=
- <nuno.sa@analog.com>, Andy Shevchenko <andy@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>, Conor Dooley
- <conor+dt@kernel.org>, Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/14] iio: accel: bma220 improvements
-Message-ID: <20250910191833.7c0e20b2@jic23-huawei>
-In-Reply-To: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
+	s=arc-20240116; t=1757530330; c=relaxed/simple;
+	bh=e2HEGdY8HTT62VzkGjra9TT601j7gUIe3tNGN/jo964=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=VMF+PbdB/X3h7luu32ECrTAG8CmTunYXNfBh6NLtGhFCrVfQoR2Rk+9f5XAKGGmY+cKkTBs8qsj8wK3yOy/YCFlzIQNt9ToRaAulZpGU1IsXZXgbelNceADmo+Sob2JkRoJHOBrDDGM8ktpO9B8NhfG6fR7xUM8/J84U+iRQOBM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro; spf=pass smtp.mailfrom=subdimension.ro; dkim=pass (2048-bit key) header.d=subdimension.ro header.i=@subdimension.ro header.b=AlZKCx5w; arc=none smtp.client-ip=172.105.74.154
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=subdimension.ro
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=subdimension.ro
+Received: from lipo (unknown [IPv6:2a02:2f0e:3e0c:5b00:f1e0:3f4b:286c:9ddb])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange secp256r1 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by mail.subdimension.ro (Postfix) with ESMTPSA id 52D83173BE2;
+	Wed, 10 Sep 2025 21:52:04 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=subdimension.ro;
+	s=mail; t=1757530324;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=RzYM3A6axo42RwWGBvA7uplSP/pVgQAc0gg+oED22Go=;
+	b=AlZKCx5wHPGfIp3d+rqGRqYDu0K2dnUK/WMsLABgsRTL8aME8eYTeKoaz2NLmUYP5C8wqK
+	jYLfJwv1O/DBr6P1muQd5dyCuTj459wPVLkl5ZG30kWZRKloi5HJleiLAPrvfbYsqCqmj+
+	t7H4UeegkLhsAzQTqLtgI1I6b+rqS5qUNHWU2nijSSorhACZJEqAHY3GNA38Op1MBGLCrK
+	s/LSKk2fVEsdMK9+OQA+o1sHvWAkpqE7VEBTJU/kAU1nf9xRCdWG18Hr03aMHFIGg8Wan9
+	kiKIe+25NPdtHzmkoIGGktMoghCgiu4nI7ori7KfdlhQ32JoxdmoauQzoD6jnA==
+Date: Wed, 10 Sep 2025 21:51:57 +0300
+From: Petre Rodan <petre.rodan@subdimension.ro>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: David Lechner <dlechner@baylibre.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Andy Shevchenko <andy@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 06/14] iio: accel: bma220: add get regulator check
+Message-ID: <aMHIzUuNx9LXQdag@lipo>
 References: <20250910-bma220_improvements-v2-0-e23f4f2b9745@subdimension.ro>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.50; x86_64-pc-linux-gnu)
+ <20250910-bma220_improvements-v2-6-e23f4f2b9745@subdimension.ro>
+ <20250910185841.075594bb@jic23-huawei>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20250910185841.075594bb@jic23-huawei>
 
-On Wed, 10 Sep 2025 10:57:05 +0300
-Petre Rodan <petre.rodan@subdimension.ro> wrote:
 
-> Series of patches that switch the driver to the regmap API and add
-> i2c connectivity.
-> 
-> Tested in I2C and SPI modes with two different sensors.
-> 
-> Event-related code was skipped since the patch series was getting too
-> large.
-> 
-> Contains fixes based on feedback from Krzysztof, David and Jonathan.
-> 
-> First time pushing with b4, crossing fingers.
-Worked nicely as far as I can see.  I should try it myself at some point.
-I've been using magic finger memory to format patches for far too long :)
+Hello Jonathan,
 
-Anyhow, this is coming together nicely.  Don't rush a new version out
-for a few days though to give others time to take a look.
+thank you for the blazing fast feedback!
 
-thanks,
-
-Jonathan
-
+On Wed, Sep 10, 2025 at 06:58:41PM +0100, Jonathan Cameron wrote:
+> On Wed, 10 Sep 2025 10:57:11 +0300
+> Petre Rodan <petre.rodan@subdimension.ro> wrote:
 > 
-> Signed-off-by: Petre Rodan <petre.rodan@subdimension.ro>
-> ---
-> Petre Rodan (14):
->       dt-bindings: iio: accel: bosch,bma220 cleanup typo
->       dt-bindings: iio: accel: bosch,bma220 setup SPI clock mode
->       dt-bindings: iio: accel: bosch,bma220 change irq type
->       iio: accel: bma220: split original driver
->       iio: accel: bma220: add open firmware table
->       iio: accel: bma220: add get regulator check
->       iio: accel: bma220: reset registers during init stage
->       iio: accel: bma220: migrate to regmap API
->       iio: accel: bma220: add i2c module
->       iio: accel: bma220: add i2c watchdog feature
->       iio: accel: bma220: add interrupt trigger
->       iio: accel: bma220: add LPF cut-off frequency mapping
->       iio: accel: bma220: add debugfs reg access
->       iio: accel: bma220: add maintainer
-> 
->  .../bindings/iio/accel/bosch,bma220.yaml           |   9 +-
->  MAINTAINERS                                        |   7 +
->  drivers/iio/accel/Kconfig                          |  18 +-
->  drivers/iio/accel/Makefile                         |   4 +-
->  drivers/iio/accel/bma220.h                         |  20 +
->  drivers/iio/accel/bma220_core.c                    | 617 +++++++++++++++++++++
->  drivers/iio/accel/bma220_i2c.c                     |  61 ++
->  drivers/iio/accel/bma220_spi.c                     | 318 +----------
->  8 files changed, 757 insertions(+), 297 deletions(-)
-> ---
-> base-commit: 19dc57d72d2b9365ef185286886c432f980cff55
-> change-id: 20250907-bma220_improvements-e31641777e61
-> 
-> Best regards,
+> I don't follow the 'add get regulator check' of the patch description.
+> This is ensuring they are powered up if necessary.  So I'd
+> just go with the vague: "turn power supplies on"
 
+to be honest I added this just because I've seen the devm_regulator_bulk_get_enable() function used all over the place in iio code.
+but looking at the linux/regulator/consumers.h header I was more puzzled.
+just some forward declarations and then static functions doing exactly nothing.
+I'm afraid to ask what that is all about. placeholder for a future API?
+
+best regards,
+peter
+
+> > +#include <linux/regulator/consumer.h>
+> >  #include <linux/types.h>
+> >  #include <linux/spi/spi.h>
+> >  
+> > @@ -205,6 +206,13 @@ static const struct iio_info bma220_info = {
+> >  static int bma220_init(struct spi_device *spi)
+> >  {
+> >  	int ret;
+> > +	static const char * const regulator_names[] = { "vddd", "vddio", "vdda" };
+> > +
+> > +	ret = devm_regulator_bulk_get_enable(&spi->dev,
+> > +					     ARRAY_SIZE(regulator_names),
+> > +					     regulator_names);
+> > +	if (ret)
+> > +		return dev_err_probe(&spi->dev, ret, "Failed to get regulators\n");
 
