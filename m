@@ -1,607 +1,223 @@
-Return-Path: <devicetree+bounces-215290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-215292-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37899B51111
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:23:00 +0200 (CEST)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12C42B51123
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 10:25:30 +0200 (CEST)
 Received: from smtp.subspace.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-ECDSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1BF92160C8E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:21:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BCCC93A6193
+	for <lists+devicetree@lfdr.de>; Wed, 10 Sep 2025 08:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 94A9B30F534;
-	Wed, 10 Sep 2025 08:20:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A52B309EF6;
+	Wed, 10 Sep 2025 08:25:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b="YtZP+uFE"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="xziXOEZY";
+	dkim=pass (1024-bit key) header.d=stmicroelectronics.onmicrosoft.com header.i=@stmicroelectronics.onmicrosoft.com header.b="M/VlOCM8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-4316.protonmail.ch (mail-4316.protonmail.ch [185.70.43.16])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF22B30DD2C
-	for <devicetree@vger.kernel.org>; Wed, 10 Sep 2025 08:20:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.70.43.16
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1757492440; cv=none; b=EmZUl0Z26Bn6vGSq6Wk3qOm8lgUr5kKqq8fFHfeHc4ebAQt4rGaq0LLjewz+DiFIPQQ8dy4/tZ+pyDkgZqITvKFcxMnXX1IEM5Ij0mbBerHtNCbkFC4sY0Jeyhnr2blq8MSP75GrMptZxa17NtTU8OtBArGS2ZN16Zmf/tUkLKg=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1757492440; c=relaxed/simple;
-	bh=UwxRLW5NK8xjd+gjRoNG/I7F0O2ZY5PwgL3TdjijFdA=;
-	h=Date:To:From:Subject:Message-ID:MIME-Version:Content-Type; b=P0IQMPdRYI68LNleQHiT7DDewmjPt2vDI9Y/fvWFHwZIusjIAbeyt2DbZnU1f793JUVY0aT1NCn1M2PeTbkq4u/Jl6pxKVZddsGFba4wekMvrXuVxhAKjbzXIVSPg58bOL7ZnF3ZtQxUBS/UW+DHnqI9pMhvLNpyyB8Nfqjwqmc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me; spf=pass smtp.mailfrom=proton.me; dkim=pass (2048-bit key) header.d=proton.me header.i=@proton.me header.b=YtZP+uFE; arc=none smtp.client-ip=185.70.43.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=proton.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=proton.me
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=proton.me;
-	s=protonmail; t=1757492434; x=1757751634;
-	bh=9jlYVI6Y5yupsDhuFFPwO/Y7dVlu8cYkZchkr2o0ntU=;
-	h=Date:To:From:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
-	 Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
-	b=YtZP+uFEnC8CqLJJcZfovJrrhWCoPj8JHIMAVo/+Z0s+uUkWUPMRKETzDiXhfVk0h
-	 KmLks9sZ/RD+vj/Sj5lo7WIB5fl7VUkD4h/B5FYTb41MQ+dmXlWxPy7b21a7hLSg/n
-	 d06aCj5luKO0fvz4mdqebkzFgwpMSZdyvwQAXT4hwdBdmaaaaqCfxrWBTBYdk7uF2b
-	 o4B6qFjZ35mVMEApOIkAo/UX4wBZRakOkSuY/ZIqzmckHN78RBvH/pwmjog7w3ChK6
-	 K0lMA1JwDYOrUYkqs638NBlmfatuDDUTS5cLLYnaAZZR0cdSjhT18yHi2TefprxDcC
-	 AppPAnFg2kEbQ==
-Date: Wed, 10 Sep 2025 08:20:28 +0000
-To: "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From: Zoo Moo <zoomoo100@proton.me>
-Subject: Marvell 375 and Marvel 88E1514 Phy network problem: mvpp2 or DTS related?
-Message-ID: <bGzC_MZwaY4HhZvDYu8X4uipZk3Lk9gQSsototCCPKLb03yAe64kh0e4yjwFCoPS2ld5LYwZ8OVgIkfbry1Zxrvvtm0t-9TZ4b9dB8QExjU=@proton.me>
-Feedback-ID: 130971294:user:proton
-X-Pm-Message-ID: 5c4e125c01784daafb5c0c2e751d9d803ba1e709
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4C4F92C21F8;
+	Wed, 10 Sep 2025 08:25:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=185.132.182.106
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1757492723; cv=fail; b=C9SDMNjyZPXYVGk/XqwzRaxEV/xNh81bacyraHLSAF/RhS3Smzchp2OvCMGePYxt49Spmo+tITsTU/gbegkhc4BxXNmz21aQZDMLQhI1w9LUWan+iKaPRRvHnthu09ZmPpRTLg0fo7x+F2biymOLkKy6uqQgqexCLQroOIqoa+k=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1757492723; c=relaxed/simple;
+	bh=iqSesTGFZFchfRK5zQmviEDcGF9ULHZ9XnHCqGGSRMA=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=Dmn8CIR94yat0mivuN82VMhIJOPeRYJ5Etk15vM0Rl5UFjjo3SfrqbPZdF69F1aZupenqcCWNoLBBtymdul6d4Tgqxa/aPpCZl8TQDfyuEKlF8Y1tK9oo1A1IaELUYVhI1aUXKquONH+pU/bI57OVJ6NxHP+plEhIGHIGJsYDgU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=xziXOEZY; dkim=pass (1024-bit key) header.d=stmicroelectronics.onmicrosoft.com header.i=@stmicroelectronics.onmicrosoft.com header.b=M/VlOCM8; arc=fail smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.18.1.2/8.18.1.2) with ESMTP id 58A8IJFU026976;
+	Wed, 10 Sep 2025 10:24:59 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	cc:content-transfer-encoding:content-type:date:from:message-id
+	:mime-version:subject:to; s=selector1; bh=LpTcNc20zr0aAwXpNuu4ce
+	IzWNLZ8oCKSRF8G7W1AYE=; b=xziXOEZYXFamd41qgN1+uFXY15IuY44eaJxqMP
+	wzHcgc0G46yzb+mkyk6nGRZRPUThaxd5LsrKStxde6m2NnCSuioMmmTlm2OwUgJX
+	yWWpiw0m4vmO0LfP4gnrzkvcmhZk9bp84gwnq/Ti3zz+HsZEL1BcOL5kFnbYwxwZ
+	L0Rdrrs+uQKpB76EvCU25GFIq8tlvFQ3zWYulPPFxDZfnqc+HHJoMtqiAzdqTd2Z
+	VMVkpvOJRSc5stWx8xXZWShU/uwJqKhKufdgBob4K2LB4RCnWmNe4ki06I5bKjgf
+	Srt69/APxHUyTiGIhrwFR1VTDFl2y0XZRjTa09/p97qUsSBg==
+Received: from duzpr83cu001.outbound.protection.outlook.com (mail-northeuropeazon11012063.outbound.protection.outlook.com [52.101.66.63])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 4929f0x8yp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 10 Sep 2025 10:24:59 +0200 (MEST)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bKBq+YEnw6iz6jItbfV6gFZDsZnyOb+HbAOxapSknlEpaUFTsXjjhqBvyLAG6tqi8NkYcbvDYZhhzCAKzRHZL/vwFLbq++ec0XwsfFv0/f3rAn2jT0sX+M8xa+qM2OOKVqXN/kioQTiH0sg/s3g44Q4Qb9nVQzphKFG4pjyvfFjW+TT61ISCT7dli7AuOCml9Fy0pnS/wFsIsQRhzmFUgnwVlw2Z/YYBvut6mVlgiUB4UE6kPAdoOutaVCauQqV4c3egpb7GYwEn1J9s+KoKv/4QdKRuj7xpS8B4r3XY3V1EEltjclftnME/vaAg0HIrtrN4K0sZlVdGfOpLND5XxQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=LpTcNc20zr0aAwXpNuu4ceIzWNLZ8oCKSRF8G7W1AYE=;
+ b=BggJapFqdSvk6l/7ci7kuVC+AbYaf9gcN5IlSFQzPC3x80wzCA4M5gqAaapkskfoNI5xtb20IyaNQxCmsiviRRHWNDIa3d31tojdAWxAnRbvcbNGB9yd17YrbxHFAcx8sq0Ya+KwNYzqdVuUWmO4EluS7VnTuEQaH6B/18egtmV3bHFdXrlENE3rVCWZMHTwaCwI9XFcB5aH3TQ4gX0fkWMtPiNj0odvc0K0FTu59c4l3ejT03z+YXujHVJATus/VD2+84l7hJuwmUmIyfcrDR03xXjwSQPqlRmetpdkFC6EXmUZP331OAkVfbJc2ck+bF4wW0gG495srxBGeD/rPA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 164.130.1.43) smtp.rcpttodomain=st-md-mailman.stormreply.com
+ smtp.mailfrom=foss.st.com; dmarc=fail (p=none sp=none pct=100) action=none
+ header.from=foss.st.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=stmicroelectronics.onmicrosoft.com;
+ s=selector2-stmicroelectronics-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LpTcNc20zr0aAwXpNuu4ceIzWNLZ8oCKSRF8G7W1AYE=;
+ b=M/VlOCM8UIWECE/rhc7Yu4TB8TFZJvtql1ssq5xnzuEJI1phhc707S0H6GQ3qvP7WsFoZsMbBuADd5Tk5oQyNr8XZ2yeEsPu6WKfiNc4IlhG35pFfCQaQUH57XIntSA2yhQlifAu36d1ivwMFFjj+vGpNJOu5EOV2Faca1OGBb0=
+Received: from CWLP265CA0311.GBRP265.PROD.OUTLOOK.COM (2603:10a6:401:5d::35)
+ by PA4PR10MB5538.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:102:273::17) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9094.22; Wed, 10 Sep
+ 2025 08:24:51 +0000
+Received: from AMS1EPF00000049.eurprd04.prod.outlook.com
+ (2603:10a6:401:5d:cafe::ab) by CWLP265CA0311.outlook.office365.com
+ (2603:10a6:401:5d::35) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.20.9115.15 via Frontend Transport; Wed,
+ 10 Sep 2025 08:24:51 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 164.130.1.43)
+ smtp.mailfrom=foss.st.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=none header.from=foss.st.com;
+Received-SPF: Fail (protection.outlook.com: domain of foss.st.com does not
+ designate 164.130.1.43 as permitted sender) receiver=protection.outlook.com;
+ client-ip=164.130.1.43; helo=smtpO365.st.com;
+Received: from smtpO365.st.com (164.130.1.43) by
+ AMS1EPF00000049.mail.protection.outlook.com (10.167.16.133) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9115.13 via Frontend Transport; Wed, 10 Sep 2025 08:24:51 +0000
+Received: from SHFDAG1NODE3.st.com (10.75.129.71) by smtpO365.st.com
+ (10.250.44.66) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 10 Sep
+ 2025 10:22:30 +0200
+Received: from localhost (10.252.15.61) by SHFDAG1NODE3.st.com (10.75.129.71)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.57; Wed, 10 Sep
+ 2025 10:24:50 +0200
+From: Amelie Delaunay <amelie.delaunay@foss.st.com>
+Subject: [PATCH v2 0/2] arm64: dts: st: Couple of updates for STM32MP23
+Date: Wed, 10 Sep 2025 10:24:36 +0200
+Message-ID: <20250910-stm32mp231_gpio_update-v2-0-8510efa2c5cf@foss.st.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pgp-signature"; micalg=pgp-sha512; boundary="------0c1666c11d6729aeed684bdca0ff804fb97541490965172f9b834ad09f9b08c8"; charset=utf-8
-
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------0c1666c11d6729aeed684bdca0ff804fb97541490965172f9b834ad09f9b08c8
-Content-Type: multipart/mixed;boundary=---------------------12ed276ba5bdbce2b9a44c4c84b5b843
-
------------------------12ed276ba5bdbce2b9a44c4c84b5b843
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain;charset=utf-8
-
-Hi,
-
-Bodhi from Doozan (https://forum.doozan.com) has been helping me try to ge=
-t Debian to work on a Synology DS215j NAS. The DS215j is based on a Marvel=
-l Armada 375 (88F6720) and uses a Marvel 88E1514 PHY.
-
-Even though the eth0 device is detected with the tweaked DTS for the 6.6 k=
-ernel. Eth0 can send packets (according to ifconfig and ethtool -S), but n=
-othing is ever received by the device or the router. =
-
-
-Even if I manually set an IP and MAC address for eth0 I cannot detect any =
-packets leaving the DS215j as I cannot ping/telnet/nmap/wireshark the DS21=
-5J. There is also no LED activity on the network hub.
-
-The eth0 interfaces works when booting the stock Synology DSM OS which is =
-based on the very old and Synology modified 3.x linux kernel. =
-
-
-https://global.synologydownload.com/download/ToolChain/Synology%20NAS%20GP=
-L%20Source/7.1.1-42962/armada375/linux-3.x.txz
-
-However, the Synology kernel does not use DTS and uses a custom build envi=
-ronment. =
-
-
-https://help.synology.com/developer-guide/
-
-Please see the below thread for the gory details of attempting to get DS21=
-5j to work:
-
-Debian on Synology DS215j
-https://forum.doozan.com/read.php?2,138851 =
-
-
-
-
-My current DTS for the 6.6 kernel is below. I'm using kernel 6.6 because t=
-hat is what the uinitrd is available for from the doozan website.
-
------------------------------------------------------
-// SPDX-License-Identifier: GPL-2.0
-/*
- * Device Tree file for Synology DS215j NAS
- *
- * Copyright (C) 2025 bodhi <mibodhi@gmail.com>
- */
-
-/dts-v1/;
-#include <dt-bindings/gpio/gpio.h>
-#include "armada-375.dtsi"
-
-/ {
-	model =3D "Synology DS215j";
-	compatible =3D "marvell,a375-db", "marvell,armada375";
-
-	chosen {
-		stdout-path =3D "serial0:115200n8";
-	};
-
-	memory@0 {
-		device_type =3D "memory";
-		reg =3D <0x00000000 0x20000000>; /* 512 MB */
-	};
-
-	soc {
-		ranges =3D <MBUS_ID(0xf0, 0x01) 0 0xf1000000 0x100000
-				MBUS_ID(0x01, 0x1d) 0 0xfff00000 0x100000
-				MBUS_ID(0x09, 0x09) 0 0xf1100000 0x10000
-				MBUS_ID(0x09, 0x05) 0 0xf1110000 0x10000>;
-
-        	internal-regs {
-
-				serial@12100 {
-				/* A PIC16F1829 is connected to uart1 at 9600 bps,
-				 * and takes single-character orders :
-				 *   "1" : power off // already handled by the poweroff node
-				 *   "2" : short beep
-				 *   "3" : long beep
-				 *   "4" : turn the power LED ON
-				 *   "5" : flash the power LED
-				 *   "6" : turn the power LED OFF
-				 *   "7" : turn the status LED OFF
-				 *   "8" : turn the status LED ON
-				 *   "9" : flash the status LED
-				 *   "A" : flash the motherboard LED (D8)
-				 *   "B" : turn the motherboard LED OFF
-				 *   "C" : hard reset
-				 */
-				pinctrl-names =3D "default";
-				status =3D "okay";
-			};
-
-			poweroff@12100 {
-				compatible =3D "synology,power-off";
-				reg =3D <0x12100 0x100>;
-				clocks =3D <&coreclk 0>;
-			};
-		};
-	};
-};
-
-&spi0 {
-	pinctrl-0 =3D <&spi0_pins>;
-	pinctrl-names =3D "default";
-	status =3D "okay";
-
-	/* MX 25L6406E I-12G 64Mb 86MHz SPI*/
-	spi-flash@0 {
-		#address-cells =3D <1>;
-		#size-cells =3D <1>;
-		compatible =3D "jedec,spi-nor";
-		reg =3D <0>; /* Chip select 0 */
-		spi-max-frequency =3D <86000000>;  =
-
-
-		partition@0 {
-			label =3D "u-boot";
-			reg =3D <0x0 0x100000>;
-		};
-	};
-};
-
-&uart0 {
-	status =3D "okay";
-};
-
-&uart1 {
-	status =3D "okay";
-}; =
-
-
-
-&sata {
-	status =3D "okay";
-	nr-ports =3D <2>;
-};
-
-&usb1 {
-	status =3D "okay";
-};
-
-&usb2 {
-	status =3D "okay";
-};
-
-/* Management Data Input/Output (MDIO)
-	aka Serial Management Interface (SMI) */
-/* Armada 375 press-release: "Beside USB 3.0 support and on-chip dual EEE =
-Gigabit PHYs" */
-&mdio {
-	status =3D "okay";
-	/* Marvel 375 SoC internal PHY EEE interface 1. =
-
-
-	mdio_bus f10c0054.mdio-mii: MDIO device at address 0 is missing.
-	*/
-	
-	phy0: ethernet-phy@0 {
-		/* compatible =3D "marvell,88E1510"; */
-		reg =3D <0>;
-	};
-	
-	/*	Marvell PHY 88E1514 External PHY interface, 1 PORT */
-	phy1: ethernet-phy@1 {
-		/* Causes:
-			[Firmware Warn]: /soc/internal-regs/mdio@c0054/ethernet-phy@1: Whitelis=
-ted compatible string. Please remove
-		*/
-		/* compatible =3D "marvell,88E1514", "marvell,88E1510"; */ /* , "etherne=
-t-phy-ieee802.3-c22"; */
-		/* compatible =3D "marvell,88E1510"; */
-		reg =3D <1>;
-	};
-			
-	/* Marvel 375 SoC internal PHY EEE interface 2. =
-
-
-	Or was it external on the development board? =
-
-
-	I cannot find any specifications or details about the Marvell 375 develop=
-ment board. */
-	/* =
-
-
-		mdio_bus f10c0054.mdio-mii: MDIO device at address 3 is missing.
-	phy3: ethernet-phy@3 {
-		reg =3D <3>;
-	};
-	*/
-	
-};
-
-&ethernet {
-        status =3D "okay";
-};
-
-
-// &eth0 {
-// 	status =3D "okay";
-// 	phy =3D <&phy0>;
-// 	/* Reduced Gigabit MII with Internal Delay. */
-// 	phy-mode =3D "rgmii-id"; =
-
-
-// };
-
-&eth1 {
-	status =3D "okay";
-	phy =3D <&phy1>;
-	phy-mode =3D "rgmii-id";
-};
-
-/* gmii =E2=80=93 Gigabit */	
-/* Label or path eth3 not found */
-/* &eth3 {
-*	status =3D "disable";
-*	phy =3D <&phy3>;
-*	phy-mode =3D "gmii"; =
-
-
-* };
-*/
-
-&pciec {
-	status =3D "okay";
-};
-
-&pcie0 {
-	status =3D "okay";
-};
-
-&pcie1 {
-	status =3D "okay";
-};
-
------------------------------------------------------
-
-
-The relevant logs of the kernel booting on the DS215j shows it finds an et=
-h0 device.
-
---------------------------------------------------
-[    2.983021] mvpp2 f10f0000.ethernet: using 3 shared buffers
-[    3.001651] mvpp2 f10f0000.ethernet eth0: Using hardware mac address 00=
-:00:00:00:00:05
---------------------------------------------------
-
-But initially, the ethtool eth0 results look wrong until manually running =
-dhclient.
-
-----------------------------------------------------------
-root@(none):~# ethtool eth0
-Settings for eth0:
-        Supported ports: [ TP    AUI     MII     FIBRE   BNC     Backplane=
- ]
-        Supported link modes:   10baseT/Half 10baseT/Full
-                                100baseT/Half 100baseT/Full
-                                1000baseT/Full
-                                1000baseKX/Full
-                                1000baseX/Full
-                                100baseT1/Full
-                                1000baseT1/Full
-                                100baseFX/Half 100baseFX/Full
-                                10baseT1L/Full
-                                10baseT1S/Full
-                                10baseT1S/Half
-                                10baseT1S_P2MP/Half
-        Supported pause frame use: No
-        Supports auto-negotiation: Yes
-        Supported FEC modes: Not reported
-        Advertised link modes:  Not reported
-        Advertised pause frame use: No
-        Advertised auto-negotiation: No
-        Advertised FEC modes: Not reported
-        Speed: Unknown!
-        Duplex: Half
-        Auto-negotiation: off
-        Port: MII
-        PHYAD: 0
-        Transceiver: internal
-        Link detected: no
-----------------------------------------------------------
-
-Using dhclient wakes up the interface and ethtool shows better results.
-
-----------------------------------------------------------
-root@(none):~# dhclient eth0
-[   80.477808][ T2085] mvpp2 f10f0000.ethernet eth0: PHY [f10c0054.mdio-mi=
-i:01] driver [Marvell 88E1510] (irq=3DPOLL)
-[   80.488252][ T2085] mvpp2 f10f0000.ethernet eth0: configuring for phy/r=
-gmii-id link mode
-[   84.647536][  T113] mvpp2 f10f0000.ethernet eth0: Link is Up - 1Gbps/Fu=
-ll - flow control off
-
-root@(none):~# ethtool eth0
-Settings for eth0:
-        Supported ports: [ TP    MII     FIBRE ]
-        Supported link modes:   10baseT/Half 10baseT/Full
-                                100baseT/Half 100baseT/Full
-                                1000baseT/Full
-        Supported pause frame use: No
-        Supports auto-negotiation: Yes
-        Supported FEC modes: Not reported
-        Advertised link modes:  10baseT/Half 10baseT/Full
-                                100baseT/Half 100baseT/Full
-                                1000baseT/Full
-        Advertised pause frame use: No
-        Advertised auto-negotiation: Yes
-        Advertised FEC modes: Not reported
-        Link partner advertised link modes:  10baseT/Half 10baseT/Full
-                                             100baseT/Half 100baseT/Full
-                                             1000baseT/Half 1000baseT/Full
-        Link partner advertised pause frame use: Symmetric Receive-only
-        Link partner advertised auto-negotiation: Yes
-        Link partner advertised FEC modes: Not reported
-        Speed: 1000Mb/s
-        Duplex: Full
-        Auto-negotiation: on
-        Port: Twisted Pair
-        PHYAD: 1
-        Transceiver: external
-        MDI-X: Unknown
-        Link detected: yes
-----------------------------------------------------------
-
-ifconfig shows packets have been transmitted, and ethtool statistics show =
-little activity (txq_1_desc_enqueue: 30, txq_1_buff_euqueue_to_ddr: 30).
-
-----------------------------------------------------------
-root@(none):~# ifconfig eth0
-eth0: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet6 fe80::200:ff:fe00:5  prefixlen 64  scopeid 0x20<link>
-        ether 00:00:00:00:00:05  txqueuelen 2048  (Ethernet)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 16  bytes 2576 (2.5 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-----------------------------------------------------------
-
-Try adding IP address to eth0 and replacing the MAC address with the origi=
-nal MAC.
-
-----------------------------------------------------------
-root@(none):~# ifconfig eth0 192.168.10.111 netmask 255.255.255.0 hw ether=
- 00:11:22:33:44:55 up
-
- [   74.007427][   T10] mvpp2 f10f0000.ethernet eth0: Link is Up - 1Gbps/F=
-ull - flow control off
-
-root@(none):~# ifconfig     =
-
-
-eth0: flags=3D4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.10.111  netmask 255.255.255.0  broadcast 192.168.10.2=
-55
-        inet6 fe80::211:32ff:fe49:8cf8  prefixlen 64  scopeid 0x20<link>
-        ether 00:11:22:33:44:55  txqueuelen 2048  (Ethernet)
-        RX packets 0  bytes 0 (0.0 B)
-        RX errors 0  dropped 0  overruns 0  frame 0
-        TX packets 31  bytes 7162 (6.9 KiB)
-        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
-
-root@(none):~# ethtool -S eth0
-NIC statistics:
-     good_octets_received: 0
-     bad_octets_received: 0
-     crc_errors_sent: 0
-     unicast_frames_received: 0
-     broadcast_frames_received: 0
-     multicast_frames_received: 0
-     frames_64_octets: 0
-     frames_65_to_127_octet: 0
-     frames_128_to_255_octet: 0
-     frames_256_to_511_octet: 0
-     frames_512_to_1023_octet: 0
-     frames_1024_to_max_octet: 0
-     good_octets_sent: 0
-     unicast_frames_sent: 0
-     multicast_frames_sent: 0
-     broadcast_frames_sent: 0
-     fc_sent: 0
-     fc_received: 0
-     rx_fifo_overrun: 0
-     undersize_received: 0
-     fragments_received: 0
-     oversize_received: 0
-     jabber_received: 0
-     mac_receive_error: 0
-     bad_crc_event: 0
-     collision: 0
-     late_collision: 0
-     rx_fifo_or_parser_overrun_drops: 0
-     rx_classifier_drops: 0
-     txq_0_desc_enqueue: 0
-     txq_0_desc_enqueue_to_ddr: 0
-     txq_0_buff_euqueue_to_ddr: 0
-     txq_0_desc_hardware_forwarded: 0
-     txq_0_packets_dequeued: 0
-     txq_0_queue_full_drops: 0
-     txq_0_packets_early_drops: 0
-     txq_0_packets_bm_drops: 0
-     txq_0_packets_rep_bm_drops: 0
-     txq_1_desc_enqueue: 30
-     txq_1_desc_enqueue_to_ddr: 0
-     txq_1_buff_euqueue_to_ddr: 30
-     txq_1_desc_hardware_forwarded: 0
-     txq_1_packets_dequeued: 30
-     txq_1_queue_full_drops: 0
-     txq_1_packets_early_drops: 0
-     txq_1_packets_bm_drops: 0
-     txq_1_packets_rep_bm_drops: 0
-     txq_2_desc_enqueue: 0
-     txq_2_desc_enqueue_to_ddr: 0
-     txq_2_buff_euqueue_to_ddr: 0
-     txq_2_desc_hardware_forwarded: 0
-     txq_2_packets_dequeued: 0
-     txq_2_queue_full_drops: 0
-     txq_2_packets_early_drops: 0
-     txq_2_packets_bm_drops: 0
-     txq_2_packets_rep_bm_drops: 0
-     txq_3_desc_enqueue: 0
-     txq_3_desc_enqueue_to_ddr: 0
-     txq_3_buff_euqueue_to_ddr: 0
-     txq_3_desc_hardware_forwarded: 0
-     txq_3_packets_dequeued: 0
-     txq_3_queue_full_drops: 0
-     txq_3_packets_early_drops: 0
-     txq_3_packets_bm_drops: 0
-     txq_3_packets_rep_bm_drops: 0
-     txq_4_desc_enqueue: 0
-     txq_4_desc_enqueue_to_ddr: 0
-     txq_4_buff_euqueue_to_ddr: 0
-     txq_4_desc_hardware_forwarded: 0
-     txq_4_packets_dequeued: 0
-     txq_4_queue_full_drops: 0
-     txq_4_packets_early_drops: 0
-     txq_4_packets_bm_drops: 0
-     txq_4_packets_rep_bm_drops: 0
-     txq_5_desc_enqueue: 0
-     txq_5_desc_enqueue_to_ddr: 0
-     txq_5_buff_euqueue_to_ddr: 0
-     txq_5_desc_hardware_forwarded: 0
-     txq_5_packets_dequeued: 0
-     txq_5_queue_full_drops: 0
-     txq_5_packets_early_drops: 0
-     txq_5_packets_bm_drops: 0
-     txq_5_packets_rep_bm_drops: 0
-     txq_6_desc_enqueue: 0
-     txq_6_desc_enqueue_to_ddr: 0
-     txq_6_buff_euqueue_to_ddr: 0
-     txq_6_desc_hardware_forwarded: 0
-     txq_6_packets_dequeued: 0
-     txq_6_queue_full_drops: 0
-     txq_6_packets_early_drops: 0
-     txq_6_packets_bm_drops: 0
-     txq_6_packets_rep_bm_drops: 0
-     txq_7_desc_enqueue: 0
-     txq_7_desc_enqueue_to_ddr: 0
-     txq_7_buff_euqueue_to_ddr: 0
-     txq_7_desc_hardware_forwarded: 0
-     txq_7_packets_dequeued: 0
-     txq_7_queue_full_drops: 0
-     txq_7_packets_early_drops: 0
-     txq_7_packets_bm_drops: 0
-     txq_7_packets_rep_bm_drops: 0
-     rxq_0_desc_enqueue: 0
-     rxq_0_queue_full_drops: 0
-     rxq_0_packets_early_drops: 0
-     rxq_0_packets_bm_drops: 0
-     rxq_1_desc_enqueue: 0
-     rxq_1_queue_full_drops: 0
-     rxq_1_packets_early_drops: 0
-     rxq_1_packets_bm_drops: 0
-     rxq_2_desc_enqueue: 0
-     rxq_2_queue_full_drops: 0
-     rxq_2_packets_early_drops: 0
-     rxq_2_packets_bm_drops: 0
-     rxq_3_desc_enqueue: 0
-     rxq_3_queue_full_drops: 0
-     rxq_3_packets_early_drops: 0
-     rxq_3_packets_bm_drops: 0
-     rx_xdp_redirect: 0
-     rx_xdp_pass: 0
-     rx_xdp_drop: 0
-     rx_xdp_tx: 0
-     rx_xdp_tx_errors: 0
-     tx_xdp_xmit: 0
-     tx_xdp_xmit_errors: 0
-----------------------------------------------------------
-
-I'm not sure if this a device-tree, mvpp2 or some other problem, hence thi=
-s email.
-
-Any advice or troubleshooting advice appreciated.
-
-Cheers,
-ZM
------------------------12ed276ba5bdbce2b9a44c4c84b5b843
-Content-Type: application/pgp-keys; filename="publickey - zoomoo100@proton.me - 0x1C985C6F.asc"; name="publickey - zoomoo100@proton.me - 0x1C985C6F.asc"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="publickey - zoomoo100@proton.me - 0x1C985C6F.asc"; name="publickey - zoomoo100@proton.me - 0x1C985C6F.asc"
-
-LS0tLS1CRUdJTiBQR1AgUFVCTElDIEtFWSBCTE9DSy0tLS0tCgp4ak1FWjRPYlNCWUpLd1lCQkFI
-YVJ3OEJBUWRBMUlsekxwdXFkUkNnOVRlTFZMcC9WWDUxenVNNURkYWwKOHl2SnYrWG1MZnpOS1hw
-dmIyMXZiekV3TUVCd2NtOTBiMjR1YldVZ1BIcHZiMjF2YnpFd01FQndjbTkwCmIyNHViV1Urd3NB
-UkJCTVdDZ0NEQllKbmc1dElBd3NKQndtUVFkd2s0Nk9STU1ORkZBQUFBQUFBSEFBZwpjMkZzZEVC
-dWIzUmhkR2x2Ym5NdWIzQmxibkJuY0dwekxtOXlaK2xkbEsxY0pSU2NBYTdFNnA2OHJ0enYKeVVC
-U0FNZTRacy9yVEVYUXFFU0JBeFVLQ0FRV0FBSUJBaGtCQXBzREFoNEJGaUVFSEpoY2IwVjFkdnlC
-ClgyMkFRZHdrNDZPUk1NTUFBQU9IQVFEUnhHQlUyTHhGb0ZHNmM4OERiQmwzZmJzQURwWVZuT0Zj
-WS9SRQp4dDFRalFFQTZGSjh0OHh4OVpGRG5YWmp1M0NQekdicHJRbHdCd3ZQZ0trVXJVSTVod2pP
-T0FSbmc1dEkKRWdvckJnRUVBWmRWQVFVQkFRZEFiMzhJcHRqNXdCNEZ3anorbXhGTzN5TWNyam5B
-aEs4Zkt2SFlISXlICjZ3c0RBUWdId3I0RUdCWUtBSEFGZ21lRG0wZ0prRUhjSk9PamtURERSUlFB
-QUFBQUFCd0FJSE5oYkhSQQpibTkwWVhScGIyNXpMbTl3Wlc1d1ozQnFjeTV2Y21kQk92cWt0dUtE
-bHJ4Wm9NMDBoMld6VlJKWDc2RFoKRW1yTnJaeDN1MDQ0a2dLYkRCWWhCQnlZWEc5RmRYYjhnVjl0
-Z0VIY0pPT2prVEREQUFEWmh3RUFqd1JKCmR3M0tGSC9oVktMVlZ6bUkvMklLQkJSV0cxdFdaYTlX
-bTh3R3AxSUEvQXRBNGVRWnMwbnRpNDByeVArQgoycy9VTGo2bVBkdXZLdWRUT0d1MS81MEYKPWdl
-K24KLS0tLS1FTkQgUEdQIFBVQkxJQyBLRVkgQkxPQ0stLS0tLQo=
------------------------12ed276ba5bdbce2b9a44c4c84b5b843--
-
---------0c1666c11d6729aeed684bdca0ff804fb97541490965172f9b834ad09f9b08c8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-Version: ProtonMail
-
-wrsEARYKAG0FgmjBNLwJkEHcJOOjkTDDRRQAAAAAABwAIHNhbHRAbm90YXRp
-b25zLm9wZW5wZ3Bqcy5vcmcIKdlTUTdt8mJhT8UA4t/aOX+hGQaVNBevFRqA
-NoUAMxYhBByYXG9FdXb8gV9tgEHcJOOjkTDDAAD2GAEAzv+PmuMWGxDiLDGc
-MFeMXnGiagk3NOqxJfPUBMvlgm4BAIw2/33IJWeqEkEJgjFrHWAVL4QMIYP+
-3NVNKgmAr0sN
-=n9WO
------END PGP SIGNATURE-----
-
-
---------0c1666c11d6729aeed684bdca0ff804fb97541490965172f9b834ad09f9b08c8--
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMQ1wWgC/4WNTQqDMBBGryJZN5Ifg7Sr3qOI2HHUWWhCJg0t4
+ t2beoEu34PvfbtgjIQsbtUuImZi8lsBc6kELMM2o6SxsDDKOHVVjeS0WrMGY3U/B/L9K4xDQtk
+ 6pwCbBkFZUcYh4kTvM/zoCi/EycfP+ZP1z/5NZi21fAK0zmoYlcL75JlrTjX4VXTHcXwBt1LfJ
+ r4AAAA=
+X-Change-ID: 20250904-stm32mp231_gpio_update-7550ce44ec03
+To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin
+	<mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+CC: <devicetree@vger.kernel.org>, <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+        Amelie Delaunay <amelie.delaunay@foss.st.com>
+X-Mailer: b4 0.14.2
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE3.st.com
+ (10.75.129.71)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AMS1EPF00000049:EE_|PA4PR10MB5538:EE_
+X-MS-Office365-Filtering-Correlation-Id: 7ea9b814-ca6f-4d3c-1915-08ddf043833d
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam:
+	BCL:0;ARA:13230040|36860700013|376014|82310400026|1800799024;
+X-Microsoft-Antispam-Message-Info:
+	=?utf-8?B?cXdOZjBRSmVBM1pidlpZcy96N0VBWVQ2cUpqUTk1Z1gwTHVETDlaNVBvWG1n?=
+ =?utf-8?B?VUVCY0dRSjdnNWZYclZrQ3RyYXdoSkI5anFjeWdBSlJFK2RkYm1BNWhkQmMz?=
+ =?utf-8?B?SkphS0ovUmdJZGppUXgvUGUyZnZqaVBVaVRYMHMwOVlUWitQdlUzSVJiWGk2?=
+ =?utf-8?B?LzJpN0xicTBXMlh4NlVkUG5iQS9UaW9TYTM4MFFxNFdxZUhEU0J1UGRYTkpX?=
+ =?utf-8?B?NW5sTmRUY0RQU094RHZyL3hrMzlVdms2cjdnd2l5am9JREMwbllDTlgrSmNn?=
+ =?utf-8?B?MWt3bVJQWWtvS2J0NjU2eHpYSVBUaGg5eTRURk95cVB1OTdyczV2dE8xVUl0?=
+ =?utf-8?B?S1dnQXhyMHQ2YWQ1dXBMVTIvd1B0MVhjWk5VQzBPMHNQRFRuWXNTQkJWOXo3?=
+ =?utf-8?B?NUJFN3p6M0FtM2hWWGpnNDJycGFLMDF3cFJJQTFCQ3RzUDhBbTB0S3lUYk5w?=
+ =?utf-8?B?SXcvQkFwaTJhY29GTUZHaGZ0UkhqMzNDQ2pEeE00VXRxQmdOdFNwbEZhc3NU?=
+ =?utf-8?B?ZGNNSDEzT1BRdkxJUzBxdzRSdXhHbkRZZG9Yb1JxQk9zVDVqSFZMNS9JM3ZG?=
+ =?utf-8?B?TTZRQ2dQaDZ5RTJQUEhOdVVFOVBNejV3aFV5REJWMVdiYnREN1F1VW5qbEdD?=
+ =?utf-8?B?KzlnTDIxUWdHWkJ1M3NlMW1BOHNZcDRnTUFYbDlGL0NDSlViSDRTeUhSZXZM?=
+ =?utf-8?B?YjZXbE9zNW4wUksyN256Ymo2ODliWTFqTitpMi90STJYZUVOb2YvQzNBS1p1?=
+ =?utf-8?B?SG9mWmlSY20vYW9SNUhqbUMzTFV1cWJKYU1XNHF0djZSWUt6dDk2SWNHenIw?=
+ =?utf-8?B?YURySVMvWTNSN3ZxeDR0UWJId3Ezd3VqV0cyY1ptMFFVT0FuOElmb3kxYVl3?=
+ =?utf-8?B?Yk50aitQK2haeW5wdXNNKzZqNkd6UlBHdnhmMUhHRDNlTEFUdDQ1OHpoWEx3?=
+ =?utf-8?B?amc5UDhYT2VXQjVmNzhpUkhzVkU2WkppYUNtbHdQbE1DcXRKMjlERWZleEJX?=
+ =?utf-8?B?R2VjRWZNYlRKa3lvZmN6OHQrQ3lPVWd5amczaldKbUl2NzdLZkx2bWJMQTl6?=
+ =?utf-8?B?MVd0U0lub2FyN3pnTFF6cFBaYmZSUlc2SGYrMzcyeGloeVF6VFJ6V3hLem5x?=
+ =?utf-8?B?dkF1NGdGd2ZMNDU3M2hvL3FJT25WbklxNmJtVnpSUzVLUFg3VEZNUkFXUEtt?=
+ =?utf-8?B?K3owWG5iRlZraTlQRGZHSFRsS1BhbXZ0dW1ialZ6WmdQUWVCa0lvcjRQL2l2?=
+ =?utf-8?B?ZXN0czF3eUh0TlZQcGpHQlcwTk5kcSsydE5LOXltRnkzV3pzT01hSVdYQlM3?=
+ =?utf-8?B?bi9OUlBGUFZxcStDRzlSQmYvQnk3a21CeDJxMEtyTWZNYWorbzQ5VjlsRE5p?=
+ =?utf-8?B?QThvOUpWWVBSYi91K2hMMk13Q0o1ZW1nalJQLzRlT3pZRmlwN2gwYnNyVTF5?=
+ =?utf-8?B?Tmk0UExieFRrYmpUQ1N3bXhLcWZYZ1pnQTVnOWMxa2xJdVFmNmJSM0owKzIz?=
+ =?utf-8?B?MDdaa3pLdTRDQjB0RWJyc3ZueENOVjlCMTFybklEa0dxVUhYMldDM0Evc3Zi?=
+ =?utf-8?B?QW1OMGw1cllDdGRKM2FTc29udE1waXA0OU8reENaRlNRTWtiSUVFZHBVRC9I?=
+ =?utf-8?B?V05yN2c4UmcwWW5ERU8wUzVFTDlwVzVWN0ZienpqcTV2L3BWaWs2R2l0bXRT?=
+ =?utf-8?B?ampsOHpleW9zRWNCbStOY0NBVHF3eFZlc1BiUkwrZWRXdHFrWndoQ3NpcXRD?=
+ =?utf-8?B?cmVWdi9hNWR3dnpZUkIwUU0yN005OCtWbERWZ2tSSE5NRGZJZy9kdXZRalZ3?=
+ =?utf-8?B?c3pEMDNzeHdwQkpDU2VESTdiWVFES0V0U3QyYUc5ajdQakZJUUgyZVZGNlRj?=
+ =?utf-8?B?clFNb01PMG9BR2EzOWlOS09lNWlWSkh5bDNFZjdDdzJjdGVmYWhUQjdpRXBy?=
+ =?utf-8?B?M1UvcmNRek9YWHBYQWR2QVFtS0tMeTZFM0RkVE5LMXpXdnUzaGh1NzNEQWFx?=
+ =?utf-8?B?NmcwSFF1a0lGZ29xUFJZRTZack5iMWNMTkFaT0FTejVHaC9raWs1UktuNmsv?=
+ =?utf-8?Q?cg/+qX?=
+X-Forefront-Antispam-Report:
+	CIP:164.130.1.43;CTRY:IT;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:smtpO365.st.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230040)(36860700013)(376014)(82310400026)(1800799024);DIR:OUT;SFP:1101;
+X-OriginatorOrg: foss.st.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2025 08:24:51.0877
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7ea9b814-ca6f-4d3c-1915-08ddf043833d
+X-MS-Exchange-CrossTenant-Id: 75e027c9-20d5-47d5-b82f-77d7cd041e8f
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=75e027c9-20d5-47d5-b82f-77d7cd041e8f;Ip=[164.130.1.43];Helo=[smtpO365.st.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	AMS1EPF00000049.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR10MB5538
+X-Authority-Analysis: v=2.4 cv=MrlS63ae c=1 sm=1 tr=0 ts=68c135db cx=c_pps a=7NAaTQ08Iu+netfH3uu5eA==:117 a=peP7VJn1Wk7OJvVWh4ABVQ==:17 a=6eWqkTHjU83fiwn7nKZWdM+Sl24=:19 a=h8e1o3o8w34MuCiiGQrqVE4VwXA=:19 a=wKuvFiaSGQ0qltdbU6+NXLB8nM8=:19
+ a=Ol13hO9ccFRV9qXi2t6ftBPywas=:19 a=ifg0f1jqALsA:10 a=IkcTkHD0fZMA:10 a=yJojWOMRYYMA:10 a=s63m1ICgrNkA:10 a=FUbXzq8tPBIA:10 a=VwQbUJbxAAAA:8 a=8b9GpE9nAAAA:8 a=bbfWk0yqAbS-qEUU6UcA:9 a=QEXdDO2ut3YA:10 a=T3LWEMljR5ZiDmsYVIUa:22
+X-Proofpoint-GUID: m3ISaZtT_7q9CAf3bGjB7Rfbn36BKa7l
+X-Proofpoint-ORIG-GUID: m3ISaZtT_7q9CAf3bGjB7Rfbn36BKa7l
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjUwOTA5MDAwMCBTYWx0ZWRfX6C2BUkSS+rKd Z3nP63y9iTBYFOQtuNhMzFGlNn5+hoe/eAma8lk6MQz90YDMQNuQout7X1G1CwLXIVe6HY93UNm vn0Yb8jMWQvkk8K7tCtIXRtdXwoociMg/Ktcr0ofi6Gml7ig+suz57JcrmqJvhYxn7i5CN0i0rl
+ CaDDrTkvi7pOftStBlWBOywJF7+XAdBxLM1fg3otrvym4XdcgEyfNovZtpEFc0V8IktXUdEntNT qe9BxbYKEt7Sv4QxjNREAVqnCneqvOdttHP6s1hx2X+qVqJHUDB5YCBhHl3BO2ljYB1GLxZ0apu +ISZ5NCS2qz3gn+MeJecFq4hdML8U7RqHU06c8JKuVT5yGTRH243GUtZ5e+fT3taNsCf5wOEYoB T/akgPUs
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1117,Hydra:6.1.9,FMLib:17.12.80.40
+ definitions=2025-09-09_03,2025-09-10_01,2025-03-28_01
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 suspectscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 phishscore=0 classifier=typeunknown authscore=0 authtc=
+ authcc= route=outbound adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2507300000 definitions=main-2509090000
+
+Remove gpioj and gpiok nodes, as J and K banks are unavailable
+on STM32MP23x packages and resize memory on stm32mp235f-dk
+because DDR controller control pin is not routed, so it is not
+possible to configure 4GB/16-bit.
+
+Signed-off-by: Amelie Delaunay <amelie.delaunay@foss.st.com>
+---
+Changes in v2:
+- Typo fixed in first commit message
+- Second patch added to fix memory size on stm32mp235f-dk
+- Link to v1: https://lore.kernel.org/r/20250904-stm32mp231_gpio_update-v1-1-bcc7531cd00e@foss.st.com
+
+---
+Amelie Delaunay (2):
+      arm64: dts: st: remove gpioj and gpiok banks from stm32mp231
+      arm64: dts: st: fix memory region size on stm32mp235f-dk
+
+ arch/arm64/boot/dts/st/stm32mp231.dtsi    | 22 ----------------------
+ arch/arm64/boot/dts/st/stm32mp235f-dk.dts |  2 +-
+ 2 files changed, 1 insertion(+), 23 deletions(-)
+---
+base-commit: 6d40d5ecf683e31a5e204d0a2f57035c39fc9c5f
+change-id: 20250904-stm32mp231_gpio_update-7550ce44ec03
+
+Best regards,
+-- 
+Amelie Delaunay <amelie.delaunay@foss.st.com>
 
 
